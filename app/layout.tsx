@@ -11,6 +11,9 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Online Birim Çevirici",
   description: "Mühendisler için hızlı, modern ve kapsamlı bir birim dönüştürücü.",
+  verification: {
+    google: "meFoeOIEAS1",
+  },
 };
 
 // Root layout → tüm sayfalar bu sarmalayıcıyı kullanır

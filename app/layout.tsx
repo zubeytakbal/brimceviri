@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: "Online Birim Çevirici",
   description: "Mühendisler için hızlı, modern ve kapsamlı bir birim dönüştürücü.",
   verification: {
-    google: "meFoeOIEAS1",
+    google: "meFoeOlEAS1hhtFLvCSrNiQHNRWU1GCJBd79kswXeeA",
   },
 };
 

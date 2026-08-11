@@ -141,34 +141,18 @@ function CategoryRow({
   }
 
   // Arama sinyali bu kategoriye gelirse: satıra kaydır + inputa odaklan
-  useEffect(() => {
-    if (!searchSignal || searchSignal.category !== catKey) {
-      return;
-    }
+ useEffect(() => {
+  if (!searchSignal || searchSignal.category !== catKey) {
+    return;
+  }
 
-    const unit = searchSignal.unit;
+  rowRef.current?.scrollIntoView({
+    behavior: "smooth",
+    block: "center",
+  });
 
-    // Sol birimi aranan birime ayarla
-    setFrom(unit);
-
-    // Sağ tarafa farklı bir birim bul, yoksa aynı kalsın
-    const other = units[catKey].find((u) => u !== unit) || unit;
-    setTo(other);
-
-    // Satırı ortaya kaydır
-    if (rowRef.current) {
-      rowRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-      });
-    }
-
-    // Inputa odaklan
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, [searchSignal, catKey]);
-
+  inputRef.current?.focus();
+}, [searchSignal, catKey]);
   return (
     <div ref={rowRef} className="converter-section">
       <div className="converter-row">

@@ -1,23 +1,27 @@
 import type { Metadata } from "next";
 import HomeDirectory from "./components/HomeDirectory";
+import { buildSiteUrl } from "./siteConfig";
+
+const homeUrl = buildSiteUrl("/");
+const englishHomeUrl = buildSiteUrl("/en");
 
 export const metadata: Metadata = {
   title: "İhtiyacınız olan birim dönüşümünü bulun",
   description:
     "Uzunluk, kütle ve basınç dönüşümlerini kategori bazında tarayın; ilgili hesaplayıcıyı, birim rehberini ve bilgi sayfasını doğrudan açın.",
   alternates: {
-    canonical: "https://birimceviri.app",
+    canonical: homeUrl,
     languages: {
-      tr: "https://birimceviri.app",
-      en: "https://birimceviri.app/en",
-      "x-default": "https://birimceviri.app",
+      tr: homeUrl,
+      en: englishHomeUrl,
+      "x-default": homeUrl,
     },
   },
   openGraph: {
     title: "İhtiyacınız olan birim dönüşümünü bulun | BirimCeviri.app",
     description:
       "Kategori kartları, popüler hesaplayıcılar ve birim rehberleriyle doğru dönüşüm sayfasına hızlıca ulaşın.",
-    url: "https://birimceviri.app",
+    url: homeUrl,
     siteName: "BirimCeviri.app",
     locale: "tr_TR",
     type: "website",

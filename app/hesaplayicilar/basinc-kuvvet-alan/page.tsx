@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import PressureForceAreaPage from "../../components/calculators/PressureForceAreaPage";
 import { findEnglishCalculatorPageByTurkishSlug } from "../../converter/localizedCalculatorPages";
+import { buildSiteUrl } from "../../siteConfig";
 
 const englishPage =
   findEnglishCalculatorPageByTurkishSlug("basinc-kuvvet-alan");
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
     title: "Basınç Hesaplama (P = F/A)",
     description:
       "Basıncı, kuvveti veya alanı SI taban birimleri üzerinden çözün ve sonucu SI, metrik ve İngiliz/ABD mühendislik birimlerinde karşılaştırın.",
-    url: "https://birimceviri.app/hesaplayicilar/basinc-kuvvet-alan",
+    url: buildSiteUrl("/hesaplayicilar/basinc-kuvvet-alan"),
     siteName: "BirimCeviri.app",
     locale: "tr_TR",
     type: "article",
@@ -43,13 +44,13 @@ export default function PressureForceAreaCalculatorPage() {
         "@type": "ListItem",
         position: 1,
         name: "Ana Sayfa",
-        item: "https://birimceviri.app",
+        item: buildSiteUrl("/"),
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Basınç, Kuvvet ve Alan Hesaplayıcısı",
-        item: "https://birimceviri.app/hesaplayicilar/basinc-kuvvet-alan",
+        item: buildSiteUrl("/hesaplayicilar/basinc-kuvvet-alan"),
       },
     ],
   };

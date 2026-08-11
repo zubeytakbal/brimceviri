@@ -10,6 +10,7 @@ import {
 } from "../../../converter/localizedCategoryPages";
 import { englishConversionPages } from "../../../converter/localizedConversionPages";
 import { englishUnitPages } from "../../../converter/localizedUnitPages";
+import { SITE_URL, buildSiteUrl } from "../../../siteConfig";
 
 type PageProps = {
   params: Promise<{
@@ -82,9 +83,7 @@ export async function generateMetadata({
     openGraph: {
       title: categoryPage.title,
       description: categoryPage.description,
-      url:
-        `https://birimceviri.app/en/categories/` +
-        categoryPage.slug,
+      url: buildSiteUrl(`/en/categories/${categoryPage.slug}`),
       siteName: "BirimCeviri.app",
       locale: "en_US",
       type: "article",
@@ -131,9 +130,9 @@ export default async function EnglishCategoryPage({
     titleSingleSeparator: "→",
   });
 
-  const pageUrl =
-    `https://birimceviri.app/en/categories/` +
-    categoryPage.slug;
+  const pageUrl = buildSiteUrl(
+    `/en/categories/${categoryPage.slug}`
+  );
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -143,13 +142,13 @@ export default async function EnglishCategoryPage({
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://birimceviri.app/en",
+        item: buildSiteUrl("/en"),
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Categories",
-        item: "https://birimceviri.app/en/categories",
+        item: buildSiteUrl("/en/categories"),
       },
       {
         "@type": "ListItem",
@@ -170,12 +169,12 @@ export default async function EnglishCategoryPage({
     author: {
       "@type": "Organization",
       name: "BirimCeviri.app",
-      url: "https://birimceviri.app",
+      url: SITE_URL,
     },
     publisher: {
       "@type": "Organization",
       name: "BirimCeviri.app",
-      url: "https://birimceviri.app",
+      url: SITE_URL,
     },
   };
 

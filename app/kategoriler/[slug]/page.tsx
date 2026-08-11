@@ -16,6 +16,7 @@ import {
   getUnitSources,
 } from "../../converter/unitSources";
 import { unitPages } from "../../converter/unitPages";
+import { buildSiteUrl } from "../../siteConfig";
 
 type PageProps = {
   params: Promise<{
@@ -74,9 +75,7 @@ export async function generateMetadata({
     openGraph: {
       title: categoryPage.title,
       description: categoryPage.description,
-      url:
-        `https://birimceviri.app/kategoriler/` +
-        categoryPage.slug,
+      url: buildSiteUrl(`/kategoriler/${categoryPage.slug}`),
       siteName: "BirimCeviri.app",
       locale: "tr_TR",
       type: "website",
@@ -147,9 +146,9 @@ export default async function CategoryPage({
     categoryPage.title.replace(" Dönüşümleri", "")
   } hakkında ayrıntılı bilgi`;
 
-  const pageUrl =
-    `https://birimceviri.app/kategoriler/` +
-    categoryPage.slug;
+  const pageUrl = buildSiteUrl(
+    `/kategoriler/${categoryPage.slug}`
+  );
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -159,13 +158,13 @@ export default async function CategoryPage({
         "@type": "ListItem",
         position: 1,
         name: "Ana Sayfa",
-        item: "https://birimceviri.app",
+        item: buildSiteUrl("/"),
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Kategoriler",
-        item: "https://birimceviri.app",
+        item: buildSiteUrl("/"),
       },
       {
         "@type": "ListItem",
@@ -193,9 +192,7 @@ export default async function CategoryPage({
           name:
             `${conversion.fromName} – ` +
             `${conversion.toName} Çevirici`,
-          url:
-            `https://birimceviri.app/` +
-            conversion.slug,
+          url: buildSiteUrl(`/${conversion.slug}`),
         })
       ),
     },

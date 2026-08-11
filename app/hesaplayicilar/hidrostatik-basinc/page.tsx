@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import HydrostaticPressurePage from "../../components/calculators/HydrostaticPressurePage";
+import { buildSiteUrl } from "../../siteConfig";
 
 export const metadata: Metadata = {
   title: "Hidrostatik Basınç Hesaplama (ΔP = ρgh)",
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
     title: "Hidrostatik Basınç Hesaplama (ΔP = ρgh)",
     description:
       "Yoğunluk, yerçekimi ivmesi ve derinlikten hidrostatik basınç farkını veya ters değişkenleri SI tabanlı olarak hesaplayın.",
-    url: "https://birimceviri.app/hesaplayicilar/hidrostatik-basinc",
+    url: buildSiteUrl("/hesaplayicilar/hidrostatik-basinc"),
     siteName: "BirimCeviri.app",
     locale: "tr_TR",
     type: "article",
@@ -37,13 +38,13 @@ export default function HydrostaticPressureCalculatorRoute() {
         "@type": "ListItem",
         position: 1,
         name: "Ana Sayfa",
-        item: "https://birimceviri.app",
+        item: buildSiteUrl("/"),
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Hidrostatik Basınç Hesaplayıcısı",
-        item: "https://birimceviri.app/hesaplayicilar/hidrostatik-basinc",
+        item: buildSiteUrl("/hesaplayicilar/hidrostatik-basinc"),
       },
     ],
   };

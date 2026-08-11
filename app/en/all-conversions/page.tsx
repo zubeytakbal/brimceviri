@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { englishConversionPages } from "../../converter/localizedConversionPages";
+import { buildSiteUrl } from "../../siteConfig";
 
 export const metadata: Metadata = {
   title: "All Unit Converters",
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
     title: "All Unit Converters | BirimCeviri.app",
     description:
       "Browse free online length, mass and pressure conversion tools.",
-    url: "https://birimceviri.app/en/all-conversions",
+    url: buildSiteUrl("/en/all-conversions"),
     siteName: "BirimCeviri.app",
     locale: "en_US",
     type: "website",

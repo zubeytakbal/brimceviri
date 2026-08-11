@@ -7,6 +7,7 @@ import { convert } from "../converter/convert";
 import { conversionPages } from "../converter/conversionPages";
 import { findEnglishPageByTurkishSlug } from "../converter/localizedConversionPages";
 import { findUnitPage } from "../converter/unitPages";
+import { buildSiteUrl } from "../siteConfig";
 
 type PageProps = {
   params: Promise<{
@@ -81,7 +82,7 @@ export async function generateMetadata({
       description:
         `${conversionPage.fromName} değerini ` +
         `${conversionPage.toName} birimine ücretsiz dönüştürün.`,
-      url: `https://birimceviri.app/${conversionPage.slug}`,
+      url: buildSiteUrl(`/${conversionPage.slug}`),
       siteName: "BirimCeviri.app",
       locale: "tr_TR",
       type: "website",

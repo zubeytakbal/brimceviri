@@ -1,4 +1,5 @@
 import type { ConversionPage } from "../converter/conversionPages";
+import { buildSiteUrl } from "../siteConfig";
 
 type ConversionSeoProps = {
   conversionPage: ConversionPage;
@@ -13,9 +14,9 @@ export default function ConversionSeo({
   conversionPage,
   formattedOneUnitResult,
 }: ConversionSeoProps) {
-  const pageUrl = `https://birimceviri.app/${conversionPage.slug}`;
+  const pageUrl = buildSiteUrl(`/${conversionPage.slug}`);
   const categoryUrl =
-    `https://birimceviri.app/kategoriler/` +
+    buildSiteUrl("/kategoriler/") +
     conversionPage.category;
 
   const faqs = [
@@ -51,7 +52,7 @@ export default function ConversionSeo({
         "@type": "ListItem",
         position: 1,
         name: "Ana Sayfa",
-        item: "https://birimceviri.app",
+        item: buildSiteUrl("/"),
       },
       {
         "@type": "ListItem",

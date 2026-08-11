@@ -7,6 +7,7 @@ import {
   englishConversionPages,
   findEnglishConversionPage,
 } from "../../converter/localizedConversionPages";
+import { buildSiteUrl } from "../../siteConfig";
 
 type PageProps = {
   params: Promise<{
@@ -79,7 +80,7 @@ export async function generateMetadata({
     openGraph: {
       title,
       description,
-      url: `https://birimceviri.app/en/${page.slug}`,
+      url: buildSiteUrl(`/en/${page.slug}`),
       siteName: "BirimCeviri.app",
       locale: "en_US",
       type: "website",

@@ -14,6 +14,7 @@ import {
 } from "../../converter/unitSources";
 import { findEnglishUnitPageByTurkishSlug } from "../../converter/localizedUnitPages";
 import { unitPages } from "../../converter/unitPages";
+import { SITE_URL, buildSiteUrl } from "../../siteConfig";
 
 type PageProps = {
   params: Promise<{
@@ -85,7 +86,7 @@ export async function generateMetadata({
         `${unitPage.name} Nedir? Tanımı, Tarihçesi ve ` +
         `Bilimsel Bilgiler`,
       description: unitPage.shortDescription,
-      url: `https://birimceviri.app/birimler/${unitPage.slug}`,
+      url: buildSiteUrl(`/birimler/${unitPage.slug}`),
       siteName: "BirimCeviri.app",
       locale: "tr_TR",
       type: "article",
@@ -170,8 +171,9 @@ const specificScientificSections =
         page.toUnit === unitPage.unit)
   );
 
-  const pageUrl =
-    `https://birimceviri.app/birimler/${unitPage.slug}`;
+  const pageUrl = buildSiteUrl(
+    `/birimler/${unitPage.slug}`
+  );
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -181,13 +183,13 @@ const specificScientificSections =
         "@type": "ListItem",
         position: 1,
         name: "Ana Sayfa",
-        item: "https://birimceviri.app",
+        item: buildSiteUrl("/"),
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Birim Rehberi",
-        item: "https://birimceviri.app/birimler",
+        item: buildSiteUrl("/birimler"),
       },
       {
         "@type": "ListItem",
@@ -210,12 +212,12 @@ const specificScientificSections =
     author: {
       "@type": "Organization",
       name: "BirimCeviri.app",
-      url: "https://birimceviri.app",
+      url: SITE_URL,
     },
     publisher: {
       "@type": "Organization",
       name: "BirimCeviri.app",
-      url: "https://birimceviri.app",
+      url: SITE_URL,
     },
   };
 

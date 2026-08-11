@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
 import HomeDirectory from "../components/HomeDirectory";
+import { buildSiteUrl } from "../siteConfig";
+
+const homeUrl = buildSiteUrl("/");
+const englishHomeUrl = buildSiteUrl("/en");
 
 export const metadata: Metadata = {
   title: "Find the unit conversion you need",
@@ -7,11 +11,11 @@ export const metadata: Metadata = {
     "Browse live conversion pages by category, search by unit name or symbol and open the right calculator or unit guide without leaving the homepage.",
 
   alternates: {
-    canonical: "https://birimceviri.app/en",
+    canonical: englishHomeUrl,
     languages: {
-      tr: "https://birimceviri.app",
-      en: "https://birimceviri.app/en",
-      "x-default": "https://birimceviri.app",
+      tr: homeUrl,
+      en: englishHomeUrl,
+      "x-default": homeUrl,
     },
   },
 
@@ -19,7 +23,7 @@ export const metadata: Metadata = {
     title: "Find the unit conversion you need | BirimCeviri.app",
     description:
       "Search conversion pages, compare category directories and jump into the exact unit converter you need.",
-    url: "https://birimceviri.app/en",
+    url: englishHomeUrl,
     siteName: "BirimCeviri.app",
     locale: "en_US",
     type: "website",

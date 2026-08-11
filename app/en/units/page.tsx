@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { englishUnitPages } from "../../converter/localizedUnitPages";
+import { buildSiteUrl } from "../../siteConfig";
 
 export const metadata: Metadata = {
   title: "Unit Guide: Definitions, Symbols and History",
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
     title: "Unit Guide | BirimCeviri.app",
     description:
       "Learn about length, mass and pressure units, their symbols, definitions, history and conversion relationships.",
-    url: "https://birimceviri.app/en/units",
+    url: buildSiteUrl("/en/units"),
     siteName: "BirimCeviri.app",
     locale: "en_US",
     type: "website",

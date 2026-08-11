@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import HydrostaticPressurePage from "../../../components/calculators/HydrostaticPressurePage";
+import { buildSiteUrl } from "../../../siteConfig";
 
 export const metadata: Metadata = {
   title: "Hydrostatic Pressure Calculator (ΔP = ρgh)",
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
     title: "Hydrostatic Pressure Calculator (ΔP = ρgh)",
     description:
       "Solve hydrostatic pressure difference or its inverse variables from density, gravity and depth using an SI-based calculation flow.",
-    url: "https://birimceviri.app/en/calculators/hydrostatic-pressure",
+    url: buildSiteUrl("/en/calculators/hydrostatic-pressure"),
     siteName: "BirimCeviri.app",
     locale: "en_US",
     type: "article",
@@ -37,13 +38,13 @@ export default function EnglishHydrostaticPressureCalculatorRoute() {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://birimceviri.app/en",
+        item: buildSiteUrl("/en"),
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Hydrostatic Pressure Calculator",
-        item: "https://birimceviri.app/en/calculators/hydrostatic-pressure",
+        item: buildSiteUrl("/en/calculators/hydrostatic-pressure"),
       },
     ],
   };

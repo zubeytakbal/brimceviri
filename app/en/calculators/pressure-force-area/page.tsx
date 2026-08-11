@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PressureForceAreaPage from "../../../components/calculators/PressureForceAreaPage";
+import { buildSiteUrl } from "../../../siteConfig";
 
 export const metadata: Metadata = {
   title: "Pressure Calculator (P = F/A)",
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
     title: "Pressure Calculator (P = F/A)",
     description:
       "Solve pressure, force or area through SI base units and compare the result across SI, metric and Imperial/US engineering units.",
-    url: "https://birimceviri.app/en/calculators/pressure-force-area",
+    url: buildSiteUrl("/en/calculators/pressure-force-area"),
     siteName: "BirimCeviri.app",
     locale: "en_US",
     type: "article",
@@ -37,13 +38,13 @@ export default function EnglishPressureForceAreaCalculatorPage() {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://birimceviri.app/en",
+        item: buildSiteUrl("/en"),
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Pressure, Force and Area Calculator",
-        item: "https://birimceviri.app/en/calculators/pressure-force-area",
+        item: buildSiteUrl("/en/calculators/pressure-force-area"),
       },
     ],
   };

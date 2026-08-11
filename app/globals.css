@@ -720,6 +720,14 @@ main {
   position: relative;
 }
 
+.site-navigation-desktop {
+  display: flex;
+}
+
+.site-mobile-menu {
+  display: none;
+}
+
 .site-navigation a {
   padding: 28px 0 24px;
   border-bottom: 3px solid transparent;
@@ -732,6 +740,73 @@ main {
 .site-navigation a:hover {
   border-bottom-color: #168f8c;
   color: #168f8c;
+}
+
+.site-menu-toggle {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border: 0;
+  background: transparent;
+  color: #172033;
+  cursor: pointer;
+}
+
+.site-menu-toggle:focus-visible {
+  outline: 2px solid #168f8c;
+  outline-offset: 4px;
+}
+
+.site-menu-toggle-text {
+  font-size: 0.98rem;
+  font-weight: 600;
+}
+
+.site-menu-toggle-bars {
+  position: relative;
+  display: inline-block;
+  width: 18px;
+  height: 2px;
+  border-radius: 999px;
+  background: #168f8c;
+  transition:
+    background-color 180ms ease,
+    transform 180ms ease;
+}
+
+.site-menu-toggle-bars::before,
+.site-menu-toggle-bars::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 18px;
+  height: 2px;
+  border-radius: 999px;
+  background: #168f8c;
+  transition: transform 180ms ease;
+}
+
+.site-menu-toggle-bars::before {
+  top: -5px;
+}
+
+.site-menu-toggle-bars::after {
+  top: 5px;
+}
+
+.site-menu-toggle[aria-expanded="true"] .site-menu-toggle-bars {
+  background: transparent;
+}
+
+.site-menu-toggle[aria-expanded="true"]
+  .site-menu-toggle-bars::before {
+  transform: translateY(5px) rotate(45deg);
+}
+
+.site-menu-toggle[aria-expanded="true"]
+  .site-menu-toggle-bars::after {
+  transform: translateY(-5px) rotate(-45deg);
 }
 
 .language-switcher {
@@ -813,33 +888,83 @@ main {
   color: #156b8a;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 768px) {
   .site-header-inner {
-    align-items: flex-start;
-    flex-direction: column;
     width: min(100% - 28px, 1120px);
-    padding: 18px 0 0;
+    min-height: 72px;
+    gap: 14px;
   }
 
-  .site-navigation {
+  .site-navigation-desktop {
+    display: none;
+  }
+
+  .site-menu-toggle {
+    display: inline-flex;
+  }
+
+  .site-mobile-menu {
+    display: block;
+    width: min(100% - 28px, 1120px);
+    margin: 0 auto;
+    padding: 0 0 16px;
+  }
+
+  .site-mobile-menu[hidden] {
+    display: none;
+  }
+
+  .site-navigation-mobile {
+    display: grid;
+    gap: 0;
     width: 100%;
-    gap: 22px;
-    overflow-x: auto;
+    padding-top: 8px;
+    border-top: 1px solid #d7dce3;
   }
 
-  .site-navigation a {
-    flex: 0 0 auto;
-    padding: 18px 0 14px;
+  .site-navigation-mobile a,
+  .site-navigation-mobile .language-switcher-button {
+    width: 100%;
+    padding: 14px 0;
+    border-bottom: 1px solid #d7dce3;
   }
 
-  .language-switcher-button {
-    padding: 18px 0 14px;
+  .site-navigation-mobile a:hover,
+  .site-navigation-mobile .language-switcher-button:hover {
+    border-bottom-color: #d7dce3;
   }
 
-  .language-switcher-menu {
-    right: auto;
-    left: 0;
-    min-width: 160px;
+  .site-navigation-mobile .language-switcher {
+    width: 100%;
+  }
+
+  .site-navigation-mobile .language-switcher-button {
+    justify-content: space-between;
+    font-size: 0.96rem;
+  }
+
+  .site-navigation-mobile .language-switcher-current {
+    white-space: normal;
+  }
+
+  .site-navigation-mobile .language-switcher-menu {
+    position: static;
+    display: none;
+    min-width: 0;
+    margin-top: 8px;
+    border-radius: 10px;
+    box-shadow: none;
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+  }
+
+  .site-navigation-mobile .language-switcher-menu.is-open {
+    display: grid;
+  }
+
+  .site-navigation-mobile .language-switcher-option {
+    padding: 12px;
   }
 }
 /* SaveFrom esintili dönüşüm üst alanı */
@@ -2773,6 +2898,7 @@ button {
 .site-logo {
   display: inline-flex;
   align-items: baseline;
+  max-width: 100%;
   color: #202124;
   font-family: var(--font-logo), Arial, sans-serif;
   font-size: 2.65rem;
@@ -2797,9 +2923,15 @@ button {
   color: #202124;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 768px) {
   .site-logo {
-    font-size: 2.25rem;
+    font-size: 1.95rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .site-logo {
+    font-size: 1.78rem;
   }
 }
 

@@ -808,11 +808,6 @@ const preferredDepthAutoUnits = [
 ] as const satisfies readonly DepthUnit[];
 
 const preferredPressurePairUnits: Record<string, PressureUnit> = {
-  [`N|${SQUARE_METRE_UNIT}`]: "Pa",
-  [`kN|${SQUARE_METRE_UNIT}`]: "kPa",
-  [`MN|${SQUARE_METRE_UNIT}`]: "MPa",
-  [`N|${SQUARE_MILLIMETRE_UNIT}`]: "MPa",
-  [`kN|${SQUARE_MILLIMETRE_UNIT}`]: "GPa",
   [`lbf|${SQUARE_INCH_UNIT}`]: "psi",
   [`kip|${SQUARE_INCH_UNIT}`]: "ksi",
   [`lbf|${SQUARE_FOOT_UNIT}`]: "psf",

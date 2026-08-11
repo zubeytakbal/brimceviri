@@ -1,35 +1,124 @@
+import {
+  KILOGRAM_FORCE_PER_SQUARE_CENTIMETRE_UNIT,
+  KILOGRAM_PER_CUBIC_METRE_UNIT,
+  METRE_PER_SECOND_SQUARED_UNIT,
+} from "./engineeringUnits";
+
+const SQUARE_SUFFIX = "\u00B2";
+const CUBIC_SUFFIX = "\u00B3";
+const MICRO_SIGN = "\u00B5";
+
+const squareMetreUnit = `m${SQUARE_SUFFIX}`;
+const squareCentimetreUnit = `cm${SQUARE_SUFFIX}`;
+const squareMillimetreUnit = `mm${SQUARE_SUFFIX}`;
+const squareKilometreUnit = `km${SQUARE_SUFFIX}`;
+const squareFootUnit = `ft${SQUARE_SUFFIX}`;
+const squareInchUnit = `in${SQUARE_SUFFIX}`;
+
+const cubicMetreUnit = `m${CUBIC_SUFFIX}`;
+const cubicCentimetreUnit = `cm${CUBIC_SUFFIX}`;
+const cubicFootUnit = `ft${CUBIC_SUFFIX}`;
+const cubicInchUnit = `in${CUBIC_SUFFIX}`;
+
+const kilogramPerCubicLitreUnit = `kg/L`;
+const gramPerCubicCentimetreUnit = `g/cm${CUBIC_SUFFIX}`;
+const poundPerCubicFootUnit = `lb/ft${CUBIC_SUFFIX}`;
+const poundPerCubicInchUnit = `lb/in${CUBIC_SUFFIX}`;
+
+const centimetrePerSecondSquaredUnit = `cm/s${SQUARE_SUFFIX}`;
+const millimetrePerSecondSquaredUnit = `mm/s${SQUARE_SUFFIX}`;
+const kilometrePerSecondSquaredUnit = `km/s${SQUARE_SUFFIX}`;
+const inchPerSecondSquaredUnit = `in/s${SQUARE_SUFFIX}`;
+const minuteSquaredSuffix = `min${SQUARE_SUFFIX}`;
+const footPerMinuteSquaredUnit = `ft/${minuteSquaredSuffix}`;
+const metrePerMinuteSquaredUnit = `m/${minuteSquaredSuffix}`;
+
+const degreePerSecondUnit = `\u00B0/s`;
+const degreePerMinuteUnit = `\u00B0/min`;
+const degreePerHourUnit = `\u00B0/h`;
+
+const newtonMetreUnit = `N\u00B7m`;
+const kilonewtonMetreUnit = `kN\u00B7m`;
+const poundFootUnit = `lb\u00B7ft`;
+const kilogramMetrePerSecondUnit = `kg\u00B7m/s`;
+const newtonSecondUnit = `N\u00B7s`;
+const poundFootPerSecondUnit = `lb\u00B7ft/s`;
+const pascalSecondUnit = `Pa\u00B7s`;
+const millipascalSecondUnit = `mPa\u00B7s`;
+const squareMetrePerSecondUnit = `${squareMetreUnit}/s`;
+const squareMillimetrePerSecondUnit = `${squareMillimetreUnit}/s`;
+const cubicMetrePerSecondUnit = `${cubicMetreUnit}/s`;
+const cubicMetrePerHourUnit = `${cubicMetreUnit}/h`;
+const wattPerMetreKelvinUnit = `W/m\u00B7K`;
+const kilowattPerMetreKelvinUnit = `kW/m\u00B7K`;
+const wattPerCentimetreKelvinUnit = `W/cm\u00B7K`;
+const btuPerHourFootFahrenheitUnit = `Btu/h\u00B7ft\u00B7\u00B0F`;
+const wattPerSquareMetreUnit = `W/${squareMetreUnit}`;
+const kilowattPerSquareMetreUnit = `kW/${squareMetreUnit}`;
+const caloriePerSquareCentimetreSecondUnit =
+  `cal/${squareCentimetreUnit}\u00B7s`;
+const joulePerKilogramKelvinUnit = `J/kg\u00B7K`;
+const kilojoulePerKilogramKelvinUnit = `kJ/kg\u00B7K`;
+const caloriePerGramKelvinUnit = `cal/g\u00B7K`;
+const btuPerPoundFahrenheitUnit = `Btu/lb\u00B7\u00B0F`;
+const ohmUnit = `\u03A9`;
+const kiloOhmUnit = `k\u03A9`;
+const megaOhmUnit = `M\u03A9`;
+const microfaradUnit = `${MICRO_SIGN}F`;
+const microhenryUnit = `${MICRO_SIGN}H`;
+const microcoulombUnit = `${MICRO_SIGN}C`;
+const microweberUnit = `${MICRO_SIGN}Wb`;
+const micrometreUnit = `${MICRO_SIGN}m`;
+
 export const units: Record<string, string[]> = {
-  alan: ["m²", "cm²", "mm²", "km²", "ha", "ft²", "in²", "ac"],
+  alan: [
+    squareMetreUnit,
+    squareCentimetreUnit,
+    squareMillimetreUnit,
+    squareKilometreUnit,
+    "ha",
+    squareFootUnit,
+    squareInchUnit,
+    "ac",
+  ],
 
   uzunluk: [
     "m",
     "km",
     "cm",
     "mm",
-    "µm",
+    micrometreUnit,
     "nm",
     "ft",
     "in",
     "yd",
     "mi",
-    "nmi"
+    "nmi",
   ],
 
-  hacim: ["m³", "L", "mL", "cm³", "ft³", "in³", "gal"],
+  hacim: [
+    cubicMetreUnit,
+    "L",
+    "mL",
+    cubicCentimetreUnit,
+    cubicFootUnit,
+    cubicInchUnit,
+    "gal",
+  ],
 
   kutle: ["kg", "g", "mg", "ton", "lb", "oz"],
 
   yogunluk: [
-    "kg/m³",
-    "g/cm³",
+    KILOGRAM_PER_CUBIC_METRE_UNIT,
+    gramPerCubicCentimetreUnit,
     "g/mL",
-    "kg/L",
+    kilogramPerCubicLitreUnit,
     "g/L",
     "mg/L",
-    "lb/ft³",
-    "lb/in³",
+    poundPerCubicFootUnit,
+    poundPerCubicInchUnit,
     "lb/gal (US)",
-    "slug/ft³"
+    `slug/ft${CUBIC_SUFFIX}`,
   ],
 
   hiz: [
@@ -42,20 +131,20 @@ export const units: Record<string, string[]> = {
     "m/min",
     "km/min",
     "cm/s",
-    "c"
+    "c",
   ],
 
   ivme: [
-    "m/s²",
-    "cm/s²",
-    "mm/s²",
-    "km/s²",
-    "ft/s²",
-    "in/s²",
-    "m/min²",
-    "ft/min²",
+    METRE_PER_SECOND_SQUARED_UNIT,
+    centimetrePerSecondSquaredUnit,
+    millimetrePerSecondSquaredUnit,
+    kilometrePerSecondSquaredUnit,
+    `ft/s${SQUARE_SUFFIX}`,
+    inchPerSecondSquaredUnit,
+    metrePerMinuteSquaredUnit,
+    footPerMinuteSquaredUnit,
     "gal",
-    "g0"
+    "g0",
   ],
 
   zaman: ["s", "ms", "min", "h", "day"],
@@ -66,16 +155,20 @@ export const units: Record<string, string[]> = {
     "rad/h",
     "rpm",
     "Hz",
-    "°/s",
-    "°/min",
-    "°/h"
+    degreePerSecondUnit,
+    degreePerMinuteUnit,
+    degreePerHourUnit,
   ],
 
   kuvvet: ["N", "kN", "dyn", "lbf"],
 
-  tork: ["N·m", "kN·m", "lb·ft"],
+  tork: [newtonMetreUnit, kilonewtonMetreUnit, poundFootUnit],
 
-  momentum: ["kg·m/s", "N·s", "lb·ft/s"],
+  momentum: [
+    kilogramMetrePerSecondUnit,
+    newtonSecondUnit,
+    poundFootPerSecondUnit,
+  ],
 
   basinc: [
     "Pa",
@@ -86,14 +179,26 @@ export const units: Record<string, string[]> = {
     "at",
     "psi",
     "mmHg",
-    "mmH2O"
+    "mmH2O",
+    KILOGRAM_FORCE_PER_SQUARE_CENTIMETRE_UNIT,
   ],
 
-  viskozite_dinamik: ["Pa·s", "mPa·s", "P", "cP"],
+  viskozite_dinamik: [pascalSecondUnit, millipascalSecondUnit, "P", "cP"],
 
-  viskozite_kinematik: ["m²/s", "mm²/s", "cSt"],
+  viskozite_kinematik: [
+    squareMetrePerSecondUnit,
+    squareMillimetrePerSecondUnit,
+    "cSt",
+  ],
 
-  debi_hacimsel: ["m³/s", "L/s", "m³/h", "L/min", "cfm", "gpm"],
+  debi_hacimsel: [
+    cubicMetrePerSecondUnit,
+    "L/s",
+    cubicMetrePerHourUnit,
+    "L/min",
+    "cfm",
+    "gpm",
+  ],
 
   debi_kutlesel: ["kg/s", "kg/h", "g/s", "g/h"],
 
@@ -107,32 +212,46 @@ export const units: Record<string, string[]> = {
     "kcal",
     "Btu",
     "th",
-    "quad BTU"
+    "quad BTU",
   ],
 
   guc: ["W", "kW", "MW", "hp", "HP", "CV"],
 
   sicaklik: ["C", "F", "K"],
 
-  isil_iletkenlik: ["W/m·K", "kW/m·K", "W/cm·K", "Btu/h·ft·°F"],
+  isil_iletkenlik: [
+    wattPerMetreKelvinUnit,
+    kilowattPerMetreKelvinUnit,
+    wattPerCentimetreKelvinUnit,
+    btuPerHourFootFahrenheitUnit,
+  ],
 
-  isi_akisi: ["W/m²", "kW/m²", "cal/cm²·s"],
+  isi_akisi: [
+    wattPerSquareMetreUnit,
+    kilowattPerSquareMetreUnit,
+    caloriePerSquareCentimetreSecondUnit,
+  ],
 
-  ozgul_isi: ["J/kg·K", "kJ/kg·K", "cal/g·K", "Btu/lb·°F"],
+  ozgul_isi: [
+    joulePerKilogramKelvinUnit,
+    kilojoulePerKilogramKelvinUnit,
+    caloriePerGramKelvinUnit,
+    btuPerPoundFahrenheitUnit,
+  ],
 
-  elektrik_direnc: ["Ω", "kΩ", "MΩ"],
+  elektrik_direnc: [ohmUnit, kiloOhmUnit, megaOhmUnit],
 
   elektrik_gerilim: ["V", "kV", "mV"],
 
   elektrik_akim: ["A", "mA", "kA"],
 
-  kapasitans: ["F", "mF", "µF", "nF", "pF"],
+  kapasitans: ["F", "mF", microfaradUnit, "nF", "pF"],
 
-  enduktans: ["H", "mH", "µH"],
+  enduktans: ["H", "mH", microhenryUnit],
 
-  elektrik_yuk: ["C", "mC", "µC", "nC"],
+  elektrik_yuk: ["C", "mC", microcoulombUnit, "nC"],
 
   manyetik_alan: ["A/m", "kA/m", "Oe"],
 
-  manyetik_aki: ["Wb", "mWb", "µWb", "nWb", "weber"]
+  manyetik_aki: ["Wb", "mWb", microweberUnit, "nWb", "weber"],
 };

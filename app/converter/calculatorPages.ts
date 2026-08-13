@@ -9,6 +9,33 @@ export type CalculatorPage = {
 
 export const calculatorPages: CalculatorPage[] = [
   {
+    slug: "isi-enerjisi",
+    category: "enerji",
+    title: "Isı Enerjisi Hesaplayıcısı",
+    shortTitle: "Isı Enerjisi",
+    formula: "Q = m × c × ΔT",
+    description:
+      "Isı enerjisini, kütleyi, özgül ısıyı veya sıcaklık farkını gerçek birim dönüşümleriyle hesaplayın ve sonucu SI eşdeğeriyle birlikte görüntüleyin.",
+  },
+  {
+    slug: "isi-iletimi",
+    category: "enerji",
+    title: "Isı İletimi Hesaplayıcısı",
+    shortTitle: "Isı İletimi",
+    formula: "Q̇ = k × A × ΔT / L",
+    description:
+      "Isı geçiş hızını, ısıl iletkenliği, alanı, sıcaklık farkını veya kalınlığı hesaplayın; malzeme ön ayarları ve SI tabanlı dönüşümlerle sonucu karşılaştırın.",
+  },
+  {
+    slug: "reynolds-sayisi",
+    category: "hiz",
+    title: "Reynolds Sayısı Hesaplayıcısı",
+    shortTitle: "Reynolds Sayısı",
+    formula: "Re = ρ × v × D / μ",
+    description:
+      "Reynolds sayısını, akış hızını veya karakteristik çapı yoğunluk ve dinamik viskozite üzerinden hesaplayın ve boru içi akış için yaklaşık rejim yorumunu görün.",
+  },
+  {
     slug: "basinc-kuvvet-alan",
     category: "basinc",
     title: "Basınç, Kuvvet ve Alan Hesaplayıcısı",

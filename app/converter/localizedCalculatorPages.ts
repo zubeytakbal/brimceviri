@@ -10,6 +10,42 @@ export type LocalizedCalculatorPage = CalculatorPage & {
 export const englishCalculatorPages: LocalizedCalculatorPage[] = [
   {
     locale: "en",
+    sourceSlug: "isi-enerjisi",
+    slug: "heat-energy",
+    category: "enerji",
+    categoryName: "Energy",
+    title: "Heat Energy Calculator",
+    shortTitle: "Heat Energy",
+    formula: "Q = m × c × ΔT",
+    description:
+      "Calculate heat energy, mass, specific heat or temperature difference with real unit conversions and show the SI equivalent alongside the main result.",
+  },
+  {
+    locale: "en",
+    sourceSlug: "isi-iletimi",
+    slug: "heat-conduction",
+    category: "enerji",
+    categoryName: "Energy",
+    title: "Heat Conduction Calculator",
+    shortTitle: "Heat Conduction",
+    formula: "Q̇ = k × A × ΔT / L",
+    description:
+      "Calculate heat-transfer rate, thermal conductivity, area, temperature difference or thickness with material presets and SI-based unit conversions.",
+  },
+  {
+    locale: "en",
+    sourceSlug: "reynolds-sayisi",
+    slug: "reynolds-number",
+    category: "hiz",
+    categoryName: "Speed",
+    title: "Reynolds Number Calculator",
+    shortTitle: "Reynolds Number",
+    formula: "Re = ρ × v × D / μ",
+    description:
+      "Calculate Reynolds number, flow velocity or characteristic diameter from density and dynamic viscosity, with an approximate internal pipe flow interpretation.",
+  },
+  {
+    locale: "en",
     sourceSlug: "basinc-kuvvet-alan",
     slug: "pressure-force-area",
     category: "basinc",

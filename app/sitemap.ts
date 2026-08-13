@@ -314,6 +314,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
       ),
     },
     {
+      url: `${baseUrl}/muhendislik-hesaplayicilari`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.82,
+      alternates: languageAlternates(
+        `${baseUrl}/muhendislik-hesaplayicilari`,
+        `${baseUrl}/en/engineering-calculators`
+      ),
+    },
+    {
+      url: `${baseUrl}/en/engineering-calculators`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.82,
+      alternates: languageAlternates(
+        `${baseUrl}/muhendislik-hesaplayicilari`,
+        `${baseUrl}/en/engineering-calculators`
+      ),
+    },
+    {
       url: `${baseUrl}/birimler`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",

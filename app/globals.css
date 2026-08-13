@@ -3952,6 +3952,33 @@ main.calculator-page {
   font-size: 1rem;
 }
 
+.engineering-hub-list {
+  margin-top: 18px;
+}
+
+.engineering-hub-card-header {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+  color: #168f8c;
+}
+
+.engineering-hub-steps {
+  margin: 18px 0 0;
+  padding-left: 22px;
+  color: #3f4858;
+  line-height: 1.8;
+}
+
+.engineering-hub-steps li + li {
+  margin-top: 8px;
+}
+
+.engineering-hub-guides {
+  margin-top: 18px;
+}
+
 .category-tool-title strong {
   color: #172033;
   font-size: 1rem;

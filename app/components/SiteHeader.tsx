@@ -26,7 +26,7 @@ export default function SiteHeader() {
     ? [
         { href: "/en", label: "Home" },
         {
-          href: "/en#engineering-calculators",
+          href: "/en/engineering-calculators",
           label: "Engineering",
         },
         {
@@ -53,7 +53,7 @@ export default function SiteHeader() {
     : [
         { href: "/", label: "Ana Sayfa" },
         {
-          href: "/#muhendislik-hesaplayicilari",
+          href: "/muhendislik-hesaplayicilari",
           label: "Mühendislik",
         },
         {

@@ -145,6 +145,7 @@ const copy = {
     engineeringTitle: "Mühendislik Hesaplayıcıları",
     engineeringDescription:
       "Isı transferi ve akışkanlar mekaniği için teknik hesaplama araçları.",
+    engineeringLinkLabel: "Tüm mühendislik hesaplayıcıları",
     calculatorsLabel: "hesaplayıcı",
     categoryGuideLabel: "Kategori sayfası",
     popularTitle: "Popüler dönüşümler",
@@ -181,6 +182,7 @@ const copy = {
     engineeringTitle: "Engineering Calculators",
     engineeringDescription:
       "Technical calculation tools for heat transfer and fluid mechanics.",
+    engineeringLinkLabel: "All engineering calculators",
     calculatorsLabel: "converters",
     categoryGuideLabel: "Category page",
     popularTitle: "Popular conversions",
@@ -710,6 +712,22 @@ export default function HomeDirectory({
               <h2>{strings.engineeringTitle}</h2>
               <p>{strings.engineeringDescription}</p>
             </div>
+
+            <Link
+              className="directory-section-link"
+              href={
+                locale === "tr"
+                  ? "/muhendislik-hesaplayicilari"
+                  : "/en/engineering-calculators"
+              }
+            >
+              <DecorativeIcon
+                className="directory-link-icon"
+                name="allConversions"
+                size={18}
+              />
+              {strings.engineeringLinkLabel}
+            </Link>
           </header>
 
           <div className="directory-category-grid">

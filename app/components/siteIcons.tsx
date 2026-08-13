@@ -44,6 +44,12 @@ const categoryIconMap = {
 } as const satisfies Record<string, SiteIconName>;
 
 const calculatorIconMap = {
+  "isi-enerjisi": "energy",
+  "heat-energy": "energy",
+  "isi-iletimi": "temperature",
+  "heat-conduction": "temperature",
+  "reynolds-sayisi": "speed",
+  "reynolds-number": "speed",
   "basinc-kuvvet-alan": "pressureForceArea",
   "pressure-force-area": "pressureForceArea",
   "hidrostatik-basinc": "hydrostaticPressure",

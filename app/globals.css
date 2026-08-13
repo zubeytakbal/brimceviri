@@ -3300,6 +3300,11 @@ button {
   color: #5b6677;
 }
 
+.directory-card-formula {
+  color: #5b6677;
+  font-weight: 600;
+}
+
 .directory-card-top strong {
   color: #172033;
   font-variant-numeric: tabular-nums;

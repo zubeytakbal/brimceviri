@@ -5,6 +5,7 @@ import { useDeferredValue, useId, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   DecorativeIcon,
+  getCalculatorIconName,
   getCategoryIconName,
 } from "./siteIcons";
 import { calculatorPages } from "../converter/calculatorPages";
@@ -55,9 +56,19 @@ type HomeGuide = {
   href: string;
 };
 
+type HomeEngineeringCalculator = {
+  id: string;
+  href: string;
+  slug: string;
+  label: string;
+  formula: string;
+  description: string;
+};
+
 type HomeData = {
   conversions: HomeConversion[];
   categories: HomeCategory[];
+  engineeringCalculators: HomeEngineeringCalculator[];
   popularConversions: HomeConversion[];
   guides: HomeGuide[];
   guideIndexHref: string;
@@ -131,6 +142,9 @@ const copy = {
     categoriesTitle: "Kategoriler",
     categoriesDescription:
       "Şu anda kapsamlı bilgi sayfası bulunan kategoriler ve öne çıkan araçlar.",
+    engineeringTitle: "Mühendislik Hesaplayıcıları",
+    engineeringDescription:
+      "Isı transferi ve akışkanlar mekaniği için teknik hesaplama araçları.",
     calculatorsLabel: "hesaplayıcı",
     categoryGuideLabel: "Kategori sayfası",
     popularTitle: "Popüler dönüşümler",
@@ -164,6 +178,9 @@ const copy = {
     categoriesTitle: "Categories",
     categoriesDescription:
       "Categories that already have dedicated landing pages and their most-used tools.",
+    engineeringTitle: "Engineering Calculators",
+    engineeringDescription:
+      "Technical calculation tools for heat transfer and fluid mechanics.",
     calculatorsLabel: "converters",
     categoryGuideLabel: "Category page",
     popularTitle: "Popular conversions",
@@ -375,9 +392,55 @@ function createHomeData(locale: Locale): HomeData {
             href: `/en/units/${page.slug}`,
           }));
 
+  const engineeringSourceSlugs = [
+    "isi-enerjisi",
+    "isi-iletimi",
+    "reynolds-sayisi",
+  ] as const;
+
+  const engineeringCalculators =
+    locale === "tr"
+      ? engineeringSourceSlugs
+          .map((slug) =>
+            calculatorPages.find((page) => page.slug === slug)
+          )
+          .filter(
+            (page): page is (typeof calculatorPages)[number] =>
+              Boolean(page)
+          )
+          .map((page) => ({
+            id: page.slug,
+            href: `/hesaplayicilar/${page.slug}`,
+            slug: page.slug,
+            label: page.shortTitle,
+            formula: page.formula,
+            description: page.description,
+          }))
+      : engineeringSourceSlugs
+          .map((slug) =>
+            englishCalculatorPages.find(
+              (page) => page.sourceSlug === slug
+            )
+          )
+          .filter(
+            (
+              page
+            ): page is (typeof englishCalculatorPages)[number] =>
+              Boolean(page)
+          )
+          .map((page) => ({
+            id: page.slug,
+            href: `/en/calculators/${page.slug}`,
+            slug: page.slug,
+            label: page.shortTitle,
+            formula: page.formula,
+            description: page.description,
+          }));
+
   return {
     conversions,
     categories,
+    engineeringCalculators,
     popularConversions,
     guides,
     guideIndexHref: locale === "tr" ? "/birimler" : "/en/units",
@@ -628,6 +691,61 @@ export default function HomeDirectory({
                       </Link>
                     ))}
                   </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section
+          className="directory-section"
+          id={
+            locale === "tr"
+              ? "muhendislik-hesaplayicilari"
+              : "engineering-calculators"
+          }
+        >
+          <header className="directory-section-header">
+            <div>
+              <h2>{strings.engineeringTitle}</h2>
+              <p>{strings.engineeringDescription}</p>
+            </div>
+          </header>
+
+          <div className="directory-category-grid">
+            {data.engineeringCalculators.map((calculator) => (
+              <article
+                className="directory-category-card"
+                key={calculator.id}
+              >
+                <Link
+                  className="directory-card-stretch"
+                  href={calculator.href}
+                  aria-label={calculator.label}
+                />
+
+                <div className="directory-card-body">
+                  <div className="directory-card-top">
+                    <span className="directory-card-badge" aria-hidden="true">
+                      <DecorativeIcon
+                        name={getCalculatorIconName(calculator.slug)}
+                        size={28}
+                      />
+                    </span>
+
+                    <div>
+                      <h3 className="home-category-title">
+                        {calculator.label}
+                      </h3>
+                      <p className="directory-card-formula">
+                        {calculator.formula}
+                      </p>
+                    </div>
+                  </div>
+
+                  <p className="directory-card-description">
+                    {calculator.description}
+                  </p>
                 </div>
               </article>
             ))}

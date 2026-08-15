@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import CategoryUnitConverter from "../../../components/CategoryUnitConverter";
 import CategoryPageLayout from "../../../components/CategoryPageLayout";
 import { createConversionCards } from "../../../components/categoryPageUtils";
 import { englishCalculatorPages } from "../../../converter/localizedCalculatorPages";
@@ -11,6 +12,7 @@ import {
 import { englishConversionPages } from "../../../converter/localizedConversionPages";
 import { englishUnitPages } from "../../../converter/localizedUnitPages";
 import { SITE_URL, buildSiteUrl } from "../../../siteConfig";
+import PressureReferenceTable from "../../../components/technicalReferences/PressureReferenceTable";
 
 type PageProps = {
   params: Promise<{
@@ -238,7 +240,19 @@ export default async function EnglishCategoryPage({
       kickerLabel="Unit category"
       title={categoryPage.title}
       description={categoryPage.description}
-      conversionHeading="Choose a conversion"
+      allUnitsSection={{
+        heading: `Convert all ${
+          englishCategoryDetailNames[categoryPage.category] ??
+          "category"
+        } units`,
+        content: (
+          <CategoryUnitConverter
+            category={categoryPage.category}
+            locale="en"
+          />
+        ),
+      }}
+      conversionHeading="Popular conversions"
       conversionCountLabel={`${conversionCards.length} pairs`}
       conversionCards={conversionCards}
       calculatorSection={{
@@ -312,6 +326,14 @@ export default async function EnglishCategoryPage({
                   ] ?? "Conversion tools"}
                 </a>
               </li>
+
+              {categoryPage.category === "basinc" ? (
+                <li>
+                  <a href="#pressure-reference-table">
+                    Pressure-unit reference table
+                  </a>
+                </li>
+              ) : null}
             </ol>
           </nav>
 
@@ -391,6 +413,15 @@ export default async function EnglishCategoryPage({
                 ))}
               </ul>
             </section>
+
+            {categoryPage.category === "basinc" ? (
+              <section
+                className="conversion-section"
+                id="pressure-reference-table"
+              >
+                <PressureReferenceTable locale="en" />
+              </section>
+            ) : null}
 
             <section className="conversion-section language-alternatives">
               <h2>Other languages</h2>

@@ -11,6 +11,7 @@ import {
 } from "../../converter/engineeringUnits";
 import { formatEngineeringValue } from "../../converter/pressureForceArea";
 import HydrostaticPressureCalculator from "./HydrostaticPressureCalculator";
+import WaterDensityReference from "../technicalReferences/WaterDensityReference";
 
 type Locale = "tr" | "en";
 
@@ -476,6 +477,7 @@ export default function HydrostaticPressurePage({
           {copy.densityNotes.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
           ))}
+          <WaterDensityReference locale={locale} />
         </section>
 
         <section className="conversion-section">

@@ -1968,6 +1968,101 @@ main.category-page {
   outline-offset: 2px;
 }
 
+.category-general-converter {
+  display: grid;
+  gap: 18px;
+  padding: 22px;
+  border: 1px solid #d7e2e8;
+  border-radius: 12px;
+  background: #fbfcfd;
+}
+
+.category-general-converter-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) repeat(2, minmax(0, 1fr)) auto;
+  gap: 14px;
+  align-items: end;
+}
+
+.category-general-converter-field {
+  display: grid;
+  gap: 8px;
+}
+
+.category-general-converter-field span,
+.category-general-converter-result p {
+  margin: 0;
+  color: #526071;
+  font-size: 0.86rem;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+}
+
+.category-general-converter-field input,
+.category-general-converter-field select {
+  width: 100%;
+  min-width: 0;
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 1px solid #cdd8de;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #172033;
+  font-size: 1rem;
+}
+
+.category-general-converter-field input:focus-visible,
+.category-general-converter-field select:focus-visible,
+.category-general-converter-swap:focus-visible {
+  outline: 2px solid #168f8c;
+  outline-offset: 2px;
+}
+
+.category-general-converter-actions {
+  display: flex;
+}
+
+.category-general-converter-swap {
+  min-height: 48px;
+  padding: 0 16px;
+  border: 1px solid #cdd8de;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #156b8a;
+  font-size: 0.94rem;
+  font-weight: 650;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    transform 180ms ease;
+}
+
+.category-general-converter-swap:hover {
+  border-color: #b8cbd4;
+  background: #f6fafb;
+  transform: translateY(-1px);
+}
+
+.category-general-converter-result {
+  display: grid;
+  gap: 6px;
+  padding: 16px 18px;
+  border: 1px solid #d7e2e8;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.category-general-converter-result strong {
+  color: #172033;
+  font-size: clamp(1.18rem, 2vw, 1.5rem);
+  line-height: 1.3;
+}
+
+.category-general-converter-equality {
+  color: #667085;
+  font-size: 0.92rem;
+}
+
 .category-unit-list {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -2044,12 +2139,32 @@ main.category-page {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .category-general-converter-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .category-general-converter-actions {
+    justify-content: flex-start;
+  }
+
   .category-unit-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 560px) {
+  .category-general-converter {
+    padding: 18px;
+  }
+
+  .category-general-converter-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .category-general-converter-swap {
+    width: 100%;
+  }
+
   .category-conversion-list,
   .category-conversion-actions,
   .category-unit-list {
@@ -4339,6 +4454,261 @@ main.calculator-page {
   font-weight: 600;
 }
 
+.technical-reference-sheet {
+  margin-top: 24px;
+  border: 1px solid #c3ccd5;
+  background: #ffffff;
+  padding: 22px;
+  color: #172033;
+}
+
+.technical-reference-header {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 18px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #d7dfe6;
+}
+
+.technical-reference-kicker {
+  margin: 0 0 6px;
+  color: #5b6677;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.technical-reference-header h3 {
+  margin: 0;
+  color: #172033;
+  font-size: 1.24rem;
+}
+
+.technical-reference-header p {
+  max-width: 62ch;
+  margin: 10px 0 0;
+  color: #4f5b6b;
+  line-height: 1.68;
+}
+
+.technical-reference-download {
+  flex: 0 0 auto;
+  min-height: 42px;
+  padding: 0 14px;
+  border: 1px solid #9fb1bd;
+  background: #ffffff;
+  color: #0f657f;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease;
+}
+
+.technical-reference-download:hover {
+  border-color: #7f94a2;
+  background: #f7fbfd;
+  color: #0a4f63;
+}
+
+.technical-reference-download:focus-visible {
+  outline: 2px solid #168f8c;
+  outline-offset: 2px;
+}
+
+.technical-reference-body {
+  display: grid;
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.technical-reference-block {
+  margin-top: 18px;
+}
+
+.technical-reference-block h4 {
+  margin: 0 0 10px;
+  color: #172033;
+  font-size: 1rem;
+}
+
+.technical-reference-copy {
+  margin: 0 0 12px;
+  color: #3f4858;
+  line-height: 1.72;
+}
+
+.technical-reference-list,
+.technical-reference-link-list,
+.technical-reference-source-list {
+  margin: 0;
+  padding-left: 20px;
+  color: #3f4858;
+  line-height: 1.72;
+}
+
+.technical-reference-list li + li,
+.technical-reference-link-list li + li,
+.technical-reference-source-list li + li {
+  margin-top: 8px;
+}
+
+.technical-reference-formulas li {
+  color: #172033;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.technical-reference-variables {
+  margin: 0;
+  border-top: 1px solid #d7dfe6;
+}
+
+.technical-reference-variables > div {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 18px;
+  padding: 10px 0;
+  border-bottom: 1px solid #d7dfe6;
+}
+
+.technical-reference-variables dt {
+  color: #172033;
+  font-weight: 700;
+}
+
+.technical-reference-variables dd {
+  margin: 0;
+  color: #3f4858;
+  line-height: 1.7;
+}
+
+.technical-reference-link-list a,
+.technical-reference-source-meta a {
+  color: #0f657f;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.technical-reference-table-wrap {
+  overflow-x: auto;
+}
+
+.technical-reference-table {
+  min-width: 680px;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.technical-reference-table caption {
+  padding: 0 0 10px;
+  color: #172033;
+  font-weight: 600;
+  text-align: left;
+  caption-side: top;
+}
+
+.technical-reference-table th,
+.technical-reference-table td {
+  padding: 10px 12px;
+  border: 1px solid #b8c2cc;
+  text-align: left;
+  vertical-align: top;
+}
+
+.technical-reference-table th {
+  color: #172033;
+  background: #ffffff;
+  font-weight: 700;
+}
+
+.technical-reference-figure {
+  margin: 0;
+}
+
+.technical-reference-chart {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid #b8c2cc;
+  background: #ffffff;
+}
+
+.technical-reference-figure figcaption {
+  margin-top: 10px;
+  color: #172033;
+  font-weight: 600;
+  line-height: 1.55;
+}
+
+.technical-reference-grid-line {
+  stroke: #e1e7ec;
+  stroke-width: 1;
+}
+
+.technical-reference-axis-line,
+.technical-reference-plot-border {
+  fill: none;
+  stroke: #5b6677;
+  stroke-width: 1.2;
+}
+
+.technical-reference-axis-label {
+  fill: #4f5b6b;
+  font-size: 15px;
+}
+
+.technical-reference-axis-title {
+  fill: #172033;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.technical-reference-data-line {
+  fill: none;
+  stroke: #1977b4;
+  stroke-width: 3;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.technical-reference-data-line.is-turquoise {
+  stroke: #168f8c;
+}
+
+.technical-reference-data-point {
+  fill: #1977b4;
+  stroke: #ffffff;
+  stroke-width: 2;
+}
+
+.technical-reference-band {
+  stroke: none;
+}
+
+.technical-reference-band.is-laminar {
+  fill: #99d392;
+}
+
+.technical-reference-band.is-transition {
+  fill: #7ccdd6;
+}
+
+.technical-reference-band.is-turbulent {
+  fill: #168f8c;
+}
+
+.technical-reference-source-meta {
+  display: grid;
+  gap: 6px;
+  margin-top: 8px;
+}
+
 @media (max-width: 960px) {
   .calculator-conversion-hero .conversion-hero-inner {
     grid-template-columns: 1fr;
@@ -4379,6 +4749,29 @@ main.calculator-page {
 
   .reynolds-regime-ticks {
     font-size: 0.7rem;
+  }
+
+  .technical-reference-sheet {
+    padding: 16px;
+  }
+
+  .technical-reference-header {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .technical-reference-download {
+    justify-self: start;
+  }
+
+  .technical-reference-table {
+    min-width: 560px;
+    font-size: 0.9rem;
+  }
+
+  .technical-reference-variables > div {
+    grid-template-columns: 1fr;
+    gap: 6px;
   }
 }
 

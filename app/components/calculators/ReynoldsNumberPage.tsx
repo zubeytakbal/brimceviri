@@ -10,6 +10,8 @@ import {
 import { formatEngineeringValue } from "../../converter/pressureForceArea";
 import type { EngineeringUnitDefinition } from "../../converter/engineeringUnits";
 import ReynoldsNumberCalculator from "./ReynoldsNumberCalculator";
+import ReynoldsRegimeReference from "../technicalReferences/ReynoldsRegimeReference";
+import WaterViscosityReference from "../technicalReferences/WaterViscosityReference";
 
 type UnitTableSection = {
   id: string;
@@ -406,6 +408,18 @@ export default function ReynoldsNumberPage({
         </section>
 
         <section className="conversion-section">
+          <h2>{copy.variablesHeading}</h2>
+          <dl className="unit-facts">
+            {copy.variables.map((item) => (
+              <div key={item.term}>
+                <dt>{item.term}</dt>
+                <dd>{item.explanation}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+
+        <section className="conversion-section">
           <h2>{copy.interpretationHeading}</h2>
           <div className="engineering-note-box">
             <ul className="calculator-bullet-list">
@@ -414,6 +428,16 @@ export default function ReynoldsNumberPage({
               ))}
             </ul>
           </div>
+          <ReynoldsRegimeReference locale={locale} />
+        </section>
+
+        <section className="conversion-section">
+          <h2>
+            {locale === "tr"
+              ? "Suyun dinamik viskozitesi referansı"
+              : "Water dynamic-viscosity reference"}
+          </h2>
+          <WaterViscosityReference locale={locale} />
         </section>
 
         <section className="conversion-section">

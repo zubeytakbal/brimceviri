@@ -37,6 +37,10 @@ type CategoryPageLayoutProps = {
   kickerLabel: string;
   title: string;
   description: string;
+  allUnitsSection?: {
+    heading: string;
+    content: ReactNode;
+  };
   conversionHeading: string;
   conversionCountLabel: string;
   conversionCards: ConversionCard[];
@@ -61,6 +65,7 @@ export default function CategoryPageLayout({
   kickerLabel,
   title,
   description,
+  allUnitsSection,
   conversionHeading,
   conversionCountLabel,
   conversionCards,
@@ -109,6 +114,16 @@ export default function CategoryPageLayout({
           <p>{description}</p>
         </header>
 
+        {allUnitsSection && (
+          <section className="category-page-section">
+            <div className="category-section-heading">
+              <h2>{allUnitsSection.heading}</h2>
+            </div>
+
+            {allUnitsSection.content}
+          </section>
+        )}
+
         <section className="category-page-section">
           <div className="category-section-heading">
             <h2>{conversionHeading}</h2>
@@ -139,6 +154,31 @@ export default function CategoryPageLayout({
                     ))}
                   </div>
                 </article>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="category-page-section">
+          <div className="category-section-heading">
+            <h2>{unitGuidesHeading}</h2>
+            <span>{unitGuidesCountLabel}</span>
+          </div>
+
+          <ul className="category-unit-list">
+            {unitGuides.map((unitGuide) => (
+              <li key={unitGuide.href}>
+                <Link href={unitGuide.href}>
+                  <DecorativeIcon
+                    className="category-link-icon"
+                    name="unitGuide"
+                    size={18}
+                  />
+                  <span>
+                    {unitGuide.label}
+                    <small>{unitGuide.symbol}</small>
+                  </span>
+                </Link>
               </li>
             ))}
           </ul>
@@ -176,31 +216,6 @@ export default function CategoryPageLayout({
               </ul>
             </section>
           )}
-
-        <section className="category-page-section">
-          <div className="category-section-heading">
-            <h2>{unitGuidesHeading}</h2>
-            <span>{unitGuidesCountLabel}</span>
-          </div>
-
-          <ul className="category-unit-list">
-            {unitGuides.map((unitGuide) => (
-              <li key={unitGuide.href}>
-                <Link href={unitGuide.href}>
-                  <DecorativeIcon
-                    className="category-link-icon"
-                    name="unitGuide"
-                    size={18}
-                  />
-                  <span>
-                    {unitGuide.label}
-                    <small>{unitGuide.symbol}</small>
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
 
         <section className="category-page-section">
           <div className="category-section-heading">

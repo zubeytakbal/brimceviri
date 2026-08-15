@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import CategoryUnitConverter from "../../components/CategoryUnitConverter";
 import CategoryPageLayout from "../../components/CategoryPageLayout";
 import { createConversionCards } from "../../components/categoryPageUtils";
 import {
@@ -17,6 +18,7 @@ import {
 } from "../../converter/unitSources";
 import { unitPages } from "../../converter/unitPages";
 import { buildSiteUrl } from "../../siteConfig";
+import PressureReferenceTable from "../../components/technicalReferences/PressureReferenceTable";
 
 type PageProps = {
   params: Promise<{
@@ -242,7 +244,19 @@ export default async function CategoryPage({
       kickerLabel="Birim kategorisi"
       title={categoryPage.title}
       description={categoryPage.description}
-      conversionHeading="Dönüşüm aracını seçin"
+      allUnitsSection={{
+        heading: `Tüm ${
+          categoryBaseNames[categoryPage.category] ??
+          categoryPage.title.replace(" Dönüşümleri", "")
+        } birimlerini çevir`,
+        content: (
+          <CategoryUnitConverter
+            category={categoryPage.category}
+            locale="tr"
+          />
+        ),
+      }}
+      conversionHeading="Popüler dönüşümler"
       conversionCountLabel={`${conversionCards.length} çift`}
       conversionCards={conversionCards}
       calculatorSection={{
@@ -311,6 +325,14 @@ export default async function CategoryPage({
                       {tableTitle}
                     </a>
                   </li>
+
+                  {categoryPage.category === "basinc" ? (
+                    <li>
+                      <a href="#basinc-teknik-referansi">
+                        Basınç birimleri referans tablosu
+                      </a>
+                    </li>
+                  ) : null}
 
                   <li>
                     <a href="#kategori-kaynaklari">
@@ -382,6 +404,15 @@ export default async function CategoryPage({
                     </table>
                   </div>
                 </section>
+
+                {categoryPage.category === "basinc" ? (
+                  <section
+                    className="conversion-section"
+                    id="basinc-teknik-referansi"
+                  >
+                    <PressureReferenceTable locale="tr" />
+                  </section>
+                ) : null}
 
                 <section
                   className="conversion-section unit-sources"
@@ -463,6 +494,15 @@ export default async function CategoryPage({
                   </table>
                 </div>
               </section>
+
+              {categoryPage.category === "basinc" ? (
+                <section
+                  className="conversion-section"
+                  id="basinc-teknik-referansi"
+                >
+                  <PressureReferenceTable locale="tr" />
+                </section>
+              ) : null}
 
               <section
                 className="conversion-section unit-sources"

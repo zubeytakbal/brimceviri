@@ -3,19 +3,13 @@
 import Link from "next/link";
 import { useDeferredValue, useId, useState } from "react";
 import { useRouter } from "next/navigation";
-import {
-  DecorativeIcon,
-  getCalculatorIconName,
-  getCategoryIconName,
-} from "./siteIcons";
+import { DecorativeIcon } from "./siteIcons";
 import { calculatorPages } from "../converter/calculatorPages";
-import { englishCalculatorPages } from "../converter/localizedCalculatorPages";
+import { categoryPages } from "../converter/categoryPages";
 import { conversionPages } from "../converter/conversionPages";
+import { englishCalculatorPages } from "../converter/localizedCalculatorPages";
 import { englishCategoryPages } from "../converter/localizedCategoryPages";
 import { englishConversionPages } from "../converter/localizedConversionPages";
-import { englishUnitPages } from "../converter/localizedUnitPages";
-import { categoryPages } from "../converter/categoryPages";
-import { unitPages } from "../converter/unitPages";
 
 type Locale = "tr" | "en";
 
@@ -30,36 +24,33 @@ type HomeConversion = {
   searchText: string;
 };
 
-type HomeCategory = {
+type HomeCategoryIconName =
+  | "uzunluk"
+  | "kutle"
+  | "basinc"
+  | "sicaklik"
+  | "hacim"
+  | "enerji";
+
+type HomeCategoryCard = {
   id: string;
-  categoryKey: string;
+  iconKey: HomeCategoryIconName;
   name: string;
+  symbol: string;
   description: string;
-  href: string;
-  guideHref: string;
-  guideLabel: string;
-  badge: string;
-  count: number;
-  popularConversions: HomeConversion[];
-  calculators: Array<{
+  href?: string;
+  isAvailable: boolean;
+  statusLabel: string;
+  links: Array<{
     id: string;
     href: string;
     label: string;
   }>;
 };
 
-type HomeGuide = {
-  id: string;
-  name: string;
-  symbol: string;
-  description: string;
-  href: string;
-};
-
 type HomeEngineeringCalculator = {
   id: string;
   href: string;
-  slug: string;
   label: string;
   formula: string;
   description: string;
@@ -67,38 +58,25 @@ type HomeEngineeringCalculator = {
 
 type HomeData = {
   conversions: HomeConversion[];
-  categories: HomeCategory[];
+  categories: HomeCategoryCard[];
   engineeringCalculators: HomeEngineeringCalculator[];
   popularConversions: HomeConversion[];
-  guides: HomeGuide[];
-  guideIndexHref: string;
-  guideIndexLabel: string;
   allConversionsHref: string;
   allConversionsLabel: string;
+  engineeringHubHref: string;
+  engineeringHubLabel: string;
   stats: {
-    categories: number;
+    activeCategories: number;
     conversions: number;
-    guides: number;
+    engineering: number;
   };
 };
 
-const categoryDisplayNames = {
-  uzunluk: {
-    tr: "Uzunluk",
-    en: "Length",
-    badge: "m",
-  },
-  kutle: {
-    tr: "Kütle",
-    en: "Mass",
-    badge: "kg",
-  },
-  basinc: {
-    tr: "Basınç",
-    en: "Pressure",
-    badge: "Pa",
-  },
-} as const;
+const activeCategoryOrder = [
+  "uzunluk",
+  "kutle",
+  "basinc",
+] as const;
 
 const preferredSourceSlugs = [
   "metre-kilometre",
@@ -111,90 +89,316 @@ const preferredSourceSlugs = [
   "kilopascal-bar",
 ];
 
-const preferredGuideSourceSlugs = [
-  "metre",
-  "kilometre",
-  "kilogram",
-  "pound",
-];
-
 const copy = {
   tr: {
-    eyebrow: "Teknik dönüşüm rehberi",
-    title: "İhtiyacınız olan birim dönüşümünü bulun",
+    eyebrow: "Teknik birim dönüşümleri",
+    title: "Doğru dönüşüme hızlıca gidin",
     description:
-      "Dönüşüm araçlarını kategoriye göre tarayın, birim rehberlerini açın ve doğru sayfaya doğrudan geçin.",
+      "Arama ile sayfayı açın veya fiziksel büyüklüğe göre kategori seçin.",
     searchLabel: "Dönüşüm ara",
-    searchPlaceholder:
-      "Örnek: metre kilometre, kg lb, psi bar, Pa",
+    searchPlaceholder: "Örnek: metre kilometre, kg lb, psi bar",
     searchHint:
-      "Dönüşüm adı, birim adı veya sembol yazarak ilgili sayfayı bulun.",
+      "Birim adı, sembol veya dönüşüm çifti yazarak ilgili sayfayı bulun.",
     searchResultsLabel: "Arama sonuçları",
     searchEmpty: "Eşleşen dönüşüm bulunamadı.",
-    searchEnterHint:
-      "İlk sonucu açmak için Enter tuşuna basabilirsiniz.",
+    searchEnterHint: "İlk sonucu açmak için Enter kullanabilirsiniz.",
     searchCategoryPrefix: "Kategori",
+    openLabel: "Aç",
     stats: {
-      categories: "kategori sayfası",
+      activeCategories: "aktif kategori",
       conversions: "dönüşüm sayfası",
-      guides: "birim rehberi",
+      engineering: "hesaplayıcı",
     },
     categoriesTitle: "Kategoriler",
     categoriesDescription:
-      "Şu anda kapsamlı bilgi sayfası bulunan kategoriler ve öne çıkan araçlar.",
-    engineeringTitle: "Mühendislik Hesaplayıcıları",
-    engineeringDescription:
-      "Isı transferi ve akışkanlar mekaniği için teknik hesaplama araçları.",
-    engineeringLinkLabel: "Tüm mühendislik hesaplayıcıları",
-    calculatorsLabel: "hesaplayıcı",
-    categoryGuideLabel: "Kategori sayfası",
+      "Mevcut kategoriler doğrudan sayfaya gider; diğer teknik başlıklar kapsam genişledikçe açılacaktır.",
+    categoryAction: "Kategori sayfasını aç",
+    availableLabel: "Hazır",
+    soonLabel: "Yakında",
+    categoryCards: {
+      uzunluk: {
+        name: "Uzunluk",
+        symbol: "m",
+        description:
+          "Metre, santimetre, kilometre, inç ve fit dönüşümlerini açın.",
+      },
+      kutle: {
+        name: "Kütle",
+        symbol: "kg",
+        description:
+          "Kilogram, gram, ton, pound ve ons dönüşümlerine gidin.",
+      },
+      basinc: {
+        name: "Basınç",
+        symbol: "Pa",
+        description:
+          "Pascal, bar, psi, atm ve mmHg araçlarını inceleyin.",
+      },
+      sicaklik: {
+        name: "Sıcaklık",
+        symbol: "°C",
+        description:
+          "Sıcaklık dönüştürücüleri planlanıyor.",
+      },
+      hacim: {
+        name: "Hacim",
+        symbol: "L",
+        description:
+          "Litre ve hacim tabanlı dönüşüm araçları planlanıyor.",
+      },
+      enerji: {
+        name: "Enerji ve güç",
+        symbol: "W",
+        description:
+          "Enerji ve güç kategorileri kapsam genişledikçe eklenecek.",
+      },
+    },
     popularTitle: "Popüler dönüşümler",
     popularDescription:
-      "En sık açılan araçlardan birkaçını seçin veya tam listeye geçin.",
-    guidesTitle: "Birim rehberleri",
-    guidesDescription:
-      "Birimlerin tanımı, tarihçesi ve bilimsel kullanımı hakkında daha ayrıntılı açıklamaları burada bulabilirsiniz.",
-    guidesIndexLabel: "Tüm birim rehberlerini görüntüle",
-    languageSwitchLabel: "İngilizce sürüme git",
+      "Sık kullanılan gerçek dönüşüm sayfalarına doğrudan gidin.",
+    engineeringTitle: "Mühendislik hesaplayıcıları",
+    engineeringDescription:
+      "Basınç, akışkanlar ve ısı transferi için mevcut teknik araçlar.",
+    engineeringHubLabel: "Tüm mühendislik hesaplayıcıları",
   },
   en: {
-    eyebrow: "Technical conversion directory",
-    title: "Find the unit conversion you need",
+    eyebrow: "Technical unit conversions",
+    title: "Open the right converter quickly",
     description:
-      "Browse calculators by category, open unit guides and jump straight to the exact conversion page.",
+      "Use search for a direct page or browse by physical quantity.",
     searchLabel: "Search conversions",
-    searchPlaceholder:
-      "Example: meter kilometer, kg lb, psi bar, Pa",
+    searchPlaceholder: "Example: meter kilometer, kg lb, psi bar",
     searchHint:
-      "Search by conversion name, unit name or symbol to open the right page.",
+      "Search by unit name, symbol or conversion pair to open the right page.",
     searchResultsLabel: "Search results",
     searchEmpty: "No matching conversion pages found.",
     searchEnterHint: "Press Enter to open the first result.",
     searchCategoryPrefix: "Category",
+    openLabel: "Open",
     stats: {
-      categories: "category pages",
+      activeCategories: "active categories",
       conversions: "conversion pages",
-      guides: "unit guides",
+      engineering: "calculators",
     },
     categoriesTitle: "Categories",
     categoriesDescription:
-      "Categories that already have dedicated landing pages and their most-used tools.",
-    engineeringTitle: "Engineering Calculators",
-    engineeringDescription:
-      "Technical calculation tools for heat transfer and fluid mechanics.",
-    engineeringLinkLabel: "All engineering calculators",
-    calculatorsLabel: "converters",
-    categoryGuideLabel: "Category page",
+      "Available categories link to live directory pages; the rest are marked as upcoming.",
+    categoryAction: "Open category page",
+    availableLabel: "Live",
+    soonLabel: "Soon",
+    categoryCards: {
+      uzunluk: {
+        name: "Length",
+        symbol: "m",
+        description:
+          "Open meter, centimeter, kilometer, inch and foot conversions.",
+      },
+      kutle: {
+        name: "Mass",
+        symbol: "kg",
+        description:
+          "Jump to kilogram, gram, tonne, pound and ounce tools.",
+      },
+      basinc: {
+        name: "Pressure",
+        symbol: "Pa",
+        description:
+          "Browse pascal, bar, psi, atm and mmHg converters.",
+      },
+      sicaklik: {
+        name: "Temperature",
+        symbol: "°C",
+        description:
+          "Temperature conversion tools are planned.",
+      },
+      hacim: {
+        name: "Volume",
+        symbol: "L",
+        description:
+          "Liter and volume-based converters are planned.",
+      },
+      enerji: {
+        name: "Energy and power",
+        symbol: "W",
+        description:
+          "Energy and power categories will be added as coverage expands.",
+      },
+    },
     popularTitle: "Popular conversions",
     popularDescription:
-      "Open a few commonly used tools or continue to the complete converter list.",
-    guidesTitle: "Unit guides",
-    guidesDescription:
-      "Use the guides for definitions, history notes and scientific context behind each measurement unit.",
-    guidesIndexLabel: "Open the full unit guide",
-    languageSwitchLabel: "Switch to Turkish",
+      "Open frequently used live conversion pages directly from here.",
+    engineeringTitle: "Engineering calculators",
+    engineeringDescription:
+      "Current technical tools for pressure, fluids and heat transfer.",
+    engineeringHubLabel: "All engineering calculators",
   },
 } as const;
+
+function HomeCategoryIcon({
+  kind,
+  symbol,
+}: {
+  kind: HomeCategoryIconName;
+  symbol: string;
+}) {
+  function renderGraphic() {
+    switch (kind) {
+      case "uzunluk":
+        return (
+          <>
+            <path
+              className="home-category-icon-face"
+              d="M18 24.5 39.5 18l8.5 8.5L26.5 33z"
+            />
+            <path
+              className="home-category-icon-edge"
+              d="M26.5 33 48 26.5v5L26.5 38z"
+            />
+            <path
+              className="home-category-icon-line"
+              d="m22 28 2-2m4 1 2-2m4 1 2-2m4 1 2-2"
+            />
+          </>
+        );
+      case "kutle":
+        return (
+          <>
+            <path
+              className="home-category-icon-face"
+              d="M24 21h16l4 18H20z"
+            />
+            <path
+              className="home-category-icon-edge"
+              d="M20 39h24v4H20z"
+            />
+            <path
+              className="home-category-icon-line"
+              d="M28 21c0-3 1.8-5 4-5s4 2 4 5"
+            />
+          </>
+        );
+      case "basinc":
+        return (
+          <>
+            <path
+              className="home-category-icon-face"
+              d="M20 33a12 12 0 1 1 24 0v2H20z"
+            />
+            <path
+              className="home-category-icon-edge"
+              d="M24 37h16v4H24z"
+            />
+            <path
+              className="home-category-icon-line"
+              d="M32 24v9m0 0 6-4"
+            />
+          </>
+        );
+      case "sicaklik":
+        return (
+          <>
+            <path
+              className="home-category-icon-face"
+              d="M29 18a3 3 0 0 1 6 0v13.5a7 7 0 1 1-6 0Z"
+            />
+            <path
+              className="home-category-icon-edge"
+              d="M31.5 23h3"
+            />
+            <path
+              className="home-category-icon-line"
+              d="M32 22v14m5.5-8h4"
+            />
+          </>
+        );
+      case "hacim":
+        return (
+          <>
+            <ellipse
+              className="home-category-icon-face"
+              cx="32"
+              cy="21"
+              rx="10"
+              ry="4.5"
+            />
+            <path
+              className="home-category-icon-face"
+              d="M22 21v14c0 2.5 4.5 4.5 10 4.5s10-2 10-4.5V21"
+            />
+            <path
+              className="home-category-icon-edge"
+              d="M22 28c0 2.5 4.5 4.5 10 4.5s10-2 10-4.5"
+            />
+            <path
+              className="home-category-icon-line"
+              d="M42 21v14"
+            />
+          </>
+        );
+      case "enerji":
+        return (
+          <>
+            <path
+              className="home-category-icon-face"
+              d="m32 17-8.5 13h6L26 41l14-16h-7l4-8Z"
+            />
+            <path
+              className="home-category-icon-edge"
+              d="m29.5 30 5-5h6L26 41z"
+            />
+            <path
+              className="home-category-icon-line"
+              d="M43 18v4m-18 18h4"
+            />
+          </>
+        );
+    }
+  }
+
+  return (
+    <svg
+      aria-hidden="true"
+      className={`home-category-icon-svg is-${kind}`}
+      viewBox="0 0 64 64"
+      focusable="false"
+    >
+      <ellipse
+        className="home-category-icon-shadow"
+        cx="32"
+        cy="50"
+        rx="14"
+        ry="5"
+      />
+      <g className="home-category-icon-float">
+        <rect
+          className="home-category-icon-plate"
+          x="10"
+          y="8"
+          width="44"
+          height="44"
+          rx="14"
+        />
+        {renderGraphic()}
+        <rect
+          className="home-category-icon-chip"
+          x="21"
+          y="42"
+          width="22"
+          height="10"
+          rx="5"
+        />
+        <text
+          className="home-category-icon-symbol"
+          x="32"
+          y="49"
+          textAnchor="middle"
+        >
+          {symbol}
+        </text>
+      </g>
+    </svg>
+  );
+}
 
 function normalizeSearchText(value: string) {
   return value
@@ -214,7 +418,8 @@ function sortByPreference<T extends { sourceSlug: string }>(items: T[]) {
     const leftIndex = preferredSourceSlugs.indexOf(left.sourceSlug);
     const rightIndex = preferredSourceSlugs.indexOf(right.sourceSlug);
 
-    const safeLeft = leftIndex === -1 ? preferredSourceSlugs.length : leftIndex;
+    const safeLeft =
+      leftIndex === -1 ? preferredSourceSlugs.length : leftIndex;
     const safeRight =
       rightIndex === -1 ? preferredSourceSlugs.length : rightIndex;
 
@@ -223,34 +428,33 @@ function sortByPreference<T extends { sourceSlug: string }>(items: T[]) {
 }
 
 function createHomeData(locale: Locale): HomeData {
+  const strings = copy[locale];
+
   const conversions =
     locale === "tr"
-      ? conversionPages.map((page) => {
-          const categoryLabel =
-            categoryDisplayNames[
-              page.category as keyof typeof categoryDisplayNames
-            ]?.tr ?? page.category;
-
-          return {
-            id: page.slug,
-            sourceSlug: page.slug,
-            href: `/${page.slug}`,
-            label: `${page.fromName} → ${page.toName}`,
-            description: `${page.fromUnit} → ${page.toUnit}`,
-            category: page.category,
-            categoryLabel,
-            searchText: normalizeSearchText(
-              [
-                page.fromName,
-                page.toName,
-                page.fromUnit,
-                page.toUnit,
-                page.slug,
-                categoryLabel,
-              ].join(" ")
-            ),
-          };
-        })
+      ? conversionPages.map((page) => ({
+          id: page.slug,
+          sourceSlug: page.slug,
+          href: `/${page.slug}`,
+          label: `${page.fromName} → ${page.toName}`,
+          description: `${page.fromUnit} → ${page.toUnit}`,
+          category: page.category,
+          categoryLabel: strings.categoryCards[
+            page.category as keyof typeof strings.categoryCards
+          ]?.name ?? page.category,
+          searchText: normalizeSearchText(
+            [
+              page.fromName,
+              page.toName,
+              page.fromUnit,
+              page.toUnit,
+              page.slug,
+              strings.categoryCards[
+                page.category as keyof typeof strings.categoryCards
+              ]?.name ?? page.category,
+            ].join(" ")
+          ),
+        }))
       : englishConversionPages.map((page) => ({
           id: page.slug,
           sourceSlug: page.sourceSlug,
@@ -258,7 +462,10 @@ function createHomeData(locale: Locale): HomeData {
           label: `${page.fromName} → ${page.toName}`,
           description: `${page.fromUnit} → ${page.toUnit}`,
           category: page.category,
-          categoryLabel: page.categoryName,
+          categoryLabel:
+            strings.categoryCards[
+              page.category as keyof typeof strings.categoryCards
+            ]?.name ?? page.categoryName,
           searchText: normalizeSearchText(
             [
               page.fromName,
@@ -272,90 +479,69 @@ function createHomeData(locale: Locale): HomeData {
           ),
         }));
 
-  const availableCategories =
-    locale === "tr"
-      ? categoryPages.map((page) => ({
-          id: page.slug,
-          categoryKey: page.category,
-          sourceCategory: page.category,
-          name:
-            categoryDisplayNames[
-              page.category as keyof typeof categoryDisplayNames
-            ]?.tr ?? page.title,
-          description: page.description,
-          href: `/kategoriler/${page.slug}`,
-          guideHref: `/kategoriler/${page.slug}`,
-          guideLabel: copy.tr.categoryGuideLabel,
-          badge:
-            categoryDisplayNames[
-              page.category as keyof typeof categoryDisplayNames
-            ]?.badge ?? page.category.slice(0, 2).toUpperCase(),
-        }))
-      : englishCategoryPages.map((page) => ({
-          id: page.slug,
-          categoryKey: page.category,
-          sourceCategory: page.category,
-          name:
-            categoryDisplayNames[
-              page.category as keyof typeof categoryDisplayNames
-            ]?.en ?? page.title,
-          description: page.description,
-          href: `/en/categories/${page.slug}`,
-          guideHref: `/en/categories/${page.slug}`,
-          guideLabel: copy.en.categoryGuideLabel,
-          badge:
-            categoryDisplayNames[
-              page.category as keyof typeof categoryDisplayNames
-            ]?.badge ?? page.category.slice(0, 2).toUpperCase(),
-        }));
+  const activeCategories = activeCategoryOrder.map((sourceCategory) => {
+    const categoryPage =
+      locale === "tr"
+        ? categoryPages.find((page) => page.category === sourceCategory)
+        : englishCategoryPages.find(
+            (page) => page.category === sourceCategory
+          );
 
-  const categories = availableCategories.map((category) => {
+    const categoryCopy = strings.categoryCards[sourceCategory];
     const categoryConversions = sortByPreference(
       conversions.filter(
-        (conversion) => conversion.category === category.sourceCategory
+        (conversion) => conversion.category === sourceCategory
       )
-    );
-    const categoryCalculators =
-      locale === "tr"
-        ? calculatorPages
-            .filter(
-              (page) => page.category === category.sourceCategory
-            )
-            .map((page) => ({
-              id: page.slug,
-              href: `/hesaplayicilar/${page.slug}`,
-              label: page.shortTitle,
-            }))
-        : englishCalculatorPages
-            .filter(
-              (page) => page.category === category.sourceCategory
-            )
-            .map((page) => ({
-              id: page.slug,
-              href: `/en/calculators/${page.slug}`,
-              label: page.shortTitle,
-            }));
+    ).slice(0, 2);
 
     return {
-      id: category.id,
-      categoryKey: category.sourceCategory,
-      name: category.name,
-      description: category.description,
-      href: category.href,
-      guideHref: category.guideHref,
-      guideLabel: category.guideLabel,
-      badge: category.badge,
-      count: categoryConversions.length,
-      popularConversions: categoryConversions.slice(0, 3),
-      calculators: categoryCalculators,
+      id: sourceCategory,
+      iconKey: sourceCategory,
+      name: categoryCopy.name,
+      symbol: categoryCopy.symbol,
+      description: categoryCopy.description,
+      href:
+        locale === "tr"
+          ? categoryPage
+            ? `/kategoriler/${categoryPage.slug}`
+            : undefined
+          : categoryPage
+            ? `/en/categories/${categoryPage.slug}`
+            : undefined,
+      isAvailable: Boolean(categoryPage),
+      statusLabel: strings.availableLabel,
+      links: categoryConversions.map((conversion) => ({
+        id: conversion.id,
+        href: conversion.href,
+        label: conversion.label,
+      })),
     };
   });
 
-  const preferredPopularConversions = preferredSourceSlugs
-    .map((slug) =>
-      conversions.find((conversion) => conversion.sourceSlug === slug)
-    )
-    .filter((conversion): conversion is HomeConversion => Boolean(conversion));
+  const passiveCategories = (["sicaklik", "hacim", "enerji"] as const).map(
+    (categoryKey) => {
+      const categoryCopy = strings.categoryCards[categoryKey];
+
+      return {
+        id: categoryKey,
+        iconKey: categoryKey,
+        name: categoryCopy.name,
+        symbol: categoryCopy.symbol,
+        description: categoryCopy.description,
+        isAvailable: false,
+        statusLabel: strings.soonLabel,
+        links: [],
+      };
+    }
+  );
+
+  const preferredPopularConversions = preferredSourceSlugs.flatMap((slug) => {
+    const conversion = conversions.find(
+      (item) => item.sourceSlug === slug
+    );
+
+    return conversion ? [conversion] : [];
+  });
 
   const popularConversions = [
     ...preferredPopularConversions,
@@ -365,36 +551,11 @@ function createHomeData(locale: Locale): HomeData {
           (preferred) => preferred.id === conversion.id
         )
     ),
-  ].slice(0, 8);
-
-  const guides =
-    locale === "tr"
-      ? preferredGuideSourceSlugs
-          .map((slug) => unitPages.find((page) => page.slug === slug))
-          .filter((page): page is (typeof unitPages)[number] => Boolean(page))
-          .map((page) => ({
-            id: page.slug,
-            name: page.name,
-            symbol: page.symbol,
-            description: page.shortDescription,
-            href: `/birimler/${page.slug}`,
-          }))
-      : preferredGuideSourceSlugs
-          .map((slug) =>
-            englishUnitPages.find((page) => page.sourceSlug === slug)
-          )
-          .filter(
-            (page): page is (typeof englishUnitPages)[number] => Boolean(page)
-          )
-          .map((page) => ({
-            id: page.slug,
-            name: page.name,
-            symbol: page.symbol,
-            description: page.shortDescription,
-            href: `/en/units/${page.slug}`,
-          }));
+  ].slice(0, 6);
 
   const engineeringSourceSlugs = [
+    "basinc-kuvvet-alan",
+    "hidrostatik-basinc",
     "isi-enerjisi",
     "isi-iletimi",
     "reynolds-sayisi",
@@ -403,37 +564,28 @@ function createHomeData(locale: Locale): HomeData {
   const engineeringCalculators =
     locale === "tr"
       ? engineeringSourceSlugs
-          .map((slug) =>
-            calculatorPages.find((page) => page.slug === slug)
-          )
+          .map((slug) => calculatorPages.find((page) => page.slug === slug))
           .filter(
-            (page): page is (typeof calculatorPages)[number] =>
-              Boolean(page)
+            (page): page is (typeof calculatorPages)[number] => Boolean(page)
           )
           .map((page) => ({
             id: page.slug,
             href: `/hesaplayicilar/${page.slug}`,
-            slug: page.slug,
             label: page.shortTitle,
             formula: page.formula,
             description: page.description,
           }))
       : engineeringSourceSlugs
           .map((slug) =>
-            englishCalculatorPages.find(
-              (page) => page.sourceSlug === slug
-            )
+            englishCalculatorPages.find((page) => page.sourceSlug === slug)
           )
           .filter(
-            (
-              page
-            ): page is (typeof englishCalculatorPages)[number] =>
+            (page): page is (typeof englishCalculatorPages)[number] =>
               Boolean(page)
           )
           .map((page) => ({
             id: page.slug,
             href: `/en/calculators/${page.slug}`,
-            slug: page.slug,
             label: page.shortTitle,
             formula: page.formula,
             description: page.description,
@@ -441,23 +593,24 @@ function createHomeData(locale: Locale): HomeData {
 
   return {
     conversions,
-    categories,
+    categories: [...activeCategories, ...passiveCategories],
     engineeringCalculators,
     popularConversions,
-    guides,
-    guideIndexHref: locale === "tr" ? "/birimler" : "/en/units",
-    guideIndexLabel:
-      locale === "tr"
-        ? copy.tr.guidesIndexLabel
-        : copy.en.guidesIndexLabel,
     allConversionsHref:
       locale === "tr" ? "/tum-birimler" : "/en/all-conversions",
     allConversionsLabel:
-      locale === "tr" ? "Tüm dönüşümler" : "All converters",
+      locale === "tr" ? "Tüm dönüşümler" : "All conversions",
+    engineeringHubHref:
+      locale === "tr"
+        ? "/muhendislik-hesaplayicilari"
+        : "/en/engineering-calculators",
+    engineeringHubLabel: strings.engineeringHubLabel,
     stats: {
-      categories: categories.length,
+      activeCategories: activeCategories.filter(
+        (category) => category.isAvailable
+      ).length,
       conversions: conversions.length,
-      guides: locale === "tr" ? unitPages.length : englishUnitPages.length,
+      engineering: engineeringCalculators.length,
     },
   };
 }
@@ -499,10 +652,7 @@ export default function HomeDirectory({
   }
 
   return (
-    <main
-      className="directory-home"
-      lang={locale === "en" ? "en" : undefined}
-    >
+    <main className="directory-home" lang={locale === "en" ? "en" : undefined}>
       <section className="directory-hero">
         <div className="directory-shell">
           <div className="directory-hero-copy">
@@ -512,11 +662,7 @@ export default function HomeDirectory({
           </div>
 
           <div className="directory-hero-panel">
-            <form
-              className="directory-search"
-              onSubmit={handleSubmit}
-              role="search"
-            >
+            <form className="directory-search" onSubmit={handleSubmit} role="search">
               <label htmlFor={inputId}>{strings.searchLabel}</label>
 
               <div className="directory-search-field">
@@ -538,7 +684,7 @@ export default function HomeDirectory({
                     name="search"
                     size={18}
                   />
-                  {locale === "tr" ? "Aç" : "Open"}
+                  {strings.openLabel}
                 </button>
               </div>
 
@@ -554,17 +700,13 @@ export default function HomeDirectory({
                   </div>
 
                   {searchResults.length > 0 ? (
-                    <ul
-                      className="directory-search-results"
-                      id={resultsId}
-                    >
+                    <ul className="directory-search-results" id={resultsId}>
                       {searchResults.map((result) => (
                         <li key={result.id}>
                           <Link href={result.href}>
                             <span>{result.label}</span>
                             <small>
-                              {strings.searchCategoryPrefix}:{" "}
-                              {result.categoryLabel} ·{" "}
+                              {strings.searchCategoryPrefix}: {result.categoryLabel} ·{" "}
                               {result.description}
                             </small>
                           </Link>
@@ -572,9 +714,7 @@ export default function HomeDirectory({
                       ))}
                     </ul>
                   ) : (
-                    <p className="directory-search-empty">
-                      {strings.searchEmpty}
-                    </p>
+                    <p className="directory-search-empty">{strings.searchEmpty}</p>
                   )}
                 </div>
               ) : null}
@@ -582,8 +722,8 @@ export default function HomeDirectory({
 
             <dl className="directory-stats">
               <div>
-                <dt>{strings.stats.categories}</dt>
-                <dd>{data.stats.categories}</dd>
+                <dt>{strings.stats.activeCategories}</dt>
+                <dd>{data.stats.activeCategories}</dd>
               </div>
 
               <div>
@@ -592,8 +732,8 @@ export default function HomeDirectory({
               </div>
 
               <div>
-                <dt>{strings.stats.guides}</dt>
-                <dd>{data.stats.guides}</dd>
+                <dt>{strings.stats.engineering}</dt>
+                <dd>{data.stats.engineering}</dd>
               </div>
             </dl>
           </div>
@@ -608,10 +748,7 @@ export default function HomeDirectory({
               <p>{strings.categoriesDescription}</p>
             </div>
 
-            <Link
-              className="directory-section-link"
-              href={data.allConversionsHref}
-            >
+            <Link className="directory-section-link" href={data.allConversionsHref}>
               <DecorativeIcon
                 className="directory-link-icon"
                 name="allConversions"
@@ -621,149 +758,68 @@ export default function HomeDirectory({
             </Link>
           </header>
 
-          <div className="directory-category-grid">
+          <div className="directory-home-category-grid">
             {data.categories.map((category) => (
               <article
-                className="directory-category-card"
+                className={`directory-home-card${
+                  category.isAvailable ? "" : " is-passive"
+                }`}
                 key={category.id}
               >
-                <Link
-                  className="directory-card-stretch"
-                  href={category.href}
-                  aria-label={`${category.name} ${strings.categoryGuideLabel}`}
-                />
+                {category.href ? (
+                  <Link
+                    className="directory-card-stretch"
+                    href={category.href}
+                    aria-label={`${category.name} ${strings.categoryAction}`}
+                  />
+                ) : null}
 
                 <div className="directory-card-body">
                   <div className="directory-card-top">
                     <span className="directory-card-badge" aria-hidden="true">
-                      <DecorativeIcon
-                        name={getCategoryIconName(category.categoryKey)}
-                        size={28}
+                      <HomeCategoryIcon
+                        kind={category.iconKey}
+                        symbol={category.symbol}
                       />
                     </span>
 
                     <div>
-                      <h3 className="home-category-title">
-                        {category.name}
-                      </h3>
-                      <p>
-                        <strong>{category.count}</strong>{" "}
-                        {strings.calculatorsLabel}
-                      </p>
+                      <div className="directory-card-header-line">
+                        <h3 className="home-category-title">{category.name}</h3>
+                        <span className="directory-card-status">
+                          {category.statusLabel}
+                        </span>
+                      </div>
                     </div>
                   </div>
 
-                  <p className="directory-card-description">
-                    {category.description}
-                  </p>
+                  <p className="directory-card-description">{category.description}</p>
 
-                  <ul className="directory-card-links">
-                    {category.popularConversions.map((conversion) => (
-                      <li key={conversion.id}>
-                        <Link
-                          className="directory-inline-link"
-                          href={conversion.href}
-                        >
-                          <DecorativeIcon
-                            className="directory-inline-link-icon"
-                            name="allConversions"
-                            size={18}
-                          />
-                          {conversion.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
+                  {category.links.length > 0 ? (
+                    <ul className="directory-card-links">
+                      {category.links.map((link) => (
+                        <li key={link.id}>
+                          <Link className="directory-inline-link" href={link.href}>
+                            {link.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <div className="directory-card-note">{category.statusLabel}</div>
+                  )}
 
                   <div className="directory-card-footer">
-                    <Link
-                      className="directory-category-guide"
-                      href={category.guideHref}
-                    >
-                      {strings.categoryGuideLabel}
-                    </Link>
-
-                    {category.calculators.map((calculator) => (
-                      <Link
-                        className="directory-category-guide directory-category-tool-link"
-                        href={calculator.href}
-                        key={calculator.id}
-                      >
-                        {calculator.label}
+                    {category.href ? (
+                      <Link className="directory-category-guide" href={category.href}>
+                        {strings.categoryAction}
                       </Link>
-                    ))}
+                    ) : (
+                      <span className="directory-category-guide is-muted">
+                        {category.statusLabel}
+                      </span>
+                    )}
                   </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section
-          className="directory-section"
-          id={
-            locale === "tr"
-              ? "muhendislik-hesaplayicilari"
-              : "engineering-calculators"
-          }
-        >
-          <header className="directory-section-header">
-            <div>
-              <h2>{strings.engineeringTitle}</h2>
-              <p>{strings.engineeringDescription}</p>
-            </div>
-
-            <Link
-              className="directory-section-link"
-              href={
-                locale === "tr"
-                  ? "/muhendislik-hesaplayicilari"
-                  : "/en/engineering-calculators"
-              }
-            >
-              <DecorativeIcon
-                className="directory-link-icon"
-                name="allConversions"
-                size={18}
-              />
-              {strings.engineeringLinkLabel}
-            </Link>
-          </header>
-
-          <div className="directory-category-grid">
-            {data.engineeringCalculators.map((calculator) => (
-              <article
-                className="directory-category-card"
-                key={calculator.id}
-              >
-                <Link
-                  className="directory-card-stretch"
-                  href={calculator.href}
-                  aria-label={calculator.label}
-                />
-
-                <div className="directory-card-body">
-                  <div className="directory-card-top">
-                    <span className="directory-card-badge" aria-hidden="true">
-                      <DecorativeIcon
-                        name={getCalculatorIconName(calculator.slug)}
-                        size={28}
-                      />
-                    </span>
-
-                    <div>
-                      <h3 className="home-category-title">
-                        {calculator.label}
-                      </h3>
-                      <p className="directory-card-formula">
-                        {calculator.formula}
-                      </p>
-                    </div>
-                  </div>
-
-                  <p className="directory-card-description">
-                    {calculator.description}
-                  </p>
                 </div>
               </article>
             ))}
@@ -777,10 +833,7 @@ export default function HomeDirectory({
               <p>{strings.popularDescription}</p>
             </div>
 
-            <Link
-              className="directory-section-link"
-              href={data.allConversionsHref}
-            >
+            <Link className="directory-section-link" href={data.allConversionsHref}>
               <DecorativeIcon
                 className="directory-link-icon"
                 name="allConversions"
@@ -795,11 +848,6 @@ export default function HomeDirectory({
               <li key={conversion.id}>
                 <Link href={conversion.href}>
                   <span className="directory-conversion-title">
-                    <DecorativeIcon
-                      className="directory-inline-link-icon"
-                      name="allConversions"
-                      size={18}
-                    />
                     {conversion.label}
                   </span>
                   <small>{conversion.description}</small>
@@ -809,59 +857,52 @@ export default function HomeDirectory({
           </ul>
         </section>
 
-        <section className="directory-section directory-guides-section">
+        <section
+          className="directory-section"
+          id={locale === "tr" ? "muhendislik-hesaplayicilari" : "engineering-calculators"}
+        >
           <header className="directory-section-header">
             <div>
-              <h2>{strings.guidesTitle}</h2>
-              <p>{strings.guidesDescription}</p>
+              <h2>{strings.engineeringTitle}</h2>
+              <p>{strings.engineeringDescription}</p>
             </div>
 
-            <Link
-              className="directory-section-link"
-              href={data.guideIndexHref}
-            >
+            <Link className="directory-section-link" href={data.engineeringHubHref}>
               <DecorativeIcon
                 className="directory-link-icon"
-                name="unitGuide"
+                name="allConversions"
                 size={18}
               />
-              {strings.guidesIndexLabel}
+              {data.engineeringHubLabel}
             </Link>
           </header>
 
-          <div className="directory-guides-card">
-            <div className="directory-guide-list">
-              {data.guides.map((guide) => (
+          <div className="directory-tool-grid">
+            {data.engineeringCalculators.map((calculator) => (
+              <article className="directory-home-card directory-tool-card" key={calculator.id}>
                 <Link
-                  className="directory-guide-item"
-                  href={guide.href}
-                  key={guide.id}
-                >
-                  <DecorativeIcon
-                    className="directory-guide-icon"
-                    name="unitGuide"
-                    size={20}
-                  />
-                  <strong>{guide.symbol}</strong>
+                  className="directory-card-stretch"
+                  href={calculator.href}
+                  aria-label={calculator.label}
+                />
 
-                  <span>{guide.name}</span>
+                <div className="directory-card-body">
+                  <div className="directory-tool-copy">
+                    <p className="directory-card-formula">{calculator.formula}</p>
+                    <h3 className="home-category-title">{calculator.label}</h3>
+                    <p className="directory-card-description">
+                      {calculator.description}
+                    </p>
+                  </div>
 
-                  <small>{guide.description}</small>
-                </Link>
-              ))}
-            </div>
-
-            <Link
-              className="directory-guides-cta"
-              href={data.guideIndexHref}
-            >
-              <DecorativeIcon
-                className="directory-link-icon"
-                name="unitGuide"
-                size={18}
-              />
-              {strings.guidesIndexLabel}
-            </Link>
+                  <div className="directory-card-footer">
+                    <Link className="directory-category-guide" href={calculator.href}>
+                      {strings.openLabel}
+                    </Link>
+                  </div>
+                </div>
+              </article>
+            ))}
           </div>
         </section>
       </div>

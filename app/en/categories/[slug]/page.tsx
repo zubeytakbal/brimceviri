@@ -95,7 +95,6 @@ export async function generateMetadata({
   return {
     title: categoryPage.title,
     description: categoryPage.description,
-
     alternates: {
       canonical: `/en/categories/${categoryPage.slug}`,
       languages: {
@@ -104,7 +103,6 @@ export async function generateMetadata({
         "x-default": `/kategoriler/${categoryPage.sourceSlug}`,
       },
     },
-
     openGraph: {
       title: categoryPage.title,
       description: categoryPage.description,
@@ -113,7 +111,6 @@ export async function generateMetadata({
       locale: "en_US",
       type: "article",
     },
-
     twitter: {
       card: "summary",
       title: categoryPage.title,
@@ -325,7 +322,6 @@ export default async function EnglishCategoryPage({
                   ] ?? "Conversion tools"}
                 </a>
               </li>
-
             </ol>
           </nav>
 

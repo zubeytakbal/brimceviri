@@ -4,18 +4,12 @@ import { notFound } from "next/navigation";
 import CategoryUnitConverter from "../../components/CategoryUnitConverter";
 import CategoryPageLayout from "../../components/CategoryPageLayout";
 import { createConversionCards } from "../../components/categoryPageUtils";
-import {
-  findCategoryArticle,
-} from "../../converter/categoryArticles";
+import { findCategoryArticle } from "../../converter/categoryArticles";
 import { calculatorPages } from "../../converter/calculatorPages";
-import {
-  categoryPages,
-} from "../../converter/categoryPages";
+import { categoryPages } from "../../converter/categoryPages";
 import { conversionPages } from "../../converter/conversionPages";
 import { findEnglishCategoryPageByTurkishSlug } from "../../converter/localizedCategoryPages";
-import {
-  getUnitSources,
-} from "../../converter/unitSources";
+import { getUnitSources } from "../../converter/unitSources";
 import { unitPages } from "../../converter/unitPages";
 import { buildSiteUrl } from "../../siteConfig";
 
@@ -106,7 +100,6 @@ export default async function CategoryPage({
   }
 
   const categoryArticle = findCategoryArticle(categoryPage.slug);
-
   const categoryConversions = conversionPages.filter(
     (conversion) =>
       conversion.category === categoryPage.category
@@ -430,17 +423,20 @@ export default async function CategoryPage({
             <div className="category-article-content">
               <section className="conversion-section unit-long-section">
                 <h2>
-                  {categoryBaseNames[categoryPage.category] ?? categoryPage.title}
+                  {categoryBaseNames[categoryPage.category] ??
+                    categoryPage.title}
                   {" "}nedir?
                 </h2>
 
                 <p>{categoryPage.description}</p>
 
                 <p>
-                  Bu kategori altındaki dönüşümler, aynı fiziksel büyüklüğü farklı
-                  birimlerle ifade etmek için kullanılır. Yukarıdaki dönüşüm
-                  kartlarından uygun aracı açabilir, aşağıdaki birim rehberleriyle
-                  temel tanımları inceleyebilirsiniz.
+                  Bu kategori altındaki dönüşümler, aynı fiziksel
+                  büyüklüğü farklı birimlerle ifade etmek için
+                  kullanılır. Yukarıdaki dönüşüm kartlarından
+                  uygun aracı açabilir, aşağıdaki birim
+                  rehberleriyle temel tanımları
+                  inceleyebilirsiniz.
                 </p>
               </section>
 
@@ -484,14 +480,19 @@ export default async function CategoryPage({
                 <h2>Kaynaklar</h2>
 
                 <p>
-                  Dönüşüm oranları ve temel birim tanımları SI ve NIST tabanlı
-                  teknik referanslardan derlenmiştir.
+                  Dönüşüm oranları ve temel birim tanımları SI ve
+                  NIST tabanlı teknik referanslardan
+                  derlenmiştir.
                 </p>
 
                 <ol>
                   {sources.map((source) => (
                     <li key={source.url}>
-                      <a href={source.url} target="_blank" rel="noreferrer">
+                      <a
+                        href={source.url}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
                         {source.organization}: {source.title}
                       </a>
                     </li>

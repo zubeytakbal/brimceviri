@@ -117,9 +117,7 @@ export default function CategoryPageLayout({
         >
           <header className="category-page-header">
             <p className="category-page-kicker">{kickerLabel}</p>
-
             <h1>{title}</h1>
-
             <p>{description}</p>
           </header>
 
@@ -128,7 +126,6 @@ export default function CategoryPageLayout({
               <div className="category-page-hero-panel-heading">
                 <h2>{allUnitsSection.heading}</h2>
               </div>
-
               {allUnitsSection.content}
             </div>
           )}
@@ -233,7 +230,6 @@ export default function CategoryPageLayout({
           <div className="category-section-heading">
             <h2>{detailHeading}</h2>
           </div>
-
           {detailContent}
         </section>
 

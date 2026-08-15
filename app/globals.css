@@ -1814,26 +1814,33 @@ main.category-page {
 .category-page-shell {
   width: min(1120px, calc(100% - 40px));
   margin: 0 auto;
-  padding: 42px 0 90px;
+}
+
+.category-page-breadcrumb-shell {
+  padding: 42px 0 18px;
+}
+
+.category-page-content-shell {
+  padding: 36px 0 90px;
 }
 
 .category-page-hero {
-  margin-top: 18px;
-  border-radius: 22px;
+  width: 100%;
   background: linear-gradient(118deg, #1d5f75 0%, #2096a1 48%, #69c6c3 100%);
   color: #ffffff;
-  overflow: hidden;
 }
 
 .category-page-hero-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: 32px;
-  padding: 42px;
+  gap: 34px;
+  width: min(1120px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 54px 0 60px;
 }
 
 .category-page-hero-grid.has-converter {
-  grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+  grid-template-columns: minmax(0, 1.02fr) minmax(430px, 0.98fr);
   align-items: start;
   gap: 42px;
 }
@@ -1896,10 +1903,6 @@ main.category-page {
 
 .category-page-section {
   margin-top: 40px;
-}
-
-.category-page-hero + .category-page-section {
-  margin-top: 36px;
 }
 
 .category-section-heading {
@@ -2028,7 +2031,7 @@ main.category-page {
 
 .category-general-converter-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) repeat(2, minmax(0, 1fr)) auto;
+  grid-template-columns: minmax(120px, 0.78fr) minmax(220px, 1.22fr) minmax(220px, 1.22fr) auto;
   gap: 14px;
   align-items: end;
 }
@@ -2058,6 +2061,10 @@ main.category-page {
   background: #ffffff;
   color: #172033;
   font-size: 1rem;
+}
+
+.category-general-converter-field select {
+  padding-right: 40px;
 }
 
 .category-general-converter-field input:focus-visible,
@@ -2181,14 +2188,19 @@ main.category-page {
 @media (max-width: 760px) {
   .category-page-shell {
     width: min(100% - 28px, 760px);
+  }
+
+  .category-page-breadcrumb-shell {
     padding-top: 30px;
+    padding-bottom: 16px;
   }
 
   .category-page-hero-grid,
   .category-page-hero-grid.has-converter {
     grid-template-columns: 1fr;
     gap: 28px;
-    padding: 28px 22px;
+    width: min(100% - 28px, 760px);
+    padding: 42px 0 48px;
   }
 
   .category-conversion-list {
@@ -2209,10 +2221,6 @@ main.category-page {
 }
 
 @media (max-width: 560px) {
-  .category-page-hero {
-    border-radius: 18px;
-  }
-
   .category-page-header h1 {
     font-size: clamp(2rem, 9vw, 2.55rem);
   }

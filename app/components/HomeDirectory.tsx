@@ -1,6 +1,19 @@
 "use client";
 
 import Link from "next/link";
+import {
+  Barbell,
+  Clock,
+  Cylinder,
+  Fire,
+  Gauge,
+  Lightning,
+  Plug,
+  Ruler,
+  Square,
+  Thermometer,
+  Waves,
+} from "@phosphor-icons/react";
 import { useDeferredValue, useId, useState } from "react";
 import { useRouter } from "next/navigation";
 import { DecorativeIcon } from "./siteIcons";
@@ -306,275 +319,42 @@ const copy = {
 
 function HomeCategoryIcon({
   kind,
-  symbol,
 }: {
   kind: HomeCategoryIconName;
-  symbol: string;
 }) {
-  function renderGraphic() {
-    switch (kind) {
-      case "uzunluk":
-        return (
-          <>
-            <path
-              className="home-category-icon-face"
-              d="M18 24.5 39.5 18l8.5 8.5L26.5 33z"
-            />
-            <path
-              className="home-category-icon-edge"
-              d="M26.5 33 48 26.5v5L26.5 38z"
-            />
-            <path
-              className="home-category-icon-line"
-              d="m22 28 2-2m4 1 2-2m4 1 2-2m4 1 2-2"
-            />
-          </>
-        );
-      case "alan":
-        return (
-          <>
-            <path
-              className="home-category-icon-face"
-              d="M20 22h18v18H20z"
-            />
-            <path
-              className="home-category-icon-edge"
-              d="m38 22 6 5v18l-6-5Z"
-            />
-            <path
-              className="home-category-icon-line"
-              d="M20 27h18M25 22v18"
-            />
-          </>
-        );
-      case "zaman":
-        return (
-          <>
-            <circle
-              className="home-category-icon-face"
-              cx="32"
-              cy="30"
-              r="11"
-            />
-            <path
-              className="home-category-icon-edge"
-              d="M25 41h14v4H25z"
-            />
-            <path
-              className="home-category-icon-line"
-              d="M32 24v7m0 0 4 2M32 17v2m0 22v2m13-13h-2m-22 0h-2"
-            />
-          </>
-        );
-      case "hiz":
-        return (
-          <>
-            <path
-              className="home-category-icon-face"
-              d="M20 33a12 12 0 1 1 24 0v2H20z"
-            />
-            <path
-              className="home-category-icon-edge"
-              d="M24 37h16v4H24z"
-            />
-            <path
-              className="home-category-icon-line"
-              d="M24 29h3m13 0h-3M32 24v9m0 0 7-6"
-            />
-          </>
-        );
-      case "kutle":
-        return (
-          <>
-            <path
-              className="home-category-icon-face"
-              d="M24 21h16l4 18H20z"
-            />
-            <path
-              className="home-category-icon-edge"
-              d="M20 39h24v4H20z"
-            />
-            <path
-              className="home-category-icon-line"
-              d="M28 21c0-3 1.8-5 4-5s4 2 4 5"
-            />
-          </>
-        );
-      case "basinc":
-        return (
-          <>
-            <path
-              className="home-category-icon-face"
-              d="M20 33a12 12 0 1 1 24 0v2H20z"
-            />
-            <path
-              className="home-category-icon-edge"
-              d="M24 37h16v4H24z"
-            />
-            <path
-              className="home-category-icon-line"
-              d="M32 24v9m0 0 6-4"
-            />
-          </>
-        );
-      case "sicaklik":
-        return (
-          <>
-            <path
-              className="home-category-icon-face"
-              d="M29 18a3 3 0 0 1 6 0v13.5a7 7 0 1 1-6 0Z"
-            />
-            <path
-              className="home-category-icon-edge"
-              d="M31.5 23h3"
-            />
-            <path
-              className="home-category-icon-line"
-              d="M32 22v14m5.5-8h4"
-            />
-          </>
-        );
-      case "hacim":
-        return (
-          <>
-            <ellipse
-              className="home-category-icon-face"
-              cx="32"
-              cy="21"
-              rx="10"
-              ry="4.5"
-            />
-            <path
-              className="home-category-icon-face"
-              d="M22 21v14c0 2.5 4.5 4.5 10 4.5s10-2 10-4.5V21"
-            />
-            <path
-              className="home-category-icon-edge"
-              d="M22 28c0 2.5 4.5 4.5 10 4.5s10-2 10-4.5"
-            />
-            <path
-              className="home-category-icon-line"
-              d="M42 21v14"
-            />
-          </>
-        );
-      case "enerji":
-        return (
-          <>
-            <path
-              className="home-category-icon-face"
-              d="m32 17-8.5 13h6L26 41l14-16h-7l4-8Z"
-            />
-            <path
-              className="home-category-icon-edge"
-              d="m29.5 30 5-5h6L26 41z"
-            />
-            <path
-              className="home-category-icon-line"
-              d="M43 18v4m-18 18h4"
-            />
-          </>
-        );
-      case "debi":
-        return (
-          <>
-            <path
-              className="home-category-icon-face"
-              d="M21 24h18l4 6-4 6H21l4-6Z"
-            />
-            <path
-              className="home-category-icon-edge"
-              d="M39 24h4l4 6-4 6h-4"
-            />
-            <path
-              className="home-category-icon-line"
-              d="M18 30h10m12 0h8m-4-4 4 4-4 4"
-            />
-          </>
-        );
-      case "isi":
-        return (
-          <>
-            <path
-              className="home-category-icon-face"
-              d="M29 18a3 3 0 0 1 6 0v13.5a7 7 0 1 1-6 0Z"
-            />
-            <path
-              className="home-category-icon-edge"
-              d="M38 22c2 1.5 4 4.5 4 8 0 1.8-.5 3.3-1.3 4.8"
-            />
-            <path
-              className="home-category-icon-line"
-              d="M32 22v14m7-12h4m-2-4 2 4-2 4"
-            />
-          </>
-        );
-      case "elektrik":
-        return (
-          <>
-            <rect
-              className="home-category-icon-face"
-              x="22"
-              y="20"
-              width="20"
-              height="17"
-              rx="4"
-            />
-            <path
-              className="home-category-icon-edge"
-              d="M26 37h12v5H26z"
-            />
-            <path
-              className="home-category-icon-line"
-              d="M32 24v9m-4-5h8"
-            />
-          </>
-        );
-    }
-  }
+  const Icon =
+    kind === "uzunluk"
+      ? Ruler
+      : kind === "alan"
+        ? Square
+        : kind === "hacim"
+          ? Cylinder
+          : kind === "kutle"
+            ? Barbell
+            : kind === "sicaklik"
+              ? Thermometer
+              : kind === "zaman"
+                ? Clock
+                : kind === "hiz"
+                  ? Gauge
+                  : kind === "basinc"
+                    ? Gauge
+                    : kind === "enerji"
+                      ? Lightning
+                      : kind === "debi"
+                        ? Waves
+                        : kind === "isi"
+                          ? Fire
+                          : Plug;
 
   return (
-    <svg
-      aria-hidden="true"
-      className={`home-category-icon-svg is-${kind}`}
-      viewBox="0 0 64 64"
-      focusable="false"
-    >
-      <ellipse
-        className="home-category-icon-shadow"
-        cx="32"
-        cy="50"
-        rx="14"
-        ry="5"
+    <span className="home-category-icon-box" aria-hidden="true">
+      <Icon
+        className={`home-category-icon-svg is-${kind}`}
+        size={42}
+        weight="regular"
       />
-      <g className="home-category-icon-float">
-        <rect
-          className="home-category-icon-plate"
-          x="10"
-          y="8"
-          width="44"
-          height="44"
-          rx="14"
-        />
-        {renderGraphic()}
-        <rect
-          className="home-category-icon-chip"
-          x="21"
-          y="42"
-          width="22"
-          height="10"
-          rx="5"
-        />
-        <text
-          className="home-category-icon-symbol"
-          x="32"
-          y="49"
-          textAnchor="middle"
-        >
-          {symbol}
-        </text>
-      </g>
-    </svg>
+    </span>
   );
 }
 
@@ -926,10 +706,7 @@ export default function HomeDirectory({
                 <div className="directory-card-body">
                   <div className="directory-card-top">
                     <span className="directory-card-badge" aria-hidden="true">
-                      <HomeCategoryIcon
-                        kind={category.iconKey}
-                        symbol={category.symbol}
-                      />
+                      <HomeCategoryIcon kind={category.iconKey} />
                     </span>
 
                     <div>

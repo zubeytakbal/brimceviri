@@ -26,11 +26,17 @@ type HomeConversion = {
 
 type HomeCategoryIconName =
   | "uzunluk"
+  | "alan"
+  | "zaman"
+  | "hiz"
   | "kutle"
   | "basinc"
   | "sicaklik"
   | "hacim"
-  | "enerji";
+  | "enerji"
+  | "debi"
+  | "isi"
+  | "elektrik";
 
 type HomeCategoryCard = {
   id: string;
@@ -72,10 +78,19 @@ type HomeData = {
   };
 };
 
-const activeCategoryOrder = [
+const homeCategoryOrder = [
   "uzunluk",
+  "alan",
+  "hacim",
   "kutle",
+  "sicaklik",
+  "zaman",
+  "hiz",
   "basinc",
+  "enerji",
+  "debi",
+  "isi",
+  "elektrik",
 ] as const;
 
 const preferredSourceSlugs = [
@@ -115,6 +130,7 @@ const copy = {
     categoryAction: "Kategori sayfasını aç",
     availableLabel: "Hazır",
     soonLabel: "Yakında",
+    categoriesFooterLink: "Tüm dönüşümleri görüntüle",
     categoryCards: {
       uzunluk: {
         name: "Uzunluk",
@@ -122,23 +138,11 @@ const copy = {
         description:
           "Metre, santimetre, kilometre, inç ve fit dönüşümlerini açın.",
       },
-      kutle: {
-        name: "Kütle",
-        symbol: "kg",
+      alan: {
+        name: "Alan",
+        symbol: "m\u00B2",
         description:
-          "Kilogram, gram, ton, pound ve ons dönüşümlerine gidin.",
-      },
-      basinc: {
-        name: "Basınç",
-        symbol: "Pa",
-        description:
-          "Pascal, bar, psi, atm ve mmHg araçlarını inceleyin.",
-      },
-      sicaklik: {
-        name: "Sıcaklık",
-        symbol: "°C",
-        description:
-          "Sıcaklık dönüştürücüleri planlanıyor.",
+          "Alan dönüşümleri ve ilgili araçlar kapsam genişledikçe eklenecek.",
       },
       hacim: {
         name: "Hacim",
@@ -146,11 +150,59 @@ const copy = {
         description:
           "Litre ve hacim tabanlı dönüşüm araçları planlanıyor.",
       },
+      kutle: {
+        name: "Kütle",
+        symbol: "kg",
+        description:
+          "Kilogram, gram, ton, pound ve ons dönüşümlerine gidin.",
+      },
+      sicaklik: {
+        name: "Sıcaklık",
+        symbol: "\u00B0C",
+        description:
+          "Sıcaklık dönüştürücüleri planlanıyor.",
+      },
+      zaman: {
+        name: "Zaman",
+        symbol: "s",
+        description:
+          "Zaman dönüşümleri ve ilgili araçlar planlanıyor.",
+      },
+      hiz: {
+        name: "Hız",
+        symbol: "km/h",
+        description:
+          "Hız dönüşümleri ve akış araçları kapsam genişledikçe eklenecek.",
+      },
+      basinc: {
+        name: "Basınç",
+        symbol: "Pa",
+        description:
+          "Pascal, bar, psi, atm ve mmHg araçlarını inceleyin.",
+      },
       enerji: {
         name: "Enerji ve güç",
         symbol: "W",
         description:
           "Enerji ve güç kategorileri kapsam genişledikçe eklenecek.",
+      },
+      debi: {
+        name: "Debi",
+        symbol: "m\u00B3/h",
+        description:
+          "Debi ve akış miktarı dönüşümleri ileride eklenecek.",
+      },
+      isi: {
+        name: "Isı transferi",
+        symbol: "q",
+        description:
+          "Isı transferi araçları şu an mühendislik hesaplayıcıları bölümünde yer alıyor.",
+      },
+      elektrik: {
+        name: "Elektrik",
+        symbol: "V",
+        description:
+          "Elektrik birimleri ve dönüşümleri ileride eklenecek.",
       },
     },
     popularTitle: "Popüler dönüşümler",
@@ -186,6 +238,7 @@ const copy = {
     categoryAction: "Open category page",
     availableLabel: "Live",
     soonLabel: "Soon",
+    categoriesFooterLink: "View all conversions",
     categoryCards: {
       uzunluk: {
         name: "Length",
@@ -193,23 +246,11 @@ const copy = {
         description:
           "Open meter, centimeter, kilometer, inch and foot conversions.",
       },
-      kutle: {
-        name: "Mass",
-        symbol: "kg",
+      alan: {
+        name: "Area",
+        symbol: "m\u00B2",
         description:
-          "Jump to kilogram, gram, tonne, pound and ounce tools.",
-      },
-      basinc: {
-        name: "Pressure",
-        symbol: "Pa",
-        description:
-          "Browse pascal, bar, psi, atm and mmHg converters.",
-      },
-      sicaklik: {
-        name: "Temperature",
-        symbol: "°C",
-        description:
-          "Temperature conversion tools are planned.",
+          "Area conversion tools will be added as coverage expands.",
       },
       hacim: {
         name: "Volume",
@@ -217,11 +258,59 @@ const copy = {
         description:
           "Liter and volume-based converters are planned.",
       },
+      kutle: {
+        name: "Mass",
+        symbol: "kg",
+        description:
+          "Jump to kilogram, gram, tonne, pound and ounce tools.",
+      },
+      sicaklik: {
+        name: "Temperature",
+        symbol: "\u00B0C",
+        description:
+          "Temperature conversion tools are planned.",
+      },
+      zaman: {
+        name: "Time",
+        symbol: "s",
+        description:
+          "Time conversion tools are planned.",
+      },
+      hiz: {
+        name: "Speed",
+        symbol: "km/h",
+        description:
+          "Speed tools and related flow conversions will be added later.",
+      },
+      basinc: {
+        name: "Pressure",
+        symbol: "Pa",
+        description:
+          "Browse pascal, bar, psi, atm and mmHg converters.",
+      },
       enerji: {
         name: "Energy and power",
         symbol: "W",
         description:
           "Energy and power categories will be added as coverage expands.",
+      },
+      debi: {
+        name: "Flow rate",
+        symbol: "m\u00B3/h",
+        description:
+          "Flow rate conversion tools are planned for a later expansion.",
+      },
+      isi: {
+        name: "Heat transfer",
+        symbol: "q",
+        description:
+          "Heat-transfer tools are currently available in engineering calculators.",
+      },
+      elektrik: {
+        name: "Electricity",
+        symbol: "V",
+        description:
+          "Electrical units and conversion tools will be added later.",
       },
     },
     popularTitle: "Popular conversions",
@@ -257,6 +346,59 @@ function HomeCategoryIcon({
             <path
               className="home-category-icon-line"
               d="m22 28 2-2m4 1 2-2m4 1 2-2m4 1 2-2"
+            />
+          </>
+        );
+      case "alan":
+        return (
+          <>
+            <path
+              className="home-category-icon-face"
+              d="M20 22h18v18H20z"
+            />
+            <path
+              className="home-category-icon-edge"
+              d="m38 22 6 5v18l-6-5Z"
+            />
+            <path
+              className="home-category-icon-line"
+              d="M20 27h18M25 22v18"
+            />
+          </>
+        );
+      case "zaman":
+        return (
+          <>
+            <circle
+              className="home-category-icon-face"
+              cx="32"
+              cy="30"
+              r="11"
+            />
+            <path
+              className="home-category-icon-edge"
+              d="M25 41h14v4H25z"
+            />
+            <path
+              className="home-category-icon-line"
+              d="M32 24v7m0 0 4 2M32 17v2m0 22v2m13-13h-2m-22 0h-2"
+            />
+          </>
+        );
+      case "hiz":
+        return (
+          <>
+            <path
+              className="home-category-icon-face"
+              d="M20 33a12 12 0 1 1 24 0v2H20z"
+            />
+            <path
+              className="home-category-icon-edge"
+              d="M24 37h16v4H24z"
+            />
+            <path
+              className="home-category-icon-line"
+              d="M24 29h3m13 0h-3M32 24v9m0 0 7-6"
             />
           </>
         );
@@ -349,6 +491,61 @@ function HomeCategoryIcon({
             <path
               className="home-category-icon-line"
               d="M43 18v4m-18 18h4"
+            />
+          </>
+        );
+      case "debi":
+        return (
+          <>
+            <path
+              className="home-category-icon-face"
+              d="M21 24h18l4 6-4 6H21l4-6Z"
+            />
+            <path
+              className="home-category-icon-edge"
+              d="M39 24h4l4 6-4 6h-4"
+            />
+            <path
+              className="home-category-icon-line"
+              d="M18 30h10m12 0h8m-4-4 4 4-4 4"
+            />
+          </>
+        );
+      case "isi":
+        return (
+          <>
+            <path
+              className="home-category-icon-face"
+              d="M29 18a3 3 0 0 1 6 0v13.5a7 7 0 1 1-6 0Z"
+            />
+            <path
+              className="home-category-icon-edge"
+              d="M38 22c2 1.5 4 4.5 4 8 0 1.8-.5 3.3-1.3 4.8"
+            />
+            <path
+              className="home-category-icon-line"
+              d="M32 22v14m7-12h4m-2-4 2 4-2 4"
+            />
+          </>
+        );
+      case "elektrik":
+        return (
+          <>
+            <rect
+              className="home-category-icon-face"
+              x="22"
+              y="20"
+              width="20"
+              height="17"
+              rx="4"
+            />
+            <path
+              className="home-category-icon-edge"
+              d="M26 37h12v5H26z"
+            />
+            <path
+              className="home-category-icon-line"
+              d="M32 24v9m-4-5h8"
             />
           </>
         );
@@ -479,7 +676,7 @@ function createHomeData(locale: Locale): HomeData {
           ),
         }));
 
-  const activeCategories = activeCategoryOrder.map((sourceCategory) => {
+  const categoryCards = homeCategoryOrder.map((sourceCategory) => {
     const categoryPage =
       locale === "tr"
         ? categoryPages.find((page) => page.category === sourceCategory)
@@ -517,23 +714,6 @@ function createHomeData(locale: Locale): HomeData {
       })),
     };
   });
-
-  const passiveCategories = (["sicaklik", "hacim", "enerji"] as const).map(
-    (categoryKey) => {
-      const categoryCopy = strings.categoryCards[categoryKey];
-
-      return {
-        id: categoryKey,
-        iconKey: categoryKey,
-        name: categoryCopy.name,
-        symbol: categoryCopy.symbol,
-        description: categoryCopy.description,
-        isAvailable: false,
-        statusLabel: strings.soonLabel,
-        links: [],
-      };
-    }
-  );
 
   const preferredPopularConversions = preferredSourceSlugs.flatMap((slug) => {
     const conversion = conversions.find(
@@ -593,7 +773,7 @@ function createHomeData(locale: Locale): HomeData {
 
   return {
     conversions,
-    categories: [...activeCategories, ...passiveCategories],
+    categories: categoryCards,
     engineeringCalculators,
     popularConversions,
     allConversionsHref:
@@ -606,7 +786,7 @@ function createHomeData(locale: Locale): HomeData {
         : "/en/engineering-calculators",
     engineeringHubLabel: strings.engineeringHubLabel,
     stats: {
-      activeCategories: activeCategories.filter(
+      activeCategories: categoryCards.filter(
         (category) => category.isAvailable
       ).length,
       conversions: conversions.length,
@@ -823,6 +1003,20 @@ export default function HomeDirectory({
                 </div>
               </article>
             ))}
+          </div>
+
+          <div className="directory-section-footer">
+            <Link
+              className="directory-section-link"
+              href={data.allConversionsHref}
+            >
+              <DecorativeIcon
+                className="directory-link-icon"
+                name="allConversions"
+                size={18}
+              />
+              {strings.categoriesFooterLink}
+            </Link>
           </div>
         </section>
 

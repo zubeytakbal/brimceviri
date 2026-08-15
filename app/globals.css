@@ -3237,7 +3237,7 @@ button {
 .directory-home-category-grid,
 .directory-tool-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
 }
 
@@ -3261,11 +3261,6 @@ button {
   background: #fbfdfe;
   transform: translateY(-2px);
   box-shadow: 0 18px 40px rgba(16, 55, 74, 0.07);
-}
-
-.directory-home-card.is-passive:hover {
-  transform: none;
-  box-shadow: 0 14px 34px rgba(16, 55, 74, 0.04);
 }
 
 .directory-card-stretch {
@@ -3397,39 +3392,6 @@ button {
   fill: #168f8c;
 }
 
-.directory-home-card.is-passive:hover .home-category-icon-svg {
-  transform: none;
-  filter: none;
-}
-
-.directory-home-card.is-passive:hover .home-category-icon-float,
-.directory-home-card.is-passive:hover .home-category-icon-shadow {
-  transform: none;
-}
-
-.directory-home-card.is-passive:hover .home-category-icon-face,
-.directory-home-card.is-passive:hover .home-category-icon-edge,
-.directory-home-card.is-passive:hover .home-category-icon-line {
-  stroke: #4d6474;
-}
-
-.directory-home-card.is-passive:hover .home-category-icon-face {
-  fill: #eef5f7;
-}
-
-.directory-home-card.is-passive:hover .home-category-icon-edge {
-  fill: #dbe7ec;
-}
-
-.directory-home-card.is-passive:hover .home-category-icon-chip {
-  fill: #ffffff;
-  stroke: #d5e1e6;
-}
-
-.directory-home-card.is-passive:hover .home-category-icon-symbol {
-  fill: #216d85;
-}
-
 .directory-card-header-line {
   display: flex;
   flex-wrap: wrap;
@@ -3508,6 +3470,12 @@ button {
 .directory-card-note {
   color: #667085;
   font-size: 0.9rem;
+}
+
+.directory-section-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 .directory-card-footer {
@@ -3593,14 +3561,23 @@ button {
   min-width: 0;
 }
 
+@media (max-width: 1180px) {
+  .directory-home-category-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 1024px) {
   .directory-hero .directory-shell {
     grid-template-columns: 1fr;
   }
 
   .directory-home-category-grid,
-  .directory-tool-grid,
   .directory-popular-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .directory-tool-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

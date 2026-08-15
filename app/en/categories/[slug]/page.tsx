@@ -12,7 +12,6 @@ import {
 import { englishConversionPages } from "../../../converter/localizedConversionPages";
 import { englishUnitPages } from "../../../converter/localizedUnitPages";
 import { SITE_URL, buildSiteUrl } from "../../../siteConfig";
-import PressureReferenceTable from "../../../components/technicalReferences/PressureReferenceTable";
 
 type PageProps = {
   params: Promise<{
@@ -327,13 +326,6 @@ export default async function EnglishCategoryPage({
                 </a>
               </li>
 
-              {categoryPage.category === "basinc" ? (
-                <li>
-                  <a href="#pressure-reference-table">
-                    Pressure-unit reference table
-                  </a>
-                </li>
-              ) : null}
             </ol>
           </nav>
 
@@ -413,15 +405,6 @@ export default async function EnglishCategoryPage({
                 ))}
               </ul>
             </section>
-
-            {categoryPage.category === "basinc" ? (
-              <section
-                className="conversion-section"
-                id="pressure-reference-table"
-              >
-                <PressureReferenceTable locale="en" />
-              </section>
-            ) : null}
 
             <section className="conversion-section language-alternatives">
               <h2>Other languages</h2>

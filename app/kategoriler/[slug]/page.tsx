@@ -18,7 +18,6 @@ import {
 } from "../../converter/unitSources";
 import { unitPages } from "../../converter/unitPages";
 import { buildSiteUrl } from "../../siteConfig";
-import PressureReferenceTable from "../../components/technicalReferences/PressureReferenceTable";
 
 type PageProps = {
   params: Promise<{
@@ -326,14 +325,6 @@ export default async function CategoryPage({
                     </a>
                   </li>
 
-                  {categoryPage.category === "basinc" ? (
-                    <li>
-                      <a href="#basinc-teknik-referansi">
-                        Basınç birimleri referans tablosu
-                      </a>
-                    </li>
-                  ) : null}
-
                   <li>
                     <a href="#kategori-kaynaklari">
                       Kaynaklar
@@ -404,15 +395,6 @@ export default async function CategoryPage({
                     </table>
                   </div>
                 </section>
-
-                {categoryPage.category === "basinc" ? (
-                  <section
-                    className="conversion-section"
-                    id="basinc-teknik-referansi"
-                  >
-                    <PressureReferenceTable locale="tr" />
-                  </section>
-                ) : null}
 
                 <section
                   className="conversion-section unit-sources"
@@ -494,15 +476,6 @@ export default async function CategoryPage({
                   </table>
                 </div>
               </section>
-
-              {categoryPage.category === "basinc" ? (
-                <section
-                  className="conversion-section"
-                  id="basinc-teknik-referansi"
-                >
-                  <PressureReferenceTable locale="tr" />
-                </section>
-              ) : null}
 
               <section
                 className="conversion-section unit-sources"

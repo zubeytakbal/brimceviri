@@ -14,15 +14,6 @@ export type TechnicalReferencePoint = {
   value: number;
 };
 
-export type PressureReferenceRow = {
-  symbol: string;
-  trName: string;
-  enName: string;
-  pascalValue: number;
-  exact: boolean;
-  note: Record<TechnicalReferenceLocale, string>;
-};
-
 export const TECHNICAL_REFERENCE_ACCESSED_ON = "2026-08-15";
 
 export const waterAtAtmosphericPressureQueryUrl =
@@ -57,108 +48,6 @@ export const waterDynamicViscosityByTemperature: ReadonlyArray<TechnicalReferenc
     { temperatureC: 90.01, value: 0.00031413938 },
     { temperatureC: 99.974296, value: 0.00028165796 },
   ] as const;
-
-export const pressureReferenceRows: ReadonlyArray<PressureReferenceRow> = [
-  {
-    symbol: "Pa",
-    trName: "Pascal",
-    enName: "Pascal",
-    pascalValue: 1,
-    exact: true,
-    note: {
-      tr: "SI türetilmiş basınç birimi",
-      en: "SI derived pressure unit",
-    },
-  },
-  {
-    symbol: "kPa",
-    trName: "Kilopascal",
-    enName: "Kilopascal",
-    pascalValue: 1_000,
-    exact: true,
-    note: {
-      tr: "HVAC, tesisat ve genel mühendislik",
-      en: "HVAC, piping and general engineering",
-    },
-  },
-  {
-    symbol: "MPa",
-    trName: "Megapascal",
-    enName: "Megapascal",
-    pascalValue: 1_000_000,
-    exact: true,
-    note: {
-      tr: "Malzeme ve yüksek basınç sistemleri",
-      en: "Materials and high-pressure systems",
-    },
-  },
-  {
-    symbol: "bar",
-    trName: "Bar",
-    enName: "Bar",
-    pascalValue: 100_000,
-    exact: true,
-    note: {
-      tr: "Endüstriyel proses ve kompresörler",
-      en: "Industrial process work and compressors",
-    },
-  },
-  {
-    symbol: "mbar",
-    trName: "Milibar",
-    enName: "Millibar",
-    pascalValue: 100,
-    exact: true,
-    note: {
-      tr: "Meteoroloji ve düşük basınç göstergeleri",
-      en: "Meteorology and low-pressure gauges",
-    },
-  },
-  {
-    symbol: "atm",
-    trName: "Standart atmosfer",
-    enName: "Standard atmosphere",
-    pascalValue: 101_325,
-    exact: true,
-    note: {
-      tr: "Standart referans atmosfer basıncı",
-      en: "Standard reference atmospheric pressure",
-    },
-  },
-  {
-    symbol: "psi",
-    trName: "Pound-force/inçkare",
-    enName: "Pound-force per square inch",
-    pascalValue: 6_894.757293168,
-    exact: false,
-    note: {
-      tr: "Lastikler ve Anglo-Amerikan ekipmanlar",
-      en: "Tires and Anglo-American equipment",
-    },
-  },
-  {
-    symbol: "mmHg",
-    trName: "Milimetre cıva",
-    enName: "Millimeter of mercury",
-    pascalValue: 133.322387415,
-    exact: false,
-    note: {
-      tr: "Tıbbi ölçümler ve manometreler",
-      en: "Medical measurements and manometers",
-    },
-  },
-  {
-    symbol: "kgf/cm²",
-    trName: "Kilogram-kuvvet / santimetrekare",
-    enName: "Kilogram-force per square centimeter",
-    pascalValue: 98_066.5,
-    exact: false,
-    note: {
-      tr: "Eski teknik çizimler ve bazı proses göstergeleri",
-      en: "Legacy technical drawings and some process gauges",
-    },
-  },
-] as const;
 
 export const waterDensitySources: ReadonlyArray<TechnicalReferenceSource> = [
   {
@@ -204,29 +93,6 @@ export const waterViscositySources: ReadonlyArray<TechnicalReferenceSource> = [
     conditions: {
       tr: "Suyun viskozitesi için resmi IAPWS formülasyonu; sıvı ve buhar fazları için geçerlilik sınırları dokümanda tanımlanır.",
       en: "Official IAPWS formulation for the viscosity of water; validity limits for liquid and vapor phases are defined in the document.",
-    },
-  },
-] as const;
-
-export const pressureReferenceSources: ReadonlyArray<TechnicalReferenceSource> = [
-  {
-    id: "nist-si-b8",
-    label: "NIST Guide to the SI, Appendix B.8",
-    url: "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8",
-    accessedOn: TECHNICAL_REFERENCE_ACCESSED_ON,
-    conditions: {
-      tr: "Standart ve konvansiyonel basınç birimi dönüşüm katsayıları; tam ve yaklaşık katsayılar NIST gösterimine göre okunmalıdır.",
-      en: "Standard and conventional pressure-unit conversion factors; exact and approximate factors should be interpreted per the NIST notation.",
-    },
-  },
-  {
-    id: "bipm-si-brochure",
-    label: "BIPM SI Brochure, 9th edition",
-    url: "https://www.bipm.org/en/publications/si-brochure",
-    accessedOn: TECHNICAL_REFERENCE_ACCESSED_ON,
-    conditions: {
-      tr: "SI birim sisteminin güncel çerçevesi ve basınç için pascal tanımı.",
-      en: "Current SI framework and the definition of the pascal for pressure.",
     },
   },
 ] as const;

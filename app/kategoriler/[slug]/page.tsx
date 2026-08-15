@@ -25,9 +25,17 @@ type PageProps = {
 };
 
 const categoryBaseNames: Record<string, string> = {
+  alan: "Alan",
+  hacim: "Hacim",
   uzunluk: "Uzunluk",
   kutle: "Kütle",
+  sicaklik: "Sıcaklık",
+  zaman: "Zaman",
+  hiz: "Hız",
   basinc: "Basınç",
+  enerji: "Enerji ve Güç",
+  debi: "Debi",
+  elektrik: "Elektrik",
 };
 
 function serializeJsonLd(data: object) {
@@ -403,6 +411,81 @@ export default async function CategoryPage({
                 </section>
               </div>
             </>
+          )}
+
+          {!categoryArticle && (
+            <div className="category-article-content">
+              <section className="conversion-section unit-long-section">
+                <h2>
+                  {categoryBaseNames[categoryPage.category] ?? categoryPage.title}
+                  {" "}nedir?
+                </h2>
+
+                <p>{categoryPage.description}</p>
+
+                <p>
+                  Bu kategori altındaki dönüşümler, aynı fiziksel büyüklüğü farklı
+                  birimlerle ifade etmek için kullanılır. Yukarıdaki dönüşüm
+                  kartlarından uygun aracı açabilir, aşağıdaki birim rehberleriyle
+                  temel tanımları inceleyebilirsiniz.
+                </p>
+              </section>
+
+              <section
+                className="conversion-section"
+                id="kategori-birimleri-tablosu"
+              >
+                <h2>{tableTitle}</h2>
+
+                <div className="scientific-table-wrap">
+                  <table className="scientific-table">
+                    <thead>
+                      <tr>
+                        <th>Birim</th>
+                        <th>Sembol</th>
+                        <th>{tableReferenceLabel}</th>
+                        <th>Sistem</th>
+                        <th>Yaygın kullanım</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      {categoryUnits.map((unitPage) => (
+                        <tr key={`${unitPage.slug}-${unitPage.unit}`}>
+                          <td>{unitPage.name}</td>
+                          <td>{unitPage.symbol}</td>
+                          <td>{unitPage.siEquivalent}</td>
+                          <td>{unitPage.measurementSystem}</td>
+                          <td>{unitPage.commonUses}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <section
+                className="conversion-section unit-sources"
+                id="kategori-kaynaklari"
+              >
+                <h2>Kaynaklar</h2>
+
+                <p>
+                  Dönüşüm oranları ve temel birim tanımları SI ve NIST tabanlı
+                  teknik referanslardan derlenmiştir.
+                </p>
+
+                <ol>
+                  {sources.map((source) => (
+                    <li key={source.url}>
+                      <a href={source.url} target="_blank" rel="noreferrer">
+                        {source.organization}: {source.title}
+                      </a>
+                    </li>
+                  ))}
+                </ol>
+              </section>
+            </div>
           )}
         </>
       }

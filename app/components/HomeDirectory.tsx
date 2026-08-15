@@ -44,9 +44,7 @@ type HomeCategoryCard = {
   name: string;
   symbol: string;
   description: string;
-  href?: string;
-  isAvailable: boolean;
-  statusLabel: string;
+  href: string;
   links: Array<{
     id: string;
     href: string;
@@ -89,7 +87,6 @@ const homeCategoryOrder = [
   "basinc",
   "enerji",
   "debi",
-  "isi",
   "elektrik",
 ] as const;
 
@@ -120,16 +117,14 @@ const copy = {
     searchCategoryPrefix: "Kategori",
     openLabel: "Aç",
     stats: {
-      activeCategories: "aktif kategori",
+      activeCategories: "kategori",
       conversions: "dönüşüm sayfası",
       engineering: "hesaplayıcı",
     },
-    categoriesTitle: "Kategoriler",
+    categoriesTitle: "Birim dönüşümleri",
     categoriesDescription:
-      "Mevcut kategoriler doğrudan sayfaya gider; diğer teknik başlıklar kapsam genişledikçe açılacaktır.",
+      "Her kart ilgili kategori sayfasına gider ve 1-2 gerçek dönüşüm örneği gösterir.",
     categoryAction: "Kategori sayfasını aç",
-    availableLabel: "Hazır",
-    soonLabel: "Yakında",
     categoriesFooterLink: "Tüm dönüşümleri görüntüle",
     categoryCards: {
       uzunluk: {
@@ -142,13 +137,13 @@ const copy = {
         name: "Alan",
         symbol: "m\u00B2",
         description:
-          "Alan dönüşümleri ve ilgili araçlar kapsam genişledikçe eklenecek.",
+          "Metrekare, hektar ve fitkare dönüşümlerini açın.",
       },
       hacim: {
         name: "Hacim",
         symbol: "L",
         description:
-          "Litre ve hacim tabanlı dönüşüm araçları planlanıyor.",
+          "Litre, mililitre ve metreküp dönüşümlerini açın.",
       },
       kutle: {
         name: "Kütle",
@@ -160,19 +155,19 @@ const copy = {
         name: "Sıcaklık",
         symbol: "\u00B0C",
         description:
-          "Sıcaklık dönüştürücüleri planlanıyor.",
+          "Santigrat, Fahrenheit ve Kelvin dönüşümlerini açın.",
       },
       zaman: {
         name: "Zaman",
         symbol: "s",
         description:
-          "Zaman dönüşümleri ve ilgili araçlar planlanıyor.",
+          "Saniye, dakika ve saat dönüşümlerini açın.",
       },
       hiz: {
         name: "Hız",
         symbol: "km/h",
         description:
-          "Hız dönüşümleri ve akış araçları kapsam genişledikçe eklenecek.",
+          "km/saat, m/s ve mph tabanlı hız dönüşümlerini açın.",
       },
       basinc: {
         name: "Basınç",
@@ -184,25 +179,19 @@ const copy = {
         name: "Enerji ve güç",
         symbol: "W",
         description:
-          "Enerji ve güç kategorileri kapsam genişledikçe eklenecek.",
+          "Joule, kilovatsaat, watt ve kilowatt dönüşümlerini açın.",
       },
       debi: {
         name: "Debi",
         symbol: "m\u00B3/h",
         description:
-          "Debi ve akış miktarı dönüşümleri ileride eklenecek.",
-      },
-      isi: {
-        name: "Isı transferi",
-        symbol: "q",
-        description:
-          "Isı transferi araçları şu an mühendislik hesaplayıcıları bölümünde yer alıyor.",
+          "Metreküp/saat ve litre/dakika tabanlı hacimsel debi araçlarını açın.",
       },
       elektrik: {
         name: "Elektrik",
         symbol: "V",
         description:
-          "Elektrik birimleri ve dönüşümleri ileride eklenecek.",
+          "Volt, kilovolt, amper ve miliamper dönüşümlerini açın.",
       },
     },
     popularTitle: "Popüler dönüşümler",
@@ -228,16 +217,14 @@ const copy = {
     searchCategoryPrefix: "Category",
     openLabel: "Open",
     stats: {
-      activeCategories: "active categories",
+      activeCategories: "categories",
       conversions: "conversion pages",
       engineering: "calculators",
     },
-    categoriesTitle: "Categories",
+    categoriesTitle: "Unit conversions",
     categoriesDescription:
-      "Available categories link to live directory pages; the rest are marked as upcoming.",
+      "Each card opens a live category page and surfaces one or two real conversion examples.",
     categoryAction: "Open category page",
-    availableLabel: "Live",
-    soonLabel: "Soon",
     categoriesFooterLink: "View all conversions",
     categoryCards: {
       uzunluk: {
@@ -250,13 +237,13 @@ const copy = {
         name: "Area",
         symbol: "m\u00B2",
         description:
-          "Area conversion tools will be added as coverage expands.",
+          "Open square meter, hectare and square foot conversions.",
       },
       hacim: {
         name: "Volume",
         symbol: "L",
         description:
-          "Liter and volume-based converters are planned.",
+          "Open liter, milliliter and cubic meter conversions.",
       },
       kutle: {
         name: "Mass",
@@ -268,19 +255,19 @@ const copy = {
         name: "Temperature",
         symbol: "\u00B0C",
         description:
-          "Temperature conversion tools are planned.",
+          "Open Celsius, Fahrenheit and Kelvin conversions.",
       },
       zaman: {
         name: "Time",
         symbol: "s",
         description:
-          "Time conversion tools are planned.",
+          "Open second, minute and hour conversions.",
       },
       hiz: {
         name: "Speed",
         symbol: "km/h",
         description:
-          "Speed tools and related flow conversions will be added later.",
+          "Open km/h, m/s and mph based speed conversions.",
       },
       basinc: {
         name: "Pressure",
@@ -292,25 +279,19 @@ const copy = {
         name: "Energy and power",
         symbol: "W",
         description:
-          "Energy and power categories will be added as coverage expands.",
+          "Open joule, kilowatt-hour, watt and kilowatt conversions.",
       },
       debi: {
         name: "Flow rate",
         symbol: "m\u00B3/h",
         description:
-          "Flow rate conversion tools are planned for a later expansion.",
-      },
-      isi: {
-        name: "Heat transfer",
-        symbol: "q",
-        description:
-          "Heat-transfer tools are currently available in engineering calculators.",
+          "Open cubic-meter-per-hour and liters-per-minute flow tools.",
       },
       elektrik: {
         name: "Electricity",
         symbol: "V",
         description:
-          "Electrical units and conversion tools will be added later.",
+          "Open voltage and current conversion tools.",
       },
     },
     popularTitle: "Popular conversions",
@@ -600,12 +581,9 @@ function HomeCategoryIcon({
 function normalizeSearchText(value: string) {
   return value
     .toLocaleLowerCase("tr-TR")
-    .replace(/ı/g, "i")
-    .replace(/ğ/g, "g")
-    .replace(/ü/g, "u")
-    .replace(/ş/g, "s")
-    .replace(/ö/g, "o")
-    .replace(/ç/g, "c")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\u0131/g, "i")
     .replace(/[^a-z0-9]+/g, " ")
     .trim();
 }
@@ -676,7 +654,7 @@ function createHomeData(locale: Locale): HomeData {
           ),
         }));
 
-  const categoryCards = homeCategoryOrder.map((sourceCategory) => {
+  const categoryCards = homeCategoryOrder.flatMap((sourceCategory) => {
     const categoryPage =
       locale === "tr"
         ? categoryPages.find((page) => page.category === sourceCategory)
@@ -691,28 +669,28 @@ function createHomeData(locale: Locale): HomeData {
       )
     ).slice(0, 2);
 
-    return {
-      id: sourceCategory,
-      iconKey: sourceCategory,
-      name: categoryCopy.name,
-      symbol: categoryCopy.symbol,
-      description: categoryCopy.description,
-      href:
-        locale === "tr"
-          ? categoryPage
+    if (!categoryPage || categoryConversions.length === 0) {
+      return [];
+    }
+
+    return [
+      {
+        id: sourceCategory,
+        iconKey: sourceCategory,
+        name: categoryCopy.name,
+        symbol: categoryCopy.symbol,
+        description: categoryCopy.description,
+        href:
+          locale === "tr"
             ? `/kategoriler/${categoryPage.slug}`
-            : undefined
-          : categoryPage
-            ? `/en/categories/${categoryPage.slug}`
-            : undefined,
-      isAvailable: Boolean(categoryPage),
-      statusLabel: strings.availableLabel,
-      links: categoryConversions.map((conversion) => ({
-        id: conversion.id,
-        href: conversion.href,
-        label: conversion.label,
-      })),
-    };
+            : `/en/categories/${categoryPage.slug}`,
+        links: categoryConversions.map((conversion) => ({
+          id: conversion.id,
+          href: conversion.href,
+          label: conversion.label,
+        })),
+      },
+    ];
   });
 
   const preferredPopularConversions = preferredSourceSlugs.flatMap((slug) => {
@@ -784,11 +762,9 @@ function createHomeData(locale: Locale): HomeData {
       locale === "tr"
         ? "/muhendislik-hesaplayicilari"
         : "/en/engineering-calculators",
-    engineeringHubLabel: strings.engineeringHubLabel,
+      engineeringHubLabel: strings.engineeringHubLabel,
     stats: {
-      activeCategories: categoryCards.filter(
-        (category) => category.isAvailable
-      ).length,
+      activeCategories: categoryCards.length,
       conversions: conversions.length,
       engineering: engineeringCalculators.length,
     },
@@ -940,19 +916,12 @@ export default function HomeDirectory({
 
           <div className="directory-home-category-grid">
             {data.categories.map((category) => (
-              <article
-                className={`directory-home-card${
-                  category.isAvailable ? "" : " is-passive"
-                }`}
-                key={category.id}
-              >
-                {category.href ? (
-                  <Link
-                    className="directory-card-stretch"
-                    href={category.href}
-                    aria-label={`${category.name} ${strings.categoryAction}`}
-                  />
-                ) : null}
+              <article className="directory-home-card" key={category.id}>
+                <Link
+                  className="directory-card-stretch"
+                  href={category.href}
+                  aria-label={`${category.name} ${strings.categoryAction}`}
+                />
 
                 <div className="directory-card-body">
                   <div className="directory-card-top">
@@ -964,41 +933,26 @@ export default function HomeDirectory({
                     </span>
 
                     <div>
-                      <div className="directory-card-header-line">
-                        <h3 className="home-category-title">{category.name}</h3>
-                        <span className="directory-card-status">
-                          {category.statusLabel}
-                        </span>
-                      </div>
+                      <h3 className="home-category-title">{category.name}</h3>
                     </div>
                   </div>
 
                   <p className="directory-card-description">{category.description}</p>
 
-                  {category.links.length > 0 ? (
-                    <ul className="directory-card-links">
-                      {category.links.map((link) => (
-                        <li key={link.id}>
-                          <Link className="directory-inline-link" href={link.href}>
-                            {link.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <div className="directory-card-note">{category.statusLabel}</div>
-                  )}
+                  <ul className="directory-card-links">
+                    {category.links.map((link) => (
+                      <li key={link.id}>
+                        <Link className="directory-inline-link" href={link.href}>
+                          {link.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
 
                   <div className="directory-card-footer">
-                    {category.href ? (
-                      <Link className="directory-category-guide" href={category.href}>
-                        {strings.categoryAction}
-                      </Link>
-                    ) : (
-                      <span className="directory-category-guide is-muted">
-                        {category.statusLabel}
-                      </span>
-                    )}
+                    <Link className="directory-category-guide" href={category.href}>
+                      {strings.categoryAction}
+                    </Link>
                   </div>
                 </div>
               </article>

@@ -21,24 +21,48 @@ type PageProps = {
 export const dynamicParams = false;
 
 const englishCategoryUnitHeadings: Record<string, string> = {
+  alan: "Area units",
+  hacim: "Volume units",
   uzunluk: "Length units",
   kutle: "Mass units",
+  sicaklik: "Temperature units",
+  zaman: "Time units",
+  hiz: "Speed units",
   basinc: "Pressure units",
+  enerji: "Energy and power units",
+  debi: "Flow-rate units",
+  elektrik: "Electrical units",
 };
 
 const englishCategoryConversionHeadings: Record<
   string,
   string
 > = {
+  alan: "Area conversion tools",
+  hacim: "Volume conversion tools",
   uzunluk: "Length conversion tools",
   kutle: "Mass conversion tools",
+  sicaklik: "Temperature conversion tools",
+  zaman: "Time conversion tools",
+  hiz: "Speed conversion tools",
   basinc: "Pressure conversion tools",
+  enerji: "Energy and power conversion tools",
+  debi: "Flow-rate conversion tools",
+  elektrik: "Electrical conversion tools",
 };
 
 const englishCategoryDetailNames: Record<string, string> = {
+  alan: "Area",
+  hacim: "Volume",
   uzunluk: "Length",
   kutle: "Mass",
+  sicaklik: "Temperature",
+  zaman: "Time",
+  hiz: "Speed",
   basinc: "Pressure",
+  enerji: "Energy and Power",
+  debi: "Flow Rate",
+  elektrik: "Electricity",
 };
 
 function serializeJsonLd(data: object) {

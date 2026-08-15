@@ -23,6 +23,92 @@ export type LocalizedCategoryPage = {
 export const englishCategoryPages: LocalizedCategoryPage[] = [
   {
     locale: "en",
+    slug: "area",
+    sourceSlug: "alan",
+    category: "alan",
+    title: "Area Units and Conversions",
+    description:
+      "Convert between square meters, square feet and hectares and learn how area units are used in land measurement, buildings and engineering.",
+    introduction: [
+      "Area measures the size of a surface. It appears in floor plans, land records, pressure calculations, heat transfer and many other technical contexts.",
+      "The square meter is the SI derived unit of area, while units such as the square foot and hectare are still common in practical work.",
+    ],
+    facts: [
+      { label: "Physical quantity", value: "Area" },
+      { label: "SI unit", value: "Square meter" },
+      { label: "SI symbol", value: "m²" },
+      { label: "Dimension symbol", value: "L²" },
+      { label: "Typical use", value: "Land, floor area and section sizing" },
+    ],
+    sections: [
+      {
+        title: "What is area?",
+        paragraphs: [
+          "Area describes two-dimensional extent. It is used for rooms, plots, panels, cross-sections and any measurable surface.",
+          "Because area is derived from length multiplied by length, conversion factors must also be squared when changing units.",
+        ],
+      },
+      {
+        title: "Square meters, hectares and square feet",
+        paragraphs: [
+          "The square meter is the main SI area unit. The hectare is a larger metric unit widely used in agriculture and land management.",
+          "The square foot is common in architectural and construction practice in imperial and US customary systems.",
+        ],
+      },
+      {
+        title: "How are area units converted?",
+        paragraphs: [
+          "Area conversions preserve the same physical surface while expressing it in another unit.",
+          "For example, one hectare equals 10,000 square meters, and one square meter equals about 10.7639 square feet.",
+        ],
+      },
+    ],
+  },
+  {
+    locale: "en",
+    slug: "volume",
+    sourceSlug: "hacim",
+    category: "hacim",
+    title: "Volume Units and Conversions",
+    description:
+      "Convert between liters, milliliters and cubic meters and review the basic relationships used in science, storage and fluid handling.",
+    introduction: [
+      "Volume describes how much three-dimensional space a substance or object occupies.",
+      "The cubic meter is the SI derived unit of volume, while the liter and milliliter are widely used in daily practice, laboratory work and tank calculations.",
+    ],
+    facts: [
+      { label: "Physical quantity", value: "Volume" },
+      { label: "SI unit", value: "Cubic meter" },
+      { label: "Common metric unit", value: "Liter" },
+      { label: "Dimension symbol", value: "L³" },
+      { label: "Typical use", value: "Containers, process volumes and liquids" },
+    ],
+    sections: [
+      {
+        title: "What is volume?",
+        paragraphs: [
+          "Volume is the three-dimensional measure of capacity or occupied space.",
+          "It is used for tanks, bottles, rooms, channels, process vessels and material balances.",
+        ],
+      },
+      {
+        title: "Cubic meter, liter and milliliter",
+        paragraphs: [
+          "One cubic meter is the SI derived unit of volume. One liter equals 0.001 cubic meters, and one milliliter equals one thousandth of a liter.",
+          "These decimal relationships make common metric volume conversions straightforward.",
+        ],
+      },
+      {
+        title: "How are volume units converted?",
+        paragraphs: [
+          "Volume conversions use fixed relationships between the source and target units.",
+          "For example, one liter equals 1,000 milliliters and also equals 0.001 cubic meters.",
+        ],
+      },
+    ],
+  },
+  {
+    locale: "en",
     slug: "length",
     sourceSlug: "uzunluk",
     category: "uzunluk",
@@ -197,6 +283,135 @@ export const englishCategoryPages: LocalizedCategoryPage[] = [
   },
   {
     locale: "en",
+    slug: "temperature",
+    sourceSlug: "sicaklik",
+    category: "sicaklik",
+    title: "Temperature Units and Conversions",
+    description:
+      "Convert between Celsius, Fahrenheit and Kelvin and review the offset-based formulas used for temperature scales.",
+    introduction: [
+      "Temperature indicates thermal state and is one of the most widely used measured quantities in engineering, science and everyday life.",
+      "Unlike purely proportional unit families, temperature conversions may include an offset as well as a scale factor.",
+    ],
+    facts: [
+      { label: "Physical quantity", value: "Temperature" },
+      { label: "SI base unit", value: "Kelvin" },
+      { label: "Common engineering scale", value: "Celsius" },
+      { label: "Typical offset example", value: "0 °C = 273.15 K" },
+      { label: "Typical use", value: "Weather, process control and thermodynamics" },
+    ],
+    sections: [
+      {
+        title: "What is temperature?",
+        paragraphs: [
+          "Temperature represents the thermal condition of a body or environment.",
+          "It is used in weather data, materials, energy systems, fluid properties and laboratory work.",
+        ],
+      },
+      {
+        title: "Celsius, Fahrenheit and Kelvin",
+        paragraphs: [
+          "Celsius is widely used in daily and engineering practice. Fahrenheit remains common in some countries, while Kelvin is the SI base unit used in science and thermodynamics.",
+          "Kelvin and Celsius share the same interval size, but Kelvin starts from absolute zero.",
+        ],
+      },
+      {
+        title: "Why are temperature conversions special?",
+        paragraphs: [
+          "Temperature scales do not always share the same zero point, so some conversions require both multiplication and addition or subtraction.",
+          "This is why Celsius-to-Fahrenheit and Celsius-to-Kelvin formulas differ from simple proportional conversions such as length or mass.",
+        ],
+      },
+    ],
+  },
+  {
+    locale: "en",
+    slug: "time",
+    sourceSlug: "zaman",
+    category: "zaman",
+    title: "Time Units and Conversions",
+    description:
+      "Convert between seconds, minutes and hours and review the standard base relationships used in schedules, motion and data logging.",
+    introduction: [
+      "Time is one of the SI base quantities and is essential in physics, engineering, navigation and ordinary planning.",
+      "Seconds, minutes and hours are used together in many practical calculations, especially for rates, speed and process duration.",
+    ],
+    facts: [
+      { label: "Physical quantity", value: "Time" },
+      { label: "SI base unit", value: "Second" },
+      { label: "SI symbol", value: "s" },
+      { label: "Dimension symbol", value: "T" },
+      { label: "Typical use", value: "Durations, rates and schedules" },
+    ],
+    sections: [
+      {
+        title: "What is time?",
+        paragraphs: [
+          "Time describes duration and the ordering of events.",
+          "It appears in speed, acceleration, frequency, energy use, production cycles and many measured rates.",
+        ],
+      },
+      {
+        title: "Seconds, minutes and hours",
+        paragraphs: [
+          "The second is the SI base unit of time. Minutes and hours remain standard practical units built on exact relationships.",
+          "One minute equals 60 seconds and one hour equals 3,600 seconds.",
+        ],
+      },
+      {
+        title: "How are time units converted?",
+        paragraphs: [
+          "Time conversions rely on exact multiplication or division by 60 or 3,600.",
+          "These exact factors make time conversion reliable for schedules, experiments and rate calculations.",
+        ],
+      },
+    ],
+  },
+  {
+    locale: "en",
+    slug: "speed",
+    sourceSlug: "hiz",
+    category: "hiz",
+    title: "Speed Units and Conversions",
+    description:
+      "Convert between kilometers per hour, meters per second and miles per hour and compare the units used in transport and engineering.",
+    introduction: [
+      "Speed describes how fast a distance is covered over time.",
+      "Different industries and countries use different units, so reliable conversion is important for traffic, testing, fluid flow and machinery.",
+    ],
+    facts: [
+      { label: "Physical quantity", value: "Speed" },
+      { label: "Common SI-based unit", value: "Meter per second" },
+      { label: "Road unit", value: "Kilometer per hour" },
+      { label: "Imperial unit", value: "Mile per hour" },
+      { label: "Typical use", value: "Transport, flow and equipment motion" },
+    ],
+    sections: [
+      {
+        title: "What is speed?",
+        paragraphs: [
+          "Speed is the ratio of distance traveled to elapsed time.",
+          "It is used for vehicles, conveyors, fluids, rotating systems and motion analysis.",
+        ],
+      },
+      {
+        title: "Meters per second, kilometers per hour and mph",
+        paragraphs: [
+          "Meters per second are common in physics and engineering. Kilometers per hour are common in road transport, while mph is still used in countries that rely on imperial road units.",
+          "All three units can be converted exactly through their definitions in meters and seconds.",
+        ],
+      },
+      {
+        title: "How are speed units converted?",
+        paragraphs: [
+          "Speed conversions preserve the same physical motion while changing the numerical representation.",
+          "For example, 1 km/h equals about 0.27778 m/s, and 1 mph equals 1.609344 km/h.",
+        ],
+      },
+    ],
+  },
+  {
+    locale: "en",
     slug: "pressure",
     sourceSlug: "basinc",
     category: "basinc",
@@ -266,6 +481,135 @@ export const englishCategoryPages: LocalizedCategoryPage[] = [
         paragraphs: [
           "Pressure units are used in weather observations, gas cylinders, pumps, boilers, hydraulic circuits, pneumatic systems, process engineering and automotive maintenance. The preferred unit often depends on industry standards and local practice.",
           "Scientific and regulatory documents often prefer pascals or kilopascals, while equipment labels and gauges may use bar or PSI. This is why a clear reference table and reliable converter are useful.",
+        ],
+      },
+    ],
+  },
+  {
+    locale: "en",
+    slug: "energy",
+    sourceSlug: "enerji",
+    category: "enerji",
+    title: "Energy and Power Conversions",
+    description:
+      "Convert between joules and kilowatt-hours, compare watts and kilowatts and review the difference between stored energy and power rate units.",
+    introduction: [
+      "Energy and power are closely related but not identical. Energy represents an amount, while power represents the rate at which energy is transferred or used.",
+      "This category groups a small set of practical energy and power conversions often needed in building systems, electricity use and equipment ratings.",
+    ],
+    facts: [
+      { label: "Physical quantity", value: "Energy and power" },
+      { label: "SI energy unit", value: "Joule" },
+      { label: "SI power unit", value: "Watt" },
+      { label: "Common billing unit", value: "Kilowatt-hour" },
+      { label: "Typical use", value: "Electrical consumption and equipment rating" },
+    ],
+    sections: [
+      {
+        title: "Energy versus power",
+        paragraphs: [
+          "Energy measures an amount of work or heat. Power measures how quickly that energy is transferred or consumed.",
+          "A kilowatt-hour is an energy unit, while a kilowatt is a power unit.",
+        ],
+      },
+      {
+        title: "Joules, kilowatt-hours, watts and kilowatts",
+        paragraphs: [
+          "The joule is the SI unit of energy and the watt is the SI unit of power.",
+          "Kilowatt-hours are widely used on electricity bills, while kilowatts are used for equipment rating and demand.",
+        ],
+      },
+      {
+        title: "Why group them together?",
+        paragraphs: [
+          "In technical practice, energy and power are often discussed side by side because system sizing and consumption analysis use both.",
+          "Grouping them helps users reach the correct conversion page more quickly without separating closely related topics.",
+        ],
+      },
+    ],
+  },
+  {
+    locale: "en",
+    slug: "flow-rate",
+    sourceSlug: "debi",
+    category: "debi",
+    title: "Flow Rate Conversions",
+    description:
+      "Convert between cubic meters per hour and liters per minute and review the units commonly used in pumps, water systems and basic process flow.",
+    introduction: [
+      "Flow rate describes how much fluid passes through a section over a given time.",
+      "Cubic meters per hour and liters per minute are practical volumetric flow units used in water, HVAC and utility systems.",
+    ],
+    facts: [
+      { label: "Physical quantity", value: "Volumetric flow rate" },
+      { label: "SI form", value: "Cubic meter per second" },
+      { label: "Common practical unit", value: "Cubic meter per hour" },
+      { label: "Small-system unit", value: "Liter per minute" },
+      { label: "Typical use", value: "Pumps, circulation loops and supply systems" },
+    ],
+    sections: [
+      {
+        title: "What is flow rate?",
+        paragraphs: [
+          "Flow rate measures the quantity of fluid transported per unit time.",
+          "It is essential for pump selection, pipe sizing and process balancing.",
+        ],
+      },
+      {
+        title: "m³/h and L/min",
+        paragraphs: [
+          "Cubic meters per hour are convenient for larger systems, while liters per minute are often easier to read in smaller installations.",
+          "Both can be converted through their exact relationship to cubic meters and seconds.",
+        ],
+      },
+      {
+        title: "How are flow units converted?",
+        paragraphs: [
+          "The conversion is based on the relationship between cubic meters and liters together with the relationship between hours and minutes.",
+          "One cubic meter per hour equals about 16.6667 liters per minute.",
+        ],
+      },
+    ],
+  },
+  {
+    locale: "en",
+    slug: "electricity",
+    sourceSlug: "elektrik",
+    category: "elektrik",
+    title: "Electrical Unit Conversions",
+    description:
+      "Convert between volts and kilovolts or amperes and milliamperes and review the base relationships used in electrical measurements.",
+    introduction: [
+      "Electrical calculations rely on several distinct physical quantities, including voltage and current.",
+      "This category begins with two fundamental conversion pairs that are frequently needed in electronics, power systems and instrumentation.",
+    ],
+    facts: [
+      { label: "Physical quantity group", value: "Electricity" },
+      { label: "Voltage unit", value: "Volt" },
+      { label: "Current unit", value: "Ampere" },
+      { label: "Typical prefixes", value: "kilo and milli" },
+      { label: "Typical use", value: "Power systems, devices and instrumentation" },
+    ],
+    sections: [
+      {
+        title: "Voltage and current",
+        paragraphs: [
+          "Voltage represents electric potential difference, while current represents the rate of electric charge flow.",
+          "They are different physical quantities, but both rely heavily on metric prefixes in practical work.",
+        ],
+      },
+      {
+        title: "Volts, kilovolts, amperes and milliamperes",
+        paragraphs: [
+          "The volt and ampere are standard SI electrical units. Their prefixed forms are used to express much larger or smaller values more clearly.",
+          "One kilovolt equals 1,000 volts, and one ampere equals 1,000 milliamperes.",
+        ],
+      },
+      {
+        title: "How are electrical units converted?",
+        paragraphs: [
+          "The conversion factors here are purely decimal prefix relationships.",
+          "These exact ratios make the tools useful for equipment ratings, test values and quick sanity checks.",
         ],
       },
     ],

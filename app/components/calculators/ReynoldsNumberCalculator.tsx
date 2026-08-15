@@ -16,6 +16,7 @@ import {
 } from "../../converter/reynoldsNumber";
 import {
   formatEngineeringValue,
+  parseCalculatorNumber,
   type CalculatorLocale,
 } from "../../converter/pressureForceArea";
 
@@ -55,6 +56,12 @@ const copy = {
     siEquivalent: "SI eşdeğeri",
     clear: "Değerleri temizle",
     interpretation: "Akış yorumu",
+    regimeVisual: "Akış rejimi şeması",
+    regimeNote:
+      "Bu eşikler boru içi akış için yaklaşık ve öğretici bir sınıflandırmadır.",
+    laminar: "Laminer",
+    transition: "Geçiş",
+    turbulent: "Türbülanslı",
   },
   en: {
     targetLabel: "Calculation target",
@@ -74,6 +81,12 @@ const copy = {
     siEquivalent: "SI equivalent",
     clear: "Clear values",
     interpretation: "Flow interpretation",
+    regimeVisual: "Flow regime diagram",
+    regimeNote:
+      "These thresholds are an approximate teaching aid for internal pipe flow.",
+    laminar: "Laminar",
+    transition: "Transition",
+    turbulent: "Turbulent",
   },
 } as const;
 
@@ -134,6 +147,28 @@ const fluidPresets: Record<CalculatorLocale, FluidPreset[]> = {
 
 function formatResultText(display: string, unit: string) {
   return unit ? `${display} ${unit}` : display;
+}
+
+function classifyReynolds(
+  value: number,
+  locale: CalculatorLocale
+) {
+  const strings = copy[locale];
+
+  if (value < 2300) {
+    return strings.laminar;
+  }
+
+  if (value <= 4000) {
+    return strings.transition;
+  }
+
+  return strings.turbulent;
+}
+
+function getReynoldsMarkerPosition(value: number) {
+  const clampedValue = Math.max(0, Math.min(value, 10000));
+  return (clampedValue / 10000) * 100;
 }
 
 export default function ReynoldsNumberCalculator({
@@ -204,6 +239,28 @@ export default function ReynoldsNumberCalculator({
       locale,
     ]
   );
+
+  const reynoldsVisualValue = useMemo(() => {
+    if (!result.error && target === "reynolds" && result.siValue !== null) {
+      return result.siValue;
+    }
+
+    const parsedTargetValue = parseCalculatorNumber(reynoldsValue);
+
+    return parsedTargetValue !== null && parsedTargetValue > 0
+      ? parsedTargetValue
+      : null;
+  }, [result.error, result.siValue, reynoldsValue, target]);
+
+  const reynoldsMarkerPosition =
+    reynoldsVisualValue === null
+      ? 0
+      : getReynoldsMarkerPosition(reynoldsVisualValue);
+
+  const reynoldsClassification =
+    reynoldsVisualValue === null
+      ? null
+      : classifyReynolds(reynoldsVisualValue, locale);
 
   function resetValues() {
     setTarget("reynolds");
@@ -494,6 +551,53 @@ export default function ReynoldsNumberCalculator({
               </output>
             </div>
           </label>
+
+          {reynoldsVisualValue !== null && (
+            <div className="reynolds-regime-card">
+              <div className="reynolds-regime-header">
+                <strong>{strings.regimeVisual}</strong>
+                <span>{formatEngineeringValue(reynoldsVisualValue, locale)}</span>
+              </div>
+
+              <div className="reynolds-regime-scale" aria-hidden="true">
+                <div className="reynolds-regime-band">
+                  <span className="reynolds-regime-segment is-laminar" />
+                  <span className="reynolds-regime-segment is-transition" />
+                  <span className="reynolds-regime-segment is-turbulent" />
+                  <span className="reynolds-regime-threshold is-laminar-end" />
+                  <span className="reynolds-regime-threshold is-transition-end" />
+                  <span
+                    className="reynolds-regime-marker"
+                    style={{
+                      left: `calc(${reynoldsMarkerPosition}% - 7px)`,
+                    }}
+                  />
+                </div>
+
+                <div className="reynolds-regime-ticks">
+                  <span>0</span>
+                  <span>2300</span>
+                  <span>4000</span>
+                  <span>10000+</span>
+                </div>
+              </div>
+
+              <div className="reynolds-regime-labels">
+                <span>{strings.laminar}</span>
+                <span>{strings.transition}</span>
+                <span>{strings.turbulent}</span>
+              </div>
+
+              <p className="reynolds-regime-reading">
+                <strong>{strings.interpretation}:</strong>{" "}
+                {reynoldsClassification}
+              </p>
+
+              <p className="engineering-si-note">
+                {strings.regimeNote}
+              </p>
+            </div>
+          )}
 
           {result.interpretation && (
             <div className="hydrostatic-secondary-result">

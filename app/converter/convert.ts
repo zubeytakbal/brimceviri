@@ -292,6 +292,8 @@ export function convert(
       MJ: 1_000_000,
       Wh: 3600,
       kWh: 3_600_000,
+      W: 1,
+      kW: 1000,
       cal: 4.184,
       kcal: 4184,
       Btu: 1055.056,
@@ -321,6 +323,24 @@ export function convert(
     if (from === "F" && to === "K") return ((value - 32) * 5) / 9 + 273.15;
     if (from === "K" && to === "F") return ((value - 273.15) * 9) / 5 + 32;
     return value;
+  }
+
+  if (category === "debi") {
+    const t: Record<string, number> = {
+      [cubicMetrePerHourUnit]: 1 / 3600,
+      "L/min": 0.001 / 60,
+    };
+    return (value * t[from]) / t[to];
+  }
+
+  if (category === "elektrik") {
+    const t: Record<string, number> = {
+      V: 1,
+      kV: 1000,
+      A: 1,
+      mA: 0.001,
+    };
+    return (value * t[from]) / t[to];
   }
 
   if (category === "isil_iletkenlik") {

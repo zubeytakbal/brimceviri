@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import ConversionSeo from "../components/ConversionSeo";
 import PairConverter from "../converter/PairConverter";
+import { categoryPages } from "../converter/categoryPages";
 import { convert } from "../converter/convert";
 import { conversionPages } from "../converter/conversionPages";
 import { findEnglishPageByTurkishSlug } from "../converter/localizedConversionPages";
@@ -104,6 +105,9 @@ export default async function ConversionPage({ params }: PageProps) {
   const reversePage = conversionPages.find(
     (page) => page.slug === conversionPage.reverseSlug
   );
+  const categoryPage = categoryPages.find(
+    (page) => page.category === conversionPage.category
+  );
 
   const relatedConversions = conversionPages
     .filter(
@@ -155,9 +159,13 @@ export default async function ConversionPage({ params }: PageProps) {
           <span aria-hidden="true">›</span>
 
           <Link
-            href={`/kategoriler/${conversionPage.category}`}
+            href={
+              categoryPage
+                ? `/kategoriler/${categoryPage.slug}`
+                : "/tum-birimler"
+            }
           >
-            {conversionPage.category}
+            {categoryPage?.title ?? conversionPage.category}
           </Link>
 
           <span aria-hidden="true">›</span>

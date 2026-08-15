@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import PairConverter from "../../converter/PairConverter";
 import { convert } from "../../converter/convert";
+import { findEnglishUnitPage } from "../../converter/localizedUnitPages";
 import {
   englishConversionPages,
   findEnglishConversionPage,
@@ -107,6 +108,8 @@ export default async function EnglishConversionPage({
   const reversePage = findEnglishConversionPage(
     page.reverseSlug
   );
+  const fromUnitInfo = findEnglishUnitPage(page.category, page.fromUnit);
+  const toUnitInfo = findEnglishUnitPage(page.category, page.toUnit);
 
   const relatedConversions = englishConversionPages
     .filter(
@@ -298,6 +301,44 @@ export default async function EnglishConversionPage({
             they are extremely large or extremely small.
           </p>
         </section>
+
+        {fromUnitInfo && (
+          <section className="conversion-section unit-information">
+            <h2>What is {fromUnitInfo.name}?</h2>
+
+            <p>{fromUnitInfo.shortDescription}</p>
+
+            <h3>Short history of {fromUnitInfo.name}</h3>
+
+            <p>{fromUnitInfo.historySummary}</p>
+
+            <Link
+              className="text-link"
+              href={`/en/units/${fromUnitInfo.slug}`}
+            >
+              Open the {fromUnitInfo.name} unit guide
+            </Link>
+          </section>
+        )}
+
+        {toUnitInfo && (
+          <section className="conversion-section unit-information">
+            <h2>What is {toUnitInfo.name}?</h2>
+
+            <p>{toUnitInfo.shortDescription}</p>
+
+            <h3>Short history of {toUnitInfo.name}</h3>
+
+            <p>{toUnitInfo.historySummary}</p>
+
+            <Link
+              className="text-link"
+              href={`/en/units/${toUnitInfo.slug}`}
+            >
+              Open the {toUnitInfo.name} unit guide
+            </Link>
+          </section>
+        )}
 
         {reversePage && (
           <section className="conversion-section related-conversions">

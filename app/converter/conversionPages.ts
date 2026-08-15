@@ -34,6 +34,9 @@ type PairDefinition = {
   };
 };
 
+const SQUARE_SUFFIX = "\u00B2";
+const CUBIC_SUFFIX = "\u00B3";
+
 const metre: UnitDefinition = {
   slug: "metre",
   unit: "m",
@@ -158,6 +161,156 @@ const kilogramForcePerSquareCentimetreUnit: UnitDefinition = {
   slug: "kilogram-kuvvet-santimetrekare",
   unit: KILOGRAM_FORCE_PER_SQUARE_CENTIMETRE_UNIT,
   name: "Kilogram-kuvvet/santimetrekare",
+};
+
+const squareMetre: UnitDefinition = {
+  slug: "metrekare",
+  unit: `m${SQUARE_SUFFIX}`,
+  name: "Metrekare",
+};
+
+const hectare: UnitDefinition = {
+  slug: "hektar",
+  unit: "ha",
+  name: "Hektar",
+};
+
+const squareFoot: UnitDefinition = {
+  slug: "fitkare",
+  unit: `ft${SQUARE_SUFFIX}`,
+  name: "Fitkare",
+};
+
+const litre: UnitDefinition = {
+  slug: "litre",
+  unit: "L",
+  name: "Litre",
+};
+
+const cubicMetre: UnitDefinition = {
+  slug: "metrekup",
+  unit: `m${CUBIC_SUFFIX}`,
+  name: "Metreküp",
+};
+
+const millilitre: UnitDefinition = {
+  slug: "mililitre",
+  unit: "mL",
+  name: "Mililitre",
+};
+
+const celsius: UnitDefinition = {
+  slug: "santigrat",
+  unit: "C",
+  name: "Santigrat",
+};
+
+const fahrenheit: UnitDefinition = {
+  slug: "fahrenhayt",
+  unit: "F",
+  name: "Fahrenheit",
+};
+
+const kelvin: UnitDefinition = {
+  slug: "kelvin",
+  unit: "K",
+  name: "Kelvin",
+};
+
+const secondUnit: UnitDefinition = {
+  slug: "saniye",
+  unit: "s",
+  name: "Saniye",
+};
+
+const minuteUnit: UnitDefinition = {
+  slug: "dakika",
+  unit: "min",
+  name: "Dakika",
+};
+
+const hourUnit: UnitDefinition = {
+  slug: "saat",
+  unit: "h",
+  name: "Saat",
+};
+
+const metrePerSecond: UnitDefinition = {
+  slug: "metre-saniye",
+  unit: "m/s",
+  name: "Metre/Saniye",
+};
+
+const kilometrePerHour: UnitDefinition = {
+  slug: "kilometre-saat",
+  unit: "km/h",
+  name: "Kilometre/Saat",
+};
+
+const milePerHour: UnitDefinition = {
+  slug: "mil-saat",
+  unit: "mph",
+  name: "Mil/Saat",
+};
+
+const joule: UnitDefinition = {
+  slug: "joule",
+  unit: "J",
+  name: "Joule",
+};
+
+const kilowattHour: UnitDefinition = {
+  slug: "kilovatsaat",
+  unit: "kWh",
+  name: "Kilovat-saat",
+};
+
+const watt: UnitDefinition = {
+  slug: "watt",
+  unit: "W",
+  name: "Watt",
+};
+
+const kilowatt: UnitDefinition = {
+  slug: "kilowatt",
+  unit: "kW",
+  name: "Kilowatt",
+};
+
+const cubicMetrePerHour: UnitDefinition = {
+  slug: "metrekup-saat",
+  unit: `m${CUBIC_SUFFIX}/h`,
+  name: "Metreküp/Saat",
+};
+
+const litrePerMinute: UnitDefinition = {
+  slug: "litre-dakika",
+  unit: "L/min",
+  name: "Litre/Dakika",
+};
+
+const volt: UnitDefinition = {
+  slug: "volt",
+  unit: "V",
+  name: "Volt",
+};
+
+const kilovolt: UnitDefinition = {
+  slug: "kilovolt",
+  unit: "kV",
+  name: "Kilovolt",
+};
+
+const ampere: UnitDefinition = {
+  slug: "amper",
+  unit: "A",
+  name: "Amper",
+};
+
+const milliampere: UnitDefinition = {
+  slug: "miliamper",
+  unit: "mA",
+  name: "Miliamper",
 };
 
 function formatValue(value: number) {
@@ -477,7 +630,176 @@ const pairDefinitions: PairDefinition[] = [
       reverse: "bar-to-kilogram-force-per-square-centimeter",
     },
   },
+  {
+    category: "alan",
+    first: squareMetre,
+    second: squareFoot,
+    secondPerFirst: 10.7639104167,
+    firstExamples: [1, 5, 10, 25, 50, 100, 250],
+    secondExamples: [1, 10, 50, 100, 250, 500, 1000],
+  },
+  {
+    category: "alan",
+    first: hectare,
+    second: squareMetre,
+    secondPerFirst: 10000,
+    firstExamples: [0.1, 0.5, 1, 2, 5, 10, 25],
+    secondExamples: [10, 100, 500, 1000, 5000, 10000, 50000],
+  },
+  {
+    category: "hacim",
+    first: litre,
+    second: cubicMetre,
+    secondPerFirst: 0.001,
+    firstExamples: [1, 10, 50, 100, 250, 500, 1000],
+    secondExamples: [0.001, 0.01, 0.1, 0.5, 1, 2, 5],
+  },
+  {
+    category: "hacim",
+    first: litre,
+    second: millilitre,
+    secondPerFirst: 1000,
+    firstExamples: [0.1, 0.5, 1, 2, 5, 10, 25],
+    secondExamples: [1, 10, 100, 500, 1000, 5000, 10000],
+  },
+  {
+    category: "zaman",
+    first: secondUnit,
+    second: hourUnit,
+    secondPerFirst: 1 / 3600,
+    firstExamples: [1, 30, 60, 300, 1800, 3600, 7200],
+    secondExamples: [0.25, 0.5, 1, 2, 4, 8, 12],
+  },
+  {
+    category: "zaman",
+    first: minuteUnit,
+    second: hourUnit,
+    secondPerFirst: 1 / 60,
+    firstExamples: [1, 5, 10, 15, 30, 60, 120],
+    secondExamples: [0.25, 0.5, 1, 2, 4, 8, 12],
+  },
+  {
+    category: "hiz",
+    first: kilometrePerHour,
+    second: metrePerSecond,
+    secondPerFirst: 1000 / 3600,
+    firstExamples: [1, 5, 10, 30, 50, 90, 120],
+    secondExamples: [1, 2, 5, 10, 15, 20, 30],
+  },
+  {
+    category: "hiz",
+    first: milePerHour,
+    second: kilometrePerHour,
+    secondPerFirst: 1.609344,
+    firstExamples: [1, 5, 10, 30, 55, 60, 75],
+    secondExamples: [10, 30, 50, 80, 100, 120, 130],
+  },
+  {
+    category: "enerji",
+    first: joule,
+    second: kilowattHour,
+    secondPerFirst: 1 / 3_600_000,
+    firstExamples: [1, 1000, 10000, 100000, 1000000, 3600000],
+    secondExamples: [0.001, 0.01, 0.1, 0.5, 1, 2, 5],
+  },
+  {
+    category: "enerji",
+    first: kilowatt,
+    second: watt,
+    secondPerFirst: 1000,
+    firstExamples: [0.1, 0.5, 1, 2, 5, 10, 50],
+    secondExamples: [1, 10, 100, 500, 1000, 5000, 10000],
+  },
+  {
+    category: "debi",
+    first: cubicMetrePerHour,
+    second: litrePerMinute,
+    secondPerFirst: 1000 / 60,
+    firstExamples: [0.5, 1, 2, 5, 10, 20, 50],
+    secondExamples: [1, 5, 10, 20, 50, 100, 250],
+  },
+  {
+    category: "elektrik",
+    first: volt,
+    second: kilovolt,
+    secondPerFirst: 0.001,
+    firstExamples: [1, 12, 24, 230, 400, 1000, 10000],
+    secondExamples: [0.1, 0.5, 1, 5, 10, 20, 50],
+  },
+  {
+    category: "elektrik",
+    first: ampere,
+    second: milliampere,
+    secondPerFirst: 1000,
+    firstExamples: [0.1, 0.5, 1, 2, 5, 10, 20],
+    secondExamples: [1, 5, 10, 20, 100, 500, 1000],
+  },
 ];
 
-export const conversionPages: ConversionPage[] =
-  pairDefinitions.flatMap(createConversionPair);
+const customConversionPages: ConversionPage[] = [
+  {
+    slug: "santigrat-fahrenhayt",
+    category: "sicaklik",
+    fromUnit: "C",
+    toUnit: "F",
+    fromName: "Santigrat",
+    toName: "Fahrenheit",
+    formula: "Fahrenheit = (Santigrat × 9/5) + 32",
+    explanation:
+      "Santigrat değeri Fahrenheit birimine çevrilirken önce 9/5 ile çarpılır, ardından 32 eklenir. 1 C, 33,8 F eder.",
+    exampleValues: [-40, 0, 20, 37, 100],
+    reverseSlug: "fahrenhayt-santigrat",
+    englishSlug: "celsius-to-fahrenheit",
+    englishReverseSlug: "fahrenheit-to-celsius",
+  },
+  {
+    slug: "fahrenhayt-santigrat",
+    category: "sicaklik",
+    fromUnit: "F",
+    toUnit: "C",
+    fromName: "Fahrenheit",
+    toName: "Santigrat",
+    formula: "Santigrat = (Fahrenheit − 32) × 5/9",
+    explanation:
+      "Fahrenheit değeri Santigrat birimine çevrilirken önce 32 çıkarılır, sonra sonuç 5/9 ile çarpılır. 32 F, 0 C eder.",
+    exampleValues: [-40, 32, 68, 98.6, 212],
+    reverseSlug: "santigrat-fahrenhayt",
+    englishSlug: "fahrenheit-to-celsius",
+    englishReverseSlug: "celsius-to-fahrenheit",
+  },
+  {
+    slug: "santigrat-kelvin",
+    category: "sicaklik",
+    fromUnit: "C",
+    toUnit: "K",
+    fromName: "Santigrat",
+    toName: "Kelvin",
+    formula: "Kelvin = Santigrat + 273,15",
+    explanation:
+      "Santigrat değeri Kelvin birimine çevrilirken 273,15 eklenir. 0 C, 273,15 K değerine karşılık gelir.",
+    exampleValues: [-40, 0, 20, 100, 200],
+    reverseSlug: "kelvin-santigrat",
+    englishSlug: "celsius-to-kelvin",
+    englishReverseSlug: "kelvin-to-celsius",
+  },
+  {
+    slug: "kelvin-santigrat",
+    category: "sicaklik",
+    fromUnit: "K",
+    toUnit: "C",
+    fromName: "Kelvin",
+    toName: "Santigrat",
+    formula: "Santigrat = Kelvin − 273,15",
+    explanation:
+      "Kelvin değeri Santigrat birimine çevrilirken 273,15 çıkarılır. 273,15 K, 0 C eder.",
+    exampleValues: [233.15, 273.15, 293.15, 310.15, 373.15],
+    reverseSlug: "santigrat-kelvin",
+    englishSlug: "kelvin-to-celsius",
+    englishReverseSlug: "celsius-to-kelvin",
+  },
+];
+
+export const conversionPages: ConversionPage[] = [
+  ...pairDefinitions.flatMap(createConversionPair),
+  ...customConversionPages,
+];

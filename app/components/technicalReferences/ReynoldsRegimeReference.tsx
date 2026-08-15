@@ -159,6 +159,61 @@ export default function ReynoldsRegimeReference({
         title: isTurkish
           ? "Reynolds sayısı akış rejimi diyagramı"
           : "Reynolds-number flow-regime diagram",
+        description: isTurkish
+          ? "Bu diyagram, yalnızca iç boru akışı bağlamında kullanılan yaklaşık Reynolds rejim sınırlarını gösterir."
+          : "This diagram shows approximate Reynolds-regime boundaries used specifically for internal pipe flow.",
+        definitionHeading: isTurkish ? "Tanım" : "Definition",
+        definition: [
+          isTurkish
+            ? "Reynolds sayısı, atalet kuvvetleri ile viskoz kuvvetlerin oranını temsil eden boyutsuz büyüklüktür."
+            : "The Reynolds number is a dimensionless quantity that compares inertial effects with viscous effects.",
+          isTurkish
+            ? "Bu diyagramdaki eşikler, özellikle düzgün dairesel boru içi akış için öğretici ve yaklaşık sınırlar olarak kullanılmalıdır."
+            : "The thresholds shown here should be treated as instructional, approximate limits specifically for smooth internal flow in circular pipes.",
+        ],
+        formulaHeading: isTurkish ? "Formül" : "Formula",
+        formulas: ["Re = ρ v D / μ"],
+        variablesHeading: isTurkish
+          ? "Değişkenler"
+          : "Variables",
+        variables: [
+          {
+            symbol: "Re",
+            description: isTurkish
+              ? "Boyutsuz Reynolds sayısı"
+              : "Dimensionless Reynolds number",
+          },
+          {
+            symbol: "ρ",
+            description: isTurkish
+              ? "Yoğunluk, kg/m³"
+              : "Density, kg/m³",
+          },
+          {
+            symbol: "v",
+            description: isTurkish ? "Hız, m/s" : "Velocity, m/s",
+          },
+          {
+            symbol: "D",
+            description: isTurkish
+              ? "Karakteristik çap, m"
+              : "Characteristic diameter, m",
+          },
+          {
+            symbol: "μ",
+            description: isTurkish
+              ? "Dinamik viskozite, Pa·s"
+              : "Dynamic viscosity, Pa·s",
+          },
+        ],
+        exampleHeading: isTurkish
+          ? "Kısa mühendislik örneği"
+          : "Short engineering example",
+        example: [
+          isTurkish
+            ? "ρ = 998 kg/m³, v = 1,5 m/s, D = 0,025 m ve μ = 0,001001 Pa·s için Re ≈ 37 400 bulunur; diyagramda bu değer türbülanslı bölgededir."
+            : "For ρ = 998 kg/m³, v = 1.5 m/s, D = 0.025 m and μ = 0.001001 Pa·s, Re ≈ 37,400; on the diagram this falls in the turbulent region.",
+        ],
         conditionsHeading: isTurkish
           ? "Geçerlilik koşulları"
           : "Validity conditions",

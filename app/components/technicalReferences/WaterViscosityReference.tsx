@@ -167,6 +167,52 @@ export default function WaterViscosityReference({
         title: isTurkish
           ? "Sıvı suyun sıcaklığa göre dinamik viskozitesi"
           : "Dynamic viscosity of liquid water as a function of temperature",
+        description: isTurkish
+          ? "Bu teknik föy, Reynolds sayısı ve boru içi akış analizlerinde sık kullanılan sıvı su viskozite verisini özetler."
+          : "This technical sheet summarizes liquid-water viscosity data commonly used in Reynolds-number and internal-flow analysis.",
+        definitionHeading: isTurkish ? "Tanım" : "Definition",
+        definition: [
+          isTurkish
+            ? "Dinamik viskozite, akışkanın kesme deformasyonuna karşı gösterdiği dirençtir ve boru içi akış rejimi ile sürtünme kaybını doğrudan etkiler."
+            : "Dynamic viscosity is a measure of resistance to shear deformation and directly affects internal-flow regime and friction loss.",
+        ],
+        formulaHeading: isTurkish ? "Formül" : "Formula",
+        formulas: ["Re = ρ v D / μ"],
+        variablesHeading: isTurkish
+          ? "Değişkenler"
+          : "Variables",
+        variables: [
+          {
+            symbol: "μ",
+            description: isTurkish
+              ? "Dinamik viskozite, Pa·s veya mPa·s"
+              : "Dynamic viscosity, Pa·s or mPa·s",
+          },
+          {
+            symbol: "ρ",
+            description: isTurkish
+              ? "Yoğunluk, kg/m³"
+              : "Density, kg/m³",
+          },
+          {
+            symbol: "v",
+            description: isTurkish ? "Hız, m/s" : "Velocity, m/s",
+          },
+          {
+            symbol: "D",
+            description: isTurkish
+              ? "Karakteristik çap, m"
+              : "Characteristic diameter, m",
+          },
+        ],
+        exampleHeading: isTurkish
+          ? "Kısa mühendislik örneği"
+          : "Short engineering example",
+        example: [
+          isTurkish
+            ? "20 °C civarında su için μ ≈ 1,0014 mPa·s alınırsa, 25 mm boruda 1,5 m/s hız için Reynolds sayısı yaklaşık 37 400 bulunur ve akış türbülanslı bölgede değerlendirilir."
+            : "Using μ ≈ 1.0014 mPa·s for water near 20 °C, a velocity of 1.5 m/s in a 25 mm pipe gives a Reynolds number of about 37,400, which falls in the turbulent range.",
+        ],
         conditionsHeading: isTurkish
           ? "Geçerlilik koşulları"
           : "Validity conditions",
@@ -243,6 +289,16 @@ export default function WaterViscosityReference({
               isTurkish
                 ? "/hesaplayicilar/reynolds-sayisi"
                 : "/en/calculators/reynolds-number"
+            ),
+          },
+          {
+            label: isTurkish
+              ? "Hidrostatik Basınç Hesaplayıcısı"
+              : "Hydrostatic Pressure Calculator",
+            url: buildSiteUrl(
+              isTurkish
+                ? "/hesaplayicilar/hidrostatik-basinc"
+                : "/en/calculators/hydrostatic-pressure"
             ),
           },
         ],

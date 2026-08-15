@@ -166,10 +166,59 @@ export default function WaterDensityReference({
         locale,
         fileName: isTurkish
           ? "suyun-sicakliga-gore-yogunlugu.pdf"
-          : "water-density-reference-sheet.pdf",
+          : "water-density-temperature-table.pdf",
         title: isTurkish
           ? "Suyun sıcaklığa göre yoğunluğu"
           : "Density of water as a function of temperature",
+        description: isTurkish
+          ? "Bu teknik föy, atmosfer basıncına yakın koşullarda sıvı su yoğunluğunu tablo ve grafik olarak özetler."
+          : "This technical sheet summarizes liquid-water density near atmospheric pressure as a table and graph.",
+        definitionHeading: isTurkish ? "Tanım" : "Definition",
+        definition: [
+          isTurkish
+            ? "Yoğunluk, birim hacimdeki kütleyi gösterir ve hidrostatik basınç, seviye ve akışkan özellik hesabında temel girdilerden biridir."
+            : "Density is mass per unit volume and is a core input in hydrostatic pressure, level and fluid-property calculations.",
+          isTurkish
+            ? "Sıvı su için yoğunluk sıcaklığa bağlı olarak değişir; bu yüzden hassas hesaplarda sabit 1000 kg/m³ kabulü her zaman yeterli değildir."
+            : "For liquid water, density changes with temperature, so a fixed value of 1000 kg/m³ is not always adequate for precise work.",
+        ],
+        formulaHeading: isTurkish ? "Formül" : "Formula",
+        formulas: ["ΔP = ρ g h", "ρ = m / V"],
+        variablesHeading: isTurkish
+          ? "Değişkenler"
+          : "Variables",
+        variables: [
+          {
+            symbol: "ρ",
+            description: isTurkish
+              ? "Yoğunluk, kg/m³"
+              : "Density, kg/m³",
+          },
+          {
+            symbol: "m",
+            description: isTurkish ? "Kütle, kg" : "Mass, kg",
+          },
+          {
+            symbol: "V",
+            description: isTurkish
+              ? "Hacim, m³"
+              : "Volume, m³",
+          },
+          {
+            symbol: "ΔP",
+            description: isTurkish
+              ? "Basınç farkı, Pa"
+              : "Pressure difference, Pa",
+          },
+        ],
+        exampleHeading: isTurkish
+          ? "Kısa mühendislik örneği"
+          : "Short engineering example",
+        example: [
+          isTurkish
+            ? "20 °C civarında su yoğunluğu yaklaşık 998,20509 kg/m³ alınırsa, 10 m derinlikte hidrostatik basınç farkı ΔP ≈ 998,20509 × 9,80665 × 10 = 97,89 kPa olur."
+            : "Using a water density of about 998.20509 kg/m³ near 20 °C, the hydrostatic pressure rise at 10 m depth is ΔP ≈ 998.20509 × 9.80665 × 10 = 97.89 kPa.",
+        ],
         conditionsHeading: isTurkish
           ? "Geçerlilik koşulları"
           : "Validity conditions",
@@ -242,6 +291,16 @@ export default function WaterDensityReference({
               isTurkish
                 ? "/hesaplayicilar/hidrostatik-basinc"
                 : "/en/calculators/hydrostatic-pressure"
+            ),
+          },
+          {
+            label: isTurkish
+              ? "Basınç kategorisi"
+              : "Pressure category",
+            url: buildSiteUrl(
+              isTurkish
+                ? "/kategoriler/basinc"
+                : "/en/categories/pressure"
             ),
           },
         ],

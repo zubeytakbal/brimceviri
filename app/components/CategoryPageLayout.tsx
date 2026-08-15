@@ -106,23 +106,33 @@ export default function CategoryPageLayout({
           ))}
         </nav>
 
-        <header className="category-page-header">
-          <p className="category-page-kicker">{kickerLabel}</p>
+        <section className="category-page-hero">
+          <div
+            className={`category-page-hero-grid${
+              allUnitsSection
+                ? " has-converter"
+                : ""
+            }`}
+          >
+            <header className="category-page-header">
+              <p className="category-page-kicker">{kickerLabel}</p>
 
-          <h1>{title}</h1>
+              <h1>{title}</h1>
 
-          <p>{description}</p>
-        </header>
+              <p>{description}</p>
+            </header>
 
-        {allUnitsSection && (
-          <section className="category-page-section">
-            <div className="category-section-heading">
-              <h2>{allUnitsSection.heading}</h2>
-            </div>
+            {allUnitsSection && (
+              <div className="category-page-hero-panel">
+                <div className="category-page-hero-panel-heading">
+                  <h2>{allUnitsSection.heading}</h2>
+                </div>
 
-            {allUnitsSection.content}
-          </section>
-        )}
+                {allUnitsSection.content}
+              </div>
+            )}
+          </div>
+        </section>
 
         <section className="category-page-section">
           <div className="category-section-heading">

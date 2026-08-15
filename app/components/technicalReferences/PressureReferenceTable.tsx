@@ -162,6 +162,51 @@ export default function PressureReferenceTable({
         title: isTurkish
           ? "Basınç birimleri referans tablosu"
           : "Pressure-unit reference table",
+        description: isTurkish
+          ? "Bu teknik föy, yaygın basınç birimlerinin pascal tabanındaki eşdeğerlerini tek tabloda toplar."
+          : "This technical sheet gathers common pressure units and their pascal-based equivalents in one table.",
+        definitionHeading: isTurkish ? "Tanım" : "Definition",
+        definition: [
+          isTurkish
+            ? "Basınç, birim alana etki eden kuvvettir ve SI sisteminde pascal (Pa) ile ifade edilir."
+            : "Pressure is force acting on a unit area and is expressed in pascal (Pa) in SI.",
+          isTurkish
+            ? "Endüstriyel ve saha uygulamalarında bar, atm, psi, mmHg ve kgf/cm² gibi farklı birimler birlikte kullanıldığı için güvenilir bir başvuru tablosu gereklidir."
+            : "Because industrial and field work commonly mixes bar, atm, psi, mmHg and kgf/cm², a reliable reference table is useful.",
+        ],
+        formulaHeading: isTurkish ? "Formül" : "Formula",
+        formulas: ["p = F / A"],
+        variablesHeading: isTurkish
+          ? "Değişkenler"
+          : "Variables",
+        variables: [
+          {
+            symbol: "p",
+            description: isTurkish
+              ? "Basınç, Pa"
+              : "Pressure, Pa",
+          },
+          {
+            symbol: "F",
+            description: isTurkish
+              ? "Kuvvet, N"
+              : "Force, N",
+          },
+          {
+            symbol: "A",
+            description: isTurkish
+              ? "Alan, m²"
+              : "Area, m²",
+          },
+        ],
+        exampleHeading: isTurkish
+          ? "Kısa mühendislik örneği"
+          : "Short engineering example",
+        example: [
+          isTurkish
+            ? "2 bar basınç, referans tabloda 200 000 Pa ve 200 kPa olarak görülebilir; aynı değer 0,2 MPa biçiminde de raporlanabilir."
+            : "A pressure of 2 bar corresponds to 200,000 Pa and 200 kPa in the reference table, and may also be reported as 0.2 MPa.",
+        ],
         conditionsHeading: isTurkish
           ? "Geçerlilik koşulları"
           : "Validity conditions",
@@ -219,6 +264,16 @@ export default function PressureReferenceTable({
               isTurkish
                 ? "/hesaplayicilar/basinc-kuvvet-alan"
                 : "/en/calculators/pressure-force-area"
+            ),
+          },
+          {
+            label: isTurkish
+              ? "Hidrostatik Basınç Hesaplayıcısı"
+              : "Hydrostatic Pressure Calculator",
+            url: buildSiteUrl(
+              isTurkish
+                ? "/hesaplayicilar/hidrostatik-basinc"
+                : "/en/calculators/hydrostatic-pressure"
             ),
           },
         ],

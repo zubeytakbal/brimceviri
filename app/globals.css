@@ -1884,8 +1884,10 @@ main.category-page {
 .category-page-hero-panel {
   display: grid;
   gap: 14px;
+  width: 100%;
   min-width: 0;
   align-content: start;
+  justify-self: stretch;
 }
 
 .category-page-hero-panel-heading h2 {
@@ -1898,6 +1900,8 @@ main.category-page {
 .category-general-converter {
   display: grid;
   gap: 16px;
+  width: 100%;
+  box-sizing: border-box;
   min-width: 0;
   padding: 18px;
   border: 1px solid rgba(255, 255, 255, 0.35);
@@ -1907,10 +1911,9 @@ main.category-page {
 .category-general-converter-grid {
   display: grid;
   grid-template-columns:
-    minmax(110px, 0.7fr)
-    minmax(180px, 1.4fr)
-    minmax(180px, 1.4fr)
-    auto;
+    minmax(104px, 0.72fr)
+    minmax(0, 1fr)
+    minmax(0, 1fr);
   gap: 12px;
   align-items: end;
   min-width: 0;
@@ -1919,6 +1922,7 @@ main.category-page {
 .category-general-converter-field {
   display: grid;
   gap: 8px;
+  width: 100%;
   min-width: 0;
 }
 
@@ -1934,6 +1938,8 @@ main.category-page {
 .category-general-converter-field input,
 .category-general-converter-field select {
   width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   min-width: 0;
   min-height: 46px;
   padding: 10px 12px;
@@ -1956,11 +1962,13 @@ main.category-page {
 
 .category-general-converter-actions {
   display: flex;
+  grid-column: 1 / -1;
   min-width: 0;
 }
 
 .category-general-converter-swap {
   min-width: 0;
+  max-width: 100%;
   min-height: 46px;
   padding: 0 14px;
   border: 1px solid #cdd8de;
@@ -1968,11 +1976,11 @@ main.category-page {
   color: #156b8a;
   font-size: 0.92rem;
   font-weight: 650;
-  white-space: nowrap;
-  transition:
-    border-color 180ms ease,
-    background-color 180ms ease,
-    transform 180ms ease;
+  white-space: normal;
+    transition:
+      border-color 180ms ease,
+      background-color 180ms ease,
+      transform 180ms ease;
 }
 
 .category-general-converter-swap:hover {
@@ -1984,6 +1992,8 @@ main.category-page {
 .category-general-converter-result {
   display: grid;
   gap: 6px;
+  width: 100%;
+  box-sizing: border-box;
   min-width: 0;
   padding: 14px 16px;
   border: 1px solid #d7e2e8;

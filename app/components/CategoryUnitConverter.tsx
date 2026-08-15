@@ -31,7 +31,7 @@ function formatDisplayNumber(
   value: number
 ) {
   if (!Number.isFinite(value)) {
-    return "—";
+    return "\u2014";
   }
 
   const localeName = locale === "tr" ? "tr-TR" : "en-US";
@@ -96,13 +96,13 @@ export default function CategoryUnitConverter({
   const labels =
     locale === "tr"
       ? {
-          value: "Değer",
+          value: "De\u011Fer",
           from: "Kaynak birim",
           to: "Hedef birim",
-          result: "Anlık sonuç",
-          swap: "Yönü değiştir",
+          result: "Anl\u0131k sonu\u00E7",
+          swap: "Y\u00F6n\u00FC de\u011Fi\u015Ftir",
           invalid:
-            "Geçerli bir sayı girerek sonucu görebilirsiniz.",
+            "Ge\u00E7erli bir say\u0131 girerek sonucu g\u00F6rebilirsiniz.",
         }
       : {
           value: "Value",

@@ -5,29 +5,17 @@ export type LocalizedUnitName = {
   slug: string;
 };
 
-export type UnitDescription = {
-  shortDescription: string;
-  historySummary: string;
-  measurementSystem: string;
-  siEquivalent: string;
-  commonUses: string;
-};
-
 export type UnitRegistryEntry = {
   id: string;
   category: UnitCategory;
   symbol: string;
+  displaySymbol?: string;
   siFactor?: number;
   isTemperature?: boolean;
   tr?: LocalizedUnitName;
   en?: LocalizedUnitName;
   de?: LocalizedUnitName;
   enConversionSlug?: string;
-  description?: {
-    tr?: UnitDescription;
-    en?: UnitDescription;
-    de?: UnitDescription;
-  };
 };
 
 export const unitRegistry: UnitRegistryEntry[] = [
@@ -41,17 +29,6 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Meter", slug: "meter" },
     de: { name: "Meter", slug: "meter" },
     enConversionSlug: "meters",
-    description: {
-      tr: {
-        shortDescription:
-          "Metre, Uluslararası Birim Sistemi'nde uzunluğun temel birimidir. Günlük yaşamdan mühendisliğe kadar mesafe ve boyut ölçümünde kullanılır.",
-        historySummary:
-          "Metre, 18. yüzyılın sonunda evrensel bir ölçü standardı oluşturma amacıyla geliştirildi. Günümüzde tanımı ışığın boşlukta belirli bir zaman aralığında aldığı yola dayanır.",
-        measurementSystem: "Uluslararası Birim Sistemi (SI)",
-        siEquivalent: "Temel SI uzunluk birimi",
-        commonUses: "İnşaat, bilim, üretim, geometri ve genel ölçüm",
-      },
-    },
   },
   {
     id: "kilometre",
@@ -62,17 +39,6 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Kilometer", slug: "kilometer" },
     de: { name: "Kilometer", slug: "kilometer" },
     enConversionSlug: "kilometers",
-    description: {
-      tr: {
-        shortDescription:
-          "Kilometre, 1000 metreye eşit bir uzunluk birimidir. Şehirler arası ve coğrafi mesafeleri ifade etmekte kullanılır.",
-        historySummary:
-          "Kilometre, metrik sistemin ondalık yapısı içinde metrenin katı olarak yerleşti. Kara yolları ve harita ölçeklerinde standart bir gösterim hâline geldi.",
-        measurementSystem: "Uluslararası Birim Sistemi (SI, kat birim)",
-        siEquivalent: "1 km = 1000 m",
-        commonUses: "Karayolu mesafeleri, coğrafya, haritacılık ve altyapı",
-      },
-    },
   },
   {
     id: "santimetre",
@@ -83,17 +49,6 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Centimeter", slug: "centimeter" },
     de: { name: "Zentimeter", slug: "zentimeter" },
     enConversionSlug: "centimeters",
-    description: {
-      tr: {
-        shortDescription:
-          "Santimetre, metrenin yüzde birine eşit bir uzunluk birimidir. Küçük nesnelerin ve günlük ölçülerin ifade edilmesinde yaygındır.",
-        historySummary:
-          "Santimetre, metrik sistemde ondalık alt birim olarak gelişti. Ölçümleri pratik ve hızlı hesaplanabilir hâle getirdiği için geniş kullanım kazandı.",
-        measurementSystem: "Uluslararası Birim Sistemi (SI, alt birim)",
-        siEquivalent: "1 cm = 0,01 m",
-        commonUses: "Mobilya, tekstil, antropometri ve günlük ölçümler",
-      },
-    },
   },
   {
     id: "milimetre",
@@ -104,17 +59,6 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Millimeter", slug: "millimeter" },
     de: { name: "Millimeter", slug: "millimeter" },
     enConversionSlug: "millimeters",
-    description: {
-      tr: {
-        shortDescription:
-          "Milimetre, metrenin binde birine eşit bir uzunluk birimidir. Hassas teknik ölçümlerde sık kullanılır.",
-        historySummary:
-          "Milimetre, sanayi ve mühendislikte daha küçük toleransların ölçülmesi ihtiyacıyla yaygınlaştı. Özellikle üretim ve çizim standartlarında temel bir alt birim oldu.",
-        measurementSystem: "Uluslararası Birim Sistemi (SI, alt birim)",
-        siEquivalent: "1 mm = 0,001 m",
-        commonUses: "Mekanik üretim, teknik resim, işleme toleransları",
-      },
-    },
   },
   {
     id: "mikrometre",
@@ -143,17 +87,6 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Foot", slug: "foot" },
     de: { name: "Fuß", slug: "fuss" },
     enConversionSlug: "feet",
-    description: {
-      tr: {
-        shortDescription:
-          "Fit, İngiliz ve Amerikan ölçü sistemlerinde kullanılan bir uzunluk birimidir. Bir uluslararası fit tam olarak 0,3048 metreye eşittir.",
-        historySummary:
-          "Fit, eski ölçü geleneklerinde insan ayağına dayalı bir yaklaşımdan doğdu. Farklı bölgesel değerler zamanla bırakıldı ve uluslararası fit 1959'da standartlaştırıldı.",
-        measurementSystem: "İngiliz ve ABD ölçü sistemleri",
-        siEquivalent: "1 ft = 0,3048 m",
-        commonUses: "Mimarlık, bina kotları, havacılık ve saha ölçüleri",
-      },
-    },
   },
   {
     id: "inc",
@@ -164,18 +97,6 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Inch", slug: "inch" },
     de: { name: "Zoll", slug: "zoll" },
     enConversionSlug: "inches",
-    description: {
-      tr: {
-        shortDescription:
-          "İnç, İngiliz ve Amerikan ölçü sistemlerinde kullanılan kısa bir uzunluk birimidir. Bir inç tam olarak 2,54 santimetreye eşittir.",
-        historySummary:
-          "İnç, tarih boyunca insan bedenine dayalı yerel ölçülerden türedi. Modern uluslararası inç 1959 yılından beri tam olarak 25,4 milimetre olarak tanımlanır.",
-        measurementSystem: "İngiliz ve ABD ölçü sistemleri",
-        siEquivalent: "1 in = 25,4 mm = 2,54 cm",
-        commonUses:
-          "Ekran boyutları, borulama, bağlantı elemanları ve teknik kataloglar",
-      },
-    },
   },
   {
     id: "yarda",
@@ -186,17 +107,6 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Yard", slug: "yard" },
     de: { name: "Yard", slug: "yard" },
     enConversionSlug: "yards",
-    description: {
-      tr: {
-        shortDescription:
-          "Yarda, İngiliz ve Amerikan ölçü sistemlerinde kullanılan bir uzunluk birimidir. Bir yarda tam olarak 0,9144 metreye eşittir.",
-        historySummary:
-          "Yarda, tarihsel olarak insan adımı ve beden ölçüleriyle ilişkilendirilen bir uzunluk yaklaşımından gelişti. Modern değeri uluslararası anlaşmalarla sabitlendi.",
-        measurementSystem: "İngiliz ve ABD ölçü sistemleri",
-        siEquivalent: "1 yd = 0,9144 m",
-        commonUses: "Spor sahaları, tekstil, peyzaj ve saha planlaması",
-      },
-    },
   },
   {
     id: "mil",
@@ -207,17 +117,6 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Mile", slug: "mile" },
     de: { name: "Meile", slug: "meile" },
     enConversionSlug: "miles",
-    description: {
-      tr: {
-        shortDescription:
-          "Mil, özellikle Amerika Birleşik Devletleri ve Birleşik Krallık'ta kullanılan bir uzunluk birimidir. Bir uluslararası mil 1609,344 metreye eşittir.",
-        historySummary:
-          "Milin kökeni Roma dönemindeki bin adımlık mesafe anlayışına uzanır. Modern uluslararası mil 1959 yılında tam olarak 1609,344 metre olarak standartlaştırıldı.",
-        measurementSystem: "İngiliz ve ABD ölçü sistemleri",
-        siEquivalent: "1 mi = 1609,344 m",
-        commonUses: "Karayolu mesafeleri, navigasyon ve saha ölçekleri",
-      },
-    },
   },
   {
     id: "deniz-mili",
@@ -239,17 +138,6 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Square Meter", slug: "square-meter" },
     de: { name: "Quadratmeter", slug: "quadratmeter" },
     enConversionSlug: "square-meters",
-    description: {
-      tr: {
-        shortDescription:
-          "Metrekare, alanın SI türetilmiş birimidir. Zemin, kesit ve yüzey hesaplarında temel referans olarak kullanılır.",
-        historySummary:
-          "Metrekare, metrenin iki boyutlu uzantısı olarak metrik sistem içinde yerleşti. Yapı, arazi ve mühendislik çizimlerinde standart alan dili hâline geldi.",
-        measurementSystem: "Uluslararası Birim Sistemi (SI)",
-        siEquivalent: "Temel SI alan birimi",
-        commonUses: "Mimarlık, iç mekân, panel yüzeyleri ve kesit alanları",
-      },
-    },
   },
   {
     id: "santimetrekare",
@@ -287,17 +175,6 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Hectare", slug: "hectare" },
     de: { name: "Hektar", slug: "hektar" },
     enConversionSlug: "hectares",
-    description: {
-      tr: {
-        shortDescription:
-          "Hektar, özellikle arazi ölçümünde kullanılan büyük bir alan birimidir. 1 hektar tam olarak 10000 metrekareye eşittir.",
-        historySummary:
-          "Hektar, geniş tarımsal ve coğrafi alanları daha kısa ifade etmek için metrik sistem içinde yaygınlaşmıştır.",
-        measurementSystem: "Metrik sistem, SI ile uyumlu",
-        siEquivalent: "1 ha = 10000 m²",
-        commonUses: "Tarım arazileri, imar planları ve büyük arsa kayıtları",
-      },
-    },
   },
   {
     id: "fitkare",
@@ -308,17 +185,6 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Square Foot", slug: "square-foot" },
     de: { name: "Quadratfuß", slug: "quadratfuss" },
     enConversionSlug: "square-feet",
-    description: {
-      tr: {
-        shortDescription:
-          "Fitkare, İngiliz ve ABD ölçü sistemlerinde kullanılan bir alan birimidir. Bir kare fit yaklaşık 0,092903 metrekareye eşittir.",
-        historySummary:
-          "Fitkare, fit biriminin yapı ve emlak alanındaki yaygın kullanımıyla birlikte yerleşmiştir.",
-        measurementSystem: "İngiliz ve ABD ölçü sistemleri",
-        siEquivalent: "1 ft² = 0,092903 m²",
-        commonUses: "Emlak ilanları, döşeme alanları ve bazı yapı katalogları",
-      },
-    },
   },
   {
     id: "incare",
@@ -349,18 +215,6 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Cubic Meter", slug: "cubic-meter" },
     de: { name: "Kubikmeter", slug: "kubikmeter" },
     enConversionSlug: "cubic-meters",
-    description: {
-      tr: {
-        shortDescription:
-          "Metreküp, hacmin SI türetilmiş birimidir. Büyük hacimler ve teknik kapasiteler için temel referanstır.",
-        historySummary:
-          "Metreküp, metrenin üç boyutlu uzantısı olarak bilim ve mühendislikte temel hacim birimi hâline geldi.",
-        measurementSystem: "Uluslararası Birim Sistemi (SI)",
-        siEquivalent: "Temel SI hacim birimi",
-        commonUses:
-          "Depolama hacmi, bina iç hacmi, proses tankları ve akış hesapları",
-      },
-    },
   },
   {
     id: "litre",
@@ -371,18 +225,6 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Liter", slug: "liter" },
     de: { name: "Liter", slug: "liter" },
     enConversionSlug: "liters",
-    description: {
-      tr: {
-        shortDescription:
-          "Litre, sıvı ve kapasiteleri ifade etmek için çok yaygın kullanılan bir hacim birimidir. 1 litre, 0,001 metreküpe eşittir.",
-        historySummary:
-          "Litre, metrik sistem içinde günlük kullanım ile teknik ihtiyacı birleştiren pratik bir hacim birimi olarak yaygınlaşmıştır.",
-        measurementSystem: "Metrik sistem, SI ile uyumlu",
-        siEquivalent: "1 L = 0,001 m³",
-        commonUses:
-          "Sıvılar, tank hacimleri, laboratuvar kapları ve günlük ölçüler",
-      },
-    },
   },
   {
     id: "mililitre",
@@ -393,17 +235,6 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Milliliter", slug: "milliliter" },
     de: { name: "Milliliter", slug: "milliliter" },
     enConversionSlug: "milliliters",
-    description: {
-      tr: {
-        shortDescription:
-          "Mililitre, litrenin binde birine eşit küçük bir hacim birimidir. Hassas sıvı ölçümlerinde kullanılır.",
-        historySummary:
-          "Mililitre, ilaç, laboratuvar ve mutfak ölçülerinde küçük hacimlerin güvenilir biçimde ifade edilmesi için yaygınlaşmıştır.",
-        measurementSystem: "Metrik sistem, SI ile uyumlu",
-        siEquivalent: "1 mL = 0,000001 m³",
-        commonUses: "İlaç dozları, laboratuvar örnekleri ve küçük sıvı hacimleri",
-      },
-    },
   },
   {
     id: "santimetrekup",
@@ -452,17 +283,6 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Kilogram", slug: "kilogram" },
     de: { name: "Kilogramm", slug: "kilogramm" },
     enConversionSlug: "kilograms",
-    description: {
-      tr: {
-        shortDescription:
-          "Kilogram, Uluslararası Birim Sistemi'nde kütlenin temel birimidir. Ticaret, laboratuvar ve mühendislikte yaygın olarak kullanılır.",
-        historySummary:
-          "Kilogram önce su kütlesine, sonra fiziksel bir prototipe dayalıydı. 2019'dan itibaren Planck sabitinin sabitlenmiş değeri üzerinden tanımlanmaktadır.",
-        measurementSystem: "Uluslararası Birim Sistemi (SI)",
-        siEquivalent: "Temel SI kütle birimi",
-        commonUses: "Ticaret, taşıma, laboratuvar ve proses hesapları",
-      },
-    },
   },
   {
     id: "gram",
@@ -473,17 +293,6 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Gram", slug: "gram" },
     de: { name: "Gramm", slug: "gramm" },
     enConversionSlug: "grams",
-    description: {
-      tr: {
-        shortDescription:
-          "Gram, kilogramın binde birine eşit bir kütle birimidir. Gıda, laboratuvar ve küçük maddesel miktarları ifade etmekte kullanılır.",
-        historySummary:
-          "Gram, metrik sistemin erken döneminde su kütlesi temelli yaklaşımlardan gelişti ve daha sonra kilogramın alt birimi olarak standartlaştı.",
-        measurementSystem: "Uluslararası Birim Sistemi (SI, alt birim)",
-        siEquivalent: "1 g = 0,001 kg",
-        commonUses: "Gıda, kimya, eczacılık ve hassas ölçüm",
-      },
-    },
   },
   {
     id: "miligram",
@@ -494,38 +303,17 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Milligram", slug: "milligram" },
     de: { name: "Milligramm", slug: "milligramm" },
     enConversionSlug: "milligrams",
-    description: {
-      tr: {
-        shortDescription:
-          "Miligram, gramın binde birine eşit çok küçük bir kütle birimidir. İlaç ve laboratuvar ölçümlerinde kritik öneme sahiptir.",
-        historySummary:
-          "Miligram, hassas terazilerin ve analitik laboratuvarların gelişmesiyle birlikte özellikle sağlık ve kimya alanlarında öne çıktı.",
-        measurementSystem: "Uluslararası Birim Sistemi (SI, alt birim)",
-        siEquivalent: "1 mg = 0,000001 kg",
-        commonUses: "İlaç dozları, analizler ve hassas formülasyonlar",
-      },
-    },
   },
   {
     id: "ton",
     category: "kutle",
     symbol: "ton",
+    displaySymbol: "t",
     siFactor: 1000,
     tr: { name: "Ton", slug: "ton" },
     en: { name: "Tonne", slug: "tonne" },
     de: { name: "Tonne", slug: "tonne" },
     enConversionSlug: "tonnes",
-    description: {
-      tr: {
-        shortDescription:
-          "Metrik ton, 1000 kilograma eşit büyük bir kütle birimidir. Ağır yüklerin ve endüstriyel miktarların ifade edilmesinde kullanılır.",
-        historySummary:
-          "Ton, büyük yükleri ve ticari kütleleri daha kısa ifade etmek için metrik sistem içinde yerleşti. Lojistik ve endüstride yaygın kullanım kazandı.",
-        measurementSystem: "Metrik sistem, SI ile uyumlu",
-        siEquivalent: "1 t = 1000 kg",
-        commonUses: "Lojistik, üretim, hammadde ticareti ve ağır sanayi",
-      },
-    },
   },
   {
     id: "pound",
@@ -536,17 +324,6 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Pound", slug: "pound" },
     de: { name: "Pfund", slug: "pfund" },
     enConversionSlug: "pounds",
-    description: {
-      tr: {
-        shortDescription:
-          "Pound, İngiliz ve Amerikan ölçü sistemlerinde kullanılan bir kütle birimidir. Bir uluslararası pound tam olarak 0,45359237 kilograma eşittir.",
-        historySummary:
-          "Pound ve lb sembolü Roma dönemindeki libra biriminden gelir. Modern avoirdupois pound 1959 yılında uluslararası olarak sabitlenmiştir.",
-        measurementSystem: "İngiliz ve ABD ölçü sistemleri",
-        siEquivalent: "1 lb = 0,45359237 kg",
-        commonUses: "Perakende, taşımacılık, beslenme ve endüstriyel kataloglar",
-      },
-    },
   },
   {
     id: "ons",
@@ -557,17 +334,6 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Ounce", slug: "ounce" },
     de: { name: "Unze", slug: "unze" },
     enConversionSlug: "ounces",
-    description: {
-      tr: {
-        shortDescription:
-          "Ons, İngiliz ve Amerikan ölçü sistemlerinde kullanılan küçük bir kütle birimidir. Bir avoirdupois ons 28,349523125 grama eşittir.",
-        historySummary:
-          "Ons, tarih boyunca farklı ticari ve tıbbi sistemlerde kullanıldı. Modern avoirdupois ons, pound ile olan 1/16 ilişkisi üzerinden standartlaştı.",
-        measurementSystem: "İngiliz ve ABD ölçü sistemleri",
-        siEquivalent: "1 oz = 28,349523125 g",
-        commonUses: "Paketleme, gıda, mücevher dışı hafif ticari ölçüler",
-      },
-    },
   },
 
   // ---- yoğunluk / density (engine-only, no public pages) ----
@@ -592,17 +358,6 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Meter per Second", slug: "meter-per-second" },
     de: { name: "Meter pro Sekunde", slug: "meter-pro-sekunde" },
     enConversionSlug: "meters-per-second",
-    description: {
-      tr: {
-        shortDescription:
-          "Metre/saniye, hızın SI türetilmiş birimidir. Mühendislik ve fizikte temel referans kabul edilir.",
-        historySummary:
-          "Metre ve saniyenin birleşiminden türeyen bu gösterim, modern bilimsel hız ölçümünün standart dilidir.",
-        measurementSystem: "Uluslararası Birim Sistemi (SI)",
-        siEquivalent: "Temel SI hız birimi",
-        commonUses: "Akışkanlar, mekanik hareket ve bilimsel ölçümler",
-      },
-    },
   },
   {
     id: "kilometre-saat",
@@ -613,17 +368,6 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Kilometer per Hour", slug: "kilometer-per-hour" },
     de: { name: "Kilometer pro Stunde", slug: "kilometer-pro-stunde" },
     enConversionSlug: "kilometers-per-hour",
-    description: {
-      tr: {
-        shortDescription:
-          "Kilometre/saat, kara taşımacılığında yaygın kullanılan pratik bir hız birimidir.",
-        historySummary:
-          "Yol ve ulaşım sistemlerinin yaygınlaşmasıyla kilometre/saat gösterimi sürüş ve seyahat için standartlaşmıştır.",
-        measurementSystem: "Metrik pratik kullanım",
-        siEquivalent: "1 km/h ≈ 0,277778 m/s",
-        commonUses: "Araç hızları, trafik işaretleri ve saha ölçümleri",
-      },
-    },
   },
   { id: "km-s", category: "hiz", symbol: "km/s", siFactor: 1000 },
   {
@@ -635,17 +379,6 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Mile per Hour", slug: "mile-per-hour" },
     de: { name: "Meilen pro Stunde", slug: "meilen-pro-stunde" },
     enConversionSlug: "miles-per-hour",
-    description: {
-      tr: {
-        shortDescription:
-          "Mil/saat, özellikle ABD ve Birleşik Krallık uygulamalarında kullanılan bir hız birimidir.",
-        historySummary:
-          "Mil ve saat birimlerinin birleşimi, kara ulaşımında Anglo-Amerikan ölçü geleneğinin temel hız dilini oluşturmuştur.",
-        measurementSystem: "İngiliz ve ABD ölçü sistemleri",
-        siEquivalent: "1 mph = 1,609344 km/h",
-        commonUses: "Karayolu hızları, otomotiv ve saha raporları",
-      },
-    },
   },
   { id: "knot", category: "hiz", symbol: "knot", siFactor: 1852 / 3600 },
   { id: "ft-s", category: "hiz", symbol: "ft/s", siFactor: 0.3048 },
@@ -676,17 +409,6 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Second", slug: "second" },
     de: { name: "Sekunde", slug: "sekunde" },
     enConversionSlug: "seconds",
-    description: {
-      tr: {
-        shortDescription:
-          "Saniye, zamanın SI temel birimidir. Tüm süre ve hız hesaplarının temelinde yer alır.",
-        historySummary:
-          "Modern saniye tanımı atomik geçiş frekansına bağlanarak evrensel ve yüksek hassasiyetli hâle getirilmiştir.",
-        measurementSystem: "Uluslararası Birim Sistemi (SI)",
-        siEquivalent: "Temel SI zaman birimi",
-        commonUses: "Deney süreleri, hareket analizi, veri kayıtları ve zamanlama",
-      },
-    },
   },
   { id: "milisaniye", category: "zaman", symbol: "ms", siFactor: 0.001 },
   {
@@ -698,16 +420,6 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Minute", slug: "minute" },
     de: { name: "Minute", slug: "minute" },
     enConversionSlug: "minutes",
-    description: {
-      tr: {
-        shortDescription: "Dakika, 60 saniyeye eşit pratik bir zaman birimidir.",
-        historySummary:
-          "Dakika, günlük planlama ile bilimsel olmayan süre takibinde tarihsel olarak yaygınlaşmış bir ara birimdir.",
-        measurementSystem: "SI dışı, SI ile birlikte kullanılan zaman birimi",
-        siEquivalent: "1 min = 60 s",
-        commonUses: "Toplantılar, kısa süreler, egzersiz ve proses çevrimleri",
-      },
-    },
   },
   {
     id: "saat",
@@ -718,16 +430,6 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Hour", slug: "hour" },
     de: { name: "Stunde", slug: "stunde" },
     enConversionSlug: "hours",
-    description: {
-      tr: {
-        shortDescription: "Saat, 3600 saniyeye eşit yaygın bir zaman birimidir.",
-        historySummary:
-          "Saat birimi, göksel ve mekanik zaman ölçüm geleneklerinden modern takvim ve vardiya sistemlerine taşınmıştır.",
-        measurementSystem: "SI dışı, SI ile birlikte kullanılan zaman birimi",
-        siEquivalent: "1 h = 3600 s",
-        commonUses: "Çalışma süreleri, seyahat, enerji tüketimi ve günlük planlama",
-      },
-    },
   },
   { id: "gun", category: "zaman", symbol: "day", siFactor: 86400 },
 
@@ -763,17 +465,6 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Pascal", slug: "pascal" },
     de: { name: "Pascal", slug: "pascal" },
     enConversionSlug: "pascals",
-    description: {
-      tr: {
-        shortDescription:
-          "Pascal, Uluslararası Birim Sistemi'nde basıncın türetilmiş birimidir. 1 Pa = 1 N/m² ilişkisiyle tanımlanır.",
-        historySummary:
-          "Birim adını Blaise Pascal'dan alır. Akışkanlar ve basınç çalışmalarındaki bilimsel gelişmelerle birlikte SI içinde standart basınç referansı oldu.",
-        measurementSystem: "Uluslararası Birim Sistemi (SI)",
-        siEquivalent: "Temel SI basınç birimi, 1 Pa = 1 N/m²",
-        commonUses: "Bilimsel hesaplar, malzeme analizi ve referans dönüşümler",
-      },
-    },
   },
   {
     id: "kilopascal",
@@ -784,17 +475,6 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Kilopascal", slug: "kilopascal" },
     de: { name: "Kilopascal", slug: "kilopascal" },
     enConversionSlug: "kilopascals",
-    description: {
-      tr: {
-        shortDescription:
-          "Kilopascal, 1000 pascala eşit bir basınç birimidir. Pratik mühendislikte pascaldan daha okunabilir sonuçlar sağlar.",
-        historySummary:
-          "Kilopascal, özellikle saha ölçümleri ve mühendislik belgelerinde sayısal okunabilirliği artırdığı için yaygınlaşmıştır.",
-        measurementSystem: "Uluslararası Birim Sistemi (SI, kat birim)",
-        siEquivalent: "1 kPa = 1000 Pa",
-        commonUses: "HVAC, yapı mühendisliği, lastik basıncı ve proses verileri",
-      },
-    },
   },
   {
     id: "bar",
@@ -805,17 +485,6 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Bar", slug: "bar" },
     de: { name: "Bar", slug: "bar" },
     enConversionSlug: "bars",
-    description: {
-      tr: {
-        shortDescription:
-          "Bar, 100000 pascala eşit bir basınç birimidir. Sanayi ve ekipman göstergelerinde çok yaygın bir pratik gösterimdir.",
-        historySummary:
-          "Bar, atmosferik büyüklüklere yakın basınçları daha kısa ifade edebilmek için teknik uygulamalarda yaygınlık kazandı. SI dışı olsa da endüstride güçlü şekilde yaşamaya devam etti.",
-        measurementSystem: "SI dışı metrik mühendislik birimi",
-        siEquivalent: "1 bar = 100000 Pa",
-        commonUses: "Kompresörler, hidrolik, pnömatik ve servis manometreleri",
-      },
-    },
   },
   { id: "milibar", category: "basinc", symbol: "mbar", siFactor: 100 },
   {
@@ -838,17 +507,6 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "PSI", slug: "psi" },
     de: { name: "PSI", slug: "psi" },
     enConversionSlug: "psi",
-    description: {
-      tr: {
-        shortDescription:
-          "PSI, pound-force per square inch ifadesinin kısaltmasıdır. Anglo-Amerikan teknik sistemlerde kullanılan yaygın bir basınç birimidir.",
-        historySummary:
-          "PSI özellikle otomotiv, hidrolik ve saha servis geleneği içinde yerleşti. SI birimleri yaygınlaşsa da birçok ekipman etiketi ve katalogta kullanılmaya devam etmektedir.",
-        measurementSystem: "İngiliz ve ABD mühendislik kullanımı",
-        siEquivalent: "1 psi = 6894,757293168 Pa",
-        commonUses: "Lastik basıncı, hidrolik sistemler ve teknik servis",
-      },
-    },
   },
   {
     id: "milimetre-civa",
@@ -859,18 +517,6 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Millimeter of Mercury", slug: "millimeter-of-mercury" },
     de: { name: "Millimeter Quecksilbersäule", slug: "millimeter-quecksilbersaeule" },
     enConversionSlug: "millimeters-of-mercury",
-    description: {
-      tr: {
-        shortDescription:
-          "Milimetre cıva, bir cıva sütununun yüksekliğine dayanan bir basınç birimidir. Tıbbi ve laboratuvar ölçümlerinde tarihsel önem taşır.",
-        historySummary:
-          "mmHg, cıvalı manometrelerin yaygın olduğu dönemde yerleşti. Özellikle tansiyon ölçümleri ve vakum/atmosfer referansları için kalıcı bir teknik kullanım alanı oluşturdu.",
-        measurementSystem: "SI dışı tarihsel mühendislik ve tıbbi birim",
-        siEquivalent: "1 mmHg = 133,322387415 Pa",
-        commonUses:
-          "Tansiyon ölçümleri, laboratuvar manometreleri ve vakum referansları",
-      },
-    },
   },
   { id: "mmh2o", category: "basinc", symbol: "mmH2O", siFactor: 9.80665 },
   {
@@ -888,18 +534,6 @@ export const unitRegistry: UnitRegistryEntry[] = [
       slug: "kilogramm-kraft-pro-quadratzentimeter",
     },
     enConversionSlug: "kilogram-force-per-square-centimeter",
-    description: {
-      tr: {
-        shortDescription:
-          "Kilogram-kuvvet/santimetrekare, kuvvet ve alan ilişkisine dayanan SI dışı bir basınç birimidir. Eski göstergelerde ve bazı servis belgelerinde görülür.",
-        historySummary:
-          "Bu birim, kilogram-kuvvet kavramının teknik çizelgelerde yaygın kullanıldığı dönemde özellikle pompa, kazan ve mekanik gösterge dünyasında yerleşti.",
-        measurementSystem: "SI dışı metrik mühendislik birimi",
-        siEquivalent: "1 kgf/cm² = 98066,5 Pa = 0,980665 bar",
-        commonUses:
-          "Eski pompa ve kazan göstergeleri, servis kitapçıkları ve analog cihazlar",
-      },
-    },
   },
 
   // ---- viskozite (engine-only) ----
@@ -933,17 +567,6 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Joule", slug: "joule" },
     de: { name: "Joule", slug: "joule" },
     enConversionSlug: "joules",
-    description: {
-      tr: {
-        shortDescription:
-          "Joule, enerjinin SI türetilmiş birimidir. İş, ısı ve enerji miktarlarını ifade etmek için kullanılır.",
-        historySummary:
-          "Joule birimi, mekanik iş ve enerji kavramlarının bilimsel standardizasyonuyla birlikte SI içinde temel enerji referansı hâline gelmiştir.",
-        measurementSystem: "Uluslararası Birim Sistemi (SI)",
-        siEquivalent: "Temel SI enerji birimi",
-        commonUses: "Termodinamik, enerji dengeleri ve bilimsel hesaplar",
-      },
-    },
   },
   { id: "kilojoule", category: "enerji", symbol: "kJ", siFactor: 1000 },
   { id: "megajoule", category: "enerji", symbol: "MJ", siFactor: 1_000_000 },
@@ -957,17 +580,6 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Kilowatt-hour", slug: "kilowatt-hour" },
     de: { name: "Kilowattstunde", slug: "kilowattstunde" },
     enConversionSlug: "kilowatt-hours",
-    description: {
-      tr: {
-        shortDescription:
-          "Kilovat-saat, elektrik tüketiminde yaygın kullanılan bir enerji birimidir.",
-        historySummary:
-          "Elektrik sayaçları ve faturalandırma sistemleri nedeniyle kilovat-saat, pratik enerji kullanımının en tanınan birimlerinden biri olmuştur.",
-        measurementSystem: "Teknik ve ticari enerji birimi",
-        siEquivalent: "1 kWh = 3,6 MJ",
-        commonUses: "Elektrik faturaları, batarya kapasitesi ve tüketim karşılaştırmaları",
-      },
-    },
   },
   {
     id: "watt",
@@ -978,16 +590,6 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Watt", slug: "watt" },
     de: { name: "Watt", slug: "watt" },
     enConversionSlug: "watts",
-    description: {
-      tr: {
-        shortDescription: "Watt, gücün SI türetilmiş birimidir. Enerjinin aktarım hızını ifade eder.",
-        historySummary:
-          "Watt, endüstri ve elektrik mühendisliğinde güç seviyelerini ifade eden temel standart birim hâline gelmiştir.",
-        measurementSystem: "Uluslararası Birim Sistemi (SI)",
-        siEquivalent: "Temel SI güç birimi",
-        commonUses: "Cihaz gücü, motor etiketleri ve enerji sistemleri",
-      },
-    },
   },
   {
     id: "kilowatt",
@@ -998,17 +600,6 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Kilowatt", slug: "kilowatt" },
     de: { name: "Kilowatt", slug: "kilowatt" },
     enConversionSlug: "kilowatts",
-    description: {
-      tr: {
-        shortDescription:
-          "Kilowatt, 1000 watt’a eşit güç birimidir. Tesisat ve ekipman kapasitesinde çok kullanılır.",
-        historySummary:
-          "Kilowatt, watt biriminin büyük güç değerlerinde daha okunabilir kullanımı için mühendislik belgelerinde yaygınlaşmıştır.",
-        measurementSystem: "Uluslararası Birim Sistemi (SI, kat birim)",
-        siEquivalent: "1 kW = 1000 W",
-        commonUses: "Elektrik panoları, HVAC ekipmanı, jeneratör ve makine gücü",
-      },
-    },
   },
   { id: "kalori", category: "enerji", symbol: "cal", siFactor: 4.184 },
   { id: "kilokalori", category: "enerji", symbol: "kcal", siFactor: 4184 },
@@ -1029,42 +620,23 @@ export const unitRegistry: UnitRegistryEntry[] = [
     id: "santigrat",
     category: "sicaklik",
     symbol: "C",
+    displaySymbol: "°C",
     isTemperature: true,
     tr: { name: "Santigrat", slug: "santigrat" },
     en: { name: "Celsius", slug: "celsius" },
     de: { name: "Celsius", slug: "celsius" },
     enConversionSlug: "celsius",
-    description: {
-      tr: {
-        shortDescription:
-          "Santigrat ölçeği, günlük yaşam ve mühendislikte en yaygın sıcaklık gösterimlerinden biridir.",
-        historySummary:
-          "Santigrat ölçeği, suyun donma ve kaynama noktalarına dayalı pratik bir sıcaklık sistemi olarak yerleşti.",
-        measurementSystem: "SI ile birlikte kullanılan sıcaklık ölçeği",
-        siEquivalent: "Sıcaklık farkında 1 °C = 1 K",
-        commonUses: "Hava durumu, HVAC, proses takibi ve günlük sıcaklık değerleri",
-      },
-    },
   },
   {
     id: "fahrenhayt",
     category: "sicaklik",
     symbol: "F",
+    displaySymbol: "°F",
     isTemperature: true,
     tr: { name: "Fahrenheit", slug: "fahrenhayt" },
     en: { name: "Fahrenheit", slug: "fahrenheit" },
     de: { name: "Fahrenheit", slug: "fahrenheit" },
     enConversionSlug: "fahrenheit",
-    description: {
-      tr: {
-        shortDescription: "Fahrenheit, özellikle ABD’de yaygın olan bir sıcaklık ölçeğidir.",
-        historySummary:
-          "Fahrenheit ölçeği tarihsel olarak Anglo-Amerikan ölçüm pratiğinde yerleşmiş ve günümüzde de geniş kullanıcı tabanını korumuştur.",
-        measurementSystem: "İngiliz ve ABD ölçüm geleneği",
-        siEquivalent: "Sıcaklık farkında 1 °F = 5/9 K",
-        commonUses: "ABD hava durumu verileri, ev içi sıcaklıklar ve bazı teknik kataloglar",
-      },
-    },
   },
   {
     id: "kelvin",
@@ -1075,17 +647,6 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Kelvin", slug: "kelvin" },
     de: { name: "Kelvin", slug: "kelvin" },
     enConversionSlug: "kelvin",
-    description: {
-      tr: {
-        shortDescription:
-          "Kelvin, sıcaklığın SI temel birimidir ve mutlak sıcaklık ölçeğini temsil eder.",
-        historySummary:
-          "Kelvin ölçeği termodinamik sıcaklığı sıfırdan başlatan bilimsel yaklaşımın sonucu olarak geliştirilmiştir.",
-        measurementSystem: "Uluslararası Birim Sistemi (SI)",
-        siEquivalent: "Temel SI sıcaklık birimi",
-        commonUses: "Termodinamik, bilimsel hesaplar ve mutlak sıcaklık gerektiren analizler",
-      },
-    },
   },
 
   // ---- ısıl iletkenlik / ısı akısı / özgül ısı (engine-only) ----
@@ -1111,16 +672,6 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Cubic Meter per Hour", slug: "cubic-meter-per-hour" },
     de: { name: "Kubikmeter pro Stunde", slug: "kubikmeter-pro-stunde" },
     enConversionSlug: "cubic-meters-per-hour",
-    description: {
-      tr: {
-        shortDescription: "Metreküp/saat, hacimsel debiyi ifade eden pratik bir akış birimidir.",
-        historySummary:
-          "Bina tesisatı ve proses akışlarında saat tabanlı okuma ihtiyacı nedeniyle bu gösterim geniş kullanım kazanmıştır.",
-        measurementSystem: "Teknik hacimsel debi birimi",
-        siEquivalent: "1 m³/h ≈ 0,000277778 m³/s",
-        commonUses: "Pompa seçimi, HVAC, su ve proses akışları",
-      },
-    },
   },
   {
     id: "litre-dakika",
@@ -1131,17 +682,6 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Liter per Minute", slug: "liter-per-minute" },
     de: { name: "Liter pro Minute", slug: "liter-pro-minute" },
     enConversionSlug: "liters-per-minute",
-    description: {
-      tr: {
-        shortDescription:
-          "Litre/dakika, küçük ve orta ölçekli akış sistemlerinde okunabilir debi gösterimi sağlar.",
-        historySummary:
-          "Dakika bazlı daha küçük akışları izlemek için laboratuvar, servis ve saha uygulamalarında yaygınlaşmıştır.",
-        measurementSystem: "Teknik hacimsel debi birimi",
-        siEquivalent: "1 L/min ≈ 0,0000166667 m³/s",
-        commonUses: "Su hatları, cihaz beslemeleri ve küçük proses akışları",
-      },
-    },
   },
   {
     id: "volt",
@@ -1152,16 +692,6 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Volt", slug: "volt" },
     de: { name: "Volt", slug: "volt" },
     enConversionSlug: "volts",
-    description: {
-      tr: {
-        shortDescription: "Volt, elektrik geriliminin SI türetilmiş birimidir.",
-        historySummary:
-          "Elektrik potansiyel farkını standartlaştıran volt birimi, modern elektrik ve elektronik sistemlerin temel gösterimlerinden biridir.",
-        measurementSystem: "Uluslararası Birim Sistemi (SI)",
-        siEquivalent: "Temel SI gerilim birimi",
-        commonUses: "Elektronik devreler, güç kaynakları ve şebeke gerilimleri",
-      },
-    },
   },
   {
     id: "kilovolt",
@@ -1172,16 +702,6 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Kilovolt", slug: "kilovolt" },
     de: { name: "Kilovolt", slug: "kilovolt" },
     enConversionSlug: "kilovolts",
-    description: {
-      tr: {
-        shortDescription: "Kilovolt, 1000 volt’a eşit gerilim birimidir. Yüksek gerilim sistemlerinde kullanılır.",
-        historySummary:
-          "Büyük iletim ve dağıtım seviyelerinin daha kısa ifade edilmesi için kilovolt yaygın teknik kullanıma girmiştir.",
-        measurementSystem: "Uluslararası Birim Sistemi (SI, kat birim)",
-        siEquivalent: "1 kV = 1000 V",
-        commonUses: "Şebeke, trafo ve yüksek gerilim ekipmanları",
-      },
-    },
   },
   {
     id: "amper",
@@ -1192,16 +712,6 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Ampere", slug: "ampere" },
     de: { name: "Ampere", slug: "ampere" },
     enConversionSlug: "amperes",
-    description: {
-      tr: {
-        shortDescription: "Amper, elektrik akımının SI temel büyüklüklerinden biri olan standart birimidir.",
-        historySummary:
-          "Amper birimi, elektrik yükünün akış hızını ölçmek için geliştirilen uluslararası standardın parçasıdır.",
-        measurementSystem: "Uluslararası Birim Sistemi (SI)",
-        siEquivalent: "Temel SI akım birimi",
-        commonUses: "Akım ölçümleri, koruma elemanları ve cihaz etiketleri",
-      },
-    },
   },
   {
     id: "miliamper",
@@ -1212,16 +722,6 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Milliampere", slug: "milliampere" },
     de: { name: "Milliampere", slug: "milliampere" },
     enConversionSlug: "milliamperes",
-    description: {
-      tr: {
-        shortDescription: "Miliamper, amperin binde birine eşit küçük akım birimidir.",
-        historySummary:
-          "Elektronik ve ölçüm cihazlarında düşük akımların rahat okunabilmesi için miliamper gösterimi yaygınlaşmıştır.",
-        measurementSystem: "Uluslararası Birim Sistemi (SI, alt birim)",
-        siEquivalent: "1 mA = 0,001 A",
-        commonUses: "Elektronik devreler, sensörler ve düşük akım testleri",
-      },
-    },
   },
 
   // ---- elektrik_direnc / gerilim / akım / kapasitans / enduktans / yük / manyetik (engine-only) ----

@@ -9,6 +9,7 @@ import { calculatorPages } from "../../converter/calculatorPages";
 import { categoryPages } from "../../converter/categoryPages";
 import { conversionPages } from "../../converter/conversionPages";
 import { findEnglishCategoryPageByTurkishSlug } from "../../converter/localizedCategoryPages";
+import { findGermanCategoryPageByTurkishSlug } from "../../converter/localizedGermanCategoryPages";
 import { getUnitSources } from "../../converter/unitSources";
 import { unitPages } from "../../converter/unitPages";
 import { buildSiteUrl } from "../../siteConfig";
@@ -61,6 +62,9 @@ export async function generateMetadata({
   const englishPage = findEnglishCategoryPageByTurkishSlug(
     categoryPage.slug
   );
+  const germanPage = findGermanCategoryPageByTurkishSlug(
+    categoryPage.slug
+  );
 
   return {
     title: `${categoryPage.title}: Birimler, Tablolar ve Hesaplamalar`,
@@ -71,6 +75,9 @@ export async function generateMetadata({
         ? {
             tr: `/kategoriler/${categoryPage.slug}`,
             en: `/en/categories/${englishPage.slug}`,
+            ...(germanPage
+              ? { de: `/de/kategorien/${germanPage.slug}` }
+              : {}),
             "x-default": `/kategoriler/${categoryPage.slug}`,
           }
         : undefined,

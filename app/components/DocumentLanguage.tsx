@@ -5,12 +5,16 @@ import { useEffect } from "react";
 
 export default function DocumentLanguage() {
   const pathname = usePathname();
-  const isEnglish =
-    pathname === "/en" || pathname.startsWith("/en/");
+  const locale =
+    pathname === "/en" || pathname.startsWith("/en/")
+      ? "en"
+      : pathname === "/de" || pathname.startsWith("/de/")
+        ? "de"
+        : "tr";
 
   useEffect(() => {
-    document.documentElement.lang = isEnglish ? "en" : "tr";
-  }, [isEnglish]);
+    document.documentElement.lang = locale;
+  }, [locale]);
 
   return null;
 }

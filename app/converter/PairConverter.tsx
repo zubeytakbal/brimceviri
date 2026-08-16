@@ -9,7 +9,7 @@ type PairConverterProps = {
   toUnit: string;
   fromName: string;
   toName: string;
-  locale?: "tr" | "en";
+  locale?: "tr" | "en" | "de";
 };
 
 function formatResult(value: number) {
@@ -72,15 +72,23 @@ export default function PairConverter({
   const valueLabel =
     locale === "en"
       ? `${activeFromName} value`
-      : `${activeFromName} değeri`;
+      : locale === "de"
+        ? `${activeFromName}-Wert`
+        : `${activeFromName} de\u011Feri`;
 
   const placeholder =
-    locale === "en" ? "Enter a value" : "Değer girin";
+    locale === "en"
+      ? "Enter a value"
+      : locale === "de"
+        ? "Wert eingeben"
+        : "De\u011Fer girin";
 
   const swapLabel =
     locale === "en"
       ? "Reverse the conversion direction"
-      : "Dönüşüm yönünü değiştir";
+      : locale === "de"
+        ? "Umrechnungsrichtung umkehren"
+        : "D\u00F6n\u00FC\u015F\u00FCm y\u00F6n\u00FCn\u00FC de\u011Fi\u015Ftir";
 
   return (
     <section className="pair-converter">
@@ -112,12 +120,12 @@ export default function PairConverter({
           }
           aria-label={swapLabel}
         >
-          ⇄
+          {"\u21C4"}
         </button>
 
         <div className="pair-field pair-result">
           <output aria-live="polite">
-            {result || "—"}
+            {result || "\u2014"}
           </output>
 
           <span>{activeToUnit}</span>

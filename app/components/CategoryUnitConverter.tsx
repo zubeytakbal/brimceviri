@@ -6,7 +6,7 @@ import { getCategoryUnitOptions } from "./categoryUnitOptions";
 
 type CategoryUnitConverterProps = {
   category: string;
-  locale: "tr" | "en";
+  locale: "tr" | "en" | "de";
 };
 
 function parseNumericValue(rawValue: string) {
@@ -27,14 +27,19 @@ function parseNumericValue(rawValue: string) {
 }
 
 function formatDisplayNumber(
-  locale: "tr" | "en",
+  locale: "tr" | "en" | "de",
   value: number
 ) {
   if (!Number.isFinite(value)) {
     return "\u2014";
   }
 
-  const localeName = locale === "tr" ? "tr-TR" : "en-US";
+  const localeName =
+    locale === "tr"
+      ? "tr-TR"
+      : locale === "de"
+        ? "de-DE"
+        : "en-US";
   const absoluteValue = Math.abs(value);
 
   if (absoluteValue === 0) {
@@ -104,15 +109,25 @@ export default function CategoryUnitConverter({
           invalid:
             "Ge\u00E7erli bir say\u0131 girerek sonucu g\u00F6rebilirsiniz.",
         }
-      : {
-          value: "Value",
-          from: "From unit",
-          to: "To unit",
-          result: "Live result",
-          swap: "Swap direction",
-          invalid:
-            "Enter a valid number to view the result.",
-        };
+      : locale === "de"
+        ? {
+            value: "Wert",
+            from: "Ausgangseinheit",
+            to: "Zieleinheit",
+            result: "Direktes Ergebnis",
+            swap: "Richtung wechseln",
+            invalid:
+              "Geben Sie eine g\u00FCltige Zahl ein, um das Ergebnis zu sehen.",
+          }
+        : {
+            value: "Value",
+            from: "From unit",
+            to: "To unit",
+            result: "Live result",
+            swap: "Swap direction",
+            invalid:
+              "Enter a valid number to view the result.",
+          };
 
   if (unitOptions.length === 0) {
     return null;

@@ -5,12 +5,15 @@ import { usePathname } from "next/navigation";
 import { useEffect, useId, useState } from "react";
 import { categoryPages } from "../converter/categoryPages";
 import { englishCategoryPages } from "../converter/localizedCategoryPages";
+import { germanCategoryPages } from "../converter/localizedGermanCategoryPages";
 import LanguageSwitcher from "./LanguageSwitcher";
 
 type HeaderLink = {
   href: string;
   label: string;
 };
+
+type Locale = "tr" | "en" | "de";
 
 const navCategoryOrder = [
   "uzunluk",
@@ -31,12 +34,12 @@ const categoryLabels = {
     uzunluk: "Uzunluk",
     alan: "Alan",
     hacim: "Hacim",
-    kutle: "Kütle",
-    sicaklik: "Sıcaklık",
+    kutle: "K\u00FCtle",
+    sicaklik: "S\u0131cakl\u0131k",
     zaman: "Zaman",
-    hiz: "Hız",
-    basinc: "Basınç",
-    enerji: "Enerji ve Güç",
+    hiz: "H\u0131z",
+    basinc: "Bas\u0131n\u00E7",
+    enerji: "Enerji ve G\u00FC\u00E7",
     debi: "Debi",
     elektrik: "Elektrik",
   },
@@ -53,7 +56,32 @@ const categoryLabels = {
     debi: "Flow Rate",
     elektrik: "Electricity",
   },
+  de: {
+    uzunluk: "L\u00E4nge",
+    alan: "Fl\u00E4che",
+    hacim: "Volumen",
+    kutle: "Masse",
+    sicaklik: "Temperatur",
+    zaman: "Zeit",
+    hiz: "Geschwindigkeit",
+    basinc: "Druck",
+    enerji: "Energie und Leistung",
+    debi: "Durchfluss",
+    elektrik: "Elektrik",
+  },
 } as const;
+
+function getLocaleFromPathname(pathname: string): Locale {
+  if (pathname === "/en" || pathname.startsWith("/en/")) {
+    return "en";
+  }
+
+  if (pathname === "/de" || pathname.startsWith("/de/")) {
+    return "de";
+  }
+
+  return "tr";
+}
 
 export default function SiteHeader() {
   const pathname = usePathname();
@@ -62,30 +90,69 @@ export default function SiteHeader() {
   const menuId = useId();
   const conversionsMenuId = useId();
 
-  const isEnglish = pathname === "/en" || pathname.startsWith("/en/");
-  const homeHref = isEnglish ? "/en" : "/";
-  const navAriaLabel = isEnglish ? "Main navigation" : "Ana menü";
-  const menuLabel = isEnglish ? "Menu" : "Menü";
-  const conversionsLabel = isEnglish ? "Conversions" : "Dönüşümler";
+  const locale = getLocaleFromPathname(pathname);
+  const homeHref = locale === "en" ? "/en" : locale === "de" ? "/de" : "/";
+  const navAriaLabel =
+    locale === "en"
+      ? "Main navigation"
+      : locale === "de"
+        ? "Hauptnavigation"
+        : "Ana men\u00FC";
+  const menuLabel =
+    locale === "en"
+      ? "Menu"
+      : locale === "de"
+        ? "Men\u00FC"
+        : "Men\u00FC";
+  const conversionsLabel =
+    locale === "en"
+      ? "Conversions"
+      : locale === "de"
+        ? "Kategorien"
+        : "D\u00F6n\u00FC\u015F\u00FCmler";
 
-  const topLevelLinks: HeaderLink[] = isEnglish
-    ? [
-        { href: "/en", label: "Home" },
-        { href: "/en/engineering-calculators", label: "Calculators" },
-        { href: "/en/units", label: "Unit Guide" },
-        { href: "/en/all-conversions", label: "All Conversions" },
-      ]
-    : [
-        { href: "/", label: "Ana Sayfa" },
-        { href: "/muhendislik-hesaplayicilari", label: "Hesaplayıcılar" },
-        { href: "/birimler", label: "Birim Rehberi" },
-        { href: "/tum-birimler", label: "Tüm Dönüşümler" },
-      ];
+  const topLevelLinks: HeaderLink[] =
+    locale === "en"
+      ? [
+          { href: "/en", label: "Home" },
+          {
+            href: "/en/engineering-calculators",
+            label: "Calculators",
+          },
+          { href: "/en/units", label: "Unit Guide" },
+          {
+            href: "/en/all-conversions",
+            label: "All Conversions",
+          },
+        ]
+      : locale === "de"
+        ? [
+            { href: "/de", label: "Startseite" },
+          ]
+        : [
+            { href: "/", label: "Ana Sayfa" },
+            {
+              href: "/muhendislik-hesaplayicilari",
+              label: "Hesaplay\u0131c\u0131lar",
+            },
+            { href: "/birimler", label: "Birim Rehberi" },
+            {
+              href: "/tum-birimler",
+              label: "T\u00FCm D\u00F6n\u00FC\u015F\u00FCmler",
+            },
+          ];
+
+  const categorySource =
+    locale === "en"
+      ? englishCategoryPages
+      : locale === "de"
+        ? germanCategoryPages
+        : categoryPages;
 
   const categoryLinks = navCategoryOrder.flatMap((category) => {
-    const page = isEnglish
-      ? englishCategoryPages.find((item) => item.category === category)
-      : categoryPages.find((item) => item.category === category);
+    const page = categorySource.find(
+      (item) => item.category === category
+    );
 
     if (!page) {
       return [];
@@ -93,10 +160,13 @@ export default function SiteHeader() {
 
     return [
       {
-        href: isEnglish
-          ? `/en/categories/${page.slug}`
-          : `/kategoriler/${page.slug}`,
-        label: categoryLabels[isEnglish ? "en" : "tr"][category],
+        href:
+          locale === "en"
+            ? `/en/categories/${page.slug}`
+            : locale === "de"
+              ? `/de/kategorien/${page.slug}`
+              : `/kategoriler/${page.slug}`,
+        label: categoryLabels[locale][category],
       },
     ];
   });
@@ -188,7 +258,10 @@ export default function SiteHeader() {
           className="site-navigation site-navigation-mobile"
           aria-label={navAriaLabel}
         >
-          <Link href={topLevelLinks[0].href} onClick={() => setIsMenuOpen(false)}>
+          <Link
+            href={topLevelLinks[0].href}
+            onClick={() => setIsMenuOpen(false)}
+          >
             {topLevelLinks[0].label}
           </Link>
 
@@ -201,7 +274,9 @@ export default function SiteHeader() {
               onClick={() => setIsConversionsOpen((open) => !open)}
             >
               <span>{conversionsLabel}</span>
-              <span aria-hidden="true">{isConversionsOpen ? "−" : "+"}</span>
+              <span aria-hidden="true">
+                {isConversionsOpen ? "\u2212" : "+"}
+              </span>
             </button>
 
             <div

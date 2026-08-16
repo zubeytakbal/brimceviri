@@ -12,17 +12,19 @@ type FooterLink = {
   label: string;
 };
 
-const footerLinks: Record<"tr" | "en", FooterLink[]> = {
+type Locale = "tr" | "en" | "de";
+
+const footerLinks: Record<Locale, FooterLink[]> = {
   tr: [
     { href: "/", label: "Ana Sayfa" },
     { href: "/birimler", label: "Birim Rehberi" },
-    { href: "/tum-birimler", label: "Tüm Dönüşümler" },
-    { href: "/hakkimizda", label: "Hakkımızda" },
-    { href: "/iletisim", label: "İletişim" },
+    { href: "/tum-birimler", label: "T\u00FCm D\u00F6n\u00FC\u015F\u00FCmler" },
+    { href: "/hakkimizda", label: "Hakk\u0131m\u0131zda" },
+    { href: "/iletisim", label: "\u0130leti\u015Fim" },
     { href: "/gizlilik", label: "Gizlilik" },
     {
       href: "/kullanim-kosullari",
-      label: "Kullanım Koşulları",
+      label: "Kullan\u0131m Ko\u015Fullar\u0131",
     },
   ],
   en: [
@@ -37,15 +39,31 @@ const footerLinks: Record<"tr" | "en", FooterLink[]> = {
     { href: "/en/privacy", label: "Privacy" },
     { href: "/en/terms", label: "Terms" },
   ],
+  de: [
+    { href: "/de", label: "Startseite" },
+    { href: "/de/kategorien/laenge", label: "L\u00E4nge" },
+    { href: "/de/kategorien/masse", label: "Masse" },
+    { href: "/de/kategorien/druck", label: "Druck" },
+  ],
 };
+
+function getLocaleFromPathname(pathname: string): Locale {
+  if (pathname === "/en" || pathname.startsWith("/en/")) {
+    return "en";
+  }
+
+  if (pathname === "/de" || pathname.startsWith("/de/")) {
+    return "de";
+  }
+
+  return "tr";
+}
 
 export default function SiteFooter() {
   const pathname = usePathname();
-  const locale =
-    pathname === "/en" || pathname.startsWith("/en/")
-      ? "en"
-      : "tr";
+  const locale = getLocaleFromPathname(pathname);
   const isEnglish = locale === "en";
+  const isGerman = locale === "de";
 
   return (
     <footer className="site-footer">
@@ -55,19 +73,27 @@ export default function SiteFooter() {
           <p>
             {isEnglish
               ? "Technical conversion tools, engineering calculators and unit guides prepared for practical reference."
-              : "Teknik dönüşüm araçları, mühendislik hesaplayıcıları ve birim rehberleri pratik başvuru amacıyla hazırlanmıştır."}
+              : isGerman
+                ? "Technische Umrechnungstools und Einheitenleitf\u00E4den f\u00FCr den schnellen praktischen Einsatz."
+                : "Teknik d\u00F6n\u00FC\u015F\u00FCm ara\u00E7lar\u0131, m\u00FChendislik hesaplay\u0131c\u0131lar\u0131 ve birim rehberleri pratik ba\u015Fvuru amac\u0131yla haz\u0131rlanm\u0131\u015Ft\u0131r."}
           </p>
           <p>
             {isEnglish
               ? "For engineering, health or safety decisions, verify critical values with professional sources."
-              : "Kritik mühendislik, sağlık veya güvenlik kararlarında sonuçları profesyonel kaynaklarla doğrulayın."}
+              : isGerman
+                ? "Pr\u00FCfen Sie kritische Werte bei technischen, gesundheitlichen oder sicherheitsrelevanten Entscheidungen immer mit fachlichen Quellen."
+                : "Kritik m\u00FChendislik, sa\u011Fl\u0131k veya g\u00FCvenlik kararlar\u0131nda sonu\u00E7lar\u0131 profesyonel kaynaklarla do\u011Frulay\u0131n."}
           </p>
         </div>
 
         <nav
           className="site-footer-nav"
           aria-label={
-            isEnglish ? "Footer navigation" : "Alt menü"
+            isEnglish
+              ? "Footer navigation"
+              : isGerman
+                ? "Fu\u00DFnavigation"
+                : "Alt men\u00FC"
           }
         >
           {footerLinks[locale].map((link) => (
@@ -84,7 +110,9 @@ export default function SiteFooter() {
           <small>
             {isEnglish
               ? "Calculator inputs are processed in the browser for calculation flows on this site."
-              : "Hesaplayıcı girişleri bu sitedeki hesaplama akışları için tarayıcı içinde işlenir."}
+              : isGerman
+                ? "Eingegebene Werte werden f\u00FCr die Rechenabl\u00E4ufe direkt im Browser verarbeitet."
+                : "Hesaplay\u0131c\u0131 giri\u015Fleri bu sitedeki hesaplama ak\u0131\u015Flar\u0131 i\u00E7in taray\u0131c\u0131 i\u00E7inde i\u015Flenir."}
           </small>
         </div>
       </div>

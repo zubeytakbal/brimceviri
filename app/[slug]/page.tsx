@@ -7,6 +7,7 @@ import { categoryPages } from "../converter/categoryPages";
 import { convert } from "../converter/convert";
 import { conversionPages } from "../converter/conversionPages";
 import { findEnglishPageByTurkishSlug } from "../converter/localizedConversionPages";
+import { findGermanPageByTurkishSlug } from "../converter/localizedGermanConversionPages";
 import { findUnitPage } from "../converter/unitPages";
 import { buildSiteUrl } from "../siteConfig";
 
@@ -57,6 +58,9 @@ export async function generateMetadata({
   const englishPage = findEnglishPageByTurkishSlug(
     conversionPage.slug
   );
+  const germanPage = findGermanPageByTurkishSlug(
+    conversionPage.slug
+  );
 
   return {
     title:
@@ -72,6 +76,9 @@ export async function generateMetadata({
         ? {
             tr: `/${conversionPage.slug}`,
             en: `/en/${englishPage.slug}`,
+            ...(germanPage
+              ? { de: `/de/${germanPage.slug}` }
+              : {}),
             "x-default": `/${conversionPage.slug}`,
           }
         : undefined,

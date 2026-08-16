@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import PairConverter from "../../../converter/PairConverter";
 import { findEnglishUnitArticle } from "../../../converter/englishUnitArticles";
 import { englishConversionPages } from "../../../converter/localizedConversionPages";
+import { findGermanUnitPageByTurkishSlug } from "../../../converter/localizedGermanUnitPages";
 import {
   englishUnitPages,
   findEnglishUnitPageBySlug,
@@ -61,6 +62,9 @@ export async function generateMetadata({
   const title =
     `${unitPage.name}: Definition, Symbol, History ` +
     `and Conversions`;
+  const germanPage = findGermanUnitPageByTurkishSlug(
+    unitPage.sourceSlug
+  );
 
   const description =
     `What is the ${unitPage.name.toLowerCase()} and what does ` +
@@ -76,6 +80,9 @@ export async function generateMetadata({
       languages: {
         tr: `/birimler/${unitPage.sourceSlug}`,
         en: `/en/units/${unitPage.slug}`,
+        ...(germanPage
+          ? { de: `/de/einheiten/${germanPage.slug}` }
+          : {}),
         "x-default": `/birimler/${unitPage.sourceSlug}`,
       },
     },

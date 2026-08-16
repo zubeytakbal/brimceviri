@@ -8,31 +8,39 @@ import {
   useRef,
   useState,
 } from "react";
-import { englishCalculatorPages } from "../converter/localizedCalculatorPages";
 import { englishCategoryPages } from "../converter/localizedCategoryPages";
 import { englishConversionPages } from "../converter/localizedConversionPages";
+import { germanCategoryPages } from "../converter/localizedGermanCategoryPages";
+import { germanConversionPages } from "../converter/localizedGermanConversionPages";
+import { germanUnitPages } from "../converter/localizedGermanUnitPages";
 import { englishUnitPages } from "../converter/localizedUnitPages";
 
-type Locale = "tr" | "en";
+type Locale = "tr" | "en" | "de";
 
-type StaticRoutePair = {
+type StaticRouteSet = {
   tr: string;
   en: string;
+  de?: string;
+};
+
+type LocalePair = {
+  sourceSlug: string;
+  slug: string;
 };
 
 type DynamicRouteConfig = {
   trPrefix: string;
   enPrefix: string;
-  pairs: Array<{
-    sourceSlug: string;
-    slug: string;
-  }>;
+  dePrefix: string;
+  enPairs: LocalePair[];
+  dePairs: LocalePair[];
 };
 
-const staticRoutePairs: StaticRoutePair[] = [
+const staticRouteSets: StaticRouteSet[] = [
   {
     tr: "/",
     en: "/en",
+    de: "/de",
   },
   {
     tr: "/birimler",
@@ -62,24 +70,25 @@ const staticRoutePairs: StaticRoutePair[] = [
 
 const dynamicRouteConfigs: DynamicRouteConfig[] = [
   {
-    trPrefix: "/hesaplayicilar/",
-    enPrefix: "/en/calculators/",
-    pairs: englishCalculatorPages,
-  },
-  {
     trPrefix: "/birimler/",
     enPrefix: "/en/units/",
-    pairs: englishUnitPages,
+    dePrefix: "/de/einheiten/",
+    enPairs: englishUnitPages,
+    dePairs: germanUnitPages,
   },
   {
     trPrefix: "/kategoriler/",
     enPrefix: "/en/categories/",
-    pairs: englishCategoryPages,
+    dePrefix: "/de/kategorien/",
+    enPairs: englishCategoryPages,
+    dePairs: germanCategoryPages,
   },
   {
     trPrefix: "/",
     enPrefix: "/en/",
-    pairs: englishConversionPages,
+    dePrefix: "/de/",
+    enPairs: englishConversionPages,
+    dePairs: germanConversionPages,
   },
 ];
 
@@ -93,69 +102,117 @@ function normalizePathname(pathname: string) {
     : pathname;
 }
 
+function detectLocale(pathname: string): Locale {
+  if (pathname === "/en" || pathname.startsWith("/en/")) {
+    return "en";
+  }
+
+  if (pathname === "/de" || pathname.startsWith("/de/")) {
+    return "de";
+  }
+
+  return "tr";
+}
+
+function fallbackPath(targetLocale: Locale) {
+  return targetLocale === "en"
+    ? "/en"
+    : targetLocale === "de"
+      ? "/de"
+      : "/";
+}
+
+function resolveSourceSlug(
+  normalizedPath: string,
+  routeConfig: DynamicRouteConfig
+) {
+  if (normalizedPath.startsWith(routeConfig.trPrefix)) {
+    const slug = normalizedPath.slice(routeConfig.trPrefix.length);
+    return slug || null;
+  }
+
+  if (normalizedPath.startsWith(routeConfig.enPrefix)) {
+    const slug = normalizedPath.slice(routeConfig.enPrefix.length);
+    const pair = routeConfig.enPairs.find(
+      (item) => item.slug === slug
+    );
+    return pair?.sourceSlug ?? null;
+  }
+
+  if (normalizedPath.startsWith(routeConfig.dePrefix)) {
+    const slug = normalizedPath.slice(routeConfig.dePrefix.length);
+    const pair = routeConfig.dePairs.find(
+      (item) => item.slug === slug
+    );
+    return pair?.sourceSlug ?? null;
+  }
+
+  return null;
+}
+
 function resolveLanguagePath(
   pathname: string,
   targetLocale: Locale
 ) {
   const normalizedPath = normalizePathname(pathname);
-  const staticRoute = staticRoutePairs.find(
-    (routePair) =>
-      routePair.tr === normalizedPath ||
-      routePair.en === normalizedPath
+  const staticRoute = staticRouteSets.find(
+    (routeSet) =>
+      routeSet.tr === normalizedPath ||
+      routeSet.en === normalizedPath ||
+      routeSet.de === normalizedPath
   );
 
   if (staticRoute) {
-    return targetLocale === "en"
-      ? staticRoute.en
-      : staticRoute.tr;
+    if (targetLocale === "tr") {
+      return staticRoute.tr;
+    }
+
+    if (targetLocale === "en") {
+      return staticRoute.en;
+    }
+
+    return staticRoute.de ?? "/de";
   }
 
   for (const routeConfig of dynamicRouteConfigs) {
-    const sourcePrefix =
-      targetLocale === "en"
-        ? routeConfig.trPrefix
-        : routeConfig.enPrefix;
-    const targetPrefix =
-      targetLocale === "en"
-        ? routeConfig.enPrefix
-        : routeConfig.trPrefix;
-
-    if (!normalizedPath.startsWith(sourcePrefix)) {
-      continue;
-    }
-
-    const slug = normalizedPath.slice(sourcePrefix.length);
-
-    if (!slug) {
-      continue;
-    }
-
-    const routePair = routeConfig.pairs.find((pair) =>
-      targetLocale === "en"
-        ? pair.sourceSlug === slug
-        : pair.slug === slug
+    const sourceSlug = resolveSourceSlug(
+      normalizedPath,
+      routeConfig
     );
 
-    if (routePair) {
-      return (
-        targetPrefix +
-        (targetLocale === "en"
-          ? routePair.slug
-          : routePair.sourceSlug)
-      );
+    if (!sourceSlug) {
+      continue;
     }
+
+    if (targetLocale === "tr") {
+      return `${routeConfig.trPrefix}${sourceSlug}`;
+    }
+
+    if (targetLocale === "en") {
+      const pair = routeConfig.enPairs.find(
+        (item) => item.sourceSlug === sourceSlug
+      );
+      return pair
+        ? `${routeConfig.enPrefix}${pair.slug}`
+        : "/en";
+    }
+
+    const pair = routeConfig.dePairs.find(
+      (item) => item.sourceSlug === sourceSlug
+    );
+
+    return pair
+      ? `${routeConfig.dePrefix}${pair.slug}`
+      : "/de";
   }
 
-  return targetLocale === "en" ? "/en" : "/";
+  return fallbackPath(targetLocale);
 }
 
 export default function LanguageSwitcher() {
   const pathname = usePathname();
   const normalizedPathname = normalizePathname(pathname);
-  const isEnglish =
-    normalizedPathname === "/en" ||
-    normalizedPathname.startsWith("/en/");
-  const currentLocale: Locale = isEnglish ? "en" : "tr";
+  const currentLocale = detectLocale(normalizedPathname);
   const [isOpen, setIsOpen] = useState(false);
   const menuId = useId();
   const wrapperRef = useRef<HTMLDivElement | null>(null);
@@ -191,7 +248,7 @@ export default function LanguageSwitcher() {
   const localeLinks = [
     {
       locale: "tr" as const,
-      label: "Türkçe",
+      label: "T\u00FCrk\u00E7e",
       href: resolveLanguagePath(normalizedPathname, "tr"),
     },
     {
@@ -199,30 +256,52 @@ export default function LanguageSwitcher() {
       label: "English",
       href: resolveLanguagePath(normalizedPathname, "en"),
     },
+    {
+      locale: "de" as const,
+      label: "Deutsch",
+      href: resolveLanguagePath(normalizedPathname, "de"),
+    },
   ];
+
+  const ariaLabel =
+    currentLocale === "en"
+      ? "Select language"
+      : currentLocale === "de"
+        ? "Sprache ausw\u00E4hlen"
+        : "Dil se\u00E7in";
+  const optionsLabel =
+    currentLocale === "en"
+      ? "Language options"
+      : currentLocale === "de"
+        ? "Sprachoptionen"
+        : "Dil se\u00E7enekleri";
+  const currentLabel =
+    currentLocale === "en"
+      ? "EN \u00B7 English"
+      : currentLocale === "de"
+        ? "DE \u00B7 Deutsch"
+        : "TR \u00B7 T\u00FCrk\u00E7e";
 
   return (
     <div className="language-switcher" ref={wrapperRef}>
       <button
         type="button"
         className="language-switcher-button"
-        aria-label={
-          isEnglish ? "Select language" : "Dil seçin"
-        }
+        aria-label={ariaLabel}
         aria-expanded={isOpen}
         aria-haspopup="menu"
         aria-controls={menuId}
         onClick={() => setIsOpen((open) => !open)}
       >
         <span className="language-switcher-current">
-          {isEnglish ? "EN · English" : "TR · Türkçe"}
+          {currentLabel}
         </span>
 
         <span
           aria-hidden="true"
           className="language-switcher-caret"
         >
-          ▾
+          {"\u25BE"}
         </span>
       </button>
 
@@ -232,9 +311,7 @@ export default function LanguageSwitcher() {
           isOpen ? " is-open" : ""
         }`}
         role="menu"
-        aria-label={
-          isEnglish ? "Language options" : "Dil seçenekleri"
-        }
+        aria-label={optionsLabel}
       >
         {localeLinks.map((localeLink) => (
           <Link

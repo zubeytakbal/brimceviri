@@ -10,6 +10,7 @@ import {
   findEnglishCategoryPage,
 } from "../../../converter/localizedCategoryPages";
 import { englishConversionPages } from "../../../converter/localizedConversionPages";
+import { findGermanCategoryPageByTurkishSlug } from "../../../converter/localizedGermanCategoryPages";
 import { englishUnitPages } from "../../../converter/localizedUnitPages";
 import { SITE_URL, buildSiteUrl } from "../../../siteConfig";
 
@@ -92,6 +93,10 @@ export async function generateMetadata({
     };
   }
 
+  const germanPage = findGermanCategoryPageByTurkishSlug(
+    categoryPage.sourceSlug
+  );
+
   return {
     title: categoryPage.title,
     description: categoryPage.description,
@@ -100,6 +105,9 @@ export async function generateMetadata({
       languages: {
         tr: `/kategoriler/${categoryPage.sourceSlug}`,
         en: `/en/categories/${categoryPage.slug}`,
+        ...(germanPage
+          ? { de: `/de/kategorien/${germanPage.slug}` }
+          : {}),
         "x-default": `/kategoriler/${categoryPage.sourceSlug}`,
       },
     },

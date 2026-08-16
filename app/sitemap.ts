@@ -15,6 +15,18 @@ import {
   findEnglishPageByTurkishSlug,
 } from "./converter/localizedConversionPages";
 import {
+  findGermanCategoryPageByTurkishSlug,
+  germanCategoryPages,
+} from "./converter/localizedGermanCategoryPages";
+import {
+  findGermanPageByTurkishSlug,
+  germanConversionPages,
+} from "./converter/localizedGermanConversionPages";
+import {
+  findGermanUnitPageByTurkishSlug,
+  germanUnitPages,
+} from "./converter/localizedGermanUnitPages";
+import {
   englishUnitPages,
   findEnglishUnitPageByTurkishSlug,
 } from "./converter/localizedUnitPages";
@@ -26,12 +38,14 @@ const contentLastModified = SITE_LAST_MODIFIED;
 
 function languageAlternates(
   turkishUrl: string,
-  englishUrl: string
+  englishUrl: string,
+  germanUrl?: string
 ) {
   return {
     languages: {
       tr: turkishUrl,
       en: englishUrl,
+      ...(germanUrl ? { de: germanUrl } : {}),
       "x-default": turkishUrl,
     },
   };
@@ -131,6 +145,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       const englishUrl = englishPage
         ? `${baseUrl}/en/${englishPage.slug}`
         : undefined;
+      const germanPage = findGermanPageByTurkishSlug(page.slug);
+      const germanUrl = germanPage
+        ? `${baseUrl}/de/${germanPage.slug}`
+        : undefined;
 
       return {
         url: turkishUrl,
@@ -139,7 +157,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.8,
 
         alternates: englishUrl
-          ? languageAlternates(turkishUrl, englishUrl)
+          ? languageAlternates(turkishUrl, englishUrl, germanUrl)
           : undefined,
       };
     });
@@ -148,6 +166,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     englishConversionPages.map((page) => {
       const turkishUrl = `${baseUrl}/${page.sourceSlug}`;
       const englishUrl = `${baseUrl}/en/${page.slug}`;
+      const germanPage = findGermanPageByTurkishSlug(
+        page.sourceSlug
+      );
+      const germanUrl = germanPage
+        ? `${baseUrl}/de/${germanPage.slug}`
+        : undefined;
 
       return {
         url: englishUrl,
@@ -156,7 +180,32 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.8,
         alternates: languageAlternates(
           turkishUrl,
-          englishUrl
+          englishUrl,
+          germanUrl
+        ),
+      };
+    });
+
+  const germanConversionRoutes: MetadataRoute.Sitemap =
+    germanConversionPages.map((page) => {
+      const turkishUrl = `${baseUrl}/${page.sourceSlug}`;
+      const englishPage = findEnglishPageByTurkishSlug(
+        page.sourceSlug
+      );
+      const englishUrl = englishPage
+        ? `${baseUrl}/en/${englishPage.slug}`
+        : `${baseUrl}/en`;
+      const germanUrl = `${baseUrl}/de/${page.slug}`;
+
+      return {
+        url: germanUrl,
+        lastModified: contentLastModified,
+        changeFrequency: "monthly",
+        priority: 0.8,
+        alternates: languageAlternates(
+          turkishUrl,
+          englishUrl,
+          germanUrl
         ),
       };
     });
@@ -172,6 +221,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       const englishUrl = englishPage
         ? `${baseUrl}/en/units/${englishPage.slug}`
         : undefined;
+      const germanPage = findGermanUnitPageByTurkishSlug(
+        page.slug
+      );
+      const germanUrl = germanPage
+        ? `${baseUrl}/de/einheiten/${germanPage.slug}`
+        : undefined;
 
       return {
         url: turkishUrl,
@@ -180,7 +235,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.75,
 
         alternates: englishUrl
-          ? languageAlternates(turkishUrl, englishUrl)
+          ? languageAlternates(turkishUrl, englishUrl, germanUrl)
           : undefined,
       };
     });
@@ -192,6 +247,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
       const englishUrl =
         `${baseUrl}/en/units/${page.slug}`;
+      const germanPage = findGermanUnitPageByTurkishSlug(
+        page.sourceSlug
+      );
+      const germanUrl = germanPage
+        ? `${baseUrl}/de/einheiten/${germanPage.slug}`
+        : undefined;
 
       return {
         url: englishUrl,
@@ -200,7 +261,33 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.75,
         alternates: languageAlternates(
           turkishUrl,
-          englishUrl
+          englishUrl,
+          germanUrl
+        ),
+      };
+    });
+
+  const germanUnitRoutes: MetadataRoute.Sitemap =
+    germanUnitPages.map((page) => {
+      const turkishUrl =
+        `${baseUrl}/birimler/${page.sourceSlug}`;
+      const englishPage = findEnglishUnitPageByTurkishSlug(
+        page.sourceSlug
+      );
+      const englishUrl = englishPage
+        ? `${baseUrl}/en/units/${englishPage.slug}`
+        : `${baseUrl}/en/units`;
+      const germanUrl = `${baseUrl}/de/einheiten/${page.slug}`;
+
+      return {
+        url: germanUrl,
+        lastModified: contentLastModified,
+        changeFrequency: "monthly",
+        priority: 0.75,
+        alternates: languageAlternates(
+          turkishUrl,
+          englishUrl,
+          germanUrl
         ),
       };
     });
@@ -216,6 +303,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       const englishUrl = englishPage
         ? `${baseUrl}/en/categories/${englishPage.slug}`
         : undefined;
+      const germanPage = findGermanCategoryPageByTurkishSlug(
+        page.slug
+      );
+      const germanUrl = germanPage
+        ? `${baseUrl}/de/kategorien/${germanPage.slug}`
+        : undefined;
 
       return {
         url: turkishUrl,
@@ -224,7 +317,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.85,
 
         alternates: englishUrl
-          ? languageAlternates(turkishUrl, englishUrl)
+          ? languageAlternates(turkishUrl, englishUrl, germanUrl)
           : undefined,
       };
     });
@@ -236,6 +329,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
       const englishUrl =
         `${baseUrl}/en/categories/${page.slug}`;
+      const germanPage = findGermanCategoryPageByTurkishSlug(
+        page.sourceSlug
+      );
+      const germanUrl = germanPage
+        ? `${baseUrl}/de/kategorien/${germanPage.slug}`
+        : undefined;
 
       return {
         url: englishUrl,
@@ -244,7 +343,33 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.85,
         alternates: languageAlternates(
           turkishUrl,
-          englishUrl
+          englishUrl,
+          germanUrl
+        ),
+      };
+    });
+
+  const germanCategoryRoutes: MetadataRoute.Sitemap =
+    germanCategoryPages.map((page) => {
+      const turkishUrl =
+        `${baseUrl}/kategoriler/${page.sourceSlug}`;
+      const englishPage = findEnglishCategoryPageByTurkishSlug(
+        page.sourceSlug
+      );
+      const englishUrl = englishPage
+        ? `${baseUrl}/en/categories/${englishPage.slug}`
+        : `${baseUrl}/en`;
+      const germanUrl = `${baseUrl}/de/kategorien/${page.slug}`;
+
+      return {
+        url: germanUrl,
+        lastModified: contentLastModified,
+        changeFrequency: "monthly",
+        priority: 0.85,
+        alternates: languageAlternates(
+          turkishUrl,
+          englishUrl,
+          germanUrl
         ),
       };
     });
@@ -300,7 +425,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
       alternates: languageAlternates(
         baseUrl,
-        `${baseUrl}/en`
+        `${baseUrl}/en`,
+        `${baseUrl}/de`
       ),
     },
     {
@@ -310,7 +436,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.95,
       alternates: languageAlternates(
         baseUrl,
-        `${baseUrl}/en`
+        `${baseUrl}/en`,
+        `${baseUrl}/de`
+      ),
+    },
+    {
+      url: `${baseUrl}/de`,
+      lastModified: contentLastModified,
+      changeFrequency: "weekly",
+      priority: 0.9,
+      alternates: languageAlternates(
+        baseUrl,
+        `${baseUrl}/en`,
+        `${baseUrl}/de`
       ),
     },
     {
@@ -353,35 +491,38 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/en/units`
       ),
     },
- {
-  url: `${baseUrl}/tum-birimler`,
-  lastModified: contentLastModified,
-  changeFrequency: "monthly",
-  priority: 0.8,
-  alternates: languageAlternates(
-    `${baseUrl}/tum-birimler`,
-    `${baseUrl}/en/all-conversions`
-  ),
-},
-{
-  url: `${baseUrl}/en/all-conversions`,
-  lastModified: contentLastModified,
-  changeFrequency: "monthly",
-  priority: 0.8,
-  alternates: languageAlternates(
-    `${baseUrl}/tum-birimler`,
-    `${baseUrl}/en/all-conversions`
-  ),
-},
+    {
+      url: `${baseUrl}/tum-birimler`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: languageAlternates(
+        `${baseUrl}/tum-birimler`,
+        `${baseUrl}/en/all-conversions`
+      ),
+    },
+    {
+      url: `${baseUrl}/en/all-conversions`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: languageAlternates(
+        `${baseUrl}/tum-birimler`,
+        `${baseUrl}/en/all-conversions`
+      ),
+    },
 
     ...turkishCategoryRoutes,
     ...englishCategoryRoutes,
+    ...germanCategoryRoutes,
     ...turkishCalculatorRoutes,
     ...englishCalculatorRoutes,
     ...turkishConversionRoutes,
     ...englishConversionRoutes,
+    ...germanConversionRoutes,
     ...turkishUnitRoutes,
     ...englishUnitRoutes,
+    ...germanUnitRoutes,
     ...corporateRoutes,
   ];
 }

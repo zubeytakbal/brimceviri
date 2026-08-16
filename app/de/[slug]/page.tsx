@@ -3,12 +3,12 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import PairConverter from "../../converter/PairConverter";
 import { convert } from "../../converter/convert";
-import { findEnglishUnitPage } from "../../converter/localizedUnitPages";
 import {
-  englishConversionPages,
-  findEnglishConversionPage,
-} from "../../converter/localizedConversionPages";
-import { findGermanPageByTurkishSlug } from "../../converter/localizedGermanConversionPages";
+  findGermanConversionPage,
+  germanConversionPages,
+} from "../../converter/localizedGermanConversionPages";
+import { findGermanUnitPage } from "../../converter/localizedGermanUnitPages";
+import { findEnglishPageByTurkishSlug } from "../../converter/localizedConversionPages";
 import { buildSiteUrl } from "../../siteConfig";
 
 type PageProps = {
@@ -21,7 +21,7 @@ export const dynamicParams = false;
 
 function formatNumber(value: number) {
   if (!Number.isFinite(value)) {
-    return "—";
+    return "\u2014";
   }
 
   if (
@@ -32,13 +32,13 @@ function formatNumber(value: number) {
     return value.toExponential(8);
   }
 
-  return Number(value.toPrecision(12)).toLocaleString("en-US", {
+  return Number(value.toPrecision(12)).toLocaleString("de-DE", {
     maximumFractionDigits: 12,
   });
 }
 
 export function generateStaticParams() {
-  return englishConversionPages.map((page) => ({
+  return germanConversionPages.map((page) => ({
     slug: page.slug,
   }));
 }
@@ -47,11 +47,11 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const page = findEnglishConversionPage(slug);
+  const page = findGermanConversionPage(slug);
 
   if (!page) {
     return {
-      title: "Conversion not found",
+      title: "Umrechnung nicht gefunden",
       robots: {
         index: false,
         follow: false,
@@ -59,62 +59,50 @@ export async function generateMetadata({
     };
   }
 
-  const title = `${page.fromName} to ${page.toName} Converter`;
-  const germanPage = findGermanPageByTurkishSlug(page.sourceSlug);
-
+  const englishPage = findEnglishPageByTurkishSlug(page.sourceSlug);
+  const title = `${page.fromName} zu ${page.toName} Umrechner`;
   const description =
-    `Convert ${page.fromName.toLowerCase()} to ` +
-    `${page.toName.toLowerCase()}. View the conversion formula, ` +
-    `conversion table and instant calculation result.`;
+    `Rechnen Sie ${page.fromName.toLowerCase()} in ${page.toName.toLowerCase()} um. ` +
+    `Sehen Sie Formel, Umrechnungstabelle und das direkte Ergebnis.`;
 
   return {
     title,
     description,
-
     alternates: {
-      canonical: `/en/${page.slug}`,
+      canonical: `/de/${page.slug}`,
       languages: {
         tr: `/${page.sourceSlug}`,
-        en: `/en/${page.slug}`,
-        ...(germanPage ? { de: `/de/${germanPage.slug}` } : {}),
+        en: englishPage ? `/en/${englishPage.slug}` : "/en",
+        de: `/de/${page.slug}`,
         "x-default": `/${page.sourceSlug}`,
       },
     },
-
     openGraph: {
       title,
       description,
-      url: buildSiteUrl(`/en/${page.slug}`),
+      url: buildSiteUrl(`/de/${page.slug}`),
       siteName: "BirimCeviri.app",
-      locale: "en_US",
+      locale: "de_DE",
       type: "website",
-    },
-
-    twitter: {
-      card: "summary",
-      title,
-      description,
     },
   };
 }
 
-export default async function EnglishConversionPage({
+export default async function GermanConversionPage({
   params,
 }: PageProps) {
   const { slug } = await params;
-  const page = findEnglishConversionPage(slug);
+  const page = findGermanConversionPage(slug);
 
   if (!page) {
     notFound();
   }
 
-  const reversePage = findEnglishConversionPage(
-    page.reverseSlug
-  );
-  const fromUnitInfo = findEnglishUnitPage(page.category, page.fromUnit);
-  const toUnitInfo = findEnglishUnitPage(page.category, page.toUnit);
+  const reversePage = findGermanConversionPage(page.reverseSlug);
+  const fromUnitInfo = findGermanUnitPage(page.category, page.fromUnit);
+  const toUnitInfo = findGermanUnitPage(page.category, page.toUnit);
 
-  const relatedConversions = englishConversionPages
+  const relatedConversions = germanConversionPages
     .filter(
       (relatedPage) =>
         relatedPage.slug !== page.slug &&
@@ -144,27 +132,18 @@ export default async function EnglishConversionPage({
     page.toUnit
   );
 
-  const formattedOneUnitResult = formatNumber(
-    oneUnitResult
-  );
+  const formattedOneUnitResult = formatNumber(oneUnitResult);
 
   return (
-    <main className="conversion-page" lang="en">
+    <main className="conversion-page" lang="de">
       <div className="conversion-breadcrumb-wrap">
-        <nav
-          className="breadcrumbs"
-          aria-label="Breadcrumb"
-        >
-          <Link href="/en">Home</Link>
-
-          <span aria-hidden="true">›</span>
-
+        <nav className="breadcrumbs" aria-label="Breadcrumb">
+          <Link href="/de">Startseite</Link>
+          <span aria-hidden="true">{"\u203A"}</span>
           <span>{page.categoryName}</span>
-
-          <span aria-hidden="true">›</span>
-
+          <span aria-hidden="true">{"\u203A"}</span>
           <span>
-            {page.fromName} to {page.toName}
+            {page.fromName} zu {page.toName}
           </span>
         </nav>
       </div>
@@ -172,13 +151,9 @@ export default async function EnglishConversionPage({
       <section className="conversion-hero">
         <div className="conversion-hero-inner">
           <div className="conversion-hero-tool">
-            <h1>
-              {page.fromName} to {page.toName} Converter
-            </h1>
-
+            <h1>{page.fromName} zu {page.toName} Umrechner</h1>
             <p className="conversion-hero-description">
-              Enter a value to calculate the result instantly
-              and free of charge.
+              Geben Sie einen Wert ein und berechnen Sie das Ergebnis sofort.
             </p>
 
             <PairConverter
@@ -187,13 +162,12 @@ export default async function EnglishConversionPage({
               toUnit={page.toUnit}
               fromName={page.fromName}
               toName={page.toName}
-              locale="en"
+              locale="de"
             />
           </div>
 
           <div className="conversion-hero-information">
-            <h2>Conversion summary</h2>
-
+            <h2>Umrechnungs\u00FCbersicht</h2>
             <p>
               1 {page.fromUnit} ={" "}
               <strong>
@@ -203,19 +177,17 @@ export default async function EnglishConversionPage({
 
             <dl>
               <div>
-                <dt>Formula</dt>
+                <dt>Formel</dt>
                 <dd>{page.formula}</dd>
               </div>
-
               <div>
-                <dt>Category</dt>
+                <dt>Kategorie</dt>
                 <dd>{page.categoryName}</dd>
               </div>
-
               <div>
-                <dt>Units</dt>
+                <dt>Einheiten</dt>
                 <dd>
-                  {page.fromUnit} → {page.toUnit}
+                  {page.fromUnit} \u2192 {page.toUnit}
                 </dd>
               </div>
             </dl>
@@ -226,22 +198,20 @@ export default async function EnglishConversionPage({
       <article className="conversion-content">
         <section className="conversion-section">
           <h2>
-            How do you convert {page.fromName.toLowerCase()}{" "}
-            to {page.toName.toLowerCase()}?
+            Wie rechnet man {page.fromName.toLowerCase()} in{" "}
+            {page.toName.toLowerCase()} um?
           </h2>
-
           <p>{page.explanation}</p>
 
           <div className="conversion-formula">
-            <strong>Conversion formula</strong>
+            <strong>Umrechnungsformel</strong>
             <p>{page.formula}</p>
           </div>
         </section>
 
         <section className="conversion-section">
           <h2>
-            {page.fromName} to {page.toName} conversion
-            table
+            Umrechnungstabelle: {page.fromName} zu {page.toName}
           </h2>
 
           <div className="conversion-table-wrap">
@@ -252,18 +222,14 @@ export default async function EnglishConversionPage({
                   <th>{page.toName}</th>
                 </tr>
               </thead>
-
               <tbody>
                 {tableRows.map((row) => (
                   <tr key={row.input}>
                     <td>
-                      {formatNumber(row.input)}{" "}
-                      {page.fromUnit}
+                      {formatNumber(row.input)} {page.fromUnit}
                     </td>
-
                     <td>
-                      {formatNumber(row.result)}{" "}
-                      {page.toUnit}
+                      {formatNumber(row.result)} {page.toUnit}
                     </td>
                   </tr>
                 ))}
@@ -272,119 +238,51 @@ export default async function EnglishConversionPage({
           </div>
         </section>
 
-        <section className="conversion-section">
-          <h2>
-            How many {page.toName.toLowerCase()} are in one{" "}
-            {page.fromName.toLowerCase()}?
-          </h2>
-
-          <p className="direct-answer">
-            1 {page.fromUnit} ={" "}
-            <strong>
-              {formattedOneUnitResult} {page.toUnit}
-            </strong>
-          </p>
-        </section>
-
-        <section className="conversion-section">
-          <h2>About this conversion</h2>
-
-          <p>
-            This calculator converts {page.fromName.toLowerCase()}{" "}
-            ({page.fromUnit}) to{" "}
-            {page.toName.toLowerCase()} ({page.toUnit}).
-            Enter any numeric value in the calculator to receive
-            the converted result immediately.
-          </p>
-
-          <p>
-            The result is calculated using the defined
-            conversion relationship between the two units.
-            Values may be displayed in scientific notation when
-            they are extremely large or extremely small.
-          </p>
-        </section>
-
         {fromUnitInfo && (
           <section className="conversion-section unit-information">
-            <h2>What is {fromUnitInfo.name}?</h2>
-
+            <h2>Was ist {fromUnitInfo.name}?</h2>
             <p>{fromUnitInfo.shortDescription}</p>
-
-            <h3>Short history of {fromUnitInfo.name}</h3>
-
             <p>{fromUnitInfo.historySummary}</p>
-
-            <Link
-              className="text-link"
-              href={`/en/units/${fromUnitInfo.slug}`}
-            >
-              Open the {fromUnitInfo.name} unit guide
+            <Link className="text-link" href={`/de/einheiten/${fromUnitInfo.slug}`}>
+              Einheitenleitfaden zu {fromUnitInfo.name} \u00F6ffnen
             </Link>
           </section>
         )}
 
         {toUnitInfo && (
           <section className="conversion-section unit-information">
-            <h2>What is {toUnitInfo.name}?</h2>
-
+            <h2>Was ist {toUnitInfo.name}?</h2>
             <p>{toUnitInfo.shortDescription}</p>
-
-            <h3>Short history of {toUnitInfo.name}</h3>
-
             <p>{toUnitInfo.historySummary}</p>
-
-            <Link
-              className="text-link"
-              href={`/en/units/${toUnitInfo.slug}`}
-            >
-              Open the {toUnitInfo.name} unit guide
+            <Link className="text-link" href={`/de/einheiten/${toUnitInfo.slug}`}>
+              Einheitenleitfaden zu {toUnitInfo.name} \u00F6ffnen
             </Link>
           </section>
         )}
 
         {reversePage && (
           <section className="conversion-section related-conversions">
-            <h2>Reverse conversion</h2>
-
-            <Link
-              className="text-link"
-              href={`/en/${reversePage.slug}`}
-            >
-              {reversePage.fromName} to{" "}
-              {reversePage.toName} converter
+            <h2>Umgekehrte Richtung</h2>
+            <Link className="text-link" href={`/de/${reversePage.slug}`}>
+              {reversePage.fromName} zu {reversePage.toName}
             </Link>
           </section>
         )}
 
         {relatedConversions.length > 0 && (
           <section className="conversion-section related-conversions">
-            <h2>Related conversions</h2>
-
+            <h2>Verwandte Umrechnungen</h2>
             <ul className="related-conversion-list">
               {relatedConversions.map((relatedPage) => (
                 <li key={relatedPage.slug}>
-                  <Link href={`/en/${relatedPage.slug}`}>
-                    {relatedPage.fromName} to{" "}
-                    {relatedPage.toName}
+                  <Link href={`/de/${relatedPage.slug}`}>
+                    {relatedPage.fromName} zu {relatedPage.toName}
                   </Link>
                 </li>
               ))}
             </ul>
           </section>
         )}
-
-        <section className="conversion-section language-alternatives">
-          <h2>Other languages</h2>
-
-          <Link
-            className="text-link"
-            href={`/${page.sourceSlug}`}
-            hrefLang="tr"
-          >
-            Türkçe sürümü görüntüle
-          </Link>
-        </section>
       </article>
     </main>
   );

@@ -4,6 +4,7 @@ import { buildSiteUrl } from "./siteConfig";
 
 const homeUrl = buildSiteUrl("/");
 const englishHomeUrl = buildSiteUrl("/en");
+const germanHomeUrl = buildSiteUrl("/de");
 
 export const metadata: Metadata = {
   title: "İhtiyacınız olan birim dönüşümünü bulun",
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
     languages: {
       tr: homeUrl,
       en: englishHomeUrl,
+      de: germanHomeUrl,
       "x-default": homeUrl,
     },
   },

@@ -3,204 +3,12 @@ import {
   conversionPages,
   type ConversionPage,
 } from "./conversionPages";
-import { KILOGRAM_FORCE_PER_SQUARE_CENTIMETRE_UNIT } from "./engineeringUnits";
+import { findUnit } from "./unitRegistry";
 
 export type LocalizedConversionPage = ConversionPage & {
   locale: "en";
   sourceSlug: string;
   categoryName: string;
-};
-
-type EnglishUnit = {
-  name: string;
-  slug: string;
-};
-
-const englishUnits: Record<string, EnglishUnit> = {
-  "uzunluk:m": {
-    name: "Meter",
-    slug: "meters",
-  },
-  "uzunluk:km": {
-    name: "Kilometer",
-    slug: "kilometers",
-  },
-  "uzunluk:cm": {
-    name: "Centimeter",
-    slug: "centimeters",
-  },
-  "uzunluk:mm": {
-    name: "Millimeter",
-    slug: "millimeters",
-  },
-  "uzunluk:mi": {
-    name: "Mile",
-    slug: "miles",
-  },
-  "uzunluk:ft": {
-    name: "Foot",
-    slug: "feet",
-  },
-  "uzunluk:in": {
-    name: "Inch",
-    slug: "inches",
-  },
-  "uzunluk:yd": {
-    name: "Yard",
-    slug: "yards",
-  },
-  "alan:m²": {
-    name: "Square Meter",
-    slug: "square-meters",
-  },
-  "alan:ha": {
-    name: "Hectare",
-    slug: "hectares",
-  },
-  "alan:ft²": {
-    name: "Square Foot",
-    slug: "square-feet",
-  },
-  "hacim:L": {
-    name: "Liter",
-    slug: "liters",
-  },
-  "hacim:m³": {
-    name: "Cubic Meter",
-    slug: "cubic-meters",
-  },
-  "hacim:mL": {
-    name: "Milliliter",
-    slug: "milliliters",
-  },
-  "kutle:kg": {
-    name: "Kilogram",
-    slug: "kilograms",
-  },
-  "kutle:g": {
-    name: "Gram",
-    slug: "grams",
-  },
-  "kutle:mg": {
-    name: "Milligram",
-    slug: "milligrams",
-  },
-  "kutle:lb": {
-    name: "Pound",
-    slug: "pounds",
-  },
-  "kutle:ton": {
-    name: "Tonne",
-    slug: "tonnes",
-  },
-  "kutle:oz": {
-    name: "Ounce",
-    slug: "ounces",
-  },
-  "basinc:Pa": {
-    name: "Pascal",
-    slug: "pascals",
-  },
-  "basinc:kPa": {
-    name: "Kilopascal",
-    slug: "kilopascals",
-  },
-  "basinc:bar": {
-    name: "Bar",
-    slug: "bars",
-  },
-  "basinc:psi": {
-    name: "PSI",
-    slug: "psi",
-  },
-  "basinc:atm": {
-    name: "Atmosphere",
-    slug: "atmospheres",
-  },
-  "basinc:mmHg": {
-    name: "Millimeter of Mercury",
-    slug: "millimeters-of-mercury",
-  },
-  [`basinc:${KILOGRAM_FORCE_PER_SQUARE_CENTIMETRE_UNIT}`]: {
-    name: "Kilogram-Force per Square Centimeter",
-    slug: "kilogram-force-per-square-centimeter",
-  },
-  "sicaklik:C": {
-    name: "Celsius",
-    slug: "celsius",
-  },
-  "sicaklik:F": {
-    name: "Fahrenheit",
-    slug: "fahrenheit",
-  },
-  "sicaklik:K": {
-    name: "Kelvin",
-    slug: "kelvin",
-  },
-  "zaman:s": {
-    name: "Second",
-    slug: "seconds",
-  },
-  "zaman:min": {
-    name: "Minute",
-    slug: "minutes",
-  },
-  "zaman:h": {
-    name: "Hour",
-    slug: "hours",
-  },
-  "hiz:m/s": {
-    name: "Meter per Second",
-    slug: "meters-per-second",
-  },
-  "hiz:km/h": {
-    name: "Kilometer per Hour",
-    slug: "kilometers-per-hour",
-  },
-  "hiz:mph": {
-    name: "Mile per Hour",
-    slug: "miles-per-hour",
-  },
-  "enerji:J": {
-    name: "Joule",
-    slug: "joules",
-  },
-  "enerji:kWh": {
-    name: "Kilowatt-hour",
-    slug: "kilowatt-hours",
-  },
-  "enerji:W": {
-    name: "Watt",
-    slug: "watts",
-  },
-  "enerji:kW": {
-    name: "Kilowatt",
-    slug: "kilowatts",
-  },
-  "debi:m³/h": {
-    name: "Cubic Meter per Hour",
-    slug: "cubic-meters-per-hour",
-  },
-  "debi:L/min": {
-    name: "Liter per Minute",
-    slug: "liters-per-minute",
-  },
-  "elektrik:V": {
-    name: "Volt",
-    slug: "volts",
-  },
-  "elektrik:kV": {
-    name: "Kilovolt",
-    slug: "kilovolts",
-  },
-  "elektrik:A": {
-    name: "Ampere",
-    slug: "amperes",
-  },
-  "elektrik:mA": {
-    name: "Milliampere",
-    slug: "milliamperes",
-  },
 };
 
 const englishCategoryNames: Record<string, string> = {
@@ -216,10 +24,6 @@ const englishCategoryNames: Record<string, string> = {
   debi: "Flow Rate",
   elektrik: "Electricity",
 };
-
-function findEnglishUnit(category: string, unit: string) {
-  return englishUnits[`${category}:${unit}`];
-}
 
 function formatEnglishValue(value: number) {
   return Number(value.toPrecision(12)).toLocaleString("en-US", {
@@ -318,12 +122,15 @@ function createTemperatureExplanation(
 function localizeConversionPage(
   page: ConversionPage
 ): LocalizedConversionPage | null {
-  const from = findEnglishUnit(page.category, page.fromUnit);
-  const to = findEnglishUnit(page.category, page.toUnit);
+  const from = findUnit(page.category, page.fromUnit);
+  const to = findUnit(page.category, page.toUnit);
 
-  if (!from || !to) {
+  if (!from?.en || !to?.en) {
     return null;
   }
+
+  const fromSlug = from.enConversionSlug ?? from.en.slug;
+  const toSlug = to.enConversionSlug ?? to.en.slug;
 
   const factor = convert(
     page.category,
@@ -336,38 +143,37 @@ function localizeConversionPage(
     ...page,
     locale: "en",
     sourceSlug: page.slug,
-    slug:
-      page.englishSlug ?? `${from.slug}-to-${to.slug}`,
-    fromName: from.name,
-    toName: to.name,
+    slug: page.englishSlug ?? `${fromSlug}-to-${toSlug}`,
+    fromName: from.en.name,
+    toName: to.en.name,
     categoryName:
       englishCategoryNames[page.category] ?? page.category,
     formula:
       page.category === "sicaklik"
         ? createTemperatureFormula(
-            from.name,
-            to.name,
+            from.en.name,
+            to.en.name,
             page.fromUnit,
             page.toUnit
           )
-        : createEnglishFormula(from.name, to.name, factor),
+        : createEnglishFormula(from.en.name, to.en.name, factor),
     explanation:
       page.category === "sicaklik"
         ? createTemperatureExplanation(
-            from.name,
-            to.name,
+            from.en.name,
+            to.en.name,
             page.fromUnit,
             page.toUnit
           )
         : createEnglishExplanation(
-            from.name,
-            to.name,
+            from.en.name,
+            to.en.name,
             page.fromUnit,
             page.toUnit,
             factor
           ),
     reverseSlug:
-      page.englishReverseSlug ?? `${to.slug}-to-${from.slug}`,
+      page.englishReverseSlug ?? `${toSlug}-to-${fromSlug}`,
   };
 }
 

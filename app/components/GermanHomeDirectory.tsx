@@ -3,127 +3,155 @@
 import Link from "next/link";
 import {
   Barbell,
+  Clock,
+  Cylinder,
   Gauge,
+  Lightning,
+  Plug,
   Ruler,
+  Square,
+  Thermometer,
+  Waves,
 } from "@phosphor-icons/react";
 import { useDeferredValue, useId, useState } from "react";
 import { useRouter } from "next/navigation";
 import { DecorativeIcon } from "./siteIcons";
+import { germanCalculatorPages } from "../converter/localizedGermanCalculatorPages";
 import { germanCategoryPages } from "../converter/localizedGermanCategoryPages";
 import { germanConversionPages } from "../converter/localizedGermanConversionPages";
+import { germanStaticPaths } from "../i18n/germanRoutes";
 
-type GermanCategoryCard = {
-  id: string;
-  name: string;
-  description: string;
-  href: string;
-  icon: "length" | "mass" | "pressure";
-  links: Array<{
-    id: string;
-    href: string;
-    label: string;
-  }>;
-};
+type IconName =
+  | "uzunluk"
+  | "alan"
+  | "hacim"
+  | "kutle"
+  | "sicaklik"
+  | "zaman"
+  | "hiz"
+  | "basinc"
+  | "enerji"
+  | "debi"
+  | "elektrik";
 
-const preferredSourceSlugs = [
-  "metre-kilometre",
-  "kilometre-metre",
-  "metre-santimetre",
-  "santimetre-metre",
-  "metre-milimetre",
-  "milimetre-metre",
-  "kilometre-mil",
-  "mil-kilometre",
-  "kilogram-gram",
-  "gram-kilogram",
-  "kilogram-pound",
-  "pound-kilogram",
-  "psi-bar",
-  "bar-psi",
-  "kilopascal-bar",
-  "bar-kilopascal",
-] as const;
-
-const copy = {
-  eyebrow: "Technische Einheitumrechnungen",
-  title: "Die passende Umrechnung schnell finden",
-  description:
-    "Suchen Sie direkt nach einer Umrechnung oder w\u00E4hlen Sie eine physikalische Gr\u00F6\u00DFe aus.",
-  searchLabel: "Umrechnung suchen",
-  searchPlaceholder:
-    "Beispiel: meter kilometer, kg pfund, psi bar",
-  searchHint:
-    "Suchen Sie nach Einheitenname, Symbol oder Umrechnungspaar, um die passende Seite zu \u00F6ffnen.",
-  searchResultsLabel: "Suchergebnisse",
-  searchEmpty: "Keine passende Umrechnungsseite gefunden.",
-  searchEnterHint:
-    "Dr\u00FCcken Sie Enter, um das erste Ergebnis zu \u00F6ffnen.",
-  searchCategoryPrefix: "Kategorie",
-  openLabel: "\u00D6ffnen",
-  categoriesTitle: "Einheitenumrechnungen",
-  categoriesDescription:
-    "Jede Karte \u00F6ffnet eine live Umrechnungskategorie mit echten Umrechnungsbeispielen.",
-  categoryAction: "Kategorieseite \u00F6ffnen",
-  popularTitle: "Beliebte Umrechnungen",
-  popularDescription:
-    "Direkte Einstiege zu h\u00E4ufig verwendeten Umrechnungsseiten.",
-  stats: {
-    activeCategories: "Kategorien",
-    conversions: "Umrechnungsseiten",
-  },
-};
-
-const categoryCopy = {
+const categoryMeta: Record<
+  string,
+  { name: string; description: string; icon: IconName }
+> = {
   uzunluk: {
-    name: "L\u00E4nge",
+    name: "Länge",
     description:
-      "Meter, Kilometer, Zentimeter, Zoll, Fu\u00DF und weitere L\u00E4ngeneinheiten umrechnen.",
-    icon: "length" as const,
+      "Öffnen Sie Umrechnungen für Meter, Kilometer, Zentimeter, Zoll und Fuß.",
+    icon: "uzunluk",
+  },
+  alan: {
+    name: "Fläche",
+    description:
+      "Vergleichen Sie Quadratmeter, Hektar und Quadratfuß auf einer Kategorieseite.",
+    icon: "alan",
+  },
+  hacim: {
+    name: "Volumen",
+    description:
+      "Öffnen Sie Umrechnungen für Liter, Milliliter und Kubikmeter.",
+    icon: "hacim",
   },
   kutle: {
     name: "Masse",
     description:
-      "Kilogramm, Gramm, Tonne, Pfund und Unze in beide Richtungen umrechnen.",
-    icon: "mass" as const,
+      "Springen Sie zu Kilogramm-, Gramm-, Tonne-, Pfund- und Unzen-Umrechnungen.",
+    icon: "kutle",
+  },
+  sicaklik: {
+    name: "Temperatur",
+    description:
+      "Öffnen Sie Celsius-, Fahrenheit- und Kelvin-Umrechnungen.",
+    icon: "sicaklik",
+  },
+  zaman: {
+    name: "Zeit",
+    description:
+      "Rechnen Sie Sekunden, Minuten und Stunden gegeneinander um.",
+    icon: "zaman",
+  },
+  hiz: {
+    name: "Geschwindigkeit",
+    description:
+      "Vergleichen Sie km/h, m/s und mph in echten Umrechnungsseiten.",
+    icon: "hiz",
   },
   basinc: {
     name: "Druck",
     description:
-      "Pascal, Kilopascal, Bar, PSI, Atmosph\u00E4re und weitere Druckeinheiten vergleichen.",
-    icon: "pressure" as const,
+      "Öffnen Sie Pascal-, bar-, psi- und andere Druckumrechnungen.",
+    icon: "basinc",
+  },
+  enerji: {
+    name: "Energie und Leistung",
+    description:
+      "Vergleichen Sie Joule, Kilowattstunde, Watt und Kilowatt.",
+    icon: "enerji",
+  },
+  debi: {
+    name: "Durchfluss",
+    description:
+      "Öffnen Sie Volumenstrom-Umrechnungen für m³/h und L/min.",
+    icon: "debi",
+  },
+  elektrik: {
+    name: "Elektrizität",
+    description:
+      "Öffnen Sie grundlegende Umrechnungen für Spannung und Stromstärke.",
+    icon: "elektrik",
   },
 };
 
-function normalizeSearchText(value: string) {
-  return value
-    .toLocaleLowerCase("de-DE")
-    .replace(/\u00DF/g, "ss")
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9]+/g, " ")
-    .trim();
-}
+const categoryOrder = [
+  "uzunluk",
+  "alan",
+  "hacim",
+  "kutle",
+  "sicaklik",
+  "zaman",
+  "hiz",
+  "basinc",
+  "enerji",
+  "debi",
+  "elektrik",
+] as const;
 
-function sortByPreference<T extends { sourceSlug: string }>(items: T[]) {
-  return [...items].sort((left, right) => {
-    const leftIndex = preferredSourceSlugs.indexOf(left.sourceSlug as (typeof preferredSourceSlugs)[number]);
-    const rightIndex = preferredSourceSlugs.indexOf(right.sourceSlug as (typeof preferredSourceSlugs)[number]);
-    const safeLeft =
-      leftIndex === -1 ? preferredSourceSlugs.length : leftIndex;
-    const safeRight =
-      rightIndex === -1 ? preferredSourceSlugs.length : rightIndex;
+const preferredSourceSlugs = [
+  "metre-kilometre",
+  "metre-santimetre",
+  "kilogram-gram",
+  "kilogram-pound",
+  "psi-bar",
+  "kilopascal-bar",
+] as const;
 
-    return safeLeft - safeRight;
-  });
-}
-
-function HomeCategoryIcon({
-  kind,
-}: {
-  kind: "length" | "mass" | "pressure";
-}) {
+function HomeCategoryIcon({ kind }: { kind: IconName }) {
   const Icon =
-    kind === "length" ? Ruler : kind === "mass" ? Barbell : Gauge;
+    kind === "uzunluk"
+      ? Ruler
+      : kind === "alan"
+        ? Square
+        : kind === "hacim"
+          ? Cylinder
+          : kind === "kutle"
+            ? Barbell
+            : kind === "sicaklik"
+              ? Thermometer
+              : kind === "zaman"
+                ? Clock
+                : kind === "hiz"
+                  ? Gauge
+                  : kind === "basinc"
+                    ? Gauge
+                    : kind === "enerji"
+                      ? Lightning
+                      : kind === "debi"
+                        ? Waves
+                        : Plug;
 
   return (
     <span className="home-category-icon-box" aria-hidden="true">
@@ -132,55 +160,33 @@ function HomeCategoryIcon({
   );
 }
 
-function createCategoryCards() {
-  return germanCategoryPages.flatMap((categoryPage) => {
-    const content = categoryCopy[
-      categoryPage.category as keyof typeof categoryCopy
-    ];
-
-    if (!content) {
-      return [];
-    }
-
-    const categoryConversions = sortByPreference(
-      germanConversionPages.filter(
-        (page) => page.category === categoryPage.category
-      )
-    ).slice(0, 2);
-
-    return [
-      {
-        id: categoryPage.slug,
-        name: content.name,
-        description: content.description,
-        href: `/de/kategorien/${categoryPage.slug}`,
-        icon: content.icon,
-        links: categoryConversions.map((conversion) => ({
-          id: conversion.slug,
-          href: `/de/${conversion.slug}`,
-          label: `${conversion.fromName} \u2192 ${conversion.toName}`,
-        })),
-      },
-    ] satisfies GermanCategoryCard[];
-  });
+function normalizeSearchText(value: string) {
+  return value
+    .toLocaleLowerCase("de-DE")
+    .replace(/ß/g, "ss")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
 }
 
-const categoryCards = createCategoryCards();
-
-const popularConversions = [
-  ...preferredSourceSlugs.flatMap((sourceSlug) => {
-    const match = germanConversionPages.find(
-      (page) => page.sourceSlug === sourceSlug
+function sortByPreference<T extends { sourceSlug: string }>(items: T[]) {
+  return [...items].sort((left, right) => {
+    const leftIndex = preferredSourceSlugs.indexOf(
+      left.sourceSlug as (typeof preferredSourceSlugs)[number]
     );
-    return match ? [match] : [];
-  }),
-  ...germanConversionPages.filter(
-    (page) =>
-      !preferredSourceSlugs.includes(
-        page.sourceSlug as (typeof preferredSourceSlugs)[number]
-      )
-  ),
-].slice(0, 6);
+    const rightIndex = preferredSourceSlugs.indexOf(
+      right.sourceSlug as (typeof preferredSourceSlugs)[number]
+    );
+
+    const safeLeft =
+      leftIndex === -1 ? preferredSourceSlugs.length : leftIndex;
+    const safeRight =
+      rightIndex === -1 ? preferredSourceSlugs.length : rightIndex;
+
+    return safeLeft - safeRight;
+  });
+}
 
 export default function GermanHomeDirectory() {
   const router = useRouter();
@@ -207,6 +213,66 @@ export default function GermanHomeDirectory() {
         .slice(0, 8)
     : [];
 
+  const categoryCards = categoryOrder.flatMap((category) => {
+    const categoryPage = germanCategoryPages.find(
+      (page) => page.category === category
+    );
+    const meta = categoryMeta[category];
+
+    if (!categoryPage || !meta) {
+      return [];
+    }
+
+    const links = sortByPreference(
+      germanConversionPages.filter((page) => page.category === category)
+    ).slice(0, 2);
+
+    if (links.length === 0) {
+      return [];
+    }
+
+    return [
+      {
+        ...meta,
+        id: category,
+        href: `/de/kategorien/${categoryPage.slug}`,
+        links: links.map((conversion) => ({
+          id: conversion.slug,
+          href: `/de/${conversion.slug}`,
+          label: `${conversion.fromName} → ${conversion.toName}`,
+        })),
+      },
+    ];
+  });
+
+  const popularConversions = [
+    ...preferredSourceSlugs.flatMap((sourceSlug) => {
+      const page = germanConversionPages.find(
+        (item) => item.sourceSlug === sourceSlug
+      );
+      return page ? [page] : [];
+    }),
+    ...germanConversionPages.filter(
+      (page) =>
+        !preferredSourceSlugs.includes(
+          page.sourceSlug as (typeof preferredSourceSlugs)[number]
+        )
+    ),
+  ].slice(0, 6);
+
+  const engineeringCalculators = [
+    "basinc-kuvvet-alan",
+    "hidrostatik-basinc",
+    "isi-enerjisi",
+    "isi-iletimi",
+    "reynolds-sayisi",
+  ].flatMap((sourceSlug) => {
+    const page = germanCalculatorPages.find(
+      (item) => item.sourceSlug === sourceSlug
+    );
+    return page ? [page] : [];
+  });
+
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
@@ -220,21 +286,23 @@ export default function GermanHomeDirectory() {
       <section className="directory-hero">
         <div className="directory-shell">
           <div className="directory-hero-copy">
-            <p className="directory-eyebrow">{copy.eyebrow}</p>
-            <h1>{copy.title}</h1>
-            <p className="directory-lead">{copy.description}</p>
+            <p className="directory-eyebrow">Technische Einheitenumrechnungen</p>
+            <h1>Die passende Umrechnung schnell finden</h1>
+            <p className="directory-lead">
+              Suchen Sie direkt nach einer Umrechnungsseite oder wählen Sie die passende physikalische Größe.
+            </p>
           </div>
 
           <div className="directory-hero-panel">
             <form className="directory-search" onSubmit={handleSubmit} role="search">
-              <label htmlFor={inputId}>{copy.searchLabel}</label>
+              <label htmlFor={inputId}>Umrechnung suchen</label>
 
               <div className="directory-search-field">
                 <input
                   id={inputId}
                   type="search"
                   value={query}
-                  placeholder={copy.searchPlaceholder}
+                  placeholder="Beispiel: meter kilometer, kg pfund, psi bar"
                   autoComplete="off"
                   spellCheck={false}
                   aria-describedby={`${inputId}-hint`}
@@ -248,19 +316,19 @@ export default function GermanHomeDirectory() {
                     name="search"
                     size={18}
                   />
-                  {copy.openLabel}
+                  Öffnen
                 </button>
               </div>
 
               <p className="directory-search-hint" id={`${inputId}-hint`}>
-                {copy.searchHint}
+                Suchen Sie nach Einheitenname, Symbol oder Umrechnungspaar, um die passende Seite direkt zu öffnen.
               </p>
 
               {query.trim() ? (
                 <div className="directory-search-results-wrap">
                   <div className="directory-search-results-head">
-                    <strong>{copy.searchResultsLabel}</strong>
-                    <span>{copy.searchEnterHint}</span>
+                    <strong>Suchergebnisse</strong>
+                    <span>Drücken Sie Enter, um das erste Ergebnis zu öffnen.</span>
                   </div>
 
                   {searchResults.length > 0 ? (
@@ -269,18 +337,20 @@ export default function GermanHomeDirectory() {
                         <li key={result.slug}>
                           <Link href={`/de/${result.slug}`}>
                             <span>
-                              {result.fromName} \u2192 {result.toName}
+                              {result.fromName} → {result.toName}
                             </span>
                             <small>
-                              {copy.searchCategoryPrefix}: {result.categoryName} \u00B7{" "}
-                              {result.fromUnit} \u2192 {result.toUnit}
+                              Kategorie: {result.categoryName} · {result.fromUnit} →{" "}
+                              {result.toUnit}
                             </small>
                           </Link>
                         </li>
                       ))}
                     </ul>
                   ) : (
-                    <p className="directory-search-empty">{copy.searchEmpty}</p>
+                    <p className="directory-search-empty">
+                      Keine passende Umrechnungsseite gefunden.
+                    </p>
                   )}
                 </div>
               ) : null}
@@ -288,13 +358,16 @@ export default function GermanHomeDirectory() {
 
             <dl className="directory-stats">
               <div>
-                <dt>{copy.stats.activeCategories}</dt>
-                <dd>{germanCategoryPages.length}</dd>
+                <dt>Kategorien</dt>
+                <dd>{categoryCards.length}</dd>
               </div>
-
               <div>
-                <dt>{copy.stats.conversions}</dt>
+                <dt>Umrechnungsseiten</dt>
                 <dd>{germanConversionPages.length}</dd>
+              </div>
+              <div>
+                <dt>Rechner</dt>
+                <dd>{engineeringCalculators.length}</dd>
               </div>
             </dl>
           </div>
@@ -305,9 +378,20 @@ export default function GermanHomeDirectory() {
         <section className="directory-section">
           <header className="directory-section-header">
             <div>
-              <h2>{copy.categoriesTitle}</h2>
-              <p>{copy.categoriesDescription}</p>
+              <h2>Einheitenumrechnungen</h2>
+              <p>
+                Jede Karte öffnet eine echte Kategorieseite und zeigt direkte Beispiele aus dieser Einheitengruppe.
+              </p>
             </div>
+
+            <Link className="directory-section-link" href={germanStaticPaths.allConversions}>
+              <DecorativeIcon
+                className="directory-link-icon"
+                name="allConversions"
+                size={18}
+              />
+              Alle Umrechnungen
+            </Link>
           </header>
 
           <div className="directory-home-category-grid">
@@ -316,7 +400,7 @@ export default function GermanHomeDirectory() {
                 <Link
                   className="directory-card-stretch"
                   href={category.href}
-                  aria-label={`${category.name} ${copy.categoryAction}`}
+                  aria-label={`${category.name} öffnen`}
                 />
 
                 <div className="directory-card-body">
@@ -324,7 +408,6 @@ export default function GermanHomeDirectory() {
                     <span className="directory-card-badge" aria-hidden="true">
                       <HomeCategoryIcon kind={category.icon} />
                     </span>
-
                     <div>
                       <h3 className="home-category-title">{category.name}</h3>
                     </div>
@@ -344,22 +427,30 @@ export default function GermanHomeDirectory() {
 
                   <div className="directory-card-footer">
                     <Link className="directory-category-guide" href={category.href}>
-                      {copy.categoryAction}
+                      Kategorieseite öffnen
                     </Link>
                   </div>
                 </div>
               </article>
             ))}
           </div>
-
         </section>
 
         <section className="directory-section">
           <header className="directory-section-header">
             <div>
-              <h2>{copy.popularTitle}</h2>
-              <p>{copy.popularDescription}</p>
+              <h2>Beliebte Umrechnungen</h2>
+              <p>Direkte Einstiege zu häufig verwendeten deutschen Umrechnungsseiten.</p>
             </div>
+
+            <Link className="directory-section-link" href={germanStaticPaths.allConversions}>
+              <DecorativeIcon
+                className="directory-link-icon"
+                name="allConversions"
+                size={18}
+              />
+              Alle Umrechnungen
+            </Link>
           </header>
 
           <ul className="directory-popular-list">
@@ -367,15 +458,66 @@ export default function GermanHomeDirectory() {
               <li key={conversion.slug}>
                 <Link href={`/de/${conversion.slug}`}>
                   <span className="directory-conversion-title">
-                    {conversion.fromName} \u2192 {conversion.toName}
+                    {conversion.fromName} → {conversion.toName}
                   </span>
                   <small>
-                    {conversion.fromUnit} \u2192 {conversion.toUnit}
+                    {conversion.fromUnit} → {conversion.toUnit}
                   </small>
                 </Link>
               </li>
             ))}
           </ul>
+        </section>
+
+        <section className="directory-section" id="engineering-calculators">
+          <header className="directory-section-header">
+            <div>
+              <h2>Ingenieurrechner</h2>
+              <p>
+                Technische Werkzeuge für Druck, Strömung und Wärmeübertragung.
+              </p>
+            </div>
+
+            <Link className="directory-section-link" href={germanStaticPaths.engineeringHub}>
+              <DecorativeIcon
+                className="directory-link-icon"
+                name="allConversions"
+                size={18}
+              />
+              Alle Ingenieurrechner
+            </Link>
+          </header>
+
+          <div className="directory-tool-grid">
+            {engineeringCalculators.map((calculator) => (
+              <article className="directory-home-card directory-tool-card" key={calculator.slug}>
+                <Link
+                  className="directory-card-stretch"
+                  href={`/de/rechner/${calculator.slug}`}
+                  aria-label={calculator.shortTitle}
+                />
+
+                <div className="directory-card-body">
+                  <div className="directory-tool-copy">
+                    <p className="directory-card-formula">{calculator.formula}</p>
+                    <h3 className="home-category-title">{calculator.shortTitle}</h3>
+                    <p className="directory-card-description">
+                      {calculator.description}
+                    </p>
+                  </div>
+
+                  <div className="directory-card-footer">
+                    <Link
+                      className="directory-category-guide"
+                      href={`/de/rechner/${calculator.slug}`}
+                    >
+                      Öffnen
+                    </Link>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
         </section>
       </div>
     </main>

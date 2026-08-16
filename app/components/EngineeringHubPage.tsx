@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { DecorativeIcon, getCalculatorIconName } from "./siteIcons";
 
-type Locale = "tr" | "en";
+type Locale = "tr" | "en" | "de";
 
 type EngineeringTool = {
   slug: string;
@@ -87,7 +87,7 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
             title: "Reynolds Sayısı",
             formula: "Re = ρ × v × D / μ",
             description:
-              "Akış hızını ve karakteristik boyutu kullanarak yaklaşık akış rejimini değerlendirin.",
+              "Akış hızı ve karakteristik boyut ile yaklaşık akış rejimini değerlendirin.",
           },
         ],
       },
@@ -225,6 +225,95 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
       label: "Turkish version",
     },
   },
+  de: {
+    breadcrumbAriaLabel: "Breadcrumb",
+    breadcrumbs: [
+      { label: "Startseite", href: "/de" },
+      { label: "Ingenieurrechner" },
+    ],
+    title: "Ingenieurrechner",
+    description:
+      "Bündeln Sie technische Rechner für Druck, Strömung, Wärmeübertragung und Einheitenumrechnungen auf einer fokussierten Übersichtsseite.",
+    introTitle: "Ein kompakter Einstieg in technische Rechenwerkzeuge",
+    introBody:
+      "Diese Seite fasst die aktuellen Ingenieurrechner nach Themenfeldern zusammen. So lassen sich Formeln vergleichen, Einsatzfälle schneller einordnen und die passenden Werkzeuge direkt öffnen.",
+    groups: [
+      {
+        title: "Druck und Strömung",
+        description:
+          "Werkzeuge für Druckbeziehungen, hydrostatische Lasten und erste Strömungsbewertungen in Leitungen.",
+        tools: [
+          {
+            slug: "druck-kraft-flaeche",
+            href: "/de/rechner/druck-kraft-flaeche",
+            title: "Druck, Kraft und Fläche",
+            formula: "P = F / A",
+            description:
+              "Berechnen Sie Druck, Kraft oder Fläche mit technischen Einheiten und SI-Bezug.",
+          },
+          {
+            slug: "hydrostatischer-druck",
+            href: "/de/rechner/hydrostatischer-druck",
+            title: "Hydrostatischer Druck",
+            formula: "ΔP = ρgh",
+            description:
+              "Berechnen Sie hydrostatische Druckdifferenz, Dichte, Tiefe oder Erdbeschleunigung.",
+          },
+          {
+            slug: "reynolds-zahl",
+            href: "/de/rechner/reynolds-zahl",
+            title: "Reynolds-Zahl",
+            formula: "Re = ρ × v × D / μ",
+            description:
+              "Bewerten Sie das Strömungsregime über Dichte, Geschwindigkeit, Durchmesser und Viskosität.",
+          },
+        ],
+      },
+      {
+        title: "Wärmeübertragung",
+        description:
+          "Werkzeuge für gespeicherte Wärmeenergie, Wärmeleitung und thermische Materialvergleiche.",
+        tools: [
+          {
+            slug: "waermeenergie",
+            href: "/de/rechner/waermeenergie",
+            title: "Wärmeenergie",
+            formula: "Q = m × c × ΔT",
+            description:
+              "Berechnen Sie Wärmeenergie, Masse, spezifische Wärmekapazität oder Temperaturdifferenz.",
+          },
+          {
+            slug: "waermeleitung",
+            href: "/de/rechner/waermeleitung",
+            title: "Wärmeleitung",
+            formula: "Q̇ = k × A × ΔT / L",
+            description:
+              "Vergleichen Sie Wärmestrom aus Leitfähigkeit, Fläche, Temperaturdifferenz und Schichtdicke.",
+          },
+        ],
+      },
+    ],
+    howToTitle: "Wie verwendet man diese Rechner?",
+    howToSteps: [
+      "Wählen Sie zuerst die gesuchte Zielgröße und tragen Sie nur die bekannten Werte ein.",
+      "Legen Sie für jeden Eingabewert die richtige Einheit fest; alle Werkzeuge rechnen intern zuerst auf SI um.",
+      "Prüfen Sie Hauptresultat, eingesetzte Formel und SI-Äquivalent gemeinsam, um Plausibilitätsfehler schnell zu erkennen.",
+    ],
+    guidesTitle: "Passende Einheitenleitfäden",
+    guidesDescription:
+      "Wenn Sie Definitionen, Symbole oder Hintergrundwissen zu den verwendeten Basisgrößen brauchen, öffnen Sie die passenden Einheitenleitfäden.",
+    guideLinks: [
+      { href: "/de/einheiten/pascal", label: "Pascal (Pa) Leitfaden" },
+      { href: "/de/einheiten/meter", label: "Meter (m) Leitfaden" },
+      { href: "/de/einheiten/kilogramm", label: "Kilogramm (kg) Leitfaden" },
+    ],
+    alternateTitle: "Weitere Sprachen",
+    alternateLink: {
+      href: "/en/engineering-calculators",
+      hrefLang: "en",
+      label: "English version",
+    },
+  },
 };
 
 export function getEngineeringHubContent(locale: Locale) {
@@ -245,18 +334,11 @@ export default function EngineeringHubPage({
   return (
     <main className="unit-information-page" lang={locale}>
       <article className="unit-page-shell">
-        <nav
-          className="breadcrumbs"
-          aria-label={content.breadcrumbAriaLabel}
-        >
+        <nav className="breadcrumbs" aria-label={content.breadcrumbAriaLabel}>
           {content.breadcrumbs.map((item, index) => (
             <span key={`${item.label}-${index}`}>
               {index > 0 ? <span aria-hidden="true"> › </span> : null}
-              {item.href ? (
-                <Link href={item.href}>{item.label}</Link>
-              ) : (
-                <span>{item.label}</span>
-              )}
+              {item.href ? <Link href={item.href}>{item.label}</Link> : <span>{item.label}</span>}
             </span>
           ))}
         </nav>

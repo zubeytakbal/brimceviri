@@ -58,6 +58,23 @@ const copy = {
     compositeExpression: "Composite expression",
     siEquivalent: "SI equivalent",
   },
+  de: {
+    targetLabel: "Berechnungsziel",
+    pressure: "Druck berechnen",
+    force: "Kraft berechnen",
+    area: "Fläche berechnen",
+    pressureValue: "Druck",
+    forceValue: "Kraft",
+    areaValue: "Fläche",
+    result: "Ergebnis",
+    formula: "Eingesetzte Formel",
+    clear: "Werte zurücksetzen",
+    resultLive: "Berechnungsergebnis",
+    resultPlaceholder: "Das Ergebnis erscheint hier",
+    automaticResultUnit: "Automatische Ergebniseinheit",
+    compositeExpression: "Zusammengesetzter Ausdruck",
+    siEquivalent: "SI-Äquivalent",
+  },
 } as const;
 
 export default function PressureForceAreaCalculator({

@@ -78,6 +78,20 @@ const messages = {
     nonPhysicalSpecificHeat:
       "These inputs do not produce a physically meaningful specific heat.",
   },
+  de: {
+    missing:
+      "Geben Sie die drei für die Berechnung erforderlichen Werte ein.",
+    invalid: "Geben Sie gültige numerische Werte ein.",
+    massPositive: "Die Masse muss größer als null sein.",
+    specificHeatPositive:
+      "Die spezifische Wärmekapazität muss größer als null sein.",
+    temperatureDifferenceNonZero:
+      "Für eine Rückwärtsberechnung darf die Temperaturdifferenz nicht null sein.",
+    nonPhysicalMass:
+      "Diese Eingaben ergeben keine physikalisch sinnvolle Masse.",
+    nonPhysicalSpecificHeat:
+      "Diese Eingaben ergeben keine physikalisch sinnvolle spezifische Wärmekapazität.",
+  },
 } as const;
 
 function createErrorResult(

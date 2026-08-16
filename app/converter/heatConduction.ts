@@ -94,6 +94,25 @@ const messages = {
     nonPhysicalLength:
       "These inputs do not produce a physically meaningful thickness.",
   },
+  de: {
+    missing:
+      "Geben Sie die vier für die Berechnung erforderlichen Werte ein.",
+    invalid: "Geben Sie gültige numerische Werte ein.",
+    conductivityPositive:
+      "Die Wärmeleitfähigkeit muss größer als null sein.",
+    areaPositive: "Die Fläche muss größer als null sein.",
+    lengthPositive: "Die Dicke muss größer als null sein.",
+    temperatureDifferenceNonZero:
+      "Für eine Rückwärtsberechnung darf die Temperaturdifferenz nicht null sein.",
+    powerNonZero:
+      "Für die Berechnung der Dicke darf die Wärmestromrate nicht null sein.",
+    nonPhysicalConductivity:
+      "Diese Eingaben ergeben keine physikalisch sinnvolle Leitfähigkeit.",
+    nonPhysicalArea:
+      "Diese Eingaben ergeben keine physikalisch sinnvolle Fläche.",
+    nonPhysicalLength:
+      "Diese Eingaben ergeben keine physikalisch sinnvolle Dicke.",
+  },
 } as const;
 
 function createErrorResult(

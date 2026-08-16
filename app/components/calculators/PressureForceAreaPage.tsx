@@ -8,10 +8,11 @@ import {
 } from "../../converter/engineeringUnits";
 import {
   formatEngineeringValue,
+  type CalculatorLocale,
 } from "../../converter/pressureForceArea";
 import PressureForceAreaCalculator from "./PressureForceAreaCalculator";
 
-type Locale = "tr" | "en";
+type Locale = CalculatorLocale;
 
 type UnitTableSection = {
   id: string;
@@ -73,28 +74,43 @@ type PageCopy = {
   }>;
 };
 
+const unitSectionHeadings = {
+  tr: {
+    pressure: "Basınç birimleri",
+    force: "Kuvvet birimleri",
+    area: "Alan birimleri",
+  },
+  en: {
+    pressure: "Pressure units",
+    force: "Force units",
+    area: "Area units",
+  },
+  de: {
+    pressure: "Druckeinheiten",
+    force: "Krafteinheiten",
+    area: "Flächeneinheiten",
+  },
+} as const;
+
 function renderUnitTableSections(locale: Locale) {
+  const headings = unitSectionHeadings[locale];
+
   return [
     {
       id: "pressure-units",
-      heading:
-        locale === "tr"
-          ? "Basınç birimleri"
-          : "Pressure units",
+      heading: headings.pressure,
       siSymbol: "Pa",
       units: pressureUnitDefinitions,
     },
     {
       id: "force-units",
-      heading:
-        locale === "tr" ? "Kuvvet birimleri" : "Force units",
+      heading: headings.force,
       siSymbol: "N",
       units: forceUnitDefinitions,
     },
     {
       id: "area-units",
-      heading:
-        locale === "tr" ? "Alan birimleri" : "Area units",
+      heading: headings.area,
       siSymbol: "m²",
       units: areaUnitDefinitions,
     },
@@ -356,6 +372,137 @@ const pageCopy: Record<Locale, PageCopy> = {
       },
       { label: "What is Bar?", href: "/en/units/bar" },
       { label: "What is PSI?", href: "/en/units/psi" },
+    ],
+  },
+  de: {
+    breadcrumbs: [
+      { label: "Startseite", href: "/de" },
+      { label: "Rechner" },
+      { label: "Druck-, Kraft- und Flächenrechner" },
+    ],
+    breadcrumbLabel: "Breadcrumb",
+    title: "Druck-, Kraft- und Flächenrechner",
+    description:
+      "Berechnen Sie Druck, Kraft oder Fläche über SI-Basiseinheiten. Der Rechner unterstützt Pa, hPa, kPa, MPa, GPa, bar, atm, kgf/cm², psi, ksi, N, kN, kgf, lbf, kip, m², cm², mm², ft² und viele weitere Einheiten.",
+    heroEyebrow: "INGENIEURRECHNER",
+    heroResultHeading: "Berechnungsergebnis",
+    formulasHeading: "Verwendete Formeln",
+    variablesHeading: "Bedeutung der Variablen",
+    unitsHeading: "Einheitentabellen",
+    examplesHeading: "Berechnete Beispiele",
+    applicationsHeading: "Typische Anwendungsbereiche",
+    limitationsHeading: "Einschränkungen und Messgenauigkeit",
+    scientificNotesHeading: "Wissenschaftliche Hinweise",
+    sourcesHeading: "Quellen",
+    relatedHeading: "Verwandte Links",
+    relatedConversionsHeading: "Druckumrechnungen",
+    relatedGuidesHeading: "Einheitenratgeber",
+    tableColumns: {
+      unitName: "Einheitenname",
+      symbol: "Symbol",
+      siEquivalent: "SI-Äquivalent",
+      typicalUse: "Typische Verwendung",
+    },
+    formulas: [
+      "P = F / A",
+      "F = P × A",
+      "A = F / P",
+      "1 Pa = 1 N/m²",
+    ],
+    variables: [
+      {
+        term: "P",
+        explanation:
+          "Druck, definiert als die senkrecht auf eine Fläche wirkende Kraft geteilt durch diese Fläche.",
+      },
+      {
+        term: "F",
+        explanation:
+          "Kraft. In der Gleichung wird die senkrecht zur Oberfläche wirkende Komponente verwendet.",
+      },
+      {
+        term: "A",
+        explanation:
+          "Kontakt- oder Wirkfläche. Dieselbe Kraft erzeugt auf einer kleineren Fläche einen höheren mittleren Druck.",
+      },
+    ],
+    examples: [
+      {
+        title: "1000 N / 0,01 m² = 100000 Pa",
+        body:
+          "Eine Kraft von 1000 N, gleichmäßig auf 0,01 m² verteilt, erzeugt einen Druck von 100000 Pa, also 100 kPa.",
+      },
+      {
+        title: "1 kgf / 1 cm² = 98066,5 Pa",
+        body:
+          "Unter Standardschwerkraft entspricht 1 kgf 9,80665 N. Da 1 cm² gleich 0,0001 m² ist, ergibt sich ein Druck von 9,80665 / 0,0001 = 98066,5 Pa.",
+      },
+      {
+        title: "1 kN / 100 cm² = 100 kPa",
+        body:
+          "1 kN wird zu 1000 N und 100 cm² zu 0,01 m². Aus 1000 / 0,01 ergibt sich 100000 Pa, also 100 kPa.",
+      },
+      {
+        title: "1 bar × 10 cm² = 100 N",
+        body:
+          "1 bar entspricht 100000 Pa und 10 cm² entsprechen 0,001 m². Mit F = P × A ergibt sich 100000 × 0,001 = 100 N.",
+      },
+      {
+        title: "1 MPa × 1 mm² = 1 N",
+        body:
+          "1 MPa entspricht 1000000 Pa. Da 1 mm² gleich 0,000001 m² ist, ergibt die Multiplikation genau 1 N.",
+      },
+      {
+        title: "1 lbf / 1 in² ≈ 1 psi",
+        body:
+          "Mit 1 lbf ≈ 4,4482216152605 N und 1 in² = 0,00064516 m² ergibt sich ein Wert von etwa 6894,757 Pa, also näherungsweise 1 psi.",
+      },
+    ],
+    applications: [
+      "Abschätzungen des Kontaktdrucks",
+      "Berechnungen für Pressen, Spannen und Werkzeugkräfte",
+      "Erste Auslegung von Hydraulik- und Pneumatiksystemen",
+      "Vergleiche von Reifen-, Dichtungs- und Flächenlasten",
+    ],
+    limitations: [
+      "Das Ergebnis stellt einen mittleren, gleichmäßig verteilten Druck dar.",
+      "Es reicht allein nicht aus für Spannungskonzentrationen, geneigte Kräfte, dynamische Belastungen oder Materialverformungen.",
+      "Druck und mechanische Spannung haben dieselbe Einheit, werden aber nicht immer im gleichen technischen Zusammenhang verwendet.",
+    ],
+    scientificNotes: [
+      "Bei Berechnungen mit kgf, gf und technischer Atmosphäre wird die Standard-Erdbeschleunigung g₀ = 9,80665 m/s² verwendet.",
+      "Flüssigkeitssäulen-Einheiten wie mmHg, mmH₂O, cmH₂O, inHg und inH₂O können je nach Bezugstemperatur und Konvention variieren; dieser Rechner verwendet die angegebenen konventionellen Umrechnungsfaktoren.",
+      "Masse und Kraft sind nicht dieselbe Größe, daher wird kg nicht als Krafteinheit angeboten; es wird nur kgf verwendet.",
+    ],
+    sources: [
+      {
+        label: "BIPM SI Brochure",
+        href: "https://www.bipm.org/en/publications/si-brochure",
+      },
+      {
+        label: "NIST Appendix B.9 Conversion Factors",
+        href: "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b9",
+      },
+    ],
+    relatedConversions: [
+      { label: "PSI → Bar", href: "/de/psi-bar" },
+      {
+        label: "Kilopascal → Bar",
+        href: "/de/kilopascal-bar",
+      },
+      { label: "Pascal → Bar", href: "/de/pascal-bar" },
+    ],
+    relatedGuides: [
+      {
+        label: "Was ist Pascal?",
+        href: "/de/einheiten/pascal",
+      },
+      {
+        label: "Was ist Kilopascal?",
+        href: "/de/einheiten/kilopascal",
+      },
+      { label: "Was ist Bar?", href: "/de/einheiten/bar" },
+      { label: "Was ist PSI?", href: "/de/einheiten/psi" },
     ],
   },
 };

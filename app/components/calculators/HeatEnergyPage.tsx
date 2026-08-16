@@ -53,35 +53,52 @@ type PageCopy = {
   relatedConversions: Array<{ label: string; href: string }>;
 };
 
+const unitSectionHeadings = {
+  tr: {
+    energy: "Enerji birimleri",
+    mass: "Kütle birimleri",
+    specificHeat: "Özgül ısı birimleri",
+    temperatureDifference: "Sıcaklık farkı birimleri",
+  },
+  en: {
+    energy: "Energy units",
+    mass: "Mass units",
+    specificHeat: "Specific-heat units",
+    temperatureDifference: "Temperature-difference units",
+  },
+  de: {
+    energy: "Energieeinheiten",
+    mass: "Masseneinheiten",
+    specificHeat: "Einheiten der spezifischen Wärmekapazität",
+    temperatureDifference: "Temperaturdifferenzeinheiten",
+  },
+} as const;
+
 function getUnitSections(locale: CalculatorLocale): UnitTableSection[] {
+  const headings = unitSectionHeadings[locale];
+
   return [
     {
       id: "energy-units",
-      heading: locale === "tr" ? "Enerji birimleri" : "Energy units",
+      heading: headings.energy,
       siSymbol: "J",
       units: heatEnergyUnitDefinitions,
     },
     {
       id: "mass-units",
-      heading: locale === "tr" ? "Kütle birimleri" : "Mass units",
+      heading: headings.mass,
       siSymbol: "kg",
       units: calculatorMassUnitDefinitions,
     },
     {
       id: "specific-heat-units",
-      heading:
-        locale === "tr"
-          ? "Özgül ısı birimleri"
-          : "Specific-heat units",
+      heading: headings.specificHeat,
       siSymbol: "J/(kg·K)",
       units: specificHeatUnitDefinitions,
     },
     {
       id: "temperature-difference-units",
-      heading:
-        locale === "tr"
-          ? "Sıcaklık farkı birimleri"
-          : "Temperature-difference units",
+      heading: headings.temperatureDifference,
       siSymbol: "K",
       units: temperatureDifferenceUnitDefinitions,
     },
@@ -309,6 +326,116 @@ const pageCopy: Record<CalculatorLocale, PageCopy> = {
     relatedConversions: [
       { label: "Kilograms to Grams", href: "/en/kilograms-to-grams" },
       { label: "Grams to Kilograms", href: "/en/grams-to-kilograms" },
+    ],
+  },
+  de: {
+    breadcrumbs: [
+      { label: "Startseite", href: "/de" },
+      { label: "Rechner" },
+      { label: "Wärmeenergie-Rechner" },
+    ],
+    breadcrumbLabel: "Breadcrumb",
+    title: "Wärmeenergie-Rechner",
+    description:
+      "Berechnen Sie mit Q = m × c × ΔT die Wärmeenergie, die Masse, die spezifische Wärmekapazität oder die Temperaturdifferenz auf SI-Basis. Das Ergebnis wird in einer lesbaren Einheit zusammen mit dem SI-Äquivalent und der eingesetzten Formel angezeigt.",
+    heroEyebrow: "INGENIEURRECHNER",
+    heroResultHeading: "Berechnungsergebnis",
+    introHeading: "Wofür wird diese Wärmeenergieberechnung verwendet?",
+    formulasHeading: "Verwendete Formeln",
+    variablesHeading: "Variablen und ihre Bedeutung",
+    unitsHeading: "Einheitentabellen",
+    examplesHeading: "Anwendungsbeispiele",
+    applicationsHeading: "Typische Anwendungsbereiche",
+    limitationsHeading: "Annahmen und Einschränkungen",
+    sourcesHeading: "Quellen",
+    relatedHeading: "Verwandte Links",
+    relatedCalculatorsHeading: "Verwandte Rechner",
+    relatedConversionsHeading: "Verwandte Umrechnungen",
+    tableColumns: {
+      unitName: "Einheitenname",
+      symbol: "Symbol",
+      siEquivalent: "SI-Äquivalent",
+      typicalUse: "Typische Verwendung",
+    },
+    intro: [
+      "Dieses Werkzeug berechnet die thermische Energie, die nötig ist, um die Temperatur eines Materials über ein bestimmtes Intervall zu ändern, oder löst direkt nach der umgekehrten Variable auf.",
+      "Es eignet sich für schnelle technische Abschätzungen bei Prozesswärme, Wasserspeichern, Laboraufbauten und ersten thermischen Auslegungen.",
+    ],
+    formulas: [
+      "Q = m × c × ΔT",
+      "m = Q / (c × ΔT)",
+      "c = Q / (m × ΔT)",
+      "ΔT = Q / (m × c)",
+    ],
+    variables: [
+      {
+        term: "Q",
+        explanation: "Übertragene oder gespeicherte Wärmeenergie.",
+      },
+      {
+        term: "m",
+        explanation: "Erwärmte oder abgekühlte Masse.",
+      },
+      {
+        term: "c",
+        explanation: "Spezifische Wärmekapazität des Materials.",
+      },
+      {
+        term: "ΔT",
+        explanation:
+          "Temperaturdifferenz zwischen Anfangs- und Endzustand.",
+      },
+    ],
+    examples: [
+      {
+        title: "2 kg Wasser um 20 °C erwärmen",
+        body:
+          "Mit einer spezifischen Wärmekapazität von etwa 4186 J/(kg·K) erfordert das Erwärmen von 2 kg Wasser um 20 °C 167,44 kJ.",
+      },
+      {
+        title: "Wie viel lässt sich mit 84 kJ erwärmen?",
+        body:
+          "Für 1 kg Wasser und 4186 J/(kg·K) ergibt sich ein Temperaturanstieg von etwa 20,07 °C.",
+      },
+    ],
+    applications: [
+      "Erste Abschätzung des Heizbedarfs für Wasser und Prozessflüssigkeiten",
+      "Vergleich von Wärmekapazitäten verschiedener Materialien",
+      "Kontrollen bei Chargen- und Speicherbehälter-Erwärmung",
+      "Lehr- und Laborbeispiele zur thermischen Bilanz",
+    ],
+    limitations: [
+      "Das Verfahren setzt voraus, dass die spezifische Wärmekapazität über das Temperaturintervall konstant bleibt.",
+      "Phasenwechsel, Wärmeverluste, Mischeffekte und druckabhängige Eigenschaftsänderungen sind in dieser Basisformel nicht enthalten.",
+      "Rückwärtsberechnungen benötigen physikalisch sinnvolle Eingaben: positive Masse und spezifische Wärme sowie eine von null verschiedene Temperaturdifferenz, wenn dadurch dividiert wird.",
+    ],
+    sources: [
+      {
+        label: "OpenStax University Physics - Temperature and Heat",
+        href: "https://openstax.org/books/university-physics-volume-2/pages/1-introduction",
+      },
+      {
+        label: "BIPM SI Brochure",
+        href: "https://www.bipm.org/en/publications/si-brochure",
+      },
+      {
+        label: "NIST Guide to the SI",
+        href: "https://www.nist.gov/pml/special-publication-811",
+      },
+    ],
+    relatedCalculators: [
+      {
+        label: "Wärmeleitungsrechner",
+        href: "/de/ingenieurrechner",
+      },
+      {
+        label: "Reynolds-Zahl-Rechner",
+        href: "/de/ingenieurrechner",
+      },
+    ],
+    relatedConversions: [
+      { label: "Kilogramm → Gramm", href: "/de/kilogramm-gramm" },
+      { label: "Gramm → Kilogramm", href: "/de/gramm-kilogramm" },
     ],
   },
 };

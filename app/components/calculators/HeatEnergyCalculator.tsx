@@ -74,6 +74,25 @@ const copy = {
     siEquivalent: "SI equivalent",
     clear: "Clear values",
   },
+  de: {
+    targetLabel: "Berechnungsziel",
+    energy: "Wärmeenergie berechnen",
+    mass: "Masse berechnen",
+    specificHeat: "Spezifische Wärmekapazität berechnen",
+    temperatureDifference: "Temperaturdifferenz berechnen",
+    energyValue: "Wärmeenergie",
+    massValue: "Masse",
+    specificHeatValue: "Spezifische Wärmekapazität",
+    temperatureDifferenceValue: "Temperaturdifferenz",
+    presetLabel: "Voreinstellung für spezifische Wärme",
+    presetNote:
+      "Die Wasser-Voreinstellung verwendet einen ungefähren Wert von 4186 J/(kg·K). Die tatsächliche spezifische Wärme kann je nach Temperatur und Materialzustand variieren.",
+    resultLive: "Berechnungsergebnis",
+    automaticResultUnit: "Automatische Ergebniseinheit",
+    formula: "Eingesetzte Formel",
+    siEquivalent: "SI-Äquivalent",
+    clear: "Werte zurücksetzen",
+  },
 } as const;
 
 const specificHeatPresets: Record<
@@ -104,6 +123,20 @@ const specificHeatPresets: Record<
     {
       id: "custom",
       label: "Custom",
+      value: "",
+      unit: calculatorUnitSymbols.joulePerKilogramKelvin,
+    },
+  ],
+  de: [
+    {
+      id: "water",
+      label: "Wasser",
+      value: "4186",
+      unit: calculatorUnitSymbols.joulePerKilogramKelvin,
+    },
+    {
+      id: "custom",
+      label: "Benutzerdefiniert",
       value: "",
       unit: calculatorUnitSymbols.joulePerKilogramKelvin,
     },

@@ -689,7 +689,7 @@ export default function TechnicalReferenceSheet({
                 </span>
                 <span>
                   <b>{conditionsLabel}:</b>{" "}
-                  {source.conditions[locale]}
+                  {source.conditions[locale] ?? source.conditions.en}
                 </span>
               </div>
             </li>

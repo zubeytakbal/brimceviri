@@ -10,10 +10,13 @@ import {
 } from "react";
 import { englishCategoryPages } from "../converter/localizedCategoryPages";
 import { englishConversionPages } from "../converter/localizedConversionPages";
+import { englishCalculatorPages } from "../converter/localizedCalculatorPages";
+import { germanCalculatorPages } from "../converter/localizedGermanCalculatorPages";
 import { germanCategoryPages } from "../converter/localizedGermanCategoryPages";
 import { germanConversionPages } from "../converter/localizedGermanConversionPages";
 import { germanUnitPages } from "../converter/localizedGermanUnitPages";
 import { englishUnitPages } from "../converter/localizedUnitPages";
+import { germanStaticPaths } from "../i18n/germanRoutes";
 
 type Locale = "tr" | "en" | "de";
 
@@ -45,26 +48,37 @@ const staticRouteSets: StaticRouteSet[] = [
   {
     tr: "/birimler",
     en: "/en/units",
+    de: germanStaticPaths.units,
   },
   {
     tr: "/tum-birimler",
     en: "/en/all-conversions",
+    de: germanStaticPaths.allConversions,
+  },
+  {
+    tr: "/muhendislik-hesaplayicilari",
+    en: "/en/engineering-calculators",
+    de: germanStaticPaths.engineeringHub,
   },
   {
     tr: "/hakkimizda",
     en: "/en/about",
+    de: germanStaticPaths.about,
   },
   {
     tr: "/iletisim",
     en: "/en/contact",
+    de: germanStaticPaths.contact,
   },
   {
     tr: "/gizlilik",
     en: "/en/privacy",
+    de: germanStaticPaths.privacy,
   },
   {
     tr: "/kullanim-kosullari",
     en: "/en/terms",
+    de: germanStaticPaths.terms,
   },
 ];
 
@@ -89,6 +103,13 @@ const dynamicRouteConfigs: DynamicRouteConfig[] = [
     dePrefix: "/de/",
     enPairs: englishConversionPages,
     dePairs: germanConversionPages,
+  },
+  {
+    trPrefix: "/hesaplayicilar/",
+    enPrefix: "/en/calculators/",
+    dePrefix: "/de/rechner/",
+    enPairs: englishCalculatorPages,
+    dePairs: germanCalculatorPages,
   },
 ];
 

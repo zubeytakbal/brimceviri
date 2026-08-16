@@ -85,6 +85,18 @@ const hydrostaticMessages = {
       "Reverse calculations require a non-zero pressure difference.",
     absolutePressure: "Absolute pressure",
   },
+  de: {
+    missing:
+      "Geben Sie die drei für die Berechnung erforderlichen Werte ein.",
+    invalid: "Geben Sie gültige numerische Werte ein.",
+    densityPositive: "Die Dichte muss größer als null sein.",
+    gravityPositive:
+      "Die Erdbeschleunigung muss größer als null sein.",
+    depthPositive: "Die Tiefe muss größer als null sein.",
+    pressureNonZero:
+      "Bei einer Druckdifferenz von null ist keine Rückwärtsberechnung möglich.",
+    absolutePressure: "Absoluter Druck",
+  },
 } as const;
 
 const densitySiUnit = KILOGRAM_PER_CUBIC_METRE_UNIT;

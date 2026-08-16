@@ -79,6 +79,28 @@ const copy = {
     includeSurfacePressure: "Include surface pressure",
     advancedOptions: "Advanced options",
   },
+  de: {
+    targetLabel: "Berechnungsziel",
+    pressure: "Druck berechnen",
+    density: "Dichte berechnen",
+    depth: "Tiefe berechnen",
+    gravity: "Erdbeschleunigung berechnen",
+    pressureValue: "Druckdifferenz",
+    densityValue: "Dichte",
+    depthValue: "Tiefe",
+    gravityValue: "Erdbeschleunigung",
+    resultLive: "Berechnungsergebnis",
+    automaticResultUnit: "Automatische Ergebniseinheit",
+    siEquivalent: "SI-Äquivalent",
+    formula: "Eingesetzte Formel",
+    clear: "Werte zurücksetzen",
+    densityPresetLabel: "Fluidvoreinstellung",
+    densityPresetNote:
+      "Die Dichte kann sich je nach Temperatur, Druck, Salzgehalt und Zusammensetzung ändern. Die Voreinstellungen sind ungefähre Werte.",
+    customPreset: "Benutzerdefiniert",
+    includeSurfacePressure: "Oberflächendruck einbeziehen",
+    advancedOptions: "Erweiterte Optionen",
+  },
 } as const;
 
 const densityPresets: Record<
@@ -128,6 +150,29 @@ const densityPresets: Record<
     {
       id: "mercury-20c",
       label: "Mercury, about 20 °C",
+      value: "13546",
+    },
+  ],
+  de: [
+    { id: "custom", label: "Benutzerdefiniert", value: "" },
+    {
+      id: "pure-water-20c",
+      label: "Reines Wasser, etwa 20 °C",
+      value: "998.2",
+    },
+    {
+      id: "rounded-water",
+      label: "Gerundetes technisches Wasser",
+      value: "1000",
+    },
+    {
+      id: "seawater",
+      label: "Meerwasser, etwa",
+      value: "1025",
+    },
+    {
+      id: "mercury-20c",
+      label: "Quecksilber, etwa 20 °C",
       value: "13546",
     },
   ],

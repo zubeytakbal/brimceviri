@@ -57,36 +57,52 @@ type PageCopy = {
   relatedConversions: Array<{ label: string; href: string }>;
 };
 
+const unitSectionHeadings = {
+  tr: {
+    density: "Yoğunluk birimleri",
+    speed: "Hız birimleri",
+    diameter: "Karakteristik çap birimleri",
+    viscosity: "Dinamik viskozite birimleri",
+  },
+  en: {
+    density: "Density units",
+    speed: "Velocity units",
+    diameter: "Characteristic-diameter units",
+    viscosity: "Dynamic-viscosity units",
+  },
+  de: {
+    density: "Dichteeinheiten",
+    speed: "Geschwindigkeitseinheiten",
+    diameter: "Einheiten des charakteristischen Durchmessers",
+    viscosity: "Einheiten der dynamischen Viskosität",
+  },
+} as const;
+
 function getUnitSections(locale: CalculatorLocale): UnitTableSection[] {
+  const headings = unitSectionHeadings[locale];
+
   return [
     {
       id: "density-units",
-      heading:
-        locale === "tr" ? "Yoğunluk birimleri" : "Density units",
+      heading: headings.density,
       siSymbol: "kg/m³",
       units: reynoldsDensityUnitDefinitions,
     },
     {
       id: "speed-units",
-      heading: locale === "tr" ? "Hız birimleri" : "Velocity units",
+      heading: headings.speed,
       siSymbol: "m/s",
       units: speedUnitDefinitions,
     },
     {
       id: "diameter-units",
-      heading:
-        locale === "tr"
-          ? "Karakteristik çap birimleri"
-          : "Characteristic-diameter units",
+      heading: headings.diameter,
       siSymbol: "m",
       units: diameterUnitDefinitions,
     },
     {
       id: "viscosity-units",
-      heading:
-        locale === "tr"
-          ? "Dinamik viskozite birimleri"
-          : "Dynamic-viscosity units",
+      heading: headings.viscosity,
       siSymbol: "Pa·s",
       units: viscosityUnitDefinitions,
     },
@@ -334,6 +350,127 @@ const pageCopy: Record<CalculatorLocale, PageCopy> = {
       { label: "Meters to Feet", href: "/en/meters-to-feet" },
     ],
   },
+  de: {
+    breadcrumbs: [
+      { label: "Startseite", href: "/de" },
+      { label: "Rechner" },
+      { label: "Reynolds-Zahl-Rechner" },
+    ],
+    breadcrumbLabel: "Breadcrumb",
+    title: "Reynolds-Zahl-Rechner",
+    description:
+      "Berechnen Sie mit Re = ρ × v × D / μ die Reynolds-Zahl, die Geschwindigkeit oder den charakteristischen Durchmesser. Das Ergebnis wird in derselben Gestaltungssprache mit SI-Äquivalent und einer ungefähren Interpretation des Strömungsregimes für die Rohrströmung angezeigt.",
+    heroEyebrow: "INGENIEURRECHNER",
+    heroResultHeading: "Berechnungsergebnis",
+    introHeading: "Warum ist die Reynolds-Zahl wichtig?",
+    formulasHeading: "Verwendete Formeln",
+    variablesHeading: "Variablen und SI-Einheiten",
+    interpretationHeading: "Interpretation des Strömungsregimes",
+    unitsHeading: "Einheitentabellen",
+    examplesHeading: "Anwendungsbeispiele",
+    applicationsHeading: "Typische Anwendungsbereiche",
+    limitationsHeading: "Annahmen und Einschränkungen",
+    sourcesHeading: "Quellen",
+    relatedHeading: "Verwandte Links",
+    relatedCalculatorsHeading: "Verwandte Rechner",
+    relatedConversionsHeading: "Verwandte Umrechnungen",
+    tableColumns: {
+      unitName: "Einheitenname",
+      symbol: "Symbol",
+      siEquivalent: "SI-Äquivalent",
+      typicalUse: "Typische Verwendung",
+    },
+    intro: [
+      "Die Reynolds-Zahl ist eine dimensionslose Kennzahl, die Trägheitskräfte mit viskosen Kräften in einer Strömung vergleicht.",
+      "Sie wird häufig für eine erste Einschätzung verwendet, ob eine Rohrströmung näherungsweise laminar, im Übergangsbereich oder turbulent ist.",
+    ],
+    formulas: [
+      "Re = ρ × v × D / μ",
+      "v = Re × μ / (ρ × D)",
+      "D = Re × μ / (ρ × v)",
+    ],
+    variables: [
+      {
+        term: "Re",
+        explanation: "Dimensionslose Reynolds-Zahl. Keine SI-Einheit.",
+      },
+      {
+        term: "ρ",
+        explanation: "Dichte des Fluids. SI-Einheit: kg/m³.",
+      },
+      {
+        term: "v",
+        explanation: "Mittlere Strömungsgeschwindigkeit. SI-Einheit: m/s.",
+      },
+      {
+        term: "D",
+        explanation:
+          "Charakteristischer Rohr- oder Kanaldurchmesser. SI-Einheit: m.",
+      },
+      {
+        term: "μ",
+        explanation: "Dynamische Viskosität. SI-Einheit: Pa·s.",
+      },
+    ],
+    interpretationNotes: [
+      "Re < 2300 gilt üblicherweise als näherungsweise laminar.",
+      "Re zwischen 2300 und 4000 gilt üblicherweise als Übergangsbereich.",
+      "Re > 4000 gilt üblicherweise als näherungsweise turbulent.",
+      "Diese Grenzwerte sind nur ungefähre Richtwerte für die Rohrströmung; Geometrie und Einlaufbedingungen können die tatsächlichen Grenzen verschieben.",
+      "Die Voreinstellungen für Wasser und Luft liefern ungefähre Werte bei Raumbedingungen; reale Betriebsdaten können das Ergebnis verändern.",
+    ],
+    examples: [
+      {
+        title: "Re-Berechnung für Wasser",
+        body:
+          "Mit ρ = 1000 kg/m³, v = 2 m/s, D = 50 mm und μ = 1 mPa·s ergibt sich eine Reynolds-Zahl von 100000, die im turbulenten Bereich liegt.",
+      },
+      {
+        title: "Erforderliche Geschwindigkeit für eine Ziel-Re",
+        body:
+          "Für Re = 2000, ρ = 1000 kg/m³, D = 20 mm und μ = 1 mPa·s ergibt sich eine Geschwindigkeit von etwa 0,1 m/s.",
+      },
+    ],
+    applications: [
+      "Erste Einschätzung des Strömungsregimes bei Rohrströmung",
+      "Abschätzung charakteristischer Geschwindigkeiten in Laboraufbauten",
+      "Vorauswahl von Kanal- und Rohrdurchmessern",
+      "Vergleich, wie Fluideigenschaften das Strömungsregime beeinflussen",
+    ],
+    limitations: [
+      "Die Berechnung verwendet die grundlegende Definition der Reynolds-Zahl und modelliert Einlaufeffekte, Rauheit oder spezielle Geometrien nicht gesondert.",
+      "Die Interpretation des Strömungsregimes nutzt ungefähre Grenzwerte für die Rohrströmung; offene Kanäle, Tragflächenprofile und komplexe Kanäle können andere Kriterien erfordern.",
+      "Dynamische Viskosität und Dichte können stark temperaturabhängig sein; nach Möglichkeit sollten realistische Stoffdaten gewählt werden.",
+    ],
+    sources: [
+      {
+        label: "OpenStax College Physics - Viscosity and Laminar Flow",
+        href: "https://openstax.org/books/college-physics/pages/12-2-viscosity-and-laminar-flow-poiseuilles-law",
+      },
+      {
+        label: "BIPM SI Brochure",
+        href: "https://www.bipm.org/en/publications/si-brochure",
+      },
+      {
+        label: "NIST Guide to the SI",
+        href: "https://www.nist.gov/pml/special-publication-811",
+      },
+    ],
+    relatedCalculators: [
+      {
+        label: "Wärmeleitungsrechner",
+        href: "/de/ingenieurrechner",
+      },
+      {
+        label: "Hydrostatischer-Druck-Rechner",
+        href: "/de/ingenieurrechner",
+      },
+    ],
+    relatedConversions: [
+      { label: "Zentimeter → Zoll", href: "/de/zentimeter-zoll" },
+      { label: "Meter → Fuß", href: "/de/meter-fuss" },
+    ],
+  },
 };
 
 function renderUnitName(
@@ -435,7 +572,9 @@ export default function ReynoldsNumberPage({
           <h2>
             {locale === "tr"
               ? "Suyun dinamik viskozitesi referansı"
-              : "Water dynamic-viscosity reference"}
+              : locale === "de"
+                ? "Referenz zur dynamischen Viskosität von Wasser"
+                : "Water dynamic-viscosity reference"}
           </h2>
           <WaterViscosityReference locale={locale} />
         </section>

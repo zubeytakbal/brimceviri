@@ -88,6 +88,31 @@ const copy = {
     transition: "Transition",
     turbulent: "Turbulent",
   },
+  de: {
+    targetLabel: "Berechnungsziel",
+    reynolds: "Reynolds-Zahl berechnen",
+    velocity: "Geschwindigkeit berechnen",
+    diameter: "Charakteristischen Durchmesser berechnen",
+    reynoldsValue: "Reynolds-Zahl",
+    densityValue: "Dichte",
+    velocityValue: "Geschwindigkeit",
+    diameterValue: "Charakteristischer Durchmesser",
+    viscosityValue: "Dynamische Viskosität",
+    presetLabel: "Fluidvoreinstellung",
+    presetNote:
+      "Die Voreinstellungen für Wasser und Luft verwenden ungefähre Werte bei Raumbedingungen. Für eine genaue Analyse sollten Dichte- und Viskositätswerte bei der tatsächlichen Temperatur verwendet werden.",
+    resultLive: "Berechnungsergebnis",
+    formula: "Eingesetzte Formel",
+    siEquivalent: "SI-Äquivalent",
+    clear: "Werte zurücksetzen",
+    interpretation: "Strömungsinterpretation",
+    regimeVisual: "Strömungsregime-Diagramm",
+    regimeNote:
+      "Diese Schwellenwerte sind eine ungefähre und anschauliche Klassifizierung für die Rohrströmung.",
+    laminar: "Laminar",
+    transition: "Übergang",
+    turbulent: "Turbulent",
+  },
 } as const;
 
 const fluidPresets: Record<CalculatorLocale, FluidPreset[]> = {
@@ -137,6 +162,32 @@ const fluidPresets: Record<CalculatorLocale, FluidPreset[]> = {
     {
       id: "custom",
       label: "Custom",
+      densityValue: "",
+      densityUnit: calculatorUnitSymbols.kilogramPerCubicMetre,
+      viscosityValue: "",
+      viscosityUnit: calculatorUnitSymbols.millipascalSecond,
+    },
+  ],
+  de: [
+    {
+      id: "water",
+      label: "Wasser",
+      densityValue: "1000",
+      densityUnit: calculatorUnitSymbols.kilogramPerCubicMetre,
+      viscosityValue: "1",
+      viscosityUnit: calculatorUnitSymbols.millipascalSecond,
+    },
+    {
+      id: "air",
+      label: "Luft",
+      densityValue: "1.2",
+      densityUnit: calculatorUnitSymbols.kilogramPerCubicMetre,
+      viscosityValue: "0.0181",
+      viscosityUnit: calculatorUnitSymbols.millipascalSecond,
+    },
+    {
+      id: "custom",
+      label: "Benutzerdefiniert",
       densityValue: "",
       densityUnit: calculatorUnitSymbols.kilogramPerCubicMetre,
       viscosityValue: "",

@@ -958,7 +958,9 @@ function TechnicalReferencePdfDocument({
                 }`}
               </Text>
               <Text style={styles.sourceMeta}>
-                {`${sourceLabels.conditions}: ${source.conditions[definition.locale]}`}
+                {`${sourceLabels.conditions}: ${
+                  source.conditions[definition.locale] ?? source.conditions.en
+                }`}
               </Text>
             </View>
           ))}

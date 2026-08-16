@@ -85,6 +85,24 @@ const messages = {
     transition: "Transition regime",
     turbulent: "Turbulent flow",
   },
+  de: {
+    missing:
+      "Geben Sie die vier für die Berechnung erforderlichen Werte ein.",
+    invalid: "Geben Sie gültige numerische Werte ein.",
+    densityPositive: "Die Dichte muss größer als null sein.",
+    velocityPositive: "Die Geschwindigkeit muss größer als null sein.",
+    diameterPositive:
+      "Der charakteristische Durchmesser muss größer als null sein.",
+    viscosityPositive:
+      "Die dynamische Viskosität muss größer als null sein.",
+    reynoldsPositive:
+      "Für eine Rückwärtsberechnung muss die Reynolds-Zahl größer als null sein.",
+    interpretationPrefix:
+      "Diese Klassifizierung ist ein ungefährer Leitfaden für die Rohrströmung.",
+    laminar: "Laminare Strömung",
+    transition: "Übergangsbereich",
+    turbulent: "Turbulente Strömung",
+  },
 } as const;
 
 function createErrorResult(

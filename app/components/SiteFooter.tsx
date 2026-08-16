@@ -6,6 +6,7 @@ import {
   SITE_CONTACT_EMAIL,
   SITE_NAME,
 } from "../siteConfig";
+import { germanStaticPaths } from "../i18n/germanRoutes";
 
 type FooterLink = {
   href: string;
@@ -41,9 +42,13 @@ const footerLinks: Record<Locale, FooterLink[]> = {
   ],
   de: [
     { href: "/de", label: "Startseite" },
-    { href: "/de/kategorien/laenge", label: "L\u00E4nge" },
-    { href: "/de/kategorien/masse", label: "Masse" },
-    { href: "/de/kategorien/druck", label: "Druck" },
+    { href: germanStaticPaths.units, label: "Einheitenleitfaden" },
+    { href: germanStaticPaths.allConversions, label: "Alle Umrechnungen" },
+    { href: germanStaticPaths.engineeringHub, label: "Ingenieurrechner" },
+    { href: germanStaticPaths.about, label: "\u00DCber uns" },
+    { href: germanStaticPaths.contact, label: "Kontakt" },
+    { href: germanStaticPaths.privacy, label: "Datenschutz" },
+    { href: germanStaticPaths.terms, label: "Nutzungsbedingungen" },
   ],
 };
 

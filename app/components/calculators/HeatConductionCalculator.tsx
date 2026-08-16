@@ -80,6 +80,28 @@ const copy = {
     siEquivalent: "SI equivalent",
     clear: "Clear values",
   },
+  de: {
+    targetLabel: "Berechnungsziel",
+    power: "Wärmestromrate berechnen",
+    thermalConductivity: "Wärmeleitfähigkeit berechnen",
+    area: "Fläche berechnen",
+    temperatureDifference: "Temperaturdifferenz berechnen",
+    length: "Dicke berechnen",
+    powerValue: "Wärmestromrate",
+    thermalConductivityValue: "Wärmeleitfähigkeit",
+    areaValue: "Fläche",
+    temperatureDifferenceValue: "Temperaturdifferenz",
+    lengthValue: "Dicke",
+    presetLabel: "Materialvoreinstellung",
+    presetNote:
+      "Die voreingestellten Leitfähigkeitswerte sind ungefähre technische Richtwerte und können sich je nach Temperatur, Feuchtigkeit und Materialstruktur ändern.",
+    customPreset: "Benutzerdefiniert",
+    resultLive: "Berechnungsergebnis",
+    automaticResultUnit: "Automatische Ergebniseinheit",
+    formula: "Eingesetzte Formel",
+    siEquivalent: "SI-Äquivalent",
+    clear: "Werte zurücksetzen",
+  },
 } as const;
 
 const conductivityPresets: Record<
@@ -109,6 +131,16 @@ const conductivityPresets: Record<
     { id: "concrete", label: "Concrete", value: "1.4" },
     { id: "wood", label: "Wood", value: "0.13" },
     { id: "air", label: "Air", value: "0.026" },
+  ],
+  de: [
+    { id: "custom", label: "Benutzerdefiniert", value: "" },
+    { id: "copper", label: "Kupfer", value: "401" },
+    { id: "aluminum", label: "Aluminium", value: "205" },
+    { id: "steel", label: "Stahl", value: "50" },
+    { id: "glass", label: "Glas", value: "1.05" },
+    { id: "concrete", label: "Beton", value: "1.4" },
+    { id: "wood", label: "Holz", value: "0.13" },
+    { id: "air", label: "Luft", value: "0.026" },
   ],
 };
 

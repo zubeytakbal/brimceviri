@@ -7,7 +7,7 @@ import {
   type EngineeringUnitGroup,
 } from "./engineeringUnits";
 
-export type CalculatorLocale = "tr" | "en";
+export type CalculatorLocale = "tr" | "en" | "de";
 
 export type CalculatorQuantity =
   | "energy"
@@ -768,6 +768,11 @@ const groupLabels: Record<
     metric: "Metric and practical",
     imperial: "Imperial/US units",
   },
+  de: {
+    si: "SI-Einheiten",
+    metric: "Metrische und praktische Einheiten",
+    imperial: "Imperiale/US-Einheiten",
+  },
 };
 
 const preferredHeatEnergyUnits = [
@@ -842,7 +847,12 @@ export function formatCalculatorUnitName(
   unit: EngineeringUnitDefinition,
   locale: CalculatorLocale
 ) {
-  return `${locale === "tr" ? unit.trName : unit.enName} (${unit.symbol})`;
+  const unitName =
+    locale === "tr"
+      ? unit.trName
+      : unit.enName;
+
+  return `${unitName} (${unit.symbol})`;
 }
 
 export function getCalculatorUnitGroups(

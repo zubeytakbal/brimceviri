@@ -9,11 +9,14 @@ import {
   pressureUnitDefinitions,
   type EngineeringUnitDefinition,
 } from "../../converter/engineeringUnits";
-import { formatEngineeringValue } from "../../converter/pressureForceArea";
+import {
+  formatEngineeringValue,
+  type CalculatorLocale,
+} from "../../converter/pressureForceArea";
 import HydrostaticPressureCalculator from "./HydrostaticPressureCalculator";
 import WaterDensityReference from "../technicalReferences/WaterDensityReference";
 
-type Locale = "tr" | "en";
+type Locale = CalculatorLocale;
 
 type UnitTableSection = {
   id: string;
@@ -79,39 +82,52 @@ type PageCopy = {
   }>;
 };
 
+const unitSectionHeadings = {
+  tr: {
+    pressure: "Basınç birimleri",
+    density: "Yoğunluk birimleri",
+    depth: "Derinlik birimleri",
+    gravity: "Yerçekimi ivmesi birimleri",
+  },
+  en: {
+    pressure: "Pressure units",
+    density: "Density units",
+    depth: "Depth units",
+    gravity: "Gravitational acceleration units",
+  },
+  de: {
+    pressure: "Druckeinheiten",
+    density: "Dichteeinheiten",
+    depth: "Tiefeneinheiten",
+    gravity: "Einheiten der Erdbeschleunigung",
+  },
+} as const;
+
 function getUnitSections(locale: Locale): UnitTableSection[] {
+  const headings = unitSectionHeadings[locale];
+
   return [
     {
       id: "pressure-units",
-      heading:
-        locale === "tr"
-          ? "Basınç birimleri"
-          : "Pressure units",
+      heading: headings.pressure,
       siSymbol: "Pa",
       units: pressureUnitDefinitions,
     },
     {
       id: "density-units",
-      heading:
-        locale === "tr"
-          ? "Yoğunluk birimleri"
-          : "Density units",
+      heading: headings.density,
       siSymbol: KILOGRAM_PER_CUBIC_METRE_UNIT,
       units: densityUnitDefinitions,
     },
     {
       id: "depth-units",
-      heading:
-        locale === "tr" ? "Derinlik birimleri" : "Depth units",
+      heading: headings.depth,
       siSymbol: "m",
       units: depthUnitDefinitions,
     },
     {
       id: "gravity-units",
-      heading:
-        locale === "tr"
-          ? "Yerçekimi ivmesi birimleri"
-          : "Gravitational acceleration units",
+      heading: headings.gravity,
       siSymbol: METRE_PER_SECOND_SQUARED_UNIT,
       units: gravityUnitDefinitions,
     },
@@ -376,6 +392,134 @@ const pageCopy: Record<Locale, PageCopy> = {
         label: "Kilopascal to Bar",
         href: "/en/kilopascals-to-bars",
       },
+    ],
+  },
+  de: {
+    breadcrumbs: [
+      { label: "Startseite", href: "/de" },
+      { label: "Rechner" },
+      { label: "Rechner für hydrostatischen Druck" },
+    ],
+    breadcrumbLabel: "Breadcrumb",
+    title: "Rechner für hydrostatischen Druck",
+    description:
+      "Berechnen Sie die hydrostatische Druckdifferenz, die Dichte, die Tiefe oder die Erdbeschleunigung ausgehend von SI-Basiseinheiten. Das Werkzeug behält dieselbe blau-türkise Gestaltung wie die übrigen Ingenieurrechner-Seiten bei und eignet sich gut für Tanks, Tauchgänge und Manometer-Kontrollen.",
+    heroEyebrow: "INGENIEURRECHNER",
+    heroResultHeading: "Berechnungsergebnis",
+    introHeading: "Was ist hydrostatischer Druck?",
+    formulasHeading: "Die Formel ΔP = ρgh",
+    variablesHeading: "Variablen und SI-Einheiten",
+    absoluteHeading:
+      "Unterschied zwischen Druckanstieg und absolutem Druck",
+    densityHeading: "Wie die Temperatur die Dichte beeinflusst",
+    unitsHeading: "Einheitentabellen",
+    examplesHeading: "Berechnete Beispiele",
+    applicationsHeading: "Typische Anwendungsbereiche",
+    limitationsHeading: "Annahmen und Einschränkungen",
+    sourcesHeading: "Quellen",
+    relatedHeading: "Verwandte Links",
+    relatedCalculatorsHeading: "Verwandte Rechner",
+    relatedConversionsHeading: "Verwandte Umrechnungen",
+    tableColumns: {
+      unitName: "Einheitenname",
+      symbol: "Symbol",
+      siEquivalent: "SI-Äquivalent",
+      typicalUse: "Typische Verwendung",
+    },
+    intro: [
+      "Hydrostatischer Druck ist der Druckanstieg in einem ruhenden Fluid mit zunehmender Tiefe. Die Druckdifferenz ergibt sich aus dem Produkt von Dichte, Erdbeschleunigung und vertikaler Tiefendifferenz.",
+      "Dieser Rechner eignet sich für schnelle technische Kontrollen bei Tanks, Dämmen, Tauchgängen, Piezometern und Manometerablesungen.",
+    ],
+    formulas: [
+      "ΔP = ρ × g × h",
+      "ρ = ΔP / (g × h)",
+      "g = ΔP / (ρ × h)",
+      "h = ΔP / (ρ × g)",
+    ],
+    variables: [
+      {
+        term: "ΔP",
+        explanation:
+          "Hydrostatische Druckdifferenz, in SI in Pascal (Pa) angegeben.",
+      },
+      {
+        term: "ρ",
+        explanation:
+          `Dichte des Fluids. Als SI-Basiseinheit wird hier Kilogramm pro Kubikmeter (${KILOGRAM_PER_CUBIC_METRE_UNIT}) verwendet.`,
+      },
+      {
+        term: "g",
+        explanation:
+          `Erdbeschleunigung. Die SI-Basiseinheit ist Meter pro Sekundenquadrat (${METRE_PER_SECOND_SQUARED_UNIT}).`,
+      },
+      {
+        term: "h",
+        explanation:
+          "Vertikale Tiefe oder Höhe der Flüssigkeitssäule. Die SI-Basiseinheit ist Meter (m).",
+      },
+    ],
+    absolutePressure: [
+      "Das direkte Ergebnis der Formel ist die hydrostatische Druckdifferenz zwischen der Bezugsoberfläche und dem betrachteten Punkt.",
+      "Wird der absolute Druck benötigt, muss der Oberflächendruck zusätzlich addiert werden: P_absolut = P_Oberfläche + ρgh.",
+    ],
+    densityNotes: [
+      "Die Dichte ändert sich mit Temperatur, Druck, Salzgehalt und Zusammensetzung des Fluids. Für genauere Berechnungen bei Wasser oder Meerwasser sollte eine zu den tatsächlichen Bedingungen passende Dichte verwendet werden.",
+      "Bei Gasen kann die Annahme konstanter Dichte über große Höhenunterschiede ungenau werden; dann ist ein geschichteter oder integraler Ansatz sinnvoller.",
+    ],
+    examples: [
+      {
+        title: `1000 ${KILOGRAM_PER_CUBIC_METRE_UNIT} × 9,80665 ${METRE_PER_SECOND_SQUARED_UNIT} × 10 m = 98,0665 kPa`,
+        body:
+          "Mit gerundetem technischem Wasser beträgt der hydrostatische Druckanstieg in 10 Metern Tiefe 98066,5 Pa, also 98,0665 kPa.",
+      },
+      {
+        title: `1 g/cm³ × 9,80665 ${METRE_PER_SECOND_SQUARED_UNIT} × 100 cm = 9,80665 kPa`,
+        body:
+          `Eine Dichte von 1 g/cm³ entspricht 1000 ${KILOGRAM_PER_CUBIC_METRE_UNIT}. Eine Tiefe von 100 cm entspricht 1 m, sodass sich ein Ergebnis von 9806,65 Pa, also 9,80665 kPa, ergibt.`,
+      },
+      {
+        title: `98,0665 kPa / (1000 ${KILOGRAM_PER_CUBIC_METRE_UNIT} × 9,80665 ${METRE_PER_SECOND_SQUARED_UNIT}) = 10 m`,
+        body:
+          "Für die gegebene Druckdifferenz in Wasser errechnet sich die vertikale Höhe der Flüssigkeitssäule zu 10 Metern zurück.",
+      },
+    ],
+    applications: [
+      "Abschätzung des Bodendrucks in Wassertanks und Speicherbecken",
+      "Erste Druckkontrollen für Dämme und Schleusensysteme",
+      "Druckanstieg mit der Tiefe beim Tauchen",
+      "Manometer und andere Messaufbauten mit Flüssigkeitssäulen",
+    ],
+    limitations: [
+      "Die Formel gilt für ein ruhendes Fluid mit annähernd konstanter Dichte.",
+      "h ist die vertikale Tiefendifferenz, nicht die Länge eines geneigten Weges.",
+      "Ändert sich die Dichte mit der Tiefe deutlich, ist ein integraler Ansatz erforderlich.",
+      "Bei Gasen über große Höhenänderungen ist die Annahme konstanter Dichte möglicherweise nicht geeignet.",
+      "Das Grundergebnis ist eine Druckdifferenz; für den absoluten Druck muss der Oberflächendruck ergänzt werden.",
+    ],
+    sources: [
+      {
+        label:
+          "OpenStax University Physics, Fluids, Density and Pressure",
+        href: "https://openstax.org/books/university-physics-volume-1/pages/14-1-fluids-density-and-pressure",
+      },
+      {
+        label: "BIPM SI Brochure",
+        href: "https://www.bipm.org/en/publications/si-brochure",
+      },
+      {
+        label: "NIST SI conversion factors",
+        href: "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors",
+      },
+    ],
+    relatedCalculators: [
+      {
+        label: "Druck-, Kraft- und Flächenrechner",
+        href: "/de/ingenieurrechner",
+      },
+    ],
+    relatedConversions: [
+      { label: "PSI → Bar", href: "/de/psi-bar" },
+      { label: "Kilopascal → Bar", href: "/de/kilopascal-bar" },
     ],
   },
 };

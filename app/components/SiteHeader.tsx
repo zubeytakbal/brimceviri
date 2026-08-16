@@ -6,6 +6,7 @@ import { useEffect, useId, useState } from "react";
 import { categoryPages } from "../converter/categoryPages";
 import { englishCategoryPages } from "../converter/localizedCategoryPages";
 import { germanCategoryPages } from "../converter/localizedGermanCategoryPages";
+import { germanStaticPaths } from "../i18n/germanRoutes";
 import LanguageSwitcher from "./LanguageSwitcher";
 
 type HeaderLink = {
@@ -128,6 +129,15 @@ export default function SiteHeader() {
       : locale === "de"
         ? [
             { href: "/de", label: "Startseite" },
+            {
+              href: germanStaticPaths.engineeringHub,
+              label: "Rechner",
+            },
+            { href: germanStaticPaths.units, label: "Einheitenleitfaden" },
+            {
+              href: germanStaticPaths.allConversions,
+              label: "Alle Umrechnungen",
+            },
           ]
         : [
             { href: "/", label: "Ana Sayfa" },

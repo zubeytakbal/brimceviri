@@ -3,7 +3,7 @@ import {
   conversionPages,
   type ConversionPage,
 } from "./conversionPages";
-import { KILOGRAM_FORCE_PER_SQUARE_CENTIMETRE_UNIT } from "./engineeringUnits";
+import { germanUnitPages } from "./localizedGermanUnitPages";
 
 export type LocalizedGermanConversionPage = ConversionPage & {
   locale: "de";
@@ -11,74 +11,24 @@ export type LocalizedGermanConversionPage = ConversionPage & {
   categoryName: string;
 };
 
-type GermanUnit = {
-  name: string;
-  slug: string;
-};
-
-const germanUnits: Record<string, GermanUnit> = {
-  "uzunluk:m": { name: "Meter", slug: "meter" },
-  "uzunluk:km": { name: "Kilometer", slug: "kilometer" },
-  "uzunluk:cm": { name: "Zentimeter", slug: "zentimeter" },
-  "uzunluk:mm": { name: "Millimeter", slug: "millimeter" },
-  "uzunluk:mi": { name: "Meile", slug: "meile" },
-  "uzunluk:ft": { name: "Fu\u00DF", slug: "fuss" },
-  "uzunluk:in": { name: "Zoll", slug: "zoll" },
-  "uzunluk:yd": { name: "Yard", slug: "yard" },
-  "kutle:kg": { name: "Kilogramm", slug: "kilogramm" },
-  "kutle:g": { name: "Gramm", slug: "gramm" },
-  "kutle:mg": { name: "Milligramm", slug: "milligramm" },
-  "kutle:lb": { name: "Pfund", slug: "pfund" },
-  "kutle:ton": { name: "Tonne", slug: "tonne" },
-  "kutle:oz": { name: "Unze", slug: "unze" },
-  "basinc:Pa": { name: "Pascal", slug: "pascal" },
-  "basinc:kPa": { name: "Kilopascal", slug: "kilopascal" },
-  "basinc:bar": { name: "Bar", slug: "bar" },
-  "basinc:psi": { name: "PSI", slug: "psi" },
-  "basinc:atm": { name: "Atmosph\u00E4re", slug: "atmosphaere" },
-  "basinc:mmHg": {
-    name: "Millimeter Quecksilbers\u00E4ule",
-    slug: "millimeter-quecksilbersaeule",
-  },
-  [`basinc:${KILOGRAM_FORCE_PER_SQUARE_CENTIMETRE_UNIT}`]: {
-    name: "Kilogramm-Kraft pro Quadratzentimeter",
-    slug: "kilogramm-kraft-pro-quadratzentimeter",
-  },
-};
-
 const germanCategoryNames: Record<string, string> = {
-  uzunluk: "L\u00E4nge",
+  alan: "Fläche",
+  hacim: "Volumen",
+  uzunluk: "Länge",
   kutle: "Masse",
+  sicaklik: "Temperatur",
+  zaman: "Zeit",
+  hiz: "Geschwindigkeit",
   basinc: "Druck",
+  enerji: "Energie",
+  debi: "Durchfluss",
+  elektrik: "Elektrizität",
 };
-
-const supportedCategories = new Set([
-  "uzunluk",
-  "kutle",
-  "basinc",
-]);
-
-const allowedSourceSlugs = new Set([
-  "metre-kilometre",
-  "kilometre-metre",
-  "metre-santimetre",
-  "santimetre-metre",
-  "metre-milimetre",
-  "milimetre-metre",
-  "kilometre-mil",
-  "mil-kilometre",
-  "kilogram-gram",
-  "gram-kilogram",
-  "kilogram-pound",
-  "pound-kilogram",
-  "psi-bar",
-  "bar-psi",
-  "kilopascal-bar",
-  "bar-kilopascal",
-]);
 
 function findGermanUnit(category: string, unit: string) {
-  return germanUnits[`${category}:${unit}`];
+  return germanUnitPages.find(
+    (page) => page.category === category && page.unit === unit
+  );
 }
 
 function formatGermanValue(value: number) {
@@ -93,10 +43,10 @@ function createGermanFormula(
   factor: number
 ) {
   if (factor >= 1) {
-    return `${toName} = ${fromName} \u00D7 ${formatGermanValue(factor)}`;
+    return `${toName} = ${fromName} × ${formatGermanValue(factor)}`;
   }
 
-  return `${toName} = ${fromName} \u00F7 ${formatGermanValue(1 / factor)}`;
+  return `${toName} = ${fromName} ÷ ${formatGermanValue(1 / factor)}`;
 }
 
 function createGermanExplanation(
@@ -106,28 +56,74 @@ function createGermanExplanation(
   toUnit: string,
   factor: number
 ) {
-  const operation =
-    factor >= 1
-      ? `mit ${formatGermanValue(factor)} multipliziert`
-      : `durch ${formatGermanValue(1 / factor)} dividiert`;
+  if (factor >= 1) {
+    return `Zur Umrechnung von ${fromName.toLowerCase()} in ${toName.toLowerCase()} wird der Ausgangswert mit ${formatGermanValue(
+      factor
+    )} multipliziert. 1 ${fromUnit} entspricht ${formatGermanValue(
+      factor
+    )} ${toUnit}.`;
+  }
 
-  return (
-    `Bei der Umrechnung von ${fromName} in ${toName} wird der Ausgangswert ${operation}. ` +
-    `1 ${fromUnit} entspricht ${formatGermanValue(factor)} ${toUnit}.`
-  );
+  return `Zur Umrechnung von ${fromName.toLowerCase()} in ${toName.toLowerCase()} wird der Ausgangswert durch ${formatGermanValue(
+    1 / factor
+  )} dividiert. 1 ${fromUnit} entspricht ${formatGermanValue(
+    factor
+  )} ${toUnit}.`;
+}
+
+function createTemperatureFormula(
+  fromName: string,
+  toName: string,
+  fromUnit: string,
+  toUnit: string
+) {
+  if (fromUnit === "C" && toUnit === "F") {
+    return `${toName} = (${fromName} × 9/5) + 32`;
+  }
+
+  if (fromUnit === "F" && toUnit === "C") {
+    return `${toName} = (${fromName} − 32) × 5/9`;
+  }
+
+  if (fromUnit === "C" && toUnit === "K") {
+    return `${toName} = ${fromName} + 273.15`;
+  }
+
+  if (fromUnit === "K" && toUnit === "C") {
+    return `${toName} = ${fromName} − 273.15`;
+  }
+
+  return `${toName} = ${fromName}`;
+}
+
+function createTemperatureExplanation(
+  fromName: string,
+  toName: string,
+  fromUnit: string,
+  toUnit: string
+) {
+  if (fromUnit === "C" && toUnit === "F") {
+    return `Zur Umrechnung von ${fromName.toLowerCase()} in ${toName.toLowerCase()} wird mit 9/5 multipliziert und anschließend 32 addiert. 1 ${fromUnit} entspricht 33,8 ${toUnit}.`;
+  }
+
+  if (fromUnit === "F" && toUnit === "C") {
+    return `Zur Umrechnung von ${fromName.toLowerCase()} in ${toName.toLowerCase()} werden zuerst 32 abgezogen und das Ergebnis danach mit 5/9 multipliziert. 32 ${fromUnit} entsprechen 0 ${toUnit}.`;
+  }
+
+  if (fromUnit === "C" && toUnit === "K") {
+    return `Zur Umrechnung von ${fromName.toLowerCase()} in ${toName.toLowerCase()} werden 273,15 addiert. 0 ${fromUnit} entsprechen 273,15 ${toUnit}.`;
+  }
+
+  if (fromUnit === "K" && toUnit === "C") {
+    return `Zur Umrechnung von ${fromName.toLowerCase()} in ${toName.toLowerCase()} werden 273,15 subtrahiert. 273,15 ${fromUnit} entsprechen 0 ${toUnit}.`;
+  }
+
+  return `Verwenden Sie die definierte Temperaturbeziehung, um ${fromName.toLowerCase()} in ${toName.toLowerCase()} umzurechnen.`;
 }
 
 function localizeConversionPage(
   page: ConversionPage
 ): LocalizedGermanConversionPage | null {
-  if (!supportedCategories.has(page.category)) {
-    return null;
-  }
-
-  if (!allowedSourceSlugs.has(page.slug)) {
-    return null;
-  }
-
   const from = findGermanUnit(page.category, page.fromUnit);
   const to = findGermanUnit(page.category, page.toUnit);
 
@@ -151,14 +147,30 @@ function localizeConversionPage(
     toName: to.name,
     categoryName:
       germanCategoryNames[page.category] ?? page.category,
-    formula: createGermanFormula(from.name, to.name, factor),
-    explanation: createGermanExplanation(
-      from.name,
-      to.name,
-      page.fromUnit,
-      page.toUnit,
-      factor
-    ),
+    formula:
+      page.category === "sicaklik"
+        ? createTemperatureFormula(
+            from.name,
+            to.name,
+            page.fromUnit,
+            page.toUnit
+          )
+        : createGermanFormula(from.name, to.name, factor),
+    explanation:
+      page.category === "sicaklik"
+        ? createTemperatureExplanation(
+            from.name,
+            to.name,
+            page.fromUnit,
+            page.toUnit
+          )
+        : createGermanExplanation(
+            from.name,
+            to.name,
+            page.fromUnit,
+            page.toUnit,
+            factor
+          ),
     reverseSlug: `${to.slug}-${from.slug}`,
   };
 }

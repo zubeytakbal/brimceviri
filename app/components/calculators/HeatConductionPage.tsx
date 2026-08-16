@@ -56,42 +56,61 @@ type PageCopy = {
   relatedConversions: Array<{ label: string; href: string }>;
 };
 
+const unitSectionHeadings = {
+  tr: {
+    power: "Güç birimleri",
+    conductivity: "Isıl iletkenlik birimleri",
+    area: "Alan birimleri",
+    length: "Kalınlık birimleri",
+    temperatureDifference: "Sıcaklık farkı birimleri",
+  },
+  en: {
+    power: "Power units",
+    conductivity: "Thermal-conductivity units",
+    area: "Area units",
+    length: "Thickness units",
+    temperatureDifference: "Temperature-difference units",
+  },
+  de: {
+    power: "Leistungseinheiten",
+    conductivity: "Wärmeleitfähigkeitseinheiten",
+    area: "Flächeneinheiten",
+    length: "Dickeneinheiten",
+    temperatureDifference: "Temperaturdifferenzeinheiten",
+  },
+} as const;
+
 function getUnitSections(locale: CalculatorLocale): UnitTableSection[] {
+  const headings = unitSectionHeadings[locale];
+
   return [
     {
       id: "power-units",
-      heading: locale === "tr" ? "Güç birimleri" : "Power units",
+      heading: headings.power,
       siSymbol: "W",
       units: powerUnitDefinitions,
     },
     {
       id: "conductivity-units",
-      heading:
-        locale === "tr"
-          ? "Isıl iletkenlik birimleri"
-          : "Thermal-conductivity units",
+      heading: headings.conductivity,
       siSymbol: "W/(m·K)",
       units: thermalConductivityUnitDefinitions,
     },
     {
       id: "area-units",
-      heading: locale === "tr" ? "Alan birimleri" : "Area units",
+      heading: headings.area,
       siSymbol: "m²",
       units: calculatorAreaUnitDefinitions,
     },
     {
       id: "length-units",
-      heading:
-        locale === "tr" ? "Kalınlık birimleri" : "Thickness units",
+      heading: headings.length,
       siSymbol: "m",
       units: calculatorLengthUnitDefinitions,
     },
     {
       id: "temperature-difference-units",
-      heading:
-        locale === "tr"
-          ? "Sıcaklık farkı birimleri"
-          : "Temperature-difference units",
+      heading: headings.temperatureDifference,
       siSymbol: "K",
       units: temperatureDifferenceUnitDefinitions,
     },
@@ -335,6 +354,129 @@ const pageCopy: Record<CalculatorLocale, PageCopy> = {
     relatedConversions: [
       { label: "Meters to Centimeters", href: "/en/meters-to-centimeters" },
       { label: "Centimeters to Inches", href: "/en/centimeters-to-inches" },
+    ],
+  },
+  de: {
+    breadcrumbs: [
+      { label: "Startseite", href: "/de" },
+      { label: "Rechner" },
+      { label: "Wärmeleitungsrechner" },
+    ],
+    breadcrumbLabel: "Breadcrumb",
+    title: "Wärmeleitungsrechner",
+    description:
+      "Berechnen Sie mit Q̇ = k × A × ΔT / L die Wärmestromrate, die Wärmeleitfähigkeit, die Fläche, die Temperaturdifferenz oder die Dicke. Das Ergebnis wird mit SI-Äquivalent und eingesetzter Formel im selben blau-türkisen Rechner-Layout angezeigt.",
+    heroEyebrow: "INGENIEURRECHNER",
+    heroResultHeading: "Berechnungsergebnis",
+    introHeading: "Wofür steht diese Wärmeleitungsberechnung?",
+    formulasHeading: "Verwendete Formeln",
+    variablesHeading: "Variablen und SI-Einheiten",
+    presetHeading: "Über die Materialvoreinstellungen",
+    unitsHeading: "Einheitentabellen",
+    examplesHeading: "Anwendungsbeispiele",
+    applicationsHeading: "Typische Anwendungsbereiche",
+    limitationsHeading: "Annahmen und Einschränkungen",
+    sourcesHeading: "Quellen",
+    relatedHeading: "Verwandte Links",
+    relatedCalculatorsHeading: "Verwandte Rechner",
+    relatedConversionsHeading: "Verwandte Umrechnungen",
+    tableColumns: {
+      unitName: "Einheitenname",
+      symbol: "Symbol",
+      siEquivalent: "SI-Äquivalent",
+      typicalUse: "Typische Verwendung",
+    },
+    intro: [
+      "Dieses Werkzeug löst eine stationäre, eindimensionale Wärmeleitungsbeziehung für die Wärmestromrate oder jede andere Variable in der Formel.",
+      "Es ist hilfreich für die Kontrolle von Dämmstärken, Wärmeverlustschätzungen an Wänden, Materialvergleiche und erste thermische Auslegungen.",
+    ],
+    formulas: [
+      "Q̇ = k × A × ΔT / L",
+      "k = Q̇ × L / (A × ΔT)",
+      "A = Q̇ × L / (k × ΔT)",
+      "ΔT = Q̇ × L / (k × A)",
+      "L = k × A × ΔT / Q̇",
+    ],
+    variables: [
+      {
+        term: "Q̇",
+        explanation: "Wärmestromrate. SI-Einheit: W.",
+      },
+      {
+        term: "k",
+        explanation:
+          "Wärmeleitfähigkeit des Materials. SI-Einheit: W/(m·K).",
+      },
+      {
+        term: "A",
+        explanation:
+          "An der Wärmeübertragung beteiligte Fläche. SI-Einheit: m².",
+      },
+      {
+        term: "ΔT",
+        explanation:
+          "Temperaturdifferenz über die Schicht. SI-Einheit: K.",
+      },
+      {
+        term: "L",
+        explanation:
+          "Dicke in Richtung des Wärmestroms. SI-Einheit: m.",
+      },
+    ],
+    presetNotes: [
+      "Die Voreinstellungen für Kupfer, Aluminium, Stahl, Glas, Beton, Holz und Luft sind ungefähre Werte bei Raumbedingungen.",
+      "Die tatsächliche Leitfähigkeit kann sich mit Temperatur, Faserrichtung, Feuchtigkeit, Legierungsanteil und Herstellungsverfahren deutlich ändern.",
+    ],
+    examples: [
+      {
+        title: "Wärmestrom durch eine Kupferplatte",
+        body:
+          "Für k = 401 W/(m·K), A = 0,02 m², ΔT = 15 °C und L = 0,02 m beträgt die Wärmestromrate 6,015 kW.",
+      },
+      {
+        title: "Erforderliche Dämmstärke bei bekannter Last",
+        body:
+          "Bei Q̇ = 200 W, k = 0,04 W/(m·K), A = 4 m² und ΔT = 25 °C ergibt sich eine erforderliche Dicke von etwa 20 mm.",
+      },
+    ],
+    applications: [
+      "Erste Auslegung von Wand- und Dämmschichten",
+      "Wärmeverlustschätzungen durch Platten und flache Schichten",
+      "Schneller Vergleich von Materialleitfähigkeiten",
+      "Lehr- und Konzeptbeispiele für eindimensionale Wärmeleitung",
+    ],
+    limitations: [
+      "Die Formel setzt stationäre, eindimensionale Wärmeleitung mit konstanten Eigenschaften voraus.",
+      "Kontaktwiderstand, mehrschichtige Wände, Strahlung und Konvektion sind in dieser Basislösung nicht enthalten.",
+      "Die Materialvoreinstellungen sind Näherungswerte; für die endgültige Auslegung sollten Herstellerangaben oder Messdaten verwendet werden.",
+    ],
+    sources: [
+      {
+        label: "OpenStax University Physics - Temperature and Heat",
+        href: "https://openstax.org/books/university-physics-volume-2/pages/1-introduction",
+      },
+      {
+        label: "BIPM SI Brochure",
+        href: "https://www.bipm.org/en/publications/si-brochure",
+      },
+      {
+        label: "NIST Guide to the SI",
+        href: "https://www.nist.gov/pml/special-publication-811",
+      },
+    ],
+    relatedCalculators: [
+      {
+        label: "Wärmeenergie-Rechner",
+        href: "/de/ingenieurrechner",
+      },
+      {
+        label: "Reynolds-Zahl-Rechner",
+        href: "/de/ingenieurrechner",
+      },
+    ],
+    relatedConversions: [
+      { label: "Meter → Zentimeter", href: "/de/meter-zentimeter" },
+      { label: "Zentimeter → Zoll", href: "/de/zentimeter-zoll" },
     ],
   },
 };

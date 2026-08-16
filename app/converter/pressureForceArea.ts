@@ -19,7 +19,7 @@ import {
   type PressureUnit,
 } from "./engineeringUnits";
 
-export type CalculatorLocale = "tr" | "en";
+export type CalculatorLocale = "tr" | "en" | "de";
 export type CalculationTarget =
   | "pressure"
   | "force"
@@ -108,7 +108,7 @@ export function formatEngineeringValue(
   }
 
   return Number(value.toPrecision(12)).toLocaleString(
-    locale === "tr" ? "tr-TR" : "en-US",
+    locale === "tr" ? "tr-TR" : locale === "de" ? "de-DE" : "en-US",
     {
       maximumFractionDigits: 12,
     }
@@ -134,6 +134,15 @@ function getMessages(locale: CalculatorLocale) {
         "Pressure cannot be zero when solving for area.",
       areaResult:
         "These inputs would produce a negative or undefined area.",
+    },
+    de: {
+      missing: "Geben Sie die beiden für die Berechnung nötigen Werte ein.",
+      invalid: "Geben Sie gültige Zahlenwerte ein.",
+      areaPositive: "Die Fläche muss größer als null sein.",
+      pressureNonZero:
+        "Der Druck darf beim Lösen nach der Fläche nicht null sein.",
+      areaResult:
+        "Diese Eingaben würden zu einer negativen oder undefinierten Fläche führen.",
     },
   }[locale];
 }

@@ -12,7 +12,7 @@ type StaticPageSection = {
 };
 
 type StaticPageLayoutProps = {
-  locale: "tr" | "en";
+  locale: "tr" | "en" | "de";
   breadcrumbAriaLabel: string;
   breadcrumbs: BreadcrumbItem[];
   title: string;
@@ -37,20 +37,11 @@ export default function StaticPageLayout({
   return (
     <main className="unit-information-page" lang={locale}>
       <article className="unit-page-shell">
-        <nav
-          className="breadcrumbs"
-          aria-label={breadcrumbAriaLabel}
-        >
+        <nav className="breadcrumbs" aria-label={breadcrumbAriaLabel}>
           {breadcrumbs.map((item, index) => (
             <span key={`${item.label}-${index}`}>
-              {index > 0 && (
-                <span aria-hidden="true"> › </span>
-              )}
-              {item.href ? (
-                <Link href={item.href}>{item.label}</Link>
-              ) : (
-                <span>{item.label}</span>
-              )}
+              {index > 0 && <span aria-hidden="true"> › </span>}
+              {item.href ? <Link href={item.href}>{item.label}</Link> : <span>{item.label}</span>}
             </span>
           ))}
         </nav>
@@ -62,10 +53,7 @@ export default function StaticPageLayout({
 
         <div className="unit-page-content">
           {sections.map((section) => (
-            <section
-              className="conversion-section"
-              key={section.heading}
-            >
+            <section className="conversion-section" key={section.heading}>
               <h2>{section.heading}</h2>
               {section.content}
             </section>
@@ -73,7 +61,13 @@ export default function StaticPageLayout({
 
           {alternateLink && (
             <section className="conversion-section language-alternatives">
-              <h2>{locale === "en" ? "Other languages" : "Diğer diller"}</h2>
+              <h2>
+                {locale === "en"
+                  ? "Other languages"
+                  : locale === "de"
+                    ? "Weitere Sprachen"
+                    : "Diğer diller"}
+              </h2>
               <Link
                 className="text-link"
                 href={alternateLink.href}

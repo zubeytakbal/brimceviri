@@ -1,4 +1,4 @@
-export type TechnicalReferenceLocale = "tr" | "en";
+export type TechnicalReferenceLocale = "tr" | "en" | "de";
 
 export type TechnicalReferenceSource = {
   id: string;
@@ -6,7 +6,9 @@ export type TechnicalReferenceSource = {
   url: string;
   accessedOn: string;
   updatedOn?: string;
-  conditions: Record<TechnicalReferenceLocale, string>;
+  conditions: Record<"tr" | "en", string> & {
+    de?: string;
+  };
 };
 
 export type TechnicalReferencePoint = {

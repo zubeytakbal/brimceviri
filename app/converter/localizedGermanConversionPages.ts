@@ -3,7 +3,7 @@ import {
   conversionPages,
   type ConversionPage,
 } from "./conversionPages";
-import { germanUnitPages } from "./localizedGermanUnitPages";
+import { findUnit } from "./unitRegistry";
 
 export type LocalizedGermanConversionPage = ConversionPage & {
   locale: "de";
@@ -24,12 +24,6 @@ const germanCategoryNames: Record<string, string> = {
   debi: "Durchfluss",
   elektrik: "Elektrizität",
 };
-
-function findGermanUnit(category: string, unit: string) {
-  return germanUnitPages.find(
-    (page) => page.category === category && page.unit === unit
-  );
-}
 
 function formatGermanValue(value: number) {
   return Number(value.toPrecision(12)).toLocaleString("de-DE", {
@@ -124,10 +118,10 @@ function createTemperatureExplanation(
 function localizeConversionPage(
   page: ConversionPage
 ): LocalizedGermanConversionPage | null {
-  const from = findGermanUnit(page.category, page.fromUnit);
-  const to = findGermanUnit(page.category, page.toUnit);
+  const from = findUnit(page.category, page.fromUnit);
+  const to = findUnit(page.category, page.toUnit);
 
-  if (!from || !to) {
+  if (!from?.de || !to?.de) {
     return null;
   }
 
@@ -142,36 +136,36 @@ function localizeConversionPage(
     ...page,
     locale: "de",
     sourceSlug: page.slug,
-    slug: `${from.slug}-${to.slug}`,
-    fromName: from.name,
-    toName: to.name,
+    slug: `${from.de.slug}-${to.de.slug}`,
+    fromName: from.de.name,
+    toName: to.de.name,
     categoryName:
       germanCategoryNames[page.category] ?? page.category,
     formula:
       page.category === "sicaklik"
         ? createTemperatureFormula(
-            from.name,
-            to.name,
+            from.de.name,
+            to.de.name,
             page.fromUnit,
             page.toUnit
           )
-        : createGermanFormula(from.name, to.name, factor),
+        : createGermanFormula(from.de.name, to.de.name, factor),
     explanation:
       page.category === "sicaklik"
         ? createTemperatureExplanation(
-            from.name,
-            to.name,
+            from.de.name,
+            to.de.name,
             page.fromUnit,
             page.toUnit
           )
         : createGermanExplanation(
-            from.name,
-            to.name,
+            from.de.name,
+            to.de.name,
             page.fromUnit,
             page.toUnit,
             factor
           ),
-    reverseSlug: `${to.slug}-${from.slug}`,
+    reverseSlug: `${to.de.slug}-${from.de.slug}`,
   };
 }
 

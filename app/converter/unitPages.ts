@@ -225,6 +225,13 @@ const unitDescriptions: Record<string, UnitDescription> = {
     siEquivalent: "1 bar = 100000 Pa",
     commonUses: "Kompresörler, hidrolik, pnömatik ve servis manometreleri",
   },
+  "atmosfer": {
+    shortDescription: "Atmosfer, Dünya atmosferinin deniz seviyesindeki ortalama basıncına yakın bir referans değere dayanan basınç birimidir. Standart atmosfer olarak da anılır.",
+    historySummary: "Atmosfer birimi, barometrik ölçümlerin ve deniz seviyesi referans basıncının teknik ve bilimsel çalışmalarda standart bir karşılaştırma noktası olarak kullanılmasıyla yaygınlaştı. 1954 yılında 10. Genel Ağırlıklar ve Ölçüler Konferansı (CGPM) standart atmosferi tam olarak 101 325 Pa olarak tanımladı.",
+    measurementSystem: "SI dışı, meteoroloji ve mühendislikte referans birim",
+    siEquivalent: "1 atm = 101 325 Pa (tanımlı değer)",
+    commonUses: "Referans koşulları, meteoroloji, vakum ve basınç ölçümleri",
+  },
   "psi": {
     shortDescription: "PSI, pound-force per square inch ifadesinin kısaltmasıdır. Anglo-Amerikan teknik sistemlerde kullanılan yaygın bir basınç birimidir.",
     historySummary: "PSI özellikle otomotiv, hidrolik ve saha servis geleneği içinde yerleşti. SI birimleri yaygınlaşsa da birçok ekipman etiketi ve katalogta kullanılmaya devam etmektedir.",
@@ -339,7 +346,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
 };
 
-const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","pascal","kilopascal","bar","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper"];
+const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper"];
 
 export const unitPages: UnitPage[] = unitRegistry
   .filter((entry) => entry.tr && unitDescriptions[entry.id])

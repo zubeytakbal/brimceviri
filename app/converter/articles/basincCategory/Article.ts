@@ -215,13 +215,6 @@ export const basincCategoryArticle: CategoryArticle = {
       commonUse: "Tesisat, lastik ve proses basınçları",
     },
     {
-      name: "Megapascal",
-      symbol: "MPa",
-      referenceValue: "1 000 000 Pa",
-      system: "SI",
-      commonUse: "Hidrolik sistemler ve malzeme gerilmesi",
-    },
-    {
       name: "Bar",
       symbol: "bar",
       referenceValue: "100 000 Pa",
@@ -269,6 +262,13 @@ export const basincCategoryArticle: CategoryArticle = {
       referenceValue: "≈ 9,80665 Pa",
       system: "SI dışı",
       commonUse: "Düşük basınç ve havalandırma ölçümleri",
+    },
+    {
+      name: "Kilogram-kuvvet/santimetrekare",
+      symbol: "kgf/cm²",
+      referenceValue: "98 066,5 Pa",
+      system: "Metrik, SI dışı",
+      commonUse: "Eski pompa ve kazan göstergeleri, servis kitapçıkları",
     },
   ],
 };

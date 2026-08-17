@@ -1,6 +1,9 @@
 import {
   kilometreScientificData,
 } from "./scientific/kilometreScientificData";
+import {
+  pascalScientificData,
+} from "./scientific/pascalScientificData";
 
 export type ScientificProperty = {
   label: string;
@@ -399,6 +402,10 @@ export const unitScientificData: UnitScientificData[] = [
 export function findUnitScientificData(slug: string) {
   if (slug === "kilometre") {
     return kilometreScientificData;
+  }
+
+  if (slug === "pascal") {
+    return pascalScientificData;
   }
 
   return unitScientificData.find((data) => data.slug === slug);

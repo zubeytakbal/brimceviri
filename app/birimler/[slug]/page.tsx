@@ -130,6 +130,13 @@ export default async function UnitInformationPage({
     "Odometre ve kilometre ölçümü",
     "Harita ölçeği ve kilometre ilişkisi",
   ],
+
+  pascal: [
+    "Pascal neden bir SI türetilmiş birimidir?",
+    "Pascal ilkesi ve hidrolik sistemler",
+    "Basınç ile mekanik gerilme arasındaki ilişki",
+    "Meteorolojide hektopascal kullanımı",
+  ],
 };
 
 const allowedScientificSections =
@@ -426,6 +433,18 @@ const specificScientificSections =
                     katları ve alt katları için{" "}
                     <Link href="/kategoriler/uzunluk">
                       uzunluk birimleri sayfasını
+                    </Link>{" "}
+                    inceleyebilirsiniz.
+                  </p>
+                )}
+
+                {section.title ===
+                  "Pascal ve diğer basınç birimleri" && (
+                  <p className="category-inline-link">
+                    Bütün basınç birimlerinin karşılaştırması ve
+                    dönüşüm tablosu için{" "}
+                    <Link href="/kategoriler/basinc">
+                      basınç birimleri sayfasını
                     </Link>{" "}
                     inceleyebilirsiniz.
                   </p>

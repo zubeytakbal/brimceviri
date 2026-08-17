@@ -144,6 +144,26 @@ export default async function UnitInformationPage({
     "760 mmHg konvansiyonu ve atmosfer tanımı",
     "Kimyada standart basınç referansı olarak atmosfer",
   ],
+
+  psi: [
+    "1959 Uluslararası Yarda ve Pound Anlaşması ve PSI'nin kesin tanımı",
+    "Malzeme mühendisliğinde ksi (kilopsi) kullanımı",
+  ],
+
+  "kilogram-kuvvet-santimetrekare": [
+    "Kilogram-kuvvet ve standart yerçekiminin tanımı",
+    "Teknik atmosfer ile standart atmosfer arasındaki küçük ama önemli fark",
+  ],
+};
+
+const categoryGuideLinks: Record<
+  string,
+  { href: string; label: string }
+> = {
+  basinc: {
+    href: "/basinc-birimleri-rehberi",
+    label: "Basınç birimleri rehberi",
+  },
 };
 
 const allowedScientificSections =
@@ -316,6 +336,21 @@ const specificScientificSections =
                   karşılığı: {unitPage.siEquivalent}.
                 </p>
               </section>
+            )}
+
+            {categoryGuideLinks[unitPage.category] && (
+              <p className="category-inline-link">
+                {unitPage.name} birimi, {categoryLabels[
+                  unitPage.category
+                ]?.toLowerCase() ?? unitPage.category}{" "}
+                birimlerinin ortak tarihçesini ve genel kavramlarını
+                paylaşır. Torricelli barometresi, ISA modeli ve genel
+                ölçüm yöntemleri gibi ortak arka plan bilgisi için{" "}
+                <Link href={categoryGuideLinks[unitPage.category].href}>
+                  {categoryGuideLinks[unitPage.category].label}
+                </Link>{" "}
+                sayfasını inceleyebilirsiniz.
+              </p>
             )}
 
             <section className="conversion-section">

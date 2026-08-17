@@ -7,6 +7,12 @@ import {
 import {
   atmosferScientificData,
 } from "./scientific/atmosferScientificData";
+import {
+  psiScientificData,
+} from "./scientific/psiScientificData";
+import {
+  kilogramKuvvetSantimetrekareScientificData,
+} from "./scientific/kilogramKuvvetSantimetrekareScientificData";
 
 export type ScientificProperty = {
   label: string;
@@ -413,6 +419,14 @@ export function findUnitScientificData(slug: string) {
 
   if (slug === "atmosfer") {
     return atmosferScientificData;
+  }
+
+  if (slug === "psi") {
+    return psiScientificData;
+  }
+
+  if (slug === "kilogram-kuvvet-santimetrekare") {
+    return kilogramKuvvetSantimetrekareScientificData;
   }
 
   return unitScientificData.find((data) => data.slug === slug);

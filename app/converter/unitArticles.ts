@@ -1,5 +1,6 @@
 import { kilometreArticle } from "./articles/kilometreArticle";
 import { pascalArticle } from "./articles/pascalArticle";
+import { atmosferArticle } from "./articles/atmosferArticle";
 export type UnitArticleSection = {
   title: string;
   paragraphs: string[];
@@ -255,6 +256,10 @@ export function findUnitArticle(slug: string) {
 
   if (slug === "pascal") {
     return pascalArticle;
+  }
+
+  if (slug === "atmosfer") {
+    return atmosferArticle;
   }
 
   return unitArticles.find((article) => article.slug === slug);

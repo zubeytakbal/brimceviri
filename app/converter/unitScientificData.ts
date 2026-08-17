@@ -4,6 +4,9 @@ import {
 import {
   pascalScientificData,
 } from "./scientific/pascalScientificData";
+import {
+  atmosferScientificData,
+} from "./scientific/atmosferScientificData";
 
 export type ScientificProperty = {
   label: string;
@@ -406,6 +409,10 @@ export function findUnitScientificData(slug: string) {
 
   if (slug === "pascal") {
     return pascalScientificData;
+  }
+
+  if (slug === "atmosfer") {
+    return atmosferScientificData;
   }
 
   return unitScientificData.find((data) => data.slug === slug);

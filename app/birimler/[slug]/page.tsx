@@ -137,6 +137,13 @@ export default async function UnitInformationPage({
     "Basınç ile mekanik gerilme arasındaki ilişki",
     "Meteorolojide hektopascal kullanımı",
   ],
+
+  atmosfer: [
+    "Atmosfer neden SI dışı bir birimdir?",
+    "Barometrik formül ve yükseklikle basınç azalması",
+    "760 mmHg konvansiyonu ve atmosfer tanımı",
+    "Kimyada standart basınç referansı olarak atmosfer",
+  ],
 };
 
 const allowedScientificSections =
@@ -440,6 +447,18 @@ const specificScientificSections =
 
                 {section.title ===
                   "Pascal ve diğer basınç birimleri" && (
+                  <p className="category-inline-link">
+                    Bütün basınç birimlerinin karşılaştırması ve
+                    dönüşüm tablosu için{" "}
+                    <Link href="/kategoriler/basinc">
+                      basınç birimleri sayfasını
+                    </Link>{" "}
+                    inceleyebilirsiniz.
+                  </p>
+                )}
+
+                {section.title ===
+                  "Atmosfer ve diğer basınç birimleri" && (
                   <p className="category-inline-link">
                     Bütün basınç birimlerinin karşılaştırması ve
                     dönüşüm tablosu için{" "}

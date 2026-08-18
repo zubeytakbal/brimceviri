@@ -11,6 +11,16 @@ import {
 import { germanConversionPages } from "../../../converter/localizedGermanConversionPages";
 import { germanUnitPages } from "../../../converter/localizedGermanUnitPages";
 import { findEnglishCategoryPageByTurkishSlug } from "../../../converter/localizedCategoryPages";
+import {
+  formatPressureFactor,
+  pressureConversionMatrix,
+  pressureConversionUnits,
+} from "../../../converter/pressureConversionMatrix";
+import {
+  pressureSectorUsageLabels,
+  pressureSectorUsageOrder,
+  pressureSectorUsageUnit,
+} from "../../../converter/pressureSectorUsage";
 import { getUnitSources } from "../../../converter/unitSources";
 import { buildSiteUrl } from "../../../siteConfig";
 
@@ -220,6 +230,22 @@ export default async function GermanCategoryPage({
                   <a href={`#section-${index + 1}`}>{section.title}</a>
                 </li>
               ))}
+              {categoryPage.category === "basinc" && (
+                <>
+                  <li>
+                    <a href="#druck-umrechnungsmatrix">
+                      Vollständige Umrechnungsfaktor-Matrix
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#druck-branchennutzung">
+                      Welche Einheit wird in welcher Branche verwendet?
+                    </a>
+                  </li>
+                </>
+              )}
+
               <li>
                 <a href="#sources">Quellen</a>
               </li>
@@ -271,6 +297,91 @@ export default async function GermanCategoryPage({
                   </table>
                 </div>
               </section>
+            )}
+
+            {categoryPage.category === "basinc" && (
+              <>
+                <section
+                  className="conversion-section"
+                  id="druck-umrechnungsmatrix"
+                >
+                  <h2>Vollständige Umrechnungsfaktor-Matrix</h2>
+
+                  <p>
+                    Jede Zelle zeigt, wie viele Einheiten der
+                    Spaltenüberschrift einer Einheit der Zeile
+                    entsprechen. Die Zeile "bar" gekreuzt mit der
+                    Spalte "psi" zeigt zum Beispiel, wie viele psi
+                    einem bar entsprechen.
+                  </p>
+
+                  <div className="conversion-table-wrap">
+                    <table className="conversion-table">
+                      <thead>
+                        <tr>
+                          <th>1 Einheit ↓ / entspricht →</th>
+                          {pressureConversionUnits.map((unit) => (
+                            <th key={unit}>{unit}</th>
+                          ))}
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        {pressureConversionMatrix.map((row) => (
+                          <tr key={row.unit}>
+                            <td>
+                              <strong>{row.unit}</strong>
+                            </td>
+                            {pressureConversionUnits.map((unit) => (
+                              <td key={unit}>
+                                {formatPressureFactor(
+                                  row.values[unit],
+                                  "de"
+                                )}
+                              </td>
+                            ))}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+
+                <section
+                  className="conversion-section"
+                  id="druck-branchennutzung"
+                >
+                  <h2>
+                    Welche Einheit wird in welcher Branche verwendet?
+                  </h2>
+
+                  <div className="conversion-table-wrap">
+                    <table className="conversion-table">
+                      <thead>
+                        <tr>
+                          <th>Branche / Kontext</th>
+                          <th>Übliche Einheit</th>
+                          <th>Hinweis</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        {pressureSectorUsageOrder.map((key) => (
+                          <tr key={key}>
+                            <td>
+                              {pressureSectorUsageLabels.de[key].sector}
+                            </td>
+                            <td>{pressureSectorUsageUnit[key]}</td>
+                            <td>
+                              {pressureSectorUsageLabels.de[key].note}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+              </>
             )}
 
             <section

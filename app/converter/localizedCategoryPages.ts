@@ -470,6 +470,22 @@ export const englishCategoryPages: LocalizedCategoryPage[] = [
         ],
       },
       {
+        title: "The history of pressure measurement: Torricelli and the barometer",
+        paragraphs: [
+          "Systematic pressure measurement began in 1643 when the Italian scientist Evangelista Torricelli built the first mercury barometer. He filled a glass tube closed at one end with mercury and inverted it into a dish of mercury, observing that the mercury column settled at a fixed height, leaving a vacuum above it.",
+          "Torricelli proposed that the height of the mercury column was balanced by the weight of the surrounding air, giving the first experimental evidence that air itself has measurable weight and therefore exerts pressure. This insight marked the beginning of pressure as a scientific quantity.",
+          "In 1648, Florin Périer carried a barometer up the Puy-de-Dôme mountain at Blaise Pascal's suggestion and showed that atmospheric pressure decreases with altitude. Later milestones built on this foundation, including the 1875 Metre Convention that coordinated measurement units internationally, the exact 1954 definition of the standard atmosphere, and the 1971 adoption of the pascal as the SI pressure unit.",
+        ],
+      },
+      {
+        title: "Absolute, gauge and differential pressure",
+        paragraphs: [
+          "Absolute pressure is measured against a perfect vacuum, which represents true zero pressure. Gas laws, thermodynamic calculations and several density-related relationships require absolute pressure to give correct results.",
+          "Gauge pressure is measured relative to the surrounding atmospheric pressure. Most field pressure gauges are zeroed against the local atmosphere, so the value read on a dial is almost always a gauge pressure. Absolute and gauge pressure are related by: absolute pressure = gauge pressure + atmospheric pressure.",
+          "Differential pressure is the difference between two points, such as across a filter, an orifice plate or the two sides of a heat exchanger. It is referenced to neither a vacuum nor the atmosphere, but directly to another pressure point, which makes it especially useful for flow measurement and monitoring equipment condition.",
+        ],
+      },
+      {
         title: "How are pressure units converted?",
         paragraphs: [
           "A pressure conversion preserves the same physical pressure while expressing it with another unit. The numerical value changes according to the defined factor between the two units.",

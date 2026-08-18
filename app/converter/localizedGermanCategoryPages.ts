@@ -355,6 +355,22 @@ export const germanCategoryPages: LocalizedGermanCategoryPage[] = [
         ],
       },
       {
+        title: "Geschichte der Druckmessung: Torricelli und das Barometer",
+        paragraphs: [
+          "Die systematische Druckmessung begann 1643, als der italienische Wissenschaftler Evangelista Torricelli das erste Quecksilberbarometer baute. Er füllte ein einseitig geschlossenes Glasrohr mit Quecksilber und tauchte das offene Ende in ein Gefäß mit Quecksilber; die Säule blieb auf einer bestimmten Höhe stehen und ließ darüber einen leeren Raum entstehen.",
+          "Torricelli folgerte, dass die Höhe der Quecksilbersäule durch das Gewicht der umgebenden Luft ausgeglichen wird. Dies war der erste experimentelle Beleg dafür, dass Luft ein messbares Gewicht und damit einen Druck besitzt.",
+          "1648 trug Florin Périer auf Vorschlag von Blaise Pascal ein Barometer auf den Puy-de-Dôme und zeigte, dass der Luftdruck mit der Höhe abnimmt. Spätere Meilensteine bauten darauf auf, etwa die Meterkonvention von 1875, die exakte Definition der Standardatmosphäre 1954 und die Aufnahme des Pascal als SI-Einheit 1971.",
+        ],
+      },
+      {
+        title: "Absolutdruck, Überdruck und Differenzdruck",
+        paragraphs: [
+          "Absolutdruck wird gegenüber einem vollständigen Vakuum gemessen, dem theoretischen Nullpunkt des Drucks. Gasgesetze und thermodynamische Berechnungen benötigen in der Regel den Absolutdruck.",
+          "Überdruck (Gauge-Druck) wird relativ zum umgebenden Atmosphärendruck gemessen. Die meisten Manometer im Feld sind auf die lokale Atmosphäre genullt, sodass der angezeigte Wert fast immer ein Überdruck ist: Absolutdruck = Überdruck + Atmosphärendruck.",
+          "Differenzdruck ist die Differenz zwischen zwei Messpunkten, etwa vor und nach einem Filter oder einer Blende. Er bezieht sich weder auf ein Vakuum noch auf die Atmosphäre, sondern direkt auf einen zweiten Druckpunkt, was ihn für Durchflussmessungen besonders nützlich macht.",
+        ],
+      },
+      {
         title: "Warum sind genaue Druckumrechnungen wichtig?",
         paragraphs: [
           "Sie verhindern Missverständnisse zwischen internationalen Datenblättern, Messgeräten und Grenzwerten.",

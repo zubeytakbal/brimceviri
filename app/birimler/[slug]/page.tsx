@@ -161,8 +161,8 @@ const categoryGuideLinks: Record<
   { href: string; label: string }
 > = {
   basinc: {
-    href: "/basinc-birimleri-rehberi",
-    label: "Basınç birimleri rehberi",
+    href: "/kategoriler/basinc",
+    label: "Basınç birimleri kategori sayfası",
   },
 };
 

@@ -10,6 +10,16 @@ import { categoryPages } from "../../converter/categoryPages";
 import { conversionPages } from "../../converter/conversionPages";
 import { findEnglishCategoryPageByTurkishSlug } from "../../converter/localizedCategoryPages";
 import { findGermanCategoryPageByTurkishSlug } from "../../converter/localizedGermanCategoryPages";
+import {
+  formatPressureFactor,
+  pressureConversionMatrix,
+  pressureConversionUnits,
+} from "../../converter/pressureConversionMatrix";
+import {
+  pressureSectorUsageLabels,
+  pressureSectorUsageOrder,
+  pressureSectorUsageUnit,
+} from "../../converter/pressureSectorUsage";
 import { getUnitSources } from "../../converter/unitSources";
 import { unitPages } from "../../converter/unitPages";
 import { buildSiteUrl } from "../../siteConfig";
@@ -325,6 +335,22 @@ export default async function CategoryPage({
                     </a>
                   </li>
 
+                  {categoryPage.category === "basinc" && (
+                    <>
+                      <li>
+                        <a href="#basinc-donusum-matrisi">
+                          Tam dönüşüm faktörleri matrisi
+                        </a>
+                      </li>
+
+                      <li>
+                        <a href="#basinc-sektor-kullanimi">
+                          Hangi sektörde hangi birim kullanılır?
+                        </a>
+                      </li>
+                    </>
+                  )}
+
                   <li>
                     <a href="#kategori-kaynaklari">
                       Kaynaklar
@@ -395,6 +421,97 @@ export default async function CategoryPage({
                     </table>
                   </div>
                 </section>
+
+                {categoryPage.category === "basinc" && (
+                  <>
+                    <section
+                      className="conversion-section"
+                      id="basinc-donusum-matrisi"
+                    >
+                      <h2>Tam dönüşüm faktörleri matrisi</h2>
+
+                      <p>
+                        Aşağıdaki tablo, satırdaki birimin 1 biriminin
+                        sütundaki birim cinsinden karşılığını gösterir.
+                        Örneğin "bar" satırı ile "psi" sütununun
+                        kesiştiği hücre, 1 bar'ın kaç psi'ye eşit
+                        olduğunu verir.
+                      </p>
+
+                      <div className="scientific-table-wrap">
+                        <table className="scientific-table">
+                          <thead>
+                            <tr>
+                              <th>1 birim ↓ / karşılığı →</th>
+                              {pressureConversionUnits.map((unit) => (
+                                <th key={unit}>{unit}</th>
+                              ))}
+                            </tr>
+                          </thead>
+
+                          <tbody>
+                            {pressureConversionMatrix.map((row) => (
+                              <tr key={row.unit}>
+                                <td>
+                                  <strong>{row.unit}</strong>
+                                </td>
+                                {pressureConversionUnits.map(
+                                  (unit) => (
+                                    <td key={unit}>
+                                      {formatPressureFactor(
+                                        row.values[unit],
+                                        "tr"
+                                      )}
+                                    </td>
+                                  )
+                                )}
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+
+                    <section
+                      className="conversion-section"
+                      id="basinc-sektor-kullanimi"
+                    >
+                      <h2>Hangi sektörde hangi birim kullanılır?</h2>
+
+                      <div className="scientific-table-wrap">
+                        <table className="scientific-table">
+                          <thead>
+                            <tr>
+                              <th>Sektör / bağlam</th>
+                              <th>Yaygın birim</th>
+                              <th>Açıklama</th>
+                            </tr>
+                          </thead>
+
+                          <tbody>
+                            {pressureSectorUsageOrder.map((key) => (
+                              <tr key={key}>
+                                <td>
+                                  {
+                                    pressureSectorUsageLabels.tr[key]
+                                      .sector
+                                  }
+                                </td>
+                                <td>{pressureSectorUsageUnit[key]}</td>
+                                <td>
+                                  {
+                                    pressureSectorUsageLabels.tr[key]
+                                      .note
+                                  }
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </>
+                )}
 
                 <section
                   className="conversion-section unit-sources"

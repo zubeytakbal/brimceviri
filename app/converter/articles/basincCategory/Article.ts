@@ -78,6 +78,16 @@ export const basincCategoryArticle: CategoryArticle = {
       ],
     },
     {
+      title: "Basınç ölçümünün tarihçesi: Torricelli ve barometre",
+      paragraphs: [
+        "Basıncın sistematik olarak ölçülmesi 1643 yılında İtalyan bilim insanı Evangelista Torricelli'nin cıvalı barometreyi geliştirmesiyle başladı. Torricelli, bir ucu kapalı cam bir tüpü cıvayla doldurup açık ucunu bir cıva kabına daldırdığında, tüpteki cıvanın belirli bir yükseklikte durup üstünde bir boşluk bıraktığını gözlemledi.",
+
+        "Torricelli, cıva sütununun yüksekliğinin dışarıdaki havanın ağırlığı tarafından dengelendiğini öne sürdü. Bu fikir, havanın ölçülebilir bir ağırlığı ve dolayısıyla bir basıncı olduğu görüşünün deneysel temelini oluşturdu ve basınç kavramının bilimsel bir büyüklük olarak incelenmesinin başlangıcı kabul edilir.",
+
+        "1648 yılında Florin Périer, Blaise Pascal'ın önerisiyle Puy-de-Dôme dağında bir barometreyi farklı yüksekliklerde ölçerek atmosfer basıncının yükseklikle azaldığını gösterdi. Sonraki yüzyıllarda bu temel üzerine kurulan çalışmalar; 1875 Metre Konvansiyonu ile ölçü birimlerinin uluslararası koordinasyonunu, 1954'te standart atmosferin kesin tanımını ve 1971'de pascal biriminin SI'ya kabulünü getirdi.",
+      ],
+    },
+    {
       title: "Mutlak, gösterge ve diferansiyel basınç",
       paragraphs: [
         "Mutlak basınç tam vakuma göre ölçülür. Bu referans, teorik olarak basıncın sıfır olduğu durumdur ve mutlak basınç negatif olamaz. Özellikle gaz yasaları, termodinamik hesaplar ve yoğunlukla ilişkili bazı bağıntılar mutlak basınçla çalışır.",

@@ -11,6 +11,16 @@ import {
 } from "../../../converter/localizedCategoryPages";
 import { englishConversionPages } from "../../../converter/localizedConversionPages";
 import { findGermanCategoryPageByTurkishSlug } from "../../../converter/localizedGermanCategoryPages";
+import {
+  formatPressureFactor,
+  pressureConversionMatrix,
+  pressureConversionUnits,
+} from "../../../converter/pressureConversionMatrix";
+import {
+  pressureSectorUsageLabels,
+  pressureSectorUsageOrder,
+  pressureSectorUsageUnit,
+} from "../../../converter/pressureSectorUsage";
 import { englishUnitPages } from "../../../converter/localizedUnitPages";
 import { SITE_URL, buildSiteUrl } from "../../../siteConfig";
 
@@ -323,6 +333,22 @@ export default async function EnglishCategoryPage({
                 </a>
               </li>
 
+              {categoryPage.category === "basinc" && (
+                <>
+                  <li>
+                    <a href="#pressure-conversion-matrix">
+                      Full conversion factor matrix
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#pressure-sector-usage">
+                      Which unit is used in which industry?
+                    </a>
+                  </li>
+                </>
+              )}
+
               <li>
                 <a href="#conversion-tools">
                   {englishCategoryConversionHeadings[
@@ -387,6 +413,88 @@ export default async function EnglishCategoryPage({
                 </table>
               </div>
             </section>
+
+            {categoryPage.category === "basinc" && (
+              <>
+                <section
+                  className="conversion-section"
+                  id="pressure-conversion-matrix"
+                >
+                  <h2>Full conversion factor matrix</h2>
+
+                  <p>
+                    Each cell shows how many units of the column
+                    header equal one unit of the row header. For
+                    example, the row "bar" crossed with the column
+                    "psi" shows how many PSI equal one bar.
+                  </p>
+
+                  <div className="conversion-table-wrap">
+                    <table className="conversion-table">
+                      <thead>
+                        <tr>
+                          <th>1 unit ↓ / equals →</th>
+                          {pressureConversionUnits.map((unit) => (
+                            <th key={unit}>{unit}</th>
+                          ))}
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        {pressureConversionMatrix.map((row) => (
+                          <tr key={row.unit}>
+                            <td>
+                              <strong>{row.unit}</strong>
+                            </td>
+                            {pressureConversionUnits.map((unit) => (
+                              <td key={unit}>
+                                {formatPressureFactor(
+                                  row.values[unit],
+                                  "en"
+                                )}
+                              </td>
+                            ))}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+
+                <section
+                  className="conversion-section"
+                  id="pressure-sector-usage"
+                >
+                  <h2>Which unit is used in which industry?</h2>
+
+                  <div className="conversion-table-wrap">
+                    <table className="conversion-table">
+                      <thead>
+                        <tr>
+                          <th>Industry / context</th>
+                          <th>Common unit</th>
+                          <th>Notes</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        {pressureSectorUsageOrder.map((key) => (
+                          <tr key={key}>
+                            <td>
+                              {pressureSectorUsageLabels.en[key].sector}
+                            </td>
+                            <td>{pressureSectorUsageUnit[key]}</td>
+                            <td>
+                              {pressureSectorUsageLabels.en[key].note}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+              </>
+            )}
 
             <section
               className="conversion-section related-conversions"

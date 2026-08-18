@@ -164,6 +164,11 @@ export default async function UnitInformationPage({
     "mmHg'nin kesin tanımı: konvansiyonel cıva yoğunluğu",
     "mmHg ile Torr arasındaki milyonda birkaçlık fark",
   ],
+
+  kilopascal: [
+    "SI ön ek sistemi ve kilo (10³) çarpanı",
+    "Jeoteknik ve yapı mühendisliğinde kilopascal standardı",
+  ],
 };
 
 const categoryGuideLinks: Record<

@@ -17,6 +17,9 @@ import { barScientificData } from "./scientific/barScientificData";
 import {
   milimetreCivaScientificData,
 } from "./scientific/milimetreCivaScientificData";
+import {
+  kilopascalScientificData,
+} from "./scientific/kilopascalScientificData";
 
 export type ScientificProperty = {
   label: string;
@@ -439,6 +442,10 @@ export function findUnitScientificData(slug: string) {
 
   if (slug === "milimetre-civa") {
     return milimetreCivaScientificData;
+  }
+
+  if (slug === "kilopascal") {
+    return kilopascalScientificData;
   }
 
   return unitScientificData.find((data) => data.slug === slug);

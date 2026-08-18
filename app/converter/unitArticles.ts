@@ -5,6 +5,7 @@ import { psiArticle } from "./articles/psiArticle";
 import { kilogramKuvvetSantimetrekareArticle } from "./articles/kilogramKuvvetSantimetrekareArticle";
 import { barArticle } from "./articles/barArticle";
 import { milimetreCivaArticle } from "./articles/milimetreCivaArticle";
+import { kilopascalArticle } from "./articles/kilopascalArticle";
 export type UnitArticleSection = {
   title: string;
   paragraphs: string[];
@@ -280,6 +281,10 @@ export function findUnitArticle(slug: string) {
 
   if (slug === "milimetre-civa") {
     return milimetreCivaArticle;
+  }
+
+  if (slug === "kilopascal") {
+    return kilopascalArticle;
   }
 
   return unitArticles.find((article) => article.slug === slug);

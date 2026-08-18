@@ -3,6 +3,8 @@ import { pascalArticle } from "./articles/pascalArticle";
 import { atmosferArticle } from "./articles/atmosferArticle";
 import { psiArticle } from "./articles/psiArticle";
 import { kilogramKuvvetSantimetrekareArticle } from "./articles/kilogramKuvvetSantimetrekareArticle";
+import { barArticle } from "./articles/barArticle";
+import { milimetreCivaArticle } from "./articles/milimetreCivaArticle";
 export type UnitArticleSection = {
   title: string;
   paragraphs: string[];
@@ -270,6 +272,14 @@ export function findUnitArticle(slug: string) {
 
   if (slug === "kilogram-kuvvet-santimetrekare") {
     return kilogramKuvvetSantimetrekareArticle;
+  }
+
+  if (slug === "bar") {
+    return barArticle;
+  }
+
+  if (slug === "milimetre-civa") {
+    return milimetreCivaArticle;
   }
 
   return unitArticles.find((article) => article.slug === slug);

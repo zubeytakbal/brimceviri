@@ -13,6 +13,10 @@ import {
 import {
   kilogramKuvvetSantimetrekareScientificData,
 } from "./scientific/kilogramKuvvetSantimetrekareScientificData";
+import { barScientificData } from "./scientific/barScientificData";
+import {
+  milimetreCivaScientificData,
+} from "./scientific/milimetreCivaScientificData";
 
 export type ScientificProperty = {
   label: string;
@@ -427,6 +431,14 @@ export function findUnitScientificData(slug: string) {
 
   if (slug === "kilogram-kuvvet-santimetrekare") {
     return kilogramKuvvetSantimetrekareScientificData;
+  }
+
+  if (slug === "bar") {
+    return barScientificData;
+  }
+
+  if (slug === "milimetre-civa") {
+    return milimetreCivaScientificData;
   }
 
   return unitScientificData.find((data) => data.slug === slug);

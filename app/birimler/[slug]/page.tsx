@@ -154,6 +154,16 @@ export default async function UnitInformationPage({
     "Kilogram-kuvvet ve standart yerçekiminin tanımı",
     "Teknik atmosfer ile standart atmosfer arasındaki küçük ama önemli fark",
   ],
+
+  bar: [
+    "Barın kökeni: William Napier Shaw ve meteorolojik basınç birimi",
+    "Bar neden yuvarlak bir SI katı olduğu hâlde resmî SI birimi değildir?",
+  ],
+
+  "milimetre-civa": [
+    "mmHg'nin kesin tanımı: konvansiyonel cıva yoğunluğu",
+    "mmHg ile Torr arasındaki milyonda birkaçlık fark",
+  ],
 };
 
 const categoryGuideLinks: Record<

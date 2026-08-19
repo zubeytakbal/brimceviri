@@ -35,6 +35,7 @@ const categoryLabels: Record<string, string> = {
   uzunluk: "Uzunluk",
   kutle: "Kütle",
   basinc: "Basınç",
+  yogunluk: "Yoğunluk",
 };
 
 function serializeJsonLd(data: object) {

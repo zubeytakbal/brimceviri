@@ -337,8 +337,20 @@ export const unitRegistry: UnitRegistryEntry[] = [
   },
 
   // ---- yoğunluk / density (engine-only, no public pages) ----
-  { id: "kg-m3", category: "yogunluk", symbol: "kg/m³", siFactor: 1 },
-  { id: "g-cm3", category: "yogunluk", symbol: "g/cm³", siFactor: 1000 },
+  {
+    id: "kg-m3",
+    category: "yogunluk",
+    symbol: "kg/m³",
+    siFactor: 1,
+    tr: { name: "Kilogram/Metreküp", slug: "kilogram-metrekup" },
+  },
+  {
+    id: "g-cm3",
+    category: "yogunluk",
+    symbol: "g/cm³",
+    siFactor: 1000,
+    tr: { name: "Gram/Santimetreküp", slug: "gram-santimetrekup" },
+  },
   { id: "g-ml", category: "yogunluk", symbol: "g/mL", siFactor: 1000 },
   { id: "kg-l", category: "yogunluk", symbol: "kg/L", siFactor: 1000 },
   { id: "g-l", category: "yogunluk", symbol: "g/L", siFactor: 1 },

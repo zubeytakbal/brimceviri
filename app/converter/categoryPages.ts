@@ -83,4 +83,11 @@ export const categoryPages: CategoryPage[] = [
     description:
       "Volt, kilovolt, amper ve miliamper birimleri arasında temel elektrik dönüşümlerini açın ve örnek değerleri inceleyin.",
   },
+  {
+    slug: "yogunluk",
+    category: "yogunluk",
+    title: "Yoğunluk Dönüşümleri",
+    description:
+      "Kilogram/metreküp ve gram/santimetreküp birimleri arasında yoğunluk dönüşümü yapın; su ve yaygın malzemelerin yoğunluk referanslarını inceleyin.",
+  },
 ];

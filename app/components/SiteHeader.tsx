@@ -28,6 +28,7 @@ const navCategoryOrder = [
   "enerji",
   "debi",
   "elektrik",
+  "yogunluk",
 ] as const;
 
 const categoryLabels = {
@@ -43,6 +44,7 @@ const categoryLabels = {
     enerji: "Enerji ve G\u00FC\u00E7",
     debi: "Debi",
     elektrik: "Elektrik",
+    yogunluk: "Yo\u011Funluk",
   },
   en: {
     uzunluk: "Length",
@@ -56,6 +58,7 @@ const categoryLabels = {
     enerji: "Energy and Power",
     debi: "Flow Rate",
     elektrik: "Electricity",
+    yogunluk: "Density",
   },
   de: {
     uzunluk: "L\u00E4nge",
@@ -69,6 +72,7 @@ const categoryLabels = {
     enerji: "Energie und Leistung",
     debi: "Durchfluss",
     elektrik: "Elektrik",
+    yogunluk: "Dichte",
   },
 } as const;
 

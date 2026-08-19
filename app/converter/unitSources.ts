@@ -58,6 +58,20 @@ const pressureSources: UnitSource[] = [
   nistSiConversionFactors,
 ];
 
+const nistMassDensityConversions: UnitSource = {
+  title:
+    "NIST Guide to the SI — Appendix B.9: Mass Divided by Volume " +
+    "(Mass Density and Mass Concentration)",
+  organization: "NIST",
+  url: "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b9",
+};
+
+const densitySources: UnitSource[] = [
+  siBrochure,
+  nistMassDensityConversions,
+  nistSiConversionFactors,
+];
+
 export function getUnitSources(category: string): UnitSource[] {
   if (category === "uzunluk") {
     return lengthSources;
@@ -69,6 +83,10 @@ export function getUnitSources(category: string): UnitSource[] {
 
   if (category === "basinc") {
     return pressureSources;
+  }
+
+  if (category === "yogunluk") {
+    return densitySources;
   }
 
   return [siBrochure, nistConversions];

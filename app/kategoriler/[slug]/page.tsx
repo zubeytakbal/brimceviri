@@ -42,6 +42,7 @@ const categoryBaseNames: Record<string, string> = {
   enerji: "Enerji ve Güç",
   debi: "Debi",
   elektrik: "Elektrik",
+  yogunluk: "Yoğunluk",
 };
 
 function serializeJsonLd(data: object) {

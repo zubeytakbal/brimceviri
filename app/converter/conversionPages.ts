@@ -408,6 +408,13 @@ const pairDefinitions: ConversionPairDefinition[] = [
     firstExamples: [0.1, 0.5, 1, 2, 5, 10, 20],
     secondExamples: [1, 5, 10, 20, 100, 500, 1000],
   },
+  {
+    category: "yogunluk",
+    firstId: "kg-m3",
+    secondId: "g-cm3",
+    firstExamples: [1, 1000, 2700, 7850, 11340, 19300],
+    secondExamples: [0.001, 1, 2.7, 7.85, 11.34, 19.3],
+  },
 ];
 
 function createTemperatureFormula(

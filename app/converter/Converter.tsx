@@ -1,8 +1,10 @@
 "use client";
 
+import Link from "next/link";
 import { useState, useEffect, FormEvent, useRef } from "react";
 import { units } from "./units";
 import { convert } from "./convert";
+import { categoryPages } from "./categoryPages";
 
 type SearchSignal = {
   category: string;
@@ -125,6 +127,9 @@ function CategoryRow({
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const labelText = (categoryLabels[catKey] ?? catKey) + " değeri:";
+  const categoryPage = categoryPages.find(
+    (page) => page.category === catKey
+  );
 
   const numericValue = parseFloat(value.replace(",", "."));
   const rawResult = convert(
@@ -187,6 +192,15 @@ function CategoryRow({
           ))}
         </select>
       </div>
+
+      {categoryPage && (
+        <Link
+          className="text-link converter-category-detail-link"
+          href={`/kategoriler/${categoryPage.slug}`}
+        >
+          {categoryPage.title} hakkında detaylı bilgi sayfasını aç
+        </Link>
+      )}
     </div>
   );
 }

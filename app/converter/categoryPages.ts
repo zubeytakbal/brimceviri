@@ -111,4 +111,11 @@ export const categoryPages: CategoryPage[] = [
     description:
       "Kilogram-metre/saniye ve newton-saniye birimleri arasında momentum ve impuls dönüşümü yapın; çarpışma ve itki hesapları için örnekleri inceleyin.",
   },
+  {
+    slug: "viskozite",
+    category: "viskozite_dinamik",
+    title: "Viskozite Dönüşümleri",
+    description:
+      "Pascal-saniye ve santipoise birimleri arasında dinamik viskozite dönüşümü yapın; Reynolds sayısı ve akışkanlar mekaniği hesapları için örnekleri inceleyin.",
+  },
 ];

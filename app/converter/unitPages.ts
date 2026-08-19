@@ -351,6 +351,20 @@ const unitDescriptions: Record<string, UnitDescription> = {
     siEquivalent: "Temel SI yoğunluk birimi",
     commonUses: "Malzeme bilimi, akışkanlar mekaniği, meteoroloji ve mühendislik hesapları",
   },
+  "pascal-saniye": {
+    shortDescription: "Pascal-saniye (Pa·s), dinamik viskozitenin SI türetilmiş birimidir. Bir akışkanın akışa karşı gösterdiği direnci ifade eder.",
+    historySummary: "Pascal-saniye, SI sisteminin basınç ve zaman birimlerinden doğrudan türetilmiştir ve akışkanlar mekaniğinde dinamik viskozitenin standart bilimsel referans birimidir.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, türetilmiş birim)",
+    siEquivalent: "Temel SI dinamik viskozite birimi: 1 Pa·s = 1 N·s/m²",
+    commonUses: "Akışkanlar mekaniği, Reynolds sayısı hesapları, boru hattı tasarımı ve akışkan karakterizasyonu",
+  },
+  "centipoise": {
+    shortDescription: "Santipoise (cP), dinamik viskoziteyi ifade etmek için endüstride yaygın kullanılan bir birimdir. Suyun 20°C'deki viskozitesi yaklaşık 1 cP'dir.",
+    historySummary: "Santipoise, CGS sistemindeki poise biriminin binde biridir; motor yağı, boya ve gıda endüstrisinde viskozite değerlerinin pratik ve okunabilir biçimde ifade edilmesi için yaygınlaşmıştır.",
+    measurementSystem: "CGS sistemi (SI dışı, alt birim)",
+    siEquivalent: "1 cP = 0,001 Pa·s",
+    commonUses: "Motor yağı ve madeni yağ viskozite dereceleri, boya ve kaplama endüstrisi, gıda bilimi",
+  },
   "kg-m-s": {
     shortDescription: "Kilogram-metre/saniye (kg·m/s), momentumun (devinirlik) SI türetilmiş birimidir. Bir cismin kütlesi ile hızının çarpımını ifade eder.",
     historySummary: "Momentum kavramı klasik mekaniğin temel taşlarından biridir ve kilogram-metre/saniye birimi doğrudan SI'nin temel kütle, uzunluk ve zaman birimlerinden türetilir.",
@@ -409,7 +423,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
 };
 
-const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit","kilogram-metre-saniye","newton-saniye"];
+const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit","kilogram-metre-saniye","newton-saniye","pascal-saniye","santipoise"];
 
 export const unitPages: UnitPage[] = unitRegistry
   .filter((entry) => entry.tr && unitDescriptions[entry.id])

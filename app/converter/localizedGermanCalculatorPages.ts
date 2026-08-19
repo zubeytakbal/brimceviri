@@ -34,7 +34,7 @@ const germanCalculatorContent: Record<
     formula: "Re = ρ × v × D / μ",
     description:
       "Berechnen Sie Reynolds-Zahl, Strömungsgeschwindigkeit oder charakteristischen Durchmesser mit Dichte und dynamischer Viskosität.",
-    categoryName: "Geschwindigkeit",
+    categoryName: "Viskosität",
   },
   "basinc-kuvvet-alan": {
     title: "Druck-, Kraft- und Flächen-Rechner",

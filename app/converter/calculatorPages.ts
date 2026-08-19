@@ -28,7 +28,7 @@ export const calculatorPages: CalculatorPage[] = [
   },
   {
     slug: "reynolds-sayisi",
-    category: "hiz",
+    category: "viskozite_dinamik",
     title: "Reynolds Sayısı Hesaplayıcısı",
     shortTitle: "Reynolds Sayısı",
     formula: "Re = ρ × v × D / μ",

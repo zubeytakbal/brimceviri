@@ -11,6 +11,7 @@ import { beygirgucuArticle } from "./articles/beygirgucuArticle";
 import { newtonArticle } from "./articles/newtonArticle";
 import { newtonMetreArticle } from "./articles/newtonMetreArticle";
 import { kilogramMetreSaniyeArticle } from "./articles/kilogramMetreSaniyeArticle";
+import { pascalSaniyeArticle } from "./articles/pascalSaniyeArticle";
 export type UnitArticleSection = {
   title: string;
   paragraphs: string[];
@@ -310,6 +311,10 @@ export function findUnitArticle(slug: string) {
 
   if (slug === "kilogram-metre-saniye") {
     return kilogramMetreSaniyeArticle;
+  }
+
+  if (slug === "pascal-saniye") {
+    return pascalSaniyeArticle;
   }
 
   return unitArticles.find((article) => article.slug === slug);

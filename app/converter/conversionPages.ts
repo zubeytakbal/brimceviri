@@ -443,6 +443,13 @@ const pairDefinitions: ConversionPairDefinition[] = [
     firstExamples: [1, 10, 50, 100, 500, 1000, 10000],
     secondExamples: [1, 10, 50, 100, 500, 1000, 10000],
   },
+  {
+    category: "viskozite_dinamik",
+    firstId: "pascal-saniye",
+    secondId: "centipoise",
+    firstExamples: [0.001, 0.01, 0.1, 1, 2, 5, 10],
+    secondExamples: [1, 10, 100, 500, 1000, 5000, 10000],
+  },
 ];
 
 function createTemperatureFormula(

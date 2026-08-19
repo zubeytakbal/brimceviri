@@ -586,10 +586,22 @@ export const unitRegistry: UnitRegistryEntry[] = [
   },
 
   // ---- viskozite (engine-only) ----
-  { id: "pascal-saniye", category: "viskozite_dinamik", symbol: "Pa·s", siFactor: 1 },
+  {
+    id: "pascal-saniye",
+    category: "viskozite_dinamik",
+    symbol: "Pa·s",
+    siFactor: 1,
+    tr: { name: "Pascal-saniye", slug: "pascal-saniye" },
+  },
   { id: "milipascal-saniye", category: "viskozite_dinamik", symbol: "mPa·s", siFactor: 0.001 },
   { id: "poise", category: "viskozite_dinamik", symbol: "P", siFactor: 0.1 },
-  { id: "centipoise", category: "viskozite_dinamik", symbol: "cP", siFactor: 0.001 },
+  {
+    id: "centipoise",
+    category: "viskozite_dinamik",
+    symbol: "cP",
+    siFactor: 0.001,
+    tr: { name: "Santipoise", slug: "santipoise" },
+  },
   { id: "m2-s", category: "viskozite_kinematik", symbol: "m²/s", siFactor: 1 },
   { id: "mm2-s", category: "viskozite_kinematik", symbol: "mm²/s", siFactor: 0.000001 },
   { id: "centistoke", category: "viskozite_kinematik", symbol: "cSt", siFactor: 0.000001 },

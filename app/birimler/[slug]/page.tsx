@@ -40,6 +40,7 @@ const categoryLabels: Record<string, string> = {
   kuvvet: "Kuvvet",
   tork: "Tork",
   momentum: "Momentum",
+  viskozite_dinamik: "Viskozite",
 };
 
 function serializeJsonLd(data: object) {

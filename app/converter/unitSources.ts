@@ -114,6 +114,20 @@ const torqueSources: UnitSource[] = [
   nistSiConversionFactors,
 ];
 
+const nistViscosityConversions: UnitSource = {
+  title:
+    "NIST Guide to the SI — Appendix B.9: Viscosity, Dynamic " +
+    "(pascal-second, poise, centipoise)",
+  organization: "NIST",
+  url: "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b9",
+};
+
+const viscositySources: UnitSource[] = [
+  siBrochure,
+  nistViscosityConversions,
+  nistSiConversionFactors,
+];
+
 export function getUnitSources(category: string): UnitSource[] {
   if (category === "uzunluk") {
     return lengthSources;
@@ -141,6 +155,10 @@ export function getUnitSources(category: string): UnitSource[] {
 
   if (category === "tork") {
     return torqueSources;
+  }
+
+  if (category === "viskozite_dinamik") {
+    return viscositySources;
   }
 
   return [siBrochure, nistConversions];

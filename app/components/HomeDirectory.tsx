@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import {
+  ArrowRight,
   Barbell,
   Clock,
   Cylinder,
@@ -146,7 +147,7 @@ const copy = {
       "Her kart ilgili kategori sayfasına gider ve 1-2 gerçek dönüşüm örneği gösterir.",
     categoryAction: "Kategori sayfasını aç",
     categoriesFooterLink: "Tüm dönüşümleri görüntüle",
-    secondaryCategoriesLabel: "Diğer birim kategorileri:",
+    moreCategoriesCardLabel: "Diğer Dönüşümler",
     categoryCards: {
       uzunluk: {
         name: "Uzunluk",
@@ -247,7 +248,7 @@ const copy = {
       "Each card opens a live category page and surfaces one or two real conversion examples.",
     categoryAction: "Open category page",
     categoriesFooterLink: "View all conversions",
-    secondaryCategoriesLabel: "Other unit categories:",
+    moreCategoriesCardLabel: "More Conversions",
     categoryCards: {
       uzunluk: {
         name: "Length",
@@ -777,21 +778,30 @@ export default function HomeDirectory({
                 </div>
               </article>
             ))}
+
+            {data.secondaryCategories.length > 0 && (
+              <article className="directory-home-card directory-home-card-more">
+                <Link
+                  className="directory-card-stretch"
+                  href={data.allConversionsHref}
+                  aria-label={strings.moreCategoriesCardLabel}
+                />
+
+                <div className="directory-card-body directory-more-card-body">
+                  <ArrowRight
+                    className="directory-more-arrow"
+                    size={40}
+                    weight="bold"
+                    aria-hidden="true"
+                  />
+
+                  <span className="directory-more-label">
+                    {strings.moreCategoriesCardLabel}
+                  </span>
+                </div>
+              </article>
+            )}
           </div>
-
-          {data.secondaryCategories.length > 0 && (
-            <p className="directory-secondary-categories">
-              <span>{strings.secondaryCategoriesLabel}</span>
-
-              {data.secondaryCategories.map((category, index) => (
-                <span key={category.id}>
-                  <Link href={category.href}>{category.label}</Link>
-
-                  {index < data.secondaryCategories.length - 1 ? ", " : ""}
-                </span>
-              ))}
-            </p>
-          )}
 
           <div className="directory-section-footer">
             <Link

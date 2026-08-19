@@ -72,6 +72,20 @@ const densitySources: UnitSource[] = [
   nistSiConversionFactors,
 ];
 
+const nistPowerEnergyConversions: UnitSource = {
+  title:
+    "NIST Guide to the SI — Appendix B.8: Factors for Units Listed " +
+    "Alphabetically (horsepower, watt-hour dahil)",
+  organization: "NIST",
+  url: "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8",
+};
+
+const energySources: UnitSource[] = [
+  siBrochure,
+  nistPowerEnergyConversions,
+  nistSiConversionFactors,
+];
+
 export function getUnitSources(category: string): UnitSource[] {
   if (category === "uzunluk") {
     return lengthSources;
@@ -87,6 +101,10 @@ export function getUnitSources(category: string): UnitSource[] {
 
   if (category === "yogunluk") {
     return densitySources;
+  }
+
+  if (category === "enerji") {
+    return energySources;
   }
 
   return [siBrochure, nistConversions];

@@ -415,6 +415,13 @@ const pairDefinitions: ConversionPairDefinition[] = [
     firstExamples: [1, 1000, 2700, 7850, 11340, 19300],
     secondExamples: [0.001, 1, 2.7, 7.85, 11.34, 19.3],
   },
+  {
+    category: "enerji",
+    firstId: "kilowatt",
+    secondId: "beygirgucu-metric",
+    firstExamples: [55, 66, 74, 85, 110, 140, 184],
+    secondExamples: [75, 90, 105, 116, 150, 190, 245],
+  },
 ];
 
 function createTemperatureFormula(

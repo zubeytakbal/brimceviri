@@ -623,7 +623,13 @@ export const unitRegistry: UnitRegistryEntry[] = [
   { id: "guc-watt", category: "guc", symbol: "W", siFactor: 1 },
   { id: "guc-kilowatt", category: "guc", symbol: "kW", siFactor: 1000 },
   { id: "megawatt", category: "guc", symbol: "MW", siFactor: 1_000_000 },
-  { id: "beygirgucu-metric", category: "guc", symbol: "hp", siFactor: 745.7 },
+  {
+    id: "beygirgucu-metric",
+    category: "enerji",
+    symbol: "hp",
+    siFactor: 735.49875,
+    tr: { name: "Beygirgücü", slug: "beygirgucu" },
+  },
   { id: "beygirgucu-mechanical", category: "guc", symbol: "HP", siFactor: 745.7 },
   { id: "cheval-vapeur", category: "guc", symbol: "CV", siFactor: 735.49875 },
 

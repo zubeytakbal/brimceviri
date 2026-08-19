@@ -7,6 +7,7 @@ import { barArticle } from "./articles/barArticle";
 import { milimetreCivaArticle } from "./articles/milimetreCivaArticle";
 import { kilopascalArticle } from "./articles/kilopascalArticle";
 import { kilogramMetrekupArticle } from "./articles/kilogramMetrekupArticle";
+import { beygirgucuArticle } from "./articles/beygirgucuArticle";
 export type UnitArticleSection = {
   title: string;
   paragraphs: string[];
@@ -290,6 +291,10 @@ export function findUnitArticle(slug: string) {
 
   if (slug === "kilogram-metrekup") {
     return kilogramMetrekupArticle;
+  }
+
+  if (slug === "beygirgucu") {
+    return beygirgucuArticle;
   }
 
   return unitArticles.find((article) => article.slug === slug);

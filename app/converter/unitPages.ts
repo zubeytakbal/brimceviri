@@ -351,6 +351,13 @@ const unitDescriptions: Record<string, UnitDescription> = {
     siEquivalent: "Temel SI yoğunluk birimi",
     commonUses: "Malzeme bilimi, akışkanlar mekaniği, meteoroloji ve mühendislik hesapları",
   },
+  "beygirgucu-metric": {
+    shortDescription: "Beygirgücü (hp), özellikle motorlu taşıtlarda motor gücünü ifade etmek için kullanılan geleneksel bir güç birimidir. Metrik beygirgücü 735,49875 watt'a eşittir.",
+    historySummary: "Beygirgücü, 18. yüzyılda James Watt tarafından buhar makinelerinin gücünü at gücüyle karşılaştırmak amacıyla ortaya atılmıştır. Metrik versiyonu Avrupa'da otomotiv sektöründe yaygın standart hâline gelmiştir.",
+    measurementSystem: "Metrik beygirgücü (PS/CV ailesi, SI dışı)",
+    siEquivalent: "1 hp (metrik) = 735,49875 W",
+    commonUses: "Otomobil ve motosiklet motor gücü, teknik veri sayfaları ve araç karşılaştırmaları",
+  },
   "g-cm3": {
     shortDescription: "Gram/santimetreküp (g/cm³), laboratuvar ve kimya ortamlarında yaygın kullanılan bir yoğunluk birimidir.",
     historySummary: "Metrik sistemin ondalık yapısı içinde küçük ölçekli numunelerin yoğunluğunu pratik biçimde ifade etmek için gram ve santimetreküp birimleri birleştirilmiştir.",
@@ -360,7 +367,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
 };
 
-const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup"];
+const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu"];
 
 export const unitPages: UnitPage[] = unitRegistry
   .filter((entry) => entry.tr && unitDescriptions[entry.id])

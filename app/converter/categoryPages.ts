@@ -104,4 +104,11 @@ export const categoryPages: CategoryPage[] = [
     description:
       "Newton-metre ve pound-fit birimleri arasında tork dönüşümü yapın; motor torku, tork anahtarı ve cıvata sıkma değerleri için örnekleri inceleyin.",
   },
+  {
+    slug: "momentum",
+    category: "momentum",
+    title: "Momentum Dönüşümleri",
+    description:
+      "Kilogram-metre/saniye ve newton-saniye birimleri arasında momentum ve impuls dönüşümü yapın; çarpışma ve itki hesapları için örnekleri inceleyin.",
+  },
 ];

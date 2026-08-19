@@ -31,6 +31,7 @@ const navCategoryOrder = [
   "yogunluk",
   "kuvvet",
   "tork",
+  "momentum",
 ] as const;
 
 const categoryLabels = {
@@ -49,6 +50,7 @@ const categoryLabels = {
     yogunluk: "Yo\u011Funluk",
     kuvvet: "Kuvvet",
     tork: "Tork",
+    momentum: "Momentum",
   },
   en: {
     uzunluk: "Length",
@@ -65,6 +67,7 @@ const categoryLabels = {
     yogunluk: "Density",
     kuvvet: "Force",
     tork: "Torque",
+    momentum: "Momentum",
   },
   de: {
     uzunluk: "L\u00E4nge",
@@ -81,6 +84,7 @@ const categoryLabels = {
     yogunluk: "Dichte",
     kuvvet: "Kraft",
     tork: "Drehmoment",
+    momentum: "Impuls",
   },
 } as const;
 

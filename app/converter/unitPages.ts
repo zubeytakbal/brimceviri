@@ -351,6 +351,20 @@ const unitDescriptions: Record<string, UnitDescription> = {
     siEquivalent: "Temel SI yoğunluk birimi",
     commonUses: "Malzeme bilimi, akışkanlar mekaniği, meteoroloji ve mühendislik hesapları",
   },
+  "kg-m-s": {
+    shortDescription: "Kilogram-metre/saniye (kg·m/s), momentumun (devinirlik) SI türetilmiş birimidir. Bir cismin kütlesi ile hızının çarpımını ifade eder.",
+    historySummary: "Momentum kavramı klasik mekaniğin temel taşlarından biridir ve kilogram-metre/saniye birimi doğrudan SI'nin temel kütle, uzunluk ve zaman birimlerinden türetilir.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, türetilmiş birim)",
+    siEquivalent: "Temel SI momentum birimi: 1 kg·m/s = 1 kg × 1 m/s",
+    commonUses: "Çarpışma analizleri, roket ve itki hesapları, parçacık fiziği",
+  },
+  "n-s": {
+    shortDescription: "Newton-saniye (N·s), impulsun (itme) SI türetilmiş birimidir ve boyutsal olarak momentum ile aynıdır.",
+    historySummary: "Newton-saniye, impuls-momentum teoreminin doğal bir sonucu olarak ortaya çıkar; bir cisme uygulanan kuvvetin zamanla çarpımı, o cismin momentumundaki değişime eşittir.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, türetilmiş birim)",
+    siEquivalent: "1 N·s = 1 kg·m/s",
+    commonUses: "Çarpışma ve darbe analizleri, roket itkisi, spor biyomekaniği",
+  },
   "newton-metre": {
     shortDescription: "Newton-metre (N·m), torkun (döndürme momentinin) SI türetilmiş birimidir. 1 metre uzunluğundaki bir kolun ucuna dik olarak uygulanan 1 newtonluk kuvvetin oluşturduğu torku ifade eder.",
     historySummary: "Newton-metre, SI sisteminin temel birimlerinden (kuvvet ve uzunluk) doğrudan türetilmiştir ve mühendislikte döndürme etkisini ifade etmek için standart birim hâline gelmiştir.",
@@ -395,7 +409,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
 };
 
-const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit"];
+const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit","kilogram-metre-saniye","newton-saniye"];
 
 export const unitPages: UnitPage[] = unitRegistry
   .filter((entry) => entry.tr && unitDescriptions[entry.id])

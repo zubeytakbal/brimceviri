@@ -45,6 +45,7 @@ const categoryBaseNames: Record<string, string> = {
   yogunluk: "Yoğunluk",
   kuvvet: "Kuvvet",
   tork: "Tork",
+  momentum: "Momentum",
 };
 
 function serializeJsonLd(data: object) {

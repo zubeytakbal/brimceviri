@@ -436,6 +436,13 @@ const pairDefinitions: ConversionPairDefinition[] = [
     firstExamples: [10, 50, 100, 200, 300, 400, 500],
     secondExamples: [10, 50, 100, 150, 200, 250, 300],
   },
+  {
+    category: "momentum",
+    firstId: "kg-m-s",
+    secondId: "n-s",
+    firstExamples: [1, 10, 50, 100, 500, 1000, 10000],
+    secondExamples: [1, 10, 50, 100, 500, 1000, 10000],
+  },
 ];
 
 function createTemperatureFormula(

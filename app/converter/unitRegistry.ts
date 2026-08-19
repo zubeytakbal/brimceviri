@@ -488,8 +488,20 @@ export const unitRegistry: UnitRegistryEntry[] = [
     siFactor: 1.355817948,
     tr: { name: "Pound-fit (lb-ft)", slug: "pound-fit" },
   },
-  { id: "kg-m-s", category: "momentum", symbol: "kg·m/s", siFactor: 1 },
-  { id: "n-s", category: "momentum", symbol: "N·s", siFactor: 1 },
+  {
+    id: "kg-m-s",
+    category: "momentum",
+    symbol: "kg·m/s",
+    siFactor: 1,
+    tr: { name: "Kilogram-metre/saniye", slug: "kilogram-metre-saniye" },
+  },
+  {
+    id: "n-s",
+    category: "momentum",
+    symbol: "N·s",
+    siFactor: 1,
+    tr: { name: "Newton-saniye", slug: "newton-saniye" },
+  },
   { id: "lb-ft-s", category: "momentum", symbol: "lb·ft/s", siFactor: 0.138255 },
 
   // ---- basınç / pressure / Druck ----

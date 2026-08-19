@@ -788,12 +788,13 @@ export default function HomeDirectory({
                 />
 
                 <div className="directory-card-body directory-more-card-body">
-                  <ArrowRight
-                    className="directory-more-arrow"
-                    size={40}
-                    weight="bold"
-                    aria-hidden="true"
-                  />
+                  <span className="home-category-icon-box" aria-hidden="true">
+                    <ArrowRight
+                      className="home-category-icon-svg"
+                      size={42}
+                      weight="regular"
+                    />
+                  </span>
 
                   <span className="directory-more-label">
                     {strings.moreCategoriesCardLabel}

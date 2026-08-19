@@ -24,6 +24,7 @@ import { conversionPages } from "../converter/conversionPages";
 import { englishCalculatorPages } from "../converter/localizedCalculatorPages";
 import { englishCategoryPages } from "../converter/localizedCategoryPages";
 import { englishConversionPages } from "../converter/localizedConversionPages";
+import { homeCategoryOrder } from "../converter/homeCategoryOrder";
 
 type Locale = "tr" | "en";
 
@@ -96,20 +97,6 @@ type HomeData = {
     engineering: number;
   };
 };
-
-const homeCategoryOrder = [
-  "uzunluk",
-  "alan",
-  "hacim",
-  "kutle",
-  "sicaklik",
-  "zaman",
-  "hiz",
-  "basinc",
-  "enerji",
-  "debi",
-  "elektrik",
-] as const;
 
 const preferredSourceSlugs = [
   "metre-kilometre",
@@ -783,7 +770,7 @@ export default function HomeDirectory({
               <article className="directory-home-card directory-home-card-more">
                 <Link
                   className="directory-card-stretch"
-                  href={data.allConversionsHref}
+                  href="/diger-donusumler"
                   aria-label={strings.moreCategoriesCardLabel}
                 />
 

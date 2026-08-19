@@ -3838,6 +3838,79 @@ button {
   font-size: 0.95rem;
 }
 
+main.other-categories-page {
+  display: block;
+  width: 100%;
+  min-height: 100vh;
+  padding: 0;
+}
+
+.other-categories-page .directory-shell {
+  padding: 42px 0 90px;
+}
+
+.other-categories-header {
+  max-width: 760px;
+  padding: 0 0 32px;
+}
+
+.other-categories-header h1 {
+  margin: 0 0 14px;
+  color: #172033;
+  font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+  letter-spacing: -0.04em;
+}
+
+.other-categories-header p {
+  margin: 0;
+  color: #667085;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.other-categories-search {
+  margin-bottom: 40px;
+  max-width: none;
+}
+
+.other-categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.other-category-card {
+  display: block;
+  padding: 18px 20px;
+  border: 1px solid #d6e1e7;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.95);
+  text-decoration: none;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    transform 180ms ease;
+}
+
+.other-category-card:hover {
+  border-color: #156b8a;
+  background: #fbfdfe;
+  transform: translateY(-2px);
+}
+
+.other-category-card h2 {
+  margin: 0 0 6px;
+  color: #172033;
+  font-size: 1.05rem;
+}
+
+.other-category-card p {
+  margin: 0;
+  color: #667085;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
 .directory-section-footer {
   display: flex;
   justify-content: center;

@@ -511,6 +511,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/en/all-conversions`
       ),
     },
+    {
+      url: `${baseUrl}/diger-donusumler`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
 
     ...turkishCategoryRoutes,
     ...englishCategoryRoutes,

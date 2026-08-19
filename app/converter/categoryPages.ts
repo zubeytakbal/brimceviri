@@ -97,4 +97,11 @@ export const categoryPages: CategoryPage[] = [
     description:
       "Newton ve kilogram-kuvvet birimleri arasında dönüşüm yapın; kuvvet formülünü, basınç ile ilişkisini ve mühendislik kullanım örneklerini inceleyin.",
   },
+  {
+    slug: "tork",
+    category: "tork",
+    title: "Tork Dönüşümleri",
+    description:
+      "Newton-metre ve pound-fit birimleri arasında tork dönüşümü yapın; motor torku, tork anahtarı ve cıvata sıkma değerleri için örnekleri inceleyin.",
+  },
 ];

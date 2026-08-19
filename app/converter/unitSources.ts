@@ -100,6 +100,20 @@ const forceSources: UnitSource[] = [
   nistSiConversionFactors,
 ];
 
+const nistTorqueConversions: UnitSource = {
+  title:
+    "NIST Guide to the SI — Appendix B.9: Moment of Force or Torque " +
+    "(newton-metre, pound-force foot)",
+  organization: "NIST",
+  url: "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b9",
+};
+
+const torqueSources: UnitSource[] = [
+  siBrochure,
+  nistTorqueConversions,
+  nistSiConversionFactors,
+];
+
 export function getUnitSources(category: string): UnitSource[] {
   if (category === "uzunluk") {
     return lengthSources;
@@ -123,6 +137,10 @@ export function getUnitSources(category: string): UnitSource[] {
 
   if (category === "kuvvet") {
     return forceSources;
+  }
+
+  if (category === "tork") {
+    return torqueSources;
   }
 
   return [siBrochure, nistConversions];

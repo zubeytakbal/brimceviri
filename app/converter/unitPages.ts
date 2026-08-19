@@ -351,6 +351,20 @@ const unitDescriptions: Record<string, UnitDescription> = {
     siEquivalent: "Temel SI yoğunluk birimi",
     commonUses: "Malzeme bilimi, akışkanlar mekaniği, meteoroloji ve mühendislik hesapları",
   },
+  "newton-metre": {
+    shortDescription: "Newton-metre (N·m), torkun (döndürme momentinin) SI türetilmiş birimidir. 1 metre uzunluğundaki bir kolun ucuna dik olarak uygulanan 1 newtonluk kuvvetin oluşturduğu torku ifade eder.",
+    historySummary: "Newton-metre, SI sisteminin temel birimlerinden (kuvvet ve uzunluk) doğrudan türetilmiştir ve mühendislikte döndürme etkisini ifade etmek için standart birim hâline gelmiştir.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, türetilmiş birim)",
+    siEquivalent: "Temel SI tork birimi: 1 N·m = 1 N × 1 m",
+    commonUses: "Motor torku, tork anahtarları, cıvata sıkma değerleri ve mekanik tasarım hesapları",
+  },
+  "lb-ft": {
+    shortDescription: "Pound-fit (lb-ft), İngiliz ve Amerikan ölçü sistemlerinde tork ifade etmek için kullanılan geleneksel bir birimdir.",
+    historySummary: "Pound-fit, pound-force ve fit (foot) birimlerinin çarpımından türetilmiş olup özellikle ABD kaynaklı otomotiv ve mühendislik dokümanlarında yaygın kullanılır.",
+    measurementSystem: "İngiliz ve ABD ölçü sistemleri",
+    siEquivalent: "1 lb-ft ≈ 1,355818 N·m",
+    commonUses: "ABD kaynaklı motor torku etiketleri, tork anahtarları ve mekanik veri sayfaları",
+  },
   "newton": {
     shortDescription: "Newton (N), kuvvetin Uluslararası Birim Sistemi'ndeki türetilmiş birimidir. 1 kg kütleye 1 m/s² ivme kazandıran kuvveti ifade eder.",
     historySummary: "Newton birimi, Isaac Newton'ın hareket yasalarına atfen adlandırılmış ve 1948 yılında Uluslararası Ağırlıklar ve Ölçüler Genel Konferansı tarafından SI birimi olarak resmen kabul edilmiştir.",
@@ -381,7 +395,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
 };
 
-const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet"];
+const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit"];
 
 export const unitPages: UnitPage[] = unitRegistry
   .filter((entry) => entry.tr && unitDescriptions[entry.id])

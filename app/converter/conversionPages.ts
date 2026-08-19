@@ -429,6 +429,13 @@ const pairDefinitions: ConversionPairDefinition[] = [
     firstExamples: [1, 10, 50, 100, 500, 1000, 10000],
     secondExamples: [1, 5, 10, 50, 100, 500, 1000],
   },
+  {
+    category: "tork",
+    firstId: "newton-metre",
+    secondId: "lb-ft",
+    firstExamples: [10, 50, 100, 200, 300, 400, 500],
+    secondExamples: [10, 50, 100, 150, 200, 250, 300],
+  },
 ];
 
 function createTemperatureFormula(

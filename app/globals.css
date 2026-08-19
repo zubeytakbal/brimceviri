@@ -3809,6 +3809,26 @@ button {
   font-size: 0.9rem;
 }
 
+.directory-secondary-categories {
+  margin: 16px 0 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #6b7280;
+  text-align: center;
+}
+
+.directory-secondary-categories span:first-child {
+  font-weight: 600;
+  color: #374151;
+  margin-right: 4px;
+}
+
+.directory-secondary-categories a {
+  color: #156b8a;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 .directory-section-footer {
   display: flex;
   justify-content: center;

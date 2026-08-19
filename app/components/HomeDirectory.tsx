@@ -73,9 +73,16 @@ type HomeEngineeringCalculator = {
   description: string;
 };
 
+type HomeSecondaryCategory = {
+  id: string;
+  href: string;
+  label: string;
+};
+
 type HomeData = {
   conversions: HomeConversion[];
   categories: HomeCategoryCard[];
+  secondaryCategories: HomeSecondaryCategory[];
   engineeringCalculators: HomeEngineeringCalculator[];
   popularConversions: HomeConversion[];
   allConversionsHref: string;
@@ -139,6 +146,7 @@ const copy = {
       "Her kart ilgili kategori sayfasına gider ve 1-2 gerçek dönüşüm örneği gösterir.",
     categoryAction: "Kategori sayfasını aç",
     categoriesFooterLink: "Tüm dönüşümleri görüntüle",
+    secondaryCategoriesLabel: "Diğer birim kategorileri:",
     categoryCards: {
       uzunluk: {
         name: "Uzunluk",
@@ -239,6 +247,7 @@ const copy = {
       "Each card opens a live category page and surfaces one or two real conversion examples.",
     categoryAction: "Open category page",
     categoriesFooterLink: "View all conversions",
+    secondaryCategoriesLabel: "Other unit categories:",
     categoryCards: {
       uzunluk: {
         name: "Length",
@@ -473,6 +482,39 @@ function createHomeData(locale: Locale): HomeData {
     ];
   });
 
+  const secondaryCategories: HomeSecondaryCategory[] = categoryPages
+    .filter(
+      (page) =>
+        !(homeCategoryOrder as readonly string[]).includes(page.category)
+    )
+    .flatMap((page) => {
+      if (locale === "tr") {
+        return [
+          {
+            id: page.category,
+            href: `/kategoriler/${page.slug}`,
+            label: page.title,
+          },
+        ];
+      }
+
+      const englishPage = englishCategoryPages.find(
+        (item) => item.category === page.category
+      );
+
+      if (!englishPage) {
+        return [];
+      }
+
+      return [
+        {
+          id: page.category,
+          href: `/en/categories/${englishPage.slug}`,
+          label: englishPage.title,
+        },
+      ];
+    });
+
   const preferredPopularConversions = preferredSourceSlugs.flatMap((slug) => {
     const conversion = conversions.find(
       (item) => item.sourceSlug === slug
@@ -532,6 +574,7 @@ function createHomeData(locale: Locale): HomeData {
   return {
     conversions,
     categories: categoryCards,
+    secondaryCategories,
     engineeringCalculators,
     popularConversions,
     allConversionsHref:
@@ -735,6 +778,20 @@ export default function HomeDirectory({
               </article>
             ))}
           </div>
+
+          {data.secondaryCategories.length > 0 && (
+            <p className="directory-secondary-categories">
+              <span>{strings.secondaryCategoriesLabel}</span>
+
+              {data.secondaryCategories.map((category, index) => (
+                <span key={category.id}>
+                  <Link href={category.href}>{category.label}</Link>
+
+                  {index < data.secondaryCategories.length - 1 ? ", " : ""}
+                </span>
+              ))}
+            </p>
+          )}
 
           <div className="directory-section-footer">
             <Link

@@ -422,6 +422,13 @@ const pairDefinitions: ConversionPairDefinition[] = [
     firstExamples: [55, 66, 74, 85, 110, 140, 184],
     secondExamples: [75, 90, 105, 116, 150, 190, 245],
   },
+  {
+    category: "kuvvet",
+    firstId: "newton",
+    secondId: "kilogram-kuvvet",
+    firstExamples: [1, 10, 50, 100, 500, 1000, 10000],
+    secondExamples: [1, 5, 10, 50, 100, 500, 1000],
+  },
 ];
 
 function createTemperatureFormula(

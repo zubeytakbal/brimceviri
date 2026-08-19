@@ -86,6 +86,20 @@ const energySources: UnitSource[] = [
   nistSiConversionFactors,
 ];
 
+const nistForceConversions: UnitSource = {
+  title:
+    "NIST Guide to the SI — Appendix B.9: Force (newton, " +
+    "kilogram-force, pound-force)",
+  organization: "NIST",
+  url: "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b9",
+};
+
+const forceSources: UnitSource[] = [
+  siBrochure,
+  nistForceConversions,
+  nistSiConversionFactors,
+];
+
 export function getUnitSources(category: string): UnitSource[] {
   if (category === "uzunluk") {
     return lengthSources;
@@ -105,6 +119,10 @@ export function getUnitSources(category: string): UnitSource[] {
 
   if (category === "enerji") {
     return energySources;
+  }
+
+  if (category === "kuvvet") {
+    return forceSources;
   }
 
   return [siBrochure, nistConversions];

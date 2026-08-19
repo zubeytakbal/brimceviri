@@ -37,6 +37,7 @@ const categoryLabels: Record<string, string> = {
   basinc: "Basınç",
   yogunluk: "Yoğunluk",
   enerji: "Enerji ve Güç",
+  kuvvet: "Kuvvet",
 };
 
 function serializeJsonLd(data: object) {

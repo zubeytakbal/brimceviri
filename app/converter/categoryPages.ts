@@ -90,4 +90,11 @@ export const categoryPages: CategoryPage[] = [
     description:
       "Kilogram/metreküp ve gram/santimetreküp birimleri arasında yoğunluk dönüşümü yapın; su ve yaygın malzemelerin yoğunluk referanslarını inceleyin.",
   },
+  {
+    slug: "kuvvet",
+    category: "kuvvet",
+    title: "Kuvvet Dönüşümleri",
+    description:
+      "Newton ve kilogram-kuvvet birimleri arasında dönüşüm yapın; kuvvet formülünü, basınç ile ilişkisini ve mühendislik kullanım örneklerini inceleyin.",
+  },
 ];

@@ -351,6 +351,20 @@ const unitDescriptions: Record<string, UnitDescription> = {
     siEquivalent: "Temel SI yoğunluk birimi",
     commonUses: "Malzeme bilimi, akışkanlar mekaniği, meteoroloji ve mühendislik hesapları",
   },
+  "newton": {
+    shortDescription: "Newton (N), kuvvetin Uluslararası Birim Sistemi'ndeki türetilmiş birimidir. 1 kg kütleye 1 m/s² ivme kazandıran kuvveti ifade eder.",
+    historySummary: "Newton birimi, Isaac Newton'ın hareket yasalarına atfen adlandırılmış ve 1948 yılında Uluslararası Ağırlıklar ve Ölçüler Genel Konferansı tarafından SI birimi olarak resmen kabul edilmiştir.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, türetilmiş birim)",
+    siEquivalent: "Temel SI kuvvet birimi: 1 N = 1 kg·m/s²",
+    commonUses: "Mekanik mühendislik, statik ve dinamik hesaplar, malzeme dayanımı testleri",
+  },
+  "kilogram-kuvvet": {
+    shortDescription: "Kilogram-kuvvet (kgf), yerçekimi ivmesi altında 1 kilogramlık kütlenin uyguladığı kuvveti ifade eden, SI dışı geleneksel bir birimdir.",
+    historySummary: "Kilogram-kuvvet, SI sisteminden önce mühendislik pratiğinde yaygın kullanılan bir kuvvet birimiydi; günümüzde yerini büyük ölçüde newtona bırakmış olsa da eski teknik dokümanlarda ve bazı ölçüm cihazlarında hâlâ karşılaşılır.",
+    measurementSystem: "SI dışı, yerçekimine bağlı geleneksel birim",
+    siEquivalent: "1 kgf = 9,80665 N",
+    commonUses: "Eski mühendislik dokümanları, tork anahtarları, yay ve çekme testleri",
+  },
   "beygirgucu-metric": {
     shortDescription: "Beygirgücü (hp), özellikle motorlu taşıtlarda motor gücünü ifade etmek için kullanılan geleneksel bir güç birimidir. Metrik beygirgücü 735,49875 watt'a eşittir.",
     historySummary: "Beygirgücü, 18. yüzyılda James Watt tarafından buhar makinelerinin gücünü at gücüyle karşılaştırmak amacıyla ortaya atılmıştır. Metrik versiyonu Avrupa'da otomotiv sektöründe yaygın standart hâline gelmiştir.",
@@ -367,7 +381,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
 };
 
-const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu"];
+const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet"];
 
 export const unitPages: UnitPage[] = unitRegistry
   .filter((entry) => entry.tr && unitDescriptions[entry.id])

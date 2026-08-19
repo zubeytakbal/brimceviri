@@ -29,6 +29,7 @@ const navCategoryOrder = [
   "debi",
   "elektrik",
   "yogunluk",
+  "kuvvet",
 ] as const;
 
 const categoryLabels = {
@@ -45,6 +46,7 @@ const categoryLabels = {
     debi: "Debi",
     elektrik: "Elektrik",
     yogunluk: "Yo\u011Funluk",
+    kuvvet: "Kuvvet",
   },
   en: {
     uzunluk: "Length",
@@ -59,6 +61,7 @@ const categoryLabels = {
     debi: "Flow Rate",
     elektrik: "Electricity",
     yogunluk: "Density",
+    kuvvet: "Force",
   },
   de: {
     uzunluk: "L\u00E4nge",
@@ -73,6 +76,7 @@ const categoryLabels = {
     debi: "Durchfluss",
     elektrik: "Elektrik",
     yogunluk: "Dichte",
+    kuvvet: "Kraft",
   },
 } as const;
 

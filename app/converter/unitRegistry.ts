@@ -456,10 +456,23 @@ export const unitRegistry: UnitRegistryEntry[] = [
   { id: "deg-h", category: "acisal_hiz", symbol: "°/h", siFactor: Math.PI / (180 * 3600) },
 
   // ---- kuvvet / tork / momentum (engine-only) ----
-  { id: "newton", category: "kuvvet", symbol: "N", siFactor: 1 },
+  {
+    id: "newton",
+    category: "kuvvet",
+    symbol: "N",
+    siFactor: 1,
+    tr: { name: "Newton", slug: "newton" },
+  },
   { id: "kilonewton", category: "kuvvet", symbol: "kN", siFactor: 1000 },
   { id: "dyn", category: "kuvvet", symbol: "dyn", siFactor: 0.00001 },
   { id: "lbf", category: "kuvvet", symbol: "lbf", siFactor: 4.4482216 },
+  {
+    id: "kilogram-kuvvet",
+    category: "kuvvet",
+    symbol: "kgf",
+    siFactor: 9.80665,
+    tr: { name: "Kilogram-kuvvet", slug: "kilogram-kuvvet" },
+  },
   { id: "newton-metre", category: "tork", symbol: "N·m", siFactor: 1 },
   { id: "kilonewton-metre", category: "tork", symbol: "kN·m", siFactor: 1000 },
   { id: "lb-ft", category: "tork", symbol: "lb·ft", siFactor: 1.355817948 },

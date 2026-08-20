@@ -673,6 +673,49 @@ export const englishCategoryPages: LocalizedCategoryPage[] = [
       },
     ],
   },
+  {
+    locale: "en",
+    slug: "force",
+    sourceSlug: "kuvvet",
+    category: "kuvvet",
+    title: "Force Conversions",
+    description:
+      "Convert between newtons and kilogram-force, and review how force relates to mass, acceleration and pressure in mechanics.",
+    introduction: [
+      "Force describes a push or pull that can change an object's motion. It is central to mechanics, structural engineering and everyday physics.",
+      "The newton is the SI derived unit of force, while kilogram-force is an older gravity-based unit still found in legacy technical documents and some measuring tools.",
+    ],
+    facts: [
+      { label: "Physical quantity", value: "Force" },
+      { label: "SI unit", value: "Newton" },
+      { label: "SI symbol", value: "N" },
+      { label: "Formula", value: "F = m × a" },
+      { label: "Typical use", value: "Mechanics, structural loads and material testing" },
+    ],
+    sections: [
+      {
+        title: "What is force?",
+        paragraphs: [
+          "Force is defined by Newton's second law: F = m × a. One newton is the force needed to accelerate a 1-kilogram mass at 1 meter per second squared.",
+          "Force plays a central role in structural design, motion analysis and any calculation involving pushes, pulls or weight.",
+        ],
+      },
+      {
+        title: "Newton and kilogram-force",
+        paragraphs: [
+          "One newton equals about 0.101972 kilogram-force. One kilogram-force equals exactly 9.80665 newtons, based on standard gravitational acceleration.",
+          "Kilogram-force predates the newton in engineering practice and still appears in older technical documents, torque wrenches and some measuring instruments.",
+        ],
+      },
+      {
+        title: "Force, mass and pressure",
+        paragraphs: [
+          "Force divided by area gives pressure (N/m² = Pa), and force multiplied by distance gives energy (N·m = J) — the newton is the building block for both.",
+          "Mass and weight (force) are often confused in everyday language, but mass stays constant while weight depends on local gravitational acceleration.",
+        ],
+      },
+    ],
+  },
 ];
 
 export function findEnglishCategoryPage(slug: string) {

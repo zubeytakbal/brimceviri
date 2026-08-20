@@ -24,6 +24,7 @@ const englishCategoryNames: Record<string, string> = {
   debi: "Flow Rate",
   elektrik: "Electricity",
   yogunluk: "Density",
+  kuvvet: "Force",
 };
 
 function formatEnglishValue(value: number) {

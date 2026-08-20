@@ -466,6 +466,8 @@ export const unitRegistry: UnitRegistryEntry[] = [
     symbol: "N",
     siFactor: 1,
     tr: { name: "Newton", slug: "newton" },
+    en: { name: "Newton", slug: "newton" },
+    de: { name: "Newton", slug: "newton" },
   },
   { id: "kilonewton", category: "kuvvet", symbol: "kN", siFactor: 1000 },
   { id: "dyn", category: "kuvvet", symbol: "dyn", siFactor: 0.00001 },
@@ -476,6 +478,8 @@ export const unitRegistry: UnitRegistryEntry[] = [
     symbol: "kgf",
     siFactor: 9.80665,
     tr: { name: "Kilogram-kuvvet", slug: "kilogram-kuvvet" },
+    en: { name: "Kilogram-Force", slug: "kilogram-force" },
+    de: { name: "Kilogramm-Kraft", slug: "kilogramm-kraft" },
   },
   {
     id: "newton-metre",

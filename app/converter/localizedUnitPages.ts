@@ -824,6 +824,40 @@ export const englishUnitPages: LocalizedUnitPage[] = [
     siEquivalent: "1 g/cm³ = 1000 kg/m³",
     commonUses: "Chemistry labs, material density tables and mineralogy",
   },
+  {
+    locale: "en",
+    sourceSlug: "newton",
+    slug: "newton",
+    category: "kuvvet",
+    categoryName: "Force",
+    unit: "N",
+    name: "Newton",
+    symbol: "N",
+    shortDescription:
+      "The newton is the SI derived unit of force, defined as the force required to accelerate a 1-kilogram mass at 1 meter per second squared.",
+    historySummary:
+      "Named after Isaac Newton, the unit was formally adopted as the SI unit of force in 1948 by the General Conference on Weights and Measures.",
+    measurementSystem: "International System of Units (SI, derived unit)",
+    siEquivalent: "1 N = 1 kg·m/s²",
+    commonUses: "Mechanical engineering, statics, dynamics and material strength testing",
+  },
+  {
+    locale: "en",
+    sourceSlug: "kilogram-kuvvet",
+    slug: "kilogram-force",
+    category: "kuvvet",
+    categoryName: "Force",
+    unit: "kgf",
+    name: "Kilogram-Force",
+    symbol: "kgf",
+    shortDescription:
+      "Kilogram-force is a traditional, non-SI unit of force equal to the force exerted by gravity on a 1-kilogram mass at standard gravitational acceleration.",
+    historySummary:
+      "Kilogram-force was widely used in engineering practice before the SI system standardized on the newton; it still appears in legacy documents, torque wrenches and some pressure gauges.",
+    measurementSystem: "Gravity-based unit (non-SI)",
+    siEquivalent: "1 kgf = 9.80665 N",
+    commonUses: "Legacy engineering documents, torque wrenches and spring/tension testing",
+  },
 ];
 
 export function findEnglishUnitPage(

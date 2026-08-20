@@ -847,15 +847,6 @@ export default function HomeDirectory({
               <h2>{strings.engineeringTitle}</h2>
               <p>{strings.engineeringDescription}</p>
             </div>
-
-            <Link className="directory-section-link" href={data.engineeringHubHref}>
-              <DecorativeIcon
-                className="directory-link-icon"
-                name="allConversions"
-                size={18}
-              />
-              {data.engineeringHubLabel}
-            </Link>
           </header>
 
           <div className="directory-tool-grid">

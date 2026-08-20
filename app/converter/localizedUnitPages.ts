@@ -673,6 +673,23 @@ export const englishUnitPages: LocalizedUnitPage[] = [
   },
   {
     locale: "en",
+    sourceSlug: "beygirgucu",
+    slug: "horsepower",
+    category: "enerji",
+    categoryName: "Energy and Power",
+    unit: "hp",
+    name: "Horsepower",
+    symbol: "hp",
+    shortDescription:
+      "Horsepower is a traditional unit of power, most often used to express the output of vehicle and machine engines. The metric horsepower used here equals 735.49875 watts.",
+    historySummary:
+      "Horsepower was introduced by James Watt in the 18th century to compare the output of steam engines with the work of draft horses; the metric version later became standard across the automotive industry outside the US.",
+    measurementSystem: "Metric horsepower family (PS/CV, non-SI)",
+    siEquivalent: "1 hp (metric) = 735.49875 W",
+    commonUses: "Car and motorcycle engine power, technical spec sheets and vehicle comparisons",
+  },
+  {
+    locale: "en",
     sourceSlug: "metrekup-saat",
     slug: "cubic-meter-per-hour",
     category: "debi",

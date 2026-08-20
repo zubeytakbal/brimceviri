@@ -678,6 +678,8 @@ export const unitRegistry: UnitRegistryEntry[] = [
     symbol: "hp",
     siFactor: 735.49875,
     tr: { name: "Beygirgücü", slug: "beygirgucu" },
+    en: { name: "Horsepower", slug: "horsepower" },
+    de: { name: "PS", slug: "ps" },
   },
   { id: "beygirgucu-mechanical", category: "guc", symbol: "HP", siFactor: 745.7 },
   { id: "cheval-vapeur", category: "guc", symbol: "CV", siFactor: 735.49875 },

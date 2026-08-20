@@ -60,7 +60,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.45,
       alternates: languageAlternates(
         `${baseUrl}/hakkimizda`,
-        `${baseUrl}/en/about`
+        `${baseUrl}/en/about`,
+        `${baseUrl}/de/uber-uns`
       ),
     },
     {
@@ -70,7 +71,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.45,
       alternates: languageAlternates(
         `${baseUrl}/hakkimizda`,
-        `${baseUrl}/en/about`
+        `${baseUrl}/en/about`,
+        `${baseUrl}/de/uber-uns`
+      ),
+    },
+    {
+      url: `${baseUrl}/de/uber-uns`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.45,
+      alternates: languageAlternates(
+        `${baseUrl}/hakkimizda`,
+        `${baseUrl}/en/about`,
+        `${baseUrl}/de/uber-uns`
       ),
     },
     {
@@ -80,7 +93,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.45,
       alternates: languageAlternates(
         `${baseUrl}/iletisim`,
-        `${baseUrl}/en/contact`
+        `${baseUrl}/en/contact`,
+        `${baseUrl}/de/kontakt`
       ),
     },
     {
@@ -90,7 +104,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.45,
       alternates: languageAlternates(
         `${baseUrl}/iletisim`,
-        `${baseUrl}/en/contact`
+        `${baseUrl}/en/contact`,
+        `${baseUrl}/de/kontakt`
+      ),
+    },
+    {
+      url: `${baseUrl}/de/kontakt`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.45,
+      alternates: languageAlternates(
+        `${baseUrl}/iletisim`,
+        `${baseUrl}/en/contact`,
+        `${baseUrl}/de/kontakt`
       ),
     },
     {
@@ -100,7 +126,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.4,
       alternates: languageAlternates(
         `${baseUrl}/gizlilik`,
-        `${baseUrl}/en/privacy`
+        `${baseUrl}/en/privacy`,
+        `${baseUrl}/de/datenschutz`
       ),
     },
     {
@@ -110,7 +137,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.4,
       alternates: languageAlternates(
         `${baseUrl}/gizlilik`,
-        `${baseUrl}/en/privacy`
+        `${baseUrl}/en/privacy`,
+        `${baseUrl}/de/datenschutz`
+      ),
+    },
+    {
+      url: `${baseUrl}/de/datenschutz`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.4,
+      alternates: languageAlternates(
+        `${baseUrl}/gizlilik`,
+        `${baseUrl}/en/privacy`,
+        `${baseUrl}/de/datenschutz`
       ),
     },
     {
@@ -120,7 +159,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.4,
       alternates: languageAlternates(
         `${baseUrl}/kullanim-kosullari`,
-        `${baseUrl}/en/terms`
+        `${baseUrl}/en/terms`,
+        `${baseUrl}/de/nutzungsbedingungen`
       ),
     },
     {
@@ -130,7 +170,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.4,
       alternates: languageAlternates(
         `${baseUrl}/kullanim-kosullari`,
-        `${baseUrl}/en/terms`
+        `${baseUrl}/en/terms`,
+        `${baseUrl}/de/nutzungsbedingungen`
+      ),
+    },
+    {
+      url: `${baseUrl}/de/nutzungsbedingungen`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.4,
+      alternates: languageAlternates(
+        `${baseUrl}/kullanim-kosullari`,
+        `${baseUrl}/en/terms`,
+        `${baseUrl}/de/nutzungsbedingungen`
       ),
     },
   ];
@@ -458,7 +510,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.82,
       alternates: languageAlternates(
         `${baseUrl}/muhendislik-hesaplayicilari`,
-        `${baseUrl}/en/engineering-calculators`
+        `${baseUrl}/en/engineering-calculators`,
+        `${baseUrl}/de/ingenieurrechner`
       ),
     },
     {
@@ -468,7 +521,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.82,
       alternates: languageAlternates(
         `${baseUrl}/muhendislik-hesaplayicilari`,
-        `${baseUrl}/en/engineering-calculators`
+        `${baseUrl}/en/engineering-calculators`,
+        `${baseUrl}/de/ingenieurrechner`
+      ),
+    },
+    {
+      url: `${baseUrl}/de/ingenieurrechner`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.82,
+      alternates: languageAlternates(
+        `${baseUrl}/muhendislik-hesaplayicilari`,
+        `${baseUrl}/en/engineering-calculators`,
+        `${baseUrl}/de/ingenieurrechner`
       ),
     },
     {
@@ -478,7 +543,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.85,
       alternates: languageAlternates(
         `${baseUrl}/birimler`,
-        `${baseUrl}/en/units`
+        `${baseUrl}/en/units`,
+        `${baseUrl}/de/einheiten`
       ),
     },
     {
@@ -488,7 +554,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.85,
       alternates: languageAlternates(
         `${baseUrl}/birimler`,
-        `${baseUrl}/en/units`
+        `${baseUrl}/en/units`,
+        `${baseUrl}/de/einheiten`
+      ),
+    },
+    {
+      url: `${baseUrl}/de/einheiten`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.85,
+      alternates: languageAlternates(
+        `${baseUrl}/birimler`,
+        `${baseUrl}/en/units`,
+        `${baseUrl}/de/einheiten`
       ),
     },
     {
@@ -498,7 +576,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
       alternates: languageAlternates(
         `${baseUrl}/tum-birimler`,
-        `${baseUrl}/en/all-conversions`
+        `${baseUrl}/en/all-conversions`,
+        `${baseUrl}/de/alle-umrechnungen`
       ),
     },
     {
@@ -508,7 +587,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
       alternates: languageAlternates(
         `${baseUrl}/tum-birimler`,
-        `${baseUrl}/en/all-conversions`
+        `${baseUrl}/en/all-conversions`,
+        `${baseUrl}/de/alle-umrechnungen`
+      ),
+    },
+    {
+      url: `${baseUrl}/de/alle-umrechnungen`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: languageAlternates(
+        `${baseUrl}/tum-birimler`,
+        `${baseUrl}/en/all-conversions`,
+        `${baseUrl}/de/alle-umrechnungen`
       ),
     },
     {

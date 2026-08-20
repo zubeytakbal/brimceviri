@@ -210,6 +210,7 @@ const copy = {
     engineeringDescription:
       "Basınç, akışkanlar ve ısı transferi için mevcut teknik araçlar.",
     engineeringHubLabel: "Tüm mühendislik hesaplayıcıları",
+    moreCalculatorsCardLabel: "Diğer Hesaplayıcılar",
   },
   en: {
     eyebrow: "Technical unit conversions",
@@ -311,6 +312,7 @@ const copy = {
     engineeringDescription:
       "Current technical tools for pressure, fluids and heat transfer.",
     engineeringHubLabel: "All engineering calculators",
+    moreCalculatorsCardLabel: "More Calculators",
   },
 } as const;
 
@@ -883,6 +885,28 @@ export default function HomeDirectory({
                 </div>
               </article>
             ))}
+
+            <article className="directory-home-card directory-tool-card directory-home-card-more">
+              <Link
+                className="directory-card-stretch"
+                href={data.engineeringHubHref}
+                aria-label={strings.moreCalculatorsCardLabel}
+              />
+
+              <div className="directory-card-body directory-more-card-body">
+                <span className="home-category-icon-box" aria-hidden="true">
+                  <ArrowRight
+                    className="home-category-icon-svg"
+                    size={42}
+                    weight="regular"
+                  />
+                </span>
+
+                <span className="directory-more-label">
+                  {strings.moreCalculatorsCardLabel}
+                </span>
+              </div>
+            </article>
           </div>
         </section>
       </div>

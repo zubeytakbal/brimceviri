@@ -3810,15 +3810,15 @@ button {
 }
 
 .directory-home-card-more {
-  border-style: dashed;
-  border-color: #9fb4bd;
-  background: rgba(21, 107, 138, 0.04);
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
 }
 
 .directory-home-card-more:hover {
-  border-style: dashed;
-  border-color: #156b8a;
-  background: rgba(21, 107, 138, 0.08);
+  border-color: transparent;
+  background: rgba(21, 107, 138, 0.05);
+  box-shadow: none;
 }
 
 .directory-more-card-body {

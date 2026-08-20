@@ -12,6 +12,9 @@ import { newtonArticle } from "./articles/newtonArticle";
 import { newtonMetreArticle } from "./articles/newtonMetreArticle";
 import { kilogramMetreSaniyeArticle } from "./articles/kilogramMetreSaniyeArticle";
 import { pascalSaniyeArticle } from "./articles/pascalSaniyeArticle";
+import { galonArticle } from "./articles/galonArticle";
+import { akreArticle } from "./articles/akreArticle";
+import { santimetrekupArticle } from "./articles/santimetrekupArticle";
 export type UnitArticleSection = {
   title: string;
   paragraphs: string[];
@@ -315,6 +318,18 @@ export function findUnitArticle(slug: string) {
 
   if (slug === "pascal-saniye") {
     return pascalSaniyeArticle;
+  }
+
+  if (slug === "galon") {
+    return galonArticle;
+  }
+
+  if (slug === "akre") {
+    return akreArticle;
+  }
+
+  if (slug === "santimetrekup") {
+    return santimetrekupArticle;
   }
 
   return unitArticles.find((article) => article.slug === slug);

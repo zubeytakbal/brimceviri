@@ -351,6 +351,90 @@ const unitDescriptions: Record<string, UnitDescription> = {
     siEquivalent: "Temel SI yoğunluk birimi",
     commonUses: "Malzeme bilimi, akışkanlar mekaniği, meteoroloji ve mühendislik hesapları",
   },
+  "mikrometre": {
+    shortDescription: "Mikrometre, metrenin milyonda birine eşit çok küçük bir uzunluk birimidir. Hassas mühendislik toleranslarında ve mikroskobik ölçümlerde kullanılır.",
+    historySummary: "Mikrometre, üretim ve malzeme mühendisliğinde çok küçük boyutların ve toleransların ifade edilmesi ihtiyacıyla yaygınlaştı; mikron olarak da bilinir.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, alt birim)",
+    siEquivalent: "1 µm = 0,000001 m = 0,001 mm",
+    commonUses: "Üretim toleransları, malzeme kalınlığı, mikroskobik ölçümler ve yarı iletken üretimi",
+  },
+  "nanometre": {
+    shortDescription: "Nanometre, metrenin milyarda birine eşit son derece küçük bir uzunluk birimidir. Işık dalga boyu ve atomik ölçekli boyutların ifadesinde kullanılır.",
+    historySummary: "Nanometre, nanoteknoloji ve yarı iletken üretiminin gelişimiyle birlikte çip özellik boyutları ve ışık dalga boyu gibi son derece küçük ölçümlerin standart ifade birimi hâline gelmiştir.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, alt birim)",
+    siEquivalent: "1 nm = 0,000000001 m",
+    commonUses: "Işık dalga boyu, yarı iletken çip üretimi, nanoteknoloji ve optik kaplamalar",
+  },
+  "deniz-mili": {
+    shortDescription: "Deniz mili, denizcilik ve havacılıkta kullanılan, Dünya'nın enlem dairesine dayanan bir uzunluk birimidir. Tam olarak 1852 metreye eşittir.",
+    historySummary: "Deniz mili, Dünya üzerindeki bir enlem derecesinin altmışta birine (bir yay dakikasına) dayalı olarak tanımlanmış ve denizcilikte mesafe ile hız (knot) ölçümünün temelini oluşturmuştur.",
+    measurementSystem: "Denizcilik ve havacılık ölçü sistemi (SI dışı)",
+    siEquivalent: "1 deniz mili = 1852 m",
+    commonUses: "Denizcilik ve havacılıkta mesafe ölçümü, seyir hesapları ve knot (deniz mili/saat) hız birimi",
+  },
+  "santimetrekare": {
+    shortDescription: "Santimetrekare, metrekarenin on binde birine eşit küçük bir alan birimidir. Küçük yüzeylerin ve kesit alanlarının ifadesinde kullanılır.",
+    historySummary: "Santimetrekare, metrik sistemin ondalık yapısı içinde küçük ölçekli alanların pratik biçimde ifade edilmesi için yaygınlaşmıştır.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, alt birim)",
+    siEquivalent: "1 cm² = 0,0001 m²",
+    commonUses: "Kağıt ve kumaş ölçüleri, kesit alanı hesapları, laboratuvar ve el işi ölçümleri",
+  },
+  "milimetrekare": {
+    shortDescription: "Milimetrekare, metrekarenin milyonda birine eşit çok küçük bir alan birimidir. Kablo kesitleri ve hassas mühendislik alanlarında kullanılır.",
+    historySummary: "Milimetrekare, elektrik mühendisliğinde kablo kesit alanlarının ve malzeme mühendisliğinde küçük yüzeylerin ifade edilmesi için standart hâline gelmiştir.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, alt birim)",
+    siEquivalent: "1 mm² = 0,000001 m²",
+    commonUses: "Kablo kesit alanı, hassas parça yüzeyleri ve mühendislik çizimleri",
+  },
+  "kilometrekare": {
+    shortDescription: "Kilometrekare, bir kenarı bir kilometre olan karenin alanına eşit büyük bir alan birimidir. Şehir, ülke ve bölge yüz ölçümlerinde kullanılır.",
+    historySummary: "Kilometrekare, coğrafya ve haritacılıkta geniş alanların pratik biçimde ifade edilmesi için metrik sistemin ondalık yapısından türetilmiştir.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, kat birim)",
+    siEquivalent: "1 km² = 1.000.000 m²",
+    commonUses: "Ülke ve şehir yüz ölçümleri, coğrafya, tarım arazisi ve bölgesel planlama",
+  },
+  "incare": {
+    shortDescription: "İnçkare, İngiliz ve Amerikan ölçü sistemlerinde kullanılan küçük bir alan birimidir. Bir kenarı bir inç olan karenin alanına eşittir.",
+    historySummary: "İnçkare, İngiliz ölçü sisteminin alan birimleri ailesinde, küçük yüzeylerin ve teknik parça kesitlerinin ifade edilmesi için kullanılagelmiştir.",
+    measurementSystem: "İngiliz ve ABD ölçü sistemleri",
+    siEquivalent: "1 in² = 0,00064516 m²",
+    commonUses: "ABD kaynaklı teknik çizimler, ekran ve parça yüzey alanları",
+  },
+  "akre": {
+    shortDescription: "Akre, özellikle İngiliz ve Amerikan ölçü sistemlerinde arazi ölçümünde kullanılan büyük bir alan birimidir. 4046,8564224 metrekareye eşittir.",
+    historySummary: "Akre, tarihsel olarak bir çift öküzün bir günde sürebileceği tarla alanına dayanan bir yaklaşımdan gelişmiş ve günümüzde İngiliz ölçü sisteminde standart arazi birimi olarak kullanılmaya devam etmektedir.",
+    measurementSystem: "İngiliz ve ABD ölçü sistemleri",
+    siEquivalent: "1 akre = 4046,8564224 m²",
+    commonUses: "Emlak ve arazi alım satımı, tarım arazisi ölçümü ve gayrimenkul ilanları",
+  },
+  "santimetrekup": {
+    shortDescription: "Santimetreküp (cm³), metreküpün milyonda birine eşit küçük bir hacim birimidir. Motor silindir hacminden laboratuvar ölçümlerine kadar geniş kullanım alanı vardır.",
+    historySummary: "Santimetreküp, mililitre ile sayısal olarak birebir eşit olduğu için hem laboratuvar hem endüstriyel ölçümlerde, özellikle motor hacmi (cc) ifadesinde yaygınlaşmıştır.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, alt birim)",
+    siEquivalent: "1 cm³ = 1 mL = 0,000001 m³",
+    commonUses: "Motor silindir hacmi (cc), laboratuvar ölçümleri ve küçük nesnelerin hacim hesapları",
+  },
+  "fitkup": {
+    shortDescription: "Fitküp (ft³), İngiliz ve Amerikan ölçü sistemlerinde kullanılan bir hacim birimidir. Bir kenarı bir fit olan küpün hacmine eşittir.",
+    historySummary: "Fitküp, İngiliz ölçü sisteminin hacim birimleri ailesinde, özellikle inşaat, nakliye ve depolama hacimlerinin ifade edilmesi için kullanılagelmiştir.",
+    measurementSystem: "İngiliz ve ABD ölçü sistemleri",
+    siEquivalent: "1 ft³ = 0,0283168 m³",
+    commonUses: "ABD kaynaklı inşaat, nakliye konteyner hacmi ve depolama hesapları",
+  },
+  "inckup": {
+    shortDescription: "İnçküp (in³), İngiliz ve Amerikan ölçü sistemlerinde kullanılan küçük bir hacim birimidir. Özellikle motor silindir hacmi ifadesinde (cubic inch) kullanılır.",
+    historySummary: "İnçküp, ABD otomotiv endüstrisinde geleneksel olarak motor hacminin 'cubic inch' cinsinden ifade edilmesiyle özdeşleşmiştir.",
+    measurementSystem: "İngiliz ve ABD ölçü sistemleri",
+    siEquivalent: "1 in³ = 0,0000163871 m³",
+    commonUses: "ABD kaynaklı motor hacmi (cubic inch), teknik çizimler ve küçük parça hacimleri",
+  },
+  "galon": {
+    shortDescription: "Galon, özellikle Amerika Birleşik Devletleri'nde sıvı hacmi ölçmek için kullanılan bir birimdir. Bir ABD galonu 3,78541 litreye eşittir.",
+    historySummary: "Galon, İngiliz ölçü sisteminden gelişmiş, ABD ve Birleşik Krallık'ta farklı tanımlara sahip (ABD galonu ile İngiliz galonu farklıdır) tarihsel bir sıvı hacim birimidir.",
+    measurementSystem: "ABD ölçü sistemi (US liquid gallon)",
+    siEquivalent: "1 galon (US) = 3,78541 L = 0,00378541 m³",
+    commonUses: "Yakıt tüketimi, ABD kaynaklı sıvı ürün etiketleri ve mutfak ölçüleri",
+  },
   "pascal-saniye": {
     shortDescription: "Pascal-saniye (Pa·s), dinamik viskozitenin SI türetilmiş birimidir. Bir akışkanın akışa karşı gösterdiği direnci ifade eder.",
     historySummary: "Pascal-saniye, SI sisteminin basınç ve zaman birimlerinden doğrudan türetilmiştir ve akışkanlar mekaniğinde dinamik viskozitenin standart bilimsel referans birimidir.",
@@ -423,7 +507,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
 };
 
-const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit","kilogram-metre-saniye","newton-saniye","pascal-saniye","santipoise"];
+const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit","kilogram-metre-saniye","newton-saniye","pascal-saniye","santipoise","mikrometre","nanometre","deniz-mili","santimetrekare","milimetrekare","kilometrekare","incare","akre","santimetrekup","fitkup","inckup","galon"];
 
 export const unitPages: UnitPage[] = unitRegistry
   .filter((entry) => entry.tr && unitDescriptions[entry.id])

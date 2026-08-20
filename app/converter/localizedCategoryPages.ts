@@ -630,6 +630,49 @@ export const englishCategoryPages: LocalizedCategoryPage[] = [
       },
     ],
   },
+  {
+    locale: "en",
+    slug: "density",
+    sourceSlug: "yogunluk",
+    category: "yogunluk",
+    title: "Density Conversions",
+    description:
+      "Convert between kilograms per cubic meter and grams per cubic centimeter, and see how density is used in engineering, fluid mechanics and material science.",
+    introduction: [
+      "Density describes how much mass is packed into a given volume. It determines whether an object floats or sinks and is a key input for hydrostatic pressure and fluid-flow calculations.",
+      "Kilogram per cubic meter is the SI derived unit of density, while gram per cubic centimeter is common in laboratory and chemistry contexts.",
+    ],
+    facts: [
+      { label: "Physical quantity", value: "Density (mass per volume)" },
+      { label: "SI unit", value: "Kilogram per cubic meter" },
+      { label: "SI symbol", value: "kg/m³" },
+      { label: "Water density", value: "≈ 1000 kg/m³ (at 4 °C)" },
+      { label: "Typical use", value: "Materials, fluids and hydrostatic calculations" },
+    ],
+    sections: [
+      {
+        title: "What is density?",
+        paragraphs: [
+          "Density is mass divided by volume: ρ = m / V. It tells you how heavy a substance is relative to how much space it occupies.",
+          "A large numerical range separates common materials: air is about 1.2 kg/m³, water about 1000 kg/m³, and steel about 7850 kg/m³.",
+        ],
+      },
+      {
+        title: "kg/m³ and g/cm³",
+        paragraphs: [
+          "One kilogram per cubic meter equals exactly 0.001 grams per cubic centimeter, since the two units differ by a factor of 1000.",
+          "Laboratories often use g/cm³ for small samples, while engineering and scientific work generally defaults to kg/m³.",
+        ],
+      },
+      {
+        title: "How is density used in engineering?",
+        paragraphs: [
+          "Density is a direct input to the hydrostatic pressure formula (ΔP = ρgh) and to the Reynolds number, which determines whether a fluid flow is laminar or turbulent.",
+          "Comparing the densities of materials also guides selection in construction, shipping and manufacturing, where weight per unit volume affects cost and performance.",
+        ],
+      },
+    ],
+  },
 ];
 
 export function findEnglishCategoryPage(slug: string) {

@@ -343,6 +343,8 @@ export const unitRegistry: UnitRegistryEntry[] = [
     symbol: "kg/m³",
     siFactor: 1,
     tr: { name: "Kilogram/Metreküp", slug: "kilogram-metrekup" },
+    en: { name: "Kilogram per Cubic Meter", slug: "kilogram-per-cubic-meter" },
+    de: { name: "Kilogramm/Kubikmeter", slug: "kilogramm-kubikmeter" },
   },
   {
     id: "g-cm3",
@@ -350,6 +352,8 @@ export const unitRegistry: UnitRegistryEntry[] = [
     symbol: "g/cm³",
     siFactor: 1000,
     tr: { name: "Gram/Santimetreküp", slug: "gram-santimetrekup" },
+    en: { name: "Gram per Cubic Centimeter", slug: "gram-per-cubic-centimeter" },
+    de: { name: "Gramm/Kubikzentimeter", slug: "gramm-kubikzentimeter" },
   },
   { id: "g-ml", category: "yogunluk", symbol: "g/mL", siFactor: 1000 },
   { id: "kg-l", category: "yogunluk", symbol: "kg/L", siFactor: 1000 },

@@ -23,6 +23,7 @@ const germanCategoryNames: Record<string, string> = {
   enerji: "Energie",
   debi: "Durchfluss",
   elektrik: "Elektrizität",
+  yogunluk: "Dichte",
 };
 
 function formatGermanValue(value: number) {

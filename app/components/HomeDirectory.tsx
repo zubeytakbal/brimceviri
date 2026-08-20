@@ -772,7 +772,11 @@ export default function HomeDirectory({
               <article className="directory-home-card directory-home-card-more">
                 <Link
                   className="directory-card-stretch"
-                  href="/diger-donusumler"
+                  href={
+                    locale === "tr"
+                      ? "/diger-donusumler"
+                      : data.allConversionsHref
+                  }
                   aria-label={strings.moreCategoriesCardLabel}
                 />
 

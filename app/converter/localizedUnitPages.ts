@@ -790,6 +790,40 @@ export const englishUnitPages: LocalizedUnitPage[] = [
     siEquivalent: "1 mA = 0.001 A",
     commonUses: "Electronics, sensors and low-current testing",
   },
+  {
+    locale: "en",
+    sourceSlug: "kilogram-metrekup",
+    slug: "kilogram-per-cubic-meter",
+    category: "yogunluk",
+    categoryName: "Density",
+    unit: "kg/m³",
+    name: "Kilogram per Cubic Meter",
+    symbol: "kg/m³",
+    shortDescription:
+      "Kilogram per cubic meter is the SI derived unit of density, expressing the mass of a substance contained in one cubic meter of volume.",
+    historySummary:
+      "Derived directly from the SI base units of mass and length, kg/m³ became the standard scientific and engineering reference for density.",
+    measurementSystem: "International System of Units (SI, derived unit)",
+    siEquivalent: "Base SI unit of density",
+    commonUses: "Material science, fluid mechanics, meteorology and engineering calculations",
+  },
+  {
+    locale: "en",
+    sourceSlug: "gram-santimetrekup",
+    slug: "gram-per-cubic-centimeter",
+    category: "yogunluk",
+    categoryName: "Density",
+    unit: "g/cm³",
+    name: "Gram per Cubic Centimeter",
+    symbol: "g/cm³",
+    shortDescription:
+      "Gram per cubic centimeter is a density unit widely used in laboratory and chemistry settings for small samples.",
+    historySummary:
+      "Within the decimal metric system, gram and cubic centimeter were combined to express the density of small-scale samples in a practical way.",
+    measurementSystem: "International System of Units (SI, subunit combination)",
+    siEquivalent: "1 g/cm³ = 1000 kg/m³",
+    commonUses: "Chemistry labs, material density tables and mineralogy",
+  },
 ];
 
 export function findEnglishUnitPage(

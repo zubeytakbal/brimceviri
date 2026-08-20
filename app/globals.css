@@ -3832,6 +3832,10 @@ button {
   text-align: center;
 }
 
+.directory-more-arrow {
+  color: #3f63ff;
+}
+
 .directory-more-label {
   font-weight: 650;
   color: #156b8a;

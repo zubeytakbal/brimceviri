@@ -777,13 +777,12 @@ export default function HomeDirectory({
                 />
 
                 <div className="directory-card-body directory-more-card-body">
-                  <span className="home-category-icon-box" aria-hidden="true">
-                    <ArrowRight
-                      className="home-category-icon-svg"
-                      size={42}
-                      weight="regular"
-                    />
-                  </span>
+                  <ArrowRight
+                    className="directory-more-arrow"
+                    size={56}
+                    weight="regular"
+                    aria-hidden="true"
+                  />
 
                   <span className="directory-more-label">
                     {strings.moreCategoriesCardLabel}
@@ -894,13 +893,12 @@ export default function HomeDirectory({
               />
 
               <div className="directory-card-body directory-more-card-body">
-                <span className="home-category-icon-box" aria-hidden="true">
-                  <ArrowRight
-                    className="home-category-icon-svg"
-                    size={42}
-                    weight="regular"
-                  />
-                </span>
+                <ArrowRight
+                  className="directory-more-arrow"
+                  size={56}
+                  weight="regular"
+                  aria-hidden="true"
+                />
 
                 <span className="directory-more-label">
                   {strings.moreCalculatorsCardLabel}

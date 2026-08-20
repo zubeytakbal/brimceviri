@@ -716,6 +716,135 @@ export const englishCategoryPages: LocalizedCategoryPage[] = [
       },
     ],
   },
+  {
+    locale: "en",
+    slug: "torque",
+    sourceSlug: "tork",
+    category: "tork",
+    title: "Torque Conversions",
+    description:
+      "Convert between newton-meters and pound-feet, and see how torque is used in engine specs, torque wrenches and bolt-tightening values.",
+    introduction: [
+      "Torque measures the twisting or rotational effect of a force applied at a distance from a pivot point. It is expressed as τ = F × r.",
+      "The newton-meter is the SI derived unit of torque, while pound-foot is common in US-sourced automotive and engineering documents.",
+    ],
+    facts: [
+      { label: "Physical quantity", value: "Torque (moment of force)" },
+      { label: "SI unit", value: "Newton-meter" },
+      { label: "SI symbol", value: "N·m" },
+      { label: "Formula", value: "τ = F × r" },
+      { label: "Typical use", value: "Engine torque, torque wrenches and bolt specifications" },
+    ],
+    sections: [
+      {
+        title: "What is torque?",
+        paragraphs: [
+          "Torque is the rotational equivalent of force: it measures how much a force applied at a distance from a pivot tends to rotate an object.",
+          "One newton-meter is the torque produced by a 1-newton force applied perpendicular to a 1-meter lever arm.",
+        ],
+      },
+      {
+        title: "Newton-meter and pound-foot",
+        paragraphs: [
+          "One newton-meter equals about 0.737562 pound-feet. One pound-foot equals exactly 1.355818 newton-meters.",
+          "Vehicle engine specifications and torque wrench settings often quote both units, since US-sourced documents typically use pound-feet.",
+        ],
+      },
+      {
+        title: "Torque versus energy",
+        paragraphs: [
+          "Newton-meter is dimensionally identical to the joule (kg·m²/s²), but the two express different physical quantities: joule is energy (scalar), newton-meter is torque (a vector effect).",
+          "To avoid confusion, convention reserves the joule symbol for energy and newton-meter for torque — they are never used interchangeably.",
+        ],
+      },
+    ],
+  },
+  {
+    locale: "en",
+    slug: "momentum",
+    sourceSlug: "momentum",
+    category: "momentum",
+    title: "Momentum Conversions",
+    description:
+      "Convert between kilogram-meter per second and newton-second, and see how momentum and impulse relate in collision and propulsion analysis.",
+    introduction: [
+      "Momentum measures the 'quantity of motion' of an object and is calculated as mass times velocity: p = m × v.",
+      "Kilogram-meter per second is the SI unit of momentum, and newton-second — the unit of impulse — is dimensionally identical to it.",
+    ],
+    facts: [
+      { label: "Physical quantity", value: "Momentum" },
+      { label: "SI unit", value: "Kilogram-meter per second" },
+      { label: "SI symbol", value: "kg·m/s" },
+      { label: "Formula", value: "p = m × v" },
+      { label: "Typical use", value: "Collision analysis, propulsion and impact calculations" },
+    ],
+    sections: [
+      {
+        title: "What is momentum?",
+        paragraphs: [
+          "Momentum is a vector quantity that combines an object's mass and velocity, describing how much 'motion' it carries.",
+          "A heavy, fast-moving object has more momentum than a light, slow one — this underlies collision and impact analysis.",
+        ],
+      },
+      {
+        title: "Conservation of momentum",
+        paragraphs: [
+          "In a closed system with no external net force, total momentum before and after a collision is equal — the foundation of collision analysis.",
+          "This principle also explains rocket propulsion: expelling mass at high speed in one direction gives the rocket momentum in the other.",
+        ],
+      },
+      {
+        title: "Momentum and impulse",
+        paragraphs: [
+          "Impulse is the effect of a force applied over time and is measured in newton-seconds; the impulse-momentum theorem states that impulse equals the change in momentum.",
+          "Because a newton equals 1 kg·m/s², one newton-second is dimensionally identical to one kilogram-meter per second, so the two units convert one-to-one.",
+        ],
+      },
+    ],
+  },
+  {
+    locale: "en",
+    slug: "viscosity",
+    sourceSlug: "viskozite",
+    category: "viskozite_dinamik",
+    title: "Viscosity Conversions",
+    description:
+      "Convert between pascal-seconds and centipoise, and see how dynamic viscosity is used in Reynolds number and fluid mechanics calculations.",
+    introduction: [
+      "Dynamic viscosity describes a fluid's internal resistance to flow — its 'thickness.' It is a key input for the Reynolds number and fluid-flow calculations.",
+      "The pascal-second is the SI unit of dynamic viscosity, while centipoise is the practical unit most often used in industry.",
+    ],
+    facts: [
+      { label: "Physical quantity", value: "Dynamic viscosity" },
+      { label: "SI unit", value: "Pascal-second" },
+      { label: "SI symbol", value: "Pa·s" },
+      { label: "Water viscosity", value: "≈ 0.001 Pa·s (1 cP) at 20 °C" },
+      { label: "Typical use", value: "Reynolds number, lubricants and process fluids" },
+    ],
+    sections: [
+      {
+        title: "What is dynamic viscosity?",
+        paragraphs: [
+          "Dynamic viscosity measures a fluid's resistance to shear, i.e. how hard it is to slide one layer of fluid past another.",
+          "High-viscosity fluids like honey flow slowly; low-viscosity fluids like water flow easily.",
+        ],
+      },
+      {
+        title: "Pascal-second and centipoise",
+        paragraphs: [
+          "One pascal-second equals exactly 1,000 centipoise. Centipoise is preferred in industry because common liquids produce more readable numbers in that scale.",
+          "Water at 20 °C has a viscosity of about 1 centipoise (0.001 Pa·s), which is often used as a practical reference point.",
+        ],
+      },
+      {
+        title: "Viscosity in the Reynolds number",
+        paragraphs: [
+          "The Reynolds number (Re = ρvD/μ) uses dynamic viscosity directly and determines whether a flow is laminar or turbulent — critical for pipe design and aerodynamics.",
+          "Dynamic viscosity should not be confused with kinematic viscosity (ν = μ/ρ), which factors in the fluid's density as well.",
+        ],
+      },
+    ],
+  },
 ];
 
 export function findEnglishCategoryPage(slug: string) {

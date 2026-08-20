@@ -487,6 +487,8 @@ export const unitRegistry: UnitRegistryEntry[] = [
     symbol: "N·m",
     siFactor: 1,
     tr: { name: "Newton-metre", slug: "newton-metre" },
+    en: { name: "Newton-Meter", slug: "newton-meter" },
+    de: { name: "Newtonmeter", slug: "newtonmeter" },
   },
   { id: "kilonewton-metre", category: "tork", symbol: "kN·m", siFactor: 1000 },
   {
@@ -495,6 +497,8 @@ export const unitRegistry: UnitRegistryEntry[] = [
     symbol: "lb·ft",
     siFactor: 1.355817948,
     tr: { name: "Pound-fit (lb-ft)", slug: "pound-fit" },
+    en: { name: "Pound-Foot", slug: "pound-foot" },
+    de: { name: "Pfund-Fuß", slug: "pfund-fuss" },
   },
   {
     id: "kg-m-s",
@@ -502,6 +506,8 @@ export const unitRegistry: UnitRegistryEntry[] = [
     symbol: "kg·m/s",
     siFactor: 1,
     tr: { name: "Kilogram-metre/saniye", slug: "kilogram-metre-saniye" },
+    en: { name: "Kilogram-Meter per Second", slug: "kilogram-meter-per-second" },
+    de: { name: "Kilogramm-Meter/Sekunde", slug: "kilogramm-meter-sekunde" },
   },
   {
     id: "n-s",
@@ -509,6 +515,8 @@ export const unitRegistry: UnitRegistryEntry[] = [
     symbol: "N·s",
     siFactor: 1,
     tr: { name: "Newton-saniye", slug: "newton-saniye" },
+    en: { name: "Newton-Second", slug: "newton-second" },
+    de: { name: "Newtonsekunde", slug: "newtonsekunde" },
   },
   { id: "lb-ft-s", category: "momentum", symbol: "lb·ft/s", siFactor: 0.138255 },
 
@@ -600,6 +608,8 @@ export const unitRegistry: UnitRegistryEntry[] = [
     symbol: "Pa·s",
     siFactor: 1,
     tr: { name: "Pascal-saniye", slug: "pascal-saniye" },
+    en: { name: "Pascal-Second", slug: "pascal-second" },
+    de: { name: "Pascalsekunde", slug: "pascalsekunde" },
   },
   { id: "milipascal-saniye", category: "viskozite_dinamik", symbol: "mPa·s", siFactor: 0.001 },
   { id: "poise", category: "viskozite_dinamik", symbol: "P", siFactor: 0.1 },
@@ -609,6 +619,8 @@ export const unitRegistry: UnitRegistryEntry[] = [
     symbol: "cP",
     siFactor: 0.001,
     tr: { name: "Santipoise", slug: "santipoise" },
+    en: { name: "Centipoise", slug: "centipoise" },
+    de: { name: "Centipoise", slug: "centipoise" },
   },
   { id: "m2-s", category: "viskozite_kinematik", symbol: "m²/s", siFactor: 1 },
   { id: "mm2-s", category: "viskozite_kinematik", symbol: "mm²/s", siFactor: 0.000001 },

@@ -858,6 +858,108 @@ export const englishUnitPages: LocalizedUnitPage[] = [
     siEquivalent: "1 kgf = 9.80665 N",
     commonUses: "Legacy engineering documents, torque wrenches and spring/tension testing",
   },
+  {
+    locale: "en",
+    sourceSlug: "newton-metre",
+    slug: "newton-meter",
+    category: "tork",
+    categoryName: "Torque",
+    unit: "N·m",
+    name: "Newton-Meter",
+    symbol: "N·m",
+    shortDescription:
+      "The newton-meter is the SI derived unit of torque, equal to the rotational effect of a 1-newton force applied at a 1-meter lever arm.",
+    historySummary:
+      "Derived directly from the SI units of force and length, the newton-meter became the standard unit for expressing rotational effect in engineering.",
+    measurementSystem: "International System of Units (SI, derived unit)",
+    siEquivalent: "1 N·m = 1 N × 1 m",
+    commonUses: "Engine torque, torque wrenches and bolt-tightening specifications",
+  },
+  {
+    locale: "en",
+    sourceSlug: "pound-fit",
+    slug: "pound-foot",
+    category: "tork",
+    categoryName: "Torque",
+    unit: "lb·ft",
+    name: "Pound-Foot",
+    symbol: "lb·ft",
+    shortDescription:
+      "Pound-foot is a traditional unit of torque used in British and American measurement systems, common in US-sourced automotive documents.",
+    historySummary:
+      "Pound-foot is derived from the product of pound-force and foot, and remains standard in US automotive and mechanical engineering literature.",
+    measurementSystem: "British and US measurement systems",
+    siEquivalent: "1 lb·ft ≈ 1.355818 N·m",
+    commonUses: "US-sourced engine torque specs, torque wrenches and technical datasheets",
+  },
+  {
+    locale: "en",
+    sourceSlug: "kilogram-metre-saniye",
+    slug: "kilogram-meter-per-second",
+    category: "momentum",
+    categoryName: "Momentum",
+    unit: "kg·m/s",
+    name: "Kilogram-Meter per Second",
+    symbol: "kg·m/s",
+    shortDescription:
+      "Kilogram-meter per second is the SI derived unit of momentum, equal to the product of an object's mass and velocity.",
+    historySummary:
+      "Momentum is one of the foundational concepts of classical mechanics, and its SI unit is derived directly from the base units of mass, length and time.",
+    measurementSystem: "International System of Units (SI, derived unit)",
+    siEquivalent: "1 kg·m/s = 1 kg × 1 m/s",
+    commonUses: "Collision analysis, rocket propulsion and particle physics",
+  },
+  {
+    locale: "en",
+    sourceSlug: "newton-saniye",
+    slug: "newton-second",
+    category: "momentum",
+    categoryName: "Momentum",
+    unit: "N·s",
+    name: "Newton-Second",
+    symbol: "N·s",
+    shortDescription:
+      "The newton-second is the SI derived unit of impulse and is dimensionally identical to momentum.",
+    historySummary:
+      "The newton-second follows directly from the impulse-momentum theorem, which states that the impulse applied to an object equals the change in its momentum.",
+    measurementSystem: "International System of Units (SI, derived unit)",
+    siEquivalent: "1 N·s = 1 kg·m/s",
+    commonUses: "Collision and impact analysis, rocket thrust and sports biomechanics",
+  },
+  {
+    locale: "en",
+    sourceSlug: "pascal-saniye",
+    slug: "pascal-second",
+    category: "viskozite_dinamik",
+    categoryName: "Viscosity",
+    unit: "Pa·s",
+    name: "Pascal-Second",
+    symbol: "Pa·s",
+    shortDescription:
+      "Pascal-second is the SI derived unit of dynamic viscosity, expressing a fluid's resistance to flow.",
+    historySummary:
+      "Derived from the SI units of pressure and time, the pascal-second became the standard scientific reference for dynamic viscosity in fluid mechanics.",
+    measurementSystem: "International System of Units (SI, derived unit)",
+    siEquivalent: "1 Pa·s = 1 N·s/m²",
+    commonUses: "Fluid mechanics, Reynolds number calculations and pipeline design",
+  },
+  {
+    locale: "en",
+    sourceSlug: "santipoise",
+    slug: "centipoise",
+    category: "viskozite_dinamik",
+    categoryName: "Viscosity",
+    unit: "cP",
+    name: "Centipoise",
+    symbol: "cP",
+    shortDescription:
+      "Centipoise is a widely used practical unit of dynamic viscosity in industry; water at 20 °C has a viscosity of about 1 centipoise.",
+    historySummary:
+      "Centipoise is one thousandth of the CGS poise unit and became common because it produces more readable numbers for everyday liquids like motor oil and paint.",
+    measurementSystem: "CGS system (non-SI, subunit)",
+    siEquivalent: "1 cP = 0.001 Pa·s",
+    commonUses: "Motor and lubricant viscosity grades, paint and coatings, food science",
+  },
 ];
 
 export function findEnglishUnitPage(

@@ -25,6 +25,9 @@ const englishCategoryNames: Record<string, string> = {
   elektrik: "Electricity",
   yogunluk: "Density",
   kuvvet: "Force",
+  tork: "Torque",
+  momentum: "Momentum",
+  viskozite_dinamik: "Viscosity",
 };
 
 function formatEnglishValue(value: number) {

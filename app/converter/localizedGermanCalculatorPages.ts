@@ -71,7 +71,7 @@ export const germanCalculatorPages: LocalizedGermanCalculatorPage[] =
           sourceSlug === "isi-enerjisi" || sourceSlug === "isi-iletimi"
             ? "enerji"
             : sourceSlug === "reynolds-sayisi"
-              ? "hiz"
+              ? "viskozite_dinamik"
               : "basinc",
         ...content,
       };

@@ -25,6 +25,9 @@ const germanCategoryNames: Record<string, string> = {
   elektrik: "Elektrizität",
   yogunluk: "Dichte",
   kuvvet: "Kraft",
+  tork: "Drehmoment",
+  momentum: "Impuls",
+  viskozite_dinamik: "Viskosität",
 };
 
 function formatGermanValue(value: number) {

@@ -15,6 +15,7 @@ import { pascalSaniyeArticle } from "./articles/pascalSaniyeArticle";
 import { galonArticle } from "./articles/galonArticle";
 import { akreArticle } from "./articles/akreArticle";
 import { santimetrekupArticle } from "./articles/santimetrekupArticle";
+import { gigabaytArticle } from "./articles/gigabaytArticle";
 export type UnitArticleSection = {
   title: string;
   paragraphs: string[];
@@ -330,6 +331,10 @@ export function findUnitArticle(slug: string) {
 
   if (slug === "santimetrekup") {
     return santimetrekupArticle;
+  }
+
+  if (slug === "gigabayt") {
+    return gigabaytArticle;
   }
 
   return unitArticles.find((article) => article.slug === slug);

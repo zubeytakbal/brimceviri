@@ -41,6 +41,7 @@ const categoryLabels: Record<string, string> = {
   tork: "Tork",
   momentum: "Momentum",
   viskozite_dinamik: "Viskozite",
+  veri: "Veri Depolama",
 };
 
 function serializeJsonLd(data: object) {

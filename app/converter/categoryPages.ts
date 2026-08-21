@@ -118,4 +118,11 @@ export const categoryPages: CategoryPage[] = [
     description:
       "Pascal-saniye ve santipoise birimleri arasında dinamik viskozite dönüşümü yapın; Reynolds sayısı ve akışkanlar mekaniği hesapları için örnekleri inceleyin.",
   },
+  {
+    slug: "veri",
+    category: "veri",
+    title: "Veri Depolama Dönüşümleri",
+    description:
+      "Bayt, kilobayt, megabayt, gigabayt ve terabayt birimleri arasında dönüşüm yapın; 1000 ile 1024 tabanlı hesaplama farkını ve depolama alanı karışıklığını inceleyin.",
+  },
 ];

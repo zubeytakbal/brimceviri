@@ -351,6 +351,41 @@ const unitDescriptions: Record<string, UnitDescription> = {
     siEquivalent: "Temel SI yoğunluk birimi",
     commonUses: "Malzeme bilimi, akışkanlar mekaniği, meteoroloji ve mühendislik hesapları",
   },
+  "bayt": {
+    shortDescription: "Bayt (byte), dijital verinin temel ölçü birimidir. 8 bitten oluşur ve bir karakteri (harf, rakam vb.) temsil etmek için kullanılır.",
+    historySummary: "Bayt, erken bilgisayar mimarilerinde bir karakterin kodlanması için gereken en küçük pratik veri birimi olarak ortaya çıkmış ve zamanla 8 bit olarak standartlaşmıştır.",
+    measurementSystem: "Dijital veri birimi (bilgi işlem standardı)",
+    siEquivalent: "1 bayt = 8 bit",
+    commonUses: "Dosya boyutu, bellek kapasitesi ve veri iletimi ölçümü",
+  },
+  "kilobayt": {
+    shortDescription: "Kilobayt (KB), 1000 bayta eşit bir veri birimidir. Küçük metin dosyaları ve basit belgelerin boyutunu ifade etmek için kullanılır.",
+    historySummary: "Kilobayt, SI ön ek sistemine dayanarak ondalık (1000 tabanlı) olarak tanımlanmıştır; bilgisayar dünyasında zamanla 1024 tabanlı kullanım da yaygınlaşmış, bu da karışıklığa yol açmıştır.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, kat birim)",
+    siEquivalent: "1 KB = 1000 bayt",
+    commonUses: "Metin dosyaları, basit belgeler ve küçük veri paketleri",
+  },
+  "megabayt": {
+    shortDescription: "Megabayt (MB), 1.000.000 bayta eşit bir veri birimidir. Fotoğraf, müzik dosyası ve kısa belgelerin boyutunu ifade etmek için yaygın kullanılır.",
+    historySummary: "Megabayt, kişisel bilgisayarların yaygınlaşmasıyla birlikte dosya ve disk boyutlarının ifade edilmesinde standart bir referans birim hâline gelmiştir.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, kat birim)",
+    siEquivalent: "1 MB = 1.000.000 bayt",
+    commonUses: "Fotoğraflar, müzik dosyaları, kısa videolar ve uygulama boyutları",
+  },
+  "gigabayt": {
+    shortDescription: "Gigabayt (GB), 1 milyar bayta eşit bir veri birimidir. Akıllı telefon depolama alanı, video dosyaları ve RAM kapasitesi ifade etmek için kullanılır.",
+    historySummary: "Gigabayt, depolama teknolojilerinin gelişmesiyle birlikte disk, bellek ve mobil cihaz kapasitelerinin standart ifade birimi hâline gelmiş; SI (1000 tabanlı) ile bilgisayar dünyasının geleneksel (1024 tabanlı) kullanımı arasındaki fark bu birimde en çok fark edilir hâle gelmiştir.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, kat birim)",
+    siEquivalent: "1 GB = 1.000.000.000 bayt",
+    commonUses: "Akıllı telefon ve bilgisayar depolama alanı, RAM kapasitesi, video dosyaları",
+  },
+  "terabayt": {
+    shortDescription: "Terabayt (TB), 1 trilyon bayta eşit büyük bir veri birimidir. Harici diskler, sunucu depolama alanı ve büyük veri kümeleri için kullanılır.",
+    historySummary: "Terabayt, veri depolama teknolojilerinin ilerlemesiyle birlikte kişisel bilgisayar ve sunucu depolama kapasitelerinin ifade edilmesinde standart hâle gelmiştir.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, kat birim)",
+    siEquivalent: "1 TB = 1.000.000.000.000 bayt",
+    commonUses: "Harici diskler, sunucu depolama, veri merkezleri ve büyük veri kümeleri",
+  },
   "mikrometre": {
     shortDescription: "Mikrometre, metrenin milyonda birine eşit çok küçük bir uzunluk birimidir. Hassas mühendislik toleranslarında ve mikroskobik ölçümlerde kullanılır.",
     historySummary: "Mikrometre, üretim ve malzeme mühendisliğinde çok küçük boyutların ve toleransların ifade edilmesi ihtiyacıyla yaygınlaştı; mikron olarak da bilinir.",
@@ -507,7 +542,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
 };
 
-const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit","kilogram-metre-saniye","newton-saniye","pascal-saniye","santipoise","mikrometre","nanometre","deniz-mili","santimetrekare","milimetrekare","kilometrekare","incare","akre","santimetrekup","fitkup","inckup","galon"];
+const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit","kilogram-metre-saniye","newton-saniye","pascal-saniye","santipoise","mikrometre","nanometre","deniz-mili","santimetrekare","milimetrekare","kilometrekare","incare","akre","santimetrekup","fitkup","inckup","galon","bayt","kilobayt","megabayt","gigabayt","terabayt"];
 
 export const unitPages: UnitPage[] = unitRegistry
   .filter((entry) => entry.tr && unitDescriptions[entry.id])

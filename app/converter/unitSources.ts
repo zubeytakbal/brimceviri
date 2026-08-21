@@ -128,6 +128,18 @@ const viscositySources: UnitSource[] = [
   nistSiConversionFactors,
 ];
 
+const nistBinaryPrefixes: UnitSource = {
+  title: "Definitions of the SI Units: The Binary Prefixes",
+  organization: "NIST",
+  url: "https://physics.nist.gov/cuu/Units/binary.html",
+};
+
+const dataSources: UnitSource[] = [
+  siBrochure,
+  nistBinaryPrefixes,
+  nistSiConversionFactors,
+];
+
 export function getUnitSources(category: string): UnitSource[] {
   if (category === "uzunluk") {
     return lengthSources;
@@ -159,6 +171,10 @@ export function getUnitSources(category: string): UnitSource[] {
 
   if (category === "viskozite_dinamik") {
     return viscositySources;
+  }
+
+  if (category === "veri") {
+    return dataSources;
   }
 
   return [siBrochure, nistConversions];

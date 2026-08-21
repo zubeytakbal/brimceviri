@@ -8,6 +8,6 @@ export const homeCategoryOrder = [
   "hiz",
   "basinc",
   "enerji",
-  "debi",
+  "veri",
   "elektrik",
 ] as const;

@@ -451,6 +451,20 @@ const pairDefinitions: ConversionPairDefinition[] = [
     secondExamples: [1, 10, 100, 500, 1000, 5000, 10000],
   },
   {
+    category: "veri",
+    firstId: "gigabayt",
+    secondId: "megabayt",
+    firstExamples: [1, 4, 8, 16, 32, 64, 128],
+    secondExamples: [100, 500, 1000, 2000, 4000, 8000, 16000],
+  },
+  {
+    category: "veri",
+    firstId: "megabayt",
+    secondId: "kilobayt",
+    firstExamples: [1, 5, 10, 50, 100, 500, 1000],
+    secondExamples: [100, 500, 1000, 5000, 10000, 50000, 100000],
+  },
+  {
     category: "uzunluk",
     firstId: "mikrometre",
     secondId: "milimetre",

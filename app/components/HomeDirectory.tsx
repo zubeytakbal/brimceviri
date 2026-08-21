@@ -8,12 +8,12 @@ import {
   Cylinder,
   Fire,
   Gauge,
+  HardDrives,
   Lightning,
   Plug,
   Ruler,
   Square,
   Thermometer,
-  Waves,
 } from "@phosphor-icons/react";
 import { useDeferredValue, useId, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -49,7 +49,7 @@ type HomeCategoryIconName =
   | "sicaklik"
   | "hacim"
   | "enerji"
-  | "debi"
+  | "veri"
   | "isi"
   | "elektrik";
 
@@ -190,11 +190,11 @@ const copy = {
         description:
           "Joule, kilovatsaat, watt ve kilowatt dönüşümlerini açın.",
       },
-      debi: {
-        name: "Debi",
-        symbol: "m\u00B3/h",
+      veri: {
+        name: "Veri Depolama",
+        symbol: "GB",
         description:
-          "Metreküp/saat ve litre/dakika tabanlı hacimsel debi araçlarını açın.",
+          "Bayt, kilobayt, megabayt, gigabayt ve terabayt dönüşümlerini açın.",
       },
       elektrik: {
         name: "Elektrik",
@@ -292,11 +292,11 @@ const copy = {
         description:
           "Open joule, kilowatt-hour, watt and kilowatt conversions.",
       },
-      debi: {
-        name: "Flow rate",
-        symbol: "m\u00B3/h",
+      veri: {
+        name: "Data Storage",
+        symbol: "GB",
         description:
-          "Open cubic-meter-per-hour and liters-per-minute flow tools.",
+          "Open byte, kilobyte, megabyte, gigabyte and terabyte conversions.",
       },
       elektrik: {
         name: "Electricity",
@@ -340,8 +340,8 @@ function HomeCategoryIcon({
                     ? Gauge
                     : kind === "enerji"
                       ? Lightning
-                      : kind === "debi"
-                        ? Waves
+                      : kind === "veri"
+                        ? HardDrives
                         : kind === "isi"
                           ? Fire
                           : Plug;

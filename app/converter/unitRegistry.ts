@@ -843,6 +843,53 @@ export const unitRegistry: UnitRegistryEntry[] = [
   { id: "mikroweber", category: "manyetik_aki", symbol: "µWb", siFactor: 0.000001 },
   { id: "nanoweber", category: "manyetik_aki", symbol: "nWb", siFactor: 1e-9 },
   { id: "weber-alias", category: "manyetik_aki", symbol: "weber", siFactor: 1 },
+
+  // ---- veri / digital storage ----
+  {
+    id: "bayt",
+    category: "veri",
+    symbol: "B",
+    siFactor: 1,
+    tr: { name: "Bayt", slug: "bayt" },
+    en: { name: "Byte", slug: "byte" },
+    de: { name: "Byte", slug: "byte" },
+  },
+  {
+    id: "kilobayt",
+    category: "veri",
+    symbol: "KB",
+    siFactor: 1000,
+    tr: { name: "Kilobayt", slug: "kilobayt" },
+    en: { name: "Kilobyte", slug: "kilobyte" },
+    de: { name: "Kilobyte", slug: "kilobyte" },
+  },
+  {
+    id: "megabayt",
+    category: "veri",
+    symbol: "MB",
+    siFactor: 1_000_000,
+    tr: { name: "Megabayt", slug: "megabayt" },
+    en: { name: "Megabyte", slug: "megabyte" },
+    de: { name: "Megabyte", slug: "megabyte" },
+  },
+  {
+    id: "gigabayt",
+    category: "veri",
+    symbol: "GB",
+    siFactor: 1_000_000_000,
+    tr: { name: "Gigabayt", slug: "gigabayt" },
+    en: { name: "Gigabyte", slug: "gigabyte" },
+    de: { name: "Gigabyte", slug: "gigabyte" },
+  },
+  {
+    id: "terabayt",
+    category: "veri",
+    symbol: "TB",
+    siFactor: 1_000_000_000_000,
+    tr: { name: "Terabayt", slug: "terabayt" },
+    en: { name: "Terabyte", slug: "terabyte" },
+    de: { name: "Terabyte", slug: "terabyte" },
+  },
 ];
 
 export function findUnit(category: string, symbol: string) {

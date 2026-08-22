@@ -15,10 +15,10 @@ import {
   HardDrives,
   Lightning,
   Plug,
-  Rocket,
   Ruler,
   Sneaker,
   Square,
+  Stamp,
   Thermometer,
   Waveform,
   Waves,
@@ -393,7 +393,7 @@ function EngineeringCalculatorIcon({ id }: { id: string }) {
             : id === "ohm-yasasi"
               ? Waveform
               : id === "basinc-kuvvet-alan"
-                ? Rocket
+                ? Stamp
                 : Gauge;
 
   return (

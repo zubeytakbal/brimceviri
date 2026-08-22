@@ -78,7 +78,7 @@ const englishCategoryDetailNames: Record<string, string> = {
   elektrik: "Electricity",
 };
 
-const extendedEnglishCategoryUnitHeadings = {
+const extendedEnglishCategoryUnitHeadings: Record<string, string> = {
   ...englishCategoryUnitHeadings,
   yogunluk: "Density units",
   kuvvet: "Force units",
@@ -87,7 +87,7 @@ const extendedEnglishCategoryUnitHeadings = {
   viskozite_dinamik: "Dynamic viscosity units",
 };
 
-const extendedEnglishCategoryConversionHeadings = {
+const extendedEnglishCategoryConversionHeadings: Record<string, string> = {
   ...englishCategoryConversionHeadings,
   yogunluk: "Density conversion tools",
   kuvvet: "Force conversion tools",
@@ -96,7 +96,7 @@ const extendedEnglishCategoryConversionHeadings = {
   viskozite_dinamik: "Dynamic viscosity conversion tools",
 };
 
-const extendedEnglishCategoryDetailNames = {
+const extendedEnglishCategoryDetailNames: Record<string, string> = {
   ...englishCategoryDetailNames,
   yogunluk: "Density",
   kuvvet: "Force",

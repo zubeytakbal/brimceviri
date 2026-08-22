@@ -36,7 +36,7 @@ const germanCategoryUnitHeadings: Record<string, string> = {
   basinc: "Druckeinheiten",
 };
 
-const extendedGermanCategoryUnitHeadings = {
+const extendedGermanCategoryUnitHeadings: Record<string, string> = {
   ...germanCategoryUnitHeadings,
   alan: "Flächeneinheiten",
   hacim: "Volumeneinheiten",

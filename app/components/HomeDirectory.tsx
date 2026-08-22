@@ -3,6 +3,7 @@
 import Link from "next/link";
 import {
   ArrowRight,
+  ArrowsInSimple,
   Barbell,
   Clock,
   Coins,
@@ -14,10 +15,12 @@ import {
   HardDrives,
   Lightning,
   Plug,
+  Rocket,
   Ruler,
   Sneaker,
   Square,
   Thermometer,
+  Waveform,
   Waves,
   Wind,
 } from "@phosphor-icons/react";
@@ -357,7 +360,7 @@ function HomeCategoryIcon({
                 : kind === "hiz"
                   ? Gauge
                   : kind === "basinc"
-                    ? Gauge
+                    ? ArrowsInSimple
                     : kind === "enerji"
                       ? Lightning
                       : kind === "veri"
@@ -388,8 +391,10 @@ function EngineeringCalculatorIcon({ id }: { id: string }) {
           : id === "hidrostatik-basinc"
             ? Waves
             : id === "ohm-yasasi"
-              ? Plug
-              : Gauge;
+              ? Waveform
+              : id === "basinc-kuvvet-alan"
+                ? Rocket
+                : Gauge;
 
   return (
     <span className={`home-category-icon-box is-calc-${id}`} aria-hidden="true">

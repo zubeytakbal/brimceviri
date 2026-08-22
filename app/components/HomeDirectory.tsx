@@ -5,6 +5,7 @@ import {
   ArrowRight,
   Barbell,
   Clock,
+  Coins,
   Cylinder,
   Drop,
   Fire,
@@ -57,7 +58,8 @@ type HomeCategoryIconName =
   | "veri"
   | "isi"
   | "elektrik"
-  | "ayakkabi";
+  | "ayakkabi"
+  | "altin_ayar";
 
 type HomeCategoryCard = {
   id: string;
@@ -208,6 +210,12 @@ const copy = {
         description:
           "Volt, kilovolt, amper ve miliamper dönüşümlerini açın.",
       },
+      altin_ayar: {
+        name: "Altın Ayar",
+        symbol: "24K",
+        description:
+          "24, 22, 18 ve 14 ayar altın arasında gram dönüşümü yapın.",
+      },
     },
     popularTitle: "Popüler dönüşümler",
     popularDescription:
@@ -310,6 +318,12 @@ const copy = {
         description:
           "Open voltage and current conversion tools.",
       },
+      altin_ayar: {
+        name: "Gold Karat",
+        symbol: "24K",
+        description:
+          "Convert gold weight between 24K, 22K, 18K and 14K purity.",
+      },
     },
     popularTitle: "Popular conversions",
     popularDescription:
@@ -352,7 +366,9 @@ function HomeCategoryIcon({
                           ? Fire
                           : kind === "ayakkabi"
                             ? Sneaker
-                            : Plug;
+                            : kind === "altin_ayar"
+                              ? Coins
+                              : Plug;
 
   return (
     <span className={`home-category-icon-box is-${kind}`} aria-hidden="true">

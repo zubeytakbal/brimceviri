@@ -608,6 +608,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     },
+    {
+      url: `${baseUrl}/ayakkabi-numarasi-cevirme`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
 
     ...turkishCategoryRoutes,
     ...englishCategoryRoutes,

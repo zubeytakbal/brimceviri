@@ -175,7 +175,7 @@ function SiteHeaderNavigation({
         ? germanCategoryPages
         : categoryPages;
 
-  const categoryLinks = navCategoryOrder.flatMap((category) => {
+  const categoryLinks: HeaderLink[] = navCategoryOrder.flatMap((category) => {
     const page = categorySource.find(
       (item) => item.category === category
     );
@@ -196,6 +196,13 @@ function SiteHeaderNavigation({
       },
     ];
   });
+
+  if (locale === "tr") {
+    categoryLinks.push({
+      href: "/ayakkabi-numarasi-cevirme",
+      label: "Ayakkabı Numarası",
+    });
+  }
 
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {

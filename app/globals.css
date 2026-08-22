@@ -2023,6 +2023,42 @@ main.category-page {
   font-size: 0.9rem;
 }
 
+.shoe-size-converter-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  min-width: 0;
+}
+
+.shoe-size-converter-result-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.shoe-size-converter-result-grid > div {
+  display: grid;
+  gap: 4px;
+}
+
+.shoe-size-converter-result-grid span {
+  color: #667085;
+  font-size: 0.82rem;
+  font-weight: 650;
+}
+
+.shoe-size-converter-result-grid strong {
+  color: #172033;
+  font-size: clamp(1.08rem, 1.8vw, 1.3rem);
+}
+
+@media (max-width: 760px) {
+  .shoe-size-converter-grid,
+  .shoe-size-converter-result-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 .category-page-shell {
   padding: 42px 0 90px;
 }

@@ -12,6 +12,7 @@ import {
   Lightning,
   Plug,
   Ruler,
+  Sneaker,
   Square,
   Thermometer,
 } from "@phosphor-icons/react";
@@ -51,7 +52,8 @@ type HomeCategoryIconName =
   | "enerji"
   | "veri"
   | "isi"
-  | "elektrik";
+  | "elektrik"
+  | "ayakkabi";
 
 type HomeCategoryCard = {
   id: string;
@@ -344,7 +346,9 @@ function HomeCategoryIcon({
                         ? HardDrives
                         : kind === "isi"
                           ? Fire
-                          : Plug;
+                          : kind === "ayakkabi"
+                            ? Sneaker
+                            : Plug;
 
   return (
     <span className="home-category-icon-box" aria-hidden="true">
@@ -472,6 +476,34 @@ function createHomeData(locale: Locale): HomeData {
     ];
   });
 
+  const allCategoryCards =
+    locale === "tr"
+      ? [
+          ...categoryCards,
+          {
+            id: "ayakkabi",
+            iconKey: "ayakkabi" as const,
+            name: "Ayakkabı Numarası",
+            symbol: "TR",
+            description:
+              "TR/AB, ABD ve İngiltere ayakkabı numaralarını çevirin; Nike, Adidas, Puma, New Balance ve Converse marka tablolarını görün.",
+            href: "/ayakkabi-numarasi-cevirme",
+            links: [
+              {
+                id: "ayakkabi-erkek",
+                href: "/ayakkabi-numarasi-cevirme",
+                label: "Erkek numara tablosu",
+              },
+              {
+                id: "ayakkabi-kadin",
+                href: "/ayakkabi-numarasi-cevirme",
+                label: "Kadın numara tablosu",
+              },
+            ],
+          },
+        ]
+      : categoryCards;
+
   const secondaryCategories: HomeSecondaryCategory[] = categoryPages
     .filter(
       (page) =>
@@ -563,7 +595,7 @@ function createHomeData(locale: Locale): HomeData {
 
   return {
     conversions,
-    categories: categoryCards,
+    categories: allCategoryCards,
     secondaryCategories,
     engineeringCalculators,
     popularConversions,
@@ -577,7 +609,7 @@ function createHomeData(locale: Locale): HomeData {
         : "/en/engineering-calculators",
       engineeringHubLabel: strings.engineeringHubLabel,
     stats: {
-      activeCategories: categoryCards.length,
+      activeCategories: allCategoryCards.length,
       conversions: conversions.length,
       engineering: engineeringCalculators.length,
     },

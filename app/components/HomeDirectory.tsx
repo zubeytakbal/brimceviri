@@ -12,13 +12,13 @@ import {
   Fire,
   Flame,
   Gauge,
+  Hammer,
   HardDrives,
   Lightning,
   Plug,
   Ruler,
   Sneaker,
   Square,
-  Stamp,
   Thermometer,
   Waveform,
   Waves,
@@ -393,7 +393,7 @@ function EngineeringCalculatorIcon({ id }: { id: string }) {
             : id === "ohm-yasasi"
               ? Waveform
               : id === "basinc-kuvvet-alan"
-                ? Stamp
+                ? Hammer
                 : Gauge;
 
   return (

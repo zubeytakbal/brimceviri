@@ -452,6 +452,13 @@ const pairDefinitions: ConversionPairDefinition[] = [
   },
   {
     category: "veri",
+    firstId: "terabayt",
+    secondId: "gigabayt",
+    firstExamples: [1, 2, 4, 8, 16, 32, 64],
+    secondExamples: [100, 250, 500, 1000, 2000, 4000, 8000],
+  },
+  {
+    category: "veri",
     firstId: "gigabayt",
     secondId: "megabayt",
     firstExamples: [1, 4, 8, 16, 32, 64, 128],
@@ -461,6 +468,13 @@ const pairDefinitions: ConversionPairDefinition[] = [
     category: "veri",
     firstId: "megabayt",
     secondId: "kilobayt",
+    firstExamples: [1, 5, 10, 50, 100, 500, 1000],
+    secondExamples: [100, 500, 1000, 5000, 10000, 50000, 100000],
+  },
+  {
+    category: "veri",
+    firstId: "kilobayt",
+    secondId: "bayt",
     firstExamples: [1, 5, 10, 50, 100, 500, 1000],
     secondExamples: [100, 500, 1000, 5000, 10000, 50000, 100000],
   },

@@ -861,3 +861,22 @@ export function findEnglishCategoryPageByTurkishSlug(
       categoryPage.sourceSlug === sourceSlug
   );
 }
+
+export function findEnglishCategoryPageByCategory(
+  category: string
+) {
+  return englishCategoryPages.find(
+    (categoryPage) => categoryPage.category === category
+  );
+}
+
+export function getEnglishCategoryPathByCategory(
+  category: string
+) {
+  const categoryPage =
+    findEnglishCategoryPageByCategory(category);
+
+  return categoryPage
+    ? `/en/categories/${categoryPage.slug}`
+    : `/en/categories/${category}`;
+}

@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import PairConverter from "../../../converter/PairConverter";
 import { findEnglishUnitArticle } from "../../../converter/englishUnitArticles";
 import { englishConversionPages } from "../../../converter/localizedConversionPages";
+import { getEnglishCategoryPathByCategory } from "../../../converter/localizedCategoryPages";
 import { findGermanUnitPageByTurkishSlug } from "../../../converter/localizedGermanUnitPages";
 import {
   englishUnitPages,
@@ -26,12 +27,6 @@ type ConverterData = {
 };
 
 export const dynamicParams = false;
-
-const englishCategoryRouteBySlug: Record<string, string> = {
-  uzunluk: "length",
-  kutle: "mass",
-  basinc: "pressure",
-};
 
 function serializeJsonLd(data: object) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
@@ -115,6 +110,9 @@ export default async function EnglishUnitInformationPage({
   }
 
   const unitArticle = findEnglishUnitArticle(unitPage.slug);
+  const germanPage = findGermanUnitPageByTurkishSlug(
+    unitPage.sourceSlug
+  );
 
   const relatedConversions = englishConversionPages.filter(
     (page) =>
@@ -567,6 +565,16 @@ export default async function EnglishUnitInformationPage({
               >
                 Türkçe sürümü görüntüle
               </Link>
+
+              {germanPage && (
+                <Link
+                  className="text-link"
+                  href={`/de/einheiten/${germanPage.slug}`}
+                  hrefLang="de"
+                >
+                  Open the German version
+                </Link>
+              )}
             </section>
           </div>
 
@@ -604,13 +612,7 @@ export default async function EnglishUnitInformationPage({
               <nav className="unit-sidebar-links">
                 <h3>Category</h3>
 
-                <Link
-                  href={`/en/categories/${
-                    englishCategoryRouteBySlug[
-                      unitPage.category
-                    ] ?? unitPage.category
-                  }`}
-                >
+                <Link href={getEnglishCategoryPathByCategory(unitPage.category)}>
                   All {unitPage.categoryName.toLowerCase()} units
                 </Link>
               </nav>

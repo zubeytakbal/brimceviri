@@ -8,6 +8,7 @@ import { convert } from "../converter/convert";
 import { conversionPages } from "../converter/conversionPages";
 import { findEnglishPageByTurkishSlug } from "../converter/localizedConversionPages";
 import { findGermanPageByTurkishSlug } from "../converter/localizedGermanConversionPages";
+import { getUnitSources } from "../converter/unitSources";
 import { findUnitPage } from "../converter/unitPages";
 import { buildSiteUrl } from "../siteConfig";
 
@@ -109,6 +110,12 @@ export default async function ConversionPage({ params }: PageProps) {
     notFound();
   }
 
+  const englishPage = findEnglishPageByTurkishSlug(
+    conversionPage.slug
+  );
+  const germanPage = findGermanPageByTurkishSlug(
+    conversionPage.slug
+  );
   const reversePage = conversionPages.find(
     (page) => page.slug === conversionPage.reverseSlug
   );
@@ -138,6 +145,7 @@ export default async function ConversionPage({ params }: PageProps) {
     conversionPage.category,
     conversionPage.toUnit
   );
+  const sources = getUnitSources(conversionPage.category);
 
   const tableRows = conversionPage.exampleValues.map((value) => ({
     input: value,
@@ -376,6 +384,55 @@ export default async function ConversionPage({ params }: PageProps) {
             </ul>
           </section>
         )}
+        {sources.length > 0 && (
+          <section className="conversion-section unit-sources">
+            <h2>Kaynaklar</h2>
+
+            <p>
+              Bu sayfadaki tanÄ±mlar ve dÃ¶nÃ¼ÅŸÃ¼m
+              iliÅŸkileri, standart metroloji ve SI referanslarÄ±yla
+              uyumlu olacak ÅŸekilde dÃ¼zenlenmiÅŸtir.
+            </p>
+
+            <ol>
+              {sources.map((source) => (
+                <li key={source.url}>
+                  <a
+                    href={source.url}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {source.organization}: {source.title}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </section>
+        )}
+
+        <section className="conversion-section language-alternatives">
+          <h2>Diğer diller</h2>
+
+          {englishPage && (
+            <Link
+              className="text-link"
+              href={`/en/${englishPage.slug}`}
+              hrefLang="en"
+            >
+              İngilizce sürümü aç
+            </Link>
+          )}
+
+          {germanPage && (
+            <Link
+              className="text-link"
+              href={`/de/${germanPage.slug}`}
+              hrefLang="de"
+            >
+              Almanca sürümü aç
+            </Link>
+          )}
+        </section>
       </article>
     </main>
   );

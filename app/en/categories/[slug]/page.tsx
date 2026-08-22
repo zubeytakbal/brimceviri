@@ -21,6 +21,7 @@ import {
   pressureSectorUsageOrder,
   pressureSectorUsageUnit,
 } from "../../../converter/pressureSectorUsage";
+import { getUnitSources } from "../../../converter/unitSources";
 import { englishUnitPages } from "../../../converter/localizedUnitPages";
 import { SITE_URL, buildSiteUrl } from "../../../siteConfig";
 
@@ -75,6 +76,33 @@ const englishCategoryDetailNames: Record<string, string> = {
   enerji: "Energy and Power",
   debi: "Flow Rate",
   elektrik: "Electricity",
+};
+
+const extendedEnglishCategoryUnitHeadings = {
+  ...englishCategoryUnitHeadings,
+  yogunluk: "Density units",
+  kuvvet: "Force units",
+  tork: "Torque units",
+  momentum: "Momentum units",
+  viskozite_dinamik: "Dynamic viscosity units",
+};
+
+const extendedEnglishCategoryConversionHeadings = {
+  ...englishCategoryConversionHeadings,
+  yogunluk: "Density conversion tools",
+  kuvvet: "Force conversion tools",
+  tork: "Torque conversion tools",
+  momentum: "Momentum conversion tools",
+  viskozite_dinamik: "Dynamic viscosity conversion tools",
+};
+
+const extendedEnglishCategoryDetailNames = {
+  ...englishCategoryDetailNames,
+  yogunluk: "Density",
+  kuvvet: "Force",
+  tork: "Torque",
+  momentum: "Momentum",
+  viskozite_dinamik: "Dynamic Viscosity",
 };
 
 function serializeJsonLd(data: object) {
@@ -147,6 +175,10 @@ export default async function EnglishCategoryPage({
     notFound();
   }
 
+  const germanPage = findGermanCategoryPageByTurkishSlug(
+    categoryPage.sourceSlug
+  );
+
   const categoryUnits = englishUnitPages.filter(
     (unitPage) =>
       unitPage.category === categoryPage.category
@@ -160,6 +192,7 @@ export default async function EnglishCategoryPage({
     (calculatorPage) =>
       calculatorPage.category === categoryPage.category
   );
+  const sources = getUnitSources(categoryPage.category);
   const conversionCards = createConversionCards({
     conversions: categoryConversions,
     hrefForSlug: (conversionSlug) => `/en/${conversionSlug}`,
@@ -256,7 +289,7 @@ export default async function EnglishCategoryPage({
       description={categoryPage.description}
       allUnitsSection={{
         heading: `Convert all ${
-          englishCategoryDetailNames[categoryPage.category] ??
+          extendedEnglishCategoryDetailNames[categoryPage.category] ??
           "category"
         } units`,
         content: (
@@ -271,7 +304,7 @@ export default async function EnglishCategoryPage({
       conversionCards={conversionCards}
       calculatorSection={{
         heading: `${
-          englishCategoryDetailNames[categoryPage.category] ??
+          extendedEnglishCategoryDetailNames[categoryPage.category] ??
           "Category"
         } calculators`,
         countLabel: `${categoryCalculators.length} tools`,
@@ -290,7 +323,7 @@ export default async function EnglishCategoryPage({
         symbol: unitPage.symbol,
       }))}
       detailHeading={`Detailed guide to ${
-        englishCategoryDetailNames[categoryPage.category] ??
+        extendedEnglishCategoryDetailNames[categoryPage.category] ??
         "this category"
       }`}
       detailContent={
@@ -327,7 +360,7 @@ export default async function EnglishCategoryPage({
 
               <li>
                 <a href="#category-units">
-                  {englishCategoryUnitHeadings[
+                  {extendedEnglishCategoryUnitHeadings[
                     categoryPage.category
                   ] ?? "Units"}
                 </a>
@@ -351,11 +384,17 @@ export default async function EnglishCategoryPage({
 
               <li>
                 <a href="#conversion-tools">
-                  {englishCategoryConversionHeadings[
+                  {extendedEnglishCategoryConversionHeadings[
                     categoryPage.category
                   ] ?? "Conversion tools"}
                 </a>
               </li>
+
+              {sources.length > 0 && (
+                <li>
+                  <a href="#sources">Sources</a>
+                </li>
+              )}
             </ol>
           </nav>
 
@@ -379,7 +418,7 @@ export default async function EnglishCategoryPage({
               id="category-units"
             >
               <h2>
-                {englishCategoryUnitHeadings[
+                {extendedEnglishCategoryUnitHeadings[
                   categoryPage.category
                 ] ?? "Units"}
               </h2>
@@ -501,7 +540,7 @@ export default async function EnglishCategoryPage({
               id="conversion-tools"
             >
               <h2>
-                {englishCategoryConversionHeadings[
+                {extendedEnglishCategoryConversionHeadings[
                   categoryPage.category
                 ] ?? "Conversion tools"}
               </h2>
@@ -518,6 +557,35 @@ export default async function EnglishCategoryPage({
               </ul>
             </section>
 
+            {sources.length > 0 && (
+              <section
+                className="conversion-section unit-sources"
+                id="sources"
+              >
+                <h2>Sources</h2>
+
+                <p>
+                  The definitions and conversion relationships on
+                  this page are aligned with standard metrology and
+                  SI reference material.
+                </p>
+
+                <ol>
+                  {sources.map((source) => (
+                    <li key={source.url}>
+                      <a
+                        href={source.url}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {source.organization}: {source.title}
+                      </a>
+                    </li>
+                  ))}
+                </ol>
+              </section>
+            )}
+
             <section className="conversion-section language-alternatives">
               <h2>Other languages</h2>
 
@@ -528,6 +596,16 @@ export default async function EnglishCategoryPage({
               >
                 View the Turkish version
               </Link>
+
+              {germanPage && (
+                <Link
+                  className="text-link"
+                  href={`/de/kategorien/${germanPage.slug}`}
+                  hrefLang="de"
+                >
+                  Open the German version
+                </Link>
+              )}
             </section>
           </div>
         </>

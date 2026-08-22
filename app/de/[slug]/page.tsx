@@ -9,6 +9,7 @@ import {
 } from "../../converter/localizedGermanConversionPages";
 import { findGermanUnitPage } from "../../converter/localizedGermanUnitPages";
 import { findEnglishPageByTurkishSlug } from "../../converter/localizedConversionPages";
+import { getUnitSources } from "../../converter/unitSources";
 import { buildSiteUrl } from "../../siteConfig";
 
 type PageProps = {
@@ -98,9 +99,13 @@ export default async function GermanConversionPage({
     notFound();
   }
 
+  const englishPage = findEnglishPageByTurkishSlug(
+    page.sourceSlug
+  );
   const reversePage = findGermanConversionPage(page.reverseSlug);
   const fromUnitInfo = findGermanUnitPage(page.category, page.fromUnit);
   const toUnitInfo = findGermanUnitPage(page.category, page.toUnit);
+  const sources = getUnitSources(page.category);
 
   const relatedConversions = germanConversionPages
     .filter(
@@ -283,6 +288,54 @@ export default async function GermanConversionPage({
             </ul>
           </section>
         )}
+
+        {sources.length > 0 && (
+          <section className="conversion-section unit-sources">
+            <h2>Quellen</h2>
+
+            <p>
+              Die Definitionen und Umrechnungsbeziehungen auf dieser
+              Seite orientieren sich an anerkannten metrologischen
+              Referenzen und SI-Quellen.
+            </p>
+
+            <ol>
+              {sources.map((source) => (
+                <li key={source.url}>
+                  <a
+                    href={source.url}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {source.organization}: {source.title}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </section>
+        )}
+
+        <section className="conversion-section language-alternatives">
+          <h2>Weitere Sprachen</h2>
+
+          <Link
+            className="text-link"
+            href={`/${page.sourceSlug}`}
+            hrefLang="tr"
+          >
+            Türkische Version öffnen
+          </Link>
+
+          {englishPage && (
+            <Link
+              className="text-link"
+              href={`/en/${englishPage.slug}`}
+              hrefLang="en"
+            >
+              View the English version
+            </Link>
+          )}
+        </section>
       </article>
     </main>
   );

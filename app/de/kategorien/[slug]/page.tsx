@@ -36,6 +36,23 @@ const germanCategoryUnitHeadings: Record<string, string> = {
   basinc: "Druckeinheiten",
 };
 
+const extendedGermanCategoryUnitHeadings = {
+  ...germanCategoryUnitHeadings,
+  alan: "Flächeneinheiten",
+  hacim: "Volumeneinheiten",
+  sicaklik: "Temperatureinheiten",
+  zaman: "Zeiteinheiten",
+  hiz: "Geschwindigkeitseinheiten",
+  enerji: "Energie- und Leistungseinheiten",
+  debi: "Volumenstromeinheiten",
+  elektrik: "Elektrische Einheiten",
+  yogunluk: "Dichteeinheiten",
+  kuvvet: "Krafteinheiten",
+  tork: "Drehmomenteinheiten",
+  momentum: "Impulseinheiten",
+  viskozite_dinamik: "Viskositätseinheiten",
+};
+
 function serializeJsonLd(data: object) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
 }
@@ -98,6 +115,10 @@ export default async function GermanCategoryPage({
   if (!categoryPage) {
     notFound();
   }
+
+  const englishPage = findEnglishCategoryPageByTurkishSlug(
+    categoryPage.sourceSlug
+  );
 
   const categoryUnits = germanUnitPages.filter(
     (unitPage) => unitPage.category === categoryPage.category
@@ -182,7 +203,8 @@ export default async function GermanCategoryPage({
       description={categoryPage.description}
       allUnitsSection={{
         heading: `Alle ${
-          germanCategoryUnitHeadings[categoryPage.category] ?? "Einheiten"
+          extendedGermanCategoryUnitHeadings[categoryPage.category] ??
+          "Einheiten"
         } umrechnen`,
         content: (
           <CategoryUnitConverter
@@ -389,6 +411,13 @@ export default async function GermanCategoryPage({
               id="sources"
             >
               <h2>Quellen</h2>
+
+              <p>
+                Die Definitionen und Umrechnungsbeziehungen auf
+                dieser Seite orientieren sich an anerkannten
+                metrologischen Referenzen und SI-Quellen.
+              </p>
+
               <ol>
                 {sources.map((source) => (
                   <li key={source.url}>
@@ -398,6 +427,28 @@ export default async function GermanCategoryPage({
                   </li>
                 ))}
               </ol>
+            </section>
+
+            <section className="conversion-section language-alternatives">
+              <h2>Weitere Sprachen</h2>
+
+              <Link
+                className="text-link"
+                href={`/kategoriler/${categoryPage.sourceSlug}`}
+                hrefLang="tr"
+              >
+                Türkische Version öffnen
+              </Link>
+
+              {englishPage && (
+                <Link
+                  className="text-link"
+                  href={`/en/categories/${englishPage.slug}`}
+                  hrefLang="en"
+                >
+                  View the English version
+                </Link>
+              )}
             </section>
           </div>
         </>

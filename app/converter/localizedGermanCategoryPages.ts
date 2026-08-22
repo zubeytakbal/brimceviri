@@ -511,3 +511,22 @@ export function findGermanCategoryPageByTurkishSlug(
     (categoryPage) => categoryPage.sourceSlug === sourceSlug
   );
 }
+
+export function findGermanCategoryPageByCategory(
+  category: string
+) {
+  return germanCategoryPages.find(
+    (categoryPage) => categoryPage.category === category
+  );
+}
+
+export function getGermanCategoryPathByCategory(
+  category: string
+) {
+  const categoryPage =
+    findGermanCategoryPageByCategory(category);
+
+  return categoryPage
+    ? `/de/kategorien/${categoryPage.slug}`
+    : `/de/kategorien/${category}`;
+}

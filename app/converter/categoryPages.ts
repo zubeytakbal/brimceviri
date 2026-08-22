@@ -161,3 +161,15 @@ export const categoryPages: CategoryPage[] = [
       "24, 22, 18 ve 14 ayar altın arasında saf altın içeriğine göre gram dönüşümü yapın; ayarların saflık oranlarını ve kuyumculukta kullanım alanlarını inceleyin.",
   },
 ];
+
+export function findCategoryPageByCategory(category: string) {
+  return categoryPages.find((page) => page.category === category);
+}
+
+export function getCategoryPathByCategory(category: string) {
+  const categoryPage = findCategoryPageByCategory(category);
+
+  return categoryPage
+    ? `/kategoriler/${categoryPage.slug}`
+    : "/tum-birimler";
+}

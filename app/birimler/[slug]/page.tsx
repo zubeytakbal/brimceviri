@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import PairConverter from "../../converter/PairConverter";
+import {
+  findCategoryPageByCategory,
+  getCategoryPathByCategory,
+} from "../../converter/categoryPages";
 import { conversionPages } from "../../converter/conversionPages";
 import {
   findUnitArticle,
@@ -237,6 +241,9 @@ const specificScientificSections =
   const pageUrl = buildSiteUrl(
     `/birimler/${unitPage.slug}`
   );
+  const categoryPage = findCategoryPageByCategory(
+    unitPage.category
+  );
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -392,7 +399,8 @@ const specificScientificSections =
                 <div>
                   <dt>Kategorisi</dt>
                   <dd>
-                    {categoryLabels[unitPage.category] ??
+                    {categoryPage?.title ??
+                      categoryLabels[unitPage.category] ??
                       unitPage.category}
                   </dd>
                 </div>
@@ -724,7 +732,7 @@ const specificScientificSections =
               <nav className="unit-sidebar-links">
                 <h3>Kategori</h3>
 
-                <Link href={`/kategoriler/${unitPage.category}`}>
+                <Link href={getCategoryPathByCategory(unitPage.category)}>
                   Tüm{" "}
                   {categoryLabels[unitPage.category] ??
                     unitPage.category}{" "}

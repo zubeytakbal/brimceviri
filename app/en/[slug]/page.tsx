@@ -9,6 +9,7 @@ import {
   findEnglishConversionPage,
 } from "../../converter/localizedConversionPages";
 import { findGermanPageByTurkishSlug } from "../../converter/localizedGermanConversionPages";
+import { getUnitSources } from "../../converter/unitSources";
 import { buildSiteUrl } from "../../siteConfig";
 
 type PageProps = {
@@ -108,11 +109,15 @@ export default async function EnglishConversionPage({
     notFound();
   }
 
+  const germanPage = findGermanPageByTurkishSlug(
+    page.sourceSlug
+  );
   const reversePage = findEnglishConversionPage(
     page.reverseSlug
   );
   const fromUnitInfo = findEnglishUnitPage(page.category, page.fromUnit);
   const toUnitInfo = findEnglishUnitPage(page.category, page.toUnit);
+  const sources = getUnitSources(page.category);
 
   const relatedConversions = englishConversionPages
     .filter(
@@ -374,6 +379,32 @@ export default async function EnglishConversionPage({
           </section>
         )}
 
+        {sources.length > 0 && (
+          <section className="conversion-section unit-sources">
+            <h2>Sources</h2>
+
+            <p>
+              The definitions and conversion relationships on this
+              page are aligned with standard metrology and SI
+              reference material.
+            </p>
+
+            <ol>
+              {sources.map((source) => (
+                <li key={source.url}>
+                  <a
+                    href={source.url}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {source.organization}: {source.title}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </section>
+        )}
+
         <section className="conversion-section language-alternatives">
           <h2>Other languages</h2>
 
@@ -384,6 +415,16 @@ export default async function EnglishConversionPage({
           >
             Türkçe sürümü görüntüle
           </Link>
+
+          {germanPage && (
+            <Link
+              className="text-link"
+              href={`/de/${germanPage.slug}`}
+              hrefLang="de"
+            >
+              Open the German version
+            </Link>
+          )}
         </section>
       </article>
     </main>

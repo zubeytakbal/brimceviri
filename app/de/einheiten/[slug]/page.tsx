@@ -2,12 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import PairConverter from "../../../converter/PairConverter";
+import { getGermanCategoryPathByCategory } from "../../../converter/localizedGermanCategoryPages";
 import { findEnglishUnitPageByTurkishSlug } from "../../../converter/localizedUnitPages";
 import {
   findGermanUnitPageBySlug,
   germanUnitPages,
 } from "../../../converter/localizedGermanUnitPages";
 import { germanConversionPages } from "../../../converter/localizedGermanConversionPages";
+import { getUnitSources } from "../../../converter/unitSources";
 import { SITE_URL, buildSiteUrl } from "../../../siteConfig";
 
 type PageProps = {
@@ -25,12 +27,6 @@ type ConverterData = {
 };
 
 export const dynamicParams = false;
-
-const germanCategoryRouteBySlug: Record<string, string> = {
-  uzunluk: "laenge",
-  kutle: "masse",
-  basinc: "druck",
-};
 
 function serializeJsonLd(data: object) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
@@ -98,6 +94,11 @@ export default async function GermanUnitInformationPage({
     notFound();
   }
 
+  const englishPage = findEnglishUnitPageByTurkishSlug(
+    unitPage.sourceSlug
+  );
+  const sources = getUnitSources(unitPage.category);
+
   const relatedConversions = germanConversionPages.filter(
     (page) =>
       page.category === unitPage.category &&
@@ -147,8 +148,10 @@ export default async function GermanUnitInformationPage({
       {
         "@type": "ListItem",
         position: 2,
-        name: "Einheiten",
-        item: buildSiteUrl(`/de/kategorien/${germanCategoryRouteBySlug[unitPage.category]}`),
+        name: unitPage.categoryName,
+        item: buildSiteUrl(
+          getGermanCategoryPathByCategory(unitPage.category)
+        ),
       },
       {
         "@type": "ListItem",
@@ -197,11 +200,7 @@ export default async function GermanUnitInformationPage({
         <nav className="breadcrumbs" aria-label="Breadcrumb">
           <Link href="/de">Startseite</Link>
           <span aria-hidden="true">{"\u203A"}</span>
-          <Link
-            href={`/de/kategorien/${
-              germanCategoryRouteBySlug[unitPage.category] ?? unitPage.category
-            }`}
-          >
+          <Link href={getGermanCategoryPathByCategory(unitPage.category)}>
             {unitPage.categoryName}
           </Link>
           <span aria-hidden="true">{"\u203A"}</span>
@@ -269,6 +268,57 @@ export default async function GermanUnitInformationPage({
                 </ul>
               </section>
             )}
+
+            {sources.length > 0 && (
+              <section
+                className="conversion-section unit-sources"
+                id="sources"
+              >
+                <h2>Quellen</h2>
+
+                <p>
+                  Die Definitionen und Umrechnungsbeziehungen auf
+                  dieser Seite orientieren sich an anerkannten
+                  metrologischen Referenzen und SI-Quellen.
+                </p>
+
+                <ol>
+                  {sources.map((source) => (
+                    <li key={source.url}>
+                      <a
+                        href={source.url}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {source.organization}: {source.title}
+                      </a>
+                    </li>
+                  ))}
+                </ol>
+              </section>
+            )}
+
+            <section className="conversion-section language-alternatives">
+              <h2>Weitere Sprachen</h2>
+
+              <Link
+                className="text-link"
+                href={`/birimler/${unitPage.sourceSlug}`}
+                hrefLang="tr"
+              >
+                Türkische Version öffnen
+              </Link>
+
+              {englishPage && (
+                <Link
+                  className="text-link"
+                  href={`/en/units/${englishPage.slug}`}
+                  hrefLang="en"
+                >
+                  View the English version
+                </Link>
+              )}
+            </section>
           </div>
 
           {converterData && (
@@ -285,11 +335,7 @@ export default async function GermanUnitInformationPage({
 
               <nav className="unit-sidebar-links">
                 <h3>Kategorie</h3>
-                <Link
-                  href={`/de/kategorien/${
-                    germanCategoryRouteBySlug[unitPage.category] ?? unitPage.category
-                  }`}
-                >
+                <Link href={getGermanCategoryPathByCategory(unitPage.category)}>
                   Alle {unitPage.categoryName.toLowerCase()}-Einheiten
                 </Link>
               </nav>

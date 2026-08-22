@@ -1,3 +1,7 @@
+import {
+  findCategoryPageByCategory,
+  getCategoryPathByCategory,
+} from "../converter/categoryPages";
 import type { ConversionPage } from "../converter/conversionPages";
 import { buildSiteUrl } from "../siteConfig";
 
@@ -15,9 +19,12 @@ export default function ConversionSeo({
   formattedOneUnitResult,
 }: ConversionSeoProps) {
   const pageUrl = buildSiteUrl(`/${conversionPage.slug}`);
-  const categoryUrl =
-    buildSiteUrl("/kategoriler/") +
-    conversionPage.category;
+  const categoryPage = findCategoryPageByCategory(
+    conversionPage.category
+  );
+  const categoryUrl = buildSiteUrl(
+    getCategoryPathByCategory(conversionPage.category)
+  );
 
   const faqs = [
     {
@@ -57,7 +64,7 @@ export default function ConversionSeo({
       {
         "@type": "ListItem",
         position: 2,
-        name: conversionPage.category,
+        name: categoryPage?.title ?? conversionPage.category,
         item: categoryUrl,
       },
       {

@@ -1,6 +1,5 @@
 import {
   chooseBestEngineeringUnit,
-  CUBIC_SUFFIX,
   normalizeEngineeringUnitSymbol,
   SQUARE_SUFFIX,
   type EngineeringUnitDefinition,
@@ -32,7 +31,6 @@ const SQUARE_MILLIMETRE_UNIT = `mm${SQUARE_SUFFIX}` as const;
 const SQUARE_INCH_UNIT = `in${SQUARE_SUFFIX}` as const;
 const SQUARE_FOOT_UNIT = `ft${SQUARE_SUFFIX}` as const;
 const SQUARE_KILOMETRE_UNIT = `km${SQUARE_SUFFIX}` as const;
-const CUBIC_METRE_UNIT = `m${CUBIC_SUFFIX}` as const;
 const MICROMETRE_UNIT = "\u00B5m" as const;
 const KILOGRAM_PER_CUBIC_METRE_UNIT = "kg/m\u00B3" as const;
 const GRAM_PER_CUBIC_CENTIMETRE_UNIT = "g/cm\u00B3" as const;

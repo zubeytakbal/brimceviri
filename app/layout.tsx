@@ -1,12 +1,12 @@
 import "./globals.css";
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import Script from "next/script";
 import {
   Inter,
   Manrope,
   Roboto_Condensed,
 } from "next/font/google";
-import DocumentLanguage from "./components/DocumentLanguage";
 import SiteHeader from "./components/SiteHeader";
 import SiteFooter from "./components/SiteFooter";
 import { SITE_NAME, SITE_URL } from "./siteConfig";
@@ -93,13 +93,29 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+function getLocaleFromPathname(pathname: string) {
+  if (pathname === "/en" || pathname.startsWith("/en/")) {
+    return "en";
+  }
+
+  if (pathname === "/de" || pathname.startsWith("/de/")) {
+    return "de";
+  }
+
+  return "tr";
+}
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const headerStore = await headers();
+  const pathname = headerStore.get("x-pathname") ?? "/";
+  const locale = getLocaleFromPathname(pathname);
+
   return (
-    <html lang="tr">
+    <html lang={locale}>
       <head>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-9PGNSBT970"
@@ -117,7 +133,6 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${manrope.variable} ${logoFont.variable}`}
       >
-        <DocumentLanguage />
         <SiteHeader />
         {children}
         <SiteFooter />

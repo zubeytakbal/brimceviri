@@ -310,8 +310,8 @@ export default async function GermanCategoryPage({
                   <p>
                     Jede Zelle zeigt, wie viele Einheiten der
                     Spaltenüberschrift einer Einheit der Zeile
-                    entsprechen. Die Zeile "bar" gekreuzt mit der
-                    Spalte "psi" zeigt zum Beispiel, wie viele psi
+                    entsprechen. Die Zeile &quot;bar&quot; gekreuzt mit der
+                    Spalte &quot;psi&quot; zeigt zum Beispiel, wie viele psi
                     einem bar entsprechen.
                   </p>
 

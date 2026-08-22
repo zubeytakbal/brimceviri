@@ -1,5 +1,4 @@
 import {
-  calculatorUnitSymbols,
   convertDiameterFromSI,
   convertDiameterToSI,
   convertReynoldsDensityToSI,

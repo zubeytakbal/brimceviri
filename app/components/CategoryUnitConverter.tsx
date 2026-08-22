@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { convert } from "../converter/convert";
 import { getCategoryUnitOptions } from "./categoryUnitOptions";
 
@@ -66,36 +66,43 @@ export default function CategoryUnitConverter({
     () => getCategoryUnitOptions(category, locale),
     [category, locale]
   );
+  const defaultFromUnit = unitOptions[0]?.value ?? "";
+  const defaultToUnit =
+    unitOptions[1]?.value ?? unitOptions[0]?.value ?? "";
 
   const [inputValue, setInputValue] = useState("1");
-  const [fromUnit, setFromUnit] = useState(
-    unitOptions[0]?.value ?? ""
-  );
-  const [toUnit, setToUnit] = useState(
-    unitOptions[1]?.value ?? unitOptions[0]?.value ?? ""
-  );
-
-  useEffect(() => {
-    setFromUnit(unitOptions[0]?.value ?? "");
-    setToUnit(
-      unitOptions[1]?.value ?? unitOptions[0]?.value ?? ""
-    );
-  }, [unitOptions]);
+  const [fromUnit, setFromUnit] = useState(defaultFromUnit);
+  const [toUnit, setToUnit] = useState(defaultToUnit);
+  const activeFromUnit = unitOptions.some(
+    (unitOption) => unitOption.value === fromUnit
+  )
+    ? fromUnit
+    : defaultFromUnit;
+  const activeToUnit = unitOptions.some(
+    (unitOption) => unitOption.value === toUnit
+  )
+    ? toUnit
+    : defaultToUnit;
 
   const parsedInputValue = parseNumericValue(inputValue);
   const fromUnitOption = unitOptions.find(
-    (unitOption) => unitOption.value === fromUnit
+    (unitOption) => unitOption.value === activeFromUnit
   );
   const toUnitOption = unitOptions.find(
-    (unitOption) => unitOption.value === toUnit
+    (unitOption) => unitOption.value === activeToUnit
   );
   const resultValue =
     parsedInputValue === null
       ? null
-      : convert(category, parsedInputValue, fromUnit, toUnit);
+      : convert(
+          category,
+          parsedInputValue,
+          activeFromUnit,
+          activeToUnit
+        );
   const equalityValue =
-    fromUnit && toUnit
-      ? convert(category, 1, fromUnit, toUnit)
+    activeFromUnit && activeToUnit
+      ? convert(category, 1, activeFromUnit, activeToUnit)
       : Number.NaN;
 
   const labels =
@@ -151,7 +158,7 @@ export default function CategoryUnitConverter({
         <label className="category-general-converter-field">
           <span>{labels.from}</span>
           <select
-            value={fromUnit}
+            value={activeFromUnit}
             onChange={(event) =>
               setFromUnit(event.target.value)
             }
@@ -170,7 +177,7 @@ export default function CategoryUnitConverter({
         <label className="category-general-converter-field">
           <span>{labels.to}</span>
           <select
-            value={toUnit}
+            value={activeToUnit}
             onChange={(event) =>
               setToUnit(event.target.value)
             }
@@ -191,8 +198,8 @@ export default function CategoryUnitConverter({
             className="category-general-converter-swap"
             type="button"
             onClick={() => {
-              setFromUnit(toUnit);
-              setToUnit(fromUnit);
+              setFromUnit(activeToUnit);
+              setToUnit(activeFromUnit);
             }}
           >
             {labels.swap}
@@ -218,7 +225,7 @@ export default function CategoryUnitConverter({
         )}
 
         <span className="category-general-converter-equality">
-          {`1 ${fromUnitOption?.symbol ?? fromUnit} = ${formatDisplayNumber(locale, equalityValue)} ${toUnitOption?.symbol ?? toUnit}`}
+          {`1 ${fromUnitOption?.symbol ?? activeFromUnit} = ${formatDisplayNumber(locale, equalityValue)} ${toUnitOption?.symbol ?? activeToUnit}`}
         </span>
       </div>
     </div>

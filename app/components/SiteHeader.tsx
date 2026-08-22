@@ -94,6 +94,14 @@ function getLocaleFromPathname(pathname: string): Locale {
 
 export default function SiteHeader() {
   const pathname = usePathname();
+  return <SiteHeaderNavigation key={pathname} pathname={pathname} />;
+}
+
+function SiteHeaderNavigation({
+  pathname,
+}: {
+  pathname: string;
+}) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isConversionsOpen, setIsConversionsOpen] = useState(false);
   const menuId = useId();
@@ -188,11 +196,6 @@ export default function SiteHeader() {
       },
     ];
   });
-
-  useEffect(() => {
-    setIsMenuOpen(false);
-    setIsConversionsOpen(false);
-  }, [pathname]);
 
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {

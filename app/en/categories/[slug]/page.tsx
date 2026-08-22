@@ -425,8 +425,8 @@ export default async function EnglishCategoryPage({
                   <p>
                     Each cell shows how many units of the column
                     header equal one unit of the row header. For
-                    example, the row "bar" crossed with the column
-                    "psi" shows how many PSI equal one bar.
+                    example, the row &quot;bar&quot; crossed with the column
+                    &quot;psi&quot; shows how many PSI equal one bar.
                   </p>
 
                   <div className="conversion-table-wrap">

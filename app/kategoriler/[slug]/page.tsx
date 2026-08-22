@@ -439,8 +439,8 @@ export default async function CategoryPage({
                       <p>
                         Aşağıdaki tablo, satırdaki birimin 1 biriminin
                         sütundaki birim cinsinden karşılığını gösterir.
-                        Örneğin "bar" satırı ile "psi" sütununun
-                        kesiştiği hücre, 1 bar'ın kaç psi'ye eşit
+                        Örneğin &quot;bar&quot; satırı ile &quot;psi&quot; sütununun
+                        kesiştiği hücre, 1 bar&apos;ın kaç psi&apos;ye eşit
                         olduğunu verir.
                       </p>
 

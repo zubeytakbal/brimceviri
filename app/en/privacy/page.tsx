@@ -63,7 +63,7 @@ export default function EnglishPrivacyPage() {
                 practices.
               </p>
               <p>
-                When you leave this site, review the target site's
+                When you leave this site, review the target site&apos;s
                 terms and privacy policy separately.
               </p>
             </>

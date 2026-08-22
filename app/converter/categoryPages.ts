@@ -125,4 +125,32 @@ export const categoryPages: CategoryPage[] = [
     description:
       "Bayt, kilobayt, megabayt, gigabayt ve terabayt birimleri arasında dönüşüm yapın; 1000 ile 1024 tabanlı hesaplama farkını ve depolama alanı karışıklığını inceleyin.",
   },
+  {
+    slug: "direnc",
+    category: "elektrik_direnc",
+    title: "Direnç Dönüşümleri",
+    description:
+      "Ohm, kiloohm ve megaohm birimleri arasında dönüşüm yapın; devre tasarımı ve Ohm Yasası hesaplamaları için örnekleri inceleyin.",
+  },
+  {
+    slug: "kapasitans",
+    category: "kapasitans",
+    title: "Kapasitans Dönüşümleri",
+    description:
+      "Farad, milifarad, mikrofarad, nanofarad ve pikofarad birimleri arasında dönüşüm yapın; kondansatör değerlerini ve devre tasarımı örneklerini inceleyin.",
+  },
+  {
+    slug: "enduktans",
+    category: "enduktans",
+    title: "Endüktans Dönüşümleri",
+    description:
+      "Henry, milihenry ve mikrohenry birimleri arasında dönüşüm yapın; bobin ve transformatör tasarımı için örnekleri inceleyin.",
+  },
+  {
+    slug: "elektrik-yuku",
+    category: "elektrik_yuk",
+    title: "Elektrik Yükü Dönüşümleri",
+    description:
+      "Coulomb, milicoulomb, mikrocoulomb ve nanocoulomb birimleri arasında dönüşüm yapın; batarya kapasitesi ve elektrostatik hesap örneklerini inceleyin.",
+  },
 ];

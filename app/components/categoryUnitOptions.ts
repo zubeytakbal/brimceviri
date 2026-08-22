@@ -491,6 +491,89 @@ const categoryUnitDefinitions: CategoryUnitDefinitions = {
       de: "Tebibyte",
     },
   },
+  elektrik_direnc: {
+    [`Ω`]: {
+      tr: "Ohm",
+      en: "Ohm",
+      de: "Ohm",
+    },
+    [`kΩ`]: {
+      tr: "Kiloohm",
+      en: "Kiloohm",
+      de: "Kiloohm",
+    },
+    [`MΩ`]: {
+      tr: "Megaohm",
+      en: "Megaohm",
+      de: "Megaohm",
+    },
+  },
+  kapasitans: {
+    F: {
+      tr: "Farad",
+      en: "Farad",
+      de: "Farad",
+    },
+    mF: {
+      tr: "Milifarad",
+      en: "Millifarad",
+      de: "Millifarad",
+    },
+    [`${MICRO_SIGN}F`]: {
+      tr: "Mikrofarad",
+      en: "Microfarad",
+      de: "Mikrofarad",
+    },
+    nF: {
+      tr: "Nanofarad",
+      en: "Nanofarad",
+      de: "Nanofarad",
+    },
+    pF: {
+      tr: "Pikofarad",
+      en: "Picofarad",
+      de: "Pikofarad",
+    },
+  },
+  enduktans: {
+    H: {
+      tr: "Henry",
+      en: "Henry",
+      de: "Henry",
+    },
+    mH: {
+      tr: "Milihenry",
+      en: "Millihenry",
+      de: "Millihenry",
+    },
+    [`${MICRO_SIGN}H`]: {
+      tr: "Mikrohenry",
+      en: "Microhenry",
+      de: "Mikrohenry",
+    },
+  },
+  elektrik_yuk: {
+    C: {
+      tr: "Coulomb",
+      en: "Coulomb",
+      de: "Coulomb",
+    },
+    mC: {
+      tr: "Milicoulomb",
+      en: "Millicoulomb",
+      de: "Millicoulomb",
+    },
+    [`${MICRO_SIGN}C`]: {
+      tr: "Mikrocoulomb",
+      en: "Microcoulomb",
+      de: "Mikrocoulomb",
+    },
+    nC: {
+      tr: "Nanocoulomb",
+      en: "Nanocoulomb",
+      de: "Nanocoulomb",
+    },
+  },
 };
 
 function formatUnitLabel(

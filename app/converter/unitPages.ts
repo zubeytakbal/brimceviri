@@ -428,6 +428,111 @@ const unitDescriptions: Record<string, UnitDescription> = {
     siEquivalent: "1 TiB = 1.099.511.627.776 bayt = 1024 GiB",
     commonUses: "Sunucu depolama dizileri, veri merkezi kapasite planlaması ve büyük RAID sistemleri",
   },
+  "ohm": {
+    shortDescription: "Ohm (Ω), elektriksel direncin SI birimidir. Bir devrenin akıma ne kadar karşı koyduğunu ifade eder.",
+    historySummary: "Ohm, Alman fizikçi Georg Simon Ohm'un akım-gerilim-direnç ilişkisini tanımlayan Ohm Yasası'na atfen adlandırılmış ve elektrik mühendisliğinin temel birimlerinden biri hâline gelmiştir.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, türetilmiş birim)",
+    siEquivalent: "1 Ω = 1 V/A",
+    commonUses: "Devre tasarımı, direnç etiketleri, Ohm Yasası hesaplamaları ve elektronik bileşen seçimi",
+  },
+  "kiloohm": {
+    shortDescription: "Kiloohm (kΩ), 1000 ohma eşit bir direnç birimidir. Elektronik devrelerdeki yaygın direnç değerlerini ifade etmek için kullanılır.",
+    historySummary: "Kiloohm, ohm biriminin SI ön ek sistemiyle ölçeklenmesinden doğmuş, özellikle elektronik direnç etiketlerinde (renk kodları) yaygın bir gösterim biçimi hâline gelmiştir.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, kat birim)",
+    siEquivalent: "1 kΩ = 1000 Ω",
+    commonUses: "Elektronik devre direnç değerleri, potansiyometreler ve devre kartı tasarımı",
+  },
+  "megaohm": {
+    shortDescription: "Megaohm (MΩ), 1 milyon ohma eşit büyük bir direnç birimidir. Yüksek dirençli devre elemanları ve izolasyon ölçümlerinde kullanılır.",
+    historySummary: "Megaohm, yüksek direnç değerlerinin (izolasyon direnci, hassas ölçüm cihazları) pratik biçimde ifade edilmesi ihtiyacıyla yaygınlaşmıştır.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, kat birim)",
+    siEquivalent: "1 MΩ = 1.000.000 Ω",
+    commonUses: "İzolasyon direnci testleri, yüksek empedanslı devreler ve hassas ölçüm ekipmanları",
+  },
+  "farad": {
+    shortDescription: "Farad (F), elektriksel kapasitansın SI birimidir. Bir kondansatörün ne kadar elektrik yükü depolayabildiğini ifade eder.",
+    historySummary: "Farad, İngiliz bilim insanı Michael Faraday'ın elektromanyetizma alanındaki çalışmalarına atfen adlandırılmıştır; günlük kullanımdaki kondansatörler genellikle farad'ın çok küçük katları ile ifade edilir.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, türetilmiş birim)",
+    siEquivalent: "1 F = 1 C/V",
+    commonUses: "Kondansatör kapasite değerleri, devre tasarımı ve enerji depolama hesaplamaları",
+  },
+  "milifarad": {
+    shortDescription: "Milifarad (mF), 0,001 farada eşit bir kapasitans birimidir. Büyük elektrolitik kondansatörlerin kapasitesini ifade etmek için kullanılır.",
+    historySummary: "Milifarad, farad biriminin pratikte kullanılabilir ölçekte ifade edilmesi için SI ön ek sistemiyle türetilmiştir.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, alt birim)",
+    siEquivalent: "1 mF = 0,001 F",
+    commonUses: "Büyük elektrolitik kondansatörler ve güç kaynağı filtreleme devreleri",
+  },
+  "mikrofarad": {
+    shortDescription: "Mikrofarad (µF), 0,000001 farada eşit bir kapasitans birimidir. Elektronik devrelerde en sık karşılaşılan kondansatör birimidir.",
+    historySummary: "Mikrofarad, elektronik endüstrisinde kondansatör değerlerinin standart gösterim birimi hâline gelmiş, farad'ın günlük kullanımda en yaygın alt katıdır.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, alt birim)",
+    siEquivalent: "1 µF = 0,000001 F",
+    commonUses: "Elektronik devre kondansatörleri, filtreleme ve zamanlama devreleri",
+  },
+  "nanofarad": {
+    shortDescription: "Nanofarad (nF), 10⁻⁹ farada eşit küçük bir kapasitans birimidir. Yüksek frekanslı devrelerde ve seramik kondansatörlerde kullanılır.",
+    historySummary: "Nanofarad, yüksek frekans elektroniğinde küçük kapasitans değerlerinin pratik ifadesi için SI ön ek sisteminden türetilmiştir.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, alt birim)",
+    siEquivalent: "1 nF = 0,000000001 F",
+    commonUses: "Seramik kondansatörler, yüksek frekans filtreleri ve osilatör devreleri",
+  },
+  "pikofarad": {
+    shortDescription: "Pikofarad (pF), 10⁻¹² farada eşit çok küçük bir kapasitans birimidir. Radyo frekansı devrelerinde ve hassas zamanlama uygulamalarında kullanılır.",
+    historySummary: "Pikofarad, radyo frekansı ve yüksek hassasiyetli elektronik uygulamalarda çok küçük kapasitans değerlerinin ifadesi için standart hâle gelmiştir.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, alt birim)",
+    siEquivalent: "1 pF = 0,000000000001 F",
+    commonUses: "Radyo frekansı devreleri, kristal osilatörler ve hassas zamanlama uygulamaları",
+  },
+  "henry": {
+    shortDescription: "Henry (H), elektriksel endüktansın SI birimidir. Bir bobinin manyetik alanda ne kadar enerji depolayabildiğini ifade eder.",
+    historySummary: "Henry, Amerikalı bilim insanı Joseph Henry'nin elektromanyetik endüksiyon üzerine yaptığı çalışmalara atfen adlandırılmıştır.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, türetilmiş birim)",
+    siEquivalent: "1 H = 1 Wb/A",
+    commonUses: "Bobin ve transformatör tasarımı, filtre devreleri ve güç elektroniği",
+  },
+  "milihenry": {
+    shortDescription: "Milihenry (mH), 0,001 henry'e eşit bir endüktans birimidir. Güç kaynağı bobinlerinin ve filtrelerin endüktansını ifade etmek için kullanılır.",
+    historySummary: "Milihenry, henry biriminin pratik devre tasarımı ölçeğinde ifade edilmesi için SI ön ek sistemiyle türetilmiştir.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, alt birim)",
+    siEquivalent: "1 mH = 0,001 H",
+    commonUses: "Güç kaynağı bobinleri, filtre devreleri ve anahtarlamalı güç kaynakları",
+  },
+  "mikrohenry": {
+    shortDescription: "Mikrohenry (µH), 0,000001 henry'e eşit küçük bir endüktans birimidir. Yüksek frekanslı radyo frekansı bobinlerinde kullanılır.",
+    historySummary: "Mikrohenry, radyo frekansı ve yüksek frekanslı elektronik devrelerde küçük endüktans değerlerinin ifadesi için yaygınlaşmıştır.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, alt birim)",
+    siEquivalent: "1 µH = 0,000001 H",
+    commonUses: "Radyo frekansı bobinleri, anten devreleri ve yüksek frekans filtreleri",
+  },
+  "coulomb": {
+    shortDescription: "Coulomb (C), elektrik yükünün SI birimidir. Bir devreden geçen toplam elektrik yükü miktarını ifade eder.",
+    historySummary: "Coulomb, Fransız fizikçi Charles-Augustin de Coulomb'un elektrostatik kuvvet üzerine yaptığı çalışmalara atfen adlandırılmıştır.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, türetilmiş birim)",
+    siEquivalent: "1 C = 1 A·s",
+    commonUses: "Batarya kapasitesi hesaplamaları, elektrostatik yük ölçümü ve kondansatör şarj hesapları",
+  },
+  "milicoulomb": {
+    shortDescription: "Milicoulomb (mC), 0,001 coulomb'a eşit bir elektrik yükü birimidir. Küçük ölçekli devrelerde yük miktarını ifade etmek için kullanılır.",
+    historySummary: "Milicoulomb, coulomb biriminin pratik devre ölçeğinde ifade edilmesi için SI ön ek sistemiyle türetilmiştir.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, alt birim)",
+    siEquivalent: "1 mC = 0,001 C",
+    commonUses: "Kondansatör şarj hesapları ve küçük ölçekli elektrostatik uygulamalar",
+  },
+  "mikrocoulomb": {
+    shortDescription: "Mikrocoulomb (µC), 0,000001 coulomb'a eşit küçük bir elektrik yükü birimidir. Elektrostatik deneylerde ve hassas ölçümlerde kullanılır.",
+    historySummary: "Mikrocoulomb, elektrostatik ve laboratuvar ölçümlerinde küçük yük değerlerinin pratik ifadesi için yaygınlaşmıştır.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, alt birim)",
+    siEquivalent: "1 µC = 0,000001 C",
+    commonUses: "Elektrostatik deneyler, laboratuvar ölçümleri ve hassas kondansatör hesapları",
+  },
+  "nanocoulomb": {
+    shortDescription: "Nanocoulomb (nC), 10⁻⁹ coulomb'a eşit çok küçük bir elektrik yükü birimidir. Hassas elektrostatik ölçümlerde kullanılır.",
+    historySummary: "Nanocoulomb, çok küçük elektrik yükü değerlerinin ifade edilmesi gereken hassas bilimsel ölçümlerde kullanılmak üzere SI ön ek sisteminden türetilmiştir.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, alt birim)",
+    siEquivalent: "1 nC = 0,000000001 C",
+    commonUses: "Hassas elektrostatik ölçümler ve bilimsel laboratuvar deneyleri",
+  },
   "mikrometre": {
     shortDescription: "Mikrometre, metrenin milyonda birine eşit çok küçük bir uzunluk birimidir. Hassas mühendislik toleranslarında ve mikroskobik ölçümlerde kullanılır.",
     historySummary: "Mikrometre, üretim ve malzeme mühendisliğinde çok küçük boyutların ve toleransların ifade edilmesi ihtiyacıyla yaygınlaştı; mikron olarak da bilinir.",
@@ -584,7 +689,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
 };
 
-const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit","kilogram-metre-saniye","newton-saniye","pascal-saniye","santipoise","mikrometre","nanometre","deniz-mili","santimetrekare","milimetrekare","kilometrekare","incare","akre","santimetrekup","fitkup","inckup","galon","bit","bayt","kilobayt","megabayt","gigabayt","terabayt","petabayt","kibibayt","mebibayt","gibibayt","tebibayt"];
+const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit","kilogram-metre-saniye","newton-saniye","pascal-saniye","santipoise","mikrometre","nanometre","deniz-mili","santimetrekare","milimetrekare","kilometrekare","incare","akre","santimetrekup","fitkup","inckup","galon","bit","bayt","kilobayt","megabayt","gigabayt","terabayt","petabayt","kibibayt","mebibayt","gibibayt","tebibayt","ohm","kiloohm","megaohm","farad","milifarad","mikrofarad","nanofarad","pikofarad","henry","milihenry","mikrohenry","coulomb","milicoulomb","mikrocoulomb","nanocoulomb"];
 
 export const unitPages: UnitPage[] = unitRegistry
   .filter((entry) => entry.tr && unitDescriptions[entry.id])

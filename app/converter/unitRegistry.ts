@@ -846,6 +846,15 @@ export const unitRegistry: UnitRegistryEntry[] = [
 
   // ---- veri / digital storage ----
   {
+    id: "bit",
+    category: "veri",
+    symbol: "bit",
+    siFactor: 0.125,
+    tr: { name: "Bit", slug: "bit" },
+    en: { name: "Bit", slug: "bit" },
+    de: { name: "Bit", slug: "bit" },
+  },
+  {
     id: "bayt",
     category: "veri",
     symbol: "B",
@@ -889,6 +898,51 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Terabayt", slug: "terabayt" },
     en: { name: "Terabyte", slug: "terabyte" },
     de: { name: "Terabyte", slug: "terabyte" },
+  },
+  {
+    id: "petabayt",
+    category: "veri",
+    symbol: "PB",
+    siFactor: 1_000_000_000_000_000,
+    tr: { name: "Petabayt", slug: "petabayt" },
+    en: { name: "Petabyte", slug: "petabyte" },
+    de: { name: "Petabyte", slug: "petabyte" },
+  },
+  {
+    id: "kibibayt",
+    category: "veri",
+    symbol: "KiB",
+    siFactor: 1024,
+    tr: { name: "Kibibayt", slug: "kibibayt" },
+    en: { name: "Kibibyte", slug: "kibibyte" },
+    de: { name: "Kibibyte", slug: "kibibyte" },
+  },
+  {
+    id: "mebibayt",
+    category: "veri",
+    symbol: "MiB",
+    siFactor: 1024 ** 2,
+    tr: { name: "Mebibayt", slug: "mebibayt" },
+    en: { name: "Mebibyte", slug: "mebibyte" },
+    de: { name: "Mebibyte", slug: "mebibyte" },
+  },
+  {
+    id: "gibibayt",
+    category: "veri",
+    symbol: "GiB",
+    siFactor: 1024 ** 3,
+    tr: { name: "Gibibayt", slug: "gibibayt" },
+    en: { name: "Gibibyte", slug: "gibibyte" },
+    de: { name: "Gibibyte", slug: "gibibyte" },
+  },
+  {
+    id: "tebibayt",
+    category: "veri",
+    symbol: "TiB",
+    siFactor: 1024 ** 4,
+    tr: { name: "Tebibayt", slug: "tebibayt" },
+    en: { name: "Tebibyte", slug: "tebibyte" },
+    de: { name: "Tebibyte", slug: "tebibyte" },
   },
 ];
 

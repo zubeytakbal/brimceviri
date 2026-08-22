@@ -386,6 +386,48 @@ const unitDescriptions: Record<string, UnitDescription> = {
     siEquivalent: "1 TB = 1.000.000.000.000 bayt",
     commonUses: "Harici diskler, sunucu depolama, veri merkezleri ve büyük veri kümeleri",
   },
+  "petabayt": {
+    shortDescription: "Petabayt (PB), 1 katrilyon (10¹⁵) bayta eşit çok büyük bir veri birimidir. Büyük veri merkezleri ve bulut depolama sistemlerinin kapasitesini ifade eder.",
+    historySummary: "Petabayt, büyük veri (big data) ve bulut bilişim teknolojilerinin yaygınlaşmasıyla birlikte kurumsal veri merkezi kapasitelerinin ifade edilmesinde standart hâle gelmiştir.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, kat birim)",
+    siEquivalent: "1 PB = 1.000.000.000.000.000 bayt = 1000 TB",
+    commonUses: "Bulut depolama, veri merkezleri, büyük veri analitiği ve bilimsel araştırma arşivleri",
+  },
+  "bit": {
+    shortDescription: "Bit, dijital verinin en küçük birimidir; yalnızca 0 veya 1 değerini alabilir. Bayt dahil diğer tüm veri birimlerinin temelini oluşturur.",
+    historySummary: "Bit terimi, 'binary digit' (ikili basamak) ifadesinin kısaltması olarak bilgisayar biliminin ilk yıllarında ortaya çıkmış ve dijital bilginin temel yapı taşı hâline gelmiştir.",
+    measurementSystem: "Dijital veri birimi (bilgi işlem standardı)",
+    siEquivalent: "8 bit = 1 bayt",
+    commonUses: "İnternet bağlantı hızı (Mbps, Gbps), işlemci mimarisi (32-bit, 64-bit) ve veri iletim oranları",
+  },
+  "kibibayt": {
+    shortDescription: "Kibibayt (KiB), 1024 bayta eşit, ikili (binary) tabanlı bir veri birimidir. İşletim sistemlerinin bellek ve disk alanını gerçek şekilde ifade etmesinde kullanılır.",
+    historySummary: "Kibibayt, 1998'de IEC (Uluslararası Elektroteknik Komisyonu) tarafından, 1024 tabanlı geleneksel 'kilobayt' kullanımı ile SI'nin 1000 tabanlı kilobayt tanımı arasındaki karışıklığı gidermek amacıyla standartlaştırılmıştır.",
+    measurementSystem: "IEC ikili (binary) ön ek sistemi",
+    siEquivalent: "1 KiB = 1024 bayt",
+    commonUses: "İşletim sistemi bellek ve disk gösterimleri, dosya sistemleri ve RAM kapasitesi hesaplamaları",
+  },
+  "mebibayt": {
+    shortDescription: "Mebibayt (MiB), 1.048.576 bayta (1024 KiB) eşit, ikili tabanlı bir veri birimidir. RAM kapasitesi gibi 1024 tabanlı gerçek bellek ölçümlerinde kullanılır.",
+    historySummary: "Mebibayt, IEC'in 1998'de tanımladığı ikili ön ekler ailesinin bir parçasıdır; işletim sistemlerinin 'MB' olarak gösterdiği ama aslında 1024 tabanlı hesapladığı değerleri doğru şekilde ifade etmek için geliştirilmiştir.",
+    measurementSystem: "IEC ikili (binary) ön ek sistemi",
+    siEquivalent: "1 MiB = 1.048.576 bayt = 1024 KiB",
+    commonUses: "RAM kapasitesi, işletim sistemi disk gösterimleri ve bellek yönetimi hesaplamaları",
+  },
+  "gibibayt": {
+    shortDescription: "Gibibayt (GiB), 1.073.741.824 bayta (1024 MiB) eşit, ikili tabanlı bir veri birimidir. Windows ve macOS'un disk/RAM boyutunu gösterirken kullandığı gerçek hesaplama birimidir.",
+    historySummary: "Gibibayt, üreticilerin 1000 tabanlı 'GB' pazarlama birimi ile işletim sistemlerinin 1024 tabanlı gerçek hesaplaması arasındaki farkı netleştirmek için IEC tarafından standartlaştırılmıştır; bu fark, yeni bir diskin işletim sisteminde neden üreticinin belirttiğinden daha az göründüğünün asıl nedenidir.",
+    measurementSystem: "IEC ikili (binary) ön ek sistemi",
+    siEquivalent: "1 GiB = 1.073.741.824 bayt = 1024 MiB",
+    commonUses: "İşletim sistemi disk/RAM kapasitesi gösterimi, sunucu bellek ölçümü ve depolama karşılaştırmaları",
+  },
+  "tebibayt": {
+    shortDescription: "Tebibayt (TiB), 1.099.511.627.776 bayta (1024 GiB) eşit, çok büyük ve ikili tabanlı bir veri birimidir. Büyük depolama sistemlerinin gerçek kapasitesini ifade eder.",
+    historySummary: "Tebibayt, IEC'in ikili ön ek standardının bir parçası olarak, büyük disk dizilerinin ve sunucu depolama sistemlerinin 1024 tabanlı gerçek kapasitesini 1000 tabanlı pazarlama biriminden ayırt etmek için kullanılır.",
+    measurementSystem: "IEC ikili (binary) ön ek sistemi",
+    siEquivalent: "1 TiB = 1.099.511.627.776 bayt = 1024 GiB",
+    commonUses: "Sunucu depolama dizileri, veri merkezi kapasite planlaması ve büyük RAID sistemleri",
+  },
   "mikrometre": {
     shortDescription: "Mikrometre, metrenin milyonda birine eşit çok küçük bir uzunluk birimidir. Hassas mühendislik toleranslarında ve mikroskobik ölçümlerde kullanılır.",
     historySummary: "Mikrometre, üretim ve malzeme mühendisliğinde çok küçük boyutların ve toleransların ifade edilmesi ihtiyacıyla yaygınlaştı; mikron olarak da bilinir.",
@@ -542,7 +584,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
 };
 
-const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit","kilogram-metre-saniye","newton-saniye","pascal-saniye","santipoise","mikrometre","nanometre","deniz-mili","santimetrekare","milimetrekare","kilometrekare","incare","akre","santimetrekup","fitkup","inckup","galon","bayt","kilobayt","megabayt","gigabayt","terabayt"];
+const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit","kilogram-metre-saniye","newton-saniye","pascal-saniye","santipoise","mikrometre","nanometre","deniz-mili","santimetrekare","milimetrekare","kilometrekare","incare","akre","santimetrekup","fitkup","inckup","galon","bit","bayt","kilobayt","megabayt","gigabayt","terabayt","petabayt","kibibayt","mebibayt","gibibayt","tebibayt"];
 
 export const unitPages: UnitPage[] = unitRegistry
   .filter((entry) => entry.tr && unitDescriptions[entry.id])

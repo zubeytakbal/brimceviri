@@ -434,6 +434,63 @@ const categoryUnitDefinitions: CategoryUnitDefinitions = {
       de: "Milliampere",
     },
   },
+  veri: {
+    bit: {
+      tr: "Bit",
+      en: "Bit",
+      de: "Bit",
+    },
+    B: {
+      tr: "Bayt",
+      en: "Byte",
+      de: "Byte",
+    },
+    KB: {
+      tr: "Kilobayt",
+      en: "Kilobyte",
+      de: "Kilobyte",
+    },
+    MB: {
+      tr: "Megabayt",
+      en: "Megabyte",
+      de: "Megabyte",
+    },
+    GB: {
+      tr: "Gigabayt",
+      en: "Gigabyte",
+      de: "Gigabyte",
+    },
+    TB: {
+      tr: "Terabayt",
+      en: "Terabyte",
+      de: "Terabyte",
+    },
+    PB: {
+      tr: "Petabayt",
+      en: "Petabyte",
+      de: "Petabyte",
+    },
+    KiB: {
+      tr: "Kibibayt",
+      en: "Kibibyte",
+      de: "Kibibyte",
+    },
+    MiB: {
+      tr: "Mebibayt",
+      en: "Mebibyte",
+      de: "Mebibyte",
+    },
+    GiB: {
+      tr: "Gibibayt",
+      en: "Gibibyte",
+      de: "Gibibyte",
+    },
+    TiB: {
+      tr: "Tebibayt",
+      en: "Tebibyte",
+      de: "Tebibyte",
+    },
+  },
 };
 
 function formatUnitLabel(

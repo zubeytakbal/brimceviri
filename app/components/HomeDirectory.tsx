@@ -6,7 +6,9 @@ import {
   Barbell,
   Clock,
   Cylinder,
+  Drop,
   Fire,
+  Flame,
   Gauge,
   HardDrives,
   Lightning,
@@ -15,6 +17,8 @@ import {
   Sneaker,
   Square,
   Thermometer,
+  Waves,
+  Wind,
 } from "@phosphor-icons/react";
 import { useDeferredValue, useId, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -357,6 +361,25 @@ function HomeCategoryIcon({
         size={42}
         weight="regular"
       />
+    </span>
+  );
+}
+
+function EngineeringCalculatorIcon({ id }: { id: string }) {
+  const Icon =
+    id === "isi-enerjisi"
+      ? Flame
+      : id === "isi-iletimi"
+        ? Wind
+        : id === "reynolds-sayisi"
+          ? Drop
+          : id === "hidrostatik-basinc"
+            ? Waves
+            : Gauge;
+
+  return (
+    <span className="home-category-icon-box" aria-hidden="true">
+      <Icon className="home-category-icon-svg" size={42} weight="regular" />
     </span>
   );
 }
@@ -768,34 +791,9 @@ export default function HomeDirectory({
                   aria-label={`${category.name} ${strings.categoryAction}`}
                 />
 
-                <div className="directory-card-body">
-                  <div className="directory-card-top">
-                    <span className="directory-card-badge" aria-hidden="true">
-                      <HomeCategoryIcon kind={category.iconKey} />
-                    </span>
-
-                    <div>
-                      <h3 className="home-category-title">{category.name}</h3>
-                    </div>
-                  </div>
-
-                  <p className="directory-card-description">{category.description}</p>
-
-                  <ul className="directory-card-links">
-                    {category.links.map((link) => (
-                      <li key={link.id}>
-                        <Link className="directory-inline-link" href={link.href}>
-                          {link.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <div className="directory-card-footer">
-                    <Link className="directory-category-guide" href={category.href}>
-                      {strings.categoryAction}
-                    </Link>
-                  </div>
+                <div className="directory-card-body directory-card-body-icon">
+                  <HomeCategoryIcon kind={category.iconKey} />
+                  <h3 className="home-category-title">{category.name}</h3>
                 </div>
               </article>
             ))}
@@ -894,20 +892,9 @@ export default function HomeDirectory({
                   aria-label={calculator.label}
                 />
 
-                <div className="directory-card-body">
-                  <div className="directory-tool-copy">
-                    <p className="directory-card-formula">{calculator.formula}</p>
-                    <h3 className="home-category-title">{calculator.label}</h3>
-                    <p className="directory-card-description">
-                      {calculator.description}
-                    </p>
-                  </div>
-
-                  <div className="directory-card-footer">
-                    <Link className="directory-category-guide" href={calculator.href}>
-                      {strings.openLabel}
-                    </Link>
-                  </div>
+                <div className="directory-card-body directory-card-body-icon">
+                  <EngineeringCalculatorIcon id={calculator.id} />
+                  <h3 className="home-category-title">{calculator.label}</h3>
                 </div>
               </article>
             ))}

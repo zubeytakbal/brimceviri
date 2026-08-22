@@ -507,6 +507,27 @@ const pairDefinitions: ConversionPairDefinition[] = [
     secondExamples: [100, 500, 1000, 5000, 10000, 50000, 100000],
   },
   {
+    category: "altin_ayar",
+    firstId: "ayar-24",
+    secondId: "ayar-22",
+    firstExamples: [1, 5, 10, 20, 50, 100, 250],
+    secondExamples: [1, 5, 10, 20, 50, 100, 250],
+  },
+  {
+    category: "altin_ayar",
+    firstId: "ayar-22",
+    secondId: "ayar-18",
+    firstExamples: [1, 5, 10, 20, 50, 100, 250],
+    secondExamples: [1, 5, 10, 20, 50, 100, 250],
+  },
+  {
+    category: "altin_ayar",
+    firstId: "ayar-18",
+    secondId: "ayar-14",
+    firstExamples: [1, 5, 10, 20, 50, 100, 250],
+    secondExamples: [1, 5, 10, 20, 50, 100, 250],
+  },
+  {
     category: "uzunluk",
     firstId: "mikrometre",
     secondId: "milimetre",

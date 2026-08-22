@@ -533,6 +533,34 @@ const unitDescriptions: Record<string, UnitDescription> = {
     siEquivalent: "1 nC = 0,000000001 C",
     commonUses: "Hassas elektrostatik ölçümler ve bilimsel laboratuvar deneyleri",
   },
+  "ayar-24": {
+    shortDescription: "24 ayar altın, %99,9 saflıkta neredeyse tamamen saf altındır. En yumuşak ayar olduğu için genellikle külçe ve yatırım amaçlı ürünlerde kullanılır.",
+    historySummary: "Ayar sistemi, altın alaşımındaki saflık oranını 24 birim üzerinden ifade eden geleneksel bir kuyumculuk standardıdır; 24 ayar, alaşımsız saf altını temsil eder.",
+    measurementSystem: "Kuyumculuk saflık standardı (ayar / karat)",
+    siEquivalent: "24 ayar = %100 saf altın içeriği",
+    commonUses: "Külçe altın, yatırımlık altın ve saflık referansı olarak kullanım",
+  },
+  "ayar-22": {
+    shortDescription: "22 ayar altın, içeriğinin 22/24'ü (yaklaşık %91,6) saf altın olan bir alaşımdır. Türkiye'de bilezik ve geleneksel takılarda yaygın kullanılır.",
+    historySummary: "22 ayar, saf altının yumuşaklığını azaltıp dayanıklılığını artırmak için az miktarda gümüş veya bakırla alaşımlanmasından doğmuş, Türkiye ve Orta Doğu'da geleneksel takı standardı hâline gelmiştir.",
+    measurementSystem: "Kuyumculuk saflık standardı (ayar / karat)",
+    siEquivalent: "22 ayar = %91,6 saf altın içeriği (22/24)",
+    commonUses: "Bilezik, geleneksel takı ve hediyelik altın ürünler",
+  },
+  "ayar-18": {
+    shortDescription: "18 ayar altın, içeriğinin 18/24'ü (%75) saf altın olan bir alaşımdır. Dayanıklılığı yüksek olduğu için günlük kullanım takılarında tercih edilir.",
+    historySummary: "18 ayar, saf altına göre daha sert ve çizilmeye dayanıklı olması nedeniyle özellikle yüzük ve günlük kullanım mücevheratında uluslararası standart hâline gelmiştir.",
+    measurementSystem: "Kuyumculuk saflık standardı (ayar / karat)",
+    siEquivalent: "18 ayar = %75 saf altın içeriği (18/24)",
+    commonUses: "Yüzük, kolye, günlük kullanım mücevherat ve pırlanta montürleri",
+  },
+  "ayar-14": {
+    shortDescription: "14 ayar altın, içeriğinin 14/24'ü (yaklaşık %58,3) saf altın olan bir alaşımdır. Ekonomik ve dayanıklı olduğu için özellikle ABD ve Avrupa'da yaygındır.",
+    historySummary: "14 ayar, saf altın oranı daha düşük olduğu için daha uygun fiyatlı ve daha dayanıklı bir alaşım olarak özellikle Kuzey Amerika ve Avrupa mücevherat piyasasında standart hâline gelmiştir.",
+    measurementSystem: "Kuyumculuk saflık standardı (ayar / karat)",
+    siEquivalent: "14 ayar = %58,3 saf altın içeriği (14/24)",
+    commonUses: "Ekonomik mücevherat, günlük takılar ve ABD/Avrupa pazarı ürünleri",
+  },
   "mikrometre": {
     shortDescription: "Mikrometre, metrenin milyonda birine eşit çok küçük bir uzunluk birimidir. Hassas mühendislik toleranslarında ve mikroskobik ölçümlerde kullanılır.",
     historySummary: "Mikrometre, üretim ve malzeme mühendisliğinde çok küçük boyutların ve toleransların ifade edilmesi ihtiyacıyla yaygınlaştı; mikron olarak da bilinir.",
@@ -689,7 +717,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
 };
 
-const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit","kilogram-metre-saniye","newton-saniye","pascal-saniye","santipoise","mikrometre","nanometre","deniz-mili","santimetrekare","milimetrekare","kilometrekare","incare","akre","santimetrekup","fitkup","inckup","galon","bit","bayt","kilobayt","megabayt","gigabayt","terabayt","petabayt","kibibayt","mebibayt","gibibayt","tebibayt","ohm","kiloohm","megaohm","farad","milifarad","mikrofarad","nanofarad","pikofarad","henry","milihenry","mikrohenry","coulomb","milicoulomb","mikrocoulomb","nanocoulomb"];
+const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit","kilogram-metre-saniye","newton-saniye","pascal-saniye","santipoise","mikrometre","nanometre","deniz-mili","santimetrekare","milimetrekare","kilometrekare","incare","akre","santimetrekup","fitkup","inckup","galon","bit","bayt","kilobayt","megabayt","gigabayt","terabayt","petabayt","kibibayt","mebibayt","gibibayt","tebibayt","ohm","kiloohm","megaohm","farad","milifarad","mikrofarad","nanofarad","pikofarad","henry","milihenry","mikrohenry","coulomb","milicoulomb","mikrocoulomb","nanocoulomb","ayar-24","ayar-22","ayar-18","ayar-14"];
 
 export const unitPages: UnitPage[] = unitRegistry
   .filter((entry) => entry.tr && unitDescriptions[entry.id])

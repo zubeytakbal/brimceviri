@@ -153,4 +153,11 @@ export const categoryPages: CategoryPage[] = [
     description:
       "Coulomb, milicoulomb, mikrocoulomb ve nanocoulomb birimleri arasında dönüşüm yapın; batarya kapasitesi ve elektrostatik hesap örneklerini inceleyin.",
   },
+  {
+    slug: "altin-ayar",
+    category: "altin_ayar",
+    title: "Altın Ayar Dönüşümleri",
+    description:
+      "24, 22, 18 ve 14 ayar altın arasında saf altın içeriğine göre gram dönüşümü yapın; ayarların saflık oranlarını ve kuyumculukta kullanım alanlarını inceleyin.",
+  },
 ];

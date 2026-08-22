@@ -1064,6 +1064,44 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Tebibyte", slug: "tebibyte" },
     de: { name: "Tebibyte", slug: "tebibyte" },
   },
+
+  // ---- altin_ayar / gold karat purity ----
+  {
+    id: "ayar-24",
+    category: "altin_ayar",
+    symbol: "24K",
+    siFactor: 1,
+    tr: { name: "24 Ayar Altın", slug: "24-ayar-altin" },
+    en: { name: "24K Gold", slug: "24k-gold" },
+    de: { name: "24 Karat Gold", slug: "24-karat-gold" },
+  },
+  {
+    id: "ayar-22",
+    category: "altin_ayar",
+    symbol: "22K",
+    siFactor: 22 / 24,
+    tr: { name: "22 Ayar Altın", slug: "22-ayar-altin" },
+    en: { name: "22K Gold", slug: "22k-gold" },
+    de: { name: "22 Karat Gold", slug: "22-karat-gold" },
+  },
+  {
+    id: "ayar-18",
+    category: "altin_ayar",
+    symbol: "18K",
+    siFactor: 18 / 24,
+    tr: { name: "18 Ayar Altın", slug: "18-ayar-altin" },
+    en: { name: "18K Gold", slug: "18k-gold" },
+    de: { name: "18 Karat Gold", slug: "18-karat-gold" },
+  },
+  {
+    id: "ayar-14",
+    category: "altin_ayar",
+    symbol: "14K",
+    siFactor: 14 / 24,
+    tr: { name: "14 Ayar Altın", slug: "14-ayar-altin" },
+    en: { name: "14K Gold", slug: "14k-gold" },
+    de: { name: "14 Karat Gold", slug: "14-karat-gold" },
+  },
 ];
 
 export function findUnit(category: string, symbol: string) {

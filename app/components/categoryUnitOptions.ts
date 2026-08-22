@@ -574,6 +574,28 @@ const categoryUnitDefinitions: CategoryUnitDefinitions = {
       de: "Nanocoulomb",
     },
   },
+  altin_ayar: {
+    "24K": {
+      tr: "24 Ayar",
+      en: "24K",
+      de: "24 Karat",
+    },
+    "22K": {
+      tr: "22 Ayar",
+      en: "22K",
+      de: "22 Karat",
+    },
+    "18K": {
+      tr: "18 Ayar",
+      en: "18K",
+      de: "18 Karat",
+    },
+    "14K": {
+      tr: "14 Ayar",
+      en: "14K",
+      de: "14 Karat",
+    },
+  },
 };
 
 function formatUnitLabel(

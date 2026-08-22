@@ -114,6 +114,21 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
           },
         ],
       },
+      {
+        title: "Elektrik",
+        description:
+          "Gerilim, akım ve direnç arasındaki temel ilişkiyi kullanan devre hesaplayıcıları.",
+        tools: [
+          {
+            slug: "ohm-yasasi",
+            href: "/hesaplayicilar/ohm-yasasi",
+            title: "Ohm Yasası",
+            formula: "V = I × R",
+            description:
+              "Gerilimi, akımı veya direnci Ohm Yasası ile hesaplayın.",
+          },
+        ],
+      },
     ],
     howToTitle: "Bu hesaplayıcılar nasıl kullanılır?",
     howToSteps: [

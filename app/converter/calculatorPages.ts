@@ -53,6 +53,15 @@ export const calculatorPages: CalculatorPage[] = [
     description:
       "Hidrostatik basınç farkını, yoğunluğu, derinliği veya yerçekimi ivmesini SI taban birimleri üzerinden hesaplayın ve sonucu okunabilir mühendislik ölçeğinde görüntüleyin.",
   },
+  {
+    slug: "ohm-yasasi",
+    category: "elektrik_direnc",
+    title: "Ohm Yasası Hesaplayıcısı",
+    shortTitle: "Ohm Yasası",
+    formula: "V = I × R",
+    description:
+      "Gerilimi, akımı veya direnci V = I × R bağıntısıyla hesaplayın ve sonucu SI eşdeğeriyle birlikte görüntüleyin.",
+  },
 ];
 
 export function findCalculatorPage(slug: string) {

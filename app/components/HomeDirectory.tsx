@@ -387,7 +387,9 @@ function EngineeringCalculatorIcon({ id }: { id: string }) {
           ? Drop
           : id === "hidrostatik-basinc"
             ? Waves
-            : Gauge;
+            : id === "ohm-yasasi"
+              ? Plug
+              : Gauge;
 
   return (
     <span className={`home-category-icon-box is-calc-${id}`} aria-hidden="true">
@@ -596,6 +598,7 @@ function createHomeData(locale: Locale): HomeData {
     "isi-enerjisi",
     "isi-iletimi",
     "reynolds-sayisi",
+    "ohm-yasasi",
   ] as const;
 
   const engineeringCalculators =

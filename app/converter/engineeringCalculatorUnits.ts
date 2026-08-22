@@ -20,7 +20,10 @@ export type CalculatorQuantity =
   | "density"
   | "speed"
   | "diameter"
-  | "viscosity";
+  | "viscosity"
+  | "voltage"
+  | "current"
+  | "resistance";
 
 const DEGREE_CELSIUS_UNIT = "\u00B0C";
 const DEGREE_FAHRENHEIT_UNIT = "\u00B0F";
@@ -691,6 +694,96 @@ export const viscosityUnitDefinitions = [
   },
 ] as const satisfies readonly EngineeringUnitDefinition<string>[];
 
+export const voltageUnitDefinitions = [
+  {
+    symbol: "mV",
+    trName: "Milivolt",
+    enName: "Millivolt",
+    factorToSI: 0.001,
+    group: "si",
+    typicalUseTr: "Sensör ve düşük seviye sinyaller",
+    typicalUseEn: "Sensors and low-level signals",
+  },
+  {
+    symbol: "V",
+    trName: "Volt",
+    enName: "Volt",
+    factorToSI: 1,
+    group: "si",
+    typicalUseTr: "Temel SI gerilim birimi",
+    typicalUseEn: "Base SI voltage unit",
+  },
+  {
+    symbol: "kV",
+    trName: "Kilovolt",
+    enName: "Kilovolt",
+    factorToSI: 1000,
+    group: "si",
+    typicalUseTr: "Yüksek gerilim hatları",
+    typicalUseEn: "High-voltage transmission",
+  },
+] as const satisfies readonly EngineeringUnitDefinition<string>[];
+
+export const currentUnitDefinitions = [
+  {
+    symbol: "mA",
+    trName: "Miliamper",
+    enName: "Milliampere",
+    factorToSI: 0.001,
+    group: "si",
+    typicalUseTr: "Elektronik devre akımları",
+    typicalUseEn: "Electronic circuit currents",
+  },
+  {
+    symbol: "A",
+    trName: "Amper",
+    enName: "Ampere",
+    factorToSI: 1,
+    group: "si",
+    typicalUseTr: "Temel SI akım birimi",
+    typicalUseEn: "Base SI current unit",
+  },
+  {
+    symbol: "kA",
+    trName: "Kiloamper",
+    enName: "Kiloampere",
+    factorToSI: 1000,
+    group: "si",
+    typicalUseTr: "Endüstriyel güç sistemleri",
+    typicalUseEn: "Industrial power systems",
+  },
+] as const satisfies readonly EngineeringUnitDefinition<string>[];
+
+export const resistanceUnitDefinitions = [
+  {
+    symbol: "Ω",
+    trName: "Ohm",
+    enName: "Ohm",
+    factorToSI: 1,
+    group: "si",
+    typicalUseTr: "Temel SI direnç birimi",
+    typicalUseEn: "Base SI resistance unit",
+  },
+  {
+    symbol: "kΩ",
+    trName: "Kiloohm",
+    enName: "Kiloohm",
+    factorToSI: 1000,
+    group: "si",
+    typicalUseTr: "Elektronik devre dirençleri",
+    typicalUseEn: "Electronic circuit resistors",
+  },
+  {
+    symbol: "MΩ",
+    trName: "Megaohm",
+    enName: "Megaohm",
+    factorToSI: 1_000_000,
+    group: "si",
+    typicalUseTr: "İzolasyon direnci ölçümleri",
+    typicalUseEn: "Insulation-resistance measurements",
+  },
+] as const satisfies readonly EngineeringUnitDefinition<string>[];
+
 export type HeatEnergyUnit =
   (typeof heatEnergyUnitDefinitions)[number]["symbol"];
 export type CalculatorMassUnit =
@@ -715,6 +808,12 @@ export type DiameterUnit =
   (typeof diameterUnitDefinitions)[number]["symbol"];
 export type ViscosityUnit =
   (typeof viscosityUnitDefinitions)[number]["symbol"];
+export type VoltageUnit =
+  (typeof voltageUnitDefinitions)[number]["symbol"];
+export type CurrentUnit =
+  (typeof currentUnitDefinitions)[number]["symbol"];
+export type ResistanceUnit =
+  (typeof resistanceUnitDefinitions)[number]["symbol"];
 
 type CalculatorUnitCollection = {
   energy: typeof heatEnergyUnitDefinitions;
@@ -729,6 +828,9 @@ type CalculatorUnitCollection = {
   speed: typeof speedUnitDefinitions;
   diameter: typeof diameterUnitDefinitions;
   viscosity: typeof viscosityUnitDefinitions;
+  voltage: typeof voltageUnitDefinitions;
+  current: typeof currentUnitDefinitions;
+  resistance: typeof resistanceUnitDefinitions;
 };
 
 const calculatorUnitsByQuantity: CalculatorUnitCollection = {
@@ -744,6 +846,9 @@ const calculatorUnitsByQuantity: CalculatorUnitCollection = {
   speed: speedUnitDefinitions,
   diameter: diameterUnitDefinitions,
   viscosity: viscosityUnitDefinitions,
+  voltage: voltageUnitDefinitions,
+  current: currentUnitDefinitions,
+  resistance: resistanceUnitDefinitions,
 };
 
 const groupOrder: EngineeringUnitGroup[] = [
@@ -828,6 +933,24 @@ const preferredDiameterUnits = [
   "in",
   "ft",
 ] as const satisfies readonly DiameterUnit[];
+
+const preferredVoltageUnits = [
+  "mV",
+  "V",
+  "kV",
+] as const satisfies readonly VoltageUnit[];
+
+const preferredCurrentUnits = [
+  "mA",
+  "A",
+  "kA",
+] as const satisfies readonly CurrentUnit[];
+
+const preferredResistanceUnits = [
+  "Ω",
+  "kΩ",
+  "MΩ",
+] as const satisfies readonly ResistanceUnit[];
 
 function getUnits<TQuantity extends CalculatorQuantity>(
   quantity: TQuantity
@@ -946,6 +1069,18 @@ export function findSpeedUnit(symbol: SpeedUnit | string) {
 
 export function findDiameterUnit(symbol: DiameterUnit | string) {
   return findUnit(symbol, diameterUnitDefinitions);
+}
+
+export function findVoltageUnit(symbol: VoltageUnit | string) {
+  return findUnit(symbol, voltageUnitDefinitions);
+}
+
+export function findCurrentUnit(symbol: CurrentUnit | string) {
+  return findUnit(symbol, currentUnitDefinitions);
+}
+
+export function findResistanceUnit(symbol: ResistanceUnit | string) {
+  return findUnit(symbol, resistanceUnitDefinitions);
 }
 
 export function findViscosityUnit(symbol: ViscosityUnit | string) {
@@ -1134,6 +1269,39 @@ export function convertViscosityFromSI(
   return valueInPascalSecond / mustFindUnit(unit, viscosityUnitDefinitions, "viscosity").factorToSI;
 }
 
+export function convertVoltageToSI(value: number, unit: VoltageUnit) {
+  return value * mustFindUnit(unit, voltageUnitDefinitions, "voltage").factorToSI;
+}
+
+export function convertVoltageFromSI(
+  valueInVolt: number,
+  unit: VoltageUnit
+) {
+  return valueInVolt / mustFindUnit(unit, voltageUnitDefinitions, "voltage").factorToSI;
+}
+
+export function convertCurrentToSI(value: number, unit: CurrentUnit) {
+  return value * mustFindUnit(unit, currentUnitDefinitions, "current").factorToSI;
+}
+
+export function convertCurrentFromSI(
+  valueInAmpere: number,
+  unit: CurrentUnit
+) {
+  return valueInAmpere / mustFindUnit(unit, currentUnitDefinitions, "current").factorToSI;
+}
+
+export function convertResistanceToSI(value: number, unit: ResistanceUnit) {
+  return value * mustFindUnit(unit, resistanceUnitDefinitions, "resistance").factorToSI;
+}
+
+export function convertResistanceFromSI(
+  valueInOhm: number,
+  unit: ResistanceUnit
+) {
+  return valueInOhm / mustFindUnit(unit, resistanceUnitDefinitions, "resistance").factorToSI;
+}
+
 function getPreferredHeatEnergyUnits() {
   return preferredHeatEnergyUnits.map((symbol) =>
     mustFindUnit(symbol, heatEnergyUnitDefinitions, "heat energy")
@@ -1173,6 +1341,48 @@ function getPreferredLengthUnits() {
 function getPreferredDiameterUnits() {
   return preferredDiameterUnits.map((symbol) =>
     mustFindUnit(symbol, diameterUnitDefinitions, "diameter")
+  );
+}
+
+function getPreferredVoltageUnits() {
+  return preferredVoltageUnits.map((symbol) =>
+    mustFindUnit(symbol, voltageUnitDefinitions, "voltage")
+  );
+}
+
+function getPreferredCurrentUnits() {
+  return preferredCurrentUnits.map((symbol) =>
+    mustFindUnit(symbol, currentUnitDefinitions, "current")
+  );
+}
+
+function getPreferredResistanceUnits() {
+  return preferredResistanceUnits.map((symbol) =>
+    mustFindUnit(symbol, resistanceUnitDefinitions, "resistance")
+  );
+}
+
+export function inferVoltageUnit(valueInVolt: number) {
+  return chooseBestEngineeringUnit(
+    valueInVolt,
+    getPreferredVoltageUnits(),
+    "V"
+  );
+}
+
+export function inferCurrentUnit(valueInAmpere: number) {
+  return chooseBestEngineeringUnit(
+    valueInAmpere,
+    getPreferredCurrentUnits(),
+    "A"
+  );
+}
+
+export function inferResistanceUnit(valueInOhm: number) {
+  return chooseBestEngineeringUnit(
+    valueInOhm,
+    getPreferredResistanceUnits(),
+    "Ω"
   );
 }
 

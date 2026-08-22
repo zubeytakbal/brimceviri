@@ -213,10 +213,98 @@ const uzunlukCategoryArticle: CategoryArticle = {
   ],
 };
 
+const altinAyarCategoryArticle: CategoryArticle = {
+  slug: "altin-ayar",
+
+  introduction: [
+    "Altın, takı ve mücevheratta neredeyse hiçbir zaman saf hâlde kullanılmaz -- çok yumuşak ve kolay çizilen bir metal olduğu için gümüş, bakır gibi metallerle karıştırılıp bir alaşım hâline getirilir. Ayar (İngilizcede karat/karat), bu alaşımın içindeki saf altın oranını gösteren ölçüdür.",
+    "Ölçek 24 üzerinden çalışır: 24 ayar tamamen saf altın demektir (%100), 22 ayar alaşımın 22/24'ünün (yaklaşık %91,6) saf altın olduğu anlamına gelir. Buradaki dönüşüm, farklı ayarlardaki altınlar arasında saf altın içeriğine göre gram karşılığını hesaplar -- yani \"aynı fiziksel büyüklüğü farklı birimle ifade etme\" değil, \"aynı alaşımın farklı saflık oranındaki karşılığını bulma\" işlemidir.",
+  ],
+
+  facts: [
+    {
+      label: "Ölçüm sistemi",
+      value: "Kuyumculuk saflık standardı (ayar / karat)",
+    },
+    {
+      label: "Temel referans",
+      value: "24 Ayar = %100 saf altın",
+    },
+    {
+      label: "Türkiye'de en yaygın ayar",
+      value: "22 Ayar (bilezik, geleneksel takı)",
+    },
+    {
+      label: "Uluslararası günlük kullanım",
+      value: "18 Ayar (yüzük, kolye)",
+    },
+    {
+      label: "Hesaplama mantığı",
+      value: "Gram × (kaynak ayar / 24) ÷ (hedef ayar / 24)",
+    },
+  ],
+
+  sections: [
+    {
+      title: "Ayar (karat) tam olarak neyi ölçer?",
+      paragraphs: [
+        "Ayar, bir altın parçasının ağırlığının ne kadarının gerçekten altın olduğunu gösterir. 24 ayar saf altındır; 22, 18 ve 14 ayar ise altının sırasıyla gümüş/bakır ile karıştırılmış, dolayısıyla daha sert ve daha az saf hâlleridir.",
+        "Bu yüzden 22 ayar bir bileziğin 24 ayara göre biraz daha 'hafif' saf altın içeriğine sahip olduğunu, ama daha dayanıklı olduğunu söyleyebiliriz -- kuyumcuların bilezik için 22 ayarı, yüzük/kolye için genelde 18 ayarı tercih etmesinin sebebi budur.",
+      ],
+    },
+    {
+      title: "Saf altın içeriği nasıl hesaplanır?",
+      paragraphs: [
+        "10 gramlık 22 ayar bir bileziğin içindeki saf altın miktarını bulmak için: 10 × (22 / 24) = 9,17 gram saf (24 ayar eşdeğeri) altın içerir. Geri kalan yaklaşık 0,83 gram, dayanıklılık için eklenen diğer metallerdir.",
+        "Tersine, bir kuyumcu bu 9,17 gram saf altını eritip 18 ayar olarak yeniden şekillendirseydi: 9,17 ÷ (18 / 24) = 12,22 gram toplam alaşım elde ederdi -- çünkü 18 ayarda saf altın oranı daha düşük olduğu için aynı miktarda saf altın, daha büyük bir toplam ağırlığa yayılır.",
+      ],
+    },
+    {
+      title: "Hangi ayar ne için kullanılır?",
+      paragraphs: [
+        "24 ayar yumuşaklığı nedeniyle günlük takıda neredeyse hiç kullanılmaz; daha çok külçe altın ve yatırımlık ürünlerde tercih edilir. 22 ayar Türkiye ve Orta Doğu'da bilezik ve geleneksel takının standardıdır.",
+        "18 ayar, dayanıklılığı yüksek olduğu için özellikle pırlantalı yüzük ve kolye gibi günlük kullanım takılarında dünya genelinde yaygındır. 14 ayar ise daha ekonomik ve daha da dayanıklı olduğu için özellikle ABD ve Avrupa pazarında sık görülür.",
+      ],
+    },
+  ],
+
+  unitTable: [
+    {
+      name: "24 Ayar Altın",
+      symbol: "24K",
+      referenceValue: "%100 saf altın",
+      system: "Kuyumculuk standardı",
+      commonUse: "Külçe, yatırımlık altın",
+    },
+    {
+      name: "22 Ayar Altın",
+      symbol: "22K",
+      referenceValue: "%91,6 saf altın (22/24)",
+      system: "Kuyumculuk standardı",
+      commonUse: "Bilezik, geleneksel takı",
+    },
+    {
+      name: "18 Ayar Altın",
+      symbol: "18K",
+      referenceValue: "%75 saf altın (18/24)",
+      system: "Kuyumculuk standardı",
+      commonUse: "Yüzük, kolye, günlük takı",
+    },
+    {
+      name: "14 Ayar Altın",
+      symbol: "14K",
+      referenceValue: "%58,3 saf altın (14/24)",
+      system: "Kuyumculuk standardı",
+      commonUse: "Ekonomik takı, ABD/Avrupa pazarı",
+    },
+  ],
+};
+
 export const categoryArticles: CategoryArticle[] = [
   uzunlukCategoryArticle,
   kutleCategoryArticle,
   basincCategoryArticle,
+  altinAyarCategoryArticle,
 ];
 
 export function findCategoryArticle(slug: string) {

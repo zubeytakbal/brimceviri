@@ -3761,9 +3761,27 @@ button {
 
 .directory-home-card:hover .home-category-icon-box {
   transform: translateY(-2px);
-  background: #edf2ff;
-  border-color: #cfdaff;
 }
+
+.home-category-icon-box.is-uzunluk { background: #ecf0fd; border-color: #d3ddf9; color: #3457d5; }
+.home-category-icon-box.is-alan { background: #e6f7f4; border-color: #c8ebe4; color: #0e8a7d; }
+.home-category-icon-box.is-hacim { background: #e5f6fa; border-color: #c6e9f0; color: #0f7f9e; }
+.home-category-icon-box.is-kutle { background: #fdefe1; border-color: #f6dcbd; color: #c2660c; }
+.home-category-icon-box.is-sicaklik { background: #fceae8; border-color: #f6d0cb; color: #d1453a; }
+.home-category-icon-box.is-zaman { background: #f2ebfd; border-color: #ddccf7; color: #7c3aed; }
+.home-category-icon-box.is-hiz { background: #fbe9f1; border-color: #f4c9dd; color: #c2266f; }
+.home-category-icon-box.is-basinc { background: #ebe9fb; border-color: #d2cdf5; color: #4a3fc7; }
+.home-category-icon-box.is-enerji { background: #fbf3df; border-color: #f2e0a8; color: #b8860a; }
+.home-category-icon-box.is-veri { background: #eaedf2; border-color: #d3d9e3; color: #475974; }
+.home-category-icon-box.is-elektrik { background: #f4eafc; border-color: #e2c9f5; color: #8b2fc9; }
+.home-category-icon-box.is-isi { background: #fceae8; border-color: #f6d0cb; color: #d1453a; }
+.home-category-icon-box.is-ayakkabi { background: #f7eee1; border-color: #ecdcc0; color: #8a5a24; }
+
+.home-category-icon-box.is-calc-isi-enerjisi { background: #fceae8; border-color: #f6d0cb; color: #d1453a; }
+.home-category-icon-box.is-calc-isi-iletimi { background: #e6f7f4; border-color: #c8ebe4; color: #0e8a7d; }
+.home-category-icon-box.is-calc-reynolds-sayisi { background: #ecf0fd; border-color: #d3ddf9; color: #3457d5; }
+.home-category-icon-box.is-calc-hidrostatik-basinc { background: #e5f6fa; border-color: #c6e9f0; color: #0f7f9e; }
+.home-category-icon-box.is-calc-basinc-kuvvet-alan { background: #ebe9fb; border-color: #d2cdf5; color: #4a3fc7; }
 
 .directory-card-header-line {
   display: flex;

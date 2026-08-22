@@ -355,12 +355,8 @@ function HomeCategoryIcon({
                             : Plug;
 
   return (
-    <span className="home-category-icon-box" aria-hidden="true">
-      <Icon
-        className={`home-category-icon-svg is-${kind}`}
-        size={42}
-        weight="regular"
-      />
+    <span className={`home-category-icon-box is-${kind}`} aria-hidden="true">
+      <Icon className="home-category-icon-svg" size={42} weight="duotone" />
     </span>
   );
 }
@@ -378,8 +374,8 @@ function EngineeringCalculatorIcon({ id }: { id: string }) {
             : Gauge;
 
   return (
-    <span className="home-category-icon-box" aria-hidden="true">
-      <Icon className="home-category-icon-svg" size={42} weight="regular" />
+    <span className={`home-category-icon-box is-calc-${id}`} aria-hidden="true">
+      <Icon className="home-category-icon-svg" size={42} weight="duotone" />
     </span>
   );
 }

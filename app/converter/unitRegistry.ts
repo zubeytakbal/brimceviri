@@ -204,6 +204,20 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Acre", slug: "acre" },
     de: { name: "Acre", slug: "acre" },
   },
+  {
+    id: "donum",
+    category: "alan",
+    symbol: "dönüm",
+    siFactor: 1000,
+    tr: { name: "Dönüm", slug: "donum" },
+  },
+  {
+    id: "dekar",
+    category: "alan",
+    symbol: "dekar",
+    siFactor: 1000,
+    tr: { name: "Dekar", slug: "dekar" },
+  },
 
   // ---- hacim / volume / Volumen ----
   {

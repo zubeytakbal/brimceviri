@@ -99,6 +99,20 @@ const unitDescriptions: Record<string, UnitDescription> = {
     siEquivalent: "1 ft² = 0,092903 m²",
     commonUses: "Emlak ilanları, döşeme alanları ve bazı yapı katalogları",
   },
+  "donum": {
+    shortDescription: "Dönüm, Türkiye'de arazi ve emlak ölçümünde kullanılan geleneksel bir alan birimidir. Modern standarda göre 1 dönüm tam olarak 1000 metrekareye eşittir.",
+    historySummary: "Dönüm, Osmanlı döneminden beri kullanılan ve bölgeden bölgeye 900 ile 1600 metrekare arasında değişen eski bir alan birimiydi. 1931'de yürürlüğe giren Ölçüler ve Ayarlar Kanunu ile 1000 metrekare olarak standartlaştırıldı.",
+    measurementSystem: "Türkiye'ye özgü geleneksel birim, metrik sisteme entegre",
+    siEquivalent: "1 dönüm = 1000 m² = 1 dekar",
+    commonUses: "Tarım arazisi, emlak ilanları ve tapu kayıtlarında arazi büyüklüğü",
+  },
+  "dekar": {
+    shortDescription: "Dekar, 1000 metrekareye eşit metrik bir alan birimidir. Türkiye'de dönüm ile eş değerde kullanılır ve tarım arazilerinde yaygındır.",
+    historySummary: "Dekar, ondalık metrik sistemin bir parçası olarak 10 ar'a (are) eşit şekilde tanımlanmıştır ve tarımsal alan ölçümünde birçok ülkede kullanılır.",
+    measurementSystem: "Metrik sistem, SI ile uyumlu (10 ar)",
+    siEquivalent: "1 dekar = 1000 m² = 1 dönüm",
+    commonUses: "Tarım arazisi ölçümü, emlak ilanları ve arazi kayıtları",
+  },
   "metrekup": {
     shortDescription: "Metreküp, hacmin SI türetilmiş birimidir. Büyük hacimler ve teknik kapasiteler için temel referanstır.",
     historySummary: "Metreküp, metrenin üç boyutlu uzantısı olarak bilim ve mühendislikte temel hacim birimi hâline geldi.",
@@ -717,7 +731,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
 };
 
-const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit","kilogram-metre-saniye","newton-saniye","pascal-saniye","santipoise","mikrometre","nanometre","deniz-mili","santimetrekare","milimetrekare","kilometrekare","incare","akre","santimetrekup","fitkup","inckup","galon","bit","bayt","kilobayt","megabayt","gigabayt","terabayt","petabayt","kibibayt","mebibayt","gibibayt","tebibayt","ohm","kiloohm","megaohm","farad","milifarad","mikrofarad","nanofarad","pikofarad","henry","milihenry","mikrohenry","coulomb","milicoulomb","mikrocoulomb","nanocoulomb","ayar-24","ayar-22","ayar-18","ayar-14"];
+const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit","kilogram-metre-saniye","newton-saniye","pascal-saniye","santipoise","mikrometre","nanometre","deniz-mili","santimetrekare","milimetrekare","kilometrekare","incare","akre","donum","dekar","santimetrekup","fitkup","inckup","galon","bit","bayt","kilobayt","megabayt","gigabayt","terabayt","petabayt","kibibayt","mebibayt","gibibayt","tebibayt","ohm","kiloohm","megaohm","farad","milifarad","mikrofarad","nanofarad","pikofarad","henry","milihenry","mikrohenry","coulomb","milicoulomb","mikrocoulomb","nanocoulomb","ayar-24","ayar-22","ayar-18","ayar-14"];
 
 export const unitPages: UnitPage[] = unitRegistry
   .filter((entry) => entry.tr && unitDescriptions[entry.id])

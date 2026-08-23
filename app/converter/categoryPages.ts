@@ -11,7 +11,7 @@ export const categoryPages: CategoryPage[] = [
     category: "alan",
     title: "Alan Dönüşümleri",
     description:
-      "Metrekare, fitkare ve hektar arasında çalışan alan dönüşümlerini kullanın; temel formülleri ve örnek karşılıkları inceleyin.",
+      "Metrekare, dönüm, dekar, hektar ve fitkare arasında çalışan alan dönüşümlerini kullanın; temel formülleri ve örnek karşılıkları inceleyin.",
   },
   {
     slug: "hacim",

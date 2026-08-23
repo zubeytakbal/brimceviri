@@ -83,9 +83,9 @@ export async function generateMetadata({
       `${unitPage.name} Nedir? Tanımı, Tarihçesi ve ` +
       `Bilimsel Bilgiler`,
     description:
-      `${unitPage.name} nedir, sembolü nedir ve nasıl tanımlanır? ` +
-      `${unitPage.name} biriminin tarihçesini, bilimsel tanımını, ` +
-      `dönüşümlerini ve kullanım alanlarını inceleyin.`,
+      `${unitPage.name} biriminin sembolü ${unitPage.symbol}'dir. ` +
+      `Tanımını, tarihçesini, bilimsel açıklamasını ve diğer birimlere ` +
+      `dönüşümünü ücretsiz inceleyin.`,
     alternates: {
       canonical: `/birimler/${unitPage.slug}`,
       languages: englishPage

@@ -62,9 +62,9 @@ export async function generateMetadata({
   );
 
   const description =
-    `What is the ${unitPage.name.toLowerCase()} and what does ` +
-    `${unitPage.symbol} mean? Learn its definition, history, ` +
-    `scientific background and related conversions.`;
+    `The symbol for ${unitPage.name.toLowerCase()} is ${unitPage.symbol}. ` +
+    `Learn its full definition, history, scientific background and how ` +
+    `to convert it to other units — free and instant.`;
 
   return {
     title,

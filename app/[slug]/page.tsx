@@ -63,14 +63,18 @@ export async function generateMetadata({
     conversionPage.slug
   );
 
+  const directAnswer =
+    conversionPage.explanation.split(". ")[1] ??
+    conversionPage.explanation;
+
   return {
     title:
       `${conversionPage.fromName} – ` +
       `${conversionPage.toName} Çevirici`,
     description:
-      `${conversionPage.fromName} değerini ` +
-      `${conversionPage.toName} birimine dönüştürün. ` +
-      `Formülü, hazır dönüşüm tablosunu ve birim bilgilerini inceleyin.`,
+      `${conversionPage.fromName} kaç ${conversionPage.toName}? ` +
+      `${directAnswer} Ücretsiz hesaplama aracı, formül ve hazır ` +
+      `dönüşüm tablosu için tıklayın.`,
     alternates: {
       canonical: `/${conversionPage.slug}`,
       languages: englishPage

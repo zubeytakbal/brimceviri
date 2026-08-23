@@ -7,6 +7,9 @@ import {
   SITE_NAME,
 } from "../siteConfig";
 import { germanStaticPaths } from "../i18n/germanRoutes";
+import { categoryPages } from "../converter/categoryPages";
+import { englishCategoryPages } from "../converter/localizedCategoryPages";
+import { germanCategoryPages } from "../converter/localizedGermanCategoryPages";
 
 type FooterLink = {
   href: string;
@@ -52,6 +55,27 @@ const footerLinks: Record<Locale, FooterLink[]> = {
   ],
 };
 
+function getCategoryFooterLinks(locale: Locale): FooterLink[] {
+  if (locale === "en") {
+    return englishCategoryPages.map((page) => ({
+      href: `/en/categories/${page.slug}`,
+      label: page.title,
+    }));
+  }
+
+  if (locale === "de") {
+    return germanCategoryPages.map((page) => ({
+      href: `/de/kategorien/${page.slug}`,
+      label: page.title,
+    }));
+  }
+
+  return categoryPages.map((page) => ({
+    href: `/kategoriler/${page.slug}`,
+    label: page.title,
+  }));
+}
+
 function getLocaleFromPathname(pathname: string): Locale {
   if (pathname === "/en" || pathname.startsWith("/en/")) {
     return "en";
@@ -69,6 +93,12 @@ export default function SiteFooter() {
   const locale = getLocaleFromPathname(pathname);
   const isEnglish = locale === "en";
   const isGerman = locale === "de";
+  const categoryFooterLinks = getCategoryFooterLinks(locale);
+  const categoriesHeading = isEnglish
+    ? "Categories"
+    : isGerman
+      ? "Kategorien"
+      : "Kategoriler";
 
   return (
     <footer className="site-footer">
@@ -102,6 +132,20 @@ export default function SiteFooter() {
           }
         >
           {footerLinks[locale].map((link) => (
+            <Link href={link.href} key={link.href}>
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+
+        <nav
+          className="site-footer-nav site-footer-nav-categories"
+          aria-label={categoriesHeading}
+        >
+          <strong className="site-footer-nav-heading">
+            {categoriesHeading}
+          </strong>
+          {categoryFooterLinks.map((link) => (
             <Link href={link.href} key={link.href}>
               {link.label}
             </Link>

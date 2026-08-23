@@ -5154,6 +5154,26 @@ main.calculator-page {
   align-content: start;
 }
 
+.site-footer-nav-categories {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.1rem;
+  padding-top: 1rem;
+  margin-top: 0.4rem;
+  border-top: 1px solid rgba(14, 116, 144, 0.12);
+}
+
+.site-footer-nav-categories .site-footer-nav-heading {
+  flex-basis: 100%;
+  color: #355769;
+  font-size: 0.9rem;
+}
+
+.site-footer-nav-categories a {
+  font-size: 0.9rem;
+}
+
 @media (max-width: 900px) {
   .site-footer-inner {
     grid-template-columns: 1fr;

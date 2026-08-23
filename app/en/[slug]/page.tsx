@@ -277,39 +277,6 @@ export default async function EnglishConversionPage({
           </div>
         </section>
 
-        <section className="conversion-section">
-          <h2>
-            How many {page.toName.toLowerCase()} are in one{" "}
-            {page.fromName.toLowerCase()}?
-          </h2>
-
-          <p className="direct-answer">
-            1 {page.fromUnit} ={" "}
-            <strong>
-              {formattedOneUnitResult} {page.toUnit}
-            </strong>
-          </p>
-        </section>
-
-        <section className="conversion-section">
-          <h2>About this conversion</h2>
-
-          <p>
-            This calculator converts {page.fromName.toLowerCase()}{" "}
-            ({page.fromUnit}) to{" "}
-            {page.toName.toLowerCase()} ({page.toUnit}).
-            Enter any numeric value in the calculator to receive
-            the converted result immediately.
-          </p>
-
-          <p>
-            The result is calculated using the defined
-            conversion relationship between the two units.
-            Values may be displayed in scientific notation when
-            they are extremely large or extremely small.
-          </p>
-        </section>
-
         {fromUnitInfo && (
           <section className="conversion-section unit-information">
             <h2>What is {fromUnitInfo.name}?</h2>
@@ -413,7 +380,7 @@ export default async function EnglishConversionPage({
             href={`/${page.sourceSlug}`}
             hrefLang="tr"
           >
-            Türkçe sürümü görüntüle
+            View the Turkish version
           </Link>
 
           {germanPage && (

@@ -7,7 +7,6 @@ import { buildSiteUrl } from "../siteConfig";
 
 type ConversionSeoProps = {
   conversionPage: ConversionPage;
-  formattedOneUnitResult: string;
 };
 
 function serializeJsonLd(data: object) {
@@ -16,7 +15,6 @@ function serializeJsonLd(data: object) {
 
 export default function ConversionSeo({
   conversionPage,
-  formattedOneUnitResult,
 }: ConversionSeoProps) {
   const pageUrl = buildSiteUrl(`/${conversionPage.slug}`);
   const categoryPage = findCategoryPageByCategory(
@@ -28,19 +26,10 @@ export default function ConversionSeo({
 
   const faqs = [
     {
-      question:
-        `1 ${conversionPage.fromName} kaç ` +
-        `${conversionPage.toName} eder?`,
+      question: "Sonuçlar ne kadar hassas hesaplanıyor?",
       answer:
-        `1 ${conversionPage.fromUnit}, ` +
-        `${formattedOneUnitResult} ` +
-        `${conversionPage.toUnit} değerine eşittir.`,
-    },
-    {
-      question:
-        `${conversionPage.fromName}, ` +
-        `${conversionPage.toName} birimine nasıl çevrilir?`,
-      answer: conversionPage.explanation,
+        "Dönüşüm sonuçları 12 anlamlı basamağa kadar hesaplanır. " +
+        "Çok büyük veya çok küçük değerler bilimsel gösterimle sunulur.",
     },
     {
       question:

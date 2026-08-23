@@ -1,31 +1,29 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { headers } from "next/headers";
+import { Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google";
 import Script from "next/script";
-import {
-  Inter,
-  Manrope,
-  Roboto_Condensed,
-} from "next/font/google";
 import SiteHeader from "./components/SiteHeader";
 import SiteFooter from "./components/SiteFooter";
 import { SITE_NAME, SITE_URL } from "./siteConfig";
 
-const inter = Inter({
+const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin", "latin-ext"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
   variable: "--font-body",
 });
 
-const manrope = Manrope({
+const notoSansHeading = Space_Grotesk({
   subsets: ["latin", "latin-ext"],
+  weight: ["500", "600", "700"],
   display: "swap",
   variable: "--font-heading",
 });
 
-const logoFont = Roboto_Condensed({
+const logoFont = Space_Grotesk({
   subsets: ["latin", "latin-ext"],
-  weight: ["300", "400"],
+  weight: ["700"],
   display: "swap",
   variable: "--font-logo",
 });
@@ -131,7 +129,7 @@ export default async function RootLayout({
         </Script>
       </head>
       <body
-        className={`${inter.variable} ${manrope.variable} ${logoFont.variable}`}
+        className={`${plusJakartaSans.variable} ${notoSansHeading.variable} ${logoFont.variable}`}
       >
         <SiteHeader />
         {children}

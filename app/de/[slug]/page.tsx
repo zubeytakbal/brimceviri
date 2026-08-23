@@ -172,7 +172,7 @@ export default async function GermanConversionPage({
           </div>
 
           <div className="conversion-hero-information">
-            <h2>Umrechnungs\u00FCbersicht</h2>
+            <h2>{"Umrechnungs\u00FCbersicht"}</h2>
             <p>
               1 {page.fromUnit} ={" "}
               <strong>
@@ -192,7 +192,7 @@ export default async function GermanConversionPage({
               <div>
                 <dt>Einheiten</dt>
                 <dd>
-                  {page.fromUnit} \u2192 {page.toUnit}
+                  {page.fromUnit}{" \u2192 "}{page.toUnit}
                 </dd>
               </div>
             </dl>
@@ -249,7 +249,7 @@ export default async function GermanConversionPage({
             <p>{fromUnitInfo.shortDescription}</p>
             <p>{fromUnitInfo.historySummary}</p>
             <Link className="text-link" href={`/de/einheiten/${fromUnitInfo.slug}`}>
-              Einheitenleitfaden zu {fromUnitInfo.name} \u00F6ffnen
+              {"Einheitenleitfaden zu "}{fromUnitInfo.name}{" \u00F6ffnen"}
             </Link>
           </section>
         )}
@@ -260,7 +260,7 @@ export default async function GermanConversionPage({
             <p>{toUnitInfo.shortDescription}</p>
             <p>{toUnitInfo.historySummary}</p>
             <Link className="text-link" href={`/de/einheiten/${toUnitInfo.slug}`}>
-              Einheitenleitfaden zu {toUnitInfo.name} \u00F6ffnen
+              {"Einheitenleitfaden zu "}{toUnitInfo.name}{" \u00F6ffnen"}
             </Link>
           </section>
         )}

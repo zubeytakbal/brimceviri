@@ -18,6 +18,64 @@ type FooterLink = {
 
 type Locale = "tr" | "en" | "de";
 
+const footerLanguageLinks: Array<{
+  locale: Locale;
+  href: string;
+  label: string;
+}> = [
+  { locale: "tr", href: "/", label: "Türkçe" },
+  { locale: "en", href: "/en", label: "English" },
+  { locale: "de", href: "/de", label: "Deutsch" },
+];
+
+function FlagIcon({ locale }: { locale: Locale }) {
+  if (locale === "tr") {
+    return (
+      <svg
+        className="site-footer-flag"
+        viewBox="0 0 20 14"
+        aria-hidden="true"
+      >
+        <rect width="20" height="14" fill="#E30A17" />
+        <circle cx="8" cy="7" r="3.6" fill="#ffffff" />
+        <circle cx="9.15" cy="7" r="2.9" fill="#E30A17" />
+        <polygon
+          fill="#ffffff"
+          points="13.2,7 12.05,7.62 12.25,6.34 11.3,5.48 12.6,5.32 13.2,4.1 13.8,5.32 15.1,5.48 14.15,6.34 14.35,7.62"
+        />
+      </svg>
+    );
+  }
+
+  if (locale === "de") {
+    return (
+      <svg
+        className="site-footer-flag"
+        viewBox="0 0 20 14"
+        aria-hidden="true"
+      >
+        <rect width="20" height="4.67" fill="#000000" />
+        <rect y="4.67" width="20" height="4.67" fill="#DD0000" />
+        <rect y="9.33" width="20" height="4.67" fill="#FFCE00" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg
+      className="site-footer-flag"
+      viewBox="0 0 20 14"
+      aria-hidden="true"
+    >
+      <rect width="20" height="14" fill="#012169" />
+      <path d="M0,0 L20,14 M20,0 L0,14" stroke="#ffffff" strokeWidth="2.6" />
+      <path d="M0,0 L20,14 M20,0 L0,14" stroke="#C8102E" strokeWidth="1.1" />
+      <path d="M10,0 V14 M0,7 H20" stroke="#ffffff" strokeWidth="4.2" />
+      <path d="M10,0 V14 M0,7 H20" stroke="#C8102E" strokeWidth="2.2" />
+    </svg>
+  );
+}
+
 const footerLinks: Record<Locale, FooterLink[]> = {
   tr: [
     { href: "/", label: "Ana Sayfa" },
@@ -99,6 +157,12 @@ export default function SiteFooter() {
     : isGerman
       ? "Kategorien"
       : "Kategoriler";
+  const pagesHeading = isEnglish ? "Pages" : isGerman ? "Seiten" : "Sayfalar";
+  const languagesHeading = isEnglish
+    ? "Languages"
+    : isGerman
+      ? "Sprachen"
+      : "Diller";
 
   return (
     <footer className="site-footer">
@@ -131,9 +195,34 @@ export default function SiteFooter() {
                 : "Alt men\u00FC"
           }
         >
+          <strong className="site-footer-nav-heading">
+            {pagesHeading}
+          </strong>
           {footerLinks[locale].map((link) => (
             <Link href={link.href} key={link.href}>
               {link.label}
+            </Link>
+          ))}
+        </nav>
+
+        <nav
+          className="site-footer-nav site-footer-nav-languages"
+          aria-label={languagesHeading}
+        >
+          <strong className="site-footer-nav-heading">
+            {languagesHeading}
+          </strong>
+          {footerLanguageLinks.map((languageLink) => (
+            <Link
+              href={languageLink.href}
+              key={languageLink.locale}
+              className="site-footer-language-link"
+              aria-current={
+                languageLink.locale === locale ? "page" : undefined
+              }
+            >
+              <FlagIcon locale={languageLink.locale} />
+              {languageLink.label}
             </Link>
           ))}
         </nav>

@@ -300,21 +300,6 @@ export default async function ConversionPage({ params }: PageProps) {
           </div>
         </section>
 
-        <section className="conversion-section">
-          <h2>
-            1 {conversionPage.fromName} kaç{" "}
-            {conversionPage.toName} eder?
-          </h2>
-
-          <p className="direct-answer">
-            1 {conversionPage.fromUnit} ={" "}
-            <strong>
-              {formattedOneUnitResult}{" "}
-              {conversionPage.toUnit}
-            </strong>
-          </p>
-        </section>
-
         {fromUnitInfo && (
           <section className="conversion-section unit-information">
             <h2>{fromUnitInfo.name} nedir?</h2>
@@ -353,10 +338,7 @@ export default async function ConversionPage({ params }: PageProps) {
           </section>
         )}
 
-        <ConversionSeo
-          conversionPage={conversionPage}
-          formattedOneUnitResult={formattedOneUnitResult}
-        />
+        <ConversionSeo conversionPage={conversionPage} />
 
         {reversePage && (
           <section className="conversion-section related-conversions">

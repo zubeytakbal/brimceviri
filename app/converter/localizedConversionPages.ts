@@ -28,6 +28,12 @@ const englishCategoryNames: Record<string, string> = {
   tork: "Torque",
   momentum: "Momentum",
   viskozite_dinamik: "Viscosity",
+  veri: "Data Storage",
+  elektrik_direnc: "Resistance",
+  kapasitans: "Capacitance",
+  enduktans: "Inductance",
+  elektrik_yuk: "Electric Charge",
+  altin_ayar: "Gold Karat",
 };
 
 function formatEnglishValue(value: number) {

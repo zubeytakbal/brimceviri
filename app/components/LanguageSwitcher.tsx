@@ -56,9 +56,59 @@ const staticRouteSets: StaticRouteSet[] = [
     de: germanStaticPaths.allConversions,
   },
   {
+    tr: "/diger-donusumler",
+    en: "/en/other-conversions",
+  },
+  {
+    tr: "/ayakkabi-numarasi-cevirme",
+    en: "/en/shoe-size-converter",
+  },
+  {
+    tr: "/mutfak-olculeri-cevirici",
+    en: "/en/kitchen-measurement-converter",
+  },
+  {
+    tr: "/tarif-cevirici",
+    en: "/en/recipe-converter",
+  },
+  {
+    tr: "/yuzuk-olcusu-cevirici",
+    en: "/en/ring-size-converter",
+  },
+  {
     tr: "/muhendislik-hesaplayicilari",
     en: "/en/engineering-calculators",
     de: germanStaticPaths.engineeringHub,
+  },
+  {
+    tr: "/muhendislik-hesaplayicilari/elektrik-hesaplari",
+    en: "/en/engineering-calculators/electrical-calculators",
+    de: germanStaticPaths.electricalEngineeringHub,
+  },
+  {
+    tr: "/muhendislik-hesaplayicilari/elektrik-hesaplari/kablo-kesiti-hesaplama",
+    en: "/en/engineering-calculators/electrical-calculators/cable-size-calculator",
+    de: "/de/ingenieurrechner/elektrorechner/kabelquerschnitt-rechner",
+  },
+  {
+    tr: "/muhendislik-hesaplayicilari/elektrik-hesaplari/gerilim-dusumu-hesaplama",
+    en: "/en/engineering-calculators/electrical-calculators/voltage-drop-calculator",
+    de: "/de/ingenieurrechner/elektrorechner/spannungsfall-rechner",
+  },
+  {
+    tr: "/muhendislik-hesaplayicilari/elektrik-hesaplari/kw-to-amper-hesaplama",
+    en: "/en/engineering-calculators/electrical-calculators/kw-to-ampere-calculator",
+    de: "/de/ingenieurrechner/elektrorechner/kw-zu-ampere-rechner",
+  },
+  {
+    tr: "/muhendislik-hesaplayicilari/elektrik-hesaplari/amper-to-kw-hesaplama",
+    en: "/en/engineering-calculators/electrical-calculators/ampere-to-kw-calculator",
+    de: "/de/ingenieurrechner/elektrorechner/ampere-zu-kw-rechner",
+  },
+  {
+    tr: "/muhendislik-hesaplayicilari/elektrik-hesaplari/motor-akimi-hesaplama",
+    en: "/en/engineering-calculators/electrical-calculators/motor-current-calculator",
+    de: "/de/ingenieurrechner/elektrorechner/motorstrom-rechner",
   },
   {
     tr: "/hakkimizda",
@@ -98,18 +148,18 @@ const dynamicRouteConfigs: DynamicRouteConfig[] = [
     dePairs: germanCategoryPages,
   },
   {
-    trPrefix: "/",
-    enPrefix: "/en/",
-    dePrefix: "/de/",
-    enPairs: englishConversionPages,
-    dePairs: germanConversionPages,
-  },
-  {
     trPrefix: "/hesaplayicilar/",
     enPrefix: "/en/calculators/",
     dePrefix: "/de/rechner/",
     enPairs: englishCalculatorPages,
     dePairs: germanCalculatorPages,
+  },
+  {
+    trPrefix: "/",
+    enPrefix: "/en/",
+    dePrefix: "/de/",
+    enPairs: englishConversionPages,
+    dePairs: germanConversionPages,
   },
 ];
 

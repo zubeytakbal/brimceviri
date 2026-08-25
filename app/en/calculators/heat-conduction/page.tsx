@@ -3,9 +3,9 @@ import HeatConductionPage from "../../../components/calculators/HeatConductionPa
 import { buildSiteUrl } from "../../../siteConfig";
 
 export const metadata: Metadata = {
-  title: "Heat Conduction Calculator (Q̇ = k × A × ΔT / L)",
+  title: "Heat Conduction Calculator (Q = k x A x dT / L)",
   description:
-    "Calculate heat-transfer rate, thermal conductivity, area, temperature difference or thickness with Q̇ = k × A × ΔT / L and show the SI equivalent beside the main result.",
+    "Calculate heat-transfer rate, thermal conductivity, area, temperature difference or thickness and show the SI equivalent beside the main result.",
   alternates: {
     canonical: "/en/calculators/heat-conduction",
     languages: {
@@ -15,13 +15,19 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Heat Conduction Calculator (Q̇ = k × A × ΔT / L)",
+    title: "Heat Conduction Calculator (Q = k x A x dT / L)",
     description:
       "Solve conduction heat-transfer rate or its inverse variables with material presets and real unit conversions.",
     url: buildSiteUrl("/en/calculators/heat-conduction"),
     siteName: "BirimCeviri.app",
     locale: "en_US",
     type: "article",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Heat Conduction Calculator (Q = k x A x dT / L)",
+    description:
+      "Solve conduction heat-transfer rate or its inverse variables with material presets and real unit conversions.",
   },
 };
 

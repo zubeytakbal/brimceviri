@@ -7,6 +7,10 @@ import {
   findEnglishCalculatorPageByTurkishSlug,
 } from "./converter/localizedCalculatorPages";
 import {
+  findGermanCalculatorPageByTurkishSlug,
+  germanCalculatorPages,
+} from "./converter/localizedGermanCalculatorPages";
+import {
   englishCategoryPages,
   findEnglishCategoryPageByTurkishSlug,
 } from "./converter/localizedCategoryPages";
@@ -30,6 +34,10 @@ import {
   englishUnitPages,
   findEnglishUnitPageByTurkishSlug,
 } from "./converter/localizedUnitPages";
+import {
+  electricalHubPaths,
+  getElectricalCalculatorPath,
+} from "./converter/engineeringHubs";
 import { unitPages } from "./converter/unitPages";
 import { SITE_LAST_MODIFIED, SITE_URL } from "./siteConfig";
 
@@ -183,6 +191,66 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/kullanim-kosullari`,
         `${baseUrl}/en/terms`,
         `${baseUrl}/de/nutzungsbedingungen`
+      ),
+    },
+    {
+      url: `${baseUrl}/mutfak-olculeri-cevirici`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.75,
+      alternates: languageAlternates(
+        `${baseUrl}/mutfak-olculeri-cevirici`,
+        `${baseUrl}/en/kitchen-measurement-converter`
+      ),
+    },
+    {
+      url: `${baseUrl}/en/kitchen-measurement-converter`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.75,
+      alternates: languageAlternates(
+        `${baseUrl}/mutfak-olculeri-cevirici`,
+        `${baseUrl}/en/kitchen-measurement-converter`
+      ),
+    },
+    {
+      url: `${baseUrl}/tarif-cevirici`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.75,
+      alternates: languageAlternates(
+        `${baseUrl}/tarif-cevirici`,
+        `${baseUrl}/en/recipe-converter`
+      ),
+    },
+    {
+      url: `${baseUrl}/en/recipe-converter`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.75,
+      alternates: languageAlternates(
+        `${baseUrl}/tarif-cevirici`,
+        `${baseUrl}/en/recipe-converter`
+      ),
+    },
+    {
+      url: `${baseUrl}/yuzuk-olcusu-cevirici`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.75,
+      alternates: languageAlternates(
+        `${baseUrl}/yuzuk-olcusu-cevirici`,
+        `${baseUrl}/en/ring-size-converter`
+      ),
+    },
+    {
+      url: `${baseUrl}/en/ring-size-converter`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.75,
+      alternates: languageAlternates(
+        `${baseUrl}/yuzuk-olcusu-cevirici`,
+        `${baseUrl}/en/ring-size-converter`
       ),
     },
   ];
@@ -430,12 +498,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     calculatorPages.map((page) => {
       const englishPage =
         findEnglishCalculatorPageByTurkishSlug(page.slug);
+      const germanPage =
+        findGermanCalculatorPageByTurkishSlug(page.slug);
 
       const turkishUrl =
         `${baseUrl}/hesaplayicilar/${page.slug}`;
 
       const englishUrl = englishPage
         ? `${baseUrl}/en/calculators/${englishPage.slug}`
+        : undefined;
+      const germanUrl = germanPage
+        ? `${baseUrl}/de/rechner/${germanPage.slug}`
         : undefined;
 
       return {
@@ -444,7 +517,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         changeFrequency: "monthly",
         priority: 0.78,
         alternates: englishUrl
-          ? languageAlternates(turkishUrl, englishUrl)
+          ? languageAlternates(turkishUrl, englishUrl, germanUrl)
           : undefined,
       };
     });
@@ -456,6 +529,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
       const englishUrl =
         `${baseUrl}/en/calculators/${page.slug}`;
+      const germanPage =
+        findGermanCalculatorPageByTurkishSlug(page.sourceSlug);
+      const germanUrl = germanPage
+        ? `${baseUrl}/de/rechner/${germanPage.slug}`
+        : undefined;
 
       return {
         url: englishUrl,
@@ -464,7 +542,33 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.78,
         alternates: languageAlternates(
           turkishUrl,
-          englishUrl
+          englishUrl,
+          germanUrl
+        ),
+      };
+    });
+
+  const germanCalculatorRoutes: MetadataRoute.Sitemap =
+    germanCalculatorPages.map((page) => {
+      const turkishUrl =
+        `${baseUrl}/hesaplayicilar/${page.sourceSlug}`;
+      const englishPage = findEnglishCalculatorPageByTurkishSlug(
+        page.sourceSlug
+      );
+      const englishUrl = englishPage
+        ? `${baseUrl}/en/calculators/${englishPage.slug}`
+        : `${baseUrl}/en/engineering-calculators`;
+      const germanUrl = `${baseUrl}/de/rechner/${page.slug}`;
+
+      return {
+        url: germanUrl,
+        lastModified: contentLastModified,
+        changeFrequency: "monthly",
+        priority: 0.78,
+        alternates: languageAlternates(
+          turkishUrl,
+          englishUrl,
+          germanUrl
         ),
       };
     });
@@ -534,6 +638,204 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/muhendislik-hesaplayicilari`,
         `${baseUrl}/en/engineering-calculators`,
         `${baseUrl}/de/ingenieurrechner`
+      ),
+    },
+    {
+      url: `${baseUrl}${electricalHubPaths.tr}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: languageAlternates(
+        `${baseUrl}${electricalHubPaths.tr}`,
+        `${baseUrl}${electricalHubPaths.en}`,
+        `${baseUrl}${electricalHubPaths.de}`
+      ),
+    },
+    {
+      url: `${baseUrl}${electricalHubPaths.en}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: languageAlternates(
+        `${baseUrl}${electricalHubPaths.tr}`,
+        `${baseUrl}${electricalHubPaths.en}`,
+        `${baseUrl}${electricalHubPaths.de}`
+      ),
+    },
+    {
+      url: `${baseUrl}${electricalHubPaths.de}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: languageAlternates(
+        `${baseUrl}${electricalHubPaths.tr}`,
+        `${baseUrl}${electricalHubPaths.en}`,
+        `${baseUrl}${electricalHubPaths.de}`
+      ),
+    },
+    {
+      url: `${baseUrl}${getElectricalCalculatorPath("tr", "kw-to-amper-hesaplama")}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.79,
+      alternates: languageAlternates(
+        `${baseUrl}${getElectricalCalculatorPath("tr", "kw-to-amper-hesaplama")}`,
+        `${baseUrl}${getElectricalCalculatorPath("en", "kw-to-amper-hesaplama")}`,
+        `${baseUrl}${getElectricalCalculatorPath("de", "kw-to-amper-hesaplama")}`
+      ),
+    },
+    {
+      url: `${baseUrl}${getElectricalCalculatorPath("en", "kw-to-amper-hesaplama")}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.79,
+      alternates: languageAlternates(
+        `${baseUrl}${getElectricalCalculatorPath("tr", "kw-to-amper-hesaplama")}`,
+        `${baseUrl}${getElectricalCalculatorPath("en", "kw-to-amper-hesaplama")}`,
+        `${baseUrl}${getElectricalCalculatorPath("de", "kw-to-amper-hesaplama")}`
+      ),
+    },
+    {
+      url: `${baseUrl}${getElectricalCalculatorPath("de", "kw-to-amper-hesaplama")}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.79,
+      alternates: languageAlternates(
+        `${baseUrl}${getElectricalCalculatorPath("tr", "kw-to-amper-hesaplama")}`,
+        `${baseUrl}${getElectricalCalculatorPath("en", "kw-to-amper-hesaplama")}`,
+        `${baseUrl}${getElectricalCalculatorPath("de", "kw-to-amper-hesaplama")}`
+      ),
+    },
+    {
+      url: `${baseUrl}${getElectricalCalculatorPath("tr", "amper-to-kw-hesaplama")}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.79,
+      alternates: languageAlternates(
+        `${baseUrl}${getElectricalCalculatorPath("tr", "amper-to-kw-hesaplama")}`,
+        `${baseUrl}${getElectricalCalculatorPath("en", "amper-to-kw-hesaplama")}`,
+        `${baseUrl}${getElectricalCalculatorPath("de", "amper-to-kw-hesaplama")}`
+      ),
+    },
+    {
+      url: `${baseUrl}${getElectricalCalculatorPath("en", "amper-to-kw-hesaplama")}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.79,
+      alternates: languageAlternates(
+        `${baseUrl}${getElectricalCalculatorPath("tr", "amper-to-kw-hesaplama")}`,
+        `${baseUrl}${getElectricalCalculatorPath("en", "amper-to-kw-hesaplama")}`,
+        `${baseUrl}${getElectricalCalculatorPath("de", "amper-to-kw-hesaplama")}`
+      ),
+    },
+    {
+      url: `${baseUrl}${getElectricalCalculatorPath("de", "amper-to-kw-hesaplama")}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.79,
+      alternates: languageAlternates(
+        `${baseUrl}${getElectricalCalculatorPath("tr", "amper-to-kw-hesaplama")}`,
+        `${baseUrl}${getElectricalCalculatorPath("en", "amper-to-kw-hesaplama")}`,
+        `${baseUrl}${getElectricalCalculatorPath("de", "amper-to-kw-hesaplama")}`
+      ),
+    },
+    {
+      url: `${baseUrl}${getElectricalCalculatorPath("tr", "gerilim-dusumu-hesaplama")}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.79,
+      alternates: languageAlternates(
+        `${baseUrl}${getElectricalCalculatorPath("tr", "gerilim-dusumu-hesaplama")}`,
+        `${baseUrl}${getElectricalCalculatorPath("en", "gerilim-dusumu-hesaplama")}`,
+        `${baseUrl}${getElectricalCalculatorPath("de", "gerilim-dusumu-hesaplama")}`
+      ),
+    },
+    {
+      url: `${baseUrl}${getElectricalCalculatorPath("en", "gerilim-dusumu-hesaplama")}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.79,
+      alternates: languageAlternates(
+        `${baseUrl}${getElectricalCalculatorPath("tr", "gerilim-dusumu-hesaplama")}`,
+        `${baseUrl}${getElectricalCalculatorPath("en", "gerilim-dusumu-hesaplama")}`,
+        `${baseUrl}${getElectricalCalculatorPath("de", "gerilim-dusumu-hesaplama")}`
+      ),
+    },
+    {
+      url: `${baseUrl}${getElectricalCalculatorPath("de", "gerilim-dusumu-hesaplama")}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.79,
+      alternates: languageAlternates(
+        `${baseUrl}${getElectricalCalculatorPath("tr", "gerilim-dusumu-hesaplama")}`,
+        `${baseUrl}${getElectricalCalculatorPath("en", "gerilim-dusumu-hesaplama")}`,
+        `${baseUrl}${getElectricalCalculatorPath("de", "gerilim-dusumu-hesaplama")}`
+      ),
+    },
+    {
+      url: `${baseUrl}${getElectricalCalculatorPath("tr", "kablo-kesiti-hesaplama")}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.79,
+      alternates: languageAlternates(
+        `${baseUrl}${getElectricalCalculatorPath("tr", "kablo-kesiti-hesaplama")}`,
+        `${baseUrl}${getElectricalCalculatorPath("en", "kablo-kesiti-hesaplama")}`,
+        `${baseUrl}${getElectricalCalculatorPath("de", "kablo-kesiti-hesaplama")}`
+      ),
+    },
+    {
+      url: `${baseUrl}${getElectricalCalculatorPath("en", "kablo-kesiti-hesaplama")}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.79,
+      alternates: languageAlternates(
+        `${baseUrl}${getElectricalCalculatorPath("tr", "kablo-kesiti-hesaplama")}`,
+        `${baseUrl}${getElectricalCalculatorPath("en", "kablo-kesiti-hesaplama")}`,
+        `${baseUrl}${getElectricalCalculatorPath("de", "kablo-kesiti-hesaplama")}`
+      ),
+    },
+    {
+      url: `${baseUrl}${getElectricalCalculatorPath("de", "kablo-kesiti-hesaplama")}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.79,
+      alternates: languageAlternates(
+        `${baseUrl}${getElectricalCalculatorPath("tr", "kablo-kesiti-hesaplama")}`,
+        `${baseUrl}${getElectricalCalculatorPath("en", "kablo-kesiti-hesaplama")}`,
+        `${baseUrl}${getElectricalCalculatorPath("de", "kablo-kesiti-hesaplama")}`
+      ),
+    },
+    {
+      url: `${baseUrl}${getElectricalCalculatorPath("tr", "motor-akimi-hesaplama")}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.79,
+      alternates: languageAlternates(
+        `${baseUrl}${getElectricalCalculatorPath("tr", "motor-akimi-hesaplama")}`,
+        `${baseUrl}${getElectricalCalculatorPath("en", "motor-akimi-hesaplama")}`,
+        `${baseUrl}${getElectricalCalculatorPath("de", "motor-akimi-hesaplama")}`
+      ),
+    },
+    {
+      url: `${baseUrl}${getElectricalCalculatorPath("en", "motor-akimi-hesaplama")}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.79,
+      alternates: languageAlternates(
+        `${baseUrl}${getElectricalCalculatorPath("tr", "motor-akimi-hesaplama")}`,
+        `${baseUrl}${getElectricalCalculatorPath("en", "motor-akimi-hesaplama")}`,
+        `${baseUrl}${getElectricalCalculatorPath("de", "motor-akimi-hesaplama")}`
+      ),
+    },
+    {
+      url: `${baseUrl}${getElectricalCalculatorPath("de", "motor-akimi-hesaplama")}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.79,
+      alternates: languageAlternates(
+        `${baseUrl}${getElectricalCalculatorPath("tr", "motor-akimi-hesaplama")}`,
+        `${baseUrl}${getElectricalCalculatorPath("en", "motor-akimi-hesaplama")}`,
+        `${baseUrl}${getElectricalCalculatorPath("de", "motor-akimi-hesaplama")}`
       ),
     },
     {
@@ -607,12 +909,46 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: contentLastModified,
       changeFrequency: "monthly",
       priority: 0.7,
+      alternates: languageAlternates(
+        `${baseUrl}/diger-donusumler`,
+        `${baseUrl}/en/other-conversions`
+      ),
+    },
+    {
+      url: `${baseUrl}/tarihi-olcu-birimleri`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/en/other-conversions`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+      alternates: languageAlternates(
+        `${baseUrl}/diger-donusumler`,
+        `${baseUrl}/en/other-conversions`
+      ),
     },
     {
       url: `${baseUrl}/ayakkabi-numarasi-cevirme`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
       priority: 0.7,
+      alternates: languageAlternates(
+        `${baseUrl}/ayakkabi-numarasi-cevirme`,
+        `${baseUrl}/en/shoe-size-converter`
+      ),
+    },
+    {
+      url: `${baseUrl}/en/shoe-size-converter`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+      alternates: languageAlternates(
+        `${baseUrl}/ayakkabi-numarasi-cevirme`,
+        `${baseUrl}/en/shoe-size-converter`
+      ),
     },
 
     ...turkishCategoryRoutes,
@@ -620,6 +956,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...germanCategoryRoutes,
     ...turkishCalculatorRoutes,
     ...englishCalculatorRoutes,
+    ...germanCalculatorRoutes,
     ...turkishConversionRoutes,
     ...englishConversionRoutes,
     ...germanConversionRoutes,

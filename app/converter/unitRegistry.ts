@@ -127,6 +127,41 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Nautical mile", slug: "nautical-mile" },
     de: { name: "Seemeile", slug: "seemeile" },
   },
+  {
+    id: "arsin",
+    category: "uzunluk",
+    symbol: "arşın",
+    siFactor: 0.68,
+    tr: { name: "Arşın", slug: "arsin" },
+  },
+  {
+    id: "endaze",
+    category: "uzunluk",
+    symbol: "endaze",
+    siFactor: 0.65,
+    tr: { name: "Endaze", slug: "endaze" },
+  },
+  {
+    id: "pous",
+    category: "uzunluk",
+    symbol: "pus",
+    siFactor: 0.3148,
+    tr: { name: "Bizans Ayağı", slug: "bizans-ayagi" },
+  },
+  {
+    id: "orgyia",
+    category: "uzunluk",
+    symbol: "orgyia",
+    siFactor: 1.8888,
+    tr: { name: "Bizans Kulacı", slug: "bizans-kulaci" },
+  },
+  {
+    id: "cig",
+    category: "uzunluk",
+    symbol: "çığ",
+    siFactor: 0.333,
+    tr: { name: "Çığ", slug: "cig" },
+  },
 
   // ---- alan / area / Fläche ----
   {
@@ -348,6 +383,34 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Ounce", slug: "ounce" },
     de: { name: "Unze", slug: "unze" },
     enConversionSlug: "ounces",
+  },
+  {
+    id: "okka",
+    category: "kutle",
+    symbol: "okka",
+    siFactor: 1.282945,
+    tr: { name: "Okka", slug: "okka" },
+  },
+  {
+    id: "dirhem",
+    category: "kutle",
+    symbol: "dirhem",
+    siFactor: 0.0032073625,
+    tr: { name: "Dirhem", slug: "dirhem" },
+  },
+  {
+    id: "litra",
+    category: "kutle",
+    symbol: "litra",
+    siFactor: 0.324,
+    tr: { name: "Bizans Litrası", slug: "bizans-litrasi" },
+  },
+  {
+    id: "ounkia",
+    category: "kutle",
+    symbol: "ounkia",
+    siFactor: 0.027,
+    tr: { name: "Bizans Onsu", slug: "bizans-onsu" },
   },
 
   // ---- yoğunluk / density (engine-only, no public pages) ----

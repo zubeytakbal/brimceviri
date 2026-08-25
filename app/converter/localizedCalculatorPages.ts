@@ -68,6 +68,18 @@ export const englishCalculatorPages: LocalizedCalculatorPage[] = [
     description:
       "Calculate hydrostatic pressure difference, density, depth or gravitational acceleration through SI base units and show the result in a readable engineering scale.",
   },
+  {
+    locale: "en",
+    sourceSlug: "ohm-yasasi",
+    slug: "ohms-law",
+    category: "elektrik_direnc",
+    categoryName: "Electricity",
+    title: "Ohm's Law Calculator",
+    shortTitle: "Ohm's Law",
+    formula: "V = I × R",
+    description:
+      "Calculate voltage, current or resistance with Ohm's law and show the result with its SI equivalent and substituted formula.",
+  },
 ];
 
 export function findEnglishCalculatorPage(slug: string) {

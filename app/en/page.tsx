@@ -30,6 +30,12 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
   },
+  twitter: {
+    card: "summary",
+    title: "Find the unit conversion you need | BirimCeviri.app",
+    description:
+      "Search conversion pages, compare category directories and jump into the exact unit converter you need.",
+  },
 };
 
 export default function EnglishHomePage() {

@@ -176,6 +176,34 @@ const unitDescriptions: Record<string, UnitDescription> = {
     siEquivalent: "1 oz = 28,349523125 g",
     commonUses: "Paketleme, gıda, mücevher dışı hafif ticari ölçüler",
   },
+  "okka": {
+    shortDescription: "Okka (kıyye), Osmanlı döneminde kullanılan geleneksel bir kütle birimidir. 400 dirheme, yani yaklaşık 1282,945 grama eşittir.",
+    historySummary: "Okka, Osmanlı çarşı ve pazarlarında en yaygın kullanılan ağırlık ölçüsüydü; daha büyük ölçüler olan batman ve kantar da okka üzerinden tanımlanırdı. 1931'de yürürlüğe giren Ölçüler ve Ayarlar Kanunu ile okka yürürlükten kaldırılmış, yerini kilograma bırakmıştır.",
+    measurementSystem: "Osmanlı dönemi geleneksel kütle birimi (yürürlükte değil)",
+    siEquivalent: "1 okka = 400 dirhem = 1282,945 g",
+    commonUses: "Osmanlı döneminde çarşı ve pazar alışverişinde ağırlık ölçümü; günümüzde bazı bölgelerde gündelik konuşma dilinde ve tarih araştırmalarında",
+  },
+  "dirhem": {
+    shortDescription: "Dirhem, Osmanlı döneminde kullanılan küçük bir kütle birimidir. Bir okkanın dörtyüzde birine, yaklaşık 3,207 grama eşittir.",
+    historySummary: "Dirhem, kıymetli maden, baharat ve ilaç gibi hassas tartım gerektiren küçük miktarların ölçümünde kullanılırdı; okka ile ondalık değil 400'e bölünen bir ilişkisi vardı. Diğer Osmanlı ölçüleri gibi 1931'deki Ölçüler ve Ayarlar Kanunu ile yürürlükten kalkmıştır.",
+    measurementSystem: "Osmanlı dönemi geleneksel kütle birimi (yürürlükte değil)",
+    siEquivalent: "1 dirhem = 1/400 okka ≈ 3,207 g",
+    commonUses: "Osmanlı döneminde kıymetli maden, baharat ve ilaç gibi küçük miktarların tartımı; günümüzde tarih araştırmaları ve eski metinlerin yorumlanması",
+  },
+  "litra": {
+    shortDescription: "Bizans litrası (litra), Bizans İmparatorluğu'nda kullanılan temel kütle birimidir. Metrik karşılığı yaklaşık 324 gramdır.",
+    historySummary: "Litra, Roma librası geleneğinden gelir ve Bizans döneminde 12 ounkia'ya (Bizans onsu) bölünürdü; zaman içinde ağırlığı 324 gramdan 319 grama kadar hafifçe değişmiştir. Mal tartımında ve kıymetli metal ölçümünde kullanılırdı.",
+    measurementSystem: "Bizans dönemi geleneksel kütle birimi (yürürlükte değil)",
+    siEquivalent: "1 litra = 12 ounkia ≈ 324 g",
+    commonUses: "Bizans döneminde ticaret ve kıymetli metal tartımı; günümüzde Bizans tarihi ve nümizmatik araştırmaları",
+  },
+  "ounkia": {
+    shortDescription: "Bizans onsu (ounkia), Bizans litrasının on ikide birine eşit bir kütle birimidir. Metrik karşılığı yaklaşık 27 gramdır.",
+    historySummary: "Ounkia, Roma unciası geleneğinden gelir ve Bizans'ta litranın alt biriminden olarak günlük tartımlarda kullanılırdı. Modern İngiliz/Amerikan avoirdupois onsundan (28,35 g) farklı bir değere sahiptir.",
+    measurementSystem: "Bizans dönemi geleneksel kütle birimi (yürürlükte değil)",
+    siEquivalent: "1 ounkia = 1/12 litra ≈ 27 g",
+    commonUses: "Bizans döneminde günlük tartım ve küçük miktarların ölçümü; günümüzde Bizans tarihi araştırmaları",
+  },
   "metre-saniye": {
     shortDescription: "Metre/saniye, hızın SI türetilmiş birimidir. Mühendislik ve fizikte temel referans kabul edilir.",
     historySummary: "Metre ve saniyenin birleşiminden türeyen bu gösterim, modern bilimsel hız ölçümünün standart dilidir.",
@@ -596,6 +624,41 @@ const unitDescriptions: Record<string, UnitDescription> = {
     siEquivalent: "1 deniz mili = 1852 m",
     commonUses: "Denizcilik ve havacılıkta mesafe ölçümü, seyir hesapları ve knot (deniz mili/saat) hız birimi",
   },
+  "arsin": {
+    shortDescription: "Arşın, Osmanlı döneminde kullanılan geleneksel bir uzunluk birimidir. En yaygın biçimi olan çarşı arşını 68 santimetreye karşılık gelir.",
+    historySummary: "Arşın'ın kullanım alanına göre birden fazla türü vardı: ticarette kullanılan çarşı arşını 68 cm, inşaatta kullanılan mimar arşını (zira-i mimari) ise 24 parmak üzerinden yaklaşık 75,77 cm olarak tanımlanıyordu. 1869'daki metrik ıslahat çalışmalarıyla zirâ-i a'şârî adlı ondalık bir uzunluk ölçüsü kabul edilmiş, 1931'de yürürlüğe giren Ölçüler ve Ayarlar Kanunu ile arşın tamamen yürürlükten kaldırılıp yerini metreye bırakmıştır.",
+    measurementSystem: "Osmanlı dönemi geleneksel uzunluk birimi (yürürlükte değil)",
+    siEquivalent: "1 arşın (çarşı arşını) = 0,68 m",
+    commonUses: "Osmanlı döneminde kumaş, arazi ve inşaat ölçümü; günümüzde tarih araştırmaları ve eski metinlerin yorumlanması",
+  },
+  "endaze": {
+    shortDescription: "Endaze, Osmanlı döneminde özellikle kumaş ölçümünde kullanılan bir uzunluk birimidir. Metrik karşılığı 65 santimetredir.",
+    historySummary: "Endaze, her biri dört parmak genişliğinde dört kabzadan oluşan bir ölçü birimiydi ve arşından farklı, daha çok tekstil ve manifatura ticaretinde tercih edilirdi. Diğer Osmanlı ölçüleri gibi 1931'deki Ölçüler ve Ayarlar Kanunu ile yürürlükten kalkmış, yerini metreye bırakmıştır.",
+    measurementSystem: "Osmanlı dönemi geleneksel uzunluk birimi (yürürlükte değil)",
+    siEquivalent: "1 endaze = 0,65 m",
+    commonUses: "Osmanlı döneminde kumaş ve manifatura ölçümü; günümüzde tarih araştırmaları ve eski metinlerin yorumlanması",
+  },
+  "pous": {
+    shortDescription: "Bizans ayağı (pous), Bizans İmparatorluğu'nda kullanılan temel uzunluk birimidir. Metrik karşılığı yaklaşık 31,48 santimetredir.",
+    historySummary: "Pous, Antik Yunan uzunluk sisteminden Bizans'a geçmiş ve İstanbul'un 1453'te fethine kadar mimari ile günlük ölçümde kullanılmaya devam etmiştir. Altı pous bir orgyia'ya (Bizans kulacı) eşitti.",
+    measurementSystem: "Bizans dönemi geleneksel uzunluk birimi (yürürlükte değil)",
+    siEquivalent: "1 pous ≈ 0,3148 m",
+    commonUses: "Bizans döneminde mimari, arazi ve günlük mesafe ölçümü; günümüzde Bizans tarihi ve arkeolojisi araştırmaları",
+  },
+  "orgyia": {
+    shortDescription: "Bizans kulacı (orgyia), Bizans döneminde kullanılan ve altı ayak (pous) uzunluğundaki bir mesafe birimidir. Metrik karşılığı yaklaşık 188,88 santimetredir.",
+    historySummary: "Orgyia, Antik Yunan kökenli olup kollar iki yana açıldığında parmak uçları arasındaki mesafeye dayanır; Türkçedeki kulaç birimiyle aynı mantıkla tanımlanmıştır. Bizans'ta arazi ve deniz mesafelerinin ölçümünde kullanılmıştır.",
+    measurementSystem: "Bizans dönemi geleneksel uzunluk birimi (yürürlükte değil)",
+    siEquivalent: "1 orgyia = 6 pous ≈ 1,8888 m",
+    commonUses: "Bizans döneminde arazi ve deniz mesafesi ölçümü; günümüzde Bizans tarihi ve arkeolojisi araştırmaları",
+  },
+  "cig": {
+    shortDescription: "Çığ, eski Türklerin kullandığı bir uzunluk birimidir. Kaşgarlı Mahmud'un Dîvânu Lugâti't-Türk adlı eserine göre metrik karşılığı yaklaşık 33,3 santimetredir.",
+    historySummary: "Çığ, Kaşgarlı Mahmud'un 11. yüzyılda yazdığı Dîvânu Lugâti't-Türk'te 'Türklerin uzunluk ölçüsü' olarak tanımlanmış ve dönemin Arap ölçüsünün üçte ikisine karşılık geldiği belirtilmiştir. Çince kökenli olduğu, Köktürkler döneminde Çin ile ticari ilişkiler üzerinden dile girdiği düşünülür.",
+    measurementSystem: "Eski Türk (Köktürk dönemi) geleneksel uzunluk birimi (yürürlükte değil)",
+    siEquivalent: "1 çığ ≈ 0,333 m",
+    commonUses: "Eski Türklerde kumaş ve mesafe ölçümü; günümüzde Türk dili tarihi ve Dîvânu Lugâti't-Türk araştırmaları",
+  },
   "santimetrekare": {
     shortDescription: "Santimetrekare, metrekarenin on binde birine eşit küçük bir alan birimidir. Küçük yüzeylerin ve kesit alanlarının ifadesinde kullanılır.",
     historySummary: "Santimetrekare, metrik sistemin ondalık yapısı içinde küçük ölçekli alanların pratik biçimde ifade edilmesi için yaygınlaşmıştır.",
@@ -731,7 +794,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
 };
 
-const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit","kilogram-metre-saniye","newton-saniye","pascal-saniye","santipoise","mikrometre","nanometre","deniz-mili","santimetrekare","milimetrekare","kilometrekare","incare","akre","donum","dekar","santimetrekup","fitkup","inckup","galon","bit","bayt","kilobayt","megabayt","gigabayt","terabayt","petabayt","kibibayt","mebibayt","gibibayt","tebibayt","ohm","kiloohm","megaohm","farad","milifarad","mikrofarad","nanofarad","pikofarad","henry","milihenry","mikrohenry","coulomb","milicoulomb","mikrocoulomb","nanocoulomb","ayar-24","ayar-22","ayar-18","ayar-14"];
+const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","okka","dirhem","bizans-litrasi","bizans-onsu","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit","kilogram-metre-saniye","newton-saniye","pascal-saniye","santipoise","mikrometre","nanometre","deniz-mili","arsin","endaze","bizans-ayagi","bizans-kulaci","cig","santimetrekare","milimetrekare","kilometrekare","incare","akre","donum","dekar","santimetrekup","fitkup","inckup","galon","bit","bayt","kilobayt","megabayt","gigabayt","terabayt","petabayt","kibibayt","mebibayt","gibibayt","tebibayt","ohm","kiloohm","megaohm","farad","milifarad","mikrofarad","nanofarad","pikofarad","henry","milihenry","mikrohenry","coulomb","milicoulomb","mikrocoulomb","nanocoulomb","ayar-24","ayar-22","ayar-18","ayar-14"];
 
 export const unitPages: UnitPage[] = unitRegistry
   .filter((entry) => entry.tr && unitDescriptions[entry.id])

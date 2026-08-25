@@ -845,6 +845,264 @@ export const englishCategoryPages: LocalizedCategoryPage[] = [
       },
     ],
   },
+  {
+    locale: "en",
+    slug: "data-storage",
+    sourceSlug: "veri",
+    category: "veri",
+    title: "Data Storage Conversions",
+    description:
+      "Convert between bytes, kilobytes, megabytes, gigabytes and terabytes, and review the difference between decimal and binary storage scales.",
+    introduction: [
+      "Data storage units describe how much digital information can be stored or transmitted. They are used in software, hardware, networking and consumer devices.",
+      "Storage values can be expressed with decimal prefixes such as kilobyte and gigabyte, or with binary prefixes such as kibibyte and gibibyte when exact powers of two matter.",
+    ],
+    facts: [
+      { label: "Physical quantity group", value: "Digital information storage" },
+      { label: "Base unit", value: "Byte" },
+      { label: "Binary building block", value: "Bit" },
+      { label: "Common prefixes", value: "kilo, mega, giga, tera and binary IEC forms" },
+      { label: "Typical use", value: "Files, memory, storage devices and data transfer" },
+    ],
+    sections: [
+      {
+        title: "Bits and bytes",
+        paragraphs: [
+          "A bit is the smallest binary unit and can represent one of two states. A byte is the standard practical storage unit and is typically made of eight bits.",
+          "Operating systems, file systems and network tools often show capacities in bytes and their prefixed forms.",
+        ],
+      },
+      {
+        title: "Decimal and binary prefixes",
+        paragraphs: [
+          "Decimal storage units scale by powers of 1000: 1 kilobyte equals 1000 bytes and 1 gigabyte equals 1,000,000,000 bytes.",
+          "Binary IEC units scale by powers of 1024: 1 kibibyte equals 1024 bytes and 1 gibibyte equals 1024 mebibytes. This is why advertised drive capacity and operating-system values may not match exactly.",
+        ],
+      },
+      {
+        title: "Where storage conversions are used",
+        paragraphs: [
+          "These conversions are useful when comparing disk sizes, memory specifications, file sizes and network transfer totals.",
+          "They also help explain why software downloads, SSD labels and RAM values can appear under slightly different units depending on the standard being used.",
+        ],
+      },
+    ],
+  },
+  {
+    locale: "en",
+    slug: "resistance",
+    sourceSlug: "direnc",
+    category: "elektrik_direnc",
+    title: "Resistance Conversions",
+    description:
+      "Convert between ohms, kiloohms and megaohms, and review how resistance is used in circuit design and Ohm's law calculations.",
+    introduction: [
+      "Electrical resistance describes how strongly a material or component opposes current flow. It is a core quantity in circuit analysis.",
+      "The ohm is the SI derived unit of resistance, while kiloohm and megaohm are widely used to express practical component values more clearly.",
+    ],
+    facts: [
+      { label: "Physical quantity", value: "Electrical resistance" },
+      { label: "SI unit", value: "Ohm" },
+      { label: "SI symbol", value: "Ω" },
+      { label: "Core relationship", value: "R = V / I" },
+      { label: "Typical use", value: "Circuit design, resistor values and electrical checks" },
+    ],
+    sections: [
+      {
+        title: "What is electrical resistance?",
+        paragraphs: [
+          "Resistance measures how much a component limits the movement of electric charge. Higher resistance means less current for the same applied voltage.",
+          "Resistors, sensors, heating elements and many semiconductor circuits depend on resistance values for proper operation.",
+        ],
+      },
+      {
+        title: "Ohms, kiloohms and megaohms",
+        paragraphs: [
+          "One kiloohm equals 1000 ohms, and one megaohm equals 1,000,000 ohms. These decimal prefixes make resistor and insulation values easier to read.",
+          "Small signal circuits often use kiloohms, while leakage paths and insulation measurements may be discussed in megaohms.",
+        ],
+      },
+      {
+        title: "Resistance in circuit work",
+        paragraphs: [
+          "Resistance appears directly in Ohm's law, which links voltage, current and resistance in a simple linear circuit model.",
+          "Converting resistance units helps when comparing component labels, reading schematics and checking whether a circuit is in a practical operating range.",
+        ],
+      },
+    ],
+  },
+  {
+    locale: "en",
+    slug: "capacitance",
+    sourceSlug: "kapasitans",
+    category: "kapasitans",
+    title: "Capacitance Conversions",
+    description:
+      "Convert between farads, millifarads, microfarads, nanofarads and picofarads, and review how capacitance is used in electronic circuits.",
+    introduction: [
+      "Capacitance describes the ability of a component to store electric charge and energy in an electric field. Capacitors use this property in almost every branch of electronics.",
+      "The farad is the SI unit of capacitance, but real circuits often use much smaller prefixed units such as microfarads, nanofarads and picofarads.",
+    ],
+    facts: [
+      { label: "Physical quantity", value: "Capacitance" },
+      { label: "SI unit", value: "Farad" },
+      { label: "SI symbol", value: "F" },
+      { label: "Common practical units", value: "µF, nF and pF" },
+      { label: "Typical use", value: "Filters, timing circuits, power smoothing and signal coupling" },
+    ],
+    sections: [
+      {
+        title: "What is capacitance?",
+        paragraphs: [
+          "Capacitance tells you how much charge is stored per unit of voltage: C = Q / V. A higher capacitance stores more charge at the same voltage.",
+          "Capacitors are used to smooth supply rails, block DC, pass AC signals and create timing or resonance behavior in circuits.",
+        ],
+      },
+      {
+        title: "Farads and prefixed capacitor values",
+        paragraphs: [
+          "One farad is a very large unit in most electronic contexts. That is why microfarads, nanofarads and picofarads are much more common in design work.",
+          "For example, electrolytic capacitors are often rated in microfarads, while small ceramic capacitors may be specified in nanofarads or picofarads.",
+        ],
+      },
+      {
+        title: "Why capacitance conversions matter",
+        paragraphs: [
+          "Reading component codes, comparing schematics and substituting parts often requires quick movement between capacitor units.",
+          "Accurate conversion is especially helpful in filter design, signal conditioning and any circuit where timing or frequency response depends on capacitance.",
+        ],
+      },
+    ],
+  },
+  {
+    locale: "en",
+    slug: "inductance",
+    sourceSlug: "enduktans",
+    category: "enduktans",
+    title: "Inductance Conversions",
+    description:
+      "Convert between henries, millihenries and microhenries, and review how inductance is used in coils, filters and power electronics.",
+    introduction: [
+      "Inductance describes how strongly a conductor or coil resists changes in current by generating a magnetic field. It is a fundamental quantity in electromagnetics and circuit design.",
+      "The henry is the SI derived unit of inductance, while millihenries and microhenries are common in practical electronics and power applications.",
+    ],
+    facts: [
+      { label: "Physical quantity", value: "Inductance" },
+      { label: "SI unit", value: "Henry" },
+      { label: "SI symbol", value: "H" },
+      { label: "Associated effect", value: "Magnetic energy storage and current-change resistance" },
+      { label: "Typical use", value: "Coils, transformers, filters and switching circuits" },
+    ],
+    sections: [
+      {
+        title: "What is inductance?",
+        paragraphs: [
+          "Inductance measures how much voltage is induced when current changes over time. A larger inductance produces a stronger opposition to rapid current change.",
+          "This effect is central to coils, chokes, transformers and many energy-conversion circuits.",
+        ],
+      },
+      {
+        title: "Henries, millihenries and microhenries",
+        paragraphs: [
+          "One millihenry equals 0.001 henry, and one microhenry equals 0.000001 henry. These scaled units are far more practical for most real inductors.",
+          "Small signal and RF inductors often use microhenries, while larger coils and some filters may be expressed in millihenries.",
+        ],
+      },
+      {
+        title: "Inductance in engineering practice",
+        paragraphs: [
+          "Inductance values are important in filter design, switching regulators, motor drives and transformer calculations.",
+          "Quick unit conversion helps when comparing datasheets, choosing replacement components and checking whether a design is using the intended order of magnitude.",
+        ],
+      },
+    ],
+  },
+  {
+    locale: "en",
+    slug: "electric-charge",
+    sourceSlug: "elektrik-yuku",
+    category: "elektrik_yuk",
+    title: "Electric Charge Conversions",
+    description:
+      "Convert between coulombs, millicoulombs, microcoulombs and nanocoulombs, and see how electric charge is used in batteries, capacitors and electrostatics.",
+    introduction: [
+      "Electric charge is one of the basic quantities in electromagnetism. It describes the amount of charge carried by particles, stored in capacitors or transferred in circuits.",
+      "The coulomb is the SI unit of electric charge, while smaller prefixed forms are common in instrumentation, capacitor calculations and electrostatic examples.",
+    ],
+    facts: [
+      { label: "Physical quantity", value: "Electric charge" },
+      { label: "SI unit", value: "Coulomb" },
+      { label: "SI symbol", value: "C" },
+      { label: "Core relationship", value: "Q = I × t" },
+      { label: "Typical use", value: "Capacitors, electrostatics and transient current calculations" },
+    ],
+    sections: [
+      {
+        title: "What is electric charge?",
+        paragraphs: [
+          "Electric charge is the property that causes electromagnetic interaction. In circuits, it can be treated as the quantity moved by current over time.",
+          "The total transferred charge depends on both the current level and how long that current flows.",
+        ],
+      },
+      {
+        title: "Coulombs and smaller charge units",
+        paragraphs: [
+          "One coulomb is a large practical unit for many low-energy electronic situations, so millicoulombs, microcoulombs and nanocoulombs are often easier to use.",
+          "These smaller units appear naturally in capacitor problems, sensor interfaces and electrostatic examples where absolute charge values are modest.",
+        ],
+      },
+      {
+        title: "Where charge conversions are useful",
+        paragraphs: [
+          "Charge conversions help when interpreting capacitor behavior, integrating current over time and comparing transient electrical effects.",
+          "They also provide a bridge between current-based circuit measurements and stored-energy or pulse-based calculations.",
+        ],
+      },
+    ],
+  },
+  {
+    locale: "en",
+    slug: "gold-karat",
+    sourceSlug: "altin-ayar",
+    category: "altin_ayar",
+    title: "Gold Karat Conversions",
+    description:
+      "Convert between 24K, 22K, 18K and 14K gold by pure-gold content, and review how karat values are used in jewelry and material valuation.",
+    introduction: [
+      "Gold karat values describe the purity of a gold alloy. Higher karat means a higher proportion of pure gold in the final material.",
+      "Converting between karat systems is useful when comparing jewelry, estimating pure-gold content and understanding how alloy composition affects color, strength and value.",
+    ],
+    facts: [
+      { label: "Physical quantity group", value: "Gold purity by karat" },
+      { label: "Reference purity", value: "24K = pure gold basis" },
+      { label: "Purity expression", value: "Karat fraction out of 24 parts" },
+      { label: "Typical use", value: "Jewelry, valuation and alloy comparison" },
+      { label: "Common values", value: "24K, 22K, 18K and 14K" },
+    ],
+    sections: [
+      {
+        title: "What does karat mean?",
+        paragraphs: [
+          "Karat expresses how many of 24 parts are pure gold. For example, 18K means 18 parts pure gold and 6 parts alloying metals.",
+          "This ratio affects not only price, but also hardness, wear resistance and visual appearance.",
+        ],
+      },
+      {
+        title: "Comparing 24K, 22K, 18K and 14K",
+        paragraphs: [
+          "24K represents the pure-gold reference, while 22K remains very high in gold content but includes a small alloy fraction for improved handling.",
+          "18K and 14K contain less pure gold, but they are often preferred for everyday jewelry because they can be more durable and better suited to different finishes and colors.",
+        ],
+      },
+      {
+        title: "Why karat conversions matter",
+        paragraphs: [
+          "When a known mass is converted from one karat grade to another, the pure-gold portion stays conceptually central while the alloy proportion changes.",
+          "These conversions are useful for pricing, comparing jewelry specifications and understanding what a labeled karat value means in physical gold content.",
+        ],
+      },
+    ],
+  },
 ];
 
 export function findEnglishCategoryPage(slug: string) {

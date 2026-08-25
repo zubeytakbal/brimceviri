@@ -3,9 +3,9 @@ import HeatEnergyPage from "../../../components/calculators/HeatEnergyPage";
 import { buildSiteUrl } from "../../../siteConfig";
 
 export const metadata: Metadata = {
-  title: "Heat Energy Calculator (Q = m × c × ΔT)",
+  title: "Heat Energy Calculator (Q = m x c x dT)",
   description:
-    "Calculate heat energy, mass, specific heat or temperature difference with Q = m × c × ΔT and view the result with an SI equivalent and a readable unit.",
+    "Calculate heat energy, mass, specific heat or temperature difference and view the result with an SI equivalent and a readable unit.",
   alternates: {
     canonical: "/en/calculators/heat-energy",
     languages: {
@@ -15,13 +15,19 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Heat Energy Calculator (Q = m × c × ΔT)",
+    title: "Heat Energy Calculator (Q = m x c x dT)",
     description:
       "Solve heat energy or its inverse variables with real unit conversions and SI-based reporting.",
     url: buildSiteUrl("/en/calculators/heat-energy"),
     siteName: "BirimCeviri.app",
     locale: "en_US",
     type: "article",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Heat Energy Calculator (Q = m x c x dT)",
+    description:
+      "Solve heat energy or its inverse variables with real unit conversions and SI-based reporting.",
   },
 };
 

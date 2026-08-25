@@ -563,7 +563,7 @@ export default async function EnglishUnitInformationPage({
                 href={`/birimler/${unitPage.sourceSlug}`}
                 hrefLang="tr"
               >
-                Türkçe sürümü görüntüle
+                View the Turkish version
               </Link>
 
               {germanPage && (

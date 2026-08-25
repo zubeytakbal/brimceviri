@@ -113,7 +113,7 @@ const pageCopy: Record<CalculatorLocale, PageCopy> = {
   tr: {
     breadcrumbs: [
       { label: "Ana Sayfa", href: "/" },
-      { label: "Hesaplayıcılar" },
+      { label: "Hesaplayıcılar", href: "/muhendislik-hesaplayicilari" },
       { label: "Reynolds Sayısı Hesaplayıcısı" },
     ],
     breadcrumbLabel: "Sayfa yolu",
@@ -224,6 +224,10 @@ const pageCopy: Record<CalculatorLocale, PageCopy> = {
         label: "Hidrostatik Basınç Hesaplayıcısı",
         href: "/hesaplayicilar/hidrostatik-basinc",
       },
+      {
+        label: "Mühendislik Hesaplayıcıları merkezi",
+        href: "/muhendislik-hesaplayicilari",
+      },
     ],
     relatedConversions: [
       { label: "Santimetre → İnç", href: "/santimetre-inc" },
@@ -233,7 +237,7 @@ const pageCopy: Record<CalculatorLocale, PageCopy> = {
   en: {
     breadcrumbs: [
       { label: "Home", href: "/en" },
-      { label: "Calculators" },
+      { label: "Calculators", href: "/en/engineering-calculators" },
       { label: "Reynolds Number Calculator" },
     ],
     breadcrumbLabel: "Breadcrumb",
@@ -344,6 +348,10 @@ const pageCopy: Record<CalculatorLocale, PageCopy> = {
         label: "Hydrostatic Pressure Calculator",
         href: "/en/calculators/hydrostatic-pressure",
       },
+      {
+        label: "Engineering Calculators hub",
+        href: "/en/engineering-calculators",
+      },
     ],
     relatedConversions: [
       { label: "Centimeters to Inches", href: "/en/centimeters-to-inches" },
@@ -353,7 +361,7 @@ const pageCopy: Record<CalculatorLocale, PageCopy> = {
   de: {
     breadcrumbs: [
       { label: "Startseite", href: "/de" },
-      { label: "Rechner" },
+      { label: "Rechner", href: "/de/ingenieurrechner" },
       { label: "Reynolds-Zahl-Rechner" },
     ],
     breadcrumbLabel: "Breadcrumb",
@@ -459,10 +467,14 @@ const pageCopy: Record<CalculatorLocale, PageCopy> = {
     relatedCalculators: [
       {
         label: "Wärmeleitungsrechner",
-        href: "/de/ingenieurrechner",
+        href: "/de/rechner/waermeleitung",
       },
       {
         label: "Hydrostatischer-Druck-Rechner",
+        href: "/de/rechner/hydrostatischer-druck",
+      },
+      {
+        label: "Ingenieurrechner-Zentrum",
         href: "/de/ingenieurrechner",
       },
     ],

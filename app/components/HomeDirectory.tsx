@@ -7,6 +7,7 @@ import {
   Barbell,
   Clock,
   Coins,
+  CookingPot,
   Cylinder,
   Drop,
   Fire,
@@ -15,8 +16,10 @@ import {
   Hammer,
   HardDrives,
   Lightning,
+  NotePencil,
   Plug,
   Ruler,
+  Scroll,
   Sneaker,
   Square,
   Thermometer,
@@ -62,7 +65,10 @@ type HomeCategoryIconName =
   | "isi"
   | "elektrik"
   | "ayakkabi"
-  | "altin_ayar";
+  | "mutfak"
+  | "tarif"
+  | "altin_ayar"
+  | "tarihi";
 
 type HomeCategoryCard = {
   id: string;
@@ -369,9 +375,15 @@ function HomeCategoryIcon({
                           ? Fire
                           : kind === "ayakkabi"
                             ? Sneaker
-                            : kind === "altin_ayar"
-                              ? Coins
-                              : Plug;
+                            : kind === "mutfak"
+                              ? CookingPot
+                              : kind === "tarif"
+                                ? NotePencil
+                                : kind === "altin_ayar"
+                                  ? Coins
+                                  : kind === "tarihi"
+                                    ? Scroll
+                                    : Plug;
 
   return (
     <span className={`home-category-icon-box is-${kind}`} aria-hidden="true">
@@ -540,6 +552,69 @@ function createHomeData(locale: Locale): HomeData {
                 id: "ayakkabi-kadin",
                 href: "/ayakkabi-numarasi-cevirme",
                 label: "Kadın numara tablosu",
+              },
+            ],
+          },
+          {
+            id: "mutfak",
+            iconKey: "mutfak" as const,
+            name: "Mutfak Ölçüleri",
+            symbol: "g",
+            description:
+              "Su bardağı, yemek kaşığı ve çay kaşığının gram karşılığını malzemeye göre hesaplayın; un, şeker, bal ve daha fazlası için ölçü tablosu.",
+            href: "/mutfak-olculeri-cevirici",
+            links: [
+              {
+                id: "mutfak-un-gram",
+                href: "/mutfak-olculeri-cevirici",
+                label: "Bardak → Gram",
+              },
+              {
+                id: "mutfak-kasik-gram",
+                href: "/mutfak-olculeri-cevirici",
+                label: "Yemek Kaşığı → Gram",
+              },
+            ],
+          },
+          {
+            id: "tarif",
+            iconKey: "tarif" as const,
+            name: "Tarif Çevirici",
+            symbol: "2x",
+            description:
+              "Tarifini yapıştır, çarpanı seç: tüm malzeme miktarları ölçeklenir ve bilinen malzemelerde gram karşılığı otomatik hesaplanır.",
+            href: "/tarif-cevirici",
+            links: [
+              {
+                id: "tarif-olcekle",
+                href: "/tarif-cevirici",
+                label: "Tarifi Ölçekle",
+              },
+              {
+                id: "tarif-gram",
+                href: "/tarif-cevirici",
+                label: "Bardağı Grama Çevir",
+              },
+            ],
+          },
+          {
+            id: "tarihi",
+            iconKey: "tarihi" as const,
+            name: "Tarihi Ölçü Birimleri",
+            symbol: "🏛",
+            description:
+              "Bizans, Osmanlı ve eski Türk dönemlerinden kalma arşın, okka, dirhem, endaze ve Bizans ayağı gibi birimleri metreye ve grama çevirin.",
+            href: "/tarihi-olcu-birimleri",
+            links: [
+              {
+                id: "tarihi-arsin-metre",
+                href: "/arsin-metre",
+                label: "Arşın → Metre",
+              },
+              {
+                id: "tarihi-okka-gram",
+                href: "/okka-gram",
+                label: "Okka → Gram",
               },
             ],
           },

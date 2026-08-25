@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { getElectricalHubPath } from "../converter/engineeringHubs";
 import { DecorativeIcon, getCalculatorIconName } from "./siteIcons";
 
 type Locale = "tr" | "en" | "de";
@@ -17,9 +18,18 @@ type EngineeringGuideLink = {
 };
 
 type EngineeringGroup = {
+  id: string;
   title: string;
   description: string;
   tools: EngineeringTool[];
+};
+
+type EngineeringFocusCard = {
+  href: string;
+  title: string;
+  description: string;
+  iconName: "energy" | "pressure" | "temperature";
+  meta: string;
 };
 
 type EngineeringHubContent = {
@@ -30,6 +40,9 @@ type EngineeringHubContent = {
   }>;
   title: string;
   description: string;
+  focusTitle: string;
+  focusDescription: string;
+  focusCards: EngineeringFocusCard[];
   introTitle: string;
   introBody: string;
   groups: EngineeringGroup[];
@@ -51,100 +64,148 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
     breadcrumbAriaLabel: "Sayfa yolu",
     breadcrumbs: [
       { label: "Ana Sayfa", href: "/" },
-      { label: "Mühendislik Hesaplayıcıları" },
+      { label: "M\u00fchendislik Hesaplay\u0131c\u0131lar\u0131" },
     ],
-    title: "Mühendislik Hesaplayıcıları",
+    title: "M\u00fchendislik Hesaplay\u0131c\u0131lar\u0131",
     description:
-      "Teknik birim dönüşümleri, ısı transferi, akışkanlar ve basınç hesapları için kullanılan mühendislik araçlarını tek merkezde inceleyin.",
-    introTitle: "Teknik hesaplamalar için düzenli bir merkez",
+      "Birim d\u00f6n\u00fc\u015f\u00fcmleriyle birlikte elektrik, \u0131s\u0131 transferi, ak\u0131\u015fkanlar ve bas\u0131n\u00e7 hesaplar\u0131n\u0131 konu k\u00fcmeleri halinde sunan m\u00fchendislik merkezini inceleyin.",
+    focusTitle: "M\u00fchendislik b\u00f6l\u00fcmleri",
+    focusDescription:
+      "M\u00fchendislik hesaplay\u0131c\u0131lar\u0131n\u0131 art\u0131k tek liste yerine konu merkezleri halinde b\u00fcy\u00fct\u00fcyoruz. Elektrik hesaplar\u0131 ilk aktif alt merkez olarak ayr\u0131ld\u0131; di\u011fer gruplar da ayn\u0131 yap\u0131yla geni\u015fleyecek.",
+    focusCards: [
+      {
+        href: getElectricalHubPath("tr"),
+        title: "Elektrik Hesaplar\u0131",
+        description:
+          "Kablo kesiti, gerilim d\u00fc\u015f\u00fcm\u00fc, g\u00fc\u00e7-ak\u0131m d\u00f6n\u00fc\u015f\u00fcmleri ve motor \u00f6n hesaplar\u0131 i\u00e7in ayr\u0131 merkez.",
+        iconName: "energy",
+        meta: "Yeni alt merkez",
+      },
+      {
+        href: "#basinc-ve-akiskanlar",
+        title: "Bas\u0131n\u00e7 ve Ak\u0131\u015fkanlar",
+        description:
+          "Bas\u0131n\u00e7, hidrostatik y\u00fck ve boru i\u00e7i ak\u0131\u015f kontrol\u00fc i\u00e7in mevcut ara\u00e7 grubu.",
+        iconName: "pressure",
+        meta: "Mevcut grup",
+      },
+      {
+        href: "#isi-transferi",
+        title: "Is\u0131 Transferi",
+        description:
+          "Is\u0131 enerjisi ve \u0131s\u0131 iletimi hesaplar\u0131n\u0131 birlikte toplayan termal ara\u00e7 grubu.",
+        iconName: "temperature",
+        meta: "Mevcut grup",
+      },
+    ],
+    introTitle: "Teknik hesaplamalar i\u00e7in k\u00fcmeli bir merkez",
     introBody:
-      "Bu sayfa, mevcut mühendislik hesaplayıcılarını konu başlıklarına göre toplar. Basınç ve akışkanlar mekaniği araçlarıyla ısı transferi hesaplarını aynı yapıda karşılaştırabilir, ilgili formülü görebilir ve doğrudan hesaplayıcıya geçebilirsiniz.",
+      "Bu sayfa, mevcut m\u00fchendislik hesaplay\u0131c\u0131lar\u0131n\u0131 konu ba\u015fl\u0131klar\u0131na g\u00f6re toplar ve yeni alt merkezlere ge\u00e7i\u015f noktas\u0131 olarak davran\u0131r. Kullan\u0131c\u0131 \u00f6nce do\u011fru m\u00fchendislik alan\u0131n\u0131, sonra tekil hesab\u0131 se\u00e7ebilir; b\u00f6ylece i\u00e7erik mimarisi hem kullan\u0131c\u0131 hem arama motoru i\u00e7in daha net hale gelir.",
     groups: [
       {
-        title: "Basınç ve Akışkanlar",
+        id: "basinc-ve-akiskanlar",
+        title: "Bas\u0131n\u00e7 ve Ak\u0131\u015fkanlar",
         description:
-          "Basınç, hidrostatik yük ve boru içi akış davranışı için kullanılan temel hesaplayıcılar.",
+          "Bas\u0131n\u00e7, hidrostatik y\u00fck ve boru i\u00e7i ak\u0131\u015f davran\u0131\u015f\u0131 i\u00e7in kullan\u0131lan temel hesaplay\u0131c\u0131lar.",
         tools: [
           {
             slug: "basinc-kuvvet-alan",
             href: "/hesaplayicilar/basinc-kuvvet-alan",
-            title: "Basınç, Kuvvet ve Alan",
+            title: "Bas\u0131n\u00e7, Kuvvet ve Alan",
             formula: "P = F / A",
             description:
-              "Basıncı, kuvveti veya alanı gerçek birim dönüşümleriyle hesaplayın.",
+              "Bas\u0131nc\u0131, kuvveti veya alan\u0131 ger\u00e7ek birim d\u00f6n\u00fc\u015f\u00fcmleriyle hesaplay\u0131n.",
           },
           {
             slug: "hidrostatik-basinc",
             href: "/hesaplayicilar/hidrostatik-basinc",
-            title: "Hidrostatik Basınç",
-            formula: "ΔP = ρgh",
+            title: "Hidrostatik Bas\u0131n\u00e7",
+            formula: "\u0394P = \u03c1gh",
             description:
-              "Yoğunluk, derinlik ve yerçekimi ivmesine göre hidrostatik basınç farkını bulun.",
+              "Yo\u011funluk, derinlik ve yer\u00e7ekimi ivmesine g\u00f6re hidrostatik bas\u0131n\u00e7 fark\u0131n\u0131 bulun.",
           },
           {
             slug: "reynolds-sayisi",
             href: "/hesaplayicilar/reynolds-sayisi",
-            title: "Reynolds Sayısı",
-            formula: "Re = ρ × v × D / μ",
+            title: "Reynolds Say\u0131s\u0131",
+            formula: "Re = \u03c1 x v x D / \u03bc",
             description:
-              "Akış hızı ve karakteristik boyut ile yaklaşık akış rejimini değerlendirin.",
+              "Ak\u0131\u015f h\u0131z\u0131 ve karakteristik boyut ile yakla\u015f\u0131k ak\u0131\u015f rejimini de\u011ferlendirin.",
           },
         ],
       },
       {
-        title: "Isı Transferi",
+        id: "isi-transferi",
+        title: "Is\u0131 Transferi",
         description:
-          "Enerji miktarı, malzeme iletkenliği ve sıcaklık farkı üzerinden çalışan ısıl hesap araçları.",
+          "Enerji miktar\u0131, malzeme iletkenli\u011fi ve s\u0131cakl\u0131k fark\u0131 \u00fczerinden \u00e7al\u0131\u015fan \u0131s\u0131l hesap ara\u00e7lar\u0131.",
         tools: [
           {
             slug: "isi-enerjisi",
             href: "/hesaplayicilar/isi-enerjisi",
-            title: "Isı Enerjisi",
-            formula: "Q = m × c × ΔT",
+            title: "Is\u0131 Enerjisi",
+            formula: "Q = m x c x \u0394T",
             description:
-              "Isı enerjisini, kütleyi, özgül ısıyı veya sıcaklık farkını SI tabanında hesaplayın.",
+              "Is\u0131 enerjisini, k\u00fctleyi, \u00f6zg\u00fcl \u0131s\u0131y\u0131 veya s\u0131cakl\u0131k fark\u0131n\u0131 SI taban\u0131nda hesaplay\u0131n.",
           },
           {
             slug: "isi-iletimi",
             href: "/hesaplayicilar/isi-iletimi",
-            title: "Isı İletimi",
-            formula: "Q̇ = k × A × ΔT / L",
+            title: "Is\u0131 \u0130letimi",
+            formula: "Qdot = k x A x \u0394T / L",
             description:
-              "Malzeme iletkenliği, alan ve kalınlık üzerinden ısı geçiş hızını karşılaştırın.",
+              "Malzeme iletkenli\u011fi, alan ve kal\u0131nl\u0131k \u00fczerinden \u0131s\u0131 ge\u00e7i\u015f h\u0131z\u0131n\u0131 kar\u015f\u0131la\u015ft\u0131r\u0131n.",
           },
         ],
       },
       {
+        id: "elektrik",
         title: "Elektrik",
         description:
-          "Gerilim, akım ve direnç arasındaki temel ilişkiyi kullanan devre hesaplayıcıları.",
+          "Gerilim, ak\u0131m ve diren\u00e7 ili\u015fkileriyle ba\u015flayan ve ayr\u0131 elektrik hesaplar\u0131 merkezine do\u011fru geni\u015fleyen devre hesaplay\u0131c\u0131lar\u0131.",
         tools: [
+          {
+            slug: "kw-to-amper-hesaplama",
+            href: "/muhendislik-hesaplayicilari/elektrik-hesaplari/kw-to-amper-hesaplama",
+            title: "kW to Amper",
+            formula: "I = P / (\u221a3 x V x cos phi x eta)",
+            description:
+              "Uc faz, tek faz ve DC secenekleriyle gucu yaklasik hat akimina cevirin.",
+          },
+          {
+            slug: "amper-to-kw-hesaplama",
+            href: "/muhendislik-hesaplayicilari/elektrik-hesaplari/amper-to-kw-hesaplama",
+            title: "Amper to kW",
+            formula: "P = \u221a3 x V x I x cos phi x eta",
+            description:
+              "Hat akimindan uc faz, tek faz ve DC secenekleriyle yaklasik gucu hesaplayin.",
+          },
           {
             slug: "ohm-yasasi",
             href: "/hesaplayicilar/ohm-yasasi",
-            title: "Ohm Yasası",
-            formula: "V = I × R",
+            title: "Ohm Yasas\u0131",
+            formula: "V = I x R",
             description:
-              "Gerilimi, akımı veya direnci Ohm Yasası ile hesaplayın.",
+              "Gerilimi, ak\u0131m\u0131 veya direnci Ohm Yasas\u0131 ile hesaplay\u0131n.",
           },
         ],
       },
     ],
-    howToTitle: "Bu hesaplayıcılar nasıl kullanılır?",
+    howToTitle: "Bu hesaplay\u0131c\u0131lar nas\u0131l kullan\u0131l\u0131r?",
     howToSteps: [
-      "Önce hangi büyüklüğü çözeceğinizi seçin ve yalnızca bilinen değerleri girin.",
-      "Her girişte uygun birimi belirleyin; araçlar tüm değerleri önce SI tabanına çevirerek hesaplar.",
-      "Ana sonucu, formülde yerine koyulmuş ifadeyi ve SI eşdeğerini birlikte kontrol ederek doğrulama yapın.",
+      "\u00d6nce hangi b\u00fcy\u00fckl\u00fc\u011f\u00fc \u00e7\u00f6zece\u011finizi se\u00e7in ve yaln\u0131zca bilinen de\u011ferleri girin.",
+      "Her giri\u015fte uygun birimi belirleyin; ara\u00e7lar t\u00fcm de\u011ferleri \u00f6nce SI taban\u0131na \u00e7evirerek hesaplar.",
+      "Ana sonucu, form\u00fclde yerine koyulmu\u015f ifadeyi ve SI e\u015fde\u011ferini birlikte kontrol ederek do\u011frulama yap\u0131n.",
     ],
-    guidesTitle: "İlgili birim rehberleri",
+    guidesTitle: "\u0130lgili birim rehberleri",
     guidesDescription:
-      "Temel mühendislik birimlerinin tanımını, sembollerini ve kullanım alanlarını görmek için rehber sayfalarını açabilirsiniz.",
+      "Temel m\u00fchendislik birimlerinin tan\u0131m\u0131n\u0131, sembollerini ve kullan\u0131m alanlar\u0131n\u0131 g\u00f6rmek i\u00e7in rehber sayfalar\u0131n\u0131 a\u00e7abilirsiniz.",
     guideLinks: [
       { href: "/birimler/pascal", label: "Pascal (Pa) rehberi" },
       { href: "/birimler/metre", label: "Metre (m) rehberi" },
       { href: "/birimler/kilogram", label: "Kilogram (kg) rehberi" },
     ],
-    alternateTitle: "Diğer diller",
+    alternateTitle: "Di\u011fer diller",
     alternateLink: {
       href: "/en/engineering-calculators",
       hrefLang: "en",
@@ -159,12 +220,42 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
     ],
     title: "Engineering Calculators",
     description:
-      "Browse engineering tools for technical unit conversions, heat transfer, fluid flow and pressure calculations in one focused hub.",
-    introTitle: "A focused hub for practical engineering tools",
+      "Browse a broader engineering center that combines unit-aware electrical, heat-transfer, fluid-flow and pressure tools under clearer topic clusters.",
+    focusTitle: "Engineering sections",
+    focusDescription:
+      "We are expanding the engineering area from a flat list into topic hubs. Electrical Calculators is the first dedicated sub-hub, while the other groups remain accessible from this parent center.",
+    focusCards: [
+      {
+        href: getElectricalHubPath("en"),
+        title: "Electrical Calculators",
+        description:
+          "Dedicated sub-hub for cable sizing, voltage-drop checks, power-current conversion and related electrical project tools.",
+        iconName: "energy",
+        meta: "New sub-hub",
+      },
+      {
+        href: "#pressure-and-fluids",
+        title: "Pressure and Fluids",
+        description:
+          "Current tool group for pressure relationships, hydrostatic loading and internal-flow screening.",
+        iconName: "pressure",
+        meta: "Current group",
+      },
+      {
+        href: "#heat-transfer",
+        title: "Heat Transfer",
+        description:
+          "Current thermal group for heat-energy and conduction calculations.",
+        iconName: "temperature",
+        meta: "Current group",
+      },
+    ],
+    introTitle: "A parent hub for clustered engineering tools",
     introBody:
-      "This page groups the current engineering calculators by topic so people and search engines can discover them from one place. You can compare formulas, review a short description and open the exact calculator without leaving the technical flow of the site.",
+      "This page groups the current engineering calculators by topic and now acts as the parent entry point for dedicated sub-hubs. People can choose the right engineering branch first, then move into the exact calculation flow they need without browsing a generic mixed list.",
     groups: [
       {
+        id: "pressure-and-fluids",
         title: "Pressure and Fluids",
         description:
           "Core tools for pressure relationships, hydrostatic loading and internal flow screening.",
@@ -181,7 +272,7 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
             slug: "hydrostatic-pressure",
             href: "/en/calculators/hydrostatic-pressure",
             title: "Hydrostatic Pressure",
-            formula: "ΔP = ρgh",
+            formula: "\u0394P = \u03c1gh",
             description:
               "Find hydrostatic pressure difference from density, depth and gravitational acceleration.",
           },
@@ -189,13 +280,14 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
             slug: "reynolds-number",
             href: "/en/calculators/reynolds-number",
             title: "Reynolds Number",
-            formula: "Re = ρ × v × D / μ",
+            formula: "Re = \u03c1 x v x D / \u03bc",
             description:
               "Estimate the flow regime from density, velocity, characteristic size and viscosity.",
           },
         ],
       },
       {
+        id: "heat-transfer",
         title: "Heat Transfer",
         description:
           "Thermal tools for stored energy, conduction rate and material comparison.",
@@ -204,7 +296,7 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
             slug: "heat-energy",
             href: "/en/calculators/heat-energy",
             title: "Heat Energy",
-            formula: "Q = m × c × ΔT",
+            formula: "Q = m x c x \u0394T",
             description:
               "Solve for heat energy, mass, specific heat or temperature difference on an SI basis.",
           },
@@ -212,9 +304,41 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
             slug: "heat-conduction",
             href: "/en/calculators/heat-conduction",
             title: "Heat Conduction",
-            formula: "Q̇ = k × A × ΔT / L",
+            formula: "Qdot = k x A x \u0394T / L",
             description:
               "Compare conduction rate from conductivity, area, temperature difference and thickness.",
+          },
+        ],
+      },
+      {
+        id: "electricity",
+        title: "Electricity",
+        description:
+          "Practical circuit tools built around voltage, current and resistance, with a dedicated electrical sub-hub now being expanded.",
+        tools: [
+          {
+            slug: "kw-to-amper-hesaplama",
+            href: "/en/engineering-calculators/electrical-calculators/kw-to-ampere-calculator",
+            title: "kW to Ampere",
+            formula: "I = P / (\u221a3 x V x cos phi x eta)",
+            description:
+              "Convert power into approximate line current for three-phase, single-phase and DC systems.",
+          },
+          {
+            slug: "amper-to-kw-hesaplama",
+            href: "/en/engineering-calculators/electrical-calculators/ampere-to-kw-calculator",
+            title: "Ampere to kW",
+            formula: "P = \u221a3 x V x I x cos phi x eta",
+            description:
+              "Convert line current into approximate power for three-phase, single-phase and DC systems.",
+          },
+          {
+            slug: "ohms-law",
+            href: "/en/calculators/ohms-law",
+            title: "Ohm's Law",
+            formula: "V = I x R",
+            description:
+              "Calculate voltage, current or resistance for basic electrical circuit checks.",
           },
         ],
       },
@@ -248,29 +372,59 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
     ],
     title: "Ingenieurrechner",
     description:
-      "Bündeln Sie technische Rechner für Druck, Strömung, Wärmeübertragung und Einheitenumrechnungen auf einer fokussierten Übersichtsseite.",
-    introTitle: "Ein kompakter Einstieg in technische Rechenwerkzeuge",
+      "Erkunden Sie ein ausgebautes Ingenieurzentrum, das elektrische Werkzeuge, Warmeubertragung, Stromung, Druck und technische Einheiten in klaren Themenclustern verbindet.",
+    focusTitle: "Ingenieurbereiche",
+    focusDescription:
+      "Der Ingenieurbereich wird von einer flachen Liste zu Themenzentren ausgebaut. Elektrorechner ist das erste eigene Teilzentrum; die anderen Gruppen bleiben weiterhin direkt erreichbar.",
+    focusCards: [
+      {
+        href: getElectricalHubPath("de"),
+        title: "Elektrorechner",
+        description:
+          "Eigenes Teilzentrum fur Kabeldimensionierung, Spannungsfall und Leistungs-Strom-Umrechnung.",
+        iconName: "energy",
+        meta: "Neues Teilzentrum",
+      },
+      {
+        href: "#druck-und-stromung",
+        title: "Druck und Stromung",
+        description:
+          "Aktuelle Werkzeuge fur Druckbeziehungen, hydrostatische Lasten und Stromungsprufungen.",
+        iconName: "pressure",
+        meta: "Aktuelle Gruppe",
+      },
+      {
+        href: "#warmeubertragung",
+        title: "Warmeubertragung",
+        description:
+          "Aktuelle thermische Gruppe fur Warmeenergie und Warmeleitung.",
+        iconName: "temperature",
+        meta: "Aktuelle Gruppe",
+      },
+    ],
+    introTitle: "Ein Elternzentrum fur technische Rechencluster",
     introBody:
-      "Diese Seite fasst die aktuellen Ingenieurrechner nach Themenfeldern zusammen. So lassen sich Formeln vergleichen, Einsatzfälle schneller einordnen und die passenden Werkzeuge direkt öffnen.",
+      "Diese Seite fasst die aktuellen Ingenieurrechner nach Themenfeldern zusammen und dient jetzt als ubergeordnetes Zentrum fur eigene Teil-Hubs. So konnen Nutzer zuerst das passende Fachgebiet und danach den genauen Rechenweg auswahlen.",
     groups: [
       {
-        title: "Druck und Strömung",
+        id: "druck-und-stromung",
+        title: "Druck und Stromung",
         description:
-          "Werkzeuge für Druckbeziehungen, hydrostatische Lasten und erste Strömungsbewertungen in Leitungen.",
+          "Werkzeuge fur Druckbeziehungen, hydrostatische Lasten und erste Stromungsbewertungen in Leitungen.",
         tools: [
           {
             slug: "druck-kraft-flaeche",
             href: "/de/rechner/druck-kraft-flaeche",
-            title: "Druck, Kraft und Fläche",
+            title: "Druck, Kraft und Flache",
             formula: "P = F / A",
             description:
-              "Berechnen Sie Druck, Kraft oder Fläche mit technischen Einheiten und SI-Bezug.",
+              "Berechnen Sie Druck, Kraft oder Flache mit technischen Einheiten und SI-Bezug.",
           },
           {
             slug: "hydrostatischer-druck",
             href: "/de/rechner/hydrostatischer-druck",
             title: "Hydrostatischer Druck",
-            formula: "ΔP = ρgh",
+            formula: "\u0394P = \u03c1gh",
             description:
               "Berechnen Sie hydrostatische Druckdifferenz, Dichte, Tiefe oder Erdbeschleunigung.",
           },
@@ -278,45 +432,78 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
             slug: "reynolds-zahl",
             href: "/de/rechner/reynolds-zahl",
             title: "Reynolds-Zahl",
-            formula: "Re = ρ × v × D / μ",
+            formula: "Re = \u03c1 x v x D / \u03bc",
             description:
-              "Bewerten Sie das Strömungsregime über Dichte, Geschwindigkeit, Durchmesser und Viskosität.",
+              "Bewerten Sie das Stromungsregime uber Dichte, Geschwindigkeit, Durchmesser und Viskositat.",
           },
         ],
       },
       {
-        title: "Wärmeübertragung",
+        id: "warmeubertragung",
+        title: "Warmeubertragung",
         description:
-          "Werkzeuge für gespeicherte Wärmeenergie, Wärmeleitung und thermische Materialvergleiche.",
+          "Werkzeuge fur gespeicherte Warmeenergie, Warmeleitung und thermische Materialvergleiche.",
         tools: [
           {
             slug: "waermeenergie",
             href: "/de/rechner/waermeenergie",
-            title: "Wärmeenergie",
-            formula: "Q = m × c × ΔT",
+            title: "Warmeenergie",
+            formula: "Q = m x c x \u0394T",
             description:
-              "Berechnen Sie Wärmeenergie, Masse, spezifische Wärmekapazität oder Temperaturdifferenz.",
+              "Berechnen Sie Warmeenergie, Masse, spezifische Warmekapazitat oder Temperaturdifferenz.",
           },
           {
             slug: "waermeleitung",
             href: "/de/rechner/waermeleitung",
-            title: "Wärmeleitung",
-            formula: "Q̇ = k × A × ΔT / L",
+            title: "Warmeleitung",
+            formula: "Qdot = k x A x \u0394T / L",
             description:
-              "Vergleichen Sie Wärmestrom aus Leitfähigkeit, Fläche, Temperaturdifferenz und Schichtdicke.",
+              "Vergleichen Sie Warmestrom aus Leitfahigkeit, Flache, Temperaturdifferenz und Schichtdicke.",
+          },
+        ],
+      },
+      {
+        id: "elektrizitat",
+        title: "Elektrizitat",
+        description:
+          "Werkzeuge fur Spannung, Strom und Widerstand, erganzt durch ein neues eigenes Teilzentrum fur Elektrorechner.",
+        tools: [
+          {
+            slug: "kw-to-amper-hesaplama",
+            href: "/de/ingenieurrechner/elektrorechner/kw-zu-ampere-rechner",
+            title: "kW-zu-Ampere",
+            formula: "I = P / (\u221a3 x V x cos phi x eta)",
+            description:
+              "Wandeln Sie Leistung fur Dreiphasen-, Einphasen- und DC-Systeme in einen naherungsweisen Leitungsstrom um.",
+          },
+          {
+            slug: "amper-to-kw-hesaplama",
+            href: "/de/ingenieurrechner/elektrorechner/ampere-zu-kw-rechner",
+            title: "Ampere-zu-kW",
+            formula: "P = \u221a3 x V x I x cos phi x eta",
+            description:
+              "Wandeln Sie Leitungsstrom fur Dreiphasen-, Einphasen- und DC-Systeme in eine naherungsweise Leistung um.",
+          },
+          {
+            slug: "ohms-law",
+            href: "/de/rechner/ohms-law",
+            title: "Ohmsches Gesetz",
+            formula: "V = I x R",
+            description:
+              "Berechnen Sie Spannung, Strom oder Widerstand fur grundlegende Elektrokontrollen.",
           },
         ],
       },
     ],
     howToTitle: "Wie verwendet man diese Rechner?",
     howToSteps: [
-      "Wählen Sie zuerst die gesuchte Zielgröße und tragen Sie nur die bekannten Werte ein.",
-      "Legen Sie für jeden Eingabewert die richtige Einheit fest; alle Werkzeuge rechnen intern zuerst auf SI um.",
-      "Prüfen Sie Hauptresultat, eingesetzte Formel und SI-Äquivalent gemeinsam, um Plausibilitätsfehler schnell zu erkennen.",
+      "Wahlen Sie zuerst die gesuchte Zielgrosse und tragen Sie nur die bekannten Werte ein.",
+      "Legen Sie fur jeden Eingabewert die richtige Einheit fest; alle Werkzeuge rechnen intern zuerst auf SI um.",
+      "Prufen Sie Hauptresultat, eingesetzte Formel und SI-Aquivalent gemeinsam, um Plausibilitatsfehler schnell zu erkennen.",
     ],
-    guidesTitle: "Passende Einheitenleitfäden",
+    guidesTitle: "Passende Einheitenleitfaden",
     guidesDescription:
-      "Wenn Sie Definitionen, Symbole oder Hintergrundwissen zu den verwendeten Basisgrößen brauchen, öffnen Sie die passenden Einheitenleitfäden.",
+      "Wenn Sie Definitionen, Symbole oder Hintergrundwissen zu den verwendeten Basisgrossen brauchen, offnen Sie die passenden Einheitenleitfaden.",
     guideLinks: [
       { href: "/de/einheiten/pascal", label: "Pascal (Pa) Leitfaden" },
       { href: "/de/einheiten/meter", label: "Meter (m) Leitfaden" },
@@ -352,7 +539,7 @@ export default function EngineeringHubPage({
         <nav className="breadcrumbs" aria-label={content.breadcrumbAriaLabel}>
           {content.breadcrumbs.map((item, index) => (
             <span key={`${item.label}-${index}`}>
-              {index > 0 ? <span aria-hidden="true"> › </span> : null}
+              {index > 0 ? <span aria-hidden="true"> &rsaquo; </span> : null}
               {item.href ? <Link href={item.href}>{item.label}</Link> : <span>{item.label}</span>}
             </span>
           ))}
@@ -365,12 +552,34 @@ export default function EngineeringHubPage({
 
         <div className="unit-page-content">
           <section className="conversion-section">
+            <h2>{content.focusTitle}</h2>
+            <p>{content.focusDescription}</p>
+
+            <ul className="category-calculator-list engineering-hub-list">
+              {content.focusCards.map((card) => (
+                <li key={card.href}>
+                  <Link className="category-calculator-card" href={card.href}>
+                    <span className="engineering-hub-card-header">
+                      <DecorativeIcon name={card.iconName} size={28} />
+                      <span className="category-tool-title">
+                        <strong>{card.title}</strong>
+                      </span>
+                    </span>
+                    <span className="engineering-status-pill">{card.meta}</span>
+                    <span>{card.description}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section className="conversion-section">
             <h2>{content.introTitle}</h2>
             <p>{content.introBody}</p>
           </section>
 
           {content.groups.map((group) => (
-            <section className="conversion-section" key={group.title}>
+            <section className="conversion-section" id={group.id} key={group.title}>
               <h2>{group.title}</h2>
               <p>{group.description}</p>
 

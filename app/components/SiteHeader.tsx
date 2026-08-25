@@ -233,10 +233,30 @@ function SiteHeaderNavigation({
     ];
   });
 
-  if (locale === "tr") {
+  if (locale === "tr" || locale === "en") {
     categoryLinks.push({
-      href: "/ayakkabi-numarasi-cevirme",
-      label: "Ayakkabı Numarası",
+      href:
+        locale === "en"
+          ? "/en/shoe-size-converter"
+          : "/ayakkabi-numarasi-cevirme",
+      label:
+        locale === "en"
+          ? "Shoe Size"
+          : "Ayakkabı Numarası",
+    });
+    categoryLinks.push({
+      href:
+        locale === "en"
+          ? "/en/kitchen-measurement-converter"
+          : "/mutfak-olculeri-cevirici",
+      label:
+        locale === "en"
+          ? "Kitchen Measures"
+          : "Mutfak Ölçüleri",
+    });
+    categoryLinks.push({
+      href: locale === "en" ? "/en/recipe-converter" : "/tarif-cevirici",
+      label: locale === "en" ? "Recipe Converter" : "Tarif Çevirici",
     });
   }
 

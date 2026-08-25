@@ -109,7 +109,7 @@ const pageCopy: Record<CalculatorLocale, PageCopy> = {
   tr: {
     breadcrumbs: [
       { label: "Ana Sayfa", href: "/" },
-      { label: "Hesaplayıcılar" },
+      { label: "Hesaplayıcılar", href: "/muhendislik-hesaplayicilari" },
       { label: "Isı Enerjisi Hesaplayıcısı" },
     ],
     breadcrumbLabel: "Sayfa yolu",
@@ -211,6 +211,10 @@ const pageCopy: Record<CalculatorLocale, PageCopy> = {
         label: "Reynolds Sayısı Hesaplayıcısı",
         href: "/hesaplayicilar/reynolds-sayisi",
       },
+      {
+        label: "Mühendislik Hesaplayıcıları merkezi",
+        href: "/muhendislik-hesaplayicilari",
+      },
     ],
     relatedConversions: [
       { label: "Kilogram → Gram", href: "/kilogram-gram" },
@@ -220,7 +224,7 @@ const pageCopy: Record<CalculatorLocale, PageCopy> = {
   en: {
     breadcrumbs: [
       { label: "Home", href: "/en" },
-      { label: "Calculators" },
+      { label: "Calculators", href: "/en/engineering-calculators" },
       { label: "Heat Energy Calculator" },
     ],
     breadcrumbLabel: "Breadcrumb",
@@ -322,6 +326,10 @@ const pageCopy: Record<CalculatorLocale, PageCopy> = {
         label: "Reynolds Number Calculator",
         href: "/en/calculators/reynolds-number",
       },
+      {
+        label: "Engineering Calculators hub",
+        href: "/en/engineering-calculators",
+      },
     ],
     relatedConversions: [
       { label: "Kilograms to Grams", href: "/en/kilograms-to-grams" },
@@ -331,7 +339,7 @@ const pageCopy: Record<CalculatorLocale, PageCopy> = {
   de: {
     breadcrumbs: [
       { label: "Startseite", href: "/de" },
-      { label: "Rechner" },
+      { label: "Rechner", href: "/de/ingenieurrechner" },
       { label: "Wärmeenergie-Rechner" },
     ],
     breadcrumbLabel: "Breadcrumb",
@@ -426,10 +434,14 @@ const pageCopy: Record<CalculatorLocale, PageCopy> = {
     relatedCalculators: [
       {
         label: "Wärmeleitungsrechner",
-        href: "/de/ingenieurrechner",
+        href: "/de/rechner/waermeleitung",
       },
       {
         label: "Reynolds-Zahl-Rechner",
+        href: "/de/rechner/reynolds-zahl",
+      },
+      {
+        label: "Ingenieurrechner-Zentrum",
         href: "/de/ingenieurrechner",
       },
     ],

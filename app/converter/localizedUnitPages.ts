@@ -1,5 +1,6 @@
 import type { UnitPage } from "./unitPages";
 import { KILOGRAM_FORCE_PER_SQUARE_CENTIMETRE_UNIT } from "./engineeringUnits";
+import { unitRegistry, type UnitRegistryEntry } from "./unitRegistry";
 
 export type LocalizedUnitPage = UnitPage & {
   locale: "en";
@@ -7,7 +8,7 @@ export type LocalizedUnitPage = UnitPage & {
   categoryName: string;
 };
 
-export const englishUnitPages: LocalizedUnitPage[] = [
+const curatedEnglishUnitPages: LocalizedUnitPage[] = [
   {
     locale: "en",
     sourceSlug: "metre",
@@ -960,6 +961,270 @@ export const englishUnitPages: LocalizedUnitPage[] = [
     siEquivalent: "1 cP = 0.001 Pa·s",
     commonUses: "Motor and lubricant viscosity grades, paint and coatings, food science",
   },
+];
+
+type GeneratedCategoryMeta = {
+  categoryName: string;
+  referenceSymbol?: string;
+  measurementSystem: string;
+  commonUses: string;
+};
+
+const generatedCategoryMeta: Record<string, GeneratedCategoryMeta> = {
+  uzunluk: {
+    categoryName: "Length",
+    referenceSymbol: "m",
+    measurementSystem:
+      "Metric, imperial and internationally standardized length usage",
+    commonUses:
+      "Distance, dimensions, navigation and physical measurement",
+  },
+  alan: {
+    categoryName: "Area",
+    referenceSymbol: "m²",
+    measurementSystem:
+      "Metric, imperial and land-measurement area usage",
+    commonUses:
+      "Land records, floor area, geometry and engineering sections",
+  },
+  hacim: {
+    categoryName: "Volume",
+    referenceSymbol: "m³",
+    measurementSystem:
+      "Metric, imperial and practical fluid-capacity usage",
+    commonUses:
+      "Storage, liquids, containers, engines and process vessels",
+  },
+  basinc: {
+    categoryName: "Pressure",
+    referenceSymbol: "Pa",
+    measurementSystem:
+      "SI, metric and practical engineering pressure usage",
+    commonUses:
+      "Process systems, service gauges, scientific work and field measurements",
+  },
+  veri: {
+    categoryName: "Data Storage",
+    measurementSystem:
+      "Digital information units using decimal and binary scaling",
+    commonUses:
+      "Files, memory, storage devices, software downloads and data transfer",
+  },
+  elektrik_direnc: {
+    categoryName: "Resistance",
+    referenceSymbol: "Ω",
+    measurementSystem:
+      "Electrical engineering and circuit-analysis usage",
+    commonUses:
+      "Resistors, circuit design, diagnostics and electrical calculations",
+  },
+  kapasitans: {
+    categoryName: "Capacitance",
+    referenceSymbol: "F",
+    measurementSystem:
+      "Electrical engineering and electronics usage",
+    commonUses:
+      "Capacitors, filters, timing circuits and power-supply smoothing",
+  },
+  enduktans: {
+    categoryName: "Inductance",
+    referenceSymbol: "H",
+    measurementSystem:
+      "Electrical engineering and electromagnetic circuit usage",
+    commonUses:
+      "Inductors, filters, transformers and switching circuits",
+  },
+  elektrik_yuk: {
+    categoryName: "Electric Charge",
+    referenceSymbol: "C",
+    measurementSystem:
+      "Electromagnetism and circuit-analysis usage",
+    commonUses:
+      "Capacitors, electrostatics, transient calculations and charge flow",
+  },
+  altin_ayar: {
+    categoryName: "Gold Karat",
+    measurementSystem:
+      "Jewelry purity grading based on 24-part karat reference",
+    commonUses:
+      "Jewelry, valuation, alloy comparison and gold-purity checks",
+  },
+};
+
+function formatGeneratedFactor(value: number) {
+  if (!Number.isFinite(value)) {
+    return "";
+  }
+
+  if (value !== 0 && (Math.abs(value) >= 1_000_000 || Math.abs(value) < 0.000001)) {
+    return value.toExponential(6);
+  }
+
+  return Number(value.toPrecision(12)).toLocaleString("en-US", {
+    maximumFractionDigits: 12,
+  });
+}
+
+function buildGeneratedShortDescription(
+  entry: UnitRegistryEntry,
+  categoryName: string
+) {
+  const name = entry.en?.name ?? entry.tr?.name ?? entry.id;
+
+  if (entry.category === "veri") {
+    return `${name} is a digital storage unit used to express file size, memory or device capacity.`;
+  }
+
+  if (entry.category === "altin_ayar") {
+    return `${name} is a gold-purity grade used to compare karat-based gold content in jewelry and alloyed materials.`;
+  }
+
+  if (entry.category === "elektrik_direnc") {
+    return `${name} is an electrical resistance unit used in circuit calculations and component ratings.`;
+  }
+
+  if (entry.category === "kapasitans") {
+    return `${name} is a capacitance unit used in electronic circuits, filters and energy-storage components.`;
+  }
+
+  if (entry.category === "enduktans") {
+    return `${name} is an inductance unit used in coils, filters, transformers and magnetic circuit calculations.`;
+  }
+
+  if (entry.category === "elektrik_yuk") {
+    return `${name} is an electric-charge unit used in capacitor, electrostatic and current-over-time calculations.`;
+  }
+
+  if (entry.category === "basinc") {
+    return `${name} is a pressure unit used to express mechanical, atmospheric or process pressure values.`;
+  }
+
+  if (entry.category === "uzunluk") {
+    return `${name} is a length unit used to express distance, size or travel range in practical measurement work.`;
+  }
+
+  if (entry.category === "alan") {
+    return `${name} is an area unit used to describe surface size, land coverage or geometric sections.`;
+  }
+
+  if (entry.category === "hacim") {
+    return `${name} is a volume unit used for liquids, containers, storage and technical capacity calculations.`;
+  }
+
+  return `${name} is a unit used in ${categoryName.toLowerCase()} conversions and practical measurement work.`;
+}
+
+function buildGeneratedHistorySummary(
+  entry: UnitRegistryEntry,
+  categoryName: string
+) {
+  const name = entry.en?.name ?? entry.tr?.name ?? entry.id;
+
+  if (entry.category === "veri") {
+    return `${name} became widely used as digital systems needed clearer ways to describe file size, memory capacity and storage allocation.`;
+  }
+
+  if (entry.category === "altin_ayar") {
+    return `${name} belongs to the traditional karat system, which became established in jewelry trade as a practical way to describe relative gold purity.`;
+  }
+
+  if (entry.category === "elektrik_direnc") {
+    return `${name} became standard as electrical theory and component manufacturing matured into practical circuit engineering.`;
+  }
+
+  if (
+    entry.category === "kapasitans" ||
+    entry.category === "enduktans" ||
+    entry.category === "elektrik_yuk"
+  ) {
+    return `${name} became common through the growth of electrical measurement, electronics and standardized component design.`;
+  }
+
+  return `${name} became established as a practical ${categoryName.toLowerCase()} unit in technical, commercial or scientific use.`;
+}
+
+function buildGeneratedSiEquivalent(
+  entry: UnitRegistryEntry,
+  meta: GeneratedCategoryMeta
+) {
+  const symbol = entry.displaySymbol ?? entry.symbol;
+
+  if (entry.category === "altin_ayar" && entry.siFactor !== undefined) {
+    return `Reference purity factor used in the converter: ${formatGeneratedFactor(
+      entry.siFactor
+    )}`;
+  }
+
+  if (entry.category === "veri" && entry.siFactor !== undefined) {
+    return `Reference relationship used in the converter: 1 ${symbol} = ${formatGeneratedFactor(
+      entry.siFactor
+    )} bit`;
+  }
+
+  if (entry.siFactor !== undefined && meta.referenceSymbol) {
+    return `1 ${symbol} = ${formatGeneratedFactor(entry.siFactor)} ${meta.referenceSymbol}`;
+  }
+
+  return "Reference relationship defined by the converter dataset";
+}
+
+function buildGeneratedEnglishUnitPage(
+  entry: UnitRegistryEntry
+): LocalizedUnitPage | null {
+  if (!entry.tr || !entry.en) {
+    return null;
+  }
+
+  const meta = generatedCategoryMeta[entry.category];
+
+  if (!meta) {
+    return null;
+  }
+
+  const symbol = entry.displaySymbol ?? entry.symbol;
+
+  return {
+    locale: "en",
+    sourceSlug: entry.tr.slug,
+    slug: entry.en.slug,
+    category: entry.category,
+    categoryName: meta.categoryName,
+    unit: entry.symbol,
+    name: entry.en.name,
+    symbol,
+    shortDescription: buildGeneratedShortDescription(
+      entry,
+      meta.categoryName
+    ),
+    historySummary: buildGeneratedHistorySummary(
+      entry,
+      meta.categoryName
+    ),
+    measurementSystem: meta.measurementSystem,
+    siEquivalent: buildGeneratedSiEquivalent(entry, meta),
+    commonUses: meta.commonUses,
+  };
+}
+
+const curatedSourceSlugs = new Set(
+  curatedEnglishUnitPages.map((page) => page.sourceSlug)
+);
+
+const generatedEnglishUnitPages: LocalizedUnitPage[] = unitRegistry
+  .filter(
+    (entry) =>
+      entry.tr &&
+      entry.en &&
+      !curatedSourceSlugs.has(entry.tr.slug)
+  )
+  .map(buildGeneratedEnglishUnitPage)
+  .filter(
+    (page): page is LocalizedUnitPage => page !== null
+  );
+
+export const englishUnitPages: LocalizedUnitPage[] = [
+  ...curatedEnglishUnitPages,
+  ...generatedEnglishUnitPages,
 ];
 
 export function findEnglishUnitPage(

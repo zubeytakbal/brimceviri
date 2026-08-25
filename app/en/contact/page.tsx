@@ -27,6 +27,12 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
   },
+  twitter: {
+    card: "summary",
+    title: `Contact | ${SITE_NAME}`,
+    description:
+      "Contact details for general feedback, corrections and technical issues related to BirimCeviri.app.",
+  },
 };
 
 export default function EnglishContactPage() {

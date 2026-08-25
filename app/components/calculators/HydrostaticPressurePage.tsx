@@ -138,7 +138,7 @@ const pageCopy: Record<Locale, PageCopy> = {
   tr: {
     breadcrumbs: [
       { label: "Ana Sayfa", href: "/" },
-      { label: "Hesaplayıcılar" },
+      { label: "Hesaplayıcılar", href: "/muhendislik-hesaplayicilari" },
       { label: "Hidrostatik Basınç Hesaplayıcısı" },
     ],
     breadcrumbLabel: "Sayfa yolu",
@@ -257,6 +257,10 @@ const pageCopy: Record<Locale, PageCopy> = {
         label: "Basınç, Kuvvet ve Alan Hesaplayıcısı",
         href: "/hesaplayicilar/basinc-kuvvet-alan",
       },
+      {
+        label: "Mühendislik Hesaplayıcıları merkezi",
+        href: "/muhendislik-hesaplayicilari",
+      },
     ],
     relatedConversions: [
       { label: "PSI → Bar", href: "/psi-bar" },
@@ -266,7 +270,7 @@ const pageCopy: Record<Locale, PageCopy> = {
   en: {
     breadcrumbs: [
       { label: "Home", href: "/en" },
-      { label: "Calculators" },
+      { label: "Calculators", href: "/en/engineering-calculators" },
       { label: "Hydrostatic Pressure Calculator" },
     ],
     breadcrumbLabel: "Breadcrumb",
@@ -385,6 +389,10 @@ const pageCopy: Record<Locale, PageCopy> = {
         label: "Pressure, Force and Area Calculator",
         href: "/en/calculators/pressure-force-area",
       },
+      {
+        label: "Engineering Calculators hub",
+        href: "/en/engineering-calculators",
+      },
     ],
     relatedConversions: [
       { label: "PSI to Bar", href: "/en/psi-to-bars" },
@@ -397,7 +405,7 @@ const pageCopy: Record<Locale, PageCopy> = {
   de: {
     breadcrumbs: [
       { label: "Startseite", href: "/de" },
-      { label: "Rechner" },
+      { label: "Rechner", href: "/de/ingenieurrechner" },
       { label: "Rechner für hydrostatischen Druck" },
     ],
     breadcrumbLabel: "Breadcrumb",
@@ -514,6 +522,10 @@ const pageCopy: Record<Locale, PageCopy> = {
     relatedCalculators: [
       {
         label: "Druck-, Kraft- und Flächenrechner",
+        href: "/de/rechner/druck-kraft-flaeche",
+      },
+      {
+        label: "Ingenieurrechner-Zentrum",
         href: "/de/ingenieurrechner",
       },
     ],

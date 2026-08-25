@@ -11,6 +11,7 @@ import {
 } from "../../../converter/localizedCategoryPages";
 import { englishConversionPages } from "../../../converter/localizedConversionPages";
 import { findGermanCategoryPageByTurkishSlug } from "../../../converter/localizedGermanCategoryPages";
+import { homeCategoryOrder } from "../../../converter/homeCategoryOrder";
 import {
   formatPressureFactor,
   pressureConversionMatrix,
@@ -85,6 +86,12 @@ const extendedEnglishCategoryUnitHeadings: Record<string, string> = {
   tork: "Torque units",
   momentum: "Momentum units",
   viskozite_dinamik: "Dynamic viscosity units",
+  veri: "Data storage units",
+  elektrik_direnc: "Resistance units",
+  kapasitans: "Capacitance units",
+  enduktans: "Inductance units",
+  elektrik_yuk: "Electric charge units",
+  altin_ayar: "Gold karat units",
 };
 
 const extendedEnglishCategoryConversionHeadings: Record<string, string> = {
@@ -94,6 +101,12 @@ const extendedEnglishCategoryConversionHeadings: Record<string, string> = {
   tork: "Torque conversion tools",
   momentum: "Momentum conversion tools",
   viskozite_dinamik: "Dynamic viscosity conversion tools",
+  veri: "Data storage conversion tools",
+  elektrik_direnc: "Resistance conversion tools",
+  kapasitans: "Capacitance conversion tools",
+  enduktans: "Inductance conversion tools",
+  elektrik_yuk: "Electric charge conversion tools",
+  altin_ayar: "Gold karat conversion tools",
 };
 
 const extendedEnglishCategoryDetailNames: Record<string, string> = {
@@ -103,6 +116,12 @@ const extendedEnglishCategoryDetailNames: Record<string, string> = {
   tork: "Torque",
   momentum: "Momentum",
   viskozite_dinamik: "Dynamic Viscosity",
+  veri: "Data Storage",
+  elektrik_direnc: "Resistance",
+  kapasitans: "Capacitance",
+  enduktans: "Inductance",
+  elektrik_yuk: "Electric Charge",
+  altin_ayar: "Gold Karat",
 };
 
 function serializeJsonLd(data: object) {
@@ -193,6 +212,20 @@ export default async function EnglishCategoryPage({
       calculatorPage.category === categoryPage.category
   );
   const sources = getUnitSources(categoryPage.category);
+
+  const isSecondaryCategory = !(
+    homeCategoryOrder as readonly string[]
+  ).includes(categoryPage.category);
+
+  const footerLink = isSecondaryCategory
+    ? {
+        href: "/en/other-conversions",
+        label: "Back to Other Conversions",
+      }
+    : {
+        href: "/en/all-conversions",
+        label: "Open all converters",
+      };
   const conversionCards = createConversionCards({
     conversions: categoryConversions,
     hrefForSlug: (conversionSlug) => `/en/${conversionSlug}`,
@@ -610,10 +643,7 @@ export default async function EnglishCategoryPage({
           </div>
         </>
       }
-      footerLink={{
-        href: "/en/all-conversions",
-        label: "Open all converters",
-      }}
+      footerLink={footerLink}
     />
   );
 }

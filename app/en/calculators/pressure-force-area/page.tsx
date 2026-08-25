@@ -3,9 +3,9 @@ import PressureForceAreaPage from "../../../components/calculators/PressureForce
 import { buildSiteUrl } from "../../../siteConfig";
 
 export const metadata: Metadata = {
-  title: "Pressure Calculator (P = F/A)",
+  title: "Pressure Calculator (P = F / A)",
   description:
-    "Calculate pressure, force or area with P = F/A, F = P × A and A = F/P, then view the result in Pa, hPa, kPa, MPa, bar, atm, psi, ksi, N, kN, kgf, lbf, m², cm², mm², ft² and many more units.",
+    "Calculate pressure, force or area with P = F / A and view the result in Pa, hPa, kPa, MPa, bar, atm, psi, ksi, N, kN, kgf, lbf, m2, cm2, mm2, ft2 and many more units.",
   alternates: {
     canonical: "/en/calculators/pressure-force-area",
     languages: {
@@ -15,13 +15,19 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Pressure Calculator (P = F/A)",
+    title: "Pressure Calculator (P = F / A)",
     description:
       "Solve pressure, force or area through SI base units and compare the result across SI, metric and Imperial/US engineering units.",
     url: buildSiteUrl("/en/calculators/pressure-force-area"),
     siteName: "BirimCeviri.app",
     locale: "en_US",
     type: "article",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pressure Calculator (P = F / A)",
+    description:
+      "Solve pressure, force or area through SI base units and compare the result across SI, metric and Imperial/US engineering units.",
   },
 };
 

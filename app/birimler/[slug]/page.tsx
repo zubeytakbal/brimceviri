@@ -192,6 +192,18 @@ const categoryGuideLinks: Record<
   },
 };
 
+const historicalUnitSlugs = new Set([
+  "arsin",
+  "endaze",
+  "okka",
+  "dirhem",
+  "bizans-ayagi",
+  "bizans-kulaci",
+  "bizans-litrasi",
+  "bizans-onsu",
+  "cig",
+]);
+
 const allowedScientificSections =
   unitSpecificSectionTitles[unitPage.slug] ?? [];
 
@@ -379,6 +391,17 @@ const specificScientificSections =
                   {categoryGuideLinks[unitPage.category].label}
                 </Link>{" "}
                 sayfasını inceleyebilirsiniz.
+              </p>
+            )}
+
+            {historicalUnitSlugs.has(unitPage.slug) && (
+              <p className="category-inline-link">
+                {unitPage.name}, Bizans, Osmanlı ve eski Türk
+                dönemlerinden kalma diğer ölçü birimleriyle birlikte{" "}
+                <Link href="/tarihi-olcu-birimleri">
+                  Tarihi Ölçü Birimleri
+                </Link>{" "}
+                merkezinde bir arada listelenir.
               </p>
             )}
 

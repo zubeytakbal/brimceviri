@@ -10,6 +10,7 @@ import { categoryPages } from "../../converter/categoryPages";
 import { conversionPages } from "../../converter/conversionPages";
 import { findEnglishCategoryPageByTurkishSlug } from "../../converter/localizedCategoryPages";
 import { findGermanCategoryPageByTurkishSlug } from "../../converter/localizedGermanCategoryPages";
+import { homeCategoryOrder } from "../../converter/homeCategoryOrder";
 import {
   formatPressureFactor,
   pressureConversionMatrix,
@@ -174,6 +175,20 @@ export default async function CategoryPage({
   const pageUrl = buildSiteUrl(
     `/kategoriler/${categoryPage.slug}`
   );
+
+  const isSecondaryCategory = !(
+    homeCategoryOrder as readonly string[]
+  ).includes(categoryPage.category);
+
+  const footerLink = isSecondaryCategory
+    ? {
+        href: "/diger-donusumler",
+        label: "Diğer Dönüşümler sayfasına dön",
+      }
+    : {
+        href: "/tum-birimler",
+        label: "Tüm birim dönüştürücüyü aç",
+      };
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -633,10 +648,7 @@ export default async function CategoryPage({
           )}
         </>
       }
-      footerLink={{
-        href: "/tum-birimler",
-        label: "Tüm birim dönüştürücüyü aç",
-      }}
+      footerLink={footerLink}
     />
   );
 }

@@ -2,23 +2,95 @@
 
 import { useMemo, useState } from "react";
 import {
-  ShoeBrandKey,
-  ShoeSizeGroupKey,
-  ShoeSizeRow,
+  type ShoeBrandKey,
+  type ShoeSizeGroupKey,
+  type ShoeSizeRow,
   findShoeSizeRow,
   getShoeSizeRows,
-  shoeBrands,
-  shoeSizeGroupLabels,
 } from "../converter/shoeSizeTable";
 
 type SystemKey = "eu" | "us" | "uk" | "cm";
+type Locale = "tr" | "en";
 
-const systemLabels: Record<SystemKey, string> = {
-  eu: "TR / Avrupa (EU)",
-  us: "ABD (US)",
-  uk: "İngiltere (UK)",
-  cm: "Ayak Uzunluğu (cm)",
+const systemLabels: Record<Locale, Record<SystemKey, string>> = {
+  tr: {
+    eu: "TR / Avrupa (EU)",
+    us: "ABD (US)",
+    uk: "\u0130ngiltere (UK)",
+    cm: "Ayak Uzunlu\u011fu (cm)",
+  },
+  en: {
+    eu: "EU",
+    us: "US",
+    uk: "UK",
+    cm: "Foot Length (cm)",
+  },
 };
+
+const brandLabels: Record<Locale, Record<ShoeBrandKey, string>> = {
+  tr: {
+    genel: "Genel (Standart)",
+    nike: "Nike",
+    adidas: "Adidas",
+    puma: "Puma",
+    "new-balance": "New Balance",
+    converse: "Converse",
+  },
+  en: {
+    genel: "General (Standard)",
+    nike: "Nike",
+    adidas: "Adidas",
+    puma: "Puma",
+    "new-balance": "New Balance",
+    converse: "Converse",
+  },
+};
+
+const groupLabels: Record<Locale, Record<ShoeSizeGroupKey, string>> = {
+  tr: {
+    erkek: "Erkek",
+    kadin: "Kad\u0131n",
+    bebek: "Bebek / K\u00fc\u00e7\u00fck \u00c7ocuk",
+    "buyuk-cocuk": "B\u00fcy\u00fck \u00c7ocuk",
+  },
+  en: {
+    erkek: "Men",
+    kadin: "Women",
+    bebek: "Toddler / Little Kid",
+    "buyuk-cocuk": "Big Kid",
+  },
+};
+
+const copy = {
+  tr: {
+    group: "Grup",
+    brand: "Marka",
+    knownSystem: "Bildi\u011fin Sistem",
+    value: "De\u011fer",
+    matchingSizes: "E\u015fle\u015fen Numaralar",
+    invalidValue:
+      "Ge\u00e7erli bir say\u0131 girerek sonucu g\u00f6rebilirsiniz.",
+    euResult: "TR / EU",
+    usResult: "ABD (US)",
+    ukResult: "\u0130ngiltere (UK)",
+    footLength: "Ayak Uzunlu\u011fu",
+    chartSuffix: "ayakkab\u0131 numaras\u0131 tablosu",
+  },
+  en: {
+    group: "Group",
+    brand: "Brand",
+    knownSystem: "Known System",
+    value: "Value",
+    matchingSizes: "Matching Sizes",
+    invalidValue:
+      "Enter a valid number to see the closest match.",
+    euResult: "EU",
+    usResult: "US",
+    ukResult: "UK",
+    footLength: "Foot Length",
+    chartSuffix: "shoe size chart",
+  },
+} as const;
 
 const brandOrder: ShoeBrandKey[] = [
   "genel",
@@ -36,27 +108,31 @@ const groupOrder: ShoeSizeGroupKey[] = [
   "buyuk-cocuk",
 ];
 
-function formatEu(value: number) {
+function formatEu(value: number, locale: Locale) {
   const whole = Math.floor(value);
   const frac = value - whole;
 
   if (Math.abs(frac - 1 / 3) < 0.02) {
-    return `${whole} ⅓`;
+    return `${whole} 1/3`;
   }
 
   if (Math.abs(frac - 2 / 3) < 0.02) {
-    return `${whole} ⅔`;
+    return `${whole} 2/3`;
   }
 
   if (frac < 0.02) {
     return `${whole}`;
   }
 
-  return value.toLocaleString("tr-TR", { maximumFractionDigits: 1 });
+  return value.toLocaleString(locale === "en" ? "en-US" : "tr-TR", {
+    maximumFractionDigits: 1,
+  });
 }
 
-function formatValue(value: number) {
-  return value.toLocaleString("tr-TR", { maximumFractionDigits: 1 });
+function formatValue(value: number, locale: Locale) {
+  return value.toLocaleString(locale === "en" ? "en-US" : "tr-TR", {
+    maximumFractionDigits: 1,
+  });
 }
 
 function parseNumericValue(rawValue: string) {
@@ -71,7 +147,11 @@ function parseNumericValue(rawValue: string) {
   return Number.isFinite(numericValue) ? numericValue : Number.NaN;
 }
 
-export default function ShoeSizeConverter() {
+export default function ShoeSizeConverter({
+  locale = "tr",
+}: {
+  locale?: Locale;
+}) {
   const [group, setGroup] = useState<ShoeSizeGroupKey>("erkek");
   const [brand, setBrand] = useState<ShoeBrandKey>("genel");
   const [system, setSystem] = useState<SystemKey>("eu");
@@ -87,13 +167,23 @@ export default function ShoeSizeConverter() {
   const matchedRow: ShoeSizeRow | null =
     parsedValue === null || Number.isNaN(parsedValue)
       ? null
-      : findShoeSizeRow(group, system, parsedValue, hasBrands ? brand : "genel");
+      : findShoeSizeRow(
+          group,
+          system,
+          parsedValue,
+          hasBrands ? brand : "genel"
+        );
+
+  const localizedCopy = copy[locale];
+  const localizedSystemLabels = systemLabels[locale];
+  const localizedBrandLabels = brandLabels[locale];
+  const localizedGroupLabels = groupLabels[locale];
 
   return (
     <div className="category-general-converter shoe-size-converter">
       <div className="shoe-size-converter-grid">
         <label className="category-general-converter-field">
-          <span>Grup</span>
+          <span>{localizedCopy.group}</span>
           <select
             value={group}
             onChange={(event) => {
@@ -102,14 +192,14 @@ export default function ShoeSizeConverter() {
           >
             {groupOrder.map((groupKey) => (
               <option key={groupKey} value={groupKey}>
-                {shoeSizeGroupLabels[groupKey]}
+                {localizedGroupLabels[groupKey]}
               </option>
             ))}
           </select>
         </label>
 
         <label className="category-general-converter-field">
-          <span>Marka</span>
+          <span>{localizedCopy.brand}</span>
           <select
             value={hasBrands ? brand : "genel"}
             disabled={!hasBrands}
@@ -119,30 +209,32 @@ export default function ShoeSizeConverter() {
           >
             {brandOrder.map((brandKey) => (
               <option key={brandKey} value={brandKey}>
-                {shoeBrands[brandKey].label}
+                {localizedBrandLabels[brandKey]}
               </option>
             ))}
           </select>
         </label>
 
         <label className="category-general-converter-field">
-          <span>Bildiğin Sistem</span>
+          <span>{localizedCopy.knownSystem}</span>
           <select
             value={system}
             onChange={(event) => {
               setSystem(event.target.value as SystemKey);
             }}
           >
-            {(Object.keys(systemLabels) as SystemKey[]).map((systemKey) => (
-              <option key={systemKey} value={systemKey}>
-                {systemLabels[systemKey]}
-              </option>
-            ))}
+            {(Object.keys(localizedSystemLabels) as SystemKey[]).map(
+              (systemKey) => (
+                <option key={systemKey} value={systemKey}>
+                  {localizedSystemLabels[systemKey]}
+                </option>
+              )
+            )}
           </select>
         </label>
 
         <label className="category-general-converter-field">
-          <span>Değer</span>
+          <span>{localizedCopy.value}</span>
           <input
             inputMode="decimal"
             type="text"
@@ -158,27 +250,29 @@ export default function ShoeSizeConverter() {
         aria-live="polite"
         className="category-general-converter-result"
       >
-        <p>Eşleşen Numaralar</p>
+        <p>{localizedCopy.matchingSizes}</p>
 
         {parsedValue === null || Number.isNaN(parsedValue) || !matchedRow ? (
-          <strong>Geçerli bir sayı girerek sonucu görebilirsiniz.</strong>
+          <strong>{localizedCopy.invalidValue}</strong>
         ) : (
           <div className="shoe-size-converter-result-grid">
             <div>
-              <span>TR / EU</span>
-              <strong>{formatEu(matchedRow.eu)}</strong>
+              <span>{localizedCopy.euResult}</span>
+              <strong>{formatEu(matchedRow.eu, locale)}</strong>
             </div>
             <div>
-              <span>ABD (US)</span>
-              <strong>{formatValue(matchedRow.us)}</strong>
+              <span>{localizedCopy.usResult}</span>
+              <strong>{formatValue(matchedRow.us, locale)}</strong>
             </div>
             <div>
-              <span>İngiltere (UK)</span>
-              <strong>{formatValue(matchedRow.uk)}</strong>
+              <span>{localizedCopy.ukResult}</span>
+              <strong>{formatValue(matchedRow.uk, locale)}</strong>
             </div>
             <div>
-              <span>Ayak Uzunluğu</span>
-              <strong>{formatValue(matchedRow.cm)} cm</strong>
+              <span>{localizedCopy.footLength}</span>
+              <strong>
+                {formatValue(matchedRow.cm, locale)} cm
+              </strong>
             </div>
           </div>
         )}
@@ -187,25 +281,26 @@ export default function ShoeSizeConverter() {
       <div className="conversion-table-wrap">
         <table className="conversion-table">
           <caption>
-            {shoeSizeGroupLabels[group]}
-            {hasBrands ? ` – ${shoeBrands[brand].label}` : ""} ayakkabı
-            numarası tablosu
+            {localizedGroupLabels[group]}
+            {hasBrands ? ` - ${localizedBrandLabels[brand]}` : ""}
+            {" "}
+            {localizedCopy.chartSuffix}
           </caption>
           <thead>
             <tr>
-              <th scope="col">TR / EU</th>
-              <th scope="col">ABD (US)</th>
-              <th scope="col">İngiltere (UK)</th>
-              <th scope="col">Ayak Uzunluğu (cm)</th>
+              <th scope="col">{localizedCopy.euResult}</th>
+              <th scope="col">{localizedCopy.usResult}</th>
+              <th scope="col">{localizedCopy.ukResult}</th>
+              <th scope="col">{localizedCopy.footLength}</th>
             </tr>
           </thead>
           <tbody>
             {rows.map((row) => (
               <tr key={`${row.eu}-${row.us}`}>
-                <td>{formatEu(row.eu)}</td>
-                <td>{formatValue(row.us)}</td>
-                <td>{formatValue(row.uk)}</td>
-                <td>{formatValue(row.cm)} cm</td>
+                <td>{formatEu(row.eu, locale)}</td>
+                <td>{formatValue(row.us, locale)}</td>
+                <td>{formatValue(row.uk, locale)}</td>
+                <td>{formatValue(row.cm, locale)} cm</td>
               </tr>
             ))}
           </tbody>

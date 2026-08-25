@@ -23,6 +23,12 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
   },
+  twitter: {
+    card: "summary",
+    title: `Privacy | ${SITE_NAME}`,
+    description:
+      "A short privacy overview for calculation inputs and page usage on BirimCeviri.app.",
+  },
 };
 
 export default function EnglishPrivacyPage() {

@@ -25,14 +25,14 @@ export const categoryPages: CategoryPage[] = [
     category: "uzunluk",
     title: "Uzunluk Dönüşümleri",
     description:
-      "Metre, kilometre, santimetre, milimetre, mil, fit, inç ve yarda birimleri arasında hızlı ve ücretsiz dönüşüm yapın.",
+      "Metre, kilometre, santimetre, milimetre, mil, fit, inç, yarda birimlerinin yanı sıra Osmanlı (arşın, endaze), Bizans (Bizans ayağı, Bizans kulacı) ve eski Türk (çığ) dönemi uzunluk birimleri arasında hızlı ve ücretsiz dönüşüm yapın.",
   },
   {
     slug: "kutle",
     category: "kutle",
     title: "Kütle Dönüşümleri",
     description:
-      "Kilogram, gram, miligram, ton, pound ve ons birimleri arasında hızlı ve ücretsiz dönüşüm yapın.",
+      "Kilogram, gram, miligram, ton, pound, ons birimlerinin yanı sıra Osmanlı (okka, dirhem) ve Bizans (Bizans litrası, Bizans onsu) dönemi kütle birimleri arasında hızlı ve ücretsiz dönüşüm yapın.",
   },
   {
     slug: "sicaklik",

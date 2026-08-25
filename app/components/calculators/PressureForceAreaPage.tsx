@@ -40,6 +40,7 @@ type PageCopy = {
   scientificNotesHeading: string;
   sourcesHeading: string;
   relatedHeading: string;
+  relatedCalculatorsHeading: string;
   relatedConversionsHeading: string;
   relatedGuidesHeading: string;
   tableColumns: {
@@ -61,6 +62,10 @@ type PageCopy = {
   limitations: string[];
   scientificNotes: string[];
   sources: Array<{
+    label: string;
+    href: string;
+  }>;
+  relatedCalculators: Array<{
     label: string;
     href: string;
   }>;
@@ -121,7 +126,7 @@ const pageCopy: Record<Locale, PageCopy> = {
   tr: {
     breadcrumbs: [
       { label: "Ana Sayfa", href: "/" },
-      { label: "Hesaplayıcılar" },
+      { label: "Hesaplayıcılar", href: "/muhendislik-hesaplayicilari" },
       { label: "Basınç, Kuvvet ve Alan Hesaplayıcısı" },
     ],
     breadcrumbLabel: "Sayfa yolu",
@@ -139,6 +144,7 @@ const pageCopy: Record<Locale, PageCopy> = {
     scientificNotesHeading: "Bilimsel notlar",
     sourcesHeading: "Kaynaklar",
     relatedHeading: "İlgili bağlantılar",
+    relatedCalculatorsHeading: "İlgili hesaplayıcılar",
     relatedConversionsHeading: "Basınç dönüşümleri",
     relatedGuidesHeading: "Birim rehberleri",
     tableColumns: {
@@ -228,6 +234,16 @@ const pageCopy: Record<Locale, PageCopy> = {
         href: "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b9",
       },
     ],
+    relatedCalculators: [
+      {
+        label: "Hidrostatik Basınç Hesaplayıcısı",
+        href: "/hesaplayicilar/hidrostatik-basinc",
+      },
+      {
+        label: "Mühendislik Hesaplayıcıları merkezi",
+        href: "/muhendislik-hesaplayicilari",
+      },
+    ],
     relatedConversions: [
       { label: "PSI → Bar", href: "/psi-bar" },
       { label: "Kilopascal → Bar", href: "/kilopascal-bar" },
@@ -246,7 +262,7 @@ const pageCopy: Record<Locale, PageCopy> = {
   en: {
     breadcrumbs: [
       { label: "Home", href: "/en" },
-      { label: "Calculators" },
+      { label: "Calculators", href: "/en/engineering-calculators" },
       { label: "Pressure, Force and Area Calculator" },
     ],
     breadcrumbLabel: "Breadcrumb",
@@ -264,6 +280,7 @@ const pageCopy: Record<Locale, PageCopy> = {
     scientificNotesHeading: "Scientific notes",
     sourcesHeading: "Sources",
     relatedHeading: "Related links",
+    relatedCalculatorsHeading: "Related calculators",
     relatedConversionsHeading: "Pressure conversions",
     relatedGuidesHeading: "Unit guides",
     tableColumns: {
@@ -353,6 +370,16 @@ const pageCopy: Record<Locale, PageCopy> = {
         href: "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b9",
       },
     ],
+    relatedCalculators: [
+      {
+        label: "Hydrostatic Pressure Calculator",
+        href: "/en/calculators/hydrostatic-pressure",
+      },
+      {
+        label: "Engineering Calculators hub",
+        href: "/en/engineering-calculators",
+      },
+    ],
     relatedConversions: [
       { label: "PSI to Bar", href: "/en/psi-to-bars" },
       {
@@ -377,7 +404,7 @@ const pageCopy: Record<Locale, PageCopy> = {
   de: {
     breadcrumbs: [
       { label: "Startseite", href: "/de" },
-      { label: "Rechner" },
+      { label: "Rechner", href: "/de/ingenieurrechner" },
       { label: "Druck-, Kraft- und Flächenrechner" },
     ],
     breadcrumbLabel: "Breadcrumb",
@@ -395,6 +422,7 @@ const pageCopy: Record<Locale, PageCopy> = {
     scientificNotesHeading: "Wissenschaftliche Hinweise",
     sourcesHeading: "Quellen",
     relatedHeading: "Verwandte Links",
+    relatedCalculatorsHeading: "Verwandte Rechner",
     relatedConversionsHeading: "Druckumrechnungen",
     relatedGuidesHeading: "Einheitenratgeber",
     tableColumns: {
@@ -482,6 +510,16 @@ const pageCopy: Record<Locale, PageCopy> = {
       {
         label: "NIST Appendix B.9 Conversion Factors",
         href: "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b9",
+      },
+    ],
+    relatedCalculators: [
+      {
+        label: "Hydrostatischer-Druck-Rechner",
+        href: "/de/rechner/hydrostatischer-druck",
+      },
+      {
+        label: "Ingenieurrechner-Zentrum",
+        href: "/de/ingenieurrechner",
       },
     ],
     relatedConversions: [
@@ -689,6 +727,15 @@ export default function PressureForceAreaPage({
 
         <section className="conversion-section">
           <h2>{copy.relatedHeading}</h2>
+
+          <h3>{copy.relatedCalculatorsHeading}</h3>
+          <ul className="related-conversion-list">
+            {copy.relatedCalculators.map((link) => (
+              <li key={link.href}>
+                <Link href={link.href}>{link.label}</Link>
+              </li>
+            ))}
+          </ul>
 
           <h3>{copy.relatedConversionsHeading}</h3>
           <ul className="related-conversion-list">

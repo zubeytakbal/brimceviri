@@ -3,6 +3,7 @@ export const germanStaticPaths = {
   units: "/de/einheiten",
   allConversions: "/de/alle-umrechnungen",
   engineeringHub: "/de/ingenieurrechner",
+  electricalEngineeringHub: "/de/ingenieurrechner/elektrorechner",
   about: "/de/uber-uns",
   contact: "/de/kontakt",
   privacy: "/de/datenschutz",
@@ -15,6 +16,7 @@ export const germanCalculatorSlugMap = {
   "isi-enerjisi": "waermeenergie",
   "isi-iletimi": "waermeleitung",
   "reynolds-sayisi": "reynolds-zahl",
+  "ohm-yasasi": "ohms-law",
 } as const;
 
 export const germanCategorySlugMap = {
@@ -46,3 +48,4 @@ export function getGermanCategorySlug(
     category as keyof typeof germanCategorySlugMap
   ];
 }
+

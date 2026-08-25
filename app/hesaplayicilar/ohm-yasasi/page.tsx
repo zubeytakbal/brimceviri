@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import OhmsLawPage from "../../components/calculators/OhmsLawPage";
+import { findEnglishCalculatorPageByTurkishSlug } from "../../converter/localizedCalculatorPages";
 import { buildSiteUrl } from "../../siteConfig";
+
+const englishPage =
+  findEnglishCalculatorPageByTurkishSlug("ohm-yasasi");
 
 export const metadata: Metadata = {
   title: "Ohm Yasası Hesaplama (V = I × R)",
@@ -8,6 +12,13 @@ export const metadata: Metadata = {
     "Gerilimi, akımı veya direnci V = I × R bağıntısıyla hesaplayın; sonucu SI eşdeğeri ve yerine koyulmuş formülle birlikte görüntüleyin.",
   alternates: {
     canonical: "/hesaplayicilar/ohm-yasasi",
+    languages: {
+      tr: "/hesaplayicilar/ohm-yasasi",
+      en: englishPage
+        ? `/en/calculators/${englishPage.slug}`
+        : "/en/engineering-calculators",
+      "x-default": "/hesaplayicilar/ohm-yasasi",
+    },
   },
   openGraph: {
     title: "Ohm Yasası Hesaplama (V = I × R)",
@@ -46,6 +57,7 @@ export default function OhmsLawCalculatorRoute() {
 
   return (
     <OhmsLawPage
+      locale="tr"
       structuredData={
         <script
           type="application/ld+json"

@@ -23,6 +23,12 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
   },
+  twitter: {
+    card: "summary",
+    title: `About | ${SITE_NAME}`,
+    description:
+      "A short overview of the purpose, scope and technical direction of BirimCeviri.app.",
+  },
 };
 
 export default function EnglishAboutPage() {

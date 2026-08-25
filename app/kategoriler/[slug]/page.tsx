@@ -51,6 +51,31 @@ const categoryBaseNames: Record<string, string> = {
   veri: "Veri Depolama",
 };
 
+const everydayToolLinksByCategory: Record<
+  string,
+  Array<{ href: string; label: string }>
+> = {
+  uzunluk: [
+    { href: "/uzunluk-karsilastirma", label: "Uzunluk Karşılaştırma" },
+  ],
+  alan: [
+    { href: "/boya-hesaplama", label: "Boya Hesaplama" },
+    { href: "/fayans-hesaplama", label: "Fayans Hesaplama" },
+    { href: "/tugla-hesaplama", label: "Tuğla Hesaplama" },
+    { href: "/klima-btu-hesaplama", label: "Klima BTU Hesaplama" },
+  ],
+  enerji: [
+    { href: "/klima-btu-hesaplama", label: "Klima BTU Hesaplama" },
+    { href: "/elektrik-tuketimi-hesaplama", label: "Elektrik Tüketimi Hesaplama" },
+  ],
+  kutle: [{ href: "/bmi-hesaplama", label: "BMI Hesaplama" }],
+  zaman: [
+    { href: "/yas-hesaplama", label: "Yaş Hesaplama" },
+    { href: "/gebelik-haftasi-hesaplama", label: "Gebelik Haftası Hesaplama" },
+    { href: "/uyku-hesaplama", label: "Uyku Hesaplama" },
+  ],
+};
+
 function serializeJsonLd(data: object) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
 }
@@ -302,6 +327,14 @@ export default async function CategoryPage({
           formula: calculator.formula,
         })),
       }}
+      relatedToolsSection={
+        everydayToolLinksByCategory[categoryPage.category]
+          ? {
+              heading: "Gündelik hesaplayıcılar",
+              links: everydayToolLinksByCategory[categoryPage.category],
+            }
+          : undefined
+      }
       unitGuidesHeading="Birim rehberleri"
       unitGuidesCountLabel={`${categoryUnits.length} birim`}
       unitGuides={categoryUnits.map((unitPage) => ({

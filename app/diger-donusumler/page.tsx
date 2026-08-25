@@ -77,30 +77,6 @@ export default function DigerDonusumlerPage() {
 
   const tools = [
     {
-      id: "ayakkabi",
-      href: "/ayakkabi-numarasi-cevirme",
-      title: "Ayakkabı Numarası Çevirici",
-      description:
-        "TR/AB, ABD ve İngiltere ayakkabı numaralarını marka bazlı tablolarla çevirin.",
-      iconName: "shoeSize" as const,
-    },
-    {
-      id: "mutfak",
-      href: "/mutfak-olculeri-cevirici",
-      title: "Mutfak Ölçüleri Çevirici",
-      description:
-        "Bardak, yemek kaşığı ve çay kaşığının gram karşılığını malzemeye göre hesaplayın.",
-      iconName: "kitchenMeasures" as const,
-    },
-    {
-      id: "tarif",
-      href: "/tarif-cevirici",
-      title: "Tarif Çevirici",
-      description:
-        "Tarifini yapıştır, çarpanı seç: tüm malzeme miktarları ölçeklenir ve gram karşılıkları otomatik hesaplanır.",
-      iconName: "recipe" as const,
-    },
-    {
       id: "yuzuk",
       href: "/yuzuk-olcusu-cevirici",
       title: "Yüzük Ölçüsü Çevirici",
@@ -155,6 +131,46 @@ export default function DigerDonusumlerPage() {
       description:
         "Vücut kitle indeksini (BMI) ve günlük kalori ihtiyacını hesaplayın.",
       iconName: "bmiCalculator" as const,
+    },
+    {
+      id: "gebelik",
+      href: "/gebelik-haftasi-hesaplama",
+      title: "Gebelik Haftası Hesaplama",
+      description:
+        "Son adet tarihinden gebelik haftasını ve tahmini doğum tarihini hesaplayın.",
+      iconName: "pregnancyCalculator" as const,
+    },
+    {
+      id: "uzunluk-karsilastirma",
+      href: "/uzunluk-karsilastirma",
+      title: "Uzunluk Karşılaştırma",
+      description:
+        "Bir uzunluk değerini zürafa boyu, otobüs, futbol sahası gibi tanıdık nesnelerle karşılaştırın.",
+      iconName: "length" as const,
+    },
+    {
+      id: "klima-btu",
+      href: "/klima-btu-hesaplama",
+      title: "Klima BTU Hesaplama",
+      description:
+        "Oda alanı, kişi sayısı ve güneş/kat durumundan uygun klima soğutma kapasitesini hesaplayın.",
+      iconName: "acCapacityCalculator" as const,
+    },
+    {
+      id: "elektrik-tuketimi",
+      href: "/elektrik-tuketimi-hesaplama",
+      title: "Elektrik Tüketimi Hesaplama",
+      description:
+        "Cihaz gücünden günlük, aylık ve yıllık elektrik tüketimini (kWh) ve maliyetini hesaplayın.",
+      iconName: "electricityConsumptionCalculator" as const,
+    },
+    {
+      id: "uyku",
+      href: "/uyku-hesaplama",
+      title: "Uyku Hesaplama",
+      description:
+        "90 dakikalık uyku döngülerine göre ideal yatış ve kalkış saatlerini hesaplayın.",
+      iconName: "sleepCalculator" as const,
     },
   ];
 

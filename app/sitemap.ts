@@ -295,6 +295,36 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.75,
     },
+    {
+      url: `${baseUrl}/gebelik-haftasi-hesaplama`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.75,
+    },
+    {
+      url: `${baseUrl}/uzunluk-karsilastirma`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/klima-btu-hesaplama`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.75,
+    },
+    {
+      url: `${baseUrl}/elektrik-tuketimi-hesaplama`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.75,
+    },
+    {
+      url: `${baseUrl}/uyku-hesaplama`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.75,
+    },
   ];
 
   const turkishConversionRoutes: MetadataRoute.Sitemap =

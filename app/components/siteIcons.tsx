@@ -1,7 +1,9 @@
 import {
   Activity,
+  AirVent,
   Anvil,
   ArrowLeftRight,
+  Baby,
   Battery,
   Blocks,
   BookOpen,
@@ -18,7 +20,9 @@ import {
   Gem,
   Grid3x3,
   Layers,
+  MoonStar,
   PaintRoller,
+  PlugZap,
   Puzzle,
   ReceiptTurkishLira,
   Rocket,
@@ -66,6 +70,10 @@ const iconMap = {
   dateCalculator: Cake,
   vatCalculator: ReceiptTurkishLira,
   bmiCalculator: Activity,
+  pregnancyCalculator: Baby,
+  acCapacityCalculator: AirVent,
+  electricityConsumptionCalculator: PlugZap,
+  sleepCalculator: MoonStar,
 } as const satisfies Record<string, LucideIcon>;
 
 export type SiteIconName = keyof typeof iconMap;

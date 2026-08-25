@@ -54,6 +54,10 @@ type CategoryPageLayoutProps = {
   unitGuides: UnitGuideLink[];
   detailHeading: string;
   detailContent: ReactNode;
+  relatedToolsSection?: {
+    heading: string;
+    links: FooterLink[];
+  };
   footerLink?: FooterLink;
 };
 
@@ -75,6 +79,7 @@ export default function CategoryPageLayout({
   unitGuides,
   detailHeading,
   detailContent,
+  relatedToolsSection,
   footerLink,
 }: CategoryPageLayoutProps) {
   return (
@@ -232,6 +237,22 @@ export default function CategoryPageLayout({
           </div>
           {detailContent}
         </section>
+
+        {relatedToolsSection && relatedToolsSection.links.length > 0 && (
+          <section className="category-page-section">
+            <div className="category-section-heading">
+              <h2>{relatedToolsSection.heading}</h2>
+            </div>
+
+            <ul className="related-conversion-list">
+              {relatedToolsSection.links.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href}>{link.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
         {footerLink && (
           <div className="category-page-footer-link">

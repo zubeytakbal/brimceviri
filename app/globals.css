@@ -2151,6 +2151,129 @@ main.category-page {
   }
 }
 
+.sleep-calculator-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sleep-calculator-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  border: 2px solid #ffffff;
+  background: #f1f5f7;
+}
+
+.sleep-calculator-row.is-recommended {
+  border-color: #168f8c;
+  background: #eafaf8;
+}
+
+.sleep-calculator-time {
+  color: #172033;
+  font-size: 1.3rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.sleep-calculator-detail {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  color: #526071;
+  font-size: 0.88rem;
+}
+
+.sleep-calculator-badge {
+  display: inline-flex;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: #168f8c;
+  color: #ffffff;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.length-comparison-intro {
+  margin: 0 0 12px;
+  color: #3f4858;
+  font-size: 0.92rem;
+}
+
+.length-comparison-top {
+  margin-bottom: 14px;
+  padding: 16px 18px;
+  border: 2px solid #ffffff;
+  background: #f1f5f7;
+}
+
+.length-comparison-top span {
+  display: block;
+  margin-bottom: 4px;
+  color: #526071;
+  font-size: 0.84rem;
+  font-weight: 650;
+}
+
+.length-comparison-top strong {
+  color: #172033;
+  font-size: clamp(1.15rem, 2.2vw, 1.4rem);
+}
+
+.length-comparison-list {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.length-comparison-row {
+  display: grid;
+  gap: 6px;
+}
+
+.length-comparison-row-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: baseline;
+}
+
+.length-comparison-row-head span:first-child {
+  color: #172033;
+  font-size: 0.92rem;
+  font-weight: 650;
+}
+
+.length-comparison-row-head span:last-child {
+  color: #168f8c;
+  font-size: 0.92rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.length-comparison-bar-track {
+  position: relative;
+  height: 10px;
+  overflow: hidden;
+  border-radius: 6px;
+  background: #e6edf0;
+}
+
+.length-comparison-bar-fill {
+  height: 100%;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #168f8c, #3f63ff);
+  transition: width 200ms ease;
+}
+
 .recipe-scaler-textarea-field textarea {
   width: 100%;
   max-width: 100%;

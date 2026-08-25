@@ -226,6 +226,10 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
       { href: "/yas-hesaplama", label: "Yaş Hesaplama" },
       { href: "/kdv-hesaplama", label: "KDV Hesaplama" },
       { href: "/bmi-hesaplama", label: "BMI Hesaplama" },
+      { href: "/gebelik-haftasi-hesaplama", label: "Gebelik Haftası Hesaplama" },
+      { href: "/klima-btu-hesaplama", label: "Klima BTU Hesaplama" },
+      { href: "/elektrik-tuketimi-hesaplama", label: "Elektrik Tüketimi Hesaplama" },
+      { href: "/uyku-hesaplama", label: "Uyku Hesaplama" },
     ],
     alternateTitle: "Di\u011fer diller",
     alternateLink: {

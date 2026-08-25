@@ -30,6 +30,17 @@ function parseDate(value: string): Date | null {
   return Number.isNaN(date.getTime()) ? null : date;
 }
 
+// toISOString() converts to UTC first, which shifts the calendar date
+// backward by a day in positive-UTC-offset timezones (e.g. TRT, UTC+3)
+// for any local midnight. Format from local getters instead.
+function formatLocalIsoDate(date: Date): string {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+}
+
 export function calculateDateDifference(
   input: DateCalculatorInput
 ): DateCalculatorResult | null {
@@ -88,7 +99,7 @@ export function calculateDateDifference(
     totalDays,
     totalWeeks,
     totalMonths,
-    nextAnniversaryDate: nextAnniversary.toISOString().slice(0, 10),
+    nextAnniversaryDate: formatLocalIsoDate(nextAnniversary),
     daysUntilNextAnniversary,
   };
 }

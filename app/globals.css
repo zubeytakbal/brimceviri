@@ -2083,6 +2083,74 @@ main.category-page {
   }
 }
 
+.paint-calculator-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  min-width: 0;
+}
+
+.paint-calculator-checkbox-field {
+  grid-column: span 2;
+}
+
+.paint-calculator-checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 52px;
+  padding: 12px 14px;
+  border: 2px solid #ffffff;
+  background: #ffffff;
+  color: #172033;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.paint-calculator-checkbox-row input {
+  width: 18px;
+  height: 18px;
+}
+
+.paint-calculator-result-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.paint-calculator-result-grid > div {
+  display: grid;
+  gap: 4px;
+}
+
+.paint-calculator-result-grid span {
+  color: #667085;
+  font-size: 0.82rem;
+  font-weight: 650;
+}
+
+.paint-calculator-result-grid strong {
+  color: #172033;
+  font-size: clamp(1.08rem, 1.8vw, 1.3rem);
+}
+
+.paint-calculator-liters {
+  margin: 4px 0 0;
+  color: #172033;
+  font-size: clamp(1.15rem, 2vw, 1.4rem);
+}
+
+@media (max-width: 760px) {
+  .paint-calculator-grid,
+  .paint-calculator-result-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .paint-calculator-checkbox-field {
+    grid-column: span 2;
+  }
+}
+
 .recipe-scaler-textarea-field textarea {
   width: 100%;
   max-width: 100%;

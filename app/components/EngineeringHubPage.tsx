@@ -1,6 +1,14 @@
 import Link from "next/link";
 import { getElectricalHubPath } from "../converter/engineeringHubs";
-import { DecorativeIcon, getCalculatorIconName } from "./siteIcons";
+import { DecorativeIcon, getCalculatorIconName, type SiteIconName } from "./siteIcons";
+
+function CardIcon({ name }: { name: SiteIconName }) {
+  return (
+    <span className="home-category-icon-box" aria-hidden="true">
+      <DecorativeIcon name={name} size={48} className="home-category-icon-svg" />
+    </span>
+  );
+}
 
 type Locale = "tr" | "en" | "de";
 
@@ -51,6 +59,9 @@ type EngineeringHubContent = {
   guidesTitle: string;
   guidesDescription: string;
   guideLinks: EngineeringGuideLink[];
+  relatedToolsTitle?: string;
+  relatedToolsDescription?: string;
+  relatedToolsLinks?: EngineeringGuideLink[];
   alternateTitle: string;
   alternateLink: {
     href: string;
@@ -204,6 +215,14 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
       { href: "/birimler/pascal", label: "Pascal (Pa) rehberi" },
       { href: "/birimler/metre", label: "Metre (m) rehberi" },
       { href: "/birimler/kilogram", label: "Kilogram (kg) rehberi" },
+    ],
+    relatedToolsTitle: "G\u00fcndelik hesaplay\u0131c\u0131lar",
+    relatedToolsDescription:
+      "Bu m\u00fchendislik/SI hesaplay\u0131c\u0131lar\u0131n\u0131n d\u0131\u015f\u0131nda, ev ve g\u00fcndelik ihtiya\u00e7lar i\u00e7in haz\u0131rlanan pratik hesap ara\u00e7lar\u0131na da g\u00f6z atabilirsiniz.",
+    relatedToolsLinks: [
+      { href: "/boya-hesaplama", label: "Boya Hesaplama" },
+      { href: "/fayans-hesaplama", label: "Fayans Hesaplama" },
+      { href: "/tugla-hesaplama", label: "Tuğla Hesaplama" },
     ],
     alternateTitle: "Di\u011fer diller",
     alternateLink: {
@@ -555,22 +574,22 @@ export default function EngineeringHubPage({
             <h2>{content.focusTitle}</h2>
             <p>{content.focusDescription}</p>
 
-            <ul className="category-calculator-list engineering-hub-list">
+            <div className="directory-tool-grid">
               {content.focusCards.map((card) => (
-                <li key={card.href}>
-                  <Link className="category-calculator-card" href={card.href}>
-                    <span className="engineering-hub-card-header">
-                      <DecorativeIcon name={card.iconName} size={28} />
-                      <span className="category-tool-title">
-                        <strong>{card.title}</strong>
-                      </span>
-                    </span>
-                    <span className="engineering-status-pill">{card.meta}</span>
-                    <span>{card.description}</span>
-                  </Link>
-                </li>
+                <article className="directory-home-card" key={card.href}>
+                  <Link
+                    className="directory-card-stretch"
+                    href={card.href}
+                    aria-label={`${card.title} — ${card.description}`}
+                  />
+
+                  <div className="directory-card-body directory-card-body-icon">
+                    <CardIcon name={card.iconName} />
+                    <h3 className="home-category-title">{card.title}</h3>
+                  </div>
+                </article>
               ))}
-            </ul>
+            </div>
           </section>
 
           <section className="conversion-section">
@@ -583,25 +602,22 @@ export default function EngineeringHubPage({
               <h2>{group.title}</h2>
               <p>{group.description}</p>
 
-              <ul className="category-calculator-list engineering-hub-list">
+              <div className="directory-tool-grid">
                 {group.tools.map((tool) => (
-                  <li key={tool.href}>
-                    <Link className="category-calculator-card" href={tool.href}>
-                      <span className="engineering-hub-card-header">
-                        <DecorativeIcon
-                          name={getCalculatorIconName(tool.slug)}
-                          size={28}
-                        />
-                        <span className="category-tool-title">
-                          <strong>{tool.title}</strong>
-                        </span>
-                      </span>
-                      <span className="category-tool-formula">{tool.formula}</span>
-                      <span>{tool.description}</span>
-                    </Link>
-                  </li>
+                  <article className="directory-home-card" key={tool.href}>
+                    <Link
+                      className="directory-card-stretch"
+                      href={tool.href}
+                      aria-label={`${tool.title} — ${tool.description}`}
+                    />
+
+                    <div className="directory-card-body directory-card-body-icon">
+                      <CardIcon name={getCalculatorIconName(tool.slug)} />
+                      <h3 className="home-category-title">{tool.title}</h3>
+                    </div>
+                  </article>
                 ))}
-              </ul>
+              </div>
             </section>
           ))}
 
@@ -625,6 +641,20 @@ export default function EngineeringHubPage({
               ))}
             </ul>
           </section>
+
+          {content.relatedToolsLinks && content.relatedToolsLinks.length > 0 && (
+            <section className="conversion-section">
+              <h2>{content.relatedToolsTitle}</h2>
+              <p>{content.relatedToolsDescription}</p>
+              <ul className="related-conversion-list engineering-hub-guides">
+                {content.relatedToolsLinks.map((tool) => (
+                  <li key={tool.href}>
+                    <Link href={tool.href}>{tool.label}</Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
 
           <section className="conversion-section language-alternatives">
             <h2>{content.alternateTitle}</h2>

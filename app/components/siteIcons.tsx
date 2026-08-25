@@ -2,6 +2,7 @@ import {
   Anvil,
   ArrowLeftRight,
   Battery,
+  Blocks,
   BookOpen,
   Cable,
   ChefHat,
@@ -13,7 +14,9 @@ import {
   Footprints,
   Gauge,
   Gem,
+  Grid3x3,
   Layers,
+  PaintRoller,
   Puzzle,
   Rocket,
   RotateCw,
@@ -54,6 +57,9 @@ const iconMap = {
   recipe: ClipboardList,
   ringSize: Gem,
   embed: Puzzle,
+  paintCalculator: PaintRoller,
+  tileCalculator: Grid3x3,
+  brickCalculator: Blocks,
 } as const satisfies Record<string, LucideIcon>;
 
 export type SiteIconName = keyof typeof iconMap;
@@ -99,6 +105,8 @@ const calculatorIconMap = {
   "gerilim-dusumu-hesaplama": "energy",
   "kablo-kesiti-hesaplama": "energy",
   "motor-akimi-hesaplama": "energy",
+  "ohm-yasasi": "resistance",
+  "ohms-law": "resistance",
 } as const satisfies Record<string, SiteIconName>;
 
 export function getCategoryIconName(category: string) {

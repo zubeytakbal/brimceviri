@@ -108,6 +108,30 @@ export default function DigerDonusumlerPage() {
         "Yüzük ölçüsünü TR, Avrupa, ABD ve İngiltere sistemleri arasında çevirin.",
       iconName: "ringSize" as const,
     },
+    {
+      id: "boya",
+      href: "/boya-hesaplama",
+      title: "Boya Hesaplama",
+      description:
+        "Oda ölçülerinden net duvar alanını ve gereken boya litresini hesaplayın.",
+      iconName: "paintCalculator" as const,
+    },
+    {
+      id: "fayans",
+      href: "/fayans-hesaplama",
+      title: "Fayans Hesaplama",
+      description:
+        "Kaplanacak alan ve fayans ebadından, fire payı dahil gereken fayans adedini hesaplayın.",
+      iconName: "tileCalculator" as const,
+    },
+    {
+      id: "tugla",
+      href: "/tugla-hesaplama",
+      title: "Tuğla Hesaplama",
+      description:
+        "Duvar alanı ve tuğla ölçüsünden, derz ve fire payı dahil gereken tuğla adedini hesaplayın.",
+      iconName: "brickCalculator" as const,
+    },
   ];
 
   return (

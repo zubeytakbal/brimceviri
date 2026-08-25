@@ -1,7 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import TileCalculator from "../components/TileCalculator";
+import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+
+const faqItems: FaqItem[] = [
+  {
+    question: "Duvar ve zemin fayansı için aynı hesap mı kullanılır?",
+    answer:
+      "Evet, formül aynıdır — tek fark kaplanacak alanı nasıl bulduğundur. Zeminde bu genelde oda uzunluğu × genişliği, duvarda ise duvar uzunluğu × yüksekliğidir.",
+  },
+  {
+    question: "Fire payını neye göre seçmeliyim?",
+    answer:
+      "Dikdörtgen, köşesiz bir alanda %10 genelde yeterlidir. Oda köşeli/girintili ise, fayans çapraz döşenecekse veya desenli fayans kullanılacaksa %15-%20 aralığına çıkmak daha güvenlidir.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "Fayans Hesaplama: Kaç Adet Fayans Gerekir?",
@@ -50,6 +64,12 @@ export default function TileCalculatorPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: serializeJsonLd(buildFaqSchema(faqItems)),
+        }}
       />
 
       <div className="all-conversions-shell">

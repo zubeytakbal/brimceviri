@@ -1,7 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import VatCalculator from "../components/VatCalculator";
+import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+
+const faqItems: FaqItem[] = [
+  {
+    question: "Fişteki KDV dahil tutardan KDV'yi nasıl ayırırım?",
+    answer:
+      "\"KDV Dahil → KDV Hariç\" yönünü seç, fişteki toplam tutarı ve ürünün KDV oranını gir; araç sana hem matrahı hem KDV tutarını ayrı ayrı gösterir.",
+  },
+  {
+    question: "Bu araç fatura kesmek için mi kullanılır?",
+    answer:
+      "Hayır, yalnızca hızlı bir hesap aracıdır; resmi fatura/e-fatura işlemleri için muhasebe yazılımı veya mali müşavir desteği kullanmalısın.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "KDV Hesaplama: KDV Dahil ve KDV Hariç Tutar",
@@ -50,6 +64,12 @@ export default function VatCalculatorPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: serializeJsonLd(buildFaqSchema(faqItems)),
+        }}
       />
 
       <div className="all-conversions-shell">

@@ -1,7 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import DateCalculator from "../components/DateCalculator";
+import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+
+const faqItems: FaqItem[] = [
+  {
+    question: "Sonraki yıl dönümü ne anlama geliyor?",
+    answer:
+      "Başlangıç tarihindeki ay ve günün, hedef tarihten sonraki ilk tekrarını gösterir. Başlangıç tarihi bir doğum günüyse, bu senin bir sonraki doğum gününe kaç gün kaldığını gösterir.",
+  },
+  {
+    question: "29 Şubat doğumlular için ne oluyor?",
+    answer:
+      "Artık yıl olmayan yıllarda 29 Şubat bulunmadığı için tarayıcı bu tarihi otomatik olarak 1 Mart'a kaydırır; bu yaygın kabul gören bir yaklaşımdır.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "Yaş Hesaplama: Kaç Yaşındasın? (İki Tarih Arası Fark)",
@@ -50,6 +64,12 @@ export default function DateCalculatorPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: serializeJsonLd(buildFaqSchema(faqItems)),
+        }}
       />
 
       <div className="all-conversions-shell">

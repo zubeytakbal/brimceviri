@@ -1,7 +1,22 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ElectricityConsumptionCalculator from "../components/ElectricityConsumptionCalculator";
+import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+
+const faqItems: FaqItem[] = [
+  {
+    question:
+      "Neden kWh birim fiyatını sizin belirlemeniz gerekiyor da araç önermiyor?",
+    answer:
+      "Elektrik birim fiyatı abonelik tipine (mesken/ticarethane), tüketim dilimine ve zaman içindeki güncellemelere göre değişir. Yanlış/güncel olmayan bir fiyat varsayımıyla seni yanıltmak yerine, faturandaki gerçek kWh fiyatını kendin girmeni istiyoruz — bu şekilde sonuç her zaman güncel ve doğru kalır.",
+  },
+  {
+    question: "Bekleme modundaki (standby) tüketimi de hesaba katmalı mıyım?",
+    answer:
+      "Bu araç yalnızca cihazın aktif çalışma süresini hesaba katar. Sürekli prizde takılı kalan cihazların (TV, şarj adaptörü gibi) bekleme modu tüketimi ayrı ve genelde çok küçük bir yüktür; hassas bir toplam istiyorsan bunu ayrıca eklemen gerekir.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "Elektrik Tüketimi Hesaplama: Cihaz Kaç kWh Tüketir?",
@@ -50,6 +65,12 @@ export default function ElectricityConsumptionPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: serializeJsonLd(buildFaqSchema(faqItems)),
+        }}
       />
 
       <div className="all-conversions-shell">

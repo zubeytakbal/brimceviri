@@ -1,7 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import AcCapacityCalculator from "../components/AcCapacityCalculator";
+import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+
+const faqItems: FaqItem[] = [
+  {
+    question: "Salon ve yatak odasında aynı formül mü kullanılır?",
+    answer:
+      "Evet, temel formül aynıdır — sadece odanın alanı, içindeki kişi sayısı ve güneş/kat durumu değişir. Mutfak gibi ekstra ısı kaynağı olan (ocak, fırın) mekanlarda gerçek ihtiyaç bu hesaptan biraz daha yüksek çıkabilir.",
+  },
+  {
+    question: "Neden bir üst standart kapasiteye yuvarlanıyor?",
+    answer:
+      "Klimalar piyasada sabit kapasite adımlarıyla (9.000, 12.000 BTU gibi) satılır; hesaplanan ihtiyacın hemen altındaki bir kapasiteyi almak odayı yeterince soğutamamana yol açar, bu yüzden bir üst standart kapasite güvenli tercihtir.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "Klima BTU Hesaplama: Kaç BTU Klima Almalıyım?",
@@ -50,6 +64,12 @@ export default function AcCapacityCalculatorPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: serializeJsonLd(buildFaqSchema(faqItems)),
+        }}
       />
 
       <div className="all-conversions-shell">

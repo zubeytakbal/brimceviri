@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import EnglishConversionSeo from "../../components/EnglishConversionSeo";
 import PairConverter from "../../converter/PairConverter";
 import { convert } from "../../converter/convert";
 import { findEnglishUnitPage } from "../../converter/localizedUnitPages";
@@ -314,6 +315,8 @@ export default async function EnglishConversionPage({
             </Link>
           </section>
         )}
+
+        <EnglishConversionSeo conversionPage={page} />
 
         {reversePage && (
           <section className="conversion-section related-conversions">

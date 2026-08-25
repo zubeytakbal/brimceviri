@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import ConversionSeo from "../components/ConversionSeo";
+import EmbedCodeBox from "../components/EmbedCodeBox";
 import PairConverter from "../converter/PairConverter";
 import { categoryPages } from "../converter/categoryPages";
 import { convert } from "../converter/convert";
@@ -17,6 +18,26 @@ type PageProps = {
     slug: string;
   }>;
 };
+
+// En cok aranan, gercekten yuksek trafik potansiyeli olan donusum
+// ciftleri -- embed kodu tesviki (baska sitelere gomulup geri link
+// kazandirma) sadece bunlarda gosterilir, tum ~800 sayfada degil.
+const popularEmbedSlugs = new Set([
+  "kilogram-pound",
+  "pound-kilogram",
+  "santigrat-fahrenhayt",
+  "fahrenhayt-santigrat",
+  "kilometre-mil",
+  "mil-kilometre",
+  "santimetre-inc",
+  "inc-santimetre",
+  "metre-fit",
+  "fit-metre",
+  "kilogram-gram",
+  "gram-kilogram",
+  "litre-galon",
+  "galon-litre",
+]);
 
 function formatNumber(value: number) {
   if (!Number.isFinite(value)) {
@@ -215,6 +236,13 @@ export default async function ConversionPage({ params }: PageProps) {
               fromName={conversionPage.fromName}
               toName={conversionPage.toName}
             />
+
+            {popularEmbedSlugs.has(conversionPage.slug) && (
+              <EmbedCodeBox
+                embedPath={`/embed/${conversionPage.slug}`}
+                title={`${conversionPage.fromName} – ${conversionPage.toName} Çevirici`}
+              />
+            )}
           </div>
 
           <div className="conversion-hero-information">

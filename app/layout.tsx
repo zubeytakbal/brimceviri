@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from "next";
 import { headers } from "next/headers";
 import { Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google";
 import Script from "next/script";
+import RecentToolsTracker from "./components/RecentToolsTracker";
 import SiteHeader from "./components/SiteHeader";
 import SiteFooter from "./components/SiteFooter";
 import { SITE_NAME, SITE_URL } from "./siteConfig";
@@ -154,6 +155,7 @@ export default async function RootLayout({
         className={`${plusJakartaSans.variable} ${notoSansHeading.variable} ${logoFont.variable}`}
       >
         {!isEmbed && <SiteHeader />}
+        {!isEmbed && <RecentToolsTracker />}
         {children}
         {!isEmbed && <SiteFooter />}
       </body>

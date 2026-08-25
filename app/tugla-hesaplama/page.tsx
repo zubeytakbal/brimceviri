@@ -1,7 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import BrickCalculator from "../components/BrickCalculator";
+import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+
+const faqItems: FaqItem[] = [
+  {
+    question: "Tuğlanın derinlik (kalınlık) ölçüsünü neden sormuyorsunuz?",
+    answer:
+      "Adet hesabı yalnızca duvarın yüzeyinde görünen en × yükseklik alanına bağlıdır; tuğlanın derinliği duvarın kalınlığını belirler ama yüzeyde kaç tuğla göründüğünü değiştirmez.",
+  },
+  {
+    question: "Kapı ve pencere alanlarını düşmem gerekiyor mu?",
+    answer:
+      "Evet — \"Duvar Alanı\" alanına, kapı ve pencere gibi boşlukları zaten düşülmüş net duvar alanını girmelisin. Brüt alan/boşluk hesaplama mantığı için boya hesaplama aracına bakabilirsin.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "Tuğla Hesaplama: Kaç Adet Tuğla Gerekir?",
@@ -50,6 +64,12 @@ export default function BrickCalculatorPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: serializeJsonLd(buildFaqSchema(faqItems)),
+        }}
       />
 
       <div className="all-conversions-shell">

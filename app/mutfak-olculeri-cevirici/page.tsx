@@ -2,8 +2,26 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import EmbedCodeBox from "../components/EmbedCodeBox";
 import KitchenMeasuresConverter from "../components/KitchenMeasuresConverter";
+import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
 import { kitchenIngredientRows } from "../converter/kitchenMeasures";
 import { buildSiteUrl } from "../siteConfig";
+
+const faqItems: FaqItem[] = [
+  {
+    question: "1 yemek kaşığı kaç ml, kaç çay kaşığı eder?",
+    answer:
+      "1 yemek kaşığı 15 ml'dir ve 3 çay kaşığına eşittir (1 çay kaşığı 5 ml). 1 su bardağı ise 200 ml, yani yaklaşık 13,3 yemek kaşığına denk gelir.",
+  },
+  {
+    question: "Neden aynı bardak farklı malzemelerde farklı gram tutuyor?",
+    answer:
+      "Bardak ve kaşıklar hacim (mililitre) ölçer, gram ise ağırlıktır. İki ölçü arasındaki bağlantı malzemenin yoğunluğuna bağlıdır; un gibi havadar malzemeler bal gibi yoğun malzemelerden çok daha hafiftir.",
+  },
+];
+
+function serializeJsonLd(data: object) {
+  return JSON.stringify(data).replace(/</g, "\\u003c");
+}
 
 export const metadata: Metadata = {
   title: "Mutfak Ölçüleri Çevirici: Bardak, Kaşık, Gram Hesaplama",
@@ -29,8 +47,38 @@ export const metadata: Metadata = {
 };
 
 export default function KitchenMeasuresPage() {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Ana Sayfa",
+        item: buildSiteUrl("/"),
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Mutfak Ölçüleri Çevirici",
+        item: buildSiteUrl("/mutfak-olculeri-cevirici"),
+      },
+    ],
+  };
+
   return (
     <main className="all-conversions-page">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: serializeJsonLd(buildFaqSchema(faqItems)),
+        }}
+      />
+
       <div className="all-conversions-shell">
         <nav className="breadcrumbs" aria-label="Sayfa yolu">
           <Link href="/">Ana Sayfa</Link>

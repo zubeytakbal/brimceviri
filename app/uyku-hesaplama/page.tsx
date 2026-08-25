@@ -1,7 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import SleepCalculator from "../components/SleepCalculator";
+import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+
+const faqItems: FaqItem[] = [
+  {
+    question: "Neden 5 ve 6 döngü \"önerilen\" olarak işaretli?",
+    answer:
+      "Sağlık kuruluşlarının yetişkinler için önerdiği 7-9 saatlik uyku aralığına en yakın düşen döngü sayıları bunlardır (5 döngü ≈ 7,5 saat, 6 döngü ≈ 9 saat). 3-4 döngü (4,5-6 saat) de gösterilir ama düzenli olarak bu kadar az uyumak önerilmez — bu seçenekler daha çok tek seferlik zorunlu durumlar için bir referanstır.",
+  },
+  {
+    question: "Bu hesap herkes için birebir doğru mu?",
+    answer:
+      "Hayır — döngü uzunluğu kişiden kişiye biraz değişebilir (75-120 dakika aralığında olabilir) ve yaş, stres, kafein gibi faktörler de uykuyu etkiler. Bu araç genel bir kılavuzdur, kesin bir tıbbi ölçüm değildir.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "Uyku Hesaplama: Kaçta Yatmalı, Kaçta Kalkmalıyım?",
@@ -50,6 +64,12 @@ export default function SleepCalculatorPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: serializeJsonLd(buildFaqSchema(faqItems)),
+        }}
       />
 
       <div className="all-conversions-shell">

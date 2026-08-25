@@ -1,7 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import PaintCalculator from "../components/PaintCalculator";
+import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+
+const faqItems: FaqItem[] = [
+  {
+    question: "Neden tavanı ayrı işaretlemem gerekiyor?",
+    answer:
+      "Çoğu boyama işinde tavan ayrı bir boya (genelde mat, farklı renk) ile yapılır ve bazen hiç boyanmaz. Bu yüzden varsayılan olarak hesaba dahil edilmez; dahil etmek istersen kutuyu işaretlemen yeterli.",
+  },
+  {
+    question: "Kaç kat boya sürmeliyim?",
+    answer:
+      "Açık renkten açık renge geçişte tek kat yeterli olabilir; koyu bir rengin üstünü açık renkle kapatmak veya sıva/alçı gibi emici yeni bir yüzeye boyamak için iki kat önerilir. Emin değilsen iki katı seçmek daha güvenlidir.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "Boya Hesaplama: Kaç Litre Boya Gerekir?",
@@ -50,6 +64,12 @@ export default function PaintCalculatorPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: serializeJsonLd(buildFaqSchema(faqItems)),
+        }}
       />
 
       <div className="all-conversions-shell">

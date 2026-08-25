@@ -1,7 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import LengthComparisonTool from "../components/LengthComparisonTool";
+import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+
+const faqItems: FaqItem[] = [
+  {
+    question: "En yakın karşılaştırma nasıl seçiliyor?",
+    answer:
+      "Girdiğin değere oranı 1'e (yani birebir eşit olmaya) en yakın olan referans nesne en üstte gösterilir; listedeki diğer tüm nesneler de kaç kat olduklarıyla birlikte sıralanır.",
+  },
+  {
+    question: "Neden bazı çubuklar tamamen dolu görünüyor?",
+    answer:
+      "Girdiğin değer referans nesneden büyükse (örneğin 200 metre girip zürafa boyuyla karşılaştırıyorsan), çubuk görsel olarak dolu gösterilir ve yanındaki sayı gerçek kat farkını (ör. \"36 kat\") yazılı olarak belirtir.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "Uzunluk Karşılaştırma: Bu Kaç Metre Eder?",
@@ -50,6 +64,12 @@ export default function LengthComparisonPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: serializeJsonLd(buildFaqSchema(faqItems)),
+        }}
       />
 
       <div className="all-conversions-shell">

@@ -1,7 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import PregnancyCalculator from "../components/PregnancyCalculator";
+import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+
+const faqItems: FaqItem[] = [
+  {
+    question: "Tahmini doğum tarihi kesin midir?",
+    answer:
+      "Hayır — bu, istatistiksel bir ortalamadır (SAT + 280 gün). Gerçek doğum tarihi, düzensiz adet döngüsü, ultrason ölçümleri gibi faktörlere göre birkaç gün ile birkaç hafta arasında farklılık gösterebilir. Kesin takip için doktor kontrolü esastır.",
+  },
+  {
+    question: "Adet döngüm düzensizse bu hesap doğru olur mu?",
+    answer:
+      "Düzensiz döngülerde SAT bazlı hesap daha az güvenilir olur; bu durumda doktorun yapacağı ultrason bazlı tarihlendirme daha doğru sonuç verir.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "Gebelik Haftası Hesaplama: Kaçıncı Haftadayım?",
@@ -50,6 +64,12 @@ export default function PregnancyCalculatorPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: serializeJsonLd(buildFaqSchema(faqItems)),
+        }}
       />
 
       <div className="all-conversions-shell">

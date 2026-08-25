@@ -28,6 +28,7 @@ import {
   Wind,
 } from "@phosphor-icons/react";
 import { useDeferredValue, useId, useState } from "react";
+import RecentToolsWidget from "./RecentToolsWidget";
 import { useRouter } from "next/navigation";
 import { DecorativeIcon } from "./siteIcons";
 import { calculatorPages } from "../converter/calculatorPages";
@@ -883,6 +884,8 @@ export default function HomeDirectory({
           </div>
         </div>
       </section>
+
+      <RecentToolsWidget locale={locale} />
 
       <div className="directory-shell directory-content">
         <section className="directory-section">

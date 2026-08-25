@@ -1,7 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import BmiCalculator from "../components/BmiCalculator";
+import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+
+const faqItems: FaqItem[] = [
+  {
+    question: "Kilo vermek/almak istiyorsam bu sayıyı nasıl kullanmalıyım?",
+    answer:
+      "Günlük kalori ihtiyacın, mevcut kilonu koruman için gereken yaklaşık miktardır. Kilo vermek isteyenler genelde bu değerin biraz altında, kilo almak isteyenler biraz üstünde beslenir — ama büyük değişiklikler öncesi bir diyetisyene danışmak en sağlıklısıdır.",
+  },
+  {
+    question: "Sonuçlar tıbbi tavsiye yerine geçer mi?",
+    answer:
+      "Hayır. Bu araç genel bir bilgilendirme ve hızlı hesaplama aracıdır; sağlık kararların için bir hekim veya diyetisyene danışmalısın.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "BMI Hesaplama: Vücut Kitle İndeksi ve Günlük Kalori İhtiyacı",
@@ -50,6 +64,12 @@ export default function BmiCalculatorPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: serializeJsonLd(buildFaqSchema(faqItems)),
+        }}
       />
 
       <div className="all-conversions-shell">

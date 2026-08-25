@@ -223,6 +223,9 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
       { href: "/boya-hesaplama", label: "Boya Hesaplama" },
       { href: "/fayans-hesaplama", label: "Fayans Hesaplama" },
       { href: "/tugla-hesaplama", label: "Tuğla Hesaplama" },
+      { href: "/yas-hesaplama", label: "Yaş Hesaplama" },
+      { href: "/kdv-hesaplama", label: "KDV Hesaplama" },
+      { href: "/bmi-hesaplama", label: "BMI Hesaplama" },
     ],
     alternateTitle: "Di\u011fer diller",
     alternateLink: {

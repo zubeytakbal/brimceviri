@@ -1,10 +1,12 @@
 import {
+  Activity,
   Anvil,
   ArrowLeftRight,
   Battery,
   Blocks,
   BookOpen,
   Cable,
+  Cake,
   ChefHat,
   CircleGauge,
   CircuitBoard,
@@ -18,6 +20,7 @@ import {
   Layers,
   PaintRoller,
   Puzzle,
+  ReceiptTurkishLira,
   Rocket,
   RotateCw,
   Ruler,
@@ -60,6 +63,9 @@ const iconMap = {
   paintCalculator: PaintRoller,
   tileCalculator: Grid3x3,
   brickCalculator: Blocks,
+  dateCalculator: Cake,
+  vatCalculator: ReceiptTurkishLira,
+  bmiCalculator: Activity,
 } as const satisfies Record<string, LucideIcon>;
 
 export type SiteIconName = keyof typeof iconMap;

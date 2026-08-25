@@ -132,6 +132,30 @@ export default function DigerDonusumlerPage() {
         "Duvar alanı ve tuğla ölçüsünden, derz ve fire payı dahil gereken tuğla adedini hesaplayın.",
       iconName: "brickCalculator" as const,
     },
+    {
+      id: "yas",
+      href: "/yas-hesaplama",
+      title: "Yaş Hesaplama",
+      description:
+        "Doğum tarihinden yaşını yıl-ay-gün olarak, ya da iki tarih arasındaki farkı hesaplayın.",
+      iconName: "dateCalculator" as const,
+    },
+    {
+      id: "kdv",
+      href: "/kdv-hesaplama",
+      title: "KDV Hesaplama",
+      description:
+        "KDV dahil veya KDV hariç tutarı, KDV miktarını oran bazında hesaplayın.",
+      iconName: "vatCalculator" as const,
+    },
+    {
+      id: "bmi",
+      href: "/bmi-hesaplama",
+      title: "BMI Hesaplama",
+      description:
+        "Vücut kitle indeksini (BMI) ve günlük kalori ihtiyacını hesaplayın.",
+      iconName: "bmiCalculator" as const,
+    },
   ];
 
   return (

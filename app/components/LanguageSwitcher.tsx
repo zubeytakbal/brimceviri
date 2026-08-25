@@ -60,6 +60,10 @@ const staticRouteSets: StaticRouteSet[] = [
     en: "/en/other-conversions",
   },
   {
+    tr: "/tarihi-olcu-birimleri",
+    en: "/en/historical-units",
+  },
+  {
     tr: "/ayakkabi-numarasi-cevirme",
     en: "/en/shoe-size-converter",
   },

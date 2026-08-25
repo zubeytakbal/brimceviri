@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import CategoryUnitConverter from "../components/CategoryUnitConverter";
 import StaticPageLayout from "../components/StaticPageLayout";
 import { buildSiteUrl } from "../siteConfig";
 
@@ -11,6 +12,7 @@ export const metadata: Metadata = {
     canonical: "/tarihi-olcu-birimleri",
     languages: {
       tr: "/tarihi-olcu-birimleri",
+      en: "/en/historical-units",
       "x-default": "/tarihi-olcu-birimleri",
     },
   },
@@ -24,6 +26,23 @@ export const metadata: Metadata = {
     type: "website",
   },
 };
+
+const historicalLengthUnitOptions = [
+  { value: "m", label: "Metre (m)", symbol: "m" },
+  { value: "arşın", label: "Arşın", symbol: "arşın" },
+  { value: "endaze", label: "Endaze", symbol: "endaze" },
+  { value: "pus", label: "Bizans Ayağı (Pous)", symbol: "pus" },
+  { value: "orgyia", label: "Bizans Kulacı (Orgyia)", symbol: "orgyia" },
+  { value: "çığ", label: "Çığ", symbol: "çığ" },
+];
+
+const historicalMassUnitOptions = [
+  { value: "g", label: "Gram (g)", symbol: "g" },
+  { value: "okka", label: "Okka", symbol: "okka" },
+  { value: "dirhem", label: "Dirhem", symbol: "dirhem" },
+  { value: "litra", label: "Bizans Litrası (Litra)", symbol: "litra" },
+  { value: "ounkia", label: "Bizans Onsu (Ounkia)", symbol: "ounkia" },
+];
 
 const byzantineUnits = [
   {
@@ -147,6 +166,49 @@ export default function TarihiOlcuBirimleriPage() {
                 tarihçesini ve ilgili birimlere dönüşüm araçlarını
                 aşağıdaki bölümlerden bulabilirsiniz.
               </p>
+            </>
+          ),
+        },
+        {
+          heading: "Tarihi Uzunluk Birimi Çevirici",
+          content: (
+            <>
+              <p>
+                Arşın, endaze, Bizans ayağı, Bizans kulacı ve çığ
+                arasında, modern metre karşılığıyla birlikte anında
+                dönüşüm yap. (Metre/kilometre gibi tüm modern uzunluk
+                birimleri için{" "}
+                <Link href="/kategoriler/uzunluk">
+                  uzunluk dönüşümleri sayfasını
+                </Link>{" "}
+                kullanabilirsin.)
+              </p>
+              <CategoryUnitConverter
+                category="uzunluk"
+                locale="tr"
+                unitOptions={historicalLengthUnitOptions}
+              />
+            </>
+          ),
+        },
+        {
+          heading: "Tarihi Kütle Birimi Çevirici",
+          content: (
+            <>
+              <p>
+                Okka, dirhem, Bizans litrası ve Bizans onsu arasında,
+                modern gram karşılığıyla birlikte anında dönüşüm yap.
+                (Kilogram/ton gibi tüm modern kütle birimleri için{" "}
+                <Link href="/kategoriler/kutle">
+                  kütle dönüşümleri sayfasını
+                </Link>{" "}
+                kullanabilirsin.)
+              </p>
+              <CategoryUnitConverter
+                category="kutle"
+                locale="tr"
+                unitOptions={historicalMassUnitOptions}
+              />
             </>
           ),
         },

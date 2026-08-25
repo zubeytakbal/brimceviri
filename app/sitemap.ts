@@ -253,6 +253,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/en/ring-size-converter`
       ),
     },
+    {
+      url: `${baseUrl}/gelistirici-api`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
   ];
 
   const turkishConversionRoutes: MetadataRoute.Sitemap =
@@ -919,6 +925,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: contentLastModified,
       changeFrequency: "monthly",
       priority: 0.7,
+      alternates: languageAlternates(
+        `${baseUrl}/tarihi-olcu-birimleri`,
+        `${baseUrl}/en/historical-units`
+      ),
+    },
+    {
+      url: `${baseUrl}/en/historical-units`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+      alternates: languageAlternates(
+        `${baseUrl}/tarihi-olcu-birimleri`,
+        `${baseUrl}/en/historical-units`
+      ),
     },
     {
       url: `${baseUrl}/en/other-conversions`,

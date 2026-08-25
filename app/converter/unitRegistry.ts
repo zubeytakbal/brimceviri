@@ -133,6 +133,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     symbol: "arşın",
     siFactor: 0.68,
     tr: { name: "Arşın", slug: "arsin" },
+    en: { name: "Arshin", slug: "arshin" },
   },
   {
     id: "endaze",
@@ -140,6 +141,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     symbol: "endaze",
     siFactor: 0.65,
     tr: { name: "Endaze", slug: "endaze" },
+    en: { name: "Endaze", slug: "endaze" },
   },
   {
     id: "pous",
@@ -147,6 +149,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     symbol: "pus",
     siFactor: 0.3148,
     tr: { name: "Bizans Ayağı", slug: "bizans-ayagi" },
+    en: { name: "Byzantine Foot", slug: "byzantine-foot" },
   },
   {
     id: "orgyia",
@@ -154,6 +157,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     symbol: "orgyia",
     siFactor: 1.8888,
     tr: { name: "Bizans Kulacı", slug: "bizans-kulaci" },
+    en: { name: "Byzantine Fathom", slug: "byzantine-fathom" },
   },
   {
     id: "cig",
@@ -161,6 +165,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     symbol: "çığ",
     siFactor: 0.333,
     tr: { name: "Çığ", slug: "cig" },
+    en: { name: "Cig", slug: "cig" },
   },
 
   // ---- alan / area / Fläche ----
@@ -245,6 +250,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     symbol: "dönüm",
     siFactor: 1000,
     tr: { name: "Dönüm", slug: "donum" },
+    en: { name: "Donum", slug: "donum" },
   },
   {
     id: "dekar",
@@ -252,6 +258,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     symbol: "dekar",
     siFactor: 1000,
     tr: { name: "Dekar", slug: "dekar" },
+    en: { name: "Decare", slug: "decare" },
   },
 
   // ---- hacim / volume / Volumen ----
@@ -390,6 +397,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     symbol: "okka",
     siFactor: 1.282945,
     tr: { name: "Okka", slug: "okka" },
+    en: { name: "Okka", slug: "okka" },
   },
   {
     id: "dirhem",
@@ -397,6 +405,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     symbol: "dirhem",
     siFactor: 0.0032073625,
     tr: { name: "Dirhem", slug: "dirhem" },
+    en: { name: "Dirham", slug: "dirham" },
   },
   {
     id: "litra",
@@ -404,6 +413,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     symbol: "litra",
     siFactor: 0.324,
     tr: { name: "Bizans Litrası", slug: "bizans-litrasi" },
+    en: { name: "Byzantine Litra", slug: "byzantine-litra" },
   },
   {
     id: "ounkia",
@@ -411,6 +421,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     symbol: "ounkia",
     siFactor: 0.027,
     tr: { name: "Bizans Onsu", slug: "bizans-onsu" },
+    en: { name: "Byzantine Ounce", slug: "byzantine-ounce" },
   },
 
   // ---- yoğunluk / density (engine-only, no public pages) ----

@@ -1,5 +1,5 @@
 import "./globals.css";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { headers } from "next/headers";
 import { Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google";
 import Script from "next/script";
@@ -89,6 +89,18 @@ export const metadata: Metadata = {
   verification: {
     google: "meFoeOlEAS1hhtFLvCSrNiQHNRWU1GCJBd79kswXeeA",
   },
+
+  manifest: "/manifest.webmanifest",
+
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "BirimCeviri",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#168f8c",
 };
 
 function getLocaleFromPathname(pathname: string) {
@@ -111,6 +123,7 @@ export default async function RootLayout({
   const headerStore = await headers();
   const pathname = headerStore.get("x-pathname") ?? "/";
   const locale = getLocaleFromPathname(pathname);
+  const isEmbed = pathname.startsWith("/embed/");
 
   return (
     <html lang={locale}>
@@ -127,13 +140,22 @@ export default async function RootLayout({
             gtag('config', 'G-9PGNSBT970');
           `}
         </Script>
+        <Script id="sw-register" strategy="afterInteractive">
+          {`
+            if ('serviceWorker' in navigator) {
+              window.addEventListener('load', function () {
+                navigator.serviceWorker.register('/sw.js').catch(function () {});
+              });
+            }
+          `}
+        </Script>
       </head>
       <body
         className={`${plusJakartaSans.variable} ${notoSansHeading.variable} ${logoFont.variable}`}
       >
-        <SiteHeader />
+        {!isEmbed && <SiteHeader />}
         {children}
-        <SiteFooter />
+        {!isEmbed && <SiteFooter />}
       </body>
     </html>
   );

@@ -14,6 +14,7 @@ import {
   Gauge,
   Gem,
   Layers,
+  Puzzle,
   Rocket,
   RotateCw,
   Ruler,
@@ -52,6 +53,7 @@ const iconMap = {
   kitchenMeasures: ChefHat,
   recipe: ClipboardList,
   ringSize: Gem,
+  embed: Puzzle,
 } as const satisfies Record<string, LucideIcon>;
 
 export type SiteIconName = keyof typeof iconMap;

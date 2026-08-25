@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import EmbedCodeBox from "../components/EmbedCodeBox";
 import RecipeScalerConverter from "../components/RecipeScalerConverter";
 import { buildSiteUrl } from "../siteConfig";
 
@@ -36,20 +37,29 @@ export default function RecipeScalerPage() {
           <span>Tarif Çevirici</span>
         </nav>
 
-        <header className="all-conversions-header">
-          <h1>Tarif Çevirici</h1>
+        <div className="page-top-row">
+          <header className="all-conversions-header">
+            <h1>Tarif Çevirici</h1>
 
-          <p>
-            Tarifini aşağıya, her malzeme ayrı satırda olacak şekilde
-            yapıştır (ör. &quot;2 su bardağı un&quot;). Bir çarpan seç,
-            tüm miktarlar anında ölçeklenir; bardak, yemek kaşığı veya
-            çay kaşığıyla yazılmış ve{" "}
-            <Link href="/mutfak-olculeri-cevirici">
-              mutfak ölçüleri tablosunda
-            </Link>{" "}
-            bulunan malzemelerde gram karşılığı da otomatik gösterilir.
-          </p>
-        </header>
+            <p>
+              Tarifini aşağıya, her malzeme ayrı satırda olacak şekilde
+              yapıştır (ör. &quot;2 su bardağı un&quot;). Bir çarpan seç,
+              tüm miktarlar anında ölçeklenir; bardak, yemek kaşığı veya
+              çay kaşığıyla yazılmış ve{" "}
+              <Link href="/mutfak-olculeri-cevirici">
+                mutfak ölçüleri tablosunda
+              </Link>{" "}
+              bulunan malzemelerde gram karşılığı da otomatik gösterilir.
+            </p>
+          </header>
+
+          <EmbedCodeBox
+            embedPath="/embed/tarif-cevirici"
+            title="Tarif Çevirici"
+            height={700}
+            maxWidth={560}
+          />
+        </div>
 
         <RecipeScalerConverter locale="tr" />
 

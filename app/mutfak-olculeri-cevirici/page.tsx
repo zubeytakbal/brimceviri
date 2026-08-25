@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import EmbedCodeBox from "../components/EmbedCodeBox";
 import KitchenMeasuresConverter from "../components/KitchenMeasuresConverter";
 import { kitchenIngredientRows } from "../converter/kitchenMeasures";
 import { buildSiteUrl } from "../siteConfig";
@@ -37,16 +38,23 @@ export default function KitchenMeasuresPage() {
           <span>Mutfak Ölçüleri Çevirici</span>
         </nav>
 
-        <header className="all-conversions-header">
-          <h1>Mutfak Ölçüleri Çevirici</h1>
+        <div className="page-top-row">
+          <header className="all-conversions-header">
+            <h1>Mutfak Ölçüleri Çevirici</h1>
 
-          <p>
-            Malzemeyi ve bildiğin ölçüyü seç, bardak, yemek kaşığı, çay
-            kaşığı, gram, mililitre ve litre karşılıklarını anında gör.
-            Un, şeker, pirinç, bal, tereyağı ve daha fazlası için ayrı
-            ayrı hesaplanmış ölçü değerleri kullanılıyor.
-          </p>
-        </header>
+            <p>
+              Malzemeyi ve bildiğin ölçüyü seç, bardak, yemek kaşığı, çay
+              kaşığı, gram, mililitre ve litre karşılıklarını anında gör.
+              Un, şeker, pirinç, bal, tereyağı ve daha fazlası için ayrı
+              ayrı hesaplanmış ölçü değerleri kullanılıyor.
+            </p>
+          </header>
+
+          <EmbedCodeBox
+            embedPath="/embed/mutfak-olculeri"
+            title="Mutfak Ölçüleri Çevirici"
+          />
+        </div>
 
         <KitchenMeasuresConverter locale="tr" />
 

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <title>BirimCeviri.app</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header class="header">
+      <img src="icons/icon48.png" alt="" width="20" height="20" />
+      <strong>BirimCeviri.app</strong>
+    </header>
+
+    <main>
+      <label class="field">
+        <span>Kategori</span>
+        <select id="category"></select>
+      </label>
+
+      <div class="row">
+        <label class="field">
+          <span>Kaynak birim</span>
+          <select id="fromUnit"></select>
+        </label>
+
+        <label class="field">
+          <span>Hedef birim</span>
+          <select id="toUnit"></select>
+        </label>
+      </div>
+
+      <label class="field">
+        <span>Değer</span>
+        <input id="value" type="text" inputmode="decimal" value="1" />
+      </label>
+
+      <div id="result" class="result" aria-live="polite">
+        Bir kategori ve birim seç.
+      </div>
+
+      <a
+        id="openSite"
+        class="site-link"
+        href="https://www.birimceviri.app"
+        target="_blank"
+        rel="noopener"
+      >
+        Tüm dönüşümler için siteyi aç →
+      </a>
+    </main>
+
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>

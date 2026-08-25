@@ -601,7 +601,7 @@ function createHomeData(locale: Locale): HomeData {
             id: "tarihi",
             iconKey: "tarihi" as const,
             name: "Tarihi Ölçü Birimleri",
-            symbol: "🏛",
+            symbol: "HIST",
             description:
               "Bizans, Osmanlı ve eski Türk dönemlerinden kalma arşın, okka, dirhem, endaze ve Bizans ayağı gibi birimleri metreye ve grama çevirin.",
             href: "/tarihi-olcu-birimleri",
@@ -619,7 +619,32 @@ function createHomeData(locale: Locale): HomeData {
             ],
           },
         ]
-      : categoryCards;
+      : locale === "en"
+        ? [
+            ...categoryCards,
+            {
+              id: "historical",
+              iconKey: "tarihi" as const,
+              name: "Historical Units",
+              symbol: "HIST",
+              description:
+                "Explore Byzantine, Ottoman and early Turkic units such as arshin, okka, dirham, endaze and the Byzantine foot with modern metric equivalents.",
+              href: "/en/historical-units",
+              links: [
+                {
+                  id: "historical-arshin-meter",
+                  href: "/en/arshin-to-meters",
+                  label: "Arshin to meter",
+                },
+                {
+                  id: "historical-okka-gram",
+                  href: "/en/okka-to-grams",
+                  label: "Okka to gram",
+                },
+              ],
+            },
+          ]
+        : categoryCards;
 
   const secondaryCategories: HomeSecondaryCategory[] = categoryPages
     .filter(

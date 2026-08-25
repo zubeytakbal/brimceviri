@@ -26,6 +26,18 @@ type ConverterData = {
   toName: string;
 };
 
+const historicalUnitSlugs = new Set([
+  "arshin",
+  "endaze",
+  "okka",
+  "dirham",
+  "byzantine-foot",
+  "byzantine-fathom",
+  "byzantine-litra",
+  "byzantine-ounce",
+  "cig",
+]);
+
 export const dynamicParams = false;
 
 function serializeJsonLd(data: object) {
@@ -330,6 +342,17 @@ export default async function EnglishUnitInformationPage({
                 )}
               </dl>
             </section>
+
+            {historicalUnitSlugs.has(unitPage.slug) && (
+              <p className="category-inline-link">
+                {unitPage.name} is also listed together with other
+                Byzantine, Ottoman and early Turkic measures on the{" "}
+                <Link href="/en/historical-units">
+                  Historical Units
+                </Link>{" "}
+                page.
+              </p>
+            )}
 
             {unitArticle && (
               <nav

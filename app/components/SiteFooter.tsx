@@ -81,6 +81,7 @@ const footerLinks: Record<Locale, FooterLink[]> = {
     { href: "/", label: "Ana Sayfa" },
     { href: "/birimler", label: "Birim Rehberi" },
     { href: "/tum-birimler", label: "T\u00FCm D\u00F6n\u00FC\u015F\u00FCmler" },
+    { href: "/gelistirici-api", label: "Geli\u015Ftirici API'si" },
     { href: "/hakkimizda", label: "Hakk\u0131m\u0131zda" },
     { href: "/iletisim", label: "\u0130leti\u015Fim" },
     { href: "/gizlilik", label: "Gizlilik" },

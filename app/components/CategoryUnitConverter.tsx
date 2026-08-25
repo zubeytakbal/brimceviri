@@ -4,9 +4,21 @@ import { useMemo, useState } from "react";
 import { convert } from "../converter/convert";
 import { getCategoryUnitOptions } from "./categoryUnitOptions";
 
+type UnitOption = {
+  value: string;
+  label: string;
+  symbol: string;
+};
+
 type CategoryUnitConverterProps = {
   category: string;
   locale: "tr" | "en" | "de";
+  // Verilmezse getCategoryUnitOptions(category, locale) kullanilir (kategori
+  // sayfalarindaki standart davranis). Verilirse, ayni convert() motoru
+  // (ayni category/symbol eslesmesi) uzerinde SADECE bu birimler secilebilir
+  // olur -- ornegin bir sayfanin "tarihi" birimlerle sinirli bir alt kume
+  // gostermesi icin (tam kategori listesini tekrarlamadan).
+  unitOptions?: UnitOption[];
 };
 
 function parseNumericValue(rawValue: string) {
@@ -61,11 +73,13 @@ function formatDisplayNumber(
 export default function CategoryUnitConverter({
   category,
   locale,
+  unitOptions: unitOptionsOverride,
 }: CategoryUnitConverterProps) {
-  const unitOptions = useMemo(
+  const derivedUnitOptions = useMemo(
     () => getCategoryUnitOptions(category, locale),
     [category, locale]
   );
+  const unitOptions = unitOptionsOverride ?? derivedUnitOptions;
   const defaultFromUnit = unitOptions[0]?.value ?? "";
   const defaultToUnit =
     unitOptions[1]?.value ?? unitOptions[0]?.value ?? "";

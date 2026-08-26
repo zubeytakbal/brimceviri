@@ -800,6 +800,20 @@ const pairDefinitions: ConversionPairDefinition[] = [
     firstExamples: [0.001, 0.01, 0.1, 0.5, 1, 2, 10],
     secondExamples: [1000, 100000, 1000000, 10000000, 100000000, 299792458, 500000000],
   },
+  {
+    category: "hacim",
+    firstId: "varil",
+    secondId: "litre",
+    firstExamples: [1, 2, 5, 10, 50, 100, 1000],
+    secondExamples: [10, 50, 100, 500, 1000, 5000, 10000],
+  },
+  {
+    category: "tork",
+    firstId: "kilogram-kuvvet-metre",
+    secondId: "newton-metre",
+    firstExamples: [1, 5, 10, 20, 35, 50, 100],
+    secondExamples: [10, 50, 100, 200, 350, 500, 1000],
+  },
 ];
 
 function createTemperatureFormula(

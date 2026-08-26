@@ -328,6 +328,13 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Gallon", slug: "gallon" },
     de: { name: "Gallone", slug: "gallone" },
   },
+  {
+    id: "varil",
+    category: "hacim",
+    symbol: "bbl",
+    siFactor: 0.158987,
+    tr: { name: "Varil (petrol)", slug: "varil" },
+  },
 
   // ---- kutle / mass / Masse ----
   {
@@ -597,6 +604,13 @@ export const unitRegistry: UnitRegistryEntry[] = [
     de: { name: "Newtonmeter", slug: "newtonmeter" },
   },
   { id: "kilonewton-metre", category: "tork", symbol: "kN·m", siFactor: 1000 },
+  {
+    id: "kilogram-kuvvet-metre",
+    category: "tork",
+    symbol: "kgf·m",
+    siFactor: 9.80665,
+    tr: { name: "Kilogram-kuvvet-metre", slug: "kilogram-kuvvet-metre" },
+  },
   {
     id: "lb-ft",
     category: "tork",

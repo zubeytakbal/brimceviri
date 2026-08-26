@@ -134,6 +134,13 @@ const unitDescriptions: Record<string, UnitDescription> = {
     siEquivalent: "1 mL = 0,000001 m³",
     commonUses: "İlaç dozları, laboratuvar örnekleri ve küçük sıvı hacimleri",
   },
+  "varil": {
+    shortDescription: "Varil (bbl), özellikle ham petrol ticaretinde kullanılan standart bir hacim birimidir. 1 varil, 158,987 litreye (42 ABD galonuna) eşittir.",
+    historySummary: "Varil birimi, 19. yüzyıl Amerikan petrol endüstrisinde petrolün nakliye fıçılarıyla taşınmasından kalma bir gelenektir; \"mavi varil\" (blue barrel) standardı zamanla uluslararası petrol ticaretinin ortak ölçüsü hâline gelmiştir.",
+    measurementSystem: "SI dışı, petrol endüstrisinde uluslararası standart birim",
+    siEquivalent: "1 varil (bbl) = 158,987 L = 0,158987 m³",
+    commonUses: "Ham petrol fiyatlandırması, petrol üretim/tüketim istatistikleri, enerji piyasası raporları",
+  },
   "kilogram": {
     shortDescription: "Kilogram, Uluslararası Birim Sistemi'nde kütlenin temel birimidir. Ticaret, laboratuvar ve mühendislikte yaygın olarak kullanılır.",
     historySummary: "Kilogram önce su kütlesine, sonra fiziksel bir prototipe dayalıydı. 2019'dan itibaren Planck sabitinin sabitlenmiş değeri üzerinden tanımlanmaktadır.",
@@ -757,6 +764,13 @@ const unitDescriptions: Record<string, UnitDescription> = {
     siEquivalent: "Temel SI tork birimi: 1 N·m = 1 N × 1 m",
     commonUses: "Motor torku, tork anahtarları, cıvata sıkma değerleri ve mekanik tasarım hesapları",
   },
+  "kilogram-kuvvet-metre": {
+    shortDescription: "Kilogram-kuvvet-metre (kgf·m, yaygın kısaltmayla \"kgm\"), tork ifade etmek için kullanılan, SI dışı geleneksel bir birimdir. Özellikle eski motor teknik dokümanlarında newton-metre yerine görülür.",
+    historySummary: "Kilogram-kuvvet-metre, SI sisteminden önce Avrupa mühendislik pratiğinde yaygın kullanılan bir tork birimiydi; günümüzde yerini büyük ölçüde newton-metreye bırakmış olsa da eski araç motor spesifikasyonlarında ve bazı tork anahtarı göstergelerinde hâlâ karşılaşılır.",
+    measurementSystem: "SI dışı, yerçekimine bağlı geleneksel birim",
+    siEquivalent: "1 kgf·m = 9,80665 N·m",
+    commonUses: "Eski motor torku spesifikasyonları, tork anahtarları, mekanik teknik dokümanlar",
+  },
   "lb-ft": {
     shortDescription: "Pound-fit (lb-ft), İngiliz ve Amerikan ölçü sistemlerinde tork ifade etmek için kullanılan geleneksel bir birimdir.",
     historySummary: "Pound-fit, pound-force ve fit (foot) birimlerinin çarpımından türetilmiş olup özellikle ABD kaynaklı otomotiv ve mühendislik dokümanlarında yaygın kullanılır.",
@@ -857,7 +871,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
 };
 
-const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","okka","dirhem","bizans-litrasi","bizans-onsu","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit","kilogram-metre-saniye","newton-saniye","pascal-saniye","santipoise","mikrometre","nanometre","deniz-mili","arsin","endaze","bizans-ayagi","bizans-kulaci","cig","santimetrekare","milimetrekare","kilometrekare","incare","akre","donum","dekar","santimetrekup","fitkup","inckup","galon","bit","bayt","kilobayt","megabayt","gigabayt","terabayt","petabayt","kibibayt","mebibayt","gibibayt","tebibayt","ohm","kiloohm","megaohm","farad","milifarad","mikrofarad","nanofarad","pikofarad","henry","milihenry","mikrohenry","coulomb","milicoulomb","mikrocoulomb","nanocoulomb","ayar-24","ayar-22","ayar-18","ayar-14","kalori","kilokalori","btu","watt-saat","kilojoule","milibar","knot","gun","isik-hizi"];
+const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","okka","dirhem","bizans-litrasi","bizans-onsu","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit","kilogram-metre-saniye","newton-saniye","pascal-saniye","santipoise","mikrometre","nanometre","deniz-mili","arsin","endaze","bizans-ayagi","bizans-kulaci","cig","santimetrekare","milimetrekare","kilometrekare","incare","akre","donum","dekar","santimetrekup","fitkup","inckup","galon","bit","bayt","kilobayt","megabayt","gigabayt","terabayt","petabayt","kibibayt","mebibayt","gibibayt","tebibayt","ohm","kiloohm","megaohm","farad","milifarad","mikrofarad","nanofarad","pikofarad","henry","milihenry","mikrohenry","coulomb","milicoulomb","mikrocoulomb","nanocoulomb","ayar-24","ayar-22","ayar-18","ayar-14","kalori","kilokalori","btu","watt-saat","kilojoule","milibar","knot","gun","isik-hizi","varil","kilogram-kuvvet-metre"];
 
 export const unitPages: UnitPage[] = unitRegistry
   .filter((entry) => entry.tr && unitDescriptions[entry.id])

@@ -314,6 +314,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.6,
     },
     {
+      url: `${baseUrl}/kosu-pace-hesaplama`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.75,
+    },
+    {
       url: `${baseUrl}/klima-btu-hesaplama`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",

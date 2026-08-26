@@ -32,6 +32,7 @@ import {
   Search,
   Sparkles,
   Thermometer,
+  Timer,
   Waves,
   Zap,
   type LucideIcon,
@@ -74,6 +75,7 @@ const iconMap = {
   acCapacityCalculator: AirVent,
   electricityConsumptionCalculator: PlugZap,
   sleepCalculator: MoonStar,
+  paceCalculator: Timer,
 } as const satisfies Record<string, LucideIcon>;
 
 export type SiteIconName = keyof typeof iconMap;

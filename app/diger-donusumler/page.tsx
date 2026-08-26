@@ -157,6 +157,14 @@ export default function DigerDonusumlerPage() {
       iconName: "mass" as const,
     },
     {
+      id: "kosu-pace",
+      href: "/kosu-pace-hesaplama",
+      title: "Koşu Pace Hesaplama",
+      description:
+        "Mesafe, süre ve tempo arasında hesaplama yapın; yarış mesafeleri için tahmini bitiş süresi görün.",
+      iconName: "paceCalculator" as const,
+    },
+    {
       id: "klima-btu",
       href: "/klima-btu-hesaplama",
       title: "Klima BTU Hesaplama",

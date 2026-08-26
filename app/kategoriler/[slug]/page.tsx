@@ -58,6 +58,7 @@ const everydayToolLinksByCategory: Record<
   uzunluk: [
     { href: "/uzunluk-karsilastirma", label: "Uzunluk Karşılaştırma" },
   ],
+  hiz: [{ href: "/kosu-pace-hesaplama", label: "Koşu Pace Hesaplama" }],
   alan: [
     { href: "/boya-hesaplama", label: "Boya Hesaplama" },
     { href: "/fayans-hesaplama", label: "Fayans Hesaplama" },

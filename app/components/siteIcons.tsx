@@ -99,6 +99,7 @@ const categoryIconMap = {
   tork: "torque",
   momentum: "momentum",
   viskozite_dinamik: "viscosity",
+  elektrik: "resistance",
   elektrik_direnc: "resistance",
   kapasitans: "capacitance",
   enduktans: "inductance",

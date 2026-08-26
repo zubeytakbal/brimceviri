@@ -38,6 +38,7 @@ import { englishCalculatorPages } from "../converter/localizedCalculatorPages";
 import { englishCategoryPages } from "../converter/localizedCategoryPages";
 import { englishConversionPages } from "../converter/localizedConversionPages";
 import { homeCategoryOrder } from "../converter/homeCategoryOrder";
+import { unitPages } from "../converter/unitPages";
 
 type Locale = "tr" | "en";
 
@@ -99,12 +100,20 @@ type HomeSecondaryCategory = {
   label: string;
 };
 
+type HomePopularUnit = {
+  id: string;
+  href: string;
+  label: string;
+  category: HomeCategoryIconName;
+};
+
 type HomeData = {
   conversions: HomeConversion[];
   categories: HomeCategoryCard[];
   secondaryCategories: HomeSecondaryCategory[];
   engineeringCalculators: HomeEngineeringCalculator[];
   popularConversions: HomeConversion[];
+  popularUnits: HomePopularUnit[];
   allConversionsHref: string;
   allConversionsLabel: string;
   engineeringHubHref: string;
@@ -117,6 +126,10 @@ type HomeData = {
 };
 
 const preferredSourceSlugs = [
+  // kilometrekare-metrekare, GSC'de poz. 7,4 ile sayfa 1 esiginde --
+  // anasayfadan ekstra ic link vererek son bir itme icin one alindi
+  // (2026-08-26).
+  "kilometrekare-metrekare",
   "metre-kilometre",
   "kilometre-metre",
   "metre-santimetre",
@@ -125,6 +138,16 @@ const preferredSourceSlugs = [
   "kilogram-pound",
   "psi-bar",
   "kilopascal-bar",
+];
+
+// GSC'de sayfa 1 esiginde (poz. ~6-13) kalan birim rehberi sayfalari --
+// anasayfadan ekstra ic link vermek icin one alindi (2026-08-26).
+const preferredUnitSlugs = [
+  "miliamper",
+  "bar",
+  "miligram",
+  "yarda",
+  "fahrenhayt",
 ];
 
 const copy = {
@@ -230,6 +253,9 @@ const copy = {
     popularTitle: "Popüler dönüşümler",
     popularDescription:
       "Sık kullanılan gerçek dönüşüm sayfalarına doğrudan gidin.",
+    popularUnitsTitle: "Sık aranan birimler",
+    popularUnitsDescription:
+      "Bu birimlerin tanımını, tarihçesini ve dönüşümlerini incele.",
     engineeringTitle: "Mühendislik hesaplayıcıları",
     engineeringDescription:
       "Basınç, akışkanlar ve ısı transferi için mevcut teknik araçlar.",
@@ -338,6 +364,9 @@ const copy = {
     popularTitle: "Popular conversions",
     popularDescription:
       "Open frequently used live conversion pages directly from here.",
+    popularUnitsTitle: "Frequently searched units",
+    popularUnitsDescription:
+      "Read the definition, history and conversions for these units.",
     engineeringTitle: "Engineering calculators",
     engineeringDescription:
       "Current technical tools for pressure, fluids and heat transfer.",
@@ -698,6 +727,24 @@ function createHomeData(locale: Locale): HomeData {
     ),
   ].slice(0, 6);
 
+  const popularUnits: HomePopularUnit[] =
+    locale === "tr"
+      ? preferredUnitSlugs.flatMap((slug) => {
+          const unitPage = unitPages.find((page) => page.slug === slug);
+
+          return unitPage
+            ? [
+                {
+                  id: unitPage.slug,
+                  href: `/birimler/${unitPage.slug}`,
+                  label: unitPage.name,
+                  category: unitPage.category as HomeCategoryIconName,
+                },
+              ]
+            : [];
+        })
+      : [];
+
   const engineeringSourceSlugs = [
     "basinc-kuvvet-alan",
     "hidrostatik-basinc",
@@ -743,6 +790,7 @@ function createHomeData(locale: Locale): HomeData {
     secondaryCategories,
     engineeringCalculators,
     popularConversions,
+    popularUnits,
     allConversionsHref:
       locale === "tr" ? "/tum-birimler" : "/en/all-conversions",
     allConversionsLabel:
@@ -994,6 +1042,34 @@ export default function HomeDirectory({
             ))}
           </ul>
         </section>
+
+        {data.popularUnits.length > 0 && (
+          <section className="directory-section">
+            <header className="directory-section-header">
+              <div>
+                <h2>{strings.popularUnitsTitle}</h2>
+                <p>{strings.popularUnitsDescription}</p>
+              </div>
+            </header>
+
+            <div className="directory-tool-grid">
+              {data.popularUnits.map((unit) => (
+                <article className="directory-home-card directory-tool-card" key={unit.id}>
+                  <Link
+                    className="directory-card-stretch"
+                    href={unit.href}
+                    aria-label={unit.label}
+                  />
+
+                  <div className="directory-card-body directory-card-body-icon">
+                    <HomeCategoryIcon kind={unit.category} />
+                    <h3 className="home-category-title">{unit.label}</h3>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
 
         <section
           className="directory-section"

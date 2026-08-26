@@ -744,6 +744,62 @@ const pairDefinitions: ConversionPairDefinition[] = [
     firstExamples: [1, 2, 5, 10, 20, 50, 100],
     secondExamples: [1, 5, 10, 20, 50, 100, 500],
   },
+  {
+    category: "enerji",
+    firstId: "kalori",
+    secondId: "joule",
+    firstExamples: [1, 10, 50, 100, 500, 1000, 5000],
+    secondExamples: [1, 10, 50, 100, 500, 1000, 5000],
+  },
+  {
+    category: "enerji",
+    firstId: "kilokalori",
+    secondId: "kilojoule",
+    firstExamples: [1, 50, 100, 200, 500, 1000, 2000],
+    secondExamples: [1, 50, 100, 500, 1000, 4000, 8000],
+  },
+  {
+    category: "enerji",
+    firstId: "btu",
+    secondId: "kilovatsaat",
+    firstExamples: [1, 100, 1000, 5000, 9000, 12000, 24000],
+    secondExamples: [0.1, 0.5, 1, 2, 5, 10, 50],
+  },
+  {
+    category: "enerji",
+    firstId: "watt-saat",
+    secondId: "kilovatsaat",
+    firstExamples: [1, 10, 100, 500, 1000, 2000, 5000],
+    secondExamples: [0.001, 0.01, 0.1, 0.5, 1, 2, 5],
+  },
+  {
+    category: "basinc",
+    firstId: "milibar",
+    secondId: "pascal",
+    firstExamples: [1, 10, 50, 100, 500, 1000, 1013],
+    secondExamples: [1, 10, 100, 1000, 10000, 50000, 101325],
+  },
+  {
+    category: "hiz",
+    firstId: "knot",
+    secondId: "kilometre-saat",
+    firstExamples: [1, 5, 10, 20, 30, 40, 50],
+    secondExamples: [1, 5, 10, 20, 50, 100, 200],
+  },
+  {
+    category: "zaman",
+    firstId: "gun",
+    secondId: "saat",
+    firstExamples: [1, 2, 3, 7, 14, 30, 365],
+    secondExamples: [1, 6, 12, 24, 48, 168, 720],
+  },
+  {
+    category: "hiz",
+    firstId: "isik-hizi",
+    secondId: "metre-saniye",
+    firstExamples: [0.001, 0.01, 0.1, 0.5, 1, 2, 10],
+    secondExamples: [1000, 100000, 1000000, 10000000, 100000000, 299792458, 500000000],
+  },
 ];
 
 function createTemperatureFormula(

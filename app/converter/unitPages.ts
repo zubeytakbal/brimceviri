@@ -792,9 +792,72 @@ const unitDescriptions: Record<string, UnitDescription> = {
     siEquivalent: "1 g/cm³ = 1000 kg/m³",
     commonUses: "Kimya laboratuvarları, malzeme yoğunluğu tabloları ve mineraloji",
   },
+  "kalori": {
+    shortDescription: "Kalori (cal), bir gram suyun sıcaklığını 1°C artırmak için gereken enerji miktarı olarak tanımlanan, SI dışı bir enerji birimidir. Termokimyasal kalori tanımına göre 1 kalori 4,184 joule'e eşittir.",
+    historySummary: "Kalori kavramı 19. yüzyılda, Fransız kimyager Nicolas Clément tarafından ısı miktarını ölçmek amacıyla ortaya atıldı ve termodinamiğin gelişim döneminde yaygınlaştı. Günümüzde SI birimi joule'ün yerini büyük ölçüde alması beklense de, beslenim biliminde hâlâ (kilokalori olarak) yaygın kullanılır.",
+    measurementSystem: "SI dışı, geleneksel enerji birimi",
+    siEquivalent: "1 cal = 4,184 J (termokimyasal tanım)",
+    commonUses: "Kimya ve termodinamik hesapları, gıda enerjisi (kilokalori üzerinden)",
+  },
+  "kilokalori": {
+    shortDescription: "Kilokalori (kcal), 1000 kaloriye eşit bir enerji birimidir. Gıda etiketlerinde ve beslenme bilgilerinde görülen \"kalori\" değeri aslında çoğunlukla kilokaloridir (bazen \"büyük Kalori\", büyük K ile, olarak da adlandırılır).",
+    historySummary: "Beslenim bilimi geliştikçe, gıdaların enerji içeriğini ifade etmek için küçük kalori biriminin pratik olmadığı görüldü; bunun yerine 1000 katı büyüklüğündeki kilokalori standart hâline geldi. Gıda etiketleme mevzuatlarında bugün de bu birim esas alınır.",
+    measurementSystem: "SI dışı, geleneksel enerji birimi",
+    siEquivalent: "1 kcal = 4184 J = 4,184 kJ",
+    commonUses: "Gıda etiketleri, diyet ve beslenme hesaplamaları, günlük kalori ihtiyacı",
+  },
+  "btu": {
+    shortDescription: "BTU (British Thermal Unit), 1 pound suyun sıcaklığını 1°F artırmak için gereken enerji miktarı olarak tanımlanan, İngiliz/Amerikan ölçü sisteminde kullanılan bir enerji birimidir.",
+    historySummary: "BTU, buhar makineleri çağında İngiltere'de ısı enerjisini ölçmek için geliştirildi ve zamanla ABD başta olmak üzere Anglosakson ülkelerde ısıtma/soğutma sektörünün standart birimi hâline geldi.",
+    measurementSystem: "İngiliz ve ABD ölçü sistemleri",
+    siEquivalent: "1 Btu = 1055,056 J",
+    commonUses: "Klima ve ısıtıcı kapasitesi (soğutma/ısıtma gücü), doğalgaz faturaları (ABD)",
+  },
+  "watt-saat": {
+    shortDescription: "Watt-saat (Wh), 1 watt gücün 1 saat boyunca harcadığı veya ürettiği enerji miktarını ifade eden bir birimdir. Genellikle küçük cihazların ve pillerin enerji kapasitesini belirtmek için kullanılır.",
+    historySummary: "Watt-saat, elektrik enerjisi ölçümünün yaygınlaşmasıyla birlikte, güç (watt) ile zamanın (saat) çarpımından doğal olarak türetilmiş pratik bir birim olarak ortaya çıkmıştır.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, türetilmiş/pratik birim)",
+    siEquivalent: "1 Wh = 3600 J (1 W × 3600 saniye)",
+    commonUses: "Pil kapasitesi (mAh yerine Wh), küçük elektronik cihazların enerji tüketimi",
+  },
+  "kilojoule": {
+    shortDescription: "Kilojoule (kJ), 1000 joule'e eşit bir enerji birimidir. Özellikle Avrupa ve Avustralya'daki gıda etiketlerinde kilokalorinin yanında veya yerine kullanılır.",
+    historySummary: "Joule biriminin günlük hayattaki enerji miktarlarını ifade etmek için genelde çok küçük kalması nedeniyle, kilojoule pratik bir alt katı olarak yaygınlaşmıştır; birçok ülkenin gıda etiketleme mevzuatında zorunlu tutulur.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, ölçekli birim)",
+    siEquivalent: "1 kJ = 1000 J",
+    commonUses: "Gıda etiketleri (özellikle AB/Avustralya), beslenme ve enerji hesaplamaları",
+  },
+  "milibar": {
+    shortDescription: "Milibar (mbar), bar biriminin binde biri büyüklüğünde bir basınç birimidir. Meteorolojide atmosfer basıncını ifade etmek için standart olarak kullanılır.",
+    historySummary: "Bar birimi 20. yüzyıl başında meteoroloji alanında pratik kullanım için tanımlanmış, atmosfer basıncındaki günlük değişimleri ifade etmek için daha uygun büyüklükte olan milibar alt birimi yaygınlaşmıştır.",
+    measurementSystem: "SI dışı, meteorolojide yaygın pratik birim",
+    siEquivalent: "1 mbar = 100 Pa = 1 hPa (hektopaskal)",
+    commonUses: "Hava durumu raporları, barometrik basınç ölçümü, standart atmosfer basıncı (1013,25 mbar)",
+  },
+  "knot": {
+    shortDescription: "Knot (deniz mili/saat), saatte 1 deniz mili (1852 metre) hıza eşit olan, denizcilik ve havacılıkta kullanılan standart hız birimidir.",
+    historySummary: "Knot adı, tarihsel olarak gemilerin hızını ölçmek için suya atılan ve düğümlü bir ipe bağlı tahta parçasından (\"chip log\") gelir; belirli aralıklarla düğümlenmiş ip, belirli sürede kaç düğümün açıldığı sayılarak gemi hızını verirdi.",
+    measurementSystem: "SI dışı, denizcilik/havacılıkta standart birim",
+    siEquivalent: "1 knot = 1852/3600 m/s ≈ 0,5144 m/s",
+    commonUses: "Gemi ve uçak hızı, rüzgâr hızı (meteorolojide), denizcilik seyir hesapları",
+  },
+  "gun": {
+    shortDescription: "Gün, Dünya'nın kendi ekseni etrafında bir tam dönüşünü (güneş günü) esas alan, 24 saate (86.400 saniyeye) eşit temel bir zaman birimidir.",
+    historySummary: "Gün kavramı, insanlık tarihinin en eski ve evrensel zaman ölçüsüdür; güneşin doğuşu-batışı döngüsüne dayanır. Modern tanımda 1 gün, tam olarak 86.400 SI saniyesi olarak sabitlenmiştir (ortalama güneş günü).",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, ölçekli birim)",
+    siEquivalent: "1 gün = 86.400 s = 24 saat",
+    commonUses: "Takvim hesapları, süre/yaş hesaplamaları, seyahat ve proje planlama",
+  },
+  "isik-hizi": {
+    shortDescription: "Işık hızı (c), boşluktaki elektromanyetik dalgaların (ışık dahil) yayılma hızıdır ve evrenin en temel fizik sabitlerinden biridir. Değeri tam olarak 299.792.458 m/s'dir.",
+    historySummary: "Işık hızının ilk bilimsel ölçümleri 17. yüzyılda Ole Rømer'e kadar uzanır. 1983 yılından beri metrenin resmi SI tanımı, ışığın boşlukta belirli bir sürede aldığı yola dayandığı için ışık hızının değeri artık tanım gereği kesin (sabit) kabul edilir, ölçülen bir değer değildir.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, temel fizik sabiti)",
+    siEquivalent: "c = 299.792.458 m/s (tam, tanım gereği)",
+    commonUses: "Fizik ve astronomi hesapları, görelilik teorisi, GPS ve uydu haberleşme sistemleri",
+  },
 };
 
-const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","okka","dirhem","bizans-litrasi","bizans-onsu","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit","kilogram-metre-saniye","newton-saniye","pascal-saniye","santipoise","mikrometre","nanometre","deniz-mili","arsin","endaze","bizans-ayagi","bizans-kulaci","cig","santimetrekare","milimetrekare","kilometrekare","incare","akre","donum","dekar","santimetrekup","fitkup","inckup","galon","bit","bayt","kilobayt","megabayt","gigabayt","terabayt","petabayt","kibibayt","mebibayt","gibibayt","tebibayt","ohm","kiloohm","megaohm","farad","milifarad","mikrofarad","nanofarad","pikofarad","henry","milihenry","mikrohenry","coulomb","milicoulomb","mikrocoulomb","nanocoulomb","ayar-24","ayar-22","ayar-18","ayar-14"];
+const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","okka","dirhem","bizans-litrasi","bizans-onsu","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit","kilogram-metre-saniye","newton-saniye","pascal-saniye","santipoise","mikrometre","nanometre","deniz-mili","arsin","endaze","bizans-ayagi","bizans-kulaci","cig","santimetrekare","milimetrekare","kilometrekare","incare","akre","donum","dekar","santimetrekup","fitkup","inckup","galon","bit","bayt","kilobayt","megabayt","gigabayt","terabayt","petabayt","kibibayt","mebibayt","gibibayt","tebibayt","ohm","kiloohm","megaohm","farad","milifarad","mikrofarad","nanofarad","pikofarad","henry","milihenry","mikrohenry","coulomb","milicoulomb","mikrocoulomb","nanocoulomb","ayar-24","ayar-22","ayar-18","ayar-14","kalori","kilokalori","btu","watt-saat","kilojoule","milibar","knot","gun","isik-hizi"];
 
 export const unitPages: UnitPage[] = unitRegistry
   .filter((entry) => entry.tr && unitDescriptions[entry.id])

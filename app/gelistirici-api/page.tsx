@@ -150,6 +150,51 @@ export default function DeveloperApiPage() {
             ile herhangi bir siteden çağırabilirsin.
           </p>
 
+          <h2>Google E-Tablolar Entegrasyonu</h2>
+          <p>
+            Bu API&apos;yi Google E-Tablolar (Sheets) içinde{" "}
+            <code>=BIRIMCEVIR(...)</code> gibi özel bir formül olarak da
+            kullanabilirsin — tablo düzenlerken hücrelerde canlı birim
+            dönüşümü yapmak için pratik.
+          </p>
+          <ol>
+            <li>
+              Google E-Tablolar&apos;da <strong>Uzantılar &gt; Apps
+              Script</strong>&apos;i aç.
+            </li>
+            <li>
+              Varsayılan kodu sil, aşağıdaki fonksiyonu yapıştırıp kaydet.
+            </li>
+            <li>
+              Herhangi bir hücreye <code>=BIRIMCEVIR(100, &quot;sicaklik&quot;, &quot;C&quot;, &quot;F&quot;)</code>{" "}
+              yazarak dene — ilk çalıştırmada Google yetkilendirme
+              isteyecektir, izin ver.
+            </li>
+          </ol>
+          <pre className="api-playground-response">
+{`function BIRIMCEVIR(deger, kategori, kaynakBirim, hedefBirim) {
+  var url = "https://www.birimceviri.app/api/v1/convert" +
+    "?category=" + encodeURIComponent(kategori) +
+    "&from=" + encodeURIComponent(kaynakBirim) +
+    "&to=" + encodeURIComponent(hedefBirim) +
+    "&value=" + encodeURIComponent(deger);
+  var response = UrlFetchApp.fetch(url, { muteHttpExceptions: true });
+  var body = JSON.parse(response.getContentText());
+  if (response.getResponseCode() !== 200) {
+    throw new Error(body.error || "Dönüşüm başarısız oldu.");
+  }
+  return body.result;
+}`}
+          </pre>
+          <p>
+            Kategori parametresi zorunludur — bazı birim sembolleri
+            kategoriler arası çakışır (ör. <code>F</code> hem Fahrenheit
+            hem Farad olabilir), bu yüzden otomatik tahmin güvenli
+            değildir. Önbellekleme, birim listeleme fonksiyonları ve
+            tam kurulum adımları için depodaki{" "}
+            <code>google-sheets-addon/</code> klasörüne bakabilirsin.
+          </p>
+
           <h2>Canlı Dene</h2>
           <ApiPlayground />
         </section>

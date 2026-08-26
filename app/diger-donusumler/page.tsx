@@ -149,6 +149,14 @@ export default function DigerDonusumlerPage() {
       iconName: "length" as const,
     },
     {
+      id: "agirlik-karsilastirma",
+      href: "/agirlik-karsilastirma",
+      title: "Ağırlık Karşılaştırma",
+      description:
+        "Bir ağırlık değerini kedi, insan, at, fil gibi tanıdık nesnelerle karşılaştırın.",
+      iconName: "mass" as const,
+    },
+    {
       id: "klima-btu",
       href: "/klima-btu-hesaplama",
       title: "Klima BTU Hesaplama",

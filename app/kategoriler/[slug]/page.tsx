@@ -68,7 +68,10 @@ const everydayToolLinksByCategory: Record<
     { href: "/klima-btu-hesaplama", label: "Klima BTU Hesaplama" },
     { href: "/elektrik-tuketimi-hesaplama", label: "Elektrik Tüketimi Hesaplama" },
   ],
-  kutle: [{ href: "/bmi-hesaplama", label: "BMI Hesaplama" }],
+  kutle: [
+    { href: "/bmi-hesaplama", label: "BMI Hesaplama" },
+    { href: "/agirlik-karsilastirma", label: "Ağırlık Karşılaştırma" },
+  ],
   zaman: [
     { href: "/yas-hesaplama", label: "Yaş Hesaplama" },
     { href: "/gebelik-haftasi-hesaplama", label: "Gebelik Haftası Hesaplama" },

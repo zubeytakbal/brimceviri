@@ -5,7 +5,7 @@ import Converter from "../converter/Converter";
 export const metadata: Metadata = {
   title: "Tüm Birim Dönüşümleri",
   description:
-    "Uzunluk, kütle, alan, hacim, basınç, sıcaklık, enerji ve mühendislik birimlerini tek sayfada dönüştürün.",
+    "Uzunluk, kütle, alan, hacim, basınç, sıcaklık, enerji ve mühendislik birimlerini tek sayfada çevirin.",
   alternates: {
     canonical: "/tum-birimler",
     languages: {
@@ -31,7 +31,7 @@ export default function AllConversionsPage() {
 
           <p>
             Kategoriyi seçin, değeri girin ve kullanmak istediğiniz
-            birimler arasında anında dönüşüm yapın.
+            birimler arasında anında çeviri yapın.
           </p>
         </header>
 

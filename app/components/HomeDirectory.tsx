@@ -152,7 +152,7 @@ const preferredUnitSlugs = [
 
 const copy = {
   tr: {
-    eyebrow: "Teknik birim dönüşümleri",
+    eyebrow: "Birim çeviri ve dönüşümü",
     title: "Doğru dönüşüme hızlıca gidin",
     description:
       "Arama ile sayfayı açın veya fiziksel büyüklüğe göre kategori seçin.",

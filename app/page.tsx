@@ -7,9 +7,9 @@ const englishHomeUrl = buildSiteUrl("/en");
 const germanHomeUrl = buildSiteUrl("/de");
 
 export const metadata: Metadata = {
-  title: "İhtiyacınız olan birim dönüşümünü bulun",
+  title: "Birim Çevirici — İhtiyacınız Olan Birim Dönüşümünü Bulun",
   description:
-    "Uzunluk, kütle ve basınç dönüşümlerini kategori bazında tarayın; ilgili hesaplayıcıyı, birim rehberini ve bilgi sayfasını doğrudan açın.",
+    "Uzunluk, kütle ve basınç birimlerini çevirin; kategori bazında tarayın, ilgili hesaplayıcıyı, birim rehberini ve bilgi sayfasını doğrudan açın.",
   alternates: {
     canonical: homeUrl,
     languages: {
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "İhtiyacınız olan birim dönüşümünü bulun | BirimCeviri.app",
+    title: "Birim Çevirici — İhtiyacınız Olan Birim Dönüşümünü Bulun | BirimCeviri.app",
     description:
       "Kategori kartları, popüler hesaplayıcılar ve birim rehberleriyle doğru dönüşüm sayfasına hızlıca ulaşın.",
     url: homeUrl,

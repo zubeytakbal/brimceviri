@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   },
 
   description:
-    "Uzunluk, kütle, sıcaklık, basınç, enerji ve mühendislik birimlerini hızlı ve doğru şekilde dönüştürün. Birimler hakkında bilimsel bilgiler, formüller ve dönüşüm tabloları.",
+    "Uzunluk, kütle, sıcaklık, basınç, enerji ve mühendislik birimlerini hızlı ve doğru şekilde çevirin. Birimler hakkında bilimsel bilgiler, formüller ve dönüşüm tabloları.",
 
   applicationName: SITE_NAME,
 
@@ -77,14 +77,14 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     title: `Online Birim Çevirici | ${SITE_NAME}`,
     description:
-      "Birim dönüşümleri, bilimsel birim açıklamaları, dönüşüm formülleri ve hesaplama tabloları.",
+      "Birim çevirme ve dönüşüm bilgileri, bilimsel birim açıklamaları, dönüşüm formülleri ve hesaplama tabloları.",
   },
 
   twitter: {
     card: "summary",
     title: `Online Birim Çevirici | ${SITE_NAME}`,
     description:
-      "Birim dönüşümleri, bilimsel bilgiler, formüller ve dönüşüm tabloları.",
+      "Birim çevirme ve dönüşüm bilgileri, bilimsel bilgiler, formüller ve dönüşüm tabloları.",
   },
 
   verification: {

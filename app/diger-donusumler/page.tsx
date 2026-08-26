@@ -9,7 +9,7 @@ import { buildSiteUrl } from "../siteConfig";
 export const metadata: Metadata = {
   title: "Di\u011fer D\u00f6n\u00fc\u015f\u00fcmler",
   description:
-    "Yo\u011funluk, kuvvet, tork, momentum ve viskozite gibi ana sayfada yer almayan m\u00fchendislik ve bilim birim kategorilerini ke\u015ffedin.",
+    "Yo\u011funluk, kuvvet, tork, momentum ve viskozite gibi ana sayfada yer almayan birim \u00e7evirme kategorilerini ke\u015ffedin.",
   alternates: {
     canonical: "/diger-donusumler",
     languages: {
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Di\u011fer D\u00f6n\u00fc\u015f\u00fcmler",
     description:
-      "Yo\u011funluk, kuvvet, tork, momentum ve viskozite gibi m\u00fchendislik ve bilim birim kategorilerini ke\u015ffedin.",
+      "Yo\u011funluk, kuvvet, tork, momentum ve viskozite gibi birim \u00e7evirme kategorilerini ke\u015ffedin.",
     url: buildSiteUrl("/diger-donusumler"),
     siteName: "BirimCeviri.app",
     locale: "tr_TR",

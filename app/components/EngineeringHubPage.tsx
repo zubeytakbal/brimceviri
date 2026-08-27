@@ -230,6 +230,8 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
       { href: "/klima-btu-hesaplama", label: "Klima BTU Hesaplama" },
       { href: "/elektrik-tuketimi-hesaplama", label: "Elektrik Tüketimi Hesaplama" },
       { href: "/uyku-hesaplama", label: "Uyku Hesaplama" },
+      { href: "/kosu-pace-hesaplama", label: "Koşu Pace Hesaplama" },
+      { href: "/yakit-tuketimi-hesaplama", label: "Yakıt Tüketimi Hesaplama" },
     ],
     alternateTitle: "Di\u011fer diller",
     alternateLink: {

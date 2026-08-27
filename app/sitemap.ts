@@ -320,6 +320,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
     },
     {
+      url: `${baseUrl}/yakit-tuketimi-hesaplama`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.75,
+    },
+    {
       url: `${baseUrl}/klima-btu-hesaplama`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",

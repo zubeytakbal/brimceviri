@@ -16,6 +16,7 @@ import {
   Droplet,
   Droplets,
   Footprints,
+  Fuel,
   Gauge,
   Gem,
   Grid3x3,
@@ -76,6 +77,7 @@ const iconMap = {
   electricityConsumptionCalculator: PlugZap,
   sleepCalculator: MoonStar,
   paceCalculator: Timer,
+  fuelConsumptionCalculator: Fuel,
 } as const satisfies Record<string, LucideIcon>;
 
 export type SiteIconName = keyof typeof iconMap;

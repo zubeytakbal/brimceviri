@@ -165,6 +165,14 @@ export default function DigerDonusumlerPage() {
       iconName: "paceCalculator" as const,
     },
     {
+      id: "yakit-tuketimi",
+      href: "/yakit-tuketimi-hesaplama",
+      title: "Yakıt Tüketimi Hesaplama",
+      description:
+        "km/lt, lt/100km ve mpg arasında çevirin; yolculuk mesafesi ve yakıt fiyatına göre maliyeti hesaplayın.",
+      iconName: "fuelConsumptionCalculator" as const,
+    },
+    {
       id: "klima-btu",
       href: "/klima-btu-hesaplama",
       title: "Klima BTU Hesaplama",

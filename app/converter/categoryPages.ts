@@ -105,6 +105,20 @@ export const categoryPages: CategoryPage[] = [
       "Newton-metre ve pound-fit birimleri arasında tork dönüşümü yapın; motor torku, tork anahtarı ve cıvata sıkma değerleri için örnekleri inceleyin.",
   },
   {
+    slug: "hacimsel-debi",
+    category: "debi_hacimsel",
+    title: "Hacimsel Debi Dönüşümleri",
+    description:
+      "Metreküp/saniye, CFM ve GPM birimleri arasında dönüşüm yapın; havalandırma ve pompa kapasitesi hesapları için örnekleri inceleyin.",
+  },
+  {
+    slug: "kutlesel-debi",
+    category: "debi_kutlesel",
+    title: "Kütlesel Debi Dönüşümleri",
+    description:
+      "Kilogram/saniye ve kilogram/saat birimleri arasında dönüşüm yapın; endüstriyel proses ve akış hesapları için örnekleri inceleyin.",
+  },
+  {
     slug: "manyetik-alan",
     category: "manyetik_alan",
     title: "Manyetik Alan Dönüşümleri",

@@ -537,6 +537,61 @@ export const englishCategoryPages: LocalizedCategoryPage[] = [
   },
   {
     locale: "en",
+    slug: "volumetric-flow-rate",
+    sourceSlug: "hacimsel-debi",
+    category: "debi_hacimsel",
+    title: "Volumetric Flow Rate Conversions",
+    description:
+      "Convert between cubic meters per second, CFM and GPM and review units used for ventilation and pump capacity calculations.",
+    introduction: [
+      "Volumetric flow rate measures how much fluid volume passes through a section per unit of time.",
+      "CFM (cubic feet per minute) and GPM (gallons per minute) are the standard practical units in US HVAC and pump industries.",
+    ],
+    facts: [
+      { label: "Physical quantity", value: "Volumetric flow rate" },
+      { label: "SI unit", value: "Cubic meter per second" },
+      { label: "Common practical units", value: "CFM, GPM" },
+      { label: "Typical use", value: "Ventilation and pump capacity" },
+    ],
+    sections: [
+      {
+        title: "What is volumetric flow rate?",
+        paragraphs: [
+          "Volumetric flow rate describes the volume of fluid passing a point per unit of time.",
+          "It is used for fan and ventilation capacity (CFM) and pump/irrigation flow (GPM).",
+        ],
+      },
+    ],
+  },
+  {
+    locale: "en",
+    slug: "mass-flow-rate",
+    sourceSlug: "kutlesel-debi",
+    category: "debi_kutlesel",
+    title: "Mass Flow Rate Conversions",
+    description:
+      "Convert between kilograms per second and kilograms per hour and review units used for industrial process flow calculations.",
+    introduction: [
+      "Mass flow rate measures how much mass of a substance passes through a section per unit of time.",
+      "It is fundamental to mass balance calculations in industrial process engineering.",
+    ],
+    facts: [
+      { label: "Physical quantity", value: "Mass flow rate" },
+      { label: "SI unit", value: "Kilogram per second" },
+      { label: "Typical use", value: "Industrial process and mass balance" },
+    ],
+    sections: [
+      {
+        title: "What is mass flow rate?",
+        paragraphs: [
+          "Mass flow rate is the mass of a substance moving through a system per unit of time.",
+          "It is used in industrial process design, fuel and material flow calculations.",
+        ],
+      },
+    ],
+  },
+  {
+    locale: "en",
     slug: "magnetic-field",
     sourceSlug: "manyetik-alan",
     category: "manyetik_alan",

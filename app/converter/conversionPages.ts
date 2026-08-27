@@ -430,6 +430,27 @@ const pairDefinitions: ConversionPairDefinition[] = [
     secondExamples: [0.001, 0.01, 0.1, 0.5, 1, 2, 5],
   },
   {
+    category: "debi_hacimsel",
+    firstId: "m3-s",
+    secondId: "gpm",
+    firstExamples: [0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 1],
+    secondExamples: [15.85, 79.25, 158.5, 792.5, 1585, 7925, 15850],
+  },
+  {
+    category: "debi_hacimsel",
+    firstId: "m3-s",
+    secondId: "cfm",
+    firstExamples: [0.01, 0.05, 0.1, 0.5, 1, 5, 10],
+    secondExamples: [21.19, 105.9, 211.9, 1059.4, 2118.9, 10594, 21189],
+  },
+  {
+    category: "debi_kutlesel",
+    firstId: "kg-s",
+    secondId: "kg-h",
+    firstExamples: [0.01, 0.1, 0.5, 1, 5, 10, 50],
+    secondExamples: [36, 360, 1800, 3600, 18000, 36000, 180000],
+  },
+  {
     category: "manyetik_alan",
     firstId: "a-m",
     secondId: "oersted",

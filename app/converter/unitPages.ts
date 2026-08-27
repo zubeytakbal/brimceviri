@@ -813,6 +813,41 @@ const unitDescriptions: Record<string, UnitDescription> = {
     siEquivalent: "1 HP (mekanik) = 745,7 W",
     commonUses: "ABD/İngiltere menşeli araç ve motor teknik verileri, endüstriyel motor etiketleri",
   },
+  "m3-s": {
+    shortDescription: "Metreküp/saniye (m³/s), hacimsel debinin SI türetilmiş birimidir. Bir akışkanın birim zamanda geçtiği hacmi ifade eder.",
+    historySummary: "Hacim ve zamanın temel SI birimlerinden doğrudan türetilmiştir; büyük ölçekli endüstriyel ve doğal akış hesaplarında standart birimdir.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, türetilmiş birim)",
+    siEquivalent: "Temel SI hacimsel debi birimi",
+    commonUses: "Büyük pompa ve türbin kapasiteleri, nehir akış debisi, endüstriyel proses tasarımı",
+  },
+  "cfm": {
+    shortDescription: "Fitküp/dakika (CFM), özellikle havalandırma ve HVAC sistemlerinde hava akış debisini ifade etmek için kullanılan ABD kaynaklı birimdir.",
+    historySummary: "ABD İngiliz ölçü sisteminin fit biriminden türetilmiş, Kuzey Amerika HVAC ve fan endüstrisinde standart ölçüm birimi hâline gelmiştir.",
+    measurementSystem: "İngiliz/Amerikan ölçü sistemi (SI dışı)",
+    siEquivalent: "1 CFM ≈ 0,000472 m³/s",
+    commonUses: "Fan ve havalandırma sistemi kapasitesi, HVAC tasarımı, hava filtreleme sistemleri",
+  },
+  "gpm": {
+    shortDescription: "Galon/dakika (GPM), pompa ve su sistemi debisini ifade etmek için ABD ölçü sisteminde kullanılan yaygın bir birimdir.",
+    historySummary: "ABD galonu tabanlı bu birim, Kuzey Amerika su pompası ve sulama endüstrisinde standart ölçüm birimi olarak yaygınlaşmıştır.",
+    measurementSystem: "İngiliz/Amerikan ölçü sistemi (SI dışı)",
+    siEquivalent: "1 GPM ≈ 0,0000631 m³/s",
+    commonUses: "Su pompası kapasitesi, sulama sistemleri, endüstriyel sıvı transfer hesapları",
+  },
+  "kg-s": {
+    shortDescription: "Kilogram/saniye (kg/s), kütlesel debinin SI türetilmiş birimidir. Bir akışkanın veya malzemenin birim zamanda geçen kütlesini ifade eder.",
+    historySummary: "Kütle ve zamanın temel SI birimlerinden türetilmiştir; endüstriyel proses mühendisliğinde kütle dengesi hesaplarının temelini oluşturur.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, türetilmiş birim)",
+    siEquivalent: "Temel SI kütlesel debi birimi",
+    commonUses: "Endüstriyel proses tasarımı, kütle dengesi hesapları, yakıt ve malzeme akış oranları",
+  },
+  "kg-h": {
+    shortDescription: "Kilogram/saat (kg/h), daha küçük ölçekli kütlesel debi değerlerini pratik şekilde ifade etmek için kullanılan birimdir.",
+    historySummary: "Kilogram/saniye biriminin küçük endüstriyel ve laboratuvar ölçekli akışlarda daha okunabilir kullanımı için yaygınlaşmıştır.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, türetilmiş birim)",
+    siEquivalent: "1 kg/h = 1/3600 kg/s ≈ 0,000278 kg/s",
+    commonUses: "Gıda ve kimya endüstrisi proses hatları, laboratuvar dozajlama sistemleri",
+  },
   "a-m": {
     shortDescription: "Amper/metre (A/m), manyetik alan şiddetinin SI türetilmiş birimidir. Bir manyetik alanın kaynaklandığı akımın uzunluğa oranını ifade eder.",
     historySummary: "Elektromanyetik teorinin SI birim sistemine entegrasyonuyla birlikte, manyetik alan şiddetini akım ve uzunluğun temel birimlerinden türetmenin standart yolu hâline gelmiştir.",
@@ -1025,7 +1060,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
 };
 
-const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","okka","dirhem","bizans-litrasi","bizans-onsu","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit","kilogram-metre-saniye","newton-saniye","pascal-saniye","santipoise","mikrometre","nanometre","deniz-mili","arsin","endaze","bizans-ayagi","bizans-kulaci","cig","santimetrekare","milimetrekare","kilometrekare","incare","akre","donum","dekar","santimetrekup","fitkup","inckup","galon","bit","bayt","kilobayt","megabayt","gigabayt","terabayt","petabayt","kibibayt","mebibayt","gibibayt","tebibayt","ohm","kiloohm","megaohm","farad","milifarad","mikrofarad","nanofarad","pikofarad","henry","milihenry","mikrohenry","coulomb","milicoulomb","mikrocoulomb","nanocoulomb","ayar-24","ayar-22","ayar-18","ayar-14","kalori","kilokalori","btu","watt-saat","kilojoule","milibar","knot","gun","isik-hizi","varil","kilogram-kuvvet-metre","megawatt","beygirgucu-mekanik","milivolt","kiloamper","m-s2","ft-s2","g0","rpm","rad-s","deg-s","w-mk","btu-hftf","w-m2","kw-m2","j-kgk","cal-gk","m2-s","centistoke","a-m","oersted","weber","miliweber"];
+const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","okka","dirhem","bizans-litrasi","bizans-onsu","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit","kilogram-metre-saniye","newton-saniye","pascal-saniye","santipoise","mikrometre","nanometre","deniz-mili","arsin","endaze","bizans-ayagi","bizans-kulaci","cig","santimetrekare","milimetrekare","kilometrekare","incare","akre","donum","dekar","santimetrekup","fitkup","inckup","galon","bit","bayt","kilobayt","megabayt","gigabayt","terabayt","petabayt","kibibayt","mebibayt","gibibayt","tebibayt","ohm","kiloohm","megaohm","farad","milifarad","mikrofarad","nanofarad","pikofarad","henry","milihenry","mikrohenry","coulomb","milicoulomb","mikrocoulomb","nanocoulomb","ayar-24","ayar-22","ayar-18","ayar-14","kalori","kilokalori","btu","watt-saat","kilojoule","milibar","knot","gun","isik-hizi","varil","kilogram-kuvvet-metre","megawatt","beygirgucu-mekanik","milivolt","kiloamper","m-s2","ft-s2","g0","rpm","rad-s","deg-s","w-mk","btu-hftf","w-m2","kw-m2","j-kgk","cal-gk","m2-s","centistoke","a-m","oersted","weber","miliweber","m3-s","cfm","gpm","kg-s","kg-h"];
 
 export const unitPages: UnitPage[] = unitRegistry
   .filter((entry) => entry.tr && unitDescriptions[entry.id])

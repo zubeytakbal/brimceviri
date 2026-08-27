@@ -813,6 +813,27 @@ const unitDescriptions: Record<string, UnitDescription> = {
     siEquivalent: "1 HP (mekanik) = 745,7 W",
     commonUses: "ABD/İngiltere menşeli araç ve motor teknik verileri, endüstriyel motor etiketleri",
   },
+  "radyan": {
+    shortDescription: "Radyan (rad), açının SI birimidir. Bir çemberde, yarıçapa eşit uzunluktaki bir yayın merkezde oluşturduğu açı olarak tanımlanır.",
+    historySummary: "1873'te İskoç fizikçi James Thomson tarafından önerilmiş, matematiksel hesaplamalardaki doğallığı nedeniyle SI'nin açı birimi olarak kabul edilmiştir.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, türetilmiş birim)",
+    siEquivalent: "Temel SI açı birimi (2π rad = 360°)",
+    commonUses: "Trigonometri, mühendislik hesapları, açısal hız ve ivme formülleri",
+  },
+  "derece": {
+    shortDescription: "Derece (°), bir tam çemberin 360 eşit parçaya bölünmesiyle elde edilen, günlük kullanımda en yaygın açı birimidir.",
+    historySummary: "Kökeni Antik Babil'in 60 tabanlı sayı sistemine dayanır; 360 sayısının çok sayıda tam bölene sahip olması pratik kullanımını kolaylaştırmıştır.",
+    measurementSystem: "SI dışı, yaygın kullanılan birim",
+    siEquivalent: "1° = π/180 rad ≈ 0,01745 rad",
+    commonUses: "Navigasyon, coğrafya (enlem/boylam), mühendislik çizimleri, günlük açı ölçümleri",
+  },
+  "gradyan": {
+    shortDescription: "Gradyan (gon), bir tam çemberi 400 eşit parçaya bölen, ondalık sisteme uyumlu bir açı birimidir.",
+    historySummary: "Fransız Devrimi sonrası ondalık ölçü sistemi hareketinin bir parçası olarak önerilmiş, günümüzde başta jeodezi ve harita mühendisliği olmak üzere sınırlı alanlarda kullanılmaya devam eder.",
+    measurementSystem: "SI dışı, ondalık sistem birimi",
+    siEquivalent: "1 gon = π/200 rad = 0,9°",
+    commonUses: "Jeodezi, arazi ölçümü, bazı Avrupa mühendislik uygulamaları",
+  },
   "m3-s": {
     shortDescription: "Metreküp/saniye (m³/s), hacimsel debinin SI türetilmiş birimidir. Bir akışkanın birim zamanda geçtiği hacmi ifade eder.",
     historySummary: "Hacim ve zamanın temel SI birimlerinden doğrudan türetilmiştir; büyük ölçekli endüstriyel ve doğal akış hesaplarında standart birimdir.",
@@ -840,6 +861,34 @@ const unitDescriptions: Record<string, UnitDescription> = {
     measurementSystem: "Uluslararası Birim Sistemi (SI, türetilmiş birim)",
     siEquivalent: "Temel SI kütlesel debi birimi",
     commonUses: "Endüstriyel proses tasarımı, kütle dengesi hesapları, yakıt ve malzeme akış oranları",
+  },
+  "hertz": {
+    shortDescription: "Hertz (Hz), frekansın SI birimidir. Bir olayın saniyede kaç kez tekrarlandığını ifade eder.",
+    historySummary: "Alman fizikçi Heinrich Hertz'in elektromanyetik dalgaları ilk kez deneysel olarak ürettiği çalışmalar onuruna 1930'da SI birimi olarak kabul edilmiştir.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, türetilmiş birim)",
+    siEquivalent: "Temel SI frekans birimi (1 Hz = 1 döngü/saniye)",
+    commonUses: "Ses dalgaları, elektrik akımı frekansı, bilgisayar işlemci hızı, radyo dalgaları",
+  },
+  "kilohertz": {
+    shortDescription: "Kilohertz (kHz), hertzin bin katıdır. Orta frekans ses ve radyo sinyallerini ifade etmek için kullanılır.",
+    historySummary: "Radyo yayıncılığının gelişmesiyle birlikte, AM radyo frekanslarını ifade etmenin standart yolu hâline gelmiştir.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, kat birim)",
+    siEquivalent: "1 kHz = 1000 Hz",
+    commonUses: "AM radyo frekansları, ses işleme, ultrasonik cihazlar",
+  },
+  "megahertz": {
+    shortDescription: "Megahertz (MHz), hertzin bir milyon katıdır. FM radyo, Wi-Fi ve eski bilgisayar işlemci hızlarını ifade etmek için kullanılır.",
+    historySummary: "Radyo ve telekomünikasyon teknolojilerinin gelişmesiyle, yüksek frekanslı sinyalleri ifade etmenin pratik standart birimi hâline gelmiştir.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, kat birim)",
+    siEquivalent: "1 MHz = 1.000.000 Hz",
+    commonUses: "FM radyo frekansları, Wi-Fi ve Bluetooth bant genişliği, eski bilgisayar işlemci hızları",
+  },
+  "gigahertz": {
+    shortDescription: "Gigahertz (GHz), hertzin bir milyar katıdır. Modern bilgisayar işlemci hızlarını ve yüksek frekanslı kablosuz iletişimi ifade eder.",
+    historySummary: "Bilgisayar işlemci teknolojisinin hızlanmasıyla birlikte, işlemci hızlarını ve 5G/Wi-Fi gibi yüksek frekanslı iletişim sistemlerini ifade etmenin standart birimi hâline gelmiştir.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, kat birim)",
+    siEquivalent: "1 GHz = 1.000.000.000 Hz",
+    commonUses: "Bilgisayar ve telefon işlemci hızları, 5G ve Wi-Fi frekans bantları, radar sistemleri",
   },
   "kg-h": {
     shortDescription: "Kilogram/saat (kg/h), daha küçük ölçekli kütlesel debi değerlerini pratik şekilde ifade etmek için kullanılan birimdir.",
@@ -1060,7 +1109,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
 };
 
-const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","okka","dirhem","bizans-litrasi","bizans-onsu","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit","kilogram-metre-saniye","newton-saniye","pascal-saniye","santipoise","mikrometre","nanometre","deniz-mili","arsin","endaze","bizans-ayagi","bizans-kulaci","cig","santimetrekare","milimetrekare","kilometrekare","incare","akre","donum","dekar","santimetrekup","fitkup","inckup","galon","bit","bayt","kilobayt","megabayt","gigabayt","terabayt","petabayt","kibibayt","mebibayt","gibibayt","tebibayt","ohm","kiloohm","megaohm","farad","milifarad","mikrofarad","nanofarad","pikofarad","henry","milihenry","mikrohenry","coulomb","milicoulomb","mikrocoulomb","nanocoulomb","ayar-24","ayar-22","ayar-18","ayar-14","kalori","kilokalori","btu","watt-saat","kilojoule","milibar","knot","gun","isik-hizi","varil","kilogram-kuvvet-metre","megawatt","beygirgucu-mekanik","milivolt","kiloamper","m-s2","ft-s2","g0","rpm","rad-s","deg-s","w-mk","btu-hftf","w-m2","kw-m2","j-kgk","cal-gk","m2-s","centistoke","a-m","oersted","weber","miliweber","m3-s","cfm","gpm","kg-s","kg-h"];
+const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","okka","dirhem","bizans-litrasi","bizans-onsu","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit","kilogram-metre-saniye","newton-saniye","pascal-saniye","santipoise","mikrometre","nanometre","deniz-mili","arsin","endaze","bizans-ayagi","bizans-kulaci","cig","santimetrekare","milimetrekare","kilometrekare","incare","akre","donum","dekar","santimetrekup","fitkup","inckup","galon","bit","bayt","kilobayt","megabayt","gigabayt","terabayt","petabayt","kibibayt","mebibayt","gibibayt","tebibayt","ohm","kiloohm","megaohm","farad","milifarad","mikrofarad","nanofarad","pikofarad","henry","milihenry","mikrohenry","coulomb","milicoulomb","mikrocoulomb","nanocoulomb","ayar-24","ayar-22","ayar-18","ayar-14","kalori","kilokalori","btu","watt-saat","kilojoule","milibar","knot","gun","isik-hizi","varil","kilogram-kuvvet-metre","megawatt","beygirgucu-mekanik","milivolt","kiloamper","m-s2","ft-s2","g0","rpm","rad-s","deg-s","w-mk","btu-hftf","w-m2","kw-m2","j-kgk","cal-gk","m2-s","centistoke","a-m","oersted","weber","miliweber","radyan","derece","gradyan","hertz","kilohertz","megahertz","gigahertz","m3-s","cfm","gpm","kg-s","kg-h"];
 
 export const unitPages: UnitPage[] = unitRegistry
   .filter((entry) => entry.tr && unitDescriptions[entry.id])

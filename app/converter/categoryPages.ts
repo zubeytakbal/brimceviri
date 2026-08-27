@@ -105,6 +105,20 @@ export const categoryPages: CategoryPage[] = [
       "Newton-metre ve pound-fit birimleri arasında tork dönüşümü yapın; motor torku, tork anahtarı ve cıvata sıkma değerleri için örnekleri inceleyin.",
   },
   {
+    slug: "aci",
+    category: "aci",
+    title: "Açı Dönüşümleri",
+    description:
+      "Derece, radyan ve gradyan birimleri arasında dönüşüm yapın; trigonometri, mühendislik çizimi ve navigasyon hesapları için örnekleri inceleyin.",
+  },
+  {
+    slug: "frekans",
+    category: "frekans",
+    title: "Frekans Dönüşümleri",
+    description:
+      "Hertz, kilohertz, megahertz ve gigahertz birimleri arasında dönüşüm yapın; elektronik, ses ve radyo dalgası hesapları için örnekleri inceleyin.",
+  },
+  {
     slug: "hacimsel-debi",
     category: "debi_hacimsel",
     title: "Hacimsel Debi Dönüşümleri",

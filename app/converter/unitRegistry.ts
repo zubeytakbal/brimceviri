@@ -620,6 +620,82 @@ export const unitRegistry: UnitRegistryEntry[] = [
   { id: "deg-min", category: "acisal_hiz", symbol: "°/min", siFactor: Math.PI / (180 * 60) },
   { id: "deg-h", category: "acisal_hiz", symbol: "°/h", siFactor: Math.PI / (180 * 3600) },
 
+  // ---- açı / angle / Winkel ----
+  {
+    id: "radyan",
+    category: "aci",
+    symbol: "rad",
+    siFactor: 1,
+    tr: { name: "Radyan", slug: "radyan" },
+    en: { name: "Radian", slug: "radian" },
+    de: { name: "Radiant", slug: "radiant" },
+  },
+  {
+    id: "derece",
+    category: "aci",
+    symbol: "°",
+    siFactor: Math.PI / 180,
+    tr: { name: "Derece", slug: "derece" },
+    en: { name: "Degree", slug: "degree" },
+    de: { name: "Grad", slug: "grad" },
+  },
+  {
+    id: "gradyan",
+    category: "aci",
+    symbol: "gon",
+    siFactor: Math.PI / 200,
+    tr: { name: "Gradyan", slug: "gradyan" },
+    en: { name: "Gradian", slug: "gradian" },
+    de: { name: "Gon", slug: "gon" },
+  },
+  {
+    id: "tam-tur",
+    category: "aci",
+    symbol: "tur",
+    siFactor: 2 * Math.PI,
+    tr: { name: "Tam Tur", slug: "tam-tur" },
+    en: { name: "Full Turn", slug: "full-turn" },
+    de: { name: "Vollwinkel", slug: "vollwinkel" },
+  },
+
+  // ---- frekans / frequency / Frequenz ----
+  {
+    id: "hertz",
+    category: "frekans",
+    symbol: "Hz",
+    siFactor: 1,
+    tr: { name: "Hertz", slug: "hertz" },
+    en: { name: "Hertz", slug: "hertz" },
+    de: { name: "Hertz", slug: "hertz" },
+  },
+  {
+    id: "kilohertz",
+    category: "frekans",
+    symbol: "kHz",
+    siFactor: 1000,
+    tr: { name: "Kilohertz", slug: "kilohertz" },
+    en: { name: "Kilohertz", slug: "kilohertz" },
+    de: { name: "Kilohertz", slug: "kilohertz" },
+  },
+  {
+    id: "megahertz",
+    category: "frekans",
+    symbol: "MHz",
+    siFactor: 1_000_000,
+    tr: { name: "Megahertz", slug: "megahertz" },
+    en: { name: "Megahertz", slug: "megahertz" },
+    de: { name: "Megahertz", slug: "megahertz" },
+  },
+  {
+    id: "gigahertz",
+    category: "frekans",
+    symbol: "GHz",
+    siFactor: 1_000_000_000,
+    tr: { name: "Gigahertz", slug: "gigahertz" },
+    en: { name: "Gigahertz", slug: "gigahertz" },
+    de: { name: "Gigahertz", slug: "gigahertz" },
+  },
+
   // ---- kuvvet / tork / momentum (engine-only) ----
   {
     id: "newton",

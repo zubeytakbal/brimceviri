@@ -537,6 +537,68 @@ export const englishCategoryPages: LocalizedCategoryPage[] = [
   },
   {
     locale: "en",
+    slug: "angle",
+    sourceSlug: "aci",
+    category: "aci",
+    title: "Angle Conversions",
+    description:
+      "Convert between degrees, radians and gradians and review units used for trigonometry, engineering drawing and navigation.",
+    introduction: [
+      "Angle measures the amount of rotation between two rays sharing a common endpoint.",
+      "The radian is the SI unit of angle, while the degree is the most common practical unit for everyday and navigational use.",
+    ],
+    facts: [
+      { label: "Physical quantity", value: "Angle" },
+      { label: "SI unit", value: "Radian" },
+      { label: "Common practical unit", value: "Degree" },
+      { label: "Typical use", value: "Trigonometry, navigation and engineering drawing" },
+    ],
+    sections: [
+      {
+        title: "What is angle?",
+        paragraphs: [
+          "Angle is the amount of rotation between two rays sharing a common endpoint, measured in degrees, radians or gradians.",
+          "It is used in trigonometry, geometry, navigation and engineering.",
+        ],
+      },
+      {
+        title: "Degrees, radians and gradians",
+        paragraphs: [
+          "A full circle is 360 degrees, 2π radians, or 400 gradians. The degree traces back to ancient Babylonian base-60 mathematics, while the radian is the natural SI unit for mathematical calculations.",
+        ],
+      },
+    ],
+  },
+  {
+    locale: "en",
+    slug: "frequency",
+    sourceSlug: "frekans",
+    category: "frekans",
+    title: "Frequency Conversions",
+    description:
+      "Convert between hertz, kilohertz, megahertz and gigahertz and review units used for electronics, sound and radio waves.",
+    introduction: [
+      "Frequency measures how many times an event repeats per second.",
+      "Hertz is the SI unit, and its multiples (kHz, MHz, GHz) are standard across electronics, radio and computing.",
+    ],
+    facts: [
+      { label: "Physical quantity", value: "Frequency" },
+      { label: "SI unit", value: "Hertz" },
+      { label: "SI symbol", value: "Hz" },
+      { label: "Typical use", value: "Electronics, radio and computing" },
+    ],
+    sections: [
+      {
+        title: "What is frequency?",
+        paragraphs: [
+          "Frequency is the number of occurrences of a repeating event per unit of time, named after physicist Heinrich Hertz.",
+          "It is used for sound waves, electrical current frequency, processor speed and radio waves.",
+        ],
+      },
+    ],
+  },
+  {
+    locale: "en",
     slug: "volumetric-flow-rate",
     sourceSlug: "hacimsel-debi",
     category: "debi_hacimsel",

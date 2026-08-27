@@ -799,6 +799,20 @@ const unitDescriptions: Record<string, UnitDescription> = {
     siEquivalent: "1 hp (metrik) = 735,49875 W",
     commonUses: "Otomobil ve motosiklet motor gücü, teknik veri sayfaları ve araç karşılaştırmaları",
   },
+  "megawatt": {
+    shortDescription: "Megawatt (MW), 1.000.000 watt'a eşit büyük ölçekli bir güç birimidir. Elektrik santralleri ve büyük tesislerin kapasitesini ifade etmek için kullanılır.",
+    historySummary: "Watt biriminin milyon katı olan megawatt, elektrik üretiminin sanayileşmesiyle birlikte santral kapasitelerini pratik şekilde ifade etmek için standart hâline gelmiştir.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, kat birim)",
+    siEquivalent: "1 MW = 1.000.000 W = 1000 kW",
+    commonUses: "Elektrik santrali kapasitesi, rüzgar/güneş enerjisi tesisleri ve büyük sanayi tesisleri",
+  },
+  "beygirgucu-mechanical": {
+    shortDescription: "Mekanik beygirgücü (HP), İngiliz/Amerikan ölçü sisteminde kullanılan geleneksel güç birimidir. Metrik beygirgücünden (PS) farklı olarak 745,7 watt'a eşittir.",
+    historySummary: "James Watt'ın ilk tanımladığı imperial beygirgücü, ABD ve İngiltere'de otomotiv ve motor endüstrisinde metrik PS/CV yerine yaygın olarak kullanılmaya devam etmektedir.",
+    measurementSystem: "Mekanik/imperial beygirgücü (SI dışı)",
+    siEquivalent: "1 HP (mekanik) = 745,7 W",
+    commonUses: "ABD/İngiltere menşeli araç ve motor teknik verileri, endüstriyel motor etiketleri",
+  },
   "g-cm3": {
     shortDescription: "Gram/santimetreküp (g/cm³), laboratuvar ve kimya ortamlarında yaygın kullanılan bir yoğunluk birimidir.",
     historySummary: "Metrik sistemin ondalık yapısı içinde küçük ölçekli numunelerin yoğunluğunu pratik biçimde ifade etmek için gram ve santimetreküp birimleri birleştirilmiştir.",
@@ -871,7 +885,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
 };
 
-const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","okka","dirhem","bizans-litrasi","bizans-onsu","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit","kilogram-metre-saniye","newton-saniye","pascal-saniye","santipoise","mikrometre","nanometre","deniz-mili","arsin","endaze","bizans-ayagi","bizans-kulaci","cig","santimetrekare","milimetrekare","kilometrekare","incare","akre","donum","dekar","santimetrekup","fitkup","inckup","galon","bit","bayt","kilobayt","megabayt","gigabayt","terabayt","petabayt","kibibayt","mebibayt","gibibayt","tebibayt","ohm","kiloohm","megaohm","farad","milifarad","mikrofarad","nanofarad","pikofarad","henry","milihenry","mikrohenry","coulomb","milicoulomb","mikrocoulomb","nanocoulomb","ayar-24","ayar-22","ayar-18","ayar-14","kalori","kilokalori","btu","watt-saat","kilojoule","milibar","knot","gun","isik-hizi","varil","kilogram-kuvvet-metre"];
+const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","okka","dirhem","bizans-litrasi","bizans-onsu","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit","kilogram-metre-saniye","newton-saniye","pascal-saniye","santipoise","mikrometre","nanometre","deniz-mili","arsin","endaze","bizans-ayagi","bizans-kulaci","cig","santimetrekare","milimetrekare","kilometrekare","incare","akre","donum","dekar","santimetrekup","fitkup","inckup","galon","bit","bayt","kilobayt","megabayt","gigabayt","terabayt","petabayt","kibibayt","mebibayt","gibibayt","tebibayt","ohm","kiloohm","megaohm","farad","milifarad","mikrofarad","nanofarad","pikofarad","henry","milihenry","mikrohenry","coulomb","milicoulomb","mikrocoulomb","nanocoulomb","ayar-24","ayar-22","ayar-18","ayar-14","kalori","kilokalori","btu","watt-saat","kilojoule","milibar","knot","gun","isik-hizi","varil","kilogram-kuvvet-metre","megawatt","beygirgucu-mekanik"];
 
 export const unitPages: UnitPage[] = unitRegistry
   .filter((entry) => entry.tr && unitDescriptions[entry.id])

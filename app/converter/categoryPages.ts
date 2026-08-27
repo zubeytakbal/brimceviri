@@ -65,9 +65,9 @@ export const categoryPages: CategoryPage[] = [
   {
     slug: "enerji",
     category: "enerji",
-    title: "Enerji ve Güç Dönüşümleri",
+    title: "Enerji Dönüşümleri",
     description:
-      "Joule, kilovat-saat, watt ve kilowatt tabanlı enerji ve güç dönüşümlerini aynı kategoride karşılaştırın.",
+      "Joule, kilovat-saat, kalori ve BTU tabanlı enerji dönüşümlerini aynı kategoride karşılaştırın.",
   },
   {
     slug: "debi",
@@ -103,6 +103,13 @@ export const categoryPages: CategoryPage[] = [
     title: "Tork Dönüşümleri",
     description:
       "Newton-metre ve pound-fit birimleri arasında tork dönüşümü yapın; motor torku, tork anahtarı ve cıvata sıkma değerleri için örnekleri inceleyin.",
+  },
+  {
+    slug: "guc",
+    category: "guc",
+    title: "Güç Dönüşümleri",
+    description:
+      "Watt, kilowatt, megawatt ve beygirgücü birimleri arasında dönüşüm yapın; motor gücü, jeneratör kapasitesi ve elektrik cihazları için örnekleri inceleyin.",
   },
   {
     slug: "momentum",

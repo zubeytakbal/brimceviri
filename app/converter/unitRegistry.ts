@@ -802,7 +802,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
   },
   {
     id: "watt",
-    category: "enerji",
+    category: "guc",
     symbol: "W",
     siFactor: 1,
     tr: { name: "Watt", slug: "watt" },
@@ -812,7 +812,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
   },
   {
     id: "kilowatt",
-    category: "enerji",
+    category: "guc",
     symbol: "kW",
     siFactor: 1000,
     tr: { name: "Kilowatt", slug: "kilowatt" },
@@ -844,21 +844,34 @@ export const unitRegistry: UnitRegistryEntry[] = [
   { id: "therm", category: "enerji", symbol: "th", siFactor: 1.05506e8 },
   { id: "quad-btu", category: "enerji", symbol: "quad BTU", siFactor: 1.05506e18 },
 
-  // ---- güç (engine-only, separate from enerji's W/kW) ----
-  { id: "guc-watt", category: "guc", symbol: "W", siFactor: 1 },
-  { id: "guc-kilowatt", category: "guc", symbol: "kW", siFactor: 1000 },
-  { id: "megawatt", category: "guc", symbol: "MW", siFactor: 1_000_000 },
+  // ---- güç ----
+  {
+    id: "megawatt",
+    category: "guc",
+    symbol: "MW",
+    siFactor: 1_000_000,
+    tr: { name: "Megawatt", slug: "megawatt" },
+    en: { name: "Megawatt", slug: "megawatt" },
+    de: { name: "Megawatt", slug: "megawatt" },
+  },
   {
     id: "beygirgucu-metric",
-    category: "enerji",
+    category: "guc",
     symbol: "hp",
     siFactor: 735.49875,
     tr: { name: "Beygirgücü", slug: "beygirgucu" },
     en: { name: "Horsepower", slug: "horsepower" },
     de: { name: "PS", slug: "ps" },
   },
-  { id: "beygirgucu-mechanical", category: "guc", symbol: "HP", siFactor: 745.7 },
-  { id: "cheval-vapeur", category: "guc", symbol: "CV", siFactor: 735.49875 },
+  {
+    id: "beygirgucu-mechanical",
+    category: "guc",
+    symbol: "HP",
+    siFactor: 745.7,
+    tr: { name: "Beygirgücü (Mekanik)", slug: "beygirgucu-mekanik" },
+    en: { name: "Horsepower (Mechanical)", slug: "horsepower-mechanical" },
+    de: { name: "PS (mechanisch)", slug: "ps-mechanisch" },
+  },
 
   // ---- sıcaklık / temperature / Temperatur (non-linear, no siFactor) ----
   {

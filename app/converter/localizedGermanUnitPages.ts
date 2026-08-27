@@ -418,7 +418,7 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
   watt: {
     name: "Watt",
     slug: "watt",
-    categoryName: "Energie",
+    categoryName: "Leistung",
     shortDescription:
       "Das Watt ist die SI-abgeleitete Einheit der Leistung und beschreibt eine Energieübertragungsrate.",
     historySummary:
@@ -429,13 +429,24 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
   kilowatt: {
     name: "Kilowatt",
     slug: "kilowatt",
-    categoryName: "Energie",
+    categoryName: "Leistung",
     shortDescription:
       "Das Kilowatt ist eine Leistungseinheit von 1000 Watt und eignet sich für größere Anlagen- und Geräteleistungen.",
     historySummary:
       "Viele praktische Leistungswerte liegen im Tausenderbereich, weshalb sich das Kilowatt in Technik und Versorgung stark etabliert hat.",
     measurementSystem: "Internationales Einheitensystem (SI, Vielfacheinheit)",
     commonUses: "HLK-Anlagen, Generatoren, Maschinen und Netztechnik",
+  },
+  megawatt: {
+    name: "Megawatt",
+    slug: "megawatt",
+    categoryName: "Leistung",
+    shortDescription:
+      "Das Megawatt (MW) ist eine große Leistungseinheit von 1.000.000 Watt und wird für Kraftwerke und Großanlagen verwendet.",
+    historySummary:
+      "Mit der Industrialisierung der Stromerzeugung wurde das Megawatt zur praktischen Standardeinheit für Kraftwerkskapazitäten.",
+    measurementSystem: "Internationales Einheitensystem (SI, Vielfacheinheit)",
+    commonUses: "Kraftwerkskapazität, Wind-/Solaranlagen und Großindustrie",
   },
   "metrekup-saat": {
     name: "Kubikmeter pro Stunde",

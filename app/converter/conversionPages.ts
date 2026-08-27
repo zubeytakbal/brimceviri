@@ -430,7 +430,7 @@ const pairDefinitions: ConversionPairDefinition[] = [
     secondExamples: [0.001, 0.01, 0.1, 0.5, 1, 2, 5],
   },
   {
-    category: "enerji",
+    category: "guc",
     firstId: "kilowatt",
     secondId: "watt",
     firstExamples: [0.1, 0.5, 1, 2, 5, 10, 50],
@@ -465,11 +465,25 @@ const pairDefinitions: ConversionPairDefinition[] = [
     secondExamples: [0.001, 1, 2.7, 7.85, 11.34, 19.3],
   },
   {
-    category: "enerji",
+    category: "guc",
     firstId: "kilowatt",
     secondId: "beygirgucu-metric",
     firstExamples: [55, 66, 74, 85, 110, 140, 184],
     secondExamples: [75, 90, 105, 116, 150, 190, 245],
+  },
+  {
+    category: "guc",
+    firstId: "megawatt",
+    secondId: "kilowatt",
+    firstExamples: [0.5, 1, 5, 10, 50, 100, 500],
+    secondExamples: [500, 1000, 5000, 10000, 50000, 100000, 500000],
+  },
+  {
+    category: "guc",
+    firstId: "beygirgucu-mechanical",
+    secondId: "beygirgucu-metric",
+    firstExamples: [10, 50, 100, 200, 500, 1000, 5000],
+    secondExamples: [10.14, 50.7, 101.4, 202.8, 507, 1013.9, 5069.7],
   },
   {
     category: "kuvvet",

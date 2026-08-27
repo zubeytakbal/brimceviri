@@ -506,40 +506,67 @@ export const englishCategoryPages: LocalizedCategoryPage[] = [
     slug: "energy",
     sourceSlug: "enerji",
     category: "enerji",
-    title: "Energy and Power Conversions",
+    title: "Energy Conversions",
     description:
-      "Convert between joules and kilowatt-hours, compare watts and kilowatts and review the difference between stored energy and power rate units.",
+      "Convert between joules, kilowatt-hours, calories and BTU and review the units commonly used for stored energy and heat.",
     introduction: [
-      "Energy and power are closely related but not identical. Energy represents an amount, while power represents the rate at which energy is transferred or used.",
-      "This category groups a small set of practical energy and power conversions often needed in building systems, electricity use and equipment ratings.",
+      "Energy measures an amount of work or heat, distinct from power, which measures the rate energy is transferred (see the separate Power category).",
+      "This category groups practical energy conversions often needed in building systems, electricity billing and heat calculations.",
     ],
     facts: [
-      { label: "Physical quantity", value: "Energy and power" },
-      { label: "SI energy unit", value: "Joule" },
-      { label: "SI power unit", value: "Watt" },
+      { label: "Physical quantity", value: "Energy" },
+      { label: "SI unit", value: "Joule" },
       { label: "Common billing unit", value: "Kilowatt-hour" },
-      { label: "Typical use", value: "Electrical consumption and equipment rating" },
+      { label: "Typical use", value: "Electrical consumption and heat content" },
     ],
     sections: [
       {
-        title: "Energy versus power",
+        title: "What is energy?",
         paragraphs: [
-          "Energy measures an amount of work or heat. Power measures how quickly that energy is transferred or consumed.",
-          "A kilowatt-hour is an energy unit, while a kilowatt is a power unit.",
+          "Energy measures an amount of work or heat stored or transferred, not the rate at which it happens.",
+          "A kilowatt-hour is an energy unit; the related power unit (kilowatt) has its own conversion category.",
         ],
       },
       {
-        title: "Joules, kilowatt-hours, watts and kilowatts",
+        title: "Joules, kilowatt-hours, calories and BTU",
         paragraphs: [
-          "The joule is the SI unit of energy and the watt is the SI unit of power.",
-          "Kilowatt-hours are widely used on electricity bills, while kilowatts are used for equipment rating and demand.",
+          "The joule is the SI unit of energy. Kilowatt-hours are widely used on electricity bills, while calories and BTU are common in nutrition and heating contexts.",
+        ],
+      },
+    ],
+  },
+  {
+    locale: "en",
+    slug: "power",
+    sourceSlug: "guc",
+    category: "guc",
+    title: "Power Conversions",
+    description:
+      "Convert between watts, kilowatts, megawatts and horsepower and review the units used for engine, generator and appliance power ratings.",
+    introduction: [
+      "Power measures the rate at which energy is transferred or used, distinct from energy itself (see the separate Energy category).",
+      "This category groups practical power conversions for engines, electrical equipment and generation capacity.",
+    ],
+    facts: [
+      { label: "Physical quantity", value: "Power" },
+      { label: "SI unit", value: "Watt" },
+      { label: "SI symbol", value: "W" },
+      { label: "Common non-SI unit", value: "Horsepower" },
+      { label: "Typical use", value: "Engine and equipment power rating" },
+    ],
+    sections: [
+      {
+        title: "What is power?",
+        paragraphs: [
+          "Power is the rate at which energy is transferred or converted, expressed as energy per unit of time.",
+          "It is used to rate engines, motors, generators, electrical devices and power plants.",
         ],
       },
       {
-        title: "Why group them together?",
+        title: "Watts, kilowatts, megawatts and horsepower",
         paragraphs: [
-          "In technical practice, energy and power are often discussed side by side because system sizing and consumption analysis use both.",
-          "Grouping them helps users reach the correct conversion page more quickly without separating closely related topics.",
+          "The watt is the SI unit of power. Kilowatts and megawatts scale it up for equipment and power plant capacity.",
+          "Horsepower is a traditional non-SI unit still common in the automotive industry; metric horsepower (PS/CV) and mechanical horsepower (HP) differ slightly in value.",
         ],
       },
     ],

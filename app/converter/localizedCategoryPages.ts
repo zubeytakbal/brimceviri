@@ -537,6 +537,75 @@ export const englishCategoryPages: LocalizedCategoryPage[] = [
   },
   {
     locale: "en",
+    slug: "acceleration",
+    sourceSlug: "ivme",
+    category: "ivme",
+    title: "Acceleration Conversions",
+    description:
+      "Convert between meters per second squared, feet per second squared and standard gravity (g) and review units used in vehicle performance and physics.",
+    introduction: [
+      "Acceleration measures how quickly velocity changes over time.",
+      "The meter per second squared is the SI derived unit, while standard gravity (g) is a common reference for g-force in vehicles and aerospace.",
+    ],
+    facts: [
+      { label: "Physical quantity", value: "Acceleration" },
+      { label: "SI unit", value: "Meter per second squared" },
+      { label: "SI symbol", value: "m/s²" },
+      { label: "Typical use", value: "Vehicle performance and physics" },
+    ],
+    sections: [
+      {
+        title: "What is acceleration?",
+        paragraphs: [
+          "Acceleration is the rate of change of velocity with respect to time.",
+          "It is used to describe vehicle performance, free fall, g-forces and mechanical motion.",
+        ],
+      },
+      {
+        title: "Standard gravity as a reference",
+        paragraphs: [
+          "Standard gravity (g = 9.80665 m/s²) is widely used as a reference unit for expressing acceleration relative to Earth's gravitational pull, especially in aerospace and vehicle testing.",
+        ],
+      },
+    ],
+  },
+  {
+    locale: "en",
+    slug: "angular-velocity",
+    sourceSlug: "acisal-hiz",
+    category: "acisal_hiz",
+    title: "Angular Velocity Conversions",
+    description:
+      "Convert between RPM, radians per second and degrees per second and review units used for engine speed and rotational motion.",
+    introduction: [
+      "Angular velocity measures how fast an object rotates or revolves, expressed as an angle per unit of time.",
+      "RPM (revolutions per minute) is the most common practical unit, while radians per second is the SI derived unit used in engineering calculations.",
+    ],
+    facts: [
+      { label: "Physical quantity", value: "Angular velocity" },
+      { label: "SI unit", value: "Radian per second" },
+      { label: "Common practical unit", value: "RPM" },
+      { label: "Typical use", value: "Engine speed and rotational motion" },
+    ],
+    sections: [
+      {
+        title: "What is angular velocity?",
+        paragraphs: [
+          "Angular velocity describes the rate of rotation of an object around an axis.",
+          "It is used for engine and motor speeds, turbines, hard drives and rotational dynamics.",
+        ],
+      },
+      {
+        title: "RPM, radians and degrees per second",
+        paragraphs: [
+          "RPM expresses rotation as full revolutions per minute, a practical unit for engines and machinery.",
+          "Radians per second is the SI unit preferred in physics and engineering formulas.",
+        ],
+      },
+    ],
+  },
+  {
+    locale: "en",
     slug: "power",
     sourceSlug: "guc",
     category: "guc",

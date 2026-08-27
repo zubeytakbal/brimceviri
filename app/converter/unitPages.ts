@@ -813,6 +813,62 @@ const unitDescriptions: Record<string, UnitDescription> = {
     siEquivalent: "1 HP (mekanik) = 745,7 W",
     commonUses: "ABD/İngiltere menşeli araç ve motor teknik verileri, endüstriyel motor etiketleri",
   },
+  "m-s2": {
+    shortDescription: "Metre/saniyekare (m/s²), ivmenin SI türetilmiş birimidir. Bir cismin hızının saniyede kaç metre/saniye değiştiğini ifade eder.",
+    historySummary: "Newton'un hareket yasalarının matematiksel ifadesinin doğal bir sonucu olarak, uzunluk ve zamanın temel SI birimlerinden türetilmiştir.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, türetilmiş birim)",
+    siEquivalent: "Temel SI ivme birimi",
+    commonUses: "Araç performans testleri (0-100 km/s), fizik hesapları, mühendislik simülasyonları",
+  },
+  "ft-s2": {
+    shortDescription: "Fit/saniyekare (ft/s²), ABD ve İngiltere ölçü sisteminde kullanılan ivme birimidir.",
+    historySummary: "İngiliz ölçü sisteminin uzunluk biriminden (fit) doğrudan türetilmiş, ABD mühendislik ve havacılık uygulamalarında yaygınlaşmıştır.",
+    measurementSystem: "İngiliz/Amerikan ölçü sistemi (SI dışı)",
+    siEquivalent: "1 ft/s² = 0,3048 m/s²",
+    commonUses: "ABD kaynaklı mühendislik dokümanları, havacılık ve uzay hesapları",
+  },
+  "g0": {
+    shortDescription: "Standart yerçekimi ivmesi (g), Dünya yüzeyindeki ortalama yerçekimi ivmesini ifade eden standart bir referans değeridir (9,80665 m/s²).",
+    historySummary: "1901'de Uluslararası Ağırlıklar ve Ölçüler Komitesi tarafından sabit bir referans değeri olarak tanımlanmıştır; yerel yerçekimi farklılıklarından bağımsız evrensel bir standart sağlar.",
+    measurementSystem: "Uluslararası referans sabiti (SI dışı, tanımlı değer)",
+    siEquivalent: "1 g = 9,80665 m/s²",
+    commonUses: "Roket ve uçuş ivmesi (g-force), araç çarpışma testleri, astronot eğitimi",
+  },
+  "rpm": {
+    shortDescription: "Devir/dakika (RPM), bir motorun veya dönen bir parçanın dakikada kaç tam tur attığını ifade eden açısal hız birimidir.",
+    historySummary: "İçten yanmalı motorların ve elektrik motorlarının geliştirilmesiyle birlikte, dönme hızını ifade etmenin pratik ve yaygın standart yolu hâline gelmiştir.",
+    measurementSystem: "SI dışı, pratik mühendislik birimi",
+    siEquivalent: "1 rpm = 2π/60 rad/s ≈ 0,10472 rad/s",
+    commonUses: "Motor devri (araç, endüstriyel motor), sabit disk ve fan hızları, santrifüj cihazları",
+  },
+  "rad-s": {
+    shortDescription: "Radyan/saniye (rad/s), açısal hızın SI türetilmiş birimidir. Bir cismin saniyede kaç radyan döndüğünü ifade eder.",
+    historySummary: "Radyanın açının SI birimi olarak kabul edilmesiyle birlikte, açısal hız ve açısal ivme hesaplarının doğal SI birimi hâline gelmiştir.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, türetilmiş birim)",
+    siEquivalent: "Temel SI açısal hız birimi",
+    commonUses: "Mühendislik dönme dinamiği hesapları, motor ve türbin analizi, robotik",
+  },
+  "deg-s": {
+    shortDescription: "Derece/saniye (°/s), açısal hızı derece cinsinden ifade eden, günlük kullanımda daha sezgisel olan bir birimdir.",
+    historySummary: "Derecenin açı ölçümünde yaygın kullanımı nedeniyle, açısal hızı radyan yerine derece cinsinden ifade etme ihtiyacından doğmuştur.",
+    measurementSystem: "SI dışı, pratik birim",
+    siEquivalent: "1 °/s = π/180 rad/s ≈ 0,01745 rad/s",
+    commonUses: "Kamera/anten döndürme sistemleri, robotik eklem hızları, animasyon ve simülasyon",
+  },
+  "milivolt": {
+    shortDescription: "Milivolt (mV), voltun binde biridir. Küçük elektrik sinyallerini ve düşük gerilim seviyelerini ifade etmek için kullanılır.",
+    historySummary: "Milivolt, elektronik ve tıbbi ölçüm cihazlarının hassas ve düşük gerilim değerlerini pratik şekilde ifade etme ihtiyacından doğmuştur.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, alt katı birim)",
+    siEquivalent: "1 mV = 0,001 V",
+    commonUses: "Sensör çıkışları, EKG/EEG gibi tıbbi sinyaller, düşük seviyeli elektronik devreler",
+  },
+  "kiloamper": {
+    shortDescription: "Kiloamper (kA), amperin bin katıdır. Büyük ölçekli elektrik akımlarını, özellikle kısa devre ve yıldırım akımlarını ifade etmek için kullanılır.",
+    historySummary: "Kiloamper, enerji dağıtım sistemlerinde ve endüstriyel elektrik tesisatlarında büyük akım değerlerini okunabilir şekilde ifade etmek için yaygınlaşmıştır.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, kat birim)",
+    siEquivalent: "1 kA = 1000 A",
+    commonUses: "Kısa devre akımı hesapları, trafo ve şalt sistemleri, yıldırım akımı analizleri",
+  },
   "g-cm3": {
     shortDescription: "Gram/santimetreküp (g/cm³), laboratuvar ve kimya ortamlarında yaygın kullanılan bir yoğunluk birimidir.",
     historySummary: "Metrik sistemin ondalık yapısı içinde küçük ölçekli numunelerin yoğunluğunu pratik biçimde ifade etmek için gram ve santimetreküp birimleri birleştirilmiştir.",
@@ -885,7 +941,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
 };
 
-const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","okka","dirhem","bizans-litrasi","bizans-onsu","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit","kilogram-metre-saniye","newton-saniye","pascal-saniye","santipoise","mikrometre","nanometre","deniz-mili","arsin","endaze","bizans-ayagi","bizans-kulaci","cig","santimetrekare","milimetrekare","kilometrekare","incare","akre","donum","dekar","santimetrekup","fitkup","inckup","galon","bit","bayt","kilobayt","megabayt","gigabayt","terabayt","petabayt","kibibayt","mebibayt","gibibayt","tebibayt","ohm","kiloohm","megaohm","farad","milifarad","mikrofarad","nanofarad","pikofarad","henry","milihenry","mikrohenry","coulomb","milicoulomb","mikrocoulomb","nanocoulomb","ayar-24","ayar-22","ayar-18","ayar-14","kalori","kilokalori","btu","watt-saat","kilojoule","milibar","knot","gun","isik-hizi","varil","kilogram-kuvvet-metre","megawatt","beygirgucu-mekanik"];
+const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","okka","dirhem","bizans-litrasi","bizans-onsu","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit","kilogram-metre-saniye","newton-saniye","pascal-saniye","santipoise","mikrometre","nanometre","deniz-mili","arsin","endaze","bizans-ayagi","bizans-kulaci","cig","santimetrekare","milimetrekare","kilometrekare","incare","akre","donum","dekar","santimetrekup","fitkup","inckup","galon","bit","bayt","kilobayt","megabayt","gigabayt","terabayt","petabayt","kibibayt","mebibayt","gibibayt","tebibayt","ohm","kiloohm","megaohm","farad","milifarad","mikrofarad","nanofarad","pikofarad","henry","milihenry","mikrohenry","coulomb","milicoulomb","mikrocoulomb","nanocoulomb","ayar-24","ayar-22","ayar-18","ayar-14","kalori","kilokalori","btu","watt-saat","kilojoule","milibar","knot","gun","isik-hizi","varil","kilogram-kuvvet-metre","megawatt","beygirgucu-mekanik","milivolt","kiloamper","m-s2","ft-s2","g0","rpm","rad-s","deg-s"];
 
 export const unitPages: UnitPage[] = unitRegistry
   .filter((entry) => entry.tr && unitDescriptions[entry.id])

@@ -105,6 +105,20 @@ export const categoryPages: CategoryPage[] = [
       "Newton-metre ve pound-fit birimleri arasında tork dönüşümü yapın; motor torku, tork anahtarı ve cıvata sıkma değerleri için örnekleri inceleyin.",
   },
   {
+    slug: "ivme",
+    category: "ivme",
+    title: "İvme Dönüşümleri",
+    description:
+      "Metre/saniyekare, fit/saniyekare ve yerçekimi ivmesi (g) birimleri arasında dönüşüm yapın; araç performansı ve fizik hesapları için örnekleri inceleyin.",
+  },
+  {
+    slug: "acisal-hiz",
+    category: "acisal_hiz",
+    title: "Açısal Hız Dönüşümleri",
+    description:
+      "RPM (devir/dakika), radyan/saniye ve derece/saniye birimleri arasında dönüşüm yapın; motor devri ve dönme hareketi hesapları için örnekleri inceleyin.",
+  },
+  {
     slug: "guc",
     category: "guc",
     title: "Güç Dönüşümleri",

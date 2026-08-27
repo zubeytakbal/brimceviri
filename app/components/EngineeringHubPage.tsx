@@ -232,6 +232,11 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
       { href: "/uyku-hesaplama", label: "Uyku Hesaplama" },
       { href: "/kosu-pace-hesaplama", label: "Koşu Pace Hesaplama" },
       { href: "/yakit-tuketimi-hesaplama", label: "Yakıt Tüketimi Hesaplama" },
+      { href: "/parke-hesaplama", label: "Parke Hesaplama" },
+      { href: "/duvar-kagidi-hesaplama", label: "Duvar Kağıdı Hesaplama" },
+      { href: "/tasinma-kutusu-hesaplama", label: "Taşınma Kutusu Hesaplama" },
+      { href: "/dogalgaz-tuketimi-hesaplama", label: "Doğalgaz Tüketimi Hesaplama" },
+      { href: "/elektrikli-arac-sarj-hesaplama", label: "Elektrikli Araç Şarj Hesaplama" },
     ],
     alternateTitle: "Di\u011fer diller",
     alternateLink: {

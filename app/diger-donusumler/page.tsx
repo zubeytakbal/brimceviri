@@ -173,6 +173,46 @@ export default function DigerDonusumlerPage() {
       iconName: "fuelConsumptionCalculator" as const,
     },
     {
+      id: "parke",
+      href: "/parke-hesaplama",
+      title: "Parke Hesaplama",
+      description:
+        "Kaplanacak alandan, fire payı dahil gereken laminat parke paketi sayısını hesaplayın.",
+      iconName: "laminateCalculator" as const,
+    },
+    {
+      id: "duvar-kagidi",
+      href: "/duvar-kagidi-hesaplama",
+      title: "Duvar Kağıdı Hesaplama",
+      description:
+        "Oda ölçülerinden ve rulo boyutlarından gereken duvar kağıdı rulosu sayısını hesaplayın.",
+      iconName: "wallpaperCalculator" as const,
+    },
+    {
+      id: "tasinma-kutusu",
+      href: "/tasinma-kutusu-hesaplama",
+      title: "Taşınma Kutusu Hesaplama",
+      description:
+        "Ev tipine göre tahmini taşınma kolisi sayısını ve kamyon hacmini görün.",
+      iconName: "movingBoxCalculator" as const,
+    },
+    {
+      id: "dogalgaz-tuketimi",
+      href: "/dogalgaz-tuketimi-hesaplama",
+      title: "Doğalgaz Tüketimi Hesaplama",
+      description:
+        "m³ cinsinden doğalgaz tüketiminden toplam maliyeti ve yaklaşık kWh karşılığını hesaplayın.",
+      iconName: "naturalGasCalculator" as const,
+    },
+    {
+      id: "elektrikli-arac-sarj",
+      href: "/elektrikli-arac-sarj-hesaplama",
+      title: "Elektrikli Araç Şarj Hesaplama",
+      description:
+        "Batarya kapasitesi ve şarj gücünden tahmini şarj süresini, tüketimden tahmini menzili hesaplayın.",
+      iconName: "evChargingCalculator" as const,
+    },
+    {
       id: "klima-btu",
       href: "/klima-btu-hesaplama",
       title: "Klima BTU Hesaplama",

@@ -430,6 +430,27 @@ const pairDefinitions: ConversionPairDefinition[] = [
     secondExamples: [0.001, 0.01, 0.1, 0.5, 1, 2, 5],
   },
   {
+    category: "isil_iletkenlik",
+    firstId: "w-mk",
+    secondId: "btu-hftf",
+    firstExamples: [0.02, 0.04, 0.5, 1, 2, 50, 400],
+    secondExamples: [0.0116, 0.0231, 0.289, 0.578, 1.156, 28.9, 231.2],
+  },
+  {
+    category: "isi_akisi",
+    firstId: "w-m2",
+    secondId: "kw-m2",
+    firstExamples: [100, 500, 1000, 5000, 10000, 50000, 100000],
+    secondExamples: [0.1, 0.5, 1, 5, 10, 50, 100],
+  },
+  {
+    category: "ozgul_isi",
+    firstId: "j-kgk",
+    secondId: "cal-gk",
+    firstExamples: [1, 100, 1000, 4184, 10000, 50000, 100000],
+    secondExamples: [0.000239, 0.0239, 0.239, 1, 2.39, 11.95, 23.9],
+  },
+  {
     category: "ivme",
     firstId: "m-s2",
     secondId: "g0",

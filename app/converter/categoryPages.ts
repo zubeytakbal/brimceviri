@@ -105,6 +105,27 @@ export const categoryPages: CategoryPage[] = [
       "Newton-metre ve pound-fit birimleri arasında tork dönüşümü yapın; motor torku, tork anahtarı ve cıvata sıkma değerleri için örnekleri inceleyin.",
   },
   {
+    slug: "isil-iletkenlik",
+    category: "isil_iletkenlik",
+    title: "Isıl İletkenlik Dönüşümleri",
+    description:
+      "Watt/metre-Kelvin ve BTU/saat-fit-°F birimleri arasında dönüşüm yapın; yalıtım malzemesi seçimi ve ısı iletimi hesapları için örnekleri inceleyin.",
+  },
+  {
+    slug: "isi-akisi",
+    category: "isi_akisi",
+    title: "Isı Akısı Dönüşümleri",
+    description:
+      "Watt/metrekare ve kilowatt/metrekare birimleri arasında dönüşüm yapın; yüzey ısı transferi ve yalıtım hesapları için örnekleri inceleyin.",
+  },
+  {
+    slug: "ozgul-isi",
+    category: "ozgul_isi",
+    title: "Özgül Isı Dönüşümleri",
+    description:
+      "Joule/kilogram-Kelvin ve kalori/gram-Kelvin birimleri arasında dönüşüm yapın; malzeme ısınma kapasitesi hesapları için örnekleri inceleyin.",
+  },
+  {
     slug: "ivme",
     category: "ivme",
     title: "İvme Dönüşümleri",

@@ -813,6 +813,48 @@ const unitDescriptions: Record<string, UnitDescription> = {
     siEquivalent: "1 HP (mekanik) = 745,7 W",
     commonUses: "ABD/İngiltere menşeli araç ve motor teknik verileri, endüstriyel motor etiketleri",
   },
+  "w-mk": {
+    shortDescription: "Watt/metre-Kelvin (W/m·K), ısıl iletkenliğin SI türetilmiş birimidir. Bir malzemenin ısıyı ne kadar iyi ilettiğini ifade eder.",
+    historySummary: "Fourier'in ısı iletimi yasasının matematiksel ifadesinden doğrudan türetilmiştir; malzeme biliminde yalıtım kalitesini karşılaştırmak için standart hâle gelmiştir.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, türetilmiş birim)",
+    siEquivalent: "Temel SI ısıl iletkenlik birimi",
+    commonUses: "Yalıtım malzemesi seçimi, bina enerji performansı hesapları, mühendislik malzeme karşılaştırmaları",
+  },
+  "btu-hftf": {
+    shortDescription: "BTU/saat-fit-°F, ABD ölçü sisteminde kullanılan geleneksel bir ısıl iletkenlik birimidir.",
+    historySummary: "ABD inşaat ve HVAC endüstrisinde İngiliz ısı birimi (BTU) tabanlı teknik dokümantasyonun standart parçası hâline gelmiştir.",
+    measurementSystem: "İngiliz/Amerikan ölçü sistemi (SI dışı)",
+    siEquivalent: "1 Btu/(h·ft·°F) ≈ 1,730735 W/(m·K)",
+    commonUses: "ABD kaynaklı yalıtım ve HVAC teknik dokümanları",
+  },
+  "w-m2": {
+    shortDescription: "Watt/metrekare (W/m²), ısı akısının SI türetilmiş birimidir. Birim yüzey alanından geçen ısı transfer hızını ifade eder.",
+    historySummary: "Isı transferi mühendisliğinin temel SI birimlerinden türetilmiş, yüzey ısı kaybı ve güneş radyasyonu hesaplarında standart hâline gelmiştir.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, türetilmiş birim)",
+    siEquivalent: "Temel SI ısı akısı birimi",
+    commonUses: "Bina ısı kaybı hesapları, güneş paneli radyasyon analizi, endüstriyel ısı transferi",
+  },
+  "kw-m2": {
+    shortDescription: "Kilowatt/metrekare (kW/m²), ısı akısını daha büyük değerlerde ifade etmek için kullanılan pratik bir birimdir (1000 W/m²'ye eşittir).",
+    historySummary: "Watt/metrekare biriminin büyük ısı akısı değerlerinde daha okunabilir kullanımı için mühendislik pratiğinde yaygınlaşmıştır.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, kat birim)",
+    siEquivalent: "1 kW/m² = 1000 W/m²",
+    commonUses: "Endüstriyel fırın ve kazan ısı akısı hesapları, yoğun güneş radyasyonu ölçümleri",
+  },
+  "j-kgk": {
+    shortDescription: "Joule/kilogram-Kelvin (J/kg·K), özgül ısının SI türetilmiş birimidir. Bir maddenin 1 kilogramının sıcaklığını 1 Kelvin artırmak için gereken enerjiyi ifade eder.",
+    historySummary: "Kalorimetri biliminin gelişmesiyle birlikte, malzemelerin ısınma kapasitesini standart bir şekilde karşılaştırmak için SI birimi olarak benimsenmiştir.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, türetilmiş birim)",
+    siEquivalent: "Temel SI özgül ısı birimi",
+    commonUses: "Malzeme bilimi, termodinamik hesaplamalar, ısıtma/soğutma sistem tasarımı",
+  },
+  "cal-gk": {
+    shortDescription: "Kalori/gram-Kelvin (cal/g·K), özgül ısıyı geleneksel kalori biriminde ifade eder. Suyun özgül ısısı tam olarak 1 cal/(g·K) olacak şekilde tanımlanmıştır.",
+    historySummary: "Kalorinin tanımı tarihsel olarak suyun ısınma kapasitesine dayanır; bu birim hâlâ kimya ve beslenme bilimi bağlamlarında yaygın kullanılır.",
+    measurementSystem: "SI dışı, geleneksel birim",
+    siEquivalent: "1 cal/(g·K) = 4,184 J/(kg·K)",
+    commonUses: "Kimya laboratuvarı hesapları, beslenme bilimi, termodinamik ders kitapları",
+  },
   "m-s2": {
     shortDescription: "Metre/saniyekare (m/s²), ivmenin SI türetilmiş birimidir. Bir cismin hızının saniyede kaç metre/saniye değiştiğini ifade eder.",
     historySummary: "Newton'un hareket yasalarının matematiksel ifadesinin doğal bir sonucu olarak, uzunluk ve zamanın temel SI birimlerinden türetilmiştir.",
@@ -941,7 +983,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
 };
 
-const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","okka","dirhem","bizans-litrasi","bizans-onsu","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit","kilogram-metre-saniye","newton-saniye","pascal-saniye","santipoise","mikrometre","nanometre","deniz-mili","arsin","endaze","bizans-ayagi","bizans-kulaci","cig","santimetrekare","milimetrekare","kilometrekare","incare","akre","donum","dekar","santimetrekup","fitkup","inckup","galon","bit","bayt","kilobayt","megabayt","gigabayt","terabayt","petabayt","kibibayt","mebibayt","gibibayt","tebibayt","ohm","kiloohm","megaohm","farad","milifarad","mikrofarad","nanofarad","pikofarad","henry","milihenry","mikrohenry","coulomb","milicoulomb","mikrocoulomb","nanocoulomb","ayar-24","ayar-22","ayar-18","ayar-14","kalori","kilokalori","btu","watt-saat","kilojoule","milibar","knot","gun","isik-hizi","varil","kilogram-kuvvet-metre","megawatt","beygirgucu-mekanik","milivolt","kiloamper","m-s2","ft-s2","g0","rpm","rad-s","deg-s"];
+const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","okka","dirhem","bizans-litrasi","bizans-onsu","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit","kilogram-metre-saniye","newton-saniye","pascal-saniye","santipoise","mikrometre","nanometre","deniz-mili","arsin","endaze","bizans-ayagi","bizans-kulaci","cig","santimetrekare","milimetrekare","kilometrekare","incare","akre","donum","dekar","santimetrekup","fitkup","inckup","galon","bit","bayt","kilobayt","megabayt","gigabayt","terabayt","petabayt","kibibayt","mebibayt","gibibayt","tebibayt","ohm","kiloohm","megaohm","farad","milifarad","mikrofarad","nanofarad","pikofarad","henry","milihenry","mikrohenry","coulomb","milicoulomb","mikrocoulomb","nanocoulomb","ayar-24","ayar-22","ayar-18","ayar-14","kalori","kilokalori","btu","watt-saat","kilojoule","milibar","knot","gun","isik-hizi","varil","kilogram-kuvvet-metre","megawatt","beygirgucu-mekanik","milivolt","kiloamper","m-s2","ft-s2","g0","rpm","rad-s","deg-s","w-mk","btu-hftf","w-m2","kw-m2","j-kgk","cal-gk"];
 
 export const unitPages: UnitPage[] = unitRegistry
   .filter((entry) => entry.tr && unitDescriptions[entry.id])

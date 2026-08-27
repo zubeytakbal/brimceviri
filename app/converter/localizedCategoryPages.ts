@@ -537,6 +537,87 @@ export const englishCategoryPages: LocalizedCategoryPage[] = [
   },
   {
     locale: "en",
+    slug: "thermal-conductivity",
+    sourceSlug: "isil-iletkenlik",
+    category: "isil_iletkenlik",
+    title: "Thermal Conductivity Conversions",
+    description:
+      "Convert between watts per meter-Kelvin and BTU per hour-foot-°F and review units used for insulation and heat transfer calculations.",
+    introduction: [
+      "Thermal conductivity measures how well a material conducts heat.",
+      "Watt per meter-Kelvin is the SI derived unit, widely used in material science and building insulation ratings.",
+    ],
+    facts: [
+      { label: "Physical quantity", value: "Thermal conductivity" },
+      { label: "SI unit", value: "Watt per meter-Kelvin" },
+      { label: "Typical use", value: "Insulation and heat transfer engineering" },
+    ],
+    sections: [
+      {
+        title: "What is thermal conductivity?",
+        paragraphs: [
+          "Thermal conductivity describes a material's ability to conduct heat, derived from Fourier's law of heat conduction.",
+          "It is used to compare insulation materials and calculate building heat loss.",
+        ],
+      },
+    ],
+  },
+  {
+    locale: "en",
+    slug: "heat-flux",
+    sourceSlug: "isi-akisi",
+    category: "isi_akisi",
+    title: "Heat Flux Conversions",
+    description:
+      "Convert between watts per square meter and kilowatts per square meter and review units used for surface heat transfer.",
+    introduction: [
+      "Heat flux measures the rate of heat energy transfer through a given surface area.",
+      "Watt per square meter is the SI derived unit, used in building heat loss and solar radiation calculations.",
+    ],
+    facts: [
+      { label: "Physical quantity", value: "Heat flux" },
+      { label: "SI unit", value: "Watt per square meter" },
+      { label: "Typical use", value: "Surface heat transfer and solar radiation" },
+    ],
+    sections: [
+      {
+        title: "What is heat flux?",
+        paragraphs: [
+          "Heat flux is the rate of heat energy transferred through a unit surface area.",
+          "It is used for building heat loss calculations and solar panel radiation analysis.",
+        ],
+      },
+    ],
+  },
+  {
+    locale: "en",
+    slug: "specific-heat",
+    sourceSlug: "ozgul-isi",
+    category: "ozgul_isi",
+    title: "Specific Heat Conversions",
+    description:
+      "Convert between joules per kilogram-Kelvin and calories per gram-Kelvin and review units used for material heating capacity.",
+    introduction: [
+      "Specific heat measures the energy required to raise the temperature of a substance by one degree.",
+      "Joule per kilogram-Kelvin is the SI derived unit, while calorie per gram-Kelvin remains common in chemistry.",
+    ],
+    facts: [
+      { label: "Physical quantity", value: "Specific heat" },
+      { label: "SI unit", value: "Joule per kilogram-Kelvin" },
+      { label: "Typical use", value: "Material science and thermodynamics" },
+    ],
+    sections: [
+      {
+        title: "What is specific heat?",
+        paragraphs: [
+          "Specific heat is the amount of energy needed to raise one unit of mass by one degree of temperature.",
+          "It is used in material science, thermodynamics and heating/cooling system design.",
+        ],
+      },
+    ],
+  },
+  {
+    locale: "en",
     slug: "acceleration",
     sourceSlug: "ivme",
     category: "ivme",

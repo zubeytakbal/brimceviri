@@ -105,6 +105,27 @@ export const categoryPages: CategoryPage[] = [
       "Newton-metre ve pound-fit birimleri arasında tork dönüşümü yapın; motor torku, tork anahtarı ve cıvata sıkma değerleri için örnekleri inceleyin.",
   },
   {
+    slug: "manyetik-alan",
+    category: "manyetik_alan",
+    title: "Manyetik Alan Dönüşümleri",
+    description:
+      "Amper/metre ve oersted birimleri arasında dönüşüm yapın; elektromanyetik alan şiddeti hesapları için örnekleri inceleyin.",
+  },
+  {
+    slug: "manyetik-aki",
+    category: "manyetik_aki",
+    title: "Manyetik Akı Dönüşümleri",
+    description:
+      "Weber ve miliweber birimleri arasında dönüşüm yapın; transformatör ve elektromanyetik indüksiyon hesapları için örnekleri inceleyin.",
+  },
+  {
+    slug: "kinematik-viskozite",
+    category: "viskozite_kinematik",
+    title: "Kinematik Viskozite Dönüşümleri",
+    description:
+      "Metrekare/saniye ve santistok (cSt) birimleri arasında dönüşüm yapın; motor yağı ve akışkan sınıflandırma hesapları için örnekleri inceleyin.",
+  },
+  {
     slug: "isil-iletkenlik",
     category: "isil_iletkenlik",
     title: "Isıl İletkenlik Dönüşümleri",

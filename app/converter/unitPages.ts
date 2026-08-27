@@ -813,6 +813,48 @@ const unitDescriptions: Record<string, UnitDescription> = {
     siEquivalent: "1 HP (mekanik) = 745,7 W",
     commonUses: "ABD/İngiltere menşeli araç ve motor teknik verileri, endüstriyel motor etiketleri",
   },
+  "a-m": {
+    shortDescription: "Amper/metre (A/m), manyetik alan şiddetinin SI türetilmiş birimidir. Bir manyetik alanın kaynaklandığı akımın uzunluğa oranını ifade eder.",
+    historySummary: "Elektromanyetik teorinin SI birim sistemine entegrasyonuyla birlikte, manyetik alan şiddetini akım ve uzunluğun temel birimlerinden türetmenin standart yolu hâline gelmiştir.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, türetilmiş birim)",
+    siEquivalent: "Temel SI manyetik alan şiddeti birimi",
+    commonUses: "Elektromanyetik alan hesapları, bobin ve elektromıknatıs tasarımı, manyetik malzeme testleri",
+  },
+  "oersted": {
+    shortDescription: "Oersted (Oe), manyetik alan şiddetini ifade eden CGS sistemi birimidir. Günümüzde hâlâ manyetik malzeme endüstrisinde yaygın kullanılır.",
+    historySummary: "Danimarkalı fizikçi Hans Christian Ørsted'in elektromanyetizma keşfi onuruna adlandırılmıştır; CGS biriminin SI'ye geçişten sonra da endüstride kullanımı sürmüştür.",
+    measurementSystem: "CGS sistemi (SI dışı, geleneksel birim)",
+    siEquivalent: "1 Oe ≈ 79,5775 A/m",
+    commonUses: "Mıknatıs ve manyetik malzeme endüstrisi, manyetik kayıt ortamı özellikleri",
+  },
+  "weber": {
+    shortDescription: "Weber (Wb), manyetik akının SI türetilmiş birimidir. Bir manyetik alanın belirli bir yüzeyden geçen toplam etkisini ifade eder.",
+    historySummary: "Alman fizikçi Wilhelm Eduard Weber'in elektromanyetizma alanındaki çalışmaları onuruna adlandırılmıştır; transformatör ve indüksiyon hesaplarının temel SI birimidir.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, türetilmiş birim)",
+    siEquivalent: "1 Wb = 1 V·s (volt-saniye)",
+    commonUses: "Transformatör tasarımı, elektromanyetik indüksiyon hesapları, elektrik motoru mühendisliği",
+  },
+  "miliweber": {
+    shortDescription: "Miliweber (mWb), weberin binde biridir. Daha küçük ölçekli manyetik akı değerlerini pratik şekilde ifade etmek için kullanılır.",
+    historySummary: "Weber biriminin küçük değerlerde daha okunabilir kullanımı için mühendislik pratiğinde yaygınlaşmıştır.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, alt katı birim)",
+    siEquivalent: "1 mWb = 0,001 Wb",
+    commonUses: "Küçük ölçekli bobin ve sensör tasarımı, elektronik devre hesapları",
+  },
+  "m2-s": {
+    shortDescription: "Metrekare/saniye (m²/s), kinematik viskozitenin SI türetilmiş birimidir. Bir akışkanın dinamik viskozitesinin yoğunluğuna oranını ifade eder.",
+    historySummary: "Dinamik viskozite ve yoğunluğun SI birimlerinden doğrudan türetilmiştir; akışkanlar mekaniğinde Reynolds sayısı gibi hesaplamalarda temel birimdir.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, türetilmiş birim)",
+    siEquivalent: "Temel SI kinematik viskozite birimi",
+    commonUses: "Akışkanlar mekaniği hesapları, Reynolds sayısı, boru akışı analizi",
+  },
+  "centistoke": {
+    shortDescription: "Santistok (cSt), kinematik viskoziteyi ifade etmek için endüstride en yaygın kullanılan birimdir. 1 cSt, 1 mm²/s'ye eşittir.",
+    historySummary: "Stokes biriminin (CGS sistemi) yüzde biri olarak tanımlanmıştır; petrol ve yağlama endüstrisinde pratik ölçüm birimi olarak yaygınlaşmıştır.",
+    measurementSystem: "CGS sistemi (SI dışı, yaygın pratik birim)",
+    siEquivalent: "1 cSt = 1 mm²/s = 0,000001 m²/s",
+    commonUses: "Motor yağı viskozite sınıflandırması (SAE), akışkan ve yakıt özellikleri, endüstriyel yağlama",
+  },
   "w-mk": {
     shortDescription: "Watt/metre-Kelvin (W/m·K), ısıl iletkenliğin SI türetilmiş birimidir. Bir malzemenin ısıyı ne kadar iyi ilettiğini ifade eder.",
     historySummary: "Fourier'in ısı iletimi yasasının matematiksel ifadesinden doğrudan türetilmiştir; malzeme biliminde yalıtım kalitesini karşılaştırmak için standart hâle gelmiştir.",
@@ -983,7 +1025,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
 };
 
-const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","okka","dirhem","bizans-litrasi","bizans-onsu","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit","kilogram-metre-saniye","newton-saniye","pascal-saniye","santipoise","mikrometre","nanometre","deniz-mili","arsin","endaze","bizans-ayagi","bizans-kulaci","cig","santimetrekare","milimetrekare","kilometrekare","incare","akre","donum","dekar","santimetrekup","fitkup","inckup","galon","bit","bayt","kilobayt","megabayt","gigabayt","terabayt","petabayt","kibibayt","mebibayt","gibibayt","tebibayt","ohm","kiloohm","megaohm","farad","milifarad","mikrofarad","nanofarad","pikofarad","henry","milihenry","mikrohenry","coulomb","milicoulomb","mikrocoulomb","nanocoulomb","ayar-24","ayar-22","ayar-18","ayar-14","kalori","kilokalori","btu","watt-saat","kilojoule","milibar","knot","gun","isik-hizi","varil","kilogram-kuvvet-metre","megawatt","beygirgucu-mekanik","milivolt","kiloamper","m-s2","ft-s2","g0","rpm","rad-s","deg-s","w-mk","btu-hftf","w-m2","kw-m2","j-kgk","cal-gk"];
+const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","okka","dirhem","bizans-litrasi","bizans-onsu","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit","kilogram-metre-saniye","newton-saniye","pascal-saniye","santipoise","mikrometre","nanometre","deniz-mili","arsin","endaze","bizans-ayagi","bizans-kulaci","cig","santimetrekare","milimetrekare","kilometrekare","incare","akre","donum","dekar","santimetrekup","fitkup","inckup","galon","bit","bayt","kilobayt","megabayt","gigabayt","terabayt","petabayt","kibibayt","mebibayt","gibibayt","tebibayt","ohm","kiloohm","megaohm","farad","milifarad","mikrofarad","nanofarad","pikofarad","henry","milihenry","mikrohenry","coulomb","milicoulomb","mikrocoulomb","nanocoulomb","ayar-24","ayar-22","ayar-18","ayar-14","kalori","kilokalori","btu","watt-saat","kilojoule","milibar","knot","gun","isik-hizi","varil","kilogram-kuvvet-metre","megawatt","beygirgucu-mekanik","milivolt","kiloamper","m-s2","ft-s2","g0","rpm","rad-s","deg-s","w-mk","btu-hftf","w-m2","kw-m2","j-kgk","cal-gk","m2-s","centistoke","a-m","oersted","weber","miliweber"];
 
 export const unitPages: UnitPage[] = unitRegistry
   .filter((entry) => entry.tr && unitDescriptions[entry.id])

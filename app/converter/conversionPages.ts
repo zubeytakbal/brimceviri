@@ -430,6 +430,27 @@ const pairDefinitions: ConversionPairDefinition[] = [
     secondExamples: [0.001, 0.01, 0.1, 0.5, 1, 2, 5],
   },
   {
+    category: "manyetik_alan",
+    firstId: "a-m",
+    secondId: "oersted",
+    firstExamples: [10, 79.5775, 100, 500, 1000, 5000, 10000],
+    secondExamples: [0.1257, 1, 1.2566, 6.283, 12.566, 62.83, 125.66],
+  },
+  {
+    category: "manyetik_aki",
+    firstId: "weber",
+    secondId: "miliweber",
+    firstExamples: [0.001, 0.01, 0.1, 1, 5, 10, 100],
+    secondExamples: [1, 10, 100, 1000, 5000, 10000, 100000],
+  },
+  {
+    category: "viskozite_kinematik",
+    firstId: "m2-s",
+    secondId: "centistoke",
+    firstExamples: [0.000001, 0.00001, 0.0001, 0.0005, 0.001, 0.005, 0.01],
+    secondExamples: [1, 10, 100, 500, 1000, 5000, 10000],
+  },
+  {
     category: "isil_iletkenlik",
     firstId: "w-mk",
     secondId: "btu-hftf",

@@ -1,7 +1,15 @@
+import { germanStandaloneTools } from "./germanStandaloneTools";
+
 export const germanStaticPaths = {
   home: "/de",
   units: "/de/einheiten",
   allConversions: "/de/alle-umrechnungen",
+  otherConversions: "/de/weitere-umrechnungen",
+  historicalUnits: "/de/historische-masseinheiten",
+  shoeSize: "/de/schuhgroessen-umrechner",
+  kitchenMeasures: "/de/kuechenmass-umrechner",
+  recipeConverter: "/de/rezept-umrechner",
+  ringSize: "/de/ringgroessen-umrechner",
   engineeringHub: "/de/ingenieurrechner",
   electricalEngineeringHub: "/de/ingenieurrechner/elektrorechner",
   about: "/de/uber-uns",
@@ -9,6 +17,10 @@ export const germanStaticPaths = {
   privacy: "/de/datenschutz",
   terms: "/de/nutzungsbedingungen",
 } as const;
+
+export const germanStandaloneToolPaths = Object.fromEntries(
+  germanStandaloneTools.map((tool) => [tool.slug, tool.germanPath])
+) as Record<string, string>;
 
 export const germanCalculatorSlugMap = {
   "basinc-kuvvet-alan": "druck-kraft-flaeche",
@@ -31,6 +43,30 @@ export const germanCategorySlugMap = {
   enerji: "energie",
   debi: "durchfluss",
   elektrik: "elektrizitaet",
+  yogunluk: "dichte",
+  kuvvet: "kraft",
+  tork: "drehmoment",
+  aci: "winkel",
+  frekans: "frequenz",
+  debi_hacimsel: "volumenstrom",
+  debi_kutlesel: "massenstrom",
+  manyetik_alan: "magnetfeldstaerke",
+  manyetik_aki: "magnetischer-fluss",
+  viskozite_kinematik: "kinematische-viskositaet",
+  isil_iletkenlik: "waermeleitfaehigkeit",
+  isi_akisi: "waermestromdichte",
+  ozgul_isi: "spezifische-waermekapazitaet",
+  ivme: "beschleunigung",
+  acisal_hiz: "winkelgeschwindigkeit",
+  guc: "leistung",
+  momentum: "impuls",
+  viskozite_dinamik: "viskositaet",
+  veri: "datenspeicher",
+  elektrik_direnc: "elektrischer-widerstand",
+  kapasitans: "kapazitaet",
+  enduktans: "induktivitaet",
+  elektrik_yuk: "elektrische-ladung",
+  altin_ayar: "goldkarat",
 } as const;
 
 export function getGermanCalculatorSlug(
@@ -48,4 +84,3 @@ export function getGermanCategorySlug(
     category as keyof typeof germanCategorySlugMap
   ];
 }
-

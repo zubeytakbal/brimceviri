@@ -82,6 +82,25 @@ const copy = {
     marginFactorLabel: "Reserve",
     clear: "Werte zurucksetzen",
   },
+  ar: {
+    phaseTypeLabel: "نوع الطور",
+    singlePhase: "أحادي الطور",
+    threePhase: "ثلاثي الطور",
+    powerValue: "قدرة المحرك",
+    voltageValue: "جهد التغذية",
+    powerFactorValue: "معامل القدرة",
+    efficiencyValue: "الكفاءة",
+    marginValue: "هامش الأمان (%)",
+    flaValue: "تيار الحمل الكامل",
+    designValue: "تيار التصميم",
+    resultLive: "نتيجة الحساب",
+    automaticResultUnit: "وحدة النتيجة التلقائية",
+    formula: "المعادلة بعد التعويض",
+    siEquivalent: "مكافئ SI",
+    normalizedFactors: "العوامل المستخدمة",
+    marginFactorLabel: "الأمان",
+    clear: "مسح القيم",
+  },
 } as const;
 
 export default function MotorCurrentCalculator({

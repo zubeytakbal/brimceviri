@@ -1,12 +1,30 @@
 import "./globals.css";
 import type { Metadata, Viewport } from "next";
-import { headers } from "next/headers";
-import { Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google";
+import { Cairo, Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google";
 import Script from "next/script";
 import RecentToolsTracker from "./components/RecentToolsTracker";
 import SiteHeader from "./components/SiteHeader";
 import SiteFooter from "./components/SiteFooter";
+import { LOCALE_DEFINITIONS } from "./i18n/config";
 import { SITE_NAME, SITE_URL } from "./siteConfig";
+
+// Kök layout'ta location.pathname'i sunucu tarafında bilmenin bir yolu yok
+// (headers()/x-pathname okumak Dynamic API sayılır ve TÜM siteyi dinamik
+// render'a zorlar — build çıktısında ~2869 rotanın "ƒ Dynamic" çıkmasının
+// tek sebebi buydu). Bunun yerine <html> sabit "tr" ile statik üretilir,
+// gerçek dil paint öncesi çalışan bu küçük senkron script ile client
+// tarafında düzeltilir. Harita LOCALE_DEFINITIONS'tan build-zamanında
+// üretilir (tek doğruluk kaynağı, ayrı bir hardcoded kopya yok).
+const LOCALE_HTML_ATTRS = Object.fromEntries(
+  Object.values(LOCALE_DEFINITIONS).map((definition) => [
+    definition.pathPrefix.replace(/^\//, ""),
+    { lang: definition.htmlLang, dir: definition.dir },
+  ])
+);
+
+const localeCorrectionScript = `(function(){try{var seg=(location.pathname.split("/")[1]||"");var map=${JSON.stringify(
+  LOCALE_HTML_ATTRS
+)};var d=map[seg]||map[""];if(d){document.documentElement.lang=d.lang;document.documentElement.dir=d.dir;}}catch(e){}})();`;
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin", "latin-ext"],
@@ -27,6 +45,13 @@ const logoFont = Space_Grotesk({
   weight: ["700"],
   display: "swap",
   variable: "--font-logo",
+});
+
+const cairo = Cairo({
+  subsets: ["arabic", "latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-arabic",
 });
 
 export const metadata: Metadata = {
@@ -104,31 +129,18 @@ export const viewport: Viewport = {
   themeColor: "#168f8c",
 };
 
-function getLocaleFromPathname(pathname: string) {
-  if (pathname === "/en" || pathname.startsWith("/en/")) {
-    return "en";
-  }
-
-  if (pathname === "/de" || pathname.startsWith("/de/")) {
-    return "de";
-  }
-
-  return "tr";
-}
-
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const headerStore = await headers();
-  const pathname = headerStore.get("x-pathname") ?? "/";
-  const locale = getLocaleFromPathname(pathname);
-  const isEmbed = pathname.startsWith("/embed/");
-
   return (
-    <html lang={locale}>
+    <html lang="tr" dir="ltr">
       <head>
+        <script
+          id="locale-correction"
+          dangerouslySetInnerHTML={{ __html: localeCorrectionScript }}
+        />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-9PGNSBT970"
           strategy="afterInteractive"
@@ -152,12 +164,12 @@ export default async function RootLayout({
         </Script>
       </head>
       <body
-        className={`${plusJakartaSans.variable} ${notoSansHeading.variable} ${logoFont.variable}`}
+        className={`${plusJakartaSans.variable} ${notoSansHeading.variable} ${logoFont.variable} ${cairo.variable}`}
       >
-        {!isEmbed && <SiteHeader />}
-        {!isEmbed && <RecentToolsTracker />}
+        <SiteHeader />
+        <RecentToolsTracker />
         {children}
-        {!isEmbed && <SiteFooter />}
+        <SiteFooter />
       </body>
     </html>
   );

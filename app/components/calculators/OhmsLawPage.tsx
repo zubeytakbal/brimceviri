@@ -34,10 +34,16 @@ const unitSectionHeadings = {
     current: "Stromeinheiten",
     resistance: "Widerstandseinheiten",
   },
+  ar: {
+    voltage: "وحدات الجهد",
+    current: "وحدات التيار",
+    resistance: "وحدات المقاومة",
+  },
 } as const;
 
 function getUnitSections(locale: CalculatorLocale): UnitTableSection[] {
-  const headings = unitSectionHeadings[locale];
+  const headings =
+    unitSectionHeadings[locale === "ar" ? "en" : locale];
 
   return [
     {
@@ -359,6 +365,91 @@ const copy: Record<CalculatorLocale, PageCopy> = {
     relatedConversions: [
       { label: "Kiloohm zu Ohm", href: "/de/kiloohm-ohm" },
       { label: "Ohm zu Kiloohm", href: "/de/ohm-kiloohm" },
+    ],
+  },
+  ar: {
+    breadcrumbs: [
+      { label: "الرئيسية", href: "/ar" },
+      { label: "الحاسبات الهندسية", href: "/ar/engineering-calculators" },
+      { label: "حاسبة قانون أوم" },
+    ],
+    breadcrumbLabel: "مسار التنقل",
+    title: "حاسبة قانون أوم",
+    description:
+      "احسب الجهد أو التيار أو المقاومة باستخدام V = I × R مع عرض النتيجة ومكافئ SI بشكل واضح.",
+    heroEyebrow: "حاسبة هندسية",
+    heroResultHeading: "نتيجة الحساب",
+    introHeading: "متى تستخدم هذه الحاسبة؟",
+    formulasHeading: "المعادلات المستخدمة",
+    variablesHeading: "المتغيرات ومعناها",
+    unitsHeading: "جداول الوحدات",
+    examplesHeading: "أمثلة سريعة",
+    applicationsHeading: "استخدامات شائعة",
+    limitationsHeading: "افتراضات وحدود",
+    sourcesHeading: "المراجع",
+    relatedHeading: "روابط مرتبطة",
+    relatedCalculatorsHeading: "حاسبات مرتبطة",
+    relatedConversionsHeading: "تحويلات مرتبطة",
+    tableColumns: {
+      unitName: "اسم الوحدة",
+      symbol: "الرمز",
+      siEquivalent: "مكافئ SI",
+      typicalUse: "الاستخدام الشائع",
+    },
+    intro: [
+      "تعتمد هذه الأداة على قانون أوم لحساب القيمة الثالثة انطلاقا من قيمتين معروفتين في الدائرة.",
+      "وهي مناسبة للمراجعات السريعة في الإلكترونيات الأساسية، وفحص العناصر، والتحقق الأولي في الأعمال الكهربائية.",
+    ],
+    formulas: ["V = I × R", "I = V / R", "R = V / I"],
+    variables: [
+      { term: "V", explanation: "فرق الجهد عبر العنصر أو الدائرة." },
+      { term: "I", explanation: "التيار المار في الدائرة." },
+      { term: "R", explanation: "المقاومة التي تحد من مرور التيار." },
+    ],
+    examples: [
+      {
+        title: "إذا كان التيار 2 A والمقاومة 10 Ω",
+        body: "فالجهد يساوي 20 V.",
+      },
+      {
+        title: "إذا كان الجهد 12 V والمقاومة 4 Ω",
+        body: "فالتيار يساوي 3 A.",
+      },
+    ],
+    applications: [
+      "فحص الدوائر الكهربائية الأساسية",
+      "اختيار المقاومات المناسبة",
+      "مراجعة أولية قبل اختيار الكابل أو الحماية",
+      "التعليم والتجارب البسيطة",
+    ],
+    limitations: [
+      "تنطبق الأداة على العناصر الأومية التقريبية.",
+      "لا تمثل السلوك غير الخطي لبعض العناصر الإلكترونية.",
+      "تغير المقاومة مع الحرارة غير داخل في هذا النموذج المبسط.",
+    ],
+    sources: [
+      {
+        label: "NIST Guide to the SI",
+        href: "https://www.nist.gov/pml/special-publication-811",
+      },
+      {
+        label: "BIPM SI Brochure",
+        href: "https://www.bipm.org/en/publications/si-brochure",
+      },
+    ],
+    relatedCalculators: [
+      {
+        label: "حاسبة الطاقة الحرارية",
+        href: "/ar/calculators/heat-energy",
+      },
+      {
+        label: "مركز الحاسبات الهندسية",
+        href: "/ar/engineering-calculators",
+      },
+    ],
+    relatedConversions: [
+      { label: "كيلو أوم إلى أوم", href: "/ar/kiloohms-to-ohms" },
+      { label: "أوم إلى كيلو أوم", href: "/ar/ohms-to-kiloohms" },
     ],
   },
 };

@@ -1,4 +1,5 @@
 import {
+  calculatorUnitSymbols,
   convertDiameterFromSI,
   convertDiameterToSI,
   convertReynoldsDensityToSI,
@@ -101,6 +102,22 @@ const messages = {
     laminar: "Laminare Strömung",
     transition: "Übergangsbereich",
     turbulent: "Turbulente Strömung",
+  },
+  ar: {
+    missing: "أدخل القيم الأربع المطلوبة للحساب.",
+    invalid: "أدخل قيما رقمية صحيحة.",
+    densityPositive: "يجب أن تكون الكثافة أكبر من الصفر.",
+    velocityPositive: "يجب أن تكون السرعة أكبر من الصفر.",
+    diameterPositive: "يجب أن يكون القطر المميز أكبر من الصفر.",
+    viscosityPositive:
+      "يجب أن تكون اللزوجة الديناميكية أكبر من الصفر.",
+    reynoldsPositive:
+      "يتطلب الحساب العكسي عدد رينولدز أكبر من الصفر.",
+    interpretationPrefix:
+      "هذا التصنيف دليل تقريبي للجريان داخل الأنابيب.",
+    laminar: "جريان صفحي",
+    transition: "منطقة انتقال",
+    turbulent: "جريان مضطرب",
   },
 } as const;
 
@@ -355,3 +372,60 @@ export function solveReynoldsNumber({
     interpretation: null,
   };
 }
+
+export type FluidPreset = {
+  id: string;
+  label: string;
+  densityValue: string;
+  densityUnit: ReynoldsDensityUnit;
+  viscosityValue: string;
+  viscosityUnit: ViscosityUnit;
+};
+
+// Yogunluk ve viskozite degerleri ~20 C oda kosulu icin yaklasik, yaygin
+// kabul goren muhendislik referans degerleridir (CRC Handbook tarzi
+// kaynaklara dayanir). Hem client hesaplayicida on ayar olarak, hem de
+// sayfada gorunur referans tablosu olarak kullanilir -- bu yuzden duz
+// (use client olmayan) bu modulde tutuluyor.
+export const fluidPresets: Record<CalculatorLocale, FluidPreset[]> = {
+  tr: [
+    { id: "water", label: "Su", densityValue: "1000", densityUnit: calculatorUnitSymbols.kilogramPerCubicMetre, viscosityValue: "1", viscosityUnit: calculatorUnitSymbols.millipascalSecond },
+    { id: "air", label: "Hava", densityValue: "1.2", densityUnit: calculatorUnitSymbols.kilogramPerCubicMetre, viscosityValue: "0.0181", viscosityUnit: calculatorUnitSymbols.millipascalSecond },
+    { id: "seawater", label: "Deniz Suyu", densityValue: "1025", densityUnit: calculatorUnitSymbols.kilogramPerCubicMetre, viscosityValue: "1.08", viscosityUnit: calculatorUnitSymbols.millipascalSecond },
+    { id: "ethanol", label: "Etil Alkol", densityValue: "789", densityUnit: calculatorUnitSymbols.kilogramPerCubicMetre, viscosityValue: "1.2", viscosityUnit: calculatorUnitSymbols.millipascalSecond },
+    { id: "olive-oil", label: "Zeytinyağı", densityValue: "910", densityUnit: calculatorUnitSymbols.kilogramPerCubicMetre, viscosityValue: "81", viscosityUnit: calculatorUnitSymbols.millipascalSecond },
+    { id: "glycerin", label: "Gliserin", densityValue: "1260", densityUnit: calculatorUnitSymbols.kilogramPerCubicMetre, viscosityValue: "1400", viscosityUnit: calculatorUnitSymbols.millipascalSecond },
+    { id: "mercury", label: "Cıva", densityValue: "13546", densityUnit: calculatorUnitSymbols.kilogramPerCubicMetre, viscosityValue: "1.53", viscosityUnit: calculatorUnitSymbols.millipascalSecond },
+    { id: "custom", label: "Özel değer", densityValue: "", densityUnit: calculatorUnitSymbols.kilogramPerCubicMetre, viscosityValue: "", viscosityUnit: calculatorUnitSymbols.millipascalSecond },
+  ],
+  en: [
+    { id: "water", label: "Water", densityValue: "1000", densityUnit: calculatorUnitSymbols.kilogramPerCubicMetre, viscosityValue: "1", viscosityUnit: calculatorUnitSymbols.millipascalSecond },
+    { id: "air", label: "Air", densityValue: "1.2", densityUnit: calculatorUnitSymbols.kilogramPerCubicMetre, viscosityValue: "0.0181", viscosityUnit: calculatorUnitSymbols.millipascalSecond },
+    { id: "seawater", label: "Seawater", densityValue: "1025", densityUnit: calculatorUnitSymbols.kilogramPerCubicMetre, viscosityValue: "1.08", viscosityUnit: calculatorUnitSymbols.millipascalSecond },
+    { id: "ethanol", label: "Ethanol", densityValue: "789", densityUnit: calculatorUnitSymbols.kilogramPerCubicMetre, viscosityValue: "1.2", viscosityUnit: calculatorUnitSymbols.millipascalSecond },
+    { id: "olive-oil", label: "Olive Oil", densityValue: "910", densityUnit: calculatorUnitSymbols.kilogramPerCubicMetre, viscosityValue: "81", viscosityUnit: calculatorUnitSymbols.millipascalSecond },
+    { id: "glycerin", label: "Glycerin", densityValue: "1260", densityUnit: calculatorUnitSymbols.kilogramPerCubicMetre, viscosityValue: "1400", viscosityUnit: calculatorUnitSymbols.millipascalSecond },
+    { id: "mercury", label: "Mercury", densityValue: "13546", densityUnit: calculatorUnitSymbols.kilogramPerCubicMetre, viscosityValue: "1.53", viscosityUnit: calculatorUnitSymbols.millipascalSecond },
+    { id: "custom", label: "Custom", densityValue: "", densityUnit: calculatorUnitSymbols.kilogramPerCubicMetre, viscosityValue: "", viscosityUnit: calculatorUnitSymbols.millipascalSecond },
+  ],
+  de: [
+    { id: "water", label: "Wasser", densityValue: "1000", densityUnit: calculatorUnitSymbols.kilogramPerCubicMetre, viscosityValue: "1", viscosityUnit: calculatorUnitSymbols.millipascalSecond },
+    { id: "air", label: "Luft", densityValue: "1.2", densityUnit: calculatorUnitSymbols.kilogramPerCubicMetre, viscosityValue: "0.0181", viscosityUnit: calculatorUnitSymbols.millipascalSecond },
+    { id: "seawater", label: "Meerwasser", densityValue: "1025", densityUnit: calculatorUnitSymbols.kilogramPerCubicMetre, viscosityValue: "1.08", viscosityUnit: calculatorUnitSymbols.millipascalSecond },
+    { id: "ethanol", label: "Ethanol", densityValue: "789", densityUnit: calculatorUnitSymbols.kilogramPerCubicMetre, viscosityValue: "1.2", viscosityUnit: calculatorUnitSymbols.millipascalSecond },
+    { id: "olive-oil", label: "Olivenöl", densityValue: "910", densityUnit: calculatorUnitSymbols.kilogramPerCubicMetre, viscosityValue: "81", viscosityUnit: calculatorUnitSymbols.millipascalSecond },
+    { id: "glycerin", label: "Glycerin", densityValue: "1260", densityUnit: calculatorUnitSymbols.kilogramPerCubicMetre, viscosityValue: "1400", viscosityUnit: calculatorUnitSymbols.millipascalSecond },
+    { id: "mercury", label: "Quecksilber", densityValue: "13546", densityUnit: calculatorUnitSymbols.kilogramPerCubicMetre, viscosityValue: "1.53", viscosityUnit: calculatorUnitSymbols.millipascalSecond },
+    { id: "custom", label: "Benutzerdefiniert", densityValue: "", densityUnit: calculatorUnitSymbols.kilogramPerCubicMetre, viscosityValue: "", viscosityUnit: calculatorUnitSymbols.millipascalSecond },
+  ],
+  ar: [
+    { id: "water", label: "ماء", densityValue: "1000", densityUnit: calculatorUnitSymbols.kilogramPerCubicMetre, viscosityValue: "1", viscosityUnit: calculatorUnitSymbols.millipascalSecond },
+    { id: "air", label: "هواء", densityValue: "1.2", densityUnit: calculatorUnitSymbols.kilogramPerCubicMetre, viscosityValue: "0.0181", viscosityUnit: calculatorUnitSymbols.millipascalSecond },
+    { id: "seawater", label: "مياه البحر", densityValue: "1025", densityUnit: calculatorUnitSymbols.kilogramPerCubicMetre, viscosityValue: "1.08", viscosityUnit: calculatorUnitSymbols.millipascalSecond },
+    { id: "ethanol", label: "إيثانول", densityValue: "789", densityUnit: calculatorUnitSymbols.kilogramPerCubicMetre, viscosityValue: "1.2", viscosityUnit: calculatorUnitSymbols.millipascalSecond },
+    { id: "olive-oil", label: "زيت الزيتون", densityValue: "910", densityUnit: calculatorUnitSymbols.kilogramPerCubicMetre, viscosityValue: "81", viscosityUnit: calculatorUnitSymbols.millipascalSecond },
+    { id: "glycerin", label: "الجلسرين", densityValue: "1260", densityUnit: calculatorUnitSymbols.kilogramPerCubicMetre, viscosityValue: "1400", viscosityUnit: calculatorUnitSymbols.millipascalSecond },
+    { id: "mercury", label: "الزئبق", densityValue: "13546", densityUnit: calculatorUnitSymbols.kilogramPerCubicMetre, viscosityValue: "1.53", viscosityUnit: calculatorUnitSymbols.millipascalSecond },
+    { id: "custom", label: "قيمة مخصصة", densityValue: "", densityUnit: calculatorUnitSymbols.kilogramPerCubicMetre, viscosityValue: "", viscosityUnit: calculatorUnitSymbols.millipascalSecond },
+  ],
+};

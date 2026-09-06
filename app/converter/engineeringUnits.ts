@@ -715,7 +715,7 @@ export type DepthUnit =
 export type GravityUnit =
   (typeof gravityUnitDefinitions)[number]["symbol"];
 
-export type EngineeringUnitLocale = "tr" | "en" | "de";
+export type EngineeringUnitLocale = "tr" | "en" | "de" | "ar";
 
 const engineeringGroupLabels: Record<
   EngineeringUnitLocale,
@@ -735,6 +735,11 @@ const engineeringGroupLabels: Record<
     si: "SI-Einheiten",
     metric: "Metrische und technische Einheiten",
     imperial: "Imperiale/US-Einheiten",
+  },
+  ar: {
+    si: "وحدات SI",
+    metric: "وحدات مترية وهندسية",
+    imperial: "وحدات إمبريالية/أمريكية",
   },
 };
 

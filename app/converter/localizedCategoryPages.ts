@@ -8,6 +8,14 @@ export type LocalizedCategorySection = {
   paragraphs: string[];
 };
 
+export type LocalizedCategoryUnitRow = {
+  name: string;
+  symbol: string;
+  referenceValue: string;
+  system: string;
+  commonUse: string;
+};
+
 export type LocalizedCategoryPage = {
   locale: "en";
   slug: string;
@@ -18,6 +26,7 @@ export type LocalizedCategoryPage = {
   introduction: string[];
   facts: LocalizedCategoryFact[];
   sections: LocalizedCategorySection[];
+  unitTable?: LocalizedCategoryUnitRow[];
 };
 
 export const englishCategoryPages: LocalizedCategoryPage[] = [
@@ -175,6 +184,13 @@ export const englishCategoryPages: LocalizedCategoryPage[] = [
         ],
       },
       {
+        title: "Nautical and aviation length units",
+        paragraphs: [
+          "Distances at sea and in the air are usually expressed in nautical miles rather than kilometers or statute miles. One nautical mile is defined as exactly 1,852 meters.",
+          "The nautical mile developed from a historical link between distance and the Earth's geographic coordinates: one minute of latitude corresponds to approximately one nautical mile. The unit of speed called the knot means one nautical mile per hour.",
+        ],
+      },
+      {
         title: "How are length units converted?",
         paragraphs: [
           "A length conversion changes the numerical value and unit while preserving the physical distance being represented. The original value is multiplied by the conversion factor between the two units.",
@@ -187,6 +203,93 @@ export const englishCategoryPages: LocalizedCategoryPage[] = [
           "Length may be measured using rulers, tape measures, calipers, micrometers, laser distance meters and optical instruments. The appropriate instrument depends on the size of the object and the required precision.",
           "Every physical measurement has uncertainty. Instrument resolution, calibration, temperature, measurement technique and environmental conditions can all affect the reported value.",
         ],
+      },
+    ],
+
+    unitTable: [
+      {
+        name: "Nanometer",
+        symbol: "nm",
+        referenceValue: "0.000000001 m",
+        system: "SI/metric",
+        commonUse: "Light wavelength and nanotechnology",
+      },
+      {
+        name: "Micrometer",
+        symbol: "µm",
+        referenceValue: "0.000001 m",
+        system: "SI/metric",
+        commonUse: "Cells, particles and precision manufacturing",
+      },
+      {
+        name: "Millimeter",
+        symbol: "mm",
+        referenceValue: "0.001 m",
+        system: "SI/metric",
+        commonUse: "Technical drawings and small measurements",
+      },
+      {
+        name: "Centimeter",
+        symbol: "cm",
+        referenceValue: "0.01 m",
+        system: "SI/metric",
+        commonUse: "Everyday object measurements",
+      },
+      {
+        name: "Decimeter",
+        symbol: "dm",
+        referenceValue: "0.1 m",
+        system: "SI/metric",
+        commonUse: "Education and some volume relationships",
+      },
+      {
+        name: "Meter",
+        symbol: "m",
+        referenceValue: "1 m",
+        system: "SI",
+        commonUse: "Base length measurements",
+      },
+      {
+        name: "Kilometer",
+        symbol: "km",
+        referenceValue: "1,000 m",
+        system: "SI/metric",
+        commonUse: "Road and geographic distances",
+      },
+      {
+        name: "Inch",
+        symbol: "in",
+        referenceValue: "0.0254 m",
+        system: "Imperial/US",
+        commonUse: "Screens, pipes and technical measurements",
+      },
+      {
+        name: "Foot",
+        symbol: "ft",
+        referenceValue: "0.3048 m",
+        system: "Imperial/US",
+        commonUse: "Height, construction and aviation",
+      },
+      {
+        name: "Yard",
+        symbol: "yd",
+        referenceValue: "0.9144 m",
+        system: "Imperial/US",
+        commonUse: "Sports fields and distance measurements",
+      },
+      {
+        name: "Mile",
+        symbol: "mi",
+        referenceValue: "1,609.344 m",
+        system: "Imperial/US",
+        commonUse: "Road distances",
+      },
+      {
+        name: "Nautical mile",
+        symbol: "nmi",
+        referenceValue: "1,852 m",
+        system: "Nautical",
+        commonUse: "Maritime and aviation navigation",
       },
     ],
   },
@@ -278,6 +381,79 @@ export const englishCategoryPages: LocalizedCategoryPage[] = [
           "Mass is measured with balances and scales designed for different capacities and precision levels. Laboratory balances may detect milligram or microgram differences, while industrial scales measure much larger loads.",
           "Reliable measurements require appropriate calibration, stable environmental conditions and correct handling of the measured material.",
         ],
+      },
+      {
+        title: "Density, volume and mass",
+        paragraphs: [
+          "Mass, density and volume are related through m = ρ·V, where m is mass, ρ (rho) is density and V is volume.",
+          "Two objects with the same volume can have very different masses depending on their density — equal volumes of steel and water do not weigh the same. In the SI system, density is typically expressed in kilograms per cubic meter.",
+        ],
+      },
+      {
+        title: "Choosing the right mass unit",
+        paragraphs: [
+          "Choosing a unit that matches the size of the object being measured keeps a result easy to read. A person's mass is naturally expressed in kilograms, an active drug ingredient in milligrams and a truckload in tonnes.",
+          "For extremely small masses, SI-prefixed units such as microgram, nanogram and picogram are used. When converting, it is also important to confirm whether a unit expresses mass or force — the pound (mass) and pound-force are not the same thing.",
+        ],
+      },
+    ],
+
+    unitTable: [
+      {
+        name: "Nanogram",
+        symbol: "ng",
+        referenceValue: "10⁻¹² kg",
+        system: "SI",
+        commonUse: "Extremely small quantities of matter",
+      },
+      {
+        name: "Microgram",
+        symbol: "µg",
+        referenceValue: "10⁻⁹ kg",
+        system: "SI",
+        commonUse: "Pharmaceutical and laboratory measurements",
+      },
+      {
+        name: "Milligram",
+        symbol: "mg",
+        referenceValue: "10⁻⁶ kg",
+        system: "SI",
+        commonUse: "Drug dosages and chemical substances",
+      },
+      {
+        name: "Gram",
+        symbol: "g",
+        referenceValue: "0.001 kg",
+        system: "SI",
+        commonUse: "Food and small objects",
+      },
+      {
+        name: "Kilogram",
+        symbol: "kg",
+        referenceValue: "1 kg",
+        system: "SI",
+        commonUse: "Base mass measurements",
+      },
+      {
+        name: "Tonne",
+        symbol: "t",
+        referenceValue: "1,000 kg",
+        system: "Metric",
+        commonUse: "Vehicles, freight and industry",
+      },
+      {
+        name: "Ounce",
+        symbol: "oz",
+        referenceValue: "0.028349523125 kg",
+        system: "Imperial/US",
+        commonUse: "Food and small masses",
+      },
+      {
+        name: "Pound",
+        symbol: "lb",
+        referenceValue: "0.45359237 kg",
+        system: "Imperial/US",
+        commonUse: "Body and product mass",
       },
     ],
   },
@@ -456,6 +632,13 @@ export const englishCategoryPages: LocalizedCategoryPage[] = [
         ],
       },
       {
+        title: "The pressure formula: P = F / A",
+        paragraphs: [
+          "The basic definition of pressure is given by P = F / A, where P is pressure, F is the force acting perpendicular to a surface and A is the area over which that force is distributed. Working through the units gives newtons per square meter, which is exactly the pascal.",
+          "This relationship gives the average pressure under a uniform force distribution. In real contact problems or complex flow fields, pressure can vary across the surface, so a single average value is not always enough — local pressure distribution and boundary conditions may need to be considered.",
+        ],
+      },
+      {
         title: "The pascal as the SI pressure unit",
         paragraphs: [
           "The pascal is the SI derived unit of pressure and is defined as one newton per square meter. This definition connects pressure directly to the SI units of force and area.",
@@ -498,6 +681,114 @@ export const englishCategoryPages: LocalizedCategoryPage[] = [
           "Pressure units are used in weather observations, gas cylinders, pumps, boilers, hydraulic circuits, pneumatic systems, process engineering and automotive maintenance. The preferred unit often depends on industry standards and local practice.",
           "Scientific and regulatory documents often prefer pascals or kilopascals, while equipment labels and gauges may use bar or PSI. This is why a clear reference table and reliable converter are useful.",
         ],
+      },
+      {
+        title: "Hydrostatic pressure and P = ρgh",
+        paragraphs: [
+          "Pressure increases with depth in a still fluid. Assuming constant density, hydrostatic gauge pressure is given approximately by P = ρgh, where ρ is density, g is gravitational acceleration and h is the height of the fluid column above the point being measured.",
+          "This relationship is used for water tanks, open basins, dams, level measurement and liquid-column manometers. At the same depth in the same fluid, pressure is considered equal regardless of the shape of the container — what matters is the fluid density and the vertical depth below the free surface.",
+        ],
+      },
+      {
+        title: "Atmospheric pressure",
+        paragraphs: [
+          "Atmospheric pressure is the pressure exerted on surfaces by the weight of the column of air in Earth's atmosphere. Under standard conditions near sea level it is taken as about 101,325 Pa, or 1 atm — but this value is not fixed, and varies with altitude, weather and temperature.",
+          "Barometers are used to measure atmospheric pressure. Mercury barometers were historically the reference instrument, while electronic pressure sensors are now widespread. Atmospheric pressure matters not only for meteorology, but also for vacuum technology, combustion systems and converting between gauge and absolute pressure.",
+        ],
+      },
+      {
+        title: "How is pressure measured?",
+        paragraphs: [
+          "Measuring pressure starts with identifying which type is needed — absolute, gauge or differential — followed by considering the measurement range, fluid type, temperature, chemical compatibility, vibration and required accuracy. A single sensor is not suitable for every application.",
+          "Diaphragm-based differential transmitters are common for low pressures and small differences, strain-gauge or piezoresistive elements for higher process pressures, and dedicated absolute sensors for vacuum work. Liquid-column manometers remain useful for teaching the basic principle, though electronic instruments dominate modern industry.",
+        ],
+      },
+      {
+        title: "Pressure sensors and gauges",
+        paragraphs: [
+          "Mechanical gauges, such as Bourdon-tube instruments, convert pressure into the deformation of an elastic element, which moves a needle on a dial. Their durability, simplicity and lack of power requirement have kept them in wide industrial use for a long time.",
+          "Electronic pressure sensors may be piezoresistive, capacitive, strain-gauge or resonance-based. They convert a pressure change into an electrical signal that can feed PLCs, SCADA systems or data loggers, enabling alarms, control loops and trend analysis rather than just an instantaneous reading.",
+        ],
+      },
+      {
+        title: "Common pressure calculation mistakes",
+        paragraphs: [
+          "The most frequent mistake is confusing gauge pressure with absolute pressure — gas-law calculations, density estimates and vacuum work require absolute pressure, but a gauge reading is often used directly by mistake, producing a systematic error.",
+          "Another common error is rounding conversion factors or using the wrong unit reference when converting between PSI, bar, atm, mmHg and kPa. Ignoring hydrostatic effects, sensor mounting height or temperature influence can also change a measurement result more than it might first appear.",
+        ],
+      },
+    ],
+
+    unitTable: [
+      {
+        name: "Pascal",
+        symbol: "Pa",
+        referenceValue: "1 Pa",
+        system: "SI",
+        commonUse: "Scientific and engineering calculations",
+      },
+      {
+        name: "Kilopascal",
+        symbol: "kPa",
+        referenceValue: "1,000 Pa",
+        system: "SI",
+        commonUse: "Building services, tires and process pressures",
+      },
+      {
+        name: "Bar",
+        symbol: "bar",
+        referenceValue: "100,000 Pa",
+        system: "Metric, non-SI",
+        commonUse: "Industry, compressors and process systems",
+      },
+      {
+        name: "Millibar",
+        symbol: "mbar",
+        referenceValue: "100 Pa",
+        system: "Metric, non-SI",
+        commonUse: "Meteorology and atmospheric measurements",
+      },
+      {
+        name: "Standard atmosphere",
+        symbol: "atm",
+        referenceValue: "101,325 Pa",
+        system: "Non-SI",
+        commonUse: "Atmospheric and reference conditions",
+      },
+      {
+        name: "PSI",
+        symbol: "psi",
+        referenceValue: "≈ 6,894.757293 Pa",
+        system: "Imperial/US",
+        commonUse: "Tires, hydraulic and pneumatic systems",
+      },
+      {
+        name: "Technical atmosphere",
+        symbol: "at",
+        referenceValue: "98,066.5 Pa",
+        system: "Non-SI",
+        commonUse: "Older technical and engineering usage",
+      },
+      {
+        name: "Millimeter of mercury",
+        symbol: "mmHg",
+        referenceValue: "≈ 133.322 Pa",
+        system: "Non-SI",
+        commonUse: "Medicine, vacuum and pressure measurement",
+      },
+      {
+        name: "Millimeter of water",
+        symbol: "mmH₂O",
+        referenceValue: "≈ 9.80665 Pa",
+        system: "Non-SI",
+        commonUse: "Low-pressure and ventilation measurements",
+      },
+      {
+        name: "Kilogram-force per square centimeter",
+        symbol: "kgf/cm²",
+        referenceValue: "98,066.5 Pa",
+        system: "Metric, non-SI",
+        commonUse: "Older pump and boiler gauges, service manuals",
       },
     ],
   },
@@ -1482,6 +1773,111 @@ export const englishCategoryPages: LocalizedCategoryPage[] = [
           "When a known mass is converted from one karat grade to another, the pure-gold portion stays conceptually central while the alloy proportion changes.",
           "These conversions are useful for pricing, comparing jewelry specifications and understanding what a labeled karat value means in physical gold content.",
         ],
+      },
+    ],
+
+    unitTable: [
+      {
+        name: "24K Gold",
+        symbol: "24K",
+        referenceValue: "100% pure gold",
+        system: "Jewelry standard",
+        commonUse: "Bullion, investment gold",
+      },
+      {
+        name: "22K Gold",
+        symbol: "22K",
+        referenceValue: "91.6% pure gold (22/24)",
+        system: "Jewelry standard",
+        commonUse: "Bangles, traditional jewelry",
+      },
+      {
+        name: "18K Gold",
+        symbol: "18K",
+        referenceValue: "75% pure gold (18/24)",
+        system: "Jewelry standard",
+        commonUse: "Rings, necklaces, everyday jewelry",
+      },
+      {
+        name: "14K Gold",
+        symbol: "14K",
+        referenceValue: "58.3% pure gold (14/24)",
+        system: "Jewelry standard",
+        commonUse: "Budget jewelry, US/European market",
+      },
+    ],
+  },
+  {
+    locale: "en",
+    slug: "silver-purity",
+    sourceSlug: "gumus-ayar",
+    category: "gumus_ayar",
+    title: "Silver Purity Conversions",
+    description:
+      "Convert between 999, 925 (sterling), 900 and 800 silver by pure-silver content, and review how millesimal fineness values are used in jewelry and silverware.",
+    introduction: [
+      "Silver purity is expressed as millesimal fineness: parts per thousand that are pure silver. A value of 925 means 925 out of 1000 parts are pure silver, with the remainder made up of other metals, usually copper.",
+      "Converting between fineness grades is useful when comparing jewelry, estimating pure-silver content and understanding how alloy composition affects durability and value.",
+    ],
+    facts: [
+      { label: "Physical quantity group", value: "Silver purity by millesimal fineness" },
+      { label: "Reference purity", value: "999 = fine (pure) silver basis" },
+      { label: "Purity expression", value: "Parts per thousand (‰)" },
+      { label: "Typical use", value: "Jewelry, silverware and alloy comparison" },
+      { label: "Common values", value: "999, 925, 900 and 800" },
+    ],
+    sections: [
+      {
+        title: "What does silver fineness mean?",
+        paragraphs: [
+          "Fineness expresses how many of 1000 parts are pure silver. For example, 925 means 925 parts pure silver and 75 parts alloying metal, almost always copper.",
+          "This ratio affects hardness, tarnish resistance and how the piece is priced relative to its pure-silver content.",
+        ],
+      },
+      {
+        title: "Comparing 999, 925, 900 and 800",
+        paragraphs: [
+          "999 (fine silver) is the pure-silver reference and is very soft, so it is mostly used for bullion and investment pieces rather than everyday jewelry.",
+          "925 (sterling silver) is the standard used worldwide for jewelry and silverware because the small copper addition makes it far more durable. 900 (coin silver) and 800 silver contain progressively less pure silver and were historically common in coinage and older European and Ottoman-era silverware.",
+        ],
+      },
+      {
+        title: "Why fineness conversions matter",
+        paragraphs: [
+          "When a known mass is converted from one fineness grade to another, the pure-silver portion stays conceptually central while the alloy proportion changes.",
+          "These conversions are useful for pricing, comparing jewelry specifications and understanding what a stamped fineness mark means in physical silver content.",
+        ],
+      },
+    ],
+
+    unitTable: [
+      {
+        name: "Fine Silver (999)",
+        symbol: "999",
+        referenceValue: "99.9% pure silver",
+        system: "Jewelry/bullion standard",
+        commonUse: "Bullion, investment silver",
+      },
+      {
+        name: "Sterling Silver (925)",
+        symbol: "925",
+        referenceValue: "92.5% pure silver",
+        system: "Jewelry standard",
+        commonUse: "Jewelry, rings, silverware",
+      },
+      {
+        name: "Coin Silver (900)",
+        symbol: "900",
+        referenceValue: "90% pure silver",
+        system: "Historical coinage standard",
+        commonUse: "Pre-1965 coins, some traditional silverware",
+      },
+      {
+        name: "800 Silver",
+        symbol: "800",
+        referenceValue: "80% pure silver",
+        system: "European jewelry standard",
+        commonUse: "Antique and traditional silver items",
       },
     ],
   },

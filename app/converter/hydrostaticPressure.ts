@@ -97,6 +97,16 @@ const hydrostaticMessages = {
       "Bei einer Druckdifferenz von null ist keine Rückwärtsberechnung möglich.",
     absolutePressure: "Absoluter Druck",
   },
+  ar: {
+    missing: "أدخل القيم الثلاث المطلوبة للحساب.",
+    invalid: "أدخل قيما رقمية صحيحة.",
+    densityPositive: "يجب أن تكون الكثافة أكبر من الصفر.",
+    gravityPositive: "يجب أن تكون عجلة الجاذبية أكبر من الصفر.",
+    depthPositive: "يجب أن يكون العمق أكبر من الصفر.",
+    pressureNonZero:
+      "يتطلب الحساب العكسي فرق ضغط غير صفري.",
+    absolutePressure: "الضغط المطلق",
+  },
 } as const;
 
 const densitySiUnit = KILOGRAM_PER_CUBIC_METRE_UNIT;

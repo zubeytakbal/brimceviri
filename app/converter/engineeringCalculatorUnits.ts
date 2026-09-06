@@ -6,7 +6,7 @@ import {
   type EngineeringUnitGroup,
 } from "./engineeringUnits";
 
-export type CalculatorLocale = "tr" | "en" | "de";
+export type CalculatorLocale = "tr" | "en" | "de" | "ar";
 
 export type CalculatorQuantity =
   | "energy"
@@ -875,6 +875,11 @@ const groupLabels: Record<
     si: "SI-Einheiten",
     metric: "Metrische und praktische Einheiten",
     imperial: "Imperiale/US-Einheiten",
+  },
+  ar: {
+    si: "وحدات SI",
+    metric: "وحدات مترية وعملية",
+    imperial: "وحدات إمبريالية/أمريكية",
   },
 };
 

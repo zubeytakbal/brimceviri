@@ -34,10 +34,16 @@ const unitSectionHeadings = {
     voltage: "Spannungseinheiten",
     power: "Leistungseinheiten",
   },
+  ar: {
+    current: "وحدات التيار",
+    voltage: "وحدات الجهد",
+    power: "وحدات القدرة",
+  },
 } as const;
 
 function getUnitSections(locale: CalculatorLocale): UnitTableSection[] {
-  const headings = unitSectionHeadings[locale];
+  const headings =
+    unitSectionHeadings[locale === "ar" ? "en" : locale];
 
   return [
     {
@@ -392,6 +398,105 @@ const copy: Record<CalculatorLocale, PageCopy> = {
       { label: "Ampere (A) Leitfaden", href: "/de/einheiten/ampere" },
       { label: "Volt (V) Leitfaden", href: "/de/einheiten/volt" },
       { label: "Kilowatt (kW) Leitfaden", href: "/de/einheiten/kilowatt" },
+    ],
+  },
+  ar: {
+    breadcrumbs: [
+      { label: "الرئيسية", href: "/ar" },
+      {
+        label: "الحاسبات الكهربائية",
+        href: "/ar/engineering-calculators/electrical-calculators",
+      },
+      { label: "تحويل أمبير إلى kW" },
+    ],
+    breadcrumbLabel: "مسار التنقل",
+    title: "تحويل أمبير إلى kW",
+    description:
+      "احسب القدرة التقريبية من تيار الخط والجهد ومعامل القدرة والكفاءة بواجهة عربية.",
+    heroEyebrow: "حاسبة كهربائية",
+    heroResultHeading: "نتيجة القدرة",
+    introHeading: "متى تستخدم هذه الأداة؟",
+    formulasHeading: "المعادلات المستخدمة",
+    variablesHeading: "المتغيرات ومعناها",
+    unitsHeading: "جداول الوحدات",
+    examplesHeading: "أمثلة سريعة",
+    applicationsHeading: "استخدامات شائعة",
+    limitationsHeading: "افتراضات وحدود",
+    sourcesHeading: "المراجع",
+    relatedHeading: "روابط مرتبطة",
+    relatedCalculatorsHeading: "حاسبات مرتبطة",
+    relatedGuidesHeading: "أدلة وحدات مرتبطة",
+    tableColumns: {
+      unitName: "اسم الوحدة",
+      symbol: "الرمز",
+      siEquivalent: "مكافئ SI",
+      typicalUse: "الاستخدام الشائع",
+    },
+    intro: [
+      "هذه الأداة مناسبة عندما تمتلك قراءة تيار فعلية وتحتاج تقديرا سريعا للقدرة الكهربائية.",
+      "وهي مفيدة في مراجعات الموقع وموازنة الأحمال والتحقق من الخطوط الموجودة.",
+    ],
+    formulas: [
+      "أحادي الطور: P = V x I x cos phi x eta",
+      "ثلاثي الطور: P = sqrt(3) x V x I x cos phi x eta",
+      "تيار مستمر: P = V x I x eta",
+    ],
+    variables: [
+      { term: "I", explanation: "تيار الخط المقاس أو المدخل." },
+      { term: "V", explanation: "جهد النظام." },
+      { term: "cos phi", explanation: "معامل القدرة لأنظمة AC." },
+      { term: "eta", explanation: "الكفاءة إذا كانت مطلوبة في التقدير." },
+      { term: "P", explanation: "القدرة الناتجة من الحساب." },
+    ],
+    examples: [
+      {
+        title: "9.59 A عند 400 V ثلاثي الطور",
+        body: "مع معامل قدرة 0.9 وكفاءة 92% تكون القدرة حوالي 5.5 kW.",
+      },
+      {
+        title: "9.15 A عند 230 V أحادي الطور",
+        body: "مع معامل قدرة 0.95 تكون القدرة حوالي 2 kW.",
+      },
+    ],
+    applications: [
+      "تقدير القدرة من قراءة تيار موجودة",
+      "فحص توزيع الأحمال",
+      "مراجعة لوحات التغذية",
+      "التخطيط للمولد أو UPS",
+    ],
+    limitations: [
+      "النتيجة تقريبية ولا تشمل ظروف البدء أو التوافقيات أو فروق التشغيل الواقعية.",
+      "في النمط الثلاثي الطور يفسر الجهد كجهد خط إلى خط.",
+      "إذا كان التيار يمثل دخلًا كهربائيًا مباشرًا فقد تحتاج إلى ضبط الكفاءة وفق الحالة.",
+    ],
+    sources: [
+      {
+        label: "IEC electrotechnical concepts and symbols",
+        href: "https://www.iec.ch",
+      },
+      {
+        label: "NIST Guide to the SI",
+        href: "https://www.nist.gov/pml/special-publication-811",
+      },
+    ],
+    relatedCalculators: [
+      {
+        label: "تحويل kW إلى أمبير",
+        href: "/ar/engineering-calculators/electrical-calculators/kw-to-ampere-calculator",
+      },
+      {
+        label: "حاسبة قانون أوم",
+        href: "/ar/calculators/ohms-law",
+      },
+      {
+        label: "مركز الحاسبات الكهربائية",
+        href: "/ar/engineering-calculators/electrical-calculators",
+      },
+    ],
+    relatedGuides: [
+      { label: "دليل الأمبير", href: "/ar/unit-guides/ampere" },
+      { label: "دليل الفولت", href: "/ar/unit-guides/volt" },
+      { label: "دليل الكيلوواط", href: "/ar/unit-guides/kilowatt" },
     ],
   },
 };

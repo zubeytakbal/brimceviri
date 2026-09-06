@@ -2,53 +2,89 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
+  kitchenIngredientLabels,
+  type KitchenLocale,
+} from "../converter/kitchenIngredientLabels";
+import {
   type KitchenIngredientKey,
   convertKitchenValue,
   kitchenIngredientRows,
 } from "../converter/kitchenMeasures";
-import { englishIngredientLabels, scaleRecipeText } from "../converter/recipeScaler";
-
-type Locale = "tr" | "en";
+import { scaleRecipeText } from "../converter/recipeScaler";
 
 const copy = {
   tr: {
     recipeLabel: "Tarifin",
     placeholder:
-      "2 su bardağı un\n1 çay kaşığı tuz\n3 yemek kaşığı zeytinyağı\n2 adet yumurta\n180 derece fırında pişirin",
-    factorLabel: "Çarpan",
-    originalServingsLabel: "Kaç kişilikti",
-    targetServingsLabel: "Kaç kişilik yapacaksın",
-    resultHeading: "Ölçeklenmiş Tarif",
-    emptyState: "Tarifini yukarıya yaz, sonuçları burada gör.",
-    gramPrefix: "≈",
+      "2 su bardagi un\n1 cay kasigi tuz\n3 yemek kasigi zeytinyagi\n2 adet yumurta\n180 derece firinda pisirin",
+    factorLabel: "Carpan",
+    originalServingsLabel: "Kac kisilikti",
+    targetServingsLabel: "Kac kisilik yapacaksin",
+    resultHeading: "Olceklenmis Tarif",
+    emptyState: "Tarifini yukariya yaz, sonuclari burada gor.",
+    gramPrefix: "~",
     gramSuffix: "g",
     ingredientLabel: "Malzeme",
-    noMatchOption: "Eşleştirme yok",
+    noMatchOption: "Eslestirme yok",
     copyButton: "Kopyala",
-    copiedButton: "Kopyalandı ✓",
-    printButton: "Yazdır",
+    copiedButton: "Kopyalandi",
+    printButton: "Yazdir",
   },
   en: {
     recipeLabel: "Your Recipe",
     placeholder:
-      "2 cups flour\n1 teaspoon salt\n3 tablespoons olive oil\n2 eggs\n350°F oven",
+      "2 cups flour\n1 teaspoon salt\n3 tablespoons olive oil\n2 eggs\n350 F oven",
     factorLabel: "Multiplier",
     originalServingsLabel: "Original servings",
     targetServingsLabel: "Target servings",
     resultHeading: "Scaled Recipe",
     emptyState: "Type your recipe above to see the scaled result here.",
-    gramPrefix: "≈",
+    gramPrefix: "~",
     gramSuffix: "g",
     ingredientLabel: "Ingredient",
     noMatchOption: "No match",
     copyButton: "Copy",
-    copiedButton: "Copied ✓",
+    copiedButton: "Copied",
     printButton: "Print",
+  },
+  de: {
+    recipeLabel: "Dein Rezept",
+    placeholder:
+      "2 Tassen Mehl\n1 Teeloeffel Salz\n3 Essloeffel Olivenoel\n2 Eier\n180 Grad Ofen",
+    factorLabel: "Faktor",
+    originalServingsLabel: "Urspruengliche Portionen",
+    targetServingsLabel: "Zielportionen",
+    resultHeading: "Skaliertes Rezept",
+    emptyState: "Gib oben dein Rezept ein, dann erscheint hier das Ergebnis.",
+    gramPrefix: "~",
+    gramSuffix: "g",
+    ingredientLabel: "Zutat",
+    noMatchOption: "Kein Treffer",
+    copyButton: "Kopieren",
+    copiedButton: "Kopiert",
+    printButton: "Drucken",
+  },
+  ar: {
+    recipeLabel: "وصفتك",
+    placeholder:
+      "2 كوب دقيق\n1 ملعقة صغيرة ملح\n3 ملاعق كبيرة زيت زيتون\n2 بيض\n180 درجة في الفرن",
+    factorLabel: "المعامل",
+    originalServingsLabel: "عدد الحصص الأصلي",
+    targetServingsLabel: "عدد الحصص المطلوب",
+    resultHeading: "الوصفة بعد التعديل",
+    emptyState: "اكتب وصفتك في الأعلى لتظهر النتيجة هنا.",
+    gramPrefix: "~",
+    gramSuffix: "غ",
+    ingredientLabel: "المكون",
+    noMatchOption: "بدون مطابقة",
+    copyButton: "نسخ",
+    copiedButton: "تم النسخ",
+    printButton: "طباعة",
   },
 } as const;
 
 const chipOptions = [
-  { label: "½x", value: 0.5 },
+  { label: "0.5x", value: 0.5 },
   { label: "1.5x", value: 1.5 },
   { label: "2x", value: 2 },
   { label: "3x", value: 3 },
@@ -63,27 +99,37 @@ function parseFactor(rawValue: string): number | null {
 
   const numericValue = Number(normalizedValue);
 
-  return Number.isFinite(numericValue) && numericValue > 0 ? numericValue : null;
+  return Number.isFinite(numericValue) && numericValue > 0
+    ? numericValue
+    : null;
 }
 
-function formatGram(value: number, locale: Locale) {
-  return value.toLocaleString(locale === "en" ? "en-US" : "tr-TR", {
+function formatGram(value: number, locale: KitchenLocale) {
+  const localeName =
+    locale === "tr"
+      ? "tr-TR"
+      : locale === "de"
+        ? "de-DE"
+        : locale === "ar"
+          ? "ar"
+        : "en-US";
+
+  return value.toLocaleString(localeName, {
     maximumFractionDigits: value < 10 ? 1 : 0,
   });
 }
 
-function ingredientOptionLabel(key: KitchenIngredientKey, locale: Locale) {
-  if (locale === "en") {
-    return englishIngredientLabels[key];
-  }
-
-  return kitchenIngredientRows.find((row) => row.key === key)?.label ?? key;
+function ingredientOptionLabel(
+  key: KitchenIngredientKey,
+  locale: KitchenLocale
+) {
+  return kitchenIngredientLabels[locale][key];
 }
 
 export default function RecipeScalerConverter({
   locale = "tr",
 }: {
-  locale?: Locale;
+  locale?: KitchenLocale;
 }) {
   const localizedCopy = copy[locale];
   const [text, setText] = useState("");
@@ -94,7 +140,9 @@ export default function RecipeScalerConverter({
     Record<number, KitchenIngredientKey | "none">
   >({});
   const [copyState, setCopyState] = useState<"idle" | "copied">("idle");
-  const copyTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const copyTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(
+    null
+  );
 
   useEffect(() => {
     return () => {
@@ -137,7 +185,7 @@ export default function RecipeScalerConverter({
         setCopyState("idle");
       }, 1500);
     } catch {
-      // Pano erişimi engellenmiş olabilir; sessizce yoksay.
+      // Clipboard access may be blocked; ignore quietly.
     }
   }
 

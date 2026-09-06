@@ -1539,6 +1539,277 @@ const curatedEnglishUnitPages: LocalizedUnitPage[] = [
     siEquivalent: "1 cP = 0.001 Pa·s",
     commonUses: "Motor and lubricant viscosity grades, paint and coatings, food science",
   },
+  {
+    locale: "en",
+    sourceSlug: "kilojoule",
+    slug: "kilojoule",
+    category: "enerji",
+    categoryName: "Energy",
+    unit: "kJ",
+    name: "Kilojoule",
+    symbol: "kJ",
+    shortDescription:
+      "The kilojoule is equal to 1,000 joules, used to express larger energy values practically.",
+    historySummary:
+      "Common in nutrition labeling as an alternative to calories for expressing food energy.",
+    measurementSystem: "International System of Units (SI, multiple unit)",
+    siEquivalent: "1 kJ = 1000 J",
+    commonUses: "Nutrition labels, engineering and physics",
+  },
+  {
+    locale: "en",
+    sourceSlug: "kalori",
+    slug: "calorie",
+    category: "enerji",
+    categoryName: "Energy",
+    unit: "cal",
+    name: "Calorie",
+    symbol: "cal",
+    shortDescription:
+      "The calorie is a traditional energy unit originally defined based on heating water.",
+    historySummary: "Historically common in chemistry and nutrition science.",
+    measurementSystem: "Non-SI, traditional unit",
+    siEquivalent: "1 cal = 4.184 J",
+    commonUses: "Nutrition science and chemistry",
+  },
+  {
+    locale: "en",
+    sourceSlug: "kilokalori",
+    slug: "kilocalorie",
+    category: "enerji",
+    categoryName: "Energy",
+    unit: "kcal",
+    name: "Kilocalorie",
+    symbol: "kcal",
+    shortDescription:
+      "The kilocalorie (food Calorie) is the unit actually used on food nutrition labels.",
+    historySummary:
+      "What is labeled \"Calorie\" on food packaging is actually a kilocalorie.",
+    measurementSystem: "Non-SI, common commercial unit",
+    siEquivalent: "1 kcal = 1000 cal = 4184 J",
+    commonUses: "Nutrition labels and daily energy intake calculations",
+  },
+  {
+    locale: "en",
+    sourceSlug: "btu",
+    slug: "btu",
+    category: "enerji",
+    categoryName: "Energy",
+    unit: "Btu",
+    name: "British Thermal Unit",
+    symbol: "Btu",
+    shortDescription:
+      "The British Thermal Unit is a traditional energy unit used in US heating and cooling systems.",
+    historySummary: "A US industry standard still used to rate air conditioning equipment.",
+    measurementSystem: "Imperial/US customary system (non-SI)",
+    siEquivalent: "1 Btu ≈ 1055.06 J",
+    commonUses: "Rating US air conditioning and heating equipment",
+  },
+  {
+    locale: "en",
+    sourceSlug: "gun",
+    slug: "day",
+    category: "zaman",
+    categoryName: "Time",
+    unit: "day",
+    name: "Day",
+    symbol: "day",
+    shortDescription:
+      "The day equals 24 hours and is based on Earth's rotation cycle.",
+    historySummary:
+      "One of the oldest time units in human history, directly tied to the day-night cycle.",
+    measurementSystem: "SI-compatible, natural unit",
+    siEquivalent: "1 day = 86,400 s = 24 hours",
+    commonUses: "Calendars, age calculations and planning",
+  },
+  {
+    locale: "en",
+    sourceSlug: "kilogram-kuvvet-metre",
+    slug: "kilogram-force-meter",
+    category: "tork",
+    categoryName: "Torque",
+    unit: "kgf·m",
+    name: "Kilogram-Force Meter",
+    symbol: "kgf·m",
+    shortDescription:
+      "Kilogram-force meter is a traditional torque unit found in older engine documentation.",
+    historySummary:
+      "Used before full SI standardization; still appears on some older torque wrench gauges.",
+    measurementSystem: "Non-SI, traditional unit",
+    siEquivalent: "1 kgf·m ≈ 9.80665 N·m",
+    commonUses: "Older vehicle engine documentation and torque wrenches",
+  },
+  {
+    locale: "en",
+    sourceSlug: "isik-hizi",
+    slug: "speed-of-light",
+    category: "hiz",
+    categoryName: "Speed",
+    unit: "c",
+    name: "Speed of Light",
+    symbol: "c",
+    shortDescription:
+      "The speed of light is a fundamental physical constant representing how fast light and electromagnetic waves propagate in a vacuum.",
+    historySummary:
+      "Since 1983, the meter itself has been defined based on the speed of light, making its value exact by definition rather than measured.",
+    measurementSystem: "Fundamental SI physical constant",
+    siEquivalent: "c = 299,792,458 m/s (exact, by definition)",
+    commonUses: "Physics, astronomy, relativity theory and GPS systems",
+  },
+  {
+    locale: "en",
+    sourceSlug: "okka",
+    slug: "okka",
+    category: "kutle",
+    categoryName: "Mass",
+    unit: "okka",
+    name: "Okka",
+    symbol: "okka",
+    shortDescription:
+      "The okka is a traditional mass unit used in the Ottoman Empire, still known in Turkey and the region today.",
+    historySummary:
+      "It was the official mass unit of the Ottoman state for centuries and is still occasionally referenced in traditional markets.",
+    measurementSystem: "Non-SI, Ottoman historical unit",
+    siEquivalent: "1 okka ≈ 1.283 kg",
+    commonUses: "Traditional markets and Ottoman-era historical documents",
+  },
+  {
+    locale: "en",
+    sourceSlug: "dirhem",
+    slug: "dirham",
+    category: "kutle",
+    categoryName: "Mass",
+    unit: "dirhem",
+    name: "Dirham",
+    symbol: "dirhem",
+    shortDescription:
+      "The dirham is a small traditional Ottoman mass unit, equal to one four-hundredth of an okka.",
+    historySummary:
+      "Traditionally used to weigh spices, precious metals and gold in Ottoman markets.",
+    measurementSystem: "Non-SI, Ottoman historical unit",
+    siEquivalent: "1 dirhem ≈ 3.207 g",
+    commonUses: "Weighing gold and spices in traditional markets",
+  },
+  {
+    locale: "en",
+    sourceSlug: "bizans-litrasi",
+    slug: "byzantine-litra",
+    category: "kutle",
+    categoryName: "Mass",
+    unit: "litra",
+    name: "Byzantine Litra",
+    symbol: "litra",
+    shortDescription: "The litra is a traditional mass unit used in the Byzantine Empire.",
+    historySummary: "Used in Byzantine-era trade and goldsmithing before the Ottoman conquest.",
+    measurementSystem: "Non-SI, Byzantine historical unit",
+    siEquivalent: "1 litra ≈ 0.324 kg",
+    commonUses: "Byzantine historical documents and research",
+  },
+  {
+    locale: "en",
+    sourceSlug: "bizans-onsu",
+    slug: "byzantine-ounce",
+    category: "kutle",
+    categoryName: "Mass",
+    unit: "ounkia",
+    name: "Byzantine Ounce",
+    symbol: "ounkia",
+    shortDescription: "The ounkia is a small Byzantine mass unit, one twelfth of a Byzantine litra.",
+    historySummary: "Used in everyday Byzantine trade for weighing small quantities.",
+    measurementSystem: "Non-SI, Byzantine historical unit",
+    siEquivalent: "1 ounkia ≈ 27 g",
+    commonUses: "Byzantine historical research and documents",
+  },
+  {
+    locale: "en",
+    sourceSlug: "tam-tur",
+    slug: "full-turn",
+    category: "aci",
+    categoryName: "Angle",
+    unit: "tur",
+    name: "Full Turn",
+    symbol: "turn",
+    shortDescription: "A full turn represents one complete rotation around a point, i.e. a full 360 degrees.",
+    historySummary: "An intuitive angle unit used to describe one or more complete rotations around an axis.",
+    measurementSystem: "Non-SI, practical unit",
+    siEquivalent: "1 turn = 360° = 2π radians",
+    commonUses: "Describing complete mechanical rotations and rotational motion",
+  },
+  {
+    locale: "en",
+    sourceSlug: "knot",
+    slug: "knot",
+    category: "hiz",
+    categoryName: "Speed",
+    unit: "knot",
+    name: "Knot",
+    symbol: "kn",
+    shortDescription: "The knot is a unit of speed used in marine and air navigation, equal to one nautical mile per hour.",
+    historySummary: "The name comes from a historical method of measuring a ship's speed using a knotted rope reeled out behind the vessel.",
+    measurementSystem: "Non-SI, international navigational unit",
+    siEquivalent: "1 knot ≈ 0.5144 m/s",
+    commonUses: "Marine and air navigation, and wind speed forecasts",
+  },
+  {
+    locale: "en",
+    sourceSlug: "santistok",
+    slug: "centistoke",
+    category: "viskozite_kinematik",
+    categoryName: "Kinematic Viscosity",
+    unit: "cSt",
+    name: "Centistoke",
+    symbol: "cSt",
+    shortDescription: "The centistoke is the most common practical unit for kinematic viscosity in industry.",
+    historySummary: "Equal to 1 mm²/s, it became the standard unit for classifying engine and industrial oils.",
+    measurementSystem: "CGS system (non-SI, sub-unit)",
+    siEquivalent: "1 cSt = 1 mm²/s = 0.000001 m²/s",
+    commonUses: "Classifying engine oils, fuel properties and industrial fluids",
+  },
+  {
+    locale: "en",
+    sourceSlug: "watt-saat",
+    slug: "watt-hour",
+    category: "enerji",
+    categoryName: "Energy",
+    unit: "Wh",
+    name: "Watt-hour",
+    symbol: "Wh",
+    shortDescription: "The watt-hour is a practical energy unit representing the energy consumed at a rate of one watt for one hour.",
+    historySummary: "It is the basis of the larger kilowatt-hour unit used on electricity bills.",
+    measurementSystem: "Non-SI, common commercial unit",
+    siEquivalent: "1 Wh = 3600 J",
+    commonUses: "Small battery capacities and portable electronic devices",
+  },
+  {
+    locale: "en",
+    sourceSlug: "beygirgucu-mekanik",
+    slug: "horsepower-mechanical",
+    category: "guc",
+    categoryName: "Power",
+    unit: "HP",
+    name: "Mechanical Horsepower",
+    symbol: "HP",
+    shortDescription: "Mechanical horsepower is a traditional British/American power unit, slightly different from the metric horsepower (PS/CV).",
+    historySummary: "The imperial horsepower originally defined by James Watt; still used in American and British automotive specs instead of the metric PS/CV.",
+    measurementSystem: "Imperial/US customary (non-SI)",
+    siEquivalent: "1 HP (mechanical) = 745.7 W",
+    commonUses: "American and British vehicle and engine specifications",
+  },
+  {
+    locale: "en",
+    sourceSlug: "kiloamper",
+    slug: "kiloampere",
+    category: "elektrik",
+    categoryName: "Electricity",
+    unit: "kA",
+    name: "Kiloampere",
+    symbol: "kA",
+    shortDescription: "The kiloampere equals 1000 amperes and is used to measure very large electric currents such as short-circuit and lightning currents.",
+    historySummary: "It became the practical standard in power distribution systems and large industrial electrical installations.",
+    measurementSystem: "International System of Units (multiple unit)",
+    siEquivalent: "1 kA = 1000 A",
+    commonUses: "Short-circuit current calculations, power distribution equipment and lightning current analysis",
+  },
 ];
 
 type GeneratedCategoryMeta = {
@@ -1627,6 +1898,13 @@ const generatedCategoryMeta: Record<string, GeneratedCategoryMeta> = {
     commonUses:
       "Jewelry, valuation, alloy comparison and gold-purity checks",
   },
+  gumus_ayar: {
+    categoryName: "Silver Purity",
+    measurementSystem:
+      "Jewelry purity grading based on millesimal (per-1000) fineness",
+    commonUses:
+      "Jewelry, silverware, valuation and silver-purity checks",
+  },
 };
 
 function formatGeneratedFactor(value: number) {
@@ -1655,6 +1933,10 @@ function buildGeneratedShortDescription(
 
   if (entry.category === "altin_ayar") {
     return `${name} is a gold-purity grade used to compare karat-based gold content in jewelry and alloyed materials.`;
+  }
+
+  if (entry.category === "gumus_ayar") {
+    return `${name} is a silver-purity grade used to compare millesimal-fineness silver content in jewelry and silverware.`;
   }
 
   if (entry.category === "elektrik_direnc") {
@@ -1706,6 +1988,10 @@ function buildGeneratedHistorySummary(
     return `${name} belongs to the traditional karat system, which became established in jewelry trade as a practical way to describe relative gold purity.`;
   }
 
+  if (entry.category === "gumus_ayar") {
+    return `${name} belongs to the millesimal fineness system, which became established in the silver trade as a practical way to stamp and compare relative silver purity.`;
+  }
+
   if (entry.category === "elektrik_direnc") {
     return `${name} became standard as electrical theory and component manufacturing matured into practical circuit engineering.`;
   }
@@ -1727,7 +2013,10 @@ function buildGeneratedSiEquivalent(
 ) {
   const symbol = entry.displaySymbol ?? entry.symbol;
 
-  if (entry.category === "altin_ayar" && entry.siFactor !== undefined) {
+  if (
+    (entry.category === "altin_ayar" || entry.category === "gumus_ayar") &&
+    entry.siFactor !== undefined
+  ) {
     return `Reference purity factor used in the converter: ${formatGeneratedFactor(
       entry.siFactor
     )}`;

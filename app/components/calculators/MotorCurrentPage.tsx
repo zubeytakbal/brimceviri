@@ -34,10 +34,16 @@ const unitSectionHeadings = {
     voltage: "Spannungseinheiten",
     current: "Stromeinheiten",
   },
+  ar: {
+    power: "وحدات القدرة",
+    voltage: "وحدات الجهد",
+    current: "وحدات التيار",
+  },
 } as const;
 
 function getUnitSections(locale: CalculatorLocale): UnitTableSection[] {
-  const headings = unitSectionHeadings[locale];
+  const headings =
+    unitSectionHeadings[locale === "ar" ? "en" : locale];
 
   return [
     {
@@ -395,6 +401,105 @@ const copy: Record<CalculatorLocale, PageCopy> = {
       { label: "Ampere (A) Leitfaden", href: "/de/einheiten/ampere" },
       { label: "Volt (V) Leitfaden", href: "/de/einheiten/volt" },
       { label: "Kilowatt (kW) Leitfaden", href: "/de/einheiten/kilowatt" },
+    ],
+  },
+  ar: {
+    breadcrumbs: [
+      { label: "الرئيسية", href: "/ar" },
+      {
+        label: "الحاسبات الكهربائية",
+        href: "/ar/engineering-calculators/electrical-calculators",
+      },
+      { label: "حاسبة تيار المحرك" },
+    ],
+    breadcrumbLabel: "مسار التنقل",
+    title: "حاسبة تيار المحرك",
+    description:
+      "احسب تيار الحمل الكامل للمحرك وتيار التصميم بعد إضافة هامش الأمان المطلوب.",
+    heroEyebrow: "حاسبة كهربائية",
+    heroResultHeading: "نتيجة تيار الحمل الكامل",
+    introHeading: "متى تستخدم هذه الأداة؟",
+    formulasHeading: "المعادلات المستخدمة",
+    variablesHeading: "المتغيرات ومعناها",
+    unitsHeading: "جداول الوحدات",
+    examplesHeading: "أمثلة سريعة",
+    applicationsHeading: "استخدامات شائعة",
+    limitationsHeading: "افتراضات وحدود",
+    sourcesHeading: "المراجع",
+    relatedHeading: "روابط مرتبطة",
+    relatedCalculatorsHeading: "حاسبات مرتبطة",
+    relatedGuidesHeading: "أدلة وحدات مرتبطة",
+    tableColumns: {
+      unitName: "اسم الوحدة",
+      symbol: "الرمز",
+      siEquivalent: "مكافئ SI",
+      typicalUse: "الاستخدام الشائع",
+    },
+    intro: [
+      "تعطيك هذه الأداة تقديرا أوليا لتيار الحمل الكامل للمحرك انطلاقا من القدرة والجهد ومعامل القدرة والكفاءة.",
+      "كما تضيف هامش أمان لتكوين تيار تصميم مفيد عند اختيار الحماية والكابل والعناصر المرافقة.",
+    ],
+    formulas: [
+      "أحادي الطور: I = P / (V x cos phi x eta)",
+      "ثلاثي الطور: I = P / (sqrt(3) x V x cos phi x eta)",
+      "تيار التصميم = FLA x (1 + هامش الأمان)",
+    ],
+    variables: [
+      { term: "P", explanation: "قدرة المحرك." },
+      { term: "V", explanation: "جهد التغذية." },
+      { term: "cos phi", explanation: "معامل قدرة المحرك." },
+      { term: "eta", explanation: "كفاءة المحرك." },
+      { term: "FLA", explanation: "تيار الحمل الكامل الناتج من الحساب." },
+    ],
+    examples: [
+      {
+        title: "محرك 5.5 kW عند 400 V ثلاثي الطور",
+        body: "مع معامل قدرة 0.85 وكفاءة 90% تكون قيمة FLA التقريبية مفيدة كبداية للاختيار.",
+      },
+      {
+        title: "إضافة هامش أمان 15%",
+        body: "يُستخدم التيار الناتج بعد إضافة الهامش كمؤشر أولي لتيار التصميم.",
+      },
+    ],
+    applications: [
+      "اختيار أولي للحماية",
+      "تقدير مقطع كابل المحرك",
+      "مراجعات التصميم المبكرة",
+      "التحقق السريع أثناء العروض والقياسات",
+    ],
+    limitations: [
+      "النتيجة تقريبية ولا تغني عن لوحة بيانات المحرك ومتطلبات الشركة المصنعة.",
+      "لا تشمل الأداة تيارات الإقلاع أو ظروف التشغيل الخاصة.",
+      "يجب مراجعة اختيار الحماية والكابل وفق الكود والظروف الفعلية.",
+    ],
+    sources: [
+      {
+        label: "IEC electrotechnical concepts and symbols",
+        href: "https://www.iec.ch",
+      },
+      {
+        label: "NIST Guide to the SI",
+        href: "https://www.nist.gov/pml/special-publication-811",
+      },
+    ],
+    relatedCalculators: [
+      {
+        label: "تحويل kW إلى أمبير",
+        href: "/ar/engineering-calculators/electrical-calculators/kw-to-ampere-calculator",
+      },
+      {
+        label: "حاسبة مقطع الكابل",
+        href: "/ar/engineering-calculators/electrical-calculators/cable-size-calculator",
+      },
+      {
+        label: "مركز الحاسبات الكهربائية",
+        href: "/ar/engineering-calculators/electrical-calculators",
+      },
+    ],
+    relatedGuides: [
+      { label: "دليل الأمبير", href: "/ar/unit-guides/ampere" },
+      { label: "دليل الفولت", href: "/ar/unit-guides/volt" },
+      { label: "دليل الكيلوواط", href: "/ar/unit-guides/kilowatt" },
     ],
   },
 };

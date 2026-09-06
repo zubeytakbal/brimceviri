@@ -67,6 +67,14 @@ export default function RingSizePage() {
             ölçüp &quot;TR (İç Çap mm)&quot; alanından seçim yapman
             önerilir.
           </p>
+
+          <h2>İlgili araçlar</h2>
+          <p>
+            Beden ve ayakkabı ölçüsü gibi diğer ölçü çevirme araçları
+            için{" "}
+            <Link href="/terzi-araclari">Terzi Araçları</Link> sayfasına
+            bakabilirsin.
+          </p>
         </section>
       </div>
     </main>

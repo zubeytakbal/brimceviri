@@ -1,6 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import type { Locale } from "../i18n/config";
+import { formatLocalizedNumber } from "../i18n/toolLocales";
 import {
   activityMultipliers,
   calculateBmi,
@@ -9,6 +11,227 @@ import {
   type BmiCategory,
   type Gender,
 } from "../converter/bmiCalculator";
+
+type BmiCopy = {
+  labels: {
+    height: string;
+    weight: string;
+    age: string;
+    gender: string;
+    activity: string;
+  };
+  genders: Record<Gender, string>;
+  categories: Record<BmiCategory, string>;
+  activities: Record<ActivityLevel, string>;
+  emptyState: string;
+  resultLabels: {
+    bmi: string;
+    bmr: string;
+    calories: string;
+    multiplier: string;
+  };
+};
+
+const copyByLocale: Record<Locale, BmiCopy> = {
+  tr: {
+    labels: {
+      height: "Boy (cm)",
+      weight: "Kilo (kg)",
+      age: "Yas",
+      gender: "Cinsiyet",
+      activity: "Aktivite Seviyesi",
+    },
+    genders: {
+      male: "Erkek",
+      female: "Kadin",
+    },
+    categories: {
+      underweight: "Zayif",
+      normal: "Normal",
+      overweight: "Fazla Kilolu",
+      obese: "Obez",
+    },
+    activities: {
+      sedentary: "Hareketsiz (masa basi, egzersiz yok)",
+      light: "Az hareketli (haftada 1-3 gun egzersiz)",
+      moderate: "Orta hareketli (haftada 3-5 gun egzersiz)",
+      active: "Hareketli (haftada 6-7 gun egzersiz)",
+      "very-active": "Cok hareketli (gunde 2 kez egzersiz / fiziksel is)",
+    },
+    emptyState: "Gecerli degerler girerek sonucu gorebilirsin.",
+    resultLabels: {
+      bmi: "BMI",
+      bmr: "Bazal Metabolizma Hizi",
+      calories: "Gunluk Kalori Ihtiyaci",
+      multiplier: "Aktivite Katsayisi",
+    },
+  },
+  en: {
+    labels: {
+      height: "Height (cm)",
+      weight: "Weight (kg)",
+      age: "Age",
+      gender: "Gender",
+      activity: "Activity Level",
+    },
+    genders: {
+      male: "Male",
+      female: "Female",
+    },
+    categories: {
+      underweight: "Underweight",
+      normal: "Normal",
+      overweight: "Overweight",
+      obese: "Obese",
+    },
+    activities: {
+      sedentary: "Sedentary (desk job, no exercise)",
+      light: "Lightly active (exercise 1-3 days/week)",
+      moderate: "Moderately active (exercise 3-5 days/week)",
+      active: "Active (exercise 6-7 days/week)",
+      "very-active": "Very active (twice-daily training / physical work)",
+    },
+    emptyState: "Enter valid values to see the result.",
+    resultLabels: {
+      bmi: "BMI",
+      bmr: "Basal Metabolic Rate",
+      calories: "Daily Calorie Need",
+      multiplier: "Activity Multiplier",
+    },
+  },
+  de: {
+    labels: {
+      height: "Groesse (cm)",
+      weight: "Gewicht (kg)",
+      age: "Alter",
+      gender: "Geschlecht",
+      activity: "Aktivitaetsniveau",
+    },
+    genders: {
+      male: "Maennlich",
+      female: "Weiblich",
+    },
+    categories: {
+      underweight: "Untergewicht",
+      normal: "Normalgewicht",
+      overweight: "Uebergewicht",
+      obese: "Adipositas",
+    },
+    activities: {
+      sedentary: "Sitzend (Buero, kaum Bewegung)",
+      light: "Leicht aktiv (Training 1-3 Tage/Woche)",
+      moderate: "Mittel aktiv (Training 3-5 Tage/Woche)",
+      active: "Aktiv (Training 6-7 Tage/Woche)",
+      "very-active": "Sehr aktiv (2 Trainings pro Tag / koerperliche Arbeit)",
+    },
+    emptyState: "Geben Sie gueltige Werte ein, um das Ergebnis zu sehen.",
+    resultLabels: {
+      bmi: "BMI",
+      bmr: "Grundumsatz",
+      calories: "Taeglicher Kalorienbedarf",
+      multiplier: "Aktivitaetsfaktor",
+    },
+  },
+  ar: {
+    labels: {
+      height: "الطول (سم)",
+      weight: "الوزن (كجم)",
+      age: "العمر",
+      gender: "الجنس",
+      activity: "مستوى النشاط",
+    },
+    genders: {
+      male: "ذكر",
+      female: "أنثى",
+    },
+    categories: {
+      underweight: "نحافة",
+      normal: "طبيعي",
+      overweight: "زيادة وزن",
+      obese: "سمنة",
+    },
+    activities: {
+      sedentary: "خامل (عمل مكتبي دون تمارين)",
+      light: "نشاط خفيف (تمارين 1-3 أيام أسبوعيًا)",
+      moderate: "نشاط متوسط (تمارين 3-5 أيام أسبوعيًا)",
+      active: "نشاط مرتفع (تمارين 6-7 أيام أسبوعيًا)",
+      "very-active": "نشاط مرتفع جدًا (تمرين مرتين يوميًا أو عمل بدني)",
+    },
+    emptyState: "أدخل قيمًا صحيحة لعرض النتيجة.",
+    resultLabels: {
+      bmi: "BMI",
+      bmr: "معدل الأيض الأساسي",
+      calories: "الاحتياج اليومي من السعرات",
+      multiplier: "معامل النشاط",
+    },
+  },
+uz: {
+    labels: {
+      height: "Height (cm)",
+      weight: "Weight (kg)",
+      age: "Age",
+      gender: "Gender",
+      activity: "Activity Level",
+    },
+    genders: {
+      male: "Male",
+      female: "Female",
+    },
+    categories: {
+      underweight: "Underweight",
+      normal: "Normal",
+      overweight: "Overweight",
+      obese: "Obese",
+    },
+    activities: {
+      sedentary: "Sedentary (desk job, no exercise)",
+      light: "Lightly active (exercise 1-3 days/week)",
+      moderate: "Moderately active (exercise 3-5 days/week)",
+      active: "Active (exercise 6-7 days/week)",
+      "very-active": "Very active (twice-daily training / physical work)",
+    },
+    emptyState: "Enter valid values to see the result.",
+    resultLabels: {
+      bmi: "BMI",
+      bmr: "Basal Metabolic Rate",
+      calories: "Daily Calorie Need",
+      multiplier: "Activity Multiplier",
+    },
+  },
+bn: {
+    labels: {
+      height: "Height (cm)",
+      weight: "Weight (kg)",
+      age: "Age",
+      gender: "Gender",
+      activity: "Activity Level",
+    },
+    genders: {
+      male: "Male",
+      female: "Female",
+    },
+    categories: {
+      underweight: "Underweight",
+      normal: "Normal",
+      overweight: "Overweight",
+      obese: "Obese",
+    },
+    activities: {
+      sedentary: "Sedentary (desk job, no exercise)",
+      light: "Lightly active (exercise 1-3 days/week)",
+      moderate: "Moderately active (exercise 3-5 days/week)",
+      active: "Active (exercise 6-7 days/week)",
+      "very-active": "Very active (twice-daily training / physical work)",
+    },
+    emptyState: "Enter valid values to see the result.",
+    resultLabels: {
+      bmi: "BMI",
+      bmr: "Basal Metabolic Rate",
+      calories: "Daily Calorie Need",
+      multiplier: "Activity Multiplier",
+    },
+  },
+};
 
 function parseNumericValue(rawValue: string) {
   const normalizedValue = rawValue.trim().replace(/,/g, ".");
@@ -22,26 +245,16 @@ function parseNumericValue(rawValue: string) {
   return Number.isFinite(numericValue) ? numericValue : Number.NaN;
 }
 
-const categoryLabels: Record<BmiCategory, string> = {
-  underweight: "Zayıf",
-  normal: "Normal",
-  overweight: "Fazla Kilolu",
-  obese: "Obez",
-};
-
-const activityLabels: Record<ActivityLevel, string> = {
-  sedentary: "Hareketsiz (masa başı, egzersiz yok)",
-  light: "Az hareketli (haftada 1-3 gün egzersiz)",
-  moderate: "Orta hareketli (haftada 3-5 gün egzersiz)",
-  active: "Hareketli (haftada 6-7 gün egzersiz)",
-  "very-active": "Çok hareketli (günde 2 kez egzersiz / fiziksel iş)",
-};
-
-function formatNumber(value: number, digits = 1) {
-  return value.toLocaleString("tr-TR", { maximumFractionDigits: digits });
+function formatNumber(value: number, locale: Locale, digits = 1) {
+  return formatLocalizedNumber(value, locale, { maximumFractionDigits: digits });
 }
 
-export default function BmiCalculator() {
+export default function BmiCalculator({
+  locale = "tr",
+}: {
+  locale?: Locale;
+}) {
+  const copy = copyByLocale[locale];
   const [heightCm, setHeightCm] = useState("170");
   const [weightKg, setWeightKg] = useState("70");
   const [age, setAge] = useState("30");
@@ -65,7 +278,7 @@ export default function BmiCalculator() {
     <div className="category-general-converter">
       <div className="paint-calculator-grid">
         <label className="category-general-converter-field">
-          <span>Boy (cm)</span>
+          <span>{copy.labels.height}</span>
           <input
             inputMode="decimal"
             type="text"
@@ -75,7 +288,7 @@ export default function BmiCalculator() {
         </label>
 
         <label className="category-general-converter-field">
-          <span>Kilo (kg)</span>
+          <span>{copy.labels.weight}</span>
           <input
             inputMode="decimal"
             type="text"
@@ -85,7 +298,7 @@ export default function BmiCalculator() {
         </label>
 
         <label className="category-general-converter-field">
-          <span>Yaş</span>
+          <span>{copy.labels.age}</span>
           <input
             inputMode="numeric"
             type="text"
@@ -95,27 +308,27 @@ export default function BmiCalculator() {
         </label>
 
         <label className="category-general-converter-field">
-          <span>Cinsiyet</span>
+          <span>{copy.labels.gender}</span>
           <select
             value={gender}
             onChange={(event) => setGender(event.target.value as Gender)}
           >
-            <option value="male">Erkek</option>
-            <option value="female">Kadın</option>
+            <option value="male">{copy.genders.male}</option>
+            <option value="female">{copy.genders.female}</option>
           </select>
         </label>
 
         <label className="category-general-converter-field">
-          <span>Aktivite Seviyesi</span>
+          <span>{copy.labels.activity}</span>
           <select
             value={activityLevel}
             onChange={(event) =>
               setActivityLevel(event.target.value as ActivityLevel)
             }
           >
-            {(Object.keys(activityLabels) as ActivityLevel[]).map((level) => (
+            {(Object.keys(copy.activities) as ActivityLevel[]).map((level) => (
               <option key={level} value={level}>
-                {activityLabels[level]}
+                {copy.activities[level]}
               </option>
             ))}
           </select>
@@ -124,26 +337,26 @@ export default function BmiCalculator() {
 
       <div aria-live="polite" className="category-general-converter-result paint-calculator-result">
         {!result ? (
-          <strong>Geçerli değerler girerek sonucu görebilirsin.</strong>
+          <strong>{copy.emptyState}</strong>
         ) : (
           <>
             <p className="paint-calculator-liters">
-              BMI: <strong>{formatNumber(result.bmi, 1)}</strong> —{" "}
-              {categoryLabels[result.category]}
+              {copy.resultLabels.bmi}: <strong>{formatNumber(result.bmi, locale, 1)}</strong> -{" "}
+              {copy.categories[result.category]}
             </p>
 
             <div className="paint-calculator-result-grid">
               <div>
-                <span>Bazal Metabolizma Hızı</span>
-                <strong>{formatNumber(result.basalMetabolicRate, 0)} kcal</strong>
+                <span>{copy.resultLabels.bmr}</span>
+                <strong>{formatNumber(result.basalMetabolicRate, locale, 0)} kcal</strong>
               </div>
               <div>
-                <span>Günlük Kalori İhtiyacı</span>
-                <strong>{formatNumber(result.dailyCalorieNeed, 0)} kcal</strong>
+                <span>{copy.resultLabels.calories}</span>
+                <strong>{formatNumber(result.dailyCalorieNeed, locale, 0)} kcal</strong>
               </div>
               <div>
-                <span>Aktivite Katsayısı</span>
-                <strong>{formatNumber(activityMultipliers[activityLevel], 2)}</strong>
+                <span>{copy.resultLabels.multiplier}</span>
+                <strong>{formatNumber(activityMultipliers[activityLevel], locale, 2)}</strong>
               </div>
             </div>
           </>

@@ -1,10 +1,41 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { formatLocalizedNumber } from "../i18n/toolLocales";
 import {
   calculateNaturalGasCost,
   type NaturalGasCalculatorInput,
 } from "../converter/naturalGasCalculator";
+
+type SupportedLocale = "tr" | "en";
+
+type NaturalGasCopy = {
+  fieldConsumption: string;
+  fieldPrice: string;
+  emptyState: string;
+  resultTotalCost: string;
+  resultEnergy: string;
+  note: string;
+};
+
+const copyByLocale: Record<SupportedLocale, NaturalGasCopy> = {
+  tr: {
+    fieldConsumption: "Tüketim (m³)",
+    fieldPrice: "Birim Fiyat (₺/m³)",
+    emptyState: "Geçerli tüketim ve fiyat girerek sonucu görebilirsin.",
+    resultTotalCost: "Toplam Maliyet",
+    resultEnergy: "Yaklaşık Enerji Karşılığı",
+    note: "Not: kWh karşılığı Türkiye ortalamasına göre yaklaşık bir değerdir; gerçek katsayı dağıtım bölgesine ve faturana göre değişebilir.",
+  },
+  en: {
+    fieldConsumption: "Consumption (m³)",
+    fieldPrice: "Unit Price (EUR/m³)",
+    emptyState: "Enter a valid consumption and price to see the result.",
+    resultTotalCost: "Total Cost",
+    resultEnergy: "Approximate Energy Equivalent",
+    note: "Note: the kWh equivalent is an approximate value; the actual conversion factor can vary by region and supplier.",
+  },
+};
 
 function parseNumericValue(rawValue: string) {
   const normalizedValue = rawValue.trim().replace(/,/g, ".");
@@ -18,11 +49,21 @@ function parseNumericValue(rawValue: string) {
   return Number.isFinite(numericValue) ? numericValue : Number.NaN;
 }
 
-function formatCurrency(value: number) {
-  return `${value.toLocaleString("tr-TR", { maximumFractionDigits: 2 })} ₺`;
+function formatCurrency(value: number, locale: SupportedLocale) {
+  const formatted = formatLocalizedNumber(value, locale, {
+    maximumFractionDigits: 2,
+  });
+
+  return locale === "tr" ? `${formatted} ₺` : `${formatted} EUR`;
 }
 
-export default function NaturalGasCalculator() {
+export default function NaturalGasCalculator({
+  locale = "tr",
+}: {
+  locale?: SupportedLocale;
+}) {
+  const copy = copyByLocale[locale];
+
   const [consumptionM3, setConsumptionM3] = useState("100");
   const [pricePerM3, setPricePerM3] = useState("20");
 
@@ -40,7 +81,7 @@ export default function NaturalGasCalculator() {
     <div className="category-general-converter">
       <div className="paint-calculator-grid">
         <label className="category-general-converter-field">
-          <span>Tüketim (m³)</span>
+          <span>{copy.fieldConsumption}</span>
           <input
             inputMode="decimal"
             type="text"
@@ -50,7 +91,7 @@ export default function NaturalGasCalculator() {
         </label>
 
         <label className="category-general-converter-field">
-          <span>Birim Fiyat (₺/m³)</span>
+          <span>{copy.fieldPrice}</span>
           <input
             inputMode="decimal"
             type="text"
@@ -62,27 +103,27 @@ export default function NaturalGasCalculator() {
 
       <div aria-live="polite" className="category-general-converter-result paint-calculator-result">
         {!result ? (
-          <strong>Geçerli tüketim ve fiyat girerek sonucu görebilirsin.</strong>
+          <strong>{copy.emptyState}</strong>
         ) : (
           <div className="paint-calculator-result-grid">
             <div>
-              <span>Toplam Maliyet</span>
-              <strong>{formatCurrency(result.totalCost)}</strong>
+              <span>{copy.resultTotalCost}</span>
+              <strong>{formatCurrency(result.totalCost, locale)}</strong>
             </div>
             <div>
-              <span>Yaklaşık Enerji Karşılığı</span>
+              <span>{copy.resultEnergy}</span>
               <strong>
-                {result.approximateKwh.toLocaleString("tr-TR", { maximumFractionDigits: 0 })} kWh
+                {formatLocalizedNumber(result.approximateKwh, locale, {
+                  maximumFractionDigits: 0,
+                })}{" "}
+                kWh
               </strong>
             </div>
           </div>
         )}
       </div>
 
-      <p className="paint-calculator-liters">
-        Not: kWh karşılığı Türkiye ortalamasına göre yaklaşık bir değerdir;
-        gerçek katsayı dağıtım bölgesine ve faturana göre değişebilir.
-      </p>
+      <p className="paint-calculator-liters">{copy.note}</p>
     </div>
   );
 }

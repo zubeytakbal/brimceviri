@@ -68,6 +68,20 @@ const copy = {
     siEquivalent: "SI-Äquivalent",
     clear: "Werte zurücksetzen",
   },
+  ar: {
+    targetLabel: "هدف الحساب",
+    voltage: "احسب الجهد",
+    current: "احسب التيار",
+    resistance: "احسب المقاومة",
+    voltageValue: "الجهد",
+    currentValue: "التيار",
+    resistanceValue: "المقاومة",
+    resultLive: "نتيجة الحساب",
+    automaticResultUnit: "وحدة النتيجة التلقائية",
+    formula: "المعادلة بعد التعويض",
+    siEquivalent: "مكافئ SI",
+    clear: "مسح القيم",
+  },
 } as const;
 
 function formatResultText(display: string, unit: string) {

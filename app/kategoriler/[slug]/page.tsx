@@ -8,8 +8,7 @@ import { findCategoryArticle } from "../../converter/categoryArticles";
 import { calculatorPages } from "../../converter/calculatorPages";
 import { categoryPages } from "../../converter/categoryPages";
 import { conversionPages } from "../../converter/conversionPages";
-import { findEnglishCategoryPageByTurkishSlug } from "../../converter/localizedCategoryPages";
-import { findGermanCategoryPageByTurkishSlug } from "../../converter/localizedGermanCategoryPages";
+import { buildFullLanguageAlternates } from "../../i18n/routing";
 import { homeCategoryOrder } from "../../converter/homeCategoryOrder";
 import {
   formatPressureFactor,
@@ -57,13 +56,90 @@ const everydayToolLinksByCategory: Record<
 > = {
   uzunluk: [
     { href: "/uzunluk-karsilastirma", label: "Uzunluk Karşılaştırma" },
+    { href: "/merdiven-hesaplama", label: "Merdiven Hesaplama" },
+    { href: "/terzi-araclari", label: "Terzi Araçları" },
+    { href: "/diyetisyen-araclari", label: "Diyetisyen Araçları" },
+    { href: "/pilot-araclari", label: "Pilot Araçları" },
+    { href: "/kaptan-araclari", label: "Kaptan Araçları" },
+    { href: "/nakliyeci-araclari", label: "Nakliyeci Araçları" },
+    { href: "/tesisatci-araclari", label: "Tesisatçı Araçları" },
+    { href: "/boru-capi-hesaplama", label: "Boru Çapı, Debi ve Akış Hızı Hesaplama" },
+    { href: "/grafik-tasarimci-araclari", label: "Grafik Tasarımcı Araçları" },
+    { href: "/piksel-cm-dpi-hesaplama", label: "Piksel, CM ve DPI Hesaplama" },
+    { href: "/fotografci-araclari", label: "Fotoğrafçı Araçları" },
+    { href: "/odak-uzakligi-esdegeri-hesaplama", label: "Odak Uzaklığı Eşdeğeri Hesaplama" },
+    { href: "/cnc-torna-araclari", label: "CNC/Torna Operatörü Araçları" },
+    { href: "/kesme-hizi-devir-hesaplama", label: "Kesme Hızı - Devir Hesaplama" },
+    { href: "/isil-genlesme-hesaplama", label: "Isıl Genleşme Hesaplama" },
+    { href: "/boru-capi-donusum-hesaplama", label: "Boru Çapı Dönüşüm Hesaplama (DN-NPS-mm)" },
   ],
-  hiz: [{ href: "/kosu-pace-hesaplama", label: "Koşu Pace Hesaplama" }],
+  basinc: [
+    { href: "/otomotiv-araclari", label: "Otomotiv Araçları" },
+    { href: "/pilot-araclari", label: "Pilot Araçları" },
+    { href: "/kaptan-araclari", label: "Kaptan Araçları" },
+    { href: "/tesisatci-araclari", label: "Tesisatçı Araçları" },
+    { href: "/basinc-kaybi-hesaplama", label: "Basınç Kaybı Hesaplama" },
+  ],
+  hiz: [
+    { href: "/kosu-pace-hesaplama", label: "Koşu Pace Hesaplama" },
+    { href: "/otomotiv-araclari", label: "Otomotiv Araçları" },
+    { href: "/pilot-araclari", label: "Pilot Araçları" },
+    { href: "/kaptan-araclari", label: "Kaptan Araçları" },
+    { href: "/antrenor-araclari", label: "Antrenör Araçları" },
+  ],
+  guc: [
+    { href: "/otomotiv-araclari", label: "Otomotiv Araçları" },
+  ],
+  tork: [
+    { href: "/otomotiv-araclari", label: "Otomotiv Araçları" },
+  ],
+  kuvvet: [
+    { href: "/elastik-uzama-hesaplama", label: "Elastik Uzama Hesaplama" },
+  ],
   alan: [
     { href: "/boya-hesaplama", label: "Boya Hesaplama" },
     { href: "/fayans-hesaplama", label: "Fayans Hesaplama" },
     { href: "/tugla-hesaplama", label: "Tuğla Hesaplama" },
     { href: "/klima-btu-hesaplama", label: "Klima BTU Hesaplama" },
+    { href: "/siva-hesaplama", label: "Sıva Hesaplama" },
+    { href: "/mantolama-hesaplama", label: "Mantolama Hesaplama" },
+    { href: "/insaatci-araclari", label: "İnşaatçı Araçları" },
+    { href: "/emlakci-araclari", label: "Emlakçı Araçları" },
+    { href: "/awg-mm2-cevirici", label: "AWG - mm² Çevirici" },
+    { href: "/ciftci-araclari", label: "Çiftçi Araçları" },
+    { href: "/gubre-ihtiyaci-hesaplama", label: "Gübre İhtiyacı Hesaplama" },
+    { href: "/tohum-miktari-hesaplama", label: "Tohum Miktarı Hesaplama" },
+    { href: "/peyzaj-araclari", label: "Peyzaj Araçları" },
+    { href: "/sulama-suresi-hesaplama", label: "Sulama Süresi Hesaplama" },
+  ],
+  hacim: [
+    { href: "/beton-hesaplama", label: "Beton Hesaplama" },
+    { href: "/hafriyat-hesaplama", label: "Hafriyat ve Kazı Hesaplama" },
+    { href: "/insaatci-araclari", label: "İnşaatçı Araçları" },
+    { href: "/asci-araclari", label: "Aşçı Araçları" },
+    { href: "/cbm-hesaplama", label: "CBM ve Hacimsel Ağırlık Hesaplama" },
+    { href: "/nakliyeci-araclari", label: "Nakliyeci Araçları" },
+    { href: "/tesisatci-araclari", label: "Tesisatçı Araçları" },
+    { href: "/boru-capi-hesaplama", label: "Boru Çapı, Debi ve Akış Hızı Hesaplama" },
+    { href: "/marangoz-araclari", label: "Marangoz Araçları" },
+    { href: "/kereste-hesaplama", label: "Kereste Metreküp Hesaplama" },
+    { href: "/barmen-araclari", label: "Barmen Araçları" },
+    { href: "/kokteyl-olcusu-cevirici", label: "Kokteyl Ölçüsü Çevirici" },
+    { href: "/peyzaj-araclari", label: "Peyzaj Araçları" },
+    { href: "/sulama-suresi-hesaplama", label: "Sulama Süresi Hesaplama" },
+    { href: "/havuz-teknisyeni-araclari", label: "Havuz Teknisyeni Araçları" },
+    { href: "/havuz-hacmi-hesaplama", label: "Havuz Hacmi Hesaplama" },
+    { href: "/klor-dozaji-hesaplama", label: "Klor Dozajı Hesaplama" },
+    { href: "/mimar-araclari", label: "Mimar Araçları" },
+    { href: "/emsal-kaks-hesaplama", label: "Emsal (KAKS) Hesaplama" },
+  ],
+  sicaklik: [
+    { href: "/asci-araclari", label: "Aşçı Araçları" },
+    { href: "/veteriner-araclari", label: "Veteriner Araçları" },
+    { href: "/klima-sogutma-teknisyeni-araclari", label: "Klima ve Soğutma Teknisyeni Araçları" },
+    { href: "/superheat-subcooling-hesaplama", label: "Superheat ve Subcooling Hesaplama" },
+    { href: "/isil-genlesme-hesaplama", label: "Isıl Genleşme Hesaplama" },
+    { href: "/erime-kaynama-noktasi-hesaplama", label: "Element Erime ve Kaynama Noktası Çevirici" },
   ],
   enerji: [
     { href: "/klima-btu-hesaplama", label: "Klima BTU Hesaplama" },
@@ -72,11 +148,67 @@ const everydayToolLinksByCategory: Record<
   kutle: [
     { href: "/bmi-hesaplama", label: "BMI Hesaplama" },
     { href: "/agirlik-karsilastirma", label: "Ağırlık Karşılaştırma" },
+    { href: "/asci-araclari", label: "Aşçı Araçları" },
+    { href: "/vucut-yag-orani-hesaplama", label: "Vücut Yağ Oranı Hesaplama" },
+    { href: "/ideal-kilo-hesaplama", label: "İdeal Kilo Hesaplama" },
+    { href: "/diyetisyen-araclari", label: "Diyetisyen Araçları" },
+    { href: "/nakliyeci-araclari", label: "Nakliyeci Araçları" },
+    { href: "/veteriner-araclari", label: "Veteriner Araçları" },
+    { href: "/veteriner-ilac-dozu-hesaplama", label: "Veteriner İlaç Dozu ve Hacmi Hesaplama" },
+    { href: "/antrenor-araclari", label: "Antrenör Araçları" },
+    { href: "/1rm-hesaplama", label: "1RM Hesaplama" },
+    { href: "/malzeme-agirligi-hesaplama", label: "Malzeme Yoğunlukları Tablosu ve Ağırlık Hesaplama" },
+  ],
+  altin_ayar: [
+    { href: "/has-hesaplama", label: "Has Altın ve Gümüş Hesaplama" },
+    { href: "/kuyumcu-araclari", label: "Kuyumcu Araçları" },
+  ],
+  gumus_ayar: [
+    { href: "/has-hesaplama", label: "Has Altın ve Gümüş Hesaplama" },
+    { href: "/kuyumcu-araclari", label: "Kuyumcu Araçları" },
+  ],
+  kan_sekeri: [
+    { href: "/doktor-hemsire-araclari", label: "Doktor ve Hemşire Araçları" },
+  ],
+  vitamin_d: [
+    { href: "/doktor-hemsire-araclari", label: "Doktor ve Hemşire Araçları" },
+  ],
+  elektrik: [
+    { href: "/elektrikci-araclari", label: "Elektrikçi Araçları" },
+  ],
+  elektrik_direnc: [
+    { href: "/elektrikci-araclari", label: "Elektrikçi Araçları" },
+  ],
+  kapasitans: [
+    { href: "/elektrikci-araclari", label: "Elektrikçi Araçları" },
+  ],
+  enduktans: [
+    { href: "/elektrikci-araclari", label: "Elektrikçi Araçları" },
+  ],
+  elektrik_yuk: [
+    { href: "/elektrikci-araclari", label: "Elektrikçi Araçları" },
   ],
   zaman: [
     { href: "/yas-hesaplama", label: "Yaş Hesaplama" },
     { href: "/gebelik-haftasi-hesaplama", label: "Gebelik Haftası Hesaplama" },
     { href: "/uyku-hesaplama", label: "Uyku Hesaplama" },
+    { href: "/devamsizlik-hesaplama", label: "Devamsızlık Hesaplama" },
+    { href: "/unix-zaman-damgasi-cevirici", label: "Unix Zaman Damgası Çevirici" },
+  ],
+  veri: [
+    { href: "/yazilimci-araclari", label: "Yazılımcı Araçları" },
+    { href: "/unix-zaman-damgasi-cevirici", label: "Unix Zaman Damgası Çevirici" },
+    { href: "/renk-kodu-cevirici", label: "Renk Kodu Çevirici" },
+    { href: "/sayi-tabani-cevirici", label: "Sayı Tabanı Çevirici" },
+    { href: "/bilgisayar-donanimcisi-araclari", label: "Bilgisayar Donanımcısı Araçları" },
+    { href: "/video-editor-araclari", label: "Video Editör Araçları" },
+    { href: "/video-bit-hizi-hesaplama", label: "Video Bit Hızı ve Dosya Boyutu Hesaplama" },
+  ],
+  frekans: [
+    { href: "/muzisyen-araclari", label: "Müzisyen Araçları" },
+    { href: "/bpm-ms-hesaplama", label: "BPM - MS Hesaplama" },
+    { href: "/amator-telsiz-araclari", label: "Amatör Telsiz Araçları" },
+    { href: "/anten-uzunlugu-hesaplama", label: "Anten Uzunluğu Hesaplama" },
   ],
 };
 
@@ -105,28 +237,12 @@ export async function generateMetadata({
     };
   }
 
-  const englishPage = findEnglishCategoryPageByTurkishSlug(
-    categoryPage.slug
-  );
-  const germanPage = findGermanCategoryPageByTurkishSlug(
-    categoryPage.slug
-  );
-
   return {
     title: `${categoryPage.title}: Birimler, Tablolar ve Hesaplamalar`,
     description: categoryPage.description,
     alternates: {
       canonical: `/kategoriler/${categoryPage.slug}`,
-      languages: englishPage
-        ? {
-            tr: `/kategoriler/${categoryPage.slug}`,
-            en: `/en/categories/${englishPage.slug}`,
-            ...(germanPage
-              ? { de: `/de/kategorien/${germanPage.slug}` }
-              : {}),
-            "x-default": `/kategoriler/${categoryPage.slug}`,
-          }
-        : undefined,
+      ...buildFullLanguageAlternates(`/kategoriler/${categoryPage.slug}`),
     },
     openGraph: {
       title: categoryPage.title,

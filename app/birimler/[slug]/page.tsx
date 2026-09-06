@@ -16,8 +16,7 @@ import {
 import {
   getUnitSources,
 } from "../../converter/unitSources";
-import { findEnglishUnitPageByTurkishSlug } from "../../converter/localizedUnitPages";
-import { findGermanUnitPageByTurkishSlug } from "../../converter/localizedGermanUnitPages";
+import { buildFullLanguageAlternates } from "../../i18n/routing";
 import { unitPages } from "../../converter/unitPages";
 import { SITE_URL, buildSiteUrl } from "../../siteConfig";
 
@@ -71,13 +70,6 @@ export async function generateMetadata({
     };
   }
 
-  const englishPage = findEnglishUnitPageByTurkishSlug(
-    unitPage.slug
-  );
-  const germanPage = findGermanUnitPageByTurkishSlug(
-    unitPage.slug
-  );
-
   return {
     title:
       `${unitPage.name} Nedir? Tanımı, Tarihçesi ve ` +
@@ -88,16 +80,7 @@ export async function generateMetadata({
       `dönüşümünü ücretsiz inceleyin.`,
     alternates: {
       canonical: `/birimler/${unitPage.slug}`,
-      languages: englishPage
-        ? {
-            tr: `/birimler/${unitPage.slug}`,
-            en: `/en/units/${englishPage.slug}`,
-            ...(germanPage
-              ? { de: `/de/einheiten/${germanPage.slug}` }
-              : {}),
-            "x-default": `/birimler/${unitPage.slug}`,
-          }
-        : undefined,
+      ...buildFullLanguageAlternates(`/birimler/${unitPage.slug}`),
     },
     openGraph: {
       title:

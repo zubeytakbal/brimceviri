@@ -82,6 +82,16 @@ const messages = {
     percentRange:
       "Der zulassige Spannungsfall muss ein Prozentwert zwischen 0 und 100 sein.",
   },
+  ar: {
+    missing:
+      "أدخل قيم الجهد والتيار والطول والهبوط المسموح للجهد.",
+    invalid: "أدخل قيما رقمية صحيحة.",
+    voltagePositive: "يجب أن يكون جهد المصدر أكبر من الصفر.",
+    currentPositive: "يجب أن يكون التيار أكبر من الصفر.",
+    lengthPositive: "يجب أن يكون طول الكابل أكبر من الصفر.",
+    percentRange:
+      "يجب أن تكون نسبة هبوط الجهد المسموح بين 0 و100.",
+  },
 } as const;
 
 function emptyResult(error: string): CableSizeResult {

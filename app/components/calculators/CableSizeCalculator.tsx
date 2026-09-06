@@ -99,6 +99,30 @@ const copy = {
     resistivityNote: "Verwendeter spezifischer Widerstand",
     clear: "Werte zurucksetzen",
   },
+  ar: {
+    systemTypeLabel: "نوع النظام",
+    singlePhase: "أحادي الطور",
+    threePhase: "ثلاثي الطور",
+    dc: "تيار مستمر",
+    materialLabel: "مادة الموصل",
+    copper: "نحاس",
+    aluminum: "ألمنيوم",
+    sourceVoltageValue: "جهد المصدر",
+    currentValue: "تيار الخط",
+    lengthValue: "طول الكابل (اتجاه واحد)",
+    allowedDropValue: "هبوط الجهد المسموح (%)",
+    requiredValue: "الحد الأدنى المطلوب للمقطع",
+    standardValue: "المقطع القياسي المقترح",
+    standardOutOfRange:
+      "خارج الجدول القياسي؛ يجب تقييم مقطع خاص.",
+    allowedDropVolts: "الهبوط المسموح",
+    resultLive: "نتيجة الحساب",
+    automaticResultUnit: "وحدة النتيجة التلقائية",
+    formula: "المعادلة بعد التعويض",
+    siEquivalent: "مكافئ SI",
+    resistivityNote: "المقاومية المستخدمة",
+    clear: "مسح القيم",
+  },
 } as const;
 
 export default function CableSizeCalculator({

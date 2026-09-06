@@ -128,6 +128,16 @@ export default function VatCalculatorPage() {
             kullanmalısın.
           </p>
 
+          <h2>İlgili araçlar</h2>
+          <p>
+            Emlak alım-satım veya kiralama işleminde komisyon
+            hesaplamak için{" "}
+            <Link href="/emlak-komisyonu-hesaplama">
+              Emlak Komisyonu Hesaplama
+            </Link>{" "}
+            aracına bakabilirsin.
+          </p>
+
           <h2>Kaynaklar</h2>
           <p>
             KDV oranları, T.C. Hazine ve Maliye Bakanlığı tarafından

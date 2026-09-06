@@ -1,17 +1,65 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import AcCapacityCalculator from "../../components/AcCapacityCalculator";
+import BmiCalculator from "../../components/BmiCalculator";
+import BrickCalculator from "../../components/BrickCalculator";
+import DateCalculator from "../../components/DateCalculator";
+import ElectricityConsumptionCalculator from "../../components/ElectricityConsumptionCalculator";
 import EnglishConversionSeo from "../../components/EnglishConversionSeo";
+import EvChargingCalculator from "../../components/EvChargingCalculator";
+import FuelConsumptionCalculator from "../../components/FuelConsumptionCalculator";
+import LaminateCalculator from "../../components/LaminateCalculator";
+import LengthComparisonTool from "../../components/LengthComparisonTool";
+import MovingBoxCalculator from "../../components/MovingBoxCalculator";
+import NaturalGasCalculator from "../../components/NaturalGasCalculator";
+import PaceCalculator from "../../components/PaceCalculator";
+import PaintCalculator from "../../components/PaintCalculator";
+import PregnancyCalculator from "../../components/PregnancyCalculator";
+import SleepCalculator from "../../components/SleepCalculator";
+import TileCalculator from "../../components/TileCalculator";
+import VatCalculator from "../../components/VatCalculator";
+import WallpaperCalculator from "../../components/WallpaperCalculator";
+import WeightComparisonTool from "../../components/WeightComparisonTool";
 import PairConverter from "../../converter/PairConverter";
 import { convert } from "../../converter/convert";
 import { findEnglishUnitPage } from "../../converter/localizedUnitPages";
+import { buildFullLanguageAlternates } from "../../i18n/routing";
 import {
   englishConversionPages,
   findEnglishConversionPage,
 } from "../../converter/localizedConversionPages";
 import { findGermanPageByTurkishSlug } from "../../converter/localizedGermanConversionPages";
+import {
+  englishStandaloneTools,
+  findEnglishStandaloneToolBySlug,
+  type EnglishStandaloneToolComponentKey,
+} from "../../i18n/englishStandaloneTools";
 import { getUnitSources } from "../../converter/unitSources";
 import { buildSiteUrl } from "../../siteConfig";
+
+const componentMap: Record<EnglishStandaloneToolComponentKey, React.ComponentType<{ locale?: "en" }>> =
+  {
+    paintCalculator: PaintCalculator,
+    tileCalculator: TileCalculator,
+    brickCalculator: BrickCalculator,
+    dateCalculator: DateCalculator,
+    vatCalculator: VatCalculator,
+    bmiCalculator: BmiCalculator,
+    pregnancyCalculator: PregnancyCalculator,
+    lengthComparison: LengthComparisonTool,
+    weightComparison: WeightComparisonTool,
+    paceCalculator: PaceCalculator,
+    acCapacityCalculator: AcCapacityCalculator,
+    electricityConsumptionCalculator: ElectricityConsumptionCalculator,
+    sleepCalculator: SleepCalculator,
+    fuelConsumptionCalculator: FuelConsumptionCalculator,
+    laminateCalculator: LaminateCalculator,
+    wallpaperCalculator: WallpaperCalculator,
+    movingBoxCalculator: MovingBoxCalculator,
+    naturalGasCalculator: NaturalGasCalculator,
+    evChargingCalculator: EvChargingCalculator,
+  };
 
 type PageProps = {
   params: Promise<{
@@ -40,15 +88,43 @@ function formatNumber(value: number) {
 }
 
 export function generateStaticParams() {
-  return englishConversionPages.map((page) => ({
+  const toolParams = englishStandaloneTools.map((tool) => ({
+    slug: tool.slug,
+  }));
+
+  const conversionParams = englishConversionPages.map((page) => ({
     slug: page.slug,
   }));
+
+  return [...toolParams, ...conversionParams];
 }
 
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
+
+  const tool = findEnglishStandaloneToolBySlug(slug);
+
+  if (tool) {
+    return {
+      title: `${tool.title} | BirimCeviri.app`,
+      description: tool.description,
+      alternates: {
+        canonical: tool.englishPath,
+        ...buildFullLanguageAlternates(tool.englishPath),
+      },
+      openGraph: {
+        title: tool.title,
+        description: tool.description,
+        url: buildSiteUrl(tool.englishPath),
+        siteName: "BirimCeviri.app",
+        locale: "en_US",
+        type: "website",
+      },
+    };
+  }
+
   const page = findEnglishConversionPage(slug);
 
   if (!page) {
@@ -62,7 +138,6 @@ export async function generateMetadata({
   }
 
   const title = `${page.fromName} to ${page.toName} Converter`;
-  const germanPage = findGermanPageByTurkishSlug(page.sourceSlug);
 
   const description =
     `Convert ${page.fromName.toLowerCase()} to ` +
@@ -75,12 +150,7 @@ export async function generateMetadata({
 
     alternates: {
       canonical: `/en/${page.slug}`,
-      languages: {
-        tr: `/${page.sourceSlug}`,
-        en: `/en/${page.slug}`,
-        ...(germanPage ? { de: `/de/${germanPage.slug}` } : {}),
-        "x-default": `/${page.sourceSlug}`,
-      },
+      ...buildFullLanguageAlternates(`/en/${page.slug}`),
     },
 
     openGraph: {
@@ -100,10 +170,81 @@ export async function generateMetadata({
   };
 }
 
-export default async function EnglishConversionPage({
-  params,
-}: PageProps) {
-  const { slug } = await params;
+function EnglishStandaloneTool({
+  tool,
+}: {
+  tool: NonNullable<ReturnType<typeof findEnglishStandaloneToolBySlug>>;
+}) {
+  const ToolComponent = componentMap[tool.component];
+  const pageUrl = buildSiteUrl(tool.englishPath);
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: buildSiteUrl("/en"),
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Other Conversions",
+        item: buildSiteUrl("/en/other-conversions"),
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: tool.title,
+        item: pageUrl,
+      },
+    ],
+  };
+
+  return (
+    <main className="all-conversions-page" lang="en">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbSchema).replace(/</g, "\\u003c"),
+        }}
+      />
+
+      <div className="all-conversions-shell">
+        <nav className="breadcrumbs" aria-label="Breadcrumb">
+          <Link href="/en">Home</Link>
+          <span aria-hidden="true">&rsaquo;</span>
+          <Link href="/en/other-conversions">Other Conversions</Link>
+          <span aria-hidden="true">&rsaquo;</span>
+          <span>{tool.title}</span>
+        </nav>
+
+        <header className="all-conversions-header">
+          <h1>{tool.title}</h1>
+          <p>{tool.intro}</p>
+        </header>
+
+        <ToolComponent locale="en" />
+
+        <section className="category-article-content">
+          {tool.articleSections.map((section) => (
+            <div key={section.title}>
+              <h2>{section.title}</h2>
+              <p>{section.body}</p>
+            </div>
+          ))}
+        </section>
+      </div>
+    </main>
+  );
+}
+
+async function EnglishConversionPage({
+  slug,
+}: {
+  slug: string;
+}) {
   const page = findEnglishConversionPage(slug);
 
   if (!page) {
@@ -399,4 +540,16 @@ export default async function EnglishConversionPage({
       </article>
     </main>
   );
+}
+
+export default async function EnglishDynamicPage({ params }: PageProps) {
+  const { slug } = await params;
+
+  const tool = findEnglishStandaloneToolBySlug(slug);
+
+  if (tool) {
+    return <EnglishStandaloneTool tool={tool} />;
+  }
+
+  return <EnglishConversionPage slug={slug} />;
 }

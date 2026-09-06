@@ -1,22 +1,12 @@
-// Tarif metnini satir satir olcekleyen (2x, yariya indirme vb.) ve
-// mumkun oldugunda hacim biriminden grama ceviren arac. Serbest metin
-// parsing riskli oldugu icin iki bagimsiz katmana ayriliyor:
-//
-// 1) Olcekleme -- her zaman guvenilir. Satir basindaki sayiyi bulup
-//    carpanla carpar, satirin geri kalanini (birim + malzeme adi)
-//    oldugu gibi birakir. Malzemenin tabloda olup olmamasindan
-//    bagimsiz calisir.
-// 2) Birim -> gram cevirisi -- best-effort bonus katman. Sadece
-//    taninan bir hacim birimi VE kitchenMeasures.ts'teki bir malzemeyle
-//    eslesme varsa gram karsiligi eklenir; eslesme yoksa satir sessizce
-//    sadece olceklenmis haliyle gosterilir (hata yok).
-
 import {
   type KitchenIngredientKey,
   type KitchenUnit,
   convertKitchenValue,
   kitchenIngredientRows,
 } from "./kitchenMeasures";
+import { kitchenIngredientLabels } from "./kitchenIngredientLabels";
+
+export type RecipeLocale = "tr" | "en" | "de" | "ar";
 
 export type ParsedRecipeLine = {
   raw: string;
@@ -34,27 +24,33 @@ const wordQuantities: Record<string, number> = {
   ceyrek: 0.25,
   half: 0.5,
   quarter: 0.25,
+  halb: 0.5,
+  viertel: 0.25,
+  نصف: 0.5,
+  ربع: 0.25,
 };
 
-function normalizeTr(value: string): string {
+function normalizeText(value: string): string {
   return value
-    .toLocaleLowerCase("tr-TR")
+    .toLowerCase()
     .replace(/ı/g, "i")
     .replace(/ğ/g, "g")
     .replace(/ü/g, "u")
     .replace(/ş/g, "s")
     .replace(/ö/g, "o")
     .replace(/ç/g, "c")
+    .replace(/ä/g, "a")
+    .replace(/ß/g, "ss")
     .normalize("NFD")
-    .replace(new RegExp("[\\u0300-\\u036f]", "g"), "")
-    .replace(/[^a-z0-9/,.]+/g, " ")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^\p{L}\p{N}/,.]+/gu, " ")
     .trim();
 }
 
 function parseQuantityToken(token: string): number | null {
   if (/^\d+\/\d+$/.test(token)) {
-    const [a, b] = token.split("/").map(Number);
-    return b !== 0 ? a / b : null;
+    const [numerator, denominator] = token.split("/").map(Number);
+    return denominator !== 0 ? numerator / denominator : null;
   }
 
   if (/^\d+[.,]\d+$/.test(token)) {
@@ -65,8 +61,7 @@ function parseQuantityToken(token: string): number | null {
     return Number(token);
   }
 
-  const wordValue = wordQuantities[normalizeTr(token)];
-  return wordValue ?? null;
+  return wordQuantities[normalizeText(token)] ?? null;
 }
 
 export function parseRecipeLine(line: string): {
@@ -79,7 +74,9 @@ export function parseRecipeLine(line: string): {
     return { quantity: null, restOfLine: "" };
   }
 
-  const match = trimmed.match(/^(\d+[.,]\d+|\d+\/\d+|\d+|[a-zçğıöşüA-ZÇĞİÖŞÜ]+)\s+(.+)$/);
+  const match = trimmed.match(
+    /^(\d+[.,]\d+|\d+\/\d+|\d+|[\p{L}]+)\s+(.+)$/u
+  );
 
   if (!match) {
     return { quantity: null, restOfLine: trimmed };
@@ -99,6 +96,10 @@ const twoTokenUnits: Record<string, KitchenUnit> = {
   "su bardagi": "bardak",
   "yemek kasigi": "yemekKasigi",
   "cay kasigi": "cayKasigi",
+  "ess loffel": "yemekKasigi",
+  "tee loffel": "cayKasigi",
+  "ملعقة كبيرة": "yemekKasigi",
+  "ملعقة صغيرة": "cayKasigi",
 };
 
 const oneTokenUnits: Record<string, KitchenUnit> = {
@@ -112,7 +113,6 @@ const oneTokenUnits: Record<string, KitchenUnit> = {
   mililitre: "ml",
   litre: "litre",
   lt: "litre",
-  // Ingilizce (EN sayfasi icin)
   cup: "bardak",
   cups: "bardak",
   tablespoon: "yemekKasigi",
@@ -126,6 +126,22 @@ const oneTokenUnits: Record<string, KitchenUnit> = {
   milliliters: "ml",
   liter: "litre",
   liters: "litre",
+  tasse: "bardak",
+  tassen: "bardak",
+  essloffel: "yemekKasigi",
+  el: "yemekKasigi",
+  teeloffel: "cayKasigi",
+  tl: "cayKasigi",
+  gramm: "gram",
+  milliliteren: "ml",
+  كوب: "bardak",
+  اكواب: "bardak",
+  كوبين: "bardak",
+  غرام: "gram",
+  غ: "gram",
+  مل: "ml",
+  ملليلتر: "ml",
+  لتر: "litre",
 };
 
 function extractUnit(normalizedRestOfLine: string): {
@@ -136,96 +152,61 @@ function extractUnit(normalizedRestOfLine: string): {
   const twoToken = tokens.slice(0, 2).join(" ");
 
   if (twoTokenUnits[twoToken]) {
-    return { unit: twoTokenUnits[twoToken], remainder: tokens.slice(2).join(" ") };
+    return {
+      unit: twoTokenUnits[twoToken],
+      remainder: tokens.slice(2).join(" "),
+    };
   }
 
   const oneToken = tokens[0];
 
   if (oneToken && oneTokenUnits[oneToken]) {
-    return { unit: oneTokenUnits[oneToken], remainder: tokens.slice(1).join(" ") };
+    return {
+      unit: oneTokenUnits[oneToken],
+      remainder: tokens.slice(1).join(" "),
+    };
   }
 
   return { unit: null, remainder: tokens.join(" ") };
 }
 
-// Ingilizce malzeme adlari -- EN sayfasindaki tarifleri de eslestirebilmek
-// icin. KitchenMeasuresConverter.tsx'teki EN etiketleriyle ayni degerler.
-export const englishIngredientLabels: Record<KitchenIngredientKey, string> = {
-  un: "Flour",
-  "tam-bugday-unu": "Whole Wheat Flour",
-  "pirinc-unu": "Rice Flour",
-  "misir-unu": "Corn Flour",
-  irmik: "Semolina",
-  "galeta-unu": "Breadcrumbs",
-  "toz-seker": "Sugar",
-  "pudra-sekeri": "Powdered Sugar",
-  "esmer-seker": "Brown Sugar",
-  tuz: "Salt",
-  pirinc: "Rice",
-  bulgur: "Bulgur",
-  nohut: "Chickpeas",
-  "kirmizi-mercimek": "Red Lentils",
-  "yesil-mercimek": "Green Lentils",
-  "kuru-fasulye": "Dry Beans",
-  sut: "Milk",
-  yogurt: "Yogurt",
-  krema: "Heavy Cream",
-  tereyagi: "Butter",
-  margarin: "Margarine",
-  zeytinyagi: "Olive Oil",
-  "sivi-yag": "Vegetable Oil",
-  bal: "Honey",
-  pekmez: "Grape Molasses",
-  kakao: "Cocoa Powder",
-  "yulaf-ezmesi": "Rolled Oats",
-  nisasta: "Cornstarch",
-  "kabartma-tozu": "Baking Powder",
-  karbonat: "Baking Soda",
-  susam: "Sesame Seeds",
-  "ceviz-ici": "Walnuts",
-  "findik-ici": "Hazelnuts",
-  badem: "Almonds",
-  "antep-fistigi": "Pistachios",
-  "kuru-uzum": "Raisins",
-  "hindistan-cevizi": "Desiccated Coconut",
-  mayonez: "Mayonnaise",
-  ketcap: "Ketchup",
-  sirke: "Vinegar",
-  "limon-suyu": "Lemon Juice",
-  tarcin: "Cinnamon",
-  "kirmizi-biber": "Red Pepper",
-  karabiber: "Black Pepper",
-  kimyon: "Cumin",
-};
+export const englishIngredientLabels = kitchenIngredientLabels.en;
+export const germanIngredientLabels = kitchenIngredientLabels.de;
 
 const ingredientMatchEntries: Array<{
   key: KitchenIngredientKey;
   normalized: string;
 }> = kitchenIngredientRows.flatMap((row) => {
   const entries = [
-    { key: row.key, normalized: normalizeTr(row.label.split(" (")[0]) },
+    {
+      key: row.key,
+      normalized: normalizeText(row.label.split(" (")[0]),
+    },
   ];
 
-  const englishLabel = englishIngredientLabels[row.key];
-
-  if (englishLabel) {
-    entries.push({ key: row.key, normalized: normalizeTr(englishLabel) });
-  }
+  entries.push({
+    key: row.key,
+    normalized: normalizeText(kitchenIngredientLabels.en[row.key]),
+  });
+  entries.push({
+    key: row.key,
+    normalized: normalizeText(kitchenIngredientLabels.de[row.key]),
+  });
+  entries.push({
+    key: row.key,
+    normalized: normalizeText(kitchenIngredientLabels.ar[row.key]),
+  });
 
   return entries;
 });
 
-// Eslesme turleri (dusuk sayi = daha guvenilir):
-// 0 = tam eslesme ("zeytinyagi" === "zeytinyagi")
-// 1 = kullanicinin yazdigi metin adayin tam adindan daha detayli
-//     ("kirmizi mercimek" metninde "mercimek" adayi gecer) -- en UZUN
-//     aday tercih edilir (yazilana en cok karsilik gelen).
-// 2 = kullanicinin yazdigi metin adayin tam adindan daha az detayli
-//     (sadece "seker" yazilmis, aday "esmer seker" veya "toz seker"
-//     olabilir) -- en KISA aday tercih edilir (en az varsayimla en
-//     "duz"/varsayilan malzeme, ör. "toz seker").
-function classifyMatch(remainder: string, candidate: string): 0 | 1 | 2 | null {
-  if (remainder === candidate) return 0;
+function classifyMatch(
+  remainder: string,
+  candidate: string
+): 0 | 1 | 2 | null {
+  if (remainder === candidate) {
+    return 0;
+  }
 
   if (
     remainder.startsWith(`${candidate} `) ||
@@ -244,44 +225,72 @@ function classifyMatch(remainder: string, candidate: string): 0 | 1 | 2 | null {
   return null;
 }
 
-function findMatchingIngredient(remainder: string): KitchenIngredientKey | null {
+function findMatchingIngredient(
+  remainder: string
+): KitchenIngredientKey | null {
   if (!remainder) {
     return null;
   }
 
   const candidates = ingredientMatchEntries
-    .map((entry) => ({ entry, kind: classifyMatch(remainder, entry.normalized) }))
+    .map((entry) => ({
+      entry,
+      kind: classifyMatch(remainder, entry.normalized),
+    }))
     .filter(
-      (item): item is { entry: (typeof ingredientMatchEntries)[number]; kind: 0 | 1 | 2 } =>
-        item.kind !== null
+      (
+        item
+      ): item is {
+        entry: (typeof ingredientMatchEntries)[number];
+        kind: 0 | 1 | 2;
+      } => item.kind !== null
     );
 
   if (candidates.length === 0) {
     return null;
   }
 
-  candidates.sort((a, b) => {
-    if (a.kind !== b.kind) {
-      return a.kind - b.kind;
+  candidates.sort((left, right) => {
+    if (left.kind !== right.kind) {
+      return left.kind - right.kind;
     }
 
-    return a.kind === 1
-      ? b.entry.normalized.length - a.entry.normalized.length
-      : a.entry.normalized.length - b.entry.normalized.length;
+    return left.kind === 1
+      ? right.entry.normalized.length -
+          left.entry.normalized.length
+      : left.entry.normalized.length -
+          right.entry.normalized.length;
   });
 
   return candidates[0].entry.key;
 }
 
-// Firin sicakligi bir malzeme miktari degildir -- tarifi 2 katina
-// cikarmak sicakligi degistirmez. Bu yuzden sicaklik satirlari
-// miktar-olcekleme mantigina hic girmeden, olculmeden gosterilir;
-// sadece °C/°F karsiligi eklenir. Turkce tariflerde "derece" varsayilan
-// olarak Celsius kabul edilir.
-const temperaturePattern = /(\d+)\s*°?\s*(c\b|f\b|derece)/;
+const temperaturePattern = /(\d+)\s*°?\s*(c\b|f\b|derece|grad)/;
 
-function detectTemperature(line: string, locale: "tr" | "en"): string | null {
-  const match = normalizeTr(line).match(temperaturePattern);
+function formatQuantity(
+  value: number,
+  locale: RecipeLocale
+): string {
+  const rounded = Math.round(value * 100) / 100;
+  const localeName =
+    locale === "tr"
+      ? "tr-TR"
+      : locale === "de"
+        ? "de-DE"
+        : locale === "ar"
+          ? "ar"
+        : "en-US";
+
+  return rounded.toLocaleString(localeName, {
+    maximumFractionDigits: 2,
+  });
+}
+
+function detectTemperature(
+  line: string,
+  locale: RecipeLocale
+): string | null {
+  const match = normalizeText(line).match(temperaturePattern);
 
   if (!match) {
     return null;
@@ -296,25 +305,17 @@ function detectTemperature(line: string, locale: "tr" | "en"): string | null {
 
   if (unit === "f") {
     const celsius = Math.round(((value - 32) * 5) / 9);
-    return `≈ ${formatQuantity(celsius, locale)}°C`;
+    return `~ ${formatQuantity(celsius, locale)} C`;
   }
 
   const fahrenheit = Math.round((value * 9) / 5 + 32);
-  return `≈ ${formatQuantity(fahrenheit, locale)}°F`;
-}
-
-function formatQuantity(value: number, locale: "tr" | "en"): string {
-  const rounded = Math.round(value * 100) / 100;
-
-  return rounded.toLocaleString(locale === "en" ? "en-US" : "tr-TR", {
-    maximumFractionDigits: 2,
-  });
+  return `~ ${formatQuantity(fahrenheit, locale)} F`;
 }
 
 export function scaleRecipeText(
   text: string,
   factor: number,
-  locale: "tr" | "en" = "tr"
+  locale: RecipeLocale = "tr"
 ): ParsedRecipeLine[] {
   return text
     .split("\n")
@@ -351,13 +352,24 @@ export function scaleRecipeText(
       }
 
       const scaledQuantity = quantity * factor;
-      const scaledLine = `${formatQuantity(scaledQuantity, locale)} ${restOfLine}`;
+      const scaledLine = `${formatQuantity(
+        scaledQuantity,
+        locale
+      )} ${restOfLine}`;
 
-      const { unit, remainder } = extractUnit(normalizeTr(restOfLine));
-      const matchedIngredient = unit ? findMatchingIngredient(remainder) : null;
+      const { unit, remainder } = extractUnit(
+        normalizeText(restOfLine)
+      );
+      const matchedIngredient = unit
+        ? findMatchingIngredient(remainder)
+        : null;
       const gramEquivalent =
         unit && matchedIngredient
-          ? convertKitchenValue(matchedIngredient, unit, scaledQuantity).gram
+          ? convertKitchenValue(
+              matchedIngredient,
+              unit,
+              scaledQuantity
+            ).gram
           : null;
 
       return {

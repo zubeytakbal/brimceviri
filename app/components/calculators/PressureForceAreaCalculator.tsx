@@ -75,6 +75,23 @@ const copy = {
     compositeExpression: "Zusammengesetzter Ausdruck",
     siEquivalent: "SI-Äquivalent",
   },
+  ar: {
+    targetLabel: "هدف الحساب",
+    pressure: "احسب الضغط",
+    force: "احسب القوة",
+    area: "احسب المساحة",
+    pressureValue: "الضغط",
+    forceValue: "القوة",
+    areaValue: "المساحة",
+    result: "النتيجة",
+    formula: "المعادلة بعد التعويض",
+    clear: "مسح القيم",
+    resultLive: "نتيجة الحساب",
+    resultPlaceholder: "ستظهر النتيجة هنا",
+    automaticResultUnit: "وحدة النتيجة التلقائية",
+    compositeExpression: "التعبير المركب",
+    siEquivalent: "مكافئ SI",
+  },
 } as const;
 
 export default function PressureForceAreaCalculator({

@@ -32,9 +32,11 @@ export default function GermanConversionSeo({
         "Sehr große oder sehr kleine Werte werden in wissenschaftlicher Notation angezeigt.",
     },
     {
-      question: `Ist der Umrechner von ${conversionPage.fromName} zu ${conversionPage.toName} kostenlos?`,
+      question:
+        `Ist der Umrechner von ${conversionPage.fromName} in ` +
+        `${conversionPage.toName} kostenlos?`,
       answer:
-        "Ja. Das Umrechnungswerkzeug auf BirimCeviri.app ist kostenlos und erfordert keine Anmeldung.",
+        "Ja. Das Umrechnungstool auf BirimCeviri.app ist kostenlos und erfordert keine Anmeldung.",
     },
   ];
 
@@ -57,7 +59,7 @@ export default function GermanConversionSeo({
       {
         "@type": "ListItem",
         position: 3,
-        name: `${conversionPage.fromName} zu ${conversionPage.toName} Umrechner`,
+        name: `${conversionPage.fromName} in ${conversionPage.toName} Umrechner`,
         item: pageUrl,
       },
     ],
@@ -66,16 +68,16 @@ export default function GermanConversionSeo({
   const applicationSchema = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    name: `${conversionPage.fromName} zu ${conversionPage.toName} Umrechner`,
+    name: `${conversionPage.fromName} in ${conversionPage.toName} Umrechner`,
     url: pageUrl,
-    description: `Kostenloses Werkzeug zur Umrechnung von ${conversionPage.fromName} in ${conversionPage.toName}.`,
+    description: `Kostenloses Tool zur Umrechnung von ${conversionPage.fromName} in ${conversionPage.toName}.`,
     applicationCategory: "UtilitiesApplication",
-    operatingSystem: "Alle",
-    browserRequirements: "Erfordert JavaScript",
+    operatingSystem: "All",
+    browserRequirements: "Requires JavaScript",
     offers: {
       "@type": "Offer",
       price: "0",
-      priceCurrency: "EUR",
+      priceCurrency: "USD",
     },
   };
 
@@ -116,7 +118,7 @@ export default function GermanConversionSeo({
       />
 
       <section className="conversion-section faq-section">
-        <h2>{"Häufig gestellte Fragen"}</h2>
+        <h2>Häufig gestellte Fragen</h2>
 
         <div className="faq-list">
           {faqs.map((faq) => (

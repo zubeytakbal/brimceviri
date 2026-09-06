@@ -1,10 +1,41 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { formatLocalizedNumber } from "../i18n/toolLocales";
 import {
   calculateLaminateNeeds,
   type LaminateCalculatorInput,
 } from "../converter/laminateCalculator";
+
+type SupportedLocale = "tr" | "en";
+
+type LaminateCopy = {
+  fieldArea: string;
+  fieldPackageArea: string;
+  fieldWaste: string;
+  emptyState: string;
+  resultTotalArea: string;
+  packageCountLabel: (count: number) => string;
+};
+
+const copyByLocale: Record<SupportedLocale, LaminateCopy> = {
+  tr: {
+    fieldArea: "Kaplanacak Alan (m²)",
+    fieldPackageArea: "Paket İçi Alan (m²)",
+    fieldWaste: "Fire Payı (%)",
+    emptyState: "Geçerli değerler girerek sonucu görebilirsin.",
+    resultTotalArea: "Fire dahil toplam alan",
+    packageCountLabel: (count) => `Gereken paket sayısı: ${count} paket`,
+  },
+  en: {
+    fieldArea: "Area to Cover (m²)",
+    fieldPackageArea: "Area per Package (m²)",
+    fieldWaste: "Waste Allowance (%)",
+    emptyState: "Enter valid values to see the result.",
+    resultTotalArea: "Total area including waste",
+    packageCountLabel: (count) => `Packages needed: ${count}`,
+  },
+};
 
 function parseNumericValue(rawValue: string) {
   const normalizedValue = rawValue.trim().replace(/,/g, ".");
@@ -18,11 +49,17 @@ function parseNumericValue(rawValue: string) {
   return Number.isFinite(numericValue) ? numericValue : Number.NaN;
 }
 
-function formatArea(value: number) {
-  return `${value.toLocaleString("tr-TR", { maximumFractionDigits: 2 })} m²`;
+function formatArea(value: number, locale: SupportedLocale) {
+  return `${formatLocalizedNumber(value, locale, { maximumFractionDigits: 2 })} m²`;
 }
 
-export default function LaminateCalculator() {
+export default function LaminateCalculator({
+  locale = "tr",
+}: {
+  locale?: SupportedLocale;
+}) {
+  const copy = copyByLocale[locale];
+
   const [area, setArea] = useState("20");
   const [packageAreaM2, setPackageAreaM2] = useState("2.222");
   const [wastePercent, setWastePercent] = useState("10");
@@ -42,7 +79,7 @@ export default function LaminateCalculator() {
     <div className="category-general-converter">
       <div className="paint-calculator-grid">
         <label className="category-general-converter-field">
-          <span>Kaplanacak Alan (m²)</span>
+          <span>{copy.fieldArea}</span>
           <input
             inputMode="decimal"
             type="text"
@@ -52,7 +89,7 @@ export default function LaminateCalculator() {
         </label>
 
         <label className="category-general-converter-field">
-          <span>Paket İçi Alan (m²)</span>
+          <span>{copy.fieldPackageArea}</span>
           <input
             inputMode="decimal"
             type="text"
@@ -62,7 +99,7 @@ export default function LaminateCalculator() {
         </label>
 
         <label className="category-general-converter-field">
-          <span>Fire Payı (%)</span>
+          <span>{copy.fieldWaste}</span>
           <input
             inputMode="decimal"
             type="text"
@@ -74,18 +111,20 @@ export default function LaminateCalculator() {
 
       <div aria-live="polite" className="category-general-converter-result paint-calculator-result">
         {!result ? (
-          <strong>Geçerli değerler girerek sonucu görebilirsin.</strong>
+          <strong>{copy.emptyState}</strong>
         ) : (
           <>
             <div className="paint-calculator-result-grid">
               <div>
-                <span>Fire dahil toplam alan</span>
-                <strong>{formatArea(result.requiredAreaWithWaste)}</strong>
+                <span>{copy.resultTotalArea}</span>
+                <strong>
+                  {formatArea(result.requiredAreaWithWaste, locale)}
+                </strong>
               </div>
             </div>
 
             <p className="paint-calculator-liters">
-              Gereken paket sayısı: <strong>{result.requiredPackageCount} paket</strong>
+              <strong>{copy.packageCountLabel(result.requiredPackageCount)}</strong>
             </p>
           </>
         )}

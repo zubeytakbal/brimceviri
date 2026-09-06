@@ -1,13 +1,185 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import type { Locale } from "../i18n/config";
+import { formatLocalizedNumber } from "../i18n/toolLocales";
 import {
   calculateDistanceFromDurationPace,
   calculateDurationFromDistancePace,
   calculatePaceFromDistanceDuration,
   type PaceCalculationMode,
   type PaceCalculatorResult,
+  type RaceEstimate,
 } from "../converter/paceCalculator";
+
+const copyByLocale: Record<
+  Locale,
+  {
+    modePrompt: string;
+    modeButtons: Record<PaceCalculationMode, string>;
+    labels: {
+      distance: string;
+      durationHours: string;
+      durationMinutes: string;
+      durationSeconds: string;
+      paceMinutes: string;
+      paceSeconds: string;
+    };
+    emptyState: string;
+    resultLabels: {
+      pace: string;
+      duration: string;
+      distance: string;
+      speed: string;
+      estimatedTime: string;
+    };
+  }
+> = {
+  tr: {
+    modePrompt: "Ne hesaplamak istiyorsun?",
+    modeButtons: {
+      pace: "Tempo Hesapla",
+      duration: "Sure Hesapla",
+      distance: "Mesafe Hesapla",
+    },
+    labels: {
+      distance: "Mesafe (km)",
+      durationHours: "Sure - Saat",
+      durationMinutes: "Sure - Dakika",
+      durationSeconds: "Sure - Saniye",
+      paceMinutes: "Tempo - Dakika/km",
+      paceSeconds: "Tempo - Saniye/km",
+    },
+    emptyState: "Gecerli degerler girerek sonucu gorebilirsin.",
+    resultLabels: {
+      pace: "Tempo",
+      duration: "Sure",
+      distance: "Mesafe",
+      speed: "Hiz",
+      estimatedTime: "tahmini sure",
+    },
+  },
+  en: {
+    modePrompt: "What do you want to calculate?",
+    modeButtons: {
+      pace: "Calculate Pace",
+      duration: "Calculate Time",
+      distance: "Calculate Distance",
+    },
+    labels: {
+      distance: "Distance (km)",
+      durationHours: "Time - Hours",
+      durationMinutes: "Time - Minutes",
+      durationSeconds: "Time - Seconds",
+      paceMinutes: "Pace - Minutes/km",
+      paceSeconds: "Pace - Seconds/km",
+    },
+    emptyState: "Enter valid values to see the result.",
+    resultLabels: {
+      pace: "Pace",
+      duration: "Time",
+      distance: "Distance",
+      speed: "Speed",
+      estimatedTime: "estimated time",
+    },
+  },
+  de: {
+    modePrompt: "Was moechten Sie berechnen?",
+    modeButtons: {
+      pace: "Tempo berechnen",
+      duration: "Zeit berechnen",
+      distance: "Distanz berechnen",
+    },
+    labels: {
+      distance: "Distanz (km)",
+      durationHours: "Zeit - Stunden",
+      durationMinutes: "Zeit - Minuten",
+      durationSeconds: "Zeit - Sekunden",
+      paceMinutes: "Tempo - Minuten/km",
+      paceSeconds: "Tempo - Sekunden/km",
+    },
+    emptyState: "Geben Sie gueltige Werte ein, um das Ergebnis zu sehen.",
+    resultLabels: {
+      pace: "Tempo",
+      duration: "Zeit",
+      distance: "Distanz",
+      speed: "Geschwindigkeit",
+      estimatedTime: "geschaetzte Zeit",
+    },
+  },
+  ar: {
+    modePrompt: "ماذا تريد أن تحسب؟",
+    modeButtons: {
+      pace: "احسب الوتيرة",
+      duration: "احسب الزمن",
+      distance: "احسب المسافة",
+    },
+    labels: {
+      distance: "المسافة (كم)",
+      durationHours: "الزمن - ساعات",
+      durationMinutes: "الزمن - دقائق",
+      durationSeconds: "الزمن - ثوانٍ",
+      paceMinutes: "الوتيرة - دقيقة/كم",
+      paceSeconds: "الوتيرة - ثانية/كم",
+    },
+    emptyState: "أدخل قيمًا صحيحة لعرض النتيجة.",
+    resultLabels: {
+      pace: "الوتيرة",
+      duration: "الزمن",
+      distance: "المسافة",
+      speed: "السرعة",
+      estimatedTime: "الزمن التقديري",
+    },
+  },
+uz: {
+    modePrompt: "What do you want to calculate?",
+    modeButtons: {
+      pace: "Calculate Pace",
+      duration: "Calculate Time",
+      distance: "Calculate Distance",
+    },
+    labels: {
+      distance: "Distance (km)",
+      durationHours: "Time - Hours",
+      durationMinutes: "Time - Minutes",
+      durationSeconds: "Time - Seconds",
+      paceMinutes: "Pace - Minutes/km",
+      paceSeconds: "Pace - Seconds/km",
+    },
+    emptyState: "Enter valid values to see the result.",
+    resultLabels: {
+      pace: "Pace",
+      duration: "Time",
+      distance: "Distance",
+      speed: "Speed",
+      estimatedTime: "estimated time",
+    },
+  },
+bn: {
+    modePrompt: "What do you want to calculate?",
+    modeButtons: {
+      pace: "Calculate Pace",
+      duration: "Calculate Time",
+      distance: "Calculate Distance",
+    },
+    labels: {
+      distance: "Distance (km)",
+      durationHours: "Time - Hours",
+      durationMinutes: "Time - Minutes",
+      durationSeconds: "Time - Seconds",
+      paceMinutes: "Pace - Minutes/km",
+      paceSeconds: "Pace - Seconds/km",
+    },
+    emptyState: "Enter valid values to see the result.",
+    resultLabels: {
+      pace: "Pace",
+      duration: "Time",
+      distance: "Distance",
+      speed: "Speed",
+      estimatedTime: "estimated time",
+    },
+  },
+};
 
 function parseNumericValue(rawValue: string) {
   const normalizedValue = rawValue.trim().replace(/,/g, ".");
@@ -33,16 +205,45 @@ function formatDuration(totalSeconds: number) {
   return `${minutes}:${String(seconds).padStart(2, "0")}`;
 }
 
-function formatPace(secondsPerKm: number) {
+function formatPace(secondsPerKm: number, locale: Locale) {
   const minutes = Math.floor(secondsPerKm / 60);
   const seconds = Math.round(secondsPerKm % 60);
+  const suffix = locale === "de" ? "min/km" : "min/km";
 
-  return `${minutes}:${String(seconds).padStart(2, "0")} dk/km`;
+  return `${minutes}:${String(seconds).padStart(2, "0")} ${suffix}`;
 }
 
-export default function PaceCalculator() {
-  const [mode, setMode] = useState<PaceCalculationMode>("pace");
+function getRaceLabel(race: RaceEstimate, locale: Locale) {
+  if (race.distanceKm === 21.0975) {
+    return locale === "de"
+      ? "Halbmarathon"
+      : locale === "ar"
+        ? "نصف ماراثون"
+      : locale === "en"
+        ? "Half Marathon"
+        : "Yari Maraton";
+  }
 
+  if (race.distanceKm === 42.195) {
+    return locale === "de"
+      ? "Marathon"
+      : locale === "ar"
+        ? "ماراثون"
+        : locale === "en"
+          ? "Marathon"
+          : "Maraton";
+  }
+
+  return race.label;
+}
+
+export default function PaceCalculator({
+  locale = "tr",
+}: {
+  locale?: Locale;
+}) {
+  const copy = copyByLocale[locale];
+  const [mode, setMode] = useState<PaceCalculationMode>("pace");
   const [distanceKm, setDistanceKm] = useState("10");
   const [durationHours, setDurationHours] = useState("0");
   const [durationMinutes, setDurationMinutes] = useState("50");
@@ -74,7 +275,7 @@ export default function PaceCalculator() {
     <div className="category-general-converter">
       <div className="engineering-calculator-card">
         <div className="engineering-targets">
-          <span>Ne hesaplamak istiyorsun?</span>
+          <span>{copy.modePrompt}</span>
 
           <div className="engineering-target-grid hydrostatic-target-grid">
             <button
@@ -82,21 +283,21 @@ export default function PaceCalculator() {
               className={`engineering-target-button${mode === "pace" ? " is-active" : ""}`}
               onClick={() => setMode("pace")}
             >
-              Tempo Hesapla
+              {copy.modeButtons.pace}
             </button>
             <button
               type="button"
               className={`engineering-target-button${mode === "duration" ? " is-active" : ""}`}
               onClick={() => setMode("duration")}
             >
-              Süre Hesapla
+              {copy.modeButtons.duration}
             </button>
             <button
               type="button"
               className={`engineering-target-button${mode === "distance" ? " is-active" : ""}`}
               onClick={() => setMode("distance")}
             >
-              Mesafe Hesapla
+              {copy.modeButtons.distance}
             </button>
           </div>
         </div>
@@ -104,7 +305,7 @@ export default function PaceCalculator() {
         <div className="paint-calculator-grid">
           {mode !== "distance" && (
             <label className="category-general-converter-field">
-              <span>Mesafe (km)</span>
+              <span>{copy.labels.distance}</span>
               <input
                 inputMode="decimal"
                 type="text"
@@ -117,7 +318,7 @@ export default function PaceCalculator() {
           {mode !== "duration" && (
             <>
               <label className="category-general-converter-field">
-                <span>Süre — Saat</span>
+                <span>{copy.labels.durationHours}</span>
                 <input
                   inputMode="numeric"
                   type="text"
@@ -126,7 +327,7 @@ export default function PaceCalculator() {
                 />
               </label>
               <label className="category-general-converter-field">
-                <span>Süre — Dakika</span>
+                <span>{copy.labels.durationMinutes}</span>
                 <input
                   inputMode="numeric"
                   type="text"
@@ -135,7 +336,7 @@ export default function PaceCalculator() {
                 />
               </label>
               <label className="category-general-converter-field">
-                <span>Süre — Saniye</span>
+                <span>{copy.labels.durationSeconds}</span>
                 <input
                   inputMode="numeric"
                   type="text"
@@ -149,7 +350,7 @@ export default function PaceCalculator() {
           {mode !== "pace" && (
             <>
               <label className="category-general-converter-field">
-                <span>Tempo — Dakika/km</span>
+                <span>{copy.labels.paceMinutes}</span>
                 <input
                   inputMode="numeric"
                   type="text"
@@ -158,7 +359,7 @@ export default function PaceCalculator() {
                 />
               </label>
               <label className="category-general-converter-field">
-                <span>Tempo — Saniye/km</span>
+                <span>{copy.labels.paceSeconds}</span>
                 <input
                   inputMode="numeric"
                   type="text"
@@ -173,25 +374,27 @@ export default function PaceCalculator() {
 
       <div aria-live="polite" className="category-general-converter-result paint-calculator-result">
         {!result ? (
-          <strong>Geçerli değerler girerek sonucu görebilirsin.</strong>
+          <strong>{copy.emptyState}</strong>
         ) : (
           <>
             <p className="paint-calculator-liters">
               {mode === "pace" && (
                 <>
-                  Tempo: <strong>{formatPace(result.paceSecondsPerKm)}</strong>
+                  {copy.resultLabels.pace}: <strong>{formatPace(result.paceSecondsPerKm, locale)}</strong>
                 </>
               )}
               {mode === "duration" && (
                 <>
-                  Süre: <strong>{formatDuration(result.durationSeconds)}</strong>
+                  {copy.resultLabels.duration}: <strong>{formatDuration(result.durationSeconds)}</strong>
                 </>
               )}
               {mode === "distance" && (
                 <>
-                  Mesafe:{" "}
+                  {copy.resultLabels.distance}:{" "}
                   <strong>
-                    {result.distanceKm.toLocaleString("tr-TR", { maximumFractionDigits: 2 })} km
+                    {formatLocalizedNumber(result.distanceKm, locale, {
+                      maximumFractionDigits: 2,
+                    })} km
                   </strong>
                 </>
               )}
@@ -199,19 +402,23 @@ export default function PaceCalculator() {
 
             <div className="paint-calculator-result-grid">
               <div>
-                <span>Tempo</span>
-                <strong>{formatPace(result.paceSecondsPerKm)}</strong>
+                <span>{copy.resultLabels.pace}</span>
+                <strong>{formatPace(result.paceSecondsPerKm, locale)}</strong>
               </div>
               <div>
-                <span>Hız</span>
+                <span>{copy.resultLabels.speed}</span>
                 <strong>
-                  {result.speedKmh.toLocaleString("tr-TR", { maximumFractionDigits: 1 })} km/sa
+                  {formatLocalizedNumber(result.speedKmh, locale, {
+                    maximumFractionDigits: 1,
+                  })} km/h
                 </strong>
               </div>
               <div>
-                <span>Mesafe</span>
+                <span>{copy.resultLabels.distance}</span>
                 <strong>
-                  {result.distanceKm.toLocaleString("tr-TR", { maximumFractionDigits: 2 })} km
+                  {formatLocalizedNumber(result.distanceKm, locale, {
+                    maximumFractionDigits: 2,
+                  })} km
                 </strong>
               </div>
             </div>
@@ -223,7 +430,10 @@ export default function PaceCalculator() {
                     {formatDuration(race.durationSeconds)}
                   </span>
                   <span className="sleep-calculator-detail">
-                    {race.label} ({race.distanceKm.toLocaleString("tr-TR")} km) tahmini süre
+                    {getRaceLabel(race, locale)} (
+                    {formatLocalizedNumber(race.distanceKm, locale, {
+                      maximumFractionDigits: 4,
+                    })} km) {copy.resultLabels.estimatedTime}
                   </span>
                 </li>
               ))}

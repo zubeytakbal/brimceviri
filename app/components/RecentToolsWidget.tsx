@@ -10,14 +10,15 @@ import {
 } from "../converter/recentTools";
 
 const copyByLocale = {
-  tr: { heading: "Son Baktıkların", clear: "Temizle" },
+  tr: { heading: "Son Baktiklarin", clear: "Temizle" },
   en: { heading: "Recently Viewed", clear: "Clear" },
+  ar: { heading: "شوهدت مؤخرا", clear: "مسح" },
 } as const;
 
 export default function RecentToolsWidget({
   locale = "tr",
 }: {
-  locale?: "tr" | "en";
+  locale?: "tr" | "en" | "ar";
 }) {
   const items = useSyncExternalStore(
     subscribeToRecentTools,

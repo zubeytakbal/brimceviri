@@ -12,6 +12,7 @@ import {
   type ThermalConductivityUnit,
 } from "../../converter/engineeringCalculatorUnits";
 import {
+  conductivityPresets,
   solveHeatConduction,
   type HeatConductionTarget,
 } from "../../converter/heatConduction";
@@ -26,12 +27,6 @@ type HeatConductionCalculatorProps = {
   title: string;
   description: string;
   resultHeading: string;
-};
-
-type ConductivityPreset = {
-  id: string;
-  label: string;
-  value: string;
 };
 
 const copy = {
@@ -102,47 +97,29 @@ const copy = {
     siEquivalent: "SI-Äquivalent",
     clear: "Werte zurücksetzen",
   },
+  ar: {
+    targetLabel: "هدف الحساب",
+    power: "احسب معدل انتقال الحرارة",
+    thermalConductivity: "احسب الموصلية",
+    area: "احسب المساحة",
+    temperatureDifference: "احسب فرق الحرارة",
+    length: "احسب السمك",
+    powerValue: "معدل انتقال الحرارة",
+    thermalConductivityValue: "الموصلية الحرارية",
+    areaValue: "المساحة",
+    temperatureDifferenceValue: "فرق الحرارة",
+    lengthValue: "السمك",
+    presetLabel: "إعداد المادة",
+    presetNote:
+      "قيم الموصلية الجاهزة تقريبية وقد تتغير حسب الحرارة والرطوبة وبنية المادة.",
+    customPreset: "قيمة مخصصة",
+    resultLive: "نتيجة الحساب",
+    automaticResultUnit: "وحدة النتيجة التلقائية",
+    formula: "المعادلة بعد التعويض",
+    siEquivalent: "مكافئ SI",
+    clear: "مسح القيم",
+  },
 } as const;
-
-const conductivityPresets: Record<
-  CalculatorLocale,
-  ConductivityPreset[]
-> = {
-  tr: [
-    { id: "custom", label: "Özel değer", value: "" },
-    { id: "copper", label: "Bakır", value: "401" },
-    { id: "aluminum", label: "Alüminyum", value: "205" },
-    { id: "steel", label: "Çelik", value: "50" },
-    { id: "glass", label: "Cam", value: "1.05" },
-    { id: "concrete", label: "Beton", value: "1.4" },
-    { id: "wood", label: "Ahşap", value: "0.13" },
-    {
-      id: "air",
-      label: "Hava",
-      value: "0.026",
-    },
-  ],
-  en: [
-    { id: "custom", label: "Custom", value: "" },
-    { id: "copper", label: "Copper", value: "401" },
-    { id: "aluminum", label: "Aluminum", value: "205" },
-    { id: "steel", label: "Steel", value: "50" },
-    { id: "glass", label: "Glass", value: "1.05" },
-    { id: "concrete", label: "Concrete", value: "1.4" },
-    { id: "wood", label: "Wood", value: "0.13" },
-    { id: "air", label: "Air", value: "0.026" },
-  ],
-  de: [
-    { id: "custom", label: "Benutzerdefiniert", value: "" },
-    { id: "copper", label: "Kupfer", value: "401" },
-    { id: "aluminum", label: "Aluminium", value: "205" },
-    { id: "steel", label: "Stahl", value: "50" },
-    { id: "glass", label: "Glas", value: "1.05" },
-    { id: "concrete", label: "Beton", value: "1.4" },
-    { id: "wood", label: "Holz", value: "0.13" },
-    { id: "air", label: "Luft", value: "0.026" },
-  ],
-};
 
 function formatResultText(display: string, unit: string) {
   return unit ? `${display} ${unit}` : display;

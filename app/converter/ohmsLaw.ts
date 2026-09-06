@@ -73,6 +73,16 @@ const messages = {
     resistancePositive:
       "Der Widerstand muss größer als null sein.",
   },
+  ar: {
+    missing: "أدخل القيمتين المطلوبتين للحساب.",
+    invalid: "أدخل قيما رقمية صحيحة.",
+    currentNonZero:
+      "لا يمكن أن يكون التيار صفرا في هذا الحساب.",
+    resistanceNonZero:
+      "لا يمكن أن تكون المقاومة صفرا في هذا الحساب.",
+    resistancePositive:
+      "يجب أن تكون المقاومة أكبر من الصفر.",
+  },
 } as const;
 
 function createErrorResult(

@@ -81,6 +81,15 @@ const messages = {
     crossSectionPositive:
       "Der Leiterquerschnitt muss grosser als null sein.",
   },
+  ar: {
+    missing: "أدخل قيم الجهد والتيار والطول ومساحة المقطع.",
+    invalid: "أدخل قيما رقمية صحيحة.",
+    voltagePositive: "يجب أن يكون جهد المصدر أكبر من الصفر.",
+    currentPositive: "يجب أن يكون التيار أكبر من الصفر.",
+    lengthPositive: "يجب أن يكون طول الكابل أكبر من الصفر.",
+    crossSectionPositive:
+      "يجب أن تكون مساحة مقطع الموصل أكبر من الصفر.",
+  },
 } as const;
 
 function emptyResult(error: string): VoltageDropResult {

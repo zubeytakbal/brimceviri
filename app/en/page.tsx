@@ -5,6 +5,7 @@ import { buildSiteUrl } from "../siteConfig";
 const homeUrl = buildSiteUrl("/");
 const englishHomeUrl = buildSiteUrl("/en");
 const germanHomeUrl = buildSiteUrl("/de");
+const arabicHomeUrl = buildSiteUrl("/ar");
 
 export const metadata: Metadata = {
   title: "Find the unit conversion you need",
@@ -17,6 +18,7 @@ export const metadata: Metadata = {
       tr: homeUrl,
       en: englishHomeUrl,
       de: germanHomeUrl,
+      ar: arabicHomeUrl,
       "x-default": homeUrl,
     },
   },

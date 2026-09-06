@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import PairConverter from "../../../converter/PairConverter";
 import { findEnglishUnitArticle } from "../../../converter/englishUnitArticles";
+import { buildFullLanguageAlternates } from "../../../i18n/routing";
 import { englishConversionPages } from "../../../converter/localizedConversionPages";
 import { getEnglishCategoryPathByCategory } from "../../../converter/localizedCategoryPages";
 import { findGermanUnitPageByTurkishSlug } from "../../../converter/localizedGermanUnitPages";
@@ -69,9 +70,6 @@ export async function generateMetadata({
   const title =
     `${unitPage.name}: Definition, Symbol, History ` +
     `and Conversions`;
-  const germanPage = findGermanUnitPageByTurkishSlug(
-    unitPage.sourceSlug
-  );
 
   const description =
     `The symbol for ${unitPage.name.toLowerCase()} is ${unitPage.symbol}. ` +
@@ -84,14 +82,7 @@ export async function generateMetadata({
 
     alternates: {
       canonical: `/en/units/${unitPage.slug}`,
-      languages: {
-        tr: `/birimler/${unitPage.sourceSlug}`,
-        en: `/en/units/${unitPage.slug}`,
-        ...(germanPage
-          ? { de: `/de/einheiten/${germanPage.slug}` }
-          : {}),
-        "x-default": `/birimler/${unitPage.sourceSlug}`,
-      },
+      ...buildFullLanguageAlternates(`/en/units/${unitPage.slug}`),
     },
 
     openGraph: {

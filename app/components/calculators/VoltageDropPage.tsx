@@ -10,6 +10,7 @@ import {
 import { formatEngineeringValue } from "../../converter/pressureForceArea";
 import type { CalculatorLocale } from "../../converter/pressureForceArea";
 import type { EngineeringUnitDefinition } from "../../converter/engineeringUnits";
+import { resistivityReferenceTable } from "../../converter/electricalConductor";
 import VoltageDropCalculator from "./VoltageDropCalculator";
 
 type UnitTableSection = {
@@ -38,10 +39,17 @@ const unitSectionHeadings = {
     length: "Langeneinheiten",
     area: "Querschnittseinheiten",
   },
+  ar: {
+    voltage: "وحدات الجهد",
+    current: "وحدات التيار",
+    length: "وحدات الطول",
+    area: "وحدات المقطع",
+  },
 } as const;
 
 function getUnitSections(locale: CalculatorLocale): UnitTableSection[] {
-  const headings = unitSectionHeadings[locale];
+  const headings =
+    unitSectionHeadings[locale === "ar" ? "en" : locale];
 
   return [
     {
@@ -82,6 +90,8 @@ type PageCopy = {
   formulasHeading: string;
   variablesHeading: string;
   unitsHeading: string;
+  resistivityTableHeading: string;
+  resistivityTableColumns: { material: string; resistivity: string };
   examplesHeading: string;
   applicationsHeading: string;
   limitationsHeading: string;
@@ -126,6 +136,11 @@ const copy: Record<CalculatorLocale, PageCopy> = {
     formulasHeading: "Kullanilan formul",
     variablesHeading: "Degiskenler ve anlamlari",
     unitsHeading: "Birim tablolari",
+    resistivityTableHeading: "Iletken Ozdirenc Tablosu",
+    resistivityTableColumns: {
+      material: "Malzeme",
+      resistivity: "Ozdirenc (Ohm*mm2/m)",
+    },
     examplesHeading: "Ornek kullanim",
     applicationsHeading: "Tipik kullanim alanlari",
     limitationsHeading: "Varsayimlar ve sinirlamalar",
@@ -226,6 +241,11 @@ const copy: Record<CalculatorLocale, PageCopy> = {
     formulasHeading: "Formula used",
     variablesHeading: "Variables and meaning",
     unitsHeading: "Unit reference tables",
+    resistivityTableHeading: "Conductor Resistivity Table",
+    resistivityTableColumns: {
+      material: "Material",
+      resistivity: "Resistivity (Ω·mm²/m)",
+    },
     examplesHeading: "Worked examples",
     applicationsHeading: "Typical applications",
     limitationsHeading: "Assumptions and limitations",
@@ -326,6 +346,11 @@ const copy: Record<CalculatorLocale, PageCopy> = {
     formulasHeading: "Verwendete Formel",
     variablesHeading: "Variablen und Bedeutung",
     unitsHeading: "Einheitentabellen",
+    resistivityTableHeading: "Tabelle des spezifischen Widerstands von Leitern",
+    resistivityTableColumns: {
+      material: "Material",
+      resistivity: "Spezifischer Widerstand (Ω·mm²/m)",
+    },
     examplesHeading: "Anwendungsbeispiele",
     applicationsHeading: "Typische Anwendungen",
     limitationsHeading: "Annahmen und Grenzen",
@@ -407,6 +432,110 @@ const copy: Record<CalculatorLocale, PageCopy> = {
       { label: "Meter (m) Leitfaden", href: "/de/einheiten/meter" },
     ],
   },
+  ar: {
+    breadcrumbs: [
+      { label: "الرئيسية", href: "/ar" },
+      {
+        label: "الحاسبات الكهربائية",
+        href: "/ar/engineering-calculators/electrical-calculators",
+      },
+      { label: "حاسبة هبوط الجهد" },
+    ],
+    breadcrumbLabel: "مسار التنقل",
+    title: "حاسبة هبوط الجهد",
+    description:
+      "احسب مقدار هبوط الجهد ونسبته والجهد عند نهاية الخط مع الأخذ في الاعتبار الطول والمادة ومساحة المقطع.",
+    heroEyebrow: "حاسبة كهربائية",
+    heroResultHeading: "نتيجة هبوط الجهد",
+    introHeading: "متى تستخدم هذه الأداة؟",
+    formulasHeading: "المعادلات المستخدمة",
+    variablesHeading: "المتغيرات ومعناها",
+    unitsHeading: "جداول الوحدات",
+    resistivityTableHeading: "جدول المقاومية النوعية للموصلات",
+    resistivityTableColumns: {
+      material: "المادة",
+      resistivity: "المقاومية النوعية (Ω·mm²/m)",
+    },
+    examplesHeading: "أمثلة سريعة",
+    applicationsHeading: "استخدامات شائعة",
+    limitationsHeading: "افتراضات وحدود",
+    sourcesHeading: "المراجع",
+    relatedHeading: "روابط مرتبطة",
+    relatedCalculatorsHeading: "حاسبات مرتبطة",
+    relatedGuidesHeading: "أدلة وحدات مرتبطة",
+    tableColumns: {
+      unitName: "اسم الوحدة",
+      symbol: "الرمز",
+      siEquivalent: "مكافئ SI",
+      typicalUse: "الاستخدام الشائع",
+    },
+    intro: [
+      "تقدّر هذه الأداة مقدار فقدان الجهد على طول الكابل ونسبة هذا الفقد من جهد المصدر.",
+      "تساعدك في التحقق الأولي من صلاحية المقطع المختار قبل التوسع في مراجعات التنفيذ الفعلية.",
+    ],
+    formulas: [
+      "ΔU = k x I x L x ρ / A",
+      "في الأحادي الطور وDC: k = 2",
+      "في الثلاثي الطور: k = √3",
+    ],
+    variables: [
+      { term: "I", explanation: "تيار الخط." },
+      { term: "L", explanation: "طول الكابل في اتجاه واحد." },
+      { term: "ρ", explanation: "المقاومية النوعية لمادة الموصل." },
+      { term: "A", explanation: "مساحة مقطع الموصل." },
+      { term: "ΔU", explanation: "هبوط الجهد الناتج." },
+    ],
+    examples: [
+      {
+        title: "400 V و20 A وطول 50 m ومقطع 6 mm²",
+        body: "في نظام ثلاثي الطور نحاسي تكون النتيجة التقريبية 5.05 V أي نحو 1.26%.",
+      },
+      {
+        title: "230 V و16 A وطول 30 m ومقطع 2.5 mm²",
+        body: "في نظام أحادي الطور نحاسي تكون النتيجة التقريبية 6.72 V أي نحو 2.92%.",
+      },
+    ],
+    applications: [
+      "فحص خطوط التغذية الداخلية",
+      "مراجعة تغذية المحركات",
+      "تقييم الخطوط الطويلة للمعدات البعيدة",
+      "التحقق المبدئي من كفاية المقطع المختار",
+    ],
+    limitations: [
+      "الحساب يركز على الهبوط المقاومي ولا يغطي المفاعلة أو التوافقيات.",
+      "القيم المستخدمة للمقاومية تقريبية وتعتمد عمليا على درجة الحرارة.",
+      "يجب التحقق لاحقا من سعة التيار ومتطلبات الكود المحلي بشكل منفصل.",
+    ],
+    sources: [
+      {
+        label: "IEC electrotechnical concepts and symbols",
+        href: "https://www.iec.ch",
+      },
+      {
+        label: "NIST Guide to the SI",
+        href: "https://www.nist.gov/pml/special-publication-811",
+      },
+    ],
+    relatedCalculators: [
+      {
+        label: "حاسبة مقطع الكابل",
+        href: "/ar/engineering-calculators/electrical-calculators/cable-size-calculator",
+      },
+      {
+        label: "تحويل kW إلى أمبير",
+        href: "/ar/engineering-calculators/electrical-calculators/kw-to-ampere-calculator",
+      },
+      {
+        label: "مركز الحاسبات الكهربائية",
+        href: "/ar/engineering-calculators/electrical-calculators",
+      },
+    ],
+    relatedGuides: [
+      { label: "دليل الفولت", href: "/ar/unit-guides/volt" },
+      { label: "دليل الأمبير", href: "/ar/unit-guides/ampere" },
+      { label: "دليل المتر", href: "/ar/unit-guides/meter" },
+    ],
+  },
 };
 
 function renderTypicalUse(
@@ -480,6 +609,28 @@ export default function VoltageDropPage({
               </div>
             ))}
           </dl>
+        </section>
+
+        <section className="conversion-section">
+          <h2>{strings.resistivityTableHeading}</h2>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th scope="col">{strings.resistivityTableColumns.material}</th>
+                  <th scope="col">{strings.resistivityTableColumns.resistivity}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {resistivityReferenceTable[locale].map((row) => (
+                  <tr key={row.id}>
+                    <td>{row.label}</td>
+                    <td>{row.resistivity}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </section>
 
         <section className="conversion-section">

@@ -101,6 +101,28 @@ const copy = {
     includeSurfacePressure: "Oberflächendruck einbeziehen",
     advancedOptions: "Erweiterte Optionen",
   },
+  ar: {
+    targetLabel: "هدف الحساب",
+    pressure: "احسب الضغط",
+    density: "احسب الكثافة",
+    depth: "احسب العمق",
+    gravity: "احسب عجلة الجاذبية",
+    pressureValue: "فرق الضغط",
+    densityValue: "الكثافة",
+    depthValue: "العمق",
+    gravityValue: "عجلة الجاذبية",
+    resultLive: "نتيجة الحساب",
+    automaticResultUnit: "وحدة النتيجة التلقائية",
+    siEquivalent: "مكافئ SI",
+    formula: "المعادلة بعد التعويض",
+    clear: "مسح القيم",
+    densityPresetLabel: "إعداد السائل",
+    densityPresetNote:
+      "تتغير الكثافة مع الحرارة والضغط والملوحة والتركيب. القيم الجاهزة تقريبية.",
+    customPreset: "قيمة مخصصة",
+    includeSurfacePressure: "تضمين ضغط السطح",
+    advancedOptions: "خيارات متقدمة",
+  },
 } as const;
 
 const densityPresets: Record<
@@ -173,6 +195,29 @@ const densityPresets: Record<
     {
       id: "mercury-20c",
       label: "Quecksilber, etwa 20 °C",
+      value: "13546",
+    },
+  ],
+  ar: [
+    { id: "custom", label: "قيمة مخصصة", value: "" },
+    {
+      id: "pure-water-20c",
+      label: "ماء نقي، حوالي 20 °م",
+      value: "998.2",
+    },
+    {
+      id: "rounded-water",
+      label: "ماء هندسي تقريبي",
+      value: "1000",
+    },
+    {
+      id: "seawater",
+      label: "ماء البحر، تقريبا",
+      value: "1025",
+    },
+    {
+      id: "mercury-20c",
+      label: "زئبق، حوالي 20 °م",
       value: "13546",
     },
   ],

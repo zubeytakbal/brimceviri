@@ -113,6 +113,24 @@ const messages = {
     nonPhysicalLength:
       "Diese Eingaben ergeben keine physikalisch sinnvolle Dicke.",
   },
+  ar: {
+    missing: "أدخل القيم الأربع المطلوبة للحساب.",
+    invalid: "أدخل قيما رقمية صحيحة.",
+    conductivityPositive:
+      "يجب أن تكون الموصلية الحرارية أكبر من الصفر.",
+    areaPositive: "يجب أن تكون المساحة أكبر من الصفر.",
+    lengthPositive: "يجب أن يكون السمك أكبر من الصفر.",
+    temperatureDifferenceNonZero:
+      "يتطلب الحساب العكسي فرقا حراريا غير صفري.",
+    powerNonZero:
+      "يتطلب حساب السمك معدل انتقال حرارة غير صفري.",
+    nonPhysicalConductivity:
+      "هذه القيم لا تعطي موصلية ذات معنى فيزيائي.",
+    nonPhysicalArea:
+      "هذه القيم لا تعطي مساحة ذات معنى فيزيائي.",
+    nonPhysicalLength:
+      "هذه القيم لا تعطي سماكة ذات معنى فيزيائي.",
+  },
 } as const;
 
 function createErrorResult(
@@ -544,3 +562,78 @@ export function solveHeatConduction({
       `L = ${formatValue(resultValue, locale)} ${resultUnit}`,
   };
 }
+
+export type ConductivityPreset = {
+  id: string;
+  label: string;
+  value: string;
+};
+
+// Bu on ayarlar hem "use client" hesaplayici bileseninde (dropdown) hem de
+// sunucu tarafinda render edilen sayfada (gorunur referans tablosu) kullanilir
+// -- bu yuzden client bilesenden ayri, duz bir modulde tutuluyor.
+export const conductivityPresets: Record<
+  CalculatorLocale,
+  ConductivityPreset[]
+> = {
+  tr: [
+    { id: "custom", label: "Özel değer", value: "" },
+    { id: "copper", label: "Bakır", value: "401" },
+    { id: "aluminum", label: "Alüminyum", value: "205" },
+    { id: "steel", label: "Çelik", value: "50" },
+    { id: "glass", label: "Cam", value: "1.05" },
+    { id: "concrete", label: "Beton", value: "1.4" },
+    { id: "wood", label: "Ahşap", value: "0.13" },
+    { id: "air", label: "Hava", value: "0.026" },
+    { id: "glassWool", label: "Cam Yünü", value: "0.035" },
+    { id: "rockWool", label: "Taş Yünü", value: "0.04" },
+    { id: "eps", label: "EPS (Genişletilmiş Polistiren)", value: "0.038" },
+    { id: "xps", label: "XPS (Ekstrüde Polistiren)", value: "0.035" },
+    { id: "pur", label: "Poliüretan Köpük (PUR)", value: "0.028" },
+  ],
+  en: [
+    { id: "custom", label: "Custom", value: "" },
+    { id: "copper", label: "Copper", value: "401" },
+    { id: "aluminum", label: "Aluminum", value: "205" },
+    { id: "steel", label: "Steel", value: "50" },
+    { id: "glass", label: "Glass", value: "1.05" },
+    { id: "concrete", label: "Concrete", value: "1.4" },
+    { id: "wood", label: "Wood", value: "0.13" },
+    { id: "air", label: "Air", value: "0.026" },
+    { id: "glassWool", label: "Glass Wool", value: "0.035" },
+    { id: "rockWool", label: "Rock Wool", value: "0.04" },
+    { id: "eps", label: "EPS (Expanded Polystyrene)", value: "0.038" },
+    { id: "xps", label: "XPS (Extruded Polystyrene)", value: "0.035" },
+    { id: "pur", label: "Polyurethane Foam (PUR)", value: "0.028" },
+  ],
+  de: [
+    { id: "custom", label: "Benutzerdefiniert", value: "" },
+    { id: "copper", label: "Kupfer", value: "401" },
+    { id: "aluminum", label: "Aluminium", value: "205" },
+    { id: "steel", label: "Stahl", value: "50" },
+    { id: "glass", label: "Glas", value: "1.05" },
+    { id: "concrete", label: "Beton", value: "1.4" },
+    { id: "wood", label: "Holz", value: "0.13" },
+    { id: "air", label: "Luft", value: "0.026" },
+    { id: "glassWool", label: "Glaswolle", value: "0.035" },
+    { id: "rockWool", label: "Steinwolle", value: "0.04" },
+    { id: "eps", label: "EPS (expandiertes Polystyrol)", value: "0.038" },
+    { id: "xps", label: "XPS (extrudiertes Polystyrol)", value: "0.035" },
+    { id: "pur", label: "Polyurethanschaum (PUR)", value: "0.028" },
+  ],
+  ar: [
+    { id: "custom", label: "قيمة مخصصة", value: "" },
+    { id: "copper", label: "نحاس", value: "401" },
+    { id: "aluminum", label: "ألمنيوم", value: "205" },
+    { id: "steel", label: "فولاذ", value: "50" },
+    { id: "glass", label: "زجاج", value: "1.05" },
+    { id: "concrete", label: "خرسانة", value: "1.4" },
+    { id: "wood", label: "خشب", value: "0.13" },
+    { id: "air", label: "هواء", value: "0.026" },
+    { id: "glassWool", label: "صوف زجاجي", value: "0.035" },
+    { id: "rockWool", label: "صوف صخري", value: "0.04" },
+    { id: "eps", label: "EPS (بوليسترين موسع)", value: "0.038" },
+    { id: "xps", label: "XPS (بوليسترين مبثوق)", value: "0.035" },
+    { id: "pur", label: "رغوة بولي يوريثان (PUR)", value: "0.028" },
+  ],
+};

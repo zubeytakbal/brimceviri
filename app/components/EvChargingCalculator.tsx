@@ -1,12 +1,69 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { formatLocalizedNumber } from "../i18n/toolLocales";
 import {
   calculateEvChargingTime,
   calculateEvRange,
 } from "../converter/evChargingCalculator";
 
 type Mode = "charging-time" | "range";
+type SupportedLocale = "tr" | "en";
+
+type EvChargingCopy = {
+  whatToCalculate: string;
+  chargingTimeMode: string;
+  rangeMode: string;
+  fieldBatteryCapacity: string;
+  fieldCurrentPercent: string;
+  fieldTargetPercent: string;
+  fieldChargerPower: string;
+  fieldEfficiency: string;
+  fieldConsumption: string;
+  emptyState: string;
+  resultEnergyNeeded: string;
+  resultChargingTime: string;
+  resultRange: string;
+  hoursShort: string;
+  minutesShort: string;
+};
+
+const copyByLocale: Record<SupportedLocale, EvChargingCopy> = {
+  tr: {
+    whatToCalculate: "Ne hesaplamak istiyorsun?",
+    chargingTimeMode: "Şarj Süresi",
+    rangeMode: "Menzil",
+    fieldBatteryCapacity: "Batarya Kapasitesi (kWh)",
+    fieldCurrentPercent: "Mevcut Şarj (%)",
+    fieldTargetPercent: "Hedef Şarj (%)",
+    fieldChargerPower: "Şarj Cihazı Gücü (kW)",
+    fieldEfficiency: "Şarj Verimliliği (%)",
+    fieldConsumption: "Tüketim (kWh/100km)",
+    emptyState: "Geçerli değerler girerek sonucu görebilirsin.",
+    resultEnergyNeeded: "Gereken Enerji",
+    resultChargingTime: "Tahmini Şarj Süresi",
+    resultRange: "Tahmini Menzil",
+    hoursShort: "sa",
+    minutesShort: "dk",
+  },
+  en: {
+    whatToCalculate: "What do you want to calculate?",
+    chargingTimeMode: "Charging Time",
+    rangeMode: "Range",
+    fieldBatteryCapacity: "Battery Capacity (kWh)",
+    fieldCurrentPercent: "Current Charge (%)",
+    fieldTargetPercent: "Target Charge (%)",
+    fieldChargerPower: "Charger Power (kW)",
+    fieldEfficiency: "Charging Efficiency (%)",
+    fieldConsumption: "Consumption (kWh/100km)",
+    emptyState: "Enter valid values to see the result.",
+    resultEnergyNeeded: "Energy Needed",
+    resultChargingTime: "Estimated Charging Time",
+    resultRange: "Estimated Range",
+    hoursShort: "h",
+    minutesShort: "min",
+  },
+};
 
 function parseNumericValue(rawValue: string) {
   const normalizedValue = rawValue.trim().replace(/,/g, ".");
@@ -20,19 +77,25 @@ function parseNumericValue(rawValue: string) {
   return Number.isFinite(numericValue) ? numericValue : Number.NaN;
 }
 
-function formatHours(hours: number) {
+function formatHours(hours: number, copy: EvChargingCopy) {
   const totalMinutes = Math.round(hours * 60);
   const wholeHours = Math.floor(totalMinutes / 60);
   const minutes = totalMinutes % 60;
 
   if (wholeHours > 0) {
-    return `${wholeHours} sa ${minutes} dk`;
+    return `${wholeHours} ${copy.hoursShort} ${minutes} ${copy.minutesShort}`;
   }
 
-  return `${minutes} dk`;
+  return `${minutes} ${copy.minutesShort}`;
 }
 
-export default function EvChargingCalculator() {
+export default function EvChargingCalculator({
+  locale = "tr",
+}: {
+  locale?: SupportedLocale;
+}) {
+  const copy = copyByLocale[locale];
+
   const [mode, setMode] = useState<Mode>("charging-time");
 
   const [batteryCapacity, setBatteryCapacity] = useState("60");
@@ -69,7 +132,7 @@ export default function EvChargingCalculator() {
     <div className="category-general-converter">
       <div className="engineering-calculator-card">
         <div className="engineering-targets">
-          <span>Ne hesaplamak istiyorsun?</span>
+          <span>{copy.whatToCalculate}</span>
 
           <div className="engineering-target-grid hydrostatic-target-grid">
             <button
@@ -77,14 +140,14 @@ export default function EvChargingCalculator() {
               className={`engineering-target-button${mode === "charging-time" ? " is-active" : ""}`}
               onClick={() => setMode("charging-time")}
             >
-              Şarj Süresi
+              {copy.chargingTimeMode}
             </button>
             <button
               type="button"
               className={`engineering-target-button${mode === "range" ? " is-active" : ""}`}
               onClick={() => setMode("range")}
             >
-              Menzil
+              {copy.rangeMode}
             </button>
           </div>
         </div>
@@ -92,7 +155,7 @@ export default function EvChargingCalculator() {
         {mode === "charging-time" ? (
           <div className="paint-calculator-grid">
             <label className="category-general-converter-field">
-              <span>Batarya Kapasitesi (kWh)</span>
+              <span>{copy.fieldBatteryCapacity}</span>
               <input
                 inputMode="decimal"
                 type="text"
@@ -101,7 +164,7 @@ export default function EvChargingCalculator() {
               />
             </label>
             <label className="category-general-converter-field">
-              <span>Mevcut Şarj (%)</span>
+              <span>{copy.fieldCurrentPercent}</span>
               <input
                 inputMode="decimal"
                 type="text"
@@ -110,7 +173,7 @@ export default function EvChargingCalculator() {
               />
             </label>
             <label className="category-general-converter-field">
-              <span>Hedef Şarj (%)</span>
+              <span>{copy.fieldTargetPercent}</span>
               <input
                 inputMode="decimal"
                 type="text"
@@ -119,7 +182,7 @@ export default function EvChargingCalculator() {
               />
             </label>
             <label className="category-general-converter-field">
-              <span>Şarj Cihazı Gücü (kW)</span>
+              <span>{copy.fieldChargerPower}</span>
               <input
                 inputMode="decimal"
                 type="text"
@@ -128,7 +191,7 @@ export default function EvChargingCalculator() {
               />
             </label>
             <label className="category-general-converter-field">
-              <span>Şarj Verimliliği (%)</span>
+              <span>{copy.fieldEfficiency}</span>
               <input
                 inputMode="decimal"
                 type="text"
@@ -140,7 +203,7 @@ export default function EvChargingCalculator() {
         ) : (
           <div className="paint-calculator-grid">
             <label className="category-general-converter-field">
-              <span>Batarya Kapasitesi (kWh)</span>
+              <span>{copy.fieldBatteryCapacity}</span>
               <input
                 inputMode="decimal"
                 type="text"
@@ -149,7 +212,7 @@ export default function EvChargingCalculator() {
               />
             </label>
             <label className="category-general-converter-field">
-              <span>Tüketim (kWh/100km)</span>
+              <span>{copy.fieldConsumption}</span>
               <input
                 inputMode="decimal"
                 type="text"
@@ -164,29 +227,37 @@ export default function EvChargingCalculator() {
       <div aria-live="polite" className="category-general-converter-result paint-calculator-result">
         {mode === "charging-time" ? (
           !chargingResult ? (
-            <strong>Geçerli değerler girerek sonucu görebilirsin.</strong>
+            <strong>{copy.emptyState}</strong>
           ) : (
             <div className="paint-calculator-result-grid">
               <div>
-                <span>Gereken Enerji</span>
+                <span>{copy.resultEnergyNeeded}</span>
                 <strong>
-                  {chargingResult.energyNeededKwh.toLocaleString("tr-TR", { maximumFractionDigits: 1 })} kWh
+                  {formatLocalizedNumber(
+                    chargingResult.energyNeededKwh,
+                    locale,
+                    { maximumFractionDigits: 1 }
+                  )}{" "}
+                  kWh
                 </strong>
               </div>
               <div>
-                <span>Tahmini Şarj Süresi</span>
-                <strong>{formatHours(chargingResult.chargingHours)}</strong>
+                <span>{copy.resultChargingTime}</span>
+                <strong>{formatHours(chargingResult.chargingHours, copy)}</strong>
               </div>
             </div>
           )
         ) : !rangeResult ? (
-          <strong>Geçerli değerler girerek sonucu görebilirsin.</strong>
+          <strong>{copy.emptyState}</strong>
         ) : (
           <div className="paint-calculator-result-grid">
             <div>
-              <span>Tahmini Menzil</span>
+              <span>{copy.resultRange}</span>
               <strong>
-                {rangeResult.rangeKm.toLocaleString("tr-TR", { maximumFractionDigits: 0 })} km
+                {formatLocalizedNumber(rangeResult.rangeKm, locale, {
+                  maximumFractionDigits: 0,
+                })}{" "}
+                km
               </strong>
             </div>
           </div>

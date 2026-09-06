@@ -136,6 +136,19 @@ export default function BmiCalculatorPage() {
             danışmalısın.
           </p>
 
+          <h2>İlgili araçlar</h2>
+          <p>
+            Vücut kompozisyonu hakkında daha detaylı bilgi için{" "}
+            <Link href="/vucut-yag-orani-hesaplama">
+              Vücut Yağ Oranı Hesaplama
+            </Link>
+            , boyuna göre klinik referans kilo için{" "}
+            <Link href="/ideal-kilo-hesaplama">İdeal Kilo Hesaplama</Link>{" "}
+            aracına, sağlık ve fitness ile ilgili diğer araçlar için{" "}
+            <Link href="/diyetisyen-araclari">Diyetisyen Araçları</Link>{" "}
+            sayfasına bakabilirsin.
+          </p>
+
           <h2>Kaynaklar</h2>
           <p>
             BMI kategorileri Dünya Sağlık Örgütü (WHO) sınıflandırmasına,

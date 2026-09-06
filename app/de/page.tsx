@@ -5,6 +5,7 @@ import { buildSiteUrl } from "../siteConfig";
 const turkishHomeUrl = buildSiteUrl("/");
 const englishHomeUrl = buildSiteUrl("/en");
 const germanHomeUrl = buildSiteUrl("/de");
+const arabicHomeUrl = buildSiteUrl("/ar");
 
 export const metadata: Metadata = {
   title: "Die passende Umrechnung finden",
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
       tr: turkishHomeUrl,
       en: englishHomeUrl,
       de: germanHomeUrl,
+      ar: arabicHomeUrl,
       "x-default": turkishHomeUrl,
     },
   },

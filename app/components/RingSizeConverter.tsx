@@ -9,14 +9,14 @@ import {
   ringSizeRows,
 } from "../converter/ringSizeTable";
 
-type Locale = "tr" | "en";
+type Locale = "tr" | "en" | "de" | "ar";
 
 const systemLabels: Record<Locale, Record<RingSizeSystem, string>> = {
   tr: {
-    diameterMm: "TR (İç Çap mm)",
-    circumferenceMm: "Avrupa (Çevre mm)",
+    diameterMm: "TR (Ic Cap mm)",
+    circumferenceMm: "Avrupa (Cevre mm)",
     us: "ABD (US)",
-    uk: "İngiltere (UK)",
+    uk: "Ingiltere (UK)",
   },
   en: {
     diameterMm: "Diameter (mm)",
@@ -24,19 +24,31 @@ const systemLabels: Record<Locale, Record<RingSizeSystem, string>> = {
     us: "US",
     uk: "UK",
   },
+  de: {
+    diameterMm: "Innendurchmesser (mm)",
+    circumferenceMm: "EU Umfang (mm)",
+    us: "US",
+    uk: "UK",
+  },
+  ar: {
+    diameterMm: "القطر الداخلي (مم)",
+    circumferenceMm: "المحيط الأوروبي (مم)",
+    us: "US",
+    uk: "UK",
+  },
 };
 
 const copy = {
   tr: {
-    knownSystem: "Bildiğin Sistem",
-    value: "Değer",
-    matchingSizes: "Eşleşen Bedenler",
-    invalidValue: "Geçerli bir değer seçerek sonucu görebilirsin.",
+    knownSystem: "Bildigin Sistem",
+    value: "Deger",
+    matchingSizes: "Eslesen Bedenler",
+    invalidValue: "Gecerli bir deger secerek sonucu gorebilirsin.",
     diameterResult: "TR (mm)",
     circumferenceResult: "Avrupa (mm)",
     usResult: "ABD (US)",
-    ukResult: "İngiltere (UK)",
-    chartCaption: "Yüzük beden tablosu",
+    ukResult: "Ingiltere (UK)",
+    chartCaption: "Yuzuk beden tablosu",
   },
   en: {
     knownSystem: "Known System",
@@ -49,6 +61,28 @@ const copy = {
     ukResult: "UK",
     chartCaption: "Ring size chart",
   },
+  de: {
+    knownSystem: "Bekanntes System",
+    value: "Wert",
+    matchingSizes: "Passende Groessen",
+    invalidValue: "Waehlen Sie einen gueltigen Wert fuer den naechsten Treffer.",
+    diameterResult: "Durchmesser (mm)",
+    circumferenceResult: "Umfang (mm)",
+    usResult: "US",
+    ukResult: "UK",
+    chartCaption: "Ringgroessentabelle",
+  },
+  ar: {
+    knownSystem: "النظام المعروف",
+    value: "القيمة",
+    matchingSizes: "المقاسات المطابقة",
+    invalidValue: "اختر قيمة صحيحة لعرض أقرب مقاس.",
+    diameterResult: "القطر (مم)",
+    circumferenceResult: "المحيط (مم)",
+    usResult: "US",
+    ukResult: "UK",
+    chartCaption: "جدول مقاسات الخواتم",
+  },
 } as const;
 
 const systemOrder: RingSizeSystem[] = [
@@ -58,14 +92,30 @@ const systemOrder: RingSizeSystem[] = [
   "uk",
 ];
 
+function getNumberLocale(locale: Locale) {
+  if (locale === "tr") {
+    return "tr-TR";
+  }
+
+  if (locale === "de") {
+    return "de-DE";
+  }
+
+  if (locale === "ar") {
+    return "ar";
+  }
+
+  return "en-US";
+}
+
 function formatMm(value: number, locale: Locale) {
-  return value.toLocaleString(locale === "en" ? "en-US" : "tr-TR", {
+  return value.toLocaleString(getNumberLocale(locale), {
     maximumFractionDigits: 1,
   });
 }
 
 function formatUs(value: number, locale: Locale) {
-  return value.toLocaleString(locale === "en" ? "en-US" : "tr-TR", {
+  return value.toLocaleString(getNumberLocale(locale), {
     maximumFractionDigits: 1,
   });
 }
@@ -88,9 +138,16 @@ export default function RingSizeConverter({
     }
 
     const normalized = numericValue.trim().replace(/,/g, ".");
-    if (!normalized) return null;
+
+    if (!normalized) {
+      return null;
+    }
+
     const parsed = Number(normalized);
-    if (!Number.isFinite(parsed)) return null;
+
+    if (!Number.isFinite(parsed)) {
+      return null;
+    }
 
     return findRingSizeRowByNumber(system, parsed);
   }, [system, numericValue, ukValue]);

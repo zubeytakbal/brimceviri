@@ -77,6 +77,16 @@ const messages = {
     efficiencyRange:
       "Der Wirkungsgrad muss zwischen 0 und 1 liegen oder als Prozentwert zwischen 0 und 100 eingegeben werden.",
   },
+  ar: {
+    missing: "أدخل قيم القدرة والجهد.",
+    invalid: "أدخل قيما رقمية صحيحة.",
+    powerPositive: "يجب أن تكون القدرة أكبر من الصفر.",
+    voltagePositive: "يجب أن يكون الجهد أكبر من الصفر.",
+    powerFactorRange:
+      "يجب أن يكون معامل القدرة بين 0 و1 أو كنسبة مئوية بين 0 و100.",
+    efficiencyRange:
+      "يجب أن تكون الكفاءة بين 0 و1 أو كنسبة مئوية بين 0 و100.",
+  },
 } as const;
 
 function normalizeFactor(value: number | null) {
@@ -299,4 +309,3 @@ export function solveKwToAmp({
     normalizedEfficiency,
   };
 }
-

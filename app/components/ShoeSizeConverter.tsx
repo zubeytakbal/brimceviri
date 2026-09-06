@@ -10,20 +10,32 @@ import {
 } from "../converter/shoeSizeTable";
 
 type SystemKey = "eu" | "us" | "uk" | "cm";
-type Locale = "tr" | "en";
+type Locale = "tr" | "en" | "de" | "ar";
 
 const systemLabels: Record<Locale, Record<SystemKey, string>> = {
   tr: {
     eu: "TR / Avrupa (EU)",
     us: "ABD (US)",
-    uk: "\u0130ngiltere (UK)",
-    cm: "Ayak Uzunlu\u011fu (cm)",
+    uk: "Ingiltere (UK)",
+    cm: "Ayak Uzunlugu (cm)",
   },
   en: {
     eu: "EU",
     us: "US",
     uk: "UK",
     cm: "Foot Length (cm)",
+  },
+  de: {
+    eu: "EU",
+    us: "US",
+    uk: "UK",
+    cm: "Fusslaenge (cm)",
+  },
+  ar: {
+    eu: "أوروبا (EU)",
+    us: "أمريكا (US)",
+    uk: "بريطانيا (UK)",
+    cm: "طول القدم (سم)",
   },
 };
 
@@ -44,14 +56,30 @@ const brandLabels: Record<Locale, Record<ShoeBrandKey, string>> = {
     "new-balance": "New Balance",
     converse: "Converse",
   },
+  de: {
+    genel: "Allgemein (Standard)",
+    nike: "Nike",
+    adidas: "Adidas",
+    puma: "Puma",
+    "new-balance": "New Balance",
+    converse: "Converse",
+  },
+  ar: {
+    genel: "عام",
+    nike: "Nike",
+    adidas: "Adidas",
+    puma: "Puma",
+    "new-balance": "New Balance",
+    converse: "Converse",
+  },
 };
 
 const groupLabels: Record<Locale, Record<ShoeSizeGroupKey, string>> = {
   tr: {
     erkek: "Erkek",
-    kadin: "Kad\u0131n",
-    bebek: "Bebek / K\u00fc\u00e7\u00fck \u00c7ocuk",
-    "buyuk-cocuk": "B\u00fcy\u00fck \u00c7ocuk",
+    kadin: "Kadin",
+    bebek: "Bebek / Kucuk Cocuk",
+    "buyuk-cocuk": "Buyuk Cocuk",
   },
   en: {
     erkek: "Men",
@@ -59,22 +87,34 @@ const groupLabels: Record<Locale, Record<ShoeSizeGroupKey, string>> = {
     bebek: "Toddler / Little Kid",
     "buyuk-cocuk": "Big Kid",
   },
+  de: {
+    erkek: "Herren",
+    kadin: "Damen",
+    bebek: "Kleinkind",
+    "buyuk-cocuk": "Groessere Kinder",
+  },
+  ar: {
+    erkek: "رجال",
+    kadin: "نساء",
+    bebek: "رضع / أطفال صغار",
+    "buyuk-cocuk": "أطفال أكبر سنا",
+  },
 };
 
 const copy = {
   tr: {
     group: "Grup",
     brand: "Marka",
-    knownSystem: "Bildi\u011fin Sistem",
-    value: "De\u011fer",
-    matchingSizes: "E\u015fle\u015fen Numaralar",
+    knownSystem: "Bildigin Sistem",
+    value: "Deger",
+    matchingSizes: "Eslesen Numaralar",
     invalidValue:
-      "Ge\u00e7erli bir say\u0131 girerek sonucu g\u00f6rebilirsiniz.",
+      "Gecerli bir sayi girerek sonucu gorebilirsiniz.",
     euResult: "TR / EU",
     usResult: "ABD (US)",
-    ukResult: "\u0130ngiltere (UK)",
-    footLength: "Ayak Uzunlu\u011fu",
-    chartSuffix: "ayakkab\u0131 numaras\u0131 tablosu",
+    ukResult: "Ingiltere (UK)",
+    footLength: "Ayak Uzunlugu",
+    chartSuffix: "ayakkabi numarasi tablosu",
   },
   en: {
     group: "Group",
@@ -89,6 +129,33 @@ const copy = {
     ukResult: "UK",
     footLength: "Foot Length",
     chartSuffix: "shoe size chart",
+  },
+  de: {
+    group: "Gruppe",
+    brand: "Marke",
+    knownSystem: "Bekanntes System",
+    value: "Wert",
+    matchingSizes: "Passende Groessen",
+    invalidValue:
+      "Geben Sie eine gueltige Zahl ein, um den naechsten Treffer zu sehen.",
+    euResult: "EU",
+    usResult: "US",
+    ukResult: "UK",
+    footLength: "Fusslaenge",
+    chartSuffix: "Schuhgroessentabelle",
+  },
+  ar: {
+    group: "الفئة",
+    brand: "العلامة التجارية",
+    knownSystem: "النظام المعروف",
+    value: "القيمة",
+    matchingSizes: "المقاسات المطابقة",
+    invalidValue: "أدخل رقما صحيحا لعرض أقرب مقاس.",
+    euResult: "EU",
+    usResult: "US",
+    ukResult: "UK",
+    footLength: "طول القدم",
+    chartSuffix: "جدول مقاسات الأحذية",
   },
 } as const;
 
@@ -108,29 +175,45 @@ const groupOrder: ShoeSizeGroupKey[] = [
   "buyuk-cocuk",
 ];
 
+function getNumberLocale(locale: Locale) {
+  if (locale === "tr") {
+    return "tr-TR";
+  }
+
+  if (locale === "de") {
+    return "de-DE";
+  }
+
+  if (locale === "ar") {
+    return "ar";
+  }
+
+  return "en-US";
+}
+
 function formatEu(value: number, locale: Locale) {
   const whole = Math.floor(value);
-  const frac = value - whole;
+  const fraction = value - whole;
 
-  if (Math.abs(frac - 1 / 3) < 0.02) {
+  if (Math.abs(fraction - 1 / 3) < 0.02) {
     return `${whole} 1/3`;
   }
 
-  if (Math.abs(frac - 2 / 3) < 0.02) {
+  if (Math.abs(fraction - 2 / 3) < 0.02) {
     return `${whole} 2/3`;
   }
 
-  if (frac < 0.02) {
+  if (fraction < 0.02) {
     return `${whole}`;
   }
 
-  return value.toLocaleString(locale === "en" ? "en-US" : "tr-TR", {
+  return value.toLocaleString(getNumberLocale(locale), {
     maximumFractionDigits: 1,
   });
 }
 
 function formatValue(value: number, locale: Locale) {
-  return value.toLocaleString(locale === "en" ? "en-US" : "tr-TR", {
+  return value.toLocaleString(getNumberLocale(locale), {
     maximumFractionDigits: 1,
   });
 }
@@ -270,9 +353,7 @@ export default function ShoeSizeConverter({
             </div>
             <div>
               <span>{localizedCopy.footLength}</span>
-              <strong>
-                {formatValue(matchedRow.cm, locale)} cm
-              </strong>
+              <strong>{formatValue(matchedRow.cm, locale)} cm</strong>
             </div>
           </div>
         )}

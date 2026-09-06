@@ -11,7 +11,7 @@ export const categoryPages: CategoryPage[] = [
     category: "alan",
     title: "Alan Dönüşümleri",
     description:
-      "Metrekare, dönüm, dekar, hektar ve fitkare arasında çalışan alan dönüşümlerini kullanın; temel formülleri ve örnek karşılıkları inceleyin.",
+      "Metrekare, dönüm, dekar, hektar, fitkare, bigha, katha ve decimal arasında çalışan alan dönüşümlerini kullanın; temel formülleri ve örnek karşılıkları inceleyin.",
   },
   {
     slug: "hacim",
@@ -32,7 +32,7 @@ export const categoryPages: CategoryPage[] = [
     category: "kutle",
     title: "Kütle Dönüşümleri",
     description:
-      "Kilogram, gram, miligram, ton, pound, ons birimlerinin yanı sıra Osmanlı (okka, dirhem) ve Bizans (Bizans litrası, Bizans onsu) dönemi kütle birimleri arasında hızlı ve ücretsiz dönüşüm yapın.",
+      "Kilogram, gram, miligram, ton, pound, ons birimlerinin yanı sıra kuyumculukta kullanılan troy ons ve karat, Osmanlı (okka, dirhem) ve Bizans (Bizans litrası, Bizans onsu) dönemi kütle birimleri arasında hızlı ve ücretsiz dönüşüm yapın.",
   },
   {
     slug: "sicaklik",
@@ -250,6 +250,27 @@ export const categoryPages: CategoryPage[] = [
     title: "Altın Ayar Dönüşümleri",
     description:
       "24, 22, 18 ve 14 ayar altın arasında saf altın içeriğine göre gram dönüşümü yapın; ayarların saflık oranlarını ve kuyumculukta kullanım alanlarını inceleyin.",
+  },
+  {
+    slug: "gumus-ayar",
+    category: "gumus_ayar",
+    title: "Gümüş Ayar Dönüşümleri",
+    description:
+      "999, 925 (sterlin), 900 ve 800 ayar gümüş arasında saf gümüş içeriğine göre gram dönüşümü yapın; milyem değerlerini ve kuyumculukta kullanım alanlarını inceleyin.",
+  },
+  {
+    slug: "kan-sekeri",
+    category: "kan_sekeri",
+    title: "Kan Şekeri (Glukoz) Birim Dönüşümleri",
+    description:
+      "Kan şekeri (glukoz) değerini mg/dL ve mmol/L birimleri arasında çevirin; ABD'de kullanılan geleneksel birim ile dünya genelinde yaygın SI biriminin karşılığını inceleyin.",
+  },
+  {
+    slug: "vitamin-d",
+    category: "vitamin_d",
+    title: "Vitamin D Birim Dönüşümleri",
+    description:
+      "Vitamin D (25-OH) değerini ng/mL ve nmol/L birimleri arasında çevirin; ABD'de kullanılan geleneksel birim ile dünya genelinde yaygın SI biriminin karşılığını inceleyin.",
   },
 ];
 

@@ -12,7 +12,7 @@ type UnitOption = {
 
 type CategoryUnitConverterProps = {
   category: string;
-  locale: "tr" | "en" | "de";
+  locale: "tr" | "en" | "de" | "ar";
   // Verilmezse getCategoryUnitOptions(category, locale) kullanilir (kategori
   // sayfalarindaki standart davranis). Verilirse, ayni convert() motoru
   // (ayni category/symbol eslesmesi) uzerinde SADECE bu birimler secilebilir
@@ -39,7 +39,7 @@ function parseNumericValue(rawValue: string) {
 }
 
 function formatDisplayNumber(
-  locale: "tr" | "en" | "de",
+  locale: "tr" | "en" | "de" | "ar",
   value: number
 ) {
   if (!Number.isFinite(value)) {
@@ -51,6 +51,8 @@ function formatDisplayNumber(
       ? "tr-TR"
       : locale === "de"
         ? "de-DE"
+        : locale === "ar"
+          ? "ar"
         : "en-US";
   const absoluteValue = Math.abs(value);
 
@@ -140,6 +142,16 @@ export default function CategoryUnitConverter({
             invalid:
               "Geben Sie eine g\u00FCltige Zahl ein, um das Ergebnis zu sehen.",
           }
+        : locale === "ar"
+          ? {
+              value: "القيمة",
+              from: "من وحدة",
+              to: "إلى وحدة",
+              result: "النتيجة المباشرة",
+              swap: "تبديل الاتجاه",
+              invalid:
+                "أدخل رقما صحيحا لعرض النتيجة.",
+            }
         : {
             value: "Value",
             from: "From unit",

@@ -7,11 +7,17 @@ import PairConverter from "../converter/PairConverter";
 import { categoryPages } from "../converter/categoryPages";
 import { convert } from "../converter/convert";
 import { conversionPages } from "../converter/conversionPages";
+import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
 import { findEnglishPageByTurkishSlug } from "../converter/localizedConversionPages";
 import { findGermanPageByTurkishSlug } from "../converter/localizedGermanConversionPages";
 import { getUnitSources } from "../converter/unitSources";
 import { findUnitPage } from "../converter/unitPages";
+import { buildFullLanguageAlternates } from "../i18n/routing";
 import { buildSiteUrl } from "../siteConfig";
+
+function serializeJsonLd(data: object) {
+  return JSON.stringify(data).replace(/</g, "\\u003c");
+}
 
 type PageProps = {
   params: Promise<{
@@ -77,13 +83,6 @@ export async function generateMetadata({
     };
   }
 
-  const englishPage = findEnglishPageByTurkishSlug(
-    conversionPage.slug
-  );
-  const germanPage = findGermanPageByTurkishSlug(
-    conversionPage.slug
-  );
-
   const directAnswer =
     conversionPage.explanation.split(". ")[1] ??
     conversionPage.explanation;
@@ -98,16 +97,7 @@ export async function generateMetadata({
       `dönüşüm tablosu için tıklayın.`,
     alternates: {
       canonical: `/${conversionPage.slug}`,
-      languages: englishPage
-        ? {
-            tr: `/${conversionPage.slug}`,
-            en: `/en/${englishPage.slug}`,
-            ...(germanPage
-              ? { de: `/de/${germanPage.slug}` }
-              : {}),
-            "x-default": `/${conversionPage.slug}`,
-          }
-        : undefined,
+      ...buildFullLanguageAlternates(`/${conversionPage.slug}`),
     },
     openGraph: {
       title:
@@ -191,8 +181,74 @@ export default async function ConversionPage({ params }: PageProps) {
 
   const formattedOneUnitResult = formatNumber(oneUnitResult);
 
+  const reverseOneUnitResult = convert(
+    conversionPage.category,
+    1,
+    conversionPage.toUnit,
+    conversionPage.fromUnit
+  );
+
+  const formattedReverseOneUnitResult = formatNumber(reverseOneUnitResult);
+
+  // SSS metni, sayfada zaten hesaplanmis gercek degerlerden (formattedOneUnitResult,
+  // explanation) uretilir -- her sayfada farkli sayilar/aciklama oldugu icin
+  // ayni kalip metin binlerce sayfada tekrar etmiyor, FAQPage semasinin
+  // gorunur icerikle birebir eslesmesi kurali da boylece saglaniyor.
+  const faqItems: FaqItem[] = [
+    {
+      question: `1 ${conversionPage.fromName} kaç ${conversionPage.toName} eder?`,
+      answer: `1 ${conversionPage.fromUnit} = ${formattedOneUnitResult} ${conversionPage.toUnit}.`,
+    },
+    {
+      question: `${conversionPage.fromName}, ${conversionPage.toName} birimine nasıl çevrilir?`,
+      answer: conversionPage.explanation,
+    },
+    {
+      question: `1 ${conversionPage.toName} kaç ${conversionPage.fromName} eder?`,
+      answer: `1 ${conversionPage.toUnit} = ${formattedReverseOneUnitResult} ${conversionPage.fromUnit}.`,
+    },
+  ];
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Ana Sayfa",
+        item: buildSiteUrl("/"),
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: categoryPage?.title ?? conversionPage.category,
+        item: categoryPage
+          ? buildSiteUrl(`/kategoriler/${categoryPage.slug}`)
+          : buildSiteUrl("/tum-birimler"),
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: `${conversionPage.fromName} – ${conversionPage.toName}`,
+        item: buildSiteUrl(`/${conversionPage.slug}`),
+      },
+    ],
+  };
+
   return (
     <main className="conversion-page">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: serializeJsonLd(buildFaqSchema(faqItems)),
+        }}
+      />
+
       <div className="conversion-breadcrumb-wrap">
         <nav className="breadcrumbs" aria-label="Sayfa yolu">
           <Link href="/">Ana Sayfa</Link>
@@ -398,14 +454,25 @@ export default async function ConversionPage({ params }: PageProps) {
             </ul>
           </section>
         )}
+        <section className="conversion-section conversion-faq">
+          <h2>Sık Sorulan Sorular</h2>
+
+          {faqItems.map((item) => (
+            <div key={item.question} className="conversion-faq-item">
+              <h3>{item.question}</h3>
+              <p>{item.answer}</p>
+            </div>
+          ))}
+        </section>
+
         {sources.length > 0 && (
           <section className="conversion-section unit-sources">
             <h2>Kaynaklar</h2>
 
             <p>
-              Bu sayfadaki tanÄ±mlar ve dÃ¶nÃ¼ÅŸÃ¼m
-              iliÅŸkileri, standart metroloji ve SI referanslarÄ±yla
-              uyumlu olacak ÅŸekilde dÃ¼zenlenmiÅŸtir.
+              Bu sayfadaki tanımlar ve dönüşüm
+              ilişkileri, standart metroloji ve SI referanslarıyla
+              uyumlu olacak şekilde düzenlenmiştir.
             </p>
 
             <ol>

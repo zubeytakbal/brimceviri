@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import PairConverter from "../../../converter/PairConverter";
 import { getGermanCategoryPathByCategory } from "../../../converter/localizedGermanCategoryPages";
 import { findEnglishUnitPageByTurkishSlug } from "../../../converter/localizedUnitPages";
+import { buildFullLanguageAlternates } from "../../../i18n/routing";
 import {
   findGermanUnitPageBySlug,
   germanUnitPages,
@@ -54,9 +55,6 @@ export async function generateMetadata({
     };
   }
 
-  const englishPage = findEnglishUnitPageByTurkishSlug(
-    unitPage.sourceSlug
-  );
   const title = `${unitPage.name}: Definition und Umrechnungen`;
   const description =
     `Was ist ${unitPage.name.toLowerCase()}? Lesen Sie Definition, Symbol und passende Umrechnungen auf Deutsch.`;
@@ -66,12 +64,7 @@ export async function generateMetadata({
     description,
     alternates: {
       canonical: `/de/einheiten/${unitPage.slug}`,
-      languages: {
-        tr: `/birimler/${unitPage.sourceSlug}`,
-        en: englishPage ? `/en/units/${englishPage.slug}` : "/en/units",
-        de: `/de/einheiten/${unitPage.slug}`,
-        "x-default": `/birimler/${unitPage.sourceSlug}`,
-      },
+      ...buildFullLanguageAlternates(`/de/einheiten/${unitPage.slug}`),
     },
     openGraph: {
       title,

@@ -1,12 +1,86 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { formatLocalizedNumber } from "../i18n/toolLocales";
 import {
   calculateFromKmPerLiter,
   calculateFromLitersPer100Km,
   calculateTripCost,
   type FuelConsumptionResult,
 } from "../converter/fuelConsumptionCalculator";
+
+type SupportedLocale = "tr" | "en";
+
+type FuelCopy = {
+  modeLabel: string;
+  modeLiters100km: string;
+  modeKmPerLiter: string;
+  fieldLiters100km: string;
+  fieldKmPerLiter: string;
+  emptyState: string;
+  resultLabels: {
+    kmPerLiter: string;
+    litersPer100km: string;
+    mpgUs: string;
+    mpgUk: string;
+  };
+  tripHeading: string;
+  fieldDistance: string;
+  fieldPrice: string;
+  tripEmptyState: string;
+  tripResultLabels: {
+    litersNeeded: string;
+    totalCost: string;
+  };
+};
+
+const copyByLocale: Record<SupportedLocale, FuelCopy> = {
+  tr: {
+    modeLabel: "Hangi değeri biliyorsun?",
+    modeLiters100km: "100 km'de Kaç Litre",
+    modeKmPerLiter: "1 Litreyle Kaç km",
+    fieldLiters100km: "Yakıt Tüketimi (lt/100km)",
+    fieldKmPerLiter: "Yakıt Tüketimi (km/lt)",
+    emptyState:
+      "Geçerli bir yakıt tüketimi değeri girerek sonucu görebilirsin.",
+    resultLabels: {
+      kmPerLiter: "km/lt",
+      litersPer100km: "lt/100km",
+      mpgUs: "mpg (ABD)",
+      mpgUk: "mpg (İngiltere)",
+    },
+    tripHeading: "Yolculuk maliyeti hesapla",
+    fieldDistance: "Yolculuk Mesafesi (km)",
+    fieldPrice: "Yakıt Fiyatı (₺/lt)",
+    tripEmptyState: "Geçerli mesafe ve fiyat girerek maliyeti görebilirsin.",
+    tripResultLabels: {
+      litersNeeded: "Gereken Yakıt",
+      totalCost: "Toplam Maliyet",
+    },
+  },
+  en: {
+    modeLabel: "Which value do you know?",
+    modeLiters100km: "Liters per 100 km",
+    modeKmPerLiter: "km per Liter",
+    fieldLiters100km: "Fuel Consumption (L/100km)",
+    fieldKmPerLiter: "Fuel Consumption (km/L)",
+    emptyState: "Enter a valid fuel consumption value to see the result.",
+    resultLabels: {
+      kmPerLiter: "km/L",
+      litersPer100km: "L/100km",
+      mpgUs: "mpg (US)",
+      mpgUk: "mpg (UK)",
+    },
+    tripHeading: "Calculate trip cost",
+    fieldDistance: "Trip Distance (km)",
+    fieldPrice: "Fuel Price (EUR/L)",
+    tripEmptyState: "Enter a valid distance and price to see the cost.",
+    tripResultLabels: {
+      litersNeeded: "Fuel Needed",
+      totalCost: "Total Cost",
+    },
+  },
+};
 
 type InputMode = "km-per-liter" | "liters-per-100km";
 
@@ -22,15 +96,29 @@ function parseNumericValue(rawValue: string) {
   return Number.isFinite(numericValue) ? numericValue : Number.NaN;
 }
 
-function formatNumber(value: number, maximumFractionDigits = 2) {
-  return value.toLocaleString("tr-TR", { maximumFractionDigits });
+function formatNumber(
+  value: number,
+  locale: SupportedLocale,
+  maximumFractionDigits = 2
+) {
+  return formatLocalizedNumber(value, locale, { maximumFractionDigits });
 }
 
-function formatCurrency(value: number) {
-  return `${value.toLocaleString("tr-TR", { maximumFractionDigits: 2 })} ₺`;
+function formatCurrency(value: number, locale: SupportedLocale) {
+  const formatted = formatLocalizedNumber(value, locale, {
+    maximumFractionDigits: 2,
+  });
+
+  return locale === "tr" ? `${formatted} ₺` : `${formatted} EUR`;
 }
 
-export default function FuelConsumptionCalculator() {
+export default function FuelConsumptionCalculator({
+  locale = "tr",
+}: {
+  locale?: SupportedLocale;
+}) {
+  const copy = copyByLocale[locale];
+
   const [mode, setMode] = useState<InputMode>("liters-per-100km");
   const [kmPerLiterInput, setKmPerLiterInput] = useState("14");
   const [litersPer100KmInput, setLitersPer100KmInput] = useState("7");
@@ -62,7 +150,7 @@ export default function FuelConsumptionCalculator() {
     <div className="category-general-converter">
       <div className="engineering-calculator-card">
         <div className="engineering-targets">
-          <span>Hangi değeri biliyorsun?</span>
+          <span>{copy.modeLabel}</span>
 
           <div className="engineering-target-grid hydrostatic-target-grid">
             <button
@@ -70,14 +158,14 @@ export default function FuelConsumptionCalculator() {
               className={`engineering-target-button${mode === "liters-per-100km" ? " is-active" : ""}`}
               onClick={() => setMode("liters-per-100km")}
             >
-              100 km&apos;de Kaç Litre
+              {copy.modeLiters100km}
             </button>
             <button
               type="button"
               className={`engineering-target-button${mode === "km-per-liter" ? " is-active" : ""}`}
               onClick={() => setMode("km-per-liter")}
             >
-              1 Litreyle Kaç km
+              {copy.modeKmPerLiter}
             </button>
           </div>
         </div>
@@ -85,7 +173,7 @@ export default function FuelConsumptionCalculator() {
         <div className="paint-calculator-grid">
           {mode === "liters-per-100km" ? (
             <label className="category-general-converter-field">
-              <span>Yakıt Tüketimi (lt/100km)</span>
+              <span>{copy.fieldLiters100km}</span>
               <input
                 inputMode="decimal"
                 type="text"
@@ -95,7 +183,7 @@ export default function FuelConsumptionCalculator() {
             </label>
           ) : (
             <label className="category-general-converter-field">
-              <span>Yakıt Tüketimi (km/lt)</span>
+              <span>{copy.fieldKmPerLiter}</span>
               <input
                 inputMode="decimal"
                 type="text"
@@ -109,24 +197,30 @@ export default function FuelConsumptionCalculator() {
 
       <div aria-live="polite" className="category-general-converter-result paint-calculator-result">
         {!result ? (
-          <strong>Geçerli bir yakıt tüketimi değeri girerek sonucu görebilirsin.</strong>
+          <strong>{copy.emptyState}</strong>
         ) : (
           <div className="paint-calculator-result-grid">
             <div>
-              <span>km/lt</span>
-              <strong>{formatNumber(result.kmPerLiter)} km/lt</strong>
+              <span>{copy.resultLabels.kmPerLiter}</span>
+              <strong>
+                {formatNumber(result.kmPerLiter, locale)}{" "}
+                {copy.resultLabels.kmPerLiter}
+              </strong>
             </div>
             <div>
-              <span>lt/100km</span>
-              <strong>{formatNumber(result.litersPer100Km)} lt/100km</strong>
+              <span>{copy.resultLabels.litersPer100km}</span>
+              <strong>
+                {formatNumber(result.litersPer100Km, locale)}{" "}
+                {copy.resultLabels.litersPer100km}
+              </strong>
             </div>
             <div>
-              <span>mpg (ABD)</span>
-              <strong>{formatNumber(result.mpgUs, 1)} mpg</strong>
+              <span>{copy.resultLabels.mpgUs}</span>
+              <strong>{formatNumber(result.mpgUs, locale, 1)} mpg</strong>
             </div>
             <div>
-              <span>mpg (İngiltere)</span>
-              <strong>{formatNumber(result.mpgUk, 1)} mpg</strong>
+              <span>{copy.resultLabels.mpgUk}</span>
+              <strong>{formatNumber(result.mpgUk, locale, 1)} mpg</strong>
             </div>
           </div>
         )}
@@ -134,12 +228,12 @@ export default function FuelConsumptionCalculator() {
 
       <div className="engineering-calculator-card">
         <div className="engineering-targets">
-          <span>Yolculuk maliyeti hesapla</span>
+          <span>{copy.tripHeading}</span>
         </div>
 
         <div className="paint-calculator-grid">
           <label className="category-general-converter-field">
-            <span>Yolculuk Mesafesi (km)</span>
+            <span>{copy.fieldDistance}</span>
             <input
               inputMode="decimal"
               type="text"
@@ -148,7 +242,7 @@ export default function FuelConsumptionCalculator() {
             />
           </label>
           <label className="category-general-converter-field">
-            <span>Yakıt Fiyatı (₺/lt)</span>
+            <span>{copy.fieldPrice}</span>
             <input
               inputMode="decimal"
               type="text"
@@ -160,16 +254,19 @@ export default function FuelConsumptionCalculator() {
 
         <div aria-live="polite" className="category-general-converter-result paint-calculator-result">
           {!tripResult ? (
-            <strong>Geçerli mesafe ve fiyat girerek maliyeti görebilirsin.</strong>
+            <strong>{copy.tripEmptyState}</strong>
           ) : (
             <div className="paint-calculator-result-grid">
               <div>
-                <span>Gereken Yakıt</span>
-                <strong>{formatNumber(tripResult.litersNeeded)} lt</strong>
+                <span>{copy.tripResultLabels.litersNeeded}</span>
+                <strong>
+                  {formatNumber(tripResult.litersNeeded, locale)}{" "}
+                  {locale === "tr" ? "lt" : "L"}
+                </strong>
               </div>
               <div>
-                <span>Toplam Maliyet</span>
-                <strong>{formatCurrency(tripResult.totalCost)}</strong>
+                <span>{copy.tripResultLabels.totalCost}</span>
+                <strong>{formatCurrency(tripResult.totalCost, locale)}</strong>
               </div>
             </div>
           )}

@@ -92,6 +92,19 @@ const messages = {
     nonPhysicalSpecificHeat:
       "Diese Eingaben ergeben keine physikalisch sinnvolle spezifische Wärmekapazität.",
   },
+  ar: {
+    missing: "أدخل القيم الثلاث المطلوبة للحساب.",
+    invalid: "أدخل قيما رقمية صحيحة.",
+    massPositive: "يجب أن تكون الكتلة أكبر من الصفر.",
+    specificHeatPositive:
+      "يجب أن تكون الحرارة النوعية أكبر من الصفر.",
+    temperatureDifferenceNonZero:
+      "يتطلب الحساب العكسي فرقا حراريا غير صفري.",
+    nonPhysicalMass:
+      "هذه القيم لا تعطي كتلة ذات معنى فيزيائي.",
+    nonPhysicalSpecificHeat:
+      "هذه القيم لا تعطي حرارة نوعية ذات معنى فيزيائي.",
+  },
 } as const;
 
 function createErrorResult(

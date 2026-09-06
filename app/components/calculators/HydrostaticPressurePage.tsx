@@ -104,7 +104,15 @@ const unitSectionHeadings = {
 } as const;
 
 function getUnitSections(locale: Locale): UnitTableSection[] {
-  const headings = unitSectionHeadings[locale];
+  const headings =
+    locale === "ar"
+      ? {
+          pressure: "وحدات الضغط",
+          density: "وحدات الكثافة",
+          depth: "وحدات العمق",
+          gravity: "وحدات عجلة الجاذبية",
+        }
+      : unitSectionHeadings[locale];
 
   return [
     {
@@ -134,7 +142,7 @@ function getUnitSections(locale: Locale): UnitTableSection[] {
   ];
 }
 
-const pageCopy: Record<Locale, PageCopy> = {
+const pageCopy: Record<Exclude<Locale, "ar">, PageCopy> = {
   tr: {
     breadcrumbs: [
       { label: "Ana Sayfa", href: "/" },
@@ -536,6 +544,113 @@ const pageCopy: Record<Locale, PageCopy> = {
   },
 };
 
+const arabicCopy: PageCopy = {
+  breadcrumbs: [
+    { label: "الرئيسية", href: "/ar" },
+    { label: "الحاسبات الهندسية", href: "/ar/engineering-calculators" },
+    { label: "حاسبة الضغط الهيدروستاتيكي" },
+  ],
+  breadcrumbLabel: "مسار التنقل",
+  title: "حاسبة الضغط الهيدروستاتيكي",
+  description:
+    "احسب فرق الضغط الهيدروستاتيكي أو الكثافة أو العمق أو عجلة الجاذبية انطلاقا من وحدات SI، مع شرح مناسب لصفحات الهندسة العربية.",
+  heroEyebrow: "حاسبة هندسية",
+  heroResultHeading: "نتيجة الحساب",
+  introHeading: "ما هو الضغط الهيدروستاتيكي؟",
+  formulasHeading: "معادلة ΔP = ρgh",
+  variablesHeading: "المتغيرات ووحدات SI",
+  absoluteHeading: "فرق الضغط مقابل الضغط المطلق",
+  densityHeading: "تأثير الحرارة في الكثافة",
+  unitsHeading: "جداول الوحدات",
+  examplesHeading: "أمثلة سريعة",
+  applicationsHeading: "استخدامات شائعة",
+  limitationsHeading: "الافتراضات والقيود",
+  sourcesHeading: "المراجع",
+  relatedHeading: "روابط مرتبطة",
+  relatedCalculatorsHeading: "حاسبات مرتبطة",
+  relatedConversionsHeading: "تحويلات مرتبطة",
+  tableColumns: {
+    unitName: "اسم الوحدة",
+    symbol: "الرمز",
+    siEquivalent: "مكافئ SI",
+    typicalUse: "الاستخدام الشائع",
+  },
+  intro: [
+    "الضغط الهيدروستاتيكي هو زيادة الضغط داخل مائع ساكن كلما ازداد العمق.",
+    "تفيد هذه الأداة في الخزانات والسدود والغوص وقراءات المانومتر والمراجعات الهندسية السريعة.",
+  ],
+  formulas: [
+    "ΔP = ρ × g × h",
+    "ρ = ΔP / (g × h)",
+    "g = ΔP / (ρ × h)",
+    "h = ΔP / (ρ × g)",
+  ],
+  variables: [
+    { term: "ΔP", explanation: "فرق الضغط الهيدروستاتيكي بوحدة Pa." },
+    { term: "ρ", explanation: `كثافة المائع بوحدة ${KILOGRAM_PER_CUBIC_METRE_UNIT}.` },
+    { term: "g", explanation: `عجلة الجاذبية بوحدة ${METRE_PER_SECOND_SQUARED_UNIT}.` },
+    { term: "h", explanation: "العمق الرأسي أو ارتفاع عمود السائل بوحدة m." },
+  ],
+  absolutePressure: [
+    "الناتج المباشر من المعادلة هو فرق الضغط بين السطح والنقطة المدروسة.",
+    "للحصول على الضغط المطلق يجب إضافة ضغط السطح: P_absolute = P_surface + ρgh.",
+  ],
+  densityNotes: [
+    "قد تتغير الكثافة مع الحرارة والضغط والملوحة وتركيب المائع.",
+    "في الغازات أو حالات التغير الكبير في الارتفاع قد لا يكفي افتراض الكثافة الثابتة.",
+  ],
+  examples: [
+    {
+      title: `1000 ${KILOGRAM_PER_CUBIC_METRE_UNIT} × 9.80665 ${METRE_PER_SECOND_SQUARED_UNIT} × 10 m = 98.0665 kPa`,
+      body: "لماء تقريبي عند عمق 10 m تكون زيادة الضغط نحو 98.07 kPa.",
+    },
+    {
+      title: `98.0665 kPa / (1000 ${KILOGRAM_PER_CUBIC_METRE_UNIT} × 9.80665 ${METRE_PER_SECOND_SQUARED_UNIT}) = 10 m`,
+      body: "يمكن إعادة حساب ارتفاع عمود السائل من فرق الضغط مباشرة.",
+    },
+  ],
+  applications: [
+    "تقدير ضغط قاع الخزانات",
+    "فحوص أولية للسدود والبوابات",
+    "تفسير زيادة الضغط مع العمق",
+    "قراءات المانومتر وأعمدة السائل",
+  ],
+  limitations: [
+    "المعادلة مناسبة لمائع ساكن بكثافة شبه ثابتة.",
+    "القيمة h هي العمق الرأسي وليس طول مسار مائل.",
+    "عند تغير الكثافة مع العمق بشكل واضح يلزم نهج تكاملي.",
+    "النتيجة الأساسية فرق ضغط وليست ضغطا مطلقا.",
+  ],
+  sources: [
+    {
+      label: "OpenStax University Physics, Fluids, Density and Pressure",
+      href: "https://openstax.org/books/university-physics-volume-1/pages/14-1-fluids-density-and-pressure",
+    },
+    {
+      label: "BIPM SI Brochure",
+      href: "https://www.bipm.org/en/publications/si-brochure",
+    },
+    {
+      label: "NIST SI conversion factors",
+      href: "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors",
+    },
+  ],
+  relatedCalculators: [
+    {
+      label: "حاسبة الضغط والقوة والمساحة",
+      href: "/ar/calculators/pressure-force-area",
+    },
+    {
+      label: "مركز الحاسبات الهندسية",
+      href: "/ar/engineering-calculators",
+    },
+  ],
+  relatedConversions: [
+    { label: "PSI إلى Bar", href: "/ar/psi-to-bars" },
+    { label: "Kilopascal إلى Bar", href: "/ar/kilopascals-to-bars" },
+  ],
+};
+
 function renderUnitName(
   unit: EngineeringUnitDefinition,
   locale: Locale
@@ -559,7 +674,7 @@ export default function HydrostaticPressurePage({
   locale: Locale;
   structuredData?: ReactNode;
 }) {
-  const copy = pageCopy[locale];
+  const copy = locale === "ar" ? arabicCopy : pageCopy[locale];
   const unitSections = getUnitSections(locale);
 
   return (

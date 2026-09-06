@@ -1,10 +1,53 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { formatLocalizedNumber } from "../i18n/toolLocales";
 import {
   calculateWallpaperNeeds,
   type WallpaperCalculatorInput,
 } from "../converter/wallpaperCalculator";
+
+type SupportedLocale = "tr" | "en";
+
+type WallpaperCopy = {
+  fieldWallWidth: (index: number) => string;
+  fieldCeilingHeight: string;
+  fieldRollWidth: string;
+  fieldRollLength: string;
+  fieldWaste: string;
+  emptyState: string;
+  resultTotalWallArea: string;
+  resultRollArea: string;
+  resultTotalWithWaste: string;
+  rollCountLabel: (count: number) => string;
+};
+
+const copyByLocale: Record<SupportedLocale, WallpaperCopy> = {
+  tr: {
+    fieldWallWidth: (index) => `Duvar ${index} Genişliği (m)`,
+    fieldCeilingHeight: "Tavan Yüksekliği (m)",
+    fieldRollWidth: "Rulo Eni (cm)",
+    fieldRollLength: "Rulo Uzunluğu (m)",
+    fieldWaste: "Fire Payı (%)",
+    emptyState: "Geçerli değerler girerek sonucu görebilirsin.",
+    resultTotalWallArea: "Toplam Duvar Alanı",
+    resultRollArea: "1 Rulonun Alanı",
+    resultTotalWithWaste: "Fire Dahil Toplam Alan",
+    rollCountLabel: (count) => `Gereken rulo sayısı: ${count} rulo`,
+  },
+  en: {
+    fieldWallWidth: (index) => `Wall ${index} Width (m)`,
+    fieldCeilingHeight: "Ceiling Height (m)",
+    fieldRollWidth: "Roll Width (cm)",
+    fieldRollLength: "Roll Length (m)",
+    fieldWaste: "Waste Allowance (%)",
+    emptyState: "Enter valid values to see the result.",
+    resultTotalWallArea: "Total Wall Area",
+    resultRollArea: "Area per Roll",
+    resultTotalWithWaste: "Total Area Including Waste",
+    rollCountLabel: (count) => `Rolls needed: ${count}`,
+  },
+};
 
 function parseNumericValue(rawValue: string) {
   const normalizedValue = rawValue.trim().replace(/,/g, ".");
@@ -18,11 +61,17 @@ function parseNumericValue(rawValue: string) {
   return Number.isFinite(numericValue) ? numericValue : Number.NaN;
 }
 
-function formatArea(value: number) {
-  return `${value.toLocaleString("tr-TR", { maximumFractionDigits: 2 })} m²`;
+function formatArea(value: number, locale: SupportedLocale) {
+  return `${formatLocalizedNumber(value, locale, { maximumFractionDigits: 2 })} m²`;
 }
 
-export default function WallpaperCalculator() {
+export default function WallpaperCalculator({
+  locale = "tr",
+}: {
+  locale?: SupportedLocale;
+}) {
+  const copy = copyByLocale[locale];
+
   const [wallWidth1, setWallWidth1] = useState("4");
   const [wallWidth2, setWallWidth2] = useState("3");
   const [wallWidth3, setWallWidth3] = useState("4");
@@ -51,7 +100,7 @@ export default function WallpaperCalculator() {
     <div className="category-general-converter">
       <div className="paint-calculator-grid">
         <label className="category-general-converter-field">
-          <span>Duvar 1 Genişliği (m)</span>
+          <span>{copy.fieldWallWidth(1)}</span>
           <input
             inputMode="decimal"
             type="text"
@@ -60,7 +109,7 @@ export default function WallpaperCalculator() {
           />
         </label>
         <label className="category-general-converter-field">
-          <span>Duvar 2 Genişliği (m)</span>
+          <span>{copy.fieldWallWidth(2)}</span>
           <input
             inputMode="decimal"
             type="text"
@@ -69,7 +118,7 @@ export default function WallpaperCalculator() {
           />
         </label>
         <label className="category-general-converter-field">
-          <span>Duvar 3 Genişliği (m)</span>
+          <span>{copy.fieldWallWidth(3)}</span>
           <input
             inputMode="decimal"
             type="text"
@@ -78,7 +127,7 @@ export default function WallpaperCalculator() {
           />
         </label>
         <label className="category-general-converter-field">
-          <span>Duvar 4 Genişliği (m)</span>
+          <span>{copy.fieldWallWidth(4)}</span>
           <input
             inputMode="decimal"
             type="text"
@@ -87,7 +136,7 @@ export default function WallpaperCalculator() {
           />
         </label>
         <label className="category-general-converter-field">
-          <span>Tavan Yüksekliği (m)</span>
+          <span>{copy.fieldCeilingHeight}</span>
           <input
             inputMode="decimal"
             type="text"
@@ -96,7 +145,7 @@ export default function WallpaperCalculator() {
           />
         </label>
         <label className="category-general-converter-field">
-          <span>Rulo Eni (cm)</span>
+          <span>{copy.fieldRollWidth}</span>
           <input
             inputMode="decimal"
             type="text"
@@ -105,7 +154,7 @@ export default function WallpaperCalculator() {
           />
         </label>
         <label className="category-general-converter-field">
-          <span>Rulo Uzunluğu (m)</span>
+          <span>{copy.fieldRollLength}</span>
           <input
             inputMode="decimal"
             type="text"
@@ -114,7 +163,7 @@ export default function WallpaperCalculator() {
           />
         </label>
         <label className="category-general-converter-field">
-          <span>Fire Payı (%)</span>
+          <span>{copy.fieldWaste}</span>
           <input
             inputMode="decimal"
             type="text"
@@ -126,26 +175,28 @@ export default function WallpaperCalculator() {
 
       <div aria-live="polite" className="category-general-converter-result paint-calculator-result">
         {!result ? (
-          <strong>Geçerli değerler girerek sonucu görebilirsin.</strong>
+          <strong>{copy.emptyState}</strong>
         ) : (
           <>
             <div className="paint-calculator-result-grid">
               <div>
-                <span>Toplam Duvar Alanı</span>
-                <strong>{formatArea(result.totalWallAreaM2)}</strong>
+                <span>{copy.resultTotalWallArea}</span>
+                <strong>{formatArea(result.totalWallAreaM2, locale)}</strong>
               </div>
               <div>
-                <span>1 Rulonun Alanı</span>
-                <strong>{formatArea(result.rollAreaM2)}</strong>
+                <span>{copy.resultRollArea}</span>
+                <strong>{formatArea(result.rollAreaM2, locale)}</strong>
               </div>
               <div>
-                <span>Fire Dahil Toplam Alan</span>
-                <strong>{formatArea(result.requiredAreaWithWaste)}</strong>
+                <span>{copy.resultTotalWithWaste}</span>
+                <strong>
+                  {formatArea(result.requiredAreaWithWaste, locale)}
+                </strong>
               </div>
             </div>
 
             <p className="paint-calculator-liters">
-              Gereken rulo sayısı: <strong>{result.requiredRollCount} rulo</strong>
+              <strong>{copy.rollCountLabel(result.requiredRollCount)}</strong>
             </p>
           </>
         )}

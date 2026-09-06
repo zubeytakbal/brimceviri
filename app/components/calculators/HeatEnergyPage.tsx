@@ -75,7 +75,15 @@ const unitSectionHeadings = {
 } as const;
 
 function getUnitSections(locale: CalculatorLocale): UnitTableSection[] {
-  const headings = unitSectionHeadings[locale];
+  const headings =
+    locale === "ar"
+      ? {
+          energy: "وحدات الطاقة",
+          mass: "وحدات الكتلة",
+          specificHeat: "وحدات الحرارة النوعية",
+          temperatureDifference: "وحدات فرق الحرارة",
+        }
+      : unitSectionHeadings[locale];
 
   return [
     {
@@ -105,7 +113,10 @@ function getUnitSections(locale: CalculatorLocale): UnitTableSection[] {
   ];
 }
 
-const pageCopy: Record<CalculatorLocale, PageCopy> = {
+const pageCopy: Record<
+  Exclude<CalculatorLocale, "ar">,
+  PageCopy
+> = {
   tr: {
     breadcrumbs: [
       { label: "Ana Sayfa", href: "/" },
@@ -452,6 +463,106 @@ const pageCopy: Record<CalculatorLocale, PageCopy> = {
   },
 };
 
+const arabicCopy: PageCopy = {
+  breadcrumbs: [
+    { label: "الرئيسية", href: "/ar" },
+    { label: "الحاسبات الهندسية", href: "/ar/engineering-calculators" },
+    { label: "حاسبة الطاقة الحرارية" },
+  ],
+  breadcrumbLabel: "مسار التنقل",
+  title: "حاسبة الطاقة الحرارية",
+  description:
+    "استخدم العلاقة Q = m × c × ΔT لحساب الطاقة الحرارية أو الكتلة أو الحرارة النوعية أو فرق الحرارة مع واجهة عربية واضحة.",
+  heroEyebrow: "حاسبة هندسية",
+  heroResultHeading: "نتيجة الحساب",
+  introHeading: "متى تستخدم هذه الأداة؟",
+  formulasHeading: "المعادلات المستخدمة",
+  variablesHeading: "المتغيرات ومعناها",
+  unitsHeading: "جداول الوحدات",
+  examplesHeading: "أمثلة سريعة",
+  applicationsHeading: "استخدامات شائعة",
+  limitationsHeading: "الافتراضات والقيود",
+  sourcesHeading: "المراجع",
+  relatedHeading: "روابط مرتبطة",
+  relatedCalculatorsHeading: "حاسبات مرتبطة",
+  relatedConversionsHeading: "تحويلات مرتبطة",
+  tableColumns: {
+    unitName: "اسم الوحدة",
+    symbol: "الرمز",
+    siEquivalent: "مكافئ SI",
+    typicalUse: "الاستخدام الشائع",
+  },
+  intro: [
+    "تحسب هذه الأداة الطاقة الحرارية اللازمة لتغيير درجة حرارة مادة ضمن مجال معين.",
+    "وهي مناسبة لتقديرات التسخين الأولية في المياه والعمليات والخزانات والتجارب.",
+  ],
+  formulas: [
+    "Q = m × c × ΔT",
+    "m = Q / (c × ΔT)",
+    "c = Q / (m × ΔT)",
+    "ΔT = Q / (m × c)",
+  ],
+  variables: [
+    { term: "Q", explanation: "الطاقة الحرارية المنتقلة أو المخزنة." },
+    { term: "m", explanation: "الكتلة التي يجري تسخينها أو تبريدها." },
+    { term: "c", explanation: "الحرارة النوعية للمادة." },
+    { term: "ΔT", explanation: "فرق الحرارة بين الحالة الابتدائية والنهائية." },
+  ],
+  examples: [
+    {
+      title: "تسخين 2 kg من الماء بمقدار 20 °C",
+      body: "باستخدام 4186 J/(kg·K) تقريبا، تكون الطاقة المطلوبة نحو 167.44 kJ.",
+    },
+    {
+      title: "كم يرفع 84 kJ حرارة 1 kg من الماء؟",
+      body: "يعطي ذلك زيادة حرارية تقارب 20.07 °C.",
+    },
+  ],
+  applications: [
+    "تقدير أحمال التسخين الأولية",
+    "مقارنة السعات الحرارية للمواد",
+    "فحوص التسخين في الخزانات والدفعات",
+    "أمثلة تعليمية في الاتزان الحراري",
+  ],
+  limitations: [
+    "يفترض الحساب ثبات الحرارة النوعية عبر المجال الحراري.",
+    "لا يشمل تغير الطور أو فقد الحرارة أو تأثيرات الخلط.",
+    "تتطلب الحسابات العكسية قيما فيزيائية معقولة وغير صفرية عند القسمة.",
+  ],
+  sources: [
+    {
+      label: "OpenStax University Physics - Temperature and Heat",
+      href: "https://openstax.org/books/university-physics-volume-2/pages/1-introduction",
+    },
+    {
+      label: "BIPM SI Brochure",
+      href: "https://www.bipm.org/en/publications/si-brochure",
+    },
+    {
+      label: "NIST Guide to the SI",
+      href: "https://www.nist.gov/pml/special-publication-811",
+    },
+  ],
+  relatedCalculators: [
+    {
+      label: "حاسبة انتقال الحرارة بالتوصيل",
+      href: "/ar/calculators/heat-conduction",
+    },
+    {
+      label: "حاسبة عدد رينولدز",
+      href: "/ar/calculators/reynolds-number",
+    },
+    {
+      label: "مركز الحاسبات الهندسية",
+      href: "/ar/engineering-calculators",
+    },
+  ],
+  relatedConversions: [
+    { label: "Kilograms إلى Grams", href: "/ar/kilograms-to-grams" },
+    { label: "Grams إلى Kilograms", href: "/ar/grams-to-kilograms" },
+  ],
+};
+
 function renderUnitName(
   unit: EngineeringUnitDefinition,
   locale: CalculatorLocale
@@ -473,7 +584,7 @@ export default function HeatEnergyPage({
   locale: CalculatorLocale;
   structuredData?: ReactNode;
 }) {
-  const copy = pageCopy[locale];
+  const copy = locale === "ar" ? arabicCopy : pageCopy[locale];
   const unitSections = getUnitSections(locale);
 
   return (

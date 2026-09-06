@@ -175,7 +175,10 @@ export default function KitchenMeasuresPage() {
             çıkarmak, yarıya indirmek) istersen{" "}
             <Link href="/tarif-cevirici">tarif çevirici sayfasını</Link>{" "}
             kullanabilirsin — tarifi yapıştır, çarpanı seç, satır satır
-            sonucu gör.
+            sonucu gör. Mutfakla ilgili diğer araçlar ve fırın
+            sıcaklığı dönüşüm tablosu için{" "}
+            <Link href="/asci-araclari">Aşçı Araçları</Link> sayfasına
+            bakabilirsin.
           </p>
 
           <h2>Kaynaklar</h2>

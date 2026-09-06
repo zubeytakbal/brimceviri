@@ -98,7 +98,14 @@ const unitSectionHeadings = {
 } as const;
 
 function renderUnitTableSections(locale: Locale) {
-  const headings = unitSectionHeadings[locale];
+  const headings =
+    locale === "ar"
+      ? {
+          pressure: "وحدات الضغط",
+          force: "وحدات القوة",
+          area: "وحدات المساحة",
+        }
+      : unitSectionHeadings[locale];
 
   return [
     {
@@ -122,7 +129,7 @@ function renderUnitTableSections(locale: Locale) {
   ] satisfies UnitTableSection[];
 }
 
-const pageCopy: Record<Locale, PageCopy> = {
+const pageCopy: Record<Exclude<Locale, "ar">, PageCopy> = {
   tr: {
     breadcrumbs: [
       { label: "Ana Sayfa", href: "/" },
@@ -545,6 +552,100 @@ const pageCopy: Record<Locale, PageCopy> = {
   },
 };
 
+const arabicCopy: PageCopy = {
+  breadcrumbs: [
+    { label: "الرئيسية", href: "/ar" },
+    { label: "الحاسبات الهندسية", href: "/ar/engineering-calculators" },
+    { label: "حاسبة الضغط والقوة والمساحة" },
+  ],
+  breadcrumbLabel: "مسار التنقل",
+  title: "حاسبة الضغط والقوة والمساحة",
+  description:
+    "احسب الضغط أو القوة أو المساحة عبر تحويلات SI. تدعم الأداة وحدات الضغط والقوة والمساحة الشائعة في الاستخدام الهندسي.",
+  heroEyebrow: "حاسبة هندسية",
+  heroResultHeading: "نتيجة الحساب",
+  formulasHeading: "المعادلات المستخدمة",
+  variablesHeading: "معنى المتغيرات",
+  unitsHeading: "جداول الوحدات",
+  examplesHeading: "أمثلة سريعة",
+  applicationsHeading: "استخدامات شائعة",
+  limitationsHeading: "الافتراضات والقيود",
+  scientificNotesHeading: "ملاحظات فنية",
+  sourcesHeading: "المراجع",
+  relatedHeading: "روابط مرتبطة",
+  relatedCalculatorsHeading: "حاسبات مرتبطة",
+  relatedConversionsHeading: "تحويلات مرتبطة",
+  relatedGuidesHeading: "أدلة وحدات مرتبطة",
+  tableColumns: {
+    unitName: "اسم الوحدة",
+    symbol: "الرمز",
+    siEquivalent: "مكافئ SI",
+    typicalUse: "الاستخدام الشائع",
+  },
+  formulas: ["P = F / A", "F = P × A", "A = F / P", "1 Pa = 1 N/m²"],
+  variables: [
+    { term: "P", explanation: "الضغط الناتج عن قوة موزعة على مساحة معينة." },
+    { term: "F", explanation: "القوة العمودية المؤثرة على السطح." },
+    { term: "A", explanation: "مساحة التلامس أو التأثير." },
+  ],
+  examples: [
+    {
+      title: "1000 N / 0.01 m² = 100000 Pa",
+      body: "قوة 1000 نيوتن موزعة على 0.01 متر مربع تعطي ضغطا مقداره 100 kPa.",
+    },
+    {
+      title: "1 bar × 10 cm² = 100 N",
+      body: "بعد تحويل الوحدات إلى SI تكون القوة الناتجة 100 نيوتن.",
+    },
+  ],
+  applications: [
+    "تقدير ضغط التلامس",
+    "فحوص أولية للأنظمة الهيدروليكية والهوائية",
+    "مقارنة الأحمال على الأسطح والأختام",
+  ],
+  limitations: [
+    "النتيجة تمثل ضغطا متوسطا موزعا بانتظام.",
+    "لا تكفي وحدها لتحليل التركيزات الموضعية أو الأحمال الديناميكية.",
+    "الضغط والإجهاد الميكانيكي يشتركان في الوحدة لكن يختلفان في السياق.",
+  ],
+  scientificNotes: [
+    "تستخدم حسابات kgf والجاذبية التقنية تسارع الجاذبية القياسي g₀ = 9.80665 m/s².",
+    "قد تختلف وحدات عمود السائل مثل mmHg وinH₂O بحسب التعريف والاتفاق المستخدم.",
+    "الكتلة ليست قوة، لذلك تستخدم kgf كوحدة قوة بدلا من kg.",
+  ],
+  sources: [
+    {
+      label: "BIPM SI Brochure",
+      href: "https://www.bipm.org/en/publications/si-brochure",
+    },
+    {
+      label: "NIST Appendix B.9 Conversion Factors",
+      href: "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b9",
+    },
+  ],
+  relatedCalculators: [
+    {
+      label: "حاسبة الضغط الهيدروستاتيكي",
+      href: "/ar/calculators/hydrostatic-pressure",
+    },
+    {
+      label: "مركز الحاسبات الهندسية",
+      href: "/ar/engineering-calculators",
+    },
+  ],
+  relatedConversions: [
+    { label: "PSI إلى Bar", href: "/ar/psi-to-bars" },
+    { label: "Kilopascal إلى Bar", href: "/ar/kilopascals-to-bars" },
+    { label: "Pascal إلى Bar", href: "/ar/pascals-to-bars" },
+  ],
+  relatedGuides: [
+    { label: "دليل الباسكال", href: "/ar/unit-guides/pascal" },
+    { label: "دليل الكيلوباسكال", href: "/ar/unit-guides/kilopascal" },
+    { label: "دليل البار", href: "/ar/unit-guides/bar" },
+    { label: "دليل PSI", href: "/ar/unit-guides/psi" },
+  ],
+};
+
 function renderUnitName(
   unit: EngineeringUnitDefinition,
   locale: Locale
@@ -568,7 +669,7 @@ export default function PressureForceAreaPage({
   locale: Locale;
   structuredData?: ReactNode;
 }) {
-  const copy = pageCopy[locale];
+  const copy = locale === "ar" ? arabicCopy : pageCopy[locale];
   const unitTableSections = renderUnitTableSections(locale);
 
   return (

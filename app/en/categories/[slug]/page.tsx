@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import CategoryUnitConverter from "../../../components/CategoryUnitConverter";
 import CategoryPageLayout from "../../../components/CategoryPageLayout";
+import { buildFullLanguageAlternates } from "../../../i18n/routing";
 import { createConversionCards } from "../../../components/categoryPageUtils";
 import { englishCalculatorPages } from "../../../converter/localizedCalculatorPages";
 import {
@@ -92,6 +93,7 @@ const extendedEnglishCategoryUnitHeadings: Record<string, string> = {
   enduktans: "Inductance units",
   elektrik_yuk: "Electric charge units",
   altin_ayar: "Gold karat units",
+  gumus_ayar: "Silver purity units",
 };
 
 const extendedEnglishCategoryConversionHeadings: Record<string, string> = {
@@ -107,6 +109,7 @@ const extendedEnglishCategoryConversionHeadings: Record<string, string> = {
   enduktans: "Inductance conversion tools",
   elektrik_yuk: "Electric charge conversion tools",
   altin_ayar: "Gold karat conversion tools",
+  gumus_ayar: "Silver purity conversion tools",
 };
 
 const extendedEnglishCategoryDetailNames: Record<string, string> = {
@@ -122,6 +125,7 @@ const extendedEnglishCategoryDetailNames: Record<string, string> = {
   enduktans: "Inductance",
   elektrik_yuk: "Electric Charge",
   altin_ayar: "Gold Karat",
+  gumus_ayar: "Silver Purity",
 };
 
 function serializeJsonLd(data: object) {
@@ -150,23 +154,12 @@ export async function generateMetadata({
     };
   }
 
-  const germanPage = findGermanCategoryPageByTurkishSlug(
-    categoryPage.sourceSlug
-  );
-
   return {
     title: categoryPage.title,
     description: categoryPage.description,
     alternates: {
       canonical: `/en/categories/${categoryPage.slug}`,
-      languages: {
-        tr: `/kategoriler/${categoryPage.sourceSlug}`,
-        en: `/en/categories/${categoryPage.slug}`,
-        ...(germanPage
-          ? { de: `/de/kategorien/${germanPage.slug}` }
-          : {}),
-        "x-default": `/kategoriler/${categoryPage.sourceSlug}`,
-      },
+      ...buildFullLanguageAlternates(`/en/categories/${categoryPage.slug}`),
     },
     openGraph: {
       title: categoryPage.title,
@@ -212,6 +205,24 @@ export default async function EnglishCategoryPage({
       calculatorPage.category === categoryPage.category
   );
   const sources = getUnitSources(categoryPage.category);
+
+  const tableReferenceLabel =
+    categoryPage.category === "uzunluk"
+      ? "Meter equivalent"
+      : categoryPage.category === "kutle"
+        ? "Kilogram equivalent"
+        : categoryPage.category === "basinc"
+          ? "Pascal equivalent"
+          : "SI equivalent";
+
+  const tableTitle =
+    categoryPage.category === "uzunluk"
+      ? "Length unit comparison table"
+      : categoryPage.category === "kutle"
+        ? "Mass unit comparison table"
+        : categoryPage.category === "basinc"
+          ? "Pressure unit comparison table"
+          : "Unit comparison table";
 
   const isSecondaryCategory = !(
     homeCategoryOrder as readonly string[]
@@ -391,6 +402,12 @@ export default async function EnglishCategoryPage({
                 </li>
               ))}
 
+              {categoryPage.unitTable && (
+                <li>
+                  <a href="#unit-comparison-table">{tableTitle}</a>
+                </li>
+              )}
+
               <li>
                 <a href="#category-units">
                   {extendedEnglishCategoryUnitHeadings[
@@ -445,6 +462,41 @@ export default async function EnglishCategoryPage({
                 ))}
               </section>
             ))}
+
+            {categoryPage.unitTable && (
+              <section
+                className="conversion-section"
+                id="unit-comparison-table"
+              >
+                <h2>{tableTitle}</h2>
+
+                <div className="scientific-table-wrap">
+                  <table className="scientific-table">
+                    <thead>
+                      <tr>
+                        <th>Unit</th>
+                        <th>Symbol</th>
+                        <th>{tableReferenceLabel}</th>
+                        <th>System</th>
+                        <th>Common use</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      {categoryPage.unitTable.map((unit) => (
+                        <tr key={`${unit.symbol}-${unit.name}`}>
+                          <td>{unit.name}</td>
+                          <td>{unit.symbol}</td>
+                          <td>{unit.referenceValue}</td>
+                          <td>{unit.system}</td>
+                          <td>{unit.commonUse}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+            )}
 
             <section
               className="conversion-section"

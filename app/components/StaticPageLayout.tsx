@@ -12,7 +12,7 @@ type StaticPageSection = {
 };
 
 type StaticPageLayoutProps = {
-  locale: "tr" | "en" | "de";
+  locale: "tr" | "en" | "de" | "ar";
   breadcrumbAriaLabel: string;
   breadcrumbs: BreadcrumbItem[];
   title: string;
@@ -35,13 +35,21 @@ export default function StaticPageLayout({
   alternateLink,
 }: StaticPageLayoutProps) {
   return (
-    <main className="unit-information-page" lang={locale}>
+    <main
+      className="unit-information-page"
+      lang={locale}
+      dir={locale === "ar" ? "rtl" : undefined}
+    >
       <article className="unit-page-shell">
         <nav className="breadcrumbs" aria-label={breadcrumbAriaLabel}>
           {breadcrumbs.map((item, index) => (
             <span key={`${item.label}-${index}`}>
-              {index > 0 && <span aria-hidden="true"> › </span>}
-              {item.href ? <Link href={item.href}>{item.label}</Link> : <span>{item.label}</span>}
+              {index > 0 && <span aria-hidden="true"> &rsaquo; </span>}
+              {item.href ? (
+                <Link href={item.href}>{item.label}</Link>
+              ) : (
+                <span>{item.label}</span>
+              )}
             </span>
           ))}
         </nav>
@@ -66,7 +74,9 @@ export default function StaticPageLayout({
                   ? "Other languages"
                   : locale === "de"
                     ? "Weitere Sprachen"
-                    : "Diğer diller"}
+                    : locale === "ar"
+                      ? "لغات أخرى"
+                      : "Diger diller"}
               </h2>
               <Link
                 className="text-link"

@@ -1,5 +1,22 @@
 import type { UnitArticle } from "./unitArticles";
 import { kilometerArticle } from "./articles/english/kilometerArticle";
+import { barArticle } from "./articles/english/barArticle";
+import { pascalArticle } from "./articles/english/pascalArticle";
+import { atmosphereArticle } from "./articles/english/atmosphereArticle";
+import { psiArticle } from "./articles/english/psiArticle";
+import { kilopascalArticle } from "./articles/english/kilopascalArticle";
+import { newtonArticle } from "./articles/english/newtonArticle";
+import { newtonMeterArticle } from "./articles/english/newtonMeterArticle";
+import { kilogramForcePerSquareCentimeterArticle } from "./articles/english/kilogramForcePerSquareCentimeterArticle";
+import { millimeterOfMercuryArticle } from "./articles/english/millimeterOfMercuryArticle";
+import { kilogramPerCubicMeterArticle } from "./articles/english/kilogramPerCubicMeterArticle";
+import { horsepowerArticle } from "./articles/english/horsepowerArticle";
+import { kilogramMeterPerSecondArticle } from "./articles/english/kilogramMeterPerSecondArticle";
+import { pascalSecondArticle } from "./articles/english/pascalSecondArticle";
+import { gallonArticle } from "./articles/english/gallonArticle";
+import { acreArticle } from "./articles/english/acreArticle";
+import { cubicCentimeterArticle } from "./articles/english/cubicCentimeterArticle";
+import { gigabyteArticle } from "./articles/english/gigabyteArticle";
 
 const meterArticle: UnitArticle = {
   slug: "meter",
@@ -231,6 +248,23 @@ const meterArticle: UnitArticle = {
 export const englishUnitArticles: UnitArticle[] = [
   meterArticle,
   kilometerArticle,
+  barArticle,
+  pascalArticle,
+  atmosphereArticle,
+  psiArticle,
+  kilopascalArticle,
+  newtonArticle,
+  newtonMeterArticle,
+  kilogramForcePerSquareCentimeterArticle,
+  millimeterOfMercuryArticle,
+  kilogramPerCubicMeterArticle,
+  horsepowerArticle,
+  kilogramMeterPerSecondArticle,
+  pascalSecondArticle,
+  gallonArticle,
+  acreArticle,
+  cubicCentimeterArticle,
+  gigabyteArticle,
 ];
 
 export function findEnglishUnitArticle(slug: string) {

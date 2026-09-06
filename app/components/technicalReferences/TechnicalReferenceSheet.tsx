@@ -97,6 +97,16 @@ const chartMargins = {
   left: 84,
 };
 
+function getNumberLocale(locale: TechnicalReferenceLocale) {
+  return locale === "tr"
+    ? "tr-TR"
+    : locale === "de"
+      ? "de-DE"
+      : locale === "ar"
+        ? "ar"
+      : "en-US";
+}
+
 function formatUpdatedDate(
   locale: TechnicalReferenceLocale,
   updatedOn?: string
@@ -107,7 +117,9 @@ function formatUpdatedDate(
 
   return locale === "tr"
     ? "Kaynak sayfasında belirtilmedi"
-    : "Not stated on the source page";
+    : locale === "ar"
+      ? "غير مذكور في صفحة المصدر"
+      : "Not stated on the source page";
 }
 
 function renderText(
@@ -464,9 +476,9 @@ export function TechnicalReferenceBandChart({
                 className="technical-reference-grid-line"
               />
               {renderText(
-                new Intl.NumberFormat(
-                  locale === "tr" ? "tr-TR" : "en-US"
-                ).format(tick),
+                new Intl.NumberFormat(getNumberLocale(locale)).format(
+                  tick
+                ),
                 x,
                 chartMargins.top + plotHeight + 24,
                 {
@@ -548,13 +560,29 @@ export default function TechnicalReferenceSheet({
   children,
 }: TechnicalReferenceSheetProps) {
   const downloadLabel =
-    locale === "tr" ? "PDF olarak indir" : "Download PDF";
+    locale === "tr"
+      ? "PDF olarak indir"
+      : locale === "ar"
+        ? "تنزيل PDF"
+        : "Download PDF";
   const updatedLabel =
-    locale === "tr" ? "Güncelleme/Yayın" : "Updated/Release";
+    locale === "tr"
+      ? "Güncelleme/Yayın"
+      : locale === "ar"
+        ? "التحديث/النشر"
+        : "Updated/Release";
   const accessedLabel =
-    locale === "tr" ? "Erişim" : "Accessed";
+    locale === "tr"
+      ? "Erişim"
+      : locale === "ar"
+        ? "تاريخ الوصول"
+        : "Accessed";
   const conditionsLabel =
-    locale === "tr" ? "Veri koşulu" : "Data condition";
+    locale === "tr"
+      ? "Veri koşulu"
+      : locale === "ar"
+        ? "شرط البيانات"
+        : "Data condition";
 
   return (
     <section className="technical-reference-sheet">

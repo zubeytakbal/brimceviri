@@ -60,6 +60,13 @@ export default function ShoeSizePage() {
           <p>
             {"\u00c7ocuk ayakkab\u0131lar\u0131nda ABD numaraland\u0131rmas\u0131 13,5'ten sonra 1'den yeniden ba\u015flar (bebek/k\u00fc\u00e7\u00fck \u00e7ocuktan b\u00fcy\u00fck \u00e7ocu\u011fa ge\u00e7i\u015f); bu y\u00fczden bebek ve b\u00fcy\u00fck \u00e7ocuk i\u00e7in ayr\u0131 iki tablo kullan\u0131l\u0131yor."}
           </p>
+
+          <h2>{"\u0130lgili ara\u00e7lar"}</h2>
+          <p>
+            {"Beden ve y\u00fcz\u00fck \u00f6l\u00e7\u00fcs\u00fc gibi di\u011fer \u00f6l\u00e7\u00fc \u00e7evirme ara\u00e7lar\u0131 i\u00e7in "}
+            <Link href="/terzi-araclari">{"Terzi Ara\u00e7lar\u0131"}</Link>
+            {" sayfas\u0131na bakabilirsin."}
+          </p>
         </section>
       </div>
     </main>

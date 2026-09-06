@@ -93,6 +93,25 @@ const copy = {
     siEquivalent: "SI-Äquivalent",
     clear: "Werte zurücksetzen",
   },
+  ar: {
+    targetLabel: "هدف الحساب",
+    energy: "احسب الطاقة الحرارية",
+    mass: "احسب الكتلة",
+    specificHeat: "احسب الحرارة النوعية",
+    temperatureDifference: "احسب فرق الحرارة",
+    energyValue: "الطاقة الحرارية",
+    massValue: "الكتلة",
+    specificHeatValue: "الحرارة النوعية",
+    temperatureDifferenceValue: "فرق الحرارة",
+    presetLabel: "إعداد الحرارة النوعية",
+    presetNote:
+      "تستخدم قيمة الماء التقريبية 4186 J/(kg·K). قد تختلف الحرارة النوعية الفعلية حسب المادة والحرارة.",
+    resultLive: "نتيجة الحساب",
+    automaticResultUnit: "وحدة النتيجة التلقائية",
+    formula: "المعادلة بعد التعويض",
+    siEquivalent: "مكافئ SI",
+    clear: "مسح القيم",
+  },
 } as const;
 
 const specificHeatPresets: Record<
@@ -137,6 +156,20 @@ const specificHeatPresets: Record<
     {
       id: "custom",
       label: "Benutzerdefiniert",
+      value: "",
+      unit: calculatorUnitSymbols.joulePerKilogramKelvin,
+    },
+  ],
+  ar: [
+    {
+      id: "water",
+      label: "ماء",
+      value: "4186",
+      unit: calculatorUnitSymbols.joulePerKilogramKelvin,
+    },
+    {
+      id: "custom",
+      label: "قيمة مخصصة",
       value: "",
       unit: calculatorUnitSymbols.joulePerKilogramKelvin,
     },

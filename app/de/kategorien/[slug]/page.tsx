@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import CategoryUnitConverter from "../../../components/CategoryUnitConverter";
 import CategoryPageLayout from "../../../components/CategoryPageLayout";
 import { createConversionCards } from "../../../components/categoryPageUtils";
+import { buildFullLanguageAlternates } from "../../../i18n/routing";
 import {
   findGermanCategoryPage,
   germanCategoryPages,
@@ -79,21 +80,12 @@ export async function generateMetadata({
     };
   }
 
-  const englishPage = findEnglishCategoryPageByTurkishSlug(
-    categoryPage.sourceSlug
-  );
-
   return {
     title: categoryPage.title,
     description: categoryPage.description,
     alternates: {
       canonical: `/de/kategorien/${categoryPage.slug}`,
-      languages: {
-        tr: `/kategoriler/${categoryPage.sourceSlug}`,
-        en: englishPage ? `/en/categories/${englishPage.slug}` : "/en",
-        de: `/de/kategorien/${categoryPage.slug}`,
-        "x-default": `/kategoriler/${categoryPage.sourceSlug}`,
-      },
+      ...buildFullLanguageAlternates(`/de/kategorien/${categoryPage.slug}`),
     },
     openGraph: {
       title: categoryPage.title,

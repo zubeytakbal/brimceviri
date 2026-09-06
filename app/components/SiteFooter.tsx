@@ -2,33 +2,19 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { getLocaleFromPathname } from "../i18n/config";
+import {
+  getCategoryFooterLinks,
+  getFooterLanguageLinks,
+  getFooterLinks,
+  getSiteFooterCopy,
+} from "../i18n/siteNavigation";
 import {
   SITE_CONTACT_EMAIL,
   SITE_NAME,
 } from "../siteConfig";
-import { germanStaticPaths } from "../i18n/germanRoutes";
-import { categoryPages } from "../converter/categoryPages";
-import { englishCategoryPages } from "../converter/localizedCategoryPages";
-import { germanCategoryPages } from "../converter/localizedGermanCategoryPages";
 
-type FooterLink = {
-  href: string;
-  label: string;
-};
-
-type Locale = "tr" | "en" | "de";
-
-const footerLanguageLinks: Array<{
-  locale: Locale;
-  href: string;
-  label: string;
-}> = [
-  { locale: "tr", href: "/", label: "Türkçe" },
-  { locale: "en", href: "/en", label: "English" },
-  { locale: "de", href: "/de", label: "Deutsch" },
-];
-
-function FlagIcon({ locale }: { locale: Locale }) {
+function FlagIcon({ locale }: { locale: string }) {
   if (locale === "tr") {
     return (
       <svg
@@ -61,6 +47,53 @@ function FlagIcon({ locale }: { locale: Locale }) {
     );
   }
 
+  if (locale === "ar") {
+    return (
+      <svg
+        className="site-footer-flag"
+        viewBox="0 0 20 14"
+        aria-hidden="true"
+      >
+        <rect width="20" height="14" fill="#ffffff" />
+        <rect width="6" height="14" fill="#EF3340" />
+        <rect y="0" width="20" height="4.67" fill="#00732F" />
+        <rect y="9.33" width="20" height="4.67" fill="#000000" />
+      </svg>
+    );
+  }
+
+  if (locale === "uz") {
+    return (
+      <svg
+        className="site-footer-flag"
+        viewBox="0 0 20 14"
+        aria-hidden="true"
+      >
+        <rect width="20" height="14" fill="#1EB53A" />
+        <rect width="20" height="4.2" fill="#0099B5" />
+        <rect y="9.8" width="20" height="4.2" fill="#1EB53A" />
+        <rect y="4.2" width="20" height="0.6" fill="#CE1126" />
+        <rect y="9.2" width="20" height="0.6" fill="#CE1126" />
+        <rect y="4.8" width="20" height="5" fill="#ffffff" />
+        <circle cx="4.6" cy="2.1" r="1.3" fill="#ffffff" />
+        <circle cx="5.15" cy="2.1" r="1.05" fill="#0099B5" />
+      </svg>
+    );
+  }
+
+  if (locale === "bn") {
+    return (
+      <svg
+        className="site-footer-flag"
+        viewBox="0 0 20 14"
+        aria-hidden="true"
+      >
+        <rect width="20" height="14" fill="#006A4E" />
+        <circle cx="9" cy="7" r="4.2" fill="#F42A41" />
+      </svg>
+    );
+  }
+
   return (
     <svg
       className="site-footer-flag"
@@ -76,130 +109,34 @@ function FlagIcon({ locale }: { locale: Locale }) {
   );
 }
 
-const footerLinks: Record<Locale, FooterLink[]> = {
-  tr: [
-    { href: "/", label: "Ana Sayfa" },
-    { href: "/birimler", label: "Birim Rehberi" },
-    { href: "/tum-birimler", label: "T\u00FCm D\u00F6n\u00FC\u015F\u00FCmler" },
-    { href: "/gelistirici-api", label: "Geli\u015Ftirici API'si" },
-    { href: "/hakkimizda", label: "Hakk\u0131m\u0131zda" },
-    { href: "/iletisim", label: "\u0130leti\u015Fim" },
-    { href: "/gizlilik", label: "Gizlilik" },
-    {
-      href: "/kullanim-kosullari",
-      label: "Kullan\u0131m Ko\u015Fullar\u0131",
-    },
-  ],
-  en: [
-    { href: "/en", label: "Home" },
-    { href: "/en/units", label: "Unit Guide" },
-    {
-      href: "/en/all-conversions",
-      label: "All Conversions",
-    },
-    { href: "/en/about", label: "About" },
-    { href: "/en/contact", label: "Contact" },
-    { href: "/en/privacy", label: "Privacy" },
-    { href: "/en/terms", label: "Terms" },
-  ],
-  de: [
-    { href: "/de", label: "Startseite" },
-    { href: germanStaticPaths.units, label: "Einheitenleitfaden" },
-    { href: germanStaticPaths.allConversions, label: "Alle Umrechnungen" },
-    { href: germanStaticPaths.engineeringHub, label: "Ingenieurrechner" },
-    { href: germanStaticPaths.about, label: "\u00DCber uns" },
-    { href: germanStaticPaths.contact, label: "Kontakt" },
-    { href: germanStaticPaths.privacy, label: "Datenschutz" },
-    { href: germanStaticPaths.terms, label: "Nutzungsbedingungen" },
-  ],
-};
-
-function getCategoryFooterLinks(locale: Locale): FooterLink[] {
-  if (locale === "en") {
-    return englishCategoryPages.map((page) => ({
-      href: `/en/categories/${page.slug}`,
-      label: page.title,
-    }));
-  }
-
-  if (locale === "de") {
-    return germanCategoryPages.map((page) => ({
-      href: `/de/kategorien/${page.slug}`,
-      label: page.title,
-    }));
-  }
-
-  return categoryPages.map((page) => ({
-    href: `/kategoriler/${page.slug}`,
-    label: page.title,
-  }));
-}
-
-function getLocaleFromPathname(pathname: string): Locale {
-  if (pathname === "/en" || pathname.startsWith("/en/")) {
-    return "en";
-  }
-
-  if (pathname === "/de" || pathname.startsWith("/de/")) {
-    return "de";
-  }
-
-  return "tr";
-}
-
 export default function SiteFooter() {
   const pathname = usePathname();
+  if (pathname.startsWith("/embed/")) {
+    return null;
+  }
   const locale = getLocaleFromPathname(pathname);
-  const isEnglish = locale === "en";
-  const isGerman = locale === "de";
   const categoryFooterLinks = getCategoryFooterLinks(locale);
-  const categoriesHeading = isEnglish
-    ? "Categories"
-    : isGerman
-      ? "Kategorien"
-      : "Kategoriler";
-  const pagesHeading = isEnglish ? "Pages" : isGerman ? "Seiten" : "Sayfalar";
-  const languagesHeading = isEnglish
-    ? "Languages"
-    : isGerman
-      ? "Sprachen"
-      : "Diller";
+  const footerLinks = getFooterLinks(locale);
+  const footerLanguageLinks = getFooterLanguageLinks();
+  const footerCopy = getSiteFooterCopy(locale);
 
   return (
     <footer className="site-footer">
       <div className="site-footer-inner">
         <div className="site-footer-copy">
           <strong>{SITE_NAME}</strong>
-          <p>
-            {isEnglish
-              ? "Technical conversion tools, engineering calculators and unit guides prepared for practical reference."
-              : isGerman
-                ? "Technische Umrechnungstools und Einheitenleitf\u00E4den f\u00FCr den schnellen praktischen Einsatz."
-                : "Teknik d\u00F6n\u00FC\u015F\u00FCm ara\u00E7lar\u0131, m\u00FChendislik hesaplay\u0131c\u0131lar\u0131 ve birim rehberleri pratik ba\u015Fvuru amac\u0131yla haz\u0131rlanm\u0131\u015Ft\u0131r."}
-          </p>
-          <p>
-            {isEnglish
-              ? "For engineering, health or safety decisions, verify critical values with professional sources."
-              : isGerman
-                ? "Pr\u00FCfen Sie kritische Werte bei technischen, gesundheitlichen oder sicherheitsrelevanten Entscheidungen immer mit fachlichen Quellen."
-                : "Kritik m\u00FChendislik, sa\u011Fl\u0131k veya g\u00FCvenlik kararlar\u0131nda sonu\u00E7lar\u0131 profesyonel kaynaklarla do\u011Frulay\u0131n."}
-          </p>
+          <p>{footerCopy.description}</p>
+          <p>{footerCopy.disclaimer}</p>
         </div>
 
         <nav
           className="site-footer-nav"
-          aria-label={
-            isEnglish
-              ? "Footer navigation"
-              : isGerman
-                ? "Fu\u00DFnavigation"
-                : "Alt men\u00FC"
-          }
+          aria-label={footerCopy.navAriaLabel}
         >
           <strong className="site-footer-nav-heading">
-            {pagesHeading}
+            {footerCopy.pagesHeading}
           </strong>
-          {footerLinks[locale].map((link) => (
+          {footerLinks.map((link) => (
             <Link href={link.href} key={link.href}>
               {link.label}
             </Link>
@@ -208,10 +145,10 @@ export default function SiteFooter() {
 
         <nav
           className="site-footer-nav site-footer-nav-languages"
-          aria-label={languagesHeading}
+          aria-label={footerCopy.languagesHeading}
         >
           <strong className="site-footer-nav-heading">
-            {languagesHeading}
+            {footerCopy.languagesHeading}
           </strong>
           {footerLanguageLinks.map((languageLink) => (
             <Link
@@ -230,10 +167,10 @@ export default function SiteFooter() {
 
         <nav
           className="site-footer-nav site-footer-nav-categories"
-          aria-label={categoriesHeading}
+          aria-label={footerCopy.categoriesHeading}
         >
           <strong className="site-footer-nav-heading">
-            {categoriesHeading}
+            {footerCopy.categoriesHeading}
           </strong>
           {categoryFooterLinks.map((link) => (
             <Link href={link.href} key={link.href}>
@@ -246,13 +183,7 @@ export default function SiteFooter() {
           <a href={`mailto:${SITE_CONTACT_EMAIL}`}>
             {SITE_CONTACT_EMAIL}
           </a>
-          <small>
-            {isEnglish
-              ? "Calculator inputs are processed in the browser for calculation flows on this site."
-              : isGerman
-                ? "Eingegebene Werte werden f\u00FCr die Rechenabl\u00E4ufe direkt im Browser verarbeitet."
-                : "Hesaplay\u0131c\u0131 giri\u015Fleri bu sitedeki hesaplama ak\u0131\u015Flar\u0131 i\u00E7in taray\u0131c\u0131 i\u00E7inde i\u015Flenir."}
-          </small>
+          <small>{footerCopy.browserProcessingNote}</small>
         </div>
       </div>
     </footer>

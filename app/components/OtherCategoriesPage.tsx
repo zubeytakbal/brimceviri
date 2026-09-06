@@ -27,9 +27,10 @@ type OtherTool = {
   title: string;
   description: string;
   iconName: SiteIconName;
+  group?: string;
 };
 
-type Locale = "tr" | "en";
+type Locale = "tr" | "en" | "de" | "ar";
 
 type AlternateLink = {
   href: string;
@@ -42,22 +43,22 @@ const pageCopy = {
     homeHref: "/",
     homeLabel: "Ana Sayfa",
     breadcrumbAriaLabel: "Sayfa yolu",
-    title: "Di\u011fer D\u00f6n\u00fc\u015f\u00fcmler",
+    title: "Diger Donusumler",
     description:
-      "Ana sayfada yer almayan, daha az bilinen ancak m\u00fchendislik ve bilim alanlar\u0131nda ger\u00e7ekten kullan\u0131lan birim kategorilerini burada bulabilirsiniz.",
-    searchLabel: "D\u00f6n\u00fc\u015f\u00fcm ara",
+      "Ana sayfada yer almayan, daha az bilinen ancak muhendislik ve bilim alanlarinda gercekten kullanilan birim kategorilerini burada bulabilirsiniz.",
+    searchLabel: "Donusum ara",
     searchPlaceholder:
-      "\u00d6rnek: newton, viskozite, beygirg\u00fcc\u00fc, tork",
-    searchButton: "A\u00e7",
+      "Ornek: newton, viskozite, beygirgucu, tork",
+    searchButton: "Ac",
     searchHint:
-      "Birim ad\u0131, sembol veya d\u00f6n\u00fc\u015f\u00fcm \u00e7ifti yazarak ilgili sayfay\u0131 bulun.",
-    searchResultsTitle: "Arama sonu\u00e7lar\u0131",
+      "Birim adi, sembol veya donusum cifti yazarak ilgili sayfayi bulun.",
+    searchResultsTitle: "Arama sonuclari",
     searchResultsHint:
-      "\u0130lk sonucu a\u00e7mak i\u00e7in Enter kullanabilirsiniz.",
-    searchEmpty: "E\u015fle\u015fen d\u00f6n\u00fc\u015f\u00fcm bulunamad\u0131.",
-    toolsTitle: "Ara\u00e7lar",
+      "Ilk sonucu acmak icin Enter kullanabilirsiniz.",
+    searchEmpty: "Eslesen donusum bulunamadi.",
+    toolsTitle: "Araclar",
     categoriesTitle: "Kategoriler",
-    otherLanguagesTitle: "Di\u011fer diller",
+    otherLanguagesTitle: "Diger diller",
   },
   en: {
     homeHref: "/en",
@@ -80,26 +81,77 @@ const pageCopy = {
     categoriesTitle: "Categories",
     otherLanguagesTitle: "Other languages",
   },
+  de: {
+    homeHref: "/de",
+    homeLabel: "Startseite",
+    breadcrumbAriaLabel: "Brotkrumen",
+    title: "Weitere Umrechnungen",
+    description:
+      "Entdecken Sie technische und wissenschaftliche Umrechnungskategorien, die nicht im Hauptverzeichnis der Startseite erscheinen.",
+    searchLabel: "Umrechnungen suchen",
+    searchPlaceholder:
+      "Beispiel: newton, viskositaet, drehmoment",
+    searchButton: "Oeffnen",
+    searchHint:
+      "Suchen Sie per Einheitenname, Symbol oder Umrechnungspaar nach der passenden Seite.",
+    searchResultsTitle: "Suchergebnisse",
+    searchResultsHint:
+      "Mit Enter oeffnen Sie den ersten Treffer.",
+    searchEmpty: "Keine passende Umrechnung gefunden.",
+    toolsTitle: "Werkzeuge",
+    categoriesTitle: "Kategorien",
+    otherLanguagesTitle: "Weitere Sprachen",
+  },
+  ar: {
+    homeHref: "/ar",
+    homeLabel: "الرئيسية",
+    breadcrumbAriaLabel: "مسار الصفحة",
+    title: "أدوات إضافية",
+    description:
+      "اكتشف مجموعة من الحاسبات العملية التي بدأنا إطلاقها بالعربية بشكل تدريجي ومنظم.",
+    searchLabel: "ابحث في الأدوات",
+    searchPlaceholder: "مثال: ضريبة، نوم، طلاء، جري",
+    searchButton: "افتح",
+    searchHint:
+      "ابحث باسم الأداة أو نوع الاستخدام للوصول بسرعة إلى الصفحة المناسبة.",
+    searchResultsTitle: "نتائج البحث",
+    searchResultsHint: "اضغط Enter لفتح أول نتيجة.",
+    searchEmpty: "لم يتم العثور على نتيجة مطابقة.",
+    toolsTitle: "الأدوات",
+    categoriesTitle: "الفئات",
+    otherLanguagesTitle: "لغات أخرى",
+  },
 } as const;
 
 function CardIcon({ name }: { name: SiteIconName }) {
   return (
     <span className="home-category-icon-box" aria-hidden="true">
-      <DecorativeIcon name={name} size={48} className="home-category-icon-svg" />
+      <DecorativeIcon
+        name={name}
+        size={48}
+        className="home-category-icon-svg"
+      />
     </span>
   );
 }
 
-function normalizeSearchText(
-  value: string,
-  locale: Locale
-) {
+function normalizeSearchText(value: string, locale: Locale) {
+  const localeName =
+    locale === "tr"
+      ? "tr-TR"
+      : locale === "de"
+        ? "de-DE"
+        : locale === "ar"
+          ? "ar"
+        : "en-US";
+
   return value
-    .toLocaleLowerCase(locale === "en" ? "en-US" : "tr-TR")
+    .toLocaleLowerCase(localeName)
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
-    .replace(/\u0131/g, "i")
-    .replace(/[^a-z0-9]+/g, " ")
+    .replace(/ı/g, "i")
+    .replace(/ß/g, "ss")
+    .replace(/[^\p{L}\p{N}]+/gu, " ")
     .trim();
 }
 
@@ -136,6 +188,24 @@ export default function OtherCategoriesPage({
         .slice(0, 8)
     : [];
 
+  // Gruplu araclari (ust baslikli) siraya gore topla; group belirtilmeyen
+  // araclar varsayilan "Araclar" baslığı altinda kalir -- bu, group hic
+  // kullanilmayan diger diller (en/de/ar) icin mevcut davranisi korur.
+  const toolGroups: { name: string; items: OtherTool[] }[] = [];
+  if (tools) {
+    const groupIndexByName = new Map<string, number>();
+    for (const tool of tools) {
+      const groupName = tool.group ?? copy.toolsTitle;
+      let index = groupIndexByName.get(groupName);
+      if (index === undefined) {
+        index = toolGroups.length;
+        groupIndexByName.set(groupName, index);
+        toolGroups.push({ name: groupName, items: [] });
+      }
+      toolGroups[index].items.push(tool);
+    }
+  }
+
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
@@ -161,11 +231,12 @@ export default function OtherCategoriesPage({
           <p>{copy.description}</p>
         </header>
 
-        <form
-          className="directory-search other-categories-search"
-          onSubmit={handleSubmit}
-          role="search"
-        >
+        {conversions.length > 0 ? (
+          <form
+            className="directory-search other-categories-search"
+            onSubmit={handleSubmit}
+            role="search"
+          >
           <label htmlFor={inputId}>{copy.searchLabel}</label>
 
           <div className="directory-search-field">
@@ -220,18 +291,19 @@ export default function OtherCategoriesPage({
               )}
             </div>
           ) : null}
-        </form>
+          </form>
+        ) : null}
 
-        {tools && tools.length > 0 ? (
-          <section className="other-categories-section">
-            <h2>{copy.toolsTitle}</h2>
+        {toolGroups.map((group) => (
+          <section className="other-categories-section" key={group.name}>
+            <h2>{group.name}</h2>
             <div className="directory-home-category-grid">
-              {tools.map((tool) => (
+              {group.items.map((tool) => (
                 <Link
                   className="directory-home-card"
                   href={tool.href}
                   key={tool.id}
-                  aria-label={`${tool.title} — ${tool.description}`}
+                  aria-label={`${tool.title} - ${tool.description}`}
                 >
                   <div className="directory-card-body directory-card-body-icon">
                     <CardIcon name={tool.iconName} />
@@ -241,7 +313,7 @@ export default function OtherCategoriesPage({
               ))}
             </div>
           </section>
-        ) : null}
+        ))}
 
         <section className="other-categories-section">
           <h2>{copy.categoriesTitle}</h2>
@@ -251,7 +323,7 @@ export default function OtherCategoriesPage({
                 className="directory-home-card"
                 href={category.href}
                 key={category.id}
-                aria-label={`${category.title} — ${category.description}`}
+                aria-label={`${category.title} - ${category.description}`}
               >
                 <div className="directory-card-body directory-card-body-icon">
                   <CardIcon name={category.iconName} />

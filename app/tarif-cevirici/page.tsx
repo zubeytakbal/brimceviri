@@ -92,6 +92,14 @@ export default function RecipeScalerPage() {
             </Link>{" "}
             görebilirsin.
           </p>
+
+          <h2>İlgili araçlar</h2>
+          <p>
+            Mutfakla ilgili diğer araçlar ve fırın sıcaklığı dönüşüm
+            tablosu için{" "}
+            <Link href="/asci-araclari">Aşçı Araçları</Link> sayfasına
+            bakabilirsin.
+          </p>
         </section>
       </div>
     </main>

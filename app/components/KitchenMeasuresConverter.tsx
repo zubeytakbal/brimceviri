@@ -2,137 +2,24 @@
 
 import { useMemo, useState } from "react";
 import {
+  kitchenIngredientLabels,
+  kitchenUnitLabels,
+  type KitchenLocale,
+} from "../converter/kitchenIngredientLabels";
+import {
   type KitchenIngredientKey,
   type KitchenUnit,
   convertKitchenValue,
   kitchenIngredientRows,
 } from "../converter/kitchenMeasures";
 
-type Locale = "tr" | "en";
-
-const ingredientLabels: Record<Locale, Record<KitchenIngredientKey, string>> = {
-  tr: {
-    un: "Un (Buğday Unu)",
-    "tam-bugday-unu": "Tam Buğday Unu",
-    "pirinc-unu": "Pirinç Unu",
-    "misir-unu": "Mısır Unu",
-    irmik: "İrmik",
-    "galeta-unu": "Galeta Unu",
-    "toz-seker": "Toz Şeker",
-    "pudra-sekeri": "Pudra Şekeri",
-    "esmer-seker": "Esmer Şeker",
-    tuz: "Tuz (Sofra Tuzu)",
-    pirinc: "Pirinç",
-    bulgur: "Bulgur (İnce)",
-    nohut: "Nohut (Kuru)",
-    "kirmizi-mercimek": "Kırmızı Mercimek",
-    "yesil-mercimek": "Yeşil Mercimek",
-    "kuru-fasulye": "Kuru Fasulye",
-    sut: "Süt",
-    yogurt: "Yoğurt",
-    krema: "Krema",
-    tereyagi: "Tereyağı",
-    margarin: "Margarin",
-    zeytinyagi: "Zeytinyağı",
-    "sivi-yag": "Sıvı Yağ (Bitkisel)",
-    bal: "Bal",
-    pekmez: "Pekmez",
-    kakao: "Kakao (Toz)",
-    "yulaf-ezmesi": "Yulaf Ezmesi",
-    nisasta: "Nişasta (Mısır)",
-    "kabartma-tozu": "Kabartma Tozu",
-    karbonat: "Karbonat",
-    susam: "Susam",
-    "ceviz-ici": "Ceviz İçi (Kırık)",
-    "findik-ici": "Fındık İçi",
-    badem: "Badem",
-    "antep-fistigi": "Antep Fıstığı",
-    "kuru-uzum": "Kuru Üzüm",
-    "hindistan-cevizi": "Hindistan Cevizi (Rende)",
-    mayonez: "Mayonez",
-    ketcap: "Ketçap",
-    sirke: "Sirke",
-    "limon-suyu": "Limon Suyu",
-    tarcin: "Tarçın (Toz)",
-    "kirmizi-biber": "Kırmızı Biber (Toz)",
-    karabiber: "Karabiber (Toz)",
-    kimyon: "Kimyon (Toz)",
-  },
-  en: {
-    un: "Flour (Wheat)",
-    "tam-bugday-unu": "Whole Wheat Flour",
-    "pirinc-unu": "Rice Flour",
-    "misir-unu": "Corn Flour",
-    irmik: "Semolina",
-    "galeta-unu": "Breadcrumbs",
-    "toz-seker": "Granulated Sugar",
-    "pudra-sekeri": "Powdered Sugar",
-    "esmer-seker": "Brown Sugar",
-    tuz: "Salt (Table Salt)",
-    pirinc: "Rice",
-    bulgur: "Bulgur (Fine)",
-    nohut: "Chickpeas (Dry)",
-    "kirmizi-mercimek": "Red Lentils",
-    "yesil-mercimek": "Green Lentils",
-    "kuru-fasulye": "Dry Beans",
-    sut: "Milk",
-    yogurt: "Yogurt",
-    krema: "Heavy Cream",
-    tereyagi: "Butter",
-    margarin: "Margarine",
-    zeytinyagi: "Olive Oil",
-    "sivi-yag": "Vegetable Oil",
-    bal: "Honey",
-    pekmez: "Grape Molasses",
-    kakao: "Cocoa Powder",
-    "yulaf-ezmesi": "Rolled Oats",
-    nisasta: "Cornstarch",
-    "kabartma-tozu": "Baking Powder",
-    karbonat: "Baking Soda",
-    susam: "Sesame Seeds",
-    "ceviz-ici": "Walnuts (Chopped)",
-    "findik-ici": "Hazelnuts",
-    badem: "Almonds",
-    "antep-fistigi": "Pistachios",
-    "kuru-uzum": "Raisins",
-    "hindistan-cevizi": "Desiccated Coconut",
-    mayonez: "Mayonnaise",
-    ketcap: "Ketchup",
-    sirke: "Vinegar",
-    "limon-suyu": "Lemon Juice",
-    tarcin: "Ground Cinnamon",
-    "kirmizi-biber": "Ground Red Pepper",
-    karabiber: "Ground Black Pepper",
-    kimyon: "Ground Cumin",
-  },
-};
-
-const unitLabels: Record<Locale, Record<KitchenUnit, string>> = {
-  tr: {
-    bardak: "Su Bardağı",
-    yemekKasigi: "Yemek Kaşığı",
-    cayKasigi: "Çay Kaşığı",
-    ml: "Mililitre (ml)",
-    litre: "Litre",
-    gram: "Gram",
-  },
-  en: {
-    bardak: "Cup",
-    yemekKasigi: "Tablespoon",
-    cayKasigi: "Teaspoon",
-    ml: "Milliliter (ml)",
-    litre: "Liter",
-    gram: "Gram",
-  },
-};
-
 const copy = {
   tr: {
     ingredient: "Malzeme",
-    knownUnit: "Bildiğin Birim",
-    value: "Değer",
-    resultHeading: "Karşılıklar",
-    invalidValue: "Geçerli bir sayı girerek sonucu görebilirsin.",
+    knownUnit: "Bildigin Birim",
+    value: "Deger",
+    resultHeading: "Karsiliklar",
+    invalidValue: "Gecerli bir sayi girerek sonucu gorebilirsin.",
   },
   en: {
     ingredient: "Ingredient",
@@ -140,6 +27,20 @@ const copy = {
     value: "Value",
     resultHeading: "Equivalents",
     invalidValue: "Enter a valid number to see the conversion.",
+  },
+  de: {
+    ingredient: "Zutat",
+    knownUnit: "Bekannte Einheit",
+    value: "Wert",
+    resultHeading: "Entsprechungen",
+    invalidValue: "Geben Sie eine gueltige Zahl ein, um die Umrechnung zu sehen.",
+  },
+  ar: {
+    ingredient: "المكون",
+    knownUnit: "الوحدة المعروفة",
+    value: "القيمة",
+    resultHeading: "القيم المكافئة",
+    invalidValue: "أدخل رقما صحيحا لعرض نتيجة التحويل.",
   },
 } as const;
 
@@ -152,8 +53,17 @@ const unitOrder: KitchenUnit[] = [
   "litre",
 ];
 
-function formatValue(value: number, locale: Locale) {
-  return value.toLocaleString(locale === "en" ? "en-US" : "tr-TR", {
+function formatValue(value: number, locale: KitchenLocale) {
+  const localeName =
+    locale === "tr"
+      ? "tr-TR"
+      : locale === "de"
+        ? "de-DE"
+        : locale === "ar"
+          ? "ar"
+          : "en-US";
+
+  return value.toLocaleString(localeName, {
     maximumFractionDigits: value < 10 ? 2 : 1,
   });
 }
@@ -173,15 +83,15 @@ function parseNumericValue(rawValue: string) {
 export default function KitchenMeasuresConverter({
   locale = "tr",
 }: {
-  locale?: Locale;
+  locale?: KitchenLocale;
 }) {
   const [ingredient, setIngredient] = useState<KitchenIngredientKey>("un");
   const [unit, setUnit] = useState<KitchenUnit>("bardak");
   const [inputValue, setInputValue] = useState("1");
 
   const localizedCopy = copy[locale];
-  const localizedIngredientLabels = ingredientLabels[locale];
-  const localizedUnitLabels = unitLabels[locale];
+  const localizedIngredientLabels = kitchenIngredientLabels[locale];
+  const localizedUnitLabels = kitchenUnitLabels[locale];
 
   const parsedValue = parseNumericValue(inputValue);
   const result = useMemo(() => {

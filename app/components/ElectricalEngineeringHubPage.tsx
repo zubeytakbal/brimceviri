@@ -20,7 +20,13 @@ export default function ElectricalEngineeringHubPage({
   const engineeringHubPath = getEngineeringHubPath(locale);
 
   const homeHref =
-    locale === "en" ? "/en" : locale === "de" ? "/de" : "/";
+    locale === "en"
+      ? "/en"
+      : locale === "de"
+        ? "/de"
+        : locale === "ar"
+          ? "/ar"
+          : "/";
 
   const liveTool =
     locale === "en"
@@ -39,6 +45,14 @@ export default function ElectricalEngineeringHubPage({
               "Live-Rechner fur Spannungs-, Strom- und Widerstandsprufungen auf Basis von V = I x R.",
             formula: "V = I x R",
           }
+        : locale === "ar"
+          ? {
+              href: "/ar/calculators/ohms-law",
+              title: "حاسبة قانون أوم",
+              description:
+                "أداة عربية مباشرة للتحقق من الجهد والتيار والمقاومة بالاعتماد على العلاقة V = I x R.",
+              formula: "V = I x R",
+            }
         : {
             href: "/hesaplayicilar/ohm-yasasi",
             title: "Ohm Yasasi Hesaplayicisi",
@@ -53,6 +67,8 @@ export default function ElectricalEngineeringHubPage({
       breadcrumbAriaLabel={
         locale === "en" || locale === "de"
           ? "Breadcrumb"
+          : locale === "ar"
+            ? "مسار التنقل"
           : "Sayfa yolu"
       }
       breadcrumbs={[
@@ -63,6 +79,8 @@ export default function ElectricalEngineeringHubPage({
               ? "Home"
               : locale === "de"
                 ? "Startseite"
+                : locale === "ar"
+                  ? "الرئيسية"
                 : "Ana Sayfa",
         },
         {
@@ -72,6 +90,8 @@ export default function ElectricalEngineeringHubPage({
               ? "Engineering Calculators"
               : locale === "de"
                 ? "Ingenieurrechner"
+                : locale === "ar"
+                  ? "الحاسبات الهندسية"
                 : "Muhendislik Hesaplayicilari",
         },
         { label: copy.title },

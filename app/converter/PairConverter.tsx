@@ -9,23 +9,59 @@ type PairConverterProps = {
   toUnit: string;
   fromName: string;
   toName: string;
-  locale?: "tr" | "en" | "de";
+  locale?: "tr" | "en" | "de" | "ar" | "uz" | "bn";
 };
 
-function formatResult(value: number) {
+function getNumberLocale(
+  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn"
+) {
+  if (locale === "tr") {
+    return "tr-TR";
+  }
+
+  if (locale === "de") {
+    return "de-DE";
+  }
+
+  if (locale === "ar") {
+    return "ar";
+  }
+
+  if (locale === "uz") {
+    return "uz-UZ";
+  }
+
+  if (locale === "bn") {
+    return "bn-BD";
+  }
+
+  return "en-US";
+}
+
+function formatResult(
+  value: number,
+  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn"
+) {
   if (!Number.isFinite(value)) {
     return "";
   }
+
+  const numberLocale = getNumberLocale(locale);
 
   if (
     value !== 0 &&
     (Math.abs(value) >= 1_000_000_000 ||
       Math.abs(value) < 0.000001)
   ) {
-    return value.toExponential(8);
+    return new Intl.NumberFormat(numberLocale, {
+      maximumSignificantDigits: 8,
+      notation: "scientific",
+    }).format(value);
   }
 
-  return Number(value.toPrecision(12)).toString();
+  return new Intl.NumberFormat(numberLocale, {
+    maximumSignificantDigits: 12,
+  }).format(Number(value.toPrecision(12)));
 }
 
 export default function PairConverter({
@@ -60,13 +96,15 @@ export default function PairConverter({
         numberValue,
         activeFromUnit,
         activeToUnit
-      )
+      ),
+      locale
     );
   }, [
     inputValue,
     category,
     activeFromUnit,
     activeToUnit,
+    locale,
   ]);
 
   const valueLabel =
@@ -74,24 +112,54 @@ export default function PairConverter({
       ? `${activeFromName} value`
       : locale === "de"
         ? `${activeFromName}-Wert`
-        : `${activeFromName} de\u011Feri`;
+        : locale === "ar"
+          ? `قيمة ${activeFromName}`
+          : locale === "uz"
+            ? `${activeFromName} qiymati`
+            : locale === "bn"
+              ? `${activeFromName} \u09AE\u09BE\u09A8`
+              : `${activeFromName} de\u011Feri`;
 
   const placeholder =
     locale === "en"
       ? "Enter a value"
       : locale === "de"
         ? "Wert eingeben"
-        : "De\u011Fer girin";
+        : locale === "ar"
+          ? "أدخل قيمة"
+          : locale === "uz"
+            ? "Qiymat kiriting"
+            : locale === "bn"
+              ? "\u098F\u0995\u099F\u09BF \u09AE\u09BE\u09A8 \u09B2\u09BF\u0996\u09C1\u09A8"
+              : "De\u011Fer girin";
 
   const swapLabel =
     locale === "en"
       ? "Reverse the conversion direction"
       : locale === "de"
         ? "Umrechnungsrichtung umkehren"
-        : "D\u00F6n\u00FC\u015F\u00FCm y\u00F6n\u00FCn\u00FC de\u011Fi\u015Ftir";
+        : locale === "ar"
+          ? "اعكس اتجاه التحويل"
+          : locale === "uz"
+            ? "O'zgartirish yo'nalishini teskari qiling"
+            : locale === "bn"
+              ? "\u09B0\u09C2\u09AA\u09BE\u09A8\u09CD\u09A4\u09B0\u09C7\u09B0 \u09A6\u09BF\u0995 \u09AA\u09B0\u09BF\u09AC\u09B0\u09CD\u09A4\u09A8 \u0995\u09B0\u09C1\u09A8"
+              : "D\u00F6n\u00FC\u015F\u00FCm y\u00F6n\u00FCn\u00FC de\u011Fi\u015Ftir";
+
+  const resultText =
+    locale === "en"
+      ? `${inputValue} ${activeFromUnit} = ${result} ${activeToUnit}`
+      : locale === "de"
+        ? `${inputValue} ${activeFromUnit} = ${result} ${activeToUnit}`
+        : locale === "ar"
+          ? `${inputValue} ${activeFromUnit} = ${result} ${activeToUnit}`
+          : `${inputValue} ${activeFromUnit} = ${result} ${activeToUnit}`;
 
   return (
-    <section className="pair-converter">
+    <section
+      className="pair-converter"
+      dir={locale === "ar" ? "rtl" : undefined}
+    >
       <label htmlFor="pair-converter-value">
         {valueLabel}
       </label>
@@ -134,8 +202,7 @@ export default function PairConverter({
 
       {result && (
         <p className="pair-result-text">
-          {inputValue} {activeFromUnit} = {result}{" "}
-          {activeToUnit}
+          {resultText}
         </p>
       )}
     </section>

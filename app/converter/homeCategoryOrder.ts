@@ -11,4 +11,5 @@ export const homeCategoryOrder = [
   "veri",
   "elektrik",
   "altin_ayar",
+  "gumus_ayar",
 ] as const;

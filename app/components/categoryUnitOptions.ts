@@ -4,7 +4,7 @@ const SQUARE_SUFFIX = "\u00B2";
 const CUBIC_SUFFIX = "\u00B3";
 const MICRO_SIGN = "\u00B5";
 
-type Locale = "tr" | "en" | "de";
+type Locale = "tr" | "en" | "de" | "ar";
 
 type UnitDefinition = {
   tr: string;
@@ -596,6 +596,24 @@ const categoryUnitDefinitions: CategoryUnitDefinitions = {
       de: "14 Karat",
     },
   },
+  gumus_ayar: {
+    "999": {
+      tr: "999 Ayar (Saf Gümüş)",
+      en: "999 (Fine Silver)",
+    },
+    "925": {
+      tr: "925 Ayar (Sterlin)",
+      en: "925 (Sterling)",
+    },
+    "900": {
+      tr: "900 Ayar",
+      en: "900",
+    },
+    "800": {
+      tr: "800 Ayar",
+      en: "800",
+    },
+  },
 };
 
 function formatUnitLabel(
@@ -612,6 +630,8 @@ function formatUnitLabel(
       ? definition.tr
       : locale === "de"
         ? definition.de ?? definition.en
+        : locale === "ar"
+          ? definition.en
         : definition.en;
   const symbol = definition.symbol ?? value;
 

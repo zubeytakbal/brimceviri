@@ -1,7 +1,11 @@
-import Link from "next/link";
-import { headers } from "next/headers";
+"use client";
 
-type Locale = "tr" | "en" | "de";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import {
+  getLocaleFromPathname,
+  type Locale,
+} from "./i18n/config";
 
 const copy = {
   tr: {
@@ -37,28 +41,64 @@ const copy = {
     secondaryHref: "/",
     secondaryLabel: "Turkische Startseite offnen",
   },
-} as const;
-
-function getLocaleFromPathname(pathname: string): Locale {
-  if (pathname === "/en" || pathname.startsWith("/en/")) {
-    return "en";
+  ar: {
+    lang: "ar",
+    title: "الصفحة غير موجودة",
+    description:
+      "قد تكون الصفحة التي تبحث عنها قد نُقلت أو أن الرابط غير صالح.",
+    continueHeading: "يمكنك المتابعة من هنا",
+    primaryHref: "/ar",
+    primaryLabel: "العودة إلى الصفحة العربية",
+    secondaryHref: "/",
+    secondaryLabel: "فتح الصفحة التركية",
+  },
+uz: {
+    lang: "en",
+    title: "Page not found",
+    description:
+      "The page you are looking for may have moved or may not be a valid address.",
+    continueHeading: "Continue with",
+    primaryHref: "/en",
+    primaryLabel: "Go to the English homepage",
+    secondaryHref: "/",
+    secondaryLabel: "Open the Turkish homepage",
+  },
+bn: {
+    lang: "en",
+    title: "Page not found",
+    description:
+      "The page you are looking for may have moved or may not be a valid address.",
+    continueHeading: "Continue with",
+    primaryHref: "/en",
+    primaryLabel: "Go to the English homepage",
+    secondaryHref: "/",
+    secondaryLabel: "Open the Turkish homepage",
+  },
+} satisfies Record<
+  Locale,
+  {
+    lang: string;
+    title: string;
+    description: string;
+    continueHeading: string;
+    primaryHref: string;
+    primaryLabel: string;
+    secondaryHref: string;
+    secondaryLabel: string;
   }
+>;
 
-  if (pathname === "/de" || pathname.startsWith("/de/")) {
-    return "de";
-  }
-
-  return "tr";
-}
-
-export default async function NotFound() {
-  const headerStore = await headers();
-  const pathname = headerStore.get("x-pathname") ?? "/";
-  const locale = getLocaleFromPathname(pathname);
+export default function NotFound() {
+  const pathname = usePathname();
+  const locale = getLocaleFromPathname(pathname ?? "/");
   const localeCopy = copy[locale];
 
   return (
-    <main className="unit-information-page" lang={localeCopy.lang}>
+    <main
+      className="unit-information-page"
+      lang={localeCopy.lang}
+      dir={locale === "ar" ? "rtl" : undefined}
+    >
       <article className="unit-page-shell">
         <header className="unit-page-header">
           <h1>{localeCopy.title}</h1>

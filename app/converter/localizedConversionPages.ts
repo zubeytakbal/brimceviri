@@ -34,6 +34,7 @@ const englishCategoryNames: Record<string, string> = {
   enduktans: "Inductance",
   elektrik_yuk: "Electric Charge",
   altin_ayar: "Gold Karat",
+  gumus_ayar: "Silver Purity",
 };
 
 function formatEnglishValue(value: number) {

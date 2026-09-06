@@ -28,10 +28,12 @@ import {
   Wind,
 } from "@phosphor-icons/react";
 import { useDeferredValue, useId, useState } from "react";
+import ProfessionPreferenceWidget from "./ProfessionPreferenceWidget";
 import RecentToolsWidget from "./RecentToolsWidget";
 import { useRouter } from "next/navigation";
-import { DecorativeIcon } from "./siteIcons";
+import { DecorativeIcon, getCategoryIconName, type SiteIconName } from "./siteIcons";
 import { calculatorPages } from "../converter/calculatorPages";
+import { calculatorSearchIndex } from "../converter/calculatorSearchIndex";
 import { categoryPages } from "../converter/categoryPages";
 import { conversionPages } from "../converter/conversionPages";
 import { englishCalculatorPages } from "../converter/localizedCalculatorPages";
@@ -53,6 +55,19 @@ type HomeConversion = {
   searchText: string;
 };
 
+/** Arama sonuçları için ortak, hafifletilmiş tip — hem dönüşüm sayfalarını
+ * (HomeConversion) hem de hesaplayıcı sayfalarını (birim dönüşümü olmayan,
+ * category/sourceSlug gibi dönüşüme özgü alanları taşımayan araçlar) aynı
+ * arama kutusunda birlikte listeleyebilmek için. */
+type HomeSearchable = {
+  id: string;
+  href: string;
+  label: string;
+  description?: string;
+  categoryLabel: string;
+  searchText: string;
+};
+
 type HomeCategoryIconName =
   | "uzunluk"
   | "alan"
@@ -70,6 +85,7 @@ type HomeCategoryIconName =
   | "mutfak"
   | "tarif"
   | "altin_ayar"
+  | "gumus_ayar"
   | "tarihi";
 
 type HomeCategoryCard = {
@@ -98,6 +114,7 @@ type HomeSecondaryCategory = {
   id: string;
   href: string;
   label: string;
+  iconName: SiteIconName;
 };
 
 type HomePopularUnit = {
@@ -109,6 +126,7 @@ type HomePopularUnit = {
 
 type HomeData = {
   conversions: HomeConversion[];
+  searchables: HomeSearchable[];
   categories: HomeCategoryCard[];
   secondaryCategories: HomeSecondaryCategory[];
   engineeringCalculators: HomeEngineeringCalculator[];
@@ -156,12 +174,12 @@ const copy = {
     title: "Doğru dönüşüme hızlıca gidin",
     description:
       "Arama ile sayfayı açın veya fiziksel büyüklüğe göre kategori seçin.",
-    searchLabel: "Dönüşüm ara",
-    searchPlaceholder: "Örnek: metre kilometre, kg lb, psi bar",
+    searchLabel: "Dönüşüm veya hesaplayıcı ara",
+    searchPlaceholder: "Örnek: metre kilometre, bmi, delta, kdv",
     searchHint:
-      "Birim adı, sembol veya dönüşüm çifti yazarak ilgili sayfayı bulun.",
+      "Birim adı, dönüşüm çifti veya bir hesaplayıcının adını (BMI, delta, KDV vb.) yazarak ilgili sayfayı bulun.",
     searchResultsLabel: "Arama sonuçları",
-    searchEmpty: "Eşleşen dönüşüm bulunamadı.",
+    searchEmpty: "Eşleşen dönüşüm veya hesaplayıcı bulunamadı.",
     searchEnterHint: "İlk sonucu açmak için Enter kullanabilirsiniz.",
     searchCategoryPrefix: "Kategori",
     openLabel: "Aç",
@@ -176,6 +194,7 @@ const copy = {
     categoryAction: "Kategori sayfasını aç",
     categoriesFooterLink: "Tüm dönüşümleri görüntüle",
     moreCategoriesCardLabel: "Diğer Dönüşümler",
+    secondaryCategoriesTitle: "Diğer Dönüşüm Kategorileri",
     categoryCards: {
       uzunluk: {
         name: "Uzunluk",
@@ -249,6 +268,12 @@ const copy = {
         description:
           "24, 22, 18 ve 14 ayar altın arasında gram dönüşümü yapın.",
       },
+      gumus_ayar: {
+        name: "Gümüş Ayar",
+        symbol: "925",
+        description:
+          "999, 925 (sterlin), 900 ve 800 ayar gümüş arasında gram dönüşümü yapın.",
+      },
     },
     popularTitle: "Popüler dönüşümler",
     popularDescription:
@@ -287,6 +312,7 @@ const copy = {
     categoryAction: "Open category page",
     categoriesFooterLink: "View all conversions",
     moreCategoriesCardLabel: "More Conversions",
+    secondaryCategoriesTitle: "More conversion categories",
     categoryCards: {
       uzunluk: {
         name: "Length",
@@ -360,6 +386,12 @@ const copy = {
         description:
           "Convert gold weight between 24K, 22K, 18K and 14K purity.",
       },
+      gumus_ayar: {
+        name: "Silver Purity",
+        symbol: "925",
+        description:
+          "Convert silver weight between 999, 925 (sterling), 900 and 800 purity.",
+      },
     },
     popularTitle: "Popular conversions",
     popularDescription:
@@ -409,7 +441,7 @@ function HomeCategoryIcon({
                               ? CookingPot
                               : kind === "tarif"
                                 ? NotePencil
-                                : kind === "altin_ayar"
+                                : kind === "altin_ayar" || kind === "gumus_ayar"
                                   ? Coins
                                   : kind === "tarihi"
                                     ? Scroll
@@ -688,6 +720,7 @@ function createHomeData(locale: Locale): HomeData {
             id: page.category,
             href: `/kategoriler/${page.slug}`,
             label: page.title,
+            iconName: getCategoryIconName(page.category),
           },
         ];
       }
@@ -705,6 +738,7 @@ function createHomeData(locale: Locale): HomeData {
           id: page.category,
           href: `/en/categories/${englishPage.slug}`,
           label: englishPage.title,
+          iconName: getCategoryIconName(page.category),
         },
       ];
     });
@@ -784,8 +818,64 @@ function createHomeData(locale: Locale): HomeData {
             description: page.description,
           }));
 
+  // Ana sayfanın arama kutusu hem dönüşüm sayfalarını hem de site
+  // genelindeki hesaplayıcı sayfalarını (matematik, kimya, mühendislik,
+  // günlük) tek bir listede aratabilsin diye ikisi birleştirilir — henüz
+  // İngilizce karşılığı olmayan hesaplayıcılar bulunduğundan bu birleşik
+  // arama şimdilik sadece "tr" için etkin.
+  const calculatorSearchables: HomeSearchable[] =
+    locale === "tr"
+      ? calculatorSearchIndex.map((entry) => ({
+          id: entry.id,
+          href: entry.href,
+          label: entry.label,
+          categoryLabel: entry.categoryLabel,
+          searchText: normalizeSearchText(
+            `${entry.label} ${entry.categoryLabel}`
+          ),
+        }))
+      : [];
+
+  // Arama, tek tek birim çifti sayfalarının (conversions) yanında genel
+  // kategori özet sayfalarını da (örn. "Yoğunluk Dönüşümleri") göstersin —
+  // bu sayfalar özellikle çoğu kategorinin tek bir birim çifti sayfası
+  // bulunan (yogunluk, viskozite, tork, aci vb.) durumlarda tek anlamlı
+  // sonuç oluyor; homeCategoryOrder'da olmayıp anasayfada kart almayan
+  // kategoriler için de aramanın tek keşif yolu bu.
+  const categoryOverviewSearchables: HomeSearchable[] =
+    locale === "tr"
+      ? categoryPages.map((page) => ({
+          id: `kategori-${page.category}`,
+          href: `/kategoriler/${page.slug}`,
+          label: page.title,
+          description: page.description,
+          categoryLabel: "Dönüşüm Kategorisi",
+          searchText: normalizeSearchText(
+            `${page.title} ${page.category} ${page.description}`
+          ),
+        }))
+      : [];
+
+  // Kategori özet sayfaları önce gelir: bir sorgu hem genel bir kategoriye
+  // hem tek tek birim çiftlerine denk düştüğünde (örn. "yoğunluk"), asıl
+  // aranan büyük ihtimalle genel sayfadır — 8 sonuçluk kesme noktasında
+  // dar birim çiftlerinin genel sayfayı listeden itmesini engeller.
+  const searchables: HomeSearchable[] = [
+    ...categoryOverviewSearchables,
+    ...conversions.map((conversion) => ({
+      id: conversion.id,
+      href: conversion.href,
+      label: conversion.label,
+      description: conversion.description,
+      categoryLabel: conversion.categoryLabel,
+      searchText: conversion.searchText,
+    })),
+    ...calculatorSearchables,
+  ];
+
   return {
     conversions,
+    searchables,
     categories: allCategoryCards,
     secondaryCategories,
     engineeringCalculators,
@@ -829,10 +919,8 @@ export default function HomeDirectory({
   const normalizedQuery = normalizeSearchText(deferredQuery);
 
   const searchResults = normalizedQuery
-    ? data.conversions
-        .filter((conversion) =>
-          conversion.searchText.includes(normalizedQuery)
-        )
+    ? data.searchables
+        .filter((item) => item.searchText.includes(normalizedQuery))
         .slice(0, 8)
     : [];
 
@@ -899,8 +987,8 @@ export default function HomeDirectory({
                           <Link href={result.href}>
                             <span>{result.label}</span>
                             <small>
-                              {strings.searchCategoryPrefix}: {result.categoryLabel} ·{" "}
-                              {result.description}
+                              {strings.searchCategoryPrefix}: {result.categoryLabel}
+                              {result.description ? <> · {result.description}</> : null}
                             </small>
                           </Link>
                         </li>
@@ -933,6 +1021,7 @@ export default function HomeDirectory({
         </div>
       </section>
 
+      {locale === "tr" && <ProfessionPreferenceWidget />}
       <RecentToolsWidget locale={locale} />
 
       <div className="directory-shell directory-content">
@@ -996,6 +1085,34 @@ export default function HomeDirectory({
               </article>
             )}
           </div>
+
+          {data.secondaryCategories.length > 0 && (
+            <div className="directory-secondary-categories">
+              <h3>{strings.secondaryCategoriesTitle}</h3>
+              <div className="directory-home-category-grid">
+                {data.secondaryCategories.slice(0, 8).map((category) => (
+                  <article className="directory-home-card" key={category.id}>
+                    <Link
+                      className="directory-card-stretch"
+                      href={category.href}
+                      aria-label={category.label}
+                    />
+
+                    <div className="directory-card-body directory-card-body-icon">
+                      <span className="home-category-icon-box" aria-hidden="true">
+                        <DecorativeIcon
+                          name={category.iconName}
+                          size={42}
+                          className="home-category-icon-svg"
+                        />
+                      </span>
+                      <h3 className="home-category-title">{category.label}</h3>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+          )}
 
           <div className="directory-section-footer">
             <Link
@@ -1120,6 +1237,100 @@ export default function HomeDirectory({
             </article>
           </div>
         </section>
+
+        {locale === "tr" && (
+          <section className="directory-section" id="bilim-hesaplayicilari">
+            <header className="directory-section-header">
+              <div>
+                <h2>Bilim hesaplayıcıları</h2>
+                <p>
+                  Kimya, fizik ve diğer fen derslerine yönelik
+                  hesaplayıcılar.
+                </p>
+              </div>
+            </header>
+
+            <div className="directory-tool-grid">
+              <article className="directory-home-card directory-tool-card">
+                <Link
+                  className="directory-card-stretch"
+                  href="/bilim-hesaplayicilari/kimya"
+                  aria-label="Kimya"
+                />
+
+                <div className="directory-card-body directory-card-body-icon">
+                  <span className="home-category-icon-box" aria-hidden="true">
+                    <DecorativeIcon
+                      name="chemistryCalculator"
+                      size={42}
+                      className="home-category-icon-svg"
+                    />
+                  </span>
+                  <h3 className="home-category-title">Kimya</h3>
+                </div>
+              </article>
+
+              <article className="directory-home-card directory-tool-card">
+                <Link
+                  className="directory-card-stretch"
+                  href="/bilim-hesaplayicilari/matematik"
+                  aria-label="Matematik"
+                />
+
+                <div className="directory-card-body directory-card-body-icon">
+                  <span className="home-category-icon-box" aria-hidden="true">
+                    <DecorativeIcon
+                      name="mathCalculator"
+                      size={42}
+                      className="home-category-icon-svg"
+                    />
+                  </span>
+                  <h3 className="home-category-title">Matematik</h3>
+                </div>
+              </article>
+
+              <article className="directory-home-card directory-tool-card">
+                <Link
+                  className="directory-card-stretch"
+                  href="/bilim-hesaplayicilari/geometri"
+                  aria-label="Geometri"
+                />
+
+                <div className="directory-card-body directory-card-body-icon">
+                  <span className="home-category-icon-box" aria-hidden="true">
+                    <DecorativeIcon
+                      name="geometryCalculator"
+                      size={42}
+                      className="home-category-icon-svg"
+                    />
+                  </span>
+                  <h3 className="home-category-title">Geometri</h3>
+                </div>
+              </article>
+
+              <article className="directory-home-card directory-tool-card directory-home-card-more">
+                <Link
+                  className="directory-card-stretch"
+                  href="/bilim-hesaplayicilari"
+                  aria-label="Tüm Bilim Hesaplayıcıları"
+                />
+
+                <div className="directory-card-body directory-more-card-body">
+                  <ArrowRight
+                    className="directory-more-arrow"
+                    size={56}
+                    weight="regular"
+                    aria-hidden="true"
+                  />
+
+                  <span className="directory-more-label">
+                    Tüm Bilim Hesaplayıcıları
+                  </span>
+                </div>
+              </article>
+            </div>
+          </section>
+        )}
       </div>
     </main>
   );

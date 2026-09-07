@@ -101,6 +101,13 @@ export default function KlimaSogutmaTeknisyeniAraclariPage() {
               — doğalgaz ve elektrik fiyatı, kombi verimi ve klima
               SCOP değeriyle ısıtma maliyetini kıyasla.
             </li>
+            <li>
+              <Link href="/isi-pompasi-kombi-karsilastirma">
+                Isı Pompası mı Kombi mi?
+              </Link>{" "}
+              — ısı pompasının COP değeri ve kurulum maliyeti
+              farkıyla amortisman süresini hesapla.
+            </li>
           </ul>
 
           <h2>Sık Sorulan Sorular</h2>

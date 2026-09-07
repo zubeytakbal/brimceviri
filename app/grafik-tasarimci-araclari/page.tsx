@@ -103,6 +103,13 @@ export default function GrafikTasarimciAraclariPage() {
               {" "}— m², cm² ve diğer alan birimleri arasında
               dönüşüm yap.
             </li>
+            <li>
+              <Link href="/sosyal-medya-gorsel-boyutlari-hesaplama">
+                Sosyal Medya Görsel Boyutları Hesaplama
+              </Link>{" "}
+              — Instagram, YouTube, X gibi platformlar için doğru
+              boyutu ve gereken kırpmayı hesapla.
+            </li>
           </ul>
 
           <h2>Sık Sorulan Sorular</h2>

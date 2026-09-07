@@ -147,6 +147,13 @@ export default function OtomotivAraclariPage() {
               kaç yılda kendini amorti ettiğini hesapla.
             </li>
             <li>
+              <Link href="/lpg-donusum-amortisman-hesaplama">
+                LPG Dönüşüm Amortisman Hesaplama
+              </Link>{" "}
+              — kendi kilometren, tüketimin ve dönüşüm maliyetinle
+              LPG&apos;nin kaç yılda kendini çıkardığını hesapla.
+            </li>
+            <li>
               <Link href="/lastik-ebati-hesaplama">Lastik Ebatı Hesaplama</Link>
               {" "}— lastik kodundan dış çapı, çevreyi ve hız göstergesi
               sapmasını hesapla.

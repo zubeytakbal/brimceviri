@@ -91,6 +91,9 @@ export default function FertilizerCalculatorPage() {
             <Link href="/ciftci-araclari">Çiftçi Araçları</Link>
             {" "}sayfasına, tohum miktarı hesaplama için{" "}
             <Link href="/tohum-miktari-hesaplama">Tohum Miktarı Hesaplama</Link>
+            {" "}sayfasına, ev/bahçe bitkileri için sıvı gübre
+            seyreltme hesaplaması için{" "}
+            <Link href="/gubre-seyreltme-hesaplama">Gübre Seyreltme Hesaplama</Link>
             {" "}sayfasına bakabilirsin.
           </p>
 

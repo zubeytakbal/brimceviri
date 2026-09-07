@@ -98,7 +98,9 @@ export default function HeatingCostComparisonPage() {
 
           <h2>İlgili araçlar</h2>
           <p>
-            Yalıtım amortismanı için{" "}
+            Isı pompasını kombiyle karşılaştırmak için{" "}
+            <Link href="/isi-pompasi-kombi-karsilastirma">Isı Pompası mı Kombi mi?</Link>
+            {" "}sayfasına, yalıtım amortismanı için{" "}
             <Link href="/yalitim-amortisman-hesaplama">Yalıtım Amortisman Hesaplama</Link>
             {" "}sayfasına, ısı iletimi hesaplamaları için{" "}
             <Link href="/hesaplayicilar/isi-iletimi">Isı İletimi Hesaplayıcısı</Link>

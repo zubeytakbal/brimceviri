@@ -15,7 +15,7 @@ type UcuzYakitBulResponse = {
 // asla eski/yanlis bir rakami sessizce gostermez. Next.js ISR ile
 // saatlik yenilenir (fetch her istek yerine cache'den okunur), boylece
 // sayfa statik kalir.
-export async function getNationalGasolinePrice(): Promise<LiveFuelPrice | null> {
+async function fetchNationalFuelPrice(fuelType: string): Promise<LiveFuelPrice | null> {
   try {
     const response = await fetch("https://ucuzyakitbul.com.tr/api/prices/national", {
       next: { revalidate: 3600 },
@@ -24,24 +24,32 @@ export async function getNationalGasolinePrice(): Promise<LiveFuelPrice | null> 
     if (!response.ok) return null;
 
     const data: UcuzYakitBulResponse = await response.json();
-    const gasoline = data.prices?.find((entry) => entry.fuelType === "Benzin");
+    const entry = data.prices?.find((item) => item.fuelType === fuelType);
 
     if (
-      !gasoline ||
-      typeof gasoline.price !== "number" ||
-      !Number.isFinite(gasoline.price) ||
-      gasoline.price <= 0 ||
-      typeof gasoline.date !== "string"
+      !entry ||
+      typeof entry.price !== "number" ||
+      !Number.isFinite(entry.price) ||
+      entry.price <= 0 ||
+      typeof entry.date !== "string"
     ) {
       return null;
     }
 
     return {
-      priceTl: gasoline.price,
-      dateIso: gasoline.date,
+      priceTl: entry.price,
+      dateIso: entry.date,
       source: "ucuzyakitbul.com.tr",
     };
   } catch {
     return null;
   }
+}
+
+export async function getNationalGasolinePrice(): Promise<LiveFuelPrice | null> {
+  return fetchNationalFuelPrice("Benzin");
+}
+
+export async function getNationalLpgPrice(): Promise<LiveFuelPrice | null> {
+  return fetchNationalFuelPrice("LPG");
 }

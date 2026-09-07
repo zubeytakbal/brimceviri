@@ -92,6 +92,11 @@ export default function PeyzajAraclariPage() {
               sulama süresini hesapla.
             </li>
             <li>
+              <Link href="/gubre-seyreltme-hesaplama">Gübre Seyreltme Hesaplama</Link>
+              {" "}— etiketteki oran veya dozla, hazırlaman gereken
+              gübre miktarını hesapla.
+            </li>
+            <li>
               <Link href="/kategoriler/alan">Alan Dönüşümleri</Link>
               {" "}— m², dönüm ve dekar birimleri arasında dönüşüm yap.
             </li>

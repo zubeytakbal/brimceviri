@@ -142,6 +142,13 @@ export default function TesisatciAraclariPage() {
               — doğalgaz ve elektrik fiyatınla ısıtma maliyetini
               kıyasla.
             </li>
+            <li>
+              <Link href="/isi-pompasi-kombi-karsilastirma">
+                Isı Pompası mı Kombi mi?
+              </Link>{" "}
+              — kurulum maliyeti farkının kaç yılda amorti olduğunu
+              hesapla.
+            </li>
           </ul>
 
           <h2>Su Hatlarında Tavsiye Edilen Akış Hızları</h2>

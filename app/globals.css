@@ -5791,6 +5791,16 @@ main.calculator-page {
   line-height: 1.5;
 }
 
+.calculator-plug-legend {
+  display: grid;
+  gap: 6px;
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
 .engineering-targets > span,
 .engineering-result-kicker,
 .engineering-field > span {

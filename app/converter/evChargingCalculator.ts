@@ -55,6 +55,67 @@ export function calculateEvChargingTime(
   return { energyNeededKwh, chargingHours };
 }
 
+export function calculateChargingCost(
+  energyNeededKwh: number,
+  electricityPriceTlPerKwh: number
+): number | null {
+  if (
+    !Number.isFinite(energyNeededKwh) ||
+    energyNeededKwh <= 0 ||
+    !Number.isFinite(electricityPriceTlPerKwh) ||
+    electricityPriceTlPerKwh <= 0
+  ) {
+    return null;
+  }
+
+  return energyNeededKwh * electricityPriceTlPerKwh;
+}
+
+export type EvChargingGasolineEquivalentInput = {
+  energyNeededKwh: number;
+  evConsumptionKwhPer100Km: number;
+  iceConsumptionLPer100Km: number;
+  gasolinePriceTlPerL: number;
+};
+
+export type EvChargingGasolineEquivalentResult = {
+  rangeGainedKm: number;
+  gasolineEquivalentCostTl: number;
+};
+
+// Bu sarjin kazandirdigi menzili, ayni menzili benzinli bir aracla
+// gitmenin maliyetiyle karsilastirir -- "bu sarj sana ne kadar
+// tasarruf ettirdi" sorusuna cevap verir.
+export function calculateEvChargingGasolineEquivalent(
+  input: EvChargingGasolineEquivalentInput
+): EvChargingGasolineEquivalentResult | null {
+  const {
+    energyNeededKwh,
+    evConsumptionKwhPer100Km,
+    iceConsumptionLPer100Km,
+    gasolinePriceTlPerL,
+  } = input;
+
+  if (
+    !Number.isFinite(energyNeededKwh) ||
+    energyNeededKwh <= 0 ||
+    !Number.isFinite(evConsumptionKwhPer100Km) ||
+    evConsumptionKwhPer100Km <= 0 ||
+    !Number.isFinite(iceConsumptionLPer100Km) ||
+    iceConsumptionLPer100Km <= 0 ||
+    !Number.isFinite(gasolinePriceTlPerL) ||
+    gasolinePriceTlPerL <= 0
+  ) {
+    return null;
+  }
+
+  const rangeGainedKm = (energyNeededKwh / evConsumptionKwhPer100Km) * 100;
+  const gasolineEquivalentCostTl =
+    (rangeGainedKm / 100) * iceConsumptionLPer100Km * gasolinePriceTlPerL;
+
+  return { rangeGainedKm, gasolineEquivalentCostTl };
+}
+
 export type EvRangeInput = {
   batteryCapacityKwh: number;
   consumptionKwhPer100Km: number;

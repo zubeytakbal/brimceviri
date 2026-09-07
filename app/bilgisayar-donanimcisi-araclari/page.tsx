@@ -89,6 +89,11 @@ export default function BilgisayarDonanimcisiAraclariPage() {
               {" "}— bayt, KB, MB, GB, TB birimleri arasında dönüşüm
               yap.
             </li>
+            <li>
+              <Link href="/ping-gecikme-hesaplama">Ping / Gecikme Hesaplama</Link>
+              {" "}— iki konum arasındaki mesafeye göre fiziksel olarak
+              mümkün olan en düşük ping süresini hesapla.
+            </li>
           </ul>
 
           <h2>Sık Sorulan Sorular</h2>

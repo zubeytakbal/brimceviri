@@ -3,9 +3,13 @@
 import { useMemo, useState } from "react";
 import { formatLocalizedNumber } from "../i18n/toolLocales";
 import {
+  calculateChargingCost,
+  calculateEvChargingGasolineEquivalent,
   calculateEvChargingTime,
   calculateEvRange,
 } from "../converter/evChargingCalculator";
+import { manualElectricityPriceDefault } from "../converter/evVsIceComparison";
+import type { LiveFuelPrice } from "../converter/liveFuelPrice";
 
 type Mode = "charging-time" | "range";
 type SupportedLocale = "tr" | "en";
@@ -26,6 +30,15 @@ type EvChargingCopy = {
   resultRange: string;
   hoursShort: string;
   minutesShort: string;
+  fieldElectricityPrice: string;
+  fieldEvConsumption: string;
+  fieldIceConsumption: string;
+  fieldGasolinePrice: string;
+  gasolinePricePlaceholder: string;
+  resultChargingCost: string;
+  resultRangeGained: string;
+  resultSavings: string;
+  savingsNote: string;
 };
 
 const copyByLocale: Record<SupportedLocale, EvChargingCopy> = {
@@ -45,6 +58,16 @@ const copyByLocale: Record<SupportedLocale, EvChargingCopy> = {
     resultRange: "Tahmini Menzil",
     hoursShort: "sa",
     minutesShort: "dk",
+    fieldElectricityPrice: "Elektrik Fiyatı (₺/kWh)",
+    fieldEvConsumption: "Aracın Tüketimi (kWh/100km)",
+    fieldIceConsumption: "Benzinli Araç Tüketimi (lt/100km, opsiyonel)",
+    fieldGasolinePrice: "Benzin Fiyatı (₺/lt, opsiyonel)",
+    gasolinePricePlaceholder: "Bugünkü fiyatı gir",
+    resultChargingCost: "Bu Şarjın Maliyeti",
+    resultRangeGained: "Kazanılan Menzil",
+    resultSavings: "Benzinliye Göre Tasarruf",
+    savingsNote:
+      "Tasarrufu görmek için benzinli araç tüketimi ve fiyatını da gir.",
   },
   en: {
     whatToCalculate: "What do you want to calculate?",
@@ -62,6 +85,16 @@ const copyByLocale: Record<SupportedLocale, EvChargingCopy> = {
     resultRange: "Estimated Range",
     hoursShort: "h",
     minutesShort: "min",
+    fieldElectricityPrice: "Electricity Price (per kWh)",
+    fieldEvConsumption: "Vehicle Consumption (kWh/100km)",
+    fieldIceConsumption: "Gasoline Vehicle Consumption (L/100km, optional)",
+    fieldGasolinePrice: "Gasoline Price (per L, optional)",
+    gasolinePricePlaceholder: "Enter today's price",
+    resultChargingCost: "Cost of This Charge",
+    resultRangeGained: "Range Gained",
+    resultSavings: "Savings vs. Gasoline",
+    savingsNote:
+      "Enter gasoline consumption and price too to see the savings.",
   },
 };
 
@@ -91,8 +124,10 @@ function formatHours(hours: number, copy: EvChargingCopy) {
 
 export default function EvChargingCalculator({
   locale = "tr",
+  liveGasolinePrice = null,
 }: {
   locale?: SupportedLocale;
+  liveGasolinePrice?: LiveFuelPrice | null;
 }) {
   const copy = copyByLocale[locale];
 
@@ -103,6 +138,14 @@ export default function EvChargingCalculator({
   const [targetPercent, setTargetPercent] = useState("80");
   const [chargerPower, setChargerPower] = useState("11");
   const [efficiencyPercent, setEfficiencyPercent] = useState("90");
+  const [electricityPrice, setElectricityPrice] = useState(
+    String(manualElectricityPriceDefault.priceTl)
+  );
+  const [evConsumptionForCost, setEvConsumptionForCost] = useState("18");
+  const [iceConsumption, setIceConsumption] = useState("7.5");
+  const [gasolinePrice, setGasolinePrice] = useState(
+    liveGasolinePrice ? String(liveGasolinePrice.priceTl) : ""
+  );
 
   const [rangeBatteryCapacity, setRangeBatteryCapacity] = useState("60");
   const [consumption, setConsumption] = useState("16");
@@ -127,6 +170,35 @@ export default function EvChargingCalculator({
       }),
     [rangeBatteryCapacity, consumption]
   );
+
+  const chargingCostTl = useMemo(
+    () =>
+      chargingResult
+        ? calculateChargingCost(
+            chargingResult.energyNeededKwh,
+            parseNumericValue(electricityPrice)
+          )
+        : null,
+    [chargingResult, electricityPrice]
+  );
+
+  const gasolineEquivalent = useMemo(
+    () =>
+      chargingResult
+        ? calculateEvChargingGasolineEquivalent({
+            energyNeededKwh: chargingResult.energyNeededKwh,
+            evConsumptionKwhPer100Km: parseNumericValue(evConsumptionForCost),
+            iceConsumptionLPer100Km: parseNumericValue(iceConsumption),
+            gasolinePriceTlPerL: parseNumericValue(gasolinePrice),
+          })
+        : null,
+    [chargingResult, evConsumptionForCost, iceConsumption, gasolinePrice]
+  );
+
+  const savingsTl =
+    gasolineEquivalent && chargingCostTl !== null
+      ? gasolineEquivalent.gasolineEquivalentCostTl - chargingCostTl
+      : null;
 
   return (
     <div className="category-general-converter">
@@ -199,6 +271,43 @@ export default function EvChargingCalculator({
                 onChange={(event) => setEfficiencyPercent(event.target.value)}
               />
             </label>
+            <label className="category-general-converter-field">
+              <span>{copy.fieldElectricityPrice}</span>
+              <input
+                inputMode="decimal"
+                type="text"
+                value={electricityPrice}
+                onChange={(event) => setElectricityPrice(event.target.value)}
+              />
+            </label>
+            <label className="category-general-converter-field">
+              <span>{copy.fieldEvConsumption}</span>
+              <input
+                inputMode="decimal"
+                type="text"
+                value={evConsumptionForCost}
+                onChange={(event) => setEvConsumptionForCost(event.target.value)}
+              />
+            </label>
+            <label className="category-general-converter-field">
+              <span>{copy.fieldIceConsumption}</span>
+              <input
+                inputMode="decimal"
+                type="text"
+                value={iceConsumption}
+                onChange={(event) => setIceConsumption(event.target.value)}
+              />
+            </label>
+            <label className="category-general-converter-field">
+              <span>{copy.fieldGasolinePrice}</span>
+              <input
+                inputMode="decimal"
+                type="text"
+                placeholder={copy.gasolinePricePlaceholder}
+                value={gasolinePrice}
+                onChange={(event) => setGasolinePrice(event.target.value)}
+              />
+            </label>
           </div>
         ) : (
           <div className="paint-calculator-grid">
@@ -245,6 +354,46 @@ export default function EvChargingCalculator({
                 <span>{copy.resultChargingTime}</span>
                 <strong>{formatHours(chargingResult.chargingHours, copy)}</strong>
               </div>
+              {chargingCostTl !== null && (
+                <div>
+                  <span>{copy.resultChargingCost}</span>
+                  <strong>
+                    {formatLocalizedNumber(chargingCostTl, locale, {
+                      maximumFractionDigits: 0,
+                    })}{" "}
+                    ₺
+                  </strong>
+                </div>
+              )}
+              {gasolineEquivalent && (
+                <div>
+                  <span>{copy.resultRangeGained}</span>
+                  <strong>
+                    {formatLocalizedNumber(gasolineEquivalent.rangeGainedKm, locale, {
+                      maximumFractionDigits: 0,
+                    })}{" "}
+                    km
+                  </strong>
+                </div>
+              )}
+              {savingsTl !== null ? (
+                <div>
+                  <span>{copy.resultSavings}</span>
+                  <strong>
+                    {formatLocalizedNumber(savingsTl, locale, {
+                      maximumFractionDigits: 0,
+                    })}{" "}
+                    ₺
+                  </strong>
+                </div>
+              ) : (
+                chargingCostTl !== null && (
+                  <div>
+                    <span>{copy.resultSavings}</span>
+                    <small>{copy.savingsNote}</small>
+                  </div>
+                )
+              )}
             </div>
           )
         ) : !rangeResult ? (

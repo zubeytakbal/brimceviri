@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import EvChargingCalculator from "../components/EvChargingCalculator";
+import { getNationalGasolinePrice } from "../converter/liveFuelPrice";
 import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
 
@@ -15,19 +16,24 @@ const faqItems: FaqItem[] = [
     answer:
       "Gerçek menzil; hız, hava sıcaklığı, klima/kalorifer kullanımı, yük ve sürüş tarzına göre değişir. Bu araç, aracın ortalama tüketim değerine (kWh/100km) göre teorik bir tahmin verir.",
   },
+  {
+    question: "Bu şarjın maliyeti nasıl hesaplanıyor?",
+    answer:
+      "Gereken enerji (kWh) ile girdiğin elektrik birim fiyatı çarpılarak bulunur. Benzinli araç tüketimi ve güncel benzin fiyatını da girersen, bu şarjın kazandırdığı menzili benzinli bir araçla gitmenin maliyetiyle karşılaştırıp tasarrufunu görebilirsin.",
+  },
 ];
 
 export const metadata: Metadata = {
-  title: "Elektrikli Araç Şarj Süresi ve Menzil Hesaplama",
+  title: "Elektrikli Araç Şarj Süresi, Maliyet ve Tasarruf Hesaplayıcısı",
   description:
-    "Batarya kapasitesi, şarj yüzdesi ve şarj gücünden tahmini şarj süresini; batarya ve tüketimden tahmini menzili hesapla.",
+    "Batarya kapasitesi ve şarj gücünden şarj süresini, elektrik fiyatından bu şarjın maliyetini ve benzinliye göre tasarrufunu tek ekranda hesapla.",
   alternates: {
     canonical: "/elektrikli-arac-sarj-hesaplama",
   },
   openGraph: {
-    title: "Elektrikli Araç Şarj Süresi ve Menzil Hesaplama",
+    title: "Elektrikli Araç Şarj Süresi, Maliyet ve Tasarruf Hesaplayıcısı",
     description:
-      "Elektrikli araçlar için tahmini şarj süresi ve menzil hesaplayın.",
+      "Şarj süresi, maliyeti ve benzinliye göre tasarrufu tek ekranda hesapla.",
     url: buildSiteUrl("/elektrikli-arac-sarj-hesaplama"),
     siteName: "BirimCeviri.app",
     locale: "tr_TR",
@@ -39,7 +45,9 @@ function serializeJsonLd(data: object) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
 }
 
-export default function EvChargingCalculatorPage() {
+export default async function EvChargingCalculatorPage() {
+  const liveGasolinePrice = await getNationalGasolinePrice();
+
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -80,15 +88,15 @@ export default function EvChargingCalculatorPage() {
         </nav>
 
         <header className="all-conversions-header">
-          <h1>Elektrikli Araç Şarj Süresi ve Menzil Hesaplama</h1>
+          <h1>Elektrikli Araç Şarj Süresi, Maliyet ve Tasarruf Hesaplayıcısı</h1>
           <p>
-            Şarj süresi mi yoksa menzil mi hesaplamak istediğini seç;
-            batarya kapasitesi, şarj gücü veya tüketim değerlerini girerek
-            anında tahmini sonucu gör.
+            Batarya kapasitesi, şarj gücü ve elektrik fiyatını gir: şarj
+            süresini, bu şarjın maliyetini ve benzinliye göre tasarrufunu
+            tek ekranda, anında gör.
           </p>
         </header>
 
-        <EvChargingCalculator />
+        <EvChargingCalculator liveGasolinePrice={liveGasolinePrice} />
 
         <section className="category-article-content">
           <h2>Şarj süresi nasıl hesaplanır?</h2>

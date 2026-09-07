@@ -139,8 +139,10 @@ export default function GreatCircleCalculatorPage() {
             Diğer kaptan araçları için{" "}
             <Link href="/kaptan-araclari">Kaptan Araçları</Link>, pilot
             araçları için{" "}
-            <Link href="/pilot-araclari">Pilot Araçları</Link> sayfasına
-            bakabilirsin.
+            <Link href="/pilot-araclari">Pilot Araçları</Link> sayfasına,
+            iki konum arasındaki teorik minimum ağ gecikmesi için{" "}
+            <Link href="/ping-gecikme-hesaplama">Ping / Gecikme Hesaplama</Link>
+            {" "}sayfasına bakabilirsin.
           </p>
 
           <h2>Kaynaklar</h2>

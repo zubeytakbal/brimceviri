@@ -227,6 +227,13 @@ export default function ElektrikciAraclariPage() {
               — sistem gücü ve bölgeye göre güneş panelinin kaç
               yılda kendini çıkardığını hesapla.
             </li>
+            <li>
+              <Link href="/seyahat-priz-voltaj-hesaplama">
+                Seyahat Priz ve Voltaj Uyumluluk Hesaplama
+              </Link>{" "}
+              — gideceğin ülkeye göre adaptöre veya voltaj
+              dönüştürücüye ihtiyacın olup olmadığını hesapla.
+            </li>
           </ul>
 
           <h2>Sigorta (Otomat) Amper Kademeleri</h2>

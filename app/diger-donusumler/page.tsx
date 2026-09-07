@@ -86,6 +86,15 @@ export default function DigerDonusumlerPage() {
       group: "Tasarruf ve Karar Hesaplayıcıları",
     },
     {
+      id: "lpg-donusum-amortisman",
+      href: "/lpg-donusum-amortisman-hesaplama",
+      title: "LPG Dönüşüm Amortisman Hesaplama",
+      description:
+        "Kendi kilometren, tüketimin ve dönüşüm maliyetinle LPG'nin kaç yılda kendini çıkardığını hesaplayın.",
+      iconName: "lpgConversionPaybackCalculator" as const,
+      group: "Tasarruf ve Karar Hesaplayıcıları",
+    },
+    {
       id: "yalitim-amortisman",
       href: "/yalitim-amortisman-hesaplama",
       title: "Yalıtım Amortisman Hesaplama",
@@ -110,6 +119,15 @@ export default function DigerDonusumlerPage() {
       description:
         "Doğalgaz ve elektrik fiyatınla, kombi ile klimanın ısıtma maliyetini kıyaslayıp hangisinin daha ucuz olduğunu görün.",
       iconName: "heatingCostComparisonCalculator" as const,
+      group: "Tasarruf ve Karar Hesaplayıcıları",
+    },
+    {
+      id: "isi-pompasi-kombi-karsilastirma",
+      href: "/isi-pompasi-kombi-karsilastirma",
+      title: "Isı Pompası mı Kombi mi?",
+      description:
+        "Doğalgaz/elektrik fiyatın ve kurulum maliyeti farkınla, ısı pompasının kombiye göre kaç yılda kendini çıkardığını hesaplayın.",
+      iconName: "heatPumpVsBoilerCalculator" as const,
       group: "Tasarruf ve Karar Hesaplayıcıları",
     },
     {
@@ -608,6 +626,15 @@ export default function DigerDonusumlerPage() {
       group: "Tarım ve Veterinerlik Hesaplayıcıları",
     },
     {
+      id: "gubre-seyreltme",
+      href: "/gubre-seyreltme-hesaplama",
+      title: "Gübre Seyreltme Hesaplama",
+      description:
+        "Sıvı gübre etiketindeki oran veya dozla, hazırlaman gereken su/gübre miktarını hesaplayın.",
+      iconName: "fertilizerDilutionCalculator" as const,
+      group: "Tarım ve Veterinerlik Hesaplayıcıları",
+    },
+    {
       id: "tohum-miktari",
       href: "/tohum-miktari-hesaplama",
       title: "Tohum Miktarı Hesaplama",
@@ -752,6 +779,24 @@ export default function DigerDonusumlerPage() {
       group: "Elektronik, Yazılım ve Medya Araçları",
     },
     {
+      id: "sosyal-medya-gorsel-boyutlari",
+      href: "/sosyal-medya-gorsel-boyutlari-hesaplama",
+      title: "Sosyal Medya Görsel Boyutları Hesaplama",
+      description:
+        "Instagram, YouTube, Facebook, X, LinkedIn ve TikTok için doğru görsel boyutunu ve gereken kırpmayı hesaplayın.",
+      iconName: "socialMediaSizeCalculator" as const,
+      group: "Elektronik, Yazılım ve Medya Araçları",
+    },
+    {
+      id: "ping-gecikme-hesaplama",
+      href: "/ping-gecikme-hesaplama",
+      title: "Ping / Gecikme Hesaplama",
+      description:
+        "İki konum arasındaki mesafeye göre fiziksel olarak mümkün olan en düşük ping süresini hesaplayın.",
+      iconName: "theoreticalLatencyCalculator" as const,
+      group: "Elektronik, Yazılım ve Medya Araçları",
+    },
+    {
       id: "yakit-tuketimi",
       href: "/yakit-tuketimi-hesaplama",
       title: "Yakıt Tüketimi Hesaplama",
@@ -812,6 +857,15 @@ export default function DigerDonusumlerPage() {
       description:
         "Koli/palet ölçülerinden CBM ve ücrete esas ağırlığı hesaplayın.",
       iconName: "cbmCalculator" as const,
+      group: "Ev, Enerji ve Ulaşım Hesaplayıcıları",
+    },
+    {
+      id: "seyahat-priz-voltaj",
+      href: "/seyahat-priz-voltaj-hesaplama",
+      title: "Seyahat Priz ve Voltaj Uyumluluk Hesaplama",
+      description:
+        "Gideceğin ülkeye göre adaptöre veya voltaj dönüştürücüye ihtiyacın olup olmadığını hesaplayın.",
+      iconName: "travelPlugVoltageCalculator" as const,
       group: "Ev, Enerji ve Ulaşım Hesaplayıcıları",
     },
     {

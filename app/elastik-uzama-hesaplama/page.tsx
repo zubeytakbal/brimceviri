@@ -93,6 +93,8 @@ export default function ElongationCalculatorPage() {
             <Link href="/insaatci-araclari">İnşaatçı Araçları</Link>
             {" "}sayfasına, mimar araçları için{" "}
             <Link href="/mimar-araclari">Mimar Araçları</Link>
+            {" "}sayfasına, malzeme yoğunluğu ve diğer özellikleri için{" "}
+            <Link href="/malzeme-ozellikleri">Malzeme Özellikleri</Link>
             {" "}sayfasına bakabilirsin.
           </p>
 

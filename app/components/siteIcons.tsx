@@ -242,6 +242,7 @@ const iconMap = {
   ciftciHub: Tractor,
   fertilizerCalculator: Leaf,
   fertilizerDilutionCalculator: Sprout,
+  materialsHubCalculator: Layers,
   seedRateCalculator: Wheat,
   eczaciHub: Pill,
   alcoholDilutionCalculator: TestTube,

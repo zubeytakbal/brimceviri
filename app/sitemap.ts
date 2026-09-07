@@ -46,6 +46,8 @@ import {
   periodicTable,
   slugifyElementName,
 } from "./converter/periodicTableData";
+import { materialsDatabase } from "./converter/materialsDatabase";
+import { compoundsDatabase } from "./converter/compoundsDatabase";
 import {
   englishUnitPages,
   findEnglishUnitPageByTurkishSlug,
@@ -769,6 +771,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     ...periodicTable.map((element) => ({
       url: `${baseUrl}/bilim-hesaplayicilari/kimya/periyodik-tablo/${slugifyElementName(element.nameTr)}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    })),
+    {
+      url: `${baseUrl}/malzeme-ozellikleri`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    ...materialsDatabase.map((material) => ({
+      url: `${baseUrl}/malzeme-ozellikleri/${material.id}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    })),
+    {
+      url: `${baseUrl}/bilim-hesaplayicilari/kimya/bilesikler`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    ...compoundsDatabase.map((compound) => ({
+      url: `${baseUrl}/bilim-hesaplayicilari/kimya/bilesikler/${compound.id}`,
       lastModified: contentLastModified,
       changeFrequency: "monthly" as const,
       priority: 0.6,

@@ -22,6 +22,11 @@ export const materialDensityTable: MaterialDensityRow[] = [
   { id: "pine", label: "Ahşap (Çam)", densityKgM3: 500 },
   { id: "pvc", label: "PVC", densityKgM3: 1400 },
   { id: "water", label: "Su", densityKgM3: 1000 },
+  { id: "gasoline", label: "Benzin", densityKgM3: 740 },
+  { id: "diesel", label: "Dizel", densityKgM3: 850 },
+  { id: "acetone", label: "Aseton", densityKgM3: 790 },
+  { id: "milk", label: "Süt", densityKgM3: 1030 },
+  { id: "honey", label: "Bal", densityKgM3: 1420 },
 ];
 
 export function calculateMassFromVolumeCm3(

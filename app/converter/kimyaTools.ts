@@ -16,6 +16,11 @@ export const kimyaTools: KimyaTool[] = [
     title: "En Ağır ve En Hafif Elementler",
   },
   {
+    id: "bilesikler",
+    href: "/bilim-hesaplayicilari/kimya/bilesikler",
+    title: "Kimyasal Bileşikler (Molar Kütle)",
+  },
+  {
     id: "mol",
     href: "/bilim-hesaplayicilari/kimya/mol-hesaplama",
     title: "Mol Hesaplama",

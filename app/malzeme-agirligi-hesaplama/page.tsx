@@ -94,6 +94,9 @@ export default function MaterialWeightCalculatorPage() {
             <Link href="/cnc-torna-araclari">CNC/Torna Operatörü Araçları</Link>
             {" "}sayfasına, kütle birimi dönüşümleri için{" "}
             <Link href="/kategoriler/kutle">Kütle Dönüşümleri</Link>
+            {" "}sayfasına, 100&apos;den fazla malzemenin yoğunluğu ve
+            diğer özellikleri için{" "}
+            <Link href="/malzeme-ozellikleri">Malzeme Özellikleri</Link>
             {" "}sayfasına bakabilirsin.
           </p>
 

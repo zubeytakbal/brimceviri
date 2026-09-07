@@ -149,6 +149,15 @@ export default function DigerDonusumlerPage() {
       group: "Tasarruf ve Karar Hesaplayıcıları",
     },
     {
+      id: "malzeme-ozellikleri",
+      href: "/malzeme-ozellikleri",
+      title: "Malzeme Özellikleri (Yoğunluk, Isıl İletkenlik...)",
+      description:
+        "100'den fazla metal, sıvı, plastik, ahşap ve yapı malzemesinin yoğunluğunu ve mühendislik özelliklerini gör, canlı birim çevirici ile dönüştür.",
+      iconName: "materialsHubCalculator" as const,
+      group: "Mühendislik Referans Araçları",
+    },
+    {
       id: "hafriyat",
       href: "/hafriyat-hesaplama",
       title: "Hafriyat ve Kazı Hesaplama",

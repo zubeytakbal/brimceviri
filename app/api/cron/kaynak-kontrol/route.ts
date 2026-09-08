@@ -87,8 +87,19 @@ function jsonResponse(data: unknown, status = 200): Response {
   });
 }
 
+// trafik.gov.tr her istekte rastgele DOM element ID'leri uretiyor
+// (orn. id="ew1b4f6a4f2198477e9aae1abff3022ca4"), sayfanin gercek
+// icerigiyle hicbir ilgisi yok -- bu, iki bagimsiz cekimi (fetch1.html
+// ve fetch2.html) diff'leyerek dogrulandi, tum farkin bu tek desenden
+// geldigi teyit edildi. Hashlemeden once bu gurultuyu temizlemek,
+// gercek icerik degisikliklerini yanlis pozitiflerden ayirt etmek
+// icin sart -- aksi halde bu kaynak her kontrolde "changed" derdi.
+function normalizeForHashing(text: string): string {
+  return text.replace(/\b[a-z]{0,3}[0-9a-f]{28,40}\d{0,2}\b/gi, "ID");
+}
+
 function hashContent(text: string): string {
-  return createHash("sha256").update(text).digest("hex");
+  return createHash("sha256").update(normalizeForHashing(text)).digest("hex");
 }
 
 // Node'un fetch() hatalari genelde ustteki "fetch failed" mesajini

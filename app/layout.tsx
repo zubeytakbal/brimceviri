@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata, Viewport } from "next";
 import { Cairo, Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 import RecentToolsTracker from "./components/RecentToolsTracker";
 import SiteHeader from "./components/SiteHeader";
 import SiteFooter from "./components/SiteFooter";
@@ -170,6 +171,7 @@ export default function RootLayout({
         <RecentToolsTracker />
         {children}
         <SiteFooter />
+        <Analytics />
       </body>
     </html>
   );

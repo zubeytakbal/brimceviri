@@ -32,6 +32,19 @@ export const licenseSourceMonitorTargets: SourceMonitorTarget[] = [
     label: "[TEST] TBMM (tbmm.gov.tr)",
     url: "https://www.tbmm.gov.tr/",
   },
+  // Ucuncu/dorduncu tani: gercek icerik adaylari -- yonetmeligi cikaran
+  // Icisleri Bakanligi ve trafigi denetleyen Emniyet Genel Mudurlugu,
+  // tccb.gov.tr kumesinden ayri barindiriliyor olabilir.
+  {
+    id: "TEST-icisleri",
+    label: "[TEST] İçişleri Bakanlığı (icisleri.gov.tr)",
+    url: "https://www.icisleri.gov.tr/karayollari-trafik-yonetmeliginde-degisiklik-yapilmasina-dair-yonetmelik",
+  },
+  {
+    id: "TEST-trafik-egm",
+    label: "[TEST] EGM Trafik Mevzuat (trafik.gov.tr)",
+    url: "https://www.trafik.gov.tr/trafik-mevzuat",
+  },
 ];
 
 export type SourceMonitorStatus =

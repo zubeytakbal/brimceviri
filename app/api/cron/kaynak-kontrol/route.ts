@@ -64,6 +64,11 @@ function fetchTextWithExtraTrustedCa(url: string, userAgent: string): Promise<st
       },
     );
     request.on("error", reject);
+    // Vercel'in fonksiyon suresi asimi tum cron'u sert bir sekilde
+    // (FUNCTION_INVOCATION_TIMEOUT) oldurup temiz bir hata birakmiyor --
+    // burada kendi zaman asimimizi koyup duzgun bir "timeout" hatasi
+    // dondurmek, sonucu "fetch_error" olarak kaydedebilmemizi saglar.
+    request.setTimeout(20000, () => request.destroy(new Error("Zaman aşımı: 20 saniyede yanıt alınamadı")));
     request.end();
   });
 }

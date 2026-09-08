@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata, Viewport } from "next";
 import { Cairo, Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google";
 import Script from "next/script";
+import { NotificationSlotProvider } from "./components/NotificationSlotProvider";
 import RecentToolsTracker from "./components/RecentToolsTracker";
 import SiteHeader from "./components/SiteHeader";
 import SiteFooter from "./components/SiteFooter";
@@ -166,9 +167,11 @@ export default function RootLayout({
       <body
         className={`${plusJakartaSans.variable} ${notoSansHeading.variable} ${logoFont.variable} ${cairo.variable}`}
       >
-        <SiteHeader />
-        <RecentToolsTracker />
-        {children}
+        <NotificationSlotProvider>
+          <SiteHeader />
+          <RecentToolsTracker />
+          {children}
+        </NotificationSlotProvider>
         <SiteFooter />
       </body>
     </html>

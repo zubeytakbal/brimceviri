@@ -11,6 +11,7 @@ import {
   markNotificationSeen,
   subscribeToSeenNotifications,
 } from "../converter/notificationDismissal";
+import { useNotificationSlot } from "./NotificationSlotProvider";
 import type { SiteNotification } from "../converter/siteNotifications";
 
 function formatDate(date: string): string {
@@ -44,14 +45,14 @@ export default function NotificationBell({
   const unseenCount = notifications.filter((item) => !seenIds.includes(item.id)).length;
   const isOpen = manualOverride ?? unseenCount > 0;
 
-  // Zil butonu, siteHeader icindeki #notification-bell-slot'a portal ile
-  // tasinir -- boylece gercek ust menunun (beyaz serit) icinde, sayfayla
-  // birlikte kayarak durur. Slot, sunucu tarafinda render edilen duz
-  // HTML'in bir parcasi oldugu icin ilk client render'da (lazy useState
-  // ilklendirici) senkron olarak bulunabilir, ayri bir effect gerekmez.
-  const [bellSlot] = useState<HTMLElement | null>(() =>
-    typeof document !== "undefined" ? document.getElementById("notification-bell-slot") : null,
-  );
+  // Zil butonu, SiteHeader'in kaydettigi slot elemanina (Context uzerinden,
+  // ref callback ile doldurulur) portal ile tasinir -- boylece gercek ust
+  // menunun (beyaz serit) icinde, sayfayla birlikte kayarak durur.
+  // Ref callback'ler commit sonrasi (hydration bittikten sonra) calistigi
+  // icin sunucu ve ilk istemci render'i her zaman ayni kalir (slot=null),
+  // document.getElementById gibi bir kontrolde oldugu gibi hydration
+  // uyumsuzlugu olusmaz.
+  const { slotElement } = useNotificationSlot();
 
   if (notifications.length === 0) {
     return null;
@@ -71,7 +72,7 @@ export default function NotificationBell({
 
   return (
     <>
-      {bellSlot ? createPortal(bellButton, bellSlot) : null}
+      {slotElement ? createPortal(bellButton, slotElement) : null}
 
       {isOpen && (
         <div

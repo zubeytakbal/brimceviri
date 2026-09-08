@@ -10,6 +10,7 @@ import {
   getTopLevelLinks,
 } from "../i18n/siteNavigation";
 import LanguageSwitcher from "./LanguageSwitcher";
+import { useNotificationSlot } from "./NotificationSlotProvider";
 
 type HeaderLink = {
   href: string;
@@ -31,6 +32,7 @@ function SiteHeaderNavigation({
 }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isConversionsOpen, setIsConversionsOpen] = useState(false);
+  const { setSlotElement } = useNotificationSlot();
   const menuId = useId();
   const conversionsMenuId = useId();
 
@@ -61,8 +63,6 @@ function SiteHeaderNavigation({
         <Link href={homeHref} className="site-logo">
           birimceviri<span>.app</span>
         </Link>
-
-        <div id="notification-bell-slot" className="notification-bell-slot" />
 
         <button
           type="button"
@@ -118,6 +118,7 @@ function SiteHeaderNavigation({
           ))}
 
           <LanguageSwitcher />
+          <div ref={setSlotElement} className="notification-bell-slot" />
         </nav>
       </div>
 

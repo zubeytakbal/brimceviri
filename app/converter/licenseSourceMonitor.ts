@@ -9,40 +9,19 @@ export type SourceMonitorTarget = {
   url: string;
 };
 
+// mevzuat.gov.tr (asil metnin bulundugu, sayfada link verilen otorite
+// kaynak) Vercel'den paylasimli tccb.gov.tr altyapisi engeli yuzunden
+// erisilemiyor (resmigazete.gov.tr de ayni kumede, o da engelli); ayni
+// engel tbmm.gov.tr'de yok, yani sorun tum gov.tr'ye degil sadece o
+// kumeye ozel. Bu yuzden otomatik izleme, ayri barindirilan ve
+// erisilebilir oldugu dogrulanan EGM Trafik Baskanligi'nin canli
+// mevzuat sayfasina yonlendirildi -- sayfadaki tiklanabilir kaynak
+// linki hala mevzuat.gov.tr'ye gidiyor, sadece arka plandaki
+// degisiklik-tespit hedefi farkli.
 export const licenseSourceMonitorTargets: SourceMonitorTarget[] = [
   {
-    id: "karayollari-trafik-yonetmeligi",
-    label: "Karayolları Trafik Yönetmeliği (mevzuat.gov.tr)",
-    url: "https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=8182&MevzuatTur=7&MevzuatTertip=5",
-  },
-  // GECICI TANI HEDEFI: mevzuat.gov.tr Vercel'den asili kaliyor mu yoksa
-  // ayni paylasilan tccb.gov.tr altyapisindaki TUM siteler mi bloklu,
-  // bunu ayirt etmek icin eklendi. Sonuc alinca kaldirilacak.
-  {
-    id: "TEST-resmigazete",
-    label: "[TEST] Resmi Gazete (resmigazete.gov.tr)",
-    url: "https://www.resmigazete.gov.tr/",
-  },
-  // Ikinci tani hedefi: tccb.gov.tr paylasimli kumesinden tamamen farkli,
-  // ayri barindirilan bir .gov.tr sitesi -- eger bu da tikanirsa sorun tum
-  // gov.tr'ye yonelik genel bir bulut-IP engeli demektir, tikanmazsa sorun
-  // sadece o paylasimli kumeye ozeldir.
-  {
-    id: "TEST-tbmm",
-    label: "[TEST] TBMM (tbmm.gov.tr)",
-    url: "https://www.tbmm.gov.tr/",
-  },
-  // Ucuncu/dorduncu tani: gercek icerik adaylari -- yonetmeligi cikaran
-  // Icisleri Bakanligi ve trafigi denetleyen Emniyet Genel Mudurlugu,
-  // tccb.gov.tr kumesinden ayri barindiriliyor olabilir.
-  {
-    id: "TEST-icisleri",
-    label: "[TEST] İçişleri Bakanlığı (icisleri.gov.tr)",
-    url: "https://www.icisleri.gov.tr/karayollari-trafik-yonetmeliginde-degisiklik-yapilmasina-dair-yonetmelik",
-  },
-  {
-    id: "TEST-trafik-egm",
-    label: "[TEST] EGM Trafik Mevzuat (trafik.gov.tr)",
+    id: "trafik-mevzuat-egm",
+    label: "EGM Trafik Mevzuatı (trafik.gov.tr)",
     url: "https://www.trafik.gov.tr/trafik-mevzuat",
   },
 ];

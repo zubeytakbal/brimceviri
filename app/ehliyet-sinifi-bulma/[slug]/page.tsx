@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import SourceMonitorStatusList from "../../components/SourceMonitorStatusList";
 import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
 import { licenseClasses, type LicenseClassId } from "../../converter/licenseClassFinder";
+import { getSourceMonitorStatuses } from "../../converter/licenseSourceMonitor";
 import { buildSiteUrl } from "../../siteConfig";
+
+export const revalidate = 3600;
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -55,6 +59,8 @@ export default async function LicenseClassDetailPage({ params }: PageProps) {
   if (!licenseClass) {
     notFound();
   }
+
+  const monitorStatuses = await getSourceMonitorStatuses();
 
   const pageUrl = buildSiteUrl(`/ehliyet-sinifi-bulma/${slug}`);
 
@@ -167,6 +173,8 @@ export default async function LicenseClassDetailPage({ params }: PageProps) {
             </a>
             {" "}<em>(Son doğrulama: Eylül 2026)</em>
           </p>
+
+          <SourceMonitorStatusList statuses={monitorStatuses} />
         </section>
       </div>
     </main>

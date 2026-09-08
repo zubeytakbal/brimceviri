@@ -32,6 +32,17 @@ export type SourceMonitorStatus =
   | "changed"
   | "fetch_error";
 
+export const sourceMonitorStatusLabels: Record<
+  SourceMonitorStatus | "not_configured",
+  { icon: string; text: string }
+> = {
+  baseline_established: { icon: "🟢", text: "İzleniyor (ilk kontrol yapıldı)" },
+  unchanged: { icon: "🟢", text: "İzleniyor, değişiklik yok" },
+  changed: { icon: "🔴", text: "İçerik değişmiş olabilir — manuel kontrol gerekli" },
+  fetch_error: { icon: "🟡", text: "Kaynağa şu an erişilemedi" },
+  not_configured: { icon: "⚪", text: "Otomatik izleme henüz kurulmadı" },
+};
+
 export type SourceMonitorDisplayEntry = {
   id: string;
   label: string;

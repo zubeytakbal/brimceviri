@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import LicenseRenewalCalculator from "../components/LicenseRenewalCalculator";
+import SourceMonitorStatusList from "../components/SourceMonitorStatusList";
 import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import { getSourceMonitorStatuses } from "../converter/licenseSourceMonitor";
 import { buildSiteUrl } from "../siteConfig";
+
+export const revalidate = 3600;
 
 const faqItems: FaqItem[] = [
   {
@@ -48,7 +52,8 @@ function serializeJsonLd(data: object) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
 }
 
-export default function LicenseRenewalPage() {
+export default async function LicenseRenewalPage() {
+  const monitorStatuses = await getSourceMonitorStatuses();
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -164,6 +169,8 @@ export default function LicenseRenewalPage() {
           <p>
             <em>Son doğrulama: Eylül 2026.</em>
           </p>
+
+          <SourceMonitorStatusList statuses={monitorStatuses} />
         </section>
       </div>
     </main>

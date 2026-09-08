@@ -2,19 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import LicenseClassFinderCalculator from "../components/LicenseClassFinderCalculator";
 import LicenseCostCalculator from "../components/LicenseCostCalculator";
+import SourceMonitorStatusList from "../components/SourceMonitorStatusList";
 import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
 import { getSourceMonitorStatuses } from "../converter/licenseSourceMonitor";
 import { buildSiteUrl } from "../siteConfig";
 
 export const revalidate = 3600;
-
-const monitorStatusLabels: Record<string, { icon: string; text: string }> = {
-  baseline_established: { icon: "🟢", text: "İzleniyor (ilk kontrol yapıldı)" },
-  unchanged: { icon: "🟢", text: "İzleniyor, değişiklik yok" },
-  changed: { icon: "🔴", text: "İçerik değişmiş olabilir — manuel kontrol gerekli" },
-  fetch_error: { icon: "🟡", text: "Kaynağa şu an erişilemedi" },
-  not_configured: { icon: "⚪", text: "Otomatik izleme henüz kurulmadı" },
-};
 
 const faqItems: FaqItem[] = [
   {
@@ -156,24 +149,7 @@ export default async function LicenseClassFinderPage() {
             değildir.
           </p>
 
-          <h3>Otomatik kaynak izleme durumu</h3>
-          <ul className="related-conversion-list">
-            {monitorStatuses.map((entry) => {
-              const display = monitorStatusLabels[entry.status] ?? monitorStatusLabels.not_configured;
-              return (
-                <li key={entry.id}>
-                  {display.icon} {entry.label} — {display.text}
-                  {entry.checkedAt ? ` (son kontrol: ${new Date(entry.checkedAt).toLocaleString("tr-TR")})` : ""}
-                </li>
-              );
-            })}
-          </ul>
-          <p>
-            Bu, kaynağın kendisini otomatik <em>değiştirmez</em> —
-            sadece resmi kaynağın günlük olarak kontrol edilip
-            değişip değişmediğini işaretleyen salt okunur bir
-            izleme sistemidir.
-          </p>
+          <SourceMonitorStatusList statuses={monitorStatuses} />
         </section>
       </div>
     </main>

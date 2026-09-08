@@ -17,6 +17,14 @@ export type SiteNotification = {
 
 const manualNotifications: SiteNotification[] = [
   {
+    id: "ehliyet-yenileme-suresi-2026-09",
+    date: "2026-09-08",
+    title: "Yeni araç: Ehliyet Yenileme Süresi Hesaplama",
+    message:
+      "Ehliyet sınıfına ve veriliş tarihine göre sürücü belgenin ne zaman yenilenmesi gerektiğini hesapla.",
+    href: "/ehliyet-yenileme-suresi-hesaplama",
+  },
+  {
     id: "ehliyet-sinifi-bulma-2026-09",
     date: "2026-09-08",
     title: "Yeni araç: Hangi Ehliyet Sınıfı Gerekli?",

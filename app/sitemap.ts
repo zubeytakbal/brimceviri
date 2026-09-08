@@ -1607,6 +1607,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.65,
     })),
     {
+      url: `${baseUrl}/ehliyet-yenileme-suresi-hesaplama`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.75,
+    },
+    {
       url: `${baseUrl}/isil-genlesme-hesaplama`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",

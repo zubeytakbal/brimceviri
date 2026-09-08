@@ -122,7 +122,10 @@ export default async function LicenseClassFinderPage() {
 
           <h2>İlgili araçlar</h2>
           <p>
-            Diğer otomotiv araçları için{" "}
+            Ehliyetinin ne zaman yenilenmesi gerektiğini hesaplamak
+            için{" "}
+            <Link href="/ehliyet-yenileme-suresi-hesaplama">Ehliyet Yenileme Süresi Hesaplama</Link>
+            {" "}aracına, diğer otomotiv araçları için{" "}
             <Link href="/otomotiv-araclari">Otomotiv Araçları</Link>
             {" "}sayfasına bakabilirsin.
           </p>

@@ -245,6 +245,7 @@ const iconMap = {
   materialsHubCalculator: Layers,
   remoteWorkVsOfficeCostCalculator: MonitorSmartphone,
   licenseClassFinderCalculator: ClipboardList,
+  licenseRenewalCalculator: CalendarX2,
   seedRateCalculator: Wheat,
   eczaciHub: Pill,
   alcoholDilutionCalculator: TestTube,

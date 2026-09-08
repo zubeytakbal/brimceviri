@@ -149,6 +149,15 @@ export default function DigerDonusumlerPage() {
       group: "Ev, Enerji ve Ulaşım Hesaplayıcıları",
     },
     {
+      id: "ehliyet-yenileme-suresi-hesaplama",
+      href: "/ehliyet-yenileme-suresi-hesaplama",
+      title: "Ehliyet Yenileme Süresi Hesaplama",
+      description:
+        "Ehliyet sınıfına ve veriliş tarihine göre sürücü belgenin ne zaman yenilenmesi gerektiğini hesaplayın.",
+      iconName: "licenseRenewalCalculator" as const,
+      group: "Ev, Enerji ve Ulaşım Hesaplayıcıları",
+    },
+    {
       id: "gunes-paneli-amortisman",
       href: "/gunes-paneli-amortisman-hesaplama",
       title: "Güneş Paneli Amortisman Hesaplama",

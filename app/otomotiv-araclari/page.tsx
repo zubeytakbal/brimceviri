@@ -161,6 +161,13 @@ export default function OtomotivAraclariPage() {
               gereken ehliyet sınıfını hesapla.
             </li>
             <li>
+              <Link href="/ehliyet-yenileme-suresi-hesaplama">
+                Ehliyet Yenileme Süresi Hesaplama
+              </Link>{" "}
+              — ehliyet sınıfına ve veriliş tarihine göre sürücü
+              belgenin ne zaman yenilenmesi gerektiğini hesapla.
+            </li>
+            <li>
               <Link href="/lastik-ebati-hesaplama">Lastik Ebatı Hesaplama</Link>
               {" "}— lastik kodundan dış çapı, çevreyi ve hız göstergesi
               sapmasını hesapla.

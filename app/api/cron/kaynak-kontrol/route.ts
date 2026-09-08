@@ -20,6 +20,25 @@ function hashContent(text: string): string {
   return createHash("sha256").update(text).digest("hex");
 }
 
+// Node'un fetch() hatalari genelde ustteki "fetch failed" mesajini
+// verir, gercek sebep (SSL, DNS, baglanti reddi vb.) error.cause
+// icinde saklidir -- teshis icin onu da cikarmak gerekir.
+function describeError(error: unknown): string {
+  if (!(error instanceof Error)) return String(error);
+  const parts = [error.message];
+  let cause: unknown = (error as { cause?: unknown }).cause;
+  while (cause) {
+    if (cause instanceof Error) {
+      parts.push(cause.message);
+      cause = (cause as { cause?: unknown }).cause;
+    } else {
+      parts.push(String(cause));
+      break;
+    }
+  }
+  return parts.join(" <- caused by: ");
+}
+
 type MonitorResult = {
   id: string;
   label: string;
@@ -91,7 +110,7 @@ export async function GET(request: Request) {
         url: target.url,
         status,
         checkedAt,
-        error: error instanceof Error ? error.message : String(error),
+        error: describeError(error),
       });
     }
   }

@@ -62,6 +62,8 @@ function SiteHeaderNavigation({
           birimceviri<span>.app</span>
         </Link>
 
+        <div id="notification-bell-slot" className="notification-bell-slot" />
+
         <button
           type="button"
           className="site-menu-toggle"

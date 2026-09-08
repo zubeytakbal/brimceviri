@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { useSyncExternalStore } from "react";
 import { Bell, X } from "@phosphor-icons/react";
@@ -43,21 +44,34 @@ export default function NotificationBell({
   const unseenCount = notifications.filter((item) => !seenIds.includes(item.id)).length;
   const isOpen = manualOverride ?? unseenCount > 0;
 
+  // Zil butonu, siteHeader icindeki #notification-bell-slot'a portal ile
+  // tasinir -- boylece gercek ust menunun (beyaz serit) icinde, sayfayla
+  // birlikte kayarak durur. Slot, sunucu tarafinda render edilen duz
+  // HTML'in bir parcasi oldugu icin ilk client render'da (lazy useState
+  // ilklendirici) senkron olarak bulunabilir, ayri bir effect gerekmez.
+  const [bellSlot] = useState<HTMLElement | null>(() =>
+    typeof document !== "undefined" ? document.getElementById("notification-bell-slot") : null,
+  );
+
   if (notifications.length === 0) {
     return null;
   }
 
+  const bellButton = (
+    <button
+      type="button"
+      className="notification-bell-button"
+      onClick={() => setManualOverride(!isOpen)}
+      aria-label="Bildirimler"
+    >
+      <Bell size={22} weight="fill" />
+      {unseenCount > 0 && <span className="notification-bell-badge">{unseenCount}</span>}
+    </button>
+  );
+
   return (
     <>
-      <button
-        type="button"
-        className="notification-bell-button"
-        onClick={() => setManualOverride(!isOpen)}
-        aria-label="Bildirimler"
-      >
-        <Bell size={22} weight="fill" />
-        {unseenCount > 0 && <span className="notification-bell-badge">{unseenCount}</span>}
-      </button>
+      {bellSlot ? createPortal(bellButton, bellSlot) : null}
 
       {isOpen && (
         <div

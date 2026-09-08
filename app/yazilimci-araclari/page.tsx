@@ -111,6 +111,13 @@ export default function YazilimciAraclariPage() {
               {" "}— bayt, KB, MB, GB, TB ve 1024 tabanlı (KiB/MiB/GiB)
               birimler arasında dönüşüm yap.
             </li>
+            <li>
+              <Link href="/uzaktan-calisma-ofis-maliyeti-karsilastirma">
+                Uzaktan Çalışma mı Ofis mi?
+              </Link>{" "}
+              — kendi yol masrafın ve giderlerinle uzaktan çalışmanın
+              yıllık net tasarrufunu hesapla.
+            </li>
           </ul>
 
           <h2>Sık Sorulan Sorular</h2>

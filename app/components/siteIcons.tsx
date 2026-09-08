@@ -243,6 +243,8 @@ const iconMap = {
   fertilizerCalculator: Leaf,
   fertilizerDilutionCalculator: Sprout,
   materialsHubCalculator: Layers,
+  remoteWorkVsOfficeCostCalculator: MonitorSmartphone,
+  licenseClassFinderCalculator: ClipboardList,
   seedRateCalculator: Wheat,
   eczaciHub: Pill,
   alcoholDilutionCalculator: TestTube,

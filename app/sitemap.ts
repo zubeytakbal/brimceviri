@@ -48,6 +48,7 @@ import {
 } from "./converter/periodicTableData";
 import { materialsDatabase } from "./converter/materialsDatabase";
 import { compoundsDatabase } from "./converter/compoundsDatabase";
+import { licenseClasses } from "./converter/licenseClassFinder";
 import {
   englishUnitPages,
   findEnglishUnitPageByTurkishSlug,
@@ -1587,6 +1588,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.75,
     },
+    {
+      url: `${baseUrl}/uzaktan-calisma-ofis-maliyeti-karsilastirma`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.75,
+    },
+    {
+      url: `${baseUrl}/ehliyet-sinifi-bulma`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.75,
+    },
+    ...Object.keys(licenseClasses).map((id) => ({
+      url: `${baseUrl}/ehliyet-sinifi-bulma/${id.toLowerCase()}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.65,
+    })),
     {
       url: `${baseUrl}/isil-genlesme-hesaplama`,
       lastModified: contentLastModified,

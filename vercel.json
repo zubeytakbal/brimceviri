@@ -1,0 +1,8 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/kaynak-kontrol",
+      "schedule": "0 3 * * *"
+    }
+  ]
+}

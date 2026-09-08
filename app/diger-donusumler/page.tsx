@@ -131,6 +131,24 @@ export default function DigerDonusumlerPage() {
       group: "Tasarruf ve Karar Hesaplayıcıları",
     },
     {
+      id: "uzaktan-calisma-ofis-karsilastirma",
+      href: "/uzaktan-calisma-ofis-maliyeti-karsilastirma",
+      title: "Uzaktan Çalışma mı Ofis mi?",
+      description:
+        "Kendi yol masrafın, öğle yemeği farkın ve ek ev giderinle uzaktan çalışmanın yıllık net tasarrufunu hesaplayın.",
+      iconName: "remoteWorkVsOfficeCostCalculator" as const,
+      group: "Tasarruf ve Karar Hesaplayıcıları",
+    },
+    {
+      id: "ehliyet-sinifi-bulma",
+      href: "/ehliyet-sinifi-bulma",
+      title: "Hangi Ehliyet Sınıfı Gerekli?",
+      description:
+        "Aracının koltuk sayısı, ağırlığı ve römork bilgisiyle Türkiye'de hangi ehliyet sınıfına ihtiyacın olduğunu hesaplayın.",
+      iconName: "licenseClassFinderCalculator" as const,
+      group: "Ev, Enerji ve Ulaşım Hesaplayıcıları",
+    },
+    {
       id: "gunes-paneli-amortisman",
       href: "/gunes-paneli-amortisman-hesaplama",
       title: "Güneş Paneli Amortisman Hesaplama",

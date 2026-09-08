@@ -154,6 +154,13 @@ export default function OtomotivAraclariPage() {
               LPG&apos;nin kaç yılda kendini çıkardığını hesapla.
             </li>
             <li>
+              <Link href="/ehliyet-sinifi-bulma">
+                Hangi Ehliyet Sınıfı Gerekli?
+              </Link>{" "}
+              — aracının koltuk sayısı, ağırlığı ve römork bilgisiyle
+              gereken ehliyet sınıfını hesapla.
+            </li>
+            <li>
               <Link href="/lastik-ebati-hesaplama">Lastik Ebatı Hesaplama</Link>
               {" "}— lastik kodundan dış çapı, çevreyi ve hız göstergesi
               sapmasını hesapla.

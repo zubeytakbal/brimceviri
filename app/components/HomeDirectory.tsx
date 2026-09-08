@@ -28,6 +28,7 @@ import {
   Wind,
 } from "@phosphor-icons/react";
 import { useDeferredValue, useId, useState } from "react";
+import NotificationBell from "./NotificationBell";
 import ProfessionPreferenceWidget from "./ProfessionPreferenceWidget";
 import RecentToolsWidget from "./RecentToolsWidget";
 import { useRouter } from "next/navigation";
@@ -40,6 +41,7 @@ import { englishCalculatorPages } from "../converter/localizedCalculatorPages";
 import { englishCategoryPages } from "../converter/localizedCategoryPages";
 import { englishConversionPages } from "../converter/localizedConversionPages";
 import { homeCategoryOrder } from "../converter/homeCategoryOrder";
+import type { SiteNotification } from "../converter/siteNotifications";
 import { unitPages } from "../converter/unitPages";
 
 type Locale = "tr" | "en";
@@ -905,8 +907,10 @@ const homeData = {
 
 export default function HomeDirectory({
   locale,
+  notifications = [],
 }: {
   locale: Locale;
+  notifications?: SiteNotification[];
 }) {
   const router = useRouter();
   const inputId = useId();
@@ -1021,6 +1025,7 @@ export default function HomeDirectory({
         </div>
       </section>
 
+      {locale === "tr" && <NotificationBell notifications={notifications} />}
       {locale === "tr" && <ProfessionPreferenceWidget />}
       <RecentToolsWidget locale={locale} />
 

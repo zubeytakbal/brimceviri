@@ -23,6 +23,15 @@ export const licenseSourceMonitorTargets: SourceMonitorTarget[] = [
     label: "[TEST] Resmi Gazete (resmigazete.gov.tr)",
     url: "https://www.resmigazete.gov.tr/",
   },
+  // Ikinci tani hedefi: tccb.gov.tr paylasimli kumesinden tamamen farkli,
+  // ayri barindirilan bir .gov.tr sitesi -- eger bu da tikanirsa sorun tum
+  // gov.tr'ye yonelik genel bir bulut-IP engeli demektir, tikanmazsa sorun
+  // sadece o paylasimli kumeye ozeldir.
+  {
+    id: "TEST-tbmm",
+    label: "[TEST] TBMM (tbmm.gov.tr)",
+    url: "https://www.tbmm.gov.tr/",
+  },
 ];
 
 export type SourceMonitorStatus =

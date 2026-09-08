@@ -15,6 +15,14 @@ export const licenseSourceMonitorTargets: SourceMonitorTarget[] = [
     label: "Karayolları Trafik Yönetmeliği (mevzuat.gov.tr)",
     url: "https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=8182&MevzuatTur=7&MevzuatTertip=5",
   },
+  // GECICI TANI HEDEFI: mevzuat.gov.tr Vercel'den asili kaliyor mu yoksa
+  // ayni paylasilan tccb.gov.tr altyapisindaki TUM siteler mi bloklu,
+  // bunu ayirt etmek icin eklendi. Sonuc alinca kaldirilacak.
+  {
+    id: "TEST-resmigazete",
+    label: "[TEST] Resmi Gazete (resmigazete.gov.tr)",
+    url: "https://www.resmigazete.gov.tr/",
+  },
 ];
 
 export type SourceMonitorStatus =

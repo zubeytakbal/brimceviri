@@ -165,7 +165,7 @@ export const materialsDatabase: MaterialDensityEntry[] = [
 
   // ---- Metaller ----
   { id: "magnezyum", nameTr: "Magnezyum", category: "metal", densityKgM3: 1740 },
-  { id: "alüminyum", nameTr: "Alüminyum", category: "metal", densityKgM3: 2700 },
+  { id: "aluminyum", nameTr: "Alüminyum", category: "metal", densityKgM3: 2700 },
   { id: "titanyum", nameTr: "Titanyum", category: "metal", densityKgM3: 4500 },
   { id: "vanadyum", nameTr: "Vanadyum", category: "metal", densityKgM3: 6110 },
   { id: "antimon", nameTr: "Antimon", category: "metal", densityKgM3: 6690 },

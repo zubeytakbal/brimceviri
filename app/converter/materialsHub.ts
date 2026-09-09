@@ -22,7 +22,7 @@ export interface MaterialProfile extends MaterialDensityEntry {
 // canonical id (materialsDatabase.ts) -> kaynak dosyadaki id
 const conductivityIdMap: Record<string, string> = {
   bakir: "copper",
-  "alüminyum": "aluminum",
+  aluminyum: "aluminum",
   celik: "steel",
   cam: "glass",
   beton: "concrete",
@@ -89,7 +89,7 @@ const elasticModulusIdMap: Record<string, string> = {
   titanyum: "titanium",
   bakir: "copper",
   "pirinc-alasim": "brass",
-  "alüminyum": "aluminum",
+  aluminyum: "aluminum",
   cam: "glass",
   beton: "concrete",
   cinko: "zinc",
@@ -114,7 +114,7 @@ const elasticModulusIdMap: Record<string, string> = {
 };
 
 const thermalExpansionIdMap: Record<string, string> = {
-  "alüminyum": "aluminum",
+  aluminyum: "aluminum",
   "pirinc-alasim": "brass",
   kursun: "lead",
   "paslanmaz-celik": "stainless-steel",

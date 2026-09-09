@@ -853,6 +853,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
       },
     },
     {
+      url: `${baseUrl}/bn/bmi-calculator`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+      alternates: {
+        languages: {
+          tr: `${baseUrl}/bmi-hesaplama`,
+          en: `${baseUrl}/en/bmi-calculator`,
+          bn: `${baseUrl}/bn/bmi-calculator`,
+          "x-default": `${baseUrl}/bmi-hesaplama`,
+        },
+      },
+    },
+    {
       url: `${baseUrl}/bn/traditional-weight`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",

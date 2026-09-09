@@ -87,6 +87,13 @@ export default function BengaliHomePage() {
             </Link>
           </section>
 
+          <section className="conversion-section">
+            <h2>দৈনন্দিন ক্যালকুলেটর</h2>
+            <Link className="text-link" href="/bn/bmi-calculator">
+              বিএমআই ক্যালকুলেটর
+            </Link>
+          </section>
+
           <section className="conversion-section language-alternatives">
             <h2>অন্যান্য ভাষা</h2>
             <Link className="text-link" href="/" hrefLang="tr">

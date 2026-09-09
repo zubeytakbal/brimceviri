@@ -23,6 +23,14 @@ export const metadata: Metadata = {
 
 const categories = [
   {
+    id: "fizik",
+    href: "/bilim-hesaplayicilari/fizik",
+    title: "Fizik",
+    description:
+      "Eğik atış, hareket, kuvvet ve daha fazlası.",
+    iconName: "physicsCalculator" as const,
+  },
+  {
     id: "kimya",
     href: "/bilim-hesaplayicilari/kimya",
     title: "Kimya",
@@ -76,7 +84,7 @@ export default function BilimHesaplayicilariHubPage() {
         <header className="all-conversions-header">
           <h1>Bilim Hesaplayıcıları</h1>
           <p>
-            Öğrenciler için kimya, matematik ve geometri
+            Öğrenciler için fizik, kimya, matematik ve geometri
             hesaplayıcıları — 35&apos;ten fazla araç tek yerde. Liste
             zamanla büyüyecek.
           </p>
@@ -93,7 +101,7 @@ export default function BilimHesaplayicilariHubPage() {
               <strong>1 mili-</strong> (m) = 10⁻³, <strong>1 mikro-</strong>{" "}
               (µ) = 10⁻⁶
             </li>
-            <li>35+ kimya, matematik ve geometri hesaplayıcısı</li>
+            <li>35+ fizik, kimya, matematik ve geometri hesaplayıcısı</li>
           </ul>
         </div>
 

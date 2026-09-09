@@ -173,6 +173,7 @@ const iconMap = {
   chemistryCalculator: FlaskConical,
   mathCalculator: Sigma,
   geometryCalculator: Shapes,
+  physicsCalculator: Rocket,
   concreteCalculator: Construction,
   attendanceCalculator: CalendarX2,
   plasterCalculator: Paintbrush2,

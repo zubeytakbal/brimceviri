@@ -567,6 +567,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
+      url: `${baseUrl}/bilim-hesaplayicilari/fizik`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.65,
+    },
+    {
+      url: `${baseUrl}/bilim-hesaplayicilari/fizik/egik-atis-hesaplama`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/bilim-hesaplayicilari/matematik/ebob-ekok-hesaplama`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",

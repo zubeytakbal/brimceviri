@@ -1057,6 +1057,15 @@ export default function DigerDonusumlerPage() {
       iconName: "numberBaseCalculator" as const,
       group: "Diğer Hesaplama Merkezleri",
     },
+    {
+      id: "gokcisimleri-ozellikleri",
+      href: "/gokcisimleri-ozellikleri",
+      title: "Gökcisimleri Özellikleri",
+      description:
+        "Gezegenlerin kütlesi, yerçekimi, çapı ve diğer özellikleri; kendi ağırlığının her gezegende kaç kilo geleceğini hesapla.",
+      iconName: "celestialBodiesHubCalculator" as const,
+      group: "Diğer Hesaplama Merkezleri",
+    },
   ];
 
   return (

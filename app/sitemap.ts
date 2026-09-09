@@ -47,6 +47,7 @@ import {
   slugifyElementName,
 } from "./converter/periodicTableData";
 import { materialsDatabase } from "./converter/materialsDatabase";
+import { celestialBodiesDatabase } from "./converter/celestialBodiesDatabase";
 import { compoundsDatabase } from "./converter/compoundsDatabase";
 import { licenseClasses } from "./converter/licenseClassFinder";
 import {
@@ -796,6 +797,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     ...materialsDatabase.map((material) => ({
       url: `${baseUrl}/malzeme-ozellikleri/${material.id}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    })),
+    {
+      url: `${baseUrl}/gokcisimleri-ozellikleri`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    ...celestialBodiesDatabase.map((body) => ({
+      url: `${baseUrl}/gokcisimleri-ozellikleri/${body.id}`,
       lastModified: contentLastModified,
       changeFrequency: "monthly" as const,
       priority: 0.6,

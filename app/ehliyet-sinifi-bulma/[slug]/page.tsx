@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import SourceMonitorStatusList from "../../components/SourceMonitorStatusList";
+import TrustBar from "../../components/TrustBar";
 import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
 import { licenseClasses, type LicenseClassId } from "../../converter/licenseClassFinder";
 import { getSourceMonitorStatuses } from "../../converter/licenseSourceMonitor";
@@ -108,6 +109,17 @@ export default async function LicenseClassDetailPage({ params }: PageProps) {
           <h1>{licenseClass.label} Sınıfı Ehliyet Hangi Araçları Kullanır?</h1>
           <p>{licenseClass.description}</p>
         </header>
+
+        <TrustBar
+          pageId={`ehliyet-sinifi-bulma-${slug}`}
+          sources={[
+            {
+              label: "Karayolları Trafik Yönetmeliği (mevzuat.gov.tr)",
+              href: "https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=8182&MevzuatTur=7&MevzuatTertip=5",
+            },
+          ]}
+          lastVerified="Eylül 2026"
+        />
 
         <section className="category-article-content">
           <h2>{licenseClass.label} Sınıfı Temel Bilgileri</h2>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import LicenseRenewalCalculator from "../components/LicenseRenewalCalculator";
 import SourceMonitorStatusList from "../components/SourceMonitorStatusList";
+import TrustBar from "../components/TrustBar";
 import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
 import { getSourceMonitorStatuses } from "../converter/licenseSourceMonitor";
 import { buildSiteUrl } from "../siteConfig";
@@ -88,6 +89,17 @@ export default async function LicenseRenewalPage() {
             gerektiğini hesapla.
           </p>
         </header>
+
+        <TrustBar
+          pageId="ehliyet-yenileme-suresi-hesaplama"
+          sources={[
+            {
+              label: "Karayolları Trafik Yönetmeliği (mevzuat.gov.tr)",
+              href: "https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=8182&MevzuatTur=7&MevzuatTertip=5",
+            },
+          ]}
+          lastVerified="Eylül 2026"
+        />
 
         <LicenseRenewalCalculator />
 

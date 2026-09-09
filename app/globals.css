@@ -3100,6 +3100,123 @@ main.category-page {
   text-decoration: underline;
 }
 
+.trust-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 16px 0 24px;
+  padding: 14px 18px;
+  border: 1px solid #d6e1e7;
+  border-radius: 14px;
+  background: #f8fbfd;
+}
+
+.trust-bar-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.trust-bar-item {
+  color: #4f5b6b;
+  font-size: 0.88rem;
+}
+
+.trust-bar-item strong {
+  color: #172033;
+}
+
+.trust-bar-sources {
+  position: relative;
+}
+
+.trust-bar-sources-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: 0;
+  background: transparent;
+  color: #172033;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+}
+
+.trust-bar-sources-toggle svg {
+  transition: transform 150ms ease;
+}
+
+.trust-bar-sources-toggle svg.is-open {
+  transform: rotate(180deg);
+}
+
+.trust-bar-sources-list {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 20;
+  min-width: 220px;
+  margin: 0;
+  padding: 8px;
+  list-style: none;
+  border: 1px solid #d6e1e7;
+  border-radius: 10px;
+  background: #ffffff;
+  box-shadow: 0 10px 26px rgba(23, 32, 51, 0.12);
+}
+
+.trust-bar-sources-list li a {
+  display: block;
+  padding: 6px 8px;
+  border-radius: 6px;
+  color: #168f8c;
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+
+.trust-bar-sources-list li a:hover {
+  background: #f1f9f8;
+  text-decoration: underline;
+}
+
+.trust-bar-votes {
+  display: flex;
+  gap: 8px;
+}
+
+.trust-bar-vote-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 1px solid #d6e1e7;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #4f5b6b;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 150ms ease, color 150ms ease;
+}
+
+.trust-bar-vote-button:hover:not(:disabled) {
+  border-color: #168f8c;
+  color: #168f8c;
+}
+
+.trust-bar-vote-button.is-active {
+  border-color: #168f8c;
+  background: #f1f9f8;
+  color: #168f8c;
+}
+
+.trust-bar-vote-button:disabled {
+  cursor: default;
+}
+
 .sleep-calculator-list {
   display: grid;
   gap: 10px;

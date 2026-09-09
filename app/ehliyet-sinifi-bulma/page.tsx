@@ -3,6 +3,7 @@ import Link from "next/link";
 import LicenseClassFinderCalculator from "../components/LicenseClassFinderCalculator";
 import LicenseCostCalculator from "../components/LicenseCostCalculator";
 import SourceMonitorStatusList from "../components/SourceMonitorStatusList";
+import TrustBar from "../components/TrustBar";
 import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
 import { getSourceMonitorStatuses } from "../converter/licenseSourceMonitor";
 import { buildSiteUrl } from "../siteConfig";
@@ -90,6 +91,17 @@ export default async function LicenseClassFinderPage() {
             sınıfına ihtiyacın olduğunu hesapla.
           </p>
         </header>
+
+        <TrustBar
+          pageId="ehliyet-sinifi-bulma"
+          sources={[
+            {
+              label: "Karayolları Trafik Yönetmeliği (mevzuat.gov.tr)",
+              href: "https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=8182&MevzuatTur=7&MevzuatTertip=5",
+            },
+          ]}
+          lastVerified="Eylül 2026"
+        />
 
         <LicenseClassFinderCalculator />
 

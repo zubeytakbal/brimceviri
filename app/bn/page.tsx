@@ -80,6 +80,13 @@ export default function BengaliHomePage() {
             </Link>
           </section>
 
+          <section className="conversion-section">
+            <h2>ঐতিহ্যবাহী ওজন একক</h2>
+            <Link className="text-link" href="/bn/traditional-weight">
+              মণ, সের, ছটাক ও তোলা রূপান্তরকারী
+            </Link>
+          </section>
+
           <section className="conversion-section language-alternatives">
             <h2>অন্যান্য ভাষা</h2>
             <Link className="text-link" href="/" hrefLang="tr">

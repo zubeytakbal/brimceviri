@@ -49,6 +49,7 @@ import {
 import { materialsDatabase } from "./converter/materialsDatabase";
 import { celestialBodiesDatabase } from "./converter/celestialBodiesDatabase";
 import { compoundsDatabase } from "./converter/compoundsDatabase";
+import { bengaliWeightPairs } from "./converter/bengaliWeightPairs";
 import { licenseClasses } from "./converter/licenseClassFinder";
 import {
   englishUnitPages,
@@ -851,6 +852,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
       },
     },
+    {
+      url: `${baseUrl}/bn/traditional-weight`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
+    ...bengaliWeightPairs.map((pair) => ({
+      url: `${baseUrl}/bn/traditional-weight/${pair.slug}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.65,
+    })),
     {
       url: `${baseUrl}/yakit-tuketimi-hesaplama`,
       lastModified: contentLastModified,

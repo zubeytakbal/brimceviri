@@ -867,6 +867,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
       },
     },
     {
+      url: `${baseUrl}/bn/paint-calculator`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+      alternates: {
+        languages: {
+          tr: `${baseUrl}/boya-hesaplama`,
+          en: `${baseUrl}/en/paint-calculator`,
+          bn: `${baseUrl}/bn/paint-calculator`,
+          "x-default": `${baseUrl}/boya-hesaplama`,
+        },
+      },
+    },
+    {
       url: `${baseUrl}/bn/traditional-weight`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",

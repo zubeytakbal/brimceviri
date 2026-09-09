@@ -92,6 +92,9 @@ export default function BengaliHomePage() {
             <Link className="text-link" href="/bn/bmi-calculator">
               বিএমআই ক্যালকুলেটর
             </Link>
+            <Link className="text-link" href="/bn/paint-calculator">
+              রং ক্যালকুলেটর
+            </Link>
           </section>
 
           <section className="conversion-section language-alternatives">

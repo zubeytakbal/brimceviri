@@ -14,7 +14,11 @@ const faqItems: FaqItem[] = [
 
 const categoryLabels: Record<string, string> = {
   gezegen: "Gezegenler",
+  "cuce-gezegen": "Cüce Gezegenler",
+  uydu: "Uydular",
 };
+
+const categoryOrder = ["gezegen", "cuce-gezegen", "uydu"] as const;
 
 function serializeJsonLd(data: object) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
@@ -37,7 +41,9 @@ export const metadata: Metadata = {
 
 export default function CelestialBodiesHubPage() {
   const bodies = getAllCelestialBodies();
-  const categories = [...new Set(bodies.map((body) => body.category))];
+  const categories = categoryOrder.filter((category) =>
+    bodies.some((body) => body.category === category),
+  );
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -68,9 +74,10 @@ export default function CelestialBodiesHubPage() {
         <header className="all-conversions-header">
           <h1>Gökcisimleri Özellikleri</h1>
           <p>
-            Güneş sistemindeki {bodies.length} gezegenin kütlesini,
-            çapını, yoğunluğunu, yerçekimini ve diğer özelliklerini
-            gör; her gökcisminin kendi sayfasında kendi ağırlığını
+            Güneş sistemindeki {bodies.length} gökcisminin (gezegen,
+            cüce gezegen ve büyük uydular) kütlesini, çapını,
+            yoğunluğunu, yerçekimini ve diğer özelliklerini gör; her
+            gökcisminin kendi sayfasında kendi ağırlığını
             hesaplayabileceğin canlı bir araç da bulunur.
           </p>
         </header>
@@ -79,7 +86,11 @@ export default function CelestialBodiesHubPage() {
           {categories.map((category) => {
             const categoryBodies = bodies
               .filter((body) => body.category === category)
-              .sort((a, b) => a.distanceFromSunMillionKm - b.distanceFromSunMillionKm);
+              .sort(
+                (a, b) =>
+                  (a.distanceFromSunMillionKm ?? a.distanceFromParentKm ?? 0) -
+                  (b.distanceFromSunMillionKm ?? b.distanceFromParentKm ?? 0),
+              );
 
             return (
               <div key={category}>

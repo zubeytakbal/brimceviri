@@ -62,6 +62,7 @@ export default async function CelestialBodyDetailPage({ params }: PageProps) {
 
   const pageUrl = buildSiteUrl(`/gokcisimleri-ozellikleri/${slug}`);
   const similarBodies = findSimilarGravityBodies(slug, 3);
+  const parentBody = body.orbitsAroundId ? findCelestialBodyById(body.orbitsAroundId) : undefined;
 
   const faqItems: FaqItem[] = [
     {
@@ -107,8 +108,14 @@ export default async function CelestialBodyDetailPage({ params }: PageProps) {
           <h1>{body.nameTr} Özellikleri</h1>
           <p>
             {body.nameTr}&apos;in kütlesi, çapı, yoğunluğu ve
-            yerçekimi; kendi ağırlığının {body.nameTr}&apos;de kaç
-            kilo geleceğini hesapla.
+            yerçekimi
+            {parentBody && (
+              <>
+                {" "}({parentBody.nameTr}&apos;in uydusu)
+              </>
+            )}
+            ; kendi ağırlığının {body.nameTr}&apos;de kaç kilo
+            geleceğini hesapla.
           </p>
         </header>
 
@@ -135,10 +142,18 @@ export default async function CelestialBodyDetailPage({ params }: PageProps) {
               <dt>Kaçış Hızı</dt>
               <dd>{formatNumber(body.escapeVelocityKms, 1)} km/s</dd>
             </div>
-            <div>
-              <dt>Güneşe Ortalama Uzaklık</dt>
-              <dd>{formatNumber(body.distanceFromSunMillionKm, 1)} milyon km</dd>
-            </div>
+            {body.distanceFromSunMillionKm !== undefined && (
+              <div>
+                <dt>Güneşe Ortalama Uzaklık</dt>
+                <dd>{formatNumber(body.distanceFromSunMillionKm, 1)} milyon km</dd>
+              </div>
+            )}
+            {body.orbitsAroundId && body.distanceFromParentKm !== undefined && (
+              <div>
+                <dt>{parentBody?.nameTr ?? "Merkez Gökcismi"}&apos;e Ortalama Uzaklık</dt>
+                <dd>{formatNumber(body.distanceFromParentKm, 0)} km</dd>
+              </div>
+            )}
             <div>
               <dt>Yörünge Periyodu (1 Yıl)</dt>
               <dd>{formatNumber(body.orbitalPeriodDays, 0)} Dünya günü</dd>
@@ -197,17 +212,27 @@ export default async function CelestialBodyDetailPage({ params }: PageProps) {
 
           <h2>İlgili araçlar</h2>
           <p>
-            Diğer gökcisimleri için{" "}
+            {parentBody && (
+              <>
+                {body.nameTr}&apos;in etrafında döndüğü{" "}
+                <Link href={`/gokcisimleri-ozellikleri/${parentBody.id}`}>
+                  {parentBody.nameTr}
+                </Link>
+                {" "}sayfasına, diğer gökcisimleri için{" "}
+              </>
+            )}
+            {!parentBody && "Diğer gökcisimleri için "}
             <Link href="/gokcisimleri-ozellikleri">Gökcisimleri Özellikleri</Link>
             {" "}sayfasına bakabilirsin.
           </p>
 
           <h2>Kaynaklar</h2>
           <p>
-            Bu sayfadaki fiziksel değerler NASA&apos;nın resmi
-            Planetary Fact Sheet verisine dayanır. Uydu sayısı gibi
-            sık değişen değerler ayrıca güncel kaynaklarla
-            doğrulanmıştır.
+            {body.category === "gezegen"
+              ? "Bu sayfadaki fiziksel değerler NASA'nın resmi Planetary Fact Sheet verisine dayanır."
+              : "Bu sayfadaki fiziksel değerler, ilgili gökcisminin bilimsel kaynaklarda (NASA/gözlemsel çalışmalar) yayımlanan, çapraz doğrulanmış değerlerine dayanır."}
+            {" "}Uydu sayısı gibi sık değişen değerler ayrıca güncel
+            kaynaklarla doğrulanmıştır.
           </p>
         </section>
       </div>

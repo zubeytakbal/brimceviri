@@ -4,7 +4,7 @@
 // 2026 basinda +11, Jupiter +4 uydu kazandi). Bu alan icin ayrica bir
 // "son dogrulama" notu gosterilir, diger fiziksel sabitler (kutle,
 // yogunluk, yercekimi) kalicidir ve degismez.
-export type CelestialBodyCategory = "gezegen";
+export type CelestialBodyCategory = "gezegen" | "uydu" | "cuce-gezegen";
 
 export type CelestialBodyEntry = {
   id: string;
@@ -15,7 +15,12 @@ export type CelestialBodyEntry = {
   densityKgM3: number; // kg/m3
   gravityMs2: number; // yuzey yercekimi ivmesi, m/s2
   escapeVelocityKms: number; // km/s
-  distanceFromSunMillionKm: number; // ortalama, 10^6 km
+  // Gunes'in etrafinda dolananlar (gezegen/cuce gezegen) icin Gunes'e
+  // uzaklik; uydular icin bu alan yerine orbitsAroundId + distanceFromParentKm
+  // kullanilir (birim farkli: milyon km yerine km).
+  distanceFromSunMillionKm?: number;
+  orbitsAroundId?: string; // sadece uydular icin: hangi gokcismini dolaniyor
+  distanceFromParentKm?: number; // sadece uydular icin: gezegenine/cuce gezegenine uzakligi
   orbitalPeriodDays: number; // "yil" uzunlugu
   rotationPeriodHours: number; // "gun" uzunlugu (negatif = ters yonde donus)
   meanTemperatureC: number;
@@ -142,5 +147,165 @@ export const celestialBodiesDatabase: CelestialBodyEntry[] = [
     rotationPeriodHours: 16.1,
     meanTemperatureC: -200,
     moonCount: 18,
+  },
+  // Uydular -- kaynak: Wikipedia (her uydunun kendi sayfasindaki
+  // infobox verileri, capraz kontrol edilmis fiziksel sabitler).
+  {
+    id: "ay",
+    nameTr: "Ay",
+    category: "uydu",
+    massKg: 7.346e22,
+    diameterKm: 3474,
+    densityKgM3: 3344,
+    gravityMs2: 1.622,
+    escapeVelocityKms: 2.38,
+    orbitsAroundId: "dunya",
+    distanceFromParentKm: 384399,
+    orbitalPeriodDays: 27.32,
+    rotationPeriodHours: 655.7,
+    meanTemperatureC: -23,
+    moonCount: 0,
+  },
+  {
+    id: "io",
+    nameTr: "İo",
+    category: "uydu",
+    massKg: 8.93e22,
+    diameterKm: 3643,
+    densityKgM3: 3528,
+    gravityMs2: 1.797,
+    escapeVelocityKms: 2.558,
+    orbitsAroundId: "jupiter",
+    distanceFromParentKm: 421800,
+    orbitalPeriodDays: 1.769,
+    rotationPeriodHours: 42.5,
+    meanTemperatureC: -143,
+    moonCount: 0,
+  },
+  {
+    id: "europa",
+    nameTr: "Europa",
+    category: "uydu",
+    massKg: 4.8e22,
+    diameterKm: 3122,
+    densityKgM3: 3014,
+    gravityMs2: 1.315,
+    escapeVelocityKms: 2.026,
+    orbitsAroundId: "jupiter",
+    distanceFromParentKm: 671100,
+    orbitalPeriodDays: 3.551,
+    rotationPeriodHours: 85.2,
+    meanTemperatureC: -160,
+    moonCount: 0,
+  },
+  {
+    id: "ganymede",
+    nameTr: "Ganymede",
+    category: "uydu",
+    massKg: 1.48e23,
+    diameterKm: 5268,
+    densityKgM3: 1936,
+    gravityMs2: 1.424,
+    escapeVelocityKms: 2.739,
+    orbitsAroundId: "jupiter",
+    distanceFromParentKm: 1070400,
+    orbitalPeriodDays: 7.155,
+    rotationPeriodHours: 171.7,
+    meanTemperatureC: -163,
+    moonCount: 0,
+  },
+  {
+    id: "callisto",
+    nameTr: "Callisto",
+    category: "uydu",
+    massKg: 1.08e23,
+    diameterKm: 4821,
+    densityKgM3: 1834,
+    gravityMs2: 1.241,
+    escapeVelocityKms: 2.446,
+    orbitsAroundId: "jupiter",
+    distanceFromParentKm: 1882700,
+    orbitalPeriodDays: 16.689,
+    rotationPeriodHours: 400.5,
+    meanTemperatureC: -163,
+    moonCount: 0,
+  },
+  {
+    id: "titan",
+    nameTr: "Titan",
+    category: "uydu",
+    massKg: 1.34518e23,
+    diameterKm: 5149.46,
+    densityKgM3: 1879.8,
+    gravityMs2: 1.352,
+    escapeVelocityKms: 2.641,
+    orbitsAroundId: "saturn",
+    distanceFromParentKm: 1221870,
+    orbitalPeriodDays: 15.945,
+    rotationPeriodHours: 382.7,
+    meanTemperatureC: -179.5,
+    moonCount: 0,
+  },
+  {
+    id: "triton",
+    nameTr: "Triton",
+    category: "uydu",
+    massKg: 2.1389e22,
+    diameterKm: 2710,
+    densityKgM3: 2061,
+    gravityMs2: 0.779,
+    escapeVelocityKms: 1.455,
+    orbitsAroundId: "neptun",
+    distanceFromParentKm: 354759,
+    orbitalPeriodDays: 5.877,
+    rotationPeriodHours: 141.0,
+    meanTemperatureC: -235.2,
+    moonCount: 0,
+  },
+  // Cuce gezegenler -- kaynak: Wikipedia (infobox verileri).
+  {
+    id: "pluton",
+    nameTr: "Plüton",
+    category: "cuce-gezegen",
+    massKg: 1.3025e22,
+    diameterKm: 2376.6,
+    densityKgM3: 1853,
+    gravityMs2: 0.62,
+    escapeVelocityKms: 1.212,
+    distanceFromSunMillionKm: 5906.4,
+    orbitalPeriodDays: 90520,
+    rotationPeriodHours: 153.3,
+    meanTemperatureC: -229,
+    moonCount: 5,
+  },
+  {
+    id: "ceres",
+    nameTr: "Ceres",
+    category: "cuce-gezegen",
+    massKg: 9.384e20,
+    diameterKm: 939.4,
+    densityKgM3: 2162,
+    gravityMs2: 0.284,
+    escapeVelocityKms: 0.516,
+    distanceFromSunMillionKm: 414.4,
+    orbitalPeriodDays: 1680,
+    rotationPeriodHours: 9.07,
+    meanTemperatureC: -100.5,
+    moonCount: 0,
+  },
+  {
+    id: "eris",
+    nameTr: "Eris",
+    category: "cuce-gezegen",
+    massKg: 1.638e22,
+    diameterKm: 2326,
+    densityKgM3: 2430,
+    gravityMs2: 0.82,
+    escapeVelocityKms: 1.38,
+    distanceFromSunMillionKm: 10126.4,
+    orbitalPeriodDays: 204706,
+    rotationPeriodHours: 379,
+    meanTemperatureC: -231,
+    moonCount: 1,
   },
 ];

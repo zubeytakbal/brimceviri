@@ -1075,6 +1075,15 @@ export default function DigerDonusumlerPage() {
       iconName: "mountainsHubCalculator" as const,
       group: "Diğer Hesaplama Merkezleri",
     },
+    {
+      id: "il-rakimlari",
+      href: "/il-rakimlari",
+      title: "İllerin Rakımı",
+      description:
+        "Türkiye'nin 81 ilinin rakımını, o rakımdaki hava basıncını ve suyun kaç derecede kaynadığını gör.",
+      iconName: "mountainsHubCalculator" as const,
+      group: "Diğer Hesaplama Merkezleri",
+    },
   ];
 
   return (

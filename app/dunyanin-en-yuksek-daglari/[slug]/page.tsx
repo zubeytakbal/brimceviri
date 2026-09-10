@@ -234,6 +234,9 @@ export default async function MountainDetailPage({ params }: PageProps) {
           <p>
             Diğer zirveler için{" "}
             <Link href="/dunyanin-en-yuksek-daglari">Dünyanın En Yüksek Dağları</Link>
+            {" "}sayfasına, Türkiye&apos;nin illerinin rakımıyla karşılaştırmak
+            için{" "}
+            <Link href="/il-rakimlari">İllerin Rakımı</Link>
             {" "}sayfasına bakabilirsin.
           </p>
 

@@ -49,6 +49,7 @@ import {
 import { materialsDatabase } from "./converter/materialsDatabase";
 import { celestialBodiesDatabase } from "./converter/celestialBodiesDatabase";
 import { mountainsDatabase } from "./converter/mountainsDatabase";
+import { turkishProvinceElevations } from "./converter/turkishProvinceElevations";
 import { compoundsDatabase } from "./converter/compoundsDatabase";
 import { bengaliWeightPairs } from "./converter/bengaliWeightPairs";
 import { licenseClasses } from "./converter/licenseClassFinder";
@@ -823,6 +824,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     ...mountainsDatabase.map((mountain) => ({
       url: `${baseUrl}/dunyanin-en-yuksek-daglari/${mountain.id}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    })),
+    {
+      url: `${baseUrl}/il-rakimlari`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    ...turkishProvinceElevations.map((province) => ({
+      url: `${baseUrl}/il-rakimlari/${province.id}`,
       lastModified: contentLastModified,
       changeFrequency: "monthly" as const,
       priority: 0.6,

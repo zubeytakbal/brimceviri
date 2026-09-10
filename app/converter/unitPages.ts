@@ -22,6 +22,62 @@ type UnitDescription = {
 };
 
 const unitDescriptions: Record<string, UnitDescription> = {
+  "astronomik-birim": {
+    shortDescription: "Astronomik Birim (AU), Güneş Sistemi içindeki mesafeleri ifade etmek için kullanılan bir uzunluk birimidir; yaklaşık olarak Dünya-Güneş arası ortalama mesafeye eşittir.",
+    historySummary: "Eski Yunan astronomu Aristarkos'un (MÖ 280 civarı) Ay-Dünya-Güneş açısını ölçerek yaptığı ilk (ve büyük ölçüde hatalı) tahminlerden bu yana Dünya-Güneş mesafesi astronominin en önemli sorularından biri oldu. 1672'de Jean Richer ve Giovanni Cassini, Mars'ın paralaksını Paris ve Fransız Guyanası'ndan eşzamanlı ölçerek daha iyi bir tahmin elde etti. Asıl büyük atılım, Venüs'ün Güneş önünden geçişini (transit) gözlemlemekle geldi — Edmond Halley'nin savunduğu bu yöntem 1761 ve 1769'daki transitlerde, döneminin en büyük uluslararası bilimsel iş birliklerinden biri olarak uygulandı. Yüzyıllarca gözlemsel bir ölçüm olarak kalan AU, 2012'de Uluslararası Astronomi Birliği tarafından tam olarak 149.597.870.700 metre olarak sabit bir değere bağlandı.",
+    measurementSystem: "Astronomi biriminde kullanılan özel uzunluk birimi",
+    siEquivalent: "1 AU = 149.597.870.700 m (tanım gereği kesin)",
+    commonUses: "Güneş Sistemi içi mesafeler, gezegen yörüngeleri, astronomi eğitimi",
+  },
+  "isik-yili": {
+    shortDescription: "Işık yılı, ışığın boşlukta tam bir yıl boyunca aldığı mesafeyi ifade eden bir uzunluk birimidir; yıldızlar ve galaksiler arası mesafeleri anlatmak için kullanılır.",
+    historySummary: "Işık yılı, popüler bilim yazınında ve genel kültürde yıldızlar arası devasa mesafeleri kavranabilir hale getirmek için kullanılan bir birimdir — profesyonel astronomlar genellikle bunun yerine parsek birimini tercih eder. Tanımı, ışığın boşluktaki hızının (saniyede 299.792.458 metre) bir Julian yılı (tam 365,25 gün) boyunca aldığı mesafeye dayanır ve bu da tam olarak 9.460.730.472.580.800 metreye karşılık gelir.",
+    measurementSystem: "Astronomide kullanılan özel uzunluk birimi",
+    siEquivalent: "1 ışık yılı = 9.460.730.472.580.800 m (tanım gereği kesin)",
+    commonUses: "Yıldızlar arası mesafeler, galaksi ölçekleri, popüler astronomi anlatımı",
+  },
+  "elektronvolt": {
+    shortDescription: "Elektronvolt (eV), bir elektronun 1 voltluk potansiyel farkından geçerken kazandığı kinetik enerjiyi ifade eden, atom altı ve parçacık fiziğinde kullanılan bir enerji birimidir.",
+    historySummary: "Elektronvolt, parçacık ve atom fizikçilerinin deneysel düzenekleriyle doğrudan uyumlu olduğu için tercih edilir — yüklü bir parçacık V voltluk bir gerilimden geçtiğinde E=qV enerjisi kazanır, bu da sonucu doğrudan elektronvolt cinsinden ifade etmeyi pratik kılar. Joule yerine elektronvolt kullanmak, parçacık hızlandırıcı fiziğinde sürekli birim dönüştürme ihtiyacını ortadan kaldırır ve sayısal değerleri yönetilebilir tutar (örneğin bir parçacığın enerjisini GeV cinsinden ifade etmek, joule cinsinden ifade etmekten çok daha pratiktir). 2019'daki SI revizyonuyla birlikte, temel elektrik yükünün kesin bir değere sabitlenmesi sayesinde elektronvolt de artık tam olarak tanımlı bir değere sahiptir.",
+    measurementSystem: "Atom ve parçacık fiziğinde kullanılan özel enerji birimi",
+    siEquivalent: "1 eV = 1,602176634 × 10⁻¹⁹ joule (tanım gereği kesin)",
+    commonUses: "Parçacık fiziği, atom fiziği, hızlandırıcı deneyleri, kimya ve malzeme biliminde bağ enerjileri",
+  },
+  "parsek": {
+    shortDescription: "Parsek, profesyonel astronomların yıldızlar arası mesafeleri ifade etmek için tercih ettiği bir uzunluk birimidir; yaklaşık 3,26 ışık yılına eşittir.",
+    historySummary: "Parsek ismi, İngiliz astronom Herbert Hall Turner tarafından 1913'te 'bir açısaniyelik paralaksa karşılık gelen mesafe' ifadesinin kısaltması olarak önerildi (rakip önerilerden Frank Watson Dyson'ın 'astron'u ve Carl Charlier'in 'siriometre'si kabul görmedi). Tanımı şöyle işler: 1 astronomik birimlik bir kenarı ve karşısındaki açısı tam 1 açısaniye olan bir dik üçgen düşünüldüğünde, üçgenin uzun kenarının uzunluğu 1 parsektir. Astronomlar bu birimi tercih eder çünkü Bessel'in paralaks yöntemiyle doğal olarak uyumludur — bir yıldızın parsek cinsinden uzaklığı, sadece paralaks açısının (açısaniye cinsinden) tersini almakla bulunur, karmaşık trigonometrik hesaba gerek kalmaz.",
+    measurementSystem: "Astronomide kullanılan özel uzunluk birimi",
+    siEquivalent: "1 parsek ≈ 3,0857 × 10¹⁶ m ≈ 3,26 ışık yılı ≈ 206.265 AU",
+    commonUses: "Profesyonel astronomi, yıldızlar arası ve galaksi içi mesafeler",
+  },
+  "angstrom": {
+    shortDescription: "Angström (Å), atomlar ve moleküller ölçeğindeki mesafeleri ifade etmek için kullanılan çok küçük bir uzunluk birimidir.",
+    historySummary: "Birim, İsveçli fizikçi Anders Jonas Ångström'ün (1814-1874) onuruna adlandırıldı; Ångström 1868'de güneş ışığının spektrumunu haritalandırırken dalga boylarını 'milimetrenin on milyonda biri' cinsinden ifade etti. 1892-95'te Albert Michelson ve Jean-René Benoît, metre standardı ile kadmiyum spektral çizgileri arasındaki hassas ilişkiyi belirledi; 1907'de Uluslararası Güneş Araştırmaları İş Birliği bu kadmiyum dalga boylarına dayalı resmi tanımı yaptı. 1960'ta metrenin spektroskopik olarak yeniden tanımlanmasıyla angström, tam olarak 0,1 nanometreye eşitlendi. SI dışı bir birim olmasına rağmen fizik ve kimyada (atom çapları, kimyasal bağ uzunlukları, X-ışını dalga boyları) yaygın kullanımını sürdürüyor.",
+    measurementSystem: "SI dışı, fizik/kimyada kullanılan özel uzunluk birimi",
+    siEquivalent: "1 Å = 0,1 nanometre = 10⁻¹⁰ m (tanım gereği kesin)",
+    commonUses: "Atom ve molekül boyutları, kimyasal bağ uzunlukları, X-ışını dalga boyu, kristalografi",
+  },
+  "fathom": {
+    shortDescription: "Kulaç (fathom), özellikle denizcilikte su derinliğini ölçmek için kullanılan bir uzunluk birimidir. 1 kulaç 1,8288 metreye eşittir.",
+    historySummary: "Kulaç, insan bedenine dayalı en eski ölçü birimlerinden biridir — adı Eski İngilizce 'fæðm' (kucaklayan kollar, açılmış kollar) kelimesinden gelir ve bir insanın iki yana açılmış kollarının uç uca uzunluğunu ifade eder; Danca 'favn' ve Eski Yüksek Almanca 'fadum' ile de akrabadır, hatta Eski Yunanca'daki 'orguia' (açılmış kollar) kavramına denk gelir. Standardizasyondan önce kulaç, ticaret gemilerinde 5,5 fit, balıkçı teknelerinde 5 ila 7 fit arasında değişen belirsiz bir ölçüydü. İngiliz Deniz Kuvvetleri'nin kullandığı 'savaş gemisi kulacı' tam 6 fit (1,8288 metre) olarak standartlaştı ve bugünkü uluslararası tanım bu değere dayanır. Denizcilikte hâlâ iskandil ipleri (sounding line) üzerinde kulaç aralıklarıyla işaretlenerek su derinliği ölçümünde kullanılır.",
+    measurementSystem: "Denizcilikte kullanılan İngiliz/ABD ölçü birimi",
+    siEquivalent: "1 fathom = 6 fit = 1,8288 m",
+    commonUses: "Deniz derinliği ölçümü, denizcilik haritaları, iskandil",
+  },
+  "dalton": {
+    shortDescription: "Dalton (Da), atom ve moleküllerin kütlesini ifade etmek için kullanılan çok küçük bir kütle birimidir; karbon-12 atomunun kütlesinin on ikide birine eşittir.",
+    historySummary: "1803'te John Dalton, atom kütlelerini ölçmek için hidrojen atomunun kütlesini doğal referans olarak kullanmayı önerdi. 1898'de Wilhelm Ostwald ve meslektaşları, deneysel ölçümü daha kolay olduğu için referansı oksijen atomu kütlesinin on altıda birine çevirmeyi önerdi; bu 1903'te resmen kabul edildi. Fizikçi Alfred Nier'in 1957'deki önerisiyle referans karbon-12'ye kaydırıldı — bu değişiklik 1960'ta (IUPAP) ve 1961'de (IUPAC) resmileşti ve birim, eski oksijen bazlı tanımdan ayırt etmek için 'birleştirilmiş atomik kütle birimi' (sembol: u) adını aldı. 1993'te IUPAC daha kısa 'dalton' ismini önerdi, bu 2005'te IUPAP tarafından onaylandı ve 2006'da BIPM'nin resmi SI kaynağına dahil edildi.",
+    measurementSystem: "Kimya ve fizikte kullanılan özel kütle birimi",
+    siEquivalent: "1 Da ≈ 1,66053906892 × 10⁻²⁷ kg (karbon-12 atomu kütlesinin 1/12'si)",
+    commonUses: "Atom ve molekül kütlesi, protein/biyomolekül kütlesi, kimya ve biyokimya",
+  },
+  "torr": {
+    shortDescription: "Torr, özellikle vakum teknolojisi ve laboratuvar ortamlarında kullanılan bir basınç birimidir; milimetre cıva sütunu ile pratikte neredeyse aynıdır.",
+    historySummary: "Birim, barometre prensibini 1644'te (Michelangelo Ricci'ye yazdığı 11 Haziran 1644 tarihli mektupta belgelenmiş şekilde) ortaya koyan İtalyan fizikçi Evangelista Torricelli'nin onuruna adlandırıldı. Başlangıçta torr, '0°C'de 1 milimetre cıva sütunu' olarak tanımlanıyordu, ama yerçekiminin konuma göre değişmesi bu tanımı belirsiz kılıyordu; bu yüzden standart atmosfer basıncı '0°C'de 760 milimetre cıva' olarak sabitlendi. 1954'te 10. Ağırlıklar ve Ölçüler Genel Konferansı, atmosfer basıncını tam olarak 101.325 paskal olarak yeniden tanımladı ve torr da bu değerin 1/760'ı olarak, ölçüme bağlı olmayan kesin bir tanıma kavuştu. Torr ile milimetre cıva arasındaki fark milyonda birden bile azdır (yaklaşık %0,000015), pratikte birbirinin yerine kullanılabilirler.",
+    measurementSystem: "Vakum teknolojisi ve laboratuvarlarda kullanılan özel basınç birimi",
+    siEquivalent: "1 Torr = 1/760 atm ≈ 133,322 Pa",
+    commonUses: "Vakum pompaları, laboratuvar basınç ölçümleri, yarı iletken üretimi",
+  },
   "grain": {
     shortDescription: "Grain, tarihi bir kütle birimidir ve günümüzde en çok mermi/barut ağırlığı ile okçulukta ok ağırlığını ifade etmek için kullanılır. 1 grain, yaklaşık 64,8 miligrama eşittir.",
     historySummary: "Grain, adını bir arpa tanesinin ortalama ağırlığından alır ve Orta Çağ'dan beri İngiliz ölçü sisteminin en küçük kütle birimi olarak kullanılmıştır. Metrik sistemin yaygınlaşmasına rağmen, ateşli silah mühimmatı endüstrisinde uluslararası standart olarak varlığını sürdürmüştür.",
@@ -80,7 +136,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
   "mil": {
     shortDescription: "Mil, özellikle Amerika Birleşik Devletleri ve Birleşik Krallık'ta kullanılan bir uzunluk birimidir. Bir uluslararası mil 1609,344 metreye eşittir.",
-    historySummary: "Milin kökeni Roma dönemindeki bin adımlık mesafe anlayışına uzanır. Modern uluslararası mil 1959 yılında tam olarak 1609,344 metre olarak standartlaştırıldı.",
+    historySummary: "'Mil' kelimesi Latince 'mille passus' (bin adım) ifadesinden gelir — bir 'adım' sağ ayağın iki kez yere basması arasındaki mesafe olarak sayılırdı. Roma mili, MÖ 29'da Marcus Agrippa'nın standart bir Roma ayağı belirlemesiyle dolaylı olarak sabitlendi (1 adım = 5 Roma ayağı, 1 mil = 5.000 Roma ayağı ≈ 1.479 metre). Orta Çağ İngiltere'sinde 'eski İngiliz mili' bölgeden bölgeye değişen, yaklaşık 2,1 km'lik belirsiz bir ölçüydü. Kesin dönüm noktası 1593'te yaşandı: Kraliçe I. Elizabeth döneminde çıkarılan bir Parlamento Ağırlık ve Ölçüler Yasası, 8 furlong'luk geleneksel mil yapısını korurken ayak sayısını artırarak mili tam 5.280 ayak (1.760 yarda) olarak sabitledi — bu tanım, İngiliz İmparatorluğu aracılığıyla yayılıp bugünkü uluslararası milin temelini oluşturdu. Modern uluslararası mil 1959'da tam olarak 1.609,344 metre olarak kesinleştirildi.",
     measurementSystem: "İngiliz ve ABD ölçü sistemleri",
     siEquivalent: "1 mi = 1609,344 m",
     commonUses: "Karayolu mesafeleri, navigasyon ve saha ölçekleri",
@@ -199,7 +255,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
   "pound": {
     shortDescription: "Pound, İngiliz ve Amerikan ölçü sistemlerinde kullanılan bir kütle birimidir. Bir uluslararası pound tam olarak 0,45359237 kilograma eşittir.",
-    historySummary: "Pound ve lb sembolü Roma dönemindeki libra biriminden gelir. Modern avoirdupois pound 1959 yılında uluslararası olarak sabitlenmiştir.",
+    historySummary: "Pound, Roma dönemindeki 'libra' biriminden (yaklaşık 328,9 gram, 12 'uncia'ya bölünürdü) türedi — 'lb' kısaltması da doğrudan buradan gelir; 'pound' kelimesinin kendisi ise 'libra pondo' (libra ile ölçülen ağırlık) ifadesinden. Norman İstilası'ndan (1066) önce İngiltere'de, Kral Offa döneminde (757-796) gümüş üzerinden tanımlanan 'Saxon pound' kullanılıyordu ve 1 pound gümüşten 240 peni basılırdı. 1300 civarında ticarette yaygınlaşan 'avoirdupois pound' başlangıçta 6.992 troy grain iken, Kraliçe I. Elizabeth döneminde tam 7.000 troy grain'e (16 ons'a bölünmüş şekilde) sabitlendi. 1878 Ağırlık ve Ölçüler Yasası'yla platin bir silindir resmi standart prototip ilan edildi. Nihai uluslararası anlaşma 1 Temmuz 1959'da imzalandı: pound artık tam olarak 0,45359237 kilograma eşit kabul ediliyor; İngiltere bu tanımı 1963 Yasası'yla resmen benimsedi.",
     measurementSystem: "İngiliz ve ABD ölçü sistemleri",
     siEquivalent: "1 lb = 0,45359237 kg",
     commonUses: "Perakende, taşımacılık, beslenme ve endüstriyel kataloglar",
@@ -388,7 +444,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
   "kelvin": {
     shortDescription: "Kelvin, sıcaklığın SI temel birimidir ve mutlak sıcaklık ölçeğini temsil eder.",
-    historySummary: "Kelvin ölçeği termodinamik sıcaklığı sıfırdan başlatan bilimsel yaklaşımın sonucu olarak geliştirilmiştir.",
+    historySummary: "Kelvin ölçeğinin temelini 1848'de İskoç fizikçi William Thomson (sonradan Lord Kelvin unvanını aldı) attı; 'Mutlak Bir Termometrik Ölçek Üzerine' adlı makalesinde, ideal gazların ısıl genleşme katsayısını kullanarak mutlak sıfırın yaklaşık -273°C olduğunu hesapladı — bu, günümüzün -273,15°C değerine şaşırtıcı derecede yakındı. 1854'te James Prescott Joule ile birlikte çalışarak bu ölçeği hava termometreleriyle uyumlu, daha pratik bir hale getirdi. Birim 1954'te 10. Ağırlıklar ve Ölçüler Genel Konferansı'nda, suyun üçlü noktasının tam 273,16 K olarak tanımlanmasıyla resmileşti; 1967/68'de ise 13. Konferans birime 'kelvin' adını verdi. 2019'da tanım daha da temelden değiştirildi: kelvin artık suyun üçlü noktasına değil, Boltzmann sabitinin (1,380649×10⁻²³ J/K olarak sabitlenmiş) kendisine dayanıyor.",
     measurementSystem: "Uluslararası Birim Sistemi (SI)",
     siEquivalent: "Temel SI sıcaklık birimi",
     commonUses: "Termodinamik, bilimsel hesaplar ve mutlak sıcaklık gerektiren analizler",
@@ -409,7 +465,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
   "volt": {
     shortDescription: "Volt, elektrik geriliminin SI türetilmiş birimidir.",
-    historySummary: "Elektrik potansiyel farkını standartlaştıran volt birimi, modern elektrik ve elektronik sistemlerin temel gösterimlerinden biridir.",
+    historySummary: "Birim, İtalyan fizikçi Alessandro Volta'nın onuruna adlandırıldı — Volta, 1800'de meslektaşı Luigi Galvani ile 'hayvansal elektrik' konusundaki tartışmaları sonucunda 'voltaik pil'i icat etti; çinko ve gümüşün en etkili metal çifti olduğunu keşfederek dünyanın ilk sürekli elektrik akımı üreten cihazını (bataryanın atası) yarattı. 'Volt' ismi çok sonra, 1861'de Latimer Clark ve Charles Bright tarafından önerildi. 1873'te İngiliz Bilim İlerleme Derneği volt, ohm ve farad birimlerini resmen tanımladı; 1881'de ise Uluslararası Elektrik Kongresi volt'u elektromotor kuvvetin (gerilimin) resmi birimi olarak kabul etti. 2019'daki SI revizyonuyla, temel elektrik yükünün sabit bir değere bağlanmasıyla volt'un tanımı da güncellendi.",
     measurementSystem: "Uluslararası Birim Sistemi (SI)",
     siEquivalent: "Temel SI gerilim birimi",
     commonUses: "Elektronik devreler, güç kaynakları ve şebeke gerilimleri",
@@ -423,7 +479,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
   "amper": {
     shortDescription: "Amper, elektrik akımının SI temel büyüklüklerinden biri olan standart birimidir.",
-    historySummary: "Amper birimi, elektrik yükünün akış hızını ölçmek için geliştirilen uluslararası standardın parçasıdır.",
+    historySummary: "Birim, elektromanyetizma çalışmalarıyla elektrodinamiğin temellerini atan Fransız fizikçi ve matematikçi André-Marie Ampère'in (1775-1836) onuruna adlandırıldı; Ampère bu alanda Danimarkalı fizikçi Hans Christian Ørsted'in bulgularının üzerine inşa yaptı. Amper, 1881'de Uluslararası Elektrik Sergisi'nde imzalanan bir uluslararası sözleşmeyle elektrik akımının standart birimi ilan edildi; ilk tanımı, CGS sistemindeki elektromanyetik akım biriminin onda biriydi. 2019'daki SI revizyonuna kadar amper, birbirinden 1 metre uzaktaki iki paralel iletken arasında metre başına 2×10⁻⁷ newton'luk manyetik kuvvet oluşturan akım olarak tanımlanıyordu; 2019'dan itibaren ise doğrudan temel elektrik yükünün (1,602176634×10⁻¹⁹ coulomb olarak sabitlenmiş) katları üzerinden tanımlanıyor.",
     measurementSystem: "Uluslararası Birim Sistemi (SI)",
     siEquivalent: "Temel SI akım birimi",
     commonUses: "Akım ölçümleri, koruma elemanları ve cihaz etiketleri",
@@ -1586,7 +1642,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
 };
 
-const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","okka","dirhem","troy-ons","karat","grain","bizans-litrasi","bizans-onsu","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit","kilogram-metre-saniye","newton-saniye","pascal-saniye","santipoise","mikrometre","nanometre","deniz-mili","arsin","endaze","bizans-ayagi","bizans-kulaci","cig","santimetrekare","milimetrekare","kilometrekare","incare","akre","donum","dekar","decimal-arazi","katha","bigha","santimetrekup","fitkup","inckup","galon","bit","bayt","kilobayt","megabayt","gigabayt","terabayt","petabayt","kibibayt","mebibayt","gibibayt","tebibayt","ohm","kiloohm","megaohm","farad","milifarad","mikrofarad","nanofarad","pikofarad","henry","milihenry","mikrohenry","coulomb","milicoulomb","mikrocoulomb","nanocoulomb","ayar-24","ayar-22","ayar-18","ayar-14","999-ayar-gumus","925-ayar-gumus","900-ayar-gumus","800-ayar-gumus","milimol-litre","miligram-desilitre","nanomol-litre","nanogram-mililitre","kalori","kilokalori","btu","watt-saat","kilojoule","milibar","knot","gun","isik-hizi","varil","kilogram-kuvvet-metre","megawatt","beygirgucu-mekanik","milivolt","kiloamper","m-s2","ft-s2","g0","rpm","rad-s","deg-s","w-mk","btu-hftf","w-m2","kw-m2","j-kgk","cal-gk","m2-s","centistoke","a-m","oersted","weber","miliweber","radyan","derece","gradyan","hertz","kilohertz","megahertz","gigahertz","m3-s","cfm","gpm","kg-s","kg-h","gram-mililitre","kilogram-litre","gram-litre","miligram-litre","pound-fitkup","pound-inckup","pound-galon","slug-fitkup","milipaskal-saniye","poise","milimetrekare-saniye","kilonewton-metre","kilonewton","pound-kuvvet","dyn","litre-saniye","litre-dakika-hacimsel","metrekup-saat-hacimsel","gram-saniye","gram-saat","santimetre-saniyekare","milimetre-saniyekare","kilometre-saniyekare","inc-saniyekare","fit-dakikakare","metre-dakikakare","gal-ivme","radyan-dakika","radyan-saat","derece-dakika","derece-saat","devir-saniye-acisal","kiloamper-metre","mikroweber","nanoweber","kilowatt-metre-kelvin","watt-santimetre-kelvin","kalori-santimetrekare-saniye","kilojoule-kilogram-kelvin","btu-pound-fahrenhayt","pound-fit-saniye","tam-tur","kilometre-saniye","fit-saniye","metre-dakika","kilometre-dakika","santimetre-saniye","milisaniye","teknik-atmosfer","milimetre-su-sutunu","megajoule","therm","quad-btu"];
+const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","okka","dirhem","troy-ons","karat","grain","dalton","astronomik-birim","isik-yili","parsek","angstrom","fathom","elektronvolt","torr","bizans-litrasi","bizans-onsu","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit","kilogram-metre-saniye","newton-saniye","pascal-saniye","santipoise","mikrometre","nanometre","deniz-mili","arsin","endaze","bizans-ayagi","bizans-kulaci","cig","santimetrekare","milimetrekare","kilometrekare","incare","akre","donum","dekar","decimal-arazi","katha","bigha","santimetrekup","fitkup","inckup","galon","bit","bayt","kilobayt","megabayt","gigabayt","terabayt","petabayt","kibibayt","mebibayt","gibibayt","tebibayt","ohm","kiloohm","megaohm","farad","milifarad","mikrofarad","nanofarad","pikofarad","henry","milihenry","mikrohenry","coulomb","milicoulomb","mikrocoulomb","nanocoulomb","ayar-24","ayar-22","ayar-18","ayar-14","999-ayar-gumus","925-ayar-gumus","900-ayar-gumus","800-ayar-gumus","milimol-litre","miligram-desilitre","nanomol-litre","nanogram-mililitre","kalori","kilokalori","btu","watt-saat","kilojoule","milibar","knot","gun","isik-hizi","varil","kilogram-kuvvet-metre","megawatt","beygirgucu-mekanik","milivolt","kiloamper","m-s2","ft-s2","g0","rpm","rad-s","deg-s","w-mk","btu-hftf","w-m2","kw-m2","j-kgk","cal-gk","m2-s","centistoke","a-m","oersted","weber","miliweber","radyan","derece","gradyan","hertz","kilohertz","megahertz","gigahertz","m3-s","cfm","gpm","kg-s","kg-h","gram-mililitre","kilogram-litre","gram-litre","miligram-litre","pound-fitkup","pound-inckup","pound-galon","slug-fitkup","milipaskal-saniye","poise","milimetrekare-saniye","kilonewton-metre","kilonewton","pound-kuvvet","dyn","litre-saniye","litre-dakika-hacimsel","metrekup-saat-hacimsel","gram-saniye","gram-saat","santimetre-saniyekare","milimetre-saniyekare","kilometre-saniyekare","inc-saniyekare","fit-dakikakare","metre-dakikakare","gal-ivme","radyan-dakika","radyan-saat","derece-dakika","derece-saat","devir-saniye-acisal","kiloamper-metre","mikroweber","nanoweber","kilowatt-metre-kelvin","watt-santimetre-kelvin","kalori-santimetrekare-saniye","kilojoule-kilogram-kelvin","btu-pound-fahrenhayt","pound-fit-saniye","tam-tur","kilometre-saniye","fit-saniye","metre-dakika","kilometre-dakika","santimetre-saniye","milisaniye","teknik-atmosfer","milimetre-su-sutunu","megajoule","therm","quad-btu"];
 
 export const unitPages: UnitPage[] = unitRegistry
   .filter((entry) => entry.tr && unitDescriptions[entry.id])

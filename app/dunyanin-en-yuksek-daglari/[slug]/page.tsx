@@ -78,6 +78,12 @@ export default async function MountainDetailPage({ params }: PageProps) {
       question: `${mountain.nameTr}'e ilk kış tırmanışı ne zaman yapıldı?`,
       answer: `${mountain.nameTr}'e ilk kış tırmanışı ${mountain.firstWinterAscentYear} yılında gerçekleştirildi. Kış koşullarında (aşırı soğuk, kısa gün ışığı, güçlü rüzgar) tırmanış yaz sezonuna göre çok daha zor kabul edilir.`,
     },
+    {
+      question: `${mountain.nameTr}'in zirvesinde su kaç derecede kaynar?`,
+      answer: altitudeEffect
+        ? `${mountain.nameTr}'in zirvesinde (${mountain.elevationM.toLocaleString("tr-TR")} m) su yaklaşık ${formatNumber(altitudeEffect.waterBoilingPointC)}°C'de kaynar — deniz seviyesindeki 100°C'ye göre çok daha düşük, çünkü kaynama noktası çevre basıncına bağlıdır ve irtifa arttıkça basınç düşer.`
+        : "",
+    },
   ];
 
   const breadcrumbSchema = {
@@ -179,6 +185,10 @@ export default async function MountainDetailPage({ params }: PageProps) {
                   <dt>Deniz Seviyesine Göre Basınç/Oksijen Oranı</dt>
                   <dd>%{formatNumber(altitudeEffect.percentOfSeaLevel)}</dd>
                 </div>
+                <div>
+                  <dt>Bu İrtifada Su Kaç Derecede Kaynar?</dt>
+                  <dd>{formatNumber(altitudeEffect.waterBoilingPointC)} °C</dd>
+                </div>
               </>
             )}
           </dl>
@@ -188,6 +198,9 @@ export default async function MountainDetailPage({ params }: PageProps) {
             göre değişebilir. Oksijenin hacimsel oranı (%20,9) irtifayla
             değişmez — değişen, oksijenin kısmi basıncıdır, bu yüzden aynı
             yüzde hem basınç hem de &quot;etkili oksijen&quot; için geçerlidir.
+            Kaynama noktası, düşen basınca bağlı olarak Clausius-Clapeyron
+            denklemiyle hesaplanmıştır — bu yüzden yüksek irtifada yemek
+            pişirmek daha uzun sürer, çünkü su daha düşük sıcaklıkta kaynar.
           </p>
         </section>
 

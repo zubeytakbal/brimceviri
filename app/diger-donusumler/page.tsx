@@ -1066,6 +1066,15 @@ export default function DigerDonusumlerPage() {
       iconName: "celestialBodiesHubCalculator" as const,
       group: "Diğer Hesaplama Merkezleri",
     },
+    {
+      id: "dunyanin-en-yuksek-daglari",
+      href: "/dunyanin-en-yuksek-daglari",
+      title: "Dünyanın En Yüksek Dağları",
+      description:
+        "8.000 metre üzeri 14 zirvenin yüksekliğini, göreli yüksekliğini ve zirvede hava basıncının deniz seviyesine göre yüzdesini karşılaştır.",
+      iconName: "mountainsHubCalculator" as const,
+      group: "Diğer Hesaplama Merkezleri",
+    },
   ];
 
   return (

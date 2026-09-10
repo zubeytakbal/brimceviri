@@ -267,6 +267,15 @@ export const unitRegistry: UnitRegistryEntry[] = [
     enConversionSlug: "hectares",
   },
   {
+    id: "ar",
+    category: "alan",
+    symbol: "a",
+    siFactor: 100,
+    tr: { name: "Ar", slug: "ar" },
+    en: { name: "Are", slug: "are" },
+    de: { name: "Ar", slug: "ar" },
+  },
+  {
     id: "fitkare",
     category: "alan",
     symbol: "ft²",

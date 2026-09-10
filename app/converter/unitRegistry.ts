@@ -408,6 +408,15 @@ export const unitRegistry: UnitRegistryEntry[] = [
     de: { name: "Gallone", slug: "gallone" },
   },
   {
+    id: "ingiliz-galonu",
+    category: "hacim",
+    symbol: "imp gal",
+    siFactor: 0.00454609,
+    tr: { name: "İngiliz Galonu", slug: "ingiliz-galonu" },
+    en: { name: "Imperial Gallon", slug: "imperial-gallon" },
+    de: { name: "Imperiale Gallone", slug: "imperiale-gallone" },
+  },
+  {
     id: "varil",
     category: "hacim",
     symbol: "bbl",

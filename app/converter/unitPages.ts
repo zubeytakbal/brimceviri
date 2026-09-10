@@ -22,9 +22,16 @@ type UnitDescription = {
 };
 
 const unitDescriptions: Record<string, UnitDescription> = {
+  "grain": {
+    shortDescription: "Grain, tarihi bir kütle birimidir ve günümüzde en çok mermi/barut ağırlığı ile okçulukta ok ağırlığını ifade etmek için kullanılır. 1 grain, yaklaşık 64,8 miligrama eşittir.",
+    historySummary: "Grain, adını bir arpa tanesinin ortalama ağırlığından alır ve Orta Çağ'dan beri İngiliz ölçü sisteminin en küçük kütle birimi olarak kullanılmıştır. Metrik sistemin yaygınlaşmasına rağmen, ateşli silah mühimmatı endüstrisinde uluslararası standart olarak varlığını sürdürmüştür.",
+    measurementSystem: "İngiliz/Amerikan Ölçü Sistemi (Imperial/US Customary)",
+    siEquivalent: "1 grain ≈ 0,0648 gram (64,79891 miligram)",
+    commonUses: "Mermi ve barut ağırlığı, okçulukta ok ağırlığı, bazı kuyumculuk tartımları",
+  },
   "metre": {
     shortDescription: "Metre, Uluslararası Birim Sistemi'nde uzunluğun temel birimidir. Günlük yaşamdan mühendisliğe kadar mesafe ve boyut ölçümünde kullanılır.",
-    historySummary: "Metre, 18. yüzyılın sonunda evrensel bir ölçü standardı oluşturma amacıyla geliştirildi. Günümüzde tanımı ışığın boşlukta belirli bir zaman aralığında aldığı yola dayanır.",
+    historySummary: "Metre, Fransız Devrimi sırasında, o zamana kadar bölgeden bölgeye değişen ölçü birimlerinin yerine evrensel ve doğaya dayalı tek bir standart koymak amacıyla ortaya çıktı. Önce sarkaç periyoduna dayalı bir tanım düşünüldü, ama sarkacın yerel yerçekimine göre değiştiği fark edilince bu fikirden vazgeçildi. Bunun yerine 1791'de Fransız Ulusal Meclisi, metreyi Kuzey Kutbu'ndan Ekvator'a, Paris'ten geçen meridyen boyunca olan mesafenin on milyonda biri olarak tanımladı — bu mesafe, Delambre ve Méchain adlı iki bilim insanının yıllar süren jeodezik ölçümleriyle hesaplandı. 1799'da tanım, 'Mètre des Archives' adı verilen platin bir çubuğa dayandırıldı; 1889'da bu çubuğun yerini, dünya çapında 29 kopyası dağıtılan platin-iridyum alaşımlı yeni bir standart aldı. 1960'ta metre artık fiziksel bir nesneye değil, kripton-86 atomunun yaydığı ışığın dalga boyuna dayandırılarak tanımlandı. 1983'ten bu yana ise metre, ışığın boşlukta saniyenin 1/299.792.458'inde aldığı yol olarak tanımlanıyor — bu sayede metre, dünyanın herhangi bir laboratuvarında fiziksel bir örneğe ihtiyaç duymadan yeniden üretilebiliyor.",
     measurementSystem: "Uluslararası Birim Sistemi (SI)",
     siEquivalent: "Temel SI uzunluk birimi",
     commonUses: "İnşaat, bilim, üretim, geometri ve genel ölçüm",
@@ -59,7 +66,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
   "inc": {
     shortDescription: "İnç, İngiliz ve Amerikan ölçü sistemlerinde kullanılan kısa bir uzunluk birimidir. Bir inç tam olarak 2,54 santimetreye eşittir.",
-    historySummary: "İnç, tarih boyunca insan bedenine dayalı yerel ölçülerden türedi. Modern uluslararası inç 1959 yılından beri tam olarak 25,4 milimetre olarak tanımlanır.",
+    historySummary: "İnç kelimesi Latince 'on ikide bir' anlamına gelen 'uncia'dan türer. En eski tanımı 1324'te İngiltere Kralı II. Edward tarafından 'uç uca dizilmiş üç kuru arpa tanesi' olarak yapıldı ve bu tanım yüzyıllarca kullanıldı. Ayrıca İskoçya Kralı I. David'in (12. yüzyıl) inç'i bir erkek başparmağının tırnak dibindeki genişliği olarak tanımladığı da rivayet edilir. 1896'da İsveçli mühendis Carl Edvard Johansson'un hassas mastar bloklarını üretirken inç'i pratik olarak tam 25,4 mm'ye sabitlemesi dönüm noktası oldu — bu 'endüstriyel inç' 1930'da İngiliz, 1933'te Amerikan standart kurumlarınca benimsendi. Nihai uluslararası anlaşma 1959'da (ABD'de 1 Temmuz'da) yürürlüğe girdi ve inç o günden beri tam olarak 25,4 milimetre olarak tanımlanıyor.",
     measurementSystem: "İngiliz ve ABD ölçü sistemleri",
     siEquivalent: "1 in = 25,4 mm = 2,54 cm",
     commonUses: "Ekran boyutları, borulama, bağlantı elemanları ve teknik kataloglar",
@@ -143,7 +150,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
   "litre": {
     shortDescription: "Litre, sıvı ve kapasiteleri ifade etmek için çok yaygın kullanılan bir hacim birimidir. 1 litre, 0,001 metreküpe eşittir.",
-    historySummary: "Litre, metrik sistem içinde günlük kullanım ile teknik ihtiyacı birleştiren pratik bir hacim birimi olarak yaygınlaşmıştır.",
+    historySummary: "Litre, 1795'te Fransa'da, Fransız Devrimi'nin getirdiği yeni ölçü sisteminin bir parçası olarak 'bir küp desimetre' şeklinde tanımlandı. 1901'de Ağırlıklar ve Ölçüler Genel Konferansı, litreyi yeniden '1 atmosfer basınçta, en yoğun olduğu sıcaklıktaki (3,98°C) 1 kg saf suyun kapladığı hacim' olarak tanımladı — ama bu tanım, referans alınan platin-iridyum kilogram prototipinin beklenenden milyonda 28 pay daha büyük çıkması yüzünden litreyi küp desimetreden çok hafif (yaklaşık 1,000028 kat) büyük yapıyordu. Bu 63 yıllık sapma, 1964'te Genel Konferans'ın litreyi tekrar tam olarak '1 küp desimetre' şeklinde, doğrudan metreye bağlı tanımlamasıyla düzeltildi.",
     measurementSystem: "Metrik sistem, SI ile uyumlu",
     siEquivalent: "1 L = 0,001 m³",
     commonUses: "Sıvılar, tank hacimleri, laboratuvar kapları ve günlük ölçüler",
@@ -164,7 +171,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
   "kilogram": {
     shortDescription: "Kilogram, Uluslararası Birim Sistemi'nde kütlenin temel birimidir. Ticaret, laboratuvar ve mühendislikte yaygın olarak kullanılır.",
-    historySummary: "Kilogram önce su kütlesine, sonra fiziksel bir prototipe dayalıydı. 2019'dan itibaren Planck sabitinin sabitlenmiş değeri üzerinden tanımlanmaktadır.",
+    historySummary: "Kilogramın kökeni de Fransız Devrimi'ne dayanır: 1795'te gram, buzun erime noktasındaki (0°C) 1 santimetreküp suyun kütlesi olarak tanımlandı — yani 1 kilogram, bu koşuldaki 1 litre suya eşitti. Ancak suyun yoğunluğunun sıcaklıkla değiştiği fark edilince, 1799'da 'Kilogramme des Archives' adlı platin bir prototip yapıldı; bu sefer referans, suyun en yoğun olduğu ~4°C'deki 1 desimetreküp su kütlesiydi. 1889'da bu prototipin yerini, 'Le Grand K' olarak bilinen platin-iridyum alaşımlı yeni bir silindir aldı ve bu, Fransa'daki Uluslararası Ağırlıklar ve Ölçüler Bürosu'nda 130 yıl boyunca dünyanın referans kilogramı olarak korundu. Zamanla bu silindirin, üretildiği dönemdeki kopyalarından yaklaşık 50 mikrogram saptığı fark edildi — fiziksel bir nesneye dayanmanın kaçınılmaz kırılganlığıydı bu. 16 Kasım 2018'de Ağırlıklar ve Ölçüler Genel Konferansı, kilogramı Planck sabitine dayalı yeni bir tanıma geçirme kararı aldı; bu yeni tanım 20 Mayıs 2019'da yürürlüğe girdi ve kilogram artık dünyanın herhangi bir laboratuvarında, fiziksel bir örneğe ihtiyaç duymadan yeniden üretilebilir hale geldi.",
     measurementSystem: "Uluslararası Birim Sistemi (SI)",
     siEquivalent: "Temel SI kütle birimi",
     commonUses: "Ticaret, taşıma, laboratuvar ve proses hesapları",
@@ -290,7 +297,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
   "pascal": {
     shortDescription: "Pascal, Uluslararası Birim Sistemi'nde basıncın türetilmiş birimidir. 1 Pa = 1 N/m² ilişkisiyle tanımlanır.",
-    historySummary: "Birim adını Blaise Pascal'dan alır. Akışkanlar ve basınç çalışmalarındaki bilimsel gelişmelerle birlikte SI içinde standart basınç referansı oldu.",
+    historySummary: "Birim, adını 17. yüzyıl Fransız bilim insanı Blaise Pascal'dan alır — Pascal, hidrodinamik ve hidrostatik alanlarındaki çalışmaları ve barometreyle yaptığı öncü basınç deneyleriyle tanınır. Pascal'ın 'kapalı bir sıvıya uygulanan basıncın her yöne eşit şekilde iletildiği' bulgusu (Pascal Yasası), hidrolik sistemlerin temelini oluşturur. Bu birim 1971'de Ağırlıklar ve Ölçüler Genel Konferansı'nın 14. toplantısında resmen SI birimi olarak kabul edildi ve newton/metrekare (N/m²) olarak tanımlandı.",
     measurementSystem: "Uluslararası Birim Sistemi (SI)",
     siEquivalent: "Temel SI basınç birimi, 1 Pa = 1 N/m²",
     commonUses: "Bilimsel hesaplar, malzeme analizi ve referans dönüşümler",
@@ -304,7 +311,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
   "bar": {
     shortDescription: "Bar, 100000 pascala eşit bir basınç birimidir. Sanayi ve ekipman göstergelerinde çok yaygın bir pratik gösterimdir.",
-    historySummary: "Bar, atmosferik büyüklüklere yakın basınçları daha kısa ifade edebilmek için teknik uygulamalarda yaygınlık kazandı. SI dışı olsa da endüstride güçlü şekilde yaşamaya devam etti.",
+    historySummary: "Bar birimini, modern hava tahmininin öncülerinden Norveçli meteorolog Vilhelm Bjerknes ortaya attı; adını Eski Yunanca 'ağırlık' anlamına gelen 'baros' kelimesinden alır (ilginç bir şekilde 'bar' kelimesi 1793-1795 arasında erken metrik sistemde bugünkü tonun karşılığı olan bir kütle birimi için de kullanılmıştı). 1 bar tam olarak 100.000 pascal'a eşittir ve deniz seviyesindeki ortalama atmosfer basıncına (yaklaşık 1,013 bar) çok yakındır. Bar resmi bir SI birimi olmasa da, milibar/hektopaskal değerlerinin sayısal olarak birebir eşit olması ve pratik kullanım kolaylığı nedeniyle meteorologlar ve havacılık sektörü tarafından bugün hâlâ yaygın olarak kullanılır.",
     measurementSystem: "SI dışı metrik mühendislik birimi",
     siEquivalent: "1 bar = 100000 Pa",
     commonUses: "Kompresörler, hidrolik, pnömatik ve servis manometreleri",
@@ -339,7 +346,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
   "joule": {
     shortDescription: "Joule, enerjinin SI türetilmiş birimidir. İş, ısı ve enerji miktarlarını ifade etmek için kullanılır.",
-    historySummary: "Joule birimi, mekanik iş ve enerji kavramlarının bilimsel standardizasyonuyla birlikte SI içinde temel enerji referansı hâline gelmiştir.",
+    historySummary: "Birim, İngiliz fizikçi James Prescott Joule'un (1818-1889) mekanik iş ile ısı arasındaki ilişkiyi ortaya koyan çalışmalarına atfen adlandırıldı. İsim ilk kez 23 Ağustos 1882'de, William Siemens'in İngiliz Bilim İlerleme Derneği başkanlık konuşmasında önerildi; Siemens bunu 'ısının dinamik teorisini geliştirmeye bu kadar katkı sağlayan adama' ithafen 'joule' olarak adlandırmayı teklif etti. Birim resmen 31 Ağustos 1889'da, İkinci Uluslararası Elektrik Kongresi'nde watt birimiyle birlikte kabul edildi — ilginç bir tesadüfle Joule, aynı yılın sonunda (11 Ekim 1889) hayatını kaybetti. Tanım 1946'da Giorgi sistemi kapsamında güncellenerek elektromanyetik birimlerden bağımsız, doğrudan 'bir kuvvetin bir metrelik yol boyunca yaptığı iş' olarak yeniden ifade edildi.",
     measurementSystem: "Uluslararası Birim Sistemi (SI)",
     siEquivalent: "Temel SI enerji birimi",
     commonUses: "Termodinamik, enerji dengeleri ve bilimsel hesaplar",
@@ -353,7 +360,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
   "watt": {
     shortDescription: "Watt, gücün SI türetilmiş birimidir. Enerjinin aktarım hızını ifade eder.",
-    historySummary: "Watt, endüstri ve elektrik mühendisliğinde güç seviyelerini ifade eden temel standart birim hâline gelmiştir.",
+    historySummary: "Birim, İskoç mucit James Watt'ın (1736-1819) onuruna adlandırıldı — Watt, 1776'da o zamana kadar kullanılan Newcomen buhar makinesini geliştirerek Sanayi Devrimi'nin temel taşlarından birini attı. Watt biriminin adı ilk kez Ağustos 1882'de William Siemens tarafından, İngiliz Bilim İlerleme Derneği'nin bir kongresinde önerildi; Siemens bunu '1 Amperlik akımın 1 Voltluk potansiyel farkında taşıdığı güç' olarak tanımladı. 1908'de Londra'daki Uluslararası Elektrik Birimleri ve Standartları Konferansı'nda pratik elektrik birimleri resmileştirildi, watt ise 1960'ta Ağırlıklar ve Ölçüler Genel Konferansı'nın 11. toplantısında SI güç birimi olarak resmen kabul edildi.",
     measurementSystem: "Uluslararası Birim Sistemi (SI)",
     siEquivalent: "Temel SI güç birimi",
     commonUses: "Cihaz gücü, motor etiketleri ve enerji sistemleri",
@@ -367,14 +374,14 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
   "santigrat": {
     shortDescription: "Santigrat ölçeği, günlük yaşam ve mühendislikte en yaygın sıcaklık gösterimlerinden biridir.",
-    historySummary: "Santigrat ölçeği, suyun donma ve kaynama noktalarına dayalı pratik bir sıcaklık sistemi olarak yerleşti.",
+    historySummary: "Santigrat ölçeğini 1742'de İsveçli astronom Anders Celsius icat etti — ama ilginç bir şekilde onun orijinal ölçeği bugünkünün tam tersiydi: 0 derece suyun kaynama noktasını, 100 derece ise donma noktasını gösteriyordu. Bu ölçek, 1743'te Fransız fizikçi Jean-Pierre Christin tarafından ('Lyon Termometresi' tasarımında) ters çevrildi ve bugünkü 0°C donma, 100°C kaynama düzenine kavuştu; İsveçli botanikçi Carl Linnaeus da 1744'te kendi sera termometresi için aynı ters çevirmeyi bağımsız olarak yaptı. Ölçek uzun süre 'santigrat' (centigrade) adıyla anıldı; 1948'de Uluslararası Ağırlıklar ve Ölçüler Komitesi, hem Celsius'un anısına saygı göstermek hem de bazı dillerde 'santigrat' kelimesinin bir açı biriminin yüzde biriyle karışmasını önlemek amacıyla ölçeğin adını resmen 'Celsius derecesi' olarak değiştirdi.",
     measurementSystem: "SI ile birlikte kullanılan sıcaklık ölçeği",
     siEquivalent: "Sıcaklık farkında 1 °C = 1 K",
     commonUses: "Hava durumu, HVAC, proses takibi ve günlük sıcaklık değerleri",
   },
   "fahrenhayt": {
     shortDescription: "Fahrenheit, özellikle ABD’de yaygın olan bir sıcaklık ölçeğidir.",
-    historySummary: "Fahrenheit ölçeği tarihsel olarak Anglo-Amerikan ölçüm pratiğinde yerleşmiş ve günümüzde de geniş kullanıcı tabanını korumuştur.",
+    historySummary: "Fahrenheit ölçeğini 1724'te Polonya doğumlu Hollandalı fizikçi Daniel Gabriel Fahrenheit geliştirdi. Sıfır noktasını, buz-su-amonyum klorür (ya da deniz tuzu) karışımının dengelendiği en soğuk sıcaklık olarak belirledi; 32 dereceyi saf suyun donma noktasına, 96 dereceyi ise (kendi ölçümüyle) insan vücut sıcaklığına denk getirdi. Fahrenheit, kendisinden önceki Rømer ölçeğinin değerlerini 4 ile çarparak daha ince, kesirsiz bir bölümleme elde etmişti. 1776-77'de Henry Cavendish başkanlığındaki bir Royal Society komitesi ölçeği standartlaştırdı; suyun donma noktasını tam 32°F, kaynama noktasını tam 212°F olarak sabitledi — bu düzeltme sonucunda normal vücut sıcaklığı da bugün bildiğimiz 98,6°F değerine kaydı.",
     measurementSystem: "İngiliz ve ABD ölçüm geleneği",
     siEquivalent: "Sıcaklık farkında 1 °F = 5/9 K",
     commonUses: "ABD hava durumu verileri, ev içi sıcaklıklar ve bazı teknik kataloglar",
@@ -514,7 +521,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
   "ohm": {
     shortDescription: "Ohm (Ω), elektriksel direncin SI birimidir. Bir devrenin akıma ne kadar karşı koyduğunu ifade eder.",
-    historySummary: "Ohm, Alman fizikçi Georg Simon Ohm'un akım-gerilim-direnç ilişkisini tanımlayan Ohm Yasası'na atfen adlandırılmış ve elektrik mühendisliğinin temel birimlerinden biri hâline gelmiştir.",
+    historySummary: "Ohm, Alman fizikçi Georg Simon Ohm'un (1789-1854) akım-gerilim-direnç ilişkisini tanımlayan Ohm Yasası'na atfen adlandırıldı. 1860'larda Werner Siemens bir cıva sütununa dayalı tekrarlanabilir bir direnç standardı önerdi; 1861'de Latimer Clark ve Charles Bright, İngiliz Bilim İlerleme Derneği'ne sundukları bildiride 'Ohma', 'Farad' ve 'Volt' gibi ünlü bilim insanlarının adlarından türetilmiş birim isimleri önerdiler. Birim 1864'te 'B.A. birimi' veya 'Ohmad', 1867'de ise sadece 'ohm' olarak anılmaya başladı. 21 Eylül 1881'de Uluslararası Elektrik Kongresi'nde 'pratik ohm' resmen tanımlandı, 1884 (Paris) ve 1893 (Chicago) kongrelerinde geliştirildi ve nihai uluslararası kabul 1908'de Londra'daki konferansta gerçekleşti. 1948'de ise cıva sütunu standardının yerini, bugünkü mutlak (kesin) tanım aldı.",
     measurementSystem: "Uluslararası Birim Sistemi (SI, türetilmiş birim)",
     siEquivalent: "1 Ω = 1 V/A",
     commonUses: "Devre tasarımı, direnç etiketleri, Ohm Yasası hesaplamaları ve elektronik bileşen seçimi",
@@ -871,7 +878,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
   "newton": {
     shortDescription: "Newton (N), kuvvetin Uluslararası Birim Sistemi'ndeki türetilmiş birimidir. 1 kg kütleye 1 m/s² ivme kazandıran kuvveti ifade eder.",
-    historySummary: "Newton birimi, Isaac Newton'ın hareket yasalarına atfen adlandırılmış ve 1948 yılında Uluslararası Ağırlıklar ve Ölçüler Genel Konferansı tarafından SI birimi olarak resmen kabul edilmiştir.",
+    historySummary: "Newton birimi, Isaac Newton'ın F=ma (kuvvet = kütle × ivme) şeklinde özetlenen ikinci hareket yasasına atfen adlandırıldı. Standardizasyon iki adımda gerçekleşti: 1946'da Ağırlıklar ve Ölçüler Genel Konferansı, MKS (metre-kilogram-saniye) sisteminde kuvvet birimini '1 kilogram kütleye 1 m/s² ivme kazandıran kuvvet' olarak tanımladı; 1948'de ise Konferans'ın 9. toplantısında bu birime resmen 'newton' adı verildi. MKS sistemi daha sonra bugünkü SI sisteminin temelini oluşturdu.",
     measurementSystem: "Uluslararası Birim Sistemi (SI, türetilmiş birim)",
     siEquivalent: "Temel SI kuvvet birimi: 1 N = 1 kg·m/s²",
     commonUses: "Mekanik mühendislik, statik ve dinamik hesaplar, malzeme dayanımı testleri",
@@ -955,7 +962,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
   "hertz": {
     shortDescription: "Hertz (Hz), frekansın SI birimidir. Bir olayın saniyede kaç kez tekrarlandığını ifade eder.",
-    historySummary: "Alman fizikçi Heinrich Hertz'in elektromanyetik dalgaları ilk kez deneysel olarak ürettiği çalışmalar onuruna 1930'da SI birimi olarak kabul edilmiştir.",
+    historySummary: "Birim, elektromanyetik dalgaların varlığını ilk kez kesin olarak deneysel kanıtlayan Alman fizikçi Heinrich Rudolf Hertz'in (1857-1894) onuruna adlandırıldı. 'Hertz' adı ilk olarak 1935'te Uluslararası Elektroteknik Komisyonu (IEC) tarafından belirlendi; 1960'ta ise Ağırlıklar ve Ölçüler Genel Konferansı bunu resmi SI birimi olarak kabul etti. Bu tarihten önce frekans, 'saniyede döngü' (cycles per second, cps) ve katları (kilocycles, megacycles) olarak ifade ediliyordu — eski terminolojiden 'hertz'e geçiş, popüler basında ancak 1960'ların sonunda yaygınlaştı.",
     measurementSystem: "Uluslararası Birim Sistemi (SI, türetilmiş birim)",
     siEquivalent: "Temel SI frekans birimi (1 Hz = 1 döngü/saniye)",
     commonUses: "Ses dalgaları, elektrik akımı frekansı, bilgisayar işlemci hızı, radyo dalgaları",
@@ -1579,7 +1586,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
 };
 
-const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","okka","dirhem","troy-ons","karat","bizans-litrasi","bizans-onsu","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit","kilogram-metre-saniye","newton-saniye","pascal-saniye","santipoise","mikrometre","nanometre","deniz-mili","arsin","endaze","bizans-ayagi","bizans-kulaci","cig","santimetrekare","milimetrekare","kilometrekare","incare","akre","donum","dekar","decimal-arazi","katha","bigha","santimetrekup","fitkup","inckup","galon","bit","bayt","kilobayt","megabayt","gigabayt","terabayt","petabayt","kibibayt","mebibayt","gibibayt","tebibayt","ohm","kiloohm","megaohm","farad","milifarad","mikrofarad","nanofarad","pikofarad","henry","milihenry","mikrohenry","coulomb","milicoulomb","mikrocoulomb","nanocoulomb","ayar-24","ayar-22","ayar-18","ayar-14","999-ayar-gumus","925-ayar-gumus","900-ayar-gumus","800-ayar-gumus","milimol-litre","miligram-desilitre","nanomol-litre","nanogram-mililitre","kalori","kilokalori","btu","watt-saat","kilojoule","milibar","knot","gun","isik-hizi","varil","kilogram-kuvvet-metre","megawatt","beygirgucu-mekanik","milivolt","kiloamper","m-s2","ft-s2","g0","rpm","rad-s","deg-s","w-mk","btu-hftf","w-m2","kw-m2","j-kgk","cal-gk","m2-s","centistoke","a-m","oersted","weber","miliweber","radyan","derece","gradyan","hertz","kilohertz","megahertz","gigahertz","m3-s","cfm","gpm","kg-s","kg-h","gram-mililitre","kilogram-litre","gram-litre","miligram-litre","pound-fitkup","pound-inckup","pound-galon","slug-fitkup","milipaskal-saniye","poise","milimetrekare-saniye","kilonewton-metre","kilonewton","pound-kuvvet","dyn","litre-saniye","litre-dakika-hacimsel","metrekup-saat-hacimsel","gram-saniye","gram-saat","santimetre-saniyekare","milimetre-saniyekare","kilometre-saniyekare","inc-saniyekare","fit-dakikakare","metre-dakikakare","gal-ivme","radyan-dakika","radyan-saat","derece-dakika","derece-saat","devir-saniye-acisal","kiloamper-metre","mikroweber","nanoweber","kilowatt-metre-kelvin","watt-santimetre-kelvin","kalori-santimetrekare-saniye","kilojoule-kilogram-kelvin","btu-pound-fahrenhayt","pound-fit-saniye","tam-tur","kilometre-saniye","fit-saniye","metre-dakika","kilometre-dakika","santimetre-saniye","milisaniye","teknik-atmosfer","milimetre-su-sutunu","megajoule","therm","quad-btu"];
+const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","okka","dirhem","troy-ons","karat","grain","bizans-litrasi","bizans-onsu","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit","kilogram-metre-saniye","newton-saniye","pascal-saniye","santipoise","mikrometre","nanometre","deniz-mili","arsin","endaze","bizans-ayagi","bizans-kulaci","cig","santimetrekare","milimetrekare","kilometrekare","incare","akre","donum","dekar","decimal-arazi","katha","bigha","santimetrekup","fitkup","inckup","galon","bit","bayt","kilobayt","megabayt","gigabayt","terabayt","petabayt","kibibayt","mebibayt","gibibayt","tebibayt","ohm","kiloohm","megaohm","farad","milifarad","mikrofarad","nanofarad","pikofarad","henry","milihenry","mikrohenry","coulomb","milicoulomb","mikrocoulomb","nanocoulomb","ayar-24","ayar-22","ayar-18","ayar-14","999-ayar-gumus","925-ayar-gumus","900-ayar-gumus","800-ayar-gumus","milimol-litre","miligram-desilitre","nanomol-litre","nanogram-mililitre","kalori","kilokalori","btu","watt-saat","kilojoule","milibar","knot","gun","isik-hizi","varil","kilogram-kuvvet-metre","megawatt","beygirgucu-mekanik","milivolt","kiloamper","m-s2","ft-s2","g0","rpm","rad-s","deg-s","w-mk","btu-hftf","w-m2","kw-m2","j-kgk","cal-gk","m2-s","centistoke","a-m","oersted","weber","miliweber","radyan","derece","gradyan","hertz","kilohertz","megahertz","gigahertz","m3-s","cfm","gpm","kg-s","kg-h","gram-mililitre","kilogram-litre","gram-litre","miligram-litre","pound-fitkup","pound-inckup","pound-galon","slug-fitkup","milipaskal-saniye","poise","milimetrekare-saniye","kilonewton-metre","kilonewton","pound-kuvvet","dyn","litre-saniye","litre-dakika-hacimsel","metrekup-saat-hacimsel","gram-saniye","gram-saat","santimetre-saniyekare","milimetre-saniyekare","kilometre-saniyekare","inc-saniyekare","fit-dakikakare","metre-dakikakare","gal-ivme","radyan-dakika","radyan-saat","derece-dakika","derece-saat","devir-saniye-acisal","kiloamper-metre","mikroweber","nanoweber","kilowatt-metre-kelvin","watt-santimetre-kelvin","kalori-santimetrekare-saniye","kilojoule-kilogram-kelvin","btu-pound-fahrenhayt","pound-fit-saniye","tam-tur","kilometre-saniye","fit-saniye","metre-dakika","kilometre-dakika","santimetre-saniye","milisaniye","teknik-atmosfer","milimetre-su-sutunu","megajoule","therm","quad-btu"];
 
 export const unitPages: UnitPage[] = unitRegistry
   .filter((entry) => entry.tr && unitDescriptions[entry.id])

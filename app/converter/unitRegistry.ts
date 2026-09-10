@@ -417,6 +417,15 @@ export const unitRegistry: UnitRegistryEntry[] = [
     de: { name: "Gallone", slug: "gallone" },
   },
   {
+    id: "bushel",
+    category: "hacim",
+    symbol: "bu",
+    siFactor: 0.03523907016688,
+    tr: { name: "Bushel", slug: "bushel" },
+    en: { name: "Bushel", slug: "bushel" },
+    de: { name: "Bushel", slug: "bushel" },
+  },
+  {
     id: "ingiliz-galonu",
     category: "hacim",
     symbol: "imp gal",

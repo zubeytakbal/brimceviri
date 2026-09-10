@@ -1723,6 +1723,13 @@ const newUnitPairDefinitions: ConversionPairDefinition[] = [
     secondExamples: [1, 2, 5, 10, 20, 50, 100],
   },
   {
+    category: "hacim",
+    firstId: "bushel",
+    secondId: "galon",
+    firstExamples: [1, 2, 5, 10, 20, 50],
+    secondExamples: [1, 5, 10, 20, 50, 100],
+  },
+  {
     category: "alan",
     firstId: "ar",
     secondId: "metrekare",

@@ -50,6 +50,7 @@ import { materialsDatabase } from "./converter/materialsDatabase";
 import { celestialBodiesDatabase } from "./converter/celestialBodiesDatabase";
 import { mountainsDatabase } from "./converter/mountainsDatabase";
 import { turkishProvinceElevations } from "./converter/turkishProvinceElevations";
+import { popularProvinceComparisons } from "./converter/popularProvinceComparisons";
 import { compoundsDatabase } from "./converter/compoundsDatabase";
 import { bengaliWeightPairs } from "./converter/bengaliWeightPairs";
 import { licenseClasses } from "./converter/licenseClassFinder";
@@ -839,6 +840,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: contentLastModified,
       changeFrequency: "monthly" as const,
       priority: 0.6,
+    })),
+    {
+      url: `${baseUrl}/il-rakimi-karsilastirma`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    ...popularProvinceComparisons.map((comparison) => ({
+      url: `${baseUrl}/il-rakimi-karsilastirma/${comparison.slug}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.65,
     })),
     {
       url: `${baseUrl}/bilim-hesaplayicilari/kimya/bilesikler`,

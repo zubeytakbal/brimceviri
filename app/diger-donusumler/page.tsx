@@ -1084,6 +1084,15 @@ export default function DigerDonusumlerPage() {
       iconName: "mountainsHubCalculator" as const,
       group: "Diğer Hesaplama Merkezleri",
     },
+    {
+      id: "il-rakimi-karsilastirma",
+      href: "/il-rakimi-karsilastirma",
+      title: "İl Rakımı Karşılaştırma",
+      description:
+        "İki ilin rakımını, hava basıncını ve kaynama noktasını karşılaştır; rakım farkının sağlığa etkisini gör.",
+      iconName: "mountainsHubCalculator" as const,
+      group: "Diğer Hesaplama Merkezleri",
+    },
   ];
 
   return (

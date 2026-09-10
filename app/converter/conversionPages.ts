@@ -1658,7 +1658,81 @@ const customConversionPages: ConversionPage[] = [
   ),
 ];
 
+const newUnitPairDefinitions: ConversionPairDefinition[] = [
+  {
+    category: "uzunluk",
+    firstId: "astronomik-birim",
+    secondId: "kilometre",
+    firstExamples: [0.5, 1, 2, 5, 10, 30, 40],
+    secondExamples: [1000000, 50000000, 149597870, 500000000, 1000000000],
+  },
+  {
+    category: "uzunluk",
+    firstId: "isik-yili",
+    secondId: "kilometre",
+    firstExamples: [0.001, 0.01, 0.1, 1, 4.24, 10, 100],
+    secondExamples: [1000000000, 9460730472580.8, 50000000000000],
+  },
+  {
+    category: "uzunluk",
+    firstId: "parsek",
+    secondId: "isik-yili",
+    firstExamples: [0.5, 1, 5, 10, 100, 1000],
+    secondExamples: [1, 3.26, 10, 32.6, 100, 326],
+  },
+  {
+    category: "uzunluk",
+    firstId: "angstrom",
+    secondId: "nanometre",
+    firstExamples: [1, 5, 10, 50, 100, 500, 1000],
+    secondExamples: [0.1, 1, 5, 10, 50, 100],
+  },
+  {
+    category: "uzunluk",
+    firstId: "fathom",
+    secondId: "metre",
+    firstExamples: [1, 5, 10, 25, 50, 100, 500],
+    secondExamples: [1, 2, 10, 50, 100, 500, 1000],
+  },
+  {
+    category: "kutle",
+    firstId: "dalton",
+    secondId: "gram",
+    firstExamples: [1e23, 6.022e23, 1e24, 1e25],
+    secondExamples: [1, 12, 18, 44, 100],
+  },
+  {
+    category: "enerji",
+    firstId: "elektronvolt",
+    secondId: "joule",
+    firstExamples: [1, 1000, 1000000, 1000000000],
+    secondExamples: [1, 10, 100, 1000],
+  },
+  {
+    category: "basinc",
+    firstId: "torr",
+    secondId: "milimetre-civa",
+    firstExamples: [1, 10, 100, 500, 760, 1000],
+    secondExamples: [1, 10, 100, 500, 760, 1000],
+  },
+  {
+    category: "hacim",
+    firstId: "ingiliz-galonu",
+    secondId: "galon",
+    firstExamples: [1, 2, 5, 10, 20, 50, 100],
+    secondExamples: [1, 2, 5, 10, 20, 50, 100],
+  },
+  {
+    category: "alan",
+    firstId: "ar",
+    secondId: "metrekare",
+    firstExamples: [1, 5, 10, 25, 50, 100, 500],
+    secondExamples: [100, 500, 1000, 2500, 5000, 10000],
+  },
+];
+
 export const conversionPages: ConversionPage[] = [
   ...pairDefinitions.flatMap(createConversionPair),
+  ...newUnitPairDefinitions.flatMap(createConversionPair),
   ...customConversionPages,
 ];

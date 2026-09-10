@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
@@ -73,6 +74,10 @@ export default async function MountainDetailPage({ params }: PageProps) {
       question: `${mountain.nameTr}'e ilk tırmanış ne zaman yapıldı?`,
       answer: `${mountain.nameTr}'e ilk başarılı tırmanış ${mountain.firstAscentYear} yılında gerçekleştirildi.`,
     },
+    {
+      question: `${mountain.nameTr}'e ilk kış tırmanışı ne zaman yapıldı?`,
+      answer: `${mountain.nameTr}'e ilk kış tırmanışı ${mountain.firstWinterAscentYear} yılında gerçekleştirildi. Kış koşullarında (aşırı soğuk, kısa gün ışığı, güçlü rüzgar) tırmanış yaz sezonuna göre çok daha zor kabul edilir.`,
+    },
   ];
 
   const breadcrumbSchema = {
@@ -112,6 +117,31 @@ export default async function MountainDetailPage({ params }: PageProps) {
           </p>
         </header>
 
+        {mountain.image && (
+          <figure className="mountain-hero-image">
+            <Image
+              src={mountain.image.url}
+              alt={`${mountain.nameTr} dağının fotoğrafı`}
+              width={960}
+              height={640}
+              style={{ width: "100%", height: "auto", borderRadius: "12px" }}
+              sizes="(max-width: 768px) 100vw, 800px"
+              priority={false}
+            />
+            <figcaption className="calculator-field-note">
+              Fotoğraf: {mountain.image.photographer} —{" "}
+              {mountain.image.licenseUrl ? (
+                <a href={mountain.image.licenseUrl} target="_blank" rel="noopener noreferrer">
+                  {mountain.image.license}
+                </a>
+              ) : (
+                mountain.image.license
+              )}
+              {" "}(Wikimedia Commons)
+            </figcaption>
+          </figure>
+        )}
+
         <section className="category-article-content">
           <h2>{mountain.nameTr} Temel Özellikleri</h2>
           <dl className="unit-facts">
@@ -134,6 +164,10 @@ export default async function MountainDetailPage({ params }: PageProps) {
             <div>
               <dt>İlk Tırmanış Yılı</dt>
               <dd>{mountain.firstAscentYear}</dd>
+            </div>
+            <div>
+              <dt>İlk Kış Tırmanışı</dt>
+              <dd>{mountain.firstWinterAscentYear}</dd>
             </div>
             {altitudeEffect && (
               <>
@@ -192,9 +226,18 @@ export default async function MountainDetailPage({ params }: PageProps) {
 
           <h2>Kaynaklar</h2>
           <p>
-            Yükseklik, göreli yükseklik ve ilk tırmanış tarihi Wikipedia/Wikidata
-            kaynaklı, çapraz kontrol edilmiş değerlerdir. Hava basıncı standart
-            ICAO/NOAA barometrik formülüyle bu sayfada hesaplanmıştır.
+            Yükseklik, göreli yükseklik, ilk tırmanış ve ilk kış tırmanışı
+            tarihleri Wikipedia/Wikidata ve dağcılık kaynaklarından (American
+            Alpine Club, Planetmountain, Explorersweb) çapraz kontrol edilmiş
+            değerlerdir. Hava basıncı standart ICAO/NOAA barometrik formülüyle
+            bu sayfada hesaplanmıştır.
+            {mountain.image && (
+              <>
+                {" "}Fotoğraf Wikimedia Commons&apos;tan,{" "}
+                {mountain.image.photographer} tarafından{" "}
+                {mountain.image.license} lisansıyla paylaşılmıştır.
+              </>
+            )}
           </p>
         </section>
       </div>

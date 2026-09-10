@@ -2114,6 +2114,14 @@ main.category-page {
   font-weight: 500;
 }
 
+.mountain-hero-image {
+  margin: 0 0 1.5rem;
+}
+
+.mountain-hero-image figcaption {
+  margin-top: 0.4rem;
+}
+
 .category-general-converter-actions {
   display: flex;
   grid-column: 1 / -1;

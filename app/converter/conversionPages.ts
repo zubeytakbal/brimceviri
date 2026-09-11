@@ -428,6 +428,13 @@ const pairDefinitions: ConversionPairDefinition[] = [
   },
   {
     category: "alan",
+    firstId: "yardakare",
+    secondId: "metrekare",
+    firstExamples: [1, 5, 10, 25, 50, 100, 250],
+    secondExamples: [1, 5, 10, 25, 50, 100, 250],
+  },
+  {
+    category: "alan",
     firstId: "hektar",
     secondId: "metrekare",
     firstExamples: [0.1, 0.5, 1, 2, 5, 10, 25],
@@ -1580,6 +1587,14 @@ function createTemperatureFormula(
     return `${toName} = ${fromName} − 459,67`;
   }
 
+  if (fromUnit === "C" && toUnit === "Re") {
+    return `${toName} = ${fromName} × 4/5`;
+  }
+
+  if (fromUnit === "Re" && toUnit === "C") {
+    return `${toName} = ${fromName} × 5/4`;
+  }
+
   return `${toName} = ${fromName}`;
 }
 
@@ -1619,6 +1634,14 @@ function createTemperatureExplanation(
 
   if (fromUnit === "R" && toUnit === "F") {
     return `${fromName} değerinden 459,67 çıkarılır. 459,67 R, 0 F eder.`;
+  }
+
+  if (fromUnit === "C" && toUnit === "Re") {
+    return `${fromName} değeri 4/5 ile çarpılır (su donma-kaynama aralığı Réaumur'de 0-80 derece olarak tanımlanır, Santigrat'ta ise 0-100 derecedir). 100 C, 80 Ré eder.`;
+  }
+
+  if (fromUnit === "Re" && toUnit === "C") {
+    return `${fromName} değeri 5/4 ile çarpılır. 80 Ré, 100 C eder.`;
   }
 
   return `${fromName} değerini ${toName} birimine çevirin.`;
@@ -1712,6 +1735,18 @@ const customConversionPages: ConversionPage[] = [
     [0, 459.67, 491.67, 528.27, 671.67],
     "fahrenhayt-rankine"
   ),
+  createTemperaturePage(
+    "santigrat",
+    "reaumur",
+    [-40, 0, 20, 37, 100],
+    "reaumur-santigrat"
+  ),
+  createTemperaturePage(
+    "reaumur",
+    "santigrat",
+    [-32, 0, 16, 29.6, 80],
+    "santigrat-reaumur"
+  ),
 ];
 
 const newUnitPairDefinitions: ConversionPairDefinition[] = [
@@ -1787,6 +1822,27 @@ const newUnitPairDefinitions: ConversionPairDefinition[] = [
   },
   {
     category: "hacim",
+    firstId: "peck",
+    secondId: "bushel",
+    firstExamples: [1, 2, 4, 8, 16, 32],
+    secondExamples: [1, 2, 4, 8, 16, 32],
+  },
+  {
+    category: "hacim",
+    firstId: "sivi-ons",
+    secondId: "pint",
+    firstExamples: [1, 2, 4, 8, 16, 32],
+    secondExamples: [1, 2, 5, 10, 20],
+  },
+  {
+    category: "hacim",
+    firstId: "ingiliz-sivi-ons",
+    secondId: "sivi-ons",
+    firstExamples: [1, 2, 5, 10, 20, 50],
+    secondExamples: [1, 2, 5, 10, 20, 50],
+  },
+  {
+    category: "hacim",
     firstId: "pint",
     secondId: "galon",
     firstExamples: [1, 2, 4, 8, 16, 32],
@@ -1840,6 +1896,13 @@ const newUnitPairDefinitions: ConversionPairDefinition[] = [
     secondId: "gibibit",
     firstExamples: [1, 2, 5, 10, 50, 100],
     secondExamples: [1024, 2048, 5120, 10240, 51200],
+  },
+  {
+    category: "guc",
+    firstId: "sogutma-tonu",
+    secondId: "kilowatt",
+    firstExamples: [0.5, 1, 1.5, 2, 3, 5, 10],
+    secondExamples: [1, 3.5, 5, 7, 10, 17.6, 35.2],
   },
   {
     category: "alan",

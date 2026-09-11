@@ -57,6 +57,20 @@ const unitDescriptions: Record<string, UnitDescription> = {
     siEquivalent: "0 °R = mutlak sıfır; 1 °R = 5/9 K",
     commonUses: "ABD mühendislik hesapları, termodinamik, motor/turbin tasarımı",
   },
+  "sogutma-tonu": {
+    shortDescription: "Soğutma Tonu (TR), iklimlendirme ve soğutma sektöründe kullanılan bir güç birimidir; bir klima/soğutma sisteminin kaç birim ısıyı ortamdan çekebildiğini ifade eder.",
+    historySummary: "Birim, 19. yüzyılın sonlarında doğal buz hasadından mekanik soğutmaya geçiş döneminde ortaya çıktı — orijinal tanımı, '24 saatte 1 kısa ton (907 kg) saf buzu 0°C'de eritmek için gereken ısı transfer hızı'ydı. 1903'te York Manufacturing Company'den Thomas Shipley'nin öncülüğünde Buz Makinesi Üreticileri Derneği kuruldu ve teknik standartlar belirlendi; bu çaba, bugünkü ASHRAE'nin öncüsü olan Amerikan Soğutma Mühendisleri Derneği'nin (ASRE) 1904'te kurulmasına yol açtı. Beygirgücünün buhar makinelerinden sonra da kullanılmaya devam etmesi gibi, soğutma tonu da mekanik soğutmanın buz hasadının yerini almasından sonra endüstri standardı olarak yaşamaya devam etti — özellikle Kuzey Amerika'da hâlâ klima/soğutma ekipmanı kapasitesi bu birimle belirtilir.",
+    measurementSystem: "HVAC/soğutma endüstrisinde kullanılan özel güç birimi",
+    siEquivalent: "1 soğutma tonu = 12.000 BTU/saat = 3,516853 kW",
+    commonUses: "Klima ve soğutma sistemi kapasitesi, HVAC mühendisliği",
+  },
+  "reaumur": {
+    shortDescription: "Réaumur, suyun donma noktasını 0, kaynama noktasını 80 derece olarak tanımlayan, tarihsel olarak Avrupa'da yaygın kullanılmış bir sıcaklık ölçeğidir.",
+    historySummary: "Ölçek, 1730'da benzer bir sistemi ilk öneren Fransız bilim insanı René Antoine Ferchault de Réaumur'ün adını taşır. Réaumur'ün orijinal tasarımı seyreltilmiş alkol kullanıyordu ve her derece, termometre haznesinin hacminin binde birine karşılık geliyordu; suyun donma ve kaynama noktaları sırasıyla 0 ve 80 derece olarak tanımlandı. Ölçek özellikle Fransa, Almanya ve Rusya'da yaygın kullanıldı — Tolstoy ve Dostoyevski gibi yazarların eserlerinde bile geçer. 1790'larda Fransa, metrik sistemin bir parçası olarak santigrat ölçeğine geçince Réaumur'ü terk etti, ama Avrupa'nın bazı bölgelerinde 19. yüzyıl ortalarına, Rusya'nın bazı kesimlerinde ise 20. yüzyıl başlarına kadar kullanılmaya devam etti. Günümüzde kullanımı büyük ölçüde İtalya, İsviçre ve Hollanda'daki bazı gıda üretimi (özellikle peynir ve şekerleme) süreçleriyle sınırlıdır.",
+    measurementSystem: "Tarihsel Avrupa sıcaklık ölçeği (günümüzde çok sınırlı kullanım)",
+    siEquivalent: "0 °Ré = 0 °C; 80 °Ré = 100 °C (1 °Ré = 1,25 °C)",
+    commonUses: "Bazı geleneksel gıda üretimi süreçleri (peynir, şekerleme), tarihi metinler",
+  },
   "kibibit": {
     shortDescription: "Kibibit (Kibit), ikili (binary) sayı sistemine dayalı bir veri birimidir; 1 kibibit tam olarak 1024 bit'e eşittir — ondalık 'kilobit'in (1000 bit) aksine.",
     historySummary: "Bilgisayar belleği doğası gereği ikili (2'nin katları) sistemde çalıştığı için, eskiden 'kilobit' hem 1000 bit hem de pratikte sıkça 1024 bit anlamında kullanılıyordu — bu belirsizlik, özellikle depolama kapasitesi anlaşmazlıklarında (üreticilerin ondalık, işletim sistemlerinin ikili sayması gibi) karışıklığa yol açtı. Uluslararası Elektroteknik Komisyonu (IEC) 1998'de bu belirsizliği çözmek için 'kibi', 'mebi', 'gibi', 'tebi' gibi ikili öneki standardını kabul etti — 'kibibit' ismi 'kilobinary bit' ifadesinin kısaltmasıdır. Böylece 'kilobit' artık sadece ondalık (1000 bit), 'kibibit' ise sadece ikili (1024 bit) anlamına gelecek şekilde net bir ayrım yapılabildi.",
@@ -99,6 +113,20 @@ const unitDescriptions: Record<string, UnitDescription> = {
     siEquivalent: "1 İngiliz quart'ı = 1,1365225 L = 1/4 İngiliz galonu",
     commonUses: "Birleşik Krallık'ta geleneksel sıvı ölçüleri",
   },
+  "sivi-ons": {
+    shortDescription: "Sıvı Ons (ABD), küçük sıvı miktarlarını (içecek, ilaç, parfüm gibi) ifade etmek için kullanılan bir hacim birimidir.",
+    historySummary: "Sıvı ons, tarihsel olarak 'bir onsluk belirli bir maddenin (İngiltere'de şarap, İskoçya'da su) kapladığı hacim' olarak ortaya çıktı — ama Tower, troy ve avoirdupois gibi farklı 'ons' tanımları olduğu için standardizasyon karmaşıktı. ABD sıvı onsu, 1824 öncesi İngiltere'de kullanılan 'şarap galonu'ndan (231 inç küp) türetildi; uluslararası inç biriminin kabulüyle birlikte tam olarak 29,5735295625 mL olarak sabitlendi.",
+    measurementSystem: "ABD ölçü sistemi (US fluid ounce)",
+    siEquivalent: "1 sıvı ons (US) = 29,5735295625 mL = 1/16 ABD pint'i",
+    commonUses: "İçecek porsiyonları, ilaç dozajları, parfüm/kozmetik ölçüleri, mutfak tarifleri",
+  },
+  "ingiliz-sivi-ons": {
+    shortDescription: "İngiliz Sıvı Ons (Imperial Fluid Ounce), Birleşik Krallık'ta kullanılan, ABD sıvı onsundan yaklaşık %4 daha küçük bir hacim birimidir.",
+    historySummary: "1824'te İngiliz Parlamentosu, İngiliz galonunu '10 libre suyun ağırlığı' olarak tanımlayıp bunu 160 sıvı onsa böldü — bu da İngiliz sıvı onsunu, suyun avoirdupois onsuyla (ağırlık birimi) neredeyse birebir örtüşecek şekilde ayarladı (bu örtüşme sadece su için geçerli bir tesadüftür, genel bir dönüşüm kuralı değildir). Sonuç olarak İngiliz sıvı onsu, ABD sıvı onsundan yaklaşık %4,084 daha küçüktür.",
+    measurementSystem: "İngiliz ölçü sistemi (Imperial)",
+    siEquivalent: "1 İngiliz sıvı onsu = 28,4130625 mL = 1/160 İngiliz galonu",
+    commonUses: "Birleşik Krallık'ta içecek porsiyonları, geleneksel tarifler",
+  },
   "pint": {
     shortDescription: "Pint (ABD), sıvı ölçümünde kullanılan, 1 galonun sekizde birine eşit bir hacim birimidir.",
     historySummary: "Pint ismi Eski Fransızca 'pinte' kelimesinden gelir ve kabın üzerine boyanmış hacim işaretlerini ifade eder; geleneksel olarak 1 galonun sekizde biri olarak tanımlanır (Latince 'octarius' — sekizde bir — sembolüyle anılırdı). 1707'de İngiltere'nin Kuzey Amerika kolonileri 'şarap galonu'nu (231 inç küp) sıvı ölçü temeli olarak benimsedi; bu, bugünkü ABD sıvı pint'inin temelini oluşturdu. ABD pint'i tam olarak 473,176473 mililitreye eşittir.",
@@ -112,6 +140,13 @@ const unitDescriptions: Record<string, UnitDescription> = {
     measurementSystem: "İngiliz ölçü sistemi (Imperial)",
     siEquivalent: "1 İngiliz pint'i = 568,26125 mL = 1/8 İngiliz galonu",
     commonUses: "Birleşik Krallık'ta bira/içecek servisi, süt satışı, geleneksel ölçüler",
+  },
+  "peck": {
+    shortDescription: "Peck, tarım ürünleri (özellikle meyve ve sebze) ölçümünde kullanılan, 1 bushel'in dörtte birine eşit bir hacim birimidir.",
+    historySummary: "Peck, İngiliz kuru ölçü sisteminin bir parçası olarak bushel ile aynı tarihsel kökene sahiptir ve geleneksel olarak 1 bushel'in dörtte biri olarak tanımlanır. Günümüzde en çok ABD'de, özellikle elma gibi meyvelerin çiftlik pazarlarında satışında hâlâ kullanılan bir birimdir.",
+    measurementSystem: "ABD ölçü sistemi (kuru ölçü)",
+    siEquivalent: "1 peck = 8,809767994375 L = 1/4 ABD bushel'i",
+    commonUses: "Meyve/sebze satışı (özellikle elma), çiftlik pazarları",
   },
   "bushel": {
     shortDescription: "Bushel, tarım ürünleri (özellikle tahıl) ticaretinde kullanılan bir hacim/ağırlık birimidir; günümüzde emtia piyasalarında fiilen bir ağırlık birimi gibi işlev görür.",
@@ -932,6 +967,13 @@ const unitDescriptions: Record<string, UnitDescription> = {
     siEquivalent: "1 in² = 0,00064516 m²",
     commonUses: "ABD kaynaklı teknik çizimler, ekran ve parça yüzey alanları",
   },
+  "yardakare": {
+    shortDescription: "Yardakare, İngiliz ve Amerikan ölçü sistemlerinde kullanılan, bir kenarı bir yarda (0,9144 m) olan karenin alanına eşit bir birimdir.",
+    historySummary: "Yardakare, İngiliz uzunluk birimi yardanın alan karşılığı olarak gelişmiştir ve günümüzde başta ABD, İngiltere, Hindistan ve Pakistan olmak üzere gayrimenkul ilanlarında, halı/döşeme satışında ve peyzaj alanı ölçümünde yaygın biçimde kullanılmaktadır.",
+    measurementSystem: "İngiliz ve ABD ölçü sistemleri",
+    siEquivalent: "1 yd² = 0,83612736 m²",
+    commonUses: "Gayrimenkul ve arsa ilanları (özellikle Hindistan/Pakistan), halı ve döşeme satışı, peyzaj alanı ölçümü",
+  },
   "akre": {
     shortDescription: "Akre, özellikle İngiliz ve Amerikan ölçü sistemlerinde arazi ölçümünde kullanılan büyük bir alan birimidir. 4046,8564224 metrekareye eşittir.",
     historySummary: "Akre, tarihsel olarak bir çift öküzün bir günde sürebileceği tarla alanına dayanan bir yaklaşımdan gelişmiş ve günümüzde İngiliz ölçü sisteminde standart arazi birimi olarak kullanılmaya devam etmektedir.",
@@ -1726,7 +1768,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
 };
 
-const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","okka","dirhem","troy-ons","karat","grain","dalton","astronomik-birim","isik-yili","parsek","angstrom","fathom","elektronvolt","torr","ingiliz-galonu","ar","bushel","pint","ingiliz-pint","quart","ingiliz-quart","kibibit","mebibit","gibibit","tebibit","rankine","bizans-litrasi","bizans-onsu","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit","kilogram-metre-saniye","newton-saniye","pascal-saniye","santipoise","mikrometre","nanometre","deniz-mili","arsin","endaze","bizans-ayagi","bizans-kulaci","cig","santimetrekare","milimetrekare","kilometrekare","incare","akre","donum","dekar","decimal-arazi","katha","bigha","santimetrekup","fitkup","inckup","galon","bit","bayt","kilobayt","megabayt","gigabayt","terabayt","petabayt","kibibayt","mebibayt","gibibayt","tebibayt","ohm","kiloohm","megaohm","farad","milifarad","mikrofarad","nanofarad","pikofarad","henry","milihenry","mikrohenry","coulomb","milicoulomb","mikrocoulomb","nanocoulomb","ayar-24","ayar-22","ayar-18","ayar-14","999-ayar-gumus","925-ayar-gumus","900-ayar-gumus","800-ayar-gumus","milimol-litre","miligram-desilitre","nanomol-litre","nanogram-mililitre","kalori","kilokalori","btu","watt-saat","kilojoule","milibar","knot","gun","isik-hizi","varil","kilogram-kuvvet-metre","megawatt","beygirgucu-mekanik","milivolt","kiloamper","m-s2","ft-s2","g0","rpm","rad-s","deg-s","w-mk","btu-hftf","w-m2","kw-m2","j-kgk","cal-gk","m2-s","centistoke","a-m","oersted","weber","miliweber","radyan","derece","gradyan","hertz","kilohertz","megahertz","gigahertz","m3-s","cfm","gpm","kg-s","kg-h","gram-mililitre","kilogram-litre","gram-litre","miligram-litre","pound-fitkup","pound-inckup","pound-galon","slug-fitkup","milipaskal-saniye","poise","milimetrekare-saniye","kilonewton-metre","kilonewton","pound-kuvvet","dyn","litre-saniye","litre-dakika-hacimsel","metrekup-saat-hacimsel","gram-saniye","gram-saat","santimetre-saniyekare","milimetre-saniyekare","kilometre-saniyekare","inc-saniyekare","fit-dakikakare","metre-dakikakare","gal-ivme","radyan-dakika","radyan-saat","derece-dakika","derece-saat","devir-saniye-acisal","kiloamper-metre","mikroweber","nanoweber","kilowatt-metre-kelvin","watt-santimetre-kelvin","kalori-santimetrekare-saniye","kilojoule-kilogram-kelvin","btu-pound-fahrenhayt","pound-fit-saniye","tam-tur","kilometre-saniye","fit-saniye","metre-dakika","kilometre-dakika","santimetre-saniye","milisaniye","teknik-atmosfer","milimetre-su-sutunu","megajoule","therm","quad-btu"];
+const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","okka","dirhem","troy-ons","karat","grain","dalton","astronomik-birim","isik-yili","parsek","angstrom","fathom","elektronvolt","torr","ingiliz-galonu","ar","bushel","pint","ingiliz-pint","quart","ingiliz-quart","kibibit","mebibit","gibibit","tebibit","rankine","reaumur","sogutma-tonu","sivi-ons","ingiliz-sivi-ons","peck","bizans-litrasi","bizans-onsu","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit","kilogram-metre-saniye","newton-saniye","pascal-saniye","santipoise","mikrometre","nanometre","deniz-mili","arsin","endaze","bizans-ayagi","bizans-kulaci","cig","santimetrekare","milimetrekare","kilometrekare","incare","yardakare","akre","donum","dekar","decimal-arazi","katha","bigha","santimetrekup","fitkup","inckup","galon","bit","bayt","kilobayt","megabayt","gigabayt","terabayt","petabayt","kibibayt","mebibayt","gibibayt","tebibayt","ohm","kiloohm","megaohm","farad","milifarad","mikrofarad","nanofarad","pikofarad","henry","milihenry","mikrohenry","coulomb","milicoulomb","mikrocoulomb","nanocoulomb","ayar-24","ayar-22","ayar-18","ayar-14","999-ayar-gumus","925-ayar-gumus","900-ayar-gumus","800-ayar-gumus","milimol-litre","miligram-desilitre","nanomol-litre","nanogram-mililitre","kalori","kilokalori","btu","watt-saat","kilojoule","milibar","knot","gun","isik-hizi","varil","kilogram-kuvvet-metre","megawatt","beygirgucu-mekanik","milivolt","kiloamper","m-s2","ft-s2","g0","rpm","rad-s","deg-s","w-mk","btu-hftf","w-m2","kw-m2","j-kgk","cal-gk","m2-s","centistoke","a-m","oersted","weber","miliweber","radyan","derece","gradyan","hertz","kilohertz","megahertz","gigahertz","m3-s","cfm","gpm","kg-s","kg-h","gram-mililitre","kilogram-litre","gram-litre","miligram-litre","pound-fitkup","pound-inckup","pound-galon","slug-fitkup","milipaskal-saniye","poise","milimetrekare-saniye","kilonewton-metre","kilonewton","pound-kuvvet","dyn","litre-saniye","litre-dakika-hacimsel","metrekup-saat-hacimsel","gram-saniye","gram-saat","santimetre-saniyekare","milimetre-saniyekare","kilometre-saniyekare","inc-saniyekare","fit-dakikakare","metre-dakikakare","gal-ivme","radyan-dakika","radyan-saat","derece-dakika","derece-saat","devir-saniye-acisal","kiloamper-metre","mikroweber","nanoweber","kilowatt-metre-kelvin","watt-santimetre-kelvin","kalori-santimetrekare-saniye","kilojoule-kilogram-kelvin","btu-pound-fahrenhayt","pound-fit-saniye","tam-tur","kilometre-saniye","fit-saniye","metre-dakika","kilometre-dakika","santimetre-saniye","milisaniye","teknik-atmosfer","milimetre-su-sutunu","megajoule","therm","quad-btu"];
 
 export const unitPages: UnitPage[] = unitRegistry
   .filter((entry) => entry.tr && unitDescriptions[entry.id])

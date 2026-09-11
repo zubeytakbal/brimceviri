@@ -71,6 +71,34 @@ const unitDescriptions: Record<string, UnitDescription> = {
     siEquivalent: "0 °Ré = 0 °C; 80 °Ré = 100 °C (1 °Ré = 1,25 °C)",
     commonUses: "Bazı geleneksel gıda üretimi süreçleri (peynir, şekerleme), tarihi metinler",
   },
+  "kilobit": {
+    shortDescription: "Kilobit (kbit), 1000 bit'e eşit ondalık tabanlı bir veri birimidir; genellikle veri aktarım hızlarını ifade etmek için kullanılır.",
+    historySummary: "Kilobit, SI ondalık önek sistemine göre tanımlanmıştır ve ağ/telekomünikasyon standartlarında (IEEE, IEC) veri aktarım hızı ölçümü için resmi olarak 1000 bit kabul edilir — bu, bellek kapasitesi ölçümünde tarihsel olarak kullanılan ikili (1024 bit) yorumdan farklıdır. Modem çağında (1990'lar) 'kbps' (kilobit/saniye) bağlantı hızının standart ifadesi haline gelmiş ve bu kullanım günümüze kadar sürmüştür.",
+    measurementSystem: "SI ondalık önek sistemi",
+    siEquivalent: "1 kilobit = 1000 bit = 125 bayt",
+    commonUses: "İnternet bağlantı hızı (kbps), eski modem hızları, düşük bit hızlı ses/veri akışları",
+  },
+  "megabit": {
+    shortDescription: "Megabit (Mbit), 1.000.000 bit'e eşit ondalık tabanlı bir veri birimidir; internet hızı test sonuçlarının (Mbps) standart birimidir.",
+    historySummary: "Megabit, internet servis sağlayıcılarının (İSS) bağlantı hızlarını reklam etmek için kullandığı standart birimdir ve dosya boyutlarının ölçüldüğü megabayt (MB) ile sıkça karıştırılır — oysa 1 megabayt = 8 megabit'tir. Bu karışıklık o kadar yaygındır ki, '100 Mbps internetim var neden indirme hızım 12,5 MB/s' türü sorular internet forumlarında en sık sorulan sorulardan biri haline gelmiştir; ayrım İEEE 802.3 Ethernet standardından beri (1980'ler) korunmaktadır.",
+    measurementSystem: "SI ondalık önek sistemi",
+    siEquivalent: "1 megabit = 1.000.000 bit = 125.000 bayt = 0,125 MB",
+    commonUses: "İnternet bağlantı hızı (Mbps), fiber/ADSL hız testleri, video akış (streaming) bit hızları",
+  },
+  "gigabit": {
+    shortDescription: "Gigabit (Gbit), 1.000.000.000 bit'e eşit ondalık tabanlı bir veri birimidir; fiber internet ve yerel ağ (Ethernet) hızlarının standart ölçüsüdür.",
+    historySummary: "Gigabit Ethernet standardı (IEEE 802.3z, 1998) ile birlikte 'gigabit' terimi yerel ağ donanımı (anahtarlar, kartlar) pazarlamasında yaygınlaşmış, 2010'lardan itibaren de fiber internet altyapısının (GPON, Gigabit fiber) reklam biriminde standart haline gelmiştir.",
+    measurementSystem: "SI ondalık önek sistemi",
+    siEquivalent: "1 gigabit = 1.000.000.000 bit = 125.000.000 bayt = 125 MB",
+    commonUses: "Fiber internet hızı (Gbps), Gigabit Ethernet ağ donanımı, veri merkezi bağlantı hızları",
+  },
+  "terabit": {
+    shortDescription: "Terabit (Tbit), 1.000.000.000.000 bit'e eşit ondalık tabanlı bir veri birimidir; büyük ölçekli ağ omurgası ve veri merkezi bağlantılarında kullanılır.",
+    historySummary: "Terabit birimi, internet omurga (backbone) altyapısındaki toplam veri taşıma kapasitesini ifade etmek için kullanılır — örneğin denizaltı fiber optik kabloların taşıma kapasitesi genellikle terabit/saniye (Tbps) cinsinden belirtilir; ilk çok-terabit kapasiteli denizaltı kabloları 2010'lu yılların ortasında devreye girmiştir.",
+    measurementSystem: "SI ondalık önek sistemi",
+    siEquivalent: "1 terabit = 1.000.000.000.000 bit = 125.000.000.000 bayt = 125 GB",
+    commonUses: "Denizaltı/omurga fiber optik kablo kapasitesi, büyük veri merkezi ağ altyapısı",
+  },
   "kibibit": {
     shortDescription: "Kibibit (Kibit), ikili (binary) sayı sistemine dayalı bir veri birimidir; 1 kibibit tam olarak 1024 bit'e eşittir — ondalık 'kilobit'in (1000 bit) aksine.",
     historySummary: "Bilgisayar belleği doğası gereği ikili (2'nin katları) sistemde çalıştığı için, eskiden 'kilobit' hem 1000 bit hem de pratikte sıkça 1024 bit anlamında kullanılıyordu — bu belirsizlik, özellikle depolama kapasitesi anlaşmazlıklarında (üreticilerin ondalık, işletim sistemlerinin ikili sayması gibi) karışıklığa yol açtı. Uluslararası Elektroteknik Komisyonu (IEC) 1998'de bu belirsizliği çözmek için 'kibi', 'mebi', 'gibi', 'tebi' gibi ikili öneki standardını kabul etti — 'kibibit' ismi 'kilobinary bit' ifadesinin kısaltmasıdır. Böylece 'kilobit' artık sadece ondalık (1000 bit), 'kibibit' ise sadece ikili (1024 bit) anlamına gelecek şekilde net bir ayrım yapılabildi.",
@@ -316,6 +344,13 @@ const unitDescriptions: Record<string, UnitDescription> = {
     siEquivalent: "1 bigha = 1337,8 m² = 20 katha (Bangladeş standardı)",
     commonUses: "Bangladeş, Hindistan ve Nepal'de arazi alım satımı ve tapu kayıtları",
   },
+  "tsubo": {
+    shortDescription: "Tsubo, Japonya'da gayrimenkul ve arsa ölçümünde kullanılan geleneksel bir alan birimidir. 1 tsubo, 3,305785 metrekareye eşittir.",
+    historySummary: "Tsubo, geleneksel Japon tatami hasırının (yaklaşık 1 x 2 shaku boyutlarında) iki katı alana dayanan tarihi bir birimdir ve Japonya'da metrik sisteme resmi geçişten (1966) sonra bile emlak ilanlarında, mimarlık ve inşaat sektöründe yaygın kullanılmaya devam etmektedir — özellikle Tokyo gibi şehirlerde konut fiyatları sıklıkla 'tsubo başına fiyat' olarak ifade edilir.",
+    measurementSystem: "Japonya'ya özgü geleneksel birim",
+    siEquivalent: "1 tsubo = 3,305785 m²",
+    commonUses: "Japonya'da gayrimenkul ilanları, arsa alım satımı, mimarlık ve inşaat projeleri",
+  },
   "metrekup": {
     shortDescription: "Metreküp, hacmin SI türetilmiş birimidir. Büyük hacimler ve teknik kapasiteler için temel referanstır.",
     historySummary: "Metreküp, metrenin üç boyutlu uzantısı olarak bilim ve mühendislikte temel hacim birimi hâline geldi.",
@@ -336,6 +371,27 @@ const unitDescriptions: Record<string, UnitDescription> = {
     measurementSystem: "Metrik sistem, SI ile uyumlu",
     siEquivalent: "1 mL = 0,000001 m³",
     commonUses: "İlaç dozları, laboratuvar örnekleri ve küçük sıvı hacimleri",
+  },
+  "yemek-kasigi": {
+    shortDescription: "Yemek kaşığı, Türk mutfağında tarif ölçümünde en sık kullanılan hacim birimidir. Standart bir yemek kaşığı yaklaşık 15 mL'ye eşittir.",
+    historySummary: "Yemek kaşığı, hassas tartı aletlerinin evlerde yaygın olmadığı dönemlerden kalma, mutfakta pratik ve hızlı ölçüm ihtiyacından doğmuş geleneksel bir birimdir. Türkiye'de tarif kitaplarında ve yemek sitelerinde 1 yemek kaşığının 15 mL olarak kabul edilmesi, ABD standart yemek kaşığı ölçüsüyle (14,7868 mL) neredeyse birebir örtüşür ve bu değer günümüzde de değişmeden kullanılmaya devam eder.",
+    measurementSystem: "Mutfak ölçü birimi (Türkiye geleneği)",
+    siEquivalent: "1 yemek kaşığı ≈ 15 mL = 0,000015 m³",
+    commonUses: "Türk mutfağı tarifleri, sıvı ve toz malzeme ölçümü (yağ, şeker, un vb.)",
+  },
+  "cay-kasigi": {
+    shortDescription: "Çay kaşığı, Türk mutfağında küçük miktarlı malzemelerin (tuz, baharat, maya vb.) ölçümünde kullanılan hacim birimidir. Standart bir çay kaşığı yaklaşık 5 mL'ye eşittir.",
+    historySummary: "Çay kaşığı, adını çay içmek için kullanılan küçük kaşıktan alır ve zamanla mutfakta küçük hacimli malzemelerin standart ölçü birimine dönüşmüştür; Türkiye'de kabul edilen 5 mL değeri, uluslararası standart çay kaşığı (ABD: 4,92892 mL, metrik: 5 mL) ölçüsüyle uyumludur.",
+    measurementSystem: "Mutfak ölçü birimi (Türkiye geleneği)",
+    siEquivalent: "1 çay kaşığı ≈ 5 mL = 0,000005 m³",
+    commonUses: "Türk mutfağı tarifleri, tuz/baharat/maya gibi küçük miktarlı malzeme ölçümü",
+  },
+  "su-bardagi": {
+    shortDescription: "Su bardağı, Türk mutfağında un, şeker, süt gibi malzemelerin ölçümünde kullanılan standart hacim birimidir. Geleneksel Türk su bardağı 200 mL'ye eşittir.",
+    historySummary: "Su bardağı ölçüsü, Türk mutfak kültüründe yaygın kullanılan standart bardağın hacminden türemiştir; tarif kitaplarında ve yemek sitelerinde 1 su bardağının 200 mL kabul edilmesi yerleşik bir gelenektir ve bu değer, ABD'nin metrik olmayan 'cup' ölçüsünden (236,588 mL) belirgin biçimde farklıdır — bu yüzden yabancı tariflerin doğrudan çevrilmesi hatalı sonuç verebilir.",
+    measurementSystem: "Mutfak ölçü birimi (Türkiye geleneği)",
+    siEquivalent: "1 su bardağı = 200 mL = 0,0002 m³",
+    commonUses: "Türk mutfağı tarifleri, un/şeker/süt gibi malzemelerin hacimce ölçümü",
   },
   "varil": {
     shortDescription: "Varil (bbl), özellikle ham petrol ticaretinde kullanılan standart bir hacim birimidir. 1 varil, 158,987 litreye (42 ABD galonuna) eşittir.",
@@ -378,6 +434,13 @@ const unitDescriptions: Record<string, UnitDescription> = {
     measurementSystem: "İngiliz ve ABD ölçü sistemleri",
     siEquivalent: "1 lb = 0,45359237 kg",
     commonUses: "Perakende, taşımacılık, beslenme ve endüstriyel kataloglar",
+  },
+  "stone": {
+    shortDescription: "Stone (st), Birleşik Krallık ve İrlanda'da özellikle vücut ağırlığı belirtmek için kullanılan bir kütle birimidir. 1 stone, 14 pound'a (6,35029318 kg) eşittir.",
+    historySummary: "Stone, ortaçağ İngiltere'sinde yün ve tarım ürünlerinin tartılmasında kullanılan taş ağırlıklara dayanan bir birim olarak ortaya çıkmış, 1835'teki Ağırlık ve Ölçüler Yasası ile 14 pound olarak resmileştirilmiştir. Günümüzde metrik sisteme geçmiş olmasına rağmen, Birleşik Krallık ve İrlanda'da insan vücut ağırlığı günlük konuşmada ve tıbbi bağlamda hâlâ yaygın olarak stone cinsinden ifade edilir (örneğin '12 stone 5 pound').",
+    measurementSystem: "İngiliz ölçü sistemi (Imperial)",
+    siEquivalent: "1 stone = 6,35029318 kg = 14 pound",
+    commonUses: "Birleşik Krallık ve İrlanda'da vücut ağırlığı ifadesi, boks/güreş gibi spor dallarında sıklet belirtme",
   },
   "ons": {
     shortDescription: "Ons, İngiliz ve Amerikan ölçü sistemlerinde kullanılan küçük bir kütle birimidir. Bir avoirdupois ons 28,349523125 grama eşittir.",
@@ -483,6 +546,20 @@ const unitDescriptions: Record<string, UnitDescription> = {
     measurementSystem: "Uluslararası Birim Sistemi (SI, kat birim)",
     siEquivalent: "1 kPa = 1000 Pa",
     commonUses: "HVAC, yapı mühendisliği, lastik basıncı ve proses verileri",
+  },
+  "megapascal": {
+    shortDescription: "Megapascal (MPa), 1.000.000 pascala eşit bir basınç birimidir; malzeme mukavemeti ve mühendislik hesaplarında en yaygın kullanılan basınç birimlerinden biridir.",
+    historySummary: "Megapascal, beton basınç dayanımı (örneğin C25 beton = 25 MPa), çelik akma dayanımı ve diğer malzeme mukavemet değerlerinin ifade edilmesinde SI sisteminin standart birimi olarak inşaat mühendisliği ve malzeme bilimi alanlarında evrensel biçimde benimsenmiştir; 1 MPa tam olarak 1 N/mm²'ye eşit olduğu için mühendislik hesaplarında pratik bir birim haline gelmiştir.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, kat birim)",
+    siEquivalent: "1 MPa = 1.000.000 Pa = 1 N/mm²",
+    commonUses: "Beton ve çelik mukavemet değerleri, malzeme mühendisliği, basınçlı kap tasarımı",
+  },
+  "hektopascal": {
+    shortDescription: "Hektopascal (hPa), 100 pascala eşit bir basınç birimidir ve meteorolojide atmosfer basıncını ifade etmenin uluslararası standardıdır.",
+    historySummary: "Hektopascal, eski 'milibar' biriminin (1 hPa = 1 mbar) SI uyumlu karşılığı olarak Dünya Meteoroloji Örgütü tarafından benimsenmiş ve günümüzde hava durumu raporlarında, basınç haritalarında ve barometrelerde standart birim olarak kullanılmaktadır; deniz seviyesinde ortalama atmosfer basıncı yaklaşık 1013,25 hPa'dır.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, kat birim)",
+    siEquivalent: "1 hPa = 100 Pa = 1 mbar",
+    commonUses: "Hava durumu raporları, meteorolojik basınç ölçümü, barometre okumaları",
   },
   "bar": {
     shortDescription: "Bar, 100000 pascala eşit bir basınç birimidir. Sanayi ve ekipman göstergelerinde çok yaygın bir pratik gösterimdir.",
@@ -1768,7 +1845,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
 };
 
-const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","okka","dirhem","troy-ons","karat","grain","dalton","astronomik-birim","isik-yili","parsek","angstrom","fathom","elektronvolt","torr","ingiliz-galonu","ar","bushel","pint","ingiliz-pint","quart","ingiliz-quart","kibibit","mebibit","gibibit","tebibit","rankine","reaumur","sogutma-tonu","sivi-ons","ingiliz-sivi-ons","peck","bizans-litrasi","bizans-onsu","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit","kilogram-metre-saniye","newton-saniye","pascal-saniye","santipoise","mikrometre","nanometre","deniz-mili","arsin","endaze","bizans-ayagi","bizans-kulaci","cig","santimetrekare","milimetrekare","kilometrekare","incare","yardakare","akre","donum","dekar","decimal-arazi","katha","bigha","santimetrekup","fitkup","inckup","galon","bit","bayt","kilobayt","megabayt","gigabayt","terabayt","petabayt","kibibayt","mebibayt","gibibayt","tebibayt","ohm","kiloohm","megaohm","farad","milifarad","mikrofarad","nanofarad","pikofarad","henry","milihenry","mikrohenry","coulomb","milicoulomb","mikrocoulomb","nanocoulomb","ayar-24","ayar-22","ayar-18","ayar-14","999-ayar-gumus","925-ayar-gumus","900-ayar-gumus","800-ayar-gumus","milimol-litre","miligram-desilitre","nanomol-litre","nanogram-mililitre","kalori","kilokalori","btu","watt-saat","kilojoule","milibar","knot","gun","isik-hizi","varil","kilogram-kuvvet-metre","megawatt","beygirgucu-mekanik","milivolt","kiloamper","m-s2","ft-s2","g0","rpm","rad-s","deg-s","w-mk","btu-hftf","w-m2","kw-m2","j-kgk","cal-gk","m2-s","centistoke","a-m","oersted","weber","miliweber","radyan","derece","gradyan","hertz","kilohertz","megahertz","gigahertz","m3-s","cfm","gpm","kg-s","kg-h","gram-mililitre","kilogram-litre","gram-litre","miligram-litre","pound-fitkup","pound-inckup","pound-galon","slug-fitkup","milipaskal-saniye","poise","milimetrekare-saniye","kilonewton-metre","kilonewton","pound-kuvvet","dyn","litre-saniye","litre-dakika-hacimsel","metrekup-saat-hacimsel","gram-saniye","gram-saat","santimetre-saniyekare","milimetre-saniyekare","kilometre-saniyekare","inc-saniyekare","fit-dakikakare","metre-dakikakare","gal-ivme","radyan-dakika","radyan-saat","derece-dakika","derece-saat","devir-saniye-acisal","kiloamper-metre","mikroweber","nanoweber","kilowatt-metre-kelvin","watt-santimetre-kelvin","kalori-santimetrekare-saniye","kilojoule-kilogram-kelvin","btu-pound-fahrenhayt","pound-fit-saniye","tam-tur","kilometre-saniye","fit-saniye","metre-dakika","kilometre-dakika","santimetre-saniye","milisaniye","teknik-atmosfer","milimetre-su-sutunu","megajoule","therm","quad-btu"];
+const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","okka","dirhem","troy-ons","karat","grain","dalton","astronomik-birim","isik-yili","parsek","angstrom","fathom","elektronvolt","torr","ingiliz-galonu","ar","bushel","pint","ingiliz-pint","quart","ingiliz-quart","kibibit","mebibit","gibibit","tebibit","rankine","reaumur","sogutma-tonu","sivi-ons","ingiliz-sivi-ons","peck","kilobit","megabit","gigabit","terabit","yemek-kasigi","cay-kasigi","su-bardagi","stone","tsubo","megapascal","hektopascal","bizans-litrasi","bizans-onsu","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit","kilogram-metre-saniye","newton-saniye","pascal-saniye","santipoise","mikrometre","nanometre","deniz-mili","arsin","endaze","bizans-ayagi","bizans-kulaci","cig","santimetrekare","milimetrekare","kilometrekare","incare","yardakare","akre","donum","dekar","decimal-arazi","katha","bigha","santimetrekup","fitkup","inckup","galon","bit","bayt","kilobayt","megabayt","gigabayt","terabayt","petabayt","kibibayt","mebibayt","gibibayt","tebibayt","ohm","kiloohm","megaohm","farad","milifarad","mikrofarad","nanofarad","pikofarad","henry","milihenry","mikrohenry","coulomb","milicoulomb","mikrocoulomb","nanocoulomb","ayar-24","ayar-22","ayar-18","ayar-14","999-ayar-gumus","925-ayar-gumus","900-ayar-gumus","800-ayar-gumus","milimol-litre","miligram-desilitre","nanomol-litre","nanogram-mililitre","kalori","kilokalori","btu","watt-saat","kilojoule","milibar","knot","gun","isik-hizi","varil","kilogram-kuvvet-metre","megawatt","beygirgucu-mekanik","milivolt","kiloamper","m-s2","ft-s2","g0","rpm","rad-s","deg-s","w-mk","btu-hftf","w-m2","kw-m2","j-kgk","cal-gk","m2-s","centistoke","a-m","oersted","weber","miliweber","radyan","derece","gradyan","hertz","kilohertz","megahertz","gigahertz","m3-s","cfm","gpm","kg-s","kg-h","gram-mililitre","kilogram-litre","gram-litre","miligram-litre","pound-fitkup","pound-inckup","pound-galon","slug-fitkup","milipaskal-saniye","poise","milimetrekare-saniye","kilonewton-metre","kilonewton","pound-kuvvet","dyn","litre-saniye","litre-dakika-hacimsel","metrekup-saat-hacimsel","gram-saniye","gram-saat","santimetre-saniyekare","milimetre-saniyekare","kilometre-saniyekare","inc-saniyekare","fit-dakikakare","metre-dakikakare","gal-ivme","radyan-dakika","radyan-saat","derece-dakika","derece-saat","devir-saniye-acisal","kiloamper-metre","mikroweber","nanoweber","kilowatt-metre-kelvin","watt-santimetre-kelvin","kalori-santimetrekare-saniye","kilojoule-kilogram-kelvin","btu-pound-fahrenhayt","pound-fit-saniye","tam-tur","kilometre-saniye","fit-saniye","metre-dakika","kilometre-dakika","santimetre-saniye","milisaniye","teknik-atmosfer","milimetre-su-sutunu","megajoule","therm","quad-btu"];
 
 export const unitPages: UnitPage[] = unitRegistry
   .filter((entry) => entry.tr && unitDescriptions[entry.id])

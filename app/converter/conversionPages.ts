@@ -1564,6 +1564,22 @@ function createTemperatureFormula(
     return `${toName} = ${fromName} − 273,15`;
   }
 
+  if (fromUnit === "C" && toUnit === "R") {
+    return `${toName} = (${fromName} + 273,15) × 9/5`;
+  }
+
+  if (fromUnit === "R" && toUnit === "C") {
+    return `${toName} = ${fromName} × 5/9 − 273,15`;
+  }
+
+  if (fromUnit === "F" && toUnit === "R") {
+    return `${toName} = ${fromName} + 459,67`;
+  }
+
+  if (fromUnit === "R" && toUnit === "F") {
+    return `${toName} = ${fromName} − 459,67`;
+  }
+
   return `${toName} = ${fromName}`;
 }
 
@@ -1587,6 +1603,22 @@ function createTemperatureExplanation(
 
   if (fromUnit === "K" && toUnit === "C") {
     return `${fromName} değeri ${toName} birimine çevrilirken 273,15 çıkarılır. 273,15 K, 0 C eder.`;
+  }
+
+  if (fromUnit === "C" && toUnit === "R") {
+    return `${fromName} değerine 273,15 eklenip 9/5 ile çarpılır (Rankine, Fahrenheit derece aralığını kullanan mutlak bir sıcaklık ölçeğidir). 0 C, 491,67 R eder.`;
+  }
+
+  if (fromUnit === "R" && toUnit === "C") {
+    return `${fromName} değeri 5/9 ile çarpılıp 273,15 çıkarılır. 491,67 R, 0 C eder.`;
+  }
+
+  if (fromUnit === "F" && toUnit === "R") {
+    return `${fromName} değerine 459,67 eklenir (Rankine sıfırı mutlak sıfıra denk gelir). 0 F, 459,67 R eder.`;
+  }
+
+  if (fromUnit === "R" && toUnit === "F") {
+    return `${fromName} değerinden 459,67 çıkarılır. 459,67 R, 0 F eder.`;
   }
 
   return `${fromName} değerini ${toName} birimine çevirin.`;
@@ -1655,6 +1687,30 @@ const customConversionPages: ConversionPage[] = [
     "santigrat",
     [233.15, 273.15, 293.15, 310.15, 373.15],
     "santigrat-kelvin"
+  ),
+  createTemperaturePage(
+    "santigrat",
+    "rankine",
+    [-273.15, -40, 0, 20, 100],
+    "rankine-santigrat"
+  ),
+  createTemperaturePage(
+    "rankine",
+    "santigrat",
+    [0, 491.67, 528.27, 559.67, 671.67],
+    "santigrat-rankine"
+  ),
+  createTemperaturePage(
+    "fahrenhayt",
+    "rankine",
+    [-459.67, -40, 0, 32, 212],
+    "rankine-fahrenhayt"
+  ),
+  createTemperaturePage(
+    "rankine",
+    "fahrenhayt",
+    [0, 459.67, 491.67, 528.27, 671.67],
+    "fahrenhayt-rankine"
   ),
 ];
 
@@ -1756,6 +1812,34 @@ const newUnitPairDefinitions: ConversionPairDefinition[] = [
     secondId: "quart",
     firstExamples: [1, 2, 5, 10, 20, 50],
     secondExamples: [1, 2, 5, 10, 20, 50],
+  },
+  {
+    category: "veri",
+    firstId: "kibibit",
+    secondId: "bit",
+    firstExamples: [1, 2, 5, 10, 50, 100],
+    secondExamples: [128, 1024, 2048, 5120, 10240],
+  },
+  {
+    category: "veri",
+    firstId: "mebibit",
+    secondId: "kibibit",
+    firstExamples: [1, 2, 5, 10, 50, 100],
+    secondExamples: [1024, 2048, 5120, 10240, 51200],
+  },
+  {
+    category: "veri",
+    firstId: "gibibit",
+    secondId: "mebibit",
+    firstExamples: [1, 2, 5, 10, 50, 100],
+    secondExamples: [1024, 2048, 5120, 10240, 51200],
+  },
+  {
+    category: "veri",
+    firstId: "tebibit",
+    secondId: "gibibit",
+    firstExamples: [1, 2, 5, 10, 50, 100],
+    secondExamples: [1024, 2048, 5120, 10240, 51200],
   },
   {
     category: "alan",

@@ -1,0 +1,26 @@
+"use client";
+
+import { useMemo, useState } from "react";
+
+type ModulusUnit = "gpa" | "ksi";
+type InertiaUnit = "mm4" | "in4";
+type LengthUnit = "mm" | "m" | "in" | "ft";
+type EndCondition = "pinned-pinned" | "fixed-free" | "fixed-pinned" | "fixed-fixed";
+
+const effectiveLengthFactors: Record<EndCondition, number> = { "pinned-pinned": 1, "fixed-free": 2, "fixed-pinned": .7, "fixed-fixed": .5 };
+const lengthFactors: Record<LengthUnit, number> = { mm: .001, m: 1, in: .0254, ft: .3048 };
+function number(value: string) { const parsed = Number(value.trim().replace(",", ".")); return Number.isFinite(parsed) ? parsed : null; }
+function format(value: number, digits = 3) { return new Intl.NumberFormat("en-US", { maximumFractionDigits: digits }).format(value); }
+
+export default function EnglishEulerBucklingCalculator() {
+  const [modulus, setModulus] = useState("200"); const [modulusUnit, setModulusUnit] = useState<ModulusUnit>("gpa");
+  const [inertia, setInertia] = useState("8.333e6"); const [inertiaUnit, setInertiaUnit] = useState<InertiaUnit>("mm4");
+  const [length, setLength] = useState("2"); const [lengthUnit, setLengthUnit] = useState<LengthUnit>("m"); const [endCondition, setEndCondition] = useState<EndCondition>("pinned-pinned");
+  const result = useMemo(() => {
+    const values = [modulus, inertia, length].map(number); if (values.some((value) => value === null)) return null;
+    const [modulusInput, inertiaInput, lengthInput] = values as number[]; if (modulusInput <= 0 || inertiaInput <= 0 || lengthInput <= 0) return null;
+    const e = modulusUnit === "ksi" ? modulusInput * 6.894757e6 : modulusInput * 1e9; const i = inertiaUnit === "in4" ? inertiaInput * .0254 ** 4 : inertiaInput * 1e-12; const lengthM = lengthInput * lengthFactors[lengthUnit]; const effectiveLengthM = effectiveLengthFactors[endCondition] * lengthM;
+    const criticalLoadN = Math.PI ** 2 * e * i / effectiveLengthM ** 2; return { criticalLoadN, effectiveLengthM };
+  }, [endCondition, inertia, inertiaUnit, length, lengthUnit, modulus, modulusUnit]);
+  return <div className="category-general-converter"><div className="engineering-calculator-card"><p className="calculator-usage-hint">Euler buckling uses an ideal straight, prismatic column with centric load and linear-elastic behavior. Use the weak-axis second moment of area.</p><div className="engineering-targets"><span>End condition</span><div className="engineering-target-grid hydrostatic-target-grid">{(["pinned-pinned", "fixed-free", "fixed-pinned", "fixed-fixed"] as EndCondition[]).map((condition) => <button key={condition} type="button" className={`engineering-target-button${endCondition === condition ? " is-active" : ""}`} onClick={() => setEndCondition(condition)}>{condition === "pinned-pinned" ? "Pinned–pinned" : condition === "fixed-free" ? "Fixed–free" : condition === "fixed-pinned" ? "Fixed–pinned" : "Fixed–fixed"}</button>)}</div></div><div className="paint-calculator-grid"><label className="category-general-converter-field"><span>Young&apos;s modulus (E)</span><div className="category-general-converter-input-row"><input type="text" inputMode="decimal" value={modulus} onChange={(event) => setModulus(event.target.value)} /><select value={modulusUnit} onChange={(event) => setModulusUnit(event.target.value as ModulusUnit)}><option value="gpa">GPa</option><option value="ksi">ksi</option></select></div></label><label className="category-general-converter-field"><span>Second moment of area (I)</span><div className="category-general-converter-input-row"><input type="text" inputMode="decimal" value={inertia} onChange={(event) => setInertia(event.target.value)} /><select value={inertiaUnit} onChange={(event) => setInertiaUnit(event.target.value as InertiaUnit)}><option value="mm4">mm⁴</option><option value="in4">in⁴</option></select></div></label><label className="category-general-converter-field"><span>Unsupported length (L)</span><div className="category-general-converter-input-row"><input type="text" inputMode="decimal" value={length} onChange={(event) => setLength(event.target.value)} /><select value={lengthUnit} onChange={(event) => setLengthUnit(event.target.value as LengthUnit)}><option value="mm">mm</option><option value="m">m</option><option value="in">in</option><option value="ft">ft</option></select></div></label></div></div><div aria-live="polite" className="category-general-converter-result paint-calculator-result">{!result ? <strong>Enter positive modulus, second moment of area and unsupported length values.</strong> : <div className="paint-calculator-result-grid"><div><span>Euler critical load (Pcr)</span><strong>{format(result.criticalLoadN / 1000)} kN</strong><small>{format(result.criticalLoadN / 4.448221615)} lbf</small></div><div><span>Effective buckling length (KL)</span><strong>{format(result.effectiveLengthM)} m</strong><small>K = {effectiveLengthFactors[endCondition]}</small></div></div>}</div><p className="calculator-usage-hint"><strong>Important:</strong> the result is not an allowable load or design resistance. Real columns have imperfections, eccentricity, residual stress and connection flexibility; yielding or inelastic buckling may govern before Euler buckling.</p></div>;
+}

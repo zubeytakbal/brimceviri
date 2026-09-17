@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { uzbekUnitPages } from "../../../converter/localizedUzbekUnitPages";
 import { uzbekCategoryPages } from "../../../converter/localizedUzbekCategoryPages";
+import { uzbekConversionPages } from "../../../converter/localizedUzbekConversionPages";
 import { findEnglishUnitPageByTurkishSlug } from "../../../converter/localizedUnitPages";
 import { buildFullLanguageAlternates } from "../../../i18n/routing";
 import { buildSiteUrl } from "../../../siteConfig";
@@ -63,6 +64,12 @@ export default async function UzbekUnitPage({ params }: PageProps) {
     (category) => category.category === unitPage.category
   );
 
+  const relatedConversions = uzbekConversionPages.filter(
+    (page) =>
+      page.category === unitPage.category &&
+      (page.fromUnit === unitPage.unit || page.toUnit === unitPage.unit)
+  );
+
   return (
     <main className="all-conversions-page" lang="uz">
       <div className="all-conversions-shell">
@@ -92,7 +99,7 @@ export default async function UzbekUnitPage({ params }: PageProps) {
               <dd>{unitPage.symbol}</dd>
             </div>
             <div>
-              <dt>O'lchov tizimi</dt>
+              <dt>O&apos;lchov tizimi</dt>
               <dd>{unitPage.measurementSystem}</dd>
             </div>
             <div>
@@ -107,7 +114,7 @@ export default async function UzbekUnitPage({ params }: PageProps) {
           </section>
 
           <section className="conversion-section unit-long-section">
-            <h2>Qo'llanilishi</h2>
+            <h2>Qo&apos;llanilishi</h2>
             <p>{unitPage.commonUses}</p>
           </section>
 
@@ -118,21 +125,40 @@ export default async function UzbekUnitPage({ params }: PageProps) {
                   className="text-link"
                   href={`/uz/turkumlar/${categoryPage.slug}`}
                 >
-                  {categoryPage.title} turkumidagi boshqa birliklarni ko'rish
+                  {categoryPage.title} turkumidagi boshqa birliklarni ko&apos;rish
                 </Link>
               </p>
             </section>
           )}
 
+          {relatedConversions.length > 0 && (
+            <section className="conversion-section" id="aylantirish-vositalari">
+              <h2>{unitPage.name} aylantirish vositalari</h2>
+
+              <ul className="related-conversion-list">
+                {relatedConversions.map((conversion) => (
+                  <li key={conversion.slug}>
+                    <Link href={`/uz/${conversion.slug}`}>
+                      {conversion.fromName} → {conversion.toName}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          {(unitPage.sourceSlug || englishPage) && (
           <section className="conversion-section language-alternatives">
             <h2>Boshqa tillar</h2>
-            <Link
-              className="text-link"
-              href={`/birimler/${unitPage.sourceSlug}`}
-              hrefLang="tr"
-            >
-              Turkcha versiyani ochish
-            </Link>
+            {unitPage.sourceSlug && (
+              <Link
+                className="text-link"
+                href={`/birimler/${unitPage.sourceSlug}`}
+                hrefLang="tr"
+              >
+                Turkcha versiyani ochish
+              </Link>
+            )}
             {englishPage && (
               <Link
                 className="text-link"
@@ -143,6 +169,7 @@ export default async function UzbekUnitPage({ params }: PageProps) {
               </Link>
             )}
           </section>
+          )}
         </section>
       </div>
     </main>

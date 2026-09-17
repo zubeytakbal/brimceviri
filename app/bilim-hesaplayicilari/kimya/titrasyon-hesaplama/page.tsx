@@ -351,6 +351,17 @@ export default function TitrasyonHesaplamaPage() {
             </p>
           ))}
 
+          <h2>İlgili araçlar</h2>
+          <p>
+            Derişim hesabı için{" "}
+            <Link href="/bilim-hesaplayicilari/kimya/molarite-hesaplama">Molarite Hesaplama</Link>,{" "}
+            seyreltme hesabı için{" "}
+            <Link href="/bilim-hesaplayicilari/kimya/seyreltme-hesaplama">Seyreltme Hesaplama</Link>,{" "}
+            eşdeğerlik noktasındaki pH için{" "}
+            <Link href="/bilim-hesaplayicilari/kimya/ph-hesaplama">pH Hesaplama</Link>
+            {" "}sayfasına bakabilirsin.
+          </p>
+
           <h2>Kaynaklar</h2>
           <p>
             Titrasyon eşdeğerlik bağıntısı, asit-baz nötrleşme

@@ -8,6 +8,7 @@ import {
 } from "../converter/kitchenIngredientLabels";
 import {
   type KitchenIngredientKey,
+  type KitchenCupStandard,
   type KitchenUnit,
   convertKitchenValue,
   kitchenIngredientRows,
@@ -23,6 +24,7 @@ const copy = {
   },
   en: {
     ingredient: "Ingredient",
+    cupStandard: "Cup standard",
     knownUnit: "Known Unit",
     value: "Value",
     resultHeading: "Equivalents",
@@ -42,7 +44,24 @@ const copy = {
     resultHeading: "القيم المكافئة",
     invalidValue: "أدخل رقما صحيحا لعرض نتيجة التحويل.",
   },
+  uz: {
+    ingredient: "Mahsulot",
+    knownUnit: "Ma'lum Birlik",
+    value: "Qiymat",
+    resultHeading: "Mos Qiymatlar",
+    invalidValue: "Natijani ko'rish uchun to'g'ri raqam kiriting.",
+  },
 } as const;
+
+const englishCupStandardLabels: Record<
+  Exclude<KitchenCupStandard, "turkish">,
+  string
+> = {
+  us: "US customary cup (236.588 ml)",
+  usLegal: "US legal cup (240 ml)",
+  metric: "Metric cup (250 ml)",
+  imperial: "Imperial cup (284.131 ml)",
+};
 
 const unitOrder: KitchenUnit[] = [
   "bardak",
@@ -61,7 +80,9 @@ function formatValue(value: number, locale: KitchenLocale) {
         ? "de-DE"
         : locale === "ar"
           ? "ar"
-          : "en-US";
+          : locale === "uz"
+            ? "uz-UZ"
+            : "en-US";
 
   return value.toLocaleString(localeName, {
     maximumFractionDigits: value < 10 ? 2 : 1,
@@ -88,10 +109,19 @@ export default function KitchenMeasuresConverter({
   const [ingredient, setIngredient] = useState<KitchenIngredientKey>("un");
   const [unit, setUnit] = useState<KitchenUnit>("bardak");
   const [inputValue, setInputValue] = useState("1");
+  const [cupStandard, setCupStandard] = useState<KitchenCupStandard>(
+    locale === "en" ? "us" : "turkish"
+  );
 
   const localizedCopy = copy[locale];
   const localizedIngredientLabels = kitchenIngredientLabels[locale];
   const localizedUnitLabels = kitchenUnitLabels[locale];
+  const cupLabel =
+    locale === "en"
+      ? englishCupStandardLabels[cupStandard as Exclude<KitchenCupStandard, "turkish">]
+      : localizedUnitLabels.bardak;
+  const unitLabel = (unitKey: KitchenUnit) =>
+    unitKey === "bardak" ? cupLabel : localizedUnitLabels[unitKey];
 
   const parsedValue = parseNumericValue(inputValue);
   const result = useMemo(() => {
@@ -99,12 +129,16 @@ export default function KitchenMeasuresConverter({
       return null;
     }
 
-    return convertKitchenValue(ingredient, unit, parsedValue);
-  }, [ingredient, unit, parsedValue]);
+    return convertKitchenValue(ingredient, unit, parsedValue, cupStandard);
+  }, [ingredient, unit, parsedValue, cupStandard]);
 
   return (
     <div className="category-general-converter kitchen-measures-converter">
-      <div className="kitchen-measures-converter-grid">
+      <div
+        className={`kitchen-measures-converter-grid${
+          locale === "en" ? " kitchen-measures-converter-grid--english" : ""
+        }`}
+      >
         <label className="category-general-converter-field">
           <span>{localizedCopy.ingredient}</span>
           <select
@@ -121,6 +155,26 @@ export default function KitchenMeasuresConverter({
           </select>
         </label>
 
+        {locale === "en" ? (
+          <label className="category-general-converter-field">
+            <span>{copy.en.cupStandard}</span>
+            <select
+              value={cupStandard}
+              onChange={(event) => {
+                setCupStandard(
+                  event.target.value as Exclude<KitchenCupStandard, "turkish">
+                );
+              }}
+            >
+              {Object.entries(englishCupStandardLabels).map(([key, label]) => (
+                <option key={key} value={key}>
+                  {label}
+                </option>
+              ))}
+            </select>
+          </label>
+        ) : null}
+
         <label className="category-general-converter-field">
           <span>{localizedCopy.knownUnit}</span>
           <select
@@ -131,7 +185,7 @@ export default function KitchenMeasuresConverter({
           >
             {unitOrder.map((unitKey) => (
               <option key={unitKey} value={unitKey}>
-                {localizedUnitLabels[unitKey]}
+                {unitLabel(unitKey)}
               </option>
             ))}
           </select>
@@ -161,7 +215,7 @@ export default function KitchenMeasuresConverter({
               .filter((unitKey) => unitKey !== unit)
               .map((unitKey) => (
                 <div key={unitKey}>
-                  <span>{localizedUnitLabels[unitKey]}</span>
+                  <span>{unitLabel(unitKey)}</span>
                   <strong>{formatValue(result[unitKey], locale)}</strong>
                 </div>
               ))}

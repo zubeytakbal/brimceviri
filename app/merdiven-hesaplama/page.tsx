@@ -33,6 +33,9 @@ export const metadata: Metadata = {
     "Toplam yükseklik ve istenen rıht yüksekliğine göre merdiven basamak sayısını, rıht yüksekliğini ve Blondel formülüyle basamak derinliğini hesapla.",
   alternates: {
     canonical: "/merdiven-hesaplama",
+    languages: {
+      "uz-UZ": "/uz/zinapoya-hisoblash",
+    },
   },
   openGraph: {
     title: "Merdiven Hesaplama: Basamak Sayısı, Rıht ve Basamak Derinliği",
@@ -130,6 +133,15 @@ export default function StairCalculatorPage() {
               {item.answer}
             </p>
           ))}
+
+          <h2>İlgili araçlar</h2>
+          <p>
+            Diğer inşaat hesaplamaları için{" "}
+            <Link href="/insaatci-araclari">İnşaatçı Araçları</Link>,{" "}
+            mimar araçları için{" "}
+            <Link href="/mimar-araclari">Mimar Araçları</Link>
+            {" "}sayfasına bakabilirsin.
+          </p>
 
           <h2>Kaynaklar</h2>
           <p>

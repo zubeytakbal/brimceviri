@@ -28,6 +28,9 @@ export const metadata: Metadata = {
     "Gideceğin ülkeye adaptör mü dönüştürücü mü götürmen gerektiğini hesapla: ülkeni ve varış ülkeni seç, priz tipi, voltaj ve frekans uyumunu anında gör.",
   alternates: {
     canonical: "/seyahat-priz-voltaj-hesaplama",
+    languages: {
+      "uz-UZ": "/uz/sayohat-rozetka-voltaj-hisoblash",
+    },
   },
   openGraph: {
     title: "Seyahat Priz ve Voltaj Uyumluluk Hesaplama",
@@ -92,6 +95,8 @@ export default function TravelPlugVoltagePage() {
             <Link href="/kategoriler/elektrik">Elektrik Dönüşümleri</Link>
             {" "}sayfasına, döviz hesaplamaları için{" "}
             <Link href="/doviz-cevirici">Döviz Çevirici</Link>
+            {" "}sayfasına, diğer elektrikçi araçları için{" "}
+            <Link href="/elektrikci-araclari">Elektrikçi Araçları</Link>
             {" "}sayfasına bakabilirsin.
           </p>
 

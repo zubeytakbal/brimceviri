@@ -1,6 +1,31 @@
 import { unitRegistry } from "./unitRegistry";
 
+function temperatureToCelsius(value: number, unit: string): number {
+  if (unit === "F") return ((value - 32) * 5) / 9;
+  if (unit === "K") return value - 273.15;
+  if (unit === "R") return (value * 5) / 9 - 273.15;
+  if (unit === "Re") return (value * 5) / 4;
+  return value;
+}
+
+function temperatureFromCelsius(celsius: number, unit: string): number {
+  if (unit === "F") return (celsius * 9) / 5 + 32;
+  if (unit === "K") return celsius + 273.15;
+  if (unit === "R") return (celsius + 273.15) * (9 / 5);
+  if (unit === "Re") return (celsius * 4) / 5;
+  return celsius;
+}
+
 const factorTables = new Map<string, Record<string, number>>();
+
+const electricityQuantityBySymbol: Record<string, "voltage" | "current"> = {
+  mV: "voltage",
+  V: "voltage",
+  kV: "voltage",
+  mA: "current",
+  A: "current",
+  kA: "current",
+};
 
 for (const entry of unitRegistry) {
   if (entry.siFactor === undefined) {
@@ -28,13 +53,27 @@ export function convert(
   }
 
   if (category === "sicaklik") {
-    if (from === "C" && to === "F") return (value * 9) / 5 + 32;
-    if (from === "F" && to === "C") return ((value - 32) * 5) / 9;
-    if (from === "C" && to === "K") return value + 273.15;
-    if (from === "K" && to === "C") return value - 273.15;
-    if (from === "F" && to === "K") return ((value - 32) * 5) / 9 + 273.15;
-    if (from === "K" && to === "F") return ((value - 273.15) * 9) / 5 + 32;
-    return value;
+    // Her birim once santigrat'a, oradan hedef birime cevrilir -- Rankine ve
+    // Reaumur eklendiginde bu fonksiyon guncellenmemisti, PairConverter'in
+    // canli hesaplamasi bu iki birim icin sessizce yanlis (degismemis)
+    // deger donduruyordu; statik sayfa metni (conversionPages.ts) dogruydu.
+    return temperatureFromCelsius(temperatureToCelsius(value, from), to);
+  }
+
+  // The legacy Electricity category intentionally groups voltage and current
+  // for navigation, not because they are interchangeable. Returning NaN is
+  // safer than silently presenting a value such as 1 V = 1 A.
+  if (category === "elektrik") {
+    const fromQuantity = electricityQuantityBySymbol[from];
+    const toQuantity = electricityQuantityBySymbol[to];
+
+    if (
+      fromQuantity !== undefined &&
+      toQuantity !== undefined &&
+      fromQuantity !== toQuantity
+    ) {
+      return NaN;
+    }
   }
 
   const t = factorTables.get(category);

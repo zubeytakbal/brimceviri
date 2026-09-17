@@ -32,6 +32,9 @@ export const metadata: Metadata = {
     "Air Canada Uçuş 143, yakıt hesabında kilogram yerine pound kullanıldığı için ihtiyacının yarısı yakıtla havalandı ve 41.000 fitte iki motoru birden durdu. Gerçek olay, doğrulanmış kaynaklarla.",
   alternates: {
     canonical: "/birim-cevirme-felaketleri/gimli-glider",
+    languages: {
+      "uz-UZ": "/uz/birlik-aylantirish-fojialari/gimli-glider",
+    },
   },
   openGraph: {
     title: "Gimli Glider: Yakıtsız Kalan Boeing 767",

@@ -14,6 +14,16 @@ const faqItems: FaqItem[] = [
     answer:
       "Emlakçı Araçları dönüm/dekar/m² alan birimlerini fiyat ve komisyon hesaplarıyla ilişkilendirir. Çiftçi Araçları ise aynı alan birimlerini gübre ve tohum ihtiyacı gibi üretim girdisi hesaplarında kullanır.",
   },
+  {
+    question: "Gübre etiketindeki N-P-K sayıları ne anlama gelir?",
+    answer:
+      "N-P-K, gübrenin sırasıyla azot (N), fosfor (P₂O₅) ve potasyum (K₂O) içeriğinin ağırlıkça yüzdesini gösterir. Örneğin 20-20-0 yazan bir gübre, ağırlığının %20'si azot ve %20'si fosfor içerir, potasyum içermez demektir. Gübre İhtiyacı Hesaplama aracımızda hedef dozu bu yüzdeye bölerek gereken toplam gübre miktarını bulabilirsin.",
+  },
+  {
+    question: "1 dönüm, dekar ve hektar kaç m²'dir?",
+    answer:
+      "Türkiye'de 1 dönüm ve 1 dekar aynı alanı ifade eder ve 1.000 m²'ye eşittir (resmi ölçü birimi dekardır, dönüm ise geleneksel/günlük kullanımdaki karşılığıdır). 1 hektar ise 10 dönüm/dekara, yani 10.000 m²'ye eşittir.",
+  },
 ];
 
 export const metadata: Metadata = {
@@ -36,6 +46,14 @@ export const metadata: Metadata = {
 function serializeJsonLd(data: object) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
 }
+
+const commonFertilizerTable = [
+  ["Üre", "46-0-0"],
+  ["DAP (Diamonyum Fosfat)", "18-46-0"],
+  ["Kompoze 20-20-0", "20-20-0"],
+  ["Kompoze 15-15-15", "15-15-15"],
+  ["Amonyum Sülfat", "21-0-0"],
+];
 
 export default function CiftciAraclariPage() {
   const breadcrumbSchema = {
@@ -105,6 +123,36 @@ export default function CiftciAraclariPage() {
             </li>
           </ul>
 
+          <h2>Yaygın Gübre Çeşitleri ve N-P-K İçerikleri</h2>
+          <p>
+            Türkiye&apos;de yaygın kullanılan bazı gübre çeşitlerinin
+            tipik N-P-K (azot-fosfor-potasyum) analiz değerleri:
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <caption>Yaygın gübre çeşitleri ve N-P-K (%) analiz değerleri</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Gübre Çeşidi</th>
+                  <th scope="col">N-P-K (%)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {commonFertilizerTable.map((row) => (
+                  <tr key={row[0]}>
+                    {row.map((cell, index) => (
+                      <td key={`${row[0]}-${index}`}>{cell}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Bu değerler yaygın üretici standardıdır; kullandığın gübrenin
+            kesin N-P-K oranı için her zaman ürün etiketine bakmalısın.
+          </p>
+
           <h2>Sık Sorulan Sorular</h2>
           {faqItems.map((item) => (
             <p key={item.question}>
@@ -113,6 +161,12 @@ export default function CiftciAraclariPage() {
               {item.answer}
             </p>
           ))}
+
+          <h2>Kaynaklar</h2>
+          <p>
+            N-P-K analiz değerleri, gübre endüstrisinde yaygın kullanılan
+            standart ürün etiketleme değerlerine dayanır.
+          </p>
         </section>
       </div>
     </main>

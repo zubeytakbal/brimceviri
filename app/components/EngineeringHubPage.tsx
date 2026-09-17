@@ -37,7 +37,7 @@ type EngineeringFocusCard = {
   href: string;
   title: string;
   description: string;
-  iconName: "energy" | "pressure" | "temperature";
+  iconName: "energy" | "pressure" | "temperature" | "flowRate";
   meta: string;
 };
 
@@ -302,10 +302,10 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
     ],
     title: "Engineering Calculators",
     description:
-      "Browse a broader engineering center that combines unit-aware electrical, heat-transfer, fluid-flow and pressure tools under clearer topic clusters.",
+      "Browse a broader engineering center that combines unit-aware electrical, fluid-flow, heat-transfer, mechanics and materials tools under clearer topic clusters.",
     focusTitle: "Engineering sections",
     focusDescription:
-      "We are expanding the engineering area from a flat list into topic hubs. Electrical Calculators is the first dedicated sub-hub, while the other groups remain accessible from this parent center.",
+      "The engineering area is organized into dedicated topic hubs for electrical work, fluids and piping, dimensionless numbers, heat transfer, and mechanics and materials. Choose a branch first, then open the calculation that matches the task.",
     focusCards: [
       {
         href: getElectricalHubPath("en"),
@@ -313,23 +313,39 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
         description:
           "Dedicated sub-hub for cable sizing, voltage-drop checks, power-current conversion and related electrical project tools.",
         iconName: "energy",
-        meta: "New sub-hub",
+        meta: "Dedicated hub",
       },
       {
-        href: "#pressure-and-fluids",
-        title: "Pressure and Fluids",
+        href: "/en/engineering-calculators/fluids-piping",
+        title: "Fluids & Piping",
         description:
-          "Current tool group for pressure relationships, hydrostatic loading and internal-flow screening.",
-        iconName: "pressure",
-        meta: "Current group",
+          "Dedicated sub-hub for pipe flow, internal velocity, pressure-drop and pump-power checks.",
+        iconName: "flowRate",
+        meta: "Dedicated hub",
       },
       {
-        href: "#heat-transfer",
+        href: "/en/engineering-calculators/dimensionless-numbers",
+        title: "Dimensionless Numbers",
+        description:
+          "Focused calculators for Reynolds, Prandtl and the physical ratios behind flow and heat transfer.",
+        iconName: "temperature",
+        meta: "Dedicated hub",
+      },
+      {
+        href: "/en/engineering-calculators/heat-transfer",
         title: "Heat Transfer",
         description:
-          "Current thermal group for heat-energy and conduction calculations.",
+          "Dedicated sub-hub for thermal energy, conduction, expansion and heat-transfer screening.",
         iconName: "temperature",
-        meta: "Current group",
+        meta: "Dedicated hub",
+      },
+      {
+        href: "/en/engineering-calculators/mechanics-materials",
+        title: "Mechanics & Materials",
+        description:
+          "Dedicated sub-hub for stress and strain, beam deflection, shaft torsion, buckling and material-response checks.",
+        iconName: "pressure",
+        meta: "Dedicated hub",
       },
     ],
     introTitle: "A parent hub for clustered engineering tools",
@@ -342,6 +358,14 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
         description:
           "Core tools for pressure relationships, hydrostatic loading and internal flow screening.",
         tools: [
+          {
+            slug: "pipe-flow-calculator",
+            href: "/en/engineering-calculators/fluids-piping/pipe-flow-calculator",
+            title: "Pipe Flow Rate & Velocity",
+            formula: "Q = A x v",
+            description:
+              "Solve volumetric flow rate, mean velocity or internal pipe diameter with metric and Imperial units.",
+          },
           {
             slug: "pressure-force-area",
             href: "/en/calculators/pressure-force-area",
@@ -390,13 +414,109 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
             description:
               "Compare conduction rate from conductivity, area, temperature difference and thickness.",
           },
+          {
+            slug: "thermal-expansion",
+            href: "/en/calculators/thermal-expansion",
+            title: "Thermal Expansion",
+            formula: "\u0394L = L\u2080 x \u03b1 x \u0394T",
+            description:
+              "Estimate a material's unconstrained length change from a temperature swing.",
+          },
+          {
+            slug: "elastic-elongation",
+            href: "/en/calculators/elastic-elongation",
+            title: "Elastic Elongation",
+            formula: "\u0394L = F x L\u2080 / (A x E)",
+            description:
+              "Estimate axial stress and linear-elastic elongation for a uniform member.",
+          },
+        ],
+      },
+      {
+        id: "dimensionless-numbers",
+        title: "Dimensionless Numbers",
+        description:
+          "Focused ratios for screening flow regime, diffusion and heat-transfer behavior before applying a correlation.",
+        tools: [
+          {
+            slug: "reynolds-number",
+            href: "/en/calculators/reynolds-number",
+            title: "Reynolds Number",
+            formula: "Re = ρ x v x L / μ",
+            description:
+              "Compare inertial and viscous effects, with an internal-flow regime interpretation.",
+          },
+          {
+            slug: "prandtl-number-calculator",
+            href: "/en/engineering-calculators/dimensionless-numbers/prandtl-number-calculator",
+            title: "Prandtl Number",
+            formula: "Pr = μ x Cp / k",
+            description:
+              "Compare momentum and thermal diffusion from fluid properties or diffusivities.",
+          },
+          {
+            slug: "biot-number-calculator",
+            href: "/en/engineering-calculators/dimensionless-numbers/biot-number-calculator",
+            title: "Biot Number",
+            formula: "Bi = h x Lc / ks",
+            description:
+              "Screen internal versus surface thermal resistance before a transient lumped-capacitance estimate.",
+          },
+          {
+            slug: "fourier-number-calculator",
+            href: "/en/engineering-calculators/dimensionless-numbers/fourier-number-calculator",
+            title: "Fourier Number",
+            formula: "Fo = α x t / L²",
+            description:
+              "Calculate dimensionless time for a transient-conduction problem.",
+          },
+          {
+            slug: "nusselt-number-calculator",
+            href: "/en/engineering-calculators/dimensionless-numbers/nusselt-number-calculator",
+            title: "Nusselt Number",
+            formula: "Nu = h x L / k",
+            description:
+              "Solve Nusselt number or convection coefficient, with a scope-checked turbulent-pipe correlation mode.",
+          },
+          {
+            slug: "mach-number-calculator",
+            href: "/en/engineering-calculators/dimensionless-numbers/mach-number-calculator",
+            title: "Mach Number",
+            formula: "M = V / a",
+            description:
+              "Calculate speed relative to the local speed of sound using a known value or an ideal-gas model.",
+          },
+          {
+            slug: "froude-number-calculator",
+            href: "/en/engineering-calculators/dimensionless-numbers/froude-number-calculator",
+            title: "Froude Number",
+            formula: "Fr = V / √(gD)",
+            description:
+              "Screen shallow-water and open-channel flow as subcritical, critical or supercritical.",
+          },
+          {
+            slug: "grashof-number-calculator",
+            href: "/en/engineering-calculators/dimensionless-numbers/grashof-number-calculator",
+            title: "Grashof Number",
+            formula: "Gr = gβΔTL³ / ν²",
+            description:
+              "Compare buoyancy and viscous effects before selecting a natural-convection correlation.",
+          },
+          {
+            slug: "rayleigh-number-calculator",
+            href: "/en/engineering-calculators/dimensionless-numbers/rayleigh-number-calculator",
+            title: "Rayleigh Number",
+            formula: "Ra = Gr x Pr",
+            description:
+              "Combine buoyancy, viscous and thermal-diffusion effects for natural-convection screening.",
+          },
         ],
       },
       {
         id: "electricity",
         title: "Electricity",
         description:
-          "Practical circuit tools built around voltage, current and resistance, with a dedicated electrical sub-hub now being expanded.",
+          "Practical circuit tools built around voltage, current and resistance, grouped in a dedicated electrical sub-hub.",
         tools: [
           {
             slug: "kw-to-amper-hesaplama",

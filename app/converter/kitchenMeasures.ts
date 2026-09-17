@@ -124,13 +124,44 @@ export function findKitchenIngredientRow(key: KitchenIngredientKey) {
 export type KitchenVolumeUnit = "bardak" | "yemekKasigi" | "cayKasigi" | "ml" | "litre";
 export type KitchenUnit = KitchenVolumeUnit | "gram";
 
+/**
+ * A cup is not a universal unit.  The Turkish kitchen tool deliberately
+ * keeps its established 200 ml glass, while the English tool can state the
+ * recipe standard it is using instead of silently applying that value.
+ */
+export type KitchenCupStandard =
+  | "turkish"
+  | "us"
+  | "usLegal"
+  | "metric"
+  | "imperial";
+
+export const mlPerKitchenCupStandard: Record<KitchenCupStandard, number> = {
+  turkish: 200,
+  us: 236.5882365,
+  usLegal: 240,
+  metric: 250,
+  imperial: 284.130625,
+};
+
 export const mlPerVolumeUnit: Record<KitchenVolumeUnit, number> = {
-  bardak: 200,
+  // Kept at 200 ml for the long-standing Turkish default. New callers that
+  // need a regional cup should use getMlPerKitchenVolumeUnit instead.
+  bardak: mlPerKitchenCupStandard.turkish,
   yemekKasigi: 15,
   cayKasigi: 5,
   ml: 1,
   litre: 1000,
 };
+
+export function getMlPerKitchenVolumeUnit(
+  unit: KitchenVolumeUnit,
+  cupStandard: KitchenCupStandard = "turkish"
+) {
+  return unit === "bardak"
+    ? mlPerKitchenCupStandard[cupStandard]
+    : mlPerVolumeUnit[unit];
+}
 
 export type KitchenConversionResult = {
   bardak: number;
@@ -144,15 +175,21 @@ export type KitchenConversionResult = {
 export function convertKitchenValue(
   ingredientKey: KitchenIngredientKey,
   unit: KitchenUnit,
-  value: number
+  value: number,
+  cupStandard: KitchenCupStandard = "turkish"
 ): KitchenConversionResult {
   const row = findKitchenIngredientRow(ingredientKey);
   const gramsPerMl = row.gramsPerBardak / mlPerVolumeUnit.bardak;
 
-  const mlEquivalent = unit === "gram" ? value / gramsPerMl : value * mlPerVolumeUnit[unit];
+  const mlEquivalent =
+    unit === "gram"
+      ? value / gramsPerMl
+      : value * getMlPerKitchenVolumeUnit(unit, cupStandard);
 
   return {
-    bardak: mlEquivalent / mlPerVolumeUnit.bardak,
+    bardak:
+      mlEquivalent /
+      getMlPerKitchenVolumeUnit("bardak", cupStandard),
     yemekKasigi: mlEquivalent / mlPerVolumeUnit.yemekKasigi,
     cayKasigi: mlEquivalent / mlPerVolumeUnit.cayKasigi,
     ml: mlEquivalent,

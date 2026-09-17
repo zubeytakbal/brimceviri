@@ -88,18 +88,18 @@ const copyByLocale: Record<
   },
 uz: {
     labels: {
-      wallArea: "Wall Area (m2)",
-      brickWidth: "Brick Width (cm)",
-      brickHeight: "Brick Height (cm)",
-      joint: "Joint Thickness (mm)",
-      waste: "Waste Allowance (%)",
+      wallArea: "Devor Maydoni (m2)",
+      brickWidth: "G'isht Eni (sm)",
+      brickHeight: "G'isht Balandligi (sm)",
+      joint: "Chok Qalinligi (mm)",
+      waste: "Zaxira Foizi (%)",
     },
     resultLabels: {
-      brickArea: "Area of one brick with joint",
-      totalArea: "Total area with waste",
-      count: "Required brick count",
+      brickArea: "1 g'ishtning chok bilan maydoni",
+      totalArea: "Zaxira bilan jami maydon",
+      count: "Kerakli g'isht soni",
     },
-    emptyState: "Enter valid values to see the result.",
+    emptyState: "Natijani ko'rish uchun to'g'ri qiymatlar kiriting.",
   },
 bn: {
     labels: {

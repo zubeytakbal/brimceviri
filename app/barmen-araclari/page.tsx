@@ -14,6 +14,16 @@ const faqItems: FaqItem[] = [
     answer:
       "Hayır. Standart içki hesaplayıcısı yalnızca saf alkol miktarını hesaplar; alkol tüketimiyle ilgili sağlık tavsiyesi vermez.",
   },
+  {
+    question: "\"Jigger\", \"pony\", \"dash\", \"splash\" gibi ölçü isimleri ne kadar?",
+    answer:
+      "Bunlar bar ekipmanı ve tariflerde geçen geleneksel hacim isimleridir; kesin değerleri bölgeye göre küçük farklılıklar gösterebilir ama en yaygın karşılıklar: pony ≈ 1 oz (30 mL), jigger ≈ 1,5 oz (44 mL), dash ≈ 1 mL civarı (birkaç damla), splash ise kesin bir ölçü değil, genellikle 'az miktarda' anlamına gelir.",
+  },
+  {
+    question: "Yaygın içeceklerin tipik ABV (alkol yüzdesi) aralığı nedir?",
+    answer:
+      "Biralarda tipik olarak %4-6, şaraplarda %11-14, likörlerde %15-30, distile içkilerde (votka, cin, viski, rom gibi) genellikle %35-45 ABV görülür. Bunlar geniş genel aralıklardır; kesin ABV her zaman şişe etiketinde belirtilen değerdir.",
+  },
 ];
 
 export const metadata: Metadata = {
@@ -36,6 +46,21 @@ export const metadata: Metadata = {
 function serializeJsonLd(data: object) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
 }
+
+const barMeasureTable = [
+  ["Dash", "≈ 1 mL (birkaç damla)"],
+  ["Teaspoon (tsp)", "≈ 5 mL"],
+  ["Pony", "≈ 30 mL (1 oz)"],
+  ["Jigger", "≈ 44 mL (1,5 oz)"],
+  ["Standart kadeh (shot, ABD)", "≈ 44 mL (1,5 oz)"],
+];
+
+const typicalAbvTable = [
+  ["Bira", "%4 - %6"],
+  ["Şarap", "%11 - %14"],
+  ["Likör", "%15 - %30"],
+  ["Distile içki (votka, cin, viski, rom)", "%35 - %45"],
+];
 
 export default function BarmenAraclariPage() {
   const breadcrumbSchema = {
@@ -97,6 +122,54 @@ export default function BarmenAraclariPage() {
             </li>
           </ul>
 
+          <h2>Yaygın Bar Ölçüleri</h2>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <caption>Kokteyl tariflerinde geçen yaygın ölçü isimleri ve yaklaşık karşılıkları</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Ölçü</th>
+                  <th scope="col">Yaklaşık Karşılık</th>
+                </tr>
+              </thead>
+              <tbody>
+                {barMeasureTable.map((row) => (
+                  <tr key={row[0]}>
+                    {row.map((cell, index) => (
+                      <td key={`${row[0]}-${index}`}>{cell}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <h2>Yaygın İçeceklerin Tipik Alkol Yüzdesi (ABV)</h2>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <caption>İçecek türüne göre tipik ABV aralıkları</caption>
+              <thead>
+                <tr>
+                  <th scope="col">İçecek Türü</th>
+                  <th scope="col">Tipik ABV Aralığı</th>
+                </tr>
+              </thead>
+              <tbody>
+                {typicalAbvTable.map((row) => (
+                  <tr key={row[0]}>
+                    {row.map((cell, index) => (
+                      <td key={`${row[0]}-${index}`}>{cell}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Bu değerler geniş genel aralıklardır; kesin ABV her zaman
+            şişe etiketinde belirtilen değere göre hesaplanmalıdır.
+          </p>
+
           <h2>Sık Sorulan Sorular</h2>
           {faqItems.map((item) => (
             <p key={item.question}>
@@ -105,6 +178,12 @@ export default function BarmenAraclariPage() {
               {item.answer}
             </p>
           ))}
+
+          <h2>Kaynaklar</h2>
+          <p>
+            Ölçü karşılıkları ve tipik ABV aralıkları, bar ve içki
+            endüstrisinde yaygın kabul gören genel referans değerleridir.
+          </p>
         </section>
       </div>
     </main>

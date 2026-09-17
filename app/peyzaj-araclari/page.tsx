@@ -14,6 +14,16 @@ const faqItems: FaqItem[] = [
     answer:
       "Hayır. Sulama süresi hesaplayıcısı yalnızca birim çevirimi yapar; hangi sulama miktarının bitki veya çim türüne uygun olduğunu belirlemez.",
   },
+  {
+    question: "Bir çim alanı haftada ne kadar suya ihtiyaç duyar?",
+    answer:
+      "Genel bir kural olarak, çoğu çim türü haftada yaklaşık 25 mm (yağış dahil) su ile sağlıklı kalır; ancak iklim, toprak tipi, çim türü ve mevsime göre bu miktar önemli ölçüde değişebilir. Bu, kesin bir reçete değil, planlamaya başlarken kullanılabilecek genel bir başlangıç noktasıdır.",
+  },
+  {
+    question: "Sulama neden sabah erken saatte yapılmalı?",
+    answer:
+      "Sabah erken saatte (güneş tam yükselmeden önce) sulama, buharlaşma kaybını en aza indirir ve bitkinin gün boyunca suyu kullanmasına imkan tanır. Akşam sulaması ise yapraklarda gece boyunca nem kalmasına ve bu da mantar hastalıkları riskinin artmasına yol açabilir.",
+  },
 ];
 
 export const metadata: Metadata = {
@@ -36,6 +46,12 @@ export const metadata: Metadata = {
 function serializeJsonLd(data: object) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
 }
+
+const dripEmitterTable = [
+  ["Düşük debili damlatıcı", "2 L/saat"],
+  ["Orta debili damlatıcı", "4 L/saat"],
+  ["Yüksek debili damlatıcı", "8 L/saat"],
+];
 
 export default function PeyzajAraclariPage() {
   const breadcrumbSchema = {
@@ -107,6 +123,32 @@ export default function PeyzajAraclariPage() {
             </li>
           </ul>
 
+          <h2>Yaygın Damla Sulama Debileri</h2>
+          <p>
+            Damla sulama sistemlerinde yaygın kullanılan damlatıcı
+            debileri:
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <caption>Yaygın damlatıcı tipleri ve tipik debi değerleri</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Damlatıcı Tipi</th>
+                  <th scope="col">Tipik Debi</th>
+                </tr>
+              </thead>
+              <tbody>
+                {dripEmitterTable.map((row) => (
+                  <tr key={row[0]}>
+                    {row.map((cell, index) => (
+                      <td key={`${row[0]}-${index}`}>{cell}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
           <h2>Sık Sorulan Sorular</h2>
           {faqItems.map((item) => (
             <p key={item.question}>
@@ -115,6 +157,13 @@ export default function PeyzajAraclariPage() {
               {item.answer}
             </p>
           ))}
+
+          <h2>Kaynaklar</h2>
+          <p>
+            Sulama miktarı ve damlatıcı debi referansları, peyzaj ve
+            sulama endüstrisinde yaygın kabul gören genel değerlere
+            dayanır.
+          </p>
         </section>
       </div>
     </main>

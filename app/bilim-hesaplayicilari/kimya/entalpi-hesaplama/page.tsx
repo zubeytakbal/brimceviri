@@ -179,6 +179,15 @@ export default function EntalpiHesaplamaPage() {
             </p>
           ))}
 
+          <h2>İlgili araçlar</h2>
+          <p>
+            Buhar basıncı hesaplamaları için{" "}
+            <Link href="/bilim-hesaplayicilari/kimya/buhar-basinci-hesaplama">Buhar Basıncı Hesaplama</Link>,{" "}
+            genel ısı enerjisi hesaplama için{" "}
+            <Link href="/hesaplayicilar/isi-enerjisi">Isı Enerjisi Hesaplama</Link>
+            {" "}sayfasına bakabilirsin.
+          </p>
+
           <h2>Kaynaklar</h2>
           <p>
             Kalorimetri bağıntısı ve özgül ısı değerleri, standart

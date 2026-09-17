@@ -7,7 +7,7 @@ import { DecorativeIcon, type SiteIconName } from "./siteIcons";
 
 type SearchableConversion = {
   id: string;
-  href: string;
+  href?: string;
   label: string;
   description: string;
   searchText: string;
@@ -23,14 +23,15 @@ type SecondaryCategory = {
 
 type OtherTool = {
   id: string;
-  href: string;
+  href?: string;
   title: string;
   description: string;
   iconName: SiteIconName;
   group?: string;
+  groupId?: string;
 };
 
-type Locale = "tr" | "en" | "de" | "ar";
+type Locale = "tr" | "en" | "de" | "ar" | "uz";
 
 type AlternateLink = {
   href: string;
@@ -121,6 +122,25 @@ const pageCopy = {
     categoriesTitle: "الفئات",
     otherLanguagesTitle: "لغات أخرى",
   },
+  uz: {
+    homeHref: "/uz",
+    homeLabel: "Bosh sahifa",
+    breadcrumbAriaLabel: "Sahifa yo'li",
+    title: "Barcha o'lchov birliklari turkumlari",
+    description:
+      "Bosh sahifada bo'lmagan, lekin muhandislik va fanda haqiqatan ishlatiladigan birlik turkumlarini shu yerda toping.",
+    searchLabel: "Aylantirish qidirish",
+    searchPlaceholder: "Masalan: nyuton, qovushqoqlik, tork",
+    searchButton: "Ochish",
+    searchHint:
+      "Birlik nomi, belgisi yoki aylantirish juftini yozib kerakli sahifani toping.",
+    searchResultsTitle: "Qidiruv natijalari",
+    searchResultsHint: "Birinchi natijani ochish uchun Enter tugmasini bosing.",
+    searchEmpty: "Mos aylantirish topilmadi.",
+    toolsTitle: "Turkumlar bo'yicha aylantirishlar",
+    categoriesTitle: "Turkumlar",
+    otherLanguagesTitle: "Boshqa tillar",
+  },
 } as const;
 
 function CardIcon({ name }: { name: SiteIconName }) {
@@ -143,7 +163,9 @@ function normalizeSearchText(value: string, locale: Locale) {
         ? "de-DE"
         : locale === "ar"
           ? "ar"
-        : "en-US";
+          : locale === "uz"
+            ? "uz-UZ"
+            : "en-US";
 
   return value
     .toLocaleLowerCase(localeName)
@@ -161,12 +183,14 @@ export default function OtherCategoriesPage({
   tools,
   locale = "tr",
   alternateLink,
+  hideCategoryGrid = false,
 }: {
   conversions: SearchableConversion[];
   categories: SecondaryCategory[];
   tools?: OtherTool[];
   locale?: Locale;
   alternateLink?: AlternateLink;
+  hideCategoryGrid?: boolean;
 }) {
   const router = useRouter();
   const inputId = useId();
@@ -191,7 +215,7 @@ export default function OtherCategoriesPage({
   // Gruplu araclari (ust baslikli) siraya gore topla; group belirtilmeyen
   // araclar varsayilan "Araclar" baslığı altinda kalir -- bu, group hic
   // kullanilmayan diger diller (en/de/ar) icin mevcut davranisi korur.
-  const toolGroups: { name: string; items: OtherTool[] }[] = [];
+  const toolGroups: { name: string; id?: string; items: OtherTool[] }[] = [];
   if (tools) {
     const groupIndexByName = new Map<string, number>();
     for (const tool of tools) {
@@ -200,7 +224,7 @@ export default function OtherCategoriesPage({
       if (index === undefined) {
         index = toolGroups.length;
         groupIndexByName.set(groupName, index);
-        toolGroups.push({ name: groupName, items: [] });
+        toolGroups.push({ name: groupName, id: tool.groupId, items: [] });
       }
       toolGroups[index].items.push(tool);
     }
@@ -209,7 +233,7 @@ export default function OtherCategoriesPage({
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    if (searchResults[0]) {
+    if (searchResults[0]?.href) {
       router.push(searchResults[0].href);
     }
   }
@@ -277,10 +301,17 @@ export default function OtherCategoriesPage({
                 <ul className="directory-search-results" id={resultsId}>
                   {searchResults.map((result) => (
                     <li key={result.id}>
-                      <Link href={result.href}>
-                        <span>{result.label}</span>
-                        <small>{result.description}</small>
-                      </Link>
+                      {result.href ? (
+                        <Link href={result.href}>
+                          <span>{result.label}</span>
+                          <small>{result.description}</small>
+                        </Link>
+                      ) : (
+                        <div className="directory-search-result-static">
+                          <span>{result.label}</span>
+                          <small>{result.description}</small>
+                        </div>
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -295,44 +326,63 @@ export default function OtherCategoriesPage({
         ) : null}
 
         {toolGroups.map((group) => (
-          <section className="other-categories-section" key={group.name}>
+          <section
+            className="other-categories-section"
+            id={group.id}
+            key={group.name}
+          >
             <h2>{group.name}</h2>
             <div className="directory-home-category-grid">
-              {group.items.map((tool) => (
+              {group.items.map((tool) =>
+                tool.href ? (
+                  <Link
+                    className="directory-home-card"
+                    href={tool.href}
+                    key={tool.id}
+                    aria-label={`${tool.title} - ${tool.description}`}
+                  >
+                    <div className="directory-card-body directory-card-body-icon">
+                      <CardIcon name={tool.iconName} />
+                      <h3 className="home-category-title">{tool.title}</h3>
+                    </div>
+                  </Link>
+                ) : (
+                  <article
+                    className="directory-home-card"
+                    key={tool.id}
+                    aria-label={`${tool.title} - ${tool.description}`}
+                  >
+                    <div className="directory-card-body directory-card-body-icon">
+                      <CardIcon name={tool.iconName} />
+                      <h3 className="home-category-title">{tool.title}</h3>
+                    </div>
+                  </article>
+                ),
+              )}
+            </div>
+          </section>
+        ))}
+
+        {!hideCategoryGrid && (
+          <section className="other-categories-section">
+            <h2>{copy.categoriesTitle}</h2>
+            <div className="directory-home-category-grid">
+              {categories.map((category) => (
                 <Link
                   className="directory-home-card"
-                  href={tool.href}
-                  key={tool.id}
-                  aria-label={`${tool.title} - ${tool.description}`}
+                  href={category.href}
+                  key={category.id}
+                  aria-label={`${category.title} - ${category.description}`}
                 >
                   <div className="directory-card-body directory-card-body-icon">
-                    <CardIcon name={tool.iconName} />
-                    <h3 className="home-category-title">{tool.title}</h3>
+                    <CardIcon name={category.iconName} />
+                    <h3 className="home-category-title">{category.title}</h3>
                   </div>
                 </Link>
               ))}
             </div>
           </section>
-        ))}
-
-        <section className="other-categories-section">
-          <h2>{copy.categoriesTitle}</h2>
-          <div className="directory-home-category-grid">
-            {categories.map((category) => (
-              <Link
-                className="directory-home-card"
-                href={category.href}
-                key={category.id}
-                aria-label={`${category.title} - ${category.description}`}
-              >
-                <div className="directory-card-body directory-card-body-icon">
-                  <CardIcon name={category.iconName} />
-                  <h3 className="home-category-title">{category.title}</h3>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </section>
+        )}
 
         {alternateLink ? (
           <section className="conversion-section language-alternatives">

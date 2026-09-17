@@ -144,6 +144,19 @@ export default function AcCapacityCalculatorPage() {
             yüzden bir üst standart kapasite güvenli tercihtir.
           </p>
 
+          <h2>İlgili araçlar</h2>
+          <p>
+            Isı pompası ile kombi karşılaştırması için{" "}
+            <Link href="/isi-pompasi-kombi-karsilastirma">Isı Pompası - Kombi Karşılaştırma</Link>,{" "}
+            kombi ile klima ısıtma maliyeti için{" "}
+            <Link href="/kombi-klima-isitma-maliyeti-karsilastirma">Kombi - Klima Isıtma Maliyeti Karşılaştırma</Link>,{" "}
+            BTU/saat birim dönüşümü için{" "}
+            <Link href="/btu-saat-watt">BTU/Saat - Watt Çevirici</Link>
+            {" "}sayfasına, diğer klima-soğutma teknisyeni araçları için{" "}
+            <Link href="/klima-sogutma-teknisyeni-araclari">Klima-Soğutma Teknisyeni Araçları</Link>
+            {" "}sayfasına bakabilirsin.
+          </p>
+
           <h2>Kaynaklar</h2>
           <p>
             Formüldeki m² başına BTU aralığı (500-600) ve kişi başına ek

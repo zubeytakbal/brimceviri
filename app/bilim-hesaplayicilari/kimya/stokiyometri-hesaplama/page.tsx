@@ -209,6 +209,15 @@ export default function StokiyometriHesaplamaPage() {
             </p>
           ))}
 
+          <h2>İlgili araçlar</h2>
+          <p>
+            Kütle-mol dönüşümü için{" "}
+            <Link href="/bilim-hesaplayicilari/kimya/mol-hesaplama">Mol Hesaplama</Link>,{" "}
+            teorik/gerçek verim karşılaştırması için{" "}
+            <Link href="/bilim-hesaplayicilari/kimya/verim-hesaplama">Verim Hesaplama</Link>
+            {" "}sayfasına bakabilirsin.
+          </p>
+
           <h2>Kaynaklar</h2>
           <p>
             Stokiyometri hesaplamaları, kütlenin korunumu yasasına ve

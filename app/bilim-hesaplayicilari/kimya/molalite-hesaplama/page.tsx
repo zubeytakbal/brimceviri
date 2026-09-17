@@ -167,6 +167,17 @@ export default function MolaliteHesaplamaPage() {
             </p>
           ))}
 
+          <h2>İlgili araçlar</h2>
+          <p>
+            Hacme dayalı derişim hesabı için{" "}
+            <Link href="/bilim-hesaplayicilari/kimya/molarite-hesaplama">Molarite Hesaplama</Link>,{" "}
+            seyreltme hesabı için{" "}
+            <Link href="/bilim-hesaplayicilari/kimya/seyreltme-hesaplama">Seyreltme Hesaplama</Link>,{" "}
+            kütlece yüzde derişim için{" "}
+            <Link href="/bilim-hesaplayicilari/kimya/kutlece-yuzde-hesaplama">Kütlece Yüzde Hesaplama</Link>
+            {" "}sayfasına bakabilirsin.
+          </p>
+
           <h2>Kaynaklar</h2>
           <p>
             Molalite tanımı, IUPAC&apos;ın derişim birimleri standardına

@@ -38,6 +38,9 @@ export const metadata: Metadata = {
     "Okul (gün bazlı) veya üniversite (yüzde/saat bazlı) devamsızlık limitine göre kalan devamsızlık hakkını ve kullanım oranını anında hesapla.",
   alternates: {
     canonical: "/devamsizlik-hesaplama",
+    languages: {
+      "uz-UZ": "/uz/davomat-hisoblash",
+    },
   },
   openGraph: {
     title: "Devamsızlık Hesaplama: Kalan Devamsızlık Hakkını Öğren",
@@ -146,6 +149,15 @@ export default function AttendanceCalculatorPage() {
               {item.answer}
             </p>
           ))}
+
+          <h2>İlgili araçlar</h2>
+          <p>
+            Not/harf notu hesaplama için{" "}
+            <Link href="/harf-notu-hesaplama">Harf Notu Hesaplama</Link>,{" "}
+            diğer öğretmen araçları için{" "}
+            <Link href="/ogretmen-araclari">Öğretmen Araçları</Link>
+            {" "}sayfasına bakabilirsin.
+          </p>
 
           <h2>Kaynaklar</h2>
           <p>

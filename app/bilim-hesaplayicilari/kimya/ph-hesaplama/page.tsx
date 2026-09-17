@@ -225,6 +225,15 @@ export default function PhHesaplamaPage() {
             </p>
           ))}
 
+          <h2>İlgili araçlar</h2>
+          <p>
+            Asit-baz titrasyon hesaplamaları için{" "}
+            <Link href="/bilim-hesaplayicilari/kimya/titrasyon-hesaplama">Titrasyon Hesaplama</Link>,{" "}
+            derişim hesabı için{" "}
+            <Link href="/bilim-hesaplayicilari/kimya/molarite-hesaplama">Molarite Hesaplama</Link>
+            {" "}sayfasına bakabilirsin.
+          </p>
+
           <h2>Kaynaklar</h2>
           <p>
             pH tanımı ve Kw sabiti, IUPAC&apos;ın standart kimya

@@ -9,6 +9,16 @@ const faqItems: FaqItem[] = [
     answer:
       "Hayır. Superheat/subcooling hesaplayıcısı, doyma sıcaklığını senin P-T kartından veya uygulamandan okumanı gerektirir; kendisi basınç-sıcaklık dönüşümü yapmaz.",
   },
+  {
+    question: "Sabit orifis (kılcal boru) ve TXV sistemlerde hedef değerler farklı mı?",
+    answer:
+      "Evet. Sabit orifis/kılcal boru (fixed orifice) sistemlerde teşhis genellikle superheat üzerinden yapılır (tipik hedef ~5,5-11°C / 10-20°F). TXV (termostatik genleşme valfi) sistemlerde ise valf superheat'i kendisi düzenlediği için teşhiste subcooling daha belirleyicidir (tipik hedef ~4,5-6,5°C / 8-12°F). Kesin hedef değerler her zaman ekipman üreticisinin servis kılavuzuna göre değişir.",
+  },
+  {
+    question: "Düşük veya yüksek superheat ne anlama gelir?",
+    answer:
+      "Düşük superheat, buharlaştırıcıya fazla soğutucu akışkan gittiğini (aşırı dolum veya arızalı genleşme valfi riski) düşündürebilir. Yüksek superheat ise yetersiz soğutucu akışkan akışını (düşük dolum, tıkalı filtre-kurutucu veya zayıf ısı transferi) işaret edebilir. Kesin tanı, sistemin diğer belirtileriyle (basınçlar, akım, görsel muayene) birlikte değerlendirilmelidir.",
+  },
 ];
 
 export const metadata: Metadata = {
@@ -110,6 +120,37 @@ export default function KlimaSogutmaTeknisyeniAraclariPage() {
             </li>
           </ul>
 
+          <h2>Sistem Tipine Göre Tipik Hedef Değerler</h2>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <caption>Genleşme cihazı tipine göre tipik hedef superheat/subcooling değerleri</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Sistem Tipi</th>
+                  <th scope="col">Ana Teşhis Metriği</th>
+                  <th scope="col">Tipik Hedef</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Sabit Orifis / Kılcal Boru</td>
+                  <td>Superheat</td>
+                  <td>~5,5 - 11°C (10-20°F)</td>
+                </tr>
+                <tr>
+                  <td>TXV (Termostatik Genleşme Valfi)</td>
+                  <td>Subcooling</td>
+                  <td>~4,5 - 6,5°C (8-12°F)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Bu değerler genel referanstır; kesin hedef her zaman
+            ekipman üreticisinin servis kılavuzuna ve dış/iç ortam
+            koşullarına göre belirlenmelidir.
+          </p>
+
           <h2>Sık Sorulan Sorular</h2>
           {faqItems.map((item) => (
             <p key={item.question}>
@@ -118,6 +159,13 @@ export default function KlimaSogutmaTeknisyeniAraclariPage() {
               {item.answer}
             </p>
           ))}
+
+          <h2>Kaynaklar</h2>
+          <p>
+            Superheat/subcooling hedef aralıkları, HVAC/R servis
+            eğitimlerinde ve üretici kılavuzlarında yaygın kabul gören
+            genel referans değerlerine dayanır.
+          </p>
         </section>
       </div>
     </main>

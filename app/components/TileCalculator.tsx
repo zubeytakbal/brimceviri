@@ -83,17 +83,17 @@ const copyByLocale: Record<
   },
 uz: {
     labels: {
-      area: "Area to Cover (m2)",
-      width: "Tile Width (cm)",
-      height: "Tile Height (cm)",
-      waste: "Waste Allowance (%)",
+      area: "Qoplanadigan Maydon (m2)",
+      width: "Kafel Eni (sm)",
+      height: "Kafel Bo'yi (sm)",
+      waste: "Zaxira Foizi (%)",
     },
     resultLabels: {
-      tileArea: "Area of one tile",
-      totalArea: "Total area with waste",
-      count: "Required tile count",
+      tileArea: "1 kafelning maydoni",
+      totalArea: "Zaxira bilan jami maydon",
+      count: "Kerakli kafel soni",
     },
-    emptyState: "Enter valid values to see the result.",
+    emptyState: "Natijani ko'rish uchun to'g'ri qiymatlar kiriting.",
   },
 bn: {
     labels: {

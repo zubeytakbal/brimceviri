@@ -28,6 +28,9 @@ export const metadata: Metadata = {
     "Kaldırdığın ağırlık ve tekrar sayısından Epley formülüyle tahmini 1RM'ini (bir tekrar maksimum) hesapla; antrenman yüzdesi tablosuyla programına uygun ağırlıkları bul.",
   alternates: {
     canonical: "/1rm-hesaplama",
+    languages: {
+      "uz-UZ": "/uz/1rm-hisoblash",
+    },
   },
   openGraph: {
     title: "1RM Hesaplama: Bir Tekrar Maksimum ve Antrenman Yüzdesi",

@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { englishConversionPages } from "../../converter/localizedConversionPages";
+import EnglishAllConversionsConverter from "../../components/EnglishAllConversionsConverter";
+import { homeCategoryOrder } from "../../converter/homeCategoryOrder";
+import { englishCategoryPages } from "../../converter/localizedCategoryPages";
+import { featuredEnglishConversions } from "../../converter/englishEditorialConversions";
 import { buildSiteUrl } from "../../siteConfig";
 
 export const metadata: Metadata = {
   title: "All Unit Converters",
   description:
-    "Browse all available length, mass and pressure conversion calculators. Convert metric and imperial units with formulas and conversion tables.",
+    "Browse all available unit converters by measurement category. Convert Metric/SI, US customary, British Imperial and historical units with live tools.",
   alternates: {
     canonical: "/en/all-conversions",
     languages: {
@@ -18,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "All Unit Converters | BirimCeviri.app",
     description:
-      "Browse free online length, mass and pressure conversion tools.",
+      "Browse free online unit converters for metric, US customary, British Imperial and historical measurement systems.",
     url: buildSiteUrl("/en/all-conversions"),
     siteName: "BirimCeviri.app",
     locale: "en_US",
@@ -28,26 +31,30 @@ export const metadata: Metadata = {
     card: "summary",
     title: "All Unit Converters | BirimCeviri.app",
     description:
-      "Browse free online length, mass and pressure conversion tools.",
+      "Browse free online unit converters for metric, US customary, British Imperial and historical measurement systems.",
   },
 };
 
 export default function EnglishAllConversionsPage() {
-  const lengthConversions = englishConversionPages.filter(
-    (page) => page.category === "uzunluk"
-  );
+  const categoryPages = [...englishCategoryPages].sort((left, right) => {
+    const leftOrder = homeCategoryOrder.indexOf(
+      left.category as (typeof homeCategoryOrder)[number]
+    );
+    const rightOrder = homeCategoryOrder.indexOf(
+      right.category as (typeof homeCategoryOrder)[number]
+    );
 
-  const massConversions = englishConversionPages.filter(
-    (page) => page.category === "kutle"
-  );
+    if (leftOrder !== -1 || rightOrder !== -1) {
+      return (leftOrder === -1 ? Infinity : leftOrder) -
+        (rightOrder === -1 ? Infinity : rightOrder);
+    }
 
-  const pressureConversions = englishConversionPages.filter(
-    (page) => page.category === "basinc"
-  );
+    return left.title.localeCompare(right.title, "en");
+  });
 
   return (
-    <main className="unit-information-page" lang="en">
-      <article className="unit-page-shell">
+    <main className="all-conversions-page" lang="en">
+      <div className="all-conversions-shell">
         <nav
           className="breadcrumbs"
           aria-label="Breadcrumb"
@@ -57,8 +64,7 @@ export default function EnglishAllConversionsPage() {
           <span>All Converters</span>
         </nav>
 
-        <header className="unit-page-header">
-          <p className="unit-symbol">&lt;-&gt;</p>
+        <header className="all-conversions-header">
           <h1>All Unit Converters</h1>
           <p>
             Browse all available conversion calculators and select
@@ -67,6 +73,8 @@ export default function EnglishAllConversionsPage() {
         </header>
 
         <div className="unit-page-content">
+          <EnglishAllConversionsConverter />
+
           <section className="conversion-section">
             <h2>How to use the converters</h2>
             <p>
@@ -78,16 +86,17 @@ export default function EnglishAllConversionsPage() {
           </section>
 
           <section className="conversion-section related-conversions">
-            <h2>Length converters</h2>
+            <h2>Explore all conversion categories</h2>
             <p>
-              Convert between meters, kilometers, centimeters,
-              millimeters, miles and feet.
+              Open a category for its complete unit list, dedicated
+              conversion pages and unit guides. The most common categories
+              appear first.
             </p>
             <ul className="related-conversion-list">
-              {lengthConversions.map((page) => (
-                <li key={page.slug}>
-                  <Link href={`/en/${page.slug}`}>
-                    {page.fromName} to {page.toName}
+              {categoryPages.map((page) => (
+                <li key={page.category}>
+                  <Link href={`/en/categories/${page.slug}`}>
+                    {page.title}
                   </Link>
                 </li>
               ))}
@@ -95,53 +104,42 @@ export default function EnglishAllConversionsPage() {
           </section>
 
           <section className="conversion-section related-conversions">
-            <h2>Mass converters</h2>
+            <h2>Popular US and Imperial conversions</h2>
             <p>
-              Convert between kilograms, grams, milligrams,
-              tonnes, pounds and ounces.
+              These conversions make the measurement system explicit, which is
+              especially useful for gallons, pints, quarts and fluid ounces.
             </p>
             <ul className="related-conversion-list">
-              {massConversions.map((page) => (
-                <li key={page.slug}>
-                  <Link href={`/en/${page.slug}`}>
-                    {page.fromName} to {page.toName}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </section>
-
-          <section className="conversion-section related-conversions">
-            <h2>Pressure converters</h2>
-            <p>
-              Convert between pascals, kilopascals, bar,
-              atmospheres, PSI, mmHg and kilogram-force per
-              square centimeter.
-            </p>
-            <ul className="related-conversion-list">
-              {pressureConversions.map((page) => (
-                <li key={page.slug}>
-                  <Link href={`/en/${page.slug}`}>
-                    {page.fromName} to {page.toName}
-                  </Link>
+              {featuredEnglishConversions.map((conversion) => (
+                <li key={conversion.href}>
+                  <Link href={conversion.href}>{conversion.title}</Link>
                 </li>
               ))}
             </ul>
           </section>
 
           <section className="conversion-section">
-            <h2>Metric and imperial conversions</h2>
+            <h2>Measurement systems, not country-page duplicates</h2>
             <p>
-              Metric conversions generally use decimal factors
-              based on powers of ten. Conversions involving
-              imperial or United States customary units use
-              standardized conversion factors.
+              The same category can contain Metric/SI, US customary,
+              British Imperial and historical units where they are relevant.
+              For example, US and Imperial volume units remain separate
+              because their values differ.
             </p>
-            <p>
-              The physical quantity remains unchanged during a
-              conversion; only the unit and its corresponding
-              numerical value change.
-            </p>
+          </section>
+
+          <section className="conversion-section related-conversions">
+            <h2>Useful libraries</h2>
+            <ul className="related-conversion-list">
+              <li>
+                <Link href="/en/units">Browse all unit guides</Link>
+              </li>
+              <li>
+                <Link href="/en/historical-units">
+                  Explore historical measurement systems
+                </Link>
+              </li>
+            </ul>
           </section>
 
           <section className="conversion-section language-alternatives">
@@ -155,7 +153,7 @@ export default function EnglishAllConversionsPage() {
             </Link>
           </section>
         </div>
-      </article>
+      </div>
     </main>
   );
 }

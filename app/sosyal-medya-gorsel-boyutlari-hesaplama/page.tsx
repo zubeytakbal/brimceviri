@@ -93,6 +93,8 @@ export default function SocialMediaSizePage() {
             <Link href="/piksel-cm-dpi-hesaplama">Piksel, CM ve DPI Hesaplama</Link>
             {" "}sayfasına, renk kodu dönüşümleri için{" "}
             <Link href="/renk-kodu-cevirici">Renk Kodu Çevirici</Link>
+            {" "}sayfasına, diğer grafik tasarımcı araçları için{" "}
+            <Link href="/grafik-tasarimci-araclari">Grafik Tasarımcı Araçları</Link>
             {" "}sayfasına bakabilirsin.
           </p>
 

@@ -9,6 +9,21 @@ const faqItems: FaqItem[] = [
     answer:
       "CPM ve CPC maliyet odaklı metriklerdir (sırasıyla bin gösterim ve tıklama başına maliyet). CTR bir etkileşim oranıdır (tıklama/gösterim). ROI ise kampanyanın kârlılığını (gelir vs. maliyet) ölçer.",
   },
+  {
+    question: "ROI ve ROAS arasındaki fark nedir?",
+    answer:
+      "ROAS (Return on Ad Spend), reklam harcamasına karşılık elde edilen geliri ölçer: ROAS = Gelir / Reklam Harcaması (genellikle 4:1 gibi bir oran olarak ifade edilir). ROI ise net kârlılığı ölçer ve maliyetin tamamını (sadece reklam değil, ürün/hizmet maliyetini de) dikkate alır: ROI = ((Gelir − Toplam Maliyet) / Toplam Maliyet) × 100. Bir kampanya yüksek ROAS'a sahipken düşük ROI'ye sahip olabilir, çünkü ROAS ürün maliyetini hesaba katmaz.",
+  },
+  {
+    question: "Dönüşüm oranı (conversion rate) nasıl hesaplanır?",
+    answer:
+      "Dönüşüm oranı = (Dönüşüm Sayısı / Tıklama Sayısı) × 100 formülüyle hesaplanır. Örneğin 1000 tıklamadan 25 satış geldiyse dönüşüm oranı %2,5'tir. Bu metrik, reklamın sadece ilgi çekip çekmediğini değil, gerçek satışa/hedef eyleme dönüşüp dönüşmediğini gösterir.",
+  },
+  {
+    question: "İyi bir CTR veya CPM değeri kaç olmalı?",
+    answer:
+      "Bunun tek bir doğru cevabı yoktur — sektöre, platforma (arama, görüntülü reklam, sosyal medya), hedef kitleye ve reklam formatına göre büyük farklılık gösterir. Kendi geçmiş kampanyalarınla karşılaştırmak (benchmark kendi verinle), rastgele bir 'iyi sayı' aramaktan çok daha güvenilir bir yöntemdir.",
+  },
 ];
 
 export const metadata: Metadata = {
@@ -88,6 +103,45 @@ export default function DijitalPazarlamaciAraclariPage() {
             </li>
           </ul>
 
+          <h2>Temel Reklam Metrikleri Formülleri</h2>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <caption>Dijital pazarlamada sık kullanılan temel metrik formülleri</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Metrik</th>
+                  <th scope="col">Formül</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>CPM (Bin gösterim başına maliyet)</td>
+                  <td>(Maliyet / Gösterim) × 1000</td>
+                </tr>
+                <tr>
+                  <td>CTR (Tıklama oranı)</td>
+                  <td>(Tıklama / Gösterim) × 100</td>
+                </tr>
+                <tr>
+                  <td>CPC (Tıklama başına maliyet)</td>
+                  <td>Maliyet / Tıklama</td>
+                </tr>
+                <tr>
+                  <td>Dönüşüm Oranı</td>
+                  <td>(Dönüşüm / Tıklama) × 100</td>
+                </tr>
+                <tr>
+                  <td>ROAS (Reklam harcama getirisi)</td>
+                  <td>Gelir / Reklam Harcaması</td>
+                </tr>
+                <tr>
+                  <td>ROI (Yatırım getirisi)</td>
+                  <td>((Gelir − Maliyet) / Maliyet) × 100</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
           <h2>Sık Sorulan Sorular</h2>
           {faqItems.map((item) => (
             <p key={item.question}>
@@ -96,6 +150,13 @@ export default function DijitalPazarlamaciAraclariPage() {
               {item.answer}
             </p>
           ))}
+
+          <h2>Kaynaklar</h2>
+          <p>
+            Formüller, dijital pazarlama sektöründe (Google Ads, Meta Ads
+            gibi platformlarda) evrensel olarak kabul gören standart
+            metrik tanımlarına dayanır.
+          </p>
         </section>
       </div>
     </main>

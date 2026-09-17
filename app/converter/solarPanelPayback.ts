@@ -23,30 +23,39 @@ export type SolarPaybackResult = {
   breakEvenYears: number | null;
 };
 
+export type SolarPaybackEstimateInput = {
+  systemSizeKwp: number;
+  annualYieldKwhPerKwp: number;
+  selfConsumptionPercent: number;
+  importedElectricityPricePerKwh: number;
+  exportElectricityPricePerKwh: number;
+  systemCost: number;
+};
+
+export type SolarPaybackEstimateResult = {
+  annualProductionKwh: number;
+  selfConsumedKwh: number;
+  exportedKwh: number;
+  annualValue: number;
+  breakEvenYears: number | null;
+};
+
+export function calculateSolarPaybackEstimate(input: SolarPaybackEstimateInput): SolarPaybackEstimateResult | null {
+  if (Object.values(input).some((value) => !Number.isFinite(value)) || input.systemSizeKwp <= 0 || input.annualYieldKwhPerKwp <= 0 || input.selfConsumptionPercent < 0 || input.selfConsumptionPercent > 100 || input.importedElectricityPricePerKwh < 0 || input.exportElectricityPricePerKwh < 0 || input.systemCost < 0) return null;
+  const annualProductionKwh = input.systemSizeKwp * input.annualYieldKwhPerKwp;
+  const selfConsumedKwh = annualProductionKwh * input.selfConsumptionPercent / 100;
+  const exportedKwh = annualProductionKwh - selfConsumedKwh;
+  const annualValue = selfConsumedKwh * input.importedElectricityPricePerKwh + exportedKwh * input.exportElectricityPricePerKwh;
+  return { annualProductionKwh, selfConsumedKwh, exportedKwh, annualValue, breakEvenYears: input.systemCost > 0 && annualValue > 0 ? input.systemCost / annualValue : null };
+}
+
 export function calculateSolarPayback(input: SolarPaybackInput): SolarPaybackResult | null {
-  const { systemSizeKwp, regionYieldKwhPerKwp, electricityPriceTlPerKwh, systemCostTl } = input;
-
-  if (
-    !Number.isFinite(systemSizeKwp) ||
-    !Number.isFinite(regionYieldKwhPerKwp) ||
-    !Number.isFinite(electricityPriceTlPerKwh) ||
-    !Number.isFinite(systemCostTl) ||
-    systemSizeKwp <= 0 ||
-    regionYieldKwhPerKwp <= 0 ||
-    electricityPriceTlPerKwh <= 0 ||
-    systemCostTl < 0
-  ) {
-    return null;
-  }
-
-  const annualProductionKwh = systemSizeKwp * regionYieldKwhPerKwp;
-  const annualSavingsTl = annualProductionKwh * electricityPriceTlPerKwh;
-  const breakEvenYears =
-    systemCostTl > 0 && annualSavingsTl > 0 ? systemCostTl / annualSavingsTl : null;
+  const result = calculateSolarPaybackEstimate({ systemSizeKwp: input.systemSizeKwp, annualYieldKwhPerKwp: input.regionYieldKwhPerKwp, selfConsumptionPercent: 100, importedElectricityPricePerKwh: input.electricityPriceTlPerKwh, exportElectricityPricePerKwh: 0, systemCost: input.systemCostTl });
+  if (!result) return null;
 
   return {
-    annualProductionKwh,
-    annualSavingsTl,
-    breakEvenYears,
+    annualProductionKwh: result.annualProductionKwh,
+    annualSavingsTl: result.annualValue,
+    breakEvenYears: result.breakEvenYears,
   };
 }

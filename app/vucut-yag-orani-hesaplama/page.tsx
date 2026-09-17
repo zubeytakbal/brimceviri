@@ -28,6 +28,9 @@ export const metadata: Metadata = {
     "Boyun, bel (ve kadınlarda kalça) çevresi ölçülerinden, bant metre dışında ekipman gerektirmeyen US Navy yöntemiyle vücut yağ oranını hesapla.",
   alternates: {
     canonical: "/vucut-yag-orani-hesaplama",
+    languages: {
+      "uz-UZ": "/uz/tana-yogi-foizi-hisoblash",
+    },
   },
   openGraph: {
     title: "Vücut Yağ Oranı Hesaplama (US Navy Yöntemi)",

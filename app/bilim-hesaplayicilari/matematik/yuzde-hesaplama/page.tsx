@@ -170,6 +170,10 @@ export default function YuzdeHesaplamaPage() {
             <Link href="/bilim-hesaplayicilari/matematik/oran-oranti-hesaplama">
               Oran-Orantı Hesaplama
             </Link>{" "}
+            aracına, ortalama/istatistik hesaplamaları için{" "}
+            <Link href="/bilim-hesaplayicilari/matematik/ortalama-hesaplama">
+              Ortalama Hesaplama
+            </Link>{" "}
             aracına bakabilirsin.
           </p>
 

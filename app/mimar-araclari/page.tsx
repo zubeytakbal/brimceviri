@@ -9,6 +9,16 @@ const faqItems: FaqItem[] = [
     answer:
       "İnşaatçı Araçları, inşaat sırasında gereken malzeme miktarlarını (boya, fayans, beton) hesaplar. Mimar Araçları ise inşaat öncesinde, bir arsada ne kadar inşaat yapılabileceğini (emsal/KAKS) hesaplar.",
   },
+  {
+    question: "KAKS (emsal) ve TAKS arasındaki fark nedir?",
+    answer:
+      "KAKS (Kat Alanı Kat Sayısı, halk arasında 'emsal'), arsa alanına oranla yapılabilecek TOPLAM inşaat alanını (tüm katların toplamı) belirler. TAKS (Taban Alanı Kat Sayısı) ise binanın araziye oturan TABAN alanının arsaya oranını belirler — yani binanın arsayı ne kadar kapladığını sınırlar. İkisi birlikte hem toplam büyüklüğü hem de yapının arsadaki yayılımını (dolayısıyla dolaylı olarak kat sayısını) belirler.",
+  },
+  {
+    question: "KAKS/TAKS değerinden kat sayısı doğrudan hesaplanabilir mi?",
+    answer:
+      "Yaklaşık olarak evet: Toplam İnşaat Alanı ÷ Taban Alanı ≈ Kat Sayısı. Ancak gerçek kat sayısı, imar planındaki maksimum yükseklik (Hmax) sınırına, çatı arası kullanımına ve emsal harici sayılan alanlara (bazı yönetmeliklerde ortak alanlar, açık balkonlar gibi) göre de değişebilir — bu yüzden KAKS/TAKS hesabı yalnızca bir başlangıç noktasıdır, kesin proje her zaman ilgili belediyenin imar durum belgesine göre çizilmelidir.",
+  },
 ];
 
 export const metadata: Metadata = {
@@ -117,6 +127,14 @@ export default function MimarAraclariPage() {
               {item.answer}
             </p>
           ))}
+
+          <h2>Kaynaklar</h2>
+          <p>
+            KAKS/TAKS tanımları, Türkiye&apos;deki imar mevzuatında
+            (Planlı Alanlar İmar Yönetmeliği) yaygın kullanılan genel
+            terimlere dayanır. Kesin ve güncel imar hakları için her
+            zaman ilgili belediyenin imar durum belgesi esas alınmalıdır.
+          </p>
         </section>
       </div>
     </main>

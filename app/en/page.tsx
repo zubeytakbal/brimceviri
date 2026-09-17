@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import HomeDirectory from "../components/HomeDirectory";
 import { buildSiteUrl } from "../siteConfig";
+import { getSiteNotifications } from "../converter/siteNotifications";
 
 const homeUrl = buildSiteUrl("/");
 const englishHomeUrl = buildSiteUrl("/en");
@@ -40,6 +41,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function EnglishHomePage() {
-  return <HomeDirectory locale="en" />;
+export default async function EnglishHomePage() {
+  const notifications = await getSiteNotifications("en");
+  return <HomeDirectory locale="en" notifications={notifications} />;
 }

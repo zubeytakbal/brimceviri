@@ -104,6 +104,8 @@ export default function RemoteWorkVsOfficeCostPage() {
             <Link href="/elektrikli-arac-maliyet-karsilastirma">
               Elektrikli Araç mı Benzinli Araç mı?
             </Link>
+            {" "}sayfasına, diğer yazılımcı araçları için{" "}
+            <Link href="/yazilimci-araclari">Yazılımcı Araçları</Link>
             {" "}sayfasına bakabilirsin.
           </p>
 

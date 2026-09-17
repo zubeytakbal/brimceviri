@@ -106,6 +106,17 @@ export default function NaturalGasCalculatorPage() {
               {item.answer}
             </p>
           ))}
+
+          <h2>İlgili araçlar</h2>
+          <p>
+            Isıtma sistemi seçimi için{" "}
+            <Link href="/isi-pompasi-kombi-karsilastirma">Isı Pompası - Kombi Karşılaştırma</Link>,{" "}
+            yalıtımın geri dönüşü için{" "}
+            <Link href="/yalitim-amortisman-hesaplama">Yalıtım Amortisman Hesaplama</Link>,{" "}
+            elektrik tüketimi için{" "}
+            <Link href="/elektrik-tuketimi-hesaplama">Elektrik Tüketimi Hesaplama</Link>
+            {" "}sayfasına bakabilirsin.
+          </p>
         </section>
       </div>
     </main>

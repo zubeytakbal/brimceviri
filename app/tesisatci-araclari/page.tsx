@@ -42,6 +42,15 @@ const velocityTable = [
   ["Isıtma tesisatı (sirkülasyon)", "0,3 - 1,5 m/s"],
 ];
 
+const hazenWilliamsCTable = [
+  ["PVC / Plastik Boru", "150"],
+  ["Bakır Boru", "130 - 140"],
+  ["Yeni Çelik Boru", "120"],
+  ["Yeni Dökme Demir Boru", "130"],
+  ["Eski/Paslı Çelik veya Dökme Demir Boru", "80 - 100"],
+  ["Beton Boru", "120 - 140"],
+];
+
 export default function TesisatciAraclariPage() {
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -172,6 +181,33 @@ export default function TesisatciAraclariPage() {
               </tbody>
             </table>
           </div>
+
+          <h2>Boru Malzemesine Göre Hazen-Williams C Katsayısı</h2>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <caption>Yaygın boru malzemelerine göre tipik Hazen-Williams C katsayıları</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Boru Malzemesi</th>
+                  <th scope="col">Tipik C Katsayısı</th>
+                </tr>
+              </thead>
+              <tbody>
+                {hazenWilliamsCTable.map((row) => (
+                  <tr key={row[0]}>
+                    {row.map((cell, index) => (
+                      <td key={`${row[0]}-${index}`}>{cell}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Yüksek C katsayısı daha pürüzsüz bir iç yüzeyi ve dolayısıyla
+            daha düşük sürtünme kaybını gösterir; eski/paslı borularda
+            yüzey pürüzlülüğü arttığı için C değeri zamanla düşer.
+          </p>
 
           <h2>Sık Sorulan Sorular</h2>
           <p>

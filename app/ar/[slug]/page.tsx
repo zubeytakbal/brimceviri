@@ -138,8 +138,15 @@ export async function generateMetadata({
     englishName: page.toName,
     symbol: page.toUnit,
   });
-  const title = `محول ${localizedFromName} إلى ${localizedToName}`;
-  const description = `حوّل من ${localizedFromName} إلى ${localizedToName} بسرعة، مع جدول تحويل وصيغة أساسية وروابط إلى الوحدات المرتبطة.`;
+  // العنوان يتضمن الرقم "1" ليطابق نمط البحث الفعلي ("1 X إلى Y")، بعد أن
+  // تبيّن أن الصيغة القديمة بدون رقم كانت تحقق نقرات شبه معدومة رغم ترتيب جيد.
+  const oneUnitValue = formatNumber(1);
+  const oneUnitResult = formatNumber(
+    convert(page.category, 1, page.fromUnit, page.toUnit)
+  );
+
+  const title = `${oneUnitValue} ${localizedFromName} إلى ${localizedToName}`;
+  const description = `${oneUnitValue} ${localizedFromName} = ${oneUnitResult} ${localizedToName}. حوّل من ${localizedFromName} إلى ${localizedToName} بسرعة، مع جدول تحويل وصيغة أساسية وروابط إلى الوحدات المرتبطة.`;
 
   return {
     title,

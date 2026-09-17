@@ -15,6 +15,7 @@ export type UnitRegistryEntry = {
   tr?: LocalizedUnitName;
   en?: LocalizedUnitName;
   de?: LocalizedUnitName;
+  uz?: LocalizedUnitName;
   enConversionSlug?: string;
 };
 
@@ -28,6 +29,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Metre", slug: "metre" },
     en: { name: "Meter", slug: "meter" },
     de: { name: "Meter", slug: "meter" },
+    uz: { name: "Metr", slug: "metr" },
     enConversionSlug: "meters",
   },
   {
@@ -38,6 +40,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Kilometre", slug: "kilometre" },
     en: { name: "Kilometer", slug: "kilometer" },
     de: { name: "Kilometer", slug: "kilometer" },
+    uz: { name: "Kilometr", slug: "kilometr" },
     enConversionSlug: "kilometers",
   },
   {
@@ -48,7 +51,19 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Santimetre", slug: "santimetre" },
     en: { name: "Centimeter", slug: "centimeter" },
     de: { name: "Zentimeter", slug: "zentimeter" },
+    uz: { name: "Santimetr", slug: "santimetr" },
     enConversionSlug: "centimeters",
+  },
+  {
+    id: "desimetre",
+    category: "uzunluk",
+    symbol: "dm",
+    siFactor: 0.1,
+    tr: { name: "Desimetre", slug: "desimetre" },
+    en: { name: "Decimeter", slug: "decimeter" },
+    de: { name: "Dezimeter", slug: "dezimeter" },
+    uz: { name: "Desimetr", slug: "desimetr" },
+    enConversionSlug: "decimeters",
   },
   {
     id: "milimetre",
@@ -58,6 +73,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Milimetre", slug: "milimetre" },
     en: { name: "Millimeter", slug: "millimeter" },
     de: { name: "Millimeter", slug: "millimeter" },
+    uz: { name: "Millimetr", slug: "millimetr" },
     enConversionSlug: "millimeters",
   },
   {
@@ -68,6 +84,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Mikrometre", slug: "mikrometre" },
     en: { name: "Micrometer", slug: "micrometer" },
     de: { name: "Mikrometer", slug: "mikrometer" },
+    uz: { name: "Mikrometr", slug: "mikrometr" },
   },
   {
     id: "nanometre",
@@ -77,6 +94,17 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Nanometre", slug: "nanometre" },
     en: { name: "Nanometer", slug: "nanometer" },
     de: { name: "Nanometer", slug: "nanometer" },
+    uz: { name: "Nanometr", slug: "nanometr" },
+  },
+  {
+    id: "pikometre",
+    category: "uzunluk",
+    symbol: "pm",
+    siFactor: 1e-12,
+    tr: { name: "Pikometre", slug: "pikometre" },
+    en: { name: "Picometer", slug: "picometer" },
+    de: { name: "Pikometer", slug: "pikometer" },
+    uz: { name: "Pikometr", slug: "pikometr" },
   },
   {
     id: "fit",
@@ -86,6 +114,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Fit", slug: "fit" },
     en: { name: "Foot", slug: "foot" },
     de: { name: "Fuß", slug: "fuss" },
+    uz: { name: "Fut", slug: "fut" },
     enConversionSlug: "feet",
   },
   {
@@ -96,6 +125,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "İnç", slug: "inc" },
     en: { name: "Inch", slug: "inch" },
     de: { name: "Zoll", slug: "zoll" },
+    uz: { name: "Dyum", slug: "dyum" },
     enConversionSlug: "inches",
   },
   {
@@ -106,6 +136,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Yarda", slug: "yarda" },
     en: { name: "Yard", slug: "yard" },
     de: { name: "Yard", slug: "yard" },
+    uz: { name: "Yard", slug: "yard" },
     enConversionSlug: "yards",
   },
   {
@@ -116,7 +147,18 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Mil", slug: "mil" },
     en: { name: "Mile", slug: "mile" },
     de: { name: "Meile", slug: "meile" },
+    uz: { name: "Milya", slug: "milya" },
     enConversionSlug: "miles",
+  },
+  {
+    id: "furlong",
+    category: "uzunluk",
+    symbol: "fur",
+    siFactor: 201.168,
+    tr: { name: "Furlong", slug: "furlong" },
+    en: { name: "Furlong", slug: "furlong" },
+    de: { name: "Furlong", slug: "furlong" },
+    uz: { name: "Furlong", slug: "furlong" },
   },
   {
     id: "deniz-mili",
@@ -126,6 +168,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Deniz mili", slug: "deniz-mili" },
     en: { name: "Nautical mile", slug: "nautical-mile" },
     de: { name: "Seemeile", slug: "seemeile" },
+    uz: { name: "Dengiz mili", slug: "dengiz-mili" },
   },
   {
     id: "astronomik-birim",
@@ -135,6 +178,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Astronomik Birim", slug: "astronomik-birim" },
     en: { name: "Astronomical Unit", slug: "astronomical-unit" },
     de: { name: "Astronomische Einheit", slug: "astronomische-einheit" },
+    uz: { name: "Astronomik Birlik", slug: "astronomik-birlik" },
   },
   {
     id: "isik-yili",
@@ -144,6 +188,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Işık Yılı", slug: "isik-yili" },
     en: { name: "Light-year", slug: "light-year" },
     de: { name: "Lichtjahr", slug: "lichtjahr" },
+    uz: { name: "Yorug'lik Yili", slug: "yoruglik-yili" },
   },
   {
     id: "parsek",
@@ -153,6 +198,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Parsek", slug: "parsek" },
     en: { name: "Parsec", slug: "parsec" },
     de: { name: "Parsec", slug: "parsec" },
+    uz: { name: "Parsek", slug: "parsek" },
   },
   {
     id: "angstrom",
@@ -162,6 +208,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Angström", slug: "angstrom" },
     en: { name: "Angstrom", slug: "angstrom" },
     de: { name: "Angström", slug: "angstroem" },
+    uz: { name: "Angstrem", slug: "angstrem" },
   },
   {
     id: "fathom",
@@ -171,6 +218,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Kulaç (Fathom)", slug: "fathom" },
     en: { name: "Fathom", slug: "fathom" },
     de: { name: "Faden", slug: "faden" },
+    uz: { name: "Fatom", slug: "fatom" },
   },
   {
     id: "arsin",
@@ -179,8 +227,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     siFactor: 0.68,
     tr: { name: "Arşın", slug: "arsin" },
     en: { name: "Arshin", slug: "arshin" },
-    de: { name: "Arschin", slug: "arschin" },
-  },
+    de: { name: "Arschin", slug: "arschin" },  },
   {
     id: "endaze",
     category: "uzunluk",
@@ -188,8 +235,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     siFactor: 0.65,
     tr: { name: "Endaze", slug: "endaze" },
     en: { name: "Endaze", slug: "endaze" },
-    de: { name: "Endaze", slug: "endaze" },
-  },
+    de: { name: "Endaze", slug: "endaze" },  },
   {
     id: "pous",
     category: "uzunluk",
@@ -215,7 +261,44 @@ export const unitRegistry: UnitRegistryEntry[] = [
     siFactor: 0.333,
     tr: { name: "Çığ", slug: "cig" },
     en: { name: "Cig", slug: "cig" },
-    de: { name: "Çığ", slug: "cig" },
+    de: { name: "Çığ", slug: "cig" },  },
+
+  // ---- o'zbekcha tarixiy uzunlik birliklari (faqat uz, tr/en/de yo'q --
+  // bu birliklar Buxoro/Xiva/Qo'qon davriga xos, Turkiyaga tegishli emas) ----
+  {
+    id: "gaz",
+    category: "uzunluk",
+    symbol: "gaz",
+    siFactor: 0.71,
+    uz: { name: "Gaz", slug: "gaz" },
+  },
+  {
+    id: "chaqirim",
+    category: "uzunluk",
+    symbol: "chaqirim",
+    siFactor: 1000,
+    uz: { name: "Chaqirim", slug: "chaqirim" },
+  },
+  {
+    id: "tosh",
+    category: "uzunluk",
+    symbol: "tosh",
+    siFactor: 7000,
+    uz: { name: "Tosh", slug: "tosh" },
+  },
+  {
+    id: "farsah-uz",
+    category: "uzunluk",
+    symbol: "farsah",
+    siFactor: 6000,
+    uz: { name: "Farsah", slug: "farsah" },
+  },
+  {
+    id: "qadam",
+    category: "uzunluk",
+    symbol: "qadam",
+    siFactor: 0.67,
+    uz: { name: "Qadam", slug: "qadam" },
   },
 
   // ---- alan / area / Fläche ----
@@ -228,6 +311,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Square Meter", slug: "square-meter" },
     de: { name: "Quadratmeter", slug: "quadratmeter" },
     enConversionSlug: "square-meters",
+    uz: { name: "Kvadrat metr", slug: "kvadrat-metr" },
   },
   {
     id: "santimetrekare",
@@ -237,6 +321,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Santimetrekare", slug: "santimetrekare" },
     en: { name: "Square Centimeter", slug: "square-centimeter" },
     de: { name: "Quadratzentimeter", slug: "quadratzentimeter" },
+    uz: { name: "Kvadrat Santimetr", slug: "kvadrat-santimetr" },
   },
   {
     id: "milimetrekare",
@@ -246,6 +331,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Milimetrekare", slug: "milimetrekare" },
     en: { name: "Square Millimeter", slug: "square-millimeter" },
     de: { name: "Quadratmillimeter", slug: "quadratmillimeter" },
+    uz: { name: "Kvadrat Millimetr", slug: "kvadrat-millimetr" },
   },
   {
     id: "kilometrekare",
@@ -255,6 +341,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Kilometrekare", slug: "kilometrekare" },
     en: { name: "Square Kilometer", slug: "square-kilometer" },
     de: { name: "Quadratkilometer", slug: "quadratkilometer" },
+    uz: { name: "Kvadrat Kilometr", slug: "kvadrat-kilometr" },
   },
   {
     id: "hektar",
@@ -265,6 +352,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Hectare", slug: "hectare" },
     de: { name: "Hektar", slug: "hektar" },
     enConversionSlug: "hectares",
+    uz: { name: "Gektar", slug: "gektar" },
   },
   {
     id: "ar",
@@ -274,6 +362,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Ar", slug: "ar" },
     en: { name: "Are", slug: "are" },
     de: { name: "Ar", slug: "ar" },
+    uz: { name: "Sotix", slug: "sotix" },
   },
   {
     id: "fitkare",
@@ -284,6 +373,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Square Foot", slug: "square-foot" },
     de: { name: "Quadratfuß", slug: "quadratfuss" },
     enConversionSlug: "square-feet",
+    uz: { name: "Kvadrat Fut", slug: "kvadrat-fut" },
   },
   {
     id: "incare",
@@ -293,6 +383,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "İnçkare", slug: "incare" },
     en: { name: "Square Inch", slug: "square-inch" },
     de: { name: "Quadratzoll", slug: "quadratzoll" },
+    uz: { name: "Kvadrat Dyum", slug: "kvadrat-dyum" },
   },
   {
     id: "yardakare",
@@ -302,6 +393,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Yardakare", slug: "yardakare" },
     en: { name: "Square Yard", slug: "square-yard" },
     de: { name: "Quadratyard", slug: "quadratyard" },
+    uz: { name: "Kvadrat Yard", slug: "kvadrat-yard" },
     enConversionSlug: "square-yards",
   },
   {
@@ -312,6 +404,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Akre", slug: "akre" },
     en: { name: "Acre", slug: "acre" },
     de: { name: "Acre", slug: "acre" },
+    uz: { name: "Akr", slug: "akr" },
   },
   {
     id: "donum",
@@ -321,6 +414,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Dönüm", slug: "donum" },
     en: { name: "Donum", slug: "donum" },
     de: { name: "Dönüm", slug: "doenuem" },
+    uz: { name: "Donum", slug: "donum" },
   },
   {
     id: "dekar",
@@ -330,6 +424,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Dekar", slug: "dekar" },
     en: { name: "Decare", slug: "decare" },
     de: { name: "Dekar", slug: "dekar" },
+    uz: { name: "Dekar", slug: "dekar" },
   },
   {
     id: "decimal-arazi",
@@ -339,6 +434,69 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Decimal (Arazi)", slug: "decimal-arazi" },
     en: { name: "Decimal (Land)", slug: "decimal-land" },
     de: { name: "Decimal (Grundstück)", slug: "decimal-grundstueck" },
+  },
+  {
+    id: "killa",
+    category: "alan",
+    symbol: "killa",
+    siFactor: 4046.8564224,
+    tr: { name: "Killa", slug: "killa" },
+    en: { name: "Killa", slug: "killa" },
+    de: { name: "Killa", slug: "killa" },
+  },
+  {
+    id: "kanal",
+    category: "alan",
+    symbol: "kanal",
+    siFactor: 505.8570768,
+    tr: { name: "Kanal", slug: "kanal" },
+    en: { name: "Kanal", slug: "kanal" },
+    de: { name: "Kanal", slug: "kanal" },
+  },
+  {
+    id: "marla",
+    category: "alan",
+    symbol: "marla",
+    siFactor: 25.29285384,
+    tr: { name: "Marla", slug: "marla" },
+    en: { name: "Marla", slug: "marla" },
+    de: { name: "Marla", slug: "marla" },
+  },
+  {
+    id: "guntha",
+    category: "alan",
+    symbol: "guntha",
+    siFactor: 101.1714105,
+    tr: { name: "Guntha", slug: "guntha" },
+    en: { name: "Guntha", slug: "guntha" },
+    de: { name: "Guntha", slug: "guntha" },
+  },
+  {
+    id: "cent-arazi",
+    category: "alan",
+    symbol: "cent",
+    siFactor: 40.468564224,
+    tr: { name: "Cent (Arazi)", slug: "cent-arazi" },
+    en: { name: "Cent (Land)", slug: "cent-land" },
+    de: { name: "Cent (Grundstück)", slug: "cent-grundstueck" },
+  },
+  {
+    id: "ground",
+    category: "alan",
+    symbol: "ground",
+    siFactor: 222.96729,
+    tr: { name: "Ground", slug: "ground" },
+    en: { name: "Ground", slug: "ground" },
+    de: { name: "Ground", slug: "ground" },
+  },
+  {
+    id: "biswa",
+    category: "alan",
+    symbol: "biswa",
+    siFactor: 126.4642632,
+    tr: { name: "Biswa", slug: "biswa" },
+    en: { name: "Biswa", slug: "biswa" },
+    de: { name: "Biswa", slug: "biswa" },
   },
   {
     id: "katha",
@@ -377,6 +535,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Metreküp", slug: "metrekup" },
     en: { name: "Cubic Meter", slug: "cubic-meter" },
     de: { name: "Kubikmeter", slug: "kubikmeter" },
+    uz: { name: "Kub metr", slug: "kub-metr" },
     enConversionSlug: "cubic-meters",
   },
   {
@@ -387,6 +546,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Litre", slug: "litre" },
     en: { name: "Liter", slug: "liter" },
     de: { name: "Liter", slug: "liter" },
+    uz: { name: "Litr", slug: "litr" },
     enConversionSlug: "liters",
   },
   {
@@ -397,7 +557,30 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Mililitre", slug: "mililitre" },
     en: { name: "Milliliter", slug: "milliliter" },
     de: { name: "Milliliter", slug: "milliliter" },
+    uz: { name: "Millilitr", slug: "millilitr" },
     enConversionSlug: "milliliters",
+  },
+  {
+    id: "desilitre",
+    category: "hacim",
+    symbol: "dL",
+    siFactor: 0.0001,
+    tr: { name: "Desilitre", slug: "desilitre" },
+    en: { name: "Deciliter", slug: "deciliter" },
+    de: { name: "Deziliter", slug: "deziliter" },
+    uz: { name: "Detsilitr", slug: "detsilitr" },
+    enConversionSlug: "deciliters",
+  },
+  {
+    id: "santilitre",
+    category: "hacim",
+    symbol: "cL",
+    siFactor: 0.00001,
+    tr: { name: "Santilitre", slug: "santilitre" },
+    en: { name: "Centiliter", slug: "centiliter" },
+    de: { name: "Zentiliter", slug: "zentiliter" },
+    uz: { name: "Santilitr", slug: "santilitr" },
+    enConversionSlug: "centiliters",
   },
   {
     id: "yemek-kasigi",
@@ -407,6 +590,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Yemek Kaşığı", slug: "yemek-kasigi" },
     en: { name: "Tablespoon", slug: "tablespoon" },
     de: { name: "Esslöffel", slug: "essloeffel" },
+    uz: { name: "Osh Qoshiq", slug: "osh-qoshiq" },
     enConversionSlug: "tablespoons",
   },
   {
@@ -417,6 +601,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Çay Kaşığı", slug: "cay-kasigi" },
     en: { name: "Teaspoon", slug: "teaspoon" },
     de: { name: "Teelöffel", slug: "teeloeffel" },
+    uz: { name: "Choy Qoshiq", slug: "choy-qoshiq" },
     enConversionSlug: "teaspoons",
   },
   {
@@ -436,6 +621,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Santimetreküp", slug: "santimetrekup" },
     en: { name: "Cubic Centimeter", slug: "cubic-centimeter" },
     de: { name: "Kubikzentimeter", slug: "kubikzentimeter" },
+    uz: { name: "Kub Santimetr", slug: "kub-santimetr" },
   },
   {
     id: "fitkup",
@@ -445,6 +631,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Fitküp", slug: "fitkup" },
     en: { name: "Cubic Foot", slug: "cubic-foot" },
     de: { name: "Kubikfuß", slug: "kubikfuss" },
+    uz: { name: "Kub Fut", slug: "kub-fut" },
   },
   {
     id: "inckup",
@@ -454,6 +641,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "İnçküp", slug: "inckup" },
     en: { name: "Cubic Inch", slug: "cubic-inch" },
     de: { name: "Kubikzoll", slug: "kubikzoll" },
+    uz: { name: "Kub Dyum", slug: "kub-dyum" },
   },
   {
     id: "galon",
@@ -461,8 +649,9 @@ export const unitRegistry: UnitRegistryEntry[] = [
     symbol: "gal",
     siFactor: 0.00378541,
     tr: { name: "Galon", slug: "galon" },
-    en: { name: "Gallon", slug: "gallon" },
+    en: { name: "US Liquid Gallon", slug: "gallon" },
     de: { name: "Gallone", slug: "gallone" },
+    uz: { name: "Gallon", slug: "gallon" },
   },
   {
     id: "quart",
@@ -470,8 +659,9 @@ export const unitRegistry: UnitRegistryEntry[] = [
     symbol: "qt",
     siFactor: 0.000946352946,
     tr: { name: "Quart", slug: "quart" },
-    en: { name: "Quart", slug: "quart" },
+    en: { name: "US Quart", slug: "quart" },
     de: { name: "Quart", slug: "quart" },
+    uz: { name: "Kvarta", slug: "kvarta" },
   },
   {
     id: "ingiliz-quart",
@@ -481,6 +671,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "İngiliz Quart", slug: "ingiliz-quart" },
     en: { name: "Imperial Quart", slug: "imperial-quart" },
     de: { name: "Imperiale Quart", slug: "imperiale-quart" },
+    uz: { name: "Britaniya Kvartasi", slug: "britaniya-kvartasi" },
   },
   {
     id: "sivi-ons",
@@ -488,8 +679,9 @@ export const unitRegistry: UnitRegistryEntry[] = [
     symbol: "fl oz",
     siFactor: 0.0000295735295625,
     tr: { name: "Sıvı Ons", slug: "sivi-ons" },
-    en: { name: "Fluid Ounce", slug: "fluid-ounce" },
+    en: { name: "US Fluid Ounce", slug: "fluid-ounce" },
     de: { name: "Flüssigunze", slug: "fluessigunze" },
+    uz: { name: "Suyuqlik Untsiyasi", slug: "suyuqlik-untsiyasi" },
   },
   {
     id: "ingiliz-sivi-ons",
@@ -499,6 +691,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "İngiliz Sıvı Ons", slug: "ingiliz-sivi-ons" },
     en: { name: "Imperial Fluid Ounce", slug: "imperial-fluid-ounce" },
     de: { name: "Imperiale Flüssigunze", slug: "imperiale-fluessigunze" },
+    uz: { name: "Britaniya Suyuqlik Untsiyasi", slug: "britaniya-suyuqlik-untsiyasi" },
   },
   {
     id: "pint",
@@ -506,8 +699,9 @@ export const unitRegistry: UnitRegistryEntry[] = [
     symbol: "pt",
     siFactor: 0.000473176473,
     tr: { name: "Pint", slug: "pint" },
-    en: { name: "Pint", slug: "pint" },
+    en: { name: "US Pint", slug: "pint" },
     de: { name: "Pint", slug: "pint" },
+    uz: { name: "Pinta", slug: "pinta" },
   },
   {
     id: "ingiliz-pint",
@@ -517,6 +711,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "İngiliz Pint", slug: "ingiliz-pint" },
     en: { name: "Imperial Pint", slug: "imperial-pint" },
     de: { name: "Imperiale Pint", slug: "imperiale-pint" },
+    uz: { name: "Britaniya Pintasi", slug: "britaniya-pintasi" },
   },
   {
     id: "peck",
@@ -524,8 +719,9 @@ export const unitRegistry: UnitRegistryEntry[] = [
     symbol: "pk",
     siFactor: 0.008809767994375,
     tr: { name: "Peck", slug: "peck" },
-    en: { name: "Peck", slug: "peck" },
+    en: { name: "US Peck", slug: "peck" },
     de: { name: "Peck", slug: "peck" },
+    uz: { name: "Pek", slug: "pek" },
   },
   {
     id: "bushel",
@@ -533,8 +729,9 @@ export const unitRegistry: UnitRegistryEntry[] = [
     symbol: "bu",
     siFactor: 0.03523907016688,
     tr: { name: "Bushel", slug: "bushel" },
-    en: { name: "Bushel", slug: "bushel" },
+    en: { name: "US Bushel", slug: "bushel" },
     de: { name: "Bushel", slug: "bushel" },
+    uz: { name: "Bushel", slug: "bushel" },
   },
   {
     id: "ingiliz-galonu",
@@ -544,6 +741,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "İngiliz Galonu", slug: "ingiliz-galonu" },
     en: { name: "Imperial Gallon", slug: "imperial-gallon" },
     de: { name: "Imperiale Gallone", slug: "imperiale-gallone" },
+    uz: { name: "Britaniya Galloni", slug: "britaniya-galloni" },
   },
   {
     id: "varil",
@@ -553,6 +751,25 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Varil (petrol)", slug: "varil" },
     en: { name: "Barrel", slug: "barrel" },
     de: { name: "Barrel", slug: "barrel" },
+    uz: { name: "Barrel", slug: "barrel" },
+  },
+  {
+    id: "kile",
+    category: "hacim",
+    symbol: "kile",
+    siFactor: 0.037,
+    tr: { name: "Kile", slug: "kile" },
+    en: { name: "Kile", slug: "kile" },
+    de: { name: "Kile", slug: "kile" },
+  },
+  {
+    id: "sinik",
+    category: "hacim",
+    symbol: "şinik",
+    siFactor: 0.00925,
+    tr: { name: "Şinik", slug: "sinik" },
+    en: { name: "Shinik", slug: "shinik" },
+    de: { name: "Shinik", slug: "shinik" },
   },
 
   // ---- kutle / mass / Masse ----
@@ -564,6 +781,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Kilogram", slug: "kilogram" },
     en: { name: "Kilogram", slug: "kilogram" },
     de: { name: "Kilogramm", slug: "kilogramm" },
+    uz: { name: "Kilogramm", slug: "kilogramm" },
     enConversionSlug: "kilograms",
   },
   {
@@ -574,6 +792,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Gram", slug: "gram" },
     en: { name: "Gram", slug: "gram" },
     de: { name: "Gramm", slug: "gramm" },
+    uz: { name: "Gramm", slug: "gramm" },
     enConversionSlug: "grams",
   },
   {
@@ -584,7 +803,18 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Miligram", slug: "miligram" },
     en: { name: "Milligram", slug: "milligram" },
     de: { name: "Milligramm", slug: "milligramm" },
+    uz: { name: "Milligramm", slug: "milligramm" },
     enConversionSlug: "milligrams",
+  },
+  {
+    id: "kental",
+    category: "kutle",
+    symbol: "q",
+    siFactor: 100,
+    tr: { name: "Kental", slug: "kental" },
+    en: { name: "Quintal", slug: "quintal" },
+    de: { name: "Doppelzentner", slug: "doppelzentner" },
+    uz: { name: "Sentner", slug: "sentner" },
   },
   {
     id: "ton",
@@ -595,6 +825,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Ton", slug: "ton" },
     en: { name: "Tonne", slug: "tonne" },
     de: { name: "Tonne", slug: "tonne" },
+    uz: { name: "Tonna", slug: "tonna" },
     enConversionSlug: "tonnes",
   },
   {
@@ -605,6 +836,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Pound", slug: "pound" },
     en: { name: "Pound", slug: "pound" },
     de: { name: "Pfund", slug: "pfund" },
+    uz: { name: "Funt", slug: "funt" },
     enConversionSlug: "pounds",
   },
   {
@@ -615,6 +847,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Stone", slug: "stone" },
     en: { name: "Stone", slug: "stone" },
     de: { name: "Stone", slug: "stone" },
+    uz: { name: "Stoun", slug: "stoun" },
   },
   {
     id: "grain",
@@ -624,6 +857,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Grain", slug: "grain" },
     en: { name: "Grain", slug: "grain" },
     de: { name: "Grain", slug: "grain" },
+    uz: { name: "Grain", slug: "grain" },
   },
   {
     id: "dalton",
@@ -633,6 +867,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Dalton", slug: "dalton" },
     en: { name: "Dalton", slug: "dalton" },
     de: { name: "Dalton", slug: "dalton" },
+    uz: { name: "Dalton", slug: "dalton" },
   },
   {
     id: "ons",
@@ -642,6 +877,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Ons", slug: "ons" },
     en: { name: "Ounce", slug: "ounce" },
     de: { name: "Unze", slug: "unze" },
+    uz: { name: "Untsiya", slug: "untsiya" },
     enConversionSlug: "ounces",
   },
   {
@@ -651,8 +887,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     siFactor: 1.282945,
     tr: { name: "Okka", slug: "okka" },
     en: { name: "Okka", slug: "okka" },
-    de: { name: "Okka", slug: "okka" },
-  },
+    de: { name: "Okka", slug: "okka" },  },
   {
     id: "dirhem",
     category: "kutle",
@@ -660,7 +895,24 @@ export const unitRegistry: UnitRegistryEntry[] = [
     siFactor: 0.0032073625,
     tr: { name: "Dirhem", slug: "dirhem" },
     en: { name: "Dirham", slug: "dirham" },
-    de: { name: "Dirham", slug: "dirham" },
+    de: { name: "Dirham", slug: "dirham" },  },
+  {
+    id: "miskal",
+    category: "kutle",
+    symbol: "miskal",
+    siFactor: 0.00481104375,
+    tr: { name: "Miskal", slug: "miskal" },
+    en: { name: "Miskal", slug: "miskal" },
+    de: { name: "Miskal", slug: "miskal" },
+  },
+  {
+    id: "batman",
+    category: "kutle",
+    symbol: "batman",
+    siFactor: 7.69767,
+    tr: { name: "Batman", slug: "batman" },
+    en: { name: "Batman", slug: "batman" },
+    de: { name: "Batman", slug: "batman" },
   },
   {
     id: "litra",
@@ -688,6 +940,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Troy Ons", slug: "troy-ons" },
     en: { name: "Troy Ounce", slug: "troy-ounce" },
     de: { name: "Feinunze", slug: "feinunze" },
+    uz: { name: "Troy Untsiya", slug: "troy-untsiya" },
     enConversionSlug: "troy-ounces",
   },
   {
@@ -698,7 +951,46 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Karat", slug: "karat" },
     en: { name: "Carat", slug: "carat" },
     de: { name: "Karat", slug: "karat" },
+    uz: { name: "Karat", slug: "karat" },
     enConversionSlug: "carats",
+  },
+
+  // ---- o'zbekcha tarixiy massa birliklari (faqat uz, tr/en/de yo'q --
+  // Buxoro/Xiva/Qo'qon/Turkiston davriga xos, Turkiyaga tegishli emas) ----
+  {
+    id: "miskal-uz",
+    category: "kutle",
+    symbol: "miskal-uz",
+    siFactor: 0.00425,
+    uz: { name: "Miskal", slug: "miskal" },
+  },
+  {
+    id: "pud",
+    category: "kutle",
+    symbol: "pud",
+    siFactor: 16.3804815,
+    uz: { name: "Pud", slug: "pud" },
+  },
+  {
+    id: "qadoq",
+    category: "kutle",
+    symbol: "qadoq",
+    siFactor: 0.4095,
+    uz: { name: "Qadoq", slug: "qadoq" },
+  },
+  {
+    id: "dirhem-uz",
+    category: "kutle",
+    symbol: "dirhem-uz",
+    siFactor: 0.00318,
+    uz: { name: "Dirham", slug: "dirham" },
+  },
+  {
+    id: "batman-uz",
+    category: "kutle",
+    symbol: "batman-uz",
+    siFactor: 131.043852,
+    uz: { name: "Botmon", slug: "botmon" },
   },
 
   // ---- yoğunluk / density (engine-only, no public pages) ----
@@ -739,6 +1031,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Meter per Second", slug: "meter-per-second" },
     de: { name: "Meter pro Sekunde", slug: "meter-pro-sekunde" },
     enConversionSlug: "meters-per-second",
+    uz: { name: "Metr/Soniya", slug: "metr-soniyaga" },
   },
   {
     id: "kilometre-saat",
@@ -749,8 +1042,9 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Kilometer per Hour", slug: "kilometer-per-hour" },
     de: { name: "Kilometer pro Stunde", slug: "kilometer-pro-stunde" },
     enConversionSlug: "kilometers-per-hour",
+    uz: { name: "Kilometr/soat", slug: "km-soat" },
   },
-  { id: "km-s", category: "hiz", symbol: "km/s", siFactor: 1000, tr: { name: "Kilometre/Saniye", slug: "kilometre-saniye" } },
+  { id: "km-s", category: "hiz", symbol: "km/s", siFactor: 1000, tr: { name: "Kilometre/Saniye", slug: "kilometre-saniye" }, en: { name: "Kilometer per Second", slug: "kilometer-per-second" }, de: { name: "Kilometer pro Sekunde", slug: "kilometer-pro-sekunde" }, uz: { name: "Kilometr/Soniya", slug: "km-soniyaga" } },
   {
     id: "mil-saat",
     category: "hiz",
@@ -760,6 +1054,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Mile per Hour", slug: "mile-per-hour" },
     de: { name: "Meilen pro Stunde", slug: "meilen-pro-stunde" },
     enConversionSlug: "miles-per-hour",
+    uz: { name: "Milya/Soat", slug: "milya-soatiga" },
   },
   {
     id: "knot",
@@ -769,11 +1064,12 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Knot", slug: "knot" },
     en: { name: "Knot", slug: "knot" },
     de: { name: "Knoten", slug: "knoten" },
+    uz: { name: "Uzel", slug: "uzel" },
   },
-  { id: "ft-s", category: "hiz", symbol: "ft/s", siFactor: 0.3048, tr: { name: "Fit/Saniye", slug: "fit-saniye" } },
-  { id: "m-min", category: "hiz", symbol: "m/min", siFactor: 1 / 60, tr: { name: "Metre/Dakika", slug: "metre-dakika" } },
-  { id: "km-min", category: "hiz", symbol: "km/min", siFactor: 1000 / 60, tr: { name: "Kilometre/Dakika", slug: "kilometre-dakika" } },
-  { id: "cm-s", category: "hiz", symbol: "cm/s", siFactor: 0.01, tr: { name: "Santimetre/Saniye", slug: "santimetre-saniye" } },
+  { id: "ft-s", category: "hiz", symbol: "ft/s", siFactor: 0.3048, tr: { name: "Fit/Saniye", slug: "fit-saniye" }, en: { name: "Foot per Second", slug: "foot-per-second" }, de: { name: "Fuß pro Sekunde", slug: "fuss-pro-sekunde" }, uz: { name: "Fut/Soniya", slug: "fut-soniyaga" } },
+  { id: "m-min", category: "hiz", symbol: "m/min", siFactor: 1 / 60, tr: { name: "Metre/Dakika", slug: "metre-dakika" }, en: { name: "Meter per Minute", slug: "meter-per-minute" }, de: { name: "Meter pro Minute", slug: "meter-pro-minute" }, uz: { name: "Metr/Daqiqa", slug: "metr-daqiqaga" } },
+  { id: "km-min", category: "hiz", symbol: "km/min", siFactor: 1000 / 60, tr: { name: "Kilometre/Dakika", slug: "kilometre-dakika" }, en: { name: "Kilometer per Minute", slug: "kilometer-per-minute" }, de: { name: "Kilometer pro Minute", slug: "kilometer-pro-minute" }, uz: { name: "Kilometr/Daqiqa", slug: "km-daqiqaga" } },
+  { id: "cm-s", category: "hiz", symbol: "cm/s", siFactor: 0.01, tr: { name: "Santimetre/Saniye", slug: "santimetre-saniye" }, en: { name: "Centimeter per Second", slug: "centimeter-per-second" }, de: { name: "Zentimeter pro Sekunde", slug: "zentimeter-pro-sekunde" }, uz: { name: "Santimetr/Soniya", slug: "santimetr-soniyaga" } },
   {
     id: "isik-hizi",
     category: "hiz",
@@ -782,6 +1078,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Işık Hızı", slug: "isik-hizi" },
     en: { name: "Speed of Light", slug: "speed-of-light" },
     de: { name: "Lichtgeschwindigkeit", slug: "lichtgeschwindigkeit" },
+    uz: { name: "Yorug'lik Tezligi", slug: "yorugliktezligi" },
   },
 
   // ---- ivme / acceleration (engine-only) ----
@@ -830,8 +1127,9 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Second", slug: "second" },
     de: { name: "Sekunde", slug: "sekunde" },
     enConversionSlug: "seconds",
+    uz: { name: "Soniya", slug: "soniya" },
   },
-  { id: "milisaniye", category: "zaman", symbol: "ms", siFactor: 0.001, tr: { name: "Milisaniye", slug: "milisaniye" } },
+  { id: "milisaniye", category: "zaman", symbol: "ms", siFactor: 0.001, tr: { name: "Milisaniye", slug: "milisaniye" }, en: { name: "Millisecond", slug: "millisecond" }, de: { name: "Millisekunde", slug: "millisekunde" }, uz: { name: "Millisoniya", slug: "millisoniya" } },
   {
     id: "dakika",
     category: "zaman",
@@ -841,6 +1139,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Minute", slug: "minute" },
     de: { name: "Minute", slug: "minute" },
     enConversionSlug: "minutes",
+    uz: { name: "Daqiqa", slug: "daqiqa" },
   },
   {
     id: "saat",
@@ -851,6 +1150,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Hour", slug: "hour" },
     de: { name: "Stunde", slug: "stunde" },
     enConversionSlug: "hours",
+    uz: { name: "Soat", slug: "soat" },
   },
   {
     id: "gun",
@@ -860,6 +1160,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Gün", slug: "gun" },
     en: { name: "Day", slug: "day" },
     de: { name: "Tag", slug: "tag" },
+    uz: { name: "Kun", slug: "kun" },
   },
 
   // ---- açısal hız (engine-only) ----
@@ -905,6 +1206,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Radyan", slug: "radyan" },
     en: { name: "Radian", slug: "radian" },
     de: { name: "Radiant", slug: "radiant" },
+    uz: { name: "Radian", slug: "radian" },
   },
   {
     id: "derece",
@@ -914,6 +1216,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Derece", slug: "derece" },
     en: { name: "Degree", slug: "degree" },
     de: { name: "Grad", slug: "grad" },
+    uz: { name: "Daraja", slug: "daraja" },
   },
   {
     id: "gradyan",
@@ -923,6 +1226,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Gradyan", slug: "gradyan" },
     en: { name: "Gradian", slug: "gradian" },
     de: { name: "Gon", slug: "gon" },
+    uz: { name: "Grad", slug: "grad" },
   },
   {
     id: "tam-tur",
@@ -932,6 +1236,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Tam Tur", slug: "tam-tur" },
     en: { name: "Full Turn", slug: "full-turn" },
     de: { name: "Vollwinkel", slug: "vollwinkel" },
+    uz: { name: "To'liq Aylanish", slug: "toliq-aylanish" },
   },
 
   // ---- frekans / frequency / Frequenz ----
@@ -943,6 +1248,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Hertz", slug: "hertz" },
     en: { name: "Hertz", slug: "hertz" },
     de: { name: "Hertz", slug: "hertz" },
+    uz: { name: "Gerts", slug: "gerts" },
   },
   {
     id: "kilohertz",
@@ -952,6 +1258,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Kilohertz", slug: "kilohertz" },
     en: { name: "Kilohertz", slug: "kilohertz" },
     de: { name: "Kilohertz", slug: "kilohertz" },
+    uz: { name: "Kilogerts", slug: "kilogerts" },
   },
   {
     id: "megahertz",
@@ -961,6 +1268,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Megahertz", slug: "megahertz" },
     en: { name: "Megahertz", slug: "megahertz" },
     de: { name: "Megahertz", slug: "megahertz" },
+    uz: { name: "Megagerts", slug: "megagerts" },
   },
   {
     id: "gigahertz",
@@ -970,6 +1278,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Gigahertz", slug: "gigahertz" },
     en: { name: "Gigahertz", slug: "gigahertz" },
     de: { name: "Gigahertz", slug: "gigahertz" },
+    uz: { name: "Gigagerts", slug: "gigagerts" },
   },
 
   // ---- kuvvet / tork / momentum (engine-only) ----
@@ -981,6 +1290,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Newton", slug: "newton" },
     en: { name: "Newton", slug: "newton" },
     de: { name: "Newton", slug: "newton" },
+    uz: { name: "Nyuton", slug: "nyuton" },
   },
   { id: "kilonewton", category: "kuvvet", symbol: "kN", siFactor: 1000, tr: { name: "Kilonewton", slug: "kilonewton" } },
   { id: "dyn", category: "kuvvet", symbol: "dyn", siFactor: 0.00001, tr: { name: "Dyn", slug: "dyn" } },
@@ -993,6 +1303,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Kilogram-kuvvet", slug: "kilogram-kuvvet" },
     en: { name: "Kilogram-Force", slug: "kilogram-force" },
     de: { name: "Kilogramm-Kraft", slug: "kilogramm-kraft" },
+    uz: { name: "Kilogram-Kuch", slug: "kilogram-kuch" },
   },
   {
     id: "newton-metre",
@@ -1002,6 +1313,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Newton-metre", slug: "newton-metre" },
     en: { name: "Newton-Meter", slug: "newton-meter" },
     de: { name: "Newtonmeter", slug: "newtonmeter" },
+    uz: { name: "Nyuton-Metr", slug: "nyuton-metr" },
   },
   { id: "kilonewton-metre", category: "tork", symbol: "kN·m", siFactor: 1000, tr: { name: "Kilonewton-metre", slug: "kilonewton-metre" } },
   {
@@ -1012,6 +1324,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Kilogram-kuvvet-metre", slug: "kilogram-kuvvet-metre" },
     en: { name: "Kilogram-Force Meter", slug: "kilogram-force-meter" },
     de: { name: "Kilogramm-Kraft-Meter", slug: "kilogramm-kraft-meter" },
+    uz: { name: "Kilogram-Kuch-Metr", slug: "kilogram-kuch-metr" },
   },
   {
     id: "lb-ft",
@@ -1052,6 +1365,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Pascal", slug: "pascal" },
     de: { name: "Pascal", slug: "pascal" },
     enConversionSlug: "pascals",
+    uz: { name: "Paskal", slug: "paskal" },
   },
   {
     id: "kilopascal",
@@ -1062,6 +1376,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Kilopascal", slug: "kilopascal" },
     de: { name: "Kilopascal", slug: "kilopascal" },
     enConversionSlug: "kilopascals",
+    uz: { name: "Kilopaskal", slug: "kilopaskal" },
   },
   {
     id: "megapascal",
@@ -1071,6 +1386,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Megapascal", slug: "megapascal" },
     en: { name: "Megapascal", slug: "megapascal" },
     de: { name: "Megapascal", slug: "megapascal" },
+    uz: { name: "Megapaskal", slug: "megapaskal" },
     enConversionSlug: "megapascals",
   },
   {
@@ -1081,6 +1397,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Hektopascal", slug: "hektopascal" },
     en: { name: "Hectopascal", slug: "hectopascal" },
     de: { name: "Hektopascal", slug: "hektopascal" },
+    uz: { name: "Gektopaskal", slug: "gektopaskal" },
     enConversionSlug: "hectopascals",
   },
   {
@@ -1092,6 +1409,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Bar", slug: "bar" },
     de: { name: "Bar", slug: "bar" },
     enConversionSlug: "bars",
+    uz: { name: "Bar", slug: "bar" },
   },
   {
     id: "milibar",
@@ -1101,6 +1419,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Milibar", slug: "milibar" },
     en: { name: "Millibar", slug: "millibar" },
     de: { name: "Millibar", slug: "millibar" },
+    uz: { name: "Millibar", slug: "millibar" },
   },
   {
     id: "atmosfer",
@@ -1111,8 +1430,9 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Atmosphere", slug: "atmosphere" },
     de: { name: "Atmosphäre", slug: "atmosphaere" },
     enConversionSlug: "atmospheres",
+    uz: { name: "Atmosfera", slug: "atmosfera" },
   },
-  { id: "teknik-atmosfer", category: "basinc", symbol: "at", siFactor: 98066.5, tr: { name: "Teknik Atmosfer", slug: "teknik-atmosfer" } },
+  { id: "teknik-atmosfer", category: "basinc", symbol: "at", siFactor: 98066.5, tr: { name: "Teknik Atmosfer", slug: "teknik-atmosfer" }, en: { name: "Technical Atmosphere", slug: "technical-atmosphere" }, de: { name: "Technische Atmosphäre", slug: "technische-atmosphaere" }, uz: { name: "Texnik Atmosfera", slug: "texnik-atmosfera" } },
   {
     id: "psi",
     category: "basinc",
@@ -1122,6 +1442,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "PSI", slug: "psi" },
     de: { name: "PSI", slug: "psi" },
     enConversionSlug: "psi",
+    uz: { name: "PSI", slug: "psi" },
   },
   {
     id: "milimetre-civa",
@@ -1132,8 +1453,9 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Millimeter of Mercury", slug: "millimeter-of-mercury" },
     de: { name: "Millimeter Quecksilbersäule", slug: "millimeter-quecksilbersaeule" },
     enConversionSlug: "millimeters-of-mercury",
+    uz: { name: "Simob Ustuni Millimetri", slug: "simob-ustuni-millimetri" },
   },
-  { id: "mmh2o", category: "basinc", symbol: "mmH2O", siFactor: 9.80665, tr: { name: "Milimetre Su Sütunu", slug: "milimetre-su-sutunu" } },
+  { id: "mmh2o", category: "basinc", symbol: "mmH2O", siFactor: 9.80665, tr: { name: "Milimetre Su Sütunu", slug: "milimetre-su-sutunu" }, en: { name: "Millimeter of Water", slug: "millimeter-of-water" }, de: { name: "Millimeter Wassersäule", slug: "millimeter-wassersaeule" }, uz: { name: "Suv Ustuni Millimetri", slug: "suv-ustuni-millimetri" } },
   {
     id: "torr",
     category: "basinc",
@@ -1142,6 +1464,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Torr", slug: "torr" },
     en: { name: "Torr", slug: "torr" },
     de: { name: "Torr", slug: "torr" },
+    uz: { name: "Torr", slug: "torr" },
   },
   {
     id: "kilogram-kuvvet-santimetrekare",
@@ -1158,6 +1481,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
       slug: "kilogramm-kraft-pro-quadratzentimeter",
     },
     enConversionSlug: "kilogram-force-per-square-centimeter",
+    uz: { name: "Kilogram-Kuch/Kvadrat Santimetr", slug: "kilogram-kuch-kvadrat-santimetrga" },
   },
 
   // ---- viskozite (engine-only) ----
@@ -1169,6 +1493,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Pascal-saniye", slug: "pascal-saniye" },
     en: { name: "Pascal-Second", slug: "pascal-second" },
     de: { name: "Pascalsekunde", slug: "pascalsekunde" },
+    uz: { name: "Paskal-Soniya", slug: "paskal-soniya" },
   },
   { id: "milipascal-saniye", category: "viskozite_dinamik", symbol: "mPa·s", siFactor: 0.001, tr: { name: "Milipaskal-saniye", slug: "milipaskal-saniye" } },
   { id: "poise", category: "viskozite_dinamik", symbol: "P", siFactor: 0.1, tr: { name: "Poise", slug: "poise" } },
@@ -1229,7 +1554,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     symbol: "gpm",
     siFactor: 0.00378541 / 60,
     tr: { name: "Galon/dakika (GPM)", slug: "galon-dakika" },
-    en: { name: "Gallons per Minute (GPM)", slug: "gallons-per-minute" },
+    en: { name: "US Gallons per Minute (GPM)", slug: "gallons-per-minute" },
     de: { name: "Gallonen pro Minute (GPM)", slug: "gallonen-pro-minute" },
   },
   {
@@ -1263,6 +1588,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Joule", slug: "joule" },
     de: { name: "Joule", slug: "joule" },
     enConversionSlug: "joules",
+    uz: { name: "Joul", slug: "joul" },
   },
   {
     id: "kilojoule",
@@ -1272,8 +1598,9 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Kilojoule", slug: "kilojoule" },
     en: { name: "Kilojoule", slug: "kilojoule" },
     de: { name: "Kilojoule", slug: "kilojoule" },
+    uz: { name: "Kilojoul", slug: "kilojoul" },
   },
-  { id: "megajoule", category: "enerji", symbol: "MJ", siFactor: 1_000_000, tr: { name: "Megajoule", slug: "megajoule" } },
+  { id: "megajoule", category: "enerji", symbol: "MJ", siFactor: 1_000_000, tr: { name: "Megajoule", slug: "megajoule" }, en: { name: "Megajoule", slug: "megajoule" }, de: { name: "Megajoule", slug: "megajoule" }, uz: { name: "Megajoul", slug: "megajoul" } },
   {
     id: "watt-saat",
     category: "enerji",
@@ -1282,6 +1609,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Watt-saat", slug: "watt-saat" },
     en: { name: "Watt-hour", slug: "watt-hour" },
     de: { name: "Wattstunde", slug: "wattstunde" },
+    uz: { name: "Vatt-Soat", slug: "vatt-soat" },
   },
   {
     id: "kilovatsaat",
@@ -1292,6 +1620,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Kilowatt-hour", slug: "kilowatt-hour" },
     de: { name: "Kilowattstunde", slug: "kilowattstunde" },
     enConversionSlug: "kilowatt-hours",
+    uz: { name: "Kilovatt-Soat", slug: "kilovatt-soat" },
   },
   {
     id: "watt",
@@ -1302,6 +1631,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Watt", slug: "watt" },
     de: { name: "Watt", slug: "watt" },
     enConversionSlug: "watts",
+    uz: { name: "Vatt", slug: "vatt" },
   },
   {
     id: "sogutma-tonu",
@@ -1321,6 +1651,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Kilowatt", slug: "kilowatt" },
     de: { name: "Kilowatt", slug: "kilowatt" },
     enConversionSlug: "kilowatts",
+    uz: { name: "Kilovatt", slug: "kilovatt" },
   },
   {
     id: "kalori",
@@ -1330,6 +1661,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Kalori", slug: "kalori" },
     en: { name: "Calorie", slug: "calorie" },
     de: { name: "Kalorie", slug: "kalorie" },
+    uz: { name: "Kaloriya", slug: "kaloriya" },
   },
   {
     id: "kilokalori",
@@ -1339,6 +1671,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Kilokalori", slug: "kilokalori" },
     en: { name: "Kilocalorie", slug: "kilocalorie" },
     de: { name: "Kilokalorie", slug: "kilokalorie" },
+    uz: { name: "Kilokaloriya", slug: "kilokaloriya" },
   },
   {
     id: "btu",
@@ -1348,9 +1681,10 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "BTU", slug: "btu" },
     en: { name: "British Thermal Unit", slug: "btu" },
     de: { name: "BTU", slug: "btu" },
+    uz: { name: "BTU", slug: "btu" },
   },
-  { id: "therm", category: "enerji", symbol: "th", siFactor: 1.05506e8, tr: { name: "Therm", slug: "therm" } },
-  { id: "quad-btu", category: "enerji", symbol: "quad BTU", siFactor: 1.05506e18, tr: { name: "Quad BTU", slug: "quad-btu" } },
+  { id: "therm", category: "enerji", symbol: "th", siFactor: 1.05506e8, tr: { name: "Therm", slug: "therm" }, en: { name: "Therm", slug: "therm" }, de: { name: "Therm", slug: "therm" }, uz: { name: "Term", slug: "term" } },
+  { id: "quad-btu", category: "enerji", symbol: "quad BTU", siFactor: 1.05506e18, tr: { name: "Quad BTU", slug: "quad-btu" }, en: { name: "Quad BTU", slug: "quad-btu" }, de: { name: "Quad BTU", slug: "quad-btu" }, uz: { name: "Kvadrillion BTU", slug: "kvadrillion-btu" } },
   {
     id: "elektronvolt",
     category: "enerji",
@@ -1359,6 +1693,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Elektronvolt", slug: "elektronvolt" },
     en: { name: "Electronvolt", slug: "electronvolt" },
     de: { name: "Elektronenvolt", slug: "elektronenvolt" },
+    uz: { name: "Elektronvolt", slug: "elektronvolt" },
   },
 
   // ---- güç ----
@@ -1370,6 +1705,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Megawatt", slug: "megawatt" },
     en: { name: "Megawatt", slug: "megawatt" },
     de: { name: "Megawatt", slug: "megawatt" },
+    uz: { name: "Megavatt", slug: "megavatt" },
   },
   {
     id: "beygirgucu-metric",
@@ -1389,6 +1725,15 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Horsepower (Mechanical)", slug: "horsepower-mechanical" },
     de: { name: "PS (mechanisch)", slug: "ps-mechanisch" },
   },
+  {
+    id: "btu-saat",
+    category: "guc",
+    symbol: "BTU/h",
+    siFactor: 0.29307107,
+    tr: { name: "BTU/saat", slug: "btu-saat" },
+    en: { name: "BTU per hour", slug: "btu-per-hour" },
+    de: { name: "BTU pro Stunde", slug: "btu-pro-stunde" },
+  },
 
   // ---- sıcaklık / temperature / Temperatur (non-linear, no siFactor) ----
   {
@@ -1400,6 +1745,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Santigrat", slug: "santigrat" },
     en: { name: "Celsius", slug: "celsius" },
     de: { name: "Celsius", slug: "celsius" },
+    uz: { name: "Selsiy", slug: "selsiy" },
     enConversionSlug: "celsius",
   },
   {
@@ -1411,6 +1757,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Fahrenheit", slug: "fahrenhayt" },
     en: { name: "Fahrenheit", slug: "fahrenheit" },
     de: { name: "Fahrenheit", slug: "fahrenheit" },
+    uz: { name: "Farengeyt", slug: "farengeyt" },
     enConversionSlug: "fahrenheit",
   },
   {
@@ -1421,6 +1768,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Kelvin", slug: "kelvin" },
     en: { name: "Kelvin", slug: "kelvin" },
     de: { name: "Kelvin", slug: "kelvin" },
+    uz: { name: "Kelvin", slug: "kelvin" },
     enConversionSlug: "kelvin",
   },
   {
@@ -1432,6 +1780,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Rankine", slug: "rankine" },
     en: { name: "Rankine", slug: "rankine" },
     de: { name: "Rankine", slug: "rankine" },
+    uz: { name: "Rankin", slug: "rankin" },
   },
   {
     id: "reaumur",
@@ -1442,6 +1791,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Réaumur", slug: "reaumur" },
     en: { name: "Réaumur", slug: "reaumur" },
     de: { name: "Réaumur", slug: "reaumur" },
+    uz: { name: "Reomyur", slug: "reomyur" },
   },
 
   // ---- ısıl iletkenlik / ısı akısı / özgül ısı (engine-only) ----
@@ -1515,6 +1865,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Cubic Meter per Hour", slug: "cubic-meter-per-hour" },
     de: { name: "Kubikmeter pro Stunde", slug: "kubikmeter-pro-stunde" },
     enConversionSlug: "cubic-meters-per-hour",
+    uz: { name: "Kub Metr/Soat", slug: "kub-metr-soatiga" },
   },
   {
     id: "litre-dakika",
@@ -1525,6 +1876,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Liter per Minute", slug: "liter-per-minute" },
     de: { name: "Liter pro Minute", slug: "liter-pro-minute" },
     enConversionSlug: "liters-per-minute",
+    uz: { name: "Litr/Daqiqa", slug: "litr-daqiqaga" },
   },
   {
     id: "volt",
@@ -1535,6 +1887,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Volt", slug: "volt" },
     de: { name: "Volt", slug: "volt" },
     enConversionSlug: "volts",
+    uz: { name: "Volt", slug: "volt" },
   },
   {
     id: "kilovolt",
@@ -1545,6 +1898,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Kilovolt", slug: "kilovolt" },
     de: { name: "Kilovolt", slug: "kilovolt" },
     enConversionSlug: "kilovolts",
+    uz: { name: "Kilovolt", slug: "kilovolt" },
   },
   {
     id: "amper",
@@ -1555,6 +1909,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Ampere", slug: "ampere" },
     de: { name: "Ampere", slug: "ampere" },
     enConversionSlug: "amperes",
+    uz: { name: "Amper", slug: "amper" },
   },
   {
     id: "miliamper",
@@ -1565,6 +1920,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Milliampere", slug: "milliampere" },
     de: { name: "Milliampere", slug: "milliampere" },
     enConversionSlug: "milliamperes",
+    uz: { name: "Milliamper", slug: "milliamper" },
   },
 
   // ---- elektrik_direnc / gerilim / akım / kapasitans / enduktans / yük / manyetik (engine-only) ----
@@ -1576,6 +1932,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Ohm", slug: "ohm" },
     en: { name: "Ohm", slug: "ohm" },
     de: { name: "Ohm", slug: "ohm" },
+    uz: { name: "Om", slug: "om" },
   },
   {
     id: "kiloohm",
@@ -1585,6 +1942,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Kiloohm", slug: "kiloohm" },
     en: { name: "Kiloohm", slug: "kiloohm" },
     de: { name: "Kiloohm", slug: "kiloohm" },
+    uz: { name: "Kiloom", slug: "kiloom" },
   },
   {
     id: "megaohm",
@@ -1594,6 +1952,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Megaohm", slug: "megaohm" },
     en: { name: "Megaohm", slug: "megaohm" },
     de: { name: "Megaohm", slug: "megaohm" },
+    uz: { name: "Megaom", slug: "megaom" },
   },
   { id: "gerilim-volt", category: "elektrik_gerilim", symbol: "V", siFactor: 1 },
   { id: "gerilim-kilovolt", category: "elektrik_gerilim", symbol: "kV", siFactor: 1000 },
@@ -1607,6 +1966,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Milivolt", slug: "milivolt" },
     en: { name: "Millivolt", slug: "millivolt" },
     de: { name: "Millivolt", slug: "millivolt" },
+    uz: { name: "Millivolt", slug: "millivolt" },
   },
   {
     id: "kiloamper",
@@ -1616,6 +1976,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Kiloamper", slug: "kiloamper" },
     en: { name: "Kiloampere", slug: "kiloampere" },
     de: { name: "Kiloampere", slug: "kiloampere" },
+    uz: { name: "Kiloamper", slug: "kiloamper" },
   },
   {
     id: "farad",
@@ -1625,6 +1986,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Farad", slug: "farad" },
     en: { name: "Farad", slug: "farad" },
     de: { name: "Farad", slug: "farad" },
+    uz: { name: "Farad", slug: "farad" },
   },
   {
     id: "milifarad",
@@ -1634,6 +1996,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Milifarad", slug: "milifarad" },
     en: { name: "Millifarad", slug: "millifarad" },
     de: { name: "Millifarad", slug: "millifarad" },
+    uz: { name: "Millifarad", slug: "millifarad" },
   },
   {
     id: "mikrofarad",
@@ -1643,6 +2006,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Mikrofarad", slug: "mikrofarad" },
     en: { name: "Microfarad", slug: "microfarad" },
     de: { name: "Mikrofarad", slug: "mikrofarad" },
+    uz: { name: "Mikrofarad", slug: "mikrofarad" },
   },
   {
     id: "nanofarad",
@@ -1652,6 +2016,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Nanofarad", slug: "nanofarad" },
     en: { name: "Nanofarad", slug: "nanofarad" },
     de: { name: "Nanofarad", slug: "nanofarad" },
+    uz: { name: "Nanofarad", slug: "nanofarad" },
   },
   {
     id: "pikofarad",
@@ -1661,6 +2026,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Pikofarad", slug: "pikofarad" },
     en: { name: "Picofarad", slug: "picofarad" },
     de: { name: "Pikofarad", slug: "pikofarad" },
+    uz: { name: "Pikofarad", slug: "pikofarad" },
   },
   {
     id: "henry",
@@ -1670,6 +2036,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Henry", slug: "henry" },
     en: { name: "Henry", slug: "henry" },
     de: { name: "Henry", slug: "henry" },
+    uz: { name: "Genri", slug: "genri" },
   },
   {
     id: "milihenry",
@@ -1679,6 +2046,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Milihenry", slug: "milihenry" },
     en: { name: "Millihenry", slug: "millihenry" },
     de: { name: "Millihenry", slug: "millihenry" },
+    uz: { name: "Milligenri", slug: "milligenri" },
   },
   {
     id: "mikrohenry",
@@ -1688,6 +2056,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Mikrohenry", slug: "mikrohenry" },
     en: { name: "Microhenry", slug: "microhenry" },
     de: { name: "Mikrohenry", slug: "mikrohenry" },
+    uz: { name: "Mikrogenri", slug: "mikrogenri" },
   },
   {
     id: "coulomb",
@@ -1697,6 +2066,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Coulomb", slug: "coulomb" },
     en: { name: "Coulomb", slug: "coulomb" },
     de: { name: "Coulomb", slug: "coulomb" },
+    uz: { name: "Kulon", slug: "kulon" },
   },
   {
     id: "milicoulomb",
@@ -1706,6 +2076,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Milicoulomb", slug: "milicoulomb" },
     en: { name: "Millicoulomb", slug: "millicoulomb" },
     de: { name: "Millicoulomb", slug: "millicoulomb" },
+    uz: { name: "Millikulon", slug: "millikulon" },
   },
   {
     id: "mikrocoulomb",
@@ -1715,6 +2086,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Mikrocoulomb", slug: "mikrocoulomb" },
     en: { name: "Microcoulomb", slug: "microcoulomb" },
     de: { name: "Mikrocoulomb", slug: "mikrocoulomb" },
+    uz: { name: "Mikrokulon", slug: "mikrokulon" },
   },
   {
     id: "nanocoulomb",
@@ -1724,6 +2096,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Nanocoulomb", slug: "nanocoulomb" },
     en: { name: "Nanocoulomb", slug: "nanocoulomb" },
     de: { name: "Nanocoulomb", slug: "nanocoulomb" },
+    uz: { name: "Nanokulon", slug: "nanokulon" },
   },
   {
     id: "a-m",
@@ -1743,6 +2116,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Oersted", slug: "oersted" },
     en: { name: "Oersted", slug: "oersted" },
     de: { name: "Oersted", slug: "oersted" },
+    uz: { name: "Ersted", slug: "ersted" },
   },
   {
     id: "weber",
@@ -1752,6 +2126,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Weber", slug: "weber" },
     en: { name: "Weber", slug: "weber" },
     de: { name: "Weber", slug: "weber" },
+    uz: { name: "Veber", slug: "veber" },
   },
   {
     id: "miliweber",
@@ -1761,6 +2136,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Miliweber", slug: "miliweber" },
     en: { name: "Milliweber", slug: "milliweber" },
     de: { name: "Milliweber", slug: "milliweber" },
+    uz: { name: "Milliveber", slug: "milliveber" },
   },
   { id: "mikroweber", category: "manyetik_aki", symbol: "µWb", siFactor: 0.000001, tr: { name: "Mikroweber", slug: "mikroweber" } },
   { id: "nanoweber", category: "manyetik_aki", symbol: "nWb", siFactor: 1e-9, tr: { name: "Nanoweber", slug: "nanoweber" } },
@@ -1775,6 +2151,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Bit", slug: "bit" },
     en: { name: "Bit", slug: "bit" },
     de: { name: "Bit", slug: "bit" },
+    uz: { name: "Bit", slug: "bit" },
   },
   {
     id: "bayt",
@@ -1784,6 +2161,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Bayt", slug: "bayt" },
     en: { name: "Byte", slug: "byte" },
     de: { name: "Byte", slug: "byte" },
+    uz: { name: "Bayt", slug: "bayt" },
   },
   {
     id: "kibibit",
@@ -1793,6 +2171,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Kibibit", slug: "kibibit" },
     en: { name: "Kibibit", slug: "kibibit" },
     de: { name: "Kibibit", slug: "kibibit" },
+    uz: { name: "Kibibit", slug: "kibibit" },
   },
   {
     id: "mebibit",
@@ -1802,6 +2181,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Mebibit", slug: "mebibit" },
     en: { name: "Mebibit", slug: "mebibit" },
     de: { name: "Mebibit", slug: "mebibit" },
+    uz: { name: "Mebibit", slug: "mebibit" },
   },
   {
     id: "gibibit",
@@ -1811,6 +2191,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Gibibit", slug: "gibibit" },
     en: { name: "Gibibit", slug: "gibibit" },
     de: { name: "Gibibit", slug: "gibibit" },
+    uz: { name: "Gibibit", slug: "gibibit" },
   },
   {
     id: "tebibit",
@@ -1820,6 +2201,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Tebibit", slug: "tebibit" },
     en: { name: "Tebibit", slug: "tebibit" },
     de: { name: "Tebibit", slug: "tebibit" },
+    uz: { name: "Tebibit", slug: "tebibit" },
   },
   {
     id: "kilobit",
@@ -1829,6 +2211,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Kilobit", slug: "kilobit" },
     en: { name: "Kilobit", slug: "kilobit" },
     de: { name: "Kilobit", slug: "kilobit" },
+    uz: { name: "Kilobit", slug: "kilobit" },
   },
   {
     id: "megabit",
@@ -1838,6 +2221,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Megabit", slug: "megabit" },
     en: { name: "Megabit", slug: "megabit" },
     de: { name: "Megabit", slug: "megabit" },
+    uz: { name: "Megabit", slug: "megabit" },
   },
   {
     id: "gigabit",
@@ -1847,6 +2231,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Gigabit", slug: "gigabit" },
     en: { name: "Gigabit", slug: "gigabit" },
     de: { name: "Gigabit", slug: "gigabit" },
+    uz: { name: "Gigabit", slug: "gigabit" },
   },
   {
     id: "terabit",
@@ -1856,6 +2241,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Terabit", slug: "terabit" },
     en: { name: "Terabit", slug: "terabit" },
     de: { name: "Terabit", slug: "terabit" },
+    uz: { name: "Terabit", slug: "terabit" },
   },
   {
     id: "kilobayt",
@@ -1865,6 +2251,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Kilobayt", slug: "kilobayt" },
     en: { name: "Kilobyte", slug: "kilobyte" },
     de: { name: "Kilobyte", slug: "kilobyte" },
+    uz: { name: "Kilobayt", slug: "kilobayt" },
   },
   {
     id: "megabayt",
@@ -1874,6 +2261,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Megabayt", slug: "megabayt" },
     en: { name: "Megabyte", slug: "megabyte" },
     de: { name: "Megabyte", slug: "megabyte" },
+    uz: { name: "Megabayt", slug: "megabayt" },
   },
   {
     id: "gigabayt",
@@ -1883,6 +2271,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Gigabayt", slug: "gigabayt" },
     en: { name: "Gigabyte", slug: "gigabyte" },
     de: { name: "Gigabyte", slug: "gigabyte" },
+    uz: { name: "Gigabayt", slug: "gigabayt" },
   },
   {
     id: "terabayt",
@@ -1892,6 +2281,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Terabayt", slug: "terabayt" },
     en: { name: "Terabyte", slug: "terabyte" },
     de: { name: "Terabyte", slug: "terabyte" },
+    uz: { name: "Terabayt", slug: "terabayt" },
   },
   {
     id: "petabayt",
@@ -1901,6 +2291,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Petabayt", slug: "petabayt" },
     en: { name: "Petabyte", slug: "petabyte" },
     de: { name: "Petabyte", slug: "petabyte" },
+    uz: { name: "Petabayt", slug: "petabayt" },
   },
   {
     id: "kibibayt",
@@ -1910,6 +2301,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Kibibayt", slug: "kibibayt" },
     en: { name: "Kibibyte", slug: "kibibyte" },
     de: { name: "Kibibyte", slug: "kibibyte" },
+    uz: { name: "Kibibayt", slug: "kibibayt" },
   },
   {
     id: "mebibayt",
@@ -1919,6 +2311,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Mebibayt", slug: "mebibayt" },
     en: { name: "Mebibyte", slug: "mebibyte" },
     de: { name: "Mebibyte", slug: "mebibyte" },
+    uz: { name: "Mebibayt", slug: "mebibayt" },
   },
   {
     id: "gibibayt",
@@ -1928,6 +2321,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Gibibayt", slug: "gibibayt" },
     en: { name: "Gibibyte", slug: "gibibyte" },
     de: { name: "Gibibyte", slug: "gibibyte" },
+    uz: { name: "Gibibayt", slug: "gibibayt" },
   },
   {
     id: "tebibayt",
@@ -1937,6 +2331,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Tebibayt", slug: "tebibayt" },
     en: { name: "Tebibyte", slug: "tebibyte" },
     de: { name: "Tebibyte", slug: "tebibyte" },
+    uz: { name: "Tebibayt", slug: "tebibayt" },
   },
 
   // ---- altin_ayar / gold karat purity ----
@@ -1948,6 +2343,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "24 Ayar Altın", slug: "24-ayar-altin" },
     en: { name: "24K Gold", slug: "24k-gold" },
     de: { name: "24 Karat Gold", slug: "24-karat-gold" },
+    uz: { name: "24 Karat Oltin", slug: "24-karat" },
   },
   {
     id: "ayar-22",
@@ -1957,6 +2353,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "22 Ayar Altın", slug: "22-ayar-altin" },
     en: { name: "22K Gold", slug: "22k-gold" },
     de: { name: "22 Karat Gold", slug: "22-karat-gold" },
+    uz: { name: "22 Karat Oltin", slug: "22-karat" },
   },
   {
     id: "ayar-18",
@@ -1966,6 +2363,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "18 Ayar Altın", slug: "18-ayar-altin" },
     en: { name: "18K Gold", slug: "18k-gold" },
     de: { name: "18 Karat Gold", slug: "18-karat-gold" },
+    uz: { name: "18 Karat Oltin", slug: "18-karat" },
   },
   {
     id: "ayar-14",
@@ -1975,6 +2373,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "14 Ayar Altın", slug: "14-ayar-altin" },
     en: { name: "14K Gold", slug: "14k-gold" },
     de: { name: "14 Karat Gold", slug: "14-karat-gold" },
+    uz: { name: "14 Karat Oltin", slug: "14-karat" },
   },
 
   // ---- gumus_ayar / gümüş ayar (saflık) ----
@@ -1985,6 +2384,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     siFactor: 0.999,
     tr: { name: "999 Ayar Gümüş", slug: "999-ayar-gumus" },
     en: { name: "Fine Silver (999)", slug: "fine-silver" },
+    uz: { name: "999 Soflikdagi Kumush", slug: "999-soflikdagi-kumush" },
   },
   {
     id: "gumus-925",
@@ -1993,6 +2393,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     siFactor: 0.925,
     tr: { name: "925 Ayar Gümüş", slug: "925-ayar-gumus" },
     en: { name: "Sterling Silver (925)", slug: "sterling-silver" },
+    uz: { name: "925 Soflikdagi Kumush", slug: "925-soflikdagi-kumush" },
   },
   {
     id: "gumus-900",
@@ -2001,6 +2402,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     siFactor: 0.9,
     tr: { name: "900 Ayar Gümüş", slug: "900-ayar-gumus" },
     en: { name: "Coin Silver (900)", slug: "coin-silver" },
+    uz: { name: "900 Soflikdagi Kumush", slug: "900-soflikdagi-kumush" },
   },
   {
     id: "gumus-800",
@@ -2009,6 +2411,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     siFactor: 0.8,
     tr: { name: "800 Ayar Gümüş", slug: "800-ayar-gumus" },
     en: { name: "800 Silver", slug: "800-silver" },
+    uz: { name: "800 Soflikdagi Kumush", slug: "800-soflikdagi-kumush" },
   },
 
   // ---- kan_sekeri / kan sekeri (glukoz) birim donusumu ----
@@ -2019,6 +2422,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     siFactor: 1,
     tr: { name: "Milimol/Litre", slug: "milimol-litre" },
     en: { name: "Millimoles per Liter", slug: "millimoles-per-liter" },
+    uz: { name: "Millimol/Litr", slug: "millimol-litr" },
   },
   {
     id: "glukoz-mgdl",
@@ -2027,6 +2431,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     siFactor: 1 / 18.016,
     tr: { name: "Miligram/Desilitre", slug: "miligram-desilitre" },
     en: { name: "Milligrams per Deciliter", slug: "milligrams-per-deciliter" },
+    uz: { name: "Milligramm/Detsilitr", slug: "milligramm-detsilitr" },
   },
 
   // ---- vitamin_d / vitamin D birim donusumu ----
@@ -2037,6 +2442,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     siFactor: 1,
     tr: { name: "Nanomol/Litre", slug: "nanomol-litre" },
     en: { name: "Nanomoles per Liter", slug: "nanomoles-per-liter" },
+    uz: { name: "Nanomol/Litr", slug: "nanomol-litr" },
   },
   {
     id: "vitamin-d-ngml",
@@ -2045,6 +2451,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     siFactor: 2.496,
     tr: { name: "Nanogram/Mililitre", slug: "nanogram-mililitre" },
     en: { name: "Nanograms per Milliliter", slug: "nanograms-per-milliliter" },
+    uz: { name: "Nanogramm/Millilitr", slug: "nanogramm-millilitr" },
   },
 ];
 

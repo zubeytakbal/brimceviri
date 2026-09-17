@@ -7,12 +7,13 @@ type BreadcrumbItem = {
 };
 
 type StaticPageSection = {
+  id?: string;
   heading: string;
   content: ReactNode;
 };
 
 type StaticPageLayoutProps = {
-  locale: "tr" | "en" | "de" | "ar";
+  locale: "tr" | "en" | "de" | "ar" | "uz";
   breadcrumbAriaLabel: string;
   breadcrumbs: BreadcrumbItem[];
   title: string;
@@ -61,7 +62,7 @@ export default function StaticPageLayout({
 
         <div className="unit-page-content">
           {sections.map((section) => (
-            <section className="conversion-section" key={section.heading}>
+            <section className="conversion-section" id={section.id} key={section.heading}>
               <h2>{section.heading}</h2>
               {section.content}
             </section>
@@ -76,7 +77,9 @@ export default function StaticPageLayout({
                     ? "Weitere Sprachen"
                     : locale === "ar"
                       ? "لغات أخرى"
-                      : "Diger diller"}
+                      : locale === "uz"
+                        ? "Boshqa tillar"
+                        : "Diger diller"}
               </h2>
               <Link
                 className="text-link"

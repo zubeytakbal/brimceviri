@@ -14,13 +14,51 @@ import {
 import { useNotificationSlot } from "./NotificationSlotProvider";
 import type { SiteNotification } from "../converter/siteNotifications";
 
-function formatDate(date: string): string {
+type NotificationLocale = "tr" | "en" | "uz";
+
+const notificationCopy = {
+  tr: {
+    ariaLabel: "Bildirimler",
+    panelLabel: "Site bildirimleri",
+    title: "Bildirimler",
+    closeLabel: "Kapat",
+    markSeenLabel: "Bu bildirimi gördüm olarak işaretle",
+    openLabel: "Aç →",
+    empty: "Şu anda yeni bildirim yok.",
+    dateLocale: "tr-TR",
+  },
+  en: {
+    ariaLabel: "Notifications",
+    panelLabel: "Site notifications",
+    title: "Notifications",
+    closeLabel: "Close",
+    markSeenLabel: "Mark this notification as seen",
+    openLabel: "Open \u2192",
+    empty: "There are no new notifications right now.",
+    dateLocale: "en-US",
+  },
+  uz: {
+    ariaLabel: "Bildirishnomalar",
+    panelLabel: "Sayt bildirishnomalari",
+    title: "Bildirishnomalar",
+    closeLabel: "Yopish",
+    markSeenLabel: "Bu bildirishnomani o‘qilgan deb belgilash",
+    openLabel: "Ochish →",
+    empty: "Hozircha yangi bildirishnoma yo‘q.",
+    dateLocale: "uz-UZ",
+  },
+} as const;
+
+function formatDate(date: string, locale: NotificationLocale): string {
   try {
-    return new Date(`${date}T00:00:00`).toLocaleDateString("tr-TR", {
+    return new Date(`${date}T00:00:00`).toLocaleDateString(
+      notificationCopy[locale].dateLocale,
+      {
       day: "numeric",
       month: "long",
       year: "numeric",
-    });
+      },
+    );
   } catch {
     return date;
   }
@@ -28,9 +66,16 @@ function formatDate(date: string): string {
 
 export default function NotificationBell({
   notifications,
+  locale = "tr",
+  showWhenEmpty = false,
+  renderInline = false,
 }: {
   notifications: SiteNotification[];
+  locale?: NotificationLocale;
+  showWhenEmpty?: boolean;
+  renderInline?: boolean;
 }) {
+  const copy = notificationCopy[locale];
   const seenIds = useSyncExternalStore(
     subscribeToSeenNotifications,
     getSeenNotificationIdsSnapshot,
@@ -54,7 +99,7 @@ export default function NotificationBell({
   // uyumsuzlugu olusmaz.
   const { slotElement } = useNotificationSlot();
 
-  if (notifications.length === 0) {
+  if (notifications.length === 0 && !showWhenEmpty) {
     return null;
   }
 
@@ -63,7 +108,7 @@ export default function NotificationBell({
       type="button"
       className="notification-bell-button"
       onClick={() => setManualOverride(!isOpen)}
-      aria-label="Bildirimler"
+      aria-label={copy.ariaLabel}
     >
       <Bell size={22} weight="fill" />
       {unseenCount > 0 && <span className="notification-bell-badge">{unseenCount}</span>}
@@ -72,7 +117,11 @@ export default function NotificationBell({
 
   return (
     <>
-      {slotElement ? createPortal(bellButton, slotElement) : null}
+      {renderInline
+        ? bellButton
+        : slotElement
+          ? createPortal(bellButton, slotElement)
+          : null}
 
       {isOpen && (
         <div
@@ -83,23 +132,27 @@ export default function NotificationBell({
           <div
             className="notification-panel"
             role="dialog"
-            aria-label="Site bildirimleri"
+            aria-label={copy.panelLabel}
             onClick={(event) => event.stopPropagation()}
           >
             <div className="notification-panel-head">
-              <h2>Bildirimler</h2>
+              <h2>{copy.title}</h2>
               <button
                 type="button"
                 className="notification-panel-close"
                 onClick={() => setManualOverride(false)}
-                aria-label="Kapat"
+                aria-label={copy.closeLabel}
               >
                 <X size={18} />
               </button>
             </div>
 
             <ul className="notification-panel-list">
-              {notifications.map((item) => {
+              {notifications.length === 0 ? (
+                <li>
+                  <p>{copy.empty}</p>
+                </li>
+              ) : notifications.map((item) => {
                 const isUnseen = !seenIds.includes(item.id);
                 return (
                   <li key={item.id} className={isUnseen ? "is-unseen" : undefined}>
@@ -110,7 +163,7 @@ export default function NotificationBell({
                         type="button"
                         className="notification-item-dismiss"
                         onClick={() => markNotificationSeen(item.id)}
-                        aria-label="Bu bildirimi gördüm olarak işaretle"
+                        aria-label={copy.markSeenLabel}
                       >
                         <X size={14} />
                       </button>
@@ -119,10 +172,10 @@ export default function NotificationBell({
                     <div className="notification-item-foot">
                       {item.href && (
                         <Link href={item.href} onClick={() => setManualOverride(false)}>
-                          Aç →
+                          {copy.openLabel}
                         </Link>
                       )}
-                      <span>{formatDate(item.date)}</span>
+                      <span>{formatDate(item.date, locale)}</span>
                     </div>
                   </li>
                 );

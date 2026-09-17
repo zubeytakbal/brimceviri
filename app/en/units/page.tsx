@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { getEnglishCategoryPathByCategory } from "../../converter/localizedCategoryPages";
 import { englishUnitPages } from "../../converter/localizedUnitPages";
 import { buildSiteUrl } from "../../siteConfig";
 
 export const metadata: Metadata = {
   title: "Unit Guide: Definitions, Symbols and History",
   description:
-    "Explore length, mass and pressure units, their symbols, definitions, historical information and related conversion calculators.",
+    "Explore measurement units, their symbols, definitions, historical context and related conversion tools.",
   alternates: {
     canonical: "/en/units",
     languages: {
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Unit Guide | BirimCeviri.app",
     description:
-      "Learn about length, mass and pressure units, their symbols, definitions, history and conversion relationships.",
+      "Explore measurement units, their symbols, definitions, history and conversion relationships.",
     url: buildSiteUrl("/en/units"),
     siteName: "BirimCeviri.app",
     locale: "en_US",
@@ -28,161 +29,104 @@ export const metadata: Metadata = {
     card: "summary",
     title: "Unit Guide | BirimCeviri.app",
     description:
-      "Learn about length, mass and pressure units, their symbols, definitions, history and conversion relationships.",
+      "Explore measurement units, their symbols, definitions, history and conversion relationships.",
   },
 };
 
+const unitGroupDefinitions = [
+  { title: "Length units", category: "uzunluk" },
+  { title: "Mass units", category: "kutle" },
+  { title: "Volume units", category: "hacim" },
+  { title: "Area units", category: "alan" },
+  { title: "Pressure units", category: "basinc" },
+  { title: "Temperature units", category: "sicaklik" },
+  { title: "Speed units", category: "hiz" },
+  { title: "Energy units", category: "enerji" },
+  { title: "Power units", category: "guc" },
+  { title: "Data storage units", category: "veri" },
+  { title: "Time units", category: "zaman" },
+  { title: "Electrical units", category: "elektrik" },
+  { title: "Density units", category: "yogunluk" },
+  { title: "Force units", category: "kuvvet" },
+  { title: "Torque units", category: "tork" },
+  { title: "Momentum units", category: "momentum" },
+  { title: "Angle units", category: "aci" },
+  { title: "Frequency units", category: "frekans" },
+  { title: "Flow-rate units", category: "debi" },
+  { title: "Capacitance units", category: "kapasitans" },
+  { title: "Inductance units", category: "enduktans" },
+] as const;
+
 export default function EnglishUnitsPage() {
-  const lengthUnits = englishUnitPages.filter(
-    (page) => page.category === "uzunluk"
-  );
-
-  const massUnits = englishUnitPages.filter(
-    (page) => page.category === "kutle"
-  );
-
-  const pressureUnits = englishUnitPages.filter(
-    (page) => page.category === "basinc"
-  );
+  const unitGroups = unitGroupDefinitions
+    .map((definition) => ({
+      ...definition,
+      units: englishUnitPages.filter(
+        (unitPage) => unitPage.category === definition.category
+      ),
+    }))
+    .filter((group) => group.units.length > 0);
 
   return (
-    <main className="unit-information-page" lang="en">
-      <article className="unit-page-shell">
-        <nav
-          className="breadcrumbs"
-          aria-label="Breadcrumb"
-        >
+    <main className="units-index-page" lang="en">
+      <div className="units-index-shell">
+        <nav className="breadcrumbs" aria-label="Breadcrumb">
           <Link href="/en">Home</Link>
           <span aria-hidden="true">&rsaquo;</span>
           <span>Unit Guide</span>
         </nav>
 
-        <header className="unit-page-header">
-          <p className="unit-symbol">SI</p>
-          <h1>Measurement Unit Guide</h1>
-          <p>
-            Explore measurement units, their symbols,
-            definitions, historical development and related
-            conversion tools.
-          </p>
+        <header className="units-index-header">
+          <p>Units and measurement</p>
+          <h1>Unit Guide</h1>
+          <span>
+            Explore definitions, symbols, history and related conversion tools
+            for measurement units.
+          </span>
         </header>
 
-        <div className="unit-page-content">
-          <section className="conversion-section">
-            <h2>What is a measurement unit?</h2>
-            <p>
-              A measurement unit is a defined quantity used as a
-              reference for expressing and comparing physical
-              measurements. A numerical value without a unit does
-              not fully describe a physical measurement.
-            </p>
-            <p>
-              Standardized units allow measurements performed in
-              different places and at different times to be
-              compared consistently. The International System of
-              Units provides the primary measurement framework
-              used in science and engineering.
-            </p>
-          </section>
-
-          <section className="conversion-section related-conversions">
-            <h2>Length units</h2>
-            <p>
-              Length units describe distance, height, width,
-              thickness and other one-dimensional measurements.
-            </p>
-            <ul className="related-conversion-list">
-              {lengthUnits.map((unitPage) => (
-                <li key={unitPage.slug}>
-                  <Link href={`/en/units/${unitPage.slug}`}>
-                    <strong>{unitPage.name}</strong>
-                    {" - "}
-                    {unitPage.symbol}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </section>
-
-          <section className="conversion-section related-conversions">
-            <h2>Mass units</h2>
-            <p>
-              Mass units express the quantity of matter associated
-              with an object. Mass should not be confused with
-              weight, which is a force affected by gravitational
-              acceleration.
-            </p>
-            <ul className="related-conversion-list">
-              {massUnits.map((unitPage) => (
-                <li key={unitPage.slug}>
-                  <Link href={`/en/units/${unitPage.slug}`}>
-                    <strong>{unitPage.name}</strong>
-                    {" - "}
-                    {unitPage.symbol}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </section>
-
-          <section className="conversion-section related-conversions">
-            <h2>Pressure units</h2>
-            <p>
-              Pressure units describe force distributed over an
-              area. Practical work commonly switches between
-              pascal, kilopascal, bar and PSI depending on the
-              field and the scale of the measurement.
-            </p>
-            <ul className="related-conversion-list">
-              {pressureUnits.map((unitPage) => (
-                <li key={unitPage.slug}>
-                  <Link href={`/en/units/${unitPage.slug}`}>
-                    <strong>{unitPage.name}</strong>
-                    {" - "}
-                    {unitPage.symbol}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </section>
-
-          <section className="conversion-section">
-            <h2>Metric and imperial units</h2>
-            <p>
-              Metric units use decimal relationships based on
-              powers of ten. Prefixes such as kilo, centi and milli
-              indicate multiples or subdivisions of a base unit.
-            </p>
-            <p>
-              Imperial and United States customary units include
-              measurements such as the foot, mile and pound.
-              Defined conversion factors are required when
-              converting between these systems and metric units.
-            </p>
-          </section>
-
-          <section className="conversion-section">
-            <h2>Unit symbols</h2>
-            <p>
-              Unit symbols are standardized abbreviations. Symbols
-              are case-sensitive and normally remain unchanged in
-              the plural. For example, meter is represented by m,
-              kilometer by km and kilogram by kg.
-            </p>
-          </section>
-
-          <section className="conversion-section language-alternatives">
-            <h2>Other languages</h2>
-            <Link
-              className="text-link"
-              href="/birimler"
-              hrefLang="tr"
-            >
-              View the Turkish unit guide
-            </Link>
-          </section>
-        </div>
-      </article>
+        {unitGroups.map((group) => (
+          <UnitGroup
+            key={group.category}
+            title={group.title}
+            categoryHref={getEnglishCategoryPathByCategory(group.category)}
+            units={group.units}
+          />
+        ))}
+      </div>
     </main>
+  );
+}
+
+function UnitGroup({
+  title,
+  categoryHref,
+  units,
+}: {
+  title: string;
+  categoryHref: string;
+  units: typeof englishUnitPages;
+}) {
+  return (
+    <section className="units-index-section">
+      <div className="units-index-heading">
+        <h2>{title}</h2>
+        <Link href={categoryHref}>View conversions</Link>
+      </div>
+
+      <ul className="units-index-list">
+        {units.map((unitPage) => (
+          <li key={unitPage.slug}>
+            <Link href={`/en/units/${unitPage.slug}`}>
+              <strong>{unitPage.symbol}</strong>
+              <span>
+                {unitPage.name}
+                <small>{unitPage.shortDescription}</small>
+              </span>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 }

@@ -131,6 +131,17 @@ export default function DateCalculatorPage() {
             kabul gören bir yaklaşımdır.
           </p>
 
+          <h2>İlgili araçlar</h2>
+          <p>
+            Gebelik takibi için{" "}
+            <Link href="/gebelik-haftasi-hesaplama">Gebelik Haftası Hesaplama</Link>,{" "}
+            Unix zaman damgası dönüşümleri için{" "}
+            <Link href="/unix-zaman-damgasi-cevirici">Unix Zaman Damgası Çevirici</Link>,{" "}
+            zaman birimi dönüşümleri için{" "}
+            <Link href="/kategoriler/zaman">Zaman Dönüşümleri</Link>
+            {" "}sayfasına bakabilirsin.
+          </p>
+
           <h2>Kaynaklar</h2>
           <p>
             Hesaplama, JavaScript&apos;in yerleşik takvim/tarih

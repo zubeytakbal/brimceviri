@@ -14,6 +14,11 @@ const faqItems: FaqItem[] = [
     answer:
       "Deniz, kara ve hava yolu araçlarının taşıma kapasitesi/hacim oranı farklı olduğu için sektörde her mod için ayrı standart katsayı kullanılır: deniz 1000, kara 3000, hava 6000 (bazı taşıyıcılarda 5000). Kesin katsayı taşıyıcı firmaya göre değişebilir.",
   },
+  {
+    question: "Standart palet ölçüleri nedir?",
+    answer:
+      "Avrupa'da en yaygın kullanılan EUR-palet (EPAL) 120 × 80 cm ölçüsündedir. Diğer yaygın bir standart ise 120 × 100 cm'lik endüstriyel/blok palettir. CBM hesabı yaparken paletin kendi yüksekliğinin (genellikle ~14-15 cm) de yük yüksekliğine eklenmesi gerektiğini unutmamak gerekir.",
+  },
 ];
 
 export const metadata: Metadata = {
@@ -165,6 +170,15 @@ export default function NakliyeciAraclariPage() {
             taşıyıcı firmaya göre değişebilir;{" "}
             <Link href="/cbm-hesaplama">CBM ve Hacimsel Ağırlık Hesaplama</Link>{" "}
             aracımızda özel katsayı da girebilirsin.
+          </p>
+          <p>
+            <strong>Standart palet ölçüleri nedir?</strong>
+            <br />
+            Avrupa&apos;da en yaygın kullanılan EUR-palet (EPAL) 120 × 80
+            cm ölçüsündedir. Diğer yaygın bir standart ise 120 × 100
+            cm&apos;lik endüstriyel/blok palettir. CBM hesabı yaparken
+            paletin kendi yüksekliğinin (genellikle ~14-15 cm) de yük
+            yüksekliğine eklenmesi gerektiğini unutmamak gerekir.
           </p>
 
           <h2>Kaynaklar</h2>

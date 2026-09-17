@@ -2,10 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { uzbekCategoryPages } from "../../../converter/localizedUzbekCategoryPages";
+import { uzbekConversionPages } from "../../../converter/localizedUzbekConversionPages";
 import { uzbekUnitPages } from "../../../converter/localizedUzbekUnitPages";
 import { findEnglishCategoryPageByTurkishSlug } from "../../../converter/localizedCategoryPages";
 import { buildFullLanguageAlternates } from "../../../i18n/routing";
 import { buildSiteUrl } from "../../../siteConfig";
+import CategoryUnitConverter from "../../../components/CategoryUnitConverter";
+import { hasUzbekUnitLabels } from "../../../components/categoryUnitOptions";
+import { createConversionCards } from "../../../components/categoryPageUtils";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -68,6 +72,19 @@ export default async function UzbekCategoryPage({ params }: PageProps) {
   const categoryUnits = uzbekUnitPages.filter(
     (unitPage) => unitPage.category === categoryPage.category
   );
+  const categoryConversions = uzbekConversionPages.filter(
+    (page) => page.category === categoryPage.category
+  );
+  const conversionCards = createConversionCards({
+    conversions: categoryConversions,
+    hrefForSlug: (slug) => `/uz/${slug}`,
+    directionLabel: (conversion) =>
+      `${conversion.fromName} → ${conversion.toName}`,
+    symbolSeparator: "↔",
+    titlePairSeparator: "↔",
+    titleSingleSeparator: "→",
+  });
+  const showLiveConverter = hasUzbekUnitLabels(categoryPage.category);
   const pageUrl = buildSiteUrl(`/uz/turkumlar/${categoryPage.slug}`);
 
   const breadcrumbSchema = {
@@ -83,6 +100,12 @@ export default async function UzbekCategoryPage({ params }: PageProps) {
       {
         "@type": "ListItem",
         position: 2,
+        name: "Turkumlar",
+        item: buildSiteUrl("/uz/turkumlar"),
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
         name: categoryPage.title,
         item: pageUrl,
       },
@@ -96,17 +119,80 @@ export default async function UzbekCategoryPage({ params }: PageProps) {
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
       />
 
-      <div className="all-conversions-shell">
+      <div className="category-page-shell category-page-breadcrumb-shell">
         <nav className="breadcrumbs" aria-label="Sahifa yo'li">
           <Link href="/uz">Bosh sahifa</Link>
           <span aria-hidden="true">&rsaquo;</span>
+          <Link href="/uz/turkumlar">Turkumlar</Link>
+          <span aria-hidden="true">&rsaquo;</span>
           <span>{categoryPage.title}</span>
         </nav>
+      </div>
 
-        <header className="all-conversions-header">
-          <h1>{categoryPage.title}</h1>
-          <p>{categoryPage.description}</p>
-        </header>
+      <section className="category-page-hero">
+        <div
+          className={`category-page-hero-grid${
+            showLiveConverter ? " has-converter" : ""
+          }`}
+        >
+          <header className="category-page-header">
+            <p className="category-page-kicker">Birlik turkumi</p>
+            <h1>{categoryPage.title}</h1>
+            <p>{categoryPage.description}</p>
+          </header>
+
+          {showLiveConverter && (
+            <div className="category-page-hero-panel">
+              <div className="category-page-hero-panel-heading">
+                <h2>
+                  Barcha {categoryPage.title.replace(
+                    " Birliklarini O'zgartirish",
+                    "",
+                  )}{" "}
+                  birliklarini aylantiring
+                </h2>
+              </div>
+              <CategoryUnitConverter
+                category={categoryPage.category}
+                locale="uz"
+              />
+            </div>
+          )}
+        </div>
+      </section>
+
+      <div className="category-page-shell category-page-content-shell">
+        {conversionCards.length > 0 && (
+          <section className="category-page-section">
+            <div className="category-section-heading">
+              <h2>Mashhur aylantirishlar</h2>
+              <span>{conversionCards.length} juft</span>
+            </div>
+
+            <ul className="category-conversion-list">
+              {conversionCards.map((conversionCard) => (
+                <li key={conversionCard.key}>
+                  <article className="category-conversion-card">
+                    <div className="category-conversion-copy">
+                      <h3 className="category-conversion-title">
+                        {conversionCard.title}
+                      </h3>
+                      <p>{conversionCard.symbol}</p>
+                    </div>
+
+                    <div className="category-conversion-actions">
+                      {conversionCard.links.map((link) => (
+                        <Link href={link.href} key={link.href}>
+                          {link.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </article>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
         <section className="category-article-content">
           <div className="category-article-introduction">
@@ -142,7 +228,7 @@ export default async function UzbekCategoryPage({ params }: PageProps) {
                     <tr>
                       <th>Birlik</th>
                       <th>Belgi</th>
-                      <th>Qo'llanma</th>
+                      <th>Qo&apos;llanma</th>
                     </tr>
                   </thead>
                   <tbody>

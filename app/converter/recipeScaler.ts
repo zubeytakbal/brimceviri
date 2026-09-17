@@ -1,12 +1,13 @@
 import {
   type KitchenIngredientKey,
+  type KitchenCupStandard,
   type KitchenUnit,
   convertKitchenValue,
   kitchenIngredientRows,
 } from "./kitchenMeasures";
 import { kitchenIngredientLabels } from "./kitchenIngredientLabels";
 
-export type RecipeLocale = "tr" | "en" | "de" | "ar";
+export type RecipeLocale = "tr" | "en" | "de" | "ar" | "uz";
 
 export type ParsedRecipeLine = {
   raw: string;
@@ -28,6 +29,7 @@ const wordQuantities: Record<string, number> = {
   viertel: 0.25,
   نصف: 0.5,
   ربع: 0.25,
+  chorak: 0.25,
 };
 
 function normalizeText(value: string): string {
@@ -100,6 +102,8 @@ const twoTokenUnits: Record<string, KitchenUnit> = {
   "tee loffel": "cayKasigi",
   "ملعقة كبيرة": "yemekKasigi",
   "ملعقة صغيرة": "cayKasigi",
+  "osh qoshiq": "yemekKasigi",
+  "choy qoshiq": "cayKasigi",
 };
 
 const oneTokenUnits: Record<string, KitchenUnit> = {
@@ -142,6 +146,9 @@ const oneTokenUnits: Record<string, KitchenUnit> = {
   مل: "ml",
   ملليلتر: "ml",
   لتر: "litre",
+  stakan: "bardak",
+  millilitr: "ml",
+  litr: "litre",
 };
 
 function extractUnit(normalizedRestOfLine: string): {
@@ -195,6 +202,10 @@ const ingredientMatchEntries: Array<{
   entries.push({
     key: row.key,
     normalized: normalizeText(kitchenIngredientLabels.ar[row.key]),
+  });
+  entries.push({
+    key: row.key,
+    normalized: normalizeText(kitchenIngredientLabels.uz[row.key]),
   });
 
   return entries;
@@ -265,7 +276,7 @@ function findMatchingIngredient(
   return candidates[0].entry.key;
 }
 
-const temperaturePattern = /(\d+)\s*°?\s*(c\b|f\b|derece|grad)/;
+const temperaturePattern = /(\d+)\s*°?\s*(c\b|f\b|derece|grad|daraja)/;
 
 function formatQuantity(
   value: number,
@@ -279,6 +290,8 @@ function formatQuantity(
         ? "de-DE"
         : locale === "ar"
           ? "ar"
+          : locale === "uz"
+            ? "uz-UZ"
         : "en-US";
 
   return rounded.toLocaleString(localeName, {
@@ -315,7 +328,8 @@ function detectTemperature(
 export function scaleRecipeText(
   text: string,
   factor: number,
-  locale: RecipeLocale = "tr"
+  locale: RecipeLocale = "tr",
+  cupStandard: KitchenCupStandard = locale === "en" ? "us" : "turkish"
 ): ParsedRecipeLine[] {
   return text
     .split("\n")
@@ -368,7 +382,8 @@ export function scaleRecipeText(
           ? convertKitchenValue(
               matchedIngredient,
               unit,
-              scaledQuantity
+              scaledQuantity,
+              cupStandard
             ).gram
           : null;
 

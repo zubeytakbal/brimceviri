@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     languages: {
       tr: "/yuzuk-olcusu-cevirici",
       en: "/en/ring-size-converter",
+      "uz-UZ": "/uz/uzuk-olcami-aylantirgich",
       "x-default": "/yuzuk-olcusu-cevirici",
     },
   },
@@ -70,8 +71,11 @@ export default function RingSizePage() {
 
           <h2>İlgili araçlar</h2>
           <p>
-            Beden ve ayakkabı ölçüsü gibi diğer ölçü çevirme araçları
-            için{" "}
+            Beden ölçüsü çevirme için{" "}
+            <Link href="/beden-olcusu-cevirici">Beden Ölçüsü Çevirici</Link>,{" "}
+            ayakkabı numarası çevirme için{" "}
+            <Link href="/ayakkabi-numarasi-cevirme">Ayakkabı Numarası Çevirme</Link>,{" "}
+            diğer terzi araçları için{" "}
             <Link href="/terzi-araclari">Terzi Araçları</Link> sayfasına
             bakabilirsin.
           </p>

@@ -41,6 +41,31 @@ export const matematikTools: MatematikTool[] = [
     title: "Ortalama, Medyan, Mod ve Standart Sapma Hesaplama",
   },
   {
+    id: "medyan",
+    href: "/bilim-hesaplayicilari/matematik/medyan-hesaplama",
+    title: "Medyan (Ortanca) Hesaplama",
+  },
+  {
+    id: "mod",
+    href: "/bilim-hesaplayicilari/matematik/mod-hesaplama",
+    title: "Mod (Tepe Değer) Hesaplama",
+  },
+  {
+    id: "varyans",
+    href: "/bilim-hesaplayicilari/matematik/varyans-hesaplama",
+    title: "Varyans Hesaplama",
+  },
+  {
+    id: "standart-sapma",
+    href: "/bilim-hesaplayicilari/matematik/standart-sapma-hesaplama",
+    title: "Standart Sapma Hesaplama",
+  },
+  {
+    id: "olasilik",
+    href: "/bilim-hesaplayicilari/matematik/olasilik-hesaplama",
+    title: "Olasılık Hesaplama",
+  },
+  {
     id: "yuzde",
     href: "/bilim-hesaplayicilari/matematik/yuzde-hesaplama",
     title: "Yüzde Hesaplama",
@@ -89,5 +114,20 @@ export const matematikTools: MatematikTool[] = [
     id: "sayi-tabani",
     href: "/sayi-tabani-cevirici",
     title: "Sayı Tabanı Çevirici",
+  },
+  {
+    id: "aritmetik-dizi",
+    href: "/bilim-hesaplayicilari/matematik/aritmetik-dizi-hesaplama",
+    title: "Aritmetik Dizi Hesaplama",
+  },
+  {
+    id: "geometrik-dizi",
+    href: "/bilim-hesaplayicilari/matematik/geometrik-dizi-hesaplama",
+    title: "Geometrik Dizi Hesaplama",
+  },
+  {
+    id: "sayilar",
+    href: "/bilim-hesaplayicilari/matematik/sayilar",
+    title: "Sayı Özellikleri (Kare, Karekök, Asal mı, Bölenleri)",
   },
 ];

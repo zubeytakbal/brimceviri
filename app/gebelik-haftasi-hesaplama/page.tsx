@@ -129,6 +129,15 @@ export default function PregnancyCalculatorPage() {
             daha doğru sonuç verir.
           </p>
 
+          <h2>İlgili araçlar</h2>
+          <p>
+            Doğum sonrası bebek değerlendirmesi için{" "}
+            <Link href="/apgar-skoru-hesaplama">Apgar Skoru Hesaplama</Link>,{" "}
+            genel tarih/yaş hesaplamaları için{" "}
+            <Link href="/yas-hesaplama">Yaş Hesaplama</Link>
+            {" "}sayfasına bakabilirsin.
+          </p>
+
           <h2>Kaynaklar</h2>
           <p>
             Hesaplama yöntemi (SAT + 280 gün / 40 hafta, trimester

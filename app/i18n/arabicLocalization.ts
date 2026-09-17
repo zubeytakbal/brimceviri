@@ -416,6 +416,30 @@ export function buildArabicConversionFormula(
     if (fromUnit === "K" && toUnit === "C") {
       return "القيمة بـ °C = القيمة بـ K − 273.15";
     }
+
+    if (fromUnit === "C" && toUnit === "R") {
+      return "القيمة بـ R = (القيمة بـ °C + 273.15) × 9/5";
+    }
+
+    if (fromUnit === "R" && toUnit === "C") {
+      return "القيمة بـ °C = القيمة بـ R × 5/9 − 273.15";
+    }
+
+    if (fromUnit === "F" && toUnit === "R") {
+      return "القيمة بـ R = القيمة بـ °F + 459.67";
+    }
+
+    if (fromUnit === "R" && toUnit === "F") {
+      return "القيمة بـ °F = القيمة بـ R − 459.67";
+    }
+
+    if (fromUnit === "C" && toUnit === "Re") {
+      return "القيمة بـ °Ré = القيمة بـ °C × 4/5";
+    }
+
+    if (fromUnit === "Re" && toUnit === "C") {
+      return "القيمة بـ °C = القيمة بـ °Ré × 5/4";
+    }
   }
 
   if (factor >= 1) {

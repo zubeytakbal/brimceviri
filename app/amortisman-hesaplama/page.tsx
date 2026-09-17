@@ -21,7 +21,12 @@ export const metadata: Metadata = {
   title: "Amortisman Hesaplama (Normal ve Azalan Bakiyeler)",
   description:
     "Maliyet, faydalı ömür ve hurda değerinden normal veya azalan bakiyeler usulüyle yıllara göre amortisman tablosu hesapla.",
-  alternates: { canonical: "/amortisman-hesaplama" },
+  alternates: {
+    canonical: "/amortisman-hesaplama",
+    languages: {
+      "uz-UZ": "/uz/amortizatsiya-hisoblash",
+    },
+  },
   openGraph: {
     title: "Amortisman Hesaplama (Normal ve Azalan Bakiyeler)",
     description: "Yıllara göre amortisman tablosu hesaplayın.",

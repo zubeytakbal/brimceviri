@@ -23,6 +23,9 @@ export const metadata: Metadata = {
     "100'lük puanı, yaygın kullanılan bir referans tabloya göre harf notuna (AA, BA, BB...) ve 4'lük sisteme çevir.",
   alternates: {
     canonical: "/harf-notu-hesaplama",
+    languages: {
+      "uz-UZ": "/uz/harf-bahosi-hisoblash",
+    },
   },
   openGraph: {
     title: "Harf Notu Hesaplama (100'lük - 4'lük Sistem)",

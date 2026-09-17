@@ -102,6 +102,15 @@ export default function InsulationPaybackPage() {
             <Link href="/hesaplayicilar/isi-iletimi">Isı İletimi Hesaplayıcısı</Link>
             {" "}sayfasına, diğer inşaat hesaplamaları için{" "}
             <Link href="/insaatci-araclari">İnşaatçı Araçları</Link>
+            {" "}sayfasına bakabilirsin. Isıtma sistemi seçimi için{" "}
+            <Link href="/isi-pompasi-kombi-karsilastirma">Isı Pompası - Kombi Karşılaştırma</Link>,{" "}
+            <Link href="/kombi-klima-isitma-maliyeti-karsilastirma">Kombi - Klima Isıtma Maliyeti Karşılaştırma</Link>
+            {" "}sayfalarına, güneş enerjisi yatırımı için{" "}
+            <Link href="/gunes-paneli-amortisman-hesaplama">Güneş Paneli Amortisman Hesaplama</Link>
+            {" "}sayfasına, aydınlatma tasarrufu için{" "}
+            <Link href="/led-ampul-tasarruf-hesaplama">LED Ampul Tasarruf Hesaplama</Link>
+            {" "}sayfasına, mantolama malzemesi ihtiyacı için{" "}
+            <Link href="/mantolama-hesaplama">Mantolama Hesaplama</Link>
             {" "}sayfasına bakabilirsin.
           </p>
 

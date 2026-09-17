@@ -101,6 +101,30 @@ function createBengaliTemperatureFormula(
     return `${toName} = ${fromName} − ২৭৩.১৫`;
   }
 
+  if (fromUnit === "C" && toUnit === "R") {
+    return `${toName} = (${fromName} + ২৭৩.১৫) × ৯/৫`;
+  }
+
+  if (fromUnit === "R" && toUnit === "C") {
+    return `${toName} = ${fromName} × ৫/৯ − ২৭৩.১৫`;
+  }
+
+  if (fromUnit === "F" && toUnit === "R") {
+    return `${toName} = ${fromName} + ৪৫৯.৬৭`;
+  }
+
+  if (fromUnit === "R" && toUnit === "F") {
+    return `${toName} = ${fromName} − ৪৫৯.৬৭`;
+  }
+
+  if (fromUnit === "C" && toUnit === "Re") {
+    return `${toName} = ${fromName} × ৪/৫`;
+  }
+
+  if (fromUnit === "Re" && toUnit === "C") {
+    return `${toName} = ${fromName} × ৫/৪`;
+  }
+
   return `${toName} = ${fromName}`;
 }
 

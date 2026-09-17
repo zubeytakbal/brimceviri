@@ -92,6 +92,8 @@ export default function FertilizerDilutionPage() {
             <Link href="/gubre-ihtiyaci-hesaplama">Gübre İhtiyacı Hesaplama</Link>
             {" "}sayfasına, sulama hesaplamaları için{" "}
             <Link href="/sulama-suresi-hesaplama">Sulama Süresi Hesaplama</Link>
+            {" "}sayfasına, diğer peyzaj araçları için{" "}
+            <Link href="/peyzaj-araclari">Peyzaj Araçları</Link>
             {" "}sayfasına bakabilirsin.
           </p>
 

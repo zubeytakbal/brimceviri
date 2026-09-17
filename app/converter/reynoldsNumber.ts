@@ -407,6 +407,10 @@ export const fluidPresets: Record<CalculatorLocale, FluidPreset[]> = {
     { id: "orange-juice", label: "Portakal Suyu", densityValue: "1045", densityUnit: calculatorUnitSymbols.kilogramPerCubicMetre, viscosityValue: "5", viscosityUnit: calculatorUnitSymbols.millipascalSecond },
     { id: "honey", label: "Bal", densityValue: "1420", densityUnit: calculatorUnitSymbols.kilogramPerCubicMetre, viscosityValue: "6000", viscosityUnit: calculatorUnitSymbols.millipascalSecond },
     { id: "molasses", label: "Pekmez", densityValue: "1400", densityUnit: calculatorUnitSymbols.kilogramPerCubicMetre, viscosityValue: "3000", viscosityUnit: calculatorUnitSymbols.millipascalSecond },
+    { id: "diesel", label: "Dizel (tipik)", densityValue: "832", densityUnit: calculatorUnitSymbols.kilogramPerCubicMetre, viscosityValue: "3", viscosityUnit: calculatorUnitSymbols.millipascalSecond },
+    { id: "motorOil", label: "Motor Yağı (tipik, 40°C)", densityValue: "870", densityUnit: calculatorUnitSymbols.kilogramPerCubicMetre, viscosityValue: "70", viscosityUnit: calculatorUnitSymbols.millipascalSecond },
+    { id: "antifreeze", label: "Antifriz (%50 karışım, tipik)", densityValue: "1110", densityUnit: calculatorUnitSymbols.kilogramPerCubicMetre, viscosityValue: "3.5", viscosityUnit: calculatorUnitSymbols.millipascalSecond },
+    { id: "brakeFluid", label: "Fren Hidroliği (DOT3/4, tipik)", densityValue: "1050", densityUnit: calculatorUnitSymbols.kilogramPerCubicMetre, viscosityValue: "15", viscosityUnit: calculatorUnitSymbols.millipascalSecond },
     { id: "custom", label: "Özel değer", densityValue: "", densityUnit: calculatorUnitSymbols.kilogramPerCubicMetre, viscosityValue: "", viscosityUnit: calculatorUnitSymbols.millipascalSecond },
   ],
   en: [

@@ -3,6 +3,7 @@ import {
   getEnglishCategoryPathByCategory,
 } from "../converter/localizedCategoryPages";
 import type { LocalizedConversionPage } from "../converter/localizedConversionPages";
+import { convert } from "../converter/convert";
 import { buildSiteUrl } from "../siteConfig";
 
 type EnglishConversionSeoProps = {
@@ -11,6 +12,23 @@ type EnglishConversionSeoProps = {
 
 function serializeJsonLd(data: object) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
+}
+
+function formatResult(value: number) {
+  if (!Number.isFinite(value)) {
+    return "—";
+  }
+
+  if (
+    value !== 0 &&
+    (Math.abs(value) >= 1_000_000_000 || Math.abs(value) < 0.000001)
+  ) {
+    return value.toExponential(8);
+  }
+
+  return Number(value.toPrecision(12)).toLocaleString("en-US", {
+    maximumFractionDigits: 12,
+  });
 }
 
 export default function EnglishConversionSeo({
@@ -23,8 +41,30 @@ export default function EnglishConversionSeo({
   const categoryUrl = buildSiteUrl(
     getEnglishCategoryPathByCategory(conversionPage.category)
   );
+  const oneUnitResult = convert(
+    conversionPage.category,
+    1,
+    conversionPage.fromUnit,
+    conversionPage.toUnit
+  );
+  const formattedOneUnitResult = formatResult(oneUnitResult);
 
   const faqs = [
+    {
+      question:
+        `What is 1 ${conversionPage.fromName} in ` +
+        `${conversionPage.toName}?`,
+      answer:
+        `1 ${conversionPage.fromUnit} = ${formattedOneUnitResult} ` +
+        `${conversionPage.toUnit}. Enter another value in the converter ` +
+        "to calculate its equivalent instantly.",
+    },
+    {
+      question:
+        `How do you convert ${conversionPage.fromName} to ` +
+        `${conversionPage.toName}?`,
+      answer: conversionPage.explanation,
+    },
     {
       question: "How precise are the results?",
       answer:

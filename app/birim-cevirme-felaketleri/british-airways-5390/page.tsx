@@ -32,6 +32,9 @@ export const metadata: Metadata = {
     "Bir bakım teknisyeni kokpit camının vidalarını doğru ölçüden 0,66 mm ince seçince, cam uçuş sırasında patladı. Gerçek olay, doğrulanmış kaynaklarla.",
   alternates: {
     canonical: "/birim-cevirme-felaketleri/british-airways-5390",
+    languages: {
+      "uz-UZ": "/uz/birlik-aylantirish-fojialari/british-airways-5390",
+    },
   },
   openGraph: {
     title: "British Airways 5390: 0,66 Milimetrelik Vida Hatası",

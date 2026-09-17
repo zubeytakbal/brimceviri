@@ -126,6 +126,18 @@ export default async function EvChargingCalculatorPage() {
               {item.answer}
             </p>
           ))}
+
+          <h2>İlgili araçlar</h2>
+          <p>
+            Elektrikli araç ile benzinli/dizel araç maliyet karşılaştırması
+            için{" "}
+            <Link href="/elektrikli-arac-maliyet-karsilastirma">Elektrikli Araç Maliyet Karşılaştırma</Link>,{" "}
+            evdeki elektrik tüketimi için{" "}
+            <Link href="/elektrik-tuketimi-hesaplama">Elektrik Tüketimi Hesaplama</Link>
+            {" "}sayfasına, diğer otomotiv araçları için{" "}
+            <Link href="/otomotiv-araclari">Otomotiv Araçları</Link>
+            {" "}sayfasına bakabilirsin.
+          </p>
         </section>
       </div>
     </main>

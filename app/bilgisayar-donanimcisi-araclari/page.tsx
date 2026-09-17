@@ -9,6 +9,16 @@ const faqItems: FaqItem[] = [
     answer:
       "Hayır. Bu araç yalnızca önerilen wattaj aralığını hesaplar; hangi PSU modelinin (verimlilik sertifikası, konnektör tipi, marka) uygun olduğunu belirlemez.",
   },
+  {
+    question: "80 Plus sertifikası nedir ve neden önemlidir?",
+    answer:
+      "80 Plus, bir güç kaynağının AC'den DC'ye dönüştürme verimliliğini ölçen bağımsız bir sertifika programıdır. White (temel), Bronze, Silver, Gold, Platinum ve Titanium kademeleri vardır — üst kademeye çıktıkça verimlilik artar, yani aynı güçte daha az elektrik israf edilir (daha az ısı, daha düşük fatura, genellikle daha sessiz fan).",
+  },
+  {
+    question: "PSU neden %100 yükte değil, %40-60 yükte en verimlidir?",
+    answer:
+      "Çoğu güç kaynağının verimlilik eğrisi, tam yükte (%100) değil orta yükte (genellikle %40-60 arası) tepe noktasına ulaşır; hem çok düşük hem çok yüksek yükte verimlilik düşer. Bu yüzden sistemin gerçek tüketiminin, PSU'nun toplam kapasitesinin yaklaşık yarısı civarında olması (yani PSU'yu sistem ihtiyacının 1,7-2 katı seçmek) hem verimlilik hem de gelecekteki yükseltmeler için güvenlik payı açısından yaygın bir öneridir.",
+  },
 ];
 
 export const metadata: Metadata = {
@@ -31,6 +41,15 @@ export const metadata: Metadata = {
 function serializeJsonLd(data: object) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
 }
+
+const efficiencyTable = [
+  ["80 Plus (White)", "%80 / %80 / %80"],
+  ["80 Plus Bronze", "%82 / %85 / %82"],
+  ["80 Plus Silver", "%85 / %88 / %85"],
+  ["80 Plus Gold", "%87 / %90 / %87"],
+  ["80 Plus Platinum", "%90 / %92 / %89"],
+  ["80 Plus Titanium", "%90 / %94 / %91"],
+];
 
 export default function BilgisayarDonanimcisiAraclariPage() {
   const breadcrumbSchema = {
@@ -96,6 +115,33 @@ export default function BilgisayarDonanimcisiAraclariPage() {
             </li>
           </ul>
 
+          <h2>80 Plus Verimlilik Sertifikası Kademeleri</h2>
+          <p>
+            80 Plus programının, PSU&apos;nun %20 / %50 / %100 yük
+            noktalarında sağlaması gereken minimum verimlilik yüzdeleri
+            (115V, redundant olmayan tip):
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <caption>80 Plus sertifika kademeleri ve minimum verimlilik yüzdeleri (%20/%50/%100 yükte)</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Sertifika Kademesi</th>
+                  <th scope="col">Min. Verimlilik (%20/%50/%100 yük)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {efficiencyTable.map((row) => (
+                  <tr key={row[0]}>
+                    {row.map((cell, index) => (
+                      <td key={`${row[0]}-${index}`}>{cell}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
           <h2>Sık Sorulan Sorular</h2>
           {faqItems.map((item) => (
             <p key={item.question}>
@@ -104,6 +150,13 @@ export default function BilgisayarDonanimcisiAraclariPage() {
               {item.answer}
             </p>
           ))}
+
+          <h2>Kaynaklar</h2>
+          <p>
+            80 Plus verimlilik yüzdeleri, 80 PLUS sertifika programının
+            (CLEAResult tarafından yönetilen) yayınladığı resmi test
+            kriterlerine dayanır.
+          </p>
         </section>
       </div>
     </main>

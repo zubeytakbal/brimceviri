@@ -7,6 +7,7 @@ import {
 } from "../converter/kitchenIngredientLabels";
 import {
   type KitchenIngredientKey,
+  type KitchenCupStandard,
   convertKitchenValue,
   kitchenIngredientRows,
 } from "../converter/kitchenMeasures";
@@ -81,6 +82,23 @@ const copy = {
     copiedButton: "تم النسخ",
     printButton: "طباعة",
   },
+  uz: {
+    recipeLabel: "Retseptingiz",
+    placeholder:
+      "2 stakan un\n1 choy qoshiq tuz\n3 osh qoshiq zaytun yog'i\n2 dona tuxum\n180 daraja pechda pishiring",
+    factorLabel: "Koeffitsient",
+    originalServingsLabel: "Necha kishilik edi",
+    targetServingsLabel: "Necha kishilik qilasiz",
+    resultHeading: "Miqyoslangan Retsept",
+    emptyState: "Retseptingizni yuqoriga yozing, natijani shu yerda ko'ring.",
+    gramPrefix: "~",
+    gramSuffix: "g",
+    ingredientLabel: "Mahsulot",
+    noMatchOption: "Moslik topilmadi",
+    copyButton: "Nusxalash",
+    copiedButton: "Nusxalandi",
+    printButton: "Chop etish",
+  },
 } as const;
 
 const chipOptions = [
@@ -112,6 +130,8 @@ function formatGram(value: number, locale: KitchenLocale) {
         ? "de-DE"
         : locale === "ar"
           ? "ar"
+          : locale === "uz"
+            ? "uz-UZ"
         : "en-US";
 
   return value.toLocaleString(localeName, {
@@ -132,6 +152,8 @@ export default function RecipeScalerConverter({
   locale?: KitchenLocale;
 }) {
   const localizedCopy = copy[locale];
+  const cupStandard: KitchenCupStandard =
+    locale === "en" ? "us" : "turkish";
   const [text, setText] = useState("");
   const [factorInput, setFactorInput] = useState("2");
   const [originalServingsInput, setOriginalServingsInput] = useState("");
@@ -167,8 +189,8 @@ export default function RecipeScalerConverter({
       return [];
     }
 
-    return scaleRecipeText(text, factor, locale);
-  }, [text, factor, locale]);
+    return scaleRecipeText(text, factor, locale, cupStandard);
+  }, [text, factor, locale, cupStandard]);
 
   async function handleCopy() {
     const textToCopy = lines.map((line) => line.scaledLine).join("\n");
@@ -295,10 +317,11 @@ export default function RecipeScalerConverter({
               const displayGram =
                 line.detectedUnit && selectedIngredient !== "none"
                   ? convertKitchenValue(
-                      selectedIngredient,
-                      line.detectedUnit,
-                      line.scaledQuantity ?? 0
-                    ).gram
+                    selectedIngredient,
+                    line.detectedUnit,
+                    line.scaledQuantity ?? 0,
+                    cupStandard
+                  ).gram
                   : null;
 
               return (

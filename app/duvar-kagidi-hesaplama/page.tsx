@@ -106,6 +106,16 @@ export default function WallpaperCalculatorPage() {
               {item.answer}
             </p>
           ))}
+
+          <h2>İlgili araçlar</h2>
+          <p>
+            Aynı yenileme projesinde işine yarayabilecek diğer araçlar:{" "}
+            <Link href="/boya-hesaplama">Boya Hesaplama</Link>,{" "}
+            <Link href="/fayans-hesaplama">Fayans Hesaplama</Link>,{" "}
+            <Link href="/tugla-hesaplama">Tuğla Hesaplama</Link>,{" "}
+            <Link href="/parke-hesaplama">Parke Hesaplama</Link>,{" "}
+            <Link href="/siva-hesaplama">Sıva Hesaplama</Link>.
+          </p>
         </section>
       </div>
     </main>

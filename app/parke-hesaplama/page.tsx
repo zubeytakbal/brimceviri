@@ -106,6 +106,15 @@ export default function LaminateCalculatorPage() {
               {item.answer}
             </p>
           ))}
+
+          <h2>İlgili araçlar</h2>
+          <p>
+            Aynı yenileme projesinde işine yarayabilecek diğer araçlar:{" "}
+            <Link href="/boya-hesaplama">Boya Hesaplama</Link>,{" "}
+            <Link href="/fayans-hesaplama">Fayans Hesaplama</Link>,{" "}
+            <Link href="/siva-hesaplama">Sıva Hesaplama</Link>,{" "}
+            <Link href="/duvar-kagidi-hesaplama">Duvar Kağıdı Hesaplama</Link>.
+          </p>
         </section>
       </div>
     </main>

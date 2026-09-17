@@ -55,25 +55,21 @@ const historicalMassUnitOptions = [
 
 const byzantineUnits = [
   {
-    href: "/birimler/bizans-ayagi",
     name: "Byzantine Foot (pous)",
     value: "≈ 0.3148 m",
     note: "Derived from the Ancient Greek pous, used until 1453.",
   },
   {
-    href: "/birimler/bizans-kulaci",
     name: "Byzantine Fathom (orgyia)",
     value: "= 6 pous ≈ 1.8888 m",
     note: "The distance between fingertips with arms spread wide.",
   },
   {
-    href: "/birimler/bizans-litrasi",
     name: "Byzantine Litra (litra)",
     value: "≈ 324 g",
     note: "The base mass unit, from the tradition of the Roman libra.",
   },
   {
-    href: "/birimler/bizans-onsu",
     name: "Byzantine Ounkia (ounkia)",
     value: "= 1/12 litra ≈ 27 g",
     note: "Different from the modern imperial ounce (28.35 g).",
@@ -82,25 +78,21 @@ const byzantineUnits = [
 
 const ottomanUnits = [
   {
-    href: "/birimler/arsin",
     name: "Arşın",
     value: "≈ 0.68 m (market arşın)",
     note: "68 cm in trade, 75.77 cm in construction (architect's arşın).",
   },
   {
-    href: "/birimler/endaze",
     name: "Endaze",
     value: "= 0.65 m",
     note: "Used especially for measuring fabric and textiles.",
   },
   {
-    href: "/birimler/okka",
     name: "Okka (Kıyye)",
     value: "= 400 dirhem ≈ 1282.945 g",
     note: "The most common weight unit used in markets and bazaars.",
   },
   {
-    href: "/birimler/dirhem",
     name: "Dirhem",
     value: "= 1/400 okka ≈ 3.207 g",
     note: "Used for small quantities like precious metals, spices and medicine.",
@@ -109,7 +101,6 @@ const ottomanUnits = [
 
 const oldTurkicUnits = [
   {
-    href: "/birimler/cig",
     name: "Çığ",
     value: "≈ 0.333 m",
     note:
@@ -121,7 +112,6 @@ function UnitList({
   units,
 }: {
   units: Array<{
-    href: string;
     name: string;
     value: string;
     note: string;
@@ -130,13 +120,9 @@ function UnitList({
   return (
     <ul className="calculator-example-list">
       {units.map((unit) => (
-        <li key={unit.href}>
+        <li key={unit.name}>
           <article>
-            <h3>
-              <Link href={unit.href} hrefLang="tr">
-                {unit.name}
-              </Link>
-            </h3>
+            <h3>{unit.name}</h3>
             <p>
               <strong>{unit.value}</strong> — {unit.note}
             </p>
@@ -161,7 +147,7 @@ export default function EnglishHistoricalUnitsPage() {
       alternateLink={{
         href: "/tarihi-olcu-birimleri",
         hrefLang: "tr",
-        label: "Türkçe versiyonunu görüntüle",
+        label: "View the Turkish version",
       }}
       sections={[
         {

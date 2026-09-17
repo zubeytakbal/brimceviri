@@ -23,6 +23,9 @@ export const metadata: Metadata = {
     "Boy ve cinsiyetini gir; klinik ortamda yaygın kullanılan Devine formülüyle ideal kiloyu anında hesapla.",
   alternates: {
     canonical: "/ideal-kilo-hesaplama",
+    languages: {
+      "uz-UZ": "/uz/ideal-vazn-hisoblash",
+    },
   },
   openGraph: {
     title: "İdeal Kilo Hesaplama (Devine Formülü)",

@@ -17,6 +17,7 @@ export const metadata: Metadata = {
       en: englishPage
         ? `/en/calculators/${englishPage.slug}`
         : "/en",
+      "uz-UZ": "/uz/issiqlik-otkazuvchanligi-hisoblash",
       "x-default": "/hesaplayicilar/isi-iletimi",
     },
   },

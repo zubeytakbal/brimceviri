@@ -56,8 +56,15 @@ export async function generateMetadata({
     };
   }
 
-  const title = `${page.fromName} — ${page.toName} রূপান্তরকারী`;
-  const description = `${page.fromName} কত ${page.toName}? সূত্র, রূপান্তর টেবিল এবং তাৎক্ষণিক ফলাফল বিনামূল্যে দেখুন।`;
+  // শিরোনামে "১" যোগ করা হয়েছে যাতে এটি আসল সার্চ কোয়েরির ("১ X কত Y")
+  // সাথে মিলে যায় -- সংখ্যা ছাড়া পুরনো ড্যাশ-ফরম্যাট ভালো অবস্থানেও প্রায় শূন্য ক্লিক পাচ্ছিল।
+  const oneUnitValue = formatNumber(1);
+  const oneUnitResult = formatNumber(
+    convert(page.category, 1, page.fromUnit, page.toUnit)
+  );
+
+  const title = `${oneUnitValue} ${page.fromName} কত ${page.toName}? — রূপান্তরকারী`;
+  const description = `${oneUnitValue} ${page.fromName} = ${oneUnitResult} ${page.toName}। সূত্র, রূপান্তর টেবিল এবং তাৎক্ষণিক ফলাফল বিনামূল্যে দেখুন।`;
 
   return {
     title,

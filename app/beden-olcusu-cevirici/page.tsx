@@ -27,6 +27,9 @@ export const metadata: Metadata = {
     "Kadın giyim bedenini TR/EU, US ve UK arasında, erkek gömlek bedenini yaka ve göğüs ölçüsüne göre S-XXL arasında çevir.",
   alternates: {
     canonical: "/beden-olcusu-cevirici",
+    languages: {
+      "uz-UZ": "/uz/kiyim-olchami-aylantirgich",
+    },
   },
   openGraph: {
     title: "Beden Ölçüsü Çevirici: TR, EU, US, UK Giyim Bedeni",

@@ -28,57 +28,63 @@ export type HeatPumpVsBoilerResult = {
   breakEvenYears: number | null;
 };
 
+export type HeatingSystemComparisonInput = {
+  fuelCostPerKwhFuel: number;
+  boilerEfficiencyPercent: number;
+  electricityPricePerKwh: number;
+  heatPumpCop: number;
+  annualHeatNeedKwh: number;
+  initialCostDifference: number;
+};
+
+export type HeatingSystemComparisonResult = {
+  fuelCostPerKwhHeat: number;
+  heatPumpCostPerKwhHeat: number;
+  cheaperOption: "fuel" | "heatPump";
+  annualFuelCost: number;
+  annualHeatPumpCost: number;
+  annualSaving: number;
+  breakEvenYears: number | null;
+};
+
+export function calculateHeatingSystemComparison(
+  input: HeatingSystemComparisonInput,
+): HeatingSystemComparisonResult | null {
+  if (
+    Object.values(input).some((value) => !Number.isFinite(value)) ||
+    input.fuelCostPerKwhFuel <= 0 || input.boilerEfficiencyPercent <= 0 ||
+    input.boilerEfficiencyPercent > 100 || input.electricityPricePerKwh <= 0 ||
+    input.heatPumpCop <= 0 || input.annualHeatNeedKwh <= 0 ||
+    input.initialCostDifference < 0
+  ) return null;
+  const fuelCostPerKwhHeat = input.fuelCostPerKwhFuel / (input.boilerEfficiencyPercent / 100);
+  const heatPumpCostPerKwhHeat = input.electricityPricePerKwh / input.heatPumpCop;
+  const annualFuelCost = fuelCostPerKwhHeat * input.annualHeatNeedKwh;
+  const annualHeatPumpCost = heatPumpCostPerKwhHeat * input.annualHeatNeedKwh;
+  const annualSaving = annualFuelCost - annualHeatPumpCost;
+  return { fuelCostPerKwhHeat, heatPumpCostPerKwhHeat, cheaperOption: fuelCostPerKwhHeat < heatPumpCostPerKwhHeat ? "fuel" : "heatPump", annualFuelCost, annualHeatPumpCost, annualSaving, breakEvenYears: input.initialCostDifference > 0 && annualSaving > 0 ? input.initialCostDifference / annualSaving : null };
+}
+
 export function calculateHeatPumpVsBoilerPayback(
   input: HeatPumpVsBoilerInput,
 ): HeatPumpVsBoilerResult | null {
-  const {
-    gasPriceTlPerM3,
-    boilerEfficiencyPercent,
-    electricityPriceTlPerKwh,
-    heatPumpCop,
-    annualHeatNeedKwh,
-    initialCostDifferenceTl,
-  } = input;
-
-  if (
-    !Number.isFinite(gasPriceTlPerM3) ||
-    gasPriceTlPerM3 <= 0 ||
-    !Number.isFinite(boilerEfficiencyPercent) ||
-    boilerEfficiencyPercent <= 0 ||
-    boilerEfficiencyPercent > 100 ||
-    !Number.isFinite(electricityPriceTlPerKwh) ||
-    electricityPriceTlPerKwh <= 0 ||
-    !Number.isFinite(heatPumpCop) ||
-    heatPumpCop <= 0 ||
-    !Number.isFinite(annualHeatNeedKwh) ||
-    annualHeatNeedKwh <= 0 ||
-    !Number.isFinite(initialCostDifferenceTl) ||
-    initialCostDifferenceTl <= 0
-  ) {
-    return null;
-  }
-
-  const gasCostPerKwhHeat =
-    gasPriceTlPerM3 / GAS_KWH_PER_M3 / (boilerEfficiencyPercent / 100);
-  const heatPumpCostPerKwhHeat = electricityPriceTlPerKwh / heatPumpCop;
-
-  const cheaperOption: "gas" | "heatPump" =
-    gasCostPerKwhHeat < heatPumpCostPerKwhHeat ? "gas" : "heatPump";
-
-  const annualGasCostTl = gasCostPerKwhHeat * annualHeatNeedKwh;
-  const annualHeatPumpCostTl = heatPumpCostPerKwhHeat * annualHeatNeedKwh;
-  const annualSavingsTl = annualGasCostTl - annualHeatPumpCostTl;
-
-  const breakEvenYears =
-    annualSavingsTl > 0 ? initialCostDifferenceTl / annualSavingsTl : null;
+  const result = calculateHeatingSystemComparison({
+    fuelCostPerKwhFuel: input.gasPriceTlPerM3 / GAS_KWH_PER_M3,
+    boilerEfficiencyPercent: input.boilerEfficiencyPercent,
+    electricityPricePerKwh: input.electricityPriceTlPerKwh,
+    heatPumpCop: input.heatPumpCop,
+    annualHeatNeedKwh: input.annualHeatNeedKwh,
+    initialCostDifference: input.initialCostDifferenceTl,
+  });
+  if (!result) return null;
 
   return {
-    gasCostPerKwhHeat,
-    heatPumpCostPerKwhHeat,
-    cheaperOption,
-    annualGasCostTl,
-    annualHeatPumpCostTl,
-    annualSavingsTl,
-    breakEvenYears,
+    gasCostPerKwhHeat: result.fuelCostPerKwhHeat,
+    heatPumpCostPerKwhHeat: result.heatPumpCostPerKwhHeat,
+    cheaperOption: result.cheaperOption === "fuel" ? "gas" : "heatPump",
+    annualGasCostTl: result.annualFuelCost,
+    annualHeatPumpCostTl: result.annualHeatPumpCost,
+    annualSavingsTl: result.annualSaving,
+    breakEvenYears: result.breakEvenYears,
   };
 }

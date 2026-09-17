@@ -38,6 +38,9 @@ export const metadata: Metadata = {
     "Ehliyet sınıfın ve veriliş tarihine göre sürücü belgenin ne zaman yenilenmesi gerektiğini hesapla; yenileme süreci ve gerekli belgeler hakkında bilgi al.",
   alternates: {
     canonical: "/ehliyet-yenileme-suresi-hesaplama",
+    languages: {
+      "uz-UZ": "/uz/haydovchilik-guvohnomasi-yangilash-muddati-hisoblash",
+    },
   },
   openGraph: {
     title: "Ehliyet Yenileme Süresi Hesaplama",
@@ -157,6 +160,8 @@ export default async function LicenseRenewalPage() {
             Aracına göre hangi ehliyet sınıfına ihtiyacın olduğunu
             görmek için{" "}
             <Link href="/ehliyet-sinifi-bulma">Hangi Ehliyet Sınıfı Gerekli?</Link>
+            {" "}sayfasına, diğer otomotiv araçları için{" "}
+            <Link href="/otomotiv-araclari">Otomotiv Araçları</Link>
             {" "}sayfasına bakabilirsin.
           </p>
 

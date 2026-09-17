@@ -40,11 +40,28 @@ import { conversionPages } from "../converter/conversionPages";
 import { englishCalculatorPages } from "../converter/localizedCalculatorPages";
 import { englishCategoryPages } from "../converter/localizedCategoryPages";
 import { englishConversionPages } from "../converter/localizedConversionPages";
+import { englishUnitPages } from "../converter/localizedUnitPages";
+import { englishEverydayCalculatorGroups } from "../i18n/englishEverydayCalculatorGroups";
+import { englishChemistryCalculatorCount, englishDecisionSavingsCalculatorCount, englishEverydayCalculatorCount } from "../i18n/englishCalculatorHubs";
+import { englishAppliedStemCalculatorCount, englishLiveCalculatorCount, englishToolRegistry, getEnglishToolDomain, getEnglishToolsByDomain } from "../i18n/englishToolRegistry";
+import { uzbekCategoryPages } from "../converter/localizedUzbekCategoryPages";
+import { uzbekConversionPages } from "../converter/localizedUzbekConversionPages";
+import { uzbekUnitPages } from "../converter/localizedUzbekUnitPages";
 import { homeCategoryOrder } from "../converter/homeCategoryOrder";
+import { englishHomeCategoryOrder, getEnglishCategoryPresentation } from "../i18n/englishCategoryPresentation";
 import type { SiteNotification } from "../converter/siteNotifications";
 import { unitPages } from "../converter/unitPages";
 
-type Locale = "tr" | "en";
+type Locale = "tr" | "en" | "uz";
+
+const englishDecisionSavingsHomeTools = getEnglishToolsByDomain("decision-savings");
+
+const englishProductAreas = [
+  { id: "conversions", href: "/en/all-conversions", title: "Unit Conversions", description: "Accurate unit conversions and practical unit guides.", icon: "allConversions" as const },
+  { id: "everyday", href: "/en/everyday-calculators", title: "Everyday Calculators", description: "Home projects, transport, routines and practical planning.", icon: "numberBaseCalculator" as const },
+  { id: "decision-savings", href: "/en/decision-savings-calculators", title: "Decision & Savings", description: "Energy, cost and payback comparisons using your own inputs.", icon: "solarPanelPaybackCalculator" as const },
+  { id: "applied-stem", href: "/en/applied-stem", title: "Engineering & STEM", description: "Focused engineering, chemistry and science tools with clear units.", icon: "chemistryCalculator" as const },
+] as const;
 
 type HomeConversion = {
   id: string;
@@ -88,6 +105,12 @@ type HomeCategoryIconName =
   | "tarif"
   | "altin_ayar"
   | "gumus_ayar"
+  | "yogunluk"
+  | "kuvvet"
+  | "debi"
+  | "tork"
+  | "momentum"
+  | "viskozite_dinamik"
   | "tarihi";
 
 type HomeCategoryCard = {
@@ -106,7 +129,7 @@ type HomeCategoryCard = {
 
 type HomeEngineeringCalculator = {
   id: string;
-  href: string;
+  href?: string;
   label: string;
   formula: string;
   description: string;
@@ -136,7 +159,7 @@ type HomeData = {
   popularUnits: HomePopularUnit[];
   allConversionsHref: string;
   allConversionsLabel: string;
-  engineeringHubHref: string;
+  engineeringHubHref?: string;
   engineeringHubLabel: string;
   stats: {
     activeCategories: number;
@@ -169,6 +192,270 @@ const preferredUnitSlugs = [
   "yarda",
   "fahrenhayt",
 ];
+
+const uzbekSecondaryCategoryDrafts: Record<
+  string,
+  { label: string; iconName: SiteIconName }
+> = {
+  kan_sekeri: {
+    label: "Qondagi glyukoza birliklari",
+    iconName: "doctorHub",
+  },
+  vitamin_d: {
+    label: "D vitamini birliklari",
+    iconName: "solarPanelPaybackCalculator",
+  },
+};
+
+// Ana sayfadaki asosiy kategoriya kartlariga qo'shimcha, homeCategoryOrder'da
+// bo'lmagan "iskelet" kartlar -- yangi til qo'shilganda bu jadvalga bitta
+// yozuv qo'shish yetarli: Record<Locale, ...> bo'lgani uchun biror til
+// unutilsa TypeScript kompilyatsiya vaqtida xato beradi (jim qolib ketmaydi).
+const extraCategoryCardsByLocale: Record<Locale, HomeCategoryCard[]> = {
+  tr: [
+    {
+      id: "ayakkabi",
+      iconKey: "ayakkabi",
+      name: "Ayakkabı Numarası",
+      symbol: "TR",
+      description:
+        "TR/AB, ABD ve İngiltere ayakkabı numaralarını çevirin; Nike, Adidas, Puma, New Balance ve Converse marka tablolarını görün.",
+      href: "/ayakkabi-numarasi-cevirme",
+      links: [
+        {
+          id: "ayakkabi-erkek",
+          href: "/ayakkabi-numarasi-cevirme",
+          label: "Erkek numara tablosu",
+        },
+        {
+          id: "ayakkabi-kadin",
+          href: "/ayakkabi-numarasi-cevirme",
+          label: "Kadın numara tablosu",
+        },
+      ],
+    },
+    {
+      id: "mutfak",
+      iconKey: "mutfak",
+      name: "Mutfak Ölçüleri",
+      symbol: "g",
+      description:
+        "Su bardağı, yemek kaşığı ve çay kaşığının gram karşılığını malzemeye göre hesaplayın; un, şeker, bal ve daha fazlası için ölçü tablosu.",
+      href: "/mutfak-olculeri-cevirici",
+      links: [
+        {
+          id: "mutfak-un-gram",
+          href: "/mutfak-olculeri-cevirici",
+          label: "Bardak → Gram",
+        },
+        {
+          id: "mutfak-kasik-gram",
+          href: "/mutfak-olculeri-cevirici",
+          label: "Yemek Kaşığı → Gram",
+        },
+      ],
+    },
+    {
+      id: "tarif",
+      iconKey: "tarif",
+      name: "Tarif Çevirici",
+      symbol: "2x",
+      description:
+        "Tarifini yapıştır, çarpanı seç: tüm malzeme miktarları ölçeklenir ve bilinen malzemelerde gram karşılığı otomatik hesaplanır.",
+      href: "/tarif-cevirici",
+      links: [
+        {
+          id: "tarif-olcekle",
+          href: "/tarif-cevirici",
+          label: "Tarifi Ölçekle",
+        },
+        {
+          id: "tarif-gram",
+          href: "/tarif-cevirici",
+          label: "Bardağı Grama Çevir",
+        },
+      ],
+    },
+    {
+      id: "tarihi",
+      iconKey: "tarihi",
+      name: "Tarihi Ölçü Birimleri",
+      symbol: "HIST",
+      description:
+        "Bizans, Osmanlı ve eski Türk dönemlerinden kalma arşın, okka, dirhem, endaze ve Bizans ayağı gibi birimleri metreye ve grama çevirin.",
+      href: "/tarihi-olcu-birimleri",
+      links: [
+        {
+          id: "tarihi-arsin-metre",
+          href: "/arsin-metre",
+          label: "Arşın → Metre",
+        },
+        {
+          id: "tarihi-okka-gram",
+          href: "/okka-gram",
+          label: "Okka → Gram",
+        },
+      ],
+    },
+  ],
+  en: [
+    {
+      id: "shoe-size",
+      iconKey: "ayakkabi",
+      name: "Shoe Size Converter",
+      symbol: "EU",
+      description:
+        "Compare EU, US and UK shoe sizes with general and brand-specific size charts.",
+      href: "/en/shoe-size-converter",
+      links: [
+        {
+          id: "shoe-size-chart",
+          href: "/en/shoe-size-converter",
+          label: "EU, US and UK size chart",
+        },
+      ],
+    },
+    {
+      id: "kitchen-measures",
+      iconKey: "mutfak",
+      name: "Kitchen Measurement Converter",
+      symbol: "g",
+      description:
+        "Convert cups, tablespoons and teaspoons to grams by ingredient density.",
+      href: "/en/kitchen-measurement-converter",
+      links: [
+        {
+          id: "kitchen-cups-to-grams",
+          href: "/en/kitchen-measurement-converter",
+          label: "Cups to grams",
+        },
+      ],
+    },
+    {
+      id: "recipe-converter",
+      iconKey: "tarif",
+      name: "Recipe Converter",
+      symbol: "2×",
+      description:
+        "Scale a recipe and convert known ingredient measures to grams automatically.",
+      href: "/en/recipe-converter",
+      links: [
+        {
+          id: "recipe-scaler",
+          href: "/en/recipe-converter",
+          label: "Scale a recipe",
+        },
+      ],
+    },
+    {
+      id: "historical",
+      iconKey: "tarihi",
+      name: "Historical Units",
+      symbol: "HIST",
+      description:
+        "Explore Byzantine, Ottoman and early Turkic units such as arshin, okka, dirham, endaze and the Byzantine foot with modern metric equivalents.",
+      href: "/en/historical-units",
+      links: [
+        {
+          id: "historical-arshin-meter",
+          href: "/en/historical-units",
+          label: "Historical length units",
+        },
+        {
+          id: "historical-okka-gram",
+          href: "/en/historical-units",
+          label: "Historical mass units",
+        },
+      ],
+    },
+  ],
+  uz: [
+    {
+      id: "ayakkabi",
+      iconKey: "ayakkabi",
+      name: "Oyoq Kiyim O'lchami",
+      symbol: "EU",
+      description:
+        "Yevropa (EU), AQSH va Angliya oyoq kiyim o'lchamlarini aylantiring; Nike, Adidas, Puma, New Balance va Converse jadvallarini ko'ring.",
+      href: "/uz/oyoq-kiyim-olchami",
+      links: [
+        {
+          id: "ayakkabi-erkek",
+          href: "/uz/oyoq-kiyim-olchami",
+          label: "Erkaklar o'lcham jadvali",
+        },
+        {
+          id: "ayakkabi-kadin",
+          href: "/uz/oyoq-kiyim-olchami",
+          label: "Ayollar o'lcham jadvali",
+        },
+      ],
+    },
+    {
+      id: "mutfak",
+      iconKey: "mutfak",
+      name: "Oshxona O'lchovlari",
+      symbol: "g",
+      description:
+        "Stakan, osh qoshiq va choy qoshiqning gramm ekvivalentini mahsulotga qarab hisoblang; un, shakar, asal va boshqalar uchun o'lchov jadvali.",
+      href: "/uz/oshxona-olchovlari",
+      links: [
+        {
+          id: "mutfak-un-gram",
+          href: "/uz/oshxona-olchovlari",
+          label: "Stakan → Gramm",
+        },
+        {
+          id: "mutfak-kasik-gram",
+          href: "/uz/oshxona-olchovlari",
+          label: "Osh qoshiq → Gramm",
+        },
+      ],
+    },
+    {
+      id: "tarif",
+      iconKey: "tarif",
+      name: "Retsept Aylantirgich",
+      symbol: "2x",
+      description:
+        "Retseptni joylashtiring, ko'paytiruvchini tanlang: barcha mahsulot miqdorlari o'zgaradi, ma'lum mahsulotlarda gramm ekvivalenti avtomatik hisoblanadi.",
+      href: "/uz/retsept-aylantirgich",
+      links: [
+        {
+          id: "tarif-olcekle",
+          href: "/uz/retsept-aylantirgich",
+          label: "Retseptni o'lchash",
+        },
+        {
+          id: "tarif-gram",
+          href: "/uz/retsept-aylantirgich",
+          label: "Stakanni Grammga aylantirish",
+        },
+      ],
+    },
+    {
+      id: "tarihi",
+      iconKey: "tarihi",
+      name: "Tarixiy O'lchov Birliklari",
+      symbol: "HIST",
+      description:
+        "Buxoro, Xiva va Qo'qon xonliklaridan qolgan gaz, chaqirim, tosh, farsah, qadam, miskal, pud, qadoq, dirham va botmon kabi birliklarni metr va grammga aylantiring.",
+      href: "/uz/tarixiy-olchov-birliklari",
+      links: [
+        {
+          id: "tarihi-gaz-metr",
+          href: "/uz/gaz-dan-metrga",
+          label: "Gaz → Metr",
+        },
+        {
+          id: "tarihi-miskal-gramm",
+          href: "/uz/miskal-dan-grammga",
+          label: "Miskal → Gramm",
+        },
+      ],
+    },
+  ],
+};
 
 const copy = {
   tr: {
@@ -407,6 +694,124 @@ const copy = {
     engineeringHubLabel: "All engineering calculators",
     moreCalculatorsCardLabel: "More Calculators",
   },
+  uz: {
+    eyebrow: "Birlik aylantirish",
+    title: "To'g'ri konverterni tezda oching",
+    description:
+      "Qidiruv orqali sahifani oching yoki fizik miqdorga qarab turkumni tanlang.",
+    searchLabel: "Aylantirish yoki kalkulyator qidirish",
+    searchPlaceholder: "Masalan: metr kilometr, kg funt, psi bar",
+    searchHint:
+      "Birlik nomi, aylantirish jufti yoki kalkulyator nomini yozib kerakli sahifani toping.",
+    searchResultsLabel: "Qidiruv natijalari",
+    searchEmpty: "Mos aylantirish yoki kalkulyator topilmadi.",
+    searchEnterHint: "Birinchi natijani ochish uchun Enter tugmasini bosing.",
+    searchCategoryPrefix: "Turkum",
+    openLabel: "Ochish",
+    stats: {
+      activeCategories: "turkum",
+      conversions: "aylantirish sahifasi",
+      engineering: "kalkulyator",
+    },
+    categoriesTitle: "Birlik aylantirishlari",
+    categoriesDescription:
+      "Har bir karta tegishli turkum sahifasiga o'tadi va 1-2 haqiqiy aylantirish namunasini ko'rsatadi.",
+    categoryAction: "Turkum sahifasini ochish",
+    categoriesFooterLink: "Barcha aylantirishlarni ko'rish",
+    moreCategoriesCardLabel: "Boshqa Aylantirishlar",
+    secondaryCategoriesTitle: "Boshqa Aylantirish Turkumlari",
+    categoryCards: {
+      uzunluk: {
+        name: "Uzunlik",
+        symbol: "m",
+        description:
+          "Metr, santimetr, kilometr, dyum va fut aylantirishlarini oching.",
+      },
+      alan: {
+        name: "Yuza",
+        symbol: "m²",
+        description:
+          "Kvadrat metr, gektar va kvadrat fut aylantirishlarini oching.",
+      },
+      hacim: {
+        name: "Hajm",
+        symbol: "L",
+        description:
+          "Litr, millilitr va kub metr aylantirishlarini oching.",
+      },
+      kutle: {
+        name: "Massa",
+        symbol: "kg",
+        description:
+          "Kilogramm, gramm, tonna, funt va untsiya asboblariga o'ting.",
+      },
+      sicaklik: {
+        name: "Harorat",
+        symbol: "°C",
+        description:
+          "Selsiy, Farengeyt va Kelvin aylantirishlarini oching.",
+      },
+      zaman: {
+        name: "Vaqt",
+        symbol: "s",
+        description:
+          "Soniya, daqiqa va soat aylantirishlarini oching.",
+      },
+      hiz: {
+        name: "Tezlik",
+        symbol: "km/soat",
+        description:
+          "km/soat, m/s va milya/soat asosidagi tezlik aylantirishlarini oching.",
+      },
+      basinc: {
+        name: "Bosim",
+        symbol: "Pa",
+        description:
+          "Paskal, bar, psi, atm va mmHg vositalarini ko'ring.",
+      },
+      enerji: {
+        name: "Energiya va quvvat",
+        symbol: "W",
+        description:
+          "Joul, kilovattsoat, vatt va kilovatt aylantirishlarini oching.",
+      },
+      veri: {
+        name: "Ma'lumot Hajmi",
+        symbol: "GB",
+        description:
+          "Bayt, kilobayt, megabayt, gigabayt va terabayt aylantirishlarini oching.",
+      },
+      elektrik: {
+        name: "Elektr",
+        symbol: "V",
+        description:
+          "Kuchlanish va tok aylantirish vositalarini oching.",
+      },
+      altin_ayar: {
+        name: "Oltin Karati",
+        symbol: "24K",
+        description:
+          "24, 22, 18 va 14 karat oltin orasida og'irlikni aylantiring.",
+      },
+      gumus_ayar: {
+        name: "Kumush Ayar",
+        symbol: "925",
+        description:
+          "999, 925 (sterling), 900 va 800 ayar kumush orasida og'irlikni aylantiring.",
+      },
+    },
+    popularTitle: "Mashhur aylantirishlar",
+    popularDescription:
+      "Tez-tez ishlatiladigan haqiqiy aylantirish sahifalarini shu yerdan to'g'ridan-to'g'ri oching.",
+    popularUnitsTitle: "Ko'p qidiriladigan birliklar",
+    popularUnitsDescription:
+      "Ushbu birliklarning ta'rifi, tarixi va aylantirishlarini o'qing.",
+    engineeringTitle: "Muhandislik kalkulyatorlari",
+    engineeringDescription:
+      "Bosim, suyuqliklar va issiqlik almashinuvi uchun mavjud texnik vositalar.",
+    engineeringHubLabel: "Barcha muhandislik kalkulyatorlari",
+    moreCalculatorsCardLabel: "Boshqa Kalkulyatorlar",
+  },
 } as const;
 
 function HomeCategoryIcon({
@@ -435,9 +840,21 @@ function HomeCategoryIcon({
                       ? Lightning
                       : kind === "veri"
                         ? HardDrives
-                        : kind === "isi"
-                          ? Fire
-                          : kind === "ayakkabi"
+                        : kind === "yogunluk"
+                          ? Drop
+                          : kind === "kuvvet"
+                            ? Hammer
+                            : kind === "debi"
+                              ? Waves
+                              : kind === "tork"
+                                ? Barbell
+                                : kind === "momentum"
+                                  ? ArrowsInSimple
+                                  : kind === "viskozite_dinamik"
+                                    ? Wind
+                                    : kind === "isi"
+                                      ? Fire
+                                      : kind === "ayakkabi"
                             ? Sneaker
                             : kind === "mutfak"
                               ? CookingPot
@@ -458,19 +875,29 @@ function HomeCategoryIcon({
 
 function EngineeringCalculatorIcon({ id }: { id: string }) {
   const Icon =
-    id === "isi-enerjisi"
-      ? Flame
-      : id === "isi-iletimi"
-        ? Wind
-        : id === "reynolds-sayisi"
-          ? Drop
-          : id === "hidrostatik-basinc"
-            ? Waves
-            : id === "ohm-yasasi"
-              ? Waveform
-              : id === "basinc-kuvvet-alan"
-                ? Hammer
-                : Gauge;
+    id === "electrical-calculators"
+      ? Lightning
+      : id === "mechanics-materials"
+      ? Hammer
+      : id === "fluids-piping"
+        ? Drop
+        : id === "heat-transfer"
+          ? Flame
+          : id === "dimensionless-numbers"
+            ? Gauge
+            : id === "isi-enerjisi"
+              ? Flame
+              : id === "isi-iletimi"
+                ? Wind
+                : id === "reynolds-sayisi"
+                  ? Drop
+                  : id === "hidrostatik-basinc"
+                    ? Waves
+                    : id === "ohm-yasasi"
+                      ? Waveform
+                      : id === "basinc-kuvvet-alan"
+                        ? Hammer
+                        : Gauge;
 
   return (
     <span className={`home-category-icon-box is-calc-${id}`} aria-hidden="true">
@@ -531,44 +958,96 @@ function createHomeData(locale: Locale): HomeData {
             ].join(" ")
           ),
         }))
-      : englishConversionPages.map((page) => ({
-          id: page.slug,
-          sourceSlug: page.sourceSlug,
-          href: `/en/${page.slug}`,
-          label: `${page.fromName} → ${page.toName}`,
-          description: `${page.fromUnit} → ${page.toUnit}`,
-          category: page.category,
-          categoryLabel:
-            strings.categoryCards[
-              page.category as keyof typeof strings.categoryCards
-            ]?.name ?? page.categoryName,
-          searchText: normalizeSearchText(
-            [
-              page.fromName,
-              page.toName,
-              page.fromUnit,
-              page.toUnit,
-              page.slug,
-              page.sourceSlug,
-              page.categoryName,
-            ].join(" ")
-          ),
-        }));
+      : locale === "uz"
+        ? uzbekConversionPages.map((page) => ({
+            id: page.slug,
+            sourceSlug: page.sourceSlug,
+            href: `/uz/${page.slug}`,
+            label: `${page.fromName} → ${page.toName}`,
+            description: `${page.fromUnit} → ${page.toUnit}`,
+            category: page.category,
+            categoryLabel:
+              strings.categoryCards[
+                page.category as keyof typeof strings.categoryCards
+              ]?.name ?? page.categoryName,
+            searchText: normalizeSearchText(
+              [
+                page.fromName,
+                page.toName,
+                page.fromUnit,
+                page.toUnit,
+                page.slug,
+                page.sourceSlug,
+                page.categoryName,
+              ].join(" ")
+            ),
+          }))
+        : englishConversionPages.map((page) => ({
+            id: page.slug,
+            sourceSlug: page.sourceSlug,
+            href: `/en/${page.slug}`,
+            label: `${page.fromName} → ${page.toName}`,
+            description: `${page.fromUnit} → ${page.toUnit}`,
+            category: page.category,
+            categoryLabel:
+              strings.categoryCards[
+                page.category as keyof typeof strings.categoryCards
+              ]?.name ?? page.categoryName,
+            searchText: normalizeSearchText(
+              [
+                page.fromName,
+                page.toName,
+                page.fromUnit,
+                page.toUnit,
+                page.slug,
+                page.sourceSlug,
+                page.categoryName,
+              ].join(" ")
+            ),
+          }));
 
-  const categoryCards = homeCategoryOrder.flatMap((sourceCategory) => {
+  const primaryCategoryOrder = locale === "en" ? englishHomeCategoryOrder : homeCategoryOrder;
+
+  const categoryCards = primaryCategoryOrder.flatMap((sourceCategory) => {
     const categoryPage =
       locale === "tr"
         ? categoryPages.find((page) => page.category === sourceCategory)
-        : englishCategoryPages.find(
-            (page) => page.category === sourceCategory
-          );
+        : locale === "uz"
+          ? uzbekCategoryPages.find(
+              (page) => page.category === sourceCategory
+            )
+          : englishCategoryPages.find(
+              (page) => page.category === sourceCategory
+            );
 
-    const categoryCopy = strings.categoryCards[sourceCategory];
+    const englishPresentation = locale === "en" ? getEnglishCategoryPresentation(sourceCategory) : undefined;
+    const categoryCopy = strings.categoryCards[sourceCategory as keyof typeof strings.categoryCards] ?? englishPresentation?.homeCard ?? {
+      name: categoryPage?.title ?? sourceCategory,
+      symbol: "",
+      description: categoryPage?.description ?? "",
+    };
     const categoryConversions = sortByPreference(
       conversions.filter(
         (conversion) => conversion.category === sourceCategory
       )
     ).slice(0, 2);
+
+    // Ozbekcha uchun: hali haqiqiy ma'lumot (birlik/aylantirish) bo'lmagan
+    // turkumlar ham "iskelet" sifatida karta bo'lib ko'rinishi kerak --
+    // bo'sh, lekin ko'rinadigan holda (keyinchalik to'ldiriladi).
+    if ((!categoryPage || categoryConversions.length === 0) && locale === "uz") {
+      return [
+        {
+          id: sourceCategory,
+          iconKey: sourceCategory as HomeCategoryIconName,
+          name: categoryCopy.name,
+          symbol: categoryCopy.symbol,
+          description: categoryCopy.description,
+          href: categoryPage ? `/uz/turkumlar/${categoryPage.slug}` : "/uz/turkumlar",
+          links: [],
+        },
+      ];
+    }
 
     if (!categoryPage || categoryConversions.length === 0) {
       return [];
@@ -577,14 +1056,16 @@ function createHomeData(locale: Locale): HomeData {
     return [
       {
         id: sourceCategory,
-        iconKey: sourceCategory,
+        iconKey: sourceCategory as HomeCategoryIconName,
         name: categoryCopy.name,
         symbol: categoryCopy.symbol,
         description: categoryCopy.description,
         href:
           locale === "tr"
             ? `/kategoriler/${categoryPage.slug}`
-            : `/en/categories/${categoryPage.slug}`,
+            : locale === "uz"
+              ? `/uz/turkumlar/${categoryPage.slug}`
+              : `/en/categories/${categoryPage.slug}`,
         links: categoryConversions.map((conversion) => ({
           id: conversion.id,
           href: conversion.href,
@@ -594,126 +1075,15 @@ function createHomeData(locale: Locale): HomeData {
     ];
   });
 
-  const allCategoryCards =
-    locale === "tr"
-      ? [
-          ...categoryCards,
-          {
-            id: "ayakkabi",
-            iconKey: "ayakkabi" as const,
-            name: "Ayakkabı Numarası",
-            symbol: "TR",
-            description:
-              "TR/AB, ABD ve İngiltere ayakkabı numaralarını çevirin; Nike, Adidas, Puma, New Balance ve Converse marka tablolarını görün.",
-            href: "/ayakkabi-numarasi-cevirme",
-            links: [
-              {
-                id: "ayakkabi-erkek",
-                href: "/ayakkabi-numarasi-cevirme",
-                label: "Erkek numara tablosu",
-              },
-              {
-                id: "ayakkabi-kadin",
-                href: "/ayakkabi-numarasi-cevirme",
-                label: "Kadın numara tablosu",
-              },
-            ],
-          },
-          {
-            id: "mutfak",
-            iconKey: "mutfak" as const,
-            name: "Mutfak Ölçüleri",
-            symbol: "g",
-            description:
-              "Su bardağı, yemek kaşığı ve çay kaşığının gram karşılığını malzemeye göre hesaplayın; un, şeker, bal ve daha fazlası için ölçü tablosu.",
-            href: "/mutfak-olculeri-cevirici",
-            links: [
-              {
-                id: "mutfak-un-gram",
-                href: "/mutfak-olculeri-cevirici",
-                label: "Bardak → Gram",
-              },
-              {
-                id: "mutfak-kasik-gram",
-                href: "/mutfak-olculeri-cevirici",
-                label: "Yemek Kaşığı → Gram",
-              },
-            ],
-          },
-          {
-            id: "tarif",
-            iconKey: "tarif" as const,
-            name: "Tarif Çevirici",
-            symbol: "2x",
-            description:
-              "Tarifini yapıştır, çarpanı seç: tüm malzeme miktarları ölçeklenir ve bilinen malzemelerde gram karşılığı otomatik hesaplanır.",
-            href: "/tarif-cevirici",
-            links: [
-              {
-                id: "tarif-olcekle",
-                href: "/tarif-cevirici",
-                label: "Tarifi Ölçekle",
-              },
-              {
-                id: "tarif-gram",
-                href: "/tarif-cevirici",
-                label: "Bardağı Grama Çevir",
-              },
-            ],
-          },
-          {
-            id: "tarihi",
-            iconKey: "tarihi" as const,
-            name: "Tarihi Ölçü Birimleri",
-            symbol: "HIST",
-            description:
-              "Bizans, Osmanlı ve eski Türk dönemlerinden kalma arşın, okka, dirhem, endaze ve Bizans ayağı gibi birimleri metreye ve grama çevirin.",
-            href: "/tarihi-olcu-birimleri",
-            links: [
-              {
-                id: "tarihi-arsin-metre",
-                href: "/arsin-metre",
-                label: "Arşın → Metre",
-              },
-              {
-                id: "tarihi-okka-gram",
-                href: "/okka-gram",
-                label: "Okka → Gram",
-              },
-            ],
-          },
-        ]
-      : locale === "en"
-        ? [
-            ...categoryCards,
-            {
-              id: "historical",
-              iconKey: "tarihi" as const,
-              name: "Historical Units",
-              symbol: "HIST",
-              description:
-                "Explore Byzantine, Ottoman and early Turkic units such as arshin, okka, dirham, endaze and the Byzantine foot with modern metric equivalents.",
-              href: "/en/historical-units",
-              links: [
-                {
-                  id: "historical-arshin-meter",
-                  href: "/en/arshin-to-meters",
-                  label: "Arshin to meter",
-                },
-                {
-                  id: "historical-okka-gram",
-                  href: "/en/okka-to-grams",
-                  label: "Okka to gram",
-                },
-              ],
-            },
-          ]
-        : categoryCards;
+  const allCategoryCards = [
+    ...categoryCards,
+    ...extraCategoryCardsByLocale[locale],
+  ];
 
   const secondaryCategories: HomeSecondaryCategory[] = categoryPages
     .filter(
       (page) =>
-        !(homeCategoryOrder as readonly string[]).includes(page.category)
+        !((locale === "en" ? englishHomeCategoryOrder : homeCategoryOrder) as readonly string[]).includes(page.category)
     )
     .flatMap((page) => {
       if (locale === "tr") {
@@ -723,6 +1093,30 @@ function createHomeData(locale: Locale): HomeData {
             href: `/kategoriler/${page.slug}`,
             label: page.title,
             iconName: getCategoryIconName(page.category),
+          },
+        ];
+      }
+
+      if (locale === "uz") {
+        const uzbekPage = uzbekCategoryPages.find(
+          (item) => item.category === page.category
+        );
+        const draft = uzbekSecondaryCategoryDrafts[page.category];
+
+        if (!uzbekPage && !draft) {
+          return [];
+        }
+
+        return [
+          {
+            id: page.category,
+            href: uzbekPage
+              ? `/uz/turkumlar/${uzbekPage.slug}`
+              : "/uz/turkumlar",
+            label: uzbekPage?.title ?? draft!.label,
+            iconName: uzbekPage
+              ? getCategoryIconName(page.category)
+              : draft!.iconName,
           },
         ];
       }
@@ -779,7 +1173,39 @@ function createHomeData(locale: Locale): HomeData {
               ]
             : [];
         })
-      : [];
+      : locale === "uz"
+        ? preferredUnitSlugs.flatMap((slug) => {
+            const unitPage = uzbekUnitPages.find(
+              (page) => page.sourceSlug === slug
+            );
+
+            return unitPage
+              ? [
+                  {
+                    id: unitPage.slug,
+                    href: `/uz/birliklar/${unitPage.slug}`,
+                    label: unitPage.name,
+                    category: unitPage.category as HomeCategoryIconName,
+                  },
+                ]
+              : [];
+          })
+        : preferredUnitSlugs.flatMap((slug) => {
+            const unitPage = englishUnitPages.find(
+              (page) => page.sourceSlug === slug
+            );
+
+            return unitPage
+              ? [
+                  {
+                    id: unitPage.slug,
+                    href: `/en/units/${unitPage.slug}`,
+                    label: unitPage.name,
+                    category: unitPage.category as HomeCategoryIconName,
+                  },
+                ]
+              : [];
+          });
 
   const engineeringSourceSlugs = [
     "basinc-kuvvet-alan",
@@ -804,21 +1230,108 @@ function createHomeData(locale: Locale): HomeData {
             formula: page.formula,
             description: page.description,
           }))
-      : engineeringSourceSlugs
-          .map((slug) =>
-            englishCalculatorPages.find((page) => page.sourceSlug === slug)
-          )
-          .filter(
-            (page): page is (typeof englishCalculatorPages)[number] =>
-              Boolean(page)
-          )
-          .map((page) => ({
-            id: page.slug,
-            href: `/en/calculators/${page.slug}`,
-            label: page.shortTitle,
-            formula: page.formula,
-            description: page.description,
-          }));
+      : locale === "uz"
+        ? [
+            {
+              id: "basinc-kuvvet-alan",
+              href: "/uz/bosim-kuch-maydon-hisoblash",
+              label: "Bosim, kuch va yuza",
+              formula: "P = F / A",
+              description: "Bosim, kuch va yuzani hisoblash.",
+            },
+            {
+              id: "hidrostatik-basinc",
+              href: "/uz/gidrostatik-bosim-hisoblash",
+              label: "Gidrostatik bosim",
+              formula: "ΔP = ρgh",
+              description: "Gidrostatik bosimni hisoblash.",
+            },
+            {
+              id: "isi-enerjisi",
+              href: "/uz/issiqlik-energiyasi-hisoblash",
+              label: "Issiqlik energiyasi",
+              formula: "Q = m × c × ΔT",
+              description: "Issiqlik energiyasini hisoblash.",
+            },
+            {
+              id: "isi-iletimi",
+              href: "/uz/issiqlik-otkazuvchanligi-hisoblash",
+              label: "Issiqlik o‘tkazilishi",
+              formula: "Q̇ = k × A × ΔT / L",
+              description: "Issiqlik o‘tkazilishini hisoblash.",
+            },
+            {
+              id: "reynolds-sayisi",
+              href: "/uz/reynolds-soni-hisoblash",
+              label: "Reynolds soni",
+              formula: "Re = ρ × v × D / μ",
+              description: "Reynolds sonini hisoblash.",
+            },
+            {
+              id: "ohm-yasasi",
+              href: "/uz/om-qonuni-hisoblash",
+              label: "Om qonuni",
+              formula: "V = I × R",
+              description: "Om qonuni bo‘yicha kuchlanish, tok va qarshilikni hisoblash.",
+            },
+          ]
+        : [
+            ...engineeringSourceSlugs
+              .map((slug) =>
+                englishCalculatorPages.find((page) => page.sourceSlug === slug)
+              )
+              .filter(
+                (page): page is (typeof englishCalculatorPages)[number] =>
+                  Boolean(page)
+              )
+              .map((page) => ({
+                id: page.slug,
+                href: `/en/calculators/${page.slug}`,
+                label: page.shortTitle,
+                formula: page.formula,
+                description: page.description,
+              })),
+            {
+              id: "electrical-calculators",
+              href: "/en/engineering-calculators/electrical-calculators",
+              label: "Electrical Calculators",
+              formula: "P = V × I",
+              description:
+                "Cable sizing, voltage drop, power-current conversion and motor-current checks.",
+            },
+            {
+              id: "fluids-piping",
+              href: "/en/engineering-calculators/fluids-piping",
+              label: "Fluids & Piping",
+              formula: "Q = A × v",
+              description:
+                "Pipe flow, pressure-drop and pump-power checks for fluid systems.",
+            },
+            {
+              id: "heat-transfer",
+              href: "/en/engineering-calculators/heat-transfer",
+              label: "Heat Transfer",
+              formula: "Q̇ = U A ΔT",
+              description:
+                "Thermal resistance, heat loss, radiation and convection calculations.",
+            },
+            {
+              id: "dimensionless-numbers",
+              href: "/en/engineering-calculators/dimensionless-numbers",
+              label: "Dimensionless Numbers",
+              formula: "Re = ρvD / μ",
+              description:
+                "Flow and heat-transfer groups for correlation and regime screening.",
+            },
+            {
+              id: "mechanics-materials",
+              href: "/en/engineering-calculators/mechanics-materials",
+              label: "Mechanics & Materials",
+              formula: "σ = F / A",
+              description:
+                "Stress, beam deflection, torsion, buckling and section-property checks.",
+            },
+          ];
 
   // Ana sayfanın arama kutusu hem dönüşüm sayfalarını hem de site
   // genelindeki hesaplayıcı sayfalarını (matematik, kimya, mühendislik,
@@ -836,7 +1349,18 @@ function createHomeData(locale: Locale): HomeData {
             `${entry.label} ${entry.categoryLabel}`
           ),
         }))
-      : [];
+      : locale === "en"
+        ? [
+            ...englishToolRegistry.map((tool) => ({
+              id: tool.id,
+              href: tool.href,
+              label: tool.title,
+              description: tool.description,
+              categoryLabel: getEnglishToolDomain(tool.domain)?.label ?? "Calculator",
+              searchText: normalizeSearchText(tool.searchTerms),
+            })),
+          ]
+        : [];
 
   // Arama, tek tek birim çifti sayfalarının (conversions) yanında genel
   // kategori özet sayfalarını da (örn. "Yoğunluk Dönüşümleri") göstersin —
@@ -856,7 +1380,27 @@ function createHomeData(locale: Locale): HomeData {
             `${page.title} ${page.category} ${page.description}`
           ),
         }))
-      : [];
+      : locale === "uz"
+        ? uzbekCategoryPages.map((page) => ({
+            id: `turkum-${page.category}`,
+            href: `/uz/turkumlar/${page.slug}`,
+            label: page.title,
+            description: page.description,
+            categoryLabel: "Birlik turkumi",
+            searchText: normalizeSearchText(
+              `${page.title} ${page.category} ${page.description}`
+            ),
+          }))
+        : englishCategoryPages.map((page) => ({
+            id: `category-${page.category}`,
+            href: `/en/categories/${page.slug}`,
+            label: page.title,
+            description: page.description,
+            categoryLabel: "Conversion category",
+            searchText: normalizeSearchText(
+              `${page.title} ${page.category} ${page.description}`
+            ),
+          }));
 
   // Kategori özet sayfaları önce gelir: bir sorgu hem genel bir kategoriye
   // hem tek tek birim çiftlerine denk düştüğünde (örn. "yoğunluk"), asıl
@@ -884,18 +1428,31 @@ function createHomeData(locale: Locale): HomeData {
     popularConversions,
     popularUnits,
     allConversionsHref:
-      locale === "tr" ? "/tum-birimler" : "/en/all-conversions",
+      locale === "tr"
+        ? "/tum-birimler"
+        : locale === "uz"
+          ? "/uz/turkumlar"
+          : "/en/all-conversions",
     allConversionsLabel:
-      locale === "tr" ? "Tüm dönüşümler" : "All conversions",
+      locale === "tr"
+        ? "Tüm dönüşümler"
+        : locale === "uz"
+          ? "Barcha turkumlar"
+          : "All conversions",
     engineeringHubHref:
       locale === "tr"
         ? "/muhendislik-hesaplayicilari"
-        : "/en/engineering-calculators",
+        : locale === "uz"
+          ? "/uz/muhandislik-hisoblagichlari"
+          : "/en/engineering-calculators",
       engineeringHubLabel: strings.engineeringHubLabel,
     stats: {
       activeCategories: allCategoryCards.length,
       conversions: conversions.length,
-      engineering: engineeringCalculators.length,
+      engineering:
+        locale === "en"
+          ? englishLiveCalculatorCount
+          : engineeringCalculators.length,
     },
   };
 }
@@ -903,6 +1460,7 @@ function createHomeData(locale: Locale): HomeData {
 const homeData = {
   tr: createHomeData("tr"),
   en: createHomeData("en"),
+  uz: createHomeData("uz"),
 } as const;
 
 export default function HomeDirectory({
@@ -1025,11 +1583,57 @@ export default function HomeDirectory({
         </div>
       </section>
 
-      {locale === "tr" && <NotificationBell notifications={notifications} />}
+      {(locale === "tr" || locale === "en" || locale === "uz") && (
+        <NotificationBell
+          notifications={notifications}
+          locale={locale}
+          showWhenEmpty={locale === "uz"}
+        />
+      )}
       {locale === "tr" && <ProfessionPreferenceWidget />}
       <RecentToolsWidget locale={locale} />
 
       <div className="directory-shell directory-content">
+        {locale === "en" && (
+          <section className="directory-section" id="calculator-areas">
+            <header className="directory-section-header">
+              <div>
+                <h2>Explore calculation tools</h2>
+                <p>Start with a clear task area, then open a focused tool with its units and assumptions visible.</p>
+              </div>
+            </header>
+
+            <div className="directory-tool-grid">
+              {englishProductAreas.map((area) => {
+                const count =
+                  area.id === "conversions"
+                    ? data.stats.activeCategories
+                    : area.id === "everyday"
+                      ? englishEverydayCalculatorCount
+                      : area.id === "decision-savings"
+                        ? englishDecisionSavingsCalculatorCount
+                        : englishAppliedStemCalculatorCount;
+
+                return (
+                  <article className="directory-home-card directory-tool-card" key={area.id}>
+                    <Link className="directory-card-stretch" href={area.href} aria-label={area.title} />
+                    <div className="directory-card-body directory-card-body-icon">
+                      <span className="home-category-icon-box" aria-hidden="true">
+                        <DecorativeIcon name={area.icon} size={42} className="home-category-icon-svg" />
+                      </span>
+                      <div>
+                        <h3 className="home-category-title">{area.title}</h3>
+                        <p>{area.description}</p>
+                        <small>{count} {area.id === "conversions" ? "categories" : "available tools"}</small>
+                      </div>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          </section>
+        )}
+
         <section className="directory-section">
           <header className="directory-section-header">
             <div>
@@ -1193,6 +1797,7 @@ export default function HomeDirectory({
           </section>
         )}
 
+        {data.engineeringCalculators.length > 0 && (
         <section
           className="directory-section"
           id={locale === "tr" ? "muhendislik-hesaplayicilari" : "engineering-calculators"}
@@ -1207,11 +1812,13 @@ export default function HomeDirectory({
           <div className="directory-tool-grid">
             {data.engineeringCalculators.map((calculator) => (
               <article className="directory-home-card directory-tool-card" key={calculator.id}>
-                <Link
-                  className="directory-card-stretch"
-                  href={calculator.href}
-                  aria-label={calculator.label}
-                />
+                {calculator.href ? (
+                  <Link
+                    className="directory-card-stretch"
+                    href={calculator.href}
+                    aria-label={calculator.label}
+                  />
+                ) : null}
 
                 <div className="directory-card-body directory-card-body-icon">
                   <EngineeringCalculatorIcon id={calculator.id} />
@@ -1221,11 +1828,13 @@ export default function HomeDirectory({
             ))}
 
             <article className="directory-home-card directory-tool-card directory-home-card-more">
-              <Link
-                className="directory-card-stretch"
-                href={data.engineeringHubHref}
-                aria-label={strings.moreCalculatorsCardLabel}
-              />
+              {data.engineeringHubHref ? (
+                <Link
+                  className="directory-card-stretch"
+                  href={data.engineeringHubHref}
+                  aria-label={strings.moreCalculatorsCardLabel}
+                />
+              ) : null}
 
               <div className="directory-card-body directory-more-card-body">
                 <ArrowRight
@@ -1242,6 +1851,7 @@ export default function HomeDirectory({
             </article>
           </div>
         </section>
+        )}
 
         {locale === "tr" && (
           <section className="directory-section" id="bilim-hesaplayicilari">
@@ -1313,11 +1923,30 @@ export default function HomeDirectory({
                 </div>
               </article>
 
+              <article className="directory-home-card directory-tool-card">
+                <Link
+                  className="directory-card-stretch"
+                  href="/bilim-hesaplayicilari/biyoloji"
+                  aria-label="Biyoloji"
+                />
+
+                <div className="directory-card-body directory-card-body-icon">
+                  <span className="home-category-icon-box" aria-hidden="true">
+                    <DecorativeIcon
+                      name="biologyCalculator"
+                      size={42}
+                      className="home-category-icon-svg"
+                    />
+                  </span>
+                  <h3 className="home-category-title">Biyoloji</h3>
+                </div>
+              </article>
+
               <article className="directory-home-card directory-tool-card directory-home-card-more">
                 <Link
                   className="directory-card-stretch"
                   href="/bilim-hesaplayicilari"
-                  aria-label="Tüm Bilim Hesaplayıcıları"
+                  aria-label="Diğer Bilim Hesaplayıcıları"
                 />
 
                 <div className="directory-card-body directory-more-card-body">
@@ -1329,13 +1958,106 @@ export default function HomeDirectory({
                   />
 
                   <span className="directory-more-label">
-                    Tüm Bilim Hesaplayıcıları
+                    Diğer Bilim Hesaplayıcıları
                   </span>
                 </div>
               </article>
             </div>
           </section>
         )}
+
+        {locale === "en" && (
+          <section className="directory-section" id="everyday-calculators">
+            <header className="directory-section-header">
+              <div>
+                <h2>Everyday calculators</h2>
+                <p>Practical tools for home projects, routines, transport and personal planning.</p>
+              </div>
+              <Link className="directory-section-link" href="/en/everyday-calculators">View all {englishEverydayCalculatorCount} tools</Link>
+            </header>
+            <div className="directory-tool-grid">
+              {englishEverydayCalculatorGroups.map((group) => (
+                <article className="directory-home-card directory-tool-card" key={group.id}>
+                  <Link className="directory-card-stretch" href={`/en/everyday-calculators#${group.id}`} aria-label={group.title} />
+                  <div className="directory-card-body directory-card-body-icon">
+                    <span className="home-category-icon-box" aria-hidden="true"><DecorativeIcon name="numberBaseCalculator" size={42} className="home-category-icon-svg" /></span>
+                    <div><h3 className="home-category-title">{group.title}</h3><p>{group.tools.length} tools</p></div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {locale === "en" && (
+          <section className="directory-section" id="decision-savings-calculators">
+            <header className="directory-section-header">
+              <div>
+                <h2>Decision &amp; savings calculators</h2>
+                <p>Compare recurring costs and simple payback using your own prices and assumptions.</p>
+              </div>
+              <Link className="directory-section-link" href="/en/decision-savings-calculators">View all {englishDecisionSavingsCalculatorCount} tools</Link>
+            </header>
+            <div className="directory-tool-grid">
+              {englishDecisionSavingsHomeTools.map((tool) => <article className="directory-home-card directory-tool-card" key={tool.id}><Link className="directory-card-stretch" href={tool.href} aria-label={tool.title} /><div className="directory-card-body directory-card-body-icon"><span className="home-category-icon-box" aria-hidden="true"><DecorativeIcon name="evChargingCalculator" size={42} className="home-category-icon-svg" /></span><div><h3 className="home-category-title">{tool.title}</h3><p>{tool.description}</p></div></div></article>)}
+            </div>
+          </section>
+        )}
+
+        {locale === "en" && (
+          <section className="directory-section" id="chemistry-calculators">
+            <header className="directory-section-header">
+              <div>
+                <h2>Chemistry calculators</h2>
+                  <p>Solution chemistry, reaction calculations, equilibrium and electrochemistry.</p>
+              </div>
+            </header>
+
+            <div className="directory-tool-grid">
+              <article className="directory-home-card directory-tool-card">
+                <Link
+                  className="directory-card-stretch"
+                  href="/en/chemistry-calculators"
+                  aria-label="Browse chemistry calculators"
+                />
+                <div className="directory-card-body directory-card-body-icon">
+                  <span className="home-category-icon-box" aria-hidden="true">
+                    <DecorativeIcon
+                      name="numberBaseCalculator"
+                      size={42}
+                      className="home-category-icon-svg"
+                    />
+                  </span>
+                  <div>
+                    <h3>Chemistry Calculators</h3>
+                    <p>{englishChemistryCalculatorCount} available tools</p>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </section>
+        )}
+
+        {locale === "en" && (
+          <section className="directory-section" id="science-calculators">
+            <header className="directory-section-header">
+              <div>
+                <h2>Science calculators</h2>
+                <p>Focused learning tools for mathematics, physics, biology and chemistry.</p>
+              </div>
+              <Link className="directory-section-link" href="/en/science-calculators">Open science center</Link>
+            </header>
+            <div className="directory-tool-grid">
+              {[
+                { href: "/en/mathematics-calculators", label: "Mathematics", icon: "mathCalculator" as const },
+                { href: "/en/physics-calculators", label: "Physics", icon: "physicsCalculator" as const },
+                { href: "/en/biology-calculators", label: "Biology", icon: "biologyCalculator" as const },
+                { href: "/en/chemistry-calculators", label: "Chemistry", icon: "chemistryCalculator" as const },
+              ].map((subject) => <article className="directory-home-card directory-tool-card" key={subject.href}><Link className="directory-card-stretch" href={subject.href} aria-label={subject.label} /><div className="directory-card-body directory-card-body-icon"><span className="home-category-icon-box" aria-hidden="true"><DecorativeIcon name={subject.icon} size={42} className="home-category-icon-svg" /></span><h3 className="home-category-title">{subject.label}</h3></div></article>)}
+            </div>
+          </section>
+        )}
+
       </div>
     </main>
   );

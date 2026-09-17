@@ -29,6 +29,7 @@ import {
   englishConversionPages,
   findEnglishConversionPage,
 } from "../../converter/localizedConversionPages";
+import { englishCategoryPages } from "../../converter/localizedCategoryPages";
 import { findGermanPageByTurkishSlug } from "../../converter/localizedGermanConversionPages";
 import {
   englishStandaloneTools,
@@ -36,6 +37,7 @@ import {
   type EnglishStandaloneToolComponentKey,
 } from "../../i18n/englishStandaloneTools";
 import { getUnitSources } from "../../converter/unitSources";
+import { getEnglishEditorialConversion } from "../../converter/englishEditorialConversions";
 import { buildSiteUrl } from "../../siteConfig";
 
 const componentMap: Record<EnglishStandaloneToolComponentKey, React.ComponentType<{ locale?: "en" }>> =
@@ -137,9 +139,21 @@ export async function generateMetadata({
     };
   }
 
-  const title = `${page.fromName} to ${page.toName} Converter`;
+  // Baslik "1 X to Y" sorgu kalibiyla eslessin diye rakam iceriyor -- TR
+  // tarafinda "X - Y Cevirici" formatinin ortalama 8. sirada bile %0,1
+  // TO ile sonuclanmasindan sonra ayni mantik burada da uygulandi.
+  const oneUnitResult = convert(
+    page.category,
+    1,
+    page.fromUnit,
+    page.toUnit
+  );
+  const formattedOneUnitResult = formatNumber(oneUnitResult);
+
+  const title = `1 ${page.fromName} to ${page.toName} – Converter`;
 
   const description =
+    `1 ${page.fromName} = ${formattedOneUnitResult} ${page.toName}. ` +
     `Convert ${page.fromName.toLowerCase()} to ` +
     `${page.toName.toLowerCase()}. View the conversion formula, ` +
     `conversion table and instant calculation result.`;
@@ -148,10 +162,12 @@ export async function generateMetadata({
     title,
     description,
 
-    alternates: {
-      canonical: `/en/${page.slug}`,
-      ...buildFullLanguageAlternates(`/en/${page.slug}`),
-    },
+    alternates: page.isEnglishOnly
+      ? { canonical: `/en/${page.slug}` }
+      : {
+          canonical: `/en/${page.slug}`,
+          ...buildFullLanguageAlternates(`/en/${page.slug}`),
+        },
 
     openGraph: {
       title,
@@ -251,15 +267,19 @@ async function EnglishConversionPage({
     notFound();
   }
 
-  const germanPage = findGermanPageByTurkishSlug(
-    page.sourceSlug
-  );
+  const germanPage = page.isEnglishOnly
+    ? undefined
+    : findGermanPageByTurkishSlug(page.sourceSlug);
   const reversePage = findEnglishConversionPage(
     page.reverseSlug
   );
   const fromUnitInfo = findEnglishUnitPage(page.category, page.fromUnit);
   const toUnitInfo = findEnglishUnitPage(page.category, page.toUnit);
+  const categoryPage = englishCategoryPages.find(
+    (candidate) => candidate.category === page.category,
+  );
   const sources = getUnitSources(page.category);
+  const editorialConversion = getEnglishEditorialConversion(page.slug);
 
   const relatedConversions = englishConversionPages
     .filter(
@@ -306,7 +326,13 @@ async function EnglishConversionPage({
 
           <span aria-hidden="true">›</span>
 
-          <span>{page.categoryName}</span>
+          {categoryPage ? (
+            <Link href={`/en/categories/${categoryPage.slug}`}>
+              {page.categoryName}
+            </Link>
+          ) : (
+            <span>{page.categoryName}</span>
+          )}
 
           <span aria-hidden="true">›</span>
 
@@ -385,6 +411,31 @@ async function EnglishConversionPage({
           </div>
         </section>
 
+        {editorialConversion && (
+          <section className="conversion-section">
+            <h2>{editorialConversion.title}</h2>
+
+            {editorialConversion.paragraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+
+            {editorialConversion.note && (
+              <p>
+                <strong>Important:</strong> {editorialConversion.note}
+              </p>
+            )}
+
+            <h3>Related tools</h3>
+            <ul className="related-conversion-list">
+              {editorialConversion.related.map((related) => (
+                <li key={related.href}>
+                  <Link href={related.href}>{related.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
         <section className="conversion-section">
           <h2>
             {page.fromName} to {page.toName} conversion
@@ -459,6 +510,23 @@ async function EnglishConversionPage({
 
         <EnglishConversionSeo conversionPage={page} />
 
+        {categoryPage && (
+          <section className="conversion-section related-conversions">
+            <h2>{page.categoryName} conversion tools</h2>
+
+            <p>
+              Browse every converter in this group: {" "}
+              <Link
+                className="text-link"
+                href={`/en/categories/${categoryPage.slug}`}
+              >
+                {categoryPage.title}
+              </Link>
+              .
+            </p>
+          </section>
+        )}
+
         {reversePage && (
           <section className="conversion-section related-conversions">
             <h2>Reverse conversion</h2>
@@ -516,27 +584,29 @@ async function EnglishConversionPage({
           </section>
         )}
 
-        <section className="conversion-section language-alternatives">
-          <h2>Other languages</h2>
+        {!page.isEnglishOnly && (
+          <section className="conversion-section language-alternatives">
+            <h2>Other languages</h2>
 
-          <Link
-            className="text-link"
-            href={`/${page.sourceSlug}`}
-            hrefLang="tr"
-          >
-            View the Turkish version
-          </Link>
-
-          {germanPage && (
             <Link
               className="text-link"
-              href={`/de/${germanPage.slug}`}
-              hrefLang="de"
+              href={`/${page.sourceSlug}`}
+              hrefLang="tr"
             >
-              Open the German version
+              View the Turkish version
             </Link>
-          )}
-        </section>
+
+            {germanPage && (
+              <Link
+                className="text-link"
+                href={`/de/${germanPage.slug}`}
+                hrefLang="de"
+              >
+                Open the German version
+              </Link>
+            )}
+          </section>
+        )}
       </article>
     </main>
   );

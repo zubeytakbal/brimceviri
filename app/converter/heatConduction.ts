@@ -644,6 +644,12 @@ export const conductivityPresets: Record<
     { id: "chlorine", label: "Klor", value: "0.0089" },
     { id: "neon", label: "Neon", value: "0.0491" },
     { id: "polypropylene", label: "Polipropilen (PP)", value: "0.2" },
+    { id: "ammonia", label: "Amonyak (Gaz)", value: "0.0247" },
+    { id: "cobalt", label: "Kobalt", value: "100" },
+    { id: "uranium", label: "Uranyum", value: "27.5" },
+    { id: "ldpe", label: "LDPE", value: "0.33" },
+    { id: "polystyrene", label: "Polistiren", value: "0.08" },
+    { id: "cementPowder", label: "Çimento Tozu", value: "0.29" },
   ],
   en: [
     { id: "custom", label: "Custom", value: "" },

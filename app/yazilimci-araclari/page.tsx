@@ -14,6 +14,16 @@ const faqItems: FaqItem[] = [
     answer:
       "Unix zaman damgası (epoch) her zaman UTC referanslıdır; yerel saate çevrilmesi gerekir. Bu sayfadaki zaman damgası çevirici, Türkiye saatini (UTC+3) otomatik hesaba katar.",
   },
+  {
+    question: "HEX renk kodu RGB'ye nasıl çevrilir?",
+    answer:
+      "#RRGGBB formatındaki bir HEX renk kodunda her iki karakterlik grup (RR, GG, BB), 00-FF (0-255) aralığında bir onaltılık sayıdır ve doğrudan kırmızı, yeşil, mavi kanalının 0-255 arası RGB değerine karşılık gelir. Örneğin #FF5733, RGB(255, 87, 51) demektir.",
+  },
+  {
+    question: "İkilik sistemde negatif sayılar nasıl gösterilir?",
+    answer:
+      "Bilgisayarlarda negatif tamsayılar genellikle 'ikinin tümleyeni' (two's complement) yöntemiyle gösterilir: sayının pozitif ikilik karşılığı bulunur, tüm bitleri tersine çevrilir (birin tümleyeni) ve sonuca 1 eklenir. Bu yöntem toplama/çıkarma donanımının aynı devrelerle hem pozitif hem negatif sayıları işleyebilmesini sağlar.",
+  },
 ];
 
 export const metadata: Metadata = {
@@ -37,6 +47,19 @@ export const metadata: Metadata = {
 function serializeJsonLd(data: object) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
 }
+
+const httpStatusTable = [
+  ["200", "OK — istek başarılı"],
+  ["301", "Moved Permanently — kalıcı yönlendirme"],
+  ["304", "Not Modified — önbellek geçerli"],
+  ["400", "Bad Request — istemci hatası"],
+  ["401", "Unauthorized — kimlik doğrulama gerekli"],
+  ["403", "Forbidden — erişim yasak"],
+  ["404", "Not Found — kaynak bulunamadı"],
+  ["429", "Too Many Requests — istek sınırı aşıldı"],
+  ["500", "Internal Server Error — sunucu hatası"],
+  ["503", "Service Unavailable — servis geçici olarak kullanılamıyor"],
+];
 
 export default function YazilimciAraclariPage() {
   const breadcrumbSchema = {
@@ -120,6 +143,28 @@ export default function YazilimciAraclariPage() {
             </li>
           </ul>
 
+          <h2>Yaygın HTTP Durum Kodları</h2>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <caption>Web geliştirmede sık karşılaşılan HTTP durum kodları</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Kod</th>
+                  <th scope="col">Anlamı</th>
+                </tr>
+              </thead>
+              <tbody>
+                {httpStatusTable.map((row) => (
+                  <tr key={row[0]}>
+                    {row.map((cell, index) => (
+                      <td key={`${row[0]}-${index}`}>{cell}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
           <h2>Sık Sorulan Sorular</h2>
           {faqItems.map((item) => (
             <p key={item.question}>
@@ -128,6 +173,13 @@ export default function YazilimciAraclariPage() {
               {item.answer}
             </p>
           ))}
+
+          <h2>Kaynaklar</h2>
+          <p>
+            HTTP durum kodları, IETF&apos;in ilgili RFC standartlarında
+            (RFC 9110 ve öncülleri) tanımlanan resmi anlamlarına
+            dayanır.
+          </p>
         </section>
       </div>
     </main>

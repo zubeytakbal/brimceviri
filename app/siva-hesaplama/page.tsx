@@ -33,6 +33,9 @@ export const metadata: Metadata = {
     "Sıvanacak alan, kalınlık ve ürün tüketim değerine göre gereken alçı sıva veya çimento esaslı sıva miktarını ve torba sayısını fire payı dahil hesapla.",
   alternates: {
     canonical: "/siva-hesaplama",
+    languages: {
+      "uz-UZ": "/uz/suvoq-hisoblash",
+    },
   },
   openGraph: {
     title: "Sıva Hesaplama: Kaç kg Alçı veya Harç Gerekir?",
@@ -130,6 +133,15 @@ export default function PlasterCalculatorPage() {
               {item.answer}
             </p>
           ))}
+
+          <h2>İlgili araçlar</h2>
+          <p>
+            Aynı yenileme projesinde işine yarayabilecek diğer araçlar:{" "}
+            <Link href="/boya-hesaplama">Boya Hesaplama</Link>,{" "}
+            <Link href="/fayans-hesaplama">Fayans Hesaplama</Link>,{" "}
+            <Link href="/parke-hesaplama">Parke Hesaplama</Link>,{" "}
+            <Link href="/duvar-kagidi-hesaplama">Duvar Kağıdı Hesaplama</Link>.
+          </p>
 
           <h2>Kaynaklar</h2>
           <p>

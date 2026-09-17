@@ -28,6 +28,9 @@ export const metadata: Metadata = {
     "Satış bedeli veya aylık kiradan, yasal tavan oranlarına (satışta %2+KDV, kirada 1 aylık kira+KDV) göre emlak komisyonunu hesapla.",
   alternates: {
     canonical: "/emlak-komisyonu-hesaplama",
+    languages: {
+      "uz-UZ": "/uz/kochmas-mulk-komissiyasi-hisoblash",
+    },
   },
   openGraph: {
     title: "Emlak Komisyonu Hesaplama: Satış ve Kiralama",

@@ -14,6 +14,11 @@ const faqItems: FaqItem[] = [
     answer:
       "Web ve ekran tasarımı için 72-96 DPI, standart baskı için 300 DPI, yüksek kaliteli baskı için 600 DPI yaygın kullanılan değerlerdir.",
   },
+  {
+    question: "RGB ile CMYK arasındaki fark nedir?",
+    answer:
+      "RGB (Kırmızı-Yeşil-Mavi), ekranlarda kullanılan katkısal (additive) bir renk modelidir — ışık eklendikçe beyaza yaklaşır. CMYK (Camgöbeği-Macenta-Sarı-Siyah) ise baskıda kullanılan çıkarımsal (subtractive) bir modeldir — mürekkep eklendikçe siyaha yaklaşır. Bu yüzden ekranda parlak görünen bir RGB rengi, CMYK'ya (baskıya) çevrildiğinde daha soluk çıkabilir; baskı öncesi tasarımların CMYK modunda kontrol edilmesi önerilir.",
+  },
 ];
 
 export const metadata: Metadata = {
@@ -34,6 +39,13 @@ export const metadata: Metadata = {
 function serializeJsonLd(data: object) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
 }
+
+const paperSizeTable = [
+  ["A3", "297 × 420 mm"],
+  ["A4", "210 × 297 mm"],
+  ["A5", "148 × 210 mm"],
+  ["A6", "105 × 148 mm"],
+];
 
 export default function GrafikTasarimciAraclariPage() {
   const breadcrumbSchema = {
@@ -128,12 +140,44 @@ export default function GrafikTasarimciAraclariPage() {
             300 DPI, yüksek kaliteli baskı için 600 DPI yaygın
             kullanılan değerlerdir.
           </p>
+          <p>
+            <strong>RGB ile CMYK arasındaki fark nedir?</strong>
+            <br />
+            RGB, ekranlarda kullanılan katkısal (additive) bir renk
+            modelidir — ışık eklendikçe beyaza yaklaşır. CMYK ise
+            baskıda kullanılan çıkarımsal (subtractive) bir modeldir —
+            mürekkep eklendikçe siyaha yaklaşır. Bu yüzden ekranda
+            parlak görünen bir RGB rengi, baskıya çevrildiğinde daha
+            soluk çıkabilir.
+          </p>
+
+          <h2>Yaygın Kağıt Boyutları (A Serisi, ISO 216)</h2>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <caption>ISO 216 standardına göre yaygın kağıt boyutları</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Boyut</th>
+                  <th scope="col">Ölçüler (mm)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {paperSizeTable.map((row) => (
+                  <tr key={row[0]}>
+                    {row.map((cell, index) => (
+                      <td key={`${row[0]}-${index}`}>{cell}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
 
           <h2>Kaynaklar</h2>
           <p>
             Formül, dijital görüntü çözünürlüğü ve baskı sektöründe
-            standart kabul edilen piksel/inç/DPI ilişkisine
-            dayanmaktadır.
+            standart kabul edilen piksel/inç/DPI ilişkisine dayanır;
+            kağıt boyutları ISO 216 uluslararası standardına dayanır.
           </p>
         </section>
       </div>

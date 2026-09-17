@@ -9,6 +9,16 @@ const faqItems: FaqItem[] = [
     answer:
       "Çok düşük bit hızı bulanık, pikselli bir görüntüye yol açar. Çok yüksek bit hızı ise gereksiz yere büyük dosya boyutuna neden olur; hedef platforma (YouTube, Instagram vb.) göre önerilen bir aralıkta kalmak en iyisidir.",
   },
+  {
+    question: "Sabit (CBR) ve değişken (VBR) bit hızı arasındaki fark nedir?",
+    answer:
+      "CBR (Constant Bit Rate), videonun her anında aynı bit hızını korur — dosya boyutu tahmin etmek kolaydır, canlı yayın gibi kararlı bant genişliği gereken durumlarda tercih edilir. VBR (Variable Bit Rate), hareketli/karmaşık sahnelerde daha yüksek, sabit/basit sahnelerde daha düşük bit hızı kullanarak aynı kalitede daha küçük dosya boyutu elde eder — çoğu platforma yükleme için VBR önerilir.",
+  },
+  {
+    question: "Bit hızı ile çözünürlük ve kare hızı (FPS) nasıl ilişkilidir?",
+    answer:
+      "Aynı bit hızında, çözünürlük veya kare hızı arttıkça kodlanacak görüntü verisi arttığı için kalite düşer. Bu yüzden 4K veya yüksek FPS (60fps gibi) bir video, 1080p/30fps ile aynı görsel kaliteyi korumak için çok daha yüksek bir bit hızına ihtiyaç duyar.",
+  },
 ];
 
 export const metadata: Metadata = {
@@ -31,6 +41,15 @@ export const metadata: Metadata = {
 function serializeJsonLd(data: object) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
 }
+
+const bitrateTable = [
+  ["1080p, standart kare hızı (SDR)", "8 Mbps"],
+  ["1080p, yüksek kare hızı (SDR)", "12 Mbps"],
+  ["720p, standart kare hızı (SDR)", "5 Mbps"],
+  ["720p, yüksek kare hızı (SDR)", "7,5 Mbps"],
+  ["4K (2160p), standart kare hızı (SDR)", "35-45 Mbps"],
+  ["4K (2160p), yüksek kare hızı (SDR)", "53-68 Mbps"],
+];
 
 export default function VideoEditorAraclariPage() {
   const breadcrumbSchema = {
@@ -93,6 +112,38 @@ export default function VideoEditorAraclariPage() {
             </li>
           </ul>
 
+          <h2>YouTube Önerilen Yükleme Bit Hızları</h2>
+          <p>
+            YouTube&apos;un yayınladığı önerilen yükleme bit hızı
+            değerleri (H.264 kodek, SDR video):
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <caption>Çözünürlük ve kare hızına göre önerilen bit hızları</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Çözünürlük / Kare Hızı</th>
+                  <th scope="col">Önerilen Bit Hızı</th>
+                </tr>
+              </thead>
+              <tbody>
+                {bitrateTable.map((row) => (
+                  <tr key={row[0]}>
+                    {row.map((cell, index) => (
+                      <td key={`${row[0]}-${index}`}>{cell}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Bu değerler platform ve kodekten (H.264, H.265/HEVC, VP9 gibi)
+            bağımsız evrensel bir kural değildir; farklı platformlar
+            (Instagram, TikTok, Vimeo) ve daha yeni/verimli kodekler farklı
+            önerilerde bulunabilir.
+          </p>
+
           <h2>Sık Sorulan Sorular</h2>
           {faqItems.map((item) => (
             <p key={item.question}>
@@ -101,6 +152,12 @@ export default function VideoEditorAraclariPage() {
               {item.answer}
             </p>
           ))}
+
+          <h2>Kaynaklar</h2>
+          <p>
+            Önerilen bit hızı değerleri, YouTube&apos;un yayıncılar için
+            yayınladığı resmi yükleme önerilerine dayanır.
+          </p>
         </section>
       </div>
     </main>

@@ -29,7 +29,7 @@ export type LocalizedCategoryPage = {
   unitTable?: LocalizedCategoryUnitRow[];
 };
 
-export const englishCategoryPages: LocalizedCategoryPage[] = [
+const baseEnglishCategoryPages: LocalizedCategoryPage[] = [
   {
     locale: "en",
     slug: "area",
@@ -37,7 +37,7 @@ export const englishCategoryPages: LocalizedCategoryPage[] = [
     category: "alan",
     title: "Area Units and Conversions",
     description:
-      "Convert between square meters, square feet and hectares and learn how area units are used in land measurement, buildings and engineering.",
+      "Convert between square meters, hectares, square feet, acres and regional land measures, with practical context for buildings, land and engineering.",
     introduction: [
       "Area measures the size of a surface. It appears in floor plans, land records, pressure calculations, heat transfer and many other technical contexts.",
       "The square meter is the SI derived unit of area, while units such as the square foot and hectare are still common in practical work.",
@@ -54,22 +54,108 @@ export const englishCategoryPages: LocalizedCategoryPage[] = [
         title: "What is area?",
         paragraphs: [
           "Area describes two-dimensional extent. It is used for rooms, plots, panels, cross-sections and any measurable surface.",
-          "Because area is derived from length multiplied by length, conversion factors must also be squared when changing units.",
+          "Because area is derived from length multiplied by length, conversion factors must also be squared when changing units. For example, 1 meter equals 100 centimeters, but 1 square meter equals 10,000 square centimeters.",
         ],
       },
       {
         title: "Square meters, hectares and square feet",
         paragraphs: [
           "The square meter is the main SI area unit. The hectare is a larger metric unit widely used in agriculture and land management.",
-          "The square foot is common in architectural and construction practice in imperial and US customary systems.",
+          "One hectare is exactly 10,000 square meters, which can be pictured as a square 100 meters on each side. The square foot is common in architectural and construction practice in imperial and US customary systems.",
+        ],
+      },
+      {
+        title: "Acres and Anglo-American area units",
+        paragraphs: [
+          "Square feet and square yards are useful for buildings, interiors and construction drawings. Acres are commonly used for larger land parcels in Anglo-American contexts; one acre contains exactly 43,560 square feet and equals about 0.404686 hectare.",
+          "An acre measures area, not a fixed shape. A one-acre property does not have to be square or rectangular, so its side lengths cannot be determined from acreage alone.",
+        ],
+      },
+      {
+        title: "Regional and historical land measures",
+        paragraphs: [
+          "The converter also includes land measures such as donum, decare, marla, guntha, katha, bigha and tsubo. These can be useful when reading property records, historical documents or regional listings.",
+          "Some traditional land-unit names have varied by country, period or locality. Treat the named regional context as part of the measurement and confirm the source's definition before using a converted value in a legal, surveying or financial decision.",
         ],
       },
       {
         title: "How are area units converted?",
         paragraphs: [
           "Area conversions preserve the same physical surface while expressing it in another unit.",
-          "For example, one hectare equals 10,000 square meters, and one square meter equals about 10.7639 square feet.",
+          "For example, one hectare equals 10,000 square meters, and one square meter equals about 10.7639 square feet. The converter uses squared conversion relationships rather than applying a linear length factor only once.",
         ],
+      },
+    ],
+    unitTable: [
+      {
+        name: "Square millimeter",
+        symbol: "mm²",
+        referenceValue: "0.000001 m²",
+        system: "SI/metric",
+        commonUse: "Small parts and material sections",
+      },
+      {
+        name: "Square centimeter",
+        symbol: "cm²",
+        referenceValue: "0.0001 m²",
+        system: "SI/metric",
+        commonUse: "Small surfaces and product dimensions",
+      },
+      {
+        name: "Square meter",
+        symbol: "m²",
+        referenceValue: "1 m²",
+        system: "SI/metric",
+        commonUse: "Rooms, plans and general area measurement",
+      },
+      {
+        name: "Square kilometer",
+        symbol: "km²",
+        referenceValue: "1,000,000 m²",
+        system: "SI/metric",
+        commonUse: "Cities, regions and large land areas",
+      },
+      {
+        name: "Are",
+        symbol: "a",
+        referenceValue: "100 m²",
+        system: "Metric land measure",
+        commonUse: "Land records and property measurement",
+      },
+      {
+        name: "Hectare",
+        symbol: "ha",
+        referenceValue: "10,000 m²",
+        system: "Metric land measure",
+        commonUse: "Agriculture and large land parcels",
+      },
+      {
+        name: "Square foot",
+        symbol: "ft²",
+        referenceValue: "0.09290304 m²",
+        system: "Shared Anglo-American",
+        commonUse: "Buildings, interiors and construction",
+      },
+      {
+        name: "Square yard",
+        symbol: "yd²",
+        referenceValue: "0.83612736 m²",
+        system: "Shared Anglo-American",
+        commonUse: "Flooring, fabric and land references",
+      },
+      {
+        name: "Acre",
+        symbol: "ac",
+        referenceValue: "4,046.8564224 m²",
+        system: "Anglo-American land measure",
+        commonUse: "Land and property listings",
+      },
+      {
+        name: "Tsubo",
+        symbol: "tsubo",
+        referenceValue: "3.305785 m²",
+        system: "Japanese traditional",
+        commonUse: "Japanese property and building references",
       },
     ],
   },
@@ -80,10 +166,10 @@ export const englishCategoryPages: LocalizedCategoryPage[] = [
     category: "hacim",
     title: "Volume Units and Conversions",
     description:
-      "Convert between liters, milliliters and cubic meters and review the basic relationships used in science, storage and fluid handling.",
+      "Convert between liters, cubic meters, US customary and British imperial volume units, and avoid confusing US and imperial gallons, pints, quarts and fluid ounces.",
     introduction: [
       "Volume describes how much three-dimensional space a substance or object occupies.",
-      "The cubic meter is the SI derived unit of volume, while the liter and milliliter are widely used in daily practice, laboratory work and tank calculations.",
+      "The cubic meter is the SI derived unit of volume, while the liter and milliliter are widely used in daily practice, laboratory work and tank calculations. English-language volume measurements also require care: US customary and British imperial gallons, pints, quarts and fluid ounces do not have the same value.",
     ],
     facts: [
       { label: "Physical quantity", value: "Volume" },
@@ -108,11 +194,104 @@ export const englishCategoryPages: LocalizedCategoryPage[] = [
         ],
       },
       {
+        title: "US customary and British imperial volume units",
+        paragraphs: [
+          "A gallon, pint, quart or fluid ounce is not automatically a single universal value. A US liquid gallon is about 3.785 liters, while a British imperial gallon is 4.54609 liters. The same distinction continues through the related quart, pint and fluid-ounce units.",
+          "The United States commonly uses US customary liquid measures. British imperial measures remain important in historical material and some present-day contexts. When a source says only gallon, pint, quart or fl oz, check the country or standard before converting.",
+        ],
+      },
+      {
+        title: "Cubic units and container capacity",
+        paragraphs: [
+          "Cubic meters, cubic feet and cubic inches describe geometric volume. Liters, gallons and fluid ounces are capacity measures commonly used for liquids and containers. They represent the same physical dimension and can be converted reliably when the named standard is clear.",
+          "For example, one cubic meter equals 1,000 liters. Cubic feet are common in construction, ventilation and shipping, while liters and milliliters are common for packaging, laboratory work and everyday liquids.",
+        ],
+      },
+      {
         title: "How are volume units converted?",
         paragraphs: [
           "Volume conversions use fixed relationships between the source and target units.",
-          "For example, one liter equals 1,000 milliliters and also equals 0.001 cubic meters.",
+          "For example, one liter equals 1,000 milliliters and also equals 0.001 cubic meters. For US and imperial measures, choose the explicitly labelled version in the converter instead of treating similarly named units as interchangeable.",
         ],
+      },
+    ],
+    unitTable: [
+      {
+        name: "Cubic meter",
+        symbol: "m³",
+        referenceValue: "1,000 L",
+        system: "SI/metric",
+        commonUse: "Tanks, rooms, shipping and engineering",
+      },
+      {
+        name: "Liter",
+        symbol: "L",
+        referenceValue: "1 dm³ exactly",
+        system: "Metric",
+        commonUse: "Bottles, fuel and everyday liquid capacity",
+      },
+      {
+        name: "Milliliter",
+        symbol: "mL",
+        referenceValue: "0.001 L exactly",
+        system: "Metric",
+        commonUse: "Medicine, cooking and laboratory volumes",
+      },
+      {
+        name: "Cubic foot",
+        symbol: "ft³",
+        referenceValue: "28.3168 L",
+        system: "Shared Anglo-American",
+        commonUse: "Construction, ventilation and shipping",
+      },
+      {
+        name: "Cubic inch",
+        symbol: "in³",
+        referenceValue: "16.3871 mL",
+        system: "Shared Anglo-American",
+        commonUse: "Engine displacement and small containers",
+      },
+      {
+        name: "US liquid gallon",
+        symbol: "US gal",
+        referenceValue: "3.78541 L",
+        system: "US customary",
+        commonUse: "US fuel and liquid capacity",
+      },
+      {
+        name: "Imperial gallon",
+        symbol: "imp gal",
+        referenceValue: "4.54609 L",
+        system: "British imperial",
+        commonUse: "UK historical and imperial references",
+      },
+      {
+        name: "US pint",
+        symbol: "US pt",
+        referenceValue: "0.473176 L",
+        system: "US customary",
+        commonUse: "US food and beverage measures",
+      },
+      {
+        name: "Imperial pint",
+        symbol: "imp pt",
+        referenceValue: "0.568261 L",
+        system: "British imperial",
+        commonUse: "Imperial beverage and historical references",
+      },
+      {
+        name: "US fluid ounce",
+        symbol: "US fl oz",
+        referenceValue: "29.5735 mL",
+        system: "US customary",
+        commonUse: "US recipe and package measures",
+      },
+      {
+        name: "Imperial fluid ounce",
+        symbol: "imp fl oz",
+        referenceValue: "28.4131 mL",
+        system: "British imperial",
+        commonUse: "Imperial recipe and historical references",
       },
     ],
   },
@@ -464,7 +643,7 @@ export const englishCategoryPages: LocalizedCategoryPage[] = [
     category: "sicaklik",
     title: "Temperature Units and Conversions",
     description:
-      "Convert between Celsius, Fahrenheit and Kelvin and review the offset-based formulas used for temperature scales.",
+      "Convert between Celsius, Fahrenheit, Kelvin, Rankine and Réaumur, with the formulas and scale differences needed for weather, cooking, science and engineering.",
     introduction: [
       "Temperature indicates thermal state and is one of the most widely used measured quantities in engineering, science and everyday life.",
       "Unlike purely proportional unit families, temperature conversions may include an offset as well as a scale factor.",
@@ -488,15 +667,73 @@ export const englishCategoryPages: LocalizedCategoryPage[] = [
         title: "Celsius, Fahrenheit and Kelvin",
         paragraphs: [
           "Celsius is widely used in daily and engineering practice. Fahrenheit remains common in some countries, while Kelvin is the SI base unit used in science and thermodynamics.",
-          "Kelvin and Celsius share the same interval size, but Kelvin starts from absolute zero.",
+          "Kelvin and Celsius share the same interval size, but Kelvin starts from absolute zero. A temperature of 0 °C is exactly 273.15 K, while water freezes at 32 °F on the Fahrenheit scale.",
+        ],
+      },
+      {
+        title: "Temperature conversion formulas",
+        paragraphs: [
+          "To convert Celsius to Fahrenheit, multiply by 1.8 and add 32: °F = (°C × 1.8) + 32. To convert Fahrenheit to Celsius, subtract 32 and divide by 1.8: °C = (°F − 32) ÷ 1.8.",
+          "Kelvin uses an absolute zero point: K = °C + 273.15 and °C = K − 273.15. The converter applies these offsets automatically, so the result is not limited to simple multiplication.",
         ],
       },
       {
         title: "Why are temperature conversions special?",
         paragraphs: [
           "Temperature scales do not always share the same zero point, so some conversions require both multiplication and addition or subtraction.",
-          "This is why Celsius-to-Fahrenheit and Celsius-to-Kelvin formulas differ from simple proportional conversions such as length or mass.",
+          "This is why Celsius-to-Fahrenheit and Celsius-to-Kelvin formulas differ from simple proportional conversions such as length or mass. For example, 20 °C is not twice as warm as 10 °C in an absolute physical sense because Celsius has an offset zero point.",
         ],
+      },
+      {
+        title: "Temperature values and temperature differences",
+        paragraphs: [
+          "A temperature value identifies a point on a scale, so the offset between Celsius, Fahrenheit and Kelvin matters. A temperature difference is an interval, such as a rise of 10 degrees during heating.",
+          "A difference of 1 °C has the same size as a difference of 1 K. A difference of 1 °F is smaller: it equals 5/9 of a Celsius or kelvin interval. This distinction matters in heat-transfer, material and engineering calculations.",
+        ],
+      },
+      {
+        title: "Rankine and Réaumur",
+        paragraphs: [
+          "Rankine is an absolute temperature scale with degree steps the same size as Fahrenheit degrees. It is encountered in some US and imperial engineering contexts; 0 °R is absolute zero.",
+          "Réaumur is a historical scale that set water's freezing point to 0 °Ré and its boiling point to 80 °Ré. It is uncommon in modern work, but it can appear in older scientific, industrial and culinary sources.",
+        ],
+      },
+    ],
+    unitTable: [
+      {
+        name: "Celsius",
+        symbol: "°C",
+        referenceValue: "0 °C = 273.15 K",
+        system: "Metric/international",
+        commonUse: "Weather, cooking and engineering",
+      },
+      {
+        name: "Fahrenheit",
+        symbol: "°F",
+        referenceValue: "32 °F = 0 °C",
+        system: "US customary use",
+        commonUse: "US weather, cooking and household settings",
+      },
+      {
+        name: "Kelvin",
+        symbol: "K",
+        referenceValue: "0 K = absolute zero",
+        system: "SI base unit",
+        commonUse: "Science, thermodynamics and absolute temperature",
+      },
+      {
+        name: "Rankine",
+        symbol: "°R",
+        referenceValue: "0 °R = absolute zero",
+        system: "Fahrenheit-based absolute scale",
+        commonUse: "US and imperial engineering references",
+      },
+      {
+        name: "Réaumur",
+        symbol: "°Ré",
+        referenceValue: "0 °Ré = 0 °C; 80 °Ré = 100 °C",
+        system: "Historical scale",
+        commonUse: "Older scientific, industrial and culinary sources",
       },
     ],
   },
@@ -507,10 +744,10 @@ export const englishCategoryPages: LocalizedCategoryPage[] = [
     category: "zaman",
     title: "Time Units and Conversions",
     description:
-      "Convert between seconds, minutes and hours and review the standard base relationships used in schedules, motion and data logging.",
+      "Convert between milliseconds, seconds, minutes, hours and days, with the exact relationships used in schedules, rates and data logging.",
     introduction: [
       "Time is one of the SI base quantities and is essential in physics, engineering, navigation and ordinary planning.",
-      "Seconds, minutes and hours are used together in many practical calculations, especially for rates, speed and process duration.",
+      "Seconds, minutes, hours and days appear together in practical calculations for rates, speed, energy use, process duration and schedules. This converter is for duration, not for time-zone or calendar-date conversion.",
     ],
     facts: [
       { label: "Physical quantity", value: "Time" },
@@ -524,22 +761,66 @@ export const englishCategoryPages: LocalizedCategoryPage[] = [
         title: "What is time?",
         paragraphs: [
           "Time describes duration and the ordering of events.",
-          "It appears in speed, acceleration, frequency, energy use, production cycles and many measured rates.",
+          "It appears in speed, acceleration, frequency, energy use, production cycles and many measured rates. When a quantity is expressed 'per second' or 'per hour', time is part of its unit.",
         ],
       },
       {
-        title: "Seconds, minutes and hours",
+        title: "Seconds, minutes, hours and days",
         paragraphs: [
           "The second is the SI base unit of time. Minutes and hours remain standard practical units built on exact relationships.",
-          "One minute equals 60 seconds and one hour equals 3,600 seconds.",
+          "One minute equals exactly 60 seconds, one hour equals exactly 3,600 seconds, and one day equals exactly 86,400 seconds in this duration conversion. Milliseconds are useful for short events, instrumentation and digital timing.",
         ],
       },
       {
-        title: "How are time units converted?",
+        title: "Duration is not always a calendar period",
         paragraphs: [
-          "Time conversions rely on exact multiplication or division by 60 or 3,600.",
-          "These exact factors make time conversion reliable for schedules, experiments and rate calculations.",
+          "A fixed duration can be converted reliably with multiplication or division by exact factors such as 60, 3,600 and 86,400. That makes seconds, minutes, hours and days appropriate for experiments, schedules and rate calculations.",
+          "Months and years are not included as fixed duration units because calendar months have different lengths and leap years change the length of a calendar year. For deadlines and dates, use a calendar-aware tool rather than assuming every month has the same number of days.",
         ],
+      },
+      {
+        title: "Time in rate and energy calculations",
+        paragraphs: [
+          "Speed is distance divided by time, and power is energy divided by time. Keep the time basis visible when comparing values: a per-second rate and a per-hour rate are not directly comparable until one is converted.",
+          "For example, a device rated at 1 kW uses 1 kWh only after operating for one hour at that rate. Converting the duration first helps prevent mixing power with energy.",
+        ],
+      },
+    ],
+    unitTable: [
+      {
+        name: "Millisecond",
+        symbol: "ms",
+        referenceValue: "0.001 s",
+        system: "SI/metric prefix",
+        commonUse: "Digital timing, instruments and short events",
+      },
+      {
+        name: "Second",
+        symbol: "s",
+        referenceValue: "1 s",
+        system: "SI base unit",
+        commonUse: "Science, timing and general duration measurement",
+      },
+      {
+        name: "Minute",
+        symbol: "min",
+        referenceValue: "60 s exactly",
+        system: "Accepted with SI",
+        commonUse: "Schedules, media and everyday duration",
+      },
+      {
+        name: "Hour",
+        symbol: "h",
+        referenceValue: "3,600 s exactly",
+        system: "Accepted with SI",
+        commonUse: "Work, travel, energy use and planning",
+      },
+      {
+        name: "Day",
+        symbol: "day",
+        referenceValue: "86,400 s exactly",
+        system: "Calendar-based practical unit",
+        commonUse: "Daily duration, forecasts and schedules",
       },
     ],
   },
@@ -550,7 +831,7 @@ export const englishCategoryPages: LocalizedCategoryPage[] = [
     category: "hiz",
     title: "Speed Units and Conversions",
     description:
-      "Convert between kilometers per hour, meters per second and miles per hour and compare the units used in transport and engineering.",
+      "Convert between kilometers per hour, meters per second, miles per hour, knots and engineering speed units, with clear road, aviation and maritime context.",
     introduction: [
       "Speed describes how fast a distance is covered over time.",
       "Different industries and countries use different units, so reliable conversion is important for traffic, testing, fluid flow and machinery.",
@@ -574,15 +855,94 @@ export const englishCategoryPages: LocalizedCategoryPage[] = [
         title: "Meters per second, kilometers per hour and mph",
         paragraphs: [
           "Meters per second are common in physics and engineering. Kilometers per hour are common in road transport, while mph is still used in countries that rely on imperial road units.",
-          "All three units can be converted exactly through their definitions in meters and seconds.",
+          "One meter per second equals 3.6 kilometers per hour. One mile per hour equals exactly 1.609344 kilometers per hour, which makes the relationship reliable for vehicle, testing and distance calculations.",
+        ],
+      },
+      {
+        title: "Knots, nautical miles and aviation",
+        paragraphs: [
+          "A knot is a unit of speed equal to one nautical mile per hour. The international nautical mile is exactly 1,852 meters, so one knot equals exactly 1.852 km/h or about 0.514444 m/s.",
+          "Knots are used at sea and in aviation because nautical miles fit naturally with latitude and longitude on navigation charts. A knot is a speed; a nautical mile is a distance, so the two terms should not be used interchangeably.",
+        ],
+      },
+      {
+        title: "Engineering and scientific speed units",
+        paragraphs: [
+          "Meters per second provide the SI-based form used in equations for motion, flow and machinery. Foot per second, meter per minute and centimeter per second are useful when a drawing, sensor or machine specification uses those scales directly.",
+          "The speed of light is included as a scientific reference. Its exact value in vacuum is 299,792,458 meters per second and it is not a practical transport-speed unit.",
+        ],
+      },
+      {
+        title: "Speed and velocity are different",
+        paragraphs: [
+          "Speed tells how fast an object moves. Velocity also includes direction, so two vehicles can have the same speed but different velocities when they travel in different directions.",
+          "This converter changes the magnitude of a speed. It does not alter direction, acceleration or travel time.",
         ],
       },
       {
         title: "How are speed units converted?",
         paragraphs: [
           "Speed conversions preserve the same physical motion while changing the numerical representation.",
-          "For example, 1 km/h equals about 0.27778 m/s, and 1 mph equals 1.609344 km/h.",
+          "For example, divide km/h by 3.6 to get m/s, multiply m/s by 3.6 to get km/h, and multiply mph by 1.609344 to get km/h. The converter handles these relationships without manual rounding.",
         ],
+      },
+    ],
+    unitTable: [
+      {
+        name: "Meter per second",
+        symbol: "m/s",
+        referenceValue: "3.6 km/h",
+        system: "SI-based",
+        commonUse: "Physics, engineering and flow calculations",
+      },
+      {
+        name: "Kilometer per hour",
+        symbol: "km/h",
+        referenceValue: "0.277778 m/s",
+        system: "Metric road use",
+        commonUse: "Road transport and vehicle displays",
+      },
+      {
+        name: "Mile per hour",
+        symbol: "mph",
+        referenceValue: "1.609344 km/h",
+        system: "Anglo-American road use",
+        commonUse: "Road speed and vehicle displays",
+      },
+      {
+        name: "Knot",
+        symbol: "kn",
+        referenceValue: "1.852 km/h",
+        system: "International navigation",
+        commonUse: "Maritime and aviation navigation",
+      },
+      {
+        name: "Foot per second",
+        symbol: "ft/s",
+        referenceValue: "0.3048 m/s",
+        system: "Anglo-American engineering",
+        commonUse: "Technical and mechanical specifications",
+      },
+      {
+        name: "Meter per minute",
+        symbol: "m/min",
+        referenceValue: "0.0166667 m/s",
+        system: "Metric engineering",
+        commonUse: "Conveyors and process equipment",
+      },
+      {
+        name: "Centimeter per second",
+        symbol: "cm/s",
+        referenceValue: "0.01 m/s",
+        system: "Metric",
+        commonUse: "Small-scale motion and laboratory work",
+      },
+      {
+        name: "Speed of light in vacuum",
+        symbol: "c",
+        referenceValue: "299,792,458 m/s exactly",
+        system: "Physical constant",
+        commonUse: "Physics and astronomy reference",
       },
     ],
   },
@@ -799,10 +1159,10 @@ export const englishCategoryPages: LocalizedCategoryPage[] = [
     category: "enerji",
     title: "Energy Conversions",
     description:
-      "Convert between joules, kilowatt-hours, calories and BTU and review the units commonly used for stored energy and heat.",
+      "Convert between joules, kilowatt-hours, calories, Btu and electronvolts, with context for electricity, heat, nutrition and science.",
     introduction: [
       "Energy measures an amount of work or heat, distinct from power, which measures the rate energy is transferred (see the separate Power category).",
-      "This category groups practical energy conversions often needed in building systems, electricity billing and heat calculations.",
+      "This category brings together practical energy conversions used in electricity billing, heating, food labels, building systems and science. The number can be converted directly; its real-world meaning still depends on the context in which it was measured.",
     ],
     facts: [
       { label: "Physical quantity", value: "Energy" },
@@ -815,14 +1175,115 @@ export const englishCategoryPages: LocalizedCategoryPage[] = [
         title: "What is energy?",
         paragraphs: [
           "Energy measures an amount of work or heat stored or transferred, not the rate at which it happens.",
-          "A kilowatt-hour is an energy unit; the related power unit (kilowatt) has its own conversion category.",
+          "A kilowatt-hour is an energy unit; the related power unit (kilowatt) has its own conversion category. A 2 kW appliance operating at that power for 3 hours uses 6 kWh of energy.",
         ],
       },
       {
-        title: "Joules, kilowatt-hours, calories and BTU",
+        title: "Joules and metric energy units",
         paragraphs: [
-          "The joule is the SI unit of energy. Kilowatt-hours are widely used on electricity bills, while calories and BTU are common in nutrition and heating contexts.",
+          "The joule (J) is the SI unit of energy. Kilojoules and megajoules use the usual metric prefixes: 1 kJ is 1,000 J and 1 MJ is 1,000,000 J.",
+          "Joules are common in physics and engineering because they connect directly to work, heat and electrical energy calculations. They provide a neutral reference when comparing units from different systems.",
         ],
+      },
+      {
+        title: "Watt-hours and electricity bills",
+        paragraphs: [
+          "A watt-hour is the energy delivered by one watt of power for one hour. It equals 3,600 J, so 1 kWh equals 3.6 MJ. Electricity meters and utility bills normally use kWh because household consumption is much larger than one watt-hour.",
+          "Do not read kW and kWh as interchangeable. Kilowatts describe a device's power rating at an instant; kilowatt-hours describe accumulated energy over time. For a cost estimate, multiply power, running time and the applicable electricity tariff.",
+        ],
+      },
+      {
+        title: "Calories in food and heat calculations",
+        paragraphs: [
+          "The small calorie (cal) and kilocalorie (kcal) are energy units. In nutrition, a label's capitalized Calorie commonly means one kilocalorie, not one small calorie. Check the label convention and country before comparing it with a recipe or health record.",
+          "Calories and kilocalories also appear in older heat calculations. In international scientific and technical work, joules and kilojoules are generally the clearer reference units.",
+        ],
+      },
+      {
+        title: "Btu, therms and electronvolts",
+        paragraphs: [
+          "Btu (British thermal unit) is widely encountered in heating and cooling equipment, fuel content and building-services specifications. A therm is a much larger fuel-energy unit, often used in gas billing. The exact Btu convention should be stated in formal technical or contractual work.",
+          "The electronvolt (eV) is a very small energy unit used in atomic, particle and semiconductor physics. It is not a household energy unit, but makes values at microscopic scales easier to read than a long decimal number of joules.",
+        ],
+      },
+      {
+        title: "Energy versus power, capacity and heat rate",
+        paragraphs: [
+          "Energy is an accumulated quantity. Power is the rate of energy transfer, so 1 W equals 1 J per second. A battery's energy capacity may be given in Wh or kWh, while its charger or inverter is rated in W or kW.",
+          "Likewise, Btu is energy whereas Btu per hour is a heat rate (power). Before converting, make sure both sides describe the same physical quantity; this converter converts energy only.",
+        ],
+      },
+    ],
+    unitTable: [
+      {
+        name: "Joule",
+        symbol: "J",
+        referenceValue: "1 J",
+        system: "SI",
+        commonUse: "Physics, engineering and general energy calculations",
+      },
+      {
+        name: "Kilojoule",
+        symbol: "kJ",
+        referenceValue: "1,000 J",
+        system: "SI/metric",
+        commonUse: "Food labels, heat and technical reporting",
+      },
+      {
+        name: "Megajoule",
+        symbol: "MJ",
+        referenceValue: "1,000,000 J",
+        system: "SI/metric",
+        commonUse: "Fuel, heating and larger energy totals",
+      },
+      {
+        name: "Watt-hour",
+        symbol: "Wh",
+        referenceValue: "3,600 J",
+        system: "Practical electrical unit",
+        commonUse: "Small batteries and device energy capacity",
+      },
+      {
+        name: "Kilowatt-hour",
+        symbol: "kWh",
+        referenceValue: "3,600,000 J (3.6 MJ)",
+        system: "Practical electrical unit",
+        commonUse: "Electricity meters, bills and battery capacity",
+      },
+      {
+        name: "Calorie",
+        symbol: "cal",
+        referenceValue: "4.184 J",
+        system: "Non-SI",
+        commonUse: "Older heat calculations",
+      },
+      {
+        name: "Kilocalorie",
+        symbol: "kcal",
+        referenceValue: "4,184 J",
+        system: "Non-SI",
+        commonUse: "Food energy and nutrition labels",
+      },
+      {
+        name: "British thermal unit",
+        symbol: "Btu",
+        referenceValue: "1,055.056 J",
+        system: "US customary / non-SI",
+        commonUse: "Heating, cooling and fuel specifications",
+      },
+      {
+        name: "Therm",
+        symbol: "th",
+        referenceValue: "105.506 MJ",
+        system: "Gas-energy unit",
+        commonUse: "Natural-gas billing and fuel totals",
+      },
+      {
+        name: "Electronvolt",
+        symbol: "eV",
+        referenceValue: "1.602176634 × 10⁻¹⁹ J",
+        system: "Physics",
+        commonUse: "Atomic, particle and semiconductor physics",
       },
     ],
   },
@@ -858,6 +1319,26 @@ export const englishCategoryPages: LocalizedCategoryPage[] = [
           "A full circle is 360 degrees, 2π radians, or 400 gradians. The degree traces back to ancient Babylonian base-60 mathematics, while the radian is the natural SI unit for mathematical calculations.",
         ],
       },
+      {
+        title: "Choosing an angle unit",
+        paragraphs: [
+          "Degrees are common in everyday measurement, surveying and navigation. Radians are normally used in trigonometry, calculus and many engineering formulas because they relate an angle directly to an arc length and radius.",
+          "Gradians divide a full turn into 400 parts and appear in some surveying and technical contexts. A full turn is useful when rotations are counted rather than expressed as a partial circle.",
+        ],
+      },
+      {
+        title: "How angle units are converted",
+        paragraphs: [
+          "Angle conversions preserve the same rotation. Use a fixed full-circle relationship: 360 degrees equals 2π radians, 400 gradians and one full turn.",
+          "Keep the unit explicit when entering values into calculators or engineering software, because trigonometric functions may expect radians by default.",
+        ],
+      },
+    ],
+    unitTable: [
+      { name: "Radian", symbol: "rad", referenceValue: "2π rad = 1 full turn", system: "SI coherent derived unit", commonUse: "Mathematics, physics and engineering" },
+      { name: "Degree", symbol: "°", referenceValue: "360° = 1 full turn", system: "Practical angular measure", commonUse: "Navigation, geometry and daily measurement" },
+      { name: "Gradian", symbol: "gon", referenceValue: "400 gon = 1 full turn", system: "Metric angular measure", commonUse: "Surveying and technical drawing" },
+      { name: "Full Turn", symbol: "turn", referenceValue: "1 turn = 360°", system: "Rotation count", commonUse: "Rotating machinery and motion" },
     ],
   },
   {
@@ -886,6 +1367,26 @@ export const englishCategoryPages: LocalizedCategoryPage[] = [
           "It is used for sound waves, electrical current frequency, processor speed and radio waves.",
         ],
       },
+      {
+        title: "Hertz and SI prefixes",
+        paragraphs: [
+          "One hertz represents one cycle per second. SI prefixes scale the unit by powers of one thousand: kilohertz, megahertz and gigahertz are used when a plain hertz value would be inconveniently large.",
+          "Frequency values appear in radio tuning, display refresh rates, processors, audio, oscillators and alternating-current systems.",
+        ],
+      },
+      {
+        title: "How frequency units are converted",
+        paragraphs: [
+          "Frequency conversions use decimal SI prefixes. One kilohertz is 1,000 hertz, one megahertz is 1,000 kilohertz, and one gigahertz is 1,000 megahertz.",
+          "Frequency is not the same as data-transfer rate: a clock or carrier frequency in hertz does not by itself state how much data a system transfers per second.",
+        ],
+      },
+    ],
+    unitTable: [
+      { name: "Hertz", symbol: "Hz", referenceValue: "1 Hz = 1 s⁻¹", system: "SI derived unit", commonUse: "AC power, sound and periodic signals" },
+      { name: "Kilohertz", symbol: "kHz", referenceValue: "1 kHz = 1,000 Hz", system: "SI prefix", commonUse: "Audio and radio frequencies" },
+      { name: "Megahertz", symbol: "MHz", referenceValue: "1 MHz = 1,000,000 Hz", system: "SI prefix", commonUse: "Broadcasting and electronics" },
+      { name: "Gigahertz", symbol: "GHz", referenceValue: "1 GHz = 1,000,000,000 Hz", system: "SI prefix", commonUse: "Processors, Wi-Fi and microwave systems" },
     ],
   },
   {
@@ -914,6 +1415,25 @@ export const englishCategoryPages: LocalizedCategoryPage[] = [
           "It is used for fan and ventilation capacity (CFM) and pump/irrigation flow (GPM).",
         ],
       },
+      {
+        title: "CFM, GPM and cubic meters per second",
+        paragraphs: [
+          "Cubic meters per second is the SI form used in scientific and engineering calculations. Cubic feet per minute (CFM) is widely used for air movement and ventilation, while gallons per minute (GPM) is common for pumps and water systems.",
+          "The gallon standard matters: a US gallon and an imperial gallon have different volumes. Select the explicitly labelled unit when converting specifications from another region.",
+        ],
+      },
+      {
+        title: "Using flow-rate conversions",
+        paragraphs: [
+          "Use the same time basis on both sides of a comparison. A pump rating in gallons per minute cannot be compared directly with a requirement in cubic meters per hour until the volume and time units have both been converted.",
+          "Flow rate describes how much passes through a system, not pressure. Pipe size, resistance and pressure conditions still affect the flow a real installation can deliver.",
+        ],
+      },
+    ],
+    unitTable: [
+      { name: "Cubic Meter per Second", symbol: "m³/s", referenceValue: "SI reference unit", system: "SI", commonUse: "Engineering and large process systems" },
+      { name: "Cubic Feet per Minute", symbol: "CFM", referenceValue: "≈ 0.000471947 m³/s", system: "US customary", commonUse: "HVAC, fans and ventilation" },
+      { name: "US Gallons per Minute", symbol: "GPM", referenceValue: "≈ 0.0000630902 m³/s", system: "US customary", commonUse: "Pumps, plumbing and irrigation" },
     ],
   },
   {
@@ -941,6 +1461,24 @@ export const englishCategoryPages: LocalizedCategoryPage[] = [
           "It is used in industrial process design, fuel and material flow calculations.",
         ],
       },
+      {
+        title: "Mass flow versus volumetric flow",
+        paragraphs: [
+          "Mass flow rate describes the amount of material by mass, such as kilograms per second. Volumetric flow rate describes occupied volume, such as liters per minute or cubic meters per hour.",
+          "For gases and liquids, density links the two quantities. A volume flow rate alone does not establish mass flow unless the fluid density and conditions are known.",
+        ],
+      },
+      {
+        title: "Using mass-flow conversions",
+        paragraphs: [
+          "Keep the mass unit and time unit explicit in a specification. Converting kilograms per hour to kilograms per second changes only the time basis, while converting to another mass unit changes the mass basis as well.",
+          "Mass-flow values are used in material balances, fuel delivery, chemical processing and thermal-system calculations.",
+        ],
+      },
+    ],
+    unitTable: [
+      { name: "Kilogram per Second", symbol: "kg/s", referenceValue: "SI reference unit", system: "SI", commonUse: "Process engineering and mass balances" },
+      { name: "Kilogram per Hour", symbol: "kg/h", referenceValue: "1 kg/h = 1/3,600 kg/s", system: "Practical time-based unit", commonUse: "Industrial equipment and material handling" },
     ],
   },
   {
@@ -1056,6 +1594,24 @@ export const englishCategoryPages: LocalizedCategoryPage[] = [
           "It is used to compare insulation materials and calculate building heat loss.",
         ],
       },
+      {
+        title: "Interpreting thermal conductivity",
+        paragraphs: [
+          "A lower thermal-conductivity value generally means a material transfers heat less readily, which is why low-conductivity materials are used for insulation. A higher value is useful where heat must move efficiently, such as heat exchangers and cookware.",
+          "Published values can vary with temperature, moisture, density, direction within the material and test method. Compare specifications measured under similar conditions.",
+        ],
+      },
+      {
+        title: "SI and imperial conductivity units",
+        paragraphs: [
+          "Watt per meter-Kelvin, written W/(m·K), is the common SI-form unit. BTU per hour-foot-degree Fahrenheit is still found in North American building and HVAC material specifications.",
+          "The temperature interval in the denominator is part of the unit. Convert the complete conductivity unit rather than only the watt or BTU component.",
+        ],
+      },
+    ],
+    unitTable: [
+      { name: "Watt per Meter-Kelvin", symbol: "W/(m·K)", referenceValue: "SI reference unit", system: "SI", commonUse: "Material science and building specifications" },
+      { name: "BTU per Hour-Foot-°F", symbol: "Btu/(h·ft·°F)", referenceValue: "≈ 1.730735 W/(m·K)", system: "US customary", commonUse: "North American insulation and HVAC data" },
     ],
   },
   {
@@ -1083,6 +1639,24 @@ export const englishCategoryPages: LocalizedCategoryPage[] = [
           "It is used for building heat loss calculations and solar panel radiation analysis.",
         ],
       },
+      {
+        title: "Heat flux and total heat transfer",
+        paragraphs: [
+          "Heat flux is a density of heat-transfer rate over area, not the total heat-transfer rate. Multiplying heat flux by the relevant area gives a total power value when the flux is uniform.",
+          "This distinction matters when comparing a small component with a large wall or roof: the same flux over a larger area produces a larger total heat transfer.",
+        ],
+      },
+      {
+        title: "Using heat-flux units",
+        paragraphs: [
+          "Watts per square meter is the standard SI-form unit. Kilowatts per square meter is useful when the value is large, such as high-intensity thermal or solar applications.",
+          "Specify whether a value represents incoming, outgoing or net heat flux, and keep surface area and boundary conditions consistent when comparing results.",
+        ],
+      },
+    ],
+    unitTable: [
+      { name: "Watt per Square Meter", symbol: "W/m²", referenceValue: "SI reference unit", system: "SI", commonUse: "Building physics and surface heat transfer" },
+      { name: "Kilowatt per Square Meter", symbol: "kW/m²", referenceValue: "1 kW/m² = 1,000 W/m²", system: "SI prefix", commonUse: "High-intensity thermal and solar analysis" },
     ],
   },
   {
@@ -1110,6 +1684,24 @@ export const englishCategoryPages: LocalizedCategoryPage[] = [
           "It is used in material science, thermodynamics and heating/cooling system design.",
         ],
       },
+      {
+        title: "Why specific heat matters",
+        paragraphs: [
+          "Materials with a higher specific heat require more energy for the same mass and temperature change. This property is important when estimating thermal storage, heating time and cooling behavior.",
+          "Specific heat is different from total heat capacity. Heat capacity applies to an entire object, while specific heat is normalized by mass.",
+        ],
+      },
+      {
+        title: "Specific-heat units",
+        paragraphs: [
+          "Joules per kilogram-Kelvin is the SI-form unit. Calories per gram-Kelvin is also found in chemistry and educational material.",
+          "The temperature interval is part of the unit. For a temperature difference, one Kelvin and one degree Celsius have the same size, but the mass basis must also be converted correctly.",
+        ],
+      },
+    ],
+    unitTable: [
+      { name: "Joule per Kilogram-Kelvin", symbol: "J/(kg·K)", referenceValue: "SI reference unit", system: "SI", commonUse: "Thermodynamics and material data" },
+      { name: "Calorie per Gram-Kelvin", symbol: "cal/(g·K)", referenceValue: "1 cal/(g·K) = 4,184 J/(kg·K)", system: "Calorie-based unit", commonUse: "Chemistry and educational references" },
     ],
   },
   {
@@ -1215,6 +1807,28 @@ export const englishCategoryPages: LocalizedCategoryPage[] = [
           "Horsepower is a traditional non-SI unit still common in the automotive industry; metric horsepower (PS/CV) and mechanical horsepower (HP) differ slightly in value.",
         ],
       },
+      {
+        title: "Power versus energy",
+        paragraphs: [
+          "Power is a rate, while energy is an accumulated quantity. A device rated in watts describes how quickly it uses or delivers energy; energy bills and battery capacities are commonly expressed in kilowatt-hours.",
+          "For example, the same appliance can use different total energy amounts depending on how long it runs, even though its power rating stays the same.",
+        ],
+      },
+      {
+        title: "Power units in equipment ratings",
+        paragraphs: [
+          "Watts and kilowatts are common for electrical appliances, motors and solar equipment. Horsepower remains common for vehicle engines, pumps and some mechanical equipment.",
+          "Cooling equipment may use tons of refrigeration, while heating and HVAC specifications can use BTU per hour. Check whether a specification means electrical input power, mechanical output power or thermal capacity before comparing equipment.",
+        ],
+      },
+    ],
+    unitTable: [
+      { name: "Watt", symbol: "W", referenceValue: "1 W = 1 J/s", system: "SI derived unit", commonUse: "Appliance and electronic power ratings" },
+      { name: "Kilowatt", symbol: "kW", referenceValue: "1 kW = 1,000 W", system: "SI prefix", commonUse: "Motors, heating and solar equipment" },
+      { name: "Megawatt", symbol: "MW", referenceValue: "1 MW = 1,000,000 W", system: "SI prefix", commonUse: "Power plants and utility-scale generation" },
+      { name: "Mechanical Horsepower", symbol: "hp", referenceValue: "≈ 745.7 W", system: "Customary power unit", commonUse: "Engines and mechanical equipment" },
+      { name: "Ton of Refrigeration", symbol: "TR", referenceValue: "≈ 3,516.85 W", system: "HVAC capacity unit", commonUse: "Air-conditioning and refrigeration" },
+      { name: "BTU per Hour", symbol: "BTU/h", referenceValue: "≈ 0.293071 W", system: "Thermal power unit", commonUse: "Heating and HVAC specifications" },
     ],
   },
   {
@@ -1267,10 +1881,10 @@ export const englishCategoryPages: LocalizedCategoryPage[] = [
     category: "elektrik",
     title: "Electrical Unit Conversions",
     description:
-      "Convert between volts and kilovolts or amperes and milliamperes and review the base relationships used in electrical measurements.",
+      "Convert voltage and electric-current units within their own families, with clear context for volts, amperes and SI prefixes.",
     introduction: [
       "Electrical calculations rely on several distinct physical quantities, including voltage and current.",
-      "This category begins with two fundamental conversion pairs that are frequently needed in electronics, power systems and instrumentation.",
+      "This converter keeps the two fundamental families separate: voltage units convert to voltage units, and current units convert to current units. A circuit equation is needed to relate one family to the other.",
     ],
     facts: [
       { label: "Physical quantity group", value: "Electricity" },
@@ -1284,22 +1898,73 @@ export const englishCategoryPages: LocalizedCategoryPage[] = [
         title: "Voltage and current",
         paragraphs: [
           "Voltage represents electric potential difference, while current represents the rate of electric charge flow.",
-          "They are different physical quantities, but both rely heavily on metric prefixes in practical work.",
+          "They are different physical quantities, even though both rely heavily on metric prefixes in practical work. A value in volts cannot be directly converted into amperes without information about the circuit, such as resistance, impedance or power.",
         ],
       },
       {
         title: "Volts, kilovolts, amperes and milliamperes",
         paragraphs: [
           "The volt and ampere are standard SI electrical units. Their prefixed forms are used to express much larger or smaller values more clearly.",
-          "One kilovolt equals 1,000 volts, and one ampere equals 1,000 milliamperes.",
+          "One kilovolt equals 1,000 volts, one volt equals 1,000 millivolts, and one ampere equals 1,000 milliamperes. The prefix changes the scale, not the physical quantity being measured.",
         ],
       },
       {
-        title: "How are electrical units converted?",
+        title: "When voltage and current can be related",
         paragraphs: [
-          "The conversion factors here are purely decimal prefix relationships.",
-          "These exact ratios make the tools useful for equipment ratings, test values and quick sanity checks.",
+          "Ohm's law relates voltage, current and resistance in appropriate circuits: V = I × R. Electrical power also relates voltage and current in simple cases: P = V × I. These are calculations with additional inputs, not direct unit conversions.",
+          "Use a dedicated electrical calculator when you know the relevant circuit conditions. For a label reading such as 500 mA or 12 V, this converter is designed for the exact decimal-prefix conversion only.",
         ],
+      },
+      {
+        title: "Reading equipment labels safely",
+        paragraphs: [
+          "A voltage rating, current rating and power rating describe different things. A USB supply marked 5 V and 2 A is not the same as a fixed 10 W load in every operating condition; equipment and power-delivery standards can set their own limits.",
+          "For mains electricity, battery packs, chargers or high-current systems, follow the manufacturer's specification and applicable safety guidance. A numerical unit conversion does not verify electrical compatibility or safety.",
+        ],
+      },
+    ],
+    unitTable: [
+      {
+        name: "Millivolt",
+        symbol: "mV",
+        referenceValue: "0.001 V",
+        system: "SI-prefixed voltage unit",
+        commonUse: "Sensors, small signals and electronics",
+      },
+      {
+        name: "Volt",
+        symbol: "V",
+        referenceValue: "1 V",
+        system: "SI derived unit",
+        commonUse: "Device, battery and circuit voltage",
+      },
+      {
+        name: "Kilovolt",
+        symbol: "kV",
+        referenceValue: "1,000 V",
+        system: "SI-prefixed voltage unit",
+        commonUse: "Power transmission and high-voltage equipment",
+      },
+      {
+        name: "Milliampere",
+        symbol: "mA",
+        referenceValue: "0.001 A",
+        system: "SI-prefixed current unit",
+        commonUse: "Electronics, sensors and small devices",
+      },
+      {
+        name: "Ampere",
+        symbol: "A",
+        referenceValue: "1 A",
+        system: "SI base unit",
+        commonUse: "Circuit current and electrical equipment ratings",
+      },
+      {
+        name: "Kiloampere",
+        symbol: "kA",
+        referenceValue: "1,000 A",
+        system: "SI-prefixed current unit",
+        commonUse: "Large power systems and fault-current ratings",
       },
     ],
   },
@@ -1525,7 +2190,7 @@ export const englishCategoryPages: LocalizedCategoryPage[] = [
     category: "veri",
     title: "Data Storage Conversions",
     description:
-      "Convert between bytes, kilobytes, megabytes, gigabytes and terabytes, and review the difference between decimal and binary storage scales.",
+      "Convert between bits, bytes, decimal KB/MB/GB/TB and binary KiB/MiB/GiB/TiB, and understand the difference between storage and transfer figures.",
     introduction: [
       "Data storage units describe how much digital information can be stored or transmitted. They are used in software, hardware, networking and consumer devices.",
       "Storage values can be expressed with decimal prefixes such as kilobyte and gigabyte, or with binary prefixes such as kibibyte and gibibyte when exact powers of two matter.",
@@ -1541,23 +2206,109 @@ export const englishCategoryPages: LocalizedCategoryPage[] = [
       {
         title: "Bits and bytes",
         paragraphs: [
-          "A bit is the smallest binary unit and can represent one of two states. A byte is the standard practical storage unit and is typically made of eight bits.",
-          "Operating systems, file systems and network tools often show capacities in bytes and their prefixed forms.",
+          "A bit is the smallest binary unit and can represent one of two states. A byte is the standard practical storage unit and contains exactly eight bits.",
+          "The capitalization matters: b means bit and B means byte. A network speed of 100 Mb/s is 100 megabits per second, not 100 megabytes per second; before allowing for network overhead, divide by eight to express it as 12.5 MB/s.",
         ],
       },
       {
         title: "Decimal and binary prefixes",
         paragraphs: [
-          "Decimal storage units scale by powers of 1000: 1 kilobyte equals 1000 bytes and 1 gigabyte equals 1,000,000,000 bytes.",
-          "Binary IEC units scale by powers of 1024: 1 kibibyte equals 1024 bytes and 1 gibibyte equals 1024 mebibytes. This is why advertised drive capacity and operating-system values may not match exactly.",
+          "Decimal storage units scale by powers of 1,000: 1 kilobyte equals 1,000 bytes, 1 megabyte equals 1,000,000 bytes and 1 gigabyte equals 1,000,000,000 bytes.",
+          "Binary IEC units scale by powers of 1,024: 1 kibibyte equals 1,024 bytes, 1 mebibyte equals 1,048,576 bytes and 1 gibibyte equals 1,073,741,824 bytes. The letter i identifies the binary form: KiB, MiB, GiB and TiB.",
+        ],
+      },
+      {
+        title: "Why a drive can appear smaller than its label",
+        paragraphs: [
+          "Storage manufacturers commonly label capacity with decimal units, so a 1 TB drive contains 1,000,000,000,000 bytes. Software that displays the same byte count in binary units will show about 0.909 TiB instead.",
+          "This is usually a difference in the unit label rather than missing capacity. Formatting, file systems and recovery partitions can also consume usable space, so the visible amount may be lower for more than one reason.",
+        ],
+      },
+      {
+        title: "Storage size and transfer speed",
+        paragraphs: [
+          "Storage capacity describes how much information fits on a device. Transfer speed describes how much information can move in a given time, usually written with a slash such as MB/s or Mb/s.",
+          "Use the data converter for the size itself. When estimating download time, confirm both the unit case and whether the rate is stated in bits per second or bytes per second.",
         ],
       },
       {
         title: "Where storage conversions are used",
         paragraphs: [
-          "These conversions are useful when comparing disk sizes, memory specifications, file sizes and network transfer totals.",
-          "They also help explain why software downloads, SSD labels and RAM values can appear under slightly different units depending on the standard being used.",
+          "These conversions are useful when comparing disk sizes, memory specifications, file sizes, cloud quotas and network transfer totals.",
+          "They help explain why software downloads, SSD labels and RAM values can appear under different figures even when the underlying byte count is the same.",
         ],
+      },
+    ],
+    unitTable: [
+      {
+        name: "Bit",
+        symbol: "bit",
+        referenceValue: "1 bit",
+        system: "Binary information",
+        commonUse: "Network rates and digital signals",
+      },
+      {
+        name: "Byte",
+        symbol: "B",
+        referenceValue: "8 bit",
+        system: "Digital storage",
+        commonUse: "Files, memory and storage capacity",
+      },
+      {
+        name: "Kilobyte",
+        symbol: "KB",
+        referenceValue: "1,000 B",
+        system: "Decimal",
+        commonUse: "Storage-device and file-size labels",
+      },
+      {
+        name: "Kibibyte",
+        symbol: "KiB",
+        referenceValue: "1,024 B",
+        system: "Binary IEC",
+        commonUse: "Operating systems and technical memory values",
+      },
+      {
+        name: "Megabyte",
+        symbol: "MB",
+        referenceValue: "1,000,000 B",
+        system: "Decimal",
+        commonUse: "Files, media and storage-device labels",
+      },
+      {
+        name: "Mebibyte",
+        symbol: "MiB",
+        referenceValue: "1,048,576 B",
+        system: "Binary IEC",
+        commonUse: "Software and memory reporting",
+      },
+      {
+        name: "Gigabyte",
+        symbol: "GB",
+        referenceValue: "1,000,000,000 B",
+        system: "Decimal",
+        commonUse: "Drives, cloud storage and data plans",
+      },
+      {
+        name: "Gibibyte",
+        symbol: "GiB",
+        referenceValue: "1,073,741,824 B",
+        system: "Binary IEC",
+        commonUse: "Operating-system and memory reporting",
+      },
+      {
+        name: "Terabyte",
+        symbol: "TB",
+        referenceValue: "1,000,000,000,000 B",
+        system: "Decimal",
+        commonUse: "Drive and cloud-storage capacity",
+      },
+      {
+        name: "Tebibyte",
+        symbol: "TiB",
+        referenceValue: "1,099,511,627,776 B",
+        system: "Binary IEC",
+        commonUse: "Large technical storage values",
       },
     ],
   },
@@ -1881,7 +2632,270 @@ export const englishCategoryPages: LocalizedCategoryPage[] = [
       },
     ],
   },
+  {
+    locale: "en",
+    slug: "blood-glucose",
+    sourceSlug: "kan-sekeri",
+    category: "kan_sekeri",
+    title: "Blood Glucose Unit Conversion",
+    description:
+      "Convert blood glucose measurements between milligrams per deciliter (mg/dL) and millimoles per liter (mmol/L), the reporting units commonly used on laboratory and personal health records.",
+    introduction: [
+      "Blood glucose results may be reported in milligrams per deciliter (mg/dL) or millimoles per liter (mmol/L), depending on the laboratory, country or device.",
+      "This converter changes the unit expression only. A laboratory result should be interpreted with the reference range, test context and guidance supplied by a qualified healthcare professional.",
+    ],
+    facts: [
+      { label: "Measurement", value: "Blood glucose concentration" },
+      { label: "Common conventional unit", value: "mg/dL" },
+      { label: "Common SI unit", value: "mmol/L" },
+      { label: "Typical source", value: "Laboratory reports and glucose meters" },
+    ],
+    sections: [
+      {
+        title: "mg/dL and mmol/L",
+        paragraphs: [
+          "Both units describe the same glucose concentration. Milligrams per deciliter expresses mass per volume, while millimoles per liter expresses amount of substance per volume.",
+          "Use the unit printed on the report or device and convert only when a comparison requires the other reporting convention.",
+        ],
+      },
+      {
+        title: "Using a converted result safely",
+        paragraphs: [
+          "A unit conversion does not diagnose a condition or establish a treatment target. Timing, test method, individual history and the laboratory reference range all affect how a result is interpreted.",
+          "For medical decisions or an unexpected result, follow the advice on the report and consult a qualified healthcare professional.",
+        ],
+      },
+    ],
+    unitTable: [
+      {
+        name: "Milligrams per Deciliter",
+        symbol: "mg/dL",
+        referenceValue: "Conventional reporting unit",
+        system: "Mass concentration",
+        commonUse: "United States laboratory and meter reporting",
+      },
+      {
+        name: "Millimoles per Liter",
+        symbol: "mmol/L",
+        referenceValue: "SI-style reporting unit",
+        system: "Amount-of-substance concentration",
+        commonUse: "Laboratory reporting in many countries",
+      },
+    ],
+  },
+  {
+    locale: "en",
+    slug: "vitamin-d",
+    sourceSlug: "vitamin-d",
+    category: "vitamin_d",
+    title: "Vitamin D Unit Conversion",
+    description:
+      "Convert 25-hydroxyvitamin D measurements between nanograms per milliliter (ng/mL) and nanomoles per liter (nmol/L), the units commonly used on vitamin D laboratory reports.",
+    introduction: [
+      "Vitamin D laboratory reports commonly express 25-hydroxyvitamin D as nanograms per milliliter (ng/mL) or nanomoles per liter (nmol/L).",
+      "This tool converts the unit only. Test method, analyte and the laboratory's reference information remain important when reading a result.",
+    ],
+    facts: [
+      { label: "Measurement", value: "25-hydroxyvitamin D concentration" },
+      { label: "Common conventional unit", value: "ng/mL" },
+      { label: "Common SI unit", value: "nmol/L" },
+      { label: "Typical source", value: "Vitamin D laboratory reports" },
+    ],
+    sections: [
+      {
+        title: "ng/mL and nmol/L",
+        paragraphs: [
+          "The two units express the same laboratory measurement using different concentration conventions. The converter applies the relationship defined for the 25-hydroxyvitamin D measurement in this tool.",
+          "Keep the analyte and unit shown by the laboratory together when comparing results from different reports.",
+        ],
+      },
+      {
+        title: "Reading laboratory results",
+        paragraphs: [
+          "A converted number is not a diagnosis and should not be used by itself to change supplements or treatment. Laboratories can use different methods and reference information.",
+          "Discuss a result or a treatment decision with a qualified healthcare professional, especially when comparing reports from different laboratories.",
+        ],
+      },
+    ],
+    unitTable: [
+      {
+        name: "Nanograms per Milliliter",
+        symbol: "ng/mL",
+        referenceValue: "Conventional reporting unit",
+        system: "Mass concentration",
+        commonUse: "Vitamin D laboratory reports, especially in the United States",
+      },
+      {
+        name: "Nanomoles per Liter",
+        symbol: "nmol/L",
+        referenceValue: "SI-style reporting unit",
+        system: "Amount-of-substance concentration",
+        commonUse: "Vitamin D laboratory reporting in many countries",
+      },
+    ],
+  },
 ];
+
+type CategoryEnhancement = Pick<
+  LocalizedCategoryPage,
+  "unitTable"
+> & {
+  sections?: LocalizedCategorySection[];
+};
+
+const categoryEnhancements: Record<string, CategoryEnhancement> = {
+  manyetik_alan: {
+    sections: [
+      { title: "Magnetic field strength and flux density", paragraphs: ["Magnetic field strength is expressed in amperes per meter, while magnetic flux density is commonly expressed in tesla. They are related but describe different quantities, so do not substitute one for the other without the material relationship that connects them.", "Field-strength units appear in electromagnet design, magnetic materials and some legacy technical documentation."] },
+      { title: "Using magnetic field units", paragraphs: ["Ampere per meter is the SI-form unit for magnetic field strength. The oersted remains common in older and specialized magnetic material data.", "Check whether a specification refers to field strength, flux density or magnetization before comparing values."] },
+    ],
+    unitTable: [
+      { name: "Ampere per Meter", symbol: "A/m", referenceValue: "SI reference unit", system: "SI", commonUse: "Magnetic field strength and electromagnets" },
+      { name: "Oersted", symbol: "Oe", referenceValue: "≈ 79.5775 A/m", system: "CGS/legacy", commonUse: "Magnetic material and legacy specifications" },
+    ],
+  },
+  manyetik_aki: {
+    sections: [
+      { title: "What magnetic flux measures", paragraphs: ["Magnetic flux describes the amount of magnetic field passing through a surface. It depends on field strength, surface area and the surface orientation relative to the field.", "It is used in transformers, generators, inductors and electromagnetic induction calculations."] },
+      { title: "Webers and milliwebers", paragraphs: ["The weber is the SI unit of magnetic flux and is equivalent to a volt-second. Milliwebers are convenient for smaller magnetic circuits and instrument readings.", "Use the stated area and field conditions when interpreting a flux value; flux is not the same as magnetic field strength or flux density."] },
+    ],
+    unitTable: [
+      { name: "Weber", symbol: "Wb", referenceValue: "1 Wb = 1 V·s", system: "SI derived unit", commonUse: "Transformers, generators and magnetic circuits" },
+      { name: "Milliweber", symbol: "mWb", referenceValue: "1 mWb = 0.001 Wb", system: "SI prefix", commonUse: "Small magnetic circuits and instruments" },
+    ],
+  },
+  viskozite_kinematik: {
+    sections: [
+      { title: "Kinematic and dynamic viscosity", paragraphs: ["Kinematic viscosity describes how readily a fluid flows under gravity and is dynamic viscosity divided by density. Dynamic viscosity measures resistance to shear directly.", "The distinction matters because the same fluid can have different density at different temperatures, changing its kinematic viscosity."] },
+    ],
+    unitTable: [
+      { name: "Square Meter per Second", symbol: "m²/s", referenceValue: "SI reference unit", system: "SI", commonUse: "Fluid mechanics and engineering analysis" },
+      { name: "Centistoke", symbol: "cSt", referenceValue: "1 cSt = 1 mm²/s", system: "Practical viscosity unit", commonUse: "Lubricants, oils and fluid specifications" },
+    ],
+  },
+  ivme: {
+    sections: [
+      { title: "Acceleration units in practice", paragraphs: ["Meters per second squared is the SI unit for acceleration. Feet per second squared appears in customary engineering work, while standard gravity expresses acceleration relative to a defined reference value.", "Use g only when the context clearly means standard gravity rather than local gravitational acceleration."] },
+    ],
+    unitTable: [
+      { name: "Meter per Second Squared", symbol: "m/s²", referenceValue: "SI reference unit", system: "SI", commonUse: "Physics, motion and engineering" },
+      { name: "Foot per Second Squared", symbol: "ft/s²", referenceValue: "1 ft/s² = 0.3048 m/s²", system: "US customary", commonUse: "US engineering and motion analysis" },
+      { name: "Standard Gravity", symbol: "g₀", referenceValue: "1 g = 9.80665 m/s²", system: "Defined reference", commonUse: "Aerospace and vehicle testing" },
+    ],
+  },
+  acisal_hiz: {
+    sections: [
+      { title: "RPM, radians per second and degrees per second", paragraphs: ["RPM counts complete rotations over a minute and is common for motors and engines. Radians per second is the SI-form unit used in mechanics, while degrees per second is useful for orientation and motion displays.", "Convert the time basis as well as the angle basis: one revolution per minute is not the same magnitude as one revolution per second."] },
+    ],
+    unitTable: [
+      { name: "Revolutions per Minute", symbol: "rpm", referenceValue: "≈ 0.10472 rad/s", system: "Rotational speed unit", commonUse: "Motors, engines and machinery" },
+      { name: "Radian per Second", symbol: "rad/s", referenceValue: "SI reference unit", system: "SI", commonUse: "Mechanics and control systems" },
+      { name: "Degree per Second", symbol: "°/s", referenceValue: "≈ 0.01745 rad/s", system: "Angular-rate unit", commonUse: "Sensors and orientation systems" },
+    ],
+  },
+  debi: {
+    unitTable: [
+      { name: "Cubic Meter per Hour", symbol: "m³/h", referenceValue: "≈ 0.000277778 m³/s", system: "Metric", commonUse: "Water, HVAC and utility systems" },
+      { name: "Liter per Minute", symbol: "L/min", referenceValue: "≈ 0.0000166667 m³/s", system: "Metric", commonUse: "Pumps and small circulation systems" },
+    ],
+  },
+  yogunluk: {
+    unitTable: [
+      { name: "Kilogram per Cubic Meter", symbol: "kg/m³", referenceValue: "SI reference unit", system: "SI", commonUse: "Materials, fluids and engineering" },
+      { name: "Gram per Cubic Centimeter", symbol: "g/cm³", referenceValue: "1 g/cm³ = 1,000 kg/m³", system: "Metric", commonUse: "Laboratory and material-property data" },
+    ],
+  },
+  kuvvet: {
+    unitTable: [
+      { name: "Newton", symbol: "N", referenceValue: "1 N = 1 kg·m/s²", system: "SI derived unit", commonUse: "Mechanics and engineering" },
+      { name: "Kilogram-Force", symbol: "kgf", referenceValue: "1 kgf = 9.80665 N", system: "Gravitational metric unit", commonUse: "Legacy equipment and load ratings" },
+    ],
+  },
+  tork: {
+    unitTable: [
+      { name: "Newton-Meter", symbol: "N·m", referenceValue: "SI reference unit", system: "SI", commonUse: "Fasteners, motors and mechanical design" },
+      { name: "Pound-Foot", symbol: "lb·ft", referenceValue: "≈ 1.355818 N·m", system: "US customary", commonUse: "Automotive and mechanical specifications" },
+      { name: "Kilogram-Force Meter", symbol: "kgf·m", referenceValue: "≈ 9.80665 N·m", system: "Gravitational metric unit", commonUse: "Legacy torque specifications" },
+    ],
+  },
+  momentum: {
+    unitTable: [
+      { name: "Kilogram-Meter per Second", symbol: "kg·m/s", referenceValue: "SI reference unit", system: "SI", commonUse: "Mechanics and collision analysis" },
+      { name: "Newton-Second", symbol: "N·s", referenceValue: "1 N·s = 1 kg·m/s", system: "Equivalent SI expression", commonUse: "Impulse and force-time analysis" },
+    ],
+  },
+  viskozite_dinamik: {
+    unitTable: [
+      { name: "Pascal-Second", symbol: "Pa·s", referenceValue: "SI reference unit", system: "SI", commonUse: "Fluid mechanics and rheology" },
+      { name: "Centipoise", symbol: "cP", referenceValue: "1 cP = 0.001 Pa·s", system: "Practical viscosity unit", commonUse: "Oils, coatings and laboratory data" },
+    ],
+  },
+  elektrik_direnc: {
+    unitTable: [
+      { name: "Ohm", symbol: "Ω", referenceValue: "SI reference unit", system: "SI", commonUse: "Resistors and circuit calculations" },
+      { name: "Kiloohm", symbol: "kΩ", referenceValue: "1 kΩ = 1,000 Ω", system: "SI prefix", commonUse: "Electronic components" },
+      { name: "Megaohm", symbol: "MΩ", referenceValue: "1 MΩ = 1,000,000 Ω", system: "SI prefix", commonUse: "High-resistance circuits and insulation tests" },
+    ],
+  },
+  kapasitans: {
+    unitTable: [
+      { name: "Farad", symbol: "F", referenceValue: "SI reference unit", system: "SI", commonUse: "Capacitors and energy storage" },
+      { name: "Microfarad", symbol: "µF", referenceValue: "1 µF = 0.000001 F", system: "SI prefix", commonUse: "Filters and power supplies" },
+      { name: "Nanofarad", symbol: "nF", referenceValue: "1 nF = 0.000000001 F", system: "SI prefix", commonUse: "Signal and timing circuits" },
+      { name: "Picofarad", symbol: "pF", referenceValue: "1 pF = 0.000000000001 F", system: "SI prefix", commonUse: "RF circuits and parasitic capacitance" },
+    ],
+  },
+  enduktans: {
+    unitTable: [
+      { name: "Henry", symbol: "H", referenceValue: "SI reference unit", system: "SI", commonUse: "Inductors and magnetic circuits" },
+      { name: "Millihenry", symbol: "mH", referenceValue: "1 mH = 0.001 H", system: "SI prefix", commonUse: "Power electronics and filters" },
+      { name: "Microhenry", symbol: "µH", referenceValue: "1 µH = 0.000001 H", system: "SI prefix", commonUse: "RF and switching circuits" },
+    ],
+  },
+  elektrik_yuk: {
+    unitTable: [
+      { name: "Coulomb", symbol: "C", referenceValue: "SI reference unit", system: "SI", commonUse: "Electrostatics and capacitor calculations" },
+      { name: "Millicoulomb", symbol: "mC", referenceValue: "1 mC = 0.001 C", system: "SI prefix", commonUse: "Circuit and charge calculations" },
+      { name: "Microcoulomb", symbol: "µC", referenceValue: "1 µC = 0.000001 C", system: "SI prefix", commonUse: "Electronics and electrostatics" },
+      { name: "Nanocoulomb", symbol: "nC", referenceValue: "1 nC = 0.000000001 C", system: "SI prefix", commonUse: "Small charge measurements" },
+    ],
+  },
+  kan_sekeri: {
+    sections: [
+      { title: "Comparing reports with different units", paragraphs: ["When comparing records, convert the value and retain the original unit, laboratory and test context. A change in unit display does not make results from different methods directly interchangeable.", "Use the converter for unit expression only and rely on a qualified healthcare professional for interpretation or treatment decisions."] },
+    ],
+    unitTable: [
+      { name: "Milligrams per Deciliter", symbol: "mg/dL", referenceValue: "Conventional reporting unit", system: "Mass concentration", commonUse: "Laboratory and meter reports" },
+      { name: "Millimoles per Liter", symbol: "mmol/L", referenceValue: "SI-style reporting unit", system: "Amount-of-substance concentration", commonUse: "Laboratory reports in many countries" },
+    ],
+  },
+  vitamin_d: {
+    sections: [
+      { title: "Comparing reports with different units", paragraphs: ["When comparing results, retain the original unit, assay context and laboratory information. Converting the number does not change the test method or reference information that accompanied it.", "Use the converter for unit expression only and discuss a result or any treatment decision with a qualified healthcare professional."] },
+    ],
+    unitTable: [
+      { name: "Nanograms per Milliliter", symbol: "ng/mL", referenceValue: "Conventional reporting unit", system: "Mass concentration", commonUse: "Vitamin D laboratory reports" },
+      { name: "Nanomoles per Liter", symbol: "nmol/L", referenceValue: "SI-style reporting unit", system: "Amount-of-substance concentration", commonUse: "Vitamin D laboratory reports" },
+    ],
+  },
+};
+
+export const englishCategoryPages: LocalizedCategoryPage[] =
+  baseEnglishCategoryPages.map((categoryPage) => {
+    const enhancement = categoryEnhancements[categoryPage.category];
+
+    if (!enhancement) {
+      return categoryPage;
+    }
+
+    return {
+      ...categoryPage,
+      sections: enhancement.sections
+        ? [...categoryPage.sections, ...enhancement.sections]
+        : categoryPage.sections,
+      unitTable: enhancement.unitTable ?? categoryPage.unitTable,
+    };
+  });
 
 export function findEnglishCategoryPage(slug: string) {
   return englishCategoryPages.find(

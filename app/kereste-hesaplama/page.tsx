@@ -21,7 +21,12 @@ export const metadata: Metadata = {
   title: "Kereste Metreküp Hesaplama",
   description:
     "Kereste parçalarının uzunluk, genişlik, kalınlık ve adedinden toplam hacmi (m³) ve fire dahil toplamı hesapla.",
-  alternates: { canonical: "/kereste-hesaplama" },
+  alternates: {
+    canonical: "/kereste-hesaplama",
+    languages: {
+      "uz-UZ": "/uz/yogoch-hajmi-hisoblash",
+    },
+  },
   openGraph: {
     title: "Kereste Metreküp Hesaplama",
     description: "Kereste hacmini hesaplayın.",

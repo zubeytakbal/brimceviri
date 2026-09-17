@@ -190,6 +190,19 @@ export default function UsluSayilarHesaplamaPage() {
             </p>
           ))}
 
+          <h2>İlgili araçlar</h2>
+          <p>
+            Karekök hesaplama için{" "}
+            <Link href="/bilim-hesaplayicilari/matematik/karekok-hesaplama">Karekök Hesaplama</Link>,{" "}
+            küpkök hesaplama için{" "}
+            <Link href="/bilim-hesaplayicilari/matematik/kupkok-hesaplama">Küpkök Hesaplama</Link>,{" "}
+            üs almanın ters işlemi olan logaritma için{" "}
+            <Link href="/bilim-hesaplayicilari/matematik/logaritma-hesaplama">Logaritma Hesaplama</Link>,{" "}
+            sabit oranla artan/azalan diziler için{" "}
+            <Link href="/bilim-hesaplayicilari/matematik/geometrik-dizi-hesaplama">Geometrik Dizi Hesaplama</Link>
+            {" "}sayfasına bakabilirsin.
+          </p>
+
           <h2>Kaynaklar</h2>
           <p>
             Üs kuralları ve tanımları, standart ortaokul ve lise

@@ -32,6 +32,9 @@ export const metadata: Metadata = {
     "NASA'nın Mars Climate Orbiter görevi, bir ekibin pound-force diğerinin newton kullanmasıyla nasıl 327 milyon dolarlık bir kayba dönüştü? Doğrulanmış kaynaklarla anlatım.",
   alternates: {
     canonical: "/birim-cevirme-felaketleri/mars-climate-orbiter",
+    languages: {
+      "uz-UZ": "/uz/birlik-aylantirish-fojialari/mars-climate-orbiter",
+    },
   },
   openGraph: {
     title: "Mars Climate Orbiter: 327 Milyon Dolarlık Birim Hatası",

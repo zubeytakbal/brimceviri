@@ -134,6 +134,17 @@ export default function ElectricityConsumptionPage() {
             eklemen gerekir.
           </p>
 
+          <h2>İlgili araçlar</h2>
+          <p>
+            Güneş paneli yatırımının geri dönüşü için{" "}
+            <Link href="/gunes-paneli-amortisman-hesaplama">Güneş Paneli Amortisman Hesaplama</Link>,{" "}
+            LED aydınlatma tasarrufu için{" "}
+            <Link href="/led-ampul-tasarruf-hesaplama">LED Ampul Tasarruf Hesaplama</Link>,{" "}
+            volt/amper birim dönüşümleri için{" "}
+            <Link href="/kategoriler/elektrik">Volt / Amper Birim Dönüşümleri</Link>
+            {" "}sayfasına bakabilirsin.
+          </p>
+
           <h2>Kaynaklar</h2>
           <p>
             kWh dönüşüm formülü (Watt × Saat / 1000), elektrik

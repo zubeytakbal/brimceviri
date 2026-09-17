@@ -9,6 +9,16 @@ const faqItems: FaqItem[] = [
     answer:
       "Hayır. Bu araç yalnızca kesme hızı (Vc), çap (D) ve devir (N) arasındaki matematiksel bağıntıyı hesaplar. Hangi kesme hızının uygun olduğu, kesici takım üreticisinin kataloğuna ve işlenen malzemeye göre belirlenir.",
   },
+  {
+    question: "Yüzey pürüzlülüğü (Ra) ile ilerleme (feed) arasındaki ilişki nedir?",
+    answer:
+      "Tornalamada teorik yüzey pürüzlülüğü yaklaşık Ra ≈ f² / (8 × r) formülüyle tahmin edilir; burada f ilerleme (mm/devir), r ise kesici uç radyüsüdür. Bu formül, ilerleme arttıkça yüzey pürüzlülüğünün (karesel olarak) hızla kötüleştiğini, daha büyük bir uç radyüsünün ise aynı ilerlemede daha iyi bir yüzey bıraktığını gösterir.",
+  },
+  {
+    question: "Kesme hızı çok yüksek seçilirse ne olur?",
+    answer:
+      "Aşırı yüksek kesme hızı, kesici takımda hızlı ısınma ve aşınmaya (takım ömrünün kısalmasına), bazı durumlarda ise takım kırılmasına yol açabilir. Çok düşük kesme hızı ise verimsiz işleme süresine ve bazı malzemelerde (örn. paslanmaz çelik) pekleşme (work hardening) sorununa neden olabilir. Optimum değer, malzeme ve takım üreticisinin katalog verilerine göre belirlenir.",
+  },
 ];
 
 export const metadata: Metadata = {
@@ -122,6 +132,14 @@ export default function CncTornaAraclariPage() {
               {item.answer}
             </p>
           ))}
+
+          <h2>Kaynaklar</h2>
+          <p>
+            Kesme hızı ve yüzey pürüzlülüğü formülleri, standart
+            talaşlı imalat (machining) teorisine dayanır. Malzemeye özel
+            kesme hızı değerleri için her zaman kesici takım
+            üreticisinin kataloğu esas alınmalıdır.
+          </p>
         </section>
       </div>
     </main>

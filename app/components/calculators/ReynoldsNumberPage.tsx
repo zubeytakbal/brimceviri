@@ -241,6 +241,10 @@ const pageCopy: Record<
         href: "/hesaplayicilar/isi-iletimi",
       },
       {
+        label: "Isı Enerjisi Hesaplayıcısı",
+        href: "/hesaplayicilar/isi-enerjisi",
+      },
+      {
         label: "Hidrostatik Basınç Hesaplayıcısı",
         href: "/hesaplayicilar/hidrostatik-basinc",
       },

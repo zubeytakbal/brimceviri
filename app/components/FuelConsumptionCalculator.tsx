@@ -9,7 +9,7 @@ import {
   type FuelConsumptionResult,
 } from "../converter/fuelConsumptionCalculator";
 
-type SupportedLocale = "tr" | "en";
+type SupportedLocale = "tr" | "en" | "uz";
 
 type FuelCopy = {
   modeLabel: string;
@@ -78,6 +78,28 @@ const copyByLocale: Record<SupportedLocale, FuelCopy> = {
     tripResultLabels: {
       litersNeeded: "Fuel Needed",
       totalCost: "Total Cost",
+    },
+  },
+  uz: {
+    modeLabel: "Qaysi qiymatni bilasiz?",
+    modeLiters100km: "100 km'ga Necha Litr",
+    modeKmPerLiter: "1 Litrga Necha km",
+    fieldLiters100km: "Yoqilg'i Sarfi (l/100km)",
+    fieldKmPerLiter: "Yoqilg'i Sarfi (km/l)",
+    emptyState: "Natijani ko'rish uchun to'g'ri yoqilg'i sarfi qiymatini kiriting.",
+    resultLabels: {
+      kmPerLiter: "km/l",
+      litersPer100km: "l/100km",
+      mpgUs: "mpg (AQSH)",
+      mpgUk: "mpg (Angliya)",
+    },
+    tripHeading: "Sayohat xarajatini hisoblash",
+    fieldDistance: "Sayohat Masofasi (km)",
+    fieldPrice: "Yoqilg'i Narxi (EUR/l)",
+    tripEmptyState: "Xarajatni ko'rish uchun to'g'ri masofa va narx kiriting.",
+    tripResultLabels: {
+      litersNeeded: "Kerakli Yoqilg'i",
+      totalCost: "Jami Xarajat",
     },
   },
 };

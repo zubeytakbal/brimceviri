@@ -74,6 +74,15 @@ export default function ElementSiralamasiPage() {
             tablo, aynı 118 elementi farklı bir açıdan -- doğrudan sayısal
             sıralamayla -- göstererek bu tür soruları anında yanıtlar.
           </p>
+
+          <h2>İlgili araçlar</h2>
+          <p>
+            Periyodik tabloyu incelemek için{" "}
+            <Link href="/bilim-hesaplayicilari/kimya/periyodik-tablo">Periyodik Tablo</Link>,{" "}
+            atom kütlesi hesaplama için{" "}
+            <Link href="/bilim-hesaplayicilari/kimya/atom-kutlesi-hesaplama">Atom Kütlesi Hesaplama</Link>
+            {" "}sayfasına bakabilirsin.
+          </p>
         </section>
       </div>
     </main>

@@ -165,6 +165,23 @@ export default function OrtalamaHesaplamaPage() {
             </p>
           ))}
 
+          <h2>İlgili araçlar</h2>
+          <p>
+            Sadece medyan için{" "}
+            <Link href="/bilim-hesaplayicilari/matematik/medyan-hesaplama">Medyan Hesaplama</Link>,{" "}
+            sadece mod için{" "}
+            <Link href="/bilim-hesaplayicilari/matematik/mod-hesaplama">Mod Hesaplama</Link>,{" "}
+            sadece varyans için{" "}
+            <Link href="/bilim-hesaplayicilari/matematik/varyans-hesaplama">Varyans Hesaplama</Link>,{" "}
+            sadece standart sapma için{" "}
+            <Link href="/bilim-hesaplayicilari/matematik/standart-sapma-hesaplama">Standart Sapma Hesaplama</Link>,{" "}
+            yüzde hesaplama için{" "}
+            <Link href="/bilim-hesaplayicilari/matematik/yuzde-hesaplama">Yüzde Hesaplama</Link>,{" "}
+            oran-orantı hesaplama için{" "}
+            <Link href="/bilim-hesaplayicilari/matematik/oran-oranti-hesaplama">Oran-Orantı Hesaplama</Link>
+            {" "}sayfasına bakabilirsin.
+          </p>
+
           <h2>Kaynaklar</h2>
           <p>
             Merkezi eğilim ve yayılım ölçüleri tanımları standart ortaokul,

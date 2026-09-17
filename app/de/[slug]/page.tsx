@@ -127,9 +127,20 @@ export async function generateMetadata({
     };
   }
 
-  const title = `${page.fromName} in ${page.toName} Umrechner`;
+  // Titel enthaelt "1", damit er zur Suchanfrage ("1 X in Y") passt -- das
+  // alte "X in Y Umrechner"-Format erzielte trotz guter Position kaum Klicks.
+  const oneUnitResult = convert(
+    page.category,
+    1,
+    page.fromUnit,
+    page.toUnit
+  );
+  const formattedOneUnitResult = formatNumber(oneUnitResult);
+
+  const title = `1 ${page.fromName} in ${page.toName} – Umrechner`;
 
   const description =
+    `1 ${page.fromName} = ${formattedOneUnitResult} ${page.toName}. ` +
     `${page.fromName} in ${page.toName} umrechnen. ` +
     `Formel, Umrechnungstabelle und Sofortergebnis auf einen Blick.`;
 

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
 import { getAllCelestialBodies } from "../converter/celestialBodiesHub";
+import { getAllCelestialBodyComparisons } from "../converter/celestialBodyComparisons";
 import { buildSiteUrl } from "../siteConfig";
 
 const faqItems: FaqItem[] = [
@@ -41,6 +42,7 @@ export const metadata: Metadata = {
 
 export default function CelestialBodiesHubPage() {
   const bodies = getAllCelestialBodies();
+  const comparisons = getAllCelestialBodyComparisons();
   const categories = categoryOrder.filter((category) =>
     bodies.some((body) => body.category === category),
   );
@@ -107,6 +109,17 @@ export default function CelestialBodiesHubPage() {
               </div>
             );
           })}
+
+          <h2>Popüler Gökcismi Karşılaştırmaları</h2>
+          <ul className="related-conversion-list">
+            {comparisons.map((comparison) => (
+              <li key={comparison.slug}>
+                <Link href={`/gokcisimleri-karsilastirma/${comparison.slug}`}>
+                  {comparison.first.nameTr} – {comparison.second.nameTr}
+                </Link>
+              </li>
+            ))}
+          </ul>
 
           <h2>Sık Sorulan Sorular</h2>
           {faqItems.map((item) => (

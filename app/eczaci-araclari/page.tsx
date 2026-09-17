@@ -14,6 +14,16 @@ const faqItems: FaqItem[] = [
     answer:
       "Molarite, çözünen maddenin mol sayısını hacme oranlar (mol/L). Yüzde derişim ise kütlece veya hacimce oranı ifade eder (örneğin %70 alkol, hacimce %70 etanol demektir). C₁V₁ = C₂V₂ bağıntısı, C₁ ve C₂ aynı derişim biriminde olduğu sürece her ikisinde de geçerlidir.",
   },
+  {
+    question: "Neden dezenfeksiyonda %70 etanol, %96'dan daha etkili kabul edilir?",
+    answer:
+      "Alkolün mikropları öldürme etkisi, proteinleri denatüre etmesinden kaynaklanır ve bu tepkime su varlığında daha hızlı gerçekleşir. %60-90 arası etanol/izopropanol derişimleri genel olarak etkili kabul edilir; %70 civarı, yeterli su içeriğiyle etkin denatürasyonu sağlarken yüksek buharlaşma hızından kaynaklı temas süresi kaybını da önlediği için sıkça tercih edilir. %100'e yakın (susuz) alkol ise hücre yüzeyini hızla katılaştırıp içeri nüfuz etmeden etkisini kaybedebilir.",
+  },
+  {
+    question: "Molarite, molalite ve ppm ne zaman hangisi kullanılır?",
+    answer:
+      "Molarite (mol/L) çözelti hacmine dayanır ve sıcaklıkla hafifçe değişebilir (hacim genleşmesi nedeniyle). Molalite (mol/kg çözücü) kütleye dayandığı için sıcaklıktan etkilenmez — hassas termodinamik hesaplarda tercih edilir. ppm (milyonda parça) ise çok düşük derişimleri (eser miktarlar, kirletici analizleri gibi) ifade etmek için kullanılır; kütlece ppm için 1% = 10.000 ppm'dir.",
+  },
 ];
 
 export const metadata: Metadata = {
@@ -121,6 +131,14 @@ export default function EczaciAraclariPage() {
               {item.answer}
             </p>
           ))}
+
+          <h2>Kaynaklar</h2>
+          <p>
+            Derişim bağıntıları (C₁V₁ = C₂V₂) standart kimya
+            prensiplerine, alkol dezenfeksiyon etkinliği aralıkları ise
+            mikrobiyoloji ve halk sağlığı literatüründe yaygın kabul
+            gören genel referanslara dayanır.
+          </p>
         </section>
       </div>
     </main>

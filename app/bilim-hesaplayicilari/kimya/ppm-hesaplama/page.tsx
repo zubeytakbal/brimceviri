@@ -167,6 +167,15 @@ export default function PpmHesaplamaPage() {
             </p>
           ))}
 
+          <h2>İlgili araçlar</h2>
+          <p>
+            Kütlece yüzde derişim için{" "}
+            <Link href="/bilim-hesaplayicilari/kimya/kutlece-yuzde-hesaplama">Kütlece Yüzde Hesaplama</Link>,{" "}
+            molarite hesabı için{" "}
+            <Link href="/bilim-hesaplayicilari/kimya/molarite-hesaplama">Molarite Hesaplama</Link>
+            {" "}sayfasına bakabilirsin.
+          </p>
+
           <h2>Kaynaklar</h2>
           <p>
             ppm tanımı, IUPAC&apos;ın derişim birimleri standardına

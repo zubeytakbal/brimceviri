@@ -34,7 +34,30 @@ const manualNotifications: SiteNotification[] = [
   },
 ];
 
-export async function getSiteNotifications(): Promise<SiteNotification[]> {
+const englishManualNotifications: SiteNotification[] = [
+  {
+    id: "chemistry-calculators-2026-09",
+    date: "2026-09-16",
+    title: "New: Chemistry Calculators",
+    message: "Explore 12 tools for solution chemistry, reaction calculations, equilibrium and electrochemistry.",
+    href: "/en/chemistry-calculators",
+  },
+  {
+    id: "everyday-calculators-2026-09",
+    date: "2026-09-16",
+    title: "Everyday Calculators are now grouped",
+    message: "Browse 19 practical tools for home projects, routines, transport and personal planning.",
+    href: "/en/everyday-calculators",
+  },
+];
+
+export async function getSiteNotifications(locale: "tr" | "en" = "tr"): Promise<SiteNotification[]> {
+  if (locale === "en") {
+    return [...englishManualNotifications].sort((a, b) =>
+      a.date < b.date ? 1 : a.date > b.date ? -1 : 0,
+    );
+  }
+
   const { getSourceMonitorStatuses } = await import("./licenseSourceMonitor");
   const monitorStatuses = await getSourceMonitorStatuses().catch(() => []);
 

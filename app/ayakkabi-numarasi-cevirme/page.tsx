@@ -63,7 +63,11 @@ export default function ShoeSizePage() {
 
           <h2>{"\u0130lgili ara\u00e7lar"}</h2>
           <p>
-            {"Beden ve y\u00fcz\u00fck \u00f6l\u00e7\u00fcs\u00fc gibi di\u011fer \u00f6l\u00e7\u00fc \u00e7evirme ara\u00e7lar\u0131 i\u00e7in "}
+            {"Beden \u00f6l\u00e7\u00fcs\u00fc \u00e7evirme i\u00e7in "}
+            <Link href="/beden-olcusu-cevirici">{"Beden \u00d6l\u00e7\u00fcs\u00fc \u00c7evirici"}</Link>
+            {", y\u00fcz\u00fck \u00f6l\u00e7\u00fcs\u00fc \u00e7evirme i\u00e7in "}
+            <Link href="/yuzuk-olcusu-cevirici">{"Y\u00fcz\u00fck \u00d6l\u00e7\u00fcs\u00fc \u00c7evirici"}</Link>
+            {", di\u011fer terzi ara\u00e7lar\u0131 i\u00e7in "}
             <Link href="/terzi-araclari">{"Terzi Ara\u00e7lar\u0131"}</Link>
             {" sayfas\u0131na bakabilirsin."}
           </p>

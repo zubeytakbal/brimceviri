@@ -8,6 +8,8 @@ import {
   findSimilarGravityBodies,
   getAllCelestialBodies,
 } from "../../converter/celestialBodiesHub";
+import { getAllCelestialBodyComparisons } from "../../converter/celestialBodyComparisons";
+import { celestialBodyFacts } from "../../converter/celestialBodyFacts";
 import { buildSiteUrl } from "../../siteConfig";
 
 type PageProps = {
@@ -34,8 +36,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return { title: "Gökcismi bulunamadı", robots: { index: false, follow: false } };
   }
 
-  const title = `${body.nameTr} Özellikleri: Kütle, Yerçekimi ve Ağırlık Hesaplama`;
-  const description = `${body.nameTr}'in kütlesi, çapı, yerçekimi ve diğer özellikleri. Kendi kilonun ${body.nameTr}'de kaç kilo geleceğini hesapla.`;
+  const title = `${body.nameTr} Yerçekiminde Kaç Kilo Gelirsiniz?`;
+  const description = `Kendi kilonuzu girin, ${body.nameTr} yerçekiminde kaç kilo geleceğinizi anında hesaplayın. Ayrıca ${body.nameTr}'in kütlesi, çapı, yerçekimi ve diğer özelliklerini görün.`;
 
   return {
     title,
@@ -63,6 +65,10 @@ export default async function CelestialBodyDetailPage({ params }: PageProps) {
   const pageUrl = buildSiteUrl(`/gokcisimleri-ozellikleri/${slug}`);
   const similarBodies = findSimilarGravityBodies(slug, 3);
   const parentBody = body.orbitsAroundId ? findCelestialBodyById(body.orbitsAroundId) : undefined;
+  const relatedComparisons = getAllCelestialBodyComparisons().filter(
+    (comparison) => comparison.first.id === slug || comparison.second.id === slug
+  );
+  const facts = celestialBodyFacts[slug];
 
   const faqItems: FaqItem[] = [
     {
@@ -105,17 +111,17 @@ export default async function CelestialBodyDetailPage({ params }: PageProps) {
         </nav>
 
         <header className="all-conversions-header">
-          <h1>{body.nameTr} Özellikleri</h1>
+          <h1>{body.nameTr} Yerçekiminde Kaç Kilo Gelirsiniz?</h1>
           <p>
-            {body.nameTr}&apos;in kütlesi, çapı, yoğunluğu ve
-            yerçekimi
+            Kendi kilonuzu girin, {body.nameTr} yerçekiminde kaç kilo
+            geleceğinizi anında hesaplayın. Ayrıca {body.nameTr}&apos;in
+            kütlesi, çapı, yoğunluğu ve yerçekimi
             {parentBody && (
               <>
                 {" "}({parentBody.nameTr}&apos;in uydusu)
               </>
             )}
-            ; kendi ağırlığının {body.nameTr}&apos;de kaç kilo
-            geleceğini hesapla.
+            {" "}gibi diğer özelliklerini görün.
           </p>
         </header>
 
@@ -182,6 +188,15 @@ export default async function CelestialBodyDetailPage({ params }: PageProps) {
           </p>
         </section>
 
+        {facts && facts.length > 0 && (
+          <section className="category-article-content">
+            <h2>{body.nameTr} Hakkında İlginç Bilgiler</h2>
+            {facts.map((fact) => (
+              <p key={fact}>{fact}</p>
+            ))}
+          </section>
+        )}
+
         <CelestialBodyWeightCalculator celestialBodyId={body.id} bodyName={body.nameTr} />
 
         {similarBodies.length > 0 && (
@@ -209,6 +224,21 @@ export default async function CelestialBodyDetailPage({ params }: PageProps) {
               {item.answer}
             </p>
           ))}
+
+          {relatedComparisons.length > 0 && (
+            <>
+              <h2>{body.nameTr} Karşılaştırmaları</h2>
+              <ul className="related-conversion-list">
+                {relatedComparisons.map((comparison) => (
+                  <li key={comparison.slug}>
+                    <Link href={`/gokcisimleri-karsilastirma/${comparison.slug}`}>
+                      {comparison.first.nameTr} – {comparison.second.nameTr}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
 
           <h2>İlgili araçlar</h2>
           <p>

@@ -31,28 +31,12 @@ const categories = [
     iconName: "physicsCalculator" as const,
   },
   {
-    id: "kimya",
-    href: "/bilim-hesaplayicilari/kimya",
-    title: "Kimya",
+    id: "biyoloji",
+    href: "/bilim-hesaplayicilari/biyoloji",
+    title: "Biyoloji",
     description:
-      "Mol, molarite, pH, stokiyometri ve daha fazlası.",
-    iconName: "chemistryCalculator" as const,
-  },
-  {
-    id: "matematik",
-    href: "/bilim-hesaplayicilari/matematik",
-    title: "Matematik",
-    description:
-      "EBOB-EKOK, olasılık, türev, denklem çözme ve daha fazlası.",
-    iconName: "mathCalculator" as const,
-  },
-  {
-    id: "geometri",
-    href: "/bilim-hesaplayicilari/geometri",
-    title: "Geometri",
-    description:
-      "Pisagor teoremi, alan, çevre, hacim ve daha fazlası.",
-    iconName: "geometryCalculator" as const,
+      "Amino asitler, kodon tablosu, DNA/RNA çevirici ve daha fazlası.",
+    iconName: "biologyCalculator" as const,
   },
 ];
 

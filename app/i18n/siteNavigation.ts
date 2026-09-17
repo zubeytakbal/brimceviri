@@ -9,6 +9,8 @@ import {
   getStaticPath,
   type StaticRouteKey,
 } from "./routing";
+import { englishCalculatorMenuLinks } from "./englishCalculatorHubs";
+import { englishConversionMenuCategoryOrder } from "./englishCategoryPresentation";
 
 type SiteHeaderCopy = {
   navAriaLabel: string;
@@ -184,7 +186,7 @@ const categoryLabels: Record<
     enduktans: "Induktivlik",
     elektrik_yuk: "Elektr Zaryadi",
     altin_ayar: "Oltin Karati",
-    gumus_ayar: "Kumush Karati",
+    gumus_ayar: "Kumush Sofligi (Proba)",
   },
   bn: {
     uzunluk: "দৈর্ঘ্য",
@@ -359,8 +361,8 @@ const topLevelLabelMap: Record<
   uz: {
     home: "Bosh sahifa",
     engineeringHub: "Kalkulyatorlar",
-    units: "Birliklar Qo'llanmasi",
-    allConversions: "Barcha O'zgartirishlar",
+    units: "Birliklar",
+    allConversions: "Turkumlar",
     professions: "Kasblar",
   },
   bn: {
@@ -391,6 +393,7 @@ const footerLinksByLocale: Record<
     { key: "home", label: "Home" },
     { key: "units", label: "Unit Guide" },
     { key: "allConversions", label: "All Conversions" },
+    { key: "engineeringHub", label: "Engineering Calculators" },
     { key: "about", label: "About" },
     { key: "contact", label: "Contact" },
     { key: "privacy", label: "Privacy" },
@@ -431,6 +434,42 @@ export function getSiteFooterCopy(locale: Locale) {
 export function getTopLevelLinks(locale: Locale): LinkDefinition[] {
   const labels = topLevelLabelMap[locale];
 
+  // Ozbekcha kart kataloglari ana sayfada ve turkum indeksinde bulunur.
+  // Menu bu mevcut UZ bolumlerine gider; Turkce arac sayfalarina yonlenmez.
+  if (locale === "uz") {
+    return [
+      {
+        href: getStaticPath(locale, "home"),
+        label: labels.home,
+      },
+      {
+        href: "/uz#engineering-calculators",
+        label: labels.engineeringHub,
+      },
+      {
+        href: getStaticPath(locale, "units"),
+        label: labels.units,
+      },
+      {
+        href: "/uz/turkumlar",
+        label: labels.allConversions,
+      },
+      {
+        href: "/uz/turkumlar#boshqa-kalkulyator-markazlari",
+        label: labels.professions,
+      },
+    ];
+  }
+
+  if (locale === "en") {
+    return [
+      { href: getStaticPath(locale, "home"), label: labels.home },
+      { href: getStaticPath(locale, "units"), label: labels.units },
+      { href: getStaticPath(locale, "allConversions"), label: labels.allConversions },
+      { href: getStaticPath(locale, "otherConversions"), label: "Other Tools" },
+    ];
+  }
+
   return [
     {
       href: getStaticPath(locale, "home"),
@@ -459,6 +498,10 @@ export function getTopLevelLinks(locale: Locale): LinkDefinition[] {
   ];
 }
 
+export function getCalculatorMenuLinks(locale: Locale): LinkDefinition[] {
+  return locale === "en" ? englishCalculatorMenuLinks : [];
+}
+
 export function getCategoryMenuLinks(locale: Locale) {
   const categorySummaries = getLocalizedCategorySummaries(locale);
   const basePath = getCollectionBasePath(locale, "categories").slice(
@@ -466,7 +509,9 @@ export function getCategoryMenuLinks(locale: Locale) {
     -1
   );
 
-  const links = navCategoryOrder.flatMap((category) => {
+  const menuCategoryOrder = locale === "en" ? englishConversionMenuCategoryOrder : navCategoryOrder;
+
+  const links = menuCategoryOrder.flatMap((category) => {
     const summary = categorySummaries.find(
       (item) => item.category === category
     );
@@ -483,6 +528,12 @@ export function getCategoryMenuLinks(locale: Locale) {
     ];
   });
 
+  // Ozbekcha icin henuz yerellestirilmis sayfasi olmayan ayakkabi, mutfak
+  // ve tarif araclarini Turkce URL'lere baglamiyoruz.
+  if (locale === "uz") {
+    return links;
+  }
+
   links.push({
     href: getStaticPath(locale, "shoeSize"),
     label:
@@ -492,9 +543,7 @@ export function getCategoryMenuLinks(locale: Locale) {
           ? "Schuhgroessen"
           : locale === "ar"
             ? "مقاسات الأحذية"
-            : locale === "uz"
-              ? "Oyoq Kiyim O'lchami"
-          : "Ayakkabi Numarasi",
+            : "Ayakkabi Numarasi",
   });
   links.push({
     href: getStaticPath(locale, "kitchenMeasures"),
@@ -505,9 +554,7 @@ export function getCategoryMenuLinks(locale: Locale) {
           ? "Kuechenmasse"
           : locale === "ar"
             ? "مقاييس المطبخ"
-            : locale === "uz"
-              ? "Oshxona O'lchovlari"
-          : "Mutfak Olculeri",
+            : "Mutfak Olculeri",
   });
   links.push({
     href: getStaticPath(locale, "recipeConverter"),
@@ -518,9 +565,7 @@ export function getCategoryMenuLinks(locale: Locale) {
           ? "Rezept Umrechner"
           : locale === "ar"
             ? "محول الوصفات"
-            : locale === "uz"
-              ? "Retsept Aylantirgich"
-          : "Tarif Cevirici",
+            : "Tarif Cevirici",
   });
 
   return links;

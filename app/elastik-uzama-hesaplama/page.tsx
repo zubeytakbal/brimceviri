@@ -95,6 +95,8 @@ export default function ElongationCalculatorPage() {
             <Link href="/mimar-araclari">Mimar Araçları</Link>
             {" "}sayfasına, malzeme yoğunluğu ve diğer özellikleri için{" "}
             <Link href="/malzeme-ozellikleri">Malzeme Özellikleri</Link>
+            {" "}sayfasına, sıcaklığa bağlı boyut değişimi için{" "}
+            <Link href="/isil-genlesme-hesaplama">Isıl Genleşme Hesaplama</Link>
             {" "}sayfasına bakabilirsin.
           </p>
 

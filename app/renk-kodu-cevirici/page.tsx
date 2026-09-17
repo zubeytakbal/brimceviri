@@ -90,6 +90,8 @@ export default function ColorCodeCalculatorPage() {
             <Link href="/yazilimci-araclari">Yazılımcı Araçları</Link>{" "}
             sayfasına, piksel/DPI hesaplama için{" "}
             <Link href="/piksel-cm-dpi-hesaplama">Piksel, CM ve DPI Hesaplama</Link>
+            {" "}sayfasına, sosyal medya görsel boyutları için{" "}
+            <Link href="/sosyal-medya-gorsel-boyutlari-hesaplama">Sosyal Medya Görsel Boyutları Hesaplama</Link>
             {" "}sayfasına bakabilirsin.
           </p>
         </section>

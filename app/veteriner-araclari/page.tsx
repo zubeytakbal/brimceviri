@@ -14,6 +14,11 @@ const faqItems: FaqItem[] = [
     answer:
       "Aynı ilaç bir türde güvenli, başka bir türde toksik olabilir. Güvenli doz aralığı ilaca, türe, yaşa ve klinik duruma göre değişir ve tek bir genel tabloyla sorumlu şekilde verilemez. Bu yüzden bu araç setinde bilinçli olarak yer almıyor.",
   },
+  {
+    question: "Normal vücut sıcaklığı ve kalp atış hızı neden önemlidir?",
+    answer:
+      "Bu değerler, bir muayenede hastanın normal fizyolojik sınırlar içinde olup olmadığını hızlıca değerlendirmek için kullanılan genel referans aralıklarıdır — teşhis veya tedavi kararı için tek başına yeterli değildir, her zaman klinik muayenenin bütünüyle birlikte değerlendirilmelidir.",
+  },
 ];
 
 export const metadata: Metadata = {
@@ -36,6 +41,13 @@ export const metadata: Metadata = {
 function serializeJsonLd(data: object) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
 }
+
+const normalVitalsTable = [
+  ["Köpek", "38,3 - 39,2 °C", "60 - 140 /dk"],
+  ["Kedi", "38,1 - 39,2 °C", "140 - 220 /dk"],
+  ["At", "37,2 - 38,3 °C", "28 - 44 /dk"],
+  ["Sığır", "38,0 - 39,3 °C", "48 - 84 /dk"],
+];
 
 export default function VeterinerAraclariPage() {
   const breadcrumbSchema = {
@@ -106,6 +118,40 @@ export default function VeterinerAraclariPage() {
             </li>
           </ul>
 
+          <h2>Türlere Göre Normal Vücut Sıcaklığı ve Nabız</h2>
+          <p>
+            Sağlıklı, dinlenme halindeki hayvanlarda yaygın olarak
+            görülen genel referans aralıkları:
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <caption>Türlere göre normal vücut sıcaklığı ve nabız aralıkları</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Tür</th>
+                  <th scope="col">Normal Vücut Sıcaklığı</th>
+                  <th scope="col">Normal Nabız</th>
+                </tr>
+              </thead>
+              <tbody>
+                {normalVitalsTable.map((row) => (
+                  <tr key={row[0]}>
+                    {row.map((cell, index) => (
+                      <td key={`${row[0]}-${index}`}>{cell}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Bu aralıklar genel referanstır; yaş, ırk, boyut, stres
+            düzeyi ve ortam sıcaklığı gibi faktörlere göre sağlıklı
+            bireylerde bile değişiklik gösterebilir. Kesin
+            değerlendirme her zaman bir veteriner hekim tarafından
+            yapılmalıdır.
+          </p>
+
           <h2>Sık Sorulan Sorular</h2>
           {faqItems.map((item) => (
             <p key={item.question}>
@@ -114,6 +160,13 @@ export default function VeterinerAraclariPage() {
               {item.answer}
             </p>
           ))}
+
+          <h2>Kaynaklar</h2>
+          <p>
+            Normal vücut sıcaklığı ve nabız aralıkları, veteriner
+            hekimlik literatüründe yaygın kabul gören genel fizyolojik
+            referans değerlerine dayanır.
+          </p>
         </section>
       </div>
     </main>

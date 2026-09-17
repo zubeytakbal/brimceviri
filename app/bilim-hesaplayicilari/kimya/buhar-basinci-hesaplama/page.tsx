@@ -186,6 +186,15 @@ export default function BuharBasinciHesaplamaPage() {
             </p>
           ))}
 
+          <h2>İlgili araçlar</h2>
+          <p>
+            Entalpi hesaplamaları için{" "}
+            <Link href="/bilim-hesaplayicilari/kimya/entalpi-hesaplama">Entalpi Hesaplama</Link>,{" "}
+            erime/kaynama noktası için{" "}
+            <Link href="/erime-kaynama-noktasi-hesaplama">Erime/Kaynama Noktası Hesaplama</Link>
+            {" "}sayfasına bakabilirsin.
+          </p>
+
           <h2>Kaynaklar</h2>
           <p>
             Clausius-Clapeyron denklemi ve buharlaşma entalpisi değerleri,

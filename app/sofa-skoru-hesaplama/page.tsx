@@ -87,6 +87,16 @@ export default function SofaPage() {
             araç seçtiğin puanları toplar.
           </p>
 
+          <h2>Diğer Risk Skorlama Araçları</h2>
+          <ul className="related-conversion-list">
+            <li><Link href="/qsofa-hesaplama">qSOFA Hesaplama</Link></li>
+            <li><Link href="/glasgow-koma-skalasi-hesaplama">Glasgow Koma Skalası Hesaplama</Link></li>
+            <li><Link href="/apgar-skoru-hesaplama">Apgar Skoru Hesaplama</Link></li>
+            <li><Link href="/meld-skoru-hesaplama">MELD Skoru Hesaplama</Link></li>
+            <li><Link href="/wells-skoru-hesaplama">Wells Skoru Hesaplama</Link></li>
+            <li><Link href="/cha2ds2-vasc-skoru-hesaplama">CHA2DS2-VASc Skoru Hesaplama</Link></li>
+          </ul>
+
           <h2>İlgili araçlar</h2>
           <p>
             Hızlı sepsis taraması için{" "}

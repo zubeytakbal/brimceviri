@@ -14,6 +14,16 @@ const faqItems: FaqItem[] = [
     answer:
       "Hayır. Buradaki araçlar genel hesaplama amaçlıdır; kişiye özel antrenman programı veya sağlık tavsiyesi vermez.",
   },
+  {
+    question: "Kuvvet, hipertrofi ve dayanıklılık antrenmanı için hangi %1RM aralığı kullanılır?",
+    answer:
+      "Genel kabul gören yaklaşıma göre: maksimal kuvvet için %85-100 1RM (1-5 tekrar), kas hacmi/hipertrofi için %67-85 1RM (6-12 tekrar), kas dayanıklılığı için %67 1RM altı (15+ tekrar) hedeflenir. Bu aralıklar genel bir çerçevedir; program tasarımı sporcunun hedefine, deneyimine ve dönemine (periodizasyon) göre uyarlanır.",
+  },
+  {
+    question: "Tahmini 1RM formülleri neden gerçek 1RM'den sapabilir?",
+    answer:
+      "Epley gibi formüller, düşük-orta tekrar sayılarında (genelde 10-12 tekrarın altında) makul tahminler verir; tekrar sayısı arttıkça (15+ gibi) tahmin hatası büyür çünkü kas yorgunluğu doğrusal olmayan bir şekilde etkiler. En güvenilir 1RM, doğrudan test edilerek (uygun ısınma ve gözetim ile) bulunandır; formül sonucu yalnızca bir başlangıç noktasıdır.",
+  },
 ];
 
 export const metadata: Metadata = {
@@ -102,6 +112,37 @@ export default function AntrenorAraclariPage() {
             </li>
           </ul>
 
+          <h2>Antrenman Hedefine Göre %1RM Aralıkları</h2>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <caption>Antrenman hedefine göre yaygın kullanılan %1RM ve tekrar aralıkları</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Hedef</th>
+                  <th scope="col">%1RM</th>
+                  <th scope="col">Tekrar Aralığı</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Maksimal Kuvvet</td>
+                  <td>%85 - 100</td>
+                  <td>1 - 5</td>
+                </tr>
+                <tr>
+                  <td>Hipertrofi (Kas Hacmi)</td>
+                  <td>%67 - 85</td>
+                  <td>6 - 12</td>
+                </tr>
+                <tr>
+                  <td>Kas Dayanıklılığı</td>
+                  <td>%67 altı</td>
+                  <td>15+</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
           <h2>Sık Sorulan Sorular</h2>
           {faqItems.map((item) => (
             <p key={item.question}>
@@ -110,6 +151,13 @@ export default function AntrenorAraclariPage() {
               {item.answer}
             </p>
           ))}
+
+          <h2>Kaynaklar</h2>
+          <p>
+            %1RM ve tekrar aralıkları, güç antrenmanı literatüründe
+            (örn. NSCA - National Strength and Conditioning Association)
+            yaygın kabul gören genel çerçevelere dayanır.
+          </p>
         </section>
       </div>
     </main>

@@ -98,6 +98,16 @@ export default function Cha2ds2Page() {
             olarak revize edilmiştir.
           </p>
 
+          <h2>Diğer Risk Skorlama Araçları</h2>
+          <ul className="related-conversion-list">
+            <li><Link href="/glasgow-koma-skalasi-hesaplama">Glasgow Koma Skalası Hesaplama</Link></li>
+            <li><Link href="/apgar-skoru-hesaplama">Apgar Skoru Hesaplama</Link></li>
+            <li><Link href="/meld-skoru-hesaplama">MELD Skoru Hesaplama</Link></li>
+            <li><Link href="/sofa-skoru-hesaplama">SOFA Skoru Hesaplama</Link></li>
+            <li><Link href="/qsofa-hesaplama">qSOFA Hesaplama</Link></li>
+            <li><Link href="/wells-skoru-hesaplama">Wells Skoru Hesaplama</Link></li>
+          </ul>
+
           <h2>İlgili araçlar</h2>
           <p>
             Diğer doktor ve hemşire araçları için{" "}

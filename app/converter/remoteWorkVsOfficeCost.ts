@@ -20,15 +20,31 @@ export interface RemoteWorkComparisonResult {
   annualNetSavingsTl: number;
 }
 
-export function calculateRemoteWorkVsOfficeCost(
-  input: RemoteWorkComparisonInput,
-): RemoteWorkComparisonResult | null {
+export interface RemoteWorkCostComparisonInput {
+  annualWorkDays: number;
+  remoteDaysPerWeek: number;
+  dailyCommuteCost: number;
+  dailyLunchDifference: number;
+  monthlyExtraHomeCost: number;
+}
+
+export interface RemoteWorkCostComparisonResult {
+  annualRemoteDays: number;
+  annualCommuteSaving: number;
+  annualLunchSaving: number;
+  annualExtraHomeCost: number;
+  annualNetSaving: number;
+}
+
+export function calculateRemoteWorkCostComparison(
+  input: RemoteWorkCostComparisonInput,
+): RemoteWorkCostComparisonResult | null {
   const {
     annualWorkDays,
     remoteDaysPerWeek,
-    dailyCommuteCostTl,
-    dailyLunchDifferenceTl,
-    monthlyExtraHomeCostTl,
+    dailyCommuteCost,
+    dailyLunchDifference,
+    monthlyExtraHomeCost,
   } = input;
 
   if (
@@ -37,29 +53,48 @@ export function calculateRemoteWorkVsOfficeCost(
     !Number.isFinite(remoteDaysPerWeek) ||
     remoteDaysPerWeek < 0 ||
     remoteDaysPerWeek > 5 ||
-    !Number.isFinite(dailyCommuteCostTl) ||
-    dailyCommuteCostTl < 0 ||
-    !Number.isFinite(dailyLunchDifferenceTl) ||
-    !Number.isFinite(monthlyExtraHomeCostTl) ||
-    monthlyExtraHomeCostTl < 0
+    !Number.isFinite(dailyCommuteCost) ||
+    dailyCommuteCost < 0 ||
+    !Number.isFinite(dailyLunchDifference) ||
+    !Number.isFinite(monthlyExtraHomeCost) ||
+    monthlyExtraHomeCost < 0
   ) {
     return null;
   }
 
   const annualRemoteDays = annualWorkDays * (remoteDaysPerWeek / 5);
-
-  const annualCommuteSavingsTl = annualRemoteDays * dailyCommuteCostTl;
-  const annualLunchSavingsTl = annualRemoteDays * dailyLunchDifferenceTl;
-  const annualExtraHomeCostTl = monthlyExtraHomeCostTl * 12;
-
-  const annualNetSavingsTl =
-    annualCommuteSavingsTl + annualLunchSavingsTl - annualExtraHomeCostTl;
+  const annualCommuteSaving = annualRemoteDays * dailyCommuteCost;
+  const annualLunchSaving = annualRemoteDays * dailyLunchDifference;
+  const annualExtraHomeCost = monthlyExtraHomeCost * 12;
 
   return {
     annualRemoteDays,
-    annualCommuteSavingsTl,
-    annualLunchSavingsTl,
-    annualExtraHomeCostTl,
-    annualNetSavingsTl,
+    annualCommuteSaving,
+    annualLunchSaving,
+    annualExtraHomeCost,
+    annualNetSaving:
+      annualCommuteSaving + annualLunchSaving - annualExtraHomeCost,
+  };
+}
+
+export function calculateRemoteWorkVsOfficeCost(
+  input: RemoteWorkComparisonInput,
+): RemoteWorkComparisonResult | null {
+  const result = calculateRemoteWorkCostComparison({
+    annualWorkDays: input.annualWorkDays,
+    remoteDaysPerWeek: input.remoteDaysPerWeek,
+    dailyCommuteCost: input.dailyCommuteCostTl,
+    dailyLunchDifference: input.dailyLunchDifferenceTl,
+    monthlyExtraHomeCost: input.monthlyExtraHomeCostTl,
+  });
+
+  if (!result) return null;
+
+  return {
+    annualRemoteDays: result.annualRemoteDays,
+    annualCommuteSavingsTl: result.annualCommuteSaving,
+    annualLunchSavingsTl: result.annualLunchSaving,
+    annualExtraHomeCostTl: result.annualExtraHomeCost,
+    annualNetSavingsTl: result.annualNetSaving,
   };
 }

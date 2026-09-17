@@ -33,6 +33,9 @@ export const metadata: Metadata = {
     "Temel, döşeme veya kolon için gereken beton hacmini, çimento torba sayısını, kum ve çakıl miktarını fire payı dahil anında hesapla.",
   alternates: {
     canonical: "/beton-hesaplama",
+    languages: {
+      "uz-UZ": "/uz/beton-hisoblash",
+    },
   },
   openGraph: {
     title: "Beton Hesaplama: Kaç m³ Beton, Kaç Torba Çimento Gerekir?",
@@ -140,6 +143,20 @@ export default function ConcreteCalculatorPage() {
               {item.answer}
             </p>
           ))}
+
+          <h2>İlgili araçlar</h2>
+          <p>
+            Kazı hacmi hesaplaması için{" "}
+            <Link href="/hafriyat-hesaplama">Hafriyat Hesaplama</Link>,{" "}
+            duvar tuğlası ihtiyacı için{" "}
+            <Link href="/tugla-hesaplama">Tuğla Hesaplama</Link>,{" "}
+            diğer inşaat araçları için{" "}
+            <Link href="/insaatci-araclari">İnşaatçı Araçları</Link>
+            {" "}sayfasına, beton basınç dayanımı (MPa) birim dönüşümü
+            için{" "}
+            <Link href="/megapascal-kilopascal">Megapascal - Kilopascal Çevirici</Link>
+            {" "}sayfasına bakabilirsin.
+          </p>
 
           <h2>Kaynaklar</h2>
           <p>

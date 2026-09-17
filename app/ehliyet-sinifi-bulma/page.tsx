@@ -44,6 +44,9 @@ export const metadata: Metadata = {
     "Aracının koltuk sayısı/ağırlığı ya da motosikletinin motor hacmi/gücüyle, Türkiye'de hangi ehliyet sınıfına (B, C, D, A1, A2, A ve diğer alt sınıflar) ihtiyacın olduğunu hesapla.",
   alternates: {
     canonical: "/ehliyet-sinifi-bulma",
+    languages: {
+      "uz-UZ": "/uz/haydovchilik-toifasi-topish",
+    },
   },
   openGraph: {
     title: "Hangi Ehliyet Sınıfı Gerekli? Araç Bilgine Göre Hesapla",

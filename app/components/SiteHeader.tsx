@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useId, useState } from "react";
 import { getLocaleFromPathname } from "../i18n/config";
 import {
+  getCalculatorMenuLinks,
   getCategoryMenuLinks,
   getSiteHeaderCopy,
   getTopLevelLinks,
@@ -32,13 +33,16 @@ function SiteHeaderNavigation({
 }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isConversionsOpen, setIsConversionsOpen] = useState(false);
+  const [isCalculatorsOpen, setIsCalculatorsOpen] = useState(false);
   const { setSlotElement } = useNotificationSlot();
   const menuId = useId();
   const conversionsMenuId = useId();
+  const calculatorsMenuId = useId();
 
   const locale = getLocaleFromPathname(pathname);
   const topLevelLinks: HeaderLink[] = getTopLevelLinks(locale);
   const categoryLinks: HeaderLink[] = getCategoryMenuLinks(locale);
+  const calculatorLinks: HeaderLink[] = getCalculatorMenuLinks(locale);
   const headerCopy = getSiteHeaderCopy(locale);
   const homeHref = topLevelLinks[0]?.href ?? "/";
 
@@ -47,6 +51,7 @@ function SiteHeaderNavigation({
       if (event.key === "Escape") {
         setIsMenuOpen(false);
         setIsConversionsOpen(false);
+        setIsCalculatorsOpen(false);
       }
     }
 
@@ -58,7 +63,7 @@ function SiteHeaderNavigation({
   }, []);
 
   return (
-    <header className="site-header">
+    <header className={`site-header site-header--${locale}`}>
       <div className="site-header-inner">
         <Link href={homeHref} className="site-logo">
           birimceviri<span>.app</span>
@@ -90,7 +95,10 @@ function SiteHeaderNavigation({
               className="site-nav-toggle"
               aria-expanded={isConversionsOpen}
               aria-controls={conversionsMenuId}
-              onClick={() => setIsConversionsOpen((open) => !open)}
+              onClick={() => {
+                setIsConversionsOpen((open) => !open);
+                setIsCalculatorsOpen(false);
+              }}
             >
               {headerCopy.conversionsLabel}
             </button>
@@ -110,6 +118,33 @@ function SiteHeaderNavigation({
               ))}
             </div>
           </div>
+
+          {calculatorLinks.length > 0 && (
+            <div className="site-nav-group">
+              <button
+                type="button"
+                className="site-nav-toggle"
+                aria-expanded={isCalculatorsOpen}
+                aria-controls={calculatorsMenuId}
+                onClick={() => {
+                  setIsCalculatorsOpen((open) => !open);
+                  setIsConversionsOpen(false);
+                }}
+              >
+                Calculators
+              </button>
+              <div
+                id={calculatorsMenuId}
+                className={`site-nav-dropdown${isCalculatorsOpen ? " is-open" : ""}`}
+              >
+                {calculatorLinks.map((link) => (
+                  <Link href={link.href} key={link.href} onClick={() => setIsCalculatorsOpen(false)}>
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
 
           {topLevelLinks.slice(1).map((link) => (
             <Link href={link.href} key={link.href}>
@@ -140,7 +175,10 @@ function SiteHeaderNavigation({
               className="site-mobile-accordion-toggle"
               aria-expanded={isConversionsOpen}
               aria-controls={`${conversionsMenuId}-mobile`}
-              onClick={() => setIsConversionsOpen((open) => !open)}
+              onClick={() => {
+                setIsConversionsOpen((open) => !open);
+                setIsCalculatorsOpen(false);
+              }}
             >
               <span>{headerCopy.conversionsLabel}</span>
               <span aria-hidden="true">
@@ -169,6 +207,42 @@ function SiteHeaderNavigation({
               ))}
             </div>
           </div>
+
+          {calculatorLinks.length > 0 && (
+            <div className="site-mobile-accordion">
+              <button
+                type="button"
+                className="site-mobile-accordion-toggle"
+                aria-expanded={isCalculatorsOpen}
+                aria-controls={`${calculatorsMenuId}-mobile`}
+                onClick={() => {
+                  setIsCalculatorsOpen((open) => !open);
+                  setIsConversionsOpen(false);
+                }}
+              >
+                <span>Calculators</span>
+                <span aria-hidden="true">{isCalculatorsOpen ? "\u2212" : "+"}</span>
+              </button>
+              <div
+                id={`${calculatorsMenuId}-mobile`}
+                className={`site-mobile-accordion-panel${isCalculatorsOpen ? " is-open" : ""}`}
+                hidden={!isCalculatorsOpen}
+              >
+                {calculatorLinks.map((link) => (
+                  <Link
+                    href={link.href}
+                    key={`mobile-calculator-${link.href}`}
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      setIsCalculatorsOpen(false);
+                    }}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
 
           {topLevelLinks.slice(1).map((link) => (
             <Link

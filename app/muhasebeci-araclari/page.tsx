@@ -14,6 +14,16 @@ const faqItems: FaqItem[] = [
     answer:
       "Hayır. Buradaki araçlar genel bilgilendirme ve ön hesaplama amaçlıdır. Resmi vergi beyanları ve mali tablolar için her zaman güncel mevzuata ve bir mali müşavire danışılmalıdır.",
   },
+  {
+    question: "Normal amortisman ile azalan bakiyeler yöntemi arasında hangisi seçilmeli?",
+    answer:
+      "Normal (eşit tutarlı) amortismanda her yıl aynı miktar gider yazılır — basit ve öngörülebilirdir. Azalan bakiyeler yönteminde ise ilk yıllarda daha yüksek, sonraki yıllarda azalan tutarlar gider yazılır (oran genellikle normal oranın 2 katı, üst sınır %50) — bu, ilk yıllarda daha fazla vergi avantajı isteyen işletmelerce tercih edilebilir. Seçim, VUK'un izin verdiği sınırlar dahilinde işletmenin mali stratejisine göre yapılır.",
+  },
+  {
+    question: "Türkiye'de güncel KDV oranları nedir?",
+    answer:
+      "Türkiye'de KDV oranları üç kademelidir: genel oran (çoğu mal ve hizmet), indirimli oran (temel gıda, bazı hizmetler gibi) ve süper indirimli oran (temel ihtiyaç maddelerinden bazıları). Kesin ve güncel oranlar zaman zaman Cumhurbaşkanlığı kararnameleriyle değişebildiği için, güncel oranı her zaman Gelir İdaresi Başkanlığı'nın (GİB) resmi kaynağından teyit etmelisin.",
+  },
 ];
 
 export const metadata: Metadata = {
@@ -123,6 +133,30 @@ export default function MuhasebeciAraclariPage() {
             hesaplama amaçlıdır. Resmi vergi beyanları ve mali
             tablolar için her zaman güncel mevzuata ve bir mali
             müşavire danışılmalıdır.
+          </p>
+          <p>
+            <strong>
+              Normal amortisman ile azalan bakiyeler yöntemi arasında
+              hangisi seçilmeli?
+            </strong>
+            <br />
+            Normal (eşit tutarlı) amortismanda her yıl aynı miktar
+            gider yazılır — basit ve öngörülebilirdir. Azalan
+            bakiyeler yönteminde ise ilk yıllarda daha yüksek, sonraki
+            yıllarda azalan tutarlar gider yazılır (oran genellikle
+            normal oranın 2 katı, üst sınır %50) — bu, ilk yıllarda
+            daha fazla vergi avantajı isteyen işletmelerce tercih
+            edilebilir.
+          </p>
+          <p>
+            <strong>Türkiye&apos;de güncel KDV oranları nedir?</strong>
+            <br />
+            Türkiye&apos;de KDV oranları üç kademelidir: genel oran,
+            indirimli oran ve süper indirimli oran. Kesin ve güncel
+            oranlar zaman zaman Cumhurbaşkanlığı kararnameleriyle
+            değişebildiği için, güncel oranı her zaman Gelir İdaresi
+            Başkanlığı&apos;nın (GİB) resmi kaynağından teyit
+            etmelisin.
           </p>
 
           <h2>Kaynaklar</h2>

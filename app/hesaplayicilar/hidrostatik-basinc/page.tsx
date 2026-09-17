@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     languages: {
       tr: "/hesaplayicilar/hidrostatik-basinc",
       en: "/en/calculators/hydrostatic-pressure",
+      "uz-UZ": "/uz/gidrostatik-bosim-hisoblash",
       "x-default": "/hesaplayicilar/hidrostatik-basinc",
     },
   },

@@ -357,6 +357,84 @@ export const uzbekCategoryPages: LocalizedUzbekCategoryPage[] = [
   },
   {
     locale: "uz",
+    slug: "kumush-sofligi",
+    sourceSlug: "gumus-ayar",
+    category: "gumus_ayar",
+    title: "Kumush Sofligi (Proba) Birliklarini O'zgartirish",
+    description:
+      "999, 925 (sterling), 900 va 800 probali kumush o'rtasida sof kumush miqdoriga qarab gramm hisobini o'zgartiring.",
+    introduction: [
+      "Kumush sofligi (proba) qotishmadagi sof kumush ulushini mingdan bir qism sifatida bildiradi.",
+      "999 proba -- 99,9% sof kumush, 925 proba (sterling kumush) esa 92,5% kumush va 7,5% boshqa metall (odatda mis) dan iborat qotishmani anglatadi.",
+    ],
+    facts: [
+      { label: "999 proba", value: "99,9% sof kumush" },
+      { label: "925 proba (sterling)", value: "92,5% sof kumush" },
+      { label: "800 proba", value: "80% sof kumush" },
+    ],
+    sections: [
+      {
+        title: "Kumush probasi nima?",
+        paragraphs: [
+          "Proba tizimi qotishmadagi sof kumush ulushini mingdan bir qism bilan ifodalaydi -- masalan 925 proba, har 1000 qismning 925 qismi sof kumush degani. Zargarlik buyumlarida qattiqlik va narx uchun muhim ko'rsatkich.",
+        ],
+      },
+    ],
+  },
+  {
+    locale: "uz",
+    slug: "qon-shakari",
+    sourceSlug: "kan-sekeri",
+    category: "kan_sekeri",
+    title: "Qon Shakari (Glyukoza) Birliklarini O'zgartirish",
+    description:
+      "Qon shakari (glyukoza) qiymatini mg/dL va mmol/L birliklari o'rtasida o'zgartiring; AQSHda qo'llaniladigan an'anaviy birlik bilan dunyo bo'ylab keng tarqalgan SI birligining mosligini ko'ring.",
+    introduction: [
+      "Qon shakari darajasi laboratoriya natijalarida ikki xil birlikda beriladi: mg/dL (massaga asoslangan, AQSHda keng qo'llaniladi) va mmol/L (molyar, dunyo bo'ylab SI standarti).",
+      "O'zbekistonda laboratoriya natijalari odatda mmol/L da beriladi, shu sababli AQSH yoki xalqaro manbalardan mg/dL da kelgan natijalarni to'g'ri tushunish uchun aylantirish zarur bo'lishi mumkin.",
+    ],
+    facts: [
+      { label: "1 mmol/L glyukoza", value: "18,016 mg/dL" },
+      { label: "1 mg/dL glyukoza", value: "≈ 0,0555 mmol/L" },
+      { label: "Normal och qorin darajasi", value: "≈ 3,9–5,6 mmol/L (70–100 mg/dL)" },
+    ],
+    sections: [
+      {
+        title: "mg/dL va mmol/L orasidagi farq nima?",
+        paragraphs: [
+          "mg/dL glyukozaning qondagi massa konsentratsiyasini, mmol/L esa modda miqdori (molyar) konsentratsiyasini bildiradi. Ikkisi orasidagi aylantirish koeffitsiyenti glyukozaning molekulyar massasidan (180,16 g/mol) kelib chiqadi.",
+        ],
+      },
+    ],
+  },
+  {
+    locale: "uz",
+    slug: "vitamin-d",
+    sourceSlug: "vitamin-d",
+    category: "vitamin_d",
+    title: "Vitamin D Birliklarini O'zgartirish",
+    description:
+      "Qon zardobidagi Vitamin D (25-OH) qiymatini ng/mL va nmol/L birliklari o'rtasida o'zgartiring; AQSHda qo'llaniladigan an'anaviy birlik bilan dunyo bo'ylab keng tarqalgan SI birligining mosligini ko'ring.",
+    introduction: [
+      "Vitamin D (25-gidroksivitamin D) darajasi laboratoriya natijalarida ikki xil birlikda beriladi: ng/mL (massaga asoslangan, AQSHda keng qo'llaniladi) va nmol/L (molyar, dunyo bo'ylab SI standarti).",
+      "O'zbekistonda ham laboratoriya turiga qarab har ikki birlik uchrashi mumkin, shu sababli natijalarni to'g'ri taqqoslash uchun aylantirish foydali bo'ladi.",
+    ],
+    facts: [
+      { label: "1 ng/mL Vitamin D", value: "2,496 nmol/L" },
+      { label: "1 nmol/L Vitamin D", value: "≈ 0,4006 ng/mL" },
+      { label: "Yetarli daraja (odatda)", value: "≈ 30 ng/mL (75 nmol/L) dan yuqori" },
+    ],
+    sections: [
+      {
+        title: "ng/mL va nmol/L orasidagi farq nima?",
+        paragraphs: [
+          "ng/mL Vitamin D ning qon zardobidagi massa konsentratsiyasini, nmol/L esa modda miqdori (molyar) konsentratsiyasini bildiradi. Aylantirish koeffitsiyenti 25-gidroksivitamin D ning molekulyar massasidan kelib chiqadi.",
+        ],
+      },
+    ],
+  },
+  {
+    locale: "uz",
     slug: "sarf",
     sourceSlug: "debi",
     category: "debi",

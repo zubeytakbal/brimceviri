@@ -106,6 +106,13 @@ export default function MovingBoxCalculatorPage() {
               {item.answer}
             </p>
           ))}
+
+          <h2>İlgili araçlar</h2>
+          <p>
+            Diğer nakliyeci araçları için{" "}
+            <Link href="/nakliyeci-araclari">Nakliyeci Araçları</Link>{" "}
+            sayfasına bakabilirsin.
+          </p>
         </section>
       </div>
     </main>

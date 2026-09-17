@@ -58,21 +58,47 @@ export default function EnglishShoeSizePage() {
         <section className="category-article-content">
           <h2>Why do shoe sizes vary by brand?</h2>
           <p>
-            EU sizing is consistent across most markets, but US and UK
-            systems use different scales. Brands also apply their own
-            last shapes and fit decisions, so the same foot length can
-            appear as one label in one brand and a half size higher or
-            lower in another.
+            EU, US and UK labels use different numerical scales, and US
+            sizing also differs between men&apos;s and women&apos;s ranges.
+            Brands apply their own lasts, width assumptions and fit
+            decisions, so the same foot length can appear as one label in
+            one brand and a half size higher or lower in another.
           </p>
           <p>
-            The tables here are compiled from brand sizing references.
-            For the closest match, measure your foot length in
-            centimeters and use the foot-length option in the converter.
+            The tables provide a practical closest match rather than a
+            fit guarantee. For a new brand, use the product&apos;s official
+            size guide as the final reference, particularly where the
+            listing also specifies a narrow, regular or wide fit.
+          </p>
+
+          <h2>How to measure your foot length</h2>
+          <p>
+            Stand with your heel against a wall on a sheet of paper,
+            keeping your weight on the foot. Mark the furthest toe,
+            then measure from the wall edge to that mark in centimeters.
+            Measure both feet and use the longer measurement when the
+            two differ.
           </p>
           <p>
-            In children&apos;s sizing, US numbering resets after 13.5 and
-            starts again at 1 for youth sizes. That is why toddler and
-            big-kid tables are shown separately.
+            Foot length in centimeters is the most useful common
+            reference when moving between sizing systems. Leave some
+            space for socks and normal toe movement; the right allowance
+            varies by shoe type and by the fit guidance from the brand.
+          </p>
+
+          <h2>Using EU, US and UK shoe size charts</h2>
+          <p>
+            Start by selecting the correct group, then choose the brand
+            only when you know it. Enter an EU, US or UK label, or use
+            your measured foot length. The displayed row gives the
+            closest equivalent across the four systems and the table
+            below lets you check neighbouring sizes.
+          </p>
+          <p>
+            Children&apos;s numbering has its own ranges: US sizes reset
+            after 13.5 before youth sizes start again at 1. That is why
+            toddler/little-kid and big-kid charts are kept separate from
+            adult charts here.
           </p>
         </section>
 

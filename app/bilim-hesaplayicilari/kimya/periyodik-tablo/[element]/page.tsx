@@ -306,6 +306,18 @@ export default async function ElementPage({ params }: PageProps) {
             </p>
           )}
 
+          <h2>İlgili araçlar</h2>
+          <p>
+            Bu elementin izotop ağırlıklı ortalama atom kütlesini incelemek
+            için{" "}
+            <Link href="/bilim-hesaplayicilari/kimya/atom-kutlesi-hesaplama">Atom Kütlesi Hesaplama</Link>,{" "}
+            bu elementi içeren bileşiklerin molar kütlesi için{" "}
+            <Link href="/bilim-hesaplayicilari/kimya/bilesikler">Bileşikler</Link>,{" "}
+            kütleden mol sayısına geçmek için{" "}
+            <Link href="/bilim-hesaplayicilari/kimya/mol-hesaplama">Mol Hesaplama</Link>
+            {" "}sayfasına bakabilirsin.
+          </p>
+
           <h2>Kaynaklar</h2>
           <p>
             Atom kütleleri IUPAC&apos;ın (Uluslararası Temel ve Uygulamalı

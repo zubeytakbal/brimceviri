@@ -34,9 +34,9 @@ const unitOptionLabels: Record<
     ton: "طن",
   },
 uz: {
-    g: "Gram (g)",
-    kg: "Kilogram (kg)",
-    ton: "Ton",
+    g: "Gramm (g)",
+    kg: "Kilogramm (kg)",
+    ton: "Tonna",
   },
 bn: {
     g: "Gram (g)",
@@ -50,7 +50,7 @@ const unitShortLabels: Record<Locale, Record<WeightComparisonUnit, string>> = {
   en: { g: "g", kg: "kg", ton: "ton" },
   de: { g: "g", kg: "kg", ton: "t" },
   ar: { g: "غ", kg: "كجم", ton: "طن" },
-uz: { g: "g", kg: "kg", ton: "ton" },
+uz: { g: "g", kg: "kg", ton: "t" },
 bn: { g: "g", kg: "kg", ton: "ton" },
 };
 
@@ -92,13 +92,13 @@ const referenceLabels: Record<Locale, Record<string, string>> = {
     "mavi-balina": "متوسط وزن حوت أزرق بالغ",
   },
 uz: {
-    kedi: "Average house cat",
-    insan: "Average adult human",
-    motosiklet: "Average motorcycle",
-    at: "Average riding horse",
-    otomobil: "Average passenger car",
-    fil: "Average adult African elephant",
-    "mavi-balina": "Average adult blue whale",
+    kedi: "O'rtacha uy mushugi",
+    insan: "O'rtacha voyaga yetgan inson",
+    motosiklet: "O'rtacha mototsikl",
+    at: "O'rtacha minish oti",
+    otomobil: "O'rtacha yengil avtomobil",
+    fil: "O'rtacha voyaga yetgan Afrika fili",
+    "mavi-balina": "O'rtacha voyaga yetgan ko'k kit",
   },
 bn: {
     kedi: "Average house cat",
@@ -166,13 +166,13 @@ const copyByLocale: Record<
   },
 uz: {
     labels: {
-      value: "Value",
-      unit: "Unit",
+      value: "Qiymat",
+      unit: "Birlik",
     },
-    placeholder: "E.g. 25",
-    emptyState: "Enter a valid value to see the comparisons.",
-    intro: "comparisons for",
-    closestMatch: "Closest comparison",
+    placeholder: "Mas. 25",
+    emptyState: "Solishtirishlarni ko'rish uchun to'g'ri qiymat kiriting.",
+    intro: "uchun solishtirishlar:",
+    closestMatch: "Eng yaqin solishtirish",
   },
 bn: {
     labels: {

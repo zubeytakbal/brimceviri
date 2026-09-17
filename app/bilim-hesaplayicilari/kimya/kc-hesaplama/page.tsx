@@ -181,6 +181,17 @@ export default function KcHesaplamaPage() {
             </p>
           ))}
 
+          <h2>İlgili araçlar</h2>
+          <p>
+            Zayıf asit/baz denge hesaplamaları için{" "}
+            <Link href="/bilim-hesaplayicilari/kimya/ph-hesaplama">pH Hesaplama</Link>,{" "}
+            derişim hesabı için{" "}
+            <Link href="/bilim-hesaplayicilari/kimya/molarite-hesaplama">Molarite Hesaplama</Link>,{" "}
+            standart hücre potansiyelinden denge sabitine geçiş için{" "}
+            <Link href="/bilim-hesaplayicilari/kimya/pil-potansiyeli-hesaplama">Pil Potansiyeli Hesaplama</Link>
+            {" "}sayfasına bakabilirsin.
+          </p>
+
           <h2>Kaynaklar</h2>
           <p>
             Denge sabiti tanımı, kütle etkisi yasasına ve IUPAC&apos;ın

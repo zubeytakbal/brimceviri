@@ -208,6 +208,11 @@ export default function LogaritmaHesaplamaPage() {
             <Link href="/bilim-hesaplayicilari/matematik/3-bilinmeyenli-denklem-sistemi-cozme">
               3 Bilinmeyenli Denklem Sistemi Çözme
             </Link>{" "}
+            aracına bakabilirsin. Logaritmanın ters işlemi olan üs alma
+            için{" "}
+            <Link href="/bilim-hesaplayicilari/matematik/uslu-sayilar-hesaplama">
+              Üslü Sayılar Hesaplama
+            </Link>{" "}
             aracına bakabilirsin.
           </p>
 

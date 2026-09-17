@@ -125,6 +125,13 @@ export default function LengthComparisonPage() {
             dolu gösterilir ve yanındaki sayı gerçek kat farkını (ör.
             &quot;36 kat&quot;) yazılı olarak belirtir.
           </p>
+
+          <h2>İlgili araçlar</h2>
+          <p>
+            Ağırlık karşılaştırması için{" "}
+            <Link href="/agirlik-karsilastirma">Ağırlık Karşılaştırma</Link>
+            {" "}sayfasına bakabilirsin.
+          </p>
         </section>
       </div>
     </main>

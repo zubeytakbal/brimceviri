@@ -26,46 +26,94 @@ export type EvVsIceResult = {
   breakEvenKm: number | null;
 };
 
-export function calculateEvVsIceComparison(input: EvVsIceInput): EvVsIceResult | null {
+// Currency and country neutral core used by language-specific interfaces.
+// Consumers provide their own price and consumption units; the calculation
+// deliberately has no tariff, fuel-price or currency assumption.
+export type VehicleRunningCostInput = {
+  annualDistance: number;
+  fuelUnitsPer100Distance: number;
+  fuelPricePerUnit: number;
+  evEnergyUnitsPer100Distance: number;
+  electricityPricePerUnit: number;
+  purchasePremium: number;
+};
+
+export type VehicleRunningCostResult = {
+  annualFuelCost: number;
+  annualElectricityCost: number;
+  annualOperatingSavings: number;
+  breakEvenYears: number | null;
+  breakEvenDistance: number | null;
+};
+
+export function calculateVehicleRunningCostComparison(
+  input: VehicleRunningCostInput,
+): VehicleRunningCostResult | null {
   const {
-    annualKm,
-    iceConsumptionPer100Km,
-    gasolinePriceTl,
-    evConsumptionPer100Km,
-    electricityPriceTl,
-    priceDifferenceTl,
+    annualDistance,
+    fuelUnitsPer100Distance,
+    fuelPricePerUnit,
+    evEnergyUnitsPer100Distance,
+    electricityPricePerUnit,
+    purchasePremium,
   } = input;
 
   if (
-    !Number.isFinite(annualKm) ||
-    !Number.isFinite(iceConsumptionPer100Km) ||
-    !Number.isFinite(gasolinePriceTl) ||
-    !Number.isFinite(evConsumptionPer100Km) ||
-    !Number.isFinite(electricityPriceTl) ||
-    !Number.isFinite(priceDifferenceTl) ||
-    annualKm <= 0 ||
-    iceConsumptionPer100Km <= 0 ||
-    gasolinePriceTl <= 0 ||
-    evConsumptionPer100Km <= 0 ||
-    electricityPriceTl <= 0 ||
-    priceDifferenceTl < 0
+    !Number.isFinite(annualDistance) ||
+    !Number.isFinite(fuelUnitsPer100Distance) ||
+    !Number.isFinite(fuelPricePerUnit) ||
+    !Number.isFinite(evEnergyUnitsPer100Distance) ||
+    !Number.isFinite(electricityPricePerUnit) ||
+    !Number.isFinite(purchasePremium) ||
+    annualDistance <= 0 ||
+    fuelUnitsPer100Distance <= 0 ||
+    fuelPricePerUnit <= 0 ||
+    evEnergyUnitsPer100Distance <= 0 ||
+    electricityPricePerUnit <= 0 ||
+    purchasePremium < 0
   ) {
     return null;
   }
 
-  const annualGasolineCostTl = annualKm * (iceConsumptionPer100Km / 100) * gasolinePriceTl;
-  const annualElectricityCostTl = annualKm * (evConsumptionPer100Km / 100) * electricityPriceTl;
-  const annualSavingsTl = annualGasolineCostTl - annualElectricityCostTl;
-
+  const annualFuelCost =
+    annualDistance * (fuelUnitsPer100Distance / 100) * fuelPricePerUnit;
+  const annualElectricityCost =
+    annualDistance *
+    (evEnergyUnitsPer100Distance / 100) *
+    electricityPricePerUnit;
+  const annualOperatingSavings = annualFuelCost - annualElectricityCost;
   const breakEvenYears =
-    priceDifferenceTl > 0 && annualSavingsTl > 0 ? priceDifferenceTl / annualSavingsTl : null;
-  const breakEvenKm = breakEvenYears !== null ? breakEvenYears * annualKm : null;
+    purchasePremium > 0 && annualOperatingSavings > 0
+      ? purchasePremium / annualOperatingSavings
+      : null;
 
   return {
-    annualGasolineCostTl,
-    annualElectricityCostTl,
-    annualSavingsTl,
+    annualFuelCost,
+    annualElectricityCost,
+    annualOperatingSavings,
     breakEvenYears,
-    breakEvenKm,
+    breakEvenDistance:
+      breakEvenYears === null ? null : breakEvenYears * annualDistance,
+  };
+}
+
+export function calculateEvVsIceComparison(input: EvVsIceInput): EvVsIceResult | null {
+  const result = calculateVehicleRunningCostComparison({
+    annualDistance: input.annualKm,
+    fuelUnitsPer100Distance: input.iceConsumptionPer100Km,
+    fuelPricePerUnit: input.gasolinePriceTl,
+    evEnergyUnitsPer100Distance: input.evConsumptionPer100Km,
+    electricityPricePerUnit: input.electricityPriceTl,
+    purchasePremium: input.priceDifferenceTl,
+  });
+
+  if (!result) return null;
+
+  return {
+    annualGasolineCostTl: result.annualFuelCost,
+    annualElectricityCostTl: result.annualElectricityCost,
+    annualSavingsTl: result.annualOperatingSavings,
+    breakEvenYears: result.breakEvenYears,
+    breakEvenKm: result.breakEvenDistance,
   };
 }

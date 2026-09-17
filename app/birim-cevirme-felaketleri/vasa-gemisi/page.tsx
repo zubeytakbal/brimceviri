@@ -32,6 +32,9 @@ export const metadata: Metadata = {
     "İsveç'in gururu Vasa savaş gemisi, marangozların bir yanda İsveç ayağını diğer yanda Amsterdam ayağını kullanmasıyla asimetrik çıktı ve ilk seferinde battı.",
   alternates: {
     canonical: "/birim-cevirme-felaketleri/vasa-gemisi",
+    languages: {
+      "uz-UZ": "/uz/birlik-aylantirish-fojialari/vasa-gemisi",
+    },
   },
   openGraph: {
     title: "Vasa Gemisi: İki Farklı 'Ayak' Ölçüsüyle İnşa Edilen Savaş Gemisi",

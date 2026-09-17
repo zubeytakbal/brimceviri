@@ -200,6 +200,19 @@ export default function EbobEkokHesaplamaPage() {
             </p>
           ))}
 
+          <h2>İlgili araçlar</h2>
+          <p>
+            Kesir sadeleştirme/işlemleri için{" "}
+            <Link href="/bilim-hesaplayicilari/matematik/kesir-hesaplama">Kesir Hesaplama</Link>,{" "}
+            bir sayının bölen sayısı için{" "}
+            <Link href="/bilim-hesaplayicilari/matematik/bolen-sayisi-hesaplama">Bölen Sayısı Hesaplama</Link>,{" "}
+            karekök/küpkök sadeleştirme için{" "}
+            <Link href="/bilim-hesaplayicilari/matematik/karekok-hesaplama">Karekök Hesaplama</Link>{" "}
+            ve{" "}
+            <Link href="/bilim-hesaplayicilari/matematik/kupkok-hesaplama">Küpkök Hesaplama</Link>
+            {" "}sayfalarına bakabilirsin.
+          </p>
+
           <h2>Kaynaklar</h2>
           <p>
             Asal çarpanlara ayırma yöntemi ve aritmetiğin temel teoremi,

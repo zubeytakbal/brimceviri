@@ -187,6 +187,17 @@ export default function AtomKutlesiHesaplamaPage() {
             </p>
           ))}
 
+          <h2>İlgili araçlar</h2>
+          <p>
+            Kütleden mol sayısına geçmek için{" "}
+            <Link href="/bilim-hesaplayicilari/kimya/mol-hesaplama">Mol Hesaplama</Link>,{" "}
+            periyodik tablo için{" "}
+            <Link href="/bilim-hesaplayicilari/kimya/periyodik-tablo">Periyodik Tablo</Link>,{" "}
+            izotopların radyoaktif bozunma hızını incelemek için{" "}
+            <Link href="/bilim-hesaplayicilari/kimya/yari-omur-hesaplama">Yarı Ömür Hesaplama</Link>
+            {" "}sayfasına bakabilirsin.
+          </p>
+
           <h2>Kaynaklar</h2>
           <p>
             İzotop kütleleri ve doğal bolluk oranları, IUPAC&apos;ın

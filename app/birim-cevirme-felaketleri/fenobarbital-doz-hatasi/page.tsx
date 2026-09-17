@@ -32,6 +32,9 @@ export const metadata: Metadata = {
     "1999'da bir hastaya, reçetedeki 'grain' birimi 'gram' ile karıştırıldığı için gerekenin yaklaşık 15 katı fenobarbital dozu verildi. Gerçek olay, doğrulanmış kaynaklarla.",
   alternates: {
     canonical: "/birim-cevirme-felaketleri/fenobarbital-doz-hatasi",
+    languages: {
+      "uz-UZ": "/uz/birlik-aylantirish-fojialari/fenobarbital-doz-hatasi",
+    },
   },
   openGraph: {
     title: "Fenobarbital Doz Hatası: Gram ile Grain Karıştırılınca",

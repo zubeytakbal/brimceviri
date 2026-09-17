@@ -28,6 +28,9 @@ export const metadata: Metadata = {
     "Lastik ebat kodundan (örn. 205/55 R16) dış çapı, çevreyi ve km başına devir sayısını hesapla; iki farklı ebat girerek hız göstergesi ve km sayacı sapmasını öğren.",
   alternates: {
     canonical: "/lastik-ebati-hesaplama",
+    languages: {
+      "uz-UZ": "/uz/shina-olchami-hisoblash",
+    },
   },
   openGraph: {
     title: "Lastik Ebatı Hesaplama: Dış Çap ve Hız Göstergesi Sapması",
@@ -167,7 +170,9 @@ export default function TireSizeCalculatorPage() {
           <p>
             Diğer otomotiv hesaplayıcıları için{" "}
             <Link href="/otomotiv-araclari">Otomotiv Araçları</Link>{" "}
-            sayfasına bakabilirsin.
+            sayfasına, yakıt tüketimi hesaplama için{" "}
+            <Link href="/yakit-tuketimi-hesaplama">Yakıt Tüketimi Hesaplama</Link>
+            {" "}sayfasına bakabilirsin.
           </p>
 
           <h2>Kaynaklar</h2>

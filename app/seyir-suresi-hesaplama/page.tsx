@@ -128,7 +128,10 @@ export default function TransitTimeCalculatorPage() {
             <Link href="/kaptan-araclari">Kaptan Araçları</Link> sayfasına,
             deniz mili ve fit birimi dönüşümleri için{" "}
             <Link href="/kategoriler/uzunluk">Uzunluk Dönüşümleri</Link>{" "}
-            sayfasına bakabilirsin.
+            sayfasına, uçuş planlaması için{" "}
+            <Link href="/inis-orani-hesaplama">İniş Oranı Hesaplama</Link>,{" "}
+            <Link href="/yan-ruzgar-hesaplama">Yan Rüzgar Hesaplama</Link>
+            {" "}sayfalarına bakabilirsin.
           </p>
 
           <h2>Kaynaklar</h2>

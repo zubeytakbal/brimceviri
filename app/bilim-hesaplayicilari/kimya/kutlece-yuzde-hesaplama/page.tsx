@@ -197,6 +197,15 @@ export default function KutleceYuzdeHesaplamaPage() {
             </p>
           ))}
 
+          <h2>İlgili araçlar</h2>
+          <p>
+            Hacme dayalı derişim hesabı için{" "}
+            <Link href="/bilim-hesaplayicilari/kimya/molarite-hesaplama">Molarite Hesaplama</Link>,{" "}
+            çok küçük derişimler için{" "}
+            <Link href="/bilim-hesaplayicilari/kimya/ppm-hesaplama">PPM Hesaplama</Link>
+            {" "}sayfasına bakabilirsin.
+          </p>
+
           <h2>Kaynaklar</h2>
           <p>
             Kütlece yüzde derişim tanımı, IUPAC&apos;ın derişim birimleri

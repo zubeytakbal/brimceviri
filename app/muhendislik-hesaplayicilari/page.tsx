@@ -21,6 +21,7 @@ export const metadata: Metadata = {
     languages: {
       tr: pagePath,
       en: englishPath,
+      "uz-UZ": "/uz/muhandislik-hisoblagichlari",
       "x-default": pagePath,
     },
   },

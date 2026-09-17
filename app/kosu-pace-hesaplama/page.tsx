@@ -120,6 +120,15 @@ export default function PaceCalculatorPage() {
             </p>
           ))}
 
+          <h2>İlgili araçlar</h2>
+          <p>
+            Antrenman/beslenme takibi için{" "}
+            <Link href="/antrenor-araclari">Antrenör Araçları</Link>,{" "}
+            1 tekrar maksimum hesaplama için{" "}
+            <Link href="/1rm-hesaplama">1RM Hesaplama</Link>
+            {" "}sayfasına bakabilirsin.
+          </p>
+
           <h2>Kaynaklar</h2>
           <p>
             Yarış mesafeleri World Athletics&apos;in resmi mesafe

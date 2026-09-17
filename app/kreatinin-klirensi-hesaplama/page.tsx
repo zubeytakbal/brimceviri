@@ -101,7 +101,9 @@ export default function CreatinineClearancePage() {
 
           <h2>İlgili araçlar</h2>
           <p>
-            Diğer doktor ve hemşire araçları için{" "}
+            Vücut yüzey alanı hesaplaması için{" "}
+            <Link href="/vucut-yuzey-alani-hesaplama">Vücut Yüzey Alanı Hesaplama</Link>,{" "}
+            diğer doktor ve hemşire araçları için{" "}
             <Link href="/doktor-hemsire-araclari">Doktor ve Hemşire Araçları</Link>{" "}
             sayfasına bakabilirsin.
           </p>

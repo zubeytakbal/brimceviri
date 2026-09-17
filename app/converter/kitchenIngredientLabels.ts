@@ -3,7 +3,7 @@ import type {
   KitchenUnit,
 } from "./kitchenMeasures";
 
-export type KitchenLocale = "tr" | "en" | "de" | "ar";
+export type KitchenLocale = "tr" | "en" | "de" | "ar" | "uz";
 
 export const kitchenIngredientLabels: Record<
   KitchenLocale,
@@ -197,6 +197,53 @@ export const kitchenIngredientLabels: Record<
     karabiber: "فلفل أسود مطحون",
     kimyon: "كمون مطحون",
   },
+  uz: {
+    un: "Un (Bug'doy Uni)",
+    "tam-bugday-unu": "To'liq Bug'doy Uni",
+    "pirinc-unu": "Guruch Uni",
+    "misir-unu": "Makkajo'xori Uni",
+    irmik: "Manka Yormasi (Irmik)",
+    "galeta-unu": "Suxari (Non Uvog'i)",
+    "toz-seker": "Shakar (Kristall)",
+    "pudra-sekeri": "Pudra Shakar",
+    "esmer-seker": "Jigarrang Shakar",
+    tuz: "Tuz (Osh Tuzi)",
+    pirinc: "Guruch",
+    bulgur: "Bulg'ur (Mayda)",
+    nohut: "No'xat (Quruq)",
+    "kirmizi-mercimek": "Qizil Yasmiq",
+    "yesil-mercimek": "Yashil Yasmiq",
+    "kuru-fasulye": "Quruq Loviya",
+    sut: "Sut",
+    yogurt: "Yogurt (Qatiq)",
+    krema: "Krem (Slivki)",
+    tereyagi: "Sariyog'",
+    margarin: "Margarin",
+    zeytinyagi: "Zaytun Yog'i",
+    "sivi-yag": "Suyuq Yog' (O'simlik Yog'i)",
+    bal: "Asal",
+    pekmez: "Pekmez (Uzum Shinnisi)",
+    kakao: "Kakao (Kukun)",
+    "yulaf-ezmesi": "Suli Yormasi (Yulaf)",
+    nisasta: "Kraxmal (Makkajo'xori)",
+    "kabartma-tozu": "Pishirish Kukuni (Razrixlitel)",
+    karbonat: "Soda (Ichimlik Sodasi)",
+    susam: "Kunjut",
+    "ceviz-ici": "Yong'oq Mag'zi (Maydalangan)",
+    "findik-ici": "Funduq Mag'zi",
+    badem: "Bodom",
+    "antep-fistigi": "Pista",
+    "kuru-uzum": "Mayiz (Kishmish)",
+    "hindistan-cevizi": "Kokos Kuki (Rendalangan)",
+    mayonez: "Mayonez",
+    ketcap: "Ketchup",
+    sirke: "Sirka",
+    "limon-suyu": "Limon Sharbati",
+    tarcin: "Dolchin (Kukun)",
+    "kirmizi-biber": "Qizil Qalampir (Kukun)",
+    karabiber: "Qora Qalampir (Kukun)",
+    kimyon: "Zira (Kukun)",
+  },
 };
 
 export const kitchenUnitLabels: Record<
@@ -234,5 +281,13 @@ export const kitchenUnitLabels: Record<
     ml: "ملليلتر",
     litre: "لتر",
     gram: "غرام",
+  },
+  uz: {
+    bardak: "Stakan",
+    yemekKasigi: "Osh Qoshiq",
+    cayKasigi: "Choy Qoshiq",
+    ml: "Millilitr (ml)",
+    litre: "Litr",
+    gram: "Gramm",
   },
 };

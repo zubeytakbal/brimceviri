@@ -7,7 +7,7 @@ import {
   type ConcreteShape,
 } from "../converter/concreteCalculator";
 
-type SupportedLocale = "tr" | "en";
+type SupportedLocale = "tr" | "en" | "uz";
 
 type ConcreteCopy = {
   shapeLabel: string;
@@ -67,6 +67,25 @@ const copyByLocale: Record<SupportedLocale, ConcreteCopy> = {
     resultGravel: "Gravel (aggregate)",
     resultWater: "Water",
     note: "Note: this is an estimate based on a standard C25 concrete mix ratio (about 350 kg/m³ cement); the actual ratio varies by concrete class and ready-mix plant.",
+  },
+  uz: {
+    shapeLabel: "Shakl",
+    shapes: { dikdortgen: "To'g'ri to'rtburchak (poydevor/plita)", silindir: "Silindr (ustun)" },
+    length: "Uzunlik (m)",
+    width: "Kenglik (m)",
+    thickness: "Qalinlik (m)",
+    diameter: "Diametr (m)",
+    height: "Balandlik (m)",
+    waste: "Zaxira Ulushi (%)",
+    emptyState: "To'g'ri o'lchamlarni kiritib natijani ko'rishingiz mumkin.",
+    resultVolume: "Beton hajmi",
+    resultVolumeWithWaste: "Zaxira dahil hajm",
+    resultBagCount: "25 kg tsement qopi",
+    resultCement: "Tsement",
+    resultSand: "Qum",
+    resultGravel: "Shag'al (agregat)",
+    resultWater: "Suv",
+    note: "Eslatma: bu standart C25 beton aralashmasi nisbatiga (taxminan 350 kg/m³ tsement) asoslangan taxmindir; haqiqiy nisbat beton sinfi va tayyor beton zavodiga qarab farq qilishi mumkin.",
   },
 };
 

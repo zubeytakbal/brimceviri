@@ -92,6 +92,30 @@ function createTemperatureFormula(
     return `${toName} = ${fromName} − 273.15`;
   }
 
+  if (fromUnit === "C" && toUnit === "R") {
+    return `${toName} = (${fromName} + 273.15) × 9/5`;
+  }
+
+  if (fromUnit === "R" && toUnit === "C") {
+    return `${toName} = ${fromName} × 5/9 − 273.15`;
+  }
+
+  if (fromUnit === "F" && toUnit === "R") {
+    return `${toName} = ${fromName} + 459.67`;
+  }
+
+  if (fromUnit === "R" && toUnit === "F") {
+    return `${toName} = ${fromName} − 459.67`;
+  }
+
+  if (fromUnit === "C" && toUnit === "Re") {
+    return `${toName} = ${fromName} × 4/5`;
+  }
+
+  if (fromUnit === "Re" && toUnit === "C") {
+    return `${toName} = ${fromName} × 5/4`;
+  }
+
   return `${toName} = ${fromName}`;
 }
 
@@ -115,6 +139,30 @@ function createTemperatureExplanation(
 
   if (fromUnit === "K" && toUnit === "C") {
     return `Zur Umrechnung von ${fromName.toLowerCase()} in ${toName.toLowerCase()} werden 273,15 subtrahiert. 273,15 ${fromUnit} entsprechen 0 ${toUnit}.`;
+  }
+
+  if (fromUnit === "C" && toUnit === "R") {
+    return `Zur Umrechnung von ${fromName.toLowerCase()} in ${toName.toLowerCase()} werden 273,15 addiert und das Ergebnis mit 9/5 multipliziert. 0 ${fromUnit} entsprechen 491,67 ${toUnit}.`;
+  }
+
+  if (fromUnit === "R" && toUnit === "C") {
+    return `Zur Umrechnung von ${fromName.toLowerCase()} in ${toName.toLowerCase()} wird mit 5/9 multipliziert und danach 273,15 subtrahiert. 491,67 ${fromUnit} entsprechen 0 ${toUnit}.`;
+  }
+
+  if (fromUnit === "F" && toUnit === "R") {
+    return `Zur Umrechnung von ${fromName.toLowerCase()} in ${toName.toLowerCase()} werden 459,67 addiert. 32 ${fromUnit} entsprechen 491,67 ${toUnit}.`;
+  }
+
+  if (fromUnit === "R" && toUnit === "F") {
+    return `Zur Umrechnung von ${fromName.toLowerCase()} in ${toName.toLowerCase()} werden 459,67 subtrahiert. 491,67 ${fromUnit} entsprechen 32 ${toUnit}.`;
+  }
+
+  if (fromUnit === "C" && toUnit === "Re") {
+    return `Zur Umrechnung von ${fromName.toLowerCase()} in ${toName.toLowerCase()} wird mit 4/5 multipliziert. 100 ${fromUnit} entsprechen 80 ${toUnit}.`;
+  }
+
+  if (fromUnit === "Re" && toUnit === "C") {
+    return `Zur Umrechnung von ${fromName.toLowerCase()} in ${toName.toLowerCase()} wird mit 5/4 multipliziert. 80 ${fromUnit} entsprechen 100 ${toUnit}.`;
   }
 
   return `Verwenden Sie die definierte Temperaturbeziehung, um ${fromName.toLowerCase()} in ${toName.toLowerCase()} umzurechnen.`;

@@ -33,6 +33,9 @@ export const metadata: Metadata = {
     "Gram ağırlık ve ayar (milyem) gir; has (saf) altın veya gümüş içeriğini hesapla. Farklı ayarlarda hurda/parça karıştırıp sonuç ayarını bul (alaşım karıştırma hesabı), ya da tersten gerekli brüt ağırlığı öğren.",
   alternates: {
     canonical: "/has-hesaplama",
+    languages: {
+      "uz-UZ": "/uz/sof-oltin-hisoblash",
+    },
   },
   openGraph: {
     title: "Has Altın ve Gümüş Hesaplama: Alaşım Karıştırma, Saf Metal İçeriği",

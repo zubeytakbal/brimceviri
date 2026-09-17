@@ -1905,6 +1905,68 @@ const generatedCategoryMeta: Record<string, GeneratedCategoryMeta> = {
     commonUses:
       "Jewelry, silverware, valuation and silver-purity checks",
   },
+  kutle: {
+    categoryName: "Mass",
+    referenceSymbol: "kg",
+    measurementSystem:
+      "Metric, customary and historical mass-measurement usage",
+    commonUses:
+      "Products, material quantities, scientific work and trade",
+  },
+  hiz: {
+    categoryName: "Speed",
+    referenceSymbol: "m/s",
+    measurementSystem:
+      "Metric, customary and transport-speed measurement usage",
+    commonUses:
+      "Transport, athletics, navigation and engineering",
+  },
+  zaman: {
+    categoryName: "Time",
+    referenceSymbol: "s",
+    measurementSystem:
+      "Internationally standardized time measurement",
+    commonUses:
+      "Scheduling, timing, science and technical systems",
+  },
+  enerji: {
+    categoryName: "Energy and Power",
+    referenceSymbol: "J",
+    measurementSystem:
+      "SI, practical energy and power-measurement usage",
+    commonUses:
+      "Heating, electricity, nutrition, fuel and engineering",
+  },
+  guc: {
+    categoryName: "Power",
+    referenceSymbol: "W",
+    measurementSystem:
+      "SI, customary and industry-specific power measurement",
+    commonUses:
+      "Appliances, cooling equipment, engines and energy systems",
+  },
+  sicaklik: {
+    categoryName: "Temperature",
+    referenceSymbol: "K",
+    measurementSystem:
+      "SI, meteorological and customary temperature scales",
+    commonUses:
+      "Weather, cooking, laboratories and engineering",
+  },
+  kan_sekeri: {
+    categoryName: "Blood Glucose",
+    measurementSystem:
+      "Laboratory reporting units for blood glucose concentration",
+    commonUses:
+      "Laboratory reports and personal health records",
+  },
+  vitamin_d: {
+    categoryName: "Vitamin D",
+    measurementSystem:
+      "Laboratory reporting units for 25-hydroxyvitamin D concentration",
+    commonUses:
+      "Laboratory reports and personal health records",
+  },
 };
 
 function formatGeneratedFactor(value: number) {

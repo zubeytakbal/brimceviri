@@ -175,6 +175,15 @@ export default function VerimHesaplamaPage() {
             </p>
           ))}
 
+          <h2>İlgili araçlar</h2>
+          <p>
+            Teorik verim hesabı için{" "}
+            <Link href="/bilim-hesaplayicilari/kimya/stokiyometri-hesaplama">Stokiyometri Hesaplama</Link>,{" "}
+            kütle-mol dönüşümü için{" "}
+            <Link href="/bilim-hesaplayicilari/kimya/mol-hesaplama">Mol Hesaplama</Link>
+            {" "}sayfasına bakabilirsin.
+          </p>
+
           <h2>Kaynaklar</h2>
           <p>
             Yüzde verim tanımı, IUPAC&apos;ın stokiyometri ve reaksiyon

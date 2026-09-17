@@ -7,7 +7,9 @@
 // standartlara tabidir ve bu araç bunu kapsamaz.
 
 export type PipeFlowSolveFor = "diameter" | "flow" | "velocity";
-export type FlowUnit = "lps" | "m3h" | "lpm";
+export type FlowUnit = "lps" | "m3h" | "lpm" | "gpm" | "cfm";
+export type PipeVelocityUnit = "ms" | "fps";
+export type PipeDiameterUnit = "mm" | "in";
 
 export type PipeFlowInput = {
   solveFor: PipeFlowSolveFor;
@@ -15,13 +17,19 @@ export type PipeFlowInput = {
   flowUnit: FlowUnit;
   velocityMs: number;
   diameterMm: number;
+  velocityUnit?: PipeVelocityUnit;
+  diameterUnit?: PipeDiameterUnit;
 };
 
 export type PipeFlowResult = {
   diameterMm: number;
   flowLps: number;
   flowM3h: number;
+  flowGpm: number;
+  flowCfm: number;
   velocityMs: number;
+  velocityFps: number;
+  diameterIn: number;
 };
 
 function flowToM3PerSecond(value: number, unit: FlowUnit): number {
@@ -32,6 +40,10 @@ function flowToM3PerSecond(value: number, unit: FlowUnit): number {
       return value / 1000 / 60;
     case "m3h":
       return value / 3600;
+    case "gpm":
+      return (value * 0.003785411784) / 60;
+    case "cfm":
+      return (value * 0.028316846592) / 60;
     default:
       return Number.NaN;
   }
@@ -46,12 +58,26 @@ function buildResult(
     diameterMm,
     flowLps: flowM3s * 1000,
     flowM3h: flowM3s * 3600,
+    flowGpm: (flowM3s * 60) / 0.003785411784,
+    flowCfm: (flowM3s * 60) / 0.028316846592,
     velocityMs,
+    velocityFps: velocityMs / 0.3048,
+    diameterIn: diameterMm / 25.4,
   };
 }
 
 export function calculatePipeFlow(input: PipeFlowInput): PipeFlowResult | null {
-  const { solveFor, flowValue, flowUnit, velocityMs, diameterMm } = input;
+  const {
+    solveFor,
+    flowValue,
+    flowUnit,
+    velocityMs: rawVelocity,
+    diameterMm: rawDiameter,
+    velocityUnit = "ms",
+    diameterUnit = "mm",
+  } = input;
+  const velocityMs = velocityUnit === "fps" ? rawVelocity * 0.3048 : rawVelocity;
+  const diameterMm = diameterUnit === "in" ? rawDiameter * 25.4 : rawDiameter;
 
   if (solveFor === "diameter") {
     const flowM3s = flowToM3PerSecond(flowValue, flowUnit);

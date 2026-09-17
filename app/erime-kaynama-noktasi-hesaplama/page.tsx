@@ -92,6 +92,8 @@ export default function ElementMeltingBoilingPage() {
             <Link href="/kategoriler/sicaklik">Sıcaklık Dönüşümleri</Link>
             {" "}sayfasına, kimya hesaplamaları için{" "}
             <Link href="/bilim-hesaplayicilari">Bilim Hesaplayıcıları</Link>
+            {" "}sayfasına, buhar basıncı hesaplama için{" "}
+            <Link href="/bilim-hesaplayicilari/kimya/buhar-basinci-hesaplama">Buhar Basıncı Hesaplama</Link>
             {" "}sayfasına bakabilirsin.
           </p>
 

@@ -75,6 +75,17 @@ export default function PeriyodikTabloPage() {
             kullanım alanları ve ek bilgiler de yer alır. Liste zamanla
             genişleyecek.
           </p>
+
+          <h2>İlgili araçlar</h2>
+          <p>
+            Elementleri özelliklerine göre sıralamak için{" "}
+            <Link href="/bilim-hesaplayicilari/kimya/element-siralamasi">Element Sıralaması</Link>,{" "}
+            atom kütlesi hesaplama için{" "}
+            <Link href="/bilim-hesaplayicilari/kimya/atom-kutlesi-hesaplama">Atom Kütlesi Hesaplama</Link>,{" "}
+            bileşiklerin molar kütlesi için{" "}
+            <Link href="/bilim-hesaplayicilari/kimya/bilesikler">Bileşikler</Link>
+            {" "}sayfasına bakabilirsin.
+          </p>
         </section>
       </div>
     </main>

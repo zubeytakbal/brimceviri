@@ -23,6 +23,9 @@ export const metadata: Metadata = {
     "Maliyet, gösterim ve tıklama sayısından CPM, CTR ve CPC hesapla; maliyet ve gelirden reklam yatırım getirisini (ROI) hesapla.",
   alternates: {
     canonical: "/reklam-metrikleri-hesaplama",
+    languages: {
+      "uz-UZ": "/uz/reklama-korsatkichlari-hisoblash",
+    },
   },
   openGraph: {
     title: "Reklam Metrikleri Hesaplama: CPM, CTR, CPC, ROI",

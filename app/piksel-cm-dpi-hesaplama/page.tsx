@@ -120,7 +120,11 @@ export default function PixelCalculatorPage() {
             <Link href="/grafik-tasarimci-araclari">Grafik Tasarımcı Araçları</Link>{" "}
             sayfasına, uzunluk birimleri arasında genel dönüşüm için{" "}
             <Link href="/kategoriler/uzunluk">Uzunluk Dönüşümleri</Link>{" "}
-            sayfasına bakabilirsin.
+            sayfasına, fotoğraf makinesi odak uzaklığı eşdeğeri için{" "}
+            <Link href="/odak-uzakligi-esdegeri-hesaplama">Odak Uzaklığı Eşdeğeri Hesaplama</Link>{" "}
+            sayfasına, sosyal medya görsel boyutları için{" "}
+            <Link href="/sosyal-medya-gorsel-boyutlari-hesaplama">Sosyal Medya Görsel Boyutları Hesaplama</Link>
+            {" "}sayfasına bakabilirsin.
           </p>
 
           <h2>Kaynaklar</h2>

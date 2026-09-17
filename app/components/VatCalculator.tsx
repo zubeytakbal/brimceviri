@@ -127,27 +127,27 @@ const copyByLocale: Record<Locale, VatCopy> = {
   },
 uz: {
     labels: {
-      direction: "Calculation Direction",
-      amount: "Amount (EUR)",
-      rate: "VAT Rate",
-      customRate: "Custom Rate (%)",
+      direction: "Hisoblash Yo'nalishi",
+      amount: "Miqdor (EUR)",
+      rate: "QQS Stavkasi",
+      customRate: "O'zgacha Stavka (%)",
     },
     directions: {
-      "exclusive-to-inclusive": "VAT exclusive -> VAT inclusive",
-      "inclusive-to-exclusive": "VAT inclusive -> VAT exclusive",
+      "exclusive-to-inclusive": "QQS siz -> QQS bilan",
+      "inclusive-to-exclusive": "QQS bilan -> QQS siz",
     },
     rateOptions: {
       "1": "1%",
       "10": "10%",
       "20": "20%",
-      custom: "Custom rate",
+      custom: "O'zgacha stavka",
     },
     resultLabels: {
-      baseAmount: "Base Amount",
-      vatAmount: "VAT Amount",
-      totalAmount: "Total with VAT",
+      baseAmount: "Asosiy Summa",
+      vatAmount: "QQS Summasi",
+      totalAmount: "QQS bilan Jami",
     },
-    emptyState: "Enter a valid amount and rate to see the result.",
+    emptyState: "Natijani ko'rish uchun to'g'ri miqdor va stavka kiriting.",
   },
 bn: {
     labels: {

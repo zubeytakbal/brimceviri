@@ -537,6 +537,39 @@ main {
   font-weight: 600;
 }
 
+.flagship-real-world-list {
+  margin: 0 0 16px;
+  padding: 18px 20px;
+  list-style: none;
+  background: #f4f7ff;
+  border: 1px solid #d8e2f7;
+  border-radius: 10px;
+}
+
+.flagship-real-world-list li {
+  color: #253045;
+  line-height: 1.6;
+}
+
+.flagship-real-world-list li + li {
+  margin-top: 8px;
+}
+
+.flagship-real-world-list strong {
+  color: #172033;
+}
+
+.flagship-sector-note {
+  margin: 0;
+  padding: 14px 18px;
+  color: #414a5b;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  background: #f7f8fa;
+  border-left: 3px solid #7c93c9;
+  border-radius: 4px;
+}
+
 .conversion-table-wrap {
   overflow-x: auto;
 }
@@ -1955,7 +1988,7 @@ main.category-page {
 }
 
 .category-page-hero-grid.has-converter {
-  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);
+  grid-template-columns: minmax(0, 1.1fr) minmax(340px, 0.9fr);
   align-items: center;
 }
 
@@ -2028,10 +2061,10 @@ main.category-page {
 .category-general-converter-grid {
   display: grid;
   grid-template-columns:
-    minmax(0, 0.78fr)
-    minmax(0, 1fr)
-    minmax(0, 1fr);
-  gap: 12px;
+    minmax(0, 0.55fr)
+    minmax(0, 1.2fr)
+    minmax(0, 1.2fr);
+  gap: 10px;
   align-items: end;
   min-width: 0;
 }
@@ -2059,7 +2092,7 @@ main.category-page {
   box-sizing: border-box;
   min-width: 0;
   min-height: 52px;
-  padding: 12px 14px;
+  padding: 12px 10px;
   border: 2px solid #ffffff;
   outline: 0;
   background: #ffffff;
@@ -2068,7 +2101,15 @@ main.category-page {
 }
 
 .category-general-converter-field select {
-  padding-right: 34px;
+  padding-right: 26px;
+  font-size: 0.92rem;
+  text-overflow: ellipsis;
+}
+
+.category-general-converter-input-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(72px, 0.36fr);
+  gap: 8px;
 }
 
 .category-general-converter-field input[type="checkbox"] {
@@ -2314,6 +2355,10 @@ main.category-page {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
   min-width: 0;
+}
+
+.kitchen-measures-converter-grid--english {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .kitchen-measures-converter-result-grid {
@@ -5363,7 +5408,8 @@ button {
   margin-top: 8px;
 }
 
-.directory-search-results a {
+.directory-search-results a,
+.directory-search-result-static {
   display: block;
   padding: 12px 13px;
   border: 1px solid #dfe7ec;
@@ -6078,6 +6124,49 @@ main.calculator-page {
 
 .category-general-converter .engineering-calculator-card .category-general-converter-field span {
   color: rgba(255, 255, 255, 0.88);
+}
+
+.calculator-section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.calculator-section-heading h2 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 1.1rem;
+}
+
+.thermal-resistance-layers {
+  display: grid;
+  gap: 14px;
+}
+
+.thermal-resistance-layer {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.48);
+  border-radius: 10px;
+}
+
+.thermal-resistance-layer legend {
+  padding: 0 6px;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 0.9rem;
+  font-weight: 650;
+}
+
+.thermal-resistance-layer .engineering-clear-button {
+  justify-self: start;
+}
+
+.engineering-clear-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 
 .engineering-targets {

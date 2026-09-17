@@ -14,6 +14,16 @@ const faqItems: FaqItem[] = [
     answer:
       "En doğru yöntem, elindeki bir yüzüğün iç çapını ölçmek ya da bir ip/kağıt şeridini parmağına sarıp uzunluğunu ölçmektir. Yüzük Ölçüsü Çevirici aracımız bu ölçüyü TR, Avrupa, ABD ve İngiltere sistemlerine çevirir.",
   },
+  {
+    question: "Avrupa ayakkabı numaraları neye göre belirlenir?",
+    answer:
+      "Avrupa (EU) ayakkabı numaralandırması, 'Paris noktası' (Paris point) adı verilen bir birime dayanır; her Paris noktası 2/3 cm'ye (yaklaşık 6,67 mm) eşittir. Bu yüzden ayak uzunluğu santimetre cinsinden ölçülüp yaklaşık bu birime çevrilerek EU numarası elde edilir — bu da farklı marka kalıplarında bile EU numaralarının neden ayak uzunluğuyla kabaca orantılı kaldığını açıklar.",
+  },
+  {
+    question: "Aynı EU bedeni neden markadan markaya farklı oturuyor?",
+    answer:
+      "Beden tabloları bir genel referanstır, ama markalar kendi kalıplarını (fit) farklı tasarlar — bazı markalar daha dar, bazıları daha bol keser ('vanity sizing' olarak bilinen pazarlama eğilimi de bazı markalarda etkili olabilir). Bu yüzden aynı numaralı iki farklı marka ürünü farklı oturabilir; kesin karar için markanın kendi beden tablosuna ve mümkünse prova imkanına bakmak en güvenlisidir.",
+  },
 ];
 
 export const metadata: Metadata = {
@@ -159,6 +169,27 @@ export default function TerziAraclariPage() {
             </Link>{" "}
             aracımız bu ölçüyü TR, Avrupa, ABD ve İngiltere
             sistemlerine çevirir.
+          </p>
+          <p>
+            <strong>Avrupa ayakkabı numaraları neye göre belirlenir?</strong>
+            <br />
+            Avrupa (EU) ayakkabı numaralandırması, &apos;Paris noktası&apos;
+            (Paris point) adı verilen bir birime dayanır; her Paris
+            noktası 2/3 cm&apos;ye (yaklaşık 6,67 mm) eşittir. Bu yüzden
+            ayak uzunluğu santimetre cinsinden ölçülüp yaklaşık bu
+            birime çevrilerek EU numarası elde edilir.
+          </p>
+          <p>
+            <strong>
+              Aynı EU bedeni neden markadan markaya farklı oturuyor?
+            </strong>
+            <br />
+            Beden tabloları bir genel referanstır, ama markalar kendi
+            kalıplarını (fit) farklı tasarlar — bazı markalar daha
+            dar, bazıları daha bol keser. Bu yüzden aynı numaralı iki
+            farklı marka ürünü farklı oturabilir; kesin karar için
+            markanın kendi beden tablosuna ve mümkünse prova imkanına
+            bakmak en güvenlisidir.
           </p>
 
           <h2>Kaynaklar</h2>

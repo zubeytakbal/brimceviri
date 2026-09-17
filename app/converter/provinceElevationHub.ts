@@ -49,3 +49,16 @@ export function findNearestMountain(elevationM: number): MountainEntry | null {
     return currentDiff < closestDiff ? mountain : closest;
   }, mountainsDatabase[0]);
 }
+
+// findNearestMountain'in tersi -- dag sayfalarindan il rakim sayfalarina
+// geri link vermek icin (once sadece il->dag yonunde vardi, tek yonlu
+// kalmasin diye eklendi).
+export function findNearestProvince(elevationM: number): ProvinceElevation | null {
+  if (turkishProvinceElevations.length === 0) return null;
+
+  return turkishProvinceElevations.reduce((closest, province) => {
+    const closestDiff = Math.abs(closest.elevationM - elevationM);
+    const currentDiff = Math.abs(province.elevationM - elevationM);
+    return currentDiff < closestDiff ? province : closest;
+  }, turkishProvinceElevations[0]);
+}

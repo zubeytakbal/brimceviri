@@ -132,27 +132,27 @@ const copyByLocale: Record<
     },
   },
 uz: {
-    modePrompt: "What do you want to calculate?",
+    modePrompt: "Nimani hisoblamoqchisiz?",
     modeButtons: {
-      pace: "Calculate Pace",
-      duration: "Calculate Time",
-      distance: "Calculate Distance",
+      pace: "Tempni Hisoblash",
+      duration: "Vaqtni Hisoblash",
+      distance: "Masofani Hisoblash",
     },
     labels: {
-      distance: "Distance (km)",
-      durationHours: "Time - Hours",
-      durationMinutes: "Time - Minutes",
-      durationSeconds: "Time - Seconds",
-      paceMinutes: "Pace - Minutes/km",
-      paceSeconds: "Pace - Seconds/km",
+      distance: "Masofa (km)",
+      durationHours: "Vaqt - Soat",
+      durationMinutes: "Vaqt - Daqiqa",
+      durationSeconds: "Vaqt - Soniya",
+      paceMinutes: "Temp - Daqiqa/km",
+      paceSeconds: "Temp - Soniya/km",
     },
-    emptyState: "Enter valid values to see the result.",
+    emptyState: "Natijani ko'rish uchun to'g'ri qiymatlar kiriting.",
     resultLabels: {
-      pace: "Pace",
-      duration: "Time",
-      distance: "Distance",
-      speed: "Speed",
-      estimatedTime: "estimated time",
+      pace: "Temp",
+      duration: "Vaqt",
+      distance: "Masofa",
+      speed: "Tezlik",
+      estimatedTime: "taxminiy vaqt",
     },
   },
 bn: {
@@ -221,6 +221,8 @@ function getRaceLabel(race: RaceEstimate, locale: Locale) {
         ? "نصف ماراثون"
       : locale === "en"
         ? "Half Marathon"
+        : locale === "uz"
+          ? "Yarim Marafon"
         : "Yari Maraton";
   }
 
@@ -231,6 +233,8 @@ function getRaceLabel(race: RaceEstimate, locale: Locale) {
         ? "ماراثون"
         : locale === "en"
           ? "Marathon"
+          : locale === "uz"
+            ? "Marafon"
           : "Maraton";
   }
 

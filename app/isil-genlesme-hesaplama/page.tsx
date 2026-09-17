@@ -95,6 +95,8 @@ export default function ThermalExpansionCalculatorPage() {
             <Link href="/insaatci-araclari">İnşaatçı Araçları</Link>
             {" "}sayfasına, malzeme yoğunluğu ve diğer özellikleri için{" "}
             <Link href="/malzeme-ozellikleri">Malzeme Özellikleri</Link>
+            {" "}sayfasına, yük altında uzama miktarı için{" "}
+            <Link href="/elastik-uzama-hesaplama">Elastik Uzama Hesaplama</Link>
             {" "}sayfasına bakabilirsin.
           </p>
 

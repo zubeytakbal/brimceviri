@@ -161,10 +161,15 @@ export default function MolariteHesaplamaPage() {
             aynı çözeltinin molaritesi sıcaklık değiştikçe (çok az da olsa)
             değişir. Bu, hassas analitik çalışmalarda göz ardı edilmemesi
             gereken bir noktadır. Buna karşılık{" "}
-            <strong>molalite</strong> (mol/kg çözücü), kütleye dayandığı
-            için sıcaklıktan tamamen bağımsızdır — bu nedenle kolligatif
-            özellik hesaplarında (kaynama noktası yükselmesi, donma noktası
-            alçalması gibi) molarite yerine molalite tercih edilir.
+            <strong>
+              <Link href="/bilim-hesaplayicilari/kimya/molalite-hesaplama">
+                molalite
+              </Link>
+            </strong>{" "}
+            (mol/kg çözücü), kütleye dayandığı için sıcaklıktan tamamen
+            bağımsızdır — bu nedenle kolligatif özellik hesaplarında (kaynama
+            noktası yükselmesi, donma noktası alçalması gibi) molarite
+            yerine molalite tercih edilir.
           </p>
 
           <h2>Zayıf elektrolitlerde "formal" ve "gerçek" derişim ayrımı</h2>
@@ -210,6 +215,21 @@ export default function MolariteHesaplamaPage() {
               {item.answer}
             </p>
           ))}
+
+          <h2>İlgili araçlar</h2>
+          <p>
+            Sıcaklıktan bağımsız derişim hesabı için{" "}
+            <Link href="/bilim-hesaplayicilari/kimya/molalite-hesaplama">Molalite Hesaplama</Link>,{" "}
+            derişik çözeltiyi seyreltme hesabı için{" "}
+            <Link href="/bilim-hesaplayicilari/kimya/seyreltme-hesaplama">Seyreltme Hesaplama</Link>,{" "}
+            kütlece yüzde derişim için{" "}
+            <Link href="/bilim-hesaplayicilari/kimya/kutlece-yuzde-hesaplama">Kütlece Yüzde Hesaplama</Link>,{" "}
+            çok küçük derişimler için{" "}
+            <Link href="/bilim-hesaplayicilari/kimya/ppm-hesaplama">PPM Hesaplama</Link>,{" "}
+            titrasyon hesaplamaları için{" "}
+            <Link href="/bilim-hesaplayicilari/kimya/titrasyon-hesaplama">Titrasyon Hesaplama</Link>
+            {" "}sayfasına bakabilirsin.
+          </p>
 
           <h2>Kaynaklar</h2>
           <p>

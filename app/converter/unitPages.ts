@@ -64,6 +64,13 @@ const unitDescriptions: Record<string, UnitDescription> = {
     siEquivalent: "1 soğutma tonu = 12.000 BTU/saat = 3,516853 kW",
     commonUses: "Klima ve soğutma sistemi kapasitesi, HVAC mühendisliği",
   },
+  "btu-saat": {
+    shortDescription: "BTU/saat (BTU per hour), ısıtma ve soğutma gücünün ifade edilmesinde kullanılan bir birimdir; Türkiye'de klima kapasitelerinin neredeyse tamamı bu birimle satılır (9000 BTU, 12000 BTU, 18000 BTU gibi).",
+    historySummary: "BTU (British Thermal Unit), 1 pound suyun sıcaklığını 1°F artırmak için gereken ısı miktarı olarak tanımlanmış İngiliz kökenli bir enerji birimidir; bu enerjinin saat başına aktarım hızı olan BTU/saat, ABD merkezli HVAC (ısıtma-soğutma-havalandırma) sektörünün küresel etkisiyle klima kapasitesi belirtiminde dünya genelinde, özellikle de Türkiye pazarında fiilen standart hâline gelmiştir — bir ürünün etiketinde watt yerine BTU görmek, klima alışverişinde daha yaygındır.",
+    measurementSystem: "İngiliz/ABD ısı-güç birimi, HVAC sektöründe fiilen küresel standart",
+    siEquivalent: "1 BTU/saat = 0,29307107 W",
+    commonUses: "Klima kapasitesi (Türkiye'de fiili satış standardı), ısıtıcı/soğutucu güç etiketleri",
+  },
   "reaumur": {
     shortDescription: "Réaumur, suyun donma noktasını 0, kaynama noktasını 80 derece olarak tanımlayan, tarihsel olarak Avrupa'da yaygın kullanılmış bir sıcaklık ölçeğidir.",
     historySummary: "Ölçek, 1730'da benzer bir sistemi ilk öneren Fransız bilim insanı René Antoine Ferchault de Réaumur'ün adını taşır. Réaumur'ün orijinal tasarımı seyreltilmiş alkol kullanıyordu ve her derece, termometre haznesinin hacminin binde birine karşılık geliyordu; suyun donma ve kaynama noktaları sırasıyla 0 ve 80 derece olarak tanımlandı. Ölçek özellikle Fransa, Almanya ve Rusya'da yaygın kullanıldı — Tolstoy ve Dostoyevski gibi yazarların eserlerinde bile geçer. 1790'larda Fransa, metrik sistemin bir parçası olarak santigrat ölçeğine geçince Réaumur'ü terk etti, ama Avrupa'nın bazı bölgelerinde 19. yüzyıl ortalarına, Rusya'nın bazı kesimlerinde ise 20. yüzyıl başlarına kadar kullanılmaya devam etti. Günümüzde kullanımı büyük ölçüde İtalya, İsviçre ve Hollanda'daki bazı gıda üretimi (özellikle peynir ve şekerleme) süreçleriyle sınırlıdır.",
@@ -253,6 +260,13 @@ const unitDescriptions: Record<string, UnitDescription> = {
     siEquivalent: "1 cm = 0,01 m",
     commonUses: "Mobilya, tekstil, antropometri ve günlük ölçümler",
   },
+  "desimetre": {
+    shortDescription: "Desimetre, metrenin onda birine eşit bir uzunluk birimidir. Günlük hayatta doğrudan az kullanılsa da, hacim ölçümünde litre ile doğrudan bağlantılıdır (1 litre = 1 desimetreküp).",
+    historySummary: "Desimetre, 1795'te Fransa'da kabul edilen metrik sistemin ilk ondalık alt birimlerinden biri olarak tanımlandı. Litre birimi de tarihsel olarak desimetreküp üzerinden tanımlanmıştır.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, alt birim)",
+    siEquivalent: "1 dm = 0,1 m",
+    commonUses: "Okul eğitimi, hacim biriminin (litre) tanımıyla ilişkilendirme",
+  },
   "milimetre": {
     shortDescription: "Milimetre, metrenin binde birine eşit bir uzunluk birimidir. Hassas teknik ölçümlerde sık kullanılır.",
     historySummary: "Milimetre, sanayi ve mühendislikte daha küçük toleransların ölçülmesi ihtiyacıyla yaygınlaştı. Özellikle üretim ve çizim standartlarında temel bir alt birim oldu.",
@@ -262,7 +276,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
   "fit": {
     shortDescription: "Fit, İngiliz ve Amerikan ölçü sistemlerinde kullanılan bir uzunluk birimidir. Bir uluslararası fit tam olarak 0,3048 metreye eşittir.",
-    historySummary: "Fit, eski ölçü geleneklerinde insan ayağına dayalı bir yaklaşımdan doğdu. Farklı bölgesel değerler zamanla bırakıldı ve uluslararası fit 1959'da standartlaştırıldı.",
+    historySummary: "Fit (foot/ayak), adından da anlaşılacağı gibi tarihsel olarak insan ayak uzunluğuna dayanan bir yaklaşık ölçüydü ve Roma İmparatorluğu'ndaki 'pes' biriminden bu yana farklı bölge ve dönemlerde 250-335 mm arasında değişen onlarca farklı 'fit' tanımı kullanılmıştır. İngiltere'de zamanla yerleşen fit, 1959'da (aynı yıl inç ve mil de kesinleştirildiği) ABD, İngiltere ve Commonwealth ülkeleri arasında imzalanan uluslararası anlaşmayla tam olarak 0,3048 metre (yani tam 12 inç) olarak sabitlenmiştir.",
     measurementSystem: "İngiliz ve ABD ölçü sistemleri",
     siEquivalent: "1 ft = 0,3048 m",
     commonUses: "Mimarlık, bina kotları, havacılık ve saha ölçüleri",
@@ -276,7 +290,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
   "yarda": {
     shortDescription: "Yarda, İngiliz ve Amerikan ölçü sistemlerinde kullanılan bir uzunluk birimidir. Bir yarda tam olarak 0,9144 metreye eşittir.",
-    historySummary: "Yarda, tarihsel olarak insan adımı ve beden ölçüleriyle ilişkilendirilen bir uzunluk yaklaşımından gelişti. Modern değeri uluslararası anlaşmalarla sabitlendi.",
+    historySummary: "Yardanın kökeni tam olarak belirsizdir, ancak yaygın bir rivayete göre 12. yüzyılda İngiltere Kralı I. Henry, yardayı kendi burnunun ucundan uzattığı kolunun başparmağına olan mesafe olarak tanımlamıştır. Daha belgelenmiş bir gelişme olarak, 16. yüzyılda İngiliz Hazinesi'nde resmi bronz 'yarda çubukları' standart referans olarak üretildi. Fit ve inç gibi, yarda da 1959'daki uluslararası anlaşmayla tam olarak 0,9144 metre (3 fit) olarak kesinleştirilmiştir.",
     measurementSystem: "İngiliz ve ABD ölçü sistemleri",
     siEquivalent: "1 yd = 0,9144 m",
     commonUses: "Spor sahaları, tekstil, peyzaj ve saha planlaması",
@@ -288,6 +302,13 @@ const unitDescriptions: Record<string, UnitDescription> = {
     siEquivalent: "1 mi = 1609,344 m",
     commonUses: "Karayolu mesafeleri, navigasyon ve saha ölçekleri",
   },
+  "furlong": {
+    shortDescription: "Furlong, 201,168 metreye (660 fite) eşit bir uzunluk birimidir. Günümüzde en çok at yarışı mesafelerinin ifade edilmesinde kullanılır.",
+    historySummary: "Furlong ismi, Eski İngilizcede 'furh' (saban izi) ve 'lang' (uzun) kelimelerinden gelir ve ortaçağ İngiltere'sinde bir sabanla sürülen tarla şeridinin standart uzunluğuna dayanır; 1 mil'in tam sekizde birine eşitlenmiştir. Metre-kilogram-saniye sisteminin yaygınlaşmasıyla günlük kullanımdan büyük ölçüde çekilmiş olsa da, at yarışçılığında (İngiltere, ABD, Avustralya, İrlanda başta olmak üzere) mesafe birimi olarak resmi ve evrensel kullanımını korumaktadır.",
+    measurementSystem: "İngiliz ve ABD ölçü sistemleri",
+    siEquivalent: "1 furlong = 201,168 m = 1/8 mil",
+    commonUses: "At yarışı mesafeleri (dünya genelinde standart birim), tarihi İngiliz arazi ölçümleri",
+  },
   "metrekare": {
     shortDescription: "Metrekare, alanın SI türetilmiş birimidir. Zemin, kesit ve yüzey hesaplarında temel referans olarak kullanılır.",
     historySummary: "Metrekare, metrenin iki boyutlu uzantısı olarak metrik sistem içinde yerleşti. Yapı, arazi ve mühendislik çizimlerinde standart alan dili hâline geldi.",
@@ -297,14 +318,14 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
   "hektar": {
     shortDescription: "Hektar, özellikle arazi ölçümünde kullanılan büyük bir alan birimidir. 1 hektar tam olarak 10000 metrekareye eşittir.",
-    historySummary: "Hektar, geniş tarımsal ve coğrafi alanları daha kısa ifade etmek için metrik sistem içinde yaygınlaşmıştır.",
+    historySummary: "Hektar, Fransız Devrimi'nin getirdiği metrik sistemin bir parçası olarak 1795'te 'ar' biriminin (100 m²) 100 katı olarak tanımlandı ve 'hekto-' (yüz) ön ekiyle adlandırıldı. Geniş tarım ve orman arazilerini ifade etmek için ar'dan çok daha pratik bulunduğu için zamanla dünya genelinde standart arazi birimi hâline geldi. Sezgisel bir karşılaştırma olarak, standart bir futbol sahası yaklaşık 0,7 hektar büyüklüğündedir — bu da hektarın günlük hayatta kolayca kavranabilmesini sağlar.",
     measurementSystem: "Metrik sistem, SI ile uyumlu",
     siEquivalent: "1 ha = 10000 m²",
     commonUses: "Tarım arazileri, imar planları ve büyük arsa kayıtları",
   },
   "fitkare": {
     shortDescription: "Fitkare, İngiliz ve ABD ölçü sistemlerinde kullanılan bir alan birimidir. Bir kare fit yaklaşık 0,092903 metrekareye eşittir.",
-    historySummary: "Fitkare, fit biriminin yapı ve emlak alanındaki yaygın kullanımıyla birlikte yerleşmiştir.",
+    historySummary: "Fitkare, fit biriminin karesi alınarak elde edilir ve ABD emlak sektöründe konut/ofis alanlarının ifade edilmesinde standart birimdir — ABD'de bir evin büyüklüğü neredeyse her zaman metrekare değil kare fit (square feet) cinsinden ilan edilir. Bu, dünya genelinde metrik sistemin (m²) yaygın olduğu ülkelerle ABD emlak ilanları arasında sık karşılaşılan bir dönüşüm ihtiyacı yaratır; 1000 fitkarelik bir daire yaklaşık 93 metrekareye karşılık gelir.",
     measurementSystem: "İngiliz ve ABD ölçü sistemleri",
     siEquivalent: "1 ft² = 0,092903 m²",
     commonUses: "Emlak ilanları, döşeme alanları ve bazı yapı katalogları",
@@ -330,6 +351,55 @@ const unitDescriptions: Record<string, UnitDescription> = {
     siEquivalent: "1 decimal = 40,4686 m² = 1/100 akre",
     commonUses: "Bangladeş'te arazi alım satımı, tapu kayıtları ve emlak ilanları",
   },
+  "killa": {
+    shortDescription: "Killa, Kuzey Hindistan'ın Pencap ve Haryana eyaletleri ile Pakistan'da tarım arazisi ölçümünde kullanılan, değer olarak akreye birebir eşit geleneksel bir alan birimidir.",
+    historySummary: "Killa, İngiliz sömürge döneminde Pencap bölgesi tapu kayıtlarına akre birimiyle birebir eşdeğer olarak yerleşmiş ve günümüzde de bu eyaletlerdeki resmi arazi kayıtlarında (fard/jamabandi) kullanılmaya devam etmektedir. Değeri akre ile tamamen aynı olmasına rağmen, bölge halkı arazisini tarihsel alışkanlıkla 'killa' olarak anmayı sürdürür; bu yüzden 'acre' değil özellikle 'killa' aratan kullanıcılar için ayrı bir birim olarak ele alınmıştır.",
+    measurementSystem: "Pencap ve Haryana'ya (Hindistan-Pakistan) özgü geleneksel birim, akreye eşit",
+    siEquivalent: "1 killa = 4046,8564224 m² = 1 akre (tam eşdeğer)",
+    commonUses: "Pencap ve Haryana'da (Hindistan) ve Pakistan'da tarım arazisi tapu kayıtları ve alım satımı",
+  },
+  "kanal": {
+    shortDescription: "Kanal, Pencap (Hindistan-Pakistan), Cammu-Keşmir ve Himaçal Pradeş'te arazi ölçümünde kullanılan bir alan birimidir. Resmi Pencap standardına göre 1 kanal 505,857 m²'ye eşittir.",
+    historySummary: "Kanal, İngiliz sömürge dönemi Pencap arazi kayıt sisteminde standartlaştırılmış ve 5445 fitkare (505,857 m²) olarak resmileştirilmiştir; 1 killa (akre) tam olarak 8 kanala eşittir. Günümüzde hâlâ Pencap, Cammu-Keşmir ve Himaçal Pradeş'in resmi tapu kayıtlarında (fard/jamabandi) temel arazi ölçü birimi olarak kullanılmaktadır.",
+    measurementSystem: "Pencap, Cammu-Keşmir ve Himaçal Pradeş'e (Hindistan-Pakistan) özgü geleneksel birim",
+    siEquivalent: "1 kanal = 505,857 m² = 20 marla = 1/8 killa (akre)",
+    commonUses: "Pencap, Cammu-Keşmir ve Himaçal Pradeş'te tarım ve konut arazisi alım satımı",
+  },
+  "marla": {
+    shortDescription: "Marla, Pakistan ve Kuzey Hindistan'da (özellikle Pencap) küçük arsa ve konut parsellerinin ölçümünde kullanılan bir alan birimidir. Resmi standarda göre 1 marla 25,29 m²'ye eşittir.",
+    historySummary: "Marla, tarihsel olarak 16,5 fit kenar uzunluğuna sahip bir 'kare rod' (272,25 fitkare) olarak tanımlanmış ve 1 kanalın yirmide biri olarak resmileştirilmiştir. Günümüzde Pakistan'da (özellikle Lahor ve İslamabad gibi şehirlerde) konut arsası ilanlarının neredeyse tamamı marla cinsinden pazarlanır, bu da onu bölgenin en sık aranan emlak birimlerinden biri yapar.",
+    measurementSystem: "Pakistan ve Kuzey Hindistan'a özgü geleneksel birim",
+    siEquivalent: "1 marla = 25,29 m² = 272,25 fitkare = 1/20 kanal",
+    commonUses: "Pakistan (Lahor, İslamabad, Rawalpindi) ve Kuzey Hindistan'da konut arsası ilanları",
+  },
+  "guntha": {
+    shortDescription: "Guntha, Hindistan'ın Maharaştra ve Karnataka eyaletlerinde arazi ölçümünde kullanılan bir alan birimidir. Resmi tanıma göre 1 guntha tam olarak 1 akrenin kırkta birine (101,17 m²) eşittir.",
+    historySummary: "Guntha, İngiliz sömürge dönemi Bombay Sunum Sistemi'nde (Bombay Survey System) akrenin standart bir alt birimi olarak tanımlanmış ve akrenin tam olarak 1/40'ı (1089 fitkare) olarak resmileştirilmiştir. Günümüzde Maharaştra ve Karnataka'da tarım arazisi tapu kayıtlarında (7/12 utara gibi resmi belgelerde) hâlâ standart ölçü birimi olarak kullanılmaktadır.",
+    measurementSystem: "Maharaştra ve Karnataka'ya (Hindistan) özgü geleneksel birim, akrenin 1/40'ı",
+    siEquivalent: "1 guntha = 101,17 m² = 1089 fitkare = 1/40 akre",
+    commonUses: "Maharaştra ve Karnataka'da tarım arazisi tapu kayıtları ve arsa alım satımı",
+  },
+  "cent-arazi": {
+    shortDescription: "Cent, Hindistan'ın Kerala ve Tamil Nadu eyaletlerinde arsa ölçümünde kullanılan bir alan birimidir. Tanımı gereği 1 cent tam olarak 1 akrenin yüzde birine (40,47 m²) eşittir.",
+    historySummary: "Cent, adını Latince 'yüz' anlamına gelen 'centum' kökünden alır ve akrenin yüzde biri olarak tanımlanmıştır — değer olarak Bangladeş'te kullanılan 'decimal' birimiyle birebir aynıdır, ancak Kerala ve Tamil Nadu'da konut arsası pazarında yerleşik terim 'cent'tir. Kerala'da özellikle küçük konut parsellerinin neredeyse tamamı cent cinsinden ilan edilir.",
+    measurementSystem: "Kerala ve Tamil Nadu'ya (Hindistan) özgü geleneksel birim, akrenin 1/100'ü",
+    siEquivalent: "1 cent = 40,47 m² = 435,6 fitkare = 1/100 akre",
+    commonUses: "Kerala ve Tamil Nadu'da konut arsası ilanları ve küçük arazi alım satımı",
+  },
+  "ground": {
+    shortDescription: "Ground, Hindistan'ın Tamil Nadu eyaletinde, özellikle Chennai'de arsa ölçümünde kullanılan bir alan birimidir. Yerleşik standarda göre 1 ground 2400 fitkareye (222,97 m²) eşittir.",
+    historySummary: "Ground, İngiliz sömürge döneminde Madras (bugünkü Chennai) şehir planlamasında standart bir konut parseli büyüklüğü olarak 2400 fitkare (222,97 m²) şeklinde yerleşmiş ve günümüzde de Chennai ve çevresindeki emlak piyasasında konut arsalarının standart ilan birimi olarak kullanılmaya devam etmektedir.",
+    measurementSystem: "Tamil Nadu'ya (Hindistan, özellikle Chennai) özgü geleneksel birim",
+    siEquivalent: "1 ground = 222,97 m² = 2400 fitkare",
+    commonUses: "Chennai ve çevresinde konut arsası ilanları ve emlak alım satımı",
+  },
+  "biswa": {
+    shortDescription: "Biswa, Kuzey Hindistan'da (özellikle Uttar Pradeş) arazi ölçümünde kullanılan, bigha'nın alt birimi olan geleneksel bir alan birimidir. Bu sayfada Uttar Pradeş 'pucca' standardı (1 bigha'nın 1/20'si) esas alınmıştır: 1 biswa = 126,46 m².",
+    historySummary: "Biswa, bigha gibi bölgeden bölgeye büyük farklılık gösteren bir birimdir — hatta Uttar Pradeş eyaleti içinde bile Batı UP'de (Merut, Muzafferabad çevresi) çok daha küçük bir 'kachha' standardı, Doğu UP'de (Leknev, Gorakhpur, Varanasi çevresi) ise burada esas alınan daha büyük 'pucca' standardı geçerlidir. Bu belirsizlik nedeniyle arazi alım satımında yerel tapu dairesinden bölgesel değerin teyit edilmesi önerilir.",
+    measurementSystem: "Kuzey Hindistan'a özgü geleneksel birim, bölgeye göre önemli ölçüde değişken",
+    siEquivalent: "1 biswa ≈ 126,46 m² = 1/20 bigha (Uttar Pradeş 'pucca' standardı)",
+    commonUses: "Uttar Pradeş ve komşu eyaletlerde tarım arazisi ve arsa alım satımı",
+  },
   "katha": {
     shortDescription: "Katha, Bangladeş ve Batı Bengal'de arazi ölçümünde kullanılan geleneksel bir alan birimidir. Bangladeş standardına göre 1 katha 720 fitkareye (66,89 m²) eşittir.",
     historySummary: "Katha, Bengal bölgesinde yüzyıllardır kullanılan yerel bir alan birimidir; büyüklüğü bölgeden bölgeye (Bangladeş, Batı Bengal, Assam) farklılık gösterebilir. Bu sayfada Bangladeş'in resmi tapu kayıtlarında kullanılan standart değer esas alınmıştır.",
@@ -353,7 +423,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
   "metrekup": {
     shortDescription: "Metreküp, hacmin SI türetilmiş birimidir. Büyük hacimler ve teknik kapasiteler için temel referanstır.",
-    historySummary: "Metreküp, metrenin üç boyutlu uzantısı olarak bilim ve mühendislikte temel hacim birimi hâline geldi.",
+    historySummary: "Metreküp, her kenarı tam 1 metre olan bir küpün iç hacmi olarak tanımlanır ve metrenin üç boyuta genişletilmesiyle doğrudan türetilir. 1000 litreye eşit olduğu için (1 m³ = 1000 L), günlük hayatta doğalgaz ve su tüketiminin faturalandırılmasında dünya genelinde standart birim olarak kullanılır — Türkiye'deki doğalgaz ve su faturaları da tüketimi metreküp cinsinden gösterir. İnşaat sektöründe beton ve hafriyat miktarları, endüstride ise depo ve tank kapasiteleri de yaygın olarak bu birimle ifade edilir.",
     measurementSystem: "Uluslararası Birim Sistemi (SI)",
     siEquivalent: "Temel SI hacim birimi",
     commonUses: "Depolama hacmi, bina iç hacmi, proses tankları ve akış hesapları",
@@ -400,6 +470,20 @@ const unitDescriptions: Record<string, UnitDescription> = {
     siEquivalent: "1 varil (bbl) = 158,987 L = 0,158987 m³",
     commonUses: "Ham petrol fiyatlandırması, petrol üretim/tüketim istatistikleri, enerji piyasası raporları",
   },
+  "kile": {
+    shortDescription: "Kile, Osmanlı döneminde tahıl (buğday, arpa vb.) ölçümünde kullanılan bir hacim birimidir. Sultan III. Selim döneminde İstanbul kilesi standardına göre 1 kile 37 litreye eşitti; ancak bölgeye ve döneme göre büyük farklılıklar gösterirdi.",
+    historySummary: "Kile, Osmanlı tahıl ticaretinin temel ölçü birimiydi ve 4 şinike bölünürdü (1 eski kile = 4 şinik = 8 kutu = 16 zarf = 37 litre). 1869'daki ölçüler ve ayarlar nizamnamesiyle 'yeni kile' (kîle-i a'şârî) tam 100 litre (1 hektolitre) olarak yeniden tanımlanmış, ondalık sisteme uyarlanmıştır. Diğer Osmanlı birimleri gibi 1931'deki metrik sisteme geçişle resmi kullanımdan kalkmıştır.",
+    measurementSystem: "Osmanlı dönemi geleneksel hacim birimi (yürürlükte değil), bölgeye ve döneme göre değişken",
+    siEquivalent: "1 eski kile (İstanbul, III. Selim dönemi) = 37 L = 4 şinik",
+    commonUses: "Osmanlı döneminde tahıl (buğday, arpa) alım satımı ve vergilendirmesi; günümüzde tarih araştırmaları ve eski tapu/vakfiye kayıtlarının yorumlanması",
+  },
+  "sinik": {
+    shortDescription: "Şinik, Osmanlı döneminde kilenin alt birimi olarak tahıl ölçümünde kullanılan bir hacim birimidir. Eski standarda göre 1 kilenin dörtte biri olup yaklaşık 9,25 litreye eşittir.",
+    historySummary: "Şinik, günlük tahıl alışverişinde kilenin daha küçük miktarlar için pratik bir alt birimiydi: 1 eski kile = 4 şinik = 8 kutu = 16 zarf ilişkisiyle tanımlanırdı. TDV İslam Ansiklopedisi'ne göre bu oran 37 litrelik eski İstanbul kilesi üzerinden 1 şinik = 9,25 litre değerini verir. 1869 ölçüler reformuyla 'yeni şinik' ondalık sisteme göre yeniden tanımlanmış (1 yeni kile = 10 yeni şinik), 1931'de ise tamamen yürürlükten kalkmıştır.",
+    measurementSystem: "Osmanlı dönemi geleneksel hacim birimi (yürürlükte değil)",
+    siEquivalent: "1 şinik = 1/4 eski kile ≈ 9,25 L",
+    commonUses: "Osmanlı döneminde günlük tahıl alışverişi; günümüzde tarih araştırmaları ve eski metinlerin yorumlanması",
+  },
   "kilogram": {
     shortDescription: "Kilogram, Uluslararası Birim Sistemi'nde kütlenin temel birimidir. Ticaret, laboratuvar ve mühendislikte yaygın olarak kullanılır.",
     historySummary: "Kilogramın kökeni de Fransız Devrimi'ne dayanır: 1795'te gram, buzun erime noktasındaki (0°C) 1 santimetreküp suyun kütlesi olarak tanımlandı — yani 1 kilogram, bu koşuldaki 1 litre suya eşitti. Ancak suyun yoğunluğunun sıcaklıkla değiştiği fark edilince, 1799'da 'Kilogramme des Archives' adlı platin bir prototip yapıldı; bu sefer referans, suyun en yoğun olduğu ~4°C'deki 1 desimetreküp su kütlesiydi. 1889'da bu prototipin yerini, 'Le Grand K' olarak bilinen platin-iridyum alaşımlı yeni bir silindir aldı ve bu, Fransa'daki Uluslararası Ağırlıklar ve Ölçüler Bürosu'nda 130 yıl boyunca dünyanın referans kilogramı olarak korundu. Zamanla bu silindirin, üretildiği dönemdeki kopyalarından yaklaşık 50 mikrogram saptığı fark edildi — fiziksel bir nesneye dayanmanın kaçınılmaz kırılganlığıydı bu. 16 Kasım 2018'de Ağırlıklar ve Ölçüler Genel Konferansı, kilogramı Planck sabitine dayalı yeni bir tanıma geçirme kararı aldı; bu yeni tanım 20 Mayıs 2019'da yürürlüğe girdi ve kilogram artık dünyanın herhangi bir laboratuvarında, fiziksel bir örneğe ihtiyaç duymadan yeniden üretilebilir hale geldi.",
@@ -409,7 +493,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
   "gram": {
     shortDescription: "Gram, kilogramın binde birine eşit bir kütle birimidir. Gıda, laboratuvar ve küçük maddesel miktarları ifade etmekte kullanılır.",
-    historySummary: "Gram, metrik sistemin erken döneminde su kütlesi temelli yaklaşımlardan gelişti ve daha sonra kilogramın alt birimi olarak standartlaştı.",
+    historySummary: "Gram, 1795'te Fransız metrik sisteminin ilk tanımında asıl temel kütle birimiydi ve buzun erime noktasındaki 1 santimetreküp suyun kütlesi olarak tanımlanmıştı. Ancak bu kadar küçük bir kütleyi hassas ve tekrarlanabilir şekilde standart bir prototipe dönüştürmek pratikte zor olduğundan, 1799'da bunun yerine 1000 kat daha büyük olan kilogram (bir desimetreküp su kütlesi) referans prototip olarak seçildi. Bu tarihsel tercih, SI'nin yedi temel biriminden yalnızca birinin (kilogram) adında bir ön ek ('kilo-') taşıyan tek istisna olmasına yol açtı — gram ise, adını taşıyan ana birim olmasına rağmen, bugün kilogramın alt katı olarak tanımlanan ikincil bir birim konumundadır.",
     measurementSystem: "Uluslararası Birim Sistemi (SI, alt birim)",
     siEquivalent: "1 g = 0,001 kg",
     commonUses: "Gıda, kimya, eczacılık ve hassas ölçüm",
@@ -421,9 +505,16 @@ const unitDescriptions: Record<string, UnitDescription> = {
     siEquivalent: "1 mg = 0,000001 kg",
     commonUses: "İlaç dozları, analizler ve hassas formülasyonlar",
   },
+  "kental": {
+    shortDescription: "Kental (kental/quintal), 100 kilograma eşit bir kütle birimidir. Türkiye'de başta tarımsal verim ve hasat miktarlarının ifade edilmesinde yaygın kullanılır.",
+    historySummary: "Kental, Latince 'centum' (yüz) kökünden gelen ve Fransızca üzerinden Türkçeye geçen bir birimdir; metrik sistemde 100 kilograma sabitlenmiştir. Türkiye'de Tarım ve Orman Bakanlığı ile TÜİK'in tahıl, pamuk ve diğer bitkisel ürün verim istatistiklerini 'dekar başına kental' cinsinden raporlaması, bu birimi Türkiye tarım sektöründe günlük kullanılan standart bir ölçü haline getirmiştir.",
+    measurementSystem: "Metrik sistem (Fransız kökenli, tarım sektöründe yaygın)",
+    siEquivalent: "1 kental = 100 kg = 0,1 ton",
+    commonUses: "Türkiye'de tarımsal verim raporları (kental/dekar), tahıl ve hasat miktarı ölçümü",
+  },
   "ton": {
     shortDescription: "Metrik ton, 1000 kilograma eşit büyük bir kütle birimidir. Ağır yüklerin ve endüstriyel miktarların ifade edilmesinde kullanılır.",
-    historySummary: "Ton, büyük yükleri ve ticari kütleleri daha kısa ifade etmek için metrik sistem içinde yerleşti. Lojistik ve endüstride yaygın kullanım kazandı.",
+    historySummary: "'Ton' kelimesi, ortaçağ İngilizcesindeki büyük şarap fıçısı anlamına gelen 'tun' kelimesinden türer; dolu bir tun fıçısının kabaca bir uzun ton ağırlığında olması nedeniyle kütle birimi olarak da kullanılmaya başlanmıştır. Günümüzde üç farklı 'ton' tanımı kafa karışıklığına yol açabilir: metrik ton (tam 1000 kg, dünya genelinde ve Türkiye'de standart), ABD'de yaygın kısa ton (2000 pound ≈ 907,18 kg) ve İngiltere'de tarihsel olarak kullanılan uzun ton (2240 pound ≈ 1016,05 kg). Bu üç değer arasındaki fark küçük görünse de, uluslararası ticaret ve lojistik sözleşmelerinde hangi 'ton' tanımının kullanıldığının açıkça belirtilmesi önemlidir.",
     measurementSystem: "Metrik sistem, SI ile uyumlu",
     siEquivalent: "1 t = 1000 kg",
     commonUses: "Lojistik, üretim, hammadde ticareti ve ağır sanayi",
@@ -444,7 +535,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
   "ons": {
     shortDescription: "Ons, İngiliz ve Amerikan ölçü sistemlerinde kullanılan küçük bir kütle birimidir. Bir avoirdupois ons 28,349523125 grama eşittir.",
-    historySummary: "Ons, tarih boyunca farklı ticari ve tıbbi sistemlerde kullanıldı. Modern avoirdupois ons, pound ile olan 1/16 ilişkisi üzerinden standartlaştı.",
+    historySummary: "'Ons' kelimesi, Roma'nın 'libra'yı (pound'un atası) on iki eşit parçaya bölen 'uncia' biriminden türer. Günlük hayatta kullanılan avoirdupois ons (28,349523125 g), bir pound'un 1/16'sına eşittir; ancak kıymetli maden ticaretinde kullanılan troy ons bundan farklı ve daha ağırdır (31,1034768 g) — bu yüzden altın/gümüş fiyatları için verilen 'ons başına fiyat', günlük market alışverişindeki onsdan yaklaşık %10 daha ağır bir birimi ifade eder. Troy ons adını, ortaçağ Fransası'ndaki önemli bir ticaret fuarı şehri olan Troyes'ten alır.",
     measurementSystem: "İngiliz ve ABD ölçü sistemleri",
     siEquivalent: "1 oz = 28,349523125 g",
     commonUses: "Paketleme, gıda, mücevher dışı hafif ticari ölçüler",
@@ -462,6 +553,20 @@ const unitDescriptions: Record<string, UnitDescription> = {
     measurementSystem: "Osmanlı dönemi geleneksel kütle birimi (yürürlükte değil)",
     siEquivalent: "1 dirhem = 1/400 okka ≈ 3,207 g",
     commonUses: "Osmanlı döneminde kıymetli maden, baharat ve ilaç gibi küçük miktarların tartımı; günümüzde tarih araştırmaları ve eski metinlerin yorumlanması",
+  },
+  "miskal": {
+    shortDescription: "Miskal, Osmanlı döneminde altın, gümüş ve değerli ilaçlar gibi hassas tartım gerektiren maddeler için kullanılan bir kütle birimidir. 1 miskal, tam olarak 1,5 dirheme (4,81104375 grama) eşittir.",
+    historySummary: "Miskal, İslam hukuku ve Osmanlı ölçü sisteminde köklü bir geçmişe sahiptir; 24 kırat veya 96 buğday tanesine bölünürdü. 26 Eylül 1869 tarihli Osmanlı ölçüler ve ayarlar nizamnamesi, 1 miskali kesin olarak 1,5 dirhem (4,81104375 g) olarak tanımlamıştır. Kuyumculukta altın ağırlığı hâlâ zaman zaman miskal cinsinden ifade edilir.",
+    measurementSystem: "Osmanlı dönemi geleneksel kütle birimi (yürürlükte değil)",
+    siEquivalent: "1 miskal = 1,5 dirhem = 4,81104375 g",
+    commonUses: "Osmanlı döneminde altın/gümüş ve değerli ilaç tartımı; günümüzde bazı kuyumcularda geleneksel altın ağırlığı referansı olarak",
+  },
+  "batman": {
+    shortDescription: "Batman, Anadolu'da yaygın kullanılan geleneksel bir ağırlık birimidir. Yakın dönemde ticarette kullanılan standarda göre 1 batman 6 okkaya (yaklaşık 7,698 kg) eşittir; ancak bölgeye göre 2 ila 8 okka arasında büyük farklılıklar gösterebilirdi.",
+    historySummary: "Batman adı, Dîvânü Lugâti't-Türk'te geçen ve 'büyük, ağır; büyük testi/kap' anlamına gelen bir Anadolu halk terimiyle ilişkilendirilir. 16-17. yüzyıllarda eczacılıkta kullanılan batman 266 dirhem iken, yakın dönemde Anadolu ticaretinde 6 okkalık standart yaygınlaşmıştır; 1881 tarihli düzenlemeyle 'yeni batman' tam 10 kilogram olarak tanımlanmıştır.",
+    measurementSystem: "Anadolu'ya özgü geleneksel kütle birimi (yürürlükte değil), bölgeye göre değişken",
+    siEquivalent: "1 batman = 6 okka ≈ 7,698 kg (yakın dönem ticaret standardı)",
+    commonUses: "Anadolu'da tarımsal ürün (özellikle yün, pamuk) alım satımında geleneksel ağırlık birimi olarak kullanıldı",
   },
   "troy-ons": {
     shortDescription: "Troy ons, altın, gümüş ve platin gibi kıymetli madenlerin uluslararası piyasalarda tartılmasında kullanılan özel bir kütle birimidir. Günlük hayatta bilinen 'ons' (avoirdupois ons, 28,35 g) ile karıştırılmamalıdır; troy ons tam olarak 31,1034768 grama eşittir.",
@@ -514,7 +619,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
   "saniye": {
     shortDescription: "Saniye, zamanın SI temel birimidir. Tüm süre ve hız hesaplarının temelinde yer alır.",
-    historySummary: "Modern saniye tanımı atomik geçiş frekansına bağlanarak evrensel ve yüksek hassasiyetli hâle getirilmiştir.",
+    historySummary: "Saniye, tarihsel olarak bir günün 1/86.400'ü olarak tanımlanıyordu; ancak Dünya'nın dönüş hızındaki küçük düzensizliklerin bu tanımı yeterince kararlı kılmadığı anlaşıldı. 1967'de Ağırlıklar ve Ölçüler Genel Konferansı'nın 13. toplantısında saniye kökten yeniden tanımlandı: artık sezyum-133 atomunun temel enerji seviyeleri arasındaki geçişe karşılık gelen ışımanın tam olarak 9.192.631.770 periyodu olarak tanımlanıyor. Bu tanım, atomik saatlerin dünyanın her yerinde aynı hassasiyetle (milyarda bir düzeyinde) yeniden üretilebilmesini sağladı ve saniyeyi gök cisimlerinin hareketinden bağımsız, evrensel bir referansa bağladı.",
     measurementSystem: "Uluslararası Birim Sistemi (SI)",
     siEquivalent: "Temel SI zaman birimi",
     commonUses: "Deney süreleri, hareket analizi, veri kayıtları ve zamanlama",
@@ -577,14 +682,14 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
   "psi": {
     shortDescription: "PSI, pound-force per square inch ifadesinin kısaltmasıdır. Anglo-Amerikan teknik sistemlerde kullanılan yaygın bir basınç birimidir.",
-    historySummary: "PSI özellikle otomotiv, hidrolik ve saha servis geleneği içinde yerleşti. SI birimleri yaygınlaşsa da birçok ekipman etiketi ve katalogta kullanılmaya devam etmektedir.",
+    historySummary: "PSI, adından da anlaşılacağı gibi bir kuvvet biriminin (pound-force) bir alan birimine (kare inç) bölünmesinden oluşan bileşik bir birimdir ve 19. yüzyıl buhar makinesi çağında kazan basıncını ifade etmek için İngiliz mühendislik geleneğinde yaygınlaştı. Metrik sistem dünya genelinde standart hâle gelmiş olsa da, PSI otomotiv (lastik basıncı), hidrolik sistemler ve ABD kaynaklı endüstriyel ekipman kataloglarında bugün de fiilen sektör standardı olmaya devam ediyor.",
     measurementSystem: "İngiliz ve ABD mühendislik kullanımı",
     siEquivalent: "1 psi = 6894,757293168 Pa",
     commonUses: "Lastik basıncı, hidrolik sistemler ve teknik servis",
   },
   "milimetre-civa": {
     shortDescription: "Milimetre cıva, bir cıva sütununun yüksekliğine dayanan bir basınç birimidir. Tıbbi ve laboratuvar ölçümlerinde tarihsel önem taşır.",
-    historySummary: "mmHg, cıvalı manometrelerin yaygın olduğu dönemde yerleşti. Özellikle tansiyon ölçümleri ve vakum/atmosfer referansları için kalıcı bir teknik kullanım alanı oluşturdu.",
+    historySummary: "mmHg'nin kökeni, İtalyan fizikçi Evangelista Torricelli'nin 1643'te icat ettiği cıva barometresine dayanır — Torricelli, bir ucu kapalı cam bir tüpü cıvayla doldurup ters çevirerek, atmosfer basıncının cıvayı belirli bir yüksekliğe (deniz seviyesinde yaklaşık 760 mm) kadar destekleyebildiğini gösterdi ve böylece atmosferik basıncın ilk doğrudan ölçümünü yaptı. Bu buluş, 'boşluk doğada var olamaz' şeklindeki asırlık Aristoteles görüşünü de çürüttü, çünkü tüpün cıva üzerindeki boş kısmı gerçek bir vakumdu (bugün 'Torricelli boşluğu' olarak anılır). mmHg birimi, bu tarihi bağlantı nedeniyle günümüzde hâlâ tıpta tansiyon ölçümünün standart birimi olarak kullanılmaya devam eder.",
     measurementSystem: "SI dışı tarihsel mühendislik ve tıbbi birim",
     siEquivalent: "1 mmHg = 133,322387415 Pa",
     commonUses: "Tansiyon ölçümleri, laboratuvar manometreleri ve vakum referansları",
@@ -696,7 +801,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
   "bayt": {
     shortDescription: "Bayt (byte), dijital verinin temel ölçü birimidir. 8 bitten oluşur ve bir karakteri (harf, rakam vb.) temsil etmek için kullanılır.",
-    historySummary: "Bayt, erken bilgisayar mimarilerinde bir karakterin kodlanması için gereken en küçük pratik veri birimi olarak ortaya çıkmış ve zamanla 8 bit olarak standartlaşmıştır.",
+    historySummary: "'Byte' terimi, 1956'da IBM'de Stretch bilgisayarı üzerinde çalışan mühendis Werner Buchholz tarafından, 'bit' kelimesiyle karışmasını önlemek amacıyla kasıtlı olarak 'bite' (ısırık) kelimesinin yazımı değiştirilerek türetildi. İlk yıllarda bir bayt, kullanılan bilgisayar mimarisine göre 1 ile 6 bit arasında değişen farklı uzunluklarda olabiliyordu; 8 bitlik bayt standardı, IBM'in 1964'te piyasaya sürdüğü ve dönemin en etkili bilgisayar ailelerinden biri olan System/360 ile fiilen endüstri standardı hâline geldi.",
     measurementSystem: "Dijital veri birimi (bilgi işlem standardı)",
     siEquivalent: "1 bayt = 8 bit",
     commonUses: "Dosya boyutu, bellek kapasitesi ve veri iletimi ölçümü",
@@ -738,7 +843,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
   "bit": {
     shortDescription: "Bit, dijital verinin en küçük birimidir; yalnızca 0 veya 1 değerini alabilir. Bayt dahil diğer tüm veri birimlerinin temelini oluşturur.",
-    historySummary: "Bit terimi, 'binary digit' (ikili basamak) ifadesinin kısaltması olarak bilgisayar biliminin ilk yıllarında ortaya çıkmış ve dijital bilginin temel yapı taşı hâline gelmiştir.",
+    historySummary: "'Bit' terimi ('binary digit'in kısaltması), 1947'de Bell Laboratuvarları'nda matematikçi John W. Tukey tarafından bir iç yazışmada önerildi; Tukey, daha hantal olan 'binary information digit' ifadesine kısa ve akılda kalıcı bir alternatif arıyordu. Terim, Claude Shannon'ın 1948'de yayımladığı ve bilgi kuramının temelini atan 'A Mathematical Theory of Communication' (Bir İletişim Matematiksel Kuramı) adlı çığır açıcı makalesinde kullanılmasıyla bilim dünyasında yaygınlaştı ve kalıcı hâle geldi.",
     measurementSystem: "Dijital veri birimi (bilgi işlem standardı)",
     siEquivalent: "8 bit = 1 bayt",
     commonUses: "İnternet bağlantı hızı (Mbps, Gbps), işlemci mimarisi (32-bit, 64-bit) ve veri iletim oranları",
@@ -794,7 +899,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
   "farad": {
     shortDescription: "Farad (F), elektriksel kapasitansın SI birimidir. Bir kondansatörün ne kadar elektrik yükü depolayabildiğini ifade eder.",
-    historySummary: "Farad, İngiliz bilim insanı Michael Faraday'ın elektromanyetizma alanındaki çalışmalarına atfen adlandırılmıştır; günlük kullanımdaki kondansatörler genellikle farad'ın çok küçük katları ile ifade edilir.",
+    historySummary: "Farad, İngiliz bilim insanı Michael Faraday'ın onuruna adlandırılmıştır; Faraday'ın 1831'deki elektromanyetik indüksiyon keşfi, modern elektrik mühendisliğinin temellerinden birini oluşturur. Birim ismi, 1861'de Latimer Clark ve Charles Bright tarafından önerilmiş, 1881'deki Uluslararası Elektrik Kongresi'nde volt ve ohm ile birlikte resmileştirilmiştir. 1 farad günlük elektronik bileşenler için son derece büyük bir kapasitans değeri olduğundan (bir insan vücudunun kapasitansı bile yalnızca birkaç yüz pikofarad civarındadır), pratikte kondansatörler neredeyse her zaman mikrofarad, nanofarad veya pikofarad gibi çok küçük katlarıyla ifade edilir.",
     measurementSystem: "Uluslararası Birim Sistemi (SI, türetilmiş birim)",
     siEquivalent: "1 F = 1 C/V",
     commonUses: "Kondansatör kapasite değerleri, devre tasarımı ve enerji depolama hesaplamaları",
@@ -829,7 +934,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
   "henry": {
     shortDescription: "Henry (H), elektriksel endüktansın SI birimidir. Bir bobinin manyetik alanda ne kadar enerji depolayabildiğini ifade eder.",
-    historySummary: "Henry, Amerikalı bilim insanı Joseph Henry'nin elektromanyetik endüksiyon üzerine yaptığı çalışmalara atfen adlandırılmıştır.",
+    historySummary: "Henry, Amerikalı bilim insanı Joseph Henry'nin onuruna adlandırılmıştır; Henry, 1832'de öz-endüktans olgusunu keşfetti — bu, Michael Faraday'ın İngiltere'de elektromanyetik indüksiyonu bağımsız olarak duyurmasından yalnızca bir yıl sonraydı. İki bilim insanı arasında kimin önce keşfettiği konusunda tarihi bir öncelik tartışması yaşanmış olsa da, Faraday bulgularını önce yayımladığı için 'endüksiyon' genellikle onunla anılırken, birim olarak Henry'nin adı ölümsüzleştirilmiştir. Henry ayrıca güçlü elektromıknatıslar geliştirerek erken telgraf teknolojisinin gelişimine de katkıda bulunmuştur.",
     measurementSystem: "Uluslararası Birim Sistemi (SI, türetilmiş birim)",
     siEquivalent: "1 H = 1 Wb/A",
     commonUses: "Bobin ve transformatör tasarımı, filtre devreleri ve güç elektroniği",
@@ -850,7 +955,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
   "coulomb": {
     shortDescription: "Coulomb (C), elektrik yükünün SI birimidir. Bir devreden geçen toplam elektrik yükü miktarını ifade eder.",
-    historySummary: "Coulomb, Fransız fizikçi Charles-Augustin de Coulomb'un elektrostatik kuvvet üzerine yaptığı çalışmalara atfen adlandırılmıştır.",
+    historySummary: "Coulomb, Fransız fizikçi Charles-Augustin de Coulomb'un onuruna adlandırılmıştır; Coulomb, 1785'te kendi geliştirdiği hassas bir burulma (torsiyon) terazisi kullanarak iki elektrik yükü arasındaki itme/çekme kuvvetinin, yükler arası mesafenin karesiyle ters orantılı olduğunu deneysel olarak gösterdi (Coulomb Yasası) — bu, elektrostatiğin kantitatif temelini attı. Birimin kendisi çok daha sonra, 1881'deki Uluslararası Elektrik Kongresi'nde resmileştirildi. 2019'daki SI revizyonuyla coulomb, artık dolaylı bir ölçüme değil, temel elektrik yükünün (elektronun yükünün) tam olarak sabitlenmiş sayısal değerine dayanarak tanımlanıyor.",
     measurementSystem: "Uluslararası Birim Sistemi (SI, türetilmiş birim)",
     siEquivalent: "1 C = 1 A·s",
     commonUses: "Batarya kapasitesi hesaplamaları, elektrostatik yük ölçümü ve kondansatör şarj hesapları",
@@ -974,6 +1079,13 @@ const unitDescriptions: Record<string, UnitDescription> = {
     siEquivalent: "1 nm = 0,000000001 m",
     commonUses: "Işık dalga boyu, yarı iletken çip üretimi, nanoteknoloji ve optik kaplamalar",
   },
+  "pikometre": {
+    shortDescription: "Pikometre, metrenin trilyonda birine eşit, atomik ve atomlar arası mesafelerin ifade edilmesinde kullanılan aşırı küçük bir uzunluk birimidir.",
+    historySummary: "Pikometre, atom fiziği ve kimyada atom yarıçapı ile kovalent bağ uzunluklarının hassas biçimde ifade edilmesi ihtiyacıyla, SI'nın 1960'ta kabul edilen ön ek sisteminin bir parçası olarak yaygınlaştı.",
+    measurementSystem: "Uluslararası Birim Sistemi (SI, alt birim)",
+    siEquivalent: "1 pm = 0,000000000001 m",
+    commonUses: "Atom yarıçapı, kimyasal bağ uzunluğu, kristalografi",
+  },
   "deniz-mili": {
     shortDescription: "Deniz mili, denizcilik ve havacılıkta kullanılan, Dünya'nın enlem dairesine dayanan bir uzunluk birimidir. Tam olarak 1852 metreye eşittir.",
     historySummary: "Deniz mili, Dünya üzerindeki bir enlem derecesinin altmışta birine (bir yay dakikasına) dayalı olarak tanımlanmış ve denizcilikte mesafe ile hız (knot) ölçümünün temelini oluşturmuştur.",
@@ -1088,7 +1200,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
   "pascal-saniye": {
     shortDescription: "Pascal-saniye (Pa·s), dinamik viskozitenin SI türetilmiş birimidir. Bir akışkanın akışa karşı gösterdiği direnci ifade eder.",
-    historySummary: "Pascal-saniye, SI sisteminin basınç ve zaman birimlerinden doğrudan türetilmiştir ve akışkanlar mekaniğinde dinamik viskozitenin standart bilimsel referans birimidir.",
+    historySummary: "Pascal-saniye, SI sisteminin tutarlı (coherent) türetilmiş birimidir — yani basınç birimi pascal ile zaman birimi saniyenin doğrudan çarpımından oluşur, ekstra bir dönüşüm faktörü gerektirmez. Buna rağmen pratikte endüstri, CGS sisteminden gelen ve daha eski bir gelenek olan poise/santipoise birimini tercih etmeye devam eder — bunun başlıca nedeni, suyun oda sıcaklığındaki viskozitesinin santipoise cinsinden kolay hatırlanır bir değere (yaklaşık 1 cP) denk gelmesidir; aynı değer pascal-saniye cinsinden 0,001 gibi daha az sezgisel bir sayıya karşılık gelir.",
     measurementSystem: "Uluslararası Birim Sistemi (SI, türetilmiş birim)",
     siEquivalent: "Temel SI dinamik viskozite birimi: 1 Pa·s = 1 N·s/m²",
     commonUses: "Akışkanlar mekaniği, Reynolds sayısı hesapları, boru hattı tasarımı ve akışkan karakterizasyonu",
@@ -1172,21 +1284,21 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
   "radyan": {
     shortDescription: "Radyan (rad), açının SI birimidir. Bir çemberde, yarıçapa eşit uzunluktaki bir yayın merkezde oluşturduğu açı olarak tanımlanır.",
-    historySummary: "1873'te İskoç fizikçi James Thomson tarafından önerilmiş, matematiksel hesaplamalardaki doğallığı nedeniyle SI'nin açı birimi olarak kabul edilmiştir.",
+    historySummary: "'Radyan' terimi ilk kez 1873'te İskoç fizikçi James Thomson (ünlü Lord Kelvin'in kardeşi) tarafından, Queen's College Belfast'taki sınav kağıtlarında kullanıldı; 'radius' (yarıçap) ve 'angle' (açı) kelimelerinin birleşiminden türetildiği düşünülür. Radyanın matematiksel üstünlüğü, trigonometrik fonksiyonların türev ve integrallerinin (örneğin sinüsün türevinin kosinüs olması) yalnızca açı radyan cinsinden ifade edildiğinde ekstra bir sabite ihtiyaç duymadan sade kalmasından gelir — bu yüzden radyan, dereceye rağmen SI'nin türetilmiş açı birimi olarak benimsenmiştir.",
     measurementSystem: "Uluslararası Birim Sistemi (SI, türetilmiş birim)",
     siEquivalent: "Temel SI açı birimi (2π rad = 360°)",
     commonUses: "Trigonometri, mühendislik hesapları, açısal hız ve ivme formülleri",
   },
   "derece": {
     shortDescription: "Derece (°), bir tam çemberin 360 eşit parçaya bölünmesiyle elde edilen, günlük kullanımda en yaygın açı birimidir.",
-    historySummary: "Kökeni Antik Babil'in 60 tabanlı sayı sistemine dayanır; 360 sayısının çok sayıda tam bölene sahip olması pratik kullanımını kolaylaştırmıştır.",
+    historySummary: "360 derecelik tam çember, kökenini Antik Babil'in 60 tabanlı (seksagesimal) sayı sisteminden alır; 360 sayısının 2, 3, 4, 5, 6, 8, 9, 10, 12 gibi birçok sayıya tam bölünebilmesi, açıları pratik kesirlere ayırmayı kolaylaştırdığı için tercih edilmiş olabilir. Ayrıca 360'ın, Babil takviminde kullanılan yaklaşık 360 günlük bir yıl uzunluğuna yakınlığının da tarihsel bir etkisi olduğu düşünülür. Bu sistem, Yunan astronomları (özellikle Hipparchus) aracılığıyla batı bilimine aktarılmış ve günümüze kadar değişmeden ulaşmıştır.",
     measurementSystem: "SI dışı, yaygın kullanılan birim",
     siEquivalent: "1° = π/180 rad ≈ 0,01745 rad",
     commonUses: "Navigasyon, coğrafya (enlem/boylam), mühendislik çizimleri, günlük açı ölçümleri",
   },
   "gradyan": {
     shortDescription: "Gradyan (gon), bir tam çemberi 400 eşit parçaya bölen, ondalık sisteme uyumlu bir açı birimidir.",
-    historySummary: "Fransız Devrimi sonrası ondalık ölçü sistemi hareketinin bir parçası olarak önerilmiş, günümüzde başta jeodezi ve harita mühendisliği olmak üzere sınırlı alanlarda kullanılmaya devam eder.",
+    historySummary: "Gradyan, Fransız Devrimi sonrasında metrik sistemle birlikte önerilen ve tüm ölçü birimlerini 10'un katlarına dayandırmayı hedefleyen 'ondalıklaştırma' hareketinin bir ürünüdür; bir dik açıyı tam 100 gona bölerek dereceye göre daha 'ondalık dostu' bir sistem sunar. Derece kadar yaygınlaşmamış olsa da, ondalık hesaplama kolaylığı nedeniyle bugün hâlâ başta Fransa olmak üzere bazı Avrupa ülkelerinde jeodezi ve arazi ölçümü (haritacılık) mühendisliğinde tercih edilmeye devam eder.",
     measurementSystem: "SI dışı, ondalık sistem birimi",
     siEquivalent: "1 gon = π/200 rad = 0,9°",
     commonUses: "Jeodezi, arazi ölçümü, bazı Avrupa mühendislik uygulamaları",
@@ -1270,7 +1382,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
   "weber": {
     shortDescription: "Weber (Wb), manyetik akının SI türetilmiş birimidir. Bir manyetik alanın belirli bir yüzeyden geçen toplam etkisini ifade eder.",
-    historySummary: "Alman fizikçi Wilhelm Eduard Weber'in elektromanyetizma alanındaki çalışmaları onuruna adlandırılmıştır; transformatör ve indüksiyon hesaplarının temel SI birimidir.",
+    historySummary: "Alman fizikçi Wilhelm Eduard Weber'in onuruna adlandırılmıştır; Weber, 1830'larda Göttingen Üniversitesi'nde matematikçi Carl Friedrich Gauss ile birlikte çalışarak dünyanın ilk elektromanyetik telgraf hatlarından birini kurdu ve hassas bir manyetometre geliştirdi. Bu ortak çalışma, manyetik birimlerin bilimsel olarak standartlaştırılmasının öncüsü oldu ve 'Weber-Gauss birim sistemi' olarak anılan erken bir CGS elektromanyetik birim sistemine adını verdi — bugünkü SI birimi weber, bu tarihi mirasa doğrudan bağlıdır.",
     measurementSystem: "Uluslararası Birim Sistemi (SI, türetilmiş birim)",
     siEquivalent: "1 Wb = 1 V·s (volt-saniye)",
     commonUses: "Transformatör tasarımı, elektromanyetik indüksiyon hesapları, elektrik motoru mühendisliği",
@@ -1845,7 +1957,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
   },
 };
 
-const unitPageOrder = ["metre","kilometre","santimetre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","okka","dirhem","troy-ons","karat","grain","dalton","astronomik-birim","isik-yili","parsek","angstrom","fathom","elektronvolt","torr","ingiliz-galonu","ar","bushel","pint","ingiliz-pint","quart","ingiliz-quart","kibibit","mebibit","gibibit","tebibit","rankine","reaumur","sogutma-tonu","sivi-ons","ingiliz-sivi-ons","peck","kilobit","megabit","gigabit","terabit","yemek-kasigi","cay-kasigi","su-bardagi","stone","tsubo","megapascal","hektopascal","bizans-litrasi","bizans-onsu","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit","kilogram-metre-saniye","newton-saniye","pascal-saniye","santipoise","mikrometre","nanometre","deniz-mili","arsin","endaze","bizans-ayagi","bizans-kulaci","cig","santimetrekare","milimetrekare","kilometrekare","incare","yardakare","akre","donum","dekar","decimal-arazi","katha","bigha","santimetrekup","fitkup","inckup","galon","bit","bayt","kilobayt","megabayt","gigabayt","terabayt","petabayt","kibibayt","mebibayt","gibibayt","tebibayt","ohm","kiloohm","megaohm","farad","milifarad","mikrofarad","nanofarad","pikofarad","henry","milihenry","mikrohenry","coulomb","milicoulomb","mikrocoulomb","nanocoulomb","ayar-24","ayar-22","ayar-18","ayar-14","999-ayar-gumus","925-ayar-gumus","900-ayar-gumus","800-ayar-gumus","milimol-litre","miligram-desilitre","nanomol-litre","nanogram-mililitre","kalori","kilokalori","btu","watt-saat","kilojoule","milibar","knot","gun","isik-hizi","varil","kilogram-kuvvet-metre","megawatt","beygirgucu-mekanik","milivolt","kiloamper","m-s2","ft-s2","g0","rpm","rad-s","deg-s","w-mk","btu-hftf","w-m2","kw-m2","j-kgk","cal-gk","m2-s","centistoke","a-m","oersted","weber","miliweber","radyan","derece","gradyan","hertz","kilohertz","megahertz","gigahertz","m3-s","cfm","gpm","kg-s","kg-h","gram-mililitre","kilogram-litre","gram-litre","miligram-litre","pound-fitkup","pound-inckup","pound-galon","slug-fitkup","milipaskal-saniye","poise","milimetrekare-saniye","kilonewton-metre","kilonewton","pound-kuvvet","dyn","litre-saniye","litre-dakika-hacimsel","metrekup-saat-hacimsel","gram-saniye","gram-saat","santimetre-saniyekare","milimetre-saniyekare","kilometre-saniyekare","inc-saniyekare","fit-dakikakare","metre-dakikakare","gal-ivme","radyan-dakika","radyan-saat","derece-dakika","derece-saat","devir-saniye-acisal","kiloamper-metre","mikroweber","nanoweber","kilowatt-metre-kelvin","watt-santimetre-kelvin","kalori-santimetrekare-saniye","kilojoule-kilogram-kelvin","btu-pound-fahrenhayt","pound-fit-saniye","tam-tur","kilometre-saniye","fit-saniye","metre-dakika","kilometre-dakika","santimetre-saniye","milisaniye","teknik-atmosfer","milimetre-su-sutunu","megajoule","therm","quad-btu"];
+const unitPageOrder = ["metre","kilometre","santimetre","desimetre","pikometre","milimetre","mil","fit","inc","yarda","kilogram","gram","miligram","pound","ton","ons","okka","dirhem","miskal","batman","troy-ons","karat","grain","dalton","astronomik-birim","isik-yili","parsek","angstrom","fathom","elektronvolt","torr","ingiliz-galonu","ar","bushel","pint","ingiliz-pint","quart","ingiliz-quart","kibibit","mebibit","gibibit","tebibit","rankine","reaumur","sogutma-tonu","sivi-ons","ingiliz-sivi-ons","peck","kilobit","megabit","gigabit","terabit","yemek-kasigi","cay-kasigi","su-bardagi","stone","tsubo","megapascal","hektopascal","furlong","kental","btu-saat","bizans-litrasi","bizans-onsu","pascal","kilopascal","bar","atmosfer","psi","milimetre-civa","kilogram-kuvvet-santimetrekare","metrekare","hektar","fitkare","litre","metrekup","mililitre","santigrat","fahrenhayt","kelvin","saniye","dakika","saat","metre-saniye","kilometre-saat","mil-saat","joule","kilovatsaat","watt","kilowatt","metrekup-saat","litre-dakika","volt","kilovolt","amper","miliamper","kilogram-metrekup","gram-santimetrekup","beygirgucu","newton","kilogram-kuvvet","newton-metre","pound-fit","kilogram-metre-saniye","newton-saniye","pascal-saniye","santipoise","mikrometre","nanometre","deniz-mili","arsin","endaze","bizans-ayagi","bizans-kulaci","cig","santimetrekare","milimetrekare","kilometrekare","incare","yardakare","akre","killa","kanal","marla","guntha","cent-arazi","ground","biswa","donum","dekar","decimal-arazi","katha","bigha","santimetrekup","fitkup","inckup","galon","bit","bayt","kilobayt","megabayt","gigabayt","terabayt","petabayt","kibibayt","mebibayt","gibibayt","tebibayt","ohm","kiloohm","megaohm","farad","milifarad","mikrofarad","nanofarad","pikofarad","henry","milihenry","mikrohenry","coulomb","milicoulomb","mikrocoulomb","nanocoulomb","ayar-24","ayar-22","ayar-18","ayar-14","999-ayar-gumus","925-ayar-gumus","900-ayar-gumus","800-ayar-gumus","milimol-litre","miligram-desilitre","nanomol-litre","nanogram-mililitre","kalori","kilokalori","btu","watt-saat","kilojoule","milibar","knot","gun","isik-hizi","varil","kile","sinik","kilogram-kuvvet-metre","megawatt","beygirgucu-mekanik","milivolt","kiloamper","m-s2","ft-s2","g0","rpm","rad-s","deg-s","w-mk","btu-hftf","w-m2","kw-m2","j-kgk","cal-gk","m2-s","centistoke","a-m","oersted","weber","miliweber","radyan","derece","gradyan","hertz","kilohertz","megahertz","gigahertz","m3-s","cfm","gpm","kg-s","kg-h","gram-mililitre","kilogram-litre","gram-litre","miligram-litre","pound-fitkup","pound-inckup","pound-galon","slug-fitkup","milipaskal-saniye","poise","milimetrekare-saniye","kilonewton-metre","kilonewton","pound-kuvvet","dyn","litre-saniye","litre-dakika-hacimsel","metrekup-saat-hacimsel","gram-saniye","gram-saat","santimetre-saniyekare","milimetre-saniyekare","kilometre-saniyekare","inc-saniyekare","fit-dakikakare","metre-dakikakare","gal-ivme","radyan-dakika","radyan-saat","derece-dakika","derece-saat","devir-saniye-acisal","kiloamper-metre","mikroweber","nanoweber","kilowatt-metre-kelvin","watt-santimetre-kelvin","kalori-santimetrekare-saniye","kilojoule-kilogram-kelvin","btu-pound-fahrenhayt","pound-fit-saniye","tam-tur","kilometre-saniye","fit-saniye","metre-dakika","kilometre-dakika","santimetre-saniye","milisaniye","teknik-atmosfer","milimetre-su-sutunu","megajoule","therm","quad-btu"];
 
 export const unitPages: UnitPage[] = unitRegistry
   .filter((entry) => entry.tr && unitDescriptions[entry.id])

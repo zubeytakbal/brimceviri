@@ -23,6 +23,9 @@ export const metadata: Metadata = {
     "Dış cephe alanını ve mantolama levha ebadını gir; fire payı dahil gereken yalıtım levhası adedini anında hesapla.",
   alternates: {
     canonical: "/mantolama-hesaplama",
+    languages: {
+      "uz-UZ": "/uz/mantolama-hisoblash",
+    },
   },
   openGraph: {
     title: "Mantolama Hesaplama: Yalıtım Levhası Adedi",
@@ -125,6 +128,15 @@ export default function InsulationCalculatorPage() {
             hesaplayıcıları için{" "}
             <Link href="/insaatci-araclari">İnşaatçı Araçları</Link>{" "}
             sayfasına bakabilirsin.
+          </p>
+
+          <h2>İlgili araçlar</h2>
+          <p>
+            Yalıtımın kendini kaç yılda amorti ettiğini görmek için{" "}
+            <Link href="/yalitim-amortisman-hesaplama">Yalıtım Amortisman Hesaplama</Link>,{" "}
+            diğer inşaat araçları için{" "}
+            <Link href="/insaatci-araclari">İnşaatçı Araçları</Link>
+            {" "}sayfasına bakabilirsin.
           </p>
 
           <h2>Kaynaklar</h2>

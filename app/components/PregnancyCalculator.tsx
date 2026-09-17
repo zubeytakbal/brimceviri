@@ -34,9 +34,9 @@ const trimesterLabels: Record<
     3: "الثلث الثالث",
   },
 uz: {
-    1: "1st trimester",
-    2: "2nd trimester",
-    3: "3rd trimester",
+    1: "1-trimestr",
+    2: "2-trimestr",
+    3: "3-trimestr",
   },
 bn: {
     1: "1st trimester",
@@ -95,13 +95,13 @@ const copyByLocale: Record<
     days: "يوم",
   },
 uz: {
-    inputLabel: "First Day of the Last Period",
-    emptyState: "Enter a valid date; it cannot be in the future or more than 45 weeks old.",
-    summaryLabel: "Pregnancy age",
-    dueDate: "Estimated due date",
-    daysUntil: "Days until due date",
-    weeks: "weeks",
-    days: "days",
+    inputLabel: "So'nggi Hayz Kunining Birinchi Kuni",
+    emptyState: "To'g'ri sana kiriting; sana kelajakda yoki 45 haftadan ko'proq eski bo'lishi mumkin emas.",
+    summaryLabel: "Homiladorlik haftasi",
+    dueDate: "Taxminiy tug'ilish sanasi",
+    daysUntil: "Tug'ilishgacha qolgan kun",
+    weeks: "hafta",
+    days: "kun",
   },
 bn: {
     inputLabel: "First Day of the Last Period",

@@ -31,6 +31,7 @@ export const metadata: Metadata = {
     languages: {
       tr: "/sayi-tabani-cevirici",
       bn: "/bn/number-base-calculator",
+      "uz-UZ": "/uz/son-tizimi-cevirgich",
       "x-default": "/sayi-tabani-cevirici",
     },
   },
@@ -143,6 +144,17 @@ export default function NumberBaseCalculatorPage() {
               {item.answer}
             </p>
           ))}
+
+          <h2>İlgili araçlar</h2>
+          <p>
+            Diğer yazılımcı araçları için{" "}
+            <Link href="/yazilimci-araclari">Yazılımcı Araçları</Link>{" "}
+            sayfasına, renk kodu çevirme için{" "}
+            <Link href="/renk-kodu-cevirici">Renk Kodu Çevirici</Link>
+            {" "}sayfasına, veri boyutu birim dönüşümleri için{" "}
+            <Link href="/kategoriler/veri">Veri Depolama Dönüşümleri</Link>
+            {" "}sayfasına bakabilirsin.
+          </p>
         </section>
       </div>
     </main>

@@ -87,6 +87,22 @@ export default function EnglishRecipeScalerPage() {
             </Link>
             .
           </p>
+
+          <h2>Which cup standard does this recipe converter use?</h2>
+          <p>
+            In English recipes, a cup is treated as the US customary cup
+            (236.588 ml), which is the usual default for US recipe
+            writing. Tablespoons and teaspoons use 15 ml and 5 ml.
+          </p>
+          <p>
+            Metric and imperial recipes can use a different cup volume,
+            so their gram equivalents may differ. Use the{" "}
+            <Link href="/en/kitchen-measurement-converter">
+              kitchen measurement converter
+            </Link>{" "}
+            to select US legal, metric or imperial cups for an individual
+            ingredient.
+          </p>
         </section>
 
         <section className="conversion-section language-alternatives">

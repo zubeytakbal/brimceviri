@@ -135,6 +135,16 @@ export default function TileCalculatorPage() {
             fayans kullanılacaksa %15-%20 aralığına çıkmak daha güvenlidir.
           </p>
 
+          <h2>İlgili araçlar</h2>
+          <p>
+            Aynı yenileme projesinde işine yarayabilecek diğer araçlar:{" "}
+            <Link href="/boya-hesaplama">Boya Hesaplama</Link>,{" "}
+            <Link href="/duvar-kagidi-hesaplama">Duvar Kağıdı Hesaplama</Link>,{" "}
+            <Link href="/tugla-hesaplama">Tuğla Hesaplama</Link>,{" "}
+            <Link href="/parke-hesaplama">Parke Hesaplama</Link>,{" "}
+            <Link href="/siva-hesaplama">Sıva Hesaplama</Link>.
+          </p>
+
           <h2>Kaynaklar</h2>
           <p>
             Fire payı aralıkları, yaygın seramik/fayans üreticilerinin ve

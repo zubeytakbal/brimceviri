@@ -12,7 +12,7 @@ import { manualElectricityPriceDefault } from "../converter/evVsIceComparison";
 import type { LiveFuelPrice } from "../converter/liveFuelPrice";
 
 type Mode = "charging-time" | "range";
-type SupportedLocale = "tr" | "en";
+type SupportedLocale = "tr" | "en" | "uz";
 
 type EvChargingCopy = {
   whatToCalculate: string;
@@ -95,6 +95,33 @@ const copyByLocale: Record<SupportedLocale, EvChargingCopy> = {
     resultSavings: "Savings vs. Gasoline",
     savingsNote:
       "Enter gasoline consumption and price too to see the savings.",
+  },
+  uz: {
+    whatToCalculate: "Nimani hisoblamoqchisiz?",
+    chargingTimeMode: "Zaryadlash Vaqti",
+    rangeMode: "Masofa",
+    fieldBatteryCapacity: "Batareya Sig'imi (kWh)",
+    fieldCurrentPercent: "Hozirgi Zaryad (%)",
+    fieldTargetPercent: "Maqsad Zaryad (%)",
+    fieldChargerPower: "Zaryadlagich Quvvati (kW)",
+    fieldEfficiency: "Zaryadlash Samaradorligi (%)",
+    fieldConsumption: "Sarf (kWh/100km)",
+    emptyState: "Natijani ko'rish uchun to'g'ri qiymatlar kiriting.",
+    resultEnergyNeeded: "Kerakli Energiya",
+    resultChargingTime: "Taxminiy Zaryadlash Vaqti",
+    resultRange: "Taxminiy Masofa",
+    hoursShort: "soat",
+    minutesShort: "daq",
+    fieldElectricityPrice: "Elektr Narxi (EUR/kWh)",
+    fieldEvConsumption: "Avtomobil Sarfi (kWh/100km)",
+    fieldIceConsumption: "Benzinli Avtomobil Sarfi (l/100km, ixtiyoriy)",
+    fieldGasolinePrice: "Benzin Narxi (EUR/l, ixtiyoriy)",
+    gasolinePricePlaceholder: "Bugungi narxni kiriting",
+    resultChargingCost: "Ushbu Zaryadning Xarajati",
+    resultRangeGained: "Qo'lga Kiritilgan Masofa",
+    resultSavings: "Benzinlisiga Nisbatan Tejash",
+    savingsNote:
+      "Tejashni ko'rish uchun benzinli avtomobil sarfi va narxini ham kiriting.",
   },
 };
 
@@ -361,7 +388,7 @@ export default function EvChargingCalculator({
                     {formatLocalizedNumber(chargingCostTl, locale, {
                       maximumFractionDigits: 0,
                     })}{" "}
-                    ₺
+                    {locale === "tr" ? "₺" : "EUR"}
                   </strong>
                 </div>
               )}
@@ -383,7 +410,7 @@ export default function EvChargingCalculator({
                     {formatLocalizedNumber(savingsTl, locale, {
                       maximumFractionDigits: 0,
                     })}{" "}
-                    ₺
+                    {locale === "tr" ? "₺" : "EUR"}
                   </strong>
                 </div>
               ) : (

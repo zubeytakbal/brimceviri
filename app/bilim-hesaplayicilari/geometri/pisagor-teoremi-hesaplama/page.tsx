@@ -169,6 +169,13 @@ export default function PisagorTeoremiPage() {
             </p>
           ))}
 
+          <h2>İlgili araçlar</h2>
+          <p>
+            Karekök hesaplama için{" "}
+            <Link href="/bilim-hesaplayicilari/matematik/karekok-hesaplama">Karekök Hesaplama</Link>{" "}
+            sayfasına bakabilirsin.
+          </p>
+
           <h2>Kaynaklar</h2>
           <p>
             Pisagor teoremi tanımı ve ispatı standart ortaokul ve lise

@@ -194,6 +194,15 @@ export default function SeyreltmeHesaplamaPage() {
             </p>
           ))}
 
+          <h2>İlgili araçlar</h2>
+          <p>
+            Derişim hesabı için{" "}
+            <Link href="/bilim-hesaplayicilari/kimya/molarite-hesaplama">Molarite Hesaplama</Link>,{" "}
+            titrasyon hesaplamaları için{" "}
+            <Link href="/bilim-hesaplayicilari/kimya/titrasyon-hesaplama">Titrasyon Hesaplama</Link>
+            {" "}sayfasına bakabilirsin.
+          </p>
+
           <h2>Kaynaklar</h2>
           <p>
             Seyreltme bağıntısı, madde miktarının (mol) korunumu ilkesine

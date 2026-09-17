@@ -14,6 +14,11 @@ const faqItems: FaqItem[] = [
     answer:
       "Kesim, planyalama ve işleme kayıplarını karşılamak için genelde %5-10 arasında bir fire oranı eklenir; kullanılan makine ve işçilik yöntemine göre bu oran değişebilir.",
   },
+  {
+    question: "Kerestenin nem oranı neden önemlidir?",
+    answer:
+      "Ahşap, nem oranına göre genişleyip daralır (özellikle enine yönde); bu yüzden iç mekan mobilyasında kullanılacak kereste genellikle fırında kurutulmuş (kiln-dried, ~%6-8 nem) olmalıdır. Havada kurutulmuş kereste (~%12-15 nem) ise iç mekan ortam nemine tam adapte olmadığı için zamanla çatlama, bükülme veya birleşim yerlerinde açılma riski taşır.",
+  },
 ];
 
 export const metadata: Metadata = {
@@ -123,6 +128,17 @@ export default function MarangozAraclariPage() {
             Kesim, planyalama ve işleme kayıplarını karşılamak için
             genelde %5-10 arasında bir fire oranı eklenir; kullanılan
             makine ve işçilik yöntemine göre bu oran değişebilir.
+          </p>
+          <p>
+            <strong>Kerestenin nem oranı neden önemlidir?</strong>
+            <br />
+            Ahşap, nem oranına göre genişleyip daralır (özellikle enine
+            yönde); bu yüzden iç mekan mobilyasında kullanılacak kereste
+            genellikle fırında kurutulmuş (kiln-dried, ~%6-8 nem)
+            olmalıdır. Havada kurutulmuş kereste (~%12-15 nem) ise iç
+            mekan ortam nemine tam adapte olmadığı için zamanla
+            çatlama, bükülme veya birleşim yerlerinde açılma riski
+            taşır.
           </p>
 
           <h2>Kaynaklar</h2>

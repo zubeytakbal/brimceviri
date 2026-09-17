@@ -9,7 +9,7 @@ import {
   ringSizeRows,
 } from "../converter/ringSizeTable";
 
-type Locale = "tr" | "en" | "de" | "ar";
+type Locale = "tr" | "en" | "de" | "ar" | "uz";
 
 const systemLabels: Record<Locale, Record<RingSizeSystem, string>> = {
   tr: {
@@ -35,6 +35,12 @@ const systemLabels: Record<Locale, Record<RingSizeSystem, string>> = {
     circumferenceMm: "المحيط الأوروبي (مم)",
     us: "US",
     uk: "UK",
+  },
+  uz: {
+    diameterMm: "Ichki Diametr (mm)",
+    circumferenceMm: "Yevropa (Aylana mm)",
+    us: "AQSH (US)",
+    uk: "Angliya (UK)",
   },
 };
 
@@ -83,6 +89,17 @@ const copy = {
     ukResult: "UK",
     chartCaption: "جدول مقاسات الخواتم",
   },
+  uz: {
+    knownSystem: "Ma'lum Tizim",
+    value: "Qiymat",
+    matchingSizes: "Mos O'lchamlar",
+    invalidValue: "Eng yaqin mosni ko'rish uchun to'g'ri qiymat tanlang.",
+    diameterResult: "Diametr (mm)",
+    circumferenceResult: "Yevropa (mm)",
+    usResult: "AQSH (US)",
+    ukResult: "Angliya (UK)",
+    chartCaption: "Uzuk o'lchami jadvali",
+  },
 } as const;
 
 const systemOrder: RingSizeSystem[] = [
@@ -103,6 +120,10 @@ function getNumberLocale(locale: Locale) {
 
   if (locale === "ar") {
     return "ar";
+  }
+
+  if (locale === "uz") {
+    return "uz-UZ";
   }
 
   return "en-US";

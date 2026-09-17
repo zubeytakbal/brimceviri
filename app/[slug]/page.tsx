@@ -10,6 +10,7 @@ import { conversionPages } from "../converter/conversionPages";
 import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
 import { findEnglishPageByTurkishSlug } from "../converter/localizedConversionPages";
 import { findGermanPageByTurkishSlug } from "../converter/localizedGermanConversionPages";
+import { getFlagshipPairInsight } from "../converter/flagshipPairInsights";
 import { getUnitSources } from "../converter/unitSources";
 import { findUnitPage } from "../converter/unitPages";
 import { buildFullLanguageAlternates } from "../i18n/routing";
@@ -43,7 +44,63 @@ const popularEmbedSlugs = new Set([
   "gram-kilogram",
   "litre-galon",
   "galon-litre",
+  // GSC'de dogrulanmis en yuksek gosterimli sorgular (1 metre kac cm: 273
+  // gosterim, 1 cm kac mm: 183, 1 km kac m: 112 vb.) ve diger kategorilerden
+  // gercekten yuksek talepli ciftler -- ayrintili tablo/ozel deger yatirimi
+  // burada yapiliyor, tum ~800 sayfaya degil.
+  "metre-santimetre",
+  "santimetre-metre",
+  "santimetre-milimetre",
+  "milimetre-santimetre",
+  "kilometre-metre",
+  "metre-kilometre",
+  "gram-miligram",
+  "miligram-gram",
+  "ons-gram",
+  "gram-ons",
+  "ton-kilogram",
+  "kilogram-ton",
+  "pound-ons",
+  "ons-pound",
+  "mililitre-litre",
+  "litre-mililitre",
+  "mil-saat-kilometre-saat",
+  "kilometre-saat-mil-saat",
+  "bar-psi",
+  "psi-bar",
+  "megabayt-gigabayt",
+  "gigabayt-megabayt",
+  "kilobayt-megabayt",
+  "megabayt-kilobayt",
+  "saniye-saat",
+  "saat-saniye",
+  "dakika-saat",
+  "saat-dakika",
+  "metrekare-fitkare",
+  "fitkare-metrekare",
+  "donum-dekar",
+  "dekar-donum",
+  "donum-hektar",
+  "hektar-donum",
+  "joule-kalori",
+  "kalori-joule",
+  "watt-saat-kilovatsaat",
+  "kilovatsaat-watt-saat",
+  "santigrat-kelvin",
+  "kelvin-santigrat",
+  "yarda-metre",
+  "metre-yarda",
+  "inc-fit",
+  "fit-inc",
 ]);
+
+// popularEmbedSlugs sayfalarinda kullanilan genisletilmis ornek deger
+// listesi -- gercekci, yuvarlak sayilar (kilo, boy, sicaklik, hacim gibi
+// gunluk hayatta karsilasilan araliklari kapsayacak sekilde secildi).
+const extendedTableValues = [
+  1, 2, 3, 4, 5, 10, 15, 20, 25, 30, 40, 50, 60, 70, 75, 80, 90, 100, 150,
+  200, 250, 500, 1000,
+];
 
 function formatNumber(value: number) {
   if (!Number.isFinite(value)) {
@@ -83,26 +140,33 @@ export async function generateMetadata({
     };
   }
 
-  const directAnswer =
-    conversionPage.explanation.split(". ")[1] ??
-    conversionPage.explanation;
+  // Baslik, kullanicinin arama cubuguna yazdigi soru kalibiyla ("1 X kac Y")
+  // birebir eslessin diye boyle kuruldu -- eski "X - Y Cevirici" formatinda
+  // sayfalar ortalama 8. sirada cikmasina ragmen TO %0,1 seviyesindeydi,
+  // cunku baslik aramadaki hicbir kelimeyi (1, kac, birim adi) tasimiyordu.
+  const oneUnitResult = convert(
+    conversionPage.category,
+    1,
+    conversionPage.fromUnit,
+    conversionPage.toUnit
+  );
+  const formattedOneUnitResult = formatNumber(oneUnitResult);
+
+  const title = `1 ${conversionPage.fromName} Kaç ${conversionPage.toName}? – Çevirici`;
+  const description =
+    `1 ${conversionPage.fromName} kaç ${conversionPage.toName} eder? ` +
+    `1 ${conversionPage.fromName} = ${formattedOneUnitResult} ${conversionPage.toName}. ` +
+    `Ücretsiz hesaplama aracı, formül ve hazır dönüşüm tablosu için tıklayın.`;
 
   return {
-    title:
-      `${conversionPage.fromName} – ` +
-      `${conversionPage.toName} Çevirici`,
-    description:
-      `${conversionPage.fromName} kaç ${conversionPage.toName}? ` +
-      `${directAnswer} Ücretsiz hesaplama aracı, formül ve hazır ` +
-      `dönüşüm tablosu için tıklayın.`,
+    title,
+    description,
     alternates: {
       canonical: `/${conversionPage.slug}`,
       ...buildFullLanguageAlternates(`/${conversionPage.slug}`),
     },
     openGraph: {
-      title:
-        `${conversionPage.fromName} – ` +
-        `${conversionPage.toName} Çevirici`,
+      title,
       description:
         `${conversionPage.fromName} değerini ` +
         `${conversionPage.toName} birimine ücretsiz dönüştürün.`,
@@ -162,7 +226,15 @@ export default async function ConversionPage({ params }: PageProps) {
   );
   const sources = getUnitSources(conversionPage.category);
 
-  const tableRows = conversionPage.exampleValues.map((value) => ({
+  // Genis/populer ciftlerde (metre-santimetre, kilogram-pound gibi) tablo
+  // daha uzun -- gercek trafik burada yogunlasiyor, nis ciftlerde (peck-bushel
+  // gibi) standart 6-7 satir yeterli. Ayni popularEmbedSlugs listesi embed
+  // kodu tesviki icin de kullaniliyor, ikinci bir liste tutmuyoruz.
+  const exampleValues = popularEmbedSlugs.has(conversionPage.slug)
+    ? extendedTableValues
+    : conversionPage.exampleValues;
+
+  const tableRows = exampleValues.map((value) => ({
     input: value,
     result: convert(
       conversionPage.category,
@@ -171,6 +243,36 @@ export default async function ConversionPage({ params }: PageProps) {
       conversionPage.toUnit
     ),
   }));
+
+  // Elle arastirilmis gercek dunya degeri / sektor notu -- sadece flagship
+  // ciftlerde var, anchorUnit hangi yonde olursa olsun dogru sonucu uretir.
+  const flagshipInsight = getFlagshipPairInsight(
+    conversionPage.category,
+    conversionPage.fromUnit,
+    conversionPage.toUnit
+  );
+  const flagshipRealWorldRows = flagshipInsight?.realWorldValues?.map(
+    (item) => {
+      const anchorIsFrom = item.anchorUnit === conversionPage.fromUnit;
+      const fromValue = anchorIsFrom
+        ? item.value
+        : convert(
+            conversionPage.category,
+            item.value,
+            conversionPage.toUnit,
+            conversionPage.fromUnit
+          );
+      const toValue = anchorIsFrom
+        ? convert(
+            conversionPage.category,
+            item.value,
+            conversionPage.fromUnit,
+            conversionPage.toUnit
+          )
+        : item.value;
+      return { label: item.label, fromValue, toValue };
+    }
+  );
 
   const oneUnitResult = convert(
     conversionPage.category,
@@ -383,6 +485,31 @@ export default async function ConversionPage({ params }: PageProps) {
             </table>
           </div>
         </section>
+
+        {flagshipInsight && (
+          <section className="conversion-section flagship-insight">
+            {flagshipRealWorldRows && flagshipRealWorldRows.length > 0 && (
+              <>
+                <h2>Gerçek hayattan örnekler</h2>
+                <ul className="flagship-real-world-list">
+                  {flagshipRealWorldRows.map((row) => (
+                    <li key={row.label}>
+                      <strong>{row.label}:</strong>{" "}
+                      {formatNumber(row.fromValue)} {conversionPage.fromUnit}{" "}
+                      ≈ {formatNumber(row.toValue)} {conversionPage.toUnit}
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
+
+            {flagshipInsight.sectorNote && (
+              <p className="flagship-sector-note">
+                {flagshipInsight.sectorNote}
+              </p>
+            )}
+          </section>
+        )}
 
         {fromUnitInfo && (
           <section className="conversion-section unit-information">

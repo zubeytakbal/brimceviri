@@ -17,6 +17,7 @@ export const metadata: Metadata = {
       en: englishPage
         ? `/en/calculators/${englishPage.slug}`
         : "/en",
+      "uz-UZ": "/uz/reynolds-soni-hisoblash",
       "x-default": "/hesaplayicilar/reynolds-sayisi",
     },
   },

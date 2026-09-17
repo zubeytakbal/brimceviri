@@ -111,21 +111,21 @@ const copyByLocale: Record<Locale, DateCopy> = {
   },
 uz: {
     labels: {
-      startDate: "Start Date (Birth Date)",
-      endDate: "Target Date",
+      startDate: "Boshlanish Sanasi (Tug'ilgan Sana)",
+      endDate: "Maqsad Sana",
     },
-    emptyState: "Enter two valid dates; the target date cannot be earlier than the start date.",
+    emptyState: "Ikkita to'g'ri sana kiriting; maqsad sana boshlanish sanasidan oldin bo'lishi mumkin emas.",
     resultLabels: {
-      difference: "Difference",
-      totalDays: "Total days",
-      totalWeeks: "Total weeks",
-      totalMonths: "Total months",
-      nextAnniversary: "Next anniversary",
+      difference: "Farq",
+      totalDays: "Jami kun",
+      totalWeeks: "Jami hafta",
+      totalMonths: "Jami oy",
+      nextAnniversary: "Keyingi yil to'lish sanasi",
     },
     units: {
-      years: "years",
-      months: "months",
-      days: "days",
+      years: "yil",
+      months: "oy",
+      days: "kun",
     },
   },
 bn: {

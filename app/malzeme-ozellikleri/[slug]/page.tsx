@@ -9,6 +9,7 @@ import {
   findSimilarDensityMaterials,
   getAllMaterialProfiles,
 } from "../../converter/materialsHub";
+import { getAllMaterialComparisons } from "../../converter/materialComparisons";
 import { materialCategoryLabels } from "../../converter/materialsDatabase";
 import { buildSiteUrl } from "../../siteConfig";
 
@@ -42,7 +43,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title,
     description,
-    alternates: { canonical: `/malzeme-ozellikleri/${slug}` },
+    alternates: {
+      canonical: `/malzeme-ozellikleri/${slug}`,
+      languages: {
+        "uz-UZ": `/uz/material-xossalari/${slug}`,
+      },
+    },
     openGraph: {
       title,
       description,
@@ -64,6 +70,9 @@ export default async function MaterialPropertyPage({ params }: PageProps) {
 
   const pageUrl = buildSiteUrl(`/malzeme-ozellikleri/${slug}`);
   const similarMaterials = findSimilarDensityMaterials(slug, 5);
+  const relatedComparisons = getAllMaterialComparisons().filter(
+    (comparison) => comparison.first.id === slug || comparison.second.id === slug
+  );
 
   const faqItems: FaqItem[] = [
     {
@@ -186,6 +195,21 @@ export default async function MaterialPropertyPage({ params }: PageProps) {
           </section>
         )}
 
+        {relatedComparisons.length > 0 && (
+          <section className="category-article-content">
+            <h2>{material.nameTr} Karşılaştırmaları</h2>
+            <ul className="related-conversion-list">
+              {relatedComparisons.map((comparison) => (
+                <li key={comparison.slug}>
+                  <Link href={`/malzeme-karsilastirma/${comparison.slug}`}>
+                    {comparison.first.nameTr} – {comparison.second.nameTr}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
         <section className="category-article-content">
           <h2>Sık Sorulan Sorular</h2>
           {faqItems.map((item) => (
@@ -198,9 +222,12 @@ export default async function MaterialPropertyPage({ params }: PageProps) {
 
           <h2>İlgili araçlar</h2>
           <p>
+            Bu malzemenin yoğunluğundan parça ağırlığını hesaplamak için{" "}
+            <Link href="/malzeme-agirligi-hesaplama">Malzeme Ağırlığı Hesaplama</Link>
+            {" "}sayfasına,{" "}
             {material.thermalConductivityWmK !== null && (
               <>
-                Isı iletimi hesaplamaları için{" "}
+                ısı iletimi hesaplamaları için{" "}
                 <Link href="/hesaplayicilar/isi-iletimi">Isı İletimi Hesaplayıcısı</Link>
                 {" "}sayfasına,{" "}
               </>

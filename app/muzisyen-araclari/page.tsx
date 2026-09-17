@@ -14,6 +14,11 @@ const faqItems: FaqItem[] = [
     answer:
       "Modern müzikte standart akort referansı A4 (orta La) notası 440 Hz'dir; bazı orkestra ve tarihi akort sistemleri 415-443 Hz arasında farklı referanslar kullanabilir.",
   },
+  {
+    question: "Triollü (triplet) ve noktalı (dotted) nota süresi nasıl hesaplanır?",
+    answer:
+      "Triollü süre, düz nota süresinin 2/3'ü kadardır (3 triollü nota, 2 düz notanın süresini kaplar). Noktalı nota süresi ise düz süresinin 1,5 katıdır (orijinal süre + yarısı). Örneğin 120 BPM'de düz dörtlük 500 ms ise, noktalı dörtlük 750 ms, triollü dörtlük ise ~333 ms'dir — delay/reverb pedallarında bu üç değer de ayrı ayrı seçenek olarak sunulur.",
+  },
 ];
 
 export const metadata: Metadata = {
@@ -36,6 +41,17 @@ export const metadata: Metadata = {
 function serializeJsonLd(data: object) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
 }
+
+const genreTempoTable = [
+  ["Ballad / Ağır Pop", "60 - 80 BPM"],
+  ["Hip-Hop", "80 - 115 BPM"],
+  ["Pop", "100 - 130 BPM"],
+  ["House", "118 - 135 BPM"],
+  ["Techno", "120 - 150 BPM"],
+  ["Trance", "125 - 150 BPM"],
+  ["Dubstep", "135 - 145 BPM (genelde yarım zamanlı hissedilir)"],
+  ["Drum & Bass", "160 - 180 BPM"],
+];
 
 export default function MuzisyenAraclariPage() {
   const breadcrumbSchema = {
@@ -99,6 +115,32 @@ export default function MuzisyenAraclariPage() {
             </li>
           </ul>
 
+          <h2>Müzik Türlerine Göre Tipik Tempo (BPM) Aralıkları</h2>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <caption>Yaygın müzik türleri ve tipik BPM aralıkları</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Tür</th>
+                  <th scope="col">Tipik BPM Aralığı</th>
+                </tr>
+              </thead>
+              <tbody>
+                {genreTempoTable.map((row) => (
+                  <tr key={row[0]}>
+                    {row.map((cell, index) => (
+                      <td key={`${row[0]}-${index}`}>{cell}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Bu aralıklar genel eğilimlerdir; birçok şarkı, türünün tipik
+            aralığı dışında bir tempoda da yapılabilir.
+          </p>
+
           <h2>Sık Sorulan Sorular</h2>
           {faqItems.map((item) => (
             <p key={item.question}>
@@ -107,6 +149,13 @@ export default function MuzisyenAraclariPage() {
               {item.answer}
             </p>
           ))}
+
+          <h2>Kaynaklar</h2>
+          <p>
+            Nota süresi formülleri standart müzik teorisine, tür/BPM
+            aralıkları ise müzik prodüksiyonu camiasında yaygın kabul
+            gören genel referans değerlerine dayanır.
+          </p>
         </section>
       </div>
     </main>

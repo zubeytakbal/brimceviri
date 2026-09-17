@@ -96,6 +96,8 @@ export default function IrrigationCalculatorPage() {
             <Link href="/peyzaj-araclari">Peyzaj Araçları</Link>
             {" "}sayfasına, alan birimi dönüşümleri için{" "}
             <Link href="/kategoriler/alan">Alan Dönüşümleri</Link>
+            {" "}sayfasına, gübre seyreltme oranı için{" "}
+            <Link href="/gubre-seyreltme-hesaplama">Gübre Seyreltme Hesaplama</Link>
             {" "}sayfasına bakabilirsin.
           </p>
 

@@ -12,7 +12,7 @@ type UnitOption = {
 
 type CategoryUnitConverterProps = {
   category: string;
-  locale: "tr" | "en" | "de" | "ar";
+  locale: "tr" | "en" | "de" | "ar" | "uz";
   // Verilmezse getCategoryUnitOptions(category, locale) kullanilir (kategori
   // sayfalarindaki standart davranis). Verilirse, ayni convert() motoru
   // (ayni category/symbol eslesmesi) uzerinde SADECE bu birimler secilebilir
@@ -21,11 +21,30 @@ type CategoryUnitConverterProps = {
   unitOptions?: UnitOption[];
 };
 
-function parseNumericValue(rawValue: string) {
-  const normalizedValue = rawValue
-    .trim()
-    .replace(/\s+/g, "")
-    .replace(/,/g, ".");
+function parseNumericValue(
+  rawValue: string,
+  locale: CategoryUnitConverterProps["locale"]
+) {
+  let normalizedValue = rawValue.trim().replace(/\s+/g, "");
+
+  // In English, a comma is normally a thousands separator. The previous
+  // locale-neutral replacement turned "1,000" into "1.000", or 1, which is
+  // especially harmful on a conversion page. A one- or two-digit comma
+  // suffix remains accepted as a forgiving decimal input.
+  if (locale === "en") {
+    const hasDecimalPoint = normalizedValue.includes(".");
+    const isGroupedThousands = /^[-+]?\d{1,3}(,\d{3})+(\.\d+)?$/.test(
+      normalizedValue
+    );
+
+    if (isGroupedThousands || hasDecimalPoint) {
+      normalizedValue = normalizedValue.replace(/,/g, "");
+    } else if (normalizedValue.includes(",")) {
+      normalizedValue = normalizedValue.replace(",", ".");
+    }
+  } else {
+    normalizedValue = normalizedValue.replace(/,/g, ".");
+  }
 
   if (!normalizedValue) {
     return null;
@@ -39,7 +58,7 @@ function parseNumericValue(rawValue: string) {
 }
 
 function formatDisplayNumber(
-  locale: "tr" | "en" | "de" | "ar",
+  locale: "tr" | "en" | "de" | "ar" | "uz",
   value: number
 ) {
   if (!Number.isFinite(value)) {
@@ -53,6 +72,8 @@ function formatDisplayNumber(
         ? "de-DE"
         : locale === "ar"
           ? "ar"
+          : locale === "uz"
+            ? "uz-UZ"
         : "en-US";
   const absoluteValue = Math.abs(value);
 
@@ -100,7 +121,7 @@ export default function CategoryUnitConverter({
     ? toUnit
     : defaultToUnit;
 
-  const parsedInputValue = parseNumericValue(inputValue);
+  const parsedInputValue = parseNumericValue(inputValue, locale);
   const fromUnitOption = unitOptions.find(
     (unitOption) => unitOption.value === activeFromUnit
   );
@@ -152,15 +173,25 @@ export default function CategoryUnitConverter({
               invalid:
                 "أدخل رقما صحيحا لعرض النتيجة.",
             }
-        : {
-            value: "Value",
-            from: "From unit",
-            to: "To unit",
-            result: "Live result",
-            swap: "Swap direction",
-            invalid:
-              "Enter a valid number to view the result.",
-          };
+          : locale === "uz"
+            ? {
+                value: "Qiymat",
+                from: "Manba birlik",
+                to: "Maqsad birlik",
+                result: "Aniq natija",
+                swap: "Yo'nalishni almashtirish",
+                invalid:
+                  "Natijani ko'rish uchun to'g'ri raqam kiriting.",
+              }
+            : {
+                value: "Value",
+                from: "From unit",
+                to: "To unit",
+                result: "Live result",
+                swap: "Swap direction",
+                invalid:
+                  "Enter a valid number to view the result.",
+              };
 
   if (unitOptions.length === 0) {
     return null;

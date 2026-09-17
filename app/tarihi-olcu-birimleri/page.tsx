@@ -7,7 +7,7 @@ import { buildSiteUrl } from "../siteConfig";
 export const metadata: Metadata = {
   title: "Tarihi Ölçü Birimleri: Bizans, Osmanlı ve Eski Türk Ölçüleri",
   description:
-    "Bizans, Osmanlı ve eski Türk dönemlerinden kalma ölçü birimlerini (arşın, okka, dirhem, endaze, Bizans ayağı, Bizans litrası, çığ) metreye ve grama ücretsiz çevirin.",
+    "Bizans, Osmanlı ve eski Türk dönemlerinden kalma ölçü birimlerini (arşın, okka, dirhem, miskal, batman, kile, şinik, endaze, Bizans ayağı, Bizans litrası, çığ) metre, gram ve litreye ücretsiz çevirin.",
   alternates: {
     canonical: "/tarihi-olcu-birimleri",
     languages: {
@@ -40,8 +40,16 @@ const historicalMassUnitOptions = [
   { value: "g", label: "Gram (g)", symbol: "g" },
   { value: "okka", label: "Okka", symbol: "okka" },
   { value: "dirhem", label: "Dirhem", symbol: "dirhem" },
+  { value: "miskal", label: "Miskal", symbol: "miskal" },
+  { value: "batman", label: "Batman", symbol: "batman" },
   { value: "litra", label: "Bizans Litrası (Litra)", symbol: "litra" },
   { value: "ounkia", label: "Bizans Onsu (Ounkia)", symbol: "ounkia" },
+];
+
+const historicalVolumeUnitOptions = [
+  { value: "L", label: "Litre (L)", symbol: "L" },
+  { value: "kile", label: "Kile", symbol: "kile" },
+  { value: "şinik", label: "Şinik", symbol: "şinik" },
 ];
 
 const byzantineUnits = [
@@ -95,6 +103,30 @@ const ottomanUnits = [
     name: "Dirhem",
     value: "= 1/400 okka ≈ 3,207 g",
     note: "Kıymetli maden, baharat ve ilaç gibi küçük miktarlar için.",
+  },
+  {
+    href: "/birimler/miskal",
+    name: "Miskal",
+    value: "= 1,5 dirhem ≈ 4,811 g",
+    note: "Altın, gümüş ve değerli ilaçların hassas tartımı için.",
+  },
+  {
+    href: "/birimler/batman",
+    name: "Batman",
+    value: "= 6 okka ≈ 7,698 kg (yakın dönem)",
+    note: "Anadolu'da tarımsal ürün (yün, pamuk) alım satımında kullanıldı; bölgeye göre 2-8 okka arasında değişebilirdi.",
+  },
+  {
+    href: "/birimler/kile",
+    name: "Kile",
+    value: "= 4 şinik ≈ 37 L (İstanbul, III. Selim dönemi)",
+    note: "Tahıl (buğday, arpa) alım satımı ve vergilendirmesinde temel ölçüydü.",
+  },
+  {
+    href: "/birimler/sinik",
+    name: "Şinik",
+    value: "= 1/4 kile ≈ 9,25 L",
+    note: "Günlük tahıl alışverişinde kilenin pratik alt birimiydi.",
   },
 ];
 
@@ -196,9 +228,10 @@ export default function TarihiOlcuBirimleriPage() {
           content: (
             <>
               <p>
-                Okka, dirhem, Bizans litrası ve Bizans onsu arasında,
-                modern gram karşılığıyla birlikte anında dönüşüm yap.
-                (Kilogram/ton gibi tüm modern kütle birimleri için{" "}
+                Okka, dirhem, miskal, batman, Bizans litrası ve Bizans
+                onsu arasında, modern gram karşılığıyla birlikte anında
+                dönüşüm yap. (Kilogram/ton gibi tüm modern kütle
+                birimleri için{" "}
                 <Link href="/kategoriler/kutle">
                   kütle dönüşümleri sayfasını
                 </Link>{" "}
@@ -208,6 +241,27 @@ export default function TarihiOlcuBirimleriPage() {
                 category="kutle"
                 locale="tr"
                 unitOptions={historicalMassUnitOptions}
+              />
+            </>
+          ),
+        },
+        {
+          heading: "Tarihi Hacim Birimi Çevirici",
+          content: (
+            <>
+              <p>
+                Kile ve şinik arasında, modern litre karşılığıyla
+                birlikte anında dönüşüm yap. (Metreküp/mililitre gibi
+                tüm modern hacim birimleri için{" "}
+                <Link href="/kategoriler/hacim">
+                  hacim dönüşümleri sayfasını
+                </Link>{" "}
+                kullanabilirsin.)
+              </p>
+              <CategoryUnitConverter
+                category="hacim"
+                locale="tr"
+                unitOptions={historicalVolumeUnitOptions}
               />
             </>
           ),
@@ -280,6 +334,9 @@ export default function TarihiOlcuBirimleriPage() {
               </li>
               <li>
                 <Link href="/kategoriler/kutle">Tüm kütle birimleri</Link>
+              </li>
+              <li>
+                <Link href="/kategoriler/hacim">Tüm hacim birimleri</Link>
               </li>
             </ul>
           ),

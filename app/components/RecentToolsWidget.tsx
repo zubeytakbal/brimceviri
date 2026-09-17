@@ -13,12 +13,13 @@ const copyByLocale = {
   tr: { heading: "Son Baktiklarin", clear: "Temizle" },
   en: { heading: "Recently Viewed", clear: "Clear" },
   ar: { heading: "شوهدت مؤخرا", clear: "مسح" },
+  uz: { heading: "So'nggi Ko'rilganlar", clear: "Tozalash" },
 } as const;
 
 export default function RecentToolsWidget({
   locale = "tr",
 }: {
-  locale?: "tr" | "en" | "ar";
+  locale?: "tr" | "en" | "ar" | "uz";
 }) {
   const items = useSyncExternalStore(
     subscribeToRecentTools,

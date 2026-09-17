@@ -42,69 +42,65 @@ export type InsulationPaybackResult = {
   breakEvenYears: number | null;
 };
 
+export type InsulationPaybackEstimateInput = {
+  wallAreaM2: number;
+  existingWallThicknessCm: number;
+  existingWallConductivityWmK: number;
+  insulationThicknessCm: number;
+  insulationConductivityWmK: number;
+  avgTempDifferenceC: number;
+  heatingDaysPerYear: number;
+  heatingEnergyPricePerKwh: number;
+  insulationCost: number;
+};
+
+export type InsulationPaybackEstimateResult = {
+  annualHeatLossKwhBefore: number;
+  annualHeatLossKwhAfter: number;
+  annualSavingsKwh: number;
+  annualCostSaving: number;
+  breakEvenYears: number | null;
+};
+
+export function calculateInsulationPaybackEstimate(
+  input: InsulationPaybackEstimateInput,
+): InsulationPaybackEstimateResult | null {
+  const values = Object.values(input);
+  if (values.some((value) => !Number.isFinite(value))) return null;
+  if (
+    input.wallAreaM2 <= 0 || input.existingWallThicknessCm <= 0 ||
+    input.existingWallConductivityWmK <= 0 || input.insulationThicknessCm <= 0 ||
+    input.insulationConductivityWmK <= 0 || input.avgTempDifferenceC <= 0 ||
+    input.heatingDaysPerYear <= 0 || input.heatingEnergyPricePerKwh <= 0 ||
+    input.insulationCost < 0
+  ) return null;
+
+  const rExisting = input.existingWallThicknessCm / 100 / input.existingWallConductivityWmK;
+  const rAdded = input.insulationThicknessCm / 100 / input.insulationConductivityWmK;
+  const heatingHours = input.heatingDaysPerYear * 24;
+  const annualHeatLossKwhBefore = (input.wallAreaM2 * input.avgTempDifferenceC / rExisting * heatingHours) / 1000;
+  const annualHeatLossKwhAfter = (input.wallAreaM2 * input.avgTempDifferenceC / (rExisting + rAdded) * heatingHours) / 1000;
+  const annualSavingsKwh = annualHeatLossKwhBefore - annualHeatLossKwhAfter;
+  const annualCostSaving = annualSavingsKwh * input.heatingEnergyPricePerKwh;
+
+  return { annualHeatLossKwhBefore, annualHeatLossKwhAfter, annualSavingsKwh, annualCostSaving, breakEvenYears: input.insulationCost > 0 && annualCostSaving > 0 ? input.insulationCost / annualCostSaving : null };
+}
+
 export function calculateInsulationPayback(
   input: InsulationPaybackInput
 ): InsulationPaybackResult | null {
-  const {
-    wallAreaM2,
-    existingWallThicknessCm,
-    existingWallConductivityWmK,
-    insulationThicknessCm,
-    insulationConductivityWmK,
-    avgTempDifferenceC,
-    heatingDaysPerYear,
-    heatingEnergyPriceTlPerKwh,
-    insulationCostTl,
-  } = input;
-
-  const values = [
-    wallAreaM2,
-    existingWallThicknessCm,
-    existingWallConductivityWmK,
-    insulationThicknessCm,
-    insulationConductivityWmK,
-    avgTempDifferenceC,
-    heatingDaysPerYear,
-    heatingEnergyPriceTlPerKwh,
-    insulationCostTl,
-  ];
-
-  if (values.some((value) => !Number.isFinite(value))) return null;
-  if (
-    wallAreaM2 <= 0 ||
-    existingWallThicknessCm <= 0 ||
-    existingWallConductivityWmK <= 0 ||
-    insulationThicknessCm <= 0 ||
-    insulationConductivityWmK <= 0 ||
-    avgTempDifferenceC <= 0 ||
-    heatingDaysPerYear <= 0 ||
-    heatingEnergyPriceTlPerKwh <= 0 ||
-    insulationCostTl < 0
-  ) {
-    return null;
-  }
-
-  const rExisting = existingWallThicknessCm / 100 / existingWallConductivityWmK;
-  const rAdded = insulationThicknessCm / 100 / insulationConductivityWmK;
-  const rTotal = rExisting + rAdded;
-
-  const heatLossBeforeW = (wallAreaM2 * avgTempDifferenceC) / rExisting;
-  const heatLossAfterW = (wallAreaM2 * avgTempDifferenceC) / rTotal;
-  const heatingHours = heatingDaysPerYear * 24;
-
-  const annualHeatLossKwhBefore = (heatLossBeforeW * heatingHours) / 1000;
-  const annualHeatLossKwhAfter = (heatLossAfterW * heatingHours) / 1000;
-  const annualSavingsKwh = annualHeatLossKwhBefore - annualHeatLossKwhAfter;
-  const annualSavingsTl = annualSavingsKwh * heatingEnergyPriceTlPerKwh;
-
-  const breakEvenYears =
-    insulationCostTl > 0 && annualSavingsTl > 0 ? insulationCostTl / annualSavingsTl : null;
+  const result = calculateInsulationPaybackEstimate({
+    ...input,
+    heatingEnergyPricePerKwh: input.heatingEnergyPriceTlPerKwh,
+    insulationCost: input.insulationCostTl,
+  });
+  if (!result) return null;
 
   return {
-    annualHeatLossKwhBefore,
-    annualHeatLossKwhAfter,
-    annualSavingsKwh,
-    annualSavingsTl,
-    breakEvenYears,
+    annualHeatLossKwhBefore: result.annualHeatLossKwhBefore,
+    annualHeatLossKwhAfter: result.annualHeatLossKwhAfter,
+    annualSavingsKwh: result.annualSavingsKwh,
+    annualSavingsTl: result.annualCostSaving,
+    breakEvenYears: result.breakEvenYears,
   };
 }

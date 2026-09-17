@@ -17,6 +17,7 @@ export const metadata: Metadata = {
       en: englishPage
         ? `/en/calculators/${englishPage.slug}`
         : "/en",
+      "uz-UZ": "/uz/bosim-kuch-maydon-hisoblash",
       "x-default": "/hesaplayicilar/basinc-kuvvet-alan",
     },
   },

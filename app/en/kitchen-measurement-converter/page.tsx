@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import KitchenMeasuresConverter from "../../components/KitchenMeasuresConverter";
-import { kitchenIngredientRows } from "../../converter/kitchenMeasures";
+import {
+  kitchenIngredientRows,
+  mlPerKitchenCupStandard,
+} from "../../converter/kitchenMeasures";
 import { buildSiteUrl } from "../../siteConfig";
 
 const ingredientLabelsEn: Record<string, string> = {
@@ -52,10 +55,16 @@ const ingredientLabelsEn: Record<string, string> = {
   kimyon: "Ground Cumin",
 };
 
+const defaultEnglishCupMl = mlPerKitchenCupStandard.us;
+
+function gramsInDefaultEnglishCup(gramsPerTurkishCup: number) {
+  return Math.round((gramsPerTurkishCup * defaultEnglishCupMl) / 200);
+}
+
 export const metadata: Metadata = {
   title: "Kitchen Measurement Converter: Cups, Spoons & Grams",
   description:
-    "Convert cups, tablespoons, teaspoons, grams and milliliters by ingredient. Gram equivalents for flour, sugar, rice, honey and 15+ common ingredients.",
+    "Convert cups, tablespoons, teaspoons, grams and milliliters by ingredient. Choose US, metric or imperial cup standards and compare common recipe measures.",
   alternates: {
     canonical: "/en/kitchen-measurement-converter",
     languages: {
@@ -67,7 +76,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Kitchen Measurement Converter: Cups, Spoons & Grams",
     description:
-      "Convert cups, tablespoons, teaspoons, grams and milliliters by ingredient density.",
+      "Convert recipe measures with US, metric and imperial cup standards.",
     url: buildSiteUrl("/en/kitchen-measurement-converter"),
     siteName: "BirimCeviri.app",
     locale: "en_US",
@@ -77,7 +86,7 @@ export const metadata: Metadata = {
     card: "summary",
     title: "Kitchen Measurement Converter: Cups, Spoons & Grams",
     description:
-      "Convert cups, tablespoons, teaspoons, grams and milliliters by ingredient density.",
+      "Convert recipe measures with US, metric and imperial cup standards.",
   },
 };
 
@@ -97,36 +106,38 @@ export default function EnglishKitchenMeasuresPage() {
           <p>
             Pick an ingredient and the unit you already know to instantly
             see cup, tablespoon, teaspoon, gram, milliliter and liter
-            equivalents. Flour, sugar, rice, honey, butter and more each
-            use their own measured values.
+            equivalents. Choose the cup standard named by the recipe: US,
+            US legal, metric or imperial.
           </p>
         </header>
 
         <KitchenMeasuresConverter locale="en" />
 
         <section className="category-article-content">
-          <h2>How many grams are in a cup of flour or a tablespoon of sugar?</h2>
+          <h2>Which cup does a recipe mean?</h2>
           <p>
-            It depends on the ingredient: a 200 ml cup of flour weighs
-            about 130 grams, the same cup of granulated sugar weighs 200
-            grams, and honey weighs around 285 grams. That is because each
-            ingredient has a different density (weight for the same
-            volume) — flour is light and airy, honey is dense and heavy.
-            That is why there is no single &quot;1 cup = X grams&quot;
-            rule that works for every ingredient.
+            A cup is not one fixed international volume. This tool starts
+            with the US customary cup used by most American recipes
+            (236.588 ml). Use the selector when a recipe specifies a US
+            legal cup (240 ml), a metric cup (250 ml), or an imperial cup
+            (284.131 ml). The selected standard changes every cup result
+            and its gram equivalent.
           </p>
           <p>
-            The values below are compiled from common kitchen references
-            and are rounded averages, accurate enough for everyday
-            cooking. Sifting, packing and brand can shift results by a
-            few grams, so for precise baking a kitchen scale is still the
-            most reliable option.
+            Grams also depend on the ingredient. Flour, sugar and honey
+            can occupy the same volume but have very different weights.
+            Sifting, packing and brand can shift an ingredient by a few
+            grams, so a kitchen scale remains the most reliable choice for
+            precise baking.
           </p>
 
-          <h2>Ingredient Measurement Table (1 Cup = 200 ml)</h2>
+          <h2>Ingredient Measurement Table (1 US Cup = 236.588 ml)</h2>
           <div className="conversion-table-wrap">
             <table className="conversion-table">
-              <caption>Gram equivalents per cup, tablespoon and teaspoon</caption>
+              <caption>
+                Approximate gram equivalents per US customary cup,
+                tablespoon and teaspoon
+              </caption>
               <thead>
                 <tr>
                   <th scope="col">Ingredient</th>
@@ -139,7 +150,7 @@ export default function EnglishKitchenMeasuresPage() {
                 {kitchenIngredientRows.map((row) => (
                   <tr key={row.key}>
                     <td>{ingredientLabelsEn[row.key] ?? row.label}</td>
-                    <td>{Math.round(row.gramsPerBardak)} g</td>
+                    <td>{gramsInDefaultEnglishCup(row.gramsPerBardak)} g</td>
                     <td>{Math.round((row.gramsPerBardak * 15) / 200)} g</td>
                     <td>{Math.round((row.gramsPerBardak * 5) / 200)} g</td>
                   </tr>
@@ -153,7 +164,17 @@ export default function EnglishKitchenMeasuresPage() {
             <strong>How many ml or teaspoons are in a tablespoon?</strong>
             <br />
             One tablespoon is 15 ml, equal to 3 teaspoons (1 teaspoon is 5
-            ml). One cup is 200 ml, roughly 13.3 tablespoons.
+            ml). A US customary cup is 236.588 ml, or roughly 15.8
+            tablespoons.
+          </p>
+          <p>
+            <strong>Is a cup 240 ml or 250 ml?</strong>
+            <br />
+            Both can be correct in context. US nutrition labels commonly
+            use a 240 ml legal cup, while metric recipes commonly use a
+            250 ml cup. Most American recipes use the 236.588 ml US
+            customary cup. Select the standard that matches the recipe
+            before scaling it.
           </p>
           <p>
             <strong>Why does the same cup weigh differently for different ingredients?</strong>
@@ -173,8 +194,9 @@ export default function EnglishKitchenMeasuresPage() {
 
           <h2>Sources</h2>
           <p>
-            Table values are rounded averages compiled from common Turkish
-            and international kitchen measurement references.
+            Cup volumes use their named measurement standards. Ingredient
+            values are rounded practical averages; they are guides rather
+            than laboratory measurements.
           </p>
         </section>
 

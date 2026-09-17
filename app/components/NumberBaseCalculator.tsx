@@ -9,7 +9,7 @@ import {
   type NumberBase,
 } from "../converter/numberBaseCalculator";
 
-type SupportedLocale = "tr" | "bn";
+type SupportedLocale = "tr" | "bn" | "uz";
 
 type NumberBaseCopy = {
   labels: {
@@ -111,6 +111,41 @@ const copyByLocale: Record<SupportedLocale, NumberBaseCopy> = {
     arithmeticEmptyState: "দুটি বৈধ বাইনারি সংখ্যা লিখে ফলাফল দেখুন।",
     arithmeticInvalidState:
       "বিয়োগের ফলাফল ঋণাত্মক হতে পারে না; বড় সংখ্যাটি আগে লিখুন।",
+  },
+  uz: {
+    labels: {
+      inputValue: "Qiymat",
+      inputBase: "Kiritish Sanog'i",
+    },
+    bases: {
+      2: "Ikkilik (Binary)",
+      8: "Sakkizlik (Octal)",
+      10: "O'nlik (Decimal)",
+      16: "O'n oltilik (Hexadecimal)",
+    },
+    resultLabels: {
+      binary: "Ikkilik",
+      octal: "Sakkizlik",
+      decimal: "O'nlik",
+      hexadecimal: "O'n oltilik",
+    },
+    emptyState: "Natijani ko'rish uchun to'g'ri son kiriting.",
+    invalidState: (base) => `Bu qiymat ${base} sanog'ida to'g'ri emas.`,
+    arithmeticTitle: "Ikkilik Sonlar Bilan Qo'shish / Ayirish / Ko'paytirish",
+    arithmeticLabels: {
+      first: "1-Ikkilik Son",
+      second: "2-Ikkilik Son",
+    },
+    operations: {
+      add: "Qo'shish",
+      subtract: "Ayirish",
+      multiply: "Ko'paytirish",
+    },
+    arithmeticResult: (first, second, resultBinary, resultDecimal) =>
+      `${first} va ${second} amalining natijasi: ${resultBinary} (o'nlikda: ${resultDecimal})`,
+    arithmeticEmptyState: "Amalni ko'rish uchun ikkita to'g'ri ikkilik son kiriting.",
+    arithmeticInvalidState:
+      "Ayirish amalida natija manfiy bo'lishi mumkin emas; katta sonni avval kiriting.",
   },
 };
 

@@ -13,6 +13,9 @@ export const metadata: Metadata = {
     "Tek bir birim çevirme hatası yüzünden milyonlarca dolarlık uyduların kaybolduğu, uçakların havada yakıtsız kaldığı gerçek olaylar — doğrulanmış kaynaklarla anlatılıyor.",
   alternates: {
     canonical: "/birim-cevirme-felaketleri",
+    languages: {
+      "uz-UZ": "/uz/birlik-aylantirish-fojialari",
+    },
   },
   openGraph: {
     title: "Birim Çevirme Felaketleri: Yanlış Birim Yüzünden Yaşanan Gerçek Olaylar",

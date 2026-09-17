@@ -37,6 +37,13 @@ export const elasticModulusTable: ElasticModulusRow[] = [
   { id: "bismuth", label: "Bizmut", modulusGPa: 32 },
   { id: "cadmium", label: "Kadmiyum", modulusGPa: 55 },
   { id: "bronze", label: "Bronz", modulusGPa: 103, isVariable: true },
+  { id: "mahogany", label: "Maun Ağacı", modulusGPa: 10, isVariable: true },
+  { id: "walnut", label: "Ceviz Ağacı", modulusGPa: 11.6, isVariable: true },
+  { id: "teak", label: "Tik Ağacı", modulusGPa: 12.9, isVariable: true },
+  { id: "birch", label: "Hüş Ağacı", modulusGPa: 13.9, isVariable: true },
+  { id: "beech", label: "Kayın Ağacı", modulusGPa: 14.3, isVariable: true },
+  { id: "ldpe", label: "LDPE", modulusGPa: 0.25, isVariable: true },
+  { id: "polystyrene", label: "Polistiren", modulusGPa: 3.3, isVariable: true },
 ];
 
 export type ElongationResult = {

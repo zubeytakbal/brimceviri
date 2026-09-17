@@ -7,7 +7,7 @@ import {
   type NaturalGasCalculatorInput,
 } from "../converter/naturalGasCalculator";
 
-type SupportedLocale = "tr" | "en";
+type SupportedLocale = "tr" | "en" | "uz";
 
 type NaturalGasCopy = {
   fieldConsumption: string;
@@ -34,6 +34,14 @@ const copyByLocale: Record<SupportedLocale, NaturalGasCopy> = {
     resultTotalCost: "Total Cost",
     resultEnergy: "Approximate Energy Equivalent",
     note: "Note: the kWh equivalent is an approximate value; the actual conversion factor can vary by region and supplier.",
+  },
+  uz: {
+    fieldConsumption: "Sarf (m³)",
+    fieldPrice: "Birlik Narxi (EUR/m³)",
+    emptyState: "Natijani ko'rish uchun to'g'ri sarf va narx kiriting.",
+    resultTotalCost: "Jami Xarajat",
+    resultEnergy: "Taxminiy Energiya Ekvivalenti",
+    note: "Eslatma: kWh ekvivalenti taxminiy qiymat; haqiqiy koeffitsient hudud va ta'minotchiga qarab farq qilishi mumkin.",
   },
 };
 

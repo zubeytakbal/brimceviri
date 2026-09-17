@@ -81,6 +81,12 @@ const conductivityIdMap: Record<string, string> = {
   klor: "chlorine",
   neon: "neon",
   polipropilen: "polypropylene",
+  "amonyak-gaz": "ammonia",
+  kobalt: "cobalt",
+  uranyum: "uranium",
+  ldpe: "ldpe",
+  polistiren: "polystyrene",
+  "cimento-tozu": "cementPowder",
 };
 
 const elasticModulusIdMap: Record<string, string> = {
@@ -111,6 +117,13 @@ const elasticModulusIdMap: Record<string, string> = {
   bizmut: "bismuth",
   kadmiyum: "cadmium",
   bronz: "bronze",
+  maun: "mahogany",
+  "ceviz-agaci": "walnut",
+  tik: "teak",
+  hus: "birch",
+  kayin: "beech",
+  ldpe: "ldpe",
+  polistiren: "polystyrene",
 };
 
 const thermalExpansionIdMap: Record<string, string> = {
@@ -159,6 +172,10 @@ const viscosityIdMap: Record<string, string> = {
   "portakal-suyu": "orange-juice",
   bal: "honey",
   pekmez: "molasses",
+  dizel: "diesel",
+  "motor-yagi": "motorOil",
+  antifriz: "antifreeze",
+  "fren-hidroligi": "brakeFluid",
 };
 
 function findConductivity(canonicalId: string): number | null {

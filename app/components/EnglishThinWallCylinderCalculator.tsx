@@ -1,0 +1,20 @@
+"use client";
+
+import { useMemo, useState } from "react";
+
+type PressureUnit = "mpa" | "bar" | "psi";
+type LengthUnit = "mm" | "in";
+
+const pressureFactors: Record<PressureUnit, number> = { mpa: 1e6, bar: 1e5, psi: 6894.757293 };
+function number(value: string) { const parsed = Number(value.trim().replace(",", ".")); return Number.isFinite(parsed) ? parsed : null; }
+function format(value: number, digits = 3) { return new Intl.NumberFormat("en-US", { maximumFractionDigits: digits }).format(value); }
+
+export default function EnglishThinWallCylinderCalculator() {
+  const [pressure, setPressure] = useState("1"); const [pressureUnit, setPressureUnit] = useState<PressureUnit>("mpa"); const [diameter, setDiameter] = useState("500"); const [thickness, setThickness] = useState("10"); const [lengthUnit, setLengthUnit] = useState<LengthUnit>("mm");
+  const result = useMemo(() => {
+    const values = [pressure, diameter, thickness].map(number); if (values.some((value) => value === null)) return null;
+    const [pressureInput, diameterInput, thicknessInput] = values as number[]; if (pressureInput < 0 || diameterInput <= 0 || thicknessInput <= 0) return null;
+    const p = pressureInput * pressureFactors[pressureUnit]; const factor = lengthUnit === "in" ? .0254 : .001; const d = diameterInput * factor; const t = thicknessInput * factor; const hoopPa = p * d / (2 * t); const longitudinalPa = p * d / (4 * t); return { hoopPa, longitudinalPa, diameterToThickness: d / t };
+  }, [diameter, lengthUnit, pressure, pressureUnit, thickness]);
+  return <div className="category-general-converter"><div className="engineering-calculator-card"><p className="calculator-usage-hint">Use internal gauge pressure and a representative inside diameter. This model applies only when wall thickness is small compared with the diameter.</p><div className="paint-calculator-grid"><label className="category-general-converter-field"><span>Internal pressure (p)</span><div className="category-general-converter-input-row"><input type="text" inputMode="decimal" value={pressure} onChange={(event) => setPressure(event.target.value)} /><select value={pressureUnit} onChange={(event) => setPressureUnit(event.target.value as PressureUnit)}><option value="mpa">MPa</option><option value="bar">bar</option><option value="psi">psi</option></select></div></label><label className="category-general-converter-field"><span>Inside diameter (D)</span><div className="category-general-converter-input-row"><input type="text" inputMode="decimal" value={diameter} onChange={(event) => setDiameter(event.target.value)} /><select value={lengthUnit} onChange={(event) => setLengthUnit(event.target.value as LengthUnit)}><option value="mm">mm</option><option value="in">in</option></select></div></label><label className="category-general-converter-field"><span>Wall thickness (t)</span><div className="category-general-converter-input-row"><input type="text" inputMode="decimal" value={thickness} onChange={(event) => setThickness(event.target.value)} /><span>{lengthUnit}</span></div></label></div></div><div aria-live="polite" className="category-general-converter-result paint-calculator-result">{!result ? <strong>Enter non-negative pressure and positive diameter and wall-thickness values.</strong> : <div className="paint-calculator-result-grid"><div><span>Hoop stress (σh)</span><strong>{format(result.hoopPa / 1e6)} MPa</strong><small>{format(result.hoopPa / 6.894757e6)} ksi</small></div><div><span>Longitudinal stress (σl)</span><strong>{format(result.longitudinalPa / 1e6)} MPa</strong><small>{format(result.longitudinalPa / 6.894757e6)} ksi</small></div><div><span>Diameter-to-thickness ratio</span><strong>{format(result.diameterToThickness, 1)}</strong><small>Thin-wall screening: D/t is typically much greater than 20</small></div></div>}</div><p className="calculator-usage-hint"><strong>Important:</strong> this is not a pressure-vessel design calculation. It excludes thick-wall behavior, heads, openings, weld efficiency, corrosion allowance, fatigue, external pressure, temperature effects, test pressure and code-specific allowable stress rules.</p></div>;
+}

@@ -88,6 +88,9 @@ export default function VideoBitrateCalculatorPage() {
           <p>
             Diğer video editör araçları için{" "}
             <Link href="/video-editor-araclari">Video Editör Araçları</Link>
+            {" "}sayfasına, megabit ve megabayt birimlerini doğrudan
+            çevirmek için{" "}
+            <Link href="/megabit-megabayt">Megabit - Megabayt Çevirici</Link>
             {" "}sayfasına bakabilirsin.
           </p>
         </section>

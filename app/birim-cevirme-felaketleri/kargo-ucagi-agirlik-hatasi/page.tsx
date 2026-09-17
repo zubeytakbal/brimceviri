@@ -32,6 +32,9 @@ export const metadata: Metadata = {
     "1994'te bir kargo uçağı, yükleme hesaplarında kilogram-pound dönüşümü karıştırıldığı için gerekenden 15 ton daha ağır bir yükle indi. Gerçek olay, doğrulanmış kaynaklarla.",
   alternates: {
     canonical: "/birim-cevirme-felaketleri/kargo-ucagi-agirlik-hatasi",
+    languages: {
+      "uz-UZ": "/uz/birlik-aylantirish-fojialari/kargo-ucagi-agirlik-hatasi",
+    },
   },
   openGraph: {
     title: "Kargo Uçağı: Kilogram-Pound Karışıklığıyla 15 Ton Fazla Yük",

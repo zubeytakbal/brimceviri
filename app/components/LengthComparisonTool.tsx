@@ -34,9 +34,9 @@ const unitOptionLabels: Record<
     km: "كيلومتر (كم)",
   },
 uz: {
-    cm: "Centimeter (cm)",
-    m: "Meter (m)",
-    km: "Kilometer (km)",
+    cm: "Santimetr (sm)",
+    m: "Metr (m)",
+    km: "Kilometr (km)",
   },
 bn: {
     cm: "Centimeter (cm)",
@@ -50,7 +50,7 @@ const unitShortLabels: Record<Locale, Record<LengthComparisonUnit, string>> = {
   en: { cm: "cm", m: "m", km: "km" },
   de: { cm: "cm", m: "m", km: "km" },
   ar: { cm: "سم", m: "م", km: "كم" },
-uz: { cm: "cm", m: "m", km: "km" },
+uz: { cm: "sm", m: "m", km: "km" },
 bn: { cm: "cm", m: "m", km: "km" },
 };
 
@@ -92,13 +92,13 @@ const referenceLabels: Record<Locale, Record<string, string>> = {
     "bogaz-koprusu": "طول جسر شهداء 15 يوليو",
   },
 uz: {
-    "insan-boyu": "Average adult human height",
-    zurafa: "Average giraffe height",
-    "sehir-otobusu": "City bus length",
-    "mavi-balina": "Average blue whale length",
-    "futbol-sahasi": "Football field length",
-    "eyfel-kulesi": "Eiffel Tower height (with antenna)",
-    "bogaz-koprusu": "15 July Martyrs Bridge length",
+    "insan-boyu": "O'rtacha voyaga yetgan inson bo'yi",
+    zurafa: "O'rtacha jirafa bo'yi",
+    "sehir-otobusu": "Shahar avtobusi uzunligi",
+    "mavi-balina": "O'rtacha ko'k kit uzunligi",
+    "futbol-sahasi": "Futbol maydoni uzunligi",
+    "eyfel-kulesi": "Eyfel minorasi balandligi (antennasi bilan)",
+    "bogaz-koprusu": "15-iyul Shahidlar ko'prigi uzunligi",
   },
 bn: {
     "insan-boyu": "Average adult human height",
@@ -166,13 +166,13 @@ const copyByLocale: Record<
   },
 uz: {
     labels: {
-      value: "Value",
-      unit: "Unit",
+      value: "Qiymat",
+      unit: "Birlik",
     },
-    placeholder: "E.g. 3",
-    emptyState: "Enter a valid value to see the comparisons.",
-    intro: "comparisons for",
-    closestMatch: "Closest comparison",
+    placeholder: "Mas. 3",
+    emptyState: "Solishtirishlarni ko'rish uchun to'g'ri qiymat kiriting.",
+    intro: "uchun solishtirishlar:",
+    closestMatch: "Eng yaqin solishtirish",
   },
 bn: {
     labels: {

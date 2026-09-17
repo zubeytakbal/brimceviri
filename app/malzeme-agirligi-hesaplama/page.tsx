@@ -97,7 +97,12 @@ export default function MaterialWeightCalculatorPage() {
             {" "}sayfasına, 100&apos;den fazla malzemenin yoğunluğu ve
             diğer özellikleri için{" "}
             <Link href="/malzeme-ozellikleri">Malzeme Özellikleri</Link>
-            {" "}sayfasına bakabilirsin.
+            {" "}sayfasına, iki malzemeyi yoğunluk açısından karşılaştırmak
+            için{" "}
+            <Link href="/malzeme-karsilastirma/aluminyum-celik-karsilastirma">
+              Malzeme Karşılaştırma
+            </Link>
+            {" "}sayfalarına bakabilirsin.
           </p>
 
           <h2>Kaynaklar</h2>

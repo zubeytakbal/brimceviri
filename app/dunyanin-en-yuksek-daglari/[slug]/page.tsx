@@ -9,6 +9,7 @@ import {
   findSimilarElevationMountains,
   getAllMountains,
 } from "../../converter/mountainsHub";
+import { findNearestProvince } from "../../converter/provinceElevationHub";
 import { buildSiteUrl } from "../../siteConfig";
 
 type PageProps = {
@@ -64,6 +65,7 @@ export default async function MountainDetailPage({ params }: PageProps) {
   const pageUrl = buildSiteUrl(`/dunyanin-en-yuksek-daglari/${slug}`);
   const similarMountains = findSimilarElevationMountains(slug, 3);
   const altitudeEffect = calculateAltitudeEffect(mountain.elevationM);
+  const nearestProvince = findNearestProvince(mountain.elevationM);
 
   const faqItems: FaqItem[] = [
     {
@@ -238,6 +240,17 @@ export default async function MountainDetailPage({ params }: PageProps) {
             için{" "}
             <Link href="/il-rakimlari">İllerin Rakımı</Link>
             {" "}sayfasına bakabilirsin.
+            {nearestProvince && (
+              <>
+                {" "}Türkiye&apos;nin illeri arasında rakımca en yakın referans
+                nokta{" "}
+                <Link href={`/il-rakimlari/${nearestProvince.id}`}>
+                  {nearestProvince.nameTr}
+                </Link>
+                {" "}({nearestProvince.elevationM.toLocaleString("tr-TR")} m) — yine
+                de {mountain.nameTr}&apos;dan binlerce metre daha alçaktır.
+              </>
+            )}
           </p>
 
           <h2>Kaynaklar</h2>

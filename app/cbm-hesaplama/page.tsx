@@ -26,7 +26,12 @@ export const metadata: Metadata = {
   title: "CBM ve Hacimsel Ağırlık Hesaplama",
   description:
     "Koli/palet ölçülerinden toplam CBM (m³), hacimsel ağırlık ve ücrete esas ağırlığı hesapla. Deniz, kara ve hava yolu katsayıları dahil.",
-  alternates: { canonical: "/cbm-hesaplama" },
+  alternates: {
+    canonical: "/cbm-hesaplama",
+    languages: {
+      "uz-UZ": "/uz/cbm-hisoblash",
+    },
+  },
   openGraph: {
     title: "CBM ve Hacimsel Ağırlık Hesaplama",
     description: "Toplam CBM, hacimsel ağırlık ve ücrete esas ağırlığı hesaplayın.",

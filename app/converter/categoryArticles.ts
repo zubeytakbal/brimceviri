@@ -1,5 +1,39 @@
 import { basincCategoryArticle } from "./articles/basincCategory/Article";
 import { kutleCategoryArticle } from "./articles/kutleCategory/Article";
+import { alanCategoryArticle } from "./articles/alanCategory/Article";
+import { hacimCategoryArticle } from "./articles/hacimCategory/Article";
+import { sicaklikCategoryArticle } from "./articles/sicaklikCategory/Article";
+import { zamanCategoryArticle } from "./articles/zamanCategory/Article";
+import { hizCategoryArticle } from "./articles/hizCategory/Article";
+import { enerjiCategoryArticle } from "./articles/enerjiCategory/Article";
+import { debiCategoryArticle } from "./articles/debiCategory/Article";
+import { elektrikCategoryArticle } from "./articles/elektrikCategory/Article";
+import { yogunlukCategoryArticle } from "./articles/yogunlukCategory/Article";
+import { kuvvetCategoryArticle } from "./articles/kuvvetCategory/Article";
+import { torkCategoryArticle } from "./articles/torkCategory/Article";
+import { aciCategoryArticle } from "./articles/aciCategory/Article";
+import { frekansCategoryArticle } from "./articles/frekansCategory/Article";
+import { veriCategoryArticle } from "./articles/veriCategory/Article";
+import { momentumCategoryArticle } from "./articles/momentumCategory/Article";
+import { viskoziteCategoryArticle } from "./articles/viskoziteCategory/Article";
+import { direncCategoryArticle } from "./articles/direncCategory/Article";
+import { kapasitansCategoryArticle } from "./articles/kapasitansCategory/Article";
+import { enduktansCategoryArticle } from "./articles/enduktansCategory/Article";
+import { elektrikYukuCategoryArticle } from "./articles/elektrikYukuCategory/Article";
+import { gumusAyarCategoryArticle } from "./articles/gumusAyarCategory/Article";
+import { kanSekeriCategoryArticle } from "./articles/kanSekeriCategory/Article";
+import { vitaminDCategoryArticle } from "./articles/vitaminDCategory/Article";
+import { hacimselDebiCategoryArticle } from "./articles/hacimselDebiCategory/Article";
+import { kutleselDebiCategoryArticle } from "./articles/kutleselDebiCategory/Article";
+import { manyetikAlanCategoryArticle } from "./articles/manyetikAlanCategory/Article";
+import { manyetikAkiCategoryArticle } from "./articles/manyetikAkiCategory/Article";
+import { kinematikViskoziteCategoryArticle } from "./articles/kinematikViskoziteCategory/Article";
+import { isilIletkenlikCategoryArticle } from "./articles/isilIletkenlikCategory/Article";
+import { isiAkisiCategoryArticle } from "./articles/isiAkisiCategory/Article";
+import { ozgulIsiCategoryArticle } from "./articles/ozgulIsiCategory/Article";
+import { ivmeCategoryArticle } from "./articles/ivmeCategory/Article";
+import { acisalHizCategoryArticle } from "./articles/acisalHizCategory/Article";
+import { gucCategoryArticle } from "./articles/gucCategory/Article";
 
 export type CategoryFact = {
   label: string;
@@ -301,10 +335,44 @@ const altinAyarCategoryArticle: CategoryArticle = {
 };
 
 export const categoryArticles: CategoryArticle[] = [
+  alanCategoryArticle,
+  hacimCategoryArticle,
   uzunlukCategoryArticle,
   kutleCategoryArticle,
+  sicaklikCategoryArticle,
+  zamanCategoryArticle,
+  hizCategoryArticle,
+  enerjiCategoryArticle,
+  debiCategoryArticle,
+  elektrikCategoryArticle,
+  yogunlukCategoryArticle,
+  kuvvetCategoryArticle,
+  torkCategoryArticle,
+  aciCategoryArticle,
+  frekansCategoryArticle,
+  veriCategoryArticle,
+  momentumCategoryArticle,
+  viskoziteCategoryArticle,
+  direncCategoryArticle,
+  kapasitansCategoryArticle,
+  enduktansCategoryArticle,
+  elektrikYukuCategoryArticle,
   basincCategoryArticle,
   altinAyarCategoryArticle,
+  gumusAyarCategoryArticle,
+  kanSekeriCategoryArticle,
+  vitaminDCategoryArticle,
+  hacimselDebiCategoryArticle,
+  kutleselDebiCategoryArticle,
+  manyetikAlanCategoryArticle,
+  manyetikAkiCategoryArticle,
+  kinematikViskoziteCategoryArticle,
+  isilIletkenlikCategoryArticle,
+  isiAkisiCategoryArticle,
+  ozgulIsiCategoryArticle,
+  ivmeCategoryArticle,
+  acisalHizCategoryArticle,
+  gucCategoryArticle,
 ];
 
 export function findCategoryArticle(slug: string) {

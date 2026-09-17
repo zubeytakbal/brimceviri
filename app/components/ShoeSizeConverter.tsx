@@ -10,7 +10,7 @@ import {
 } from "../converter/shoeSizeTable";
 
 type SystemKey = "eu" | "us" | "uk" | "cm";
-type Locale = "tr" | "en" | "de" | "ar";
+type Locale = "tr" | "en" | "de" | "ar" | "uz";
 
 const systemLabels: Record<Locale, Record<SystemKey, string>> = {
   tr: {
@@ -36,6 +36,12 @@ const systemLabels: Record<Locale, Record<SystemKey, string>> = {
     us: "أمريكا (US)",
     uk: "بريطانيا (UK)",
     cm: "طول القدم (سم)",
+  },
+  uz: {
+    eu: "Yevropa (EU)",
+    us: "AQSH (US)",
+    uk: "Angliya (UK)",
+    cm: "Oyoq Uzunligi (sm)",
   },
 };
 
@@ -72,6 +78,14 @@ const brandLabels: Record<Locale, Record<ShoeBrandKey, string>> = {
     "new-balance": "New Balance",
     converse: "Converse",
   },
+  uz: {
+    genel: "Umumiy (Standart)",
+    nike: "Nike",
+    adidas: "Adidas",
+    puma: "Puma",
+    "new-balance": "New Balance",
+    converse: "Converse",
+  },
 };
 
 const groupLabels: Record<Locale, Record<ShoeSizeGroupKey, string>> = {
@@ -98,6 +112,12 @@ const groupLabels: Record<Locale, Record<ShoeSizeGroupKey, string>> = {
     kadin: "نساء",
     bebek: "رضع / أطفال صغار",
     "buyuk-cocuk": "أطفال أكبر سنا",
+  },
+  uz: {
+    erkek: "Erkaklar",
+    kadin: "Ayollar",
+    bebek: "Chaqaloq / Kichik Bola",
+    "buyuk-cocuk": "Katta Bola",
   },
 };
 
@@ -157,6 +177,20 @@ const copy = {
     footLength: "طول القدم",
     chartSuffix: "جدول مقاسات الأحذية",
   },
+  uz: {
+    group: "Guruh",
+    brand: "Brend",
+    knownSystem: "Ma'lum Tizim",
+    value: "Qiymat",
+    matchingSizes: "Mos O'lchamlar",
+    invalidValue:
+      "Natijani ko'rish uchun to'g'ri raqam kiriting.",
+    euResult: "Yevropa (EU)",
+    usResult: "AQSH (US)",
+    ukResult: "Angliya (UK)",
+    footLength: "Oyoq Uzunligi",
+    chartSuffix: "oyoq kiyimi o'lchamlari jadvali",
+  },
 } as const;
 
 const brandOrder: ShoeBrandKey[] = [
@@ -186,6 +220,10 @@ function getNumberLocale(locale: Locale) {
 
   if (locale === "ar") {
     return "ar";
+  }
+
+  if (locale === "uz") {
+    return "uz-UZ";
   }
 
   return "en-US";

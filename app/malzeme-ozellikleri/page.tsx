@@ -6,6 +6,7 @@ import {
   type MaterialCategory,
 } from "../converter/materialsDatabase";
 import { getAllMaterialProfiles } from "../converter/materialsHub";
+import { getAllMaterialComparisons } from "../converter/materialComparisons";
 import { buildSiteUrl } from "../siteConfig";
 
 const faqItems: FaqItem[] = [
@@ -39,7 +40,12 @@ export const metadata: Metadata = {
   title: "Malzeme Özellikleri: Yoğunluk, Isıl İletkenlik ve Birim Çevirici",
   description:
     "100'den fazla metal, sıvı, plastik, ahşap ve yapı malzemesinin yoğunluğunu ve mühendislik özelliklerini gör, birimler arasında anında çevir.",
-  alternates: { canonical: "/malzeme-ozellikleri" },
+  alternates: {
+    canonical: "/malzeme-ozellikleri",
+    languages: {
+      "uz-UZ": "/uz/material-xossalari",
+    },
+  },
   openGraph: {
     title: "Malzeme Özellikleri: Yoğunluk, Isıl İletkenlik ve Birim Çevirici",
     description: "100'den fazla malzemenin yoğunluğunu ve özelliklerini gör.",
@@ -52,6 +58,7 @@ export const metadata: Metadata = {
 
 export default function MaterialsHubPage() {
   const materials = getAllMaterialProfiles();
+  const comparisons = getAllMaterialComparisons();
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -107,6 +114,17 @@ export default function MaterialsHubPage() {
               </div>
             );
           })}
+
+          <h2>Popüler Yoğunluk Karşılaştırmaları</h2>
+          <ul className="related-conversion-list">
+            {comparisons.map((comparison) => (
+              <li key={comparison.slug}>
+                <Link href={`/malzeme-karsilastirma/${comparison.slug}`}>
+                  {comparison.first.nameTr} – {comparison.second.nameTr}
+                </Link>
+              </li>
+            ))}
+          </ul>
 
           <h2>Sık Sorulan Sorular</h2>
           {faqItems.map((item) => (

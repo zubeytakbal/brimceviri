@@ -133,6 +133,19 @@ export default function FuelConsumptionCalculatorPage() {
               {item.answer}
             </p>
           ))}
+
+          <h2>İlgili araçlar</h2>
+          <p>
+            Elektrikli araca geçişin maliyet karşılaştırması için{" "}
+            <Link href="/elektrikli-arac-maliyet-karsilastirma">Elektrikli Araç Maliyet Karşılaştırma</Link>,{" "}
+            LPG dönüşümünün amortismanı için{" "}
+            <Link href="/lpg-donusum-amortisman-hesaplama">LPG Dönüşüm Amortisman Hesaplama</Link>,{" "}
+            lastik ebadı için{" "}
+            <Link href="/lastik-ebati-hesaplama">Lastik Ebatı Hesaplama</Link>,{" "}
+            diğer otomotiv araçları için{" "}
+            <Link href="/otomotiv-araclari">Otomotiv Araçları</Link>
+            {" "}sayfasına bakabilirsin.
+          </p>
         </section>
       </div>
     </main>

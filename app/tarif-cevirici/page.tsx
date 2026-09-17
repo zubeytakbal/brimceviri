@@ -97,8 +97,12 @@ export default function RecipeScalerPage() {
           <p>
             Mutfakla ilgili diğer araçlar ve fırın sıcaklığı dönüşüm
             tablosu için{" "}
-            <Link href="/asci-araclari">Aşçı Araçları</Link> sayfasına
-            bakabilirsin.
+            <Link href="/asci-araclari">Aşçı Araçları</Link> sayfasına,
+            su bardağı, yemek kaşığı ve çay kaşığı birimlerinin
+            mililitre karşılıkları için{" "}
+            <Link href="/su-bardagi-yemek-kasigi">Su Bardağı - Yemek Kaşığı Çevirici</Link>,{" "}
+            <Link href="/yemek-kasigi-mililitre">Yemek Kaşığı - Mililitre Çevirici</Link>
+            {" "}sayfalarına bakabilirsin.
           </p>
         </section>
       </div>

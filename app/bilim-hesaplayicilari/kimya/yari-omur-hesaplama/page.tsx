@@ -181,6 +181,14 @@ export default function YariOmurHesaplamaPage() {
             </p>
           ))}
 
+          <h2>İlgili araçlar</h2>
+          <p>
+            Yarı ömürleri bu kadar farklı kılan izotopların atom kütlesine
+            etkisini incelemek için{" "}
+            <Link href="/bilim-hesaplayicilari/kimya/atom-kutlesi-hesaplama">Atom Kütlesi Hesaplama</Link>
+            {" "}sayfasına bakabilirsin.
+          </p>
+
           <h2>Kaynaklar</h2>
           <p>
             Yarı ömür bağıntısı, radyoaktif bozunmanın üstel yasasına

@@ -82,19 +82,19 @@ const copyByLocale: Record<
     recommended: "موصى به",
   },
 uz: {
-    modePrompt: "What do you want to calculate?",
+    modePrompt: "Nimani hisoblamoqchisiz?",
     modeButtons: {
-      "wake-to-bedtime": "When should I sleep?",
-      "bedtime-to-wake": "When should I wake up?",
+      "wake-to-bedtime": "Soat nechada uxlashim kerak?",
+      "bedtime-to-wake": "Soat nechada turishim kerak?",
     },
     timeLabel: {
-      "wake-to-bedtime": "Desired wake-up time",
-      "bedtime-to-wake": "Bedtime",
+      "wake-to-bedtime": "Xohlagan uyg'onish vaqti",
+      "bedtime-to-wake": "Uxlash vaqti",
     },
-    emptyState: "Enter a valid time to see the result.",
-    cycleLabel: "cycles",
-    sleepLabel: "hours of sleep",
-    recommended: "Recommended",
+    emptyState: "Natijani ko'rish uchun to'g'ri vaqt kiriting.",
+    cycleLabel: "sikl",
+    sleepLabel: "soat uyqu",
+    recommended: "Tavsiya etiladi",
   },
 bn: {
     modePrompt: "What do you want to calculate?",

@@ -9,6 +9,16 @@ const faqItems: FaqItem[] = [
     answer:
       "Hayır. Klor dozajı hesaplayıcısı yalnızca birim çevirimi yapar; hangi hedef klor seviyesinin uygun olduğunu belirlemez. Yerel sağlık mevzuatı ve havuz kullanım yoğunluğuna göre hedef değer değişir.",
   },
+  {
+    question: "pH neden klor kadar önemli?",
+    answer:
+      "Klorun dezenfeksiyon etkinliği doğrudan pH'a bağlıdır: pH yükseldikçe (havuz suyu bazikleştikçe) klorun etkin (hipoklorlu asit) formunun oranı hızla azalır. Bu yüzden pH ideal aralığın (yaklaşık 7,2-7,6) dışına çıkarsa, ölçülen klor seviyesi yeterli görünse bile gerçek dezenfeksiyon gücü düşük olabilir.",
+  },
+  {
+    question: "Toplam alkalinite ve kalsiyum sertliği neden ölçülür?",
+    answer:
+      "Toplam alkalinite (tipik hedef ~80-120 ppm), pH'ın stabil kalmasına yardımcı olan bir 'tampon' görevi görür — düşük alkalinitede pH hızla dalgalanır. Kalsiyum sertliği (tipik hedef ~200-400 ppm) ise düşükse havuz yüzeylerinin/ekipmanın aşınmasına, yüksekse kireçlenme ve bulanıklığa yol açabilir.",
+  },
 ];
 
 export const metadata: Metadata = {
@@ -31,6 +41,14 @@ export const metadata: Metadata = {
 function serializeJsonLd(data: object) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
 }
+
+const waterBalanceTable = [
+  ["Serbest Klor", "1 - 3 ppm"],
+  ["pH", "7,2 - 7,6"],
+  ["Toplam Alkalinite", "80 - 120 ppm"],
+  ["Siyanürik Asit (Stabilizör)", "30 - 50 ppm"],
+  ["Kalsiyum Sertliği", "200 - 400 ppm"],
+];
 
 export default function HavuzTeknisyeniAraclariPage() {
   const breadcrumbSchema = {
@@ -98,6 +116,37 @@ export default function HavuzTeknisyeniAraclariPage() {
             </li>
           </ul>
 
+          <h2>Havuz Suyu Denge Parametreleri</h2>
+          <p>
+            Sağlıklı ve dengeli bir havuz suyunda yaygın olarak
+            hedeflenen değer aralıkları:
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <caption>Havuz suyu kimyasal denge parametreleri ve tipik hedef aralıkları</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Parametre</th>
+                  <th scope="col">Tipik Hedef Aralık</th>
+                </tr>
+              </thead>
+              <tbody>
+                {waterBalanceTable.map((row) => (
+                  <tr key={row[0]}>
+                    {row.map((cell, index) => (
+                      <td key={`${row[0]}-${index}`}>{cell}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Bu değerler genel referans aralıklarıdır; yerel sağlık
+            mevzuatı, havuz tipi (özel/kamu) ve kullanım yoğunluğuna göre
+            hedef değerler değişebilir.
+          </p>
+
           <h2>Sık Sorulan Sorular</h2>
           {faqItems.map((item) => (
             <p key={item.question}>
@@ -106,6 +155,13 @@ export default function HavuzTeknisyeniAraclariPage() {
               {item.answer}
             </p>
           ))}
+
+          <h2>Kaynaklar</h2>
+          <p>
+            Su denge parametreleri, havuz endüstrisinde ve halk sağlığı
+            kuruluşlarının (örn. CDC Model Aquatic Health Code) yayınladığı
+            yaygın kabul gören genel referans aralıklarına dayanır.
+          </p>
         </section>
       </div>
     </main>

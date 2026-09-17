@@ -7,7 +7,7 @@ import {
   type WallpaperCalculatorInput,
 } from "../converter/wallpaperCalculator";
 
-type SupportedLocale = "tr" | "en";
+type SupportedLocale = "tr" | "en" | "uz";
 
 type WallpaperCopy = {
   fieldWallWidth: (index: number) => string;
@@ -46,6 +46,18 @@ const copyByLocale: Record<SupportedLocale, WallpaperCopy> = {
     resultRollArea: "Area per Roll",
     resultTotalWithWaste: "Total Area Including Waste",
     rollCountLabel: (count) => `Rolls needed: ${count}`,
+  },
+  uz: {
+    fieldWallWidth: (index) => `${index}-Devor Kengligi (m)`,
+    fieldCeilingHeight: "Shift Balandligi (m)",
+    fieldRollWidth: "Rulon Eni (sm)",
+    fieldRollLength: "Rulon Uzunligi (m)",
+    fieldWaste: "Zaxira Foizi (%)",
+    emptyState: "Natijani ko'rish uchun to'g'ri qiymatlar kiriting.",
+    resultTotalWallArea: "Jami Devor Maydoni",
+    resultRollArea: "1 Rulonning Maydoni",
+    resultTotalWithWaste: "Zaxira Bilan Jami Maydon",
+    rollCountLabel: (count) => `Kerakli rulon soni: ${count} rulon`,
   },
 };
 

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import CategoryUnitConverter from "../../../components/CategoryUnitConverter";
 import CategoryPageLayout from "../../../components/CategoryPageLayout";
+import EnglishElectricityConverter from "../../../components/EnglishElectricityConverter";
 import { buildFullLanguageAlternates } from "../../../i18n/routing";
 import { createConversionCards } from "../../../components/categoryPageUtils";
 import { englishCalculatorPages } from "../../../converter/localizedCalculatorPages";
@@ -12,7 +13,6 @@ import {
 } from "../../../converter/localizedCategoryPages";
 import { englishConversionPages } from "../../../converter/localizedConversionPages";
 import { findGermanCategoryPageByTurkishSlug } from "../../../converter/localizedGermanCategoryPages";
-import { homeCategoryOrder } from "../../../converter/homeCategoryOrder";
 import {
   formatPressureFactor,
   pressureConversionMatrix,
@@ -25,6 +25,8 @@ import {
 } from "../../../converter/pressureSectorUsage";
 import { getUnitSources } from "../../../converter/unitSources";
 import { englishUnitPages } from "../../../converter/localizedUnitPages";
+import { englishCategoryRelatedTools } from "../../../i18n/englishCategoryRelatedTools";
+import { englishHomeCategoryOrder, getEnglishCategoryPresentation } from "../../../i18n/englishCategoryPresentation";
 import { SITE_URL, buildSiteUrl } from "../../../siteConfig";
 
 type PageProps = {
@@ -205,6 +207,7 @@ export default async function EnglishCategoryPage({
       calculatorPage.category === categoryPage.category
   );
   const sources = getUnitSources(categoryPage.category);
+  const relatedTools = englishCategoryRelatedTools[categoryPage.category];
 
   const tableReferenceLabel =
     categoryPage.category === "uzunluk"
@@ -224,9 +227,8 @@ export default async function EnglishCategoryPage({
           ? "Pressure unit comparison table"
           : "Unit comparison table";
 
-  const isSecondaryCategory = !(
-    homeCategoryOrder as readonly string[]
-  ).includes(categoryPage.category);
+  const isSecondaryCategory = !(englishHomeCategoryOrder as readonly string[]).includes(categoryPage.category);
+  const categoryPresentation = getEnglishCategoryPresentation(categoryPage.category);
 
   const footerLink = isSecondaryCategory
     ? {
@@ -264,8 +266,8 @@ export default async function EnglishCategoryPage({
       {
         "@type": "ListItem",
         position: 2,
-        name: "Categories",
-        item: buildSiteUrl("/en/categories"),
+        name: "All Converters",
+        item: buildSiteUrl("/en/all-conversions"),
       },
       {
         "@type": "ListItem",
@@ -322,7 +324,8 @@ export default async function EnglishCategoryPage({
           href: "/en",
         },
         {
-          label: "Categories",
+          label: "All Converters",
+          href: "/en/all-conversions",
         },
         {
           label: categoryPage.title,
@@ -337,10 +340,14 @@ export default async function EnglishCategoryPage({
           "category"
         } units`,
         content: (
-          <CategoryUnitConverter
-            category={categoryPage.category}
-            locale="en"
-          />
+          categoryPage.category === "elektrik" ? (
+            <EnglishElectricityConverter />
+          ) : (
+            <CategoryUnitConverter
+              category={categoryPage.category}
+              locale="en"
+            />
+          )
         ),
       }}
       conversionHeading="Popular conversions"
@@ -386,6 +393,15 @@ export default async function EnglishCategoryPage({
               ))}
             </dl>
           </div>
+
+          {categoryPresentation && (
+            <section className="conversion-section unit-long-section">
+              <h2>{categoryPresentation.pageContext.heading}</h2>
+              {categoryPresentation.pageContext.paragraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </section>
+          )}
 
           <nav
             className="category-table-of-contents"
@@ -694,6 +710,14 @@ export default async function EnglishCategoryPage({
             </section>
           </div>
         </>
+      }
+      relatedToolsSection={
+        relatedTools && relatedTools.length > 0
+          ? {
+              heading: "Related calculators",
+              links: [...relatedTools],
+            }
+          : undefined
       }
       footerLink={footerLink}
     />

@@ -113,6 +113,8 @@ export default async function LpgConversionPaybackPage() {
             <Link href="/elektrikli-arac-maliyet-karsilastirma">
               Elektrikli Araç mı Benzinli Araç mı?
             </Link>
+            {" "}sayfasına, diğer otomotiv araçları için{" "}
+            <Link href="/otomotiv-araclari">Otomotiv Araçları</Link>
             {" "}sayfasına bakabilirsin.
           </p>
 

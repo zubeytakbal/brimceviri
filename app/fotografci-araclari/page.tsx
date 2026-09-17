@@ -14,6 +14,16 @@ const faqItems: FaqItem[] = [
     answer:
       "Standart baskı için 300 DPI, web için 72-96 DPI yeterlidir. Detaylı hesap için Piksel, CM ve DPI Hesaplama aracını kullanabilirsin.",
   },
+  {
+    question: "Fotoğrafçılıkta \"stop\" (durak) ne demektir?",
+    answer:
+      "Bir stop, ışık miktarının iki katına çıkması veya yarıya inmesi anlamına gelir. ISO, diyafram ve enstantane her biri kendi stop dizisinde ilerler; bir ayarı 1 stop artırıp diğerini 1 stop azaltarak toplam pozlamayı sabit tutabilirsin — Pozlama Eşdeğeri Hesaplama aracımız tam olarak bunu yapar.",
+  },
+  {
+    question: "Farklı sensör formatlarının crop factor'ü kaçtır?",
+    answer:
+      "Tam kare (full-frame) sensörün crop factor'ü 1,0'dır (referans). APS-C sensörler markaya göre 1,5 (Nikon/Sony/Fujifilm) veya 1,6 (Canon), Micro Four Thirds sensörler 2,0 crop factor'e sahiptir. Orta format (medium format) sensörler ise genellikle 1'in altında bir crop factor'e (yani tam kareden daha geniş bir görüş açısına) sahiptir.",
+  },
 ];
 
 export const metadata: Metadata = {
@@ -36,6 +46,10 @@ export const metadata: Metadata = {
 function serializeJsonLd(data: object) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
 }
+
+const apertureStopsTable = ["f/1.4", "f/2", "f/2.8", "f/4", "f/5.6", "f/8", "f/11", "f/16", "f/22"];
+const shutterStopsTable = ["1/1000", "1/500", "1/250", "1/125", "1/60", "1/30", "1/15", "1/8", "1/4"];
+const isoStopsTable = ["100", "200", "400", "800", "1600", "3200", "6400"];
 
 export default function FotografciAraclariPage() {
   const breadcrumbSchema = {
@@ -109,6 +123,34 @@ export default function FotografciAraclariPage() {
             </li>
           </ul>
 
+          <h2>Tam Stop Dizileri (Diyafram, Enstantane, ISO)</h2>
+          <p>
+            Pozlama üçgeninin üç ekseninde de standart tam stop
+            dizileri şu şekildedir — dizide bir adım ilerlemek/gerilemek
+            ışık miktarını 2 katına çıkarır/yarıya indirir:
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <caption>Diyafram, enstantane ve ISO tam stop dizileri</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Diyafram (f/)</th>
+                  <th scope="col">Enstantane (sn)</th>
+                  <th scope="col">ISO</th>
+                </tr>
+              </thead>
+              <tbody>
+                {apertureStopsTable.map((_, index) => (
+                  <tr key={apertureStopsTable[index]}>
+                    <td>{apertureStopsTable[index]}</td>
+                    <td>{shutterStopsTable[index] ?? "—"}</td>
+                    <td>{isoStopsTable[index] ?? "—"}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
           <h2>Sık Sorulan Sorular</h2>
           {faqItems.map((item) => (
             <p key={item.question}>
@@ -117,6 +159,12 @@ export default function FotografciAraclariPage() {
               {item.answer}
             </p>
           ))}
+
+          <h2>Kaynaklar</h2>
+          <p>
+            Stop dizileri ve crop factor değerleri, fotoğrafçılıkta
+            evrensel olarak kabul gören standart tanımlara dayanır.
+          </p>
         </section>
       </div>
     </main>

@@ -184,6 +184,15 @@ export default function KupkokHesaplamaPage() {
             </p>
           ))}
 
+          <h2>İlgili araçlar</h2>
+          <p>
+            Karekök hesaplama için{" "}
+            <Link href="/bilim-hesaplayicilari/matematik/karekok-hesaplama">Karekök Hesaplama</Link>,{" "}
+            üslü sayı hesaplama için{" "}
+            <Link href="/bilim-hesaplayicilari/matematik/uslu-sayilar-hesaplama">Üslü Sayılar Hesaplama</Link>
+            {" "}sayfasına bakabilirsin.
+          </p>
+
           <h2>Kaynaklar</h2>
           <p>
             Küpkök sadeleştirme yöntemi ve tam küp tanımı, standart

@@ -58,42 +58,49 @@ const staticRouteTranslations: Record<StaticRouteKey, LocalePathMap> = {
     en: "/en/units",
     de: "/de/einheiten",
     ar: "/ar/unit-guides",
+    uz: "/uz/birliklar",
   },
   allConversions: {
     tr: "/tum-birimler",
     en: "/en/all-conversions",
     de: "/de/alle-umrechnungen",
     ar: "/ar/all-conversions",
+    uz: "/tum-birimler",
   },
   otherConversions: {
     tr: "/diger-donusumler",
     en: "/en/other-conversions",
     de: "/de/weitere-umrechnungen",
     ar: "/ar/other-conversions",
+    uz: "/uz/turkumlar",
   },
   historicalUnits: {
     tr: "/tarihi-olcu-birimleri",
     en: "/en/historical-units",
     de: "/de/historische-masseinheiten",
     ar: "/ar/historical-units",
+    uz: "/uz/tarixiy-olchov-birliklari",
   },
   shoeSize: {
     tr: "/ayakkabi-numarasi-cevirme",
     en: "/en/shoe-size-converter",
     de: "/de/schuhgroessen-umrechner",
     ar: "/ar/shoe-size-converter",
+    uz: "/uz/oyoq-kiyim-olchami",
   },
   kitchenMeasures: {
     tr: "/mutfak-olculeri-cevirici",
     en: "/en/kitchen-measurement-converter",
     de: "/de/kuechenmass-umrechner",
     ar: "/ar/kitchen-measurement-converter",
+    uz: "/uz/oshxona-olchovlari",
   },
   recipeConverter: {
     tr: "/tarif-cevirici",
     en: "/en/recipe-converter",
     de: "/de/rezept-umrechner",
     ar: "/ar/recipe-converter",
+    uz: "/uz/retsept-aylantirgich",
   },
   ringSize: {
     tr: "/yuzuk-olcusu-cevirici",
@@ -106,6 +113,7 @@ const staticRouteTranslations: Record<StaticRouteKey, LocalePathMap> = {
     en: "/en/engineering-calculators",
     de: "/de/ingenieurrechner",
     ar: "/ar/engineering-calculators",
+    uz: "/muhendislik-hesaplayicilari",
   },
   electricalEngineeringHub: {
     tr: "/muhendislik-hesaplayicilari/elektrik-hesaplari",
@@ -121,24 +129,28 @@ const staticRouteTranslations: Record<StaticRouteKey, LocalePathMap> = {
     en: "/en/about",
     de: "/de/uber-uns",
     ar: "/ar/about",
+    uz: "/uz/about",
   },
   contact: {
     tr: "/iletisim",
     en: "/en/contact",
     de: "/de/kontakt",
     ar: "/ar/contact",
+    uz: "/uz/contact",
   },
   privacy: {
     tr: "/gizlilik",
     en: "/en/privacy",
     de: "/de/datenschutz",
     ar: "/ar/privacy",
+    uz: "/uz/privacy",
   },
   terms: {
     tr: "/kullanim-kosullari",
     en: "/en/terms",
     de: "/de/nutzungsbedingungen",
     ar: "/ar/terms",
+    uz: "/uz/terms",
   },
   developerApi: {
     tr: "/gelistirici-api",
@@ -422,6 +434,17 @@ export function buildFullLanguageAlternates(
   return buildLanguageAlternates(paths, xDefaultLocale);
 }
 
+// Ozbekcha icin bolge-ozel hreflang kodu ("uz-UZ") kullaniyoruz --
+// Google'a bu icerigin ozellikle Ozbekistondagi Ozbekcha okuyucular
+// icin oldugunu bildirir. Ic routing/Locale tipinde hala sade "uz"
+// kullaniliyor, sadece disariya cikan hreflang anahtari degisiyor.
+function toHreflangCode(locale: Locale): string {
+  if (locale === "uz") {
+    return "uz-UZ";
+  }
+  return locale;
+}
+
 export function buildLanguageAlternates(
   paths: Partial<Record<Locale, string>>,
   xDefaultLocale: Locale = DEFAULT_LOCALE
@@ -432,7 +455,7 @@ export function buildLanguageAlternates(
     const path = paths[locale];
 
     if (path) {
-      languages[locale] = path;
+      languages[toHreflangCode(locale)] = path;
     }
   }
 

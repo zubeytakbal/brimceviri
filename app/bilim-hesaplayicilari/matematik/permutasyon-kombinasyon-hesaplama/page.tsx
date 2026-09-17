@@ -188,6 +188,10 @@ export default function PermutasyonKombinasyonPage() {
             Faktöriyel hesaplamak istersen{" "}
             <Link href="/bilim-hesaplayicilari/matematik/faktoriyel-hesaplama">
               Faktöriyel Hesaplama
+            </Link>
+            , sadece klasik olasılık hesaplamak istersen{" "}
+            <Link href="/bilim-hesaplayicilari/matematik/olasilik-hesaplama">
+              Olasılık Hesaplama
             </Link>{" "}
             aracına bakabilirsin.
           </p>

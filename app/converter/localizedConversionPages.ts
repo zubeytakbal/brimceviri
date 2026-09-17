@@ -3,12 +3,14 @@ import {
   conversionPages,
   type ConversionPage,
 } from "./conversionPages";
-import { findUnit } from "./unitRegistry";
+import { findUnit, unitRegistry } from "./unitRegistry";
 
 export type LocalizedConversionPage = ConversionPage & {
   locale: "en";
   sourceSlug: string;
   categoryName: string;
+  /** True when the page is intentionally published only in English. */
+  isEnglishOnly?: boolean;
 };
 
 const englishCategoryNames: Record<string, string> = {
@@ -35,6 +37,8 @@ const englishCategoryNames: Record<string, string> = {
   elektrik_yuk: "Electric Charge",
   altin_ayar: "Gold Karat",
   gumus_ayar: "Silver Purity",
+  kan_sekeri: "Blood Glucose",
+  vitamin_d: "Vitamin D",
 };
 
 function formatEnglishValue(value: number) {
@@ -103,6 +107,30 @@ function createTemperatureFormula(
     return `${toName} = ${fromName} − 273.15`;
   }
 
+  if (fromUnit === "C" && toUnit === "R") {
+    return `${toName} = (${fromName} + 273.15) × 9/5`;
+  }
+
+  if (fromUnit === "R" && toUnit === "C") {
+    return `${toName} = ${fromName} × 5/9 − 273.15`;
+  }
+
+  if (fromUnit === "F" && toUnit === "R") {
+    return `${toName} = ${fromName} + 459.67`;
+  }
+
+  if (fromUnit === "R" && toUnit === "F") {
+    return `${toName} = ${fromName} − 459.67`;
+  }
+
+  if (fromUnit === "C" && toUnit === "Re") {
+    return `${toName} = ${fromName} × 4/5`;
+  }
+
+  if (fromUnit === "Re" && toUnit === "C") {
+    return `${toName} = ${fromName} × 5/4`;
+  }
+
   return `${toName} = ${fromName}`;
 }
 
@@ -126,6 +154,30 @@ function createTemperatureExplanation(
 
   if (fromUnit === "K" && toUnit === "C") {
     return `To convert ${fromName.toLowerCase()} to ${toName.toLowerCase()}, subtract 273.15. A value of 273.15 ${fromUnit} equals 0 ${toUnit}.`;
+  }
+
+  if (fromUnit === "C" && toUnit === "R") {
+    return `To convert ${fromName.toLowerCase()} to ${toName.toLowerCase()}, add 273.15 and multiply by 9/5. A value of 0 ${fromUnit} equals 491.67 ${toUnit}.`;
+  }
+
+  if (fromUnit === "R" && toUnit === "C") {
+    return `To convert ${fromName.toLowerCase()} to ${toName.toLowerCase()}, multiply by 5/9 and subtract 273.15. A value of 491.67 ${fromUnit} equals 0 ${toUnit}.`;
+  }
+
+  if (fromUnit === "F" && toUnit === "R") {
+    return `To convert ${fromName.toLowerCase()} to ${toName.toLowerCase()}, add 459.67. A value of 32 ${fromUnit} equals 491.67 ${toUnit}.`;
+  }
+
+  if (fromUnit === "R" && toUnit === "F") {
+    return `To convert ${fromName.toLowerCase()} to ${toName.toLowerCase()}, subtract 459.67. A value of 491.67 ${fromUnit} equals 32 ${toUnit}.`;
+  }
+
+  if (fromUnit === "C" && toUnit === "Re") {
+    return `To convert ${fromName.toLowerCase()} to ${toName.toLowerCase()}, multiply by 4/5. A value of 100 ${fromUnit} equals 80 ${toUnit}.`;
+  }
+
+  if (fromUnit === "Re" && toUnit === "C") {
+    return `To convert ${fromName.toLowerCase()} to ${toName.toLowerCase()}, multiply by 5/4. A value of 80 ${fromUnit} equals 100 ${toUnit}.`;
   }
 
   return `Convert ${fromName.toLowerCase()} to ${toName.toLowerCase()} using the defined temperature relationship.`;
@@ -189,14 +241,182 @@ function localizeConversionPage(
   };
 }
 
-export const englishConversionPages: LocalizedConversionPage[] =
-  conversionPages
-    .map(localizeConversionPage)
-    .filter(
-      (
-        page
-      ): page is LocalizedConversionPage => page !== null
+type EnglishOnlyPairDefinition = {
+  category: string;
+  firstId: string;
+  secondId: string;
+  firstExamples: number[];
+  secondExamples: number[];
+  forwardSlug: string;
+  reverseSlug: string;
+};
+
+function createEnglishOnlyPair(
+  definition: EnglishOnlyPairDefinition
+): LocalizedConversionPage[] {
+  const first = unitRegistry.find((unit) => unit.id === definition.firstId);
+  const second = unitRegistry.find((unit) => unit.id === definition.secondId);
+
+  if (!first?.en || !second?.en) {
+    throw new Error(
+      `englishConversionPages: missing English unit data for ${definition.firstId}/${definition.secondId}`
     );
+  }
+
+  const categoryName =
+    englishCategoryNames[definition.category] ?? definition.category;
+
+  const createPage = (
+    from: typeof first,
+    to: typeof second,
+    slug: string,
+    reverseSlug: string,
+    exampleValues: number[]
+  ): LocalizedConversionPage => {
+    const factor = convert(definition.category, 1, from.symbol, to.symbol);
+
+    return {
+      locale: "en",
+      // English-only pages deliberately have no Turkish source route.
+      sourceSlug: `en-only:${slug}`,
+      isEnglishOnly: true,
+      slug,
+      category: definition.category,
+      categoryName,
+      fromUnit: from.symbol,
+      toUnit: to.symbol,
+      fromName: from.en!.name,
+      toName: to.en!.name,
+      formula: createEnglishFormula(from.en!.name, to.en!.name, factor),
+      explanation: createEnglishExplanation(
+        from.en!.name,
+        to.en!.name,
+        from.symbol,
+        to.symbol,
+        factor
+      ),
+      exampleValues,
+      reverseSlug,
+    };
+  };
+
+  return [
+    createPage(
+      first,
+      second,
+      definition.forwardSlug,
+      definition.reverseSlug,
+      definition.firstExamples
+    ),
+    createPage(
+      second,
+      first,
+      definition.reverseSlug,
+      definition.forwardSlug,
+      definition.secondExamples
+    ),
+  ];
+}
+
+/**
+ * High-intent comparisons without a Turkish equivalent route. They stay
+ * English-only instead of creating duplicate country pages in every locale.
+ */
+const englishOnlyPairDefinitions: readonly EnglishOnlyPairDefinition[] = [
+  {
+    category: "hacim",
+    firstId: "ingiliz-galonu",
+    secondId: "litre",
+    firstExamples: [1, 2, 5, 10, 20, 50, 100],
+    secondExamples: [1, 5, 10, 20, 50, 100, 500],
+    forwardSlug: "imperial-gallons-to-liters",
+    reverseSlug: "liters-to-imperial-gallons",
+  },
+  {
+    category: "hacim",
+    firstId: "pint",
+    secondId: "mililitre",
+    firstExamples: [1, 2, 4, 8, 16, 32],
+    secondExamples: [100, 250, 500, 1000, 2000, 5000, 10000],
+    forwardSlug: "us-pints-to-milliliters",
+    reverseSlug: "milliliters-to-us-pints",
+  },
+  {
+    category: "hacim",
+    firstId: "ingiliz-pint",
+    secondId: "mililitre",
+    firstExamples: [1, 2, 4, 8, 16, 32],
+    secondExamples: [100, 250, 500, 1000, 2000, 5000, 10000],
+    forwardSlug: "imperial-pints-to-milliliters",
+    reverseSlug: "milliliters-to-imperial-pints",
+  },
+  {
+    category: "hacim",
+    firstId: "quart",
+    secondId: "litre",
+    firstExamples: [1, 2, 4, 8, 16, 32],
+    secondExamples: [1, 2, 5, 10, 20, 50, 100],
+    forwardSlug: "us-quarts-to-liters",
+    reverseSlug: "liters-to-us-quarts",
+  },
+  {
+    category: "hacim",
+    firstId: "ingiliz-quart",
+    secondId: "litre",
+    firstExamples: [1, 2, 4, 8, 16, 32],
+    secondExamples: [1, 2, 5, 10, 20, 50, 100],
+    forwardSlug: "imperial-quarts-to-liters",
+    reverseSlug: "liters-to-imperial-quarts",
+  },
+  {
+    category: "hacim",
+    firstId: "sivi-ons",
+    secondId: "mililitre",
+    firstExamples: [1, 2, 4, 8, 16, 32],
+    secondExamples: [15, 30, 50, 100, 250, 500, 1000],
+    forwardSlug: "us-fluid-ounces-to-milliliters",
+    reverseSlug: "milliliters-to-us-fluid-ounces",
+  },
+  {
+    category: "hacim",
+    firstId: "ingiliz-sivi-ons",
+    secondId: "mililitre",
+    firstExamples: [1, 2, 4, 8, 16, 32],
+    secondExamples: [15, 30, 50, 100, 250, 500, 1000],
+    forwardSlug: "imperial-fluid-ounces-to-milliliters",
+    reverseSlug: "milliliters-to-imperial-fluid-ounces",
+  },
+  {
+    category: "hacim",
+    firstId: "cay-kasigi",
+    secondId: "mililitre",
+    firstExamples: [1, 2, 3, 4, 6, 8, 12],
+    secondExamples: [1, 2.5, 5, 10, 15, 30, 50],
+    forwardSlug: "teaspoons-to-milliliters",
+    reverseSlug: "milliliters-to-teaspoons",
+  },
+  {
+    category: "uzunluk",
+    firstId: "orgyia",
+    secondId: "metre",
+    firstExamples: [1, 2, 5, 10, 20, 50, 100],
+    secondExamples: [1, 2, 5, 10, 20, 50, 100],
+    forwardSlug: "byzantine-fathoms-to-meters",
+    reverseSlug: "meters-to-byzantine-fathoms",
+  },
+];
+
+export const englishConversionPages: LocalizedConversionPage[] =
+  [
+    ...conversionPages
+      .map(localizeConversionPage)
+      .filter(
+        (
+          page
+        ): page is LocalizedConversionPage => page !== null
+      ),
+    ...englishOnlyPairDefinitions.flatMap(createEnglishOnlyPair),
+  ];
 
 export function findEnglishConversionPage(slug: string) {
   return englishConversionPages.find((page) => page.slug === slug);

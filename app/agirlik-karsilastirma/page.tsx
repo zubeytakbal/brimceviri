@@ -113,6 +113,15 @@ export default function WeightComparisonPage() {
               {item.answer}
             </p>
           ))}
+
+          <h2>İlgili araçlar</h2>
+          <p>
+            Uzunluk karşılaştırması için{" "}
+            <Link href="/uzunluk-karsilastirma">Uzunluk Karşılaştırma</Link>,{" "}
+            malzeme yoğunluğu karşılaştırmaları için{" "}
+            <Link href="/malzeme-ozellikleri">Malzeme Özellikleri</Link>
+            {" "}sayfasına bakabilirsin.
+          </p>
         </section>
       </div>
     </main>

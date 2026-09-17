@@ -33,6 +33,9 @@ export const metadata: Metadata = {
     "Arsa alanı, KAKS (emsal) ve TAKS değerinden toplam inşaat alanını, maksimum taban alanını ve tahmini kat sayısını hesapla.",
   alternates: {
     canonical: "/emsal-kaks-hesaplama",
+    languages: {
+      "uz-UZ": "/uz/qurilish-zichligi-koeffitsiyenti-hisoblash",
+    },
   },
   openGraph: {
     title: "Emsal (KAKS) Hesaplama: İnşaat Alanı ve Kat Sayısı",

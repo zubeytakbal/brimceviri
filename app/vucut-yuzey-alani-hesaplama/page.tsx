@@ -100,7 +100,11 @@ export default function BsaCalculatorPage() {
 
           <h2>İlgili araçlar</h2>
           <p>
-            Diğer doktor ve hemşire araçları için{" "}
+            Böbrek fonksiyonu değerlendirmesi için{" "}
+            <Link href="/kreatinin-klirensi-hesaplama">Kreatinin Klirensi Hesaplama</Link>,{" "}
+            vücut kitle indeksi için{" "}
+            <Link href="/bmi-hesaplama">BMI Hesaplama</Link>
+            {" "}sayfasına, diğer doktor ve hemşire araçları için{" "}
             <Link href="/doktor-hemsire-araclari">Doktor ve Hemşire Araçları</Link>{" "}
             sayfasına bakabilirsin.
           </p>

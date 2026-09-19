@@ -73,7 +73,18 @@ const arabicManualNotifications: SiteNotification[] = [
   },
 ];
 
-export async function getSiteNotifications(locale: "tr" | "en" | "de" | "ar" = "tr"): Promise<SiteNotification[]> {
+const bengaliManualNotifications: SiteNotification[] = [
+  {
+    id: "bengali-homepage-redesign-2026-09",
+    date: "2026-09-19",
+    title: "নতুন হোমপেজ ডিজাইন",
+    message:
+      "একক রূপান্তরকারীর হোমপেজ এখন কার্ড আকারে, দ্রুত অনুসন্ধানসহ নতুন করে সাজানো হয়েছে।",
+    href: "/bn/categories",
+  },
+];
+
+export async function getSiteNotifications(locale: "tr" | "en" | "de" | "ar" | "bn" = "tr"): Promise<SiteNotification[]> {
   if (locale === "en") {
     return [...englishManualNotifications].sort((a, b) =>
       a.date < b.date ? 1 : a.date > b.date ? -1 : 0,
@@ -88,6 +99,12 @@ export async function getSiteNotifications(locale: "tr" | "en" | "de" | "ar" = "
 
   if (locale === "ar") {
     return [...arabicManualNotifications].sort((a, b) =>
+      a.date < b.date ? 1 : a.date > b.date ? -1 : 0,
+    );
+  }
+
+  if (locale === "bn") {
+    return [...bengaliManualNotifications].sort((a, b) =>
       a.date < b.date ? 1 : a.date > b.date ? -1 : 0,
     );
   }

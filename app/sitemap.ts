@@ -271,6 +271,25 @@ const arabicOnlyStandaloneToolRoutes: MetadataRoute.Sitemap =
       priority: tool.priority,
     }));
 
+// Zakat hesaplayicisi canli fiyat verisi (gold-api.com) cektigi icin
+// paylasilan arabicStandaloneTools dispatcher'i yerine kendi bagimsiz
+// rotasina sahip (elektrikli-arac-maliyet-karsilastirma'daki TR
+// deseniyle ayni sebep), bu yuzden sitemap'e manuel eklenir.
+const arabicZakatCalculatorRoute: MetadataRoute.Sitemap = [
+  {
+    url: `${baseUrl}/ar/zakat-calculator`,
+    lastModified: contentLastModified,
+    changeFrequency: "monthly",
+    priority: 0.72,
+  },
+  {
+    url: `${baseUrl}/ar/gold-price-calculator`,
+    lastModified: contentLastModified,
+    changeFrequency: "monthly",
+    priority: 0.72,
+  },
+];
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const corporateRoutes: MetadataRoute.Sitemap = [
     {
@@ -677,6 +696,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...standaloneToolRoutes,
     ...englishOnlyStandaloneToolRoutes,
     ...arabicOnlyStandaloneToolRoutes,
+    ...arabicZakatCalculatorRoute,
     {
       url: `${baseUrl}/bilim-hesaplayicilari`,
       lastModified: contentLastModified,

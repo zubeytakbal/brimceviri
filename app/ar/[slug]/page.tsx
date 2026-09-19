@@ -6,9 +6,12 @@ import BmiCalculator from "../../components/BmiCalculator";
 import BrickCalculator from "../../components/BrickCalculator";
 import DateCalculator from "../../components/DateCalculator";
 import ElectricityConsumptionCalculator from "../../components/ElectricityConsumptionCalculator";
+import FaraidCalculator from "../../components/FaraidCalculator";
+import HijriDateConverter from "../../components/HijriDateConverter";
 import LengthComparisonTool from "../../components/LengthComparisonTool";
 import PaceCalculator from "../../components/PaceCalculator";
 import PaintCalculator from "../../components/PaintCalculator";
+import PrayerTimesCalculator from "../../components/PrayerTimesCalculator";
 import PregnancyCalculator from "../../components/PregnancyCalculator";
 import SleepCalculator from "../../components/SleepCalculator";
 import TileCalculator from "../../components/TileCalculator";
@@ -57,6 +60,9 @@ const componentMap: Record<
   electricityConsumptionCalculator:
     ElectricityConsumptionCalculator,
   sleepCalculator: SleepCalculator,
+  hijriDateConverter: HijriDateConverter,
+  prayerTimesCalculator: PrayerTimesCalculator,
+  faraidCalculator: FaraidCalculator,
 };
 
 function serializeJsonLd(data: object) {

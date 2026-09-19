@@ -393,6 +393,38 @@ export default function ArabicHomeDirectory({
                 </div>
               </article>
             ))}
+
+            <article className="directory-home-card">
+              <Link
+                className="directory-card-stretch"
+                href="/ar/zakat-calculator"
+                aria-label="حاسبة الزكاة - تحسب زكاة المال والذهب والفضة مع سعر السوق الحي"
+              />
+
+              <div className="directory-card-body directory-card-body-icon">
+                <CardIcon name="vatCalculator" />
+                <h3 className="home-category-title">حاسبة الزكاة</h3>
+                <p className="directory-card-description">
+                  تحسب زكاة المال والذهب والفضة باستخدام سعر السوق الحي.
+                </p>
+              </div>
+            </article>
+
+            <article className="directory-home-card">
+              <Link
+                className="directory-card-stretch"
+                href="/ar/gold-price-calculator"
+                aria-label="حاسبة سعر الذهب والفضة الحي - القيمة حسب الوزن والعيار والعملة"
+              />
+
+              <div className="directory-card-body directory-card-body-icon">
+                <CardIcon name="mass" />
+                <h3 className="home-category-title">حاسبة سعر الذهب والفضة</h3>
+                <p className="directory-card-description">
+                  تحسب قيمة الذهب أو الفضة حسب الوزن والعيار وعملتك بسعر حي.
+                </p>
+              </div>
+            </article>
           </div>
         </section>
       </div>

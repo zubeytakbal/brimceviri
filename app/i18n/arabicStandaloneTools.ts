@@ -11,7 +11,10 @@ export type ArabicStandaloneToolComponentKey =
   | "paceCalculator"
   | "acCapacityCalculator"
   | "electricityConsumptionCalculator"
-  | "sleepCalculator";
+  | "sleepCalculator"
+  | "hijriDateConverter"
+  | "prayerTimesCalculator"
+  | "faraidCalculator";
 
 export type ArabicStandaloneTool = {
   slug: string;
@@ -333,6 +336,79 @@ export const arabicStandaloneTools: ArabicStandaloneTool[] = [
       },
     ],
     priority: 0.75,
+  },
+  {
+    slug: "hijri-date-converter",
+    arabicPath: "/ar/hijri-date-converter",
+    turkishPath: "/hicri-tarih-cevirici",
+    title: "محول التاريخ الهجري الميلادي",
+    description: "حوّل أي تاريخ بين التقويمين الميلادي والهجري في الاتجاهين بسهولة وسرعة.",
+    intro: "أدخل اليوم والشهر والسنة لتحصل مباشرة على التاريخ المقابل في التقويم الآخر.",
+    component: "hijriDateConverter",
+    iconName: "dateCalculator",
+    cardDescription: "يحول التاريخ بين الميلادي والهجري في الاتجاهين.",
+    articleSections: [
+      {
+        title: "على أي أساس يتم التحويل؟",
+        body: "تعتمد الأداة على التقويم الهجري الحسابي (الجدولي) المبني على دورة ثابتة من 30 سنة، وهو المعيار الشائع في أدوات التحويل الرقمية غير الفلكية.",
+      },
+      {
+        title: "هل يطابق التاريخ الرسمي دائمًا؟",
+        body: "قد يختلف الناتج بيوم واحد عن التقويم المعتمد رسميًا على رؤية الهلال الفعلية، خصوصًا في بداية الأشهر المهمة كرمضان وشوال وذي الحجة، لذلك يبقى الإعلان الرسمي هو المرجع النهائي للمناسبات الدينية.",
+      },
+    ],
+    isArabicOnly: true,
+    priority: 0.7,
+  },
+  {
+    slug: "prayer-times-calculator",
+    arabicPath: "/ar/prayer-times-calculator",
+    turkishPath: "/namaz-vakitleri-kible-hesaplama",
+    title: "حاسبة مواقيت الصلاة واتجاه القبلة",
+    description: "احسب أوقات الفجر والظهر والعصر والمغرب والعشاء واتجاه القبلة لأي مدينة أو إحداثيات.",
+    intro: "اختر مدينتك أو استخدم موقعك الحالي، ثم اختر طريقة الحساب المعتمدة في بلدك لعرض المواقيت واتجاه القبلة.",
+    component: "prayerTimesCalculator",
+    iconName: "dateCalculator",
+    cardDescription: "تعرض مواقيت الصلاة اليومية واتجاه القبلة بالدرجات.",
+    articleSections: [
+      {
+        title: "كيف يتم حساب المواقيت؟",
+        body: "تعتمد الحاسبة على موقع الشمس الفلكي (ميل الشمس ومعادلة الزمن) بالنسبة لخط العرض وخط الطول الذي تحدده، مع زاوية الفجر والعشاء المعتمدة في طريقة الحساب المختارة.",
+      },
+      {
+        title: "لماذا توجد عدة طرق حساب؟",
+        body: "تعتمد كل هيئة إسلامية زاوية مختلفة قليلًا لتحديد بداية وقتي الفجر والعشاء، لذلك توفر الأداة أشهر الطرق المعتمدة عالميًا لتختار ما يناسب بلدك.",
+      },
+      {
+        title: "كيف يُحسب اتجاه القبلة؟",
+        body: "يُحسب اتجاه القبلة كأقصر مسار كروي (دائرة عظمى) من موقعك إلى الكعبة المشرفة في مكة المكرمة، ويُعرض كزاوية بالدرجات من الشمال الجغرافي الحقيقي.",
+      },
+    ],
+    isArabicOnly: true,
+    priority: 0.72,
+  },
+  {
+    slug: "faraid-calculator",
+    arabicPath: "/ar/faraid-calculator",
+    turkishPath: "/islam-miras-hesaplama",
+    title: "حاسبة المواريث (الفرائض)",
+    description: "احسب أنصبة الورثة الأساسيين (الزوج/الزوجة، الأب، الأم، الأبناء والبنات، الإخوة والأخوات الأشقاء) وفق أحكام الفرائض.",
+    intro: "حدد الورثة الأحياء من العائلة الأساسية لعرض نسبة كل وارث من التركة، مع تنبيهات واضحة عند وجود حالات تحتاج استشارة شرعية متخصصة.",
+    component: "faraidCalculator",
+    iconName: "vatCalculator",
+    cardDescription: "تحسب أنصبة الورثة الأساسيين وفق أحكام الفرائض، مع تنبيهات للحالات المعقدة.",
+    articleSections: [
+      {
+        title: "ما نطاق هذه الحاسبة؟",
+        body: "تغطي الحاسبة فقط: الزوج أو الزوجات، الأب، الأم، الأبناء والبنات، والإخوة والأخوات الأشقاء. لا تغطي الأجداد والجدات، أو أبناء الابن، أو الإخوة لأب أو لأم، أو أولاد الإخوة، أو الأعمام، أو أي حالة ميراث معقدة أخرى.",
+      },
+      {
+        title: "هل النتيجة نهائية؟",
+        body: "هذه الأداة تعليمية وتقديرية فقط، ولا تغني عن استشارة عالم شرعي موثوق أو محكمة مختصة، خصوصًا في تقسيم ممتلكات حقيقية أو عند وجود ورثة غير مدعومين في هذه الأداة.",
+      },
+    ],
+    isArabicOnly: true,
+    priority: 0.72,
   },
 ];
 

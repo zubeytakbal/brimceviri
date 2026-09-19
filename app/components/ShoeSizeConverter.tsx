@@ -10,7 +10,7 @@ import {
 } from "../converter/shoeSizeTable";
 
 type SystemKey = "eu" | "us" | "uk" | "cm";
-type Locale = "tr" | "en" | "de" | "ar" | "uz" | "bn";
+type Locale = "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr";
 
 const systemLabels: Record<Locale, Record<SystemKey, string>> = {
   tr: {
@@ -48,6 +48,12 @@ const systemLabels: Record<Locale, Record<SystemKey, string>> = {
     us: "যুক্তরাষ্ট্র (US)",
     uk: "যুক্তরাজ্য (UK)",
     cm: "পায়ের দৈর্ঘ্য (সেমি)",
+  },
+  fr: {
+    eu: "Europe (EU)",
+    us: "Etats-Unis (US)",
+    uk: "Royaume-Uni (UK)",
+    cm: "Longueur du pied (cm)",
   },
 };
 
@@ -100,6 +106,14 @@ const brandLabels: Record<Locale, Record<ShoeBrandKey, string>> = {
     "new-balance": "New Balance",
     converse: "Converse",
   },
+  fr: {
+    genel: "General (standard)",
+    nike: "Nike",
+    adidas: "Adidas",
+    puma: "Puma",
+    "new-balance": "New Balance",
+    converse: "Converse",
+  },
 };
 
 const groupLabels: Record<Locale, Record<ShoeSizeGroupKey, string>> = {
@@ -138,6 +152,12 @@ const groupLabels: Record<Locale, Record<ShoeSizeGroupKey, string>> = {
     kadin: "নারী",
     bebek: "শিশু / ছোট বাচ্চা",
     "buyuk-cocuk": "বড় বাচ্চা",
+  },
+  fr: {
+    erkek: "Homme",
+    kadin: "Femme",
+    bebek: "Bebe / Petit enfant",
+    "buyuk-cocuk": "Grand enfant",
   },
 };
 
@@ -224,6 +244,19 @@ const copy = {
     footLength: "পায়ের দৈর্ঘ্য",
     chartSuffix: "জুতার মাপের তালিকা",
   },
+  fr: {
+    group: "Groupe",
+    brand: "Marque",
+    knownSystem: "Systeme connu",
+    value: "Valeur",
+    matchingSizes: "Pointures correspondantes",
+    invalidValue: "Saisissez un nombre valide pour voir la correspondance.",
+    euResult: "Europe (EU)",
+    usResult: "Etats-Unis (US)",
+    ukResult: "Royaume-Uni (UK)",
+    footLength: "Longueur du pied",
+    chartSuffix: "tableau des pointures",
+  },
 } as const;
 
 const brandOrder: ShoeBrandKey[] = [
@@ -261,6 +294,10 @@ function getNumberLocale(locale: Locale) {
 
   if (locale === "bn") {
     return "bn-BD";
+  }
+
+  if (locale === "fr") {
+    return "fr-FR";
   }
 
   return "en-US";

@@ -13,7 +13,7 @@ type StaticPageSection = {
 };
 
 type StaticPageLayoutProps = {
-  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn";
+  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr";
   breadcrumbAriaLabel: string;
   breadcrumbs: BreadcrumbItem[];
   title: string;
@@ -81,7 +81,9 @@ export default function StaticPageLayout({
                         ? "Boshqa tillar"
                         : locale === "bn"
                           ? "অন্যান্য ভাষা"
-                          : "Diger diller"}
+                          : locale === "fr"
+                            ? "Autres langues"
+                            : "Diger diller"}
               </h2>
               <Link
                 className="text-link"

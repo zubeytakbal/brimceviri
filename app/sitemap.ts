@@ -95,7 +95,8 @@ function languageAlternates(
   germanUrl?: string,
   arabicUrl?: string,
   uzbekUrl?: string,
-  bengaliUrl?: string
+  bengaliUrl?: string,
+  frenchUrl?: string
 ) {
   return {
     languages: {
@@ -105,6 +106,7 @@ function languageAlternates(
       ...(arabicUrl ? { ar: arabicUrl } : {}),
       ...(uzbekUrl ? { "uz-UZ": uzbekUrl } : {}),
       ...(bengaliUrl ? { bn: bengaliUrl } : {}),
+      ...(frenchUrl ? { fr: frenchUrl } : {}),
       "x-default": turkishUrl,
     },
   };
@@ -1389,6 +1391,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
           de: `${baseUrl}/de/schuhgroessen-umrechner`,
           ar: `${baseUrl}/ar/shoe-size-converter`,
           bn: `${baseUrl}/bn/shoe-size-converter`,
+          fr: `${baseUrl}/fr/shoe-size-converter`,
+          "x-default": `${baseUrl}/ayakkabi-numarasi-cevirme`,
+        },
+      },
+    },
+    {
+      url: `${baseUrl}/fr/shoe-size-converter`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+      alternates: {
+        languages: {
+          tr: `${baseUrl}/ayakkabi-numarasi-cevirme`,
+          en: `${baseUrl}/en/shoe-size-converter`,
+          de: `${baseUrl}/de/schuhgroessen-umrechner`,
+          ar: `${baseUrl}/ar/shoe-size-converter`,
+          bn: `${baseUrl}/bn/shoe-size-converter`,
+          fr: `${baseUrl}/fr/shoe-size-converter`,
           "x-default": `${baseUrl}/ayakkabi-numarasi-cevirme`,
         },
       },
@@ -1405,6 +1425,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
           de: `${baseUrl}/de/kuechenmass-umrechner`,
           ar: `${baseUrl}/ar/kitchen-measurement-converter`,
           bn: `${baseUrl}/bn/kitchen-measurement-converter`,
+          fr: `${baseUrl}/fr/kitchen-measurement-converter`,
+          "x-default": `${baseUrl}/mutfak-olculeri-cevirici`,
+        },
+      },
+    },
+    {
+      url: `${baseUrl}/fr/kitchen-measurement-converter`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+      alternates: {
+        languages: {
+          tr: `${baseUrl}/mutfak-olculeri-cevirici`,
+          en: `${baseUrl}/en/kitchen-measurement-converter`,
+          de: `${baseUrl}/de/kuechenmass-umrechner`,
+          ar: `${baseUrl}/ar/kitchen-measurement-converter`,
+          bn: `${baseUrl}/bn/kitchen-measurement-converter`,
+          fr: `${baseUrl}/fr/kitchen-measurement-converter`,
           "x-default": `${baseUrl}/mutfak-olculeri-cevirici`,
         },
       },
@@ -1421,6 +1459,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
           de: `${baseUrl}/de/rezept-umrechner`,
           ar: `${baseUrl}/ar/recipe-converter`,
           bn: `${baseUrl}/bn/recipe-converter`,
+          fr: `${baseUrl}/fr/recipe-converter`,
+          "x-default": `${baseUrl}/tarif-cevirici`,
+        },
+      },
+    },
+    {
+      url: `${baseUrl}/fr/recipe-converter`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+      alternates: {
+        languages: {
+          tr: `${baseUrl}/tarif-cevirici`,
+          en: `${baseUrl}/en/recipe-converter`,
+          de: `${baseUrl}/de/rezept-umrechner`,
+          ar: `${baseUrl}/ar/recipe-converter`,
+          bn: `${baseUrl}/bn/recipe-converter`,
+          fr: `${baseUrl}/fr/recipe-converter`,
           "x-default": `${baseUrl}/tarif-cevirici`,
         },
       },
@@ -1437,6 +1493,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
           de: `${baseUrl}/de/historische-masseinheiten`,
           ar: `${baseUrl}/ar/historical-units`,
           bn: `${baseUrl}/bn/historical-units`,
+          fr: `${baseUrl}/fr/historical-units`,
+          "x-default": `${baseUrl}/tarihi-olcu-birimleri`,
+        },
+      },
+    },
+    {
+      url: `${baseUrl}/fr/historical-units`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+      alternates: {
+        languages: {
+          tr: `${baseUrl}/tarihi-olcu-birimleri`,
+          en: `${baseUrl}/en/historical-units`,
+          de: `${baseUrl}/de/historische-masseinheiten`,
+          ar: `${baseUrl}/ar/historical-units`,
+          bn: `${baseUrl}/bn/historical-units`,
+          fr: `${baseUrl}/fr/historical-units`,
           "x-default": `${baseUrl}/tarihi-olcu-birimleri`,
         },
       },

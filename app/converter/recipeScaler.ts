@@ -7,7 +7,7 @@ import {
 } from "./kitchenMeasures";
 import { kitchenIngredientLabels } from "./kitchenIngredientLabels";
 
-export type RecipeLocale = "tr" | "en" | "de" | "ar" | "uz" | "bn";
+export type RecipeLocale = "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr";
 
 export type ParsedRecipeLine = {
   raw: string;
@@ -32,6 +32,8 @@ const wordQuantities: Record<string, number> = {
   chorak: 0.25,
   অর্ধেক: 0.5,
   সিকি: 0.25,
+  demi: 0.5,
+  quart: 0.25,
 };
 
 function normalizeText(value: string): string {
@@ -108,6 +110,8 @@ const twoTokenUnits: Record<string, KitchenUnit> = {
   "choy qoshiq": "cayKasigi",
   "টেবিল চামচ": "yemekKasigi",
   "চা চামচ": "cayKasigi",
+  "cuillere a soupe": "yemekKasigi",
+  "cuillere a cafe": "cayKasigi",
 };
 
 const oneTokenUnits: Record<string, KitchenUnit> = {
@@ -157,6 +161,12 @@ const oneTokenUnits: Record<string, KitchenUnit> = {
   গ্রাম: "gram",
   মিলিলিটার: "ml",
   লিটার: "litre",
+  tasses: "bardak",
+  gramme: "gram",
+  grammes: "gram",
+  millilitre: "ml",
+  millilitres: "ml",
+  litres: "litre",
 };
 
 function extractUnit(normalizedRestOfLine: string): {
@@ -218,6 +228,10 @@ const ingredientMatchEntries: Array<{
   entries.push({
     key: row.key,
     normalized: normalizeText(kitchenIngredientLabels.bn[row.key]),
+  });
+  entries.push({
+    key: row.key,
+    normalized: normalizeText(kitchenIngredientLabels.fr[row.key]),
   });
 
   return entries;
@@ -306,6 +320,8 @@ function formatQuantity(
             ? "uz-UZ"
             : locale === "bn"
               ? "bn-BD"
+              : locale === "fr"
+                ? "fr-FR"
         : "en-US";
 
   return rounded.toLocaleString(localeName, {

@@ -116,6 +116,23 @@ const copy = {
     copiedButton: "কপি হয়েছে",
     printButton: "প্রিন্ট করুন",
   },
+  fr: {
+    recipeLabel: "Votre recette",
+    placeholder:
+      "2 tasses de farine\n1 cuillere a cafe de sel\n3 cuilleres a soupe d'huile d'olive\n2 oeufs\nFour a 180 degres",
+    factorLabel: "Multiplicateur",
+    originalServingsLabel: "Portions d'origine",
+    targetServingsLabel: "Portions souhaitees",
+    resultHeading: "Recette adaptee",
+    emptyState: "Ecrivez votre recette ci-dessus pour voir le resultat ici.",
+    gramPrefix: "~",
+    gramSuffix: "g",
+    ingredientLabel: "Ingredient",
+    noMatchOption: "Aucune correspondance",
+    copyButton: "Copier",
+    copiedButton: "Copie",
+    printButton: "Imprimer",
+  },
 } as const;
 
 const chipOptions = [
@@ -151,6 +168,8 @@ function formatGram(value: number, locale: KitchenLocale) {
             ? "uz-UZ"
             : locale === "bn"
               ? "bn-BD"
+              : locale === "fr"
+                ? "fr-FR"
         : "en-US";
 
   return value.toLocaleString(localeName, {
@@ -172,7 +191,7 @@ export default function RecipeScalerConverter({
 }) {
   const localizedCopy = copy[locale];
   const cupStandard: KitchenCupStandard =
-    locale === "en" ? "us" : "turkish";
+    locale === "en" ? "us" : locale === "fr" ? "metric" : "turkish";
   const [text, setText] = useState("");
   const [factorInput, setFactorInput] = useState("2");
   const [originalServingsInput, setOriginalServingsInput] = useState("");

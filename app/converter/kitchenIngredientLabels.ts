@@ -3,7 +3,7 @@ import type {
   KitchenUnit,
 } from "./kitchenMeasures";
 
-export type KitchenLocale = "tr" | "en" | "de" | "ar" | "uz" | "bn";
+export type KitchenLocale = "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr";
 
 export const kitchenIngredientLabels: Record<
   KitchenLocale,
@@ -291,6 +291,53 @@ export const kitchenIngredientLabels: Record<
     karabiber: "কালো মরিচ (গুঁড়া)",
     kimyon: "জিরা (গুঁড়া)",
   },
+  fr: {
+    un: "Farine (de ble)",
+    "tam-bugday-unu": "Farine complete",
+    "pirinc-unu": "Farine de riz",
+    "misir-unu": "Farine de mais",
+    irmik: "Semoule",
+    "galeta-unu": "Chapelure",
+    "toz-seker": "Sucre en poudre",
+    "pudra-sekeri": "Sucre glace",
+    "esmer-seker": "Sucre roux",
+    tuz: "Sel (sel de table)",
+    pirinc: "Riz",
+    bulgur: "Boulgour (fin)",
+    nohut: "Pois chiches (secs)",
+    "kirmizi-mercimek": "Lentilles corail",
+    "yesil-mercimek": "Lentilles vertes",
+    "kuru-fasulye": "Haricots secs",
+    sut: "Lait",
+    yogurt: "Yaourt",
+    krema: "Creme fraiche",
+    tereyagi: "Beurre",
+    margarin: "Margarine",
+    zeytinyagi: "Huile d'olive",
+    "sivi-yag": "Huile vegetale",
+    bal: "Miel",
+    pekmez: "Melasse de raisin",
+    kakao: "Cacao en poudre",
+    "yulaf-ezmesi": "Flocons d'avoine",
+    nisasta: "Fecule de mais",
+    "kabartma-tozu": "Levure chimique",
+    karbonat: "Bicarbonate de soude",
+    susam: "Graines de sesame",
+    "ceviz-ici": "Noix (concassees)",
+    "findik-ici": "Noisettes",
+    badem: "Amandes",
+    "antep-fistigi": "Pistaches",
+    "kuru-uzum": "Raisins secs",
+    "hindistan-cevizi": "Noix de coco rapee",
+    mayonez: "Mayonnaise",
+    ketcap: "Ketchup",
+    sirke: "Vinaigre",
+    "limon-suyu": "Jus de citron",
+    tarcin: "Cannelle moulue",
+    "kirmizi-biber": "Piment rouge moulu",
+    karabiber: "Poivre noir moulu",
+    kimyon: "Cumin moulu",
+  },
 };
 
 export const kitchenUnitLabels: Record<
@@ -344,5 +391,13 @@ export const kitchenUnitLabels: Record<
     ml: "মিলিলিটার (ml)",
     litre: "লিটার",
     gram: "গ্রাম",
+  },
+  fr: {
+    bardak: "Tasse",
+    yemekKasigi: "Cuillere a soupe",
+    cayKasigi: "Cuillere a cafe",
+    ml: "Millilitre (ml)",
+    litre: "Litre",
+    gram: "Gramme",
   },
 };

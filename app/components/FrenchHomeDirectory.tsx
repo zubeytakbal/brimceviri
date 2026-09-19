@@ -32,16 +32,55 @@ const primaryCategoryPages = homeCategoryOrder
   .map((categoryId) => frenchCategoryPages.find((page) => page.category === categoryId))
   .filter((page): page is (typeof frenchCategoryPages)[number] => Boolean(page));
 
-// Fransizca bu asamada yalnizca birim cevirisi / birim rehberi / kategori
-// sistemini iceriyor -- TR/BN'deki gibi ayri nis araclar veya hesap
-// makineleri henuz eklenmiyor (kullanicinin acik talimati).
-const primaryCategoryCards = primaryCategoryPages.map((page) => ({
+const primaryCategoryCardsFromCategories = primaryCategoryPages.map((page) => ({
   id: page.category,
   href: `/fr/categories/${page.slug}`,
   title: page.title,
   description: page.description,
   iconName: getCategoryIconName(page.category) as SiteIconName,
 }));
+
+// TR/BN ana sayfasindaki gibi, salt birim-kategorisi olmayan ama kendi
+// donusturucusu olan 4 "evrensel" arac ana kart gridine eklenir (13+4=17) --
+// bunlar hesap makinesi degil, TR'nin 17 kartlik kimligine ait donusturucu.
+const nicheCards: Array<{
+  id: string;
+  href: string;
+  title: string;
+  description: string;
+  iconName: SiteIconName;
+}> = [
+  {
+    id: "shoe-size",
+    href: "/fr/shoe-size-converter",
+    title: "Convertisseur de pointures",
+    description: "Comparez les pointures europeennes, americaines et britanniques par marque.",
+    iconName: "shoeSize",
+  },
+  {
+    id: "kitchen-measures",
+    href: "/fr/kitchen-measurement-converter",
+    title: "Mesures de cuisine",
+    description: "Convertissez tasses, cuilleres et grammes selon l'ingredient.",
+    iconName: "kitchenMeasures",
+  },
+  {
+    id: "recipe-converter",
+    href: "/fr/recipe-converter",
+    title: "Convertisseur de recettes",
+    description: "Collez une recette et adaptez les quantites avec un multiplicateur.",
+    iconName: "recipe",
+  },
+  {
+    id: "historical-units",
+    href: "/fr/historical-units",
+    title: "Unites historiques",
+    description: "Convertissez arşın, okka, dirhem et unites byzantines en unites modernes.",
+    iconName: "historical",
+  },
+];
+
+const primaryCategoryCards = [...primaryCategoryCardsFromCategories, ...nicheCards];
 
 const secondaryCategoryCards = frenchCategoryPages
   .filter((page) => !(homeCategoryOrder as readonly string[]).includes(page.category))

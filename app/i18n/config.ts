@@ -16,6 +16,8 @@ export type LocaleDefinition = {
   switcherCurrentLabel: string;
   switcherAriaLabel: string;
   switcherOptionsLabel: string;
+  switcherSearchPlaceholder: string;
+  switcherEmptyLabel: string;
 };
 
 export const LOCALE_DEFINITIONS: Record<Locale, LocaleDefinition> = {
@@ -31,6 +33,8 @@ export const LOCALE_DEFINITIONS: Record<Locale, LocaleDefinition> = {
     switcherCurrentLabel: "TR - Turkce",
     switcherAriaLabel: "Dil secin",
     switcherOptionsLabel: "Dil secenekleri",
+    switcherSearchPlaceholder: "Dil ara",
+    switcherEmptyLabel: "Eslesen dil bulunamadi",
   },
   en: {
     code: "en",
@@ -44,6 +48,8 @@ export const LOCALE_DEFINITIONS: Record<Locale, LocaleDefinition> = {
     switcherCurrentLabel: "EN - English",
     switcherAriaLabel: "Select language",
     switcherOptionsLabel: "Language options",
+    switcherSearchPlaceholder: "Search language",
+    switcherEmptyLabel: "No matching language found",
   },
   de: {
     code: "de",
@@ -57,6 +63,8 @@ export const LOCALE_DEFINITIONS: Record<Locale, LocaleDefinition> = {
     switcherCurrentLabel: "DE - Deutsch",
     switcherAriaLabel: "Sprache auswahlen",
     switcherOptionsLabel: "Sprachoptionen",
+    switcherSearchPlaceholder: "Sprache suchen",
+    switcherEmptyLabel: "Keine passende Sprache gefunden",
   },
   ar: {
     code: "ar",
@@ -70,6 +78,8 @@ export const LOCALE_DEFINITIONS: Record<Locale, LocaleDefinition> = {
     switcherCurrentLabel: "AR - العربية",
     switcherAriaLabel: "اختر اللغة",
     switcherOptionsLabel: "خيارات اللغة",
+    switcherSearchPlaceholder: "ابحث عن لغة",
+    switcherEmptyLabel: "لا توجد لغة مطابقة",
   },
   uz: {
     code: "uz",
@@ -83,6 +93,8 @@ export const LOCALE_DEFINITIONS: Record<Locale, LocaleDefinition> = {
     switcherCurrentLabel: "UZ - O'zbekcha",
     switcherAriaLabel: "Tilni tanlang",
     switcherOptionsLabel: "Til tanlovlari",
+    switcherSearchPlaceholder: "Til qidirish",
+    switcherEmptyLabel: "Mos til topilmadi",
   },
   bn: {
     code: "bn",
@@ -96,6 +108,8 @@ export const LOCALE_DEFINITIONS: Record<Locale, LocaleDefinition> = {
     switcherCurrentLabel: "BN - বাংলা",
     switcherAriaLabel: "ভাষা নির্বাচন করুন",
     switcherOptionsLabel: "ভাষার বিকল্প",
+    switcherSearchPlaceholder: "ভাষা খুঁজুন",
+    switcherEmptyLabel: "কোনো মিল পাওয়া যায়নি",
   },
 };
 

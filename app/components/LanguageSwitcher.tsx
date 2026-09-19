@@ -16,6 +16,10 @@ import {
 } from "../i18n/config";
 import { resolveLanguagePath } from "../i18n/routing";
 
+function normalizeSearchQuery(value: string) {
+  return value.toLocaleLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").trim();
+}
+
 export default function LanguageSwitcher() {
   const pathname = usePathname();
   const normalizedPathname = normalizePathname(pathname);
@@ -23,8 +27,10 @@ export default function LanguageSwitcher() {
   const currentLocaleDefinition =
     getLocaleDefinition(currentLocale);
   const [isOpen, setIsOpen] = useState(false);
+  const [query, setQuery] = useState("");
   const menuId = useId();
   const wrapperRef = useRef<HTMLDivElement | null>(null);
+  const searchInputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
     function handlePointerDown(event: MouseEvent) {
@@ -54,11 +60,30 @@ export default function LanguageSwitcher() {
     };
   }, []);
 
+  useEffect(() => {
+    if (isOpen) {
+      searchInputRef.current?.focus();
+    } else {
+      setQuery("");
+    }
+  }, [isOpen]);
+
   const localeLinks = SUPPORTED_LOCALES.map((locale) => ({
     locale,
     label: getLocaleDefinition(locale).switcherLabel,
     href: resolveLanguagePath(normalizedPathname, locale),
   }));
+
+  const normalizedQuery = normalizeSearchQuery(query);
+  const filteredLocaleLinks = normalizedQuery
+    ? localeLinks.filter((localeLink) =>
+        normalizeSearchQuery(localeLink.label).includes(normalizedQuery)
+      )
+    : localeLinks;
+
+  // 6'dan fazla dil oldugunda arama kutusu gosterilir -- az sayida dilde
+  // gereksiz bir ekstra adim eklememek icin.
+  const showSearch = SUPPORTED_LOCALES.length > 6;
 
   return (
     <div className="language-switcher" ref={wrapperRef}>
@@ -87,30 +112,52 @@ export default function LanguageSwitcher() {
         id={menuId}
         className={`language-switcher-menu${
           isOpen ? " is-open" : ""
-        }`}
+        }${showSearch ? " has-search" : ""}`}
         role="menu"
         aria-label={currentLocaleDefinition.switcherOptionsLabel}
       >
-        {localeLinks.map((localeLink) => (
-          <Link
-            href={localeLink.href}
-            key={localeLink.locale}
-            role="menuitem"
-            aria-current={
-              localeLink.locale === currentLocale
-                ? "page"
-                : undefined
-            }
-            className={`language-switcher-option${
-              localeLink.locale === currentLocale
-                ? " is-active"
-                : ""
-            }`}
-            onClick={() => setIsOpen(false)}
-          >
-            {localeLink.label}
-          </Link>
-        ))}
+        {showSearch ? (
+          <input
+            ref={searchInputRef}
+            type="search"
+            className="language-switcher-search"
+            value={query}
+            placeholder={currentLocaleDefinition.switcherSearchPlaceholder}
+            autoComplete="off"
+            spellCheck={false}
+            onChange={(event) => setQuery(event.target.value)}
+            onClick={(event) => event.stopPropagation()}
+          />
+        ) : null}
+
+        <div className="language-switcher-options">
+          {filteredLocaleLinks.length > 0 ? (
+            filteredLocaleLinks.map((localeLink) => (
+              <Link
+                href={localeLink.href}
+                key={localeLink.locale}
+                role="menuitem"
+                aria-current={
+                  localeLink.locale === currentLocale
+                    ? "page"
+                    : undefined
+                }
+                className={`language-switcher-option${
+                  localeLink.locale === currentLocale
+                    ? " is-active"
+                    : ""
+                }`}
+                onClick={() => setIsOpen(false)}
+              >
+                {localeLink.label}
+              </Link>
+            ))
+          ) : (
+            <p className="language-switcher-empty">
+              {currentLocaleDefinition.switcherEmptyLabel}
+            </p>
+          )}
+        </div>
       </div>
     </div>
   );

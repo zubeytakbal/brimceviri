@@ -21,6 +21,10 @@ export function getIntlLocale(locale: Locale) {
     return "bn-BD";
   }
 
+  if (locale === "fr") {
+    return "fr-FR";
+  }
+
   return "tr-TR";
 }
 

@@ -213,6 +213,31 @@ const categoryLabels: Record<
     altin_ayar: "স্বর্ণের ক্যারেট",
     gumus_ayar: "রূপার মান",
   },
+  fr: {
+    uzunluk: "Longueur",
+    alan: "Aire",
+    hacim: "Volume",
+    kutle: "Masse",
+    sicaklik: "Temperature",
+    zaman: "Temps",
+    hiz: "Vitesse",
+    basinc: "Pression",
+    enerji: "Energie et Puissance",
+    veri: "Stockage de Donnees",
+    elektrik: "Electricite",
+    yogunluk: "Densite",
+    kuvvet: "Force",
+    debi: "Debit",
+    tork: "Couple",
+    momentum: "Quantite de Mouvement",
+    viskozite_dinamik: "Viscosite",
+    elektrik_direnc: "Resistance",
+    kapasitans: "Capacite",
+    enduktans: "Inductance",
+    elektrik_yuk: "Charge Electrique",
+    altin_ayar: "Carat d'Or",
+    gumus_ayar: "Titre de l'Argent",
+  },
 };
 
 const siteHeaderCopy: Record<Locale, SiteHeaderCopy> = {
@@ -245,6 +270,11 @@ const siteHeaderCopy: Record<Locale, SiteHeaderCopy> = {
     navAriaLabel: "প্রধান নেভিগেশন",
     menuLabel: "মেনু",
     conversionsLabel: "রূপান্তর",
+  },
+  fr: {
+    navAriaLabel: "Navigation principale",
+    menuLabel: "Menu",
+    conversionsLabel: "Conversions",
   },
 };
 
@@ -321,6 +351,18 @@ const footerCopy: Record<Locale, FooterCopy> = {
     browserProcessingNote:
       "এই সাইটের হিসাব প্রবাহে ক্যালকুলেটরের ইনপুট ব্রাউজারেই প্রক্রিয়া করা হয়।",
   },
+  fr: {
+    navAriaLabel: "Navigation du pied de page",
+    pagesHeading: "Pages",
+    languagesHeading: "Langues",
+    categoriesHeading: "Categories",
+    description:
+      "Outils de conversion technique et guides d'unites concus pour un usage pratique.",
+    disclaimer:
+      "Pour les decisions importantes en ingenierie, sante ou securite, verifiez les resultats avec des sources professionnelles.",
+    browserProcessingNote:
+      "Dans les flux de calcul de ce site, les entrees des calculatrices sont traitees directement dans le navigateur.",
+  },
 };
 
 const topLevelLabelMap: Record<
@@ -372,6 +414,13 @@ const topLevelLabelMap: Record<
     allConversions: "সব রূপান্তর",
     professions: "পেশা",
   },
+  fr: {
+    home: "Accueil",
+    engineeringHub: "Calculatrices",
+    units: "Guides d'unites",
+    allConversions: "Toutes les conversions",
+    professions: "Par profession",
+  },
 };
 
 const footerLinksByLocale: Record<
@@ -421,6 +470,7 @@ const footerLinksByLocale: Record<
   ],
   uz: [{ key: "home", label: "Bosh sahifa" }],
   bn: [{ key: "home", label: "হোম" }],
+  fr: [{ key: "home", label: "Accueil" }],
 };
 
 export function getSiteHeaderCopy(locale: Locale) {

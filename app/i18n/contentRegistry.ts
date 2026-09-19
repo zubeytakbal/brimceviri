@@ -81,6 +81,9 @@ const localizedCategorySummariesByLocale: Record<
     category: page.category,
     title: page.title,
   })),
+  // fr: iskelet henuz olusturulmadi -- localizedFrenchCategoryPages
+  // eklendiginde buraya diger locale'ler gibi baglanacak.
+  fr: [],
 };
 
 const localizedSlugEntriesByLocale: Record<
@@ -112,6 +115,7 @@ const localizedSlugEntriesByLocale: Record<
       sourceSlug: page.sourceSlug,
       slug: page.slug,
     })),
+    fr: [],
   },
   categories: {
     tr: categoryPages.map((page) => ({
@@ -138,6 +142,7 @@ const localizedSlugEntriesByLocale: Record<
       sourceSlug: page.sourceSlug,
       slug: page.slug,
     })),
+    fr: [],
   },
   calculators: {
     tr: calculatorPages.map((page) => ({
@@ -158,6 +163,7 @@ const localizedSlugEntriesByLocale: Record<
     })),
     uz: [],
     bn: [],
+    fr: [],
   },
   conversions: {
     tr: conversionPages.map((page) => ({
@@ -184,6 +190,7 @@ const localizedSlugEntriesByLocale: Record<
       sourceSlug: page.sourceSlug,
       slug: page.slug,
     })),
+    fr: [],
   },
 };
 

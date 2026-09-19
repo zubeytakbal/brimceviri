@@ -43,6 +43,11 @@ bn: {
     m: "Meter (m)",
     km: "Kilometer (km)",
   },
+fr: {
+    cm: "Centimeter (cm)",
+    m: "Meter (m)",
+    km: "Kilometer (km)",
+  },
 };
 
 const unitShortLabels: Record<Locale, Record<LengthComparisonUnit, string>> = {
@@ -52,6 +57,7 @@ const unitShortLabels: Record<Locale, Record<LengthComparisonUnit, string>> = {
   ar: { cm: "سم", m: "م", km: "كم" },
 uz: { cm: "sm", m: "m", km: "km" },
 bn: { cm: "cm", m: "m", km: "km" },
+fr: { cm: "cm", m: "m", km: "km" },
 };
 
 const referenceLabels: Record<Locale, Record<string, string>> = {
@@ -109,6 +115,15 @@ bn: {
     "eyfel-kulesi": "Eiffel Tower height (with antenna)",
     "bogaz-koprusu": "15 July Martyrs Bridge length",
   },
+fr: {
+    "insan-boyu": "Average adult human height",
+    zurafa: "Average giraffe height",
+    "sehir-otobusu": "City bus length",
+    "mavi-balina": "Average blue whale length",
+    "futbol-sahasi": "Football field length",
+    "eyfel-kulesi": "Eiffel Tower height (with antenna)",
+    "bogaz-koprusu": "15 July Martyrs Bridge length",
+  },
 };
 
 const copyByLocale: Record<
@@ -135,6 +150,16 @@ const copyByLocale: Record<
     closestMatch: "En yakin karsilastirma",
   },
   en: {
+    labels: {
+      value: "Value",
+      unit: "Unit",
+    },
+    placeholder: "E.g. 3",
+    emptyState: "Enter a valid value to see the comparisons.",
+    intro: "comparisons for",
+    closestMatch: "Closest comparison",
+  },
+  fr: {
     labels: {
       value: "Value",
       unit: "Unit",

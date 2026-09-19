@@ -43,6 +43,11 @@ bn: {
     kg: "Kilogram (kg)",
     ton: "Ton",
   },
+fr: {
+    g: "Gram (g)",
+    kg: "Kilogram (kg)",
+    ton: "Ton",
+  },
 };
 
 const unitShortLabels: Record<Locale, Record<WeightComparisonUnit, string>> = {
@@ -52,6 +57,7 @@ const unitShortLabels: Record<Locale, Record<WeightComparisonUnit, string>> = {
   ar: { g: "غ", kg: "كجم", ton: "طن" },
 uz: { g: "g", kg: "kg", ton: "t" },
 bn: { g: "g", kg: "kg", ton: "ton" },
+fr: { g: "g", kg: "kg", ton: "ton" },
 };
 
 const referenceLabels: Record<Locale, Record<string, string>> = {
@@ -109,6 +115,15 @@ bn: {
     fil: "Average adult African elephant",
     "mavi-balina": "Average adult blue whale",
   },
+fr: {
+    kedi: "Average house cat",
+    insan: "Average adult human",
+    motosiklet: "Average motorcycle",
+    at: "Average riding horse",
+    otomobil: "Average passenger car",
+    fil: "Average adult African elephant",
+    "mavi-balina": "Average adult blue whale",
+  },
 };
 
 const copyByLocale: Record<
@@ -135,6 +150,16 @@ const copyByLocale: Record<
     closestMatch: "En yakin karsilastirma",
   },
   en: {
+    labels: {
+      value: "Value",
+      unit: "Unit",
+    },
+    placeholder: "E.g. 25",
+    emptyState: "Enter a valid value to see the comparisons.",
+    intro: "comparisons for",
+    closestMatch: "Closest comparison",
+  },
+  fr: {
     labels: {
       value: "Value",
       unit: "Unit",

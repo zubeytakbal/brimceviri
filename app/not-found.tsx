@@ -74,6 +74,17 @@ bn: {
     secondaryHref: "/",
     secondaryLabel: "Open the Turkish homepage",
   },
+  fr: {
+    lang: "fr",
+    title: "Page introuvable",
+    description:
+      "La page que vous recherchez a peut-etre ete deplacee ou l'adresse n'est pas valide.",
+    continueHeading: "Continuer avec",
+    primaryHref: "/fr",
+    primaryLabel: "Retour a la page d'accueil francaise",
+    secondaryHref: "/",
+    secondaryLabel: "Ouvrir la page d'accueil turque",
+  },
 } satisfies Record<
   Locale,
   {

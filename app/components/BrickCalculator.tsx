@@ -41,6 +41,21 @@ const copyByLocale: Record<
     },
     emptyState: "Gecerli degerler girerek sonucu gorebilirsin.",
   },
+  fr: {
+    labels: {
+      wallArea: "Wall Area (m2)",
+      brickWidth: "Brick Width (cm)",
+      brickHeight: "Brick Height (cm)",
+      joint: "Joint Thickness (mm)",
+      waste: "Waste Allowance (%)",
+    },
+    resultLabels: {
+      brickArea: "Joint-inclusive area per brick",
+      totalArea: "Total area including waste",
+      count: "Bricks needed",
+    },
+    emptyState: "Enter valid values to see the result.",
+  },
   en: {
     labels: {
       wallArea: "Wall Area (m2)",

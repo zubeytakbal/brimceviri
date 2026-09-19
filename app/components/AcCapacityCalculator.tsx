@@ -62,6 +62,26 @@ const copyByLocale: Record<
       total: "Total estimated load",
     },
   },
+  // fr: bu bileşen hiçbir Fransızca rotadan çağrılmıyor (Fransızca için
+  // hesaplayıcı planlanmıyor); Locale birleşimine "fr" eklenince tip
+  // güvenliği için İngilizce kopya yeniden kullanıldı.
+  fr: {
+    labels: {
+      area: "Room Area (m2)",
+      people: "Number of People in the Room",
+      sunny: "Does the room get sun all day?",
+      sunnyCheckbox: "Yes, it receives direct sunlight",
+      topFloor: "Top floor / attic room?",
+      topFloorCheckbox: "Yes, top floor or attic",
+    },
+    emptyState: "Enter valid values to see the result.",
+    resultLabels: {
+      suggested: "Suggested AC capacity",
+      base: "Area-based load",
+      occupant: "Occupant load",
+      total: "Total estimated load",
+    },
+  },
   de: {
     labels: {
       area: "Raumflaeche (m2)",

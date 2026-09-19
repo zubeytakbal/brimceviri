@@ -81,6 +81,21 @@ export default function BengaliRecipeConverterPage() {
           </p>
         </section>
 
+        <section className="conversion-section related-conversions">
+          <h2>সম্পর্কিত টুলস</h2>
+          <ul className="related-conversion-list">
+            <li>
+              <Link href="/bn/kitchen-measurement-converter">রান্নাঘর পরিমাপ রূপান্তরকারী</Link>
+            </li>
+            <li>
+              <Link href="/bn/shoe-size-converter">জুতার মাপ রূপান্তরকারী</Link>
+            </li>
+            <li>
+              <Link href="/bn/historical-units">ঐতিহাসিক পরিমাপ একক</Link>
+            </li>
+          </ul>
+        </section>
+
         <section className="conversion-section language-alternatives">
           <h2>অন্যান্য ভাষা</h2>
           <Link className="text-link" href="/tarif-cevirici" hrefLang="tr">

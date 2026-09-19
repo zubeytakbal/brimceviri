@@ -267,6 +267,22 @@ export default function BengaliHistoricalUnitsPage() {
             </>
           ),
         },
+        {
+          heading: "সম্পর্কিত টুলস",
+          content: (
+            <ul className="related-conversion-list">
+              <li>
+                <Link href="/bn/kitchen-measurement-converter">রান্নাঘর পরিমাপ রূপান্তরকারী</Link>
+              </li>
+              <li>
+                <Link href="/bn/recipe-converter">রেসিপি রূপান্তরকারী</Link>
+              </li>
+              <li>
+                <Link href="/bn/shoe-size-converter">জুতার মাপ রূপান্তরকারী</Link>
+              </li>
+            </ul>
+          ),
+        },
       ]}
     />
   );

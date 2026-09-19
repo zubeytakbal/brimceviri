@@ -112,6 +112,24 @@ export default function BengaliKitchenMeasurementsPage() {
           </p>
         </section>
 
+        <section className="conversion-section related-conversions">
+          <h2>সম্পর্কিত টুলস</h2>
+          <ul className="related-conversion-list">
+            <li>
+              <Link href="/bn/recipe-converter">রেসিপি রূপান্তরকারী</Link>
+            </li>
+            <li>
+              <Link href="/bn/shoe-size-converter">জুতার মাপ রূপান্তরকারী</Link>
+            </li>
+            <li>
+              <Link href="/bn/historical-units">ঐতিহাসিক পরিমাপ একক</Link>
+            </li>
+            <li>
+              <Link href="/bn/categories/bhor">ভরের একক রূপান্তর</Link>
+            </li>
+          </ul>
+        </section>
+
         <section className="conversion-section language-alternatives">
           <h2>অন্যান্য ভাষা</h2>
           <Link

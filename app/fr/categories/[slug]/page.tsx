@@ -1,14 +1,52 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
+import CategoryUnitConverter from "../../../components/CategoryUnitConverter";
+import CategoryPageLayout from "../../../components/CategoryPageLayout";
+import { createConversionCards } from "../../../components/categoryPageUtils";
 import { frenchCategoryPages } from "../../../converter/localizedFrenchCategoryPages";
+import { frenchConversionPages } from "../../../converter/localizedFrenchConversionPages";
 import { frenchUnitPages } from "../../../converter/localizedFrenchUnitPages";
-import { findEnglishCategoryPageByTurkishSlug } from "../../../converter/localizedCategoryPages";
+import { getUnitSources } from "../../../converter/unitSources";
 import { buildFullLanguageAlternates } from "../../../i18n/routing";
 import { buildSiteUrl } from "../../../siteConfig";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
+};
+
+// Deja la preposition complete ("de"/"d'") pour eviter les problemes
+// d'elision -- s'utilise comme suffixe direct de "les unites".
+const categoryBaseNames: Record<string, string> = {
+  uzunluk: "de longueur",
+  alan: "de surface",
+  hacim: "de volume",
+  kutle: "de masse",
+  sicaklik: "de temperature",
+  zaman: "de temps",
+  hiz: "de vitesse",
+  basinc: "de pression",
+  enerji: "d'energie",
+  veri: "de stockage de donnees",
+  elektrik: "d'electricite",
+  altin_ayar: "de carat d'or",
+  gumus_ayar: "de titre d'argent",
+};
+
+// Nom complet avec article, pour "Informations detaillees sur {X}".
+const categoryNameWithArticle: Record<string, string> = {
+  uzunluk: "la longueur",
+  alan: "la surface",
+  hacim: "le volume",
+  kutle: "la masse",
+  sicaklik: "la temperature",
+  zaman: "le temps",
+  hiz: "la vitesse",
+  basinc: "la pression",
+  enerji: "l'energie",
+  veri: "le stockage de donnees",
+  elektrik: "l'electricite",
+  altin_ayar: "le carat d'or",
+  gumus_ayar: "le titre d'argent",
 };
 
 function serializeJsonLd(data: object) {
@@ -37,7 +75,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: categoryPage.title,
+    title: `${categoryPage.title} : unites, tableaux et calculs`,
     description: categoryPage.description,
     alternates: {
       canonical: `/fr/categories/${categoryPage.slug}`,
@@ -62,12 +100,36 @@ export default async function FrenchCategoryPage({ params }: PageProps) {
     notFound();
   }
 
-  const englishPage = findEnglishCategoryPageByTurkishSlug(
-    categoryPage.sourceSlug
+  const categoryConversions = frenchConversionPages.filter(
+    (conversion) => conversion.category === categoryPage.category
   );
+  const conversionCards = createConversionCards({
+    conversions: categoryConversions,
+    hrefForSlug: (conversionSlug) => `/fr/${conversionSlug}`,
+    directionLabel: (conversion) => `${conversion.fromName} → ${conversion.toName}`,
+    symbolSeparator: "↔",
+    titlePairSeparator: "↔",
+    titleSingleSeparator: "→",
+  });
+
   const categoryUnits = frenchUnitPages.filter(
-    (unitPage) => unitPage.category === categoryPage.category
+    (unit) => unit.category === categoryPage.category
   );
+
+  const sources = getUnitSources(categoryPage.category);
+  const featuredUnit = categoryUnits[0];
+
+  const tableReferenceLabel =
+    categoryPage.category === "uzunluk"
+      ? "Equivalent en metres"
+      : categoryPage.category === "kutle"
+        ? "Equivalent en kilogrammes"
+        : categoryPage.category === "basinc"
+          ? "Equivalent en pascals"
+          : "Equivalent SI";
+
+  const tableTitle = "Tableau comparatif des unites";
+
   const pageUrl = buildSiteUrl(`/fr/categories/${categoryPage.slug}`);
 
   const breadcrumbSchema = {
@@ -83,32 +145,80 @@ export default async function FrenchCategoryPage({ params }: PageProps) {
       {
         "@type": "ListItem",
         position: 2,
+        name: "Categories",
+        item: buildSiteUrl("/fr"),
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
         name: categoryPage.title,
         item: pageUrl,
       },
     ],
   };
 
+  const collectionSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: categoryPage.title,
+    description: categoryPage.description,
+    url: pageUrl,
+    inLanguage: "fr-FR",
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: categoryConversions.length,
+      itemListElement: categoryConversions.map((conversion, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: `Convertisseur ${conversion.fromName} – ${conversion.toName}`,
+        url: buildSiteUrl(`/fr/${conversion.slug}`),
+      })),
+    },
+  };
+
   return (
-    <main className="all-conversions-page" lang="fr">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
-      />
-
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Fil d'Ariane">
-          <Link href="/fr">Accueil</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>{categoryPage.title}</span>
-        </nav>
-
-        <header className="all-conversions-header">
-          <h1>{categoryPage.title}</h1>
-          <p>{categoryPage.description}</p>
-        </header>
-
-        <section className="category-article-content">
+    <CategoryPageLayout
+      locale="fr"
+      structuredData={
+        <>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
+          />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: serializeJsonLd(collectionSchema) }}
+          />
+        </>
+      }
+      breadcrumbAriaLabel="Fil d'Ariane"
+      breadcrumbs={[
+        { label: "Accueil", href: "/fr" },
+        { label: "Categories", href: "/fr/categories" },
+        { label: categoryPage.title },
+      ]}
+      kickerLabel="Categorie d'unites"
+      title={categoryPage.title}
+      description={categoryPage.description}
+      allUnitsSection={{
+        heading: `Convertir toutes les unites ${categoryBaseNames[categoryPage.category] ?? categoryPage.title}`,
+        content: (
+          <CategoryUnitConverter category={categoryPage.category} locale="fr" />
+        ),
+      }}
+      conversionHeading="Conversions populaires"
+      conversionCountLabel={`${conversionCards.length} paires`}
+      conversionCards={conversionCards}
+      unitGuidesHeading="Guides d'unites"
+      unitGuidesCountLabel={`${categoryUnits.length} unites`}
+      unitGuides={categoryUnits.map((unitPage) => ({
+        href: `/fr/unit-guides/${unitPage.slug}`,
+        label: `Qu'est-ce que ${unitPage.name} ?`,
+        symbol: unitPage.symbol,
+      }))}
+      detailHeading={`Informations detaillees sur ${categoryNameWithArticle[categoryPage.category] ?? categoryPage.title}`}
+      detailContent={
+        <>
           <div className="category-article-introduction">
             {categoryPage.introduction.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
@@ -124,72 +234,99 @@ export default async function FrenchCategoryPage({ params }: PageProps) {
             </dl>
           </div>
 
-          {categoryPage.sections.map((section) => (
-            <section
-              className="conversion-section unit-long-section"
-              key={section.title}
-            >
-              <h2>{section.title}</h2>
-              {section.paragraphs.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
+          <nav className="category-table-of-contents" aria-label="Sommaire de la page">
+            <strong>Sur cette page</strong>
+            <ol>
+              {categoryPage.sections.map((section, index) => (
+                <li key={section.title}>
+                  <a href={`#categorie-section-${index + 1}`}>{section.title}</a>
+                </li>
               ))}
-            </section>
-          ))}
+              <li>
+                <a href="#categorie-tableau-unites">{tableTitle}</a>
+              </li>
+              <li>
+                <a href="#categorie-sources">Sources</a>
+              </li>
+            </ol>
+          </nav>
 
-          {categoryUnits.length > 0 && (
-            <section className="conversion-section">
-              <h2>Unites de cette categorie</h2>
-              <div className="conversion-table-wrap">
-                <table className="conversion-table">
+          <div className="category-article-content">
+            {categoryPage.sections.map((section, index) => (
+              <section
+                className="conversion-section unit-long-section"
+                id={`categorie-section-${index + 1}`}
+                key={section.title}
+              >
+                <h2>{section.title}</h2>
+                {section.paragraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+
+                {index === 1 && featuredUnit && (
+                  <p className="category-inline-link">
+                    Pour plus d'informations sur l'unite {featuredUnit.name}, consultez la{" "}
+                    <a href={`/fr/unit-guides/${featuredUnit.slug}`}>
+                      page d'information {featuredUnit.name}
+                    </a>
+                    .
+                  </p>
+                )}
+              </section>
+            ))}
+
+            <section className="conversion-section" id="categorie-tableau-unites">
+              <h2>{tableTitle}</h2>
+
+              <div className="scientific-table-wrap">
+                <table className="scientific-table">
                   <thead>
                     <tr>
                       <th>Unite</th>
                       <th>Symbole</th>
-                      <th>Guide</th>
+                      <th>{tableReferenceLabel}</th>
+                      <th>Systeme</th>
+                      <th>Usage courant</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {categoryUnits.map((unitPage) => (
-                      <tr key={unitPage.slug}>
-                        <td>{unitPage.name}</td>
-                        <td>{unitPage.symbol}</td>
-                        <td>
-                          <Link
-                            className="text-link"
-                            href={`/fr/unit-guides/${unitPage.slug}`}
-                          >
-                            Voir
-                          </Link>
-                        </td>
+                    {categoryPage.unitTable.map((unit) => (
+                      <tr key={`${unit.symbol}-${unit.name}`}>
+                        <td>{unit.name}</td>
+                        <td>{unit.symbol}</td>
+                        <td>{unit.referenceValue}</td>
+                        <td>{unit.system}</td>
+                        <td>{unit.commonUse}</td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
               </div>
             </section>
-          )}
 
-          <section className="conversion-section language-alternatives">
-            <h2>Autres langues</h2>
-            <Link
-              className="text-link"
-              href={`/kategoriler/${categoryPage.sourceSlug}`}
-              hrefLang="tr"
-            >
-              Türkçe versiyonu aç
-            </Link>
-            {englishPage && (
-              <Link
-                className="text-link"
-                href={`/en/categories/${englishPage.slug}`}
-                hrefLang="en"
-              >
-                View the English version
-              </Link>
-            )}
-          </section>
-        </section>
-      </div>
-    </main>
+            <section className="conversion-section unit-sources" id="categorie-sources">
+              <h2>Sources</h2>
+              <p>
+                Les definitions et les valeurs de conversion de cette page
+                s'appuient sur des references metrologiques officielles reconnues.
+              </p>
+              <ol>
+                {sources.map((source) => (
+                  <li key={source.url}>
+                    <a href={source.url} target="_blank" rel="noreferrer">
+                      {source.organization}: {source.title}
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </section>
+          </div>
+        </>
+      }
+      footerLink={{
+        href: "/fr/categories",
+        label: "Voir toutes les categories",
+      }}
+    />
   );
 }

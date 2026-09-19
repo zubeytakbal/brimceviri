@@ -30,7 +30,7 @@ type FooterLink = {
 };
 
 type CategoryPageLayoutProps = {
-  locale: "tr" | "en" | "de" | "ar" | "fr";
+  locale: "tr" | "en" | "de" | "ar" | "fr" | "bn";
   structuredData?: ReactNode;
   breadcrumbAriaLabel: string;
   breadcrumbs: BreadcrumbItem[];

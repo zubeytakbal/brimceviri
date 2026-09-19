@@ -1,14 +1,37 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import CategoryUnitConverter from "../../../components/CategoryUnitConverter";
+import CategoryPageLayout from "../../../components/CategoryPageLayout";
+import { createConversionCards } from "../../../components/categoryPageUtils";
 import { bengaliCategoryPages } from "../../../converter/localizedBengaliCategoryPages";
+import { bengaliConversionPages } from "../../../converter/localizedBengaliConversionPages";
 import { bengaliUnitPages } from "../../../converter/localizedBengaliUnitPages";
 import { findEnglishCategoryPageByTurkishSlug } from "../../../converter/localizedCategoryPages";
+import { getUnitSources } from "../../../converter/unitSources";
 import { buildFullLanguageAlternates } from "../../../i18n/routing";
 import { buildSiteUrl } from "../../../siteConfig";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
+};
+
+// শুধুমাত্র সাইটের ১৭-উপাদানের মূল পরিচয়ের (১৩ কেন্দ্রীয় বিভাগ) জন্য
+// পূর্ণাঙ্গ TR-গভীরতার বাংলা নাম -- বাকি বিভাগগুলোর জন্য fallback ব্যবহার হয়।
+const categoryBaseNames: Record<string, string> = {
+  uzunluk: "দৈর্ঘ্য",
+  alan: "ক্ষেত্রফল",
+  hacim: "আয়তন",
+  kutle: "ভর",
+  sicaklik: "তাপমাত্রা",
+  zaman: "সময়",
+  hiz: "গতি",
+  basinc: "চাপ",
+  enerji: "শক্তি ও ক্ষমতা",
+  veri: "ডেটা স্টোরেজ",
+  elektrik: "বিদ্যুৎ",
+  altin_ayar: "স্বর্ণের ক্যারেট",
+  gumus_ayar: "রূপার মান",
 };
 
 function serializeJsonLd(data: object) {
@@ -37,7 +60,9 @@ export async function generateMetadata({
   }
 
   return {
-    title: categoryPage.title,
+    title: categoryPage.unitTable
+      ? `${categoryPage.title}: একক, টেবিল ও হিসাব`
+      : categoryPage.title,
     description: categoryPage.description,
     alternates: {
       canonical: `/bn/categories/${categoryPage.slug}`,
@@ -65,9 +90,26 @@ export default async function BengaliCategoryPage({ params }: PageProps) {
   const englishPage = findEnglishCategoryPageByTurkishSlug(
     categoryPage.sourceSlug
   );
+  const categoryConversions = bengaliConversionPages.filter(
+    (conversion) => conversion.category === categoryPage.category
+  );
+  const conversionCards = createConversionCards({
+    conversions: categoryConversions,
+    hrefForSlug: (conversionSlug) => `/bn/${conversionSlug}`,
+    directionLabel: (conversion) => `${conversion.fromName} → ${conversion.toName}`,
+    symbolSeparator: "↔",
+    titlePairSeparator: "↔",
+    titleSingleSeparator: "→",
+  });
+
   const categoryUnits = bengaliUnitPages.filter(
     (unitPage) => unitPage.category === categoryPage.category
   );
+
+  const sources = getUnitSources(categoryPage.category);
+  const featuredUnit = categoryUnits[0];
+  const baseName = categoryBaseNames[categoryPage.category] ?? categoryPage.title;
+
   const pageUrl = buildSiteUrl(`/bn/categories/${categoryPage.slug}`);
 
   const breadcrumbSchema = {
@@ -90,25 +132,42 @@ export default async function BengaliCategoryPage({ params }: PageProps) {
   };
 
   return (
-    <main className="all-conversions-page" lang="bn">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
-      />
-
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="ব্রেডক্রাম্ব">
-          <Link href="/bn">হোম</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>{categoryPage.title}</span>
-        </nav>
-
-        <header className="all-conversions-header">
-          <h1>{categoryPage.title}</h1>
-          <p>{categoryPage.description}</p>
-        </header>
-
-        <section className="category-article-content">
+    <CategoryPageLayout
+      locale="bn"
+      structuredData={
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
+        />
+      }
+      breadcrumbAriaLabel="ব্রেডক্রাম্ব"
+      breadcrumbs={[
+        { label: "হোম", href: "/bn" },
+        { label: "সব বিভাগ", href: "/bn/categories" },
+        { label: categoryPage.title },
+      ]}
+      kickerLabel="একক বিভাগ"
+      title={categoryPage.title}
+      description={categoryPage.description}
+      allUnitsSection={{
+        heading: `সব ${baseName} একক রূপান্তর করুন`,
+        content: (
+          <CategoryUnitConverter category={categoryPage.category} locale="bn" />
+        ),
+      }}
+      conversionHeading="জনপ্রিয় রূপান্তর"
+      conversionCountLabel={`${conversionCards.length} জোড়া`}
+      conversionCards={conversionCards}
+      unitGuidesHeading="একক গাইড"
+      unitGuidesCountLabel={`${categoryUnits.length} একক`}
+      unitGuides={categoryUnits.map((unitPage) => ({
+        href: `/bn/unit-guides/${unitPage.slug}`,
+        label: `${unitPage.name} কী?`,
+        symbol: unitPage.symbol,
+      }))}
+      detailHeading={`${baseName} সম্পর্কে বিস্তারিত তথ্য`}
+      detailContent={
+        <>
           <div className="category-article-introduction">
             {categoryPage.introduction.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
@@ -124,49 +183,122 @@ export default async function BengaliCategoryPage({ params }: PageProps) {
             </dl>
           </div>
 
-          {categoryPage.sections.map((section) => (
-            <section
-              className="conversion-section unit-long-section"
-              key={section.title}
-            >
-              <h2>{section.title}</h2>
-              {section.paragraphs.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
-            </section>
-          ))}
+          {categoryPage.unitTable ? (
+            <>
+              <nav className="category-table-of-contents" aria-label="পাতার সূচি">
+                <strong>এই পাতায়</strong>
+                <ol>
+                  {categoryPage.sections.map((section, index) => (
+                    <li key={section.title}>
+                      <a href={`#category-section-${index + 1}`}>{section.title}</a>
+                    </li>
+                  ))}
+                  <li>
+                    <a href="#category-unit-table">একক তুলনা টেবিল</a>
+                  </li>
+                  <li>
+                    <a href="#category-sources">সূত্রসমূহ</a>
+                  </li>
+                </ol>
+              </nav>
 
-          {categoryUnits.length > 0 && (
-            <section className="conversion-section">
-              <h2>এই বিভাগের একক</h2>
-              <div className="conversion-table-wrap">
-                <table className="conversion-table">
-                  <thead>
-                    <tr>
-                      <th>একক</th>
-                      <th>প্রতীক</th>
-                      <th>গাইড</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {categoryUnits.map((unitPage) => (
-                      <tr key={unitPage.slug}>
-                        <td>{unitPage.name}</td>
-                        <td>{unitPage.symbol}</td>
-                        <td>
-                          <Link
-                            className="text-link"
-                            href={`/bn/unit-guides/${unitPage.slug}`}
-                          >
-                            দেখুন
-                          </Link>
-                        </td>
-                      </tr>
+              <div className="category-article-content">
+                {categoryPage.sections.map((section, index) => (
+                  <section
+                    className="conversion-section unit-long-section"
+                    id={`category-section-${index + 1}`}
+                    key={section.title}
+                  >
+                    <h2>{section.title}</h2>
+                    {section.paragraphs.map((paragraph) => (
+                      <p key={paragraph}>{paragraph}</p>
                     ))}
-                  </tbody>
-                </table>
+
+                    {index === 1 && featuredUnit && (
+                      <p className="category-inline-link">
+                        {featuredUnit.name} একক সম্পর্কে বিস্তারিত জানতে{" "}
+                        <Link href={`/bn/unit-guides/${featuredUnit.slug}`}>
+                          {featuredUnit.name} তথ্য পাতা
+                        </Link>{" "}
+                        দেখুন।
+                      </p>
+                    )}
+                  </section>
+                ))}
+
+                <section className="conversion-section" id="category-unit-table">
+                  <h2>একক তুলনা টেবিল</h2>
+
+                  <div className="scientific-table-wrap">
+                    <table className="scientific-table">
+                      <thead>
+                        <tr>
+                          <th>একক</th>
+                          <th>প্রতীক</th>
+                          <th>SI সমতুল্য</th>
+                          <th>পদ্ধতি</th>
+                          <th>সাধারণ ব্যবহার</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {categoryPage.unitTable.map((unit) => (
+                          <tr key={`${unit.symbol}-${unit.name}`}>
+                            <td>{unit.name}</td>
+                            <td>{unit.symbol}</td>
+                            <td>{unit.referenceValue}</td>
+                            <td>{unit.system}</td>
+                            <td>{unit.commonUse}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+
+                <section className="conversion-section unit-sources" id="category-sources">
+                  <h2>সূত্রসমূহ</h2>
+                  <p>
+                    এই পাতার সংজ্ঞা ও রূপান্তর মান স্বীকৃত মেট্রোলজি
+                    রেফারেন্সের ভিত্তিতে প্রস্তুত করা হয়েছে।
+                  </p>
+                  <ol>
+                    {sources.map((source) => (
+                      <li key={source.url}>
+                        <a href={source.url} target="_blank" rel="noreferrer">
+                          {source.organization}: {source.title}
+                        </a>
+                      </li>
+                    ))}
+                  </ol>
+                </section>
               </div>
-            </section>
+            </>
+          ) : (
+            <div className="category-article-content">
+              {categoryPage.sections.map((section) => (
+                <section className="conversion-section unit-long-section" key={section.title}>
+                  <h2>{section.title}</h2>
+                  {section.paragraphs.map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
+                </section>
+              ))}
+
+              {sources.length > 0 && (
+                <section className="conversion-section unit-sources">
+                  <h2>সূত্রসমূহ</h2>
+                  <ol>
+                    {sources.map((source) => (
+                      <li key={source.url}>
+                        <a href={source.url} target="_blank" rel="noreferrer">
+                          {source.organization}: {source.title}
+                        </a>
+                      </li>
+                    ))}
+                  </ol>
+                </section>
+              )}
+            </div>
           )}
 
           <section className="conversion-section language-alternatives">
@@ -188,8 +320,12 @@ export default async function BengaliCategoryPage({ params }: PageProps) {
               </Link>
             )}
           </section>
-        </section>
-      </div>
-    </main>
+        </>
+      }
+      footerLink={{
+        href: "/bn/categories",
+        label: "সব বিভাগ দেখুন",
+      }}
+    />
   );
 }

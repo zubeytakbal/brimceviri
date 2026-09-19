@@ -12,7 +12,7 @@ type UnitOption = {
 
 type CategoryUnitConverterProps = {
   category: string;
-  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr";
+  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es";
   // Verilmezse getCategoryUnitOptions(category, locale) kullanilir (kategori
   // sayfalarindaki standart davranis). Verilirse, ayni convert() motoru
   // (ayni category/symbol eslesmesi) uzerinde SADECE bu birimler secilebilir
@@ -58,7 +58,7 @@ function parseNumericValue(
 }
 
 function formatDisplayNumber(
-  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr",
+  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es",
   value: number
 ) {
   if (!Number.isFinite(value)) {
@@ -78,6 +78,8 @@ function formatDisplayNumber(
               ? "bn-BD"
               : locale === "fr"
                 ? "fr-FR"
+                : locale === "es"
+                  ? "es-ES"
         : "en-US";
   const absoluteValue = Math.abs(value);
 
@@ -251,6 +253,15 @@ export default function CategoryUnitConverter({
                   result: "Resultat instantane",
                   swap: "Inverser le sens",
                   invalid: "Saisissez un nombre valide pour voir le resultat.",
+                }
+              : locale === "es"
+              ? {
+                  value: "Valor",
+                  from: "Unidad de origen",
+                  to: "Unidad de destino",
+                  result: "Resultado instantaneo",
+                  swap: "Invertir sentido",
+                  invalid: "Introduce un numero valido para ver el resultado.",
                 }
               : {
                 value: "Value",

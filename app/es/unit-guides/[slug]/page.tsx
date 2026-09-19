@@ -1,0 +1,150 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { spanishUnitPages } from "../../../converter/localizedSpanishUnitPages";
+import { spanishCategoryPages } from "../../../converter/localizedSpanishCategoryPages";
+import { findEnglishUnitPageByTurkishSlug } from "../../../converter/localizedUnitPages";
+import { buildFullLanguageAlternates } from "../../../i18n/routing";
+import { buildSiteUrl } from "../../../siteConfig";
+
+type PageProps = {
+  params: Promise<{ slug: string }>;
+};
+
+function findBySlug(slug: string) {
+  return spanishUnitPages.find((page) => page.slug === slug);
+}
+
+export function generateStaticParams() {
+  return spanishUnitPages.map((page) => ({ slug: page.slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const unitPage = findBySlug(slug);
+
+  if (!unitPage) {
+    return {
+      title: "Unidad no encontrada",
+      robots: { index: false, follow: false },
+    };
+  }
+
+  return {
+    title: `${unitPage.name} — ${unitPage.categoryName}`,
+    description: unitPage.shortDescription,
+    alternates: {
+      canonical: `/es/unit-guides/${unitPage.slug}`,
+      ...buildFullLanguageAlternates(`/es/unit-guides/${unitPage.slug}`),
+    },
+    openGraph: {
+      title: `${unitPage.name} — ${unitPage.categoryName}`,
+      description: unitPage.shortDescription,
+      url: buildSiteUrl(`/es/unit-guides/${unitPage.slug}`),
+      siteName: "BirimCeviri.app",
+      locale: "es_ES",
+      type: "article",
+    },
+  };
+}
+
+export default async function SpanishUnitPage({ params }: PageProps) {
+  const { slug } = await params;
+  const unitPage = findBySlug(slug);
+
+  if (!unitPage) {
+    notFound();
+  }
+
+  const englishPage = findEnglishUnitPageByTurkishSlug(unitPage.sourceSlug);
+  const categoryPage = spanishCategoryPages.find(
+    (category) => category.category === unitPage.category
+  );
+
+  return (
+    <main className="all-conversions-page" lang="es">
+      <div className="all-conversions-shell">
+        <nav className="breadcrumbs" aria-label="Ruta de navegacion">
+          <Link href="/es">Inicio</Link>
+          <span aria-hidden="true">&rsaquo;</span>
+          {categoryPage && (
+            <>
+              <Link href={`/es/categories/${categoryPage.slug}`}>
+                {categoryPage.title}
+              </Link>
+              <span aria-hidden="true">&rsaquo;</span>
+            </>
+          )}
+          <span>{unitPage.name}</span>
+        </nav>
+
+        <header className="all-conversions-header">
+          <h1>{unitPage.name}</h1>
+          <p>{unitPage.shortDescription}</p>
+        </header>
+
+        <section className="category-article-content">
+          <dl className="category-facts">
+            <div>
+              <dt>Simbolo</dt>
+              <dd>{unitPage.symbol}</dd>
+            </div>
+            <div>
+              <dt>Sistema de medida</dt>
+              <dd>{unitPage.measurementSystem}</dd>
+            </div>
+            <div>
+              <dt>Equivalente SI</dt>
+              <dd>{unitPage.siEquivalent}</dd>
+            </div>
+          </dl>
+
+          <section className="conversion-section unit-long-section">
+            <h2>Historia</h2>
+            <p>{unitPage.historySummary}</p>
+          </section>
+
+          <section className="conversion-section unit-long-section">
+            <h2>Uso</h2>
+            <p>{unitPage.commonUses}</p>
+          </section>
+
+          {categoryPage && (
+            <section className="conversion-section">
+              <p>
+                <Link
+                  className="text-link"
+                  href={`/es/categories/${categoryPage.slug}`}
+                >
+                  Ver las demas unidades de la categoria {categoryPage.title}
+                </Link>
+              </p>
+            </section>
+          )}
+
+          <section className="conversion-section language-alternatives">
+            <h2>Otros idiomas</h2>
+            <Link
+              className="text-link"
+              href={`/birimler/${unitPage.sourceSlug}`}
+              hrefLang="tr"
+            >
+              Türkçe versiyonu aç
+            </Link>
+            {englishPage && (
+              <Link
+                className="text-link"
+                href={`/en/units/${englishPage.slug}`}
+                hrefLang="en"
+              >
+                View the English version
+              </Link>
+            )}
+          </section>
+        </section>
+      </div>
+    </main>
+  );
+}

@@ -1,0 +1,112 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import RecipeScalerConverter from "../../components/RecipeScalerConverter";
+import { buildSiteUrl } from "../../siteConfig";
+
+export const metadata: Metadata = {
+  title: "Conversor de recetas",
+  description:
+    "Pega tu receta, elige un multiplicador para aumentarla o reducirla, y obten al instante las nuevas cantidades -- algunos ingredientes tambien se convierten automaticamente a gramos.",
+  alternates: {
+    canonical: "/es/recipe-converter",
+    languages: {
+      tr: "/tarif-cevirici",
+      en: "/en/recipe-converter",
+      de: "/de/rezept-umrechner",
+      bn: "/bn/recipe-converter",
+      fr: "/fr/recipe-converter",
+      es: "/es/recipe-converter",
+      "x-default": "/tarif-cevirici",
+    },
+  },
+  openGraph: {
+    title: "Conversor de recetas",
+    description: "Pega tu receta y obten al instante las nuevas cantidades.",
+    url: buildSiteUrl("/es/recipe-converter"),
+    siteName: "BirimCeviri.app",
+    locale: "es_ES",
+    type: "website",
+  },
+};
+
+export default function SpanishRecipeConverterPage() {
+  return (
+    <main className="all-conversions-page" lang="es">
+      <div className="all-conversions-shell">
+        <nav className="breadcrumbs" aria-label="Ruta de navegacion">
+          <Link href="/es">Inicio</Link>
+          <span aria-hidden="true">&rsaquo;</span>
+          <span>Conversor de recetas</span>
+        </nav>
+
+        <header className="all-conversions-header">
+          <h1>Conversor de recetas</h1>
+
+          <p>
+            Pega tu receta linea por linea, por ejemplo: "2 tazas de
+            harina". Una vez elegido el multiplicador, el sitio calcula al
+            instante las nuevas cantidades. Si el ingrediente se reconoce y
+            esta expresado en una unidad como la taza o la cucharada,
+            tambien se muestra un valor aproximado en gramos.
+          </p>
+        </header>
+
+        <RecipeScalerConverter locale="es" />
+
+        <section className="category-article-content">
+          <h2>¿Como aumentar o reducir una receta?</h2>
+          <p>
+            El principio es sencillo: multiplicar cada cantidad por el
+            mismo factor. Si la receta es para 2 personas y quieres 4, el
+            multiplicador es 2. Esta herramienta lo hace automaticamente
+            para cada linea que empiece con una cantidad legible (numero
+            entero, fraccion o decimal).
+          </p>
+          <p>
+            Tambien puedes indicar el numero de raciones originales y el
+            numero de raciones deseadas: el multiplicador se calculara
+            entonces automaticamente, sin necesidad de calcularlo a mano.
+          </p>
+
+          <h2>¿Por que algunas lineas no muestran gramos?</h2>
+          <p>
+            La conversion a gramos solo aparece cuando la herramienta
+            reconoce a la vez la unidad y el nombre del ingrediente. Una
+            linea como "2 huevos" se ajustara correctamente, pero no
+            mostrara gramos adicionales porque el huevo no figura en la
+            lista de conversion por volumen.
+          </p>
+          <p>
+            Para ver la lista de ingredientes admitidos, abre el{" "}
+            <Link href="/es/kitchen-measurement-converter">
+              conversor de medidas de cocina
+            </Link>
+            .
+          </p>
+        </section>
+
+        <section className="conversion-section related-conversions">
+          <h2>Herramientas relacionadas</h2>
+          <ul className="related-conversion-list">
+            <li>
+              <Link href="/es/kitchen-measurement-converter">Conversor de medidas de cocina</Link>
+            </li>
+            <li>
+              <Link href="/es/shoe-size-converter">Conversor de tallas de calzado</Link>
+            </li>
+            <li>
+              <Link href="/es/historical-units">Unidades de medida historicas</Link>
+            </li>
+          </ul>
+        </section>
+
+        <section className="conversion-section language-alternatives">
+          <h2>Otros idiomas</h2>
+          <Link className="text-link" href="/tarif-cevirici" hrefLang="tr">
+            Türkçe versiyonu aç
+          </Link>
+        </section>
+      </div>
+    </main>
+  );
+}

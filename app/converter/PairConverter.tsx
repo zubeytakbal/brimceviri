@@ -9,11 +9,11 @@ type PairConverterProps = {
   toUnit: string;
   fromName: string;
   toName: string;
-  locale?: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr";
+  locale?: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es";
 };
 
 function getNumberLocale(
-  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr"
+  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es"
 ) {
   if (locale === "tr") {
     return "tr-TR";
@@ -39,12 +39,16 @@ function getNumberLocale(
     return "fr-FR";
   }
 
+  if (locale === "es") {
+    return "es-ES";
+  }
+
   return "en-US";
 }
 
 function formatResult(
   value: number,
-  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr"
+  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es"
 ) {
   if (!Number.isFinite(value)) {
     return "";
@@ -244,7 +248,9 @@ export default function PairConverter({
               ? `${activeFromName} \u09AE\u09BE\u09A8`
               : locale === "fr"
                 ? `Valeur de ${activeFromName}`
-                : `${activeFromName} de\u011Feri`;
+                : locale === "es"
+                  ? `Valor de ${activeFromName}`
+                  : `${activeFromName} de\u011Feri`;
 
   const placeholder =
     locale === "en"
@@ -259,7 +265,9 @@ export default function PairConverter({
               ? "\u098F\u0995\u099F\u09BF \u09AE\u09BE\u09A8 \u09B2\u09BF\u0996\u09C1\u09A8"
               : locale === "fr"
                 ? "Saisissez une valeur"
-                : "De\u011Fer girin";
+                : locale === "es"
+                  ? "Introduce un valor"
+                  : "De\u011Fer girin";
 
   const swapLabel =
     locale === "en"
@@ -274,7 +282,9 @@ export default function PairConverter({
               ? "\u09B0\u09C2\u09AA\u09BE\u09A8\u09CD\u09A4\u09B0\u09C7\u09B0 \u09A6\u09BF\u0995 \u09AA\u09B0\u09BF\u09AC\u09B0\u09CD\u09A4\u09A8 \u0995\u09B0\u09C1\u09A8"
               : locale === "fr"
                 ? "Inverser le sens de la conversion"
-                : "D\u00F6n\u00FC\u015F\u00FCm y\u00F6n\u00FCn\u00FC de\u011Fi\u015Ftir";
+                : locale === "es"
+                  ? "Invertir el sentido de la conversion"
+                  : "D\u00F6n\u00FC\u015F\u00FCm y\u00F6n\u00FCn\u00FC de\u011Fi\u015Ftir";
 
   const resultText =
     locale === "en"

@@ -238,6 +238,31 @@ const categoryLabels: Record<
     altin_ayar: "Carat d'Or",
     gumus_ayar: "Titre de l'Argent",
   },
+  es: {
+    uzunluk: "Longitud",
+    alan: "Superficie",
+    hacim: "Volumen",
+    kutle: "Masa",
+    sicaklik: "Temperatura",
+    zaman: "Tiempo",
+    hiz: "Velocidad",
+    basinc: "Presion",
+    enerji: "Energia y Potencia",
+    veri: "Almacenamiento de Datos",
+    elektrik: "Electricidad",
+    yogunluk: "Densidad",
+    kuvvet: "Fuerza",
+    debi: "Caudal",
+    tork: "Par",
+    momentum: "Momento",
+    viskozite_dinamik: "Viscosidad",
+    elektrik_direnc: "Resistencia",
+    kapasitans: "Capacitancia",
+    enduktans: "Inductancia",
+    elektrik_yuk: "Carga Electrica",
+    altin_ayar: "Quilate de Oro",
+    gumus_ayar: "Ley de la Plata",
+  },
 };
 
 const siteHeaderCopy: Record<Locale, SiteHeaderCopy> = {
@@ -275,6 +300,11 @@ const siteHeaderCopy: Record<Locale, SiteHeaderCopy> = {
     navAriaLabel: "Navigation principale",
     menuLabel: "Menu",
     conversionsLabel: "Conversions",
+  },
+  es: {
+    navAriaLabel: "Navegacion principal",
+    menuLabel: "Menu",
+    conversionsLabel: "Conversiones",
   },
 };
 
@@ -363,6 +393,18 @@ const footerCopy: Record<Locale, FooterCopy> = {
     browserProcessingNote:
       "Dans les flux de calcul de ce site, les entrees des calculatrices sont traitees directement dans le navigateur.",
   },
+  es: {
+    navAriaLabel: "Navegacion del pie de pagina",
+    pagesHeading: "Paginas",
+    languagesHeading: "Idiomas",
+    categoriesHeading: "Categorias",
+    description:
+      "Herramientas de conversion tecnica y guias de unidades preparadas para un uso practico.",
+    disclaimer:
+      "Para decisiones importantes de ingenieria, salud o seguridad, verifique los resultados con fuentes profesionales.",
+    browserProcessingNote:
+      "En los flujos de calculo de este sitio, los datos introducidos en las calculadoras se procesan directamente en el navegador.",
+  },
 };
 
 const topLevelLabelMap: Record<
@@ -421,6 +463,13 @@ const topLevelLabelMap: Record<
     allConversions: "Toutes les conversions",
     professions: "Par profession",
   },
+  es: {
+    home: "Inicio",
+    engineeringHub: "Calculadoras",
+    units: "Guia de Unidades",
+    allConversions: "Todas las Conversiones",
+    professions: "Por Profesion",
+  },
 };
 
 const footerLinksByLocale: Record<
@@ -471,6 +520,7 @@ const footerLinksByLocale: Record<
   uz: [{ key: "home", label: "Bosh sahifa" }],
   bn: [{ key: "home", label: "হোম" }],
   fr: [{ key: "home", label: "Accueil" }],
+  es: [{ key: "home", label: "Inicio" }],
 };
 
 export function getSiteHeaderCopy(locale: Locale) {

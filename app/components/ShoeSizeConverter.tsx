@@ -10,7 +10,7 @@ import {
 } from "../converter/shoeSizeTable";
 
 type SystemKey = "eu" | "us" | "uk" | "cm";
-type Locale = "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr";
+type Locale = "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es";
 
 const systemLabels: Record<Locale, Record<SystemKey, string>> = {
   tr: {
@@ -54,6 +54,12 @@ const systemLabels: Record<Locale, Record<SystemKey, string>> = {
     us: "Etats-Unis (US)",
     uk: "Royaume-Uni (UK)",
     cm: "Longueur du pied (cm)",
+  },
+  es: {
+    eu: "Espana / Europa (EU)",
+    us: "Estados Unidos (US)",
+    uk: "Reino Unido (UK)",
+    cm: "Longitud del pie (cm)",
   },
 };
 
@@ -114,6 +120,14 @@ const brandLabels: Record<Locale, Record<ShoeBrandKey, string>> = {
     "new-balance": "New Balance",
     converse: "Converse",
   },
+  es: {
+    genel: "General (estandar)",
+    nike: "Nike",
+    adidas: "Adidas",
+    puma: "Puma",
+    "new-balance": "New Balance",
+    converse: "Converse",
+  },
 };
 
 const groupLabels: Record<Locale, Record<ShoeSizeGroupKey, string>> = {
@@ -158,6 +172,12 @@ const groupLabels: Record<Locale, Record<ShoeSizeGroupKey, string>> = {
     kadin: "Femme",
     bebek: "Bebe / Petit enfant",
     "buyuk-cocuk": "Grand enfant",
+  },
+  es: {
+    erkek: "Hombre",
+    kadin: "Mujer",
+    bebek: "Bebe / Nino pequeno",
+    "buyuk-cocuk": "Nino mayor",
   },
 };
 
@@ -257,6 +277,19 @@ const copy = {
     footLength: "Longueur du pied",
     chartSuffix: "tableau des pointures",
   },
+  es: {
+    group: "Grupo",
+    brand: "Marca",
+    knownSystem: "Sistema conocido",
+    value: "Valor",
+    matchingSizes: "Tallas equivalentes",
+    invalidValue: "Introduce un numero valido para ver la equivalencia.",
+    euResult: "Espana (EU)",
+    usResult: "Estados Unidos (US)",
+    ukResult: "Reino Unido (UK)",
+    footLength: "Longitud del pie",
+    chartSuffix: "tabla de tallas",
+  },
 } as const;
 
 const brandOrder: ShoeBrandKey[] = [
@@ -298,6 +331,10 @@ function getNumberLocale(locale: Locale) {
 
   if (locale === "fr") {
     return "fr-FR";
+  }
+
+  if (locale === "es") {
+    return "es-ES";
   }
 
   return "en-US";

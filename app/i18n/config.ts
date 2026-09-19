@@ -1,4 +1,4 @@
-export const SUPPORTED_LOCALES = ["tr", "en", "de", "ar", "uz", "bn", "fr"] as const;
+export const SUPPORTED_LOCALES = ["tr", "en", "de", "ar", "uz", "bn", "fr", "es"] as const;
 
 export type Locale = (typeof SUPPORTED_LOCALES)[number];
 
@@ -125,6 +125,21 @@ export const LOCALE_DEFINITIONS: Record<Locale, LocaleDefinition> = {
     switcherOptionsLabel: "Options de langue",
     switcherSearchPlaceholder: "Rechercher une langue",
     switcherEmptyLabel: "Aucune langue correspondante",
+  },
+  es: {
+    code: "es",
+    htmlLang: "es",
+    dir: "ltr",
+    openGraphLocale: "es_ES",
+    pathPrefix: "/es",
+    homePath: "/es",
+    label: "Espanol",
+    switcherLabel: "Espanol",
+    switcherCurrentLabel: "ES - Espanol",
+    switcherAriaLabel: "Seleccionar idioma",
+    switcherOptionsLabel: "Opciones de idioma",
+    switcherSearchPlaceholder: "Buscar idioma",
+    switcherEmptyLabel: "No se encontro ningun idioma",
   },
 };
 

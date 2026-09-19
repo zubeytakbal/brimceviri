@@ -7,7 +7,7 @@ import {
 } from "./kitchenMeasures";
 import { kitchenIngredientLabels } from "./kitchenIngredientLabels";
 
-export type RecipeLocale = "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr";
+export type RecipeLocale = "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es";
 
 export type ParsedRecipeLine = {
   raw: string;
@@ -34,6 +34,10 @@ const wordQuantities: Record<string, number> = {
   সিকি: 0.25,
   demi: 0.5,
   quart: 0.25,
+  medio: 0.5,
+  media: 0.5,
+  cuarto: 0.25,
+  cuarta: 0.25,
 };
 
 function normalizeText(value: string): string {
@@ -167,6 +171,18 @@ const oneTokenUnits: Record<string, KitchenUnit> = {
   millilitre: "ml",
   millilitres: "ml",
   litres: "litre",
+  taza: "bardak",
+  tazas: "bardak",
+  cucharada: "yemekKasigi",
+  cucharadas: "yemekKasigi",
+  cucharadita: "cayKasigi",
+  cucharaditas: "cayKasigi",
+  gramo: "gram",
+  gramos: "gram",
+  mililitro: "ml",
+  mililitros: "ml",
+  litro: "litre",
+  litros: "litre",
 };
 
 function extractUnit(normalizedRestOfLine: string): {
@@ -232,6 +248,10 @@ const ingredientMatchEntries: Array<{
   entries.push({
     key: row.key,
     normalized: normalizeText(kitchenIngredientLabels.fr[row.key]),
+  });
+  entries.push({
+    key: row.key,
+    normalized: normalizeText(kitchenIngredientLabels.es[row.key]),
   });
 
   return entries;
@@ -322,6 +342,8 @@ function formatQuantity(
               ? "bn-BD"
               : locale === "fr"
                 ? "fr-FR"
+                : locale === "es"
+                  ? "es-ES"
         : "en-US";
 
   return rounded.toLocaleString(localeName, {

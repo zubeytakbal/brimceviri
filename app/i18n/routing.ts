@@ -234,6 +234,7 @@ const collectionBasePaths: Record<
     uz: "/uz/birliklar/",
     bn: "/bn/unit-guides/",
     fr: "/fr/unit-guides/",
+    es: "/es/unit-guides/",
   },
   categories: {
     tr: "/kategoriler/",
@@ -243,6 +244,7 @@ const collectionBasePaths: Record<
     uz: "/uz/turkumlar/",
     bn: "/bn/categories/",
     fr: "/fr/categories/",
+    es: "/es/categories/",
   },
   calculators: {
     tr: "/hesaplayicilar/",
@@ -252,6 +254,7 @@ const collectionBasePaths: Record<
     uz: "/uz/kalkulyatorlar/",
     bn: "/bn/calculators/",
     fr: "/fr/calculators/",
+    es: "/es/calculators/",
   },
   conversions: {
     tr: "/",
@@ -261,6 +264,7 @@ const collectionBasePaths: Record<
     uz: "/uz/",
     bn: "/bn/",
     fr: "/fr/",
+    es: "/es/",
   },
 };
 

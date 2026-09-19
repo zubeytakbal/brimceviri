@@ -134,6 +134,39 @@ const copyByLocale: Record<Locale, BmiCopy> = {
       multiplier: "Activity Multiplier",
     },
   },
+  es: {
+    labels: {
+      height: "Height (cm)",
+      weight: "Weight (kg)",
+      age: "Age",
+      gender: "Gender",
+      activity: "Activity Level",
+    },
+    genders: {
+      male: "Male",
+      female: "Female",
+    },
+    categories: {
+      underweight: "Underweight",
+      normal: "Normal",
+      overweight: "Overweight",
+      obese: "Obese",
+    },
+    activities: {
+      sedentary: "Sedentary (desk job, no exercise)",
+      light: "Lightly active (exercise 1-3 days/week)",
+      moderate: "Moderately active (exercise 3-5 days/week)",
+      active: "Active (exercise 6-7 days/week)",
+      "very-active": "Very active (twice-daily training / physical work)",
+    },
+    emptyState: "Enter valid values to see the result.",
+    resultLabels: {
+      bmi: "BMI",
+      bmr: "Basal Metabolic Rate",
+      calories: "Daily Calorie Need",
+      multiplier: "Activity Multiplier",
+    },
+  },
   de: {
     labels: {
       height: "Groesse (cm)",

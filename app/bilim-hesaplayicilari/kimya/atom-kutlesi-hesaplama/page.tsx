@@ -33,6 +33,7 @@ export const metadata: Metadata = {
     "İzotop kütlelerini ve doğal bolluk yüzdelerini gir, ağırlıklı ortalama alarak elementin periyodik tablodaki ortalama atom kütlesini anında hesapla.",
   alternates: {
     canonical: "/bilim-hesaplayicilari/kimya/atom-kutlesi-hesaplama",
+    languages: { de: "/de/atommasse-berechnen" },
   },
   openGraph: {
     title: "Atom Kütlesi Hesaplama: İzotop Ağırlıklı Ortalama Hesaplayıcı",

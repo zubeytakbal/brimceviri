@@ -64,6 +64,99 @@ function formatResult(
   }).format(Number(value.toPrecision(12)));
 }
 
+function formatFeetAndInches(valueInFeet: number) {
+  const sign = valueInFeet < 0 ? "-" : "";
+  const totalInches = Math.abs(valueInFeet) * 12;
+  let feet = Math.floor(totalInches / 12);
+  let inches = Math.round((totalInches - feet * 12) * 100) / 100;
+
+  if (inches >= 12) {
+    feet += 1;
+    inches = 0;
+  }
+
+  return `${sign}${feet} ft ${formatResult(inches, "en")} in`;
+}
+
+function formatFeetAndInchesToSixteenth(valueInFeet: number) {
+  const sign = valueInFeet < 0 ? "-" : "";
+  const totalSixteenths = Math.round(Math.abs(valueInFeet) * 12 * 16);
+  const feet = Math.floor(totalSixteenths / (12 * 16));
+  const remainingSixteenths = totalSixteenths % (12 * 16);
+  const inches = Math.floor(remainingSixteenths / 16);
+  const numerator = remainingSixteenths % 16;
+
+  if (numerator === 0) {
+    return `${sign}${feet} ft ${inches} in`;
+  }
+
+  const divisor =
+    numerator % 8 === 0
+      ? 8
+      : numerator % 4 === 0
+        ? 4
+        : numerator % 2 === 0
+          ? 2
+          : 1;
+
+  return `${sign}${feet} ft ${inches} ${numerator / divisor}/${16 / divisor} in`;
+}
+
+function getEnglishVolumeSystemNotice(
+  category: string,
+  unitNames: string[]
+) {
+  if (category !== "hacim") {
+    return null;
+  }
+
+  if (unitNames.some((name) => name.startsWith("US "))) {
+    return "This conversion uses the US customary measure, not the Imperial/UK measure.";
+  }
+
+  if (unitNames.some((name) => name.startsWith("Imperial "))) {
+    return "This conversion uses the Imperial/UK measure, not the US customary measure.";
+  }
+
+  return null;
+}
+
+function getEnglishGallonSystemComparison(
+  category: string,
+  inputValue: string,
+  activeFromUnit: string,
+  activeToUnit: string
+) {
+  if (
+    category !== "hacim" ||
+    (activeFromUnit !== "gal" &&
+      activeFromUnit !== "imp gal" &&
+      activeToUnit !== "gal" &&
+      activeToUnit !== "imp gal")
+  ) {
+    return null;
+  }
+
+  const numberValue = Number(inputValue.replace(",", "."));
+
+  if (!Number.isFinite(numberValue)) {
+    return null;
+  }
+
+  if (activeFromUnit === "gal" || activeFromUnit === "imp gal") {
+    const usLitres = convert(category, numberValue, "gal", "L");
+    const imperialLitres = convert(category, numberValue, "imp gal", "L");
+
+    return `For the same numeric input: ${formatResult(numberValue, "en")} US gal = ${formatResult(usLitres, "en")} L · ${formatResult(numberValue, "en")} Imperial gal = ${formatResult(imperialLitres, "en")} L.`;
+  }
+
+  const litres = convert(category, numberValue, activeFromUnit, "L");
+  const usGallons = convert(category, litres, "L", "gal");
+  const imperialGallons = convert(category, litres, "L", "imp gal");
+
+  return `Equivalent volume: ${formatResult(usGallons, "en")} US gal · ${formatResult(imperialGallons, "en")} Imperial gal.`;
+}
+
 export default function PairConverter({
   category,
   fromUnit,
@@ -78,34 +171,61 @@ export default function PairConverter({
   const activeFromUnit = isReversed ? toUnit : fromUnit;
   const activeToUnit = isReversed ? fromUnit : toUnit;
   const activeFromName = isReversed ? toName : fromName;
+  const activeToName = isReversed ? fromName : toName;
 
-  const result = useMemo(() => {
+  const convertedValue = useMemo(() => {
     if (!inputValue.trim()) {
-      return "";
+      return null;
     }
 
     const numberValue = Number(inputValue.replace(",", "."));
 
     if (!Number.isFinite(numberValue)) {
-      return "";
+      return null;
     }
 
-    return formatResult(
-      convert(
-        category,
-        numberValue,
-        activeFromUnit,
-        activeToUnit
-      ),
-      locale
+    return convert(
+      category,
+      numberValue,
+      activeFromUnit,
+      activeToUnit
     );
   }, [
     inputValue,
     category,
     activeFromUnit,
     activeToUnit,
-    locale,
   ]);
+
+  const result =
+    convertedValue === null ? "" : formatResult(convertedValue, locale);
+  const feetAndInchesResult =
+    locale === "en" &&
+    category === "uzunluk" &&
+    activeToUnit === "ft" &&
+    convertedValue !== null
+      ? formatFeetAndInches(convertedValue)
+      : null;
+  const fractionalFeetAndInchesResult =
+    locale === "en" &&
+    category === "uzunluk" &&
+    activeToUnit === "ft" &&
+    convertedValue !== null
+      ? formatFeetAndInchesToSixteenth(convertedValue)
+      : null;
+  const volumeSystemNotice =
+    locale === "en"
+      ? getEnglishVolumeSystemNotice(category, [activeFromName, activeToName])
+      : null;
+  const gallonSystemComparison =
+    locale === "en" && convertedValue !== null
+      ? getEnglishGallonSystemComparison(
+          category,
+          inputValue,
+          activeFromUnit,
+          activeToUnit
+        )
+      : null;
 
   const valueLabel =
     locale === "en"
@@ -164,6 +284,12 @@ export default function PairConverter({
         {valueLabel}
       </label>
 
+      {volumeSystemNotice && (
+        <p className="calculator-usage-hint" role="note">
+          <strong>Measurement system:</strong> {volumeSystemNotice}
+        </p>
+      )}
+
       <div className="pair-converter-row">
         <div className="pair-field">
           <input
@@ -201,9 +327,26 @@ export default function PairConverter({
       </div>
 
       {result && (
-        <p className="pair-result-text">
-          {resultText}
-        </p>
+        <>
+          <p className="pair-result-text">
+            {resultText}
+          </p>
+          {feetAndInchesResult && (
+            <p className="pair-result-text">
+              Feet and inches: {feetAndInchesResult}
+            </p>
+          )}
+          {fractionalFeetAndInchesResult && (
+            <p className="pair-result-text">
+              Nearest 1/16 inch: {fractionalFeetAndInchesResult}
+            </p>
+          )}
+          {gallonSystemComparison && (
+            <p className="pair-result-text">
+              {gallonSystemComparison}
+            </p>
+          )}
+        </>
       )}
     </section>
   );

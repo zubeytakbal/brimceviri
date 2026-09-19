@@ -8,7 +8,7 @@ import {
   type HomeType,
 } from "../converter/movingBoxCalculator";
 
-type SupportedLocale = "tr" | "en" | "uz";
+type SupportedLocale = "tr" | "en" | "uz" | "de";
 
 type MovingBoxCopy = {
   chooseHomeType: string;
@@ -66,6 +66,22 @@ const copyByLocale: Record<SupportedLocale, MovingBoxCopy> = {
       "3+1": "3 xonali",
       "4+1": "4 xonali",
       "5+1": "5 xonali va undan ko'p",
+    },
+  },
+  de: {
+    chooseHomeType: "Wohnungstyp wählen",
+    smallBox: "Kleine Kartons",
+    largeBox: "Große Kartons",
+    truckVolume: "Geschätztes Transportervolumen",
+    note: (label) =>
+      `Diese Zahlen sind Durchschnittswerte aus der Umzugsbranche für eine ${label}; die tatsächliche Menge hängt von Ihrem Hausstand ab.`,
+    homeTypeLabels: {
+      studio: "1-Zimmer-Wohnung",
+      "1+1": "2-Zimmer-Wohnung",
+      "2+1": "3-Zimmer-Wohnung",
+      "3+1": "4-Zimmer-Wohnung",
+      "4+1": "5-Zimmer-Wohnung",
+      "5+1": "6-Zimmer-Wohnung und mehr",
     },
   },
 };

@@ -12,6 +12,10 @@ import {
   periodicTable,
   slugifyElementName,
 } from "../../../../converter/periodicTableData";
+import {
+  elementNamesDeBySymbol,
+  slugifyElementNameDe,
+} from "../../../../converter/periodicTableDataDe";
 import { buildSiteUrl } from "../../../../siteConfig";
 
 type PageProps = {
@@ -77,6 +81,9 @@ export async function generateMetadata({
     description,
     alternates: {
       canonical: `/bilim-hesaplayicilari/kimya/periyodik-tablo/${slug}`,
+      languages: {
+        de: `/de/periodensystem/${slugifyElementNameDe(elementNamesDeBySymbol[element.symbol] ?? element.symbol)}`,
+      },
     },
     openGraph: {
       title,

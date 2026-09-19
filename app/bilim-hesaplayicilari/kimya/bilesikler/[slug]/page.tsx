@@ -41,7 +41,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title,
     description,
-    alternates: { canonical: `/bilim-hesaplayicilari/kimya/bilesikler/${slug}` },
+    alternates: {
+      canonical: `/bilim-hesaplayicilari/kimya/bilesikler/${slug}`,
+      languages: { de: `/de/chemische-verbindungen/${slug}` },
+    },
     openGraph: {
       title,
       description,

@@ -2,6 +2,57 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import EnglishShaftTorsionCalculator from "../../../../components/EnglishShaftTorsionCalculator";
 import { buildSiteUrl } from "../../../../siteConfig";
-const pagePath = "/en/engineering-calculators/mechanics-materials/shaft-torsion-calculator";
-export const metadata: Metadata = { title: "Shaft Torsion Calculator", description: "Calculate maximum shear stress and angle of twist for a solid circular shaft under one applied torque.", alternates: { canonical: pagePath, languages: { en: pagePath } }, openGraph: { title: "Shaft Torsion Calculator", description: "Calculate a linear-elastic torsion estimate for a uniform solid circular shaft.", url: buildSiteUrl(pagePath), siteName: "BirimCeviri.app", locale: "en_US", type: "article" } };
-export default function ShaftTorsionCalculatorPage() { return <main className="all-conversions-page"><div className="all-conversions-shell"><nav className="breadcrumbs" aria-label="Breadcrumb"><Link href="/en">Home</Link><span aria-hidden="true">›</span><Link href="/en/engineering-calculators">Engineering Calculators</Link><span aria-hidden="true">›</span><Link href="/en/engineering-calculators/mechanics-materials">Mechanics &amp; Materials</Link><span aria-hidden="true">›</span><span>Shaft Torsion Calculator</span></nav><header className="all-conversions-header"><h1>Shaft Torsion Calculator</h1><p>Estimate shear stress and angle of twist for a uniform solid circular shaft under a stated torque.</p></header><EnglishShaftTorsionCalculator /><article className="category-article-content"><h2>Method</h2><p>For a solid circular shaft, J = πd<sup>4</sup>/32, τ<sub>max</sub> = T(d/2)/J and θ = TL/(GJ).</p><h2>Worked example</h2><p>A 500 N·m torque applied to a 40 mm diameter, 1 m steel shaft with G = 79 GPa gives approximately 39.8 MPa shear stress and 1.44° of twist.</p><h2>Important limits</h2><p>This calculator applies to a uniform solid round shaft in linear elastic torsion only. It does not account for keyways, splines, hollows, combined bending, fatigue, dynamic effects or code-required margins.</p><h2>Related tools</h2><p><Link href="/en/engineering-calculators/mechanics-materials/cantilever-beam-deflection-calculator">Cantilever Beam Deflection Calculator</Link> · <Link href="/en/engineering-calculators/mechanics-materials/stress-strain-calculator">Stress &amp; Strain Calculator</Link> · <Link href="/en/engineering-calculators/mechanics-materials">Mechanics &amp; Materials Calculators</Link></p></article></div></main>; }
+
+const pagePath =
+  "/en/engineering-calculators/mechanics-materials/shaft-torsion-calculator";
+
+export const metadata: Metadata = {
+  title: "Shaft Torsion Calculator",
+  description:
+    "Calculate maximum shear stress and angle of twist for a solid circular shaft under one applied torque.",
+  alternates: { canonical: pagePath, languages: { en: pagePath } },
+  openGraph: {
+    title: "Shaft Torsion Calculator",
+    description:
+      "Calculate a linear-elastic torsion estimate for a uniform solid circular shaft.",
+    url: buildSiteUrl(pagePath),
+    siteName: "BirimCeviri.app",
+    locale: "en_US",
+    type: "article",
+  },
+};
+
+export default function ShaftTorsionCalculatorPage() {
+  return (
+    <main className="all-conversions-page">
+      <div className="all-conversions-shell">
+        <nav className="breadcrumbs" aria-label="Breadcrumb">
+          <Link href="/en">Home</Link><span aria-hidden="true">›</span>
+          <Link href="/en/engineering-calculators">Engineering Calculators</Link><span aria-hidden="true">›</span>
+          <Link href="/en/engineering-calculators/mechanics-materials">Mechanics &amp; Materials</Link><span aria-hidden="true">›</span>
+          <span>Shaft Torsion Calculator</span>
+        </nav>
+        <header className="all-conversions-header">
+          <h1>Shaft Torsion Calculator</h1>
+          <p>Estimate shear stress and angle of twist for a uniform solid circular shaft under a stated torque.</p>
+        </header>
+        <EnglishShaftTorsionCalculator />
+        <article className="category-article-content">
+          <h2>Method</h2>
+          <p>For a solid circular shaft, J = πd<sup>4</sup>/32, τ<sub>max</sub> = T(d/2)/J and θ = TL/(GJ).</p>
+          <h2>Worked example</h2>
+          <p>A 500 N·m torque applied to a 40 mm diameter, 1 m steel shaft with G = 79 GPa gives approximately 39.8 MPa shear stress and 1.44° of twist.</p>
+          <h2>Important limits</h2>
+          <p>This calculator applies to a uniform solid round shaft in linear elastic torsion only. It does not account for keyways, splines, hollows, combined bending, fatigue, dynamic effects or code-required margins.</p>
+          <h2>References</h2>
+          <ul>
+            <li><a href="https://ocw.mit.edu/courses/16-01-unified-engineering-i-ii-iii-iv-fall-2005-spring-2006/resources/gm9_10notes/" target="_blank" rel="noreferrer">MIT OpenCourseWare: shafts and torsion of circular shafts</a></li>
+            <li><a href="https://www.nist.gov/pml/special-publication-811" target="_blank" rel="noreferrer">NIST Guide for the Use of the International System of Units</a></li>
+          </ul>
+          <h2>Related tools</h2>
+          <p><Link href="/en/engineering-calculators/mechanics-materials/cantilever-beam-deflection-calculator">Cantilever Beam Deflection Calculator</Link> · <Link href="/en/engineering-calculators/mechanics-materials/stress-strain-calculator">Stress &amp; Strain Calculator</Link> · <Link href="/en/engineering-calculators/mechanics-materials">Mechanics &amp; Materials Calculators</Link></p>
+        </article>
+      </div>
+    </main>
+  );
+}

@@ -51,9 +51,43 @@ const englishManualNotifications: SiteNotification[] = [
   },
 ];
 
-export async function getSiteNotifications(locale: "tr" | "en" = "tr"): Promise<SiteNotification[]> {
+const germanManualNotifications: SiteNotification[] = [
+  {
+    id: "gumus-kan-vitamin-2026-09",
+    date: "2026-09-18",
+    title: "Neu: Silberreinheit, Blutzucker und Vitamin D",
+    message:
+      "Rechnen Sie jetzt auch auf Deutsch zwischen Silber-Feingehalten (999/925/900/800) sowie Blutzucker- und Vitamin-D-Einheiten um.",
+    href: "/de/kategorien/silberreinheit",
+  },
+];
+
+const arabicManualNotifications: SiteNotification[] = [
+  {
+    id: "arabic-tools-hub-2026-09",
+    date: "2026-09-18",
+    title: "أدوات عربية متاحة الآن",
+    message:
+      "استعرض الحاسبات والمحولات المتاحة بالعربية بالكامل: من مقاييس المطبخ إلى مقاسات الأحذية والخواتم ووصفات الطبخ.",
+    href: "/ar/other-conversions",
+  },
+];
+
+export async function getSiteNotifications(locale: "tr" | "en" | "de" | "ar" = "tr"): Promise<SiteNotification[]> {
   if (locale === "en") {
     return [...englishManualNotifications].sort((a, b) =>
+      a.date < b.date ? 1 : a.date > b.date ? -1 : 0,
+    );
+  }
+
+  if (locale === "de") {
+    return [...germanManualNotifications].sort((a, b) =>
+      a.date < b.date ? 1 : a.date > b.date ? -1 : 0,
+    );
+  }
+
+  if (locale === "ar") {
+    return [...arabicManualNotifications].sort((a, b) =>
       a.date < b.date ? 1 : a.date > b.date ? -1 : 0,
     );
   }

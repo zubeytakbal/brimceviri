@@ -7,7 +7,7 @@ import {
   type NaturalGasCalculatorInput,
 } from "../converter/naturalGasCalculator";
 
-type SupportedLocale = "tr" | "en" | "uz";
+type SupportedLocale = "tr" | "en" | "uz" | "de";
 
 type NaturalGasCopy = {
   fieldConsumption: string;
@@ -42,6 +42,14 @@ const copyByLocale: Record<SupportedLocale, NaturalGasCopy> = {
     resultTotalCost: "Jami Xarajat",
     resultEnergy: "Taxminiy Energiya Ekvivalenti",
     note: "Eslatma: kWh ekvivalenti taxminiy qiymat; haqiqiy koeffitsient hudud va ta'minotchiga qarab farq qilishi mumkin.",
+  },
+  de: {
+    fieldConsumption: "Verbrauch (m³)",
+    fieldPrice: "Einzelpreis (EUR/m³)",
+    emptyState: "Geben Sie einen gültigen Verbrauch und Preis ein, um das Ergebnis zu sehen.",
+    resultTotalCost: "Gesamtkosten",
+    resultEnergy: "Ungefähres Energieäquivalent",
+    note: "Hinweis: Der kWh-Wert ist ein ungefährer Näherungswert; der tatsächliche Umrechnungsfaktor kann je nach Region und Versorger abweichen.",
   },
 };
 

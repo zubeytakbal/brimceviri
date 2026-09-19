@@ -2,7 +2,9 @@ import { englishCalculatorPages } from "../converter/localizedCalculatorPages";
 import { getLiveElectricalCalculatorItems } from "../converter/engineeringHubs";
 import { englishChemistryHubPath, englishChemistryTools } from "./englishChemistryToolCatalog";
 import { englishDecisionSavingsHubPath, englishDecisionSavingsTools } from "./englishDecisionSavingsTools";
+import { englishBusinessTools } from "./englishBusinessToolCatalog";
 import { englishEverydayHubPath } from "./englishEverydayCalculatorGroups";
+import { englishFinanceTools } from "./englishFinanceToolCatalog";
 import { englishStandaloneTools } from "./englishStandaloneTools";
 import { englishScienceTools } from "./englishScienceToolCatalog";
 
@@ -10,6 +12,10 @@ export type EnglishToolDomainId =
   | "engineering"
   | "everyday"
   | "decision-savings"
+  | "business"
+  | "finance"
+  | "data-computing"
+  | "fitness"
   | "chemistry"
   | "science";
 
@@ -36,11 +42,17 @@ export const englishToolDomains: Array<{
   { id: "engineering", href: "/en/engineering-calculators", label: "Engineering Calculators", description: "Electrical, fluids and piping, heat-transfer, mechanics and materials, and dimensionless-number tools." },
   { id: "everyday", href: englishEverydayHubPath, label: "Everyday Calculators", description: "Home projects, routines, transport and personal planning." },
   { id: "decision-savings", href: englishDecisionSavingsHubPath, label: "Decision & Savings Calculators", description: "Cost comparisons and payback estimates based on your own inputs." },
+  { id: "business", href: "/en/business-calculators", label: "Business Calculators", description: "Break-even, gross-margin, markup and ROAS calculations using your own figures." },
+  { id: "finance", href: "/en/finance-calculators", label: "Finance Calculators", description: "Mortgage, loan-amortization and compound-interest planning estimates." },
+  { id: "data-computing", href: "/en/data-computing-calculators", label: "Data & Computing Calculators", description: "Number bases, image dimensions, video bitrate and data-storage tools." },
+  { id: "fitness", href: "/en/fitness-calculators", label: "Fitness Calculators", description: "One-rep-max and running-pace training estimates." },
   { id: "chemistry", href: englishChemistryHubPath, label: "Chemistry Calculators", description: "Solution chemistry, reaction calculations, equilibrium and electrochemistry." },
   { id: "science", href: "/en/science-calculators", label: "Science Calculators", description: "Mathematics, physics, biology and chemistry learning tools." },
 ];
 
 const elevatedEverydayComponents = new Set(["bmiCalculator", "pregnancyCalculator"]);
+const dataComputingComponents = new Set(["numberBaseCalculator", "pixelCalculator", "videoBitrateCalculator"]);
+const fitnessComponents = new Set(["oneRepMaxCalculator", "paceCalculator"]);
 
 export const englishToolRegistry: EnglishToolRecord[] = [
   ...englishCalculatorPages.map((tool) => ({
@@ -314,8 +326,8 @@ export const englishToolRegistry: EnglishToolRecord[] = [
     searchTerms: "rayleigh number natural convection grashof prandtl thermal diffusivity buoyancy heat transfer engineering",
   },
   ...englishStandaloneTools.map((tool) => ({
-    id: `everyday:${tool.slug}`,
-    domain: "everyday" as const,
+    id: `${dataComputingComponents.has(tool.component) ? "data-computing" : fitnessComponents.has(tool.component) ? "fitness" : "everyday"}:${tool.slug}`,
+    domain: dataComputingComponents.has(tool.component) ? "data-computing" as const : fitnessComponents.has(tool.component) ? "fitness" as const : "everyday" as const,
     href: tool.englishPath,
     title: tool.title,
     description: tool.cardDescription,
@@ -332,6 +344,26 @@ export const englishToolRegistry: EnglishToolRecord[] = [
     scope: "user-input-localized" as const,
     reviewLevel: "standard" as const,
     searchTerms: `${tool.title} ${tool.description}`,
+  })),
+  ...englishBusinessTools.map((tool) => ({
+    id: `business:${tool.id}`,
+    domain: "business" as const,
+    href: tool.href,
+    title: tool.title,
+    description: tool.description,
+    scope: "user-input-localized" as const,
+    reviewLevel: "standard" as const,
+    searchTerms: `${tool.title} ${tool.description} ${tool.formula} break even gross margin markup roas business`,
+  })),
+  ...englishFinanceTools.map((tool) => ({
+    id: `finance:${tool.id}`,
+    domain: "finance" as const,
+    href: tool.href,
+    title: tool.title,
+    description: tool.description,
+    scope: "user-input-localized" as const,
+    reviewLevel: "standard" as const,
+    searchTerms: `${tool.title} ${tool.description} ${tool.formula} mortgage loan amortization compound interest finance`,
   })),
   ...englishChemistryTools.map((tool) => ({
     id: `chemistry:${tool.slug}`,

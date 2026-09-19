@@ -67,6 +67,9 @@ export const germanCategorySlugMap = {
   enduktans: "induktivitaet",
   elektrik_yuk: "elektrische-ladung",
   altin_ayar: "goldkarat",
+  gumus_ayar: "silberreinheit",
+  kan_sekeri: "blutzucker",
+  vitamin_d: "vitamin-d",
 } as const;
 
 export function getGermanCalculatorSlug(

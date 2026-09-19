@@ -52,6 +52,10 @@ import {
   periodicTable,
   slugifyElementName,
 } from "./converter/periodicTableData";
+import {
+  elementNamesDeBySymbol,
+  slugifyElementNameDe,
+} from "./converter/periodicTableDataDe";
 import { materialsDatabase } from "./converter/materialsDatabase";
 import { getAllMaterialComparisons } from "./converter/materialComparisons";
 import { celestialBodiesDatabase } from "./converter/celestialBodiesDatabase";
@@ -162,8 +166,12 @@ const standaloneToolRoutes: MetadataRoute.Sitemap =
   Array.from(
     new Set([
       ...germanStandaloneTools.map((tool) => tool.turkishPath),
-      ...arabicStandaloneTools.map((tool) => tool.turkishPath),
-      ...englishStandaloneTools.map((tool) => tool.turkishPath),
+      ...arabicStandaloneTools
+        .filter((tool) => !tool.isArabicOnly)
+        .map((tool) => tool.turkishPath),
+      ...englishStandaloneTools
+        .filter((tool) => !tool.isEnglishOnly)
+        .map((tool) => tool.turkishPath),
       ...uzbekStandaloneTools.map((tool) => tool.turkishPath),
     ])
   ).flatMap((turkishPath) => {
@@ -242,6 +250,26 @@ const standaloneToolRoutes: MetadataRoute.Sitemap =
         : []),
     ];
   });
+
+const englishOnlyStandaloneToolRoutes: MetadataRoute.Sitemap =
+  englishStandaloneTools
+    .filter((tool) => tool.isEnglishOnly)
+    .map((tool) => ({
+      url: `${baseUrl}${tool.englishPath}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly" as const,
+      priority: tool.priority,
+    }));
+
+const arabicOnlyStandaloneToolRoutes: MetadataRoute.Sitemap =
+  arabicStandaloneTools
+    .filter((tool) => tool.isArabicOnly)
+    .map((tool) => ({
+      url: `${baseUrl}${tool.arabicPath}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly" as const,
+      priority: tool.priority,
+    }));
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const corporateRoutes: MetadataRoute.Sitemap = [
@@ -647,6 +675,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.6,
     },
     ...standaloneToolRoutes,
+    ...englishOnlyStandaloneToolRoutes,
+    ...arabicOnlyStandaloneToolRoutes,
     {
       url: `${baseUrl}/bilim-hesaplayicilari`,
       lastModified: contentLastModified,
@@ -966,6 +996,61 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.6,
     })),
     {
+      url: `${baseUrl}/de/periodensystem`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+      alternates: {
+        languages: {
+          tr: `${baseUrl}/bilim-hesaplayicilari/kimya/periyodik-tablo`,
+          de: `${baseUrl}/de/periodensystem`,
+          "x-default": `${baseUrl}/bilim-hesaplayicilari/kimya/periyodik-tablo`,
+        },
+      },
+    },
+    ...periodicTable.map((element) => {
+      const deSlug = slugifyElementNameDe(elementNamesDeBySymbol[element.symbol] ?? element.symbol);
+      return {
+        url: `${baseUrl}/de/periodensystem/${deSlug}`,
+        lastModified: contentLastModified,
+        changeFrequency: "monthly" as const,
+        priority: 0.6,
+        alternates: {
+          languages: {
+            tr: `${baseUrl}/bilim-hesaplayicilari/kimya/periyodik-tablo/${slugifyElementName(element.nameTr)}`,
+            de: `${baseUrl}/de/periodensystem/${deSlug}`,
+            "x-default": `${baseUrl}/bilim-hesaplayicilari/kimya/periyodik-tablo/${slugifyElementName(element.nameTr)}`,
+          },
+        },
+      };
+    }),
+    {
+      url: `${baseUrl}/de/elementrangliste`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.65,
+      alternates: {
+        languages: {
+          tr: `${baseUrl}/bilim-hesaplayicilari/kimya/element-siralamasi`,
+          de: `${baseUrl}/de/elementrangliste`,
+          "x-default": `${baseUrl}/bilim-hesaplayicilari/kimya/element-siralamasi`,
+        },
+      },
+    },
+    {
+      url: `${baseUrl}/de/atommasse-berechnen`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.65,
+      alternates: {
+        languages: {
+          tr: `${baseUrl}/bilim-hesaplayicilari/kimya/atom-kutlesi-hesaplama`,
+          de: `${baseUrl}/de/atommasse-berechnen`,
+          "x-default": `${baseUrl}/bilim-hesaplayicilari/kimya/atom-kutlesi-hesaplama`,
+        },
+      },
+    },
+    {
       url: `${baseUrl}/malzeme-ozellikleri`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
@@ -983,6 +1068,58 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.6,
     })),
+    {
+      url: `${baseUrl}/de/werkstoffeigenschaften`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+      alternates: {
+        languages: {
+          tr: `${baseUrl}/malzeme-ozellikleri`,
+          de: `${baseUrl}/de/werkstoffeigenschaften`,
+          "x-default": `${baseUrl}/malzeme-ozellikleri`,
+        },
+      },
+    },
+    ...materialsDatabase.map((material) => ({
+      url: `${baseUrl}/de/werkstoffeigenschaften/${material.id}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+      alternates: {
+        languages: {
+          tr: `${baseUrl}/malzeme-ozellikleri/${material.id}`,
+          de: `${baseUrl}/de/werkstoffeigenschaften/${material.id}`,
+          "x-default": `${baseUrl}/malzeme-ozellikleri/${material.id}`,
+        },
+      },
+    })),
+    ...getAllMaterialComparisons().map((comparison) => ({
+      url: `${baseUrl}/de/werkstoffvergleich/${comparison.slug}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+      alternates: {
+        languages: {
+          tr: `${baseUrl}/malzeme-karsilastirma/${comparison.slug}`,
+          de: `${baseUrl}/de/werkstoffvergleich/${comparison.slug}`,
+          "x-default": `${baseUrl}/malzeme-karsilastirma/${comparison.slug}`,
+        },
+      },
+    })),
+    {
+      url: `${baseUrl}/de/materialgewicht-berechnen`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.6,
+      alternates: {
+        languages: {
+          tr: `${baseUrl}/malzeme-agirligi-hesaplama`,
+          de: `${baseUrl}/de/materialgewicht-berechnen`,
+          "x-default": `${baseUrl}/malzeme-agirligi-hesaplama`,
+        },
+      },
+    },
     {
       url: `${baseUrl}/uz/material-xossalari`,
       lastModified: contentLastModified,
@@ -1087,6 +1224,32 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: contentLastModified,
       changeFrequency: "monthly" as const,
       priority: 0.6,
+    })),
+    {
+      url: `${baseUrl}/de/chemische-verbindungen`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+      alternates: {
+        languages: {
+          tr: `${baseUrl}/bilim-hesaplayicilari/kimya/bilesikler`,
+          de: `${baseUrl}/de/chemische-verbindungen`,
+          "x-default": `${baseUrl}/bilim-hesaplayicilari/kimya/bilesikler`,
+        },
+      },
+    },
+    ...compoundsDatabase.map((compound) => ({
+      url: `${baseUrl}/de/chemische-verbindungen/${compound.id}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+      alternates: {
+        languages: {
+          tr: `${baseUrl}/bilim-hesaplayicilari/kimya/bilesikler/${compound.id}`,
+          de: `${baseUrl}/de/chemische-verbindungen/${compound.id}`,
+          "x-default": `${baseUrl}/bilim-hesaplayicilari/kimya/bilesikler/${compound.id}`,
+        },
+      },
     })),
     {
       url: `${baseUrl}/bilim-hesaplayicilari/biyoloji`,
@@ -4234,7 +4397,55 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.78,
     },
     {
+      url: `${baseUrl}/en/construction-calculators`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.76,
+    },
+    {
       url: `${baseUrl}/en/decision-savings-calculators`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.76,
+    },
+    {
+      url: `${baseUrl}/en/business-calculators`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.76,
+    },
+    ...["break-even", "profit-margin", "roas", "ad-performance"].map((tool) => ({
+      url: `${baseUrl}/en/business-calculators/${tool}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.72,
+    })),
+    {
+      url: `${baseUrl}/en/finance-calculators`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.76,
+    },
+    ...["mortgage", "loan-amortization", "compound-interest"].map((tool) => ({
+      url: `${baseUrl}/en/finance-calculators/${tool}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.72,
+    })),
+    {
+      url: `${baseUrl}/en/automotive-calculators`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.76,
+    },
+    {
+      url: `${baseUrl}/en/data-computing-calculators`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.76,
+    },
+    {
+      url: `${baseUrl}/en/fitness-calculators`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
       priority: 0.76,
@@ -4287,7 +4498,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.74,
     },
-    ...["percentage", "mean", "quadratic-roots"].map((tool) => ({
+    ...["ratio-proportion", "descriptive-statistics", "fractions", "linear-equation", "percentage", "mean", "quadratic-roots"].map((tool) => ({
       url: `${baseUrl}/en/mathematics-calculators/${tool}`,
       lastModified: contentLastModified,
       changeFrequency: "monthly" as const,

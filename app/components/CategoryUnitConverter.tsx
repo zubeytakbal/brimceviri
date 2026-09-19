@@ -93,6 +93,39 @@ function formatDisplayNumber(
   }).format(value);
 }
 
+function getEnglishVolumeSystemNotice(
+  category: string,
+  unitLabels: Array<string | undefined>
+) {
+  if (category !== "hacim") {
+    return null;
+  }
+
+  if (unitLabels.some((label) => label?.startsWith("US "))) {
+    return "This conversion uses the US customary measure, not the Imperial/UK measure.";
+  }
+
+  if (unitLabels.some((label) => label?.startsWith("Imperial "))) {
+    return "This conversion uses the Imperial/UK measure, not the US customary measure.";
+  }
+
+  return null;
+}
+
+function formatFeetAndInches(valueInFeet: number) {
+  const sign = valueInFeet < 0 ? "-" : "";
+  const totalInches = Math.abs(valueInFeet) * 12;
+  let feet = Math.floor(totalInches / 12);
+  let inches = Math.round((totalInches - feet * 12) * 100) / 100;
+
+  if (inches >= 12) {
+    feet += 1;
+    inches = 0;
+  }
+
+  return `${sign}${feet} ft ${formatDisplayNumber("en", inches)} in`;
+}
+
 export default function CategoryUnitConverter({
   category,
   locale,
@@ -128,6 +161,13 @@ export default function CategoryUnitConverter({
   const toUnitOption = unitOptions.find(
     (unitOption) => unitOption.value === activeToUnit
   );
+  const volumeSystemNotice =
+    locale === "en"
+      ? getEnglishVolumeSystemNotice(category, [
+          fromUnitOption?.label,
+          toUnitOption?.label,
+        ])
+      : null;
   const resultValue =
     parsedInputValue === null
       ? null
@@ -137,6 +177,13 @@ export default function CategoryUnitConverter({
           activeFromUnit,
           activeToUnit
         );
+  const feetAndInchesResult =
+    locale === "en" &&
+    category === "uzunluk" &&
+    activeToUnit === "ft" &&
+    Number.isFinite(resultValue ?? Number.NaN)
+      ? formatFeetAndInches(resultValue ?? 0)
+      : null;
   const equalityValue =
     activeFromUnit && activeToUnit
       ? convert(category, 1, activeFromUnit, activeToUnit)
@@ -264,6 +311,12 @@ export default function CategoryUnitConverter({
         </div>
       </div>
 
+      {volumeSystemNotice && (
+        <p className="calculator-usage-hint" role="note">
+          <strong>Measurement system:</strong> {volumeSystemNotice}
+        </p>
+      )}
+
       <div
         aria-live="polite"
         className="category-general-converter-result"
@@ -284,6 +337,12 @@ export default function CategoryUnitConverter({
         <span className="category-general-converter-equality">
           {`1 ${fromUnitOption?.symbol ?? activeFromUnit} = ${formatDisplayNumber(locale, equalityValue)} ${toUnitOption?.symbol ?? activeToUnit}`}
         </span>
+
+        {feetAndInchesResult && (
+          <span className="category-general-converter-equality">
+            Feet and inches: {feetAndInchesResult}
+          </span>
+        )}
       </div>
     </div>
   );

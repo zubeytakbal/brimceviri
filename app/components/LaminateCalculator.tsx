@@ -7,7 +7,7 @@ import {
   type LaminateCalculatorInput,
 } from "../converter/laminateCalculator";
 
-type SupportedLocale = "tr" | "en" | "uz";
+type SupportedLocale = "tr" | "en" | "uz" | "de";
 
 type LaminateCopy = {
   fieldArea: string;
@@ -42,6 +42,14 @@ const copyByLocale: Record<SupportedLocale, LaminateCopy> = {
     emptyState: "Natijani ko'rish uchun to'g'ri qiymatlar kiriting.",
     resultTotalArea: "Zaxira bilan jami maydon",
     packageCountLabel: (count) => `Kerakli paket soni: ${count} paket`,
+  },
+  de: {
+    fieldArea: "Zu verlegende Fläche (m²)",
+    fieldPackageArea: "Fläche pro Paket (m²)",
+    fieldWaste: "Verschnitt (%)",
+    emptyState: "Geben Sie gültige Werte ein, um das Ergebnis zu sehen.",
+    resultTotalArea: "Gesamtfläche inklusive Verschnitt",
+    packageCountLabel: (count) => `Benötigte Pakete: ${count}`,
   },
 };
 

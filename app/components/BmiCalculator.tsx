@@ -362,6 +362,15 @@ export default function BmiCalculator({
           </>
         )}
       </div>
+
+      {locale === "en" && (
+        <p className="calculator-usage-hint">
+          <strong>Important:</strong> This tool uses adult BMI categories and is
+          intended for adults age 20 and older. BMI is a screening measure, not
+          a diagnosis or a direct measure of body fat; discuss a result that
+          concerns you with a qualified health-care professional.
+        </p>
+      )}
     </div>
   );
 }

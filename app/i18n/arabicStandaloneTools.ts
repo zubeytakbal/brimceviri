@@ -41,6 +41,10 @@ export type ArabicStandaloneTool = {
     body: string;
   }>;
   priority: number;
+  // اضبطها إلى true للأدوات التي لا تحمل صفحة تركية مطابقة (لا يوجد
+  // مفهوم مصدري في TR) -- يستثنيها هذا من دمج hreflang متعدد اللغات
+  // في sitemap.ts ويضيفها كصفحة عربية مستقلة فقط.
+  isArabicOnly?: boolean;
 };
 
 export const arabicStandaloneTools: ArabicStandaloneTool[] = [

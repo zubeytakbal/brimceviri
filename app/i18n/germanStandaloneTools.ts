@@ -11,7 +11,13 @@ export type GermanStandaloneToolComponentKey =
   | "paceCalculator"
   | "acCapacityCalculator"
   | "electricityConsumptionCalculator"
-  | "sleepCalculator";
+  | "sleepCalculator"
+  | "fuelConsumptionCalculator"
+  | "laminateCalculator"
+  | "wallpaperCalculator"
+  | "movingBoxCalculator"
+  | "naturalGasCalculator"
+  | "evChargingCalculator";
 
 export type GermanStandaloneTool = {
   slug: string;
@@ -34,7 +40,13 @@ export type GermanStandaloneTool = {
     | "paceCalculator"
     | "acCapacityCalculator"
     | "electricityConsumptionCalculator"
-    | "sleepCalculator";
+    | "sleepCalculator"
+    | "fuelConsumptionCalculator"
+    | "laminateCalculator"
+    | "wallpaperCalculator"
+    | "movingBoxCalculator"
+    | "naturalGasCalculator"
+    | "evChargingCalculator";
   cardDescription: string;
   articleSections: Array<{
     title: string;
@@ -368,6 +380,150 @@ export const germanStandaloneTools: GermanStandaloneTool[] = [
       },
     ],
     priority: 0.75,
+  },
+  {
+    slug: "kraftstoffverbrauchsrechner",
+    germanPath: "/de/kraftstoffverbrauchsrechner",
+    turkishPath: "/yakit-tuketimi-hesaplama",
+    title: "Kraftstoffverbrauchsrechner",
+    description:
+      "Rechnen Sie zwischen km/l, l/100km und mpg um und berechnen Sie die Fahrtkosten aus Strecke und Kraftstoffpreis.",
+    intro:
+      "Geben Sie den Ihnen bekannten Verbrauchswert ein, um ihn in die anderen gängigen Formate umzurechnen, inklusive geschätzter Fahrtkosten.",
+    component: "fuelConsumptionCalculator",
+    iconName: "fuelConsumptionCalculator",
+    cardDescription: "Rechnet zwischen km/l, l/100km und mpg um und schätzt die Fahrtkosten.",
+    articleSections: [
+      {
+        title: "Warum gibt es so viele verschiedene Einheiten?",
+        body: "In Europa ist l/100km üblich, in den USA und Großbritannien mpg, und manche Länder nutzen km/l — mit diesem Tool wechseln Sie sofort zwischen allen Formaten.",
+      },
+      {
+        title: "Wie werden die Fahrtkosten berechnet?",
+        body: "Aus Ihrem Verbrauchswert und der geplanten Fahrtstrecke schätzt das Tool den benötigten Kraftstoff und die ungefähren Kosten.",
+      },
+    ],
+    priority: 0.7,
+  },
+  {
+    slug: "laminatrechner",
+    germanPath: "/de/laminatrechner",
+    turkishPath: "/parke-hesaplama",
+    title: "Laminatrechner",
+    description:
+      "Berechnen Sie die benötigte Anzahl an Laminatpaketen inklusive Verschnitt für die zu verlegende Fläche.",
+    intro:
+      "Geben Sie die zu verlegende Fläche, die Fläche pro Paket und Ihren Verschnittanteil ein, um die Anzahl der zu kaufenden Pakete zu erhalten.",
+    component: "laminateCalculator",
+    iconName: "laminateCalculator",
+    cardDescription: "Berechnet die benötigten Laminatpakete inklusive Verschnitt.",
+    articleSections: [
+      {
+        title: "Warum ein Verschnittanteil einplanen?",
+        body: "Beim Zuschneiden entlang von Wänden und Ecken geht Material verloren, daher verhindert ein realistischer Verschnittanteil, dass mitten in der Verlegung Material fehlt.",
+      },
+      {
+        title: "Wie nutzt man das Ergebnis?",
+        body: "Vergleichen Sie die benötigte Gesamtfläche mit der Flächenangabe pro Paket Ihres Händlers, um die genaue Paketanzahl zu bestimmen.",
+      },
+    ],
+    priority: 0.7,
+  },
+  {
+    slug: "tapetenrechner",
+    germanPath: "/de/tapetenrechner",
+    turkishPath: "/duvar-kagidi-hesaplama",
+    title: "Tapetenrechner",
+    description:
+      "Berechnen Sie die benötigte Anzahl an Tapetenrollen aus Raummaßen und Rollengröße, inklusive Verschnitt.",
+    intro:
+      "Geben Sie Ihre Wandbreiten, Raumhöhe und Rollenmaße ein, um die Anzahl der zu kaufenden Rollen zu erhalten.",
+    component: "wallpaperCalculator",
+    iconName: "wallpaperCalculator",
+    cardDescription: "Berechnet die benötigten Tapetenrollen für einen Raum, inklusive Verschnitt.",
+    articleSections: [
+      {
+        title: "Was berechnet dieses Tool?",
+        body: "Es addiert Ihre Wandflächen, teilt durch die nutzbare Fläche einer Rolle und rechnet den gewählten Verschnittanteil für Musterabgleich und Zuschnitt hinzu.",
+      },
+      {
+        title: "Warum ist der Musterabgleich wichtig?",
+        body: "Tapeten mit Rapportmuster benötigen meist einen höheren Verschnittanteil als einfarbige Tapeten, da jede Bahn zur nächsten passen muss.",
+      },
+    ],
+    priority: 0.7,
+  },
+  {
+    slug: "umzugskartons-rechner",
+    germanPath: "/de/umzugskartons-rechner",
+    turkishPath: "/tasinma-kutusu-hesaplama",
+    title: "Umzugskartons-Rechner",
+    description:
+      "Sehen Sie die geschätzte Anzahl an Umzugskartons und das benötigte Transportervolumen anhand Ihrer Wohnungsgröße.",
+    intro:
+      "Wählen Sie Ihren Wohnungstyp, um sofort typische Werte für kleine und große Kartons sowie eine geschätzte Fahrzeuggröße zu sehen.",
+    component: "movingBoxCalculator",
+    iconName: "movingBoxCalculator",
+    cardDescription: "Schätzt Umzugskartons und Transportervolumen anhand der Wohnungsgröße.",
+    articleSections: [
+      {
+        title: "Wie genau sind diese Zahlen?",
+        body: "Es handelt sich um branchenübliche Durchschnittswerte für eine typische Wohnung dieser Größe — ein Haushalt mit ungewöhnlich viel oder wenig Hausrat benötigt mehr oder weniger Kartons.",
+      },
+      {
+        title: "Wofür dient das Transportervolumen?",
+        body: "Es liefert einen Ausgangspunkt, um Transporter- oder LKW-Größen zu vergleichen, bevor Sie eines buchen.",
+      },
+    ],
+    priority: 0.65,
+  },
+  {
+    slug: "erdgaskosten-rechner",
+    germanPath: "/de/erdgaskosten-rechner",
+    turkishPath: "/dogalgaz-tuketimi-hesaplama",
+    title: "Erdgaskosten-Rechner",
+    description:
+      "Berechnen Sie die Gesamtkosten und das ungefähre kWh-Äquivalent aus Ihrem Erdgasverbrauch in Kubikmetern.",
+    intro:
+      "Geben Sie Ihren Verbrauch und Einzelpreis ein, um die Gesamtkosten und ein ungefähres Energieäquivalent in kWh zu sehen.",
+    component: "naturalGasCalculator",
+    iconName: "naturalGasCalculator",
+    cardDescription: "Berechnet Erdgaskosten und das ungefähre kWh-Äquivalent.",
+    articleSections: [
+      {
+        title: "Warum ist der kWh-Wert ungefähr?",
+        body: "Der genaue Umrechnungsfaktor zwischen Kubikmetern und kWh hängt vom Brennwert des gelieferten Gases ab, der je nach Region und Versorger leicht variiert.",
+      },
+      {
+        title: "Wann ist das nützlich?",
+        body: "Es hilft beim Vergleich einer Gasrechnung mit anderen Energiequellen oder bei der Kostenschätzung vor Ablauf eines Abrechnungszeitraums.",
+      },
+    ],
+    priority: 0.65,
+  },
+  {
+    slug: "e-auto-laderechner",
+    germanPath: "/de/e-auto-laderechner",
+    turkishPath: "/elektrikli-arac-sarj-hesaplama",
+    title: "E-Auto-Laderechner",
+    description:
+      "Berechnen Sie die Ladezeit eines Elektroautos aus Batteriekapazität und Ladeleistung, oder schätzen Sie die Reichweite aus dem Verbrauch.",
+    intro:
+      "Wechseln Sie zwischen Ladezeit- und Reichweiten-Modus, um Ihr Laden zu planen oder abzuschätzen, wie weit eine volle Ladung reicht.",
+    component: "evChargingCalculator",
+    iconName: "evChargingCalculator",
+    cardDescription: "Berechnet Ladezeit oder geschätzte Reichweite eines Elektroautos.",
+    articleSections: [
+      {
+        title: "Was bedeutet Ladeeffizienz?",
+        body: "Nicht die gesamte vom Ladegerät bezogene Energie erreicht die Batterie — ein Teil geht bei der Umwandlung als Wärme verloren, weshalb die Effizienz in die Ladezeitschätzung einfließt.",
+      },
+      {
+        title: "Wie wird die Reichweite geschätzt?",
+        body: "Die Reichweite ergibt sich aus der nutzbaren Batteriekapazität geteilt durch den realen Verbrauch Ihres Fahrzeugs pro 100 km.",
+      },
+    ],
+    priority: 0.65,
   },
 ];
 

@@ -4,7 +4,7 @@ export const horsepowerArticle: UnitArticle = {
   slug: "horsepower",
 
   introduction: [
-    "Horsepower (hp) is a traditional unit used especially to express the power of motor vehicles and engines. Metric horsepower is exactly equal to 735.49875 watts, and is the standard used in the automotive industry across Europe, including Turkey.",
+    "Horsepower (hp) is a traditional unit used especially to express the power of motor vehicles and engines. Metric horsepower is exactly equal to 735.49875 watts and remains common in European vehicle specifications.",
     "Although the SI unit of power is the watt, horsepower remains one of the most commonly used expressions of power on vehicle datasheets, sales brochures and in everyday language, due to historical habit and industry tradition.",
   ],
 
@@ -36,7 +36,7 @@ export const horsepowerArticle: UnitArticle = {
       title: "What is horsepower?",
       paragraphs: [
         "Horsepower is a unit expressing the amount of work an engine or machine does per unit of time — that is, its power. In European vehicle catalogs it is also abbreviated PS (German Pferdestärke) or CV (French cheval-vapeur) — all three express the same metric value (735.49875 W).",
-        "US-originated \"mechanical horsepower\" (imperial hp) corresponds to a slightly different value, 745.7 watts. Though these two horsepower types are very close, they are not identical; in Turkey and Europe, vehicle technical data almost always uses metric horsepower.",
+        "US-originated \"mechanical horsepower\" (imperial hp) corresponds to a slightly different value, 745.7 watts. Though these two horsepower types are very close, they are not identical; European vehicle technical data commonly uses metric horsepower.",
         "The horsepower figure on a vehicle's label expresses the engine's maximum output power at a particular RPM range, and gives a general sense of the vehicle's acceleration performance.",
       ],
     },
@@ -59,7 +59,7 @@ export const horsepowerArticle: UnitArticle = {
     {
       title: "Differences between types of horsepower",
       paragraphs: [
-        "Metric horsepower (hp, PS, CV) equals 735.49875 W and is the standard used in Europe, including Turkey. Mechanical or imperial horsepower (HP), on the other hand, appears in documents originating from the United States and the United Kingdom, and equals 745.7 W.",
+        "Metric horsepower (hp, PS, CV) equals 735.49875 W and is common in continental European vehicle specifications. Mechanical or imperial horsepower (HP), on the other hand, appears in documents originating from the United States and the United Kingdom, and equals 745.7 W.",
         "The difference between these two values is about 1.4% — small enough to be ignored in everyday use, but important to specify in precise engineering calculations.",
         "For electric motors, it is more common to use watts or kilowatts directly rather than horsepower; the concept of horsepower has become especially associated with internal combustion engines and the automotive industry.",
       ],

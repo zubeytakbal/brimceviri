@@ -5,7 +5,7 @@ export const cubicCentimeterArticle: UnitArticle = {
 
   introduction: [
     "The cubic centimeter (cm³) is a small volume unit equal to one millionth of a cubic meter, and is numerically identical to the milliliter (mL). It has a wide range of uses, from laboratory measurements to engine displacement.",
-    "In Turkey, the displacement of motorcycle and car engines is usually expressed in \"cc\" (the abbreviation for cubic centimeter), which is why cubic-centimeter-to-liter conversion is frequently sought by vehicle buyers.",
+    "Engine displacement for motorcycles and cars is often expressed in \"cc\" (the abbreviation for cubic centimeter), so converting cubic centimeters to liters is useful when comparing vehicle specifications.",
   ],
 
   keyFacts: [
@@ -45,7 +45,7 @@ export const cubicCentimeterArticle: UnitArticle = {
       paragraphs: [
         "The displacement of an internal combustion engine's cylinders is the total volume swept during the piston's up-and-down motion, and is generally specified in cubic centimeters (cc). A 125cc motorcycle engine, for example, has a displacement of 125 cubic centimeters.",
         "As engine displacement increases, the power an engine can produce generally increases too, though fuel consumption may rise in parallel. This is why the cc value gives an important clue about a vehicle's balance of performance and economy when buying.",
-        "In Turkey, motorcycle license classes are also determined by engine displacement (such as the 125cc limit), giving the cubic-centimeter unit practical everyday importance.",
+        "Some licensing, tax, insurance and vehicle-class systems use engine-displacement thresholds, giving the cubic-centimeter unit practical everyday importance beyond a vehicle's technical specification.",
       ],
     },
     {

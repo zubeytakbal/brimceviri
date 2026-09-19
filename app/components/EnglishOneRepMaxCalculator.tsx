@@ -1,0 +1,15 @@
+"use client";
+
+import { useMemo, useState } from "react";
+import { calculateOneRepMax, calculateTrainingPercentages } from "../converter/oneRepMaxCalculator";
+
+function number(value: string) { const parsed = Number(value.trim().replace(/,/g, ".")); return Number.isFinite(parsed) ? parsed : null; }
+function format(value: number, unit: string) { return `${new Intl.NumberFormat("en-US", { maximumFractionDigits: 1 }).format(value)} ${unit}`; }
+function estimatedReps(percentage: number) { return percentage >= 100 ? 1 : Math.round(30 * (100 / percentage - 1)); }
+
+export default function EnglishOneRepMaxCalculator() {
+  const [weight, setWeight] = useState("100"); const [reps, setReps] = useState("5"); const [unit, setUnit] = useState<"kg" | "lb">("kg");
+  const oneRepMax = useMemo(() => { const enteredWeight = number(weight); const enteredReps = number(reps); return enteredWeight !== null && enteredReps !== null ? calculateOneRepMax(enteredWeight, enteredReps) : null; }, [weight, reps]);
+  const table = useMemo(() => oneRepMax === null ? null : calculateTrainingPercentages(oneRepMax), [oneRepMax]);
+  return <div className="category-general-converter"><div className="engineering-calculator-card"><p className="calculator-usage-hint">Estimate a one-repetition maximum from one submaximal set using the Epley formula. Keep the same unit throughout.</p><div className="paint-calculator-grid"><label className="category-general-converter-field"><span>Weight lifted</span><div className="category-general-converter-input-row"><input inputMode="decimal" type="text" value={weight} onChange={(event) => setWeight(event.target.value)} /><select value={unit} onChange={(event) => setUnit(event.target.value as "kg" | "lb")}><option value="kg">kg</option><option value="lb">lb</option></select></div></label><label className="category-general-converter-field"><span>Repetitions completed</span><input inputMode="numeric" type="text" value={reps} onChange={(event) => setReps(event.target.value)} /></label></div></div><div aria-live="polite" className="category-general-converter-result paint-calculator-result">{oneRepMax === null ? <strong>Enter a positive weight and 1 to 15 repetitions.</strong> : <div className="paint-calculator-result-grid"><div><span>Estimated 1RM</span><strong>{format(oneRepMax, unit)}</strong></div><div><span>Epley formula</span><strong>weight x (1 + reps / 30)</strong></div></div>}</div>{table && <div className="conversion-table-wrap"><table className="conversion-table"><caption>Training-load reference from the estimated 1RM</caption><thead><tr><th scope="col">1RM percentage</th><th scope="col">Estimated load</th><th scope="col">Epley-equivalent repetitions</th></tr></thead><tbody>{table.map((row) => <tr key={row.percentage}><td>{row.percentage}%</td><td>{format(row.weight, unit)}</td><td>About {estimatedReps(row.percentage)}</td></tr>)}</tbody></table></div>}<p className="calculator-usage-hint"><strong>Safety:</strong> this is a training estimate, not a test prescription. Technique, fatigue, equipment, spotting and personal health can materially change what is appropriate to lift.</p></div>;
+}

@@ -177,6 +177,15 @@ export default function PregnancyCalculator({
           </>
         )}
       </div>
+
+      {locale === "en" && (
+        <p className="calculator-usage-hint">
+          <strong>Important:</strong> This is an LMP-based estimate, not a
+          confirmation of gestational age or due date. A clinician may use an
+          early ultrasound and other clinical information to confirm dating;
+          seek prompt medical care for symptoms or concerns.
+        </p>
+      )}
     </div>
   );
 }

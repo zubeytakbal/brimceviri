@@ -100,10 +100,21 @@ export function KineticEnergyCalculator() {
 }
 
 export function PercentageCalculator() {
-  const [part, setPart] = useState("15");
-  const [whole, setWhole] = useState("60");
-  const result = useMemo(() => { const p = number(part); const w = number(whole); return Number.isFinite(p) && Number.isFinite(w) && w !== 0 ? { title: "Percentage", values: [["Result", `${format((p / w) * 100)}%`]] } : null; }, [part, whole]);
-  return <div className="category-general-converter"><div className="engineering-calculator-card"><div className="paint-calculator-grid"><Field label="Part" value={part} onChange={setPart} /><Field label="Whole" value={whole} onChange={setWhole} /></div></div><ScienceResult result={result} error="Enter valid values; the whole cannot be zero." /></div>;
+  const [mode, setMode] = useState<"what-percent" | "find-amount" | "find-whole" | "change">("what-percent");
+  const [values, setValues] = useState({ amount: "15", reference: "60", percent: "25", start: "80", end: "100" });
+  const set = (key: keyof typeof values) => (value: string) => setValues((current) => ({ ...current, [key]: value }));
+  const result = useMemo(() => {
+    const amount = number(values.amount); const reference = number(values.reference); const percent = number(values.percent); const start = number(values.start); const end = number(values.end);
+    if (mode === "what-percent") return Number.isFinite(amount) && Number.isFinite(reference) && reference !== 0 ? { title: "Percentage", values: [["Result", `${format((amount / reference) * 100)}%`]] } : null;
+    if (mode === "find-amount") return Number.isFinite(percent) && Number.isFinite(reference) ? { title: "Percentage amount", values: [["Result", format((percent / 100) * reference)]] } : null;
+    if (mode === "find-whole") return Number.isFinite(amount) && Number.isFinite(percent) && percent !== 0 ? { title: "Reference total", values: [["Result", format(amount / (percent / 100))]] } : null;
+    return Number.isFinite(start) && Number.isFinite(end) && start !== 0 ? { title: "Percentage change", values: [["Change", `${format(((end - start) / start) * 100)}%`], ["Difference", format(end - start)]] } : null;
+  }, [mode, values]);
+  const fields = mode === "what-percent" ? <><Field label="Amount" value={values.amount} onChange={set("amount")} /><Field label="Reference total" value={values.reference} onChange={set("reference")} /></>
+    : mode === "find-amount" ? <><Field label="Percent" value={values.percent} onChange={set("percent")} /><Field label="Reference total" value={values.reference} onChange={set("reference")} /></>
+      : mode === "find-whole" ? <><Field label="Amount" value={values.amount} onChange={set("amount")} /><Field label="Percent" value={values.percent} onChange={set("percent")} /></>
+        : <><Field label="Starting value" value={values.start} onChange={set("start")} /><Field label="Ending value" value={values.end} onChange={set("end")} /></>;
+  return <div className="category-general-converter"><div className="engineering-calculator-card"><div className="engineering-targets"><span>Calculation</span><div className="engineering-target-grid hydrostatic-target-grid">{([ ["what-percent", "X is what % of Y?"], ["find-amount", "What is X% of Y?"], ["find-whole", "X is Y% of what?"], ["change", "Percentage change"] ] as const).map(([id, label]) => <button type="button" key={id} className={`engineering-target-button${mode === id ? " is-active" : ""}`} onClick={() => setMode(id)}>{label}</button>)}</div></div><div className="paint-calculator-grid">{fields}</div></div><ScienceResult result={result} error="Enter valid values. Reference totals, percentages and starting values cannot be zero where used as a divisor." /></div>;
 }
 
 export function MeanCalculator() {

@@ -9,7 +9,7 @@ import {
   type FuelConsumptionResult,
 } from "../converter/fuelConsumptionCalculator";
 
-type SupportedLocale = "tr" | "en" | "uz";
+type SupportedLocale = "tr" | "en" | "uz" | "de";
 
 type FuelCopy = {
   modeLabel: string;
@@ -100,6 +100,28 @@ const copyByLocale: Record<SupportedLocale, FuelCopy> = {
     tripResultLabels: {
       litersNeeded: "Kerakli Yoqilg'i",
       totalCost: "Jami Xarajat",
+    },
+  },
+  de: {
+    modeLabel: "Welchen Wert kennen Sie?",
+    modeLiters100km: "Liter pro 100 km",
+    modeKmPerLiter: "km pro Liter",
+    fieldLiters100km: "Kraftstoffverbrauch (l/100km)",
+    fieldKmPerLiter: "Kraftstoffverbrauch (km/l)",
+    emptyState: "Geben Sie einen gültigen Verbrauchswert ein, um das Ergebnis zu sehen.",
+    resultLabels: {
+      kmPerLiter: "km/l",
+      litersPer100km: "l/100km",
+      mpgUs: "mpg (USA)",
+      mpgUk: "mpg (UK)",
+    },
+    tripHeading: "Fahrtkosten berechnen",
+    fieldDistance: "Fahrtstrecke (km)",
+    fieldPrice: "Kraftstoffpreis (EUR/l)",
+    tripEmptyState: "Geben Sie eine gültige Strecke und einen Preis ein, um die Kosten zu sehen.",
+    tripResultLabels: {
+      litersNeeded: "Benötigter Kraftstoff",
+      totalCost: "Gesamtkosten",
     },
   },
 };

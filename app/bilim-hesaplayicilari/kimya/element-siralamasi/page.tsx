@@ -9,6 +9,7 @@ export const metadata: Metadata = {
     "118 elementi atom kütlesine, atom numarasına veya isme göre sırala — en ağır element, en hafif element ve aradaki tüm elementleri tek tabloda gör.",
   alternates: {
     canonical: "/bilim-hesaplayicilari/kimya/element-siralamasi",
+    languages: { de: "/de/elementrangliste" },
   },
   openGraph: {
     title: "En Ağır ve En Hafif Elementler: Sıralanabilir Element Tablosu",

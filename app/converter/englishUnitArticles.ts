@@ -17,6 +17,15 @@ import { gallonArticle } from "./articles/english/gallonArticle";
 import { acreArticle } from "./articles/english/acreArticle";
 import { cubicCentimeterArticle } from "./articles/english/cubicCentimeterArticle";
 import { gigabyteArticle } from "./articles/english/gigabyteArticle";
+import { literArticle } from "./articles/english/literArticle";
+import { kilogramArticle } from "./articles/english/kilogramArticle";
+import { imperialGallonArticle } from "./articles/english/imperialGallonArticle";
+import { usPintArticle } from "./articles/english/usPintArticle";
+import { imperialPintArticle } from "./articles/english/imperialPintArticle";
+import { usQuartArticle } from "./articles/english/usQuartArticle";
+import { imperialQuartArticle } from "./articles/english/imperialQuartArticle";
+import { usFluidOunceArticle } from "./articles/english/usFluidOunceArticle";
+import { imperialFluidOunceArticle } from "./articles/english/imperialFluidOunceArticle";
 
 const meterArticle: UnitArticle = {
   slug: "meter",
@@ -265,6 +274,15 @@ export const englishUnitArticles: UnitArticle[] = [
   acreArticle,
   cubicCentimeterArticle,
   gigabyteArticle,
+  literArticle,
+  kilogramArticle,
+  imperialGallonArticle,
+  usPintArticle,
+  imperialPintArticle,
+  usQuartArticle,
+  imperialQuartArticle,
+  usFluidOunceArticle,
+  imperialFluidOunceArticle,
 ];
 
 export function findEnglishUnitArticle(slug: string) {

@@ -417,6 +417,30 @@ export const unitRegistry: UnitRegistryEntry[] = [
     uz: { name: "Donum", slug: "donum" },
   },
   {
+    id: "feddan",
+    category: "alan",
+    symbol: "feddan",
+    siFactor: 4200.833,
+    tr: { name: "Feddan", slug: "feddan" },
+    en: { name: "Feddan", slug: "feddan" },
+  },
+  {
+    id: "kirat-arazi",
+    category: "alan",
+    symbol: "kırat (arazi)",
+    siFactor: 175.0347,
+    tr: { name: "Kırat (Arazi)", slug: "kirat-arazi" },
+    en: { name: "Qirat (Land)", slug: "qirat-land" },
+  },
+  {
+    id: "sehm-arazi",
+    category: "alan",
+    symbol: "sehm",
+    siFactor: 7.2931,
+    tr: { name: "Sehm (Arazi Payı)", slug: "sehm-arazi" },
+    en: { name: "Sahm (Land Share)", slug: "sahm-land" },
+  },
+  {
     id: "dekar",
     category: "alan",
     symbol: "dekar",
@@ -1012,14 +1036,14 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Gram per Cubic Centimeter", slug: "gram-per-cubic-centimeter" },
     de: { name: "Gramm/Kubikzentimeter", slug: "gramm-kubikzentimeter" },
   },
-  { id: "g-ml", category: "yogunluk", symbol: "g/mL", siFactor: 1000, tr: { name: "Gram/Mililitre", slug: "gram-mililitre" } },
-  { id: "kg-l", category: "yogunluk", symbol: "kg/L", siFactor: 1000, tr: { name: "Kilogram/Litre", slug: "kilogram-litre" } },
-  { id: "g-l", category: "yogunluk", symbol: "g/L", siFactor: 1, tr: { name: "Gram/Litre", slug: "gram-litre" } },
-  { id: "mg-l", category: "yogunluk", symbol: "mg/L", siFactor: 0.001, tr: { name: "Miligram/Litre", slug: "miligram-litre" } },
-  { id: "lb-ft3", category: "yogunluk", symbol: "lb/ft³", siFactor: 16.01846337, tr: { name: "Pound/Fitküp", slug: "pound-fitkup" } },
-  { id: "lb-in3", category: "yogunluk", symbol: "lb/in³", siFactor: 27679.90471, tr: { name: "Pound/İnçküp", slug: "pound-inckup" } },
-  { id: "lb-gal-us", category: "yogunluk", symbol: "lb/gal (US)", siFactor: 119.826427, tr: { name: "Pound/Galon (US)", slug: "pound-galon" } },
-  { id: "slug-ft3", category: "yogunluk", symbol: "slug/ft³", siFactor: 515.378818, tr: { name: "Slug/Fitküp", slug: "slug-fitkup" } },
+  { id: "g-ml", category: "yogunluk", symbol: "g/mL", siFactor: 1000, tr: { name: "Gram/Mililitre", slug: "gram-mililitre" }, de: { name: "Gramm pro Milliliter", slug: "gramm-pro-milliliter" } },
+  { id: "kg-l", category: "yogunluk", symbol: "kg/L", siFactor: 1000, tr: { name: "Kilogram/Litre", slug: "kilogram-litre" }, de: { name: "Kilogramm pro Liter", slug: "kilogramm-pro-liter" } },
+  { id: "g-l", category: "yogunluk", symbol: "g/L", siFactor: 1, tr: { name: "Gram/Litre", slug: "gram-litre" }, de: { name: "Gramm pro Liter", slug: "gramm-pro-liter" } },
+  { id: "mg-l", category: "yogunluk", symbol: "mg/L", siFactor: 0.001, tr: { name: "Miligram/Litre", slug: "miligram-litre" }, de: { name: "Milligramm pro Liter", slug: "milligramm-pro-liter" } },
+  { id: "lb-ft3", category: "yogunluk", symbol: "lb/ft³", siFactor: 16.01846337, tr: { name: "Pound/Fitküp", slug: "pound-fitkup" }, de: { name: "Pfund pro Kubikfuß", slug: "pfund-pro-kubikfuss" } },
+  { id: "lb-in3", category: "yogunluk", symbol: "lb/in³", siFactor: 27679.90471, tr: { name: "Pound/İnçküp", slug: "pound-inckup" }, de: { name: "Pfund pro Kubikzoll", slug: "pfund-pro-kubikzoll" } },
+  { id: "lb-gal-us", category: "yogunluk", symbol: "lb/gal (US)", siFactor: 119.826427, tr: { name: "Pound/Galon (US)", slug: "pound-galon" }, de: { name: "Pfund pro US-Gallone", slug: "pfund-pro-us-gallone" } },
+  { id: "slug-ft3", category: "yogunluk", symbol: "slug/ft³", siFactor: 515.378818, tr: { name: "Slug/Fitküp", slug: "slug-fitkup" }, de: { name: "Slug pro Kubikfuß", slug: "slug-pro-kubikfuss" } },
 
   // ---- hız / speed / Geschwindigkeit ----
   {
@@ -1091,9 +1115,9 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Meter per Second Squared", slug: "meter-per-second-squared" },
     de: { name: "Meter pro Sekundequadrat", slug: "meter-pro-sekundequadrat" },
   },
-  { id: "cm-s2", category: "ivme", symbol: "cm/s²", siFactor: 0.01, tr: { name: "Santimetre/saniyekare", slug: "santimetre-saniyekare" } },
-  { id: "mm-s2", category: "ivme", symbol: "mm/s²", siFactor: 0.001, tr: { name: "Milimetre/saniyekare", slug: "milimetre-saniyekare" } },
-  { id: "km-s2", category: "ivme", symbol: "km/s²", siFactor: 1000, tr: { name: "Kilometre/saniyekare", slug: "kilometre-saniyekare" } },
+  { id: "cm-s2", category: "ivme", symbol: "cm/s²", siFactor: 0.01, tr: { name: "Santimetre/saniyekare", slug: "santimetre-saniyekare" }, de: { name: "Zentimeter pro Sekundequadrat", slug: "zentimeter-pro-sekundequadrat" } },
+  { id: "mm-s2", category: "ivme", symbol: "mm/s²", siFactor: 0.001, tr: { name: "Milimetre/saniyekare", slug: "milimetre-saniyekare" }, de: { name: "Millimeter pro Sekundequadrat", slug: "millimeter-pro-sekundequadrat" } },
+  { id: "km-s2", category: "ivme", symbol: "km/s²", siFactor: 1000, tr: { name: "Kilometre/saniyekare", slug: "kilometre-saniyekare" }, de: { name: "Kilometer pro Sekundequadrat", slug: "kilometer-pro-sekundequadrat" } },
   {
     id: "ft-s2",
     category: "ivme",
@@ -1103,10 +1127,10 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Foot per Second Squared", slug: "foot-per-second-squared" },
     de: { name: "Fuß pro Sekundequadrat", slug: "fuss-pro-sekundequadrat" },
   },
-  { id: "in-s2", category: "ivme", symbol: "in/s²", siFactor: 0.0254, tr: { name: "İnç/saniyekare", slug: "inc-saniyekare" } },
-  { id: "m-min2", category: "ivme", symbol: "m/min²", siFactor: 1 / 3600, tr: { name: "Metre/dakikakare", slug: "metre-dakikakare" } },
-  { id: "ft-min2", category: "ivme", symbol: "ft/min²", siFactor: 0.3048 / 3600, tr: { name: "Fit/dakikakare", slug: "fit-dakikakare" } },
-  { id: "ivme-gal", category: "ivme", symbol: "gal", siFactor: 0.01, tr: { name: "Gal (ivme birimi)", slug: "gal-ivme" } },
+  { id: "in-s2", category: "ivme", symbol: "in/s²", siFactor: 0.0254, tr: { name: "İnç/saniyekare", slug: "inc-saniyekare" }, de: { name: "Zoll pro Sekundequadrat", slug: "zoll-pro-sekundequadrat" } },
+  { id: "m-min2", category: "ivme", symbol: "m/min²", siFactor: 1 / 3600, tr: { name: "Metre/dakikakare", slug: "metre-dakikakare" }, de: { name: "Meter pro Minutequadrat", slug: "meter-pro-minutequadrat" } },
+  { id: "ft-min2", category: "ivme", symbol: "ft/min²", siFactor: 0.3048 / 3600, tr: { name: "Fit/dakikakare", slug: "fit-dakikakare" }, de: { name: "Fuß pro Minutequadrat", slug: "fuss-pro-minutequadrat" } },
+  { id: "ivme-gal", category: "ivme", symbol: "gal", siFactor: 0.01, tr: { name: "Gal (ivme birimi)", slug: "gal-ivme" }, de: { name: "Gal (Beschleunigung)", slug: "gal-beschleunigung" } },
   {
     id: "g0",
     category: "ivme",
@@ -1173,8 +1197,8 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Radian per Second", slug: "radian-per-second" },
     de: { name: "Radiant pro Sekunde", slug: "radiant-pro-sekunde" },
   },
-  { id: "rad-min", category: "acisal_hiz", symbol: "rad/min", siFactor: 1 / 60, tr: { name: "Radyan/dakika", slug: "radyan-dakika" } },
-  { id: "rad-h", category: "acisal_hiz", symbol: "rad/h", siFactor: 1 / 3600, tr: { name: "Radyan/saat", slug: "radyan-saat" } },
+  { id: "rad-min", category: "acisal_hiz", symbol: "rad/min", siFactor: 1 / 60, tr: { name: "Radyan/dakika", slug: "radyan-dakika" }, de: { name: "Radiant pro Minute", slug: "radiant-pro-minute" } },
+  { id: "rad-h", category: "acisal_hiz", symbol: "rad/h", siFactor: 1 / 3600, tr: { name: "Radyan/saat", slug: "radyan-saat" }, de: { name: "Radiant pro Stunde", slug: "radiant-pro-stunde" } },
   {
     id: "rpm",
     category: "acisal_hiz",
@@ -1184,7 +1208,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Revolutions per Minute (RPM)", slug: "rpm" },
     de: { name: "Umdrehungen pro Minute (U/min)", slug: "umdrehungen-pro-minute" },
   },
-  { id: "hz", category: "acisal_hiz", symbol: "Hz", siFactor: 2 * Math.PI, tr: { name: "Devir/saniye", slug: "devir-saniye-acisal" } },
+  { id: "hz", category: "acisal_hiz", symbol: "Hz", siFactor: 2 * Math.PI, tr: { name: "Devir/saniye", slug: "devir-saniye-acisal" }, de: { name: "Umdrehung pro Sekunde", slug: "umdrehung-pro-sekunde" } },
   {
     id: "deg-s",
     category: "acisal_hiz",
@@ -1194,8 +1218,8 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Degree per Second", slug: "degree-per-second" },
     de: { name: "Grad pro Sekunde", slug: "grad-pro-sekunde" },
   },
-  { id: "deg-min", category: "acisal_hiz", symbol: "°/min", siFactor: Math.PI / (180 * 60), tr: { name: "Derece/dakika", slug: "derece-dakika" } },
-  { id: "deg-h", category: "acisal_hiz", symbol: "°/h", siFactor: Math.PI / (180 * 3600), tr: { name: "Derece/saat", slug: "derece-saat" } },
+  { id: "deg-min", category: "acisal_hiz", symbol: "°/min", siFactor: Math.PI / (180 * 60), tr: { name: "Derece/dakika", slug: "derece-dakika" }, de: { name: "Grad pro Minute", slug: "grad-pro-minute" } },
+  { id: "deg-h", category: "acisal_hiz", symbol: "°/h", siFactor: Math.PI / (180 * 3600), tr: { name: "Derece/saat", slug: "derece-saat" }, de: { name: "Grad pro Stunde", slug: "grad-pro-stunde" } },
 
   // ---- açı / angle / Winkel ----
   {
@@ -1292,9 +1316,9 @@ export const unitRegistry: UnitRegistryEntry[] = [
     de: { name: "Newton", slug: "newton" },
     uz: { name: "Nyuton", slug: "nyuton" },
   },
-  { id: "kilonewton", category: "kuvvet", symbol: "kN", siFactor: 1000, tr: { name: "Kilonewton", slug: "kilonewton" } },
-  { id: "dyn", category: "kuvvet", symbol: "dyn", siFactor: 0.00001, tr: { name: "Dyn", slug: "dyn" } },
-  { id: "lbf", category: "kuvvet", symbol: "lbf", siFactor: 4.4482216, tr: { name: "Pound-kuvvet", slug: "pound-kuvvet" } },
+  { id: "kilonewton", category: "kuvvet", symbol: "kN", siFactor: 1000, tr: { name: "Kilonewton", slug: "kilonewton" }, de: { name: "Kilonewton", slug: "kilonewton" } },
+  { id: "dyn", category: "kuvvet", symbol: "dyn", siFactor: 0.00001, tr: { name: "Dyn", slug: "dyn" }, de: { name: "Dyn", slug: "dyn" } },
+  { id: "lbf", category: "kuvvet", symbol: "lbf", siFactor: 4.4482216, tr: { name: "Pound-kuvvet", slug: "pound-kuvvet" }, de: { name: "Pound-Force", slug: "pound-force" } },
   {
     id: "kilogram-kuvvet",
     category: "kuvvet",
@@ -1315,7 +1339,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     de: { name: "Newtonmeter", slug: "newtonmeter" },
     uz: { name: "Nyuton-Metr", slug: "nyuton-metr" },
   },
-  { id: "kilonewton-metre", category: "tork", symbol: "kN·m", siFactor: 1000, tr: { name: "Kilonewton-metre", slug: "kilonewton-metre" } },
+  { id: "kilonewton-metre", category: "tork", symbol: "kN·m", siFactor: 1000, tr: { name: "Kilonewton-metre", slug: "kilonewton-metre" }, de: { name: "Kilonewtonmeter", slug: "kilonewtonmeter" } },
   {
     id: "kilogram-kuvvet-metre",
     category: "tork",
@@ -1353,7 +1377,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Newton-Second", slug: "newton-second" },
     de: { name: "Newtonsekunde", slug: "newtonsekunde" },
   },
-  { id: "lb-ft-s", category: "momentum", symbol: "lb·ft/s", siFactor: 0.138255, tr: { name: "Pound-fit/saniye", slug: "pound-fit-saniye" } },
+  { id: "lb-ft-s", category: "momentum", symbol: "lb·ft/s", siFactor: 0.138255, tr: { name: "Pound-fit/saniye", slug: "pound-fit-saniye" }, de: { name: "Pfund-Fuß pro Sekunde", slug: "pfund-fuss-pro-sekunde" } },
 
   // ---- basınç / pressure / Druck ----
   {
@@ -1495,8 +1519,8 @@ export const unitRegistry: UnitRegistryEntry[] = [
     de: { name: "Pascalsekunde", slug: "pascalsekunde" },
     uz: { name: "Paskal-Soniya", slug: "paskal-soniya" },
   },
-  { id: "milipascal-saniye", category: "viskozite_dinamik", symbol: "mPa·s", siFactor: 0.001, tr: { name: "Milipaskal-saniye", slug: "milipaskal-saniye" } },
-  { id: "poise", category: "viskozite_dinamik", symbol: "P", siFactor: 0.1, tr: { name: "Poise", slug: "poise" } },
+  { id: "milipascal-saniye", category: "viskozite_dinamik", symbol: "mPa·s", siFactor: 0.001, tr: { name: "Milipaskal-saniye", slug: "milipaskal-saniye" }, de: { name: "Millipascalsekunde", slug: "millipascalsekunde" } },
+  { id: "poise", category: "viskozite_dinamik", symbol: "P", siFactor: 0.1, tr: { name: "Poise", slug: "poise" }, de: { name: "Poise", slug: "poise" } },
   {
     id: "centipoise",
     category: "viskozite_dinamik",
@@ -1515,7 +1539,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Square Meter per Second", slug: "square-meter-per-second" },
     de: { name: "Quadratmeter pro Sekunde", slug: "quadratmeter-pro-sekunde" },
   },
-  { id: "mm2-s", category: "viskozite_kinematik", symbol: "mm²/s", siFactor: 0.000001, tr: { name: "Milimetrekare/saniye", slug: "milimetrekare-saniye" } },
+  { id: "mm2-s", category: "viskozite_kinematik", symbol: "mm²/s", siFactor: 0.000001, tr: { name: "Milimetrekare/saniye", slug: "milimetrekare-saniye" }, de: { name: "Quadratmillimeter pro Sekunde", slug: "quadratmillimeter-pro-sekunde" } },
   {
     id: "centistoke",
     category: "viskozite_kinematik",
@@ -1536,9 +1560,9 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Cubic Meter per Second", slug: "cubic-meter-per-second" },
     de: { name: "Kubikmeter pro Sekunde", slug: "kubikmeter-pro-sekunde" },
   },
-  { id: "l-s", category: "debi_hacimsel", symbol: "L/s", siFactor: 0.001, tr: { name: "Litre/saniye", slug: "litre-saniye" } },
-  { id: "m3-h-hacimsel", category: "debi_hacimsel", symbol: "m³/h", siFactor: 1 / 3600, tr: { name: "Metreküp/saat", slug: "metrekup-saat-hacimsel" } },
-  { id: "l-min-hacimsel", category: "debi_hacimsel", symbol: "L/min", siFactor: 0.001 / 60, tr: { name: "Litre/dakika", slug: "litre-dakika-hacimsel" } },
+  { id: "l-s", category: "debi_hacimsel", symbol: "L/s", siFactor: 0.001, tr: { name: "Litre/saniye", slug: "litre-saniye" }, de: { name: "Liter pro Sekunde", slug: "liter-pro-sekunde" } },
+  { id: "m3-h-hacimsel", category: "debi_hacimsel", symbol: "m³/h", siFactor: 1 / 3600, tr: { name: "Metreküp/saat", slug: "metrekup-saat-hacimsel" }, de: { name: "Kubikmeter pro Stunde (Volumenstrom)", slug: "kubikmeter-pro-stunde-volumenstrom" } },
+  { id: "l-min-hacimsel", category: "debi_hacimsel", symbol: "L/min", siFactor: 0.001 / 60, tr: { name: "Litre/dakika", slug: "litre-dakika-hacimsel" }, de: { name: "Liter pro Minute (Volumenstrom)", slug: "liter-pro-minute-volumenstrom" } },
   {
     id: "cfm",
     category: "debi_hacimsel",
@@ -1575,8 +1599,8 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Kilogram per Hour", slug: "kilogram-per-hour" },
     de: { name: "Kilogramm pro Stunde", slug: "kilogramm-pro-stunde" },
   },
-  { id: "g-s", category: "debi_kutlesel", symbol: "g/s", siFactor: 0.001, tr: { name: "Gram/saniye", slug: "gram-saniye" } },
-  { id: "g-h", category: "debi_kutlesel", symbol: "g/h", siFactor: 0.001 / 3600, tr: { name: "Gram/saat", slug: "gram-saat" } },
+  { id: "g-s", category: "debi_kutlesel", symbol: "g/s", siFactor: 0.001, tr: { name: "Gram/saniye", slug: "gram-saniye" }, de: { name: "Gramm pro Sekunde", slug: "gramm-pro-sekunde" } },
+  { id: "g-h", category: "debi_kutlesel", symbol: "g/h", siFactor: 0.001 / 3600, tr: { name: "Gram/saat", slug: "gram-saat" }, de: { name: "Gramm pro Stunde", slug: "gramm-pro-stunde" } },
 
   // ---- enerji / energy / Energie ----
   {
@@ -1804,8 +1828,8 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Watt per Meter-Kelvin", slug: "watt-per-meter-kelvin" },
     de: { name: "Watt pro Meter-Kelvin", slug: "watt-pro-meter-kelvin" },
   },
-  { id: "kw-mk", category: "isil_iletkenlik", symbol: "kW/m·K", siFactor: 1000, tr: { name: "Kilowatt/metre-Kelvin", slug: "kilowatt-metre-kelvin" } },
-  { id: "w-cmk", category: "isil_iletkenlik", symbol: "W/cm·K", siFactor: 100, tr: { name: "Watt/santimetre-Kelvin", slug: "watt-santimetre-kelvin" } },
+  { id: "kw-mk", category: "isil_iletkenlik", symbol: "kW/m·K", siFactor: 1000, tr: { name: "Kilowatt/metre-Kelvin", slug: "kilowatt-metre-kelvin" }, de: { name: "Kilowatt pro Meter-Kelvin", slug: "kilowatt-pro-meter-kelvin" } },
+  { id: "w-cmk", category: "isil_iletkenlik", symbol: "W/cm·K", siFactor: 100, tr: { name: "Watt/santimetre-Kelvin", slug: "watt-santimetre-kelvin" }, de: { name: "Watt pro Zentimeter-Kelvin", slug: "watt-pro-zentimeter-kelvin" } },
   {
     id: "btu-hftf",
     category: "isil_iletkenlik",
@@ -1833,7 +1857,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Kilowatt per Square Meter", slug: "kilowatt-per-square-meter" },
     de: { name: "Kilowatt pro Quadratmeter", slug: "kilowatt-pro-quadratmeter" },
   },
-  { id: "cal-cm2s", category: "isi_akisi", symbol: "cal/cm²·s", siFactor: 41840, tr: { name: "Kalori/santimetrekare-saniye", slug: "kalori-santimetrekare-saniye" } },
+  { id: "cal-cm2s", category: "isi_akisi", symbol: "cal/cm²·s", siFactor: 41840, tr: { name: "Kalori/santimetrekare-saniye", slug: "kalori-santimetrekare-saniye" }, de: { name: "Kalorie pro Quadratzentimeter-Sekunde", slug: "kalorie-pro-quadratzentimeter-sekunde" } },
   {
     id: "j-kgk",
     category: "ozgul_isi",
@@ -1843,7 +1867,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Joule per Kilogram-Kelvin", slug: "joule-per-kilogram-kelvin" },
     de: { name: "Joule pro Kilogramm-Kelvin", slug: "joule-pro-kilogramm-kelvin" },
   },
-  { id: "kj-kgk", category: "ozgul_isi", symbol: "kJ/kg·K", siFactor: 1000, tr: { name: "Kilojoule/kilogram-Kelvin", slug: "kilojoule-kilogram-kelvin" } },
+  { id: "kj-kgk", category: "ozgul_isi", symbol: "kJ/kg·K", siFactor: 1000, tr: { name: "Kilojoule/kilogram-Kelvin", slug: "kilojoule-kilogram-kelvin" }, de: { name: "Kilojoule pro Kilogramm-Kelvin", slug: "kilojoule-pro-kilogramm-kelvin" } },
   {
     id: "cal-gk",
     category: "ozgul_isi",
@@ -1853,7 +1877,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Calorie per Gram-Kelvin", slug: "calorie-per-gram-kelvin" },
     de: { name: "Kalorie pro Gramm-Kelvin", slug: "kalorie-pro-gramm-kelvin" },
   },
-  { id: "btu-lbf", category: "ozgul_isi", symbol: "Btu/lb·°F", siFactor: 4186.8, tr: { name: "Btu/pound-Fahrenhayt", slug: "btu-pound-fahrenhayt" } },
+  { id: "btu-lbf", category: "ozgul_isi", symbol: "Btu/lb·°F", siFactor: 4186.8, tr: { name: "Btu/pound-Fahrenhayt", slug: "btu-pound-fahrenhayt" }, de: { name: "BTU pro Pfund-Fahrenheit", slug: "btu-pro-pfund-fahrenheit" } },
 
   // ---- debi / elektrik ("core" categories, distinct from *_hacimsel/*_kutlesel/*_gerilim/*_akim) ----
   {
@@ -2107,7 +2131,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Ampere per Meter", slug: "ampere-per-meter" },
     de: { name: "Ampere pro Meter", slug: "ampere-pro-meter" },
   },
-  { id: "ka-m", category: "manyetik_alan", symbol: "kA/m", siFactor: 1000, tr: { name: "Kiloamper/metre", slug: "kiloamper-metre" } },
+  { id: "ka-m", category: "manyetik_alan", symbol: "kA/m", siFactor: 1000, tr: { name: "Kiloamper/metre", slug: "kiloamper-metre" }, de: { name: "Kiloampere pro Meter", slug: "kiloampere-pro-meter" } },
   {
     id: "oersted",
     category: "manyetik_alan",
@@ -2138,8 +2162,8 @@ export const unitRegistry: UnitRegistryEntry[] = [
     de: { name: "Milliweber", slug: "milliweber" },
     uz: { name: "Milliveber", slug: "milliveber" },
   },
-  { id: "mikroweber", category: "manyetik_aki", symbol: "µWb", siFactor: 0.000001, tr: { name: "Mikroweber", slug: "mikroweber" } },
-  { id: "nanoweber", category: "manyetik_aki", symbol: "nWb", siFactor: 1e-9, tr: { name: "Nanoweber", slug: "nanoweber" } },
+  { id: "mikroweber", category: "manyetik_aki", symbol: "µWb", siFactor: 0.000001, tr: { name: "Mikroweber", slug: "mikroweber" }, de: { name: "Mikroweber", slug: "mikroweber" } },
+  { id: "nanoweber", category: "manyetik_aki", symbol: "nWb", siFactor: 1e-9, tr: { name: "Nanoweber", slug: "nanoweber" }, de: { name: "Nanoweber", slug: "nanoweber" } },
   { id: "weber-alias", category: "manyetik_aki", symbol: "weber", siFactor: 1 },
 
   // ---- veri / digital storage ----
@@ -2385,6 +2409,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "999 Ayar Gümüş", slug: "999-ayar-gumus" },
     en: { name: "Fine Silver (999)", slug: "fine-silver" },
     uz: { name: "999 Soflikdagi Kumush", slug: "999-soflikdagi-kumush" },
+    de: { name: "Feinsilber (999)", slug: "feinsilber-999" },
   },
   {
     id: "gumus-925",
@@ -2394,6 +2419,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "925 Ayar Gümüş", slug: "925-ayar-gumus" },
     en: { name: "Sterling Silver (925)", slug: "sterling-silver" },
     uz: { name: "925 Soflikdagi Kumush", slug: "925-soflikdagi-kumush" },
+    de: { name: "Sterlingsilber (925)", slug: "sterlingsilber-925" },
   },
   {
     id: "gumus-900",
@@ -2403,6 +2429,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "900 Ayar Gümüş", slug: "900-ayar-gumus" },
     en: { name: "Coin Silver (900)", slug: "coin-silver" },
     uz: { name: "900 Soflikdagi Kumush", slug: "900-soflikdagi-kumush" },
+    de: { name: "Münzsilber (900)", slug: "muenzsilber-900" },
   },
   {
     id: "gumus-800",
@@ -2412,6 +2439,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "800 Ayar Gümüş", slug: "800-ayar-gumus" },
     en: { name: "800 Silver", slug: "800-silver" },
     uz: { name: "800 Soflikdagi Kumush", slug: "800-soflikdagi-kumush" },
+    de: { name: "800er Silber", slug: "silber-800" },
   },
 
   // ---- kan_sekeri / kan sekeri (glukoz) birim donusumu ----
@@ -2423,6 +2451,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Milimol/Litre", slug: "milimol-litre" },
     en: { name: "Millimoles per Liter", slug: "millimoles-per-liter" },
     uz: { name: "Millimol/Litr", slug: "millimol-litr" },
+    de: { name: "Millimol pro Liter", slug: "millimol-pro-liter" },
   },
   {
     id: "glukoz-mgdl",
@@ -2432,6 +2461,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Miligram/Desilitre", slug: "miligram-desilitre" },
     en: { name: "Milligrams per Deciliter", slug: "milligrams-per-deciliter" },
     uz: { name: "Milligramm/Detsilitr", slug: "milligramm-detsilitr" },
+    de: { name: "Milligramm pro Deziliter", slug: "milligramm-pro-deziliter" },
   },
 
   // ---- vitamin_d / vitamin D birim donusumu ----
@@ -2443,6 +2473,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Nanomol/Litre", slug: "nanomol-litre" },
     en: { name: "Nanomoles per Liter", slug: "nanomoles-per-liter" },
     uz: { name: "Nanomol/Litr", slug: "nanomol-litr" },
+    de: { name: "Nanomol pro Liter", slug: "nanomol-pro-liter" },
   },
   {
     id: "vitamin-d-ngml",
@@ -2452,6 +2483,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     tr: { name: "Nanogram/Mililitre", slug: "nanogram-mililitre" },
     en: { name: "Nanograms per Milliliter", slug: "nanograms-per-milliliter" },
     uz: { name: "Nanogramm/Millilitr", slug: "nanogramm-millilitr" },
+    de: { name: "Nanogramm pro Milliliter", slug: "nanogramm-pro-milliliter" },
   },
 ];
 

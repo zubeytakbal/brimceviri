@@ -2151,10 +2151,20 @@ const generatedEnglishUnitPages: LocalizedUnitPage[] = unitRegistry
     (page): page is LocalizedUnitPage => page !== null
   );
 
-export const englishUnitPages: LocalizedUnitPage[] = [
+const allEnglishUnitPages: LocalizedUnitPage[] = [
   ...curatedEnglishUnitPages,
   ...generatedEnglishUnitPages,
 ];
+
+// Unit-guide routes use the slug alone (`/en/units/[slug]`), so a duplicate
+// must never enter static params, the sitemap or category listings. Keep the
+// first curated record: it is the deliberately written version when a unit
+// was accidentally added to the catalog more than once.
+export const englishUnitPages: LocalizedUnitPage[] = allEnglishUnitPages.filter(
+  (page, index) =>
+    allEnglishUnitPages.findIndex((candidate) => candidate.slug === page.slug) ===
+    index
+);
 
 export function findEnglishUnitPage(
   category: string,

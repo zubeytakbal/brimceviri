@@ -2,6 +2,10 @@ export type EnglishStandaloneToolComponentKey =
   | "paintCalculator"
   | "tileCalculator"
   | "brickCalculator"
+  | "concreteCalculator"
+  | "stairCalculator"
+  | "aggregateCalculator"
+  | "roofingCalculator"
   | "dateCalculator"
   | "vatCalculator"
   | "bmiCalculator"
@@ -13,6 +17,11 @@ export type EnglishStandaloneToolComponentKey =
   | "electricityConsumptionCalculator"
   | "sleepCalculator"
   | "fuelConsumptionCalculator"
+  | "tireSizeCalculator"
+  | "numberBaseCalculator"
+  | "pixelCalculator"
+  | "videoBitrateCalculator"
+  | "oneRepMaxCalculator"
   | "laminateCalculator"
   | "wallpaperCalculator"
   | "movingBoxCalculator"
@@ -31,6 +40,10 @@ export type EnglishStandaloneTool = {
     | "paintCalculator"
     | "tileCalculator"
     | "brickCalculator"
+    | "concreteCalculator"
+    | "stairCalculator"
+    | "aggregateCalculator"
+    | "roofingCalculator"
     | "dateCalculator"
     | "vatCalculator"
     | "bmiCalculator"
@@ -41,7 +54,12 @@ export type EnglishStandaloneTool = {
     | "acCapacityCalculator"
     | "electricityConsumptionCalculator"
     | "sleepCalculator"
-    | "fuelConsumptionCalculator"
+  | "fuelConsumptionCalculator"
+  | "tireSizeCalculator"
+  | "numberBaseCalculator"
+  | "pixelCalculator"
+  | "videoBitrateCalculator"
+  | "oneRepMaxCalculator"
     | "laminateCalculator"
     | "wallpaperCalculator"
     | "movingBoxCalculator"
@@ -52,6 +70,11 @@ export type EnglishStandaloneTool = {
     title: string;
     body: string;
   }>;
+  relatedHub?: {
+    href: string;
+    label: string;
+  };
+  isEnglishOnly?: boolean;
   priority: number;
 };
 
@@ -127,6 +150,124 @@ export const englishStandaloneTools: EnglishStandaloneTool[] = [
       },
     ],
     priority: 0.7,
+  },
+  {
+    slug: "concrete-calculator",
+    englishPath: "/en/concrete-calculator",
+    turkishPath: "/beton-hesaplama",
+    title: "Concrete Calculator",
+    description:
+      "Calculate concrete volume for a slab, footing or column in US customary or metric units, including a waste allowance.",
+    intro:
+      "Enter the dimensions of a rectangular pour or circular column to estimate the concrete volume you need before ordering.",
+    component: "concreteCalculator",
+    iconName: "concreteCalculator",
+    cardDescription:
+      "Estimates concrete volume in cubic yards or cubic meters, with a clear waste allowance.",
+    articleSections: [
+      {
+        title: "What does this calculator estimate?",
+        body: "Choose a rectangular slab or footing, or a circular column. The calculator multiplies the dimensions, then applies the waste allowance you choose so you can plan the required ready-mix volume.",
+      },
+      {
+        title: "Why are the material figures only estimates?",
+        body: "Concrete mix designs and bag yields vary by product, strength class, aggregate and job conditions. Use the volume result as the ordering basis and confirm the final order with your supplier or project specification.",
+      },
+    ],
+    relatedHub: {
+      href: "/en/construction-calculators",
+      label: "Construction Calculators",
+    },
+    priority: 0.8,
+  },
+  {
+    slug: "stair-calculator",
+    englishPath: "/en/stair-calculator",
+    turkishPath: "/merdiven-hesaplama",
+    title: "Stair Calculator",
+    description:
+      "Estimate the number of risers, riser height, tread depth and total run for a straight stair in US customary or metric units.",
+    intro:
+      "Enter the total rise and a target riser height to produce a first-pass straight-stair proportion before detailed design.",
+    component: "stairCalculator",
+    iconName: "stairCalculator",
+    cardDescription:
+      "Estimates straight-stair risers, tread depth and total run for early planning.",
+    articleSections: [
+      {
+        title: "How is the stair proportion estimated?",
+        body: "The calculator rounds to a practical number of risers, then derives the actual riser height and uses the Blondel relationship to estimate tread depth and the total horizontal run.",
+      },
+      {
+        title: "Can this verify a stair design?",
+        body: "No. Local building codes, structural design, headroom, landings, handrails, guards and accessibility requirements must be checked separately for the actual project.",
+      },
+    ],
+    relatedHub: {
+      href: "/en/construction-calculators",
+      label: "Construction Calculators",
+    },
+    priority: 0.75,
+  },
+  {
+    slug: "gravel-soil-calculator",
+    englishPath: "/en/gravel-soil-calculator",
+    turkishPath: "/kazı-hacmi-hesaplama",
+    title: "Gravel & Soil Calculator",
+    description:
+      "Estimate gravel, soil or aggregate volume and order weight from dimensions, waste allowance and your supplier's bulk density.",
+    intro:
+      "Enter the area dimensions and the material depth to estimate cubic yards or cubic meters, then adjust the density to match the material you are ordering.",
+    component: "aggregateCalculator",
+    iconName: "concreteCalculator",
+    cardDescription:
+      "Estimates material volume and weight with an editable bulk-density assumption.",
+    articleSections: [
+      {
+        title: "Why is bulk density an input?",
+        body: "Gravel, crushed stone, soil and mulch do not share one universal weight per cubic yard. Moisture, particle size, compaction and material type all change the delivered weight, so the supplier's density should replace the planning default.",
+      },
+      {
+        title: "How should I use the result?",
+        body: "Use the volume-with-waste figure as a first ordering estimate. Confirm compaction, delivery minimums, material grade and the final quantity with the supplier or project team before purchase.",
+      },
+    ],
+    relatedHub: {
+      href: "/en/construction-calculators",
+      label: "Construction Calculators",
+    },
+    isEnglishOnly: true,
+    priority: 0.76,
+  },
+  {
+    slug: "roofing-calculator",
+    englishPath: "/en/roofing-calculator",
+    turkishPath: "/cati-hesaplama",
+    title: "Roofing Calculator",
+    description:
+      "Estimate sloped roof area, roofing squares and bundle count for a simple gable roof using your own pitch, waste and product coverage.",
+    intro:
+      "Enter a building footprint, eave overhang and roof pitch to estimate material coverage for an early roofing plan.",
+    component: "roofingCalculator",
+    iconName: "concreteCalculator",
+    cardDescription:
+      "Estimates gable-roof area, roofing squares and bundles with editable product coverage.",
+    articleSections: [
+      {
+        title: "What does this roof estimate assume?",
+        body: "The tool treats the roof as a simple symmetric gable. It applies the pitch to the plan area, then adds the waste allowance you choose before converting the area into roofing squares and bundles.",
+      },
+      {
+        title: "What should be verified before ordering?",
+        body: "Complex roof features, product-specific coverage, starter courses, ridge caps, flashing, decking condition and local requirements can materially change the final order. Confirm the takeoff with the supplier or qualified project team.",
+      },
+    ],
+    relatedHub: {
+      href: "/en/construction-calculators",
+      label: "Construction Calculators",
+    },
+    isEnglishOnly: true,
+    priority: 0.77,
   },
   {
     slug: "age-calculator",
@@ -390,6 +531,100 @@ export const englishStandaloneTools: EnglishStandaloneTool[] = [
         body: "Using your consumption figure and the distance you plan to drive, the tool estimates how much fuel you'll need and its approximate cost.",
       },
     ],
+    priority: 0.7,
+  },
+  {
+    slug: "tire-size-calculator",
+    englishPath: "/en/tire-size-calculator",
+    turkishPath: "/lastik-ebati-hesaplama",
+    title: "Tire Size Calculator",
+    description: "Compare tire dimensions, circumference, revolutions and estimated speedometer difference between two tire sizes.",
+    intro: "Enter an original and replacement tire size to compare rolling dimensions before discussing fitment with a qualified tire professional.",
+    component: "tireSizeCalculator",
+    iconName: "fuelConsumptionCalculator",
+    cardDescription: "Compares tire diameter, circumference and estimated speedometer difference.",
+    articleSections: [
+      {
+        title: "What does the size comparison calculate?",
+        body: "It derives sidewall height from the width and aspect ratio, then adds the rim diameter to calculate the outer diameter and circumference. The circumference difference is used to estimate the change in indicated versus actual speed.",
+      },
+      {
+        title: "Why is this not a fitment decision?",
+        body: "Tire size alone does not establish wheel clearance, approved load index, speed rating, axle compatibility, brake clearance or legal compliance. Check the vehicle placard, owner manual and a qualified tire professional before changing sizes.",
+      },
+    ],
+    relatedHub: {
+      href: "/en/automotive-calculators",
+      label: "Automotive Calculators",
+    },
+    priority: 0.73,
+  },
+  {
+    slug: "number-base-calculator",
+    englishPath: "/en/number-base-calculator",
+    turkishPath: "/sayi-tabani-cevirici",
+    title: "Number Base Calculator",
+    description: "Convert whole numbers between binary, octal, decimal and hexadecimal, and perform basic binary arithmetic.",
+    intro: "Enter a whole number in its known base to see its equivalent binary, octal, decimal and hexadecimal forms.",
+    component: "numberBaseCalculator",
+    iconName: "numberBaseCalculator",
+    cardDescription: "Converts binary, octal, decimal and hexadecimal whole numbers, with basic binary arithmetic.",
+    articleSections: [
+      { title: "Which number bases are supported?", body: "The calculator accepts non-negative whole numbers written in base 2, 8, 10 or 16. Hexadecimal uses digits 0–9 and letters A–F." },
+      { title: "What are the arithmetic limits?", body: "The arithmetic panel works with two non-negative binary whole numbers. It does not evaluate fractions, signed values, algebraic expressions or floating-point notation." },
+    ],
+    relatedHub: { href: "/en/data-computing-calculators", label: "Data & Computing Calculators" },
+    priority: 0.72,
+  },
+  {
+    slug: "one-rep-max-calculator",
+    englishPath: "/en/one-rep-max-calculator",
+    turkishPath: "/1rm-hesaplama",
+    title: "One Rep Max Calculator",
+    description: "Estimate a one-repetition maximum and a percentage-based training-load table from a submaximal set.",
+    intro: "Enter a weight and repetitions from one controlled set to estimate your 1RM with the Epley formula.",
+    component: "oneRepMaxCalculator",
+    iconName: "oneRepMaxCalculator",
+    cardDescription: "Estimates 1RM and a percentage-based training-load reference in kg or lb.",
+    articleSections: [
+      { title: "How is the estimate calculated?", body: "The Epley equation estimates one-repetition maximum as weight × (1 + repetitions / 30). It is intended for a controlled submaximal set and the same unit is retained in the result." },
+      { title: "Why is it only an estimate?", body: "The relationship between repetitions and maximum load varies with exercise, technique, range of motion, fatigue and experience. Avoid treating the result as a guarantee or a reason to attempt an unsafe maximal lift." },
+    ],
+    relatedHub: { href: "/en/fitness-calculators", label: "Fitness Calculators" },
+    priority: 0.7,
+  },
+  {
+    slug: "pixel-dpi-calculator",
+    englishPath: "/en/pixel-dpi-calculator",
+    turkishPath: "/piksel-cm-dpi-hesaplama",
+    title: "Pixel, DPI & Print Size Calculator",
+    description: "Calculate pixel count, physical size or DPI/PPI from the other two measurements.",
+    intro: "Use two known image or print measurements to find the third: pixels, physical size or pixel density.",
+    component: "pixelCalculator",
+    iconName: "pixelCalculator",
+    cardDescription: "Find pixels, physical size or DPI/PPI for a stated image dimension.",
+    articleSections: [
+      { title: "How are pixels and print size related?", body: "Physical size in inches multiplied by DPI gives the pixel count along one dimension. The calculation can use centimetres or inches for the physical measurement." },
+      { title: "What does DPI not determine?", body: "DPI/PPI describes density at a stated physical size. It does not improve image detail, color quality, crop composition or printer capability." },
+    ],
+    relatedHub: { href: "/en/data-computing-calculators", label: "Data & Computing Calculators" },
+    priority: 0.7,
+  },
+  {
+    slug: "video-bitrate-calculator",
+    englishPath: "/en/video-bitrate-calculator",
+    turkishPath: "/video-bit-hizi-hesaplama",
+    title: "Video Bitrate Calculator",
+    description: "Estimate video file size from bitrate and duration, or the bitrate from file size and duration.",
+    intro: "Enter a video duration and either a target bitrate or file size to make a first-pass export estimate.",
+    component: "videoBitrateCalculator",
+    iconName: "videoBitrateCalculator",
+    cardDescription: "Estimates video file size or bitrate using duration and decimal MB/Mbps units.",
+    articleSections: [
+      { title: "How is the estimate calculated?", body: "The tool uses file size in MB = bitrate in Mbps × duration in seconds ÷ 8, because a byte contains eight bits." },
+      { title: "Why can the exported size differ?", body: "Audio tracks, container overhead, metadata, variable bitrate and the encoder settings can all alter the final output file." },
+    ],
+    relatedHub: { href: "/en/data-computing-calculators", label: "Data & Computing Calculators" },
     priority: 0.7,
   },
   {

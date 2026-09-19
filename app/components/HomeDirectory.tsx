@@ -47,18 +47,28 @@ import { englishAppliedStemCalculatorCount, englishLiveCalculatorCount, englishT
 import { uzbekCategoryPages } from "../converter/localizedUzbekCategoryPages";
 import { uzbekConversionPages } from "../converter/localizedUzbekConversionPages";
 import { uzbekUnitPages } from "../converter/localizedUzbekUnitPages";
+import { germanCalculatorPages } from "../converter/localizedGermanCalculatorPages";
+import { germanCategoryPages } from "../converter/localizedGermanCategoryPages";
+import { germanConversionPages } from "../converter/localizedGermanConversionPages";
+import { germanUnitPages } from "../converter/localizedGermanUnitPages";
+import { germanStaticPaths } from "../i18n/germanRoutes";
 import { homeCategoryOrder } from "../converter/homeCategoryOrder";
 import { englishHomeCategoryOrder, getEnglishCategoryPresentation } from "../i18n/englishCategoryPresentation";
 import type { SiteNotification } from "../converter/siteNotifications";
 import { unitPages } from "../converter/unitPages";
 
-type Locale = "tr" | "en" | "uz";
+type Locale = "tr" | "en" | "uz" | "de";
 
 const englishDecisionSavingsHomeTools = getEnglishToolsByDomain("decision-savings");
 
 const englishProductAreas = [
   { id: "conversions", href: "/en/all-conversions", title: "Unit Conversions", description: "Accurate unit conversions and practical unit guides.", icon: "allConversions" as const },
   { id: "everyday", href: "/en/everyday-calculators", title: "Everyday Calculators", description: "Home projects, transport, routines and practical planning.", icon: "numberBaseCalculator" as const },
+  { id: "business", href: "/en/business-calculators", title: "Business Calculators", description: "Break-even, gross margin, markup and advertising-return checks.", icon: "numberBaseCalculator" as const },
+  { id: "finance", href: "/en/finance-calculators", title: "Finance Calculators", description: "Mortgage, loan and compound-growth planning estimates.", icon: "numberBaseCalculator" as const },
+  { id: "automotive", href: "/en/automotive-calculators", title: "Automotive Calculators", description: "Tires, fuel use, EV charging and vehicle running-cost planning.", icon: "fuelConsumptionCalculator" as const },
+  { id: "data-computing", href: "/en/data-computing-calculators", title: "Data & Computing", description: "Number bases, pixels, video bitrate and data-storage tools.", icon: "numberBaseCalculator" as const },
+  { id: "fitness", href: "/en/fitness-calculators", title: "Fitness Calculators", description: "One-rep max and running-pace training estimates.", icon: "oneRepMaxCalculator" as const },
   { id: "decision-savings", href: "/en/decision-savings-calculators", title: "Decision & Savings", description: "Energy, cost and payback comparisons using your own inputs.", icon: "solarPanelPaybackCalculator" as const },
   { id: "applied-stem", href: "/en/applied-stem", title: "Engineering & STEM", description: "Focused engineering, chemistry and science tools with clear units.", icon: "chemistryCalculator" as const },
 ] as const;
@@ -455,6 +465,77 @@ const extraCategoryCardsByLocale: Record<Locale, HomeCategoryCard[]> = {
       ],
     },
   ],
+  de: [
+    {
+      id: "shoe-size",
+      iconKey: "ayakkabi",
+      name: "Schuhgrößen-Umrechner",
+      symbol: "EU",
+      description:
+        "Vergleichen Sie EU-, US- und UK-Schuhgrößen mit allgemeinen und markenspezifischen Größentabellen.",
+      href: "/de/schuhgroessen-umrechner",
+      links: [
+        {
+          id: "shoe-size-chart",
+          href: "/de/schuhgroessen-umrechner",
+          label: "EU-, US- und UK-Größentabelle",
+        },
+      ],
+    },
+    {
+      id: "kitchen-measures",
+      iconKey: "mutfak",
+      name: "Küchenmaß-Umrechner",
+      symbol: "g",
+      description:
+        "Rechnen Sie Tassen, Esslöffel und Teelöffel je nach Zutat in Gramm um.",
+      href: "/de/kuechenmass-umrechner",
+      links: [
+        {
+          id: "kitchen-cups-to-grams",
+          href: "/de/kuechenmass-umrechner",
+          label: "Tassen in Gramm",
+        },
+      ],
+    },
+    {
+      id: "recipe-converter",
+      iconKey: "tarif",
+      name: "Rezept-Umrechner",
+      symbol: "2×",
+      description:
+        "Skalieren Sie ein Rezept und rechnen Sie bekannte Zutatenmengen automatisch in Gramm um.",
+      href: "/de/rezept-umrechner",
+      links: [
+        {
+          id: "recipe-scaler",
+          href: "/de/rezept-umrechner",
+          label: "Rezept skalieren",
+        },
+      ],
+    },
+    {
+      id: "historical",
+      iconKey: "tarihi",
+      name: "Historische Maßeinheiten",
+      symbol: "HIST",
+      description:
+        "Entdecken Sie byzantinische, osmanische und alttürkische Einheiten wie Arschin, Okka, Dirham, Endaze und den byzantinischen Fuß mit modernen metrischen Entsprechungen.",
+      href: "/de/historische-masseinheiten",
+      links: [
+        {
+          id: "historical-arshin-meter",
+          href: "/de/historische-masseinheiten",
+          label: "Historische Längeneinheiten",
+        },
+        {
+          id: "historical-okka-gram",
+          href: "/de/historische-masseinheiten",
+          label: "Historische Masseeinheiten",
+        },
+      ],
+    },
+  ],
 };
 
 const copy = {
@@ -812,6 +893,124 @@ const copy = {
     engineeringHubLabel: "Barcha muhandislik kalkulyatorlari",
     moreCalculatorsCardLabel: "Boshqa Kalkulyatorlar",
   },
+  de: {
+    eyebrow: "Technische Einheitenumrechnung",
+    title: "Die passende Umrechnung schnell finden",
+    description:
+      "Nutzen Sie die Suche für eine direkte Seite oder wählen Sie eine Kategorie nach physikalischer Größe.",
+    searchLabel: "Umrechnung oder Rechner suchen",
+    searchPlaceholder: "Beispiel: Meter Kilometer, kg Pfund, psi bar",
+    searchHint:
+      "Suchen Sie nach Einheitenname, Symbol oder Umrechnungspaar, um die passende Seite direkt zu öffnen.",
+    searchResultsLabel: "Suchergebnisse",
+    searchEmpty: "Keine passende Umrechnung oder Rechner gefunden.",
+    searchEnterHint: "Drücken Sie Enter, um das erste Ergebnis zu öffnen.",
+    searchCategoryPrefix: "Kategorie",
+    openLabel: "Öffnen",
+    stats: {
+      activeCategories: "Kategorien",
+      conversions: "Umrechnungsseiten",
+      engineering: "Rechner",
+    },
+    categoriesTitle: "Einheitenumrechnungen",
+    categoriesDescription:
+      "Jede Karte öffnet eine echte Kategorieseite und zeigt ein bis zwei reale Umrechnungsbeispiele.",
+    categoryAction: "Kategorieseite öffnen",
+    categoriesFooterLink: "Alle Umrechnungen ansehen",
+    moreCategoriesCardLabel: "Weitere Umrechnungen",
+    secondaryCategoriesTitle: "Weitere Umrechnungskategorien",
+    categoryCards: {
+      uzunluk: {
+        name: "Länge",
+        symbol: "m",
+        description:
+          "Öffnen Sie Meter-, Zentimeter-, Kilometer-, Zoll- und Fuß-Umrechnungen.",
+      },
+      alan: {
+        name: "Fläche",
+        symbol: "m²",
+        description:
+          "Öffnen Sie Quadratmeter-, Hektar- und Quadratfuß-Umrechnungen.",
+      },
+      hacim: {
+        name: "Volumen",
+        symbol: "L",
+        description:
+          "Öffnen Sie Liter-, Milliliter- und Kubikmeter-Umrechnungen.",
+      },
+      kutle: {
+        name: "Masse",
+        symbol: "kg",
+        description:
+          "Wechseln Sie zu Kilogramm-, Gramm-, Tonnen-, Pfund- und Unzen-Werkzeugen.",
+      },
+      sicaklik: {
+        name: "Temperatur",
+        symbol: "°C",
+        description:
+          "Öffnen Sie Celsius-, Fahrenheit- und Kelvin-Umrechnungen.",
+      },
+      zaman: {
+        name: "Zeit",
+        symbol: "s",
+        description:
+          "Öffnen Sie Sekunden-, Minuten- und Stunden-Umrechnungen.",
+      },
+      hiz: {
+        name: "Geschwindigkeit",
+        symbol: "km/h",
+        description:
+          "Öffnen Sie km/h-, m/s- und mph-basierte Geschwindigkeitsumrechnungen.",
+      },
+      basinc: {
+        name: "Druck",
+        symbol: "Pa",
+        description:
+          "Durchsuchen Sie Pascal-, Bar-, psi-, atm- und mmHg-Umrechner.",
+      },
+      enerji: {
+        name: "Energie und Leistung",
+        symbol: "W",
+        description:
+          "Öffnen Sie Joule-, Kilowattstunden-, Watt- und Kilowatt-Umrechnungen.",
+      },
+      veri: {
+        name: "Datenspeicher",
+        symbol: "GB",
+        description:
+          "Öffnen Sie Byte-, Kilobyte-, Megabyte-, Gigabyte- und Terabyte-Umrechnungen.",
+      },
+      elektrik: {
+        name: "Elektrizität",
+        symbol: "V",
+        description:
+          "Öffnen Sie Spannungs- und Stromstärke-Umrechnungswerkzeuge.",
+      },
+      altin_ayar: {
+        name: "Goldkarat",
+        symbol: "24K",
+        description:
+          "Rechnen Sie Goldgewicht zwischen 24K, 22K, 18K und 14K Reinheit um.",
+      },
+      gumus_ayar: {
+        name: "Silberreinheit",
+        symbol: "925",
+        description:
+          "Rechnen Sie Silbergewicht zwischen 999, 925 (Sterling), 900 und 800 Feingehalt um.",
+      },
+    },
+    popularTitle: "Beliebte Umrechnungen",
+    popularDescription:
+      "Öffnen Sie häufig genutzte, echte Umrechnungsseiten direkt von hier aus.",
+    popularUnitsTitle: "Häufig gesuchte Einheiten",
+    popularUnitsDescription:
+      "Lesen Sie Definition, Geschichte und Umrechnungen dieser Einheiten.",
+    engineeringTitle: "Ingenieurrechner",
+    engineeringDescription:
+      "Aktuelle technische Werkzeuge für Druck, Strömung und Wärmeübertragung.",
+    engineeringHubLabel: "Alle Ingenieurrechner",
+    moreCalculatorsCardLabel: "Weitere Rechner",
+  },
 } as const;
 
 function HomeCategoryIcon({
@@ -982,7 +1181,31 @@ function createHomeData(locale: Locale): HomeData {
               ].join(" ")
             ),
           }))
-        : englishConversionPages.map((page) => ({
+        : locale === "de"
+          ? germanConversionPages.map((page) => ({
+              id: page.slug,
+              sourceSlug: page.sourceSlug,
+              href: `/de/${page.slug}`,
+              label: `${page.fromName} → ${page.toName}`,
+              description: `${page.fromUnit} → ${page.toUnit}`,
+              category: page.category,
+              categoryLabel:
+                strings.categoryCards[
+                  page.category as keyof typeof strings.categoryCards
+                ]?.name ?? page.categoryName,
+              searchText: normalizeSearchText(
+                [
+                  page.fromName,
+                  page.toName,
+                  page.fromUnit,
+                  page.toUnit,
+                  page.slug,
+                  page.sourceSlug,
+                  page.categoryName,
+                ].join(" ")
+              ),
+            }))
+          : englishConversionPages.map((page) => ({
             id: page.slug,
             sourceSlug: page.sourceSlug,
             href: `/en/${page.slug}`,
@@ -1016,9 +1239,13 @@ function createHomeData(locale: Locale): HomeData {
           ? uzbekCategoryPages.find(
               (page) => page.category === sourceCategory
             )
-          : englishCategoryPages.find(
-              (page) => page.category === sourceCategory
-            );
+          : locale === "de"
+            ? germanCategoryPages.find(
+                (page) => page.category === sourceCategory
+              )
+            : englishCategoryPages.find(
+                (page) => page.category === sourceCategory
+              );
 
     const englishPresentation = locale === "en" ? getEnglishCategoryPresentation(sourceCategory) : undefined;
     const categoryCopy = strings.categoryCards[sourceCategory as keyof typeof strings.categoryCards] ?? englishPresentation?.homeCard ?? {
@@ -1065,7 +1292,9 @@ function createHomeData(locale: Locale): HomeData {
             ? `/kategoriler/${categoryPage.slug}`
             : locale === "uz"
               ? `/uz/turkumlar/${categoryPage.slug}`
-              : `/en/categories/${categoryPage.slug}`,
+              : locale === "de"
+                ? `/de/kategorien/${categoryPage.slug}`
+                : `/en/categories/${categoryPage.slug}`,
         links: categoryConversions.map((conversion) => ({
           id: conversion.id,
           href: conversion.href,
@@ -1117,6 +1346,25 @@ function createHomeData(locale: Locale): HomeData {
             iconName: uzbekPage
               ? getCategoryIconName(page.category)
               : draft!.iconName,
+          },
+        ];
+      }
+
+      if (locale === "de") {
+        const germanPage = germanCategoryPages.find(
+          (item) => item.category === page.category
+        );
+
+        if (!germanPage) {
+          return [];
+        }
+
+        return [
+          {
+            id: page.category,
+            href: `/de/kategorien/${germanPage.slug}`,
+            label: germanPage.title,
+            iconName: getCategoryIconName(page.category),
           },
         ];
       }
@@ -1190,7 +1438,24 @@ function createHomeData(locale: Locale): HomeData {
                 ]
               : [];
           })
-        : preferredUnitSlugs.flatMap((slug) => {
+        : locale === "de"
+          ? preferredUnitSlugs.flatMap((slug) => {
+              const unitPage = germanUnitPages.find(
+                (page) => page.sourceSlug === slug
+              );
+
+              return unitPage
+                ? [
+                    {
+                      id: unitPage.slug,
+                      href: `/de/einheiten/${unitPage.slug}`,
+                      label: unitPage.name,
+                      category: unitPage.category as HomeCategoryIconName,
+                    },
+                  ]
+                : [];
+            })
+          : preferredUnitSlugs.flatMap((slug) => {
             const unitPage = englishUnitPages.find(
               (page) => page.sourceSlug === slug
             );
@@ -1275,7 +1540,23 @@ function createHomeData(locale: Locale): HomeData {
               description: "Om qonuni bo‘yicha kuchlanish, tok va qarshilikni hisoblash.",
             },
           ]
-        : [
+        : locale === "de"
+          ? engineeringSourceSlugs
+              .map((slug) =>
+                germanCalculatorPages.find((page) => page.sourceSlug === slug)
+              )
+              .filter(
+                (page): page is (typeof germanCalculatorPages)[number] =>
+                  Boolean(page)
+              )
+              .map((page) => ({
+                id: page.slug,
+                href: `/de/rechner/${page.slug}`,
+                label: page.shortTitle,
+                formula: page.formula,
+                description: page.description,
+              }))
+          : [
             ...engineeringSourceSlugs
               .map((slug) =>
                 englishCalculatorPages.find((page) => page.sourceSlug === slug)
@@ -1391,7 +1672,18 @@ function createHomeData(locale: Locale): HomeData {
               `${page.title} ${page.category} ${page.description}`
             ),
           }))
-        : englishCategoryPages.map((page) => ({
+        : locale === "de"
+          ? germanCategoryPages.map((page) => ({
+              id: `kategorie-${page.category}`,
+              href: `/de/kategorien/${page.slug}`,
+              label: page.title,
+              description: page.description,
+              categoryLabel: "Umrechnungskategorie",
+              searchText: normalizeSearchText(
+                `${page.title} ${page.category} ${page.description}`
+              ),
+            }))
+          : englishCategoryPages.map((page) => ({
             id: `category-${page.category}`,
             href: `/en/categories/${page.slug}`,
             label: page.title,
@@ -1432,19 +1724,25 @@ function createHomeData(locale: Locale): HomeData {
         ? "/tum-birimler"
         : locale === "uz"
           ? "/uz/turkumlar"
-          : "/en/all-conversions",
+          : locale === "de"
+            ? germanStaticPaths.allConversions
+            : "/en/all-conversions",
     allConversionsLabel:
       locale === "tr"
         ? "Tüm dönüşümler"
         : locale === "uz"
           ? "Barcha turkumlar"
-          : "All conversions",
+          : locale === "de"
+            ? "Alle Umrechnungen"
+            : "All conversions",
     engineeringHubHref:
       locale === "tr"
         ? "/muhendislik-hesaplayicilari"
         : locale === "uz"
           ? "/uz/muhandislik-hisoblagichlari"
-          : "/en/engineering-calculators",
+          : locale === "de"
+            ? germanStaticPaths.engineeringHub
+            : "/en/engineering-calculators",
       engineeringHubLabel: strings.engineeringHubLabel,
     stats: {
       activeCategories: allCategoryCards.length,
@@ -1461,6 +1759,7 @@ const homeData = {
   tr: createHomeData("tr"),
   en: createHomeData("en"),
   uz: createHomeData("uz"),
+  de: createHomeData("de"),
 } as const;
 
 export default function HomeDirectory({
@@ -1495,7 +1794,7 @@ export default function HomeDirectory({
   }
 
   return (
-    <main className="directory-home" lang={locale === "en" ? "en" : undefined}>
+    <main className="directory-home" lang={locale === "en" ? "en" : locale === "de" ? "de" : undefined}>
       <section className="directory-hero">
         <div className="directory-shell">
           <div className="directory-hero-copy">
@@ -1583,7 +1882,7 @@ export default function HomeDirectory({
         </div>
       </section>
 
-      {(locale === "tr" || locale === "en" || locale === "uz") && (
+      {(locale === "tr" || locale === "en" || locale === "uz" || locale === "de") && (
         <NotificationBell
           notifications={notifications}
           locale={locale}

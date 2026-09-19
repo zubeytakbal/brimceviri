@@ -2,13 +2,20 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import AcCapacityCalculator from "../../components/AcCapacityCalculator";
+import AggregateCalculator from "../../components/AggregateCalculator";
 import BmiCalculator from "../../components/BmiCalculator";
 import BrickCalculator from "../../components/BrickCalculator";
+import ConcreteCalculator from "../../components/ConcreteCalculator";
 import DateCalculator from "../../components/DateCalculator";
 import ElectricityConsumptionCalculator from "../../components/ElectricityConsumptionCalculator";
 import EnglishConversionSeo from "../../components/EnglishConversionSeo";
 import EvChargingCalculator from "../../components/EvChargingCalculator";
 import FuelConsumptionCalculator from "../../components/FuelConsumptionCalculator";
+import EnglishTireSizeCalculator from "../../components/EnglishTireSizeCalculator";
+import EnglishNumberBaseCalculator from "../../components/EnglishNumberBaseCalculator";
+import EnglishPixelCalculator from "../../components/EnglishPixelCalculator";
+import EnglishVideoBitrateCalculator from "../../components/EnglishVideoBitrateCalculator";
+import EnglishOneRepMaxCalculator from "../../components/EnglishOneRepMaxCalculator";
 import LaminateCalculator from "../../components/LaminateCalculator";
 import LengthComparisonTool from "../../components/LengthComparisonTool";
 import MovingBoxCalculator from "../../components/MovingBoxCalculator";
@@ -16,7 +23,9 @@ import NaturalGasCalculator from "../../components/NaturalGasCalculator";
 import PaceCalculator from "../../components/PaceCalculator";
 import PaintCalculator from "../../components/PaintCalculator";
 import PregnancyCalculator from "../../components/PregnancyCalculator";
+import RoofingCalculator from "../../components/RoofingCalculator";
 import SleepCalculator from "../../components/SleepCalculator";
+import StairCalculator from "../../components/StairCalculator";
 import TileCalculator from "../../components/TileCalculator";
 import VatCalculator from "../../components/VatCalculator";
 import WallpaperCalculator from "../../components/WallpaperCalculator";
@@ -43,19 +52,28 @@ import { buildSiteUrl } from "../../siteConfig";
 const componentMap: Record<EnglishStandaloneToolComponentKey, React.ComponentType<{ locale?: "en" }>> =
   {
     paintCalculator: PaintCalculator,
+    aggregateCalculator: AggregateCalculator,
     tileCalculator: TileCalculator,
     brickCalculator: BrickCalculator,
+    concreteCalculator: ConcreteCalculator,
     dateCalculator: DateCalculator,
     vatCalculator: VatCalculator,
     bmiCalculator: BmiCalculator,
     pregnancyCalculator: PregnancyCalculator,
+    roofingCalculator: RoofingCalculator,
     lengthComparison: LengthComparisonTool,
     weightComparison: WeightComparisonTool,
     paceCalculator: PaceCalculator,
     acCapacityCalculator: AcCapacityCalculator,
     electricityConsumptionCalculator: ElectricityConsumptionCalculator,
     sleepCalculator: SleepCalculator,
+    stairCalculator: StairCalculator,
     fuelConsumptionCalculator: FuelConsumptionCalculator,
+    tireSizeCalculator: EnglishTireSizeCalculator,
+    numberBaseCalculator: EnglishNumberBaseCalculator,
+    pixelCalculator: EnglishPixelCalculator,
+    videoBitrateCalculator: EnglishVideoBitrateCalculator,
+    oneRepMaxCalculator: EnglishOneRepMaxCalculator,
     laminateCalculator: LaminateCalculator,
     wallpaperCalculator: WallpaperCalculator,
     movingBoxCalculator: MovingBoxCalculator,
@@ -112,10 +130,12 @@ export async function generateMetadata({
     return {
       title: `${tool.title} | BirimCeviri.app`,
       description: tool.description,
-      alternates: {
-        canonical: tool.englishPath,
-        ...buildFullLanguageAlternates(tool.englishPath),
-      },
+      alternates: tool.isEnglishOnly
+        ? { canonical: tool.englishPath }
+        : {
+            canonical: tool.englishPath,
+            ...buildFullLanguageAlternates(tool.englishPath),
+          },
       openGraph: {
         title: tool.title,
         description: tool.description,
@@ -242,6 +262,15 @@ function EnglishStandaloneTool({
         </header>
 
         <ToolComponent locale="en" />
+
+        {tool.relatedHub && (
+          <section className="conversion-section related-conversions">
+            <h2>More project planning tools</h2>
+            <Link className="text-link" href={tool.relatedHub.href}>
+              Browse {tool.relatedHub.label}
+            </Link>
+          </section>
+        )}
 
         <section className="category-article-content">
           {tool.articleSections.map((section) => (

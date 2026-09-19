@@ -17,6 +17,7 @@ import { bengaliCategoryPages } from "../converter/localizedBengaliCategoryPages
 import { bengaliUnitPages } from "../converter/localizedBengaliUnitPages";
 import { bengaliConversionPages } from "../converter/localizedBengaliConversionPages";
 import { unitPages } from "../converter/unitPages";
+import { arabicCategoryPages } from "../converter/localizedArabicCategoryPages";
 
 export type RouteCollectionKey =
   | "units"
@@ -56,12 +57,18 @@ const localizedCategorySummariesByLocale: Record<
     category: page.category,
     title: page.title,
   })),
-  ar: englishCategoryPages.map((page) => ({
-    sourceSlug: page.sourceSlug,
-    slug: page.slug,
-    category: page.category,
-    title: page.title,
-  })),
+  ar: englishCategoryPages.map((page) => {
+    const arabicPage = arabicCategoryPages.find(
+      (item) => item.sourceSlug === page.sourceSlug
+    );
+
+    return {
+      sourceSlug: page.sourceSlug,
+      slug: page.slug,
+      category: page.category,
+      title: arabicPage?.title ?? page.title,
+    };
+  }),
   uz: uzbekCategoryPages.map((page) => ({
     sourceSlug: page.sourceSlug,
     slug: page.slug,

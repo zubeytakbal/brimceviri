@@ -6,14 +6,20 @@ import BmiCalculator from "../../components/BmiCalculator";
 import BrickCalculator from "../../components/BrickCalculator";
 import DateCalculator from "../../components/DateCalculator";
 import ElectricityConsumptionCalculator from "../../components/ElectricityConsumptionCalculator";
+import EvChargingCalculator from "../../components/EvChargingCalculator";
+import FuelConsumptionCalculator from "../../components/FuelConsumptionCalculator";
 import GermanConversionSeo from "../../components/GermanConversionSeo";
+import LaminateCalculator from "../../components/LaminateCalculator";
 import LengthComparisonTool from "../../components/LengthComparisonTool";
+import MovingBoxCalculator from "../../components/MovingBoxCalculator";
+import NaturalGasCalculator from "../../components/NaturalGasCalculator";
 import PaceCalculator from "../../components/PaceCalculator";
 import PaintCalculator from "../../components/PaintCalculator";
 import PregnancyCalculator from "../../components/PregnancyCalculator";
 import SleepCalculator from "../../components/SleepCalculator";
 import TileCalculator from "../../components/TileCalculator";
 import VatCalculator from "../../components/VatCalculator";
+import WallpaperCalculator from "../../components/WallpaperCalculator";
 import WeightComparisonTool from "../../components/WeightComparisonTool";
 import PairConverter from "../../converter/PairConverter";
 import { convert } from "../../converter/convert";
@@ -48,6 +54,12 @@ const componentMap: Record<GermanStandaloneToolComponentKey, React.ComponentType
     acCapacityCalculator: AcCapacityCalculator,
     electricityConsumptionCalculator: ElectricityConsumptionCalculator,
     sleepCalculator: SleepCalculator,
+    fuelConsumptionCalculator: FuelConsumptionCalculator,
+    laminateCalculator: LaminateCalculator,
+    wallpaperCalculator: WallpaperCalculator,
+    movingBoxCalculator: MovingBoxCalculator,
+    naturalGasCalculator: NaturalGasCalculator,
+    evChargingCalculator: EvChargingCalculator,
   };
 
 type PageProps = {

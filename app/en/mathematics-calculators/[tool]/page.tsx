@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import EnglishFractionCalculator from "../../../components/EnglishFractionCalculator";
+import EnglishLinearEquationCalculator from "../../../components/EnglishLinearEquationCalculator";
+import EnglishDescriptiveStatisticsCalculator from "../../../components/EnglishDescriptiveStatisticsCalculator";
+import EnglishRatioProportionCalculator from "../../../components/EnglishRatioProportionCalculator";
 import { MeanCalculator, PercentageCalculator, QuadraticRootsCalculator } from "../../../components/EnglishScienceCalculators";
 import { StemLimitations, StemMethods, StemWorkedExamples } from "../../../components/StemMethodNotes";
 import StaticPageLayout from "../../../components/StaticPageLayout";
@@ -7,7 +11,7 @@ import { getEnglishScienceToolsBySubject } from "../../../i18n/englishScienceToo
 import { SITE_NAME, buildSiteUrl } from "../../../siteConfig";
 
 const tools = getEnglishScienceToolsBySubject("mathematics");
-const calculators = { percentage: PercentageCalculator, mean: MeanCalculator, quadratic: QuadraticRootsCalculator } as const;
+const calculators = { "ratio-proportion": EnglishRatioProportionCalculator, "descriptive-statistics": EnglishDescriptiveStatisticsCalculator, fractions: EnglishFractionCalculator, "linear-equation": EnglishLinearEquationCalculator, percentage: PercentageCalculator, mean: MeanCalculator, quadratic: QuadraticRootsCalculator } as const;
 type MathematicsToolId = keyof typeof calculators;
 type PageProps = { params: Promise<{ tool: string }> };
 

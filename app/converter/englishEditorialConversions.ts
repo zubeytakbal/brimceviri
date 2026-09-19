@@ -18,6 +18,19 @@ export type EnglishEditorialConversion = {
  */
 export const englishEditorialConversions: readonly EnglishEditorialConversion[] = [
   {
+    slug: "meters-to-kilometers",
+    title: "Meters and kilometers in the metric system",
+    paragraphs: [
+      "One kilometer is exactly 1,000 meters. Meters are practical for room dimensions, building work and short distances, while kilometers are more useful for road distances, routes and larger geographic measurements.",
+      "Because metric length units scale by powers of ten, this conversion does not use an offset: divide meters by 1,000 to get kilometers. Keep every length in the same unit before calculating an area, speed or rate.",
+    ],
+    related: [
+      { href: "/en/kilometers-to-meters", label: "Kilometers to meters" },
+      { href: "/en/meters-to-feet", label: "Meters to feet" },
+      { href: "/en/units/meter", label: "Meter unit guide" },
+    ],
+  },
+  {
     slug: "meters-to-feet",
     title: "Meters and feet in everyday use",
     paragraphs: [
@@ -41,6 +54,20 @@ export const englishEditorialConversions: readonly EnglishEditorialConversion[] 
       { href: "/en/pounds-to-kilograms", label: "Pounds to kilograms" },
       { href: "/en/units/kilogram", label: "Kilogram unit guide" },
       { href: "/en/categories/mass", label: "All mass conversions" },
+    ],
+  },
+  {
+    slug: "gallon-to-liters",
+    title: "US liquid gallons, not Imperial gallons",
+    paragraphs: [
+      "This converter uses the US liquid gallon, which is approximately 3.78541 liters. It is the gallon used on most US fuel, food and consumer-product labels.",
+      "An Imperial gallon equals exactly 4.54609 liters and is about 20% larger. Check whether a source is US customary or Imperial before converting a fuel figure, container capacity or recipe.",
+    ],
+    note: "Use this page for US liquid gallons. For UK or Imperial gallons, use the Imperial gallons converter below.",
+    related: [
+      { href: "/en/imperial-gallons-to-liters", label: "Imperial gallons to liters" },
+      { href: "/en/liters-to-gallon", label: "Liters to US gallons" },
+      { href: "/en/units/gallon", label: "US liquid gallon unit guide" },
     ],
   },
   {

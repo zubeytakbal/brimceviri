@@ -14,7 +14,7 @@ import {
 import { useNotificationSlot } from "./NotificationSlotProvider";
 import type { SiteNotification } from "../converter/siteNotifications";
 
-type NotificationLocale = "tr" | "en" | "uz";
+type NotificationLocale = "tr" | "en" | "uz" | "de" | "ar";
 
 const notificationCopy = {
   tr: {
@@ -46,6 +46,26 @@ const notificationCopy = {
     openLabel: "Ochish →",
     empty: "Hozircha yangi bildirishnoma yo‘q.",
     dateLocale: "uz-UZ",
+  },
+  de: {
+    ariaLabel: "Benachrichtigungen",
+    panelLabel: "Website-Benachrichtigungen",
+    title: "Benachrichtigungen",
+    closeLabel: "Schließen",
+    markSeenLabel: "Diese Benachrichtigung als gelesen markieren",
+    openLabel: "Öffnen →",
+    empty: "Derzeit gibt es keine neuen Benachrichtigungen.",
+    dateLocale: "de-DE",
+  },
+  ar: {
+    ariaLabel: "الإشعارات",
+    panelLabel: "إشعارات الموقع",
+    title: "الإشعارات",
+    closeLabel: "إغلاق",
+    markSeenLabel: "وضع علامة على هذا الإشعار كمقروء",
+    openLabel: "فتح ←",
+    empty: "لا توجد إشعارات جديدة حاليا.",
+    dateLocale: "ar",
   },
 } as const;
 

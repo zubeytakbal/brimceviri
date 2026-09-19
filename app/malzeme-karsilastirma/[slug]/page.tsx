@@ -63,6 +63,7 @@ export async function generateMetadata({
       canonical: `/malzeme-karsilastirma/${slug}`,
       languages: {
         "uz-UZ": `/uz/material-solishtirish/${slug}`,
+        de: `/de/werkstoffvergleich/${slug}`,
       },
     },
     openGraph: {

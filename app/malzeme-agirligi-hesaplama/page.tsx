@@ -28,6 +28,7 @@ export const metadata: Metadata = {
     "Çelik, alüminyum, bakır gibi yaygın malzemelerin yoğunluk tablosundan, hacimden ağırlığı ya da ağırlıktan hacmi hesapla.",
   alternates: {
     canonical: "/malzeme-agirligi-hesaplama",
+    languages: { de: "/de/materialgewicht-berechnen" },
   },
   openGraph: {
     title: "Malzeme Yoğunlukları Tablosu ve Ağırlık Hesaplama",

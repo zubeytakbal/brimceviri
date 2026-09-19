@@ -201,7 +201,7 @@ const categoryUnitDefinitions: CategoryUnitDefinitions = {
     },
     gal: {
       tr: "Galon",
-      en: "Gallon",
+      en: "US Gallon",
       de: "Gallone",
       uz: "Gallon",
     },
@@ -224,7 +224,7 @@ const categoryUnitDefinitions: CategoryUnitDefinitions = {
     },
     qt: {
       tr: "Quart",
-      en: "Quart",
+      en: "US Quart",
       de: "Quart",
       uz: "Kvarta",
     },
@@ -236,7 +236,7 @@ const categoryUnitDefinitions: CategoryUnitDefinitions = {
     },
     "fl oz": {
       tr: "S\u0131v\u0131 Ons",
-      en: "Fluid Ounce",
+      en: "US Fluid Ounce",
       de: "Fl\u00FCssigunze",
       uz: "Suyuqlik Untsiyasi",
     },
@@ -248,7 +248,7 @@ const categoryUnitDefinitions: CategoryUnitDefinitions = {
     },
     pt: {
       tr: "Pint",
-      en: "Pint",
+      en: "US Pint",
       de: "Pint",
       uz: "Pinta",
     },

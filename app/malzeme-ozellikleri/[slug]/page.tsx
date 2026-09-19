@@ -47,6 +47,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       canonical: `/malzeme-ozellikleri/${slug}`,
       languages: {
         "uz-UZ": `/uz/material-xossalari/${slug}`,
+        de: `/de/werkstoffeigenschaften/${slug}`,
       },
     },
     openGraph: {

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import ArabicHomeDirectory from "../components/ArabicHomeDirectory";
 import { buildSiteUrl } from "../siteConfig";
+import { getSiteNotifications } from "../converter/siteNotifications";
 
 const turkishHomeUrl = buildSiteUrl("/");
 const englishHomeUrl = buildSiteUrl("/en");
@@ -32,6 +33,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ArabicHomePage() {
-  return <ArabicHomeDirectory />;
+export default async function ArabicHomePage() {
+  const notifications = await getSiteNotifications("ar");
+  return <ArabicHomeDirectory notifications={notifications} />;
 }

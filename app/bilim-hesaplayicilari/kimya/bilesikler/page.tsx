@@ -38,7 +38,10 @@ export const metadata: Metadata = {
   title: "Kimyasal Bileşikler: Molar Kütle ve Mol Hesaplama",
   description:
     "Su, tuz, glikoz ve daha fazlası — yaygın kimyasal bileşiklerin molar kütlesini, atomik kompozisyonunu gör ve kendi mol hesaplamanı yap.",
-  alternates: { canonical: "/bilim-hesaplayicilari/kimya/bilesikler" },
+  alternates: {
+    canonical: "/bilim-hesaplayicilari/kimya/bilesikler",
+    languages: { de: "/de/chemische-verbindungen" },
+  },
   openGraph: {
     title: "Kimyasal Bileşikler: Molar Kütle ve Mol Hesaplama",
     description: "Yaygın kimyasal bileşiklerin molar kütlesini gör ve mol hesapla.",

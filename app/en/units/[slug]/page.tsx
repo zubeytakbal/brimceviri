@@ -11,6 +11,7 @@ import {
   englishUnitPages,
   findEnglishUnitPageBySlug,
 } from "../../../converter/localizedUnitPages";
+import { getUnitSources } from "../../../converter/unitSources";
 import { SITE_URL, buildSiteUrl } from "../../../siteConfig";
 
 type PageProps = {
@@ -116,6 +117,18 @@ export default async function EnglishUnitInformationPage({
   const germanPage = findGermanUnitPageByTurkishSlug(
     unitPage.sourceSlug
   );
+  const sources = getUnitSources(unitPage.category);
+  const unitSources =
+    unitPage.slug === "meter"
+      ? [
+          {
+            title: "SI base unit — metre",
+            organization: "BIPM",
+            url: "https://www.bipm.org/en/si-base-units/metre",
+          },
+          ...sources,
+        ]
+      : sources;
 
   const relatedConversions = englishConversionPages.filter(
     (page) =>
@@ -381,9 +394,11 @@ export default async function EnglishUnitInformationPage({
                     </a>
                   </li>
 
-                  <li>
-                    <a href="#sources">Sources</a>
-                  </li>
+                  {unitSources.length > 0 && (
+                    <li>
+                      <a href="#sources">Sources</a>
+                    </li>
+                  )}
                 </ol>
               </nav>
             )}
@@ -512,7 +527,7 @@ export default async function EnglishUnitInformationPage({
               </section>
             )}
 
-            {unitArticle && unitPage.slug === "meter" && (
+            {unitSources.length > 0 && (
               <section
                 className="conversion-section unit-sources"
                 id="sources"
@@ -520,51 +535,23 @@ export default async function EnglishUnitInformationPage({
                 <h2>Sources</h2>
 
                 <p>
-                  The scientific definition, writing conventions
-                  and historical information on this page are
-                  based on official metrology sources.
+                  The definitions and conversion relationships on this
+                  page are aligned with standard metrology and SI
+                  reference material.
                 </p>
 
                 <ol>
-                  <li>
-                    <a
-                      href="https://www.bipm.org/en/si-base-units/metre"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      BIPM: SI base unit — metre
-                    </a>
-                  </li>
-
-                  <li>
-                    <a
-                      href="https://www.bipm.org/en/publications/si-brochure"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      BIPM: The International System of Units
-                    </a>
-                  </li>
-
-                  <li>
-                    <a
-                      href="https://www.nist.gov/pml/owm/si-units-length"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      NIST: SI Units — Length
-                    </a>
-                  </li>
-
-                  <li>
-                    <a
-                      href="https://www.nist.gov/pml/owm/writing-si-metric-system-units"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      NIST: Writing with SI units
-                    </a>
-                  </li>
+                  {unitSources.map((source) => (
+                    <li key={source.url}>
+                      <a
+                        href={source.url}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {source.organization}: {source.title}
+                      </a>
+                    </li>
+                  ))}
                 </ol>
               </section>
             )}

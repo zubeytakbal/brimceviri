@@ -5,7 +5,7 @@ export const gallonArticle: UnitArticle = {
 
   introduction: [
     "The gallon is a traditional unit used to measure liquid volume, especially in the United States. One US liquid gallon is exactly equal to 3.78541 liters, and this is generally the value meant when people simply say \"gallon\".",
-    "The gallon appears in many US-originated products and technical documents, from fuel consumption (miles per gallon) to liquid product labels; since Turkey uses the metric system, converting gallon values to liters is a frequently needed operation.",
+    "The gallon appears in many US-originated products and technical documents, from fuel consumption (miles per gallon) to liquid product labels. Readers comparing metric and US customary measurements often need to convert gallon values to liters.",
   ],
 
   keyFacts: [

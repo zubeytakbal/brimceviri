@@ -37,6 +37,8 @@ const flowUnitLabels: Record<FlowUnit, string> = {
   lps: "L/s",
   lpm: "L/dk",
   m3h: "m³/sa",
+  cfm: "ft³/dk",
+  gpm: "gal/dk (US)",
 };
 
 export default function PipeFlowCalculator() {

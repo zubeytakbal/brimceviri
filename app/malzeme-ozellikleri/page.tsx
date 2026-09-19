@@ -44,6 +44,7 @@ export const metadata: Metadata = {
     canonical: "/malzeme-ozellikleri",
     languages: {
       "uz-UZ": "/uz/material-xossalari",
+      de: "/de/werkstoffeigenschaften",
     },
   },
   openGraph: {

@@ -9,6 +9,7 @@ export const metadata: Metadata = {
     "İnteraktif periyodik tablo — bir elementin üzerine gelerek hızlı bilgi al, tıklayarak atom numarası, kütlesi, kullanım alanları ve daha fazlasını içeren ayrıntılı sayfaya git.",
   alternates: {
     canonical: "/bilim-hesaplayicilari/kimya/periyodik-tablo",
+    languages: { de: "/de/periodensystem" },
   },
   openGraph: {
     title: "Periyodik Tablo: 118 Elementin Tamamı, Ayrıntılı Bilgilerle",

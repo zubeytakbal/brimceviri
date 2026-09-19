@@ -9,8 +9,8 @@ export const englishEverydayCalculatorGroups: Array<{
   {
     id: "home-and-diy",
     title: "Home and DIY calculators",
-    description: "Plan decorating, flooring, moving and household energy tasks with practical estimates.",
-    tools: ["paintCalculator", "tileCalculator", "brickCalculator", "laminateCalculator", "wallpaperCalculator", "movingBoxCalculator", "acCapacityCalculator", "electricityConsumptionCalculator", "naturalGasCalculator"],
+    description: "Plan concrete, decorating, flooring, moving and household energy tasks with practical estimates.",
+    tools: ["concreteCalculator", "aggregateCalculator", "stairCalculator", "roofingCalculator", "paintCalculator", "tileCalculator", "brickCalculator", "laminateCalculator", "wallpaperCalculator", "movingBoxCalculator", "acCapacityCalculator", "electricityConsumptionCalculator", "naturalGasCalculator"],
   },
   {
     id: "health-and-routines",
@@ -22,7 +22,7 @@ export const englishEverydayCalculatorGroups: Array<{
     id: "transport-and-cost",
     title: "Transport, cost and comparison tools",
     description: "Estimate travel energy use, tax, charging needs and familiar real-world comparisons.",
-    tools: ["fuelConsumptionCalculator", "evChargingCalculator", "vatCalculator", "lengthComparison", "weightComparison"],
+    tools: ["fuelConsumptionCalculator", "tireSizeCalculator", "evChargingCalculator", "vatCalculator", "lengthComparison", "weightComparison"],
   },
 ];
 

@@ -5,7 +5,7 @@ export const acreArticle: UnitArticle = {
 
   introduction: [
     "The acre is a traditional area unit used especially in the imperial and US customary measurement systems for measuring land. It is exactly equal to 4,046.8564224 square meters, and appears frequently in real estate, farmland and property listings.",
-    "Although Turkey uses square meters and dönüm for land measurement, international real estate listings and English-language land documents frequently use the acre — making acre-to-square-meter conversion a practical need.",
+    "Square meters and hectares are standard in many countries, while international real-estate listings and English-language land documents frequently use acres. Converting acres to square meters or hectares makes cross-border comparisons clearer.",
   ],
 
   keyFacts: [
@@ -19,7 +19,7 @@ export const acreArticle: UnitArticle = {
     },
     {
       label: "1 acre",
-      value: "≈ 4.047 dönüm",
+      value: "43,560 square feet",
     },
     {
       label: "Unit system",
@@ -59,7 +59,7 @@ export const acreArticle: UnitArticle = {
     {
       title: "The acre and other area units",
       paragraphs: [
-        "1 acre equals 4,046.8564224 square meters, approximately 0.4047 hectares, and approximately 4.047 dönüm (the traditional land unit commonly used in Turkey).",
+        "1 acre equals 4,046.8564224 square meters, approximately 0.4047 hectares and exactly 43,560 square feet.",
         "1 hectare is approximately equal to 2.471 acres, which is why the acre and the hectare are frequently converted between one another when comparing large farmland areas.",
         "In the US measurement system, 1 acre equals 43,560 square feet — a value used especially in US-originated construction and land development projects.",
       ],
@@ -99,9 +99,9 @@ export const acreArticle: UnitArticle = {
         "1 square meter is approximately equal to 0.000247105 acres. To convert square meters to acres, divide the value by 4,046.8564224.",
     },
     {
-      question: "How many dönüm is 1 acre?",
+      question: "How many square feet is 1 acre?",
       answer:
-        "1 acre is approximately equal to 4.047 dönüm. The dönüm is a traditional land unit commonly used in Turkey, generally taken as 1,000 square meters.",
+        "1 acre is exactly equal to 43,560 square feet. This relationship is commonly used in US land and development documents.",
     },
     {
       question: "How many acres is 1 hectare?",

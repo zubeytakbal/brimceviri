@@ -7,7 +7,7 @@ import {
   type WallpaperCalculatorInput,
 } from "../converter/wallpaperCalculator";
 
-type SupportedLocale = "tr" | "en" | "uz";
+type SupportedLocale = "tr" | "en" | "uz" | "de";
 
 type WallpaperCopy = {
   fieldWallWidth: (index: number) => string;
@@ -58,6 +58,18 @@ const copyByLocale: Record<SupportedLocale, WallpaperCopy> = {
     resultRollArea: "1 Rulonning Maydoni",
     resultTotalWithWaste: "Zaxira Bilan Jami Maydon",
     rollCountLabel: (count) => `Kerakli rulon soni: ${count} rulon`,
+  },
+  de: {
+    fieldWallWidth: (index) => `Wand ${index} Breite (m)`,
+    fieldCeilingHeight: "Raumhöhe (m)",
+    fieldRollWidth: "Rollenbreite (cm)",
+    fieldRollLength: "Rollenlänge (m)",
+    fieldWaste: "Verschnitt (%)",
+    emptyState: "Geben Sie gültige Werte ein, um das Ergebnis zu sehen.",
+    resultTotalWallArea: "Gesamte Wandfläche",
+    resultRollArea: "Fläche pro Rolle",
+    resultTotalWithWaste: "Gesamtfläche inklusive Verschnitt",
+    rollCountLabel: (count) => `Benötigte Rollen: ${count}`,
   },
 };
 

@@ -17,9 +17,15 @@ const nistLength: UnitSource = {
 };
 
 const nistMass: UnitSource = {
-  title: "SI Units – Mass",
+  title: "SI Units — Mass",
   organization: "NIST",
   url: "https://www.nist.gov/pml/owm/si-units-mass",
+};
+
+const bipmKilogram: UnitSource = {
+  title: "SI base unit: kilogram",
+  organization: "BIPM",
+  url: "https://www.bipm.org/en/si-base-units/kilogram",
 };
 
 const nistConversions: UnitSource = {
@@ -36,7 +42,27 @@ const lengthSources: UnitSource[] = [
 
 const massSources: UnitSource[] = [
   siBrochure,
+  bipmKilogram,
   nistMass,
+  nistConversions,
+];
+
+const nistLiter: UnitSource = {
+  title: "Guide to the SI: Units Outside the SI",
+  organization: "NIST",
+  url: "https://www.nist.gov/pml/special-publication-811/nist-guide-si-chapter-5-units-outside-si",
+};
+
+const nistVolumeConversionFactors: UnitSource = {
+  title: "Guide to the SI: Volume Conversion Factors",
+  organization: "NIST",
+  url: "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8",
+};
+
+const volumeSources: UnitSource[] = [
+  siBrochure,
+  nistLiter,
+  nistVolumeConversionFactors,
   nistConversions,
 ];
 
@@ -147,6 +173,10 @@ export function getUnitSources(category: string): UnitSource[] {
 
   if (category === "kutle") {
     return massSources;
+  }
+
+  if (category === "hacim") {
+    return volumeSources;
   }
 
   if (category === "basinc") {

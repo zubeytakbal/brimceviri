@@ -12,7 +12,7 @@ import { manualElectricityPriceDefault } from "../converter/evVsIceComparison";
 import type { LiveFuelPrice } from "../converter/liveFuelPrice";
 
 type Mode = "charging-time" | "range";
-type SupportedLocale = "tr" | "en" | "uz";
+type SupportedLocale = "tr" | "en" | "uz" | "de";
 
 type EvChargingCopy = {
   whatToCalculate: string;
@@ -122,6 +122,33 @@ const copyByLocale: Record<SupportedLocale, EvChargingCopy> = {
     resultSavings: "Benzinlisiga Nisbatan Tejash",
     savingsNote:
       "Tejashni ko'rish uchun benzinli avtomobil sarfi va narxini ham kiriting.",
+  },
+  de: {
+    whatToCalculate: "Was möchten Sie berechnen?",
+    chargingTimeMode: "Ladezeit",
+    rangeMode: "Reichweite",
+    fieldBatteryCapacity: "Batteriekapazität (kWh)",
+    fieldCurrentPercent: "Aktueller Ladestand (%)",
+    fieldTargetPercent: "Ziel-Ladestand (%)",
+    fieldChargerPower: "Ladeleistung (kW)",
+    fieldEfficiency: "Ladeeffizienz (%)",
+    fieldConsumption: "Verbrauch (kWh/100km)",
+    emptyState: "Geben Sie gültige Werte ein, um das Ergebnis zu sehen.",
+    resultEnergyNeeded: "Benötigte Energie",
+    resultChargingTime: "Geschätzte Ladezeit",
+    resultRange: "Geschätzte Reichweite",
+    hoursShort: "Std",
+    minutesShort: "Min",
+    fieldElectricityPrice: "Strompreis (EUR/kWh)",
+    fieldEvConsumption: "Fahrzeugverbrauch (kWh/100km)",
+    fieldIceConsumption: "Verbrauch Benziner (l/100km, optional)",
+    fieldGasolinePrice: "Benzinpreis (EUR/l, optional)",
+    gasolinePricePlaceholder: "Aktuellen Preis eingeben",
+    resultChargingCost: "Kosten dieser Ladung",
+    resultRangeGained: "Gewonnene Reichweite",
+    resultSavings: "Ersparnis gegenüber Benziner",
+    savingsNote:
+      "Geben Sie auch Verbrauch und Preis eines Benziners ein, um die Ersparnis zu sehen.",
   },
 };
 

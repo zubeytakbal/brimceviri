@@ -120,6 +120,60 @@ export default function GermanOtherConversionsPage() {
       description: tool.cardDescription,
       iconName: tool.iconName as SiteIconName,
     })),
+    {
+      id: "werkstoffeigenschaften",
+      href: "/de/werkstoffeigenschaften",
+      title: "Werkstoffeigenschaften (Dichte, Wärmeleitfähigkeit...)",
+      description:
+        "Über 100 Metalle, Flüssigkeiten, Kunststoffe, Holzarten und Baumaterialien — Dichte und technische Eigenschaften ansehen, mit Live-Umrechner.",
+      iconName: "materialsHubCalculator" as const,
+      group: "Technische Referenztools",
+    },
+    {
+      id: "chemische-verbindungen",
+      href: "/de/chemische-verbindungen",
+      title: "Chemische Verbindungen (Molare Masse)",
+      description:
+        "Molare Masse und atomare Zusammensetzung gängiger chemischer Verbindungen ansehen und eigene Stoffmengenberechnungen durchführen.",
+      iconName: "chemistryCalculator" as const,
+      group: "Technische Referenztools",
+    },
+    {
+      id: "materialgewicht",
+      href: "/de/materialgewicht-berechnen",
+      title: "Tabelle der Materialdichten und Gewichtsberechnung",
+      description:
+        "Material auswählen und aus dem Volumen das Gewicht berechnen, oder umgekehrt.",
+      iconName: "materialWeightCalculator" as const,
+      group: "Technische Referenztools",
+    },
+    {
+      id: "periodensystem",
+      href: "/de/periodensystem",
+      title: "Periodensystem (Alle 118 Elemente)",
+      description:
+        "Ordnungszahl, Atommasse und Kategorie jedes Elements ansehen, mit Stoffmengenrechner auf jeder Elementseite.",
+      iconName: "chemistryCalculator" as const,
+      group: "Technische Referenztools",
+    },
+    {
+      id: "elementrangliste",
+      href: "/de/elementrangliste",
+      title: "Elementrangliste (Schwerste/Leichteste)",
+      description:
+        "Alle 118 Elemente nach Atommasse, Ordnungszahl oder Name sortieren.",
+      iconName: "chemistryCalculator" as const,
+      group: "Technische Referenztools",
+    },
+    {
+      id: "atommasse-berechnen",
+      href: "/de/atommasse-berechnen",
+      title: "Atommasse berechnen",
+      description:
+        "Aus Isotopmassen und natürlichen Häufigkeiten die durchschnittliche Atommasse berechnen.",
+      iconName: "chemistryCalculator" as const,
+      group: "Technische Referenztools",
+    },
   ];
 
   return (

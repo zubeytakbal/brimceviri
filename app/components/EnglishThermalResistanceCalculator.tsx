@@ -54,8 +54,14 @@ export default function EnglishThermalResistanceCalculator() {
     makeLayer(2, "mineral-wool"),
     makeLayer(3, "brick"),
   ]);
+  const [insideSurfaceResistance, setInsideSurfaceResistance] = useState("0");
+  const [outsideSurfaceResistance, setOutsideSurfaceResistance] = useState("0");
 
   const result = useMemo(() => {
+    const insideFilm = readNumber(insideSurfaceResistance);
+    const outsideFilm = readNumber(outsideSurfaceResistance);
+    if (insideFilm === null || outsideFilm === null || insideFilm < 0 || outsideFilm < 0) return null;
+
     const calculatedLayers = layers.map((layer) => {
       const thickness = readNumber(layer.thickness);
       const selected = materials.find((material) => material.id === layer.material);
@@ -75,8 +81,9 @@ export default function EnglishThermalResistanceCalculator() {
 
     const validLayers = calculatedLayers as Array<Layer & { conductivity: number; resistance: number }>;
     const resistance = validLayers.reduce((sum, layer) => sum + layer.resistance, 0);
-    return { layers: validLayers, resistance, uValue: 1 / resistance };
-  }, [layers]);
+    const totalResistance = resistance + insideFilm + outsideFilm;
+    return { layers: validLayers, resistance, uValue: 1 / resistance, insideFilm, outsideFilm, totalResistance, assemblyUValue: 1 / totalResistance };
+  }, [insideSurfaceResistance, layers, outsideSurfaceResistance]);
 
   function updateLayer(id: number, updates: Partial<Layer>) {
     setLayers((current) => current.map((layer) => layer.id === id ? { ...layer, ...updates } : layer));
@@ -93,7 +100,7 @@ export default function EnglishThermalResistanceCalculator() {
   return (
     <div className="category-general-converter">
       <p className="calculator-usage-hint">
-        Add solid material layers from inside to outside. The result includes layer resistance only; it does not add internal or external surface-film resistance.
+        Add solid material layers from inside to outside. You can optionally add surface-film resistance values from your project method or standard; no default film values are assumed.
       </p>
 
       <div className="engineering-calculator-card">
@@ -143,6 +150,14 @@ export default function EnglishThermalResistanceCalculator() {
         </div>
       </div>
 
+      <div className="engineering-calculator-card">
+        <div className="calculator-section-heading"><div><h2>Optional surface-film resistance</h2><p className="calculator-usage-hint">Enter Rsi and Rse only when their values are defined by your applicable construction and calculation method.</p></div></div>
+        <div className="paint-calculator-grid">
+          <label className="category-general-converter-field"><span>Inside surface resistance (Rsi)</span><div className="category-general-converter-input-row"><input type="text" inputMode="decimal" value={insideSurfaceResistance} onChange={(event) => setInsideSurfaceResistance(event.target.value)} /><span>m²·K/W</span></div></label>
+          <label className="category-general-converter-field"><span>Outside surface resistance (Rse)</span><div className="category-general-converter-input-row"><input type="text" inputMode="decimal" value={outsideSurfaceResistance} onChange={(event) => setOutsideSurfaceResistance(event.target.value)} /><span>m²·K/W</span></div></label>
+        </div>
+      </div>
+
       <div aria-live="polite" className="category-general-converter-result paint-calculator-result">
         {!result ? (
           <strong>Enter a positive thickness and thermal conductivity for every layer.</strong>
@@ -150,6 +165,8 @@ export default function EnglishThermalResistanceCalculator() {
           <div className="paint-calculator-result-grid">
             <div><span>Total thermal resistance (R)</span><strong>{format(result.resistance)} m²·K/W</strong><small>{format(result.resistance * 5.678263, 2)} h·ft²·°F/Btu</small></div>
             <div><span>Layer-only U-value</span><strong>{format(result.uValue)} W/(m²·K)</strong><small>{format(result.uValue * 0.17611, 3)} Btu/(h·ft²·°F)</small></div>
+            <div><span>Surface-film resistance</span><strong>{format(result.insideFilm + result.outsideFilm)} m²·K/W</strong><small>Rsi {format(result.insideFilm)} · Rse {format(result.outsideFilm)}</small></div>
+            <div><span>U-value with supplied films</span><strong>{format(result.assemblyUValue)} W/(m²·K)</strong><small>Total R {format(result.totalResistance)} m²·K/W</small></div>
           </div>
         )}
       </div>

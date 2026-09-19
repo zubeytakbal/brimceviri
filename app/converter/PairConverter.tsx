@@ -9,11 +9,11 @@ type PairConverterProps = {
   toUnit: string;
   fromName: string;
   toName: string;
-  locale?: "tr" | "en" | "de" | "ar" | "uz" | "bn";
+  locale?: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr";
 };
 
 function getNumberLocale(
-  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn"
+  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr"
 ) {
   if (locale === "tr") {
     return "tr-TR";
@@ -35,12 +35,16 @@ function getNumberLocale(
     return "bn-BD";
   }
 
+  if (locale === "fr") {
+    return "fr-FR";
+  }
+
   return "en-US";
 }
 
 function formatResult(
   value: number,
-  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn"
+  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr"
 ) {
   if (!Number.isFinite(value)) {
     return "";
@@ -238,7 +242,9 @@ export default function PairConverter({
             ? `${activeFromName} qiymati`
             : locale === "bn"
               ? `${activeFromName} \u09AE\u09BE\u09A8`
-              : `${activeFromName} de\u011Feri`;
+              : locale === "fr"
+                ? `Valeur de ${activeFromName}`
+                : `${activeFromName} de\u011Feri`;
 
   const placeholder =
     locale === "en"
@@ -251,7 +257,9 @@ export default function PairConverter({
             ? "Qiymat kiriting"
             : locale === "bn"
               ? "\u098F\u0995\u099F\u09BF \u09AE\u09BE\u09A8 \u09B2\u09BF\u0996\u09C1\u09A8"
-              : "De\u011Fer girin";
+              : locale === "fr"
+                ? "Saisissez une valeur"
+                : "De\u011Fer girin";
 
   const swapLabel =
     locale === "en"
@@ -264,7 +272,9 @@ export default function PairConverter({
             ? "O'zgartirish yo'nalishini teskari qiling"
             : locale === "bn"
               ? "\u09B0\u09C2\u09AA\u09BE\u09A8\u09CD\u09A4\u09B0\u09C7\u09B0 \u09A6\u09BF\u0995 \u09AA\u09B0\u09BF\u09AC\u09B0\u09CD\u09A4\u09A8 \u0995\u09B0\u09C1\u09A8"
-              : "D\u00F6n\u00FC\u015F\u00FCm y\u00F6n\u00FCn\u00FC de\u011Fi\u015Ftir";
+              : locale === "fr"
+                ? "Inverser le sens de la conversion"
+                : "D\u00F6n\u00FC\u015F\u00FCm y\u00F6n\u00FCn\u00FC de\u011Fi\u015Ftir";
 
   const resultText =
     locale === "en"

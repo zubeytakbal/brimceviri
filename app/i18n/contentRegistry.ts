@@ -18,6 +18,9 @@ import { bengaliUnitPages } from "../converter/localizedBengaliUnitPages";
 import { bengaliConversionPages } from "../converter/localizedBengaliConversionPages";
 import { unitPages } from "../converter/unitPages";
 import { arabicCategoryPages } from "../converter/localizedArabicCategoryPages";
+import { frenchCategoryPages } from "../converter/localizedFrenchCategoryPages";
+import { frenchUnitPages } from "../converter/localizedFrenchUnitPages";
+import { frenchConversionPages } from "../converter/localizedFrenchConversionPages";
 
 export type RouteCollectionKey =
   | "units"
@@ -81,9 +84,12 @@ const localizedCategorySummariesByLocale: Record<
     category: page.category,
     title: page.title,
   })),
-  // fr: iskelet henuz olusturulmadi -- localizedFrenchCategoryPages
-  // eklendiginde buraya diger locale'ler gibi baglanacak.
-  fr: [],
+  fr: frenchCategoryPages.map((page) => ({
+    sourceSlug: page.sourceSlug,
+    slug: page.slug,
+    category: page.category,
+    title: page.title,
+  })),
 };
 
 const localizedSlugEntriesByLocale: Record<
@@ -115,7 +121,10 @@ const localizedSlugEntriesByLocale: Record<
       sourceSlug: page.sourceSlug,
       slug: page.slug,
     })),
-    fr: [],
+    fr: frenchUnitPages.map((page) => ({
+      sourceSlug: page.sourceSlug,
+      slug: page.slug,
+    })),
   },
   categories: {
     tr: categoryPages.map((page) => ({
@@ -142,7 +151,10 @@ const localizedSlugEntriesByLocale: Record<
       sourceSlug: page.sourceSlug,
       slug: page.slug,
     })),
-    fr: [],
+    fr: frenchCategoryPages.map((page) => ({
+      sourceSlug: page.sourceSlug,
+      slug: page.slug,
+    })),
   },
   calculators: {
     tr: calculatorPages.map((page) => ({
@@ -190,7 +202,10 @@ const localizedSlugEntriesByLocale: Record<
       sourceSlug: page.sourceSlug,
       slug: page.slug,
     })),
-    fr: [],
+    fr: frenchConversionPages.map((page) => ({
+      sourceSlug: page.sourceSlug,
+      slug: page.slug,
+    })),
   },
 };
 

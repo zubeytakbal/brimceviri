@@ -14,7 +14,7 @@ import {
 import { useNotificationSlot } from "./NotificationSlotProvider";
 import type { SiteNotification } from "../converter/siteNotifications";
 
-type NotificationLocale = "tr" | "en" | "uz" | "de" | "ar" | "bn";
+type NotificationLocale = "tr" | "en" | "uz" | "de" | "ar" | "bn" | "fr";
 
 const notificationCopy = {
   tr: {
@@ -76,6 +76,16 @@ const notificationCopy = {
     openLabel: "খুলুন →",
     empty: "এই মুহূর্তে কোনো নতুন বিজ্ঞপ্তি নেই।",
     dateLocale: "bn-BD",
+  },
+  fr: {
+    ariaLabel: "Notifications",
+    panelLabel: "Notifications du site",
+    title: "Notifications",
+    closeLabel: "Fermer",
+    markSeenLabel: "Marquer cette notification comme lue",
+    openLabel: "Ouvrir →",
+    empty: "Il n'y a actuellement aucune nouvelle notification.",
+    dateLocale: "fr-FR",
   },
 } as const;
 

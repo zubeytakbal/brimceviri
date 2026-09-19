@@ -6,9 +6,9 @@ import { kitchenIngredientRows } from "../../converter/kitchenMeasures";
 import { buildSiteUrl } from "../../siteConfig";
 
 export const metadata: Metadata = {
-  title: "Convertisseur de mesures de cuisine",
+  title: "Convertisseur Tasses en Grammes (mesures de cuisine)",
   description:
-    "Convertissez tasses, cuilleres, grammes et millilitres selon l'ingredient ; valeurs approximatives pour farine, sucre, riz, miel, beurre et bien plus.",
+    "Convertissez tasses, cuilleres, grammes et millilitres pour plus de 40 ingredients : farine, sucre, riz, miel, beurre et bien plus.",
   alternates: {
     canonical: "/fr/kitchen-measurement-converter",
     languages: {
@@ -21,8 +21,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Convertisseur de mesures de cuisine",
-    description: "Convertissez tasses, cuilleres, grammes et millilitres selon l'ingredient.",
+    title: "Convertisseur Tasses en Grammes (mesures de cuisine)",
+    description: "Convertissez tasses, cuilleres, grammes et millilitres pour plus de 40 ingredients.",
     url: buildSiteUrl("/fr/kitchen-measurement-converter"),
     siteName: "BirimCeviri.app",
     locale: "fr_FR",

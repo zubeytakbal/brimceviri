@@ -50,7 +50,7 @@ const systemLabels: Record<Locale, Record<SystemKey, string>> = {
     cm: "পায়ের দৈর্ঘ্য (সেমি)",
   },
   fr: {
-    eu: "Europe (EU)",
+    eu: "France / Europe (FR/EU)",
     us: "Etats-Unis (US)",
     uk: "Royaume-Uni (UK)",
     cm: "Longueur du pied (cm)",
@@ -251,7 +251,7 @@ const copy = {
     value: "Valeur",
     matchingSizes: "Pointures correspondantes",
     invalidValue: "Saisissez un nombre valide pour voir la correspondance.",
-    euResult: "Europe (EU)",
+    euResult: "France (FR/EU)",
     usResult: "Etats-Unis (US)",
     ukResult: "Royaume-Uni (UK)",
     footLength: "Longueur du pied",

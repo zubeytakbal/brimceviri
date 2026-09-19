@@ -60,7 +60,11 @@ export async function generateMetadata({
     convert(page.category, 1, page.fromUnit, page.toUnit)
   );
 
-  const title = `${oneUnitValue} ${page.fromName} en ${page.toName} — Convertisseur`;
+  // Fransizca aramalarda oncu rakam (Turkce'deki "1 X kac Y" kalibinin
+  // aksine) yaygin degil -- rakip siteler "X en Y" veya "Convertisseur de
+  // X en Y" kalibini kullaniyor (arastirma: calculconversion.com,
+  // the-converter.net, calculatrice.com basliklari).
+  const title = `Convertisseur de ${page.fromName} en ${page.toName}`;
   const description = `${oneUnitValue} ${page.fromName} = ${oneUnitResult} ${page.toName}. Consultez gratuitement la formule, le tableau de conversion et le resultat instantane.`;
 
   return {

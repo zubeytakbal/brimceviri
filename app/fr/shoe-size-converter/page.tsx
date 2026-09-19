@@ -4,9 +4,9 @@ import ShoeSizeConverter from "../../components/ShoeSizeConverter";
 import { buildSiteUrl } from "../../siteConfig";
 
 export const metadata: Metadata = {
-  title: "Convertisseur de pointures de chaussures",
+  title: "Convertisseur de pointures : FR, US, UK",
   description:
-    "Convertissez les pointures europeennes (EU), americaines (US) et britanniques (UK) ; comparez aussi les tailles Nike, Adidas, Puma, New Balance et Converse.",
+    "Convertissez les pointures françaises/europeennes (FR/EU), americaines (US) et britanniques (UK) ; comparez aussi les tailles Nike, Adidas, Puma, New Balance et Converse.",
   alternates: {
     canonical: "/fr/shoe-size-converter",
     languages: {
@@ -19,8 +19,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Convertisseur de pointures de chaussures",
-    description: "Convertissez les pointures europeennes, americaines et britanniques.",
+    title: "Convertisseur de pointures : FR, US, UK",
+    description: "Convertissez les pointures françaises/europeennes, americaines et britanniques.",
     url: buildSiteUrl("/fr/shoe-size-converter"),
     siteName: "BirimCeviri.app",
     locale: "fr_FR",
@@ -35,18 +35,18 @@ export default function FrenchShoeSizePage() {
         <nav className="breadcrumbs" aria-label="Fil d'Ariane">
           <Link href="/fr">Accueil</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          <span>Convertisseur de pointures de chaussures</span>
+          <span>Convertisseur de pointures</span>
         </nav>
 
         <header className="all-conversions-header">
-          <h1>Convertisseur de pointures de chaussures</h1>
+          <h1>Convertisseur de pointures : FR, US, UK</h1>
 
           <p>
             Saisissez la pointure que vous connaissez pour voir
-            instantanement les equivalences europeennes (EU), americaines
-            (US) et britanniques (UK). Tableaux separes pour homme, femme,
-            bebe et grand enfant, avec comparaison des marques Nike, Adidas,
-            Puma, New Balance et Converse.
+            instantanement les equivalences françaises/europeennes (FR/EU),
+            americaines (US) et britanniques (UK). Tableaux separes pour
+            homme, femme, bebe et grand enfant, avec comparaison des marques
+            Nike, Adidas, Puma, New Balance et Converse.
           </p>
         </header>
 

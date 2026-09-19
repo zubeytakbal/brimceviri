@@ -10,7 +10,7 @@ import {
 } from "../converter/shoeSizeTable";
 
 type SystemKey = "eu" | "us" | "uk" | "cm";
-type Locale = "tr" | "en" | "de" | "ar" | "uz";
+type Locale = "tr" | "en" | "de" | "ar" | "uz" | "bn";
 
 const systemLabels: Record<Locale, Record<SystemKey, string>> = {
   tr: {
@@ -42,6 +42,12 @@ const systemLabels: Record<Locale, Record<SystemKey, string>> = {
     us: "AQSH (US)",
     uk: "Angliya (UK)",
     cm: "Oyoq Uzunligi (sm)",
+  },
+  bn: {
+    eu: "ইউরোপ (EU)",
+    us: "যুক্তরাষ্ট্র (US)",
+    uk: "যুক্তরাজ্য (UK)",
+    cm: "পায়ের দৈর্ঘ্য (সেমি)",
   },
 };
 
@@ -86,6 +92,14 @@ const brandLabels: Record<Locale, Record<ShoeBrandKey, string>> = {
     "new-balance": "New Balance",
     converse: "Converse",
   },
+  bn: {
+    genel: "সাধারণ (স্ট্যান্ডার্ড)",
+    nike: "Nike",
+    adidas: "Adidas",
+    puma: "Puma",
+    "new-balance": "New Balance",
+    converse: "Converse",
+  },
 };
 
 const groupLabels: Record<Locale, Record<ShoeSizeGroupKey, string>> = {
@@ -118,6 +132,12 @@ const groupLabels: Record<Locale, Record<ShoeSizeGroupKey, string>> = {
     kadin: "Ayollar",
     bebek: "Chaqaloq / Kichik Bola",
     "buyuk-cocuk": "Katta Bola",
+  },
+  bn: {
+    erkek: "পুরুষ",
+    kadin: "নারী",
+    bebek: "শিশু / ছোট বাচ্চা",
+    "buyuk-cocuk": "বড় বাচ্চা",
   },
 };
 
@@ -191,6 +211,19 @@ const copy = {
     footLength: "Oyoq Uzunligi",
     chartSuffix: "oyoq kiyimi o'lchamlari jadvali",
   },
+  bn: {
+    group: "গ্রুপ",
+    brand: "ব্র্যান্ড",
+    knownSystem: "পরিচিত পদ্ধতি",
+    value: "মান",
+    matchingSizes: "মিলে যাওয়া মাপ",
+    invalidValue: "নিকটতম মিল দেখতে একটি সঠিক সংখ্যা লিখুন।",
+    euResult: "ইউরোপ (EU)",
+    usResult: "যুক্তরাষ্ট্র (US)",
+    ukResult: "যুক্তরাজ্য (UK)",
+    footLength: "পায়ের দৈর্ঘ্য",
+    chartSuffix: "জুতার মাপের তালিকা",
+  },
 } as const;
 
 const brandOrder: ShoeBrandKey[] = [
@@ -224,6 +257,10 @@ function getNumberLocale(locale: Locale) {
 
   if (locale === "uz") {
     return "uz-UZ";
+  }
+
+  if (locale === "bn") {
+    return "bn-BD";
   }
 
   return "en-US";

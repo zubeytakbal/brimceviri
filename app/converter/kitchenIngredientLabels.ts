@@ -3,7 +3,7 @@ import type {
   KitchenUnit,
 } from "./kitchenMeasures";
 
-export type KitchenLocale = "tr" | "en" | "de" | "ar" | "uz";
+export type KitchenLocale = "tr" | "en" | "de" | "ar" | "uz" | "bn";
 
 export const kitchenIngredientLabels: Record<
   KitchenLocale,
@@ -244,6 +244,53 @@ export const kitchenIngredientLabels: Record<
     karabiber: "Qora Qalampir (Kukun)",
     kimyon: "Zira (Kukun)",
   },
+  bn: {
+    un: "ময়দা (গমের)",
+    "tam-bugday-unu": "লাল আটা (গোটা গম)",
+    "pirinc-unu": "চালের গুঁড়া",
+    "misir-unu": "ভুট্টার আটা",
+    irmik: "সুজি",
+    "galeta-unu": "ব্রেডক্রাম্ব",
+    "toz-seker": "চিনি (দানাদার)",
+    "pudra-sekeri": "গুঁড়া চিনি",
+    "esmer-seker": "বাদামি চিনি",
+    tuz: "লবণ (টেবিল লবণ)",
+    pirinc: "চাল",
+    bulgur: "বুলগুর (মিহি)",
+    nohut: "ছোলা (শুকনো)",
+    "kirmizi-mercimek": "মসুর ডাল (লাল)",
+    "yesil-mercimek": "মসুর ডাল (সবুজ)",
+    "kuru-fasulye": "শুকনো মটরশুঁটি",
+    sut: "দুধ",
+    yogurt: "দই",
+    krema: "ক্রিম",
+    tereyagi: "মাখন",
+    margarin: "মার্জারিন",
+    zeytinyagi: "জলপাই তেল",
+    "sivi-yag": "তরল তেল (উদ্ভিজ্জ)",
+    bal: "মধু",
+    pekmez: "আঙুরের গুড়",
+    kakao: "কোকো (গুঁড়া)",
+    "yulaf-ezmesi": "ওটস",
+    nisasta: "কর্নস্টার্চ",
+    "kabartma-tozu": "বেকিং পাউডার",
+    karbonat: "বেকিং সোডা",
+    susam: "তিল",
+    "ceviz-ici": "আখরোট (কুচি)",
+    "findik-ici": "হ্যাজেলনাট",
+    badem: "বাদাম",
+    "antep-fistigi": "পেস্তা",
+    "kuru-uzum": "কিশমিশ",
+    "hindistan-cevizi": "নারকেল (কোরানো)",
+    mayonez: "মেয়োনিজ",
+    ketcap: "কেচাপ",
+    sirke: "ভিনেগার",
+    "limon-suyu": "লেবুর রস",
+    tarcin: "দারুচিনি (গুঁড়া)",
+    "kirmizi-biber": "লাল মরিচ (গুঁড়া)",
+    karabiber: "কালো মরিচ (গুঁড়া)",
+    kimyon: "জিরা (গুঁড়া)",
+  },
 };
 
 export const kitchenUnitLabels: Record<
@@ -289,5 +336,13 @@ export const kitchenUnitLabels: Record<
     ml: "Millilitr (ml)",
     litre: "Litr",
     gram: "Gramm",
+  },
+  bn: {
+    bardak: "গ্লাস (পানির)",
+    yemekKasigi: "টেবিল চামচ",
+    cayKasigi: "চা চামচ",
+    ml: "মিলিলিটার (ml)",
+    litre: "লিটার",
+    gram: "গ্রাম",
   },
 };

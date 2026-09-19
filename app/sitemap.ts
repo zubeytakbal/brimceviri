@@ -1377,6 +1377,70 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.6,
     },
+    {
+      url: `${baseUrl}/bn/shoe-size-converter`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+      alternates: {
+        languages: {
+          tr: `${baseUrl}/ayakkabi-numarasi-cevirme`,
+          en: `${baseUrl}/en/shoe-size-converter`,
+          de: `${baseUrl}/de/schuhgroessen-umrechner`,
+          ar: `${baseUrl}/ar/shoe-size-converter`,
+          bn: `${baseUrl}/bn/shoe-size-converter`,
+          "x-default": `${baseUrl}/ayakkabi-numarasi-cevirme`,
+        },
+      },
+    },
+    {
+      url: `${baseUrl}/bn/kitchen-measurement-converter`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+      alternates: {
+        languages: {
+          tr: `${baseUrl}/mutfak-olculeri-cevirici`,
+          en: `${baseUrl}/en/kitchen-measurement-converter`,
+          de: `${baseUrl}/de/kuechenmass-umrechner`,
+          ar: `${baseUrl}/ar/kitchen-measurement-converter`,
+          bn: `${baseUrl}/bn/kitchen-measurement-converter`,
+          "x-default": `${baseUrl}/mutfak-olculeri-cevirici`,
+        },
+      },
+    },
+    {
+      url: `${baseUrl}/bn/recipe-converter`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+      alternates: {
+        languages: {
+          tr: `${baseUrl}/tarif-cevirici`,
+          en: `${baseUrl}/en/recipe-converter`,
+          de: `${baseUrl}/de/rezept-umrechner`,
+          ar: `${baseUrl}/ar/recipe-converter`,
+          bn: `${baseUrl}/bn/recipe-converter`,
+          "x-default": `${baseUrl}/tarif-cevirici`,
+        },
+      },
+    },
+    {
+      url: `${baseUrl}/bn/historical-units`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+      alternates: {
+        languages: {
+          tr: `${baseUrl}/tarihi-olcu-birimleri`,
+          en: `${baseUrl}/en/historical-units`,
+          de: `${baseUrl}/de/historische-masseinheiten`,
+          ar: `${baseUrl}/ar/historical-units`,
+          bn: `${baseUrl}/bn/historical-units`,
+          "x-default": `${baseUrl}/tarihi-olcu-birimleri`,
+        },
+      },
+    },
     ...bengaliWeightPairs.map((pair) => ({
       url: `${baseUrl}/bn/traditional-weight/${pair.slug}`,
       lastModified: contentLastModified,

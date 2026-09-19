@@ -99,6 +99,23 @@ const copy = {
     copiedButton: "Nusxalandi",
     printButton: "Chop etish",
   },
+  bn: {
+    recipeLabel: "আপনার রেসিপি",
+    placeholder:
+      "২ গ্লাস ময়দা\n১ চা চামচ লবণ\n৩ টেবিল চামচ জলপাই তেল\n২টি ডিম\n১৮০ ডিগ্রি ওভেনে বেক করুন",
+    factorLabel: "গুণক",
+    originalServingsLabel: "আগে কত জনের জন্য ছিল",
+    targetServingsLabel: "এখন কত জনের জন্য চান",
+    resultHeading: "রূপান্তরিত রেসিপি",
+    emptyState: "উপরে আপনার রেসিপি লিখুন, ফলাফল এখানে দেখুন।",
+    gramPrefix: "~",
+    gramSuffix: "গ্রাম",
+    ingredientLabel: "উপাদান",
+    noMatchOption: "কোনো মিল নেই",
+    copyButton: "কপি করুন",
+    copiedButton: "কপি হয়েছে",
+    printButton: "প্রিন্ট করুন",
+  },
 } as const;
 
 const chipOptions = [
@@ -132,6 +149,8 @@ function formatGram(value: number, locale: KitchenLocale) {
           ? "ar"
           : locale === "uz"
             ? "uz-UZ"
+            : locale === "bn"
+              ? "bn-BD"
         : "en-US";
 
   return value.toLocaleString(localeName, {

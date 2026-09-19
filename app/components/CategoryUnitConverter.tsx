@@ -12,7 +12,7 @@ type UnitOption = {
 
 type CategoryUnitConverterProps = {
   category: string;
-  locale: "tr" | "en" | "de" | "ar" | "uz";
+  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn";
   // Verilmezse getCategoryUnitOptions(category, locale) kullanilir (kategori
   // sayfalarindaki standart davranis). Verilirse, ayni convert() motoru
   // (ayni category/symbol eslesmesi) uzerinde SADECE bu birimler secilebilir
@@ -58,7 +58,7 @@ function parseNumericValue(
 }
 
 function formatDisplayNumber(
-  locale: "tr" | "en" | "de" | "ar" | "uz",
+  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn",
   value: number
 ) {
   if (!Number.isFinite(value)) {
@@ -74,6 +74,8 @@ function formatDisplayNumber(
           ? "ar"
           : locale === "uz"
             ? "uz-UZ"
+            : locale === "bn"
+              ? "bn-BD"
         : "en-US";
   const absoluteValue = Math.abs(value);
 
@@ -230,7 +232,16 @@ export default function CategoryUnitConverter({
                 invalid:
                   "Natijani ko'rish uchun to'g'ri raqam kiriting.",
               }
-            : {
+            : locale === "bn"
+              ? {
+                  value: "মান",
+                  from: "উৎস একক",
+                  to: "লক্ষ্য একক",
+                  result: "তাৎক্ষণিক ফলাফল",
+                  swap: "দিক পরিবর্তন করুন",
+                  invalid: "ফলাফল দেখতে একটি সঠিক সংখ্যা লিখুন।",
+                }
+              : {
                 value: "Value",
                 from: "From unit",
                 to: "To unit",

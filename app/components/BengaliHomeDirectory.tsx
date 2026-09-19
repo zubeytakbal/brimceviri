@@ -30,13 +30,54 @@ const primaryCategoryPages = homeCategoryOrder
   .map((categoryId) => bengaliCategoryPages.find((page) => page.category === categoryId))
   .filter((page): page is (typeof bengaliCategoryPages)[number] => Boolean(page));
 
-const primaryCategoryCards = primaryCategoryPages.map((page) => ({
+const primaryCategoryCardsFromCategories = primaryCategoryPages.map((page) => ({
   id: page.category,
   href: `/bn/categories/${page.slug}`,
   title: page.title,
   description: page.description,
   iconName: getCategoryIconName(page.category) as SiteIconName,
 }));
+
+// TR/EN হোমপেজের মতো, বিশুদ্ধ একক-বিভাগ নয় এমন কিন্তু নিজস্ব রূপান্তরকারী
+// থাকা ৪টি বিশেষায়িত টুল প্রধান কার্ড গ্রিডে যোগ করা হয়েছে (মোট ১৩+৪=১৭)।
+const nicheCards: Array<{
+  id: string;
+  href: string;
+  title: string;
+  description: string;
+  iconName: SiteIconName;
+}> = [
+  {
+    id: "shoe-size",
+    href: "/bn/shoe-size-converter",
+    title: "জুতার মাপ রূপান্তরকারী",
+    description: "ইউরোপ, যুক্তরাষ্ট্র ও যুক্তরাজ্যের জুতার মাপ এবং ব্র্যান্ড অনুযায়ী তুলনা করুন।",
+    iconName: "shoeSize",
+  },
+  {
+    id: "kitchen-measures",
+    href: "/bn/kitchen-measurement-converter",
+    title: "রান্নাঘর পরিমাপ রূপান্তরকারী",
+    description: "উপাদান অনুযায়ী গ্লাস, চামচ ও গ্রাম রূপান্তর করুন।",
+    iconName: "kitchenMeasures",
+  },
+  {
+    id: "recipe-converter",
+    href: "/bn/recipe-converter",
+    title: "রেসিপি রূপান্তরকারী",
+    description: "রেসিপি পেস্ট করুন এবং গুণক দিয়ে পরিমাণ বড় বা ছোট করুন।",
+    iconName: "recipe",
+  },
+  {
+    id: "historical-units",
+    href: "/bn/historical-units",
+    title: "ঐতিহাসিক পরিমাপ একক",
+    description: "আরশিন, ওক্কা, দিরহাম ও বাইজেন্টাইন একক আধুনিক মানে রূপান্তর করুন।",
+    iconName: "historical",
+  },
+];
+
+const primaryCategoryCards = [...primaryCategoryCardsFromCategories, ...nicheCards];
 
 // homeCategoryOrder-e olmayan diger butun kategoriler (AR/TR versiyonundaki
 // gibi) ikincil kategori olarak burada listelenir.

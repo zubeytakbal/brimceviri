@@ -5,7 +5,7 @@ const SQUARE_SUFFIX = "\u00B2";
 const CUBIC_SUFFIX = "\u00B3";
 const MICRO_SIGN = "\u00B5";
 
-type Locale = "tr" | "en" | "de" | "ar" | "uz";
+type Locale = "tr" | "en" | "de" | "ar" | "uz" | "bn";
 
 type UnitDefinition = {
   tr: string;

@@ -51,6 +51,13 @@ const copy = {
     resultHeading: "Mos Qiymatlar",
     invalidValue: "Natijani ko'rish uchun to'g'ri raqam kiriting.",
   },
+  bn: {
+    ingredient: "উপাদান",
+    knownUnit: "পরিচিত একক",
+    value: "মান",
+    resultHeading: "সমতুল্য মান",
+    invalidValue: "রূপান্তর দেখতে একটি সঠিক সংখ্যা লিখুন।",
+  },
 } as const;
 
 const englishCupStandardLabels: Record<
@@ -82,7 +89,9 @@ function formatValue(value: number, locale: KitchenLocale) {
           ? "ar"
           : locale === "uz"
             ? "uz-UZ"
-            : "en-US";
+            : locale === "bn"
+              ? "bn-BD"
+              : "en-US";
 
   return value.toLocaleString(localeName, {
     maximumFractionDigits: value < 10 ? 2 : 1,

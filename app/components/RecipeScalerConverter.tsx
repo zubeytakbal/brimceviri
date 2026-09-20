@@ -184,6 +184,23 @@ const copy = {
     copiedButton: "Copiado",
     printButton: "Imprimir",
   },
+  it: {
+    recipeLabel: "La Tua Ricetta",
+    placeholder:
+      "2 tazze di farina\n1 cucchiaino di sale\n3 cucchiai di olio d'oliva\n2 uova\nForno a 180 gradi",
+    factorLabel: "Moltiplicatore",
+    originalServingsLabel: "Porzioni originali",
+    targetServingsLabel: "Porzioni desiderate",
+    resultHeading: "Ricetta Adattata",
+    emptyState: "Scrivi la tua ricetta sopra per vedere qui il risultato.",
+    gramPrefix: "~",
+    gramSuffix: "g",
+    ingredientLabel: "Ingrediente",
+    noMatchOption: "Nessuna corrispondenza",
+    copyButton: "Copia",
+    copiedButton: "Copiato",
+    printButton: "Stampa",
+  },
 } as const;
 
 const chipOptions = [
@@ -227,6 +244,8 @@ function formatGram(value: number, locale: KitchenLocale) {
                     ? "es-419"
                     : locale === "pt"
                       ? "pt-BR"
+                      : locale === "it"
+                        ? "it-IT"
         : "en-US";
 
   return value.toLocaleString(localeName, {
@@ -250,7 +269,7 @@ export default function RecipeScalerConverter({
   const cupStandard: KitchenCupStandard =
     locale === "en"
       ? "us"
-      : locale === "fr" || locale === "es-419"
+      : locale === "fr" || locale === "es-419" || locale === "it"
         ? "metric"
         : locale === "es" || locale === "pt"
           ? "usLegal"

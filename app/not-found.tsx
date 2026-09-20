@@ -118,6 +118,17 @@ bn: {
     secondaryHref: "/",
     secondaryLabel: "Abrir a pagina inicial em turco",
   },
+  it: {
+    lang: "it",
+    title: "Pagina non trovata",
+    description:
+      "La pagina che stai cercando potrebbe essere stata spostata o l'indirizzo potrebbe non essere valido.",
+    continueHeading: "Continua con",
+    primaryHref: "/it",
+    primaryLabel: "Torna alla homepage in italiano",
+    secondaryHref: "/",
+    secondaryLabel: "Apri la homepage in turco",
+  },
 } satisfies Record<
   Locale,
   {

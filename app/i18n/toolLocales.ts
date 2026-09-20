@@ -37,6 +37,10 @@ export function getIntlLocale(locale: Locale) {
     return "pt-BR";
   }
 
+  if (locale === "it") {
+    return "it-IT";
+  }
+
   return "tr-TR";
 }
 

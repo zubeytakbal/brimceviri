@@ -109,6 +109,20 @@ const copyByLocale: Record<
     },
     emptyState: "Enter valid values to see the result.",
   },
+  it: {
+    labels: {
+      area: "Area to Cover (m2)",
+      width: "Tile Width (cm)",
+      height: "Tile Height (cm)",
+      waste: "Waste Allowance (%)",
+    },
+    resultLabels: {
+      tileArea: "Area of one tile",
+      totalArea: "Total area with waste",
+      count: "Required tile count",
+    },
+    emptyState: "Enter valid values to see the result.",
+  },
   de: {
     labels: {
       area: "Zu belegende Flaeche (m2)",

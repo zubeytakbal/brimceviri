@@ -3,7 +3,7 @@ import type {
   KitchenUnit,
 } from "./kitchenMeasures";
 
-export type KitchenLocale = "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt";
+export type KitchenLocale = "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it";
 
 export const kitchenIngredientLabels: Record<
   KitchenLocale,
@@ -479,6 +479,53 @@ export const kitchenIngredientLabels: Record<
     karabiber: "Pimenta-do-Reino Preta",
     kimyon: "Cominho em Po",
   },
+  it: {
+    un: "Farina di Grano",
+    "tam-bugday-unu": "Farina Integrale",
+    "pirinc-unu": "Farina di Riso",
+    "misir-unu": "Farina di Mais",
+    irmik: "Semolino",
+    "galeta-unu": "Pangrattato",
+    "toz-seker": "Zucchero Semolato",
+    "pudra-sekeri": "Zucchero a Velo",
+    "esmer-seker": "Zucchero di Canna",
+    tuz: "Sale (Sale da Cucina)",
+    pirinc: "Riso",
+    bulgur: "Bulgur (Grano Spezzato)",
+    nohut: "Ceci (Secchi)",
+    "kirmizi-mercimek": "Lenticchie Rosse",
+    "yesil-mercimek": "Lenticchie Verdi",
+    "kuru-fasulye": "Fagioli Secchi",
+    sut: "Latte",
+    yogurt: "Yogurt",
+    krema: "Panna Fresca",
+    tereyagi: "Burro",
+    margarin: "Margarina",
+    zeytinyagi: "Olio di Oliva",
+    "sivi-yag": "Olio Vegetale",
+    bal: "Miele",
+    pekmez: "Melassa d'Uva",
+    kakao: "Cacao in Polvere",
+    "yulaf-ezmesi": "Fiocchi d'Avena",
+    nisasta: "Amido di Mais",
+    "kabartma-tozu": "Lievito in Polvere",
+    karbonat: "Bicarbonato di Sodio",
+    susam: "Sesamo",
+    "ceviz-ici": "Noci (Tritate)",
+    "findik-ici": "Nocciole",
+    badem: "Mandorle",
+    "antep-fistigi": "Pistacchi",
+    "kuru-uzum": "Uvetta",
+    "hindistan-cevizi": "Cocco Grattugiato",
+    mayonez: "Maionese",
+    ketcap: "Ketchup",
+    sirke: "Aceto",
+    "limon-suyu": "Succo di Limone",
+    tarcin: "Cannella in Polvere",
+    "kirmizi-biber": "Peperoncino Rosso in Polvere",
+    karabiber: "Pepe Nero",
+    kimyon: "Cumino in Polvere",
+  },
 };
 
 export const kitchenUnitLabels: Record<
@@ -564,5 +611,13 @@ export const kitchenUnitLabels: Record<
     ml: "Mililitro (ml)",
     litre: "Litro",
     gram: "Grama",
+  },
+  it: {
+    bardak: "Tazza",
+    yemekKasigi: "Cucchiaio",
+    cayKasigi: "Cucchiaino",
+    ml: "Millilitro (ml)",
+    litre: "Litro",
+    gram: "Grammo",
   },
 };

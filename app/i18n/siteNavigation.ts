@@ -313,6 +313,31 @@ const categoryLabels: Record<
     altin_ayar: "Quilate de Ouro",
     gumus_ayar: "Teor de Prata",
   },
+  it: {
+    uzunluk: "Lunghezza",
+    alan: "Area",
+    hacim: "Volume",
+    kutle: "Massa",
+    sicaklik: "Temperatura",
+    zaman: "Tempo",
+    hiz: "Velocita",
+    basinc: "Pressione",
+    enerji: "Energia e Potenza",
+    veri: "Archiviazione Dati",
+    elektrik: "Elettricita",
+    yogunluk: "Densita",
+    kuvvet: "Forza",
+    debi: "Portata",
+    tork: "Coppia",
+    momentum: "Quantita di Moto",
+    viskozite_dinamik: "Viscosita",
+    elektrik_direnc: "Resistenza",
+    kapasitans: "Capacita",
+    enduktans: "Induttanza",
+    elektrik_yuk: "Carica Elettrica",
+    altin_ayar: "Caratura dell'Oro",
+    gumus_ayar: "Titolo dell'Argento",
+  },
 };
 
 const siteHeaderCopy: Record<Locale, SiteHeaderCopy> = {
@@ -365,6 +390,11 @@ const siteHeaderCopy: Record<Locale, SiteHeaderCopy> = {
     navAriaLabel: "Navegacao principal",
     menuLabel: "Menu",
     conversionsLabel: "Conversoes",
+  },
+  it: {
+    navAriaLabel: "Navigazione principale",
+    menuLabel: "Menu",
+    conversionsLabel: "Conversioni",
   },
 };
 
@@ -489,6 +519,18 @@ const footerCopy: Record<Locale, FooterCopy> = {
     browserProcessingNote:
       "Nos fluxos de calculo deste site, os dados inseridos nas calculadoras sao processados diretamente no navegador.",
   },
+  it: {
+    navAriaLabel: "Navigazione del footer",
+    pagesHeading: "Pagine",
+    languagesHeading: "Lingue",
+    categoriesHeading: "Categorie",
+    description:
+      "Strumenti di conversione tecnica e guide alle unita preparati per un uso pratico.",
+    disclaimer:
+      "Per decisioni importanti di ingegneria, salute o sicurezza, verifica i risultati con fonti professionali.",
+    browserProcessingNote:
+      "Nei flussi di calcolo di questo sito, i dati inseriti nelle calcolatrici vengono elaborati direttamente nel browser.",
+  },
 };
 
 const topLevelLabelMap: Record<
@@ -568,6 +610,13 @@ const topLevelLabelMap: Record<
     allConversions: "Todas as Conversoes",
     professions: "Por Profissao",
   },
+  it: {
+    home: "Home",
+    engineeringHub: "Calcolatrici",
+    units: "Guida alle Unita",
+    allConversions: "Tutte le Conversioni",
+    professions: "Per Professione",
+  },
 };
 
 const footerLinksByLocale: Record<
@@ -621,6 +670,7 @@ const footerLinksByLocale: Record<
   es: [{ key: "home", label: "Inicio" }],
   "es-419": [{ key: "home", label: "Inicio" }],
   pt: [{ key: "home", label: "Inicio" }],
+  it: [{ key: "home", label: "Home" }],
 };
 
 export function getSiteHeaderCopy(locale: Locale) {
@@ -751,7 +801,9 @@ export function getCategoryMenuLinks(locale: Locale) {
                   ? "Tallas de Calzado"
                   : locale === "pt"
                     ? "Numeracao de Calcados"
-                    : "Ayakkabi Numarasi",
+                    : locale === "it"
+                      ? "Numeri di Scarpe"
+                      : "Ayakkabi Numarasi",
   });
   links.push({
     href: getStaticPath(locale, "kitchenMeasures"),
@@ -770,7 +822,9 @@ export function getCategoryMenuLinks(locale: Locale) {
                   ? "Medidas de Cocina"
                   : locale === "pt"
                     ? "Medidas de Cozinha"
-                    : "Mutfak Olculeri",
+                    : locale === "it"
+                      ? "Misure di Cucina"
+                      : "Mutfak Olculeri",
   });
   links.push({
     href: getStaticPath(locale, "recipeConverter"),
@@ -789,7 +843,9 @@ export function getCategoryMenuLinks(locale: Locale) {
                   ? "Conversor de Recetas"
                   : locale === "pt"
                     ? "Conversor de Receitas"
-                    : "Tarif Cevirici",
+                    : locale === "it"
+                      ? "Convertitore di Ricette"
+                      : "Tarif Cevirici",
   });
 
   return links;

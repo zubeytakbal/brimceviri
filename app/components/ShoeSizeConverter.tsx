@@ -10,7 +10,7 @@ import {
 } from "../converter/shoeSizeTable";
 
 type SystemKey = "eu" | "us" | "uk" | "cm";
-type Locale = "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt";
+type Locale = "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it";
 
 const systemLabels: Record<Locale, Record<SystemKey, string>> = {
   tr: {
@@ -72,6 +72,12 @@ const systemLabels: Record<Locale, Record<SystemKey, string>> = {
     us: "Estados Unidos (US)",
     uk: "Reino Unido (UK)",
     cm: "Comprimento do Pe (cm)",
+  },
+  it: {
+    eu: "Italia / Europa (EU)",
+    us: "Stati Uniti (US)",
+    uk: "Regno Unito (UK)",
+    cm: "Lunghezza del Piede (cm)",
   },
 };
 
@@ -156,6 +162,14 @@ const brandLabels: Record<Locale, Record<ShoeBrandKey, string>> = {
     "new-balance": "New Balance",
     converse: "Converse",
   },
+  it: {
+    genel: "Generale (Standard)",
+    nike: "Nike",
+    adidas: "Adidas",
+    puma: "Puma",
+    "new-balance": "New Balance",
+    converse: "Converse",
+  },
 };
 
 const groupLabels: Record<Locale, Record<ShoeSizeGroupKey, string>> = {
@@ -218,6 +232,12 @@ const groupLabels: Record<Locale, Record<ShoeSizeGroupKey, string>> = {
     kadin: "Feminino",
     bebek: "Bebe / Crianca Pequena",
     "buyuk-cocuk": "Crianca Maior",
+  },
+  it: {
+    erkek: "Uomo",
+    kadin: "Donna",
+    bebek: "Neonato / Bambino Piccolo",
+    "buyuk-cocuk": "Bambino Grande",
   },
 };
 
@@ -356,6 +376,19 @@ const copy = {
     footLength: "Comprimento do Pe",
     chartSuffix: "tabela de tamanhos",
   },
+  it: {
+    group: "Gruppo",
+    brand: "Marca",
+    knownSystem: "Sistema Conosciuto",
+    value: "Valore",
+    matchingSizes: "Taglie Corrispondenti",
+    invalidValue: "Inserisci un numero valido per vedere la corrispondenza.",
+    euResult: "Italia (EU)",
+    usResult: "Stati Uniti (US)",
+    ukResult: "Regno Unito (UK)",
+    footLength: "Lunghezza del Piede",
+    chartSuffix: "tabella delle taglie",
+  },
 } as const;
 
 const brandOrder: ShoeBrandKey[] = [
@@ -409,6 +442,10 @@ function getNumberLocale(locale: Locale) {
 
   if (locale === "pt") {
     return "pt-BR";
+  }
+
+  if (locale === "it") {
+    return "it-IT";
   }
 
   return "en-US";

@@ -1,4 +1,4 @@
-export const SUPPORTED_LOCALES = ["tr", "en", "de", "ar", "uz", "bn", "fr", "es", "es-419", "pt"] as const;
+export const SUPPORTED_LOCALES = ["tr", "en", "de", "ar", "uz", "bn", "fr", "es", "es-419", "pt", "it"] as const;
 
 export type Locale = (typeof SUPPORTED_LOCALES)[number];
 
@@ -170,6 +170,21 @@ export const LOCALE_DEFINITIONS: Record<Locale, LocaleDefinition> = {
     switcherOptionsLabel: "Opcoes de idioma",
     switcherSearchPlaceholder: "Buscar idioma",
     switcherEmptyLabel: "Nenhum idioma encontrado",
+  },
+  it: {
+    code: "it",
+    htmlLang: "it",
+    dir: "ltr",
+    openGraphLocale: "it_IT",
+    pathPrefix: "/it",
+    homePath: "/it",
+    label: "Italiano",
+    switcherLabel: "Italiano",
+    switcherCurrentLabel: "IT - Italiano",
+    switcherAriaLabel: "Seleziona lingua",
+    switcherOptionsLabel: "Opzioni lingua",
+    switcherSearchPlaceholder: "Cerca lingua",
+    switcherEmptyLabel: "Nessuna lingua trovata",
   },
 };
 

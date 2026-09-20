@@ -111,6 +111,21 @@ const copyByLocale: Record<
     sleepLabel: "hours of sleep",
     recommended: "Recommended",
   },
+  it: {
+    modePrompt: "What do you want to calculate?",
+    modeButtons: {
+      "wake-to-bedtime": "When should I sleep?",
+      "bedtime-to-wake": "When should I wake up?",
+    },
+    timeLabel: {
+      "wake-to-bedtime": "Desired wake-up time",
+      "bedtime-to-wake": "Bedtime",
+    },
+    emptyState: "Enter a valid time to see the result.",
+    cycleLabel: "cycles",
+    sleepLabel: "hours of sleep",
+    recommended: "Recommended",
+  },
   de: {
     modePrompt: "Was moechten Sie berechnen?",
     modeButtons: {

@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     canonical: "/es-419/categories",
     languages: {
       "es-419": "/es-419/categories",
+      pt: "/pt/categories",
       "x-default": "/es-419/categories",
     },
   },

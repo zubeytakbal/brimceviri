@@ -19,6 +19,7 @@ export const metadata: Metadata = {
       fr: "/fr",
       es: "/es",
       "es-419": "/es-419",
+      pt: "/pt",
       "x-default": "/",
     },
   },

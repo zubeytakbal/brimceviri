@@ -17,6 +17,7 @@ export const metadata = {
       fr: "/fr/historical-units",
       es: "/es/historical-units",
       "es-419": "/es-419/historical-units",
+      pt: "/pt/historical-units",
       "x-default": "/tarihi-olcu-birimleri",
     },
   },

@@ -17,6 +17,7 @@ export const metadata: Metadata = {
       fr: "/fr/recipe-converter",
       es: "/es/recipe-converter",
       "es-419": "/es-419/recipe-converter",
+      pt: "/pt/recipe-converter",
       "x-default": "/tarif-cevirici",
     },
   },

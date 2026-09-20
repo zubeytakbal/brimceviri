@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     languages: {
       es: "/es/categories",
       "es-419": "/es-419/categories",
+      pt: "/pt/categories",
       "x-default": "/es/categories",
     },
   },

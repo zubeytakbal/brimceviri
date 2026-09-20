@@ -19,6 +19,7 @@ export const metadata: Metadata = {
       fr: "/fr/kitchen-measurement-converter",
       es: "/es/kitchen-measurement-converter",
       "es-419": "/es-419/kitchen-measurement-converter",
+      pt: "/pt/kitchen-measurement-converter",
       "x-default": "/mutfak-olculeri-cevirici",
     },
   },

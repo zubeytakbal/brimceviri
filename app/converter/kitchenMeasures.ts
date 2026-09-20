@@ -1,10 +1,18 @@
 // Mutfak olcu birimleri (bardak / yemek kasigi / cay kasigi / ml / gram)
-// arasi malzemeye ozel donusum tablosu. Fiziksel formulle degil, yaygin
-// kabul goren mutfak referanslarindan (Sana, Nefis Yemek Tarifleri,
-// Carrefoursa mutfak rehberi gibi kaynaklardan derlenmis, yuvarlatilmis)
-// yogunluk degerleriyle calisir -- cunku malzemenin elenmis/sikistirilmis
-// olmasi gibi faktorler kucuk farklar yaratir, kaynaklar arasi degerler
-// de birebir aynı degildir. Degerler pratik kullanım icin yaklasiktir.
+// arasi malzemeye ozel donusum tablosu. Degerler, uluslararasi mutfak
+// referanslarinda (King Arthur Baking Ingredient Weight Chart ve benzer
+// cups-to-grams kaynaklari, 240 ml'lik standart olcek bardagi baz alinarak)
+// yayinlanan gram/bardak degerlerinin 200/240 orani ile 200 ml'lik Turk su
+// bardagina olceklenmesiyle elde edilmistir; bu, bu dosyayi kullanan tum
+// dillerdeki (tr/en/de/ar/uz/bn/fr/es) mutfak araclarinin ayni gercekci
+// yogunluk tabanini paylasmasini saglar. Tereyagi, zeytinyagi, bal, sut
+// gibi kalemlerde onceki yerel degerler zaten bu referanslarla neredeyse
+// birebir ortustugu icin degismedi; un, seker, kakao, pirinc, baklagiller,
+// kuruyemis gibi kalemlerde onceki degerler uluslararasi referanslara gore
+// %15-40 yuksekti ve asagida duzeltildi. Yerel/Turk'e ozgu kalemlerde
+// (pekmez, kirmizi biber, kimyon vb.) uluslararasi referans olmadigi icin
+// onceki pratik degerler korundu. Degerler yine de pratik kullanım icin
+// yaklasiktir; kaynaklar arasi kucuk farklar olabilir.
 //
 // Standart hacimler: 1 su bardagi = 200 ml, 1 yemek kasigi = 15 ml,
 // 1 cay kasigi = 5 ml. unitRegistry.ts'teki genel "hacim" kategorisine
@@ -67,22 +75,22 @@ export type KitchenIngredientRow = {
 };
 
 export const kitchenIngredientRows: KitchenIngredientRow[] = [
-  { key: "un", label: "Un (Buğday Unu)", gramsPerBardak: 130 },
-  { key: "tam-bugday-unu", label: "Tam Buğday Unu", gramsPerBardak: 140 },
-  { key: "pirinc-unu", label: "Pirinç Unu", gramsPerBardak: 150 },
-  { key: "misir-unu", label: "Mısır Unu", gramsPerBardak: 150 },
-  { key: "irmik", label: "İrmik", gramsPerBardak: 150 },
-  { key: "galeta-unu", label: "Galeta Unu", gramsPerBardak: 110 },
-  { key: "toz-seker", label: "Toz Şeker", gramsPerBardak: 200 },
-  { key: "pudra-sekeri", label: "Pudra Şekeri", gramsPerBardak: 120 },
-  { key: "esmer-seker", label: "Esmer Şeker", gramsPerBardak: 180 },
+  { key: "un", label: "Un (Buğday Unu)", gramsPerBardak: 100 },
+  { key: "tam-bugday-unu", label: "Tam Buğday Unu", gramsPerBardak: 108 },
+  { key: "pirinc-unu", label: "Pirinç Unu", gramsPerBardak: 118 },
+  { key: "misir-unu", label: "Mısır Unu", gramsPerBardak: 123 },
+  { key: "irmik", label: "İrmik", gramsPerBardak: 136 },
+  { key: "galeta-unu", label: "Galeta Unu", gramsPerBardak: 90 },
+  { key: "toz-seker", label: "Toz Şeker", gramsPerBardak: 167 },
+  { key: "pudra-sekeri", label: "Pudra Şekeri", gramsPerBardak: 94 },
+  { key: "esmer-seker", label: "Esmer Şeker", gramsPerBardak: 178 },
   { key: "tuz", label: "Tuz (Sofra Tuzu)", gramsPerBardak: 240 },
-  { key: "pirinc", label: "Pirinç", gramsPerBardak: 190 },
-  { key: "bulgur", label: "Bulgur (İnce)", gramsPerBardak: 170 },
-  { key: "nohut", label: "Nohut (Kuru)", gramsPerBardak: 200 },
-  { key: "kirmizi-mercimek", label: "Kırmızı Mercimek", gramsPerBardak: 200 },
-  { key: "yesil-mercimek", label: "Yeşil Mercimek", gramsPerBardak: 190 },
-  { key: "kuru-fasulye", label: "Kuru Fasulye", gramsPerBardak: 200 },
+  { key: "pirinc", label: "Pirinç", gramsPerBardak: 154 },
+  { key: "bulgur", label: "Bulgur (İnce)", gramsPerBardak: 138 },
+  { key: "nohut", label: "Nohut (Kuru)", gramsPerBardak: 163 },
+  { key: "kirmizi-mercimek", label: "Kırmızı Mercimek", gramsPerBardak: 163 },
+  { key: "yesil-mercimek", label: "Yeşil Mercimek", gramsPerBardak: 154 },
+  { key: "kuru-fasulye", label: "Kuru Fasulye", gramsPerBardak: 163 },
   { key: "sut", label: "Süt", gramsPerBardak: 205 },
   { key: "yogurt", label: "Yoğurt", gramsPerBardak: 210 },
   { key: "krema", label: "Krema", gramsPerBardak: 205 },
@@ -92,18 +100,18 @@ export const kitchenIngredientRows: KitchenIngredientRow[] = [
   { key: "sivi-yag", label: "Sıvı Yağ (Bitkisel)", gramsPerBardak: 182 },
   { key: "bal", label: "Bal", gramsPerBardak: 285 },
   { key: "pekmez", label: "Pekmez", gramsPerBardak: 280 },
-  { key: "kakao", label: "Kakao (Toz)", gramsPerBardak: 100 },
-  { key: "yulaf-ezmesi", label: "Yulaf Ezmesi", gramsPerBardak: 90 },
-  { key: "nisasta", label: "Nişasta (Mısır)", gramsPerBardak: 120 },
+  { key: "kakao", label: "Kakao (Toz)", gramsPerBardak: 72 },
+  { key: "yulaf-ezmesi", label: "Yulaf Ezmesi", gramsPerBardak: 75 },
+  { key: "nisasta", label: "Nişasta (Mısır)", gramsPerBardak: 107 },
   { key: "kabartma-tozu", label: "Kabartma Tozu", gramsPerBardak: 160 },
-  { key: "karbonat", label: "Karbonat", gramsPerBardak: 190 },
-  { key: "susam", label: "Susam", gramsPerBardak: 160 },
-  { key: "ceviz-ici", label: "Ceviz İçi (Kırık)", gramsPerBardak: 110 },
-  { key: "findik-ici", label: "Fındık İçi", gramsPerBardak: 140 },
-  { key: "badem", label: "Badem", gramsPerBardak: 150 },
-  { key: "antep-fistigi", label: "Antep Fıstığı", gramsPerBardak: 140 },
-  { key: "kuru-uzum", label: "Kuru Üzüm", gramsPerBardak: 150 },
-  { key: "hindistan-cevizi", label: "Hindistan Cevizi (Rende)", gramsPerBardak: 90 },
+  { key: "karbonat", label: "Karbonat", gramsPerBardak: 183 },
+  { key: "susam", label: "Susam", gramsPerBardak: 120 },
+  { key: "ceviz-ici", label: "Ceviz İçi (Kırık)", gramsPerBardak: 100 },
+  { key: "findik-ici", label: "Fındık İçi", gramsPerBardak: 105 },
+  { key: "badem", label: "Badem", gramsPerBardak: 119 },
+  { key: "antep-fistigi", label: "Antep Fıstığı", gramsPerBardak: 110 },
+  { key: "kuru-uzum", label: "Kuru Üzüm", gramsPerBardak: 138 },
+  { key: "hindistan-cevizi", label: "Hindistan Cevizi (Rende)", gramsPerBardak: 75 },
   { key: "mayonez", label: "Mayonez", gramsPerBardak: 220 },
   { key: "ketcap", label: "Ketçap", gramsPerBardak: 240 },
   { key: "sirke", label: "Sirke", gramsPerBardak: 205 },

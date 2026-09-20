@@ -59,7 +59,7 @@ export default function UzbekKitchenMeasuresPage() {
           </h2>
           <p>
             Javob mahsulotga qarab o&apos;zgaradi: 1 stakan (200 ml) un
-            taxminan 130 gramm kelsa, xuddi shu stakan shakar 200 gramm,
+            taxminan 100 gramm kelsa, xuddi shu stakan shakar 167 gramm,
             asal esa 285 gramm atrofida bo&apos;ladi. Buning sababi har bir
             mahsulotning zichligi (bir xil hajmdagi og&apos;irligi) har xil
             bo&apos;lishidir — un havodor va yengil, asal esa zich va

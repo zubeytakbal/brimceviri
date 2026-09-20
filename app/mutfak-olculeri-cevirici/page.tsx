@@ -110,7 +110,7 @@ export default function KitchenMeasuresPage() {
           <h2>1 su bardağı un kaç gram, 1 yemek kaşığı şeker kaç gram?</h2>
           <p>
             Cevap malzemeye göre değişir: 1 su bardağı (200 ml) un yaklaşık
-            130 gram gelirken, aynı bardak toz şeker 200 gram, bal ise 285
+            100 gram gelirken, aynı bardak toz şeker 167 gram, bal ise 285
             gram civarındadır. Bunun sebebi her malzemenin yoğunluğunun
             (aynı hacimdeki ağırlığının) farklı olması — un havadar ve
             hafifken, bal yoğun ve ağırdır. Bu yüzden tek bir &quot;1 bardak

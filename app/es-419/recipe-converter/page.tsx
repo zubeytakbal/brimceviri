@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description:
     "Pega tu receta, elige un multiplicador para aumentarla o reducirla, y obten al instante las nuevas cantidades -- algunos ingredientes tambien se convierten automaticamente a gramos.",
   alternates: {
-    canonical: "/es/recipe-converter",
+    canonical: "/es-419/recipe-converter",
     languages: {
       tr: "/tarif-cevirici",
       en: "/en/recipe-converter",
@@ -23,19 +23,19 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Conversor de recetas",
     description: "Pega tu receta y obten al instante las nuevas cantidades.",
-    url: buildSiteUrl("/es/recipe-converter"),
+    url: buildSiteUrl("/es-419/recipe-converter"),
     siteName: "BirimCeviri.app",
-    locale: "es_ES",
+    locale: "es_LA",
     type: "website",
   },
 };
 
-export default function SpanishRecipeConverterPage() {
+export default function Es419RecipeConverterPage() {
   return (
-    <main className="all-conversions-page" lang="es">
+    <main className="all-conversions-page" lang="es-419">
       <div className="all-conversions-shell">
         <nav className="breadcrumbs" aria-label="Ruta de navegacion">
-          <Link href="/es">Inicio</Link>
+          <Link href="/es-419">Inicio</Link>
           <span aria-hidden="true">&rsaquo;</span>
           <span>Conversor de recetas</span>
         </nav>
@@ -52,7 +52,7 @@ export default function SpanishRecipeConverterPage() {
           </p>
         </header>
 
-        <RecipeScalerConverter locale="es" />
+        <RecipeScalerConverter locale="es-419" />
 
         <section className="category-article-content">
           <h2>¿Como aumentar o reducir una receta?</h2>
@@ -64,8 +64,8 @@ export default function SpanishRecipeConverterPage() {
             entero, fraccion o decimal).
           </p>
           <p>
-            Tambien puedes indicar el numero de raciones originales y el
-            numero de raciones deseadas: el multiplicador se calculara
+            Tambien puedes indicar el numero de porciones originales y el
+            numero de porciones deseadas: el multiplicador se calculara
             entonces automaticamente, sin necesidad de calcularlo a mano.
           </p>
 
@@ -79,7 +79,7 @@ export default function SpanishRecipeConverterPage() {
           </p>
           <p>
             Para ver la lista de ingredientes admitidos, abre el{" "}
-            <Link href="/es/kitchen-measurement-converter">
+            <Link href="/es-419/kitchen-measurement-converter">
               conversor de medidas de cocina
             </Link>
             .
@@ -90,13 +90,13 @@ export default function SpanishRecipeConverterPage() {
           <h2>Herramientas relacionadas</h2>
           <ul className="related-conversion-list">
             <li>
-              <Link href="/es/kitchen-measurement-converter">Conversor de medidas de cocina</Link>
+              <Link href="/es-419/kitchen-measurement-converter">Conversor de medidas de cocina</Link>
             </li>
             <li>
-              <Link href="/es/shoe-size-converter">Conversor de tallas de calzado</Link>
+              <Link href="/es-419/shoe-size-converter">Conversor de tallas de calzado</Link>
             </li>
             <li>
-              <Link href="/es/historical-units">Unidades de medida historicas</Link>
+              <Link href="/es-419/historical-units">Unidades de medida historicas</Link>
             </li>
           </ul>
         </section>

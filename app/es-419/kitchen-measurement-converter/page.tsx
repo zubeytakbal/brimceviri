@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description:
     "Convierte tazas, cucharadas, gramos y mililitros para mas de 40 ingredientes: harina, azucar, arroz, miel, mantequilla y mucho mas.",
   alternates: {
-    canonical: "/es/kitchen-measurement-converter",
+    canonical: "/es-419/kitchen-measurement-converter",
     languages: {
       tr: "/mutfak-olculeri-cevirici",
       en: "/en/kitchen-measurement-converter",
@@ -25,19 +25,19 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Conversor de Tazas a Gramos (medidas de cocina)",
     description: "Convierte tazas, cucharadas, gramos y mililitros para mas de 40 ingredientes.",
-    url: buildSiteUrl("/es/kitchen-measurement-converter"),
+    url: buildSiteUrl("/es-419/kitchen-measurement-converter"),
     siteName: "BirimCeviri.app",
-    locale: "es_ES",
+    locale: "es_LA",
     type: "website",
   },
 };
 
-export default function SpanishKitchenMeasurementsPage() {
+export default function Es419KitchenMeasurementsPage() {
   return (
-    <main className="all-conversions-page" lang="es">
+    <main className="all-conversions-page" lang="es-419">
       <div className="all-conversions-shell">
         <nav className="breadcrumbs" aria-label="Ruta de navegacion">
-          <Link href="/es">Inicio</Link>
+          <Link href="/es-419">Inicio</Link>
           <span aria-hidden="true">&rsaquo;</span>
           <span>Conversor de medidas de cocina</span>
         </nav>
@@ -55,7 +55,7 @@ export default function SpanishKitchenMeasurementsPage() {
           </p>
         </header>
 
-        <KitchenMeasuresConverter locale="es" />
+        <KitchenMeasuresConverter locale="es-419" />
 
         <section className="category-article-content">
           <h2>¿Cuantos gramos hay en una taza de harina o una cucharada de azucar?</h2>
@@ -74,7 +74,7 @@ export default function SpanishKitchenMeasurementsPage() {
             domestico.
           </p>
 
-          <h2>Lista de ingredientes habituales (1 taza = 240 ml)</h2>
+          <h2>Lista de ingredientes habituales (1 taza = 250 ml)</h2>
           <div className="conversion-table-wrap">
             <table className="conversion-table">
               <caption>Gramos aproximados por taza, cucharada y cucharadita</caption>
@@ -89,10 +89,10 @@ export default function SpanishKitchenMeasurementsPage() {
               <tbody>
                 {kitchenIngredientRows.map((row) => (
                   <tr key={row.key}>
-                    <td>{kitchenIngredientLabels.es[row.key]}</td>
-                    <td>{Math.round((row.gramsPerBardak * 240) / 200)} g</td>
-                    <td>{Math.round((row.gramsPerBardak * 240 * 15) / (200 * 200))} g</td>
-                    <td>{Math.round((row.gramsPerBardak * 240 * 5) / (200 * 200))} g</td>
+                    <td>{kitchenIngredientLabels["es-419"][row.key]}</td>
+                    <td>{Math.round((row.gramsPerBardak * 250) / 200)} g</td>
+                    <td>{Math.round((row.gramsPerBardak * 250 * 15) / (200 * 200))} g</td>
+                    <td>{Math.round((row.gramsPerBardak * 250 * 5) / (200 * 200))} g</td>
                   </tr>
                 ))}
               </tbody>
@@ -104,8 +104,8 @@ export default function SpanishKitchenMeasurementsPage() {
             <strong>¿Cuantos mililitros tiene una cucharada?</strong>
             <br />
             Una cucharada equivale a 15 mililitros, es decir, 3
-            cucharaditas. La taza usada aqui corresponde a 240 mililitros
-            (taza estadounidense habitual en recetas).
+            cucharaditas. La taza usada aqui corresponde a 250 mililitros
+            (taza metrica, la mas comun en las recetas de America Latina).
           </p>
           <p>
             <strong>¿Por que el peso de una taza varia segun el ingrediente?</strong>
@@ -116,7 +116,7 @@ export default function SpanishKitchenMeasurementsPage() {
           </p>
           <p>
             Para ajustar una receta completa, prueba el{" "}
-            <Link href="/es/recipe-converter">conversor de recetas</Link>.
+            <Link href="/es-419/recipe-converter">conversor de recetas</Link>.
           </p>
         </section>
 
@@ -124,16 +124,16 @@ export default function SpanishKitchenMeasurementsPage() {
           <h2>Herramientas relacionadas</h2>
           <ul className="related-conversion-list">
             <li>
-              <Link href="/es/recipe-converter">Conversor de recetas</Link>
+              <Link href="/es-419/recipe-converter">Conversor de recetas</Link>
             </li>
             <li>
-              <Link href="/es/shoe-size-converter">Conversor de tallas de calzado</Link>
+              <Link href="/es-419/shoe-size-converter">Conversor de tallas de calzado</Link>
             </li>
             <li>
-              <Link href="/es/historical-units">Unidades de medida historicas</Link>
+              <Link href="/es-419/historical-units">Unidades de medida historicas</Link>
             </li>
             <li>
-              <Link href="/es/categories/masa">Conversion de unidades de masa</Link>
+              <Link href="/es-419/categories/masa">Conversion de unidades de masa</Link>
             </li>
           </ul>
         </section>

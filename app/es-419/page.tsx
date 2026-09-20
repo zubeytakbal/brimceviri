@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import SpanishHomeDirectory from "../components/SpanishHomeDirectory";
+import Es419HomeDirectory from "../components/Es419HomeDirectory";
 import { getSiteNotifications } from "../converter/siteNotifications";
 import { buildSiteUrl } from "../siteConfig";
 
 export const metadata: Metadata = {
-  title: "Convertidor de unidades — Espanol",
+  title: "Convertidor de unidades — Espanol (Latinoamerica)",
   description:
     "Convierte gratis y al instante longitud, masa, temperatura y otras unidades fisicas. Mas de 12 categorias, con formulas precisas.",
   alternates: {
-    canonical: "/es",
+    canonical: "/es-419",
     languages: {
       tr: "/",
       en: "/en",
@@ -23,18 +23,18 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Convertidor de unidades — Espanol",
+    title: "Convertidor de unidades — Espanol (Latinoamerica)",
     description:
       "Convierte gratis y al instante longitud, masa, temperatura y otras unidades fisicas.",
-    url: buildSiteUrl("/es"),
+    url: buildSiteUrl("/es-419"),
     siteName: "BirimCeviri.app",
-    locale: "es_ES",
+    locale: "es_LA",
     type: "website",
   },
 };
 
-export default async function SpanishHomePage() {
-  const notifications = await getSiteNotifications("es");
+export default async function Es419HomePage() {
+  const notifications = await getSiteNotifications("es-419");
 
-  return <SpanishHomeDirectory notifications={notifications} />;
+  return <Es419HomeDirectory notifications={notifications} />;
 }

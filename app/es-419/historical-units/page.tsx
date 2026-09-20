@@ -8,7 +8,7 @@ export const metadata = {
   description:
     "Descubre las unidades de medida bizantinas, otomanas y turcas antiguas, y convierte a metros y gramos con breves explicaciones.",
   alternates: {
-    canonical: "/es/historical-units",
+    canonical: "/es-419/historical-units",
     languages: {
       tr: "/tarihi-olcu-birimleri",
       en: "/en/historical-units",
@@ -23,9 +23,9 @@ export const metadata = {
   openGraph: {
     title: "Unidades de medida historicas",
     description: "Descubre las unidades de medida bizantinas, otomanas y turcas antiguas.",
-    url: buildSiteUrl("/es/historical-units"),
+    url: buildSiteUrl("/es-419/historical-units"),
     siteName: "BirimCeviri.app",
-    locale: "es_ES",
+    locale: "es_LA",
     type: "website",
   },
 };
@@ -138,13 +138,13 @@ function UnitList({
   );
 }
 
-export default function SpanishHistoricalUnitsPage() {
+export default function Es419HistoricalUnitsPage() {
   return (
     <StaticPageLayout
-      locale="es"
+      locale="es-419"
       breadcrumbAriaLabel="Ruta de navegacion"
       breadcrumbs={[
-        { href: "/es", label: "Inicio" },
+        { href: "/es-419", label: "Inicio" },
         { label: "Unidades de medida historicas" },
       ]}
       title="Unidades de medida historicas"
@@ -182,11 +182,11 @@ export default function SpanishHistoricalUnitsPage() {
                 braza bizantina y çığ, con el equivalente moderno en
                 metros. Para ver todas las unidades de longitud modernas,
                 abre la{" "}
-                <Link href="/es/categories/longitud">biblioteca completa de longitudes</Link>.
+                <Link href="/es-419/categories/longitud">biblioteca completa de longitudes</Link>.
               </p>
               <CategoryUnitConverter
                 category="uzunluk"
-                locale="es"
+                locale="es-419"
                 unitOptions={historicalLengthUnitOptions}
               />
             </>
@@ -201,11 +201,11 @@ export default function SpanishHistoricalUnitsPage() {
                 bizantina y la ounkia bizantina, usando el gramo moderno
                 como referencia. Para unidades modernas como el kilogramo y
                 la tonelada, abre la{" "}
-                <Link href="/es/categories/masa">biblioteca completa de masas</Link>.
+                <Link href="/es-419/categories/masa">biblioteca completa de masas</Link>.
               </p>
               <CategoryUnitConverter
                 category="kutle"
-                locale="es"
+                locale="es-419"
                 unitOptions={historicalMassUnitOptions}
               />
             </>
@@ -276,13 +276,13 @@ export default function SpanishHistoricalUnitsPage() {
           content: (
             <ul className="related-conversion-list">
               <li>
-                <Link href="/es/kitchen-measurement-converter">Conversor de medidas de cocina</Link>
+                <Link href="/es-419/kitchen-measurement-converter">Conversor de medidas de cocina</Link>
               </li>
               <li>
-                <Link href="/es/recipe-converter">Conversor de recetas</Link>
+                <Link href="/es-419/recipe-converter">Conversor de recetas</Link>
               </li>
               <li>
-                <Link href="/es/shoe-size-converter">Conversor de tallas de calzado</Link>
+                <Link href="/es-419/shoe-size-converter">Conversor de tallas de calzado</Link>
               </li>
             </ul>
           ),

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { spanishCategoryPages } from "../../converter/localizedSpanishCategoryPages";
+import { es419CategoryPages } from "../../converter/localizedEs419CategoryPages";
 import { buildSiteUrl } from "../../siteConfig";
 
 export const metadata: Metadata = {
@@ -8,29 +8,28 @@ export const metadata: Metadata = {
   description:
     "Lista completa de conversiones de unidades para longitud, masa, temperatura, presion, energia y muchas otras magnitudes fisicas.",
   alternates: {
-    canonical: "/es/categories",
+    canonical: "/es-419/categories",
     languages: {
-      es: "/es/categories",
       "es-419": "/es-419/categories",
-      "x-default": "/es/categories",
+      "x-default": "/es-419/categories",
     },
   },
   openGraph: {
     title: "Todas las categorias — Convertidor de unidades",
     description: "Lista completa de todas las categorias de conversion de unidades.",
-    url: buildSiteUrl("/es/categories"),
+    url: buildSiteUrl("/es-419/categories"),
     siteName: "BirimCeviri.app",
-    locale: "es_ES",
+    locale: "es_LA",
     type: "website",
   },
 };
 
-export default function SpanishCategoriesIndexPage() {
+export default function Es419CategoriesIndexPage() {
   return (
-    <main className="all-conversions-page" lang="es">
+    <main className="all-conversions-page" lang="es-419">
       <div className="all-conversions-shell">
         <nav className="breadcrumbs" aria-label="Ruta de navegacion">
-          <Link href="/es">Inicio</Link>
+          <Link href="/es-419">Inicio</Link>
           <span aria-hidden="true">&rsaquo;</span>
           <span>Todas las categorias</span>
         </nav>
@@ -53,11 +52,11 @@ export default function SpanishCategoriesIndexPage() {
                 </tr>
               </thead>
               <tbody>
-                {spanishCategoryPages.map((category) => (
+                {es419CategoryPages.map((category) => (
                   <tr key={category.slug}>
                     <td>{category.title}</td>
                     <td>
-                      <Link className="text-link" href={`/es/categories/${category.slug}`}>
+                      <Link className="text-link" href={`/es-419/categories/${category.slug}`}>
                         Ver
                       </Link>
                     </td>

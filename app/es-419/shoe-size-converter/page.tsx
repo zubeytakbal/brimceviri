@@ -4,11 +4,11 @@ import ShoeSizeConverter from "../../components/ShoeSizeConverter";
 import { buildSiteUrl } from "../../siteConfig";
 
 export const metadata: Metadata = {
-  title: "Conversor de tallas de calzado: ES, US, UK",
+  title: "Conversor de tallas de calzado: US, EU, UK",
   description:
-    "Convierte las tallas de calzado espanolas/europeas (ES/EU), estadounidenses (US) y britanicas (UK); compara tambien las tallas de Nike, Adidas, Puma, New Balance y Converse.",
+    "Convierte las tallas de calzado estadounidenses (US), europeas (EU) y britanicas (UK); compara tambien las tallas de Nike, Adidas, Puma, New Balance y Converse.",
   alternates: {
-    canonical: "/es/shoe-size-converter",
+    canonical: "/es-419/shoe-size-converter",
     languages: {
       tr: "/ayakkabi-numarasi-cevirme",
       en: "/en/shoe-size-converter",
@@ -21,46 +21,47 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Conversor de tallas de calzado: ES, US, UK",
-    description: "Convierte las tallas de calzado espanolas/europeas, estadounidenses y britanicas.",
-    url: buildSiteUrl("/es/shoe-size-converter"),
+    title: "Conversor de tallas de calzado: US, EU, UK",
+    description: "Convierte las tallas de calzado estadounidenses, europeas y britanicas.",
+    url: buildSiteUrl("/es-419/shoe-size-converter"),
     siteName: "BirimCeviri.app",
-    locale: "es_ES",
+    locale: "es_LA",
     type: "website",
   },
 };
 
-export default function SpanishShoeSizePage() {
+export default function Es419ShoeSizePage() {
   return (
-    <main className="all-conversions-page" lang="es">
+    <main className="all-conversions-page" lang="es-419">
       <div className="all-conversions-shell">
         <nav className="breadcrumbs" aria-label="Ruta de navegacion">
-          <Link href="/es">Inicio</Link>
+          <Link href="/es-419">Inicio</Link>
           <span aria-hidden="true">&rsaquo;</span>
           <span>Conversor de tallas de calzado</span>
         </nav>
 
         <header className="all-conversions-header">
-          <h1>Conversor de tallas de calzado: ES, US, UK</h1>
+          <h1>Conversor de tallas de calzado: US, EU, UK</h1>
 
           <p>
             Introduce la talla que conoces para ver al instante las
-            equivalencias espanolas/europeas (ES/EU), estadounidenses (US)
-            y britanicas (UK). Tablas separadas para hombre, mujer, bebe y
-            nino mayor, con comparativa de las marcas Nike, Adidas, Puma,
-            New Balance y Converse.
+            equivalencias estadounidenses (US), europeas (EU) y britanicas
+            (UK). Tablas separadas para hombre, mujer, bebe y nino mayor, con
+            comparativa de las marcas Nike, Adidas, Puma, New Balance y
+            Converse.
           </p>
         </header>
 
-        <ShoeSizeConverter locale="es" />
+        <ShoeSizeConverter locale="es-419" />
 
         <section className="category-article-content">
-          <h2>¿Por que varian las tallas de calzado segun la marca?</h2>
+          <h2>¿Por que varian las tallas de calzado segun el pais o la marca?</h2>
           <p>
-            El sistema europeo es relativamente estable, pero los sistemas
-            US y UK se basan en escalas diferentes. Ademas, cada marca usa
-            sus propios moldes de fabricacion y su propio diseno de
-            comodidad, por lo que una misma longitud de pie puede
+            En America Latina convive el sistema estadounidense (US), muy
+            usado por la cercania comercial con Estados Unidos, con el
+            sistema europeo (EU), que tambien aparece en muchas etiquetas
+            importadas. Ademas, cada marca usa sus propios moldes de
+            fabricacion, por lo que una misma longitud de pie puede
             corresponder a una talla distinta, o desplazada media talla,
             segun la marca.
           </p>
@@ -68,7 +69,8 @@ export default function SpanishShoeSizePage() {
             El resultado mas fiable suele obtenerse midiendo la longitud
             del pie en centimetros y eligiendo despues la opcion "Longitud
             del pie" en la herramienta. Esto reduce los errores derivados
-            de las diferencias de nomenclatura de tallas entre mercados.
+            de las diferencias de nomenclatura de tallas entre marcas y
+            paises.
           </p>
           <p>
             En ninos, la numeracion US vuelve a empezar despues del 13,5;
@@ -81,16 +83,16 @@ export default function SpanishShoeSizePage() {
           <h2>Herramientas relacionadas</h2>
           <ul className="related-conversion-list">
             <li>
-              <Link href="/es/kitchen-measurement-converter">Conversor de medidas de cocina</Link>
+              <Link href="/es-419/kitchen-measurement-converter">Conversor de medidas de cocina</Link>
             </li>
             <li>
-              <Link href="/es/recipe-converter">Conversor de recetas</Link>
+              <Link href="/es-419/recipe-converter">Conversor de recetas</Link>
             </li>
             <li>
-              <Link href="/es/historical-units">Unidades de medida historicas</Link>
+              <Link href="/es-419/historical-units">Unidades de medida historicas</Link>
             </li>
             <li>
-              <Link href="/es/categories/longitud">Conversion de unidades de longitud</Link>
+              <Link href="/es-419/categories/longitud">Conversion de unidades de longitud</Link>
             </li>
           </ul>
         </section>

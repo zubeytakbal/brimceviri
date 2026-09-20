@@ -94,6 +94,75 @@ function FlagIcon({ locale }: { locale: string }) {
     );
   }
 
+  if (locale === "fr") {
+    return (
+      <svg
+        className="site-footer-flag"
+        viewBox="0 0 20 14"
+        aria-hidden="true"
+      >
+        <rect width="6.67" height="14" fill="#002395" />
+        <rect x="6.67" width="6.67" height="14" fill="#ffffff" />
+        <rect x="13.33" width="6.67" height="14" fill="#ED2939" />
+      </svg>
+    );
+  }
+
+  if (locale === "es") {
+    return (
+      <svg
+        className="site-footer-flag"
+        viewBox="0 0 20 14"
+        aria-hidden="true"
+      >
+        <rect width="20" height="14" fill="#AA151B" />
+        <rect y="3.5" width="20" height="7" fill="#F1BF00" />
+      </svg>
+    );
+  }
+
+  if (locale === "es-419") {
+    return (
+      <svg
+        className="site-footer-flag"
+        viewBox="0 0 20 14"
+        aria-hidden="true"
+      >
+        <rect width="20" height="14" fill="#f2f2f2" />
+        <circle cx="10" cy="7" r="6" fill="none" stroke="#4a4a4a" strokeWidth="0.9" />
+        <path d="M4,7 H16 M10,1 V13 M5.3,3.3 L14.7,10.7 M14.7,3.3 L5.3,10.7" stroke="#4a4a4a" strokeWidth="0.6" />
+      </svg>
+    );
+  }
+
+  if (locale === "pt") {
+    return (
+      <svg
+        className="site-footer-flag"
+        viewBox="0 0 20 14"
+        aria-hidden="true"
+      >
+        <rect width="20" height="14" fill="#009B3A" />
+        <polygon points="10,2 18,7 10,12 2,7" fill="#FEDF00" />
+        <circle cx="10" cy="7" r="2.8" fill="#002776" />
+      </svg>
+    );
+  }
+
+  if (locale === "it") {
+    return (
+      <svg
+        className="site-footer-flag"
+        viewBox="0 0 20 14"
+        aria-hidden="true"
+      >
+        <rect width="6.67" height="14" fill="#009246" />
+        <rect x="6.67" width="6.67" height="14" fill="#ffffff" />
+        <rect x="13.33" width="6.67" height="14" fill="#CE2B37" />
+      </svg>
+    );
+  }
+
   return (
     <svg
       className="site-footer-flag"

@@ -10,7 +10,7 @@ import {
 } from "../converter/shoeSizeTable";
 
 type SystemKey = "eu" | "us" | "uk" | "cm";
-type Locale = "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419";
+type Locale = "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt";
 
 const systemLabels: Record<Locale, Record<SystemKey, string>> = {
   tr: {
@@ -66,6 +66,12 @@ const systemLabels: Record<Locale, Record<SystemKey, string>> = {
     us: "Estados Unidos (US)",
     uk: "Reino Unido (UK)",
     cm: "Longitud del pie (cm)",
+  },
+  pt: {
+    eu: "Europa (EU)",
+    us: "Estados Unidos (US)",
+    uk: "Reino Unido (UK)",
+    cm: "Comprimento do Pe (cm)",
   },
 };
 
@@ -142,6 +148,14 @@ const brandLabels: Record<Locale, Record<ShoeBrandKey, string>> = {
     "new-balance": "New Balance",
     converse: "Converse",
   },
+  pt: {
+    genel: "Geral (Padrao)",
+    nike: "Nike",
+    adidas: "Adidas",
+    puma: "Puma",
+    "new-balance": "New Balance",
+    converse: "Converse",
+  },
 };
 
 const groupLabels: Record<Locale, Record<ShoeSizeGroupKey, string>> = {
@@ -198,6 +212,12 @@ const groupLabels: Record<Locale, Record<ShoeSizeGroupKey, string>> = {
     kadin: "Mujer",
     bebek: "Bebe / Nino pequeno",
     "buyuk-cocuk": "Nino mayor",
+  },
+  pt: {
+    erkek: "Masculino",
+    kadin: "Feminino",
+    bebek: "Bebe / Crianca Pequena",
+    "buyuk-cocuk": "Crianca Maior",
   },
 };
 
@@ -323,6 +343,19 @@ const copy = {
     footLength: "Longitud del pie",
     chartSuffix: "tabla de tallas",
   },
+  pt: {
+    group: "Grupo",
+    brand: "Marca",
+    knownSystem: "Sistema Conhecido",
+    value: "Valor",
+    matchingSizes: "Tamanhos Equivalentes",
+    invalidValue: "Digite um numero valido para ver a equivalencia.",
+    euResult: "Europa (EU)",
+    usResult: "Estados Unidos (US)",
+    ukResult: "Reino Unido (UK)",
+    footLength: "Comprimento do Pe",
+    chartSuffix: "tabela de tamanhos",
+  },
 } as const;
 
 const brandOrder: ShoeBrandKey[] = [
@@ -372,6 +405,10 @@ function getNumberLocale(locale: Locale) {
 
   if (locale === "es-419") {
     return "es-419";
+  }
+
+  if (locale === "pt") {
+    return "pt-BR";
   }
 
   return "en-US";

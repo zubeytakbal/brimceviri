@@ -55,6 +55,7 @@ const staticRouteTranslations: Record<StaticRouteKey, LocalePathMap> = {
     fr: "/fr",
     es: "/es",
     "es-419": "/es-419",
+    pt: "/pt",
   },
   units: {
     tr: "/birimler",
@@ -239,6 +240,7 @@ const collectionBasePaths: Record<
     fr: "/fr/unit-guides/",
     es: "/es/unit-guides/",
     "es-419": "/es-419/unit-guides/",
+    pt: "/pt/unit-guides/",
   },
   categories: {
     tr: "/kategoriler/",
@@ -250,6 +252,7 @@ const collectionBasePaths: Record<
     fr: "/fr/categories/",
     es: "/es/categories/",
     "es-419": "/es-419/categories/",
+    pt: "/pt/categories/",
   },
   calculators: {
     tr: "/hesaplayicilar/",
@@ -261,6 +264,7 @@ const collectionBasePaths: Record<
     fr: "/fr/calculators/",
     es: "/es/calculators/",
     "es-419": "/es-419/calculators/",
+    pt: "/pt/calculators/",
   },
   conversions: {
     tr: "/",
@@ -272,6 +276,7 @@ const collectionBasePaths: Record<
     fr: "/fr/",
     es: "/es/",
     "es-419": "/es-419/",
+    pt: "/pt/",
   },
 };
 

@@ -7,7 +7,7 @@ import {
 } from "./kitchenMeasures";
 import { kitchenIngredientLabels } from "./kitchenIngredientLabels";
 
-export type RecipeLocale = "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419";
+export type RecipeLocale = "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt";
 
 export type ParsedRecipeLine = {
   raw: string;
@@ -38,6 +38,10 @@ const wordQuantities: Record<string, number> = {
   media: 0.5,
   cuarto: 0.25,
   cuarta: 0.25,
+  meio: 0.5,
+  meia: 0.5,
+  quarto: 0.25,
+  quarta: 0.25,
 };
 
 function normalizeText(value: string): string {
@@ -116,6 +120,8 @@ const twoTokenUnits: Record<string, KitchenUnit> = {
   "চা চামচ": "cayKasigi",
   "cuillere a soupe": "yemekKasigi",
   "cuillere a cafe": "cayKasigi",
+  "colher de sopa": "yemekKasigi",
+  "colher de cha": "cayKasigi",
 };
 
 const oneTokenUnits: Record<string, KitchenUnit> = {
@@ -183,6 +189,10 @@ const oneTokenUnits: Record<string, KitchenUnit> = {
   mililitros: "ml",
   litro: "litre",
   litros: "litre",
+  xicara: "bardak",
+  xicaras: "bardak",
+  grama: "gram",
+  gramas: "gram",
 };
 
 function extractUnit(normalizedRestOfLine: string): {
@@ -256,6 +266,10 @@ const ingredientMatchEntries: Array<{
   entries.push({
     key: row.key,
     normalized: normalizeText(kitchenIngredientLabels["es-419"][row.key]),
+  });
+  entries.push({
+    key: row.key,
+    normalized: normalizeText(kitchenIngredientLabels.pt[row.key]),
   });
 
   return entries;
@@ -350,6 +364,8 @@ function formatQuantity(
                   ? "es-ES"
                   : locale === "es-419"
                     ? "es-419"
+                    : locale === "pt"
+                      ? "pt-BR"
         : "en-US";
 
   return rounded.toLocaleString(localeName, {

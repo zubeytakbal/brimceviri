@@ -79,6 +79,13 @@ const copy = {
     resultHeading: "Equivalencias",
     invalidValue: "Introduce un numero valido para ver la conversion.",
   },
+  pt: {
+    ingredient: "Ingrediente",
+    knownUnit: "Unidade Conhecida",
+    value: "Valor",
+    resultHeading: "Equivalencias",
+    invalidValue: "Digite um numero valido para ver a conversao.",
+  },
 } as const;
 
 const englishCupStandardLabels: Record<
@@ -118,7 +125,9 @@ function formatValue(value: number, locale: KitchenLocale) {
                   ? "es-ES"
                   : locale === "es-419"
                     ? "es-419"
-                    : "en-US";
+                    : locale === "pt"
+                      ? "pt-BR"
+                      : "en-US";
 
   return value.toLocaleString(localeName, {
     maximumFractionDigits: value < 10 ? 2 : 1,
@@ -150,7 +159,7 @@ export default function KitchenMeasuresConverter({
       ? "us"
       : locale === "fr" || locale === "es-419"
         ? "metric"
-        : locale === "es"
+        : locale === "es" || locale === "pt"
           ? "usLegal"
           : "turkish"
   );

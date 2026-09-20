@@ -33,6 +33,10 @@ export function getIntlLocale(locale: Locale) {
     return "es-419";
   }
 
+  if (locale === "pt") {
+    return "pt-BR";
+  }
+
   return "tr-TR";
 }
 

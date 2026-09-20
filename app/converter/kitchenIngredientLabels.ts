@@ -3,7 +3,7 @@ import type {
   KitchenUnit,
 } from "./kitchenMeasures";
 
-export type KitchenLocale = "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419";
+export type KitchenLocale = "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt";
 
 export const kitchenIngredientLabels: Record<
   KitchenLocale,
@@ -432,6 +432,53 @@ export const kitchenIngredientLabels: Record<
     karabiber: "Pimienta negra molida",
     kimyon: "Comino molido",
   },
+  pt: {
+    un: "Farinha de Trigo",
+    "tam-bugday-unu": "Farinha Integral",
+    "pirinc-unu": "Farinha de Arroz",
+    "misir-unu": "Farinha de Milho",
+    irmik: "Semolina",
+    "galeta-unu": "Farinha de Rosca",
+    "toz-seker": "Acucar Refinado",
+    "pudra-sekeri": "Acucar de Confeiteiro",
+    "esmer-seker": "Acucar Mascavo",
+    tuz: "Sal (Sal de Cozinha)",
+    pirinc: "Arroz",
+    bulgur: "Trigo para Quibe (Bulgur)",
+    nohut: "Grao-de-Bico (Seco)",
+    "kirmizi-mercimek": "Lentilha Vermelha",
+    "yesil-mercimek": "Lentilha Verde",
+    "kuru-fasulye": "Feijao Seco",
+    sut: "Leite",
+    yogurt: "Iogurte",
+    krema: "Creme de Leite Fresco",
+    tereyagi: "Manteiga",
+    margarin: "Margarina",
+    zeytinyagi: "Azeite de Oliva",
+    "sivi-yag": "Oleo Vegetal",
+    bal: "Mel",
+    pekmez: "Melaco de Uva",
+    kakao: "Cacau em Po",
+    "yulaf-ezmesi": "Aveia em Flocos",
+    nisasta: "Amido de Milho",
+    "kabartma-tozu": "Fermento em Po",
+    karbonat: "Bicarbonato de Sodio",
+    susam: "Gergelim",
+    "ceviz-ici": "Noz (Picada)",
+    "findik-ici": "Avela",
+    badem: "Amendoa",
+    "antep-fistigi": "Pistache",
+    "kuru-uzum": "Uva Passa",
+    "hindistan-cevizi": "Coco Ralado",
+    mayonez: "Maionese",
+    ketcap: "Ketchup",
+    sirke: "Vinagre",
+    "limon-suyu": "Suco de Limao",
+    tarcin: "Canela em Po",
+    "kirmizi-biber": "Pimenta Vermelha em Po",
+    karabiber: "Pimenta-do-Reino Preta",
+    kimyon: "Cominho em Po",
+  },
 };
 
 export const kitchenUnitLabels: Record<
@@ -509,5 +556,13 @@ export const kitchenUnitLabels: Record<
     ml: "Mililitro (ml)",
     litre: "Litro",
     gram: "Gramo",
+  },
+  pt: {
+    bardak: "Xicara",
+    yemekKasigi: "Colher de Sopa",
+    cayKasigi: "Colher de Cha",
+    ml: "Mililitro (ml)",
+    litre: "Litro",
+    gram: "Grama",
   },
 };

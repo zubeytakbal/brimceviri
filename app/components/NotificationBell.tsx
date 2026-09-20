@@ -14,7 +14,7 @@ import {
 import { useNotificationSlot } from "./NotificationSlotProvider";
 import type { SiteNotification } from "../converter/siteNotifications";
 
-type NotificationLocale = "tr" | "en" | "uz" | "de" | "ar" | "bn" | "fr" | "es" | "es-419";
+type NotificationLocale = "tr" | "en" | "uz" | "de" | "ar" | "bn" | "fr" | "es" | "es-419" | "pt";
 
 const notificationCopy = {
   tr: {
@@ -106,6 +106,16 @@ const notificationCopy = {
     openLabel: "Abrir →",
     empty: "No hay notificaciones nuevas por el momento.",
     dateLocale: "es-419",
+  },
+  pt: {
+    ariaLabel: "Notificacoes",
+    panelLabel: "Notificacoes do site",
+    title: "Notificacoes",
+    closeLabel: "Fechar",
+    markSeenLabel: "Marcar esta notificacao como vista",
+    openLabel: "Abrir →",
+    empty: "Nao ha novas notificacoes no momento.",
+    dateLocale: "pt-BR",
   },
 } as const;
 

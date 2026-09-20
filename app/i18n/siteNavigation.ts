@@ -288,6 +288,31 @@ const categoryLabels: Record<
     altin_ayar: "Quilate de Oro",
     gumus_ayar: "Ley de la Plata",
   },
+  pt: {
+    uzunluk: "Comprimento",
+    alan: "Area",
+    hacim: "Volume",
+    kutle: "Massa",
+    sicaklik: "Temperatura",
+    zaman: "Tempo",
+    hiz: "Velocidade",
+    basinc: "Pressao",
+    enerji: "Energia e Potencia",
+    veri: "Armazenamento de Dados",
+    elektrik: "Eletricidade",
+    yogunluk: "Densidade",
+    kuvvet: "Forca",
+    debi: "Vazao",
+    tork: "Torque",
+    momentum: "Momento",
+    viskozite_dinamik: "Viscosidade",
+    elektrik_direnc: "Resistencia",
+    kapasitans: "Capacitancia",
+    enduktans: "Indutancia",
+    elektrik_yuk: "Carga Eletrica",
+    altin_ayar: "Quilate de Ouro",
+    gumus_ayar: "Teor de Prata",
+  },
 };
 
 const siteHeaderCopy: Record<Locale, SiteHeaderCopy> = {
@@ -335,6 +360,11 @@ const siteHeaderCopy: Record<Locale, SiteHeaderCopy> = {
     navAriaLabel: "Navegacion principal",
     menuLabel: "Menu",
     conversionsLabel: "Conversiones",
+  },
+  pt: {
+    navAriaLabel: "Navegacao principal",
+    menuLabel: "Menu",
+    conversionsLabel: "Conversoes",
   },
 };
 
@@ -447,6 +477,18 @@ const footerCopy: Record<Locale, FooterCopy> = {
     browserProcessingNote:
       "En los flujos de calculo de este sitio, los datos que ingresas en las calculadoras se procesan directamente en el navegador.",
   },
+  pt: {
+    navAriaLabel: "Navegacao do rodape",
+    pagesHeading: "Paginas",
+    languagesHeading: "Idiomas",
+    categoriesHeading: "Categorias",
+    description:
+      "Ferramentas de conversao tecnica e guias de unidades preparados para uso pratico.",
+    disclaimer:
+      "Para decisoes importantes de engenharia, saude ou seguranca, verifique os resultados com fontes profissionais.",
+    browserProcessingNote:
+      "Nos fluxos de calculo deste site, os dados inseridos nas calculadoras sao processados diretamente no navegador.",
+  },
 };
 
 const topLevelLabelMap: Record<
@@ -519,6 +561,13 @@ const topLevelLabelMap: Record<
     allConversions: "Todas las Conversiones",
     professions: "Por Profesion",
   },
+  pt: {
+    home: "Inicio",
+    engineeringHub: "Calculadoras",
+    units: "Guia de Unidades",
+    allConversions: "Todas as Conversoes",
+    professions: "Por Profissao",
+  },
 };
 
 const footerLinksByLocale: Record<
@@ -571,6 +620,7 @@ const footerLinksByLocale: Record<
   fr: [{ key: "home", label: "Accueil" }],
   es: [{ key: "home", label: "Inicio" }],
   "es-419": [{ key: "home", label: "Inicio" }],
+  pt: [{ key: "home", label: "Inicio" }],
 };
 
 export function getSiteHeaderCopy(locale: Locale) {
@@ -699,7 +749,9 @@ export function getCategoryMenuLinks(locale: Locale) {
                 ? "Pointures"
                 : locale === "es" || locale === "es-419"
                   ? "Tallas de Calzado"
-                  : "Ayakkabi Numarasi",
+                  : locale === "pt"
+                    ? "Numeracao de Calcados"
+                    : "Ayakkabi Numarasi",
   });
   links.push({
     href: getStaticPath(locale, "kitchenMeasures"),
@@ -716,7 +768,9 @@ export function getCategoryMenuLinks(locale: Locale) {
                 ? "Mesures de Cuisine"
                 : locale === "es" || locale === "es-419"
                   ? "Medidas de Cocina"
-                  : "Mutfak Olculeri",
+                  : locale === "pt"
+                    ? "Medidas de Cozinha"
+                    : "Mutfak Olculeri",
   });
   links.push({
     href: getStaticPath(locale, "recipeConverter"),
@@ -733,7 +787,9 @@ export function getCategoryMenuLinks(locale: Locale) {
                 ? "Convertisseur de Recettes"
                 : locale === "es" || locale === "es-419"
                   ? "Conversor de Recetas"
-                  : "Tarif Cevirici",
+                  : locale === "pt"
+                    ? "Conversor de Receitas"
+                    : "Tarif Cevirici",
   });
 
   return links;

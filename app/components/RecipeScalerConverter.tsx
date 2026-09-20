@@ -167,6 +167,23 @@ const copy = {
     copiedButton: "Copiado",
     printButton: "Imprimir",
   },
+  pt: {
+    recipeLabel: "Sua Receita",
+    placeholder:
+      "2 xicaras de farinha\n1 colher de cha de sal\n3 colheres de sopa de azeite de oliva\n2 ovos\nForno a 180 graus",
+    factorLabel: "Multiplicador",
+    originalServingsLabel: "Porcoes originais",
+    targetServingsLabel: "Porcoes desejadas",
+    resultHeading: "Receita Ajustada",
+    emptyState: "Digite sua receita acima para ver o resultado aqui.",
+    gramPrefix: "~",
+    gramSuffix: "g",
+    ingredientLabel: "Ingrediente",
+    noMatchOption: "Sem correspondencia",
+    copyButton: "Copiar",
+    copiedButton: "Copiado",
+    printButton: "Imprimir",
+  },
 } as const;
 
 const chipOptions = [
@@ -208,6 +225,8 @@ function formatGram(value: number, locale: KitchenLocale) {
                   ? "es-ES"
                   : locale === "es-419"
                     ? "es-419"
+                    : locale === "pt"
+                      ? "pt-BR"
         : "en-US";
 
   return value.toLocaleString(localeName, {
@@ -233,7 +252,7 @@ export default function RecipeScalerConverter({
       ? "us"
       : locale === "fr" || locale === "es-419"
         ? "metric"
-        : locale === "es"
+        : locale === "es" || locale === "pt"
           ? "usLegal"
           : "turkish";
   const [text, setText] = useState("");

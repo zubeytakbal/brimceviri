@@ -127,6 +127,25 @@ const copyByLocale: Record<Locale, DateCopy> = {
       days: "days",
     },
   },
+  pt: {
+    labels: {
+      startDate: "Start Date (Birth Date)",
+      endDate: "Target Date",
+    },
+    emptyState: "Enter two valid dates; the target date cannot be earlier than the start date.",
+    resultLabels: {
+      difference: "Difference",
+      totalDays: "Total days",
+      totalWeeks: "Total weeks",
+      totalMonths: "Total months",
+      nextAnniversary: "Next anniversary",
+    },
+    units: {
+      years: "years",
+      months: "months",
+      days: "days",
+    },
+  },
   de: {
     labels: {
       startDate: "Startdatum (Geburtsdatum)",

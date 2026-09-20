@@ -107,6 +107,17 @@ bn: {
     secondaryHref: "/",
     secondaryLabel: "Abrir la pagina de inicio en turco",
   },
+  pt: {
+    lang: "pt-BR",
+    title: "Pagina nao encontrada",
+    description:
+      "A pagina que voce procura pode ter sido movida ou o endereco pode nao ser valido.",
+    continueHeading: "Continuar com",
+    primaryHref: "/pt",
+    primaryLabel: "Voltar a pagina inicial em portugues",
+    secondaryHref: "/",
+    secondaryLabel: "Abrir a pagina inicial em turco",
+  },
 } satisfies Record<
   Locale,
   {

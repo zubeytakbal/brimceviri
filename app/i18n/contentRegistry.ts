@@ -30,6 +30,9 @@ import { es419ConversionPages } from "../converter/localizedEs419ConversionPages
 import { portugueseCategoryPages } from "../converter/localizedPortugueseCategoryPages";
 import { portugueseUnitPages } from "../converter/localizedPortugueseUnitPages";
 import { portugueseConversionPages } from "../converter/localizedPortugueseConversionPages";
+import { italianCategoryPages } from "../converter/localizedItalianCategoryPages";
+import { italianUnitPages } from "../converter/localizedItalianUnitPages";
+import { italianConversionPages } from "../converter/localizedItalianConversionPages";
 
 export type RouteCollectionKey =
   | "units"
@@ -117,7 +120,12 @@ const localizedCategorySummariesByLocale: Record<
     category: page.category,
     title: page.title,
   })),
-  it: [],
+  it: italianCategoryPages.map((page) => ({
+    sourceSlug: page.sourceSlug,
+    slug: page.slug,
+    category: page.category,
+    title: page.title,
+  })),
 };
 
 const localizedSlugEntriesByLocale: Record<
@@ -165,7 +173,10 @@ const localizedSlugEntriesByLocale: Record<
       sourceSlug: page.sourceSlug,
       slug: page.slug,
     })),
-    it: [],
+    it: italianUnitPages.map((page) => ({
+      sourceSlug: page.sourceSlug,
+      slug: page.slug,
+    })),
   },
   categories: {
     tr: categoryPages.map((page) => ({
@@ -208,7 +219,10 @@ const localizedSlugEntriesByLocale: Record<
       sourceSlug: page.sourceSlug,
       slug: page.slug,
     })),
-    it: [],
+    it: italianCategoryPages.map((page) => ({
+      sourceSlug: page.sourceSlug,
+      slug: page.slug,
+    })),
   },
   calculators: {
     tr: calculatorPages.map((page) => ({
@@ -276,7 +290,10 @@ const localizedSlugEntriesByLocale: Record<
       sourceSlug: page.sourceSlug,
       slug: page.slug,
     })),
-    it: [],
+    it: italianConversionPages.map((page) => ({
+      sourceSlug: page.sourceSlug,
+      slug: page.slug,
+    })),
   },
 };
 

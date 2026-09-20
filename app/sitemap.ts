@@ -84,6 +84,21 @@ import { uzbekConversionPages } from "./converter/localizedUzbekConversionPages"
 import { bengaliCategoryPages } from "./converter/localizedBengaliCategoryPages";
 import { bengaliUnitPages } from "./converter/localizedBengaliUnitPages";
 import { bengaliConversionPages } from "./converter/localizedBengaliConversionPages";
+import { frenchCategoryPages } from "./converter/localizedFrenchCategoryPages";
+import { frenchUnitPages } from "./converter/localizedFrenchUnitPages";
+import { frenchConversionPages } from "./converter/localizedFrenchConversionPages";
+import { spanishCategoryPages } from "./converter/localizedSpanishCategoryPages";
+import { spanishUnitPages } from "./converter/localizedSpanishUnitPages";
+import { spanishConversionPages } from "./converter/localizedSpanishConversionPages";
+import { es419CategoryPages } from "./converter/localizedEs419CategoryPages";
+import { es419UnitPages } from "./converter/localizedEs419UnitPages";
+import { es419ConversionPages } from "./converter/localizedEs419ConversionPages";
+import { portugueseCategoryPages } from "./converter/localizedPortugueseCategoryPages";
+import { portugueseUnitPages } from "./converter/localizedPortugueseUnitPages";
+import { portugueseConversionPages } from "./converter/localizedPortugueseConversionPages";
+import { italianCategoryPages } from "./converter/localizedItalianCategoryPages";
+import { italianUnitPages } from "./converter/localizedItalianUnitPages";
+import { italianConversionPages } from "./converter/localizedItalianConversionPages";
 import { SITE_LAST_MODIFIED, SITE_URL } from "./siteConfig";
 
 const baseUrl = SITE_URL;
@@ -110,6 +125,143 @@ function languageAlternates(
       "x-default": turkishUrl,
     },
   };
+}
+
+type LocalizedCorePage = {
+  sourceSlug: string;
+  slug: string;
+};
+
+type LocalizedCoreCollection = "categories" | "units" | "conversions";
+
+function buildLocalizedCoreAlternates(
+  collection: LocalizedCoreCollection,
+  sourceSlug: string
+) {
+  const englishPage =
+    collection === "categories"
+      ? findEnglishCategoryPageByTurkishSlug(sourceSlug)
+      : collection === "units"
+        ? findEnglishUnitPageByTurkishSlug(sourceSlug)
+        : findEnglishPageByTurkishSlug(sourceSlug);
+  const germanPage =
+    collection === "categories"
+      ? findGermanCategoryPageByTurkishSlug(sourceSlug)
+      : collection === "units"
+        ? findGermanUnitPageByTurkishSlug(sourceSlug)
+        : findGermanPageByTurkishSlug(sourceSlug);
+  const uzbekPage =
+    collection === "categories"
+      ? uzbekCategoryPages.find((page) => page.sourceSlug === sourceSlug)
+      : collection === "units"
+        ? uzbekUnitPages.find((page) => page.sourceSlug === sourceSlug)
+        : uzbekConversionPages.find((page) => page.sourceSlug === sourceSlug);
+  const bengaliPage =
+    collection === "categories"
+      ? bengaliCategoryPages.find((page) => page.sourceSlug === sourceSlug)
+      : collection === "units"
+        ? bengaliUnitPages.find((page) => page.sourceSlug === sourceSlug)
+        : bengaliConversionPages.find((page) => page.sourceSlug === sourceSlug);
+  const frenchPage =
+    collection === "categories"
+      ? frenchCategoryPages.find((page) => page.sourceSlug === sourceSlug)
+      : collection === "units"
+        ? frenchUnitPages.find((page) => page.sourceSlug === sourceSlug)
+        : frenchConversionPages.find((page) => page.sourceSlug === sourceSlug);
+  const spanishPage =
+    collection === "categories"
+      ? spanishCategoryPages.find((page) => page.sourceSlug === sourceSlug)
+      : collection === "units"
+        ? spanishUnitPages.find((page) => page.sourceSlug === sourceSlug)
+        : spanishConversionPages.find((page) => page.sourceSlug === sourceSlug);
+  const es419Page =
+    collection === "categories"
+      ? es419CategoryPages.find((page) => page.sourceSlug === sourceSlug)
+      : collection === "units"
+        ? es419UnitPages.find((page) => page.sourceSlug === sourceSlug)
+        : es419ConversionPages.find((page) => page.sourceSlug === sourceSlug);
+  const portuguesePage =
+    collection === "categories"
+      ? portugueseCategoryPages.find((page) => page.sourceSlug === sourceSlug)
+      : collection === "units"
+        ? portugueseUnitPages.find((page) => page.sourceSlug === sourceSlug)
+        : portugueseConversionPages.find((page) => page.sourceSlug === sourceSlug);
+  const italianPage =
+    collection === "categories"
+      ? italianCategoryPages.find((page) => page.sourceSlug === sourceSlug)
+      : collection === "units"
+        ? italianUnitPages.find((page) => page.sourceSlug === sourceSlug)
+        : italianConversionPages.find((page) => page.sourceSlug === sourceSlug);
+
+  const paths = {
+    categories: {
+      tr: `/kategoriler/${sourceSlug}`,
+      en: englishPage ? `/en/categories/${englishPage.slug}` : undefined,
+      de: germanPage ? `/de/kategorien/${germanPage.slug}` : undefined,
+      ar: englishPage ? `/ar/categories/${englishPage.slug}` : undefined,
+      uz: uzbekPage ? `/uz/turkumlar/${uzbekPage.slug}` : undefined,
+      bn: bengaliPage ? `/bn/categories/${bengaliPage.slug}` : undefined,
+      fr: frenchPage ? `/fr/categories/${frenchPage.slug}` : undefined,
+      es: spanishPage ? `/es/categories/${spanishPage.slug}` : undefined,
+      "es-419": es419Page ? `/es-419/categories/${es419Page.slug}` : undefined,
+      pt: portuguesePage ? `/pt/categories/${portuguesePage.slug}` : undefined,
+      it: italianPage ? `/it/categories/${italianPage.slug}` : undefined,
+    },
+    units: {
+      tr: `/birimler/${sourceSlug}`,
+      en: englishPage ? `/en/units/${englishPage.slug}` : undefined,
+      de: germanPage ? `/de/einheiten/${germanPage.slug}` : undefined,
+      ar: englishPage ? `/ar/unit-guides/${englishPage.slug}` : undefined,
+      uz: uzbekPage ? `/uz/birliklar/${uzbekPage.slug}` : undefined,
+      bn: bengaliPage ? `/bn/unit-guides/${bengaliPage.slug}` : undefined,
+      fr: frenchPage ? `/fr/unit-guides/${frenchPage.slug}` : undefined,
+      es: spanishPage ? `/es/unit-guides/${spanishPage.slug}` : undefined,
+      "es-419": es419Page ? `/es-419/unit-guides/${es419Page.slug}` : undefined,
+      pt: portuguesePage ? `/pt/unit-guides/${portuguesePage.slug}` : undefined,
+      it: italianPage ? `/it/unit-guides/${italianPage.slug}` : undefined,
+    },
+    conversions: {
+      tr: `/${sourceSlug}`,
+      en: englishPage ? `/en/${englishPage.slug}` : undefined,
+      de: germanPage ? `/de/${germanPage.slug}` : undefined,
+      ar: englishPage ? `/ar/${englishPage.slug}` : undefined,
+      uz: uzbekPage ? `/uz/${uzbekPage.slug}` : undefined,
+      bn: bengaliPage ? `/bn/${bengaliPage.slug}` : undefined,
+      fr: frenchPage ? `/fr/${frenchPage.slug}` : undefined,
+      es: spanishPage ? `/es/${spanishPage.slug}` : undefined,
+      "es-419": es419Page ? `/es-419/${es419Page.slug}` : undefined,
+      pt: portuguesePage ? `/pt/${portuguesePage.slug}` : undefined,
+      it: italianPage ? `/it/${italianPage.slug}` : undefined,
+    },
+  }[collection];
+
+  const languages = Object.fromEntries(
+    (Object.entries(paths) as Array<[string, string | undefined]>)
+      .filter((entry): entry is [string, string] => Boolean(entry[1]))
+      .map(([locale, path]) => [locale === "uz" ? "uz-UZ" : locale, `${baseUrl}${path}`])
+  );
+
+  return {
+    languages: {
+      ...languages,
+      "x-default": `${baseUrl}${paths.tr}`,
+    },
+  };
+}
+
+function buildLocalizedCoreRoutes(
+  pages: LocalizedCorePage[],
+  collection: LocalizedCoreCollection,
+  pathPrefix: string,
+  priority: number
+): MetadataRoute.Sitemap {
+  return pages.map((page) => ({
+    url: `${baseUrl}${pathPrefix}${page.slug}`,
+    lastModified: contentLastModified,
+    changeFrequency: "monthly" as const,
+    priority,
+    alternates: buildLocalizedCoreAlternates(collection, page.sourceSlug),
+  }));
 }
 
 function buildElectricalCalculatorRoutes(sourceSlug: string) {
@@ -1395,6 +1547,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           es: `${baseUrl}/es/shoe-size-converter`,
           "es-419": `${baseUrl}/es-419/shoe-size-converter`,
           pt: `${baseUrl}/pt/shoe-size-converter`,
+          it: `${baseUrl}/it/shoe-size-converter`,
           "x-default": `${baseUrl}/ayakkabi-numarasi-cevirme`,
         },
       },
@@ -1415,6 +1568,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           es: `${baseUrl}/es/shoe-size-converter`,
           "es-419": `${baseUrl}/es-419/shoe-size-converter`,
           pt: `${baseUrl}/pt/shoe-size-converter`,
+          it: `${baseUrl}/it/shoe-size-converter`,
           "x-default": `${baseUrl}/ayakkabi-numarasi-cevirme`,
         },
       },
@@ -1435,6 +1589,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           es: `${baseUrl}/es/shoe-size-converter`,
           "es-419": `${baseUrl}/es-419/shoe-size-converter`,
           pt: `${baseUrl}/pt/shoe-size-converter`,
+          it: `${baseUrl}/it/shoe-size-converter`,
           "x-default": `${baseUrl}/ayakkabi-numarasi-cevirme`,
         },
       },
@@ -1455,6 +1610,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           es: `${baseUrl}/es/shoe-size-converter`,
           "es-419": `${baseUrl}/es-419/shoe-size-converter`,
           pt: `${baseUrl}/pt/shoe-size-converter`,
+          it: `${baseUrl}/it/shoe-size-converter`,
           "x-default": `${baseUrl}/ayakkabi-numarasi-cevirme`,
         },
       },
@@ -1475,6 +1631,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
           es: `${baseUrl}/es/shoe-size-converter`,
           "es-419": `${baseUrl}/es-419/shoe-size-converter`,
           pt: `${baseUrl}/pt/shoe-size-converter`,
+          it: `${baseUrl}/it/shoe-size-converter`,
+          "x-default": `${baseUrl}/ayakkabi-numarasi-cevirme`,
+        },
+      },
+    },
+    {
+      url: `${baseUrl}/it/shoe-size-converter`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+      alternates: {
+        languages: {
+          tr: `${baseUrl}/ayakkabi-numarasi-cevirme`,
+          en: `${baseUrl}/en/shoe-size-converter`,
+          de: `${baseUrl}/de/schuhgroessen-umrechner`,
+          ar: `${baseUrl}/ar/shoe-size-converter`,
+          bn: `${baseUrl}/bn/shoe-size-converter`,
+          fr: `${baseUrl}/fr/shoe-size-converter`,
+          es: `${baseUrl}/es/shoe-size-converter`,
+          "es-419": `${baseUrl}/es-419/shoe-size-converter`,
+          pt: `${baseUrl}/pt/shoe-size-converter`,
+          it: `${baseUrl}/it/shoe-size-converter`,
           "x-default": `${baseUrl}/ayakkabi-numarasi-cevirme`,
         },
       },
@@ -1495,6 +1673,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           es: `${baseUrl}/es/kitchen-measurement-converter`,
           "es-419": `${baseUrl}/es-419/kitchen-measurement-converter`,
           pt: `${baseUrl}/pt/kitchen-measurement-converter`,
+          it: `${baseUrl}/it/kitchen-measurement-converter`,
           "x-default": `${baseUrl}/mutfak-olculeri-cevirici`,
         },
       },
@@ -1515,6 +1694,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           es: `${baseUrl}/es/kitchen-measurement-converter`,
           "es-419": `${baseUrl}/es-419/kitchen-measurement-converter`,
           pt: `${baseUrl}/pt/kitchen-measurement-converter`,
+          it: `${baseUrl}/it/kitchen-measurement-converter`,
           "x-default": `${baseUrl}/mutfak-olculeri-cevirici`,
         },
       },
@@ -1535,6 +1715,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           es: `${baseUrl}/es/kitchen-measurement-converter`,
           "es-419": `${baseUrl}/es-419/kitchen-measurement-converter`,
           pt: `${baseUrl}/pt/kitchen-measurement-converter`,
+          it: `${baseUrl}/it/kitchen-measurement-converter`,
           "x-default": `${baseUrl}/mutfak-olculeri-cevirici`,
         },
       },
@@ -1555,6 +1736,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           es: `${baseUrl}/es/kitchen-measurement-converter`,
           "es-419": `${baseUrl}/es-419/kitchen-measurement-converter`,
           pt: `${baseUrl}/pt/kitchen-measurement-converter`,
+          it: `${baseUrl}/it/kitchen-measurement-converter`,
           "x-default": `${baseUrl}/mutfak-olculeri-cevirici`,
         },
       },
@@ -1575,6 +1757,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
           es: `${baseUrl}/es/kitchen-measurement-converter`,
           "es-419": `${baseUrl}/es-419/kitchen-measurement-converter`,
           pt: `${baseUrl}/pt/kitchen-measurement-converter`,
+          it: `${baseUrl}/it/kitchen-measurement-converter`,
+          "x-default": `${baseUrl}/mutfak-olculeri-cevirici`,
+        },
+      },
+    },
+    {
+      url: `${baseUrl}/it/kitchen-measurement-converter`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+      alternates: {
+        languages: {
+          tr: `${baseUrl}/mutfak-olculeri-cevirici`,
+          en: `${baseUrl}/en/kitchen-measurement-converter`,
+          de: `${baseUrl}/de/kuechenmass-umrechner`,
+          ar: `${baseUrl}/ar/kitchen-measurement-converter`,
+          bn: `${baseUrl}/bn/kitchen-measurement-converter`,
+          fr: `${baseUrl}/fr/kitchen-measurement-converter`,
+          es: `${baseUrl}/es/kitchen-measurement-converter`,
+          "es-419": `${baseUrl}/es-419/kitchen-measurement-converter`,
+          pt: `${baseUrl}/pt/kitchen-measurement-converter`,
+          it: `${baseUrl}/it/kitchen-measurement-converter`,
           "x-default": `${baseUrl}/mutfak-olculeri-cevirici`,
         },
       },
@@ -1595,6 +1799,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           es: `${baseUrl}/es/recipe-converter`,
           "es-419": `${baseUrl}/es-419/recipe-converter`,
           pt: `${baseUrl}/pt/recipe-converter`,
+          it: `${baseUrl}/it/recipe-converter`,
           "x-default": `${baseUrl}/tarif-cevirici`,
         },
       },
@@ -1615,6 +1820,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           es: `${baseUrl}/es/recipe-converter`,
           "es-419": `${baseUrl}/es-419/recipe-converter`,
           pt: `${baseUrl}/pt/recipe-converter`,
+          it: `${baseUrl}/it/recipe-converter`,
           "x-default": `${baseUrl}/tarif-cevirici`,
         },
       },
@@ -1635,6 +1841,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           es: `${baseUrl}/es/recipe-converter`,
           "es-419": `${baseUrl}/es-419/recipe-converter`,
           pt: `${baseUrl}/pt/recipe-converter`,
+          it: `${baseUrl}/it/recipe-converter`,
           "x-default": `${baseUrl}/tarif-cevirici`,
         },
       },
@@ -1655,6 +1862,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           es: `${baseUrl}/es/recipe-converter`,
           "es-419": `${baseUrl}/es-419/recipe-converter`,
           pt: `${baseUrl}/pt/recipe-converter`,
+          it: `${baseUrl}/it/recipe-converter`,
           "x-default": `${baseUrl}/tarif-cevirici`,
         },
       },
@@ -1675,6 +1883,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
           es: `${baseUrl}/es/recipe-converter`,
           "es-419": `${baseUrl}/es-419/recipe-converter`,
           pt: `${baseUrl}/pt/recipe-converter`,
+          it: `${baseUrl}/it/recipe-converter`,
+          "x-default": `${baseUrl}/tarif-cevirici`,
+        },
+      },
+    },
+    {
+      url: `${baseUrl}/it/recipe-converter`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+      alternates: {
+        languages: {
+          tr: `${baseUrl}/tarif-cevirici`,
+          en: `${baseUrl}/en/recipe-converter`,
+          de: `${baseUrl}/de/rezept-umrechner`,
+          ar: `${baseUrl}/ar/recipe-converter`,
+          bn: `${baseUrl}/bn/recipe-converter`,
+          fr: `${baseUrl}/fr/recipe-converter`,
+          es: `${baseUrl}/es/recipe-converter`,
+          "es-419": `${baseUrl}/es-419/recipe-converter`,
+          pt: `${baseUrl}/pt/recipe-converter`,
+          it: `${baseUrl}/it/recipe-converter`,
           "x-default": `${baseUrl}/tarif-cevirici`,
         },
       },
@@ -1695,6 +1925,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           es: `${baseUrl}/es/historical-units`,
           "es-419": `${baseUrl}/es-419/historical-units`,
           pt: `${baseUrl}/pt/historical-units`,
+          it: `${baseUrl}/it/historical-units`,
           "x-default": `${baseUrl}/tarihi-olcu-birimleri`,
         },
       },
@@ -1715,6 +1946,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           es: `${baseUrl}/es/historical-units`,
           "es-419": `${baseUrl}/es-419/historical-units`,
           pt: `${baseUrl}/pt/historical-units`,
+          it: `${baseUrl}/it/historical-units`,
           "x-default": `${baseUrl}/tarihi-olcu-birimleri`,
         },
       },
@@ -1735,6 +1967,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           es: `${baseUrl}/es/historical-units`,
           "es-419": `${baseUrl}/es-419/historical-units`,
           pt: `${baseUrl}/pt/historical-units`,
+          it: `${baseUrl}/it/historical-units`,
           "x-default": `${baseUrl}/tarihi-olcu-birimleri`,
         },
       },
@@ -1755,6 +1988,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           es: `${baseUrl}/es/historical-units`,
           "es-419": `${baseUrl}/es-419/historical-units`,
           pt: `${baseUrl}/pt/historical-units`,
+          it: `${baseUrl}/it/historical-units`,
           "x-default": `${baseUrl}/tarihi-olcu-birimleri`,
         },
       },
@@ -1775,6 +2009,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
           es: `${baseUrl}/es/historical-units`,
           "es-419": `${baseUrl}/es-419/historical-units`,
           pt: `${baseUrl}/pt/historical-units`,
+          it: `${baseUrl}/it/historical-units`,
+          "x-default": `${baseUrl}/tarihi-olcu-birimleri`,
+        },
+      },
+    },
+    {
+      url: `${baseUrl}/it/historical-units`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+      alternates: {
+        languages: {
+          tr: `${baseUrl}/tarihi-olcu-birimleri`,
+          en: `${baseUrl}/en/historical-units`,
+          de: `${baseUrl}/de/historische-masseinheiten`,
+          ar: `${baseUrl}/ar/historical-units`,
+          bn: `${baseUrl}/bn/historical-units`,
+          fr: `${baseUrl}/fr/historical-units`,
+          es: `${baseUrl}/es/historical-units`,
+          "es-419": `${baseUrl}/es-419/historical-units`,
+          pt: `${baseUrl}/pt/historical-units`,
+          it: `${baseUrl}/it/historical-units`,
           "x-default": `${baseUrl}/tarihi-olcu-birimleri`,
         },
       },
@@ -4004,6 +4260,167 @@ export default function sitemap(): MetadataRoute.Sitemap {
       };
     });
 
+  const curatedLocaleIndexRoutes: MetadataRoute.Sitemap = [
+    "/fr",
+    "/es",
+    "/es-419",
+    "/pt",
+  ].flatMap((localePath) => [
+    {
+      url: `${baseUrl}${localePath}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}${localePath}/categories`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.75,
+    },
+    {
+      url: `${baseUrl}${localePath}/unit-guides`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.75,
+    },
+  ]);
+
+  // L'italiano non ha ancora una pagina indice /it/unit-guides (funzionalita
+  // separata in corso per altre lingue), quindi qui si aggiungono solo home
+  // e categories invece di riusare curatedLocaleIndexRoutes.
+  const italianIndexRoutes: MetadataRoute.Sitemap = [
+    {
+      url: `${baseUrl}/it`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/it/categories`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.75,
+    },
+  ];
+
+  const bengaliUnitGuideIndexRoute: MetadataRoute.Sitemap = [
+    {
+      url: `${baseUrl}/bn/unit-guides`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.75,
+      alternates: {
+        languages: {
+          tr: `${baseUrl}/birimler`,
+          en: `${baseUrl}/en/units`,
+          de: `${baseUrl}/de/einheiten`,
+          ar: `${baseUrl}/ar/unit-guides`,
+          "uz-UZ": `${baseUrl}/uz/birliklar`,
+          bn: `${baseUrl}/bn/unit-guides`,
+          fr: `${baseUrl}/fr/unit-guides`,
+          es: `${baseUrl}/es/unit-guides`,
+          "es-419": `${baseUrl}/es-419/unit-guides`,
+          pt: `${baseUrl}/pt/unit-guides`,
+          "x-default": `${baseUrl}/birimler`,
+        },
+      },
+    },
+  ];
+
+  const frenchConversionRoutes = buildLocalizedCoreRoutes(
+    frenchConversionPages,
+    "conversions",
+    "/fr/",
+    0.7
+  );
+  const spanishConversionRoutes = buildLocalizedCoreRoutes(
+    spanishConversionPages,
+    "conversions",
+    "/es/",
+    0.7
+  );
+  const es419ConversionRoutes = buildLocalizedCoreRoutes(
+    es419ConversionPages,
+    "conversions",
+    "/es-419/",
+    0.7
+  );
+  const portugueseConversionRoutes = buildLocalizedCoreRoutes(
+    portugueseConversionPages,
+    "conversions",
+    "/pt/",
+    0.7
+  );
+  const italianConversionRoutes = buildLocalizedCoreRoutes(
+    italianConversionPages,
+    "conversions",
+    "/it/",
+    0.7
+  );
+
+  const frenchUnitRoutes = buildLocalizedCoreRoutes(
+    frenchUnitPages,
+    "units",
+    "/fr/unit-guides/",
+    0.7
+  );
+  const spanishUnitRoutes = buildLocalizedCoreRoutes(
+    spanishUnitPages,
+    "units",
+    "/es/unit-guides/",
+    0.7
+  );
+  const es419UnitRoutes = buildLocalizedCoreRoutes(
+    es419UnitPages,
+    "units",
+    "/es-419/unit-guides/",
+    0.7
+  );
+  const portugueseUnitRoutes = buildLocalizedCoreRoutes(
+    portugueseUnitPages,
+    "units",
+    "/pt/unit-guides/",
+    0.7
+  );
+  const italianUnitRoutes = buildLocalizedCoreRoutes(
+    italianUnitPages,
+    "units",
+    "/it/unit-guides/",
+    0.7
+  );
+
+  const frenchCategoryRoutes = buildLocalizedCoreRoutes(
+    frenchCategoryPages,
+    "categories",
+    "/fr/categories/",
+    0.8
+  );
+  const spanishCategoryRoutes = buildLocalizedCoreRoutes(
+    spanishCategoryPages,
+    "categories",
+    "/es/categories/",
+    0.8
+  );
+  const es419CategoryRoutes = buildLocalizedCoreRoutes(
+    es419CategoryPages,
+    "categories",
+    "/es-419/categories/",
+    0.8
+  );
+  const portugueseCategoryRoutes = buildLocalizedCoreRoutes(
+    portugueseCategoryPages,
+    "categories",
+    "/pt/categories/",
+    0.8
+  );
+  const italianCategoryRoutes = buildLocalizedCoreRoutes(
+    italianCategoryPages,
+    "categories",
+    "/it/categories/",
+    0.8
+  );
+
   const turkishUnitRoutes: MetadataRoute.Sitemap =
     unitPages.map((page) => {
       const englishPage =
@@ -5273,6 +5690,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...arabicCategoryRoutes,
     ...uzbekCategoryRoutes,
     ...bengaliCategoryRoutes,
+    ...frenchCategoryRoutes,
+    ...spanishCategoryRoutes,
+    ...es419CategoryRoutes,
+    ...portugueseCategoryRoutes,
+    ...italianCategoryRoutes,
     ...turkishCalculatorRoutes,
     ...englishCalculatorRoutes,
     ...germanCalculatorRoutes,
@@ -5283,12 +5705,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...arabicConversionRoutes,
     ...uzbekConversionRoutes,
     ...bengaliConversionRoutes,
+    ...frenchConversionRoutes,
+    ...spanishConversionRoutes,
+    ...es419ConversionRoutes,
+    ...portugueseConversionRoutes,
+    ...italianConversionRoutes,
     ...turkishUnitRoutes,
     ...englishUnitRoutes,
     ...germanUnitRoutes,
     ...arabicUnitRoutes,
     ...uzbekUnitRoutes,
     ...bengaliUnitRoutes,
+    ...frenchUnitRoutes,
+    ...spanishUnitRoutes,
+    ...es419UnitRoutes,
+    ...portugueseUnitRoutes,
+    ...italianUnitRoutes,
+    ...curatedLocaleIndexRoutes,
+    ...italianIndexRoutes,
+    ...bengaliUnitGuideIndexRoute,
     ...corporateRoutes,
   ];
 }

@@ -7160,15 +7160,6 @@ main.calculator-page {
   font-weight: 700;
 }
 
-.site-footer-flag {
-  flex: 0 0 auto;
-  width: 20px;
-  height: 14px;
-  border-radius: 2px;
-  overflow: hidden;
-  box-shadow: 0 0 0 1px rgba(14, 116, 144, 0.18);
-}
-
 .site-footer-nav a:hover,
 .site-footer-nav a:focus-visible,
 .site-footer-meta a:hover,

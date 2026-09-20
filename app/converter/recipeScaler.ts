@@ -7,7 +7,7 @@ import {
 } from "./kitchenMeasures";
 import { kitchenIngredientLabels } from "./kitchenIngredientLabels";
 
-export type RecipeLocale = "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es";
+export type RecipeLocale = "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419";
 
 export type ParsedRecipeLine = {
   raw: string;
@@ -253,6 +253,10 @@ const ingredientMatchEntries: Array<{
     key: row.key,
     normalized: normalizeText(kitchenIngredientLabels.es[row.key]),
   });
+  entries.push({
+    key: row.key,
+    normalized: normalizeText(kitchenIngredientLabels["es-419"][row.key]),
+  });
 
   return entries;
 });
@@ -344,6 +348,8 @@ function formatQuantity(
                 ? "fr-FR"
                 : locale === "es"
                   ? "es-ES"
+                  : locale === "es-419"
+                    ? "es-419"
         : "en-US";
 
   return rounded.toLocaleString(localeName, {

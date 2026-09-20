@@ -3,7 +3,7 @@ import type {
   KitchenUnit,
 } from "./kitchenMeasures";
 
-export type KitchenLocale = "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es";
+export type KitchenLocale = "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419";
 
 export const kitchenIngredientLabels: Record<
   KitchenLocale,
@@ -385,6 +385,53 @@ export const kitchenIngredientLabels: Record<
     karabiber: "Pimienta negra molida",
     kimyon: "Comino molido",
   },
+  "es-419": {
+    un: "Harina (de trigo)",
+    "tam-bugday-unu": "Harina integral",
+    "pirinc-unu": "Harina de arroz",
+    "misir-unu": "Harina de maiz",
+    irmik: "Semola",
+    "galeta-unu": "Pan molido",
+    "toz-seker": "Azucar blanca",
+    "pudra-sekeri": "Azucar glas",
+    "esmer-seker": "Azucar morena",
+    tuz: "Sal (sal de mesa)",
+    pirinc: "Arroz",
+    bulgur: "Bulgur (fino)",
+    nohut: "Garbanzos (secos)",
+    "kirmizi-mercimek": "Lentejas rojas",
+    "yesil-mercimek": "Lentejas verdes",
+    "kuru-fasulye": "Frijoles secos",
+    sut: "Leche",
+    yogurt: "Yogur",
+    krema: "Crema",
+    tereyagi: "Mantequilla",
+    margarin: "Margarina",
+    zeytinyagi: "Aceite de oliva",
+    "sivi-yag": "Aceite vegetal",
+    bal: "Miel",
+    pekmez: "Melaza de uva",
+    kakao: "Cacao en polvo",
+    "yulaf-ezmesi": "Copos de avena",
+    nisasta: "Maicena",
+    "kabartma-tozu": "Polvo para hornear",
+    karbonat: "Bicarbonato de sodio",
+    susam: "Ajonjoli",
+    "ceviz-ici": "Nueces (troceadas)",
+    "findik-ici": "Avellanas",
+    badem: "Almendras",
+    "antep-fistigi": "Pistachos",
+    "kuru-uzum": "Pasas",
+    "hindistan-cevizi": "Coco rallado",
+    mayonez: "Mayonesa",
+    ketcap: "Catsup",
+    sirke: "Vinagre",
+    "limon-suyu": "Jugo de limon",
+    tarcin: "Canela molida",
+    "kirmizi-biber": "Pimenton rojo molido",
+    karabiber: "Pimienta negra molida",
+    kimyon: "Comino molido",
+  },
 };
 
 export const kitchenUnitLabels: Record<
@@ -448,6 +495,14 @@ export const kitchenUnitLabels: Record<
     gram: "Gramme",
   },
   es: {
+    bardak: "Taza",
+    yemekKasigi: "Cucharada",
+    cayKasigi: "Cucharadita",
+    ml: "Mililitro (ml)",
+    litre: "Litro",
+    gram: "Gramo",
+  },
+  "es-419": {
     bardak: "Taza",
     yemekKasigi: "Cucharada",
     cayKasigi: "Cucharadita",

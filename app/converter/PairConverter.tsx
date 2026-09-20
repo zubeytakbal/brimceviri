@@ -9,11 +9,11 @@ type PairConverterProps = {
   toUnit: string;
   fromName: string;
   toName: string;
-  locale?: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es";
+  locale?: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419";
 };
 
 function getNumberLocale(
-  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es"
+  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419"
 ) {
   if (locale === "tr") {
     return "tr-TR";
@@ -43,12 +43,16 @@ function getNumberLocale(
     return "es-ES";
   }
 
+  if (locale === "es-419") {
+    return "es-419";
+  }
+
   return "en-US";
 }
 
 function formatResult(
   value: number,
-  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es"
+  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419"
 ) {
   if (!Number.isFinite(value)) {
     return "";
@@ -248,7 +252,7 @@ export default function PairConverter({
               ? `${activeFromName} \u09AE\u09BE\u09A8`
               : locale === "fr"
                 ? `Valeur de ${activeFromName}`
-                : locale === "es"
+                : locale === "es" || locale === "es-419"
                   ? `Valor de ${activeFromName}`
                   : `${activeFromName} de\u011Feri`;
 
@@ -265,7 +269,7 @@ export default function PairConverter({
               ? "\u098F\u0995\u099F\u09BF \u09AE\u09BE\u09A8 \u09B2\u09BF\u0996\u09C1\u09A8"
               : locale === "fr"
                 ? "Saisissez une valeur"
-                : locale === "es"
+                : locale === "es" || locale === "es-419"
                   ? "Introduce un valor"
                   : "De\u011Fer girin";
 
@@ -282,7 +286,7 @@ export default function PairConverter({
               ? "\u09B0\u09C2\u09AA\u09BE\u09A8\u09CD\u09A4\u09B0\u09C7\u09B0 \u09A6\u09BF\u0995 \u09AA\u09B0\u09BF\u09AC\u09B0\u09CD\u09A4\u09A8 \u0995\u09B0\u09C1\u09A8"
               : locale === "fr"
                 ? "Inverser le sens de la conversion"
-                : locale === "es"
+                : locale === "es" || locale === "es-419"
                   ? "Invertir el sentido de la conversion"
                   : "D\u00F6n\u00FC\u015F\u00FCm y\u00F6n\u00FCn\u00FC de\u011Fi\u015Ftir";
 

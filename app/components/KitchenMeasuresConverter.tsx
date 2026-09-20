@@ -72,6 +72,13 @@ const copy = {
     resultHeading: "Equivalencias",
     invalidValue: "Introduce un numero valido para ver la conversion.",
   },
+  "es-419": {
+    ingredient: "Ingrediente",
+    knownUnit: "Unidad conocida",
+    value: "Valor",
+    resultHeading: "Equivalencias",
+    invalidValue: "Introduce un numero valido para ver la conversion.",
+  },
 } as const;
 
 const englishCupStandardLabels: Record<
@@ -109,7 +116,9 @@ function formatValue(value: number, locale: KitchenLocale) {
                 ? "fr-FR"
                 : locale === "es"
                   ? "es-ES"
-                  : "en-US";
+                  : locale === "es-419"
+                    ? "es-419"
+                    : "en-US";
 
   return value.toLocaleString(localeName, {
     maximumFractionDigits: value < 10 ? 2 : 1,
@@ -137,7 +146,13 @@ export default function KitchenMeasuresConverter({
   const [unit, setUnit] = useState<KitchenUnit>("bardak");
   const [inputValue, setInputValue] = useState("1");
   const [cupStandard, setCupStandard] = useState<KitchenCupStandard>(
-    locale === "en" ? "us" : locale === "fr" ? "metric" : locale === "es" ? "usLegal" : "turkish"
+    locale === "en"
+      ? "us"
+      : locale === "fr" || locale === "es-419"
+        ? "metric"
+        : locale === "es"
+          ? "usLegal"
+          : "turkish"
   );
 
   const localizedCopy = copy[locale];

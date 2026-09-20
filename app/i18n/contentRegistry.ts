@@ -99,6 +99,7 @@ const localizedCategorySummariesByLocale: Record<
     category: page.category,
     title: page.title,
   })),
+  "es-419": [],
 };
 
 const localizedSlugEntriesByLocale: Record<
@@ -138,6 +139,7 @@ const localizedSlugEntriesByLocale: Record<
       sourceSlug: page.sourceSlug,
       slug: page.slug,
     })),
+    "es-419": [],
   },
   categories: {
     tr: categoryPages.map((page) => ({
@@ -172,6 +174,7 @@ const localizedSlugEntriesByLocale: Record<
       sourceSlug: page.sourceSlug,
       slug: page.slug,
     })),
+    "es-419": [],
   },
   calculators: {
     tr: calculatorPages.map((page) => ({
@@ -194,6 +197,7 @@ const localizedSlugEntriesByLocale: Record<
     bn: [],
     fr: [],
     es: [],
+    "es-419": [],
   },
   conversions: {
     tr: conversionPages.map((page) => ({
@@ -228,6 +232,7 @@ const localizedSlugEntriesByLocale: Record<
       sourceSlug: page.sourceSlug,
       slug: page.slug,
     })),
+    "es-419": [],
   },
 };
 

@@ -13,7 +13,7 @@ type StaticPageSection = {
 };
 
 type StaticPageLayoutProps = {
-  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es";
+  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419";
   breadcrumbAriaLabel: string;
   breadcrumbs: BreadcrumbItem[];
   title: string;
@@ -83,7 +83,7 @@ export default function StaticPageLayout({
                           ? "অন্যান্য ভাষা"
                           : locale === "fr"
                             ? "Autres langues"
-                            : locale === "es"
+                            : locale === "es" || locale === "es-419"
                               ? "Otros idiomas"
                               : "Diger diller"}
               </h2>

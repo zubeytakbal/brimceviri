@@ -84,8 +84,8 @@ const bengaliManualNotifications: SiteNotification[] = [
   },
 ];
 
-export async function getSiteNotifications(locale: "tr" | "en" | "de" | "ar" | "bn" | "fr" | "es" = "tr"): Promise<SiteNotification[]> {
-  if (locale === "fr" || locale === "es") {
+export async function getSiteNotifications(locale: "tr" | "en" | "de" | "ar" | "bn" | "fr" | "es" | "es-419" = "tr"): Promise<SiteNotification[]> {
+  if (locale === "fr" || locale === "es" || locale === "es-419") {
     return [];
   }
 

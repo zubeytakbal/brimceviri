@@ -263,6 +263,31 @@ const categoryLabels: Record<
     altin_ayar: "Quilate de Oro",
     gumus_ayar: "Ley de la Plata",
   },
+  "es-419": {
+    uzunluk: "Longitud",
+    alan: "Superficie",
+    hacim: "Volumen",
+    kutle: "Masa",
+    sicaklik: "Temperatura",
+    zaman: "Tiempo",
+    hiz: "Velocidad",
+    basinc: "Presion",
+    enerji: "Energia y Potencia",
+    veri: "Almacenamiento de Datos",
+    elektrik: "Electricidad",
+    yogunluk: "Densidad",
+    kuvvet: "Fuerza",
+    debi: "Caudal",
+    tork: "Par",
+    momentum: "Momento",
+    viskozite_dinamik: "Viscosidad",
+    elektrik_direnc: "Resistencia",
+    kapasitans: "Capacitancia",
+    enduktans: "Inductancia",
+    elektrik_yuk: "Carga Electrica",
+    altin_ayar: "Quilate de Oro",
+    gumus_ayar: "Ley de la Plata",
+  },
 };
 
 const siteHeaderCopy: Record<Locale, SiteHeaderCopy> = {
@@ -302,6 +327,11 @@ const siteHeaderCopy: Record<Locale, SiteHeaderCopy> = {
     conversionsLabel: "Conversions",
   },
   es: {
+    navAriaLabel: "Navegacion principal",
+    menuLabel: "Menu",
+    conversionsLabel: "Conversiones",
+  },
+  "es-419": {
     navAriaLabel: "Navegacion principal",
     menuLabel: "Menu",
     conversionsLabel: "Conversiones",
@@ -405,6 +435,18 @@ const footerCopy: Record<Locale, FooterCopy> = {
     browserProcessingNote:
       "En los flujos de calculo de este sitio, los datos introducidos en las calculadoras se procesan directamente en el navegador.",
   },
+  "es-419": {
+    navAriaLabel: "Navegacion del pie de pagina",
+    pagesHeading: "Paginas",
+    languagesHeading: "Idiomas",
+    categoriesHeading: "Categorias",
+    description:
+      "Herramientas de conversion tecnica y guias de unidades preparadas para un uso practico.",
+    disclaimer:
+      "Para decisiones importantes de ingenieria, salud o seguridad, verifica los resultados con fuentes profesionales.",
+    browserProcessingNote:
+      "En los flujos de calculo de este sitio, los datos que ingresas en las calculadoras se procesan directamente en el navegador.",
+  },
 };
 
 const topLevelLabelMap: Record<
@@ -470,6 +512,13 @@ const topLevelLabelMap: Record<
     allConversions: "Todas las Conversiones",
     professions: "Por Profesion",
   },
+  "es-419": {
+    home: "Inicio",
+    engineeringHub: "Calculadoras",
+    units: "Guia de Unidades",
+    allConversions: "Todas las Conversiones",
+    professions: "Por Profesion",
+  },
 };
 
 const footerLinksByLocale: Record<
@@ -521,6 +570,7 @@ const footerLinksByLocale: Record<
   bn: [{ key: "home", label: "হোম" }],
   fr: [{ key: "home", label: "Accueil" }],
   es: [{ key: "home", label: "Inicio" }],
+  "es-419": [{ key: "home", label: "Inicio" }],
 };
 
 export function getSiteHeaderCopy(locale: Locale) {
@@ -643,7 +693,13 @@ export function getCategoryMenuLinks(locale: Locale) {
           ? "Schuhgroessen"
           : locale === "ar"
             ? "مقاسات الأحذية"
-            : "Ayakkabi Numarasi",
+            : locale === "bn"
+              ? "জুতার মাপ"
+              : locale === "fr"
+                ? "Pointures"
+                : locale === "es" || locale === "es-419"
+                  ? "Tallas de Calzado"
+                  : "Ayakkabi Numarasi",
   });
   links.push({
     href: getStaticPath(locale, "kitchenMeasures"),
@@ -654,7 +710,13 @@ export function getCategoryMenuLinks(locale: Locale) {
           ? "Kuechenmasse"
           : locale === "ar"
             ? "مقاييس المطبخ"
-            : "Mutfak Olculeri",
+            : locale === "bn"
+              ? "রান্নাঘর পরিমাপ"
+              : locale === "fr"
+                ? "Mesures de Cuisine"
+                : locale === "es" || locale === "es-419"
+                  ? "Medidas de Cocina"
+                  : "Mutfak Olculeri",
   });
   links.push({
     href: getStaticPath(locale, "recipeConverter"),
@@ -665,7 +727,13 @@ export function getCategoryMenuLinks(locale: Locale) {
           ? "Rezept Umrechner"
           : locale === "ar"
             ? "محول الوصفات"
-            : "Tarif Cevirici",
+            : locale === "bn"
+              ? "রেসিপি রূপান্তরকারী"
+              : locale === "fr"
+                ? "Convertisseur de Recettes"
+                : locale === "es" || locale === "es-419"
+                  ? "Conversor de Recetas"
+                  : "Tarif Cevirici",
   });
 
   return links;

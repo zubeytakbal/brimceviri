@@ -6,7 +6,7 @@ import { buildSiteUrl } from "../../siteConfig";
 export const metadata: Metadata = {
   title: "Convertisseur de recettes",
   description:
-    "Collez votre recette, choisissez un multiplicateur pour l'agrandir ou la reduire, et obtenez instantanement les nouvelles quantites -- certains ingredients sont aussi convertis automatiquement en grammes.",
+    "Collez votre recette, choisissez un multiplicateur pour l'agrandir ou la réduire, et obtenez instantanément les nouvelles quantités — certains ingrédients sont aussi convertis automatiquement en grammes.",
   alternates: {
     canonical: "/fr/recipe-converter",
     languages: {
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Convertisseur de recettes",
-    description: "Collez votre recette et obtenez instantanement les nouvelles quantites.",
+    description: "Collez votre recette et obtenez instantanément les nouvelles quantités.",
     url: buildSiteUrl("/fr/recipe-converter"),
     siteName: "BirimCeviri.app",
     locale: "fr_FR",
@@ -43,37 +43,37 @@ export default function FrenchRecipeConverterPage() {
 
           <p>
             Collez votre recette ligne par ligne, par exemple :
-            "2 tasses de farine". Une fois le multiplicateur choisi, le
-            site calcule instantanement les nouvelles quantites. Si
-            l'ingredient est reconnu et exprime dans une unite comme la
-            tasse ou la cuillere, une valeur approximative en grammes
-            s'affiche aussi.
+            « 2 tasses de farine ». Une fois le multiplicateur choisi, le
+            site calcule instantanément les nouvelles quantités. Si
+            l’ingrédient est reconnu et exprimé dans une unité comme la
+            tasse ou la cuillère, une valeur approximative en grammes
+            s’affiche aussi.
           </p>
         </header>
 
         <RecipeScalerConverter locale="fr" />
 
         <section className="category-article-content">
-          <h2>Comment agrandir ou reduire une recette ?</h2>
+          <h2>Comment agrandir ou réduire une recette ?</h2>
           <p>
-            Le principe est simple : multiplier chaque quantite par le
-            meme facteur. Si la recette est prevue pour 2 personnes et que
+            Le principe est simple : multiplier chaque quantité par le
+            même facteur. Si la recette est prévue pour 2 personnes et que
             vous en voulez 4, le multiplicateur est 2. Cet outil le fait
-            automatiquement pour chaque ligne commencant par une quantite
-            lisible (nombre entier, fraction ou decimal).
+            automatiquement pour chaque ligne commençant par une quantité
+            lisible (nombre entier, fraction ou décimal).
           </p>
           <p>
-            Vous pouvez aussi indiquer le nombre de portions d'origine et
-            le nombre de portions souhaite : le multiplicateur sera alors
-            calcule automatiquement, sans calcul manuel.
+            Vous pouvez aussi indiquer le nombre de portions d’origine et
+            le nombre de portions souhaité : le multiplicateur sera alors
+            calculé automatiquement, sans calcul manuel.
           </p>
 
-          <h2>Pourquoi certaines lignes n'affichent-elles pas de grammes ?</h2>
+          <h2>Pourquoi certaines lignes n’affichent-elles pas de grammes ?</h2>
           <p>
-            La conversion en grammes n'apparait que lorsque l'outil
-            reconnait a la fois l'unite et le nom de l'ingredient. Une ligne
-            comme "2 oeufs" sera correctement mise a l'echelle, mais
-            n'affichera pas de grammes supplementaires car l'oeuf ne figure
+            La conversion en grammes n’apparaît que lorsque l’outil
+            reconnaît à la fois l’unité et le nom de l’ingrédient. Une ligne
+            comme « 2 œufs » sera correctement mise à l’échelle, mais
+            n’affichera pas de grammes supplémentaires car l’œuf ne figure
             pas dans la liste de conversion par volume.
           </p>
           <p>
@@ -86,7 +86,7 @@ export default function FrenchRecipeConverterPage() {
         </section>
 
         <section className="conversion-section related-conversions">
-          <h2>Outils lies</h2>
+          <h2>Outils liés</h2>
           <ul className="related-conversion-list">
             <li>
               <Link href="/fr/kitchen-measurement-converter">Convertisseur de mesures de cuisine</Link>
@@ -95,7 +95,7 @@ export default function FrenchRecipeConverterPage() {
               <Link href="/fr/shoe-size-converter">Convertisseur de pointures de chaussures</Link>
             </li>
             <li>
-              <Link href="/fr/historical-units">Unites de mesure historiques</Link>
+              <Link href="/fr/historical-units">Unités de mesure historiques</Link>
             </li>
           </ul>
         </section>
@@ -103,7 +103,7 @@ export default function FrenchRecipeConverterPage() {
         <section className="conversion-section language-alternatives">
           <h2>Autres langues</h2>
           <Link className="text-link" href="/tarif-cevirici" hrefLang="tr">
-            Türkçe versiyonu aç
+            Ouvrir la version turque
           </Link>
         </section>
       </div>

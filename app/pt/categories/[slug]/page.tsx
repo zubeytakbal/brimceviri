@@ -17,13 +17,13 @@ type PageProps = {
 // Nome curto para "Converter todas as unidades de {X}".
 const categoryBaseNames: Record<string, string> = {
   uzunluk: "comprimento",
-  alan: "area",
+  alan: "área",
   hacim: "volume",
   kutle: "massa",
   sicaklik: "temperatura",
   zaman: "tempo",
   hiz: "velocidade",
-  basinc: "pressao",
+  basinc: "pressão",
   enerji: "energia",
   veri: "armazenamento de dados",
   elektrik: "eletricidade",
@@ -51,13 +51,13 @@ export async function generateMetadata({
 
   if (!categoryPage) {
     return {
-      title: "Categoria nao encontrada",
+      title: "Categoria não encontrada",
       robots: { index: false, follow: false },
     };
   }
 
   return {
-    title: `${categoryPage.title}: unidades, tabelas e calculos`,
+    title: `${categoryPage.title}: unidades, tabelas e cálculos`,
     description: categoryPage.description,
     alternates: {
       canonical: `/pt/categories/${categoryPage.slug}`,
@@ -122,7 +122,7 @@ export default async function PortugueseCategoryPage({ params }: PageProps) {
       {
         "@type": "ListItem",
         position: 1,
-        name: "Inicio",
+        name: "Início",
         item: buildSiteUrl("/pt"),
       },
       {
@@ -174,9 +174,9 @@ export default async function PortugueseCategoryPage({ params }: PageProps) {
           />
         </>
       }
-      breadcrumbAriaLabel="Trilha de navegacao"
+      breadcrumbAriaLabel="Trilha de navegação"
       breadcrumbs={[
-        { label: "Inicio", href: "/pt" },
+        { label: "Início", href: "/pt" },
         { label: "Categorias", href: "/pt/categories" },
         { label: categoryPage.title },
       ]}
@@ -189,17 +189,17 @@ export default async function PortugueseCategoryPage({ params }: PageProps) {
           <CategoryUnitConverter category={categoryPage.category} locale="pt" />
         ),
       }}
-      conversionHeading="Conversoes populares"
+      conversionHeading="Conversões populares"
       conversionCountLabel={`${conversionCards.length} pares`}
       conversionCards={conversionCards}
       unitGuidesHeading="Guias de unidades"
       unitGuidesCountLabel={`${categoryUnits.length} unidades`}
       unitGuides={categoryUnits.map((unitPage) => ({
         href: `/pt/unit-guides/${unitPage.slug}`,
-        label: `O que e ${unitPage.name}?`,
+        label: `O que é ${unitPage.name}?`,
         symbol: unitPage.symbol,
       }))}
-      detailHeading={`Informacoes detalhadas sobre ${baseName}`}
+      detailHeading={`Informações detalhadas sobre ${baseName}`}
       detailContent={
         <>
           <div className="category-article-introduction">
@@ -217,8 +217,8 @@ export default async function PortugueseCategoryPage({ params }: PageProps) {
             </dl>
           </div>
 
-          <nav className="category-table-of-contents" aria-label="Indice da pagina">
-            <strong>Nesta pagina</strong>
+          <nav className="category-table-of-contents" aria-label="Índice da página">
+            <strong>Nesta página</strong>
             <ol>
               {categoryPage.sections.map((section, index) => (
                 <li key={section.title}>
@@ -248,9 +248,9 @@ export default async function PortugueseCategoryPage({ params }: PageProps) {
 
                 {index === 1 && featuredUnit && (
                   <p className="category-inline-link">
-                    Para mais informacoes sobre a unidade {featuredUnit.name}, consulte a{" "}
+                    Para mais informações sobre a unidade {featuredUnit.name}, consulte a{" "}
                     <a href={`/pt/unit-guides/${featuredUnit.slug}`}>
-                      pagina de informacoes de {featuredUnit.name}
+                      página de informações de {featuredUnit.name}
                     </a>
                     .
                   </p>
@@ -266,7 +266,7 @@ export default async function PortugueseCategoryPage({ params }: PageProps) {
                   <thead>
                     <tr>
                       <th>Unidade</th>
-                      <th>Simbolo</th>
+                      <th>Símbolo</th>
                       <th>{tableReferenceLabel}</th>
                       <th>Sistema</th>
                       <th>Uso habitual</th>
@@ -290,8 +290,8 @@ export default async function PortugueseCategoryPage({ params }: PageProps) {
             <section className="conversion-section unit-sources" id="categoria-fontes">
               <h2>Fontes</h2>
               <p>
-                As definicoes e os valores de conversao desta pagina se
-                baseiam em referencias metrologicas oficiais reconhecidas.
+                As definições e os valores de conversão desta página se
+                baseiam em referências metrológicas oficiais reconhecidas.
               </p>
               <ol>
                 {sources.map((source) => (

@@ -308,7 +308,7 @@ export default async function BengaliCategoryPage({ params }: PageProps) {
               href={`/kategoriler/${categoryPage.sourceSlug}`}
               hrefLang="tr"
             >
-              Türkçe versiyonu aç
+              তুর্কি সংস্করণ খুলুন
             </Link>
             {englishPage && (
               <Link
@@ -316,7 +316,7 @@ export default async function BengaliCategoryPage({ params }: PageProps) {
                 href={`/en/categories/${englishPage.slug}`}
                 hrefLang="en"
               >
-                View the English version
+                ইংরেজি সংস্করণ খুলুন
               </Link>
             )}
           </section>

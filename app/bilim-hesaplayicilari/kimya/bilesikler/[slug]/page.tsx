@@ -8,7 +8,8 @@ import {
   findSimilarMolarMassCompounds,
   getAllCompoundProfiles,
 } from "../../../../converter/compoundsHub";
-import { slugifyElementName } from "../../../../converter/periodicTableData";
+import { periodicTable, slugifyElementName } from "../../../../converter/periodicTableData";
+import { findCompoundEditorial } from "../../../../converter/compoundEditorial";
 import { buildSiteUrl } from "../../../../siteConfig";
 
 type PageProps = {
@@ -17,6 +18,11 @@ type PageProps = {
 
 function formatMolarMass(value: number) {
   return value.toLocaleString("tr-TR", { maximumFractionDigits: 3 });
+}
+
+function getElementContribution(symbol: string, count: number) {
+  const element = periodicTable.find((item) => item.symbol === symbol);
+  return (element?.atomicMass ?? 0) * count;
 }
 
 function serializeJsonLd(data: object) {
@@ -38,9 +44,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const title = `${compound.nameTr} (${compound.formula}) Molar Kütlesi ve Mol Hesaplama`;
   const description = `${compound.nameTr} (${compound.formula}) molar kütlesi ${formatMolarMass(compound.molarMass)} g/mol. Atomik kompozisyonu gör, kendi kütle/mol miktarınla hesaplama yap.`;
 
+  const editorial = findCompoundEditorial(compound.id);
+
   return {
     title,
     description,
+    robots: { index: Boolean(editorial), follow: true },
     alternates: {
       canonical: `/bilim-hesaplayicilari/kimya/bilesikler/${slug}`,
       languages: { de: `/de/chemische-verbindungen/${slug}` },
@@ -66,6 +75,7 @@ export default async function CompoundPage({ params }: PageProps) {
 
   const pageUrl = buildSiteUrl(`/bilim-hesaplayicilari/kimya/bilesikler/${slug}`);
   const similarCompounds = findSimilarMolarMassCompounds(slug, 5);
+  const editorial = findCompoundEditorial(compound.id);
 
   const compositionLine = compound.composition
     .map((item) => `${item.count} × ${item.nameTr} (${item.symbol})`)
@@ -154,11 +164,7 @@ export default async function CompoundPage({ params }: PageProps) {
                     </td>
                     <td>{item.count}</td>
                     <td>
-                      {formatMolarMass(
-                        (compound.molarMass /
-                          compound.composition.reduce((sum, c) => sum + c.count, 0)) *
-                          item.count,
-                      )}
+                      {formatMolarMass(getElementContribution(item.symbol, item.count))}
                     </td>
                   </tr>
                 ))}
@@ -171,6 +177,23 @@ export default async function CompoundPage({ params }: PageProps) {
           molarMass={compound.molarMass}
           compoundName={compound.nameTr}
         />
+
+        {editorial && (
+          <section className="category-article-content">
+            <h2>{compound.nameTr} hakkında</h2>
+            <p>{editorial.contextTr}</p>
+
+            <h2>Yaygın kullanım alanları</h2>
+            <ul>
+              {editorial.usesTr.map((use) => (
+                <li key={use}>{use}</li>
+              ))}
+            </ul>
+
+            <h2>Güvenlik ve kapsam notu</h2>
+            <p>{editorial.safetyTr}</p>
+          </section>
+        )}
 
         {similarCompounds.length > 0 && (
           <section className="category-article-content">
@@ -211,10 +234,19 @@ export default async function CompoundPage({ params }: PageProps) {
 
           <h2>Kaynaklar</h2>
           <p>
-            Molar kütle, IUPAC&apos;ın standart atom ağırlıkları
-            tablosuna dayanan atom kütlelerinin, bileşiğin kimyasal
-            formülüne göre toplanmasıyla hesaplanır — bu saf bir
-            aritmetik işlemdir, tahmini bir değer değildir.
+            Molar kütle, IUPAC&apos;ın{" "}
+            <a
+              href="https://iupac.qmul.ac.uk/AtWt/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              standart atom ağırlıkları tablosuna
+            </a>{" "}
+            dayanan atom kütlelerinin bileşiğin kimyasal formülüne göre
+            toplanmasıyla hesaplanır. Sonuç, standart atom ağırlığına dayalı
+            bir başvuru değeridir; izotopça zenginleştirilmiş örneklerde veya
+            yüksek hassasiyetli analizlerde örneğin izotop bileşimi ayrıca
+            dikkate alınmalıdır.
           </p>
         </section>
       </div>

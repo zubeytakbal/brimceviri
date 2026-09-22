@@ -10,7 +10,7 @@ import {
 } from "../converter/shoeSizeTable";
 
 type SystemKey = "eu" | "us" | "uk" | "cm";
-type Locale = "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it";
+type Locale = "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "nl";
 
 const systemLabels: Record<Locale, Record<SystemKey, string>> = {
   tr: {
@@ -56,7 +56,7 @@ const systemLabels: Record<Locale, Record<SystemKey, string>> = {
     cm: "Longueur du pied (cm)",
   },
   es: {
-    eu: "Espana / Europa (EU)",
+    eu: "España / Europa (EU)",
     us: "Estados Unidos (US)",
     uk: "Reino Unido (UK)",
     cm: "Longitud del pie (cm)",
@@ -79,6 +79,7 @@ const systemLabels: Record<Locale, Record<SystemKey, string>> = {
     uk: "Regno Unito (UK)",
     cm: "Lunghezza del Piede (cm)",
   },
+  nl: { eu: "Europa (EU)", us: "Verenigde Staten (US)", uk: "Verenigd Koninkrijk (UK)", cm: "Voetlengte (cm)" },
 };
 
 const brandLabels: Record<Locale, Record<ShoeBrandKey, string>> = {
@@ -170,6 +171,7 @@ const brandLabels: Record<Locale, Record<ShoeBrandKey, string>> = {
     "new-balance": "New Balance",
     converse: "Converse",
   },
+  nl: { genel: "Algemeen (standaard)", nike: "Nike", adidas: "Adidas", puma: "Puma", "new-balance": "New Balance", converse: "Converse" },
 };
 
 const groupLabels: Record<Locale, Record<ShoeSizeGroupKey, string>> = {
@@ -239,6 +241,7 @@ const groupLabels: Record<Locale, Record<ShoeSizeGroupKey, string>> = {
     bebek: "Neonato / Bambino Piccolo",
     "buyuk-cocuk": "Bambino Grande",
   },
+  nl: { erkek: "Heren", kadin: "Dames", bebek: "Baby / klein kind", "buyuk-cocuk": "Groter kind" },
 };
 
 const copy = {
@@ -389,6 +392,11 @@ const copy = {
     footLength: "Lunghezza del Piede",
     chartSuffix: "tabella delle taglie",
   },
+  nl: {
+    group: "Groep", brand: "Merk", knownSystem: "Bekend systeem", value: "Waarde",
+    matchingSizes: "Overeenkomende maten", invalidValue: "Voer een geldig getal in om de dichtstbijzijnde maat te zien.",
+    euResult: "EU", usResult: "US", ukResult: "VK", footLength: "Voetlengte", chartSuffix: "schoenmaattabel",
+  },
 } as const;
 
 const brandOrder: ShoeBrandKey[] = [
@@ -446,6 +454,10 @@ function getNumberLocale(locale: Locale) {
 
   if (locale === "it") {
     return "it-IT";
+  }
+
+  if (locale === "nl") {
+    return "nl-NL";
   }
 
   return "en-US";

@@ -90,7 +90,7 @@ export default function BengaliBmiCalculatorPage() {
 
           <h2>অন্যান্য ভাষা</h2>
           <Link className="text-link" href="/bmi-hesaplama" hrefLang="tr">
-            Türkçe versiyonu aç
+            তুর্কি সংস্করণ খুলুন
           </Link>
         </section>
       </div>

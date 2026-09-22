@@ -404,8 +404,15 @@ export default function BengaliHomeDirectory({
                     <small>{unit.categoryLabel}</small>
                   </Link>
                 </li>
-              ))}
+                ))}
             </ul>
+
+            <div className="directory-section-footer">
+              <Link className="directory-section-link" href="/bn/unit-guides">
+                <DecorativeIcon className="directory-link-icon" name="allConversions" size={18} />
+                সব একক গাইড দেখুন
+              </Link>
+            </div>
           </section>
         )}
 

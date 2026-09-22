@@ -93,6 +93,10 @@ const copy = {
     resultHeading: "Equivalenze",
     invalidValue: "Inserisci un numero valido per vedere la conversione.",
   },
+  nl: {
+    ingredient: "Ingrediënt", knownUnit: "Bekende eenheid", value: "Waarde",
+    resultHeading: "Equivalenten", invalidValue: "Voer een geldig getal in om de omrekening te zien.",
+  },
 } as const;
 
 const englishCupStandardLabels: Record<
@@ -136,6 +140,8 @@ function formatValue(value: number, locale: KitchenLocale) {
                       ? "pt-BR"
                       : locale === "it"
                         ? "it-IT"
+                        : locale === "nl"
+                          ? "nl-NL"
                         : "en-US";
 
   return value.toLocaleString(localeName, {
@@ -166,7 +172,7 @@ export default function KitchenMeasuresConverter({
   const [cupStandard, setCupStandard] = useState<KitchenCupStandard>(
     locale === "en"
       ? "us"
-      : locale === "fr" || locale === "es-419" || locale === "it"
+      : locale === "fr" || locale === "es-419" || locale === "it" || locale === "nl"
         ? "metric"
         : locale === "es" || locale === "pt"
           ? "usLegal"

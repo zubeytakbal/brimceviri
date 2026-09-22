@@ -67,7 +67,14 @@ export default function GermanAllConversionsPage() {
 
           {categories.map(({ page, conversions }) => (
             <section className="conversion-section related-conversions" key={page.slug}>
-              <h2>{page.title}</h2>
+              <h2>
+                <Link href={`/de/kategorien/${page.slug}`}>{page.title}</Link>
+              </h2>
+              <p>
+                <Link className="text-link" href={`/de/kategorien/${page.slug}`}>
+                  Kategorie mit Einheitenleitfäden öffnen
+                </Link>
+              </p>
               <ul className="related-conversion-list">
                 {conversions.map((conversion) => (
                   <li key={conversion.slug}>

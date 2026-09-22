@@ -378,7 +378,7 @@ export default async function ArabicCategoryPage({
                 href={`/en/categories/${categoryPage.slug}`}
                 hrefLang="en"
               >
-                Open the English version
+                افتح النسخة الإنجليزية
               </Link>
 
               {germanPage && (

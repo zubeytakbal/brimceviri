@@ -129,6 +129,17 @@ bn: {
     secondaryHref: "/",
     secondaryLabel: "Apri la homepage in turco",
   },
+  nl: {
+    lang: "nl",
+    title: "Pagina niet gevonden",
+    description:
+      "De pagina die je zoekt is mogelijk verplaatst of het adres is niet geldig.",
+    continueHeading: "Ga verder met",
+    primaryHref: "/nl",
+    primaryLabel: "Terug naar de Nederlandse homepage",
+    secondaryHref: "/",
+    secondaryLabel: "Open de Turkse homepage",
+  },
 } satisfies Record<
   Locale,
   {

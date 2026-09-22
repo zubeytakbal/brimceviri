@@ -4,9 +4,9 @@ import { frenchCategoryPages } from "../../converter/localizedFrenchCategoryPage
 import { buildSiteUrl } from "../../siteConfig";
 
 export const metadata: Metadata = {
-  title: "Toutes les categories — Convertisseur d'unites",
+  title: "Toutes les catégories — Convertisseur d’unités",
   description:
-    "Liste complete des conversions d'unites pour la longueur, la masse, la temperature, la pression, l'energie et bien d'autres grandeurs physiques.",
+    "Liste complète des conversions d’unités pour la longueur, la masse, la température, la pression, l’énergie et bien d’autres grandeurs physiques.",
   alternates: {
     canonical: "/fr/categories",
     languages: {
@@ -15,8 +15,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Toutes les categories — Convertisseur d'unites",
-    description: "Liste complete de toutes les categories de conversion d'unites.",
+    title: "Toutes les catégories — Convertisseur d’unités",
+    description: "Liste complète des catégories de conversion d’unités.",
     url: buildSiteUrl("/fr/categories"),
     siteName: "BirimCeviri.app",
     locale: "fr_FR",
@@ -31,14 +31,14 @@ export default function FrenchCategoriesIndexPage() {
         <nav className="breadcrumbs" aria-label="Fil d'Ariane">
           <Link href="/fr">Accueil</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          <span>Toutes les categories</span>
+          <span>Toutes les catégories</span>
         </nav>
 
         <header className="all-conversions-header">
-          <h1>Toutes les categories de conversion d'unites</h1>
+          <h1>Toutes les catégories de conversion d’unités</h1>
           <p>
-            Choisissez la grandeur physique qui vous interesse pour voir
-            toutes les unites et pages de conversion de cette categorie.
+            Choisissez la grandeur physique qui vous intéresse pour voir
+            toutes les unités et pages de conversion de cette catégorie.
           </p>
         </header>
 
@@ -47,7 +47,7 @@ export default function FrenchCategoriesIndexPage() {
             <table className="conversion-table">
               <thead>
                 <tr>
-                  <th>Categorie</th>
+                  <th>Catégorie</th>
                   <th></th>
                 </tr>
               </thead>

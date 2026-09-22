@@ -99,7 +99,7 @@ export default function BengaliRecipeConverterPage() {
         <section className="conversion-section language-alternatives">
           <h2>অন্যান্য ভাষা</h2>
           <Link className="text-link" href="/tarif-cevirici" hrefLang="tr">
-            Türkçe versiyonu aç
+            তুর্কি সংস্করণ খুলুন
           </Link>
         </section>
       </div>

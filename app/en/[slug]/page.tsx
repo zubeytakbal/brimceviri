@@ -32,6 +32,7 @@ import WallpaperCalculator from "../../components/WallpaperCalculator";
 import WeightComparisonTool from "../../components/WeightComparisonTool";
 import PairConverter from "../../converter/PairConverter";
 import { convert } from "../../converter/convert";
+import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
 import { findEnglishUnitPage } from "../../converter/localizedUnitPages";
 import { buildFullLanguageAlternates } from "../../i18n/routing";
 import {
@@ -343,9 +344,35 @@ async function EnglishConversionPage({
   const formattedOneUnitResult = formatNumber(
     oneUnitResult
   );
+  const reverseOneUnitResult = formatNumber(
+    convert(page.category, 1, page.toUnit, page.fromUnit)
+  );
+  const faqItems: FaqItem[] = [
+    {
+      question: `How many ${page.toName} are in 1 ${page.fromName}?`,
+      answer: `1 ${page.fromUnit} = ${formattedOneUnitResult} ${page.toUnit}.`,
+    },
+    {
+      question: `How do you convert ${page.fromName} to ${page.toName}?`,
+      answer: page.explanation,
+    },
+    {
+      question: `How many ${page.fromName} are in 1 ${page.toName}?`,
+      answer: `1 ${page.toUnit} = ${reverseOneUnitResult} ${page.fromUnit}.`,
+    },
+  ];
 
   return (
     <main className="conversion-page" lang="en">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(buildFaqSchema(faqItems)).replace(
+            /</g,
+            "\\u003c"
+          ),
+        }}
+      />
       <div className="conversion-breadcrumb-wrap">
         <nav
           className="breadcrumbs"
@@ -586,6 +613,16 @@ async function EnglishConversionPage({
             </ul>
           </section>
         )}
+
+        <section className="conversion-section conversion-faq">
+          <h2>Frequently asked questions</h2>
+          {faqItems.map((item) => (
+            <div key={item.question} className="conversion-faq-item">
+              <h3>{item.question}</h3>
+              <p>{item.answer}</p>
+            </div>
+          ))}
+        </section>
 
         {sources.length > 0 && (
           <section className="conversion-section unit-sources">

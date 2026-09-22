@@ -45,24 +45,6 @@ const uzbekCategoryIcons: Record<string, SiteIconName> = {
   vitamin_d: "solarPanelPaybackCalculator",
 };
 
-const uzbekCategoryDrafts: Record<
-  string,
-  { title: string; description: string }
-> = {
-  gumus_ayar: {
-    title: "Kumush sofligi (proba)",
-    description: "Kategoriya sahifasi keyin alohida tahrir qilinadi.",
-  },
-  kan_sekeri: {
-    title: "Qondagi glyukoza",
-    description: "Kategoriya sahifasi keyin alohida tahrir qilinadi.",
-  },
-  vitamin_d: {
-    title: "D vitamini",
-    description: "Kategoriya sahifasi keyin alohida tahrir qilinadi.",
-  },
-};
-
 const uzbekCategoryGroups = [
   {
     title: "Asosiy o'lchov birliklari",
@@ -126,8 +108,6 @@ export default function UzbekCategoriesPage() {
         (candidate) => candidate.category === category,
       );
 
-      const draft = uzbekCategoryDrafts[category];
-
       return page
         ? [
             {
@@ -141,18 +121,7 @@ export default function UzbekCategoriesPage() {
               href: `/uz/turkumlar/${page.slug}` as string | undefined,
             },
           ]
-        : draft
-          ? [
-              {
-                id: category,
-                title: draft.title,
-                description: draft.description,
-                iconName: uzbekCategoryIcons[category] ?? getCategoryIconName(category),
-                group: group.title,
-                href: undefined as string | undefined,
-              },
-            ]
-          : [];
+        : [];
     }),
   );
 

@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { es419UnitPages } from "../../../converter/localizedEs419UnitPages";
 import { es419CategoryPages } from "../../../converter/localizedEs419CategoryPages";
 import { findEnglishUnitPageByTurkishSlug } from "../../../converter/localizedUnitPages";
+import { getUnitSources } from "../../../converter/unitSources";
 import { buildFullLanguageAlternates } from "../../../i18n/routing";
 import { buildSiteUrl } from "../../../siteConfig";
 
@@ -62,11 +63,12 @@ export default async function Es419UnitPage({ params }: PageProps) {
   const categoryPage = es419CategoryPages.find(
     (category) => category.category === unitPage.category
   );
+  const sources = getUnitSources(unitPage.category);
 
   return (
     <main className="all-conversions-page" lang="es-419">
       <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Ruta de navegacion">
+        <nav className="breadcrumbs" aria-label="Ruta de navegación">
           <Link href="/es-419">Inicio</Link>
           <span aria-hidden="true">&rsaquo;</span>
           {categoryPage && (
@@ -88,7 +90,7 @@ export default async function Es419UnitPage({ params }: PageProps) {
         <section className="category-article-content">
           <dl className="category-facts">
             <div>
-              <dt>Simbolo</dt>
+              <dt>Símbolo</dt>
               <dd>{unitPage.symbol}</dd>
             </div>
             <div>
@@ -107,9 +109,28 @@ export default async function Es419UnitPage({ params }: PageProps) {
           </section>
 
           <section className="conversion-section unit-long-section">
-            <h2>Uso</h2>
+            <h2>Usos habituales</h2>
             <p>{unitPage.commonUses}</p>
           </section>
+
+          {sources.length > 0 && (
+            <section className="conversion-section unit-sources" id="sources">
+              <h2>Fuentes</h2>
+              <p>
+                Las definiciones y relaciones de conversión de esta unidad se
+                basan en referencias metrológicas y fuentes del SI reconocidas.
+              </p>
+              <ol>
+                {sources.map((source) => (
+                  <li key={source.url}>
+                    <a href={source.url} target="_blank" rel="noreferrer">
+                      {source.organization}: {source.title}
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </section>
+          )}
 
           {categoryPage && (
             <section className="conversion-section">
@@ -118,7 +139,7 @@ export default async function Es419UnitPage({ params }: PageProps) {
                   className="text-link"
                   href={`/es-419/categories/${categoryPage.slug}`}
                 >
-                  Ver las demas unidades de la categoria {categoryPage.title}
+                  Ver las demás unidades de la categoría {categoryPage.title}
                 </Link>
               </p>
             </section>
@@ -131,7 +152,7 @@ export default async function Es419UnitPage({ params }: PageProps) {
               href={`/birimler/${unitPage.sourceSlug}`}
               hrefLang="tr"
             >
-              Türkçe versiyonu aç
+              Abrir la versión en turco
             </Link>
             {englishPage && (
               <Link
@@ -139,7 +160,7 @@ export default async function Es419UnitPage({ params }: PageProps) {
                 href={`/en/units/${englishPage.slug}`}
                 hrefLang="en"
               >
-                View the English version
+                Abrir la versión en inglés
               </Link>
             )}
           </section>

@@ -22,6 +22,7 @@ import WallpaperCalculator from "../../components/WallpaperCalculator";
 import WeightComparisonTool from "../../components/WeightComparisonTool";
 import PairConverter from "../../converter/PairConverter";
 import { convert } from "../../converter/convert";
+import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
 import {
   uzbekConversionPages,
   findUzbekConversionPage,
@@ -275,9 +276,35 @@ async function UzbekConversionPage({ slug }: { slug: string }) {
 
   const oneUnitResult = convert(page.category, 1, page.fromUnit, page.toUnit);
   const formattedOneUnitResult = formatNumber(oneUnitResult);
+  const reverseOneUnitResult = formatNumber(
+    convert(page.category, 1, page.toUnit, page.fromUnit)
+  );
+  const faqItems: FaqItem[] = [
+    {
+      question: `1 ${page.fromName} nechta ${page.toName}?`,
+      answer: `1 ${page.fromUnit} = ${formattedOneUnitResult} ${page.toUnit}.`,
+    },
+    {
+      question: `${page.fromName}ni ${page.toName}ga qanday aylantirish mumkin?`,
+      answer: page.explanation,
+    },
+    {
+      question: `1 ${page.toName} nechta ${page.fromName}?`,
+      answer: `1 ${page.toUnit} = ${reverseOneUnitResult} ${page.fromUnit}.`,
+    },
+  ];
 
   return (
     <main className="conversion-page" lang="uz">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(buildFaqSchema(faqItems)).replace(
+            /</g,
+            "\\u003c"
+          ),
+        }}
+      />
       <div className="conversion-breadcrumb-wrap">
         <nav className="breadcrumbs" aria-label="Sahifa yo'li">
           <Link href="/uz">Bosh sahifa</Link>
@@ -456,6 +483,16 @@ async function UzbekConversionPage({ slug }: { slug: string }) {
             </ul>
           </section>
         )}
+
+        <section className="conversion-section conversion-faq">
+          <h2>Ko'p so'raladigan savollar</h2>
+          {faqItems.map((item) => (
+            <div key={item.question} className="conversion-faq-item">
+              <h3>{item.question}</h3>
+              <p>{item.answer}</p>
+            </div>
+          ))}
+        </section>
 
         {sources.length > 0 && (
           <section className="conversion-section unit-sources">

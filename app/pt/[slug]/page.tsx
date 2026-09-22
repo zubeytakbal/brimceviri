@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import PairConverter from "../../converter/PairConverter";
 import { convert } from "../../converter/convert";
+import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
 import { findEnglishPageByTurkishSlug } from "../../converter/localizedConversionPages";
 import {
   findPortugueseConversionPage,
@@ -119,9 +120,35 @@ export default async function PortugueseConversionPage({ params }: PageProps) {
 
   const oneUnitResult = convert(page.category, 1, page.fromUnit, page.toUnit);
   const formattedOneUnitResult = formatNumber(oneUnitResult);
+  const reverseOneUnitResult = formatNumber(
+    convert(page.category, 1, page.toUnit, page.fromUnit)
+  );
+  const faqItems: FaqItem[] = [
+    {
+      question: `Quanto equivale 1 ${page.fromName} em ${page.toName}?`,
+      answer: `1 ${page.fromUnit} = ${formattedOneUnitResult} ${page.toUnit}.`,
+    },
+    {
+      question: `Como converter ${page.fromName} para ${page.toName}?`,
+      answer: page.explanation,
+    },
+    {
+      question: `Quanto equivale 1 ${page.toName} em ${page.fromName}?`,
+      answer: `1 ${page.toUnit} = ${reverseOneUnitResult} ${page.fromUnit}.`,
+    },
+  ];
 
   return (
     <main className="conversion-page" lang="pt-BR">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(buildFaqSchema(faqItems)).replace(
+            /</g,
+            "\\u003c"
+          ),
+        }}
+      />
       <div className="conversion-breadcrumb-wrap">
         <nav className="breadcrumbs" aria-label="Trilha de navegacao">
           <Link href="/pt">Inicio</Link>
@@ -288,6 +315,16 @@ export default async function PortugueseConversionPage({ params }: PageProps) {
           </section>
         )}
 
+        <section className="conversion-section conversion-faq">
+          <h2>Perguntas frequentes</h2>
+          {faqItems.map((item) => (
+            <div key={item.question} className="conversion-faq-item">
+              <h3>{item.question}</h3>
+              <p>{item.answer}</p>
+            </div>
+          ))}
+        </section>
+
         {sources.length > 0 && (
           <section className="conversion-section unit-sources">
             <h2>Fontes</h2>
@@ -317,7 +354,7 @@ export default async function PortugueseConversionPage({ params }: PageProps) {
             href={`/${page.sourceSlug}`}
             hrefLang="tr"
           >
-            Türkçe versiyonu aç
+            Abrir a versão em turco
           </Link>
 
           {englishPage && (
@@ -326,7 +363,7 @@ export default async function PortugueseConversionPage({ params }: PageProps) {
               href={`/en/${englishPage.slug}`}
               hrefLang="en"
             >
-              View the English version
+              Abrir a versão em inglês
             </Link>
           )}
         </section>

@@ -10,7 +10,10 @@ import {
   getAllMaterialProfiles,
 } from "../../converter/materialsHub";
 import { getAllMaterialComparisons } from "../../converter/materialComparisons";
-import { materialCategoryLabels } from "../../converter/materialsDatabase";
+import {
+  materialCategoryLabels,
+  type MaterialCategory,
+} from "../../converter/materialsDatabase";
 import { buildSiteUrl } from "../../siteConfig";
 
 type PageProps = {
@@ -19,6 +22,27 @@ type PageProps = {
 
 function formatDensity(value: number) {
   return value.toLocaleString("tr-TR", { maximumFractionDigits: 4 });
+}
+
+function getDensityUseNote(category: MaterialCategory) {
+  const notes: Record<MaterialCategory, string> = {
+    metal:
+      "Metal yoğunluğu alaşım bileşimine, ısıl işleme ve sıcaklığa göre değişir. Bu değer, malzeme sınıfı belirtilmemiş ilk kütle ve hacim hesapları için nominal referanstır.",
+    sivi:
+      "Sıvı yoğunluğu özellikle sıcaklığa ve karışım oranına bağlıdır. Hassas dolum, ticari ürün veya güvenlik hesabında ürünün teknik föyündeki sıcaklığa bağlı değeri kullanın.",
+    gaz:
+      "Gaz yoğunluğu sıcaklık ve basınca güçlü biçimde bağlıdır. Bu değer, ilk karşılaştırma ve yaklaşık kütle hesabı içindir; proses hesabında aynı sıcaklık ve basınç koşullarındaki ölçülmüş değeri kullanın.",
+    plastik:
+      "Polimer yoğunluğu reçine türüne, dolgu maddesine ve üretim yöntemine göre değişebilir. Ürün tasarımı için üreticinin teknik veri föyündeki sınıfa özgü değeri doğrulayın.",
+    "yapi-malzemesi":
+      "Yapı malzemelerinde nem, gözeneklilik ve sıkışma derecesi yoğunluğu değiştirir. Hesap, kuru ve tipik malzeme için ilk tahmindir.",
+    ahsap:
+      "Ahşap yoğunluğu türün yanı sıra nem oranı ve lif yönüyle değişir. Kesin ağırlık hesabında ölçülen nem oranını ve gerçek parça hacmini kullanın.",
+    gida:
+      "Gıda ve mutfak malzemelerinde su, yağ ve hava oranı markaya ve hazırlama biçimine göre değişir. Sonuç, yaklaşık mutfak ve hacim hesabı içindir.",
+  };
+
+  return notes[category];
 }
 
 function serializeJsonLd(data: object) {
@@ -74,11 +98,16 @@ export default async function MaterialPropertyPage({ params }: PageProps) {
   const relatedComparisons = getAllMaterialComparisons().filter(
     (comparison) => comparison.first.id === slug || comparison.second.id === slug
   );
+  const oneLitreMassKg = material.densityKgM3 / 1000;
 
   const faqItems: FaqItem[] = [
     {
       question: `${material.nameTr} yoğunluğu kaç kg/m³?`,
       answer: `${material.nameTr} yoğunluğu yaklaşık ${formatDensity(material.densityKgM3)} kg/m³ (${formatDensity(material.densityKgM3 / 1000)} g/cm³) değerindedir.`,
+    },
+    {
+      question: `1 litre ${material.nameTr} yaklaşık kaç kg gelir?`,
+      answer: `Bu referans yoğunlukla 1 litre ${material.nameTr} yaklaşık ${formatDensity(oneLitreMassKg)} kg gelir. Gerçek sonuç sıcaklık, malzeme sınıfı ve bileşime göre değişebilir.`,
     },
   ];
 
@@ -170,6 +199,15 @@ export default async function MaterialPropertyPage({ params }: PageProps) {
           )}
         </section>
 
+        <section className="category-article-content">
+          <h2>{material.nameTr} yoğunluk değerini doğru kullanma</h2>
+          <p>{getDensityUseNote(material.category)}</p>
+          <p>
+            Bu referans değerle 1 litre {material.nameTr} yaklaşık {formatDensity(oneLitreMassKg)} kg,
+            1 m³ ise yaklaşık {formatDensity(material.densityKgM3)} kg gelir.
+          </p>
+        </section>
+
         <MaterialMassVolumeCalculator
           densityKgM3={material.densityKgM3}
           materialName={material.nameTr}
@@ -247,11 +285,18 @@ export default async function MaterialPropertyPage({ params }: PageProps) {
 
           <h2>Kaynaklar</h2>
           <p>
-            Yoğunluk ve diğer özellik değerleri, yaygın kabul gören
-            mühendislik referans tablolarından derlenmiş, oda
-            sıcaklığına yakın genel değerlerdir; gerçek değerler
-            malzemenin türüne, saflığına ve sıcaklığına göre küçük
-            farklılıklar gösterebilir.
+            Yoğunluk veritabanının başlangıç referansı,{" "}
+            <a
+              href="https://densitycalculator.net/density-table"
+              target="_blank"
+              rel="noreferrer"
+            >
+              232 malzemelik yoğunluk tablosudur
+            </a>
+            . Buradaki değerler ilk hesaplamaya yönelik nominal başvuru
+            değerleridir. Her değer aynı sıcaklıkta veya aynı malzeme sınıfında
+            ölçülmüş değildir; tasarım, güvenlik veya ticari ölçüm için ilgili
+            ürünün teknik veri föyündeki koşullu değeri doğrulayın.
           </p>
         </section>
       </div>

@@ -88,7 +88,7 @@ export default function BengaliPaintCalculatorPage() {
 
           <h2>অন্যান্য ভাষা</h2>
           <Link className="text-link" href="/boya-hesaplama" hrefLang="tr">
-            Türkçe versiyonu aç
+            তুর্কি সংস্করণ খুলুন
           </Link>
         </section>
       </div>

@@ -114,6 +114,10 @@ export default async function MaterialComparisonPage({
         second.densityKgM3
       )} kg/m³ (${formatDensity(second.densityKgM3 / 1000)} g/cm³) değerindedir.`,
     },
+    {
+      question: "Bu karşılaştırma gerçek parça ağırlığını doğrudan gösterir mi?",
+      answer: "Hayır. Tablo aynı hacimdeki malzemeleri yoğunluğa göre karşılaştırır. Gerçek parça ağırlığı yoğunluğun yanı sıra parçanın hacmine, malzeme sınıfına, sıcaklığa ve nem durumuna bağlıdır.",
+    },
   ];
 
   const breadcrumbSchema = {
@@ -216,6 +220,17 @@ export default async function MaterialComparisonPage({
         </section>
 
         <section className="category-article-content">
+          <h2>Bu karşılaştırma nasıl okunmalı?</h2>
+          <p>
+            Tablo, eşit hacimdeki iki malzemeyi karşılaştırır: 1 litre {first.nameTr} yaklaşık {formatDensity(first.densityKgM3 / 1000)} kg,
+            1 litre {second.nameTr} ise yaklaşık {formatDensity(second.densityKgM3 / 1000)} kg gelir.
+          </p>
+          <p>
+            Bu değerler ilk hesaplama için nominal referanslardır. Gerçek parça ağırlığı hacimle birlikte değişir; gaz, sıvı, ahşap, gıda ve yapı malzemelerinde sıcaklık, basınç, nem veya bileşim ayrıca önemlidir.
+          </p>
+        </section>
+
+        <section className="category-article-content">
           <h2>
             {first.nameTr} ve {second.nameTr} Hakkında Daha Fazla Bilgi
           </h2>
@@ -236,6 +251,23 @@ export default async function MaterialComparisonPage({
               </Link>
             </li>
           </ul>
+        </section>
+
+        <section className="category-article-content unit-sources">
+          <h2>Kaynak ve kullanım notu</h2>
+          <p>
+            Karşılaştırmadaki yoğunluk değerleri,{" "}
+            <a
+              href="https://densitycalculator.net/density-table"
+              target="_blank"
+              rel="noreferrer"
+            >
+              232 malzemelik yoğunluk tablosundan
+            </a>{" "}
+            alınan nominal başvuru değerleridir. Aynı hacimdeki malzemeleri
+            karşılaştırmak için uygundur; gerçek parça ağırlığında ürün sınıfı,
+            sıcaklık, nem ve boşluk oranı dikkate alınmalıdır.
+          </p>
         </section>
       </div>
     </main>

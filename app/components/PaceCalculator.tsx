@@ -203,6 +203,30 @@ const copyByLocale: Record<
       estimatedTime: "estimated time",
     },
   },
+  nl: {
+    modePrompt: "What do you want to calculate?",
+    modeButtons: {
+      pace: "Calculate Pace",
+      duration: "Calculate Time",
+      distance: "Calculate Distance",
+    },
+    labels: {
+      distance: "Distance (km)",
+      durationHours: "Time - Hours",
+      durationMinutes: "Time - Minutes",
+      durationSeconds: "Time - Seconds",
+      paceMinutes: "Pace - Minutes/km",
+      paceSeconds: "Pace - Seconds/km",
+    },
+    emptyState: "Enter valid values to see the result.",
+    resultLabels: {
+      pace: "Pace",
+      duration: "Time",
+      distance: "Distance",
+      speed: "Speed",
+      estimatedTime: "estimated time",
+    },
+  },
   de: {
     modePrompt: "Was moechten Sie berechnen?",
     modeButtons: {

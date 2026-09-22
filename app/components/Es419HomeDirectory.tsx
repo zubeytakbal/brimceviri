@@ -40,8 +40,8 @@ const primaryCategoryCardsFromCategories = primaryCategoryPages.map((page) => ({
   iconName: getCategoryIconName(page.category) as SiteIconName,
 }));
 
-// Los 4 "universales" (identidad de 17 elementos de TR: 13 categorias + 4
-// convertidores) -- no son calculadoras, son parte de la identidad del sitio.
+// Los 4 «universales» (identidad de 17 elementos de TR: 13 categorías + 4
+// convertidores) — no son calculadoras, son parte de la identidad del sitio.
 const nicheCards: Array<{
   id: string;
   href: string;
@@ -53,14 +53,14 @@ const nicheCards: Array<{
     id: "shoe-size",
     href: "/es-419/shoe-size-converter",
     title: "Conversor de tallas de calzado",
-    description: "Compara las tallas estadounidenses, europeas y britanicas por marca.",
+    description: "Compara las tallas de EE. UU., europeas y británicas por marca.",
     iconName: "shoeSize",
   },
   {
     id: "kitchen-measures",
     href: "/es-419/kitchen-measurement-converter",
     title: "Medidas de cocina",
-    description: "Convierte tazas, cucharadas y gramos segun el ingrediente.",
+    description: "Convierte tazas, cucharadas y gramos según el ingrediente.",
     iconName: "kitchenMeasures",
   },
   {
@@ -73,7 +73,7 @@ const nicheCards: Array<{
   {
     id: "historical-units",
     href: "/es-419/historical-units",
-    title: "Unidades historicas",
+    title: "Unidades históricas",
     description: "Convierte arşın, okka, dirhem y unidades bizantinas a unidades modernas.",
     iconName: "historical",
   },
@@ -184,17 +184,17 @@ export default function Es419HomeDirectory({
       <section className="directory-hero">
         <div className="directory-shell">
           <div className="directory-hero-copy">
-            <p className="directory-eyebrow">Convertidor de unidades en espanol</p>
-            <h1>Encuentra rapido la pagina de conversion correcta</h1>
+            <p className="directory-eyebrow">Convertidor de unidades en español para Latinoamérica</p>
+            <h1>Encuentra rápido la página de conversión correcta</h1>
             <p className="directory-lead">
-              Convierte longitud, masa, presion y muchas otras unidades
-              completamente en espanol, con guias de unidades claras.
+              Convierte longitud, masa, presión y muchas otras unidades
+              en español, con guías de unidades claras.
             </p>
           </div>
 
           <div className="directory-hero-panel">
             <form className="directory-search" onSubmit={handleSubmit} role="search">
-              <label htmlFor={inputId}>Buscar una conversion</label>
+              <label htmlFor={inputId}>Buscar una conversión</label>
 
               <div className="directory-search-field">
                 <input
@@ -216,14 +216,14 @@ export default function Es419HomeDirectory({
               </div>
 
               <p className="directory-search-hint" id={`${inputId}-hint`}>
-                Escribe el nombre de una unidad en espanol o ingles y presiona
+                Escribe el nombre de una unidad en español o inglés y presiona
                 Enter para abrir el primer resultado.
               </p>
 
               {query.trim() ? (
                 <div className="directory-search-results-wrap">
                   <div className="directory-search-results-head">
-                    <strong>Resultados de busqueda</strong>
+                    <strong>Resultados de búsqueda</strong>
                     <span>Presiona Enter para abrir</span>
                   </div>
 
@@ -234,7 +234,7 @@ export default function Es419HomeDirectory({
                           <Link href={result.href}>
                             <span>{result.label}</span>
                             <small>
-                              Categoria: {result.categoryLabel} · {result.description}
+                              Categoría: {result.categoryLabel} · {result.description}
                             </small>
                           </Link>
                         </li>
@@ -249,11 +249,11 @@ export default function Es419HomeDirectory({
 
             <dl className="directory-stats">
               <div>
-                <dt>Categorias activas</dt>
+                <dt>Categorías activas</dt>
                 <dd>{stats.categories}</dd>
               </div>
               <div>
-                <dt>Paginas de conversion</dt>
+                <dt>Páginas de conversión</dt>
                 <dd>{stats.conversions}</dd>
               </div>
             </dl>
@@ -265,13 +265,13 @@ export default function Es419HomeDirectory({
         <section className="directory-section">
           <header className="directory-section-header">
             <div>
-              <h2>Conversion de unidades</h2>
-              <p>Elige una categoria para ver todas sus unidades y paginas de conversion.</p>
+              <h2>Conversión de unidades</h2>
+              <p>Elige una categoría para ver todas sus unidades y páginas de conversión.</p>
             </div>
 
             <Link className="directory-section-link" href="/es-419/categories">
               <DecorativeIcon className="directory-link-icon" name="allConversions" size={18} />
-              Todas las categorias
+              Todas las categorías
             </Link>
           </header>
 
@@ -294,7 +294,7 @@ export default function Es419HomeDirectory({
 
           {secondaryCategoryCards.length > 0 && (
             <div className="directory-secondary-categories">
-              <h3>Mas categorias de conversion</h3>
+              <h3>Más categorías de conversión</h3>
               <div className="directory-home-category-grid">
                 {secondaryCategoryCards.slice(0, 8).map((category) => (
                   <article className="directory-home-card" key={category.id}>
@@ -317,7 +317,7 @@ export default function Es419HomeDirectory({
           <div className="directory-section-footer">
             <Link className="directory-section-link" href="/es-419/categories">
               <DecorativeIcon className="directory-link-icon" name="allConversions" size={18} />
-              Ver todas las categorias y conversiones
+              Ver todas las categorías y conversiones
             </Link>
           </div>
         </section>
@@ -327,7 +327,7 @@ export default function Es419HomeDirectory({
             <header className="directory-section-header">
               <div>
                 <h2>Conversiones populares</h2>
-                <p>Acceso directo a las conversiones mas buscadas.</p>
+                <p>Acceso directo a las conversiones más buscadas.</p>
               </div>
             </header>
 
@@ -349,7 +349,7 @@ export default function Es419HomeDirectory({
             <header className="directory-section-header">
               <div>
                 <h2>Unidades populares</h2>
-                <p>Guias detalladas en espanol para las unidades mas buscadas.</p>
+                <p>Guías detalladas en español para las unidades más buscadas.</p>
               </div>
             </header>
 

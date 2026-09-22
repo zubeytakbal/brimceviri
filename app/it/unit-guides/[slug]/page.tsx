@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { italianUnitPages } from "../../../converter/localizedItalianUnitPages";
 import { italianCategoryPages } from "../../../converter/localizedItalianCategoryPages";
 import { findEnglishUnitPageByTurkishSlug } from "../../../converter/localizedUnitPages";
+import { getUnitSources } from "../../../converter/unitSources";
 import { buildFullLanguageAlternates } from "../../../i18n/routing";
 import { buildSiteUrl } from "../../../siteConfig";
 
@@ -62,6 +63,7 @@ export default async function ItalianUnitPage({ params }: PageProps) {
   const categoryPage = italianCategoryPages.find(
     (category) => category.category === unitPage.category
   );
+  const sources = getUnitSources(unitPage.category);
 
   return (
     <main className="all-conversions-page" lang="it">
@@ -111,6 +113,25 @@ export default async function ItalianUnitPage({ params }: PageProps) {
             <p>{unitPage.commonUses}</p>
           </section>
 
+          {sources.length > 0 && (
+            <section className="conversion-section unit-sources" id="sources">
+              <h2>Fonti</h2>
+              <p>
+                Le definizioni e le relazioni di conversione di questa unità
+                seguono riferimenti metrologici e fonti SI riconosciuti.
+              </p>
+              <ol>
+                {sources.map((source) => (
+                  <li key={source.url}>
+                    <a href={source.url} target="_blank" rel="noreferrer">
+                      {source.organization}: {source.title}
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </section>
+          )}
+
           {categoryPage && (
             <section className="conversion-section">
               <p>
@@ -139,7 +160,7 @@ export default async function ItalianUnitPage({ params }: PageProps) {
                 href={`/en/units/${englishPage.slug}`}
                 hrefLang="en"
               >
-                View the English version
+                Apri la versione inglese
               </Link>
             )}
           </section>

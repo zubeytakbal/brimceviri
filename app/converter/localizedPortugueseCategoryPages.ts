@@ -1,11 +1,10 @@
-// Paginas de categoria em portugues (Brasil) -- integradas ao novo sistema
-// i18n. Arquivo independente e novo (nao modifica os arquivos existentes
+// Páginas de categoria em português brasileiro — integradas ao sistema i18n.
+// Arquivo independente (não modifica os arquivos existentes
 // de tr/en/de/ar/uz/bn/fr/es).
 //
-// Escopo deliberadamente limitado aos 17 elementos que formam a
-// identidade do site (13 categorias fundamentais + 4 ferramentas
-// universais na pagina inicial) -- sem calculadoras cientificas nem
-// cotidianas. Conteudo traduzido com a mesma profundidade dos artigos
+// Escopo limitado aos 17 elementos que formam a identidade do site:
+// 13 categorias fundamentais e 4 ferramentas universais na página inicial.
+// Sem calculadoras científicas nem cotidianas. Conteúdo traduzido com a mesma profundidade dos artigos
 // fonte em TR (app/converter/categoryArticles.ts e
 // app/converter/articles/*/Article.ts).
 
@@ -46,99 +45,99 @@ export const portugueseCategoryPages: LocalizedPortugueseCategoryPage[] = [
     slug: "comprimento",
     sourceSlug: "uzunluk",
     category: "uzunluk",
-    title: "Conversao de unidades de comprimento",
+    title: "Conversão de unidades de comprimento",
     description:
-      "Converta gratis e instantaneamente entre metros, quilometros, centimetros, milhas e pes; consulte formulas e tabelas.",
+      "Converta metros, quilômetros, centímetros, milhas e pés; consulte fórmulas e tabelas de referência.",
     introduction: [
-      "O comprimento e uma das grandezas fisicas fundamentais usadas para descrever a altura, a largura ou a espessura de um objeto, ou a distancia entre dois pontos. Dependendo da direcao medida, um mesmo objeto pode ter varios valores de comprimento.",
-      "Na fisica, o comprimento e normalmente representado pelo simbolo dimensional L. Muitas grandezas derivadas, como area, volume, velocidade, aceleracao, pressao e densidade, sao definidas a partir da dimensao de comprimento.",
-      "No Sistema Internacional de Unidades (SI), a unidade basica de comprimento e o metro (m). Dependendo da magnitude da distancia medida, usam-se o nanometro, o micrometro, o milimetro, o centimetro, o metro ou o quilometro. Fora do sistema metrico, a polegada, o pe, a jarda e a milha continuam em uso, especialmente nos Estados Unidos e no Reino Unido.",
+      "Comprimento é uma grandeza física fundamental usada para descrever altura, largura, espessura ou a distância entre dois pontos. Um mesmo objeto pode ter diferentes medidas de comprimento, conforme a direção observada.",
+      "Na física, o comprimento é representado pelo símbolo dimensional L. Área, volume, velocidade, aceleração, pressão e densidade são algumas grandezas definidas a partir dele.",
+      "A unidade básica do Sistema Internacional (SI) é o metro (m). Nano, micro, mili, centi e quilômetro adaptam a medida à escala; fora do sistema métrico, polegada, pé, jarda e milha seguem em uso, sobretudo nos Estados Unidos e no Reino Unido.",
     ],
     facts: [
-      { label: "Unidade basica do SI", value: "Metro" },
-      { label: "Simbolo da unidade SI", value: "m" },
-      { label: "Grandeza fisica", value: "Comprimento" },
-      { label: "Simbolo dimensional", value: "L" },
-      { label: "Definicao atual do metro", value: "Distancia percorrida pela luz no vacuo em 1/299.792.458 de segundo" },
+      { label: "Unidade básica do SI", value: "Metro" },
+      { label: "Símbolo da unidade SI", value: "m" },
+      { label: "Grandeza física", value: "Comprimento" },
+      { label: "Símbolo dimensional", value: "L" },
+      { label: "Definição do metro", value: "Distância percorrida pela luz no vácuo em 1/299.792.458 de segundo" },
     ],
     sections: [
       {
-        title: "O que e o comprimento?",
+        title: "O que é comprimento?",
         paragraphs: [
-          "O comprimento serve para descrever a altura, a largura, a profundidade de um objeto ou a distancia entre dois pontos; e uma das grandezas fisicas fundamentais. Dependendo da direcao medida, um mesmo objeto pode apresentar varios valores de comprimento.",
-          "Na fisica, o comprimento e geralmente representado pelo simbolo dimensional L. Diversas grandezas derivadas, como area, volume, velocidade, aceleracao, pressao e densidade, sao definidas a partir da dimensao de comprimento.",
+          "Comprimento descreve altura, largura, profundidade ou a distância entre dois pontos. É uma grandeza física fundamental e pode assumir valores diferentes no mesmo objeto conforme a direção medida.",
+          "Na física, é normalmente representado por L. Diversas grandezas derivadas, como área, volume, velocidade, aceleração, pressão e densidade, dependem da dimensão de comprimento.",
         ],
       },
       {
-        title: "A unidade SI do comprimento",
+        title: "A unidade do SI para comprimento",
         paragraphs: [
-          "No Sistema Internacional de Unidades, a unidade basica de comprimento e o metro, simbolizado por m. O metro serve como referencia fundamental para definir todas as demais unidades de comprimento.",
-          "Unidades metricas como quilometro, centimetro, milimetro, micrometro e nanometro relacionam-se com o metro por multiplos e submultiplos decimais. Essa estrutura permite realizar conversoes entre unidades metricas usando potencias de dez.",
+          "No Sistema Internacional, a unidade básica de comprimento é o metro, com símbolo m. Ele é a referência para as demais unidades de comprimento.",
+          "Quilômetro, centímetro, milímetro, micrômetro e nanômetro se relacionam ao metro por múltiplos e submúltiplos decimais. Isso permite conversões por potências de dez.",
         ],
       },
       {
-        title: "A definicao cientifica do metro",
+        title: "A definição científica do metro",
         paragraphs: [
-          "No passado, o metro era definido a partir das dimensoes da Terra e de padroes fisicos. Com o avanco da tecnologia de medicao, tornou-se necessaria uma definicao mais estavel e reproduzivel em qualquer lugar do mundo.",
-          "Atualmente, um metro e definido como o comprimento do trajeto percorrido pela luz no vacuo durante um intervalo de 1/299.792.458 de segundo. Essa definicao se baseia no fato de que a velocidade da luz no vacuo e fixada exatamente em 299.792.458 metros por segundo.",
+          "No passado, o metro dependia de dimensões da Terra e de padrões físicos. O avanço da metrologia exigiu uma definição estável e reproduzível em qualquer lugar.",
+          "Hoje, o metro é o comprimento percorrido pela luz no vácuo em 1/299.792.458 de segundo. A definição se apoia no valor exato fixado para a velocidade da luz no vácuo.",
         ],
       },
       {
-        title: "As unidades metricas de comprimento",
+        title: "Unidades métricas de comprimento",
         paragraphs: [
-          "No sistema metrico, as unidades se relacionam com o metro por potencias positivas ou negativas de 10. Um quilometro equivale a 1000 metros, um centimetro a 0,01 metro e um milimetro a 0,001 metro.",
-          "Para comprimentos muito pequenos, usam-se o micrometro, o nanometro e o picometro. Celulas costumam ser medidas em micrometros, comprimentos de onda da luz em nanometros e algumas distancias em escala atomica em picometros.",
+          "No sistema métrico, as unidades se relacionam ao metro por potências de dez. Um quilômetro equivale a 1.000 metros, um centímetro a 0,01 metro e um milímetro a 0,001 metro.",
+          "Para escalas muito pequenas, usam-se micrômetro, nanômetro e picômetro. Células podem ser medidas em micrômetros, comprimentos de onda em nanômetros e escalas atômicas em picômetros.",
         ],
       },
       {
-        title: "As unidades de comprimento fora do sistema metrico",
+        title: "Unidades fora do sistema métrico",
         paragraphs: [
-          "A polegada, o pe, a jarda e a milha terrestre sao unidades de comprimento comuns fora do sistema metrico. Sao usadas especialmente no sistema de medidas norte-americano e em algumas aplicacoes ligadas a tradicao britanica.",
-          "Uma polegada equivale exatamente a 2,54 centimetros, um pe a 12 polegadas e uma jarda a 3 pes. Uma milha terrestre e definida exatamente como 1609,344 metros.",
+          "Polegada, pé, jarda e milha terrestre são unidades comuns fora do sistema métrico. Elas aparecem no sistema norte-americano e em aplicações ligadas à tradição britânica.",
+          "Uma polegada equivale exatamente a 2,54 centímetros; um pé tem 12 polegadas; uma jarda, 3 pés. A milha terrestre internacional equivale exatamente a 1.609,344 metros.",
         ],
       },
       {
-        title: "O comprimento na navegacao maritima e aerea",
+        title: "Comprimento na navegação marítima e aérea",
         paragraphs: [
-          "Na navegacao maritima e aerea, as distancias sao geralmente expressas em milhas nauticas. Uma milha nautica equivale exatamente a 1852 metros.",
-          "A milha nautica se desenvolveu a partir de um metodo de medicao historico relacionado as coordenadas geograficas da Terra. A unidade de velocidade chamada no tambem significa uma milha nautica por hora.",
+          "Na navegação marítima e aérea, as distâncias são geralmente expressas em milhas náuticas. Uma milha náutica equivale exatamente a 1.852 metros.",
+          "A milha náutica se desenvolveu em ligação com coordenadas geográficas. O nó, unidade de velocidade, corresponde a uma milha náutica por hora.",
         ],
       },
       {
-        title: "Como se mede o comprimento?",
+        title: "Como medir comprimento?",
         paragraphs: [
-          "Em medicoes cotidianas, usam-se ferramentas como regua, trena, paquimetro e micrometro. A precisao do instrumento escolhido depende do tamanho do objeto a medir e do nivel de precisao exigido.",
-          "Em engenharia e pesquisa cientifica, podem ser usados telemetros a laser, maquinas de medicao por coordenadas, interferometros e diversos sistemas de medicao optica.",
+          "Em medições cotidianas, usam-se régua, trena, paquímetro e micrômetro. A escolha depende do tamanho do objeto e da precisão necessária.",
+          "Na engenharia e na pesquisa, podem ser usados telemetros a laser, máquinas de medição por coordenadas, interferômetros e sistemas ópticos.",
         ],
       },
       {
-        title: "Precisao de medicao e incerteza",
+        title: "Precisão de medição e incerteza",
         paragraphs: [
-          "Nenhuma medicao fisica e absolutamente perfeita. O resultado de uma medicao sempre carrega certa incerteza devido a resolucao do instrumento usado, sua calibracao, as condicoes ambientais e o metodo aplicado.",
-          "Por isso, em resultados cientificos convem indicar nao apenas o valor medido, mas tambem a incerteza da medicao e a unidade utilizada. Especialmente em trabalhos de engenharia de precisao, ate uma variacao de temperatura pode afetar o comprimento de um material.",
+          "Nenhuma medição física é perfeita. Resolução, calibração, condições ambientais e método aplicado contribuem para a incerteza.",
+          "Em resultados científicos, informe o valor, a unidade e, quando necessário, a incerteza. Em engenharia de precisão, até a variação de temperatura pode alterar as dimensões de um material.",
         ],
       },
       {
-        title: "Como se convertem as unidades de comprimento?",
+        title: "Como converter unidades de comprimento?",
         paragraphs: [
-          "Em conversoes dentro de um mesmo sistema de medida, usa-se a razao entre as unidades. Por exemplo, para converter metros em quilometros, divide-se o valor por 1000; para converter quilometros em metros, multiplica-se o valor por 1000.",
-          "Em conversoes entre o sistema metrico e as unidades britanicas ou norte-americanas, e preciso usar os coeficientes de conversao exatos definidos. Por exemplo, para converter polegadas em centimetros, multiplica-se o valor por 2,54.",
+          "Dentro do sistema métrico, use a razão entre as unidades: de metros para quilômetros, divida por 1.000; de quilômetros para metros, multiplique por 1.000.",
+          "Entre sistema métrico e unidades anglo-americanas, use fatores definidos. Para converter polegadas em centímetros, por exemplo, multiplique por 2,54.",
         ],
       },
     ],
     unitTable: [
-      { name: "Nanometro", symbol: "nm", referenceValue: "0,000000001 m", system: "SI/metrico", commonUse: "Comprimento de onda da luz e nanotecnologia" },
-      { name: "Micrometro", symbol: "µm", referenceValue: "0,000001 m", system: "SI/metrico", commonUse: "Celulas, particulas e fabricacao de precisao" },
-      { name: "Milimetro", symbol: "mm", referenceValue: "0,001 m", system: "SI/metrico", commonUse: "Desenho tecnico e medidas pequenas" },
-      { name: "Centimetro", symbol: "cm", referenceValue: "0,01 m", system: "SI/metrico", commonUse: "Medicao de objetos cotidianos" },
-      { name: "Decimetro", symbol: "dm", referenceValue: "0,1 m", system: "SI/metrico", commonUse: "Educacao e algumas relacoes de volume" },
-      { name: "Metro", symbol: "m", referenceValue: "1 m", system: "SI", commonUse: "Medicoes de comprimento basicas" },
-      { name: "Quilometro", symbol: "km", referenceValue: "1000 m", system: "SI/metrico", commonUse: "Distancias rodoviarias e geograficas" },
-      { name: "Polegada", symbol: "in", referenceValue: "0,0254 m", system: "Britanico/norte-americano", commonUse: "Telas, tubulacoes e medidas tecnicas" },
-      { name: "Pe", symbol: "ft", referenceValue: "0,3048 m", system: "Britanico/norte-americano", commonUse: "Altura, construcao e aviacao" },
-      { name: "Jarda", symbol: "yd", referenceValue: "0,9144 m", system: "Britanico/norte-americano", commonUse: "Campos esportivos e medicao de distancias" },
-      { name: "Milha", symbol: "mi", referenceValue: "1609,344 m", system: "Britanico/norte-americano", commonUse: "Distancias rodoviarias" },
-      { name: "Milha nautica", symbol: "nmi", referenceValue: "1852 m", system: "Navegacao maritima", commonUse: "Navegacao maritima e aerea" },
+      { name: "Nanômetro", symbol: "nm", referenceValue: "0,000000001 m", system: "SI/métrico", commonUse: "Comprimento de onda e nanotecnologia" },
+      { name: "Micrômetro", symbol: "µm", referenceValue: "0,000001 m", system: "SI/métrico", commonUse: "Células, partículas e fabricação de precisão" },
+      { name: "Milímetro", symbol: "mm", referenceValue: "0,001 m", system: "SI/métrico", commonUse: "Desenho técnico e medidas pequenas" },
+      { name: "Centímetro", symbol: "cm", referenceValue: "0,01 m", system: "SI/métrico", commonUse: "Medição de objetos cotidianos" },
+      { name: "Decímetro", symbol: "dm", referenceValue: "0,1 m", system: "SI/métrico", commonUse: "Educação e relações de volume" },
+      { name: "Metro", symbol: "m", referenceValue: "1 m", system: "SI", commonUse: "Medições básicas de comprimento" },
+      { name: "Quilômetro", symbol: "km", referenceValue: "1.000 m", system: "SI/métrico", commonUse: "Distâncias rodoviárias e geográficas" },
+      { name: "Polegada", symbol: "in", referenceValue: "0,0254 m", system: "Britânico/norte-americano", commonUse: "Telas, tubulações e medidas técnicas" },
+      { name: "Pé", symbol: "ft", referenceValue: "0,3048 m", system: "Britânico/norte-americano", commonUse: "Altura, construção e aviação" },
+      { name: "Jarda", symbol: "yd", referenceValue: "0,9144 m", system: "Britânico/norte-americano", commonUse: "Campos esportivos e distâncias" },
+      { name: "Milha", symbol: "mi", referenceValue: "1.609,344 m", system: "Britânico/norte-americano", commonUse: "Distâncias rodoviárias" },
+      { name: "Milha náutica", symbol: "nmi", referenceValue: "1.852 m", system: "Navegação marítima", commonUse: "Navegação marítima e aérea" },
     ],
   },
   {

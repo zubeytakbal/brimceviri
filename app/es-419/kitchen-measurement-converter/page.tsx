@@ -8,7 +8,7 @@ import { buildSiteUrl } from "../../siteConfig";
 export const metadata: Metadata = {
   title: "Conversor de Tazas a Gramos (medidas de cocina)",
   description:
-    "Convierte tazas, cucharadas, gramos y mililitros para mas de 40 ingredientes: harina, azucar, arroz, miel, mantequilla y mucho mas.",
+    "Convierte tazas, cucharadas, gramos y mililitros para más de 40 ingredientes: harina, azúcar, arroz, miel, mantequilla y mucho más.",
   alternates: {
     canonical: "/es-419/kitchen-measurement-converter",
     languages: {
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Conversor de Tazas a Gramos (medidas de cocina)",
-    description: "Convierte tazas, cucharadas, gramos y mililitros para mas de 40 ingredientes.",
+    description: "Convierte tazas, cucharadas, gramos y mililitros para más de 40 ingredientes.",
     url: buildSiteUrl("/es-419/kitchen-measurement-converter"),
     siteName: "BirimCeviri.app",
     locale: "es_LA",
@@ -37,7 +37,7 @@ export default function Es419KitchenMeasurementsPage() {
   return (
     <main className="all-conversions-page" lang="es-419">
       <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Ruta de navegacion">
+        <nav className="breadcrumbs" aria-label="Ruta de navegación">
           <Link href="/es-419">Inicio</Link>
           <span aria-hidden="true">&rsaquo;</span>
           <span>Conversor de medidas de cocina</span>
@@ -50,8 +50,8 @@ export default function Es419KitchenMeasurementsPage() {
             Elige el ingrediente y la unidad que conoces para ver al
             instante la equivalencia en tazas, cucharadas, cucharaditas,
             gramos, mililitros y litros. Cada ingrediente tiene una
-            densidad distinta, por lo que el calculo usa valores
-            especificos para la harina, el azucar, el arroz, la miel, la
+            densidad distinta, por lo que el cálculo usa valores
+            específicos para la harina, el azúcar, el arroz, la miel, la
             mantequilla y muchos otros.
           </p>
         </header>
@@ -59,18 +59,18 @@ export default function Es419KitchenMeasurementsPage() {
         <KitchenMeasuresConverter locale="es-419" />
 
         <section className="category-article-content">
-          <h2>¿Cuantos gramos hay en una taza de harina o una cucharada de azucar?</h2>
+          <h2>¿Cuántos gramos hay en una taza de harina o una cucharada de azúcar?</h2>
           <p>
-            No existe una regla unica valida para todos los ingredientes,
+            No existe una regla única válida para todos los ingredientes,
             porque la taza mide un volumen mientras que el gramo mide una
-            masa. Una taza de harina es mas ligera que una taza de azucar,
-            y la miel es mas pesada que ambas -- por eso la conversion
-            varia segun la densidad del ingrediente.
+            masa. Una taza de harina es más ligera que una taza de azúcar,
+            y la miel es más pesada que ambas — por eso la conversión
+            varía según la densidad del ingrediente.
           </p>
           <p>
-            Los valores indicados aqui son promedios practicos adaptados a
+            Los valores indicados aquí son promedios prácticos adaptados a
             la cocina cotidiana. El peso final puede variar ligeramente
-            segun el compactado o la variedad del producto, pero el
+            según el compactado o la variedad del producto, pero el
             resultado sigue siendo suficientemente fiable para el uso
             domestico.
           </p>
@@ -102,17 +102,17 @@ export default function Es419KitchenMeasurementsPage() {
 
           <h2>Preguntas frecuentes</h2>
           <p>
-            <strong>¿Cuantos mililitros tiene una cucharada?</strong>
+            <strong>¿Cuántos mililitros tiene una cucharada?</strong>
             <br />
             Una cucharada equivale a 15 mililitros, es decir, 3
-            cucharaditas. La taza usada aqui corresponde a 250 mililitros
-            (taza metrica, la mas comun en las recetas de America Latina).
+            cucharaditas. La taza usada aquí corresponde a 250 mililitros
+            (taza métrica, la más común en las recetas de América Latina).
           </p>
           <p>
-            <strong>¿Por que el peso de una taza varia segun el ingrediente?</strong>
+            <strong>¿Por qué el peso de una taza varía según el ingrediente?</strong>
             <br />
             Porque el volumen se mantiene constante, pero la densidad
-            varia. Un ingrediente ligero como la harina pesa menos que uno
+            varía. Un ingrediente ligero como la harina pesa menos que uno
             denso como la miel para el mismo volumen.
           </p>
           <p>
@@ -131,10 +131,10 @@ export default function Es419KitchenMeasurementsPage() {
               <Link href="/es-419/shoe-size-converter">Conversor de tallas de calzado</Link>
             </li>
             <li>
-              <Link href="/es-419/historical-units">Unidades de medida historicas</Link>
+              <Link href="/es-419/historical-units">Unidades de medida históricas</Link>
             </li>
             <li>
-              <Link href="/es-419/categories/masa">Conversion de unidades de masa</Link>
+              <Link href="/es-419/categories/masa">Conversión de unidades de masa</Link>
             </li>
           </ul>
         </section>
@@ -146,7 +146,7 @@ export default function Es419KitchenMeasurementsPage() {
             href="/mutfak-olculeri-cevirici"
             hrefLang="tr"
           >
-            Türkçe versiyonu aç
+            Abrir la versión en turco
           </Link>
         </section>
       </div>

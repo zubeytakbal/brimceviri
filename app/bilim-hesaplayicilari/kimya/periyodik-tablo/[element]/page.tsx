@@ -325,10 +325,34 @@ export default async function ElementPage({ params }: PageProps) {
             {" "}sayfasına bakabilirsin.
           </p>
 
-          <h2>Kaynaklar</h2>
+          <h2>Kaynaklar ve veri notu</h2>
           <p>
             Atom kütleleri IUPAC&apos;ın (Uluslararası Temel ve Uygulamalı
-            Kimya Birliği) standart atom ağırlıkları tablosuna dayanır.
+            Kimya Birliği){" "}
+            <a
+              href="https://iupac.qmul.ac.uk/AtWt/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              standart atom ağırlıkları tablosuna
+            </a>{" "}
+            dayanır. Atom numarası, elektron dizilimi ve diğer atomik
+            özellikler, NIST&apos;in{" "}
+            <a
+              href="https://www.nist.gov/pml/periodic-table-elements"
+              target="_blank"
+              rel="noreferrer"
+            >
+              periyodik tablo verileriyle
+            </a>{" "}
+            çapraz kontrol edilmiştir.
+          </p>
+          <p>
+            Erime noktası, kaynama noktası ve yoğunluk gibi fiziksel
+            özellikler elementin formuna, sıcaklığa ve basınca göre
+            değişebilir. Bu sayfadaki değerler genel başvuru içindir;
+            laboratuvar ya da mühendislik uygulamasında ilgili veri setinin
+            ölçüm koşulları esas alınmalıdır.
           </p>
 
           <Link

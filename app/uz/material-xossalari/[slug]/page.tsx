@@ -10,6 +10,7 @@ import {
   getAllMaterialProfiles,
 } from "../../../converter/materialsHub";
 import { getAllMaterialComparisons } from "../../../converter/materialComparisons";
+import { type MaterialCategory } from "../../../converter/materialsDatabase";
 import { materialCategoryLabelsUz, materialNamesUz, materialVariabilityNotesUz } from "../../../converter/materialsDatabaseUz";
 import { buildSiteUrl } from "../../../siteConfig";
 
@@ -23,6 +24,20 @@ function formatDensity(value: number) {
 
 function nameUz(id: string, fallback: string) {
   return materialNamesUz[id] ?? fallback;
+}
+
+function getDensityUseNote(category: MaterialCategory) {
+  const notes: Record<MaterialCategory, string> = {
+    metal: "Metall zichligi qotishma tarkibi, issiqlik bilan ishlov berish va haroratga qarab o'zgaradi. Bu qiymat material sinfi ko'rsatilmagan dastlabki massa va hajm hisoblari uchun nominal ma'lumotdir.",
+    sivi: "Suyuqlik zichligi ayniqsa harorat va aralashma nisbatiga bog'liq. Aniq to'ldirish, tijoriy mahsulot yoki xavfsizlik hisobi uchun mahsulotning texnik varag'idagi haroratga bog'liq qiymatdan foydalaning.",
+    gaz: "Gaz zichligi harorat va bosimga juda bog'liq. Bu qiymat dastlabki taqqoslash va taxminiy massa hisobi uchun; jarayon hisobida ayni harorat va bosim sharoitidagi o'lchangan qiymatdan foydalaning.",
+    plastik: "Polimer zichligi smola turi, to'ldirgich va ishlab chiqarish usuliga qarab o'zgarishi mumkin. Mahsulot loyihalashda ishlab chiqaruvchining texnik varag'idagi sinfga xos qiymatni tekshiring.",
+    "yapi-malzemesi": "Qurilish materiallarida namlik, g'ovaklik va siqilish darajasi zichlikni o'zgartiradi. Hisob quruq va odatiy material uchun dastlabki bahodir.",
+    ahsap: "Yog'och zichligi turdan tashqari namlik va tolalar yo'nalishiga qarab o'zgaradi. Aniq og'irlik hisobida o'lchangan namlik hamda haqiqiy qism hajmidan foydalaning.",
+    gida: "Oziq-ovqat va oshxona materiallarida suv, yog' va havo miqdori markaga hamda tayyorlash usuliga bog'liq. Natija taxminiy oshxona va hajm hisobi uchundir.",
+  };
+
+  return notes[category];
 }
 
 function serializeJsonLd(data: object) {
@@ -82,11 +97,16 @@ export default async function UzbekMaterialPropertyPage({ params }: PageProps) {
     (comparison) => comparison.first.id === slug || comparison.second.id === slug
   );
   const variabilityNoteUz = materialVariabilityNotesUz[material.id];
+  const oneLitreMassKg = material.densityKgM3 / 1000;
 
   const faqItems: FaqItem[] = [
     {
       question: `${name} zichligi necha kg/m³?`,
       answer: `${name} zichligi taxminan ${formatDensity(material.densityKgM3)} kg/m³ (${formatDensity(material.densityKgM3 / 1000)} g/sm³) qiymatidadir.`,
+    },
+    {
+      question: `1 litr ${name} taxminan necha kg?`,
+      answer: `Bu ma'lumotnoma zichligi bilan 1 litr ${name} taxminan ${formatDensity(oneLitreMassKg)} kg keladi. Haqiqiy natija harorat, material sinfi va tarkibiga qarab o'zgarishi mumkin.`,
     },
   ];
 
@@ -178,6 +198,15 @@ export default async function UzbekMaterialPropertyPage({ params }: PageProps) {
           )}
         </section>
 
+        <section className="category-article-content">
+          <h2>{name} zichlik qiymatidan to'g'ri foydalanish</h2>
+          <p>{getDensityUseNote(material.category)}</p>
+          <p>
+            Ushbu ma'lumotnoma qiymati bilan 1 litr {name} taxminan {formatDensity(oneLitreMassKg)} kg,
+            1 m³ esa taxminan {formatDensity(material.densityKgM3)} kg keladi.
+          </p>
+        </section>
+
         <MaterialMassVolumeCalculatorUz
           densityKgM3={material.densityKgM3}
           materialName={name}
@@ -257,11 +286,19 @@ export default async function UzbekMaterialPropertyPage({ params }: PageProps) {
 
           <h2>Manbalar</h2>
           <p>
-            Zichlik va boshqa xususiyat qiymatlari, keng qabul
-            qilingan muhandislik ma&apos;lumotnoma jadvallaridan
-            to&apos;plangan, xona haroratiga yaqin umumiy qiymatlardir;
-            haqiqiy qiymatlar materialning turiga, tozaligiga va
-            haroratga qarab kichik farqlar ko&apos;rsatishi mumkin.
+            Zichlik ma&apos;lumotlarining boshlang&apos;ich manbasi{" "}
+            <a
+              href="https://densitycalculator.net/density-table"
+              target="_blank"
+              rel="noreferrer"
+            >
+              232 materialdan iborat zichlik jadvalidir
+            </a>
+            . Qiymatlar dastlabki hisoblar uchun nominal ma&apos;lumotnoma
+            qiymatlaridir. Har bir qiymat bir xil haroratda yoki bir xil
+            material sinfida o&apos;lchanmagan; loyiha, xavfsizlik yoki tijoriy
+            o&apos;lchov uchun tegishli mahsulotning texnik varag&apos;idagi shartli
+            qiymatni tekshiring.
           </p>
         </section>
       </div>

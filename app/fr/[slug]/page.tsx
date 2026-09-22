@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import PairConverter from "../../converter/PairConverter";
 import { convert } from "../../converter/convert";
+import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
 import { findEnglishPageByTurkishSlug } from "../../converter/localizedConversionPages";
 import {
   findFrenchConversionPage,
@@ -119,9 +120,35 @@ export default async function FrenchConversionPage({ params }: PageProps) {
 
   const oneUnitResult = convert(page.category, 1, page.fromUnit, page.toUnit);
   const formattedOneUnitResult = formatNumber(oneUnitResult);
+  const reverseOneUnitResult = formatNumber(
+    convert(page.category, 1, page.toUnit, page.fromUnit)
+  );
+  const faqItems: FaqItem[] = [
+    {
+      question: `Quelle est l'équivalence de 1 ${page.fromName} en ${page.toName} ?`,
+      answer: `1 ${page.fromUnit} = ${formattedOneUnitResult} ${page.toUnit}.`,
+    },
+    {
+      question: `Comment convertir ${page.fromName} en ${page.toName} ?`,
+      answer: page.explanation,
+    },
+    {
+      question: `Quelle est l'équivalence de 1 ${page.toName} en ${page.fromName} ?`,
+      answer: `1 ${page.toUnit} = ${reverseOneUnitResult} ${page.fromUnit}.`,
+    },
+  ];
 
   return (
     <main className="conversion-page" lang="fr">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(buildFaqSchema(faqItems)).replace(
+            /</g,
+            "\\u003c"
+          ),
+        }}
+      />
       <div className="conversion-breadcrumb-wrap">
         <nav className="breadcrumbs" aria-label="Fil d'Ariane">
           <Link href="/fr">Accueil</Link>
@@ -156,7 +183,7 @@ export default async function FrenchConversionPage({ params }: PageProps) {
           </div>
 
           <div className="conversion-hero-information">
-            <h2>Resume de la conversion</h2>
+            <h2>Résumé de la conversion</h2>
 
             <p>
               1 {page.fromUnit} ={" "}
@@ -172,12 +199,12 @@ export default async function FrenchConversionPage({ params }: PageProps) {
               </div>
 
               <div>
-                <dt>Categorie</dt>
+                <dt>Catégorie</dt>
                 <dd>{page.categoryName}</dd>
               </div>
 
               <div>
-                <dt>Unites</dt>
+                <dt>Unités</dt>
                 <dd>
                   {page.fromUnit} → {page.toUnit}
                 </dd>
@@ -234,7 +261,7 @@ export default async function FrenchConversionPage({ params }: PageProps) {
 
         {fromUnitInfo && (
           <section className="conversion-section unit-information">
-            <h2>Qu'est-ce que {fromUnitInfo.name} ?</h2>
+            <h2>Qu&apos;est-ce que {fromUnitInfo.name} ?</h2>
 
             <p>{fromUnitInfo.shortDescription}</p>
 
@@ -242,14 +269,14 @@ export default async function FrenchConversionPage({ params }: PageProps) {
               className="text-link"
               href={`/fr/unit-guides/${fromUnitInfo.slug}`}
             >
-              Voir le guide de l'unite {fromUnitInfo.name}
+              Voir le guide de l&apos;unité {fromUnitInfo.name}
             </Link>
           </section>
         )}
 
         {toUnitInfo && (
           <section className="conversion-section unit-information">
-            <h2>Qu'est-ce que {toUnitInfo.name} ?</h2>
+            <h2>Qu&apos;est-ce que {toUnitInfo.name} ?</h2>
 
             <p>{toUnitInfo.shortDescription}</p>
 
@@ -257,7 +284,7 @@ export default async function FrenchConversionPage({ params }: PageProps) {
               className="text-link"
               href={`/fr/unit-guides/${toUnitInfo.slug}`}
             >
-              Voir le guide de l'unite {toUnitInfo.name}
+              Voir le guide de l&apos;unité {toUnitInfo.name}
             </Link>
           </section>
         )}
@@ -288,6 +315,16 @@ export default async function FrenchConversionPage({ params }: PageProps) {
           </section>
         )}
 
+        <section className="conversion-section conversion-faq">
+          <h2>Questions fréquentes</h2>
+          {faqItems.map((item) => (
+            <div key={item.question} className="conversion-faq-item">
+              <h3>{item.question}</h3>
+              <p>{item.answer}</p>
+            </div>
+          ))}
+        </section>
+
         {sources.length > 0 && (
           <section className="conversion-section unit-sources">
             <h2>Sources</h2>
@@ -317,7 +354,7 @@ export default async function FrenchConversionPage({ params }: PageProps) {
             href={`/${page.sourceSlug}`}
             hrefLang="tr"
           >
-            Türkçe versiyonu aç
+            Ouvrir la version turque
           </Link>
 
           {englishPage && (
@@ -326,7 +363,7 @@ export default async function FrenchConversionPage({ params }: PageProps) {
               href={`/en/${englishPage.slug}`}
               hrefLang="en"
             >
-              View the English version
+              Ouvrir la version anglaise
             </Link>
           )}
         </section>

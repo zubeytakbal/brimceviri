@@ -46,17 +46,17 @@ export const italianCategoryPages: LocalizedItalianCategoryPage[] = [
     slug: "lunghezza",
     sourceSlug: "uzunluk",
     category: "uzunluk",
-    title: "Conversione delle unita di lunghezza",
+    title: "Conversione delle unità di lunghezza",
     description:
       "Converti gratis e istantaneamente tra metri, chilometri, centimetri, miglia e piedi; consulta formule e tabelle.",
     introduction: [
-      "La lunghezza e una delle grandezze fisiche fondamentali usate per descrivere l'altezza, la larghezza o lo spessore di un oggetto, o la distanza tra due punti. A seconda della direzione misurata, uno stesso oggetto puo avere piu valori di lunghezza.",
-      "In fisica, la lunghezza e generalmente rappresentata dal simbolo dimensionale L. Molte grandezze derivate, come l'area, il volume, la velocita, l'accelerazione, la pressione e la densita, sono definite a partire dalla dimensione di lunghezza.",
-      "Nel Sistema Internazionale di Unita (SI), l'unita di base della lunghezza e il metro (m). A seconda della grandezza della distanza misurata si usano il nanometro, il micrometro, il millimetro, il centimetro, il metro o il chilometro. Fuori dal sistema metrico, il pollice, il piede, la iarda e il miglio sono ancora usati, specialmente negli Stati Uniti e nel Regno Unito.",
+      "La lunghezza e una delle grandezze fisiche fondamentali usate per descrivere l'altezza, la larghezza o lo spessore di un oggetto, o la distanza tra due punti. A seconda della direzione misurata, uno stesso oggetto puo avere più valori di lunghezza.",
+      "In fisica, la lunghezza e generalmente rappresentata dal simbolo dimensionale L. Molte grandezze derivate, come l'area, il volume, la velocità, l'accelerazione, la pressione e la densita, sono definite a partire dalla dimensione di lunghezza.",
+      "Nel Sistema Internazionale di Unità (SI), l'unità di base della lunghezza e il metro (m). A seconda della grandezza della distanza misurata si usano il nanometro, il micrometro, il millimetro, il centimetro, il metro o il chilometro. Fuori dal sistema metrico, il pollice, il piede, la iarda e il miglio sono ancora usati, specialmente negli Stati Uniti e nel Regno Unito.",
     ],
     facts: [
-      { label: "Unita di base del SI", value: "Metro" },
-      { label: "Simbolo dell'unita SI", value: "m" },
+      { label: "Unità di base del SI", value: "Metro" },
+      { label: "Simbolo dell'unità SI", value: "m" },
       { label: "Grandezza fisica", value: "Lunghezza" },
       { label: "Simbolo dimensionale", value: "L" },
       { label: "Definizione attuale del metro", value: "Distanza percorsa dalla luce nel vuoto in 1/299.792.458 di secondo" },
@@ -65,35 +65,35 @@ export const italianCategoryPages: LocalizedItalianCategoryPage[] = [
       {
         title: "Che cos'e la lunghezza?",
         paragraphs: [
-          "La lunghezza serve a descrivere l'altezza, la larghezza, la profondita di un oggetto o la distanza tra due punti; e una delle grandezze fisiche fondamentali. A seconda della direzione misurata, uno stesso oggetto puo presentare piu valori di lunghezza.",
-          "In fisica, la lunghezza e generalmente rappresentata dal simbolo dimensionale L. Numerose grandezze derivate, come l'area, il volume, la velocita, l'accelerazione, la pressione e la densita, sono definite a partire dalla dimensione di lunghezza.",
+          "La lunghezza serve a descrivere l'altezza, la larghezza, la profondita di un oggetto o la distanza tra due punti; e una delle grandezze fisiche fondamentali. A seconda della direzione misurata, uno stesso oggetto puo presentare più valori di lunghezza.",
+          "In fisica, la lunghezza e generalmente rappresentata dal simbolo dimensionale L. Numerose grandezze derivate, come l'area, il volume, la velocità, l'accelerazione, la pressione e la densita, sono definite a partire dalla dimensione di lunghezza.",
         ],
       },
       {
-        title: "L'unita SI della lunghezza",
+        title: "L'unità SI della lunghezza",
         paragraphs: [
-          "Nel Sistema Internazionale di Unita, l'unita di base della lunghezza e il metro, simboleggiato da m. Il metro serve come riferimento fondamentale per definire tutte le altre unita di lunghezza.",
-          "Le unita metriche come il chilometro, il centimetro, il millimetro, il micrometro e il nanometro sono legate al metro tramite multipli e sottomultipli decimali. Questa struttura permette di eseguire le conversioni tra unita metriche usando potenze di dieci.",
+          "Nel Sistema Internazionale di Unità, l'unità di base della lunghezza e il metro, simboleggiato da m. Il metro serve come riferimento fondamentale per definire tutte le altre unità di lunghezza.",
+          "Le unità metriche come il chilometro, il centimetro, il millimetro, il micrometro e il nanometro sono legate al metro tramite multipli e sottomultipli decimali. Questa struttura permette di eseguire le conversioni tra unità metriche usando potenze di dieci.",
         ],
       },
       {
         title: "La definizione scientifica del metro",
         paragraphs: [
-          "In passato, il metro era definito a partire dalle dimensioni della Terra e da campioni fisici. Con il progresso della tecnologia di misurazione e diventata necessaria una definizione piu stabile e riproducibile ovunque nel mondo.",
-          "Attualmente, un metro e definito come la lunghezza del percorso compiuto dalla luce nel vuoto durante un intervallo di 1/299.792.458 di secondo. Questa definizione si basa sul fatto che la velocita della luce nel vuoto e fissata esattamente a 299.792.458 metri al secondo.",
+          "In passato, il metro era definito a partire dalle dimensioni della Terra e da campioni fisici. Con il progresso della tecnologia di misurazione e diventata necessaria una definizione più stabile e riproducibile ovunque nel mondo.",
+          "Attualmente, un metro e definito come la lunghezza del percorso compiùto dalla luce nel vuoto durante un intervallo di 1/299.792.458 di secondo. Questa definizione si basa sul fatto che la velocità della luce nel vuoto e fissata esattamente a 299.792.458 metri al secondo.",
         ],
       },
       {
-        title: "Le unita metriche di lunghezza",
+        title: "Le unità metriche di lunghezza",
         paragraphs: [
-          "Nel sistema metrico, le unita sono legate al metro tramite potenze positive o negative di 10. Un chilometro equivale a 1000 metri, un centimetro a 0,01 metri e un millimetro a 0,001 metri.",
+          "Nel sistema metrico, le unità sono legate al metro tramite potenze positive o negative di 10. Un chilometro equivale a 1000 metri, un centimetro a 0,01 metri e un millimetro a 0,001 metri.",
           "Per lunghezze molto piccole si usano il micrometro, il nanometro e il picometro. Le cellule vengono spesso misurate in micrometri, le lunghezze d'onda della luce in nanometri e alcune distanze su scala atomica in picometri.",
         ],
       },
       {
-        title: "Le unita di lunghezza fuori dal sistema metrico",
+        title: "Le unità di lunghezza fuori dal sistema metrico",
         paragraphs: [
-          "Il pollice, il piede, la iarda e il miglio terrestre sono unita di lunghezza comuni fuori dal sistema metrico. Sono usati specialmente nel sistema di misura statunitense e in alcune applicazioni legate alla tradizione britannica.",
+          "Il pollice, il piede, la iarda e il miglio terrestre sono unità di lunghezza comuni fuori dal sistema metrico. Sono usati specialmente nel sistema di misura statunitense e in alcune applicazioni legate alla tradizione britannica.",
           "Un pollice equivale esattamente a 2,54 centimetri, un piede a 12 pollici e una iarda a 3 piedi. Un miglio terrestre e definito esattamente come 1609,344 metri.",
         ],
       },
@@ -101,7 +101,7 @@ export const italianCategoryPages: LocalizedItalianCategoryPage[] = [
         title: "La lunghezza nella navigazione marittima e aerea",
         paragraphs: [
           "Nella navigazione marittima e aerea, le distanze sono generalmente espresse in miglia nautiche. Un miglio nautico equivale esattamente a 1852 metri.",
-          "Il miglio nautico si e sviluppato a partire da un approccio di misurazione storico legato alle coordinate geografiche della Terra. L'unita di velocita chiamata nodo significa anche un miglio nautico all'ora.",
+          "Il miglio nautico si e sviluppato a partire da un approccio di misurazione storico legato alle coordinate geografiche della Terra. L'unità di velocità chiamata nodo significa anche un miglio nautico all'ora.",
         ],
       },
       {
@@ -115,14 +115,14 @@ export const italianCategoryPages: LocalizedItalianCategoryPage[] = [
         title: "Precisione di misurazione e incertezza",
         paragraphs: [
           "Nessuna misurazione fisica e assolutamente perfetta. Il risultato di una misurazione comporta sempre una certa incertezza dovuta alla risoluzione dello strumento utilizzato, alla sua calibrazione, alle condizioni ambientali e al metodo applicato.",
-          "Per questo, nei risultati scientifici conviene indicare non solo il valore misurato, ma anche l'incertezza della misurazione e l'unita utilizzata. Specialmente nei lavori di ingegneria di precisione, anche una variazione di temperatura puo influire sulla lunghezza di un materiale.",
+          "Per questo, nei risultati scientifici conviene indicare non solo il valore misurato, ma anche l'incertezza della misurazione e l'unità utilizzata. Specialmente nei lavori di ingegneria di precisione, anche una variazione di temperatura puo influire sulla lunghezza di un materiale.",
         ],
       },
       {
-        title: "Come si convertono le unita di lunghezza?",
+        title: "Come si convertono le unità di lunghezza?",
         paragraphs: [
-          "Nelle conversioni all'interno dello stesso sistema di misura si usa il rapporto tra le unita. Ad esempio, per convertire metri in chilometri si divide il valore per 1000; per convertire chilometri in metri si moltiplica il valore per 1000.",
-          "Nelle conversioni tra il sistema metrico e le unita britanniche o statunitensi bisogna usare i coefficienti di conversione esatti definiti. Ad esempio, per convertire pollici in centimetri si moltiplica il valore per 2,54.",
+          "Nelle conversioni all'interno dello stesso sistema di misura si usa il rapporto tra le unità. Ad esempio, per convertire metri in chilometri si divide il valore per 1000; per convertire chilometri in metri si moltiplica il valore per 1000.",
+          "Nelle conversioni tra il sistema metrico e le unità britanniche o statunitensi bisogna usare i coefficienti di conversione esatti definiti. Ad esempio, per convertire pollici in centimetri si moltiplica il valore per 2,54.",
         ],
       },
     ],
@@ -146,18 +146,18 @@ export const italianCategoryPages: LocalizedItalianCategoryPage[] = [
     slug: "area",
     sourceSlug: "alan",
     category: "alan",
-    title: "Conversione delle unita di area",
+    title: "Conversione delle unità di area",
     description:
       "Converti aree tra metri quadrati, ettari e piedi quadrati; per calcoli di terreni, edifici ed edilizia.",
     introduction: [
-      "L'area e una grandezza fisica derivata che esprime l'estensione di una regione bidimensionale. Poiche risulta dal prodotto di una lunghezza per un'altra lunghezza nella stessa unita, la dimensione dell'area e sempre 'lunghezza al quadrato' (L²).",
-      "Nel Sistema Internazionale di Unita, l'unita derivata dell'area e il metro quadrato (m²). In agricoltura e per i terreni si usano molto l'ettaro e unita locali; nel sistema britannico/statunitense, il piede quadrato e l'acro; nel sud dell'Asia, unita locali come bigha e katha sono anch'esse comuni.",
+      "L'area e una grandezza fisica derivata che esprime l'estensione di una regione bidimensionale. Poiche risulta dal prodotto di una lunghezza per un'altra lunghezza nella stessa unità, la dimensione dell'area e sempre 'lunghezza al quadrato' (L²).",
+      "Nel Sistema Internazionale di Unità, l'unità derivata dell'area e il metro quadrato (m²). In agricoltura e per i terreni si usano molto l'ettaro e unità locali; nel sistema britannico/statunitense, il piede quadrato e l'acro; nel sud dell'Asia, unità locali come bigha e katha sono anch'esse comuni.",
     ],
     facts: [
       { label: "Grandezza fisica", value: "Area" },
       { label: "Simbolo dimensionale", value: "[L²]" },
-      { label: "Unita derivata del SI", value: "Metro quadrato" },
-      { label: "Simbolo dell'unita SI", value: "m²" },
+      { label: "Unità derivata del SI", value: "Metro quadrato" },
+      { label: "Simbolo dell'unità SI", value: "m²" },
       { label: "Formula di base (rettangolo)", value: "Area = Lunghezza × Larghezza" },
     ],
     sections: [
@@ -165,63 +165,63 @@ export const italianCategoryPages: LocalizedItalianCategoryPage[] = [
         title: "Che cos'e l'area?",
         paragraphs: [
           "L'area esprime l'estensione di una regione piana o proiettata. L'estensione di un terreno, il pavimento di una stanza o un foglio di carta sono misurati in area.",
-          "L'area e una grandezza derivata: si ottiene moltiplicando un'unita di lunghezza di base per se stessa. Per questo la dimensione SI dell'area e L² (lunghezza al quadrato), e l'area e sempre una grandezza scalare positiva.",
+          "L'area e una grandezza derivata: si ottiene moltiplicando un'unità di lunghezza di base per se stessa. Per questo la dimensione SI dell'area e L² (lunghezza al quadrato), e l'area e sempre una grandezza scalare positiva.",
         ],
       },
       {
-        title: "L'unita SI dell'area: il metro quadrato",
+        title: "L'unità SI dell'area: il metro quadrato",
         paragraphs: [
-          "Nel Sistema Internazionale di Unita, l'unita derivata dell'area e il metro quadrato (m²), che rappresenta l'area occupata da un quadrato il cui lato misura esattamente 1 metro.",
-          "Il metro quadrato non e un'unita di base indipendente, ma un'unita derivata ottenuta elevando al quadrato l'unita di lunghezza (il metro). Tutte le altre unita metriche di area (centimetro quadrato, chilometro quadrato, ecc.) sono legate al metro quadrato tramite potenze decimali.",
+          "Nel Sistema Internazionale di Unità, l'unità derivata dell'area e il metro quadrato (m²), che rappresenta l'area occupata da un quadrato il cui lato misura esattamente 1 metro.",
+          "Il metro quadrato non e un'unità di base indipendente, ma un'unità derivata ottenuta elevando al quadrato l'unità di lunghezza (il metro). Tutte le altre unità metriche di area (centimetro quadrato, chilometro quadrato, ecc.) sono legate al metro quadrato tramite potenze decimali.",
         ],
       },
       {
-        title: "Perche le unita di area si convertono con un rapporto quadratico?",
+        title: "Perché le unità di area si convertono con un rapporto quadratico?",
         paragraphs: [
-          "Nel convertire unita di lunghezza, il rapporto usato deve essere elevato al quadrato per le unita di area. Ad esempio, 1 chilometro equivale a 1000 metri, ma 1 chilometro quadrato non equivale a 1000 metri quadrati, bensi a 1000², ossia 1.000.000 di metri quadrati.",
-          "Questo accade perche, in un'area, entrambe le dimensioni (lunghezza e larghezza) aumentano o diminuiscono nella stessa proporzione. Ignorare questa relazione quadratica e l'errore di calcolo piu frequente nelle conversioni di area -- credere che '1 km² = 1000 m²' e una confusione comune.",
+          "Nel convertire unità di lunghezza, il rapporto usato deve essere elevato al quadrato per le unità di area. Ad esempio, 1 chilometro equivale a 1000 metri, ma 1 chilometro quadrato non equivale a 1000 metri quadrati, bensi a 1000², ossia 1.000.000 di metri quadrati.",
+          "Questo accade perché, in un'area, entrambe le dimensioni (lunghezza e larghezza) aumentano o diminuiscono nella stessa proporzione. Ignorare questa relazione quadratica e l'errore di calcolo più frequente nelle conversioni di area -- credere che '1 km² = 1000 m²' e una confusione comune.",
         ],
       },
       {
-        title: "Le unita metriche di area",
+        title: "Le unità metriche di area",
         paragraphs: [
           "Nel sistema metrico si usano il millimetro quadrato e il centimetro quadrato per aree piccole, il metro quadrato per misurazioni quotidiane e il chilometro quadrato per grandi aree. Un centimetro quadrato equivale a 0,0001 metri quadrati, e un chilometro quadrato a 1.000.000 di metri quadrati.",
-          "Per misurare i terreni si usano l'ara (100 m²) e il suo multiplo, 100 volte maggiore, l'ettaro (10.000 m²). L'ettaro e l'unita metrica di terreno piu usata al mondo per esprimere l'area di terreni agricoli.",
+          "Per misurare i terreni si usano l'ara (100 m²) e il suo multiplo, 100 volte maggiore, l'ettaro (10.000 m²). L'ettaro e l'unità metrica di terreno più usata al mondo per esprimere l'area di terreni agricoli.",
         ],
       },
       {
-        title: "Unita tradizionali di terreno in Turchia",
+        title: "Unità tradizionali di terreno in Turchia",
         paragraphs: [
-          "In Turchia, le unita piu usate per misurare i terreni agricoli sono il dönüm e il dekar; entrambe equivalgono oggi a 1000 metri quadrati e sono intercambiabili. Il dekar e il nome ufficiale usato nella legislazione su pesi e misure, mentre il dönüm e l'equivalente tradizionale del linguaggio quotidiano.",
+          "In Turchia, le unità più usate per misurare i terreni agricoli sono il dönüm e il dekar; entrambe equivalgono oggi a 1000 metri quadrati e sono intercambiabili. Il dekar e il nome ufficiale usato nella legislazione su pesi e misure, mentre il dönüm e l'equivalente tradizionale del linguaggio quotidiano.",
           "In epoca ottomana, la dimensione del dönüm variava a seconda della regione tra 900 e 1600 m². Con la legge su pesi e misure del 1931, il dönüm fu allineato al dekar e standardizzato esattamente a 1000 m².",
         ],
       },
       {
-        title: "Le unita di area del sistema britannico/statunitense",
+        title: "Le unità di area del sistema britannico/statunitense",
         paragraphs: [
           "Il piede quadrato (ft²) e il pollice quadrato (in²) sono usati per aree piccole, mentre l'acro e usato per grandi appezzamenti di terreno nel sistema di misura britannico/statunitense. Un acro equivale esattamente a 4046,8564224 metri quadrati.",
           "L'origine storica dell'acro risale all'area di terreno che un paio di buoi poteva arare in un giorno. Ancora oggi e ampiamente usato negli annunci immobiliari negli Stati Uniti, nel Regno Unito e in alcuni paesi del Commonwealth.",
         ],
       },
       {
-        title: "Le unita di terreno del sud dell'Asia",
+        title: "Le unità di terreno del sud dell'Asia",
         paragraphs: [
-          "In paesi come India, Bangladesh, Pakistan e Nepal si continuano a usare ampiamente unita locali di terreno come bigha, katha, killa, kanal, marla, guntha, biswa e decimal. La dimensione di queste unita puo variare considerevolmente da una regione all'altra, anche con lo stesso nome.",
-          "Ad esempio, un bigha equivale a circa 1338 m² nel Bengala Occidentale, ma puo corrispondere a un valore diverso in un altro stato. Per questo, nelle transazioni immobiliari con queste unita, e importante confermare quale standard regionale si sta utilizzando.",
+          "In paesi come India, Bangladesh, Pakistan e Nepal si continuano a usare ampiamente unità locali di terreno come bigha, katha, killa, kanal, marla, guntha, biswa e decimal. La dimensione di queste unità puo variare considerevolmente da una regione all'altra, anche con lo stesso nome.",
+          "Ad esempio, un bigha equivale a circa 1338 m² nel Bengala Occidentale, ma puo corrispondere a un valore diverso in un altro stato. Per questo, nelle transazioni immobiliari con queste unità, e importante confermare quale standard regionale si sta utilizzando.",
         ],
       },
       {
         title: "Come si calcola un'area?",
         paragraphs: [
           "Per un'area rettangolare, la formula e Area = Lunghezza × Larghezza. Per un triangolo si usa Area = (Base × Altezza) / 2, e per un cerchio, Area = π × Raggio².",
-          "Nei terreni di forma irregolare, l'area viene calcolata dividendo la forma in rettangoli o triangoli piu piccoli, calcolando l'area di ogni parte separatamente e sommandole (o, nei rilievi catastali, tramite formule di area di poligoni basate su coordinate).",
+          "Nei terreni di forma irregolare, l'area viene calcolata dividendo la forma in rettangoli o triangoli più piccoli, calcolando l'area di ogni parte separatamente e sommandole (o, nei rilievi catastali, tramite formule di area di poligoni basate su coordinate).",
         ],
       },
       {
         title: "Aspetti da considerare nel misurare le aree",
         paragraphs: [
-          "Il valore di area indicato in un annuncio immobiliare o in un atto deve essere interpretato in base all'unita utilizzata (m², dönüm, acro, bigha, ecc.) e allo standard regionale con cui quell'unita e definita.",
-          "Specialmente nelle transazioni immobiliari internazionali, considerare l'equivalente esatto in metri quadrati invece della semplice somiglianza del nome dell'unita evita malintesi; lo strumento di conversione di questa pagina confronta tutte le unita a partire da un riferimento comune in metri quadrati.",
+          "Il valore di area indicato in un annuncio immobiliare o in un atto deve essere interpretato in base all'unità utilizzata (m², dönüm, acro, bigha, ecc.) e allo standard regionale con cui quell'unità e definita.",
+          "Specialmente nelle transazioni immobiliari internazionali, considerare l'equivalente esatto in metri quadrati invece della semplice somiglianza del nome dell'unità evita malintesi; lo strumento di conversione di questa pagina confronta tutte le unità a partire da un riferimento comune in metri quadrati.",
         ],
       },
     ],
@@ -245,68 +245,68 @@ export const italianCategoryPages: LocalizedItalianCategoryPage[] = [
     slug: "volume",
     sourceSlug: "hacim",
     category: "hacim",
-    title: "Conversione delle unita di volume",
+    title: "Conversione delle unità di volume",
     description:
-      "Converti volumi tra litri, millilitri e metri cubi; confronta le unita comuni per liquidi e contenitori.",
+      "Converti volumi tra litri, millilitri e metri cubi; confronta le unità comuni per liquidi e contenitori.",
     introduction: [
-      "Il volume e una grandezza fisica derivata che esprime lo spazio occupato o contenuto da un oggetto o contenitore tridimensionale. Poiche risulta dal prodotto di un'unita di lunghezza nelle tre dimensioni (lunghezza × larghezza × altezza), la dimensione del volume e L³ (lunghezza al cubo).",
-      "Nel Sistema Internazionale di Unita, l'unita derivata del volume e il metro cubo (m³); nella vita quotidiana si usano molto di piu il litro e il millilitro. In cucina sono comuni la tazza, il cucchiaio e il cucchiaino, e nel sistema statunitense/britannico, il gallone, il quarto, la pinta e l'oncia liquida.",
+      "Il volume e una grandezza fisica derivata che esprime lo spazio occupato o contenuto da un oggetto o contenitore tridimensionale. Poiche risulta dal prodotto di un'unità di lunghezza nelle tre dimensioni (lunghezza × larghezza × altezza), la dimensione del volume e L³ (lunghezza al cubo).",
+      "Nel Sistema Internazionale di Unità, l'unità derivata del volume e il metro cubo (m³); nella vita quotidiana si usano molto di più il litro e il millilitro. In cucina sono comuni la tazza, il cucchiaio e il cucchiaino, e nel sistema statunitense/britannico, il gallone, il quarto, la pinta e l'oncia liquida.",
     ],
     facts: [
       { label: "Grandezza fisica", value: "Volume" },
       { label: "Simbolo dimensionale", value: "[L³]" },
-      { label: "Unita derivata del SI", value: "Metro cubo" },
-      { label: "Simbolo dell'unita SI", value: "m³" },
-      { label: "Unita piu comune nell'uso quotidiano", value: "Litro (L)" },
+      { label: "Unità derivata del SI", value: "Metro cubo" },
+      { label: "Simbolo dell'unità SI", value: "m³" },
+      { label: "Unità più comune nell'uso quotidiano", value: "Litro (L)" },
     ],
     sections: [
       {
         title: "Che cos'e il volume?",
         paragraphs: [
-          "Il volume e l'estensione dello spazio tridimensionale occupato da un oggetto o che puo essere contenuto da un recipiente. Il volume di un oggetto solido esprime la sua grandezza fisica, mentre il volume di un contenitore esprime la quantita di liquido o gas che puo contenere.",
-          "Il volume e una grandezza derivata, ottenuta moltiplicando un'unita di lunghezza nelle tre dimensioni (larghezza, altezza, profondita). Per questo la sua dimensione SI e L³.",
+          "Il volume e l'estensione dello spazio tridimensionale occupato da un oggetto o che puo essere contenuto da un recipiente. Il volume di un oggetto solido esprime la sua grandezza fisica, mentre il volume di un contenitore esprime la quantità di liquido o gas che puo contenere.",
+          "Il volume e una grandezza derivata, ottenuta moltiplicando un'unità di lunghezza nelle tre dimensioni (larghezza, altezza, profondita). Per questo la sua dimensione SI e L³.",
         ],
       },
       {
-        title: "L'unita SI del volume: il metro cubo",
+        title: "L'unità SI del volume: il metro cubo",
         paragraphs: [
-          "Nel Sistema Internazionale di Unita, l'unita derivata del volume e il metro cubo (m³), che rappresenta il volume interno di un cubo il cui lato misura esattamente 1 metro.",
-          "Il metro cubo e usato per grandi volumi (serbatoi d'acqua, getti di calcestruzzo, volume di container), mentre nella vita quotidiana si preferisce il litro, molto piu piccolo. Un metro cubo equivale esattamente a 1000 litri.",
+          "Nel Sistema Internazionale di Unità, l'unità derivata del volume e il metro cubo (m³), che rappresenta il volume interno di un cubo il cui lato misura esattamente 1 metro.",
+          "Il metro cubo e usato per grandi volumi (serbatoi d'acqua, getti di calcestruzzo, volume di container), mentre nella vita quotidiana si preferisce il litro, molto più piccolo. Un metro cubo equivale esattamente a 1000 litri.",
         ],
       },
       {
         title: "La relazione tra il litro e il metro cubo",
         paragraphs: [
-          "Il litro e un'unita di volume pratica, il cui uso accanto al SI e accettato, anche se non e ufficialmente un'unita del SI. Un litro equivale al volume di un cubo di 10 centimetri di lato (1000 centimetri cubi).",
+          "Il litro e un'unità di volume pratica, il cui uso accanto al SI e accettato, anche se non e ufficialmente un'unità del SI. Un litro equivale al volume di un cubo di 10 centimetri di lato (1000 centimetri cubi).",
           "I sottomultipli del litro -- decilitro, centilitro e millilitro -- sono ampiamente usati nelle misurazioni di alimenti, farmaci e laboratorio. Un millilitro equivale esattamente a un centimetro cubo (1 mL = 1 cm³).",
         ],
       },
       {
-        title: "Perche le unita di volume si convertono con un rapporto cubico?",
+        title: "Perché le unità di volume si convertono con un rapporto cubico?",
         paragraphs: [
-          "Mentre le unita di lunghezza si convertono con un rapporto lineare e quelle di area con un rapporto quadratico, le unita di volume si convertono con un rapporto cubico. Ad esempio, 1 metro equivale a 100 centimetri, ma 1 metro cubo non equivale a 100 centimetri cubi, bensi a 100³, ossia 1.000.000 di centimetri cubi.",
-          "Questa relazione cubica sorge perche il volume varia simultaneamente in tre dimensioni ed e l'errore concettuale piu frequente nelle conversioni di volume -- richiede un calcolo particolarmente attento nel passare a unita non metriche come il gallone o il piede cubo.",
+          "Mentre le unità di lunghezza si convertono con un rapporto lineare e quelle di area con un rapporto quadratico, le unità di volume si convertono con un rapporto cubico. Ad esempio, 1 metro equivale a 100 centimetri, ma 1 metro cubo non equivale a 100 centimetri cubi, bensi a 100³, ossia 1.000.000 di centimetri cubi.",
+          "Questa relazione cubica sorge perché il volume varia simultaneamente in tre dimensioni ed e l'errore concettuale più frequente nelle conversioni di volume -- richiede un calcolo particolarmente attento nel passare a unità non metriche come il gallone o il piede cubo.",
         ],
       },
       {
         title: "Le misure di cucina",
         paragraphs: [
-          "Le misure usate nelle ricette, come il cucchiaio, il cucchiaino e la tazza, sono unita di volume standardizzate che permettono di ottenere risultati coerenti in cucine diverse. Equivalenze generalmente accettate: 1 cucchiaio ≈ 15 mL, 1 cucchiaino ≈ 5 mL, 1 tazza ≈ 250 mL.",
-          "Queste misure non sono standard scientifici esatti, ma valori approssimativi ampiamente accettati nella pratica culinaria; nelle ricette che richiedono precisione (specialmente la pasticceria), usare una bilancia da cucina digitale e piu affidabile.",
+          "Le misure usate nelle ricette, come il cucchiaio, il cucchiaino e la tazza, sono unità di volume standardizzate che permettono di ottenere risultati coerenti in cucine diverse. Equivalenze generalmente accettate: 1 cucchiaio ≈ 15 mL, 1 cucchiaino ≈ 5 mL, 1 tazza ≈ 250 mL.",
+          "Queste misure non sono standard scientifici esatti, ma valori approssimativi ampiamente accettati nella pratica culinaria; nelle ricette che richiedono precisione (specialmente la pasticceria), usare una bilancia da cucina digitale e più affidabile.",
         ],
       },
       {
-        title: "Le unita di volume liquido statunitensi e britanniche",
+        title: "Le unità di volume liquido statunitensi e britanniche",
         paragraphs: [
-          "I sistemi statunitense e britannico usano unita come il gallone, il quarto, la pinta e l'oncia liquida; ma la dimensione di queste unita differisce tra i due sistemi. Un gallone statunitense equivale a 3,78541 litri, mentre un gallone imperiale britannico equivale a 4,54609 litri -- circa il 20% in piu.",
+          "I sistemi statunitense e britannico usano unità come il gallone, il quarto, la pinta e l'oncia liquida; ma la dimensione di queste unità differisce tra i due sistemi. Un gallone statunitense equivale a 3,78541 litri, mentre un gallone imperiale britannico equivale a 4,54609 litri -- circa il 20% in più.",
           "Questa differenza e dovuta al fatto che i due paesi hanno storicamente adottato galloni di riferimento diversi (il gallone del vino negli Stati Uniti, il gallone imperiale nel Regno Unito). Conviene sempre verificare a quale sistema appartiene il valore di 'gallone' o 'oncia' indicato in una ricetta o sull'etichetta di un prodotto.",
         ],
       },
       {
-        title: "Le unita di volume agricole e storiche",
+        title: "Le unità di volume agricole e storiche",
         paragraphs: [
-          "Il bushel e il peck sono unita di volume usate storicamente per misurare prodotti secchi come cereali, frutta e verdura; oggi sono ancora usate in alcuni mercati agricoli, specialmente negli Stati Uniti.",
-          "In epoca ottomana, il kile e lo şinik erano unita di volume tradizionali usate per misurare i cereali; 1 kile equivaleva a 20 şinik. Sebbene queste unita presentino piccole variazioni regionali, oggi servono come riferimento per interpretare testi e documenti storici.",
+          "Il bushel e il peck sono unità di volume usate storicamente per misurare prodotti secchi come cereali, frutta e verdura; oggi sono ancora usate in alcuni mercati agricoli, specialmente negli Stati Uniti.",
+          "In epoca ottomana, il kile e lo şinik erano unità di volume tradizionali usate per misurare i cereali; 1 kile equivaleva a 20 şinik. Sebbene queste unità presentino piccole variazioni regionali, oggi servono come riferimento per interpretare testi e documenti storici.",
         ],
       },
       {
@@ -319,8 +319,8 @@ export const italianCategoryPages: LocalizedItalianCategoryPage[] = [
       {
         title: "Misurazione del volume nel petrolio e nell'industria",
         paragraphs: [
-          "Nell'industria petrolifera, il volume e generalmente espresso in barili (bbl); 1 barile equivale esattamente a 158,987 litri (42 galloni statunitensi). Questa unita e una tradizione che risale al XIX secolo, quando il petrolio veniva trasportato in barili di legno originariamente destinati al vino.",
-          "Nei processi industriali, i grandi volumi sono generalmente espressi in metri cubi, e le misurazioni piccole di laboratorio in millilitri; l'unita adeguata viene scelta in base alla grandezza del volume misurato.",
+          "Nell'industria petrolifera, il volume e generalmente espresso in barili (bbl); 1 barile equivale esattamente a 158,987 litri (42 galloni statunitensi). Questa unità e una tradizione che risale al XIX secolo, quando il petrolio veniva trasportato in barili di legno originariamente destinati al vino.",
+          "Nei processi industriali, i grandi volumi sono generalmente espressi in metri cubi, e le misurazioni piccole di laboratorio in millilitri; l'unità adeguata viene scelta in base alla grandezza del volume misurato.",
         ],
       },
     ],
@@ -344,18 +344,18 @@ export const italianCategoryPages: LocalizedItalianCategoryPage[] = [
     slug: "massa",
     sourceSlug: "kutle",
     category: "kutle",
-    title: "Conversione delle unita di massa",
+    title: "Conversione delle unità di massa",
     description:
       "Converti rapidamente e gratis tra chilogrammi, grammi, milligrammi, tonnellate e libbre.",
     introduction: [
-      "La massa e una grandezza fisica fondamentale legata alla quantita di materia di un oggetto e alla sua proprieta di inerzia. Nel Sistema Internazionale di Unita, l'unita di base della massa e il chilogrammo, simboleggiato da kg.",
+      "La massa e una grandezza fisica fondamentale legata alla quantità di materia di un oggetto e alla sua proprieta di inerzia. Nel Sistema Internazionale di Unità, l'unità di base della massa e il chilogrammo, simboleggiato da kg.",
       "Sebbene nel linguaggio quotidiano massa e peso siano spesso usati come sinonimi, sono grandezze fisicamente distinte. La massa si misura in chilogrammi, mentre il peso, essendo una forza, si misura in newton.",
     ],
     facts: [
       { label: "Grandezza fisica", value: "Massa" },
       { label: "Simbolo dimensionale", value: "[M]" },
-      { label: "Unita di base del SI", value: "Chilogrammo" },
-      { label: "Simbolo dell'unita SI", value: "kg" },
+      { label: "Unità di base del SI", value: "Chilogrammo" },
+      { label: "Simbolo dell'unità SI", value: "kg" },
       { label: "Ambito della metrologia", value: "Metrologia della massa" },
     ],
     sections: [
@@ -363,7 +363,7 @@ export const italianCategoryPages: LocalizedItalianCategoryPage[] = [
         title: "Che cos'e la massa?",
         paragraphs: [
           "La massa e la grandezza fisica legata alla resistenza che un oggetto offre al cambiamento del proprio stato di movimento, ossia all'inerzia. Nella meccanica classica, la relazione tra la forza netta applicata a un oggetto e l'accelerazione prodotta si esprime con l'uguaglianza F = m·a.",
-          "Applicando la stessa forza, un oggetto con massa maggiore acquisisce un'accelerazione minore. Per questo la massa non esprime solo, in senso quotidiano, la quantita di materia contenuta in un oggetto, ma svolge un ruolo fondamentale nelle equazioni del moto.",
+          "Applicando la stessa forza, un oggetto con massa maggiore acquisisce un'accelerazione minore. Per questo la massa non esprime solo, in senso quotidiano, la quantità di materia contenuta in un oggetto, ma svolge un ruolo fondamentale nelle equazioni del moto.",
           "La massa e una grandezza scalare. Non ha direzione e il suo simbolo dimensionale di base nel sistema SI e la lettera M.",
         ],
       },
@@ -372,32 +372,32 @@ export const italianCategoryPages: LocalizedItalianCategoryPage[] = [
         paragraphs: [
           "Massa e peso non sono la stessa grandezza fisica. La massa e una proprieta dell'oggetto e si esprime in chilogrammi. Il peso, invece, e la forza che l'oggetto subisce in un campo gravitazionale e si misura in newton.",
           "La relazione semplificata del peso si scrive W = m·g, dove W rappresenta la forza peso, m la massa e g l'accelerazione di gravita locale.",
-          "La massa di un oggetto rimane approssimativamente uguale sulla Terra e sulla Luna; tuttavia, il suo peso varia perche l'accelerazione di gravita locale e diversa. Per questo, nell'uso scientifico, il chilogrammo e un'unita di massa e non di peso.",
-          "Nel linguaggio quotidiano, poiche il risultato del pesare qualcosa e espresso in chilogrammi, le parole 'peso' e 'massa' vengono spesso usate in modo intercambiabile. Lo strumento di misura in realta rileva l'effetto di una forza, ma e calibrato per mostrare il risultato in unita di massa.",
+          "La massa di un oggetto rimane approssimativamente uguale sulla Terra e sulla Luna; tuttavia, il suo peso varia perché l'accelerazione di gravita locale e diversa. Per questo, nell'uso scientifico, il chilogrammo e un'unità di massa e non di peso.",
+          "Nel linguaggio quotidiano, poiche il risultato del pesare qualcosa e espresso in chilogrammi, le parole 'peso' e 'massa' vengono spesso usate in modo intercambiabile. Lo strumento di misura in realta rileva l'effetto di una forza, ma e calibrato per mostrare il risultato in unità di massa.",
         ],
       },
       {
-        title: "Perche il chilogrammo e l'unita di base del SI per la massa?",
+        title: "Perché il chilogrammo e l'unità di base del SI per la massa?",
         paragraphs: [
-          "Nel Sistema Internazionale di Unita, l'unita di base della massa e il chilogrammo. Tra le unita di base del SI, il chilogrammo e l'unica il cui nome include un prefisso.",
+          "Nel Sistema Internazionale di Unità, l'unità di base della massa e il chilogrammo. Tra le unità di base del SI, il chilogrammo e l'unica il cui nome include un prefisso.",
           "La parola grammo ha svolto storicamente un ruolo importante nelle prime definizioni di massa del sistema metrico. Ma con l'affermarsi dei campioni pratici, il chilogrammo e diventato il riferimento fondamentale.",
-          "Attualmente, il chilogrammo non e piu definito dalla massa di un cilindro metallico fisico, ma a partire dal valore numerico fissato della costante di Planck. La relazione di questa definizione con la bilancia di Kibble e le misurazioni elettriche e esaminata in dettaglio nella pagina informativa dedicata al chilogrammo.",
+          "Attualmente, il chilogrammo non e più definito dalla massa di un cilindro metallico fisico, ma a partire dal valore numerico fissato della costante di Planck. La relazione di questa definizione con la bilancia di Kibble e le misurazioni elettriche e esaminata in dettaglio nella pagina informativa dedicata al chilogrammo.",
         ],
       },
       {
-        title: "Le unita metriche di massa",
+        title: "Le unità metriche di massa",
         paragraphs: [
-          "Le unita metriche di massa si costruiscono a partire dal chilogrammo, dal grammo e dai prefissi del SI che vi si aggiungono. Un grammo equivale a 0,001 chilogrammi, un milligrammo a 0,001 grammi e un microgrammo a 0,001 milligrammi.",
+          "Le unità metriche di massa si costruiscono a partire dal chilogrammo, dal grammo e dai prefissi del SI che vi si aggiungono. Un grammo equivale a 0,001 chilogrammi, un milligrammo a 0,001 grammi e un microgrammo a 0,001 milligrammi.",
           "Per masse grandi si usa la tonnellata. Una tonnellata metrica equivale esattamente a 1000 chilogrammi. Il simbolo della tonnellata, il cui uso accanto al SI e accettato, e la lettera minuscola t.",
-          "L'unita adeguata viene scelta in base alla grandezza della massa misurata. La massa di una persona o di un prodotto puo essere espressa in chilogrammi, il contenuto di un alimento in grammi, il principio attivo di un farmaco in milligrammi o microgrammi, e il carico di un veicolo in tonnellate.",
+          "L'unità adeguata viene scelta in base alla grandezza della massa misurata. La massa di una persona o di un prodotto puo essere espressa in chilogrammi, il contenuto di un alimento in grammi, il principio attivo di un farmaco in milligrammi o microgrammi, e il carico di un veicolo in tonnellate.",
         ],
       },
       {
         title: "La relazione tra libbra, oncia e chilogrammo",
         paragraphs: [
-          "La libbra e l'oncia sono unita di massa usate nei sistemi di misura tradizionali britannico e statunitense. La libbra avoirdupois internazionale equivale esattamente a 0,45359237 chilogrammi.",
+          "La libbra e l'oncia sono unità di massa usate nei sistemi di misura tradizionali britannico e statunitense. La libbra avoirdupois internazionale equivale esattamente a 0,45359237 chilogrammi.",
           "Una libbra avoirdupois si divide in 16 once. Pertanto, un'oncia equivale esattamente a 0,028349523125 chilogrammi, o 28,349523125 grammi.",
-          "La libbra usata per la massa e la libbra-forza (pound-force), un'unita di forza, sono grandezze diverse. La libbra esprime una massa, e la libbra-forza, una forza. Nei calcoli tecnici i simboli lb e lbf non devono essere confusi.",
+          "La libbra usata per la massa e la libbra-forza (pound-force), un'unità di forza, sono grandezze diverse. La libbra esprime una massa, e la libbra-forza, una forza. Nei calcoli tecnici i simboli lb e lbf non devono essere confusi.",
         ],
       },
       {
@@ -414,7 +414,7 @@ export const italianCategoryPages: LocalizedItalianCategoryPage[] = [
         paragraphs: [
           "Tra massa, densita e volume esiste la relazione m = ρ·V. Qui, m rappresenta la massa, ρ la densita e V il volume.",
           "Per uno stesso volume, la massa di due materiali diversi puo differire in base alla loro densita. Ad esempio, per lo stesso volume, l'acciaio e l'acqua non hanno la stessa massa.",
-          "Nel sistema SI, l'unita derivata di base della densita e il chilogrammo per metro cubo. Nelle applicazioni di laboratorio si usano anche abitualmente unita come il grammo per centimetro cubo o il grammo per millilitro.",
+          "Nel sistema SI, l'unità derivata di base della densita e il chilogrammo per metro cubo. Nelle applicazioni di laboratorio si usano anche abitualmente unità come il grammo per centimetro cubo o il grammo per millilitro.",
         ],
       },
       {
@@ -422,20 +422,20 @@ export const italianCategoryPages: LocalizedItalianCategoryPage[] = [
         paragraphs: [
           "Ogni misurazione reale comporta una certa incertezza. Il fatto che una bilancia mostri molte cifre sullo schermo non significa che tutte quelle cifre siano conosciute con la stessa precisione.",
           "La risoluzione dello strumento, la ripetibilita, la non linearita, il campione di calibrazione, le condizioni ambientali e il metodo dell'utente possono contribuire all'incertezza della misurazione di massa.",
-          "Nei lavori scientifici e industriali, il risultato di una misurazione deve essere valutato insieme all'unita adeguata, al numero di cifre significative e alle informazioni sull'incertezza.",
+          "Nei lavori scientifici e industriali, il risultato di una misurazione deve essere valutato insieme all'unità adeguata, al numero di cifre significative e alle informazioni sull'incertezza.",
         ],
       },
       {
-        title: "Come scegliere l'unita di massa adeguata?",
+        title: "Come scegliere l'unità di massa adeguata?",
         paragraphs: [
-          "Scegliere un'unita adatta alla grandezza dell'oggetto misurato rende il risultato piu leggibile. La massa di una persona puo essere espressa in chilogrammi, il principio attivo di una compressa in milligrammi, e il carico di un camion in tonnellate.",
-          "Per masse molto piccole possono essere usate unita con prefisso del SI come il microgrammo, il nanogrammo e il picogrammo. Su scala atomica e molecolare, unita specifiche come l'unita di massa atomica unificata possono essere piu pratiche.",
-          "Nell'eseguire una conversione di unita bisogna verificare non solo il valore numerico, ma anche se l'unita utilizzata esprime massa o forza.",
+          "Scegliere un'unità adatta alla grandezza dell'oggetto misurato rende il risultato più leggibile. La massa di una persona puo essere espressa in chilogrammi, il principio attivo di una compressa in milligrammi, e il carico di un camion in tonnellate.",
+          "Per masse molto piccole possono essere usate unità con prefisso del SI come il microgrammo, il nanogrammo e il picogrammo. Su scala atomica e molecolare, unità specifiche come l'unità di massa atomica unificata possono essere più pratiche.",
+          "Nell'eseguire una conversione di unità bisogna verificare non solo il valore numerico, ma anche se l'unità utilizzata esprime massa o forza.",
         ],
       },
     ],
     unitTable: [
-      { name: "Nanogrammo", symbol: "ng", referenceValue: "10⁻¹² kg", system: "SI", commonUse: "Quantita di materia molto piccole" },
+      { name: "Nanogrammo", symbol: "ng", referenceValue: "10⁻¹² kg", system: "SI", commonUse: "Quantità di materia molto piccole" },
       { name: "Microgrammo", symbol: "µg", referenceValue: "10⁻⁹ kg", system: "SI", commonUse: "Misurazioni mediche e di laboratorio" },
       { name: "Milligrammo", symbol: "mg", referenceValue: "10⁻⁶ kg", system: "SI", commonUse: "Dosi di farmaci e sostanze chimiche" },
       { name: "Grammo", symbol: "g", referenceValue: "0,001 kg", system: "SI", commonUse: "Alimenti e oggetti piccoli" },
@@ -450,39 +450,39 @@ export const italianCategoryPages: LocalizedItalianCategoryPage[] = [
     slug: "temperatura",
     sourceSlug: "sicaklik",
     category: "sicaklik",
-    title: "Conversione delle unita di temperatura",
+    title: "Conversione delle unità di temperatura",
     description:
       "Converti le temperature tra Celsius, Fahrenheit e Kelvin; consulta formule e valori di esempio.",
     introduction: [
-      "La temperatura e una grandezza fisica fondamentale legata all'energia cinetica media delle particelle di una materia, che esprime quanto 'calda' o 'fredda' sia quella materia. Nel Sistema Internazionale di Unita, l'unita di base della temperatura e il kelvin.",
-      "Nella vita quotidiana, le scale Celsius e Fahrenheit sono le piu usate; nei lavori scientifici si usa il kelvin, in alcuni calcoli di ingegneria il Rankine, e nei testi storici puo comparire il Reaumur. A differenza di molte altre grandezze fisiche, la conversione di temperatura tra unita richiede non solo moltiplicazione, ma anche somma o sottrazione.",
+      "La temperatura e una grandezza fisica fondamentale legata all'energia cinetica media delle particelle di una materia, che esprime quanto 'calda' o 'fredda' sia quella materia. Nel Sistema Internazionale di Unità, l'unità di base della temperatura e il kelvin.",
+      "Nella vita quotidiana, le scale Celsius e Fahrenheit sono le più usate; nei lavori scientifici si usa il kelvin, in alcuni calcoli di ingegneria il Rankine, e nei testi storici puo comparire il Reaumur. A differenza di molte altre grandezze fisiche, la conversione di temperatura tra unità richiede non solo moltiplicazione, ma anche somma o sottrazione.",
     ],
     facts: [
       { label: "Grandezza fisica", value: "Temperatura (temperatura termodinamica)" },
       { label: "Simbolo dimensionale", value: "[Θ]" },
-      { label: "Unita di base del SI", value: "Kelvin" },
-      { label: "Simbolo dell'unita SI", value: "K" },
+      { label: "Unità di base del SI", value: "Kelvin" },
+      { label: "Simbolo dell'unità SI", value: "K" },
       { label: "Zero assoluto", value: "0 K = -273,15 °C = -459,67 °F" },
     ],
     sections: [
       {
         title: "Che cos'e la temperatura?",
         paragraphs: [
-          "La temperatura e una grandezza direttamente legata all'energia cinetica (di movimento) media degli atomi e delle molecole che compongono una materia. Quanto piu velocemente si muovono le particelle, tanto piu 'calda' e considerata la materia.",
-          "La temperatura e una delle sette grandezze di base del Sistema Internazionale di Unita e, come temperatura termodinamica, e rappresentata dal simbolo Θ (theta). A differenza di molte altre grandezze (come la lunghezza o la massa), non e una grandezza direttamente additiva -- mettere a contatto due corpi non somma le loro temperature, ma li porta verso un equilibrio.",
+          "La temperatura e una grandezza direttamente legata all'energia cinetica (di movimento) media degli atomi e delle molecole che compongono una materia. Quanto più velocemente si muovono le particelle, tanto più 'calda' e considerata la materia.",
+          "La temperatura e una delle sette grandezze di base del Sistema Internazionale di Unità e, come temperatura termodinamica, e rappresentata dal simbolo Θ (theta). A differenza di molte altre grandezze (come la lunghezza o la massa), non e una grandezza direttamente additiva -- mettere a contatto due corpi non somma le loro temperature, ma li porta verso un equilibrio.",
         ],
       },
       {
-        title: "L'unita SI della temperatura: il kelvin",
+        title: "L'unità SI della temperatura: il kelvin",
         paragraphs: [
-          "Il kelvin e l'unita di base del SI per la temperatura ed e rappresentato dal simbolo K (senza il simbolo di grado, si scrive semplicemente 'K'). La scala Kelvin prende lo zero assoluto (la temperatura piu bassa teoricamente possibile) come punto di partenza (0 K).",
-          "Dalla revisione del SI del 2019, il kelvin non e piu definito a partire dal punto triplo dell'acqua, ma dal valore numerico fissato della costante di Boltzmann (k). Cio garantisce che l'unita di temperatura si basi su una costante universale e non su una sostanza di riferimento fisica.",
+          "Il kelvin e l'unità di base del SI per la temperatura ed e rappresentato dal simbolo K (senza il simbolo di grado, si scrive semplicemente 'K'). La scala Kelvin prende lo zero assoluto (la temperatura più bassa teoricamente possibile) come punto di partenza (0 K).",
+          "Dalla revisione del SI del 2019, il kelvin non e più definito a partire dal punto triplo dell'acqua, ma dal valore numerico fissato della costante di Boltzmann (k). Cio garantisce che l'unità di temperatura si basi su una costante universale e non su una sostanza di riferimento fisica.",
         ],
       },
       {
-        title: "Perche la conversione di temperatura non e una semplice moltiplicazione?",
+        title: "Perché la conversione di temperatura non e una semplice moltiplicazione?",
         paragraphs: [
-          "In grandezze come la lunghezza o la massa, la conversione di unita avviene solo con un fattore moltiplicativo (ad esempio, metro-centimetro). Nella temperatura, poiche le scale Celsius, Fahrenheit e Kelvin hanno 'punti zero' diversi, la conversione richiede sia moltiplicazione che somma o sottrazione.",
+          "In grandezze come la lunghezza o la massa, la conversione di unità avviene solo con un fattore moltiplicativo (ad esempio, metro-centimetro). Nella temperatura, poiche le scale Celsius, Fahrenheit e Kelvin hanno 'punti zero' diversi, la conversione richiede sia moltiplicazione che somma o sottrazione.",
           "Ad esempio, per passare da Celsius a Fahrenheit, il valore viene prima moltiplicato per 9/5 e poi si somma 32: °F = (°C × 9/5) + 32. Per questo la temperatura e, matematicamente, l'unica grandezza fisica comune con una relazione di conversione 'affine' (lineare, ma che non passa per l'origine).",
         ],
       },
@@ -490,7 +490,7 @@ export const italianCategoryPages: LocalizedItalianCategoryPage[] = [
         title: "La scala Celsius",
         paragraphs: [
           "La scala Celsius fu sviluppata nel 1742 dall'astronomo svedese Anders Celsius e definisce il punto di congelamento dell'acqua a 0 °C e il suo punto di ebollizione (a una pressione di un'atmosfera) a 100 °C. E un sistema di riferimento pratico che facilita la comprensione della scala nella vita quotidiana.",
-          "Il Celsius e la scala di temperatura piu usata al mondo sia nei lavori scientifici che nelle informazioni meteorologiche quotidiane della maggior parte dei paesi, inclusa l'Italia; un piccolo numero di paesi, come gli Stati Uniti, continua a preferire il Fahrenheit nell'uso quotidiano.",
+          "Il Celsius e la scala di temperatura più usata al mondo sia nei lavori scientifici che nelle informazioni meteorologiche quotidiane della maggior parte dei paesi, inclusa l'Italia; un piccolo numero di paesi, come gli Stati Uniti, continua a preferire il Fahrenheit nell'uso quotidiano.",
         ],
       },
       {
@@ -503,14 +503,14 @@ export const italianCategoryPages: LocalizedItalianCategoryPage[] = [
       {
         title: "Rankine e Reaumur: scale meno conosciute",
         paragraphs: [
-          "Il Rankine e una scala di temperatura assoluta che usa unita della stessa dimensione del grado Fahrenheit, ma prende lo zero assoluto come 0 °R; il punto di congelamento dell'acqua e 491,67 °R. E preferito specialmente al Kelvin in alcuni calcoli di ingegneria termodinamica negli Stati Uniti.",
+          "Il Rankine e una scala di temperatura assoluta che usa unità della stessa dimensione del grado Fahrenheit, ma prende lo zero assoluto come 0 °R; il punto di congelamento dell'acqua e 491,67 °R. E preferito specialmente al Kelvin in alcuni calcoli di ingegneria termodinamica negli Stati Uniti.",
           "La scala Reaumur fu sviluppata nel XVIII secolo dallo scienziato francese Rene Reaumur; fissa il punto di congelamento dell'acqua a 0 °Ré e quello di ebollizione a 80 °Ré. Sebbene oggi praticamente non sia usata, puo ancora essere trovata come riferimento storico in alcuni paesi europei (specialmente in alcune ricette tradizionali russe).",
         ],
       },
       {
         title: "Che cosa significa lo zero assoluto?",
         paragraphs: [
-          "Lo zero assoluto (0 kelvin, -273,15 °C, -459,67 °F) e la temperatura teorica alla quale le particelle possiedono, in senso classico, la minima energia cinetica possibile. Secondo la meccanica quantistica, le particelle non rimangono completamente immobili nemmeno allo zero assoluto (energia di punto zero), ma in senso classico non puo essere definita una temperatura piu bassa.",
+          "Lo zero assoluto (0 kelvin, -273,15 °C, -459,67 °F) e la temperatura teorica alla quale le particelle possiedono, in senso classico, la minima energia cinetica possibile. Secondo la meccanica quantistica, le particelle non rimangono completamente immobili nemmeno allo zero assoluto (energia di punto zero), ma in senso classico non puo essere definita una temperatura più bassa.",
           "In laboratorio sono state raggiunte temperature estremamente vicine allo zero assoluto (dell'ordine del microkelvin, persino del nanokelvin), ma secondo il terzo principio della termodinamica e impossibile raggiungere esattamente lo zero assoluto in un numero finito di passaggi.",
         ],
       },
@@ -518,12 +518,12 @@ export const italianCategoryPages: LocalizedItalianCategoryPage[] = [
         title: "Come si misura la temperatura?",
         paragraphs: [
           "Per misurare la temperatura si usano diverse tecnologie: termometri a mercurio o alcol, termometri digitali, termocoppie, termometri a resistenza (RTD) e termometri a infrarossi (senza contatto). Ognuno e adatto a un intervallo di temperatura e a un livello di precisione diversi.",
-          "Le termocoppie sono ampiamente usate in ambito industriale perche possono funzionare in un intervallo di temperatura molto ampio (a volte da -200 °C a +2000 °C); calcolano la temperatura a partire dalla differenza di tensione generata nella giunzione di due metalli diversi.",
+          "Le termocoppie sono ampiamente usate in ambito industriale perché possono funzionare in un intervallo di temperatura molto ampio (a volte da -200 °C a +2000 °C); calcolano la temperatura a partire dalla differenza di tensione generata nella giunzione di due metalli diversi.",
         ],
       },
     ],
     unitTable: [
-      { name: "Kelvin", symbol: "K", referenceValue: "Unita di base", system: "SI", commonUse: "Calcoli scientifici e termodinamici" },
+      { name: "Kelvin", symbol: "K", referenceValue: "Unità di base", system: "SI", commonUse: "Calcoli scientifici e termodinamici" },
       { name: "Celsius", symbol: "°C", referenceValue: "K = °C + 273,15", system: "Metrico (uso quotidiano)", commonUse: "Meteorologia, vita quotidiana, scienza" },
       { name: "Fahrenheit", symbol: "°F", referenceValue: "°F = (°C × 9/5) + 32", system: "Stati Uniti", commonUse: "Meteorologia quotidiana negli Stati Uniti" },
       { name: "Rankine", symbol: "°R", referenceValue: "°R = (°C + 273,15) × 9/5", system: "Stati Uniti (ingegneria)", commonUse: "Calcoli di ingegneria termodinamica" },
@@ -535,40 +535,40 @@ export const italianCategoryPages: LocalizedItalianCategoryPage[] = [
     slug: "tempo",
     sourceSlug: "zaman",
     category: "zaman",
-    title: "Conversione delle unita di tempo",
+    title: "Conversione delle unità di tempo",
     description:
       "Usa in un'unica pagina le conversioni di tempo essenziali tra secondi, minuti e ore.",
     introduction: [
-      "Il tempo e una grandezza fisica fondamentale che esprime l'ordine in cui accadono gli eventi e la durata che li separa. Nel Sistema Internazionale di Unita, l'unita di base del tempo e il secondo, usato insieme a unita derivate come il minuto, l'ora e il giorno nella vita quotidiana.",
-      "A differenza di grandezze come la lunghezza o la massa, il tempo e uno dei concetti di misurazione piu antichi della storia umana; la struttura sessagesimale (base 60) dell'ora, del minuto e del secondo risale a migliaia di anni fa, all'antica civilta babilonese.",
+      "Il tempo e una grandezza fisica fondamentale che esprime l'ordine in cui accadono gli eventi e la durata che li separa. Nel Sistema Internazionale di Unità, l'unità di base del tempo e il secondo, usato insieme a unità derivate come il minuto, l'ora e il giorno nella vita quotidiana.",
+      "A differenza di grandezze come la lunghezza o la massa, il tempo e uno dei concetti di misurazione più antichi della storia umana; la struttura sessagesimale (base 60) dell'ora, del minuto e del secondo risale a migliaia di anni fa, all'antica civilta babilonese.",
     ],
     facts: [
       { label: "Grandezza fisica", value: "Tempo" },
       { label: "Simbolo dimensionale", value: "[T]" },
-      { label: "Unita di base del SI", value: "Secondo" },
-      { label: "Simbolo dell'unita SI", value: "s" },
+      { label: "Unità di base del SI", value: "Secondo" },
+      { label: "Simbolo dell'unità SI", value: "s" },
       { label: "Definizione attuale del secondo", value: "9.192.631.770 periodi di oscillazione dell'atomo di cesio-133" },
     ],
     sections: [
       {
         title: "Che cos'e il tempo?",
         paragraphs: [
-          "Il tempo e una grandezza fondamentale che esprime l'ordine in cui accadono gli eventi e la durata trascorsa tra due eventi. In fisica e rappresentato dal simbolo dimensionale T e interviene nella definizione di numerose grandezze derivate, come la velocita, l'accelerazione e la frequenza.",
-          "Nella fisica classica, il tempo era considerato una grandezza assoluta che trascorreva allo stesso modo per tutti gli osservatori; con la teoria della relativita di Einstein si e compreso che il tempo puo trascorrere in modo diverso a seconda della velocita dell'osservatore e del campo gravitazionale (dilatazione del tempo).",
+          "Il tempo e una grandezza fondamentale che esprime l'ordine in cui accadono gli eventi e la durata trascorsa tra due eventi. In fisica e rappresentato dal simbolo dimensionale T e interviene nella definizione di numerose grandezze derivate, come la velocità, l'accelerazione e la frequenza.",
+          "Nella fisica classica, il tempo era considerato una grandezza assoluta che trascorreva allo stesso modo per tutti gli osservatori; con la teoria della relativita di Einstein si e compreso che il tempo puo trascorrere in modo diverso a seconda della velocità dell'osservatore e del campo gravitazionale (dilatazione del tempo).",
         ],
       },
       {
-        title: "L'unita SI del tempo: il secondo",
+        title: "L'unità SI del tempo: il secondo",
         paragraphs: [
-          "Il secondo e l'unita di base del SI per il tempo, simboleggiato da s. Storicamente, il secondo era definito come 1/86.400 di un giorno (24 ore × 60 minuti × 60 secondi).",
-          "Poiche questa definizione si e rivelata insufficientemente stabile a causa di piccole irregolarita nella velocita di rotazione della Terra, nel 1967 il secondo fu ridefinito come esattamente 9.192.631.770 periodi della radiazione associata alla transizione tra due livelli di energia fondamentali dell'atomo di cesio-133. Questa definizione permette agli orologi atomici di funzionare con la stessa precisione ovunque nel mondo.",
+          "Il secondo e l'unità di base del SI per il tempo, simboleggiato da s. Storicamente, il secondo era definito come 1/86.400 di un giorno (24 ore × 60 minuti × 60 secondi).",
+          "Poiche questa definizione si e rivelata insufficientemente stabile a causa di piccole irregolarita nella velocità di rotazione della Terra, nel 1967 il secondo fu ridefinito come esattamente 9.192.631.770 periodi della radiazione associata alla transizione tra due livelli di energia fondamentali dell'atomo di cesio-133. Questa definizione permette agli orologi atomici di funzionare con la stessa precisione ovunque nel mondo.",
         ],
       },
       {
         title: "L'origine sessagesimale dell'ora, del minuto e del secondo",
         paragraphs: [
           "La divisione di un'ora in 60 minuti e di un minuto in 60 secondi risale al sistema numerico sessagesimale (base 60) usato dall'antica civilta babilonese. I babilonesi dividevano sia l'angolo (360 gradi) sia il tempo secondo questo sistema.",
-          "Il numero 60 fu scelto perche e divisibile esattamente per molti numeri -- 2, 3, 4, 5, 6, 10, 12, 15, 20 e 30 -- il che facilita divisioni pratiche nei calcoli quotidiani (ad esempio, dividere un'ora in tre o quattro parti) senza bisogno di numeri frazionari.",
+          "Il numero 60 fu scelto perché e divisibile esattamente per molti numeri -- 2, 3, 4, 5, 6, 10, 12, 15, 20 e 30 -- il che facilita divisioni pratiche nei calcoli quotidiani (ad esempio, dividere un'ora in tre o quattro parti) senza bisogno di numeri frazionari.",
         ],
       },
       {
@@ -579,23 +579,23 @@ export const italianCategoryPages: LocalizedItalianCategoryPage[] = [
         ],
       },
       {
-        title: "La relazione tra le unita metriche di tempo",
+        title: "La relazione tra le unità metriche di tempo",
         paragraphs: [
           "I sottomultipli del secondo -- il millisecondo (0,001 secondi), il microsecondo e il nanosecondo -- sono usati per misurare eventi molto brevi, come le operazioni dei processori informatici, la cronometraggio sportivo e gli esperimenti scientifici.",
-          "I loro multipli -- il minuto (60 secondi), l'ora (3600 secondi) e il giorno (86.400 secondi) -- sono le unita di base usate quotidianamente per tenere il conto del tempo. La conversione tra queste unita avviene, a differenza della temperatura, solo tramite moltiplicazione/divisione, perche tutte condividono un punto zero (origine) comune.",
+          "I loro multipli -- il minuto (60 secondi), l'ora (3600 secondi) e il giorno (86.400 secondi) -- sono le unità di base usate quotidianamente per tenere il conto del tempo. La conversione tra queste unità avviene, a differenza della temperatura, solo tramite moltiplicazione/divisione, perché tutte condividono un punto zero (origine) comune.",
         ],
       },
       {
         title: "Che cos'e un secondo intercalare?",
         paragraphs: [
-          "La velocita di rotazione della Terra sul proprio asse presenta, nel tempo, piccole irregolarita dovute agli effetti delle maree e a cambiamenti nella sua struttura interna; cio crea un piccolo scarto tra il tempo 'preciso' misurato dagli orologi atomici e la durata del giorno basata sulla rotazione reale della Terra.",
+          "La velocità di rotazione della Terra sul proprio asse presenta, nel tempo, piccole irregolarita dovute agli effetti delle maree e a cambiamenti nella sua struttura interna; cio crea un piccolo scarto tra il tempo 'preciso' misurato dagli orologi atomici e la durata del giorno basata sulla rotazione reale della Terra.",
           "Per compensare questo scarto, dal 1972 viene aggiunto un 'secondo intercalare' al Tempo Coordinato Universale (UTC) quando necessario. E un meccanismo di correzione simile al giorno aggiuntivo degli anni bisestili (29 febbraio), ma poiche l'irregolarita della rotazione terrestre e imprevedibile, i secondi intercalari non vengono aggiunti in un ciclo fisso come il calendario, bensi secondo necessita.",
         ],
       },
       {
         title: "I fusi orari e l'UTC",
         paragraphs: [
-          "La Terra e divisa in circa 24 fusi orari, perche il Sole raggiunge il suo punto piu alto a orari diversi a seconda della longitudine. Tutti i fusi orari usano il Tempo Coordinato Universale (UTC) come punto di riferimento e sono espressi tramite una differenza oraria rispetto a questo riferimento a seconda della loro regione (ad esempio, l'Italia e UTC+1 in inverno).",
+          "La Terra e divisa in circa 24 fusi orari, perché il Sole raggiunge il suo punto più alto a orari diversi a seconda della longitudine. Tutti i fusi orari usano il Tempo Coordinato Universale (UTC) come punto di riferimento e sono espressi tramite una differenza oraria rispetto a questo riferimento a seconda della loro regione (ad esempio, l'Italia e UTC+1 in inverno).",
           "L'UTC e uno standard di tempo moderno che ha sostituito l'antico Tempo Medio di Greenwich (GMT) ed e mantenuto tramite orologi atomici; il GMT oggi e usato soprattutto come nome del fuso orario corrispondente all'orario invernale nel Regno Unito.",
         ],
       },
@@ -620,81 +620,81 @@ export const italianCategoryPages: LocalizedItalianCategoryPage[] = [
     slug: "velocita",
     sourceSlug: "hiz",
     category: "hiz",
-    title: "Conversione delle unita di velocita",
+    title: "Conversione delle unità di velocità",
     description:
-      "Converti la velocita tra km/h, m/s e mph; consulta esempi di ingegneria e di uso quotidiano.",
+      "Converti la velocità tra km/h, m/s e mph; consulta esempi di ingegneria e di uso quotidiano.",
     introduction: [
-      "La velocita e una grandezza fisica derivata che esprime la distanza percorsa da un oggetto per unita di tempo. Poiche si ottiene dividendo una lunghezza per un tempo, la dimensione della velocita e L/T (lunghezza divisa per tempo).",
-      "Nella vita quotidiana, il chilometro all'ora (km/h) e il miglio all'ora (mph) sono le unita di velocita piu usate; il metro al secondo (m/s) e preferito nei lavori scientifici, e il nodo nella navigazione marittima e aerea. La velocita della luce occupa un posto speciale tra le unita di velocita, come limite superiore assoluto raggiungibile nell'universo.",
+      "La velocità e una grandezza fisica derivata che esprime la distanza percorsa da un oggetto per unità di tempo. Poiche si ottiene dividendo una lunghezza per un tempo, la dimensione della velocità e L/T (lunghezza divisa per tempo).",
+      "Nella vita quotidiana, il chilometro all'ora (km/h) e il miglio all'ora (mph) sono le unità di velocità più usate; il metro al secondo (m/s) e preferito nei lavori scientifici, e il nodo nella navigazione marittima e aerea. La velocità della luce occupa un posto speciale tra le unità di velocità, come limite superiore assoluto raggiungibile nell'universo.",
     ],
     facts: [
-      { label: "Grandezza fisica", value: "Velocita" },
+      { label: "Grandezza fisica", value: "Velocità" },
       { label: "Simbolo dimensionale", value: "[L/T]" },
-      { label: "Unita derivata del SI", value: "Metro al secondo" },
-      { label: "Simbolo dell'unita SI", value: "m/s" },
-      { label: "Limite di velocita universale", value: "Velocita della luce ≈ 299.792.458 m/s" },
+      { label: "Unità derivata del SI", value: "Metro al secondo" },
+      { label: "Simbolo dell'unità SI", value: "m/s" },
+      { label: "Limite di velocità universale", value: "Velocità della luce ≈ 299.792.458 m/s" },
     ],
     sections: [
       {
-        title: "Che cos'e la velocita?",
+        title: "Che cos'e la velocità?",
         paragraphs: [
-          "La velocita esprime la distanza percorsa da un oggetto per unita di tempo e si calcola con la formula Velocita = Distanza / Tempo. Sebbene la fisica distingua tecnicamente tra 'rapidita' (scalare, senza direzione) e 'velocita' (vettoriale, con direzione), nel linguaggio quotidiano i due termini vengono spesso usati in modo intercambiabile.",
-          "La velocita e una grandezza derivata, ottenuta dividendo un'unita di lunghezza per un'unita di tempo. Per questo la sua dimensione SI e indicata come L/T (o L¹T⁻¹).",
+          "La velocità esprime la distanza percorsa da un oggetto per unità di tempo e si calcola con la formula Velocità = Distanza / Tempo. Sebbene la fisica distingua tecnicamente tra 'rapidita' (scalare, senza direzione) e 'velocità' (vettoriale, con direzione), nel linguaggio quotidiano i due termini vengono spesso usati in modo intercambiabile.",
+          "La velocità e una grandezza derivata, ottenuta dividendo un'unità di lunghezza per un'unità di tempo. Per questo la sua dimensione SI e indicata come L/T (o L¹T⁻¹).",
         ],
       },
       {
-        title: "L'unita SI della velocita: il metro al secondo",
+        title: "L'unità SI della velocità: il metro al secondo",
         paragraphs: [
-          "Nel Sistema Internazionale di Unita, l'unita derivata della velocita e il metro al secondo (m/s), che esprime che un oggetto percorre un metro ogni secondo. Questa unita e usata come standard nei calcoli scientifici e nelle formule di fisica.",
-          "Nella vita quotidiana si preferisce il chilometro all'ora (km/h) al metro al secondo, perche le velocita dei veicoli e le distanze stradali sono espresse cosi con numeri piu intuitivi a quella scala. 1 m/s equivale esattamente a 3,6 km/h.",
+          "Nel Sistema Internazionale di Unità, l'unità derivata della velocità e il metro al secondo (m/s), che esprime che un oggetto percorre un metro ogni secondo. Questa unità e usata come standard nei calcoli scientifici e nelle formule di fisica.",
+          "Nella vita quotidiana si preferisce il chilometro all'ora (km/h) al metro al secondo, perché le velocità dei veicoli e le distanze stradali sono espresse così con numeri più intuitivi a quella scala. 1 m/s equivale esattamente a 3,6 km/h.",
         ],
       },
       {
         title: "Il chilometro all'ora e il miglio all'ora",
         paragraphs: [
-          "Il chilometro all'ora (km/h) e l'unita standard di velocita stradale nei paesi che usano il sistema metrico, tra cui l'Italia. Il miglio all'ora (mph) e preferito nei paesi che usano il sistema di misura britannico, come Stati Uniti e Regno Unito.",
-          "1 mph equivale a circa 1,60934 km/h. Questa differenza e una fonte pratica di confusione che puo portare a interpretare male i tachimetri di veicoli importati o i limiti di velocita quando si noleggia un'auto all'estero.",
+          "Il chilometro all'ora (km/h) e l'unità standard di velocità stradale nei paesi che usano il sistema metrico, tra cui l'Italia. Il miglio all'ora (mph) e preferito nei paesi che usano il sistema di misura britannico, come Stati Uniti e Regno Unito.",
+          "1 mph equivale a circa 1,60934 km/h. Questa differenza e una fonte pratica di confusione che puo portare a interpretare male i tachimetri di veicoli importati o i limiti di velocità quando si noleggia un'auto all'estero.",
         ],
       },
       {
-        title: "Il nodo: la velocita nella navigazione marittima e aerea",
+        title: "Il nodo: la velocità nella navigazione marittima e aerea",
         paragraphs: [
-          "Il nodo (miglio nautico all'ora) e l'unita di velocita standard nella navigazione marittima e aerea; 1 nodo significa esattamente percorrere un miglio nautico (1852 metri) in un'ora.",
-          "Il nome dell'unita 'nodo' deriva storicamente dal metodo usato per misurare la velocita delle navi: si gettava in acqua una corda con dei nodi e si contava quanti nodi passavano in un tempo determinato. Questo metodo fu usato per secoli prima dell'avvento degli strumenti moderni di misurazione della velocita.",
+          "Il nodo (miglio nautico all'ora) e l'unità di velocità standard nella navigazione marittima e aerea; 1 nodo significa esattamente percorrere un miglio nautico (1852 metri) in un'ora.",
+          "Il nome dell'unità 'nodo' deriva storicamente dal metodo usato per misurare la velocità delle navi: si gettava in acqua una corda con dei nodi e si contava quanti nodi passavano in un tempo determinato. Questo metodo fu usato per secoli prima dell'avvento degli strumenti moderni di misurazione della velocità.",
         ],
       },
       {
-        title: "La velocita della luce: il limite di velocita dell'universo",
+        title: "La velocità della luce: il limite di velocità dell'universo",
         paragraphs: [
-          "La velocita della luce nel vuoto e definita esattamente come 299.792.458 m/s e costituisce, secondo la teoria della relativita speciale di Einstein, il limite superiore assoluto che puo essere raggiunto dall'informazione o da un oggetto con massa nell'universo.",
-          "Il fatto che la velocita della luce sia definita come un numero esatto (ed era gia considerata costante prima della revisione del SI del 2019) permette che la definizione attuale del metro si basi anch'essa su questa costante -- il metro e definito come la distanza percorsa dalla luce in 1/299.792.458 di secondo.",
+          "La velocità della luce nel vuoto e definita esattamente come 299.792.458 m/s e costituisce, secondo la teoria della relativita speciale di Einstein, il limite superiore assoluto che puo essere raggiunto dall'informazione o da un oggetto con massa nell'universo.",
+          "Il fatto che la velocità della luce sia definita come un numero esatto (ed era gia considerata costante prima della revisione del SI del 2019) permette che la definizione attuale del metro si basi anch'essa su questa costante -- il metro e definito come la distanza percorsa dalla luce in 1/299.792.458 di secondo.",
         ],
       },
       {
-        title: "Il numero di Mach: una relazione con la velocita del suono",
+        title: "Il numero di Mach: una relazione con la velocità del suono",
         paragraphs: [
-          "In aviazione, le velocita elevate vengono spesso espresse tramite il numero di Mach, che rappresenta il rapporto tra la velocita di un oggetto e la velocita del suono in quel mezzo (Mach 1 = velocita del suono). La velocita del suono non e un valore fisso; varia in base alla temperatura e alla densita dell'aria (circa 343 m/s, ovvero 1235 km/h, a livello del mare).",
-          "Per questo, uno stesso numero di Mach puo corrispondere a velocita reali diverse (in km/h o m/s) a seconda dell'altitudine e della temperatura -- la velocita Mach 0,85 di un aereo varia nel suo valore reale con l'altitudine.",
+          "In aviazione, le velocità elevate vengono spesso espresse tramite il numero di Mach, che rappresenta il rapporto tra la velocità di un oggetto e la velocità del suono in quel mezzo (Mach 1 = velocità del suono). La velocità del suono non e un valore fisso; varia in base alla temperatura e alla densita dell'aria (circa 343 m/s, ovvero 1235 km/h, a livello del mare).",
+          "Per questo, uno stesso numero di Mach puo corrispondere a velocità reali diverse (in km/h o m/s) a seconda dell'altitudine e della temperatura -- la velocità Mach 0,85 di un aereo varia nel suo valore reale con l'altitudine.",
         ],
       },
       {
-        title: "La differenza tra velocita media e velocita istantanea",
+        title: "La differenza tra velocità media e velocità istantanea",
         paragraphs: [
-          "La velocita media si ottiene dividendo la distanza totale percorsa per il tempo totale trascorso e fornisce un unico valore per l'intero tragitto. La velocita istantanea e la velocita di un oggetto in un momento specifico e puo variare continuamente (accelerazione, decelerazione, arresto, ecc.).",
-          "Mentre il tachimetro di un veicolo mostra la velocita istantanea, la velocita media di un tragitto viene solitamente calcolata a posteriori a partire dalla distanza totale e dalla durata totale -- i due valori differiscono finche la velocita non e rimasta costante durante il tragitto.",
+          "La velocità media si ottiene dividendo la distanza totale percorsa per il tempo totale trascorso e fornisce un unico valore per l'intero tragitto. La velocità istantanea e la velocità di un oggetto in un momento specifico e puo variare continuamente (accelerazione, decelerazione, arresto, ecc.).",
+          "Mentre il tachimetro di un veicolo mostra la velocità istantanea, la velocità media di un tragitto viene solitamente calcolata a posteriori a partire dalla distanza totale e dalla durata totale -- i due valori differiscono finche la velocità non e rimasta costante durante il tragitto.",
         ],
       },
     ],
     unitTable: [
       { name: "Centimetro al secondo", symbol: "cm/s", referenceValue: "0,01 m/s", system: "SI/metrico", commonUse: "Laboratorio e misurazione di movimento lento" },
-      { name: "Metro al minuto", symbol: "m/min", referenceValue: "≈0,0167 m/s", system: "SI/metrico", commonUse: "Velocita di nastri trasportatori industriali" },
+      { name: "Metro al minuto", symbol: "m/min", referenceValue: "≈0,0167 m/s", system: "SI/metrico", commonUse: "Velocità di nastri trasportatori industriali" },
       { name: "Metro al secondo", symbol: "m/s", referenceValue: "1 m/s", system: "SI", commonUse: "Calcoli scientifici e fisici" },
-      { name: "Chilometro all'ora", symbol: "km/h", referenceValue: "≈0,278 m/s", system: "Metrico", commonUse: "Velocita di veicoli e limiti stradali" },
-      { name: "Miglio all'ora", symbol: "mph", referenceValue: "≈0,447 m/s", system: "Britannico/statunitense", commonUse: "Velocita di veicoli negli USA e nel Regno Unito" },
-      { name: "Nodo", symbol: "kn", referenceValue: "≈0,514 m/s", system: "Navigazione marittima/aerea", commonUse: "Velocita di navi e aerei" },
-      { name: "Chilometro al minuto", symbol: "km/min", referenceValue: "≈16,67 m/s", system: "Metrico", commonUse: "Calcoli di velocita su brevi distanze" },
-      { name: "Chilometro al secondo", symbol: "km/s", referenceValue: "1000 m/s", system: "Metrico", commonUse: "Velocita di navicelle spaziali e corpi celesti" },
-      { name: "Velocita della luce", symbol: "c", referenceValue: "299.792.458 m/s", system: "Costante universale", commonUse: "Calcoli di fisica e astronomia" },
+      { name: "Chilometro all'ora", symbol: "km/h", referenceValue: "≈0,278 m/s", system: "Metrico", commonUse: "Velocità di veicoli e limiti stradali" },
+      { name: "Miglio all'ora", symbol: "mph", referenceValue: "≈0,447 m/s", system: "Britannico/statunitense", commonUse: "Velocità di veicoli negli USA e nel Regno Unito" },
+      { name: "Nodo", symbol: "kn", referenceValue: "≈0,514 m/s", system: "Navigazione marittima/aerea", commonUse: "Velocità di navi e aerei" },
+      { name: "Chilometro al minuto", symbol: "km/min", referenceValue: "≈16,67 m/s", system: "Metrico", commonUse: "Calcoli di velocità su brevi distanze" },
+      { name: "Chilometro al secondo", symbol: "km/s", referenceValue: "1000 m/s", system: "Metrico", commonUse: "Velocità di navicelle spaziali e corpi celesti" },
+      { name: "Velocità della luce", symbol: "c", referenceValue: "299.792.458 m/s", system: "Costante universale", commonUse: "Calcoli di fisica e astronomia" },
     ],
   },
   {
@@ -702,17 +702,17 @@ export const italianCategoryPages: LocalizedItalianCategoryPage[] = [
     slug: "pressione",
     sourceSlug: "basinc",
     category: "basinc",
-    title: "Conversione delle unita di pressione",
+    title: "Conversione delle unità di pressione",
     description:
       "Converti la pressione tra pascal, chilopascal, bar e PSI; consulta formule e usi in ingegneria.",
     introduction: [
-      "La pressione e la grandezza fisica che esprime la quantita di forza che agisce perpendicolarmente su una superficie, in relazione a quella superficie. Il suo campo di applicazione e molto ampio, dalle tensioni di contatto tra solidi al fluido in una tubazione, dall'atmosfera ai sistemi di vuoto. In ingegneria, la pressione non e solo un valore numerico: e una variabile di progetto fondamentale per la sicurezza, la tenuta, la resistenza strutturale, la conversione di energia e il controllo dei processi.",
-      "Nel Sistema Internazionale di Unita, l'unita derivata della pressione e il pascal, simboleggiato da Pa. Un pascal corrisponde alla pressione esercitata da una forza di un newton distribuita uniformemente su una superficie di un metro quadrato. Per questo la pressione e direttamente legata ai concetti di forza e superficie; condivide la stessa struttura dimensionale con lo sforzo meccanico dei materiali, anche se il contesto fisico non e sempre lo stesso.",
-      "Nella vita quotidiana e nell'industria, la pressione e espressa la maggior parte delle volte in unita piu pratiche del pascal. Il chilopascal e il PSI sono molto usati per la pressione degli pneumatici, il bar nei sistemi di processo, l'atm nelle condizioni atmosferiche e il millibar in meteorologia. Il fatto che diversi settori abbiano storicamente adottato unita diverse rende particolarmente importante comprendere bene le conversioni di pressione e non confondere i tipi di pressione assoluta, relativa o differenziale.",
+      "La pressione e la grandezza fisica che esprime la quantità di forza che agisce perpendicolarmente su una superficie, in relazione a quella superficie. Il suo campo di applicazione e molto ampio, dalle tensioni di contatto tra solidi al fluido in una tubazione, dall'atmosfera ai sistemi di vuoto. In ingegneria, la pressione non e solo un valore numerico: e una variabile di progetto fondamentale per la sicurezza, la tenuta, la resistenza strutturale, la conversione di energia e il controllo dei processi.",
+      "Nel Sistema Internazionale di Unità, l'unità derivata della pressione e il pascal, simboleggiato da Pa. Un pascal corrisponde alla pressione esercitata da una forza di un newton distribuita uniformemente su una superficie di un metro quadrato. Per questo la pressione e direttamente legata ai concetti di forza e superficie; condivide la stessa struttura dimensionale con lo sforzo meccanico dei materiali, anche se il contesto fisico non e sempre lo stesso.",
+      "Nella vita quotidiana e nell'industria, la pressione e espressa la maggior parte delle volte in unità più pratiche del pascal. Il chilopascal e il PSI sono molto usati per la pressione degli pneumatici, il bar nei sistemi di processo, l'atm nelle condizioni atmosferiche e il millibar in meteorologia. Il fatto che diversi settori abbiano storicamente adottato unità diverse rende particolarmente importante comprendere bene le conversioni di pressione e non confondere i tipi di pressione assoluta, relativa o differenziale.",
     ],
     facts: [
       { label: "Grandezza fisica", value: "Pressione" },
-      { label: "Unita derivata del SI", value: "Pascal" },
+      { label: "Unità derivata del SI", value: "Pascal" },
       { label: "Simbolo SI", value: "Pa" },
       { label: "Relazione di base", value: "P = F / A" },
       { label: "Equivalente SI", value: "1 Pa = 1 N/m²" },
@@ -724,7 +724,7 @@ export const italianCategoryPages: LocalizedItalianCategoryPage[] = [
       {
         title: "Che cos'e la pressione?",
         paragraphs: [
-          "La pressione non dipende solo dalla grandezza della forza applicata su una superficie, ma anche dalla superficie su cui quella forza e distribuita. Se la stessa forza viene applicata su una superficie piu piccola, la pressione aumenta; se viene distribuita su una superficie maggiore, diminuisce. Per questo un coltello ben affilato puo tagliare con poca forza, mentre la stessa forza su una base larga produce un effetto superficiale molto minore.",
+          "La pressione non dipende solo dalla grandezza della forza applicata su una superficie, ma anche dalla superficie su cui quella forza e distribuita. Se la stessa forza viene applicata su una superficie più piccola, la pressione aumenta; se viene distribuita su una superficie maggiore, diminuisce. Per questo un coltello ben affilato puo tagliare con poca forza, mentre la stessa forza su una base larga produce un effetto superficiale molto minore.",
           "Nella meccanica dei fluidi, la pressione e considerata la componente di sforzo normale che un fluido in quiete o in movimento esercita sul suo intorno. In un fluido in quiete, la pressione si trasmette in tutte le direzioni ed e legata al principio di Pascal nei recipienti chiusi. Questa proprieta e alla base delle presse idrauliche, dei sistemi frenanti e di numerosi attuatori industriali.",
           "Il concetto di pressione non si limita a liquidi e gas. L'effetto della forza normale media sulle superfici di contatto crea anch'esso una distribuzione simile alla pressione. Ma in ingegneria, parlando di pressione si pensa principalmente a sistemi fluidi come tubazioni, serbatoi, compressori, condotti d'aria, camere a vuoto e l'ambiente atmosferico.",
         ],
@@ -732,17 +732,17 @@ export const italianCategoryPages: LocalizedItalianCategoryPage[] = [
       {
         title: "La formula della pressione: P = F / A",
         paragraphs: [
-          "La definizione di base della pressione e data dalla relazione P = F / A. Qui, P rappresenta la pressione, F la componente di forza perpendicolare alla superficie, e A la superficie su cui quella forza e distribuita. L'analisi dimensionale da newton diviso metro quadrato, che equivale all'unita pascal.",
+          "La definizione di base della pressione e data dalla relazione P = F / A. Qui, P rappresenta la pressione, F la componente di forza perpendicolare alla superficie, e A la superficie su cui quella forza e distribuita. L'analisi dimensionale da newton diviso metro quadrato, che equivale all'unità pascal.",
           "Questa relazione, supponendo una distribuzione uniforme della forza, fornisce la pressione media. In problemi di contatto reali o in campi complessi all'interno di un fluido, la pressione puo variare lungo la superficie. In tal caso, invece di un unico valore medio, si considera la distribuzione locale di pressione, le equazioni differenziali e le condizioni al contorno.",
           "Un errore frequente nella pratica e scegliere male la direzione della forza e la superficie effettiva. Ad esempio, nel calcolare la forza di un pistone si deve usare solo la superficie della sezione effettiva sottoposta alla pressione. Ignorare dettagli geometrici come la guarnizione, il bullone o la superficie di appoggio puo provocare errori di progettazione.",
         ],
       },
       {
-        title: "Perche il pascal e l'unita SI della pressione?",
+        title: "Perché il pascal e l'unità SI della pressione?",
         paragraphs: [
-          "Il pascal nasce in modo naturale dalla combinazione del newton, unita SI di forza, e del metro quadrato, unita SI di superficie. L'uguaglianza 1 Pa = 1 N/m² non e solo una definizione, ma anche un'espressione dimensionale che mostra l'origine meccanica della pressione. Per questo non e necessario definire un'unita di base indipendente per la pressione.",
-          "Il sistema SI cerca di relazionare in modo coerente le grandezze derivate con le unita di base. Esprimere la pressione in pascal fornisce un quadro compatibile con la densita di energia, lo sforzo, il modulo di elasticita e le equazioni della meccanica dei fluidi. Il fatto che una stessa unita possa essere usata in campi diversi riduce gli errori di conversione nei calcoli.",
-          "Su scala quotidiana, il pascal e solitamente un'unita molto piccola. Per questo l'ingegneria preferisce scale piu pratiche come il chilopascal, il megapascal o il bar. Ciononostante, tutte finiscono per essere legate al pascal e, quindi, alla base del SI.",
+          "Il pascal nasce in modo naturale dalla combinazione del newton, unità SI di forza, e del metro quadrato, unità SI di superficie. L'uguaglianza 1 Pa = 1 N/m² non e solo una definizione, ma anche un'espressione dimensionale che mostra l'origine meccanica della pressione. Per questo non e necessario definire un'unità di base indipendente per la pressione.",
+          "Il sistema SI cerca di relazionare in modo coerente le grandezze derivate con le unità di base. Esprimere la pressione in pascal fornisce un quadro compatibile con la densita di energia, lo sforzo, il modulo di elasticita e le equazioni della meccanica dei fluidi. Il fatto che una stessa unità possa essere usata in campi diversi riduce gli errori di conversione nei calcoli.",
+          "Su scala quotidiana, il pascal e solitamente un'unità molto piccola. Per questo l'ingegneria preferisce scale più pratiche come il chilopascal, il megapascal o il bar. Ciononostante, tutte finiscono per essere legate al pascal e, quindi, alla base del SI.",
         ],
       },
       {
@@ -750,7 +750,7 @@ export const italianCategoryPages: LocalizedItalianCategoryPage[] = [
         paragraphs: [
           "La misurazione sistematica della pressione inizio nel 1643 con lo sviluppo del barometro a mercurio da parte dello scienziato italiano Evangelista Torricelli. Torricelli osservo che, immergendo un tubo di vetro chiuso a un'estremita e riempito di mercurio, con l'estremita aperta in un recipiente di mercurio, il mercurio nel tubo si fermava a una certa altezza lasciando un vuoto sopra.",
           "Torricelli propose che l'altezza della colonna di mercurio fosse bilanciata dal peso dell'aria esterna. Questa idea pose le basi sperimentali della nozione che l'aria ha un peso misurabile e, quindi, una pressione, ed e considerata il punto di partenza dello studio della pressione come grandezza scientifica.",
-          "Nel 1648, su suggerimento di Blaise Pascal, Florin Perier misuro un barometro a diverse altitudini sul Puy de Dome e dimostro che la pressione atmosferica diminuisce con l'altitudine. I lavori successivi basati su questi fondamenti portarono al coordinamento internazionale delle unita di misura con la Convenzione del Metro del 1875, la definizione precisa dell'atmosfera standard nel 1954 e l'adozione del pascal nel SI nel 1971.",
+          "Nel 1648, su suggerimento di Blaise Pascal, Florin Perier misuro un barometro a diverse altitudini sul Puy de Dome e dimostro che la pressione atmosferica diminuisce con l'altitudine. I lavori successivi basati su questi fondamenti portarono al coordinamento internazionale delle unità di misura con la Convenzione del Metro del 1875, la definizione precisa dell'atmosfera standard nel 1954 e l'adozione del pascal nel SI nel 1971.",
         ],
       },
       {
@@ -781,38 +781,38 @@ export const italianCategoryPages: LocalizedItalianCategoryPage[] = [
         title: "Pressione statica, dinamica e totale",
         paragraphs: [
           "La pressione statica e la componente di pressione che rappresenta lo stato termodinamico locale del flusso, dal punto di vista di un osservatore che si muove con il fluido. La maggior parte dei punti di misurazione in tubazioni, serbatoi e condotti segue fondamentalmente la pressione statica. La maggior parte dei trasmettitori di pressione e progettata per misurare questa grandezza.",
-          "La pressione dinamica esprime l'effetto cinetico dovuto alla velocita del flusso e la sua formula approssimativa abituale e q = 1/2 ρv². Questo termine svolge un ruolo importante nell'approccio di Bernoulli e viene usato in metodi di misurazione della velocita come il tubo di Pitot. Quanto maggiore e la velocita, tanto maggiore e la pressione dinamica.",
+          "La pressione dinamica esprime l'effetto cinetico dovuto alla velocità del flusso e la sua formula approssimativa abituale e q = 1/2 ρv². Questo termine svolge un ruolo importante nell'approccio di Bernoulli e viene usato in metodi di misurazione della velocità come il tubo di Pitot. Quanto maggiore e la velocità, tanto maggiore e la pressione dinamica.",
           "Nell'approccio di flusso ideale, la pressione totale e interpretata come la somma della pressione statica e di quella dinamica. Nei sistemi reali, questa distinzione deve essere usata con cautela a causa dell'attrito, della turbolenza, della comprimibilita e delle perdite locali. Ciononostante, la distinzione statica-totale-dinamica rimane un linguaggio ingegneristico fondamentale in ventilazione, aerodinamica e misurazioni di processo.",
         ],
       },
       {
         title: "L'altezza di pressione e la prevalenza di una pompa",
         paragraphs: [
-          "L'altezza di pressione esprime una determinata pressione in termini dell'altezza equivalente di una colonna di fluido. La relazione di base si scrive h = P / (ρg). Cosi, una stessa pressione corrisponde a un'altezza diversa a seconda della densita del fluido.",
-          "Nei sistemi di pompaggio, la pressione e interpretata la maggior parte delle volte non direttamente in pascal o bar, ma in metri di colonna di fluido. Cio accade perche la funzione della pompa non e solo dare pressione al fluido, ma anche fornirgli l'energia necessaria per superare una determinata altezza, le perdite per attrito e una componente di velocita. Per questo il concetto di prevalenza e molto pratico dal punto di vista dell'ingegneria sul campo.",
-          "L'altezza di pressione e l'altezza geometrica non sono lo stesso concetto. Affidarsi solo alla lettura di un manometro senza considerare le perdite di carico nelle tubazioni, il carico di velocita e le resistenze locali puo dare luogo a risultati errati nella selezione delle pompe e nel bilanciamento del sistema. Specialmente nell'acqua, nell'olio e nei fluidi di processo, le differenze di densita richiedono una conversione fatta con attenzione.",
+          "L'altezza di pressione esprime una determinata pressione in termini dell'altezza equivalente di una colonna di fluido. La relazione di base si scrive h = P / (ρg). Così, una stessa pressione corrisponde a un'altezza diversa a seconda della densita del fluido.",
+          "Nei sistemi di pompaggio, la pressione e interpretata la maggior parte delle volte non direttamente in pascal o bar, ma in metri di colonna di fluido. Cio accade perché la funzione della pompa non e solo dare pressione al fluido, ma anche fornirgli l'energia necessaria per superare una determinata altezza, le perdite per attrito e una componente di velocità. Per questo il concetto di prevalenza e molto pratico dal punto di vista dell'ingegneria sul campo.",
+          "L'altezza di pressione e l'altezza geometrica non sono lo stesso concetto. Affidarsi solo alla lettura di un manometro senza considerare le perdite di carico nelle tubazioni, il carico di velocità e le resistenze locali puo dare luogo a risultati errati nella selezione delle pompe e nel bilanciamento del sistema. Specialmente nell'acqua, nell'olio e nei fluidi di processo, le differenze di densita richiedono una conversione fatta con attenzione.",
         ],
       },
       {
-        title: "Perche le unita di pressione sono diverse?",
+        title: "Perché le unità di pressione sono diverse?",
         paragraphs: [
-          "La diversita delle unita di pressione si spiega in gran parte per ragioni storiche e settoriali. Mentre il sistema SI prende il pascal come riferimento, l'industria continua a usare il bar, la medicina il mmHg, la meteorologia il millibar, l'automotive il PSI, e alcuni documenti tecnici antichi l'atmosfera tecnica. Questa situazione e dovuta al fatto che i diversi ambiti mantengono le proprie abitudini d'uso.",
-          "Alcune unita risultano piu intuitive per l'utente. Ad esempio, la pressione di uno pneumatico puo sembrare piu leggibile espressa in circa 35 psi che in 240 kPa, e la pressione di un processo in 3,5 bar invece che in 350.000 Pa. La scelta dell'unita non dipende solo dalla precisione, ma anche dalla cultura dei rapporti, dalla scala degli strumenti e dalle abitudini sul campo.",
-          "Tuttavia, poiche unita diverse esprimono la stessa grandezza fisica, nei calcoli congiunti e indispensabile una conversione accurata. Confondere coefficienti approssimati con coefficienti definiti esattamente, ignorare la distinzione relativa-assoluta, e leggere male i simboli sono importanti fonti di errore.",
+          "La diversita delle unità di pressione si spiega in gran parte per ragioni storiche e settoriali. Mentre il sistema SI prende il pascal come riferimento, l'industria continua a usare il bar, la medicina il mmHg, la meteorologia il millibar, l'automotive il PSI, e alcuni documenti tecnici antichi l'atmosfera tecnica. Questa situazione e dovuta al fatto che i diversi ambiti mantengono le proprie abitudini d'uso.",
+          "Alcune unità risultano più intuitive per l'utente. Ad esempio, la pressione di uno pneumatico puo sembrare più leggibile espressa in circa 35 psi che in 240 kPa, e la pressione di un processo in 3,5 bar invece che in 350.000 Pa. La scelta dell'unità non dipende solo dalla precisione, ma anche dalla cultura dei rapporti, dalla scala degli strumenti e dalle abitudini sul campo.",
+          "Tuttavia, poiche unità diverse esprimono la stessa grandezza fisica, nei calcoli congiunti e indispensabile una conversione accurata. Confondere coefficienti approssimati con coefficienti definiti esattamente, ignorare la distinzione relativa-assoluta, e leggere male i simboli sono importanti fonti di errore.",
         ],
       },
       {
         title: "Come si misura la pressione?",
         paragraphs: [
           "Per misurare la pressione bisogna prima determinare il tipo di pressione richiesto: assoluta, relativa o differenziale. Poi si valuta l'intervallo di misurazione, il tipo di fluido, la temperatura, la compatibilita chimica, le vibrazioni e il livello di precisione richiesto. Uno stesso sensore potrebbe non essere adatto a tutte le applicazioni.",
-          "Per misurazioni di bassa pressione e differenziale possono essere usati trasmettitori differenziali a diaframma; per alte pressioni di processo, elementi estensimetrici o piezoresistivi; e per applicazioni di vuoto, sensori assoluti specifici. I manometri a colonna liquida sono molto utili per insegnare il principio di base; ma nell'industria moderna sono piu comuni le apparecchiature elettroniche.",
+          "Per misurazioni di bassa pressione e differenziale possono essere usati trasmettitori differenziali a diaframma; per alte pressioni di processo, elementi estensimetrici o piezoresistivi; e per applicazioni di vuoto, sensori assoluti specifici. I manometri a colonna liquida sono molto utili per insegnare il principio di base; ma nell'industria moderna sono più comuni le apparecchiature elettroniche.",
           "Per una misurazione precisa bisogna considerare la posizione delle linee di impulso, la posizione di montaggio del sensore, la regolazione dello zero e gli effetti della temperatura. Nelle linee di gas e liquido, una differenza di densita o una condensazione puo creare un carico idrostatico aggiuntivo sul sensore. Per questo i dettagli di installazione determinano il risultato tanto quanto la scelta dell'apparecchiatura.",
         ],
       },
       {
         title: "Sensori di pressione e manometri",
         paragraphs: [
-          "I manometri meccanici, come gli indicatori a tubo di Bourdon, convertono la pressione in un movimento di lancetta leggibile tramite la deformazione di un elemento elastico. Robusti, semplici e senza bisogno di energia, sono usati da tempo nell'industria. Tuttavia, nelle applicazioni che richiedono precisione e registrazione dei dati, i sensori elettronici sono piu flessibili.",
+          "I manometri meccanici, come gli indicatori a tubo di Bourdon, convertono la pressione in un movimento di lancetta leggibile tramite la deformazione di un elemento elastico. Robusti, semplici e senza bisogno di energia, sono usati da tempo nell'industria. Tuttavia, nelle applicazioni che richiedono precisione e registrazione dei dati, i sensori elettronici sono più flessibili.",
           "I sensori di pressione elettronici possono essere piezoresistivi, capacitivi, estensimetrici o basati su risonanza. Questi sensori convertono la variazione di pressione in un segnale elettrico, che viene trasmesso a sistemi PLC, SCADA o di acquisizione dati. Cio permette non solo una lettura istantanea, ma anche allarmi, controllo e analisi delle tendenze.",
           "I manometri differenziali forniscono la differenza di pressione tra due punti, i sensori assoluti la pressione rispetto al vuoto totale, e gli strumenti manometrici la pressione rispetto all'atmosfera. Affidarsi solo al valore numerico senza verificare il tipo di riferimento nella scheda tecnica di un'apparecchiatura puo portare a gravi errori di interpretazione.",
         ],
@@ -836,7 +836,7 @@ export const italianCategoryPages: LocalizedItalianCategoryPage[] = [
       {
         title: "La relazione e la differenza tra pressione e sforzo",
         paragraphs: [
-          "La pressione e lo sforzo condividono la stessa struttura dimensionale ed entrambi possono essere espressi in pascal. Questa somiglianza e dovuta al fatto che entrambi rappresentano un effetto di forza per unita di superficie. Ma cio non significa che siano fisicamente la stessa grandezza.",
+          "La pressione e lo sforzo condividono la stessa struttura dimensionale ed entrambi possono essere espressi in pascal. Questa somiglianza e dovuta al fatto che entrambi rappresentano un effetto di forza per unità di superficie. Ma cio non significa che siano fisicamente la stessa grandezza.",
           "La pressione e generalmente concepita come uno sforzo normale isotropo esercitato dai fluidi; cioe, in un fluido in quiete, la pressione in uno stesso punto e identica in tutte le direzioni. Lo sforzo nella meccanica dei solidi, invece, puo avere componenti normali e di taglio, dipendere dalla direzione e avere una struttura tensoriale.",
           "Ignorare questa distinzione puo provocare interpretazioni errate, specialmente nei calcoli della parete di un serbatoio, della superficie di una guarnizione o della resistenza dei materiali. La pressione interna di un fluido crea sforzi circonferenziali e assiali sul serbatoio; ma il campo di sforzi nel materiale del serbatoio non e identico alla pressione del fluido in se.",
         ],
@@ -844,8 +844,8 @@ export const italianCategoryPages: LocalizedItalianCategoryPage[] = [
       {
         title: "Errori frequenti nei calcoli di pressione",
         paragraphs: [
-          "L'errore piu frequente e confondere la pressione relativa con quella assoluta. Specialmente nelle leggi dei gas, nei calcoli di densita e nelle applicazioni di vuoto e richiesta la pressione assoluta, ma a volte si usa direttamente il valore relativo letto su un manometro. Cio crea un errore sistematico nel risultato.",
-          "Un altro errore consiste nell'arrotondare i coefficienti di conversione o nell'usare un riferimento di unita errato. Nel convertire tra PSI, bar, atm, mmHg e kPa bisogna decidere quale livello di precisione sia sufficiente per i valori approssimati. Se la calibrazione dell'apparecchiatura richiede alta precisione, usare un numero insufficiente di decimali puo causare problemi.",
+          "L'errore più frequente e confondere la pressione relativa con quella assoluta. Specialmente nelle leggi dei gas, nei calcoli di densita e nelle applicazioni di vuoto e richiesta la pressione assoluta, ma a volte si usa direttamente il valore relativo letto su un manometro. Cio crea un errore sistematico nel risultato.",
+          "Un altro errore consiste nell'arrotondare i coefficienti di conversione o nell'usare un riferimento di unità errato. Nel convertire tra PSI, bar, atm, mmHg e kPa bisogna decidere quale livello di precisione sia sufficiente per i valori approssimati. Se la calibrazione dell'apparecchiatura richiede alta precisione, usare un numero insufficiente di decimali puo causare problemi.",
           "Sono frequenti anche l'ignorare gli effetti idrostatici, il trascurare l'altezza di montaggio del sensore e il non considerare l'effetto della temperatura. Specialmente nelle linee di impulso piene di liquido, nei serbatoi chiusi e nelle applicazioni di pressione differenziale, dettagli di installazione apparentemente minori possono modificare significativamente il risultato della misurazione.",
         ],
       },
@@ -868,86 +868,86 @@ export const italianCategoryPages: LocalizedItalianCategoryPage[] = [
     slug: "energia",
     sourceSlug: "enerji",
     category: "enerji",
-    title: "Conversione delle unita di energia",
+    title: "Conversione delle unità di energia",
     description:
       "Confronta in un'unica categoria le conversioni di energia basate su joule, chilowattora, caloria e BTU.",
     introduction: [
-      "L'energia e la grandezza fisica fondamentale che esprime la capacita di un sistema di compiere lavoro. Nel Sistema Internazionale di Unita, l'unita derivata dell'energia e il joule, ottenuto dal prodotto di una forza e uno spostamento.",
+      "L'energia e la grandezza fisica fondamentale che esprime la capacita di un sistema di compiere lavoro. Nel Sistema Internazionale di Unità, l'unità derivata dell'energia e il joule, ottenuto dal prodotto di una forza e uno spostamento.",
       "Nella vita quotidiana si usano il chilowattora (kWh) per le bollette elettriche, la caloria/chilocaloria in nutrizione, il BTU nei sistemi di climatizzazione, il therm nella fatturazione del gas naturale, e l'elettronvolt in fisica delle particelle subatomiche.",
     ],
     facts: [
       { label: "Grandezza fisica", value: "Energia (lavoro)" },
       { label: "Simbolo dimensionale", value: "[ML²T⁻²]" },
-      { label: "Unita derivata del SI", value: "Joule" },
-      { label: "Simbolo dell'unita SI", value: "J" },
+      { label: "Unità derivata del SI", value: "Joule" },
+      { label: "Simbolo dell'unità SI", value: "J" },
       { label: "Definizione del joule", value: "1 J = spostamento di 1 metro sotto una forza di 1 newton (1 N·m)" },
     ],
     sections: [
       {
         title: "Che cos'e l'energia?",
         paragraphs: [
-          "L'energia e la capacita di un oggetto o sistema di compiere lavoro. Puo esistere in molte forme -- energia cinetica (movimento), energia potenziale (posizione), energia termica, energia chimica ed energia elettrica -- e, secondo il principio di conservazione dell'energia, puo trasformarsi da una forma all'altra senza che la sua quantita totale venga creata o distrutta.",
+          "L'energia e la capacita di un oggetto o sistema di compiere lavoro. Puo esistere in molte forme -- energia cinetica (movimento), energia potenziale (posizione), energia termica, energia chimica ed energia elettrica -- e, secondo il principio di conservazione dell'energia, puo trasformarsi da una forma all'altra senza che la sua quantità totale venga creata o distrutta.",
           "L'energia e una grandezza derivata, ottenuta tramite il prodotto di una forza e uno spostamento (lavoro), e la sua dimensione SI e indicata come ML²T⁻² (massa × lunghezza al quadrato / tempo al quadrato).",
         ],
       },
       {
-        title: "L'unita SI dell'energia: il joule",
+        title: "L'unità SI dell'energia: il joule",
         paragraphs: [
-          "Il joule e l'unita derivata del SI per l'energia, simboleggiato da J; prende il nome dal fisico britannico del XIX secolo James Prescott Joule. Un joule equivale all'energia necessaria per spostare un oggetto di 1 metro sotto l'effetto di una forza di 1 newton.",
-          "Poiche il joule e ancora un'unita molto piccola per esprimere molte quantita di energia quotidiane, in ingegneria e nell'uso quotidiano si preferiscono i suoi multipli: il chilojoule (mille joule) e il megajoule (un milione di joule).",
+          "Il joule e l'unità derivata del SI per l'energia, simboleggiato da J; prende il nome dal fisico britannico del XIX secolo James Prescott Joule. Un joule equivale all'energia necessaria per spostare un oggetto di 1 metro sotto l'effetto di una forza di 1 newton.",
+          "Poiche il joule e ancora un'unità molto piccola per esprimere molte quantità di energia quotidiane, in ingegneria e nell'uso quotidiano si preferiscono i suoi multipli: il chilojoule (mille joule) e il megajoule (un milione di joule).",
         ],
       },
       {
-        title: "Il chilowattora: l'unita delle bollette elettriche",
+        title: "Il chilowattora: l'unità delle bollette elettriche",
         paragraphs: [
-          "Il chilowattora (kWh) e la quantita di energia consumata da una potenza di un chilowatt usata per un'ora, e costituisce l'unita standard della fatturazione elettrica in tutto il mondo. 1 kWh equivale esattamente a 3.600.000 joule (3,6 megajoule).",
+          "Il chilowattora (kWh) e la quantità di energia consumata da una potenza di un chilowatt usata per un'ora, e costituisce l'unità standard della fatturazione elettrica in tutto il mondo. 1 kWh equivale esattamente a 3.600.000 joule (3,6 megajoule).",
           "Per calcolare il consumo energetico di un apparecchio elettrico basta moltiplicare la sua potenza (in watt) per il suo tempo di funzionamento (in ore); ad esempio, un apparecchio da 2000 watt che funziona per 3 ore consuma 6 kWh di energia.",
         ],
       },
       {
         title: "La caloria e la chilocaloria: l'energia nella nutrizione",
         paragraphs: [
-          "La caloria fu originariamente definita come la quantita di energia necessaria per elevare di 1 °C la temperatura di un grammo d'acqua, e 1 caloria equivale esattamente a 4,184 joule.",
+          "La caloria fu originariamente definita come la quantità di energia necessaria per elevare di 1 °C la temperatura di un grammo d'acqua, e 1 caloria equivale esattamente a 4,184 joule.",
           "Il valore di 'calorie' che compare sulle etichette degli alimenti e in realta, in senso scientifico, chilocalorie (1000 calorie) -- questa convenzione di denominazione in nutrizione genera spesso confusione; quando si dice che un alimento ha '200 calorie', in realta si parla di 200 chilocalorie (200.000 calorie).",
         ],
       },
       {
         title: "Il BTU e il therm: l'energia della climatizzazione e del gas naturale",
         paragraphs: [
-          "Il BTU (British Thermal Unit) e la quantita di energia necessaria per elevare di 1 °F la temperatura di una libbra d'acqua; e un'unita di origine statunitense, ma ampiamente usata nel mondo per esprimere la capacita dei sistemi di riscaldamento e climatizzazione. 1 BTU equivale a circa 1055,06 joule.",
-          "Il therm e una grande unita di energia usata nella fatturazione del gas naturale ed equivale esattamente a 100.000 BTU. In alcuni paesi, il consumo di gas naturale viene fatturato direttamente in therm invece che in metri cubi.",
+          "Il BTU (British Thermal Unit) e la quantità di energia necessaria per elevare di 1 °F la temperatura di una libbra d'acqua; e un'unità di origine statunitense, ma ampiamente usata nel mondo per esprimere la capacita dei sistemi di riscaldamento e climatizzazione. 1 BTU equivale a circa 1055,06 joule.",
+          "Il therm e una grande unità di energia usata nella fatturazione del gas naturale ed equivale esattamente a 100.000 BTU. In alcuni paesi, il consumo di gas naturale viene fatturato direttamente in therm invece che in metri cubi.",
         ],
       },
       {
-        title: "L'elettronvolt: l'unita del mondo subatomico",
+        title: "L'elettronvolt: l'unità del mondo subatomico",
         paragraphs: [
-          "L'elettronvolt (eV) esprime l'energia cinetica che un elettrone acquisisce attraversando una differenza di potenziale di un volt; e un'unita di energia estremamente piccola (1 eV ≈ 1,602176634 × 10⁻¹⁹ joule).",
-          "Nella fisica delle particelle e nella fisica atomica, le energie vengono spesso espresse in elettronvolt (e nei suoi multipli keV, MeV, GeV) invece che in joule, perche a quella scala il joule da luogo a numeri estremamente piccoli e poco pratici.",
+          "L'elettronvolt (eV) esprime l'energia cinetica che un elettrone acquisisce attraversando una differenza di potenziale di un volt; e un'unità di energia estremamente piccola (1 eV ≈ 1,602176634 × 10⁻¹⁹ joule).",
+          "Nella fisica delle particelle e nella fisica atomica, le energie vengono spesso espresse in elettronvolt (e nei suoi multipli keV, MeV, GeV) invece che in joule, perché a quella scala il joule da luogo a numeri estremamente piccoli e poco pratici.",
         ],
       },
       {
         title: "Il principio di conservazione dell'energia",
         paragraphs: [
           "Secondo il principio di conservazione dell'energia, noto anche come primo principio della termodinamica, l'energia totale di un sistema chiuso rimane costante; l'energia non viene creata ne distrutta, si trasforma solo da una forma all'altra.",
-          "Ad esempio, nel motore di un'automobile, l'energia chimica (carburante) si trasforma prima in energia termica e poi in energia meccanica (movimento); sebbene in questo processo parte dell'energia si converta in calore non sfruttabile per attrito e scarico, la quantita totale di energia non cambia.",
+          "Ad esempio, nel motore di un'automobile, l'energia chimica (carburante) si trasforma prima in energia termica e poi in energia meccanica (movimento); sebbene in questo processo parte dell'energia si converta in calore non sfruttabile per attrito e scarico, la quantità totale di energia non cambia.",
         ],
       },
       {
-        title: "Perche e importante la conversione tra unita di energia?",
+        title: "Perché e importante la conversione tra unità di energia?",
         paragraphs: [
-          "Settori diversi preferiscono tradizionalmente unita di energia diverse: l'ingegneria elettrica il chilowattora, la scienza della nutrizione la chilocaloria, il settore della climatizzazione il BTU, e il settore del gas naturale il therm. Poter convertire correttamente tra queste diverse unita e essenziale per confrontare l'efficienza energetica e calcolare i costi.",
-          "Ad esempio, per confrontare l'efficienza di una pompa di calore con quella di una caldaia a gas naturale bisogna convertire il consumo energetico di entrambi i sistemi in un'unita comune (generalmente kWh o joule).",
+          "Settori diversi preferiscono tradizionalmente unità di energia diverse: l'ingegneria elettrica il chilowattora, la scienza della nutrizione la chilocaloria, il settore della climatizzazione il BTU, e il settore del gas naturale il therm. Poter convertire correttamente tra queste diverse unità e essenziale per confrontare l'efficienza energetica e calcolare i costi.",
+          "Ad esempio, per confrontare l'efficienza di una pompa di calore con quella di una caldaia a gas naturale bisogna convertire il consumo energetico di entrambi i sistemi in un'unità comune (generalmente kWh o joule).",
         ],
       },
     ],
     unitTable: [
       { name: "Joule", symbol: "J", referenceValue: "1 J", system: "SI", commonUse: "Calcoli scientifici e fisici di energia" },
       { name: "Chilojoule", symbol: "kJ", referenceValue: "1000 J", system: "SI/metrico", commonUse: "Energia alimentare (in alcuni paesi)" },
-      { name: "Megajoule", symbol: "MJ", referenceValue: "1.000.000 J", system: "SI/metrico", commonUse: "Carburante e grandi quantita di energia" },
+      { name: "Megajoule", symbol: "MJ", referenceValue: "1.000.000 J", system: "SI/metrico", commonUse: "Carburante e grandi quantità di energia" },
       { name: "Caloria", symbol: "cal", referenceValue: "4,184 J", system: "Metrico (tradizionale)", commonUse: "Nutrizione e chimica" },
       { name: "Chilocaloria", symbol: "kcal", referenceValue: "4184 J", system: "Metrico (tradizionale)", commonUse: "Etichette degli alimenti ('calorie')" },
-      { name: "Wattora", symbol: "Wh", referenceValue: "3600 J", system: "Metrico (elettricita)", commonUse: "Consumo di piccoli apparecchi" },
-      { name: "Chilowattora", symbol: "kWh", referenceValue: "3.600.000 J", system: "Metrico (elettricita)", commonUse: "Fatturazione elettrica" },
+      { name: "Wattora", symbol: "Wh", referenceValue: "3600 J", system: "Metrico (elettricità)", commonUse: "Consumo di piccoli apparecchi" },
+      { name: "Chilowattora", symbol: "kWh", referenceValue: "3.600.000 J", system: "Metrico (elettricità)", commonUse: "Fatturazione elettrica" },
       { name: "BTU", symbol: "Btu", referenceValue: "≈1055,06 J", system: "Britannico/statunitense", commonUse: "Capacita di climatizzazione e riscaldamento" },
       { name: "Therm", symbol: "th", referenceValue: "≈105.506.000 J", system: "Britannico/statunitense", commonUse: "Fatturazione del gas naturale" },
       { name: "Elettronvolt", symbol: "eV", referenceValue: "≈1,602 × 10⁻¹⁹ J", system: "Fisica atomica/delle particelle", commonUse: "Misurazione di energia atomica e nucleare" },
@@ -958,16 +958,16 @@ export const italianCategoryPages: LocalizedItalianCategoryPage[] = [
     slug: "archiviazione-dati",
     sourceSlug: "veri",
     category: "veri",
-    title: "Conversione delle unita di archiviazione dati",
+    title: "Conversione delle unità di archiviazione dati",
     description:
       "Converti tra byte, kilobyte, megabyte, gigabyte e terabyte; confronta i calcoli basati su 1000 e 1024.",
     introduction: [
-      "L'unita di archiviazione dati (informazione) esprime la quantita di informazione memorizzata o elaborata in un sistema informatico. L'unita piu basilare e il bit; otto bit insieme formano un byte.",
-      "Parlando di archiviazione e velocita di internet compaiono sia unita decimali (base 1000) come il kilobyte, il megabyte, il gigabyte e il terabyte, sia unita binarie (base 1024) come il kibibyte, il mebibyte e il gibibyte usate dai sistemi operativi -- la differenza tra questi due sistemi e il motivo principale per cui un disco acquistato sembra avere 'meno' spazio.",
+      "L'unità di archiviazione dati (informazione) esprime la quantità di informazione memorizzata o elaborata in un sistema informatico. L'unità più basilare e il bit; otto bit insieme formano un byte.",
+      "Parlando di archiviazione e velocità di internet compaiono sia unità decimali (base 1000) come il kilobyte, il megabyte, il gigabyte e il terabyte, sia unità binarie (base 1024) come il kibibyte, il mebibyte e il gibibyte usate dai sistemi operativi -- la differenza tra questi due sistemi e il motivo principale per cui un disco acquistato sembra avere 'meno' spazio.",
     ],
     facts: [
-      { label: "Unita piu piccola", value: "Bit (0 o 1)" },
-      { label: "Unita di base", value: "Byte = 8 bit" },
+      { label: "Unità più piccola", value: "Bit (0 o 1)" },
+      { label: "Unità di base", value: "Byte = 8 bit" },
       { label: "Sistema decimale (SI)", value: "1 KB = 1000 byte, 1 MB = 1000 KB" },
       { label: "Sistema binario (IEC)", value: "1 KiB = 1024 byte, 1 MiB = 1024 KiB" },
       { label: "Differenza tra 1000 e 1024", value: "≈7,4% di differenza tra 1 GB (decimale) e 1 GiB (binario)" },
@@ -976,12 +976,12 @@ export const italianCategoryPages: LocalizedItalianCategoryPage[] = [
       {
         title: "Che cosa sono il bit e il byte?",
         paragraphs: [
-          "Il bit (cifra binaria) e l'unita di informazione piu piccola che un computer possa elaborare e puo assumere solo due valori: 0 o 1. Otto bit insieme formano un byte; un byte puo rappresentare 256 (2⁸) valori distinti -- sufficiente, ad esempio, per codificare un carattere di testo.",
-          "Il bit e generalmente abbreviato con una 'b' minuscola e il byte con una 'B' maiuscola; questa distinzione puo generare confusione, specialmente tra le velocita di internet (Mbps = megabit al secondo) e la dimensione dei file (MB = megabyte) -- una connessione internet di 100 Mbps corrisponde teoricamente a una velocita di download di circa 12,5 MB al secondo (100 ÷ 8).",
+          "Il bit (cifra binaria) e l'unità di informazione più piccola che un computer possa elaborare e puo assumere solo due valori: 0 o 1. Otto bit insieme formano un byte; un byte puo rappresentare 256 (2⁸) valori distinti -- sufficiente, ad esempio, per codificare un carattere di testo.",
+          "Il bit e generalmente abbreviato con una 'b' minuscola e il byte con una 'B' maiuscola; questa distinzione puo generare confusione, specialmente tra le velocità di internet (Mbps = megabit al secondo) e la dimensione dei file (MB = megabyte) -- una connessione internet di 100 Mbps corrisponde teoricamente a una velocità di download di circa 12,5 MB al secondo (100 ÷ 8).",
         ],
       },
       {
-        title: "Perche esistono due sistemi di unita diversi?",
+        title: "Perché esistono due sistemi di unità diversi?",
         paragraphs: [
           "Poiche i computer funzionano in sistema binario, l'indirizzamento della memoria e naturalmente legato a potenze di 2 (come 1024, 1.048.576). Per questo il mondo del software ha storicamente inteso 'kilobyte' come 1024 byte.",
           "I produttori di dischi preferiscono, per ragioni di marketing e facilita di calcolo, il prefisso decimale del SI (base 1000) -- un disco pubblicizzato come '1 TB' da un produttore contiene in realta esattamente 1.000.000.000.000 byte, ma poiche il sistema operativo calcola in base 1024, mostra sullo schermo un numero minore, come '931 GB'.",
@@ -990,22 +990,22 @@ export const italianCategoryPages: LocalizedItalianCategoryPage[] = [
       {
         title: "Lo standard IEC: KiB, MiB, GiB",
         paragraphs: [
-          "Per risolvere questa confusione, nel 1998 la Commissione Elettrotecnica Internazionale (IEC) ha standardizzato nomi distinti (kibibyte, mebibyte, gibibyte, tebibyte) e simboli (KiB, MiB, GiB, TiB) per le unita in base binaria.",
+          "Per risolvere questa confusione, nel 1998 la Commissione Elettrotecnica Internazionale (IEC) ha standardizzato nomi distinti (kibibyte, mebibyte, gibibyte, tebibyte) e simboli (KiB, MiB, GiB, TiB) per le unità in base binaria.",
           "Secondo questo standard, i prefissi tradizionali come KB/MB/GB dovrebbero essere usati solo in senso decimale (base 1000), e per i valori in base 1024 sarebbero preferiti prefissi 'binari' come KiB/MiB/GiB. Tuttavia, nell'uso quotidiano e in molti programmi questa distinzione non e ancora applicata in modo coerente.",
         ],
       },
       {
-        title: "Perche cresce la differenza tra 1000 e 1024?",
+        title: "Perché cresce la differenza tra 1000 e 1024?",
         paragraphs: [
-          "Mentre a livello di kilobyte (1000 contro 1024) la differenza e solo del 2,4%, questa differenza aumenta a ogni unita superiore: a livello di megabyte e di ≈4,9%, a livello di gigabyte di ≈7,4%, e a livello di terabyte arriva al ≈10%.",
+          "Mentre a livello di kilobyte (1000 contro 1024) la differenza e solo del 2,4%, questa differenza aumenta a ogni unità superiore: a livello di megabyte e di ≈4,9%, a livello di gigabyte di ≈7,4%, e a livello di terabyte arriva al ≈10%.",
           "Per questo, nelle grandi capacita di archiviazione (come un disco da 1 TB), la differenza tra il calcolo decimale e quello binario diventa abbastanza grande da dare all'utente l'impressione visibile di avere 'meno spazio' (una differenza di circa 90 GB).",
         ],
       },
       {
-        title: "Unita di archiviazione basate sul bit: kilobit, megabit, gigabit",
+        title: "Unità di archiviazione basate sul bit: kilobit, megabit, gigabit",
         paragraphs: [
-          "I fornitori di servizi internet esprimono solitamente la velocita di connessione in unita basate sul bit (kilobit al secondo, megabit al secondo, gigabit al secondo); e una tradizione storica dell'ingegneria delle reti.",
-          "Poiche gli utenti si aspettano solitamente la velocita di download di un file in byte (MB al secondo), non sapere che una connessione di '100 Mbps' ha una velocita di download reale di circa 12,5 MB al secondo puo dare la falsa impressione che la connessione sia 'lenta'.",
+          "I fornitori di servizi internet esprimono solitamente la velocità di connessione in unità basate sul bit (kilobit al secondo, megabit al secondo, gigabit al secondo); e una tradizione storica dell'ingegneria delle reti.",
+          "Poiche gli utenti si aspettano solitamente la velocità di download di un file in byte (MB al secondo), non sapere che una connessione di '100 Mbps' ha una velocità di download reale di circa 12,5 MB al secondo puo dare la falsa impressione che la connessione sia 'lenta'.",
         ],
       },
       {
@@ -1016,16 +1016,16 @@ export const italianCategoryPages: LocalizedItalianCategoryPage[] = [
         ],
       },
       {
-        title: "La storia dell'unita di archiviazione dati",
+        title: "La storia dell'unità di archiviazione dati",
         paragraphs: [
           "Il primo disco rigido presentato da IBM nel 1956 (il RAMAC 305) aveva una capacita di circa 3,75 megabyte e occupava la dimensione di un'intera stanza. Oggi, una scheda microSD puo contenere milioni di volte quella capacita nelle dimensioni di un palmo di mano.",
-          "Questo enorme aumento di capacita e strettamente legato non solo ai progressi della tecnologia di archiviazione (come il passaggio dai dischi magnetici alla memoria flash), ma anche alla costante riduzione del costo per unita.",
+          "Questo enorme aumento di capacita e strettamente legato non solo ai progressi della tecnologia di archiviazione (come il passaggio dai dischi magnetici alla memoria flash), ma anche alla costante riduzione del costo per unità.",
         ],
       },
     ],
     unitTable: [
-      { name: "Bit", symbol: "bit", referenceValue: "0,125 byte", system: "Binario", commonUse: "Velocita di rete (bps, Mbps)" },
-      { name: "Byte", symbol: "B", referenceValue: "1 byte (8 bit)", system: "Unita di base", commonUse: "Unita di base della dimensione dei file" },
+      { name: "Bit", symbol: "bit", referenceValue: "0,125 byte", system: "Binario", commonUse: "Velocità di rete (bps, Mbps)" },
+      { name: "Byte", symbol: "B", referenceValue: "1 byte (8 bit)", system: "Unità di base", commonUse: "Unità di base della dimensione dei file" },
       { name: "Kilobyte", symbol: "KB", referenceValue: "1000 byte", system: "Decimale (SI)", commonUse: "Documenti di testo" },
       { name: "Kibibyte", symbol: "KiB", referenceValue: "1024 byte", system: "Binario (IEC)", commonUse: "Visualizzazione della memoria del sistema operativo" },
       { name: "Megabyte", symbol: "MB", referenceValue: "1.000.000 byte", system: "Decimale (SI)", commonUse: "File di foto e musica" },
@@ -1041,17 +1041,17 @@ export const italianCategoryPages: LocalizedItalianCategoryPage[] = [
     slug: "elettricita",
     sourceSlug: "elektrik",
     category: "elektrik",
-    title: "Conversione delle unita elettriche",
+    title: "Conversione delle unità elettriche",
     description:
       "Converti le grandezze elettriche di base tra volt, chilovolt, ampere e milliampere; consulta valori di esempio.",
     introduction: [
-      "L'elettricita e un campo ampio composto da grandezze fisiche correlate ma distinte, come la tensione (differenza di potenziale) e la corrente (flusso di carica). Questa categoria riunisce le due grandezze di base piu frequenti nel lavoro elettrico quotidiano: il volt (tensione) e l'ampere (corrente).",
+      "L'elettricità e un campo ampio composto da grandezze fisiche correlate ma distinte, come la tensione (differenza di potenziale) e la corrente (flusso di carica). Questa categoria riunisce le due grandezze di base più frequenti nel lavoro elettrico quotidiano: il volt (tensione) e l'ampere (corrente).",
       "Tensione e corrente non sono la stessa grandezza fisica e non possono essere convertite direttamente l'una nell'altra; la loro relazione e stabilita dalla legge di Ohm (V = I × R), in funzione della resistenza del circuito. Le conversioni di questa pagina trattano ogni grandezza separatamente (volt-chilovolt, ampere-milliampere, ecc.).",
     ],
     facts: [
-      { label: "Nome dell'unita di tensione", value: "Volt (in onore di Alessandro Volta)" },
-      { label: "Nome dell'unita di corrente", value: "Ampere (in onore di Andre-Marie Ampere)" },
-      { label: "Unita di base del SI (corrente)", value: "Ampere (A) -- una delle 7 unita di base del SI" },
+      { label: "Nome dell'unità di tensione", value: "Volt (in onore di Alessandro Volta)" },
+      { label: "Nome dell'unità di corrente", value: "Ampere (in onore di Andre-Marie Ampere)" },
+      { label: "Unità di base del SI (corrente)", value: "Ampere (A) -- una delle 7 unità di base del SI" },
       { label: "Relazione tensione-corrente-resistenza", value: "Legge di Ohm: V = I × R" },
       { label: "Tensione di rete in Italia", value: "230 V (monofase), 400 V (trifase), 50 Hz" },
     ],
@@ -1059,29 +1059,29 @@ export const italianCategoryPages: LocalizedItalianCategoryPage[] = [
       {
         title: "Che cos'e la tensione (volt)?",
         paragraphs: [
-          "La tensione (voltaggio) esprime la differenza di potenziale elettrico tra due punti di un circuito elettrico e puo essere considerata la 'forza motrice' che fa fluire gli elettroni da un punto all'altro. La sua unita SI e il volt (V).",
-          "L'unita volt prende il nome dal fisico italiano Alessandro Volta, inventore della pila elettrica. Valori come '1,5 V' o '9 V' indicati su una pila esprimono la differenza di potenziale che quella pila puo fornire.",
+          "La tensione (voltaggio) esprime la differenza di potenziale elettrico tra due punti di un circuito elettrico e puo essere considerata la 'forza motrice' che fa fluire gli elettroni da un punto all'altro. La sua unità SI e il volt (V).",
+          "L'unità volt prende il nome dal fisico italiano Alessandro Volta, inventore della pila elettrica. Valori come '1,5 V' o '9 V' indicati su una pila esprimono la differenza di potenziale che quella pila puo fornire.",
         ],
       },
       {
         title: "Che cos'e la corrente (ampere)?",
         paragraphs: [
-          "La corrente elettrica esprime la quantita di carica elettrica che attraversa un conduttore per unita di tempo, e la sua unita SI e l'ampere (A). Un ampere corrisponde al passaggio di circa 6,242 × 10¹⁸ elettroni attraverso un punto ogni secondo.",
-          "L'unita ampere prende il nome dal fisico francese Andre-Marie Ampere, uno dei fondatori dell'elettromagnetismo. L'ampere era, prima della revisione del SI del 2019, una delle unita di base del SI; oggi e ancora considerata una grandezza fondamentale, ma ora e definita a partire dalla costante di carica elementare (e).",
+          "La corrente elettrica esprime la quantità di carica elettrica che attraversa un conduttore per unità di tempo, e la sua unità SI e l'ampere (A). Un ampere corrisponde al passaggio di circa 6,242 × 10¹⁸ elettroni attraverso un punto ogni secondo.",
+          "L'unità ampere prende il nome dal fisico francese Andre-Marie Ampere, uno dei fondatori dell'elettromagnetismo. L'ampere era, prima della revisione del SI del 2019, una delle unità di base del SI; oggi e ancora considerata una grandezza fondamentale, ma ora e definita a partire dalla costante di carica elementare (e).",
         ],
       },
       {
-        title: "Perche tensione e corrente non possono essere convertite tra loro?",
+        title: "Perché tensione e corrente non possono essere convertite tra loro?",
         paragraphs: [
-          "Tensione (V) e corrente (A) sono grandezze fisiche diverse -- una esprime una differenza di potenziale, l'altra la velocita di un flusso di carica. Per questo la domanda 'quanti ampere sono X volt' non ha risposta da sola senza conoscere la resistenza (o la potenza) del circuito.",
+          "Tensione (V) e corrente (A) sono grandezze fisiche diverse -- una esprime una differenza di potenziale, l'altra la velocità di un flusso di carica. Per questo la domanda 'quanti ampere sono X volt' non ha risposta da sola senza conoscere la resistenza (o la potenza) del circuito.",
           "La relazione tra le due e stabilita dalla legge di Ohm: V = I × R (Tensione = Corrente × Resistenza). Ad esempio, una tensione di 12 volt che attraversa una resistenza di 4 ohm produce una corrente di 3 ampere; ma quegli stessi 12 volt applicati a una resistenza diversa producono un valore di corrente completamente diverso.",
         ],
       },
       {
         title: "La relazione tra potenza, tensione e corrente",
         paragraphs: [
-          "La potenza elettrica (watt) e uguale al prodotto della tensione per la corrente: P = V × I. Questa formula mostra che un apparecchio della stessa potenza consumera meno corrente con alta tensione e piu corrente con bassa tensione.",
-          "Questa relazione spiega perche le reti di distribuzione elettrica funzionano ad alta tensione: trasportare la stessa potenza con una corrente minore riduce notevolmente le perdite di energia dovute alla resistenza delle linee di trasmissione (riscaldamento per effetto Joule).",
+          "La potenza elettrica (watt) e uguale al prodotto della tensione per la corrente: P = V × I. Questa formula mostra che un apparecchio della stessa potenza consumera meno corrente con alta tensione e più corrente con bassa tensione.",
+          "Questa relazione spiega perché le reti di distribuzione elettrica funzionano ad alta tensione: trasportare la stessa potenza con una corrente minore riduce notevolmente le perdite di energia dovute alla resistenza delle linee di trasmissione (riscaldamento per effetto Joule).",
         ],
       },
       {
@@ -1094,8 +1094,8 @@ export const italianCategoryPages: LocalizedItalianCategoryPage[] = [
       {
         title: "Corrente continua (CC) e corrente alternata (CA)",
         paragraphs: [
-          "Nella corrente continua (CC), gli elettroni fluiscono in modo costante in un'unica direzione -- le pile e i pannelli solari producono CC. Nella corrente alternata (CA), la direzione della corrente si inverte con una frequenza determinata ogni secondo (50 Hz in Italia, ossia 50 volte al secondo) -- l'elettricita di rete e CA.",
-          "Il motivo principale per cui la CA e preferita nella distribuzione in rete e che permette di elevare o ridurre facilmente la tensione tramite trasformatori; questo rende possibile trasportare l'elettricita su lunghe distanze con basse perdite.",
+          "Nella corrente continua (CC), gli elettroni fluiscono in modo costante in un'unica direzione -- le pile e i pannelli solari producono CC. Nella corrente alternata (CA), la direzione della corrente si inverte con una frequenza determinata ogni secondo (50 Hz in Italia, ossia 50 volte al secondo) -- l'elettricità di rete e CA.",
+          "Il motivo principale per cui la CA e preferita nella distribuzione in rete e che permette di elevare o ridurre facilmente la tensione tramite trasformatori; questo rende possibile trasportare l'elettricità su lunghe distanze con basse perdite.",
         ],
       },
       {
@@ -1122,15 +1122,15 @@ export const italianCategoryPages: LocalizedItalianCategoryPage[] = [
     category: "altin_ayar",
     title: "Conversione della caratura dell'oro",
     description:
-      "Converti tra oro a 24, 22, 18 e 14 carati in base alla quantita di oro puro; scopri la purezza e gli usi di ogni caratura.",
+      "Converti tra oro a 24, 22, 18 e 14 carati in base alla quantità di oro puro; scopri la purezza e gli usi di ogni caratura.",
     introduction: [
       "Come l'argento, l'oro non viene quasi mai usato puro nella fabbricazione di gioielli, poiche e un metallo molto tenero e si graffia facilmente -- per questo viene legato ad altri metalli come l'argento o il rame. Il carato e la misura che indica la proporzione di oro puro in quella lega.",
-      "La scala funziona su base 24: 24 carati significa oro completamente puro (100%), 18 carati significa che 18/24 della lega (circa il 75%) e oro puro. La conversione qui non consiste nell'esprimere la stessa grandezza fisica in un'unita diversa, ma nel trovare l'equivalente in grammi della stessa lega con un grado di purezza diverso.",
+      "La scala funziona su base 24: 24 carati significa oro completamente puro (100%), 18 carati significa che 18/24 della lega (circa il 75%) e oro puro. La conversione qui non consiste nell'esprimere la stessa grandezza fisica in un'unità diversa, ma nel trovare l'equivalente in grammi della stessa lega con un grado di purezza diverso.",
     ],
     facts: [
       { label: "Sistema di misura", value: "Standard di purezza della gioielleria (carato)" },
       { label: "Riferimento di base", value: "24 carati = 100% di oro puro" },
-      { label: "Carato piu comune in Turchia", value: "22 carati (bracciale, gioielleria tradizionale)" },
+      { label: "Carato più comune in Turchia", value: "22 carati (bracciale, gioielleria tradizionale)" },
       { label: "Uso quotidiano internazionale", value: "18 carati (anello, collana)" },
       { label: "Logica di calcolo", value: "Grammi × (carato di origine / 24) ÷ (carato di destinazione / 24)" },
     ],
@@ -1138,22 +1138,22 @@ export const italianCategoryPages: LocalizedItalianCategoryPage[] = [
       {
         title: "Che cosa misura esattamente il carato?",
         paragraphs: [
-          "Il carato indica quale parte del peso di un pezzo d'oro sia realmente oro. 24 carati e oro puro; 18 e 14 carati sono forme d'oro mescolate con argento o rame, rispettivamente, e quindi piu dure e meno pure.",
-          "Per questo si puo dire che un bracciale a 22 carati abbia un contenuto di oro puro leggermente 'inferiore' rispetto a 24 carati, ma sia piu resistente -- per questo i gioiellieri preferiscono solitamente 22 carati per i bracciali e 18 carati per anelli e collane.",
+          "Il carato indica quale parte del peso di un pezzo d'oro sia realmente oro. 24 carati e oro puro; 18 e 14 carati sono forme d'oro mescolate con argento o rame, rispettivamente, e quindi più dure e meno pure.",
+          "Per questo si puo dire che un bracciale a 22 carati abbia un contenuto di oro puro leggermente 'inferiore' rispetto a 24 carati, ma sia più resistente -- per questo i gioiellieri preferiscono solitamente 22 carati per i bracciali e 18 carati per anelli e collane.",
         ],
       },
       {
         title: "Come si calcola il contenuto di oro puro?",
         paragraphs: [
-          "Per scoprire la quantita di oro puro contenuta in un bracciale da 10 grammi a 22 carati: 10 × (22 / 24) = 9,17 grammi di oro puro (equivalente a 24 carati). I restanti 0,83 grammi sono altri metalli aggiunti per dare resistenza.",
-          "Al contrario, se un gioielliere fondesse quei 9,17 grammi di oro puro per rifarli in 18 carati: 9,17 ÷ (18 / 24) = 12,22 grammi di lega totale si otterrebbero -- perche essendo minore la proporzione di oro puro a 18 carati, la stessa quantita di oro puro si distribuisce in un peso totale maggiore.",
+          "Per scoprire la quantità di oro puro contenuta in un bracciale da 10 grammi a 22 carati: 10 × (22 / 24) = 9,17 grammi di oro puro (equivalente a 24 carati). I restanti 0,83 grammi sono altri metalli aggiunti per dare resistenza.",
+          "Al contrario, se un gioielliere fondesse quei 9,17 grammi di oro puro per rifarli in 18 carati: 9,17 ÷ (18 / 24) = 12,22 grammi di lega totale si otterrebbero -- perché essendo minore la proporzione di oro puro a 18 carati, la stessa quantità di oro puro si distribuisce in un peso totale maggiore.",
         ],
       },
       {
         title: "A cosa serve ogni carato?",
         paragraphs: [
           "A causa della sua morbidezza, l'oro a 24 carati non viene praticamente usato nella gioielleria quotidiana; e preferito per lingotti e prodotti di investimento. Quello a 22 carati e lo standard di bracciali e gioielleria tradizionale in Turchia e Medio Oriente.",
-          "Quello a 18 carati, per la sua alta resistenza, e comune in tutto il mondo per gioielli di uso quotidiano come anelli e collane con diamanti. Quello a 14 carati, piu economico e ancora piu resistente, e frequente specialmente nei mercati di Stati Uniti ed Europa.",
+          "Quello a 18 carati, per la sua alta resistenza, e comune in tutto il mondo per gioielli di uso quotidiano come anelli e collane con diamanti. Quello a 14 carati, più economico e ancora più resistente, e frequente specialmente nei mercati di Stati Uniti ed Europa.",
         ],
       },
     ],
@@ -1174,12 +1174,12 @@ export const italianCategoryPages: LocalizedItalianCategoryPage[] = [
       "Converti in grammi di argento puro i titoli 999, 925 (sterling), 900 e 800; scopri il sistema dei millesimi e i suoi usi in gioielleria.",
     introduction: [
       "Come l'oro, anche l'argento non viene quasi mai usato puro per fabbricare gioielli o oggetti, poiche e un metallo tenero che viene legato ad altri metalli come il rame. Il millesimo e la misura che indica la proporzione di argento puro in quella lega.",
-      "A differenza della caratura dell'oro, espressa su base 24, la purezza dell'argento e espressa su base 1000 (millesimo): 999 corrisponde ad argento quasi puro, mentre 925 e il titolo piu diffuso al mondo, noto come 'argento sterling'.",
+      "A differenza della caratura dell'oro, espressa su base 24, la purezza dell'argento e espressa su base 1000 (millesimo): 999 corrisponde ad argento quasi puro, mentre 925 e il titolo più diffuso al mondo, noto come 'argento sterling'.",
     ],
     facts: [
       { label: "Sistema di misura", value: "Sistema dei millesimi" },
       { label: "Riferimento principale", value: "999 = 99,9% di argento puro" },
-      { label: "Titolo di gioielleria piu diffuso", value: "925 (argento sterling)" },
+      { label: "Titolo di gioielleria più diffuso", value: "925 (argento sterling)" },
       { label: "Argento da investimento/lingotto", value: "Titolo 999 (argento fino)" },
       { label: "Regola di calcolo", value: "Grammi × (millesimo di origine / 1000) ÷ (millesimo di destinazione / 1000)" },
     ],
@@ -1187,29 +1187,29 @@ export const italianCategoryPages: LocalizedItalianCategoryPage[] = [
       {
         title: "Che cosa misura realmente il titolo dell'argento (millesimo)?",
         paragraphs: [
-          "A differenza dell'oro, la purezza dell'argento non e espressa su 24 unita, ma in millesimi (base 1000). Un titolo di 999 significa 999 parti per mille (ossia il 99,9%) di argento puro nella lega; il millesimo rimanente corrisponde solitamente a piccole tracce di altri elementi.",
-          "Il titolo 925 (argento sterling) significa che la lega contiene il 92,5% di argento puro, essendo il resto (7,5%) generalmente rame. Questa piccola quantita di rame conferisce solidita all'argento puro, che per natura e molto tenero e facile da deformare.",
+          "A differenza dell'oro, la purezza dell'argento non e espressa su 24 unità, ma in millesimi (base 1000). Un titolo di 999 significa 999 parti per mille (ossia il 99,9%) di argento puro nella lega; il millesimo rimanente corrisponde solitamente a piccole tracce di altri elementi.",
+          "Il titolo 925 (argento sterling) significa che la lega contiene il 92,5% di argento puro, essendo il resto (7,5%) generalmente rame. Questa piccola quantità di rame conferisce solidita all'argento puro, che per natura e molto tenero e facile da deformare.",
         ],
       },
       {
-        title: "Perche l'argento sterling (925) e lo standard mondiale?",
+        title: "Perché l'argento sterling (925) e lo standard mondiale?",
         paragraphs: [
-          "La storia dello standard dell'argento sterling (925) risale all'Inghilterra del XII secolo e, con il tempo, e diventata lo standard piu ampiamente accettato al mondo per gioielleria, posateria e oggetti d'argento.",
+          "La storia dello standard dell'argento sterling (925) risale all'Inghilterra del XII secolo e, con il tempo, e diventata lo standard più ampiamente accettato al mondo per gioielleria, posateria e oggetti d'argento.",
           "L'argento puro (999) e troppo tenero per oggetti di uso quotidiano e si graffia facilmente; aggiungere il 7,5% di rame conferisce all'argento la durezza sufficiente, conservando in gran parte la sua brillantezza e il colore caratteristici.",
         ],
       },
       {
         title: "Differenze tra i titoli 999, 900 e 800",
         paragraphs: [
-          "Il titolo 999 (argento fino/puro) e preferito per lingotti e prodotti di investimento perche il grado di purezza e il criterio piu importante per gli investitori; ma la sua morbidezza fa si che venga raramente usato nella gioielleria quotidiana.",
+          "Il titolo 999 (argento fino/puro) e preferito per lingotti e prodotti di investimento perché il grado di purezza e il criterio più importante per gli investitori; ma la sua morbidezza fa si che venga raramente usato nella gioielleria quotidiana.",
           "Il titolo 900 (argento da moneta) e stato storicamente usato nelle monete d'argento di molti paesi. Il titolo 800, comune specialmente in Europa (Germania, Austria), e uno standard di gioielleria meno puro dell'argento sterling, ma comunque resistente.",
         ],
       },
       {
-        title: "Come si calcola la quantita di argento puro?",
+        title: "Come si calcola la quantità di argento puro?",
         paragraphs: [
-          "Per determinare la quantita di argento puro di un anello d'argento da 10 grammi con titolo 925: 10 × (925 / 1000) = 9,25 grammi di argento puro. I restanti 0,75 grammi sono rame o altri metalli aggiunti per dare solidita.",
-          "Si applica la stessa logica per convertire tra titoli diversi: ad esempio, se e nota la quantita di argento puro di una lega con titolo 925, il suo equivalente in titolo 999 si ottiene dividendo quella quantita per 999/1000.",
+          "Per determinare la quantità di argento puro di un anello d'argento da 10 grammi con titolo 925: 10 × (925 / 1000) = 9,25 grammi di argento puro. I restanti 0,75 grammi sono rame o altri metalli aggiunti per dare solidita.",
+          "Si applica la stessa logica per convertire tra titoli diversi: ad esempio, se e nota la quantità di argento puro di una lega con titolo 925, il suo equivalente in titolo 999 si ottiene dividendo quella quantità per 999/1000.",
         ],
       },
       {

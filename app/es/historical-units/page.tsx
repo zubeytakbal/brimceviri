@@ -4,7 +4,7 @@ import StaticPageLayout from "../../components/StaticPageLayout";
 import { buildSiteUrl } from "../../siteConfig";
 
 export const metadata = {
-  title: "Unidades de medida historicas",
+  title: "Unidades de medida históricas",
   description:
     "Descubre las unidades de medida bizantinas, otomanas y turcas antiguas, y convierte a metros y gramos con breves explicaciones.",
   alternates: {
@@ -22,7 +22,7 @@ export const metadata = {
     },
   },
   openGraph: {
-    title: "Unidades de medida historicas",
+    title: "Unidades de medida históricas",
     description: "Descubre las unidades de medida bizantinas, otomanas y turcas antiguas.",
     url: buildSiteUrl("/es/historical-units"),
     siteName: "BirimCeviri.app",
@@ -53,7 +53,7 @@ const byzantineUnits = [
     href: "/birimler/bizans-ayagi",
     name: "Pie bizantino (pous)",
     value: "≈ 0,3148 m",
-    note: "Extension del pie griego antiguo, usada hasta 1453.",
+    note: "Extensión del pie griego antiguo, usada en el ámbito bizantino hasta 1453.",
   },
   {
     href: "/birimler/bizans-kulaci",
@@ -65,13 +65,13 @@ const byzantineUnits = [
     href: "/birimler/bizans-litrasi",
     name: "Litra bizantina (litra)",
     value: "≈ 324 g",
-    note: "Unidad de masa basica de la tradicion bizantina, influida por la libra romana.",
+    note: "Unidad básica de masa de tradición bizantina, influida por la libra romana.",
   },
   {
     href: "/birimler/bizans-onsu",
     name: "Ounkia bizantina (ounkia)",
     value: "= 1/12 litra ≈ 27 g",
-    note: "Distinta de la onza moderna de los sistemas britanico y estadounidense.",
+    note: "Distinta de la onza moderna de los sistemas británico y estadounidense.",
   },
 ];
 
@@ -80,25 +80,25 @@ const ottomanUnits = [
     href: "/birimler/arsin",
     name: "Arşın",
     value: "≈ 0,68 m",
-    note: "Tenia varios usos: el arşın de mercado, el mas conocido, y el arşın de construccion, usado para longitudes mayores.",
+    note: "Tenía varios usos, entre ellos el arşın de mercado y el de construcción; sus valores podían variar según el contexto.",
   },
   {
     href: "/birimler/endaze",
     name: "Endaze",
     value: "= 0,65 m",
-    note: "Usada especialmente para medir tela y textiles, asi como en el comercio relacionado.",
+    note: "Usada especialmente para medir telas y textiles en el comercio.",
   },
   {
     href: "/birimler/okka",
     name: "Okka otomana (Okka)",
     value: "= 400 dirhem ≈ 1282,945 g",
-    note: "Una de las unidades de peso mas conocidas de los mercados otomanos tradicionales.",
+    note: "Una de las unidades de masa más conocidas de los mercados otomanos tradicionales.",
   },
   {
     href: "/birimler/dirhem",
     name: "Dirhem",
     value: "= 1/400 okka ≈ 3,207 g",
-    note: "Usada para cantidades pequenas, como metales preciosos, especias y algunos cosmeticos.",
+    note: "Usada para cantidades pequeñas, como metales preciosos, especias y algunos cosméticos.",
   },
 ];
 
@@ -107,7 +107,7 @@ const oldTurkicUnits = [
     href: "/birimler/cig",
     name: "Çığ",
     value: "≈ 0,333 m",
-    note: "Una antigua unidad de longitud turca, encontrada en fuentes linguisticas e historicas antiguas.",
+    note: "Antigua unidad de longitud turca documentada en fuentes lingüísticas e históricas.",
   },
 ];
 
@@ -143,45 +143,44 @@ export default function SpanishHistoricalUnitsPage() {
   return (
     <StaticPageLayout
       locale="es"
-      breadcrumbAriaLabel="Ruta de navegacion"
+      breadcrumbAriaLabel="Ruta de navegación"
       breadcrumbs={[
         { href: "/es", label: "Inicio" },
-        { label: "Unidades de medida historicas" },
+        { label: "Unidades de medida históricas" },
       ]}
-      title="Unidades de medida historicas"
-      description="Descubre las unidades de medida bizantinas, otomanas y turcas antiguas con sus equivalentes modernos en metros y gramos, y convierte directamente con dos herramientas practicas."
+      title="Unidades de medida históricas"
+      description="Descubre unidades de medida bizantinas, otomanas y turcas antiguas con equivalentes modernos en metros y gramos, y conviértelas con dos herramientas prácticas."
       alternateLink={{
         href: "/tarihi-olcu-birimleri",
         hrefLang: "tr",
-        label: "Türkçe versiyonu aç",
+        label: "Abrir la versión en turco",
       }}
       sections={[
         {
-          heading: "Breve contexto historico",
+          heading: "Breve contexto histórico",
           content: (
             <>
               <p>
-                La historia de la medicion en Anatolia y esta region no
-                comenzo con el sistema metrico moderno; atraveso varias
-                capas de sistemas bizantino y despues otomano, pasando por
-                medidas turcas aun mas antiguas.
+                La historia de la medición en Anatolia y su entorno no
+                comenzó con el sistema métrico moderno. Reunió tradiciones
+                bizantinas, otomanas y turcas anteriores, cuyos valores
+                podían variar según la época y el lugar.
               </p>
               <p>
-                Por eso nombres como arşın, okka y dirhem todavia aparecen
-                hoy en documentos antiguos, asi como en algunos libros e
-                investigaciones historicas.
+                Por eso nombres como arşın, okka y dirhem todavía aparecen
+                en documentos, libros e investigaciones históricas.
               </p>
             </>
           ),
         },
         {
-          heading: "Conversor de unidades de longitud historicas",
+          heading: "Conversor de unidades de longitud históricas",
           content: (
             <>
               <p>
                 Convierte directamente entre arşın, endaze, pie bizantino,
-                braza bizantina y çığ, con el equivalente moderno en
-                metros. Para ver todas las unidades de longitud modernas,
+                braza bizantina y çığ, con un equivalente moderno en
+                metros. Para consultar las unidades de longitud modernas,
                 abre la{" "}
                 <Link href="/es/categories/longitud">biblioteca completa de longitudes</Link>.
               </p>
@@ -194,15 +193,15 @@ export default function SpanishHistoricalUnitsPage() {
           ),
         },
         {
-          heading: "Conversor de unidades de masa historicas",
+          heading: "Conversor de unidades de masa históricas",
           content: (
             <>
               <p>
                 Convierte entre la okka otomana, el dirhem, la litra
                 bizantina y la ounkia bizantina, usando el gramo moderno
                 como referencia. Para unidades modernas como el kilogramo y
-                la tonelada, abre la{" "}
-                <Link href="/es/categories/masa">biblioteca completa de masas</Link>.
+                la tonelada, consulta la{" "}
+                <Link href="/es/categories/masa">guía completa de unidades de masa</Link>.
               </p>
               <CategoryUnitConverter
                 category="kutle"
@@ -213,61 +212,57 @@ export default function SpanishHistoricalUnitsPage() {
           ),
         },
         {
-          heading: "Unidades de la epoca bizantina",
+          heading: "Unidades de época bizantina",
           content: (
             <>
               <p>
-                Bizancio heredo gran parte de la tradicion de medicion
-                griega y romana, y creo unidades de longitud y masa
-                practicas que se mantuvieron en uso en el comercio y la
-                construccion durante siglos.
+                Bizancio heredó tradiciones de medición griegas y romanas,
+                adaptadas para el comercio y la construcción durante siglos.
               </p>
               <UnitList units={byzantineUnits} />
             </>
           ),
         },
         {
-          heading: "Unidades de la epoca otomana",
+          heading: "Unidades de época otomana",
           content: (
             <>
               <p>
-                Antes de que el Estado otomano pasara completamente al
-                sistema metrico en el siglo XX, unidades como el arşın, el
-                endaze, la okka y el dirhem se usaban en el comercio, la
-                construccion y la vida cotidiana.
+                Antes de la adopción completa del sistema métrico en el
+                siglo XX, unidades como arşın, endaze, okka y dirhem se
+                usaban en comercio, construcción y vida cotidiana.
               </p>
               <UnitList units={ottomanUnits} />
             </>
           ),
         },
         {
-          heading: "Unidades turcas aun mas antiguas",
+          heading: "Unidades turcas aún más antiguas",
           content: (
             <>
               <p>
-                Algunas unidades antiguas siguen siendo conocidas gracias a
-                fuentes linguisticas e historicas, y son importantes para
-                entender escritos antiguos y relacionarlos con las medidas
-                modernas.
+                Algunas unidades se conocen por fuentes lingüísticas e
+                históricas. Ayudan a interpretar escritos antiguos en
+                relación con medidas modernas.
               </p>
               <UnitList units={oldTurkicUnits} />
             </>
           ),
         },
         {
-          heading: "¿Por que siguen siendo importantes estas unidades hoy?",
+          heading: "¿Por qué siguen siendo importantes estas unidades hoy?",
           content: (
             <>
               <p>
-                Estos nombres todavia aparecen hoy en actas de waqf,
-                antiguos registros, investigacion historica y trabajos de
-                traduccion; convertirlos a metros o gramos ayuda a
-                entenderlos rapidamente.
+                Estos nombres aparecen en documentos de fundaciones pías
+                (waqf), registros antiguos, investigación histórica y
+                traducciones. Convertirlos a metros o gramos ayuda a
+                interpretarlos con rapidez.
               </p>
               <p>
-                Esta pagina tambien es util para estudiantes, creadores de
-                contenido y cualquier persona que quiera leer cifras
-                historicas segun referencias modernas claras.
+                La página es útil para estudiantes, creadores de contenido
+                y cualquier persona que quiera interpretar cifras históricas
+                con referencias modernas claras.
               </p>
             </>
           ),

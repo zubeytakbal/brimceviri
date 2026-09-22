@@ -67,14 +67,14 @@ const nicheCards: Array<{
     id: "recipe-converter",
     href: "/it/recipe-converter",
     title: "Convertitore di ricette",
-    description: "Incolla una ricetta e adatta le quantita con un moltiplicatore.",
+    description: "Incolla una ricetta e adatta le quantità con un moltiplicatore.",
     iconName: "recipe",
   },
   {
     id: "historical-units",
     href: "/it/historical-units",
-    title: "Unita storiche",
-    description: "Converti arşın, okka, dirhem e unita bizantine in unita moderne.",
+    title: "Unità storiche",
+    description: "Converti arşın, okka, dirhem e unità bizantine in unità moderne.",
     iconName: "historical",
   },
 ];
@@ -184,11 +184,11 @@ export default function ItalianHomeDirectory({
       <section className="directory-hero">
         <div className="directory-shell">
           <div className="directory-hero-copy">
-            <p className="directory-eyebrow">Convertitore di unita in italiano</p>
+            <p className="directory-eyebrow">Convertitore di unità in italiano</p>
             <h1>Trova subito la pagina di conversione giusta</h1>
             <p className="directory-lead">
-              Converti lunghezza, massa, pressione e molte altre unita
-              completamente in italiano, con guide alle unita chiare.
+              Converti lunghezza, massa, pressione e molte altre unità
+              completamente in italiano, con guide alle unità chiare.
             </p>
           </div>
 
@@ -216,7 +216,7 @@ export default function ItalianHomeDirectory({
               </div>
 
               <p className="directory-search-hint" id={`${inputId}-hint`}>
-                Digita il nome di un'unita in italiano o inglese e premi
+                Digita il nome di un'unità in italiano o inglese e premi
                 Invio per aprire il primo risultato.
               </p>
 
@@ -265,8 +265,8 @@ export default function ItalianHomeDirectory({
         <section className="directory-section">
           <header className="directory-section-header">
             <div>
-              <h2>Conversione di unita</h2>
-              <p>Scegli una categoria per vedere tutte le unita e le pagine di conversione.</p>
+              <h2>Conversione di unità</h2>
+              <p>Scegli una categoria per vedere tutte le unità e le pagine di conversione.</p>
             </div>
 
             <Link className="directory-section-link" href="/it/categories">
@@ -327,7 +327,7 @@ export default function ItalianHomeDirectory({
             <header className="directory-section-header">
               <div>
                 <h2>Conversioni popolari</h2>
-                <p>Accesso diretto alle conversioni piu cercate.</p>
+                <p>Accesso diretto alle conversioni più cercate.</p>
               </div>
             </header>
 
@@ -348,8 +348,8 @@ export default function ItalianHomeDirectory({
           <section className="directory-section">
             <header className="directory-section-header">
               <div>
-                <h2>Unita popolari</h2>
-                <p>Guide dettagliate in italiano per le unita piu cercate.</p>
+                <h2>Unità popolari</h2>
+                <p>Guide dettagliate in italiano per le unità più cercate.</p>
               </div>
             </header>
 

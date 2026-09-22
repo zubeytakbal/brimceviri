@@ -6,7 +6,7 @@ import { buildSiteUrl } from "../../siteConfig";
 export const metadata: Metadata = {
   title: "Conversor de recetas",
   description:
-    "Pega tu receta, elige un multiplicador para aumentarla o reducirla, y obten al instante las nuevas cantidades -- algunos ingredientes tambien se convierten automaticamente a gramos.",
+    "Pega tu receta, elige un multiplicador para aumentarla o reducirla, y obtén al instante las nuevas cantidades — algunos ingredientes también se convierten automáticamente a gramos.",
   alternates: {
     canonical: "/es/recipe-converter",
     languages: {
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Conversor de recetas",
-    description: "Pega tu receta y obten al instante las nuevas cantidades.",
+    description: "Pega tu receta y obtén al instante las nuevas cantidades.",
     url: buildSiteUrl("/es/recipe-converter"),
     siteName: "BirimCeviri.app",
     locale: "es_ES",
@@ -35,7 +35,7 @@ export default function SpanishRecipeConverterPage() {
   return (
     <main className="all-conversions-page" lang="es">
       <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Ruta de navegacion">
+        <nav className="breadcrumbs" aria-label="Ruta de navegación">
           <Link href="/es">Inicio</Link>
           <span aria-hidden="true">&rsaquo;</span>
           <span>Conversor de recetas</span>
@@ -45,38 +45,38 @@ export default function SpanishRecipeConverterPage() {
           <h1>Conversor de recetas</h1>
 
           <p>
-            Pega tu receta linea por linea, por ejemplo: "2 tazas de
-            harina". Una vez elegido el multiplicador, el sitio calcula al
+            Pega tu receta línea por línea, por ejemplo: «2 tazas de
+            harina». Una vez elegido el multiplicador, el sitio calcula al
             instante las nuevas cantidades. Si el ingrediente se reconoce y
-            esta expresado en una unidad como la taza o la cucharada,
-            tambien se muestra un valor aproximado en gramos.
+            está expresado en una unidad como la taza o la cucharada,
+            también se muestra un valor aproximado en gramos.
           </p>
         </header>
 
         <RecipeScalerConverter locale="es" />
 
         <section className="category-article-content">
-          <h2>¿Como aumentar o reducir una receta?</h2>
+          <h2>¿Cómo aumentar o reducir una receta?</h2>
           <p>
             El principio es sencillo: multiplicar cada cantidad por el
             mismo factor. Si la receta es para 2 personas y quieres 4, el
-            multiplicador es 2. Esta herramienta lo hace automaticamente
-            para cada linea que empiece con una cantidad legible (numero
-            entero, fraccion o decimal).
+            multiplicador es 2. Esta herramienta lo hace automáticamente
+            para cada línea que empiece con una cantidad legible (número
+            entero, fracción o decimal).
           </p>
           <p>
-            Tambien puedes indicar el numero de raciones originales y el
-            numero de raciones deseadas: el multiplicador se calculara
-            entonces automaticamente, sin necesidad de calcularlo a mano.
+            También puedes indicar el número de raciones originales y el
+            número de raciones deseadas: el multiplicador se calculará
+            entonces automáticamente, sin necesidad de calcularlo a mano.
           </p>
 
-          <h2>¿Por que algunas lineas no muestran gramos?</h2>
+          <h2>¿Por qué algunas líneas no muestran gramos?</h2>
           <p>
-            La conversion a gramos solo aparece cuando la herramienta
+            La conversión a gramos solo aparece cuando la herramienta
             reconoce a la vez la unidad y el nombre del ingrediente. Una
-            linea como "2 huevos" se ajustara correctamente, pero no
-            mostrara gramos adicionales porque el huevo no figura en la
-            lista de conversion por volumen.
+            línea como «2 huevos» se ajustará correctamente, pero no
+            mostrará gramos adicionales porque el huevo no figura en la
+            lista de conversión por volumen.
           </p>
           <p>
             Para ver la lista de ingredientes admitidos, abre el{" "}
@@ -97,7 +97,7 @@ export default function SpanishRecipeConverterPage() {
               <Link href="/es/shoe-size-converter">Conversor de tallas de calzado</Link>
             </li>
             <li>
-              <Link href="/es/historical-units">Unidades de medida historicas</Link>
+              <Link href="/es/historical-units">Unidades de medida históricas</Link>
             </li>
           </ul>
         </section>
@@ -105,7 +105,7 @@ export default function SpanishRecipeConverterPage() {
         <section className="conversion-section language-alternatives">
           <h2>Otros idiomas</h2>
           <Link className="text-link" href="/tarif-cevirici" hrefLang="tr">
-            Türkçe versiyonu aç
+            Abrir la versión en turco
           </Link>
         </section>
       </div>

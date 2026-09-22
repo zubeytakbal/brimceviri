@@ -57,6 +57,7 @@ const staticRouteTranslations: Record<StaticRouteKey, LocalePathMap> = {
     "es-419": "/es-419",
     pt: "/pt",
     it: "/it",
+    nl: "/nl",
   },
   units: {
     tr: "/birimler",
@@ -85,6 +86,7 @@ const staticRouteTranslations: Record<StaticRouteKey, LocalePathMap> = {
     de: "/de/historische-masseinheiten",
     ar: "/ar/historical-units",
     uz: "/uz/tarixiy-olchov-birliklari",
+    nl: "/nl/historical-units",
   },
   shoeSize: {
     tr: "/ayakkabi-numarasi-cevirme",
@@ -92,6 +94,7 @@ const staticRouteTranslations: Record<StaticRouteKey, LocalePathMap> = {
     de: "/de/schuhgroessen-umrechner",
     ar: "/ar/shoe-size-converter",
     uz: "/uz/oyoq-kiyim-olchami",
+    nl: "/nl/shoe-size-converter",
   },
   kitchenMeasures: {
     tr: "/mutfak-olculeri-cevirici",
@@ -99,6 +102,7 @@ const staticRouteTranslations: Record<StaticRouteKey, LocalePathMap> = {
     de: "/de/kuechenmass-umrechner",
     ar: "/ar/kitchen-measurement-converter",
     uz: "/uz/oshxona-olchovlari",
+    nl: "/nl/kitchen-measurement-converter",
   },
   recipeConverter: {
     tr: "/tarif-cevirici",
@@ -106,6 +110,7 @@ const staticRouteTranslations: Record<StaticRouteKey, LocalePathMap> = {
     de: "/de/rezept-umrechner",
     ar: "/ar/recipe-converter",
     uz: "/uz/retsept-aylantirgich",
+    nl: "/nl/recipe-converter",
   },
   ringSize: {
     tr: "/yuzuk-olcusu-cevirici",
@@ -243,6 +248,7 @@ const collectionBasePaths: Record<
     "es-419": "/es-419/unit-guides/",
     pt: "/pt/unit-guides/",
     it: "/it/unit-guides/",
+    nl: "/nl/unit-guides/",
   },
   categories: {
     tr: "/kategoriler/",
@@ -256,6 +262,7 @@ const collectionBasePaths: Record<
     "es-419": "/es-419/categories/",
     pt: "/pt/categories/",
     it: "/it/categories/",
+    nl: "/nl/categories/",
   },
   calculators: {
     tr: "/hesaplayicilar/",
@@ -269,6 +276,7 @@ const collectionBasePaths: Record<
     "es-419": "/es-419/calculators/",
     pt: "/pt/calculators/",
     it: "/it/calculators/",
+    nl: "/nl/calculators/",
   },
   conversions: {
     tr: "/",
@@ -282,6 +290,7 @@ const collectionBasePaths: Record<
     "es-419": "/es-419/",
     pt: "/pt/",
     it: "/it/",
+    nl: "/nl/",
   },
 };
 

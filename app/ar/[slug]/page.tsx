@@ -19,6 +19,7 @@ import VatCalculator from "../../components/VatCalculator";
 import WeightComparisonTool from "../../components/WeightComparisonTool";
 import PairConverter from "../../converter/PairConverter";
 import { convert } from "../../converter/convert";
+import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
 import { findEnglishCategoryPageByCategory } from "../../converter/localizedCategoryPages";
 import {
   englishConversionPages,
@@ -320,6 +321,24 @@ function renderConversionPage(slug: string) {
     oneUnitResult,
     page.category
   );
+  const formattedOneUnitResult = formatNumber(oneUnitResult);
+  const reverseOneUnitResult = formatNumber(
+    convert(page.category, 1, page.toUnit, page.fromUnit)
+  );
+  const faqItems: FaqItem[] = [
+    {
+      question: `كم يساوي 1 ${localizedFromName} بوحدة ${localizedToName}؟`,
+      answer: `1 ${page.fromUnit} = ${formattedOneUnitResult} ${page.toUnit}.`,
+    },
+    {
+      question: `كيف يتم تحويل ${localizedFromName} إلى ${localizedToName}؟`,
+      answer: `يتم التحويل باستخدام الصيغة المعروضة: ${formulaText}.`,
+    },
+    {
+      question: `كم يساوي 1 ${localizedToName} بوحدة ${localizedFromName}؟`,
+      answer: `1 ${page.toUnit} = ${reverseOneUnitResult} ${page.fromUnit}.`,
+    },
+  ];
   const pageUrl = buildSiteUrl(`/ar/${page.slug}`);
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -381,6 +400,13 @@ function renderConversionPage(slug: string) {
         }}
       />
 
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: serializeJsonLd(buildFaqSchema(faqItems)),
+        }}
+      />
+
       <div className="conversion-breadcrumb-wrap">
         <nav
           className="breadcrumbs"
@@ -428,7 +454,7 @@ function renderConversionPage(slug: string) {
             <p>
               1 {page.fromUnit} ={" "}
               <strong>
-                {formatNumber(oneUnitResult)} {page.toUnit}
+                {formattedOneUnitResult} {page.toUnit}
               </strong>
             </p>
 
@@ -627,6 +653,16 @@ function renderConversionPage(slug: string) {
           </section>
         )}
 
+        <section className="conversion-section conversion-faq">
+          <h2>الأسئلة الشائعة</h2>
+          {faqItems.map((item) => (
+            <div key={item.question} className="conversion-faq-item">
+              <h3>{item.question}</h3>
+              <p>{item.answer}</p>
+            </div>
+          ))}
+        </section>
+
         {sources.length > 0 && (
           <section className="conversion-section unit-sources">
             <h2>المراجع</h2>
@@ -668,7 +704,7 @@ function renderConversionPage(slug: string) {
             href={`/en/${page.slug}`}
             hrefLang="en"
           >
-            Open the English version
+                افتح النسخة الإنجليزية
           </Link>
 
           {germanPage && (

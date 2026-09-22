@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { portugueseUnitPages } from "../../../converter/localizedPortugueseUnitPages";
 import { portugueseCategoryPages } from "../../../converter/localizedPortugueseCategoryPages";
 import { findEnglishUnitPageByTurkishSlug } from "../../../converter/localizedUnitPages";
+import { getUnitSources } from "../../../converter/unitSources";
 import { buildFullLanguageAlternates } from "../../../i18n/routing";
 import { buildSiteUrl } from "../../../siteConfig";
 
@@ -27,7 +28,7 @@ export async function generateMetadata({
 
   if (!unitPage) {
     return {
-      title: "Unidade nao encontrada",
+      title: "Unidade não encontrada",
       robots: { index: false, follow: false },
     };
   }
@@ -62,12 +63,13 @@ export default async function PortugueseUnitPage({ params }: PageProps) {
   const categoryPage = portugueseCategoryPages.find(
     (category) => category.category === unitPage.category
   );
+  const sources = getUnitSources(unitPage.category);
 
   return (
     <main className="all-conversions-page" lang="pt-BR">
       <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Trilha de navegacao">
-          <Link href="/pt">Inicio</Link>
+        <nav className="breadcrumbs" aria-label="Trilha de navegação">
+          <Link href="/pt">Início</Link>
           <span aria-hidden="true">&rsaquo;</span>
           {categoryPage && (
             <>
@@ -88,7 +90,7 @@ export default async function PortugueseUnitPage({ params }: PageProps) {
         <section className="category-article-content">
           <dl className="category-facts">
             <div>
-              <dt>Simbolo</dt>
+              <dt>Símbolo</dt>
               <dd>{unitPage.symbol}</dd>
             </div>
             <div>
@@ -111,6 +113,25 @@ export default async function PortugueseUnitPage({ params }: PageProps) {
             <p>{unitPage.commonUses}</p>
           </section>
 
+          {sources.length > 0 && (
+            <section className="conversion-section unit-sources" id="sources">
+              <h2>Fontes</h2>
+              <p>
+                As definições e relações de conversão desta unidade seguem
+                referências metrológicas e fontes reconhecidas do SI.
+              </p>
+              <ol>
+                {sources.map((source) => (
+                  <li key={source.url}>
+                    <a href={source.url} target="_blank" rel="noreferrer">
+                      {source.organization}: {source.title}
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </section>
+          )}
+
           {categoryPage && (
             <section className="conversion-section">
               <p>
@@ -131,7 +152,7 @@ export default async function PortugueseUnitPage({ params }: PageProps) {
               href={`/birimler/${unitPage.sourceSlug}`}
               hrefLang="tr"
             >
-              Türkçe versiyonu aç
+              Abrir a versão em turco
             </Link>
             {englishPage && (
               <Link
@@ -139,7 +160,7 @@ export default async function PortugueseUnitPage({ params }: PageProps) {
                 href={`/en/units/${englishPage.slug}`}
                 hrefLang="en"
               >
-                View the English version
+                Abrir a versão em inglês
               </Link>
             )}
           </section>

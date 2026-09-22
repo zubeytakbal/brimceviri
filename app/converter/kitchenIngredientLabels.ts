@@ -3,7 +3,7 @@ import type {
   KitchenUnit,
 } from "./kitchenMeasures";
 
-export type KitchenLocale = "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it";
+export type KitchenLocale = "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "nl";
 
 export const kitchenIngredientLabels: Record<
   KitchenLocale,
@@ -526,6 +526,19 @@ export const kitchenIngredientLabels: Record<
     karabiber: "Pepe Nero",
     kimyon: "Cumino in Polvere",
   },
+  nl: {
+    un: "Tarwebloem", "tam-bugday-unu": "Volkorenmeel", "pirinc-unu": "Rijstmeel", "misir-unu": "Maïsmeel",
+    irmik: "Griesmeel", "galeta-unu": "Paneermeel", "toz-seker": "Kristalsuiker", "pudra-sekeri": "Poedersuiker",
+    "esmer-seker": "Bruine suiker", tuz: "Zout", pirinc: "Rijst", bulgur: "Bulgur", nohut: "Kikkererwten (gedroogd)",
+    "kirmizi-mercimek": "Rode linzen", "yesil-mercimek": "Groene linzen", "kuru-fasulye": "Gedroogde bonen",
+    sut: "Melk", yogurt: "Yoghurt", krema: "Slagroom", tereyagi: "Boter", margarin: "Margarine",
+    zeytinyagi: "Olijfolie", "sivi-yag": "Plantaardige olie", bal: "Honing", pekmez: "Druivenmelasse",
+    kakao: "Cacaopoeder", "yulaf-ezmesi": "Havermout", nisasta: "Maïszetmeel", "kabartma-tozu": "Bakpoeder",
+    karbonat: "Zuiveringszout", susam: "Sesamzaad", "ceviz-ici": "Walnoten (gehakt)", "findik-ici": "Hazelnoten",
+    badem: "Amandelen", "antep-fistigi": "Pistachenoten", "kuru-uzum": "Rozijnen", "hindistan-cevizi": "Geraspte kokos",
+    mayonez: "Mayonaise", ketcap: "Ketchup", sirke: "Azijn", "limon-suyu": "Citroensap", tarcin: "Gemalen kaneel",
+    "kirmizi-biber": "Gemalen rode peper", karabiber: "Gemalen zwarte peper", kimyon: "Gemalen komijn",
+  },
 };
 
 export const kitchenUnitLabels: Record<
@@ -619,5 +632,8 @@ export const kitchenUnitLabels: Record<
     ml: "Millilitro (ml)",
     litre: "Litro",
     gram: "Grammo",
+  },
+  nl: {
+    bardak: "Kopje", yemekKasigi: "Eetlepel", cayKasigi: "Theelepel", ml: "Milliliter (ml)", litre: "Liter", gram: "Gram",
   },
 };

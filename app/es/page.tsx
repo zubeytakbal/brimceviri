@@ -4,9 +4,9 @@ import { getSiteNotifications } from "../converter/siteNotifications";
 import { buildSiteUrl } from "../siteConfig";
 
 export const metadata: Metadata = {
-  title: "Convertidor de unidades — Espanol",
+  title: "Convertidor de unidades — Español",
   description:
-    "Convierte gratis y al instante longitud, masa, temperatura y otras unidades fisicas. Mas de 12 categorias, con formulas precisas.",
+    "Convierte longitud, masa, temperatura y otras unidades físicas. 13 categorías principales, 4 herramientas de conversión y guías claras en español.",
   alternates: {
     canonical: "/es",
     languages: {
@@ -24,9 +24,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Convertidor de unidades — Espanol",
+    title: "Convertidor de unidades — Español",
     description:
-      "Convierte gratis y al instante longitud, masa, temperatura y otras unidades fisicas.",
+      "Convierte longitud, masa, temperatura y otras unidades físicas con guías claras en español.",
     url: buildSiteUrl("/es"),
     siteName: "BirimCeviri.app",
     locale: "es_ES",

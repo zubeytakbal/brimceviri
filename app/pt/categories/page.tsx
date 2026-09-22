@@ -6,17 +6,20 @@ import { buildSiteUrl } from "../../siteConfig";
 export const metadata: Metadata = {
   title: "Todas as categorias — Conversor de unidades",
   description:
-    "Lista completa de conversoes de unidades de comprimento, massa, temperatura, pressao, energia e muitas outras grandezas fisicas.",
+    "Lista completa de conversões de unidades de comprimento, massa, temperatura, pressão, energia e muitas outras grandezas físicas.",
   alternates: {
     canonical: "/pt/categories",
     languages: {
+      fr: "/fr/categories",
+      es: "/es/categories",
+      "es-419": "/es-419/categories",
       pt: "/pt/categories",
       "x-default": "/pt/categories",
     },
   },
   openGraph: {
     title: "Todas as categorias — Conversor de unidades",
-    description: "Lista completa de todas as categorias de conversao de unidades.",
+    description: "Lista completa de todas as categorias de conversão de unidades.",
     url: buildSiteUrl("/pt/categories"),
     siteName: "BirimCeviri.app",
     locale: "pt_BR",
@@ -28,17 +31,17 @@ export default function PortugueseCategoriesIndexPage() {
   return (
     <main className="all-conversions-page" lang="pt-BR">
       <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Trilha de navegacao">
-          <Link href="/pt">Inicio</Link>
+        <nav className="breadcrumbs" aria-label="Trilha de navegação">
+          <Link href="/pt">Início</Link>
           <span aria-hidden="true">&rsaquo;</span>
           <span>Todas as categorias</span>
         </nav>
 
         <header className="all-conversions-header">
-          <h1>Todas as categorias de conversao de unidades</h1>
+          <h1>Todas as categorias de conversão de unidades</h1>
           <p>
-            Escolha a grandeza fisica que te interessa para ver todas as
-            unidades e paginas de conversao dessa categoria.
+            Escolha a grandeza física que te interessa para ver todas as
+            unidades e páginas de conversão dessa categoria.
           </p>
         </header>
 

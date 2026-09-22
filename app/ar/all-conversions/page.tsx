@@ -1,5 +1,7 @@
 import Link from "next/link";
 import StaticPageLayout from "../../components/StaticPageLayout";
+import { homeCategoryOrder } from "../../converter/homeCategoryOrder";
+import { arabicCategoryPages } from "../../converter/localizedArabicCategoryPages";
 import { arabicStandaloneTools } from "../../i18n/arabicStandaloneTools";
 import { buildArabicMetadata } from "../seo";
 
@@ -13,48 +15,22 @@ export const metadata = buildArabicMetadata({
   germanPath: "/de/alle-umrechnungen",
 });
 
-const primaryLibraries = [
-  {
-    href: "/ar/categories/length",
-    title: "تحويلات الطول",
-    description: "المتر والكيلومتر والسنتيمتر والقدم والبوصة والميل وغيرها.",
-  },
-  {
-    href: "/ar/categories/mass",
-    title: "تحويلات الكتلة",
-    description: "الكيلوغرام والغرام والطن والرطل والأونصة ووحدات تاريخية مختارة.",
-  },
-  {
-    href: "/ar/categories/pressure",
-    title: "تحويلات الضغط",
-    description: "Pascal وkPa وbar وPSI وmmHg ووحدات هندسية مرتبطة.",
-  },
-  {
-    href: "/ar/categories/area",
-    title: "تحويلات المساحة",
-    description: "المتر المربع والهكتار والقدم المربع ووحدات الأراضي الشائعة.",
-  },
-  {
-    href: "/ar/categories/volume",
-    title: "تحويلات الحجم",
-    description: "اللتر والملليلتر والمتر المكعب ووحدات السعة اليومية والتقنية.",
-  },
-  {
-    href: "/ar/categories/temperature",
-    title: "تحويلات الحرارة",
-    description: "سيلسيوس وفهرنهايت وكلفن مع الصيغ الأساسية بين المقاييس.",
-  },
-  {
-    href: "/ar/categories/speed",
-    title: "تحويلات السرعة",
-    description: "كم/س وم/ث وmph ووحدات مستخدمة في النقل والهندسة.",
-  },
-  {
-    href: "/ar/categories/data-storage",
-    title: "تحويلات تخزين البيانات",
-    description: "بايت وكيلوبايت وميغابايت وغيغابايت مع الفرق بين 1000 و1024.",
-  },
-];
+const primaryCategoryOrder = new Map<string, number>(
+  homeCategoryOrder.map((category, index) => [category, index])
+);
+
+const categoryLibraries = [...arabicCategoryPages]
+  .sort((left, right) => {
+    const leftOrder = primaryCategoryOrder.get(left.category) ?? Number.MAX_SAFE_INTEGER;
+    const rightOrder = primaryCategoryOrder.get(right.category) ?? Number.MAX_SAFE_INTEGER;
+
+    return leftOrder - rightOrder || left.title.localeCompare(right.title, "ar");
+  })
+  .map((category) => ({
+    href: `/ar/categories/${category.slug}`,
+    title: category.title,
+    description: category.description,
+  }));
 
 export default function ArabicAllConversionsPage() {
   const highlightedTools = arabicStandaloneTools
@@ -99,12 +75,12 @@ export default function ArabicAllConversionsPage() {
           content: (
             <>
               <p>
-                التحويلات التفصيلية الكاملة داخل الموقع متاحة حاليا
-                عبر المكتبات التالية. اختر المجال الأقرب لما تبحث
-                عنه ثم انتقل إلى صفحة التحويل المناسبة.
+                جميع مكتبات التحويل المتاحة بالعربية مدرجة أدناه.
+                اختر المجال الأقرب لما تبحث عنه ثم انتقل إلى صفحة
+                التحويل أو دليل الوحدة المناسب.
               </p>
               <ul className="related-conversion-list">
-                {primaryLibraries.map((library) => (
+                {categoryLibraries.map((library) => (
                   <li key={library.href}>
                     <Link href={library.href}>
                       <strong>{library.title}</strong>

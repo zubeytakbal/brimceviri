@@ -4,9 +4,9 @@ import { getSiteNotifications } from "../converter/siteNotifications";
 import { buildSiteUrl } from "../siteConfig";
 
 export const metadata: Metadata = {
-  title: "Conversor de unidades — Portugues",
+  title: "Conversor de unidades — Português",
   description:
-    "Converta gratis e instantaneamente comprimento, massa, temperatura e outras unidades fisicas. Mais de 12 categorias, com formulas precisas.",
+    "Converta grátis e instantaneamente comprimento, massa, temperatura e outras unidades físicas. Mais de 12 categorias, com fórmulas precisas.",
   alternates: {
     canonical: "/pt",
     languages: {
@@ -24,9 +24,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Conversor de unidades — Portugues",
+    title: "Conversor de unidades — Português",
     description:
-      "Converta gratis e instantaneamente comprimento, massa, temperatura e outras unidades fisicas.",
+      "Converta grátis e instantaneamente comprimento, massa, temperatura e outras unidades físicas.",
     url: buildSiteUrl("/pt"),
     siteName: "BirimCeviri.app",
     locale: "pt_BR",

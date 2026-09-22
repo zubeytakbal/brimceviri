@@ -12,7 +12,7 @@ type UnitOption = {
 
 type CategoryUnitConverterProps = {
   category: string;
-  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it";
+  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "nl";
   // Verilmezse getCategoryUnitOptions(category, locale) kullanilir (kategori
   // sayfalarindaki standart davranis). Verilirse, ayni convert() motoru
   // (ayni category/symbol eslesmesi) uzerinde SADECE bu birimler secilebilir
@@ -58,7 +58,7 @@ function parseNumericValue(
 }
 
 function formatDisplayNumber(
-  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it",
+  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "nl",
   value: number
 ) {
   if (!Number.isFinite(value)) {
@@ -86,6 +86,8 @@ function formatDisplayNumber(
                       ? "pt-BR"
                       : locale === "it"
                         ? "it-IT"
+                        : locale === "nl"
+                          ? "nl-NL"
         : "en-US";
   const absoluteValue = Math.abs(value);
 
@@ -287,6 +289,15 @@ export default function CategoryUnitConverter({
                   swap: "Inverti direzione",
                   invalid: "Inserisci un numero valido per vedere il risultato.",
                 }
+              : locale === "nl"
+                ? {
+                    value: "Waarde",
+                    from: "Van eenheid",
+                    to: "Naar eenheid",
+                    result: "Direct resultaat",
+                    swap: "Richting omkeren",
+                    invalid: "Voer een geldig getal in om het resultaat te zien.",
+                  }
               : {
                 value: "Value",
                 from: "From unit",

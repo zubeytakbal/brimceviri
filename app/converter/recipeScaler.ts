@@ -7,7 +7,7 @@ import {
 } from "./kitchenMeasures";
 import { kitchenIngredientLabels } from "./kitchenIngredientLabels";
 
-export type RecipeLocale = "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it";
+export type RecipeLocale = "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "nl";
 
 export type ParsedRecipeLine = {
   raw: string;
@@ -44,6 +44,8 @@ const wordQuantities: Record<string, number> = {
   quarta: 0.25,
   mezzo: 0.5,
   mezza: 0.5,
+  halve: 0.5,
+  kwart: 0.25,
 };
 
 function normalizeText(value: string): string {
@@ -206,6 +208,12 @@ const oneTokenUnits: Record<string, KitchenUnit> = {
   millilitro: "ml",
   millilitri: "ml",
   litri: "litre",
+  kopje: "bardak",
+  kopjes: "bardak",
+  eetlepel: "yemekKasigi",
+  eetlepels: "yemekKasigi",
+  theelepel: "cayKasigi",
+  theelepels: "cayKasigi",
 };
 
 function extractUnit(normalizedRestOfLine: string): {
@@ -287,6 +295,10 @@ const ingredientMatchEntries: Array<{
   entries.push({
     key: row.key,
     normalized: normalizeText(kitchenIngredientLabels.it[row.key]),
+  });
+  entries.push({
+    key: row.key,
+    normalized: normalizeText(kitchenIngredientLabels.nl[row.key]),
   });
 
   return entries;
@@ -385,7 +397,9 @@ function formatQuantity(
                       ? "pt-BR"
                       : locale === "it"
                         ? "it-IT"
-        : "en-US";
+                        : locale === "nl"
+                          ? "nl-NL"
+                          : "en-US";
 
   return rounded.toLocaleString(localeName, {
     maximumFractionDigits: 2,

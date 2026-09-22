@@ -10,6 +10,7 @@ import {
   elementNamesDeBySymbol,
   slugifyElementNameDe,
 } from "../../../converter/periodicTableDataDe";
+import { findGermanElementArticle } from "../../../converter/germanElementArticles";
 import { buildSiteUrl } from "../../../siteConfig";
 
 type PageProps = {
@@ -47,12 +48,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const nameDe = elementNamesDeBySymbol[element.symbol] ?? element.symbol;
   const trSlug = slugifyElementName(element.nameTr);
+  const article = findGermanElementArticle(slug);
   const title = `${nameDe} (${element.symbol}): Ordnungszahl, Atommasse und Eigenschaften`;
   const description = `Das Symbol von ${nameDe} ist ${element.symbol}, die Ordnungszahl ${element.atomicNumber}, die Atommasse ${formatMass(element.atomicMass)} u. Definition, Eigenschaften und Stoffmengenrechner.`;
 
   return {
     title,
     description,
+    robots: { index: Boolean(article), follow: true },
     alternates: {
       canonical: `/de/periodensystem/${slug}`,
       languages: {
@@ -81,7 +84,12 @@ export default async function GermanElementPage({ params }: PageProps) {
   }
 
   const nameDe = elementNamesDeBySymbol[element.symbol] ?? element.symbol;
+  const article = findGermanElementArticle(slug);
   const pageUrl = buildSiteUrl(`/de/periodensystem/${slug}`);
+  const positionDescription =
+    element.group === null
+      ? `${nameDe} gehört zur ${elementCategoryLabelsDe[element.category].toLowerCase()}-Reihe. Diese Elemente werden im Periodensystem getrennt unter der Haupttabelle dargestellt.`
+      : `${nameDe} steht in der ${element.period}. Periode und in Gruppe ${element.group} des Periodensystems. Die Einordnung als ${elementCategoryLabelsDe[element.category].toLowerCase()} hilft bei der Einordnung seiner chemischen Verwandtschaft.`;
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -166,13 +174,35 @@ export default async function GermanElementPage({ params }: PageProps) {
 
           <ElementLewisDiagramDe element={element} />
 
+          <h2>Einordnung im Periodensystem</h2>
+          <p>{positionDescription}</p>
           <p>
-            {nameDe} ist ein Element in der Kategorie{" "}
-            {elementCategoryLabelsDe[element.category].toLowerCase()} und
-            steht an {element.atomicNumber}. Stelle im Periodensystem.
-            Ausführliche Artikelinhalte für dieses Element werden in
-            Kürze ergänzt.
+            Die Ordnungszahl {element.atomicNumber} gibt die Anzahl der
+            Protonen im Atomkern an. Die hier angegebene Atommasse von{" "}
+            {formatMass(element.atomicMass)} u ist der Referenzwert für
+            Stoffmengen- und molare-Masse-Berechnungen mit diesem Element.
           </p>
+
+          {article ? (
+            <>
+              <h2>{nameDe} im Kontext</h2>
+              {article.introduction.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+
+              <h2>Anwendungen von {nameDe}</h2>
+              <ul>
+                {article.uses.map((use) => (
+                  <li key={use}>{use}</li>
+                ))}
+              </ul>
+            </>
+          ) : (
+            <p>
+              Diese Datenseite wird redaktionell erweitert. Bis dahin ist sie
+              nicht für die Indexierung vorgesehen.
+            </p>
+          )}
 
           <h2>Verwandte Tools</h2>
           <p>
@@ -186,10 +216,31 @@ export default async function GermanElementPage({ params }: PageProps) {
             <Link href="/de/elementrangliste">Elementrangliste</Link>.
           </p>
 
-          <h2>Quellen</h2>
+          <h2>Quellen und Datenhinweis</h2>
           <p>
-            Die Atommassen basieren auf der IUPAC-Tabelle der
-            Standardatomgewichte.
+            Die Atommassen basieren auf der{" "}
+            <a
+              href="https://iupac.qmul.ac.uk/AtWt/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              IUPAC-Tabelle der Standardatomgewichte
+            </a>
+            . Ordnungszahl, Elektronenkonfiguration und weitere
+            Atomeigenschaften werden mit den{" "}
+            <a
+              href="https://www.nist.gov/pml/periodic-table-elements"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Periodensystemdaten des NIST
+            </a>{" "}
+            abgeglichen.
+          </p>
+          <p>
+            Standardatomgewichte sind Referenzwerte für natürliches Material.
+            Bei isotopisch angereicherten Proben kann die für eine
+            Laborberechnung relevante Masse abweichen.
           </p>
 
           <Link className="text-link" href="/de/periodensystem">

@@ -308,7 +308,7 @@ export default async function GermanUnitInformationPage({
                   href={`/en/units/${englishPage.slug}`}
                   hrefLang="en"
                 >
-                  View the English version
+                  Englische Version öffnen
                 </Link>
               )}
             </section>

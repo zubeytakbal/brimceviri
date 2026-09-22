@@ -19,6 +19,7 @@ import {
   getArabicCategoryUsage,
 } from "../../../i18n/arabicLocalization";
 import { findArabicUnitPageBySourceSlug } from "../../../converter/localizedArabicUnitPages";
+import { getUnitSources } from "../../../converter/unitSources";
 import { SITE_URL, buildSiteUrl } from "../../../siteConfig";
 
 type PageProps = {
@@ -174,6 +175,7 @@ export default async function ArabicUnitGuidePage({
   );
   const categoryUsage = getArabicCategoryUsage(unitPage.category);
   const realContent = findArabicUnitPageBySourceSlug(unitPage.sourceSlug);
+  const sources = getUnitSources(unitPage.category);
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -383,6 +385,25 @@ export default async function ArabicUnitGuidePage({
               </section>
             )}
 
+            {sources.length > 0 && (
+              <section className="conversion-section unit-sources" id="sources">
+                <h2>المصادر</h2>
+                <p>
+                  تستند تعريفات الوحدات وعلاقات التحويل في هذه الصفحة إلى مراجع قياس
+                  معترف بها ومصادر النظام الدولي للوحدات.
+                </p>
+                <ol>
+                  {sources.map((source) => (
+                    <li key={source.url}>
+                      <a href={source.url} target="_blank" rel="noreferrer">
+                        {source.organization}: {source.title}
+                      </a>
+                    </li>
+                  ))}
+                </ol>
+              </section>
+            )}
+
             <section className="conversion-section language-alternatives">
               <h2>لغات أخرى</h2>
 
@@ -399,7 +420,7 @@ export default async function ArabicUnitGuidePage({
                 href={`/en/units/${unitPage.slug}`}
                 hrefLang="en"
               >
-                Open the English version
+                افتح النسخة الإنجليزية
               </Link>
 
               {germanPage && (

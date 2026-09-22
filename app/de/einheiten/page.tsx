@@ -1,22 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { homeCategoryOrder } from "../../converter/homeCategoryOrder";
+import { germanCategoryPages } from "../../converter/localizedGermanCategoryPages";
 import { germanUnitPages } from "../../converter/localizedGermanUnitPages";
 import { buildSiteUrl } from "../../siteConfig";
 import { germanStaticPaths } from "../../i18n/germanRoutes";
 
-const categoryTitles: Record<string, string> = {
-  uzunluk: "Längeneinheiten",
-  alan: "Flächeneinheiten",
-  hacim: "Volumeneinheiten",
-  kutle: "Masseneinheiten",
-  sicaklik: "Temperatureinheiten",
-  zaman: "Zeiteinheiten",
-  hiz: "Geschwindigkeitseinheiten",
-  basinc: "Druckeinheiten",
-  enerji: "Energie- und Leistungseinheiten",
-  debi: "Volumenstrom-Einheiten",
-  elektrik: "Elektrische Einheiten",
-};
+const primaryCategoryOrder = new Map<string, number>(
+  homeCategoryOrder.map((category, index) => [category, index])
+);
 
 export const metadata: Metadata = {
   title: "Einheitenleitfaden",
@@ -43,11 +35,17 @@ export const metadata: Metadata = {
 };
 
 export default function GermanUnitsPage() {
-  const categories = Object.keys(categoryTitles)
-    .map((category) => ({
-      category,
-      title: categoryTitles[category],
-      units: germanUnitPages.filter((page) => page.category === category),
+  const categories = [...germanCategoryPages]
+    .sort((left, right) => {
+      const leftOrder = primaryCategoryOrder.get(left.category) ?? Number.MAX_SAFE_INTEGER;
+      const rightOrder = primaryCategoryOrder.get(right.category) ?? Number.MAX_SAFE_INTEGER;
+
+      return leftOrder - rightOrder || left.title.localeCompare(right.title, "de");
+    })
+    .map((categoryPage) => ({
+      category: categoryPage.category,
+      title: categoryPage.title,
+      units: germanUnitPages.filter((page) => page.category === categoryPage.category),
     }))
     .filter((group) => group.units.length > 0);
 
@@ -73,7 +71,7 @@ export default function GermanUnitsPage() {
           <section className="conversion-section">
             <h2>Was zeigt dieser Leitfaden?</h2>
             <p>
-              Die Seite bündelt verfügbare deutsche Einheitenleitfäden nach
+              Die Seite bündelt alle verfügbaren deutschen Einheitenleitfäden nach
               Größenkategorie. Jede Detailseite erklärt Symbol, Einordnung,
               SI-Bezug und typische Einsatzfelder der jeweiligen Einheit.
             </p>

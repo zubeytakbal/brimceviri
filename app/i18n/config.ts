@@ -1,4 +1,4 @@
-export const SUPPORTED_LOCALES = ["tr", "en", "de", "ar", "uz", "bn", "fr", "es", "es-419", "pt", "it"] as const;
+export const SUPPORTED_LOCALES = ["tr", "en", "de", "ar", "uz", "bn", "fr", "es", "es-419", "pt", "it", "nl"] as const;
 
 export type Locale = (typeof SUPPORTED_LOCALES)[number];
 
@@ -185,6 +185,21 @@ export const LOCALE_DEFINITIONS: Record<Locale, LocaleDefinition> = {
     switcherOptionsLabel: "Opzioni lingua",
     switcherSearchPlaceholder: "Cerca lingua",
     switcherEmptyLabel: "Nessuna lingua trovata",
+  },
+  nl: {
+    code: "nl",
+    htmlLang: "nl",
+    dir: "ltr",
+    openGraphLocale: "nl_NL",
+    pathPrefix: "/nl",
+    homePath: "/nl",
+    label: "Nederlands",
+    switcherLabel: "Nederlands",
+    switcherCurrentLabel: "NL - Nederlands",
+    switcherAriaLabel: "Taal selecteren",
+    switcherOptionsLabel: "Taalopties",
+    switcherSearchPlaceholder: "Taal zoeken",
+    switcherEmptyLabel: "Geen overeenkomende taal gevonden",
   },
 };
 

@@ -97,7 +97,7 @@ export default function BengaliShoeSizePage() {
             href="/ayakkabi-numarasi-cevirme"
             hrefLang="tr"
           >
-            Türkçe versiyonu aç
+            তুর্কি সংস্করণ খুলুন
           </Link>
         </section>
       </div>

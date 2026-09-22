@@ -14,39 +14,39 @@ const frenchCategoryNames: Record<string, string> = {
   alan: "Surface",
   hacim: "Volume",
   kutle: "Masse",
-  sicaklik: "Temperature",
+  sicaklik: "Température",
   zaman: "Temps",
   hiz: "Vitesse",
   basinc: "Pression",
-  enerji: "Energie",
-  debi: "Debit",
-  elektrik: "Electricite",
-  yogunluk: "Densite",
+  enerji: "Énergie",
+  debi: "Débit",
+  elektrik: "Électricité",
+  yogunluk: "Densité",
   kuvvet: "Force",
   tork: "Couple",
   aci: "Angle",
-  frekans: "Frequence",
-  debi_hacimsel: "Debit volumique",
-  debi_kutlesel: "Debit massique",
-  manyetik_alan: "Champ magnetique",
-  manyetik_aki: "Flux magnetique",
-  viskozite_kinematik: "Viscosite cinematique",
-  isil_iletkenlik: "Conductivite thermique",
+  frekans: "Fréquence",
+  debi_hacimsel: "Débit volumique",
+  debi_kutlesel: "Débit massique",
+  manyetik_alan: "Champ magnétique",
+  manyetik_aki: "Flux magnétique",
+  viskozite_kinematik: "Viscosité cinématique",
+  isil_iletkenlik: "Conductivité thermique",
   isi_akisi: "Flux thermique",
-  ozgul_isi: "Chaleur specifique",
-  ivme: "Acceleration",
+  ozgul_isi: "Chaleur spécifique",
+  ivme: "Accélération",
   acisal_hiz: "Vitesse angulaire",
   guc: "Puissance",
   momentum: "Quantite de mouvement",
-  viskozite_dinamik: "Viscosite",
-  veri: "Stockage de donnees",
-  elektrik_direnc: "Resistance",
+  viskozite_dinamik: "Viscosité",
+  veri: "Stockage de données",
+  elektrik_direnc: "Résistance",
   kapasitans: "Capacitance",
   enduktans: "Inductance",
-  elektrik_yuk: "Charge electrique",
-  altin_ayar: "Carat d'or",
-  gumus_ayar: "Titre d'argent",
-  kan_sekeri: "Glycemie",
+  elektrik_yuk: "Charge électrique",
+  altin_ayar: "Carat d’or",
+  gumus_ayar: "Titre d’argent",
+  kan_sekeri: "Glycémie",
   vitamin_d: "Vitamine D",
 };
 
@@ -72,12 +72,12 @@ function createFrenchExplanation(
   factor: number
 ) {
   if (factor >= 1) {
-    return `Pour convertir ${fromName} en ${toName}, on multiplie la valeur de depart par ${formatFrenchValue(
+    return `Pour convertir ${fromName} en ${toName}, on multiplie la valeur de départ par ${formatFrenchValue(
       factor
     )}. 1 ${fromUnit} = ${formatFrenchValue(factor)} ${toUnit}.`;
   }
 
-  return `Pour convertir ${fromName} en ${toName}, on divise la valeur de depart par ${formatFrenchValue(
+  return `Pour convertir ${fromName} en ${toName}, on divise la valeur de départ par ${formatFrenchValue(
     1 / factor
   )}. 1 ${fromUnit} = ${formatFrenchValue(factor)} ${toUnit}.`;
 }
@@ -142,18 +142,18 @@ function createFrenchTemperatureExplanation(
   }
 
   if (fromUnit === "F" && toUnit === "C") {
-    return `Pour convertir ${fromName} en ${toName}, on soustrait d'abord 32 puis on multiplie le resultat par 5/9. 32 ${fromUnit} equivaut a 0 ${toUnit}.`;
+    return `Pour convertir ${fromName} en ${toName}, on soustrait d’abord 32 puis on multiplie le résultat par 5/9. 32 ${fromUnit} équivaut à 0 ${toUnit}.`;
   }
 
   if (fromUnit === "C" && toUnit === "K") {
-    return `Pour convertir ${fromName} en ${toName}, on ajoute 273,15. 0 ${fromUnit} equivaut a 273,15 ${toUnit}.`;
+    return `Pour convertir ${fromName} en ${toName}, on ajoute 273,15. 0 ${fromUnit} équivaut à 273,15 ${toUnit}.`;
   }
 
   if (fromUnit === "K" && toUnit === "C") {
-    return `Pour convertir ${fromName} en ${toName}, on soustrait 273,15. 273,15 ${fromUnit} equivaut a 0 ${toUnit}.`;
+    return `Pour convertir ${fromName} en ${toName}, on soustrait 273,15. 273,15 ${fromUnit} équivaut à 0 ${toUnit}.`;
   }
 
-  return `Utilisez la relation de temperature definie pour convertir ${fromName} en ${toName}.`;
+  return `Utilisez la relation de température définie pour convertir ${fromName} en ${toName}.`;
 }
 
 const frenchUnitBySourceSlug: Record<string, { name: string; slug: string }> =

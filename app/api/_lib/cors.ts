@@ -12,6 +12,7 @@ export function jsonResponse(
     status: init.status ?? 200,
     headers: {
       "Content-Type": "application/json; charset=utf-8",
+      "X-Robots-Tag": "noindex, nofollow",
       ...CORS_HEADERS,
     },
   });

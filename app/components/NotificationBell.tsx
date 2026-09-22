@@ -14,7 +14,7 @@ import {
 import { useNotificationSlot } from "./NotificationSlotProvider";
 import type { SiteNotification } from "../converter/siteNotifications";
 
-type NotificationLocale = "tr" | "en" | "uz" | "de" | "ar" | "bn" | "fr" | "es" | "es-419" | "pt" | "it";
+type NotificationLocale = "tr" | "en" | "uz" | "de" | "ar" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "nl";
 
 const notificationCopy = {
   tr: {
@@ -126,6 +126,11 @@ const notificationCopy = {
     openLabel: "Apri →",
     empty: "Al momento non ci sono nuove notifiche.",
     dateLocale: "it-IT",
+  },
+  nl: {
+    ariaLabel: "Meldingen", panelLabel: "Sitemeldingen", title: "Meldingen", closeLabel: "Sluiten",
+    markSeenLabel: "Deze melding als gelezen markeren", openLabel: "Openen →",
+    empty: "Er zijn momenteel geen nieuwe meldingen.", dateLocale: "nl-NL",
   },
 } as const;
 

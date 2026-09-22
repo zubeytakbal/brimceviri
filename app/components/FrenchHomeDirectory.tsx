@@ -54,28 +54,28 @@ const nicheCards: Array<{
     id: "shoe-size",
     href: "/fr/shoe-size-converter",
     title: "Convertisseur de pointures",
-    description: "Comparez les pointures europeennes, americaines et britanniques par marque.",
+    description: "Comparez les pointures européennes, américaines et britanniques par marque.",
     iconName: "shoeSize",
   },
   {
     id: "kitchen-measures",
     href: "/fr/kitchen-measurement-converter",
     title: "Mesures de cuisine",
-    description: "Convertissez tasses, cuilleres et grammes selon l'ingredient.",
+    description: "Convertissez tasses, cuillères et grammes selon l’ingrédient.",
     iconName: "kitchenMeasures",
   },
   {
     id: "recipe-converter",
     href: "/fr/recipe-converter",
     title: "Convertisseur de recettes",
-    description: "Collez une recette et adaptez les quantites avec un multiplicateur.",
+    description: "Collez une recette et adaptez les quantités avec un multiplicateur.",
     iconName: "recipe",
   },
   {
     id: "historical-units",
     href: "/fr/historical-units",
-    title: "Unites historiques",
-    description: "Convertissez arşın, okka, dirhem et unites byzantines en unites modernes.",
+    title: "Unités historiques",
+    description: "Convertissez arşın, okka, dirhem et unités byzantines en unités modernes.",
     iconName: "historical",
   },
 ];
@@ -185,11 +185,11 @@ export default function FrenchHomeDirectory({
       <section className="directory-hero">
         <div className="directory-shell">
           <div className="directory-hero-copy">
-            <p className="directory-eyebrow">Convertisseur d'unites en francais</p>
+            <p className="directory-eyebrow">Convertisseur d’unités en français</p>
             <h1>Trouvez rapidement la bonne page de conversion</h1>
             <p className="directory-lead">
-              Convertissez la longueur, la masse, la pression et bien d'autres
-              unites entierement en francais, avec des guides d'unites clairs.
+              Convertissez la longueur, la masse, la pression et bien d’autres
+              unités entièrement en français, avec des guides d’unités clairs.
             </p>
           </div>
 
@@ -202,7 +202,7 @@ export default function FrenchHomeDirectory({
                   id={inputId}
                   type="search"
                   value={query}
-                  placeholder="Ex. : metre pied"
+                  placeholder="Ex. : mètre pied"
                   autoComplete="off"
                   spellCheck={false}
                   aria-describedby={`${inputId}-hint`}
@@ -217,15 +217,15 @@ export default function FrenchHomeDirectory({
               </div>
 
               <p className="directory-search-hint" id={`${inputId}-hint`}>
-                Ecrivez le nom d'une unite en francais ou en anglais, puis
-                appuyez sur Entree pour ouvrir le premier resultat.
+                Écrivez le nom d’une unité en français ou en anglais, puis
+                appuyez sur Entrée pour ouvrir le premier résultat.
               </p>
 
               {query.trim() ? (
                 <div className="directory-search-results-wrap">
                   <div className="directory-search-results-head">
-                    <strong>Resultats de recherche</strong>
-                    <span>Appuyez sur Entree pour ouvrir</span>
+                    <strong>Résultats de recherche</strong>
+                    <span>Appuyez sur Entrée pour ouvrir</span>
                   </div>
 
                   {searchResults.length > 0 ? (
@@ -235,14 +235,14 @@ export default function FrenchHomeDirectory({
                           <Link href={result.href}>
                             <span>{result.label}</span>
                             <small>
-                              Categorie : {result.categoryLabel} · {result.description}
+                              Catégorie : {result.categoryLabel} · {result.description}
                             </small>
                           </Link>
                         </li>
                       ))}
                     </ul>
                   ) : (
-                    <p className="directory-search-empty">Aucun resultat trouve.</p>
+                    <p className="directory-search-empty">Aucun résultat trouvé.</p>
                   )}
                 </div>
               ) : null}
@@ -250,7 +250,7 @@ export default function FrenchHomeDirectory({
 
             <dl className="directory-stats">
               <div>
-                <dt>Categories actives</dt>
+                <dt>Catégories actives</dt>
                 <dd>{stats.categories}</dd>
               </div>
               <div>
@@ -266,13 +266,13 @@ export default function FrenchHomeDirectory({
         <section className="directory-section">
           <header className="directory-section-header">
             <div>
-              <h2>Conversion d'unites</h2>
-              <p>Choisissez une categorie pour voir toutes ses unites et pages de conversion.</p>
+              <h2>Conversion d’unités</h2>
+              <p>Choisissez une catégorie pour voir toutes ses unités et pages de conversion.</p>
             </div>
 
             <Link className="directory-section-link" href="/fr/categories">
               <DecorativeIcon className="directory-link-icon" name="allConversions" size={18} />
-              Toutes les categories
+              Toutes les catégories
             </Link>
           </header>
 
@@ -295,7 +295,7 @@ export default function FrenchHomeDirectory({
 
           {secondaryCategoryCards.length > 0 && (
             <div className="directory-secondary-categories">
-              <h3>Autres categories de conversion</h3>
+              <h3>Autres catégories de conversion</h3>
               <div className="directory-home-category-grid">
                 {secondaryCategoryCards.slice(0, 8).map((category) => (
                   <article className="directory-home-card" key={category.id}>
@@ -318,7 +318,7 @@ export default function FrenchHomeDirectory({
           <div className="directory-section-footer">
             <Link className="directory-section-link" href="/fr/categories">
               <DecorativeIcon className="directory-link-icon" name="allConversions" size={18} />
-              Voir toutes les categories et conversions
+              Voir toutes les catégories et conversions
             </Link>
           </div>
         </section>
@@ -328,7 +328,7 @@ export default function FrenchHomeDirectory({
             <header className="directory-section-header">
               <div>
                 <h2>Conversions populaires</h2>
-                <p>Acces direct aux conversions les plus recherchees.</p>
+                <p>Accès direct aux conversions les plus recherchées.</p>
               </div>
             </header>
 
@@ -349,8 +349,8 @@ export default function FrenchHomeDirectory({
           <section className="directory-section">
             <header className="directory-section-header">
               <div>
-                <h2>Unites populaires</h2>
-                <p>Guides detailles en francais pour les unites les plus recherchees.</p>
+                <h2>Unités populaires</h2>
+                <p>Guides détaillés en français pour les unités les plus recherchées.</p>
               </div>
             </header>
 

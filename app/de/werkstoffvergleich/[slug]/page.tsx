@@ -123,6 +123,10 @@ export default async function GermanMaterialComparisonPage({
         second.densityKgM3
       )} kg/m³ (${formatDensity(second.densityKgM3 / 1000)} g/cm³).`,
     },
+    {
+      question: "Zeigt dieser Vergleich direkt das Gewicht eines Bauteils?",
+      answer: "Nein. Die Tabelle vergleicht Werkstoffe gleicher Größe anhand ihrer Dichte. Das tatsächliche Bauteilgewicht hängt zusätzlich von Volumen, Werkstoffgüte, Temperatur und Feuchte ab.",
+    },
   ];
 
   const breadcrumbSchema = {
@@ -224,6 +228,17 @@ export default async function GermanMaterialComparisonPage({
         </section>
 
         <section className="category-article-content">
+          <h2>So ist dieser Vergleich zu lesen</h2>
+          <p>
+            Die Tabelle vergleicht zwei Werkstoffe bei gleichem Volumen: 1 Liter {firstDe} wiegt etwa {formatDensity(first.densityKgM3 / 1000)} kg,
+            1 Liter {secondDe} etwa {formatDensity(second.densityKgM3 / 1000)} kg.
+          </p>
+          <p>
+            Diese Angaben sind nominale Referenzwerte für eine erste Rechnung. Das tatsächliche Bauteilgewicht ändert sich mit dem Volumen; bei Gasen, Flüssigkeiten, Holz, Lebensmitteln und Baustoffen sind außerdem Temperatur, Druck, Feuchte oder Zusammensetzung relevant.
+          </p>
+        </section>
+
+        <section className="category-article-content">
           <h2>
             Mehr über {firstDe} und {secondDe}
           </h2>
@@ -244,6 +259,24 @@ export default async function GermanMaterialComparisonPage({
               </Link>
             </li>
           </ul>
+        </section>
+
+        <section className="category-article-content unit-sources">
+          <h2>Quelle und Anwendungshinweis</h2>
+          <p>
+            Die Dichtewerte dieses Vergleichs sind nominale Referenzwerte aus
+            der{" "}
+            <a
+              href="https://densitycalculator.net/density-table"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Dichtetabelle mit 232 Materialien
+            </a>
+            . Sie eignen sich zum Vergleich gleicher Volumina; für das
+            tatsächliche Bauteilgewicht müssen Werkstoffgüte, Temperatur,
+            Feuchte und Hohlräume berücksichtigt werden.
+          </p>
         </section>
       </div>
     </main>

@@ -9,6 +9,8 @@ import {
   getAllCompoundProfiles,
 } from "../../../converter/compoundsHub";
 import { compoundNamesDe, elementNamesDe } from "../../../converter/compoundsDatabaseDe";
+import { periodicTable } from "../../../converter/periodicTableData";
+import { findCompoundEditorial } from "../../../converter/compoundEditorial";
 import { buildSiteUrl } from "../../../siteConfig";
 
 type PageProps = {
@@ -17,6 +19,11 @@ type PageProps = {
 
 function formatMolarMass(value: number) {
   return value.toLocaleString("de-DE", { maximumFractionDigits: 3 });
+}
+
+function getElementContribution(symbol: string, count: number) {
+  const element = periodicTable.find((item) => item.symbol === symbol);
+  return (element?.atomicMass ?? 0) * count;
 }
 
 function serializeJsonLd(data: object) {
@@ -39,9 +46,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const title = `${nameDe} (${compound.formula}) Molare Masse und Stoffmengenrechner`;
   const description = `${nameDe} (${compound.formula}) molare Masse: ${formatMolarMass(compound.molarMass)} g/mol. Atomare Zusammensetzung ansehen, eigene Berechnung mit Masse oder Stoffmenge durchführen.`;
 
+  const editorial = findCompoundEditorial(compound.id);
+
   return {
     title,
     description,
+    robots: { index: Boolean(editorial), follow: true },
     alternates: {
       canonical: `/de/chemische-verbindungen/${slug}`,
       languages: {
@@ -71,6 +81,7 @@ export default async function GermanCompoundPage({ params }: PageProps) {
 
   const nameDe = compoundNamesDe[compound.id] ?? compound.nameTr;
   const pageUrl = buildSiteUrl(`/de/chemische-verbindungen/${slug}`);
+  const editorial = findCompoundEditorial(compound.id);
   const similarCompounds = findSimilarMolarMassCompounds(slug, 5).map((similar) => ({
     ...similar,
     nameDe: compoundNamesDe[similar.id] ?? similar.nameTr,
@@ -105,8 +116,6 @@ export default async function GermanCompoundPage({ params }: PageProps) {
       { "@type": "ListItem", position: 3, name: nameDe, item: pageUrl },
     ],
   };
-
-  const totalAtoms = composition.reduce((sum, item) => sum + item.count, 0);
 
   return (
     <main className="all-conversions-page">
@@ -165,9 +174,7 @@ export default async function GermanCompoundPage({ params }: PageProps) {
                     </td>
                     <td>{item.count}</td>
                     <td>
-                      {formatMolarMass(
-                        (compound.molarMass / totalAtoms) * item.count,
-                      )}
+                      {formatMolarMass(getElementContribution(item.symbol, item.count))}
                     </td>
                   </tr>
                 ))}
@@ -180,6 +187,23 @@ export default async function GermanCompoundPage({ params }: PageProps) {
           molarMass={compound.molarMass}
           compoundName={nameDe}
         />
+
+        {editorial && (
+          <section className="category-article-content">
+            <h2>{nameDe} im Kontext</h2>
+            <p>{editorial.contextDe}</p>
+
+            <h2>Typische Anwendungen</h2>
+            <ul>
+              {editorial.usesDe.map((use) => (
+                <li key={use}>{use}</li>
+              ))}
+            </ul>
+
+            <h2>Sicherheits- und Geltungshinweis</h2>
+            <p>{editorial.safetyDe}</p>
+          </section>
+        )}
 
         {similarCompounds.length > 0 && (
           <section className="category-article-content">
@@ -215,10 +239,18 @@ export default async function GermanCompoundPage({ params }: PageProps) {
 
           <h2>Quellen</h2>
           <p>
-            Die molare Masse wird durch Summierung der Atommassen aus
-            der IUPAC-Tabelle der Standardatomgewichte entsprechend der
-            chemischen Formel der Verbindung berechnet — dies ist eine
-            reine arithmetische Operation, kein Schätzwert.
+            Die molare Masse wird durch Summierung der Atommassen aus der{" "}
+            <a
+              href="https://iupac.qmul.ac.uk/AtWt/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              IUPAC-Tabelle der Standardatomgewichte
+            </a>{" "}
+            entsprechend der chemischen Formel berechnet. Das Ergebnis ist
+            ein Referenzwert auf Basis der Standardatomgewichte; bei
+            isotopisch angereicherten Proben oder hochpräzisen Analysen muss
+            die Isotopenzusammensetzung zusätzlich berücksichtigt werden.
           </p>
         </section>
       </div>

@@ -15,6 +15,7 @@ import {
   materialNamesDe,
   materialVariabilityNotesDe,
 } from "../../../converter/materialsDatabaseDe";
+import { type MaterialCategory } from "../../../converter/materialsDatabase";
 import { buildSiteUrl } from "../../../siteConfig";
 
 type PageProps = {
@@ -23,6 +24,20 @@ type PageProps = {
 
 function formatDensity(value: number) {
   return value.toLocaleString("de-DE", { maximumFractionDigits: 4 });
+}
+
+function getDensityUseNote(category: MaterialCategory) {
+  const notes: Record<MaterialCategory, string> = {
+    metal: "Die Dichte von Metallen hängt von Legierungszusammensetzung, Wärmebehandlung und Temperatur ab. Dieser Wert ist ein nominaler Ausgangspunkt für erste Massen- und Volumenberechnungen ohne festgelegte Werkstoffgüte.",
+    sivi: "Die Dichte von Flüssigkeiten hängt besonders von Temperatur und Mischungsverhältnis ab. Für präzise Befüllung, Handelsprodukte oder Sicherheitsrechnungen verwenden Sie den temperaturbezogenen Wert aus dem technischen Datenblatt.",
+    gaz: "Die Gasdichte hängt stark von Temperatur und Druck ab. Dieser Wert dient dem ersten Vergleich und einer groben Massenrechnung; für Prozessrechnungen ist ein Messwert unter denselben Temperatur- und Druckbedingungen nötig.",
+    plastik: "Die Dichte von Polymeren kann je nach Harztyp, Füllstoff und Herstellverfahren variieren. Prüfen Sie für die Produktkonstruktion den werkstoffspezifischen Wert im Datenblatt des Herstellers.",
+    "yapi-malzemesi": "Bei Baustoffen verändern Feuchte, Porosität und Verdichtungsgrad die Dichte. Die Rechnung ist eine erste Näherung für einen trockenen, typischen Werkstoff.",
+    ahsap: "Die Dichte von Holz hängt neben der Holzart von Feuchte und Faserrichtung ab. Für eine genaue Gewichtsrechnung benötigen Sie die gemessene Holzfeuchte und das tatsächliche Bauteilvolumen.",
+    gida: "Bei Lebensmitteln und Küchenzutaten verändern Wasser-, Fett- und Luftanteil die Dichte je nach Marke und Zubereitung. Das Ergebnis ist für eine grobe Küchen- und Volumenrechnung gedacht.",
+  };
+
+  return notes[category];
 }
 
 function serializeJsonLd(data: object) {
@@ -85,11 +100,16 @@ export default async function GermanMaterialPropertyPage({ params }: PageProps) 
   const relatedComparisons = getAllMaterialComparisons().filter(
     (comparison) => comparison.first.id === slug || comparison.second.id === slug
   );
+  const oneLitreMassKg = material.densityKgM3 / 1000;
 
   const faqItems: FaqItem[] = [
     {
       question: `${nameDe} Dichte: wie viel kg/m³?`,
       answer: `${nameDe} hat eine Dichte von etwa ${formatDensity(material.densityKgM3)} kg/m³ (${formatDensity(material.densityKgM3 / 1000)} g/cm³).`,
+    },
+    {
+      question: `Wie viel wiegt 1 Liter ${nameDe}?`,
+      answer: `Mit dieser Referenzdichte wiegt 1 Liter ${nameDe} etwa ${formatDensity(oneLitreMassKg)} kg. Das tatsächliche Ergebnis kann sich mit Temperatur, Werkstoffgüte und Zusammensetzung ändern.`,
     },
   ];
 
@@ -181,6 +201,15 @@ export default async function GermanMaterialPropertyPage({ params }: PageProps) 
           )}
         </section>
 
+        <section className="category-article-content">
+          <h2>Dichtewert von {nameDe} richtig verwenden</h2>
+          <p>{getDensityUseNote(material.category)}</p>
+          <p>
+            Mit diesem Referenzwert wiegt 1 Liter {nameDe} etwa {formatDensity(oneLitreMassKg)} kg;
+            1 m³ wiegt etwa {formatDensity(material.densityKgM3)} kg.
+          </p>
+        </section>
+
         <MaterialMassVolumeCalculatorDe
           densityKgM3={material.densityKgM3}
           materialName={nameDe}
@@ -255,10 +284,19 @@ export default async function GermanMaterialPropertyPage({ params }: PageProps) 
 
           <h2>Quellen</h2>
           <p>
-            Die Dichte- und Eigenschaftswerte stammen aus allgemein
-            anerkannten technischen Referenztabellen nahe Raumtemperatur;
-            tatsächliche Werte können je nach Materialart, Reinheit und
-            Temperatur leicht abweichen.
+            Als Ausgangsreferenz für die Dichtewerte dient die{" "}
+            <a
+              href="https://densitycalculator.net/density-table"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Dichtetabelle mit 232 Materialien
+            </a>
+            . Die Werte sind nominale Referenzwerte für erste Berechnungen.
+            Nicht jeder Wert wurde bei derselben Temperatur oder für dieselbe
+            Werkstoffgüte bestimmt; für Konstruktion, Sicherheit oder
+            Handelsmessungen prüfen Sie den bedingten Wert im technischen
+            Datenblatt des jeweiligen Produkts.
           </p>
         </section>
       </div>

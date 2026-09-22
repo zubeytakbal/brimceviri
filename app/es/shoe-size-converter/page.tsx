@@ -6,7 +6,7 @@ import { buildSiteUrl } from "../../siteConfig";
 export const metadata: Metadata = {
   title: "Conversor de tallas de calzado: ES, US, UK",
   description:
-    "Convierte las tallas de calzado espanolas/europeas (ES/EU), estadounidenses (US) y britanicas (UK); compara tambien las tallas de Nike, Adidas, Puma, New Balance y Converse.",
+    "Convierte las tallas de calzado españolas/europeas (ES/EU), estadounidenses (US) y británicas (UK); compara también las tallas de Nike, Adidas, Puma, New Balance y Converse.",
   alternates: {
     canonical: "/es/shoe-size-converter",
     languages: {
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Conversor de tallas de calzado: ES, US, UK",
-    description: "Convierte las tallas de calzado espanolas/europeas, estadounidenses y britanicas.",
+    description: "Convierte las tallas de calzado españolas/europeas, estadounidenses y británicas.",
     url: buildSiteUrl("/es/shoe-size-converter"),
     siteName: "BirimCeviri.app",
     locale: "es_ES",
@@ -35,7 +35,7 @@ export default function SpanishShoeSizePage() {
   return (
     <main className="all-conversions-page" lang="es">
       <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Ruta de navegacion">
+        <nav className="breadcrumbs" aria-label="Ruta de navegación">
           <Link href="/es">Inicio</Link>
           <span aria-hidden="true">&rsaquo;</span>
           <span>Conversor de tallas de calzado</span>
@@ -46,9 +46,9 @@ export default function SpanishShoeSizePage() {
 
           <p>
             Introduce la talla que conoces para ver al instante las
-            equivalencias espanolas/europeas (ES/EU), estadounidenses (US)
-            y britanicas (UK). Tablas separadas para hombre, mujer, bebe y
-            nino mayor, con comparativa de las marcas Nike, Adidas, Puma,
+            equivalencias españolas/europeas (ES/EU), estadounidenses (US)
+            y británicas (UK). Tablas separadas para hombre, mujer, bebé y
+            niño mayor, con comparativa de las marcas Nike, Adidas, Puma,
             New Balance y Converse.
           </p>
         </header>
@@ -56,25 +56,25 @@ export default function SpanishShoeSizePage() {
         <ShoeSizeConverter locale="es" />
 
         <section className="category-article-content">
-          <h2>¿Por que varian las tallas de calzado segun la marca?</h2>
+          <h2>¿Por qué varían las tallas de calzado según la marca?</h2>
           <p>
             El sistema europeo es relativamente estable, pero los sistemas
-            US y UK se basan en escalas diferentes. Ademas, cada marca usa
-            sus propios moldes de fabricacion y su propio diseno de
+            US y UK se basan en escalas diferentes. Además, cada marca usa
+            sus propios moldes de fabricación y su propio diseño de
             comodidad, por lo que una misma longitud de pie puede
             corresponder a una talla distinta, o desplazada media talla,
-            segun la marca.
+            según la marca.
           </p>
           <p>
-            El resultado mas fiable suele obtenerse midiendo la longitud
-            del pie en centimetros y eligiendo despues la opcion "Longitud
-            del pie" en la herramienta. Esto reduce los errores derivados
+            El resultado más fiable suele obtenerse midiendo la longitud
+            del pie en centímetros y eligiendo después la opción «Longitud
+            del pie» en la herramienta. Esto reduce los errores derivados
             de las diferencias de nomenclatura de tallas entre mercados.
           </p>
           <p>
-            En ninos, la numeracion US vuelve a empezar despues del 13,5;
-            por eso las tablas de bebe/nino pequeno y nino mayor estan
-            separadas, para mantener clara la comparacion.
+            En niños, la numeración US vuelve a empezar después del 13,5;
+            por eso las tablas de bebé/niño pequeño y niño mayor están
+            separadas, para mantener clara la comparación.
           </p>
         </section>
 
@@ -88,10 +88,10 @@ export default function SpanishShoeSizePage() {
               <Link href="/es/recipe-converter">Conversor de recetas</Link>
             </li>
             <li>
-              <Link href="/es/historical-units">Unidades de medida historicas</Link>
+              <Link href="/es/historical-units">Unidades de medida históricas</Link>
             </li>
             <li>
-              <Link href="/es/categories/longitud">Conversion de unidades de longitud</Link>
+              <Link href="/es/categories/longitud">Conversión de unidades de longitud</Link>
             </li>
           </ul>
         </section>
@@ -103,7 +103,7 @@ export default function SpanishShoeSizePage() {
             href="/ayakkabi-numarasi-cevirme"
             hrefLang="tr"
           >
-            Türkçe versiyonu aç
+            Abrir la versión en turco
           </Link>
         </section>
       </div>

@@ -125,6 +125,10 @@ export default async function UzbekMaterialComparisonPage({
         second.densityKgM3
       )} kg/m³ (${formatDensity(second.densityKgM3 / 1000)} g/sm³) qiymatidadir.`,
     },
+    {
+      question: "Bu solishtirish haqiqiy qism og'irligini bevosita ko'rsatadimi?",
+      answer: "Yo'q. Jadval zichlik orqali bir xil hajmdagi materiallarni solishtiradi. Haqiqiy qism og'irligi hajm, material sinfi, harorat va namlikka ham bog'liq.",
+    },
   ];
 
   const breadcrumbSchema = {
@@ -227,6 +231,17 @@ export default async function UzbekMaterialComparisonPage({
         </section>
 
         <section className="category-article-content">
+          <h2>Bu solishtirishni qanday o'qish kerak?</h2>
+          <p>
+            Jadval ikki materialni teng hajmda solishtiradi: 1 litr {firstName} taxminan {formatDensity(first.densityKgM3 / 1000)} kg,
+            1 litr {secondName} esa taxminan {formatDensity(second.densityKgM3 / 1000)} kg keladi.
+          </p>
+          <p>
+            Bu qiymatlar dastlabki hisoblar uchun nominal ma'lumotnomadir. Haqiqiy qism og'irligi hajm bilan o'zgaradi; gaz, suyuqlik, yog'och, oziq-ovqat va qurilish materiallarida harorat, bosim, namlik yoki tarkib ham muhimdir.
+          </p>
+        </section>
+
+        <section className="category-article-content">
           <h2>
             {firstName} va {secondName} Haqida Ko&apos;proq Ma&apos;lumot
           </h2>
@@ -247,6 +262,24 @@ export default async function UzbekMaterialComparisonPage({
               </Link>
             </li>
           </ul>
+        </section>
+
+        <section className="category-article-content unit-sources">
+          <h2>Manba va foydalanish izohi</h2>
+          <p>
+            Ushbu solishtirishdagi zichlik qiymatlari{" "}
+            <a
+              href="https://densitycalculator.net/density-table"
+              target="_blank"
+              rel="noreferrer"
+            >
+              232 materialdan iborat zichlik jadvalidan
+            </a>{" "}
+            olingan nominal ma&apos;lumotnoma qiymatlaridir. Ular bir xil
+            hajmdagi materiallarni solishtirish uchun mos; haqiqiy bo&apos;lak
+            og&apos;irligida material sinfi, harorat, namlik va bo&apos;shliqlar
+            ham hisobga olinishi kerak.
+          </p>
         </section>
       </div>
     </main>

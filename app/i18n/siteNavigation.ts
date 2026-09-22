@@ -338,6 +338,31 @@ const categoryLabels: Record<
     altin_ayar: "Caratura dell'Oro",
     gumus_ayar: "Titolo dell'Argento",
   },
+  nl: {
+    uzunluk: "Lengte",
+    alan: "Oppervlakte",
+    hacim: "Volume",
+    kutle: "Massa",
+    sicaklik: "Temperatuur",
+    zaman: "Tijd",
+    hiz: "Snelheid",
+    basinc: "Druk",
+    enerji: "Energie en Vermogen",
+    veri: "Data-opslag",
+    elektrik: "Elektriciteit",
+    yogunluk: "Dichtheid",
+    kuvvet: "Kracht",
+    debi: "Debiet",
+    tork: "Koppel",
+    momentum: "Impuls",
+    viskozite_dinamik: "Viscositeit",
+    elektrik_direnc: "Weerstand",
+    kapasitans: "Capaciteit",
+    enduktans: "Inductantie",
+    elektrik_yuk: "Elektrische Lading",
+    altin_ayar: "Goudkaraat",
+    gumus_ayar: "Zilvergehalte",
+  },
 };
 
 const siteHeaderCopy: Record<Locale, SiteHeaderCopy> = {
@@ -395,6 +420,11 @@ const siteHeaderCopy: Record<Locale, SiteHeaderCopy> = {
     navAriaLabel: "Navigazione principale",
     menuLabel: "Menu",
     conversionsLabel: "Conversioni",
+  },
+  nl: {
+    navAriaLabel: "Hoofdnavigatie",
+    menuLabel: "Menu",
+    conversionsLabel: "Omrekeningen",
   },
 };
 
@@ -531,6 +561,18 @@ const footerCopy: Record<Locale, FooterCopy> = {
     browserProcessingNote:
       "Nei flussi di calcolo di questo sito, i dati inseriti nelle calcolatrici vengono elaborati direttamente nel browser.",
   },
+  nl: {
+    navAriaLabel: "Footernavigatie",
+    pagesHeading: "Pagina's",
+    languagesHeading: "Talen",
+    categoriesHeading: "Categorieën",
+    description:
+      "Technische omrekentools en eenhedengidsen voorbereid voor praktisch gebruik.",
+    disclaimer:
+      "Controleer resultaten voor belangrijke technische, medische of veiligheidsbeslissingen met professionele bronnen.",
+    browserProcessingNote:
+      "Bij de rekenfuncties op deze site worden de ingevoerde gegevens rechtstreeks in de browser verwerkt.",
+  },
 };
 
 const topLevelLabelMap: Record<
@@ -617,6 +659,13 @@ const topLevelLabelMap: Record<
     allConversions: "Tutte le Conversioni",
     professions: "Per Professione",
   },
+  nl: {
+    home: "Home",
+    engineeringHub: "Rekentools",
+    units: "Eenhedengids",
+    allConversions: "Alle Omrekeningen",
+    professions: "Op Beroep",
+  },
 };
 
 const footerLinksByLocale: Record<
@@ -671,6 +720,7 @@ const footerLinksByLocale: Record<
   "es-419": [{ key: "home", label: "Inicio" }],
   pt: [{ key: "home", label: "Inicio" }],
   it: [{ key: "home", label: "Home" }],
+  nl: [{ key: "home", label: "Home" }],
 };
 
 export function getSiteHeaderCopy(locale: Locale) {
@@ -803,7 +853,9 @@ export function getCategoryMenuLinks(locale: Locale) {
                     ? "Numeracao de Calcados"
                     : locale === "it"
                       ? "Numeri di Scarpe"
-                      : "Ayakkabi Numarasi",
+                      : locale === "nl"
+                        ? "Schoenmaten"
+                        : "Ayakkabi Numarasi",
   });
   links.push({
     href: getStaticPath(locale, "kitchenMeasures"),
@@ -824,7 +876,9 @@ export function getCategoryMenuLinks(locale: Locale) {
                     ? "Medidas de Cozinha"
                     : locale === "it"
                       ? "Misure di Cucina"
-                      : "Mutfak Olculeri",
+                      : locale === "nl"
+                        ? "Keukenmaten"
+                        : "Mutfak Olculeri",
   });
   links.push({
     href: getStaticPath(locale, "recipeConverter"),
@@ -845,7 +899,9 @@ export function getCategoryMenuLinks(locale: Locale) {
                     ? "Conversor de Receitas"
                     : locale === "it"
                       ? "Convertitore di Ricette"
-                      : "Tarif Cevirici",
+                      : locale === "nl"
+                        ? "Receptomrekenaar"
+                        : "Tarif Cevirici",
   });
 
   return links;

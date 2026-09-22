@@ -201,6 +201,13 @@ const copy = {
     copiedButton: "Copiato",
     printButton: "Stampa",
   },
+  nl: {
+    recipeLabel: "Je recept", placeholder: "2 kopjes bloem\n1 theelepel zout\n3 eetlepels olijfolie\n2 eieren\nOven op 180 graden",
+    factorLabel: "Vermenigvuldiger", originalServingsLabel: "Oorspronkelijk aantal porties", targetServingsLabel: "Gewenst aantal porties",
+    resultHeading: "Aangepast recept", emptyState: "Schrijf je recept hierboven om hier het aangepaste resultaat te zien.",
+    gramPrefix: "~", gramSuffix: "g", ingredientLabel: "Ingrediënt", noMatchOption: "Geen overeenkomst",
+    copyButton: "Kopiëren", copiedButton: "Gekopieerd", printButton: "Afdrukken",
+  },
 } as const;
 
 const chipOptions = [
@@ -246,6 +253,8 @@ function formatGram(value: number, locale: KitchenLocale) {
                       ? "pt-BR"
                       : locale === "it"
                         ? "it-IT"
+                        : locale === "nl"
+                          ? "nl-NL"
         : "en-US";
 
   return value.toLocaleString(localeName, {
@@ -269,7 +278,7 @@ export default function RecipeScalerConverter({
   const cupStandard: KitchenCupStandard =
     locale === "en"
       ? "us"
-      : locale === "fr" || locale === "es-419" || locale === "it"
+      : locale === "fr" || locale === "es-419" || locale === "it" || locale === "nl"
         ? "metric"
         : locale === "es" || locale === "pt"
           ? "usLegal"

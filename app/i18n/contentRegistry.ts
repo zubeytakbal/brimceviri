@@ -33,6 +33,9 @@ import { portugueseConversionPages } from "../converter/localizedPortugueseConve
 import { italianCategoryPages } from "../converter/localizedItalianCategoryPages";
 import { italianUnitPages } from "../converter/localizedItalianUnitPages";
 import { italianConversionPages } from "../converter/localizedItalianConversionPages";
+import { nederlandsCategoryPages } from "../converter/localizedNederlandsCategoryPages";
+import { nederlandsUnitPages } from "../converter/localizedNederlandsUnitPages";
+import { nederlandsConversionPages } from "../converter/localizedNederlandsConversionPages";
 
 export type RouteCollectionKey =
   | "units"
@@ -126,6 +129,12 @@ const localizedCategorySummariesByLocale: Record<
     category: page.category,
     title: page.title,
   })),
+  nl: nederlandsCategoryPages.map((page) => ({
+    sourceSlug: page.sourceSlug,
+    slug: page.slug,
+    category: page.category,
+    title: page.title,
+  })),
 };
 
 const localizedSlugEntriesByLocale: Record<
@@ -177,6 +186,10 @@ const localizedSlugEntriesByLocale: Record<
       sourceSlug: page.sourceSlug,
       slug: page.slug,
     })),
+    nl: nederlandsUnitPages.map((page) => ({
+      sourceSlug: page.sourceSlug,
+      slug: page.slug,
+    })),
   },
   categories: {
     tr: categoryPages.map((page) => ({
@@ -223,6 +236,10 @@ const localizedSlugEntriesByLocale: Record<
       sourceSlug: page.sourceSlug,
       slug: page.slug,
     })),
+    nl: nederlandsCategoryPages.map((page) => ({
+      sourceSlug: page.sourceSlug,
+      slug: page.slug,
+    })),
   },
   calculators: {
     tr: calculatorPages.map((page) => ({
@@ -248,6 +265,7 @@ const localizedSlugEntriesByLocale: Record<
     "es-419": [],
     pt: [],
     it: [],
+    nl: [],
   },
   conversions: {
     tr: conversionPages.map((page) => ({
@@ -291,6 +309,10 @@ const localizedSlugEntriesByLocale: Record<
       slug: page.slug,
     })),
     it: italianConversionPages.map((page) => ({
+      sourceSlug: page.sourceSlug,
+      slug: page.slug,
+    })),
+    nl: nederlandsConversionPages.map((page) => ({
       sourceSlug: page.sourceSlug,
       slug: page.slug,
     })),

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import PairConverter from "../../converter/PairConverter";
 import { convert } from "../../converter/convert";
+import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
 import { findEnglishPageByTurkishSlug } from "../../converter/localizedConversionPages";
 import {
   findEs419ConversionPage,
@@ -50,7 +51,7 @@ export async function generateMetadata({
 
   if (!page) {
     return {
-      title: "Conversion no encontrada",
+      title: "Conversión no encontrada",
       robots: { index: false, follow: false },
     };
   }
@@ -60,12 +61,10 @@ export async function generateMetadata({
     convert(page.category, 1, page.fromUnit, page.toUnit)
   );
 
-  // El patron "1 X cuantos Y" (equivalente al turco) no es habitual en las
-  // busquedas en espanol -- los competidores reales (quicktools.es,
-  // convertlive.com/es, conversordeunidades.org) usan "Convertidor de X a Y"
-  // o "Conversion de X a Y", sin numero inicial.
+  // En español, «Convertidor de X a Y» describe esta intención de búsqueda
+  // con más naturalidad que una fórmula basada en una cantidad inicial.
   const title = `Convertidor de ${page.fromName} a ${page.toName}`;
-  const description = `${oneUnitValue} ${page.fromName} = ${oneUnitResult} ${page.toName}. Consulta gratis la formula, la tabla de conversion y el resultado instantaneo.`;
+  const description = `${oneUnitValue} ${page.fromName} = ${oneUnitResult} ${page.toName}. Consulta gratis la fórmula, la tabla de conversión y el resultado instantáneo.`;
 
   return {
     title,
@@ -119,11 +118,37 @@ export default async function Es419ConversionPage({ params }: PageProps) {
 
   const oneUnitResult = convert(page.category, 1, page.fromUnit, page.toUnit);
   const formattedOneUnitResult = formatNumber(oneUnitResult);
+  const reverseOneUnitResult = formatNumber(
+    convert(page.category, 1, page.toUnit, page.fromUnit)
+  );
+  const faqItems: FaqItem[] = [
+    {
+      question: `¿Cuánto equivale 1 ${page.fromName} en ${page.toName}?`,
+      answer: `1 ${page.fromUnit} = ${formattedOneUnitResult} ${page.toUnit}.`,
+    },
+    {
+      question: `¿Cómo convierto ${page.fromName} a ${page.toName}?`,
+      answer: page.explanation,
+    },
+    {
+      question: `¿Cuánto equivale 1 ${page.toName} en ${page.fromName}?`,
+      answer: `1 ${page.toUnit} = ${reverseOneUnitResult} ${page.fromUnit}.`,
+    },
+  ];
 
   return (
     <main className="conversion-page" lang="es-419">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(buildFaqSchema(faqItems)).replace(
+            /</g,
+            "\\u003c"
+          ),
+        }}
+      />
       <div className="conversion-breadcrumb-wrap">
-        <nav className="breadcrumbs" aria-label="Ruta de navegacion">
+        <nav className="breadcrumbs" aria-label="Ruta de navegación">
           <Link href="/es-419">Inicio</Link>
           <span aria-hidden="true">&rsaquo;</span>
           <span>{page.categoryName}</span>
@@ -142,7 +167,7 @@ export default async function Es419ConversionPage({ params }: PageProps) {
             </h1>
 
             <p className="conversion-hero-description">
-              Introduce un valor para obtener un resultado instantaneo y gratuito.
+              Ingresa un valor para obtener un resultado instantáneo y gratuito.
             </p>
 
             <PairConverter
@@ -156,7 +181,7 @@ export default async function Es419ConversionPage({ params }: PageProps) {
           </div>
 
           <div className="conversion-hero-information">
-            <h2>Resumen de la conversion</h2>
+            <h2>Resumen de la conversión</h2>
 
             <p>
               1 {page.fromUnit} ={" "}
@@ -167,12 +192,12 @@ export default async function Es419ConversionPage({ params }: PageProps) {
 
             <dl>
               <div>
-                <dt>Formula</dt>
+                <dt>Fórmula</dt>
                 <dd>{page.formula}</dd>
               </div>
 
               <div>
-                <dt>Categoria</dt>
+                <dt>Categoría</dt>
                 <dd>{page.categoryName}</dd>
               </div>
 
@@ -190,20 +215,20 @@ export default async function Es419ConversionPage({ params }: PageProps) {
       <article className="conversion-content">
         <section className="conversion-section">
           <h2>
-            ¿Como convertir {page.fromName} a {page.toName}?
+            ¿Cómo convertir {page.fromName} a {page.toName}?
           </h2>
 
           <p>{page.explanation}</p>
 
           <div className="conversion-formula">
-            <strong>Formula de conversion</strong>
+            <strong>Fórmula de conversión</strong>
             <p>{page.formula}</p>
           </div>
         </section>
 
         <section className="conversion-section">
           <h2>
-            Tabla de conversion de {page.fromName} a {page.toName}
+            Tabla de conversión de {page.fromName} a {page.toName}
           </h2>
 
           <div className="conversion-table-wrap">
@@ -234,7 +259,7 @@ export default async function Es419ConversionPage({ params }: PageProps) {
 
         {fromUnitInfo && (
           <section className="conversion-section unit-information">
-            <h2>¿Que es {fromUnitInfo.name}?</h2>
+            <h2>¿Qué es {fromUnitInfo.name}?</h2>
 
             <p>{fromUnitInfo.shortDescription}</p>
 
@@ -242,14 +267,14 @@ export default async function Es419ConversionPage({ params }: PageProps) {
               className="text-link"
               href={`/es-419/unit-guides/${fromUnitInfo.slug}`}
             >
-              Ver la guia de la unidad {fromUnitInfo.name}
+              Ver la guía de {fromUnitInfo.name}
             </Link>
           </section>
         )}
 
         {toUnitInfo && (
           <section className="conversion-section unit-information">
-            <h2>¿Que es {toUnitInfo.name}?</h2>
+            <h2>¿Qué es {toUnitInfo.name}?</h2>
 
             <p>{toUnitInfo.shortDescription}</p>
 
@@ -257,14 +282,14 @@ export default async function Es419ConversionPage({ params }: PageProps) {
               className="text-link"
               href={`/es-419/unit-guides/${toUnitInfo.slug}`}
             >
-              Ver la guia de la unidad {toUnitInfo.name}
+              Ver la guía de {toUnitInfo.name}
             </Link>
           </section>
         )}
 
         {reversePage && (
           <section className="conversion-section related-conversions">
-            <h2>Conversion inversa</h2>
+            <h2>Conversión inversa</h2>
 
             <Link className="text-link" href={`/es-419/${reversePage.slug}`}>
               Convertidor de {reversePage.fromName} a {reversePage.toName}
@@ -288,13 +313,23 @@ export default async function Es419ConversionPage({ params }: PageProps) {
           </section>
         )}
 
+        <section className="conversion-section conversion-faq">
+          <h2>Preguntas frecuentes</h2>
+          {faqItems.map((item) => (
+            <div key={item.question} className="conversion-faq-item">
+              <h3>{item.question}</h3>
+              <p>{item.answer}</p>
+            </div>
+          ))}
+        </section>
+
         {sources.length > 0 && (
           <section className="conversion-section unit-sources">
             <h2>Fuentes</h2>
 
             <p>
-              Las definiciones y relaciones de conversion de esta pagina
-              cumplen con las normas metrologicas reconocidas.
+              Las definiciones y relaciones de conversión de esta página se
+              basan en fuentes metrológicas reconocidas.
             </p>
 
             <ol>
@@ -317,7 +352,7 @@ export default async function Es419ConversionPage({ params }: PageProps) {
             href={`/${page.sourceSlug}`}
             hrefLang="tr"
           >
-            Türkçe versiyonu aç
+            Abrir la versión en turco
           </Link>
 
           {englishPage && (
@@ -326,7 +361,7 @@ export default async function Es419ConversionPage({ params }: PageProps) {
               href={`/en/${englishPage.slug}`}
               hrefLang="en"
             >
-              View the English version
+              Abrir la versión en inglés
             </Link>
           )}
         </section>

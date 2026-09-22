@@ -1,5 +1,7 @@
 import Link from "next/link";
 import StaticPageLayout from "../../components/StaticPageLayout";
+import { homeCategoryOrder } from "../../converter/homeCategoryOrder";
+import { arabicCategoryPages } from "../../converter/localizedArabicCategoryPages";
 import { buildArabicMetadata } from "../seo";
 
 export const metadata = buildArabicMetadata({
@@ -26,6 +28,22 @@ const keyGuides = [
   { href: "/ar/unit-guides/ampere", label: "الأمبير (Ampere)" },
   { href: "/ar/unit-guides/ohm", label: "الأوم (Ohm)" },
 ];
+
+const primaryCategoryOrder = new Map<string, number>(
+  homeCategoryOrder.map((category, index) => [category, index])
+);
+
+const guideLibraries = [...arabicCategoryPages]
+  .sort((left, right) => {
+    const leftOrder = primaryCategoryOrder.get(left.category) ?? Number.MAX_SAFE_INTEGER;
+    const rightOrder = primaryCategoryOrder.get(right.category) ?? Number.MAX_SAFE_INTEGER;
+
+    return leftOrder - rightOrder || left.title.localeCompare(right.title, "ar");
+  })
+  .map((category) => ({
+    href: `/ar/categories/${category.slug}`,
+    label: category.title,
+  }));
 
 export default function ArabicUnitGuidesPage() {
   return (
@@ -78,13 +96,15 @@ export default function ArabicUnitGuidesPage() {
           content: (
             <>
               <p>
-                إذا أردت تصفح مكتبة وحدات أوسع حسب المجال، فهذه هي
-                أفضل نقاط الدخول الحالية داخل الموقع.
+                اختر أي مجال للوصول إلى كل الوحدات وأدلة التحويل
+                المرتبطة به داخل النسخة العربية.
               </p>
               <ul className="related-conversion-list">
-                <li>
-                  <Link href="/ar/unit-guides">مكتبة الأدلة العربية الكاملة</Link>
-                </li>
+                {guideLibraries.map((library) => (
+                  <li key={library.href}>
+                    <Link href={library.href}>{library.label}</Link>
+                  </li>
+                ))}
                 <li>
                   <Link href="/birimler">المكتبة التركية الكاملة</Link>
                 </li>

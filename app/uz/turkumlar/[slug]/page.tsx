@@ -267,7 +267,7 @@ export default async function UzbekCategoryPage({ params }: PageProps) {
                 href={`/en/categories/${englishPage.slug}`}
                 hrefLang="en"
               >
-                View the English version
+                Inglizcha versiyasini ochish
               </Link>
             )}
           </section>

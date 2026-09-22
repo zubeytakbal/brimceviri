@@ -6,9 +6,9 @@ import { kitchenIngredientRows } from "../../converter/kitchenMeasures";
 import { buildSiteUrl } from "../../siteConfig";
 
 export const metadata: Metadata = {
-  title: "Conversor de Xicaras para Gramas (medidas de cozinha)",
+  title: "Conversor de Xícaras para Gramas (medidas de cozinha)",
   description:
-    "Converta xicaras, colheres, gramas e mililitros para mais de 40 ingredientes: farinha, acucar, arroz, mel, manteiga e muito mais.",
+    "Converta xícaras, colheres, gramas e mililitros para mais de 40 ingredientes: farinha, açúcar, arroz, mel, manteiga e muito mais.",
   alternates: {
     canonical: "/pt/kitchen-measurement-converter",
     languages: {
@@ -24,8 +24,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Conversor de Xicaras para Gramas (medidas de cozinha)",
-    description: "Converta xicaras, colheres, gramas e mililitros para mais de 40 ingredientes.",
+    title: "Conversor de Xícaras para Gramas (medidas de cozinha)",
+    description: "Converta xícaras, colheres, gramas e mililitros para mais de 40 ingredientes.",
     url: buildSiteUrl("/pt/kitchen-measurement-converter"),
     siteName: "BirimCeviri.app",
     locale: "pt_BR",
@@ -37,8 +37,8 @@ export default function PortugueseKitchenMeasurementsPage() {
   return (
     <main className="all-conversions-page" lang="pt-BR">
       <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Trilha de navegacao">
-          <Link href="/pt">Inicio</Link>
+        <nav className="breadcrumbs" aria-label="Trilha de navegação">
+          <Link href="/pt">Início</Link>
           <span aria-hidden="true">&rsaquo;</span>
           <span>Conversor de medidas de cozinha</span>
         </nav>
@@ -47,11 +47,11 @@ export default function PortugueseKitchenMeasurementsPage() {
           <h1>Conversor de medidas de cozinha</h1>
 
           <p>
-            Escolha o ingrediente e a unidade que voce conhece para ver
-            instantaneamente a equivalencia em xicaras, colheres de sopa,
-            colheres de cha, gramas, mililitros e litros. Cada ingrediente
-            tem uma densidade diferente, entao o calculo usa valores
-            especificos para farinha, acucar, arroz, mel, manteiga e
+            Escolha o ingrediente e a unidade que você conhece para ver
+            instantaneamente a equivalência em xícaras, colheres de sopa,
+            colheres de chá, gramas, mililitros e litros. Cada ingrediente
+            tem uma densidade diferente, então o cálculo usa valores
+            específicos para farinha, açúcar, arroz, mel, manteiga e
             muitos outros.
           </p>
         </header>
@@ -59,32 +59,32 @@ export default function PortugueseKitchenMeasurementsPage() {
         <KitchenMeasuresConverter locale="pt" />
 
         <section className="category-article-content">
-          <h2>Quantas gramas tem uma xicara de farinha ou uma colher de acucar?</h2>
+          <h2>Quantos gramas há em uma xícara de farinha ou uma colher de açúcar?</h2>
           <p>
-            Nao existe uma regra unica valida para todos os ingredientes,
-            porque a xicara mede um volume enquanto a grama mede uma
-            massa. Uma xicara de farinha e mais leve que uma xicara de
-            acucar, e o mel e mais pesado que ambos -- por isso a
-            conversao varia conforme a densidade do ingrediente.
+            Não existe uma regra única válida para todos os ingredientes,
+            porque a xícara mede um volume enquanto o grama mede uma
+            massa. Uma xícara de farinha é mais leve que uma xícara de
+            açúcar, e o mel é mais pesado que ambos — por isso a
+            conversão varia conforme a densidade do ingrediente.
           </p>
           <p>
-            Os valores indicados aqui sao medias praticas adaptadas ao uso
-            culinario cotidiano. O peso final pode variar ligeiramente
-            conforme o quanto o ingrediente esta compactado ou a variedade
+            Os valores indicados aqui são médias práticas adaptadas ao uso
+            culinário cotidiano. O peso final pode variar ligeiramente
+            conforme o quanto o ingrediente está compactado ou a variedade
             do produto, mas o resultado continua confiavel o suficiente
             para uso domestico.
           </p>
 
-          <h2>Lista de ingredientes comuns (1 xicara = 240 ml)</h2>
+          <h2>Lista de ingredientes comuns (1 xícara = 240 ml)</h2>
           <div className="conversion-table-wrap">
             <table className="conversion-table">
-              <caption>Gramas aproximadas por xicara, colher de sopa e colher de cha</caption>
+              <caption>Gramas aproximadas por xícara, colher de sopa e colher de chá</caption>
               <thead>
                 <tr>
                   <th scope="col">Ingrediente</th>
-                  <th scope="col">1 xicara</th>
+                  <th scope="col">1 xícara</th>
                   <th scope="col">1 colher de sopa</th>
-                  <th scope="col">1 colher de cha</th>
+                  <th scope="col">1 colher de chá</th>
                 </tr>
               </thead>
               <tbody>
@@ -102,15 +102,15 @@ export default function PortugueseKitchenMeasurementsPage() {
 
           <h2>Perguntas frequentes</h2>
           <p>
-            <strong>Quantos mililitros tem uma colher de sopa?</strong>
+            <strong>Quantos mililitros há em uma colher de sopa?</strong>
             <br />
             Uma colher de sopa equivale a 15 mililitros, ou seja, 3
-            colheres de cha. A xicara usada aqui corresponde a 240
-            mililitros (a mesma medida do "copo americano" usado nas
+            colheres de chá. A xícara usada aqui corresponde a 240
+            mililitros (a mesma medida do «copo americano» usado nas
             receitas brasileiras).
           </p>
           <p>
-            <strong>Por que o peso de uma xicara varia conforme o ingrediente?</strong>
+            <strong>Por que o peso de uma xícara varia conforme o ingrediente?</strong>
             <br />
             Porque o volume permanece constante, mas a densidade varia. Um
             ingrediente leve como a farinha pesa menos que um denso como o
@@ -129,13 +129,13 @@ export default function PortugueseKitchenMeasurementsPage() {
               <Link href="/pt/recipe-converter">Conversor de receitas</Link>
             </li>
             <li>
-              <Link href="/pt/shoe-size-converter">Conversor de numeracao de calcados</Link>
+              <Link href="/pt/shoe-size-converter">Conversor de numeração de calçados</Link>
             </li>
             <li>
-              <Link href="/pt/historical-units">Unidades de medida historicas</Link>
+              <Link href="/pt/historical-units">Unidades de medida históricas</Link>
             </li>
             <li>
-              <Link href="/pt/categories/massa">Conversao de unidades de massa</Link>
+              <Link href="/pt/categories/massa">Conversão de unidades de massa</Link>
             </li>
           </ul>
         </section>
@@ -147,7 +147,7 @@ export default function PortugueseKitchenMeasurementsPage() {
             href="/mutfak-olculeri-cevirici"
             hrefLang="tr"
           >
-            Türkçe versiyonu aç
+            Abrir a versão em turco
           </Link>
         </section>
       </div>

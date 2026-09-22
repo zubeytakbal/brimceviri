@@ -17,8 +17,8 @@ const spanishCategoryNames: Record<string, string> = {
   sicaklik: "Temperatura",
   zaman: "Tiempo",
   hiz: "Velocidad",
-  basinc: "Presion",
-  enerji: "Energia",
+  basinc: "Presión",
+  enerji: "Energía",
   debi: "Caudal",
   elektrik: "Electricidad",
   yogunluk: "Densidad",
@@ -26,24 +26,24 @@ const spanishCategoryNames: Record<string, string> = {
   tork: "Par",
   aci: "Angulo",
   frekans: "Frecuencia",
-  debi_hacimsel: "Caudal volumetrico",
-  debi_kutlesel: "Caudal masico",
-  manyetik_alan: "Campo magnetico",
-  manyetik_aki: "Flujo magnetico",
-  viskozite_kinematik: "Viscosidad cinematica",
-  isil_iletkenlik: "Conductividad termica",
+  debi_hacimsel: "Caudal volumétrico",
+  debi_kutlesel: "Caudal másico",
+  manyetik_alan: "Campo magnético",
+  manyetik_aki: "Flujo magnético",
+  viskozite_kinematik: "Viscosidad cinemática",
+  isil_iletkenlik: "Conductividad térmica",
   isi_akisi: "Flujo termico",
-  ozgul_isi: "Calor especifico",
-  ivme: "Aceleracion",
+  ozgul_isi: "Calor específico",
+  ivme: "Aceleración",
   acisal_hiz: "Velocidad angular",
   guc: "Potencia",
   momentum: "Momento lineal",
   viskozite_dinamik: "Viscosidad",
   veri: "Almacenamiento de datos",
-  elektrik_direnc: "Resistencia electrica",
+  elektrik_direnc: "Resistencia eléctrica",
   kapasitans: "Capacitancia",
   enduktans: "Inductancia",
-  elektrik_yuk: "Carga electrica",
+  elektrik_yuk: "Carga eléctrica",
   altin_ayar: "Quilate de oro",
   gumus_ayar: "Ley de la plata",
   kan_sekeri: "Glucemia",
@@ -153,7 +153,7 @@ function createSpanishTemperatureExplanation(
     return `Para convertir ${fromName} en ${toName}, se resta 273,15. 273,15 ${fromUnit} equivale a 0 ${toUnit}.`;
   }
 
-  return `Usa la relacion de temperatura definida para convertir ${fromName} en ${toName}.`;
+  return `Usa la relación de temperatura definida para convertir ${fromName} en ${toName}.`;
 }
 
 const spanishUnitBySourceSlug: Record<string, { name: string; slug: string }> =

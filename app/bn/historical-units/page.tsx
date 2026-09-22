@@ -149,7 +149,7 @@ export default function BengaliHistoricalUnitsPage() {
       alternateLink={{
         href: "/tarihi-olcu-birimleri",
         hrefLang: "tr",
-        label: "Türkçe versiyonu aç",
+        label: "তুর্কি সংস্করণ খুলুন",
       }}
       sections={[
         {

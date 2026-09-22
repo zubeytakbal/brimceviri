@@ -23,6 +23,7 @@ import WallpaperCalculator from "../../components/WallpaperCalculator";
 import WeightComparisonTool from "../../components/WeightComparisonTool";
 import PairConverter from "../../converter/PairConverter";
 import { convert } from "../../converter/convert";
+import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
 import { findEnglishPageByTurkishSlug } from "../../converter/localizedConversionPages";
 import {
   findGermanConversionPage,
@@ -281,9 +282,30 @@ function GermanConversionPage({
 
   const oneUnitResult = convert(page.category, 1, page.fromUnit, page.toUnit);
   const formattedOneUnitResult = formatNumber(oneUnitResult);
+  const reverseOneUnitResult = formatNumber(
+    convert(page.category, 1, page.toUnit, page.fromUnit)
+  );
+  const faqItems: FaqItem[] = [
+    {
+      question: `Wie viel ${page.toName} sind 1 ${page.fromName}?`,
+      answer: `1 ${page.fromUnit} = ${formattedOneUnitResult} ${page.toUnit}.`,
+    },
+    {
+      question: `Wie rechnet man ${page.fromName} in ${page.toName} um?`,
+      answer: page.explanation,
+    },
+    {
+      question: `Wie viel ${page.fromName} sind 1 ${page.toName}?`,
+      answer: `1 ${page.toUnit} = ${reverseOneUnitResult} ${page.fromUnit}.`,
+    },
+  ];
 
   return (
     <main className="conversion-page" lang="de">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(buildFaqSchema(faqItems)) }}
+      />
       <div className="conversion-breadcrumb-wrap">
         <nav className="breadcrumbs" aria-label="Brotkrumen">
           <Link href="/de">Startseite</Link>
@@ -465,6 +487,16 @@ function GermanConversionPage({
             </ul>
           </section>
         )}
+
+        <section className="conversion-section conversion-faq">
+          <h2>Häufig gestellte Fragen</h2>
+          {faqItems.map((item) => (
+            <div key={item.question} className="conversion-faq-item">
+              <h3>{item.question}</h3>
+              <p>{item.answer}</p>
+            </div>
+          ))}
+        </section>
 
         {sources.length > 0 && (
           <section className="conversion-section unit-sources">

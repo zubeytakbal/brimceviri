@@ -75,7 +75,7 @@ export default function BengaliNumberBaseCalculatorPage() {
 
           <h2>অন্যান্য ভাষা</h2>
           <Link className="text-link" href="/sayi-tabani-cevirici" hrefLang="tr">
-            Türkçe versiyonu aç
+            তুর্কি সংস্করণ খুলুন
           </Link>
         </section>
       </div>

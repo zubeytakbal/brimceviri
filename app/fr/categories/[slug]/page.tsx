@@ -14,20 +14,20 @@ type PageProps = {
   params: Promise<{ slug: string }>;
 };
 
-// Deja la preposition complete ("de"/"d'") pour eviter les problemes
-// d'elision -- s'utilise comme suffixe direct de "les unites".
+// Déjà la préposition complète (« de »/« d’ ») pour éviter les problèmes
+// d’élision — s’utilise comme suffixe direct de « les unités ».
 const categoryBaseNames: Record<string, string> = {
   uzunluk: "de longueur",
   alan: "de surface",
   hacim: "de volume",
   kutle: "de masse",
-  sicaklik: "de temperature",
+  sicaklik: "de température",
   zaman: "de temps",
   hiz: "de vitesse",
   basinc: "de pression",
-  enerji: "d'energie",
-  veri: "de stockage de donnees",
-  elektrik: "d'electricite",
+  enerji: "d’énergie",
+  veri: "de stockage de données",
+  elektrik: "d’électricité",
   altin_ayar: "de carat d'or",
   gumus_ayar: "de titre d'argent",
 };
@@ -38,13 +38,13 @@ const categoryNameWithArticle: Record<string, string> = {
   alan: "la surface",
   hacim: "le volume",
   kutle: "la masse",
-  sicaklik: "la temperature",
+  sicaklik: "la température",
   zaman: "le temps",
   hiz: "la vitesse",
   basinc: "la pression",
-  enerji: "l'energie",
-  veri: "le stockage de donnees",
-  elektrik: "l'electricite",
+  enerji: "l’énergie",
+  veri: "le stockage de données",
+  elektrik: "l’électricité",
   altin_ayar: "le carat d'or",
   gumus_ayar: "le titre d'argent",
 };
@@ -69,13 +69,13 @@ export async function generateMetadata({
 
   if (!categoryPage) {
     return {
-      title: "Categorie introuvable",
+      title: "Catégorie introuvable",
       robots: { index: false, follow: false },
     };
   }
 
   return {
-    title: `${categoryPage.title} : unites, tableaux et calculs`,
+    title: `${categoryPage.title} : unités, tableaux et calculs`,
     description: categoryPage.description,
     alternates: {
       canonical: `/fr/categories/${categoryPage.slug}`,
@@ -121,14 +121,14 @@ export default async function FrenchCategoryPage({ params }: PageProps) {
 
   const tableReferenceLabel =
     categoryPage.category === "uzunluk"
-      ? "Equivalent en metres"
+      ? "Équivalent en mètres"
       : categoryPage.category === "kutle"
-        ? "Equivalent en kilogrammes"
+        ? "Équivalent en kilogrammes"
         : categoryPage.category === "basinc"
-          ? "Equivalent en pascals"
-          : "Equivalent SI";
+          ? "Équivalent en pascals"
+          : "Équivalent SI";
 
-  const tableTitle = "Tableau comparatif des unites";
+  const tableTitle = "Tableau comparatif des unités";
 
   const pageUrl = buildSiteUrl(`/fr/categories/${categoryPage.slug}`);
 
@@ -145,7 +145,7 @@ export default async function FrenchCategoryPage({ params }: PageProps) {
       {
         "@type": "ListItem",
         position: 2,
-        name: "Categories",
+        name: "Catégories",
         item: buildSiteUrl("/fr"),
       },
       {
@@ -194,14 +194,14 @@ export default async function FrenchCategoryPage({ params }: PageProps) {
       breadcrumbAriaLabel="Fil d'Ariane"
       breadcrumbs={[
         { label: "Accueil", href: "/fr" },
-        { label: "Categories", href: "/fr/categories" },
+        { label: "Catégories", href: "/fr/categories" },
         { label: categoryPage.title },
       ]}
-      kickerLabel="Categorie d'unites"
+      kickerLabel="Catégorie d’unités"
       title={categoryPage.title}
       description={categoryPage.description}
       allUnitsSection={{
-        heading: `Convertir toutes les unites ${categoryBaseNames[categoryPage.category] ?? categoryPage.title}`,
+        heading: `Convertir toutes les unités ${categoryBaseNames[categoryPage.category] ?? categoryPage.title}`,
         content: (
           <CategoryUnitConverter category={categoryPage.category} locale="fr" />
         ),
@@ -209,14 +209,14 @@ export default async function FrenchCategoryPage({ params }: PageProps) {
       conversionHeading="Conversions populaires"
       conversionCountLabel={`${conversionCards.length} paires`}
       conversionCards={conversionCards}
-      unitGuidesHeading="Guides d'unites"
-      unitGuidesCountLabel={`${categoryUnits.length} unites`}
+      unitGuidesHeading="Guides d’unités"
+      unitGuidesCountLabel={`${categoryUnits.length} unités`}
       unitGuides={categoryUnits.map((unitPage) => ({
         href: `/fr/unit-guides/${unitPage.slug}`,
-        label: `Qu'est-ce que ${unitPage.name} ?`,
+        label: `Qu’est-ce que ${unitPage.name} ?`,
         symbol: unitPage.symbol,
       }))}
-      detailHeading={`Informations detaillees sur ${categoryNameWithArticle[categoryPage.category] ?? categoryPage.title}`}
+      detailHeading={`Informations détaillées sur ${categoryNameWithArticle[categoryPage.category] ?? categoryPage.title}`}
       detailContent={
         <>
           <div className="category-article-introduction">
@@ -265,9 +265,9 @@ export default async function FrenchCategoryPage({ params }: PageProps) {
 
                 {index === 1 && featuredUnit && (
                   <p className="category-inline-link">
-                    Pour plus d'informations sur l'unite {featuredUnit.name}, consultez la{" "}
+                    Pour plus d’informations sur l’unité {featuredUnit.name}, consultez la{" "}
                     <a href={`/fr/unit-guides/${featuredUnit.slug}`}>
-                      page d'information {featuredUnit.name}
+                      page d’information {featuredUnit.name}
                     </a>
                     .
                   </p>
@@ -282,10 +282,10 @@ export default async function FrenchCategoryPage({ params }: PageProps) {
                 <table className="scientific-table">
                   <thead>
                     <tr>
-                      <th>Unite</th>
+                      <th>Unité</th>
                       <th>Symbole</th>
                       <th>{tableReferenceLabel}</th>
-                      <th>Systeme</th>
+                      <th>Système</th>
                       <th>Usage courant</th>
                     </tr>
                   </thead>
@@ -307,8 +307,8 @@ export default async function FrenchCategoryPage({ params }: PageProps) {
             <section className="conversion-section unit-sources" id="categorie-sources">
               <h2>Sources</h2>
               <p>
-                Les definitions et les valeurs de conversion de cette page
-                s'appuient sur des references metrologiques officielles reconnues.
+                Les définitions et les valeurs de conversion de cette page
+                s’appuient sur des références métrologiques officielles reconnues.
               </p>
               <ol>
                 {sources.map((source) => (
@@ -325,7 +325,7 @@ export default async function FrenchCategoryPage({ params }: PageProps) {
       }
       footerLink={{
         href: "/fr/categories",
-        label: "Voir toutes les categories",
+        label: "Voir toutes les catégories",
       }}
     />
   );

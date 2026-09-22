@@ -24,10 +24,10 @@ export interface NumberFacts {
 export const MIN_NUMBER = 1;
 export const MAX_NUMBER = 100;
 
-// Sitemap'e eklenen ve sayfa ici onceki/sonraki gezinmesinde kullanilan
-// aralik -- bu sayilar build aninda statik uretilmez (yalnizca 1-100
-// uretilir), ilk istekte on-demand render edilip cache'lenir.
-export const MAX_LINKABLE_NUMBER = 10_000;
+// Sayfa ici onceki/sonraki gezinmesinde kullanilan aralik. Bu sayfalar
+// programatik ve birbirine cok benzedigi icin sitemap'e eklenmez, noindex
+// kalir; hesaplayici yine daha genis araliktaki sayilarla calisabilir.
+export const MAX_LINKABLE_NUMBER = MAX_NUMBER;
 
 export const MIN_LIVE_NUMBER = 1;
 export const MAX_LIVE_NUMBER = 1_000_000;
@@ -170,8 +170,4 @@ export function getNumberFacts(
 
 export function getAllNumberFactsRange(): number[] {
   return Array.from({ length: MAX_NUMBER - MIN_NUMBER + 1 }, (_, i) => i + MIN_NUMBER);
-}
-
-export function getAllLinkableNumbers(): number[] {
-  return Array.from({ length: MAX_LINKABLE_NUMBER - MIN_NUMBER + 1 }, (_, i) => i + MIN_NUMBER);
 }

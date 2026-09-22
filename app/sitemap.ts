@@ -56,6 +56,7 @@ import {
   elementNamesDeBySymbol,
   slugifyElementNameDe,
 } from "./converter/periodicTableDataDe";
+import { findGermanElementArticle } from "./converter/germanElementArticles";
 import { materialsDatabase } from "./converter/materialsDatabase";
 import { getAllMaterialComparisons } from "./converter/materialComparisons";
 import { celestialBodiesDatabase } from "./converter/celestialBodiesDatabase";
@@ -64,8 +65,8 @@ import { mountainsDatabase } from "./converter/mountainsDatabase";
 import { turkishProvinceElevations } from "./converter/turkishProvinceElevations";
 import { popularProvinceComparisons } from "./converter/popularProvinceComparisons";
 import { compoundsDatabase } from "./converter/compoundsDatabase";
+import { findCompoundEditorial } from "./converter/compoundEditorial";
 import { aminoAcidsDatabase } from "./converter/aminoAcidsDatabase";
-import { getAllLinkableNumbers } from "./converter/numberFacts";
 import { bengaliWeightPairs } from "./converter/bengaliWeightPairs";
 import { licenseClasses } from "./converter/licenseClassFinder";
 import { uzLicenseClasses } from "./converter/licenseClassFinderUz";
@@ -995,24 +996,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     },
-    ...getAllLinkableNumbers().map((n) => ({
-      url: `${baseUrl}/bilim-hesaplayicilari/matematik/sayilar/${n}`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-    })),
     {
       url: `${baseUrl}/uz/sonlar`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
       priority: 0.7,
     },
-    ...getAllLinkableNumbers().map((n) => ({
-      url: `${baseUrl}/uz/sonlar/${n}`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-    })),
     {
       url: `${baseUrl}/bilim-hesaplayicilari/matematik/kupkok-hesaplama`,
       lastModified: contentLastModified,
@@ -1182,7 +1171,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
       },
     },
-    ...periodicTable.map((element) => {
+    ...periodicTable.filter((element) =>
+      Boolean(
+        findGermanElementArticle(
+          slugifyElementNameDe(elementNamesDeBySymbol[element.symbol] ?? element.symbol)
+        )
+      )
+    ).map((element) => {
       const deSlug = slugifyElementNameDe(elementNamesDeBySymbol[element.symbol] ?? element.symbol);
       return {
         url: `${baseUrl}/de/periodensystem/${deSlug}`,
@@ -1393,12 +1388,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     },
-    ...compoundsDatabase.map((compound) => ({
+    ...compoundsDatabase
+      .filter((compound) => Boolean(findCompoundEditorial(compound.id)))
+      .map((compound) => ({
       url: `${baseUrl}/bilim-hesaplayicilari/kimya/bilesikler/${compound.id}`,
       lastModified: contentLastModified,
       changeFrequency: "monthly" as const,
       priority: 0.6,
-    })),
+      })),
     {
       url: `${baseUrl}/de/chemische-verbindungen`,
       lastModified: contentLastModified,
@@ -1412,7 +1409,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
       },
     },
-    ...compoundsDatabase.map((compound) => ({
+    ...compoundsDatabase
+      .filter((compound) => Boolean(findCompoundEditorial(compound.id)))
+      .map((compound) => ({
       url: `${baseUrl}/de/chemische-verbindungen/${compound.id}`,
       lastModified: contentLastModified,
       changeFrequency: "monthly" as const,
@@ -1424,7 +1423,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           "x-default": `${baseUrl}/bilim-hesaplayicilari/kimya/bilesikler/${compound.id}`,
         },
       },
-    })),
+      })),
     {
       url: `${baseUrl}/bilim-hesaplayicilari/biyoloji`,
       lastModified: contentLastModified,

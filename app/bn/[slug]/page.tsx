@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import PairConverter from "../../converter/PairConverter";
 import { convert } from "../../converter/convert";
+import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
 import { findEnglishPageByTurkishSlug } from "../../converter/localizedConversionPages";
 import {
   findBengaliConversionPage,
@@ -118,9 +119,35 @@ export default async function BengaliConversionPage({ params }: PageProps) {
 
   const oneUnitResult = convert(page.category, 1, page.fromUnit, page.toUnit);
   const formattedOneUnitResult = formatNumber(oneUnitResult);
+  const reverseOneUnitResult = formatNumber(
+    convert(page.category, 1, page.toUnit, page.fromUnit)
+  );
+  const faqItems: FaqItem[] = [
+    {
+      question: `1 ${page.fromName} কত ${page.toName}?`,
+      answer: `1 ${page.fromUnit} = ${formattedOneUnitResult} ${page.toUnit}.`,
+    },
+    {
+      question: `কীভাবে ${page.fromName} কে ${page.toName} এ রূপান্তর করবেন?`,
+      answer: page.explanation,
+    },
+    {
+      question: `1 ${page.toName} কত ${page.fromName}?`,
+      answer: `1 ${page.toUnit} = ${reverseOneUnitResult} ${page.fromUnit}.`,
+    },
+  ];
 
   return (
     <main className="conversion-page" lang="bn">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(buildFaqSchema(faqItems)).replace(
+            /</g,
+            "\\u003c"
+          ),
+        }}
+      />
       <div className="conversion-breadcrumb-wrap">
         <nav className="breadcrumbs" aria-label="ব্রেডক্রাম্ব">
           <Link href="/bn">হোম</Link>
@@ -287,6 +314,16 @@ export default async function BengaliConversionPage({ params }: PageProps) {
           </section>
         )}
 
+        <section className="conversion-section conversion-faq">
+          <h2>সাধারণ জিজ্ঞাসা</h2>
+          {faqItems.map((item) => (
+            <div key={item.question} className="conversion-faq-item">
+              <h3>{item.question}</h3>
+              <p>{item.answer}</p>
+            </div>
+          ))}
+        </section>
+
         {sources.length > 0 && (
           <section className="conversion-section unit-sources">
             <h2>সূত্রসমূহ</h2>
@@ -316,7 +353,7 @@ export default async function BengaliConversionPage({ params }: PageProps) {
             href={`/${page.sourceSlug}`}
             hrefLang="tr"
           >
-            Türkçe versiyonu aç
+            তুর্কি সংস্করণ খুলুন
           </Link>
 
           {englishPage && (
@@ -325,7 +362,7 @@ export default async function BengaliConversionPage({ params }: PageProps) {
               href={`/en/${englishPage.slug}`}
               hrefLang="en"
             >
-              View the English version
+              ইংরেজি সংস্করণ খুলুন
             </Link>
           )}
         </section>

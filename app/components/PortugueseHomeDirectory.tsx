@@ -40,8 +40,8 @@ const primaryCategoryCardsFromCategories = primaryCategoryPages.map((page) => ({
   iconName: getCategoryIconName(page.category) as SiteIconName,
 }));
 
-// Os 4 "universais" (identidade de 17 elementos do TR: 13 categorias +
-// 4 conversores) -- nao sao calculadoras, sao parte da identidade do site.
+// Os 4 «universais» (identidade de 17 elementos do TR: 13 categorias +
+// 4 conversores) — não são calculadoras, mas parte da identidade do site.
 const nicheCards: Array<{
   id: string;
   href: string;
@@ -52,15 +52,15 @@ const nicheCards: Array<{
   {
     id: "shoe-size",
     href: "/pt/shoe-size-converter",
-    title: "Conversor de numeracao de calcados",
-    description: "Compare as numeracoes brasileira, americana, europeia e britanica por marca.",
+    title: "Conversor de numeração de calçados",
+    description: "Compare as numerações brasileira, americana, europeia e britânica por marca.",
     iconName: "shoeSize",
   },
   {
     id: "kitchen-measures",
     href: "/pt/kitchen-measurement-converter",
     title: "Medidas de cozinha",
-    description: "Converta xicaras, colheres e gramas conforme o ingrediente.",
+    description: "Converta xícaras, colheres e gramas conforme o ingrediente.",
     iconName: "kitchenMeasures",
   },
   {
@@ -73,7 +73,7 @@ const nicheCards: Array<{
   {
     id: "historical-units",
     href: "/pt/historical-units",
-    title: "Unidades historicas",
+    title: "Unidades históricas",
     description: "Converta arşın, okka, dirhem e unidades bizantinas para unidades modernas.",
     iconName: "historical",
   },
@@ -184,24 +184,24 @@ export default function PortugueseHomeDirectory({
       <section className="directory-hero">
         <div className="directory-shell">
           <div className="directory-hero-copy">
-            <p className="directory-eyebrow">Conversor de unidades em portugues</p>
-            <h1>Encontre rapido a pagina de conversao correta</h1>
+            <p className="directory-eyebrow">Conversor de unidades em português brasileiro</p>
+            <h1>Encontre rapidamente a página de conversão correta</h1>
             <p className="directory-lead">
-              Converta comprimento, massa, pressao e muitas outras unidades
-              totalmente em portugues, com guias de unidades claros.
+              Converta comprimento, massa, pressão e muitas outras unidades
+              em português, com guias de unidades claros.
             </p>
           </div>
 
           <div className="directory-hero-panel">
             <form className="directory-search" onSubmit={handleSubmit} role="search">
-              <label htmlFor={inputId}>Buscar uma conversao</label>
+              <label htmlFor={inputId}>Buscar uma conversão</label>
 
               <div className="directory-search-field">
                 <input
                   id={inputId}
                   type="search"
                   value={query}
-                  placeholder="Ex.: metros para pes"
+                  placeholder="Ex.: metros para pés"
                   autoComplete="off"
                   spellCheck={false}
                   aria-describedby={`${inputId}-hint`}
@@ -216,7 +216,7 @@ export default function PortugueseHomeDirectory({
               </div>
 
               <p className="directory-search-hint" id={`${inputId}-hint`}>
-                Digite o nome de uma unidade em portugues ou ingles e pressione
+                Digite o nome de uma unidade em português ou inglês e pressione
                 Enter para abrir o primeiro resultado.
               </p>
 
@@ -253,7 +253,7 @@ export default function PortugueseHomeDirectory({
                 <dd>{stats.categories}</dd>
               </div>
               <div>
-                <dt>Paginas de conversao</dt>
+                <dt>Páginas de conversão</dt>
                 <dd>{stats.conversions}</dd>
               </div>
             </dl>
@@ -265,8 +265,8 @@ export default function PortugueseHomeDirectory({
         <section className="directory-section">
           <header className="directory-section-header">
             <div>
-              <h2>Conversao de unidades</h2>
-              <p>Escolha uma categoria para ver todas as unidades e paginas de conversao.</p>
+              <h2>Conversão de unidades</h2>
+              <p>Escolha uma categoria para ver todas as unidades e páginas de conversão.</p>
             </div>
 
             <Link className="directory-section-link" href="/pt/categories">
@@ -294,7 +294,7 @@ export default function PortugueseHomeDirectory({
 
           {secondaryCategoryCards.length > 0 && (
             <div className="directory-secondary-categories">
-              <h3>Mais categorias de conversao</h3>
+              <h3>Mais categorias de conversão</h3>
               <div className="directory-home-category-grid">
                 {secondaryCategoryCards.slice(0, 8).map((category) => (
                   <article className="directory-home-card" key={category.id}>
@@ -317,7 +317,7 @@ export default function PortugueseHomeDirectory({
           <div className="directory-section-footer">
             <Link className="directory-section-link" href="/pt/categories">
               <DecorativeIcon className="directory-link-icon" name="allConversions" size={18} />
-              Ver todas as categorias e conversoes
+              Ver todas as categorias e conversões
             </Link>
           </div>
         </section>
@@ -326,8 +326,8 @@ export default function PortugueseHomeDirectory({
           <section className="directory-section">
             <header className="directory-section-header">
               <div>
-                <h2>Conversoes populares</h2>
-                <p>Acesso direto as conversoes mais buscadas.</p>
+                <h2>Conversões populares</h2>
+                <p>Acesso direto às conversões mais buscadas.</p>
               </div>
             </header>
 
@@ -349,7 +349,7 @@ export default function PortugueseHomeDirectory({
             <header className="directory-section-header">
               <div>
                 <h2>Unidades populares</h2>
-                <p>Guias detalhados em portugues para as unidades mais buscadas.</p>
+                <p>Guias detalhados em português para as unidades mais buscadas.</p>
               </div>
             </header>
 

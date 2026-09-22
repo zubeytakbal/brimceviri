@@ -23,12 +23,12 @@ const categoryBaseNames: Record<string, string> = {
   sicaklik: "temperatura",
   zaman: "tiempo",
   hiz: "velocidad",
-  basinc: "presion",
-  enerji: "energia",
+  basinc: "presión",
+  enerji: "energía",
   veri: "almacenamiento de datos",
   elektrik: "electricidad",
-  altin_ayar: "quilate de oro",
-  gumus_ayar: "ley de la plata",
+  altin_ayar: "quilataje del oro",
+  gumus_ayar: "ley de plata",
 };
 
 function serializeJsonLd(data: object) {
@@ -51,13 +51,13 @@ export async function generateMetadata({
 
   if (!categoryPage) {
     return {
-      title: "Categoria no encontrada",
+      title: "Categoría no encontrada",
       robots: { index: false, follow: false },
     };
   }
 
   return {
-    title: `${categoryPage.title}: unidades, tablas y calculos`,
+    title: `${categoryPage.title}: unidades, tablas y cálculos`,
     description: categoryPage.description,
     alternates: {
       canonical: `/es-419/categories/${categoryPage.slug}`,
@@ -128,8 +128,8 @@ export default async function Es419CategoryPage({ params }: PageProps) {
       {
         "@type": "ListItem",
         position: 2,
-        name: "Categorias",
-        item: buildSiteUrl("/es-419"),
+        name: "Categorías",
+        item: buildSiteUrl("/es-419/categories"),
       },
       {
         "@type": "ListItem",
@@ -153,7 +153,7 @@ export default async function Es419CategoryPage({ params }: PageProps) {
       itemListElement: categoryConversions.map((conversion, index) => ({
         "@type": "ListItem",
         position: index + 1,
-        name: `Convertidor ${conversion.fromName} – ${conversion.toName}`,
+        name: `Convertidor de ${conversion.fromName} a ${conversion.toName}`,
         url: buildSiteUrl(`/es-419/${conversion.slug}`),
       })),
     },
@@ -174,13 +174,13 @@ export default async function Es419CategoryPage({ params }: PageProps) {
           />
         </>
       }
-      breadcrumbAriaLabel="Ruta de navegacion"
+      breadcrumbAriaLabel="Ruta de navegación"
       breadcrumbs={[
         { label: "Inicio", href: "/es-419" },
-        { label: "Categorias", href: "/es-419/categories" },
+        { label: "Categorías", href: "/es-419/categories" },
         { label: categoryPage.title },
       ]}
-      kickerLabel="Categoria de unidades"
+      kickerLabel="Categoría de unidades"
       title={categoryPage.title}
       description={categoryPage.description}
       allUnitsSection={{
@@ -192,14 +192,14 @@ export default async function Es419CategoryPage({ params }: PageProps) {
       conversionHeading="Conversiones populares"
       conversionCountLabel={`${conversionCards.length} pares`}
       conversionCards={conversionCards}
-      unitGuidesHeading="Guias de unidades"
+      unitGuidesHeading="Guías de unidades"
       unitGuidesCountLabel={`${categoryUnits.length} unidades`}
       unitGuides={categoryUnits.map((unitPage) => ({
         href: `/es-419/unit-guides/${unitPage.slug}`,
-        label: `¿Que es ${unitPage.name}?`,
+        label: `¿Qué es ${unitPage.name}?`,
         symbol: unitPage.symbol,
       }))}
-      detailHeading={`Informacion detallada sobre ${baseName}`}
+      detailHeading={`Información detallada sobre ${baseName}`}
       detailContent={
         <>
           <div className="category-article-introduction">
@@ -217,8 +217,8 @@ export default async function Es419CategoryPage({ params }: PageProps) {
             </dl>
           </div>
 
-          <nav className="category-table-of-contents" aria-label="Indice de la pagina">
-            <strong>En esta pagina</strong>
+          <nav className="category-table-of-contents" aria-label="Índice de la página">
+            <strong>En esta página</strong>
             <ol>
               {categoryPage.sections.map((section, index) => (
                 <li key={section.title}>
@@ -248,9 +248,9 @@ export default async function Es419CategoryPage({ params }: PageProps) {
 
                 {index === 1 && featuredUnit && (
                   <p className="category-inline-link">
-                    Para mas informacion sobre la unidad {featuredUnit.name}, consulta la{" "}
+                    Para más información sobre la unidad {featuredUnit.name}, consulta la{" "}
                     <a href={`/es-419/unit-guides/${featuredUnit.slug}`}>
-                      pagina de informacion de {featuredUnit.name}
+                      guía de {featuredUnit.name}
                     </a>
                     .
                   </p>
@@ -266,7 +266,7 @@ export default async function Es419CategoryPage({ params }: PageProps) {
                   <thead>
                     <tr>
                       <th>Unidad</th>
-                      <th>Simbolo</th>
+                      <th>Símbolo</th>
                       <th>{tableReferenceLabel}</th>
                       <th>Sistema</th>
                       <th>Uso habitual</th>
@@ -290,8 +290,8 @@ export default async function Es419CategoryPage({ params }: PageProps) {
             <section className="conversion-section unit-sources" id="categoria-fuentes">
               <h2>Fuentes</h2>
               <p>
-                Las definiciones y los valores de conversion de esta pagina
-                se basan en referencias metrologicas oficiales reconocidas.
+                Las definiciones y los valores de conversión de esta página
+                se basan en referencias metrológicas oficiales reconocidas.
               </p>
               <ol>
                 {sources.map((source) => (
@@ -308,7 +308,7 @@ export default async function Es419CategoryPage({ params }: PageProps) {
       }
       footerLink={{
         href: "/es-419/categories",
-        label: "Ver todas las categorias",
+        label: "Ver todas las categorías",
       }}
     />
   );

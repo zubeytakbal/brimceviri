@@ -144,8 +144,8 @@ export default async function GermanCategoryPage({
       {
         "@type": "ListItem",
         position: 2,
-        name: "Kategorien",
-        item: buildSiteUrl("/de"),
+        name: "Alle Umrechnungen",
+        item: buildSiteUrl("/de/alle-umrechnungen"),
       },
       {
         "@type": "ListItem",
@@ -187,7 +187,7 @@ export default async function GermanCategoryPage({
       breadcrumbAriaLabel="Breadcrumb"
       breadcrumbs={[
         { label: "Startseite", href: "/de" },
-        { label: "Kategorien" },
+        { label: "Alle Umrechnungen", href: "/de/alle-umrechnungen" },
         { label: categoryPage.title },
       ]}
       kickerLabel="Einheitenkategorie"
@@ -438,7 +438,7 @@ export default async function GermanCategoryPage({
                   href={`/en/categories/${englishPage.slug}`}
                   hrefLang="en"
                 >
-                  View the English version
+                  Englische Version öffnen
                 </Link>
               )}
             </section>
@@ -446,8 +446,8 @@ export default async function GermanCategoryPage({
         </>
       }
       footerLink={{
-        href: "/de",
-        label: "Zur deutschen Startseite",
+        href: "/de/alle-umrechnungen",
+        label: "Alle deutschen Umrechnungen ansehen",
       }}
     />
   );

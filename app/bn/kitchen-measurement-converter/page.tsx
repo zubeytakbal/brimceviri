@@ -137,7 +137,7 @@ export default function BengaliKitchenMeasurementsPage() {
             href="/mutfak-olculeri-cevirici"
             hrefLang="tr"
           >
-            Türkçe versiyonu aç
+            তুর্কি সংস্করণ খুলুন
           </Link>
         </section>
       </div>

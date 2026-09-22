@@ -1077,6 +1077,111 @@ export const uzbekCategoryPages: LocalizedUzbekCategoryPage[] = [
       },
     ],
   },
+  {
+    locale: "uz",
+    slug: "kumush-sofligi",
+    sourceSlug: "gumus_ayar",
+    category: "gumus_ayar",
+    title: "Kumush Sofligi (Proba) Birliklarini O'zgartirish",
+    description:
+      "999, 925 sterling, 900, 800 va boshqa kumush probalari o'rtasidagi soflik darajasini taqqoslang; mingdan ulush va foiz bilan ko'ring.",
+    introduction: [
+      "Kumush sofligi qotishmadagi sof kumush ulushini bildiradi. U odatda mingdan bir ulushda yoziladi: 925 proba buyumning 92,5 foizi sof kumush ekanini anglatadi.",
+      "Zargarlik, quyma va kolleksiya buyumlarida proba qiymati metallning tarkibi, mustahkamligi va qiymatini tushunishga yordam beradi. Bu sahifa proba birliklarini taqqoslash uchun mo'ljallangan.",
+    ],
+    facts: [
+      { label: "Fizik miqdor", value: "Kumush sofligi" },
+      { label: "Asosiy ifoda", value: "Mingdan ulush (proba)" },
+      { label: "Sof kumush belgisi", value: "999 = 99,9%" },
+      { label: "Keng tarqalgan standart", value: "925 sterling kumush" },
+    ],
+    sections: [
+      {
+        title: "Kumush proba nima?",
+        paragraphs: [
+          "Proba qotishmaning 1000 qismidan nechta qismi sof kumush ekanini ko'rsatadi. Masalan, 800 proba 1000 qism qotishmaning 800 qismi kumush, qolgan qismi esa odatda mustahkamlik beruvchi boshqa metallardan iboratligini anglatadi.",
+          "Bu ko'rsatkich oltindagi karat tizimidan farq qiladi: kumush buyumlarda 925 yoki 999 kabi tamg'alar tarkibni to'g'ridan-to'g'ri anglatadi.",
+        ],
+      },
+      {
+        title: "925 sterling va 999 sof kumush farqi",
+        paragraphs: [
+          "999 sof kumush juda toza, ammo nisbatan yumshoq bo'ladi; shu sababli u ko'pincha quyma va investitsiya mahsulotlarida uchraydi. 925 sterling kumushga oz miqdorda boshqa metall qo'shiladi va bu zargarlik buyumi uchun yaxshiroq chidamlilik beradi.",
+          "Buyumni baholashda probadan tashqari vazn, ishlab chiqaruvchi tamg'asi, holati va sotib olish-sotish shartlari ham muhim. Ushbu aylantirgich faqat tarkib ulushini taqqoslaydi.",
+        ],
+      },
+    ],
+  },
+  {
+    locale: "uz",
+    slug: "qon-shakari",
+    sourceSlug: "kan_sekeri",
+    category: "kan_sekeri",
+    title: "Qon Shakari Birliklarini O'zgartirish",
+    description:
+      "Qondagi glyukoza uchun mmol/L va mg/dL birliklarini o'zgartiring; laboratoriya hisobotlaridagi o'lchov tizimlarini taqqoslang.",
+    introduction: [
+      "Qondagi glyukoza qiymati laboratoriya va o'z-o'zini nazorat qilish hisobotlarida turli birliklarda berilishi mumkin. O'zbekistonda va ko'plab mamlakatlarda mmol/L, AQSHda esa mg/dL ko'p uchraydi.",
+      "Bu sahifa ikki o'lchov birligi o'rtasidagi matematik aylantirishni tushuntiradi. Natija tibbiy tashxis yoki davolash tavsiyasi emas; hisobotni talqin qilish uchun shifokor yoki laboratoriya ko'rsatmasiga amal qiling.",
+    ],
+    facts: [
+      { label: "O'lchanadigan modda", value: "Glyukoza" },
+      { label: "SIga yaqin birlik", value: "mmol/L" },
+      { label: "Muqobil birlik", value: "mg/dL" },
+      { label: "Aylantirish nisbati", value: "1 mmol/L ≈ 18,016 mg/dL" },
+    ],
+    sections: [
+      {
+        title: "mmol/L va mg/dL nimani bildiradi?",
+        paragraphs: [
+          "mmol/L litr qondagi glyukozaning modda miqdorini, mg/dL esa desilitr qondagi glyukozaning massasini ifodalaydi. Bir xil laboratoriya natijasi turli mamlakat yoki qurilmalarda shu ikki ko'rinishdan birida berilishi mumkin.",
+          "Aylantirishda glyukozaning molyar massasi ishlatiladi; shuning uchun bu nisbat aynan glyukoza uchun mo'ljallangan va boshqa moddalar uchun avtomatik qo'llanmaydi.",
+        ],
+      },
+      {
+        title: "Natijani xavfsiz o'qish",
+        paragraphs: [
+          "Qiymatni aylantirish birliklarni bir xil ko'rinishga keltiradi, ammo natijaning sog'liq uchun mazmunini belgilamaydi. O'lchash vaqti, laboratoriya usuli va shaxsiy tibbiy holat talqinga ta'sir qilishi mumkin.",
+          "Agar hisobot yoki o'lchov bo'yicha xavotiringiz bo'lsa, uni malakali tibbiyot xodimi bilan muhokama qiling.",
+        ],
+      },
+    ],
+  },
+  {
+    locale: "uz",
+    slug: "d-vitamini",
+    sourceSlug: "vitamin_d",
+    category: "vitamin_d",
+    title: "D Vitamini Birliklarini O'zgartirish",
+    description:
+      "D vitamini laboratoriya natijalari uchun nmol/L va ng/mL birliklarini o'zgartiring; ikki xalqaro hisobot tizimini taqqoslang.",
+    introduction: [
+      "D vitamini laboratoriya tahlillarida ko'pincha 25-gidroksivitamin D miqdori sifatida ko'rsatiladi. Hisobotlar nmol/L yoki ng/mL birliklaridan foydalanishi mumkin.",
+      "Bu sahifa faqat birliklar o'rtasidagi aniq nisbatni beradi. Natijaning yetarliligi yoki davolash masalasi tibbiy baholashni talab qiladi.",
+    ],
+    facts: [
+      { label: "O'lchanadigan ko'rsatkich", value: "25-gidroksivitamin D" },
+      { label: "SIga yaqin birlik", value: "nmol/L" },
+      { label: "Muqobil birlik", value: "ng/mL" },
+      { label: "Aylantirish nisbati", value: "1 ng/mL = 2,496 nmol/L" },
+    ],
+    sections: [
+      {
+        title: "nmol/L va ng/mL farqi",
+        paragraphs: [
+          "nmol/L modda miqdorini, ng/mL esa massa konsentratsiyasini bildiradi. Ular bir tahlil natijasini ikki xil o'lchov tizimida ifodalash usulidir.",
+          "Natijani boshqa hisobot bilan solishtirishda avval ikkala qiymatni bir xil birlikka o'tkazish kerak. Shunda raqamlar bevosita taqqoslanadi.",
+        ],
+      },
+      {
+        title: "Laboratoriya natijasi va tibbiy talqin",
+        paragraphs: [
+          "Laboratoriya usuli, namuna olinishi va shaxsiy holat natijani talqin qilishga ta'sir qilishi mumkin. Aylantirgich faqat birlik o'zgarishini hisoblaydi.",
+          "Tahlil natijasi yuzasidan qaror qabul qilish uchun laboratoriya hisobotidagi izohlar va tibbiyot mutaxassisining tavsiyasiga murojaat qiling.",
+        ],
+      },
+    ],
+  },
 ];
 
 export function findUzbekCategoryPageByTurkishSlug(sourceSlug: string) {

@@ -259,8 +259,8 @@ export default async function CelestialBodyDetailPage({ params }: PageProps) {
           <h2>Kaynaklar</h2>
           <p>
             {body.category === "gezegen"
-              ? "Bu sayfadaki fiziksel değerler NASA'nın resmi Planetary Fact Sheet verisine dayanır."
-              : "Bu sayfadaki fiziksel değerler, ilgili gökcisminin bilimsel kaynaklarda (NASA/gözlemsel çalışmalar) yayımlanan, çapraz doğrulanmış değerlerine dayanır."}
+              ? <>Bu sayfadaki fiziksel değerler, NASA&apos;nın resmi <a href="https://nssdc.gsfc.nasa.gov/planetary/planetfact.html" target="_blank" rel="noreferrer">Planetary Fact Sheets</a> verisine dayanır.</>
+              : <>Bu sayfadaki fiziksel değerler, ilgili gökcisminin <a href="https://science.nasa.gov/solar-system/exploration/" target="_blank" rel="noreferrer">NASA Güneş Sistemi keşif kaynaklarında</a> ve gözlemsel çalışmalarda yayımlanan, çapraz doğrulanmış değerlerine dayanır.</>}
             {" "}Uydu sayısı gibi sık değişen değerler ayrıca güncel
             kaynaklarla doğrulanmıştır.
           </p>

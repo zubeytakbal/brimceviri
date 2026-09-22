@@ -5,6 +5,12 @@ import { uzbekUnitPages } from "../../../converter/localizedUzbekUnitPages";
 import { uzbekCategoryPages } from "../../../converter/localizedUzbekCategoryPages";
 import { uzbekConversionPages } from "../../../converter/localizedUzbekConversionPages";
 import { findEnglishUnitPageByTurkishSlug } from "../../../converter/localizedUnitPages";
+import { getUnitSources } from "../../../converter/unitSources";
+import CategoryUnitConverter from "../../../components/CategoryUnitConverter";
+import {
+  getCategoryUnitOptions,
+  hasUzbekUnitLabels,
+} from "../../../components/categoryUnitOptions";
 import { buildFullLanguageAlternates } from "../../../i18n/routing";
 import { buildSiteUrl } from "../../../siteConfig";
 
@@ -69,6 +75,16 @@ export default async function UzbekUnitPage({ params }: PageProps) {
       page.category === unitPage.category &&
       (page.fromUnit === unitPage.unit || page.toUnit === unitPage.unit)
   );
+  const sources = getUnitSources(unitPage.category);
+  const categoryUnitOptions = getCategoryUnitOptions(unitPage.category, "uz");
+  const focusedUnitOptions = [...categoryUnitOptions].sort(
+    (left, right) =>
+      Number(right.value === unitPage.unit) - Number(left.value === unitPage.unit)
+  );
+  const showLiveConverter =
+    hasUzbekUnitLabels(unitPage.category) &&
+    focusedUnitOptions.length > 1 &&
+    focusedUnitOptions[0]?.value === unitPage.unit;
 
   return (
     <main className="all-conversions-page" lang="uz">
@@ -91,6 +107,22 @@ export default async function UzbekUnitPage({ params }: PageProps) {
           <h1>{unitPage.name}</h1>
           <p>{unitPage.shortDescription}</p>
         </header>
+
+        {showLiveConverter && (
+          <section className="conversion-section unit-long-section">
+            <h2>{unitPage.name} bilan tez aylantirish</h2>
+            <p>
+              Quyidagi vositada {unitPage.name.toLowerCase()} boshlang&apos;ich
+              birlik sifatida tanlangan. Qiymatni kiriting, so&apos;ng natijani
+              kerakli birlikda ko&apos;ring.
+            </p>
+            <CategoryUnitConverter
+              category={unitPage.category}
+              locale="uz"
+              unitOptions={focusedUnitOptions}
+            />
+          </section>
+        )}
 
         <section className="category-article-content">
           <dl className="category-facts">
@@ -147,6 +179,24 @@ export default async function UzbekUnitPage({ params }: PageProps) {
             </section>
           )}
 
+          {sources.length > 0 && (
+            <section className="conversion-section unit-sources" id="sources">
+              <h2>Manbalar</h2>
+              <p>
+                Ushbu sahifadagi birlik ta'riflari va aylantirish munosabatlari tan olingan metrologiya hamda SI manbalariga asoslanadi.
+              </p>
+              <ol>
+                {sources.map((source) => (
+                  <li key={source.url}>
+                    <a href={source.url} target="_blank" rel="noreferrer">
+                      {source.organization}: {source.title}
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </section>
+          )}
+
           {(unitPage.sourceSlug || englishPage) && (
           <section className="conversion-section language-alternatives">
             <h2>Boshqa tillar</h2>
@@ -165,7 +215,7 @@ export default async function UzbekUnitPage({ params }: PageProps) {
                 href={`/en/units/${englishPage.slug}`}
                 hrefLang="en"
               >
-                View the English version
+                Inglizcha versiyasini ochish
               </Link>
             )}
           </section>

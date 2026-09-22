@@ -147,6 +147,23 @@ const copyByLocale: Record<
       costHint: "Enter your electricity price per kWh to see the cost estimate.",
     },
   },
+  nl: {
+    labels: {
+      power: "Appliance Power (Watt)",
+      hours: "Daily Usage Time (hours)",
+      days: "Days Used Per Month",
+      price: "Electricity Rate (EUR/kWh) - optional",
+    },
+    placeholder: "Price per kWh from your bill",
+    emptyState: "Enter valid values to see the result.",
+    resultLabels: {
+      monthly: "Monthly consumption",
+      daily: "Daily consumption",
+      yearly: "Yearly consumption",
+      yearlyCost: "Yearly cost",
+      costHint: "Enter your electricity price per kWh to see the cost estimate.",
+    },
+  },
   de: {
     labels: {
       power: "Geraeteleistung (Watt)",

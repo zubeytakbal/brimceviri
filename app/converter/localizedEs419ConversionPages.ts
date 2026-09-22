@@ -1,10 +1,10 @@
 import { convert } from "./convert";
 import { conversionPages, type ConversionPage } from "./conversionPages";
 import { findUnit } from "./unitRegistry";
-import { spanishUnitPages } from "./localizedSpanishUnitPages";
+import { es419UnitPages } from "./localizedEs419UnitPages";
 
 export type LocalizedSpanishConversionPage = ConversionPage & {
-  locale: "es";
+  locale: "es-419";
   sourceSlug: string;
   categoryName: string;
 };
@@ -17,41 +17,41 @@ const spanishCategoryNames: Record<string, string> = {
   sicaklik: "Temperatura",
   zaman: "Tiempo",
   hiz: "Velocidad",
-  basinc: "Presion",
-  enerji: "Energia",
+  basinc: "Presión",
+  enerji: "Energía",
   debi: "Caudal",
   elektrik: "Electricidad",
   yogunluk: "Densidad",
   kuvvet: "Fuerza",
   tork: "Par",
-  aci: "Angulo",
+  aci: "Ángulo",
   frekans: "Frecuencia",
-  debi_hacimsel: "Caudal volumetrico",
-  debi_kutlesel: "Caudal masico",
-  manyetik_alan: "Campo magnetico",
-  manyetik_aki: "Flujo magnetico",
-  viskozite_kinematik: "Viscosidad cinematica",
-  isil_iletkenlik: "Conductividad termica",
-  isi_akisi: "Flujo termico",
-  ozgul_isi: "Calor especifico",
-  ivme: "Aceleracion",
+  debi_hacimsel: "Caudal volumétrico",
+  debi_kutlesel: "Caudal másico",
+  manyetik_alan: "Campo magnético",
+  manyetik_aki: "Flujo magnético",
+  viskozite_kinematik: "Viscosidad cinemática",
+  isil_iletkenlik: "Conductividad térmica",
+  isi_akisi: "Flujo térmico",
+  ozgul_isi: "Calor específico",
+  ivme: "Aceleración",
   acisal_hiz: "Velocidad angular",
   guc: "Potencia",
   momentum: "Momento lineal",
   viskozite_dinamik: "Viscosidad",
   veri: "Almacenamiento de datos",
-  elektrik_direnc: "Resistencia electrica",
+  elektrik_direnc: "Resistencia eléctrica",
   kapasitans: "Capacitancia",
   enduktans: "Inductancia",
-  elektrik_yuk: "Carga electrica",
-  altin_ayar: "Quilate de oro",
-  gumus_ayar: "Ley de la plata",
+  elektrik_yuk: "Carga eléctrica",
+  altin_ayar: "Quilataje del oro",
+  gumus_ayar: "Ley de plata",
   kan_sekeri: "Glucemia",
   vitamin_d: "Vitamina D",
 };
 
 function formatSpanishValue(value: number) {
-  return Number(value.toPrecision(12)).toLocaleString("es-ES", {
+  return Number(value.toPrecision(12)).toLocaleString("es-419", {
     maximumFractionDigits: 12,
   });
 }
@@ -158,7 +158,7 @@ function createSpanishTemperatureExplanation(
 
 const spanishUnitBySourceSlug: Record<string, { name: string; slug: string }> =
   Object.fromEntries(
-    spanishUnitPages.map((page) => [
+    es419UnitPages.map((page) => [
       page.sourceSlug,
       { name: page.name, slug: page.slug },
     ])
@@ -185,7 +185,7 @@ function localizeConversionPage(
 
   return {
     ...page,
-    locale: "es",
+    locale: "es-419",
     sourceSlug: page.slug,
     slug: `${fromEs.slug}-${toEs.slug}`,
     fromName: fromEs.name,

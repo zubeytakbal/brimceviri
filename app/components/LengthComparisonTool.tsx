@@ -73,6 +73,16 @@ fr: {
     m: "Meter (m)",
     km: "Kilometer (km)",
   },
+  sv: {
+    cm: "Centimeter (cm)",
+    m: "Meter (m)",
+    km: "Kilometer (km)",
+  },
+  ru: {
+    cm: "Сантиметр (см)",
+    m: "Метр (м)",
+    km: "Километр (км)",
+  },
 };
 
 const unitShortLabels: Record<Locale, Record<LengthComparisonUnit, string>> = {
@@ -88,6 +98,8 @@ fr: { cm: "cm", m: "m", km: "km" },
   pt: { cm: "cm", m: "m", km: "km" },
   it: { cm: "cm", m: "m", km: "km" },
   nl: { cm: "cm", m: "m", km: "km" },
+  sv: { cm: "cm", m: "m", km: "km" },
+  ru: { cm: "см", m: "м", km: "км" },
 };
 
 const referenceLabels: Record<Locale, Record<string, string>> = {
@@ -199,6 +211,24 @@ fr: {
     "eyfel-kulesi": "Eiffel Tower height (with antenna)",
     "bogaz-koprusu": "15 July Martyrs Bridge length",
   },
+  sv: {
+    "insan-boyu": "Average adult human height",
+    zurafa: "Average giraffe height",
+    "sehir-otobusu": "City bus length",
+    "mavi-balina": "Average blue whale length",
+    "futbol-sahasi": "Football field length",
+    "eyfel-kulesi": "Eiffel Tower height (with antenna)",
+    "bogaz-koprusu": "15 July Martyrs Bridge length",
+  },
+  ru: {
+    "insan-boyu": "Средний рост взрослого человека",
+    zurafa: "Средний рост жирафа",
+    "sehir-otobusu": "Длина городского автобуса",
+    "mavi-balina": "Средняя длина синего кита",
+    "futbol-sahasi": "Длина футбольного поля",
+    "eyfel-kulesi": "Высота Эйфелевой башни (с антенной)",
+    "bogaz-koprusu": "Длина моста 15 июля",
+  },
 };
 
 const copyByLocale: Record<
@@ -294,6 +324,16 @@ const copyByLocale: Record<
     intro: "comparisons for",
     closestMatch: "Closest comparison",
   },
+  sv: {
+    labels: {
+      value: "Value",
+      unit: "Unit",
+    },
+    placeholder: "E.g. 3",
+    emptyState: "Enter a valid value to see the comparisons.",
+    intro: "comparisons for",
+    closestMatch: "Closest comparison",
+  },
   de: {
     labels: {
       value: "Wert",
@@ -324,7 +364,7 @@ uz: {
     intro: "uchun solishtirishlar:",
     closestMatch: "Eng yaqin solishtirish",
   },
-bn: {
+  bn: {
     labels: {
       value: "Value",
       unit: "Unit",
@@ -333,6 +373,16 @@ bn: {
     emptyState: "Enter a valid value to see the comparisons.",
     intro: "comparisons for",
     closestMatch: "Closest comparison",
+  },
+  ru: {
+    labels: {
+      value: "Значение",
+      unit: "Единица",
+    },
+    placeholder: "Например, 3",
+    emptyState: "Введите корректное значение, чтобы увидеть сравнения.",
+    intro: "сравнения для",
+    closestMatch: "Ближайшее сравнение",
   },
 };
 

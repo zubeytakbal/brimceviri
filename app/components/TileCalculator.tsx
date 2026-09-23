@@ -9,7 +9,7 @@ import {
 } from "../converter/tileCalculator";
 
 const copyByLocale: Record<
-  Locale,
+  Exclude<Locale, "ru">,
   {
     labels: {
       area: string;
@@ -137,6 +137,20 @@ const copyByLocale: Record<
     },
     emptyState: "Enter valid values to see the result.",
   },
+  sv: {
+    labels: {
+      area: "Area to Cover (m2)",
+      width: "Tile Width (cm)",
+      height: "Tile Height (cm)",
+      waste: "Waste Allowance (%)",
+    },
+    resultLabels: {
+      tileArea: "Area of one tile",
+      totalArea: "Total area with waste",
+      count: "Required tile count",
+    },
+    emptyState: "Enter valid values to see the result.",
+  },
   de: {
     labels: {
       area: "Zu belegende Flaeche (m2)",
@@ -216,7 +230,7 @@ export default function TileCalculator({
 }: {
   locale?: Locale;
 }) {
-  const copy = copyByLocale[locale];
+  const copy = copyByLocale[locale === "ru" ? "en" : locale];
   const [area, setArea] = useState("20");
   const [tileWidthCm, setTileWidthCm] = useState("60");
   const [tileHeightCm, setTileHeightCm] = useState("60");

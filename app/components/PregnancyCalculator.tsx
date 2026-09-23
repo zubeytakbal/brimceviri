@@ -10,7 +10,7 @@ import {
 } from "../converter/pregnancyCalculator";
 
 const trimesterLabels: Record<
-  Locale,
+  Exclude<Locale, "ru">,
   Record<PregnancyTrimester, string>
 > = {
   tr: {
@@ -73,10 +73,15 @@ fr: {
     2: "2nd trimester",
     3: "3rd trimester",
   },
+  sv: {
+    1: "1st trimester",
+    2: "2nd trimester",
+    3: "3rd trimester",
+  },
 };
 
 const copyByLocale: Record<
-  Locale,
+  Exclude<Locale, "ru">,
   {
     inputLabel: string;
     emptyState: string;
@@ -159,6 +164,15 @@ const copyByLocale: Record<
     weeks: "weeks",
     days: "days",
   },
+  sv: {
+    inputLabel: "First Day of the Last Period",
+    emptyState: "Enter a valid date; it cannot be in the future or more than 45 weeks old.",
+    summaryLabel: "Pregnancy age",
+    dueDate: "Estimated due date",
+    daysUntil: "Days until due date",
+    weeks: "weeks",
+    days: "days",
+  },
   de: {
     inputLabel: "Erster Tag der letzten Periode",
     emptyState: "Geben Sie ein gueltiges Datum ein; es darf nicht in der Zukunft liegen oder mehr als 45 Wochen zurueckliegen.",
@@ -211,7 +225,8 @@ export default function PregnancyCalculator({
 }: {
   locale?: Locale;
 }) {
-  const copy = copyByLocale[locale];
+  const displayLocale = locale === "ru" ? "en" : locale;
+  const copy = copyByLocale[displayLocale];
   const [lastPeriodDate, setLastPeriodDate] = useState("2026-01-01");
   const [referenceDate] = useState(() => todayIsoDate());
 
@@ -245,7 +260,7 @@ export default function PregnancyCalculator({
               <strong>
                 {result.weeks} {copy.weeks}, {result.days} {copy.days}
               </strong>{" "}
-              - {trimesterLabels[locale][result.trimester]}
+              - {trimesterLabels[displayLocale][result.trimester]}
             </p>
 
             <div className="paint-calculator-result-grid">

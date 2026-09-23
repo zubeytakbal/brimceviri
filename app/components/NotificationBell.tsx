@@ -14,7 +14,7 @@ import {
 import { useNotificationSlot } from "./NotificationSlotProvider";
 import type { SiteNotification } from "../converter/siteNotifications";
 
-type NotificationLocale = "tr" | "en" | "uz" | "de" | "ar" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "nl";
+type NotificationLocale = "tr" | "en" | "uz" | "de" | "ar" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "nl" | "sv";
 
 const notificationCopy = {
   tr: {
@@ -131,6 +131,11 @@ const notificationCopy = {
     ariaLabel: "Meldingen", panelLabel: "Sitemeldingen", title: "Meldingen", closeLabel: "Sluiten",
     markSeenLabel: "Deze melding als gelezen markeren", openLabel: "Openen →",
     empty: "Er zijn momenteel geen nieuwe meldingen.", dateLocale: "nl-NL",
+  },
+  sv: {
+    ariaLabel: "Aviseringar", panelLabel: "Sidaviseringar", title: "Aviseringar", closeLabel: "Stang",
+    markSeenLabel: "Markera denna avisering som last", openLabel: "Oppna →",
+    empty: "Det finns for narvarande inga nya aviseringar.", dateLocale: "sv-SE",
   },
 } as const;
 

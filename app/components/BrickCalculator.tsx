@@ -9,7 +9,7 @@ import {
 } from "../converter/brickCalculator";
 
 const copyByLocale: Record<
-  Locale,
+  Exclude<Locale, "ru">,
   {
     labels: {
       wallArea: string;
@@ -131,6 +131,21 @@ const copyByLocale: Record<
     },
     emptyState: "Enter valid values to see the result.",
   },
+  sv: {
+    labels: {
+      wallArea: "Wall Area (m2)",
+      brickWidth: "Brick Width (cm)",
+      brickHeight: "Brick Height (cm)",
+      joint: "Joint Thickness (mm)",
+      waste: "Waste Allowance (%)",
+    },
+    resultLabels: {
+      brickArea: "Joint-inclusive area per brick",
+      totalArea: "Total area including waste",
+      count: "Bricks needed",
+    },
+    emptyState: "Enter valid values to see the result.",
+  },
   en: {
     labels: {
       wallArea: "Wall Area (m2)",
@@ -229,7 +244,7 @@ export default function BrickCalculator({
 }: {
   locale?: Locale;
 }) {
-  const copy = copyByLocale[locale];
+  const copy = copyByLocale[locale === "ru" ? "en" : locale];
   const [wallArea, setWallArea] = useState("20");
   const [brickWidthCm, setBrickWidthCm] = useState("19");
   const [brickHeightCm, setBrickHeightCm] = useState("13.5");

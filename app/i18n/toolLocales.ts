@@ -45,6 +45,14 @@ export function getIntlLocale(locale: Locale) {
     return "nl-NL";
   }
 
+  if (locale === "ru") {
+    return "ru-RU";
+  }
+
+  if (locale === "sv") {
+    return "sv-SE";
+  }
+
   return "tr-TR";
 }
 

@@ -3,7 +3,7 @@ import type {
   KitchenUnit,
 } from "./kitchenMeasures";
 
-export type KitchenLocale = "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "nl";
+export type KitchenLocale = "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "nl" | "sv";
 
 export const kitchenIngredientLabels: Record<
   KitchenLocale,
@@ -539,6 +539,19 @@ export const kitchenIngredientLabels: Record<
     mayonez: "Mayonaise", ketcap: "Ketchup", sirke: "Azijn", "limon-suyu": "Citroensap", tarcin: "Gemalen kaneel",
     "kirmizi-biber": "Gemalen rode peper", karabiber: "Gemalen zwarte peper", kimyon: "Gemalen komijn",
   },
+  sv: {
+    un: "Vetemjol", "tam-bugday-unu": "Fullkornsmjol", "pirinc-unu": "Rismjol", "misir-unu": "Majsmjol",
+    irmik: "Mannagryn", "galeta-unu": "Strommed", "toz-seker": "Strosocker", "pudra-sekeri": "Florsocker",
+    "esmer-seker": "Farinsocker", tuz: "Salt", pirinc: "Ris", bulgur: "Bulgur", nohut: "Kikartor (torkade)",
+    "kirmizi-mercimek": "Roda linser", "yesil-mercimek": "Grona linser", "kuru-fasulye": "Torkade bonor",
+    sut: "Mjolk", yogurt: "Yoghurt", krema: "Vispgradde", tereyagi: "Smor", margarin: "Margarin",
+    zeytinyagi: "Olivolja", "sivi-yag": "Vegetabilisk olja", bal: "Honung", pekmez: "Druvsirap",
+    kakao: "Kakaopulver", "yulaf-ezmesi": "Havregryn", nisasta: "Majsstarkelse", "kabartma-tozu": "Bakpulver",
+    karbonat: "Bikarbonat", susam: "Sesamfron", "ceviz-ici": "Valnotter (hackade)", "findik-ici": "Hasselnotter",
+    badem: "Mandlar", "antep-fistigi": "Pistagenotter", "kuru-uzum": "Russin", "hindistan-cevizi": "Riven kokos",
+    mayonez: "Majonnas", ketcap: "Ketchup", sirke: "Attika", "limon-suyu": "Citronsaft", tarcin: "Malen kanel",
+    "kirmizi-biber": "Malen rod paprika", karabiber: "Malen svartpeppar", kimyon: "Malen spiskummin",
+  },
 };
 
 export const kitchenUnitLabels: Record<
@@ -635,5 +648,8 @@ export const kitchenUnitLabels: Record<
   },
   nl: {
     bardak: "Kopje", yemekKasigi: "Eetlepel", cayKasigi: "Theelepel", ml: "Milliliter (ml)", litre: "Liter", gram: "Gram",
+  },
+  sv: {
+    bardak: "Kopp", yemekKasigi: "Matsked", cayKasigi: "Tesked", ml: "Milliliter (ml)", litre: "Liter", gram: "Gram",
   },
 };

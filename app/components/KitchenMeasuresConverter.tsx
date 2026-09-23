@@ -97,6 +97,10 @@ const copy = {
     ingredient: "Ingrediënt", knownUnit: "Bekende eenheid", value: "Waarde",
     resultHeading: "Equivalenten", invalidValue: "Voer een geldig getal in om de omrekening te zien.",
   },
+  sv: {
+    ingredient: "Ingrediens", knownUnit: "Kand enhet", value: "Varde",
+    resultHeading: "Motsvarigheter", invalidValue: "Ange ett giltigt tal for att se omvandlingen.",
+  },
 } as const;
 
 const englishCupStandardLabels: Record<
@@ -172,7 +176,7 @@ export default function KitchenMeasuresConverter({
   const [cupStandard, setCupStandard] = useState<KitchenCupStandard>(
     locale === "en"
       ? "us"
-      : locale === "fr" || locale === "es-419" || locale === "it" || locale === "nl"
+      : locale === "fr" || locale === "es-419" || locale === "it" || locale === "nl" || locale === "sv"
         ? "metric"
         : locale === "es" || locale === "pt"
           ? "usLegal"

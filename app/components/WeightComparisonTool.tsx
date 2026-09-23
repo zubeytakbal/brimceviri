@@ -73,6 +73,16 @@ fr: {
     kg: "Kilogram (kg)",
     ton: "Ton",
   },
+  sv: {
+    g: "Gram (g)",
+    kg: "Kilogram (kg)",
+    ton: "Ton",
+  },
+  ru: {
+    g: "Грамм (г)",
+    kg: "Килограмм (кг)",
+    ton: "Тонна (т)",
+  },
 };
 
 const unitShortLabels: Record<Locale, Record<WeightComparisonUnit, string>> = {
@@ -88,6 +98,8 @@ fr: { g: "g", kg: "kg", ton: "ton" },
   pt: { g: "g", kg: "kg", ton: "ton" },
   it: { g: "g", kg: "kg", ton: "ton" },
   nl: { g: "g", kg: "kg", ton: "ton" },
+  sv: { g: "g", kg: "kg", ton: "ton" },
+  ru: { g: "г", kg: "кг", ton: "т" },
 };
 
 const referenceLabels: Record<Locale, Record<string, string>> = {
@@ -199,6 +211,24 @@ fr: {
     fil: "Average adult African elephant",
     "mavi-balina": "Average adult blue whale",
   },
+  sv: {
+    kedi: "Average house cat",
+    insan: "Average adult human",
+    motosiklet: "Average motorcycle",
+    at: "Average riding horse",
+    otomobil: "Average passenger car",
+    fil: "Average adult African elephant",
+    "mavi-balina": "Average adult blue whale",
+  },
+  ru: {
+    kedi: "Средняя домашняя кошка",
+    insan: "Средний взрослый человек",
+    motosiklet: "Средний мотоцикл",
+    at: "Средняя верховая лошадь",
+    otomobil: "Средний легковой автомобиль",
+    fil: "Средний взрослый африканский слон",
+    "mavi-balina": "Средний взрослый синий кит",
+  },
 };
 
 const copyByLocale: Record<
@@ -294,6 +324,16 @@ const copyByLocale: Record<
     intro: "comparisons for",
     closestMatch: "Closest comparison",
   },
+  sv: {
+    labels: {
+      value: "Value",
+      unit: "Unit",
+    },
+    placeholder: "E.g. 25",
+    emptyState: "Enter a valid value to see the comparisons.",
+    intro: "comparisons for",
+    closestMatch: "Closest comparison",
+  },
   de: {
     labels: {
       value: "Wert",
@@ -324,7 +364,7 @@ uz: {
     intro: "uchun solishtirishlar:",
     closestMatch: "Eng yaqin solishtirish",
   },
-bn: {
+  bn: {
     labels: {
       value: "Value",
       unit: "Unit",
@@ -333,6 +373,16 @@ bn: {
     emptyState: "Enter a valid value to see the comparisons.",
     intro: "comparisons for",
     closestMatch: "Closest comparison",
+  },
+  ru: {
+    labels: {
+      value: "Значение",
+      unit: "Единица",
+    },
+    placeholder: "Например, 25",
+    emptyState: "Введите корректное значение, чтобы увидеть сравнения.",
+    intro: "сравнения для",
+    closestMatch: "Ближайшее сравнение",
   },
 };
 

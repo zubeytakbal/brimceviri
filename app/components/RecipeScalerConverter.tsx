@@ -208,6 +208,13 @@ const copy = {
     gramPrefix: "~", gramSuffix: "g", ingredientLabel: "Ingrediënt", noMatchOption: "Geen overeenkomst",
     copyButton: "Kopiëren", copiedButton: "Gekopieerd", printButton: "Afdrukken",
   },
+  sv: {
+    recipeLabel: "Ditt recept", placeholder: "2 koppar mjol\n1 tesked salt\n3 matskedar olivolja\n2 agg\nUgn 180 grader",
+    factorLabel: "Multiplikator", originalServingsLabel: "Ursprungligt antal portioner", targetServingsLabel: "Onskat antal portioner",
+    resultHeading: "Anpassat recept", emptyState: "Skriv ditt recept ovan for att se det anpassade resultatet har.",
+    gramPrefix: "~", gramSuffix: "g", ingredientLabel: "Ingrediens", noMatchOption: "Ingen traff",
+    copyButton: "Kopiera", copiedButton: "Kopierat", printButton: "Skriv ut",
+  },
 } as const;
 
 const chipOptions = [

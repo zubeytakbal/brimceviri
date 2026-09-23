@@ -13,7 +13,7 @@ import {
 } from "../converter/paceCalculator";
 
 const copyByLocale: Record<
-  Locale,
+  Exclude<Locale, "ru">,
   {
     modePrompt: string;
     modeButtons: Record<PaceCalculationMode, string>;
@@ -227,6 +227,30 @@ const copyByLocale: Record<
       estimatedTime: "estimated time",
     },
   },
+  sv: {
+    modePrompt: "What do you want to calculate?",
+    modeButtons: {
+      pace: "Calculate Pace",
+      duration: "Calculate Time",
+      distance: "Calculate Distance",
+    },
+    labels: {
+      distance: "Distance (km)",
+      durationHours: "Time - Hours",
+      durationMinutes: "Time - Minutes",
+      durationSeconds: "Time - Seconds",
+      paceMinutes: "Pace - Minutes/km",
+      paceSeconds: "Pace - Seconds/km",
+    },
+    emptyState: "Enter valid values to see the result.",
+    resultLabels: {
+      pace: "Pace",
+      duration: "Time",
+      distance: "Distance",
+      speed: "Speed",
+      estimatedTime: "estimated time",
+    },
+  },
   de: {
     modePrompt: "Was moechten Sie berechnen?",
     modeButtons: {
@@ -390,7 +414,7 @@ export default function PaceCalculator({
 }: {
   locale?: Locale;
 }) {
-  const copy = copyByLocale[locale];
+  const copy = copyByLocale[locale === "ru" ? "en" : locale];
   const [mode, setMode] = useState<PaceCalculationMode>("pace");
   const [distanceKm, setDistanceKm] = useState("10");
   const [durationHours, setDurationHours] = useState("0");

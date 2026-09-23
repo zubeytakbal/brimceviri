@@ -10,7 +10,7 @@ import {
 } from "../converter/sleepCalculator";
 
 const copyByLocale: Record<
-  Locale,
+  Exclude<Locale, "ru">,
   {
     modePrompt: string;
     modeButtons: Record<SleepCalculationMode, string>;
@@ -141,6 +141,21 @@ const copyByLocale: Record<
     sleepLabel: "hours of sleep",
     recommended: "Recommended",
   },
+  sv: {
+    modePrompt: "What do you want to calculate?",
+    modeButtons: {
+      "wake-to-bedtime": "When should I sleep?",
+      "bedtime-to-wake": "When should I wake up?",
+    },
+    timeLabel: {
+      "wake-to-bedtime": "Desired wake-up time",
+      "bedtime-to-wake": "Bedtime",
+    },
+    emptyState: "Enter a valid time to see the result.",
+    cycleLabel: "cycles",
+    sleepLabel: "hours of sleep",
+    recommended: "Recommended",
+  },
   de: {
     modePrompt: "Was moechten Sie berechnen?",
     modeButtons: {
@@ -212,7 +227,7 @@ export default function SleepCalculator({
 }: {
   locale?: Locale;
 }) {
-  const copy = copyByLocale[locale];
+  const copy = copyByLocale[locale === "ru" ? "en" : locale];
   const [mode, setMode] = useState<SleepCalculationMode>("wake-to-bedtime");
   const [timeOfDay, setTimeOfDay] = useState("07:00");
 

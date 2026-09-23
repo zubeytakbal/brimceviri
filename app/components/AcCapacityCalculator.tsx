@@ -9,7 +9,7 @@ import {
 } from "../converter/acCapacityCalculator";
 
 const copyByLocale: Record<
-  Locale,
+  Exclude<Locale, "ru">,
   {
     labels: {
       area: string;
@@ -167,6 +167,23 @@ const copyByLocale: Record<
       total: "Total estimated load",
     },
   },
+  sv: {
+    labels: {
+      area: "Room Area (m2)",
+      people: "Number of People in the Room",
+      sunny: "Does the room get sun all day?",
+      sunnyCheckbox: "Yes, it receives direct sunlight",
+      topFloor: "Top floor / attic room?",
+      topFloorCheckbox: "Yes, top floor or attic",
+    },
+    emptyState: "Enter valid values to see the result.",
+    resultLabels: {
+      suggested: "Suggested AC capacity",
+      base: "Area-based load",
+      occupant: "Occupant load",
+      total: "Total estimated load",
+    },
+  },
   de: {
     labels: {
       area: "Raumflaeche (m2)",
@@ -258,7 +275,7 @@ export default function AcCapacityCalculator({
 }: {
   locale?: Locale;
 }) {
-  const copy = copyByLocale[locale];
+  const copy = copyByLocale[locale === "ru" ? "en" : locale];
   const [areaM2, setAreaM2] = useState("20");
   const [occupantCount, setOccupantCount] = useState("1");
   const [isSunny, setIsSunny] = useState(false);

@@ -28,7 +28,7 @@ type VatCopy = {
   emptyState: string;
 };
 
-const copyByLocale: Record<Locale, VatCopy> = {
+const copyByLocale: Record<Exclude<Locale, "ru">, VatCopy> = {
   tr: {
     labels: {
       direction: "Hesap Yonu",
@@ -221,6 +221,30 @@ const copyByLocale: Record<Locale, VatCopy> = {
     },
     emptyState: "Enter a valid amount and rate to see the result.",
   },
+  sv: {
+    labels: {
+      direction: "Calculation Direction",
+      amount: "Amount (EUR)",
+      rate: "VAT Rate",
+      customRate: "Custom Rate (%)",
+    },
+    directions: {
+      "exclusive-to-inclusive": "VAT exclusive -> VAT inclusive",
+      "inclusive-to-exclusive": "VAT inclusive -> VAT exclusive",
+    },
+    rateOptions: {
+      "1": "1%",
+      "10": "10%",
+      "20": "20%",
+      custom: "Custom rate",
+    },
+    resultLabels: {
+      baseAmount: "Base Amount",
+      vatAmount: "VAT Amount",
+      totalAmount: "Total with VAT",
+    },
+    emptyState: "Enter a valid amount and rate to see the result.",
+  },
   de: {
     labels: {
       direction: "Berechnungsrichtung",
@@ -340,7 +364,7 @@ export default function VatCalculator({
 }: {
   locale?: Locale;
 }) {
-  const copy = copyByLocale[locale];
+  const copy = copyByLocale[locale === "ru" ? "en" : locale];
   const [amount, setAmount] = useState("1000");
   const [ratePreset, setRatePreset] = useState<(typeof rateOptions)[number]>("20");
   const [customRate, setCustomRate] = useState("20");

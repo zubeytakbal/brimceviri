@@ -20,6 +20,7 @@ import { unitPages } from "../converter/unitPages";
 import { arabicCategoryPages } from "../converter/localizedArabicCategoryPages";
 import { frenchCategoryPages } from "../converter/localizedFrenchCategoryPages";
 import { frenchUnitPages } from "../converter/localizedFrenchUnitPages";
+import { russianUnitPages } from "../converter/localizedRussianUnitPages";
 import { frenchConversionPages } from "../converter/localizedFrenchConversionPages";
 import { spanishCategoryPages } from "../converter/localizedSpanishCategoryPages";
 import { spanishUnitPages } from "../converter/localizedSpanishUnitPages";
@@ -36,6 +37,11 @@ import { italianConversionPages } from "../converter/localizedItalianConversionP
 import { nederlandsCategoryPages } from "../converter/localizedNederlandsCategoryPages";
 import { nederlandsUnitPages } from "../converter/localizedNederlandsUnitPages";
 import { nederlandsConversionPages } from "../converter/localizedNederlandsConversionPages";
+import { swedishCategoryPages } from "../converter/localizedSwedishCategoryPages";
+import { swedishUnitPages } from "../converter/localizedSwedishUnitPages";
+import { swedishConversionPages } from "../converter/localizedSwedishConversionPages";
+import { russianCategoryPages } from "../converter/localizedRussianCategoryPages";
+import { russianConversionPages } from "../converter/localizedRussianConversionPages";
 
 export type RouteCollectionKey =
   | "units"
@@ -135,6 +141,18 @@ const localizedCategorySummariesByLocale: Record<
     category: page.category,
     title: page.title,
   })),
+  sv: swedishCategoryPages.map((page) => ({
+    sourceSlug: page.sourceSlug,
+    slug: page.slug,
+    category: page.category,
+    title: page.title,
+  })),
+  ru: russianCategoryPages.map((page) => ({
+    sourceSlug: page.sourceSlug,
+    slug: page.slug,
+    category: page.category,
+    title: page.title,
+  })),
 };
 
 const localizedSlugEntriesByLocale: Record<
@@ -190,6 +208,11 @@ const localizedSlugEntriesByLocale: Record<
       sourceSlug: page.sourceSlug,
       slug: page.slug,
     })),
+    sv: swedishUnitPages.map((page) => ({
+      sourceSlug: page.sourceSlug,
+      slug: page.slug,
+    })),
+    ru: russianUnitPages.map((page) => ({ sourceSlug: page.sourceSlug, slug: page.slug })),
   },
   categories: {
     tr: categoryPages.map((page) => ({
@@ -240,6 +263,14 @@ const localizedSlugEntriesByLocale: Record<
       sourceSlug: page.sourceSlug,
       slug: page.slug,
     })),
+    sv: swedishCategoryPages.map((page) => ({
+      sourceSlug: page.sourceSlug,
+      slug: page.slug,
+    })),
+    ru: russianCategoryPages.map((page) => ({
+      sourceSlug: page.sourceSlug,
+      slug: page.slug,
+    })),
   },
   calculators: {
     tr: calculatorPages.map((page) => ({
@@ -266,6 +297,8 @@ const localizedSlugEntriesByLocale: Record<
     pt: [],
     it: [],
     nl: [],
+    sv: [],
+    ru: [],
   },
   conversions: {
     tr: conversionPages.map((page) => ({
@@ -313,6 +346,14 @@ const localizedSlugEntriesByLocale: Record<
       slug: page.slug,
     })),
     nl: nederlandsConversionPages.map((page) => ({
+      sourceSlug: page.sourceSlug,
+      slug: page.slug,
+    })),
+    sv: swedishConversionPages.map((page) => ({
+      sourceSlug: page.sourceSlug,
+      slug: page.slug,
+    })),
+    ru: russianConversionPages.map((page) => ({
       sourceSlug: page.sourceSlug,
       slug: page.slug,
     })),

@@ -363,6 +363,34 @@ const categoryLabels: Record<
     altin_ayar: "Goudkaraat",
     gumus_ayar: "Zilvergehalte",
   },
+  ru: {
+    uzunluk: "Длина", alan: "Площадь", hacim: "Объём", kutle: "Масса", sicaklik: "Температура", zaman: "Время", hiz: "Скорость", basinc: "Давление", enerji: "Энергия", veri: "Хранение данных", elektrik: "Электричество", yogunluk: "Плотность", kuvvet: "Сила", debi: "Расход", debi_hacimsel: "Объёмный расход", debi_kutlesel: "Массовый расход", tork: "Крутящий момент", aci: "Угол", ivme: "Ускорение", acisal_hiz: "Угловая скорость", frekans: "Частота", guc: "Мощность", momentum: "Импульс", viskozite_dinamik: "Вязкость", viskozite_kinematik: "Кинематическая вязкость", manyetik_alan: "Напряжённость магнитного поля", manyetik_aki: "Магнитный поток", elektrik_direnc: "Сопротивление", kapasitans: "Ёмкость", enduktans: "Индуктивность", elektrik_yuk: "Электрический заряд", altin_ayar: "Проба золота", gumus_ayar: "Проба серебра",
+  },
+  sv: {
+    uzunluk: "Langd",
+    alan: "Area",
+    hacim: "Volym",
+    kutle: "Massa",
+    sicaklik: "Temperatur",
+    zaman: "Tid",
+    hiz: "Hastighet",
+    basinc: "Tryck",
+    enerji: "Energi och Effekt",
+    veri: "Datalagring",
+    elektrik: "Elektricitet",
+    yogunluk: "Densitet",
+    kuvvet: "Kraft",
+    debi: "Flode",
+    tork: "Vridmoment",
+    momentum: "Rorelsemangd",
+    viskozite_dinamik: "Viskositet",
+    elektrik_direnc: "Resistans",
+    kapasitans: "Kapacitans",
+    enduktans: "Induktans",
+    elektrik_yuk: "Elektrisk Laddning",
+    altin_ayar: "Guldkarat",
+    gumus_ayar: "Silverhalt",
+  },
 };
 
 const siteHeaderCopy: Record<Locale, SiteHeaderCopy> = {
@@ -425,6 +453,12 @@ const siteHeaderCopy: Record<Locale, SiteHeaderCopy> = {
     navAriaLabel: "Hoofdnavigatie",
     menuLabel: "Menu",
     conversionsLabel: "Omrekeningen",
+  },
+  ru: { navAriaLabel: "Основная навигация", menuLabel: "Меню", conversionsLabel: "Конвертеры" },
+  sv: {
+    navAriaLabel: "Huvudnavigering",
+    menuLabel: "Meny",
+    conversionsLabel: "Omvandlingar",
   },
 };
 
@@ -573,6 +607,24 @@ const footerCopy: Record<Locale, FooterCopy> = {
     browserProcessingNote:
       "Bij de rekenfuncties op deze site worden de ingevoerde gegevens rechtstreeks in de browser verwerkt.",
   },
+  ru: {
+    navAriaLabel: "Навигация в подвале", pagesHeading: "Страницы", languagesHeading: "Языки", categoriesHeading: "Категории",
+    description: "Точные конвертеры величин и справочные материалы для практических задач.",
+    disclaimer: "Для важных инженерных, медицинских и безопасностных решений проверяйте критические значения по профессиональным источникам.",
+    browserProcessingNote: "Введённые в калькуляторы данные обрабатываются в браузере.",
+  },
+  sv: {
+    navAriaLabel: "Sidfotsnavigering",
+    pagesHeading: "Sidor",
+    languagesHeading: "Sprak",
+    categoriesHeading: "Kategorier",
+    description:
+      "Tekniska omvandlingsverktyg och enhetsguider forberedda for praktiskt bruk.",
+    disclaimer:
+      "For viktiga tekniska, medicinska eller sakerhetsrelaterade beslut, kontrollera resultaten med professionella kallor.",
+    browserProcessingNote:
+      "I raknefunktionerna pa denna sida behandlas inmatade uppgifter direkt i webblasaren.",
+  },
 };
 
 const topLevelLabelMap: Record<
@@ -666,6 +718,14 @@ const topLevelLabelMap: Record<
     allConversions: "Alle Omrekeningen",
     professions: "Op Beroep",
   },
+  ru: { home: "Главная", engineeringHub: "Калькуляторы", units: "Единицы", allConversions: "Все переводы", professions: "По профессии" },
+  sv: {
+    home: "Hem",
+    engineeringHub: "Raknare",
+    units: "Enhetsguide",
+    allConversions: "Alla Omvandlingar",
+    professions: "Efter Yrke",
+  },
 };
 
 const footerLinksByLocale: Record<
@@ -721,6 +781,8 @@ const footerLinksByLocale: Record<
   pt: [{ key: "home", label: "Inicio" }],
   it: [{ key: "home", label: "Home" }],
   nl: [{ key: "home", label: "Home" }],
+  ru: [{ key: "home", label: "Главная" }, { key: "allConversions", label: "Все переводы" }],
+  sv: [{ key: "home", label: "Hem" }],
 };
 
 export function getSiteHeaderCopy(locale: Locale) {
@@ -767,6 +829,14 @@ export function getTopLevelLinks(locale: Locale): LinkDefinition[] {
       { href: getStaticPath(locale, "units"), label: labels.units },
       { href: getStaticPath(locale, "allConversions"), label: labels.allConversions },
       { href: getStaticPath(locale, "otherConversions"), label: "Other Tools" },
+    ];
+  }
+
+  if (locale === "ru") {
+    return [
+      { href: "/ru", label: labels.home },
+      { href: "/ru/unit-guides", label: labels.units },
+      { href: "/ru/categories", label: labels.allConversions },
     ];
   }
 
@@ -830,7 +900,7 @@ export function getCategoryMenuLinks(locale: Locale) {
 
   // Ozbekcha icin henuz yerellestirilmis sayfasi olmayan ayakkabi, mutfak
   // ve tarif araclarini Turkce URL'lere baglamiyoruz.
-  if (locale === "uz") {
+  if (locale === "uz" || locale === "ru") {
     return links;
   }
 
@@ -855,7 +925,9 @@ export function getCategoryMenuLinks(locale: Locale) {
                       ? "Numeri di Scarpe"
                       : locale === "nl"
                         ? "Schoenmaten"
-                        : "Ayakkabi Numarasi",
+                        : locale === "sv"
+                          ? "Skostorlekar"
+                          : "Ayakkabi Numarasi",
   });
   links.push({
     href: getStaticPath(locale, "kitchenMeasures"),
@@ -878,7 +950,9 @@ export function getCategoryMenuLinks(locale: Locale) {
                       ? "Misure di Cucina"
                       : locale === "nl"
                         ? "Keukenmaten"
-                        : "Mutfak Olculeri",
+                        : locale === "sv"
+                          ? "Kokmatt"
+                          : "Mutfak Olculeri",
   });
   links.push({
     href: getStaticPath(locale, "recipeConverter"),
@@ -901,7 +975,9 @@ export function getCategoryMenuLinks(locale: Locale) {
                       ? "Convertitore di Ricette"
                       : locale === "nl"
                         ? "Receptomrekenaar"
-                        : "Tarif Cevirici",
+                        : locale === "sv"
+                          ? "Receptomvandlare"
+                          : "Tarif Cevirici",
   });
 
   return links;

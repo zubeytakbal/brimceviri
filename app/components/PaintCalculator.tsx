@@ -36,7 +36,7 @@ type PaintCalculatorCopy = {
   };
 };
 
-const copyByLocale: Record<Locale, PaintCalculatorCopy> = {
+const copyByLocale: Record<Exclude<Locale, "ru">, PaintCalculatorCopy> = {
   tr: {
     labels: {
       length: "Oda Uzunlugu (m)",
@@ -269,6 +269,35 @@ const copyByLocale: Record<Locale, PaintCalculatorCopy> = {
       liters: "liters",
     },
   },
+  sv: {
+    labels: {
+      length: "Room Length (m)",
+      width: "Room Width (m)",
+      height: "Wall Height (m)",
+      doors: "Door Count",
+      windows: "Window Count",
+      coats: "Number of Coats",
+      coverage: "Paint Coverage (m2/liter)",
+      ceilingQuestion: "Paint the ceiling too?",
+      ceilingCheckbox: "Yes, include the ceiling",
+    },
+    coatOptions: {
+      1: "Single coat",
+      2: "Two coats (recommended)",
+    },
+    emptyState: "Enter valid values to see the result.",
+    resultLabels: {
+      netWallArea: "Net wall area",
+      ceilingArea: "Ceiling area",
+      totalPaintedArea: "Total painted area",
+      litersNeeded: "Required paint",
+      suggestedCans: "Suggested can combination",
+    },
+    units: {
+      area: "m2",
+      liters: "liters",
+    },
+  },
   de: {
     labels: {
       length: "Raumlaenge (m)",
@@ -433,7 +462,7 @@ export default function PaintCalculator({
 }: {
   locale?: Locale;
 }) {
-  const copy = copyByLocale[locale];
+  const copy = copyByLocale[locale === "ru" ? "en" : locale];
   const [length, setLength] = useState("4");
   const [width, setWidth] = useState("3.5");
   const [height, setHeight] = useState("2.7");

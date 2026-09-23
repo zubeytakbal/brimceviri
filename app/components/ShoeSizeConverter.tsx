@@ -10,7 +10,7 @@ import {
 } from "../converter/shoeSizeTable";
 
 type SystemKey = "eu" | "us" | "uk" | "cm";
-type Locale = "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "nl";
+type Locale = "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "nl" | "sv";
 
 const systemLabels: Record<Locale, Record<SystemKey, string>> = {
   tr: {
@@ -80,6 +80,7 @@ const systemLabels: Record<Locale, Record<SystemKey, string>> = {
     cm: "Lunghezza del Piede (cm)",
   },
   nl: { eu: "Europa (EU)", us: "Verenigde Staten (US)", uk: "Verenigd Koninkrijk (UK)", cm: "Voetlengte (cm)" },
+  sv: { eu: "Sverige / Europa (EU)", us: "USA (US)", uk: "Storbritannien (UK)", cm: "Fotlangd (cm)" },
 };
 
 const brandLabels: Record<Locale, Record<ShoeBrandKey, string>> = {
@@ -172,6 +173,7 @@ const brandLabels: Record<Locale, Record<ShoeBrandKey, string>> = {
     converse: "Converse",
   },
   nl: { genel: "Algemeen (standaard)", nike: "Nike", adidas: "Adidas", puma: "Puma", "new-balance": "New Balance", converse: "Converse" },
+  sv: { genel: "Allman (standard)", nike: "Nike", adidas: "Adidas", puma: "Puma", "new-balance": "New Balance", converse: "Converse" },
 };
 
 const groupLabels: Record<Locale, Record<ShoeSizeGroupKey, string>> = {
@@ -242,6 +244,7 @@ const groupLabels: Record<Locale, Record<ShoeSizeGroupKey, string>> = {
     "buyuk-cocuk": "Bambino Grande",
   },
   nl: { erkek: "Heren", kadin: "Dames", bebek: "Baby / klein kind", "buyuk-cocuk": "Groter kind" },
+  sv: { erkek: "Herr", kadin: "Dam", bebek: "Spadbarn / smabarn", "buyuk-cocuk": "Storre barn" },
 };
 
 const copy = {
@@ -397,6 +400,11 @@ const copy = {
     matchingSizes: "Overeenkomende maten", invalidValue: "Voer een geldig getal in om de dichtstbijzijnde maat te zien.",
     euResult: "EU", usResult: "US", ukResult: "VK", footLength: "Voetlengte", chartSuffix: "schoenmaattabel",
   },
+  sv: {
+    group: "Grupp", brand: "Marke", knownSystem: "Kant system", value: "Varde",
+    matchingSizes: "Motsvarande storlekar", invalidValue: "Ange ett giltigt tal for att se motsvarigheten.",
+    euResult: "EU", usResult: "US", ukResult: "UK", footLength: "Fotlangd", chartSuffix: "storlekstabell",
+  },
 } as const;
 
 const brandOrder: ShoeBrandKey[] = [
@@ -458,6 +466,10 @@ function getNumberLocale(locale: Locale) {
 
   if (locale === "nl") {
     return "nl-NL";
+  }
+
+  if (locale === "sv") {
+    return "sv-SE";
   }
 
   return "en-US";

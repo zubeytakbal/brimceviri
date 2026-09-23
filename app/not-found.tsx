@@ -140,6 +140,28 @@ bn: {
     secondaryHref: "/",
     secondaryLabel: "Open de Turkse homepage",
   },
+  ru: {
+    lang: "ru",
+    title: "Страница не найдена",
+    description:
+      "Возможно, эта страница была перемещена или адрес указан неверно.",
+    continueHeading: "Продолжить",
+    primaryHref: "/ru",
+    primaryLabel: "На главную страницу",
+    secondaryHref: "/",
+    secondaryLabel: "Открыть турецкую главную страницу",
+  },
+  sv: {
+    lang: "sv",
+    title: "Sidan hittades inte",
+    description:
+      "Sidan du letar efter kan ha flyttats eller sa ar adressen inte giltig.",
+    continueHeading: "Fortsatt med",
+    primaryHref: "/sv",
+    primaryLabel: "Tillbaka till den svenska startsidan",
+    secondaryHref: "/",
+    secondaryLabel: "Oppna den turkiska startsidan",
+  },
 } satisfies Record<
   Locale,
   {

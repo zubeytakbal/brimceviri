@@ -7,7 +7,7 @@ import {
 } from "./kitchenMeasures";
 import { kitchenIngredientLabels } from "./kitchenIngredientLabels";
 
-export type RecipeLocale = "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "nl";
+export type RecipeLocale = "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "nl" | "sv";
 
 export type ParsedRecipeLine = {
   raw: string;
@@ -46,6 +46,8 @@ const wordQuantities: Record<string, number> = {
   mezza: 0.5,
   halve: 0.5,
   kwart: 0.25,
+  halv: 0.5,
+  fjardedel: 0.25,
 };
 
 function normalizeText(value: string): string {
@@ -214,6 +216,12 @@ const oneTokenUnits: Record<string, KitchenUnit> = {
   eetlepels: "yemekKasigi",
   theelepel: "cayKasigi",
   theelepels: "cayKasigi",
+  kopp: "bardak",
+  koppar: "bardak",
+  matsked: "yemekKasigi",
+  matskedar: "yemekKasigi",
+  tesked: "cayKasigi",
+  teskedar: "cayKasigi",
 };
 
 function extractUnit(normalizedRestOfLine: string): {

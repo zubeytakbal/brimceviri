@@ -9,11 +9,11 @@ type PairConverterProps = {
   toUnit: string;
   fromName: string;
   toName: string;
-  locale?: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "nl";
+  locale?: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "nl" | "ru" | "sv";
 };
 
 function getNumberLocale(
-  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "nl"
+  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "nl" | "ru" | "sv"
 ) {
   if (locale === "tr") {
     return "tr-TR";
@@ -59,12 +59,20 @@ function getNumberLocale(
     return "nl-NL";
   }
 
+  if (locale === "ru") {
+    return "ru-RU";
+  }
+
+  if (locale === "sv") {
+    return "sv-SE";
+  }
+
   return "en-US";
 }
 
 function formatResult(
   value: number,
-  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "nl"
+  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "nl" | "ru" | "sv"
 ) {
   if (!Number.isFinite(value)) {
     return "";
@@ -272,6 +280,10 @@ export default function PairConverter({
                       ? `Valore di ${activeFromName}`
                       : locale === "nl"
                         ? `Waarde in ${activeFromName}`
+                        : locale === "ru"
+                          ? `Значение: ${activeFromName}`
+                        : locale === "sv"
+                          ? `${activeFromName}-varde`
                       : `${activeFromName} de\u011Feri`;
 
   const placeholder =
@@ -295,6 +307,10 @@ export default function PairConverter({
                       ? "Inserisci un valore"
                       : locale === "nl"
                         ? "Voer een waarde in"
+                        : locale === "ru"
+                          ? "Введите значение"
+                        : locale === "sv"
+                          ? "Ange ett varde"
                       : "De\u011Fer girin";
 
   const swapLabel =
@@ -318,6 +334,10 @@ export default function PairConverter({
                       ? "Inverti il senso della conversione"
                       : locale === "nl"
                         ? "Draai de omrekenrichting om"
+                        : locale === "ru"
+                          ? "Изменить направление перевода"
+                        : locale === "sv"
+                          ? "Vand pa omvandlingsriktningen"
                       : "D\u00F6n\u00FC\u015F\u00FCm y\u00F6n\u00FCn\u00FC de\u011Fi\u015Ftir";
 
   const resultText =

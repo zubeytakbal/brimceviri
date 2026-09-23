@@ -13,7 +13,7 @@ type StaticPageSection = {
 };
 
 type StaticPageLayoutProps = {
-  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it";
+  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "sv";
   breadcrumbAriaLabel: string;
   breadcrumbs: BreadcrumbItem[];
   title: string;

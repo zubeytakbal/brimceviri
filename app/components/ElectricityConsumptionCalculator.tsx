@@ -9,7 +9,7 @@ import {
 } from "../converter/electricityConsumptionCalculator";
 
 const copyByLocale: Record<
-  Locale,
+  Exclude<Locale, "ru">,
   {
     labels: {
       power: string;
@@ -164,6 +164,23 @@ const copyByLocale: Record<
       costHint: "Enter your electricity price per kWh to see the cost estimate.",
     },
   },
+  sv: {
+    labels: {
+      power: "Appliance Power (Watt)",
+      hours: "Daily Usage Time (hours)",
+      days: "Days Used Per Month",
+      price: "Electricity Rate (EUR/kWh) - optional",
+    },
+    placeholder: "Price per kWh from your bill",
+    emptyState: "Enter valid values to see the result.",
+    resultLabels: {
+      monthly: "Monthly consumption",
+      daily: "Daily consumption",
+      yearly: "Yearly consumption",
+      yearlyCost: "Yearly cost",
+      costHint: "Enter your electricity price per kWh to see the cost estimate.",
+    },
+  },
   de: {
     labels: {
       power: "Geraeteleistung (Watt)",
@@ -259,7 +276,7 @@ export default function ElectricityConsumptionCalculator({
 }: {
   locale?: Locale;
 }) {
-  const copy = copyByLocale[locale];
+  const copy = copyByLocale[locale === "ru" ? "en" : locale];
   const [powerWatt, setPowerWatt] = useState("1500");
   const [hoursPerDay, setHoursPerDay] = useState("2");
   const [daysPerMonth, setDaysPerMonth] = useState("30");

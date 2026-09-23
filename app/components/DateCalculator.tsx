@@ -31,7 +31,7 @@ type DateCopy = {
   };
 };
 
-const copyByLocale: Record<Locale, DateCopy> = {
+const copyByLocale: Record<Exclude<Locale, "ru">, DateCopy> = {
   tr: {
     labels: {
       startDate: "Baslangic Tarihi (Dogum Tarihi)",
@@ -184,6 +184,25 @@ const copyByLocale: Record<Locale, DateCopy> = {
       days: "days",
     },
   },
+  sv: {
+    labels: {
+      startDate: "Start Date (Birth Date)",
+      endDate: "Target Date",
+    },
+    emptyState: "Enter two valid dates; the target date cannot be earlier than the start date.",
+    resultLabels: {
+      difference: "Difference",
+      totalDays: "Total days",
+      totalWeeks: "Total weeks",
+      totalMonths: "Total months",
+      nextAnniversary: "Next anniversary",
+    },
+    units: {
+      years: "years",
+      months: "months",
+      days: "days",
+    },
+  },
   de: {
     labels: {
       startDate: "Startdatum (Geburtsdatum)",
@@ -280,7 +299,7 @@ export default function DateCalculator({
 }: {
   locale?: Locale;
 }) {
-  const copy = copyByLocale[locale];
+  const copy = copyByLocale[locale === "ru" ? "en" : locale];
   const [startDate, setStartDate] = useState("2000-01-01");
   const [endDate, setEndDate] = useState(() => todayIsoDate());
 

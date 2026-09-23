@@ -1,4 +1,4 @@
-export const SUPPORTED_LOCALES = ["tr", "en", "de", "ar", "uz", "bn", "fr", "es", "es-419", "pt", "it", "nl"] as const;
+export const SUPPORTED_LOCALES = ["tr", "en", "de", "ar", "uz", "bn", "fr", "es", "es-419", "pt", "it", "nl", "ru", "sv"] as const;
 
 export type Locale = (typeof SUPPORTED_LOCALES)[number];
 
@@ -200,6 +200,36 @@ export const LOCALE_DEFINITIONS: Record<Locale, LocaleDefinition> = {
     switcherOptionsLabel: "Taalopties",
     switcherSearchPlaceholder: "Taal zoeken",
     switcherEmptyLabel: "Geen overeenkomende taal gevonden",
+  },
+  ru: {
+    code: "ru",
+    htmlLang: "ru",
+    dir: "ltr",
+    openGraphLocale: "ru_RU",
+    pathPrefix: "/ru",
+    homePath: "/ru",
+    label: "Русский",
+    switcherLabel: "Русский",
+    switcherCurrentLabel: "RU - Русский",
+    switcherAriaLabel: "Выберите язык",
+    switcherOptionsLabel: "Языки",
+    switcherSearchPlaceholder: "Поиск языка",
+    switcherEmptyLabel: "Подходящий язык не найден",
+  },
+  sv: {
+    code: "sv",
+    htmlLang: "sv",
+    dir: "ltr",
+    openGraphLocale: "sv_SE",
+    pathPrefix: "/sv",
+    homePath: "/sv",
+    label: "Svenska",
+    switcherLabel: "Svenska",
+    switcherCurrentLabel: "SV - Svenska",
+    switcherAriaLabel: "Valj sprak",
+    switcherOptionsLabel: "Sprakalternativ",
+    switcherSearchPlaceholder: "Sok sprak",
+    switcherEmptyLabel: "Inget matchande sprak hittades",
   },
 };
 

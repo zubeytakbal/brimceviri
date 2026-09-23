@@ -20,7 +20,6 @@ import { unitPages } from "../converter/unitPages";
 import { arabicCategoryPages } from "../converter/localizedArabicCategoryPages";
 import { frenchCategoryPages } from "../converter/localizedFrenchCategoryPages";
 import { frenchUnitPages } from "../converter/localizedFrenchUnitPages";
-import { russianUnitPages } from "../converter/localizedRussianUnitPages";
 import { frenchConversionPages } from "../converter/localizedFrenchConversionPages";
 import { spanishCategoryPages } from "../converter/localizedSpanishCategoryPages";
 import { spanishUnitPages } from "../converter/localizedSpanishUnitPages";
@@ -40,8 +39,6 @@ import { nederlandsConversionPages } from "../converter/localizedNederlandsConve
 import { swedishCategoryPages } from "../converter/localizedSwedishCategoryPages";
 import { swedishUnitPages } from "../converter/localizedSwedishUnitPages";
 import { swedishConversionPages } from "../converter/localizedSwedishConversionPages";
-import { russianCategoryPages } from "../converter/localizedRussianCategoryPages";
-import { russianConversionPages } from "../converter/localizedRussianConversionPages";
 import { norwegianCategoryPages } from "../converter/localizedNorwegianCategoryPages";
 import { norwegianUnitPages } from "../converter/localizedNorwegianUnitPages";
 import { norwegianConversionPages } from "../converter/localizedNorwegianConversionPages";
@@ -153,12 +150,7 @@ const localizedCategorySummariesByLocale: Record<
     category: page.category,
     title: page.title,
   })),
-  ru: russianCategoryPages.map((page) => ({
-    sourceSlug: page.sourceSlug,
-    slug: page.slug,
-    category: page.category,
-    title: page.title,
-  })),
+  ru: [],
   no: norwegianCategoryPages.map((page) => ({
     sourceSlug: page.sourceSlug,
     slug: page.slug,
@@ -230,7 +222,7 @@ const localizedSlugEntriesByLocale: Record<
       sourceSlug: page.sourceSlug,
       slug: page.slug,
     })),
-    ru: russianUnitPages.map((page) => ({ sourceSlug: page.sourceSlug, slug: page.slug })),
+    ru: [],
     no: norwegianUnitPages.map((page) => ({
       sourceSlug: page.sourceSlug,
       slug: page.slug,
@@ -293,10 +285,7 @@ const localizedSlugEntriesByLocale: Record<
       sourceSlug: page.sourceSlug,
       slug: page.slug,
     })),
-    ru: russianCategoryPages.map((page) => ({
-      sourceSlug: page.sourceSlug,
-      slug: page.slug,
-    })),
+    ru: [],
     no: norwegianCategoryPages.map((page) => ({
       sourceSlug: page.sourceSlug,
       slug: page.slug,
@@ -389,10 +378,7 @@ const localizedSlugEntriesByLocale: Record<
       sourceSlug: page.sourceSlug,
       slug: page.slug,
     })),
-    ru: russianConversionPages.map((page) => ({
-      sourceSlug: page.sourceSlug,
-      slug: page.slug,
-    })),
+    ru: [],
     no: norwegianConversionPages.map((page) => ({
       sourceSlug: page.sourceSlug,
       slug: page.slug,

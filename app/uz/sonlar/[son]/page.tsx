@@ -5,6 +5,7 @@ import NumberFactsCalculator from "../../../components/NumberFactsCalculator";
 import {
   getNumberFacts,
   getAllNumberFactsRange,
+  isGeneratedNumberPage,
   MIN_NUMBER,
   MAX_LINKABLE_NUMBER,
 } from "../../../converter/numberFacts";
@@ -24,6 +25,8 @@ export function generateStaticParams() {
   return getAllNumberFactsRange().map((n) => ({ son: String(n) }));
 }
 
+export const dynamicParams = false;
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { son } = await params;
   const n = Number(son);
@@ -40,7 +43,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title,
     description,
-    robots: { index: false, follow: true },
     alternates: {
       canonical: pagePath,
       ...buildFullLanguageAlternates(pagePath),
@@ -102,8 +104,8 @@ export default async function UzbekSonSayfasi({ params }: PageProps) {
     ],
   };
 
-  const prevNumber = n > MIN_NUMBER ? n - 1 : null;
-  const nextNumber = n < MAX_LINKABLE_NUMBER ? n + 1 : null;
+  const prevNumber = n > MIN_NUMBER && n <= MAX_LINKABLE_NUMBER ? n - 1 : null;
+  const nextNumber = n >= MIN_NUMBER && n < MAX_LINKABLE_NUMBER ? n + 1 : null;
 
   return (
     <main className="all-conversions-page" lang="uz">
@@ -165,7 +167,11 @@ export default async function UzbekSonSayfasi({ params }: PageProps) {
                 {facts.divisors.map((divisor, index) => (
                   <span key={divisor}>
                     {index > 0 && ", "}
-                    <Link href={`/uz/sonlar/${divisor}`}>{divisor}</Link>
+                    {isGeneratedNumberPage(divisor) ? (
+                      <Link href={`/uz/sonlar/${divisor}`}>{divisor}</Link>
+                    ) : (
+                      divisor
+                    )}
                   </span>
                 ))}
               </dd>

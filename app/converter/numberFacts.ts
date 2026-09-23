@@ -24,13 +24,33 @@ export interface NumberFacts {
 export const MIN_NUMBER = 1;
 export const MAX_NUMBER = 100;
 
-// Sayfa ici onceki/sonraki gezinmesinde kullanilan aralik. Bu sayfalar
-// programatik ve birbirine cok benzedigi icin sitemap'e eklenmez, noindex
-// kalir; hesaplayici yine daha genis araliktaki sayilarla calisabilir.
+// Sayfa ici onceki/sonraki gezinmesinde kullanilan aralik.
 export const MAX_LINKABLE_NUMBER = MAX_NUMBER;
 
 export const MIN_LIVE_NUMBER = 1;
 export const MAX_LIVE_NUMBER = 1_000_000;
+
+// 100'un uzerinde, ama gercek arama talebi dogrulanmis (tam kareler, 2'nin
+// kuvvetleri, yuvarlak sayilar, guncel yillar, mukemmel sayilar, Fibonacci)
+// tekil sayilar icin ek statik sayfalar. Bu sayilarin disinda 100'un
+// uzerindeki her sayi notFound() doner (dynamicParams = false).
+export const CURATED_EXTRA_NUMBERS: number[] = [
+  121, 128, 144, 169, 196, 200, 225, 233, 250, 256, 289, 324, 361, 377, 400,
+  496, 500, 512, 610, 750, 987, 1000, 1024, 1597, 2024, 2025, 2026, 2027,
+  2028, 2048, 2584, 4096, 4181, 6765, 8128,
+];
+
+const GENERATED_NUMBER_SET = new Set<number>([
+  ...Array.from({ length: MAX_NUMBER - MIN_NUMBER + 1 }, (_, i) => i + MIN_NUMBER),
+  ...CURATED_EXTRA_NUMBERS,
+]);
+
+// Bolen/carpan listelerinde bir sayiyi link olarak gostermeden once, o sayi
+// icin gercekten bir statik sayfa uretilip uretilmedigini kontrol eder --
+// aksi halde 404'e giden dahili linkler olusur.
+export function isGeneratedNumberPage(n: number): boolean {
+  return GENERATED_NUMBER_SET.has(n);
+}
 
 const MAX_FACTORIAL_N = 20;
 const MAX_ROMAN_NUMERAL_N = 3999;
@@ -169,5 +189,8 @@ export function getNumberFacts(
 }
 
 export function getAllNumberFactsRange(): number[] {
-  return Array.from({ length: MAX_NUMBER - MIN_NUMBER + 1 }, (_, i) => i + MIN_NUMBER);
+  return [
+    ...Array.from({ length: MAX_NUMBER - MIN_NUMBER + 1 }, (_, i) => i + MIN_NUMBER),
+    ...CURATED_EXTRA_NUMBERS,
+  ];
 }

@@ -62,14 +62,17 @@ import { getAllMaterialComparisons } from "./converter/materialComparisons";
 import { celestialBodiesDatabase } from "./converter/celestialBodiesDatabase";
 import { getAllCelestialBodyComparisons } from "./converter/celestialBodyComparisons";
 import { mountainsDatabase } from "./converter/mountainsDatabase";
+import { getAllMountainsUz } from "./converter/mountainsDatabaseUz";
 import { turkishProvinceElevations } from "./converter/turkishProvinceElevations";
 import { popularProvinceComparisons } from "./converter/popularProvinceComparisons";
+import { getAllRegions } from "./converter/regionElevationHubUz";
 import { compoundsDatabase } from "./converter/compoundsDatabase";
 import { findCompoundEditorial } from "./converter/compoundEditorial";
 import { aminoAcidsDatabase } from "./converter/aminoAcidsDatabase";
 import { bengaliWeightPairs } from "./converter/bengaliWeightPairs";
 import { licenseClasses } from "./converter/licenseClassFinder";
 import { uzLicenseClasses } from "./converter/licenseClassFinderUz";
+import { getAllNumberFactsRange } from "./converter/numberFacts";
 import {
   englishUnitPages,
   findEnglishUnitPageByTurkishSlug,
@@ -106,9 +109,6 @@ import { nederlandsConversionPages } from "./converter/localizedNederlandsConver
 import { swedishCategoryPages } from "./converter/localizedSwedishCategoryPages";
 import { swedishUnitPages } from "./converter/localizedSwedishUnitPages";
 import { swedishConversionPages } from "./converter/localizedSwedishConversionPages";
-import { russianCategoryPages } from "./converter/localizedRussianCategoryPages";
-import { russianConversionPages } from "./converter/localizedRussianConversionPages";
-import { russianUnitPages } from "./converter/localizedRussianUnitPages";
 import { norwegianCategoryPages } from "./converter/localizedNorwegianCategoryPages";
 import { norwegianUnitPages } from "./converter/localizedNorwegianUnitPages";
 import { norwegianConversionPages } from "./converter/localizedNorwegianConversionPages";
@@ -220,12 +220,6 @@ function buildLocalizedCoreAlternates(
       : collection === "units"
         ? swedishUnitPages.find((page) => page.sourceSlug === sourceSlug)
         : swedishConversionPages.find((page) => page.sourceSlug === sourceSlug);
-  const russianPage =
-    collection === "categories"
-      ? russianCategoryPages.find((page) => page.sourceSlug === sourceSlug)
-      : collection === "conversions"
-        ? russianConversionPages.find((page) => page.sourceSlug === sourceSlug)
-        : russianUnitPages.find((page) => page.sourceSlug === sourceSlug);
   const norwegianPage =
     collection === "categories"
       ? norwegianCategoryPages.find((page) => page.sourceSlug === sourceSlug)
@@ -254,7 +248,6 @@ function buildLocalizedCoreAlternates(
       it: italianPage ? `/it/categories/${italianPage.slug}` : undefined,
       nl: nederlandsPage ? `/nl/categories/${nederlandsPage.slug}` : undefined,
       sv: swedishPage ? `/sv/categories/${swedishPage.slug}` : undefined,
-      ru: russianPage ? `/ru/categories/${russianPage.slug}` : undefined,
       no: norwegianPage ? `/no/categories/${norwegianPage.slug}` : undefined,
       da: danishPage ? `/da/categories/${danishPage.slug}` : undefined,
     },
@@ -272,7 +265,6 @@ function buildLocalizedCoreAlternates(
       it: italianPage ? `/it/unit-guides/${italianPage.slug}` : undefined,
       nl: nederlandsPage ? `/nl/unit-guides/${nederlandsPage.slug}` : undefined,
       sv: swedishPage ? `/sv/unit-guides/${swedishPage.slug}` : undefined,
-      ru: russianPage ? `/ru/unit-guides/${russianPage.slug}` : undefined,
       no: norwegianPage ? `/no/unit-guides/${norwegianPage.slug}` : undefined,
       da: danishPage ? `/da/unit-guides/${danishPage.slug}` : undefined,
     },
@@ -290,7 +282,6 @@ function buildLocalizedCoreAlternates(
       it: italianPage ? `/it/${italianPage.slug}` : undefined,
       nl: nederlandsPage ? `/nl/${nederlandsPage.slug}` : undefined,
       sv: swedishPage ? `/sv/${swedishPage.slug}` : undefined,
-      ru: russianPage ? `/ru/${russianPage.slug}` : undefined,
       no: norwegianPage ? `/no/${norwegianPage.slug}` : undefined,
       da: danishPage ? `/da/${danishPage.slug}` : undefined,
     },
@@ -1062,6 +1053,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     },
+    ...getAllNumberFactsRange().flatMap((number) => [
+      {
+        url: `${baseUrl}/bilim-hesaplayicilari/matematik/sayilar/${number}`,
+        lastModified: contentLastModified,
+        changeFrequency: "monthly" as const,
+        priority: 0.5,
+      },
+      {
+        url: `${baseUrl}/uz/sonlar/${number}`,
+        lastModified: contentLastModified,
+        changeFrequency: "monthly" as const,
+        priority: 0.5,
+      },
+    ]),
     {
       url: `${baseUrl}/bilim-hesaplayicilari/matematik/kupkok-hesaplama`,
       lastModified: contentLastModified,
@@ -1419,6 +1424,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.6,
     })),
     {
+      url: `${baseUrl}/uz/dunyoning-eng-baland-toglari`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    ...getAllMountainsUz().map((mountain) => ({
+      url: `${baseUrl}/uz/dunyoning-eng-baland-toglari/${mountain.id}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    })),
+    {
       url: `${baseUrl}/il-rakimlari`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
@@ -1430,6 +1447,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.6,
     })),
+    {
+      url: `${baseUrl}/uz/viloyatlar-balandligi`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    ...getAllRegions().map((region) => ({
+      url: `${baseUrl}/uz/viloyatlar-balandligi/${region.id}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    })),
+    {
+      url: `${baseUrl}/uz/viloyat-balandligini-solishtirish`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
     {
       url: `${baseUrl}/il-rakimi-karsilastirma`,
       lastModified: contentLastModified,
@@ -4860,27 +4895,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  const russianIndexRoutes: MetadataRoute.Sitemap = [
-    {
-      url: `${baseUrl}/ru`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/ru/categories`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-    },
-    {
-      url: `${baseUrl}/ru/unit-guides`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-    },
-  ];
-
   // Isvecce icin henuz /sv/unit-guides indeks sayfasi yok (Italyanca'daki
   // gibi ayni durum), bu yuzden sadece home ve categories eklenir.
   const swedishIndexRoutes: MetadataRoute.Sitemap = [
@@ -4993,12 +5007,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/nl/",
     0.7
   );
-  const russianConversionRoutes = buildLocalizedCoreRoutes(
-    russianConversionPages,
-    "conversions",
-    "/ru/",
-    0.7
-  );
   const swedishConversionRoutes = buildLocalizedCoreRoutes(
     swedishConversionPages,
     "conversions",
@@ -5060,12 +5068,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/sv/unit-guides/",
     0.7
   );
-  const russianUnitRoutes = buildLocalizedCoreRoutes(
-    russianUnitPages,
-    "units",
-    "/ru/unit-guides/",
-    0.7
-  );
   const norwegianUnitRoutes = buildLocalizedCoreRoutes(
     norwegianUnitPages,
     "units",
@@ -5113,12 +5115,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     nederlandsCategoryPages,
     "categories",
     "/nl/categories/",
-    0.8
-  );
-  const russianCategoryRoutes = buildLocalizedCoreRoutes(
-    russianCategoryPages,
-    "categories",
-    "/ru/categories/",
     0.8
   );
   const swedishCategoryRoutes = buildLocalizedCoreRoutes(
@@ -6415,7 +6411,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...portugueseCategoryRoutes,
     ...italianCategoryRoutes,
     ...nederlandsCategoryRoutes,
-    ...russianCategoryRoutes,
     ...swedishCategoryRoutes,
     ...norwegianCategoryRoutes,
     ...danishCategoryRoutes,
@@ -6435,7 +6430,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...portugueseConversionRoutes,
     ...italianConversionRoutes,
     ...nederlandsConversionRoutes,
-    ...russianConversionRoutes,
     ...swedishConversionRoutes,
     ...norwegianConversionRoutes,
     ...danishConversionRoutes,
@@ -6451,13 +6445,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...portugueseUnitRoutes,
     ...italianUnitRoutes,
     ...nederlandsUnitRoutes,
-    ...russianUnitRoutes,
     ...swedishUnitRoutes,
     ...norwegianUnitRoutes,
     ...danishUnitRoutes,
     ...curatedLocaleIndexRoutes,
     ...italianIndexRoutes,
-    ...russianIndexRoutes,
     ...swedishIndexRoutes,
     ...norwegianIndexRoutes,
     ...danishIndexRoutes,

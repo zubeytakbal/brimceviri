@@ -7,7 +7,7 @@ import {
 } from "./kitchenMeasures";
 import { kitchenIngredientLabels } from "./kitchenIngredientLabels";
 
-export type RecipeLocale = "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "nl" | "sv" | "no";
+export type RecipeLocale = "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "nl" | "sv" | "no" | "da";
 
 export type ParsedRecipeLine = {
   raw: string;
@@ -227,6 +227,12 @@ const oneTokenUnits: Record<string, KitchenUnit> = {
   spiseskjeer: "yemekKasigi",
   teskje: "cayKasigi",
   teskjeer: "cayKasigi",
+  kop: "bardak",
+  kopper: "bardak",
+  spiseske: "yemekKasigi",
+  spiseskeer: "yemekKasigi",
+  teske: "cayKasigi",
+  teskeer: "cayKasigi",
 };
 
 function extractUnit(normalizedRestOfLine: string): {
@@ -416,7 +422,9 @@ function formatQuantity(
                             ? "sv-SE"
                             : locale === "no"
                               ? "nb-NO"
-                              : "en-US";
+                              : locale === "da"
+                                ? "da-DK"
+                                : "en-US";
 
   return rounded.toLocaleString(localeName, {
     maximumFractionDigits: 2,

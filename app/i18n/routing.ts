@@ -61,6 +61,7 @@ const staticRouteTranslations: Record<StaticRouteKey, LocalePathMap> = {
     ru: "/ru",
     sv: "/sv",
     no: "/no",
+    da: "/da",
   },
   units: {
     tr: "/birimler",
@@ -93,6 +94,7 @@ const staticRouteTranslations: Record<StaticRouteKey, LocalePathMap> = {
     nl: "/nl/historical-units",
     sv: "/sv/historical-units",
     no: "/no/historical-units",
+    da: "/da/historical-units",
   },
   shoeSize: {
     tr: "/ayakkabi-numarasi-cevirme",
@@ -103,6 +105,7 @@ const staticRouteTranslations: Record<StaticRouteKey, LocalePathMap> = {
     nl: "/nl/shoe-size-converter",
     sv: "/sv/shoe-size-converter",
     no: "/no/shoe-size-converter",
+    da: "/da/shoe-size-converter",
   },
   kitchenMeasures: {
     tr: "/mutfak-olculeri-cevirici",
@@ -113,6 +116,7 @@ const staticRouteTranslations: Record<StaticRouteKey, LocalePathMap> = {
     nl: "/nl/kitchen-measurement-converter",
     sv: "/sv/kitchen-measurement-converter",
     no: "/no/kitchen-measurement-converter",
+    da: "/da/kitchen-measurement-converter",
   },
   recipeConverter: {
     tr: "/tarif-cevirici",
@@ -123,6 +127,7 @@ const staticRouteTranslations: Record<StaticRouteKey, LocalePathMap> = {
     nl: "/nl/recipe-converter",
     sv: "/sv/recipe-converter",
     no: "/no/recipe-converter",
+    da: "/da/recipe-converter",
   },
   ringSize: {
     tr: "/yuzuk-olcusu-cevirici",
@@ -264,6 +269,7 @@ const collectionBasePaths: Record<
     ru: "/ru/unit-guides/",
     sv: "/sv/unit-guides/",
     no: "/no/unit-guides/",
+    da: "/da/unit-guides/",
   },
   categories: {
     tr: "/kategoriler/",
@@ -281,6 +287,7 @@ const collectionBasePaths: Record<
     ru: "/ru/categories/",
     sv: "/sv/categories/",
     no: "/no/categories/",
+    da: "/da/categories/",
   },
   calculators: {
     tr: "/hesaplayicilar/",
@@ -298,6 +305,7 @@ const collectionBasePaths: Record<
     ru: "/ru/calculators/",
     sv: "/sv/calculators/",
     no: "/no/calculators/",
+    da: "/da/calculators/",
   },
   conversions: {
     tr: "/",
@@ -315,6 +323,7 @@ const collectionBasePaths: Record<
     ru: "/ru/",
     sv: "/sv/",
     no: "/no/",
+    da: "/da/",
   },
 };
 

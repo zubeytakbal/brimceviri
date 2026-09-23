@@ -14,7 +14,7 @@ import {
 import { useNotificationSlot } from "./NotificationSlotProvider";
 import type { SiteNotification } from "../converter/siteNotifications";
 
-type NotificationLocale = "tr" | "en" | "uz" | "de" | "ar" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "nl" | "sv" | "no";
+type NotificationLocale = "tr" | "en" | "uz" | "de" | "ar" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "nl" | "sv" | "no" | "da";
 
 const notificationCopy = {
   tr: {
@@ -141,6 +141,11 @@ const notificationCopy = {
     ariaLabel: "Varsler", panelLabel: "Sidevarsler", title: "Varsler", closeLabel: "Lukk",
     markSeenLabel: "Merk dette varselet som lest", openLabel: "Apne →",
     empty: "Det finnes for oyeblikket ingen nye varsler.", dateLocale: "nb-NO",
+  },
+  da: {
+    ariaLabel: "Notifikationer", panelLabel: "Sidenotifikationer", title: "Notifikationer", closeLabel: "Luk",
+    markSeenLabel: "Marker denne notifikation som last", openLabel: "Abn →",
+    empty: "Der er i ojeblikket ingen nye notifikationer.", dateLocale: "da-DK",
   },
 } as const;
 

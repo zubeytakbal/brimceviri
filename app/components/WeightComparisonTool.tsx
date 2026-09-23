@@ -83,6 +83,11 @@ fr: {
     kg: "Kilogram (kg)",
     ton: "Ton",
   },
+  da: {
+    g: "Gram (g)",
+    kg: "Kilogram (kg)",
+    ton: "Ton",
+  },
   ru: {
     g: "Грамм (г)",
     kg: "Килограмм (кг)",
@@ -105,6 +110,7 @@ fr: { g: "g", kg: "kg", ton: "ton" },
   nl: { g: "g", kg: "kg", ton: "ton" },
   sv: { g: "g", kg: "kg", ton: "ton" },
   no: { g: "g", kg: "kg", ton: "ton" },
+  da: { g: "g", kg: "kg", ton: "ton" },
   ru: { g: "г", kg: "кг", ton: "т" },
 };
 
@@ -235,6 +241,15 @@ fr: {
     fil: "Average adult African elephant",
     "mavi-balina": "Average adult blue whale",
   },
+  da: {
+    kedi: "Average house cat",
+    insan: "Average adult human",
+    motosiklet: "Average motorcycle",
+    at: "Average riding horse",
+    otomobil: "Average passenger car",
+    fil: "Average adult African elephant",
+    "mavi-balina": "Average adult blue whale",
+  },
   ru: {
     kedi: "Средняя домашняя кошка",
     insan: "Средний взрослый человек",
@@ -350,6 +365,16 @@ const copyByLocale: Record<
     closestMatch: "Closest comparison",
   },
   no: {
+    labels: {
+      value: "Value",
+      unit: "Unit",
+    },
+    placeholder: "E.g. 25",
+    emptyState: "Enter a valid value to see the comparisons.",
+    intro: "comparisons for",
+    closestMatch: "Closest comparison",
+  },
+  da: {
     labels: {
       value: "Value",
       unit: "Unit",

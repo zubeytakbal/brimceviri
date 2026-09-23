@@ -173,6 +173,17 @@ bn: {
     secondaryHref: "/",
     secondaryLabel: "Apne den tyrkiske hjemmesiden",
   },
+  da: {
+    lang: "da",
+    title: "Siden blev ikke fundet",
+    description:
+      "Siden du leder efter, kan vaere blevet flyttet, eller ogsa er adressen ikke gyldig.",
+    continueHeading: "Fortsaet med",
+    primaryHref: "/da",
+    primaryLabel: "Tilbage til den danske startside",
+    secondaryHref: "/",
+    secondaryLabel: "Abn den tyrkiske startside",
+  },
 } satisfies Record<
   Locale,
   {

@@ -57,6 +57,10 @@ export function getIntlLocale(locale: Locale) {
     return "nb-NO";
   }
 
+  if (locale === "da") {
+    return "da-DK";
+  }
+
   return "tr-TR";
 }
 

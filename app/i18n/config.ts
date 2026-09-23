@@ -1,4 +1,4 @@
-export const SUPPORTED_LOCALES = ["tr", "en", "de", "ar", "uz", "bn", "fr", "es", "es-419", "pt", "it", "nl", "ru", "sv", "no"] as const;
+export const SUPPORTED_LOCALES = ["tr", "en", "de", "ar", "uz", "bn", "fr", "es", "es-419", "pt", "it", "nl", "ru", "sv", "no", "da"] as const;
 
 export type Locale = (typeof SUPPORTED_LOCALES)[number];
 
@@ -245,6 +245,21 @@ export const LOCALE_DEFINITIONS: Record<Locale, LocaleDefinition> = {
     switcherOptionsLabel: "Sprakalternativer",
     switcherSearchPlaceholder: "Sok sprak",
     switcherEmptyLabel: "Ingen matchende sprak funnet",
+  },
+  da: {
+    code: "da",
+    htmlLang: "da",
+    dir: "ltr",
+    openGraphLocale: "da_DK",
+    pathPrefix: "/da",
+    homePath: "/da",
+    label: "Dansk",
+    switcherLabel: "Dansk",
+    switcherCurrentLabel: "DA - Dansk",
+    switcherAriaLabel: "Vaelg sprog",
+    switcherOptionsLabel: "Sprogindstillinger",
+    switcherSearchPlaceholder: "Sog sprog",
+    switcherEmptyLabel: "Intet matchende sprog fundet",
   },
 };
 

@@ -416,6 +416,31 @@ const categoryLabels: Record<
     altin_ayar: "Gullkarat",
     gumus_ayar: "Solvinnhold",
   },
+  da: {
+    uzunluk: "Laengde",
+    alan: "Areal",
+    hacim: "Rumfang",
+    kutle: "Masse",
+    sicaklik: "Temperatur",
+    zaman: "Tid",
+    hiz: "Hastighed",
+    basinc: "Tryk",
+    enerji: "Energi og Effekt",
+    veri: "Datalagring",
+    elektrik: "Elektricitet",
+    yogunluk: "Densitet",
+    kuvvet: "Kraft",
+    debi: "Stromning",
+    tork: "Moment",
+    momentum: "Bevaegelsesmaengde",
+    viskozite_dinamik: "Viskositet",
+    elektrik_direnc: "Modstand",
+    kapasitans: "Kapacitans",
+    enduktans: "Induktans",
+    elektrik_yuk: "Elektrisk Ladning",
+    altin_ayar: "Guldkarat",
+    gumus_ayar: "Solvindhold",
+  },
 };
 
 const siteHeaderCopy: Record<Locale, SiteHeaderCopy> = {
@@ -488,6 +513,11 @@ const siteHeaderCopy: Record<Locale, SiteHeaderCopy> = {
   no: {
     navAriaLabel: "Hovednavigasjon",
     menuLabel: "Meny",
+    conversionsLabel: "Omregninger",
+  },
+  da: {
+    navAriaLabel: "Hovednavigation",
+    menuLabel: "Menu",
     conversionsLabel: "Omregninger",
   },
 };
@@ -667,6 +697,18 @@ const footerCopy: Record<Locale, FooterCopy> = {
     browserProcessingNote:
       "I regnefunksjonene pa denne siden behandles innsendte data direkte i nettleseren.",
   },
+  da: {
+    navAriaLabel: "Bundtekstnavigation",
+    pagesHeading: "Sider",
+    languagesHeading: "Sprog",
+    categoriesHeading: "Kategorier",
+    description:
+      "Tekniske omregningsvaerktojer og enhedsguider forberedt til praktisk brug.",
+    disclaimer:
+      "For vigtige tekniske, medicinske eller sikkerhedsrelaterede beslutninger bor resultaterne kontrolleres med professionelle kilder.",
+    browserProcessingNote:
+      "I beregningsfunktionerne pa denne side behandles indtastede data direkte i browseren.",
+  },
 };
 
 const topLevelLabelMap: Record<
@@ -775,6 +817,13 @@ const topLevelLabelMap: Record<
     allConversions: "Alle Omregninger",
     professions: "Etter Yrke",
   },
+  da: {
+    home: "Hjem",
+    engineeringHub: "Beregnere",
+    units: "Enhedsguide",
+    allConversions: "Alle Omregninger",
+    professions: "Efter Erhverv",
+  },
 };
 
 const footerLinksByLocale: Record<
@@ -833,6 +882,7 @@ const footerLinksByLocale: Record<
   ru: [{ key: "home", label: "Главная" }, { key: "allConversions", label: "Все переводы" }],
   sv: [{ key: "home", label: "Hem" }],
   no: [{ key: "home", label: "Hjem" }],
+  da: [{ key: "home", label: "Hjem" }],
 };
 
 export function getSiteHeaderCopy(locale: Locale) {
@@ -979,7 +1029,9 @@ export function getCategoryMenuLinks(locale: Locale) {
                           ? "Skostorlekar"
                           : locale === "no"
                             ? "Skostorrelser"
-                            : "Ayakkabi Numarasi",
+                            : locale === "da"
+                              ? "Skostorrelser"
+                              : "Ayakkabi Numarasi",
   });
   links.push({
     href: getStaticPath(locale, "kitchenMeasures"),
@@ -1006,7 +1058,9 @@ export function getCategoryMenuLinks(locale: Locale) {
                           ? "Kokmatt"
                           : locale === "no"
                             ? "Kjokkenmal"
-                            : "Mutfak Olculeri",
+                            : locale === "da"
+                              ? "Kokkenmal"
+                              : "Mutfak Olculeri",
   });
   links.push({
     href: getStaticPath(locale, "recipeConverter"),
@@ -1033,7 +1087,9 @@ export function getCategoryMenuLinks(locale: Locale) {
                           ? "Receptomvandlare"
                           : locale === "no"
                             ? "Oppskriftomregner"
-                            : "Tarif Cevirici",
+                            : locale === "da"
+                              ? "Opskriftomregner"
+                              : "Tarif Cevirici",
   });
 
   return links;

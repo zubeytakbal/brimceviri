@@ -83,6 +83,11 @@ fr: {
     2: "2nd trimester",
     3: "3rd trimester",
   },
+  da: {
+    1: "1st trimester",
+    2: "2nd trimester",
+    3: "3rd trimester",
+  },
 };
 
 const copyByLocale: Record<
@@ -179,6 +184,15 @@ const copyByLocale: Record<
     days: "days",
   },
   no: {
+    inputLabel: "First Day of the Last Period",
+    emptyState: "Enter a valid date; it cannot be in the future or more than 45 weeks old.",
+    summaryLabel: "Pregnancy age",
+    dueDate: "Estimated due date",
+    daysUntil: "Days until due date",
+    weeks: "weeks",
+    days: "days",
+  },
+  da: {
     inputLabel: "First Day of the Last Period",
     emptyState: "Enter a valid date; it cannot be in the future or more than 45 weeks old.",
     summaryLabel: "Pregnancy age",

@@ -112,6 +112,9 @@ import { russianUnitPages } from "./converter/localizedRussianUnitPages";
 import { norwegianCategoryPages } from "./converter/localizedNorwegianCategoryPages";
 import { norwegianUnitPages } from "./converter/localizedNorwegianUnitPages";
 import { norwegianConversionPages } from "./converter/localizedNorwegianConversionPages";
+import { danishCategoryPages } from "./converter/localizedDanishCategoryPages";
+import { danishUnitPages } from "./converter/localizedDanishUnitPages";
+import { danishConversionPages } from "./converter/localizedDanishConversionPages";
 import { SITE_LAST_MODIFIED, SITE_URL } from "./siteConfig";
 
 const baseUrl = SITE_URL;
@@ -229,6 +232,12 @@ function buildLocalizedCoreAlternates(
       : collection === "units"
         ? norwegianUnitPages.find((page) => page.sourceSlug === sourceSlug)
         : norwegianConversionPages.find((page) => page.sourceSlug === sourceSlug);
+  const danishPage =
+    collection === "categories"
+      ? danishCategoryPages.find((page) => page.sourceSlug === sourceSlug)
+      : collection === "units"
+        ? danishUnitPages.find((page) => page.sourceSlug === sourceSlug)
+        : danishConversionPages.find((page) => page.sourceSlug === sourceSlug);
 
   const paths = {
     categories: {
@@ -247,6 +256,7 @@ function buildLocalizedCoreAlternates(
       sv: swedishPage ? `/sv/categories/${swedishPage.slug}` : undefined,
       ru: russianPage ? `/ru/categories/${russianPage.slug}` : undefined,
       no: norwegianPage ? `/no/categories/${norwegianPage.slug}` : undefined,
+      da: danishPage ? `/da/categories/${danishPage.slug}` : undefined,
     },
     units: {
       tr: `/birimler/${sourceSlug}`,
@@ -264,6 +274,7 @@ function buildLocalizedCoreAlternates(
       sv: swedishPage ? `/sv/unit-guides/${swedishPage.slug}` : undefined,
       ru: russianPage ? `/ru/unit-guides/${russianPage.slug}` : undefined,
       no: norwegianPage ? `/no/unit-guides/${norwegianPage.slug}` : undefined,
+      da: danishPage ? `/da/unit-guides/${danishPage.slug}` : undefined,
     },
     conversions: {
       tr: `/${sourceSlug}`,
@@ -281,6 +292,7 @@ function buildLocalizedCoreAlternates(
       sv: swedishPage ? `/sv/${swedishPage.slug}` : undefined,
       ru: russianPage ? `/ru/${russianPage.slug}` : undefined,
       no: norwegianPage ? `/no/${norwegianPage.slug}` : undefined,
+      da: danishPage ? `/da/${danishPage.slug}` : undefined,
     },
   }[collection];
 
@@ -1598,6 +1610,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           nl: `${baseUrl}/nl/shoe-size-converter`,
           sv: `${baseUrl}/sv/shoe-size-converter`,
           no: `${baseUrl}/no/shoe-size-converter`,
+          da: `${baseUrl}/da/shoe-size-converter`,
           "x-default": `${baseUrl}/ayakkabi-numarasi-cevirme`,
         },
       },
@@ -1622,6 +1635,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           nl: `${baseUrl}/nl/shoe-size-converter`,
           sv: `${baseUrl}/sv/shoe-size-converter`,
           no: `${baseUrl}/no/shoe-size-converter`,
+          da: `${baseUrl}/da/shoe-size-converter`,
           "x-default": `${baseUrl}/ayakkabi-numarasi-cevirme`,
         },
       },
@@ -1646,6 +1660,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           nl: `${baseUrl}/nl/shoe-size-converter`,
           sv: `${baseUrl}/sv/shoe-size-converter`,
           no: `${baseUrl}/no/shoe-size-converter`,
+          da: `${baseUrl}/da/shoe-size-converter`,
           "x-default": `${baseUrl}/ayakkabi-numarasi-cevirme`,
         },
       },
@@ -1670,6 +1685,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           nl: `${baseUrl}/nl/shoe-size-converter`,
           sv: `${baseUrl}/sv/shoe-size-converter`,
           no: `${baseUrl}/no/shoe-size-converter`,
+          da: `${baseUrl}/da/shoe-size-converter`,
           "x-default": `${baseUrl}/ayakkabi-numarasi-cevirme`,
         },
       },
@@ -1694,6 +1710,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           nl: `${baseUrl}/nl/shoe-size-converter`,
           sv: `${baseUrl}/sv/shoe-size-converter`,
           no: `${baseUrl}/no/shoe-size-converter`,
+          da: `${baseUrl}/da/shoe-size-converter`,
           "x-default": `${baseUrl}/ayakkabi-numarasi-cevirme`,
         },
       },
@@ -1718,6 +1735,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           nl: `${baseUrl}/nl/shoe-size-converter`,
           sv: `${baseUrl}/sv/shoe-size-converter`,
           no: `${baseUrl}/no/shoe-size-converter`,
+          da: `${baseUrl}/da/shoe-size-converter`,
           "x-default": `${baseUrl}/ayakkabi-numarasi-cevirme`,
         },
       },
@@ -1742,6 +1760,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           nl: `${baseUrl}/nl/shoe-size-converter`,
           sv: `${baseUrl}/sv/shoe-size-converter`,
           no: `${baseUrl}/no/shoe-size-converter`,
+          da: `${baseUrl}/da/shoe-size-converter`,
           "x-default": `${baseUrl}/ayakkabi-numarasi-cevirme`,
         },
       },
@@ -1766,6 +1785,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           nl: `${baseUrl}/nl/shoe-size-converter`,
           sv: `${baseUrl}/sv/shoe-size-converter`,
           no: `${baseUrl}/no/shoe-size-converter`,
+          da: `${baseUrl}/da/shoe-size-converter`,
           "x-default": `${baseUrl}/ayakkabi-numarasi-cevirme`,
         },
       },
@@ -1790,6 +1810,32 @@ export default function sitemap(): MetadataRoute.Sitemap {
           nl: `${baseUrl}/nl/shoe-size-converter`,
           sv: `${baseUrl}/sv/shoe-size-converter`,
           no: `${baseUrl}/no/shoe-size-converter`,
+          da: `${baseUrl}/da/shoe-size-converter`,
+          "x-default": `${baseUrl}/ayakkabi-numarasi-cevirme`,
+        },
+      },
+    },
+    {
+      url: `${baseUrl}/da/shoe-size-converter`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+      alternates: {
+        languages: {
+          tr: `${baseUrl}/ayakkabi-numarasi-cevirme`,
+          en: `${baseUrl}/en/shoe-size-converter`,
+          de: `${baseUrl}/de/schuhgroessen-umrechner`,
+          ar: `${baseUrl}/ar/shoe-size-converter`,
+          bn: `${baseUrl}/bn/shoe-size-converter`,
+          fr: `${baseUrl}/fr/shoe-size-converter`,
+          es: `${baseUrl}/es/shoe-size-converter`,
+          "es-419": `${baseUrl}/es-419/shoe-size-converter`,
+          pt: `${baseUrl}/pt/shoe-size-converter`,
+          it: `${baseUrl}/it/shoe-size-converter`,
+          nl: `${baseUrl}/nl/shoe-size-converter`,
+          sv: `${baseUrl}/sv/shoe-size-converter`,
+          no: `${baseUrl}/no/shoe-size-converter`,
+          da: `${baseUrl}/da/shoe-size-converter`,
           "x-default": `${baseUrl}/ayakkabi-numarasi-cevirme`,
         },
       },
@@ -1814,6 +1860,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           nl: `${baseUrl}/nl/kitchen-measurement-converter`,
           sv: `${baseUrl}/sv/kitchen-measurement-converter`,
           no: `${baseUrl}/no/kitchen-measurement-converter`,
+          da: `${baseUrl}/da/kitchen-measurement-converter`,
           "x-default": `${baseUrl}/mutfak-olculeri-cevirici`,
         },
       },
@@ -1838,6 +1885,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           nl: `${baseUrl}/nl/kitchen-measurement-converter`,
           sv: `${baseUrl}/sv/kitchen-measurement-converter`,
           no: `${baseUrl}/no/kitchen-measurement-converter`,
+          da: `${baseUrl}/da/kitchen-measurement-converter`,
           "x-default": `${baseUrl}/mutfak-olculeri-cevirici`,
         },
       },
@@ -1862,6 +1910,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           nl: `${baseUrl}/nl/kitchen-measurement-converter`,
           sv: `${baseUrl}/sv/kitchen-measurement-converter`,
           no: `${baseUrl}/no/kitchen-measurement-converter`,
+          da: `${baseUrl}/da/kitchen-measurement-converter`,
           "x-default": `${baseUrl}/mutfak-olculeri-cevirici`,
         },
       },
@@ -1886,6 +1935,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           nl: `${baseUrl}/nl/kitchen-measurement-converter`,
           sv: `${baseUrl}/sv/kitchen-measurement-converter`,
           no: `${baseUrl}/no/kitchen-measurement-converter`,
+          da: `${baseUrl}/da/kitchen-measurement-converter`,
           "x-default": `${baseUrl}/mutfak-olculeri-cevirici`,
         },
       },
@@ -1910,6 +1960,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           nl: `${baseUrl}/nl/kitchen-measurement-converter`,
           sv: `${baseUrl}/sv/kitchen-measurement-converter`,
           no: `${baseUrl}/no/kitchen-measurement-converter`,
+          da: `${baseUrl}/da/kitchen-measurement-converter`,
           "x-default": `${baseUrl}/mutfak-olculeri-cevirici`,
         },
       },
@@ -1934,6 +1985,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           nl: `${baseUrl}/nl/kitchen-measurement-converter`,
           sv: `${baseUrl}/sv/kitchen-measurement-converter`,
           no: `${baseUrl}/no/kitchen-measurement-converter`,
+          da: `${baseUrl}/da/kitchen-measurement-converter`,
           "x-default": `${baseUrl}/mutfak-olculeri-cevirici`,
         },
       },
@@ -1958,6 +2010,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           nl: `${baseUrl}/nl/kitchen-measurement-converter`,
           sv: `${baseUrl}/sv/kitchen-measurement-converter`,
           no: `${baseUrl}/no/kitchen-measurement-converter`,
+          da: `${baseUrl}/da/kitchen-measurement-converter`,
           "x-default": `${baseUrl}/mutfak-olculeri-cevirici`,
         },
       },
@@ -1982,6 +2035,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           nl: `${baseUrl}/nl/kitchen-measurement-converter`,
           sv: `${baseUrl}/sv/kitchen-measurement-converter`,
           no: `${baseUrl}/no/kitchen-measurement-converter`,
+          da: `${baseUrl}/da/kitchen-measurement-converter`,
           "x-default": `${baseUrl}/mutfak-olculeri-cevirici`,
         },
       },
@@ -2006,6 +2060,32 @@ export default function sitemap(): MetadataRoute.Sitemap {
           nl: `${baseUrl}/nl/kitchen-measurement-converter`,
           sv: `${baseUrl}/sv/kitchen-measurement-converter`,
           no: `${baseUrl}/no/kitchen-measurement-converter`,
+          da: `${baseUrl}/da/kitchen-measurement-converter`,
+          "x-default": `${baseUrl}/mutfak-olculeri-cevirici`,
+        },
+      },
+    },
+    {
+      url: `${baseUrl}/da/kitchen-measurement-converter`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+      alternates: {
+        languages: {
+          tr: `${baseUrl}/mutfak-olculeri-cevirici`,
+          en: `${baseUrl}/en/kitchen-measurement-converter`,
+          de: `${baseUrl}/de/kuechenmass-umrechner`,
+          ar: `${baseUrl}/ar/kitchen-measurement-converter`,
+          bn: `${baseUrl}/bn/kitchen-measurement-converter`,
+          fr: `${baseUrl}/fr/kitchen-measurement-converter`,
+          es: `${baseUrl}/es/kitchen-measurement-converter`,
+          "es-419": `${baseUrl}/es-419/kitchen-measurement-converter`,
+          pt: `${baseUrl}/pt/kitchen-measurement-converter`,
+          it: `${baseUrl}/it/kitchen-measurement-converter`,
+          nl: `${baseUrl}/nl/kitchen-measurement-converter`,
+          sv: `${baseUrl}/sv/kitchen-measurement-converter`,
+          no: `${baseUrl}/no/kitchen-measurement-converter`,
+          da: `${baseUrl}/da/kitchen-measurement-converter`,
           "x-default": `${baseUrl}/mutfak-olculeri-cevirici`,
         },
       },
@@ -2030,6 +2110,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           nl: `${baseUrl}/nl/recipe-converter`,
           sv: `${baseUrl}/sv/recipe-converter`,
           no: `${baseUrl}/no/recipe-converter`,
+          da: `${baseUrl}/da/recipe-converter`,
           "x-default": `${baseUrl}/tarif-cevirici`,
         },
       },
@@ -2054,6 +2135,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           nl: `${baseUrl}/nl/recipe-converter`,
           sv: `${baseUrl}/sv/recipe-converter`,
           no: `${baseUrl}/no/recipe-converter`,
+          da: `${baseUrl}/da/recipe-converter`,
           "x-default": `${baseUrl}/tarif-cevirici`,
         },
       },
@@ -2078,6 +2160,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           nl: `${baseUrl}/nl/recipe-converter`,
           sv: `${baseUrl}/sv/recipe-converter`,
           no: `${baseUrl}/no/recipe-converter`,
+          da: `${baseUrl}/da/recipe-converter`,
           "x-default": `${baseUrl}/tarif-cevirici`,
         },
       },
@@ -2102,6 +2185,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           nl: `${baseUrl}/nl/recipe-converter`,
           sv: `${baseUrl}/sv/recipe-converter`,
           no: `${baseUrl}/no/recipe-converter`,
+          da: `${baseUrl}/da/recipe-converter`,
           "x-default": `${baseUrl}/tarif-cevirici`,
         },
       },
@@ -2126,6 +2210,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           nl: `${baseUrl}/nl/recipe-converter`,
           sv: `${baseUrl}/sv/recipe-converter`,
           no: `${baseUrl}/no/recipe-converter`,
+          da: `${baseUrl}/da/recipe-converter`,
           "x-default": `${baseUrl}/tarif-cevirici`,
         },
       },
@@ -2150,6 +2235,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           nl: `${baseUrl}/nl/recipe-converter`,
           sv: `${baseUrl}/sv/recipe-converter`,
           no: `${baseUrl}/no/recipe-converter`,
+          da: `${baseUrl}/da/recipe-converter`,
           "x-default": `${baseUrl}/tarif-cevirici`,
         },
       },
@@ -2174,6 +2260,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           nl: `${baseUrl}/nl/recipe-converter`,
           sv: `${baseUrl}/sv/recipe-converter`,
           no: `${baseUrl}/no/recipe-converter`,
+          da: `${baseUrl}/da/recipe-converter`,
           "x-default": `${baseUrl}/tarif-cevirici`,
         },
       },
@@ -2198,6 +2285,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           nl: `${baseUrl}/nl/recipe-converter`,
           sv: `${baseUrl}/sv/recipe-converter`,
           no: `${baseUrl}/no/recipe-converter`,
+          da: `${baseUrl}/da/recipe-converter`,
           "x-default": `${baseUrl}/tarif-cevirici`,
         },
       },
@@ -2222,6 +2310,32 @@ export default function sitemap(): MetadataRoute.Sitemap {
           nl: `${baseUrl}/nl/recipe-converter`,
           sv: `${baseUrl}/sv/recipe-converter`,
           no: `${baseUrl}/no/recipe-converter`,
+          da: `${baseUrl}/da/recipe-converter`,
+          "x-default": `${baseUrl}/tarif-cevirici`,
+        },
+      },
+    },
+    {
+      url: `${baseUrl}/da/recipe-converter`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+      alternates: {
+        languages: {
+          tr: `${baseUrl}/tarif-cevirici`,
+          en: `${baseUrl}/en/recipe-converter`,
+          de: `${baseUrl}/de/rezept-umrechner`,
+          ar: `${baseUrl}/ar/recipe-converter`,
+          bn: `${baseUrl}/bn/recipe-converter`,
+          fr: `${baseUrl}/fr/recipe-converter`,
+          es: `${baseUrl}/es/recipe-converter`,
+          "es-419": `${baseUrl}/es-419/recipe-converter`,
+          pt: `${baseUrl}/pt/recipe-converter`,
+          it: `${baseUrl}/it/recipe-converter`,
+          nl: `${baseUrl}/nl/recipe-converter`,
+          sv: `${baseUrl}/sv/recipe-converter`,
+          no: `${baseUrl}/no/recipe-converter`,
+          da: `${baseUrl}/da/recipe-converter`,
           "x-default": `${baseUrl}/tarif-cevirici`,
         },
       },
@@ -2246,6 +2360,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           nl: `${baseUrl}/nl/historical-units`,
           sv: `${baseUrl}/sv/historical-units`,
           no: `${baseUrl}/no/historical-units`,
+          da: `${baseUrl}/da/historical-units`,
           "x-default": `${baseUrl}/tarihi-olcu-birimleri`,
         },
       },
@@ -2270,6 +2385,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           nl: `${baseUrl}/nl/historical-units`,
           sv: `${baseUrl}/sv/historical-units`,
           no: `${baseUrl}/no/historical-units`,
+          da: `${baseUrl}/da/historical-units`,
           "x-default": `${baseUrl}/tarihi-olcu-birimleri`,
         },
       },
@@ -2294,6 +2410,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           nl: `${baseUrl}/nl/historical-units`,
           sv: `${baseUrl}/sv/historical-units`,
           no: `${baseUrl}/no/historical-units`,
+          da: `${baseUrl}/da/historical-units`,
           "x-default": `${baseUrl}/tarihi-olcu-birimleri`,
         },
       },
@@ -2318,6 +2435,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           nl: `${baseUrl}/nl/historical-units`,
           sv: `${baseUrl}/sv/historical-units`,
           no: `${baseUrl}/no/historical-units`,
+          da: `${baseUrl}/da/historical-units`,
           "x-default": `${baseUrl}/tarihi-olcu-birimleri`,
         },
       },
@@ -2342,6 +2460,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           nl: `${baseUrl}/nl/historical-units`,
           sv: `${baseUrl}/sv/historical-units`,
           no: `${baseUrl}/no/historical-units`,
+          da: `${baseUrl}/da/historical-units`,
           "x-default": `${baseUrl}/tarihi-olcu-birimleri`,
         },
       },
@@ -2366,6 +2485,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           nl: `${baseUrl}/nl/historical-units`,
           sv: `${baseUrl}/sv/historical-units`,
           no: `${baseUrl}/no/historical-units`,
+          da: `${baseUrl}/da/historical-units`,
           "x-default": `${baseUrl}/tarihi-olcu-birimleri`,
         },
       },
@@ -2390,6 +2510,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           nl: `${baseUrl}/nl/historical-units`,
           sv: `${baseUrl}/sv/historical-units`,
           no: `${baseUrl}/no/historical-units`,
+          da: `${baseUrl}/da/historical-units`,
           "x-default": `${baseUrl}/tarihi-olcu-birimleri`,
         },
       },
@@ -2414,6 +2535,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           nl: `${baseUrl}/nl/historical-units`,
           sv: `${baseUrl}/sv/historical-units`,
           no: `${baseUrl}/no/historical-units`,
+          da: `${baseUrl}/da/historical-units`,
           "x-default": `${baseUrl}/tarihi-olcu-birimleri`,
         },
       },
@@ -2438,6 +2560,32 @@ export default function sitemap(): MetadataRoute.Sitemap {
           nl: `${baseUrl}/nl/historical-units`,
           sv: `${baseUrl}/sv/historical-units`,
           no: `${baseUrl}/no/historical-units`,
+          da: `${baseUrl}/da/historical-units`,
+          "x-default": `${baseUrl}/tarihi-olcu-birimleri`,
+        },
+      },
+    },
+    {
+      url: `${baseUrl}/da/historical-units`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+      alternates: {
+        languages: {
+          tr: `${baseUrl}/tarihi-olcu-birimleri`,
+          en: `${baseUrl}/en/historical-units`,
+          de: `${baseUrl}/de/historische-masseinheiten`,
+          ar: `${baseUrl}/ar/historical-units`,
+          bn: `${baseUrl}/bn/historical-units`,
+          fr: `${baseUrl}/fr/historical-units`,
+          es: `${baseUrl}/es/historical-units`,
+          "es-419": `${baseUrl}/es-419/historical-units`,
+          pt: `${baseUrl}/pt/historical-units`,
+          it: `${baseUrl}/it/historical-units`,
+          nl: `${baseUrl}/nl/historical-units`,
+          sv: `${baseUrl}/sv/historical-units`,
+          no: `${baseUrl}/no/historical-units`,
+          da: `${baseUrl}/da/historical-units`,
           "x-default": `${baseUrl}/tarihi-olcu-birimleri`,
         },
       },
@@ -4767,6 +4915,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
+  // Dansk har heller ikke en /da/unit-guides indekside endnu, sa kun
+  // hjem og kategorier tilfojes.
+  const danishIndexRoutes: MetadataRoute.Sitemap = [
+    {
+      url: `${baseUrl}/da`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/da/categories`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.75,
+    },
+  ];
+
   const bengaliUnitGuideIndexRoute: MetadataRoute.Sitemap = [
     {
       url: `${baseUrl}/bn/unit-guides`,
@@ -4846,6 +5011,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/no/",
     0.7
   );
+  const danishConversionRoutes = buildLocalizedCoreRoutes(
+    danishConversionPages,
+    "conversions",
+    "/da/",
+    0.7
+  );
 
   const frenchUnitRoutes = buildLocalizedCoreRoutes(
     frenchUnitPages,
@@ -4901,6 +5072,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/no/unit-guides/",
     0.7
   );
+  const danishUnitRoutes = buildLocalizedCoreRoutes(
+    danishUnitPages,
+    "units",
+    "/da/unit-guides/",
+    0.7
+  );
 
   const frenchCategoryRoutes = buildLocalizedCoreRoutes(
     frenchCategoryPages,
@@ -4954,6 +5131,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     norwegianCategoryPages,
     "categories",
     "/no/categories/",
+    0.8
+  );
+  const danishCategoryRoutes = buildLocalizedCoreRoutes(
+    danishCategoryPages,
+    "categories",
+    "/da/categories/",
     0.8
   );
 
@@ -6235,6 +6418,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...russianCategoryRoutes,
     ...swedishCategoryRoutes,
     ...norwegianCategoryRoutes,
+    ...danishCategoryRoutes,
     ...turkishCalculatorRoutes,
     ...englishCalculatorRoutes,
     ...germanCalculatorRoutes,
@@ -6254,6 +6438,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...russianConversionRoutes,
     ...swedishConversionRoutes,
     ...norwegianConversionRoutes,
+    ...danishConversionRoutes,
     ...turkishUnitRoutes,
     ...englishUnitRoutes,
     ...germanUnitRoutes,
@@ -6269,11 +6454,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...russianUnitRoutes,
     ...swedishUnitRoutes,
     ...norwegianUnitRoutes,
+    ...danishUnitRoutes,
     ...curatedLocaleIndexRoutes,
     ...italianIndexRoutes,
     ...russianIndexRoutes,
     ...swedishIndexRoutes,
     ...norwegianIndexRoutes,
+    ...danishIndexRoutes,
     ...bengaliUnitGuideIndexRoute,
     ...corporateRoutes,
   ];

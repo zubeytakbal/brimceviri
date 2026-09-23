@@ -245,6 +245,30 @@ const copyByLocale: Record<Exclude<Locale, "ru">, VatCopy> = {
     },
     emptyState: "Enter a valid amount and rate to see the result.",
   },
+  no: {
+    labels: {
+      direction: "Calculation Direction",
+      amount: "Amount (EUR)",
+      rate: "VAT Rate",
+      customRate: "Custom Rate (%)",
+    },
+    directions: {
+      "exclusive-to-inclusive": "VAT exclusive -> VAT inclusive",
+      "inclusive-to-exclusive": "VAT inclusive -> VAT exclusive",
+    },
+    rateOptions: {
+      "1": "1%",
+      "10": "10%",
+      "20": "20%",
+      custom: "Custom rate",
+    },
+    resultLabels: {
+      baseAmount: "Base Amount",
+      vatAmount: "VAT Amount",
+      totalAmount: "Total with VAT",
+    },
+    emptyState: "Enter a valid amount and rate to see the result.",
+  },
   de: {
     labels: {
       direction: "Berechnungsrichtung",

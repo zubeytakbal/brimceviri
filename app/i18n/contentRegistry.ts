@@ -42,6 +42,9 @@ import { swedishUnitPages } from "../converter/localizedSwedishUnitPages";
 import { swedishConversionPages } from "../converter/localizedSwedishConversionPages";
 import { russianCategoryPages } from "../converter/localizedRussianCategoryPages";
 import { russianConversionPages } from "../converter/localizedRussianConversionPages";
+import { norwegianCategoryPages } from "../converter/localizedNorwegianCategoryPages";
+import { norwegianUnitPages } from "../converter/localizedNorwegianUnitPages";
+import { norwegianConversionPages } from "../converter/localizedNorwegianConversionPages";
 
 export type RouteCollectionKey =
   | "units"
@@ -153,6 +156,12 @@ const localizedCategorySummariesByLocale: Record<
     category: page.category,
     title: page.title,
   })),
+  no: norwegianCategoryPages.map((page) => ({
+    sourceSlug: page.sourceSlug,
+    slug: page.slug,
+    category: page.category,
+    title: page.title,
+  })),
 };
 
 const localizedSlugEntriesByLocale: Record<
@@ -213,6 +222,10 @@ const localizedSlugEntriesByLocale: Record<
       slug: page.slug,
     })),
     ru: russianUnitPages.map((page) => ({ sourceSlug: page.sourceSlug, slug: page.slug })),
+    no: norwegianUnitPages.map((page) => ({
+      sourceSlug: page.sourceSlug,
+      slug: page.slug,
+    })),
   },
   categories: {
     tr: categoryPages.map((page) => ({
@@ -271,6 +284,10 @@ const localizedSlugEntriesByLocale: Record<
       sourceSlug: page.sourceSlug,
       slug: page.slug,
     })),
+    no: norwegianCategoryPages.map((page) => ({
+      sourceSlug: page.sourceSlug,
+      slug: page.slug,
+    })),
   },
   calculators: {
     tr: calculatorPages.map((page) => ({
@@ -299,6 +316,7 @@ const localizedSlugEntriesByLocale: Record<
     nl: [],
     sv: [],
     ru: [],
+    no: [],
   },
   conversions: {
     tr: conversionPages.map((page) => ({
@@ -354,6 +372,10 @@ const localizedSlugEntriesByLocale: Record<
       slug: page.slug,
     })),
     ru: russianConversionPages.map((page) => ({
+      sourceSlug: page.sourceSlug,
+      slug: page.slug,
+    })),
+    no: norwegianConversionPages.map((page) => ({
       sourceSlug: page.sourceSlug,
       slug: page.slug,
     })),

@@ -10,7 +10,7 @@ import {
 } from "../converter/shoeSizeTable";
 
 type SystemKey = "eu" | "us" | "uk" | "cm";
-type Locale = "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "nl" | "sv";
+type Locale = "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "nl" | "sv" | "no";
 
 const systemLabels: Record<Locale, Record<SystemKey, string>> = {
   tr: {
@@ -81,6 +81,7 @@ const systemLabels: Record<Locale, Record<SystemKey, string>> = {
   },
   nl: { eu: "Europa (EU)", us: "Verenigde Staten (US)", uk: "Verenigd Koninkrijk (UK)", cm: "Voetlengte (cm)" },
   sv: { eu: "Sverige / Europa (EU)", us: "USA (US)", uk: "Storbritannien (UK)", cm: "Fotlangd (cm)" },
+  no: { eu: "Norge / Europa (EU)", us: "USA (US)", uk: "Storbritannia (UK)", cm: "Fotlengde (cm)" },
 };
 
 const brandLabels: Record<Locale, Record<ShoeBrandKey, string>> = {
@@ -174,6 +175,7 @@ const brandLabels: Record<Locale, Record<ShoeBrandKey, string>> = {
   },
   nl: { genel: "Algemeen (standaard)", nike: "Nike", adidas: "Adidas", puma: "Puma", "new-balance": "New Balance", converse: "Converse" },
   sv: { genel: "Allman (standard)", nike: "Nike", adidas: "Adidas", puma: "Puma", "new-balance": "New Balance", converse: "Converse" },
+  no: { genel: "Generell (standard)", nike: "Nike", adidas: "Adidas", puma: "Puma", "new-balance": "New Balance", converse: "Converse" },
 };
 
 const groupLabels: Record<Locale, Record<ShoeSizeGroupKey, string>> = {
@@ -245,6 +247,7 @@ const groupLabels: Record<Locale, Record<ShoeSizeGroupKey, string>> = {
   },
   nl: { erkek: "Heren", kadin: "Dames", bebek: "Baby / klein kind", "buyuk-cocuk": "Groter kind" },
   sv: { erkek: "Herr", kadin: "Dam", bebek: "Spadbarn / smabarn", "buyuk-cocuk": "Storre barn" },
+  no: { erkek: "Herre", kadin: "Dame", bebek: "Spedbarn / smabarn", "buyuk-cocuk": "Storre barn" },
 };
 
 const copy = {
@@ -405,6 +408,11 @@ const copy = {
     matchingSizes: "Motsvarande storlekar", invalidValue: "Ange ett giltigt tal for att se motsvarigheten.",
     euResult: "EU", usResult: "US", ukResult: "UK", footLength: "Fotlangd", chartSuffix: "storlekstabell",
   },
+  no: {
+    group: "Gruppe", brand: "Merke", knownSystem: "Kjent system", value: "Verdi",
+    matchingSizes: "Tilsvarende storrelser", invalidValue: "Skriv inn et gyldig tall for a se den naermeste storrelsen.",
+    euResult: "EU", usResult: "US", ukResult: "UK", footLength: "Fotlengde", chartSuffix: "storrelsestabell",
+  },
 } as const;
 
 const brandOrder: ShoeBrandKey[] = [
@@ -470,6 +478,10 @@ function getNumberLocale(locale: Locale) {
 
   if (locale === "sv") {
     return "sv-SE";
+  }
+
+  if (locale === "no") {
+    return "nb-NO";
   }
 
   return "en-US";

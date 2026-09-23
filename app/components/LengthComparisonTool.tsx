@@ -78,6 +78,11 @@ fr: {
     m: "Meter (m)",
     km: "Kilometer (km)",
   },
+  no: {
+    cm: "Centimeter (cm)",
+    m: "Meter (m)",
+    km: "Kilometer (km)",
+  },
   ru: {
     cm: "Сантиметр (см)",
     m: "Метр (м)",
@@ -99,6 +104,7 @@ fr: { cm: "cm", m: "m", km: "km" },
   it: { cm: "cm", m: "m", km: "km" },
   nl: { cm: "cm", m: "m", km: "km" },
   sv: { cm: "cm", m: "m", km: "km" },
+  no: { cm: "cm", m: "m", km: "km" },
   ru: { cm: "см", m: "м", km: "км" },
 };
 
@@ -220,6 +226,15 @@ fr: {
     "eyfel-kulesi": "Eiffel Tower height (with antenna)",
     "bogaz-koprusu": "15 July Martyrs Bridge length",
   },
+  no: {
+    "insan-boyu": "Average adult human height",
+    zurafa: "Average giraffe height",
+    "sehir-otobusu": "City bus length",
+    "mavi-balina": "Average blue whale length",
+    "futbol-sahasi": "Football field length",
+    "eyfel-kulesi": "Eiffel Tower height (with antenna)",
+    "bogaz-koprusu": "15 July Martyrs Bridge length",
+  },
   ru: {
     "insan-boyu": "Средний рост взрослого человека",
     zurafa: "Средний рост жирафа",
@@ -325,6 +340,16 @@ const copyByLocale: Record<
     closestMatch: "Closest comparison",
   },
   sv: {
+    labels: {
+      value: "Value",
+      unit: "Unit",
+    },
+    placeholder: "E.g. 3",
+    emptyState: "Enter a valid value to see the comparisons.",
+    intro: "comparisons for",
+    closestMatch: "Closest comparison",
+  },
+  no: {
     labels: {
       value: "Value",
       unit: "Unit",

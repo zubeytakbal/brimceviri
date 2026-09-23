@@ -215,6 +215,13 @@ const copy = {
     gramPrefix: "~", gramSuffix: "g", ingredientLabel: "Ingrediens", noMatchOption: "Ingen traff",
     copyButton: "Kopiera", copiedButton: "Kopierat", printButton: "Skriv ut",
   },
+  no: {
+    recipeLabel: "Din oppskrift", placeholder: "2 kopper mel\n1 teskje salt\n3 spiseskjeer olivenolje\n2 egg\nOvn 180 grader",
+    factorLabel: "Multiplikator", originalServingsLabel: "Opprinnelig antall porsjoner", targetServingsLabel: "Onsket antall porsjoner",
+    resultHeading: "Tilpasset oppskrift", emptyState: "Skriv inn oppskriften din ovenfor for a se det tilpassede resultatet her.",
+    gramPrefix: "~", gramSuffix: "g", ingredientLabel: "Ingrediens", noMatchOption: "Ingen treff",
+    copyButton: "Kopier", copiedButton: "Kopiert", printButton: "Skriv ut",
+  },
 } as const;
 
 const chipOptions = [

@@ -1,4 +1,4 @@
-export const SUPPORTED_LOCALES = ["tr", "en", "de", "ar", "uz", "bn", "fr", "es", "es-419", "pt", "it", "nl", "ru", "sv"] as const;
+export const SUPPORTED_LOCALES = ["tr", "en", "de", "ar", "uz", "bn", "fr", "es", "es-419", "pt", "it", "nl", "ru", "sv", "no"] as const;
 
 export type Locale = (typeof SUPPORTED_LOCALES)[number];
 
@@ -230,6 +230,21 @@ export const LOCALE_DEFINITIONS: Record<Locale, LocaleDefinition> = {
     switcherOptionsLabel: "Sprakalternativ",
     switcherSearchPlaceholder: "Sok sprak",
     switcherEmptyLabel: "Inget matchande sprak hittades",
+  },
+  no: {
+    code: "no",
+    htmlLang: "nb",
+    dir: "ltr",
+    openGraphLocale: "nb_NO",
+    pathPrefix: "/no",
+    homePath: "/no",
+    label: "Norsk",
+    switcherLabel: "Norsk",
+    switcherCurrentLabel: "NO - Norsk",
+    switcherAriaLabel: "Velg sprak",
+    switcherOptionsLabel: "Sprakalternativer",
+    switcherSearchPlaceholder: "Sok sprak",
+    switcherEmptyLabel: "Ingen matchende sprak funnet",
   },
 };
 

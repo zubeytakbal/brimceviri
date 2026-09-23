@@ -60,6 +60,7 @@ const staticRouteTranslations: Record<StaticRouteKey, LocalePathMap> = {
     nl: "/nl",
     ru: "/ru",
     sv: "/sv",
+    no: "/no",
   },
   units: {
     tr: "/birimler",
@@ -91,6 +92,7 @@ const staticRouteTranslations: Record<StaticRouteKey, LocalePathMap> = {
     uz: "/uz/tarixiy-olchov-birliklari",
     nl: "/nl/historical-units",
     sv: "/sv/historical-units",
+    no: "/no/historical-units",
   },
   shoeSize: {
     tr: "/ayakkabi-numarasi-cevirme",
@@ -100,6 +102,7 @@ const staticRouteTranslations: Record<StaticRouteKey, LocalePathMap> = {
     uz: "/uz/oyoq-kiyim-olchami",
     nl: "/nl/shoe-size-converter",
     sv: "/sv/shoe-size-converter",
+    no: "/no/shoe-size-converter",
   },
   kitchenMeasures: {
     tr: "/mutfak-olculeri-cevirici",
@@ -109,6 +112,7 @@ const staticRouteTranslations: Record<StaticRouteKey, LocalePathMap> = {
     uz: "/uz/oshxona-olchovlari",
     nl: "/nl/kitchen-measurement-converter",
     sv: "/sv/kitchen-measurement-converter",
+    no: "/no/kitchen-measurement-converter",
   },
   recipeConverter: {
     tr: "/tarif-cevirici",
@@ -118,6 +122,7 @@ const staticRouteTranslations: Record<StaticRouteKey, LocalePathMap> = {
     uz: "/uz/retsept-aylantirgich",
     nl: "/nl/recipe-converter",
     sv: "/sv/recipe-converter",
+    no: "/no/recipe-converter",
   },
   ringSize: {
     tr: "/yuzuk-olcusu-cevirici",
@@ -258,6 +263,7 @@ const collectionBasePaths: Record<
     nl: "/nl/unit-guides/",
     ru: "/ru/unit-guides/",
     sv: "/sv/unit-guides/",
+    no: "/no/unit-guides/",
   },
   categories: {
     tr: "/kategoriler/",
@@ -274,6 +280,7 @@ const collectionBasePaths: Record<
     nl: "/nl/categories/",
     ru: "/ru/categories/",
     sv: "/sv/categories/",
+    no: "/no/categories/",
   },
   calculators: {
     tr: "/hesaplayicilar/",
@@ -290,6 +297,7 @@ const collectionBasePaths: Record<
     nl: "/nl/calculators/",
     ru: "/ru/calculators/",
     sv: "/sv/calculators/",
+    no: "/no/calculators/",
   },
   conversions: {
     tr: "/",
@@ -306,6 +314,7 @@ const collectionBasePaths: Record<
     nl: "/nl/",
     ru: "/ru/",
     sv: "/sv/",
+    no: "/no/",
   },
 };
 

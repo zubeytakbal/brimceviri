@@ -9,11 +9,11 @@ type PairConverterProps = {
   toUnit: string;
   fromName: string;
   toName: string;
-  locale?: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "nl" | "ru" | "sv";
+  locale?: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "nl" | "ru" | "sv" | "no";
 };
 
 function getNumberLocale(
-  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "nl" | "ru" | "sv"
+  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "nl" | "ru" | "sv" | "no"
 ) {
   if (locale === "tr") {
     return "tr-TR";
@@ -67,12 +67,16 @@ function getNumberLocale(
     return "sv-SE";
   }
 
+  if (locale === "no") {
+    return "nb-NO";
+  }
+
   return "en-US";
 }
 
 function formatResult(
   value: number,
-  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "nl" | "ru" | "sv"
+  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "nl" | "ru" | "sv" | "no"
 ) {
   if (!Number.isFinite(value)) {
     return "";
@@ -284,6 +288,8 @@ export default function PairConverter({
                           ? `Значение: ${activeFromName}`
                         : locale === "sv"
                           ? `${activeFromName}-varde`
+                        : locale === "no"
+                          ? `${activeFromName}-verdi`
                       : `${activeFromName} de\u011Feri`;
 
   const placeholder =
@@ -311,6 +317,8 @@ export default function PairConverter({
                           ? "Введите значение"
                         : locale === "sv"
                           ? "Ange ett varde"
+                        : locale === "no"
+                          ? "Skriv inn en verdi"
                       : "De\u011Fer girin";
 
   const swapLabel =
@@ -338,6 +346,8 @@ export default function PairConverter({
                           ? "Изменить направление перевода"
                         : locale === "sv"
                           ? "Vand pa omvandlingsriktningen"
+                        : locale === "no"
+                          ? "Snu omregningsretningen"
                       : "D\u00F6n\u00FC\u015F\u00FCm y\u00F6n\u00FCn\u00FC de\u011Fi\u015Ftir";
 
   const resultText =

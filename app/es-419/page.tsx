@@ -4,7 +4,7 @@ import { getSiteNotifications } from "../converter/siteNotifications";
 import { buildSiteUrl } from "../siteConfig";
 
 export const metadata: Metadata = {
-  title: "Convertidor de unidades — Español (Latinoamérica)",
+  title: "Encuentra la conversión de unidades que necesitas",
   description:
     "Convierte gratis longitud, masa, temperatura y otras unidades físicas. Incluye 13 categorías y 4 herramientas prácticas de conversión.",
   alternates: {
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Convertidor de unidades — Español (Latinoamérica)",
+    title: "Encuentra la conversión de unidades que necesitas",
     description:
       "Convierte gratis longitud, masa, temperatura y otras unidades físicas con 13 categorías y 4 herramientas prácticas.",
     url: buildSiteUrl("/es-419"),

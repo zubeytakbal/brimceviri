@@ -61,7 +61,7 @@ const navCategoryOrder = [
 
 const categoryLabels: Record<
   Locale,
-  Record<(typeof navCategoryOrder)[number], string>
+  Record<(typeof navCategoryOrder)[number], string> & Record<string, string>
 > = {
   tr: {
     uzunluk: "Uzunluk",

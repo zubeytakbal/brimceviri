@@ -117,6 +117,10 @@ export const metadata: Metadata = {
     google: "meFoeOlEAS1hhtFLvCSrNiQHNRWU1GCJBd79kswXeeA",
   },
 
+  other: {
+    "google-adsense-account": "ca-pub-4103878788447160",
+  },
+
   manifest: "/manifest.webmanifest",
 
   appleWebApp: {

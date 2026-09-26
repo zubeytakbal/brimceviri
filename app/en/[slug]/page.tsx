@@ -52,6 +52,9 @@ import {
   EnglishMovingBoxCalculator,
   EnglishNaturalGasCalculator,
 } from "../../components/EnglishEnergyHomeCalculators";
+import YouMayAlsoLike from "../../components/YouMayAlsoLike";
+import { getEnglishYouMayAlsoLike } from "../../i18n/englishRelatedPages";
+import { GoldPriceCalculatorIndia, IndiaLandConverter, LakhCroreConverter } from "../../components/EnglishIndiaCalculators";
 import PregnancyCalculator from "../../components/PregnancyCalculator";
 import RoofingCalculator from "../../components/RoofingCalculator";
 import SleepCalculator from "../../components/SleepCalculator";
@@ -133,6 +136,9 @@ const componentMap: Record<EnglishStandaloneToolComponentKey, React.ComponentTyp
     wallpaperCalculator: EnglishWallpaperCalculator,
     movingBoxCalculator: EnglishMovingBoxCalculator,
     naturalGasCalculator: EnglishNaturalGasCalculator,
+    indiaLandConverter: IndiaLandConverter,
+    goldPriceCalculatorIndia: GoldPriceCalculatorIndia,
+    lakhCroreConverter: LakhCroreConverter,
     evChargingCalculator: EvChargingCalculator,
   };
 
@@ -358,6 +364,8 @@ function EnglishStandaloneTool({
             ))}
           </section>
         )}
+
+        <YouMayAlsoLike title="You may also like" cards={getEnglishYouMayAlsoLike(tool.englishPath)} />
       </div>
     </main>
   );
@@ -707,6 +715,8 @@ async function EnglishConversionPage({
             </div>
           ))}
         </section>
+
+        <YouMayAlsoLike title="You may also like" cards={getEnglishYouMayAlsoLike(`/en/${page.slug}`)} />
 
         {sources.length > 0 && (
           <section className="conversion-section unit-sources">

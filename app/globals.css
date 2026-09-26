@@ -7770,3 +7770,20 @@ html[dir="rtl"] .site-mobile-accordion-toggle {
   min-width: 0;
   overflow-wrap: anywhere;
 }
+
+/* Sayfa sonundaki "You may also like" kartlari (dar icerik sutununda 3 kolon). */
+.you-may-also-like .directory-tool-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 760px) {
+  .you-may-also-like .directory-tool-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .you-may-also-like .directory-tool-grid {
+    grid-template-columns: 1fr;
+  }
+}

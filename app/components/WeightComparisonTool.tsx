@@ -13,6 +13,7 @@ const unitOptionLabels: Record<
   Locale,
   Record<WeightComparisonUnit, string>
 > = {
+  get hi() { return this.en; },
   tr: {
     g: "Gram (g)",
     kg: "Kilogram (kg)",
@@ -96,6 +97,7 @@ fr: {
 };
 
 const unitShortLabels: Record<Locale, Record<WeightComparisonUnit, string>> = {
+  get hi() { return this.en; },
   tr: { g: "g", kg: "kg", ton: "ton" },
   en: { g: "g", kg: "kg", ton: "ton" },
   de: { g: "g", kg: "kg", ton: "t" },
@@ -115,6 +117,7 @@ fr: { g: "g", kg: "kg", ton: "ton" },
 };
 
 const referenceLabels: Record<Locale, Record<string, string>> = {
+  get hi() { return this.en; },
   tr: {
     kedi: "Ev kedisi (ortalama)",
     insan: "Yetiskin insan (ortalama)",
@@ -274,6 +277,7 @@ const copyByLocale: Record<
     closestMatch: string;
   }
 > = {
+  get hi() { return this.en; },
   tr: {
     labels: {
       value: "Deger",

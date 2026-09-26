@@ -32,6 +32,7 @@ type DateCopy = {
 };
 
 const copyByLocale: Record<Exclude<Locale, "ru">, DateCopy> = {
+  get hi() { return this.en; },
   tr: {
     labels: {
       startDate: "Baslangic Tarihi (Dogum Tarihi)",

@@ -9,7 +9,6 @@ import { notFound } from "next/navigation";
 import AcCapacityCalculator from "../../components/AcCapacityCalculator";
 import AggregateCalculator from "../../components/AggregateCalculator";
 import BmiCalculator from "../../components/BmiCalculator";
-import BrickCalculator from "../../components/BrickCalculator";
 import ConcreteCalculator from "../../components/ConcreteCalculator";
 import DateCalculator from "../../components/DateCalculator";
 import ElectricityConsumptionCalculator from "../../components/ElectricityConsumptionCalculator";
@@ -40,19 +39,22 @@ import EnglishAwgConverter from "../../components/EnglishAwgConverter";
 import EnglishPsuCalculator from "../../components/EnglishPsuCalculator";
 import EnglishIvDripRateCalculator from "../../components/EnglishIvDripRateCalculator";
 import EnglishDepreciationCalculator from "../../components/EnglishDepreciationCalculator";
-import LaminateCalculator from "../../components/LaminateCalculator";
 import LengthComparisonTool from "../../components/LengthComparisonTool";
 import MovingBoxCalculator from "../../components/MovingBoxCalculator";
 import NaturalGasCalculator from "../../components/NaturalGasCalculator";
 import PaceCalculator from "../../components/PaceCalculator";
-import PaintCalculator from "../../components/PaintCalculator";
+import {
+  EnglishBrickCalculator,
+  EnglishFlooringCalculator,
+  EnglishPaintCalculator,
+  EnglishTileCalculator,
+  EnglishWallpaperCalculator,
+} from "../../components/EnglishHomeProjectCalculators";
 import PregnancyCalculator from "../../components/PregnancyCalculator";
 import RoofingCalculator from "../../components/RoofingCalculator";
 import SleepCalculator from "../../components/SleepCalculator";
 import StairCalculator from "../../components/StairCalculator";
-import TileCalculator from "../../components/TileCalculator";
 import VatCalculator from "../../components/VatCalculator";
-import WallpaperCalculator from "../../components/WallpaperCalculator";
 import WeightComparisonTool from "../../components/WeightComparisonTool";
 import PairConverter from "../../converter/PairConverter";
 import { convert } from "../../converter/convert";
@@ -83,10 +85,10 @@ const fitnessToolComponents = new Set(["calorieCalculator", "bodyFatCalculator",
 
 const componentMap: Record<EnglishStandaloneToolComponentKey, React.ComponentType<{ locale?: "en" }>> =
   {
-    paintCalculator: PaintCalculator,
+    paintCalculator: EnglishPaintCalculator,
     aggregateCalculator: AggregateCalculator,
-    tileCalculator: TileCalculator,
-    brickCalculator: BrickCalculator,
+    tileCalculator: EnglishTileCalculator,
+    brickCalculator: EnglishBrickCalculator,
     concreteCalculator: ConcreteCalculator,
     dateCalculator: DateCalculator,
     vatCalculator: VatCalculator,
@@ -125,8 +127,8 @@ const componentMap: Record<EnglishStandaloneToolComponentKey, React.ComponentTyp
     psuCalculator: EnglishPsuCalculator,
     ivDripRateCalculator: EnglishIvDripRateCalculator,
     depreciationCalculator: EnglishDepreciationCalculator,
-    laminateCalculator: LaminateCalculator,
-    wallpaperCalculator: WallpaperCalculator,
+    laminateCalculator: EnglishFlooringCalculator,
+    wallpaperCalculator: EnglishWallpaperCalculator,
     movingBoxCalculator: MovingBoxCalculator,
     naturalGasCalculator: NaturalGasCalculator,
     evChargingCalculator: EvChargingCalculator,

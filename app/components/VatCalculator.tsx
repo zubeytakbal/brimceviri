@@ -18,7 +18,9 @@ type VatSettings = { rates: string[]; defaultRate: string };
 
 const vatSettingsByLocale: Record<Exclude<Locale, "ru">, VatSettings> = {
   tr: { rates: ["1", "10", "20"], defaultRate: "20" },
-  en: { rates: ["1", "10", "20"], defaultRate: "20" },
+  // Ingilizce: Birlesik Krallik oranlari (standart %20, indirimli %5, sifir %0);
+  // para birimi yazilmaz, arac her para birimiyle calisir.
+  en: { rates: ["0", "5", "20"], defaultRate: "20" },
   de: { rates: ["7", "19"], defaultRate: "19" },
   fr: { rates: ["5.5", "10", "20"], defaultRate: "20" },
   es: { rates: ["4", "10", "21"], defaultRate: "21" },
@@ -76,7 +78,7 @@ const copyByLocale: Record<Exclude<Locale, "ru">, VatCopy> = {
   en: {
     labels: {
       direction: "Calculation Direction",
-      amount: "Amount (EUR)",
+      amount: "Amount",
       rate: "VAT Rate",
       customRate: "Custom Rate (%)",
     },
@@ -382,6 +384,9 @@ function parseNumericValue(rawValue: string) {
 }
 
 function formatCurrency(value: number, locale: Locale) {
+  // Ingilizce sayfa tek bir ulkeye bagli degil (UK, IE, BAE ...): para birimi
+  // eklenmez, tutar her zaman 2 ondalikla gosterilir.
+  if (locale === "en") return formatLocalizedNumber(value, locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   return formatWithCurrency(formatLocalizedNumber(value, locale, { maximumFractionDigits: 2 }), locale);
 }
 

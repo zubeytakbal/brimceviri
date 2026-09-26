@@ -123,21 +123,35 @@ export const englishStandaloneTools: EnglishStandaloneTool[] = [
     turkishPath: "/boya-hesaplama",
     title: "Paint Calculator",
     description:
-      "Calculate how much paint you need from room dimensions, the number of doors and windows, and the number of coats.",
+      "How many gallons of paint does a room need? Enter the size, doors, windows, coats and coverage for a gallons + quarts shopping list.",
     intro:
-      "Enter the room's length, width and height to get the paintable area and the approximate liters of paint needed instantly.",
+      "Enter the room size and wall height in feet, the number of doors and windows and the coverage from your paint can. The calculator subtracts openings, multiplies by the number of coats and tells you what to buy.",
     component: "paintCalculator",
     iconName: "paintCalculator",
     cardDescription: "Calculates wall and ceiling area and the expected amount of paint.",
     articleSections: [
       {
-        title: "What does this tool calculate?",
-        body: "The calculator subtracts the area of doors and windows from the wall area, then multiplies the result by the number of coats you plan to apply.",
+        title: "How to calculate how much paint you need",
+        body: "Wall area = 2 × (length + width) × wall height. Subtract about 21 sq ft for each door (3 × 7 ft) and 15 sq ft for each window (3 × 5 ft). Multiply by the number of coats and divide by the coverage on the can, typically 350–400 sq ft per gallon. Add the ceiling (length × width) if you are painting it too.",
       },
       {
-        title: "When is it useful?",
-        body: "Before buying paint, this page helps you estimate the quantity more quickly and avoid buying too little or too much.",
+        title: "Worked example: a 12 × 14 ft bedroom",
+        body: "With 8 ft walls the wall area is 2 × (12 + 14) × 8 = 416 sq ft. One door and one window leave 416 − 21 − 15 = 380 sq ft. Two coats make 760 sq ft, and at 350 sq ft per gallon that is 2.17 gallons — buy 2 gallons plus 1 quart.",
       },
+      {
+        title: "How many coats do you need?",
+        body: "Two coats is the norm for an even finish, especially when changing color. One coat can be enough when repainting the same color in good condition. Going from a dark color to a light one, or painting new drywall, usually needs a coat of primer first.",
+      },
+      {
+        title: "Coverage and buying tips",
+        body: "Smooth, previously painted walls get close to the coverage on the label; textured, porous or patched surfaces use more. Buying 1 extra quart is cheaper than a second gallon, but if you would need 3 or more quarts, a gallon is usually the better buy — the calculator rounds this for you.",
+      },
+    ],
+    faq: [
+      { question: "How much paint do I need for a 12 × 12 room?", answer: "With 8 ft walls, one door and one window, the walls are about 348 sq ft. Two coats at 350 sq ft per gallon need about 2 gallons." },
+      { question: "How many square feet does a gallon of paint cover?", answer: "Most interior paints cover about 350–400 sq ft per gallon per coat on smooth walls. Check the label of your product and enter that figure." },
+      { question: "How much paint do I need for a ceiling?", answer: "A 12 × 14 ft ceiling is 168 sq ft. Two coats at 350 sq ft per gallon need about 1 gallon." },
+      { question: "Do I need to subtract doors and windows?", answer: "Yes for an accurate estimate. The calculator removes 21 sq ft per door and 15 sq ft per window; with very large windows or sliding doors, measure them and lower the count accordingly." },
     ],
     priority: 0.7,
   },
@@ -147,21 +161,35 @@ export const englishStandaloneTools: EnglishStandaloneTool[] = [
     turkishPath: "/fayans-hesaplama",
     title: "Tile Calculator",
     description:
-      "Calculate the number of tiles needed, including a waste allowance, based on the area and tile dimensions.",
+      "How many tiles and boxes do you need? Enter the area, tile size (12×24, 24×24, subway), grout joint and waste allowance. US and metric units.",
     intro:
-      "Enter the installation area, tile dimensions and waste percentage to get an approximate number of tiles to buy.",
+      "Enter the area in square feet, the tile size in inches and the grout width. The calculator adds your waste allowance and rounds up to whole tiles and boxes.",
     component: "tileCalculator",
     iconName: "tileCalculator",
     cardDescription: "Calculates the right amount of tile, accounting for waste.",
     articleSections: [
       {
-        title: "Why include a waste percentage?",
-        body: "Cutting tiles around corners and edges usually wastes some material, so it's best to include a realistic waste margin in the calculation.",
+        title: "How to calculate how many tiles you need",
+        body: "Measure the area first: multiply length × width in feet, and split L-shaped rooms into rectangles and add them up. Next, work out what one tile covers including its grout joint: (tile width + grout) × (tile length + grout) ÷ 144 gives square feet. Multiply the area by 1.10 for a 10% waste allowance, divide by the coverage of one tile and round up. Divide the tile count by the pieces per box and round up again to get the number of boxes.",
       },
       {
-        title: "How do you use the result?",
-        body: "You can compare the resulting count against the pieces per box at your supplier to see approximately how many boxes you need.",
+        title: "Worked example: a 10 × 12 ft bathroom floor",
+        body: "The floor is 120 sq ft. A 12 × 24 in tile with a 1/8 in grout joint covers (12.125 × 24.125) ÷ 144 = 2.03 sq ft. With 10% waste you need 132 sq ft ÷ 2.03 = 64.98, so 65 tiles. At 8 tiles per box that is 8.1 boxes, so you buy 9 boxes.",
       },
+      {
+        title: "How much extra tile should I buy?",
+        body: "Add 10% for a straight layout in a simple room. Add 15% for diagonal or herringbone patterns, rooms with many cuts, and large-format tile (24 in and up), which breaks more easily when cut. Natural stone and handmade tile vary more from piece to piece, so many installers add 15–20%. Keep a few spare tiles after the job: finding the same color batch years later is difficult.",
+      },
+      {
+        title: "Common tile sizes and coverage",
+        body: "Coverage per tile before grout: 12 × 12 in = 1 sq ft; 12 × 24 in = 2 sq ft; 24 × 24 in = 4 sq ft; 6 × 24 in plank = 1 sq ft; 3 × 6 in subway = 0.125 sq ft (8 per sq ft); 4 × 4 in = 0.111 sq ft (9 per sq ft). Grout joints make each tile cover slightly more, so the real count is a little lower — the calculator includes this.",
+      },
+    ],
+    faq: [
+      { question: "How many 12 × 24 tiles do I need for 100 square feet?", answer: "Each 12 × 24 in tile covers 2 sq ft, so 100 sq ft takes 50 tiles before waste. With a 10% waste allowance, plan on 55 tiles." },
+      { question: "How many subway tiles are in a square foot?", answer: "A 3 × 6 in subway tile covers 0.125 sq ft, so there are 8 tiles per square foot. With 1/16 in grout joints it works out to about 7.8 per square foot." },
+      { question: "Does grout width change how many tiles I need?", answer: "Yes, slightly. A wider joint means each tile plus its joint covers more area, so you need fewer tiles. The effect is small for large tiles and noticeable for small mosaics and subway tile." },
+      { question: "Should I buy extra tile boxes?", answer: "Yes. Round up to whole boxes, include a 10–15% waste allowance and keep at least a few spare tiles from the same lot for future repairs." },
     ],
     priority: 0.7,
   },
@@ -171,21 +199,35 @@ export const englishStandaloneTools: EnglishStandaloneTool[] = [
     turkishPath: "/tugla-hesaplama",
     title: "Brick Calculator",
     description:
-      "Calculate the number of bricks needed, including mortar joint thickness and a waste allowance, for a given wall area.",
+      "Estimate how many bricks you need for a wall from its area, brick size and mortar joint. Defaults to US modular brick (about 6.86 per sq ft); metric units too.",
     intro:
-      "This tool is suited for a quick initial estimate before buying materials or comparing supplier quotes.",
+      "Enter the wall area and the area of doors and windows. The calculator works out how many bricks fit in one square foot including the mortar joint, then adds a waste allowance.",
     component: "brickCalculator",
     iconName: "brickCalculator",
     cardDescription: "Calculates the approximate brick requirement, including joints and waste.",
     articleSections: [
       {
-        title: "What affects the final count?",
-        body: "Brick dimensions, mortar joint thickness between bricks, and the safety margin you choose all noticeably change the required quantity.",
+        title: "How the brick count is calculated",
+        body: "Each brick plus its mortar joint takes up (brick length + joint) × (brick height + joint). A US modular brick is 7⅝ × 2¼ in; with ⅜ in joints that is 8 × 2⅝ = 21 sq in, so one square foot (144 sq in) holds 144 ÷ 21 = 6.86 bricks. Multiply by the net wall area (wall minus openings) and add 5–10% for breakage and cuts.",
       },
       {
-        title: "Is the result final?",
-        body: "The result is suitable for initial planning, but actual construction may vary depending on building method, site conditions and wall type.",
+        title: "Worked example: a 25 × 8 ft garden wall",
+        body: "The wall is 200 sq ft. 200 × 6.857 = 1,371.4 bricks; with 5% waste that is 1,440 bricks. If the wall has a 40 sq ft opening, the net area is 160 sq ft and you need 1,098 bricks before waste.",
       },
+      {
+        title: "Common US brick sizes",
+        body: "Use the actual size, not the nominal size, together with your joint width. With ⅜ in joints: modular (7⅝ × 2¼ in face) is about 6.86 bricks per sq ft; king size (about 9⅝ × 2⅝ in) about 4.8 per sq ft; utility (11⅝ × 3⅝ in) about 3.0 per sq ft. Sizes vary between manufacturers, so check the product sheet.",
+      },
+      {
+        title: "Single or double wythe?",
+        body: "The count above is for one layer of brick (single wythe), as used for veneer and most garden walls. A solid double-wythe wall needs twice as many bricks. For structural walls, retaining walls and anything over a few feet tall, follow local building codes and an engineer's design.",
+      },
+    ],
+    faq: [
+      { question: "How many bricks are in a square foot?", answer: "About 6.86 standard US modular bricks per square foot of single-wythe wall with ⅜ in mortar joints. Larger bricks need fewer: roughly 4.8 king size or 3.0 utility bricks per square foot." },
+      { question: "How many bricks do I need for a 10 × 10 ft wall?", answer: "100 sq ft × 6.86 = about 686 modular bricks. With a 5% waste allowance, buy about 720." },
+      { question: "How much waste should I add for bricks?", answer: "Around 5% for a simple wall and up to 10% for walls with many openings, corners or cut bricks." },
+      { question: "Do I subtract doors and windows?", answer: "Yes. Enter their total area in the doors and windows field so only the brick surface is counted." },
     ],
     priority: 0.7,
   },
@@ -337,21 +379,35 @@ export const englishStandaloneTools: EnglishStandaloneTool[] = [
     turkishPath: "/kdv-hesaplama",
     title: "VAT Calculator",
     description:
-      "Quickly calculate the net amount, the tax and the total in both directions.",
+      "Add or remove VAT from any price: enter the amount and the rate (20%, 5%, 0% or a custom rate) to get the net price, the VAT amount and the gross total.",
     intro:
-      "Choose the calculation direction and the tax rate to clearly see the pre-tax price or the total price.",
+      "Choose whether your amount excludes or includes VAT, pick the rate and see the net amount, the VAT and the total. Works with any currency.",
     component: "vatCalculator",
     iconName: "vatCalculator",
     cardDescription: "Calculates the price before and after tax, and the tax amount itself.",
     articleSections: [
       {
-        title: "When is it useful?",
-        body: "It's handy for quotes, invoices and everyday prices whenever you want to quickly separate the base amount from the tax amount.",
+        title: "How to add VAT to a price",
+        body: "Multiply the net price by (1 + VAT rate). At 20%, £100 × 1.20 = £120: £100 net plus £20 VAT. At 5%, £100 × 1.05 = £105.",
       },
       {
-        title: "What's the difference between net and gross?",
-        body: "The net amount is the price before tax; the gross amount is the final price after tax is added.",
+        title: "How to remove VAT from a price",
+        body: "Divide the gross price by (1 + VAT rate) — do not simply take the percentage off. £120 including 20% VAT ÷ 1.20 = £100 net, so the VAT is £20. Taking 20% off £120 would wrongly give £96. A quick check: at 20% the VAT is always 1/6 of the gross price; at 5% it is 1/21.",
       },
+      {
+        title: "UK VAT rates",
+        body: "The UK has three VAT rates: the standard rate of 20% applies to most goods and services; the reduced rate of 5% applies to some items such as domestic energy and children's car seats; the zero rate of 0% applies to most food, books and children's clothes. Some goods and services are exempt from VAT altogether. Check GOV.UK for the rate on a specific product.",
+      },
+      {
+        title: "Other countries",
+        body: "Enter any other rate with the custom option. For example, Ireland's standard rate is 23% and the UAE's is 5%. The US has no VAT; states and cities charge a sales tax instead, which is added at the checkout — you can still use the calculator with your local sales tax rate.",
+      },
+    ],
+    faq: [
+      { question: "How do I calculate 20% VAT?", answer: "Multiply the net amount by 0.20 to get the VAT, or by 1.20 to get the total including VAT. £250 net → £50 VAT → £300 total." },
+      { question: "How do I work out the VAT from a price that includes VAT?", answer: "Divide the gross price by 6 for 20% VAT (or by 21 for 5% VAT). A £90 price including 20% VAT contains £15 VAT and £75 net." },
+      { question: "Why can't I just subtract 20% to remove VAT?", answer: "Because the 20% was calculated on the net price, not the gross price. Removing it means dividing by 1.20; subtracting 20% of the gross price gives too low a net figure." },
+      { question: "Does the US have VAT?", answer: "No. The US uses state and local sales taxes instead of VAT. Enter your sales tax rate as a custom rate to see the tax and the total." },
     ],
     priority: 0.75,
   },
@@ -671,21 +727,35 @@ export const englishStandaloneTools: EnglishStandaloneTool[] = [
     turkishPath: "/parke-hesaplama",
     title: "Laminate Flooring Calculator",
     description:
-      "Calculate the number of laminate flooring packages needed, including a waste allowance, from the area to be covered.",
+      "How many boxes of laminate or vinyl plank flooring to buy, from the room size, coverage per box and waste allowance — plus leftover and cost.",
     intro:
-      "Enter the floor area, the area covered by one package and your waste percentage to get the number of packages to buy.",
+      "Enter the floor area and the square feet printed on one box. The calculator adds a waste allowance, rounds up to whole boxes and shows what will be left over.",
     component: "laminateCalculator",
     iconName: "laminateCalculator",
     cardDescription: "Calculates the laminate flooring packages needed, including waste.",
     articleSections: [
       {
-        title: "Why include a waste allowance?",
-        body: "Cutting boards to fit along walls and around corners wastes some material, so a realistic waste margin avoids running short mid-installation.",
+        title: "How to calculate flooring boxes",
+        body: "Measure each room in feet and multiply length × width; add closets and alcoves separately. Multiply the total by 1.10 for a 10% waste allowance, divide by the coverage printed on the box (for example 22.5 sq ft) and round up to a whole box.",
       },
       {
-        title: "How do you use the result?",
-        body: "Compare the total area needed against the coverage per package listed by your supplier to know exactly how many packages to buy.",
+        title: "Worked example: a 12 × 15 ft living room",
+        body: "The room is 180 sq ft. With 10% waste that is 198 sq ft. At 22.5 sq ft per box you need 198 ÷ 22.5 = 8.8, so 9 boxes. You will buy 202.5 sq ft and have about 22.5 sq ft left over after installation. At $45 per box the flooring costs $405.",
       },
+      {
+        title: "How much waste to allow",
+        body: "10% is standard for rectangular rooms with the planks laid straight. Use 15% for rooms with many corners, closets or hallways and for diagonal layouts, because more planks are cut. Keep one unopened box for future repairs — the same color and batch can be hard to find later.",
+      },
+      {
+        title: "Before you install",
+        body: "Check the manufacturer's instructions for acclimating the boxes in the room, the expansion gap to leave at walls and whether an underlayment is required. Underlayment is bought for the same floor area.",
+      },
+    ],
+    faq: [
+      { question: "How many square feet are in a box of laminate flooring?", answer: "It depends on the product; many laminate and vinyl plank boxes cover about 15–25 sq ft. The exact figure is printed on the box and on the product page — enter it in the calculator." },
+      { question: "How much extra flooring should I buy?", answer: "Buy about 10% extra for a simple room and 15% for rooms with many cuts or a diagonal layout, then round up to a whole box." },
+      { question: "How many boxes do I need for 200 square feet?", answer: "With 10% waste you need 220 sq ft. At 22.5 sq ft per box that is 9.8, so 10 boxes; at 20 sq ft per box it is 11 boxes." },
+      { question: "Can I use this for vinyl plank or engineered wood?", answer: "Yes. The calculation is the same for any flooring sold by the box: area plus waste, divided by the coverage per box." },
     ],
     priority: 0.7,
   },
@@ -695,21 +765,35 @@ export const englishStandaloneTools: EnglishStandaloneTool[] = [
     turkishPath: "/duvar-kagidi-hesaplama",
     title: "Wallpaper Calculator",
     description:
-      "Calculate the number of wallpaper rolls needed from room dimensions and roll size, including a waste allowance.",
+      "How many rolls of wallpaper do you need? Strip-method calculator with room size, wall height, openings, roll size and pattern repeat.",
     intro:
-      "Enter your wall widths, ceiling height and roll dimensions to get the number of rolls to buy.",
+      "Enter the room size, wall height, the width of doors and windows, the roll size and the pattern repeat. The calculator counts full-height strips, the strips each roll gives and the rolls to buy.",
     component: "wallpaperCalculator",
     iconName: "wallpaperCalculator",
     cardDescription: "Calculates the wallpaper rolls needed for a room, including waste.",
     articleSections: [
       {
-        title: "What does this tool calculate?",
-        body: "It adds up your wall areas, divides by the usable area of a single roll, and adds your chosen waste percentage for pattern matching and trimming.",
+        title: "How the strip method works",
+        body: "Wallpaper is hung in full-height strips, so counting strips is more accurate than dividing square feet. Wall width to cover = the room perimeter minus the width of doors and windows. Strips needed = wall width ÷ roll width, rounded up. Each strip is as long as the wall is high plus one pattern repeat for matching, and strips per roll = roll length ÷ strip length, rounded down. Rolls = strips needed ÷ strips per roll, rounded up.",
       },
       {
-        title: "Why does pattern matching matter?",
-        body: "Wallpapers with a repeating pattern usually need a higher waste allowance than plain wallpaper, since each strip has to align with the next.",
+        title: "Worked example: a 12 × 14 ft room with 8 ft walls",
+        body: "The perimeter is 52 ft; minus 6 ft of doors and windows leaves 46 ft (552 in). With a 20.5 in wide roll you need 552 ÷ 20.5 = 26.9, so 27 strips. A 33 ft double roll gives 4 strips of 8 ft, so you need 27 ÷ 4 = 6.75, rounded up to 7 double rolls.",
       },
+      {
+        title: "Why pattern repeat matters",
+        body: "A patterned paper has to line up from strip to strip, so each strip is cut longer. In the same room, a 21 in pattern repeat makes each strip 9 ft 9 in long, a 33 ft roll then gives only 3 strips and you need 9 double rolls instead of 7. The repeat is printed on the label.",
+      },
+      {
+        title: "Single rolls, double rolls and European rolls",
+        body: "In the US, wallpaper is usually priced per single roll but packaged as double rolls: a double roll is typically 20.5 in × 33 ft, about 56 sq ft. A standard European roll is 0.53 × 10.05 m, about 5.3 m². Always enter the width and length printed on the label, and buy all rolls from the same batch number.",
+      },
+    ],
+    faq: [
+      { question: "How many rolls of wallpaper do I need for a 12 × 12 room?", answer: "With 8 ft walls and about 6 ft of doors and windows, the wall width is 42 ft, which takes 25 strips of a 20.5 in roll. At 4 strips per 33 ft double roll you need 7 double rolls with no pattern repeat." },
+      { question: "How much does one double roll of wallpaper cover?", answer: "A typical US double roll (20.5 in × 33 ft) is about 56 sq ft, but the usable area is lower after trimming and pattern matching — which is why the strip method is used." },
+      { question: "Should I subtract doors and windows?", answer: "Subtract the width of large openings such as doors, patio doors and wide windows. Small windows are usually ignored because the strips above and below them still need to be hung." },
+      { question: "Should I buy an extra roll?", answer: "Yes. Buy one extra roll from the same batch for mistakes and future repairs; rolls from a different batch can differ slightly in color." },
     ],
     priority: 0.7,
   },

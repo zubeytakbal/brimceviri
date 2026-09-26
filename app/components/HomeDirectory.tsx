@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "@/app/components/SiteLink";
+import { fxCurrenciesTr, fxPairsTr } from "../converter/fx/fxPairsTr";
 import {
   ArrowRight,
   ArrowsInSimple,
@@ -96,6 +97,23 @@ type HomeSearchable = {
   categoryLabel: string;
   searchText: string;
 };
+
+// Doviz cifti sayfalari ana sayfa aramasinda da bulunsun ("dolar", "euro tl", "riyal").
+const currencySearchablesTr: HomeSearchable[] = [
+  { id: "fx-hub", href: "/doviz-cevirici", label: "Döviz Çevirici", description: "Güncel döviz kurları ve çevirici", categoryLabel: "Döviz", searchText: normalizeSearchText("döviz kur kurları para birimi çevirici") },
+  ...fxPairsTr.map((pair) => {
+    const from = fxCurrenciesTr[pair.from];
+    const to = fxCurrenciesTr[pair.to];
+    return {
+      id: `fx-${pair.slug}`,
+      href: `/doviz-cevirici/${pair.slug}`,
+      label: `${from.short} – ${to.short}`,
+      description: `1 ${from.lower} kaç ${to.lower}? Günlük referans kur`,
+      categoryLabel: "Döviz",
+      searchText: normalizeSearchText(`${from.short} ${from.long} ${from.code} ${to.short} ${to.long} ${to.code} ${pair.slug} kur döviz`),
+    };
+  }),
+];
 
 type HomeCategoryIconName =
   | "uzunluk"
@@ -1709,6 +1727,7 @@ function createHomeData(locale: Locale): HomeData {
       searchText: conversion.searchText,
     })),
     ...calculatorSearchables,
+    ...(locale === "tr" ? currencySearchablesTr : []),
   ];
 
   return {
@@ -2067,6 +2086,109 @@ export default function HomeDirectory({
             ))}
           </ul>
         </section>
+
+        {locale === "tr" && (
+          <section className="directory-section" id="doviz-cevirici">
+            <header className="directory-section-header">
+              <div>
+                <h2>Döviz çevirici</h2>
+                <p>
+                  Günlük referans kurla dolar, euro, sterlin ve 12 döviz daha;
+                  kurun ne zaman yayınlandığı, grafik ve banka kuru farkı hesaplama.
+                </p>
+              </div>
+
+              <Link className="directory-section-link" href="/doviz-cevirici">
+                <DecorativeIcon
+                  className="directory-link-icon"
+                  name="currencyConverterCalculator"
+                  size={18}
+                />
+                Tüm döviz kurları
+              </Link>
+            </header>
+
+            <div className="directory-tool-grid">
+              <article className="directory-home-card directory-tool-card">
+                <Link
+                  className="directory-card-stretch"
+                  href="/doviz-cevirici/dolar-tl"
+                  aria-label="Dolar – TL çevirici"
+                />
+
+                <div className="directory-card-body directory-card-body-icon">
+                  <span className="home-category-icon-box" aria-hidden="true">
+                    <DecorativeIcon
+                      name="currencyUsd"
+                      size={42}
+                      className="home-category-icon-svg"
+                    />
+                  </span>
+                  <h3 className="home-category-title">Dolar – TL</h3>
+                </div>
+              </article>
+
+              <article className="directory-home-card directory-tool-card">
+                <Link
+                  className="directory-card-stretch"
+                  href="/doviz-cevirici/euro-tl"
+                  aria-label="Euro – TL çevirici"
+                />
+
+                <div className="directory-card-body directory-card-body-icon">
+                  <span className="home-category-icon-box" aria-hidden="true">
+                    <DecorativeIcon
+                      name="currencyEur"
+                      size={42}
+                      className="home-category-icon-svg"
+                    />
+                  </span>
+                  <h3 className="home-category-title">Euro – TL</h3>
+                </div>
+              </article>
+
+              <article className="directory-home-card directory-tool-card">
+                <Link
+                  className="directory-card-stretch"
+                  href="/doviz-cevirici/sterlin-tl"
+                  aria-label="Sterlin – TL çevirici"
+                />
+
+                <div className="directory-card-body directory-card-body-icon">
+                  <span className="home-category-icon-box" aria-hidden="true">
+                    <DecorativeIcon
+                      name="currencyGbp"
+                      size={42}
+                      className="home-category-icon-svg"
+                    />
+                  </span>
+                  <h3 className="home-category-title">Sterlin – TL</h3>
+                </div>
+              </article>
+
+              <article className="directory-home-card directory-tool-card directory-home-card-more">
+                <Link
+                  className="directory-card-stretch"
+                  href="/doviz-cevirici"
+                  aria-label="Tüm döviz kurları"
+                />
+
+                <div className="directory-card-body directory-more-card-body">
+                  <ArrowRight
+                    className="directory-more-arrow"
+                    size={56}
+                    weight="regular"
+                    aria-hidden="true"
+                  />
+
+                  <span className="directory-more-label">
+                    Tüm döviz kurları
+                  </span>
+                </div>
+              </article>
+            </div>
+          </section>
+        )}
 
         {data.popularUnits.length > 0 && (
           <section className="directory-section">

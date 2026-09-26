@@ -3,34 +3,62 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import {
-  categoryLabels,
   periodicTable,
-  slugifyElementName,
   type ElementCategory,
   type PeriodicElement,
 } from "../converter/periodicTableData";
+import { numberLocales, type ContentLocale } from "./contentLocale";
+import { elementCategoryLabels, getElementName, getElementPath } from "./elementLocale";
 
-function formatMass(value: number) {
-  return value.toLocaleString("tr-TR", { maximumFractionDigits: 3 });
+function formatMass(value: number, locale: ContentLocale) {
+  return value.toLocaleString(numberLocales[locale], { maximumFractionDigits: 3 });
 }
+
+const copy = {
+  tr: {
+    cellLabel: (name: string, symbol: string) => `${name} (${symbol}) - ayrıntılı bilgi için tıkla`,
+    instructions: (
+      <>
+        Fare ile bir elementin üzerine gel: hızlı bilgi burada görünür.
+        Ayrıntılı sayfayı açmak için elemente tıkla.
+      </>
+    ),
+    atomicMassPrefix: "Atom kütlesi: ",
+    periodPrefix: "Periyot ",
+    groupPrefix: ", Grup ",
+    openDetails: "Ayrıntılı sayfayı aç →",
+    empty: "Bir element seç, bilgileri burada görünsün.",
+  },
+  de: {
+    cellLabel: (name: string, symbol: string) => `${name} (${symbol}) - für Details klicken`,
+    instructions: (
+      <>
+        Fahre mit der Maus über ein Element: Schnellinfo erscheint hier.
+        Klicke auf ein Element, um die Detailseite zu öffnen.
+      </>
+    ),
+    atomicMassPrefix: "Atommasse: ",
+    periodPrefix: "Periode ",
+    groupPrefix: ", Gruppe ",
+    openDetails: "Detailseite öffnen →",
+    empty: "Wähle ein Element, Infos erscheinen hier.",
+  },
+};
 
 const mainBlock = periodicTable.filter((element) => element.row <= 7);
 const fBlock = periodicTable.filter((element) => element.row >= 9);
 
-const legendCategories = Object.keys(categoryLabels) as ElementCategory[];
-
-export default function PeriodicTable() {
+export default function PeriodicTable({ locale = "tr" }: { locale?: ContentLocale } = {}) {
+  const t = copy[locale];
+  const categoryLabels = elementCategoryLabels[locale];
+  const legendCategories = Object.keys(categoryLabels) as ElementCategory[];
   const router = useRouter();
   const [activeElement, setActiveElement] = useState<PeriodicElement | null>(
     null
   );
 
   function goToElement(element: PeriodicElement) {
-    router.push(
-      `/bilim-hesaplayicilari/kimya/periyodik-tablo/${slugifyElementName(
-        element.nameTr
-      )}`
-    );
+    router.push(getElementPath(element, locale));
   }
 
   function renderCell(element: PeriodicElement) {
@@ -44,7 +72,7 @@ export default function PeriodicTable() {
         onMouseEnter={() => setActiveElement(element)}
         onFocus={() => setActiveElement(element)}
         onClick={() => goToElement(element)}
-        aria-label={`${element.nameTr} (${element.symbol}) - ayrıntılı bilgi için tıkla`}
+        aria-label={t.cellLabel(getElementName(element, locale), element.symbol)}
       >
         <span className="element-number">{element.atomicNumber}</span>
         <span className="element-symbol">{element.symbol}</span>
@@ -54,10 +82,7 @@ export default function PeriodicTable() {
 
   return (
     <div>
-      <p className="periodic-table-instructions">
-        Fare ile bir elementin üzerine gel: hızlı bilgi burada görünür.
-        Ayrıntılı sayfayı açmak için elemente tıkla.
-      </p>
+      <p className="periodic-table-instructions">{t.instructions}</p>
 
       <div className="periodic-table-preview">
         {activeElement ? (
@@ -75,24 +100,24 @@ export default function PeriodicTable() {
             </span>
             <div className="periodic-table-preview-body">
               <h3>
-                {activeElement.nameTr} ({activeElement.atomicNumber})
+                {getElementName(activeElement, locale)} ({activeElement.atomicNumber})
               </h3>
               <div className="periodic-table-preview-facts">
-                <span>Atom kütlesi: {formatMass(activeElement.atomicMass)} u</span>
+                <span>{t.atomicMassPrefix}{formatMass(activeElement.atomicMass, locale)} u</span>
                 <span>{categoryLabels[activeElement.category]}</span>
                 <span>
-                  Periyot {activeElement.period}
-                  {activeElement.group ? `, Grup ${activeElement.group}` : ""}
+                  {t.periodPrefix}{activeElement.period}
+                  {activeElement.group ? `${t.groupPrefix}${activeElement.group}` : ""}
                 </span>
               </div>
             </div>
             <span className="periodic-table-preview-link">
-              Ayrıntılı sayfayı aç →
+              {t.openDetails}
             </span>
           </>
         ) : (
           <span className="periodic-table-preview-empty">
-            Bir element seç, bilgileri burada görünsün.
+            {t.empty}
           </span>
         )}
       </div>
@@ -114,7 +139,7 @@ export default function PeriodicTable() {
               className="periodic-table-legend-swatch"
               data-category={category}
               style={{
-                background: getComputedSwatchColor(category),
+                background: swatchColors[category],
               }}
             />
             {categoryLabels[category]}
@@ -137,7 +162,3 @@ const swatchColors: Record<ElementCategory, string> = {
   lantanit: "#ddf0d0",
   aktinit: "#c8e6c0",
 };
-
-function getComputedSwatchColor(category: ElementCategory) {
-  return swatchColors[category];
-}

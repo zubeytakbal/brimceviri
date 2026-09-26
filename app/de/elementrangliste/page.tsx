@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import ElementRankingTableDe from "../../components/ElementRankingTableDe";
+import ElementRankingTable from "../../components/ElementRankingTable";
 import { buildSiteUrl } from "../../siteConfig";
 
 export const metadata: Metadata = {
@@ -44,7 +44,7 @@ export default function GermanElementRankingPage() {
           </p>
         </header>
 
-        <ElementRankingTableDe />
+        <ElementRankingTable locale="de" />
 
         <section className="category-article-content">
           <h2>Welches ist das schwerste und leichteste Element?</h2>

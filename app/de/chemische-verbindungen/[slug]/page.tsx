@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import CompoundMolCalculatorDe from "../../../components/CompoundMolCalculatorDe";
+import CompoundMolCalculator from "../../../components/CompoundMolCalculator";
 import { buildFaqSchema, type FaqItem } from "../../../converter/faqSchema";
 import {
   findCompoundProfileById,
@@ -183,7 +183,8 @@ export default async function GermanCompoundPage({ params }: PageProps) {
           </div>
         </section>
 
-        <CompoundMolCalculatorDe
+        <CompoundMolCalculator
+          locale="de"
           molarMass={compound.molarMass}
           compoundName={nameDe}
         />

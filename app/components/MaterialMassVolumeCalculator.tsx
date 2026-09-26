@@ -5,6 +5,7 @@ import {
   calculateMassFromVolumeCm3,
   calculateVolumeCm3FromMass,
 } from "../converter/materialDensity";
+import { numberLocales, type ContentLocale } from "./contentLocale";
 
 type Direction = "volumeToMass" | "massToVolume";
 
@@ -15,19 +16,47 @@ function parseNumericValue(value: string): number {
   return Number.isFinite(parsed) ? parsed : Number.NaN;
 }
 
-function formatNumber(value: number): string {
-  return value.toLocaleString("tr-TR", { maximumFractionDigits: 2 });
+function formatNumber(value: number, locale: ContentLocale): string {
+  return value.toLocaleString(numberLocales[locale], { maximumFractionDigits: 2 });
 }
+
+const copy = {
+  tr: {
+    directionLabel: "Ne Hesaplamak İstiyorsun?",
+    volumeToMass: "Hacimden kütle (mL → gram)",
+    massToVolume: "Kütleden hacim (gram → mL)",
+    volumeInput: (name: string) => `${name} Hacmi (mL)`,
+    massInput: (name: string) => `${name} Kütlesi (gram)`,
+    result: "Sonuç",
+    gramUnit: "gram",
+    invalidVolume: "Geçerli bir hacim gir",
+    invalidMass: "Geçerli bir kütle gir",
+  },
+  de: {
+    directionLabel: "Was möchtest du berechnen?",
+    volumeToMass: "Aus Volumen Masse berechnen (mL → Gramm)",
+    massToVolume: "Aus Masse Volumen berechnen (Gramm → mL)",
+    volumeInput: (name: string) => `${name}-Volumen (mL)`,
+    massInput: (name: string) => `${name}-Masse (Gramm)`,
+    result: "Ergebnis",
+    gramUnit: "Gramm",
+    invalidVolume: "Gib ein gültiges Volumen ein",
+    invalidMass: "Gib eine gültige Masse ein",
+  },
+};
 
 type MaterialMassVolumeCalculatorProps = {
   densityKgM3: number;
   materialName: string;
+  locale?: ContentLocale;
 };
 
 export default function MaterialMassVolumeCalculator({
   densityKgM3,
   materialName,
+  locale = "tr",
 }: MaterialMassVolumeCalculatorProps) {
+  const t = copy[locale];
   const [direction, setDirection] = useState<Direction>("volumeToMass");
   const [volumeMl, setVolumeMl] = useState("500");
   const [massG, setMassG] = useState("500");
@@ -45,18 +74,18 @@ export default function MaterialMassVolumeCalculator({
     <div className="category-general-converter">
       <div className="paint-calculator-grid">
         <label className="category-general-converter-field">
-          <span>Ne Hesaplamak İstiyorsun?</span>
+          <span>{t.directionLabel}</span>
           <select
             value={direction}
             onChange={(event) => setDirection(event.target.value as Direction)}
           >
-            <option value="volumeToMass">Hacimden kütle (mL → gram)</option>
-            <option value="massToVolume">Kütleden hacim (gram → mL)</option>
+            <option value="volumeToMass">{t.volumeToMass}</option>
+            <option value="massToVolume">{t.massToVolume}</option>
           </select>
         </label>
         {direction === "volumeToMass" ? (
           <label className="category-general-converter-field">
-            <span>{materialName} Hacmi (mL)</span>
+            <span>{t.volumeInput(materialName)}</span>
             <input
               type="text"
               inputMode="decimal"
@@ -66,7 +95,7 @@ export default function MaterialMassVolumeCalculator({
           </label>
         ) : (
           <label className="category-general-converter-field">
-            <span>{materialName} Kütlesi (gram)</span>
+            <span>{t.massInput(materialName)}</span>
             <input
               type="text"
               inputMode="decimal"
@@ -86,17 +115,17 @@ export default function MaterialMassVolumeCalculator({
             <tbody>
               <tr className="is-active">
                 <td>
-                  <strong>Sonuç</strong>
+                  <strong>{t.result}</strong>
                 </td>
                 <td>
                   <strong>
                     {direction === "volumeToMass"
                       ? massFromVolumeKg !== null
-                        ? `${formatNumber(massFromVolumeKg * 1000)} gram`
-                        : "Geçerli bir hacim gir"
+                        ? `${formatNumber(massFromVolumeKg * 1000, locale)} ${t.gramUnit}`
+                        : t.invalidVolume
                       : volumeFromMassCm3 !== null
-                        ? `${formatNumber(volumeFromMassCm3)} mL`
-                        : "Geçerli bir kütle gir"}
+                        ? `${formatNumber(volumeFromMassCm3, locale)} mL`
+                        : t.invalidMass}
                   </strong>
                 </td>
               </tr>

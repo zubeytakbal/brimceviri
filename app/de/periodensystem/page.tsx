@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import PeriodicTableDe from "../../components/PeriodicTableDe";
+import PeriodicTable from "../../components/PeriodicTable";
 import { buildSiteUrl } from "../../siteConfig";
 
 export const metadata: Metadata = {
@@ -45,7 +45,7 @@ export default function GermanPeriodicTablePage() {
           </p>
         </header>
 
-        <PeriodicTableDe />
+        <PeriodicTable locale="de" />
 
         <section className="category-article-content">
           <h2>Was ist das Periodensystem?</h2>

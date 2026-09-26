@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import PairConverter from "../../converter/PairConverter";
 import { convert } from "../../converter/convert";
+import { conversionPages } from "../../converter/conversionPages";
 import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
 import { findEnglishPageByTurkishSlug } from "../../converter/localizedConversionPages";
 import {
@@ -51,7 +52,7 @@ export async function generateMetadata({
 
   if (!page) {
     return {
-      title: "Conversao nao encontrada",
+      title: "Conversão não encontrada",
       robots: { index: false, follow: false },
     };
   }
@@ -95,6 +96,7 @@ export default async function PortugueseConversionPage({ params }: PageProps) {
   }
 
   const englishPage = findEnglishPageByTurkishSlug(page.sourceSlug);
+  const hasTurkishPage = conversionPages.some((turkishPage) => turkishPage.slug === page.sourceSlug);
   const reversePage = findPortugueseConversionPage(page.reverseSlug);
   const fromUnitInfo = findPortugueseUnitPage(page.category, page.fromUnit);
   const toUnitInfo = findPortugueseUnitPage(page.category, page.toUnit);
@@ -150,7 +152,7 @@ export default async function PortugueseConversionPage({ params }: PageProps) {
         }}
       />
       <div className="conversion-breadcrumb-wrap">
-        <nav className="breadcrumbs" aria-label="Trilha de navegacao">
+        <nav className="breadcrumbs" aria-label="Trilha de navegação">
           <Link href="/pt">Inicio</Link>
           <span aria-hidden="true">&rsaquo;</span>
           <span>{page.categoryName}</span>
@@ -169,7 +171,7 @@ export default async function PortugueseConversionPage({ params }: PageProps) {
             </h1>
 
             <p className="conversion-hero-description">
-              Digite um valor para obter um resultado instantaneo e gratuito.
+              Digite um valor para obter um resultado instantâneo e gratuito.
             </p>
 
             <PairConverter
@@ -183,7 +185,7 @@ export default async function PortugueseConversionPage({ params }: PageProps) {
           </div>
 
           <div className="conversion-hero-information">
-            <h2>Resumo da conversao</h2>
+            <h2>Resumo da conversão</h2>
 
             <p>
               1 {page.fromUnit} ={" "}
@@ -223,14 +225,14 @@ export default async function PortugueseConversionPage({ params }: PageProps) {
           <p>{page.explanation}</p>
 
           <div className="conversion-formula">
-            <strong>Formula de conversao</strong>
+            <strong>Fórmula de conversão</strong>
             <p>{page.formula}</p>
           </div>
         </section>
 
         <section className="conversion-section">
           <h2>
-            Tabela de conversao de {page.fromName} para {page.toName}
+            Tabela de conversão de {page.fromName} para {page.toName}
           </h2>
 
           <div className="conversion-table-wrap">
@@ -267,7 +269,7 @@ export default async function PortugueseConversionPage({ params }: PageProps) {
 
             <Link
               className="text-link"
-              href={`/pt/unit-guides/${fromUnitInfo.slug}`}
+              href={`/pt/guias-de-unidades/${fromUnitInfo.slug}`}
             >
               Ver o guia da unidade {fromUnitInfo.name}
             </Link>
@@ -282,7 +284,7 @@ export default async function PortugueseConversionPage({ params }: PageProps) {
 
             <Link
               className="text-link"
-              href={`/pt/unit-guides/${toUnitInfo.slug}`}
+              href={`/pt/guias-de-unidades/${toUnitInfo.slug}`}
             >
               Ver o guia da unidade {toUnitInfo.name}
             </Link>
@@ -291,7 +293,7 @@ export default async function PortugueseConversionPage({ params }: PageProps) {
 
         {reversePage && (
           <section className="conversion-section related-conversions">
-            <h2>Conversao inversa</h2>
+            <h2>Conversão inversa</h2>
 
             <Link className="text-link" href={`/pt/${reversePage.slug}`}>
               Conversor de {reversePage.fromName} para {reversePage.toName}
@@ -301,7 +303,7 @@ export default async function PortugueseConversionPage({ params }: PageProps) {
 
         {relatedConversions.length > 0 && (
           <section className="conversion-section related-conversions">
-            <h2>Conversoes relacionadas</h2>
+            <h2>Conversões relacionadas</h2>
 
             <ul className="related-conversion-list">
               {relatedConversions.map((relatedPage) => (
@@ -330,8 +332,8 @@ export default async function PortugueseConversionPage({ params }: PageProps) {
             <h2>Fontes</h2>
 
             <p>
-              As definicoes e relacoes de conversao desta pagina seguem as
-              normas metrologicas reconhecidas.
+              As definições e relações de conversão desta página seguem as
+              normas metrológicas reconhecidas.
             </p>
 
             <ol>
@@ -346,27 +348,32 @@ export default async function PortugueseConversionPage({ params }: PageProps) {
           </section>
         )}
 
-        <section className="conversion-section language-alternatives">
-          <h2>Outros idiomas</h2>
-
-          <Link
-            className="text-link"
-            href={`/${page.sourceSlug}`}
-            hrefLang="tr"
-          >
-            Abrir a versão em turco
-          </Link>
-
-          {englishPage && (
-            <Link
-              className="text-link"
-              href={`/en/${englishPage.slug}`}
-              hrefLang="en"
-            >
-              Abrir a versão em inglês
-            </Link>
-          )}
-        </section>
+        {(hasTurkishPage || englishPage) && (
+          <section className="conversion-section language-alternatives">
+            <h2>Outros idiomas</h2>
+  
+            {hasTurkishPage && (
+              <Link
+                className="text-link"
+                href={`/${page.sourceSlug}`}
+                hrefLang="tr"
+              >
+                Abrir a versão em turco
+              </Link>
+  
+            )}
+  
+            {englishPage && (
+              <Link
+                className="text-link"
+                href={`/en/${englishPage.slug}`}
+                hrefLang="en"
+              >
+                Abrir a versão em inglês
+              </Link>
+            )}
+          </section>
+        )}
       </article>
     </main>
   );

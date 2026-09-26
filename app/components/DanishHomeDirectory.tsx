@@ -34,7 +34,7 @@ const primaryCategoryPages = homeCategoryOrder
 
 const primaryCategoryCardsFromCategories = primaryCategoryPages.map((page) => ({
   id: page.category,
-  href: `/da/categories/${page.slug}`,
+  href: `/da/kategorier/${page.slug}`,
   title: page.title,
   description: page.description,
   iconName: getCategoryIconName(page.category) as SiteIconName,
@@ -51,28 +51,28 @@ const nicheCards: Array<{
 }> = [
   {
     id: "shoe-size",
-    href: "/da/shoe-size-converter",
-    title: "Skostorrelseomregner",
-    description: "Sammenlign EU-, US- og UK-skostorrelser per maerke.",
+    href: "/da/skostorrelser",
+    title: "Skostørrelseomregner",
+    description: "Sammenlign EU-, US- og UK-skostørrelser per mærke.",
     iconName: "shoeSize",
   },
   {
     id: "kitchen-measures",
-    href: "/da/kitchen-measurement-converter",
-    title: "Kokkenmal",
+    href: "/da/kokkenmal-omregner",
+    title: "Køkkenmål",
     description: "Omregn kopper, spiseskeer og gram ud fra ingrediens.",
     iconName: "kitchenMeasures",
   },
   {
     id: "recipe-converter",
-    href: "/da/recipe-converter",
+    href: "/da/opskriftomregner",
     title: "Opskriftomregner",
-    description: "Indsaet en opskrift og skaler maengderne med en multiplikator.",
+    description: "Indsæt en opskrift og skaler mængderne med en multiplikator.",
     iconName: "recipe",
   },
   {
     id: "historical-units",
-    href: "/da/historical-units",
+    href: "/da/historiske-enheder",
     title: "Historiske enheder",
     description: "Omregn arşın, okka, dirhem og byzantinske enheder til moderne enheder.",
     iconName: "historical",
@@ -85,7 +85,7 @@ const secondaryCategoryCards = danishCategoryPages
   .filter((page) => !(homeCategoryOrder as readonly string[]).includes(page.category))
   .map((page) => ({
     id: page.category,
-    href: `/da/categories/${page.slug}`,
+    href: `/da/kategorier/${page.slug}`,
     title: page.title,
     iconName: getCategoryIconName(page.category) as SiteIconName,
   }));
@@ -130,7 +130,7 @@ const popularUnits = preferredUnitSourceSlugs
 
     return {
       id: unitPage.slug,
-      href: `/da/unit-guides/${unitPage.slug}`,
+      href: `/da/enhedsguider/${unitPage.slug}`,
       label: unitPage.name,
       categoryLabel: unitPage.categoryName,
     };
@@ -184,17 +184,17 @@ export default function DanishHomeDirectory({
       <section className="directory-hero">
         <div className="directory-shell">
           <div className="directory-hero-copy">
-            <p className="directory-eyebrow">Enhedsomregner pa dansk</p>
+            <p className="directory-eyebrow">Enhedsomregner på dansk</p>
             <h1>Find den enhedsomregning du har brug for</h1>
             <p className="directory-lead">
-              Omregn laengde, masse, tryk og mange andre enheder helt pa
+              Omregn længde, masse, tryk og mange andre enheder helt på
               dansk, med tydelige enhedsguider.
             </p>
           </div>
 
           <div className="directory-hero-panel">
             <form className="directory-search" onSubmit={handleSubmit} role="search">
-              <label htmlFor={inputId}>Sog en omregning</label>
+              <label htmlFor={inputId}>Søg en omregning</label>
 
               <div className="directory-search-field">
                 <input
@@ -211,20 +211,20 @@ export default function DanishHomeDirectory({
 
                 <button type="submit">
                   <DecorativeIcon className="directory-button-icon" name="search" size={18} />
-                  Abn
+                  Åbn
                 </button>
               </div>
 
               <p className="directory-search-hint" id={`${inputId}-hint`}>
-                Skriv navnet pa en enhed pa dansk eller engelsk, og tryk
-                Enter for at abne det forste resultat.
+                Skriv navnet på en enhed på dansk eller engelsk, og tryk
+                Enter for at åbne det første resultat.
               </p>
 
               {query.trim() ? (
                 <div className="directory-search-results-wrap">
                   <div className="directory-search-results-head">
-                    <strong>Sogeresultater</strong>
-                    <span>Tryk Enter for at abne</span>
+                    <strong>Søgeresultater</strong>
+                    <span>Tryk Enter for at åbne</span>
                   </div>
 
                   {searchResults.length > 0 ? (
@@ -266,10 +266,10 @@ export default function DanishHomeDirectory({
           <header className="directory-section-header">
             <div>
               <h2>Enhedsomregning</h2>
-              <p>Vaelg en kategori for at se alle enheder og omregningssider.</p>
+              <p>Vælg en kategori for at se alle enheder og omregningssider.</p>
             </div>
 
-            <Link className="directory-section-link" href="/da/categories">
+            <Link className="directory-section-link" href="/da/kategorier">
               <DecorativeIcon className="directory-link-icon" name="allConversions" size={18} />
               Alle kategorier
             </Link>
@@ -315,7 +315,7 @@ export default function DanishHomeDirectory({
           )}
 
           <div className="directory-section-footer">
-            <Link className="directory-section-link" href="/da/categories">
+            <Link className="directory-section-link" href="/da/kategorier">
               <DecorativeIcon className="directory-link-icon" name="allConversions" size={18} />
               Se alle kategorier og omregninger
             </Link>
@@ -326,8 +326,8 @@ export default function DanishHomeDirectory({
           <section className="directory-section">
             <header className="directory-section-header">
               <div>
-                <h2>Populaere omregninger</h2>
-                <p>Direkte adgang til de mest sogte omregninger.</p>
+                <h2>Populære omregninger</h2>
+                <p>Direkte adgang til de mest søgte omregninger.</p>
               </div>
             </header>
 
@@ -348,8 +348,8 @@ export default function DanishHomeDirectory({
           <section className="directory-section">
             <header className="directory-section-header">
               <div>
-                <h2>Populaere enheder</h2>
-                <p>Detaljerede guider pa dansk til de mest sogte enheder.</p>
+                <h2>Populære enheder</h2>
+                <p>Detaljerede guider på dansk til de mest søgte enheder.</p>
               </div>
             </header>
 

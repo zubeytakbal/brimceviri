@@ -4,9 +4,9 @@ import RingSizeConverter from "../../components/RingSizeConverter";
 import { buildSiteUrl } from "../../siteConfig";
 
 export const metadata: Metadata = {
-  title: "Ringgroessen Umrechner: mm, US und UK Tabelle",
+  title: "Ringgrößen Umrechner: mm, US und UK Tabelle",
   description:
-    "Vergleichen Sie Ringgroessen zwischen Innendurchmesser, EU-Umfang sowie US- und UK-System.",
+    "Vergleichen Sie Ringgrößen zwischen Innendurchmesser, EU-Umfang sowie US- und UK-System.",
   alternates: {
     canonical: "/de/ringgroessen-umrechner",
     languages: {
@@ -17,9 +17,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Ringgroessen Umrechner: mm, US und UK Tabelle",
+    title: "Ringgrößen Umrechner: mm, US und UK Tabelle",
     description:
-      "Vergleichen Sie Ringgroessen zwischen Durchmesser, Umfang, US und UK.",
+      "Vergleichen Sie Ringgrößen zwischen Durchmesser, Umfang, US und UK.",
     url: buildSiteUrl("/de/ringgroessen-umrechner"),
     siteName: "BirimCeviri.app",
     locale: "de_DE",
@@ -34,13 +34,13 @@ export default function GermanRingSizePage() {
         <nav className="breadcrumbs" aria-label="Brotkrumen">
           <Link href="/de">Startseite</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          <span>Ringgroessen Umrechner</span>
+          <span>Ringgrößen Umrechner</span>
         </nav>
 
         <header className="all-conversions-header">
-          <h1>Ringgroessen Umrechner</h1>
+          <h1>Ringgrößen Umrechner</h1>
           <p>
-            Geben Sie die bekannte Ringgroesse ein und vergleichen Sie
+            Geben Sie die bekannte Ringgröße ein und vergleichen Sie
             sofort Innendurchmesser, Umfang sowie die US- und
             UK-Entsprechung.
           </p>
@@ -49,15 +49,15 @@ export default function GermanRingSizePage() {
         <RingSizeConverter locale="de" />
 
         <section className="category-article-content">
-          <h2>Wie wird eine Ringgroesse bestimmt?</h2>
+          <h2>Wie wird eine Ringgröße bestimmt?</h2>
           <p>
-            Am verlaesslichsten ist der Innendurchmesser des Rings in
-            Millimetern. Das europaeische System arbeitet direkt mit dem
-            Umfang, waehrend US und UK eigene Skalen verwenden.
+            Am verlässlichsten ist der Innendurchmesser des Rings in
+            Millimetern. Das europäische System arbeitet direkt mit dem
+            Umfang, während US und UK eigene Skalen verwenden.
           </p>
           <p>
             Messen Sie fuer das beste Ergebnis den Innendurchmesser eines
-            gut passenden Rings und waehlen Sie den naechsten Wert aus.
+            gut passenden Rings und wählen Sie den nächsten Wert aus.
           </p>
         </section>
       </div>

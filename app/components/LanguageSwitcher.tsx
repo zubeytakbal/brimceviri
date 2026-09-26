@@ -28,6 +28,10 @@ export default function LanguageSwitcher() {
     getLocaleDefinition(currentLocale);
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState("");
+  const closeMenu = () => {
+    setIsOpen(false);
+    setQuery("");
+  };
   const menuId = useId();
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const searchInputRef = useRef<HTMLInputElement | null>(null);
@@ -39,12 +43,14 @@ export default function LanguageSwitcher() {
         !wrapperRef.current.contains(event.target as Node)
       ) {
         setIsOpen(false);
+        setQuery("");
       }
     }
 
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
         setIsOpen(false);
+        setQuery("");
       }
     }
 
@@ -63,8 +69,6 @@ export default function LanguageSwitcher() {
   useEffect(() => {
     if (isOpen) {
       searchInputRef.current?.focus();
-    } else {
-      setQuery("");
     }
   }, [isOpen]);
 
@@ -94,7 +98,7 @@ export default function LanguageSwitcher() {
         aria-expanded={isOpen}
         aria-haspopup="menu"
         aria-controls={menuId}
-        onClick={() => setIsOpen((open) => !open)}
+        onClick={() => (isOpen ? closeMenu() : setIsOpen(true))}
       >
         <span className="language-switcher-current">
           {currentLocaleDefinition.switcherCurrentLabel}
@@ -147,7 +151,7 @@ export default function LanguageSwitcher() {
                     ? " is-active"
                     : ""
                 }`}
-                onClick={() => setIsOpen(false)}
+                onClick={closeMenu}
               >
                 {localeLink.label}
               </Link>

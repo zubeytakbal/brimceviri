@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { convert } from "../converter/convert";
 import { calculateMol, type MolTarget } from "../converter/molCalculator";
+import { numberLocales, type ContentLocale } from "./contentLocale";
 
 const massUnits = [
   { symbol: "mg", label: "mg" },
@@ -22,15 +23,15 @@ function parseNumericValue(rawValue: string) {
   return Number.isFinite(numericValue) ? numericValue : Number.NaN;
 }
 
-function formatNumber(value: number, maximumFractionDigits = 4) {
+function formatNumber(value: number, locale: ContentLocale, maximumFractionDigits = 4) {
   if (!Number.isFinite(value)) {
     return "—";
   }
 
-  return value.toLocaleString("tr-TR", { maximumFractionDigits });
+  return value.toLocaleString(numberLocales[locale], { maximumFractionDigits });
 }
 
-function formatScientific(value: number) {
+function formatScientific(value: number, locale: ContentLocale) {
   if (!Number.isFinite(value) || value === 0) {
     return "0";
   }
@@ -38,16 +39,63 @@ function formatScientific(value: number) {
   const exponent = Math.floor(Math.log10(Math.abs(value)));
   const mantissa = value / Math.pow(10, exponent);
 
-  return `${formatNumber(mantissa, 3)} × 10^${exponent}`;
+  return `${formatNumber(mantissa, locale, 3)} × 10^${exponent}`;
 }
+
+const copy = {
+  tr: {
+    title: (name: string) => `${name} İçin Mol Hesaplama`,
+    intro: (name: string, molarMass: string) => (
+      <>
+        {name} elementinin molar kütlesi{" "}
+        <strong>{molarMass} g/mol</strong>. Aşağıya kütle
+        veya mol sayısı girerek anında karşılığını hesaplayabilirsin.
+      </>
+    ),
+    targetLabel: "Neyi hesaplamak istiyorsun?",
+    molesFromMass: "Mol Sayısı (kütleden)",
+    massFromMoles: "Kütle (mol sayısından)",
+    mass: "Kütle",
+    unit: "Birim",
+    molesInput: "Mol Sayısı",
+    resultUnit: "Sonuç Birimi",
+    invalid: "Geçerli bir değer girerek sonucu görebilirsin.",
+    moles: "Mol Sayısı",
+    particles: "Parçacık Sayısı",
+  },
+  de: {
+    title: (name: string) => `Stoffmengenrechner für ${name}`,
+    intro: (name: string, molarMass: string) => (
+      <>
+        Die molare Masse von {name} beträgt{" "}
+        <strong>{molarMass} g/mol</strong>. Gib unten
+        eine Masse oder Stoffmenge ein, um den entsprechenden Wert sofort
+        zu berechnen.
+      </>
+    ),
+    targetLabel: "Was möchtest du berechnen?",
+    molesFromMass: "Stoffmenge (aus Masse)",
+    massFromMoles: "Masse (aus Stoffmenge)",
+    mass: "Masse",
+    unit: "Einheit",
+    molesInput: "Stoffmenge (mol)",
+    resultUnit: "Ergebniseinheit",
+    invalid: "Gib einen gültigen Wert ein, um das Ergebnis zu sehen.",
+    moles: "Stoffmenge",
+    particles: "Teilchenzahl",
+  },
+};
 
 export default function ElementMolWidget({
   elementName,
   atomicMass,
+  locale = "tr",
 }: {
   elementName: string;
   atomicMass: number;
+  locale?: ContentLocale;
 }) {
+  const t = copy[locale];
   const [target, setTarget] = useState<MolTarget>("moles");
   const [massValue, setMassValue] = useState("10");
   const [massUnit, setMassUnit] = useState("g");
@@ -84,16 +132,12 @@ export default function ElementMolWidget({
 
   return (
     <aside className="category-general-converter element-mol-widget">
-      <h2>{elementName} İçin Mol Hesaplama</h2>
-      <p>
-        {elementName} elementinin molar kütlesi{" "}
-        <strong>{formatNumber(atomicMass, 3)} g/mol</strong>. Aşağıya kütle
-        veya mol sayısı girerek anında karşılığını hesaplayabilirsin.
-      </p>
+      <h2>{t.title(elementName)}</h2>
+      <p>{t.intro(elementName, formatNumber(atomicMass, locale, 3))}</p>
 
       <div className="engineering-calculator-card">
         <div className="engineering-targets">
-          <span>Neyi hesaplamak istiyorsun?</span>
+          <span>{t.targetLabel}</span>
 
           <div className="engineering-target-grid hydrostatic-target-grid">
             <button
@@ -101,14 +145,14 @@ export default function ElementMolWidget({
               className={`engineering-target-button${target === "moles" ? " is-active" : ""}`}
               onClick={() => setTarget("moles")}
             >
-              Mol Sayısı (kütleden)
+              {t.molesFromMass}
             </button>
             <button
               type="button"
               className={`engineering-target-button${target === "mass" ? " is-active" : ""}`}
               onClick={() => setTarget("mass")}
             >
-              Kütle (mol sayısından)
+              {t.massFromMoles}
             </button>
           </div>
         </div>
@@ -117,7 +161,7 @@ export default function ElementMolWidget({
           {target === "moles" ? (
             <>
               <label className="category-general-converter-field">
-                <span>Kütle</span>
+                <span>{t.mass}</span>
                 <input
                   inputMode="decimal"
                   type="text"
@@ -126,7 +170,7 @@ export default function ElementMolWidget({
                 />
               </label>
               <label className="category-general-converter-field">
-                <span>Birim</span>
+                <span>{t.unit}</span>
                 <select
                   value={massUnit}
                   onChange={(event) => setMassUnit(event.target.value)}
@@ -142,7 +186,7 @@ export default function ElementMolWidget({
           ) : (
             <>
               <label className="category-general-converter-field">
-                <span>Mol Sayısı</span>
+                <span>{t.molesInput}</span>
                 <input
                   inputMode="decimal"
                   type="text"
@@ -151,7 +195,7 @@ export default function ElementMolWidget({
                 />
               </label>
               <label className="category-general-converter-field">
-                <span>Sonuç Birimi</span>
+                <span>{t.resultUnit}</span>
                 <select
                   value={massUnit}
                   onChange={(event) => setMassUnit(event.target.value)}
@@ -173,22 +217,22 @@ export default function ElementMolWidget({
         className="category-general-converter-result paint-calculator-result"
       >
         {!result ? (
-          <strong>Geçerli bir değer girerek sonucu görebilirsin.</strong>
+          <strong>{t.invalid}</strong>
         ) : (
           <div className="paint-calculator-result-grid">
             <div>
-              <span>Mol Sayısı</span>
-              <strong>{formatNumber(result.moles)} mol</strong>
+              <span>{t.moles}</span>
+              <strong>{formatNumber(result.moles, locale)} mol</strong>
             </div>
             <div>
-              <span>Kütle</span>
+              <span>{t.mass}</span>
               <strong>
-                {formatNumber(resultMassInSelectedUnit)} {massUnit}
+                {formatNumber(resultMassInSelectedUnit, locale)} {massUnit}
               </strong>
             </div>
             <div>
-              <span>Parçacık Sayısı</span>
-              <strong>{formatScientific(result.particleCount)}</strong>
+              <span>{t.particles}</span>
+              <strong>{formatScientific(result.particleCount, locale)}</strong>
             </div>
           </div>
         )}

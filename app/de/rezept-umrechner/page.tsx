@@ -6,7 +6,7 @@ import { buildSiteUrl } from "../../siteConfig";
 export const metadata: Metadata = {
   title: "Rezept Umrechner: Rezept skalieren und Tassen in Gramm",
   description:
-    "Fuegen Sie Ihr Rezept ein, waehlen Sie einen Faktor und skalieren Sie alle Mengen sofort. Erkannte Zutaten erhalten passende Grammwerte.",
+    "Fügen Sie Ihr Rezept ein, wählen Sie einen Faktor und skalieren Sie alle Mengen sofort. Erkannte Zutaten erhalten passende Grammwerte.",
   alternates: {
     canonical: "/de/rezept-umrechner",
     languages: {
@@ -40,7 +40,7 @@ export default function GermanRecipeScalerPage() {
         <header className="all-conversions-header">
           <h1>Rezept Umrechner</h1>
           <p>
-            Fuegen Sie Ihr Rezept zeilenweise ein, waehlen Sie einen
+            Fügen Sie Ihr Rezept zeilenweise ein, wählen Sie einen
             Multiplikator und skalieren Sie jede Menge sofort. Wenn Zutat
             und Einheit erkannt werden, erscheint auch ein Grammwert.
           </p>
@@ -51,15 +51,15 @@ export default function GermanRecipeScalerPage() {
         <section className="category-article-content">
           <h2>Wie verdoppelt man ein Rezept?</h2>
           <p>
-            Jede Mengenangabe wird mit dem gewuenschten Faktor
-            multipliziert. Diese Seite uebernimmt das automatisch fuer
-            ganze Zahlen, Dezimalwerte und einfache Brueche.
+            Jede Mengenangabe wird mit dem gewünschten Faktor
+            multipliziert. Diese Seite übernimmt das automatisch fuer
+            ganze Zahlen, Dezimalwerte und einfache Brüche.
           </p>
           <p>
             Wenn Sie lieber einzelne Zutaten direkt zwischen Tasse,
-            Loeffel und Gramm umrechnen moechten, nutzen Sie den{" "}
+            Löffel und Gramm umrechnen möchten, nutzen Sie den{" "}
             <Link href="/de/kuechenmass-umrechner">
-              Kuechenmass Umrechner
+              Küchenmaß Umrechner
             </Link>
             .
           </p>

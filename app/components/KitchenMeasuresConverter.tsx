@@ -17,10 +17,10 @@ import {
 const copy = {
   tr: {
     ingredient: "Malzeme",
-    knownUnit: "Bildigin Birim",
+    knownUnit: "Bildiğin Birim",
     value: "Deger",
-    resultHeading: "Karsiliklar",
-    invalidValue: "Gecerli bir sayi girerek sonucu gorebilirsin.",
+    resultHeading: "Karşılıklar",
+    invalidValue: "Geçerli bir sayı girerek sonucu görebilirsin.",
   },
   en: {
     ingredient: "Ingredient",
@@ -35,7 +35,7 @@ const copy = {
     knownUnit: "Bekannte Einheit",
     value: "Wert",
     resultHeading: "Entsprechungen",
-    invalidValue: "Geben Sie eine gueltige Zahl ein, um die Umrechnung zu sehen.",
+    invalidValue: "Geben Sie eine gültige Zahl ein, um die Umrechnung zu sehen.",
   },
   ar: {
     ingredient: "المكون",
@@ -70,21 +70,21 @@ const copy = {
     knownUnit: "Unidad conocida",
     value: "Valor",
     resultHeading: "Equivalencias",
-    invalidValue: "Introduce un numero valido para ver la conversion.",
+    invalidValue: "Introduce un numero valido para ver la conversión.",
   },
   "es-419": {
     ingredient: "Ingrediente",
     knownUnit: "Unidad conocida",
     value: "Valor",
     resultHeading: "Equivalencias",
-    invalidValue: "Introduce un numero valido para ver la conversion.",
+    invalidValue: "Introduce un numero valido para ver la conversión.",
   },
   pt: {
     ingredient: "Ingrediente",
     knownUnit: "Unidade Conhecida",
     value: "Valor",
-    resultHeading: "Equivalencias",
-    invalidValue: "Digite um numero valido para ver a conversao.",
+    resultHeading: "Equivalências",
+    invalidValue: "Digite um número válido para ver a conversão.",
   },
   it: {
     ingredient: "Ingrediente",
@@ -98,16 +98,16 @@ const copy = {
     resultHeading: "Equivalenten", invalidValue: "Voer een geldig getal in om de omrekening te zien.",
   },
   sv: {
-    ingredient: "Ingrediens", knownUnit: "Kand enhet", value: "Varde",
-    resultHeading: "Motsvarigheter", invalidValue: "Ange ett giltigt tal for att se omvandlingen.",
+    ingredient: "Ingrediens", knownUnit: "Känd enhet", value: "Värde",
+    resultHeading: "Motsvarigheter", invalidValue: "Ange ett giltigt tal för att se omvandlingen.",
   },
   no: {
     ingredient: "Ingrediens", knownUnit: "Kjent enhet", value: "Verdi",
-    resultHeading: "Tilsvarende verdier", invalidValue: "Skriv inn et gyldig tall for a se omregningen.",
+    resultHeading: "Tilsvarende verdier", invalidValue: "Skriv inn et gyldig tall for å se omregningen.",
   },
   da: {
-    ingredient: "Ingrediens", knownUnit: "Kendt enhed", value: "Vaerdi",
-    resultHeading: "Tilsvarende vaerdier", invalidValue: "Indtast et gyldigt tal for at se omregningen.",
+    ingredient: "Ingrediens", knownUnit: "Kendt enhed", value: "Værdi",
+    resultHeading: "Tilsvarende værdier", invalidValue: "Indtast et gyldigt tal for at se omregningen.",
   },
 } as const;
 

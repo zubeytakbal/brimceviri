@@ -20,9 +20,9 @@ type UnitTableSection = {
 
 const unitSectionHeadings = {
   tr: {
-    power: "Guc birimleri",
+    power: "Güç birimleri",
     voltage: "Gerilim birimleri",
-    current: "Akim birimleri",
+    current: "Akım birimleri",
   },
   en: {
     power: "Power units",
@@ -107,7 +107,7 @@ const copy: Record<CalculatorLocale, PageCopy> = {
     breadcrumbs: [
       { label: "Ana Sayfa", href: "/" },
       {
-        label: "Elektrik Hesaplari",
+        label: "Elektrik Hesapları",
         href: "/muhendislik-hesaplayicilari/elektrik-hesaplari",
       },
       { label: "kW to Amper Hesaplama" },
@@ -115,62 +115,62 @@ const copy: Record<CalculatorLocale, PageCopy> = {
     breadcrumbLabel: "Sayfa yolu",
     title: "kW to Amper Hesaplama",
     description:
-      "Tek faz, uc faz veya DC sistemlerde gucu akima cevirin. Sonuc, secilen gerilim, guc faktoru ve verime gore okunabilir akim birimiyle verilir.",
+      "Tek faz, üç faz veya DC sistemlerde gücü akıma çevirin. Sonuç, seçilen gerilim, güç faktörü ve verime göre okunabilir akım birimiyle verilir.",
     heroEyebrow: "ELEKTRIK HESAPLAYICISI",
-    heroResultHeading: "Hat akimi sonucu",
-    introHeading: "Bu kW to amper araci ne icin kullanilir?",
-    formulasHeading: "Kullanilan formuller",
-    variablesHeading: "Degiskenler ve anlamlari",
-    unitsHeading: "Birim tablolari",
-    examplesHeading: "Ornek kullanim",
-    applicationsHeading: "Tipik kullanim alanlari",
-    limitationsHeading: "Varsayimlar ve sinirlamalar",
+    heroResultHeading: "Hat akımı sonucu",
+    introHeading: "Bu kW to amper aracı ne için kullanılır?",
+    formulasHeading: "Kullanılan formüller",
+    variablesHeading: "Değişkenler ve anlamları",
+    unitsHeading: "Birim tabloları",
+    examplesHeading: "Örnek kullanım",
+    applicationsHeading: "Tipik kullanım alanları",
+    limitationsHeading: "Varsayımlar ve sınırlamalar",
     sourcesHeading: "Kaynaklar",
-    relatedHeading: "Ilgili baglantilar",
-    relatedCalculatorsHeading: "Ilgili hesaplayicilar",
-    relatedGuidesHeading: "Ilgili birim rehberleri",
+    relatedHeading: "İlgili bağlantılar",
+    relatedCalculatorsHeading: "İlgili hesaplayıcılar",
+    relatedGuidesHeading: "İlgili birim rehberleri",
     tableColumns: {
-      unitName: "Birim adi",
+      unitName: "Birim adı",
       symbol: "Sembol",
-      siEquivalent: "SI karsiligi",
-      typicalUse: "Yaygin kullanim",
+      siEquivalent: "SI karşılığı",
+      typicalUse: "Yaygın kullanım",
     },
     intro: [
-      "Bu arac, aktif guc bilgisinden yaklasik hat akimini cikarmak icin kullanilir. Tek faz, uc faz ve DC secenekleri desteklenir.",
-      "Ozellikle sigorta secimi, kablo kesiti on hesabi, pano yuk dagilimi ve saha kesiflerinde hizli ilk kontrol araci olarak faydalidir.",
+      "Bu araç, aktif güç bilgisinden yaklaşık hat akımını çıkarmak için kullanılır. Tek faz, üç faz ve DC seçenekleri desteklenir.",
+      "Özellikle sigorta seçimi, kablo kesiti ön hesabı, pano yük dağılımı ve saha keşiflerinde hızlı ilk kontrol aracı olarak faydalıdır.",
     ],
     formulas: [
       "Tek faz: I = P / (V x cos phi x eta)",
-      "Uc faz: I = P / (sqrt(3) x V x cos phi x eta)",
+      "Üç faz: I = P / (sqrt(3) x V x cos phi x eta)",
       "DC: I = P / (V x eta)",
     ],
     variables: [
-      { term: "P", explanation: "Yukun aktif gucu veya cihaza ait giris/ cikis gucu bilgisidir." },
-      { term: "V", explanation: "Hat veya fazlar arasi gerilim seviyesidir." },
-      { term: "cos phi", explanation: "AC sistemlerde aktif gucun gorunen guce oranini gosteren guc faktorudur." },
-      { term: "eta", explanation: "Verim katsayisidir; mekanik cikis gucunden elektriksel giris akimina gidiliyorsa hesaba dahil edilir." },
-      { term: "I", explanation: "Hesaplanan hat akimidir." },
+      { term: "P", explanation: "Yükün aktif gücü veya cihaza ait giriş/ çıkış gücü bilgisidir." },
+      { term: "V", explanation: "Hat veya fazlar arası gerilim seviyesidir." },
+      { term: "cos phi", explanation: "AC sistemlerde aktif gücün görünen güce oranını gösteren güç faktörüdür." },
+      { term: "eta", explanation: "Verim katsayısıdır; mekanik çıkış gücünden elektriksel giriş akımına gidiliyorsa hesaba dahil edilir." },
+      { term: "I", explanation: "Hesaplanan hat akımıdır." },
     ],
     examples: [
       {
-        title: "5.5 kW, 400 V, uc faz, cos phi 0.9 ve verim 92 icin akim",
-        body: "I = 5500 / (1.732 x 400 x 0.9 x 0.92) yaklasik 9.59 A.",
+        title: "5.5 kW, 400 V, üç faz, cos phi 0.9 ve verim 92 için akım",
+        body: "I = 5500 / (1.732 x 400 x 0.9 x 0.92) yaklaşık 9.59 A.",
       },
       {
-        title: "2 kW, 230 V tek faz, cos phi 0.95 ve verim 100 icin akim",
-        body: "I = 2000 / (230 x 0.95) yaklasik 9.15 A.",
+        title: "2 kW, 230 V tek faz, cos phi 0.95 ve verim 100 için akım",
+        body: "I = 2000 / (230 x 0.95) yaklaşık 9.15 A.",
       },
     ],
     applications: [
-      "Sigorta ve s alter on secimi",
-      "Kablo kesiti on hesabi",
-      "Yuk dagilim tablosu kontrolu",
-      "Jenerator, UPS ve pano guc planlamasi",
+      "Sigorta ve s alter on seçimi",
+      "Kablo kesiti ön hesabı",
+      "Yük dağılım tablosu kontrolü",
+      "Jeneratör, UPS ve pano güç planlaması",
     ],
     limitations: [
-      "Bu arac yaklasik hat akimi verir; harmonik, kalkis akimi, ortam sicakligi ve kablo duzeltme katsayilari dahil degildir.",
-      "Uc faz seceneginde gerilim degeri fazlar arasi hat gerilimi olarak yorumlanir.",
-      "Verim varsayilan olarak kullanici girdisine baglidir; elektriksel giris gucunu zaten biliyorsaniz verimi 1 veya 100 olarak girebilirsiniz.",
+      "Bu araç yaklaşık hat akımı verir; harmonik, kalkış akımı, ortam sıcaklığı ve kablo düzeltme katsayıları dahil değildir.",
+      "Üç faz seçeneğinde gerilim değeri fazlar arası hat gerilimi olarak yorumlanır.",
+      "Verim varsayılan olarak kullanıcı girdisine bağlıdır; elektriksel giriş gücünü zaten biliyorsanız verimi 1 veya 100 olarak girebilirsiniz.",
     ],
     sources: [
       {
@@ -184,15 +184,15 @@ const copy: Record<CalculatorLocale, PageCopy> = {
     ],
     relatedCalculators: [
       {
-        label: "Amper to kW Hesaplayicisi",
+        label: "Amper to kW Hesaplayıcısı",
         href: "/muhendislik-hesaplayicilari/elektrik-hesaplari/amper-to-kw-hesaplama",
       },
       {
-        label: "Ohm Yasasi Hesaplayicisi",
+        label: "Ohm Yasası Hesaplayıcısı",
         href: "/hesaplayicilar/ohm-yasasi",
       },
       {
-        label: "Elektrik Hesaplari merkezi",
+        label: "Elektrik Hesapları merkezi",
         href: "/muhendislik-hesaplayicilari/elektrik-hesaplari",
       },
     ],
@@ -313,10 +313,10 @@ const copy: Record<CalculatorLocale, PageCopy> = {
     breadcrumbLabel: "Breadcrumb",
     title: "kW-zu-Ampere Rechner",
     description:
-      "Wandeln Sie Leistung fur Einphasen-, Dreiphasen- und DC-Systeme in Strom um. Das Ergebnis wird als gut lesbare Stromgroesse unter Berucksichtigung von Spannung, Leistungsfaktor und Wirkungsgrad gezeigt.",
+      "Wandeln Sie Leistung für Einphasen-, Dreiphasen- und DC-Systeme in Strom um. Das Ergebnis wird als gut lesbare Stromgröße unter Berücksichtigung von Spannung, Leistungsfaktor und Wirkungsgrad gezeigt.",
     heroEyebrow: "ELEKTRORECHNER",
     heroResultHeading: "Leitungsstrom-Ergebnis",
-    introHeading: "Wofur wird dieses kW-zu-Ampere Werkzeug verwendet?",
+    introHeading: "Wofür wird dieses kW-zu-Ampere Werkzeug verwendet?",
     formulasHeading: "Verwendete Formeln",
     variablesHeading: "Variablen und Bedeutung",
     unitsHeading: "Einheitentabellen",
@@ -330,12 +330,12 @@ const copy: Record<CalculatorLocale, PageCopy> = {
     tableColumns: {
       unitName: "Einheitenname",
       symbol: "Symbol",
-      siEquivalent: "SI-Aquivalent",
+      siEquivalent: "SI-Äquivalent",
       typicalUse: "Typische Verwendung",
     },
     intro: [
-      "Dieses Werkzeug schatzt den Leitungsstrom aus der Wirkleistung fur Einphasen-, Dreiphasen- und DC-Systeme ab.",
-      "Es eignet sich fur erste Prufungen bei Schutzschalterwahl, vorlaufiger Kabeldimensionierung, Lastlisten und Baustellenaufnahmen.",
+      "Dieses Werkzeug schätzt den Leitungsstrom aus der Wirkleistung für Einphasen-, Dreiphasen- und DC-Systeme ab.",
+      "Es eignet sich für erste Prüfungen bei Schutzschalterwahl, vorläufiger Kabeldimensionierung, Lastlisten und Baustellenaufnahmen.",
     ],
     formulas: [
       "Einphase: I = P / (V x cos phi x eta)",
@@ -345,8 +345,8 @@ const copy: Record<CalculatorLocale, PageCopy> = {
     variables: [
       { term: "P", explanation: "Wirkleistung der Last oder Leistungswert des Gertes." },
       { term: "V", explanation: "Netz- oder Systemspannung." },
-      { term: "cos phi", explanation: "Leistungsfaktor in AC-Systemen zur Verknupfung von Wirk- und Scheinleistung." },
-      { term: "eta", explanation: "Wirkungsgrad; er wird verwendet, wenn aus Ausgangsleistung der benotigte Eingangsstrom bestimmt werden soll." },
+      { term: "cos phi", explanation: "Leistungsfaktor in AC-Systemen zur Verknüpfung von Wirk- und Scheinleistung." },
+      { term: "eta", explanation: "Wirkungsgrad; er wird verwendet, wenn aus Ausgangsleistung der benötigte Eingangsstrom bestimmt werden soll." },
       { term: "I", explanation: "Berechneter Leitungsstrom." },
     ],
     examples: [
@@ -361,12 +361,12 @@ const copy: Record<CalculatorLocale, PageCopy> = {
     ],
     applications: [
       "Vorauswahl von Sicherungen und Schutzschaltern",
-      "Vorprufung fur Kabeldimensionierung",
+      "Vorprüfung für Kabeldimensionierung",
       "Kontrolle von Lastlisten",
       "Planung von Generatoren, USV und Schaltschranken",
     ],
     limitations: [
-      "Dieses Werkzeug liefert einen Naherungswert fur den Leitungsstrom und berucksichtigt keine Oberschwingungen, Anlaufstrome, Temperaturabminderung oder Korrekturfaktoren.",
+      "Dieses Werkzeug liefert einen Näherungswert für den Leitungsstrom und berücksichtigt keine Oberschwingungen, Anlaufströme, Temperaturabminderung oder Korrekturfaktoren.",
       "Im Dreiphasenmodus wird die Spannung als Leiterspannung interpretiert.",
       "Falls die eingegebene Leistung bereits die elektrische Eingangsleistung darstellt, setzen Sie den Wirkungsgrad auf 1 oder 100.",
     ],

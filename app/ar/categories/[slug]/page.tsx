@@ -177,7 +177,7 @@ export default async function ArabicCategoryPage({
         "@type": "ListItem",
         position: 2,
         name: "الفئات",
-        item: buildSiteUrl("/ar/all-conversions"),
+        item: buildSiteUrl("/ar/categories"),
       },
       {
         "@type": "ListItem",
@@ -234,6 +234,7 @@ export default async function ArabicCategoryPage({
         },
         {
           label: "الفئات",
+          href: "/ar/categories",
         },
         {
           label: arabicLabel,

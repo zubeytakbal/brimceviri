@@ -5,6 +5,8 @@
 // 4 herramientas universales (pagina de inicio), forman los 17 elementos
 // de la identidad del sitio.
 
+import { buildSpanishExtraUnitPages } from "./localizedSpanishExtraUnitPages";
+
 export type LocalizedSpanishUnitPage = {
   locale: "es";
   sourceSlug: string;
@@ -35,7 +37,7 @@ export const spanishUnitPages: LocalizedSpanishUnitPage[] = [
     shortDescription: "El metro es la unidad básica del SI para medir longitud.",
     historySummary: "Desde 1983, el metro se define por la distancia que recorre la luz en el vacío durante 1/299.792.458 de segundo.",
     measurementSystem: "Sistema Internacional de Unidades (SI)",
-    siEquivalent: "Unidad basica del SI para la longitud",
+    siEquivalent: "Unidad básica del SI para la longitud",
     commonUses: "Construcción, deporte, ciencia y distancias cotidianas",
   },
   {
@@ -157,7 +159,7 @@ export const spanishUnitPages: LocalizedSpanishUnitPage[] = [
     shortDescription: "El metro cuadrado es la unidad derivada del SI para superficie: la de un cuadrado de un metro de lado.",
     historySummary: "Desde la introducción del sistema métrico, el metro cuadrado es la referencia para construcción, vivienda y terrenos.",
     measurementSystem: "Sistema Internacional (SI)",
-    siEquivalent: "Unidad basica del SI para la superficie",
+    siEquivalent: "Unidad básica del SI para la superficie",
     commonUses: "Superficie de edificios, extensión de terrenos y planos de construcción",
   },
   {
@@ -266,7 +268,7 @@ export const spanishUnitPages: LocalizedSpanishUnitPage[] = [
     shortDescription: "El kilogramo es la unidad básica del SI para la masa.",
     historySummary: "Desde 2019, el kilogramo se define mediante un valor fijo de la constante de Planck, en lugar de un prototipo físico.",
     measurementSystem: "Sistema Internacional (SI)",
-    siEquivalent: "Unidad basica del SI para la masa",
+    siEquivalent: "Unidad básica del SI para la masa",
     commonUses: "Masa corporal, envíos y cocina",
   },
   {
@@ -372,7 +374,7 @@ export const spanishUnitPages: LocalizedSpanishUnitPage[] = [
     symbol: "°F",
     shortDescription: "La escala Fahrenheit se usa principalmente en Estados Unidos para la temperatura cotidiana.",
     historySummary: "Daniel Gabriel Fahrenheit propuso la escala en 1724; el agua se congela a 32 °F y hierve a 212 °F a presión estándar.",
-    measurementSystem: "Sistema estadounidense (escala comun)",
+    measurementSystem: "Sistema estadounidense (escala común)",
     siEquivalent: "°C = (°F − 32) × 5/9",
     commonUses: "Meteorología y cocina en Estados Unidos",
   },
@@ -388,7 +390,7 @@ export const spanishUnitPages: LocalizedSpanishUnitPage[] = [
     shortDescription: "El kelvin es la unidad básica del SI para temperatura termodinámica y parte del cero absoluto.",
     historySummary: "La unidad recibe su nombre de William Thomson, Lord Kelvin. Su escala comienza en 0 K; el símbolo K no lleva signo de grado.",
     measurementSystem: "Sistema Internacional (SI)",
-    siEquivalent: "Unidad basica del SI para la temperatura",
+    siEquivalent: "Unidad básica del SI para la temperatura",
     commonUses: "Investigación científica, física y astronomía",
   },
 
@@ -405,7 +407,7 @@ export const spanishUnitPages: LocalizedSpanishUnitPage[] = [
     shortDescription: "El segundo es la unidad básica del SI para el tiempo.",
     historySummary: "Desde 1967, se define por 9.192.631.770 períodos de radiación asociados al átomo de cesio-133.",
     measurementSystem: "Sistema Internacional (SI)",
-    siEquivalent: "Unidad basica del SI para el tiempo",
+    siEquivalent: "Unidad básica del SI para el tiempo",
     commonUses: "Cronometraje deportivo, ciencia e informática",
   },
   {
@@ -793,7 +795,7 @@ export const spanishUnitPages: LocalizedSpanishUnitPage[] = [
     symbol: "999",
     shortDescription: "La plata 999 contiene un 99,9 % de plata fina y se usa principalmente en lingotes.",
     historySummary: "Su alta pureza la hace habitual en productos de inversión y lingotes de plata.",
-    measurementSystem: "Sistema de milesimas",
+    measurementSystem: "Sistema de milésimas",
     siEquivalent: "99,9 % de plata fina",
     commonUses: "Lingotes e inversión en plata",
   },
@@ -808,10 +810,11 @@ export const spanishUnitPages: LocalizedSpanishUnitPage[] = [
     symbol: "925",
     shortDescription: "La plata esterlina 925 contiene un 92,5 % de plata fina y se usa ampliamente en joyería.",
     historySummary: "La plata esterlina se consolidó históricamente en Inglaterra y sigue siendo una ley muy reconocida para joyería y cubertería.",
-    measurementSystem: "Sistema de milesimas",
+    measurementSystem: "Sistema de milésimas",
     siEquivalent: "92,5 % de plata fina",
     commonUses: "Joyería y cubertería",
   },
+  ...buildSpanishExtraUnitPages("es"),
 ];
 
 export function findSpanishUnitPageBySourceSlug(sourceSlug: string) {

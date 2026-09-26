@@ -109,7 +109,7 @@ export async function generateMetadata({
 
   if (tool) {
     return {
-      title: `${tool.title} | BirimCeviri.app`,
+      title: `${tool.title}`,
       description: tool.description,
       alternates: {
         canonical: tool.uzbekPath,

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import PairConverter from "../../converter/PairConverter";
 import { convert } from "../../converter/convert";
+import { conversionPages } from "../../converter/conversionPages";
 import { findEnglishPageByTurkishSlug } from "../../converter/localizedConversionPages";
 import {
   findNorwegianConversionPage,
@@ -90,6 +91,7 @@ export default async function NorwegianConversionPage({ params }: PageProps) {
   }
 
   const englishPage = findEnglishPageByTurkishSlug(page.sourceSlug);
+  const hasTurkishPage = conversionPages.some((turkishPage) => turkishPage.slug === page.sourceSlug);
   const reversePage = findNorwegianConversionPage(page.reverseSlug);
   const fromUnitInfo = findNorwegianUnitPage(page.category, page.fromUnit);
   const toUnitInfo = findNorwegianUnitPage(page.category, page.toUnit);
@@ -138,7 +140,7 @@ export default async function NorwegianConversionPage({ params }: PageProps) {
             </h1>
 
             <p className="conversion-hero-description">
-              Skriv inn en verdi for a fa et direkte og gratis resultat.
+              Skriv inn en verdi for å få et direkte og gratis resultat.
             </p>
 
             <PairConverter
@@ -236,7 +238,7 @@ export default async function NorwegianConversionPage({ params }: PageProps) {
 
             <Link
               className="text-link"
-              href={`/no/unit-guides/${fromUnitInfo.slug}`}
+              href={`/no/enhetsguider/${fromUnitInfo.slug}`}
             >
               Se guiden for enheten {fromUnitInfo.name}
             </Link>
@@ -251,7 +253,7 @@ export default async function NorwegianConversionPage({ params }: PageProps) {
 
             <Link
               className="text-link"
-              href={`/no/unit-guides/${toUnitInfo.slug}`}
+              href={`/no/enhetsguider/${toUnitInfo.slug}`}
             >
               Se guiden for enheten {toUnitInfo.name}
             </Link>
@@ -289,7 +291,7 @@ export default async function NorwegianConversionPage({ params }: PageProps) {
             <h2>Kilder</h2>
 
             <p>
-              Definisjonene og omregningsforholdene pa denne siden folger
+              Definisjonene og omregningsforholdene på denne siden følger
               anerkjente metrologiske standarder.
             </p>
 
@@ -305,27 +307,32 @@ export default async function NorwegianConversionPage({ params }: PageProps) {
           </section>
         )}
 
-        <section className="conversion-section language-alternatives">
-          <h2>Andre sprak</h2>
-
-          <Link
-            className="text-link"
-            href={`/${page.sourceSlug}`}
-            hrefLang="tr"
-          >
-            Türkçe versiyonu aç
-          </Link>
-
-          {englishPage && (
-            <Link
-              className="text-link"
-              href={`/en/${englishPage.slug}`}
-              hrefLang="en"
-            >
-              View the English version
-            </Link>
-          )}
-        </section>
+        {(hasTurkishPage || englishPage) && (
+          <section className="conversion-section language-alternatives">
+            <h2>Andre språk</h2>
+  
+            {hasTurkishPage && (
+              <Link
+                className="text-link"
+                href={`/${page.sourceSlug}`}
+                hrefLang="tr"
+              >
+                Türkçe versiyonu aç
+              </Link>
+  
+            )}
+  
+            {englishPage && (
+              <Link
+                className="text-link"
+                href={`/en/${englishPage.slug}`}
+                hrefLang="en"
+              >
+                View the English version
+              </Link>
+            )}
+          </section>
+        )}
       </article>
     </main>
   );

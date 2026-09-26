@@ -10,7 +10,7 @@ const pagePath = "/en/everyday-calculators";
 const calculatorGroups = englishEverydayCalculatorGroups;
 
 export const metadata: Metadata = {
-  title: `Everyday Calculators | ${SITE_NAME}`,
+  title: `Everyday Calculators`,
   description:
     "Free everyday calculators for home projects, health routines, transport, energy use and personal planning.",
   alternates: { canonical: pagePath, languages: { en: pagePath } },

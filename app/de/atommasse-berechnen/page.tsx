@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import AtomicMassCalculatorDe from "../../components/AtomicMassCalculatorDe";
+import AtomicMassCalculator from "../../components/AtomicMassCalculator";
 import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
 import { buildSiteUrl } from "../../siteConfig";
 
@@ -188,7 +188,7 @@ export default function GermanAtomicMassCalculatorPage() {
         </div>
 
         <div className="unit-page-converter">
-          <AtomicMassCalculatorDe />
+          <AtomicMassCalculator locale="de" />
         </div>
         </div>
       </div>

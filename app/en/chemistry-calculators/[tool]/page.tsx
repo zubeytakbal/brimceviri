@@ -29,7 +29,7 @@ export function generateStaticParams() { return englishChemistryTools.map(({ slu
 function getTool(tool: string) { return tools[tool as ToolSlug]; }
 export const dynamicParams = false;
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> { const { tool: slug } = await params; const tool = getTool(slug); if (!tool) return {}; const path = `/en/chemistry-calculators/${slug}`; return { title: `${tool.title} | ${SITE_NAME}`, description: tool.description, alternates: { canonical: path, languages: { en: path } }, openGraph: { title: tool.title, description: tool.description, url: buildSiteUrl(path), siteName: SITE_NAME, locale: "en_US", type: "website" } }; }
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> { const { tool: slug } = await params; const tool = getTool(slug); if (!tool) return {}; const path = `/en/chemistry-calculators/${slug}`; return { title: `${tool.title}`, description: tool.description, alternates: { canonical: path, languages: { en: path } }, openGraph: { title: tool.title, description: tool.description, url: buildSiteUrl(path), siteName: SITE_NAME, locale: "en_US", type: "website" } }; }
 export default async function ChemistryToolPage({ params }: PageProps) {
   const { tool: slug } = await params;
   const tool = getTool(slug);

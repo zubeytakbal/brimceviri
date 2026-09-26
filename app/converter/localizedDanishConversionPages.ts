@@ -10,7 +10,7 @@ export type LocalizedDanishConversionPage = ConversionPage & {
 };
 
 const danishCategoryNames: Record<string, string> = {
-  uzunluk: "Laengde",
+  uzunluk: "Længde",
   alan: "Areal",
   hacim: "Rumfang",
   kutle: "Masse",
@@ -19,25 +19,25 @@ const danishCategoryNames: Record<string, string> = {
   hiz: "Hastighed",
   basinc: "Tryk",
   enerji: "Energi",
-  debi: "Stromning",
+  debi: "Strømning",
   elektrik: "Elektricitet",
   yogunluk: "Densitet",
   kuvvet: "Kraft",
   tork: "Moment",
   aci: "Vinkel",
   frekans: "Frekvens",
-  debi_hacimsel: "Volumenstrom",
-  debi_kutlesel: "Massestrom",
+  debi_hacimsel: "Volumenstrøm",
+  debi_kutlesel: "Massestrøm",
   manyetik_alan: "Magnetfelt",
   manyetik_aki: "Magnetisk fluks",
   viskozite_kinematik: "Kinematisk viskositet",
   isil_iletkenlik: "Varmeledningsevne",
-  isi_akisi: "Varmestrom",
+  isi_akisi: "Varmestrøm",
   ozgul_isi: "Specifik varme",
   ivme: "Acceleration",
   acisal_hiz: "Vinkelhastighed",
   guc: "Effekt",
-  momentum: "Bevaegelsesmaengde",
+  momentum: "Bevægelsesmængde",
   viskozite_dinamik: "Viskositet",
   veri: "Datalagring",
   elektrik_direnc: "Modstand",
@@ -45,7 +45,7 @@ const danishCategoryNames: Record<string, string> = {
   enduktans: "Induktans",
   elektrik_yuk: "Elektrisk ladning",
   altin_ayar: "Guldkarat",
-  gumus_ayar: "Solvindhold",
+  gumus_ayar: "Sølvindhold",
   kan_sekeri: "Blodsukker",
   vitamin_d: "D-vitamin",
 };
@@ -72,12 +72,12 @@ function createDanishExplanation(
   factor: number
 ) {
   if (factor >= 1) {
-    return `For at omregne ${fromName} til ${toName} skal du gange udgangsvaerdien med ${formatDanishValue(
+    return `For at omregne ${fromName} til ${toName} skal du gange udgangsværdien med ${formatDanishValue(
       factor
     )}. 1 ${fromUnit} = ${formatDanishValue(factor)} ${toUnit}.`;
   }
 
-  return `For at omregne ${fromName} til ${toName} skal du dividere udgangsvaerdien med ${formatDanishValue(
+  return `For at omregne ${fromName} til ${toName} skal du dividere udgangsværdien med ${formatDanishValue(
     1 / factor
   )}. 1 ${fromUnit} = ${formatDanishValue(factor)} ${toUnit}.`;
 }
@@ -138,22 +138,22 @@ function createDanishTemperatureExplanation(
   toUnit: string
 ) {
   if (fromUnit === "C" && toUnit === "F") {
-    return `For at omregne ${fromName} til ${toName} skal du gange med 9/5 og laegge 32 til. 1 ${fromUnit} svarer til 33,8 ${toUnit}.`;
+    return `For at omregne ${fromName} til ${toName} skal du gange med 9/5 og lægge 32 til. 1 ${fromUnit} svarer til 33,8 ${toUnit}.`;
   }
 
   if (fromUnit === "F" && toUnit === "C") {
-    return `For at omregne ${fromName} til ${toName} skal du forst traekke 32 fra og gange resultatet med 5/9. 32 ${fromUnit} svarer til 0 ${toUnit}.`;
+    return `For at omregne ${fromName} til ${toName} skal du først trække 32 fra og gange resultatet med 5/9. 32 ${fromUnit} svarer til 0 ${toUnit}.`;
   }
 
   if (fromUnit === "C" && toUnit === "K") {
-    return `For at omregne ${fromName} til ${toName} skal du laegge 273,15 til. 0 ${fromUnit} svarer til 273,15 ${toUnit}.`;
+    return `For at omregne ${fromName} til ${toName} skal du lægge 273,15 til. 0 ${fromUnit} svarer til 273,15 ${toUnit}.`;
   }
 
   if (fromUnit === "K" && toUnit === "C") {
-    return `For at omregne ${fromName} til ${toName} skal du traekke 273,15 fra. 273,15 ${fromUnit} svarer til 0 ${toUnit}.`;
+    return `For at omregne ${fromName} til ${toName} skal du trække 273,15 fra. 273,15 ${fromUnit} svarer til 0 ${toUnit}.`;
   }
 
-  return `Brug den definerede temperatursammenhaeng til at omregne ${fromName} til ${toName}.`;
+  return `Brug den definerede temperatursammenhæng til at omregne ${fromName} til ${toName}.`;
 }
 
 const danishUnitBySourceSlug: Record<string, { name: string; slug: string }> =

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import PairConverter from "../../converter/PairConverter";
 import { convert } from "../../converter/convert";
+import { conversionPages } from "../../converter/conversionPages";
 import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
 import {
   findNederlandsConversionPage,
@@ -46,7 +47,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description,
     alternates: {
       canonical: pagePath,
-      languages: { tr: `/${page.sourceSlug}`, nl: pagePath, "x-default": `/${page.sourceSlug}` },
+      languages: conversionPages.some((turkishPage) => turkishPage.slug === page.sourceSlug)
+        ? { tr: `/${page.sourceSlug}`, nl: pagePath, "x-default": `/${page.sourceSlug}` }
+        : { nl: pagePath },
     },
     openGraph: {
       title,
@@ -113,7 +116,7 @@ export default async function NederlandsConversionPage({ params }: PageProps) {
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: buildSiteUrl("/nl") },
       ...(category
-        ? [{ "@type": "ListItem", position: 2, name: category.title, item: buildSiteUrl(`/nl/categories/${category.slug}`) }]
+        ? [{ "@type": "ListItem", position: 2, name: category.title, item: buildSiteUrl(`/nl/categorieen/${category.slug}`) }]
         : []),
       { "@type": "ListItem", position: category ? 3 : 2, name: `${page.fromName} naar ${page.toName}`, item: pageUrl },
     ],
@@ -128,7 +131,7 @@ export default async function NederlandsConversionPage({ params }: PageProps) {
         <nav className="breadcrumbs" aria-label="Kruimelpad">
           <Link href="/nl">Home</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          {category ? <Link href={`/nl/categories/${category.slug}`}>{page.categoryName}</Link> : <span>{page.categoryName}</span>}
+          {category ? <Link href={`/nl/categorieen/${category.slug}`}>{page.categoryName}</Link> : <span>{page.categoryName}</span>}
           <span aria-hidden="true">&rsaquo;</span>
           <span>{page.fromName} naar {page.toName}</span>
         </nav>
@@ -174,14 +177,14 @@ export default async function NederlandsConversionPage({ params }: PageProps) {
           <section className="conversion-section unit-information">
             <h2>Wat is {fromUnit.name}?</h2>
             <p>{fromUnit.shortDescription}</p><p>{fromUnit.historySummary}</p>
-            <Link className="text-link" href={`/nl/unit-guides/${fromUnit.slug}`}>Bekijk de gids voor {fromUnit.name}</Link>
+            <Link className="text-link" href={`/nl/eenheidsgidsen/${fromUnit.slug}`}>Bekijk de gids voor {fromUnit.name}</Link>
           </section>
         )}
         {toUnit && (
           <section className="conversion-section unit-information">
             <h2>Wat is {toUnit.name}?</h2>
             <p>{toUnit.shortDescription}</p><p>{toUnit.historySummary}</p>
-            <Link className="text-link" href={`/nl/unit-guides/${toUnit.slug}`}>Bekijk de gids voor {toUnit.name}</Link>
+            <Link className="text-link" href={`/nl/eenheidsgidsen/${toUnit.slug}`}>Bekijk de gids voor {toUnit.name}</Link>
           </section>
         )}
         {reversePage && (
@@ -214,10 +217,12 @@ export default async function NederlandsConversionPage({ params }: PageProps) {
             <ol>{sources.map((source) => <li key={source.url}><a href={source.url} target="_blank" rel="noreferrer">{source.organization}: {source.title}</a></li>)}</ol>
           </section>
         )}
-        <section className="conversion-section language-alternatives">
-          <h2>Andere talen</h2>
-          <Link className="text-link" href={`/${page.sourceSlug}`} hrefLang="tr">Open de Turkse versie</Link>
-        </section>
+        {conversionPages.some((turkishPage) => turkishPage.slug === page.sourceSlug) && (
+          <section className="conversion-section language-alternatives">
+            <h2>Andere talen</h2>
+            <Link className="text-link" href={`/${page.sourceSlug}`} hrefLang="tr">Open de Turkse versie</Link>
+          </section>
+        )}
       </article>
     </main>
   );

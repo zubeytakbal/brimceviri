@@ -23,7 +23,7 @@ const spanishCategoryNames: Record<string, string> = {
   elektrik: "Electricidad",
   yogunluk: "Densidad",
   kuvvet: "Fuerza",
-  tork: "Par",
+  tork: "Par de torsión",
   aci: "Ángulo",
   frekans: "Frecuencia",
   debi_hacimsel: "Caudal volumétrico",
@@ -38,7 +38,7 @@ const spanishCategoryNames: Record<string, string> = {
   acisal_hiz: "Velocidad angular",
   guc: "Potencia",
   momentum: "Momento lineal",
-  viskozite_dinamik: "Viscosidad",
+  viskozite_dinamik: "Viscosidad dinámica",
   veri: "Almacenamiento de datos",
   elektrik_direnc: "Resistencia eléctrica",
   kapasitans: "Capacitancia",
@@ -153,7 +153,7 @@ function createSpanishTemperatureExplanation(
     return `Para convertir ${fromName} en ${toName}, se resta 273,15. 273,15 ${fromUnit} equivale a 0 ${toUnit}.`;
   }
 
-  return `Usa la relacion de temperatura definida para convertir ${fromName} en ${toName}.`;
+  return `Usa la relación de temperatura definida para convertir ${fromName} en ${toName}.`;
 }
 
 const spanishUnitBySourceSlug: Record<string, { name: string; slug: string }> =

@@ -1,3 +1,4 @@
+import { buildHomeLanguageAlternates } from "../i18n/routing";
 import type { Metadata } from "next";
 import BengaliHomeDirectory from "../components/BengaliHomeDirectory";
 import { getSiteNotifications } from "../converter/siteNotifications";
@@ -9,15 +10,7 @@ export const metadata: Metadata = {
     "দৈর্ঘ্য, ভর, তাপমাত্রা এবং অন্যান্য ভৌত একক বিনামূল্যে ও দ্রুত রূপান্তর করুন। ১২+ বিভাগ, নির্ভুল সূত্রসহ।",
   alternates: {
     canonical: "/bn",
-    languages: {
-      tr: "/",
-      en: "/en",
-      de: "/de",
-      ar: "/ar",
-      uz: "/uz",
-      bn: "/bn",
-      "x-default": "/",
-    },
+    ...buildHomeLanguageAlternates(),
   },
   openGraph: {
     title: "আপনার প্রয়োজনীয় একক রূপান্তর খুঁজুন",

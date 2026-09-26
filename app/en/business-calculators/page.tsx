@@ -6,7 +6,7 @@ import { SITE_NAME, buildSiteUrl } from "../../siteConfig";
 
 const pagePath = "/en/business-calculators";
 
-export const metadata: Metadata = { title: `Business Calculators | ${SITE_NAME}`, description: "Focused break-even, gross-margin and ROAS calculators with clear financial scope.", alternates: { canonical: pagePath, languages: { en: pagePath } }, openGraph: { title: "Business Calculators", description: "Focused business metrics with clear inputs and limits.", url: buildSiteUrl(pagePath), siteName: SITE_NAME, locale: "en_US", type: "website" } };
+export const metadata: Metadata = { title: `Business Calculators`, description: "Focused break-even, gross-margin and ROAS calculators with clear financial scope.", alternates: { canonical: pagePath, languages: { en: pagePath } }, openGraph: { title: "Business Calculators", description: "Focused business metrics with clear inputs and limits.", url: buildSiteUrl(pagePath), siteName: SITE_NAME, locale: "en_US", type: "website" } };
 
 export default function BusinessCalculatorsPage() {
   const pageUrl = buildSiteUrl(pagePath);

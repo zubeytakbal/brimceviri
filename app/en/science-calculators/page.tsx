@@ -11,7 +11,7 @@ const subjects = [
   { href: "/en/biology-calculators", title: "Biology", description: "A focused DNA sequence helper with input guidance and limits." },
 ];
 
-export const metadata: Metadata = { title: `Science Calculators | ${SITE_NAME}`, description: "Free science calculators for chemistry, mathematics, physics and biology.", alternates: { canonical: pagePath, languages: { en: pagePath } }, openGraph: { title: `Science Calculators | ${SITE_NAME}`, description: "Free science calculators for chemistry, mathematics, physics and biology.", url: buildSiteUrl(pagePath), siteName: SITE_NAME, locale: "en_US", type: "website" } };
+export const metadata: Metadata = { title: `Science Calculators`, description: "Free science calculators for chemistry, mathematics, physics and biology.", alternates: { canonical: pagePath, languages: { en: pagePath } }, openGraph: { title: `Science Calculators | ${SITE_NAME}`, description: "Free science calculators for chemistry, mathematics, physics and biology.", url: buildSiteUrl(pagePath), siteName: SITE_NAME, locale: "en_US", type: "website" } };
 
 export default function ScienceCalculatorsPage() {
   const url = buildSiteUrl(pagePath);

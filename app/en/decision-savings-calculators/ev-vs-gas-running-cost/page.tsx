@@ -8,7 +8,7 @@ import { SITE_NAME, buildSiteUrl } from "../../../siteConfig";
 const pagePath = "/en/decision-savings-calculators/ev-vs-gas-running-cost";
 
 export const metadata: Metadata = {
-  title: `EV vs Gas Running Cost Calculator | ${SITE_NAME}`,
+  title: `EV vs Gas Running Cost Calculator`,
   description: "Compare annual EV electricity and gas costs using metric or US units, your local prices and an optional vehicle price premium.",
   alternates: { canonical: pagePath, languages: { en: pagePath } },
   openGraph: { title: "EV vs Gas Running Cost Calculator", description: "Compare annual EV electricity and gas costs using your own prices and consumption figures.", url: buildSiteUrl(pagePath), siteName: SITE_NAME, locale: "en_US", type: "website" },

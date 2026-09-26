@@ -26,7 +26,13 @@ export type EnglishStandaloneToolComponentKey =
   | "wallpaperCalculator"
   | "movingBoxCalculator"
   | "naturalGasCalculator"
-  | "evChargingCalculator";
+  | "evChargingCalculator"
+  | "heightConverter"
+  | "gradeCalculator"
+  | "calorieCalculator"
+  | "bodyFatCalculator"
+  | "idealWeightCalculator"
+  | "fuelEconomyConverter";
 
 export type EnglishStandaloneTool = {
   slug: string;
@@ -64,7 +70,11 @@ export type EnglishStandaloneTool = {
     | "wallpaperCalculator"
     | "movingBoxCalculator"
     | "naturalGasCalculator"
-    | "evChargingCalculator";
+    | "evChargingCalculator"
+    | "gradeCalculator"
+    | "calorieCalculator"
+    | "bodyFatCalculator"
+    | "idealWeightCalculator";
   cardDescription: string;
   articleSections: Array<{
     title: string;
@@ -75,6 +85,8 @@ export type EnglishStandaloneTool = {
     label: string;
   };
   isEnglishOnly?: boolean;
+  /** Visible FAQ, also published as FAQPage structured data. */
+  faq?: Array<{ question: string; answer: string }>;
   priority: number;
 };
 
@@ -746,6 +758,216 @@ export const englishStandaloneTools: EnglishStandaloneTool[] = [
       },
     ],
     priority: 0.65,
+  },
+  {
+    slug: "height-converter",
+    englishPath: "/en/height-converter",
+    turkishPath: "/uzunluk-karsilastirma",
+    title: "Height Converter: cm to Feet and Inches",
+    description:
+      "Convert height from centimeters to feet and inches (5'9\") or from feet and inches to cm, with a chart of common heights.",
+    intro:
+      "Enter your height in centimeters to see it in feet and inches, or switch direction to convert feet and inches to cm. A chart of common heights is included below.",
+    component: "heightConverter",
+    iconName: "length",
+    cardDescription: "Converts height between cm and feet + inches, with a height chart.",
+    articleSections: [
+      {
+        title: "How to convert cm to feet and inches",
+        body: "Divide the height in centimeters by 2.54 to get total inches, then divide by 12. The whole number is feet and the remainder is inches. For example, 175 cm ÷ 2.54 = 68.9 inches, which is 5 feet 8.9 inches – usually written 5′9″.",
+      },
+      {
+        title: "How to convert feet and inches to cm",
+        body: "Multiply the feet by 12, add the inches and multiply the total by 2.54. For example, 5 ft 7 in = 67 inches × 2.54 = 170.18 cm. Because an inch is defined as exactly 2.54 cm, the result is exact.",
+      },
+      {
+        title: "Where each system is used",
+        body: "Height is written in feet and inches in the United States and, informally, in the United Kingdom and Canada. Most other countries, and medical records almost everywhere, use centimeters. This converter is useful for passports, dating profiles, sports rosters and size charts.",
+      },
+    ],
+    faq: [
+      { question: "How tall is 170 cm in feet?", answer: "170 cm is 5 feet 6.9 inches, usually rounded to 5′7″." },
+      { question: "How tall is 180 cm in feet?", answer: "180 cm is 5 feet 10.9 inches, usually rounded to 5′11″." },
+      { question: "What is 5 feet 7 inches in cm?", answer: "5 feet 7 inches is 170.18 cm (67 inches × 2.54)." },
+      { question: "What is 6 feet in cm?", answer: "6 feet is exactly 182.88 cm (72 inches × 2.54)." },
+    ],
+    isEnglishOnly: true,
+    priority: 0.8,
+  },
+  {
+    slug: "grade-calculator",
+    englishPath: "/en/grade-calculator",
+    turkishPath: "/harf-notu-hesaplama",
+    title: "Grade Calculator: Weighted & Final Exam Grade",
+    description:
+      "Calculate your weighted class grade and letter grade, and find the score you need on the final exam to reach your target grade.",
+    intro:
+      "Add your assignments, quizzes and exams with their grades and weights to see your current class grade and letter grade. Then find out what you need on the final exam.",
+    component: "gradeCalculator",
+    iconName: "gradeCalculator",
+    cardDescription: "Weighted class grade, letter grade and final exam score needed.",
+    articleSections: [
+      {
+        title: "How a weighted grade is calculated",
+        body: "Each grade is multiplied by its weight, the results are added together and the sum is divided by the total weight. For example, homework 92% (20%), quizzes 85% (20%) and a midterm 78% (30%) give (92×20 + 85×20 + 78×30) ÷ 70 = 84%, a B.",
+      },
+      {
+        title: "How the final exam calculator works",
+        body: "If the final exam counts for w% of the course, the score you need is (target − current × (1 − w)) ÷ w. With a current grade of 84%, a 30% final and a 90% target, you would need 104% – so an A− would need extra credit, but a B+ (87%) would need 94%.",
+      },
+      {
+        title: "Letter grade scales differ",
+        body: "The table uses a common US scale (A = 93–96, A− = 90–92 and so on). Many schools use their own cut-offs or a plain 90/80/70/60 scale, so always check your syllabus.",
+      },
+    ],
+    faq: [
+      { question: "Do the weights have to add up to 100%?", answer: "No. The calculator divides by the total weight you have entered, so you can see your current grade before all work is graded." },
+      { question: "What grade do I need on my final?", answer: "Enter your current grades, your target grade and the weight of the final exam; the calculator shows the minimum final exam score needed." },
+      { question: "What percentage is a B+?", answer: "On a common US scale a B+ is 87–89%. Your school may use different cut-offs." },
+      { question: "How do I calculate my grade without weights?", answer: "Give every assignment the same weight (for example 1); the calculator then returns a simple average." },
+    ],
+    isEnglishOnly: true,
+    priority: 0.8,
+  },
+  {
+    slug: "calorie-calculator",
+    englishPath: "/en/calorie-calculator",
+    turkishPath: "/bmi-hesaplama",
+    title: "Calorie Calculator: TDEE & Weight Loss",
+    description:
+      "Estimate your daily calorie needs (TDEE) and BMR with the Mifflin-St Jeor equation, plus calorie targets to lose, maintain or gain weight.",
+    intro:
+      "Enter your age, sex, height, weight and activity level to estimate how many calories you burn per day and how many to eat to lose, maintain or gain weight. US and metric units are supported.",
+    component: "calorieCalculator",
+    iconName: "calorieCalculator",
+    cardDescription: "Daily calories (TDEE), BMR and targets to lose or gain weight.",
+    articleSections: [
+      {
+        title: "BMR and TDEE",
+        body: "Basal metabolic rate (BMR) is the energy your body uses at complete rest. Total daily energy expenditure (TDEE) is BMR multiplied by an activity factor from 1.2 (sedentary) to 1.9 (very active). Eating at your TDEE keeps your weight roughly stable.",
+      },
+      {
+        title: "The Mifflin-St Jeor equation",
+        body: "BMR = 10 × weight (kg) + 6.25 × height (cm) − 5 × age + 5 for men, or − 161 for women. Studies have found it to be the most accurate of the common equations for most adults, typically within about 10% of measured values.",
+      },
+      {
+        title: "Calories for weight loss",
+        body: "A deficit of about 500 kcal per day leads to roughly 1 lb (0.45 kg) of weight loss per week, although real progress varies. The calculator does not suggest targets below 1,200 kcal (women) or 1,500 kcal (men) per day without medical supervision.",
+      },
+    ],
+    faq: [
+      { question: "How many calories should I eat to lose weight?", answer: "Roughly 500 kcal below your TDEE per day for about 1 lb (0.45 kg) of loss per week. The calculator shows this and other goals." },
+      { question: "What is the difference between BMR and TDEE?", answer: "BMR is what your body burns at rest; TDEE adds the energy used in daily activity and exercise." },
+      { question: "Which activity level should I choose?", answer: "Pick sedentary for a desk job with little exercise, moderate for exercise 3–5 days a week and active for 6–7 days. Most people overestimate their activity, so choose the lower level if unsure." },
+      { question: "How accurate is a calorie calculator?", answer: "It is an estimate. Track your weight for 2–3 weeks and adjust your intake by 100–200 kcal if the trend differs from your goal." },
+    ],
+    isEnglishOnly: true,
+    priority: 0.8,
+  },
+  {
+    slug: "body-fat-calculator",
+    englishPath: "/en/body-fat-calculator",
+    turkishPath: "/vucut-yag-orani-hesaplama",
+    title: "Body Fat Calculator (US Navy Method)",
+    description:
+      "Estimate your body fat percentage from height, neck, waist and hip measurements with the US Navy tape method, plus fat and lean mass.",
+    intro:
+      "Measure your neck, waist (and hips for women) with a tape measure and enter them with your height to estimate your body fat percentage. US and metric units are supported.",
+    component: "bodyFatCalculator",
+    iconName: "bodyFatCalculator",
+    cardDescription: "Body fat percentage from tape measurements (US Navy method).",
+    articleSections: [
+      {
+        title: "How the US Navy method works",
+        body: "The US Navy formula estimates body fat from circumference measurements and height using logarithms. It was developed for military fitness standards because it needs only a tape measure, and it is usually within a few percentage points of more expensive methods such as DEXA scans.",
+      },
+      {
+        title: "How to measure correctly",
+        body: "Measure in the morning before eating. Men measure the waist horizontally at the navel; women at the narrowest point. Measure the neck just below the larynx and, for women, the hips at the widest point. Take each measurement twice and use the average.",
+      },
+      {
+        title: "Healthy body fat ranges",
+        body: "According to the American Council on Exercise, 14–24% is typical for fit to average men and 21–31% for women. Essential fat alone is about 2–5% for men and 10–13% for women, so very low values are not a healthy target.",
+      },
+    ],
+    faq: [
+      { question: "What is a healthy body fat percentage?", answer: "Roughly 14–24% for men and 21–31% for women fall in the fitness and average ranges of the American Council on Exercise." },
+      { question: "How accurate is the US Navy body fat calculator?", answer: "It is typically within about 3–4 percentage points of DEXA results; accuracy depends a lot on measuring correctly." },
+      { question: "Why do women also need a hip measurement?", answer: "The female version of the formula uses waist + hip − neck because women store more fat around the hips." },
+      { question: "How do I calculate fat mass?", answer: "Multiply your weight by the body fat percentage. Enter your weight in the optional field to see fat mass and lean mass." },
+    ],
+    isEnglishOnly: true,
+    priority: 0.8,
+  },
+  {
+    slug: "ideal-weight-calculator",
+    englishPath: "/en/ideal-weight-calculator",
+    turkishPath: "/ideal-kilo-hesaplama",
+    title: "Ideal Weight Calculator",
+    description:
+      "Find your ideal body weight for your height with the Robinson, Miller, Devine and Hamwi formulas and the healthy BMI weight range.",
+    intro:
+      "Enter your height and sex to compare four ideal body weight formulas and see the healthy weight range for your height based on BMI.",
+    component: "idealWeightCalculator",
+    iconName: "idealWeightCalculator",
+    cardDescription: "Ideal weight by four formulas and the healthy BMI range.",
+    articleSections: [
+      {
+        title: "Ideal weight formulas",
+        body: "Devine (1974), Robinson (1983), Miller (1983) and Hamwi (1964) all start from a base weight at 5 feet and add a fixed amount for each inch above it. For example, Devine gives 50 kg + 2.3 kg per inch for men and 45.5 kg + 2.3 kg per inch for women.",
+      },
+      {
+        title: "Healthy weight range by BMI",
+        body: "A body mass index between 18.5 and 24.9 is considered a healthy weight for adults. For a height of 5 ft 6 in (168 cm) that is about 115–154 lb (52–70 kg). The range is often more useful than a single ideal number.",
+      },
+      {
+        title: "Limitations",
+        body: "These formulas were created to estimate medication doses, not to set weight goals. They ignore muscle mass, frame size, age and ethnicity, so athletes and older adults may be healthy outside the results.",
+      },
+    ],
+    faq: [
+      { question: "What is the ideal weight for a 5'6\" woman?", answer: "About 129–135 lb (59–61 kg) by the four common formulas; the healthy BMI range at that height is about 115–154 lb." },
+      { question: "What is the ideal weight for a 6' man?", answer: "About 161–177 lb (73–80 kg) by the four common formulas; the healthy BMI range at that height is about 136–184 lb." },
+      { question: "Which ideal weight formula is best?", answer: "None is clearly best. Devine is the most used in medicine; comparing all four with the BMI range gives a more balanced view." },
+      { question: "Does ideal weight depend on age?", answer: "The formulas do not include age. Some research suggests slightly higher BMI values may be healthy for older adults." },
+    ],
+    isEnglishOnly: true,
+    priority: 0.8,
+  },
+  {
+    slug: "mpg-to-l-100km",
+    englishPath: "/en/mpg-to-l-100km",
+    turkishPath: "/yakit-tuketimi-hesaplama",
+    title: "MPG to L/100 km Converter (US & UK)",
+    description:
+      "Convert fuel economy between miles per gallon (US and UK), liters per 100 km and km per liter, with a quick reference table.",
+    intro:
+      "Enter a fuel economy value in mpg (US or UK), L/100 km or km/L to convert it to the other units instantly. The table below lists common mpg values in L/100 km.",
+    component: "fuelEconomyConverter",
+    iconName: "fuelConsumptionCalculator",
+    cardDescription: "Converts mpg (US/UK), L/100 km and km/L.",
+    articleSections: [
+      {
+        title: "Why mpg and L/100 km are inverse",
+        body: "Miles per gallon measures distance per unit of fuel, while liters per 100 km measures fuel per unit of distance. That is why a higher mpg is better but a lower L/100 km is better, and why the conversion is a division: L/100 km = 235.215 ÷ mpg (US).",
+      },
+      {
+        title: "US and UK gallons are different",
+        body: "A US gallon is 3.785 liters and an imperial (UK) gallon is 4.546 liters. The same car therefore shows about 20% more mpg in the UK than in the US: 30 mpg (US) is 36 mpg (UK). Always check which gallon a figure uses.",
+      },
+      {
+        title: "Formulas",
+        body: "L/100 km = 235.215 ÷ mpg (US) = 282.481 ÷ mpg (UK). km/L = 100 ÷ L/100 km. mpg (US) = 2.352 × km/L.",
+      },
+    ],
+    faq: [
+      { question: "How do you convert mpg to L/100 km?", answer: "Divide 235.215 by the US mpg value, or 282.481 by the UK mpg value. For example, 30 mpg (US) = 7.84 L/100 km." },
+      { question: "What is 40 mpg in L/100 km?", answer: "40 mpg (US) is 5.88 L/100 km; 40 mpg (UK) is 7.06 L/100 km." },
+      { question: "What is 8 L/100 km in mpg?", answer: "8 L/100 km is 29.4 mpg (US) or 35.3 mpg (UK)." },
+      { question: "Is a higher L/100 km better?", answer: "No. L/100 km is fuel used per distance, so a lower number means better fuel economy." },
+    ],
+    isEnglishOnly: true,
+    priority: 0.8,
   },
 ];
 

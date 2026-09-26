@@ -34,7 +34,7 @@ const primaryCategoryPages = homeCategoryOrder
 
 const primaryCategoryCardsFromCategories = primaryCategoryPages.map((page) => ({
   id: page.category,
-  href: `/sv/categories/${page.slug}`,
+  href: `/sv/kategorier/${page.slug}`,
   title: page.title,
   description: page.description,
   iconName: getCategoryIconName(page.category) as SiteIconName,
@@ -51,28 +51,28 @@ const nicheCards: Array<{
 }> = [
   {
     id: "shoe-size",
-    href: "/sv/shoe-size-converter",
+    href: "/sv/skostorlekar",
     title: "Skostorlekskonverterare",
-    description: "Jamfor EU-, US- och UK-skostorlekar per marke.",
+    description: "Jämför EU-, US- och UK-skostorlekar per märke.",
     iconName: "shoeSize",
   },
   {
     id: "kitchen-measures",
-    href: "/sv/kitchen-measurement-converter",
-    title: "Kokmatt",
-    description: "Omvandla koppar, matskedar och gram utifran ingrediens.",
+    href: "/sv/koksmatt-omvandlare",
+    title: "Kokmått",
+    description: "Omvandla koppar, matskedar och gram utifrån ingrediens.",
     iconName: "kitchenMeasures",
   },
   {
     id: "recipe-converter",
-    href: "/sv/recipe-converter",
+    href: "/sv/receptomvandlare",
     title: "Receptomvandlare",
-    description: "Klistra in ett recept och skala mangderna med en multiplikator.",
+    description: "Klistra in ett recept och skala mängderna med en multiplikator.",
     iconName: "recipe",
   },
   {
     id: "historical-units",
-    href: "/sv/historical-units",
+    href: "/sv/historiska-enheter",
     title: "Historiska enheter",
     description: "Omvandla arşın, okka, dirhem och bysantinska enheter till moderna enheter.",
     iconName: "historical",
@@ -85,7 +85,7 @@ const secondaryCategoryCards = swedishCategoryPages
   .filter((page) => !(homeCategoryOrder as readonly string[]).includes(page.category))
   .map((page) => ({
     id: page.category,
-    href: `/sv/categories/${page.slug}`,
+    href: `/sv/kategorier/${page.slug}`,
     title: page.title,
     iconName: getCategoryIconName(page.category) as SiteIconName,
   }));
@@ -130,7 +130,7 @@ const popularUnits = preferredUnitSourceSlugs
 
     return {
       id: unitPage.slug,
-      href: `/sv/unit-guides/${unitPage.slug}`,
+      href: `/sv/enhetsguider/${unitPage.slug}`,
       label: unitPage.name,
       categoryLabel: unitPage.categoryName,
     };
@@ -184,17 +184,17 @@ export default function SwedishHomeDirectory({
       <section className="directory-hero">
         <div className="directory-shell">
           <div className="directory-hero-copy">
-            <p className="directory-eyebrow">Enhetsomvandlare pa svenska</p>
-            <h1>Vind den enhetsomvandling du behover</h1>
+            <p className="directory-eyebrow">Enhetsomvandlare på svenska</p>
+            <h1>Hitta den enhetsomvandling du behöver</h1>
             <p className="directory-lead">
-              Omvandla langd, massa, tryck och manga andra enheter helt pa
+              Omvandla längd, massa, tryck och många andra enheter helt på
               svenska, med tydliga enhetsguider.
             </p>
           </div>
 
           <div className="directory-hero-panel">
             <form className="directory-search" onSubmit={handleSubmit} role="search">
-              <label htmlFor={inputId}>Sok en omvandling</label>
+              <label htmlFor={inputId}>Sök en omvandling</label>
 
               <div className="directory-search-field">
                 <input
@@ -211,20 +211,20 @@ export default function SwedishHomeDirectory({
 
                 <button type="submit">
                   <DecorativeIcon className="directory-button-icon" name="search" size={18} />
-                  Oppna
+                  Öppna
                 </button>
               </div>
 
               <p className="directory-search-hint" id={`${inputId}-hint`}>
-                Skriv namnet pa en enhet pa svenska eller engelska och tryck
-                Enter for att oppna det forsta resultatet.
+                Skriv namnet på en enhet på svenska eller engelska och tryck
+                Enter för att öppna det första resultatet.
               </p>
 
               {query.trim() ? (
                 <div className="directory-search-results-wrap">
                   <div className="directory-search-results-head">
-                    <strong>Sokresultat</strong>
-                    <span>Tryck Enter for att oppna</span>
+                    <strong>Sökresultat</strong>
+                    <span>Tryck Enter för att öppna</span>
                   </div>
 
                   {searchResults.length > 0 ? (
@@ -241,7 +241,7 @@ export default function SwedishHomeDirectory({
                       ))}
                     </ul>
                   ) : (
-                    <p className="directory-search-empty">Inga traffar hittades.</p>
+                    <p className="directory-search-empty">Inga träffar hittades.</p>
                   )}
                 </div>
               ) : null}
@@ -266,10 +266,10 @@ export default function SwedishHomeDirectory({
           <header className="directory-section-header">
             <div>
               <h2>Enhetsomvandling</h2>
-              <p>Valj en kategori for att se alla enheter och omvandlingssidor.</p>
+              <p>Välj en kategori för att se alla enheter och omvandlingssidor.</p>
             </div>
 
-            <Link className="directory-section-link" href="/sv/categories">
+            <Link className="directory-section-link" href="/sv/kategorier">
               <DecorativeIcon className="directory-link-icon" name="allConversions" size={18} />
               Alla kategorier
             </Link>
@@ -315,7 +315,7 @@ export default function SwedishHomeDirectory({
           )}
 
           <div className="directory-section-footer">
-            <Link className="directory-section-link" href="/sv/categories">
+            <Link className="directory-section-link" href="/sv/kategorier">
               <DecorativeIcon className="directory-link-icon" name="allConversions" size={18} />
               Se alla kategorier och omvandlingar
             </Link>
@@ -326,8 +326,8 @@ export default function SwedishHomeDirectory({
           <section className="directory-section">
             <header className="directory-section-header">
               <div>
-                <h2>Populara omvandlingar</h2>
-                <p>Direkt atkomst till de mest sokta omvandlingarna.</p>
+                <h2>Populära omvandlingar</h2>
+                <p>Direkt åtkomst till de mest sökta omvandlingarna.</p>
               </div>
             </header>
 
@@ -348,8 +348,8 @@ export default function SwedishHomeDirectory({
           <section className="directory-section">
             <header className="directory-section-header">
               <div>
-                <h2>Populara enheter</h2>
-                <p>Detaljerade guider pa svenska for de mest sokta enheterna.</p>
+                <h2>Populära enheter</h2>
+                <p>Detaljerade guider på svenska för de mest sökta enheterna.</p>
               </div>
             </header>
 

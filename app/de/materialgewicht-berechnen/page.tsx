@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import MaterialWeightCalculatorDe from "../../components/MaterialWeightCalculatorDe";
+import MaterialWeightCalculator from "../../components/MaterialWeightCalculator";
 import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
 import { buildSiteUrl } from "../../siteConfig";
 
@@ -80,7 +80,7 @@ export default function GermanMaterialWeightCalculatorPage() {
           </p>
         </header>
 
-        <MaterialWeightCalculatorDe />
+        <MaterialWeightCalculator locale="de" />
 
         <section className="category-article-content">
           <h2>Häufig gestellte Fragen</h2>

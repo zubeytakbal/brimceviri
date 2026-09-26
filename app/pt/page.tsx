@@ -1,3 +1,4 @@
+import { buildHomeLanguageAlternates } from "../i18n/routing";
 import type { Metadata } from "next";
 import PortugueseHomeDirectory from "../components/PortugueseHomeDirectory";
 import { getSiteNotifications } from "../converter/siteNotifications";
@@ -9,19 +10,7 @@ export const metadata: Metadata = {
     "Converta grátis e instantaneamente comprimento, massa, temperatura e outras unidades físicas. Mais de 12 categorias, com fórmulas precisas.",
   alternates: {
     canonical: "/pt",
-    languages: {
-      tr: "/",
-      en: "/en",
-      de: "/de",
-      ar: "/ar",
-      uz: "/uz",
-      bn: "/bn",
-      fr: "/fr",
-      es: "/es",
-      "es-419": "/es-419",
-      pt: "/pt",
-      "x-default": "/",
-    },
+    ...buildHomeLanguageAlternates(),
   },
   openGraph: {
     title: "Encontre a conversão de unidades que você precisa",

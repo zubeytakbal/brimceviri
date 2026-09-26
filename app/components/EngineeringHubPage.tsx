@@ -182,7 +182,7 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
             title: "kW to Amper",
             formula: "I = P / (\u221a3 x V x cos phi x eta)",
             description:
-              "Uc faz, tek faz ve DC secenekleriyle gucu yaklasik hat akimina cevirin.",
+              "Üç faz, tek faz ve DC seçenekleriyle gücü yaklaşık hat akımına çevirin.",
           },
           {
             slug: "amper-to-kw-hesaplama",
@@ -190,7 +190,7 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
             title: "Amper to kW",
             formula: "P = \u221a3 x V x I x cos phi x eta",
             description:
-              "Hat akimindan uc faz, tek faz ve DC secenekleriyle yaklasik gucu hesaplayin.",
+              "Hat akımından üç faz, tek faz ve DC seçenekleriyle yaklaşık gücü hesaplayın.",
           },
           {
             slug: "ohm-yasasi",
@@ -574,7 +574,7 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
     ],
     title: "Ingenieurrechner",
     description:
-      "Erkunden Sie ein ausgebautes Ingenieurzentrum, das elektrische Werkzeuge, Warmeubertragung, Stromung, Druck und technische Einheiten in klaren Themenclustern verbindet.",
+      "Erkunden Sie ein ausgebautes Ingenieurzentrum, das elektrische Werkzeuge, Wärmeübertragung, Strömung, Druck und technische Einheiten in klaren Themenclustern verbindet.",
     focusTitle: "Ingenieurbereiche",
     focusDescription:
       "Der Ingenieurbereich wird von einer flachen Liste zu Themenzentren ausgebaut. Elektrorechner ist das erste eigene Teilzentrum; die anderen Gruppen bleiben weiterhin direkt erreichbar.",
@@ -583,44 +583,44 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
         href: getElectricalHubPath("de"),
         title: "Elektrorechner",
         description:
-          "Eigenes Teilzentrum fur Kabeldimensionierung, Spannungsfall und Leistungs-Strom-Umrechnung.",
+          "Eigenes Teilzentrum für Kabeldimensionierung, Spannungsfall und Leistungs-Strom-Umrechnung.",
         iconName: "energy",
         meta: "Neues Teilzentrum",
       },
       {
         href: "#druck-und-stromung",
-        title: "Druck und Stromung",
+        title: "Druck und Strömung",
         description:
-          "Aktuelle Werkzeuge fur Druckbeziehungen, hydrostatische Lasten und Stromungsprufungen.",
+          "Aktuelle Werkzeuge für Druckbeziehungen, hydrostatische Lasten und Strömungsprüfungen.",
         iconName: "pressure",
         meta: "Aktuelle Gruppe",
       },
       {
         href: "#warmeubertragung",
-        title: "Warmeubertragung",
+        title: "Wärmeübertragung",
         description:
-          "Aktuelle thermische Gruppe fur Warmeenergie und Warmeleitung.",
+          "Aktuelle thermische Gruppe für Wärmeenergie und Wärmeleitung.",
         iconName: "temperature",
         meta: "Aktuelle Gruppe",
       },
     ],
-    introTitle: "Ein Elternzentrum fur technische Rechencluster",
+    introTitle: "Ein Elternzentrum für technische Rechencluster",
     introBody:
-      "Diese Seite fasst die aktuellen Ingenieurrechner nach Themenfeldern zusammen und dient jetzt als ubergeordnetes Zentrum fur eigene Teil-Hubs. So konnen Nutzer zuerst das passende Fachgebiet und danach den genauen Rechenweg auswahlen.",
+      "Diese Seite fasst die aktuellen Ingenieurrechner nach Themenfeldern zusammen und dient jetzt als übergeordnetes Zentrum für eigene Teil-Hubs. So können Nutzer zuerst das passende Fachgebiet und danach den genauen Rechenweg auswahlen.",
     groups: [
       {
         id: "druck-und-stromung",
-        title: "Druck und Stromung",
+        title: "Druck und Strömung",
         description:
-          "Werkzeuge fur Druckbeziehungen, hydrostatische Lasten und erste Stromungsbewertungen in Leitungen.",
+          "Werkzeuge für Druckbeziehungen, hydrostatische Lasten und erste Strömungsbewertungen in Leitungen.",
         tools: [
           {
             slug: "druck-kraft-flaeche",
             href: "/de/rechner/druck-kraft-flaeche",
-            title: "Druck, Kraft und Flache",
+            title: "Druck, Kraft und Fläche",
             formula: "P = F / A",
             description:
-              "Berechnen Sie Druck, Kraft oder Flache mit technischen Einheiten und SI-Bezug.",
+              "Berechnen Sie Druck, Kraft oder Fläche mit technischen Einheiten und SI-Bezug.",
           },
           {
             slug: "hydrostatischer-druck",
@@ -636,39 +636,39 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
             title: "Reynolds-Zahl",
             formula: "Re = \u03c1 x v x D / \u03bc",
             description:
-              "Bewerten Sie das Stromungsregime uber Dichte, Geschwindigkeit, Durchmesser und Viskositat.",
+              "Bewerten Sie das Strömungsregime über Dichte, Geschwindigkeit, Durchmesser und Viskosität.",
           },
         ],
       },
       {
         id: "warmeubertragung",
-        title: "Warmeubertragung",
+        title: "Wärmeübertragung",
         description:
-          "Werkzeuge fur gespeicherte Warmeenergie, Warmeleitung und thermische Materialvergleiche.",
+          "Werkzeuge für gespeicherte Wärmeenergie, Wärmeleitung und thermische Materialvergleiche.",
         tools: [
           {
             slug: "waermeenergie",
             href: "/de/rechner/waermeenergie",
-            title: "Warmeenergie",
+            title: "Wärmeenergie",
             formula: "Q = m x c x \u0394T",
             description:
-              "Berechnen Sie Warmeenergie, Masse, spezifische Warmekapazitat oder Temperaturdifferenz.",
+              "Berechnen Sie Wärmeenergie, Masse, spezifische Wärmekapazität oder Temperaturdifferenz.",
           },
           {
             slug: "waermeleitung",
             href: "/de/rechner/waermeleitung",
-            title: "Warmeleitung",
+            title: "Wärmeleitung",
             formula: "Qdot = k x A x \u0394T / L",
             description:
-              "Vergleichen Sie Warmestrom aus Leitfahigkeit, Flache, Temperaturdifferenz und Schichtdicke.",
+              "Vergleichen Sie Wärmestrom aus Leitfähigkeit, Fläche, Temperaturdifferenz und Schichtdicke.",
           },
         ],
       },
       {
         id: "elektrizitat",
-        title: "Elektrizitat",
+        title: "Elektrizität",
         description:
-          "Werkzeuge fur Spannung, Strom und Widerstand, erganzt durch ein neues eigenes Teilzentrum fur Elektrorechner.",
+          "Werkzeuge für Spannung, Strom und Widerstand, ergänzt durch ein neues eigenes Teilzentrum für Elektrorechner.",
         tools: [
           {
             slug: "kw-to-amper-hesaplama",
@@ -676,7 +676,7 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
             title: "kW-zu-Ampere",
             formula: "I = P / (\u221a3 x V x cos phi x eta)",
             description:
-              "Wandeln Sie Leistung fur Dreiphasen-, Einphasen- und DC-Systeme in einen naherungsweisen Leitungsstrom um.",
+              "Wandeln Sie Leistung für Dreiphasen-, Einphasen- und DC-Systeme in einen näherungsweisen Leitungsstrom um.",
           },
           {
             slug: "amper-to-kw-hesaplama",
@@ -684,7 +684,7 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
             title: "Ampere-zu-kW",
             formula: "P = \u221a3 x V x I x cos phi x eta",
             description:
-              "Wandeln Sie Leitungsstrom fur Dreiphasen-, Einphasen- und DC-Systeme in eine naherungsweise Leistung um.",
+              "Wandeln Sie Leitungsstrom für Dreiphasen-, Einphasen- und DC-Systeme in eine näherungsweise Leistung um.",
           },
           {
             slug: "ohms-law",
@@ -692,20 +692,20 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
             title: "Ohmsches Gesetz",
             formula: "V = I x R",
             description:
-              "Berechnen Sie Spannung, Strom oder Widerstand fur grundlegende Elektrokontrollen.",
+              "Berechnen Sie Spannung, Strom oder Widerstand für grundlegende Elektrokontrollen.",
           },
         ],
       },
     ],
     howToTitle: "Wie verwendet man diese Rechner?",
     howToSteps: [
-      "Wahlen Sie zuerst die gesuchte Zielgrosse und tragen Sie nur die bekannten Werte ein.",
-      "Legen Sie fur jeden Eingabewert die richtige Einheit fest; alle Werkzeuge rechnen intern zuerst auf SI um.",
-      "Prufen Sie Hauptresultat, eingesetzte Formel und SI-Aquivalent gemeinsam, um Plausibilitatsfehler schnell zu erkennen.",
+      "Wahlen Sie zuerst die gesuchte Zielgröße und tragen Sie nur die bekannten Werte ein.",
+      "Legen Sie für jeden Eingabewert die richtige Einheit fest; alle Werkzeuge rechnen intern zuerst auf SI um.",
+      "Prüfen Sie Hauptresultat, eingesetzte Formel und SI-Äquivalent gemeinsam, um Plausibilitätsfehler schnell zu erkennen.",
     ],
     guidesTitle: "Passende Einheitenleitfaden",
     guidesDescription:
-      "Wenn Sie Definitionen, Symbole oder Hintergrundwissen zu den verwendeten Basisgrossen brauchen, offnen Sie die passenden Einheitenleitfaden.",
+      "Wenn Sie Definitionen, Symbole oder Hintergrundwissen zu den verwendeten Basisgrößen brauchen, öffnen Sie die passenden Einheitenleitfaden.",
     guideLinks: [
       { href: "/de/einheiten/pascal", label: "Pascal (Pa) Leitfaden" },
       { href: "/de/einheiten/meter", label: "Meter (m) Leitfaden" },

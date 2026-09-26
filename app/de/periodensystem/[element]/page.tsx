@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import ElementLewisDiagramDe from "../../../components/ElementLewisDiagramDe";
-import ElementMolWidgetDe from "../../../components/ElementMolWidgetDe";
-import ElementNeighborsMiniDe from "../../../components/ElementNeighborsMiniDe";
+import ElementLewisDiagram from "../../../components/ElementLewisDiagram";
+import ElementMolWidget from "../../../components/ElementMolWidget";
+import ElementNeighborsMini from "../../../components/ElementNeighborsMini";
 import { periodicTable, slugifyElementName } from "../../../converter/periodicTableData";
 import {
   elementCategoryLabelsDe,
@@ -139,9 +139,9 @@ export default async function GermanElementPage({ params }: PageProps) {
           </p>
         </header>
 
-        <ElementNeighborsMiniDe element={element} />
+        <ElementNeighborsMini locale="de" element={element} />
 
-        <ElementMolWidgetDe elementName={nameDe} atomicMass={element.atomicMass} />
+        <ElementMolWidget locale="de" elementName={nameDe} atomicMass={element.atomicMass} />
 
         <section className="category-article-content">
           <h2>{nameDe} Grunddaten</h2>
@@ -172,7 +172,7 @@ export default async function GermanElementPage({ params }: PageProps) {
             </div>
           </dl>
 
-          <ElementLewisDiagramDe element={element} />
+          <ElementLewisDiagram locale="de" element={element} />
 
           <h2>Einordnung im Periodensystem</h2>
           <p>{positionDescription}</p>

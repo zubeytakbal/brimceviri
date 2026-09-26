@@ -7,7 +7,7 @@ import { SITE_NAME, buildSiteUrl } from "../../siteConfig";
 const pagePath = "/en/biology-calculators";
 const tools = getEnglishScienceToolsBySubject("biology");
 
-export const metadata: Metadata = { title: `Biology Calculators | ${SITE_NAME}`, description: "Focused biology learning tools with clear inputs, methods and limitations.", alternates: { canonical: pagePath, languages: { en: pagePath } }, openGraph: { title: "Biology Calculators", description: "Focused biology learning tools with clear inputs, methods and limitations.", url: buildSiteUrl(pagePath), siteName: SITE_NAME, locale: "en_US", type: "website" } };
+export const metadata: Metadata = { title: `Biology Calculators`, description: "Focused biology learning tools with clear inputs, methods and limitations.", alternates: { canonical: pagePath, languages: { en: pagePath } }, openGraph: { title: "Biology Calculators", description: "Focused biology learning tools with clear inputs, methods and limitations.", url: buildSiteUrl(pagePath), siteName: SITE_NAME, locale: "en_US", type: "website" } };
 
 export default function BiologyCalculatorsPage() {
   const pageUrl = buildSiteUrl(pagePath);

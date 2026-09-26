@@ -48,14 +48,14 @@ const ROOT_THREE = Math.sqrt(3);
 
 const messages = {
   tr: {
-    missing: "Akim ve gerilim degerlerini girin.",
-    invalid: "Gecerli sayisal degerler girin.",
-    currentPositive: "Akim sifirdan buyuk olmalidir.",
-    voltagePositive: "Gerilim sifirdan buyuk olmalidir.",
+    missing: "Akım ve gerilim değerlerini girin.",
+    invalid: "Geçerli sayısal değerler girin.",
+    currentPositive: "Akım sıfırdan büyük olmalıdır.",
+    voltagePositive: "Gerilim sıfırdan büyük olmalıdır.",
     powerFactorRange:
-      "Guc faktoru 0 ile 1 arasinda veya 0 ile 100 arasinda bir yuzde degeri olmalidir.",
+      "Güç faktörü 0 ile 1 arasında veya 0 ile 100 arasında bir yüzde değeri olmalıdır.",
     efficiencyRange:
-      "Verim 0 ile 1 arasinda veya 0 ile 100 arasinda bir yuzde degeri olmalidir.",
+      "Verim 0 ile 1 arasında veya 0 ile 100 arasında bir yüzde değeri olmalıdır.",
   },
   en: {
     missing: "Enter the current and voltage values.",
@@ -69,9 +69,9 @@ const messages = {
   },
   de: {
     missing: "Geben Sie Strom- und Spannungswerte ein.",
-    invalid: "Geben Sie gultige Zahlenwerte ein.",
-    currentPositive: "Der Strom muss grosser als null sein.",
-    voltagePositive: "Die Spannung muss grosser als null sein.",
+    invalid: "Geben Sie gültige Zahlenwerte ein.",
+    currentPositive: "Der Strom muss größer als null sein.",
+    voltagePositive: "Die Spannung muss größer als null sein.",
     powerFactorRange:
       "Der Leistungsfaktor muss zwischen 0 und 1 liegen oder als Prozentwert zwischen 0 und 100 eingegeben werden.",
     efficiencyRange:

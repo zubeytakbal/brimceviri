@@ -433,6 +433,10 @@ export default function StoichiometryCalculator() {
       return null;
     }
 
+    const resultFor = (id: number) => results.find((item) => item.id === id) ?? null;
+    const sideIndex = (row: CompoundRow) =>
+      rows.filter((item) => item.side === row.side).findIndex((item) => item.id === row.id);
+
     const knownResult = resultFor(knownId);
     if (!knownResult) {
       return null;

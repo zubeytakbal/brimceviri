@@ -3,13 +3,36 @@
 import { useMemo, useState } from "react";
 import type { Locale } from "../i18n/config";
 import { formatLocalizedNumber } from "../i18n/toolLocales";
+import { formatWithCurrency } from "./localeCurrency";
 import {
   calculateVat,
   type VatCalculatorInput,
   type VatDirection,
 } from "../converter/vatCalculator";
 
-const rateOptions = ["1", "10", "20", "custom"] as const;
+// Her dilin hitap ettigi ulkenin standart KDV oranlari (para birimi: localeCurrency.ts).
+// Brezilya'da KDV yerine eyalete gore degisen ICMS, Latin Amerika'da ise
+// ulkeye gore farkli oranlar var; bu dillerde yaygin oranlar verildi,
+// "ozel oran" secenegi her dilde acik.
+type VatSettings = { rates: string[]; defaultRate: string };
+
+const vatSettingsByLocale: Record<Exclude<Locale, "ru">, VatSettings> = {
+  tr: { rates: ["1", "10", "20"], defaultRate: "20" },
+  en: { rates: ["1", "10", "20"], defaultRate: "20" },
+  de: { rates: ["7", "19"], defaultRate: "19" },
+  fr: { rates: ["5.5", "10", "20"], defaultRate: "20" },
+  es: { rates: ["4", "10", "21"], defaultRate: "21" },
+  "es-419": { rates: ["16", "19", "21"], defaultRate: "16" },
+  pt: { rates: ["12", "17", "18"], defaultRate: "18" },
+  it: { rates: ["4", "5", "10", "22"], defaultRate: "22" },
+  nl: { rates: ["9", "21"], defaultRate: "21" },
+  sv: { rates: ["6", "12", "25"], defaultRate: "25" },
+  no: { rates: ["12", "15", "25"], defaultRate: "25" },
+  da: { rates: ["25"], defaultRate: "25" },
+  ar: { rates: ["5", "15"], defaultRate: "15" },
+  uz: { rates: ["12"], defaultRate: "12" },
+  bn: { rates: ["5", "7.5", "10", "15"], defaultRate: "15" },
+};
 
 type VatCopy = {
   labels: {
@@ -19,7 +42,7 @@ type VatCopy = {
     customRate: string;
   };
   directions: Record<VatDirection, string>;
-  rateOptions: Record<(typeof rateOptions)[number], string>;
+  rateOptions: { custom: string };
   resultLabels: {
     baseAmount: string;
     vatAmount: string;
@@ -31,27 +54,24 @@ type VatCopy = {
 const copyByLocale: Record<Exclude<Locale, "ru">, VatCopy> = {
   tr: {
     labels: {
-      direction: "Hesap Yonu",
-      amount: "Tutar (EUR)",
-      rate: "KDV Orani",
-      customRate: "Ozel Oran (%)",
+      direction: "Hesap Yönü",
+      amount: "Tutar (TL)",
+      rate: "KDV Oranı",
+      customRate: "Özel Oran (%)",
     },
     directions: {
-      "exclusive-to-inclusive": "KDV Haric -> KDV Dahil",
-      "inclusive-to-exclusive": "KDV Dahil -> KDV Haric",
+      "exclusive-to-inclusive": "KDV Hariç -> KDV Dahil",
+      "inclusive-to-exclusive": "KDV Dahil -> KDV Hariç",
     },
     rateOptions: {
-      "1": "%1",
-      "10": "%10",
-      "20": "%20",
-      custom: "Ozel oran",
+      custom: "Özel oran",
     },
     resultLabels: {
-      baseAmount: "KDV Haric Tutar (Matrah)",
-      vatAmount: "KDV Tutari",
+      baseAmount: "KDV Hariç Tutar (Matrah)",
+      vatAmount: "KDV Tutarı",
       totalAmount: "KDV Dahil Tutar",
     },
-    emptyState: "Gecerli tutar ve oran girerek sonucu gorebilirsin.",
+    emptyState: "Geçerli tutar ve oran girerek sonucu görebilirsin.",
   },
   en: {
     labels: {
@@ -65,9 +85,6 @@ const copyByLocale: Record<Exclude<Locale, "ru">, VatCopy> = {
       "inclusive-to-exclusive": "VAT inclusive -> VAT exclusive",
     },
     rateOptions: {
-      "1": "1%",
-      "10": "10%",
-      "20": "20%",
       custom: "Custom rate",
     },
     resultLabels: {
@@ -79,219 +96,192 @@ const copyByLocale: Record<Exclude<Locale, "ru">, VatCopy> = {
   },
   fr: {
     labels: {
-      direction: "Calculation Direction",
-      amount: "Amount (EUR)",
-      rate: "VAT Rate",
-      customRate: "Custom Rate (%)",
+      direction: "Sens du calcul",
+      amount: "Montant (EUR)",
+      rate: "Taux de TVA",
+      customRate: "Taux personnalisé (%)",
     },
     directions: {
-      "exclusive-to-inclusive": "VAT exclusive -> VAT inclusive",
-      "inclusive-to-exclusive": "VAT inclusive -> VAT exclusive",
+      "exclusive-to-inclusive": "HT -> TTC",
+      "inclusive-to-exclusive": "TTC -> HT",
     },
     rateOptions: {
-      "1": "1%",
-      "10": "10%",
-      "20": "20%",
-      custom: "Custom rate",
+      custom: "Taux personnalisé",
     },
     resultLabels: {
-      baseAmount: "Base Amount",
-      vatAmount: "VAT Amount",
-      totalAmount: "Total with VAT",
+      baseAmount: "Montant HT",
+      vatAmount: "Montant de la TVA",
+      totalAmount: "Total TTC",
     },
-    emptyState: "Enter a valid amount and rate to see the result.",
+    emptyState: "Saisissez un montant et un taux valides pour voir le résultat.",
   },
   es: {
     labels: {
-      direction: "Calculation Direction",
-      amount: "Amount (EUR)",
-      rate: "VAT Rate",
-      customRate: "Custom Rate (%)",
+      direction: "Tipo de cálculo",
+      amount: "Importe (EUR)",
+      rate: "Tipo de IVA",
+      customRate: "Tipo personalizado (%)",
     },
     directions: {
-      "exclusive-to-inclusive": "VAT exclusive -> VAT inclusive",
-      "inclusive-to-exclusive": "VAT inclusive -> VAT exclusive",
+      "exclusive-to-inclusive": "Sin IVA -> Con IVA",
+      "inclusive-to-exclusive": "Con IVA -> Sin IVA",
     },
     rateOptions: {
-      "1": "1%",
-      "10": "10%",
-      "20": "20%",
-      custom: "Custom rate",
+      custom: "Tipo personalizado",
     },
     resultLabels: {
-      baseAmount: "Base Amount",
-      vatAmount: "VAT Amount",
-      totalAmount: "Total with VAT",
+      baseAmount: "Base imponible",
+      vatAmount: "Cuota de IVA",
+      totalAmount: "Total con IVA",
     },
-    emptyState: "Enter a valid amount and rate to see the result.",
+    emptyState: "Introduce un importe y un tipo válidos para ver el resultado.",
   },
   "es-419": {
     labels: {
-      direction: "Calculation Direction",
-      amount: "Amount (EUR)",
-      rate: "VAT Rate",
-      customRate: "Custom Rate (%)",
+      direction: "Tipo de cálculo",
+      amount: "Monto ($)",
+      rate: "Tasa de IVA",
+      customRate: "Tasa personalizada (%)",
     },
     directions: {
-      "exclusive-to-inclusive": "VAT exclusive -> VAT inclusive",
-      "inclusive-to-exclusive": "VAT inclusive -> VAT exclusive",
+      "exclusive-to-inclusive": "Sin IVA -> Con IVA",
+      "inclusive-to-exclusive": "Con IVA -> Sin IVA",
     },
     rateOptions: {
-      "1": "1%",
-      "10": "10%",
-      "20": "20%",
-      custom: "Custom rate",
+      custom: "Tasa personalizada",
     },
     resultLabels: {
-      baseAmount: "Base Amount",
-      vatAmount: "VAT Amount",
-      totalAmount: "Total with VAT",
+      baseAmount: "Monto base",
+      vatAmount: "Monto del IVA",
+      totalAmount: "Total con IVA",
     },
-    emptyState: "Enter a valid amount and rate to see the result.",
+    emptyState: "Ingresa un monto y una tasa válidos para ver el resultado.",
   },
   pt: {
     labels: {
-      direction: "Calculation Direction",
-      amount: "Amount (EUR)",
-      rate: "VAT Rate",
-      customRate: "Custom Rate (%)",
+      direction: "Tipo de cálculo",
+      amount: "Valor (R$)",
+      rate: "Alíquota do imposto",
+      customRate: "Alíquota personalizada (%)",
     },
     directions: {
-      "exclusive-to-inclusive": "VAT exclusive -> VAT inclusive",
-      "inclusive-to-exclusive": "VAT inclusive -> VAT exclusive",
+      "exclusive-to-inclusive": "Sem imposto -> Com imposto",
+      "inclusive-to-exclusive": "Com imposto -> Sem imposto",
     },
     rateOptions: {
-      "1": "1%",
-      "10": "10%",
-      "20": "20%",
-      custom: "Custom rate",
+      custom: "Alíquota personalizada",
     },
     resultLabels: {
-      baseAmount: "Base Amount",
-      vatAmount: "VAT Amount",
-      totalAmount: "Total with VAT",
+      baseAmount: "Valor base",
+      vatAmount: "Valor do imposto",
+      totalAmount: "Total com imposto",
     },
-    emptyState: "Enter a valid amount and rate to see the result.",
+    emptyState: "Digite um valor e uma alíquota válidos para ver o resultado.",
   },
   it: {
     labels: {
-      direction: "Calculation Direction",
-      amount: "Amount (EUR)",
-      rate: "VAT Rate",
-      customRate: "Custom Rate (%)",
+      direction: "Direzione del calcolo",
+      amount: "Importo (EUR)",
+      rate: "Aliquota IVA",
+      customRate: "Aliquota personalizzata (%)",
     },
     directions: {
-      "exclusive-to-inclusive": "VAT exclusive -> VAT inclusive",
-      "inclusive-to-exclusive": "VAT inclusive -> VAT exclusive",
+      "exclusive-to-inclusive": "IVA esclusa -> IVA inclusa",
+      "inclusive-to-exclusive": "IVA inclusa -> IVA esclusa",
     },
     rateOptions: {
-      "1": "1%",
-      "10": "10%",
-      "20": "20%",
-      custom: "Custom rate",
+      custom: "Aliquota personalizzata",
     },
     resultLabels: {
-      baseAmount: "Base Amount",
-      vatAmount: "VAT Amount",
-      totalAmount: "Total with VAT",
+      baseAmount: "Imponibile",
+      vatAmount: "Importo IVA",
+      totalAmount: "Totale IVA inclusa",
     },
-    emptyState: "Enter a valid amount and rate to see the result.",
+    emptyState: "Inserisci un importo e un'aliquota validi per vedere il risultato.",
   },
   nl: {
     labels: {
-      direction: "Calculation Direction",
-      amount: "Amount (EUR)",
-      rate: "VAT Rate",
-      customRate: "Custom Rate (%)",
+      direction: "Berekeningsrichting",
+      amount: "Bedrag (EUR)",
+      rate: "Btw-tarief",
+      customRate: "Eigen tarief (%)",
     },
     directions: {
-      "exclusive-to-inclusive": "VAT exclusive -> VAT inclusive",
-      "inclusive-to-exclusive": "VAT inclusive -> VAT exclusive",
+      "exclusive-to-inclusive": "Exclusief btw -> inclusief btw",
+      "inclusive-to-exclusive": "Inclusief btw -> exclusief btw",
     },
     rateOptions: {
-      "1": "1%",
-      "10": "10%",
-      "20": "20%",
-      custom: "Custom rate",
+      custom: "Eigen tarief",
     },
     resultLabels: {
-      baseAmount: "Base Amount",
-      vatAmount: "VAT Amount",
-      totalAmount: "Total with VAT",
+      baseAmount: "Bedrag excl. btw",
+      vatAmount: "Btw-bedrag",
+      totalAmount: "Totaal incl. btw",
     },
-    emptyState: "Enter a valid amount and rate to see the result.",
+    emptyState: "Voer een geldig bedrag en tarief in om het resultaat te zien.",
   },
   sv: {
     labels: {
-      direction: "Calculation Direction",
-      amount: "Amount (EUR)",
-      rate: "VAT Rate",
-      customRate: "Custom Rate (%)",
+      direction: "Beräkningsriktning",
+      amount: "Belopp (kr)",
+      rate: "Momssats",
+      customRate: "Egen sats (%)",
     },
     directions: {
-      "exclusive-to-inclusive": "VAT exclusive -> VAT inclusive",
-      "inclusive-to-exclusive": "VAT inclusive -> VAT exclusive",
+      "exclusive-to-inclusive": "Exkl. moms -> inkl. moms",
+      "inclusive-to-exclusive": "Inkl. moms -> exkl. moms",
     },
     rateOptions: {
-      "1": "1%",
-      "10": "10%",
-      "20": "20%",
-      custom: "Custom rate",
+      custom: "Egen sats",
     },
     resultLabels: {
-      baseAmount: "Base Amount",
-      vatAmount: "VAT Amount",
-      totalAmount: "Total with VAT",
+      baseAmount: "Belopp exkl. moms",
+      vatAmount: "Momsbelopp",
+      totalAmount: "Totalt inkl. moms",
     },
-    emptyState: "Enter a valid amount and rate to see the result.",
+    emptyState: "Ange ett giltigt belopp och en giltig sats för att se resultatet.",
   },
   no: {
     labels: {
-      direction: "Calculation Direction",
-      amount: "Amount (EUR)",
-      rate: "VAT Rate",
-      customRate: "Custom Rate (%)",
+      direction: "Beregningsretning",
+      amount: "Beløp (kr)",
+      rate: "Mva-sats",
+      customRate: "Egen sats (%)",
     },
     directions: {
-      "exclusive-to-inclusive": "VAT exclusive -> VAT inclusive",
-      "inclusive-to-exclusive": "VAT inclusive -> VAT exclusive",
+      "exclusive-to-inclusive": "Eks. mva -> inkl. mva",
+      "inclusive-to-exclusive": "Inkl. mva -> eks. mva",
     },
     rateOptions: {
-      "1": "1%",
-      "10": "10%",
-      "20": "20%",
-      custom: "Custom rate",
+      custom: "Egen sats",
     },
     resultLabels: {
-      baseAmount: "Base Amount",
-      vatAmount: "VAT Amount",
-      totalAmount: "Total with VAT",
+      baseAmount: "Beløp eks. mva",
+      vatAmount: "Mva-beløp",
+      totalAmount: "Totalt inkl. mva",
     },
-    emptyState: "Enter a valid amount and rate to see the result.",
+    emptyState: "Angi et gyldig beløp og en gyldig sats for å se resultatet.",
   },
   da: {
     labels: {
-      direction: "Calculation Direction",
-      amount: "Amount (EUR)",
-      rate: "VAT Rate",
-      customRate: "Custom Rate (%)",
+      direction: "Beregningsretning",
+      amount: "Beløb (kr.)",
+      rate: "Momssats",
+      customRate: "Egen sats (%)",
     },
     directions: {
-      "exclusive-to-inclusive": "VAT exclusive -> VAT inclusive",
-      "inclusive-to-exclusive": "VAT inclusive -> VAT exclusive",
+      "exclusive-to-inclusive": "Ekskl. moms -> inkl. moms",
+      "inclusive-to-exclusive": "Inkl. moms -> ekskl. moms",
     },
     rateOptions: {
-      "1": "1%",
-      "10": "10%",
-      "20": "20%",
-      custom: "Custom rate",
+      custom: "Egen sats",
     },
     resultLabels: {
-      baseAmount: "Base Amount",
-      vatAmount: "VAT Amount",
-      totalAmount: "Total with VAT",
+      baseAmount: "Beløb ekskl. moms",
+      vatAmount: "Momsbeløb",
+      totalAmount: "I alt inkl. moms",
     },
-    emptyState: "Enter a valid amount and rate to see the result.",
+    emptyState: "Indtast et gyldigt beløb og en gyldig sats for at se resultatet.",
   },
   de: {
     labels: {
@@ -305,9 +295,6 @@ const copyByLocale: Record<Exclude<Locale, "ru">, VatCopy> = {
       "inclusive-to-exclusive": "Brutto -> Netto",
     },
     rateOptions: {
-      "1": "1 %",
-      "10": "10 %",
-      "20": "20 %",
       custom: "Eigener Satz",
     },
     resultLabels: {
@@ -315,12 +302,12 @@ const copyByLocale: Record<Exclude<Locale, "ru">, VatCopy> = {
       vatAmount: "MwSt.-Betrag",
       totalAmount: "Bruttobetrag",
     },
-    emptyState: "Geben Sie einen gueltigen Betrag und Steuersatz ein.",
+    emptyState: "Geben Sie einen gültigen Betrag und Steuersatz ein.",
   },
   ar: {
     labels: {
       direction: "اتجاه الحساب",
-      amount: "المبلغ (EUR)",
+      amount: "المبلغ",
       rate: "نسبة الضريبة",
       customRate: "نسبة مخصصة (%)",
     },
@@ -329,9 +316,6 @@ const copyByLocale: Record<Exclude<Locale, "ru">, VatCopy> = {
       "inclusive-to-exclusive": "من الإجمالي إلى الصافي",
     },
     rateOptions: {
-      "1": "1%",
-      "10": "10%",
-      "20": "20%",
       custom: "نسبة مخصصة",
     },
     resultLabels: {
@@ -344,7 +328,7 @@ const copyByLocale: Record<Exclude<Locale, "ru">, VatCopy> = {
 uz: {
     labels: {
       direction: "Hisoblash Yo'nalishi",
-      amount: "Miqdor (EUR)",
+      amount: "Miqdor (so'm)",
       rate: "QQS Stavkasi",
       customRate: "O'zgacha Stavka (%)",
     },
@@ -353,9 +337,6 @@ uz: {
       "inclusive-to-exclusive": "QQS bilan -> QQS siz",
     },
     rateOptions: {
-      "1": "1%",
-      "10": "10%",
-      "20": "20%",
       custom: "O'zgacha stavka",
     },
     resultLabels: {
@@ -367,27 +348,24 @@ uz: {
   },
 bn: {
     labels: {
-      direction: "Calculation Direction",
-      amount: "Amount (EUR)",
-      rate: "VAT Rate",
-      customRate: "Custom Rate (%)",
+      direction: "হিসাবের দিক",
+      amount: "পরিমাণ (৳)",
+      rate: "ভ্যাটের হার",
+      customRate: "নিজস্ব হার (%)",
     },
     directions: {
-      "exclusive-to-inclusive": "VAT exclusive -> VAT inclusive",
-      "inclusive-to-exclusive": "VAT inclusive -> VAT exclusive",
+      "exclusive-to-inclusive": "ভ্যাট ছাড়া -> ভ্যাটসহ",
+      "inclusive-to-exclusive": "ভ্যাটসহ -> ভ্যাট ছাড়া",
     },
     rateOptions: {
-      "1": "1%",
-      "10": "10%",
-      "20": "20%",
-      custom: "Custom rate",
+      custom: "নিজস্ব হার",
     },
     resultLabels: {
-      baseAmount: "Base Amount",
-      vatAmount: "VAT Amount",
-      totalAmount: "Total with VAT",
+      baseAmount: "মূল পরিমাণ",
+      vatAmount: "ভ্যাটের পরিমাণ",
+      totalAmount: "ভ্যাটসহ মোট",
     },
-    emptyState: "Enter a valid amount and rate to see the result.",
+    emptyState: "ফলাফল দেখতে একটি বৈধ পরিমাণ ও হার লিখুন।",
   },
 };
 
@@ -404,7 +382,12 @@ function parseNumericValue(rawValue: string) {
 }
 
 function formatCurrency(value: number, locale: Locale) {
-  return `${formatLocalizedNumber(value, locale, { maximumFractionDigits: 2 })} EUR`;
+  return formatWithCurrency(formatLocalizedNumber(value, locale, { maximumFractionDigits: 2 }), locale);
+}
+
+function formatRate(rate: string, locale: Locale) {
+  const formatted = formatLocalizedNumber(Number(rate), locale, { maximumFractionDigits: 2 });
+  return locale === "tr" ? `%${formatted}` : `${formatted}%`;
 }
 
 export default function VatCalculator({
@@ -413,9 +396,11 @@ export default function VatCalculator({
   locale?: Locale;
 }) {
   const copy = copyByLocale[locale === "ru" ? "en" : locale];
+  const settings = vatSettingsByLocale[locale === "ru" ? "en" : locale];
+  const rateOptions = [...settings.rates, "custom"];
   const [amount, setAmount] = useState("1000");
-  const [ratePreset, setRatePreset] = useState<(typeof rateOptions)[number]>("20");
-  const [customRate, setCustomRate] = useState("20");
+  const [ratePreset, setRatePreset] = useState(settings.defaultRate);
+  const [customRate, setCustomRate] = useState(settings.defaultRate);
   const [direction, setDirection] = useState<VatDirection>(
     "exclusive-to-inclusive"
   );
@@ -465,12 +450,12 @@ export default function VatCalculator({
           <select
             value={ratePreset}
             onChange={(event) =>
-              setRatePreset(event.target.value as (typeof rateOptions)[number])
+              setRatePreset(event.target.value)
             }
           >
             {rateOptions.map((option) => (
               <option key={option} value={option}>
-                {copy.rateOptions[option]}
+                {option === "custom" ? copy.rateOptions.custom : formatRate(option, locale)}
               </option>
             ))}
           </select>

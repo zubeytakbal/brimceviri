@@ -5,7 +5,7 @@ import { englishDecisionSavingsHubPath, englishDecisionSavingsTools } from "../.
 import { SITE_NAME, buildSiteUrl } from "../../siteConfig";
 
 export const metadata: Metadata = {
-  title: `Decision & Savings Calculators | ${SITE_NAME}`,
+  title: `Decision & Savings Calculators`,
   description: "Free calculators for comparing recurring costs, savings and practical purchase decisions.",
   alternates: { canonical: englishDecisionSavingsHubPath, languages: { en: englishDecisionSavingsHubPath } },
   openGraph: { title: "Decision & Savings Calculators", description: "Free calculators for comparing recurring costs, savings and practical purchase decisions.", url: buildSiteUrl(englishDecisionSavingsHubPath), siteName: SITE_NAME, locale: "en_US", type: "website" },

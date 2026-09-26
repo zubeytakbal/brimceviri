@@ -24,7 +24,7 @@ const faqItems: FaqItem[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "حاسبة الزكاة | BirimCeviri.app",
+  title: "حاسبة الزكاة",
   description:
     "احسب زكاة المال والذهب والفضة وعروض التجارة باستخدام سعر السوق الحي للذهب والفضة، مع دعم نصاب الذهب ونصاب الفضة.",
   alternates: {

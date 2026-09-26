@@ -658,10 +658,10 @@ const copy = {
     moreCalculatorsCardLabel: "Diğer Hesaplayıcılar",
   },
   en: {
-    eyebrow: "Technical unit conversions",
-    title: "Open the right converter quickly",
+    eyebrow: "Free online unit converter",
+    title: "Unit Converter",
     description:
-      "Use search for a direct page or browse by physical quantity.",
+      "Convert length, weight, temperature, volume and 30+ other quantities instantly. Search for a conversion or browse by category.",
     searchLabel: "Search conversions",
     searchPlaceholder: "Example: meter kilometer, kg lb, psi bar",
     searchHint:

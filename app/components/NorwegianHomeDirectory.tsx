@@ -34,7 +34,7 @@ const primaryCategoryPages = homeCategoryOrder
 
 const primaryCategoryCardsFromCategories = primaryCategoryPages.map((page) => ({
   id: page.category,
-  href: `/no/categories/${page.slug}`,
+  href: `/no/kategorier/${page.slug}`,
   title: page.title,
   description: page.description,
   iconName: getCategoryIconName(page.category) as SiteIconName,
@@ -51,28 +51,28 @@ const nicheCards: Array<{
 }> = [
   {
     id: "shoe-size",
-    href: "/no/shoe-size-converter",
-    title: "Skostorrelseomregner",
-    description: "Sammenlign EU-, US- og UK-skostorrelser per merke.",
+    href: "/no/skostorrelser",
+    title: "Skostørrelseomregner",
+    description: "Sammenlign EU-, US- og UK-skostørrelser per merke.",
     iconName: "shoeSize",
   },
   {
     id: "kitchen-measures",
-    href: "/no/kitchen-measurement-converter",
-    title: "Kjokkenmal",
+    href: "/no/kjokkenmal-omregner",
+    title: "Kjøkkenmål",
     description: "Regn om kopper, spiseskjeer og gram ut fra ingrediens.",
     iconName: "kitchenMeasures",
   },
   {
     id: "recipe-converter",
-    href: "/no/recipe-converter",
+    href: "/no/oppskriftomregner",
     title: "Oppskriftomregner",
     description: "Lim inn en oppskrift og skaler mengdene med en multiplikator.",
     iconName: "recipe",
   },
   {
     id: "historical-units",
-    href: "/no/historical-units",
+    href: "/no/historiske-enheter",
     title: "Historiske enheter",
     description: "Regn om arşın, okka, dirhem og bysantinske enheter til moderne enheter.",
     iconName: "historical",
@@ -85,7 +85,7 @@ const secondaryCategoryCards = norwegianCategoryPages
   .filter((page) => !(homeCategoryOrder as readonly string[]).includes(page.category))
   .map((page) => ({
     id: page.category,
-    href: `/no/categories/${page.slug}`,
+    href: `/no/kategorier/${page.slug}`,
     title: page.title,
     iconName: getCategoryIconName(page.category) as SiteIconName,
   }));
@@ -130,7 +130,7 @@ const popularUnits = preferredUnitSourceSlugs
 
     return {
       id: unitPage.slug,
-      href: `/no/unit-guides/${unitPage.slug}`,
+      href: `/no/enhetsguider/${unitPage.slug}`,
       label: unitPage.name,
       categoryLabel: unitPage.categoryName,
     };
@@ -184,17 +184,17 @@ export default function NorwegianHomeDirectory({
       <section className="directory-hero">
         <div className="directory-shell">
           <div className="directory-hero-copy">
-            <p className="directory-eyebrow">Enhetsomregner pa norsk</p>
+            <p className="directory-eyebrow">Enhetsomregner på norsk</p>
             <h1>Finn enhetsomregningen du trenger</h1>
             <p className="directory-lead">
-              Regn om lengde, masse, trykk og mange andre enheter helt pa
+              Regn om lengde, masse, trykk og mange andre enheter helt på
               norsk, med tydelige enhetsguider.
             </p>
           </div>
 
           <div className="directory-hero-panel">
             <form className="directory-search" onSubmit={handleSubmit} role="search">
-              <label htmlFor={inputId}>Sok en omregning</label>
+              <label htmlFor={inputId}>Søk en omregning</label>
 
               <div className="directory-search-field">
                 <input
@@ -211,20 +211,20 @@ export default function NorwegianHomeDirectory({
 
                 <button type="submit">
                   <DecorativeIcon className="directory-button-icon" name="search" size={18} />
-                  Apne
+                  Åpne
                 </button>
               </div>
 
               <p className="directory-search-hint" id={`${inputId}-hint`}>
-                Skriv navnet pa en enhet pa norsk eller engelsk og trykk
-                Enter for a apne det forste resultatet.
+                Skriv navnet på en enhet på norsk eller engelsk og trykk
+                Enter for å åpne det første resultatet.
               </p>
 
               {query.trim() ? (
                 <div className="directory-search-results-wrap">
                   <div className="directory-search-results-head">
-                    <strong>Sokeresultater</strong>
-                    <span>Trykk Enter for a apne</span>
+                    <strong>Søkeresultater</strong>
+                    <span>Trykk Enter for å åpne</span>
                   </div>
 
                   {searchResults.length > 0 ? (
@@ -266,10 +266,10 @@ export default function NorwegianHomeDirectory({
           <header className="directory-section-header">
             <div>
               <h2>Enhetsomregning</h2>
-              <p>Velg en kategori for a se alle enheter og omregningssider.</p>
+              <p>Velg en kategori for å se alle enheter og omregningssider.</p>
             </div>
 
-            <Link className="directory-section-link" href="/no/categories">
+            <Link className="directory-section-link" href="/no/kategorier">
               <DecorativeIcon className="directory-link-icon" name="allConversions" size={18} />
               Alle kategorier
             </Link>
@@ -315,7 +315,7 @@ export default function NorwegianHomeDirectory({
           )}
 
           <div className="directory-section-footer">
-            <Link className="directory-section-link" href="/no/categories">
+            <Link className="directory-section-link" href="/no/kategorier">
               <DecorativeIcon className="directory-link-icon" name="allConversions" size={18} />
               Se alle kategorier og omregninger
             </Link>
@@ -326,8 +326,8 @@ export default function NorwegianHomeDirectory({
           <section className="directory-section">
             <header className="directory-section-header">
               <div>
-                <h2>Populaere omregninger</h2>
-                <p>Direkte tilgang til de mest sokte omregningene.</p>
+                <h2>Populære omregninger</h2>
+                <p>Direkte tilgang til de mest søkte omregningene.</p>
               </div>
             </header>
 
@@ -348,8 +348,8 @@ export default function NorwegianHomeDirectory({
           <section className="directory-section">
             <header className="directory-section-header">
               <div>
-                <h2>Populaere enheter</h2>
-                <p>Detaljerte guider pa norsk for de mest sokte enhetene.</p>
+                <h2>Populære enheter</h2>
+                <p>Detaljerte guider på norsk for de mest søkte enhetene.</p>
               </div>
             </header>
 

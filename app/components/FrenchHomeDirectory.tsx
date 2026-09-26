@@ -52,28 +52,28 @@ const nicheCards: Array<{
 }> = [
   {
     id: "shoe-size",
-    href: "/fr/shoe-size-converter",
+    href: "/fr/convertisseur-de-pointures",
     title: "Convertisseur de pointures",
     description: "Comparez les pointures européennes, américaines et britanniques par marque.",
     iconName: "shoeSize",
   },
   {
     id: "kitchen-measures",
-    href: "/fr/kitchen-measurement-converter",
+    href: "/fr/convertisseur-mesures-cuisine",
     title: "Mesures de cuisine",
     description: "Convertissez tasses, cuillères et grammes selon l’ingrédient.",
     iconName: "kitchenMeasures",
   },
   {
     id: "recipe-converter",
-    href: "/fr/recipe-converter",
+    href: "/fr/convertisseur-de-recettes",
     title: "Convertisseur de recettes",
     description: "Collez une recette et adaptez les quantités avec un multiplicateur.",
     iconName: "recipe",
   },
   {
     id: "historical-units",
-    href: "/fr/historical-units",
+    href: "/fr/unites-historiques",
     title: "Unités historiques",
     description: "Convertissez arşın, okka, dirhem et unités byzantines en unités modernes.",
     iconName: "historical",
@@ -131,7 +131,7 @@ const popularUnits = preferredUnitSourceSlugs
 
     return {
       id: unitPage.slug,
-      href: `/fr/unit-guides/${unitPage.slug}`,
+      href: `/fr/guides-des-unites/${unitPage.slug}`,
       label: unitPage.name,
       categoryLabel: unitPage.categoryName,
     };

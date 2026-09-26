@@ -4,10 +4,10 @@ import { nederlandsConversionPages } from "../converter/localizedNederlandsConve
 import { nederlandsUnitPages } from "../converter/localizedNederlandsUnitPages";
 
 const tools = [
-  { href: "/nl/shoe-size-converter", title: "Schoenmaat omrekenen", description: "Vergelijk EU-, US- en UK-schoenmaten." },
-  { href: "/nl/kitchen-measurement-converter", title: "Keukenmaten omrekenen", description: "Reken kopjes, lepels en grammen om per ingrediënt." },
-  { href: "/nl/recipe-converter", title: "Recept omrekenen", description: "Pas hoeveelheden in een recept aan." },
-  { href: "/nl/historical-units", title: "Historische eenheden", description: "Ontdek en reken historische lengtes en gewichten om." },
+  { href: "/nl/schoenmaten-omrekenen", title: "Schoenmaat omrekenen", description: "Vergelijk EU-, US- en UK-schoenmaten." },
+  { href: "/nl/keukenmaten-omrekenen", title: "Keukenmaten omrekenen", description: "Reken kopjes, lepels en grammen om per ingrediënt." },
+  { href: "/nl/recepten-omrekenen", title: "Recept omrekenen", description: "Pas hoeveelheden in een recept aan." },
+  { href: "/nl/historische-eenheden", title: "Historische eenheden", description: "Ontdek en reken historische lengtes en gewichten om." },
 ];
 
 export default function NederlandsHomeDirectory() {
@@ -32,12 +32,12 @@ export default function NederlandsHomeDirectory() {
           <div className="directory-home-category-grid">
             {nederlandsCategoryPages.map((category) => (
               <article className="directory-home-card" key={category.slug}>
-                <Link className="directory-card-stretch" href={`/nl/categories/${category.slug}`} aria-label={category.title} />
+                <Link className="directory-card-stretch" href={`/nl/categorieen/${category.slug}`} aria-label={category.title} />
                 <div className="directory-card-body"><h3 className="home-category-title">{category.title}</h3><p>{category.description}</p></div>
               </article>
             ))}
           </div>
-          <p className="directory-section-footer"><Link className="directory-section-link" href="/nl/categories">Alle categorieën bekijken</Link></p>
+          <p className="directory-section-footer"><Link className="directory-section-link" href="/nl/categorieen">Alle categorieën bekijken</Link></p>
         </section>
 
         <section className="directory-section">
@@ -52,7 +52,7 @@ export default function NederlandsHomeDirectory() {
 
         <section className="directory-section">
           <header className="directory-section-header"><div><h2>Eenhedengidsen</h2></div></header>
-          <ul className="directory-popular-list">{popularUnits.map((unit) => <li key={unit.slug}><Link href={`/nl/unit-guides/${unit.slug}`}><span className="directory-conversion-title">{unit.name}</span><small>{unit.categoryName}</small></Link></li>)}</ul>
+          <ul className="directory-popular-list">{popularUnits.map((unit) => <li key={unit.slug}><Link href={`/nl/eenheidsgidsen/${unit.slug}`}><span className="directory-conversion-title">{unit.name}</span><small>{unit.categoryName}</small></Link></li>)}</ul>
         </section>
       </div>
     </main>

@@ -34,7 +34,7 @@ const primaryCategoryPages = homeCategoryOrder
 
 const primaryCategoryCardsFromCategories = primaryCategoryPages.map((page) => ({
   id: page.category,
-  href: `/es-419/categories/${page.slug}`,
+  href: `/es-419/categorias/${page.slug}`,
   title: page.title,
   description: page.description,
   iconName: getCategoryIconName(page.category) as SiteIconName,
@@ -51,28 +51,28 @@ const nicheCards: Array<{
 }> = [
   {
     id: "shoe-size",
-    href: "/es-419/shoe-size-converter",
+    href: "/es-419/conversor-tallas-de-calzado",
     title: "Conversor de tallas de calzado",
     description: "Compara las tallas de EE. UU., europeas y británicas por marca.",
     iconName: "shoeSize",
   },
   {
     id: "kitchen-measures",
-    href: "/es-419/kitchen-measurement-converter",
+    href: "/es-419/conversor-medidas-de-cocina",
     title: "Medidas de cocina",
     description: "Convierte tazas, cucharadas y gramos según el ingrediente.",
     iconName: "kitchenMeasures",
   },
   {
     id: "recipe-converter",
-    href: "/es-419/recipe-converter",
+    href: "/es-419/conversor-de-recetas",
     title: "Conversor de recetas",
     description: "Pega una receta y ajusta las cantidades con un multiplicador.",
     iconName: "recipe",
   },
   {
     id: "historical-units",
-    href: "/es-419/historical-units",
+    href: "/es-419/unidades-historicas",
     title: "Unidades históricas",
     description: "Convierte arşın, okka, dirhem y unidades bizantinas a unidades modernas.",
     iconName: "historical",
@@ -85,7 +85,7 @@ const secondaryCategoryCards = es419CategoryPages
   .filter((page) => !(homeCategoryOrder as readonly string[]).includes(page.category))
   .map((page) => ({
     id: page.category,
-    href: `/es-419/categories/${page.slug}`,
+    href: `/es-419/categorias/${page.slug}`,
     title: page.title,
     iconName: getCategoryIconName(page.category) as SiteIconName,
   }));
@@ -130,7 +130,7 @@ const popularUnits = preferredUnitSourceSlugs
 
     return {
       id: unitPage.slug,
-      href: `/es-419/unit-guides/${unitPage.slug}`,
+      href: `/es-419/guias-de-unidades/${unitPage.slug}`,
       label: unitPage.name,
       categoryLabel: unitPage.categoryName,
     };
@@ -269,7 +269,7 @@ export default function Es419HomeDirectory({
               <p>Elige una categoría para ver todas sus unidades y páginas de conversión.</p>
             </div>
 
-            <Link className="directory-section-link" href="/es-419/categories">
+            <Link className="directory-section-link" href="/es-419/categorias">
               <DecorativeIcon className="directory-link-icon" name="allConversions" size={18} />
               Todas las categorías
             </Link>
@@ -315,7 +315,7 @@ export default function Es419HomeDirectory({
           )}
 
           <div className="directory-section-footer">
-            <Link className="directory-section-link" href="/es-419/categories">
+            <Link className="directory-section-link" href="/es-419/categorias">
               <DecorativeIcon className="directory-link-icon" name="allConversions" size={18} />
               Ver todas las categorías y conversiones
             </Link>

@@ -34,7 +34,7 @@ const primaryCategoryPages = homeCategoryOrder
 
 const primaryCategoryCardsFromCategories = primaryCategoryPages.map((page) => ({
   id: page.category,
-  href: `/no/categories/${page.slug}`,
+  href: `/no/kategorier/${page.slug}`,
   title: page.title,
   description: page.description,
   iconName: getCategoryIconName(page.category) as SiteIconName,
@@ -51,28 +51,28 @@ const nicheCards: Array<{
 }> = [
   {
     id: "shoe-size",
-    href: "/no/shoe-size-converter",
+    href: "/no/skostorrelser",
     title: "Skostørrelseomregner",
     description: "Sammenlign EU-, US- og UK-skostørrelser per merke.",
     iconName: "shoeSize",
   },
   {
     id: "kitchen-measures",
-    href: "/no/kitchen-measurement-converter",
+    href: "/no/kjokkenmal-omregner",
     title: "Kjøkkenmål",
     description: "Regn om kopper, spiseskjeer og gram ut fra ingrediens.",
     iconName: "kitchenMeasures",
   },
   {
     id: "recipe-converter",
-    href: "/no/recipe-converter",
+    href: "/no/oppskriftomregner",
     title: "Oppskriftomregner",
     description: "Lim inn en oppskrift og skaler mengdene med en multiplikator.",
     iconName: "recipe",
   },
   {
     id: "historical-units",
-    href: "/no/historical-units",
+    href: "/no/historiske-enheter",
     title: "Historiske enheter",
     description: "Regn om arşın, okka, dirhem og bysantinske enheter til moderne enheter.",
     iconName: "historical",
@@ -85,7 +85,7 @@ const secondaryCategoryCards = norwegianCategoryPages
   .filter((page) => !(homeCategoryOrder as readonly string[]).includes(page.category))
   .map((page) => ({
     id: page.category,
-    href: `/no/categories/${page.slug}`,
+    href: `/no/kategorier/${page.slug}`,
     title: page.title,
     iconName: getCategoryIconName(page.category) as SiteIconName,
   }));
@@ -130,7 +130,7 @@ const popularUnits = preferredUnitSourceSlugs
 
     return {
       id: unitPage.slug,
-      href: `/no/unit-guides/${unitPage.slug}`,
+      href: `/no/enhetsguider/${unitPage.slug}`,
       label: unitPage.name,
       categoryLabel: unitPage.categoryName,
     };
@@ -269,7 +269,7 @@ export default function NorwegianHomeDirectory({
               <p>Velg en kategori for å se alle enheter og omregningssider.</p>
             </div>
 
-            <Link className="directory-section-link" href="/no/categories">
+            <Link className="directory-section-link" href="/no/kategorier">
               <DecorativeIcon className="directory-link-icon" name="allConversions" size={18} />
               Alle kategorier
             </Link>
@@ -315,7 +315,7 @@ export default function NorwegianHomeDirectory({
           )}
 
           <div className="directory-section-footer">
-            <Link className="directory-section-link" href="/no/categories">
+            <Link className="directory-section-link" href="/no/kategorier">
               <DecorativeIcon className="directory-link-icon" name="allConversions" size={18} />
               Se alle kategorier og omregninger
             </Link>

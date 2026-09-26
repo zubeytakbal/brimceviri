@@ -34,7 +34,7 @@ const primaryCategoryPages = homeCategoryOrder
 
 const primaryCategoryCardsFromCategories = primaryCategoryPages.map((page) => ({
   id: page.category,
-  href: `/da/categories/${page.slug}`,
+  href: `/da/kategorier/${page.slug}`,
   title: page.title,
   description: page.description,
   iconName: getCategoryIconName(page.category) as SiteIconName,
@@ -51,28 +51,28 @@ const nicheCards: Array<{
 }> = [
   {
     id: "shoe-size",
-    href: "/da/shoe-size-converter",
+    href: "/da/skostorrelser",
     title: "Skostørrelseomregner",
     description: "Sammenlign EU-, US- og UK-skostørrelser per mærke.",
     iconName: "shoeSize",
   },
   {
     id: "kitchen-measures",
-    href: "/da/kitchen-measurement-converter",
+    href: "/da/kokkenmal-omregner",
     title: "Køkkenmål",
     description: "Omregn kopper, spiseskeer og gram ud fra ingrediens.",
     iconName: "kitchenMeasures",
   },
   {
     id: "recipe-converter",
-    href: "/da/recipe-converter",
+    href: "/da/opskriftomregner",
     title: "Opskriftomregner",
     description: "Indsæt en opskrift og skaler mængderne med en multiplikator.",
     iconName: "recipe",
   },
   {
     id: "historical-units",
-    href: "/da/historical-units",
+    href: "/da/historiske-enheder",
     title: "Historiske enheder",
     description: "Omregn arşın, okka, dirhem og byzantinske enheder til moderne enheder.",
     iconName: "historical",
@@ -85,7 +85,7 @@ const secondaryCategoryCards = danishCategoryPages
   .filter((page) => !(homeCategoryOrder as readonly string[]).includes(page.category))
   .map((page) => ({
     id: page.category,
-    href: `/da/categories/${page.slug}`,
+    href: `/da/kategorier/${page.slug}`,
     title: page.title,
     iconName: getCategoryIconName(page.category) as SiteIconName,
   }));
@@ -130,7 +130,7 @@ const popularUnits = preferredUnitSourceSlugs
 
     return {
       id: unitPage.slug,
-      href: `/da/unit-guides/${unitPage.slug}`,
+      href: `/da/enhedsguider/${unitPage.slug}`,
       label: unitPage.name,
       categoryLabel: unitPage.categoryName,
     };
@@ -269,7 +269,7 @@ export default function DanishHomeDirectory({
               <p>Vælg en kategori for at se alle enheder og omregningssider.</p>
             </div>
 
-            <Link className="directory-section-link" href="/da/categories">
+            <Link className="directory-section-link" href="/da/kategorier">
               <DecorativeIcon className="directory-link-icon" name="allConversions" size={18} />
               Alle kategorier
             </Link>
@@ -315,7 +315,7 @@ export default function DanishHomeDirectory({
           )}
 
           <div className="directory-section-footer">
-            <Link className="directory-section-link" href="/da/categories">
+            <Link className="directory-section-link" href="/da/kategorier">
               <DecorativeIcon className="directory-link-icon" name="allConversions" size={18} />
               Se alle kategorier og omregninger
             </Link>

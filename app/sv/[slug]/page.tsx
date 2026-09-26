@@ -238,7 +238,7 @@ export default async function SwedishConversionPage({ params }: PageProps) {
 
             <Link
               className="text-link"
-              href={`/sv/unit-guides/${fromUnitInfo.slug}`}
+              href={`/sv/enhetsguider/${fromUnitInfo.slug}`}
             >
               Se guiden för enheten {fromUnitInfo.name}
             </Link>
@@ -253,7 +253,7 @@ export default async function SwedishConversionPage({ params }: PageProps) {
 
             <Link
               className="text-link"
-              href={`/sv/unit-guides/${toUnitInfo.slug}`}
+              href={`/sv/enhetsguider/${toUnitInfo.slug}`}
             >
               Se guiden för enheten {toUnitInfo.name}
             </Link>

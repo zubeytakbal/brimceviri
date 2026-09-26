@@ -116,7 +116,7 @@ export default async function NederlandsConversionPage({ params }: PageProps) {
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: buildSiteUrl("/nl") },
       ...(category
-        ? [{ "@type": "ListItem", position: 2, name: category.title, item: buildSiteUrl(`/nl/categories/${category.slug}`) }]
+        ? [{ "@type": "ListItem", position: 2, name: category.title, item: buildSiteUrl(`/nl/categorieen/${category.slug}`) }]
         : []),
       { "@type": "ListItem", position: category ? 3 : 2, name: `${page.fromName} naar ${page.toName}`, item: pageUrl },
     ],
@@ -131,7 +131,7 @@ export default async function NederlandsConversionPage({ params }: PageProps) {
         <nav className="breadcrumbs" aria-label="Kruimelpad">
           <Link href="/nl">Home</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          {category ? <Link href={`/nl/categories/${category.slug}`}>{page.categoryName}</Link> : <span>{page.categoryName}</span>}
+          {category ? <Link href={`/nl/categorieen/${category.slug}`}>{page.categoryName}</Link> : <span>{page.categoryName}</span>}
           <span aria-hidden="true">&rsaquo;</span>
           <span>{page.fromName} naar {page.toName}</span>
         </nav>
@@ -177,14 +177,14 @@ export default async function NederlandsConversionPage({ params }: PageProps) {
           <section className="conversion-section unit-information">
             <h2>Wat is {fromUnit.name}?</h2>
             <p>{fromUnit.shortDescription}</p><p>{fromUnit.historySummary}</p>
-            <Link className="text-link" href={`/nl/unit-guides/${fromUnit.slug}`}>Bekijk de gids voor {fromUnit.name}</Link>
+            <Link className="text-link" href={`/nl/eenheidsgidsen/${fromUnit.slug}`}>Bekijk de gids voor {fromUnit.name}</Link>
           </section>
         )}
         {toUnit && (
           <section className="conversion-section unit-information">
             <h2>Wat is {toUnit.name}?</h2>
             <p>{toUnit.shortDescription}</p><p>{toUnit.historySummary}</p>
-            <Link className="text-link" href={`/nl/unit-guides/${toUnit.slug}`}>Bekijk de gids voor {toUnit.name}</Link>
+            <Link className="text-link" href={`/nl/eenheidsgidsen/${toUnit.slug}`}>Bekijk de gids voor {toUnit.name}</Link>
           </section>
         )}
         {reversePage && (

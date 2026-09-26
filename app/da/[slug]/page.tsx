@@ -236,7 +236,7 @@ export default async function DanishConversionPage({ params }: PageProps) {
 
             <Link
               className="text-link"
-              href={`/da/unit-guides/${fromUnitInfo.slug}`}
+              href={`/da/enhedsguider/${fromUnitInfo.slug}`}
             >
               Se guiden for enheden {fromUnitInfo.name}
             </Link>
@@ -251,7 +251,7 @@ export default async function DanishConversionPage({ params }: PageProps) {
 
             <Link
               className="text-link"
-              href={`/da/unit-guides/${toUnitInfo.slug}`}
+              href={`/da/enhedsguider/${toUnitInfo.slug}`}
             >
               Se guiden for enheden {toUnitInfo.name}
             </Link>

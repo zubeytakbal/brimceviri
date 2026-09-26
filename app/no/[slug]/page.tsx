@@ -238,7 +238,7 @@ export default async function NorwegianConversionPage({ params }: PageProps) {
 
             <Link
               className="text-link"
-              href={`/no/unit-guides/${fromUnitInfo.slug}`}
+              href={`/no/enhetsguider/${fromUnitInfo.slug}`}
             >
               Se guiden for enheten {fromUnitInfo.name}
             </Link>
@@ -253,7 +253,7 @@ export default async function NorwegianConversionPage({ params }: PageProps) {
 
             <Link
               className="text-link"
-              href={`/no/unit-guides/${toUnitInfo.slug}`}
+              href={`/no/enhetsguider/${toUnitInfo.slug}`}
             >
               Se guiden for enheten {toUnitInfo.name}
             </Link>

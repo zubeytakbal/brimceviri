@@ -266,7 +266,7 @@ export default async function ItalianConversionPage({ params }: PageProps) {
 
             <Link
               className="text-link"
-              href={`/it/unit-guides/${fromUnitInfo.slug}`}
+              href={`/it/guide-alle-unita/${fromUnitInfo.slug}`}
             >
               Vedi la guida dell'unità {fromUnitInfo.name}
             </Link>
@@ -281,7 +281,7 @@ export default async function ItalianConversionPage({ params }: PageProps) {
 
             <Link
               className="text-link"
-              href={`/it/unit-guides/${toUnitInfo.slug}`}
+              href={`/it/guide-alle-unita/${toUnitInfo.slug}`}
             >
               Vedi la guida dell'unità {toUnitInfo.name}
             </Link>

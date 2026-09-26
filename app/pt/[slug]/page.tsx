@@ -269,7 +269,7 @@ export default async function PortugueseConversionPage({ params }: PageProps) {
 
             <Link
               className="text-link"
-              href={`/pt/unit-guides/${fromUnitInfo.slug}`}
+              href={`/pt/guias-de-unidades/${fromUnitInfo.slug}`}
             >
               Ver o guia da unidade {fromUnitInfo.name}
             </Link>
@@ -284,7 +284,7 @@ export default async function PortugueseConversionPage({ params }: PageProps) {
 
             <Link
               className="text-link"
-              href={`/pt/unit-guides/${toUnitInfo.slug}`}
+              href={`/pt/guias-de-unidades/${toUnitInfo.slug}`}
             >
               Ver o guia da unidade {toUnitInfo.name}
             </Link>

@@ -265,7 +265,7 @@ export default async function Es419ConversionPage({ params }: PageProps) {
 
             <Link
               className="text-link"
-              href={`/es-419/unit-guides/${fromUnitInfo.slug}`}
+              href={`/es-419/guias-de-unidades/${fromUnitInfo.slug}`}
             >
               Ver la guía de {fromUnitInfo.name}
             </Link>
@@ -280,7 +280,7 @@ export default async function Es419ConversionPage({ params }: PageProps) {
 
             <Link
               className="text-link"
-              href={`/es-419/unit-guides/${toUnitInfo.slug}`}
+              href={`/es-419/guias-de-unidades/${toUnitInfo.slug}`}
             >
               Ver la guía de {toUnitInfo.name}
             </Link>

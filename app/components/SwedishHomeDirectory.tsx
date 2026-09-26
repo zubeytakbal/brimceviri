@@ -34,7 +34,7 @@ const primaryCategoryPages = homeCategoryOrder
 
 const primaryCategoryCardsFromCategories = primaryCategoryPages.map((page) => ({
   id: page.category,
-  href: `/sv/categories/${page.slug}`,
+  href: `/sv/kategorier/${page.slug}`,
   title: page.title,
   description: page.description,
   iconName: getCategoryIconName(page.category) as SiteIconName,
@@ -51,28 +51,28 @@ const nicheCards: Array<{
 }> = [
   {
     id: "shoe-size",
-    href: "/sv/shoe-size-converter",
+    href: "/sv/skostorlekar",
     title: "Skostorlekskonverterare",
     description: "Jämför EU-, US- och UK-skostorlekar per märke.",
     iconName: "shoeSize",
   },
   {
     id: "kitchen-measures",
-    href: "/sv/kitchen-measurement-converter",
+    href: "/sv/koksmatt-omvandlare",
     title: "Kokmått",
     description: "Omvandla koppar, matskedar och gram utifrån ingrediens.",
     iconName: "kitchenMeasures",
   },
   {
     id: "recipe-converter",
-    href: "/sv/recipe-converter",
+    href: "/sv/receptomvandlare",
     title: "Receptomvandlare",
     description: "Klistra in ett recept och skala mängderna med en multiplikator.",
     iconName: "recipe",
   },
   {
     id: "historical-units",
-    href: "/sv/historical-units",
+    href: "/sv/historiska-enheter",
     title: "Historiska enheter",
     description: "Omvandla arşın, okka, dirhem och bysantinska enheter till moderna enheter.",
     iconName: "historical",
@@ -85,7 +85,7 @@ const secondaryCategoryCards = swedishCategoryPages
   .filter((page) => !(homeCategoryOrder as readonly string[]).includes(page.category))
   .map((page) => ({
     id: page.category,
-    href: `/sv/categories/${page.slug}`,
+    href: `/sv/kategorier/${page.slug}`,
     title: page.title,
     iconName: getCategoryIconName(page.category) as SiteIconName,
   }));
@@ -130,7 +130,7 @@ const popularUnits = preferredUnitSourceSlugs
 
     return {
       id: unitPage.slug,
-      href: `/sv/unit-guides/${unitPage.slug}`,
+      href: `/sv/enhetsguider/${unitPage.slug}`,
       label: unitPage.name,
       categoryLabel: unitPage.categoryName,
     };
@@ -269,7 +269,7 @@ export default function SwedishHomeDirectory({
               <p>Välj en kategori för att se alla enheter och omvandlingssidor.</p>
             </div>
 
-            <Link className="directory-section-link" href="/sv/categories">
+            <Link className="directory-section-link" href="/sv/kategorier">
               <DecorativeIcon className="directory-link-icon" name="allConversions" size={18} />
               Alla kategorier
             </Link>
@@ -315,7 +315,7 @@ export default function SwedishHomeDirectory({
           )}
 
           <div className="directory-section-footer">
-            <Link className="directory-section-link" href="/sv/categories">
+            <Link className="directory-section-link" href="/sv/kategorier">
               <DecorativeIcon className="directory-link-icon" name="allConversions" size={18} />
               Se alla kategorier och omvandlingar
             </Link>

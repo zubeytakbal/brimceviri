@@ -45,7 +45,7 @@ const electricalCalculatorBlueprints: ElectricalCalculatorBlueprint[] = [
       ar: "حاسبة مقطع الكابل",
     },
     descriptions: {
-      tr: "Akim, mesafe, faz tipi ve izin verilen gerilim dusumune gore uygun iletken kesitini secmek icin hazirlanan elektrik hesap araci.",
+      tr: "Akım, mesafe, faz tipi ve izin verilen gerilim dusumune göre uygun iletken kesitini seçmek için hazırlanan elektrik hesap aracı.",
       en: "Electrical sizing tool for choosing a practical conductor cross-section from current, run length, phase type and allowable voltage drop.",
       de: "Elektro-Werkzeug zur Auswahl eines praxisnahen Leiterquerschnitts aus Strom, Leitungslange, Phasentyp und zulässigem Spannungsfall.",
       ar: "أداة كهربائية لاختيار مقطع موصل عملي بالاعتماد على التيار وطول المسار ونوع الطور وهبوط الجهد المسموح.",
@@ -53,9 +53,9 @@ const electricalCalculatorBlueprints: ElectricalCalculatorBlueprint[] = [
     formula: "S ~= k x I x L / \u0394U",
     plannedInputs: {
       tr: [
-        "Hat akimi veya yuk gucu",
-        "Tek faz, uc faz veya DC secimi",
-        "Kablo uzunlugu, malzeme ve izin verilen gerilim dusumu",
+        "Hat akımı veya yük gücü",
+        "Tek faz, üç faz veya DC seçimi",
+        "Kablo uzunluğu, malzeme ve izin verilen gerilim düşümü",
       ],
       en: [
         "Load current or load power",
@@ -75,9 +75,9 @@ const electricalCalculatorBlueprints: ElectricalCalculatorBlueprint[] = [
     },
     useCases: {
       tr: [
-        "Pano besleme hatlari",
-        "Motor ve surucu baglantilari",
-        "Uzak saha ekipmani beslemeleri",
+        "Pano besleme hatları",
+        "Motor ve sürücü bağlantıları",
+        "Uzak saha ekipmanı beslemeleri",
       ],
       en: [
         "Panel feeder circuits",
@@ -106,13 +106,13 @@ const electricalCalculatorBlueprints: ElectricalCalculatorBlueprint[] = [
       ar: "voltage-drop-calculator",
     },
     titles: {
-      tr: "Gerilim Dusumu Hesaplama",
+      tr: "Gerilim Düşümü Hesaplama",
       en: "Voltage Drop Calculator",
       de: "Spannungsfall Rechner",
       ar: "حاسبة هبوط الجهد",
     },
     descriptions: {
-      tr: "Secili kablo kesitinde volt kaybini, yuzdesel dusumu ve hat sonu gerilimini gormek icin hazirlanan elektrik proje araci.",
+      tr: "Seçili kablo kesitinde volt kaybını, yüzdesel düşümü ve hat sonu gerilimini görmek için hazırlanan elektrik proje aracı.",
       en: "Electrical project tool for checking voltage loss, percent drop and end-of-line voltage on a selected cable run.",
       de: "Projektwerkzeug zur Kontrolle von Spannungsverlust, prozentualem Spannungsfall und Endspannung auf einer ausgewählten Leitung.",
       ar: "أداة مشروع كهربائي لفحص فقد الجهد ونسبة الهبوط والجهد عند نهاية الخط على مسار كابل محدد.",
@@ -120,9 +120,9 @@ const electricalCalculatorBlueprints: ElectricalCalculatorBlueprint[] = [
     formula: "\u0394U = I x R",
     plannedInputs: {
       tr: [
-        "Kaynak gerilimi ve hat akimi",
-        "Tek yon kablo uzunlugu ve iletken kesiti",
-        "Bakir veya aluminyum secimi ile faz tipi",
+        "Kaynak gerilimi ve hat akımı",
+        "Tek yön kablo uzunluğu ve iletken kesiti",
+        "Bakır veya aluminyum seçimi ile faz tipi",
       ],
       en: [
         "Source voltage and line current",
@@ -142,9 +142,9 @@ const electricalCalculatorBlueprints: ElectricalCalculatorBlueprint[] = [
     },
     useCases: {
       tr: [
-        "Ic tesisat kontrolu",
-        "Motor besleme hatlari",
-        "Uzak sensor veya saha panolari",
+        "İç tesisat kontrolü",
+        "Motor besleme hatları",
+        "Uzak sensor veya saha panoları",
       ],
       en: [
         "Internal wiring checks",
@@ -179,7 +179,7 @@ const electricalCalculatorBlueprints: ElectricalCalculatorBlueprint[] = [
       ar: "تحويل kW إلى أمبير",
     },
     descriptions: {
-      tr: "Gucu akima cevirmek icin faz tipi, gerilim, guc faktoru ve verimle calisacak elektrik secim araci.",
+      tr: "Gücü akıma çevirmek için faz tipi, gerilim, güç faktörü ve verimle çalışacak elektrik seçim aracı.",
       en: "Electrical selection tool for converting power into current using phase type, voltage, power factor and efficiency.",
       de: "Auswahlwerkzeug zur Umrechnung von Leistung in Strom mit Phasentyp, Spannung, Leistungsfaktor und Wirkungsgrad.",
       ar: "أداة كهربائية لتحويل القدرة إلى تيار باستخدام نوع الطور والجهد ومعامل القدرة والكفاءة.",
@@ -187,9 +187,9 @@ const electricalCalculatorBlueprints: ElectricalCalculatorBlueprint[] = [
     formula: "I = P / (V x cos \u03c6)",
     plannedInputs: {
       tr: [
-        "kW veya W cinsinden yuk gucu",
-        "Tek faz veya uc faz sistem tipi",
-        "Gerilim, guc faktoru ve verim degeri",
+        "kW veya W cinsinden yük gücü",
+        "Tek faz veya üç faz sistem tipi",
+        "Gerilim, güç faktörü ve verim değeri",
       ],
       en: [
         "Load power in kW or W",
@@ -209,9 +209,9 @@ const electricalCalculatorBlueprints: ElectricalCalculatorBlueprint[] = [
     },
     useCases: {
       tr: [
-        "Sigorta ve s alter secimi oncesi akim tahmini",
-        "Kablo kesiti on hesabi",
-        "Yuk dagilim tablolarinin hizli kontrolu",
+        "Sigorta ve s alter seçimi öncesi akım tahmini",
+        "Kablo kesiti ön hesabı",
+        "Yük dağılım tablolarının hızlı kontrolü",
       ],
       en: [
         "Current estimate before fuse and breaker selection",
@@ -246,7 +246,7 @@ const electricalCalculatorBlueprints: ElectricalCalculatorBlueprint[] = [
       ar: "تحويل أمبير إلى kW",
     },
     descriptions: {
-      tr: "Hat akimindan yaklasik gucu bulmak icin gerilim, faz tipi, guc faktoru ve verimle calisacak proje araci.",
+      tr: "Hat akımından yaklaşık gücü bulmak için gerilim, faz tipi, güç faktörü ve verimle çalışacak proje aracı.",
       en: "Project tool for estimating electrical power from line current together with voltage, phase type, power factor and efficiency.",
       de: "Projektwerkzeug zur Abschätzung elektrischer Leistung aus Leitungsstrom, Spannung, Phasentyp, Leistungsfaktor und Wirkungsgrad.",
       ar: "أداة مشروع لتقدير القدرة الكهربائية من تيار الخط مع الجهد ونوع الطور ومعامل القدرة والكفاءة.",
@@ -254,9 +254,9 @@ const electricalCalculatorBlueprints: ElectricalCalculatorBlueprint[] = [
     formula: "P = V x I x cos \u03c6",
     plannedInputs: {
       tr: [
-        "Hat akimi",
+        "Hat akımı",
         "Gerilim seviyesi ve sistem tipi",
-        "Guc faktoru ve istege bagli verim",
+        "Güç faktörü ve isteğe bağlı verim",
       ],
       en: [
         "Line current",
@@ -276,9 +276,9 @@ const electricalCalculatorBlueprints: ElectricalCalculatorBlueprint[] = [
     },
     useCases: {
       tr: [
-        "Sahada mevcut hattin guc tahmini",
-        "Yuk dengeleme ve pano kontrolu",
-        "Jenerator veya UPS planlamasi",
+        "Sahada mevcut hattın güç tahmini",
+        "Yük dengeleme ve pano kontrolü",
+        "Jeneratör veya UPS planlaması",
       ],
       en: [
         "Power estimate of an existing feeder in the field",
@@ -307,13 +307,13 @@ const electricalCalculatorBlueprints: ElectricalCalculatorBlueprint[] = [
       ar: "motor-current-calculator",
     },
     titles: {
-      tr: "Motor Akimi Hesaplama",
+      tr: "Motor Akımı Hesaplama",
       en: "Motor Current Calculator",
       de: "Motorstrom Rechner",
       ar: "حاسبة تيار المحرك",
     },
     descriptions: {
-      tr: "Motor gucu, gerilim, guc faktoru ve verime gore yaklasik tam yuk akimini cikarmak icin hazirlanan secim araci.",
+      tr: "Motor gücü, gerilim, güç faktörü ve verime göre yaklaşık tam yük akımını çıkarmak için hazırlanan seçim aracı.",
       en: "Selection tool for estimating approximate full-load motor current from motor power, voltage, power factor and efficiency.",
       de: "Auswahlwerkzeug zur Abschätzung des ungefähren Motor-Nennstroms aus Motorleistung, Spannung, Leistungsfaktor und Wirkungsgrad.",
       ar: "أداة تقدير لاستخراج تيار الحمل الكامل التقريبي للمحرك من القدرة والجهد ومعامل القدرة والكفاءة.",
@@ -321,9 +321,9 @@ const electricalCalculatorBlueprints: ElectricalCalculatorBlueprint[] = [
     formula: "I = P / (\u221a3 x V x cos \u03c6 x \u03b7)",
     plannedInputs: {
       tr: [
-        "Motor gucu ve motor tipi",
+        "Motor gücü ve motor tipi",
         "Besleme gerilimi ve faz tipi",
-        "Guc faktoru, verim ve emniyet payi",
+        "Güç faktörü, verim ve emniyet payı",
       ],
       en: [
         "Motor power and motor type",
@@ -343,9 +343,9 @@ const electricalCalculatorBlueprints: ElectricalCalculatorBlueprint[] = [
     },
     useCases: {
       tr: [
-        "Kontakt or ve termik on secimi",
-        "Motor kablo ve sigorta boyutlandirmasi",
-        "Proje kesiflerinde hizli tam yuk akimi kontrolu",
+        "Kontakt or ve termik on seçimi",
+        "Motor kablo ve sigorta boyutlandırması",
+        "Proje keşiflerinde hızlı tam yük akımı kontrolü",
       ],
       en: [
         "Preselection of contactors and overload relays",
@@ -368,26 +368,26 @@ const electricalCalculatorBlueprints: ElectricalCalculatorBlueprint[] = [
 
 const electricalHubCopy = {
   tr: {
-    title: "Elektrik Hesaplari",
+    title: "Elektrik Hesapları",
     description:
-      "Kablo secimi, gerilim dusumu, guc-akim donusumu ve motor on boyutlandirma gibi elektrik proje hesaplarini tek bir muhendislik kumesinde toplayin.",
-    overviewTitle: "Bu alt merkez ne icin acildi?",
+      "Kablo seçimi, gerilim düşümü, güç-akım dönüşümü ve motor on boyutlandırma gibi elektrik proje hesaplarını tek bir mühendislik kümesinde toplayın.",
+    overviewTitle: "Bu alt merkez ne için açıldı?",
     overviewBody:
-      "Elektrik hesaplari genel bir hesaplayici listesinin icinde kaybolmasin diye bu alt merkez olusturuldu. Buradaki amac, ayni karar akisina ait araclari bir araya getirerek kullanicinin once kategoriyi, sonra dogru araci secmesini kolaylastirmak.",
-    liveToolsTitle: "Canli araclar",
-    plannedToolsTitle: "Siradaki arac rotalari",
+      "Elektrik hesapları genel bir hesaplayıcı listesinin içinde kaybolmasın diye bu alt merkez oluşturuldu. Buradaki amaç, aynı karar akışına ait araçları bir araya getirerek kullanıcının önce kategoriyi, sonra doğru aracı seçmesini kolaylaştırmak.",
+    liveToolsTitle: "Canlı araçlar",
+    plannedToolsTitle: "Sıradaki araç rotaları",
     plannedToolsBody:
-      "Asagidaki rotalar hesap motorlari tamamlanmadan once bilgi mimarisini sabitlemek icin acildi. Bu sayfalar indexlenmeyecek; gercek hesaplayici mantigi eklendiginde canli araca donecekler.",
-    processTitle: "Bu cluster nasil buyuyecek?",
+      "Aşağıdaki rotalar hesap motorları tamamlanmadan önce bilgi mimarisini sabitlemek için açıldı. Bu sayfalar indexlenmeyecek; gerçek hesaplayıcı mantığı eklendiğinde canlı araca dönecekler.",
+    processTitle: "Bu cluster nasıl büyüyecek?",
     processSteps: [
-      "Once yuk akimi ve guc hesaplari acilacak.",
-      "Ardindan kablo kesiti ve gerilim dusumu birbirine bagli sekilde tamamlanacak.",
-      "Son asamada secim araclari sigorta, kontaktor ve termik katmanina genisleyecek.",
+      "Önce yük akımı ve güç hesapları açılacak.",
+      "Ardından kablo kesiti ve gerilim düşümü birbirine bağlı şekilde tamamlanacak.",
+      "Son aşamada seçim araçları sigorta, kontaktor ve termik katmanına genişleyecek.",
     ],
-    relatedTitle: "Ust merkez",
-    relatedLinkLabel: "Tum Muhendislik Hesaplayicilari",
-    liveStatus: "Canli",
-    plannedStatus: "Planli rota",
+    relatedTitle: "Üst merkez",
+    relatedLinkLabel: "Tüm Mühendislik Hesaplayıcıları",
+    liveStatus: "Canlı",
+    plannedStatus: "Planlı rota",
   },
   en: {
     title: "Electrical Calculators",
@@ -461,19 +461,19 @@ const plannedPreviewCopy = {
   tr: {
     breadcrumbLabel: "Sayfa yolu",
     homeLabel: "Ana Sayfa",
-    hubLabel: "Muhendislik Hesaplayicilari",
-    electricalHubLabel: "Elektrik Hesaplari",
+    hubLabel: "Mühendislik Hesaplayıcıları",
+    electricalHubLabel: "Elektrik Hesapları",
     planningNote:
-      "Bu rota su anda hesaplayici iskeleti olarak acik. Sayfa, kapsam ve ic link yapisini sabit tutarken hesap motoru tamamlandiginda canli araca donecek.",
-    scopeTitle: "Bu arac neyi cozecek?",
-    inputsTitle: "Planlanan girisler",
-    useCasesTitle: "Tipik kullanimlar",
-    nextTitle: "Sonraki adim",
+      "Bu rota su anda hesaplayıcı iskeleti olarak açık. Sayfa, kapsam ve iç link yapısını sabit tutarken hesap motoru tamamlandığında canlı araca dönecek.",
+    scopeTitle: "Bu araç neyi çözecek?",
+    inputsTitle: "Planlanan girişler",
+    useCasesTitle: "Tipik kullanımlar",
+    nextTitle: "Sonraki adım",
     nextBody:
-      "Bu sayfa su anda indexe acilmadi. Hesap motoru, birim secimleri ve test senaryolari eklendiginde indekslenebilir canli araca cevrilecek.",
-    relatedTitle: "Ilgili sayfalar",
-    electricalHubLink: "Elektrik Hesaplari merkezine don",
-    liveToolLink: "Canli Ohm Yasasi aracini ac",
+      "Bu sayfa su anda indexe açılmadı. Hesap motoru, birim seçimleri ve test senaryoları eklendiğinde indekslenebilir canlı araca çevrilecek.",
+    relatedTitle: "İlgili sayfalar",
+    electricalHubLink: "Elektrik Hesapları merkezine don",
+    liveToolLink: "Canlı Ohm Yasası aracını ac",
     liveToolHref: "/hesaplayicilar/ohm-yasasi",
   },
   en: {

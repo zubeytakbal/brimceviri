@@ -24,17 +24,17 @@ const copyByLocale: Record<
   tr: {
     modePrompt: "Ne hesaplamak istiyorsun?",
     modeButtons: {
-      "wake-to-bedtime": "Kacta yatmaliyim?",
-      "bedtime-to-wake": "Kacta kalkmaliyim?",
+      "wake-to-bedtime": "Kaçta yatmalıyım?",
+      "bedtime-to-wake": "Kaçta kalkmalıyım?",
     },
     timeLabel: {
-      "wake-to-bedtime": "Kalkmak istedigin saat",
-      "bedtime-to-wake": "Yatacagin saat",
+      "wake-to-bedtime": "Kalkmak istediğin saat",
+      "bedtime-to-wake": "Yatacağın saat",
     },
-    emptyState: "Gecerli bir saat girerek sonucu gorebilirsin.",
+    emptyState: "Geçerli bir saat girerek sonucu görebilirsin.",
     cycleLabel: "dongu",
     sleepLabel: "saat uyku",
-    recommended: "Onerilen",
+    recommended: "Önerilen",
   },
   en: {
     modePrompt: "What do you want to calculate?",

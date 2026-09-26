@@ -10,7 +10,7 @@ import {
 } from "../converter/recentTools";
 
 const copyByLocale = {
-  tr: { heading: "Son Baktiklarin", clear: "Temizle" },
+  tr: { heading: "Son Baktıkların", clear: "Temizle" },
   en: { heading: "Recently Viewed", clear: "Clear" },
   ar: { heading: "شوهدت مؤخرا", clear: "مسح" },
   uz: { heading: "So'nggi Ko'rilganlar", clear: "Tozalash" },

@@ -54,24 +54,24 @@ type VatCopy = {
 const copyByLocale: Record<Exclude<Locale, "ru">, VatCopy> = {
   tr: {
     labels: {
-      direction: "Hesap Yonu",
+      direction: "Hesap Yönü",
       amount: "Tutar (TL)",
-      rate: "KDV Orani",
-      customRate: "Ozel Oran (%)",
+      rate: "KDV Oranı",
+      customRate: "Özel Oran (%)",
     },
     directions: {
-      "exclusive-to-inclusive": "KDV Haric -> KDV Dahil",
-      "inclusive-to-exclusive": "KDV Dahil -> KDV Haric",
+      "exclusive-to-inclusive": "KDV Hariç -> KDV Dahil",
+      "inclusive-to-exclusive": "KDV Dahil -> KDV Hariç",
     },
     rateOptions: {
-      custom: "Ozel oran",
+      custom: "Özel oran",
     },
     resultLabels: {
-      baseAmount: "KDV Haric Tutar (Matrah)",
-      vatAmount: "KDV Tutari",
+      baseAmount: "KDV Hariç Tutar (Matrah)",
+      vatAmount: "KDV Tutarı",
       totalAmount: "KDV Dahil Tutar",
     },
-    emptyState: "Gecerli tutar ve oran girerek sonucu gorebilirsin.",
+    emptyState: "Geçerli tutar ve oran girerek sonucu görebilirsin.",
   },
   en: {
     labels: {

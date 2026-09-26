@@ -44,22 +44,22 @@ const pageCopy = {
     homeHref: "/",
     homeLabel: "Ana Sayfa",
     breadcrumbAriaLabel: "Sayfa yolu",
-    title: "Diger Donusumler",
+    title: "Diğer Dönüşümler",
     description:
-      "Ana sayfada yer almayan, daha az bilinen ancak muhendislik ve bilim alanlarinda gercekten kullanilan birim kategorilerini burada bulabilirsiniz.",
-    searchLabel: "Donusum ara",
+      "Ana sayfada yer almayan, daha az bilinen ancak mühendislik ve bilim alanlarında gerçekten kullanılan birim kategorilerini burada bulabilirsiniz.",
+    searchLabel: "Dönüşüm ara",
     searchPlaceholder:
       "Ornek: newton, viskozite, beygirgucu, tork",
     searchButton: "Ac",
     searchHint:
-      "Birim adi, sembol veya donusum cifti yazarak ilgili sayfayi bulun.",
-    searchResultsTitle: "Arama sonuclari",
+      "Birim adı, sembol veya dönüşüm çifti yazarak ilgili sayfayı bulun.",
+    searchResultsTitle: "Arama sonuçları",
     searchResultsHint:
-      "Ilk sonucu acmak icin Enter kullanabilirsiniz.",
-    searchEmpty: "Eslesen donusum bulunamadi.",
-    toolsTitle: "Araclar",
+      "İlk sonucu açmak için Enter kullanabilirsiniz.",
+    searchEmpty: "Eşleşen dönüşüm bulunamadı.",
+    toolsTitle: "Araçlar",
     categoriesTitle: "Kategoriler",
-    otherLanguagesTitle: "Diger diller",
+    otherLanguagesTitle: "Diğer diller",
   },
   en: {
     homeHref: "/en",

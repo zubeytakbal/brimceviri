@@ -20,12 +20,12 @@ type UniversalHomeSection = {
 const universalHomeSections = {
   science: {
     heading: {
-      tr: "Bilim hesaplayicilari",
+      tr: "Bilim hesaplayıcıları",
       en: "Science calculators",
       uz: "Fan kalkulyatorlari",
     },
     description: {
-      tr: "Kimya, matematik, geometri ve biyolojiye yonelik arac kategorileri.",
+      tr: "Kimya, matematik, geometri ve biyolojiye yönelik araç kategorileri.",
       en: "Shared tool categories for chemistry, mathematics, geometry and biology.",
       uz: "Kimyo, matematika, geometriya va biologiya uchun vosita turkumlari.",
     },

@@ -128,7 +128,7 @@ export default function BritishAirways5390Page() {
           <h2>Ne oldu?</h2>
           <p>
             10 Haziran 1990&apos;da British Airways&apos;in bir BAC
-            One-Eleven uçağı, Birmingham&apos;dan İspanya&apos;ya doğru
+            Öne-Eleven uçağı, Birmingham&apos;dan İspanya&apos;ya doğru
             17.300 fit irtifadayken kokpit ön camı aniden yerinden
             fırladı. Kabin basıncı farkı, Kaptan Tim Lancaster&apos;ı
             koltuğundan söküp neredeyse tamamen kokpit dışına savurdu.

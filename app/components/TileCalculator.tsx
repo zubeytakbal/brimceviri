@@ -30,14 +30,14 @@ const copyByLocale: Record<
       area: "Kaplanacak Alan (m2)",
       width: "Fayans Eni (cm)",
       height: "Fayans Boyu (cm)",
-      waste: "Fire Payi (%)",
+      waste: "Fire Payı (%)",
     },
     resultLabels: {
-      tileArea: "1 fayansin alani",
+      tileArea: "1 fayansın alanı",
       totalArea: "Fire dahil toplam alan",
       count: "Gereken fayans adedi",
     },
-    emptyState: "Gecerli degerler girerek sonucu gorebilirsin.",
+    emptyState: "Geçerli değerler girerek sonucu görebilirsin.",
   },
   en: {
     labels: {

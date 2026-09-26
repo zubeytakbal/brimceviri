@@ -16,8 +16,8 @@ const systemLabels: Record<Locale, Record<SystemKey, string>> = {
   tr: {
     eu: "TR / Avrupa (EU)",
     us: "ABD (US)",
-    uk: "Ingiltere (UK)",
-    cm: "Ayak Uzunlugu (cm)",
+    uk: "İngiltere (UK)",
+    cm: "Ayak Uzunluğu (cm)",
   },
   en: {
     eu: "EU",
@@ -183,9 +183,9 @@ const brandLabels: Record<Locale, Record<ShoeBrandKey, string>> = {
 const groupLabels: Record<Locale, Record<ShoeSizeGroupKey, string>> = {
   tr: {
     erkek: "Erkek",
-    kadin: "Kadin",
-    bebek: "Bebek / Kucuk Cocuk",
-    "buyuk-cocuk": "Buyuk Cocuk",
+    kadin: "Kadın",
+    bebek: "Bebek / Küçük Çocuk",
+    "buyuk-cocuk": "Büyük Çocuk",
   },
   en: {
     erkek: "Men",
@@ -257,16 +257,16 @@ const copy = {
   tr: {
     group: "Grup",
     brand: "Marka",
-    knownSystem: "Bildigin Sistem",
+    knownSystem: "Bildiğin Sistem",
     value: "Deger",
-    matchingSizes: "Eslesen Numaralar",
+    matchingSizes: "Eşleşen Numaralar",
     invalidValue:
-      "Gecerli bir sayi girerek sonucu gorebilirsiniz.",
+      "Geçerli bir sayı girerek sonucu görebilirsiniz.",
     euResult: "TR / EU",
     usResult: "ABD (US)",
-    ukResult: "Ingiltere (UK)",
-    footLength: "Ayak Uzunlugu",
-    chartSuffix: "ayakkabi numarasi tablosu",
+    ukResult: "İngiltere (UK)",
+    footLength: "Ayak Uzunluğu",
+    chartSuffix: "ayakkabı numarası tablosu",
   },
   en: {
     group: "Group",

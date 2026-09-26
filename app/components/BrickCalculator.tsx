@@ -28,18 +28,18 @@ const copyByLocale: Record<
 > = {
   tr: {
     labels: {
-      wallArea: "Duvar Alani (m2)",
-      brickWidth: "Tugla Eni (cm)",
-      brickHeight: "Tugla Yuksekligi (cm)",
-      joint: "Derz Kalinligi (mm)",
-      waste: "Fire Payi (%)",
+      wallArea: "Duvar Alanı (m2)",
+      brickWidth: "Tuğla Eni (cm)",
+      brickHeight: "Tuğla Yüksekliği (cm)",
+      joint: "Derz Kalınlığı (mm)",
+      waste: "Fire Payı (%)",
     },
     resultLabels: {
-      brickArea: "1 tuglanin derzli alani",
+      brickArea: "1 tuğlanın derzli alanı",
       totalArea: "Fire dahil toplam alan",
-      count: "Gereken tugla adedi",
+      count: "Gereken tuğla adedi",
     },
-    emptyState: "Gecerli degerler girerek sonucu gorebilirsin.",
+    emptyState: "Geçerli değerler girerek sonucu görebilirsin.",
   },
   fr: {
     labels: {

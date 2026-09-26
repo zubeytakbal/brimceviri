@@ -117,12 +117,12 @@ fr: { g: "g", kg: "kg", ton: "t" },
 const referenceLabels: Record<Locale, Record<string, string>> = {
   tr: {
     kedi: "Ev kedisi (ortalama)",
-    insan: "Yetiskin insan (ortalama)",
+    insan: "Yetişkin insan (ortalama)",
     motosiklet: "Motosiklet (ortalama)",
     at: "Binicilik ati (ortalama)",
     otomobil: "Binek otomobil (ortalama)",
-    fil: "Afrika fili (yetiskin, ortalama)",
-    "mavi-balina": "Mavi balina (yetiskin, ortalama)",
+    fil: "Afrika fili (yetişkin, ortalama)",
+    "mavi-balina": "Mavi balina (yetişkin, ortalama)",
   },
   en: {
     kedi: "Average house cat",
@@ -280,9 +280,9 @@ const copyByLocale: Record<
       unit: "Birim",
     },
     placeholder: "Orn. 25",
-    emptyState: "Gecerli bir deger girerek karsilastirmalari gorebilirsin.",
-    intro: "icin karsilastirmalar:",
-    closestMatch: "En yakin karsilastirma",
+    emptyState: "Geçerli bir değer girerek karşılaştırmaları görebilirsin.",
+    intro: "için karşılaştırmalar:",
+    closestMatch: "En yakın karşılaştırma",
   },
   en: {
     labels: {

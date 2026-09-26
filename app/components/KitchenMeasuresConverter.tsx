@@ -17,10 +17,10 @@ import {
 const copy = {
   tr: {
     ingredient: "Malzeme",
-    knownUnit: "Bildigin Birim",
+    knownUnit: "Bildiğin Birim",
     value: "Deger",
-    resultHeading: "Karsiliklar",
-    invalidValue: "Gecerli bir sayi girerek sonucu gorebilirsin.",
+    resultHeading: "Karşılıklar",
+    invalidValue: "Geçerli bir sayı girerek sonucu görebilirsin.",
   },
   en: {
     ingredient: "Ingredient",

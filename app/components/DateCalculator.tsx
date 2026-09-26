@@ -34,16 +34,16 @@ type DateCopy = {
 const copyByLocale: Record<Exclude<Locale, "ru">, DateCopy> = {
   tr: {
     labels: {
-      startDate: "Baslangic Tarihi (Dogum Tarihi)",
+      startDate: "Başlangıç Tarihi (Doğum Tarihi)",
       endDate: "Hedef Tarih",
     },
-    emptyState: "Gecerli iki tarih gir; hedef tarih baslangic tarihinden once olamaz.",
+    emptyState: "Geçerli iki tarih gir; hedef tarih başlangıç tarihinden önce olamaz.",
     resultLabels: {
       difference: "Fark",
-      totalDays: "Toplam gun",
+      totalDays: "Toplam gün",
       totalWeeks: "Toplam hafta",
       totalMonths: "Toplam ay",
-      nextAnniversary: "Sonraki yil donumu",
+      nextAnniversary: "Sonraki yıl dönümü",
     },
     units: {
       years: "yil",

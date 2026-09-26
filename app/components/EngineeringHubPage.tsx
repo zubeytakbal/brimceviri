@@ -182,7 +182,7 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
             title: "kW to Amper",
             formula: "I = P / (\u221a3 x V x cos phi x eta)",
             description:
-              "Uc faz, tek faz ve DC secenekleriyle gucu yaklasik hat akimina cevirin.",
+              "Üç faz, tek faz ve DC seçenekleriyle gücü yaklaşık hat akımına çevirin.",
           },
           {
             slug: "amper-to-kw-hesaplama",
@@ -190,7 +190,7 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
             title: "Amper to kW",
             formula: "P = \u221a3 x V x I x cos phi x eta",
             description:
-              "Hat akimindan uc faz, tek faz ve DC secenekleriyle yaklasik gucu hesaplayin.",
+              "Hat akımından üç faz, tek faz ve DC seçenekleriyle yaklaşık gücü hesaplayın.",
           },
           {
             slug: "ohm-yasasi",

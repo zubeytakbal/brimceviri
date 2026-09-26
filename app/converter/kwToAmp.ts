@@ -48,14 +48,14 @@ const ROOT_THREE = Math.sqrt(3);
 
 const messages = {
   tr: {
-    missing: "Guc ve gerilim degerlerini girin.",
-    invalid: "Gecerli sayisal degerler girin.",
-    powerPositive: "Guc sifirdan buyuk olmalidir.",
-    voltagePositive: "Gerilim sifirdan buyuk olmalidir.",
+    missing: "Güç ve gerilim değerlerini girin.",
+    invalid: "Geçerli sayısal değerler girin.",
+    powerPositive: "Güç sıfırdan büyük olmalıdır.",
+    voltagePositive: "Gerilim sıfırdan büyük olmalıdır.",
     powerFactorRange:
-      "Guc faktoru 0 ile 1 arasinda veya 0 ile 100 arasinda bir yuzde degeri olmalidir.",
+      "Güç faktörü 0 ile 1 arasında veya 0 ile 100 arasında bir yüzde değeri olmalıdır.",
     efficiencyRange:
-      "Verim 0 ile 1 arasinda veya 0 ile 100 arasinda bir yuzde degeri olmalidir.",
+      "Verim 0 ile 1 arasında veya 0 ile 100 arasında bir yüzde değeri olmalıdır.",
   },
   en: {
     missing: "Enter the power and voltage values.",

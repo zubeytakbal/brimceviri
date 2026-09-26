@@ -116,13 +116,13 @@ fr: { cm: "cm", m: "m", km: "km" },
 
 const referenceLabels: Record<Locale, Record<string, string>> = {
   tr: {
-    "insan-boyu": "Yetiskin insan boyu (ortalama)",
-    zurafa: "Zurafa boyu (ortalama)",
-    "sehir-otobusu": "Sehir otobusu uzunlugu",
-    "mavi-balina": "Mavi balina uzunlugu (ortalama)",
-    "futbol-sahasi": "Futbol sahasi uzunlugu",
-    "eyfel-kulesi": "Eyfel Kulesi yuksekligi (anten dahil)",
-    "bogaz-koprusu": "15 Temmuz Sehitler Koprusu uzunlugu",
+    "insan-boyu": "Yetişkin insan boyu (ortalama)",
+    zurafa: "Zürafa boyu (ortalama)",
+    "sehir-otobusu": "Şehir otobüsü uzunluğu",
+    "mavi-balina": "Mavi balina uzunluğu (ortalama)",
+    "futbol-sahasi": "Futbol sahası uzunluğu",
+    "eyfel-kulesi": "Eyfel Kulesi yüksekliği (anten dahil)",
+    "bogaz-koprusu": "15 Temmuz Şehitler Köprüsü uzunluğu",
   },
   en: {
     "insan-boyu": "Average adult human height",
@@ -280,9 +280,9 @@ const copyByLocale: Record<
       unit: "Birim",
     },
     placeholder: "Orn. 3",
-    emptyState: "Gecerli bir deger girerek karsilastirmalari gorebilirsin.",
-    intro: "icin karsilastirmalar:",
-    closestMatch: "En yakin karsilastirma",
+    emptyState: "Geçerli bir değer girerek karşılaştırmaları görebilirsin.",
+    intro: "için karşılaştırmalar:",
+    closestMatch: "En yakın karşılaştırma",
   },
   en: {
     labels: {

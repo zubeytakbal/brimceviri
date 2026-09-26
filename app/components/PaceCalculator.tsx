@@ -39,24 +39,24 @@ const copyByLocale: Record<
     modePrompt: "Ne hesaplamak istiyorsun?",
     modeButtons: {
       pace: "Tempo Hesapla",
-      duration: "Sure Hesapla",
+      duration: "Süre Hesapla",
       distance: "Mesafe Hesapla",
     },
     labels: {
       distance: "Mesafe (km)",
-      durationHours: "Sure - Saat",
-      durationMinutes: "Sure - Dakika",
-      durationSeconds: "Sure - Saniye",
+      durationHours: "Süre - Saat",
+      durationMinutes: "Süre - Dakika",
+      durationSeconds: "Süre - Saniye",
       paceMinutes: "Tempo - Dakika/km",
       paceSeconds: "Tempo - Saniye/km",
     },
-    emptyState: "Gecerli degerler girerek sonucu gorebilirsin.",
+    emptyState: "Geçerli değerler girerek sonucu görebilirsin.",
     resultLabels: {
       pace: "Tempo",
-      duration: "Sure",
+      duration: "Süre",
       distance: "Mesafe",
-      speed: "Hiz",
-      estimatedTime: "tahmini sure",
+      speed: "Hız",
+      estimatedTime: "tahmini süre",
     },
   },
   en: {
@@ -439,7 +439,7 @@ function getRaceLabel(race: RaceEstimate, locale: Locale) {
         ? "Half Marathon"
         : locale === "uz"
           ? "Yarim Marafon"
-        : "Yari Maraton";
+        : "Yarı Maraton";
   }
 
   if (race.distanceKm === 42.195) {

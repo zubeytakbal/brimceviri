@@ -10,14 +10,14 @@ import {
 const copy = {
   tr: {
     lang: "tr",
-    title: "Sayfa bulunamadi",
+    title: "Sayfa bulunamadı",
     description:
-      "Aradiginiz sayfa tasinmis olabilir veya gecerli bir adres olmayabilir.",
-    continueHeading: "Devam etmek icin",
+      "Aradığınız sayfa taşınmış olabilir veya geçerli bir adres olmayabilir.",
+    continueHeading: "Devam etmek için",
     primaryHref: "/",
     primaryLabel: "Ana sayfaya don",
     secondaryHref: "/en",
-    secondaryLabel: "Ingilizce ana sayfaya git",
+    secondaryLabel: "İngilizce ana sayfaya git",
   },
   en: {
     lang: "en",

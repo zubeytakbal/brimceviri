@@ -55,7 +55,7 @@ const unitDescriptions: Record<string, UnitDescription> = {
     historySummary: "Rankine ölçeği, Glasgow Üniversitesi'nde mühendis ve fizikçi olan W. J. M. Rankine tarafından 1859'da önerildi — Kelvin ölçeğinin 1848'de ortaya atılmasından yaklaşık on yıl sonra. Rankine ölçeğinin ayırt edici özelliği, Kelvin'in Santigrat derece aralığını kullanmasına karşılık, Fahrenheit derece aralığını kullanmasıdır: 1 Rankine derecelik fark, tam olarak 1 Fahrenheit derecelik farka eşittir. Kelvin gibi, sıfır noktası da mutlak sıfıra denk gelir (0 K = 0 °R = -459,67 °F). Bugün Rankine, özellikle ABD mühendislik camiasında, ısı hesaplamalarının Fahrenheit cinsinden yapıldığı sistemlerde (termodinamik, motor tasarımı) kullanılmaya devam ediyor.",
     measurementSystem: "ABD mühendislik camiasında kullanılan mutlak sıcaklık ölçeği",
     siEquivalent: "0 °R = mutlak sıfır; 1 °R = 5/9 K",
-    commonUses: "ABD mühendislik hesapları, termodinamik, motor/turbin tasarımı",
+    commonUses: "ABD mühendislik hesapları, termodinamik, motor/türbin tasarımı",
   },
   "sogutma-tonu": {
     shortDescription: "Soğutma Tonu (TR), iklimlendirme ve soğutma sektöründe kullanılan bir güç birimidir; bir klima/soğutma sisteminin kaç birim ısıyı ortamdan çekebildiğini ifade eder.",

@@ -13,10 +13,10 @@ type Locale = "tr" | "en" | "de" | "ar" | "uz";
 
 const systemLabels: Record<Locale, Record<RingSizeSystem, string>> = {
   tr: {
-    diameterMm: "TR (Ic Cap mm)",
-    circumferenceMm: "Avrupa (Cevre mm)",
+    diameterMm: "TR (İç Çap mm)",
+    circumferenceMm: "Avrupa (Çevre mm)",
     us: "ABD (US)",
-    uk: "Ingiltere (UK)",
+    uk: "İngiltere (UK)",
   },
   en: {
     diameterMm: "Diameter (mm)",
@@ -46,15 +46,15 @@ const systemLabels: Record<Locale, Record<RingSizeSystem, string>> = {
 
 const copy = {
   tr: {
-    knownSystem: "Bildigin Sistem",
+    knownSystem: "Bildiğin Sistem",
     value: "Deger",
-    matchingSizes: "Eslesen Bedenler",
-    invalidValue: "Gecerli bir deger secerek sonucu gorebilirsin.",
+    matchingSizes: "Eşleşen Bedenler",
+    invalidValue: "Geçerli bir değer seçerek sonucu görebilirsin.",
     diameterResult: "TR (mm)",
     circumferenceResult: "Avrupa (mm)",
     usResult: "ABD (US)",
-    ukResult: "Ingiltere (UK)",
-    chartCaption: "Yuzuk beden tablosu",
+    ukResult: "İngiltere (UK)",
+    chartCaption: "Yüzük beden tablosu",
   },
   en: {
     knownSystem: "Known System",

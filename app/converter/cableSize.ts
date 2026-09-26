@@ -54,13 +54,13 @@ export type CableSizeResult = {
 const messages = {
   tr: {
     missing:
-      "Gerilim, akim, uzunluk ve izin verilen gerilim dusumu degerlerini girin.",
-    invalid: "Gecerli sayisal degerler girin.",
-    voltagePositive: "Kaynak gerilimi sifirdan buyuk olmalidir.",
-    currentPositive: "Akim sifirdan buyuk olmalidir.",
-    lengthPositive: "Kablo uzunlugu sifirdan buyuk olmalidir.",
+      "Gerilim, akım, uzunluk ve izin verilen gerilim düşümü değerlerini girin.",
+    invalid: "Geçerli sayısal değerler girin.",
+    voltagePositive: "Kaynak gerilimi sıfırdan büyük olmalıdır.",
+    currentPositive: "Akım sıfırdan büyük olmalıdır.",
+    lengthPositive: "Kablo uzunluğu sıfırdan büyük olmalıdır.",
     percentRange:
-      "Izin verilen gerilim dusumu 0 ile 100 arasinda bir yuzde degeri olmalidir.",
+      "İzin verilen gerilim düşümü 0 ile 100 arasında bir yüzde değeri olmalıdır.",
   },
   en: {
     missing:

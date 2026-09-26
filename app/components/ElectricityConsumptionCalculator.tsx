@@ -31,19 +31,19 @@ const copyByLocale: Record<
 > = {
   tr: {
     labels: {
-      power: "Cihaz Gucu (Watt)",
-      hours: "Gunluk Kullanim Suresi (saat)",
-      days: "Ayda Kac Gun Kullaniliyor",
-      price: "Elektrik Birim Fiyati (TL/kWh) - istege bagli",
+      power: "Cihaz Gücü (Watt)",
+      hours: "Günlük Kullanım Süresi (saat)",
+      days: "Ayda Kaç Gün Kullanılıyor",
+      price: "Elektrik Birim Fiyatı (TL/kWh) - isteğe bağlı",
     },
     placeholder: "Faturandaki kWh fiyati",
-    emptyState: "Gecerli degerler girerek sonucu gorebilirsin.",
+    emptyState: "Geçerli değerler girerek sonucu görebilirsin.",
     resultLabels: {
-      monthly: "Aylik tuketim",
-      daily: "Gunluk tuketim",
-      yearly: "Yillik tuketim",
-      yearlyCost: "Yillik maliyet",
-      costHint: "Maliyeti de gormek icin faturandaki kWh birim fiyatini gir.",
+      monthly: "Aylık tüketim",
+      daily: "Günlük tüketim",
+      yearly: "Yıllık tüketim",
+      yearlyCost: "Yıllık maliyet",
+      costHint: "Maliyeti de görmek için faturandaki kWh birim fiyatını gir.",
     },
   },
   en: {

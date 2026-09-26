@@ -30,19 +30,19 @@ const copyByLocale: Record<
 > = {
   tr: {
     labels: {
-      area: "Oda Alani (m2)",
-      people: "Odada Bulunan Kisi Sayisi",
-      sunny: "Oda gun boyu gunes aliyor mu?",
-      sunnyCheckbox: "Evet, dogrudan gunes aliyor",
-      topFloor: "Ust kat / cati kati mi?",
-      topFloorCheckbox: "Evet, en ust kat veya cati kati",
+      area: "Oda Alanı (m2)",
+      people: "Odada Bulunan Kişi Sayısı",
+      sunny: "Oda gün boyu güneş alıyor mu?",
+      sunnyCheckbox: "Evet, doğrudan güneş alıyor",
+      topFloor: "Üst kat / çatı katı mı?",
+      topFloorCheckbox: "Evet, en üst kat veya çatı katı",
     },
-    emptyState: "Gecerli degerler girerek sonucu gorebilirsin.",
+    emptyState: "Geçerli değerler girerek sonucu görebilirsin.",
     resultLabels: {
-      suggested: "Onerilen klima kapasitesi",
-      base: "Alan bazli ihtiyac",
-      occupant: "Kisi bazli ek yuk",
-      total: "Toplam hesaplanan ihtiyac",
+      suggested: "Önerilen klima kapasitesi",
+      base: "Alan bazlı ihtiyaç",
+      occupant: "Kişi bazlı ek yük",
+      total: "Toplam hesaplanan ihtiyaç",
     },
   },
   en: {

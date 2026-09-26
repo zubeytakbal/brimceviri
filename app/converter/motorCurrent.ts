@@ -47,15 +47,15 @@ const ROOT_THREE = Math.sqrt(3);
 
 const messages = {
   tr: {
-    missing: "Motor gucu ve gerilim degerlerini girin.",
-    invalid: "Gecerli sayisal degerler girin.",
-    powerPositive: "Motor gucu sifirdan buyuk olmalidir.",
-    voltagePositive: "Gerilim sifirdan buyuk olmalidir.",
+    missing: "Motor gücü ve gerilim değerlerini girin.",
+    invalid: "Geçerli sayısal değerler girin.",
+    powerPositive: "Motor gücü sıfırdan büyük olmalıdır.",
+    voltagePositive: "Gerilim sıfırdan büyük olmalıdır.",
     powerFactorRange:
-      "Guc faktoru 0 ile 1 arasinda veya 0 ile 100 arasinda bir yuzde degeri olmalidir.",
+      "Güç faktörü 0 ile 1 arasında veya 0 ile 100 arasında bir yüzde değeri olmalıdır.",
     efficiencyRange:
-      "Verim 0 ile 1 arasinda veya 0 ile 100 arasinda bir yuzde degeri olmalidir.",
-    marginRange: "Emniyet payi 0 ile 100 arasinda bir yuzde olmalidir.",
+      "Verim 0 ile 1 arasında veya 0 ile 100 arasında bir yüzde değeri olmalıdır.",
+    marginRange: "Emniyet payı 0 ile 100 arasında bir yüzde olmalıdır.",
   },
   en: {
     missing: "Enter the motor power and voltage values.",

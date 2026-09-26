@@ -103,11 +103,11 @@ const copyByLocale: Record<
   }
 > = {
   tr: {
-    inputLabel: "Son Adet Tarihinin Ilk Gunu",
-    emptyState: "Gecerli bir tarih gir; tarih bugunden sonra veya 45 haftadan daha eski olamaz.",
-    summaryLabel: "Gebelik haftasi",
-    dueDate: "Tahmini dogum tarihi",
-    daysUntil: "Doguma kalan gun",
+    inputLabel: "Son Adet Tarihinin İlk Günü",
+    emptyState: "Geçerli bir tarih gir; tarih bugünden sonra veya 45 haftadan daha eski olamaz.",
+    summaryLabel: "Gebelik haftası",
+    dueDate: "Tahmini doğum tarihi",
+    daysUntil: "Doğuma kalan gün",
     weeks: "hafta",
     days: "gun",
   },

@@ -56,12 +56,12 @@ export type VoltageDropResult = {
 
 const messages = {
   tr: {
-    missing: "Gerilim, akim, uzunluk ve kesit degerlerini girin.",
-    invalid: "Gecerli sayisal degerler girin.",
-    voltagePositive: "Kaynak gerilimi sifirdan buyuk olmalidir.",
-    currentPositive: "Akim sifirdan buyuk olmalidir.",
-    lengthPositive: "Kablo uzunlugu sifirdan buyuk olmalidir.",
-    crossSectionPositive: "Iletken kesiti sifirdan buyuk olmalidir.",
+    missing: "Gerilim, akım, uzunluk ve kesit değerlerini girin.",
+    invalid: "Geçerli sayısal değerler girin.",
+    voltagePositive: "Kaynak gerilimi sıfırdan büyük olmalıdır.",
+    currentPositive: "Akım sıfırdan büyük olmalıdır.",
+    lengthPositive: "Kablo uzunluğu sıfırdan büyük olmalıdır.",
+    crossSectionPositive: "İletken kesiti sıfırdan büyük olmalıdır.",
   },
   en: {
     missing: "Enter the voltage, current, length and cross-section values.",

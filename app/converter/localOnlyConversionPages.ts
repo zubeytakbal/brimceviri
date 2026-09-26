@@ -42,7 +42,7 @@ export function buildLocalOnlyConversionPages<L extends string>(
     const to = unitPages.find((page) => page.category === category && page.unit === toUnit);
 
     if (!from || !to) {
-      throw new Error(`localOnlyConversionPages(${locale}): ${fromUnit}/${toUnit} icin birim sayfasi yok`);
+      throw new Error(`localOnlyConversionPages(${locale}): ${fromUnit}/${toUnit} için birim sayfası yok`);
     }
 
     const factor = convert(category, 1, fromUnit, toUnit);

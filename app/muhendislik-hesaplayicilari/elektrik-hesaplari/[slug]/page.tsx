@@ -34,7 +34,7 @@ export async function generateMetadata({
 
   if (!item) {
     return {
-      title: "Sayfa bulunamadi",
+      title: "Sayfa bulunamadı",
       robots: {
         index: false,
         follow: false,

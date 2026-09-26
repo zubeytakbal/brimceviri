@@ -67,15 +67,15 @@ const categoryLabels: Record<
     uzunluk: "Uzunluk",
     alan: "Alan",
     hacim: "Hacim",
-    kutle: "Kutle",
-    sicaklik: "Sicaklik",
+    kutle: "Kütle",
+    sicaklik: "Sıcaklık",
     zaman: "Zaman",
     hiz: "Hiz",
     basinc: "Basinc",
-    enerji: "Enerji ve Guc",
+    enerji: "Enerji ve Güç",
     veri: "Veri Depolama",
     elektrik: "Elektrik",
-    yogunluk: "Yogunluk",
+    yogunluk: "Yoğunluk",
     kuvvet: "Kuvvet",
     debi: "Debi",
     tork: "Tork",
@@ -84,9 +84,9 @@ const categoryLabels: Record<
     elektrik_direnc: "Direnc",
     kapasitans: "Kapasitans",
     enduktans: "Enduktans",
-    elektrik_yuk: "Elektrik Yuku",
-    altin_ayar: "Altin Ayar",
-    gumus_ayar: "Gumus Ayar",
+    elektrik_yuk: "Elektrik Yükü",
+    altin_ayar: "Altın Ayar",
+    gumus_ayar: "Gümüş Ayar",
   },
   en: {
     uzunluk: "Length",
@@ -445,9 +445,9 @@ const categoryLabels: Record<
 
 const siteHeaderCopy: Record<Locale, SiteHeaderCopy> = {
   tr: {
-    navAriaLabel: "Ana menu",
-    menuLabel: "Menu",
-    conversionsLabel: "Donusumler",
+    navAriaLabel: "Ana menü",
+    menuLabel: "Menü",
+    conversionsLabel: "Dönüşümler",
   },
   en: {
     navAriaLabel: "Main navigation",
@@ -524,16 +524,16 @@ const siteHeaderCopy: Record<Locale, SiteHeaderCopy> = {
 
 const footerCopy: Record<Locale, FooterCopy> = {
   tr: {
-    navAriaLabel: "Alt menu",
+    navAriaLabel: "Alt menü",
     pagesHeading: "Sayfalar",
     languagesHeading: "Diller",
     categoriesHeading: "Kategoriler",
     description:
-      "Teknik donusum araclari, muhendislik hesaplayicilari ve birim rehberleri pratik basvuru amaciyla hazirlanmistir.",
+      "Teknik dönüşüm araçları, mühendislik hesaplayıcıları ve birim rehberleri pratik başvuru amacıyla hazırlanmıştır.",
     disclaimer:
-      "Kritik muhendislik, saglik veya guvenlik kararlarinda sonuclari profesyonel kaynaklarla dogrulayin.",
+      "Kritik mühendislik, sağlık veya güvenlik kararlarında sonuçları profesyonel kaynaklarla doğrulayın.",
     browserProcessingNote:
-      "Hesaplayici girisleri bu sitedeki hesaplama akislarinda tarayici icinde islenir.",
+      "Hesaplayıcı girişleri bu sitedeki hesaplama akışlarında tarayıcı içinde işlenir.",
   },
   en: {
     navAriaLabel: "Footer navigation",
@@ -720,10 +720,10 @@ const topLevelLabelMap: Record<
 > = {
   tr: {
     home: "Ana Sayfa",
-    engineeringHub: "Hesaplayicilar",
+    engineeringHub: "Hesaplayıcılar",
     units: "Birim Rehberi",
-    allConversions: "Tum Donusumler",
-    professions: "Mesleklere Gore",
+    allConversions: "Tüm Dönüşümler",
+    professions: "Mesleklere Göre",
   },
   en: {
     home: "Home",
@@ -833,13 +833,13 @@ const footerLinksByLocale: Record<
   tr: [
     { key: "home", label: "Ana Sayfa" },
     { key: "units", label: "Birim Rehberi" },
-    { key: "allConversions", label: "Tum Donusumler" },
-    { key: "professions", label: "Mesleklere Gore" },
-    { key: "developerApi", label: "Gelistirici API'si" },
-    { key: "about", label: "Hakkimizda" },
-    { key: "contact", label: "Iletisim" },
+    { key: "allConversions", label: "Tüm Dönüşümler" },
+    { key: "professions", label: "Mesleklere Göre" },
+    { key: "developerApi", label: "Geliştirici API'si" },
+    { key: "about", label: "Hakkımızda" },
+    { key: "contact", label: "İletişim" },
     { key: "privacy", label: "Gizlilik" },
-    { key: "terms", label: "Kullanim Kosullari" },
+    { key: "terms", label: "Kullanım Koşulları" },
   ],
   en: [
     { key: "home", label: "Home" },
@@ -1031,7 +1031,7 @@ export function getCategoryMenuLinks(locale: Locale) {
                             ? "Skostørrelser"
                             : locale === "da"
                               ? "Skostørrelser"
-                              : "Ayakkabi Numarasi",
+                              : "Ayakkabı Numarası",
   });
   links.push({
     href: getStaticPath(locale, "kitchenMeasures"),
@@ -1060,7 +1060,7 @@ export function getCategoryMenuLinks(locale: Locale) {
                             ? "Kjøkkenmål"
                             : locale === "da"
                               ? "Køkkenmål"
-                              : "Mutfak Olculeri",
+                              : "Mutfak Ölçüleri",
   });
   links.push({
     href: getStaticPath(locale, "recipeConverter"),
@@ -1089,7 +1089,7 @@ export function getCategoryMenuLinks(locale: Locale) {
                             ? "Oppskriftomregner"
                             : locale === "da"
                               ? "Opskriftomregner"
-                              : "Tarif Cevirici",
+                              : "Tarif Çevirici",
   });
 
   return links;

@@ -7,10 +7,10 @@ export const metadata: Metadata = {
   description:
     "BirimCeviri.app'da e'lon qilingan vositalar va texnik kontent uchun asosiy foydalanish shartlari.",
   alternates: {
-    canonical: "/uz/terms",
+    canonical: "/uz/foydalanish-shartlari",
     languages: {
       tr: "/kullanim-kosullari",
-      "uz-UZ": "/uz/terms",
+      "uz-UZ": "/uz/foydalanish-shartlari",
       "x-default": "/kullanim-kosullari",
     },
   },
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     title: `Foydalanish shartlari | ${SITE_NAME}`,
     description:
       "BirimCeviri.app'da e'lon qilingan vositalar va texnik kontent uchun asosiy foydalanish shartlari.",
-    url: `${SITE_URL}/uz/terms`,
+    url: `${SITE_URL}/uz/foydalanish-shartlari`,
     siteName: SITE_NAME,
     locale: "uz_UZ",
     type: "website",

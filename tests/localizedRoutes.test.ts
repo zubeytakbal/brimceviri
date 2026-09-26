@@ -7,7 +7,7 @@ import { describe, expect, it } from "vitest";
 
 const ROOT = path.resolve(__dirname, "..");
 const OLD_PATH =
-  "/(sv|no|da|pt|es|es-419|it|nl)/(unit-guides|categories|historical-units|kitchen-measurement-converter|recipe-converter|shoe-size-converter)([^a-z0-9-]|$)|/fr/(unit-guides|historical-units|kitchen-measurement-converter|recipe-converter|shoe-size-converter)([^a-z0-9-]|$)";
+  "/(sv|no|da|pt|es|es-419|it|nl)/(unit-guides|categories|historical-units|kitchen-measurement-converter|recipe-converter|shoe-size-converter)([^a-z0-9-]|$)|/fr/(unit-guides|historical-units|kitchen-measurement-converter|recipe-converter|shoe-size-converter)([^a-z0-9-]|$)|/uz/(about|contact|privacy|terms)([^a-z0-9-]|$)";
 
 describe("dile ozel bolum adresleri", () => {
   it("kodda eski Ingilizce bolum adresi kullanilmiyor", () => {

@@ -7,10 +7,10 @@ export const metadata: Metadata = {
   description:
     "BirimCeviri.app saytining maqsadi, qamrovi va texnik yo'nalishi haqida qisqacha ma'lumot.",
   alternates: {
-    canonical: "/uz/about",
+    canonical: "/uz/biz-haqimizda",
     languages: {
       tr: "/hakkimizda",
-      "uz-UZ": "/uz/about",
+      "uz-UZ": "/uz/biz-haqimizda",
       "x-default": "/hakkimizda",
     },
   },
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     title: `Biz haqimizda | ${SITE_NAME}`,
     description:
       "BirimCeviri.app saytining maqsadi, qamrovi va texnik yo'nalishi haqida qisqacha ma'lumot.",
-    url: `${SITE_URL}/uz/about`,
+    url: `${SITE_URL}/uz/biz-haqimizda`,
     siteName: SITE_NAME,
     locale: "uz_UZ",
     type: "website",

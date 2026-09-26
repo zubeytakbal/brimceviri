@@ -7,10 +7,10 @@ export const metadata: Metadata = {
   description:
     "BirimCeviri.app'dagi hisoblash kirishlari va sahifadan foydalanish bo'yicha qisqacha maxfiylik siyosati.",
   alternates: {
-    canonical: "/uz/privacy",
+    canonical: "/uz/maxfiylik-siyosati",
     languages: {
       tr: "/gizlilik",
-      "uz-UZ": "/uz/privacy",
+      "uz-UZ": "/uz/maxfiylik-siyosati",
       "x-default": "/gizlilik",
     },
   },
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     title: `Maxfiylik | ${SITE_NAME}`,
     description:
       "BirimCeviri.app'dagi hisoblash kirishlari va sahifadan foydalanish bo'yicha qisqacha maxfiylik siyosati.",
-    url: `${SITE_URL}/uz/privacy`,
+    url: `${SITE_URL}/uz/maxfiylik-siyosati`,
     siteName: SITE_NAME,
     locale: "uz_UZ",
     type: "website",

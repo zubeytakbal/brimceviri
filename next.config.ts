@@ -50,6 +50,12 @@ const localizedSectionRenames: Record<string, Record<string, string>> = {
     "recipe-converter": "conversor-de-recetas",
     "shoe-size-converter": "conversor-tallas-de-calzado",
   },
+  uz: {
+    "about": "biz-haqimizda",
+    "contact": "aloqa",
+    "privacy": "maxfiylik-siyosati",
+    "terms": "foydalanish-shartlari",
+  },
   "es-419": {
     "categories": "categorias",
     "unit-guides": "guias-de-unidades",

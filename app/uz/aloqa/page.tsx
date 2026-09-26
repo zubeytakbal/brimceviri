@@ -11,10 +11,10 @@ export const metadata: Metadata = {
   description:
     "BirimCeviri.app bilan bog'liq fikr-mulohaza, tuzatishlar va texnik muammolar uchun aloqa ma'lumotlari.",
   alternates: {
-    canonical: "/uz/contact",
+    canonical: "/uz/aloqa",
     languages: {
       tr: "/iletisim",
-      "uz-UZ": "/uz/contact",
+      "uz-UZ": "/uz/aloqa",
       "x-default": "/iletisim",
     },
   },
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     title: `Aloqa | ${SITE_NAME}`,
     description:
       "BirimCeviri.app bilan bog'liq fikr-mulohaza, tuzatishlar va texnik muammolar uchun aloqa ma'lumotlari.",
-    url: `${SITE_URL}/uz/contact`,
+    url: `${SITE_URL}/uz/aloqa`,
     siteName: SITE_NAME,
     locale: "uz_UZ",
     type: "website",

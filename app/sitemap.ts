@@ -516,7 +516,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/en/about`,
         `${baseUrl}/de/uber-uns`,
         undefined,
-        `${baseUrl}/uz/about`
+        `${baseUrl}/uz/biz-haqimizda`
       ),
     },
     {
@@ -529,7 +529,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/en/about`,
         `${baseUrl}/de/uber-uns`,
         undefined,
-        `${baseUrl}/uz/about`
+        `${baseUrl}/uz/biz-haqimizda`
       ),
     },
     {
@@ -542,7 +542,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/en/about`,
         `${baseUrl}/de/uber-uns`,
         undefined,
-        `${baseUrl}/uz/about`
+        `${baseUrl}/uz/biz-haqimizda`
       ),
     },
     {
@@ -555,11 +555,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/en/about`,
         `${baseUrl}/de/uber-uns`,
         `${baseUrl}/ar/about`,
-        `${baseUrl}/uz/about`
+        `${baseUrl}/uz/biz-haqimizda`
       ),
     },
     {
-      url: `${baseUrl}/uz/about`,
+      url: `${baseUrl}/uz/biz-haqimizda`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
       priority: 0.45,
@@ -568,7 +568,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/en/about`,
         `${baseUrl}/de/uber-uns`,
         undefined,
-        `${baseUrl}/uz/about`
+        `${baseUrl}/uz/biz-haqimizda`
       ),
     },
     {
@@ -581,7 +581,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/en/contact`,
         `${baseUrl}/de/kontakt`,
         undefined,
-        `${baseUrl}/uz/contact`
+        `${baseUrl}/uz/aloqa`
       ),
     },
     {
@@ -594,7 +594,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/en/contact`,
         `${baseUrl}/de/kontakt`,
         undefined,
-        `${baseUrl}/uz/contact`
+        `${baseUrl}/uz/aloqa`
       ),
     },
     {
@@ -607,7 +607,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/en/contact`,
         `${baseUrl}/de/kontakt`,
         undefined,
-        `${baseUrl}/uz/contact`
+        `${baseUrl}/uz/aloqa`
       ),
     },
     {
@@ -620,11 +620,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/en/contact`,
         `${baseUrl}/de/kontakt`,
         `${baseUrl}/ar/contact`,
-        `${baseUrl}/uz/contact`
+        `${baseUrl}/uz/aloqa`
       ),
     },
     {
-      url: `${baseUrl}/uz/contact`,
+      url: `${baseUrl}/uz/aloqa`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
       priority: 0.45,
@@ -633,7 +633,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/en/contact`,
         `${baseUrl}/de/kontakt`,
         undefined,
-        `${baseUrl}/uz/contact`
+        `${baseUrl}/uz/aloqa`
       ),
     },
     {
@@ -646,7 +646,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/en/privacy`,
         `${baseUrl}/de/datenschutz`,
         undefined,
-        `${baseUrl}/uz/privacy`
+        `${baseUrl}/uz/maxfiylik-siyosati`
       ),
     },
     {
@@ -659,7 +659,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/en/privacy`,
         `${baseUrl}/de/datenschutz`,
         undefined,
-        `${baseUrl}/uz/privacy`
+        `${baseUrl}/uz/maxfiylik-siyosati`
       ),
     },
     {
@@ -672,7 +672,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/en/privacy`,
         `${baseUrl}/de/datenschutz`,
         undefined,
-        `${baseUrl}/uz/privacy`
+        `${baseUrl}/uz/maxfiylik-siyosati`
       ),
     },
     {
@@ -685,11 +685,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/en/privacy`,
         `${baseUrl}/de/datenschutz`,
         `${baseUrl}/ar/privacy`,
-        `${baseUrl}/uz/privacy`
+        `${baseUrl}/uz/maxfiylik-siyosati`
       ),
     },
     {
-      url: `${baseUrl}/uz/privacy`,
+      url: `${baseUrl}/uz/maxfiylik-siyosati`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
       priority: 0.4,
@@ -698,7 +698,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/en/privacy`,
         `${baseUrl}/de/datenschutz`,
         undefined,
-        `${baseUrl}/uz/privacy`
+        `${baseUrl}/uz/maxfiylik-siyosati`
       ),
     },
     {
@@ -711,7 +711,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/en/terms`,
         `${baseUrl}/de/nutzungsbedingungen`,
         undefined,
-        `${baseUrl}/uz/terms`
+        `${baseUrl}/uz/foydalanish-shartlari`
       ),
     },
     {
@@ -724,7 +724,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/en/terms`,
         `${baseUrl}/de/nutzungsbedingungen`,
         undefined,
-        `${baseUrl}/uz/terms`
+        `${baseUrl}/uz/foydalanish-shartlari`
       ),
     },
     {
@@ -737,7 +737,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/en/terms`,
         `${baseUrl}/de/nutzungsbedingungen`,
         undefined,
-        `${baseUrl}/uz/terms`
+        `${baseUrl}/uz/foydalanish-shartlari`
       ),
     },
     {
@@ -750,11 +750,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/en/terms`,
         `${baseUrl}/de/nutzungsbedingungen`,
         `${baseUrl}/ar/terms`,
-        `${baseUrl}/uz/terms`
+        `${baseUrl}/uz/foydalanish-shartlari`
       ),
     },
     {
-      url: `${baseUrl}/uz/terms`,
+      url: `${baseUrl}/uz/foydalanish-shartlari`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
       priority: 0.4,
@@ -763,7 +763,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/en/terms`,
         `${baseUrl}/de/nutzungsbedingungen`,
         undefined,
-        `${baseUrl}/uz/terms`
+        `${baseUrl}/uz/foydalanish-shartlari`
       ),
     },
     {

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import type { ReactNode } from "react";
 
 type BreadcrumbItem = {
@@ -89,7 +89,7 @@ export default function StaticPageLayout({
                                 ? "Outros idiomas"
                                 : locale === "it"
                                   ? "Altre lingue"
-                                  : "Diger diller"}
+                                  : "Diğer diller"}
               </h2>
               <Link
                 className="text-link"

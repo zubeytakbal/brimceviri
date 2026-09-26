@@ -140,7 +140,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="tr" dir="ltr">
+    // lang/dir, locale-correction script'i tarafindan hidrasyondan once
+    // degistirilir; bu bilincli bir fark oldugu icin uyari bastirilir.
+    <html lang="tr" dir="ltr" suppressHydrationWarning>
       <head>
         <script
           id="locale-correction"

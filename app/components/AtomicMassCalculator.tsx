@@ -5,6 +5,7 @@ import {
   calculateAverageAtomicMass,
   type Isotope,
 } from "../converter/atomicMassCalculator";
+import { numberLocales, type ContentLocale } from "./contentLocale";
 
 type IsotopeRow = {
   id: number;
@@ -24,17 +25,69 @@ function parseNumericValue(rawValue: string) {
   return Number.isFinite(numericValue) ? numericValue : Number.NaN;
 }
 
-function formatNumber(value: number, maximumFractionDigits = 4) {
+function formatNumber(value: number, locale: ContentLocale, maximumFractionDigits = 4) {
   if (!Number.isFinite(value)) {
     return "—";
   }
 
-  return value.toLocaleString("tr-TR", { maximumFractionDigits });
+  return value.toLocaleString(numberLocales[locale], { maximumFractionDigits });
 }
+
+const copy = {
+  tr: {
+    isotopeLine: (index: number) => `İzotop ${index}: `,
+    step1: "1. Adım — Her izotobun katkısı",
+    step2: "2. Adım — Ağırlıklı ortalama",
+    average: "Ortalama",
+    formula: "Ortalama = Σ(kütle × bolluk) / Σ(bolluk)",
+    hint: (
+      <>
+        Nasıl çalışır: elementin bilinen her izotopunun kütlesini (u) ve
+        doğal bolluk yüzdesini gir; ağırlıklı ortalama alarak periyodik
+        tablodaki atom kütlesini hesaplayalım. Bolluk yüzdeleri toplamı
+        100 olmasa da hesap makinesi oranlayarak doğru sonucu verir.
+      </>
+    ),
+    massLabel: (index: number) => <>İzotop {index}: kütle (u)</>,
+    abundanceLabel: "Bolluk (%)",
+    removeLabel: (index: number) => `İzotop ${index}'i kaldır`,
+    addIsotope: "+ İzotop Ekle",
+    invalid: "Geçerli izotop kütlesi ve bolluk yüzdesi girerek sonucu görebilirsin.",
+    averageMass: "Ortalama Atom Kütlesi",
+    totalAbundance: "Toplam Bolluk",
+    stepsTitle: "Adım Adım Çözüm",
+  },
+  de: {
+    isotopeLine: (index: number) => `Isotop ${index}: `,
+    step1: "Schritt 1 — Beitrag jedes Isotops",
+    step2: "Schritt 2 — Gewichteter Durchschnitt",
+    average: "Durchschnitt",
+    formula: "Durchschnitt = Σ(Masse × Häufigkeit) / Σ(Häufigkeit)",
+    hint: (
+      <>
+        So funktioniert es: Gib für jedes bekannte Isotop des Elements
+        die Masse (u) und die natürliche Häufigkeit in Prozent ein; wir
+        berechnen den gewichteten Durchschnitt, also die Atommasse aus
+        dem Periodensystem. Auch wenn die Häufigkeiten nicht genau 100
+        ergeben, berechnet der Rechner das korrekte Ergebnis
+        anteilig.
+      </>
+    ),
+    massLabel: (index: number) => <>Isotop {index}: Masse (u)</>,
+    abundanceLabel: "Häufigkeit (%)",
+    removeLabel: (index: number) => `Isotop ${index} entfernen`,
+    addIsotope: "+ Isotop hinzufügen",
+    invalid: "Gib gültige Isotopmassen und Häufigkeiten ein, um das Ergebnis zu sehen.",
+    averageMass: "Durchschnittliche Atommasse",
+    totalAbundance: "Gesamthäufigkeit",
+    stepsTitle: "Schritt-für-Schritt-Lösung",
+  },
+};
 
 let nextId = 3;
 
-export default function AtomicMassCalculator() {
+export default function AtomicMassCalculator({ locale = "tr" }: { locale?: ContentLocale } = {}) {
+  const t = copy[locale];
   const [rows, setRows] = useState<IsotopeRow[]>([
     { id: 1, massInput: "34.969", abundanceInput: "75.77" },
     { id: 2, massInput: "36.966", abundanceInput: "24.23" },
@@ -90,7 +143,7 @@ export default function AtomicMassCalculator() {
 
     const isotopeLines = isotopes.map(
       (isotope, index) =>
-        `İzotop ${index + 1}: ${formatNumber(isotope.mass)} × ${formatNumber(isotope.abundancePercent, 2)} = ${formatNumber(isotope.mass * isotope.abundancePercent)}`
+        `${t.isotopeLine(index + 1)}${formatNumber(isotope.mass, locale)} × ${formatNumber(isotope.abundancePercent, locale, 2)} = ${formatNumber(isotope.mass * isotope.abundancePercent, locale)}`
     );
 
     const weightedSum = isotopes.reduce(
@@ -100,35 +153,30 @@ export default function AtomicMassCalculator() {
 
     return [
       {
-        title: "1. Adım — Her izotobun katkısı",
+        title: t.step1,
         lines: isotopeLines,
       },
       {
-        title: "2. Adım — Ağırlıklı ortalama",
+        title: t.step2,
         lines: [
-          "Ortalama = Σ(kütle × bolluk) / Σ(bolluk)",
-          `Ortalama = ${formatNumber(weightedSum)} / ${formatNumber(totalAbundance, 2)}`,
-          `Ortalama ≈ ${formatNumber(result, 4)} u`,
+          t.formula,
+          `${t.average} = ${formatNumber(weightedSum, locale)} / ${formatNumber(totalAbundance, locale, 2)}`,
+          `${t.average} ≈ ${formatNumber(result, locale, 4)} u`,
         ],
       },
     ];
-  }, [result, isotopes, totalAbundance]);
+  }, [result, isotopes, totalAbundance, t, locale]);
 
   return (
     <div className="category-general-converter">
       <div className="engineering-calculator-card">
-        <p className="calculator-usage-hint">
-          Nasıl çalışır: elementin bilinen her izotopunun kütlesini (u) ve
-          doğal bolluk yüzdesini gir; ağırlıklı ortalama alarak periyodik
-          tablodaki atom kütlesini hesaplayalım. Bolluk yüzdeleri toplamı
-          100 olmasa da hesap makinesi oranlayarak doğru sonucu verir.
-        </p>
+        <p className="calculator-usage-hint">{t.hint}</p>
 
         <div className="atomic-mass-isotope-list">
           {rows.map((row, index) => (
             <div className="atomic-mass-isotope-row" key={row.id}>
               <label className="category-general-converter-field">
-                <span>İzotop {index + 1}: kütle (u)</span>
+                <span>{t.massLabel(index + 1)}</span>
                 <input
                   inputMode="decimal"
                   type="text"
@@ -139,7 +187,7 @@ export default function AtomicMassCalculator() {
                 />
               </label>
               <label className="category-general-converter-field">
-                <span>Bolluk (%)</span>
+                <span>{t.abundanceLabel}</span>
                 <input
                   inputMode="decimal"
                   type="text"
@@ -154,7 +202,7 @@ export default function AtomicMassCalculator() {
                   type="button"
                   className="atomic-mass-remove-button"
                   onClick={() => removeRow(row.id)}
-                  aria-label={`İzotop ${index + 1}'i kaldır`}
+                  aria-label={t.removeLabel(index + 1)}
                 >
                   ✕
                 </button>
@@ -168,7 +216,7 @@ export default function AtomicMassCalculator() {
           className="engineering-target-button atomic-mass-add-button"
           onClick={addRow}
         >
-          + İzotop Ekle
+          {t.addIsotope}
         </button>
       </div>
 
@@ -177,16 +225,16 @@ export default function AtomicMassCalculator() {
         className="category-general-converter-result paint-calculator-result"
       >
         {result === null ? (
-          <strong>Geçerli izotop kütlesi ve bolluk yüzdesi girerek sonucu görebilirsin.</strong>
+          <strong>{t.invalid}</strong>
         ) : (
           <div className="paint-calculator-result-grid">
             <div>
-              <span>Ortalama Atom Kütlesi</span>
-              <strong>{formatNumber(result, 4)} u</strong>
+              <span>{t.averageMass}</span>
+              <strong>{formatNumber(result, locale, 4)} u</strong>
             </div>
             <div>
-              <span>Toplam Bolluk</span>
-              <strong>{formatNumber(totalAbundance, 2)} %</strong>
+              <span>{t.totalAbundance}</span>
+              <strong>{formatNumber(totalAbundance, locale, 2)} %</strong>
             </div>
           </div>
         )}
@@ -194,7 +242,7 @@ export default function AtomicMassCalculator() {
 
       {steps && (
         <div className="calculator-steps">
-          <h3>Adım Adım Çözüm</h3>
+          <h3>{t.stepsTitle}</h3>
           {steps.map((step) => (
             <div className="calculator-step" key={step.title}>
               <p className="calculator-step-title">{step.title}</p>

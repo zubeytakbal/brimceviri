@@ -105,7 +105,7 @@ export const materialsDatabase: MaterialDensityEntry[] = [
     category: "gida",
     densityKgM3: 1400,
     variabilityNote:
-      "Viskozitesi su içeriğine ve sıcaklığa çok duyarlidir; oda sıcaklığında yaklaşık 1.000-5.000 mPa·s arasında olabilir.",
+      "Viskozitesi su içeriğine ve sıcaklığa çok duyarlıdır; oda sıcaklığında yaklaşık 1.000-5.000 mPa·s arasında olabilir.",
   },
   {
     id: "bal",
@@ -113,7 +113,7 @@ export const materialsDatabase: MaterialDensityEntry[] = [
     category: "gida",
     densityKgM3: 1420,
     variabilityNote:
-      "Viskozitesi nem oranına ve sıcaklığa çok duyarlidir; oda sıcaklığında yaklaşık 2.000-10.000 mPa·s arasında olabilir.",
+      "Viskozitesi nem oranına ve sıcaklığa çok duyarlıdır; oda sıcaklığında yaklaşık 2.000-10.000 mPa·s arasında olabilir.",
   },
 
   // ---- Plastikler ----

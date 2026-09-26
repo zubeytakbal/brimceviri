@@ -84,33 +84,22 @@ const bengaliManualNotifications: SiteNotification[] = [
   },
 ];
 
-export async function getSiteNotifications(locale: "tr" | "en" | "de" | "ar" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "sv" | "no" | "da" = "tr"): Promise<SiteNotification[]> {
-  if (locale === "fr" || locale === "es" || locale === "es-419" || locale === "pt" || locale === "it") {
-    return [];
-  }
+const manualNotificationsByLocale: Partial<Record<NotificationLocale, SiteNotification[]>> = {
+  en: englishManualNotifications,
+  de: germanManualNotifications,
+  ar: arabicManualNotifications,
+  bn: bengaliManualNotifications,
+};
 
-  if (locale === "en") {
-    return [...englishManualNotifications].sort((a, b) =>
-      a.date < b.date ? 1 : a.date > b.date ? -1 : 0,
-    );
-  }
+type NotificationLocale = "tr" | "en" | "de" | "ar" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "sv" | "no" | "da";
 
-  if (locale === "de") {
-    return [...germanManualNotifications].sort((a, b) =>
-      a.date < b.date ? 1 : a.date > b.date ? -1 : 0,
-    );
-  }
+const byDateDesc = (a: SiteNotification, b: SiteNotification) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0);
 
-  if (locale === "ar") {
-    return [...arabicManualNotifications].sort((a, b) =>
-      a.date < b.date ? 1 : a.date > b.date ? -1 : 0,
-    );
-  }
-
-  if (locale === "bn") {
-    return [...bengaliManualNotifications].sort((a, b) =>
-      a.date < b.date ? 1 : a.date > b.date ? -1 : 0,
-    );
+export async function getSiteNotifications(locale: NotificationLocale = "tr"): Promise<SiteNotification[]> {
+  // Turkce duyurular ve ehliyet kaynak uyarisi yalnizca Turkce sayfa icin.
+  // Kendi duyuru listesi olmayan diller bos liste alir.
+  if (locale !== "tr") {
+    return [...(manualNotificationsByLocale[locale] ?? [])].sort(byDateDesc);
   }
 
   const { getSourceMonitorStatuses } = await import("./licenseSourceMonitor");
@@ -126,7 +115,5 @@ export async function getSiteNotifications(locale: "tr" | "en" | "de" | "ar" | "
       href: "/ehliyet-sinifi-bulma",
     }));
 
-  return [...monitorNotifications, ...manualNotifications].sort((a, b) =>
-    a.date < b.date ? 1 : a.date > b.date ? -1 : 0,
-  );
+  return [...monitorNotifications, ...manualNotifications].sort(byDateDesc);
 }

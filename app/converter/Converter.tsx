@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import { useState, useEffect, FormEvent, useRef } from "react";
 import { units } from "./units";
 import { convert } from "./convert";

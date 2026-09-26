@@ -13,7 +13,7 @@ import { buildSiteUrl } from "../../siteConfig";
 export const metadata: Metadata = {
   title: "Weitere Umrechnungen",
   description:
-    "Entdecken Sie technische Kategorien wie Dichte, Kraft, Drehmoment, Impuls und Viskositaet ausserhalb der Hauptgruppen.",
+    "Entdecken Sie technische Kategorien wie Dichte, Kraft, Drehmoment, Impuls und Viskosität außerhalb der Hauptgruppen.",
   alternates: {
     canonical: "/de/weitere-umrechnungen",
     languages: {
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Weitere Umrechnungen",
     description:
-      "Entdecken Sie Dichte, Kraft, Drehmoment, Impuls, Viskositaet und weitere technische Umrechnungen.",
+      "Entdecken Sie Dichte, Kraft, Drehmoment, Impuls, Viskosität und weitere technische Umrechnungen.",
     url: buildSiteUrl("/de/weitere-umrechnungen"),
     siteName: "BirimCeviri.app",
     locale: "de_DE",
@@ -84,17 +84,17 @@ export default function GermanOtherConversionsPage() {
     {
       id: "schuh",
       href: "/de/schuhgroessen-umrechner",
-      title: "Schuhgroessen Umrechner",
+      title: "Schuhgrößen Umrechner",
       description:
-        "Vergleichen Sie EU-, US- und UK-Schuhgroessen mit allgemeinen und markenbezogenen Tabellen.",
+        "Vergleichen Sie EU-, US- und UK-Schuhgrößen mit allgemeinen und markenbezogenen Tabellen.",
       iconName: "shoeSize" as const,
     },
     {
       id: "kueche",
       href: "/de/kuechenmass-umrechner",
-      title: "Kuechenmass Umrechner",
+      title: "Küchenmaß Umrechner",
       description:
-        "Rechnen Sie Tassen, Essloeffel und Teeloeffel per Zutat in Gramm um.",
+        "Rechnen Sie Tassen, Esslöffel und Teelöffel per Zutat in Gramm um.",
       iconName: "kitchenMeasures" as const,
     },
     {
@@ -108,9 +108,9 @@ export default function GermanOtherConversionsPage() {
     {
       id: "ring",
       href: "/de/ringgroessen-umrechner",
-      title: "Ringgroessen Umrechner",
+      title: "Ringgrößen Umrechner",
       description:
-        "Vergleichen Sie Durchmesser, Umfang sowie US- und UK-Ringgroessen.",
+        "Vergleichen Sie Durchmesser, Umfang sowie US- und UK-Ringgrößen.",
       iconName: "ringSize" as const,
     },
     ...germanStandaloneTools.map((tool) => ({

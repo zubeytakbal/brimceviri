@@ -2565,7 +2565,7 @@ export const elementArticles: ElementArticle[] = [
         title: "'Mirasçı tozu' olarak anılan sessiz zehir",
         paragraphs: [
           "Talyum bileşikleri tatsız, kokusuz ve renksiz olduğu için yiyecek veya içeceğe fark edilmeden karıştırılabilir; belirtileri de başlangıçta grip veya başka hastalıklarla kolayca karıştırılabilecek kadar belirsizdir.",
-          "Bu özellikler, 20. yüzyılın ortalarında talyumu cinayetlerde tercih edilen bir zehir hâline getirdi ve ona 'mirasçı tozu' veya 'zehirleyicilerin zehiri' gibi kötü şöhretli lakaplar kazandırdı; günümüzde daha gelişmiş adli toksikoloji yöntemleri sayesinde tespiti artık çok daha kolaydır.",
+          "Bu özellikler, 20. yüzyılın ortalarında talyumu cinayetlerde tercih edilen bir zehir hâline getirdi ve ona 'mirasçı tozu' veya 'zehirleyicilerin zehiri' gibi kötü şöhretli lakaplar kazandırdı; günümüzde daha gelişmiş adlı toksikoloji yöntemleri sayesinde tespiti artık çok daha kolaydır.",
         ],
       },
       {
@@ -4557,7 +4557,7 @@ export const elementArticles: ElementArticle[] = [
       {
         title: "Keşif hikayesi",
         paragraphs: [
-          "Metallerin asitlerle tepkimesinde çıkan yanıcı gaz aslında 16. yüzyıldan beri Paracelsus ve Robert Boyle gibi isimler tarafından gözlemlenmişti, ama kimse bunu ayrı bir element olarak tanımlamamıştı.",
+          "Metallerin asitlerle tepkimesinde çıkan yanıcı gaz aslında 16. yüzyıldan beri Paracelsus ve Robert Böyle gibi isimler tarafından gözlemlenmişti, ama kimse bunu ayrı bir element olarak tanımlamamıştı.",
           "1766'da Henry Cavendish bu gazı sistematik olarak inceledi, yoğunluğunu ölçtü ve yakıldığında su oluşturduğunu gösterdi -- bu, o zamana kadar 'bölünemez' sanılan suyun aslında bir bileşik olduğunu ortaya koyan çığır açıcı bir keşifti. Element adını 1783'te Antoine Lavoisier verdi.",
         ],
       },

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import CategoryUnitConverter from "../../../components/CategoryUnitConverter";
+import { getLocalizedUnitOptions } from "../../../converter/localizedUnitOptions";
 import CategoryPageLayout from "../../../components/CategoryPageLayout";
 import { createConversionCards } from "../../../components/categoryPageUtils";
 import { frenchCategoryPages } from "../../../converter/localizedFrenchCategoryPages";
@@ -203,7 +204,11 @@ export default async function FrenchCategoryPage({ params }: PageProps) {
       allUnitsSection={{
         heading: `Convertir toutes les unités ${categoryBaseNames[categoryPage.category] ?? categoryPage.title}`,
         content: (
-          <CategoryUnitConverter category={categoryPage.category} locale="fr" />
+          <CategoryUnitConverter
+            category={categoryPage.category}
+            locale="fr"
+            unitOptions={getLocalizedUnitOptions(categoryPage.category, "fr")}
+          />
         ),
       }}
       conversionHeading="Conversions populaires"
@@ -212,7 +217,7 @@ export default async function FrenchCategoryPage({ params }: PageProps) {
       unitGuidesHeading="Guides d’unités"
       unitGuidesCountLabel={`${categoryUnits.length} unités`}
       unitGuides={categoryUnits.map((unitPage) => ({
-        href: `/fr/unit-guides/${unitPage.slug}`,
+        href: `/fr/guides-des-unites/${unitPage.slug}`,
         label: `Qu’est-ce que ${unitPage.name} ?`,
         symbol: unitPage.symbol,
       }))}
@@ -266,7 +271,7 @@ export default async function FrenchCategoryPage({ params }: PageProps) {
                 {index === 1 && featuredUnit && (
                   <p className="category-inline-link">
                     Pour plus d’informations sur l’unité {featuredUnit.name}, consultez la{" "}
-                    <a href={`/fr/unit-guides/${featuredUnit.slug}`}>
+                    <a href={`/fr/guides-des-unites/${featuredUnit.slug}`}>
                       page d’information {featuredUnit.name}
                     </a>
                     .

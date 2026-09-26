@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import EnglishConvectiveHeatTransferCalculator from "../../../../components/EnglishConvectiveHeatTransferCalculator";
 import { buildFaqSchema, type FaqItem } from "../../../../converter/faqSchema";
 import { buildSiteUrl } from "../../../../siteConfig";
@@ -12,7 +12,7 @@ const faqItems: FaqItem[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Convective Heat Transfer Calculator (h × A × ΔT)",
+  title: "Convective Heat Transfer Calculator (Q = hAΔT)",
   description: "Calculate convective heat-transfer rate, heat flux and stated-period energy from a convection coefficient, surface area and temperature difference.",
   alternates: { canonical: pagePath, languages: { en: pagePath } },
   openGraph: { title: "Convective Heat Transfer Calculator", description: "Calculate Q̇ = hAΔT and stated-period energy from transparent convection assumptions.", url: buildSiteUrl(pagePath), siteName: "BirimCeviri.app", locale: "en_US", type: "article" },

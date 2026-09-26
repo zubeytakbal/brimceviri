@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import ProfessionCardGrid from "../components/ProfessionCardGrid";
 import { professionCards } from "../converter/professionCards";
 import { buildSiteUrl } from "../siteConfig";

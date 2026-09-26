@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
 import PairConverter from "../../converter/PairConverter";
 import { convert } from "../../converter/convert";
@@ -8,7 +8,6 @@ import { findEnglishPageByTurkishSlug } from "../../converter/localizedConversio
 import {
   findBengaliConversionPage,
   bengaliConversionPages,
-  type LocalizedBengaliConversionPage,
 } from "../../converter/localizedBengaliConversionPages";
 import { findBengaliUnitPage } from "../../converter/localizedBengaliUnitPages";
 import { getUnitSources } from "../../converter/unitSources";

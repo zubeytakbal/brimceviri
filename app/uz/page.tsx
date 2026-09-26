@@ -1,8 +1,8 @@
+import { buildHomeLanguageAlternates } from "../i18n/routing";
 import type { Metadata } from "next";
 import HomeDirectory from "../components/HomeDirectory";
 import { buildSiteUrl } from "../siteConfig";
 
-const homeUrl = buildSiteUrl("/");
 const uzbekHomeUrl = buildSiteUrl("/uz");
 
 export const metadata: Metadata = {
@@ -11,11 +11,7 @@ export const metadata: Metadata = {
     "Uzunlik, massa, hajm va harorat birliklarini bepul va onlayn aylantiring — natijani darhol ko'ring.",
   alternates: {
     canonical: uzbekHomeUrl,
-    languages: {
-      tr: homeUrl,
-      "uz-UZ": uzbekHomeUrl,
-      "x-default": homeUrl,
-    },
+    ...buildHomeLanguageAlternates(),
   },
   openGraph: {
     title: "O'lchov birliklarini onlayn aylantirish | BirimCeviri.app",

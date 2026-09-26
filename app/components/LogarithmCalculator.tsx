@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import { useMemo, useState } from "react";
 import {
   calculateLogarithm,

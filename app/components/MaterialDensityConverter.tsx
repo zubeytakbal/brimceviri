@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { convert } from "../converter/convert";
+import { numberLocales, type ContentLocale } from "./contentLocale";
 
 const targetUnits = [
   { symbol: "g/cm³", label: "g/cm³" },
@@ -11,15 +12,24 @@ const targetUnits = [
   { symbol: "lb/in³", label: "lb/in³" },
 ];
 
+const copy = {
+  tr: { convertLabel: (name: string) => `${name} Yoğunluğunu Çevir` },
+  de: { convertLabel: (name: string) => `Dichte von ${name} umrechnen` },
+};
+
 type MaterialDensityConverterProps = {
   densityKgM3: number;
   materialName: string;
+  locale?: ContentLocale;
 };
 
 export default function MaterialDensityConverter({
   densityKgM3,
   materialName,
+  locale = "tr",
 }: MaterialDensityConverterProps) {
+  const t = copy[locale];
+  const numberLocale = numberLocales[locale];
   const [targetSymbol, setTargetSymbol] = useState(targetUnits[0].symbol);
   const convertedValue = convert("yogunluk", densityKgM3, "kg/m³", targetSymbol);
 
@@ -27,7 +37,7 @@ export default function MaterialDensityConverter({
     <div className="category-general-converter">
       <div className="paint-calculator-grid">
         <label className="category-general-converter-field">
-          <span>{materialName} Yoğunluğunu Çevir</span>
+          <span>{t.convertLabel(materialName)}</span>
           <select
             value={targetSymbol}
             onChange={(event) => setTargetSymbol(event.target.value)}
@@ -50,11 +60,11 @@ export default function MaterialDensityConverter({
             <tbody>
               <tr className="is-active">
                 <td>
-                  <strong>{densityKgM3.toLocaleString("tr-TR")} kg/m³</strong>
+                  <strong>{densityKgM3.toLocaleString(numberLocale)} kg/m³</strong>
                 </td>
                 <td>
                   <strong>
-                    {convertedValue.toLocaleString("tr-TR", {
+                    {convertedValue.toLocaleString(numberLocale, {
                       maximumFractionDigits: 4,
                     })}{" "}
                     {targetSymbol}

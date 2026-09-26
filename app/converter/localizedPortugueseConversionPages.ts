@@ -1,4 +1,5 @@
 import { convert } from "./convert";
+import { buildLocalOnlyConversionPages, brazilianMassPairs } from "./localOnlyConversionPages";
 import { conversionPages, type ConversionPage } from "./conversionPages";
 import { findUnit } from "./unitRegistry";
 import { portugueseUnitPages } from "./localizedPortugueseUnitPages";
@@ -153,7 +154,7 @@ function createPortugueseTemperatureExplanation(
     return `Para converter ${fromName} em ${toName}, subtraia 273,15. 273,15 ${fromUnit} equivale a 0 ${toUnit}.`;
   }
 
-  return `Use a relacao de temperatura definida para converter ${fromName} em ${toName}.`;
+  return `Use a relação de temperatura definida para converter ${fromName} em ${toName}.`;
 }
 
 const portugueseUnitBySourceSlug: Record<string, { name: string; slug: string }> =
@@ -219,12 +220,12 @@ function localizeConversionPage(
   };
 }
 
-export const portugueseConversionPages: LocalizedPortugueseConversionPage[] =
-  conversionPages
+export const portugueseConversionPages: LocalizedPortugueseConversionPage[] = [
+  ...conversionPages
     .map(localizeConversionPage)
-    .filter(
-      (page): page is LocalizedPortugueseConversionPage => page !== null
-    );
+    .filter((page): page is LocalizedPortugueseConversionPage => page !== null),
+  ...buildLocalOnlyConversionPages("pt", brazilianMassPairs, portugueseUnitPages, createPortugueseFormula, createPortugueseExplanation),
+];
 
 export function findPortugueseConversionPage(slug: string) {
   return portugueseConversionPages.find((page) => page.slug === slug);

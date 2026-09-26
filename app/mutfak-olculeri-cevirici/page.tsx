@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import EmbedCodeBox from "../components/EmbedCodeBox";
 import KitchenMeasuresConverter from "../components/KitchenMeasuresConverter";
 import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";

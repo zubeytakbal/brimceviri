@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import { matematikTools as tools } from "../../converter/matematikTools";
 import { buildSiteUrl } from "../../siteConfig";
 

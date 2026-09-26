@@ -22,7 +22,7 @@ function formatHslText(hsl: { h: number; s: number; l: number }) {
   return `${hsl.h}, ${hsl.s}%, ${hsl.l}%`;
 }
 
-export default function ColorCodeCalculator() {
+export default function ColorCodeCalculator({ locale = "tr" }: { locale?: "tr" | "en" }) {
   const [rgb, setRgb] = useState<RgbColor>(DEFAULT_RGB);
   const [hexText, setHexText] = useState(rgbToHex(DEFAULT_RGB));
   const [rgbText, setRgbText] = useState(formatRgbText(DEFAULT_RGB));
@@ -94,7 +94,9 @@ export default function ColorCodeCalculator() {
 
         {(hexError || rgbError || hslError) && (
           <p className="calculator-usage-hint">
-            Geçersiz bir değer girdin, o alan güncellenmedi.
+            {locale === "en"
+              ? "That value is not valid, so the other fields were not updated."
+              : "Geçersiz bir değer girdin, o alan güncellenmedi."}
           </p>
         )}
       </div>

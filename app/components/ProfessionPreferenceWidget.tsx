@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import { useSyncExternalStore } from "react";
 import { professionCards } from "../converter/professionCards";
 import {

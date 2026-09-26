@@ -3,6 +3,13 @@ import {
   conversionPages,
   type ConversionPage,
 } from "./conversionPages";
+import {
+  englishDisplaySymbol,
+  englishTitleCase,
+  englishUnitInSentence,
+  formatEnglishShort,
+  pluralizeEnglishUnitName,
+} from "./englishUnitDisplay";
 import { findUnit, unitRegistry } from "./unitRegistry";
 
 export type LocalizedConversionPage = ConversionPage & {
@@ -11,6 +18,12 @@ export type LocalizedConversionPage = ConversionPage & {
   categoryName: string;
   /** True when the page is intentionally published only in English. */
   isEnglishOnly?: boolean;
+  /** Plural display names ("Centimeters", "Feet") used in titles and headings. */
+  fromPlural: string;
+  toPlural: string;
+  /** Readable symbols ("°C" instead of the registry id "C"). */
+  fromSymbol: string;
+  toSymbol: string;
 };
 
 const englishCategoryNames: Record<string, string> = {
@@ -63,25 +76,22 @@ function createEnglishFormula(
 }
 
 function createEnglishExplanation(
-  fromName: string,
-  toName: string,
-  fromUnit: string,
-  toUnit: string,
+  fromPlural: string,
+  toPlural: string,
+  fromSymbol: string,
+  toSymbol: string,
   factor: number
 ) {
+  const from = englishUnitInSentence(fromPlural);
+  const to = englishUnitInSentence(toPlural);
   const operation =
     factor >= 1
-      ? `multiply the ${fromName.toLowerCase()} value by ${formatEnglishValue(
-          factor
-        )}`
-      : `divide the ${fromName.toLowerCase()} value by ${formatEnglishValue(
-          1 / factor
-        )}`;
+      ? `multiply the number of ${from} by ${formatEnglishValue(factor)}`
+      : `divide the number of ${from} by ${formatEnglishValue(1 / factor)}`;
 
   return (
-    `To convert ${fromName.toLowerCase()} to ` +
-    `${toName.toLowerCase()}, ${operation}. ` +
-    `One ${fromUnit} is equal to ${formatEnglishValue(factor)} ${toUnit}.`
+    `To convert ${from} to ${to}, ${operation}. ` +
+    `1 ${fromSymbol} = ${formatEnglishShort(factor)} ${toSymbol}.`
   );
 }
 
@@ -141,46 +151,46 @@ function createTemperatureExplanation(
   toUnit: string
 ) {
   if (fromUnit === "C" && toUnit === "F") {
-    return `To convert ${fromName.toLowerCase()} to ${toName.toLowerCase()}, multiply by 9/5 and add 32. One ${fromUnit} equals 33.8 ${toUnit}.`;
+    return `To convert ${englishUnitInSentence(fromName)} to ${englishUnitInSentence(toName)}, multiply by 9/5 and add 32. One ${englishDisplaySymbol("sicaklik", fromUnit)} equals 33.8 ${englishDisplaySymbol("sicaklik", toUnit)}.`;
   }
 
   if (fromUnit === "F" && toUnit === "C") {
-    return `To convert ${fromName.toLowerCase()} to ${toName.toLowerCase()}, subtract 32 and multiply the result by 5/9. A value of 32 ${fromUnit} equals 0 ${toUnit}.`;
+    return `To convert ${englishUnitInSentence(fromName)} to ${englishUnitInSentence(toName)}, subtract 32 and multiply the result by 5/9. A value of 32 ${englishDisplaySymbol("sicaklik", fromUnit)} equals 0 ${englishDisplaySymbol("sicaklik", toUnit)}.`;
   }
 
   if (fromUnit === "C" && toUnit === "K") {
-    return `To convert ${fromName.toLowerCase()} to ${toName.toLowerCase()}, add 273.15. A value of 0 ${fromUnit} equals 273.15 ${toUnit}.`;
+    return `To convert ${englishUnitInSentence(fromName)} to ${englishUnitInSentence(toName)}, add 273.15. A value of 0 ${englishDisplaySymbol("sicaklik", fromUnit)} equals 273.15 ${englishDisplaySymbol("sicaklik", toUnit)}.`;
   }
 
   if (fromUnit === "K" && toUnit === "C") {
-    return `To convert ${fromName.toLowerCase()} to ${toName.toLowerCase()}, subtract 273.15. A value of 273.15 ${fromUnit} equals 0 ${toUnit}.`;
+    return `To convert ${englishUnitInSentence(fromName)} to ${englishUnitInSentence(toName)}, subtract 273.15. A value of 273.15 ${englishDisplaySymbol("sicaklik", fromUnit)} equals 0 ${englishDisplaySymbol("sicaklik", toUnit)}.`;
   }
 
   if (fromUnit === "C" && toUnit === "R") {
-    return `To convert ${fromName.toLowerCase()} to ${toName.toLowerCase()}, add 273.15 and multiply by 9/5. A value of 0 ${fromUnit} equals 491.67 ${toUnit}.`;
+    return `To convert ${englishUnitInSentence(fromName)} to ${englishUnitInSentence(toName)}, add 273.15 and multiply by 9/5. A value of 0 ${englishDisplaySymbol("sicaklik", fromUnit)} equals 491.67 ${englishDisplaySymbol("sicaklik", toUnit)}.`;
   }
 
   if (fromUnit === "R" && toUnit === "C") {
-    return `To convert ${fromName.toLowerCase()} to ${toName.toLowerCase()}, multiply by 5/9 and subtract 273.15. A value of 491.67 ${fromUnit} equals 0 ${toUnit}.`;
+    return `To convert ${englishUnitInSentence(fromName)} to ${englishUnitInSentence(toName)}, multiply by 5/9 and subtract 273.15. A value of 491.67 ${englishDisplaySymbol("sicaklik", fromUnit)} equals 0 ${englishDisplaySymbol("sicaklik", toUnit)}.`;
   }
 
   if (fromUnit === "F" && toUnit === "R") {
-    return `To convert ${fromName.toLowerCase()} to ${toName.toLowerCase()}, add 459.67. A value of 32 ${fromUnit} equals 491.67 ${toUnit}.`;
+    return `To convert ${englishUnitInSentence(fromName)} to ${englishUnitInSentence(toName)}, add 459.67. A value of 32 ${englishDisplaySymbol("sicaklik", fromUnit)} equals 491.67 ${englishDisplaySymbol("sicaklik", toUnit)}.`;
   }
 
   if (fromUnit === "R" && toUnit === "F") {
-    return `To convert ${fromName.toLowerCase()} to ${toName.toLowerCase()}, subtract 459.67. A value of 491.67 ${fromUnit} equals 32 ${toUnit}.`;
+    return `To convert ${englishUnitInSentence(fromName)} to ${englishUnitInSentence(toName)}, subtract 459.67. A value of 491.67 ${englishDisplaySymbol("sicaklik", fromUnit)} equals 32 ${englishDisplaySymbol("sicaklik", toUnit)}.`;
   }
 
   if (fromUnit === "C" && toUnit === "Re") {
-    return `To convert ${fromName.toLowerCase()} to ${toName.toLowerCase()}, multiply by 4/5. A value of 100 ${fromUnit} equals 80 ${toUnit}.`;
+    return `To convert ${englishUnitInSentence(fromName)} to ${englishUnitInSentence(toName)}, multiply by 4/5. A value of 100 ${englishDisplaySymbol("sicaklik", fromUnit)} equals 80 ${englishDisplaySymbol("sicaklik", toUnit)}.`;
   }
 
   if (fromUnit === "Re" && toUnit === "C") {
-    return `To convert ${fromName.toLowerCase()} to ${toName.toLowerCase()}, multiply by 5/4. A value of 80 ${fromUnit} equals 100 ${toUnit}.`;
+    return `To convert ${englishUnitInSentence(fromName)} to ${englishUnitInSentence(toName)}, multiply by 5/4. A value of 80 ${englishDisplaySymbol("sicaklik", fromUnit)} equals 100 ${englishDisplaySymbol("sicaklik", toUnit)}.`;
   }
 
-  return `Convert ${fromName.toLowerCase()} to ${toName.toLowerCase()} using the defined temperature relationship.`;
+  return `Convert ${englishUnitInSentence(fromName)} to ${englishUnitInSentence(toName)} using the defined temperature relationship.`;
 }
 
 function localizeConversionPage(
@@ -202,10 +212,18 @@ function localizeConversionPage(
     page.fromUnit,
     page.toUnit
   );
+  const fromPlural = englishTitleCase(pluralizeEnglishUnitName(from.en.name));
+  const toPlural = englishTitleCase(pluralizeEnglishUnitName(to.en.name));
+  const fromSymbol = englishDisplaySymbol(page.category, page.fromUnit, from.displaySymbol);
+  const toSymbol = englishDisplaySymbol(page.category, page.toUnit, to.displaySymbol);
 
   return {
     ...page,
     locale: "en",
+    fromPlural,
+    toPlural,
+    fromSymbol,
+    toSymbol,
     sourceSlug: page.slug,
     slug: page.englishSlug ?? `${fromSlug}-to-${toSlug}`,
     fromName: from.en.name,
@@ -229,13 +247,7 @@ function localizeConversionPage(
             page.fromUnit,
             page.toUnit
           )
-        : createEnglishExplanation(
-            from.en.name,
-            to.en.name,
-            page.fromUnit,
-            page.toUnit,
-            factor
-          ),
+        : createEnglishExplanation(fromPlural, toPlural, fromSymbol, toSymbol, factor),
     reverseSlug:
       page.englishReverseSlug ?? `${toSlug}-to-${fromSlug}`,
   };
@@ -274,9 +286,17 @@ function createEnglishOnlyPair(
     exampleValues: number[]
   ): LocalizedConversionPage => {
     const factor = convert(definition.category, 1, from.symbol, to.symbol);
+    const fromPlural = englishTitleCase(pluralizeEnglishUnitName(from.en!.name));
+    const toPlural = englishTitleCase(pluralizeEnglishUnitName(to.en!.name));
+    const fromSymbol = englishDisplaySymbol(definition.category, from.symbol, from.displaySymbol);
+    const toSymbol = englishDisplaySymbol(definition.category, to.symbol, to.displaySymbol);
 
     return {
       locale: "en",
+      fromPlural,
+      toPlural,
+      fromSymbol,
+      toSymbol,
       // English-only pages deliberately have no Turkish source route.
       sourceSlug: `en-only:${slug}`,
       isEnglishOnly: true,
@@ -288,13 +308,7 @@ function createEnglishOnlyPair(
       fromName: from.en!.name,
       toName: to.en!.name,
       formula: createEnglishFormula(from.en!.name, to.en!.name, factor),
-      explanation: createEnglishExplanation(
-        from.en!.name,
-        to.en!.name,
-        from.symbol,
-        to.symbol,
-        factor
-      ),
+      explanation: createEnglishExplanation(fromPlural, toPlural, fromSymbol, toSymbol, factor),
       exampleValues,
       reverseSlug,
     };
@@ -394,6 +408,26 @@ const englishOnlyPairDefinitions: readonly EnglishOnlyPairDefinition[] = [
     secondExamples: [1, 2.5, 5, 10, 15, 30, 50],
     forwardSlug: "teaspoons-to-milliliters",
     reverseSlug: "milliliters-to-teaspoons",
+  },
+  {
+    // "cm to feet" is one of the most searched height conversions.
+    category: "uzunluk",
+    firstId: "santimetre",
+    secondId: "fit",
+    firstExamples: [30, 100, 150, 160, 170, 180, 190, 200],
+    secondExamples: [1, 2, 3, 4, 5, 5.5, 6, 6.5],
+    forwardSlug: "centimeters-to-feet",
+    reverseSlug: "feet-to-centimeters",
+  },
+  {
+    // UK body weight is written in stone and pounds.
+    category: "kutle",
+    firstId: "pound",
+    secondId: "stone",
+    firstExamples: [14, 100, 140, 150, 168, 182, 196, 210],
+    secondExamples: [1, 8, 9, 10, 11, 12, 13, 14],
+    forwardSlug: "pounds-to-stone",
+    reverseSlug: "stone-to-pounds",
   },
   {
     category: "uzunluk",

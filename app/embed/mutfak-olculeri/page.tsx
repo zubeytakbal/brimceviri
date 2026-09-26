@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import KitchenMeasuresConverter from "../../components/KitchenMeasuresConverter";
 import { buildSiteUrl } from "../../siteConfig";
 

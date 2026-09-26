@@ -1,3 +1,4 @@
+import { buildHomeLanguageAlternates } from "../i18n/routing";
 import type { Metadata } from "next";
 import ItalianHomeDirectory from "../components/ItalianHomeDirectory";
 import { getSiteNotifications } from "../converter/siteNotifications";
@@ -9,20 +10,7 @@ export const metadata: Metadata = {
     "Converti gratis e all'istante lunghezza, massa, temperatura e altre unità fisiche. Oltre 12 categorie, con formule precise.",
   alternates: {
     canonical: "/it",
-    languages: {
-      tr: "/",
-      en: "/en",
-      de: "/de",
-      ar: "/ar",
-      uz: "/uz",
-      bn: "/bn",
-      fr: "/fr",
-      es: "/es",
-      "es-419": "/es-419",
-      pt: "/pt",
-      it: "/it",
-      "x-default": "/",
-    },
+    ...buildHomeLanguageAlternates(),
   },
   openGraph: {
     title: "Trova la conversione di unità di cui hai bisogno",

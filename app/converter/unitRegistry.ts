@@ -150,6 +150,15 @@ export const unitRegistry: UnitRegistryEntry[] = [
     uz: { name: "Milya", slug: "milya" },
     enConversionSlug: "miles",
   },
+  // Isvec ve Norvec'te gunluk dilde "mil" 10 km demektir (Ingiliz mili
+  // degil). Yalnizca sv/no sitelerinde sayfasi var; Ozbek birimleri gibi
+  // tr adi verilmedi ki TR/EN tarafinda otomatik sayfa uretilmesin.
+  {
+    id: "skandinavisk-mil",
+    category: "uzunluk",
+    symbol: "mil",
+    siFactor: 10000,
+  },
   {
     id: "furlong",
     category: "uzunluk",
@@ -194,7 +203,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     id: "parsek",
     category: "uzunluk",
     symbol: "pc",
-    siFactor: 3.0857e16,
+    siFactor: 3.0856775814913673e16,
     tr: { name: "Parsek", slug: "parsek" },
     en: { name: "Parsec", slug: "parsec" },
     de: { name: "Parsec", slug: "parsec" },
@@ -368,7 +377,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     id: "fitkare",
     category: "alan",
     symbol: "ft²",
-    siFactor: 0.092903,
+    siFactor: 0.09290304,
     tr: { name: "Fitkare", slug: "fitkare" },
     en: { name: "Square Foot", slug: "square-foot" },
     de: { name: "Quadratfuß", slug: "quadratfuss" },
@@ -651,7 +660,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     id: "fitkup",
     category: "hacim",
     symbol: "ft³",
-    siFactor: 0.0283168,
+    siFactor: 0.028316846592,
     tr: { name: "Fitküp", slug: "fitkup" },
     en: { name: "Cubic Foot", slug: "cubic-foot" },
     de: { name: "Kubikfuß", slug: "kubikfuss" },
@@ -661,7 +670,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     id: "inckup",
     category: "hacim",
     symbol: "in³",
-    siFactor: 0.0000163871,
+    siFactor: 0.000016387064,
     tr: { name: "İnçküp", slug: "inckup" },
     en: { name: "Cubic Inch", slug: "cubic-inch" },
     de: { name: "Kubikzoll", slug: "kubikzoll" },
@@ -671,7 +680,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     id: "galon",
     category: "hacim",
     symbol: "gal",
-    siFactor: 0.00378541,
+    siFactor: 0.003785411784,
     tr: { name: "Galon", slug: "galon" },
     en: { name: "US Liquid Gallon", slug: "gallon" },
     de: { name: "Gallone", slug: "gallone" },
@@ -771,7 +780,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     id: "varil",
     category: "hacim",
     symbol: "bbl",
-    siFactor: 0.158987,
+    siFactor: 0.158987294928,
     tr: { name: "Varil (petrol)", slug: "varil" },
     en: { name: "Barrel", slug: "barrel" },
     de: { name: "Barrel", slug: "barrel" },
@@ -851,6 +860,30 @@ export const unitRegistry: UnitRegistryEntry[] = [
     de: { name: "Tonne", slug: "tonne" },
     uz: { name: "Tonna", slug: "tonna" },
     enConversionSlug: "tonnes",
+  },
+  // Yalnizca belirli dillerde gunluk kullanimi olan kutle birimleri. Ozbek
+  // birimleri ve Iskandinav mili gibi tr adi verilmedi; sayfalari yalnizca
+  // ilgili dillerde var (bkz. localOnlyConversionPages.ts).
+  // 100 g: Hollanda'da "ons", Italya'da "etto".
+  {
+    id: "hektogram",
+    category: "kutle",
+    symbol: "hg",
+    siFactor: 0.1,
+  },
+  // 500 g: Hollanda'da gunluk dilde "pond" (Ingiliz pound'u degil).
+  {
+    id: "metrik-pound",
+    category: "kutle",
+    symbol: "pond",
+    siFactor: 0.5,
+  },
+  // Brezilya'da 15 kg; buyukbas hayvan fiyatlari arroba basina verilir.
+  {
+    id: "arroba",
+    category: "kutle",
+    symbol: "@",
+    siFactor: 15,
   },
   {
     id: "pound",
@@ -1318,7 +1351,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
   },
   { id: "kilonewton", category: "kuvvet", symbol: "kN", siFactor: 1000, tr: { name: "Kilonewton", slug: "kilonewton" }, de: { name: "Kilonewton", slug: "kilonewton" } },
   { id: "dyn", category: "kuvvet", symbol: "dyn", siFactor: 0.00001, tr: { name: "Dyn", slug: "dyn" }, de: { name: "Dyn", slug: "dyn" } },
-  { id: "lbf", category: "kuvvet", symbol: "lbf", siFactor: 4.4482216, tr: { name: "Pound-kuvvet", slug: "pound-kuvvet" }, de: { name: "Pound-Force", slug: "pound-force" } },
+  { id: "lbf", category: "kuvvet", symbol: "lbf", siFactor: 4.4482216152605, tr: { name: "Pound-kuvvet", slug: "pound-kuvvet" }, de: { name: "Pound-Force", slug: "pound-force" } },
   {
     id: "kilogram-kuvvet",
     category: "kuvvet",
@@ -1567,7 +1600,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     id: "cfm",
     category: "debi_hacimsel",
     symbol: "cfm",
-    siFactor: 0.0283168 / 60,
+    siFactor: 0.028316846592 / 60,
     tr: { name: "Fitküp/dakika (CFM)", slug: "fitkup-dakika" },
     en: { name: "Cubic Feet per Minute (CFM)", slug: "cubic-feet-per-minute" },
     de: { name: "Kubikfuß pro Minute (CFM)", slug: "kubikfuss-pro-minute" },
@@ -1576,7 +1609,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     id: "gpm",
     category: "debi_hacimsel",
     symbol: "gpm",
-    siFactor: 0.00378541 / 60,
+    siFactor: 0.003785411784 / 60,
     tr: { name: "Galon/dakika (GPM)", slug: "galon-dakika" },
     en: { name: "US Gallons per Minute (GPM)", slug: "gallons-per-minute" },
     de: { name: "Gallonen pro Minute (GPM)", slug: "gallonen-pro-minute" },
@@ -1701,7 +1734,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     id: "btu",
     category: "enerji",
     symbol: "Btu",
-    siFactor: 1055.056,
+    siFactor: 1055.05585262,
     tr: { name: "BTU", slug: "btu" },
     en: { name: "British Thermal Unit", slug: "btu" },
     de: { name: "BTU", slug: "btu" },
@@ -1744,7 +1777,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     id: "beygirgucu-mechanical",
     category: "guc",
     symbol: "HP",
-    siFactor: 745.7,
+    siFactor: 745.69987158227022,
     tr: { name: "Beygirgücü (Mekanik)", slug: "beygirgucu-mekanik" },
     en: { name: "Horsepower (Mechanical)", slug: "horsepower-mechanical" },
     de: { name: "PS (mechanisch)", slug: "ps-mechanisch" },

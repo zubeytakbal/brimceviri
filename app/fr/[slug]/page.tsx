@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
 import PairConverter from "../../converter/PairConverter";
 import { convert } from "../../converter/convert";
@@ -267,7 +267,7 @@ export default async function FrenchConversionPage({ params }: PageProps) {
 
             <Link
               className="text-link"
-              href={`/fr/unit-guides/${fromUnitInfo.slug}`}
+              href={`/fr/guides-des-unites/${fromUnitInfo.slug}`}
             >
               Voir le guide de l&apos;unité {fromUnitInfo.name}
             </Link>
@@ -282,7 +282,7 @@ export default async function FrenchConversionPage({ params }: PageProps) {
 
             <Link
               className="text-link"
-              href={`/fr/unit-guides/${toUnitInfo.slug}`}
+              href={`/fr/guides-des-unites/${toUnitInfo.slug}`}
             >
               Voir le guide de l&apos;unité {toUnitInfo.name}
             </Link>

@@ -6220,6 +6220,18 @@ main.calculator-page {
   line-height: 1.5;
 }
 
+/* Kartin disindaki notlar (guvenlik uyarilari vb.) acik zemin uzerinde kalir;
+   beyaz yazi okunmuyordu. Kart icindeki notlar degismez. */
+.all-conversions-page .category-general-converter > .calculator-usage-hint {
+  margin: 4px 0 0;
+  background: rgba(22, 143, 140, 0.08);
+  color: #24324a;
+}
+
+.all-conversions-page .category-general-converter > .calculator-usage-hint a {
+  color: #0f6e6b;
+}
+
 .calculator-plug-legend {
   display: grid;
   gap: 6px;
@@ -7547,4 +7559,214 @@ html[dir="rtl"] .site-mobile-accordion-toggle {
   .element-lewis-svg {
     justify-self: start;
   }
+}
+
+/* Doviz cifti sayfalari */
+
+.fx-relative-time {
+  display: inline-block;
+  margin-top: 2px;
+  color: inherit;
+  font-size: 0.92rem;
+  opacity: 0.85;
+}
+
+.fx-relative-time-warning {
+  color: #b54708;
+  font-weight: 600;
+}
+
+.conversion-hero .fx-relative-time-warning {
+  color: #ffe08a;
+}
+
+.fx-update-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 20px;
+  margin: 0 0 20px;
+  padding: 12px 16px;
+  border: 1px solid #d9dde5;
+  border-radius: 12px;
+  background: #f8fafb;
+  color: #344054;
+  font-size: 0.95rem;
+}
+
+.fx-pair-rate-line {
+  margin-top: 8px;
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+.fx-chart {
+  display: grid;
+  gap: 14px;
+}
+
+.fx-chart-tabs {
+  display: flex;
+  gap: 10px;
+}
+
+.fx-chart-tab {
+  min-height: 40px;
+  padding: 0 16px;
+  border: 1px solid #aeb5c1;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #172033;
+  font: inherit;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.fx-chart-tab:hover {
+  background: #eef0f3;
+}
+
+.fx-chart-tab.is-active {
+  border-color: #87c900;
+  background: #87c900;
+  color: #ffffff;
+}
+
+.fx-chart-tab:focus-visible {
+  outline: 2px solid #367da5;
+  outline-offset: 2px;
+}
+
+.fx-chart-frame {
+  position: relative;
+  padding: 8px 4px 0;
+  border: 1px solid #d9dde5;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.fx-chart-frame svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  touch-action: pan-y;
+}
+
+.fx-chart-grid {
+  stroke: #e6e9ef;
+  stroke-width: 1;
+}
+
+.fx-chart-axis {
+  fill: #667085;
+  font-size: 12px;
+}
+
+.fx-chart-line {
+  fill: none;
+  stroke: #367da5;
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.fx-chart-extreme {
+  fill: #ffffff;
+  stroke: #367da5;
+  stroke-width: 2;
+}
+
+.fx-chart-cursor {
+  stroke: #98a2b3;
+  stroke-dasharray: 4 4;
+}
+
+.fx-chart-dot {
+  fill: #87c900;
+  stroke: #ffffff;
+  stroke-width: 2;
+}
+
+.fx-chart-tooltip {
+  position: absolute;
+  top: 8px;
+  display: grid;
+  gap: 2px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: #172033;
+  color: #ffffff;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.fx-chart-tooltip span {
+  opacity: 0.8;
+}
+
+.fx-chart-extremes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin: 0;
+  color: #525b6d;
+  font-size: 0.95rem;
+}
+
+.fx-chart-extremes strong {
+  color: #172033;
+}
+
+.fx-table-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.fx-markup-verdict {
+  margin: 14px 0 0;
+  font-weight: 600;
+}
+
+.fx-board-change-up {
+  color: #b42318;
+}
+
+.fx-board-change-down {
+  color: #067647;
+}
+
+@media (max-width: 640px) {
+  .fx-table-pair {
+    grid-template-columns: 1fr;
+  }
+}
+
+.paint-calculator-result-grid.fx-markup-grid,
+.paint-calculator-grid.fx-grid-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.paint-calculator-grid.fx-grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 760px) {
+  .paint-calculator-grid.fx-grid-2,
+  .paint-calculator-grid.fx-grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Mobilde tasmayi onler: grid icindeki tablo bolumleri daralabilsin
+   (tablo kendi kutusunda yatay kaydirilir) ve uzun kaynak URL'leri
+   satir kirabilsin. */
+.calculator-unit-section {
+  min-width: 0;
+}
+
+.technical-reference-source-meta,
+.technical-reference-source-meta > * {
+  min-width: 0;
+  overflow-wrap: anywhere;
 }

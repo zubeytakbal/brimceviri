@@ -1,4 +1,5 @@
 import { convert } from "./convert";
+import { buildLocalOnlyConversionPages, italianMassPairs } from "./localOnlyConversionPages";
 import { conversionPages, type ConversionPage } from "./conversionPages";
 import { findUnit } from "./unitRegistry";
 import { italianUnitPages } from "./localizedItalianUnitPages";
@@ -219,12 +220,12 @@ function localizeConversionPage(
   };
 }
 
-export const italianConversionPages: LocalizedItalianConversionPage[] =
-  conversionPages
+export const italianConversionPages: LocalizedItalianConversionPage[] = [
+  ...conversionPages
     .map(localizeConversionPage)
-    .filter(
-      (page): page is LocalizedItalianConversionPage => page !== null
-    );
+    .filter((page): page is LocalizedItalianConversionPage => page !== null),
+  ...buildLocalOnlyConversionPages("it", italianMassPairs, italianUnitPages, createItalianFormula, createItalianExplanation),
+];
 
 export function findItalianConversionPage(slug: string) {
   return italianConversionPages.find((page) => page.slug === slug);

@@ -19,7 +19,7 @@ export type ElectricityConsumptionResult = {
   yearlyCost: number | null;
 };
 
-const DAYS_PER_YEAR = 365;
+const MONTHS_PER_YEAR = 12;
 
 export function calculateElectricityConsumption(
   input: ElectricityConsumptionInput
@@ -42,7 +42,9 @@ export function calculateElectricityConsumption(
 
   const dailyKwh = (powerWatt * hoursPerDay) / 1000;
   const monthlyKwh = dailyKwh * daysPerMonth;
-  const yearlyKwh = dailyKwh * DAYS_PER_YEAR;
+  // Yillik tuketim, ayda kullanilan gun sayisina gore hesaplanir (her gun
+  // kullanim varsayilmaz): ayda 20 gun kullanilan cihaz yilda 240 gun calisir.
+  const yearlyKwh = monthlyKwh * MONTHS_PER_YEAR;
 
   const priceValid =
     kwhPrice !== null && Number.isFinite(kwhPrice) && kwhPrice > 0;

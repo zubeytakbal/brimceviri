@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import { useRouter } from "next/navigation";
 import { useDeferredValue, useId, useState } from "react";
 import { bengaliCategoryPages } from "../converter/localizedBengaliCategoryPages";
@@ -10,6 +10,9 @@ import { homeCategoryOrder } from "../converter/homeCategoryOrder";
 import type { SiteNotification } from "../converter/siteNotifications";
 import { DecorativeIcon, getCategoryIconName, type SiteIconName } from "./siteIcons";
 import NotificationBell from "./NotificationBell";
+import FxHomeSection from "./fx/FxHomeSection";
+import { fxContentBn } from "../converter/fx/fxContentBn";
+import { buildFxSearchEntries } from "../converter/fx/fxLocale";
 
 function CardIcon({ name }: { name: SiteIconName }) {
   return (
@@ -139,7 +142,13 @@ const popularUnits = preferredUnitSourceSlugs
   })
   .filter((unit): unit is NonNullable<typeof unit> => Boolean(unit));
 
-const searchables = bengaliConversionPages.map((page) => ({
+const currencySearchables = buildFxSearchEntries(fxContentBn, "মুদ্রা রেট টাকা কনভার্টার বিনিময় হার").map((entry) => ({
+  ...entry,
+  categoryLabel: "মুদ্রা",
+  searchText: normalizeSearchTextBn(entry.searchText),
+}));
+
+const conversionSearchables = bengaliConversionPages.map((page) => ({
   id: page.slug,
   href: `/bn/${page.slug}`,
   label: `${page.fromName} → ${page.toName}`,
@@ -149,6 +158,8 @@ const searchables = bengaliConversionPages.map((page) => ({
     [page.fromName, page.toName, page.fromUnit, page.toUnit, page.slug, page.categoryName].join(" ")
   ),
 }));
+
+const searchables = [...currencySearchables, ...conversionSearchables];
 
 type BengaliStandaloneTool = {
   id: string;
@@ -386,6 +397,19 @@ export default function BengaliHomeDirectory({
             ))}
           </ul>
         </section>
+
+        <FxHomeSection
+          id="currency-converter"
+          title="মুদ্রা রূপান্তর"
+          description="দৈনিক রেফারেন্স রেটে ডলার, সৌদি রিয়াল, দিরহাম ও আরও ১১টি মুদ্রা থেকে টাকা; রেট কখন প্রকাশিত হয়েছে, চার্ট ও ব্যাংক রেটের পার্থক্য হিসাব।"
+          hubHref="/bn/currency-converter"
+          allLabel="সব মুদ্রার রেট"
+          cards={[
+            { href: "/bn/currency-converter/usd-to-bdt", label: "ডলার – টাকা", icon: "currencyUsd" },
+            { href: "/bn/currency-converter/sar-to-bdt", label: "সৌদি রিয়াল – টাকা", icon: "currencyConverterCalculator" },
+            { href: "/bn/currency-converter/aed-to-bdt", label: "দিরহাম – টাকা", icon: "currencyConverterCalculator" },
+          ]}
+        />
 
         {popularUnits.length > 0 && (
           <section className="directory-section">

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import TransitTimeCalculatorUz from "../../components/calculators/TransitTimeCalculatorUz";
 import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
 import { buildSiteUrl } from "../../siteConfig";

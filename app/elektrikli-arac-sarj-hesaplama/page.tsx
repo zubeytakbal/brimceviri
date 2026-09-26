@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import EvChargingCalculator from "../components/EvChargingCalculator";
 import { getNationalGasolinePrice } from "../converter/liveFuelPrice";
 import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";

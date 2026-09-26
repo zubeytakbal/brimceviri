@@ -67,15 +67,15 @@ const categoryLabels: Record<
     uzunluk: "Uzunluk",
     alan: "Alan",
     hacim: "Hacim",
-    kutle: "Kutle",
-    sicaklik: "Sicaklik",
+    kutle: "Kütle",
+    sicaklik: "Sıcaklık",
     zaman: "Zaman",
     hiz: "Hiz",
     basinc: "Basinc",
-    enerji: "Enerji ve Guc",
+    enerji: "Enerji ve Güç",
     veri: "Veri Depolama",
     elektrik: "Elektrik",
-    yogunluk: "Yogunluk",
+    yogunluk: "Yoğunluk",
     kuvvet: "Kuvvet",
     debi: "Debi",
     tork: "Tork",
@@ -84,9 +84,9 @@ const categoryLabels: Record<
     elektrik_direnc: "Direnc",
     kapasitans: "Kapasitans",
     enduktans: "Enduktans",
-    elektrik_yuk: "Elektrik Yuku",
-    altin_ayar: "Altin Ayar",
-    gumus_ayar: "Gumus Ayar",
+    elektrik_yuk: "Elektrik Yükü",
+    altin_ayar: "Altın Ayar",
+    gumus_ayar: "Gümüş Ayar",
   },
   en: {
     uzunluk: "Length",
@@ -115,7 +115,7 @@ const categoryLabels: Record<
   },
   de: {
     uzunluk: "Lange",
-    alan: "Flache",
+    alan: "Fläche",
     hacim: "Volumen",
     kutle: "Masse",
     sicaklik: "Temperatur",
@@ -130,10 +130,10 @@ const categoryLabels: Record<
     debi: "Volumenstrom",
     tork: "Drehmoment",
     momentum: "Impuls",
-    viskozite_dinamik: "Viskositat",
+    viskozite_dinamik: "Viskosität",
     elektrik_direnc: "Widerstand",
-    kapasitans: "Kapazitat",
-    enduktans: "Induktivitat",
+    kapasitans: "Kapazität",
+    enduktans: "Induktivität",
     elektrik_yuk: "Elektrische Ladung",
     altin_ayar: "Goldkarat",
     gumus_ayar: "Silberfeingehalt",
@@ -246,8 +246,8 @@ const categoryLabels: Record<
     sicaklik: "Temperatura",
     zaman: "Tiempo",
     hiz: "Velocidad",
-    basinc: "Presion",
-    enerji: "Energia y Potencia",
+    basinc: "Presión",
+    enerji: "Energía y Potencia",
     veri: "Almacenamiento de Datos",
     elektrik: "Electricidad",
     yogunluk: "Densidad",
@@ -259,7 +259,7 @@ const categoryLabels: Record<
     elektrik_direnc: "Resistencia",
     kapasitans: "Capacitancia",
     enduktans: "Inductancia",
-    elektrik_yuk: "Carga Electrica",
+    elektrik_yuk: "Carga Eléctrica",
     altin_ayar: "Quilate de Oro",
     gumus_ayar: "Ley de la Plata",
   },
@@ -271,8 +271,8 @@ const categoryLabels: Record<
     sicaklik: "Temperatura",
     zaman: "Tiempo",
     hiz: "Velocidad",
-    basinc: "Presion",
-    enerji: "Energia y Potencia",
+    basinc: "Presión",
+    enerji: "Energía y Potencia",
     veri: "Almacenamiento de Datos",
     elektrik: "Electricidad",
     yogunluk: "Densidad",
@@ -284,32 +284,32 @@ const categoryLabels: Record<
     elektrik_direnc: "Resistencia",
     kapasitans: "Capacitancia",
     enduktans: "Inductancia",
-    elektrik_yuk: "Carga Electrica",
+    elektrik_yuk: "Carga Eléctrica",
     altin_ayar: "Quilate de Oro",
     gumus_ayar: "Ley de la Plata",
   },
   pt: {
     uzunluk: "Comprimento",
-    alan: "Area",
+    alan: "Área",
     hacim: "Volume",
     kutle: "Massa",
     sicaklik: "Temperatura",
     zaman: "Tempo",
     hiz: "Velocidade",
-    basinc: "Pressao",
-    enerji: "Energia e Potencia",
+    basinc: "Pressão",
+    enerji: "Energia e Potência",
     veri: "Armazenamento de Dados",
     elektrik: "Eletricidade",
     yogunluk: "Densidade",
     kuvvet: "Forca",
-    debi: "Vazao",
+    debi: "Vazão",
     tork: "Torque",
     momentum: "Momento",
     viskozite_dinamik: "Viscosidade",
-    elektrik_direnc: "Resistencia",
-    kapasitans: "Capacitancia",
-    enduktans: "Indutancia",
-    elektrik_yuk: "Carga Eletrica",
+    elektrik_direnc: "Resistência",
+    kapasitans: "Capacitância",
+    enduktans: "Indutância",
+    elektrik_yuk: "Carga Elétrica",
     altin_ayar: "Quilate de Ouro",
     gumus_ayar: "Teor de Prata",
   },
@@ -367,7 +367,7 @@ const categoryLabels: Record<
     uzunluk: "Длина", alan: "Площадь", hacim: "Объём", kutle: "Масса", sicaklik: "Температура", zaman: "Время", hiz: "Скорость", basinc: "Давление", enerji: "Энергия", veri: "Хранение данных", elektrik: "Электричество", yogunluk: "Плотность", kuvvet: "Сила", debi: "Расход", debi_hacimsel: "Объёмный расход", debi_kutlesel: "Массовый расход", tork: "Крутящий момент", aci: "Угол", ivme: "Ускорение", acisal_hiz: "Угловая скорость", frekans: "Частота", guc: "Мощность", momentum: "Импульс", viskozite_dinamik: "Вязкость", viskozite_kinematik: "Кинематическая вязкость", manyetik_alan: "Напряжённость магнитного поля", manyetik_aki: "Магнитный поток", elektrik_direnc: "Сопротивление", kapasitans: "Ёмкость", enduktans: "Индуктивность", elektrik_yuk: "Электрический заряд", altin_ayar: "Проба золота", gumus_ayar: "Проба серебра",
   },
   sv: {
-    uzunluk: "Langd",
+    uzunluk: "Längd",
     alan: "Area",
     hacim: "Volym",
     kutle: "Massa",
@@ -380,9 +380,9 @@ const categoryLabels: Record<
     elektrik: "Elektricitet",
     yogunluk: "Densitet",
     kuvvet: "Kraft",
-    debi: "Flode",
+    debi: "Flöde",
     tork: "Vridmoment",
-    momentum: "Rorelsemangd",
+    momentum: "Rörelsemängd",
     viskozite_dinamik: "Viskositet",
     elektrik_direnc: "Resistans",
     kapasitans: "Kapacitans",
@@ -405,7 +405,7 @@ const categoryLabels: Record<
     elektrik: "Elektrisitet",
     yogunluk: "Densitet",
     kuvvet: "Kraft",
-    debi: "Stromning",
+    debi: "Strømning",
     tork: "Dreiemoment",
     momentum: "Bevegelsesmengde",
     viskozite_dinamik: "Viskositet",
@@ -414,10 +414,10 @@ const categoryLabels: Record<
     enduktans: "Induktans",
     elektrik_yuk: "Elektrisk Ladning",
     altin_ayar: "Gullkarat",
-    gumus_ayar: "Solvinnhold",
+    gumus_ayar: "Sølvinnhold",
   },
   da: {
-    uzunluk: "Laengde",
+    uzunluk: "Længde",
     alan: "Areal",
     hacim: "Rumfang",
     kutle: "Masse",
@@ -430,24 +430,24 @@ const categoryLabels: Record<
     elektrik: "Elektricitet",
     yogunluk: "Densitet",
     kuvvet: "Kraft",
-    debi: "Stromning",
+    debi: "Strømning",
     tork: "Moment",
-    momentum: "Bevaegelsesmaengde",
+    momentum: "Bevægelsesmængde",
     viskozite_dinamik: "Viskositet",
     elektrik_direnc: "Modstand",
     kapasitans: "Kapacitans",
     enduktans: "Induktans",
     elektrik_yuk: "Elektrisk Ladning",
     altin_ayar: "Guldkarat",
-    gumus_ayar: "Solvindhold",
+    gumus_ayar: "Sølvindhold",
   },
 };
 
 const siteHeaderCopy: Record<Locale, SiteHeaderCopy> = {
   tr: {
-    navAriaLabel: "Ana menu",
-    menuLabel: "Menu",
-    conversionsLabel: "Donusumler",
+    navAriaLabel: "Ana menü",
+    menuLabel: "Menü",
+    conversionsLabel: "Dönüşümler",
   },
   en: {
     navAriaLabel: "Main navigation",
@@ -456,7 +456,7 @@ const siteHeaderCopy: Record<Locale, SiteHeaderCopy> = {
   },
   de: {
     navAriaLabel: "Hauptnavigation",
-    menuLabel: "Menu",
+    menuLabel: "Menü",
     conversionsLabel: "Kategorien",
   },
   ar: {
@@ -480,19 +480,19 @@ const siteHeaderCopy: Record<Locale, SiteHeaderCopy> = {
     conversionsLabel: "Conversions",
   },
   es: {
-    navAriaLabel: "Navegacion principal",
-    menuLabel: "Menu",
+    navAriaLabel: "Navegación principal",
+    menuLabel: "Menú",
     conversionsLabel: "Conversiones",
   },
   "es-419": {
-    navAriaLabel: "Navegacion principal",
-    menuLabel: "Menu",
+    navAriaLabel: "Navegación principal",
+    menuLabel: "Menú",
     conversionsLabel: "Conversiones",
   },
   pt: {
-    navAriaLabel: "Navegacao principal",
+    navAriaLabel: "Navegação principal",
     menuLabel: "Menu",
-    conversionsLabel: "Conversoes",
+    conversionsLabel: "Conversões",
   },
   it: {
     navAriaLabel: "Navigazione principale",
@@ -524,16 +524,16 @@ const siteHeaderCopy: Record<Locale, SiteHeaderCopy> = {
 
 const footerCopy: Record<Locale, FooterCopy> = {
   tr: {
-    navAriaLabel: "Alt menu",
+    navAriaLabel: "Alt menü",
     pagesHeading: "Sayfalar",
     languagesHeading: "Diller",
     categoriesHeading: "Kategoriler",
     description:
-      "Teknik donusum araclari, muhendislik hesaplayicilari ve birim rehberleri pratik basvuru amaciyla hazirlanmistir.",
+      "Teknik dönüşüm araçları, mühendislik hesaplayıcıları ve birim rehberleri pratik başvuru amacıyla hazırlanmıştır.",
     disclaimer:
-      "Kritik muhendislik, saglik veya guvenlik kararlarinda sonuclari profesyonel kaynaklarla dogrulayin.",
+      "Kritik mühendislik, sağlık veya güvenlik kararlarında sonuçları profesyonel kaynaklarla doğrulayın.",
     browserProcessingNote:
-      "Hesaplayici girisleri bu sitedeki hesaplama akislarinda tarayici icinde islenir.",
+      "Hesaplayıcı girişleri bu sitedeki hesaplama akışlarında tarayıcı içinde işlenir.",
   },
   en: {
     navAriaLabel: "Footer navigation",
@@ -548,16 +548,16 @@ const footerCopy: Record<Locale, FooterCopy> = {
       "Calculator inputs are processed in the browser for calculation flows on this site.",
   },
   de: {
-    navAriaLabel: "Fussnavigation",
+    navAriaLabel: "Fußnavigation",
     pagesHeading: "Seiten",
     languagesHeading: "Sprachen",
     categoriesHeading: "Kategorien",
     description:
-      "Technische Umrechnungstools und Einheitenleitfaden fur den schnellen praktischen Einsatz.",
+      "Technische Umrechnungstools und Einheitenleitfaden für den schnellen praktischen Einsatz.",
     disclaimer:
-      "Prufen Sie kritische Werte bei technischen, gesundheitlichen oder sicherheitsrelevanten Entscheidungen immer mit fachlichen Quellen.",
+      "Prüfen Sie kritische Werte bei technischen, gesundheitlichen oder sicherheitsrelevanten Entscheidungen immer mit fachlichen Quellen.",
     browserProcessingNote:
-      "Eingegebene Werte werden fur die Rechenablaufe direkt im Browser verarbeitet.",
+      "Eingegebene Werte werden für die Rechenabläufe direkt im Browser verarbeitet.",
   },
   ar: {
     navAriaLabel: "تنقل التذييل",
@@ -608,40 +608,40 @@ const footerCopy: Record<Locale, FooterCopy> = {
       "Dans les flux de calcul de ce site, les entrees des calculatrices sont traitees directement dans le navigateur.",
   },
   es: {
-    navAriaLabel: "Navegacion del pie de pagina",
+    navAriaLabel: "Navegación del pie de pagina",
     pagesHeading: "Paginas",
     languagesHeading: "Idiomas",
-    categoriesHeading: "Categorias",
+    categoriesHeading: "Categorías",
     description:
-      "Herramientas de conversion tecnica y guias de unidades preparadas para un uso practico.",
+      "Herramientas de conversión técnica y guías de unidades preparadas para un uso practico.",
     disclaimer:
-      "Para decisiones importantes de ingenieria, salud o seguridad, verifique los resultados con fuentes profesionales.",
+      "Para decisiones importantes de ingeniería, salud o seguridad, verifique los resultados con fuentes profesionales.",
     browserProcessingNote:
       "En los flujos de calculo de este sitio, los datos introducidos en las calculadoras se procesan directamente en el navegador.",
   },
   "es-419": {
-    navAriaLabel: "Navegacion del pie de pagina",
+    navAriaLabel: "Navegación del pie de pagina",
     pagesHeading: "Paginas",
     languagesHeading: "Idiomas",
-    categoriesHeading: "Categorias",
+    categoriesHeading: "Categorías",
     description:
-      "Herramientas de conversion tecnica y guias de unidades preparadas para un uso practico.",
+      "Herramientas de conversión técnica y guías de unidades preparadas para un uso practico.",
     disclaimer:
-      "Para decisiones importantes de ingenieria, salud o seguridad, verifica los resultados con fuentes profesionales.",
+      "Para decisiones importantes de ingeniería, salud o seguridad, verifica los resultados con fuentes profesionales.",
     browserProcessingNote:
       "En los flujos de calculo de este sitio, los datos que ingresas en las calculadoras se procesan directamente en el navegador.",
   },
   pt: {
-    navAriaLabel: "Navegacao do rodape",
-    pagesHeading: "Paginas",
+    navAriaLabel: "Navegação do rodapé",
+    pagesHeading: "Páginas",
     languagesHeading: "Idiomas",
     categoriesHeading: "Categorias",
     description:
-      "Ferramentas de conversao tecnica e guias de unidades preparados para uso pratico.",
+      "Ferramentas de conversão técnica e guias de unidades preparados para uso prático.",
     disclaimer:
-      "Para decisoes importantes de engenharia, saude ou seguranca, verifique os resultados com fontes profissionais.",
+      "Para decisões importantes de engenharia, saúde ou segurança, verifique os resultados com fontes profissionais.",
     browserProcessingNote:
-      "Nos fluxos de calculo deste site, os dados inseridos nas calculadoras sao processados diretamente no navegador.",
+      "Nos fluxos de cálculo deste site, os dados inseridos nas calculadoras são processados diretamente no navegador.",
   },
   it: {
     navAriaLabel: "Navigazione del footer",
@@ -676,26 +676,26 @@ const footerCopy: Record<Locale, FooterCopy> = {
   sv: {
     navAriaLabel: "Sidfotsnavigering",
     pagesHeading: "Sidor",
-    languagesHeading: "Sprak",
+    languagesHeading: "Språk",
     categoriesHeading: "Kategorier",
     description:
-      "Tekniska omvandlingsverktyg och enhetsguider forberedda for praktiskt bruk.",
+      "Tekniska omvandlingsverktyg och enhetsguider förberedda för praktiskt bruk.",
     disclaimer:
-      "For viktiga tekniska, medicinska eller sakerhetsrelaterade beslut, kontrollera resultaten med professionella kallor.",
+      "För viktiga tekniska, medicinska eller säkerhetsrelaterade beslut, kontrollera resultaten med professionella källor.",
     browserProcessingNote:
-      "I raknefunktionerna pa denna sida behandlas inmatade uppgifter direkt i webblasaren.",
+      "I räknefunktionerna på denna sida behandlas inmatade uppgifter direkt i webbläsaren.",
   },
   no: {
     navAriaLabel: "Bunntekstnavigering",
     pagesHeading: "Sider",
-    languagesHeading: "Sprak",
+    languagesHeading: "Språk",
     categoriesHeading: "Kategorier",
     description:
-      "Tekniske omregningsverktoy og enhetsguider forberedt for praktisk bruk.",
+      "Tekniske omregningsverktøy og enhetsguider forberedt for praktisk bruk.",
     disclaimer:
       "For viktige tekniske, medisinske eller sikkerhetsrelaterte beslutninger, kontroller resultatene med profesjonelle kilder.",
     browserProcessingNote:
-      "I regnefunksjonene pa denne siden behandles innsendte data direkte i nettleseren.",
+      "I regnefunksjonene på denne siden behandles innsendte data direkte i nettleseren.",
   },
   da: {
     navAriaLabel: "Bundtekstnavigation",
@@ -703,11 +703,11 @@ const footerCopy: Record<Locale, FooterCopy> = {
     languagesHeading: "Sprog",
     categoriesHeading: "Kategorier",
     description:
-      "Tekniske omregningsvaerktojer og enhedsguider forberedt til praktisk brug.",
+      "Tekniske omregningsværktøjer og enhedsguider forberedt til praktisk brug.",
     disclaimer:
-      "For vigtige tekniske, medicinske eller sikkerhedsrelaterede beslutninger bor resultaterne kontrolleres med professionelle kilder.",
+      "For vigtige tekniske, medicinske eller sikkerhedsrelaterede beslutninger bør resultaterne kontrolleres med professionelle kilder.",
     browserProcessingNote:
-      "I beregningsfunktionerne pa denne side behandles indtastede data direkte i browseren.",
+      "I beregningsfunktionerne på denne side behandles indtastede data direkte i browseren.",
   },
 };
 
@@ -720,10 +720,10 @@ const topLevelLabelMap: Record<
 > = {
   tr: {
     home: "Ana Sayfa",
-    engineeringHub: "Hesaplayicilar",
+    engineeringHub: "Hesaplayıcılar",
     units: "Birim Rehberi",
-    allConversions: "Tum Donusumler",
-    professions: "Mesleklere Gore",
+    allConversions: "Tüm Dönüşümler",
+    professions: "Mesleklere Göre",
   },
   en: {
     home: "Home",
@@ -770,23 +770,23 @@ const topLevelLabelMap: Record<
   es: {
     home: "Inicio",
     engineeringHub: "Calculadoras",
-    units: "Guia de Unidades",
+    units: "Guía de Unidades",
     allConversions: "Todas las Conversiones",
-    professions: "Por Profesion",
+    professions: "Por Profesión",
   },
   "es-419": {
     home: "Inicio",
     engineeringHub: "Calculadoras",
-    units: "Guia de Unidades",
+    units: "Guía de Unidades",
     allConversions: "Todas las Conversiones",
-    professions: "Por Profesion",
+    professions: "Por Profesión",
   },
   pt: {
     home: "Inicio",
     engineeringHub: "Calculadoras",
     units: "Guia de Unidades",
-    allConversions: "Todas as Conversoes",
-    professions: "Por Profissao",
+    allConversions: "Todas as Conversões",
+    professions: "Por Profissão",
   },
   it: {
     home: "Home",
@@ -805,7 +805,7 @@ const topLevelLabelMap: Record<
   ru: { home: "Главная", engineeringHub: "Калькуляторы", units: "Единицы", allConversions: "Все переводы", professions: "По профессии" },
   sv: {
     home: "Hem",
-    engineeringHub: "Raknare",
+    engineeringHub: "Räknare",
     units: "Enhetsguide",
     allConversions: "Alla Omvandlingar",
     professions: "Efter Yrke",
@@ -833,13 +833,13 @@ const footerLinksByLocale: Record<
   tr: [
     { key: "home", label: "Ana Sayfa" },
     { key: "units", label: "Birim Rehberi" },
-    { key: "allConversions", label: "Tum Donusumler" },
-    { key: "professions", label: "Mesleklere Gore" },
-    { key: "developerApi", label: "Gelistirici API'si" },
-    { key: "about", label: "Hakkimizda" },
-    { key: "contact", label: "Iletisim" },
+    { key: "allConversions", label: "Tüm Dönüşümler" },
+    { key: "professions", label: "Mesleklere Göre" },
+    { key: "developerApi", label: "Geliştirici API'si" },
+    { key: "about", label: "Hakkımızda" },
+    { key: "contact", label: "İletişim" },
     { key: "privacy", label: "Gizlilik" },
-    { key: "terms", label: "Kullanim Kosullari" },
+    { key: "terms", label: "Kullanım Koşulları" },
   ],
   en: [
     { key: "home", label: "Home" },
@@ -856,7 +856,7 @@ const footerLinksByLocale: Record<
     { key: "units", label: "Einheitenleitfaden" },
     { key: "allConversions", label: "Alle Umrechnungen" },
     { key: "engineeringHub", label: "Ingenieurrechner" },
-    { key: "about", label: "Uber uns" },
+    { key: "about", label: "Über uns" },
     { key: "contact", label: "Kontakt" },
     { key: "privacy", label: "Datenschutz" },
     { key: "terms", label: "Nutzungsbedingungen" },
@@ -1020,7 +1020,7 @@ export function getCategoryMenuLinks(locale: Locale) {
                 : locale === "es" || locale === "es-419"
                   ? "Tallas de Calzado"
                   : locale === "pt"
-                    ? "Numeracao de Calcados"
+                    ? "Numeração de Calçados"
                     : locale === "it"
                       ? "Numeri di Scarpe"
                       : locale === "nl"
@@ -1028,10 +1028,10 @@ export function getCategoryMenuLinks(locale: Locale) {
                         : locale === "sv"
                           ? "Skostorlekar"
                           : locale === "no"
-                            ? "Skostorrelser"
+                            ? "Skostørrelser"
                             : locale === "da"
-                              ? "Skostorrelser"
-                              : "Ayakkabi Numarasi",
+                              ? "Skostørrelser"
+                              : "Ayakkabı Numarası",
   });
   links.push({
     href: getStaticPath(locale, "kitchenMeasures"),
@@ -1055,12 +1055,12 @@ export function getCategoryMenuLinks(locale: Locale) {
                       : locale === "nl"
                         ? "Keukenmaten"
                         : locale === "sv"
-                          ? "Kokmatt"
+                          ? "Kokmått"
                           : locale === "no"
-                            ? "Kjokkenmal"
+                            ? "Kjøkkenmål"
                             : locale === "da"
-                              ? "Kokkenmal"
-                              : "Mutfak Olculeri",
+                              ? "Køkkenmål"
+                              : "Mutfak Ölçüleri",
   });
   links.push({
     href: getStaticPath(locale, "recipeConverter"),
@@ -1089,7 +1089,7 @@ export function getCategoryMenuLinks(locale: Locale) {
                             ? "Oppskriftomregner"
                             : locale === "da"
                               ? "Opskriftomregner"
-                              : "Tarif Cevirici",
+                              : "Tarif Çevirici",
   });
 
   return links;

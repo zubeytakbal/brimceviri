@@ -1,0 +1,31 @@
+import type { Locale } from "../i18n/config";
+
+// Her dil surumunun hitap ettigi ulkede kullanilan para birimi (tutar ve
+// fiyat alanlarinda gosterilir). Arapca birden fazla ulkeye hitap ettigi
+// icin bos birakildi; Latin Amerika icin genel "$" isareti kullanildi.
+export const currencyByLocale: Record<Locale, string> = {
+  tr: "TL",
+  // Ingilizce sayfalar agirlikla ABD kullanicisina hitap eder.
+  en: "$",
+  de: "EUR",
+  fr: "EUR",
+  es: "EUR",
+  "es-419": "$",
+  pt: "R$",
+  it: "EUR",
+  nl: "EUR",
+  sv: "kr",
+  no: "kr",
+  da: "kr.",
+  ar: "",
+  uz: "so'm",
+  bn: "৳",
+  ru: "EUR",
+};
+
+export function formatWithCurrency(formattedNumber: string, locale: Locale) {
+  const currency = currencyByLocale[locale];
+  if (!currency) return formattedNumber;
+  // ABD yazimi: $12.50 (isaret basta, bosluksuz).
+  return locale === "en" ? `${currency}${formattedNumber}` : `${formattedNumber} ${currency}`;
+}

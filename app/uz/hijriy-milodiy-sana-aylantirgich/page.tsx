@@ -3,7 +3,7 @@ import HijriCalendarCalculatorUz from "../../components/calculators/HijriCalenda
 import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
 import { buildFullLanguageAlternates } from "../../i18n/routing";
 import { buildSiteUrl } from "../../siteConfig";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 
 const pagePath = "/uz/hijriy-milodiy-sana-aylantirgich";
 

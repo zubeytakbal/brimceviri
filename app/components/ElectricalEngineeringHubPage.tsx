@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import StaticPageLayout from "./StaticPageLayout";
 import { DecorativeIcon } from "./siteIcons";
 import {
@@ -55,9 +55,9 @@ export default function ElectricalEngineeringHubPage({
             }
         : {
             href: "/hesaplayicilar/ohm-yasasi",
-            title: "Ohm Yasasi Hesaplayicisi",
+            title: "Ohm Yasası Hesaplayıcısı",
             description:
-              "V = I x R iliskisiyle gerilim, akim ve direnc kontrolu yapan canli elektrik araci.",
+              "V = I x R ilişkisiyle gerilim, akım ve direnç kontrolü yapan canlı elektrik aracı.",
             formula: "V = I x R",
           };
 
@@ -92,7 +92,7 @@ export default function ElectricalEngineeringHubPage({
                 ? "Ingenieurrechner"
                 : locale === "ar"
                   ? "الحاسبات الهندسية"
-                : "Muhendislik Hesaplayicilari",
+                : "Mühendislik Hesaplayıcıları",
         },
         { label: copy.title },
       ]}

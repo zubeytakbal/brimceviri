@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import GoldPriceCalculator from "../../components/GoldPriceCalculator";
 import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
 import { getUsdExchangeRates } from "../../converter/liveCurrencyRatesUsd";
@@ -20,7 +20,7 @@ const faqItems: FaqItem[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "حاسبة سعر الذهب والفضة الحي | BirimCeviri.app",
+  title: "حاسبة سعر الذهب والفضة الحي",
   description:
     "احسب قيمة الذهب أو الفضة حسب الوزن والعيار وعملتك، باستخدام سعر السوق العالمي الحي المحدث تلقائيًا.",
   alternates: {

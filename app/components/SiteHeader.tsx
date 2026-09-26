@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useState } from "react";
 import { getLocaleFromPathname } from "../i18n/config";
@@ -65,7 +65,7 @@ function SiteHeaderNavigation({
   return (
     <header className={`site-header site-header--${locale}`}>
       <div className="site-header-inner">
-        <Link href={homeHref} className="site-logo">
+        <Link href={homeHref} className="site-logo" dir="ltr">
           birimceviri<span>.app</span>
         </Link>
 
@@ -110,7 +110,7 @@ function SiteHeaderNavigation({
               {categoryLinks.map((link) => (
                 <Link
                   href={link.href}
-                  key={link.href}
+                  key={`${link.label}-${link.href}`}
                   onClick={() => setIsConversionsOpen(false)}
                 >
                   {link.label}
@@ -138,7 +138,7 @@ function SiteHeaderNavigation({
                 className={`site-nav-dropdown${isCalculatorsOpen ? " is-open" : ""}`}
               >
                 {calculatorLinks.map((link) => (
-                  <Link href={link.href} key={link.href} onClick={() => setIsCalculatorsOpen(false)}>
+                  <Link href={link.href} key={`${link.label}-${link.href}`} onClick={() => setIsCalculatorsOpen(false)}>
                     {link.label}
                   </Link>
                 ))}
@@ -147,7 +147,7 @@ function SiteHeaderNavigation({
           )}
 
           {topLevelLinks.slice(1).map((link) => (
-            <Link href={link.href} key={link.href}>
+            <Link href={link.href} key={`${link.label}-${link.href}`}>
               {link.label}
             </Link>
           ))}
@@ -196,7 +196,7 @@ function SiteHeaderNavigation({
               {categoryLinks.map((link) => (
                 <Link
                   href={link.href}
-                  key={`mobile-category-${link.href}`}
+                  key={`mobile-category-${link.label}-${link.href}`}
                   onClick={() => {
                     setIsMenuOpen(false);
                     setIsConversionsOpen(false);
@@ -231,7 +231,7 @@ function SiteHeaderNavigation({
                 {calculatorLinks.map((link) => (
                   <Link
                     href={link.href}
-                    key={`mobile-calculator-${link.href}`}
+                    key={`mobile-calculator-${link.label}-${link.href}`}
                     onClick={() => {
                       setIsMenuOpen(false);
                       setIsCalculatorsOpen(false);
@@ -247,7 +247,7 @@ function SiteHeaderNavigation({
           {topLevelLinks.slice(1).map((link) => (
             <Link
               href={link.href}
-              key={`mobile-${link.href}`}
+              key={`mobile-${link.label}-${link.href}`}
               onClick={() => setIsMenuOpen(false)}
             >
               {link.label}

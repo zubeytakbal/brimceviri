@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import Cha2ds2CalculatorUz from "../../components/calculators/Cha2ds2CalculatorUz";
 import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
 import { buildSiteUrl } from "../../siteConfig";

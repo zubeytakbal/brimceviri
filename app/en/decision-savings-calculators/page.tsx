@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import StaticPageLayout from "../../components/StaticPageLayout";
 import { englishDecisionSavingsHubPath, englishDecisionSavingsTools } from "../../i18n/englishDecisionSavingsTools";
 import { SITE_NAME, buildSiteUrl } from "../../siteConfig";
 
 export const metadata: Metadata = {
-  title: `Decision & Savings Calculators | ${SITE_NAME}`,
+  title: `Decision & Savings Calculators`,
   description: "Free calculators for comparing recurring costs, savings and practical purchase decisions.",
   alternates: { canonical: englishDecisionSavingsHubPath, languages: { en: englishDecisionSavingsHubPath } },
   openGraph: { title: "Decision & Savings Calculators", description: "Free calculators for comparing recurring costs, savings and practical purchase decisions.", url: buildSiteUrl(englishDecisionSavingsHubPath), siteName: SITE_NAME, locale: "en_US", type: "website" },

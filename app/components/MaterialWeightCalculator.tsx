@@ -6,6 +6,8 @@ import {
   calculateVolumeCm3FromMass,
   materialDensityTable,
 } from "../converter/materialDensity";
+import { materialDensityTableDe } from "../converter/materialDensityDe";
+import { numberLocales, type ContentLocale } from "./contentLocale";
 
 type Target = "mass" | "volume";
 
@@ -16,19 +18,58 @@ function parseNumericValue(value: string): number | null {
   return Number.isFinite(parsed) ? parsed : null;
 }
 
-function formatValue(value: number, maximumFractionDigits = 2): string {
-  return value.toLocaleString("tr-TR", { maximumFractionDigits });
+function formatValue(value: number, locale: ContentLocale, maximumFractionDigits = 2): string {
+  return value.toLocaleString(numberLocales[locale], { maximumFractionDigits });
 }
 
-export default function MaterialWeightCalculator() {
-  const [materialId, setMaterialId] = useState(materialDensityTable[0].id);
+const copy = {
+  tr: {
+    table: materialDensityTable,
+    targetLabel: "Neyi hesaplamak istiyorsun?",
+    calculateWeight: "Ağırlığı Hesapla",
+    calculateVolume: "Hacmi Hesapla",
+    material: "Malzeme",
+    volumeInput: "Hacim (cm³)",
+    weightInput: "Ağırlık (kg)",
+    weightPlaceholder: "örn. 5",
+    invalid: "Geçerli değerler girerek sonucu görebilirsin.",
+    weightPrefix: "Ağırlık: ",
+    volumePrefix: "Hacim: ",
+    tableCaption: "Malzeme Yoğunlukları Tablosu",
+    densityColumn: "Yoğunluk (kg/m³)",
+  },
+  de: {
+    table: materialDensityTableDe,
+    targetLabel: "Was möchtest du berechnen?",
+    calculateWeight: "Gewicht berechnen",
+    calculateVolume: "Volumen berechnen",
+    material: "Material",
+    volumeInput: "Volumen (cm³)",
+    weightInput: "Gewicht (kg)",
+    weightPlaceholder: "z. B. 5",
+    invalid: "Gib gültige Werte ein, um das Ergebnis zu sehen.",
+    weightPrefix: "Gewicht: ",
+    volumePrefix: "Volumen: ",
+    tableCaption: "Tabelle der Materialdichten",
+    densityColumn: "Dichte (kg/m³)",
+  },
+};
+
+type MaterialWeightCalculatorProps = {
+  locale?: ContentLocale;
+};
+
+export default function MaterialWeightCalculator({ locale = "tr" }: MaterialWeightCalculatorProps = {}) {
+  const t = copy[locale];
+  const table = t.table;
+  const [materialId, setMaterialId] = useState(table[0].id);
   const [target, setTarget] = useState<Target>("mass");
   const [volumeInput, setVolumeInput] = useState("1000");
   const [massInput, setMassInput] = useState("");
 
   const material =
-    materialDensityTable.find((row) => row.id === materialId) ??
-    materialDensityTable[0];
+    table.find((row) => row.id === materialId) ??
+    table[0];
 
   const volume = parseNumericValue(volumeInput);
   const mass = parseNumericValue(massInput);
@@ -46,30 +87,30 @@ export default function MaterialWeightCalculator() {
     <div className="category-general-converter">
       <div className="engineering-calculator-card">
         <div className="engineering-targets">
-          <span>Neyi hesaplamak istiyorsun?</span>
+          <span>{t.targetLabel}</span>
           <div className="engineering-target-grid hydrostatic-target-grid">
             <button
               type="button"
               className={`engineering-target-button${target === "mass" ? " is-active" : ""}`}
               onClick={() => setTarget("mass")}
             >
-              Ağırlığı Hesapla
+              {t.calculateWeight}
             </button>
             <button
               type="button"
               className={`engineering-target-button${target === "volume" ? " is-active" : ""}`}
               onClick={() => setTarget("volume")}
             >
-              Hacmi Hesapla
+              {t.calculateVolume}
             </button>
           </div>
         </div>
 
         <div className="paint-calculator-grid">
           <label className="category-general-converter-field">
-            <span>Malzeme</span>
+            <span>{t.material}</span>
             <select value={materialId} onChange={(event) => setMaterialId(event.target.value)}>
-              {materialDensityTable.map((row) => (
+              {table.map((row) => (
                 <option key={row.id} value={row.id}>
                   {row.label}
                 </option>
@@ -79,7 +120,7 @@ export default function MaterialWeightCalculator() {
 
           {target === "mass" ? (
             <label className="category-general-converter-field">
-              <span>Hacim (cm³)</span>
+              <span>{t.volumeInput}</span>
               <input
                 type="text"
                 inputMode="decimal"
@@ -89,13 +130,13 @@ export default function MaterialWeightCalculator() {
             </label>
           ) : (
             <label className="category-general-converter-field">
-              <span>Ağırlık (kg)</span>
+              <span>{t.weightInput}</span>
               <input
                 type="text"
                 inputMode="decimal"
                 value={massInput}
                 onChange={(event) => setMassInput(event.target.value)}
-                placeholder="örn. 5"
+                placeholder={t.weightPlaceholder}
               />
             </label>
           )}
@@ -107,28 +148,28 @@ export default function MaterialWeightCalculator() {
         className="category-general-converter-result paint-calculator-result"
       >
         {!result ? (
-          <strong>Geçerli değerler girerek sonucu görebilirsin.</strong>
+          <strong>{t.invalid}</strong>
         ) : target === "mass" ? (
-          <strong>Ağırlık: {formatValue(result)} kg</strong>
+          <strong>{t.weightPrefix}{formatValue(result, locale)} kg</strong>
         ) : (
-          <strong>Hacim: {formatValue(result)} cm³</strong>
+          <strong>{t.volumePrefix}{formatValue(result, locale)} cm³</strong>
         )}
       </div>
 
       <div className="conversion-table-wrap">
         <table className="conversion-table">
-          <caption>Malzeme Yoğunlukları Tablosu</caption>
+          <caption>{t.tableCaption}</caption>
           <thead>
             <tr>
-              <th scope="col">Malzeme</th>
-              <th scope="col">Yoğunluk (kg/m³)</th>
+              <th scope="col">{t.material}</th>
+              <th scope="col">{t.densityColumn}</th>
             </tr>
           </thead>
           <tbody>
-            {materialDensityTable.map((row) => (
+            {table.map((row) => (
               <tr key={row.id} className={row.id === materialId ? "is-active" : undefined}>
                 <td>{row.label}</td>
-                <td>{row.densityKgM3.toLocaleString("tr-TR")}</td>
+                <td>{row.densityKgM3.toLocaleString(numberLocales[locale])}</td>
               </tr>
             ))}
           </tbody>

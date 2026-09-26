@@ -23,9 +23,9 @@ export const resistivityReferenceTable: Record<
   ResistivityReferenceRow[]
 > = {
   tr: [
-    { id: "silver", label: "Gumus", resistivity: 0.0159, selectable: false },
-    { id: "copper", label: "Bakir", resistivity: 0.0175, selectable: true },
-    { id: "aluminum", label: "Aluminyum", resistivity: 0.028, selectable: true },
+    { id: "silver", label: "Gümüş", resistivity: 0.0159, selectable: false },
+    { id: "copper", label: "Bakır", resistivity: 0.0175, selectable: true },
+    { id: "aluminum", label: "Alüminyum", resistivity: 0.028, selectable: true },
     { id: "iron", label: "Demir", resistivity: 0.1, selectable: false },
   ],
   en: [

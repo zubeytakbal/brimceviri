@@ -4,6 +4,8 @@ import {
   type LewisDotSide,
 } from "../converter/lewisDotStructure";
 import type { PeriodicElement } from "../converter/periodicTableData";
+import type { ContentLocale } from "./contentLocale";
+import { getElementName } from "./elementLocale";
 
 const DOT_COORDS: Record<LewisDotSide, { single: [number, number]; pair: [[number, number], [number, number]] }> = {
   top: { single: [50, 12], pair: [[42, 12], [58, 12]] },
@@ -12,11 +14,45 @@ const DOT_COORDS: Record<LewisDotSide, { single: [number, number]; pair: [[numbe
   left: { single: [12, 50], pair: [[12, 42], [12, 58]] },
 };
 
+const copy = {
+  tr: {
+    title: (name: string) => `${name} İçin Lewis Nokta Yapısı`,
+    intro: (name: string, valenceElectrons: number) => (
+      <>
+        {name} atomunun değerlik kabuğunda{" "}
+        <strong>{valenceElectrons} elektron</strong> bulunur. Lewis nokta
+        gösteriminde bu elektronlar sembolün etrafına, önce her kenara birer
+        tane, dörtten fazlaysa ikinci elektrondan itibaren çift olacak
+        şekilde yerleştirilir.
+      </>
+    ),
+    ariaLabel: (name: string, valenceElectrons: number) =>
+      `${name} elementinin Lewis nokta yapısı: ${valenceElectrons} değerlik elektronu`,
+  },
+  de: {
+    title: (name: string) => `Lewis-Punktschreibweise für ${name}`,
+    intro: (name: string, valenceElectrons: number) => (
+      <>
+        Das {name}-Atom hat <strong>{valenceElectrons} Elektronen</strong>{" "}
+        in seiner Valenzschale. In der Lewis-Punktschreibweise werden diese
+        Elektronen um das Symbol herum platziert, zunächst je eines pro
+        Seite, und ab dem fünften Elektron paarweise.
+      </>
+    ),
+    ariaLabel: (name: string, valenceElectrons: number) =>
+      `Lewis-Punktschreibweise von ${name}: ${valenceElectrons} Valenzelektronen`,
+  },
+};
+
 export default function ElementLewisDiagram({
   element,
+  locale = "tr",
 }: {
   element: PeriodicElement;
+  locale?: ContentLocale;
 }) {
+  const t = copy[locale];
+  const name = getElementName(element, locale);
   const valenceElectrons = getValenceElectronCount(element);
 
   if (valenceElectrons === null) {
@@ -40,19 +76,13 @@ export default function ElementLewisDiagram({
 
   return (
     <aside className="element-lewis-widget">
-      <h2>{element.nameTr} İçin Lewis Nokta Yapısı</h2>
-      <p>
-        {element.nameTr} atomunun değerlik kabuğunda{" "}
-        <strong>{valenceElectrons} elektron</strong> bulunur. Lewis nokta
-        gösteriminde bu elektronlar sembolün etrafına, önce her kenara birer
-        tane, dörtten fazlaysa ikinci elektrondan itibaren çift olacak
-        şekilde yerleştirilir.
-      </p>
+      <h2>{t.title(name)}</h2>
+      <p>{t.intro(name, valenceElectrons)}</p>
 
       <svg
         viewBox="0 0 100 100"
         role="img"
-        aria-label={`${element.nameTr} elementinin Lewis nokta yapısı: ${valenceElectrons} değerlik elektronu`}
+        aria-label={t.ariaLabel(name, valenceElectrons)}
         className="element-lewis-svg"
       >
         <text x="50" y="56" textAnchor="middle" className="element-lewis-symbol">

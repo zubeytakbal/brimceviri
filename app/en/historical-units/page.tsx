@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import CategoryUnitConverter from "../../components/CategoryUnitConverter";
 import StaticPageLayout from "../../components/StaticPageLayout";
 import { buildSiteUrl } from "../../siteConfig";
 
 export const metadata: Metadata = {
   title:
-    "Historical Units of Measurement: Byzantine, Ottoman and Old Turkic",
+    "Ottoman & Byzantine Historical Units Converter",
   description:
-    "Convert historical units from the Byzantine, Ottoman and Old Turkic periods (arşın, okka, dirhem, endaze, Byzantine foot, Byzantine litra, çığ) to meters and grams for free.",
+    "Convert Byzantine, Ottoman and Old Turkic units (arshin, okka, dirhem, endaze, Byzantine foot and litra, cig) to meters and grams for free.",
   alternates: {
     canonical: "/en/historical-units",
     languages: {
@@ -38,11 +38,11 @@ export const metadata: Metadata = {
 
 const historicalLengthUnitOptions = [
   { value: "m", label: "Meter (m)", symbol: "m" },
-  { value: "arşın", label: "Arşın", symbol: "arşın" },
+  { value: "arşın", label: "Arshin", symbol: "arshin" },
   { value: "endaze", label: "Endaze", symbol: "endaze" },
   { value: "pus", label: "Byzantine Foot (Pous)", symbol: "pus" },
   { value: "orgyia", label: "Byzantine Fathom (Orgyia)", symbol: "orgyia" },
-  { value: "çığ", label: "Çığ", symbol: "çığ" },
+  { value: "çığ", label: "Cig", symbol: "cig" },
 ];
 
 const historicalMassUnitOptions = [
@@ -78,9 +78,9 @@ const byzantineUnits = [
 
 const ottomanUnits = [
   {
-    name: "Arşın",
-    value: "≈ 0.68 m (market arşın)",
-    note: "68 cm in trade, 75.77 cm in construction (architect's arşın).",
+    name: "Arshin",
+    value: "≈ 0.68 m (market arshin)",
+    note: "68 cm in trade, 75.77 cm in construction (architect's arshin).",
   },
   {
     name: "Endaze",
@@ -88,7 +88,7 @@ const ottomanUnits = [
     note: "Used especially for measuring fabric and textiles.",
   },
   {
-    name: "Okka (Kıyye)",
+    name: "Okka (Kiyye)",
     value: "= 400 dirhem ≈ 1282.945 g",
     note: "The most common weight unit used in markets and bazaars.",
   },
@@ -101,10 +101,10 @@ const ottomanUnits = [
 
 const oldTurkicUnits = [
   {
-    name: "Çığ",
+    name: "Cig",
     value: "≈ 0.333 m",
     note:
-      "An Old Turkic length unit mentioned in Kaşgarlı Mahmud's Dîvânu Lugâti't-Türk.",
+      "An Old Turkic length unit mentioned in Mahmud al-Kashgari's Dīwān Lughāt al-Turk.",
   },
 ];
 
@@ -158,8 +158,8 @@ export default function EnglishHistoricalUnitsPage() {
                 The units used across what is now Turkey do not come from
                 a single source: there is an unbroken historical thread
                 running from the Byzantine Empire&apos;s fathom and litra,
-                through the Ottoman arşın and okka, to the Old Turkic
-                tribes&apos; çığ, and finally to the metric system adopted
+                through the Ottoman arshin and okka, to the Old Turkic
+                tribes&apos; cig, and finally to the metric system adopted
                 with the 1931 Weights and Measures Act.
               </p>
               <p>
@@ -176,8 +176,8 @@ export default function EnglishHistoricalUnitsPage() {
           content: (
             <>
               <p>
-                Convert instantly between arşın, endaze, the Byzantine
-                foot, the Byzantine fathom and çığ, alongside the modern
+                Convert instantly between arshin, endaze, the Byzantine
+                foot, the Byzantine fathom and cig, alongside the modern
                 meter equivalent. (For all modern length units like
                 meters and kilometers, use the{" "}
                 <Link href="/en/categories/length">
@@ -234,7 +234,7 @@ export default function EnglishHistoricalUnitsPage() {
           content: (
             <>
               <p>
-                Units such as arşın, endaze, okka and dirhem were used in
+                Units such as arshin, endaze, okka and dirhem were used in
                 Ottoman trade, construction and everyday life; they were
                 fully abolished by the 1931 Weights and Measures Act,
                 following the first metric reform efforts in 1869.
@@ -249,9 +249,9 @@ export default function EnglishHistoricalUnitsPage() {
             <>
               <p>
                 The most important source for pre-Ottoman Turkic units of
-                measurement is Kaşgarlı Mahmud&apos;s 11th-century work
-                Dîvânu Lugâti&apos;t-Türk. Trade relations with China
-                during the Köktürk period also led to an exchange of
+                measurement is Mahmud al-Kashgari&apos;s 11th-century work
+                Dīwān Lughāt al-Turk. Trade relations with China
+                during the Göktürk period also led to an exchange of
                 terminology in units of measurement.
               </p>
               <UnitList units={oldTurkicUnits} />
@@ -265,8 +265,8 @@ export default function EnglishHistoricalUnitsPage() {
               Although these measures are no longer official, they are
               still frequently sought after in history and archaeology
               research, in interpreting old land registry records and
-              endowment (vakfiye) and Islamic court (şer&apos;iyye)
-              documents, in school assignments, and among general culture
+              endowment deeds (vakfiye) and Ottoman sharia court
+              records, in school assignments, and among general culture
               enthusiasts. The tools on this page let you quickly convert
               these values to modern units.
             </p>

@@ -5,7 +5,7 @@ import { buildSiteUrl } from "../../../siteConfig";
 export const metadata: Metadata = {
   title: "Pressure Calculator (P = F / A)",
   description:
-    "Calculate pressure, force or area with P = F / A and view the result in Pa, hPa, kPa, MPa, bar, atm, psi, ksi, N, kN, kgf, lbf, m2, cm2, mm2, ft2 and many more units.",
+    "Calculate pressure, force or area with P = F / A and see the result in Pa, kPa, MPa, bar, atm, psi, N, kN, kgf, lbf, m², cm² and more units.",
   alternates: {
     canonical: "/en/calculators/pressure-force-area",
     languages: {

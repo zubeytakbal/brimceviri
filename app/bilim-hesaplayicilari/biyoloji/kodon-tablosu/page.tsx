@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import DnaRnaTranslatorCalculator from "../../../components/DnaRnaTranslatorCalculator";
 import { buildFaqSchema, type FaqItem } from "../../../converter/faqSchema";
 import { codonTable } from "../../../converter/codonTable";

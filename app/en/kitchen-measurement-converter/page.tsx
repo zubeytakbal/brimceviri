@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import KitchenMeasuresConverter from "../../components/KitchenMeasuresConverter";
 import {
   kitchenIngredientRows,
@@ -62,7 +62,7 @@ function gramsInDefaultEnglishCup(gramsPerTurkishCup: number) {
 }
 
 export const metadata: Metadata = {
-  title: "Kitchen Measurement Converter: Cups, Spoons & Grams",
+  title: "Kitchen Converter: Cups, Spoons & Grams",
   description:
     "Convert cups, tablespoons, teaspoons, grams and milliliters by ingredient. Choose US, metric or imperial cup standards and compare common recipe measures.",
   alternates: {
@@ -74,7 +74,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Kitchen Measurement Converter: Cups, Spoons & Grams",
+    title: "Kitchen Converter: Cups, Spoons & Grams",
     description:
       "Convert recipe measures with US, metric and imperial cup standards.",
     url: buildSiteUrl("/en/kitchen-measurement-converter"),
@@ -84,7 +84,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Kitchen Measurement Converter: Cups, Spoons & Grams",
+    title: "Kitchen Converter: Cups, Spoons & Grams",
     description:
       "Convert recipe measures with US, metric and imperial cup standards.",
   },

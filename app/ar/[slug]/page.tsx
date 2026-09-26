@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
 import AcCapacityCalculator from "../../components/AcCapacityCalculator";
 import BmiCalculator from "../../components/BmiCalculator";
@@ -114,7 +114,7 @@ export async function generateMetadata({
 
   if (tool) {
     return {
-      title: `${tool.title} | BirimCeviri.app`,
+      title: `${tool.title}`,
       description: tool.description,
       alternates: {
         canonical: tool.arabicPath,

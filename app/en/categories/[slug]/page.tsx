@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
 import CategoryUnitConverter from "../../../components/CategoryUnitConverter";
 import CategoryPageLayout from "../../../components/CategoryPageLayout";
 import EnglishElectricityConverter from "../../../components/EnglishElectricityConverter";
 import { buildFullLanguageAlternates } from "../../../i18n/routing";
 import { createConversionCards } from "../../../components/categoryPageUtils";
+import { englishDisplaySymbol } from "../../../converter/englishUnitDisplay";
 import { englishCalculatorPages } from "../../../converter/localizedCalculatorPages";
 import {
   englishCategoryPages,
@@ -247,6 +248,7 @@ export default async function EnglishCategoryPage({
     symbolSeparator: "↔",
     titlePairSeparator: "↔",
     titleSingleSeparator: "→",
+    symbolForUnit: (unit) => englishDisplaySymbol(categoryPage.category, unit),
   });
 
   const pageUrl = buildSiteUrl(

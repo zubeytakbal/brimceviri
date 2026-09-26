@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import StaticPageLayout from "../../components/StaticPageLayout";
 import { englishStandaloneTools } from "../../i18n/englishStandaloneTools";
 import { englishEverydayCalculatorGroups } from "../../i18n/englishEverydayCalculatorGroups";
@@ -10,7 +10,7 @@ const pagePath = "/en/everyday-calculators";
 const calculatorGroups = englishEverydayCalculatorGroups;
 
 export const metadata: Metadata = {
-  title: `Everyday Calculators | ${SITE_NAME}`,
+  title: `Everyday Calculators`,
   description:
     "Free everyday calculators for home projects, health routines, transport, energy use and personal planning.",
   alternates: { canonical: pagePath, languages: { en: pagePath } },

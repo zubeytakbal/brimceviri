@@ -1,3 +1,4 @@
+import { buildHomeLanguageAlternates } from "../i18n/routing";
 import type { Metadata } from "next";
 import SpanishHomeDirectory from "../components/SpanishHomeDirectory";
 import { getSiteNotifications } from "../converter/siteNotifications";
@@ -9,19 +10,7 @@ export const metadata: Metadata = {
     "Convierte longitud, masa, temperatura y otras unidades físicas. 13 categorías principales, 4 herramientas de conversión y guías claras en español.",
   alternates: {
     canonical: "/es",
-    languages: {
-      tr: "/",
-      en: "/en",
-      de: "/de",
-      ar: "/ar",
-      uz: "/uz",
-      bn: "/bn",
-      fr: "/fr",
-      es: "/es",
-      "es-419": "/es-419",
-      pt: "/pt",
-      "x-default": "/",
-    },
+    ...buildHomeLanguageAlternates(),
   },
   openGraph: {
     title: "Encuentra la conversión de unidades que necesitas",

@@ -28,11 +28,10 @@ export default function HijriDateConverter() {
   const [month, setMonth] = useState(String(initial.month));
   const [day, setDay] = useState(String(initial.day));
 
-  const inputDate: CalendarDate = {
-    year: Number(year),
-    month: Number(month),
-    day: Number(day),
-  };
+  const inputDate: CalendarDate = useMemo(
+    () => ({ year: Number(year), month: Number(month), day: Number(day) }),
+    [year, month, day]
+  );
 
   const isValid =
     Number.isFinite(inputDate.year) &&
@@ -53,7 +52,7 @@ export default function HijriDateConverter() {
     } catch {
       return null;
     }
-  }, [direction, inputDate.year, inputDate.month, inputDate.day, isValid]);
+  }, [direction, inputDate, isValid]);
 
   function setToday() {
     const now = today();

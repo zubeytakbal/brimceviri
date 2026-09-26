@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
 import { buildFaqSchema, type FaqItem } from "../../../converter/faqSchema";
 import {
@@ -95,8 +95,6 @@ export default async function GermanMaterialComparisonPage({
   const firstDe = materialNamesDe[first.id] ?? first.nameTr;
   const secondDe = materialNamesDe[second.id] ?? second.nameTr;
   const contextDe = materialComparisonContextDe[slug] ?? "";
-  const denserMaterial = denserId === first.id ? first : second;
-  const lighterMaterial = denserId === first.id ? second : first;
   const denserNameDe = denserId === first.id ? firstDe : secondDe;
   const lighterNameDe = denserId === first.id ? secondDe : firstDe;
   const pageUrl = buildSiteUrl(`/de/werkstoffvergleich/${slug}`);

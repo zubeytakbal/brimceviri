@@ -1,6 +1,10 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
+import { fxContentTr } from "../converter/fx/fxContentTr";
+import { fxContentUz } from "../converter/fx/fxContentUz";
+import { buildFxSearchEntries, type FxLocaleContent } from "../converter/fx/fxLocale";
+import FxHomeSection from "./fx/FxHomeSection";
 import {
   ArrowRight,
   ArrowsInSimple,
@@ -96,6 +100,15 @@ type HomeSearchable = {
   categoryLabel: string;
   searchText: string;
 };
+
+// Doviz sayfalari ana sayfa aramasinda da bulunsun ("dolar", "euro tl", "rubl").
+function currencySearchables(content: FxLocaleContent, categoryLabel: string, keywords: string): HomeSearchable[] {
+  return buildFxSearchEntries(content, keywords).map((entry) => ({
+    ...entry,
+    categoryLabel,
+    searchText: normalizeSearchText(entry.searchText),
+  }));
+}
 
 type HomeCategoryIconName =
   | "uzunluk"
@@ -658,10 +671,10 @@ const copy = {
     moreCalculatorsCardLabel: "Diğer Hesaplayıcılar",
   },
   en: {
-    eyebrow: "Technical unit conversions",
-    title: "Open the right converter quickly",
+    eyebrow: "Free online unit converter",
+    title: "Unit Converter",
     description:
-      "Use search for a direct page or browse by physical quantity.",
+      "Convert length, weight, temperature, volume and 30+ other quantities instantly. Search for a conversion or browse by category.",
     searchLabel: "Search conversions",
     searchPlaceholder: "Example: meter kilometer, kg lb, psi bar",
     searchHint:
@@ -1709,6 +1722,8 @@ function createHomeData(locale: Locale): HomeData {
       searchText: conversion.searchText,
     })),
     ...calculatorSearchables,
+    ...(locale === "tr" ? currencySearchables(fxContentTr, "Döviz", "döviz kur kurları para birimi çevirici") : []),
+    ...(locale === "uz" ? currencySearchables(fxContentUz, "Valyuta", "valyuta kurs kursi pul aylantirgich") : []),
   ];
 
   return {
@@ -2067,6 +2082,36 @@ export default function HomeDirectory({
             ))}
           </ul>
         </section>
+
+        {locale === "tr" && (
+          <FxHomeSection
+            id="doviz-cevirici"
+            title="Döviz çevirici"
+            description="Günlük referans kurla dolar, euro, sterlin ve 12 döviz daha; kurun ne zaman yayınlandığı, grafik ve banka kuru farkı hesaplama."
+            hubHref="/doviz-cevirici"
+            allLabel="Tüm döviz kurları"
+            cards={[
+              { href: "/doviz-cevirici/dolar-tl", label: "Dolar – TL", icon: "currencyUsd" },
+              { href: "/doviz-cevirici/euro-tl", label: "Euro – TL", icon: "currencyEur" },
+              { href: "/doviz-cevirici/sterlin-tl", label: "Sterlin – TL", icon: "currencyGbp" },
+            ]}
+          />
+        )}
+
+        {locale === "uz" && (
+          <FxHomeSection
+            id="valyuta-aylantirgich"
+            title="Valyuta aylantirgich"
+            description="Kunlik ma'lumotnoma kursi bilan dollar, yevro, rubl va yana 9 ta valyuta; kurs qachon e'lon qilingani, grafik va bank kursi farqini hisoblash."
+            hubHref="/uz/valyuta-aylantirgich"
+            allLabel="Barcha valyuta kurslari"
+            cards={[
+              { href: "/uz/valyuta-aylantirgich/dollar-som", label: "Dollar – So'm", icon: "currencyUsd" },
+              { href: "/uz/valyuta-aylantirgich/yevro-som", label: "Yevro – So'm", icon: "currencyEur" },
+              { href: "/uz/valyuta-aylantirgich/rubl-som", label: "Rubl – So'm", icon: "currencyConverterCalculator" },
+            ]}
+          />
+        )}
 
         {data.popularUnits.length > 0 && (
           <section className="directory-section">

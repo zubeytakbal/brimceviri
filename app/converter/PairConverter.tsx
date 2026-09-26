@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { convert } from "./convert";
+import { englishDisplaySymbol } from "./englishUnitDisplay";
 
 type PairConverterProps = {
   category: string;
@@ -291,11 +292,11 @@ export default function PairConverter({
                         : locale === "ru"
                           ? `Значение: ${activeFromName}`
                         : locale === "sv"
-                          ? `${activeFromName}-varde`
+                          ? `${activeFromName}-värde`
                         : locale === "no"
                           ? `${activeFromName}-verdi`
                         : locale === "da"
-                          ? `${activeFromName}-vaerdi`
+                          ? `${activeFromName}-værdi`
                       : `${activeFromName} de\u011Feri`;
 
   const placeholder =
@@ -322,11 +323,11 @@ export default function PairConverter({
                         : locale === "ru"
                           ? "Введите значение"
                         : locale === "sv"
-                          ? "Ange ett varde"
+                          ? "Ange ett värde"
                         : locale === "no"
                           ? "Skriv inn en verdi"
                         : locale === "da"
-                          ? "Indtast en vaerdi"
+                          ? "Indtast en værdi"
                       : "De\u011Fer girin";
 
   const swapLabel =
@@ -345,7 +346,7 @@ export default function PairConverter({
                 : locale === "es" || locale === "es-419"
                   ? "Invertir el sentido de la conversion"
                   : locale === "pt"
-                    ? "Inverter o sentido da conversao"
+                    ? "Inverter o sentido da conversão"
                     : locale === "it"
                       ? "Inverti il senso della conversione"
                       : locale === "nl"
@@ -353,16 +354,20 @@ export default function PairConverter({
                         : locale === "ru"
                           ? "Изменить направление перевода"
                         : locale === "sv"
-                          ? "Vand pa omvandlingsriktningen"
+                          ? "Vänd på omvandlingsriktningen"
                         : locale === "no"
                           ? "Snu omregningsretningen"
                         : locale === "da"
                           ? "Vend omregningsretningen"
                       : "D\u00F6n\u00FC\u015F\u00FCm y\u00F6n\u00FCn\u00FC de\u011Fi\u015Ftir";
 
+  // Ingilizce sayfalarda Turkce kayit sembolleri (arşın, çk ...) gosterilmez.
+  const fromLabel = locale === "en" ? englishDisplaySymbol(category, activeFromUnit) : activeFromUnit;
+  const toLabel = locale === "en" ? englishDisplaySymbol(category, activeToUnit) : activeToUnit;
+
   const resultText =
     locale === "en"
-      ? `${inputValue} ${activeFromUnit} = ${result} ${activeToUnit}`
+      ? `${inputValue} ${fromLabel} = ${result} ${toLabel}`
       : locale === "de"
         ? `${inputValue} ${activeFromUnit} = ${result} ${activeToUnit}`
         : locale === "ar"
@@ -397,7 +402,7 @@ export default function PairConverter({
             placeholder={placeholder}
           />
 
-          <span>{activeFromUnit}</span>
+          <span>{fromLabel}</span>
         </div>
 
         <button
@@ -416,7 +421,7 @@ export default function PairConverter({
             {result || "\u2014"}
           </output>
 
-          <span>{activeToUnit}</span>
+          <span>{toLabel}</span>
         </div>
       </div>
 

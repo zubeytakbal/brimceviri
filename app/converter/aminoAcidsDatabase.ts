@@ -13,10 +13,10 @@ export type AminoAcidEntry = {
 // hesaplaniyor (aminoAcidsHub.ts), tipki bilesikler sistemindeki gibi.
 export const aminoAcidsDatabase: AminoAcidEntry[] = [
   { id: "glisin", nameTr: "Glisin", formula: "C2H5NO2", threeLetterCode: "Gly", oneLetterCode: "G", essential: false },
-  { id: "alanin", nameTr: "Alanin", formula: "C3H7NO2", threeLetterCode: "Ala", oneLetterCode: "A", essential: false },
+  { id: "alanin", nameTr: "Alanın", formula: "C3H7NO2", threeLetterCode: "Ala", oneLetterCode: "A", essential: false },
   { id: "valin", nameTr: "Valin", formula: "C5H11NO2", threeLetterCode: "Val", oneLetterCode: "V", essential: true },
   { id: "losin", nameTr: "Lösin", formula: "C6H13NO2", threeLetterCode: "Leu", oneLetterCode: "L", essential: true },
-  { id: "izolosin", nameTr: "İzolösin", formula: "C6H13NO2", threeLetterCode: "Ile", oneLetterCode: "I", essential: true },
+  { id: "izolosin", nameTr: "İzolösin", formula: "C6H13NO2", threeLetterCode: "İle", oneLetterCode: "I", essential: true },
   { id: "prolin", nameTr: "Prolin", formula: "C5H9NO2", threeLetterCode: "Pro", oneLetterCode: "P", essential: false },
   { id: "fenilalanin", nameTr: "Fenilalanin", formula: "C9H11NO2", threeLetterCode: "Phe", oneLetterCode: "F", essential: true },
   { id: "triptofan", nameTr: "Triptofan", formula: "C11H12N2O2", threeLetterCode: "Trp", oneLetterCode: "W", essential: true },

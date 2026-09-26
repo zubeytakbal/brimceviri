@@ -14,7 +14,7 @@ const pagePath = "/en/engineering-calculators";
 const content = getEngineeringHubContent("en");
 
 export const metadata: Metadata = {
-  title: `${content.title} | ${SITE_NAME}`,
+  title: `${content.title}`,
   description: content.description,
   alternates: {
     canonical: pagePath,

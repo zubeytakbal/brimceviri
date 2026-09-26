@@ -43,7 +43,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${item.titles.de} | ${SITE_NAME}`,
+    title: `${item.titles.de}`,
     description: item.descriptions.de,
     robots: {
       index: isLiveElectricalCalculator(item.sourceSlug),

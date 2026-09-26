@@ -1,4 +1,5 @@
 import { convert } from "./convert";
+import { buildLocalOnlyConversionPages, dutchMassPairs } from "./localOnlyConversionPages";
 import { conversionPages, type ConversionPage } from "./conversionPages";
 import { findUnit } from "./unitRegistry";
 import { nederlandsUnitPages } from "./localizedNederlandsUnitPages";
@@ -171,9 +172,12 @@ function localizeConversionPage(
   };
 }
 
-export const nederlandsConversionPages: LocalizedNederlandsConversionPage[] = conversionPages
-  .map(localizeConversionPage)
-  .filter((page): page is LocalizedNederlandsConversionPage => page !== null);
+export const nederlandsConversionPages: LocalizedNederlandsConversionPage[] = [
+  ...conversionPages
+    .map(localizeConversionPage)
+    .filter((page): page is LocalizedNederlandsConversionPage => page !== null),
+  ...buildLocalOnlyConversionPages("nl", dutchMassPairs, nederlandsUnitPages, createNederlandsFormula, createNederlandsExplanation),
+];
 
 export function findNederlandsConversionPage(slug: string) {
   return nederlandsConversionPages.find((page) => page.slug === slug);

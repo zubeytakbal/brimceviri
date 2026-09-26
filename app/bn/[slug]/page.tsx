@@ -8,7 +8,6 @@ import { findEnglishPageByTurkishSlug } from "../../converter/localizedConversio
 import {
   findBengaliConversionPage,
   bengaliConversionPages,
-  type LocalizedBengaliConversionPage,
 } from "../../converter/localizedBengaliConversionPages";
 import { findBengaliUnitPage } from "../../converter/localizedBengaliUnitPages";
 import { getUnitSources } from "../../converter/unitSources";

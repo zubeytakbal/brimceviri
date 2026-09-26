@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Birim Çeviri
 
-## Getting Started
+Çok dilli birim çevirme ve hesaplama sitesi. Next.js (App Router) ile yazılmıştır ve Vercel üzerinde çalışır.
 
-First, run the development server:
+## Kurulum
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Komutlar
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Komut | Açıklama |
+| --- | --- |
+| `npm run dev` | Geliştirme sunucusu |
+| `npm run build` | Üretim derlemesi |
+| `npm run lint` | ESLint |
+| `npm test` | Birim testleri (Vitest) |
+| `npx tsc --noEmit` | Tip kontrolü |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Değişiklikleri push'lamadan önce `npm run lint`, `npx tsc --noEmit` ve `npm test` komutlarının temiz geçtiğinden emin olun.
 
-## Learn More
+## Klasör yapısı
 
-To learn more about Next.js, take a look at the following resources:
+- `app/converter/`: Çeviri ve hesaplama mantığı. `convert.ts` ana çeviri fonksiyonudur, birim katsayıları ise `unitRegistry.ts` içinde tutulur.
+- `app/components/`: Hesaplayıcı arayüz bileşenleri.
+- `app/<dil>/`: Dile özel sayfalar (`en`, `de`, `ar`, `uz`, `bn`, `fr`, `es`, `pt`, `it`, `nl`, `sv`, `no`, `da`). Kök dizindeki sayfalar Türkçedir.
+- `app/api/`: Genel API (`/api/v1/convert`, `/api/v1/categories`) ve cron işleri.
+- `browser-extension/`, `google-sheets-addon/`: Ek istemciler.
+- `tests/`: Vitest birim testleri.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Birim eklerken
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`unitRegistry.ts` dosyasına yeni birim eklerken `siFactor` değerine yuvarlanmış bir sayı değil, tanımdaki kesin değer yazılmalıdır (örneğin US galon = `0.003785411784` m³). `tests/convert.test.ts` testleri id ve sembol çakışmalarını, geçersiz katsayıları ve gidiş-dönüş çevrim hatalarını otomatik olarak yakalar.

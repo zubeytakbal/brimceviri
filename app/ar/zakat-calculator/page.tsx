@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import ZakatCalculator from "../../components/ZakatCalculator";
 import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
 import { getGoldPricePerGram, getSilverPricePerGram } from "../../converter/liveMetalPrice";

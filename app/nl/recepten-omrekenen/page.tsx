@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import RecipeScalerConverter from "../../components/RecipeScalerConverter";
 
 export const metadata: Metadata = { title: "Recept omrekenen", description: "Pas de hoeveelheden in een recept aan voor het gewenste aantal porties.", alternates: { canonical: "/nl/recepten-omrekenen" } };

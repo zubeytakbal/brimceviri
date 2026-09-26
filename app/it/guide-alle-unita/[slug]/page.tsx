@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
 import { italianUnitPages } from "../../../converter/localizedItalianUnitPages";
 import { italianCategoryPages } from "../../../converter/localizedItalianCategoryPages";

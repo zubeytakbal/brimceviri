@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import StaticPageLayout from "../../components/StaticPageLayout";
 import { englishStandaloneTools } from "../../i18n/englishStandaloneTools";
 import { englishEverydayCalculatorGroups } from "../../i18n/englishEverydayCalculatorGroups";

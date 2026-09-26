@@ -3,7 +3,7 @@ import IeltsCefrCalculatorUz from "../../components/calculators/IeltsCefrCalcula
 import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
 import { buildFullLanguageAlternates } from "../../i18n/routing";
 import { buildSiteUrl } from "../../siteConfig";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 
 const pagePath = "/uz/ielts-cefr-aylantirgich";
 

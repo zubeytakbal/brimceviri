@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import ShoeSizeConverter from "../../components/ShoeSizeConverter";
 
 export const metadata: Metadata = { title: "Schoenmaat omrekenen: EU, US en UK", description: "Vergelijk Europese, Amerikaanse en Britse schoenmaten en voetlengte.", alternates: { canonical: "/nl/schoenmaten-omrekenen" } };

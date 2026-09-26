@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import CategoryUnitConverter from "../../components/CategoryUnitConverter";
 import StaticPageLayout from "../../components/StaticPageLayout";
 import { buildSiteUrl } from "../../siteConfig";

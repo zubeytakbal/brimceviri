@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import HeatingCostComparisonCalculator from "../../components/HeatingCostComparisonCalculator";
 import { buildSiteUrl } from "../../siteConfig";
 

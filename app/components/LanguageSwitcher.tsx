@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import { usePathname } from "next/navigation";
 import {
   useEffect,

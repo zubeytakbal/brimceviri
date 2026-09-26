@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import { getEnglishCategoryPathByCategory } from "../../converter/localizedCategoryPages";
 import { englishUnitPages } from "../../converter/localizedUnitPages";
 import { buildSiteUrl } from "../../siteConfig";

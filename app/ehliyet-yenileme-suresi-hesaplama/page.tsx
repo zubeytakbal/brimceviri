@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import LicenseRenewalCalculator from "../components/LicenseRenewalCalculator";
 import SourceMonitorStatusList from "../components/SourceMonitorStatusList";
 import TrustBar from "../components/TrustBar";

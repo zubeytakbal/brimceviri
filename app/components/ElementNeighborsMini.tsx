@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import { periodicTable, type PeriodicElement } from "../converter/periodicTableData";
 import type { ContentLocale } from "./contentLocale";
 import { getElementName, getElementPath, periodicTablePaths } from "./elementLocale";

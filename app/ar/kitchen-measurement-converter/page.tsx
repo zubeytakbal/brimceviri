@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import KitchenMeasuresConverter from "../../components/KitchenMeasuresConverter";
 import { kitchenIngredientLabels } from "../../converter/kitchenIngredientLabels";
 import { kitchenIngredientRows } from "../../converter/kitchenMeasures";

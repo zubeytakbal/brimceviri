@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import CurrencyConverterCalculator from "../../components/CurrencyConverterCalculator";
 import { getExchangeRates } from "../../converter/exchangeRates";
 import { buildSiteUrl } from "../../siteConfig";

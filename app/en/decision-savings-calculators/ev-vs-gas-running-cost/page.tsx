@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import EnglishEvVsGasRunningCostCalculator from "../../../components/EnglishEvVsGasRunningCostCalculator";
 import StaticPageLayout from "../../../components/StaticPageLayout";
 import { englishDecisionSavingsHubPath } from "../../../i18n/englishDecisionSavingsTools";

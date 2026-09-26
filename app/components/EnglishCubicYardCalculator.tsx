@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import { useMemo, useState } from "react";
 import { cubicYards, type VolumeShape } from "../converter/englishHomeYardFormulas";
 import EnglishModeToggle from "./EnglishModeToggle";

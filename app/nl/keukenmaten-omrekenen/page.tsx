@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import KitchenMeasuresConverter from "../../components/KitchenMeasuresConverter";
 
 export const metadata: Metadata = { title: "Keukenmaten omrekenen", description: "Reken kopjes, eetlepels, theelepels, grammen en milliliters om per ingrediënt.", alternates: { canonical: "/nl/keukenmaten-omrekenen" } };

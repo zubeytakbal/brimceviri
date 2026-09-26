@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
 import MaterialDensityConverter from "../../../components/MaterialDensityConverter";
 import MaterialMassVolumeCalculator from "../../../components/MaterialMassVolumeCalculator";

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import StaticPageLayout from "../../components/StaticPageLayout";
 import { englishFinanceTools } from "../../i18n/englishFinanceToolCatalog";
 import { SITE_NAME, buildSiteUrl } from "../../siteConfig";

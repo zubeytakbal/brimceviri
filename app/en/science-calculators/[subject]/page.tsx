@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import { notFound, redirect } from "next/navigation";
 import { BiologyCoreCalculator, MathematicsCoreCalculator, PhysicsCoreCalculator } from "../../../components/EnglishScienceCalculators";
 import { StemLimitations, StemMethods, StemWorkedExamples } from "../../../components/StemMethodNotes";

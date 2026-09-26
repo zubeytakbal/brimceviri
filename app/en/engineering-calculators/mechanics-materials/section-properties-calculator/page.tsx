@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import EnglishSectionPropertiesCalculator from "../../../../components/EnglishSectionPropertiesCalculator";
 import { buildSiteUrl } from "../../../../siteConfig";
 const pagePath = "/en/engineering-calculators/mechanics-materials/section-properties-calculator";

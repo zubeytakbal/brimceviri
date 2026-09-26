@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import { germanCategoryPages } from "../../converter/localizedGermanCategoryPages";
 import { germanConversionPages } from "../../converter/localizedGermanConversionPages";
 import { buildSiteUrl } from "../../siteConfig";

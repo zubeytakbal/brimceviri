@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
 import { uzbekCategoryPages } from "../../../converter/localizedUzbekCategoryPages";
 import { uzbekConversionPages } from "../../../converter/localizedUzbekConversionPages";

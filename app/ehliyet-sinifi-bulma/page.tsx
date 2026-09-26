@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import LicenseClassFinderCalculator from "../components/LicenseClassFinderCalculator";
 import LicenseCostCalculator from "../components/LicenseCostCalculator";
 import SourceMonitorStatusList from "../components/SourceMonitorStatusList";

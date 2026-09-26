@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import LetterGradeCalculatorUz from "../../components/calculators/LetterGradeCalculatorUz";
 import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
 import { buildSiteUrl } from "../../siteConfig";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 
 const pagePath = "/uz/harf-bahosi-hisoblash";
 

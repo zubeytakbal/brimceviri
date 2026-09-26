@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import { useRouter } from "next/navigation";
 import { useDeferredValue, useId, useState } from "react";
 import { portugueseCategoryPages } from "../converter/localizedPortugueseCategoryPages";

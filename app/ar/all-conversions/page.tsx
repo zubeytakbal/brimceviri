@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import StaticPageLayout from "../../components/StaticPageLayout";
 import { homeCategoryOrder } from "../../converter/homeCategoryOrder";
 import { arabicCategoryPages } from "../../converter/localizedArabicCategoryPages";

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import CategoryUnitConverter from "../../components/CategoryUnitConverter";
 
 export const metadata: Metadata = { title: "Historische eenheden", description: "Lees over historische lengtes en gewichten en vergelijk ze met moderne eenheden.", alternates: { canonical: "/nl/historische-eenheden" } };

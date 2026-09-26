@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import { nederlandsCategoryPages } from "../../converter/localizedNederlandsCategoryPages";
 
 export const metadata: Metadata = { title: "Alle categorieën — Eenheden omrekenen", description: "Bekijk alle categorieën voor het omrekenen van eenheden.", alternates: { canonical: "/nl/categorieen" } };

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import ZoningCalculatorUz from "../../components/calculators/ZoningCalculatorUz";
 import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
 import { buildSiteUrl } from "../../siteConfig";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 
 const pagePath = "/uz/qurilish-zichligi-koeffitsiyenti-hisoblash";
 

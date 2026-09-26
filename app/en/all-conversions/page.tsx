@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import EnglishAllConversionsConverter from "../../components/EnglishAllConversionsConverter";
 import { homeCategoryOrder } from "../../converter/homeCategoryOrder";
 import { englishCategoryPages } from "../../converter/localizedCategoryPages";

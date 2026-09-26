@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import { getElectricalHubPath } from "../converter/engineeringHubs";
 import { germanStandaloneTools } from "../i18n/germanStandaloneTools";
 import { DecorativeIcon, getCalculatorIconName, type SiteIconName } from "./siteIcons";

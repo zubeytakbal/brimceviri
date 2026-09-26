@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import RingSizeConverter from "../../components/RingSizeConverter";
 import { buildArabicMetadata } from "../seo";
 

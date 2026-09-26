@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import EnglishEulerBucklingCalculator from "../../../../components/EnglishEulerBucklingCalculator";
 import { buildSiteUrl } from "../../../../siteConfig";
 

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
 import { DilutionCalculator, MolarityCalculator, PhCalculator } from "../../../components/EnglishChemistryCalculator";
 import { CellPotentialCalculator, EquilibriumConstantCalculator, HalfLifeCalculator, MolalityCalculator, MoleCalculator, PercentYieldCalculator, PpmCalculator, StoichiometryCalculator, TitrationCalculator } from "../../../components/EnglishChemistryExpandedCalculators";

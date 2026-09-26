@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/app/components/SiteLink";
 import { useMemo, useState } from "react";
 import { periodicTable, type PeriodicElement } from "../converter/periodicTableData";
 import { numberLocales, type ContentLocale } from "./contentLocale";

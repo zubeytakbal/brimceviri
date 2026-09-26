@@ -115,10 +115,44 @@ import { norwegianConversionPages } from "./converter/localizedNorwegianConversi
 import { danishCategoryPages } from "./converter/localizedDanishCategoryPages";
 import { danishUnitPages } from "./converter/localizedDanishUnitPages";
 import { danishConversionPages } from "./converter/localizedDanishConversionPages";
-import { SITE_LAST_MODIFIED, SITE_URL } from "./siteConfig";
+import { SITE_URL } from "./siteConfig";
+import { SUPPORTED_LOCALES } from "./i18n/config";
+import { getLocalizedSlugEntries, type RouteCollectionKey } from "./i18n/contentRegistry";
+import { getCollectionBasePath } from "./i18n/routing";
 
 const baseUrl = SITE_URL;
-const contentLastModified = SITE_LAST_MODIFIED;
+// A site-wide date incorrectly claims every page was updated together.
+// Omit lastmod until individual content dates are available.
+const contentLastModified = undefined;
+
+// The page metadata and sitemap must describe the same set of real translations.
+// Build the core route groups from the shared registry, without substituting a
+// language homepage when an equivalent page does not exist.
+function coreLanguageAlternates() {
+  const byUrl = new Map<string, { languages: Record<string, string> }>();
+  const collections: RouteCollectionKey[] = ["categories", "units", "conversions", "calculators"];
+
+  for (const collection of collections) {
+    const groups = new Map<string, Record<string, string>>();
+    for (const locale of SUPPORTED_LOCALES) {
+      for (const entry of getLocalizedSlugEntries(locale, collection)) {
+        const paths = groups.get(entry.sourceSlug) ?? {};
+        const code = locale === "uz" ? "uz-UZ" : locale;
+        paths[code] = `${baseUrl}${getCollectionBasePath(locale, collection)}${entry.slug}`;
+        groups.set(entry.sourceSlug, paths);
+      }
+    }
+    for (const paths of groups.values()) {
+      const languages = { ...paths };
+      if (paths.tr) languages["x-default"] = paths.tr;
+      for (const url of Object.values(paths)) {
+        byUrl.set(url, { languages });
+      }
+    }
+  }
+
+  return byUrl;
+}
 
 function languageAlternates(
   turkishUrl: string,
@@ -5654,7 +5688,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  return [
+  const routes: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
       lastModified: contentLastModified,
@@ -6417,6 +6451,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...turkishCalculatorRoutes,
     ...englishCalculatorRoutes,
     ...germanCalculatorRoutes,
+    ...englishCalculatorPages.map((page) => ({
+      url: `${baseUrl}/ar/calculators/${page.slug}`,
+      priority: 0.76,
+    })),
     ...uzbekCalculatorRoutes,
     ...turkishConversionRoutes,
     ...englishConversionRoutes,
@@ -6456,4 +6494,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...bengaliUnitGuideIndexRoute,
     ...corporateRoutes,
   ];
+
+  const coreAlternates = coreLanguageAlternates();
+  const uniqueRoutes = [...new Map(routes.map((route) => [route.url, route])).values()];
+  const sitemapUrls = new Set(uniqueRoutes.map((route) => route.url));
+  return uniqueRoutes.map((route) => {
+    const alternates = coreAlternates.get(route.url) ?? route.alternates;
+    const languages = alternates?.languages;
+    return {
+      ...route,
+      alternates: languages
+        ? {
+            languages: Object.fromEntries(
+              Object.entries(languages).filter(([, url]) =>
+                typeof url === "string" &&
+                (sitemapUrls.has(url) || (url === `${baseUrl}/` && sitemapUrls.has(baseUrl)))
+              )
+            ),
+          }
+        : undefined,
+    };
+  });
 }

@@ -2,67 +2,94 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import {
-  categoryLabels,
-  periodicTable,
-  slugifyElementName,
-  type PeriodicElement,
-} from "../converter/periodicTableData";
+import { periodicTable, type PeriodicElement } from "../converter/periodicTableData";
+import { numberLocales, type ContentLocale } from "./contentLocale";
+import { elementCategoryLabels, getElementName, getElementPath } from "./elementLocale";
 
-type SortKey = "atomicMass" | "atomicNumber" | "nameTr";
+type SortKey = "atomicMass" | "atomicNumber" | "name";
 type SortDirection = "asc" | "desc";
 
-const sortOptions: Array<{ key: SortKey; label: string }> = [
-  { key: "atomicMass", label: "Atom Kütlesi" },
-  { key: "atomicNumber", label: "Atom Numarası" },
-  { key: "nameTr", label: "İsim (A-Z)" },
-];
+const copy = {
+  tr: {
+    sortOptions: [
+      { key: "atomicMass", label: "Atom Kütlesi" },
+      { key: "atomicNumber", label: "Atom Numarası" },
+      { key: "name", label: "İsim (A-Z)" },
+    ] as Array<{ key: SortKey; label: string }>,
+    searchLabel: "Element ara (isim veya sembol)",
+    searchPlaceholder: "Örn: Demir, Fe, Altın...",
+    noMatch: (query: string) => <>"{query}" ile eşleşen bir element bulunamadı.</>,
+    rank: "Sıra",
+    symbol: "Sembol",
+    atomicNumber: "Atom Numarası",
+    atomicMass: "Atom Kütlesi (u)",
+    category: "Kategori",
+  },
+  de: {
+    sortOptions: [
+      { key: "atomicMass", label: "Atommasse" },
+      { key: "atomicNumber", label: "Ordnungszahl" },
+      { key: "name", label: "Name (A-Z)" },
+    ] as Array<{ key: SortKey; label: string }>,
+    searchLabel: "Element suchen (Name oder Symbol)",
+    searchPlaceholder: "z. B. Eisen, Fe, Gold...",
+    noMatch: (query: string) => <>Kein Element gefunden für "{query}".</>,
+    rank: "Rang",
+    symbol: "Symbol",
+    atomicNumber: "Ordnungszahl",
+    atomicMass: "Atommasse (u)",
+    category: "Kategorie",
+  },
+};
 
-function formatMass(value: number) {
-  return value.toLocaleString("tr-TR", { maximumFractionDigits: 3 });
-}
-
-export default function ElementRankingTable() {
+export default function ElementRankingTable({ locale = "tr" }: { locale?: ContentLocale } = {}) {
+  const t = copy[locale];
+  const numberLocale = numberLocales[locale];
   const [sortKey, setSortKey] = useState<SortKey>("atomicMass");
   const [direction, setDirection] = useState<SortDirection>("desc");
   const [searchQuery, setSearchQuery] = useState("");
 
-  const sorted = useMemo(() => {
-    const copy = [...periodicTable];
+  const elementsWithName = useMemo(
+    () => periodicTable.map((element) => ({ element, name: getElementName(element, locale) })),
+    [locale]
+  );
 
-    copy.sort((a, b) => {
+  const sorted = useMemo(() => {
+    const rows = [...elementsWithName];
+
+    rows.sort((a, b) => {
       let comparison = 0;
 
-      if (sortKey === "nameTr") {
-        comparison = a.nameTr.localeCompare(b.nameTr, "tr");
+      if (sortKey === "name") {
+        comparison = a.name.localeCompare(b.name, locale);
       } else {
-        comparison = a[sortKey] - b[sortKey];
+        comparison = a.element[sortKey] - b.element[sortKey];
       }
 
       return direction === "asc" ? comparison : -comparison;
     });
 
-    return copy;
-  }, [sortKey, direction]);
+    return rows;
+  }, [elementsWithName, sortKey, direction, locale]);
 
   const rankedRows = useMemo(
-    () => sorted.map((element, index) => ({ element, rank: index + 1 })),
+    () => sorted.map((row, index) => ({ ...row, rank: index + 1 })),
     [sorted]
   );
 
   const visibleRows = useMemo(() => {
-    const query = searchQuery.trim().toLocaleLowerCase("tr-TR");
+    const query = searchQuery.trim().toLocaleLowerCase(numberLocale);
 
     if (!query) {
       return rankedRows;
     }
 
     return rankedRows.filter(
-      ({ element }) =>
-        element.nameTr.toLocaleLowerCase("tr-TR").includes(query) ||
-        element.symbol.toLocaleLowerCase("tr-TR").includes(query)
+      ({ element, name }) =>
+        name.toLocaleLowerCase(numberLocale).includes(query) ||
+        element.symbol.toLocaleLowerCase(numberLocale).includes(query)
     );
-  }, [rankedRows, searchQuery]);
+  }, [rankedRows, searchQuery, numberLocale]);
 
   function handleSort(key: SortKey) {
     if (key === sortKey) {
@@ -85,17 +112,17 @@ export default function ElementRankingTable() {
   return (
     <div>
       <label className="category-general-converter-field element-ranking-search">
-        <span>Element ara (isim veya sembol)</span>
+        <span>{t.searchLabel}</span>
         <input
           type="text"
-          placeholder="Örn: Demir, Fe, Altın..."
+          placeholder={t.searchPlaceholder}
           value={searchQuery}
           onChange={(event) => setSearchQuery(event.target.value)}
         />
       </label>
 
       <div className="engineering-target-grid hydrostatic-target-grid element-ranking-controls">
-        {sortOptions.map((option) => (
+        {t.sortOptions.map((option) => (
           <button
             key={option.key}
             type="button"
@@ -109,37 +136,31 @@ export default function ElementRankingTable() {
       </div>
 
       {searchQuery.trim() && visibleRows.length === 0 ? (
-        <p className="element-ranking-empty">
-          "{searchQuery}" ile eşleşen bir element bulunamadı.
-        </p>
+        <p className="element-ranking-empty">{t.noMatch(searchQuery)}</p>
       ) : (
       <div className="conversion-table-wrap">
         <table className="conversion-table element-ranking-table">
           <thead>
             <tr>
-              <th>Sıra</th>
+              <th>{t.rank}</th>
               <th>Element</th>
-              <th>Sembol</th>
-              <th>Atom Numarası</th>
-              <th>Atom Kütlesi (u)</th>
-              <th>Kategori</th>
+              <th>{t.symbol}</th>
+              <th>{t.atomicNumber}</th>
+              <th>{t.atomicMass}</th>
+              <th>{t.category}</th>
             </tr>
           </thead>
           <tbody>
-            {visibleRows.map(({ element, rank }: { element: PeriodicElement; rank: number }) => (
+            {visibleRows.map(({ element, name, rank }: { element: PeriodicElement; name: string; rank: number }) => (
               <tr key={element.atomicNumber}>
                 <td>{rank}</td>
                 <td>
-                  <Link
-                    href={`/bilim-hesaplayicilari/kimya/periyodik-tablo/${slugifyElementName(element.nameTr)}`}
-                  >
-                    {element.nameTr}
-                  </Link>
+                  <Link href={getElementPath(element, locale)}>{name}</Link>
                 </td>
                 <td>{element.symbol}</td>
                 <td>{element.atomicNumber}</td>
-                <td>{formatMass(element.atomicMass)}</td>
-                <td>{categoryLabels[element.category]}</td>
+                <td>{element.atomicMass.toLocaleString(numberLocale, { maximumFractionDigits: 3 })}</td>
+                <td>{elementCategoryLabels[locale][element.category]}</td>
               </tr>
             ))}
           </tbody>

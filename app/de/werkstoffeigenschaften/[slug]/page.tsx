@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import MaterialDensityConverterDe from "../../../components/MaterialDensityConverterDe";
-import MaterialMassVolumeCalculatorDe from "../../../components/MaterialMassVolumeCalculatorDe";
+import MaterialDensityConverter from "../../../components/MaterialDensityConverter";
+import MaterialMassVolumeCalculator from "../../../components/MaterialMassVolumeCalculator";
 import { buildFaqSchema, type FaqItem } from "../../../converter/faqSchema";
 import {
   findMaterialProfileById,
@@ -210,12 +210,14 @@ export default async function GermanMaterialPropertyPage({ params }: PageProps) 
           </p>
         </section>
 
-        <MaterialMassVolumeCalculatorDe
+        <MaterialMassVolumeCalculator
+          locale="de"
           densityKgM3={material.densityKgM3}
           materialName={nameDe}
         />
 
-        <MaterialDensityConverterDe
+        <MaterialDensityConverter
+          locale="de"
           densityKgM3={material.densityKgM3}
           materialName={nameDe}
         />

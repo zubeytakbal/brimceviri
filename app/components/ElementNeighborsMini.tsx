@@ -1,9 +1,12 @@
 import Link from "next/link";
-import {
-  periodicTable,
-  slugifyElementName,
-  type PeriodicElement,
-} from "../converter/periodicTableData";
+import { periodicTable, type PeriodicElement } from "../converter/periodicTableData";
+import type { ContentLocale } from "./contentLocale";
+import { getElementName, getElementPath, periodicTablePaths } from "./elementLocale";
+
+const copy = {
+  tr: { title: "Periyodik tablodaki konumu", openTable: "Tam periyodik tabloyu aç" },
+  de: { title: "Position im Periodensystem", openTable: "Vollständiges Periodensystem öffnen" },
+};
 
 function findAt(row: number, col: number) {
   return periodicTable.find(
@@ -13,9 +16,12 @@ function findAt(row: number, col: number) {
 
 export default function ElementNeighborsMini({
   element,
+  locale = "tr",
 }: {
   element: PeriodicElement;
+  locale?: ContentLocale;
 }) {
+  const t = copy[locale];
   const rows = [element.row - 1, element.row, element.row + 1];
   const cols = [element.col - 1, element.col, element.col + 1];
 
@@ -34,7 +40,7 @@ export default function ElementNeighborsMini({
 
   return (
     <aside className="element-neighbors-mini">
-      <h2>Periyodik tablodaki konumu</h2>
+      <h2>{t.title}</h2>
       <div className="element-neighbors-grid">
         {rows.map((row) =>
           cols.map((col) => {
@@ -65,10 +71,10 @@ export default function ElementNeighborsMini({
             return (
               <Link
                 key={key}
-                href={`/bilim-hesaplayicilari/kimya/periyodik-tablo/${slugifyElementName(neighbor.nameTr)}`}
+                href={getElementPath(neighbor, locale)}
                 className="periodic-table-cell"
                 data-category={neighbor.category}
-                aria-label={neighbor.nameTr}
+                aria-label={getElementName(neighbor, locale)}
               >
                 <span className="element-number">
                   {neighbor.atomicNumber}
@@ -79,11 +85,8 @@ export default function ElementNeighborsMini({
           })
         )}
       </div>
-      <Link
-        className="text-link"
-        href="/bilim-hesaplayicilari/kimya/periyodik-tablo"
-      >
-        Tam periyodik tabloyu aç
+      <Link className="text-link" href={periodicTablePaths[locale]}>
+        {t.openTable}
       </Link>
     </aside>
   );

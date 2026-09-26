@@ -297,7 +297,7 @@ const categoryLabels: Record<
     zaman: "Tempo",
     hiz: "Velocidade",
     basinc: "Pressão",
-    enerji: "Energia e Potencia",
+    enerji: "Energia e Potência",
     veri: "Armazenamento de Dados",
     elektrik: "Eletricidade",
     yogunluk: "Densidade",

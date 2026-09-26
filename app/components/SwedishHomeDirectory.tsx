@@ -74,7 +74,7 @@ const nicheCards: Array<{
     id: "historical-units",
     href: "/sv/historical-units",
     title: "Historiska enheter",
-    description: "Omvandla ärşın, okka, dirhem och bysantinska enheter till moderna enheter.",
+    description: "Omvandla arşın, okka, dirhem och bysantinska enheter till moderna enheter.",
     iconName: "historical",
   },
 ];

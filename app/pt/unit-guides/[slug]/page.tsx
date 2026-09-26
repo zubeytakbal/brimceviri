@@ -104,7 +104,7 @@ export default async function PortugueseUnitPage({ params }: PageProps) {
           </dl>
 
           <section className="conversion-section unit-long-section">
-            <h2>Historia</h2>
+            <h2>História</h2>
             <p>{unitPage.historySummary}</p>
           </section>
 

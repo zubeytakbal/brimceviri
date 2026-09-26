@@ -224,7 +224,7 @@ export default function NorwegianHomeDirectory({
                 <div className="directory-search-results-wrap">
                   <div className="directory-search-results-head">
                     <strong>Søkeresultater</strong>
-                    <span>Trykk Enter for a apne</span>
+                    <span>Trykk Enter for å åpne</span>
                   </div>
 
                   {searchResults.length > 0 ? (

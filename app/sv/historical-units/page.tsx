@@ -36,7 +36,7 @@ export const metadata = {
 
 const historicalLengthUnitOptions = [
   { value: "m", label: "Meter (m)", symbol: "m" },
-  { value: "arşın", label: "Ärşın", symbol: "arşın" },
+  { value: "arşın", label: "Arşın", symbol: "arşın" },
   { value: "endaze", label: "Endaze", symbol: "endaze" },
   { value: "pus", label: "Bysantinsk fot (Pous)", symbol: "pus" },
   { value: "orgyia", label: "Bysantinskt famntag (Orgyia)", symbol: "orgyia" },
@@ -81,7 +81,7 @@ const byzantineUnits = [
 const ottomanUnits = [
   {
     href: "/birimler/arsin",
-    name: "Ärşın",
+    name: "Arşın",
     value: "≈ 0,68 m",
     note: "Hade flera användningsområden: marknadsarşın, den mest kända, och byggarşın, som användes för större längder.",
   },
@@ -170,7 +170,7 @@ export default function SwedishHistoricalUnitsPage() {
                 utöver ännu äldre turkiska mått.
               </p>
               <p>
-                Därför förekommer namn som ärşın, okka och dirhem fortfarande
+                Därför förekommer namn som arşın, okka och dirhem fortfarande
                 idag i gamla dokument, samt i vissa böcker och historisk
                 forskning.
               </p>
@@ -182,7 +182,7 @@ export default function SwedishHistoricalUnitsPage() {
           content: (
             <>
               <p>
-                Omvandla direkt mellan ärşın, endaze, bysantinsk fot,
+                Omvandla direkt mellan arşın, endaze, bysantinsk fot,
                 bysantinskt famntag och çığ, med den moderna motsvarigheten
                 i meter. För alla moderna längdenheter, se{" "}
                 <Link href="/sv/categories/langd">det fullständiga längdbiblioteket</Link>.
@@ -233,7 +233,7 @@ export default function SwedishHistoricalUnitsPage() {
             <>
               <p>
                 Innan den osmanska staten helt övergick till det metriska
-                systemet på 1900-talet användes enheter som ärşın, endaze,
+                systemet på 1900-talet användes enheter som arşın, endaze,
                 okka och dirhem inom handel, byggnation och vardagsliv.
               </p>
               <UnitList units={ottomanUnits} />

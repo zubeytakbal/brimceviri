@@ -3,7 +3,7 @@ import ReynoldsNumberPage from "../../../components/calculators/ReynoldsNumberPa
 import { buildSiteUrl } from "../../../siteConfig";
 
 export const metadata: Metadata = {
-  title: "Reynolds Number Calculator (Re = rho x v x D / mu)",
+  title: "Reynolds Number Calculator (Re = ρvD/μ)",
   description:
     "Calculate Reynolds number, velocity or characteristic diameter and display the SI equivalent together with an approximate internal pipe flow interpretation.",
   alternates: {
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Reynolds Number Calculator (Re = rho x v x D / mu)",
+    title: "Reynolds Number Calculator (Re = ρvD/μ)",
     description:
       "Solve Reynolds number or its inverse variables from density, velocity, diameter and dynamic viscosity.",
     url: buildSiteUrl("/en/calculators/reynolds-number"),
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Reynolds Number Calculator (Re = rho x v x D / mu)",
+    title: "Reynolds Number Calculator (Re = ρvD/μ)",
     description:
       "Solve Reynolds number or its inverse variables from density, velocity, diameter and dynamic viscosity.",
   },

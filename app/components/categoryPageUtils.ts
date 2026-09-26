@@ -24,6 +24,8 @@ type CreateConversionCardsOptions<T extends ConversionLike> = {
   symbolSeparator: string;
   titlePairSeparator: string;
   titleSingleSeparator: string;
+  // Sembol gosterimi (ornegin Ingilizcede "arşın" yerine "arshin").
+  symbolForUnit?: (unit: string) => string;
 };
 
 export function createConversionCards<T extends ConversionLike>(
@@ -36,6 +38,7 @@ export function createConversionCards<T extends ConversionLike>(
     symbolSeparator,
     titlePairSeparator,
     titleSingleSeparator,
+    symbolForUnit = (unit: string) => unit,
   } = options;
   const conversionsBySlug = new Map(
     conversions.map((conversion) => [
@@ -71,8 +74,8 @@ export function createConversionCards<T extends ConversionLike>(
           ? `${conversion.fromName} ${titlePairSeparator} ${conversion.toName}`
           : `${conversion.fromName} ${titleSingleSeparator} ${conversion.toName}`,
         symbol: hasReverseConversion
-          ? `${conversion.fromUnit} ${symbolSeparator} ${conversion.toUnit}`
-          : `${conversion.fromUnit} ${titleSingleSeparator} ${conversion.toUnit}`,
+          ? `${symbolForUnit(conversion.fromUnit)} ${symbolSeparator} ${symbolForUnit(conversion.toUnit)}`
+          : `${symbolForUnit(conversion.fromUnit)} ${titleSingleSeparator} ${symbolForUnit(conversion.toUnit)}`,
         links: hasReverseConversion
           ? [
               {

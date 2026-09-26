@@ -12,6 +12,8 @@ import {
   findEnglishUnitPageBySlug,
 } from "../../../converter/localizedUnitPages";
 import { getUnitSources } from "../../../converter/unitSources";
+import { unitPages as turkishUnitPages } from "../../../converter/unitPages";
+import { buildEnglishUnitGuideDescription, buildEnglishUnitGuideTitle, englishIndefiniteArticle } from "../../../converter/englishUnitDisplay";
 import { SITE_URL, buildSiteUrl } from "../../../siteConfig";
 
 type PageProps = {
@@ -39,6 +41,10 @@ const historicalUnitSlugs = new Set([
   "byzantine-ounce",
   "cig",
 ]);
+
+
+// Some English guides (deciliter, centiliter ...) have no Turkish counterpart.
+const turkishUnitSlugs = new Set(turkishUnitPages.map((page) => page.slug));
 
 export const dynamicParams = false;
 
@@ -68,14 +74,8 @@ export async function generateMetadata({
     };
   }
 
-  const title =
-    `${unitPage.name}: Definition, Symbol, History ` +
-    `and Conversions`;
-
-  const description =
-    `The symbol for ${unitPage.name.toLowerCase()} is ${unitPage.symbol}. ` +
-    `Learn its full definition, history, scientific background and how ` +
-    `to convert it to other units — free and instant.`;
+  const title = buildEnglishUnitGuideTitle(unitPage.name, unitPage.symbol);
+  const description = buildEnglishUnitGuideDescription(unitPage.name, unitPage.symbol, unitPage.categoryName);
 
   return {
     title,
@@ -197,9 +197,7 @@ export default async function EnglishUnitInformationPage({
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "TechArticle",
-    headline:
-      `${unitPage.name}: Definition, Symbol, History ` +
-      `and Conversions`,
+    headline: buildEnglishUnitGuideTitle(unitPage.name, unitPage.symbol),
     description: unitPage.shortDescription,
     mainEntityOfPage: pageUrl,
     inLanguage: "en",
@@ -276,7 +274,7 @@ export default async function EnglishUnitInformationPage({
             {unitPage.symbol}
           </p>
 
-          <h1>What is a {unitPage.name}?</h1>
+          <h1>What is {englishIndefiniteArticle(unitPage.name)} {unitPage.name}?</h1>
 
           <p>{unitPage.shortDescription}</p>
         </header>
@@ -559,13 +557,15 @@ export default async function EnglishUnitInformationPage({
             <section className="conversion-section language-alternatives">
               <h2>Other languages</h2>
 
-              <Link
-                className="text-link"
-                href={`/birimler/${unitPage.sourceSlug}`}
-                hrefLang="tr"
-              >
-                View the Turkish version
-              </Link>
+              {turkishUnitSlugs.has(unitPage.sourceSlug) && (
+                <Link
+                  className="text-link"
+                  href={`/birimler/${unitPage.sourceSlug}`}
+                  hrefLang="tr"
+                >
+                  View the Turkish version
+                </Link>
+              )}
 
               {germanPage && (
                 <Link

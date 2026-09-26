@@ -304,7 +304,7 @@ export const nederlandsCategoryPages: LocalizedNederlandsCategoryPage[] = [
         title: "Landbouwkundige en historische volume-eenheden",
         paragraphs: [
           "De bushel en de peck zijn volume-eenheden die historisch werden gebruikt om droge producten zoals granen, fruit en groenten te meten; tegenwoordig worden ze nog steeds gebruikt op sommige landbouwmarkten, vooral in de Verenigde Staten.",
-          "In de Ottomaanse tijd waren de kile en de şinik traditionele volume-eenheden die werden gebruikt om granen te meten; 1 kile kwam overeen met 20 şinik. Hoewel deze eenheden kleine regionale variaties vertonen, dienen ze tegenwoordig als referentie voor het interpreteren van historische teksten en documenten.",
+          "In de Ottomaanse tijd waren de kile en de şinik traditionele volume-eenheden die werden gebruikt om granen te meten; 1 kile kwam overeen met 4 şinik. Hoewel deze eenheden kleine regionale variaties vertonen, dienen ze tegenwoordig als referentie voor het interpreteren van historische teksten en documenten.",
         ],
       },
       {

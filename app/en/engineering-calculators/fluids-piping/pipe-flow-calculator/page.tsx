@@ -12,7 +12,7 @@ const faqItems: FaqItem[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Pipe Flow Rate & Velocity Calculator (Q = A × v)",
+  title: "Pipe Flow Rate & Velocity Calculator",
   description: "Calculate pipe flow rate, mean velocity or internal diameter using the continuity equation with metric and Imperial units.",
   alternates: { canonical: pagePath, languages: { tr: "/boru-capi-hesaplama", en: pagePath, "x-default": "/boru-capi-hesaplama" } },
   openGraph: { title: "Pipe Flow Rate & Velocity Calculator", description: "Solve flow rate, velocity or internal diameter for a circular pipe.", url: buildSiteUrl(pagePath), siteName: "BirimCeviri.app", locale: "en_US", type: "article" },

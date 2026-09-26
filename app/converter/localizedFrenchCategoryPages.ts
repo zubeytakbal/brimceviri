@@ -304,7 +304,7 @@ export const frenchCategoryPages: LocalizedFrenchCategoryPage[] = [
         title: "Les unités de volume agricoles et historiques",
         paragraphs: [
           "Le boisseau (bushel) et le peck sont des unités historiquement utilisées pour mesurer des produits secs, comme les céréales, les fruits et les légumes. Elles restent présentes dans certains marchés agricoles, notamment aux États-Unis.",
-          "À l’époque ottomane, le kile et le şinik étaient des unités traditionnelles utilisées pour les céréales ; un kile équivalait à 20 şinik. Malgré de légères variations régionales, elles restent utiles pour interpréter les textes et registres historiques.",
+          "À l’époque ottomane, le kile et le şinik étaient des unités traditionnelles utilisées pour les céréales ; un kile équivalait à 4 şinik. Malgré de légères variations régionales, elles restent utiles pour interpréter les textes et registres historiques.",
         ],
       },
       {

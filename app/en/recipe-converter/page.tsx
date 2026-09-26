@@ -4,7 +4,7 @@ import RecipeScalerConverter from "../../components/RecipeScalerConverter";
 import { buildSiteUrl } from "../../siteConfig";
 
 export const metadata: Metadata = {
-  title: "Recipe Converter: Scale a Recipe, Convert Cups to Grams",
+  title: "Recipe Scaler & Cups to Grams Converter",
   description:
     "Paste your recipe, pick a multiplier, and every ingredient amount scales instantly. Known ingredients also get an automatic gram conversion.",
   alternates: {
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Recipe Converter: Scale a Recipe, Convert Cups to Grams",
+    title: "Recipe Scaler & Cups to Grams Converter",
     description:
       "Paste your recipe, double it or halve it, and get automatic gram equivalents for recognized ingredients.",
     url: buildSiteUrl("/en/recipe-converter"),
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Recipe Converter: Scale a Recipe, Convert Cups to Grams",
+    title: "Recipe Scaler & Cups to Grams Converter",
     description:
       "Paste your recipe, double it or halve it, and get automatic gram equivalents for recognized ingredients.",
   },

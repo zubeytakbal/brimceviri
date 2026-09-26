@@ -305,7 +305,7 @@ export const portugueseCategoryPages: LocalizedPortugueseCategoryPage[] = [
         title: "As unidades de volume agrícolas e históricas",
         paragraphs: [
           "O bushel e o peck são unidades de volume usadas historicamente para medir produtos secos como cereais, frutas e verduras; ainda hoje são usadas em alguns mercados agrícolas, especialmente nos Estados Unidos.",
-          "Na época otomana, o kile e o şinik eram unidades de volume tradicionais usadas para medir cereais; 1 kile equivalia a 20 şinik. Embora essas unidades apresentem pequenas variações regionais, hoje servem como referência para interpretar textos e registros históricos.",
+          "Na época otomana, o kile e o şinik eram unidades de volume tradicionais usadas para medir cereais; 1 kile equivalia a 4 şinik. Embora essas unidades apresentem pequenas variações regionais, hoje servem como referência para interpretar textos e registros históricos.",
         ],
       },
       {

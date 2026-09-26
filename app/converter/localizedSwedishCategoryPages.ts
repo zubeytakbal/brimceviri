@@ -304,7 +304,7 @@ export const swedishCategoryPages: LocalizedSwedishCategoryPage[] = [
         title: "Jordbruks- och historiska volymenheter",
         paragraphs: [
           "Bushel och peck är volymenheter som historiskt användes för att mäta torra varor som spannmål, frukt och grönsaker; idag används de fortfarande på vissa jordbruksmarknader, särskilt i USA.",
-          "Under den osmanska tiden var kile och şinik traditionella volymenheter som användes för att mäta spannmål; 1 kile motsvarade 20 şinik. Även om dessa enheter uppvisar små regionala variationer, tjänar de idag som referens för att tolka historiska texter och dokument.",
+          "Under den osmanska tiden var kile och şinik traditionella volymenheter som användes för att mäta spannmål; 1 kile motsvarade 4 şinik. Även om dessa enheter uppvisar små regionala variationer, tjänar de idag som referens för att tolka historiska texter och dokument.",
         ],
       },
       {

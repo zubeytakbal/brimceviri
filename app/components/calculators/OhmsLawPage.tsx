@@ -275,8 +275,8 @@ const copy: Record<CalculatorLocale, PageCopy> = {
       },
     ],
     relatedConversions: [
-      { label: "Kiloohms to Ohms", href: "/en/kiloohms-to-ohms" },
-      { label: "Ohms to Kiloohms", href: "/en/ohms-to-kiloohms" },
+      { label: "Kiloohms to Ohms", href: "/en/kiloohm-to-ohm" },
+      { label: "Ohms to Kiloohms", href: "/en/ohm-to-kiloohm" },
     ],
   },
   de: {
@@ -448,8 +448,8 @@ const copy: Record<CalculatorLocale, PageCopy> = {
       },
     ],
     relatedConversions: [
-      { label: "كيلو أوم إلى أوم", href: "/ar/kiloohms-to-ohms" },
-      { label: "أوم إلى كيلو أوم", href: "/ar/ohms-to-kiloohms" },
+      { label: "كيلو أوم إلى أوم", href: "/ar/kiloohm-to-ohm" },
+      { label: "أوم إلى كيلو أوم", href: "/ar/ohm-to-kiloohm" },
     ],
   },
 };

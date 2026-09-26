@@ -7757,3 +7757,16 @@ html[dir="rtl"] .site-mobile-accordion-toggle {
     grid-template-columns: 1fr;
   }
 }
+
+/* Mobilde tasmayi onler: grid icindeki tablo bolumleri daralabilsin
+   (tablo kendi kutusunda yatay kaydirilir) ve uzun kaynak URL'leri
+   satir kirabilsin. */
+.calculator-unit-section {
+  min-width: 0;
+}
+
+.technical-reference-source-meta,
+.technical-reference-source-meta > * {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}

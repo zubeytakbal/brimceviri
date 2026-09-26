@@ -1,5 +1,6 @@
 import type { UnitPage } from "./unitPages";
 import { KILOGRAM_FORCE_PER_SQUARE_CENTIMETRE_UNIT } from "./engineeringUnits";
+import { englishDisplaySymbol } from "./englishUnitDisplay";
 import { unitRegistry, type UnitRegistryEntry } from "./unitRegistry";
 
 export type LocalizedUnitPage = UnitPage & {
@@ -2073,7 +2074,7 @@ function buildGeneratedSiEquivalent(
   entry: UnitRegistryEntry,
   meta: GeneratedCategoryMeta
 ) {
-  const symbol = entry.displaySymbol ?? entry.symbol;
+  const symbol = englishDisplaySymbol(entry.category, entry.symbol, entry.displaySymbol);
 
   if (
     (entry.category === "altin_ayar" || entry.category === "gumus_ayar") &&
@@ -2110,7 +2111,7 @@ function buildGeneratedEnglishUnitPage(
     return null;
   }
 
-  const symbol = entry.displaySymbol ?? entry.symbol;
+  const symbol = englishDisplaySymbol(entry.category, entry.symbol, entry.displaySymbol);
 
   return {
     locale: "en",

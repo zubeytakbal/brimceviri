@@ -953,7 +953,7 @@ const baseEnglishCategoryPages: LocalizedCategoryPage[] = [
     category: "basinc",
     title: "Pressure Conversions",
     description:
-      "Learn how pressure conversions work and convert between pascal, kilopascal, bar, PSI, atmospheres, mmHg and kgf/cm² with practical formulas and reference relationships.",
+      "Convert between pascal, kilopascal, bar, PSI, atmospheres, mmHg and kgf/cm², with practical formulas and reference values for each pressure unit.",
 
     introduction: [
       "Pressure describes how much force is distributed over a given area. It is a central quantity in fluid mechanics, thermodynamics, structural engineering, meteorology and many industrial processes.",
@@ -2639,7 +2639,7 @@ const baseEnglishCategoryPages: LocalizedCategoryPage[] = [
     category: "kan_sekeri",
     title: "Blood Glucose Unit Conversion",
     description:
-      "Convert blood glucose measurements between milligrams per deciliter (mg/dL) and millimoles per liter (mmol/L), the reporting units commonly used on laboratory and personal health records.",
+      "Convert blood glucose between mg/dL and mmol/L, the two units used on lab reports and glucose meters, with the factor and a quick reference table.",
     introduction: [
       "Blood glucose results may be reported in milligrams per deciliter (mg/dL) or millimoles per liter (mmol/L), depending on the laboratory, country or device.",
       "This converter changes the unit expression only. A laboratory result should be interpreted with the reference range, test context and guidance supplied by a qualified healthcare professional.",
@@ -2690,7 +2690,7 @@ const baseEnglishCategoryPages: LocalizedCategoryPage[] = [
     category: "vitamin_d",
     title: "Vitamin D Unit Conversion",
     description:
-      "Convert 25-hydroxyvitamin D measurements between nanograms per milliliter (ng/mL) and nanomoles per liter (nmol/L), the units commonly used on vitamin D laboratory reports.",
+      "Convert 25-hydroxyvitamin D results between ng/mL and nmol/L, the two units used on vitamin D lab reports, with instant two-way conversion.",
     introduction: [
       "Vitamin D laboratory reports commonly express 25-hydroxyvitamin D as nanograms per milliliter (ng/mL) or nanomoles per liter (nmol/L).",
       "This tool converts the unit only. Test method, analyte and the laboratory's reference information remain important when reading a result.",

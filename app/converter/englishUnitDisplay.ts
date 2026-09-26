@@ -95,7 +95,25 @@ const TEMPERATURE_SYMBOLS: Record<string, string> = {
 };
 
 // Registry ids that differ from the symbol people write.
-const SYMBOL_OVERRIDES: Record<string, string> = { g0: "g" };
+// Registry symbols that are Turkish words or Turkish abbreviations must not
+// appear on English pages ("1 arşın = 0.68 m", "çk" for teaspoon).
+const SYMBOL_OVERRIDES: Record<string, string> = {
+  g0: "g",
+  "arşın": "arshin",
+  "çığ": "cig",
+  "dönüm": "donum",
+  "kırat (arazi)": "qirat",
+  "çk": "tsp",
+  "şinik": "shinik",
+};
+
+/** "a" or "an" for an English unit name ("an arshin", "a US gallon", "a unit"). */
+export function englishIndefiniteArticle(name: string) {
+  const lower = name.toLowerCase();
+  if (/^(u[bcfhjkqrstn][aeiou]|uni|us\b|use|one|eu)/.test(lower)) return "a";
+  if (/^(hour|honest|heir)/.test(lower)) return "an";
+  return /^[aeiou]/.test(lower) ? "an" : "a";
+}
 
 export function englishDisplaySymbol(category: string, unit: string, displaySymbol?: string) {
   if (category === "sicaklik" && TEMPERATURE_SYMBOLS[unit]) return TEMPERATURE_SYMBOLS[unit];
@@ -173,4 +191,25 @@ export function buildEnglishConversionTitle(page: {
     ...(hasSymbols ? [`${symbols} Converter`] : []),
   ];
   return candidates.find((candidate) => candidate.length <= ENGLISH_TITLE_BUDGET) ?? names;
+}
+
+/** Unit guide page title within the 47-character budget: "Kilometer (km): Definition & Conversions". */
+export function buildEnglishUnitGuideTitle(name: string, symbol: string) {
+  const showSymbol = symbol && symbol.toLowerCase() !== name.toLowerCase();
+  const candidates = [
+    ...(showSymbol ? [`${name} (${symbol}): Definition & Conversions`] : []),
+    `${name}: Definition & Conversions`,
+    ...(showSymbol ? [`${name} (${symbol}): Unit Guide`] : []),
+    `${name}: Unit Guide`,
+  ];
+  return candidates.find((title) => title.length <= ENGLISH_TITLE_BUDGET) ?? name;
+}
+
+/** Unit guide meta description, kept under ~160 characters. */
+export function buildEnglishUnitGuideDescription(name: string, symbol: string, categoryName: string) {
+  const unit = englishUnitInSentence(name);
+  const full = `The symbol for ${unit} is ${symbol}. Definition, history, SI equivalent and instant conversions to other ${categoryName.toLowerCase()} units.`;
+  if (full.length <= 160) return full;
+  const short = `${name} (${symbol}): definition, history, SI equivalent and instant conversions.`;
+  return short.length <= 160 ? short : `${name}: definition, history and instant conversions.`;
 }

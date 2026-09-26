@@ -3,7 +3,7 @@ import HydrostaticPressurePage from "../../../components/calculators/Hydrostatic
 import { buildSiteUrl } from "../../../siteConfig";
 
 export const metadata: Metadata = {
-  title: "Hydrostatic Pressure Calculator (DeltaP = rho g h)",
+  title: "Hydrostatic Pressure Calculator (ΔP = ρgh)",
   description:
     "Calculate hydrostatic pressure difference, density, depth or gravitational acceleration and view the result in SI base units and readable engineering scales.",
   alternates: {
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Hydrostatic Pressure Calculator (DeltaP = rho g h)",
+    title: "Hydrostatic Pressure Calculator (ΔP = ρgh)",
     description:
       "Solve hydrostatic pressure difference or its inverse variables from density, gravity and depth using an SI-based calculation flow.",
     url: buildSiteUrl("/en/calculators/hydrostatic-pressure"),
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hydrostatic Pressure Calculator (DeltaP = rho g h)",
+    title: "Hydrostatic Pressure Calculator (ΔP = ρgh)",
     description:
       "Solve hydrostatic pressure difference or its inverse variables from density, gravity and depth using an SI-based calculation flow.",
   },

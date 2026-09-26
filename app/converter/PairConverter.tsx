@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { convert } from "./convert";
+import { englishDisplaySymbol } from "./englishUnitDisplay";
 
 type PairConverterProps = {
   category: string;
@@ -360,9 +361,13 @@ export default function PairConverter({
                           ? "Vend omregningsretningen"
                       : "D\u00F6n\u00FC\u015F\u00FCm y\u00F6n\u00FCn\u00FC de\u011Fi\u015Ftir";
 
+  // Ingilizce sayfalarda Turkce kayit sembolleri (arşın, çk ...) gosterilmez.
+  const fromLabel = locale === "en" ? englishDisplaySymbol(category, activeFromUnit) : activeFromUnit;
+  const toLabel = locale === "en" ? englishDisplaySymbol(category, activeToUnit) : activeToUnit;
+
   const resultText =
     locale === "en"
-      ? `${inputValue} ${activeFromUnit} = ${result} ${activeToUnit}`
+      ? `${inputValue} ${fromLabel} = ${result} ${toLabel}`
       : locale === "de"
         ? `${inputValue} ${activeFromUnit} = ${result} ${activeToUnit}`
         : locale === "ar"
@@ -397,7 +402,7 @@ export default function PairConverter({
             placeholder={placeholder}
           />
 
-          <span>{activeFromUnit}</span>
+          <span>{fromLabel}</span>
         </div>
 
         <button
@@ -416,7 +421,7 @@ export default function PairConverter({
             {result || "\u2014"}
           </output>
 
-          <span>{activeToUnit}</span>
+          <span>{toLabel}</span>
         </div>
       </div>
 

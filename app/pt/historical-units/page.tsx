@@ -168,7 +168,7 @@ export default function PortugueseHistoricalUnitsPage() {
               </p>
               <p>
                 Por isso nomes como arşın, okka e dirhem ainda aparecem
-                hoje em documentos antigos, alem de alguns livros e
+                hoje em documentos antigos, além de alguns livros e
                 pesquisas históricas.
               </p>
             </>

@@ -83,8 +83,8 @@ const copy = {
     ingredient: "Ingrediente",
     knownUnit: "Unidade Conhecida",
     value: "Valor",
-    resultHeading: "Equivalencias",
-    invalidValue: "Digite um numero valido para ver a conversao.",
+    resultHeading: "Equivalências",
+    invalidValue: "Digite um número válido para ver a conversão.",
   },
   it: {
     ingredient: "Ingrediente",

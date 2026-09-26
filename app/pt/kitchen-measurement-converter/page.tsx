@@ -71,8 +71,8 @@ export default function PortugueseKitchenMeasurementsPage() {
             Os valores indicados aqui são médias práticas adaptadas ao uso
             culinário cotidiano. O peso final pode variar ligeiramente
             conforme o quanto o ingrediente está compactado ou a variedade
-            do produto, mas o resultado continua confiavel o suficiente
-            para uso domestico.
+            do produto, mas o resultado continua confiável o suficiente
+            para uso doméstico.
           </p>
 
           <h2>Lista de ingredientes comuns (1 xícara = 240 ml)</h2>

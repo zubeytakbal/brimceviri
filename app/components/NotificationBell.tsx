@@ -108,13 +108,13 @@ const notificationCopy = {
     dateLocale: "es-419",
   },
   pt: {
-    ariaLabel: "Notificacoes",
-    panelLabel: "Notificacoes do site",
-    title: "Notificacoes",
+    ariaLabel: "Notificações",
+    panelLabel: "Notificações do site",
+    title: "Notificações",
     closeLabel: "Fechar",
-    markSeenLabel: "Marcar esta notificacao como vista",
+    markSeenLabel: "Marcar esta notificação como vista",
     openLabel: "Abrir →",
-    empty: "Nao ha novas notificacoes no momento.",
+    empty: "Não há novas notificações no momento.",
     dateLocale: "pt-BR",
   },
   it: {

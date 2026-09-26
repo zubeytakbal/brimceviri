@@ -109,14 +109,14 @@ bn: {
   },
   pt: {
     lang: "pt-BR",
-    title: "Pagina nao encontrada",
+    title: "Página não encontrada",
     description:
-      "A pagina que voce procura pode ter sido movida ou o endereco pode nao ser valido.",
+      "A página que você procura pode ter sido movida ou o endereço pode não ser válido.",
     continueHeading: "Continuar com",
     primaryHref: "/pt",
-    primaryLabel: "Voltar a pagina inicial em portugues",
+    primaryLabel: "Voltar à página inicial em português",
     secondaryHref: "/",
-    secondaryLabel: "Abrir a pagina inicial em turco",
+    secondaryLabel: "Abrir a página inicial em turco",
   },
   it: {
     lang: "it",

@@ -28,7 +28,7 @@ export default function RussianHomePage() {
               </li>
             ))}
           </ul>
-          <p><Link href="/ru/categories">Все доступные категории</Link></p>
+          <p><Link href="/ru/categories">Все доступные категории</Link> · <Link href="/ru/unit-guides">Справочник единиц</Link></p>
         </section>
       </div>
     </main>

@@ -231,7 +231,7 @@ export function EnglishFlooringCalculator() {
             <Stat label="Area incl. waste" value={`${formatNumber(result.areaWithWaste, 1)} ${unit}`} />
             <Stat label="You will buy" value={`${formatNumber(result.purchasedArea, 1)} ${unit}`} />
             <Stat label="Left over after install" value={`${formatNumber(result.leftover, 1)} ${unit}`} />
-            {result.cost !== null && <Stat label="Material cost" value={formatNumber(result.cost, 2)} />}
+            {result.cost !== null && <Stat label="Material cost" value={new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(result.cost)} />}
           </>
         )}
       </Result>

@@ -537,21 +537,35 @@ export const englishStandaloneTools: EnglishStandaloneTool[] = [
     turkishPath: "/klima-btu-hesaplama",
     title: "AC BTU Calculator",
     description:
-      "Calculate the right air conditioner capacity based on room area, number of people and sun exposure.",
+      "How many BTU does your room need? Size a window or portable AC from square footage, sun exposure, people and kitchen use (ENERGY STAR chart).",
     intro:
-      "This page helps you get an initial estimate before choosing the right air conditioning unit.",
+      "Enter the room area and answer three questions. The calculator reads the ENERGY STAR sizing chart and applies its adjustments for sun, extra people and kitchens.",
     component: "acCapacityCalculator",
     iconName: "acCapacityCalculator",
     cardDescription: "Estimates the right air conditioner capacity for a room, in BTU.",
     articleSections: [
       {
-        title: "Why isn't area alone enough?",
-        body: "Because the number of people, the room's sun exposure, and whether it's a top-floor room all increase the actual heat load.",
+        title: "How AC BTU sizing works",
+        body: "Room air conditioners are sized by the floor area they cool. The ENERGY STAR chart starts at 5,000 BTU for 100–150 sq ft and rises to 34,000 BTU for 2,000–2,500 sq ft — roughly 20 BTU per square foot for typical rooms. Then adjust: reduce capacity by 10% for a heavily shaded room, increase it by 10% for a very sunny room, add 600 BTU for each person beyond two who regularly uses the room, and add 4,000 BTU if the unit cools a kitchen.",
       },
       {
-        title: "Is this a final purchase decision?",
-        body: "It's a great estimate to start from, but it's also worth comparing against the manufacturer's own data and your specific site conditions.",
+        title: "Worked example",
+        body: "A 12 × 16 ft bedroom is 192 sq ft, which falls in the 150–250 sq ft row: 6,000 BTU. A 400 sq ft living room is 9,000 BTU; if it is very sunny (+900 BTU) and four people use it regularly (+1,200 BTU), the estimate is 11,100 BTU, so a 12,000 BTU unit is the practical choice.",
       },
+      {
+        title: "Why bigger is not better",
+        body: "An oversized air conditioner cools the air quickly and shuts off before it has removed enough moisture, leaving the room cold and clammy, and it cycles on and off more often. An undersized unit runs constantly and cannot reach the set temperature on hot days. Choosing the capacity closest to the estimate gives the best comfort and efficiency.",
+      },
+      {
+        title: "Central air and whole houses",
+        body: "This chart is meant for single rooms and window, portable or through-the-wall units. For central air or ductless systems covering a whole house, HVAC contractors use a Manual J load calculation, which also accounts for insulation, windows, climate and air leakage.",
+      },
+    ],
+    faq: [
+      { question: "How many BTU do I need per square foot?", answer: "About 20 BTU per square foot for a typical room, which is what the ENERGY STAR chart works out to. Sunny rooms, kitchens and rooms used by more than two people need more." },
+      { question: "What size air conditioner do I need for a 12 × 12 room?", answer: "A 12 × 12 ft room is 144 sq ft, so a 5,000 BTU unit is enough under normal conditions. If the room is very sunny, consider 6,000 BTU." },
+      { question: "How many square feet does a 10,000 BTU air conditioner cool?", answer: "On the ENERGY STAR chart, 10,000 BTU covers 400–450 sq ft under normal conditions." },
+      { question: "Is a portable AC sized the same way?", answer: "The chart applies to room air conditioners in general, but portable units are often less efficient in practice, so many people choose the upper end of the range for a portable model." },
     ],
     priority: 0.75,
   },
@@ -561,21 +575,35 @@ export const englishStandaloneTools: EnglishStandaloneTool[] = [
     turkishPath: "/elektrik-tuketimi-hesaplama",
     title: "Electricity Consumption Calculator",
     description:
-      "Calculate daily, monthly and yearly consumption plus estimated cost using your electricity price per kWh.",
+      "Calculate how many kWh an appliance uses per day, month and year and what it costs, from its wattage, hours of use and your electricity rate.",
     intro:
-      "It helps you quickly understand how running different appliances affects your bill.",
+      "Enter the appliance's power in watts, how many hours a day and how many days a month it runs, and your price per kWh from the electricity bill.",
     component: "electricityConsumptionCalculator",
     iconName: "electricityConsumptionCalculator",
     cardDescription: "Shows consumption and approximate cost for electrical appliances.",
     articleSections: [
       {
-        title: "When is it useful?",
-        body: "When comparing heaters, air conditioners, home appliances or any device that runs for long hours and you want to know its financial impact.",
+        title: "How to calculate electricity use",
+        body: "kWh per day = watts × hours per day ÷ 1,000. Multiply by the days used per month for the monthly figure, and by 12 for a year. Cost = kWh × your rate per kWh. The wattage is on the appliance's label or in its manual; for devices that cycle on and off, such as refrigerators, the average use is lower than the label maximum.",
       },
       {
-        title: "Why is the electricity price optional?",
-        body: "You can get value from knowing the consumption even without a price, then add your tariff later for a cost estimate.",
+        title: "Worked example: a space heater",
+        body: "A 1,500 W space heater running 4 hours a day uses 1,500 × 4 ÷ 1,000 = 6 kWh per day. Over 30 days that is 180 kWh; at $0.17 per kWh it costs $30.60 a month, or about $367 a year if used like that every month.",
       },
+      {
+        title: "Finding your electricity rate",
+        body: "Your bill shows the price per kWh, sometimes split into supply and delivery charges — add them together for the calculation. Enter the rate in dollars, so 17 cents is 0.17. Time-of-use plans charge different rates at different times of day.",
+      },
+      {
+        title: "Typical appliance wattages",
+        body: "Examples of typical ranges: LED bulb 8–12 W, laptop 30–70 W, TV 50–150 W, refrigerator 100–250 W while running, microwave 1,000–1,200 W, hair dryer and space heater 1,200–1,500 W, clothes dryer 2,000–5,000 W. Check your own device for the exact figure.",
+      },
+    ],
+    faq: [
+      { question: "How do I convert watts to kWh?", answer: "Multiply watts by the hours of use and divide by 1,000. A 100 W device running for 10 hours uses 1 kWh." },
+      { question: "How much does it cost to run a 1,500 W heater?", answer: "It uses 1.5 kWh per hour. At $0.17 per kWh that is about 26 cents per hour, or $1.02 for 4 hours." },
+      { question: "Why is my real usage lower than the calculation?", answer: "Many appliances, such as refrigerators, air conditioners and heaters with a thermostat, do not draw their full wattage all the time. The calculation shows the maximum for the hours entered." },
+      { question: "What is a kWh?", answer: "A kilowatt-hour is the energy used by a 1,000 W device running for one hour. Electricity bills charge per kWh." },
     ],
     priority: 0.75,
   },
@@ -609,21 +637,35 @@ export const englishStandaloneTools: EnglishStandaloneTool[] = [
     turkishPath: "/yakit-tuketimi-hesaplama",
     title: "Fuel Consumption Calculator",
     description:
-      "Convert between km/L, L/100km and mpg, and calculate trip cost from distance and fuel price.",
+      "Convert fuel economy between L/100 km, km/L and mpg (US and UK). Enter the value you know to see the others, with the formulas explained.",
     intro:
-      "Enter whichever fuel-consumption figure you know to see it converted into the other common formats, plus an estimated trip cost.",
+      "Choose whether you know the consumption in liters per 100 km or in km per liter; the calculator converts it to km/L, L/100 km and US and UK miles per gallon.",
     component: "fuelConsumptionCalculator",
     iconName: "fuelConsumptionCalculator",
     cardDescription: "Converts between km/L, L/100km and mpg, and estimates trip cost.",
     articleSections: [
       {
-        title: "Why so many different units?",
-        body: "Europe typically uses L/100km, the US and UK use mpg, and some regions use km/L — this tool lets you move between all of them instantly.",
+        title: "Two ways to measure fuel economy",
+        body: "Europe and most of the world state fuel consumption as liters per 100 km (lower is better). The US uses miles per gallon (higher is better), and the UK uses miles per imperial gallon, which is larger than a US gallon. Some countries use kilometers per liter.",
       },
       {
-        title: "How is trip cost calculated?",
-        body: "Using your consumption figure and the distance you plan to drive, the tool estimates how much fuel you'll need and its approximate cost.",
+        title: "Conversion formulas",
+        body: "km/L = 100 ÷ (L/100 km). US mpg = 235.215 ÷ (L/100 km). UK mpg = 282.481 ÷ (L/100 km). Because the relationship is inverse, halving the L/100 km figure doubles the mpg.",
       },
+      {
+        title: "Worked example",
+        body: "A car that uses 6 L/100 km travels 100 ÷ 6 = 16.7 km per liter. That is 235.215 ÷ 6 = 39.2 mpg in the US and 282.481 ÷ 6 = 47.1 mpg in the UK.",
+      },
+      {
+        title: "Starting from mpg",
+        body: "If you know your car's mpg, use the MPG to L/100 km converter, which takes US or UK mpg as input and also compares two cars.",
+      },
+    ],
+    faq: [
+      { question: "How do I convert L/100 km to mpg?", answer: "Divide 235.215 by the L/100 km figure for US mpg, or 282.481 for UK mpg. 8 L/100 km is 29.4 mpg (US)." },
+      { question: "Why is UK mpg higher than US mpg for the same car?", answer: "A UK (imperial) gallon is 4.546 liters and a US gallon is 3.785 liters, so a car goes further on a UK gallon." },
+      { question: "Is 5 L/100 km good fuel economy?", answer: "Yes. 5 L/100 km is about 47 mpg (US), which is typical of efficient small cars and hybrids." },
+      { question: "How do I calculate km per liter?", answer: "Divide 100 by the L/100 km figure: 5 L/100 km is 20 km/L." },
     ],
     priority: 0.7,
   },
@@ -803,21 +845,35 @@ export const englishStandaloneTools: EnglishStandaloneTool[] = [
     turkishPath: "/tasinma-kutusu-hesaplama",
     title: "Moving Box Calculator",
     description:
-      "See the estimated number of moving boxes and truck volume needed, based on your home size.",
+      "How many moving boxes do you need and what size rental truck? Estimates by home size, from a studio to a 5-bedroom house, with load volume in cubic feet.",
     intro:
-      "Choose your home type to instantly see typical small-box and large-box counts, plus an estimated truck size.",
+      "Choose the size of your home to get an estimate of small and large boxes, the load volume in cubic feet and the smallest rental truck that fits.",
     component: "movingBoxCalculator",
     iconName: "movingBoxCalculator",
     cardDescription: "Estimates moving box counts and truck volume based on home size.",
     articleSections: [
       {
-        title: "How accurate are these numbers?",
-        body: "They're industry-average estimates for a typical home of that size — a household with unusually many or few belongings will need more or fewer boxes.",
+        title: "How the estimate works",
+        body: "The numbers are typical averages for a furnished home of each size: small boxes for heavy items such as books and kitchenware, large boxes for light, bulky items such as linens and pillows. The load volume includes furniture and is matched to the smallest common rental truck with enough cargo space.",
       },
       {
-        title: "What's the truck volume for?",
-        body: "It gives you a starting point for comparing moving-truck or van sizes before you book one.",
+        title: "Truck sizes at a glance",
+        body: "A 10 ft truck holds about 400 cu ft (a studio or small 1-bedroom), a 15 ft truck about 760 cu ft (1–2 bedrooms), a 20 ft truck about 1,000 cu ft (2–3 bedrooms) and a 26 ft truck about 1,680 cu ft (3–5 bedrooms). Exact capacities vary by rental company, so check before you book.",
       },
+      {
+        title: "Adjust for your home",
+        body: "Add boxes for a home office, garage, basement, attic or large collections of books, tools or kitchen equipment. Minimalist homes need fewer. It is cheaper to buy a few extra boxes than to run out on moving day — unused boxes can often be returned.",
+      },
+      {
+        title: "Packing tips",
+        body: "Keep heavy items in small boxes so each box stays liftable, fill empty space so contents do not shift, and label every box with its room and a short list of contents. Pack a separate essentials box for the first night.",
+      },
+    ],
+    faq: [
+      { question: "How many boxes do I need for a 2-bedroom apartment?", answer: "About 28 small and 18 large boxes — around 46 in total — is a typical estimate for a furnished 2-bedroom home." },
+      { question: "What size truck do I need for a 2-bedroom move?", answer: "A typical 2-bedroom load is about 640 cu ft, which fits in a 15 ft truck. With a lot of furniture, choose a 20 ft truck." },
+      { question: "What size truck do I need for a 3-bedroom house?", answer: "Around 850 cu ft is typical, which fits a 20 ft truck; larger 3-bedroom houses often need a 26 ft truck." },
+      { question: "Are these numbers exact?", answer: "No. They are averages to help you plan and budget. The amount of furniture and belongings matters more than the number of rooms." },
     ],
     priority: 0.65,
   },
@@ -827,21 +883,35 @@ export const englishStandaloneTools: EnglishStandaloneTool[] = [
     turkishPath: "/dogalgaz-tuketimi-hesaplama",
     title: "Natural Gas Cost Calculator",
     description:
-      "Calculate the total cost and approximate kWh equivalent from your natural gas consumption in cubic meters.",
+      "Work out your natural gas cost from the therms or CCF on your bill, and convert gas use between therms, CCF, cubic meters, kWh and BTU.",
     intro:
-      "Enter your consumption and unit price to see the total cost and an approximate energy equivalent in kWh.",
+      "Choose the unit your utility uses, enter the gas used and the price per unit. The calculator shows the cost and converts the amount to therms, kWh and BTU.",
     component: "naturalGasCalculator",
     iconName: "naturalGasCalculator",
     cardDescription: "Calculates natural gas cost and its approximate kWh equivalent.",
     articleSections: [
       {
-        title: "Why is the kWh value approximate?",
-        body: "The exact conversion factor between cubic meters and kWh depends on the calorific value of the gas supplied, which varies slightly by region and supplier.",
+        title: "Therms, CCF and cubic meters",
+        body: "US gas bills measure gas either in therms (an energy unit) or in CCF — 100 cubic feet (a volume unit). One therm is 100,000 BTU, or about 29.3 kWh. How many therms a CCF contains depends on the heat content of the gas that month; it is usually around 1.03–1.04 and is printed on the bill as a therm factor or BTU factor. One cubic meter is 35.31 cubic feet.",
       },
       {
-        title: "When is this useful?",
-        body: "It helps you compare a gas bill against other energy sources, or estimate cost before a billing cycle ends.",
+        title: "How to calculate your gas cost",
+        body: "Cost = gas used × price per unit. If your bill is in CCF but the price is per therm, convert first: therms = CCF × therm factor. Example: 58 CCF × 1.037 = 60.1 therms; at $1.40 per therm the gas supply costs about $84.",
       },
+      {
+        title: "Worked example",
+        body: "A household used 60 therms in a month at $1.40 per therm: 60 × 1.40 = $84.00 for the gas itself. That is 60 × 29.3071 = 1,758 kWh of energy, or 6 million BTU.",
+      },
+      {
+        title: "What else is on the bill",
+        body: "The calculator covers the gas supply cost. Utility bills also include a fixed monthly customer charge, delivery or distribution charges, and taxes and fees, which can be a large share of a small bill. Add them to compare with your total.",
+      },
+    ],
+    faq: [
+      { question: "How many kWh are in a therm?", answer: "One therm equals 100,000 BTU, which is about 29.3 kWh." },
+      { question: "What is the difference between a therm and a CCF?", answer: "A therm measures energy (100,000 BTU); a CCF measures volume (100 cubic feet of gas). One CCF typically contains about 1.03–1.04 therms, depending on the gas quality — your bill shows the exact factor." },
+      { question: "How many therms does a house use per month?", answer: "It varies widely with climate, home size and whether gas is used for heating. Summer use for water heating and cooking can be under 20 therms, while winter heating months can exceed 100 therms. Check your own bill history for the best estimate." },
+      { question: "Can I use cubic meters?", answer: "Yes. Choose cubic meters and the calculator converts through cubic feet and the therm factor." },
     ],
     priority: 0.65,
   },

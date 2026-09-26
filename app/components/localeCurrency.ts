@@ -5,7 +5,8 @@ import type { Locale } from "../i18n/config";
 // icin bos birakildi; Latin Amerika icin genel "$" isareti kullanildi.
 export const currencyByLocale: Record<Locale, string> = {
   tr: "TL",
-  en: "EUR",
+  // Ingilizce sayfalar agirlikla ABD kullanicisina hitap eder.
+  en: "$",
   de: "EUR",
   fr: "EUR",
   es: "EUR",
@@ -24,5 +25,7 @@ export const currencyByLocale: Record<Locale, string> = {
 
 export function formatWithCurrency(formattedNumber: string, locale: Locale) {
   const currency = currencyByLocale[locale];
-  return currency ? `${formattedNumber} ${currency}` : formattedNumber;
+  if (!currency) return formattedNumber;
+  // ABD yazimi: $12.50 (isaret basta, bosluksuz).
+  return locale === "en" ? `${currency}${formattedNumber}` : `${formattedNumber} ${currency}`;
 }

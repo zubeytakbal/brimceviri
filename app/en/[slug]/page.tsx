@@ -6,7 +6,6 @@ import {
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
-import AcCapacityCalculator from "../../components/AcCapacityCalculator";
 import AggregateCalculator from "../../components/AggregateCalculator";
 import BmiCalculator from "../../components/BmiCalculator";
 import ConcreteCalculator from "../../components/ConcreteCalculator";
@@ -40,8 +39,6 @@ import EnglishPsuCalculator from "../../components/EnglishPsuCalculator";
 import EnglishIvDripRateCalculator from "../../components/EnglishIvDripRateCalculator";
 import EnglishDepreciationCalculator from "../../components/EnglishDepreciationCalculator";
 import LengthComparisonTool from "../../components/LengthComparisonTool";
-import MovingBoxCalculator from "../../components/MovingBoxCalculator";
-import NaturalGasCalculator from "../../components/NaturalGasCalculator";
 import PaceCalculator from "../../components/PaceCalculator";
 import {
   EnglishBrickCalculator,
@@ -50,6 +47,11 @@ import {
   EnglishTileCalculator,
   EnglishWallpaperCalculator,
 } from "../../components/EnglishHomeProjectCalculators";
+import {
+  EnglishAcBtuCalculator,
+  EnglishMovingBoxCalculator,
+  EnglishNaturalGasCalculator,
+} from "../../components/EnglishEnergyHomeCalculators";
 import PregnancyCalculator from "../../components/PregnancyCalculator";
 import RoofingCalculator from "../../components/RoofingCalculator";
 import SleepCalculator from "../../components/SleepCalculator";
@@ -98,7 +100,7 @@ const componentMap: Record<EnglishStandaloneToolComponentKey, React.ComponentTyp
     lengthComparison: LengthComparisonTool,
     weightComparison: WeightComparisonTool,
     paceCalculator: PaceCalculator,
-    acCapacityCalculator: AcCapacityCalculator,
+    acCapacityCalculator: EnglishAcBtuCalculator,
     electricityConsumptionCalculator: ElectricityConsumptionCalculator,
     sleepCalculator: SleepCalculator,
     stairCalculator: StairCalculator,
@@ -129,8 +131,8 @@ const componentMap: Record<EnglishStandaloneToolComponentKey, React.ComponentTyp
     depreciationCalculator: EnglishDepreciationCalculator,
     laminateCalculator: EnglishFlooringCalculator,
     wallpaperCalculator: EnglishWallpaperCalculator,
-    movingBoxCalculator: MovingBoxCalculator,
-    naturalGasCalculator: NaturalGasCalculator,
+    movingBoxCalculator: EnglishMovingBoxCalculator,
+    naturalGasCalculator: EnglishNaturalGasCalculator,
     evChargingCalculator: EvChargingCalculator,
   };
 

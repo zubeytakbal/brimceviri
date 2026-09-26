@@ -51,7 +51,7 @@ const copyByLocale: Record<
       power: "Appliance Power (Watt)",
       hours: "Daily Usage Time (hours)",
       days: "Days Used Per Month",
-      price: "Electricity Rate (EUR/kWh) - optional",
+      price: "Electricity rate ($ per kWh, optional)",
     },
     placeholder: "Price per kWh from your bill",
     emptyState: "Enter valid values to see the result.",

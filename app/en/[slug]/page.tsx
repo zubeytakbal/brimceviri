@@ -27,6 +27,10 @@ import EnglishCalorieCalculator from "../../components/EnglishCalorieCalculator"
 import EnglishBodyFatCalculator from "../../components/EnglishBodyFatCalculator";
 import EnglishIdealWeightCalculator from "../../components/EnglishIdealWeightCalculator";
 import EnglishFuelEconomyConverter from "../../components/EnglishFuelEconomyConverter";
+import EnglishSquareFootageCalculator from "../../components/EnglishSquareFootageCalculator";
+import EnglishCubicYardCalculator from "../../components/EnglishCubicYardCalculator";
+import EnglishMulchCalculator from "../../components/EnglishMulchCalculator";
+import EnglishBoardFootCalculator from "../../components/EnglishBoardFootCalculator";
 import LaminateCalculator from "../../components/LaminateCalculator";
 import LengthComparisonTool from "../../components/LengthComparisonTool";
 import MovingBoxCalculator from "../../components/MovingBoxCalculator";
@@ -98,6 +102,10 @@ const componentMap: Record<EnglishStandaloneToolComponentKey, React.ComponentTyp
     bodyFatCalculator: EnglishBodyFatCalculator,
     idealWeightCalculator: EnglishIdealWeightCalculator,
     fuelEconomyConverter: EnglishFuelEconomyConverter,
+    squareFootageCalculator: EnglishSquareFootageCalculator,
+    cubicYardCalculator: EnglishCubicYardCalculator,
+    mulchCalculator: EnglishMulchCalculator,
+    boardFootCalculator: EnglishBoardFootCalculator,
     laminateCalculator: LaminateCalculator,
     wallpaperCalculator: WallpaperCalculator,
     movingBoxCalculator: MovingBoxCalculator,

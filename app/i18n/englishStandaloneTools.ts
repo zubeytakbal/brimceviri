@@ -32,7 +32,11 @@ export type EnglishStandaloneToolComponentKey =
   | "calorieCalculator"
   | "bodyFatCalculator"
   | "idealWeightCalculator"
-  | "fuelEconomyConverter";
+  | "fuelEconomyConverter"
+  | "squareFootageCalculator"
+  | "cubicYardCalculator"
+  | "mulchCalculator"
+  | "boardFootCalculator";
 
 export type EnglishStandaloneTool = {
   slug: string;
@@ -74,7 +78,11 @@ export type EnglishStandaloneTool = {
     | "gradeCalculator"
     | "calorieCalculator"
     | "bodyFatCalculator"
-    | "idealWeightCalculator";
+    | "idealWeightCalculator"
+    | "area"
+    | "volume"
+    | "peyzajHub"
+    | "marangozHub";
   cardDescription: string;
   articleSections: Array<{
     title: string;
@@ -965,6 +973,142 @@ export const englishStandaloneTools: EnglishStandaloneTool[] = [
       { question: "What is 40 mpg in L/100 km?", answer: "40 mpg (US) is 5.88 L/100 km; 40 mpg (UK) is 7.06 L/100 km." },
       { question: "What is 8 L/100 km in mpg?", answer: "8 L/100 km is 29.4 mpg (US) or 35.3 mpg (UK)." },
       { question: "Is a higher L/100 km better?", answer: "No. L/100 km is fuel used per distance, so a lower number means better fuel economy." },
+    ],
+    isEnglishOnly: true,
+    priority: 0.8,
+  },
+  {
+    slug: "square-footage-calculator",
+    englishPath: "/en/square-footage-calculator",
+    turkishPath: "/fayans-hesaplama",
+    title: "Square Footage Calculator",
+    description:
+      "Calculate square feet for rooms, floors and yards – rectangles, triangles, circles and L-shaped spaces – with waste allowance and cost.",
+    intro:
+      "Enter the length and width of each part of the space in feet and inches. Add as many areas as you need for L-shaped or irregular rooms, then add a waste allowance and price per square foot.",
+    component: "squareFootageCalculator",
+    iconName: "area",
+    cardDescription: "Square feet for rooms and yards, with waste and cost.",
+    articleSections: [
+      {
+        title: "How to calculate square footage",
+        body: "Multiply the length by the width in feet. A 12 ft × 15 ft room is 180 sq ft. If a measurement has inches, convert them to feet first: 12 ft 6 in = 12.5 ft. For a triangle use base × height ÷ 2, and for a circle π × (diameter ÷ 2)².",
+      },
+      {
+        title: "L-shaped and irregular rooms",
+        body: "Split the room into rectangles that do not overlap, calculate each one and add them up. For example, an L-shaped room of 12 × 15 ft plus 6 × 8 ft is 180 + 48 = 228 sq ft.",
+      },
+      {
+        title: "Why add a waste allowance",
+        body: "Flooring, tile and sod are cut at walls and corners. Contractors usually add 5–10% for straight layouts and 15% or more for diagonal patterns or many corners.",
+      },
+    ],
+    faq: [
+      { question: "How do I calculate square feet?", answer: "Multiply length by width in feet. For example, 10 ft × 12 ft = 120 sq ft." },
+      { question: "How many square feet is a 12x12 room?", answer: "A 12 ft × 12 ft room is 144 square feet." },
+      { question: "How do I convert square feet to square meters?", answer: "Divide by 10.764. For example, 200 sq ft is 18.58 m²." },
+      { question: "How many square feet are in an acre?", answer: "One acre is 43,560 square feet." },
+    ],
+    isEnglishOnly: true,
+    priority: 0.8,
+  },
+  {
+    slug: "cubic-yard-calculator",
+    englishPath: "/en/cubic-yard-calculator",
+    turkishPath: "/hafriyat-hesaplama",
+    title: "Cubic Yard Calculator",
+    description:
+      "Calculate cubic yards from length, width and depth for dirt, gravel, topsoil, mulch or fill – for rectangular and round areas, with cost.",
+    intro:
+      "Enter the length and width in feet and the depth in inches to find how many cubic yards of material to order. Round areas and an optional price per cubic yard are supported.",
+    component: "cubicYardCalculator",
+    iconName: "volume",
+    cardDescription: "Cubic yards from length, width and depth, with cost.",
+    articleSections: [
+      {
+        title: "How to calculate cubic yards",
+        body: "Multiply length (ft) × width (ft) × depth (ft) to get cubic feet, then divide by 27, because a cubic yard is 3 ft × 3 ft × 3 ft = 27 cu ft. Depth is usually measured in inches, so divide it by 12 first: a 10 × 10 ft area 4 in deep is 10 × 10 × 0.333 ÷ 27 = 1.23 cu yd.",
+      },
+      {
+        title: "Ordering bulk material",
+        body: "Landscape suppliers usually sell in whole, half or quarter yards. Round up and add about 5–10% for settling and uneven ground.",
+      },
+    ],
+    faq: [
+      { question: "How many cubic feet are in a cubic yard?", answer: "27 cubic feet (3 ft × 3 ft × 3 ft)." },
+      { question: "How do I convert cubic yards to cubic meters?", answer: "Multiply by 0.7646. One cubic yard is about 0.76 m³." },
+      { question: "How many square feet does a cubic yard cover?", answer: "324 sq ft at 1 inch deep, 162 sq ft at 2 inches, 108 sq ft at 3 inches and 81 sq ft at 4 inches." },
+      { question: "How much does a cubic yard of dirt weigh?", answer: "Roughly 1 to 1.5 tons depending on moisture. Use the gravel and soil calculator to convert volume to weight." },
+    ],
+    isEnglishOnly: true,
+    priority: 0.8,
+  },
+  {
+    slug: "mulch-calculator",
+    englishPath: "/en/mulch-calculator",
+    turkishPath: "/gubre-ihtiyaci-hesaplama",
+    title: "Mulch Calculator: Cubic Yards & Bags",
+    description:
+      "Find how much mulch you need in cubic yards and bags (1.5, 2 and 3 cu ft) for a garden bed, from its size and mulch depth.",
+    intro:
+      "Enter the size of the bed and the depth of mulch you want to see how many cubic yards to order in bulk, or how many bags to buy.",
+    component: "mulchCalculator",
+    iconName: "peyzajHub",
+    cardDescription: "Mulch in cubic yards and bags for a garden bed.",
+    articleSections: [
+      {
+        title: "The mulch formula",
+        body: "Cubic yards = square feet × depth (in) ÷ 324. One cubic yard covers 324 sq ft at 1 inch, 162 sq ft at 2 inches or 108 sq ft at 3 inches. For bags, divide the cubic feet by the bag size: a 200 sq ft bed at 3 inches needs 50 cu ft, or 25 bags of 2 cu ft.",
+      },
+      {
+        title: "How deep should mulch be?",
+        body: "2–3 inches is right for most flower beds. Thinner layers do not stop weeds well, and more than 4 inches can keep roots too wet. Keep mulch a few inches away from tree trunks and plant stems.",
+      },
+      {
+        title: "Bulk or bags?",
+        body: "Bags are convenient for small beds. Above about 2–3 cubic yards bulk delivery is usually cheaper, even with a delivery fee. Prices vary a lot by region and material, so enter your local price to compare.",
+      },
+    ],
+    faq: [
+      { question: "How much area does a yard of mulch cover?", answer: "About 324 sq ft at 1 inch deep, 162 sq ft at 2 inches and 108 sq ft at 3 inches." },
+      { question: "How many bags of mulch are in a yard?", answer: "A cubic yard is 27 cu ft: about 13.5 bags of 2 cu ft or 9 bags of 3 cu ft." },
+      { question: "How much mulch do I need for a 10x10 bed?", answer: "A 10 × 10 ft bed (100 sq ft) at 3 inches needs 25 cu ft, about 0.93 cubic yards or 13 bags of 2 cu ft." },
+      { question: "How deep should mulch be?", answer: "Usually 2–3 inches for garden beds and 3–4 inches for paths and around trees." },
+    ],
+    isEnglishOnly: true,
+    priority: 0.8,
+  },
+  {
+    slug: "board-foot-calculator",
+    englishPath: "/en/board-foot-calculator",
+    turkishPath: "/kereste-hesaplama",
+    title: "Board Foot Calculator for Lumber",
+    description:
+      "Calculate board feet of lumber from thickness, width, length and quantity, with total volume and cost per board foot.",
+    intro:
+      "Enter the thickness and width in inches, the length in feet and the number of boards. Add several sizes to total a whole lumber order and estimate its cost.",
+    component: "boardFootCalculator",
+    iconName: "marangozHub",
+    cardDescription: "Board feet and cost for a lumber order.",
+    articleSections: [
+      {
+        title: "What is a board foot?",
+        body: "A board foot is a volume of wood 1 inch thick, 12 inches wide and 12 inches long – 144 cubic inches. Hardwood lumber is usually priced per board foot, while construction lumber is often sold per piece.",
+      },
+      {
+        title: "The board foot formula",
+        body: "Board feet = thickness (in) × width (in) × length (ft) ÷ 12. A 2 × 4 that is 8 ft long is 2 × 4 × 8 ÷ 12 = 5.33 board feet. Multiply by the number of boards for the total.",
+      },
+      {
+        title: "Nominal vs actual size",
+        body: "Board feet are normally calculated with nominal dimensions (2 × 4), not the smaller actual dimensions after planing (1.5 × 3.5 in). Rough hardwood thickness is given in quarters: 4/4 is 1 inch and 8/4 is 2 inches.",
+      },
+    ],
+    faq: [
+      { question: "How many board feet are in a 2x4x8?", answer: "5.33 board feet (2 × 4 × 8 ÷ 12)." },
+      { question: "How many board feet are in a 2x6x10?", answer: "10 board feet (2 × 6 × 10 ÷ 12)." },
+      { question: "How do I calculate board feet?", answer: "Multiply thickness (in) by width (in) by length (ft) and divide by 12." },
+      { question: "How many cubic feet is a board foot?", answer: "One board foot is 1/12 of a cubic foot (144 cubic inches), or about 0.00236 m³." },
     ],
     isEnglishOnly: true,
     priority: 0.8,

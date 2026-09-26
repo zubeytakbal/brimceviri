@@ -10,7 +10,7 @@ export const englishEverydayCalculatorGroups: Array<{
     id: "home-and-diy",
     title: "Home and DIY calculators",
     description: "Plan concrete, decorating, flooring, moving and household energy tasks with practical estimates.",
-    tools: ["concreteCalculator", "aggregateCalculator", "stairCalculator", "roofingCalculator", "paintCalculator", "tileCalculator", "brickCalculator", "laminateCalculator", "wallpaperCalculator", "movingBoxCalculator", "acCapacityCalculator", "electricityConsumptionCalculator", "naturalGasCalculator"],
+    tools: ["squareFootageCalculator", "cubicYardCalculator", "mulchCalculator", "boardFootCalculator", "concreteCalculator", "aggregateCalculator", "stairCalculator", "roofingCalculator", "paintCalculator", "tileCalculator", "brickCalculator", "laminateCalculator", "wallpaperCalculator", "movingBoxCalculator", "acCapacityCalculator", "electricityConsumptionCalculator", "naturalGasCalculator"],
   },
   {
     id: "health-and-routines",

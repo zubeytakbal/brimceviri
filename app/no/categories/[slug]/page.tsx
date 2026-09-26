@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import CategoryUnitConverter from "../../../components/CategoryUnitConverter";
+import { getLocalizedUnitOptions } from "../../../converter/localizedUnitOptions";
 import CategoryPageLayout from "../../../components/CategoryPageLayout";
 import { createConversionCards } from "../../../components/categoryPageUtils";
 import { norwegianCategoryPages } from "../../../converter/localizedNorwegianCategoryPages";
@@ -186,7 +187,11 @@ export default async function NorwegianCategoryPage({ params }: PageProps) {
       allUnitsSection={{
         heading: `Regn om alle enheter for ${baseName}`,
         content: (
-          <CategoryUnitConverter category={categoryPage.category} locale="no" />
+          <CategoryUnitConverter
+            category={categoryPage.category}
+            locale="no"
+            unitOptions={getLocalizedUnitOptions(categoryPage.category, "no")}
+          />
         ),
       }}
       conversionHeading="Populære omregninger"

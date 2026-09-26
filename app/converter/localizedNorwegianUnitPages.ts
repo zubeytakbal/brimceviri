@@ -145,6 +145,21 @@ export const norwegianUnitPages: LocalizedNorwegianUnitPage[] = [
     siEquivalent: "1 mi = 1609,344 m",
     commonUses: "Veiavstander, navigasjon og feltmålestokker",
   },
+  {
+    locale: "no",
+    sourceSlug: "skandinavisk-mil",
+    slug: "mil",
+    category: "uzunluk",
+    categoryName: "Lengde",
+    unit: "mil",
+    name: "Mil",
+    symbol: "mil",
+    shortDescription: "En mil er en norsk lengdeenhet som i dag tilsvarer nøyaktig 10 kilometer (10 000 meter). Den brukes i dagligtalen i Norge og Sverige for å angi avstander og drivstofforbruk (liter per mil).",
+    historySummary: "Den gamle norske milen var lengre, omtrent 11,3 km. Etter overgangen til det metriske systemet ble milen i dagligtalen satt til nøyaktig 10 km, og det er denne milen som brukes i dag. En norsk mil må ikke forveksles med den engelske milen (1,609 km) eller nautisk mil (1,852 km).",
+    measurementSystem: "Metrisk (norsk dagligtale, ikke SI)",
+    siEquivalent: "1 mil = 10 000 m = 10 km",
+    commonUses: "Avstander i dagligtale, reiseplanlegging og drivstofforbruk (liter per mil)",
+  },
   // Areal
   {
     locale: "no",

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import CategoryUnitConverter from "../../../components/CategoryUnitConverter";
+import { getLocalizedUnitOptions } from "../../../converter/localizedUnitOptions";
 import CategoryPageLayout from "../../../components/CategoryPageLayout";
 import { createConversionCards } from "../../../components/categoryPageUtils";
 import { frenchCategoryPages } from "../../../converter/localizedFrenchCategoryPages";
@@ -203,7 +204,11 @@ export default async function FrenchCategoryPage({ params }: PageProps) {
       allUnitsSection={{
         heading: `Convertir toutes les unités ${categoryBaseNames[categoryPage.category] ?? categoryPage.title}`,
         content: (
-          <CategoryUnitConverter category={categoryPage.category} locale="fr" />
+          <CategoryUnitConverter
+            category={categoryPage.category}
+            locale="fr"
+            unitOptions={getLocalizedUnitOptions(categoryPage.category, "fr")}
+          />
         ),
       }}
       conversionHeading="Conversions populaires"

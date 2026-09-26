@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import CategoryUnitConverter from "../../../components/CategoryUnitConverter";
+import { getLocalizedUnitOptions } from "../../../converter/localizedUnitOptions";
 import CategoryPageLayout from "../../../components/CategoryPageLayout";
 import { createConversionCards } from "../../../components/categoryPageUtils";
 import { bengaliCategoryPages } from "../../../converter/localizedBengaliCategoryPages";
@@ -152,7 +153,11 @@ export default async function BengaliCategoryPage({ params }: PageProps) {
       allUnitsSection={{
         heading: `সব ${baseName} একক রূপান্তর করুন`,
         content: (
-          <CategoryUnitConverter category={categoryPage.category} locale="bn" />
+          <CategoryUnitConverter
+            category={categoryPage.category}
+            locale="bn"
+            unitOptions={getLocalizedUnitOptions(categoryPage.category, "bn")}
+          />
         ),
       }}
       conversionHeading="জনপ্রিয় রূপান্তর"

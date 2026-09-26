@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import CategoryUnitConverter from "../../../components/CategoryUnitConverter";
+import { getLocalizedUnitOptions } from "../../../converter/localizedUnitOptions";
 import CategoryPageLayout from "../../../components/CategoryPageLayout";
 import { createConversionCards } from "../../../components/categoryPageUtils";
 import { swedishCategoryPages } from "../../../converter/localizedSwedishCategoryPages";
@@ -186,7 +187,11 @@ export default async function SwedishCategoryPage({ params }: PageProps) {
       allUnitsSection={{
         heading: `Omvandla alla enheter för ${baseName}`,
         content: (
-          <CategoryUnitConverter category={categoryPage.category} locale="sv" />
+          <CategoryUnitConverter
+            category={categoryPage.category}
+            locale="sv"
+            unitOptions={getLocalizedUnitOptions(categoryPage.category, "sv")}
+          />
         ),
       }}
       conversionHeading="Populära omvandlingar"

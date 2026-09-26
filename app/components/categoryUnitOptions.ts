@@ -367,6 +367,11 @@ const categoryUnitDefinitions: CategoryUnitDefinitions = {
       de: "Meile",
       uz: "Milya",
     },
+    mil: {
+      tr: "İskandinav mili",
+      en: "Scandinavian mile",
+      de: "Skandinavische Meile",
+    },
     nmi: {
       tr: "Deniz mili",
       en: "Nautical mile",

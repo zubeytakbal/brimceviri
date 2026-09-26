@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import CategoryUnitConverter from "../../../components/CategoryUnitConverter";
+import { getLocalizedUnitOptions } from "../../../converter/localizedUnitOptions";
 import CategoryPageLayout from "../../../components/CategoryPageLayout";
 import { createConversionCards } from "../../../components/categoryPageUtils";
 import { es419CategoryPages } from "../../../converter/localizedEs419CategoryPages";
@@ -186,7 +187,11 @@ export default async function Es419CategoryPage({ params }: PageProps) {
       allUnitsSection={{
         heading: `Convertir todas las unidades de ${baseName}`,
         content: (
-          <CategoryUnitConverter category={categoryPage.category} locale="es-419" />
+          <CategoryUnitConverter
+            category={categoryPage.category}
+            locale="es-419"
+            unitOptions={getLocalizedUnitOptions(categoryPage.category, "es-419")}
+          />
         ),
       }}
       conversionHeading="Conversiones populares"

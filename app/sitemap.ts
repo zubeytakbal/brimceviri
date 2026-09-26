@@ -233,6 +233,14 @@ function buildLocalizedCoreAlternates(
         ? danishUnitPages.find((page) => page.sourceSlug === sourceSlug)
         : danishConversionPages.find((page) => page.sourceSlug === sourceSlug);
 
+  // Yalnizca belirli dillerde bulunan sayfalar (orn. Iskandinav mili) icin
+  // var olmayan bir Turkce adrese hreflang verilmesin.
+  const hasTurkishPage =
+    collection === "categories" ||
+    (collection === "units"
+      ? unitPages.some((page) => page.slug === sourceSlug)
+      : conversionPages.some((page) => page.slug === sourceSlug));
+
   const paths = {
     categories: {
       tr: `/kategoriler/${sourceSlug}`,
@@ -252,7 +260,7 @@ function buildLocalizedCoreAlternates(
       da: danishPage ? `/da/categories/${danishPage.slug}` : undefined,
     },
     units: {
-      tr: `/birimler/${sourceSlug}`,
+      tr: hasTurkishPage ? `/birimler/${sourceSlug}` : undefined,
       en: englishPage ? `/en/units/${englishPage.slug}` : undefined,
       de: germanPage ? `/de/einheiten/${germanPage.slug}` : undefined,
       ar: englishPage ? `/ar/unit-guides/${englishPage.slug}` : undefined,
@@ -269,7 +277,7 @@ function buildLocalizedCoreAlternates(
       da: danishPage ? `/da/unit-guides/${danishPage.slug}` : undefined,
     },
     conversions: {
-      tr: `/${sourceSlug}`,
+      tr: hasTurkishPage ? `/${sourceSlug}` : undefined,
       en: englishPage ? `/en/${englishPage.slug}` : undefined,
       de: germanPage ? `/de/${germanPage.slug}` : undefined,
       ar: englishPage ? `/ar/${englishPage.slug}` : undefined,
@@ -296,7 +304,7 @@ function buildLocalizedCoreAlternates(
   return {
     languages: {
       ...languages,
-      "x-default": `${baseUrl}${paths.tr}`,
+      ...(paths.tr ? { "x-default": `${baseUrl}${paths.tr}` } : {}),
     },
   };
 }

@@ -145,6 +145,21 @@ export const swedishUnitPages: LocalizedSwedishUnitPage[] = [
     siEquivalent: "1 mi = 1609,344 m",
     commonUses: "Vägavstånd, navigation och fältskalor",
   },
+  {
+    locale: "sv",
+    sourceSlug: "skandinavisk-mil",
+    slug: "mil",
+    category: "uzunluk",
+    categoryName: "Längd",
+    unit: "mil",
+    name: "Mil",
+    symbol: "mil",
+    shortDescription: "En mil är en svensk längdenhet som i dag motsvarar exakt 10 kilometer (10 000 meter). Den används dagligen i Sverige för att ange avstånd och bilars bränsleförbrukning (liter per mil).",
+    historySummary: "Den gamla svenska milen var längre, cirka 10,7 km (36 000 fot). När Sverige gick över till metersystemet 1889 definierades milen om till exakt 10 km, och det är denna mil som används i dag. En svensk mil ska inte förväxlas med den engelska milen (1,609 km) eller den nautiska milen (1,852 km).",
+    measurementSystem: "Metriskt (vardaglig svensk enhet, inte SI)",
+    siEquivalent: "1 mil = 10 000 m = 10 km",
+    commonUses: "Avstånd i vardagligt tal, reseplanering och bränsleförbrukning (liter per mil)",
+  },
 
   // Area
   {

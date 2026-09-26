@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import CategoryUnitConverter from "../../../components/CategoryUnitConverter";
+import { getLocalizedUnitOptions } from "../../../converter/localizedUnitOptions";
 import CategoryPageLayout from "../../../components/CategoryPageLayout";
 import { createConversionCards } from "../../../components/categoryPageUtils";
 import { italianCategoryPages } from "../../../converter/localizedItalianCategoryPages";
@@ -186,7 +187,11 @@ export default async function ItalianCategoryPage({ params }: PageProps) {
       allUnitsSection={{
         heading: `Convertire tutte le unità di ${baseName}`,
         content: (
-          <CategoryUnitConverter category={categoryPage.category} locale="it" />
+          <CategoryUnitConverter
+            category={categoryPage.category}
+            locale="it"
+            unitOptions={getLocalizedUnitOptions(categoryPage.category, "it")}
+          />
         ),
       }}
       conversionHeading="Conversioni popolari"

@@ -150,6 +150,15 @@ export const unitRegistry: UnitRegistryEntry[] = [
     uz: { name: "Milya", slug: "milya" },
     enConversionSlug: "miles",
   },
+  // Isvec ve Norvec'te gunluk dilde "mil" 10 km demektir (Ingiliz mili
+  // degil). Yalnizca sv/no sitelerinde sayfasi var; Ozbek birimleri gibi
+  // tr adi verilmedi ki TR/EN tarafinda otomatik sayfa uretilmesin.
+  {
+    id: "skandinavisk-mil",
+    category: "uzunluk",
+    symbol: "mil",
+    siFactor: 10000,
+  },
   {
     id: "furlong",
     category: "uzunluk",

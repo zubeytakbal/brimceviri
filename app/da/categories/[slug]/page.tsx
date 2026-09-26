@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import CategoryUnitConverter from "../../../components/CategoryUnitConverter";
+import { getLocalizedUnitOptions } from "../../../converter/localizedUnitOptions";
 import CategoryPageLayout from "../../../components/CategoryPageLayout";
 import { createConversionCards } from "../../../components/categoryPageUtils";
 import { danishCategoryPages } from "../../../converter/localizedDanishCategoryPages";
@@ -186,7 +187,11 @@ export default async function DanishCategoryPage({ params }: PageProps) {
       allUnitsSection={{
         heading: `Omregn alle enheder for ${baseName}`,
         content: (
-          <CategoryUnitConverter category={categoryPage.category} locale="da" />
+          <CategoryUnitConverter
+            category={categoryPage.category}
+            locale="da"
+            unitOptions={getLocalizedUnitOptions(categoryPage.category, "da")}
+          />
         ),
       }}
       conversionHeading="Populære omregninger"

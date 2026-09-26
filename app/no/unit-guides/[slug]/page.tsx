@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { norwegianUnitPages } from "../../../converter/localizedNorwegianUnitPages";
 import { norwegianCategoryPages } from "../../../converter/localizedNorwegianCategoryPages";
 import { findEnglishUnitPageByTurkishSlug } from "../../../converter/localizedUnitPages";
+import { unitPages } from "../../../converter/unitPages";
 import { buildFullLanguageAlternates } from "../../../i18n/routing";
 import { buildSiteUrl } from "../../../siteConfig";
 
@@ -59,6 +60,7 @@ export default async function NorwegianUnitPage({ params }: PageProps) {
   }
 
   const englishPage = findEnglishUnitPageByTurkishSlug(unitPage.sourceSlug);
+  const hasTurkishPage = unitPages.some((turkishPage) => turkishPage.slug === unitPage.sourceSlug);
   const categoryPage = norwegianCategoryPages.find(
     (category) => category.category === unitPage.category
   );
@@ -124,25 +126,29 @@ export default async function NorwegianUnitPage({ params }: PageProps) {
             </section>
           )}
 
-          <section className="conversion-section language-alternatives">
-            <h2>Andre språk</h2>
-            <Link
-              className="text-link"
-              href={`/birimler/${unitPage.sourceSlug}`}
-              hrefLang="tr"
-            >
-              Oppnå den turkiska versionen
-            </Link>
-            {englishPage && (
-              <Link
-                className="text-link"
-                href={`/en/units/${englishPage.slug}`}
-                hrefLang="en"
-              >
-                View the English version
-              </Link>
-            )}
-          </section>
+          {(hasTurkishPage || englishPage) && (
+            <section className="conversion-section language-alternatives">
+              <h2>Andre språk</h2>
+              {hasTurkishPage && (
+                <Link
+                  className="text-link"
+                  href={`/birimler/${unitPage.sourceSlug}`}
+                  hrefLang="tr"
+                >
+                  Oppnå den turkiska versionen
+                </Link>
+              )}
+              {englishPage && (
+                <Link
+                  className="text-link"
+                  href={`/en/units/${englishPage.slug}`}
+                  hrefLang="en"
+                >
+                  View the English version
+                </Link>
+              )}
+            </section>
+          )}
         </section>
       </div>
     </main>

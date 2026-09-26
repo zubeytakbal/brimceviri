@@ -47,6 +47,7 @@ import { danishUnitPages } from "../converter/localizedDanishUnitPages";
 import { danishConversionPages } from "../converter/localizedDanishConversionPages";
 import { russianConversionPages } from "../converter/localizedRussianConversionPages";
 import { hindiConversionPages } from "../converter/localizedHindiConversionPages";
+import { hindiCategoryPages, hindiUnitPages } from "../converter/localizedHindiReferencePages";
 
 export type RouteCollectionKey =
   | "units"
@@ -153,7 +154,7 @@ const localizedCategorySummariesByLocale: Record<
     title: page.title,
   })),
   ru: [],
-  hi: [],
+  hi: hindiCategoryPages.map((page) => ({ sourceSlug: page.sourceSlug, slug: page.slug, category: page.category, title: page.title })),
   no: norwegianCategoryPages.map((page) => ({
     sourceSlug: page.sourceSlug,
     slug: page.slug,
@@ -226,7 +227,7 @@ const localizedSlugEntriesByLocale: Record<
       slug: page.slug,
     })),
     ru: [],
-    hi: [],
+    hi: hindiUnitPages.map((page) => ({ sourceSlug: page.sourceSlug, slug: page.slug })),
     no: norwegianUnitPages.map((page) => ({
       sourceSlug: page.sourceSlug,
       slug: page.slug,
@@ -290,7 +291,7 @@ const localizedSlugEntriesByLocale: Record<
       slug: page.slug,
     })),
     ru: [],
-    hi: [],
+    hi: hindiCategoryPages.map((page) => ({ sourceSlug: page.sourceSlug, slug: page.slug })),
     no: norwegianCategoryPages.map((page) => ({
       sourceSlug: page.sourceSlug,
       slug: page.slug,

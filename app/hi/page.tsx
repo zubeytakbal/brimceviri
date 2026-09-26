@@ -19,7 +19,7 @@ export default function HindiHomePage() {
         <section className="category-article-content">
           <h2>लोकप्रिय रूपांतरण</h2>
           <ul>{hindiConversionPages.map((page) => <li key={page.slug}><Link href={`/hi/${page.slug}`}>{page.fromName} से {page.toName}</Link></li>)}</ul>
-          <p><Link href="/hi/categories">सभी उपलब्ध श्रेणियाँ</Link></p>
+          <p><Link href="/hi/categories">सभी उपलब्ध श्रेणियाँ</Link> · <Link href="/hi/unit-guides">इकाई मार्गदर्शिकाएँ</Link></p>
         </section>
       </div>
     </main>

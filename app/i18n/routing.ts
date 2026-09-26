@@ -70,6 +70,7 @@ const staticRouteTranslations: Record<StaticRouteKey, LocalePathMap> = {
     de: "/de/einheiten",
     ar: "/ar/unit-guides",
     uz: "/uz/birliklar",
+    hi: "/hi/unit-guides",
   },
   allConversions: {
     tr: "/tum-birimler",

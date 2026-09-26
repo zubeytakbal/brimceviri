@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import PairConverter from "../../converter/PairConverter";
 import { convert } from "../../converter/convert";
 import { findHindiConversionPage, hindiConversionPages } from "../../converter/localizedHindiConversionPages";
+import { hindiCategoryPages, hindiUnitPages } from "../../converter/localizedHindiReferencePages";
 import { buildFullLanguageAlternates } from "../../i18n/routing";
 import { buildSiteUrl } from "../../siteConfig";
 
@@ -39,6 +40,8 @@ export default async function HindiConversionPage({ params }: PageProps) {
   const { category, fromUnit, toUnit, reverseSlug } = page.source;
   const result = convert(category, 1, fromUnit, toUnit);
   const reverse = hindiConversionPages.find((item) => item.sourceSlug === reverseSlug);
+  const categoryPage = hindiCategoryPages.find((item) => item.category === category)!;
+  const relatedUnits = hindiUnitPages.filter((item) => item.category === category && (item.unit === fromUnit || item.unit === toUnit));
   const rows = [1, 2, 5, 10, 25, 50, 100].map((value) => ({ value, result: convert(category, value, fromUnit, toUnit) }));
   const formula = category === "sicaklik"
     ? fromUnit === "C" ? "°F = (°C × 9/5) + 32" : "°C = (°F − 32) × 5/9"
@@ -68,7 +71,8 @@ export default async function HindiConversionPage({ params }: PageProps) {
           {rows.map((row) => <tr key={row.value}><td>{format(row.value)}</td><td>{format(row.result)}</td></tr>)}
         </tbody></table>
         {reverse && <p>उल्टा रूपांतरण: <Link href={`/hi/${reverse.slug}`}>{reverse.fromName} से {reverse.toName}</Link></p>}
-        <p><Link href="/hi/categories">अन्य परिवर्तक देखें</Link></p>
+        <p><Link href={`/hi/categories/${categoryPage.slug}`}>{categoryPage.title}</Link></p>
+        <h2>इकाइयों के बारे में</h2><ul>{relatedUnits.map((unit) => <li key={unit.slug}><Link href={`/hi/unit-guides/${unit.slug}`}>{unit.name} ({unit.symbol})</Link></li>)}</ul>
       </section>
     </main>
   );

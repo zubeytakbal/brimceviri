@@ -366,6 +366,9 @@ const categoryLabels: Record<
   ru: {
     uzunluk: "Длина", alan: "Площадь", hacim: "Объём", kutle: "Масса", sicaklik: "Температура", zaman: "Время", hiz: "Скорость", basinc: "Давление", enerji: "Энергия", veri: "Хранение данных", elektrik: "Электричество", yogunluk: "Плотность", kuvvet: "Сила", debi: "Расход", debi_hacimsel: "Объёмный расход", debi_kutlesel: "Массовый расход", tork: "Крутящий момент", aci: "Угол", ivme: "Ускорение", acisal_hiz: "Угловая скорость", frekans: "Частота", guc: "Мощность", momentum: "Импульс", viskozite_dinamik: "Вязкость", viskozite_kinematik: "Кинематическая вязкость", manyetik_alan: "Напряжённость магнитного поля", manyetik_aki: "Магнитный поток", elektrik_direnc: "Сопротивление", kapasitans: "Ёмкость", enduktans: "Индуктивность", elektrik_yuk: "Электрический заряд", altin_ayar: "Проба золота", gumus_ayar: "Проба серебра",
   },
+  hi: {
+    uzunluk: "लंबाई", alan: "क्षेत्रफल", hacim: "आयतन", kutle: "द्रव्यमान", sicaklik: "तापमान", zaman: "समय", hiz: "गति", basinc: "दाब", enerji: "ऊर्जा", veri: "डेटा संग्रहण", elektrik: "विद्युत", yogunluk: "घनत्व", kuvvet: "बल", debi: "प्रवाह दर", tork: "बल आघूर्ण", momentum: "संवेग", viskozite_dinamik: "श्यानता", elektrik_direnc: "प्रतिरोध", kapasitans: "धारिता", enduktans: "प्रेरकत्व", elektrik_yuk: "विद्युत आवेश", altin_ayar: "सोने की शुद्धता", gumus_ayar: "चाँदी की शुद्धता",
+  },
   sv: {
     uzunluk: "Langd",
     alan: "Area",
@@ -505,6 +508,7 @@ const siteHeaderCopy: Record<Locale, SiteHeaderCopy> = {
     conversionsLabel: "Omrekeningen",
   },
   ru: { navAriaLabel: "Основная навигация", menuLabel: "Меню", conversionsLabel: "Конвертеры" },
+  hi: { navAriaLabel: "मुख्य नेविगेशन", menuLabel: "मेन्यू", conversionsLabel: "रूपांतरण" },
   sv: {
     navAriaLabel: "Huvudnavigering",
     menuLabel: "Meny",
@@ -673,6 +677,12 @@ const footerCopy: Record<Locale, FooterCopy> = {
     disclaimer: "Для важных инженерных, медицинских и безопасностных решений проверяйте критические значения по профессиональным источникам.",
     browserProcessingNote: "Введённые в калькуляторы данные обрабатываются в браузере.",
   },
+  hi: {
+    navAriaLabel: "फ़ुटर नेविगेशन", pagesHeading: "पृष्ठ", languagesHeading: "भाषाएँ", categoriesHeading: "श्रेणियाँ",
+    description: "इकाई परिवर्तन और गणना के लिए मुफ़्त उपकरण।",
+    disclaimer: "महत्त्वपूर्ण तकनीकी या स्वास्थ्य संबंधी निर्णयों के लिए परिणामों की पुष्टि विश्वसनीय स्रोतों से करें।",
+    browserProcessingNote: "इस साइट पर गणना के लिए दर्ज किए गए मान ब्राउज़र में संसाधित होते हैं।",
+  },
   sv: {
     navAriaLabel: "Sidfotsnavigering",
     pagesHeading: "Sidor",
@@ -803,6 +813,7 @@ const topLevelLabelMap: Record<
     professions: "Op Beroep",
   },
   ru: { home: "Главная", engineeringHub: "Калькуляторы", units: "Единицы", allConversions: "Все переводы", professions: "По профессии" },
+  hi: { home: "मुख्य पृष्ठ", engineeringHub: "कैलकुलेटर", units: "इकाइयाँ", allConversions: "सभी रूपांतरण", professions: "पेशे" },
   sv: {
     home: "Hem",
     engineeringHub: "Raknare",
@@ -880,6 +891,7 @@ const footerLinksByLocale: Record<
   it: [{ key: "home", label: "Home" }],
   nl: [{ key: "home", label: "Home" }],
   ru: [{ key: "home", label: "Главная" }, { key: "allConversions", label: "Все переводы" }],
+  hi: [{ key: "home", label: "मुख्य पृष्ठ" }, { key: "allConversions", label: "सभी रूपांतरण" }],
   sv: [{ key: "home", label: "Hem" }],
   no: [{ key: "home", label: "Hjem" }],
   da: [{ key: "home", label: "Hjem" }],
@@ -935,8 +947,14 @@ export function getTopLevelLinks(locale: Locale): LinkDefinition[] {
   if (locale === "ru") {
     return [
       { href: "/ru", label: labels.home },
-      { href: "/ru/unit-guides", label: labels.units },
       { href: "/ru/categories", label: labels.allConversions },
+    ];
+  }
+
+  if (locale === "hi") {
+    return [
+      { href: "/hi", label: labels.home },
+      { href: "/hi/categories", label: labels.allConversions },
     ];
   }
 
@@ -973,6 +991,10 @@ export function getCalculatorMenuLinks(locale: Locale): LinkDefinition[] {
 }
 
 export function getCategoryMenuLinks(locale: Locale) {
+  if (locale === "hi" || locale === "ru") {
+    return [{ href: `/${locale}/categories`, label: locale === "hi" ? "सभी रूपांतरण" : "Все переводы" }];
+  }
+
   const categorySummaries = getLocalizedCategorySummaries(locale);
   const basePath = getCollectionBasePath(locale, "categories").slice(
     0,
@@ -1000,7 +1022,7 @@ export function getCategoryMenuLinks(locale: Locale) {
 
   // Ozbekcha icin henuz yerellestirilmis sayfasi olmayan ayakkabi, mutfak
   // ve tarif araclarini Turkce URL'lere baglamiyoruz.
-  if (locale === "uz" || locale === "ru") {
+  if (locale === "uz") {
     return links;
   }
 

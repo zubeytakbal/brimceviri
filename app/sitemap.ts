@@ -116,6 +116,7 @@ import { danishCategoryPages } from "./converter/localizedDanishCategoryPages";
 import { danishUnitPages } from "./converter/localizedDanishUnitPages";
 import { danishConversionPages } from "./converter/localizedDanishConversionPages";
 import { russianConversionPages } from "./converter/localizedRussianConversionPages";
+import { hindiConversionPages } from "./converter/localizedHindiConversionPages";
 import { SITE_URL } from "./siteConfig";
 import { SUPPORTED_LOCALES } from "./i18n/config";
 import { getLocalizedSlugEntries, type RouteCollectionKey } from "./i18n/contentRegistry";
@@ -6476,6 +6477,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/ru/${page.slug}`,
       priority: 0.7,
     })),
+    ...hindiConversionPages.map((page) => ({
+      url: `${baseUrl}/hi/${page.slug}`,
+      priority: 0.7,
+    })),
     ...turkishUnitRoutes,
     ...englishUnitRoutes,
     ...germanUnitRoutes,
@@ -6494,6 +6499,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...curatedLocaleIndexRoutes,
     { url: `${baseUrl}/ru`, priority: 0.8 },
     { url: `${baseUrl}/ru/categories`, priority: 0.7 },
+    { url: `${baseUrl}/hi`, priority: 0.8 },
+    { url: `${baseUrl}/hi/categories`, priority: 0.7 },
     ...italianIndexRoutes,
     ...swedishIndexRoutes,
     ...norwegianIndexRoutes,

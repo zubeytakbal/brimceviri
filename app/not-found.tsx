@@ -162,6 +162,16 @@ bn: {
     secondaryHref: "/",
     secondaryLabel: "Oppna den turkiska startsidan",
   },
+  hi: {
+    lang: "hi",
+    title: "पृष्ठ नहीं मिला",
+    description: "यह पृष्ठ उपलब्ध नहीं है। पता जाँचें या मुख्य पृष्ठ पर जाएँ।",
+    continueHeading: "आगे देखें",
+    primaryHref: "/hi",
+    primaryLabel: "हिन्दी मुख्य पृष्ठ",
+    secondaryHref: "/hi/categories",
+    secondaryLabel: "उपलब्ध श्रेणियाँ",
+  },
   no: {
     lang: "nb",
     title: "Siden ble ikke funnet",

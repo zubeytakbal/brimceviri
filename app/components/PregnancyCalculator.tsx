@@ -13,6 +13,7 @@ const trimesterLabels: Record<
   Exclude<Locale, "ru">,
   Record<PregnancyTrimester, string>
 > = {
+  get hi() { return this.en; },
   tr: {
     1: "1. Trimester",
     2: "2. Trimester",
@@ -102,6 +103,7 @@ const copyByLocale: Record<
     days: string;
   }
 > = {
+  get hi() { return this.en; },
   tr: {
     inputLabel: "Son Adet Tarihinin Ilk Gunu",
     emptyState: "Gecerli bir tarih gir; tarih bugunden sonra veya 45 haftadan daha eski olamaz.",

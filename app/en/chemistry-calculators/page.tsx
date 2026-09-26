@@ -20,7 +20,7 @@ const tools = [
 ];
 
 export const metadata: Metadata = {
-  title: `Chemistry Calculators | ${SITE_NAME}`,
+  title: `Chemistry Calculators`,
   description: "Free chemistry calculators for solutions, stoichiometry, equilibrium, electrochemistry and radioactive decay.",
   alternates: { canonical: pagePath, languages: { en: pagePath } },
   openGraph: { title: `Chemistry Calculators | ${SITE_NAME}`, description: "Free chemistry calculators for solutions, stoichiometry, equilibrium, electrochemistry and radioactive decay.", url: buildSiteUrl(pagePath), siteName: SITE_NAME, locale: "en_US", type: "website" },

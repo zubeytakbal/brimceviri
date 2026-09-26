@@ -5,7 +5,7 @@ import { englishFinanceTools } from "../../i18n/englishFinanceToolCatalog";
 import { SITE_NAME, buildSiteUrl } from "../../siteConfig";
 
 const pagePath = "/en/finance-calculators";
-export const metadata: Metadata = { title: `Finance Calculators | ${SITE_NAME}`, description: "Focused mortgage, amortization and compound-interest estimates with transparent assumptions.", alternates: { canonical: pagePath, languages: { en: pagePath } }, openGraph: { title: "Finance Calculators", description: "Focused personal-finance estimates with transparent assumptions.", url: buildSiteUrl(pagePath), siteName: SITE_NAME, locale: "en_US", type: "website" } };
+export const metadata: Metadata = { title: `Finance Calculators`, description: "Focused mortgage, amortization and compound-interest estimates with transparent assumptions.", alternates: { canonical: pagePath, languages: { en: pagePath } }, openGraph: { title: "Finance Calculators", description: "Focused personal-finance estimates with transparent assumptions.", url: buildSiteUrl(pagePath), siteName: SITE_NAME, locale: "en_US", type: "website" } };
 
 export default function FinanceCalculatorsPage() {
   const pageUrl = buildSiteUrl(pagePath);

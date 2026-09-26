@@ -8,7 +8,7 @@ const pagePath = "/en/physics-calculators";
 const tools = getEnglishScienceToolsBySubject("physics");
 
 export const metadata: Metadata = {
-  title: `Physics Calculators | ${SITE_NAME}`,
+  title: `Physics Calculators`,
   description: "Focused SI physics calculators for speed, force and kinetic energy, with formulas, units and stated limits.",
   alternates: { canonical: pagePath, languages: { en: pagePath } },
   openGraph: { title: "Physics Calculators", description: "Focused SI physics calculators with formulas, units and stated limits.", url: buildSiteUrl(pagePath), siteName: SITE_NAME, locale: "en_US", type: "website" },

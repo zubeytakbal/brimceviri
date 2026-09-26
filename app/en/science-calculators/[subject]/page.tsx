@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const item = subjects[subject as Subject];
   if (!item) return {};
   const path = `/en/science-calculators/${subject}`;
-  return { title: `${item.title} | ${SITE_NAME}`, description: item.description, alternates: { canonical: path, languages: { en: path } }, openGraph: { title: item.title, description: item.description, url: buildSiteUrl(path), siteName: SITE_NAME, locale: "en_US", type: "website" } };
+  return { title: `${item.title}`, description: item.description, alternates: { canonical: path, languages: { en: path } }, openGraph: { title: item.title, description: item.description, url: buildSiteUrl(path), siteName: SITE_NAME, locale: "en_US", type: "website" } };
 }
 
 export default async function ScienceSubjectPage({ params }: PageProps) {

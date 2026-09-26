@@ -12,7 +12,7 @@ const sections = [
 ] as const;
 
 export const metadata: Metadata = {
-  title: `Engineering & STEM Tools | ${SITE_NAME}`,
+  title: `Engineering & STEM Tools`,
   description: "Focused engineering, chemistry, mathematics, physics and biology calculators with clear units and assumptions.",
   alternates: { canonical: pagePath, languages: { en: pagePath } },
   openGraph: { title: "Engineering & STEM Tools", description: "Focused engineering, chemistry and science calculators with clear units and assumptions.", url: buildSiteUrl(pagePath), siteName: SITE_NAME, locale: "en_US", type: "website" },

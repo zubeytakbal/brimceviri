@@ -11,7 +11,7 @@ const tools = [
   { href: "/en/decision-savings-calculators/ev-vs-gas-running-cost", title: "EV vs Gas Running Cost", description: "Compare annual energy cost using your own prices and consumption figures." },
 ];
 
-export const metadata: Metadata = { title: `Automotive Calculators | ${SITE_NAME}`, description: "Practical tire, fuel-consumption, EV-charging and running-cost calculators with clear limits.", alternates: { canonical: pagePath, languages: { en: pagePath } }, openGraph: { title: "Automotive Calculators", description: "Practical transport calculations with clear limits.", url: buildSiteUrl(pagePath), siteName: SITE_NAME, locale: "en_US", type: "website" } };
+export const metadata: Metadata = { title: `Automotive Calculators`, description: "Practical tire, fuel-consumption, EV-charging and running-cost calculators with clear limits.", alternates: { canonical: pagePath, languages: { en: pagePath } }, openGraph: { title: "Automotive Calculators", description: "Practical transport calculations with clear limits.", url: buildSiteUrl(pagePath), siteName: SITE_NAME, locale: "en_US", type: "website" } };
 
 export default function AutomotiveCalculatorsPage() {
   const pageUrl = buildSiteUrl(pagePath);

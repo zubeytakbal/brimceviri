@@ -7,7 +7,7 @@ import { SITE_NAME, buildSiteUrl } from "../../../siteConfig";
 const pagePath = "/en/decision-savings-calculators/led-savings-calculator";
 
 export const metadata: Metadata = {
-  title: `LED Savings Calculator | ${SITE_NAME}`,
+  title: `LED Savings Calculator`,
   description: "Estimate electricity use, annual cost savings and simple payback when replacing older light bulbs with LEDs.",
   alternates: { canonical: pagePath, languages: { en: pagePath } },
   openGraph: { title: "LED Savings Calculator", description: "Estimate electricity use, annual cost savings and simple payback when replacing older light bulbs with LEDs.", url: buildSiteUrl(pagePath), siteName: SITE_NAME, locale: "en_US", type: "website" },

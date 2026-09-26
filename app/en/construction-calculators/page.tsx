@@ -6,7 +6,7 @@ import { SITE_NAME, buildSiteUrl } from "../../siteConfig";
 const pagePath = "/en/construction-calculators";
 
 export const metadata: Metadata = {
-  title: `Construction Calculators | ${SITE_NAME}`,
+  title: `Construction Calculators`,
   description:
     "Plan concrete, paint, tile, brick, flooring and wallpaper quantities with practical construction and home-project calculators.",
   alternates: { canonical: pagePath, languages: { en: pagePath } },

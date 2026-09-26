@@ -11,7 +11,7 @@ const tools = [
   { href: "/en/data-storage", title: "Data Storage Conversions", description: "Convert bits, bytes and decimal or binary storage units." },
 ];
 
-export const metadata: Metadata = { title: `Data & Computing Calculators | ${SITE_NAME}`, description: "Focused computing tools for number bases, image dimensions, video bitrate and data-storage conversions.", alternates: { canonical: pagePath, languages: { en: pagePath } }, openGraph: { title: "Data & Computing Calculators", description: "Focused computing tools and data conversions.", url: buildSiteUrl(pagePath), siteName: SITE_NAME, locale: "en_US", type: "website" } };
+export const metadata: Metadata = { title: `Data & Computing Calculators`, description: "Focused computing tools for number bases, image dimensions, video bitrate and data-storage conversions.", alternates: { canonical: pagePath, languages: { en: pagePath } }, openGraph: { title: "Data & Computing Calculators", description: "Focused computing tools and data conversions.", url: buildSiteUrl(pagePath), siteName: SITE_NAME, locale: "en_US", type: "website" } };
 
 export default function DataComputingCalculatorsPage() {
   const pageUrl = buildSiteUrl(pagePath);

@@ -17,7 +17,7 @@ const germanPath = getElectricalHubPath("de");
 const copy = getElectricalHubCopy("tr");
 
 export const metadata: Metadata = {
-  title: `${copy.title} | ${SITE_NAME}`,
+  title: `${copy.title}`,
   description: copy.description,
   alternates: {
     canonical: pagePath,

@@ -7,7 +7,7 @@ import { SITE_NAME, buildSiteUrl } from "../../siteConfig";
 const pagePath = "/en/mathematics-calculators";
 const tools = getEnglishScienceToolsBySubject("mathematics");
 
-export const metadata: Metadata = { title: `Mathematics Calculators | ${SITE_NAME}`, description: "Focused mathematics calculators for percentages, arithmetic means and real quadratic roots with methods and limits.", alternates: { canonical: pagePath, languages: { en: pagePath } }, openGraph: { title: "Mathematics Calculators", description: "Focused mathematics calculators with methods, worked examples and limits.", url: buildSiteUrl(pagePath), siteName: SITE_NAME, locale: "en_US", type: "website" } };
+export const metadata: Metadata = { title: `Mathematics Calculators`, description: "Focused mathematics calculators for percentages, arithmetic means and real quadratic roots with methods and limits.", alternates: { canonical: pagePath, languages: { en: pagePath } }, openGraph: { title: "Mathematics Calculators", description: "Focused mathematics calculators with methods, worked examples and limits.", url: buildSiteUrl(pagePath), siteName: SITE_NAME, locale: "en_US", type: "website" } };
 
 export default function MathematicsCalculatorsPage() {
   const pageUrl = buildSiteUrl(pagePath);

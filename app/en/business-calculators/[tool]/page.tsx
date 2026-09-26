@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { tool: slug } = await params;
   const tool = findEnglishBusinessTool(slug);
   if (!tool) return {};
-  return { title: `${tool.title} | ${SITE_NAME}`, description: tool.description, alternates: { canonical: tool.href, languages: { en: tool.href } }, openGraph: { title: tool.title, description: tool.description, url: buildSiteUrl(tool.href), siteName: SITE_NAME, locale: "en_US", type: "website" } };
+  return { title: `${tool.title}`, description: tool.description, alternates: { canonical: tool.href, languages: { en: tool.href } }, openGraph: { title: tool.title, description: tool.description, url: buildSiteUrl(tool.href), siteName: SITE_NAME, locale: "en_US", type: "website" } };
 }
 
 export default async function BusinessToolPage({ params }: PageProps) {

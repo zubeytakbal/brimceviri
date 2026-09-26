@@ -20,7 +20,7 @@ const faqItems: FaqItem[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "حاسبة سعر الذهب والفضة الحي | BirimCeviri.app",
+  title: "حاسبة سعر الذهب والفضة الحي",
   description:
     "احسب قيمة الذهب أو الفضة حسب الوزن والعيار وعملتك، باستخدام سعر السوق العالمي الحي المحدث تلقائيًا.",
   alternates: {

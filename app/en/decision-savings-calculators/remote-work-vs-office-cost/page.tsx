@@ -7,7 +7,7 @@ import { SITE_NAME, buildSiteUrl } from "../../../siteConfig";
 const pagePath = "/en/decision-savings-calculators/remote-work-vs-office-cost";
 
 export const metadata: Metadata = {
-  title: `Remote Work vs Office Cost Calculator | ${SITE_NAME}`,
+  title: `Remote Work vs Office Cost Calculator`,
   description: "Estimate the annual financial difference between remote work and office work using commute, lunch and at-home costs.",
   alternates: { canonical: pagePath, languages: { en: pagePath } },
   openGraph: { title: "Remote Work vs Office Cost Calculator", description: "Estimate the annual financial difference between remote work and office work using your own costs.", url: buildSiteUrl(pagePath), siteName: SITE_NAME, locale: "en_US", type: "website" },

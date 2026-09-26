@@ -153,7 +153,7 @@ function createSpanishTemperatureExplanation(
     return `Para convertir ${fromName} en ${toName}, se resta 273,15. 273,15 ${fromUnit} equivale a 0 ${toUnit}.`;
   }
 
-  return `Usa la relacion de temperatura definida para convertir ${fromName} en ${toName}.`;
+  return `Usa la relación de temperatura definida para convertir ${fromName} en ${toName}.`;
 }
 
 const spanishUnitBySourceSlug: Record<string, { name: string; slug: string }> =

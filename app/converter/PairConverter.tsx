@@ -281,11 +281,11 @@ export default function PairConverter({
               : locale === "fr"
                 ? `Valeur de ${activeFromName}`
                 : locale === "es" || locale === "es-419"
-                  ? `Valör de ${activeFromName}`
+                  ? `Valor de ${activeFromName}`
                   : locale === "pt"
-                    ? `Valör de ${activeFromName}`
+                    ? `Valor de ${activeFromName}`
                     : locale === "it"
-                      ? `Valöre di ${activeFromName}`
+                      ? `Valore di ${activeFromName}`
                       : locale === "nl"
                         ? `Waarde in ${activeFromName}`
                         : locale === "ru"

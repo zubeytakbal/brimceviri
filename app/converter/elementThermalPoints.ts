@@ -29,7 +29,7 @@ export const elementThermalTable: ElementThermalRow[] = [
   { id: "nickel", label: "Nikel (Ni)", meltingPointC: 1455, boilingPointC: 2913 },
   { id: "copper", label: "Bakır (Cu)", meltingPointC: 1084.62, boilingPointC: 2562 },
   { id: "zinc", label: "Çinko (Zn)", meltingPointC: 419.53, boilingPointC: 907 },
-  { id: "silver", label: "Gümüş (Ağ)", meltingPointC: 961.78, boilingPointC: 2162 },
+  { id: "silver", label: "Gümüş (Ag)", meltingPointC: 961.78, boilingPointC: 2162 },
   { id: "tin", label: "Kalay (Sn)", meltingPointC: 231.93, boilingPointC: 2602 },
   { id: "iodine", label: "İyot (I)", meltingPointC: 113.7, boilingPointC: 184.4 },
   { id: "tungsten", label: "Tungsten (W)", meltingPointC: 3422, boilingPointC: 5555 },

@@ -6,6 +6,10 @@ import { getLocalizedUnitOptions } from "../app/converter/localizedUnitOptions";
 import { italianConversionPages } from "../app/converter/localizedItalianConversionPages";
 import { nederlandsConversionPages } from "../app/converter/localizedNederlandsConversionPages";
 import { portugueseConversionPages } from "../app/converter/localizedPortugueseConversionPages";
+import { spanishConversionPages } from "../app/converter/localizedSpanishConversionPages";
+import { es419ConversionPages } from "../app/converter/localizedEs419ConversionPages";
+import { spanishUnitPages } from "../app/converter/localizedSpanishUnitPages";
+import { es419UnitPages } from "../app/converter/localizedEs419UnitPages";
 
 describe("Iskandinav mili (10 km)", () => {
   it("10 km'ye esittir ve Ingiliz milinden farklidir", () => {
@@ -63,9 +67,30 @@ describe("dil basina donusum adresleri benzersiz", () => {
     ["nl", nederlandsConversionPages],
     ["it", italianConversionPages],
     ["pt", portugueseConversionPages],
+    ["es", spanishConversionPages],
+    ["es-419", es419ConversionPages],
   ] as const)("%s", (_locale, pages) => {
     const seen = new Set<string>();
     const duplicates = pages.map((page) => page.slug).filter((slug) => (seen.has(slug) ? true : (seen.add(slug), false)));
     expect(duplicates).toEqual([]);
+  });
+});
+
+describe("ispanyolca birim sayfalari", () => {
+  it.each([
+    ["es", spanishUnitPages],
+    ["es-419", es419UnitPages],
+  ] as const)("%s: birim adresleri ve kaynaklari benzersiz", (_locale, pages) => {
+    const slugs = pages.map((page) => page.slug);
+    const sources = pages.map((page) => page.sourceSlug);
+    expect(slugs.length - new Set(slugs).size).toBe(0);
+    expect(sources.length - new Set(sources).size).toBe(0);
+  });
+
+  it("yaygin aramalarin sayfalari var", () => {
+    const slugs = new Set(spanishConversionPages.map((page) => page.slug));
+    for (const slug of ["pie-cuadrado-metro-cuadrado", "megabit-megabyte", "milimetro-de-mercurio-pascal", "onza-troy-gramo", "kilocaloria-kilojulio"]) {
+      expect(slugs.has(slug), slug).toBe(true);
+    }
   });
 });

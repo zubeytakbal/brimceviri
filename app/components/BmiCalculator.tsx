@@ -56,7 +56,7 @@ const copyByLocale: Record<Exclude<Locale, "ru">, BmiCopy> = {
       light: "Az hareketli (haftada 1-3 gün egzersiz)",
       moderate: "Orta hareketli (haftada 3-5 gün egzersiz)",
       active: "Hareketli (haftada 6-7 gün egzersiz)",
-      "very-active": "Çok hareketli (günde 2 kez egzersiz / fiziksel is)",
+      "very-active": "Çok hareketli (günde 2 kez egzersiz / fiziksel iş)",
     },
     emptyState: "Geçerli değerler girerek sonucu görebilirsin.",
     resultLabels: {

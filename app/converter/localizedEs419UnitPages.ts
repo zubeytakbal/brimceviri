@@ -5,6 +5,8 @@
 // 4 herramientas universales (página de inicio), forman los 17 elementos
 // de la identidad del sitio.
 
+import { buildSpanishExtraUnitPages } from "./localizedSpanishExtraUnitPages";
+
 export type LocalizedSpanishUnitPage = {
   locale: "es";
   sourceSlug: string;
@@ -374,7 +376,7 @@ export const es419UnitPages: LocalizedSpanishUnitPage[] = [
     historySummary: "Daniel Gabriel Fahrenheit propuso la escala en 1724; sus puntos de referencia históricos dieron lugar a la escala actual.",
     measurementSystem: "Escala de uso común en Estados Unidos",
     siEquivalent: "°C = (°F − 32) × 5/9",
-    commonUses: "Meteorologia y cocina en Estados Unidos",
+    commonUses: "Meteorología y cocina en Estados Unidos",
   },
   {
     locale: "es",
@@ -812,6 +814,7 @@ export const es419UnitPages: LocalizedSpanishUnitPage[] = [
     siEquivalent: "92,5 % de plata fina nominal",
     commonUses: "Joyería y cubertería",
   },
+  ...buildSpanishExtraUnitPages("es-419"),
 ];
 
 export function findEs419UnitPageBySourceSlug(sourceSlug: string) {

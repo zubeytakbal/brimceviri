@@ -192,7 +192,7 @@ export default async function SpanishConversionPage({ params }: PageProps) {
 
             <dl>
               <div>
-                <dt>Formula</dt>
+                <dt>Fórmula</dt>
                 <dd>{page.formula}</dd>
               </div>
 

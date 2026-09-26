@@ -70,14 +70,14 @@ const copy = {
     knownUnit: "Unidad conocida",
     value: "Valor",
     resultHeading: "Equivalencias",
-    invalidValue: "Introduce un numero valido para ver la conversion.",
+    invalidValue: "Introduce un numero valido para ver la conversión.",
   },
   "es-419": {
     ingredient: "Ingrediente",
     knownUnit: "Unidad conocida",
     value: "Valor",
     resultHeading: "Equivalencias",
-    invalidValue: "Introduce un numero valido para ver la conversion.",
+    invalidValue: "Introduce un numero valido para ver la conversión.",
   },
   pt: {
     ingredient: "Ingrediente",

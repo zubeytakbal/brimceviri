@@ -525,7 +525,7 @@ export const spanishCategoryPages: LocalizedSpanishCategoryPage[] = [
     unitTable: [
       { name: "Kelvin", symbol: "K", referenceValue: "Unidad básica", system: "SI", commonUse: "Cálculos científicos y termodinámicos" },
       { name: "Celsius", symbol: "°C", referenceValue: "K = °C + 273,15", system: "Métrico (uso cotidiano)", commonUse: "Meteorología, vida cotidiana y ciencia" },
-      { name: "Fahrenheit", symbol: "°F", referenceValue: "°F = (°C × 9/5) + 32", system: "Estados Unidos", commonUse: "Meteorologia diaria en Estados Unidos" },
+      { name: "Fahrenheit", symbol: "°F", referenceValue: "°F = (°C × 9/5) + 32", system: "Estados Unidos", commonUse: "Meteorología diaria en Estados Unidos" },
       { name: "Rankine", symbol: "°R", referenceValue: "°R = (°C + 273,15) × 9/5", system: "Estados Unidos (ingeniería)", commonUse: "Cálculos de ingeniería termodinámica" },
       { name: "Réaumur", symbol: "°Ré", referenceValue: "°Ré = °C × 4/5", system: "Histórico (Europa)", commonUse: "Textos históricos y recetas tradicionales" },
     ],
@@ -750,7 +750,7 @@ export const spanishCategoryPages: LocalizedSpanishCategoryPage[] = [
         paragraphs: [
           "En 1643, Evangelista Torricelli construyó un barómetro de mercurio. Observó que la columna de mercurio se detenía a cierta altura y dejaba un vacío sobre ella.",
           "Interpretó que el peso del aire exterior equilibraba esa columna. El experimento mostró que el aire tiene peso medible y, por tanto, ejerce presión.",
-          "En 1648, Florin Périer verificó en el Puy de Dôme, siguiendo una propuesta de Blaise Pascal, que la presión atmosférica disminuye con la altitud. Estos trabajos fueron decisivos para la metrología de la presión.",
+          "En 1648, Florín Périer verificó en el Puy de Dôme, siguiendo una propuesta de Blaise Pascal, que la presión atmosférica disminuye con la altitud. Estos trabajos fueron decisivos para la metrología de la presión.",
         ],
       },
       {

@@ -143,7 +143,7 @@ const brandLabels: Record<Locale, Record<ShoeBrandKey, string>> = {
     converse: "Converse",
   },
   es: {
-    genel: "General (estandar)",
+    genel: "General (estándar)",
     nike: "Nike",
     adidas: "Adidas",
     puma: "Puma",
@@ -151,7 +151,7 @@ const brandLabels: Record<Locale, Record<ShoeBrandKey, string>> = {
     converse: "Converse",
   },
   "es-419": {
-    genel: "General (estandar)",
+    genel: "General (estándar)",
     nike: "Nike",
     adidas: "Adidas",
     puma: "Puma",
@@ -226,14 +226,14 @@ const groupLabels: Record<Locale, Record<ShoeSizeGroupKey, string>> = {
   es: {
     erkek: "Hombre",
     kadin: "Mujer",
-    bebek: "Bebe / Nino pequeno",
-    "buyuk-cocuk": "Nino mayor",
+    bebek: "Bebe / Niño pequeño",
+    "buyuk-cocuk": "Niño mayor",
   },
   "es-419": {
     erkek: "Hombre",
     kadin: "Mujer",
-    bebek: "Bebe / Nino pequeno",
-    "buyuk-cocuk": "Nino mayor",
+    bebek: "Bebe / Niño pequeño",
+    "buyuk-cocuk": "Niño mayor",
   },
   pt: {
     erkek: "Masculino",
@@ -356,7 +356,7 @@ const copy = {
     value: "Valor",
     matchingSizes: "Tallas equivalentes",
     invalidValue: "Introduce un numero valido para ver la equivalencia.",
-    euResult: "Espana (EU)",
+    euResult: "España (EU)",
     usResult: "Estados Unidos (US)",
     ukResult: "Reino Unido (UK)",
     footLength: "Longitud del pie",

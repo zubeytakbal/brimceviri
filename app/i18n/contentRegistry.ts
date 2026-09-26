@@ -46,6 +46,7 @@ import { danishCategoryPages } from "../converter/localizedDanishCategoryPages";
 import { danishUnitPages } from "../converter/localizedDanishUnitPages";
 import { danishConversionPages } from "../converter/localizedDanishConversionPages";
 import { russianConversionPages } from "../converter/localizedRussianConversionPages";
+import { russianCategoryPages, russianUnitPages } from "../converter/localizedRussianReferencePages";
 import { hindiConversionPages } from "../converter/localizedHindiConversionPages";
 import { hindiCategoryPages, hindiUnitPages } from "../converter/localizedHindiReferencePages";
 
@@ -153,7 +154,7 @@ const localizedCategorySummariesByLocale: Record<
     category: page.category,
     title: page.title,
   })),
-  ru: [],
+  ru: russianCategoryPages.map((page) => ({ sourceSlug: page.sourceSlug, slug: page.slug, category: page.category, title: page.title })),
   hi: hindiCategoryPages.map((page) => ({ sourceSlug: page.sourceSlug, slug: page.slug, category: page.category, title: page.title })),
   no: norwegianCategoryPages.map((page) => ({
     sourceSlug: page.sourceSlug,
@@ -226,7 +227,7 @@ const localizedSlugEntriesByLocale: Record<
       sourceSlug: page.sourceSlug,
       slug: page.slug,
     })),
-    ru: [],
+    ru: russianUnitPages.map((page) => ({ sourceSlug: page.sourceSlug, slug: page.slug })),
     hi: hindiUnitPages.map((page) => ({ sourceSlug: page.sourceSlug, slug: page.slug })),
     no: norwegianUnitPages.map((page) => ({
       sourceSlug: page.sourceSlug,
@@ -290,7 +291,7 @@ const localizedSlugEntriesByLocale: Record<
       sourceSlug: page.sourceSlug,
       slug: page.slug,
     })),
-    ru: [],
+    ru: russianCategoryPages.map((page) => ({ sourceSlug: page.sourceSlug, slug: page.slug })),
     hi: hindiCategoryPages.map((page) => ({ sourceSlug: page.sourceSlug, slug: page.slug })),
     no: norwegianCategoryPages.map((page) => ({
       sourceSlug: page.sourceSlug,

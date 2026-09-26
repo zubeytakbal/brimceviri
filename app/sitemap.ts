@@ -116,6 +116,7 @@ import { danishCategoryPages } from "./converter/localizedDanishCategoryPages";
 import { danishUnitPages } from "./converter/localizedDanishUnitPages";
 import { danishConversionPages } from "./converter/localizedDanishConversionPages";
 import { russianConversionPages } from "./converter/localizedRussianConversionPages";
+import { russianCategoryPages, russianUnitPages } from "./converter/localizedRussianReferencePages";
 import { hindiConversionPages } from "./converter/localizedHindiConversionPages";
 import { hindiCategoryPages, hindiUnitPages } from "./converter/localizedHindiReferencePages";
 import { SITE_URL } from "./siteConfig";
@@ -6500,6 +6501,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...curatedLocaleIndexRoutes,
     { url: `${baseUrl}/ru`, priority: 0.8 },
     { url: `${baseUrl}/ru/categories`, priority: 0.7 },
+    { url: `${baseUrl}/ru/unit-guides`, priority: 0.7 },
+    ...russianCategoryPages.map((page) => ({ url: `${baseUrl}/ru/categories/${page.slug}`, priority: 0.7 })),
+    ...russianUnitPages.map((page) => ({ url: `${baseUrl}/ru/unit-guides/${page.slug}`, priority: 0.65 })),
     { url: `${baseUrl}/hi`, priority: 0.8 },
     { url: `${baseUrl}/hi/categories`, priority: 0.7 },
     { url: `${baseUrl}/hi/unit-guides`, priority: 0.7 },

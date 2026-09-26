@@ -890,7 +890,7 @@ const footerLinksByLocale: Record<
   pt: [{ key: "home", label: "Inicio" }],
   it: [{ key: "home", label: "Home" }],
   nl: [{ key: "home", label: "Home" }],
-  ru: [{ key: "home", label: "Главная" }, { key: "allConversions", label: "Все переводы" }],
+  ru: [{ key: "home", label: "Главная" }, { key: "units", label: "Единицы" }, { key: "allConversions", label: "Все переводы" }],
   hi: [{ key: "home", label: "मुख्य पृष्ठ" }, { key: "units", label: "इकाइयाँ" }, { key: "allConversions", label: "सभी रूपांतरण" }],
   sv: [{ key: "home", label: "Hem" }],
   no: [{ key: "home", label: "Hjem" }],
@@ -948,6 +948,7 @@ export function getTopLevelLinks(locale: Locale): LinkDefinition[] {
     return [
       { href: "/ru", label: labels.home },
       { href: "/ru/categories", label: labels.allConversions },
+      { href: "/ru/unit-guides", label: labels.units },
     ];
   }
 

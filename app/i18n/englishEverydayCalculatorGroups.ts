@@ -19,6 +19,12 @@ export const englishEverydayCalculatorGroups: Array<{
     tools: ["calorieCalculator", "bmiCalculator", "bodyFatCalculator", "idealWeightCalculator", "heightConverter", "standardDrinkCalculator", "ivDripRateCalculator", "dateCalculator", "pregnancyCalculator", "sleepCalculator", "paceCalculator"],
   },
   {
+    id: "india",
+    title: "India: land, gold and numbers",
+    description: "Convert bigha, katha, gaj and guntha by state, price gold jewellery with making charges and GST, and switch between lakh, crore and million.",
+    tools: ["indiaLandConverter", "goldPriceCalculatorIndia", "lakhCroreConverter"],
+  },
+  {
     id: "school-and-study",
     title: "School and study",
     description: "Work out weighted class grades, letter grades and the score you need on a final exam.",

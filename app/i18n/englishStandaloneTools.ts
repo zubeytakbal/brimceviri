@@ -45,7 +45,10 @@ export type EnglishStandaloneToolComponentKey =
   | "awgConverter"
   | "psuCalculator"
   | "ivDripRateCalculator"
-  | "depreciationCalculator";
+  | "depreciationCalculator"
+  | "indiaLandConverter"
+  | "goldPriceCalculatorIndia"
+  | "lakhCroreConverter";
 
 export type EnglishStandaloneTool = {
   slug: string;
@@ -100,7 +103,8 @@ export type EnglishStandaloneTool = {
     | "awgConverter"
     | "psuCalculator"
     | "ivDripRateCalculator"
-    | "amortismanCalculator";
+    | "amortismanCalculator"
+    | "goldKarat";
   cardDescription: string;
   articleSections: Array<{
     title: string;
@@ -1483,6 +1487,126 @@ export const englishStandaloneTools: EnglishStandaloneTool[] = [
     ],
     isEnglishOnly: true,
     priority: 0.7,
+  },
+  {
+    slug: "india-land-area-converter",
+    englishPath: "/en/india-land-area-converter",
+    turkishPath: "/alan-donusumleri",
+    title: "India Land Area Converter: Bigha, Gaj, Acre",
+    description:
+      "Convert bigha, katha, biswa, gaj, guntha, cent, ground, marla, kanal, acres and sq ft, with the bigha size for your state (West Bengal, Bihar, UP, Rajasthan…).",
+    intro:
+      "Choose your state, enter an area and pick its unit. The converter shows the same area in every common Indian land unit and in square feet, square meters, acres and hectares.",
+    component: "indiaLandConverter",
+    iconName: "area",
+    cardDescription: "Converts bigha, katha, gaj, guntha, cent and acres with state-wise bigha sizes.",
+    articleSections: [
+      {
+        title: "Why the bigha is different in every state",
+        body: "The bigha is a traditional land unit that was never standardized nationally. In West Bengal and Assam one bigha is 14,400 sq ft, in Bihar, Jharkhand and the pucca bigha of Rajasthan about 27,225 sq ft, in Gujarat and the kaccha bigha of Rajasthan 17,424 sq ft, in Madhya Pradesh about 12,000 sq ft and in Himachal Pradesh 8,712 sq ft. Uttar Pradesh varies the most: eastern and central districts use about 27,000 sq ft while some western districts use a bigha of around 6,750 sq ft. Always choose the state before converting.",
+      },
+      {
+        title: "Units that are the same everywhere",
+        body: "Some land units have fixed legal definitions: 1 gaj = 1 square yard = 9 sq ft; 1 guntha = 121 square yards = 1,089 sq ft (1/40 acre); 1 cent = 1 decimal = 435.6 sq ft (1/100 acre); 1 ground = 2,400 sq ft; 1 marla = 272.25 sq ft; 1 kanal = 20 marla = 5,445 sq ft; 1 acre = 43,560 sq ft; 1 hectare = 10,000 m², about 2.471 acres.",
+      },
+      {
+        title: "Worked example",
+        body: "A plot of 2 bigha in West Bengal is 2 × 14,400 = 28,800 sq ft, which is 40 katha, 3,200 gaj, 66.1 cent or 0.661 acre. The same 2 bigha in Bihar is about 54,450 sq ft — 1.25 acres — almost twice as large.",
+      },
+      {
+        title: "Katha, biswa and dhur",
+        body: "Bigha is divided into smaller local units. In West Bengal 1 bigha = 20 katha (720 sq ft each), while in Assam 1 bigha = 5 katha (2,880 sq ft each). In Bihar 1 bigha = 20 katha and 1 katha = 20 dhur. In Uttar Pradesh and Rajasthan the bigha is divided into 20 biswa. Because these sub-units follow the local bigha, they differ between states too.",
+      },
+    ],
+    isEnglishOnly: true,
+    faq: [
+      { question: "How many square feet are in 1 bigha?", answer: "It depends on the state: 14,400 sq ft in West Bengal and Assam, about 27,225 sq ft in Bihar and Jharkhand, 27,000 sq ft in eastern and central Uttar Pradesh, 17,424 sq ft in Gujarat, 12,000 sq ft in Madhya Pradesh and 8,712 sq ft in Himachal Pradesh." },
+      { question: "How many katha are in 1 bigha?", answer: "20 katha in West Bengal and Bihar, but 5 katha in Assam, where each katha is larger (2,880 sq ft)." },
+      { question: "How many gaj are in 1 bigha?", answer: "A West Bengal bigha of 14,400 sq ft is 1,600 gaj (square yards). A Bihar bigha of 27,225 sq ft is 3,025 gaj." },
+      { question: "How many cents are in an acre?", answer: "100 cents. One cent (also called a decimal) is 1/100 acre, or 435.6 sq ft." },
+      { question: "Which bigha value should I use for a property document?", answer: "Use the value recorded by your local revenue office or land records portal. The converter uses common reference values, which can differ from the size used in a particular district." },
+    ],
+    priority: 0.8,
+  },
+  {
+    slug: "gold-price-calculator-india",
+    englishPath: "/en/gold-price-calculator-india",
+    turkishPath: "/kuyumcu-araclari",
+    title: "Gold Price Calculator India (22K, 24K, GST)",
+    description:
+      "Calculate the price of gold jewellery in India: gold rate × weight, plus making charges and 3% GST. Works for 24K, 22K (916), 18K and 14K, in grams or tola.",
+    intro:
+      "Enter the gold rate, the weight and the making charges from your jeweller. The calculator adds 3% GST and shows the final price and the effective price per gram.",
+    component: "goldPriceCalculatorIndia",
+    iconName: "goldKarat",
+    cardDescription: "Jewellery price with making charges and 3% GST, in grams or tola.",
+    articleSections: [
+      {
+        title: "How gold jewellery price is calculated in India",
+        body: "Price = (gold rate per gram × weight) + making charges, and GST of 3% is added on that total. Making charges are quoted either as a percentage of the gold value (often somewhere between about 8% and 25%, depending on the design) or as a fixed amount per gram. Always compare the final price, not only the gold rate.",
+      },
+      {
+        title: "Worked example",
+        body: "10 grams of 22K gold at ₹6,900 per gram is worth ₹69,000. With 12% making charges (₹8,280) the price before tax is ₹77,280, and 3% GST adds ₹2,318.40, for a total of ₹79,598.40 — about ₹7,960 per gram.",
+      },
+      {
+        title: "22K, 24K, 18K and hallmark numbers",
+        body: "The BIS hallmark shows purity in parts per thousand: 999 is 24K (pure gold, used for coins and bars), 916 is 22K (91.6% gold, the most common for jewellery), 750 is 18K and 585 is 14K. If you only know the 24K rate, a 22K rate can be estimated as 24K rate × 916 ÷ 999 — but jewellers publish their own daily 22K rate, which is the one to use.",
+      },
+      {
+        title: "Tola and 10 grams",
+        body: "Gold rates in India are often quoted per 10 grams, and older family jewellery is sometimes weighed in tola. One tola is 11.6638 grams, so 1 tola of gold at ₹6,900 per gram is worth about ₹80,480 before making charges and GST.",
+      },
+      {
+        title: "Before you buy",
+        body: "Check the BIS hallmark and HUID code, ask for the net gold weight separately from stones, and confirm how making charges and wastage are shown on the bill. When selling or exchanging old gold, making charges and GST are not paid back, so the amount you receive is based on the gold value only, often after a deduction.",
+      },
+    ],
+    isEnglishOnly: true,
+    faq: [
+      { question: "How much GST is charged on gold jewellery?", answer: "3% GST is charged on the value of gold jewellery including the making charges billed by the jeweller." },
+      { question: "How do I calculate the 22K rate from the 24K rate?", answer: "Multiply the 24K rate by 916 and divide by 999. At a 24K rate of ₹7,500 per gram, the 22K estimate is about ₹6,877 per gram. Use your jeweller's published 22K rate when you have it." },
+      { question: "How many grams are in 1 tola?", answer: "1 tola = 11.6638 grams (often rounded to 11.66 g)." },
+      { question: "What are typical making charges?", answer: "They vary widely by jeweller and design — plain chains and coins are at the low end, intricate or handmade designs much higher. Ask for the making charge in writing and compare the final price." },
+      { question: "Is this the same as the carat of a diamond?", answer: "No. Gold purity is measured in karats (K), such as 22K. Gemstone weight is measured in carats (ct), where 1 ct = 0.2 grams." },
+    ],
+    priority: 0.8,
+  },
+  {
+    slug: "lakh-crore-converter",
+    englishPath: "/en/lakh-crore-converter",
+    turkishPath: "/diger-donusumler",
+    title: "Lakh to Crore, Million & Billion Converter",
+    description:
+      "Convert lakh and crore to million and billion (and back), and see any number written with Indian (1,00,00,000) and international (10,000,000) comma grouping.",
+    intro:
+      "Enter a number and choose its unit — lakh, crore, million, billion or more — to see it in every other unit and written in both digit-grouping styles.",
+    component: "lakhCroreConverter",
+    iconName: "numberBaseCalculator",
+    cardDescription: "Converts lakh and crore to million and billion, with Indian digit grouping.",
+    articleSections: [
+      {
+        title: "Lakh and crore in the Indian numbering system",
+        body: "In India, large numbers are grouped differently: after the first three digits, commas come every two digits. 1 lakh = 1,00,000 (one hundred thousand) and 1 crore = 1,00,00,000 (ten million) = 100 lakh. News, salaries, property prices and budgets are usually stated in lakh and crore.",
+      },
+      {
+        title: "Quick conversions",
+        body: "10 lakh = 1 million. 1 crore = 10 million. 100 crore = 1 billion (sometimes called 1 arab). 1 lakh crore = 1 trillion. To convert crore to million, multiply by 10; to convert million to lakh, multiply by 10; to convert billion to crore, multiply by 100.",
+      },
+      {
+        title: "Worked example",
+        body: "A salary of ₹18 lakh a year is ₹18,00,000, or 1.8 million rupees. A company valued at ₹2,500 crore is worth 25 billion rupees (₹25,000,000,000), written ₹25,00,00,00,000 in Indian format.",
+      },
+    ],
+    isEnglishOnly: true,
+    faq: [
+      { question: "How many lakh are in a crore?", answer: "100 lakh make 1 crore." },
+      { question: "How much is 1 crore in million?", answer: "1 crore = 10 million (10,000,000)." },
+      { question: "How many crore are in a billion?", answer: "1 billion = 100 crore." },
+      { question: "How much is 1 million in lakh?", answer: "1 million = 10 lakh (10,00,000)." },
+      { question: "How many zeros are in a crore?", answer: "Seven: 1 crore = 1,00,00,000." },
+    ],
+    priority: 0.8,
   },
 ];
 

@@ -179,6 +179,113 @@ export const englishEditorialConversions: readonly EnglishEditorialConversion[] 
       { href: "/en/recipe-converter", label: "Recipe converter" },
     ],
   },
+  {
+    slug: "grams-to-carats",
+    title: "Carat (ct) is not the same as karat (K)",
+    paragraphs: [
+      "This converter uses the metric carat for gemstones: 1 carat (ct) is exactly 0.2 grams, so 1 gram = 5 carats. A 0.5 g diamond is 2.5 ct.",
+      "Gold purity uses a different word with a similar sound: the karat (K). 24K is pure gold, 22K is 91.6% gold (hallmark 916) and 18K is 75% (750). Karat says nothing about weight — 10 grams of 22K gold is still 10 grams. To work out pure gold content or a jewellery price, use the gold tools below.",
+    ],
+    note: "Diamonds and gemstones are weighed in carats; gold is weighed in grams (or tola) and graded in karats.",
+    related: [
+      { href: "/en/carats-to-grams", label: "Carats to grams" },
+      { href: "/en/22k-gold-to-24k-gold", label: "22K to 24K gold" },
+      { href: "/en/gold-price-calculator-india", label: "Gold price calculator (India)" },
+    ],
+  },
+  {
+    slug: "carats-to-grams",
+    title: "Carats for gemstones, grams for gold",
+    paragraphs: [
+      "1 metric carat is exactly 0.2 grams (200 milligrams). Multiply carats by 0.2 to get grams: a 1.5 ct stone weighs 0.3 g.",
+      "The karat (K) used for gold is a purity scale, not a weight. 22K gold (916) contains 91.6% gold whatever it weighs.",
+    ],
+    related: [
+      { href: "/en/grams-to-carats", label: "Grams to carats" },
+      { href: "/en/gold-price-calculator-india", label: "Gold price calculator (India)" },
+      { href: "/en/grain-to-grams", label: "Grains to grams" },
+    ],
+  },
+  {
+    slug: "22k-gold-to-24k-gold",
+    title: "22K (916) gold and its pure gold content",
+    paragraphs: [
+      "22K gold is 22 parts gold out of 24, about 91.67% in theory; in India, BIS-hallmarked 22K jewellery is stamped 916, meaning at least 91.6% gold. This converter uses 22/24.",
+      "Example: 10 grams of 22K gold contains 10 × 22 ÷ 24 = 9.17 grams of pure (24K) gold. That is why the 22K rate per gram is lower than the 24K rate. To price jewellery with making charges and GST, use the gold price calculator.",
+    ],
+    note: "When you sell or exchange old jewellery, the buyer tests the actual purity; the value is based on the pure gold content, usually after a deduction.",
+    related: [
+      { href: "/en/24k-gold-to-22k-gold", label: "24K to 22K gold" },
+      { href: "/en/gold-price-calculator-india", label: "Gold price calculator (India)" },
+      { href: "/en/22k-gold-to-18k-gold", label: "22K to 18K gold" },
+    ],
+  },
+  {
+    slug: "24k-gold-to-22k-gold",
+    title: "Making 22K gold from pure gold",
+    paragraphs: [
+      "22K gold is 22/24 gold (about 91.67%). Pure 24K gold is too soft for most jewellery, so it is alloyed with copper, silver or zinc.",
+      "Example: 9.17 grams of pure gold makes 9.17 × 24 ÷ 22 = 10 grams of 22K gold. The extra 0.83 g is the alloy metal.",
+    ],
+    related: [
+      { href: "/en/22k-gold-to-24k-gold", label: "22K to 24K gold" },
+      { href: "/en/gold-price-calculator-india", label: "Gold price calculator (India)" },
+      { href: "/en/18k-gold-to-22k-gold", label: "18K to 22K gold" },
+    ],
+  },
+  {
+    slug: "bigha-to-square-meters",
+    title: "Which bigha does this page use?",
+    paragraphs: [
+      "This page uses the bigha of West Bengal, Assam and Bangladesh: 1 bigha = 20 katha = 14,400 sq ft = 1,337.8 m² (about 0.33 acre).",
+      "In other states the bigha is larger or smaller — for example about 27,225 sq ft in Bihar and Jharkhand, 27,000 sq ft in eastern Uttar Pradesh, 17,424 sq ft in Gujarat and 8,712 sq ft in Himachal Pradesh. Use the India land area converter to choose your state.",
+    ],
+    note: "For registration, loans or a sale deed, confirm the size used in your local land records.",
+    related: [
+      { href: "/en/india-land-area-converter", label: "India land area converter (all states)" },
+      { href: "/en/bigha-to-katha", label: "Bigha to katha" },
+      { href: "/en/acre-to-square-meters", label: "Acres to square meters" },
+    ],
+  },
+  {
+    slug: "square-meters-to-bigha",
+    title: "Square meters to bigha: check your state",
+    paragraphs: [
+      "This page converts to the West Bengal / Assam bigha of 1,337.8 m² (14,400 sq ft). 1,000 m² is about 0.75 of this bigha.",
+      "The same area is a smaller number of bigha in states with a larger bigha, such as Bihar (about 2,529 m²) or eastern Uttar Pradesh. Use the India land area converter to pick your state.",
+    ],
+    related: [
+      { href: "/en/india-land-area-converter", label: "India land area converter (all states)" },
+      { href: "/en/bigha-to-square-meters", label: "Bigha to square meters" },
+      { href: "/en/square-meters-to-katha", label: "Square meters to katha" },
+    ],
+  },
+  {
+    slug: "bigha-to-katha",
+    title: "Bigha and katha differ between states",
+    paragraphs: [
+      "In West Bengal, Bihar and Bangladesh, 1 bigha = 20 katha, which is what this page uses. In Assam, however, 1 bigha = 5 katha, because the Assam katha is much larger (2,880 sq ft).",
+      "The size of the katha also follows the local bigha: 720 sq ft in West Bengal but about 1,361 sq ft in Bihar.",
+    ],
+    related: [
+      { href: "/en/india-land-area-converter", label: "India land area converter (all states)" },
+      { href: "/en/katha-to-square-meters", label: "Katha to square meters" },
+      { href: "/en/bigha-to-square-meters", label: "Bigha to square meters" },
+    ],
+  },
+  {
+    slug: "grain-to-grams",
+    title: "Grains in jewellery, medicine and ammunition",
+    paragraphs: [
+      "The grain is the smallest unit of the imperial and troy systems and is identical in both: 1 grain = 64.79891 milligrams, so about 15.43 grains make 1 gram.",
+      "It is still used for bullets and gunpowder, some medicine doses (for example 5 grains of aspirin ≈ 324 mg) and, historically, for gold and pearls. Do not confuse it with the carat (0.2 g) used for gemstones.",
+    ],
+    related: [
+      { href: "/en/grams-to-grain", label: "Grams to grains" },
+      { href: "/en/grams-to-carats", label: "Grams to carats" },
+      { href: "/en/gold-price-calculator-india", label: "Gold price calculator (India)" },
+    ],
+  },
 ];
 
 export const featuredEnglishConversions = englishEditorialConversions.map(

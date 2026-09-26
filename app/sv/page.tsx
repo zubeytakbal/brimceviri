@@ -4,7 +4,7 @@ import { getSiteNotifications } from "../converter/siteNotifications";
 import { buildSiteUrl } from "../siteConfig";
 
 export const metadata: Metadata = {
-  title: "Vind den enhetsomvandling du behöver",
+  title: "Hitta den enhetsomvandling du behöver",
   description:
     "Omvandla gratis och direkt längd, massa, temperatur och andra fysiska enheter. Över 12 kategorier, med exakta formler.",
   alternates: {
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Vind den enhetsomvandling du behöver",
+    title: "Hitta den enhetsomvandling du behöver",
     description:
       "Omvandla gratis och direkt längd, massa, temperatur och andra fysiska enheter.",
     url: buildSiteUrl("/sv"),

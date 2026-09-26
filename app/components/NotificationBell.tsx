@@ -182,13 +182,13 @@ export default function NotificationBell({
     getSeenNotificationIdsServerSnapshot,
   );
 
-  // manualOverride null oldugu surece panel, gorulmemis bildirim varsa
-  // kendiliginden acik sayilir (turetilmis durum, effect gerekmez);
-  // kullanici bir kere acar/kapatirsa o andan sonra tercihi geceli olur.
-  const [manualOverride, setManualOverride] = useState<boolean | null>(null);
+  // Panel yalnizca zile tiklaninca acilir. Kendiliginden acilan panel,
+  // aramadan gelen ziyaretcinin sayfayi gormesini engelliyordu ve kapatmak
+  // bildirimi "goruldu" yapmadigi icin her ziyarette tekrar aciliyordu.
+  // Gorulmemis bildirim sayisi zilin uzerindeki rozette gorunur.
+  const [isOpen, setIsOpen] = useState(false);
 
   const unseenCount = notifications.filter((item) => !seenIds.includes(item.id)).length;
-  const isOpen = manualOverride ?? unseenCount > 0;
 
   // Zil butonu, SiteHeader'in kaydettigi slot elemanina (Context uzerinden,
   // ref callback ile doldurulur) portal ile tasinir -- boylece gercek ust
@@ -207,7 +207,7 @@ export default function NotificationBell({
     <button
       type="button"
       className="notification-bell-button"
-      onClick={() => setManualOverride(!isOpen)}
+      onClick={() => setIsOpen(!isOpen)}
       aria-label={copy.ariaLabel}
     >
       <Bell size={22} weight="fill" />
@@ -227,7 +227,7 @@ export default function NotificationBell({
         <div
           className="notification-overlay"
           role="presentation"
-          onClick={() => setManualOverride(false)}
+          onClick={() => setIsOpen(false)}
         >
           <div
             className="notification-panel"
@@ -240,7 +240,7 @@ export default function NotificationBell({
               <button
                 type="button"
                 className="notification-panel-close"
-                onClick={() => setManualOverride(false)}
+                onClick={() => setIsOpen(false)}
                 aria-label={copy.closeLabel}
               >
                 <X size={18} />
@@ -271,7 +271,7 @@ export default function NotificationBell({
                     <p>{item.message}</p>
                     <div className="notification-item-foot">
                       {item.href && (
-                        <Link href={item.href} onClick={() => setManualOverride(false)}>
+                        <Link href={item.href} onClick={() => setIsOpen(false)}>
                           {copy.openLabel}
                         </Link>
                       )}

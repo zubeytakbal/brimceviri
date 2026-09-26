@@ -185,7 +185,7 @@ export default function SwedishHomeDirectory({
         <div className="directory-shell">
           <div className="directory-hero-copy">
             <p className="directory-eyebrow">Enhetsomvandlare på svenska</p>
-            <h1>Vind den enhetsomvandling du behöver</h1>
+            <h1>Hitta den enhetsomvandling du behöver</h1>
             <p className="directory-lead">
               Omvandla längd, massa, tryck och många andra enheter helt på
               svenska, med tydliga enhetsguider.

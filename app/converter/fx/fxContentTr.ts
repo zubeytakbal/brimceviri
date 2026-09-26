@@ -1,11 +1,13 @@
 import type { FxChartLabels } from "../../components/fx/FxChart";
 import type { FxMarkupLabels } from "../../components/fx/FxMarkupCalculator";
+import type { FxMultiConverterLabels } from "../../components/fx/FxMultiConverter";
 import type { FxPairConverterLabels } from "../../components/fx/FxPairConverter";
 import type { FxRelativeTimeLabels } from "../../components/fx/FxRelativeTime";
 import type { FaqItem } from "../faqSchema";
 import { formatMoney, formatPercent, formatRate } from "./fxMath";
 import type { FxPairPageData } from "./fxPageData";
-import { fxCurrenciesTr, type FxPairTr } from "./fxPairsTr";
+import type { FxLocaleContent } from "./fxLocale";
+import { buildFxTitleTr, fxCurrenciesTr, fxPairsTr, type FxPairTr } from "./fxPairsTr";
 
 export const TR_NUMBER_LOCALE = "tr-TR";
 const TR_TIME_ZONE = "Europe/Istanbul";
@@ -60,6 +62,16 @@ export const trMarkupLabels: FxMarkupLabels = {
   note:
     "Ara kur günlük referans kurdur; piyasa gün içinde hareket ettiği için küçük farkların bir kısmı kur değişiminden de kaynaklanabilir. Bankanın ayrıca aldığı işlem ücreti veya komisyon bu hesaba dahil değildir; varsa bu farkın üstüne eklenir.",
   percentTemplate: "%{v}",
+};
+
+export const trMultiConverterLabels: FxMultiConverterLabels = {
+  amount: "Miktar",
+  from: "Hangi para biriminden",
+  to: "Hangi para birimine",
+  swap: "Yönü değiştir",
+  resultTemplate: "{amount} {from} = {result} {to}",
+  rateTemplate: "Kullanılan kur: 1 {from} = {rate} {to}",
+  invalid: "Geçerli bir miktar gir (ör. 250 veya 1.250,50).",
 };
 
 export function formatTrDateTime(unix: number): string {
@@ -191,3 +203,131 @@ export function buildTrPairFaq(pair: FxPairTr, data: FxPairPageData | null): Faq
 
   return items;
 }
+
+export const fxContentTr: FxLocaleContent = {
+  numberLocale: TR_NUMBER_LOCALE,
+  ogLocale: "tr_TR",
+  basePath: "/doviz-cevirici",
+  homeHref: "/",
+  quote: "TRY",
+  currencies: fxCurrenciesTr,
+  pairs: fxPairsTr,
+  defaultMarkupDirection: "buy",
+  labels: {
+    relative: trRelativeTimeLabels,
+    converter: trPairConverterLabels,
+    chart: trChartLabels,
+    markup: trMarkupLabels,
+    multi: trMultiConverterLabels,
+  },
+  formatDateTime: (unix) => `${formatTrDateTime(unix)} (TSİ)`,
+  formatDate: formatTrDate,
+  common: {
+    home: "Ana Sayfa",
+    hub: "Döviz Çevirici",
+    breadcrumbAria: "Sayfa yolu",
+    unavailable: "Güncel kur şu anda alınamadı. Lütfen biraz sonra tekrar dene.",
+    faqTitle: "Sık Sorulan Sorular",
+    sourcesTitle: "Kaynaklar",
+    sourceLatest: "– güncel referans kur ve yayın zamanı (günde bir kez güncellenir).",
+    sourceHistory:
+      "– grafik ve istatistiklerdeki geçmiş günlük kurlar. Kaynaklar farklı olduğu için grafiğin son noktası güncel kurdan çok az farklı olabilir.",
+    disclaimer: "Bu sayfadaki kurlar bilgi amaçlıdır ve bir alım-satım teklifi değildir; gerçek işlem kurunu işlemi yaptığın kurum belirler.",
+  },
+  pair: {
+    pairName: (pair) => `${fxCurrenciesTr[pair.from].short} – ${fxCurrenciesTr[pair.to].short}`,
+    h1: (pairName) => `${pairName} Çevirici`,
+    heroDescription: (pair) =>
+      `${fxCurrenciesTr[pair.from].long} ile ${fxCurrenciesTr[pair.to].long} arasında günlük referans kurla çevir. Kurun ne zaman yayınlandığını canlı sayaçla gör.`,
+    title: (pair) => buildFxTitleTr(pair),
+    description: (pair, data) => {
+      const from = fxCurrenciesTr[pair.from];
+      const to = fxCurrenciesTr[pair.to];
+      return data
+        ? `1 ${from.code} = ${trRate(data.rate)} ${to.code} (${formatTrDateTime(data.latest.lastUpdateUnix)} TSİ referans kuru). ${from.short} ${to.short} çevirici, 30 gün ve 1 yıllık grafik, banka kuru farkı hesaplama.`
+        : `${from.short} ${to.short} çevirici: günlük referans kur, 30 gün ve 1 yıllık grafik, çevirme tablosu ve banka kuru farkı hesaplama.`;
+    },
+    currentRate: "Güncel kur",
+    inverseRate: "Ters kur",
+    published: "Kaynakta yayınlandı",
+    nextUpdate: "Sonraki güncelleme",
+    rateType: "Kur türü",
+    rateTypeValue: (provider) => `Günlük referans ara kur (${provider})`,
+    noData: "Kur verisi şu anda yok.",
+    chartTitle: (pair) => `${pair.from}/${pair.to} kur grafiği`,
+    analysisTitle: (pairName) => `${pairName} kuru nasıl değişti?`,
+    tableTitle: (pairName) => `${pairName} çevirme tablosu`,
+    markupTitle: "Banka kuru farkı hesaplayıcı",
+    markupIntro:
+      "Bankanın ya da döviz bürosunun verdiği kuru gir; ara kura göre ne kadar fark ödediğini, yani kur farkının sana gerçek maliyetini hemen gör.",
+    midRateTitle: "Ara kur nedir, nasıl hesaplanır?",
+    midRateP1: (pair) => {
+      const from = fxCurrenciesTr[pair.from].short;
+      const to = fxCurrenciesTr[pair.to].short;
+      return {
+        before: "Ara kur (referans kur), piyasadaki alış ve satış kurlarının ortasıdır. Bu sayfadaki çevirici bu kuru kullanır: ",
+        formula: `${to} tutarı = ${from} miktarı × kur`,
+        after: `. Ters yönde ise ${from} miktarı = ${to} tutarı ÷ kur olur.`,
+      };
+    },
+    midRateP2: {
+      before:
+        "Bankalar, döviz büroları ve kart işlemleri çoğu zaman bu kurun üzerine (döviz satarken) veya altına (döviz alırken) bir marj ekler. Bu marj ayrı bir ücret olarak yazılmadığı için fark edilmesi zordur; yukarıdaki ",
+      link: "banka kuru farkı hesaplayıcısı",
+      after: " bu gizli maliyeti ortaya çıkarır.",
+    },
+    relatedTitle: "Diğer döviz çevirileri",
+    allRatesLink: "Tüm döviz kurları ve çevirici",
+    analysis: buildTrPairAnalysis,
+    faq: buildTrPairFaq,
+  },
+  hub: {
+    title: "Döviz Çevirici ve Güncel Döviz Kurları",
+    description:
+      "Dolar, euro, sterlin, riyal, dirhem, manat ve daha fazlası için günlük referans kurla döviz çevirici. Yayın saati, canlı sayaç, 30 günlük değişim ve banka kuru farkı hesaplama.",
+    ogDescription: "Günlük referans kurla TL ve 14 döviz arasında çeviri; yayın saati ve 30 günlük değişim.",
+    h1: "Döviz Çevirici",
+    intro:
+      "Günlük referans kurla TL ve 14 döviz arasında çeviri yap. Kurun kaynakta ne zaman yayınlandığını, kaç saat önce güncellendiğini ve sonraki güncellemeye ne kadar kaldığını canlı olarak gör.",
+    boardTitle: "Güncel döviz kurları (TL)",
+    colCurrency: "Para birimi",
+    colOneUnit: "1 birim",
+    colChange: "30 günlük değişim",
+    boardNote:
+      "30 günlük değişim, dövizin TL karşısındaki değişimidir: ▲ dövizin TL karşısında değer kazandığını (aynı miktar döviz için daha fazla TL gerektiğini), ▼ değer kaybettiğini gösterir.",
+    pairsTitle: "Döviz çevirileri",
+    faq: [
+      {
+        question: "Bu döviz kurları ne sıklıkla güncelleniyor?",
+        answer:
+          "Kurlar günde bir kez güncellenen referans kurlardır. Sayfanın üstünde kaynağın kuru hangi tarih ve saatte yayınladığını, verinin kaç dakika/saat önce yayınlandığını ve bir sonraki güncellemeye ne kadar kaldığını canlı olarak görebilirsin. Anlık (saniyelik) piyasa kuru değildir.",
+      },
+      {
+        question: "Buradaki kur ile bankadaki kur neden farklı?",
+        answer:
+          "Burada gösterilen, alış ve satış kurlarının ortası olan ara kurdur (referans kur). Bankalar ve döviz büroları alım-satımda bu kura bir marj (spread) ekler. Her döviz çifti sayfasındaki banka kuru farkı hesaplayıcısıyla bu farkın sana maliyetini görebilirsin.",
+      },
+      {
+        question: "Hangi para birimleri destekleniyor?",
+        answer:
+          "Türk lirası, Amerikan doları, euro, İngiliz sterlini, İsviçre frangı, Suudi Arabistan riyali, BAE dirhemi, Rus rublesi, Azerbaycan manatı, Kuveyt dinarı, Japon yeni, Çin yuanı, Kanada doları, Avustralya doları ve Gürcü larisi arasında çeviri yapabilirsin.",
+      },
+      {
+        question: "Kurlar nereden alınıyor?",
+        answer:
+          "Güncel referans kurlar ve yayın zamanı ExchangeRate-API'den, grafiklerdeki geçmiş günlük kurlar fawazahmed0/exchange-api'den alınır. Kurlar bilgi amaçlıdır; gerçek işlem kurunu işlemi yaptığın kurum belirler.",
+      },
+    ],
+    relatedTitle: "İlgili araçlar",
+    relatedLinks: [
+      { href: "/kdv-hesaplama", label: "KDV hesaplama" },
+      { href: "/kuyumcu-araclari", label: "Kuyumcu araçları" },
+      { href: "/seyahat-priz-voltaj-hesaplama", label: "Seyahat priz ve voltaj rehberi" },
+      { href: "/diger-donusumler", label: "Diğer dönüşümler" },
+      { href: "/", label: "Tüm birim çeviricileri" },
+    ],
+    quoteLabel: "TL",
+    percent: (value) => trPercent(value),
+    embed: { path: "/embed/doviz-cevirici", title: "Döviz Çevirici" },
+  },
+};

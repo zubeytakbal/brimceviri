@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { buildHistoryDates, parseCurrencyApiDay, parseOpenErApiLatest } from "../app/converter/fx/fxData";
-import { bankMarkup, crossRate, formatMoney, formatRate, pairSeries, seriesStats } from "../app/converter/fx/fxMath";
+import { bankMarkup, crossRate, formatMoney, formatRate, tableAmountsFor, pairSeries, seriesStats } from "../app/converter/fx/fxMath";
 
 const NOW = Date.parse("2026-09-26T08:00:00Z");
 
@@ -92,6 +92,8 @@ describe("pair math", () => {
     expect(formatRate(135.234, "tr-TR")).toBe("135,23");
     expect(formatMoney(1 / 41.9, "tr-TR")).toBe("0,02387");
     expect(formatMoney(4190, "tr-TR")).toBe("4.190,00");
+    expect(tableAmountsFor(1 / 41.9)[0]).toBe(1);
+    expect(tableAmountsFor(1 / 12050)[0]).toBe(1000);
   });
 
   it("builds series and stats", () => {
@@ -119,5 +121,18 @@ describe("pair math", () => {
     const sell = bankMarkup(41.25, 40.5, 1000, "sell")!;
     expect(sell.costInTo).toBeCloseTo(750, 6);
     expect(bankMarkup(41.25, 0, 1000, "buy")).toBeNull();
+  });
+});
+
+describe("parseAmountInput", async () => {
+  const { parseAmountInput } = await import("../app/components/fx/fxClientHelpers");
+  it("accepts local formats and native digits", () => {
+    expect(parseAmountInput("1.250,50")).toBe(1250.5);
+    expect(parseAmountInput("1,250.50")).toBe(1250.5);
+    expect(parseAmountInput("12 500")).toBe(12500);
+    expect(parseAmountInput("১০০")).toBe(100);
+    expect(parseAmountInput("১,২৫০.৫")).toBe(1250.5);
+    expect(parseAmountInput("abc")).toBeNull();
+    expect(parseAmountInput("")).toBeNull();
   });
 });

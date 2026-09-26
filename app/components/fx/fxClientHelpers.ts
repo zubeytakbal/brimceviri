@@ -7,8 +7,19 @@ export function fillTemplate(template: string, values: Record<string, string>): 
 }
 
 // "1.234,56" (tr/de), "1,234.56" (en) ve "1234.56" girislerini kabul eder.
+// Bengalce (০-৯) ve Arapca-Hint (٠-٩ / ۰-۹) rakamlari da kabul edilir.
+const NATIVE_DIGIT_ZEROS = [0x09e6, 0x0660, 0x06f0];
+
+function toAsciiDigits(value: string): string {
+  return value.replace(/[০-৯٠-٩۰-۹]/g, (char) => {
+    const code = char.charCodeAt(0);
+    const zero = NATIVE_DIGIT_ZEROS.find((start) => code >= start && code <= start + 9) ?? code;
+    return String(code - zero);
+  });
+}
+
 export function parseAmountInput(raw: string): number | null {
-  const value = raw.replace(/[\s ']/g, "");
+  const value = toAsciiDigits(raw).replace(/[\s  ']/g, "").replace(/٫/g, ".").replace(/٬/g, ",");
   if (!value) return null;
   let normalized = value;
   const lastComma = value.lastIndexOf(",");

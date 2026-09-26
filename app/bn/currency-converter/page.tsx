@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import FxHubView from "../../components/fx/FxHubView";
-import { fxContentUz } from "../../converter/fx/fxContentUz";
+import { fxContentBn } from "../../converter/fx/fxContentBn";
 import { requireFxDataOutsideBuild } from "../../converter/fx/fxData";
 import { fxHubAlternates } from "../../converter/fx/fxHubAlternates";
 import { getFxBoard } from "../../converter/fx/fxPageData";
@@ -8,29 +8,29 @@ import { buildSiteUrl } from "../../siteConfig";
 
 export const revalidate = 43200;
 
-const { hub } = fxContentUz;
+const { hub } = fxContentBn;
 
 export const metadata: Metadata = {
   title: hub.title,
   description: hub.description,
   alternates: {
-    canonical: fxContentUz.basePath,
+    canonical: fxContentBn.basePath,
     languages: fxHubAlternates,
   },
   openGraph: {
     title: hub.title,
     description: hub.ogDescription,
-    url: buildSiteUrl(fxContentUz.basePath),
+    url: buildSiteUrl(fxContentBn.basePath),
     siteName: "BirimCeviri.app",
-    locale: fxContentUz.ogLocale,
+    locale: fxContentBn.ogLocale,
     type: "website",
   },
 };
 
-const boardCodes = Object.keys(fxContentUz.currencies).filter((code) => code !== fxContentUz.quote);
+const boardCodes = Object.keys(fxContentBn.currencies).filter((code) => code !== fxContentBn.quote);
 
 export default async function FxHubPage() {
-  const board = await getFxBoard(boardCodes, fxContentUz.quote);
+  const board = await getFxBoard(boardCodes, fxContentBn.quote);
   requireFxDataOutsideBuild(board !== null);
-  return <FxHubView content={fxContentUz} board={board} />;
+  return <FxHubView content={fxContentBn} board={board} />;
 }

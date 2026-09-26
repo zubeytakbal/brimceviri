@@ -69,12 +69,3 @@ export function buildFxTitleTr(pair: FxPairTr): string {
   ];
   return candidates.find((title) => title.length <= TR_FX_TITLE_BUDGET) ?? candidates[candidates.length - 1];
 }
-
-// Ayni sayfada gosterilecek ilgili ciftler: once ayni "to" para birimine
-// sahip en populer ciftler, sonra digerleri.
-export function relatedFxPairsTr(pair: FxPairTr, limit = 8): FxPairTr[] {
-  const others = fxPairsTr.filter((candidate) => candidate.slug !== pair.slug);
-  const sameTarget = others.filter((candidate) => candidate.to === pair.to);
-  const rest = others.filter((candidate) => candidate.to !== pair.to);
-  return [...sameTarget, ...rest].slice(0, limit);
-}

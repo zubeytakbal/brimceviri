@@ -51,6 +51,23 @@ export function seriesStats(series: FxSeriesPoint[]): FxSeriesStats | null {
   };
 }
 
+// Tarayicilarin bir kismi (ozellikle Chrome) bazi dillerin sayi verisini
+// tasimiyor: "uz-UZ" icin "12,067.11" uretiyor, sunucu (Node, tam ICU) ise
+// "12 067,11". Hem yanlis gorunmesin hem sunucu/istemci ayni metni uretsin
+// diye bu dillerde ayiraclar elle uygulanir.
+const SEPARATOR_OVERRIDES: Record<string, { group: string; decimal: string }> = {
+  "uz-UZ": { group: "\u00a0", decimal: "," },
+};
+
+export function formatNumber(value: number, locale: string, options: Intl.NumberFormatOptions = {}): string {
+  const override = SEPARATOR_OVERRIDES[locale];
+  if (!override) return new Intl.NumberFormat(locale, options).format(value);
+  return new Intl.NumberFormat("en-US", options)
+    .formatToParts(value)
+    .map((part) => (part.type === "group" ? override.group : part.type === "decimal" ? override.decimal : part.value))
+    .join("");
+}
+
 // Kur gosterimi: buyuk degerlerde 2, 1-100 arasinda 4 ondalik, 1'in
 // altinda 4 anlamli basamak (0,02391 gibi). Boylece JPY/TRY de, KWD/TRY de
 // okunur kalir.
@@ -62,7 +79,7 @@ export function rateFractionDigits(value: number): Intl.NumberFormatOptions {
 }
 
 export function formatRate(value: number, locale: string): string {
-  return new Intl.NumberFormat(locale, rateFractionDigits(value)).format(value);
+  return formatNumber(value, locale, rateFractionDigits(value));
 }
 
 // Para tutari: 2 ondalik; 1'in altindaki tutarlarda 4 anlamli basamak
@@ -70,18 +87,18 @@ export function formatRate(value: number, locale: string): string {
 export function formatMoney(value: number, locale: string): string {
   const abs = Math.abs(value);
   if (abs > 0 && abs < 1) {
-    return new Intl.NumberFormat(locale, { maximumSignificantDigits: 4 }).format(value);
+    return formatNumber(value, locale, { maximumSignificantDigits: 4 });
   }
-  return new Intl.NumberFormat(locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value);
+  return formatNumber(value, locale, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
 // Yuzde isareti olmadan sayi; "%" konumu dile gore degistigi icin (TR: %1,2 / EN: 1.2%) cagiran ekler.
 export function formatPercent(value: number, locale: string, signed = false): string {
-  return new Intl.NumberFormat(locale, {
+  return formatNumber(value, locale, {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
     signDisplay: signed ? "exceptZero" : "auto",
-  }).format(value);
+  });
 }
 
 export const FX_TABLE_AMOUNTS = [1, 5, 10, 20, 50, 100, 250, 500, 1000, 2500, 5000, 10000] as const;
@@ -106,4 +123,12 @@ export function bankMarkup(midRate: number, bankRate: number, amountFrom: number
   const costInTo = direction === "buy" ? bankTotalInTo - midTotalInTo : midTotalInTo - bankTotalInTo;
   const markupPercent = (costInTo / midTotalInTo) * 100;
   return { markupPercent, costInTo, midTotalInTo, bankTotalInTo };
+}
+
+// Tablo miktarlari: sonuc cok kucuk kaliyorsa (1 so'm = 0,00008 USD gibi)
+// miktarlar 10'un katlariyla buyutulur ki tablo anlamli kalsin.
+export function tableAmountsFor(rate: number): number[] {
+  let factor = 1;
+  while (rate * factor < 0.01 && factor < 1e9) factor *= 10;
+  return FX_TABLE_AMOUNTS.map((amount) => amount * factor);
 }

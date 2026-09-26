@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { formatNumber } from "../../converter/fx/fxMath";
 import { fillTemplate } from "./fxClientHelpers";
 
 export type FxRelativeTimeLabels = {
@@ -30,7 +31,7 @@ const DAY = 24 * HOUR;
 const STALE_AFTER_MS = 36 * HOUR;
 
 function unit(count: number, forms: [string, string], numberLocale: string) {
-  return `${count.toLocaleString(numberLocale)} ${count === 1 ? forms[0] : forms[1]}`;
+  return `${formatNumber(count, numberLocale)} ${count === 1 ? forms[0] : forms[1]}`;
 }
 
 export function formatDuration(ms: number, labels: FxRelativeTimeLabels, numberLocale: string): string {

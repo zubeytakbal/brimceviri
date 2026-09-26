@@ -28,6 +28,7 @@ type Props = {
   midRate: number;
   numberLocale: string;
   labels: FxMarkupLabels;
+  defaultDirection?: MarkupDirection;
 };
 
 function band(percent: number, bands: FxMarkupLabels["bands"]) {
@@ -37,8 +38,8 @@ function band(percent: number, bands: FxMarkupLabels["bands"]) {
   return bands[3];
 }
 
-export default function FxMarkupCalculator({ from, to, midRate, numberLocale, labels }: Props) {
-  const [direction, setDirection] = useState<MarkupDirection>("buy");
+export default function FxMarkupCalculator({ from, to, midRate, numberLocale, labels, defaultDirection = "buy" }: Props) {
+  const [direction, setDirection] = useState<MarkupDirection>(defaultDirection);
   const [amountInput, setAmountInput] = useState("1000");
   const [bankInput, setBankInput] = useState("");
 

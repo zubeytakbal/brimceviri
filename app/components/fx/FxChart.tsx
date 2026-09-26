@@ -10,6 +10,9 @@ export type FxChartLabels = {
   ariaTemplate: string;
   high: string;
   low: string;
+  // Tarayicinin ay adlarini bilmedigi diller icin (Chrome'da "uz" -> "M01"):
+  // kisa ay adlari ve "{d} {m}" / "{d} {m} {y}" sablonlari.
+  manualDates?: { monthsShort: string[]; short: string; withYear: string };
 };
 
 type Props = {
@@ -24,7 +27,14 @@ const WIDTH = 640;
 const HEIGHT = 240;
 const PAD = { top: 16, right: 12, bottom: 28, left: 64 };
 
-function formatDate(iso: string, numberLocale: string, withYear: boolean) {
+function formatDate(iso: string, numberLocale: string, withYear: boolean, manual?: FxChartLabels["manualDates"]) {
+  if (manual) {
+    const [year, month, day] = iso.split("-").map(Number);
+    return (withYear ? manual.withYear : manual.short)
+      .replace("{d}", String(day))
+      .replace("{m}", manual.monthsShort[month - 1])
+      .replace("{y}", String(year));
+  }
   return new Date(`${iso}T00:00:00Z`).toLocaleDateString(numberLocale, {
     day: "numeric",
     month: "short",
@@ -126,7 +136,7 @@ export default function FxChart({ pairLabel, daily, yearly, numberLocale, labels
               textAnchor={position === 0 ? "start" : position === 2 ? "end" : "middle"}
               className="fx-chart-axis"
             >
-              {formatDate(series[index].date, numberLocale, withYear)}
+              {formatDate(series[index].date, numberLocale, withYear, labels.manualDates)}
             </text>
           ))}
 
@@ -152,7 +162,7 @@ export default function FxChart({ pairLabel, daily, yearly, numberLocale, labels
               transform: `translateX(${activePoint.x > WIDTH * 0.7 ? "-100%" : activePoint.x < WIDTH * 0.3 ? "0" : "-50%"})`,
             }}
           >
-            <span>{formatDate(series[active].date, numberLocale, true)}</span>
+            <span>{formatDate(series[active].date, numberLocale, true, labels.manualDates)}</span>
             <strong>{formatRate(series[active].value, numberLocale)}</strong>
           </div>
         )}
@@ -160,10 +170,10 @@ export default function FxChart({ pairLabel, daily, yearly, numberLocale, labels
 
       <p className="fx-chart-extremes">
         <span>
-          {labels.high}: <strong>{formatRate(series[geometry.maxIndex].value, numberLocale)}</strong> ({formatDate(series[geometry.maxIndex].date, numberLocale, withYear)})
+          {labels.high}: <strong>{formatRate(series[geometry.maxIndex].value, numberLocale)}</strong> ({formatDate(series[geometry.maxIndex].date, numberLocale, withYear, labels.manualDates)})
         </span>
         <span>
-          {labels.low}: <strong>{formatRate(series[geometry.minIndex].value, numberLocale)}</strong> ({formatDate(series[geometry.minIndex].date, numberLocale, withYear)})
+          {labels.low}: <strong>{formatRate(series[geometry.minIndex].value, numberLocale)}</strong> ({formatDate(series[geometry.minIndex].date, numberLocale, withYear, labels.manualDates)})
         </span>
       </p>
     </div>

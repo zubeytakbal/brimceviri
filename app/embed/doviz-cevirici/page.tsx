@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import FxMultiConverter from "../../components/fx/FxMultiConverter";
-import { TR_NUMBER_LOCALE, formatTrDateTime } from "../../converter/fx/fxContentTr";
+import { fxMultiOptions, pickFxRates } from "../../components/fx/FxHubView";
+import { TR_NUMBER_LOCALE, formatTrDateTime, fxContentTr, trMultiConverterLabels } from "../../converter/fx/fxContentTr";
 import { getFxLatest, requireFxDataOutsideBuild } from "../../converter/fx/fxData";
-import { pickRates, trMultiConverterLabels, trMultiConverterOptions } from "../../converter/fx/fxHubTr";
 import { buildSiteUrl } from "../../siteConfig";
 
 export const revalidate = 43200;
@@ -26,8 +26,8 @@ export default async function CurrencyConverterEmbedPage() {
         {latest ? (
           <>
             <FxMultiConverter
-              rates={pickRates(latest.rates)}
-              options={trMultiConverterOptions}
+              rates={pickFxRates(fxContentTr, latest.rates)}
+              options={fxMultiOptions(fxContentTr)}
               defaultFrom="USD"
               defaultTo="TRY"
               numberLocale={TR_NUMBER_LOCALE}

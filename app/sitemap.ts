@@ -2,6 +2,9 @@ import type { MetadataRoute } from "next";
 import { calculatorPages } from "./converter/calculatorPages";
 import { categoryPages } from "./converter/categoryPages";
 import { conversionPages } from "./converter/conversionPages";
+import { fxContentBn } from "./converter/fx/fxContentBn";
+import { fxContentUz } from "./converter/fx/fxContentUz";
+import { fxHubAlternates } from "./converter/fx/fxHubAlternates";
 import { fxPairsTr } from "./converter/fx/fxPairsTr";
 import {
   englishCalculatorPages,
@@ -3876,19 +3879,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
       },
     },
-    {
-      url: `${baseUrl}/uz/valyuta-aylantirgich`,
+    ...[fxContentUz.basePath, fxContentBn.basePath].map((path) => ({
+      url: `${baseUrl}${path}`,
       lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
+      changeFrequency: "daily" as const,
+      priority: 0.85,
       alternates: {
-        languages: {
-          tr: `${baseUrl}/doviz-cevirici`,
-          "uz-UZ": `${baseUrl}/uz/valyuta-aylantirgich`,
-          "x-default": `${baseUrl}/doviz-cevirici`,
-        },
+        languages: Object.fromEntries(Object.entries(fxHubAlternates).map(([lang, href]) => [lang, `${baseUrl}${href}`])),
       },
-    },
+    })),
+    ...[fxContentUz, fxContentBn].flatMap((content) =>
+      content.pairs.map((pair) => ({
+        url: `${baseUrl}${content.basePath}/${pair.slug}`,
+        lastModified: contentLastModified,
+        changeFrequency: "daily" as const,
+        priority: 0.8,
+      }))
+    ),
     {
       url: `${baseUrl}/uz/tana-yuzasi-maydoni-hisoblash`,
       lastModified: contentLastModified,
@@ -4249,6 +4256,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: contentLastModified,
       changeFrequency: "daily",
       priority: 0.9,
+      alternates: {
+        languages: Object.fromEntries(Object.entries(fxHubAlternates).map(([lang, href]) => [lang, `${baseUrl}${href}`])),
+      },
     },
     ...fxPairsTr.map((pair) => ({
       url: `${baseUrl}/doviz-cevirici/${pair.slug}`,

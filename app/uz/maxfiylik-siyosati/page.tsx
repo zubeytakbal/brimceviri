@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
+import { buildPrivacySections } from "../../components/privacyPolicySections";
+import { privacyPolicyCopy } from "../../i18n/privacyPolicyCopy";
 import StaticPageLayout from "../../components/StaticPageLayout";
 import { SITE_NAME, SITE_URL } from "../../siteConfig";
 
 export const metadata: Metadata = {
   title: "Maxfiylik",
   description:
-    "BirimCeviri.app'dagi hisoblash kirishlari va sahifadan foydalanish bo'yicha qisqacha maxfiylik siyosati.",
+    "BirimCeviri.app maxfiylik siyosati: kalkulyator qiymatlari, brauzerda saqlanadigan sozlamalar, Google Analytics, Google AdSense reklamalari va cookie fayllari.",
   alternates: {
     canonical: "/uz/maxfiylik-siyosati",
     languages: {
@@ -17,7 +19,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `Maxfiylik | ${SITE_NAME}`,
     description:
-      "BirimCeviri.app'dagi hisoblash kirishlari va sahifadan foydalanish bo'yicha qisqacha maxfiylik siyosati.",
+      "BirimCeviri.app maxfiylik siyosati: kalkulyator qiymatlari, brauzerda saqlanadigan sozlamalar, Google Analytics, Google AdSense reklamalari va cookie fayllari.",
     url: `${SITE_URL}/uz/maxfiylik-siyosati`,
     siteName: SITE_NAME,
     locale: "uz_UZ",
@@ -35,41 +37,8 @@ export default function UzbekPrivacyPage() {
         { label: "Maxfiylik" },
       ]}
       title="Maxfiylik"
-      description="Ushbu sahifa saytdagi kalkulyator kirishlari va sahifadan foydalanish bo'yicha asosiy maxfiylik yondashuvini qisqacha bayon qiladi."
-      sections={[
-        {
-          heading: "Kalkulyator kirishlari",
-          content: (
-            <>
-              <p>
-                Kalkulyatorlarga kiritilgan qiymatlar ushbu saytda mavjud
-                hisoblash oqimlari uchun brauzerda qayta ishlanadi.
-              </p>
-              <p>
-                Kodda tasdiqlanmagan server tomonidagi jurnal yuritish,
-                reklama yoki analitika xatti-harakatlarini da&apos;vo
-                qilmaymiz.
-              </p>
-            </>
-          ),
-        },
-        {
-          heading: "Kontent va tashqi havolalar",
-          content: (
-            <>
-              <p>
-                Birlik qo&apos;llanmalari va texnik sahifalar ma&apos;lumot
-                beruvchi xarakterga ega. Tashqi saytlar o&apos;z
-                maxfiylik siyosati asosida ishlashi mumkin.
-              </p>
-              <p>
-                Saytdan chiqqaningizda, maqsadli saytning shartlari va
-                maxfiylik siyosatini alohida ko&apos;rib chiqing.
-              </p>
-            </>
-          ),
-        },
-      ]}
+      description="Qaysi ma'lumotlar qayta ishlanishi, cookie fayllari va reklama sozlamalarini qanday boshqarish haqida."
+      sections={buildPrivacySections(privacyPolicyCopy.uz)}
       alternateLink={{
         href: "/gizlilik",
         hrefLang: "tr",

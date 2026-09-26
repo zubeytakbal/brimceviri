@@ -1,10 +1,12 @@
+import { buildPrivacySections } from "../../components/privacyPolicySections";
+import { privacyPolicyCopy } from "../../i18n/privacyPolicyCopy";
 import StaticPageLayout from "../../components/StaticPageLayout";
 import { buildArabicMetadata } from "../seo";
 
 export const metadata = buildArabicMetadata({
   title: "الخصوصية",
   description:
-    "ملخص قصير لنهج الخصوصية فيما يتعلق بمدخلات الحاسبات واستخدام الصفحات على BirimCeviri.app.",
+    "سياسة الخصوصية في BirimCeviri.app: قيم الحاسبات، والتفضيلات المحفوظة في المتصفح، وGoogle Analytics، وإعلانات Google AdSense وملفات تعريف الارتباط.",
   path: "/ar/privacy",
   turkishPath: "/gizlilik",
   englishPath: "/en/privacy",
@@ -20,39 +22,8 @@ export default function ArabicPrivacyPage() {
         { label: "الخصوصية" },
       ]}
       title="الخصوصية"
-      description="تلخص هذه الصفحة النهج الأساسي المتعلق بخصوصية مدخلات الحاسبات واستخدام الصفحات داخل الموقع."
-      sections={[
-        {
-          heading: "مدخلات الحاسبات",
-          content: (
-            <>
-              <p>
-                القيم التي تدخلها في الحاسبات تُستخدم داخل المتصفح ضمن
-                مسارات الحساب المتاحة في هذا الموقع.
-              </p>
-              <p>
-                ولا ندّعي وجود تسجيل من جهة الخادم أو إعلانات أو
-                تحليلات ما لم يكن ذلك مؤكدا فعلا في الكود.
-              </p>
-            </>
-          ),
-        },
-        {
-          heading: "المحتوى والروابط الخارجية",
-          content: (
-            <>
-              <p>
-                صفحات الوحدات والمحتوى التقني هنا ذات طابع معلوماتي،
-                وقد تعمل المواقع الخارجية وفق سياسات خصوصية مختلفة.
-              </p>
-              <p>
-                عند مغادرة هذا الموقع، من الأفضل مراجعة شروط وسياسة
-                الخصوصية الخاصة بالموقع المقصود بشكل منفصل.
-              </p>
-            </>
-          ),
-        },
-      ]}
+      description="ما المعلومات التي تتم معالجتها، وملفات تعريف الارتباط المستخدمة، وكيفية إدارة تفضيلات الإعلانات."
+      sections={buildPrivacySections(privacyPolicyCopy.ar)}
       alternateLink={{
         href: "/gizlilik",
         hrefLang: "tr",

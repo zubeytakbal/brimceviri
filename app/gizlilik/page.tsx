@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
+import { buildPrivacySections } from "../components/privacyPolicySections";
+import { privacyPolicyCopy } from "../i18n/privacyPolicyCopy";
 import StaticPageLayout from "../components/StaticPageLayout";
 import { SITE_NAME, SITE_URL } from "../siteConfig";
 
 export const metadata: Metadata = {
   title: "Gizlilik",
   description:
-    "BirimCeviri.app üzerinde hesaplama girdileri ve sayfa kullanımıyla ilgili temel gizlilik bilgileri.",
+    "BirimCeviri.app gizlilik politikası: hesaplama girdileri, tarayıcıda saklanan tercihler, Google Analytics, Google AdSense reklamları ve çerezler.",
   alternates: {
     canonical: "/gizlilik",
     languages: {
@@ -17,7 +19,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `Gizlilik | ${SITE_NAME}`,
     description:
-      "BirimCeviri.app üzerinde hesaplama girdileri ve sayfa kullanımıyla ilgili temel gizlilik bilgileri.",
+      "BirimCeviri.app gizlilik politikası: hesaplama girdileri, tarayıcıda saklanan tercihler, Google Analytics, Google AdSense reklamları ve çerezler.",
     url: `${SITE_URL}/gizlilik`,
     siteName: SITE_NAME,
     locale: "tr_TR",
@@ -35,42 +37,8 @@ export default function PrivacyPage() {
         { label: "Gizlilik" },
       ]}
       title="Gizlilik"
-      description="Bu sayfa, sitedeki hesaplama akışları ve kullanıcı girdileriyle ilgili temel gizlilik yaklaşımını özetler."
-      sections={[
-        {
-          heading: "Hesaplama girdileri",
-          content: (
-            <>
-              <p>
-                Hesaplayıcılara girilen değerler, bu sitedeki
-                hesaplamaların çalıştırılması amacıyla tarayıcı içinde
-                işlenir.
-              </p>
-              <p>
-                Kod tarafında doğrulamadığımız bir sunucu tarafı kayıt,
-                reklam veya analiz davranışı varmış gibi iddiada
-                bulunmuyoruz.
-              </p>
-            </>
-          ),
-        },
-        {
-          heading: "İçerik ve bağlantılar",
-          content: (
-            <>
-              <p>
-                Birim rehberleri ve teknik sayfalar bilgi amaçlıdır.
-                Dış bağlantılar kendi gizlilik uygulamalarına tabi
-                olabilir.
-              </p>
-              <p>
-                Haricî bir siteye geçtiğinizde o sitenin koşullarını ve
-                gizlilik politikasını ayrıca inceleyin.
-              </p>
-            </>
-          ),
-        },
-      ]}
+      description="Hangi bilgilerin işlendiğini, çerezleri ve reklam tercihlerinizi nasıl yönetebileceğinizi anlatır."
+      sections={buildPrivacySections(privacyPolicyCopy.tr)}
       alternateLink={{
         href: "/en/privacy",
         hrefLang: "en",

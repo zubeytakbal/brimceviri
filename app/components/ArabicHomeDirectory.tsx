@@ -253,9 +253,9 @@ export default function ArabicHomeDirectory({
               <p>اختر فئة لعرض جميع وحداتها وصفحات التحويل الخاصة بها بالعربية.</p>
             </div>
 
-            <Link className="directory-section-link" href="/ar/other-conversions">
+            <Link className="directory-section-link" href="/ar/categories">
               <DecorativeIcon className="directory-link-icon" name="allConversions" size={18} />
-              كل الفئات والأدوات
+              كل الفئات
             </Link>
           </header>
 
@@ -299,7 +299,7 @@ export default function ArabicHomeDirectory({
           )}
 
           <div className="directory-section-footer">
-            <Link className="directory-section-link" href="/ar/other-conversions">
+            <Link className="directory-section-link" href="/ar/categories">
               <DecorativeIcon className="directory-link-icon" name="allConversions" size={18} />
               عرض جميع الفئات والتحويلات
             </Link>

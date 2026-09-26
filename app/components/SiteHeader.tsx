@@ -65,7 +65,7 @@ function SiteHeaderNavigation({
   return (
     <header className={`site-header site-header--${locale}`}>
       <div className="site-header-inner">
-        <Link href={homeHref} className="site-logo">
+        <Link href={homeHref} className="site-logo" dir="ltr">
           birimceviri<span>.app</span>
         </Link>
 

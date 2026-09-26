@@ -6200,6 +6200,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       ),
     },
     {
+      url: `${baseUrl}/ar/categories`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.75,
+    },
+    {
       url: `${baseUrl}/ar/unit-guides`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",

@@ -227,7 +227,7 @@ export const swedishCategoryPages: LocalizedSwedishCategoryPage[] = [
       { name: "Kvadratmillimeter", symbol: "mm²", referenceValue: "0,000001 m²", system: "SI/metriskt", commonUse: "Tekniska ritningar och små ytor" },
       { name: "Kvadratcentimeter", symbol: "cm²", referenceValue: "0,0001 m²", system: "SI/metriskt", commonUse: "Area för små föremål" },
       { name: "Kvadratmeter", symbol: "m²", referenceValue: "1 m²", system: "SI", commonUse: "Area för bostäder, kontor och mark" },
-      { name: "Är", symbol: "a", referenceValue: "100 m²", system: "Metriskt", commonUse: "Små markområden" },
+      { name: "Ar", symbol: "a", referenceValue: "100 m²", system: "Metriskt", commonUse: "Små markområden" },
       { name: "Dönüm / Dekar", symbol: "dönüm", referenceValue: "1000 m²", system: "Turkiet (metriskt)", commonUse: "Mätning av jordbruksmark" },
       { name: "Hektar", symbol: "ha", referenceValue: "10 000 m²", system: "Metriskt", commonUse: "Stor jordbruks- och skogsmark" },
       { name: "Kvadratkilometer", symbol: "km²", referenceValue: "1 000 000 m²", system: "SI/metriskt", commonUse: "Städer, länder och geografiska områden" },

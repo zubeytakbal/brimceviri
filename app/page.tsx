@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildFullLanguageAlternates } from "./i18n/routing";
 import HomeDirectory from "./components/HomeDirectory";
 import { buildSiteUrl } from "./siteConfig";
 import { getSiteNotifications } from "./converter/siteNotifications";
@@ -16,13 +17,7 @@ export const metadata: Metadata = {
     "Uzunluk, kütle ve basınç birimlerini çevirin; kategori bazında tarayın, ilgili hesaplayıcıyı, birim rehberini ve bilgi sayfasını doğrudan açın.",
   alternates: {
     canonical: homeUrl,
-    languages: {
-      tr: homeUrl,
-      en: englishHomeUrl,
-      de: germanHomeUrl,
-      ar: arabicHomeUrl,
-      "x-default": homeUrl,
-    },
+    ...buildFullLanguageAlternates("/"),
   },
   openGraph: {
     title: "Birim Çevirici — İhtiyacınız Olan Birim Dönüşümünü Bulun | BirimCeviri.app",

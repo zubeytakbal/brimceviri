@@ -1,33 +1,19 @@
 import type { Metadata } from "next";
+import { buildFullLanguageAlternates } from "../i18n/routing";
 import SwedishHomeDirectory from "../components/SwedishHomeDirectory";
 import { getSiteNotifications } from "../converter/siteNotifications";
 import { buildSiteUrl } from "../siteConfig";
 
 export const metadata: Metadata = {
-  title: "Vind den enhetsomvandling du behover",
+  title: "Enhetsomvandlare – omvandla måttenheter",
   description:
     "Omvandla gratis och direkt langd, massa, temperatur och andra fysiska enheter. Over 12 kategorier, med exakta formler.",
   alternates: {
     canonical: "/sv",
-    languages: {
-      tr: "/",
-      en: "/en",
-      de: "/de",
-      ar: "/ar",
-      uz: "/uz",
-      bn: "/bn",
-      fr: "/fr",
-      es: "/es",
-      "es-419": "/es-419",
-      pt: "/pt",
-      it: "/it",
-      nl: "/nl",
-      sv: "/sv",
-      "x-default": "/",
-    },
+    ...buildFullLanguageAlternates("/sv"),
   },
   openGraph: {
-    title: "Vind den enhetsomvandling du behover",
+    title: "Enhetsomvandlare – omvandla måttenheter",
     description:
       "Omvandla gratis och direkt langd, massa, temperatur och andra fysiska enheter.",
     url: buildSiteUrl("/sv"),

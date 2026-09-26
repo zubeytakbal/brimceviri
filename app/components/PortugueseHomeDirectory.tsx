@@ -185,7 +185,7 @@ export default function PortugueseHomeDirectory({
         <div className="directory-shell">
           <div className="directory-hero-copy">
             <p className="directory-eyebrow">Conversor de unidades em português brasileiro</p>
-            <h1>Encontre rapidamente a página de conversão correta</h1>
+            <h1>Conversor de unidades de medida</h1>
             <p className="directory-lead">
               Converta comprimento, massa, pressão e muitas outras unidades
               em português, com guias de unidades claros.

@@ -185,7 +185,7 @@ export default function NorwegianHomeDirectory({
         <div className="directory-shell">
           <div className="directory-hero-copy">
             <p className="directory-eyebrow">Enhetsomregner pa norsk</p>
-            <h1>Finn enhetsomregningen du trenger</h1>
+            <h1>Enhetsomregner – omregn måleenheter</h1>
             <p className="directory-lead">
               Regn om lengde, masse, trykk og mange andre enheter helt pa
               norsk, med tydelige enhetsguider.

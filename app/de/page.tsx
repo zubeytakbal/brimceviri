@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildFullLanguageAlternates } from "../i18n/routing";
 import HomeDirectory from "../components/HomeDirectory";
 import { buildSiteUrl } from "../siteConfig";
 import { getSiteNotifications } from "../converter/siteNotifications";
@@ -9,21 +10,15 @@ const germanHomeUrl = buildSiteUrl("/de");
 const arabicHomeUrl = buildSiteUrl("/ar");
 
 export const metadata: Metadata = {
-  title: "Die passende Umrechnung finden",
+  title: "Einheiten umrechnen – Einheitenrechner",
   description:
     "Durchsuchen Sie Umrechnungsseiten f\u00FCr L\u00E4nge, Masse und Druck auf Deutsch und \u00F6ffnen Sie die passende Umrechnung direkt.",
   alternates: {
     canonical: germanHomeUrl,
-    languages: {
-      tr: turkishHomeUrl,
-      en: englishHomeUrl,
-      de: germanHomeUrl,
-      ar: arabicHomeUrl,
-      "x-default": turkishHomeUrl,
-    },
+    ...buildFullLanguageAlternates("/de"),
   },
   openGraph: {
-    title: "Die passende Umrechnung finden | BirimCeviri.app",
+    title: "Einheiten umrechnen – Einheitenrechner | BirimCeviri.app",
     description:
       "Suchen Sie deutsche Umrechnungsseiten f\u00FCr L\u00E4nge, Masse und Druck und \u00F6ffnen Sie die passende Seite direkt.",
     url: germanHomeUrl,

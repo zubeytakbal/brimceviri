@@ -45,6 +45,7 @@ import { norwegianConversionPages } from "../converter/localizedNorwegianConvers
 import { danishCategoryPages } from "../converter/localizedDanishCategoryPages";
 import { danishUnitPages } from "../converter/localizedDanishUnitPages";
 import { danishConversionPages } from "../converter/localizedDanishConversionPages";
+import { russianConversionPages } from "../converter/localizedRussianConversionPages";
 
 export type RouteCollectionKey =
   | "units"
@@ -378,7 +379,10 @@ const localizedSlugEntriesByLocale: Record<
       sourceSlug: page.sourceSlug,
       slug: page.slug,
     })),
-    ru: [],
+    ru: russianConversionPages.map((page) => ({
+      sourceSlug: page.sourceSlug,
+      slug: page.slug,
+    })),
     no: norwegianConversionPages.map((page) => ({
       sourceSlug: page.sourceSlug,
       slug: page.slug,

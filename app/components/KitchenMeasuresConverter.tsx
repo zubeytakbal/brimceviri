@@ -103,7 +103,7 @@ const copy = {
   },
   no: {
     ingredient: "Ingrediens", knownUnit: "Kjent enhet", value: "Verdi",
-    resultHeading: "Tilsvarende verdier", invalidValue: "Skriv inn et gyldig tall for a se omregningen.",
+    resultHeading: "Tilsvarende verdier", invalidValue: "Skriv inn et gyldig tall for å se omregningen.",
   },
   da: {
     ingredient: "Ingrediens", knownUnit: "Kendt enhed", value: "Værdi",

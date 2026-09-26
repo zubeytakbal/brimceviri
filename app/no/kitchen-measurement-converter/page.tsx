@@ -6,9 +6,9 @@ import { kitchenIngredientRows } from "../../converter/kitchenMeasures";
 import { buildSiteUrl } from "../../siteConfig";
 
 export const metadata: Metadata = {
-  title: "Kjokkenmalomregner (kopper til gram)",
+  title: "Kjøkkenmålomregner (kopper til gram)",
   description:
-    "Regn om kopper, spiseskjeer, gram og milliliter for over 40 ingredienser: mel, sukker, ris, honning, smor og mye mer.",
+    "Regn om kopper, spiseskjeer, gram og milliliter for over 40 ingredienser: mel, sukker, ris, honning, smør og mye mer.",
   alternates: {
     canonical: "/no/kitchen-measurement-converter",
     languages: {
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Kjokkenmalomregner (kopper til gram)",
+    title: "Kjøkkenmålomregner (kopper til gram)",
     description: "Regn om kopper, spiseskjeer, gram og milliliter for over 40 ingredienser.",
     url: buildSiteUrl("/no/kitchen-measurement-converter"),
     siteName: "BirimCeviri.app",
@@ -44,18 +44,18 @@ export default function NorwegianKitchenMeasurementsPage() {
         <nav className="breadcrumbs" aria-label="Sidenavigering">
           <Link href="/no">Hjem</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          <span>Kjokkenmalomregner</span>
+          <span>Kjøkkenmålomregner</span>
         </nav>
 
         <header className="all-conversions-header">
-          <h1>Kjokkenmalomregner</h1>
+          <h1>Kjøkkenmålomregner</h1>
 
           <p>
-            Velg ingrediensen og enheten du kjenner til for a se
+            Velg ingrediensen og enheten du kjenner til for å se
             tilsvarende verdi i kopper, spiseskjeer, teskjeer, gram,
             milliliter og liter direkte. Hver ingrediens har ulik tetthet,
-            sa beregningen bruker spesifikke verdier for mel, sukker, ris,
-            honning, smor og mange andre.
+            så beregningen bruker spesifikke verdier for mel, sukker, ris,
+            honning, smør og mange andre.
           </p>
         </header>
 
@@ -65,7 +65,7 @@ export default function NorwegianKitchenMeasurementsPage() {
           <h2>Hvor mange gram er en kopp mel eller en spiseskje sukker?</h2>
           <p>
             Det finnes ingen enkeltregel som gjelder for alle ingredienser,
-            fordi koppen maler et volum mens grammet maler en masse. En
+            fordi koppen måler et volum mens grammet måler en masse. En
             kopp mel er lettere enn en kopp sukker, og honning er tyngre
             enn begge -- derfor varierer omregningen avhengig av
             ingrediensens tetthet.
@@ -74,7 +74,7 @@ export default function NorwegianKitchenMeasurementsPage() {
             Verdiene som er oppgitt her, er praktiske gjennomsnitt tilpasset
             hverdagslig matlaging. Den endelige vekten kan variere noe
             avhengig av hvor pakket ingrediensen er eller produktvarianten,
-            men resultatet er likevel palitelig nok for husholdningsbruk.
+            men resultatet er likevel pålitelig nok for husholdningsbruk.
           </p>
 
           <h2>Liste over vanlige ingredienser (1 kopp = 250 ml)</h2>
@@ -102,11 +102,11 @@ export default function NorwegianKitchenMeasurementsPage() {
             </table>
           </div>
 
-          <h2>Vanlige sporsmal</h2>
+          <h2>Vanlige spørsmål</h2>
           <p>
             <strong>Hvor mange milliliter er en spiseskje?</strong>
             <br />
-            En spiseskje tilsvarer 15 milliliter, altsa 3 teskjeer. Koppen
+            En spiseskje tilsvarer 15 milliliter, altså 3 teskjeer. Koppen
             som brukes her, tilsvarer 250 milliliter (den metriske
             standardkoppen som brukes i norske oppskrifter).
           </p>
@@ -118,22 +118,22 @@ export default function NorwegianKitchenMeasurementsPage() {
             honning ved samme volum.
           </p>
           <p>
-            For a skalere en hel rett, prov{" "}
+            For å skalere en hel rett, prøv{" "}
             <Link href="/no/recipe-converter">oppskriftomregneren</Link>.
           </p>
         </section>
 
         <section className="conversion-section related-conversions">
-          <h2>Relaterte verktoy</h2>
+          <h2>Relaterte verktøy</h2>
           <ul className="related-conversion-list">
             <li>
               <Link href="/no/recipe-converter">Oppskriftomregner</Link>
             </li>
             <li>
-              <Link href="/no/shoe-size-converter">Skostorrelseomregner</Link>
+              <Link href="/no/shoe-size-converter">Skostørrelseomregner</Link>
             </li>
             <li>
-              <Link href="/no/historical-units">Historiske maleenheter</Link>
+              <Link href="/no/historical-units">Historiske måleenheter</Link>
             </li>
             <li>
               <Link href="/no/categories/masse">Omregning av masseenheter</Link>
@@ -142,13 +142,13 @@ export default function NorwegianKitchenMeasurementsPage() {
         </section>
 
         <section className="conversion-section language-alternatives">
-          <h2>Andre sprak</h2>
+          <h2>Andre språk</h2>
           <Link
             className="text-link"
             href="/mutfak-olculeri-cevirici"
             hrefLang="tr"
           >
-            Oppna den turkiska versionen
+            Oppnå den turkiska versionen
           </Link>
         </section>
       </div>

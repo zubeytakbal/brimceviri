@@ -6,7 +6,7 @@ import { buildSiteUrl } from "../siteConfig";
 export const metadata: Metadata = {
   title: "Finn enhetsomregningen du trenger",
   description:
-    "Regn gratis og direkte om lengde, masse, temperatur og andre fysiske enheter. Over 12 kategorier, med noyaktige formler.",
+    "Regn gratis og direkte om lengde, masse, temperatur og andre fysiske enheter. Over 12 kategorier, med nøyaktige formler.",
   alternates: {
     canonical: "/no",
     languages: {

@@ -341,7 +341,7 @@ const copyByLocale: Record<Exclude<Locale, "ru">, BmiCopy> = {
       activity: "Activity Level",
     },
     genders: {
-      male: "Male",
+      male: "Måle",
       female: "Female",
     },
     categories: {

@@ -28,7 +28,7 @@ const categoryBaseNames: Record<string, string> = {
   veri: "datalagring",
   elektrik: "elektrisitet",
   altin_ayar: "gullkarat",
-  gumus_ayar: "solvinnhold",
+  gumus_ayar: "sølvinnhold",
 };
 
 function serializeJsonLd(data: object) {
@@ -189,7 +189,7 @@ export default async function NorwegianCategoryPage({ params }: PageProps) {
           <CategoryUnitConverter category={categoryPage.category} locale="no" />
         ),
       }}
-      conversionHeading="Populaere omregninger"
+      conversionHeading="Populære omregninger"
       conversionCountLabel={`${conversionCards.length} par`}
       conversionCards={conversionCards}
       unitGuidesHeading="Enhetsguider"
@@ -218,7 +218,7 @@ export default async function NorwegianCategoryPage({ params }: PageProps) {
           </div>
 
           <nav className="category-table-of-contents" aria-label="Sidens innhold">
-            <strong>Pa denne siden</strong>
+            <strong>På denne siden</strong>
             <ol>
               {categoryPage.sections.map((section, index) => (
                 <li key={section.title}>
@@ -290,8 +290,8 @@ export default async function NorwegianCategoryPage({ params }: PageProps) {
             <section className="conversion-section unit-sources" id="kategori-kilder">
               <h2>Kilder</h2>
               <p>
-                Definisjonene og omregningsverdiene pa denne siden bygger
-                pa anerkjente offisielle metrologiske referanser.
+                Definisjonene og omregningsverdiene på denne siden bygger
+                på anerkjente offisielle metrologiske referanser.
               </p>
               <ol>
                 {sources.map((source) => (

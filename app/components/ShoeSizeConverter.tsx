@@ -249,7 +249,7 @@ const groupLabels: Record<Locale, Record<ShoeSizeGroupKey, string>> = {
   },
   nl: { erkek: "Heren", kadin: "Dames", bebek: "Baby / klein kind", "buyuk-cocuk": "Groter kind" },
   sv: { erkek: "Herr", kadin: "Dam", bebek: "Spädbarn / småbarn", "buyuk-cocuk": "Större barn" },
-  no: { erkek: "Herre", kadin: "Dame", bebek: "Spedbarn / smabarn", "buyuk-cocuk": "Storre barn" },
+  no: { erkek: "Herre", kadin: "Dame", bebek: "Spedbarn / småbarn", "buyuk-cocuk": "Større barn" },
   da: { erkek: "Herre", kadin: "Dame", bebek: "Spædbarn / småbarn", "buyuk-cocuk": "Større børn" },
 };
 
@@ -413,8 +413,8 @@ const copy = {
   },
   no: {
     group: "Gruppe", brand: "Merke", knownSystem: "Kjent system", value: "Verdi",
-    matchingSizes: "Tilsvarende storrelser", invalidValue: "Skriv inn et gyldig tall for a se den naermeste storrelsen.",
-    euResult: "EU", usResult: "US", ukResult: "UK", footLength: "Fotlengde", chartSuffix: "storrelsestabell",
+    matchingSizes: "Tilsvarende størrelser", invalidValue: "Skriv inn et gyldig tall for å se den nærmeste størrelsen.",
+    euResult: "EU", usResult: "US", ukResult: "UK", footLength: "Fotlengde", chartSuffix: "størrelsestabell",
   },
   da: {
     group: "Gruppe", brand: "Mærke", knownSystem: "Kendt system", value: "Værdi",

@@ -6,7 +6,7 @@ import { buildSiteUrl } from "../../siteConfig";
 export const metadata: Metadata = {
   title: "Alle kategorier — Enhetsomregner",
   description:
-    "Fullstendig liste over omregninger for lengde, masse, temperatur, trykk, energi og mange andre fysiske storrelser.",
+    "Fullstendig liste over omregninger for lengde, masse, temperatur, trykk, energi og mange andre fysiske størrelser.",
   alternates: {
     canonical: "/no/categories",
     languages: {
@@ -44,7 +44,7 @@ export default function NorwegianCategoriesIndexPage() {
         <header className="all-conversions-header">
           <h1>Alle kategorier for enhetsomregning</h1>
           <p>
-            Velg den fysiske storrelsen du er interessert i for a se alle
+            Velg den fysiske størrelsen du er interessert i for å se alle
             enheter og omregningssider i den kategorien.
           </p>
         </header>

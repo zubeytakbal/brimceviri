@@ -19,20 +19,20 @@ const norwegianCategoryNames: Record<string, string> = {
   hiz: "Hastighet",
   basinc: "Trykk",
   enerji: "Energi",
-  debi: "Stromning",
+  debi: "Strømning",
   elektrik: "Elektrisitet",
   yogunluk: "Tetthet",
   kuvvet: "Kraft",
   tork: "Dreiemoment",
   aci: "Vinkel",
   frekans: "Frekvens",
-  debi_hacimsel: "Volumstrom",
-  debi_kutlesel: "Massestrom",
+  debi_hacimsel: "Volumstrøm",
+  debi_kutlesel: "Massestrøm",
   manyetik_alan: "Magnetfelt",
   manyetik_aki: "Magnetisk fluks",
   viskozite_kinematik: "Kinematisk viskositet",
   isil_iletkenlik: "Varmeledningsevne",
-  isi_akisi: "Varmestrom",
+  isi_akisi: "Varmestrøm",
   ozgul_isi: "Spesifikk varme",
   ivme: "Akselerasjon",
   acisal_hiz: "Vinkelhastighet",
@@ -45,7 +45,7 @@ const norwegianCategoryNames: Record<string, string> = {
   enduktans: "Induktans",
   elektrik_yuk: "Elektrisk ladning",
   altin_ayar: "Gullkarat",
-  gumus_ayar: "Solvinnhold",
+  gumus_ayar: "Sølvinnhold",
   kan_sekeri: "Blodsukker",
   vitamin_d: "D-vitamin",
 };
@@ -72,12 +72,12 @@ function createNorwegianExplanation(
   factor: number
 ) {
   if (factor >= 1) {
-    return `For a regne om ${fromName} til ${toName}, multipliser utgangsverdien med ${formatNorwegianValue(
+    return `For å regne om ${fromName} til ${toName}, multipliser utgangsverdien med ${formatNorwegianValue(
       factor
     )}. 1 ${fromUnit} = ${formatNorwegianValue(factor)} ${toUnit}.`;
   }
 
-  return `For a regne om ${fromName} til ${toName}, del utgangsverdien pa ${formatNorwegianValue(
+  return `For å regne om ${fromName} til ${toName}, del utgangsverdien på ${formatNorwegianValue(
     1 / factor
   )}. 1 ${fromUnit} = ${formatNorwegianValue(factor)} ${toUnit}.`;
 }
@@ -138,22 +138,22 @@ function createNorwegianTemperatureExplanation(
   toUnit: string
 ) {
   if (fromUnit === "C" && toUnit === "F") {
-    return `For a regne om ${fromName} til ${toName}, multipliser med 9/5 og legg til 32. 1 ${fromUnit} tilsvarer 33,8 ${toUnit}.`;
+    return `For å regne om ${fromName} til ${toName}, multipliser med 9/5 og legg til 32. 1 ${fromUnit} tilsvarer 33,8 ${toUnit}.`;
   }
 
   if (fromUnit === "F" && toUnit === "C") {
-    return `For a regne om ${fromName} til ${toName}, trekk forst fra 32 og multipliser resultatet med 5/9. 32 ${fromUnit} tilsvarer 0 ${toUnit}.`;
+    return `For å regne om ${fromName} til ${toName}, trekk først fra 32 og multipliser resultatet med 5/9. 32 ${fromUnit} tilsvarer 0 ${toUnit}.`;
   }
 
   if (fromUnit === "C" && toUnit === "K") {
-    return `For a regne om ${fromName} til ${toName}, legg til 273,15. 0 ${fromUnit} tilsvarer 273,15 ${toUnit}.`;
+    return `For å regne om ${fromName} til ${toName}, legg til 273,15. 0 ${fromUnit} tilsvarer 273,15 ${toUnit}.`;
   }
 
   if (fromUnit === "K" && toUnit === "C") {
-    return `For a regne om ${fromName} til ${toName}, trekk fra 273,15. 273,15 ${fromUnit} tilsvarer 0 ${toUnit}.`;
+    return `For å regne om ${fromName} til ${toName}, trekk fra 273,15. 273,15 ${fromUnit} tilsvarer 0 ${toUnit}.`;
   }
 
-  return `Bruk den definerte temperatursammenhengen for a regne om ${fromName} til ${toName}.`;
+  return `Bruk den definerte temperatursammenhengen for å regne om ${fromName} til ${toName}.`;
 }
 
 const norwegianUnitBySourceSlug: Record<string, { name: string; slug: string }> =

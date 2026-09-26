@@ -6,7 +6,7 @@ import { buildSiteUrl } from "../../siteConfig";
 export const metadata: Metadata = {
   title: "Oppskriftomregner",
   description:
-    "Lim inn oppskriften din, velg en multiplikator for a oke eller redusere den, og fa de nye mengdene direkte — enkelte ingredienser regnes ogsa automatisk om til gram.",
+    "Lim inn oppskriften din, velg en multiplikator for å øke eller redusere den, og få de nye mengdene direkte — enkelte ingredienser regnes også automatisk om til gram.",
   alternates: {
     canonical: "/no/recipe-converter",
     languages: {
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Oppskriftomregner",
-    description: "Lim inn oppskriften din og fa de nye mengdene direkte.",
+    description: "Lim inn oppskriften din og få de nye mengdene direkte.",
     url: buildSiteUrl("/no/recipe-converter"),
     siteName: "BirimCeviri.app",
     locale: "nb_NO",
@@ -52,7 +52,7 @@ export default function NorwegianRecipeConverterPage() {
             Lim inn oppskriften din linje for linje, for eksempel: "2
             kopper mel". Etter at du har valgt multiplikatoren, beregner
             siden de nye mengdene direkte. Hvis ingrediensen gjenkjennes og
-            er oppgitt i en enhet som kopp eller skje, vises ogsa en
+            er oppgitt i en enhet som kopp eller skje, vises også en
             omtrentlig verdi i gram.
           </p>
         </header>
@@ -60,55 +60,55 @@ export default function NorwegianRecipeConverterPage() {
         <RecipeScalerConverter locale="no" />
 
         <section className="category-article-content">
-          <h2>Hvordan oker eller reduserer man en oppskrift?</h2>
+          <h2>Hvordan øker eller reduserer man en oppskrift?</h2>
           <p>
             Prinsippet er enkelt: multipliser hver mengde med samme
             faktor. Hvis oppskriften er for 2 personer og du vil ha 4, er
-            multiplikatoren 2. Dette verktoyet gjor dette automatisk for
-            hver linje som starter med en lesbar mengde (heltall, brok
+            multiplikatoren 2. Dette verktøyet gjør dette automatisk for
+            hver linje som starter med en lesbar mengde (heltall, brøk
             eller desimaltall).
           </p>
           <p>
-            Du kan ogsa oppgi antall opprinnelige porsjoner og antall
-            onskede porsjoner: multiplikatoren beregnes da automatisk,
-            uten at du trenger a regne for hand.
+            Du kan også oppgi antall opprinnelige porsjoner og antall
+            ønskede porsjoner: multiplikatoren beregnes da automatisk,
+            uten at du trenger å regne for hånd.
           </p>
 
           <h2>Hvorfor viser ikke alle linjer gram?</h2>
           <p>
-            Omregningen til gram vises bare nar verktoyet gjenkjenner bade
+            Omregningen til gram vises bare når verktøyet gjenkjenner både
             enheten og ingrediensens navn. En linje som "2 egg" skaleres
             korrekt, men viser ikke ekstra gram fordi egg ikke finnes i
             volumomregningslisten.
           </p>
           <p>
-            For a se listen over stottede ingredienser, apne{" "}
+            For å se listen over støttede ingredienser, åpne{" "}
             <Link href="/no/kitchen-measurement-converter">
-              kjokkenmalomregneren
+              kjøkkenmålomregneren
             </Link>
             .
           </p>
         </section>
 
         <section className="conversion-section related-conversions">
-          <h2>Relaterte verktoy</h2>
+          <h2>Relaterte verktøy</h2>
           <ul className="related-conversion-list">
             <li>
-              <Link href="/no/kitchen-measurement-converter">Kjokkenmal</Link>
+              <Link href="/no/kitchen-measurement-converter">Kjøkkenmål</Link>
             </li>
             <li>
-              <Link href="/no/shoe-size-converter">Skostorrelseomregner</Link>
+              <Link href="/no/shoe-size-converter">Skostørrelseomregner</Link>
             </li>
             <li>
-              <Link href="/no/historical-units">Historiske maleenheter</Link>
+              <Link href="/no/historical-units">Historiske måleenheter</Link>
             </li>
           </ul>
         </section>
 
         <section className="conversion-section language-alternatives">
-          <h2>Andre sprak</h2>
+          <h2>Andre språk</h2>
           <Link className="text-link" href="/tarif-cevirici" hrefLang="tr">
-            Oppna den turkiska versionen
+            Oppnå den turkiska versionen
           </Link>
         </section>
       </div>

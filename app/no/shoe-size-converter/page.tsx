@@ -4,9 +4,9 @@ import ShoeSizeConverter from "../../components/ShoeSizeConverter";
 import { buildSiteUrl } from "../../siteConfig";
 
 export const metadata: Metadata = {
-  title: "Skostorrelseomregner: EU, US, UK",
+  title: "Skostørrelseomregner: EU, US, UK",
   description:
-    "Regn om europeiske (EU), amerikanske (US) og britiske (UK) skostorrelser; sammenlign ogsa storrelser for Nike, Adidas, Puma, New Balance og Converse.",
+    "Regn om europeiske (EU), amerikanske (US) og britiske (UK) skostørrelser; sammenlign også størrelser for Nike, Adidas, Puma, New Balance og Converse.",
   alternates: {
     canonical: "/no/shoe-size-converter",
     languages: {
@@ -26,8 +26,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Skostorrelseomregner: EU, US, UK",
-    description: "Regn om europeiske, amerikanske og britiske skostorrelser.",
+    title: "Skostørrelseomregner: EU, US, UK",
+    description: "Regn om europeiske, amerikanske og britiske skostørrelser.",
     url: buildSiteUrl("/no/shoe-size-converter"),
     siteName: "BirimCeviri.app",
     locale: "nb_NO",
@@ -42,16 +42,16 @@ export default function NorwegianShoeSizePage() {
         <nav className="breadcrumbs" aria-label="Sidenavigering">
           <Link href="/no">Hjem</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          <span>Skostorrelseomregner</span>
+          <span>Skostørrelseomregner</span>
         </nav>
 
         <header className="all-conversions-header">
-          <h1>Skostorrelseomregner: EU, US, UK</h1>
+          <h1>Skostørrelseomregner: EU, US, UK</h1>
 
           <p>
-            Skriv inn storrelsen du kjenner til for a se de tilsvarende
-            amerikanske (US) og britiske (UK) storrelsene direkte. Egne
-            tabeller for herre, dame, spedbarn og storre barn, med
+            Skriv inn størrelsen du kjenner til for å se de tilsvarende
+            amerikanske (US) og britiske (UK) størrelsene direkte. Egne
+            tabeller for herre, dame, spedbarn og større barn, med
             sammenligning av merkene Nike, Adidas, Puma, New Balance og
             Converse.
           </p>
@@ -60,39 +60,39 @@ export default function NorwegianShoeSizePage() {
         <ShoeSizeConverter locale="no" />
 
         <section className="category-article-content">
-          <h2>Hvorfor er skostorrelser forskjellige mellom merker og systemer?</h2>
+          <h2>Hvorfor er skostørrelser forskjellige mellom merker og systemer?</h2>
           <p>
-            I Norge brukes den europeiske storrelsesskalaen (EU), samme
+            I Norge brukes den europeiske størrelsesskalaen (EU), samme
             skala som brukes i de fleste europeiske land, men importerte sko
-            har ofte ogsa den amerikanske (US) storrelsen oppgitt pa
+            har ofte også den amerikanske (US) størrelsen oppgitt på
             etiketten. I tillegg bruker hvert merke sine egne
-            produksjonslester, sa samme fotlengde kan tilsvare ulike
-            storrelser, eller forskyves et halvt nummer, avhengig av merke.
+            produksjonslester, så samme fotlengde kan tilsvare ulike
+            størrelser, eller forskyves et halvt nummer, avhengig av merke.
           </p>
           <p>
-            Det mest palitelige resultatet far man vanligvis ved a male
+            Det mest pålitelige resultatet får man vanligvis ved å måle
             fotens lengde i centimeter og deretter velge alternativet
-            "Fotlengde" i verktoyet. Dette reduserer feilene som skyldes
-            forskjeller i storrelsesbetegnelser mellom merker og land.
+            "Fotlengde" i verktøyet. Dette reduserer feilene som skyldes
+            forskjeller i størrelsesbetegnelser mellom merker og land.
           </p>
           <p>
-            For barn starter den amerikanske (US) storrelsesskalaen pa nytt
-            etter 13,5; derfor holdes tabellene for spedbarn/smabarn og
-            storre barn atskilt, for a holde sammenligningen tydelig.
+            For barn starter den amerikanske (US) størrelsesskalaen på nytt
+            etter 13,5; derfor holdes tabellene for spedbarn/småbarn og
+            større barn atskilt, for å holde sammenligningen tydelig.
           </p>
         </section>
 
         <section className="conversion-section related-conversions">
-          <h2>Relaterte verktoy</h2>
+          <h2>Relaterte verktøy</h2>
           <ul className="related-conversion-list">
             <li>
-              <Link href="/no/kitchen-measurement-converter">Kjokkenmal</Link>
+              <Link href="/no/kitchen-measurement-converter">Kjøkkenmål</Link>
             </li>
             <li>
               <Link href="/no/recipe-converter">Oppskriftomregner</Link>
             </li>
             <li>
-              <Link href="/no/historical-units">Historiske maleenheter</Link>
+              <Link href="/no/historical-units">Historiske måleenheter</Link>
             </li>
             <li>
               <Link href="/no/categories/lengde">Omregning av lengdeenheter</Link>
@@ -101,13 +101,13 @@ export default function NorwegianShoeSizePage() {
         </section>
 
         <section className="conversion-section language-alternatives">
-          <h2>Andre sprak</h2>
+          <h2>Andre språk</h2>
           <Link
             className="text-link"
             href="/ayakkabi-numarasi-cevirme"
             hrefLang="tr"
           >
-            Oppna den turkiska versionen
+            Oppnå den turkiska versionen
           </Link>
         </section>
       </div>

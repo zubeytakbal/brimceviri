@@ -139,8 +139,8 @@ const notificationCopy = {
   },
   no: {
     ariaLabel: "Varsler", panelLabel: "Sidevarsler", title: "Varsler", closeLabel: "Lukk",
-    markSeenLabel: "Merk dette varselet som lest", openLabel: "Apne →",
-    empty: "Det finnes for oyeblikket ingen nye varsler.", dateLocale: "nb-NO",
+    markSeenLabel: "Merk dette varselet som lest", openLabel: "Åpne →",
+    empty: "Det finnes for øyeblikket ingen nye varsler.", dateLocale: "nb-NO",
   },
   da: {
     ariaLabel: "Notifikationer", panelLabel: "Sidenotifikationer", title: "Notifikationer", closeLabel: "Luk",

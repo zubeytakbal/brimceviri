@@ -166,12 +166,12 @@ bn: {
     lang: "nb",
     title: "Siden ble ikke funnet",
     description:
-      "Siden du leter etter kan ha blitt flyttet, eller sa er adressen ikke gyldig.",
+      "Siden du leter etter kan ha blitt flyttet, eller så er adressen ikke gyldig.",
     continueHeading: "Fortsett med",
     primaryHref: "/no",
     primaryLabel: "Tilbake til den norske hjemmesiden",
     secondaryHref: "/",
-    secondaryLabel: "Apne den tyrkiske hjemmesiden",
+    secondaryLabel: "Åpne den tyrkiske hjemmesiden",
   },
   da: {
     lang: "da",

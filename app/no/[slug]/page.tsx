@@ -138,7 +138,7 @@ export default async function NorwegianConversionPage({ params }: PageProps) {
             </h1>
 
             <p className="conversion-hero-description">
-              Skriv inn en verdi for a fa et direkte og gratis resultat.
+              Skriv inn en verdi for å få et direkte og gratis resultat.
             </p>
 
             <PairConverter
@@ -289,7 +289,7 @@ export default async function NorwegianConversionPage({ params }: PageProps) {
             <h2>Kilder</h2>
 
             <p>
-              Definisjonene og omregningsforholdene pa denne siden folger
+              Definisjonene og omregningsforholdene på denne siden følger
               anerkjente metrologiske standarder.
             </p>
 
@@ -306,7 +306,7 @@ export default async function NorwegianConversionPage({ params }: PageProps) {
         )}
 
         <section className="conversion-section language-alternatives">
-          <h2>Andre sprak</h2>
+          <h2>Andre språk</h2>
 
           <Link
             className="text-link"

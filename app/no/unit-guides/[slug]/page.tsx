@@ -92,7 +92,7 @@ export default async function NorwegianUnitPage({ params }: PageProps) {
               <dd>{unitPage.symbol}</dd>
             </div>
             <div>
-              <dt>Malesystem</dt>
+              <dt>Målesystem</dt>
               <dd>{unitPage.measurementSystem}</dd>
             </div>
             <div>
@@ -125,13 +125,13 @@ export default async function NorwegianUnitPage({ params }: PageProps) {
           )}
 
           <section className="conversion-section language-alternatives">
-            <h2>Andre sprak</h2>
+            <h2>Andre språk</h2>
             <Link
               className="text-link"
               href={`/birimler/${unitPage.sourceSlug}`}
               hrefLang="tr"
             >
-              Oppna den turkiska versionen
+              Oppnå den turkiska versionen
             </Link>
             {englishPage && (
               <Link

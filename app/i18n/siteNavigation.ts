@@ -405,7 +405,7 @@ const categoryLabels: Record<
     elektrik: "Elektrisitet",
     yogunluk: "Densitet",
     kuvvet: "Kraft",
-    debi: "Stromning",
+    debi: "Strømning",
     tork: "Dreiemoment",
     momentum: "Bevegelsesmengde",
     viskozite_dinamik: "Viskositet",
@@ -414,7 +414,7 @@ const categoryLabels: Record<
     enduktans: "Induktans",
     elektrik_yuk: "Elektrisk Ladning",
     altin_ayar: "Gullkarat",
-    gumus_ayar: "Solvinnhold",
+    gumus_ayar: "Sølvinnhold",
   },
   da: {
     uzunluk: "Længde",
@@ -688,14 +688,14 @@ const footerCopy: Record<Locale, FooterCopy> = {
   no: {
     navAriaLabel: "Bunntekstnavigering",
     pagesHeading: "Sider",
-    languagesHeading: "Sprak",
+    languagesHeading: "Språk",
     categoriesHeading: "Kategorier",
     description:
-      "Tekniske omregningsverktoy og enhetsguider forberedt for praktisk bruk.",
+      "Tekniske omregningsverktøy og enhetsguider forberedt for praktisk bruk.",
     disclaimer:
       "For viktige tekniske, medisinske eller sikkerhetsrelaterte beslutninger, kontroller resultatene med profesjonelle kilder.",
     browserProcessingNote:
-      "I regnefunksjonene pa denne siden behandles innsendte data direkte i nettleseren.",
+      "I regnefunksjonene på denne siden behandles innsendte data direkte i nettleseren.",
   },
   da: {
     navAriaLabel: "Bundtekstnavigation",

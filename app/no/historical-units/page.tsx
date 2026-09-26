@@ -4,9 +4,9 @@ import StaticPageLayout from "../../components/StaticPageLayout";
 import { buildSiteUrl } from "../../siteConfig";
 
 export const metadata = {
-  title: "Historiske maleenheter",
+  title: "Historiske måleenheter",
   description:
-    "Utforsk bysantinske, osmanske og gammeltyrkiske maleenheter og regn dem om til meter og gram med korte forklaringer.",
+    "Utforsk bysantinske, osmanske og gammeltyrkiske måleenheter og regn dem om til meter og gram med korte forklaringer.",
   alternates: {
     canonical: "/no/historical-units",
     languages: {
@@ -26,8 +26,8 @@ export const metadata = {
     },
   },
   openGraph: {
-    title: "Historiske maleenheter",
-    description: "Utforsk bysantinske, osmanske og gammeltyrkiske maleenheter.",
+    title: "Historiske måleenheter",
+    description: "Utforsk bysantinske, osmanske og gammeltyrkiske måleenheter.",
     url: buildSiteUrl("/no/historical-units"),
     siteName: "BirimCeviri.app",
     locale: "nb_NO",
@@ -69,7 +69,7 @@ const byzantineUnits = [
     href: "/birimler/bizans-litrasi",
     name: "Bysantinsk litra (litra)",
     value: "≈ 324 g",
-    note: "Grunnleggende masseenhet i den bysantinske tradisjonen, pavirket av det romerske pundet.",
+    note: "Grunnleggende masseenhet i den bysantinske tradisjonen, påvirket av det romerske pundet.",
   },
   {
     href: "/birimler/bizans-onsu",
@@ -84,25 +84,25 @@ const ottomanUnits = [
     href: "/birimler/arsin",
     name: "Arşın",
     value: "≈ 0,68 m",
-    note: "Hadde flere bruksomrader: markeds-arşın, den mest kjente, og bygge-arşın, som ble brukt for storre lengder.",
+    note: "Hadde flere bruksområder: markeds-arşın, den mest kjente, og bygge-arşın, som ble brukt for større lengder.",
   },
   {
     href: "/birimler/endaze",
     name: "Endaze",
     value: "= 0,65 m",
-    note: "Ble saerlig brukt til a male stoff og tekstiler, samt relatert handel.",
+    note: "Ble særlig brukt til å måle stoff og tekstiler, samt relatert handel.",
   },
   {
     href: "/birimler/okka",
     name: "Osmansk okka (Okka)",
     value: "= 400 dirhem ≈ 1282,945 g",
-    note: "En av de mest kjente vektenhetene pa tradisjonelle osmanske markeder.",
+    note: "En av de mest kjente vektenhetene på tradisjonelle osmanske markeder.",
   },
   {
     href: "/birimler/dirhem",
     name: "Dirhem",
     value: "= 1/400 okka ≈ 3,207 g",
-    note: "Ble brukt for sma mengder, som edle metaller, krydder og enkelte kosmetiske produkter.",
+    note: "Ble brukt for små mengder, som edle metaller, krydder og enkelte kosmetiske produkter.",
   },
 ];
 
@@ -111,7 +111,7 @@ const oldTurkicUnits = [
     href: "/birimler/cig",
     name: "Çığ",
     value: "≈ 0,333 m",
-    note: "En gammel tyrkisk lengdeenhet som forekommer i gamle sprakvitenskapelige og historiske kilder.",
+    note: "En gammel tyrkisk lengdeenhet som forekommer i gamle språkvitenskapelige og historiske kilder.",
   },
 ];
 
@@ -150,14 +150,14 @@ export default function NorwegianHistoricalUnitsPage() {
       breadcrumbAriaLabel="Sidenavigering"
       breadcrumbs={[
         { href: "/no", label: "Hjem" },
-        { label: "Historiske maleenheter" },
+        { label: "Historiske måleenheter" },
       ]}
-      title="Historiske maleenheter"
-      description="Utforsk bysantinske, osmanske og gammeltyrkiske maleenheter med sine moderne motsvarigheter i meter og gram, og regn dem om direkte med to praktiske verktoy."
+      title="Historiske måleenheter"
+      description="Utforsk bysantinske, osmanske og gammeltyrkiske måleenheter med sine moderne motsvarigheter i meter og gram, og regn dem om direkte med to praktiske verktøy."
       alternateLink={{
         href: "/tarihi-olcu-birimleri",
         hrefLang: "tr",
-        label: "Oppna den turkiska versionen",
+        label: "Oppnå den turkiska versionen",
       }}
       sections={[
         {
@@ -165,14 +165,14 @@ export default function NorwegianHistoricalUnitsPage() {
           content: (
             <>
               <p>
-                Malingens historie i Anatolia og denne regionen startet
+                Målingens historie i Anatolia og denne regionen startet
                 ikke med det moderne metriske systemet; den gikk gjennom
                 flere lag av bysantinske og senere osmanske systemer, i
-                tillegg til enda eldre tyrkiske mal.
+                tillegg til enda eldre tyrkiske mål.
               </p>
               <p>
                 Derfor forekommer navn som arşın, okka og dirhem fortsatt i
-                dag i gamle dokumenter, samt i enkelte boker og historisk
+                dag i gamle dokumenter, samt i enkelte bøker og historisk
                 forskning.
               </p>
             </>
@@ -220,9 +220,9 @@ export default function NorwegianHistoricalUnitsPage() {
             <>
               <p>
                 Bysants arvet en stor del av den greske og romerske
-                maletradisjonen og skapte praktiske lengde- og
+                måletradisjonen og skapte praktiske lengde- og
                 masseenheter som ble brukt innen handel og byggevirksomhet
-                i arhundrer.
+                i århundrer.
               </p>
               <UnitList units={byzantineUnits} />
             </>
@@ -234,7 +234,7 @@ export default function NorwegianHistoricalUnitsPage() {
             <>
               <p>
                 For den osmanske staten helt gikk over til det metriske
-                systemet pa 1900-tallet, ble enheter som arşın, endaze,
+                systemet på 1900-tallet, ble enheter som arşın, endaze,
                 okka og dirhem brukt innen handel, byggevirksomhet og
                 dagligliv.
               </p>
@@ -247,9 +247,9 @@ export default function NorwegianHistoricalUnitsPage() {
           content: (
             <>
               <p>
-                Enkelte gamle enheter er fortsatt kjent takket vaere
-                sprakvitenskapelige og historiske kilder, og er viktige for
-                a forsta gamle tekster og relatere dem til moderne mal.
+                Enkelte gamle enheter er fortsatt kjent takket være
+                språkvitenskapelige og historiske kilder, og er viktige for
+                å forstå gamle tekster og relatere dem til moderne mål.
               </p>
               <UnitList units={oldTurkicUnits} />
             </>
@@ -262,29 +262,29 @@ export default function NorwegianHistoricalUnitsPage() {
               <p>
                 Disse navnene forekommer fortsatt i dag i vakf-dokumenter,
                 gamle registre, historisk forskning og oversettelsesarbeid;
-                a regne dem om til meter eller gram hjelper til med a
-                raskt forsta dem.
+                å regne dem om til meter eller gram hjelper til med å
+                raskt forstå dem.
               </p>
               <p>
-                Denne siden er ogsa nyttig for studenter,
-                innholdsprodusenter og alle som onsker a lese historiske
+                Denne siden er også nyttig for studenter,
+                innholdsprodusenter og alle som ønsker å lese historiske
                 tall med tydelige moderne referanser.
               </p>
             </>
           ),
         },
         {
-          heading: "Relaterte verktoy",
+          heading: "Relaterte verktøy",
           content: (
             <ul className="related-conversion-list">
               <li>
-                <Link href="/no/kitchen-measurement-converter">Kjokkenmal</Link>
+                <Link href="/no/kitchen-measurement-converter">Kjøkkenmål</Link>
               </li>
               <li>
                 <Link href="/no/recipe-converter">Oppskriftomregner</Link>
               </li>
               <li>
-                <Link href="/no/shoe-size-converter">Skostorrelseomregner</Link>
+                <Link href="/no/shoe-size-converter">Skostørrelseomregner</Link>
               </li>
             </ul>
           ),

@@ -52,14 +52,14 @@ const nicheCards: Array<{
   {
     id: "shoe-size",
     href: "/no/shoe-size-converter",
-    title: "Skostorrelseomregner",
-    description: "Sammenlign EU-, US- og UK-skostorrelser per merke.",
+    title: "Skostørrelseomregner",
+    description: "Sammenlign EU-, US- og UK-skostørrelser per merke.",
     iconName: "shoeSize",
   },
   {
     id: "kitchen-measures",
     href: "/no/kitchen-measurement-converter",
-    title: "Kjokkenmal",
+    title: "Kjøkkenmål",
     description: "Regn om kopper, spiseskjeer og gram ut fra ingrediens.",
     iconName: "kitchenMeasures",
   },
@@ -184,17 +184,17 @@ export default function NorwegianHomeDirectory({
       <section className="directory-hero">
         <div className="directory-shell">
           <div className="directory-hero-copy">
-            <p className="directory-eyebrow">Enhetsomregner pa norsk</p>
+            <p className="directory-eyebrow">Enhetsomregner på norsk</p>
             <h1>Finn enhetsomregningen du trenger</h1>
             <p className="directory-lead">
-              Regn om lengde, masse, trykk og mange andre enheter helt pa
+              Regn om lengde, masse, trykk og mange andre enheter helt på
               norsk, med tydelige enhetsguider.
             </p>
           </div>
 
           <div className="directory-hero-panel">
             <form className="directory-search" onSubmit={handleSubmit} role="search">
-              <label htmlFor={inputId}>Sok en omregning</label>
+              <label htmlFor={inputId}>Søk en omregning</label>
 
               <div className="directory-search-field">
                 <input
@@ -211,19 +211,19 @@ export default function NorwegianHomeDirectory({
 
                 <button type="submit">
                   <DecorativeIcon className="directory-button-icon" name="search" size={18} />
-                  Apne
+                  Åpne
                 </button>
               </div>
 
               <p className="directory-search-hint" id={`${inputId}-hint`}>
-                Skriv navnet pa en enhet pa norsk eller engelsk og trykk
-                Enter for a apne det forste resultatet.
+                Skriv navnet på en enhet på norsk eller engelsk og trykk
+                Enter for å åpne det første resultatet.
               </p>
 
               {query.trim() ? (
                 <div className="directory-search-results-wrap">
                   <div className="directory-search-results-head">
-                    <strong>Sokeresultater</strong>
+                    <strong>Søkeresultater</strong>
                     <span>Trykk Enter for a apne</span>
                   </div>
 
@@ -266,7 +266,7 @@ export default function NorwegianHomeDirectory({
           <header className="directory-section-header">
             <div>
               <h2>Enhetsomregning</h2>
-              <p>Velg en kategori for a se alle enheter og omregningssider.</p>
+              <p>Velg en kategori for å se alle enheter og omregningssider.</p>
             </div>
 
             <Link className="directory-section-link" href="/no/categories">
@@ -326,8 +326,8 @@ export default function NorwegianHomeDirectory({
           <section className="directory-section">
             <header className="directory-section-header">
               <div>
-                <h2>Populaere omregninger</h2>
-                <p>Direkte tilgang til de mest sokte omregningene.</p>
+                <h2>Populære omregninger</h2>
+                <p>Direkte tilgang til de mest søkte omregningene.</p>
               </div>
             </header>
 
@@ -348,8 +348,8 @@ export default function NorwegianHomeDirectory({
           <section className="directory-section">
             <header className="directory-section-header">
               <div>
-                <h2>Populaere enheter</h2>
-                <p>Detaljerte guider pa norsk for de mest sokte enhetene.</p>
+                <h2>Populære enheter</h2>
+                <p>Detaljerte guider på norsk for de mest søkte enhetene.</p>
               </div>
             </header>
 

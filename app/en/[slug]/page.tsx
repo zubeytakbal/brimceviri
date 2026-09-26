@@ -183,12 +183,10 @@ export async function generateMetadata({
     title,
     description,
 
-    alternates: page.isEnglishOnly
-      ? { canonical: `/en/${page.slug}` }
-      : {
-          canonical: `/en/${page.slug}`,
-          ...buildFullLanguageAlternates(`/en/${page.slug}`),
-        },
+    alternates: {
+      canonical: `/en/${page.slug}`,
+      ...buildFullLanguageAlternates(`/en/${page.slug}`),
+    },
 
     openGraph: {
       title,

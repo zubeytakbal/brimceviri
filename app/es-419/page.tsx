@@ -1,30 +1,19 @@
 import type { Metadata } from "next";
+import { buildFullLanguageAlternates } from "../i18n/routing";
 import Es419HomeDirectory from "../components/Es419HomeDirectory";
 import { getSiteNotifications } from "../converter/siteNotifications";
 import { buildSiteUrl } from "../siteConfig";
 
 export const metadata: Metadata = {
-  title: "Encuentra la conversión de unidades que necesitas",
+  title: "Conversor de unidades y medidas",
   description:
     "Convierte gratis longitud, masa, temperatura y otras unidades físicas. Incluye 13 categorías y 4 herramientas prácticas de conversión.",
   alternates: {
     canonical: "/es-419",
-    languages: {
-      tr: "/",
-      en: "/en",
-      de: "/de",
-      ar: "/ar",
-      uz: "/uz",
-      bn: "/bn",
-      fr: "/fr",
-      es: "/es",
-      "es-419": "/es-419",
-      pt: "/pt",
-      "x-default": "/",
-    },
+    ...buildFullLanguageAlternates("/es-419"),
   },
   openGraph: {
-    title: "Encuentra la conversión de unidades que necesitas",
+    title: "Conversor de unidades y medidas",
     description:
       "Convierte gratis longitud, masa, temperatura y otras unidades físicas con 13 categorías y 4 herramientas prácticas.",
     url: buildSiteUrl("/es-419"),

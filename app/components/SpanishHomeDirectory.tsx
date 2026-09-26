@@ -185,7 +185,7 @@ export default function SpanishHomeDirectory({
         <div className="directory-shell">
           <div className="directory-hero-copy">
             <p className="directory-eyebrow">Convertidor de unidades en español</p>
-            <h1>Encuentra rápido la página de conversión correcta</h1>
+            <h1>Conversor de unidades y medidas</h1>
             <p className="directory-lead">
               Convierte longitud, masa, presión y muchas otras unidades
               completamente en español, con guías de unidades claras.

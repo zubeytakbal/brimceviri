@@ -227,7 +227,7 @@ export default function BengaliHomeDirectory({
         <div className="directory-shell">
           <div className="directory-hero-copy">
             <p className="directory-eyebrow">বাংলায় একক রূপান্তরকারী</p>
-            <h1>সঠিক রূপান্তর পৃষ্ঠা দ্রুত খুঁজুন</h1>
+            <h1>একক রূপান্তরকারী ও একক রূপান্তর</h1>
             <p className="directory-lead">
               দৈর্ঘ্য, ভর, চাপ এবং আরও অনেক একক সম্পূর্ণ বাংলায় রূপান্তর করুন,
               সাথে একক গাইড ও ব্যবহারযোগ্য দৈনন্দিন ক্যালকুলেটর।

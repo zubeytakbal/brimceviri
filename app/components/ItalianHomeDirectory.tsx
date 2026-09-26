@@ -185,7 +185,7 @@ export default function ItalianHomeDirectory({
         <div className="directory-shell">
           <div className="directory-hero-copy">
             <p className="directory-eyebrow">Convertitore di unità in italiano</p>
-            <h1>Trova subito la pagina di conversione giusta</h1>
+            <h1>Convertitore di unità di misura</h1>
             <p className="directory-lead">
               Converti lunghezza, massa, pressione e molte altre unità
               completamente in italiano, con guide alle unità chiare.

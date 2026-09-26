@@ -1,31 +1,19 @@
 import type { Metadata } from "next";
+import { buildFullLanguageAlternates } from "../i18n/routing";
 import ItalianHomeDirectory from "../components/ItalianHomeDirectory";
 import { getSiteNotifications } from "../converter/siteNotifications";
 import { buildSiteUrl } from "../siteConfig";
 
 export const metadata: Metadata = {
-  title: "Trova la conversione di unità di cui hai bisogno",
+  title: "Convertitore di unità di misura",
   description:
     "Converti gratis e all'istante lunghezza, massa, temperatura e altre unità fisiche. Oltre 12 categorie, con formule precise.",
   alternates: {
     canonical: "/it",
-    languages: {
-      tr: "/",
-      en: "/en",
-      de: "/de",
-      ar: "/ar",
-      uz: "/uz",
-      bn: "/bn",
-      fr: "/fr",
-      es: "/es",
-      "es-419": "/es-419",
-      pt: "/pt",
-      it: "/it",
-      "x-default": "/",
-    },
+    ...buildFullLanguageAlternates("/it"),
   },
   openGraph: {
-    title: "Trova la conversione di unità di cui hai bisogno",
+    title: "Convertitore di unità di misura",
     description:
       "Converti gratis e all'istante lunghezza, massa, temperatura e altre unità fisiche.",
     url: buildSiteUrl("/it"),

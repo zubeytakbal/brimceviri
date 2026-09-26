@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { buildFullLanguageAlternates } from "../i18n/routing";
 import HomeDirectory from "../components/HomeDirectory";
 import { buildSiteUrl } from "../siteConfig";
 import { getSiteNotifications } from "../converter/siteNotifications";
@@ -9,23 +10,17 @@ const germanHomeUrl = buildSiteUrl("/de");
 const arabicHomeUrl = buildSiteUrl("/ar");
 
 export const metadata: Metadata = {
-  title: "Find the unit conversion you need",
+  title: "Unit Converter and Unit Conversions",
   description:
     "Browse live conversion pages by category, search by unit name or symbol and open the right calculator or unit guide without leaving the homepage.",
 
   alternates: {
     canonical: englishHomeUrl,
-    languages: {
-      tr: homeUrl,
-      en: englishHomeUrl,
-      de: germanHomeUrl,
-      ar: arabicHomeUrl,
-      "x-default": homeUrl,
-    },
+    ...buildFullLanguageAlternates("/en"),
   },
 
   openGraph: {
-    title: "Find the unit conversion you need | BirimCeviri.app",
+    title: "Unit Converter and Unit Conversions | BirimCeviri.app",
     description:
       "Search conversion pages, compare category directories and jump into the exact unit converter you need.",
     url: englishHomeUrl,
@@ -35,7 +30,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Find the unit conversion you need | BirimCeviri.app",
+    title: "Unit Converter and Unit Conversions | BirimCeviri.app",
     description:
       "Search conversion pages, compare category directories and jump into the exact unit converter you need.",
   },

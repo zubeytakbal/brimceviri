@@ -186,7 +186,7 @@ export default function FrenchHomeDirectory({
         <div className="directory-shell">
           <div className="directory-hero-copy">
             <p className="directory-eyebrow">Convertisseur d’unités en français</p>
-            <h1>Trouvez rapidement la bonne page de conversion</h1>
+            <h1>Convertisseur d’unités et conversion de mesures</h1>
             <p className="directory-lead">
               Convertissez la longueur, la masse, la pression et bien d’autres
               unités entièrement en français, avec des guides d’unités clairs.

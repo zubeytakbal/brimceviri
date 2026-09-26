@@ -185,7 +185,7 @@ export default function DanishHomeDirectory({
         <div className="directory-shell">
           <div className="directory-hero-copy">
             <p className="directory-eyebrow">Enhedsomregner pa dansk</p>
-            <h1>Find den enhedsomregning du har brug for</h1>
+            <h1>Enhedsomregner – omregn måleenheder</h1>
             <p className="directory-lead">
               Omregn laengde, masse, tryk og mange andre enheder helt pa
               dansk, med tydelige enhedsguider.

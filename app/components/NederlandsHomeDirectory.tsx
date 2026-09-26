@@ -20,7 +20,7 @@ export default function NederlandsHomeDirectory() {
         <div className="directory-shell">
           <div className="directory-hero-copy">
             <p className="directory-eyebrow">Eenheden omrekenen in het Nederlands</p>
-            <h1>Vind snel de juiste omrekening</h1>
+            <h1>Eenheden omrekenen – eenhedenconverter</h1>
             <p className="directory-lead">Reken lengte, massa, temperatuur, druk en meer om met heldere eenhedengidsen.</p>
           </div>
         </div>

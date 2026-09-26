@@ -659,7 +659,7 @@ const copy = {
   },
   en: {
     eyebrow: "Technical unit conversions",
-    title: "Open the right converter quickly",
+    title: "Unit Converter and Unit Conversions",
     description:
       "Use search for a direct page or browse by physical quantity.",
     searchLabel: "Search conversions",
@@ -895,7 +895,7 @@ const copy = {
   },
   de: {
     eyebrow: "Technische Einheitenumrechnung",
-    title: "Die passende Umrechnung schnell finden",
+    title: "Einheiten umrechnen – Einheitenrechner",
     description:
       "Nutzen Sie die Suche für eine direkte Seite oder wählen Sie eine Kategorie nach physikalischer Größe.",
     searchLabel: "Umrechnung oder Rechner suchen",

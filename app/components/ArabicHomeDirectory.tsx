@@ -166,7 +166,7 @@ export default function ArabicHomeDirectory({
         <div className="directory-shell">
           <div className="directory-hero-copy">
             <p className="directory-eyebrow">أدوات وحاسبات بالعربية</p>
-            <h1>ابحث عن أداة التحويل المناسبة</h1>
+            <h1>محول الوحدات وتحويل وحدات القياس</h1>
             <p className="directory-lead">
               حوّل بين وحدات الطول والكتلة والضغط وغيرها بالعربية بالكامل، مع
               دلائل وحدات وأدوات يومية جاهزة للاستخدام مباشرة.

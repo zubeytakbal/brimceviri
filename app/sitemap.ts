@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { calculatorPages } from "./converter/calculatorPages";
 import { categoryPages } from "./converter/categoryPages";
 import { conversionPages } from "./converter/conversionPages";
+import { fxPairsTr } from "./converter/fx/fxPairsTr";
 import {
   englishCalculatorPages,
   findEnglishCalculatorPageByTurkishSlug,
@@ -4249,6 +4250,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "daily",
       priority: 0.9,
     },
+    ...fxPairsTr.map((pair) => ({
+      url: `${baseUrl}/doviz-cevirici/${pair.slug}`,
+      lastModified: contentLastModified,
+      changeFrequency: "daily" as const,
+      priority: 0.85,
+    })),
     {
       url: `${baseUrl}/sosyal-medya-gorsel-boyutlari-hesaplama`,
       lastModified: contentLastModified,

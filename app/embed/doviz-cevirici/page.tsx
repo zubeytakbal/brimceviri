@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
-import CurrencyConverterCalculator from "../../components/CurrencyConverterCalculator";
-import { getExchangeRates } from "../../converter/exchangeRates";
+import FxMultiConverter from "../../components/fx/FxMultiConverter";
+import { TR_NUMBER_LOCALE, formatTrDateTime } from "../../converter/fx/fxContentTr";
+import { getFxLatest, requireFxDataOutsideBuild } from "../../converter/fx/fxData";
+import { pickRates, trMultiConverterLabels, trMultiConverterOptions } from "../../converter/fx/fxHubTr";
 import { buildSiteUrl } from "../../siteConfig";
+
+export const revalidate = 43200;
 
 export const metadata: Metadata = {
   title: "Döviz Çevirici",
@@ -13,19 +17,31 @@ export const metadata: Metadata = {
 };
 
 export default async function CurrencyConverterEmbedPage() {
-  const rates = await getExchangeRates();
+  const latest = await getFxLatest();
+  requireFxDataOutsideBuild(latest !== null);
 
   return (
     <main className="embed-widget-page">
       <div className="embed-widget-shell">
-        <CurrencyConverterCalculator rates={rates} />
+        {latest ? (
+          <>
+            <FxMultiConverter
+              rates={pickRates(latest.rates)}
+              options={trMultiConverterOptions}
+              defaultFrom="USD"
+              defaultTo="TRY"
+              numberLocale={TR_NUMBER_LOCALE}
+              labels={trMultiConverterLabels}
+            />
+            <p className="calculator-usage-hint">
+              Günlük referans kur, {formatTrDateTime(latest.lastUpdateUnix)} (TSİ) itibarıyla. Kaynak: Rates By Exchange Rate API.
+            </p>
+          </>
+        ) : (
+          <p className="calculator-usage-hint">Güncel döviz kuru şu anda alınamadı, lütfen daha sonra tekrar dene.</p>
+        )}
 
-        <Link
-          className="embed-widget-attribution"
-          href={buildSiteUrl("/doviz-cevirici")}
-          target="_blank"
-          rel="noopener"
-        >
+        <Link className="embed-widget-attribution" href={buildSiteUrl("/doviz-cevirici")} target="_blank" rel="noopener">
           Bu araç birimceviri.app tarafından sağlanıyor →
         </Link>
       </div>

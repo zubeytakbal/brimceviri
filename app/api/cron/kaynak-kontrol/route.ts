@@ -2,6 +2,8 @@ import { createHash } from "node:crypto";
 import https from "node:https";
 import tls from "node:tls";
 import { Redis } from "@upstash/redis";
+import { revalidateTag } from "next/cache";
+import { FX_CACHE_TAG } from "../../../converter/fx/fxData";
 import { getRedisCredentials, licenseSourceMonitorTargets } from "../../../converter/licenseSourceMonitor";
 
 // mevzuat.gov.tr (paylasilan Cumhurbaskanligi/*.tccb.gov.tr TLS sertifikasini
@@ -139,6 +141,18 @@ export async function GET(request: Request) {
     }
   }
 
+  // Doviz kurlari: kaynak (ExchangeRate-API) kuru her gun ~00:00 UTC'de
+  // yayinliyor. Bu gunluk cron (03:00 UTC) doviz verisinin onbellegini
+  // bayat olarak isaretler; bir sonraki ziyarette sayfalar yeni kurla
+  // arka planda yeniden uretilir. Redis'ten bagimsizdir, bu yuzden en basta.
+  let fxRevalidated = false;
+  try {
+    revalidateTag(FX_CACHE_TAG, "max");
+    fxRevalidated = true;
+  } catch {
+    fxRevalidated = false;
+  }
+
   const credentials = getRedisCredentials();
 
   if (!credentials) {
@@ -146,6 +160,7 @@ export async function GET(request: Request) {
       {
         error:
           "Redis env değişkenleri bulunamadı. Vercel dashboard > Storage üzerinden Upstash Redis entegrasyonunu ekleyip projeye bağlaman gerekiyor.",
+        fxRevalidated,
       },
       503,
     );
@@ -195,5 +210,5 @@ export async function GET(request: Request) {
     }
   }
 
-  return jsonResponse({ results });
+  return jsonResponse({ fxRevalidated, results });
 }

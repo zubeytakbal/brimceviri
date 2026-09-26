@@ -96,6 +96,12 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // Ozbekce D vitamini kategori sayfasi iki adreste yayindaydi; tek adrese indirildi.
+      {
+        source: "/uz/turkumlar/d-vitamini",
+        destination: "/uz/turkumlar/vitamin-d",
+        permanent: true,
+      },
       {
         source: "/matematik",
         destination: "/bilim-hesaplayicilari/matematik",

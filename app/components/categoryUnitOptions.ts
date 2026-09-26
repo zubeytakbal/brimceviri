@@ -1245,21 +1245,21 @@ export function getCategoryUnitOptions(
   });
 
   // Most long-standing categories use the hand-curated display order above.
-  // Newer specialist categories are already fully defined in unitRegistry but
-  // do not have a legacy `units` entry yet. For English only, expose that
-  // verified registry data instead of rendering an empty converter panel.
-  // Other locales keep their explicit label-gating behavior unchanged.
-  if (definedOptions.length > 0 || locale !== "en") {
+  // Newer specialist categories (guc, kuvvet, yogunluk...) are already fully
+  // defined in unitRegistry but have no legacy `units` entry, so their
+  // category converter rendered empty in every language except English.
+  // Fall back to the registry: the locale's own name when the registry has
+  // it (tr/de/uz), otherwise English. Pages for other languages replace the
+  // label with their own unit names via getLocalizedUnitOptions.
+  if (definedOptions.length > 0) {
     return definedOptions;
   }
 
   return unitRegistry
-    .filter(
-      (unit) => unit.category === category && unit.en
-    )
+    .filter((unit) => unit.category === category && unit.tr && unit.en)
     .map((unit) => ({
       value: unit.symbol,
-      label: unit.en!.name,
+      label: (locale === "tr" ? unit.tr?.name : locale === "de" ? unit.de?.name : locale === "uz" ? unit.uz?.name : undefined) ?? unit.en!.name,
       symbol: unit.displaySymbol ?? unit.symbol,
     }));
 }

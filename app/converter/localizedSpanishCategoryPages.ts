@@ -9,6 +9,8 @@
 // articulos fuente en TR (app/converter/categoryArticles.ts y
 // app/converter/articles/*/Article.ts).
 
+import { buildSpanishScienceCategoryPages } from "./localizedSpanishScienceCategoryPages";
+
 export type LocalizedSpanishCategoryFact = {
   label: string;
   value: string;
@@ -1227,6 +1229,7 @@ export const spanishCategoryPages: LocalizedSpanishCategoryPage[] = [
       { name: "Plata 800", symbol: "800", referenceValue: "80 % de plata fina", system: "Ley de plata", commonUse: "Piezas europeas antiguas" },
     ],
   },
+  ...buildSpanishScienceCategoryPages("es"),
 ];
 
 export function findSpanishCategoryPage(slug: string) {

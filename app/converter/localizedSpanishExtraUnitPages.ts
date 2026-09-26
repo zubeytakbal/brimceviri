@@ -4,9 +4,10 @@
 // tambien en espanol. Las unidades otomanas, bizantinas y de tierra del
 // sur de Asia se dejan fuera a proposito: nadie las busca en espanol.
 // El simbolo y el id de la unidad salen del registro (unitRegistry).
+import { spanishScienceUnits } from "./localizedSpanishScienceUnits";
 import { unitRegistry } from "./unitRegistry";
 
-type ExtraUnit = {
+export type SpanishExtraUnit = {
   sourceSlug: string;
   slug: string;
   name: string;
@@ -33,6 +34,31 @@ export const spanishCategoryNamesForUnits: Record<string, string> = {
   elektrik: "Electricidad",
   altin_ayar: "Quilate de oro",
   gumus_ayar: "Ley de la plata",
+  guc: "Potencia",
+  kuvvet: "Fuerza",
+  yogunluk: "Densidad",
+  ivme: "Aceleración",
+  acisal_hiz: "Velocidad angular",
+  aci: "Ángulo",
+  frekans: "Frecuencia",
+  tork: "Par de torsión",
+  momentum: "Momento lineal",
+  viskozite_dinamik: "Viscosidad dinámica",
+  viskozite_kinematik: "Viscosidad cinemática",
+  debi: "Caudal",
+  debi_hacimsel: "Caudal volumétrico",
+  debi_kutlesel: "Caudal másico",
+  elektrik_direnc: "Resistencia eléctrica",
+  kapasitans: "Capacitancia",
+  enduktans: "Inductancia",
+  elektrik_yuk: "Carga eléctrica",
+  manyetik_alan: "Campo magnético",
+  manyetik_aki: "Flujo magnético",
+  isil_iletkenlik: "Conductividad térmica",
+  isi_akisi: "Flujo térmico",
+  ozgul_isi: "Calor específico",
+  kan_sekeri: "Glucemia",
+  vitamin_d: "Vitamina D",
 };
 
 const METRIC = "Sistema Internacional (submúltiplo del SI)";
@@ -42,7 +68,7 @@ const IMPERIAL = "Sistema imperial británico";
 const DECIMAL_DATA = "Informática decimal (prefijos SI)";
 const BINARY_DATA = "Informática binaria (prefijos IEC)";
 
-export const spanishExtraUnits: ExtraUnit[] = [
+const spanishEverydayUnits: SpanishExtraUnit[] = [
   // Longitud
   {
     sourceSlug: "desimetre", slug: "decimetro", name: "Decímetro",
@@ -662,6 +688,8 @@ export const spanishExtraUnits: ExtraUnit[] = [
     commonUses: "Textos históricos y elaboración tradicional de queso",
   },
 ];
+
+export const spanishExtraUnits: SpanishExtraUnit[] = [...spanishEverydayUnits, ...spanishScienceUnits];
 
 export type SpanishExtraUnitPage = {
   // Las paginas es-419 tambien usan locale "es" (igual que las existentes).

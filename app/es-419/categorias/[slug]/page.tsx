@@ -7,6 +7,7 @@ import { createConversionCards } from "../../../components/categoryPageUtils";
 import { es419CategoryPages } from "../../../converter/localizedEs419CategoryPages";
 import { es419ConversionPages } from "../../../converter/localizedEs419ConversionPages";
 import { es419UnitPages } from "../../../converter/localizedEs419UnitPages";
+import { spanishCategoryNamesForUnits } from "../../../converter/localizedSpanishExtraUnitPages";
 import { getUnitSources } from "../../../converter/unitSources";
 import { buildFullLanguageAlternates } from "../../../i18n/routing";
 import { buildSiteUrl } from "../../../siteConfig";
@@ -101,7 +102,10 @@ export default async function Es419CategoryPage({ params }: PageProps) {
 
   const sources = getUnitSources(categoryPage.category);
   const featuredUnit = categoryUnits[0];
-  const baseName = categoryBaseNames[categoryPage.category] ?? categoryPage.title;
+  const baseName =
+    categoryBaseNames[categoryPage.category] ??
+    spanishCategoryNamesForUnits[categoryPage.category]?.toLowerCase() ??
+    categoryPage.title;
 
   const tableReferenceLabel =
     categoryPage.category === "uzunluk"

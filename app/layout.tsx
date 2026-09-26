@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata, Viewport } from "next";
 import { Cairo, Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 import { NotificationSlotProvider } from "./components/NotificationSlotProvider";
 import RecentToolsTracker from "./components/RecentToolsTracker";
 import SiteHeader from "./components/SiteHeader";
@@ -177,6 +178,7 @@ export default function RootLayout({
           {children}
         </NotificationSlotProvider>
         <SiteFooter />
+        <Analytics />
       </body>
     </html>
   );

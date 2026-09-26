@@ -534,3 +534,14 @@ export function buildLanguageAlternates(
 
   return { languages };
 }
+
+// Ana sayfalar icin hreflang: ana sayfasi olan her dil (ru icin sayfa yok).
+// Onceden her ana sayfa farkli bir alt kume listeliyordu (nl hic yoktu).
+export function buildHomeLanguageAlternates() {
+  const paths: Partial<Record<Locale, string>> = {};
+  for (const locale of SUPPORTED_LOCALES) {
+    if (locale === "ru") continue;
+    paths[locale] = locale === DEFAULT_LOCALE ? "/" : `/${locale}`;
+  }
+  return buildLanguageAlternates(paths);
+}

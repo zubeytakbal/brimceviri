@@ -1,3 +1,8 @@
+import {
+  buildEnglishConversionTitle,
+  englishUnitInSentence,
+  formatEnglishShort,
+} from "../../converter/englishUnitDisplay";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -160,24 +165,18 @@ export async function generateMetadata({
     };
   }
 
-  // Baslik "1 X to Y" sorgu kalibiyla eslessin diye rakam iceriyor -- TR
-  // tarafinda "X - Y Cevirici" formatinin ortalama 8. sirada bile %0,1
-  // TO ile sonuclanmasindan sonra ayni mantik burada da uygulandi.
-  const oneUnitResult = convert(
-    page.category,
-    1,
-    page.fromUnit,
-    page.toUnit
+  // Baslik Ingilizce arama kalibina gore: "Centimeters to Inches Converter
+  // (cm to in)". Onceki "1 Centimeter to Inch – Converter" kalibi tekil ve
+  // aramalarla uyusmuyordu. Sablon sona " | BirimCeviri.app" ekler; toplam
+  // 65 karakteri gecmesin diye sigan en uzun bicim secilir.
+  const title = buildEnglishConversionTitle(page);
+  const oneUnitResult = formatEnglishShort(
+    convert(page.category, 1, page.fromUnit, page.toUnit)
   );
-  const formattedOneUnitResult = formatNumber(oneUnitResult);
-
-  const title = `1 ${page.fromName} to ${page.toName} – Converter`;
-
   const description =
-    `1 ${page.fromName} = ${formattedOneUnitResult} ${page.toName}. ` +
-    `Convert ${page.fromName.toLowerCase()} to ` +
-    `${page.toName.toLowerCase()}. View the conversion formula, ` +
-    `conversion table and instant calculation result.`;
+    `1 ${page.fromSymbol} = ${oneUnitResult} ${page.toSymbol}. ` +
+    `Convert ${englishUnitInSentence(page.fromPlural)} to ${englishUnitInSentence(page.toPlural)} ` +
+    `instantly, with the formula, a conversion table and worked examples.`;
 
   return {
     title,
@@ -344,21 +343,30 @@ async function EnglishConversionPage({
   const formattedOneUnitResult = formatNumber(
     oneUnitResult
   );
-  const reverseOneUnitResult = formatNumber(
-    convert(page.category, 1, page.toUnit, page.fromUnit)
-  );
+  const fromSentence = englishUnitInSentence(page.fromPlural);
+  const toSentence = englishUnitInSentence(page.toPlural);
   const faqItems: FaqItem[] = [
     {
-      question: `How many ${page.toName} are in 1 ${page.fromName}?`,
-      answer: `1 ${page.fromUnit} = ${formattedOneUnitResult} ${page.toUnit}.`,
+      // Sicaklik olcekleri oran degildir; "How many Fahrenheit are in 1
+      // Celsius?" anlamsiz oldugu icin "What is 1 °C in Fahrenheit?" sorulur.
+      question:
+        page.category === "sicaklik"
+          ? `What is 1 ${page.fromSymbol} in ${toSentence}?`
+          : `How many ${toSentence} are in 1 ${englishUnitInSentence(page.fromName)}?`,
+      answer: `1 ${page.fromSymbol} = ${formatEnglishShort(oneUnitResult)} ${page.toSymbol}.`,
     },
     {
-      question: `How do you convert ${page.fromName} to ${page.toName}?`,
+      question: `How do you convert ${fromSentence} to ${toSentence}?`,
       answer: page.explanation,
     },
     {
-      question: `How many ${page.fromName} are in 1 ${page.toName}?`,
-      answer: `1 ${page.toUnit} = ${reverseOneUnitResult} ${page.fromUnit}.`,
+      question:
+        page.category === "sicaklik"
+          ? `What is 1 ${page.toSymbol} in ${fromSentence}?`
+          : `How many ${fromSentence} are in 1 ${englishUnitInSentence(page.toName)}?`,
+      answer: `1 ${page.toSymbol} = ${formatEnglishShort(
+        convert(page.category, 1, page.toUnit, page.fromUnit)
+      )} ${page.fromSymbol}.`,
     },
   ];
 
@@ -393,7 +401,7 @@ async function EnglishConversionPage({
           <span aria-hidden="true">›</span>
 
           <span>
-            {page.fromName} to {page.toName}
+            {page.fromPlural} to {page.toPlural}
           </span>
         </nav>
       </div>
@@ -402,7 +410,7 @@ async function EnglishConversionPage({
         <div className="conversion-hero-inner">
           <div className="conversion-hero-tool">
             <h1>
-              {page.fromName} to {page.toName} Converter
+              {page.fromPlural} to {page.toPlural} Converter
             </h1>
 
             <p className="conversion-hero-description">
@@ -424,9 +432,9 @@ async function EnglishConversionPage({
             <h2>Conversion summary</h2>
 
             <p>
-              1 {page.fromUnit} ={" "}
+              1 {page.fromSymbol} ={" "}
               <strong>
-                {formattedOneUnitResult} {page.toUnit}
+                {formattedOneUnitResult} {page.toSymbol}
               </strong>
             </p>
 
@@ -444,7 +452,7 @@ async function EnglishConversionPage({
               <div>
                 <dt>Units</dt>
                 <dd>
-                  {page.fromUnit} → {page.toUnit}
+                  {page.fromSymbol} → {page.toSymbol}
                 </dd>
               </div>
             </dl>
@@ -455,8 +463,7 @@ async function EnglishConversionPage({
       <article className="conversion-content">
         <section className="conversion-section">
           <h2>
-            How do you convert {page.fromName.toLowerCase()}{" "}
-            to {page.toName.toLowerCase()}?
+            How do you convert {fromSentence} to {toSentence}?
           </h2>
 
           <p>{page.explanation}</p>
@@ -494,16 +501,15 @@ async function EnglishConversionPage({
 
         <section className="conversion-section">
           <h2>
-            {page.fromName} to {page.toName} conversion
-            table
+            {page.fromPlural} to {toSentence} conversion table
           </h2>
 
           <div className="conversion-table-wrap">
             <table className="conversion-table">
               <thead>
                 <tr>
-                  <th>{page.fromName}</th>
-                  <th>{page.toName}</th>
+                  <th>{page.fromPlural} ({page.fromSymbol})</th>
+                  <th>{page.toPlural} ({page.toSymbol})</th>
                 </tr>
               </thead>
 
@@ -512,12 +518,12 @@ async function EnglishConversionPage({
                   <tr key={row.input}>
                     <td>
                       {formatNumber(row.input)}{" "}
-                      {page.fromUnit}
+                      {page.fromSymbol}
                     </td>
 
                     <td>
-                      {formatNumber(row.result)}{" "}
-                      {page.toUnit}
+                      {formatEnglishShort(row.result)}{" "}
+                      {page.toSymbol}
                     </td>
                   </tr>
                 ))}
@@ -591,8 +597,8 @@ async function EnglishConversionPage({
               className="text-link"
               href={`/en/${reversePage.slug}`}
             >
-              {reversePage.fromName} to{" "}
-              {reversePage.toName} converter
+              {reversePage.fromPlural} to{" "}
+              {englishUnitInSentence(reversePage.toPlural)} converter
             </Link>
           </section>
         )}
@@ -605,8 +611,8 @@ async function EnglishConversionPage({
               {relatedConversions.map((relatedPage) => (
                 <li key={relatedPage.slug}>
                   <Link href={`/en/${relatedPage.slug}`}>
-                    {relatedPage.fromName} to{" "}
-                    {relatedPage.toName}
+                    {relatedPage.fromPlural} to{" "}
+                    {relatedPage.toPlural}
                   </Link>
                 </li>
               ))}

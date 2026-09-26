@@ -1,3 +1,4 @@
+import { buildHomeLanguageAlternates } from "../i18n/routing";
 import type { Metadata } from "next";
 import NorwegianHomeDirectory from "../components/NorwegianHomeDirectory";
 import { getSiteNotifications } from "../converter/siteNotifications";
@@ -9,23 +10,7 @@ export const metadata: Metadata = {
     "Regn gratis og direkte om lengde, masse, temperatur og andre fysiske enheter. Over 12 kategorier, med nøyaktige formler.",
   alternates: {
     canonical: "/no",
-    languages: {
-      tr: "/",
-      en: "/en",
-      de: "/de",
-      ar: "/ar",
-      uz: "/uz",
-      bn: "/bn",
-      fr: "/fr",
-      es: "/es",
-      "es-419": "/es-419",
-      pt: "/pt",
-      it: "/it",
-      nl: "/nl",
-      sv: "/sv",
-      no: "/no",
-      "x-default": "/",
-    },
+    ...buildHomeLanguageAlternates(),
   },
   openGraph: {
     title: "Finn enhetsomregningen du trenger",

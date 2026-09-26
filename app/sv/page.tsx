@@ -1,3 +1,4 @@
+import { buildHomeLanguageAlternates } from "../i18n/routing";
 import type { Metadata } from "next";
 import SwedishHomeDirectory from "../components/SwedishHomeDirectory";
 import { getSiteNotifications } from "../converter/siteNotifications";
@@ -9,22 +10,7 @@ export const metadata: Metadata = {
     "Omvandla gratis och direkt längd, massa, temperatur och andra fysiska enheter. Över 12 kategorier, med exakta formler.",
   alternates: {
     canonical: "/sv",
-    languages: {
-      tr: "/",
-      en: "/en",
-      de: "/de",
-      ar: "/ar",
-      uz: "/uz",
-      bn: "/bn",
-      fr: "/fr",
-      es: "/es",
-      "es-419": "/es-419",
-      pt: "/pt",
-      it: "/it",
-      nl: "/nl",
-      sv: "/sv",
-      "x-default": "/",
-    },
+    ...buildHomeLanguageAlternates(),
   },
   openGraph: {
     title: "Hitta den enhetsomvandling du behöver",

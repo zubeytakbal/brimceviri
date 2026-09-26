@@ -1,3 +1,4 @@
+import { buildHomeLanguageAlternates } from "../i18n/routing";
 import type { Metadata } from "next";
 import FrenchHomeDirectory from "../components/FrenchHomeDirectory";
 import { getSiteNotifications } from "../converter/siteNotifications";
@@ -9,16 +10,7 @@ export const metadata: Metadata = {
     "Convertissez gratuitement et rapidement la longueur, la masse, la température et d’autres unités physiques. Treize catégories, avec des formules précises.",
   alternates: {
     canonical: "/fr",
-    languages: {
-      tr: "/",
-      en: "/en",
-      de: "/de",
-      ar: "/ar",
-      uz: "/uz",
-      bn: "/bn",
-      fr: "/fr",
-      "x-default": "/",
-    },
+    ...buildHomeLanguageAlternates(),
   },
   openGraph: {
     title: "Trouvez la conversion d'unité dont vous avez besoin",

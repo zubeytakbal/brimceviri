@@ -1,11 +1,9 @@
+import { buildHomeLanguageAlternates } from "../i18n/routing";
 import type { Metadata } from "next";
 import ArabicHomeDirectory from "../components/ArabicHomeDirectory";
 import { buildSiteUrl } from "../siteConfig";
 import { getSiteNotifications } from "../converter/siteNotifications";
 
-const turkishHomeUrl = buildSiteUrl("/");
-const englishHomeUrl = buildSiteUrl("/en");
-const germanHomeUrl = buildSiteUrl("/de");
 const arabicHomeUrl = buildSiteUrl("/ar");
 
 export const metadata: Metadata = {
@@ -14,13 +12,7 @@ export const metadata: Metadata = {
     "استعرض الأدوات والحاسبات المتاحة بالعربية وافتح الصفحة المناسبة مباشرة من القسم العربي.",
   alternates: {
     canonical: arabicHomeUrl,
-    languages: {
-      tr: turkishHomeUrl,
-      en: englishHomeUrl,
-      de: germanHomeUrl,
-      ar: arabicHomeUrl,
-      "x-default": turkishHomeUrl,
-    },
+    ...buildHomeLanguageAlternates(),
   },
   openGraph: {
     title: "اعثر على أداة التحويل المناسبة | BirimCeviri.app",

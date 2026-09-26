@@ -172,7 +172,7 @@ export const swedishUnitPages: LocalizedSwedishUnitPage[] = [
     name: "Hektar",
     symbol: "ha",
     shortDescription: "Hektar är en stor areaenhet som särskilt används vid markmätning. 1 hektar motsvarar exakt 10 000 kvadratmeter.",
-    historySummary: "Hektar definierades 1795, som en del av det metriska system som franska revolutionen förde med sig, som 100 gånger enheten 'är' (100 m²) och fick namnet med förledet 'hekto-' (hundra). Eftersom den ansågs mycket mer praktisk än ar för att uttrycka stora jordbruks- och skogsarealer, blev den med tiden den globala standardenheten för mark. Som en intuitiv jämförelse är en standardfotbollsplan ungefär 0,7 hektar stor -- vilket gör hektar lätt att greppa i vardagslivet.",
+    historySummary: "Hektar definierades 1795, som en del av det metriska system som franska revolutionen förde med sig, som 100 gånger enheten 'ar' (100 m²) och fick namnet med förledet 'hekto-' (hundra). Eftersom den ansågs mycket mer praktisk än ar för att uttrycka stora jordbruks- och skogsarealer, blev den med tiden den globala standardenheten för mark. Som en intuitiv jämförelse är en standardfotbollsplan ungefär 0,7 hektar stor -- vilket gör hektar lätt att greppa i vardagslivet.",
     measurementSystem: "Metriskt system, förenligt med SI",
     siEquivalent: "1 ha = 10 000 m²",
     commonUses: "Jordbruksmark, detaljplaner och stora fastighetsregister",

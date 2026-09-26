@@ -184,7 +184,7 @@ export const swedishCategoryPages: LocalizedSwedishCategoryPage[] = [
         title: "De metriska areaenheterna",
         paragraphs: [
           "I det metriska systemet används kvadratmillimeter och kvadratcentimeter för små ytor, kvadratmeter för vardagliga mätningar och kvadratkilometer för stora områden. En kvadratcentimeter motsvarar 0,0001 kvadratmeter, och en kvadratkilometer 1 000 000 kvadratmeter.",
-          "För att mäta mark används är (100 m²) och dess 100 gånger större multipel, hektar (10 000 m²). Hektar är den mest använda metriska markenheten i världen för att uttrycka arean på jordbruksmark.",
+          "För att mäta mark används ar (100 m²) och dess 100 gånger större multipel, hektar (10 000 m²). Hektar är den mest använda metriska markenheten i världen för att uttrycka arean på jordbruksmark.",
         ],
       },
       {

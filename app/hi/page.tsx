@@ -6,7 +6,7 @@ import { buildSiteUrl } from "../siteConfig";
 
 export const metadata: Metadata = {
   title: "इकाई परिवर्तन कैलकुलेटर",
-  description: "लंबाई, द्रव्यमान, आयतन और तापमान की इकाइयाँ बदलें। सूत्र और रूपांतरण तालिका के साथ मुफ़्त कैलकुलेटर।",
+  description: "लंबाई, द्रव्यमान, आयतन, तापमान और क्षेत्रफल की इकाइयाँ बदलें। सूत्र और रूपांतरण तालिका के साथ मुफ़्त कैलकुलेटर।",
   alternates: { canonical: "/hi", ...buildFullLanguageAlternates("/hi") },
   openGraph: { title: "इकाई परिवर्तन कैलकुलेटर", url: buildSiteUrl("/hi"), locale: "hi_IN" },
 };

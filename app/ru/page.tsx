@@ -6,7 +6,7 @@ import { buildSiteUrl } from "../siteConfig";
 
 export const metadata: Metadata = {
   title: "Конвертер единиц измерения онлайн",
-  description: "Переводите длину, массу, объём и температуру. Формулы, таблицы и бесплатный калькулятор для популярных единиц.",
+  description: "Переводите длину, массу, объём, температуру и площадь. Формулы, таблицы и бесплатный калькулятор для популярных единиц.",
   alternates: { canonical: "/ru", ...buildFullLanguageAlternates("/ru") },
   openGraph: { title: "Конвертер единиц измерения онлайн", url: buildSiteUrl("/ru"), locale: "ru_RU" },
 };

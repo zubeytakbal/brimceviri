@@ -9,6 +9,12 @@ type HindiPair = {
 };
 
 const pairs: HindiPair[] = [
+  { sourceSlug: "metrekare-fitkare", slug: "square-meter-se-square-foot", fromName: "वर्ग मीटर", toName: "वर्ग फ़ुट", categoryName: "क्षेत्रफल" },
+  { sourceSlug: "fitkare-metrekare", slug: "square-foot-se-square-meter", fromName: "वर्ग फ़ुट", toName: "वर्ग मीटर", categoryName: "क्षेत्रफल" },
+  { sourceSlug: "hektar-metrekare", slug: "hectare-se-square-meter", fromName: "हेक्टेयर", toName: "वर्ग मीटर", categoryName: "क्षेत्रफल" },
+  { sourceSlug: "metrekare-hektar", slug: "square-meter-se-hectare", fromName: "वर्ग मीटर", toName: "हेक्टेयर", categoryName: "क्षेत्रफल" },
+  { sourceSlug: "akre-metrekare", slug: "acre-se-square-meter", fromName: "एकड़", toName: "वर्ग मीटर", categoryName: "क्षेत्रफल" },
+  { sourceSlug: "metrekare-akre", slug: "square-meter-se-acre", fromName: "वर्ग मीटर", toName: "एकड़", categoryName: "क्षेत्रफल" },
   { sourceSlug: "kilogram-gram", slug: "kilogram-se-gram", fromName: "किलोग्राम", toName: "ग्राम", categoryName: "द्रव्यमान" },
   { sourceSlug: "gram-kilogram", slug: "gram-se-kilogram", fromName: "ग्राम", toName: "किलोग्राम", categoryName: "द्रव्यमान" },
   { sourceSlug: "kilometre-mil", slug: "kilometer-se-mile", fromName: "किलोमीटर", toName: "मील", categoryName: "लंबाई" },

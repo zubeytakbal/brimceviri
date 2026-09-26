@@ -9,6 +9,12 @@ type RussianPair = {
 };
 
 const pairs: RussianPair[] = [
+  { sourceSlug: "metrekare-fitkare", slug: "kvadratnye-metry-v-kvadratnye-futy", fromName: "квадратный метр", toName: "квадратный фут", categoryName: "Площадь" },
+  { sourceSlug: "fitkare-metrekare", slug: "kvadratnye-futy-v-kvadratnye-metry", fromName: "квадратный фут", toName: "квадратный метр", categoryName: "Площадь" },
+  { sourceSlug: "hektar-metrekare", slug: "gektary-v-kvadratnye-metry", fromName: "гектар", toName: "квадратный метр", categoryName: "Площадь" },
+  { sourceSlug: "metrekare-hektar", slug: "kvadratnye-metry-v-gektary", fromName: "квадратный метр", toName: "гектар", categoryName: "Площадь" },
+  { sourceSlug: "akre-metrekare", slug: "akry-v-kvadratnye-metry", fromName: "акр", toName: "квадратный метр", categoryName: "Площадь" },
+  { sourceSlug: "metrekare-akre", slug: "kvadratnye-metry-v-akry", fromName: "квадратный метр", toName: "акр", categoryName: "Площадь" },
   { sourceSlug: "kilogram-gram", slug: "kilogramm-v-grammy", fromName: "килограмм", toName: "грамм", categoryName: "Масса" },
   { sourceSlug: "gram-kilogram", slug: "grammy-v-kilogrammy", fromName: "грамм", toName: "килограмм", categoryName: "Масса" },
   { sourceSlug: "kilometre-mil", slug: "kilometry-v-mili", fromName: "километр", toName: "миля", categoryName: "Длина" },

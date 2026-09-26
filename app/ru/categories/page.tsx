@@ -5,7 +5,7 @@ import { russianCategoryPages } from "../../converter/localizedRussianReferenceP
 
 export const metadata: Metadata = {
   title: "Категории конвертера единиц",
-  description: "Длина, масса, объём и температура: доступные конвертеры с формулами и таблицами.",
+  description: "Длина, масса, объём, температура и площадь: доступные конвертеры с формулами и таблицами.",
   alternates: { canonical: "/ru/categories" },
 };
 

@@ -31,6 +31,15 @@ import EnglishSquareFootageCalculator from "../../components/EnglishSquareFootag
 import EnglishCubicYardCalculator from "../../components/EnglishCubicYardCalculator";
 import EnglishMulchCalculator from "../../components/EnglishMulchCalculator";
 import EnglishBoardFootCalculator from "../../components/EnglishBoardFootCalculator";
+import ColorCodeCalculator from "../../components/ColorCodeCalculator";
+import EnglishUnixTimestampConverter from "../../components/EnglishUnixTimestampConverter";
+import EnglishPoolVolumeCalculator from "../../components/EnglishPoolVolumeCalculator";
+import EnglishPoolChlorineCalculator from "../../components/EnglishPoolChlorineCalculator";
+import EnglishStandardDrinkCalculator from "../../components/EnglishStandardDrinkCalculator";
+import EnglishAwgConverter from "../../components/EnglishAwgConverter";
+import EnglishPsuCalculator from "../../components/EnglishPsuCalculator";
+import EnglishIvDripRateCalculator from "../../components/EnglishIvDripRateCalculator";
+import EnglishDepreciationCalculator from "../../components/EnglishDepreciationCalculator";
 import LaminateCalculator from "../../components/LaminateCalculator";
 import LengthComparisonTool from "../../components/LengthComparisonTool";
 import MovingBoxCalculator from "../../components/MovingBoxCalculator";
@@ -69,6 +78,7 @@ import {
   englishEverydayHubPath,
 } from "../../i18n/englishEverydayCalculatorGroups";
 
+const dataToolComponents = new Set(["numberBaseCalculator", "pixelCalculator", "videoBitrateCalculator", "colorConverter", "unixTimestampConverter", "psuCalculator", "awgConverter"]);
 const fitnessToolComponents = new Set(["calorieCalculator", "bodyFatCalculator", "idealWeightCalculator", "oneRepMaxCalculator"]);
 
 const componentMap: Record<EnglishStandaloneToolComponentKey, React.ComponentType<{ locale?: "en" }>> =
@@ -106,6 +116,15 @@ const componentMap: Record<EnglishStandaloneToolComponentKey, React.ComponentTyp
     cubicYardCalculator: EnglishCubicYardCalculator,
     mulchCalculator: EnglishMulchCalculator,
     boardFootCalculator: EnglishBoardFootCalculator,
+    colorConverter: ColorCodeCalculator,
+    unixTimestampConverter: EnglishUnixTimestampConverter,
+    poolVolumeCalculator: EnglishPoolVolumeCalculator,
+    poolChlorineCalculator: EnglishPoolChlorineCalculator,
+    standardDrinkCalculator: EnglishStandardDrinkCalculator,
+    awgConverter: EnglishAwgConverter,
+    psuCalculator: EnglishPsuCalculator,
+    ivDripRateCalculator: EnglishIvDripRateCalculator,
+    depreciationCalculator: EnglishDepreciationCalculator,
     laminateCalculator: LaminateCalculator,
     wallpaperCalculator: WallpaperCalculator,
     movingBoxCalculator: MovingBoxCalculator,
@@ -242,6 +261,10 @@ function EnglishStandaloneTool({
   // Breadcrumb: aracin listelendigi hub (fitness, gunluk hesaplayicilar...).
   const toolHub = fitnessToolComponents.has(tool.component)
     ? { href: "/en/fitness-calculators", label: "Fitness Calculators" }
+    : dataToolComponents.has(tool.component)
+      ? { href: "/en/data-computing-calculators", label: "Data & Computing Calculators" }
+      : tool.component === "depreciationCalculator"
+        ? { href: "/en/business-calculators", label: "Business Calculators" }
     : englishEverydayCalculatorGroups.some((group) => group.tools.includes(tool.component))
       ? { href: englishEverydayHubPath, label: "Everyday Calculators" }
       : { href: "/en/other-conversions", label: "Other Conversions" };

@@ -6220,6 +6220,18 @@ main.calculator-page {
   line-height: 1.5;
 }
 
+/* Kartin disindaki notlar (guvenlik uyarilari vb.) acik zemin uzerinde kalir;
+   beyaz yazi okunmuyordu. Kart icindeki notlar degismez. */
+.all-conversions-page .category-general-converter > .calculator-usage-hint {
+  margin: 4px 0 0;
+  background: rgba(22, 143, 140, 0.08);
+  color: #24324a;
+}
+
+.all-conversions-page .category-general-converter > .calculator-usage-hint a {
+  color: #0f6e6b;
+}
+
 .calculator-plug-legend {
   display: grid;
   gap: 6px;

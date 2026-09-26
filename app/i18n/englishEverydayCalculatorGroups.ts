@@ -10,13 +10,13 @@ export const englishEverydayCalculatorGroups: Array<{
     id: "home-and-diy",
     title: "Home and DIY calculators",
     description: "Plan concrete, decorating, flooring, moving and household energy tasks with practical estimates.",
-    tools: ["squareFootageCalculator", "cubicYardCalculator", "mulchCalculator", "boardFootCalculator", "concreteCalculator", "aggregateCalculator", "stairCalculator", "roofingCalculator", "paintCalculator", "tileCalculator", "brickCalculator", "laminateCalculator", "wallpaperCalculator", "movingBoxCalculator", "acCapacityCalculator", "electricityConsumptionCalculator", "naturalGasCalculator"],
+    tools: ["squareFootageCalculator", "cubicYardCalculator", "mulchCalculator", "boardFootCalculator", "concreteCalculator", "aggregateCalculator", "stairCalculator", "roofingCalculator", "paintCalculator", "tileCalculator", "brickCalculator", "laminateCalculator", "wallpaperCalculator", "movingBoxCalculator", "poolVolumeCalculator", "poolChlorineCalculator", "acCapacityCalculator", "electricityConsumptionCalculator", "naturalGasCalculator"],
   },
   {
     id: "health-and-routines",
     title: "Health and daily routines",
     description: "Use personal planning tools for dates, sleep, activity and general body measurements.",
-    tools: ["calorieCalculator", "bmiCalculator", "bodyFatCalculator", "idealWeightCalculator", "heightConverter", "dateCalculator", "pregnancyCalculator", "sleepCalculator", "paceCalculator"],
+    tools: ["calorieCalculator", "bmiCalculator", "bodyFatCalculator", "idealWeightCalculator", "heightConverter", "standardDrinkCalculator", "ivDripRateCalculator", "dateCalculator", "pregnancyCalculator", "sleepCalculator", "paceCalculator"],
   },
   {
     id: "school-and-study",

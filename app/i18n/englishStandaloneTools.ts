@@ -36,7 +36,16 @@ export type EnglishStandaloneToolComponentKey =
   | "squareFootageCalculator"
   | "cubicYardCalculator"
   | "mulchCalculator"
-  | "boardFootCalculator";
+  | "boardFootCalculator"
+  | "colorConverter"
+  | "unixTimestampConverter"
+  | "poolVolumeCalculator"
+  | "poolChlorineCalculator"
+  | "standardDrinkCalculator"
+  | "awgConverter"
+  | "psuCalculator"
+  | "ivDripRateCalculator"
+  | "depreciationCalculator";
 
 export type EnglishStandaloneTool = {
   slug: string;
@@ -82,7 +91,16 @@ export type EnglishStandaloneTool = {
     | "area"
     | "volume"
     | "peyzajHub"
-    | "marangozHub";
+    | "marangozHub"
+    | "colorCodeCalculator"
+    | "unixTimestampCalculator"
+    | "poolVolumeCalculator"
+    | "chlorineDoseCalculator"
+    | "abvCalculator"
+    | "awgConverter"
+    | "psuCalculator"
+    | "ivDripRateCalculator"
+    | "amortismanCalculator";
   cardDescription: string;
   articleSections: Array<{
     title: string;
@@ -1112,6 +1130,205 @@ export const englishStandaloneTools: EnglishStandaloneTool[] = [
     ],
     isEnglishOnly: true,
     priority: 0.8,
+  },
+  {
+    slug: "color-converter",
+    englishPath: "/en/color-converter",
+    turkishPath: "/renk-kodu-cevirici",
+    title: "Color Converter: HEX to RGB and HSL",
+    description: "Convert color codes between HEX, RGB and HSL instantly, with a live color preview. Type in any field to update the others.",
+    intro: "Type a HEX code, an RGB value or an HSL value – the other two formats and the color preview update as you type.",
+    component: "colorConverter",
+    iconName: "colorCodeCalculator",
+    cardDescription: "Converts HEX, RGB and HSL color codes with a preview.",
+    articleSections: [
+      { title: "HEX, RGB and HSL", body: "HEX writes the red, green and blue channels as three two-digit hexadecimal numbers (#FF5733). RGB gives the same channels as numbers from 0 to 255 (255, 87, 51). HSL describes the color as hue (0–360°), saturation and lightness (%), which is easier for making lighter or darker shades." },
+      { title: "How to convert HEX to RGB", body: "Split the six digits into pairs and convert each pair from base 16 to base 10: FF = 255, 57 = 87, 33 = 51. Three-digit shorthand codes double each digit, so #F53 is #FF5533." },
+    ],
+    faq: [
+      { question: "What is #FF5733 in RGB?", answer: "#FF5733 is rgb(255, 87, 51), or hsl(11, 100%, 60%)." },
+      { question: "What is white and black in HEX?", answer: "White is #FFFFFF (255, 255, 255) and black is #000000 (0, 0, 0)." },
+      { question: "Is HEX the same as RGB?", answer: "Yes, both describe the same red, green and blue values; HEX writes them in base 16 and RGB in base 10." },
+    ],
+    isEnglishOnly: true,
+    priority: 0.7,
+  },
+  {
+    slug: "unix-timestamp-converter",
+    englishPath: "/en/unix-timestamp-converter",
+    turkishPath: "/unix-zaman-damgasi-cevirici",
+    title: "Unix Timestamp Converter (Epoch Time)",
+    description: "Convert Unix timestamps (epoch time) in seconds or milliseconds to a readable date in your time zone and UTC, and dates back to timestamps.",
+    intro: "Paste a Unix timestamp to see the date in your local time zone, UTC and ISO 8601 – or pick a date to get its timestamp. Seconds and milliseconds are detected automatically.",
+    component: "unixTimestampConverter",
+    iconName: "unixTimestampCalculator",
+    cardDescription: "Epoch time to date and date to Unix timestamp.",
+    articleSections: [
+      { title: "What is a Unix timestamp?", body: "A Unix timestamp is the number of seconds since 00:00:00 UTC on January 1, 1970 (the Unix epoch), not counting leap seconds. It is the same everywhere in the world, which makes it ideal for storing times in databases and APIs." },
+      { title: "Seconds or milliseconds?", body: "Most systems use seconds (10 digits today), while JavaScript and many APIs use milliseconds (13 digits). The converter treats values of 12 or more digits as milliseconds." },
+      { title: "The year 2038 problem", body: "Systems that store the timestamp as a signed 32-bit integer overflow after 2,147,483,647, which is 03:14:07 UTC on January 19, 2038. Modern systems use 64-bit values." },
+    ],
+    faq: [
+      { question: "What date is Unix timestamp 1700000000?", answer: "1700000000 is November 14, 2023 at 22:13:20 UTC." },
+      { question: "How do I get the current Unix timestamp?", answer: "The current value is shown on this page. In code: Math.floor(Date.now() / 1000) in JavaScript or time.time() in Python." },
+      { question: "Is a Unix timestamp in UTC?", answer: "Yes. A timestamp is the same moment everywhere; only its display changes with the time zone." },
+    ],
+    isEnglishOnly: true,
+    priority: 0.7,
+  },
+  {
+    slug: "pool-volume-calculator",
+    englishPath: "/en/pool-volume-calculator",
+    turkishPath: "/havuz-hacmi-hesaplama",
+    title: "Pool Volume Calculator (Gallons)",
+    description: "Calculate how many gallons of water your pool holds – rectangular, round or oval, with a shallow and deep end.",
+    intro: "Enter the pool's size in feet and its shallow and deep end depths to see how many US gallons it holds. You need this number to dose chemicals and size pumps and heaters.",
+    component: "poolVolumeCalculator",
+    iconName: "poolVolumeCalculator",
+    cardDescription: "Pool gallons for rectangular, round and oval pools.",
+    articleSections: [
+      { title: "Pool volume formulas", body: "Rectangle: length × width × average depth × 7.48. Round: 3.14 × radius² × depth × 7.48. Oval: 3.14 × (length ÷ 2) × (width ÷ 2) × depth × 7.48. The factor 7.48 is the number of US gallons in one cubic foot." },
+      { title: "Average depth", body: "For a pool with a sloped floor, add the shallow and deep end depths and divide by 2. A pool 3.5 ft to 8 ft deep has an average depth of 5.75 ft. Measure to the water line, not the top of the wall." },
+    ],
+    faq: [
+      { question: "How many gallons is a 16x32 pool?", answer: "A 16 × 32 ft pool with an average depth of 5.5 ft holds about 21,065 US gallons." },
+      { question: "How many gallons is a 24 ft round pool?", answer: "A 24 ft round pool with 4 ft of water holds about 13,536 gallons." },
+      { question: "How many gallons are in a cubic foot?", answer: "7.48 US gallons." },
+    ],
+    isEnglishOnly: true,
+    priority: 0.7,
+  },
+  {
+    slug: "pool-chlorine-calculator",
+    englishPath: "/en/pool-chlorine-calculator",
+    turkishPath: "/klor-dozaji-hesaplama",
+    title: "Pool Chlorine Calculator",
+    description: "Calculate how much liquid chlorine, bleach, cal-hypo, dichlor or trichlor to add to raise your pool's free chlorine to the target ppm.",
+    intro: "Enter the pool volume in gallons, the current and target free chlorine in ppm and the product you use to see how much to add.",
+    component: "poolChlorineCalculator",
+    iconName: "chlorineDoseCalculator",
+    cardDescription: "How much chlorine to add to reach a target ppm.",
+    articleSections: [
+      { title: "How the dose is calculated", body: "1 ppm is 1 mg per liter. The chlorine needed is the ppm increase × the pool volume in liters. That amount is divided by the product strength: 12.5% liquid chlorine contains about 12.5 g of available chlorine per 100 mL, and 65% cal-hypo contains 65 g per 100 g." },
+      { title: "Typical free chlorine levels", body: "Many pool guides recommend 1–3 ppm of free chlorine for residential pools, higher when using cyanuric acid (stabilizer). Shocking raises it much higher temporarily. Test the water before and after adding chemicals." },
+    ],
+    faq: [
+      { question: "How much liquid chlorine to raise 1 ppm in 10,000 gallons?", answer: "About 10.2 fl oz of 12.5% liquid chlorine or 12.8 fl oz of 10% liquid chlorine." },
+      { question: "How much cal-hypo to raise chlorine 1 ppm?", answer: "About 2 oz of 65% cal-hypo per 10,000 gallons." },
+      { question: "Can I use household bleach?", answer: "Yes, if it is plain unscented bleach. It is weaker (about 6%), so you need roughly twice as much as 12.5% liquid chlorine." },
+    ],
+    isEnglishOnly: true,
+    priority: 0.7,
+  },
+  {
+    slug: "standard-drink-calculator",
+    englishPath: "/en/standard-drink-calculator",
+    turkishPath: "/abv-standart-icki-hesaplama",
+    title: "Standard Drink Calculator (US, UK Units)",
+    description: "Calculate how many standard drinks or alcohol units are in a beer, wine or spirit from its size and ABV – US, UK and Australian definitions.",
+    intro: "Enter the serving size and ABV printed on the label to see the grams of pure alcohol, US standard drinks, UK units and Australian standard drinks.",
+    component: "standardDrinkCalculator",
+    iconName: "abvCalculator",
+    cardDescription: "Standard drinks and UK units from volume and ABV.",
+    articleSections: [
+      { title: "What is a standard drink?", body: "In the US a standard drink contains 14 g (0.6 fl oz) of pure alcohol – about 12 fl oz of 5% beer, 5 fl oz of 12% wine or 1.5 fl oz of 40% spirits. A UK unit is 10 mL (8 g) of alcohol and an Australian standard drink is 10 g." },
+      { title: "The formula", body: "Pure alcohol (g) = volume (mL) × ABV ÷ 100 × 0.789, the density of ethanol. Divide by 14 for US standard drinks. UK units = volume (mL) × ABV ÷ 1,000." },
+    ],
+    faq: [
+      { question: "How many standard drinks are in a bottle of wine?", answer: "A 750 mL bottle of 13% wine has about 77 g of alcohol: 5.5 US standard drinks or 9.75 UK units." },
+      { question: "How many standard drinks is a 16 oz IPA?", answer: "A 16 fl oz can of 7% IPA is about 1.9 US standard drinks." },
+      { question: "How many units are in a pint of beer?", answer: "A UK pint (568 mL) of 4% beer is 2.3 units; at 5% it is 2.8 units." },
+    ],
+    isEnglishOnly: true,
+    priority: 0.7,
+  },
+  {
+    slug: "awg-to-mm2-converter",
+    englishPath: "/en/awg-to-mm2-converter",
+    turkishPath: "/awg-mm2-cevirici",
+    title: "AWG to mm² Wire Gauge Converter",
+    description: "Convert American Wire Gauge (AWG) sizes to mm² and diameter in mm and inches, or find the AWG size for a metric wire, with a size chart.",
+    intro: "Enter an AWG size (for example 12 or 4/0) to see its cross-section in mm² and its diameter, or enter mm² to find the equivalent gauge.",
+    component: "awgConverter",
+    iconName: "awgConverter",
+    cardDescription: "AWG wire sizes to mm², diameter and back.",
+    articleSections: [
+      { title: "How AWG works", body: "AWG is defined by a formula: diameter (in) = 0.005 × 92^((36 − n) ÷ 39). A smaller number means a thicker wire, and every 3 gauges roughly halve or double the cross-section. Sizes thicker than 0 AWG are written 1/0 to 4/0." },
+      { title: "Metric and AWG sizes are not identical", body: "Metric cables come in standard sizes such as 1.5, 2.5 and 4 mm², which fall between AWG sizes. When replacing a wire, choose the size that is not smaller than the required cross-section." },
+    ],
+    faq: [
+      { question: "What is 12 AWG in mm²?", answer: "12 AWG is 3.31 mm², with a diameter of 2.05 mm (0.081 in)." },
+      { question: "What AWG is 2.5 mm²?", answer: "2.5 mm² is about 13.2 AWG. Its closest common building-wire size that is not smaller is 12 AWG." },
+      { question: "What is 14 AWG and 10 AWG in mm²?", answer: "14 AWG is 2.08 mm² and 10 AWG is 5.26 mm²." },
+    ],
+    isEnglishOnly: true,
+    priority: 0.7,
+  },
+  {
+    slug: "psu-calculator",
+    englishPath: "/en/psu-calculator",
+    turkishPath: "/psu-guc-hesaplama",
+    title: "PSU Calculator: Power Supply Wattage",
+    description: "Estimate the power supply wattage your PC build needs from the CPU, graphics card and other components, with headroom and a suggested PSU size.",
+    intro: "Enter the power of your CPU, graphics card and other parts to estimate the total load and the power supply size to buy.",
+    component: "psuCalculator",
+    iconName: "psuCalculator",
+    cardDescription: "PC power supply wattage with headroom.",
+    articleSections: [
+      { title: "How much headroom?", body: "Add 20–30% above the estimated load. It covers short power spikes from modern graphics cards, keeps the PSU in its efficient range (usually around 50% load) and leaves room for upgrades." },
+      { title: "Use the right numbers", body: "For the graphics card use the total board power (TBP) from the manufacturer, not the chip's TDP. Many CPUs can exceed their TDP under boost, so check the maximum package power for high-end models." },
+    ],
+    faq: [
+      { question: "What PSU do I need for a 285 W GPU?", answer: "With a 125 W CPU and 75 W for other parts the load is about 485 W; with 30% headroom a 650 W PSU is a good fit." },
+      { question: "Is a bigger PSU wasteful?", answer: "Not much. A good PSU is efficient across a wide range, but buying far more than you need mainly costs more money." },
+      { question: "What does 80 Plus mean?", answer: "It is an efficiency rating. Higher levels (Gold, Platinum) waste less power as heat but do not change how many watts the PSU can deliver." },
+    ],
+    isEnglishOnly: true,
+    priority: 0.7,
+  },
+  {
+    slug: "iv-drip-rate-calculator",
+    englishPath: "/en/iv-drip-rate-calculator",
+    turkishPath: "/iv-damla-hizi-hesaplama",
+    title: "IV Drip Rate Calculator (gtt/min)",
+    description: "Calculate the IV drip rate in drops per minute (gtt/min) and the flow rate in mL/hr from volume, time and the tubing drop factor.",
+    intro: "Enter the volume to infuse, the infusion time and the drop factor printed on the IV tubing to get the drip rate in gtt/min and the equivalent pump rate in mL/hr.",
+    component: "ivDripRateCalculator",
+    iconName: "ivDripRateCalculator",
+    cardDescription: "Drops per minute and mL/hr for IV infusions.",
+    articleSections: [
+      { title: "The drip rate formula", body: "gtt/min = volume (mL) × drop factor (gtt/mL) ÷ time (min). For 1,000 mL over 8 hours with 15 gtt/mL tubing: 1,000 × 15 ÷ 480 = 31.25, so about 31 drops per minute. The flow rate is 1,000 ÷ 8 = 125 mL/hr." },
+      { title: "Macrodrip and microdrip", body: "Macrodrip sets deliver 10, 15 or 20 drops per mL and are used for routine adult infusions. Microdrip sets deliver 60 drops per mL, so the drip rate equals the mL/hr rate – useful for small, precise volumes." },
+    ],
+    faq: [
+      { question: "What is the drip rate for 1000 mL over 8 hours?", answer: "With 15 gtt/mL tubing it is about 31 gtt/min (125 mL/hr)." },
+      { question: "How do I calculate mL per hour?", answer: "Divide the volume in mL by the time in hours. 500 mL over 4 hours is 125 mL/hr." },
+      { question: "Why does a microdrip set give the same number as mL/hr?", answer: "Because 60 drops per mL and 60 minutes per hour cancel out." },
+    ],
+    isEnglishOnly: true,
+    priority: 0.7,
+  },
+  {
+    slug: "depreciation-calculator",
+    englishPath: "/en/depreciation-calculator",
+    turkishPath: "/amortisman-hesaplama",
+    title: "Depreciation Calculator",
+    description: "Calculate asset depreciation with straight-line, double-declining balance or sum-of-the-years' digits methods, with a year-by-year schedule.",
+    intro: "Enter the asset cost, salvage value and useful life, then choose a method to see yearly depreciation, accumulated depreciation and book value.",
+    component: "depreciationCalculator",
+    iconName: "amortismanCalculator",
+    cardDescription: "Straight-line and accelerated depreciation schedules.",
+    articleSections: [
+      { title: "Straight-line depreciation", body: "(Cost − salvage value) ÷ useful life. A $30,000 asset with a $5,000 salvage value and a 5-year life depreciates $5,000 per year." },
+      { title: "Accelerated methods", body: "Double-declining balance applies twice the straight-line rate (2 ÷ life) to the remaining book value – 40% a year for a 5-year asset – and never goes below salvage value. Sum-of-the-years' digits multiplies the depreciable amount by a falling fraction: 5/15, 4/15, 3/15 and so on." },
+    ],
+    faq: [
+      { question: "How do you calculate straight-line depreciation?", answer: "Subtract the salvage value from the cost and divide by the useful life in years." },
+      { question: "What is double-declining balance?", answer: "An accelerated method that depreciates 2 ÷ life of the remaining book value each year, so more is expensed in the early years." },
+      { question: "Is this the same as MACRS?", answer: "No. MACRS is the US tax system with IRS tables and conventions; these calculations are for book accounting." },
+    ],
+    isEnglishOnly: true,
+    priority: 0.7,
   },
 ];
 

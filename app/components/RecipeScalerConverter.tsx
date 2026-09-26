@@ -223,8 +223,8 @@ const copy = {
     copyButton: "Kopier", copiedButton: "Kopiert", printButton: "Skriv ut",
   },
   da: {
-    recipeLabel: "Din opskrift", placeholder: "2 kopper mel\n1 teske salt\n3 spiseskeer olivenolie\n2 aeg\nOvn 180 grader",
-    factorLabel: "Multiplikator", originalServingsLabel: "Oprindeligt antal portioner", targetServingsLabel: "Onsket antal portioner",
+    recipeLabel: "Din opskrift", placeholder: "2 kopper mel\n1 teske salt\n3 spiseskeer olivenolie\n2 æg\nOvn 180 grader",
+    factorLabel: "Multiplikator", originalServingsLabel: "Oprindeligt antal portioner", targetServingsLabel: "Ønsket antal portioner",
     resultHeading: "Tilpasset opskrift", emptyState: "Indtast din opskrift ovenfor for at se det tilpassede resultat her.",
     gramPrefix: "~", gramSuffix: "g", ingredientLabel: "Ingrediens", noMatchOption: "Intet match",
     copyButton: "Kopier", copiedButton: "Kopieret", printButton: "Udskriv",

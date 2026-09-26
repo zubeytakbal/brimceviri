@@ -6,7 +6,7 @@ import { buildSiteUrl } from "../../siteConfig";
 export const metadata: Metadata = {
   title: "Opskriftomregner",
   description:
-    "Indsaet din opskrift, vaelg en multiplikator for at oege eller reducere den, og fa de nye maengder direkte — visse ingredienser omregnes ogsa automatisk til gram.",
+    "Indsæt din opskrift, vælg en multiplikator for at øge eller reducere den, og få de nye mængder direkte — visse ingredienser omregnes også automatisk til gram.",
   alternates: {
     canonical: "/da/recipe-converter",
     languages: {
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Opskriftomregner",
-    description: "Indsaet din opskrift og fa de nye maengder direkte.",
+    description: "Indsæt din opskrift og få de nye mængder direkte.",
     url: buildSiteUrl("/da/recipe-converter"),
     siteName: "BirimCeviri.app",
     locale: "da_DK",
@@ -50,58 +50,58 @@ export default function DanishRecipeConverterPage() {
           <h1>Opskriftomregner</h1>
 
           <p>
-            Indsaet din opskrift linje for linje, for eksempel: "2 kopper
+            Indsæt din opskrift linje for linje, for eksempel: "2 kopper
             mel". Efter at du har valgt multiplikatoren, beregner siden de
-            nye maengder direkte. Hvis ingrediensen genkendes og er
-            angivet i en enhed som kop eller ske, vises ogsa en omtrentlig
-            vaerdi i gram.
+            nye mængder direkte. Hvis ingrediensen genkendes og er
+            angivet i en enhed som kop eller ske, vises også en omtrentlig
+            værdi i gram.
           </p>
         </header>
 
         <RecipeScalerConverter locale="da" />
 
         <section className="category-article-content">
-          <h2>Hvordan oeger eller reducerer man en opskrift?</h2>
+          <h2>Hvordan øger eller reducerer man en opskrift?</h2>
           <p>
-            Princippet er enkelt: multiplicer hver maengde med samme
+            Princippet er enkelt: multiplicer hver mængde med samme
             faktor. Hvis opskriften er til 2 personer, og du vil have 4,
-            er multiplikatoren 2. Dette vaerktoj gor dette automatisk for
-            hver linje, der starter med en laesbar maengde (heltal, brok
+            er multiplikatoren 2. Dette værktøj gør dette automatisk for
+            hver linje, der starter med en læsbar mængde (heltal, brøk
             eller decimaltal).
           </p>
           <p>
-            Du kan ogsa angive antallet af oprindelige portioner og
-            antallet af onskede portioner: multiplikatoren beregnes da
-            automatisk, uden at du skal regne i handen.
+            Du kan også angive antallet af oprindelige portioner og
+            antallet af ønskede portioner: multiplikatoren beregnes da
+            automatisk, uden at du skal regne i hånden.
           </p>
 
           <h2>Hvorfor viser ikke alle linjer gram?</h2>
           <p>
-            Omregningen til gram vises kun, nar vaerktojet genkender bade
-            enheden og ingrediensens navn. En linje som "2 aeg" skaleres
-            korrekt, men viser ikke ekstra gram, fordi aeg ikke findes i
+            Omregningen til gram vises kun, når værktøjet genkender både
+            enheden og ingrediensens navn. En linje som "2 æg" skaleres
+            korrekt, men viser ikke ekstra gram, fordi æg ikke findes i
             rumfangsomregningslisten.
           </p>
           <p>
-            For at se listen over understottede ingredienser, abn{" "}
+            For at se listen over understøttede ingredienser, åbn{" "}
             <Link href="/da/kitchen-measurement-converter">
-              kokkenmalomregneren
+              køkkenmålomregneren
             </Link>
             .
           </p>
         </section>
 
         <section className="conversion-section related-conversions">
-          <h2>Relaterede vaerktojer</h2>
+          <h2>Relaterede værktøjer</h2>
           <ul className="related-conversion-list">
             <li>
-              <Link href="/da/kitchen-measurement-converter">Kokkenmal</Link>
+              <Link href="/da/kitchen-measurement-converter">Køkkenmål</Link>
             </li>
             <li>
-              <Link href="/da/shoe-size-converter">Skostorrelseomregner</Link>
+              <Link href="/da/shoe-size-converter">Skostørrelseomregner</Link>
             </li>
             <li>
-              <Link href="/da/historical-units">Historiske maleenheder</Link>
+              <Link href="/da/historical-units">Historiske måleenheder</Link>
             </li>
           </ul>
         </section>
@@ -109,7 +109,7 @@ export default function DanishRecipeConverterPage() {
         <section className="conversion-section language-alternatives">
           <h2>Andre sprog</h2>
           <Link className="text-link" href="/tarif-cevirici" hrefLang="tr">
-            Abn den tyrkiske version
+            Åbn den tyrkiske version
           </Link>
         </section>
       </div>

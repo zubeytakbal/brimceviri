@@ -138,7 +138,7 @@ export default async function DanishConversionPage({ params }: PageProps) {
             </h1>
 
             <p className="conversion-hero-description">
-              Indtast en vaerdi for at fa et direkte og gratis resultat.
+              Indtast en værdi for at få et direkte og gratis resultat.
             </p>
 
             <PairConverter
@@ -289,7 +289,7 @@ export default async function DanishConversionPage({ params }: PageProps) {
             <h2>Kilder</h2>
 
             <p>
-              Definitionerne og omregningsforholdene pa denne side folger
+              Definitionerne og omregningsforholdene på denne side følger
               anerkendte metrologiske standarder.
             </p>
 

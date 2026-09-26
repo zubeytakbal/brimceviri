@@ -82,7 +82,7 @@ const systemLabels: Record<Locale, Record<SystemKey, string>> = {
   nl: { eu: "Europa (EU)", us: "Verenigde Staten (US)", uk: "Verenigd Koninkrijk (UK)", cm: "Voetlengte (cm)" },
   sv: { eu: "Sverige / Europa (EU)", us: "USA (US)", uk: "Storbritannien (UK)", cm: "Fotlängd (cm)" },
   no: { eu: "Norge / Europa (EU)", us: "USA (US)", uk: "Storbritannia (UK)", cm: "Fotlengde (cm)" },
-  da: { eu: "Danmark / Europa (EU)", us: "USA (US)", uk: "Storbritannien (UK)", cm: "Fodlaengde (cm)" },
+  da: { eu: "Danmark / Europa (EU)", us: "USA (US)", uk: "Storbritannien (UK)", cm: "Fodlængde (cm)" },
 };
 
 const brandLabels: Record<Locale, Record<ShoeBrandKey, string>> = {
@@ -250,7 +250,7 @@ const groupLabels: Record<Locale, Record<ShoeSizeGroupKey, string>> = {
   nl: { erkek: "Heren", kadin: "Dames", bebek: "Baby / klein kind", "buyuk-cocuk": "Groter kind" },
   sv: { erkek: "Herr", kadin: "Dam", bebek: "Spädbarn / småbarn", "buyuk-cocuk": "Större barn" },
   no: { erkek: "Herre", kadin: "Dame", bebek: "Spedbarn / smabarn", "buyuk-cocuk": "Storre barn" },
-  da: { erkek: "Herre", kadin: "Dame", bebek: "Spaedbarn / smabarn", "buyuk-cocuk": "Storre born" },
+  da: { erkek: "Herre", kadin: "Dame", bebek: "Spædbarn / småbarn", "buyuk-cocuk": "Større børn" },
 };
 
 const copy = {
@@ -417,9 +417,9 @@ const copy = {
     euResult: "EU", usResult: "US", ukResult: "UK", footLength: "Fotlengde", chartSuffix: "storrelsestabell",
   },
   da: {
-    group: "Gruppe", brand: "Maerke", knownSystem: "Kendt system", value: "Vaerdi",
-    matchingSizes: "Tilsvarende storrelser", invalidValue: "Indtast et gyldigt tal for at se den naermeste storrelse.",
-    euResult: "EU", usResult: "US", ukResult: "UK", footLength: "Fodlaengde", chartSuffix: "storrelsestabel",
+    group: "Gruppe", brand: "Mærke", knownSystem: "Kendt system", value: "Værdi",
+    matchingSizes: "Tilsvarende størrelser", invalidValue: "Indtast et gyldigt tal for at se den nærmeste størrelse.",
+    euResult: "EU", usResult: "US", ukResult: "UK", footLength: "Fodlængde", chartSuffix: "størrelsestabel",
   },
 } as const;
 

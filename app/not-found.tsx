@@ -177,12 +177,12 @@ bn: {
     lang: "da",
     title: "Siden blev ikke fundet",
     description:
-      "Siden du leder efter, kan vaere blevet flyttet, eller ogsa er adressen ikke gyldig.",
-    continueHeading: "Fortsaet med",
+      "Siden du leder efter, kan være blevet flyttet, eller også er adressen ikke gyldig.",
+    continueHeading: "Fortsæt med",
     primaryHref: "/da",
     primaryLabel: "Tilbage til den danske startside",
     secondaryHref: "/",
-    secondaryLabel: "Abn den tyrkiske startside",
+    secondaryLabel: "Åbn den tyrkiske startside",
   },
 } satisfies Record<
   Locale,

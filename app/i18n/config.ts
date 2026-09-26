@@ -256,9 +256,9 @@ export const LOCALE_DEFINITIONS: Record<Locale, LocaleDefinition> = {
     label: "Dansk",
     switcherLabel: "Dansk",
     switcherCurrentLabel: "DA - Dansk",
-    switcherAriaLabel: "Vaelg sprog",
+    switcherAriaLabel: "Vælg sprog",
     switcherOptionsLabel: "Sprogindstillinger",
-    switcherSearchPlaceholder: "Sog sprog",
+    switcherSearchPlaceholder: "Søg sprog",
     switcherEmptyLabel: "Intet matchende sprog fundet",
   },
 };

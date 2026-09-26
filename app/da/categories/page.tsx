@@ -6,7 +6,7 @@ import { buildSiteUrl } from "../../siteConfig";
 export const metadata: Metadata = {
   title: "Alle kategorier — Enhedsomregner",
   description:
-    "Fuldstaendig liste over omregninger for laengde, masse, temperatur, tryk, energi og mange andre fysiske storrelser.",
+    "Fuldstændig liste over omregninger for længde, masse, temperatur, tryk, energi og mange andre fysiske størrelser.",
   alternates: {
     canonical: "/da/categories",
     languages: {
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Alle kategorier — Enhedsomregner",
-    description: "Fuldstaendig liste over alle kategorier for enhedsomregning.",
+    description: "Fuldstændig liste over alle kategorier for enhedsomregning.",
     url: buildSiteUrl("/da/categories"),
     siteName: "BirimCeviri.app",
     locale: "da_DK",
@@ -45,7 +45,7 @@ export default function DanishCategoriesIndexPage() {
         <header className="all-conversions-header">
           <h1>Alle kategorier for enhedsomregning</h1>
           <p>
-            Vaelg den fysiske storrelse, du er interesseret i, for at se alle
+            Vælg den fysiske størrelse, du er interesseret i, for at se alle
             enheder og omregningssider i den kategori.
           </p>
         </header>

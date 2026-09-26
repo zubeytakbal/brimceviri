@@ -92,7 +92,7 @@ export default async function DanishUnitPage({ params }: PageProps) {
               <dd>{unitPage.symbol}</dd>
             </div>
             <div>
-              <dt>Malesystem</dt>
+              <dt>Målesystem</dt>
               <dd>{unitPage.measurementSystem}</dd>
             </div>
             <div>
@@ -131,7 +131,7 @@ export default async function DanishUnitPage({ params }: PageProps) {
               href={`/birimler/${unitPage.sourceSlug}`}
               hrefLang="tr"
             >
-              Abn den tyrkiske version
+              Åbn den tyrkiske version
             </Link>
             {englishPage && (
               <Link

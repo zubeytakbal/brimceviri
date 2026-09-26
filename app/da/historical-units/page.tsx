@@ -4,9 +4,9 @@ import StaticPageLayout from "../../components/StaticPageLayout";
 import { buildSiteUrl } from "../../siteConfig";
 
 export const metadata = {
-  title: "Historiske maleenheder",
+  title: "Historiske måleenheder",
   description:
-    "Udforsk byzantinske, osmanniske og gammeltyrkiske maleenheder og omregn dem til meter og gram med korte forklaringer.",
+    "Udforsk byzantinske, osmanniske og gammeltyrkiske måleenheder og omregn dem til meter og gram med korte forklaringer.",
   alternates: {
     canonical: "/da/historical-units",
     languages: {
@@ -27,8 +27,8 @@ export const metadata = {
     },
   },
   openGraph: {
-    title: "Historiske maleenheder",
-    description: "Udforsk byzantinske, osmanniske og gammeltyrkiske maleenheder.",
+    title: "Historiske måleenheder",
+    description: "Udforsk byzantinske, osmanniske og gammeltyrkiske måleenheder.",
     url: buildSiteUrl("/da/historical-units"),
     siteName: "BirimCeviri.app",
     locale: "da_DK",
@@ -58,7 +58,7 @@ const byzantineUnits = [
     href: "/birimler/bizans-ayagi",
     name: "Byzantinsk fod (pous)",
     value: "≈ 0,3148 m",
-    note: "Forlaengelse af den antikke graeske fod, brugt frem til 1453.",
+    note: "Forlængelse af den antikke græske fod, brugt frem til 1453.",
   },
   {
     href: "/birimler/bizans-kulaci",
@@ -70,7 +70,7 @@ const byzantineUnits = [
     href: "/birimler/bizans-litrasi",
     name: "Byzantinsk litra (litra)",
     value: "≈ 324 g",
-    note: "Grundlaeggende masseenhed i den byzantinske tradition, pavirket af det romerske pund.",
+    note: "Grundlæggende masseenhed i den byzantinske tradition, påvirket af det romerske pund.",
   },
   {
     href: "/birimler/bizans-onsu",
@@ -85,25 +85,25 @@ const ottomanUnits = [
     href: "/birimler/arsin",
     name: "Arşın",
     value: "≈ 0,68 m",
-    note: "Havde flere anvendelsesomrader: marked-arşın, den mest kendte, og bygge-arşın, som blev brugt til storre laengder.",
+    note: "Havde flere anvendelsesområder: marked-arşın, den mest kendte, og bygge-arşın, som blev brugt til større længder.",
   },
   {
     href: "/birimler/endaze",
     name: "Endaze",
     value: "= 0,65 m",
-    note: "Blev saerligt brugt til at male stof og tekstiler, samt relateret handel.",
+    note: "Blev særligt brugt til at måle stof og tekstiler, samt relateret handel.",
   },
   {
     href: "/birimler/okka",
     name: "Osmannisk okka (Okka)",
     value: "= 400 dirhem ≈ 1282,945 g",
-    note: "En af de mest kendte vaegtenheder pa traditionelle osmanniske markeder.",
+    note: "En af de mest kendte vægtenheder på traditionelle osmanniske markeder.",
   },
   {
     href: "/birimler/dirhem",
     name: "Dirhem",
     value: "= 1/400 okka ≈ 3,207 g",
-    note: "Blev brugt til sma maengder, som aedle metaller, krydderier og enkelte kosmetiske produkter.",
+    note: "Blev brugt til små mængder, som ædle metaller, krydderier og enkelte kosmetiske produkter.",
   },
 ];
 
@@ -112,7 +112,7 @@ const oldTurkicUnits = [
     href: "/birimler/cig",
     name: "Çığ",
     value: "≈ 0,333 m",
-    note: "En gammel tyrkisk laengdeenhed, der forekommer i gamle sprogvidenskabelige og historiske kilder.",
+    note: "En gammel tyrkisk længdeenhed, der forekommer i gamle sprogvidenskabelige og historiske kilder.",
   },
 ];
 
@@ -151,14 +151,14 @@ export default function DanishHistoricalUnitsPage() {
       breadcrumbAriaLabel="Sidenavigation"
       breadcrumbs={[
         { href: "/da", label: "Hjem" },
-        { label: "Historiske maleenheder" },
+        { label: "Historiske måleenheder" },
       ]}
-      title="Historiske maleenheder"
-      description="Udforsk byzantinske, osmanniske og gammeltyrkiske maleenheder med deres moderne modstykker i meter og gram, og omregn dem direkte med to praktiske vaerktojer."
+      title="Historiske måleenheder"
+      description="Udforsk byzantinske, osmanniske og gammeltyrkiske måleenheder med deres moderne modstykker i meter og gram, og omregn dem direkte med to praktiske værktøjer."
       alternateLink={{
         href: "/tarihi-olcu-birimleri",
         hrefLang: "tr",
-        label: "Abn den tyrkiske version",
+        label: "Åbn den tyrkiske version",
       }}
       sections={[
         {
@@ -166,28 +166,28 @@ export default function DanishHistoricalUnitsPage() {
           content: (
             <>
               <p>
-                Malingens historie i Anatolien og denne region begyndte
+                Målingens historie i Anatolien og denne region begyndte
                 ikke med det moderne metriske system; den gennemgik flere
                 lag af byzantinske og senere osmanniske systemer, ud over
-                endnu aeldre tyrkiske mal.
+                endnu ældre tyrkiske mål.
               </p>
               <p>
                 Derfor forekommer navne som arşın, okka og dirhem stadig i
-                dag i gamle dokumenter, samt i enkelte boger og historisk
+                dag i gamle dokumenter, samt i enkelte bøger og historisk
                 forskning.
               </p>
             </>
           ),
         },
         {
-          heading: "Omregner for historiske laengdeenheder",
+          heading: "Omregner for historiske længdeenheder",
           content: (
             <>
               <p>
                 Omregn direkte mellem arşın, endaze, byzantinsk fod,
-                byzantinsk favn og çığ, med den moderne modvaerdi i meter.
-                For alle moderne laengdeenheder, se{" "}
-                <Link href="/da/categories/laengde">det fuldstaendige laengdebibliotek</Link>.
+                byzantinsk favn og çığ, med den moderne modværdi i meter.
+                For alle moderne længdeenheder, se{" "}
+                <Link href="/da/categories/laengde">det fuldstændige længdebibliotek</Link>.
               </p>
               <CategoryUnitConverter
                 category="uzunluk"
@@ -205,7 +205,7 @@ export default function DanishHistoricalUnitsPage() {
                 Omregn mellem osmannisk okka, dirhem, byzantinsk litra og
                 byzantinsk ounkia, med det moderne gram som reference. For
                 moderne enheder som kilogram og ton, se{" "}
-                <Link href="/da/categories/masse">det fuldstaendige massebibliotek</Link>.
+                <Link href="/da/categories/masse">det fuldstændige massebibliotek</Link>.
               </p>
               <CategoryUnitConverter
                 category="kutle"
@@ -220,9 +220,9 @@ export default function DanishHistoricalUnitsPage() {
           content: (
             <>
               <p>
-                Byzans arvede en stor del af den graeske og romerske
-                maletradition og skabte praktiske laengde- og masseenheder,
-                der blev brugt inden for handel og byggeri i arhundreder.
+                Byzans arvede en stor del af den græske og romerske
+                måletradition og skabte praktiske længde- og masseenheder,
+                der blev brugt inden for handel og byggeri i århundreder.
               </p>
               <UnitList units={byzantineUnits} />
             </>
@@ -243,14 +243,14 @@ export default function DanishHistoricalUnitsPage() {
           ),
         },
         {
-          heading: "Endnu aeldre tyrkiske enheder",
+          heading: "Endnu ældre tyrkiske enheder",
           content: (
             <>
               <p>
-                Enkelte gamle enheder er stadig kendt takket vaere
+                Enkelte gamle enheder er stadig kendt takket være
                 sprogvidenskabelige og historiske kilder, og er vigtige
-                for at forsta gamle tekster og relatere dem til moderne
-                mal.
+                for at forstå gamle tekster og relatere dem til moderne
+                mål.
               </p>
               <UnitList units={oldTurkicUnits} />
             </>
@@ -262,30 +262,30 @@ export default function DanishHistoricalUnitsPage() {
             <>
               <p>
                 Disse navne forekommer stadig i dag i vakf-dokumenter,
-                gamle registre, historisk forskning og oversaettelsesarbejde;
-                at omregne dem til meter eller gram hjaelper med at forsta
+                gamle registre, historisk forskning og oversættelsesarbejde;
+                at omregne dem til meter eller gram hjælper med at forstå
                 dem hurtigt.
               </p>
               <p>
-                Denne side er ogsa nyttig for studerende,
-                indholdsproducenter og alle, der onsker at laese historiske
+                Denne side er også nyttig for studerende,
+                indholdsproducenter og alle, der ønsker at læse historiske
                 tal med tydelige moderne referencer.
               </p>
             </>
           ),
         },
         {
-          heading: "Relaterede vaerktojer",
+          heading: "Relaterede værktøjer",
           content: (
             <ul className="related-conversion-list">
               <li>
-                <Link href="/da/kitchen-measurement-converter">Kokkenmal</Link>
+                <Link href="/da/kitchen-measurement-converter">Køkkenmål</Link>
               </li>
               <li>
                 <Link href="/da/recipe-converter">Opskriftomregner</Link>
               </li>
               <li>
-                <Link href="/da/shoe-size-converter">Skostorrelseomregner</Link>
+                <Link href="/da/shoe-size-converter">Skostørrelseomregner</Link>
               </li>
             </ul>
           ),

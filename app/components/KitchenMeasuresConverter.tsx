@@ -106,8 +106,8 @@ const copy = {
     resultHeading: "Tilsvarende verdier", invalidValue: "Skriv inn et gyldig tall for a se omregningen.",
   },
   da: {
-    ingredient: "Ingrediens", knownUnit: "Kendt enhed", value: "Vaerdi",
-    resultHeading: "Tilsvarende vaerdier", invalidValue: "Indtast et gyldigt tal for at se omregningen.",
+    ingredient: "Ingrediens", knownUnit: "Kendt enhed", value: "Værdi",
+    resultHeading: "Tilsvarende værdier", invalidValue: "Indtast et gyldigt tal for at se omregningen.",
   },
 } as const;
 

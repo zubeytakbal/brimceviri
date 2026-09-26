@@ -6,7 +6,7 @@ import { buildSiteUrl } from "../siteConfig";
 export const metadata: Metadata = {
   title: "Find den enhedsomregning du har brug for",
   description:
-    "Omregn gratis og direkte laengde, masse, temperatur og andre fysiske enheder. Over 12 kategorier, med noejagtige formler.",
+    "Omregn gratis og direkte længde, masse, temperatur og andre fysiske enheder. Over 12 kategorier, med nøjagtige formler.",
   alternates: {
     canonical: "/da",
     languages: {
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Find den enhedsomregning du har brug for",
     description:
-      "Omregn gratis og direkte laengde, masse, temperatur og andre fysiske enheder.",
+      "Omregn gratis og direkte længde, masse, temperatur og andre fysiske enheder.",
     url: buildSiteUrl("/da"),
     siteName: "BirimCeviri.app",
     locale: "da_DK",

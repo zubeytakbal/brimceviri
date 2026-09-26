@@ -417,7 +417,7 @@ const categoryLabels: Record<
     gumus_ayar: "Solvinnhold",
   },
   da: {
-    uzunluk: "Laengde",
+    uzunluk: "Længde",
     alan: "Areal",
     hacim: "Rumfang",
     kutle: "Masse",
@@ -430,16 +430,16 @@ const categoryLabels: Record<
     elektrik: "Elektricitet",
     yogunluk: "Densitet",
     kuvvet: "Kraft",
-    debi: "Stromning",
+    debi: "Strømning",
     tork: "Moment",
-    momentum: "Bevaegelsesmaengde",
+    momentum: "Bevægelsesmængde",
     viskozite_dinamik: "Viskositet",
     elektrik_direnc: "Modstand",
     kapasitans: "Kapacitans",
     enduktans: "Induktans",
     elektrik_yuk: "Elektrisk Ladning",
     altin_ayar: "Guldkarat",
-    gumus_ayar: "Solvindhold",
+    gumus_ayar: "Sølvindhold",
   },
 };
 
@@ -703,11 +703,11 @@ const footerCopy: Record<Locale, FooterCopy> = {
     languagesHeading: "Sprog",
     categoriesHeading: "Kategorier",
     description:
-      "Tekniske omregningsvaerktojer og enhedsguider forberedt til praktisk brug.",
+      "Tekniske omregningsværktøjer og enhedsguider forberedt til praktisk brug.",
     disclaimer:
-      "For vigtige tekniske, medicinske eller sikkerhedsrelaterede beslutninger bor resultaterne kontrolleres med professionelle kilder.",
+      "For vigtige tekniske, medicinske eller sikkerhedsrelaterede beslutninger bør resultaterne kontrolleres med professionelle kilder.",
     browserProcessingNote:
-      "I beregningsfunktionerne pa denne side behandles indtastede data direkte i browseren.",
+      "I beregningsfunktionerne på denne side behandles indtastede data direkte i browseren.",
   },
 };
 

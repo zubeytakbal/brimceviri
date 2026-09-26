@@ -16,7 +16,7 @@ type PageProps = {
 
 // Korte navne til "Omregn alle enheder for {X}".
 const categoryBaseNames: Record<string, string> = {
-  uzunluk: "laengde",
+  uzunluk: "længde",
   alan: "areal",
   hacim: "rumfang",
   kutle: "masse",
@@ -28,7 +28,7 @@ const categoryBaseNames: Record<string, string> = {
   veri: "datalagring",
   elektrik: "elektricitet",
   altin_ayar: "guldkarat",
-  gumus_ayar: "solvindhold",
+  gumus_ayar: "sølvindhold",
 };
 
 function serializeJsonLd(data: object) {
@@ -189,7 +189,7 @@ export default async function DanishCategoryPage({ params }: PageProps) {
           <CategoryUnitConverter category={categoryPage.category} locale="da" />
         ),
       }}
-      conversionHeading="Populaere omregninger"
+      conversionHeading="Populære omregninger"
       conversionCountLabel={`${conversionCards.length} par`}
       conversionCards={conversionCards}
       unitGuidesHeading="Enhedsguider"
@@ -218,7 +218,7 @@ export default async function DanishCategoryPage({ params }: PageProps) {
           </div>
 
           <nav className="category-table-of-contents" aria-label="Sidens indhold">
-            <strong>Pa denne side</strong>
+            <strong>På denne side</strong>
             <ol>
               {categoryPage.sections.map((section, index) => (
                 <li key={section.title}>
@@ -290,8 +290,8 @@ export default async function DanishCategoryPage({ params }: PageProps) {
             <section className="conversion-section unit-sources" id="kategori-kilder">
               <h2>Kilder</h2>
               <p>
-                Definitionerne og omregningsvaerdierne pa denne side bygger
-                pa anerkendte officielle metrologiske referencer.
+                Definitionerne og omregningsværdierne på denne side bygger
+                på anerkendte officielle metrologiske referencer.
               </p>
               <ol>
                 {sources.map((source) => (

@@ -6,9 +6,9 @@ import { kitchenIngredientRows } from "../../converter/kitchenMeasures";
 import { buildSiteUrl } from "../../siteConfig";
 
 export const metadata: Metadata = {
-  title: "Kokkenmalomregner (kopper til gram)",
+  title: "Køkkenmålomregner (kopper til gram)",
   description:
-    "Omregn kopper, spiseskeer, gram og milliliter for over 40 ingredienser: mel, sukker, ris, honning, smor og meget mere.",
+    "Omregn kopper, spiseskeer, gram og milliliter for over 40 ingredienser: mel, sukker, ris, honning, smør og meget mere.",
   alternates: {
     canonical: "/da/kitchen-measurement-converter",
     languages: {
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Kokkenmalomregner (kopper til gram)",
+    title: "Køkkenmålomregner (kopper til gram)",
     description: "Omregn kopper, spiseskeer, gram og milliliter for over 40 ingredienser.",
     url: buildSiteUrl("/da/kitchen-measurement-converter"),
     siteName: "BirimCeviri.app",
@@ -45,18 +45,18 @@ export default function DanishKitchenMeasurementsPage() {
         <nav className="breadcrumbs" aria-label="Sidenavigation">
           <Link href="/da">Hjem</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          <span>Kokkenmalomregner</span>
+          <span>Køkkenmålomregner</span>
         </nav>
 
         <header className="all-conversions-header">
-          <h1>Kokkenmalomregner</h1>
+          <h1>Køkkenmålomregner</h1>
 
           <p>
-            Vaelg ingrediensen og enheden, du kender, for at se den
-            tilsvarende vaerdi i kopper, spiseskeer, teskeer, gram,
+            Vælg ingrediensen og enheden, du kender, for at se den
+            tilsvarende værdi i kopper, spiseskeer, teskeer, gram,
             milliliter og liter direkte. Hver ingrediens har forskellig
-            taethed, sa beregningen bruger specifikke vaerdier for mel,
-            sukker, ris, honning, smor og mange andre.
+            tæthed, så beregningen bruger specifikke værdier for mel,
+            sukker, ris, honning, smør og mange andre.
           </p>
         </header>
 
@@ -65,17 +65,17 @@ export default function DanishKitchenMeasurementsPage() {
         <section className="category-article-content">
           <h2>Hvor mange gram er en kop mel eller en spiseske sukker?</h2>
           <p>
-            Der findes ingen enkelt regel, der gaelder for alle
-            ingredienser, fordi koppen maler et rumfang, mens grammet maler
+            Der findes ingen enkelt regel, der gælder for alle
+            ingredienser, fordi koppen måler et rumfang, mens grammet måler
             en masse. En kop mel er lettere end en kop sukker, og honning
-            er tungere end begge -- derfor varierer omregningen afhaengigt
-            af ingrediensens taethed.
+            er tungere end begge -- derfor varierer omregningen afhængigt
+            af ingrediensens tæthed.
           </p>
           <p>
-            Vaerdierne angivet her er praktiske gennemsnit tilpasset
-            hverdagsagtig madlavning. Den endelige vaegt kan variere lidt
-            afhaengigt af, hvor pakket ingrediensen er, eller
-            produktvarianten, men resultatet er alligevel palideligt nok
+            Værdierne angivet her er praktiske gennemsnit tilpasset
+            hverdagsagtig madlavning. Den endelige vægt kan variere lidt
+            afhængigt af, hvor pakket ingrediensen er, eller
+            produktvarianten, men resultatet er alligevel pålideligt nok
             til husholdningsbrug.
           </p>
 
@@ -104,38 +104,38 @@ export default function DanishKitchenMeasurementsPage() {
             </table>
           </div>
 
-          <h2>Ofte stillede sporgsmal</h2>
+          <h2>Ofte stillede spørgsmål</h2>
           <p>
             <strong>Hvor mange milliliter er en spiseske?</strong>
             <br />
-            En spiseske svarer til 15 milliliter, altsa 3 teskeer. Koppen,
+            En spiseske svarer til 15 milliliter, altså 3 teskeer. Koppen,
             der bruges her, svarer til 250 milliliter (den metriske
             standardkop, der bruges i danske opskrifter).
           </p>
           <p>
-            <strong>Hvorfor varierer vaegten af en kop afhaengigt af ingrediens?</strong>
+            <strong>Hvorfor varierer vægten af en kop afhængigt af ingrediens?</strong>
             <br />
-            Fordi rumfanget forbliver konstant, men taetheden varierer. En
-            let ingrediens som mel vejer mindre end en taet ingrediens som
+            Fordi rumfanget forbliver konstant, men tætheden varierer. En
+            let ingrediens som mel vejer mindre end en tæt ingrediens som
             honning ved samme rumfang.
           </p>
           <p>
-            For at skalere en hel ret, prov{" "}
+            For at skalere en hel ret, prøv{" "}
             <Link href="/da/recipe-converter">opskriftomregneren</Link>.
           </p>
         </section>
 
         <section className="conversion-section related-conversions">
-          <h2>Relaterede vaerktojer</h2>
+          <h2>Relaterede værktøjer</h2>
           <ul className="related-conversion-list">
             <li>
               <Link href="/da/recipe-converter">Opskriftomregner</Link>
             </li>
             <li>
-              <Link href="/da/shoe-size-converter">Skostorrelseomregner</Link>
+              <Link href="/da/shoe-size-converter">Skostørrelseomregner</Link>
             </li>
             <li>
-              <Link href="/da/historical-units">Historiske maleenheder</Link>
+              <Link href="/da/historical-units">Historiske måleenheder</Link>
             </li>
             <li>
               <Link href="/da/categories/masse">Omregning af masseenheder</Link>
@@ -150,7 +150,7 @@ export default function DanishKitchenMeasurementsPage() {
             href="/mutfak-olculeri-cevirici"
             hrefLang="tr"
           >
-            Abn den tyrkiske version
+            Åbn den tyrkiske version
           </Link>
         </section>
       </div>

@@ -144,8 +144,8 @@ const notificationCopy = {
   },
   da: {
     ariaLabel: "Notifikationer", panelLabel: "Sidenotifikationer", title: "Notifikationer", closeLabel: "Luk",
-    markSeenLabel: "Marker denne notifikation som last", openLabel: "Abn →",
-    empty: "Der er i ojeblikket ingen nye notifikationer.", dateLocale: "da-DK",
+    markSeenLabel: "Marker denne notifikation som læst", openLabel: "Åbn →",
+    empty: "Der er i øjeblikket ingen nye notifikationer.", dateLocale: "da-DK",
   },
 } as const;
 

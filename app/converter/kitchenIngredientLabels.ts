@@ -568,15 +568,15 @@ export const kitchenIngredientLabels: Record<
   da: {
     un: "Hvedemel", "tam-bugday-unu": "Fuldkornsmel", "pirinc-unu": "Rismel", "misir-unu": "Majsmel",
     irmik: "Semulegryn", "galeta-unu": "Rasp", "toz-seker": "Sukker", "pudra-sekeri": "Flormelis",
-    "esmer-seker": "Farin", tuz: "Salt", pirinc: "Ris", bulgur: "Bulgur", nohut: "Kikaerter (torrede)",
-    "kirmizi-mercimek": "Rode linser", "yesil-mercimek": "Gronne linser", "kuru-fasulye": "Torrede bonner",
-    sut: "Maelk", yogurt: "Yoghurt", krema: "Flode", tereyagi: "Smor", margarin: "Margarine",
+    "esmer-seker": "Farin", tuz: "Salt", pirinc: "Ris", bulgur: "Bulgur", nohut: "Kikærter (tørrede)",
+    "kirmizi-mercimek": "Røde linser", "yesil-mercimek": "Grønne linser", "kuru-fasulye": "Tørrede bønner",
+    sut: "Mælk", yogurt: "Yoghurt", krema: "Fløde", tereyagi: "Smør", margarin: "Margarine",
     zeytinyagi: "Olivenolie", "sivi-yag": "Vegetabilsk olie", bal: "Honning", pekmez: "Drueserup",
     kakao: "Kakaopulver", "yulaf-ezmesi": "Havregryn", nisasta: "Majsstivelse", "kabartma-tozu": "Bagepulver",
-    karbonat: "Natron", susam: "Sesamfro", "ceviz-ici": "Valnodder (hakkede)", "findik-ici": "Hasselnodder",
-    badem: "Mandler", "antep-fistigi": "Pistacienodder", "kuru-uzum": "Rosiner", "hindistan-cevizi": "Revet kokos",
+    karbonat: "Natron", susam: "Sesamfrø", "ceviz-ici": "Valnødder (hakkede)", "findik-ici": "Hasselnødder",
+    badem: "Mandler", "antep-fistigi": "Pistacienødder", "kuru-uzum": "Rosiner", "hindistan-cevizi": "Revet kokos",
     mayonez: "Mayonnaise", ketcap: "Ketchup", sirke: "Eddike", "limon-suyu": "Citronsaft", tarcin: "Malet kanel",
-    "kirmizi-biber": "Malet rod paprika", karabiber: "Malet sort peber", kimyon: "Malet spidskommen",
+    "kirmizi-biber": "Malet rød paprika", karabiber: "Malet sort peber", kimyon: "Malet spidskommen",
   },
 };
 

@@ -193,18 +193,18 @@ const copyByLocale: Record<
   },
   de: {
     labels: {
-      wallArea: "Wandflaeche (m2)",
+      wallArea: "Wandfläche (m2)",
       brickWidth: "Ziegelbreite (cm)",
-      brickHeight: "Ziegelhoehe (cm)",
-      joint: "Fugenstaerke (mm)",
+      brickHeight: "Ziegelhöhe (cm)",
+      joint: "Fugenstärke (mm)",
       waste: "Verschnitt (%)",
     },
     resultLabels: {
-      brickArea: "Flaeche eines Ziegels mit Fuge",
-      totalArea: "Gesamtflaeche inklusive Verschnitt",
-      count: "Benoetigte Anzahl Ziegel",
+      brickArea: "Fläche eines Ziegels mit Fuge",
+      totalArea: "Gesamtfläche inklusive Verschnitt",
+      count: "Benötigte Anzahl Ziegel",
     },
-    emptyState: "Geben Sie gueltige Werte ein, um das Ergebnis zu sehen.",
+    emptyState: "Geben Sie gültige Werte ein, um das Ergebnis zu sehen.",
   },
   ar: {
     labels: {

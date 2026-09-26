@@ -482,7 +482,7 @@ const pageCopy: Record<
     ],
     applications: [
       "Erste Auslegung von Wand- und Dämmschichten",
-      "Wärmeverlustschätzungen durch Platten und flache Schichten",
+      "Wärmeverlustschätzungen durch Platten und fläche Schichten",
       "Schneller Vergleich von Materialleitfähigkeiten",
       "Lehr- und Konzeptbeispiele für eindimensionale Wärmeleitung",
     ],

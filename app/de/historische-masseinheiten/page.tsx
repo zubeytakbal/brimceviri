@@ -6,9 +6,9 @@ import { buildSiteUrl } from "../../siteConfig";
 
 export const metadata: Metadata = {
   title:
-    "Historische Masseinheiten: Byzantinisch, Osmanisch und Alttuerkisch",
+    "Historische Maßeinheiten: Byzantinisch, Osmanisch und Alttürkisch",
   description:
-    "Rechnen Sie historische Masseinheiten aus byzantinischer, osmanischer und alttuerkischer Zeit in Meter und Gramm um.",
+    "Rechnen Sie historische Maßeinheiten aus byzantinischer, osmanischer und alttürkischer Zeit in Meter und Gramm um.",
   alternates: {
     canonical: "/de/historische-masseinheiten",
     languages: {
@@ -20,9 +20,9 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title:
-      "Historische Masseinheiten: Byzantinisch, Osmanisch und Alttuerkisch",
+      "Historische Maßeinheiten: Byzantinisch, Osmanisch und Alttürkisch",
     description:
-      "Wandeln Sie historische byzantinische, osmanische und alttuerkische Masseinheiten in moderne Meter und Gramm um.",
+      "Wandeln Sie historische byzantinische, osmanische und alttürkische Maßeinheiten in moderne Meter und Gramm um.",
     url: buildSiteUrl("/de/historische-masseinheiten"),
     siteName: "BirimCeviri.app",
     locale: "de_DE",
@@ -68,7 +68,7 @@ const byzantineUnits = [
     href: "/birimler/bizans-litrasi",
     name: "Byzantinische Litra (litra)",
     value: "~ 324 g",
-    note: "Grundlegende Masseeinheit aus der Tradition der roemischen libra.",
+    note: "Grundlegende Masseeinheit aus der Tradition der römischen libra.",
   },
   {
     href: "/birimler/bizans-onsu",
@@ -89,7 +89,7 @@ const ottomanUnits = [
     href: "/birimler/endaze",
     name: "Endaze",
     value: "= 0.65 m",
-    note: "Vor allem bei Stoffen und Textilien gebraeuchlich.",
+    note: "Vor allem bei Stoffen und Textilien gebräuchlich.",
   },
   {
     href: "/birimler/okka",
@@ -101,7 +101,7 @@ const ottomanUnits = [
     href: "/birimler/dirhem",
     name: "Dirhem",
     value: "= 1/400 okka ~ 3.207 g",
-    note: "Haefig fuer Gewuerze, Edelmetalle und Medikamente genutzt.",
+    note: "Häufig fuer Gewürze, Edelmetalle und Medikamente genutzt.",
   },
 ];
 
@@ -110,7 +110,7 @@ const oldTurkicUnits = [
     href: "/birimler/cig",
     name: "Cig",
     value: "~ 0.333 m",
-    note: "Alttuerkische Laengeneinheit aus Divanu Lugati't-Turk.",
+    note: "Alttürkische Längeneinheit aus Divanu Lugati't-Turk.",
   },
 ];
 
@@ -151,10 +151,10 @@ export default function GermanHistoricalUnitsPage() {
       breadcrumbAriaLabel="Brotkrumen"
       breadcrumbs={[
         { href: "/de", label: "Startseite" },
-        { label: "Historische Masseinheiten" },
+        { label: "Historische Maßeinheiten" },
       ]}
-      title="Historische Masseinheiten"
-      description="Entdecken Sie byzantinische, osmanische und alttuerkische Masseinheiten mit ihren modernen Entsprechungen in Meter und Gramm."
+      title="Historische Maßeinheiten"
+      description="Entdecken Sie byzantinische, osmanische und alttürkische Maßeinheiten mit ihren modernen Entsprechungen in Meter und Gramm."
       alternateLink={{
         href: "/en/historical-units",
         hrefLang: "en",
@@ -167,8 +167,8 @@ export default function GermanHistoricalUnitsPage() {
             <>
               <p>
                 Die Messgeschichte in Anatolien stammt nicht aus einer
-                einzigen Quelle. Byzantinische, osmanische und aeltere
-                tuerkische Systeme haben ueber Jahrhunderte nebeneinander
+                einzigen Quelle. Byzantinische, osmanische und ältere
+                türkische Systeme haben über Jahrhunderte nebeneinander
                 gewirkt, bevor das metrische System verbindlich wurde.
               </p>
               <p>
@@ -216,9 +216,9 @@ export default function GermanHistoricalUnitsPage() {
           content: (
             <>
               <p>
-                Das byzantinische Reich uebernahm viele antike
-                Messkonzepte und nutzte eigene Laengen- und
-                Masseeinheiten bis in das spaete Mittelalter.
+                Das byzantinische Reich übernahm viele antike
+                Messkonzepte und nutzte eigene Längen- und
+                Masseeinheiten bis in das späte Mittelalter.
               </p>
               <UnitList units={byzantineUnits} />
             </>
@@ -230,19 +230,19 @@ export default function GermanHistoricalUnitsPage() {
             <>
               <p>
                 Einheiten wie Arsin, Endaze, Okka und Dirhem spielten im
-                Handel, in Werkstaetten und im Alltag eine wichtige Rolle.
+                Handel, in Werkstätten und im Alltag eine wichtige Rolle.
               </p>
               <UnitList units={ottomanUnits} />
             </>
           ),
         },
         {
-          heading: "Alttuerkische Einheiten",
+          heading: "Alttürkische Einheiten",
           content: (
             <>
               <p>
-                Fruehe tuerkische Quellen und Handelskontakte zeigen, dass
-                bestimmte Laengenmasse schon lange vor der Moderne in
+                Frühe türkische Quellen und Handelskontakte zeigen, dass
+                bestimmte Längenmaße schon lange vor der Moderne in
                 Gebrauch waren.
               </p>
               <UnitList units={oldTurkicUnits} />
@@ -254,7 +254,7 @@ export default function GermanHistoricalUnitsPage() {
           content: (
             <ul className="related-conversion-list">
               <li>
-                <Link href="/de/kategorien/laenge">Alle Laengeneinheiten</Link>
+                <Link href="/de/kategorien/laenge">Alle Längeneinheiten</Link>
               </li>
               <li>
                 <Link href="/de/kategorien/masse">Alle Masseeinheiten</Link>

@@ -34,12 +34,12 @@ const copy = {
     lang: "de",
     title: "Seite nicht gefunden",
     description:
-      "Die gesuchte Seite wurde moglicherweise verschoben oder ist keine gueltige Adresse.",
+      "Die gesuchte Seite wurde möglicherweise verschoben oder ist keine gültige Adresse.",
     continueHeading: "Weiter mit",
     primaryHref: "/de",
     primaryLabel: "Zur deutschen Startseite",
     secondaryHref: "/",
-    secondaryLabel: "Turkische Startseite offnen",
+    secondaryLabel: "Türkische Startseite öffnen",
   },
   ar: {
     lang: "ar",

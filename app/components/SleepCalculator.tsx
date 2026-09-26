@@ -187,16 +187,16 @@ const copyByLocale: Record<
     recommended: "Anbefalet",
   },
   de: {
-    modePrompt: "Was moechten Sie berechnen?",
+    modePrompt: "Was möchten Sie berechnen?",
     modeButtons: {
       "wake-to-bedtime": "Wann sollte ich schlafen?",
       "bedtime-to-wake": "Wann sollte ich aufstehen?",
     },
     timeLabel: {
-      "wake-to-bedtime": "Gewuenschte Aufstehzeit",
+      "wake-to-bedtime": "Gewünschte Aufstehzeit",
       "bedtime-to-wake": "Schlafenszeit",
     },
-    emptyState: "Geben Sie eine gueltige Uhrzeit ein, um das Ergebnis zu sehen.",
+    emptyState: "Geben Sie eine gültige Uhrzeit ein, um das Ergebnis zu sehen.",
     cycleLabel: "Zyklen",
     sleepLabel: "Stunden Schlaf",
     recommended: "Empfohlen",

@@ -313,10 +313,10 @@ const copy: Record<CalculatorLocale, PageCopy> = {
     breadcrumbLabel: "Breadcrumb",
     title: "kW-zu-Ampere Rechner",
     description:
-      "Wandeln Sie Leistung fur Einphasen-, Dreiphasen- und DC-Systeme in Strom um. Das Ergebnis wird als gut lesbare Stromgroesse unter Berucksichtigung von Spannung, Leistungsfaktor und Wirkungsgrad gezeigt.",
+      "Wandeln Sie Leistung für Einphasen-, Dreiphasen- und DC-Systeme in Strom um. Das Ergebnis wird als gut lesbare Stromgröße unter Berücksichtigung von Spannung, Leistungsfaktor und Wirkungsgrad gezeigt.",
     heroEyebrow: "ELEKTRORECHNER",
     heroResultHeading: "Leitungsstrom-Ergebnis",
-    introHeading: "Wofur wird dieses kW-zu-Ampere Werkzeug verwendet?",
+    introHeading: "Wofür wird dieses kW-zu-Ampere Werkzeug verwendet?",
     formulasHeading: "Verwendete Formeln",
     variablesHeading: "Variablen und Bedeutung",
     unitsHeading: "Einheitentabellen",
@@ -330,12 +330,12 @@ const copy: Record<CalculatorLocale, PageCopy> = {
     tableColumns: {
       unitName: "Einheitenname",
       symbol: "Symbol",
-      siEquivalent: "SI-Aquivalent",
+      siEquivalent: "SI-Äquivalent",
       typicalUse: "Typische Verwendung",
     },
     intro: [
-      "Dieses Werkzeug schatzt den Leitungsstrom aus der Wirkleistung fur Einphasen-, Dreiphasen- und DC-Systeme ab.",
-      "Es eignet sich fur erste Prufungen bei Schutzschalterwahl, vorlaufiger Kabeldimensionierung, Lastlisten und Baustellenaufnahmen.",
+      "Dieses Werkzeug schätzt den Leitungsstrom aus der Wirkleistung für Einphasen-, Dreiphasen- und DC-Systeme ab.",
+      "Es eignet sich für erste Prüfungen bei Schutzschalterwahl, vorläufiger Kabeldimensionierung, Lastlisten und Baustellenaufnahmen.",
     ],
     formulas: [
       "Einphase: I = P / (V x cos phi x eta)",
@@ -345,8 +345,8 @@ const copy: Record<CalculatorLocale, PageCopy> = {
     variables: [
       { term: "P", explanation: "Wirkleistung der Last oder Leistungswert des Gertes." },
       { term: "V", explanation: "Netz- oder Systemspannung." },
-      { term: "cos phi", explanation: "Leistungsfaktor in AC-Systemen zur Verknupfung von Wirk- und Scheinleistung." },
-      { term: "eta", explanation: "Wirkungsgrad; er wird verwendet, wenn aus Ausgangsleistung der benotigte Eingangsstrom bestimmt werden soll." },
+      { term: "cos phi", explanation: "Leistungsfaktor in AC-Systemen zur Verknüpfung von Wirk- und Scheinleistung." },
+      { term: "eta", explanation: "Wirkungsgrad; er wird verwendet, wenn aus Ausgangsleistung der benötigte Eingangsstrom bestimmt werden soll." },
       { term: "I", explanation: "Berechneter Leitungsstrom." },
     ],
     examples: [
@@ -361,12 +361,12 @@ const copy: Record<CalculatorLocale, PageCopy> = {
     ],
     applications: [
       "Vorauswahl von Sicherungen und Schutzschaltern",
-      "Vorprufung fur Kabeldimensionierung",
+      "Vorprüfung für Kabeldimensionierung",
       "Kontrolle von Lastlisten",
       "Planung von Generatoren, USV und Schaltschranken",
     ],
     limitations: [
-      "Dieses Werkzeug liefert einen Naherungswert fur den Leitungsstrom und berucksichtigt keine Oberschwingungen, Anlaufstrome, Temperaturabminderung oder Korrekturfaktoren.",
+      "Dieses Werkzeug liefert einen Näherungswert für den Leitungsstrom und berücksichtigt keine Oberschwingungen, Anlaufströme, Temperaturabminderung oder Korrekturfaktoren.",
       "Im Dreiphasenmodus wird die Spannung als Leiterspannung interpretiert.",
       "Falls die eingegebene Leistung bereits die elektrische Eingangsleistung darstellt, setzen Sie den Wirkungsgrad auf 1 oder 100.",
     ],

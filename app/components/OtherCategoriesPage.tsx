@@ -91,13 +91,13 @@ const pageCopy = {
       "Entdecken Sie technische und wissenschaftliche Umrechnungskategorien, die nicht im Hauptverzeichnis der Startseite erscheinen.",
     searchLabel: "Umrechnungen suchen",
     searchPlaceholder:
-      "Beispiel: newton, viskositaet, drehmoment",
-    searchButton: "Oeffnen",
+      "Beispiel: newton, viskosität, drehmoment",
+    searchButton: "Öffnen",
     searchHint:
       "Suchen Sie per Einheitenname, Symbol oder Umrechnungspaar nach der passenden Seite.",
     searchResultsTitle: "Suchergebnisse",
     searchResultsHint:
-      "Mit Enter oeffnen Sie den ersten Treffer.",
+      "Mit Enter öffnen Sie den ersten Treffer.",
     searchEmpty: "Keine passende Umrechnung gefunden.",
     toolsTitle: "Werkzeuge",
     categoriesTitle: "Kategorien",

@@ -302,7 +302,7 @@ const copyByLocale: Record<Exclude<Locale, "ru">, VatCopy> = {
       vatAmount: "MwSt.-Betrag",
       totalAmount: "Bruttobetrag",
     },
-    emptyState: "Geben Sie einen gueltigen Betrag und Steuersatz ein.",
+    emptyState: "Geben Sie einen gültigen Betrag und Steuersatz ein.",
   },
   ar: {
     labels: {

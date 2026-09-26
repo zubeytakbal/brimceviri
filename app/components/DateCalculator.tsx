@@ -246,13 +246,13 @@ const copyByLocale: Record<Exclude<Locale, "ru">, DateCopy> = {
       startDate: "Startdatum (Geburtsdatum)",
       endDate: "Zieldatum",
     },
-    emptyState: "Geben Sie zwei gueltige Daten ein; das Zieldatum darf nicht vor dem Startdatum liegen.",
+    emptyState: "Geben Sie zwei gültige Daten ein; das Zieldatum darf nicht vor dem Startdatum liegen.",
     resultLabels: {
       difference: "Differenz",
       totalDays: "Gesamttage",
       totalWeeks: "Gesamtwochen",
       totalMonths: "Gesamtmonate",
-      nextAnniversary: "Naechster Jahrestag",
+      nextAnniversary: "Nächster Jahrestag",
     },
     units: {
       years: "Jahre",

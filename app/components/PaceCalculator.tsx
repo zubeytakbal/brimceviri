@@ -300,7 +300,7 @@ const copyByLocale: Record<
     },
   },
   de: {
-    modePrompt: "Was moechten Sie berechnen?",
+    modePrompt: "Was möchten Sie berechnen?",
     modeButtons: {
       pace: "Tempo berechnen",
       duration: "Zeit berechnen",
@@ -314,13 +314,13 @@ const copyByLocale: Record<
       paceMinutes: "Tempo - Minuten/km",
       paceSeconds: "Tempo - Sekunden/km",
     },
-    emptyState: "Geben Sie gueltige Werte ein, um das Ergebnis zu sehen.",
+    emptyState: "Geben Sie gültige Werte ein, um das Ergebnis zu sehen.",
     resultLabels: {
       pace: "Tempo",
       duration: "Zeit",
       distance: "Distanz",
       speed: "Geschwindigkeit",
-      estimatedTime: "geschaetzte Zeit",
+      estimatedTime: "geschätzte Zeit",
     },
   },
   ar: {

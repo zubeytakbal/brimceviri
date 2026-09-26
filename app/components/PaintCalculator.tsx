@@ -358,9 +358,9 @@ const copyByLocale: Record<Exclude<Locale, "ru">, PaintCalculatorCopy> = {
   },
   de: {
     labels: {
-      length: "Raumlaenge (m)",
+      length: "Raumlänge (m)",
       width: "Raumbreite (m)",
-      height: "Wandhoehe (m)",
+      height: "Wandhöhe (m)",
       doors: "Anzahl Tueren",
       windows: "Anzahl Fenster",
       coats: "Anzahl Anstriche",
@@ -372,12 +372,12 @@ const copyByLocale: Record<Exclude<Locale, "ru">, PaintCalculatorCopy> = {
       1: "Ein Anstrich",
       2: "Zwei Anstriche (empfohlen)",
     },
-    emptyState: "Geben Sie gueltige Werte ein, um das Ergebnis zu sehen.",
+    emptyState: "Geben Sie gültige Werte ein, um das Ergebnis zu sehen.",
     resultLabels: {
-      netWallArea: "Netto-Wandflaeche",
-      ceilingArea: "Deckenflaeche",
-      totalPaintedArea: "Gesamte Streichflaeche",
-      litersNeeded: "Benoetigte Farbmenge",
+      netWallArea: "Netto-Wandfläche",
+      ceilingArea: "Deckenfläche",
+      totalPaintedArea: "Gesamte Streichfläche",
+      litersNeeded: "Benötigte Farbmenge",
       suggestedCans: "Empfohlene Eimerkombination",
     },
     units: {

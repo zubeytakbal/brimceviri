@@ -339,10 +339,10 @@ const copy: Record<CalculatorLocale, PageCopy> = {
     breadcrumbLabel: "Breadcrumb",
     title: "Spannungsfall Rechner",
     description:
-      "Berechnen Sie Spannungsverlust, prozentualen Spannungsfall und Endspannung fur einen gewahlten Leiterquerschnitt. Unterstutzt Einphasen-, Dreiphasen- und DC-Systeme mit Kupfer- oder Aluminiumleitern.",
+      "Berechnen Sie Spannungsverlust, prozentualen Spannungsfall und Endspannung für einen gewählten Leiterquerschnitt. Unterstutzt Einphasen-, Dreiphasen- und DC-Systeme mit Kupfer- oder Aluminiumleitern.",
     heroEyebrow: "ELEKTRORECHNER",
     heroResultHeading: "Spannungsfall-Ergebnis",
-    introHeading: "Wofur wird dieses Spannungsfall-Werkzeug verwendet?",
+    introHeading: "Wofür wird dieses Spannungsfall-Werkzeug verwendet?",
     formulasHeading: "Verwendete Formel",
     variablesHeading: "Variablen und Bedeutung",
     unitsHeading: "Einheitentabellen",
@@ -361,23 +361,23 @@ const copy: Record<CalculatorLocale, PageCopy> = {
     tableColumns: {
       unitName: "Einheitenname",
       symbol: "Symbol",
-      siEquivalent: "SI-Aquivalent",
+      siEquivalent: "SI-Äquivalent",
       typicalUse: "Typische Verwendung",
     },
     intro: [
-      "Dieses Werkzeug berechnet den Spannungsverlust fur einen gewahlten Kupfer- oder Aluminiumquerschnitt, den daraus folgenden prozentualen Spannungsfall und die am Leitungsende verbleibende Spannung.",
-      "Es eignet sich zur Prufung interner Elektroinstallationen, Motorzuleitungen und entfernter Feldschranke, um zu bestatigen, dass ein gewahlter Querschnitt ausreicht.",
+      "Dieses Werkzeug berechnet den Spannungsverlust für einen gewählten Kupfer- oder Aluminiumquerschnitt, den daraus folgenden prozentualen Spannungsfall und die am Leitungsende verbleibende Spannung.",
+      "Es eignet sich zur Prüfung interner Elektroinstallationen, Motorzuleitungen und entfernter Feldschranke, um zu bestätigen, dass ein gewählter Querschnitt ausreicht.",
     ],
     formulas: [
       "Allgemein: ΔU = k x I x L x ρ / A",
-      "Fur Einphasen- und DC-Systeme gilt k = 2 (Hin- und Ruckleiter)",
-      "Fur Dreiphasensysteme gilt k = √3",
+      "Für Einphasen- und DC-Systeme gilt k = 2 (Hin- und Ruckleiter)",
+      "Für Dreiphasensysteme gilt k = √3",
     ],
     variables: [
       { term: "I", explanation: "Leitungsstrom." },
       { term: "L", explanation: "Einfache Leitungslange." },
-      { term: "ρ", explanation: "Spezifischer Widerstand des Leiters (Naherungswerte bei 20°C: Kupfer 0.0175, Aluminium 0.028 Ω·mm²/m)." },
-      { term: "A", explanation: "Leiterquerschnittsflache." },
+      { term: "ρ", explanation: "Spezifischer Widerstand des Leiters (Näherungswerte bei 20°C: Kupfer 0.0175, Aluminium 0.028 Ω·mm²/m)." },
+      { term: "A", explanation: "Leiterquerschnittsfläche." },
       { term: "k", explanation: "Ruckleiter- oder Dreiphasenfaktor je nach Systemtyp." },
       { term: "ΔU", explanation: "Berechneter Spannungsfall." },
     ],
@@ -392,15 +392,15 @@ const copy: Record<CalculatorLocale, PageCopy> = {
       },
     ],
     applications: [
-      "Prufung interner Elektroinstallationen",
+      "Prüfung interner Elektroinstallationen",
       "Motorzuleitungen",
       "Leitungen zu entfernten Sensoren oder Feldschranken",
       "Kontrolle, ob ein vorhandener Querschnitt bei gegebener Entfernung ausreicht",
     ],
     limitations: [
-      "Diese Berechnung deckt nur den ohmschen Spannungsfall ab; Reaktanz (induktiver Fall), Oberschwingungen und Anlaufstrome sind nicht enthalten.",
-      "Die verwendeten spezifischen Widerstande (Kupfer 0.0175, Aluminium 0.028 Ω·mm²/m) sind Naherungswerte bei 20°C; die tatsachliche Leitertemperatur beeinflusst das Ergebnis.",
-      "Dieses Werkzeug pruft nicht die Strombelastbarkeit (Ampacity). Der gewahlte Querschnitt muss separat anhand von Verlegeart, Umgebungstemperatur und geltender Elektrovorschrift bestatigt werden.",
+      "Diese Berechnung deckt nur den ohmschen Spannungsfall ab; Reaktanz (induktiver Fall), Oberschwingungen und Anlaufströme sind nicht enthalten.",
+      "Die verwendeten spezifischen Widerstande (Kupfer 0.0175, Aluminium 0.028 Ω·mm²/m) sind Näherungswerte bei 20°C; die tatsachliche Leitertemperatur beeinflusst das Ergebnis.",
+      "Dieses Werkzeug prüft nicht die Strombelastbarkeit (Ampacity). Der gewählte Querschnitt muss separat anhand von Verlegeart, Umgebungstemperatur und geltender Elektrovorschrift bestätigt werden.",
     ],
     sources: [
       {

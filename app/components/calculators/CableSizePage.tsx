@@ -339,16 +339,16 @@ const copy: Record<CalculatorLocale, PageCopy> = {
     breadcrumbLabel: "Breadcrumb",
     title: "Kabelquerschnitt Rechner",
     description:
-      "Berechnen Sie den erforderlichen Mindestquerschnitt aus Strom, Entfernung, Phasentyp und zulassigem Spannungsfall; das Ergebnis wird zusatzlich auf den nachsten Normquerschnitt aufgerundet.",
+      "Berechnen Sie den erforderlichen Mindestquerschnitt aus Strom, Entfernung, Phasentyp und zulässigem Spannungsfall; das Ergebnis wird zusätzlich auf den nächsten Normquerschnitt aufgerundet.",
     heroEyebrow: "ELEKTRORECHNER",
     heroResultHeading: "Querschnittsergebnis",
-    introHeading: "Wofur wird dieses Kabelquerschnitt-Werkzeug verwendet?",
+    introHeading: "Wofür wird dieses Kabelquerschnitt-Werkzeug verwendet?",
     formulasHeading: "Verwendete Formel",
     variablesHeading: "Variablen und Bedeutung",
     unitsHeading: "Einheitentabellen",
     standardHeading: "Normquerschnitt-Tabelle",
     standardIntro:
-      "Das Ergebnis wird auf den ersten Wert aufgerundet, der grosser oder gleich dem berechneten Minimum ist, aus diesen gangigen Handelsquerschnitten (mm²):",
+      "Das Ergebnis wird auf den ersten Wert aufgerundet, der größer oder gleich dem berechneten Minimum ist, aus diesen gängigen Handelsquerschnitten (mm²):",
     resistivityTableHeading: "Tabelle des spezifischen Widerstands von Leitern",
     resistivityTableColumns: {
       material: "Material",
@@ -364,12 +364,12 @@ const copy: Record<CalculatorLocale, PageCopy> = {
     tableColumns: {
       unitName: "Einheitenname",
       symbol: "Symbol",
-      siEquivalent: "SI-Aquivalent",
+      siEquivalent: "SI-Äquivalent",
       typicalUse: "Typische Verwendung",
     },
     intro: [
-      "Dieses Werkzeug berechnet den Mindestquerschnitt, der eine gewahlte Spannungsfallgrenze einhalt, basierend auf Leitungsstrom, Kabellange, Leitermaterial und zulassigem Spannungsfall in Prozent.",
-      "Es eignet sich als erste Querschnittsabschatzung fur Zuleitungen zu Schaltschranken, Motor- und Umrichteranschlusse sowie Versorgung entfernter Feldgerate.",
+      "Dieses Werkzeug berechnet den Mindestquerschnitt, der eine gewählte Spannungsfallgrenze einhalt, basierend auf Leitungsstrom, Kabellange, Leitermaterial und zulässigem Spannungsfall in Prozent.",
+      "Es eignet sich als erste Querschnittsabschätzung für Zuleitungen zu Schaltschranken, Motor- und Umrichteranschlüsse sowie Versorgung entfernter Feldgerate.",
     ],
     formulas: [
       "Allgemein: A = k x I x L x ρ / ΔU",
@@ -378,32 +378,32 @@ const copy: Record<CalculatorLocale, PageCopy> = {
     variables: [
       { term: "I", explanation: "Leitungsstrom." },
       { term: "L", explanation: "Einfache Leitungslange." },
-      { term: "ρ", explanation: "Spezifischer Widerstand des Leiters (Naherungswerte bei 20°C: Kupfer 0.0175, Aluminium 0.028 Ω·mm²/m)." },
-      { term: "ΔU", explanation: "Zulassiger Spannungsfall, berechnet aus Versorgungsspannung und zulassigem Prozentsatz." },
+      { term: "ρ", explanation: "Spezifischer Widerstand des Leiters (Näherungswerte bei 20°C: Kupfer 0.0175, Aluminium 0.028 Ω·mm²/m)." },
+      { term: "ΔU", explanation: "Zulässiger Spannungsfall, berechnet aus Versorgungsspannung und zulässigem Prozentsatz." },
       { term: "k", explanation: "Ruckleiter- oder Dreiphasenfaktor je nach Systemtyp." },
       { term: "A", explanation: "Berechneter erforderlicher Mindestquerschnitt." },
     ],
     examples: [
       {
-        title: "400 V, 20 A, 50 m, 3 % zulassiger Fall, Kupfer, dreiphasig",
-        body: "ΔU_zulassig = 400 x 0.03 = 12 V. A = 1.732 x 20 x 50 x 0.0175 / 12 und ergibt etwa 2.53 mm². Der nachste Normquerschnitt ist 4 mm².",
+        title: "400 V, 20 A, 50 m, 3 % zulässiger Fall, Kupfer, dreiphasig",
+        body: "ΔU_zulässig = 400 x 0.03 = 12 V. A = 1.732 x 20 x 50 x 0.0175 / 12 und ergibt etwa 2.53 mm². Der nächste Normquerschnitt ist 4 mm².",
       },
       {
-        title: "230 V, 16 A, 25 m, 3 % zulassiger Fall, Kupfer, einphasig",
-        body: "ΔU_zulassig = 230 x 0.03 = 6.9 V. A = 2 x 16 x 25 x 0.0175 / 6.9 und ergibt etwa 2.03 mm². Der nachste Normquerschnitt ist 2.5 mm².",
+        title: "230 V, 16 A, 25 m, 3 % zulässiger Fall, Kupfer, einphasig",
+        body: "ΔU_zulässig = 230 x 0.03 = 6.9 V. A = 2 x 16 x 25 x 0.0175 / 6.9 und ergibt etwa 2.03 mm². Der nächste Normquerschnitt ist 2.5 mm².",
       },
     ],
     applications: [
       "Zuleitungen zu Schaltschranken",
-      "Motor- und Umrichteranschlusse",
+      "Motor- und Umrichteranschlüsse",
       "Versorgung entfernter Feldgerate",
-      "Schnelle Querschnittsabschatzung in der Projektphase",
+      "Schnelle Querschnittsabschätzung in der Projektphase",
     ],
     limitations: [
-      "Diese Berechnung empfiehlt einen Querschnitt nur anhand der Spannungsfallgrenze; Strombelastbarkeit (Ampacity), Verlegeart, Haufung und Temperaturkorrekturen sind nicht enthalten.",
-      "Der empfohlene Querschnitt muss separat anhand von Ampacity-Tabellen der geltenden Elektrovorschrift (z. B. IEC, nationale oder lokale Vorschriften) bestatigt werden.",
-      "Die verwendeten spezifischen Widerstande (Kupfer 0.0175, Aluminium 0.028 Ω·mm²/m) sind Naherungswerte bei 20°C.",
-      "Uberschreitet der berechnete Querschnitt die 300-mm²-Normtabelle, schlagt das Werkzeug keinen Normwert vor; ein Sonderquerschnitt oder parallele Leiter sollten geprueft werden.",
+      "Diese Berechnung empfiehlt einen Querschnitt nur anhand der Spannungsfallgrenze; Strombelastbarkeit (Ampacity), Verlegeart, Häufung und Temperaturkorrekturen sind nicht enthalten.",
+      "Der empfohlene Querschnitt muss separat anhand von Ampacity-Tabellen der geltenden Elektrovorschrift (z. B. IEC, nationale oder lokale Vorschriften) bestätigt werden.",
+      "Die verwendeten spezifischen Widerstande (Kupfer 0.0175, Aluminium 0.028 Ω·mm²/m) sind Näherungswerte bei 20°C.",
+      "Überschreitet der berechnete Querschnitt die 300-mm²-Normtabelle, schlagt das Werkzeug keinen Normwert vor; ein Sonderquerschnitt oder parallele Leiter sollten geprüft werden.",
     ],
     sources: [
       {

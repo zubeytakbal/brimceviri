@@ -47,7 +47,7 @@ const electricalCalculatorBlueprints: ElectricalCalculatorBlueprint[] = [
     descriptions: {
       tr: "Akim, mesafe, faz tipi ve izin verilen gerilim dusumune gore uygun iletken kesitini secmek icin hazirlanan elektrik hesap araci.",
       en: "Electrical sizing tool for choosing a practical conductor cross-section from current, run length, phase type and allowable voltage drop.",
-      de: "Elektro-Werkzeug zur Auswahl eines praxisnahen Leiterquerschnitts aus Strom, Leitungslange, Phasentyp und zulassigem Spannungsfall.",
+      de: "Elektro-Werkzeug zur Auswahl eines praxisnahen Leiterquerschnitts aus Strom, Leitungslange, Phasentyp und zulässigem Spannungsfall.",
       ar: "أداة كهربائية لاختيار مقطع موصل عملي بالاعتماد على التيار وطول المسار ونوع الطور وهبوط الجهد المسموح.",
     },
     formula: "S ~= k x I x L / \u0394U",
@@ -64,8 +64,8 @@ const electricalCalculatorBlueprints: ElectricalCalculatorBlueprint[] = [
       ],
       de: [
         "Laststrom oder Lastleistung",
-        "Auswahl fur Einphasen-, Dreiphasen- oder DC-Systeme",
-        "Leitungslange, Leitermaterial und zulassiger Spannungsfall",
+        "Auswahl für Einphasen-, Dreiphasen- oder DC-Systeme",
+        "Leitungslange, Leitermaterial und zulässiger Spannungsfall",
       ],
       ar: [
         "تيار الحمل أو قدرة الحمل",
@@ -86,7 +86,7 @@ const electricalCalculatorBlueprints: ElectricalCalculatorBlueprint[] = [
       ],
       de: [
         "Zuleitungen zu Schaltschranken",
-        "Motor- und Umrichteranschlusse",
+        "Motor- und Umrichteranschlüsse",
         "Versorgung entfernter Feldgerate",
       ],
       ar: [
@@ -114,7 +114,7 @@ const electricalCalculatorBlueprints: ElectricalCalculatorBlueprint[] = [
     descriptions: {
       tr: "Secili kablo kesitinde volt kaybini, yuzdesel dusumu ve hat sonu gerilimini gormek icin hazirlanan elektrik proje araci.",
       en: "Electrical project tool for checking voltage loss, percent drop and end-of-line voltage on a selected cable run.",
-      de: "Projektwerkzeug zur Kontrolle von Spannungsverlust, prozentualem Spannungsfall und Endspannung auf einer ausgewahlten Leitung.",
+      de: "Projektwerkzeug zur Kontrolle von Spannungsverlust, prozentualem Spannungsfall und Endspannung auf einer ausgewählten Leitung.",
       ar: "أداة مشروع كهربائي لفحص فقد الجهد ونسبة الهبوط والجهد عند نهاية الخط على مسار كابل محدد.",
     },
     formula: "\u0394U = I x R",
@@ -152,7 +152,7 @@ const electricalCalculatorBlueprints: ElectricalCalculatorBlueprint[] = [
         "Remote sensor or field-panel runs",
       ],
       de: [
-        "Prufung interner Elektroinstallationen",
+        "Prüfung interner Elektroinstallationen",
         "Motorzuleitungen",
         "Leitungen zu entfernten Sensoren oder Feldschranken",
       ],
@@ -219,8 +219,8 @@ const electricalCalculatorBlueprints: ElectricalCalculatorBlueprint[] = [
         "Quick validation of load schedules",
       ],
       de: [
-        "Stromabschatzung vor Sicherungs- und Schutzschalterwahl",
-        "Vorprufung fur Kabeldimensionierung",
+        "Stromabschätzung vor Sicherungs- und Schutzschalterwahl",
+        "Vorprüfung für Kabeldimensionierung",
         "Schnellkontrolle von Lastlisten",
       ],
       ar: [
@@ -248,7 +248,7 @@ const electricalCalculatorBlueprints: ElectricalCalculatorBlueprint[] = [
     descriptions: {
       tr: "Hat akimindan yaklasik gucu bulmak icin gerilim, faz tipi, guc faktoru ve verimle calisacak proje araci.",
       en: "Project tool for estimating electrical power from line current together with voltage, phase type, power factor and efficiency.",
-      de: "Projektwerkzeug zur Abschatzung elektrischer Leistung aus Leitungsstrom, Spannung, Phasentyp, Leistungsfaktor und Wirkungsgrad.",
+      de: "Projektwerkzeug zur Abschätzung elektrischer Leistung aus Leitungsstrom, Spannung, Phasentyp, Leistungsfaktor und Wirkungsgrad.",
       ar: "أداة مشروع لتقدير القدرة الكهربائية من تيار الخط مع الجهد ونوع الطور ومعامل القدرة والكفاءة.",
     },
     formula: "P = V x I x cos \u03c6",
@@ -286,7 +286,7 @@ const electricalCalculatorBlueprints: ElectricalCalculatorBlueprint[] = [
         "Generator or UPS planning",
       ],
       de: [
-        "Leistungsabschatzung bestehender Leitungen vor Ort",
+        "Leistungsabschätzung bestehender Leitungen vor Ort",
         "Lastverteilung und Schaltschrankkontrolle",
         "Planung von Generator oder USV",
       ],
@@ -315,7 +315,7 @@ const electricalCalculatorBlueprints: ElectricalCalculatorBlueprint[] = [
     descriptions: {
       tr: "Motor gucu, gerilim, guc faktoru ve verime gore yaklasik tam yuk akimini cikarmak icin hazirlanan secim araci.",
       en: "Selection tool for estimating approximate full-load motor current from motor power, voltage, power factor and efficiency.",
-      de: "Auswahlwerkzeug zur Abschatzung des ungefahren Motor-Nennstroms aus Motorleistung, Spannung, Leistungsfaktor und Wirkungsgrad.",
+      de: "Auswahlwerkzeug zur Abschätzung des ungefähren Motor-Nennstroms aus Motorleistung, Spannung, Leistungsfaktor und Wirkungsgrad.",
       ar: "أداة تقدير لاستخراج تيار الحمل الكامل التقريبي للمحرك من القدرة والجهد ومعامل القدرة والكفاءة.",
     },
     formula: "I = P / (\u221a3 x V x cos \u03c6 x \u03b7)",
@@ -353,7 +353,7 @@ const electricalCalculatorBlueprints: ElectricalCalculatorBlueprint[] = [
         "Quick full-load current checks during project estimation",
       ],
       de: [
-        "Vorauswahl von Schutzen und Motorschutz",
+        "Vorauswahl von Schützen und Motorschutz",
         "Motor-Kabel- und Sicherungsdimensionierung",
         "Schnelle Kontrolle des Nennstroms in der Projektphase",
       ],
@@ -414,21 +414,21 @@ const electricalHubCopy = {
   de: {
     title: "Elektrorechner",
     description:
-      "Bundeln Sie Elektro-Projektwerkzeuge fur Kabeldimensionierung, Spannungsfall, Leistungs-Strom-Umrechnung und erste Motorauslegung in einem gemeinsamen Ingenieur-Cluster.",
+      "Bündeln Sie Elektro-Projektwerkzeuge für Kabeldimensionierung, Spannungsfall, Leistungs-Strom-Umrechnung und erste Motorauslegung in einem gemeinsamen Ingenieur-Cluster.",
     overviewTitle: "Warum gibt es dieses Teilzentrum?",
     overviewBody:
-      "Elektro-Werkzeuge sollen nicht in einer allgemeinen Rechnerliste untergehen. Dieses Teilzentrum halt einen zusammenhangenden Entscheidungsfluss zusammen, damit Nutzer zuerst den richtigen Bereich und danach das passende Werkzeug wahlen konnen.",
+      "Elektro-Werkzeuge sollen nicht in einer allgemeinen Rechnerliste untergehen. Dieses Teilzentrum halt einen zusammenhangenden Entscheidungsfluss zusammen, damit Nutzer zuerst den richtigen Bereich und danach das passende Werkzeug wahlen können.",
     liveToolsTitle: "Live-Werkzeuge",
     plannedToolsTitle: "Geplante Rechner-Routen",
     plannedToolsBody:
-      "Die folgenden Routen werden geoffnet, um die Informationsarchitektur vor dem Start der vollstandigen Rechenlogik festzulegen. Diese Seiten bleiben bis zum Live-Tool aus dem Index.",
+      "Die folgenden Routen werden geöffnet, um die Informationsarchitektur vor dem Start der vollständigen Rechenlogik festzulegen. Diese Seiten bleiben bis zum Live-Tool aus dem Index.",
     processTitle: "Wie wachst dieses Cluster?",
     processSteps: [
-      "Zuerst folgen Leistung-Strom- und Strom-Leistung-Prufungen.",
+      "Zuerst folgen Leistung-Strom- und Strom-Leistung-Prüfungen.",
       "Danach werden Kabelquerschnitt und Spannungsfall als verbundenes Werkzeugpaar ausgebaut.",
-      "Im Anschluss folgen Auswahlhilfen fur Schutzorgane wie Sicherung und Schutz.",
+      "Im Anschluss folgen Auswahlhilfen für Schutzorgane wie Sicherung und Schutz.",
     ],
-    relatedTitle: "Ubergeordnetes Zentrum",
+    relatedTitle: "Übergeordnetes Zentrum",
     relatedLinkLabel: "Alle Ingenieurrechner",
     liveStatus: "Live",
     plannedStatus: "Geplante Route",
@@ -500,16 +500,16 @@ const plannedPreviewCopy = {
     hubLabel: "Ingenieurrechner",
     electricalHubLabel: "Elektrorechner",
     planningNote:
-      "Diese Route ist derzeit als Rechner-Grundgerust geoffnet. Sie stabilisiert Umfang und interne Verlinkung, wahrend die eigentliche Rechenlogik aufgebaut wird.",
+      "Diese Route ist derzeit als Rechner-Grundgerüst geöffnet. Sie stabilisiert Umfang und interne Verlinkung, wahrend die eigentliche Rechenlogik aufgebaut wird.",
     scopeTitle: "Was wird dieses Werkzeug losen?",
     inputsTitle: "Geplante Eingaben",
     useCasesTitle: "Typische Anwendungen",
-    nextTitle: "Nachster Schritt",
+    nextTitle: "Nächster Schritt",
     nextBody:
       "Diese Seite bleibt vorerst bewusst aus dem Index. Sobald Rechenlogik, Einheitenauswahl und Validierungsfalle vorliegen, wird sie in einen live indexierbaren Rechner umgewandelt.",
     relatedTitle: "Verwandte Seiten",
-    electricalHubLink: "Zuruck zum Elektrorechner-Zentrum",
-    liveToolLink: "Live-Tool fur das Ohmsche Gesetz offnen",
+    electricalHubLink: "Zurück zum Elektrorechner-Zentrum",
+    liveToolLink: "Live-Tool für das Ohmsche Gesetz öffnen",
     liveToolHref: "/de/rechner/ohms-law",
   },
   ar: {

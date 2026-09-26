@@ -203,7 +203,7 @@ const copyByLocale: Record<
   },
   de: {
     inputLabel: "Erster Tag der letzten Periode",
-    emptyState: "Geben Sie ein gueltiges Datum ein; es darf nicht in der Zukunft liegen oder mehr als 45 Wochen zurueckliegen.",
+    emptyState: "Geben Sie ein gültiges Datum ein; es darf nicht in der Zukunft liegen oder mehr als 45 Wochen zurückliegen.",
     summaryLabel: "Schwangerschaftswoche",
     dueDate: "Voraussichtlicher Geburtstermin",
     daysUntil: "Tage bis zur Geburt",

@@ -70,13 +70,13 @@ const copy = {
   de: {
     knownSystem: "Bekanntes System",
     value: "Wert",
-    matchingSizes: "Passende Groessen",
-    invalidValue: "Waehlen Sie einen gueltigen Wert fuer den naechsten Treffer.",
+    matchingSizes: "Passende Größen",
+    invalidValue: "Wählen Sie einen gültigen Wert fuer den nächsten Treffer.",
     diameterResult: "Durchmesser (mm)",
     circumferenceResult: "Umfang (mm)",
     usResult: "US",
     ukResult: "UK",
-    chartCaption: "Ringgroessentabelle",
+    chartCaption: "Ringgrößentabelle",
   },
   ar: {
     knownSystem: "النظام المعروف",

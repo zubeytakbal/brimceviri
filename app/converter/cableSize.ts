@@ -74,13 +74,13 @@ const messages = {
   },
   de: {
     missing:
-      "Geben Sie Spannung, Strom, Leitungslange und zulassigen Spannungsfall ein.",
-    invalid: "Geben Sie gultige Zahlenwerte ein.",
-    voltagePositive: "Die Versorgungsspannung muss grosser als null sein.",
-    currentPositive: "Der Strom muss grosser als null sein.",
-    lengthPositive: "Die Leitungslange muss grosser als null sein.",
+      "Geben Sie Spannung, Strom, Leitungslange und zulässigen Spannungsfall ein.",
+    invalid: "Geben Sie gültige Zahlenwerte ein.",
+    voltagePositive: "Die Versorgungsspannung muss größer als null sein.",
+    currentPositive: "Der Strom muss größer als null sein.",
+    lengthPositive: "Die Leitungslange muss größer als null sein.",
     percentRange:
-      "Der zulassige Spannungsfall muss ein Prozentwert zwischen 0 und 100 sein.",
+      "Der zulässige Spannungsfall muss ein Prozentwert zwischen 0 und 100 sein.",
   },
   ar: {
     missing:

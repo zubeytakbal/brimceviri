@@ -94,11 +94,11 @@ const copy = {
     resultLive: "Berechnungsergebnis",
     automaticResultUnit: "Automatische Ergebniseinheit",
     formula: "Eingesetzte Formel",
-    siEquivalent: "SI-Aquivalent",
+    siEquivalent: "SI-Äquivalent",
     resistivityNote: "Verwendeter spezifischer Widerstand",
     severeWarning:
-      "Der Spannungsfall uberschreitet eine ubliche Projektgrenze (ca. 5 %). Erwagen Sie einen groesseren Querschnitt.",
-    clear: "Werte zurucksetzen",
+      "Der Spannungsfall überschreitet eine übliche Projektgrenze (ca. 5 %). Erwägen Sie einen größeren Querschnitt.",
+    clear: "Werte zurücksetzen",
   },
   ar: {
     systemTypeLabel: "نوع النظام",

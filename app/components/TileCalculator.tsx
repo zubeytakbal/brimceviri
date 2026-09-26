@@ -181,17 +181,17 @@ const copyByLocale: Record<
   },
   de: {
     labels: {
-      area: "Zu belegende Flaeche (m2)",
+      area: "Zu belegende Fläche (m2)",
       width: "Fliesenbreite (cm)",
-      height: "Fliesenhoehe (cm)",
+      height: "Fliesenhöhe (cm)",
       waste: "Verschnitt (%)",
     },
     resultLabels: {
-      tileArea: "Flaeche einer Fliese",
-      totalArea: "Gesamtflaeche inklusive Verschnitt",
-      count: "Benoetigte Anzahl Fliesen",
+      tileArea: "Fläche einer Fliese",
+      totalArea: "Gesamtfläche inklusive Verschnitt",
+      count: "Benötigte Anzahl Fliesen",
     },
-    emptyState: "Geben Sie gueltige Werte ein, um das Ergebnis zu sehen.",
+    emptyState: "Geben Sie gültige Werte ein, um das Ergebnis zu sehen.",
   },
   ar: {
     labels: {

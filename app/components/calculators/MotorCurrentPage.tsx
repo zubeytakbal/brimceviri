@@ -315,10 +315,10 @@ const copy: Record<CalculatorLocale, PageCopy> = {
     breadcrumbLabel: "Breadcrumb",
     title: "Motorstrom Rechner",
     description:
-      "Schatzen Sie den Motor-Nennstrom (FLA) aus Motorleistung, Spannung, Leistungsfaktor und Wirkungsgrad ab und ermitteln Sie mit einer Reserve den Auslegungsstrom fur Schutz-, Motorschutz- und Kabelauswahl.",
+      "Schätzen Sie den Motor-Nennstrom (FLA) aus Motorleistung, Spannung, Leistungsfaktor und Wirkungsgrad ab und ermitteln Sie mit einer Reserve den Auslegungsstrom für Schutz-, Motorschutz- und Kabelauswahl.",
     heroEyebrow: "ELEKTRORECHNER",
     heroResultHeading: "Nennstrom-Ergebnis",
-    introHeading: "Wofur wird dieses Motorstrom-Werkzeug verwendet?",
+    introHeading: "Wofür wird dieses Motorstrom-Werkzeug verwendet?",
     formulasHeading: "Verwendete Formeln",
     variablesHeading: "Variablen und Bedeutung",
     unitsHeading: "Einheitentabellen",
@@ -332,12 +332,12 @@ const copy: Record<CalculatorLocale, PageCopy> = {
     tableColumns: {
       unitName: "Einheitenname",
       symbol: "Symbol",
-      siEquivalent: "SI-Aquivalent",
+      siEquivalent: "SI-Äquivalent",
       typicalUse: "Typische Verwendung",
     },
     intro: [
-      "Dieses Werkzeug schatzt den Motor-Nennstrom (FLA) aus der Typenschildleistung ab und wendet eine eingegebene Reserve an, um den Auslegungsstrom fur Schutz-, Motorschutz- und Kabelauswahl zu ermitteln.",
-      "Der Unterschied zum kW-zu-Ampere Rechner liegt im Fokus auf die Motorauswahl und der direkt eingerechneten Reserve; fur allgemeine Leistungs-Strom-Prufungen nutzen Sie den kW-zu-Ampere Rechner.",
+      "Dieses Werkzeug schätzt den Motor-Nennstrom (FLA) aus der Typenschildleistung ab und wendet eine eingegebene Reserve an, um den Auslegungsstrom für Schutz-, Motorschutz- und Kabelauswahl zu ermitteln.",
+      "Der Unterschied zum kW-zu-Ampere Rechner liegt im Fokus auf die Motorauswahl und der direkt eingerechneten Reserve; für allgemeine Leistungs-Strom-Prüfungen nutzen Sie den kW-zu-Ampere Rechner.",
     ],
     formulas: [
       "Einphase: I = P / (V x cos phi x eta)",
@@ -349,8 +349,8 @@ const copy: Record<CalculatorLocale, PageCopy> = {
       { term: "V", explanation: "Versorgungsspannung oder Leiterspannung." },
       { term: "cos phi", explanation: "Leistungsfaktor des Motors, aus Typenschild oder Katalog." },
       { term: "eta", explanation: "Wirkungsgrad des Motors, aus Typenschild oder Katalog." },
-      { term: "FLA", explanation: "Berechneter naherungsweiser Nennstrom." },
-      { term: "Reserve", explanation: "Zusatzlicher Auslegungsspielraum fur Schutz-, Motorschutz- und Kabelauswahl." },
+      { term: "FLA", explanation: "Berechneter näherungsweiser Nennstrom." },
+      { term: "Reserve", explanation: "Zusätzlicher Auslegungsspielraum für Schutz-, Motorschutz- und Kabelauswahl." },
     ],
     examples: [
       {
@@ -363,15 +363,15 @@ const copy: Record<CalculatorLocale, PageCopy> = {
       },
     ],
     applications: [
-      "Vorauswahl von Schutzen und Motorschutzrelais",
+      "Vorauswahl von Schützen und Motorschutzrelais",
       "Motor-Kabel- und Sicherungsdimensionierung",
       "Schnelle Kontrolle des Nennstroms in der Projektphase",
-      "Stromprufung anhand der Typenschildwerte eines vorhandenen Motors",
+      "Stromprüfung anhand der Typenschildwerte eines vorhandenen Motors",
     ],
     limitations: [
-      "Dieses Werkzeug liefert einen naherungsweisen Nennstrom (FLA); der Anlaufstrom bei blockiertem Rotor kann typischerweise das 6- bis 8-Fache des FLA erreichen und ist hier nicht enthalten.",
-      "Das Ergebnis hangt von den eingegebenen Werten fur Leistungsfaktor und Wirkungsgrad ab, nicht von den tatsachlichen Typenschildwerten; nutzen Sie nach Moglichkeit die Typenschilddaten.",
-      "Die endgueltige Auswahl von Schutz, Motorschutzrelais und Kabel muss anhand des jeweiligen Produktkatalogs und der geltenden Elektrovorschrift erfolgen.",
+      "Dieses Werkzeug liefert einen näherungsweisen Nennstrom (FLA); der Anlaufstrom bei blockiertem Rotor kann typischerweise das 6- bis 8-Fache des FLA erreichen und ist hier nicht enthalten.",
+      "Das Ergebnis hängt von den eingegebenen Werten für Leistungsfaktor und Wirkungsgrad ab, nicht von den tatsachlichen Typenschildwerten; nutzen Sie nach Möglichkeit die Typenschilddaten.",
+      "Die endgültige Auswahl von Schutz, Motorschutzrelais und Kabel muss anhand des jeweiligen Produktkatalogs und der geltenden Elektrovorschrift erfolgen.",
     ],
     sources: [
       {

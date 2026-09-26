@@ -313,10 +313,10 @@ const copy: Record<CalculatorLocale, PageCopy> = {
     breadcrumbLabel: "Breadcrumb",
     title: "Ampere-zu-kW Rechner",
     description:
-      "Wandeln Sie Leitungsstrom fur Einphasen-, Dreiphasen- und DC-Systeme in eine Naherungsleistung um. Das Ergebnis wird als gut lesbare Leistungsgroesse unter Berucksichtigung von Spannung, Leistungsfaktor und Wirkungsgrad gezeigt.",
+      "Wandeln Sie Leitungsstrom für Einphasen-, Dreiphasen- und DC-Systeme in eine Näherungsleistung um. Das Ergebnis wird als gut lesbare Leistungsgröße unter Berücksichtigung von Spannung, Leistungsfaktor und Wirkungsgrad gezeigt.",
     heroEyebrow: "ELEKTRORECHNER",
     heroResultHeading: "Leistungsergebnis",
-    introHeading: "Wofur wird dieses Ampere-zu-kW Werkzeug verwendet?",
+    introHeading: "Wofür wird dieses Ampere-zu-kW Werkzeug verwendet?",
     formulasHeading: "Verwendete Formeln",
     variablesHeading: "Variablen und Bedeutung",
     unitsHeading: "Einheitentabellen",
@@ -330,12 +330,12 @@ const copy: Record<CalculatorLocale, PageCopy> = {
     tableColumns: {
       unitName: "Einheitenname",
       symbol: "Symbol",
-      siEquivalent: "SI-Aquivalent",
+      siEquivalent: "SI-Äquivalent",
       typicalUse: "Typische Verwendung",
     },
     intro: [
-      "Dieses Werkzeug schatzt die Leistung aus einem gemessenen oder vor Ort abgelesenen Leitungsstrom fur Einphasen-, Dreiphasen- und DC-Systeme ab.",
-      "Es eignet sich zur Leistungsabschatzung bestehender Leitungen, zur Lastverteilungskontrolle und zur ersten Planung von Generatoren oder USV.",
+      "Dieses Werkzeug schätzt die Leistung aus einem gemessenen oder vor Ort abgelesenen Leitungsstrom für Einphasen-, Dreiphasen- und DC-Systeme ab.",
+      "Es eignet sich zur Leistungsabschätzung bestehender Leitungen, zur Lastverteilungskontrolle und zur ersten Planung von Generatoren oder USV.",
     ],
     formulas: [
       "Einphase: P = V x I x cos phi x eta",
@@ -345,9 +345,9 @@ const copy: Record<CalculatorLocale, PageCopy> = {
     variables: [
       { term: "I", explanation: "Gemessener oder eingegebener Leitungsstrom." },
       { term: "V", explanation: "Netz- oder Systemspannung." },
-      { term: "cos phi", explanation: "Leistungsfaktor in AC-Systemen zur Verknupfung von Wirk- und Scheinleistung." },
+      { term: "cos phi", explanation: "Leistungsfaktor in AC-Systemen zur Verknüpfung von Wirk- und Scheinleistung." },
       { term: "eta", explanation: "Wirkungsgrad; er wird verwendet, wenn aus Strom die Ausgangsleistung bestimmt werden soll." },
-      { term: "P", explanation: "Berechnete Naherungsleistung." },
+      { term: "P", explanation: "Berechnete Näherungsleistung." },
     ],
     examples: [
       {
@@ -360,13 +360,13 @@ const copy: Record<CalculatorLocale, PageCopy> = {
       },
     ],
     applications: [
-      "Leistungsabschatzung bestehender Leitungen vor Ort",
+      "Leistungsabschätzung bestehender Leitungen vor Ort",
       "Lastverteilung und Schaltschrankkontrolle",
       "Planung von Generator oder USV",
       "Schnelle Leistungskontrolle aus Zahler- oder Zangenamperemeter-Werten",
     ],
     limitations: [
-      "Dieses Werkzeug liefert eine Naherungsleistung und berucksichtigt keine Oberschwingungen, Anlaufstrome, Temperatureffekte oder Messtoleranzen.",
+      "Dieses Werkzeug liefert eine Näherungsleistung und berücksichtigt keine Oberschwingungen, Anlaufströme, Temperatureffekte oder Messtoleranzen.",
       "Im Dreiphasenmodus wird die Spannung als Leiterspannung interpretiert.",
       "Falls der eingegebene Strom bereits den elektrischen Eingangsstrom darstellt, setzen Sie den Wirkungsgrad auf 1 oder 100.",
     ],

@@ -70,9 +70,9 @@ const messages = {
   },
   de: {
     missing: "Geben Sie Motorleistung und Spannung ein.",
-    invalid: "Geben Sie gultige Zahlenwerte ein.",
-    powerPositive: "Die Motorleistung muss grosser als null sein.",
-    voltagePositive: "Die Spannung muss grosser als null sein.",
+    invalid: "Geben Sie gültige Zahlenwerte ein.",
+    powerPositive: "Die Motorleistung muss größer als null sein.",
+    voltagePositive: "Die Spannung muss größer als null sein.",
     powerFactorRange:
       "Der Leistungsfaktor muss zwischen 0 und 1 liegen oder als Prozentwert zwischen 0 und 100 eingegeben werden.",
     efficiencyRange:

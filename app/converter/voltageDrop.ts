@@ -74,12 +74,12 @@ const messages = {
   de: {
     missing:
       "Geben Sie Spannung, Strom, Leitungslange und Querschnitt ein.",
-    invalid: "Geben Sie gultige Zahlenwerte ein.",
-    voltagePositive: "Die Versorgungsspannung muss grosser als null sein.",
-    currentPositive: "Der Strom muss grosser als null sein.",
-    lengthPositive: "Die Leitungslange muss grosser als null sein.",
+    invalid: "Geben Sie gültige Zahlenwerte ein.",
+    voltagePositive: "Die Versorgungsspannung muss größer als null sein.",
+    currentPositive: "Der Strom muss größer als null sein.",
+    lengthPositive: "Die Leitungslange muss größer als null sein.",
     crossSectionPositive:
-      "Der Leiterquerschnitt muss grosser als null sein.",
+      "Der Leiterquerschnitt muss größer als null sein.",
   },
   ar: {
     missing: "أدخل قيم الجهد والتيار والطول ومساحة المقطع.",

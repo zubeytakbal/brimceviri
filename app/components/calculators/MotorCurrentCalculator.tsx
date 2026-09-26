@@ -77,10 +77,10 @@ const copy = {
     resultLive: "Berechnungsergebnis",
     automaticResultUnit: "Automatische Ergebniseinheit",
     formula: "Eingesetzte Formel",
-    siEquivalent: "SI-Aquivalent",
+    siEquivalent: "SI-Äquivalent",
     normalizedFactors: "Verwendete Faktoren",
     marginFactorLabel: "Reserve",
-    clear: "Werte zurucksetzen",
+    clear: "Werte zurücksetzen",
   },
   ar: {
     phaseTypeLabel: "نوع الطور",

@@ -35,7 +35,7 @@ const copy = {
     knownUnit: "Bekannte Einheit",
     value: "Wert",
     resultHeading: "Entsprechungen",
-    invalidValue: "Geben Sie eine gueltige Zahl ein, um die Umrechnung zu sehen.",
+    invalidValue: "Geben Sie eine gültige Zahl ein, um die Umrechnung zu sehen.",
   },
   ar: {
     ingredient: "المكون",

@@ -29,7 +29,7 @@ const systemLabels: Record<Locale, Record<SystemKey, string>> = {
     eu: "EU",
     us: "US",
     uk: "UK",
-    cm: "Fusslaenge (cm)",
+    cm: "Fußlänge (cm)",
   },
   ar: {
     eu: "أوروبا (EU)",
@@ -197,7 +197,7 @@ const groupLabels: Record<Locale, Record<ShoeSizeGroupKey, string>> = {
     erkek: "Herren",
     kadin: "Damen",
     bebek: "Kleinkind",
-    "buyuk-cocuk": "Groessere Kinder",
+    "buyuk-cocuk": "Größere Kinder",
   },
   ar: {
     erkek: "رجال",
@@ -287,14 +287,14 @@ const copy = {
     brand: "Marke",
     knownSystem: "Bekanntes System",
     value: "Wert",
-    matchingSizes: "Passende Groessen",
+    matchingSizes: "Passende Größen",
     invalidValue:
-      "Geben Sie eine gueltige Zahl ein, um den naechsten Treffer zu sehen.",
+      "Geben Sie eine gültige Zahl ein, um den nächsten Treffer zu sehen.",
     euResult: "EU",
     usResult: "US",
     ukResult: "UK",
-    footLength: "Fusslaenge",
-    chartSuffix: "Schuhgroessentabelle",
+    footLength: "Fußlänge",
+    chartSuffix: "Schuhgrößentabelle",
   },
   ar: {
     group: "الفئة",

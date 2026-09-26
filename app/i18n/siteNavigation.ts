@@ -115,7 +115,7 @@ const categoryLabels: Record<
   },
   de: {
     uzunluk: "Lange",
-    alan: "Flache",
+    alan: "Fläche",
     hacim: "Volumen",
     kutle: "Masse",
     sicaklik: "Temperatur",
@@ -130,10 +130,10 @@ const categoryLabels: Record<
     debi: "Volumenstrom",
     tork: "Drehmoment",
     momentum: "Impuls",
-    viskozite_dinamik: "Viskositat",
+    viskozite_dinamik: "Viskosität",
     elektrik_direnc: "Widerstand",
-    kapasitans: "Kapazitat",
-    enduktans: "Induktivitat",
+    kapasitans: "Kapazität",
+    enduktans: "Induktivität",
     elektrik_yuk: "Elektrische Ladung",
     altin_ayar: "Goldkarat",
     gumus_ayar: "Silberfeingehalt",
@@ -456,7 +456,7 @@ const siteHeaderCopy: Record<Locale, SiteHeaderCopy> = {
   },
   de: {
     navAriaLabel: "Hauptnavigation",
-    menuLabel: "Menu",
+    menuLabel: "Menü",
     conversionsLabel: "Kategorien",
   },
   ar: {
@@ -548,16 +548,16 @@ const footerCopy: Record<Locale, FooterCopy> = {
       "Calculator inputs are processed in the browser for calculation flows on this site.",
   },
   de: {
-    navAriaLabel: "Fussnavigation",
+    navAriaLabel: "Fußnavigation",
     pagesHeading: "Seiten",
     languagesHeading: "Sprachen",
     categoriesHeading: "Kategorien",
     description:
-      "Technische Umrechnungstools und Einheitenleitfaden fur den schnellen praktischen Einsatz.",
+      "Technische Umrechnungstools und Einheitenleitfaden für den schnellen praktischen Einsatz.",
     disclaimer:
-      "Prufen Sie kritische Werte bei technischen, gesundheitlichen oder sicherheitsrelevanten Entscheidungen immer mit fachlichen Quellen.",
+      "Prüfen Sie kritische Werte bei technischen, gesundheitlichen oder sicherheitsrelevanten Entscheidungen immer mit fachlichen Quellen.",
     browserProcessingNote:
-      "Eingegebene Werte werden fur die Rechenablaufe direkt im Browser verarbeitet.",
+      "Eingegebene Werte werden für die Rechenabläufe direkt im Browser verarbeitet.",
   },
   ar: {
     navAriaLabel: "تنقل التذييل",
@@ -856,7 +856,7 @@ const footerLinksByLocale: Record<
     { key: "units", label: "Einheitenleitfaden" },
     { key: "allConversions", label: "Alle Umrechnungen" },
     { key: "engineeringHub", label: "Ingenieurrechner" },
-    { key: "about", label: "Uber uns" },
+    { key: "about", label: "Über uns" },
     { key: "contact", label: "Kontakt" },
     { key: "privacy", label: "Datenschutz" },
     { key: "terms", label: "Nutzungsbedingungen" },

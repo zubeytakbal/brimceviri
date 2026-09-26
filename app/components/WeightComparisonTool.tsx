@@ -390,9 +390,9 @@ const copyByLocale: Record<
       unit: "Einheit",
     },
     placeholder: "Z. B. 25",
-    emptyState: "Geben Sie einen gueltigen Wert ein, um die Vergleiche zu sehen.",
+    emptyState: "Geben Sie einen gültigen Wert ein, um die Vergleiche zu sehen.",
     intro: "Vergleiche für",
-    closestMatch: "Naechster Vergleich",
+    closestMatch: "Nächster Vergleich",
   },
   ar: {
     labels: {

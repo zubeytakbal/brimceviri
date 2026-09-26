@@ -51,9 +51,9 @@ const copy = {
   de: {
     recipeLabel: "Dein Rezept",
     placeholder:
-      "2 Tassen Mehl\n1 Teeloeffel Salz\n3 Essloeffel Olivenoel\n2 Eier\n180 Grad Ofen",
+      "2 Tassen Mehl\n1 Teelöffel Salz\n3 Esslöffel Olivenöl\n2 Eier\n180 Grad Ofen",
     factorLabel: "Faktor",
-    originalServingsLabel: "Urspruengliche Portionen",
+    originalServingsLabel: "Ursprüngliche Portionen",
     targetServingsLabel: "Zielportionen",
     resultHeading: "Skaliertes Rezept",
     emptyState: "Gib oben dein Rezept ein, dann erscheint hier das Ergebnis.",

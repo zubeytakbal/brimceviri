@@ -220,17 +220,17 @@ const copyByLocale: Record<
   },
   de: {
     labels: {
-      area: "Raumflaeche (m2)",
+      area: "Raumfläche (m2)",
       people: "Anzahl Personen im Raum",
       sunny: "Bekommt der Raum den ganzen Tag Sonne?",
       sunnyCheckbox: "Ja, direkte Sonneneinstrahlung",
       topFloor: "Obergeschoss / Dachgeschoss?",
       topFloorCheckbox: "Ja, oberste Etage oder Dachgeschoss",
     },
-    emptyState: "Geben Sie gueltige Werte ein, um das Ergebnis zu sehen.",
+    emptyState: "Geben Sie gültige Werte ein, um das Ergebnis zu sehen.",
     resultLabels: {
       suggested: "Empfohlene Klima-Leistung",
-      base: "Flaechenbasierter Bedarf",
+      base: "Flächenbasierter Bedarf",
       occupant: "Zusatzlast durch Personen",
       total: "Gesamter berechneter Bedarf",
     },

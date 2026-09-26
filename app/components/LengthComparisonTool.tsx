@@ -135,12 +135,12 @@ const referenceLabels: Record<Locale, Record<string, string>> = {
   },
   de: {
     "insan-boyu": "Durchschnittliche Koerpergroesse eines Erwachsenen",
-    zurafa: "Durchschnittliche Giraffenhoehe",
-    "sehir-otobusu": "Laenge eines Stadtbusses",
-    "mavi-balina": "Durchschnittliche Laenge eines Blauwals",
-    "futbol-sahasi": "Laenge eines Fussballfelds",
-    "eyfel-kulesi": "Hoehe des Eiffelturms (mit Antenne)",
-    "bogaz-koprusu": "Laenge der 15.-Juli-Maertyrer-Bruecke",
+    zurafa: "Durchschnittliche Giraffenhöhe",
+    "sehir-otobusu": "Länge eines Stadtbusses",
+    "mavi-balina": "Durchschnittliche Länge eines Blauwals",
+    "futbol-sahasi": "Länge eines Fußballfelds",
+    "eyfel-kulesi": "Höhe des Eiffelturms (mit Antenne)",
+    "bogaz-koprusu": "Länge der 15.-Juli-Märtyrer-Brücke",
   },
   ar: {
     "insan-boyu": "متوسط طول الإنسان البالغ",
@@ -390,9 +390,9 @@ const copyByLocale: Record<
       unit: "Einheit",
     },
     placeholder: "Z. B. 3",
-    emptyState: "Geben Sie einen gueltigen Wert ein, um die Vergleiche zu sehen.",
+    emptyState: "Geben Sie einen gültigen Wert ein, um die Vergleiche zu sehen.",
     intro: "Vergleiche für",
-    closestMatch: "Naechster Vergleich",
+    closestMatch: "Nächster Vergleich",
   },
   ar: {
     labels: {

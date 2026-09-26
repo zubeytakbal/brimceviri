@@ -6,9 +6,9 @@ import { kitchenIngredientRows } from "../../converter/kitchenMeasures";
 import { buildSiteUrl } from "../../siteConfig";
 
 export const metadata: Metadata = {
-  title: "Kuechenmass Umrechner: Tassen, Loeffel und Gramm",
+  title: "Küchenmaß Umrechner: Tassen, Löffel und Gramm",
   description:
-    "Rechnen Sie Tassen, Essloeffel, Teeloeffel, Gramm und Milliliter je nach Zutat um.",
+    "Rechnen Sie Tassen, Esslöffel, Teelöffel, Gramm und Milliliter je nach Zutat um.",
   alternates: {
     canonical: "/de/kuechenmass-umrechner",
     languages: {
@@ -19,9 +19,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Kuechenmass Umrechner: Tassen, Loeffel und Gramm",
+    title: "Küchenmaß Umrechner: Tassen, Löffel und Gramm",
     description:
-      "Rechnen Sie Tassen, Essloeffel, Teeloeffel, Gramm und Milliliter ueber zutatspezifische Dichten um.",
+      "Rechnen Sie Tassen, Esslöffel, Teelöffel, Gramm und Milliliter über zutatspezifische Dichten um.",
     url: buildSiteUrl("/de/kuechenmass-umrechner"),
     siteName: "BirimCeviri.app",
     locale: "de_DE",
@@ -36,14 +36,14 @@ export default function GermanKitchenMeasuresPage() {
         <nav className="breadcrumbs" aria-label="Brotkrumen">
           <Link href="/de">Startseite</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          <span>Kuechenmass Umrechner</span>
+          <span>Küchenmaß Umrechner</span>
         </nav>
 
         <header className="all-conversions-header">
-          <h1>Kuechenmass Umrechner</h1>
+          <h1>Küchenmaß Umrechner</h1>
           <p>
-            Waehlen Sie eine Zutat und die bekannte Einheit, um sofort
-            Tassen-, Essloeffel-, Teeloeffel-, Gramm-, Milliliter- und
+            Wählen Sie eine Zutat und die bekannte Einheit, um sofort
+            Tassen-, Esslöffel-, Teelöffel-, Gramm-, Milliliter- und
             Literwerte zu sehen.
           </p>
         </header>
@@ -53,8 +53,8 @@ export default function GermanKitchenMeasuresPage() {
         <section className="category-article-content">
           <h2>Warum wiegt die gleiche Tasse je nach Zutat unterschiedlich?</h2>
           <p>
-            Tassen und Loeffel messen Volumen, Gramm misst Gewicht. Die
-            Verbindung dazwischen haengt von der Dichte der jeweiligen
+            Tassen und Löffel messen Volumen, Gramm misst Gewicht. Die
+            Verbindung dazwischen hängt von der Dichte der jeweiligen
             Zutat ab. Darum hat eine Tasse Mehl ein anderes Gewicht als
             eine Tasse Honig oder Zucker.
           </p>
@@ -63,14 +63,14 @@ export default function GermanKitchenMeasuresPage() {
           <div className="conversion-table-wrap">
             <table className="conversion-table">
               <caption>
-                Grammwerte pro Tasse, Essloeffel und Teeloeffel
+                Grammwerte pro Tasse, Esslöffel und Teelöffel
               </caption>
               <thead>
                 <tr>
                   <th scope="col">Zutat</th>
                   <th scope="col">1 Tasse</th>
-                  <th scope="col">1 Essloeffel</th>
-                  <th scope="col">1 Teeloeffel</th>
+                  <th scope="col">1 Esslöffel</th>
+                  <th scope="col">1 Teelöffel</th>
                 </tr>
               </thead>
               <tbody>
@@ -87,7 +87,7 @@ export default function GermanKitchenMeasuresPage() {
           </div>
 
           <p>
-            Ein ganzes Rezept koennen Sie auf der{" "}
+            Ein ganzes Rezept können Sie auf der{" "}
             <Link href="/de/rezept-umrechner">Rezept Umrechner</Link>
             {" "}Seite skalieren.
           </p>

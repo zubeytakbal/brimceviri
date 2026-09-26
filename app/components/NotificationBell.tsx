@@ -133,9 +133,9 @@ const notificationCopy = {
     empty: "Er zijn momenteel geen nieuwe meldingen.", dateLocale: "nl-NL",
   },
   sv: {
-    ariaLabel: "Aviseringar", panelLabel: "Sidaviseringar", title: "Aviseringar", closeLabel: "Stang",
-    markSeenLabel: "Markera denna avisering som last", openLabel: "Oppna →",
-    empty: "Det finns for narvarande inga nya aviseringar.", dateLocale: "sv-SE",
+    ariaLabel: "Aviseringar", panelLabel: "Sidaviseringar", title: "Aviseringar", closeLabel: "Stäng",
+    markSeenLabel: "Markera denna avisering som läst", openLabel: "Öppna →",
+    empty: "Det finns för närvarande inga nya aviseringar.", dateLocale: "sv-SE",
   },
   no: {
     ariaLabel: "Varsler", panelLabel: "Sidevarsler", title: "Varsler", closeLabel: "Lukk",

@@ -291,11 +291,11 @@ export default function PairConverter({
                         : locale === "ru"
                           ? `Значение: ${activeFromName}`
                         : locale === "sv"
-                          ? `${activeFromName}-varde`
+                          ? `${activeFromName}-värde`
                         : locale === "no"
                           ? `${activeFromName}-verdi`
                         : locale === "da"
-                          ? `${activeFromName}-vaerdi`
+                          ? `${activeFromName}-værdi`
                       : `${activeFromName} de\u011Feri`;
 
   const placeholder =
@@ -322,11 +322,11 @@ export default function PairConverter({
                         : locale === "ru"
                           ? "Введите значение"
                         : locale === "sv"
-                          ? "Ange ett varde"
+                          ? "Ange ett värde"
                         : locale === "no"
                           ? "Skriv inn en verdi"
                         : locale === "da"
-                          ? "Indtast en vaerdi"
+                          ? "Indtast en værdi"
                       : "De\u011Fer girin";
 
   const swapLabel =
@@ -345,7 +345,7 @@ export default function PairConverter({
                 : locale === "es" || locale === "es-419"
                   ? "Invertir el sentido de la conversion"
                   : locale === "pt"
-                    ? "Inverter o sentido da conversao"
+                    ? "Inverter o sentido da conversão"
                     : locale === "it"
                       ? "Inverti il senso della conversione"
                       : locale === "nl"
@@ -353,7 +353,7 @@ export default function PairConverter({
                         : locale === "ru"
                           ? "Изменить направление перевода"
                         : locale === "sv"
-                          ? "Vand pa omvandlingsriktningen"
+                          ? "Vänd på omvandlingsriktningen"
                         : locale === "no"
                           ? "Snu omregningsretningen"
                         : locale === "da"

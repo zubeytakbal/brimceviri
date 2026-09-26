@@ -6,9 +6,9 @@ import { kitchenIngredientRows } from "../../converter/kitchenMeasures";
 import { buildSiteUrl } from "../../siteConfig";
 
 export const metadata: Metadata = {
-  title: "Kokmattskonverterare (koppar till gram)",
+  title: "Kokmåttskonverterare (koppar till gram)",
   description:
-    "Omvandla koppar, matskedar, gram och milliliter for over 40 ingredienser: mjol, socker, ris, honung, smor och mycket mer.",
+    "Omvandla koppar, matskedar, gram och milliliter för över 40 ingredienser: mjöl, socker, ris, honung, smör och mycket mer.",
   alternates: {
     canonical: "/sv/kitchen-measurement-converter",
     languages: {
@@ -27,8 +27,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Kokmattskonverterare (koppar till gram)",
-    description: "Omvandla koppar, matskedar, gram och milliliter for over 40 ingredienser.",
+    title: "Kokmåttskonverterare (koppar till gram)",
+    description: "Omvandla koppar, matskedar, gram och milliliter för över 40 ingredienser.",
     url: buildSiteUrl("/sv/kitchen-measurement-converter"),
     siteName: "BirimCeviri.app",
     locale: "sv_SE",
@@ -43,44 +43,44 @@ export default function SwedishKitchenMeasurementsPage() {
         <nav className="breadcrumbs" aria-label="Sidnavigering">
           <Link href="/sv">Hem</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          <span>Kokmattskonverterare</span>
+          <span>Kokmåttskonverterare</span>
         </nav>
 
         <header className="all-conversions-header">
-          <h1>Kokmattskonverterare</h1>
+          <h1>Kokmåttskonverterare</h1>
 
           <p>
-            Valj ingrediensen och enheten du kanner till for att direkt se
+            Välj ingrediensen och enheten du känner till för att direkt se
             motsvarigheten i koppar, matskedar, teskedar, gram, milliliter
-            och liter. Varje ingrediens har en annan densitet, sa
-            berakningen anvander specifika varden for mjol, socker, ris,
-            honung, smor och manga andra.
+            och liter. Varje ingrediens har en annan densitet, så
+            beräkningen använder specifika värden för mjöl, socker, ris,
+            honung, smör och många andra.
           </p>
         </header>
 
         <KitchenMeasuresConverter locale="sv" />
 
         <section className="category-article-content">
-          <h2>Hur manga gram ar en kopp mjol eller en matsked socker?</h2>
+          <h2>Hur många gram är en kopp mjöl eller en matsked socker?</h2>
           <p>
-            Det finns ingen enda regel som galler for alla ingredienser,
-            eftersom koppen mater en volym medan grammet mater en massa. En
-            kopp mjol ar lattare an en kopp socker, och honung ar tyngre an
-            bada -- darfor varierar omvandlingen beroende pa ingrediensens
+            Det finns ingen enda regel som gäller för alla ingredienser,
+            eftersom koppen mäter en volym medan grammet mäter en massa. En
+            kopp mjöl är lättare än en kopp socker, och honung är tyngre än
+            båda -- därför varierar omvandlingen beroende på ingrediensens
             densitet.
           </p>
           <p>
-            Vardena som anges har ar praktiska genomsnitt anpassade for
+            Värdena som anges här är praktiska genomsnitt anpassade för
             vardagligt matlagningsbruk. Den slutliga vikten kan variera
-            nagot beroende pa hur packad ingrediensen ar eller produktens
-            sort, men resultatet ar anda tillrackligt tillforlitligt for
-            hushallsbruk.
+            något beroende på hur packad ingrediensen är eller produktens
+            sort, men resultatet är ändå tillräckligt tillförlitligt för
+            hushållsbruk.
           </p>
 
-          <h2>Lista over vanliga ingredienser (1 kopp = 250 ml)</h2>
+          <h2>Lista över vanliga ingredienser (1 kopp = 250 ml)</h2>
           <div className="conversion-table-wrap">
             <table className="conversion-table">
-              <caption>Ungefarligt antal gram per kopp, matsked och tesked</caption>
+              <caption>Ungefärligt antal gram per kopp, matsked och tesked</caption>
               <thead>
                 <tr>
                   <th scope="col">Ingrediens</th>
@@ -102,23 +102,23 @@ export default function SwedishKitchenMeasurementsPage() {
             </table>
           </div>
 
-          <h2>Vanliga fragor</h2>
+          <h2>Vanliga frågor</h2>
           <p>
-            <strong>Hur manga milliliter ar en matsked?</strong>
+            <strong>Hur många milliliter är en matsked?</strong>
             <br />
-            En matsked motsvarar 15 milliliter, det vill saga 3 teskedar.
-            Koppen som anvands har motsvarar 250 milliliter (den metriska
-            standardkoppen som anvands i svenska recept).
+            En matsked motsvarar 15 milliliter, det vill säga 3 teskedar.
+            Koppen som används här motsvarar 250 milliliter (den metriska
+            standardkoppen som används i svenska recept).
           </p>
           <p>
-            <strong>Varfor varierar vikten pa en kopp beroende pa ingrediens?</strong>
+            <strong>Varför varierar vikten på en kopp beroende på ingrediens?</strong>
             <br />
-            Eftersom volymen forblir konstant, men densiteten varierar. En
-            latt ingrediens som mjol vager mindre an en tat ingrediens som
+            Eftersom volymen förblir konstant, men densiteten varierar. En
+            lätt ingrediens som mjöl väger mindre än en tät ingrediens som
             honung vid samma volym.
           </p>
           <p>
-            For att skala en hel maträtt, prova{" "}
+            För att skala en hel maträtt, prova{" "}
             <Link href="/sv/recipe-converter">receptomvandlaren</Link>.
           </p>
         </section>
@@ -133,7 +133,7 @@ export default function SwedishKitchenMeasurementsPage() {
               <Link href="/sv/shoe-size-converter">Skostorlekskonverterare</Link>
             </li>
             <li>
-              <Link href="/sv/historical-units">Historiska matenheter</Link>
+              <Link href="/sv/historical-units">Historiska mätenheter</Link>
             </li>
             <li>
               <Link href="/sv/categories/massa">Omvandling av massaenheter</Link>
@@ -142,13 +142,13 @@ export default function SwedishKitchenMeasurementsPage() {
         </section>
 
         <section className="conversion-section language-alternatives">
-          <h2>Andra sprak</h2>
+          <h2>Andra språk</h2>
           <Link
             className="text-link"
             href="/mutfak-olculeri-cevirici"
             hrefLang="tr"
           >
-            Oppna den turkiska versionen
+            Öppna den turkiska versionen
           </Link>
         </section>
       </div>

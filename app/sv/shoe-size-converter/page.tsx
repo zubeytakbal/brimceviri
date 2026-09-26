@@ -6,7 +6,7 @@ import { buildSiteUrl } from "../../siteConfig";
 export const metadata: Metadata = {
   title: "Skostorlekskonverterare: EU, US, UK",
   description:
-    "Omvandla europeiska (EU), amerikanska (US) och brittiska (UK) skostorlekar; jamfor aven storlekar for Nike, Adidas, Puma, New Balance och Converse.",
+    "Omvandla europeiska (EU), amerikanska (US) och brittiska (UK) skostorlekar; jämför även storlekar för Nike, Adidas, Puma, New Balance och Converse.",
   alternates: {
     canonical: "/sv/shoe-size-converter",
     languages: {
@@ -48,9 +48,9 @@ export default function SwedishShoeSizePage() {
           <h1>Skostorlekskonverterare: EU, US, UK</h1>
 
           <p>
-            Ange den storlek du kanner till for att direkt se motsvarande
+            Ange den storlek du känner till för att direkt se motsvarande
             amerikanska (US) och brittiska (UK) storlekar. Separata tabeller
-            for herr, dam, spadbarn och storre barn, med jamforelse av
+            för herr, dam, spädbarn och större barn, med jämförelse av
             marken Nike, Adidas, Puma, New Balance och Converse.
           </p>
         </header>
@@ -58,25 +58,25 @@ export default function SwedishShoeSizePage() {
         <ShoeSizeConverter locale="sv" />
 
         <section className="category-article-content">
-          <h2>Varfor skiljer sig skostorlekar mellan marken och system?</h2>
+          <h2>Varför skiljer sig skostorlekar mellan marken och system?</h2>
           <p>
-            I Sverige anvands den europeiska storleksskalan (EU), samma
-            skala som anvands i de flesta europeiska lander, men importerade
-            skor har ofta aven den amerikanska (US) storleken angiven pa
-            etiketten. Dessutom anvander varje marke sina egna tillverknings-
-            laster, sa samma fotlangd kan motsvara olika storlekar, eller
-            forskjutas ett halvt nummer, beroende pa marke.
+            I Sverige används den europeiska storleksskalan (EU), samma
+            skala som används i de flesta europeiska länder, men importerade
+            skor har ofta även den amerikanska (US) storleken angiven på
+            etiketten. Dessutom använder varje märke sina egna tillverknings-
+            laster, så samma fotlängd kan motsvara olika storlekar, eller
+            förskjutas ett halvt nummer, beroende på märke.
           </p>
           <p>
-            Det mest tillforlitliga resultatet fas vanligtvis genom att mata
-            fotens langd i centimeter och dartill valja alternativet
-            "Fotlangd" i verktyget. Detta minskar felen som orsakas av
-            skillnader i storleksbeteckningar mellan marken och lander.
+            Det mest tillförlitliga resultatet fas vanligtvis genom att mäta
+            fotens längd i centimeter och därtill välja alternativet
+            "Fotlängd" i verktyget. Detta minskar felen som orsakas av
+            skillnader i storleksbeteckningar mellan marken och länder.
           </p>
           <p>
-            For barn borjar den amerikanska (US) storleksskalan om efter
-            13,5; darfor halls tabellerna for spadbarn/smabarn och storre
-            barn separata, for att halla jamforelsen tydlig.
+            För barn börjar den amerikanska (US) storleksskalan om efter
+            13,5; därför hålls tabellerna för spädbarn/småbarn och större
+            barn separata, för att hålla jämförelsen tydlig.
           </p>
         </section>
 
@@ -84,28 +84,28 @@ export default function SwedishShoeSizePage() {
           <h2>Relaterade verktyg</h2>
           <ul className="related-conversion-list">
             <li>
-              <Link href="/sv/kitchen-measurement-converter">Kokmatt</Link>
+              <Link href="/sv/kitchen-measurement-converter">Kokmått</Link>
             </li>
             <li>
               <Link href="/sv/recipe-converter">Receptomvandlare</Link>
             </li>
             <li>
-              <Link href="/sv/historical-units">Historiska matenheter</Link>
+              <Link href="/sv/historical-units">Historiska mätenheter</Link>
             </li>
             <li>
-              <Link href="/sv/categories/langd">Omvandling av langdenheter</Link>
+              <Link href="/sv/categories/langd">Omvandling av längdenheter</Link>
             </li>
           </ul>
         </section>
 
         <section className="conversion-section language-alternatives">
-          <h2>Andra sprak</h2>
+          <h2>Andra språk</h2>
           <Link
             className="text-link"
             href="/ayakkabi-numarasi-cevirme"
             hrefLang="tr"
           >
-            Oppna den turkiska versionen
+            Öppna den turkiska versionen
           </Link>
         </section>
       </div>

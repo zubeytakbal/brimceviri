@@ -209,10 +209,10 @@ const copy = {
     copyButton: "Kopiëren", copiedButton: "Gekopieerd", printButton: "Afdrukken",
   },
   sv: {
-    recipeLabel: "Ditt recept", placeholder: "2 koppar mjol\n1 tesked salt\n3 matskedar olivolja\n2 agg\nUgn 180 grader",
-    factorLabel: "Multiplikator", originalServingsLabel: "Ursprungligt antal portioner", targetServingsLabel: "Onskat antal portioner",
-    resultHeading: "Anpassat recept", emptyState: "Skriv ditt recept ovan for att se det anpassade resultatet har.",
-    gramPrefix: "~", gramSuffix: "g", ingredientLabel: "Ingrediens", noMatchOption: "Ingen traff",
+    recipeLabel: "Ditt recept", placeholder: "2 koppar mjöl\n1 tesked salt\n3 matskedar olivolja\n2 ägg\nUgn 180 grader",
+    factorLabel: "Multiplikator", originalServingsLabel: "Ursprungligt antal portioner", targetServingsLabel: "Önskat antal portioner",
+    resultHeading: "Anpassat recept", emptyState: "Skriv ditt recept ovan för att se det anpassade resultatet här.",
+    gramPrefix: "~", gramSuffix: "g", ingredientLabel: "Ingrediens", noMatchOption: "Ingen träff",
     copyButton: "Kopiera", copiedButton: "Kopierat", printButton: "Skriv ut",
   },
   no: {

@@ -98,8 +98,8 @@ const copy = {
     resultHeading: "Equivalenten", invalidValue: "Voer een geldig getal in om de omrekening te zien.",
   },
   sv: {
-    ingredient: "Ingrediens", knownUnit: "Kand enhet", value: "Varde",
-    resultHeading: "Motsvarigheter", invalidValue: "Ange ett giltigt tal for att se omvandlingen.",
+    ingredient: "Ingrediens", knownUnit: "Känd enhet", value: "Värde",
+    resultHeading: "Motsvarigheter", invalidValue: "Ange ett giltigt tal för att se omvandlingen.",
   },
   no: {
     ingredient: "Ingrediens", knownUnit: "Kjent enhet", value: "Verdi",

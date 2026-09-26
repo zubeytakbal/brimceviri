@@ -4,9 +4,9 @@ import { getSiteNotifications } from "../converter/siteNotifications";
 import { buildSiteUrl } from "../siteConfig";
 
 export const metadata: Metadata = {
-  title: "Vind den enhetsomvandling du behover",
+  title: "Vind den enhetsomvandling du behöver",
   description:
-    "Omvandla gratis och direkt langd, massa, temperatur och andra fysiska enheter. Over 12 kategorier, med exakta formler.",
+    "Omvandla gratis och direkt längd, massa, temperatur och andra fysiska enheter. Över 12 kategorier, med exakta formler.",
   alternates: {
     canonical: "/sv",
     languages: {
@@ -27,9 +27,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Vind den enhetsomvandling du behover",
+    title: "Vind den enhetsomvandling du behöver",
     description:
-      "Omvandla gratis och direkt langd, massa, temperatur och andra fysiska enheter.",
+      "Omvandla gratis och direkt längd, massa, temperatur och andra fysiska enheter.",
     url: buildSiteUrl("/sv"),
     siteName: "BirimCeviri.app",
     locale: "sv_SE",

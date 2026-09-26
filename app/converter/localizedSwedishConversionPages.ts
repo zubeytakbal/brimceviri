@@ -10,7 +10,7 @@ export type LocalizedSwedishConversionPage = ConversionPage & {
 };
 
 const swedishCategoryNames: Record<string, string> = {
-  uzunluk: "Langd",
+  uzunluk: "Längd",
   alan: "Area",
   hacim: "Volym",
   kutle: "Massa",
@@ -19,25 +19,25 @@ const swedishCategoryNames: Record<string, string> = {
   hiz: "Hastighet",
   basinc: "Tryck",
   enerji: "Energi",
-  debi: "Flode",
+  debi: "Flöde",
   elektrik: "Elektricitet",
   yogunluk: "Densitet",
   kuvvet: "Kraft",
   tork: "Vridmoment",
   aci: "Vinkel",
   frekans: "Frekvens",
-  debi_hacimsel: "Volymflode",
-  debi_kutlesel: "Massflode",
-  manyetik_alan: "Magnetfalt",
-  manyetik_aki: "Magnetiskt flode",
+  debi_hacimsel: "Volymflöde",
+  debi_kutlesel: "Massflöde",
+  manyetik_alan: "Magnetfält",
+  manyetik_aki: "Magnetiskt flöde",
   viskozite_kinematik: "Kinematisk viskositet",
-  isil_iletkenlik: "Varmeledningsformaga",
-  isi_akisi: "Varmeflode",
-  ozgul_isi: "Specifik varme",
+  isil_iletkenlik: "Värmeledningsförmåga",
+  isi_akisi: "Värmeflöde",
+  ozgul_isi: "Specifik värme",
   ivme: "Acceleration",
   acisal_hiz: "Vinkelhastighet",
   guc: "Effekt",
-  momentum: "Rorelsemangd",
+  momentum: "Rörelsemängd",
   viskozite_dinamik: "Viskositet",
   veri: "Datalagring",
   elektrik_direnc: "Resistans",
@@ -72,12 +72,12 @@ function createSwedishExplanation(
   factor: number
 ) {
   if (factor >= 1) {
-    return `For att omvandla ${fromName} till ${toName}, multiplicera utgangsvardet med ${formatSwedishValue(
+    return `För att omvandla ${fromName} till ${toName}, multiplicera utgångsvärdet med ${formatSwedishValue(
       factor
     )}. 1 ${fromUnit} = ${formatSwedishValue(factor)} ${toUnit}.`;
   }
 
-  return `For att omvandla ${fromName} till ${toName}, dividera utgangsvardet med ${formatSwedishValue(
+  return `För att omvandla ${fromName} till ${toName}, dividera utgångsvärdet med ${formatSwedishValue(
     1 / factor
   )}. 1 ${fromUnit} = ${formatSwedishValue(factor)} ${toUnit}.`;
 }
@@ -138,22 +138,22 @@ function createSwedishTemperatureExplanation(
   toUnit: string
 ) {
   if (fromUnit === "C" && toUnit === "F") {
-    return `For att omvandla ${fromName} till ${toName}, multiplicera med 9/5 och addera 32. 1 ${fromUnit} = 33,8 ${toUnit}.`;
+    return `För att omvandla ${fromName} till ${toName}, multiplicera med 9/5 och addera 32. 1 ${fromUnit} = 33,8 ${toUnit}.`;
   }
 
   if (fromUnit === "F" && toUnit === "C") {
-    return `For att omvandla ${fromName} till ${toName}, subtrahera forst 32 och multiplicera resultatet med 5/9. 32 ${fromUnit} motsvarar 0 ${toUnit}.`;
+    return `För att omvandla ${fromName} till ${toName}, subtrahera först 32 och multiplicera resultatet med 5/9. 32 ${fromUnit} motsvarar 0 ${toUnit}.`;
   }
 
   if (fromUnit === "C" && toUnit === "K") {
-    return `For att omvandla ${fromName} till ${toName}, addera 273,15. 0 ${fromUnit} motsvarar 273,15 ${toUnit}.`;
+    return `För att omvandla ${fromName} till ${toName}, addera 273,15. 0 ${fromUnit} motsvarar 273,15 ${toUnit}.`;
   }
 
   if (fromUnit === "K" && toUnit === "C") {
-    return `For att omvandla ${fromName} till ${toName}, subtrahera 273,15. 273,15 ${fromUnit} motsvarar 0 ${toUnit}.`;
+    return `För att omvandla ${fromName} till ${toName}, subtrahera 273,15. 273,15 ${fromUnit} motsvarar 0 ${toUnit}.`;
   }
 
-  return `Anvand det definierade temperatursambandet for att omvandla ${fromName} till ${toName}.`;
+  return `Använd det definierade temperatursambandet för att omvandla ${fromName} till ${toName}.`;
 }
 
 const swedishUnitBySourceSlug: Record<string, { name: string; slug: string }> =

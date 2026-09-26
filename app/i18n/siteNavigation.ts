@@ -367,7 +367,7 @@ const categoryLabels: Record<
     uzunluk: "Длина", alan: "Площадь", hacim: "Объём", kutle: "Масса", sicaklik: "Температура", zaman: "Время", hiz: "Скорость", basinc: "Давление", enerji: "Энергия", veri: "Хранение данных", elektrik: "Электричество", yogunluk: "Плотность", kuvvet: "Сила", debi: "Расход", debi_hacimsel: "Объёмный расход", debi_kutlesel: "Массовый расход", tork: "Крутящий момент", aci: "Угол", ivme: "Ускорение", acisal_hiz: "Угловая скорость", frekans: "Частота", guc: "Мощность", momentum: "Импульс", viskozite_dinamik: "Вязкость", viskozite_kinematik: "Кинематическая вязкость", manyetik_alan: "Напряжённость магнитного поля", manyetik_aki: "Магнитный поток", elektrik_direnc: "Сопротивление", kapasitans: "Ёмкость", enduktans: "Индуктивность", elektrik_yuk: "Электрический заряд", altin_ayar: "Проба золота", gumus_ayar: "Проба серебра",
   },
   sv: {
-    uzunluk: "Langd",
+    uzunluk: "Längd",
     alan: "Area",
     hacim: "Volym",
     kutle: "Massa",
@@ -380,9 +380,9 @@ const categoryLabels: Record<
     elektrik: "Elektricitet",
     yogunluk: "Densitet",
     kuvvet: "Kraft",
-    debi: "Flode",
+    debi: "Flöde",
     tork: "Vridmoment",
-    momentum: "Rorelsemangd",
+    momentum: "Rörelsemängd",
     viskozite_dinamik: "Viskositet",
     elektrik_direnc: "Resistans",
     kapasitans: "Kapacitans",
@@ -676,14 +676,14 @@ const footerCopy: Record<Locale, FooterCopy> = {
   sv: {
     navAriaLabel: "Sidfotsnavigering",
     pagesHeading: "Sidor",
-    languagesHeading: "Sprak",
+    languagesHeading: "Språk",
     categoriesHeading: "Kategorier",
     description:
-      "Tekniska omvandlingsverktyg och enhetsguider forberedda for praktiskt bruk.",
+      "Tekniska omvandlingsverktyg och enhetsguider förberedda för praktiskt bruk.",
     disclaimer:
-      "For viktiga tekniska, medicinska eller sakerhetsrelaterade beslut, kontrollera resultaten med professionella kallor.",
+      "För viktiga tekniska, medicinska eller säkerhetsrelaterade beslut, kontrollera resultaten med professionella källor.",
     browserProcessingNote:
-      "I raknefunktionerna pa denna sida behandlas inmatade uppgifter direkt i webblasaren.",
+      "I räknefunktionerna på denna sida behandlas inmatade uppgifter direkt i webbläsaren.",
   },
   no: {
     navAriaLabel: "Bunntekstnavigering",
@@ -805,7 +805,7 @@ const topLevelLabelMap: Record<
   ru: { home: "Главная", engineeringHub: "Калькуляторы", units: "Единицы", allConversions: "Все переводы", professions: "По профессии" },
   sv: {
     home: "Hem",
-    engineeringHub: "Raknare",
+    engineeringHub: "Räknare",
     units: "Enhetsguide",
     allConversions: "Alla Omvandlingar",
     professions: "Efter Yrke",
@@ -1020,7 +1020,7 @@ export function getCategoryMenuLinks(locale: Locale) {
                 : locale === "es" || locale === "es-419"
                   ? "Tallas de Calzado"
                   : locale === "pt"
-                    ? "Numeracao de Calcados"
+                    ? "Numeração de Calçados"
                     : locale === "it"
                       ? "Numeri di Scarpe"
                       : locale === "nl"
@@ -1028,9 +1028,9 @@ export function getCategoryMenuLinks(locale: Locale) {
                         : locale === "sv"
                           ? "Skostorlekar"
                           : locale === "no"
-                            ? "Skostorrelser"
+                            ? "Skostørrelser"
                             : locale === "da"
-                              ? "Skostorrelser"
+                              ? "Skostørrelser"
                               : "Ayakkabi Numarasi",
   });
   links.push({
@@ -1055,11 +1055,11 @@ export function getCategoryMenuLinks(locale: Locale) {
                       : locale === "nl"
                         ? "Keukenmaten"
                         : locale === "sv"
-                          ? "Kokmatt"
+                          ? "Kokmått"
                           : locale === "no"
-                            ? "Kjokkenmal"
+                            ? "Kjøkkenmål"
                             : locale === "da"
-                              ? "Kokkenmal"
+                              ? "Køkkenmål"
                               : "Mutfak Olculeri",
   });
   links.push({

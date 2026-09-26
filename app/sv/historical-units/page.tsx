@@ -4,9 +4,9 @@ import StaticPageLayout from "../../components/StaticPageLayout";
 import { buildSiteUrl } from "../../siteConfig";
 
 export const metadata = {
-  title: "Historiska matenheter",
+  title: "Historiska mätenheter",
   description:
-    "Upptack bysantinska, osmanska och gammalturkiska matenheter och omvandla dem till meter och gram med korta forklaringar.",
+    "Upptäck bysantinska, osmanska och gammalturkiska mätenheter och omvandla dem till meter och gram med korta förklaringar.",
   alternates: {
     canonical: "/sv/historical-units",
     languages: {
@@ -25,8 +25,8 @@ export const metadata = {
     },
   },
   openGraph: {
-    title: "Historiska matenheter",
-    description: "Upptack bysantinska, osmanska och gammalturkiska matenheter.",
+    title: "Historiska mätenheter",
+    description: "Upptäck bysantinska, osmanska och gammalturkiska mätenheter.",
     url: buildSiteUrl("/sv/historical-units"),
     siteName: "BirimCeviri.app",
     locale: "sv_SE",
@@ -36,7 +36,7 @@ export const metadata = {
 
 const historicalLengthUnitOptions = [
   { value: "m", label: "Meter (m)", symbol: "m" },
-  { value: "arşın", label: "Arşın", symbol: "arşın" },
+  { value: "arşın", label: "Ärşın", symbol: "arşın" },
   { value: "endaze", label: "Endaze", symbol: "endaze" },
   { value: "pus", label: "Bysantinsk fot (Pous)", symbol: "pus" },
   { value: "orgyia", label: "Bysantinskt famntag (Orgyia)", symbol: "orgyia" },
@@ -56,52 +56,52 @@ const byzantineUnits = [
     href: "/birimler/bizans-ayagi",
     name: "Bysantinsk fot (pous)",
     value: "≈ 0,3148 m",
-    note: "Forlangning av den antika grekiska foten, anvand fram till 1453.",
+    note: "Förlängning av den antika grekiska foten, använd fram till 1453.",
   },
   {
     href: "/birimler/bizans-kulaci",
     name: "Bysantinskt famntag (orgyia)",
     value: "= 6 pous ≈ 1,8888 m",
-    note: "Avstandet mellan fingertopparna med helt utstrackta armar.",
+    note: "Avståndet mellan fingertopparna med helt utsträckta armar.",
   },
   {
     href: "/birimler/bizans-litrasi",
     name: "Bysantinsk litra (litra)",
     value: "≈ 324 g",
-    note: "Grundlaggande massaenhet i den bysantinska traditionen, paverkad av det romerska pundet.",
+    note: "Grundläggande massaenhet i den bysantinska traditionen, påverkad av det romerska pundet.",
   },
   {
     href: "/birimler/bizans-onsu",
     name: "Bysantinsk ounkia (ounkia)",
     value: "= 1/12 litra ≈ 27 g",
-    note: "Skiljer sig fran det moderna unset i de brittiska och amerikanska systemen.",
+    note: "Skiljer sig från det moderna unset i de brittiska och amerikanska systemen.",
   },
 ];
 
 const ottomanUnits = [
   {
     href: "/birimler/arsin",
-    name: "Arşın",
+    name: "Ärşın",
     value: "≈ 0,68 m",
-    note: "Hade flera anvandningsomraden: marknadsarşın, den mest kanda, och byggarşın, som anvandes for storre langder.",
+    note: "Hade flera användningsområden: marknadsarşın, den mest kända, och byggarşın, som användes för större längder.",
   },
   {
     href: "/birimler/endaze",
     name: "Endaze",
     value: "= 0,65 m",
-    note: "Anvandes sarskilt for att mata tyg och textil, samt relaterad handel.",
+    note: "Användes särskilt för att mäta tyg och textil, samt relaterad handel.",
   },
   {
     href: "/birimler/okka",
     name: "Osmansk okka (Okka)",
     value: "= 400 dirhem ≈ 1282,945 g",
-    note: "En av de mest kanda viktenheterna pa traditionella osmanska marknader.",
+    note: "En av de mest kända viktenheterna på traditionella osmanska marknader.",
   },
   {
     href: "/birimler/dirhem",
     name: "Dirhem",
     value: "= 1/400 okka ≈ 3,207 g",
-    note: "Anvandes for sma mangder, som adla metaller, kryddor och vissa kosmetiska produkter.",
+    note: "Användes för små mängder, som ädla metaller, kryddor och vissa kosmetiska produkter.",
   },
 ];
 
@@ -110,7 +110,7 @@ const oldTurkicUnits = [
     href: "/birimler/cig",
     name: "Çığ",
     value: "≈ 0,333 m",
-    note: "En gammal turkisk langdenhet som forekommer i gamla sprakliga och historiska kallor.",
+    note: "En gammal turkisk längdenhet som förekommer i gamla språkliga och historiska källor.",
   },
 ];
 
@@ -149,14 +149,14 @@ export default function SwedishHistoricalUnitsPage() {
       breadcrumbAriaLabel="Sidnavigering"
       breadcrumbs={[
         { href: "/sv", label: "Hem" },
-        { label: "Historiska matenheter" },
+        { label: "Historiska mätenheter" },
       ]}
-      title="Historiska matenheter"
-      description="Upptack bysantinska, osmanska och gammalturkiska matenheter med sina moderna motsvarigheter i meter och gram och omvandla dem direkt med tva praktiska verktyg."
+      title="Historiska mätenheter"
+      description="Upptäck bysantinska, osmanska och gammalturkiska mätenheter med sina moderna motsvarigheter i meter och gram och omvandla dem direkt med två praktiska verktyg."
       alternateLink={{
         href: "/tarihi-olcu-birimleri",
         hrefLang: "tr",
-        label: "Oppna den turkiska versionen",
+        label: "Öppna den turkiska versionen",
       }}
       sections={[
         {
@@ -164,28 +164,28 @@ export default function SwedishHistoricalUnitsPage() {
           content: (
             <>
               <p>
-                Matningens historia i Anatolien och denna region borjade
+                Mätningens historia i Anatolien och denna region började
                 inte med det moderna metriska systemet; den gick igenom
                 flera lager av bysantinska och senare osmanska system,
-                utover annu aldre turkiska matt.
+                utöver ännu äldre turkiska mått.
               </p>
               <p>
-                Darfor forekommer namn som arşın, okka och dirhem fortfarande
-                idag i gamla dokument, samt i vissa bocker och historisk
+                Därför förekommer namn som ärşın, okka och dirhem fortfarande
+                idag i gamla dokument, samt i vissa böcker och historisk
                 forskning.
               </p>
             </>
           ),
         },
         {
-          heading: "Konverterare for historiska langdenheter",
+          heading: "Konverterare för historiska längdenheter",
           content: (
             <>
               <p>
-                Omvandla direkt mellan arşın, endaze, bysantinsk fot,
+                Omvandla direkt mellan ärşın, endaze, bysantinsk fot,
                 bysantinskt famntag och çığ, med den moderna motsvarigheten
-                i meter. For alla moderna langdenheter, se{" "}
-                <Link href="/sv/categories/langd">det fullstandiga langdbiblioteket</Link>.
+                i meter. För alla moderna längdenheter, se{" "}
+                <Link href="/sv/categories/langd">det fullständiga längdbiblioteket</Link>.
               </p>
               <CategoryUnitConverter
                 category="uzunluk"
@@ -196,14 +196,14 @@ export default function SwedishHistoricalUnitsPage() {
           ),
         },
         {
-          heading: "Konverterare for historiska massaenheter",
+          heading: "Konverterare för historiska massaenheter",
           content: (
             <>
               <p>
                 Omvandla mellan osmansk okka, dirhem, bysantinsk litra och
-                bysantinsk ounkia, med det moderna grammet som referens. For
+                bysantinsk ounkia, med det moderna grammet som referens. För
                 moderna enheter som kilogram och ton, se{" "}
-                <Link href="/sv/categories/massa">det fullstandiga massbiblioteket</Link>.
+                <Link href="/sv/categories/massa">det fullständiga massbiblioteket</Link>.
               </p>
               <CategoryUnitConverter
                 category="kutle"
@@ -214,26 +214,26 @@ export default function SwedishHistoricalUnitsPage() {
           ),
         },
         {
-          heading: "Enheter fran den bysantinska tiden",
+          heading: "Enheter från den bysantinska tiden",
           content: (
             <>
               <p>
-                Bysans arvde en stor del av den grekiska och romerska
-                matningstraditionen och skapade praktiska langd- och
-                massaenheter som anvandes inom handel och byggnation i
-                arhundraden.
+                Bysans ärvde en stor del av den grekiska och romerska
+                mätningstraditionen och skapade praktiska längd- och
+                massaenheter som användes inom handel och byggnation i
+                århundraden.
               </p>
               <UnitList units={byzantineUnits} />
             </>
           ),
         },
         {
-          heading: "Enheter fran den osmanska tiden",
+          heading: "Enheter från den osmanska tiden",
           content: (
             <>
               <p>
-                Innan den osmanska staten helt overgick till det metriska
-                systemet pa 1900-talet anvandes enheter som arşın, endaze,
+                Innan den osmanska staten helt övergick till det metriska
+                systemet på 1900-talet användes enheter som ärşın, endaze,
                 okka och dirhem inom handel, byggnation och vardagsliv.
               </p>
               <UnitList units={ottomanUnits} />
@@ -241,31 +241,31 @@ export default function SwedishHistoricalUnitsPage() {
           ),
         },
         {
-          heading: "Annu aldre turkiska enheter",
+          heading: "Ännu äldre turkiska enheter",
           content: (
             <>
               <p>
-                Vissa gamla enheter ar fortfarande kanda tack vare
-                sprakliga och historiska kallor, och ar viktiga for att
-                forsta gamla texter och relatera dem till moderna matt.
+                Vissa gamla enheter är fortfarande kända tack vare
+                språkliga och historiska källor, och är viktiga för att
+                första gamla texter och relatera dem till moderna mått.
               </p>
               <UnitList units={oldTurkicUnits} />
             </>
           ),
         },
         {
-          heading: "Varfor ar dessa enheter fortfarande viktiga idag?",
+          heading: "Varför är dessa enheter fortfarande viktiga idag?",
           content: (
             <>
               <p>
-                Dessa namn forekommer fortfarande idag i vakufhandlingar,
-                gamla register, historisk forskning och oversattningsarbete;
-                att omvandla dem till meter eller gram hjalper till att
-                snabbt forsta dem.
+                Dessa namn förekommer fortfarande idag i vakufhandlingar,
+                gamla register, historisk forskning och översättningsarbete;
+                att omvandla dem till meter eller gram hjälper till att
+                snabbt första dem.
               </p>
               <p>
-                Denna sida ar ocksa anvandbar for studenter, innehalls-
-                skapare och alla som vill lasa historiska tal med tydliga
+                Denna sida är också användbar för studenter, innehålls-
+                skapare och alla som vill läsa historiska tal med tydliga
                 moderna referenser.
               </p>
             </>
@@ -276,7 +276,7 @@ export default function SwedishHistoricalUnitsPage() {
           content: (
             <ul className="related-conversion-list">
               <li>
-                <Link href="/sv/kitchen-measurement-converter">Kokmatt</Link>
+                <Link href="/sv/kitchen-measurement-converter">Kokmått</Link>
               </li>
               <li>
                 <Link href="/sv/recipe-converter">Receptomvandlare</Link>

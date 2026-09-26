@@ -361,7 +361,7 @@ const copyByLocale: Record<
     },
     placeholder: "E.g. 25",
     emptyState: "Enter a valid value to see the comparisons.",
-    intro: "comparisons for",
+    intro: "comparisons för",
     closestMatch: "Closest comparison",
   },
   no: {

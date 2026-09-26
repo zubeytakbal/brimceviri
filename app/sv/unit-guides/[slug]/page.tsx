@@ -92,7 +92,7 @@ export default async function SwedishUnitPage({ params }: PageProps) {
               <dd>{unitPage.symbol}</dd>
             </div>
             <div>
-              <dt>Matsystem</dt>
+              <dt>Mätsystem</dt>
               <dd>{unitPage.measurementSystem}</dd>
             </div>
             <div>
@@ -107,7 +107,7 @@ export default async function SwedishUnitPage({ params }: PageProps) {
           </section>
 
           <section className="conversion-section unit-long-section">
-            <h2>Anvandning</h2>
+            <h2>Användning</h2>
             <p>{unitPage.commonUses}</p>
           </section>
 
@@ -118,20 +118,20 @@ export default async function SwedishUnitPage({ params }: PageProps) {
                   className="text-link"
                   href={`/sv/categories/${categoryPage.slug}`}
                 >
-                  Se ovriga enheter i kategorin {categoryPage.title}
+                  Se övriga enheter i kategorin {categoryPage.title}
                 </Link>
               </p>
             </section>
           )}
 
           <section className="conversion-section language-alternatives">
-            <h2>Andra sprak</h2>
+            <h2>Andra språk</h2>
             <Link
               className="text-link"
               href={`/birimler/${unitPage.sourceSlug}`}
               hrefLang="tr"
             >
-              Oppna den turkiska versionen
+              Öppna den turkiska versionen
             </Link>
             {englishPage && (
               <Link

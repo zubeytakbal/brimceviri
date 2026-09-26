@@ -16,7 +16,7 @@ type PageProps = {
 
 // Kort namn for "Omvandla alla enheter for {X}".
 const categoryBaseNames: Record<string, string> = {
-  uzunluk: "langd",
+  uzunluk: "längd",
   alan: "area",
   hacim: "volym",
   kutle: "massa",
@@ -57,7 +57,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${categoryPage.title}: enheter, tabeller och berakningar`,
+    title: `${categoryPage.title}: enheter, tabeller och beräkningar`,
     description: categoryPage.description,
     alternates: {
       canonical: `/sv/categories/${categoryPage.slug}`,
@@ -111,7 +111,7 @@ export default async function SwedishCategoryPage({ params }: PageProps) {
           ? "Motsvarighet i pascal"
           : "SI-motsvarighet";
 
-  const tableTitle = "Jamforelsetabell for enheter";
+  const tableTitle = "Jämförelsetabell för enheter";
 
   const pageUrl = buildSiteUrl(`/sv/categories/${categoryPage.slug}`);
 
@@ -184,19 +184,19 @@ export default async function SwedishCategoryPage({ params }: PageProps) {
       title={categoryPage.title}
       description={categoryPage.description}
       allUnitsSection={{
-        heading: `Omvandla alla enheter for ${baseName}`,
+        heading: `Omvandla alla enheter för ${baseName}`,
         content: (
           <CategoryUnitConverter category={categoryPage.category} locale="sv" />
         ),
       }}
-      conversionHeading="Populara omvandlingar"
+      conversionHeading="Populära omvandlingar"
       conversionCountLabel={`${conversionCards.length} par`}
       conversionCards={conversionCards}
       unitGuidesHeading="Enhetsguider"
       unitGuidesCountLabel={`${categoryUnits.length} enheter`}
       unitGuides={categoryUnits.map((unitPage) => ({
         href: `/sv/unit-guides/${unitPage.slug}`,
-        label: `Vad ar ${unitPage.name}?`,
+        label: `Vad är ${unitPage.name}?`,
         symbol: unitPage.symbol,
       }))}
       detailHeading={`Detaljerad information om ${baseName}`}
@@ -217,8 +217,8 @@ export default async function SwedishCategoryPage({ params }: PageProps) {
             </dl>
           </div>
 
-          <nav className="category-table-of-contents" aria-label="Sidans innehall">
-            <strong>Pa denna sida</strong>
+          <nav className="category-table-of-contents" aria-label="Sidans innehåll">
+            <strong>På denna sida</strong>
             <ol>
               {categoryPage.sections.map((section, index) => (
                 <li key={section.title}>
@@ -229,7 +229,7 @@ export default async function SwedishCategoryPage({ params }: PageProps) {
                 <a href="#kategori-enhetstabell">{tableTitle}</a>
               </li>
               <li>
-                <a href="#kategori-kallor">Kallor</a>
+                <a href="#kategori-kallor">Källor</a>
               </li>
             </ol>
           </nav>
@@ -248,9 +248,9 @@ export default async function SwedishCategoryPage({ params }: PageProps) {
 
                 {index === 1 && featuredUnit && (
                   <p className="category-inline-link">
-                    For mer information om enheten {featuredUnit.name}, se{" "}
+                    För mer information om enheten {featuredUnit.name}, se{" "}
                     <a href={`/sv/unit-guides/${featuredUnit.slug}`}>
-                      informationssidan for {featuredUnit.name}
+                      informationssidan för {featuredUnit.name}
                     </a>
                     .
                   </p>
@@ -269,7 +269,7 @@ export default async function SwedishCategoryPage({ params }: PageProps) {
                       <th>Symbol</th>
                       <th>{tableReferenceLabel}</th>
                       <th>System</th>
-                      <th>Vanlig anvandning</th>
+                      <th>Vanlig användning</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -288,10 +288,10 @@ export default async function SwedishCategoryPage({ params }: PageProps) {
             </section>
 
             <section className="conversion-section unit-sources" id="kategori-kallor">
-              <h2>Kallor</h2>
+              <h2>Källor</h2>
               <p>
-                Definitionerna och omvandlingsvardena pa denna sida bygger
-                pa erkanda officiella metrologiska referenser.
+                Definitionerna och omvandlingsvärdena på denna sida bygger
+                på erkända officiella metrologiska referenser.
               </p>
               <ol>
                 {sources.map((source) => (

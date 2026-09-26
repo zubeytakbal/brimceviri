@@ -138,7 +138,7 @@ export default async function SwedishConversionPage({ params }: PageProps) {
             </h1>
 
             <p className="conversion-hero-description">
-              Ange ett varde for att fa ett direkt och gratis resultat.
+              Ange ett värde för att få ett direkt och gratis resultat.
             </p>
 
             <PairConverter
@@ -199,7 +199,7 @@ export default async function SwedishConversionPage({ params }: PageProps) {
 
         <section className="conversion-section">
           <h2>
-            Omvandlingstabell fran {page.fromName} till {page.toName}
+            Omvandlingstabell från {page.fromName} till {page.toName}
           </h2>
 
           <div className="conversion-table-wrap">
@@ -230,7 +230,7 @@ export default async function SwedishConversionPage({ params }: PageProps) {
 
         {fromUnitInfo && (
           <section className="conversion-section unit-information">
-            <h2>Vad ar {fromUnitInfo.name}?</h2>
+            <h2>Vad är {fromUnitInfo.name}?</h2>
 
             <p>{fromUnitInfo.shortDescription}</p>
 
@@ -238,14 +238,14 @@ export default async function SwedishConversionPage({ params }: PageProps) {
               className="text-link"
               href={`/sv/unit-guides/${fromUnitInfo.slug}`}
             >
-              Se guiden for enheten {fromUnitInfo.name}
+              Se guiden för enheten {fromUnitInfo.name}
             </Link>
           </section>
         )}
 
         {toUnitInfo && (
           <section className="conversion-section unit-information">
-            <h2>Vad ar {toUnitInfo.name}?</h2>
+            <h2>Vad är {toUnitInfo.name}?</h2>
 
             <p>{toUnitInfo.shortDescription}</p>
 
@@ -253,14 +253,14 @@ export default async function SwedishConversionPage({ params }: PageProps) {
               className="text-link"
               href={`/sv/unit-guides/${toUnitInfo.slug}`}
             >
-              Se guiden for enheten {toUnitInfo.name}
+              Se guiden för enheten {toUnitInfo.name}
             </Link>
           </section>
         )}
 
         {reversePage && (
           <section className="conversion-section related-conversions">
-            <h2>Omvand omvandling</h2>
+            <h2>Omvänd omvandling</h2>
 
             <Link className="text-link" href={`/sv/${reversePage.slug}`}>
               Omvandla {reversePage.fromName} till {reversePage.toName}
@@ -286,11 +286,11 @@ export default async function SwedishConversionPage({ params }: PageProps) {
 
         {sources.length > 0 && (
           <section className="conversion-section unit-sources">
-            <h2>Kallor</h2>
+            <h2>Källor</h2>
 
             <p>
-              Definitionerna och omvandlingsforhallandena pa denna sida
-              foljer erkanda metrologiska standarder.
+              Definitionerna och omvandlingsförhållandena på denna sida
+              följer erkända metrologiska standarder.
             </p>
 
             <ol>
@@ -306,7 +306,7 @@ export default async function SwedishConversionPage({ params }: PageProps) {
         )}
 
         <section className="conversion-section language-alternatives">
-          <h2>Andra sprak</h2>
+          <h2>Andra språk</h2>
 
           <Link
             className="text-link"

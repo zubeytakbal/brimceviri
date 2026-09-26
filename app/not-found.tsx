@@ -155,12 +155,12 @@ bn: {
     lang: "sv",
     title: "Sidan hittades inte",
     description:
-      "Sidan du letar efter kan ha flyttats eller sa ar adressen inte giltig.",
-    continueHeading: "Fortsatt med",
+      "Sidan du letar efter kan ha flyttats eller så är adressen inte giltig.",
+    continueHeading: "Fortsätt med",
     primaryHref: "/sv",
     primaryLabel: "Tillbaka till den svenska startsidan",
     secondaryHref: "/",
-    secondaryLabel: "Oppna den turkiska startsidan",
+    secondaryLabel: "Öppna den turkiska startsidan",
   },
   no: {
     lang: "nb",

@@ -6,7 +6,7 @@ import { buildSiteUrl } from "../../siteConfig";
 export const metadata: Metadata = {
   title: "Alla kategorier — Enhetsomvandlare",
   description:
-    "Fullstandig lista over omvandlingar for langd, massa, temperatur, tryck, energi och manga andra fysiska storheter.",
+    "Fullständig lista över omvandlingar för längd, massa, temperatur, tryck, energi och många andra fysiska storheter.",
   alternates: {
     canonical: "/sv/categories",
     languages: {
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Alla kategorier — Enhetsomvandlare",
-    description: "Fullstandig lista over alla kategorier for enhetsomvandling.",
+    description: "Fullständig lista över alla kategorier för enhetsomvandling.",
     url: buildSiteUrl("/sv/categories"),
     siteName: "BirimCeviri.app",
     locale: "sv_SE",
@@ -41,9 +41,9 @@ export default function SwedishCategoriesIndexPage() {
         </nav>
 
         <header className="all-conversions-header">
-          <h1>Alla kategorier for enhetsomvandling</h1>
+          <h1>Alla kategorier för enhetsomvandling</h1>
           <p>
-            Valj den fysiska storhet du ar intresserad av for att se alla
+            Välj den fysiska storhet du är intresserad av för att se alla
             enheter och omvandlingssidor i den kategorin.
           </p>
         </header>

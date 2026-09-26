@@ -50,9 +50,9 @@ export const englishToolDomains: Array<{
   { id: "science", href: "/en/science-calculators", label: "Science Calculators", description: "Mathematics, physics, biology and chemistry learning tools." },
 ];
 
-const elevatedEverydayComponents = new Set(["bmiCalculator", "pregnancyCalculator"]);
+const elevatedEverydayComponents = new Set(["bmiCalculator", "pregnancyCalculator", "calorieCalculator", "bodyFatCalculator", "idealWeightCalculator"]);
 const dataComputingComponents = new Set(["numberBaseCalculator", "pixelCalculator", "videoBitrateCalculator"]);
-const fitnessComponents = new Set(["oneRepMaxCalculator", "paceCalculator"]);
+const fitnessComponents = new Set(["oneRepMaxCalculator", "paceCalculator", "calorieCalculator", "bodyFatCalculator", "idealWeightCalculator"]);
 
 export const englishToolRegistry: EnglishToolRecord[] = [
   ...englishCalculatorPages.map((tool) => ({

@@ -209,6 +209,8 @@ const iconMap = {
   chefHub: ChefHat,
   dietitianHub: HeartPulse,
   bodyFatCalculator: Activity,
+  gradeCalculator: GraduationCap,
+  calorieCalculator: HeartPulse,
   idealWeightCalculator: Scale,
   terziHub: Scissors,
   clothingSizeCalculator: Shirt,

@@ -21,6 +21,12 @@ import EnglishNumberBaseCalculator from "../../components/EnglishNumberBaseCalcu
 import EnglishPixelCalculator from "../../components/EnglishPixelCalculator";
 import EnglishVideoBitrateCalculator from "../../components/EnglishVideoBitrateCalculator";
 import EnglishOneRepMaxCalculator from "../../components/EnglishOneRepMaxCalculator";
+import EnglishHeightConverter from "../../components/EnglishHeightConverter";
+import EnglishGradeCalculator from "../../components/EnglishGradeCalculator";
+import EnglishCalorieCalculator from "../../components/EnglishCalorieCalculator";
+import EnglishBodyFatCalculator from "../../components/EnglishBodyFatCalculator";
+import EnglishIdealWeightCalculator from "../../components/EnglishIdealWeightCalculator";
+import EnglishFuelEconomyConverter from "../../components/EnglishFuelEconomyConverter";
 import LaminateCalculator from "../../components/LaminateCalculator";
 import LengthComparisonTool from "../../components/LengthComparisonTool";
 import MovingBoxCalculator from "../../components/MovingBoxCalculator";
@@ -54,6 +60,12 @@ import {
 import { getUnitSources } from "../../converter/unitSources";
 import { getEnglishEditorialConversion } from "../../converter/englishEditorialConversions";
 import { buildSiteUrl } from "../../siteConfig";
+import {
+  englishEverydayCalculatorGroups,
+  englishEverydayHubPath,
+} from "../../i18n/englishEverydayCalculatorGroups";
+
+const fitnessToolComponents = new Set(["calorieCalculator", "bodyFatCalculator", "idealWeightCalculator", "oneRepMaxCalculator"]);
 
 const componentMap: Record<EnglishStandaloneToolComponentKey, React.ComponentType<{ locale?: "en" }>> =
   {
@@ -80,6 +92,12 @@ const componentMap: Record<EnglishStandaloneToolComponentKey, React.ComponentTyp
     pixelCalculator: EnglishPixelCalculator,
     videoBitrateCalculator: EnglishVideoBitrateCalculator,
     oneRepMaxCalculator: EnglishOneRepMaxCalculator,
+    heightConverter: EnglishHeightConverter,
+    gradeCalculator: EnglishGradeCalculator,
+    calorieCalculator: EnglishCalorieCalculator,
+    bodyFatCalculator: EnglishBodyFatCalculator,
+    idealWeightCalculator: EnglishIdealWeightCalculator,
+    fuelEconomyConverter: EnglishFuelEconomyConverter,
     laminateCalculator: LaminateCalculator,
     wallpaperCalculator: WallpaperCalculator,
     movingBoxCalculator: MovingBoxCalculator,
@@ -213,6 +231,13 @@ function EnglishStandaloneTool({
 }) {
   const ToolComponent = componentMap[tool.component];
   const pageUrl = buildSiteUrl(tool.englishPath);
+  // Breadcrumb: aracin listelendigi hub (fitness, gunluk hesaplayicilar...).
+  const toolHub = fitnessToolComponents.has(tool.component)
+    ? { href: "/en/fitness-calculators", label: "Fitness Calculators" }
+    : englishEverydayCalculatorGroups.some((group) => group.tools.includes(tool.component))
+      ? { href: englishEverydayHubPath, label: "Everyday Calculators" }
+      : { href: "/en/other-conversions", label: "Other Conversions" };
+
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -226,8 +251,8 @@ function EnglishStandaloneTool({
       {
         "@type": "ListItem",
         position: 2,
-        name: "Other Conversions",
-        item: buildSiteUrl("/en/other-conversions"),
+        name: toolHub.label,
+        item: buildSiteUrl(toolHub.href),
       },
       {
         "@type": "ListItem",
@@ -251,7 +276,7 @@ function EnglishStandaloneTool({
         <nav className="breadcrumbs" aria-label="Breadcrumb">
           <Link href="/en">Home</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/en/other-conversions">Other Conversions</Link>
+          <Link href={toolHub.href}>{toolHub.label}</Link>
           <span aria-hidden="true">&rsaquo;</span>
           <span>{tool.title}</span>
         </nav>
@@ -280,6 +305,24 @@ function EnglishStandaloneTool({
             </div>
           ))}
         </section>
+
+        {tool.faq && tool.faq.length > 0 && (
+          <section className="category-article-content">
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify(buildFaqSchema(tool.faq)).replace(/</g, "\\u003c"),
+              }}
+            />
+            <h2>Frequently asked questions</h2>
+            {tool.faq.map((item) => (
+              <div key={item.question}>
+                <h3>{item.question}</h3>
+                <p>{item.answer}</p>
+              </div>
+            ))}
+          </section>
+        )}
       </div>
     </main>
   );

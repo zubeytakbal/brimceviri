@@ -410,6 +410,26 @@ const englishOnlyPairDefinitions: readonly EnglishOnlyPairDefinition[] = [
     reverseSlug: "milliliters-to-teaspoons",
   },
   {
+    // "cm to feet" is one of the most searched height conversions.
+    category: "uzunluk",
+    firstId: "santimetre",
+    secondId: "fit",
+    firstExamples: [30, 100, 150, 160, 170, 180, 190, 200],
+    secondExamples: [1, 2, 3, 4, 5, 5.5, 6, 6.5],
+    forwardSlug: "centimeters-to-feet",
+    reverseSlug: "feet-to-centimeters",
+  },
+  {
+    // UK body weight is written in stone and pounds.
+    category: "kutle",
+    firstId: "pound",
+    secondId: "stone",
+    firstExamples: [14, 100, 140, 150, 168, 182, 196, 210],
+    secondExamples: [1, 8, 9, 10, 11, 12, 13, 14],
+    forwardSlug: "pounds-to-stone",
+    reverseSlug: "stone-to-pounds",
+  },
+  {
     category: "uzunluk",
     firstId: "orgyia",
     secondId: "metre",

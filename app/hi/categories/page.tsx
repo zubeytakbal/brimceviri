@@ -5,7 +5,7 @@ import { hindiCategoryPages } from "../../converter/localizedHindiReferencePages
 
 export const metadata: Metadata = {
   title: "इकाई परिवर्तन की श्रेणियाँ",
-  description: "लंबाई, द्रव्यमान, आयतन और तापमान के लिए उपलब्ध इकाई परिवर्तक देखें।",
+  description: "लंबाई, द्रव्यमान, आयतन, तापमान और क्षेत्रफल के लिए उपलब्ध इकाई परिवर्तक देखें।",
   alternates: { canonical: "/hi/categories" },
 };
 

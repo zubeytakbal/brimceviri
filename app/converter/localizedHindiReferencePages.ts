@@ -1,6 +1,7 @@
 import { unitPages } from "./unitPages";
 
 export const hindiCategoryPages = [
+  { sourceSlug: "alan", slug: "kshetrafal", category: "alan", title: "क्षेत्रफल रूपांतरण", description: "वर्ग मीटर, वर्ग फ़ुट, हेक्टेयर और एकड़ में क्षेत्रफल बदलें।" },
   { sourceSlug: "uzunluk", slug: "lambai", category: "uzunluk", title: "लंबाई रूपांतरण", description: "मीटर, सेंटीमीटर, किलोमीटर, मील और इंच के बीच लंबाई बदलें।" },
   { sourceSlug: "kutle", slug: "dravyaman", category: "kutle", title: "द्रव्यमान रूपांतरण", description: "किलोग्राम और ग्राम के बीच द्रव्यमान बदलें।" },
   { sourceSlug: "hacim", slug: "aayatan", category: "hacim", title: "आयतन रूपांतरण", description: "लीटर और मिलीलीटर के बीच आयतन बदलें।" },
@@ -8,6 +9,10 @@ export const hindiCategoryPages = [
 ] as const;
 
 const units = [
+  { sourceSlug: "metrekare", slug: "square-meter", name: "वर्ग मीटर", description: "वर्ग मीटर क्षेत्रफल की SI व्युत्पन्न इकाई है। 1 वर्ग मीटर = लगभग 10.7639 वर्ग फ़ुट।" },
+  { sourceSlug: "fitkare", slug: "square-foot", name: "वर्ग फ़ुट", description: "वर्ग फ़ुट क्षेत्रफल की इकाई है। 1 वर्ग फ़ुट = 0.09290304 वर्ग मीटर।" },
+  { sourceSlug: "hektar", slug: "hectare", name: "हेक्टेयर", description: "हेक्टेयर भूमि का क्षेत्रफल मापने के काम आता है। 1 हेक्टेयर = 10,000 वर्ग मीटर।" },
+  { sourceSlug: "akre", slug: "acre", name: "एकड़", description: "एकड़ भूमि के क्षेत्रफल की इकाई है। 1 एकड़ = 4046.8564224 वर्ग मीटर।" },
   { sourceSlug: "metre", slug: "meter", name: "मीटर", description: "मीटर लंबाई की SI मूल इकाई है। 1 मीटर = 100 सेंटीमीटर।" },
   { sourceSlug: "santimetre", slug: "centimeter", name: "सेंटीमीटर", description: "सेंटीमीटर मीटर का सौवाँ भाग है। 1 सेंटीमीटर = 0.01 मीटर।" },
   { sourceSlug: "kilometre", slug: "kilometer", name: "किलोमीटर", description: "किलोमीटर लंबी दूरी मापने के काम आता है। 1 किलोमीटर = 1000 मीटर।" },

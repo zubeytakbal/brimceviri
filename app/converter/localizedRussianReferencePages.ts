@@ -1,6 +1,7 @@
 import { unitPages } from "./unitPages";
 
 export const russianCategoryPages = [
+  { sourceSlug: "alan", slug: "ploshchad", category: "alan", title: "Перевод площади", description: "Переводите квадратные метры, квадратные футы, гектары и акры." },
   { sourceSlug: "uzunluk", slug: "dlina", category: "uzunluk", title: "Перевод длины", description: "Переводите метры, сантиметры, километры, мили и дюймы." },
   { sourceSlug: "kutle", slug: "massa", category: "kutle", title: "Перевод массы", description: "Переводите килограммы в граммы и обратно." },
   { sourceSlug: "hacim", slug: "obyom", category: "hacim", title: "Перевод объёма", description: "Переводите литры в миллилитры и обратно." },
@@ -8,6 +9,10 @@ export const russianCategoryPages = [
 ] as const;
 
 const units = [
+  { sourceSlug: "metrekare", slug: "kvadratnyy-metr", name: "квадратный метр", description: "Квадратный метр — производная единица площади в СИ. 1 м² ≈ 10,7639 квадратного фута." },
+  { sourceSlug: "fitkare", slug: "kvadratnyy-fut", name: "квадратный фут", description: "Квадратный фут — единица площади. 1 квадратный фут = 0,09290304 м²." },
+  { sourceSlug: "hektar", slug: "gektar", name: "гектар", description: "Гектар используют для измерения площади земли. 1 гектар = 10 000 м²." },
+  { sourceSlug: "akre", slug: "akr", name: "акр", description: "Акр — единица площади земли. 1 акр = 4046,8564224 м²." },
   { sourceSlug: "metre", slug: "metr", name: "метр", description: "Метр — основная единица длины в СИ. 1 метр = 100 сантиметров." },
   { sourceSlug: "santimetre", slug: "santimetr", name: "сантиметр", description: "Сантиметр составляет одну сотую метра. 1 сантиметр = 0,01 метра." },
   { sourceSlug: "kilometre", slug: "kilometr", name: "километр", description: "Километр используют для измерения больших расстояний. 1 километр = 1000 метров." },

@@ -861,6 +861,30 @@ export const unitRegistry: UnitRegistryEntry[] = [
     uz: { name: "Tonna", slug: "tonna" },
     enConversionSlug: "tonnes",
   },
+  // Yalnizca belirli dillerde gunluk kullanimi olan kutle birimleri. Ozbek
+  // birimleri ve Iskandinav mili gibi tr adi verilmedi; sayfalari yalnizca
+  // ilgili dillerde var (bkz. localOnlyConversionPages.ts).
+  // 100 g: Hollanda'da "ons", Italya'da "etto".
+  {
+    id: "hektogram",
+    category: "kutle",
+    symbol: "hg",
+    siFactor: 0.1,
+  },
+  // 500 g: Hollanda'da gunluk dilde "pond" (Ingiliz pound'u degil).
+  {
+    id: "metrik-pound",
+    category: "kutle",
+    symbol: "pond",
+    siFactor: 0.5,
+  },
+  // Brezilya'da 15 kg; buyukbas hayvan fiyatlari arroba basina verilir.
+  {
+    id: "arroba",
+    category: "kutle",
+    symbol: "@",
+    siFactor: 15,
+  },
   {
     id: "pound",
     category: "kutle",

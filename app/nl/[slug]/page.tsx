@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import PairConverter from "../../converter/PairConverter";
 import { convert } from "../../converter/convert";
+import { conversionPages } from "../../converter/conversionPages";
 import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
 import {
   findNederlandsConversionPage,
@@ -46,7 +47,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description,
     alternates: {
       canonical: pagePath,
-      languages: { tr: `/${page.sourceSlug}`, nl: pagePath, "x-default": `/${page.sourceSlug}` },
+      languages: conversionPages.some((turkishPage) => turkishPage.slug === page.sourceSlug)
+        ? { tr: `/${page.sourceSlug}`, nl: pagePath, "x-default": `/${page.sourceSlug}` }
+        : { nl: pagePath },
     },
     openGraph: {
       title,
@@ -214,10 +217,12 @@ export default async function NederlandsConversionPage({ params }: PageProps) {
             <ol>{sources.map((source) => <li key={source.url}><a href={source.url} target="_blank" rel="noreferrer">{source.organization}: {source.title}</a></li>)}</ol>
           </section>
         )}
-        <section className="conversion-section language-alternatives">
-          <h2>Andere talen</h2>
-          <Link className="text-link" href={`/${page.sourceSlug}`} hrefLang="tr">Open de Turkse versie</Link>
-        </section>
+        {conversionPages.some((turkishPage) => turkishPage.slug === page.sourceSlug) && (
+          <section className="conversion-section language-alternatives">
+            <h2>Andere talen</h2>
+            <Link className="text-link" href={`/${page.sourceSlug}`} hrefLang="tr">Open de Turkse versie</Link>
+          </section>
+        )}
       </article>
     </main>
   );

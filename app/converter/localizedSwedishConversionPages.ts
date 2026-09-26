@@ -1,4 +1,5 @@
 import { convert } from "./convert";
+import { buildLocalOnlyConversionPages, nordicMilePairs } from "./localOnlyConversionPages";
 import { conversionPages, type ConversionPage } from "./conversionPages";
 import { findUnit } from "./unitRegistry";
 import { swedishUnitPages } from "./localizedSwedishUnitPages";
@@ -219,54 +220,12 @@ function localizeConversionPage(
   };
 }
 
-// Skandinavisk mil (10 km) yalnizca sv/no sitelerinde var; TR tarafinda
-// karsiligi olmadigi icin ortak conversionPages listesinden gelmez. Bu
-// ciftler burada ayni formul/aciklama mantigiyla uretilir.
-const nordicMilePairs: Array<{ first: string; second: string; firstExamples: number[]; secondExamples: number[] }> = [
-  { first: "mil", second: "km", firstExamples: [0.5, 1, 2, 5, 10, 25, 50], secondExamples: [1, 5, 10, 25, 50, 100, 500] },
-  { first: "mil", second: "mi", firstExamples: [0.5, 1, 2, 5, 10, 25, 50], secondExamples: [1, 5, 10, 25, 50, 100, 500] },
-];
-
-function buildNordicMilePage(
-  fromUnit: string,
-  toUnit: string,
-  exampleValues: number[]
-): LocalizedSwedishConversionPage | null {
-  const from = swedishUnitPages.find((page) => page.category === "uzunluk" && page.unit === fromUnit);
-  const to = swedishUnitPages.find((page) => page.category === "uzunluk" && page.unit === toUnit);
-
-  if (!from || !to) {
-    return null;
-  }
-
-  const factor = convert("uzunluk", 1, fromUnit, toUnit);
-
-  return {
-    locale: "sv",
-    sourceSlug: `${from.sourceSlug}-${to.sourceSlug}`,
-    slug: `${from.slug}-${to.slug}`,
-    category: "uzunluk",
-    categoryName: from.categoryName,
-    fromUnit,
-    toUnit,
-    fromName: from.name,
-    toName: to.name,
-    formula: createSwedishFormula(from.name, to.name, factor),
-    explanation: createSwedishExplanation(from.name, to.name, fromUnit, toUnit, factor),
-    exampleValues,
-    reverseSlug: `${to.slug}-${from.slug}`,
-  };
-}
-
-const nordicMilePages = nordicMilePairs.flatMap((pair) => [
-  buildNordicMilePage(pair.first, pair.second, pair.firstExamples),
-  buildNordicMilePage(pair.second, pair.first, pair.secondExamples),
-]);
-
 export const swedishConversionPages: LocalizedSwedishConversionPage[] = [
-  ...conversionPages.map(localizeConversionPage),
-  ...nordicMilePages,
-].filter((page): page is LocalizedSwedishConversionPage => page !== null);
+  ...conversionPages
+    .map(localizeConversionPage)
+    .filter((page): page is LocalizedSwedishConversionPage => page !== null),
+  ...buildLocalOnlyConversionPages("sv", nordicMilePairs, swedishUnitPages, createSwedishFormula, createSwedishExplanation),
+];
 
 export function findSwedishConversionPage(slug: string) {
   return swedishConversionPages.find((page) => page.slug === slug);

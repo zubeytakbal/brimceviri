@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import PairConverter from "../../converter/PairConverter";
 import { convert } from "../../converter/convert";
+import { conversionPages } from "../../converter/conversionPages";
 import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
 import { findEnglishPageByTurkishSlug } from "../../converter/localizedConversionPages";
 import {
@@ -95,6 +96,7 @@ export default async function PortugueseConversionPage({ params }: PageProps) {
   }
 
   const englishPage = findEnglishPageByTurkishSlug(page.sourceSlug);
+  const hasTurkishPage = conversionPages.some((turkishPage) => turkishPage.slug === page.sourceSlug);
   const reversePage = findPortugueseConversionPage(page.reverseSlug);
   const fromUnitInfo = findPortugueseUnitPage(page.category, page.fromUnit);
   const toUnitInfo = findPortugueseUnitPage(page.category, page.toUnit);
@@ -346,27 +348,32 @@ export default async function PortugueseConversionPage({ params }: PageProps) {
           </section>
         )}
 
-        <section className="conversion-section language-alternatives">
-          <h2>Outros idiomas</h2>
-
-          <Link
-            className="text-link"
-            href={`/${page.sourceSlug}`}
-            hrefLang="tr"
-          >
-            Abrir a versão em turco
-          </Link>
-
-          {englishPage && (
-            <Link
-              className="text-link"
-              href={`/en/${englishPage.slug}`}
-              hrefLang="en"
-            >
-              Abrir a versão em inglês
-            </Link>
-          )}
-        </section>
+        {(hasTurkishPage || englishPage) && (
+          <section className="conversion-section language-alternatives">
+            <h2>Outros idiomas</h2>
+  
+            {hasTurkishPage && (
+              <Link
+                className="text-link"
+                href={`/${page.sourceSlug}`}
+                hrefLang="tr"
+              >
+                Abrir a versão em turco
+              </Link>
+  
+            )}
+  
+            {englishPage && (
+              <Link
+                className="text-link"
+                href={`/en/${englishPage.slug}`}
+                hrefLang="en"
+              >
+                Abrir a versão em inglês
+              </Link>
+            )}
+          </section>
+        )}
       </article>
     </main>
   );

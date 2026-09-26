@@ -498,6 +498,21 @@ const categoryUnitDefinitions: CategoryUnitDefinitions = {
       de: "Pfund",
       uz: "Funt",
     },
+    hg: {
+      tr: "Hektogram",
+      en: "Hectogram",
+      de: "Hektogramm",
+    },
+    pond: {
+      tr: "Metrik pound (500 g)",
+      en: "Metric pound (500 g)",
+      de: "Pfund (500 g)",
+    },
+    "@": {
+      tr: "Arroba (15 kg)",
+      en: "Arroba (15 kg)",
+      de: "Arroba (15 kg)",
+    },
     oz: {
       tr: "Ons",
       en: "Ounce",

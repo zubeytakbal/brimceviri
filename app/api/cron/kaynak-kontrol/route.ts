@@ -1,98 +1,13 @@
-import { createHash } from "node:crypto";
-import https from "node:https";
-import tls from "node:tls";
 import { Redis } from "@upstash/redis";
 import { revalidateTag } from "next/cache";
 import { FX_CACHE_TAG } from "../../../converter/fx/fxData";
 import { cgpaSourceMonitorTargets } from "../../../converter/cgpaSourceMonitor";
 import { getRedisCredentials, licenseSourceMonitorTargets } from "../../../converter/licenseSourceMonitor";
-import { openSetupTestIssue, openSourceChangeIssue } from "../../../converter/ownerAlerts";
+import { openSetupTestIssue } from "../../../converter/ownerAlerts";
+import { checkSourceTarget, type MonitorResult } from "../../../converter/sourceCheck";
 
 // Kaynaklar paralel kontrol edilir; her biri kendi 20 sn zaman asimina sahip.
 export const maxDuration = 60;
-
-// mevzuat.gov.tr (paylasilan Cumhurbaskanligi/*.tccb.gov.tr TLS sertifikasini
-// kullanan altyapi) baglanti sirasinda ara sertifikayi (GeoTrust TLS RSA CA
-// G1) gondermiyor -- standart istemciler (Node fetch dahil) zinciri bu yuzden
-// dogrulayamiyor ("unable to verify the first certificate"). Bu, resmi CA
-// dagitim adresinden (http://cacerts.geotrust.com/GeoTrustTLSRSACAG1.crt)
-// indirilip openssl ile tam zincir dogrulamasi yapilarak (leaf.pem: OK)
-// teyit edilen gercek ara sertifika; sadece bu eksik halkayi tamamlamak icin
-// Node'un varsayilan kok sertifikalarina ekleniyor.
-const GEOTRUST_TLS_RSA_CA_G1_PEM = `-----BEGIN CERTIFICATE-----
-MIIEjTCCA3WgAwIBAgIQDQd4KhM/xvmlcpbhMf/ReTANBgkqhkiG9w0BAQsFADBh
-MQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMRkwFwYDVQQLExB3
-d3cuZGlnaWNlcnQuY29tMSAwHgYDVQQDExdEaWdpQ2VydCBHbG9iYWwgUm9vdCBH
-MjAeFw0xNzExMDIxMjIzMzdaFw0yNzExMDIxMjIzMzdaMGAxCzAJBgNVBAYTAlVT
-MRUwEwYDVQQKEwxEaWdpQ2VydCBJbmMxGTAXBgNVBAsTEHd3dy5kaWdpY2VydC5j
-b20xHzAdBgNVBAMTFkdlb1RydXN0IFRMUyBSU0EgQ0EgRzEwggEiMA0GCSqGSIb3
-DQEBAQUAA4IBDwAwggEKAoIBAQC+F+jsvikKy/65LWEx/TMkCDIuWegh1Ngwvm4Q
-yISgP7oU5d79eoySG3vOhC3w/3jEMuipoH1fBtp7m0tTpsYbAhch4XA7rfuD6whU
-gajeErLVxoiWMPkC/DnUvbgi74BJmdBiuGHQSd7LwsuXpTEGG9fYXcbTVN5SATYq
-DfbexbYxTMwVJWoVb6lrBEgM3gBBqiiAiy800xu1Nq07JdCIQkBsNpFtZbIZhsDS
-fzlGWP4wEmBQ3O67c+ZXkFr2DcrXBEtHam80Gp2SNhou2U5U7UesDL/xgLK6/0d7
-6TnEVMSUVJkZ8VeZr+IUIlvoLrtjLbqugb0T3OYXW+CQU0kBAgMBAAGjggFAMIIB
-PDAdBgNVHQ4EFgQUlE/UXYvkpOKmgP792PkA76O+AlcwHwYDVR0jBBgwFoAUTiJU
-IBiV5uNu5g/6+rkS7QYXjzkwDgYDVR0PAQH/BAQDAgGGMB0GA1UdJQQWMBQGCCsG
-AQUFBwMBBggrBgEFBQcDAjASBgNVHRMBAf8ECDAGAQH/AgEAMDQGCCsGAQUFBwEB
-BCgwJjAkBggrBgEFBQcwAYYYaHR0cDovL29jc3AuZGlnaWNlcnQuY29tMEIGA1Ud
-HwQ7MDkwN6A1oDOGMWh0dHA6Ly9jcmwzLmRpZ2ljZXJ0LmNvbS9EaWdpQ2VydEds
-b2JhbFJvb3RHMi5jcmwwPQYDVR0gBDYwNDAyBgRVHSAAMCowKAYIKwYBBQUHAgEW
-HGh0dHBzOi8vd3d3LmRpZ2ljZXJ0LmNvbS9DUFMwDQYJKoZIhvcNAQELBQADggEB
-AIIcBDqC6cWpyGUSXAjjAcYwsK4iiGF7KweG97i1RJz1kwZhRoo6orU1JtBYnjzB
-c4+/sXmnHJk3mlPyL1xuIAt9sMeC7+vreRIF5wFBC0MCN5sbHwhNN1JzKbifNeP5
-ozpZdQFmkCo+neBiKR6HqIA+LMTMCMMuv2khGGuPHmtDze4GmEGZtYLyF8EQpa5Y
-jPuV6k2Cr/N3XxFpT3hRpt/3usU/Zb9wfKPtWpoznZ4/44c1p9rzFcZYrWkj3A+7
-TNBJE0GmP2fhXhP1D/XVfIW/h0yCJGEiV9Glm/uGOa3DXHlmbAcxSyCRraG+ZBkA
-7h4SeM6Y8l/7MBRpPCz6l8Y=
------END CERTIFICATE-----`;
-
-function fetchTextWithExtraTrustedCa(url: string, userAgent: string, redirectsLeft = 3): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const request = https.get(
-      url,
-      {
-        headers: { "User-Agent": userAgent },
-        ca: [...tls.rootCertificates, GEOTRUST_TLS_RSA_CA_G1_PEM],
-      },
-      (response) => {
-        const statusCode = response.statusCode ?? 0;
-        // Universite siteleri adresleri sik tasiyor: birkac yonlendirmeyi izle.
-        const location = response.headers.location;
-        if (statusCode >= 300 && statusCode < 400 && location && redirectsLeft > 0) {
-          response.resume();
-          fetchTextWithExtraTrustedCa(new URL(location, url).toString(), userAgent, redirectsLeft - 1).then(resolve, reject);
-          return;
-        }
-        if (statusCode >= 400) {
-          response.resume();
-          reject(new Error(`HTTP ${statusCode}`));
-          return;
-        }
-        let data = "";
-        response.setEncoding("utf8");
-        response.on("data", (chunk: string) => {
-          data += chunk;
-        });
-        response.on("end", () => resolve(data));
-      },
-    );
-    request.on("error", reject);
-    // Vercel'in fonksiyon suresi asimi tum cron'u sert bir sekilde
-    // (FUNCTION_INVOCATION_TIMEOUT) oldurup temiz bir hata birakmiyor --
-    // burada kendi zaman asimimizi koyup duzgun bir "timeout" hatasi
-    // dondurmek, sonucu "fetch_error" olarak kaydedebilmemizi saglar.
-    request.setTimeout(20000, () => request.destroy(new Error("Zaman aşımı: 20 saniyede yanıt alınamadı")));
-    request.end();
-  });
-}
-
-// Salt-okunur kaynak izleme: bu endpoint hicbir yayinlanmis icerigi
-// degistirmez. Tek yaptigi, izlenen resmi kaynaklarin (su an sadece
-// Karayollari Trafik Yonetmeligi) icerik hash'ini gunluk olarak
-// kontrol edip bir onceki hash ile karsilastirmak ve durumu Redis'e
-// yazmaktir. Icerik degistiyse yalnizca "changed" durumu isaretlenir --
-// site verisi otomatik guncellenmez, bu bilinclidir.
 
 function jsonResponse(data: unknown, status = 200): Response {
   return new Response(JSON.stringify(data, null, 2), {
@@ -100,50 +15,6 @@ function jsonResponse(data: unknown, status = 200): Response {
     headers: { "Content-Type": "application/json; charset=utf-8" },
   });
 }
-
-// trafik.gov.tr her istekte rastgele DOM element ID'leri uretiyor
-// (orn. id="ew1b4f6a4f2198477e9aae1abff3022ca4"), sayfanin gercek
-// icerigiyle hicbir ilgisi yok -- bu, iki bagimsiz cekimi (fetch1.html
-// ve fetch2.html) diff'leyerek dogrulandi, tum farkin bu tek desenden
-// geldigi teyit edildi. Hashlemeden once bu gurultuyu temizlemek,
-// gercek icerik degisikliklerini yanlis pozitiflerden ayirt etmek
-// icin sart -- aksi halde bu kaynak her kontrolde "changed" derdi.
-function normalizeForHashing(text: string): string {
-  return text.replace(/\b[a-z]{0,3}[0-9a-f]{28,40}\d{0,2}\b/gi, "ID");
-}
-
-function hashContent(text: string): string {
-  return createHash("sha256").update(normalizeForHashing(text)).digest("hex");
-}
-
-// Node'un fetch() hatalari genelde ustteki "fetch failed" mesajini
-// verir, gercek sebep (SSL, DNS, baglanti reddi vb.) error.cause
-// icinde saklidir -- teshis icin onu da cikarmak gerekir.
-function describeError(error: unknown): string {
-  if (!(error instanceof Error)) return String(error);
-  const parts = [error.message];
-  let cause: unknown = (error as { cause?: unknown }).cause;
-  while (cause) {
-    if (cause instanceof Error) {
-      parts.push(cause.message);
-      cause = (cause as { cause?: unknown }).cause;
-    } else {
-      parts.push(String(cause));
-      break;
-    }
-  }
-  return parts.join(" <- caused by: ");
-}
-
-type MonitorResult = {
-  id: string;
-  label: string;
-  url: string;
-  status: "baseline_established" | "unchanged" | "changed" | "fetch_error";
-  checkedAt: string;
-  error?: string;
-  ownerAlert?: "created" | "skipped" | "failed";
-};
 
 export async function GET(request: Request) {
   const cronSecret = process.env.CRON_SECRET;
@@ -186,63 +57,7 @@ export async function GET(request: Request) {
     ...cgpaSourceMonitorTargets,
   ];
 
-  const results: MonitorResult[] = await Promise.all(
-    targets.map(async (target): Promise<MonitorResult> => {
-      const checkedAt = new Date().toISOString();
-      const storageKey = `kaynak-kontrol:${target.id}`;
-
-      try {
-        const body = await fetchTextWithExtraTrustedCa(
-          target.url,
-          "BirimCeviri.app kaynak-kontrol botu (salt okunur izleme, iletisim: zubeytakbal9@gmail.com)",
-        );
-        const currentHash = hashContent(body);
-        const previousHash = await redis.get<string>(`${storageKey}:hash`);
-
-        let status: MonitorResult["status"];
-        if (!previousHash) {
-          status = "baseline_established";
-        } else if (previousHash === currentHash) {
-          status = "unchanged";
-        } else {
-          status = "changed";
-        }
-
-        await redis.set(`${storageKey}:hash`, currentHash);
-        await redis.set(`${storageKey}:status`, status);
-        await redis.set(`${storageKey}:checkedAt`, checkedAt);
-
-        let ownerAlert: MonitorResult["ownerAlert"];
-        if (status === "changed") {
-          // Kalici hedeflerde degisim ani saklanir; veri yeniden
-          // dogrulanana kadar sayfa ve bildirim zili uyari gosterir.
-          if (target.persistent) {
-            await redis.set(`${storageKey}:changedAt`, checkedAt);
-          }
-          ownerAlert = await openSourceChangeIssue({
-            label: target.label,
-            url: target.url,
-            pageHref: target.pageHref,
-            checkedAt,
-          });
-        }
-
-        return { id: target.id, label: target.label, url: target.url, status, checkedAt, ownerAlert };
-      } catch (error) {
-        const status: MonitorResult["status"] = "fetch_error";
-        await redis.set(`${storageKey}:status`, status).catch(() => undefined);
-        await redis.set(`${storageKey}:checkedAt`, checkedAt).catch(() => undefined);
-        return {
-          id: target.id,
-          label: target.label,
-          url: target.url,
-          status,
-          checkedAt,
-          error: describeError(error),
-        };
-      }
-    }),
-  );
+  const results: MonitorResult[] = await Promise.all(targets.map((target) => checkSourceTarget(redis, target)));
 
   // Bildirim kurulum testi: token varken yalnizca bir kez calisir.
   let ownerAlertTest: "created" | "skipped" | "failed" | "already_sent" = "skipped";

@@ -68,6 +68,8 @@ export default function CountdownHub({ lang }: { lang: "tr" | "en" }) {
         title: tr ? "İlginizi çekebilir" : "You may also like",
         links: tr
           ? [
+              { href: "/resmi-tatiller", label: "Resmî Tatiller ve Köprü Günleri" },
+              { href: "/iki-tarih-arasi-gun-hesaplama", label: "İki Tarih Arası Gün Hesaplama" },
               { href: "/dunya-saatleri", label: "Dünya Saatleri" },
               { href: "/online-saat", label: "Online Saat" },
               { href: "/zamanlayici", label: "Zamanlayıcı" },
@@ -75,6 +77,8 @@ export default function CountdownHub({ lang }: { lang: "tr" | "en" }) {
               { href: "/yas-hesaplama", label: "Yaş Hesaplama" },
             ]
           : [
+              { href: "/en/federal-holidays", label: "US Federal Holidays" },
+              { href: "/en/days-between-dates", label: "Days Between Dates" },
               { href: "/en/world-clock", label: "World Clock" },
               { href: "/en/online-clock", label: "Online Clock" },
               { href: "/en/timer", label: "Timer" },

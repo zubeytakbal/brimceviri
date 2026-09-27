@@ -12275,3 +12275,687 @@ a.all-units-row .all-units-name {
   margin: 0;
   color: #1f3b44;
 }
+
+/* ---------- Tarih hesaplayicilari ---------- */
+.date-calc {
+  display: grid;
+  gap: 16px;
+}
+
+.date-calc-input {
+  display: grid;
+  gap: 14px;
+  padding: 22px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #1f4f66 0%, #2c7f99 55%, #3fa7a7 100%);
+  color: #ffffff;
+}
+
+.date-calc-input-title {
+  font-size: 1rem;
+}
+
+.date-calc-fields {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 12px;
+}
+
+.date-calc-fields.is-amounts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.date-calc-field {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.date-calc-field-row {
+  display: flex;
+  gap: 6px;
+}
+
+.date-calc-field input,
+.date-calc-field select {
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 10px;
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #172033;
+  background: #ffffff;
+}
+
+.date-calc-field input[type="number"] {
+  width: 100%;
+  max-width: 140px;
+}
+
+.date-calc-field.is-small input[type="number"] {
+  max-width: none;
+}
+
+.date-calc-field-row button,
+.date-calc-swap {
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.date-calc-swap {
+  align-self: end;
+  height: 42px;
+  font-size: 1.1rem;
+}
+
+.date-calc-field-row button:hover,
+.date-calc-swap:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.date-calc-checks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+}
+
+.date-calc-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.date-calc-check input {
+  width: 18px;
+  height: 18px;
+  accent-color: #ffffff;
+}
+
+.date-calc-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.date-calc-chips button {
+  padding: 6px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 999px;
+  background: transparent;
+  color: #ffffff;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.date-calc-chips button:hover {
+  background: #ffffff;
+  color: #0f6f6c;
+}
+
+.date-calc-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.date-calc-stat {
+  display: grid;
+  align-content: start;
+  gap: 4px;
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid #d7e2e8;
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.date-calc-stat span {
+  color: #5b6b7a;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.date-calc-stat strong {
+  color: #172033;
+  font-size: 1.3rem;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.date-calc-stat em {
+  color: #5b6b7a;
+  font-size: 0.85rem;
+  font-style: normal;
+}
+
+.date-calc-stat.is-main {
+  grid-column: 1 / -1;
+  border-color: #3fa7a7;
+  background: linear-gradient(135deg, #effaf9 0%, #ffffff 100%);
+}
+
+.date-calc-stat.is-main strong {
+  color: #0f6f6c;
+  font-size: clamp(1.6rem, 4vw, 2.3rem);
+}
+
+.date-calc-note {
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #fff4e5;
+  color: #7a4a00;
+  font-size: 0.9rem;
+}
+
+.date-calc-holidays {
+  padding: 12px 16px;
+  border: 1px solid #d7e2e8;
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.date-calc-holidays summary {
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.date-calc-holidays ul {
+  margin: 10px 0 0;
+  padding-left: 18px;
+}
+
+.date-calc-holidays li {
+  margin: 4px 0;
+}
+
+.date-calc-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin: 0;
+  font-weight: 700;
+}
+
+.week-now {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  padding: 24px 16px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #1f4f66 0%, #2c7f99 55%, #3fa7a7 100%);
+  color: #ffffff;
+  text-align: center;
+}
+
+.week-now span {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.85;
+}
+
+.week-now strong {
+  font-size: clamp(4rem, 14vw, 7rem);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.week-now em {
+  font-style: normal;
+  font-weight: 600;
+}
+
+.week-now small {
+  opacity: 0.85;
+}
+
+.week-table {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 6px;
+  margin: 12px 0 20px;
+}
+
+.week-table div {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 6px 10px;
+  border: 1px solid #e3eaef;
+  border-radius: 8px;
+  font-size: 0.85rem;
+}
+
+.week-table b {
+  min-width: 22px;
+  color: #0f6f6c;
+}
+
+.week-table .is-current {
+  border-color: #0f6f6c;
+  background: #0f6f6c;
+  color: #ffffff;
+}
+
+.week-table .is-current b {
+  color: #ffffff;
+}
+
+/* ---------- Resmi tatiller ---------- */
+.holiday-tool {
+  display: grid;
+  gap: 16px;
+  min-width: 0;
+}
+
+.holiday-years {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0;
+}
+
+.holiday-years a,
+.holiday-years span {
+  color: #0f6f6c;
+  padding: 6px 14px;
+  border: 1px solid #cfdde5;
+  border-radius: 999px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.holiday-years span {
+  border-color: #0f6f6c;
+  background: #0f6f6c;
+  color: #ffffff;
+}
+
+.holiday-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+}
+
+.holiday-stats div {
+  display: grid;
+  gap: 2px;
+  padding: 14px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #1f4f66 0%, #2c7f99 100%);
+  color: #ffffff;
+}
+
+.holiday-stats strong {
+  font-size: 2rem;
+  line-height: 1.1;
+}
+
+.holiday-stats span {
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+
+.holiday-next {
+  display: grid;
+  gap: 4px;
+  padding: 16px 18px;
+  border: 1px solid #3fa7a7;
+  border-left-width: 6px;
+  border-radius: 14px;
+  background: #effaf9;
+}
+
+.holiday-next span {
+  color: #5b6b7a;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.holiday-next strong {
+  font-size: 1.35rem;
+  color: #0f6f6c;
+}
+
+.holiday-next em {
+  font-style: normal;
+}
+
+.holiday-next a {
+  font-weight: 700;
+}
+
+.holiday-table-wrap {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.holiday-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.holiday-table th,
+.holiday-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #e3eaef;
+  text-align: left;
+  vertical-align: top;
+}
+
+.holiday-table thead th {
+  background: #f3f7f9;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #5b6b7a;
+}
+
+.holiday-table tr.is-weekend td {
+  color: #7a8794;
+}
+
+.holiday-table small {
+  color: #5b6b7a;
+}
+
+.holiday-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: #0f6f6c;
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.holiday-badge.is-half {
+  background: #f0b429;
+  color: #3d2c00;
+}
+
+.holiday-badge.is-weekend {
+  background: #e3eaef;
+  color: #5b6b7a;
+}
+
+.holiday-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.holiday-actions a.time-tool-button {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.holiday-subtitle {
+  margin: 8px 0 0;
+  font-size: 1.2rem;
+}
+
+.holiday-upcoming {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.holiday-upcoming li {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border: 1px solid #e3eaef;
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.holiday-upcoming time {
+  display: grid;
+  justify-items: center;
+  padding: 6px 0;
+  border-radius: 10px;
+  background: #0f6f6c;
+  color: #ffffff;
+  line-height: 1.1;
+}
+
+.holiday-upcoming time b {
+  font-size: 1.3rem;
+}
+
+.holiday-upcoming time small {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+
+.holiday-upcoming div {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.holiday-upcoming div span {
+  color: #5b6b7a;
+  font-size: 0.85rem;
+}
+
+.holiday-upcoming em {
+  color: #0f6f6c;
+  font-style: normal;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.holiday-year-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
+}
+
+.holiday-year-cards a {
+  display: grid;
+  gap: 2px;
+  padding: 14px;
+  border: 1px solid #cfdde5;
+  border-radius: 14px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.holiday-year-cards a:hover,
+.holiday-year-cards a.is-current {
+  border-color: #0f6f6c;
+  background: #effaf9;
+}
+
+.holiday-year-cards strong {
+  font-size: 1.5rem;
+  color: #0f6f6c;
+}
+
+.holiday-year-cards span {
+  color: #5b6b7a;
+  font-size: 0.85rem;
+}
+
+.bridge-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 10px;
+  margin: 12px 0 20px;
+  padding: 0;
+  list-style: none;
+}
+
+.bridge-list li {
+  padding: 14px;
+  border: 1px solid #e3eaef;
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.bridge-list li.is-best {
+  border-color: #2f9e6e;
+  background: #eefaf3;
+}
+
+.bridge-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 10px;
+}
+
+.bridge-head strong {
+  font-size: 1.15rem;
+  color: #172033;
+}
+
+.bridge-head span {
+  color: #2f7a57;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.bridge-list p {
+  margin: 6px 0 0;
+}
+
+.bridge-list small {
+  color: #5b6b7a;
+}
+
+.holiday-calendar {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 14px;
+  margin: 12px 0;
+}
+
+.holiday-month h3 {
+  margin: 0 0 6px;
+  font-size: 1rem;
+  text-transform: capitalize;
+}
+
+.holiday-month-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.holiday-month-grid b {
+  color: #7a8794;
+  font-size: 0.7rem;
+}
+
+.holiday-month-grid span {
+  padding: 4px 0;
+  border-radius: 6px;
+}
+
+.holiday-month-grid .is-weekend,
+.holiday-legend .is-weekend {
+  background: #f1f4f6;
+  color: #7a8794;
+}
+
+.holiday-month-grid .is-holiday,
+.holiday-legend .is-holiday {
+  background: #d64545;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.holiday-month-grid .is-half,
+.holiday-legend .is-half {
+  background: #f0b429;
+  color: #3d2c00;
+  font-weight: 700;
+}
+
+.holiday-month-grid .is-bridge,
+.holiday-legend .is-bridge {
+  background: #2f9e6e;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.holiday-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  font-size: 0.85rem;
+}
+
+.holiday-legend span {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+}
+
+@media (max-width: 560px) {
+  .date-calc-input {
+    padding: 16px;
+  }
+
+  .date-calc-fields.is-amounts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .date-calc-field-row input[type="date"] {
+    flex: 1;
+  }
+
+  .date-calc-fields > .date-calc-field {
+    flex: 1 1 100%;
+  }
+
+  .date-calc-swap {
+    width: 100%;
+    height: 36px;
+  }
+
+  .holiday-upcoming li {
+    grid-template-columns: 48px minmax(0, 1fr);
+  }
+
+  .holiday-upcoming em {
+    grid-column: 2;
+  }
+}

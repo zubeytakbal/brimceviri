@@ -2,7 +2,7 @@ import type { Locale } from "./config";
 import { buildLanguageAlternates } from "./routing";
 
 // Zaman araclari (alarm, zamanlayici, kronometre): diller hreflang ile baglanir.
-export type TimeToolId = "clock" | "worldClock" | "timeZoneConverter" | "countdown" | "alarm" | "timer" | "stopwatch" | "pomodoro" | "interval";
+export type TimeToolId = "clock" | "worldClock" | "timeZoneConverter" | "countdown" | "alarm" | "timer" | "stopwatch" | "pomodoro" | "interval" | "dateDiff" | "businessDays" | "dateAdd" | "weekNumber";
 
 export const timeToolPaths: Record<TimeToolId, Partial<Record<Locale, string>>> = {
   clock: { tr: "/online-saat", en: "/en/online-clock" },
@@ -14,6 +14,10 @@ export const timeToolPaths: Record<TimeToolId, Partial<Record<Locale, string>>> 
   stopwatch: { tr: "/kronometre", en: "/en/stopwatch" },
   pomodoro: { tr: "/pomodoro", en: "/en/pomodoro-timer" },
   interval: { tr: "/tabata-zamanlayici", en: "/en/interval-timer" },
+  dateDiff: { tr: "/iki-tarih-arasi-gun-hesaplama", en: "/en/days-between-dates" },
+  businessDays: { tr: "/is-gunu-hesaplama", en: "/en/business-day-calculator" },
+  dateAdd: { tr: "/tarihe-gun-ekleme", en: "/en/date-calculator" },
+  weekNumber: { tr: "/kacinci-hafta", en: "/en/week-number" },
 };
 
 export function timeToolAlternates(tool: TimeToolId) {

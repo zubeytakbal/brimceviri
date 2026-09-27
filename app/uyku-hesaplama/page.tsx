@@ -3,6 +3,7 @@ import Link from "@/app/components/SiteLink";
 import SleepCalculator from "../components/SleepCalculator";
 import TableOfContents from "../components/TableOfContents";
 import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import { sleepGuideAlternates } from "../i18n/sleepGuidePaths";
 import { buildSiteUrl } from "../siteConfig";
 
 const faqItems: FaqItem[] = [
@@ -78,6 +79,7 @@ export const metadata: Metadata = {
     "Kalkmak istediğin saati (ya da yatacağın saati) gir: 90 dakikalık uyku döngülerine göre en dinlenmiş uyanacağın saatleri anında hesapla.",
   alternates: {
     canonical: "/uyku-hesaplama",
+    ...sleepGuideAlternates(),
   },
   openGraph: {
     title: "Uyku Hesaplama: Kaçta Yatmalı, Kaçta Kalkmalıyım?",

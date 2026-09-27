@@ -8083,3 +8083,297 @@ a.all-units-row .all-units-name {
   background: #168f8c;
   color: #ffffff;
 }
+
+/* Icindekiler kutusu (uzun rehber sayfalari) */
+.page-toc {
+  margin: 28px 0 8px;
+  border: 1px solid #d7e2e8;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.page-toc summary {
+  padding: 14px 18px;
+  color: #172033;
+  font-size: 1.05rem;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.page-toc ol {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 2px 18px;
+  margin: 0;
+  padding: 0 18px 16px 38px;
+}
+
+.page-toc li {
+  padding: 5px 0;
+  color: #667085;
+}
+
+.page-toc a {
+  color: #0f6f6c;
+  text-decoration: none;
+}
+
+.page-toc a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.category-article-content h2[id] {
+  scroll-margin-top: 90px;
+}
+
+.sleep-now-button {
+  justify-self: start;
+  width: auto;
+  padding-inline: 16px;
+}
+
+/* Uyku hesaplayici: tek odakli akis (kendi tasarimimiz) */
+.sleep-flow {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  text-align: center;
+}
+
+.sleep-flow-title {
+  margin: 0;
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.sleep-time-picker {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.sleep-stepper {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+}
+
+.sleep-stepper-label {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sleep-stepper button {
+  width: 48px;
+  height: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 8px;
+  background: transparent;
+  color: #ffffff;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.sleep-stepper button:hover,
+.sleep-stepper button:focus-visible {
+  background: rgba(255, 255, 255, 0.18);
+  outline: none;
+}
+
+.sleep-stepper-value {
+  min-width: 2.2ch;
+  color: #ffffff;
+  font-size: clamp(2.6rem, 9vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.sleep-time-colon {
+  color: #ffffff;
+  font-size: 2.6rem;
+  font-weight: 700;
+  padding-top: 18px;
+}
+
+.sleep-primary-button,
+.sleep-secondary-button {
+  width: min(100%, 420px);
+  min-height: 54px;
+  border-radius: 10px;
+  font: inherit;
+  font-size: 1.02rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.sleep-primary-button {
+  border: 2px solid #ffffff;
+  background: #86c700;
+  color: #ffffff;
+}
+
+.sleep-primary-button:hover {
+  background: #79b400;
+}
+
+.sleep-secondary-button {
+  border: 2px solid #ffffff;
+  background: #ffffff;
+  color: #1f4f66;
+}
+
+.sleep-secondary-button:hover {
+  background: #eef6f7;
+}
+
+.sleep-or {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: min(100%, 420px);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sleep-or::before,
+.sleep-or::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.sleep-result-intro {
+  margin: 0 0 12px;
+  color: #3b4658;
+  font-size: 0.98rem;
+  font-weight: 600;
+}
+
+.sleep-result-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sleep-result-card {
+  display: grid;
+  gap: 6px;
+  justify-items: start;
+  padding: 14px 16px;
+  border: 2px solid #d7e2e8;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.sleep-result-card.is-recommended {
+  border-color: #168f8c;
+  background: #eafaf8;
+}
+
+.sleep-result-time {
+  color: #172033;
+  font-size: 1.9rem;
+  font-weight: 700;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.sleep-result-detail {
+  color: #526071;
+  font-size: 0.86rem;
+}
+
+.sleep-cycle-strip {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 3px;
+  width: 100%;
+}
+
+.sleep-cycle-strip span {
+  height: 6px;
+  border-radius: 3px;
+  background: #d7e2e8;
+}
+
+.sleep-cycle-strip span.is-filled {
+  background: #168f8c;
+}
+
+.sleep-alarm-button {
+  justify-self: start;
+  margin: 0 0 12px;
+  padding: 9px 14px;
+  border: 1px solid #168f8c;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #0f6f6c;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.sleep-alarm-button:hover {
+  background: #eafaf8;
+}
+
+.sleep-alarm-button.is-small {
+  margin: 4px 0 0;
+  padding: 6px 10px;
+  font-size: 0.8rem;
+}
+
+.sleep-alarm-status {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 14px;
+  margin: 12px 0;
+  padding: 12px 16px;
+  border: 1px solid #168f8c;
+  border-radius: 10px;
+  background: #eafaf8;
+  color: #1f3b44;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.sleep-alarm-status.is-ringing {
+  border-color: #b45309;
+  background: #fff4e0;
+  color: #7a3d00;
+  font-size: 1.05rem;
+}
+
+.sleep-alarm-status button {
+  padding: 8px 14px;
+  border: 0;
+  border-radius: 8px;
+  background: #168f8c;
+  color: #ffffff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.sleep-alarm-status.is-ringing button {
+  background: #b45309;
+}

@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { calculatorPages } from "./converter/calculatorPages";
+import { sleepGuideAlternates, sleepGuidePaths } from "./i18n/sleepGuidePaths";
 import { cgpaUniversities } from "./converter/india/cgpaUniversities";
 import { categoryPages } from "./converter/categoryPages";
 import { conversionPages } from "./converter/conversionPages";
@@ -2979,6 +2980,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: contentLastModified,
       changeFrequency: "monthly",
       priority: 0.75,
+    },
+    ...(["tr", "fr", "es", "es-419", "pt", "it", "nl", "sv", "no", "da", "bn"] as const).map((locale) => ({
+      url: `${baseUrl}${sleepGuidePaths[locale]}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+      alternates: sleepGuideAlternates(),
+    })),
+    {
+      url: `${baseUrl}/tarla-donum-hesaplama`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/merdiven-hesaplama`,

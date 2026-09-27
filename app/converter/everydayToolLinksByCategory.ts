@@ -48,6 +48,7 @@ export const everydayToolLinksByCategory: Record<
     { href: "/elastik-uzama-hesaplama", label: "Elastik Uzama Hesaplama" },
   ],
   alan: [
+    { href: "/tarla-donum-hesaplama", label: "Tarla Dönüm Hesaplama" },
     { href: "/boya-hesaplama", label: "Boya Hesaplama" },
     { href: "/fayans-hesaplama", label: "Fayans Hesaplama" },
     { href: "/tugla-hesaplama", label: "Tuğla Hesaplama" },

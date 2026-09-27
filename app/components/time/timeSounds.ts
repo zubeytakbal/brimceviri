@@ -100,3 +100,10 @@ export function startRinging(id: TimeSoundId, volume = 0.5) {
   const interval = window.setInterval(() => playSound(id, volume), 1200);
   return () => window.clearInterval(interval);
 }
+
+/** Kisa bip (aralikli antrenman geri sayimi / faz degisimi). */
+export function beep(frequency = 880, duration = 0.12, volume = 0.6) {
+  const ctx = unlockAudio();
+  if (!ctx) return;
+  tone(ctx, frequency, ctx.currentTime, duration, "square", Math.max(0.02, Math.min(1, volume)) * 0.35);
+}

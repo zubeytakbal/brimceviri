@@ -2,9 +2,21 @@
 
 // Alarm/zamanlayici sesleri: dosya yok, Web Audio ile uretilir (telif yok,
 // hafif). AudioContext kullanici tiklamasi sirasinda acilmalidir.
-export type TimeSoundId = "classic" | "chime" | "digital" | "soft";
+export type TimeSoundId = "classic" | "chime" | "digital" | "soft" | "custom";
 
 export const TIME_SOUND_IDS: TimeSoundId[] = ["classic", "chime", "digital", "soft"];
+
+// Kullanicinin kendi ses dosyasi (IndexedDB'den yuklenen blob'un object URL'i).
+let customUrl: string | null = null;
+let previewAudio: HTMLAudioElement | null = null;
+
+export function setCustomSoundUrl(url: string | null) {
+  customUrl = url;
+}
+
+export function hasCustomSound() {
+  return customUrl !== null;
+}
 
 let context: AudioContext | null = null;
 
@@ -33,8 +45,18 @@ function tone(ctx: AudioContext, frequency: number, start: number, duration: num
   oscillator.stop(start + duration + 0.05);
 }
 
-// Bir "tur" ses calar; ~1 sn surer.
+// Bir "tur" ses calar; ~1 sn surer. Kendi ses dosyasinda ilk 6 saniyeyi dinletir.
 export function playSound(id: TimeSoundId, volume = 0.5) {
+  if (id === "custom") {
+    if (!customUrl) return playSound("classic", volume);
+    previewAudio?.pause();
+    previewAudio = new Audio(customUrl);
+    previewAudio.volume = Math.max(0.05, Math.min(1, volume));
+    void previewAudio.play().catch(() => {});
+    const audio = previewAudio;
+    window.setTimeout(() => audio.pause(), 6000);
+    return;
+  }
   const ctx = unlockAudio();
   if (!ctx) return;
   const now = ctx.currentTime;
@@ -59,6 +81,21 @@ export function playSound(id: TimeSoundId, volume = 0.5) {
 
 // Durdurulana kadar her saniye tekrar eder.
 export function startRinging(id: TimeSoundId, volume = 0.5) {
+  if (id === "custom" && customUrl) {
+    const audio = new Audio(customUrl);
+    audio.loop = true;
+    audio.volume = Math.max(0.05, Math.min(1, volume));
+    // Otomatik oynatma engellenirse klasik zil devreye girer.
+    let fallback: (() => void) | null = null;
+    void audio.play().catch(() => {
+      fallback = startRinging("classic", volume);
+    });
+    return () => {
+      audio.pause();
+      fallback?.();
+    };
+  }
+  if (id === "custom") return startRinging("classic", volume);
   playSound(id, volume);
   const interval = window.setInterval(() => playSound(id, volume), 1200);
   return () => window.clearInterval(interval);

@@ -3,7 +3,8 @@ import CountdownTimer from "../components/time/CountdownTimer";
 import TimeToolPage from "../components/time/TimeToolPage";
 import { timeRelated } from "../components/time/timeRelatedLinks";
 import type { FaqItem } from "../converter/faqSchema";
-import { timerPresetMinutes, timerPresetSlug, timeToolAlternates } from "../i18n/timeToolPaths";
+import { timeToolAlternates } from "../i18n/timeToolPaths";
+import { timerPresetLinks } from "../i18n/timerPresets";
 import { buildSiteUrl } from "../siteConfig";
 
 const title = "Online Zamanlayıcı: Geri Sayım Sayacı";
@@ -17,9 +18,7 @@ export const metadata: Metadata = {
   openGraph: { title, description, url: buildSiteUrl("/zamanlayici"), siteName: "BirimCeviri.app", locale: "tr_TR", type: "website" },
 };
 
-const presetLinks = Object.fromEntries(
-  timerPresetMinutes.map((minutes) => [minutes, `/zamanlayici/${timerPresetSlug.tr(minutes)}`]),
-);
+const presetLinks = timerPresetLinks("tr");
 
 const faqItems: FaqItem[] = [
   {

@@ -5,21 +5,37 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import AnalogClock from "./AnalogClock";
 import TimeStepper from "./TimeStepper";
-import { playSound, startRinging, TIME_SOUND_IDS, unlockAudio, type TimeSoundId } from "./timeSounds";
+import SoundPicker from "./SoundPicker";
+import { playSound, startRinging, unlockAudio, type TimeSoundId } from "./timeSounds";
 import { timeToolsCopy, type TimeToolsCopy, type TimeToolsLocale } from "./timeToolsCopy";
 import { formatClock, makeId, nowMs, pad2, useNow } from "./useNow";
 import { useWakeLock } from "./useWakeLock";
 
-type Alarm = { id: string; time: string; label: string; sound: TimeSoundId; enabled: boolean; at: number };
+type Repeat = "once" | "daily" | "weekdays";
+type Alarm = { id: string; time: string; label: string; sound: TimeSoundId; enabled: boolean; at: number; repeat?: Repeat };
 
 const STORAGE_KEY = "birimceviri:alarms";
 
-function nextAt(time: string, from = Date.now()) {
+function nextAt(time: string, from = Date.now(), repeat: Repeat = "once") {
   const [hours, minutes] = time.split(":").map(Number);
   const target = new Date(from);
   target.setHours(hours, minutes, 0, 0);
   if (target.getTime() <= from) target.setDate(target.getDate() + 1);
+  // Hafta ici: cumartesi (6) ve pazar (0) atlanir.
+  while (repeat === "weekdays" && (target.getDay() === 0 || target.getDay() === 6)) target.setDate(target.getDate() + 1);
   return target.getTime();
+}
+
+// Telefonda titresim: calarken 2 saniyede bir desen tekrarlanir.
+function startVibration() {
+  if (typeof navigator === "undefined" || !("vibrate" in navigator)) return () => {};
+  const pattern = [600, 300, 600];
+  navigator.vibrate(pattern);
+  const id = window.setInterval(() => navigator.vibrate(pattern), 2000);
+  return () => {
+    window.clearInterval(id);
+    navigator.vibrate(0);
+  };
 }
 
 function untilText(ms: number, copy: TimeToolsCopy) {
@@ -36,7 +52,7 @@ function loadAlarms(): Alarm[] {
     return Array.isArray(parsed)
       ? parsed
           .filter((alarm) => typeof alarm?.time === "string" && /^\d{2}:\d{2}$/.test(alarm.time))
-          .map((alarm) => ({ ...alarm, at: alarm.enabled ? nextAt(alarm.time) : 0 }))
+          .map((alarm) => ({ ...alarm, at: alarm.enabled ? nextAt(alarm.time, Date.now(), alarm.repeat) : 0 }))
       : [];
   } catch {
     return [];
@@ -51,6 +67,7 @@ export default function AlarmClock({ locale, initialTime }: { locale: TimeToolsL
   const [minute, setMinute] = useState(() => Number(initialTime?.split(":")[1] ?? 0));
   const [label, setLabel] = useState("");
   const [sound, setSound] = useState<TimeSoundId>("classic");
+  const [repeat, setRepeat] = useState<Repeat>("once");
   const [volume, setVolume] = useState(0.7);
   const [alarms, setAlarms] = useState<Alarm[]>([]);
   const [loaded, setLoaded] = useState(false);
@@ -83,8 +100,22 @@ export default function AlarmClock({ locale, initialTime }: { locale: TimeToolsL
       if (!due) return;
       window.clearInterval(id);
       setRinging(due);
-      setAlarms((current) => current.map((alarm) => (alarm.id === due.id ? { ...alarm, enabled: false, at: 0 } : alarm)));
-      stopRef.current = startRinging(due.sound, volume);
+      // Tekrarlayan alarm bir sonraki gune kurulur; tek seferlik kapanir.
+      setAlarms((current) =>
+        current.map((alarm) =>
+          alarm.id !== due.id
+            ? alarm
+            : alarm.repeat && alarm.repeat !== "once"
+              ? { ...alarm, at: nextAt(alarm.time, due.at + 60000, alarm.repeat) }
+              : { ...alarm, enabled: false, at: 0 }
+        )
+      );
+      const stopSound = startRinging(due.sound, volume);
+      const stopVibration = startVibration();
+      stopRef.current = () => {
+        stopSound();
+        stopVibration();
+      };
     }, 250);
     return () => window.clearInterval(id);
   }, [alarms, ringing, volume]);
@@ -115,7 +146,7 @@ export default function AlarmClock({ locale, initialTime }: { locale: TimeToolsL
 
   const addAlarm = (time: string) => {
     unlockAudio();
-    const alarm: Alarm = { id: makeId(), time, label: label.trim(), sound, enabled: true, at: nextAt(time) };
+    const alarm: Alarm = { id: makeId(), time, label: label.trim(), sound, enabled: true, at: nextAt(time, nowMs(), repeat), repeat };
     setAlarms((current) => [...current, alarm].sort((a, b) => a.time.localeCompare(b.time)));
     setLabel("");
   };
@@ -133,7 +164,7 @@ export default function AlarmClock({ locale, initialTime }: { locale: TimeToolsL
 
   const snooze = () => {
     if (!ringing) return;
-    const snoozed: Alarm = { ...ringing, id: `${ringing.id}-z${Date.now()}`, enabled: true, at: Date.now() + 5 * 60000 };
+    const snoozed: Alarm = { ...ringing, id: `${ringing.id}-z${Date.now()}`, enabled: true, at: Date.now() + 5 * 60000, repeat: "once" };
     const target = new Date(snoozed.at);
     snoozed.time = `${pad2(target.getHours())}:${pad2(target.getMinutes())}`;
     stop();
@@ -188,12 +219,14 @@ export default function AlarmClock({ locale, initialTime }: { locale: TimeToolsL
           </label>
           <label>
             <span>{copy.alarm.sound}</span>
-            <select value={sound} onChange={(event) => setSound(event.target.value as TimeSoundId)}>
-              {TIME_SOUND_IDS.map((id) => (
-                <option key={id} value={id}>
-                  {copy.sounds[id]}
-                </option>
-              ))}
+            <SoundPicker value={sound} onChange={setSound} copy={copy} />
+          </label>
+          <label>
+            <span>{copy.repeat.label}</span>
+            <select value={repeat} onChange={(event) => setRepeat(event.target.value as Repeat)}>
+              <option value="once">{copy.repeat.once}</option>
+              <option value="daily">{copy.repeat.daily}</option>
+              <option value="weekdays">{copy.repeat.weekdays}</option>
             </select>
           </label>
           <label>
@@ -228,7 +261,10 @@ export default function AlarmClock({ locale, initialTime }: { locale: TimeToolsL
             {alarms.map((alarm) => (
               <li key={alarm.id} className={alarm.enabled ? "is-enabled" : undefined}>
                 <strong>{alarm.time}</strong>
-                <span>{alarm.label || copy.sounds[alarm.sound]}</span>
+                <span>
+                  {alarm.label || copy.sounds[alarm.sound]}
+                  {alarm.repeat && alarm.repeat !== "once" && <em className="time-alarm-repeat"> · {copy.repeat[alarm.repeat]}</em>}
+                </span>
                 <label className="time-switch">
                   <input
                     type="checkbox"
@@ -237,7 +273,7 @@ export default function AlarmClock({ locale, initialTime }: { locale: TimeToolsL
                       unlockAudio();
                       const enabled = event.target.checked;
                       setAlarms((current) =>
-                        current.map((item) => (item.id === alarm.id ? { ...item, enabled, at: enabled ? nextAt(item.time) : 0 } : item))
+                        current.map((item) => (item.id === alarm.id ? { ...item, enabled, at: enabled ? nextAt(item.time, Date.now(), item.repeat) : 0 } : item))
                       );
                     }}
                   />

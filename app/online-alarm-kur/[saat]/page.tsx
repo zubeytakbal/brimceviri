@@ -5,7 +5,7 @@ import AlarmClock from "../../components/time/AlarmClock";
 import TimeToolPage from "../../components/time/TimeToolPage";
 import { timeRelated } from "../../components/time/timeRelatedLinks";
 import type { FaqItem } from "../../converter/faqSchema";
-import { alarmPresetAlternates, alarmPresetSlug, alarmPresetTimes } from "../../i18n/timeToolPaths";
+import { alarmPresetAlternates, alarmPresetSlug, alarmPresetTimes, trTimeLocative } from "../../i18n/timeToolPaths";
 import { buildSiteUrl } from "../../siteConfig";
 
 export const dynamicParams = false;
@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<{ saat: str
   if (!time) return {};
   const path = `/online-alarm-kur/${alarmPresetSlug.tr(time)}`;
   const title = `Saat ${time} Alarm Kur: Tek Tıkla Çalar Saat`;
-  const description = `Saat ${time} için alarm hazır: tek tıkla kur, sesi seç, ertele. Saat ${time}'da kalkmak için ideal yatış saatleri de bu sayfada.`;
+  const description = `Saat ${time} için alarm hazır: tek tıkla kur, sesi seç, ertele. Saat ${trTimeLocative(time)} kalkmak için ideal yatış saatleri de bu sayfada.`;
   return {
     title,
     description,
@@ -46,7 +46,7 @@ export default async function AlarmPresetPage({ params }: { params: Promise<{ sa
 
   const faqItems: FaqItem[] = [
     {
-      question: `Saat ${time}'da kalkmak için kaçta yatmalıyım?`,
+      question: `Saat ${trTimeLocative(time)} kalkmak için kaçta yatmalıyım?`,
       answer: `90 dakikalık uyku döngüleri ve 15 dakikalık uykuya dalma süresiyle: 6 döngü için ${bedTimes[0].bed}, 5 döngü için ${bedTimes[1].bed}, 4 döngü için ${bedTimes[2].bed}.`,
     },
     {
@@ -68,18 +68,18 @@ export default async function AlarmPresetPage({ params }: { params: Promise<{ sa
       ]}
       crumbLabel="Sayfa yolu"
       title={`Saat ${time} Alarm Kur`}
-      intro={`Alarm saati ${time} olarak hazırlandı. "Alarmı ekle"ye bas, gerekirse sesi ve etiketi değiştir. Aşağıda ${time}'da dinç kalkmak için önerilen yatış saatlerini de bulabilirsin.`}
+      intro={`Alarm saati ${time} olarak hazırlandı. "Alarmı ekle"ye bas, gerekirse sesi ve etiketi değiştir. Aşağıda ${trTimeLocative(time)} dinç kalkmak için önerilen yatış saatlerini de bulabilirsin.`}
       tool={<AlarmClock locale="tr" initialTime={time} />}
       related={{ title: "Diğer alarm saatleri", links: timeRelated.tr.alarms.filter((link) => link.href !== path) }}
       tocTitle="İçindekiler"
       tocItems={[
-        { id: "yatis", label: `${time}'da kalkmak için yatış saati` },
+        { id: "yatis", label: `${trTimeLocative(time)} kalkmak için yatış saati` },
         { id: "faq", label: "Sık sorulan sorular" },
       ]}
       faqTitle="Sık Sorulan Sorular"
       faqItems={faqItems}
     >
-      <h2 id="yatis">Saat {time}&apos;da kalkmak için kaçta yatmalı?</h2>
+      <h2 id="yatis">Saat {trTimeLocative(time)} kalkmak için kaçta yatmalı?</h2>
       <p>15 dakikalık uykuya dalma süresi dahil, 90 dakikalık döngülere göre:</p>
       <div className="conversion-table-wrap">
         <table className="conversion-table">

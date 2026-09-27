@@ -39,8 +39,12 @@ export async function openSourceChangeIssue(input: {
       body: JSON.stringify({ title: `Source changed: ${input.label} — please re-check`, body }),
       signal: AbortSignal.timeout(15000),
     });
+    if (!response.ok) {
+      console.log(`[kaynak-kontrol] GitHub issue failed: HTTP ${response.status}`);
+    }
     return response.ok ? "created" : "failed";
-  } catch {
+  } catch (error) {
+    console.log(`[kaynak-kontrol] GitHub issue failed: ${error instanceof Error ? error.message : String(error)}`);
     return "failed";
   }
 }
@@ -68,8 +72,12 @@ export async function openSetupTestIssue(): Promise<"created" | "skipped" | "fai
       }),
       signal: AbortSignal.timeout(15000),
     });
+    if (!response.ok) {
+      console.log(`[kaynak-kontrol] GitHub issue failed: HTTP ${response.status}`);
+    }
     return response.ok ? "created" : "failed";
-  } catch {
+  } catch (error) {
+    console.log(`[kaynak-kontrol] GitHub issue failed: ${error instanceof Error ? error.message : String(error)}`);
     return "failed";
   }
 }

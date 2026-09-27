@@ -169,6 +169,7 @@ export async function GET(request: Request) {
   const credentials = getRedisCredentials();
 
   if (!credentials) {
+    console.log("[kaynak-kontrol] Redis not configured; source checks and alerts skipped");
     return jsonResponse(
       {
         error:
@@ -256,6 +257,12 @@ export async function GET(request: Request) {
       }
     }
   }
+
+  // Vercel Logs'ta gorunsun diye kisa ozet (token degeri asla yazilmaz).
+  console.log(
+    `[kaynak-kontrol] ownerAlertTest=${ownerAlertTest} tokenSet=${Boolean(process.env.GITHUB_ISSUE_TOKEN)} ` +
+      results.map((result) => `${result.id}:${result.status}${result.ownerAlert ? `(${result.ownerAlert})` : ""}`).join(" "),
+  );
 
   return jsonResponse({ fxRevalidated, ownerAlertTest, results });
 }

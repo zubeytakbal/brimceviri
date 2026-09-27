@@ -13,6 +13,8 @@ import {
   type TimeToolId,
 } from "./i18n/timeToolPaths";
 import { cgpaUniversities } from "./converter/india/cgpaUniversities";
+import { worldCities } from "./converter/time/worldCities";
+import { buildLanguageAlternates } from "./i18n/routing";
 import { categoryPages } from "./converter/categoryPages";
 import { conversionPages } from "./converter/conversionPages";
 import { fxContentBn } from "./converter/fx/fxContentBn";
@@ -3006,6 +3008,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
         changeFrequency: "monthly" as const,
         priority: 0.8,
         alternates: timeToolAlternates(tool),
+      })),
+    ),
+    ...worldCities.flatMap((city) =>
+      [`/dunya-saatleri/${city.tr}`, `/en/world-clock/${city.en}`].map((path) => ({
+        url: `${baseUrl}${path}`,
+        lastModified: contentLastModified,
+        changeFrequency: "daily" as const,
+        priority: 0.6,
+        alternates: buildLanguageAlternates({ tr: `/dunya-saatleri/${city.tr}`, en: `/en/world-clock/${city.en}` }, "tr"),
       })),
     ),
     ...timerPresetMinutes.flatMap((minutes) =>

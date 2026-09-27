@@ -4,6 +4,8 @@ export type GeoTool = { href: string; title: string; description: string; group:
 export const geoToolsTr: GeoTool[] = [
   { href: "/harita-olcegi-hesaplama", title: "Harita Ölçeği Hesaplama", description: "Haritadaki cm'nin gerçekte kaç km olduğu, gerçek alan, ölçek bulma ve çizgi ölçek.", group: "harita" },
   { href: "/koordinat-donusturucu", title: "Koordinat Dönüştürücü", description: "Derece-dakika-saniye, ondalık derece, UTM ve ITRF96 3° TM arasında dönüşüm.", group: "harita" },
+  { href: "/iller-arasi-mesafe", title: "İller Arası Mesafe", description: "81 il arası karayolu (KGM) ve kuş uçuşu mesafe, yol süresi ve yakıt maliyeti.", group: "turkiye" },
+  { href: "/turkiye-il-haritasi", title: "Türkiye İl Haritası", description: "81 il, plaka kodları, bölgeler ve rakımlar; tıklanabilir harita.", group: "turkiye" },
   { href: "/buyuk-daire-mesafesi-hesaplama", title: "Kuş Uçuşu Mesafe (Büyük Daire)", description: "İki koordinat arasındaki en kısa mesafe ve başlangıç rotası.", group: "harita" },
   { href: "/tarla-donum-hesaplama", title: "Tarla Dönüm Hesaplama", description: "Kenar ölçülerinden arazi alanı; dönüm, dekar ve m².", group: "harita" },
   { href: "/yerel-saat-hesaplama", title: "Yerel Saat Farkı Hesaplama", description: "Boylam farkından yerel saat; her meridyen 4 dakika.", group: "zaman" },
@@ -25,5 +27,9 @@ export const geoGroupLabels: Record<GeoTool["group"], string> = {
 };
 
 export function geoRelated(exclude: string, limit = 8) {
-  return geoToolsTr.filter((t) => t.href !== exclude).slice(0, limit).map((t) => ({ href: t.href, label: t.title }));
+  const seen = new Set<string>([exclude]);
+  return geoToolsTr
+    .filter((t) => !seen.has(t.href) && seen.add(t.href))
+    .slice(0, limit)
+    .map((t) => ({ href: t.href, label: t.title }));
 }

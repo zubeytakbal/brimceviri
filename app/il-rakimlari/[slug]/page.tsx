@@ -10,7 +10,7 @@ import {
   getProvinceRankContext,
 } from "../../converter/provinceElevationHub";
 import { buildSiteUrl } from "../../siteConfig";
-import { trGenitive, trLocative } from "../../converter/turkishSuffix";
+import { trAblative, trGenitive, trLocative } from "../../converter/turkishSuffix";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -207,7 +207,9 @@ export default async function ProvinceElevationDetailPage({ params }: PageProps)
           <p>
             Diğer iller için{" "}
             <Link href="/il-rakimlari">İllerin Rakımı</Link>
-            {" "}sayfasına bakabilirsin.
+            {" "}sayfasına bakabilirsin. {province.nameTr} ile diğer iller arasındaki karayolu ve kuş uçuşu mesafeler için{" "}
+            <Link href={`/iller-arasi-mesafe/${province.id}`}>{trAblative(province.nameTr)} illere mesafe</Link>, tüm illeri haritada görmek için{" "}
+            <Link href="/turkiye-il-haritasi">Türkiye il haritası</Link> sayfasını kullanabilirsin.
           </p>
 
           <h2>Kaynaklar</h2>

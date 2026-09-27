@@ -14,6 +14,7 @@ import { worldCities } from "./converter/time/worldCities";
 import { timerPresetAlternates, timerPresetPath, timerPresets } from "./i18n/timerPresets";
 import { countdownEvents, countdownPath, pairedEvent } from "./converter/time/countdownEvents";
 import { HOLIDAY_YEARS } from "./converter/time/holidays";
+import { turkeyProvinces } from "./converter/geo/turkeyProvinces";
 import { zonePairs } from "./converter/time/timeZonePairs";
 import { buildLanguageAlternates } from "./i18n/routing";
 import { categoryPages } from "./converter/categoryPages";
@@ -3033,7 +3034,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly" as const,
       priority: /\d{4}$/.test(path) ? 0.7 : 0.8,
     })),
-    ...["/cografya-hesaplamalari", "/harita-olcegi-hesaplama", "/yerel-saat-hesaplama", "/koordinat-donusturucu"].map((path) => ({
+    ...[
+      "/cografya-hesaplamalari",
+      "/harita-olcegi-hesaplama",
+      "/yerel-saat-hesaplama",
+      "/koordinat-donusturucu",
+      "/iller-arasi-mesafe",
+      "/turkiye-il-haritasi",
+      ...turkeyProvinces.map((p) => `/iller-arasi-mesafe/${p.id}`),
+    ].map((path) => ({
       url: `${baseUrl}${path}`,
       lastModified: contentLastModified,
       changeFrequency: "monthly" as const,

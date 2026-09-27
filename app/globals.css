@@ -11538,3 +11538,245 @@ a.all-units-row .all-units-name {
 .tz-planner-scroll {
   max-width: 100%;
 }
+
+/* ===== Tarih cevirici ===== */
+.date-converter {
+  display: grid;
+  gap: 16px;
+}
+
+.date-converter-input {
+  display: grid;
+  gap: 14px;
+  padding: 22px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #1f4f66 0%, #2c7f99 55%, #3fa7a7 100%);
+  color: #ffffff;
+}
+
+.date-converter-modes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.date-converter-modes button {
+  padding: 8px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 999px;
+  background: transparent;
+  color: #ffffff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.date-converter-modes button.is-active {
+  background: #ffffff;
+  color: #0f6f6c;
+}
+
+.date-converter-fields {
+  display: grid;
+  grid-template-columns: 90px 1fr 120px auto;
+  align-items: end;
+  gap: 10px;
+}
+
+.date-converter-fields label {
+  display: grid;
+  gap: 4px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.date-converter-fields input,
+.date-converter-fields select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 10px;
+  font-size: 1rem;
+  color: #172033;
+}
+
+.date-converter-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.date-result {
+  display: grid;
+  gap: 4px;
+  padding: 16px;
+  border: 1px solid #d7e2e8;
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.date-result.is-source {
+  border-color: #168f8c;
+  background: #eafaf8;
+}
+
+.date-result span {
+  color: #475467;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.date-result strong {
+  color: #1f3b44;
+  font-size: 1.35rem;
+}
+
+.date-result em {
+  color: #667085;
+  font-size: 0.85rem;
+  font-style: normal;
+}
+
+.date-converter-invalid {
+  margin: 0;
+  padding: 14px;
+  border-radius: 12px;
+  background: #fff4e5;
+  color: #7a4a00;
+}
+
+@media (max-width: 560px) {
+  .date-converter-fields {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .date-converter-fields label:nth-child(2) {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+}
+
+/* ===== Ay evreleri ===== */
+.moon-icon-dark {
+  fill: #2a2f3d;
+}
+
+.moon-icon-crater {
+  fill: #000000;
+  opacity: 0.08;
+}
+
+.live-moon {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 28px;
+  padding: 28px;
+  border-radius: 18px;
+  background: radial-gradient(circle at 25% 40%, #1f2c52 0%, #0a0f22 75%);
+  color: #eef2ff;
+}
+
+.live-moon-disc .moon-icon {
+  width: min(220px, 50vw);
+  height: auto;
+  filter: drop-shadow(0 0 30px rgba(255, 248, 220, 0.35));
+}
+
+.live-moon-info {
+  display: grid;
+  gap: 8px;
+}
+
+.live-moon-info strong {
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+}
+
+.live-moon-info dl {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+
+.live-moon-info dl div {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 10px;
+}
+
+.live-moon-info dt {
+  color: rgba(238, 242, 255, 0.7);
+  font-weight: 700;
+}
+
+.live-moon-info dd {
+  margin: 0;
+}
+
+.live-moon-info small {
+  opacity: 0.75;
+}
+
+.moon-calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.moon-calendar-head {
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #475467;
+}
+
+.moon-calendar-day {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  padding: 6px 2px;
+  border-radius: 10px;
+  background: #10172e;
+  color: #e6ebf7;
+}
+
+.moon-calendar-day b {
+  font-size: 0.8rem;
+}
+
+.moon-calendar-day small {
+  font-size: 0.62rem;
+  text-align: center;
+  color: #ffd98a;
+}
+
+.moon-calendar-day.is-main {
+  box-shadow: inset 0 0 0 2px #e8a317;
+}
+
+.moon-phase-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.moon-phase-cell .moon-icon {
+  background: #10172e;
+  border-radius: 50%;
+}
+
+@media (max-width: 640px) {
+  .live-moon {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .live-moon-info dl div {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+}

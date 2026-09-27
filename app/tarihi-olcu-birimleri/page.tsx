@@ -338,6 +338,9 @@ export default function TarihiOlcuBirimleriPage() {
               <li>
                 <Link href="/kategoriler/hacim">Tüm hacim birimleri</Link>
               </li>
+              <li>
+                <Link href="/tarih-cevirici">Hicri ve Rumi tarih çevirici (eski belgeler için)</Link>
+              </li>
             </ul>
           ),
         },

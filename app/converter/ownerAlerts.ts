@@ -81,3 +81,38 @@ export async function openSetupTestIssue(): Promise<"created" | "skipped" | "fai
     return "failed";
   }
 }
+
+// Ogrenciler ayni universiteyi esik kadar isteyince bir kez haber verir.
+export async function openUniversityRequestIssue(name: string, count: number): Promise<"created" | "skipped" | "failed"> {
+  const token = process.env.GITHUB_ISSUE_TOKEN;
+  if (!token) return "skipped";
+
+  try {
+    const response = await fetch(`https://api.github.com/repos/${REPOSITORY}/issues`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: "application/vnd.github+json",
+        "X-GitHub-Api-Version": "2022-11-28",
+        "User-Agent": "birimceviri-kaynak-kontrol",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title: `CGPA: students requested "${name.slice(0, 80)}"`,
+        body: [
+          `Visitors have requested **${name}** ${count} times on /en/cgpa-to-percentage.`,
+          "",
+          "Find the university's official CGPA-to-percentage rule (regulations, circular or conversion certificate), then add it to app/converter/india/cgpaUniversities.ts with the source link and verification date.",
+          "",
+          "_The name above was typed by a visitor; check it before acting._",
+        ].join("\n"),
+      }),
+      signal: AbortSignal.timeout(15000),
+    });
+    if (!response.ok) console.log(`[cgpa-request] GitHub issue failed: HTTP ${response.status}`);
+    return response.ok ? "created" : "failed";
+  } catch (error) {
+    console.log(`[cgpa-request] GitHub issue failed: ${error instanceof Error ? error.message : String(error)}`);
+    return "failed";
+  }
+}

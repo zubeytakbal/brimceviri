@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import CgpaCalculator from "../../components/CgpaCalculator";
+import CgpaUniversityRequest from "../../components/CgpaUniversityRequest";
 import YouMayAlsoLike from "../../components/YouMayAlsoLike";
 import { getCgpaSourceAlerts } from "../../converter/cgpaSourceMonitor";
 import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
@@ -100,12 +101,13 @@ export default async function CgpaToPercentageHubPage() {
             SPPU and 80% at Anna University.
           </p>
 
-          <h2>University not listed?</h2>
+          <h2 id="request-university">University not listed?</h2>
           <p>
-            Look for &ldquo;conversion of CGPA to percentage&rdquo; in your university&apos;s academic regulations or on the back of your
-            marksheet. We only list universities whose formula we could confirm in an official document; the two &ldquo;Other&rdquo;
-            options in the calculator are common rules, not official formulas.
+            Tell us which university you need. Look for &ldquo;conversion of CGPA to percentage&rdquo; in your university&apos;s academic
+            regulations or on the back of your marksheet in the meantime. We only list universities whose formula we could confirm in an
+            official document; the two &ldquo;Other&rdquo; options in the calculator are common rules, not official formulas.
           </p>
+          <CgpaUniversityRequest />
 
           <h2>Frequently asked questions</h2>
           {faqItems.map((item) => (

@@ -8026,3 +8026,60 @@ a.all-units-row .all-units-name {
   color: #0f6f6c;
   font-weight: 600;
 }
+
+/* CGPA sayfasi: resmi kaynagi simdi kontrol et */
+.cgpa-source-check {
+  display: grid;
+  gap: 10px;
+  justify-items: start;
+  margin: 16px 0 8px;
+}
+
+.cgpa-source-check .engineering-target-button {
+  width: auto;
+  min-width: 0;
+  padding-inline: 18px;
+  border-color: #168f8c;
+  background: #ffffff;
+  color: #0f6f6c;
+}
+
+.cgpa-source-check .engineering-target-button:disabled {
+  opacity: 0.7;
+  cursor: progress;
+}
+
+.cgpa-source-check-result {
+  margin: 0;
+  color: #3b4658;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.cgpa-source-check-result a {
+  color: #0f6f6c;
+}
+
+.cgpa-request {
+  display: grid;
+  gap: 12px;
+  max-width: 520px;
+  margin: 8px 0 24px;
+}
+
+.cgpa-request .category-general-converter-field span {
+  color: #3b4658;
+}
+
+.cgpa-request input {
+  border: 1px solid #c9d6de !important;
+}
+
+.cgpa-request .engineering-target-button {
+  justify-self: start;
+  width: auto;
+  padding-inline: 18px;
+  border-color: #168f8c;
+  background: #168f8c;
+  color: #ffffff;
+}

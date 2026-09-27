@@ -191,7 +191,7 @@ export default function CgpaCalculator({
 
       <p className="calculator-usage-hint">
         {formula.slug.startsWith("generic")
-          ? "Your university is not listed: this uses a common rule, not an official formula. Check your university's regulations or the conversion note on your marksheet."
+          ? "Your university is not listed: this uses a common rule, not an official formula. Check your university's regulations or the conversion note on your marksheet, and request your university at the bottom of the CGPA to percentage page."
           : "Uses the formula from the official source listed on this page. The percentage on an official conversion certificate from your university always takes precedence."}
         {mode === "sgpa" && " CGPA here is the credit-weighted average of your SGPAs; some universities publish the CGPA directly on the final marksheet."}
       </p>

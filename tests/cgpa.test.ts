@@ -64,3 +64,15 @@ describe("source change alerts", () => {
     expect(isAlertActive({ verifiedOn: "2026-09-27" }, null)).toBe(false);
   });
 });
+
+describe("university requests", () => {
+  it("validates and normalises names", async () => {
+    const { validateUniversityName, requestKey } = await import("../app/converter/cgpaRequests");
+    expect(validateUniversityName("  University   of Mumbai ")).toBe("University of Mumbai");
+    expect(validateUniversityName("x")).toBeNull();
+    expect(validateUniversityName("see https://spam.example")).toBeNull();
+    expect(validateUniversityName("12345")).toBeNull();
+    expect(validateUniversityName(42)).toBeNull();
+    expect(requestKey("University of Mumbai!")).toBe(requestKey("university  of mumbai"));
+  });
+});

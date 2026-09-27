@@ -3012,6 +3012,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
         alternates: timeToolAlternates(tool),
       })),
     ),
+    ...[
+      ["/tarih-cevirici", "/en/hijri-date-converter"],
+      ["/ay-evreleri", "/en/moon-phases"],
+      ["/altin-saat", "/en/golden-hour"],
+    ].flatMap(([trPath, enPath]) =>
+      [trPath, enPath].map((path) => ({
+        url: `${baseUrl}${path}`,
+        lastModified: contentLastModified,
+        changeFrequency: "daily" as const,
+        priority: 0.7,
+        alternates: buildLanguageAlternates({ tr: trPath, en: enPath }, "tr"),
+      })),
+    ),
     ...zonePairs.map((pair) => ({
       url: `${baseUrl}/en/time-zone-converter/${pair.slug}`,
       lastModified: contentLastModified,

@@ -1,4 +1,4 @@
-import { sunTimes } from "./solar";
+import { lightWindows, sunTimes } from "./solar";
 import {
   differenceMinutes,
   formatInZone,
@@ -98,7 +98,18 @@ export function cityFacts(city: WorldCity, now: Date, lang: Lang) {
       difference: describeDifference(differenceMinutes(city.timeZone, ref.timeZone, now), lang),
     }));
 
+  const todayParts = localDateParts(city.timeZone, now);
+  const windows = lightWindows(todayParts.year, todayParts.month, todayParts.day, city.lat, city.lon);
+  const span = (pair: [Date, Date] | null) => (pair ? `${formatTime(pair[0], city.timeZone, lang)} – ${formatTime(pair[1], city.timeZone, lang)}` : "—");
+  const light = {
+    morningBlue: span(windows.morningBlue),
+    morningGolden: span(windows.morningGolden),
+    eveningGolden: span(windows.eveningGolden),
+    eveningBlue: span(windows.eveningBlue),
+  };
+
   return {
+    light,
     offset,
     utcLabel: formatUtcOffset(offset),
     zoneName: timeZoneLongName(city.timeZone, LOCALE[lang], now),

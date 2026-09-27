@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
+import AllUnitsSection from "../../../components/AllUnitsSection";
 import CategoryUnitConverter from "../../../components/CategoryUnitConverter";
 import CategoryPageLayout from "../../../components/CategoryPageLayout";
 import { createConversionCards } from "../../../components/categoryPageUtils";
@@ -202,9 +203,19 @@ export default async function GermanCategoryPage({
           <CategoryUnitConverter
             category={categoryPage.category}
             locale="de"
+            syncKey={categoryPage.category}
           />
         ),
       }}
+      afterHero={
+        <AllUnitsSection
+          category={categoryPage.category}
+          locale="de"
+          conversions={germanConversionPages}
+          hrefPrefix="/de/"
+          variant="category"
+        />
+      }
       conversionHeading="Beliebte Umrechnungen"
       conversionCountLabel={`${conversionCards.length} Paare`}
       conversionCards={conversionCards}

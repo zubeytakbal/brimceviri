@@ -225,12 +225,93 @@ export const englishEditorialConversions: readonly EnglishEditorialConversion[] 
     title: "Making 22K gold from pure gold",
     paragraphs: [
       "22K gold is 22/24 gold (about 91.67%). Pure 24K gold is too soft for most jewellery, so it is alloyed with copper, silver or zinc.",
-      "Example: 9.17 grams of pure gold makes 9.17 × 24 ÷ 22 = 10 grams of 22K gold. The extra 0.83 g is the alloy metal.",
+      "Formula: 22K weight = 24K weight × 24 ÷ 22. Example: 9.17 grams of pure gold makes 9.17 × 24 ÷ 22 = 10 grams of 22K gold. The extra 0.83 g is the alloy metal.",
     ],
     related: [
       { href: "/en/22k-gold-to-24k-gold", label: "22K to 24K gold" },
       { href: "/en/gold-price-calculator-india", label: "Gold price calculator (India)" },
       { href: "/en/18k-gold-to-22k-gold", label: "18K to 22K gold" },
+    ],
+  },
+  {
+    slug: "milliamperes-to-amperes",
+    title: "Milliamps in everyday electronics",
+    paragraphs: [
+      "Milli means one thousandth, so 1 mA = 0.001 A and 1 A = 1,000 mA. To convert, divide the milliamp value by 1,000: 250 mA = 0.25 A.",
+      "Small currents are usually written in milliamps: a standard indicator LED runs at about 10–20 mA, and a microcontroller pin is often limited to around 20–40 mA. Chargers and fuses are rated in amps, so a 2 A charger can supply 2,000 mA.",
+      "Battery capacity in mAh follows the same rule: a 5,000 mAh power bank stores 5 Ah of charge at its cell voltage.",
+    ],
+    related: [
+      { href: "/en/amperes-to-milliamperes", label: "Amps to milliamps" },
+      { href: "/en/volts-to-millivolt", label: "Volts to millivolts" },
+      { href: "/en/kiloohm-to-ohm", label: "Kiloohms to ohms" },
+    ],
+  },
+  {
+    slug: "cubic-feet-per-minute-to-cubic-meter-per-second",
+    title: "CFM, CMS and CMH in HVAC and fans",
+    paragraphs: [
+      "1 CFM (cubic foot per minute) = 0.000471947 m³/s. In the other direction, 1 m³/s — often written CMS — is about 2,118.88 CFM.",
+      "Duct and fan catalogues also use m³/h (CMH): 1 CFM ≈ 1.699 m³/h, so a 1,000 CFM fan moves about 1,699 m³/h or 0.472 m³/s.",
+    ],
+    note: "Fan ratings are usually given at zero static pressure; real airflow in a duct system is lower.",
+    related: [
+      { href: "/en/cubic-meter-per-second-to-cubic-feet-per-minute", label: "m³/s to CFM" },
+      { href: "/en/gallons-per-minute-to-cubic-meter-per-second", label: "GPM to m³/s" },
+      { href: "/en/engineering-calculators", label: "Engineering calculators" },
+    ],
+  },
+  {
+    slug: "pascals-to-millibar",
+    title: "Pascals, millibars and hectopascals",
+    paragraphs: [
+      "1 mbar = 100 Pa, so divide pascals by 100 to get millibars: 101,325 Pa = 1,013.25 mbar, the standard atmosphere.",
+      "A millibar is exactly one hectopascal (hPa). Weather maps use hPa, while vacuum gauges and older instruments often show mbar — the numbers are identical.",
+    ],
+    related: [
+      { href: "/en/millibar-to-pascals", label: "Millibar to pascals" },
+      { href: "/en/hectopascals-to-pascals", label: "Hectopascals to pascals" },
+      { href: "/en/pascals-to-bars", label: "Pascals to bar" },
+    ],
+  },
+  {
+    slug: "centipoise-to-pascal-second",
+    title: "Centipoise, mPa·s and Pa·s",
+    paragraphs: [
+      "1 cP = 0.001 Pa·s = 1 mPa·s, so a viscosity written in centipoise has the same number in millipascal-seconds.",
+      "Water at 20 °C is about 1.0 cP (0.001 Pa·s). Honey is several thousand cP, which is why data sheets for oils, paints and resins often switch to Pa·s for thick liquids.",
+    ],
+    note: "This is dynamic viscosity. Kinematic viscosity (centistokes) also depends on density.",
+    related: [
+      { href: "/en/pascal-second-to-centipoise", label: "Pa·s to centipoise" },
+      { href: "/en/square-meter-per-second-to-centistoke", label: "m²/s to centistokes" },
+      { href: "/en/engineering-calculators", label: "Engineering calculators" },
+    ],
+  },
+  {
+    slug: "radian-per-second-to-rpm",
+    title: "Angular speed: rad/s and rpm",
+    paragraphs: [
+      "One revolution is 2π radians and a minute has 60 seconds, so rpm = rad/s × 60 ÷ 2π ≈ rad/s × 9.5493.",
+      "Example: a motor shaft at 157 rad/s turns at about 1,500 rpm. The reverse is rad/s = rpm × 2π ÷ 60 ≈ rpm × 0.10472.",
+    ],
+    related: [
+      { href: "/en/rpm-to-radian-per-second", label: "rpm to rad/s" },
+      { href: "/en/degree-per-second-to-rpm", label: "Degrees per second to rpm" },
+      { href: "/en/radian-to-degree", label: "Radians to degrees" },
+    ],
+  },
+  {
+    slug: "micrometer-to-nanometer",
+    title: "Micrometers and nanometers in practice",
+    paragraphs: [
+      "1 µm = 1,000 nm, so multiply micrometers by 1,000: 0.55 µm = 550 nm.",
+      "Visible light spans roughly 380–750 nm (0.38–0.75 µm). Bacteria are a few micrometers long, while chip features, viruses and thin films are described in nanometers.",
+    ],
+    related: [
+      { href: "/en/nanometer-to-micrometer", label: "Nanometers to micrometers" },
+      { href: "/en/micrometer-to-millimeters", label: "Micrometers to millimeters" },
+      { href: "/en/angstrom-to-nanometer", label: "Ångström to nanometers" },
     ],
   },
   {

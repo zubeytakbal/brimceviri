@@ -167,6 +167,16 @@ function isSearchableSymbol(symbol: string) {
   );
 }
 
+// En fazla 4 anlamli basamakli, bilimsel gosterimsiz katsayi: 0.001, 5,
+// 2.54, 1,000. Sifirlar anlamli basamak sayilmaz.
+function isRoundFactor(value: string) {
+  if (!/^[0-9.,]+$/.test(value)) {
+    return false;
+  }
+  const digits = value.replace(/[.,]/g, "").replace(/^0+/, "").replace(/0+$/, "");
+  return digits.length > 0 && digits.length <= 4;
+}
+
 export function buildEnglishConversionTitle(page: {
   fromPlural: string;
   toPlural: string;
@@ -174,7 +184,7 @@ export function buildEnglishConversionTitle(page: {
   toSymbol: string;
   fromName: string;
   toName: string;
-}) {
+}, oneUnitResult?: string) {
   const names = `${page.fromPlural} to ${page.toPlural}`;
   const differsFromName = (symbol: string, name: string, plural: string) =>
     ![name, plural].some((value) => value.toLowerCase() === symbol.toLowerCase());
@@ -184,7 +194,15 @@ export function buildEnglishConversionTitle(page: {
     differsFromName(page.fromSymbol, page.fromName, page.fromPlural) &&
     differsFromName(page.toSymbol, page.toName, page.toPlural);
   const symbols = `${page.fromSymbol} to ${page.toSymbol}`;
+  // Katsayi yuvarlaksa (1 mA = 0.001 A, 1 g = 5 ct) cevap basliga girer:
+  // arama sonucunda sayfayi acmadan gorulen bu bilgi tiklama oranini
+  // artirir. 0.393701 gibi uzun katsayilarda eski kalip kalir.
+  const answer =
+    hasSymbols && oneUnitResult && isRoundFactor(oneUnitResult)
+      ? `1 ${page.fromSymbol} = ${oneUnitResult} ${page.toSymbol}`
+      : null;
   const candidates = [
+    ...(answer ? [`${names}: ${answer}`] : []),
     ...(hasSymbols ? [`${names} Converter (${symbols})`, `${names} (${symbols})`] : []),
     `${names} Converter`,
     names,

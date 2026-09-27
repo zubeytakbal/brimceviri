@@ -41,4 +41,11 @@ describe("ingilizce donusum basliklari", () => {
     const titles = englishConversionPages.map((page) => buildEnglishConversionTitle(page));
     expect(titles.filter((title, index) => titles.indexOf(title) !== index)).toEqual([]);
   });
+
+  it("yuvarlak katsayida cevap basliga girer", () => {
+    const page = englishConversionPages.find((candidate) => candidate.slug === "milliamperes-to-amperes");
+    expect(page && buildEnglishConversionTitle(page, "0.001")).toBe("Milliamperes to Amperes: 1 mA = 0.001 A");
+    const inches = englishConversionPages.find((candidate) => candidate.slug === "centimeters-to-inches");
+    expect(inches && buildEnglishConversionTitle(inches, "0.393701")).toBe("Centimeters to Inches Converter (cm to in)");
+  });
 });

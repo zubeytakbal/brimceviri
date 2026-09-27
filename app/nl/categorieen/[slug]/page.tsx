@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
+import AllUnitsSection from "../../../components/AllUnitsSection";
 import CategoryUnitConverter from "../../../components/CategoryUnitConverter";
 import { nederlandsCategoryPages } from "../../../converter/localizedNederlandsCategoryPages";
 import { nederlandsConversionPages } from "../../../converter/localizedNederlandsConversionPages";
@@ -87,8 +88,16 @@ export default async function NederlandsCategoryPage({ params }: PageProps) {
 
         <section className="conversion-section">
           <h2>Eenheden omrekenen</h2>
-          <CategoryUnitConverter category={categoryPage.category} locale="nl" />
+          <CategoryUnitConverter category={categoryPage.category} locale="nl" syncKey={categoryPage.category} />
         </section>
+
+        <AllUnitsSection
+          category={categoryPage.category}
+          locale="nl"
+          conversions={nederlandsConversionPages}
+          hrefPrefix="/nl/"
+          variant="category"
+        />
 
         {conversions.length > 0 && (
           <section className="conversion-section">

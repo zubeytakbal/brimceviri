@@ -22,6 +22,8 @@ import VatCalculator from "../../components/VatCalculator";
 import WallpaperCalculator from "../../components/WallpaperCalculator";
 import WeightComparisonTool from "../../components/WeightComparisonTool";
 import PairConverter from "../../converter/PairConverter";
+import AllUnitsSection from "../../components/AllUnitsSection";
+import { smartDefaultInput } from "../../converter/smartDefaultInput";
 import { convert } from "../../converter/convert";
 import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
 import { findEnglishPageByTurkishSlug } from "../../converter/localizedConversionPages";
@@ -340,7 +342,7 @@ function GermanConversionPage({
               toUnit={page.toUnit}
               fromName={page.fromName}
               toName={page.toName}
-              locale="de"
+              locale="de" syncKey={page.category}
             />
           </div>
 
@@ -375,6 +377,16 @@ function GermanConversionPage({
           </div>
         </div>
       </section>
+
+      <AllUnitsSection
+        category={page.category}
+        locale="de"
+        conversions={germanConversionPages}
+        hrefPrefix="/de/"
+        variant="pair"
+        defaultUnit={page.fromUnit}
+        defaultValue={smartDefaultInput(page.category, page.fromUnit, page.toUnit)}
+      />
 
       <article className="conversion-content">
         <section className="conversion-section">

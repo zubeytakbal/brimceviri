@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import AllUnitsSection from "../../../components/AllUnitsSection";
 import CategoryUnitConverter from "../../../components/CategoryUnitConverter";
 import { getLocalizedUnitOptions } from "../../../converter/localizedUnitOptions";
 import CategoryPageLayout from "../../../components/CategoryPageLayout";
@@ -194,10 +195,20 @@ export default async function SpanishCategoryPage({ params }: PageProps) {
           <CategoryUnitConverter
             category={categoryPage.category}
             locale="es"
+            syncKey={categoryPage.category}
             unitOptions={getLocalizedUnitOptions(categoryPage.category, "es")}
           />
         ),
       }}
+      afterHero={
+        <AllUnitsSection
+          category={categoryPage.category}
+          locale="es"
+          conversions={spanishConversionPages}
+          hrefPrefix="/es/"
+          variant="category"
+        />
+      }
       conversionHeading="Conversiones populares"
       conversionCountLabel={`${conversionCards.length} pares`}
       conversionCards={conversionCards}

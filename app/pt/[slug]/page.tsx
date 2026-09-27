@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
 import PairConverter from "../../converter/PairConverter";
+import AllUnitsSection from "../../components/AllUnitsSection";
+import { smartDefaultInput } from "../../converter/smartDefaultInput";
 import { convert } from "../../converter/convert";
 import { conversionPages } from "../../converter/conversionPages";
 import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
@@ -180,7 +182,7 @@ export default async function PortugueseConversionPage({ params }: PageProps) {
               toUnit={page.toUnit}
               fromName={page.fromName}
               toName={page.toName}
-              locale="pt"
+              locale="pt" syncKey={page.category}
             />
           </div>
 
@@ -215,6 +217,16 @@ export default async function PortugueseConversionPage({ params }: PageProps) {
           </div>
         </div>
       </section>
+
+      <AllUnitsSection
+        category={page.category}
+        locale="pt"
+        conversions={portugueseConversionPages}
+        hrefPrefix="/pt/"
+        variant="pair"
+        defaultUnit={page.fromUnit}
+        defaultValue={smartDefaultInput(page.category, page.fromUnit, page.toUnit)}
+      />
 
       <article className="conversion-content">
         <section className="conversion-section">

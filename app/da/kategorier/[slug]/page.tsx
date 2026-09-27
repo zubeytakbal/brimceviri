@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import AllUnitsSection from "../../../components/AllUnitsSection";
 import CategoryUnitConverter from "../../../components/CategoryUnitConverter";
 import { getLocalizedUnitOptions } from "../../../converter/localizedUnitOptions";
 import CategoryPageLayout from "../../../components/CategoryPageLayout";
@@ -190,10 +191,20 @@ export default async function DanishCategoryPage({ params }: PageProps) {
           <CategoryUnitConverter
             category={categoryPage.category}
             locale="da"
+            syncKey={categoryPage.category}
             unitOptions={getLocalizedUnitOptions(categoryPage.category, "da")}
           />
         ),
       }}
+      afterHero={
+        <AllUnitsSection
+          category={categoryPage.category}
+          locale="da"
+          conversions={danishConversionPages}
+          hrefPrefix="/da/"
+          variant="category"
+        />
+      }
       conversionHeading="Populære omregninger"
       conversionCountLabel={`${conversionCards.length} par`}
       conversionCards={conversionCards}

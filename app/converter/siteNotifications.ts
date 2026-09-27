@@ -98,6 +98,20 @@ const byDateDesc = (a: SiteNotification, b: SiteNotification) => (a.date < b.dat
 export async function getSiteNotifications(locale: NotificationLocale = "tr"): Promise<SiteNotification[]> {
   // Turkce duyurular ve ehliyet kaynak uyarisi yalnizca Turkce sayfa icin.
   // Kendi duyuru listesi olmayan diller bos liste alir.
+  if (locale === "en") {
+    // CGPA formul kaynagi degisen kurumlar: formul yeniden dogrulanana kadar.
+    const { getCgpaSourceAlerts } = await import("./cgpaSourceMonitor");
+    const alerts = await getCgpaSourceAlerts().catch(() => []);
+    const alertNotifications: SiteNotification[] = alerts.map(({ university, changedAt }) => ({
+      id: `cgpa-source-changed-${university.slug}-${changedAt.slice(0, 10)}`,
+      date: changedAt.slice(0, 10),
+      title: `${university.shortName}: CGPA formula being re-checked`,
+      message: `The official ${university.shortName} source changed on ${changedAt.slice(0, 10)}. We are re-checking the CGPA to percentage formula.`,
+      href: `/en/cgpa-to-percentage/${university.slug}`,
+    }));
+    return [...alertNotifications, ...englishManualNotifications].sort(byDateDesc);
+  }
+
   if (locale !== "tr") {
     return [...(manualNotificationsByLocale[locale] ?? [])].sort(byDateDesc);
   }

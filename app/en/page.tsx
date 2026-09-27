@@ -6,6 +6,9 @@ import { getSiteNotifications } from "../converter/siteNotifications";
 
 const englishHomeUrl = buildSiteUrl("/en");
 
+// Bildirim zilindeki kaynak uyarilari (CGPA formul takibi) gunde iki kez yenilenir.
+export const revalidate = 43200;
+
 export const metadata: Metadata = {
   title: "Unit Converter – cm to in, kg to lb, °C to °F",
   description:

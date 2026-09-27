@@ -60,7 +60,17 @@ const constructionCluster: RelatedPageCard[] = [
   { href: "/en/gaj-to-square-feet", title: "Gaj to Square Feet", description: "Plot sizes: 1 gaj = 9 sq ft.", icon: "area" },
 ];
 
-const clusters: RelatedPageCard[][] = [goldCluster, landCluster, numbersCluster, constructionCluster];
+const studyCluster: RelatedPageCard[] = [
+  { href: "/en/cgpa-to-percentage", title: "CGPA to Percentage Calculator", description: "Official formulas for VTU, Anna, DU, SPPU and more.", icon: "numberBaseCalculator" },
+  { href: "/en/cgpa-to-percentage/vtu", title: "VTU CGPA to Percentage", description: "(CGPA − 0.75) × 10.", icon: "numberBaseCalculator" },
+  { href: "/en/cgpa-to-percentage/anna-university", title: "Anna University CGPA to %", description: "CGPA × 10.", icon: "numberBaseCalculator" },
+  { href: "/en/cgpa-to-percentage/delhi-university", title: "Delhi University CGPA to %", description: "CGPA × 9.5 (CBCS).", icon: "numberBaseCalculator" },
+  { href: "/en/cgpa-to-percentage/cbse", title: "CBSE CGPA to Percentage", description: "Indicative percentage = CGPA × 9.5.", icon: "numberBaseCalculator" },
+  { href: "/en/mathematics-calculators/percentage", title: "Percentage Calculator", description: "What percentage one number is of another.", icon: "numberBaseCalculator" },
+  { href: "/en/grade-calculator", title: "Grade Calculator", description: "Weighted grades and the score you need.", icon: "numberBaseCalculator" },
+];
+
+const clusters: RelatedPageCard[][] = [goldCluster, landCluster, numbersCluster, constructionCluster, studyCluster];
 
 const extraClusterMembers: Record<string, RelatedPageCard[]> = {
   // Kumede kart olarak gosterilmeyen ama kumenin sayfalarini gostermesi gereken sayfalar.
@@ -135,7 +145,9 @@ const extraClusterMembers: Record<string, RelatedPageCard[]> = {
 };
 
 export function getEnglishYouMayAlsoLike(path: string, limit = 6): RelatedPageCard[] {
-  const pool = [...clusters.filter((cluster) => cluster.some((card) => card.href === path)).flat(), ...(extraClusterMembers[path] ?? [])];
+  // Tum CGPA kurum sayfalari calisma kumesini gosterir.
+  const extra = extraClusterMembers[path] ?? (path.startsWith("/en/cgpa-to-percentage/") ? studyCluster : []);
+  const pool = [...clusters.filter((cluster) => cluster.some((card) => card.href === path)).flat(), ...extra];
   const seen = new Set<string>([path]);
   const picked: RelatedPageCard[] = [];
   for (const card of pool) {

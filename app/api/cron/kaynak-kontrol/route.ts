@@ -4,7 +4,12 @@ import tls from "node:tls";
 import { Redis } from "@upstash/redis";
 import { revalidateTag } from "next/cache";
 import { FX_CACHE_TAG } from "../../../converter/fx/fxData";
+import { cgpaSourceMonitorTargets } from "../../../converter/cgpaSourceMonitor";
 import { getRedisCredentials, licenseSourceMonitorTargets } from "../../../converter/licenseSourceMonitor";
+import { openSourceChangeIssue } from "../../../converter/ownerAlerts";
+
+// Kaynaklar paralel kontrol edilir; her biri kendi 20 sn zaman asimina sahip.
+export const maxDuration = 60;
 
 // mevzuat.gov.tr (paylasilan Cumhurbaskanligi/*.tccb.gov.tr TLS sertifikasini
 // kullanan altyapi) baglanti sirasinda ara sertifikayi (GeoTrust TLS RSA CA
@@ -42,7 +47,7 @@ TNBJE0GmP2fhXhP1D/XVfIW/h0yCJGEiV9Glm/uGOa3DXHlmbAcxSyCRraG+ZBkA
 7h4SeM6Y8l/7MBRpPCz6l8Y=
 -----END CERTIFICATE-----`;
 
-function fetchTextWithExtraTrustedCa(url: string, userAgent: string): Promise<string> {
+function fetchTextWithExtraTrustedCa(url: string, userAgent: string, redirectsLeft = 3): Promise<string> {
   return new Promise((resolve, reject) => {
     const request = https.get(
       url,
@@ -52,6 +57,13 @@ function fetchTextWithExtraTrustedCa(url: string, userAgent: string): Promise<st
       },
       (response) => {
         const statusCode = response.statusCode ?? 0;
+        // Universite siteleri adresleri sik tasiyor: birkac yonlendirmeyi izle.
+        const location = response.headers.location;
+        if (statusCode >= 300 && statusCode < 400 && location && redirectsLeft > 0) {
+          response.resume();
+          fetchTextWithExtraTrustedCa(new URL(location, url).toString(), userAgent, redirectsLeft - 1).then(resolve, reject);
+          return;
+        }
         if (statusCode >= 400) {
           response.resume();
           reject(new Error(`HTTP ${statusCode}`));
@@ -130,6 +142,7 @@ type MonitorResult = {
   status: "baseline_established" | "unchanged" | "changed" | "fetch_error";
   checkedAt: string;
   error?: string;
+  ownerAlert?: "created" | "skipped" | "failed";
 };
 
 export async function GET(request: Request) {
@@ -167,48 +180,68 @@ export async function GET(request: Request) {
   }
 
   const redis = new Redis(credentials);
-  const results: MonitorResult[] = [];
+  const targets: Array<{ id: string; label: string; url: string; persistent?: boolean; pageHref?: string }> = [
+    ...licenseSourceMonitorTargets,
+    ...cgpaSourceMonitorTargets,
+  ];
 
-  for (const target of licenseSourceMonitorTargets) {
-    const checkedAt = new Date().toISOString();
-    const storageKey = `kaynak-kontrol:${target.id}`;
+  const results: MonitorResult[] = await Promise.all(
+    targets.map(async (target): Promise<MonitorResult> => {
+      const checkedAt = new Date().toISOString();
+      const storageKey = `kaynak-kontrol:${target.id}`;
 
-    try {
-      const body = await fetchTextWithExtraTrustedCa(
-        target.url,
-        "BirimCeviri.app kaynak-kontrol botu (salt okunur izleme, iletisim: zubeytakbal9@gmail.com)",
-      );
-      const currentHash = hashContent(body);
-      const previousHash = await redis.get<string>(`${storageKey}:hash`);
+      try {
+        const body = await fetchTextWithExtraTrustedCa(
+          target.url,
+          "BirimCeviri.app kaynak-kontrol botu (salt okunur izleme, iletisim: zubeytakbal9@gmail.com)",
+        );
+        const currentHash = hashContent(body);
+        const previousHash = await redis.get<string>(`${storageKey}:hash`);
 
-      let status: MonitorResult["status"];
-      if (!previousHash) {
-        status = "baseline_established";
-      } else if (previousHash === currentHash) {
-        status = "unchanged";
-      } else {
-        status = "changed";
+        let status: MonitorResult["status"];
+        if (!previousHash) {
+          status = "baseline_established";
+        } else if (previousHash === currentHash) {
+          status = "unchanged";
+        } else {
+          status = "changed";
+        }
+
+        await redis.set(`${storageKey}:hash`, currentHash);
+        await redis.set(`${storageKey}:status`, status);
+        await redis.set(`${storageKey}:checkedAt`, checkedAt);
+
+        let ownerAlert: MonitorResult["ownerAlert"];
+        if (status === "changed") {
+          // Kalici hedeflerde degisim ani saklanir; veri yeniden
+          // dogrulanana kadar sayfa ve bildirim zili uyari gosterir.
+          if (target.persistent) {
+            await redis.set(`${storageKey}:changedAt`, checkedAt);
+          }
+          ownerAlert = await openSourceChangeIssue({
+            label: target.label,
+            url: target.url,
+            pageHref: target.pageHref,
+            checkedAt,
+          });
+        }
+
+        return { id: target.id, label: target.label, url: target.url, status, checkedAt, ownerAlert };
+      } catch (error) {
+        const status: MonitorResult["status"] = "fetch_error";
+        await redis.set(`${storageKey}:status`, status).catch(() => undefined);
+        await redis.set(`${storageKey}:checkedAt`, checkedAt).catch(() => undefined);
+        return {
+          id: target.id,
+          label: target.label,
+          url: target.url,
+          status,
+          checkedAt,
+          error: describeError(error),
+        };
       }
-
-      await redis.set(`${storageKey}:hash`, currentHash);
-      await redis.set(`${storageKey}:status`, status);
-      await redis.set(`${storageKey}:checkedAt`, checkedAt);
-
-      results.push({ id: target.id, label: target.label, url: target.url, status, checkedAt });
-    } catch (error) {
-      const status: MonitorResult["status"] = "fetch_error";
-      await redis.set(`${storageKey}:status`, status).catch(() => undefined);
-      await redis.set(`${storageKey}:checkedAt`, checkedAt).catch(() => undefined);
-      results.push({
-        id: target.id,
-        label: target.label,
-        url: target.url,
-        status,
-        checkedAt,
-        error: describeError(error),
-      });
-    }
-  }
+    }),
+  );
 
   return jsonResponse({ fxRevalidated, results });
 }

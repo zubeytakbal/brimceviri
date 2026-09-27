@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { calculatorPages } from "./converter/calculatorPages";
+import { cgpaUniversities } from "./converter/india/cgpaUniversities";
 import { categoryPages } from "./converter/categoryPages";
 import { conversionPages } from "./converter/conversionPages";
 import { fxContentBn } from "./converter/fx/fxContentBn";
@@ -1631,6 +1632,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
       },
     },
+    {
+      url: `${baseUrl}/en/cgpa-to-percentage`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    ...cgpaUniversities.map((university) => ({
+      url: `${baseUrl}/en/cgpa-to-percentage/${university.slug}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
     {
       url: `${baseUrl}/bn/gold-price-calculator`,
       lastModified: contentLastModified,

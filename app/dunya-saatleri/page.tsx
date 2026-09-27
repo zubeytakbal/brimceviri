@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { appManifestPath, findInstallableApp } from "../converter/time/installableApps";
 import WorldClockHub from "../components/world/WorldClockHub";
 import { timeToolAlternates } from "../i18n/timeToolPaths";
 import { buildSiteUrl } from "../siteConfig";
@@ -12,6 +13,8 @@ const description =
 export const metadata: Metadata = {
   title,
   description,
+  manifest: appManifestPath("dunya-saatleri"),
+  appleWebApp: { capable: true, title: findInstallableApp("dunya-saatleri")!.shortName },
   alternates: { canonical: "/dunya-saatleri", ...timeToolAlternates("worldClock") },
   openGraph: { title, description, url: buildSiteUrl("/dunya-saatleri"), siteName: "BirimCeviri.app", locale: "tr_TR", type: "website" },
 };

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { appManifestPath, findInstallableApp } from "../../../converter/time/installableApps";
 import { notFound } from "next/navigation";
 import CityTimePage, { cityPageDescription, cityPageTitle } from "../../../components/world/CityTimePage";
 import { buildLanguageAlternates } from "../../../i18n/routing";
@@ -21,6 +22,8 @@ export async function generateMetadata({ params }: { params: Promise<{ city: str
   return {
     title,
     description,
+    manifest: appManifestPath("world-clock"),
+    appleWebApp: { capable: true, title: findInstallableApp("world-clock")!.shortName },
     alternates: { canonical: path, ...buildLanguageAlternates({ tr: `/dunya-saatleri/${city.tr}`, en: path }, "tr") },
     openGraph: { title, description, url: buildSiteUrl(path), siteName: "BirimCeviri.app", locale: "en_US", type: "website" },
   };

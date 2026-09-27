@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { appManifestPath, findInstallableApp } from "../converter/time/installableApps";
 import { IntervalPage } from "../components/time/FocusPages";
 import { timeToolAlternates, timeToolPaths } from "../i18n/timeToolPaths";
 import { buildSiteUrl } from "../siteConfig";
@@ -10,6 +11,8 @@ const path = timeToolPaths.interval.tr!;
 export const metadata: Metadata = {
   title,
   description,
+  manifest: appManifestPath("tabata"),
+  appleWebApp: { capable: true, title: findInstallableApp("tabata")!.shortName },
   alternates: { canonical: path, ...timeToolAlternates("interval") },
   openGraph: { title, description, url: buildSiteUrl(path), siteName: "BirimCeviri.app", locale: "tr_TR", type: "website" },
 };

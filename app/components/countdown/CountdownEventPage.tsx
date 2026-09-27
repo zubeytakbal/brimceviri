@@ -119,12 +119,14 @@ export default function CountdownEventPage({ event }: { event: CountdownEvent })
           ...(tr
             ? [
                 { href: hubPath, label: "Tüm geri sayımlar" },
+                { href: "/resmi-tatiller", label: "Resmî Tatiller ve Köprü Günleri" },
                 { href: "/dunya-saatleri", label: "Dünya Saatleri" },
                 { href: "/zamanlayici", label: "Zamanlayıcı" },
                 { href: "/yas-hesaplama", label: "Yaş Hesaplama" },
               ]
             : [
                 { href: hubPath, label: "All countdowns" },
+                { href: "/en/federal-holidays", label: "US Federal Holidays" },
                 { href: "/en/world-clock", label: "World Clock" },
                 { href: "/en/timer", label: "Timer" },
               ]),

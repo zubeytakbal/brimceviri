@@ -148,6 +148,7 @@ export default function CityTimePage({ city, lang }: { city: WorldCity; lang: La
         { href: path, label: name },
       ]}
       crumbLabel={tr ? "Sayfa yolu" : "Breadcrumb"}
+      install={{ name: tr ? "Dünya Saatleri" : "World Clock", lang: lang }}
       title={tr ? `${city.inTr} saat kaç?` : `Current time in ${name}`}
       intro={
         tr

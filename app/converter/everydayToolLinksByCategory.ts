@@ -142,6 +142,11 @@ export const everydayToolLinksByCategory: Record<
   ],
   zaman: [
     { href: "/yas-hesaplama", label: "Yaş Hesaplama" },
+    { href: "/iki-tarih-arasi-gun-hesaplama", label: "İki Tarih Arası Gün Hesaplama" },
+    { href: "/is-gunu-hesaplama", label: "İş Günü Hesaplama" },
+    { href: "/tarihe-gun-ekleme", label: "Tarihe Gün Ekleme" },
+    { href: "/kacinci-hafta", label: "Bugün Kaçıncı Hafta?" },
+    { href: "/resmi-tatiller", label: "Resmî Tatiller" },
     { href: "/gebelik-haftasi-hesaplama", label: "Gebelik Haftası Hesaplama" },
     { href: "/uyku-hesaplama", label: "Uyku Hesaplama" },
     { href: "/online-saat", label: "Online Saat" },

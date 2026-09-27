@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { appManifestPath, findInstallableApp } from "../../../converter/time/installableApps";
 import { notFound } from "next/navigation";
 import TimerPresetPage, { timerPresetTitle } from "../../../components/time/TimerPresetPage";
 import { findTimerPreset, timerPresetAlternates, timerPresetPath, timerPresets } from "../../../i18n/timerPresets";
@@ -20,6 +21,8 @@ export async function generateMetadata({ params }: { params: Promise<{ duration:
   return {
     title,
     description,
+    manifest: appManifestPath("timer"),
+    appleWebApp: { capable: true, title: findInstallableApp("timer")!.shortName },
     alternates: { canonical: path, ...timerPresetAlternates(preset) },
     openGraph: { title, description, url: buildSiteUrl(path), siteName: "BirimCeviri.app", locale: "en_US", type: "website" },
   };

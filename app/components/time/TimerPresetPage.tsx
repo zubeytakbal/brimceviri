@@ -58,6 +58,7 @@ export default function TimerPresetPage({ preset, lang }: { preset: TimerPreset;
         { href: path, label: title },
       ]}
       crumbLabel={tr ? "Sayfa yolu" : "Breadcrumb"}
+      install={{ name: tr ? "Zamanlayıcı" : "Timer", lang: lang }}
       title={title}
       intro={
         tr

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { appManifestPath, findInstallableApp } from "../../../converter/time/installableApps";
 import { notFound } from "next/navigation";
 import Link from "@/app/components/SiteLink";
 import AlarmClock from "../../../components/time/AlarmClock";
@@ -34,6 +35,8 @@ export async function generateMetadata({ params }: { params: Promise<{ time: str
   return {
     title,
     description,
+    manifest: appManifestPath("alarm-clock"),
+    appleWebApp: { capable: true, title: findInstallableApp("alarm-clock")!.shortName },
     alternates: { canonical: path, ...alarmPresetAlternates(time) },
     openGraph: { title, description, url: buildSiteUrl(path), siteName: "BirimCeviri.app", locale: "en_US", type: "website" },
   };
@@ -69,6 +72,7 @@ export default async function EnglishAlarmPresetPage({ params }: { params: Promi
         { href: path, label: `${label} Alarm` },
       ]}
       crumbLabel="Breadcrumb"
+      install={{ name: "Alarm Clock", lang: "en" }}
       title={`Set Alarm for ${label}`}
       intro={`The alarm is preset to ${label}. Press "Add alarm", and change the sound or label if you like. Below you'll find the best bedtimes for waking up refreshed at ${label}.`}
       tool={<AlarmClock locale="en" initialTime={time} />}

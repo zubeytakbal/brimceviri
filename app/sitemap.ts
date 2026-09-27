@@ -13,6 +13,7 @@ import { cgpaUniversities } from "./converter/india/cgpaUniversities";
 import { worldCities } from "./converter/time/worldCities";
 import { timerPresetAlternates, timerPresetPath, timerPresets } from "./i18n/timerPresets";
 import { countdownEvents, countdownPath, pairedEvent } from "./converter/time/countdownEvents";
+import { HOLIDAY_YEARS } from "./converter/time/holidays";
 import { zonePairs } from "./converter/time/timeZonePairs";
 import { buildLanguageAlternates } from "./i18n/routing";
 import { categoryPages } from "./converter/categoryPages";
@@ -3023,6 +3024,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
         alternates: buildLanguageAlternates({ tr: trPath, en: enPath }, "tr"),
       })),
     ),
+    ...[
+      ["/resmi-tatiller", ...HOLIDAY_YEARS.map((y) => `/resmi-tatiller/${y}`)],
+      ["/en/federal-holidays", ...HOLIDAY_YEARS.map((y) => `/en/federal-holidays/${y}`)],
+    ].flat().map((path) => ({
+      url: `${baseUrl}${path}`,
+      lastModified: contentLastModified,
+      changeFrequency: "weekly" as const,
+      priority: /\d{4}$/.test(path) ? 0.7 : 0.8,
+    })),
     ...zonePairs.map((pair) => ({
       url: `${baseUrl}/en/time-zone-converter/${pair.slug}`,
       lastModified: contentLastModified,

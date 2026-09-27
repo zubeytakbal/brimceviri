@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { appManifestPath, findInstallableApp } from "../converter/time/installableApps";
 import CountdownTimer from "../components/time/CountdownTimer";
 import TimeToolPage from "../components/time/TimeToolPage";
 import { timeRelated } from "../components/time/timeRelatedLinks";
@@ -14,6 +15,8 @@ const description =
 export const metadata: Metadata = {
   title,
   description,
+  manifest: appManifestPath("zamanlayici"),
+  appleWebApp: { capable: true, title: findInstallableApp("zamanlayici")!.shortName },
   alternates: { canonical: "/zamanlayici", ...timeToolAlternates("timer") },
   openGraph: { title, description, url: buildSiteUrl("/zamanlayici"), siteName: "BirimCeviri.app", locale: "tr_TR", type: "website" },
 };
@@ -46,6 +49,7 @@ export default function TimerPage() {
     <TimeToolPage
       crumbs={[{ href: "/", label: "Ana Sayfa" }, { href: "/zamanlayici", label: "Zamanlayıcı" }]}
       crumbLabel="Sayfa yolu"
+      install={{ name: "Zamanlayıcı", lang: "tr" }}
       title="Online Zamanlayıcı"
       intro="Hazır sürelerden birine dokun ya da kendi süreni gir, başlat. Süre bitince sesli uyarı alırsın. Duraklat, +1 dakika ekle ya da tam ekrana geç."
       tool={<CountdownTimer locale="tr" presetLinks={presetLinks} />}

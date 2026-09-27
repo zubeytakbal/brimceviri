@@ -20,6 +20,9 @@ describe("CGPA to percentage", () => {
     expect(cgpaToPercentage(8.2, u("delhi-university"))).toBeCloseTo(77.9, 10);
     expect(cgpaToPercentage(8, u("sppu"))).toBeCloseTo(71.2, 10);
     expect(cgpaToPercentage(9.5, u("cbse"))).toBeCloseTo(90.25, 10);
+    expect(cgpaToPercentage(7.5, u("ikgptu"))).toBeCloseTo(75, 10);
+    expect(cgpaToPercentage(8, u("calicut-university"))).toBeCloseTo(80, 10);
+    expect(cgpaToPercentage(8, u("dbatu"))).toBeCloseTo(75, 10);
   });
 
   it("rejects values outside the scale and reverses the formula", () => {

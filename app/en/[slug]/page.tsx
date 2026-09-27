@@ -53,6 +53,10 @@ import {
   EnglishNaturalGasCalculator,
 } from "../../components/EnglishEnergyHomeCalculators";
 import YouMayAlsoLike from "../../components/YouMayAlsoLike";
+import {
+  ConcreteMixCalculator,
+  SteelWeightCalculator,
+} from "../../components/EnglishCivilIndiaCalculators";
 import { getEnglishYouMayAlsoLike } from "../../i18n/englishRelatedPages";
 import {
   EmiCalculator,
@@ -151,6 +155,8 @@ const componentMap: Record<EnglishStandaloneToolComponentKey, React.ComponentTyp
     indianWeightConverter: IndianWeightConverter,
     gstCalculatorIndia: GstCalculatorIndia,
     emiCalculator: EmiCalculator,
+    steelWeightCalculator: SteelWeightCalculator,
+    concreteMixCalculator: ConcreteMixCalculator,
     evChargingCalculator: EvChargingCalculator,
   };
 

@@ -23,7 +23,8 @@ const landCluster: RelatedPageCard[] = [
   { href: "/en/india-land-area-converter", title: "India Land Area Converter", description: "Bigha, katha, gaj, guntha and cent by state.", icon: "area" },
   { href: "/en/bigha-to-square-feet", title: "Bigha to Square Feet", description: "1 Bengal bigha = 14,400 sq ft.", icon: "area" },
   { href: "/en/acre-to-bigha", title: "Acres to Bigha", description: "1 acre = 3.025 Bengal bigha.", icon: "area" },
-  { href: "/en/square-yards-to-square-feet", title: "Gaj to Square Feet", description: "1 gaj = 9 sq ft.", icon: "area" },
+  { href: "/en/gaj-to-square-feet", title: "Gaj to Square Feet", description: "1 gaj = 1 square yard = 9 sq ft.", icon: "area" },
+  { href: "/en/marla-to-gaj", title: "Marla to Gaj", description: "1 marla = 30.25 gaj (272.25 sq ft).", icon: "area" },
   { href: "/en/cent-to-square-feet", title: "Cent to Square Feet", description: "1 cent = 435.6 sq ft.", icon: "area" },
   { href: "/en/guntha-to-square-feet", title: "Guntha to Square Feet", description: "1 guntha = 1,089 sq ft.", icon: "area" },
   { href: "/en/marla-to-square-feet", title: "Marla to Square Feet", description: "1 marla = 272.25 sq ft.", icon: "area" },
@@ -48,7 +49,18 @@ const numbersCluster: RelatedPageCard[] = [
   { href: "/en/mathematics-calculators/percentage", title: "Percentage Calculator", description: "What percentage one number is of another.", icon: "numberBaseCalculator" },
 ];
 
-const clusters: RelatedPageCard[][] = [goldCluster, landCluster, numbersCluster];
+const constructionCluster: RelatedPageCard[] = [
+  { href: "/en/steel-weight-calculator", title: "Steel Bar Weight Calculator", description: "Rebar kg per meter with D²/162.", icon: "mass" },
+  { href: "/en/cement-sand-aggregate-calculator", title: "Concrete Mix Calculator", description: "Cement bags, sand and aggregate for M20, M25.", icon: "concreteCalculator" },
+  { href: "/en/n-mm2-to-mpa", title: "N/mm² to MPa", description: "1 N/mm² = 1 MPa: concrete and steel strength.", icon: "pressure" },
+  { href: "/en/n-mm2-to-kg-cm2", title: "N/mm² to kg/cm²", description: "1 N/mm² = 10.197 kgf/cm².", icon: "pressure" },
+  { href: "/en/kn-m2-to-t-m2", title: "kN/m² to t/m²", description: "Soil bearing capacity: 1 t/m² = 9.81 kN/m².", icon: "pressure" },
+  { href: "/en/brick-calculator", title: "Brick Calculator", description: "Bricks and mortar for a wall.", icon: "brickCalculator" },
+  { href: "/en/concrete-calculator", title: "Concrete Volume Calculator", description: "Volume of slabs, footings and columns.", icon: "concreteCalculator" },
+  { href: "/en/gaj-to-square-feet", title: "Gaj to Square Feet", description: "Plot sizes: 1 gaj = 9 sq ft.", icon: "area" },
+];
+
+const clusters: RelatedPageCard[][] = [goldCluster, landCluster, numbersCluster, constructionCluster];
 
 const extraClusterMembers: Record<string, RelatedPageCard[]> = {
   // Kumede kart olarak gosterilmeyen ama kumenin sayfalarini gostermesi gereken sayfalar.
@@ -103,6 +115,23 @@ const extraClusterMembers: Record<string, RelatedPageCard[]> = {
   "/en/square-feet-to-acre": landCluster,
   "/en/hectares-to-acres": landCluster,
   "/en/square-meters-to-hectares": landCluster,
+  "/en/square-feet-to-gaj": landCluster,
+  "/en/gaj-to-square-meters": landCluster,
+  "/en/square-meters-to-gaj": landCluster,
+  "/en/gaj-to-marla": landCluster,
+  "/en/bigha-to-gaj": landCluster,
+  "/en/gaj-to-bigha": landCluster,
+  "/en/acre-to-gaj": landCluster,
+  "/en/gaj-to-acre": landCluster,
+  "/en/mpa-to-n-mm2": constructionCluster,
+  "/en/kg-cm2-to-n-mm2": constructionCluster,
+  "/en/n-mm2-to-psi": constructionCluster,
+  "/en/psi-to-n-mm2": constructionCluster,
+  "/en/t-m2-to-kn-m2": constructionCluster,
+  "/en/kn-m2-to-kpa": constructionCluster,
+  "/en/kpa-to-kn-m2": constructionCluster,
+  "/en/t-m2-to-kg-cm2": constructionCluster,
+  "/en/kg-cm2-to-t-m2": constructionCluster,
 };
 
 export function getEnglishYouMayAlsoLike(path: string, limit = 6): RelatedPageCard[] {

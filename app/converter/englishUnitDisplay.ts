@@ -5,6 +5,7 @@
 
 // Names that do not take a plural "s" in normal English usage.
 const UNINFLECTED = new Set([
+  "gaj",
   "celsius",
   "fahrenheit",
   "kelvin",
@@ -204,6 +205,8 @@ export function buildEnglishConversionTitle(page: {
   const candidates = [
     ...(answer ? [`${names}: ${answer}`] : []),
     ...(hasSymbols ? [`${names} Converter (${symbols})`, `${names} (${symbols})`] : []),
+    // Uzun adli muhendislik birimleri sembolle aranir ("n/mm2 to mpa").
+    ...(answer ? [`${symbols}: ${answer}`] : []),
     `${names} Converter`,
     names,
     ...(hasSymbols ? [`${symbols} Converter`] : []),

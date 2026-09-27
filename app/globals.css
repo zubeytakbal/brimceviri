@@ -10495,3 +10495,456 @@ a.all-units-row .all-units-name {
     animation: none;
   }
 }
+
+/* ===== 2. parti saatler ===== */
+.live-clock-analog.is-mantel-face svg,
+.live-clock-analog.is-sunmoon-face svg {
+  width: min(420px, 84vw);
+}
+
+.live-clock-analog.is-school-face svg,
+.live-clock-analog.is-ship-face svg {
+  width: min(320px, 74vw);
+}
+
+.live-clock-analog.is-tower-face svg,
+.live-clock-analog.is-hourglass-face svg {
+  width: min(220px, 56vw);
+}
+
+.live-clock-stage:fullscreen .live-clock-analog.is-mantel-face svg,
+.live-clock-stage:fullscreen .live-clock-analog.is-sunmoon-face svg {
+  width: min(80vw, 120vh);
+  height: auto;
+}
+
+.live-clock-stage.is-mantel {
+  background: linear-gradient(180deg, #5b3a2a 0%, #3a241a 60%, #2a1a12 100%);
+  color: #f3dcb4;
+}
+
+.live-clock-stage.is-tower {
+  background: linear-gradient(180deg, #8fb3d9 0%, #d8e6f2 100%);
+  color: #1f2a36;
+}
+
+.live-clock-stage.is-school {
+  background: linear-gradient(180deg, #f3efe4 0%, #e3dcc9 100%);
+  color: #1b1b1b;
+  background-image:
+    linear-gradient(180deg, transparent 88%, #6b8f47 88%, #5a7a3b 100%),
+    linear-gradient(180deg, #f3efe4 0%, #e3dcc9 100%);
+}
+
+.live-clock-stage.is-ship {
+  background: linear-gradient(180deg, #0f3a5f 0%, #0a2742 100%);
+  color: #f1d9a0;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.03) 0 3px, transparent 3px 40px),
+    linear-gradient(180deg, #0f3a5f 0%, #0a2742 100%);
+}
+
+.live-clock-stage.is-radio {
+  background: linear-gradient(180deg, #f1e3c8 0%, #d8c29a 100%);
+  color: #3b2a1a;
+}
+
+.live-clock-stage.is-skeleton {
+  background: radial-gradient(circle at 50% 30%, #2b3038 0%, #0e1013 80%);
+  color: #dfe5ec;
+}
+
+.live-clock-stage.is-moonphase {
+  background: radial-gradient(circle at 50% 30%, #1a2750 0%, #070b1f 80%);
+  color: #e9cf8b;
+}
+
+.live-clock-stage.is-word {
+  background: linear-gradient(135deg, #1d1d1f 0%, #2c2c30 100%);
+  color: #f5f5f7;
+}
+
+.live-clock-stage.is-hourglass {
+  background: radial-gradient(circle at 50% 40%, #f7e7c4 0%, #d9b98a 100%);
+  color: #4a2f16;
+}
+
+.live-clock-stage.is-sunmoon {
+  background: linear-gradient(180deg, #10172e 0%, #1f2b4f 100%);
+  color: #f4f1e6;
+}
+
+.live-clock-stage.is-tower .live-clock-fullscreen,
+.live-clock-stage.is-school .live-clock-fullscreen,
+.live-clock-stage.is-radio .live-clock-fullscreen,
+.live-clock-stage.is-hourglass .live-clock-fullscreen {
+  border-color: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.mf-ticks line {
+  stroke: #3a3a3a;
+  stroke-width: 0.8;
+}
+
+.mf-ticks line.is-major {
+  stroke: #111111;
+  stroke-width: 2.2;
+}
+
+.mf-ticks-gold line {
+  stroke: #c99a3a;
+  stroke-width: 0.6;
+}
+
+.mf-ticks-gold line.is-major {
+  stroke-width: 1.6;
+}
+
+.mf-num-serif text {
+  fill: #1d140d;
+  font-family: Georgia, serif;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.mf-num-gothic text {
+  fill: #141414;
+  font-family: "Times New Roman", Georgia, serif;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.mf-num-bold text {
+  fill: #111111;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.mf-num-ship text {
+  fill: #1d1d1d;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.mf-num-ship-inner text {
+  fill: #b3261e;
+  font-size: 8px;
+  font-weight: 700;
+}
+
+.mf-num-moon text {
+  fill: #e9cf8b;
+  font-family: Georgia, serif;
+  font-size: 11px;
+}
+
+.mf-num-skeleton text {
+  fill: #2b2f36;
+  font-family: Georgia, serif;
+  font-size: 8px;
+  font-weight: 700;
+}
+
+.mf-bridge {
+  fill: #50565f;
+  stroke: #2a2e34;
+  stroke-width: 1;
+}
+
+.mf-gear path,
+.mf-gear rect {
+  fill: #d6b25e;
+}
+
+.mf-gear.is-escape path,
+.mf-gear.is-escape rect {
+  fill: #b9c3cf;
+}
+
+.mf-gear-hole {
+  fill: #1b1d21;
+}
+
+.mf-jewel {
+  fill: #c2185b;
+}
+
+.mf-balance circle,
+.mf-balance line {
+  stroke: #e5c46e;
+}
+
+/* Kum saati: dakika basinda cevrilir */
+.mf-hourglass-body {
+  transform-origin: 100px 160px;
+}
+
+.mf-hourglass.is-flipping .mf-hourglass-body {
+  animation: mf-hourglass-flip 0.6s ease-in-out;
+}
+
+@keyframes mf-hourglass-flip {
+  from {
+    transform: rotate(-180deg);
+  }
+  to {
+    transform: rotate(0);
+  }
+}
+
+/* Kelime saati */
+.word-clock {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.18em 0.32em;
+  max-width: 820px;
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.2rem, 7vw, 4.6rem);
+  line-height: 1.12;
+  text-align: center;
+}
+
+.word-clock span {
+  color: rgba(245, 245, 247, 0.32);
+}
+
+.word-clock strong {
+  color: #ffffff;
+  font-weight: 700;
+  text-shadow: 0 0 24px rgba(255, 255, 255, 0.28);
+}
+
+.live-clock-stage:fullscreen .word-clock {
+  max-width: 90vw;
+  font-size: min(9vw, 16vh);
+}
+
+/* Radyolu saat */
+.radio-clock {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 18px;
+  width: min(640px, 88vw);
+  padding: 22px;
+  border-radius: 18px;
+  background:
+    repeating-linear-gradient(92deg, rgba(0, 0, 0, 0.07) 0 3px, transparent 3px 9px),
+    linear-gradient(180deg, #8a5a2f 0%, #5c3a1c 100%);
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.18),
+    0 18px 36px rgba(60, 30, 10, 0.4);
+}
+
+.radio-grille {
+  border-radius: 12px;
+  background:
+    radial-gradient(circle, #1d130b 38%, transparent 40%) 0 0 / 11px 11px,
+    #c9b089;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.45);
+  min-height: 140px;
+}
+
+.radio-panel {
+  display: grid;
+  gap: 10px;
+}
+
+.radio-window {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px;
+  border-radius: 10px;
+  background: #111111;
+  box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.7);
+  color: #f3f4f6;
+  font-size: clamp(2.2rem, 7vw, 3.6rem);
+  font-weight: 800;
+  line-height: 1;
+}
+
+.radio-dial {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #efe3c6;
+  color: #3b2a1a;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.radio-dial i {
+  flex: 1;
+  height: 10px;
+  background: repeating-linear-gradient(90deg, #3b2a1a 0 1px, transparent 1px 8px);
+  position: relative;
+}
+
+.radio-dial i::after {
+  content: "";
+  position: absolute;
+  left: 38%;
+  top: -3px;
+  width: 2px;
+  height: 16px;
+  background: #d32f2f;
+}
+
+.radio-leds {
+  display: flex;
+  gap: 14px;
+  color: #f3e3c2;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.radio-leds span::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 6px;
+  border-radius: 50%;
+  background: #4a3a2a;
+}
+
+.radio-leds span.is-on::before {
+  background: #ff3b30;
+  box-shadow: 0 0 8px #ff3b30;
+}
+
+.live-clock-stage:fullscreen .radio-clock {
+  width: min(90vw, 150vh);
+}
+
+.live-clock-stage:fullscreen .radio-window {
+  font-size: min(12vw, 26vh);
+}
+
+@media (max-width: 560px) {
+  .radio-clock {
+    grid-template-columns: 1fr;
+  }
+
+  .radio-grille {
+    min-height: 60px;
+  }
+}
+
+/* Onizlemeler */
+.is-mantel .live-clock-swatch-preview {
+  background: #5b3a2a;
+  color: #f3dcb4;
+}
+
+.is-mantel .live-clock-swatch-preview::after {
+  content: "◠";
+  font-size: 1.6rem;
+}
+
+.is-tower .live-clock-swatch-preview {
+  background: linear-gradient(180deg, #8fb3d9, #d8e6f2);
+  color: #1f2a36;
+}
+
+.is-tower .live-clock-swatch-preview::after {
+  content: "⌂";
+  font-size: 1.6rem;
+}
+
+.is-school .live-clock-swatch-preview {
+  background: #ffffff;
+  color: #111;
+  box-shadow: inset 0 0 0 4px #1b1b1b;
+}
+
+.is-school .live-clock-swatch-preview::after {
+  content: "◷";
+  font-size: 1.6rem;
+}
+
+.is-ship .live-clock-swatch-preview {
+  background: radial-gradient(circle, #fbfaf5 45%, #c9962f 47%);
+  color: #1d3a5c;
+}
+
+.is-ship .live-clock-swatch-preview::after {
+  content: "⚓";
+  font-size: 1.3rem;
+}
+
+.is-radio .live-clock-swatch-preview {
+  background: linear-gradient(90deg, #c9b089 40%, #111 40%);
+  color: #f3f4f6;
+}
+
+.is-radio .live-clock-swatch-preview::after {
+  content: "   12:30";
+  white-space: pre;
+  font-size: 0.8rem;
+}
+
+.is-skeleton .live-clock-swatch-preview {
+  background: #1b1d21;
+  color: #d6b25e;
+}
+
+.is-skeleton .live-clock-swatch-preview::after {
+  content: "⚙";
+  font-size: 1.6rem;
+}
+
+.is-moonphase .live-clock-swatch-preview {
+  background: #14213d;
+  color: #e9cf8b;
+}
+
+.is-moonphase .live-clock-swatch-preview::after {
+  content: "☾";
+  font-size: 1.6rem;
+}
+
+.is-word .live-clock-swatch-preview {
+  background: #1d1d1f;
+  color: #ffffff;
+  font-family: Georgia, serif;
+  font-size: 0.72rem;
+}
+
+.is-word .live-clock-swatch-preview::after {
+  content: "Aa";
+  font-size: 1.2rem;
+}
+
+.is-hourglass .live-clock-swatch-preview {
+  background: #f7e7c4;
+  color: #8a5a2b;
+}
+
+.is-hourglass .live-clock-swatch-preview::after {
+  content: "⧗";
+  font-size: 1.6rem;
+}
+
+.is-sunmoon .live-clock-swatch-preview {
+  background: linear-gradient(180deg, #3d8fd6, #ffb347);
+  color: #fff4c2;
+}
+
+.is-sunmoon .live-clock-swatch-preview::after {
+  content: "☀";
+  font-size: 1.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mf-hourglass.is-flipping .mf-hourglass-body {
+    animation: none;
+  }
+}

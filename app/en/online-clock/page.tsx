@@ -9,7 +9,7 @@ import { buildSiteUrl } from "../../siteConfig";
 
 const title = "Online Clock: What Time Is It? Full Screen";
 const description =
-  "A live clock with 24 themes: pendulum and cuckoo clocks, pocket watch, dive and chronograph watches, flip, nixie, LED. Ticking, hourly chimes, full screen.";
+  "A live clock with 34 themes: pendulum, cuckoo, tower and ship clocks, pocket watch, skeleton and moon phase watches, flip, nixie. Ticking and chimes.";
 
 export const metadata: Metadata = {
   title,
@@ -50,7 +50,7 @@ export default function EnglishOnlineClockPage() {
       crumbs={[{ href: "/en", label: "Home" }, { href: "/en/online-clock", label: "Online Clock" }]}
       crumbLabel="Breadcrumb"
       title="Online Clock"
-      intro="The current time, to the second. Pick one of 24 themes, from a pendulum wall clock to a cuckoo clock, pocket watch or dive watch. Turn on the ticking and hourly chime if you like, and go full screen in one click."
+      intro="The current time, to the second. Pick one of 34 themes, from a pendulum wall clock to a cuckoo clock, pocket watch or dive watch. Turn on the ticking and hourly chime if you like, and go full screen in one click."
       tool={<LiveClock locale="en" />}
       related={{ title: "More time tools", links: timeRelated.en.tools.filter((t) => t.href !== "/en/online-clock") }}
       tocTitle="Contents"

@@ -5,6 +5,18 @@ import AnalogClock, { type AnalogTheme } from "./AnalogClock";
 import { previewChime, startClockSound } from "./clockSounds";
 import { clockFamilies, clockThemeDefs, clockThemeIds, themesInFamily, type ClockTheme } from "./clockThemes";
 import { CuckooClock, NixieClock, PendulumClock, PocketWatch, TwinBellClock } from "./faces/VintageFaces";
+import {
+  Hourglass,
+  MantelClock,
+  MoonPhaseWatch,
+  RadioClock,
+  SchoolClock,
+  ShipClock,
+  SkeletonWatch,
+  SunMoon,
+  TowerClock,
+  WordClock,
+} from "./faces/MoreFaces";
 import { ChronographWatch, DiveWatch, DressWatch, FieldWatch, LcdWatch, SmartWatch } from "./faces/WatchFaces";
 import { timeToolsCopy, type TimeToolsLocale } from "./timeToolsCopy";
 import { unlockAudio } from "./timeSounds";
@@ -263,11 +275,62 @@ export default function LiveClock({
           </div>
         );
       }
+      case "mantel":
+      case "tower":
+      case "school":
+      case "ship":
+      case "hourglass":
+      case "sunmoon": {
+        const Face = {
+          mantel: MantelClock,
+          tower: TowerClock,
+          school: SchoolClock,
+          ship: ShipClock,
+          hourglass: Hourglass,
+          sunmoon: SunMoon,
+        }[settings.theme];
+        return (
+          <div className={`live-clock-analog is-object is-${settings.theme}-face`}>
+            <Face date={now} label={ariaTime} active={active} />
+            {digitalLine}
+          </div>
+        );
+      }
+      case "word":
+        return (
+          <div className="live-clock-analog">
+            <WordClock date={now} locale={locale} label={ariaTime} />
+            {digitalLine}
+          </div>
+        );
+      case "radio":
+        return (
+          <RadioClock
+            label={ariaTime}
+            flip={
+              <>
+                <FlipDigits value={hourText} />
+                <span className="flip-sep">:</span>
+                <FlipDigits value={minuteText} />
+                {meridiem && <span className="flip-meridiem">{meridiem}</span>}
+              </>
+            }
+          />
+        );
       case "diver":
       case "chrono":
       case "dress":
-      case "field": {
-        const Face = { diver: DiveWatch, chrono: ChronographWatch, dress: DressWatch, field: FieldWatch }[settings.theme];
+      case "field":
+      case "skeleton":
+      case "moonphase": {
+        const Face = {
+          diver: DiveWatch,
+          chrono: ChronographWatch,
+          dress: DressWatch,
+          field: FieldWatch,
+          skeleton: SkeletonWatch,
+          moonphase: MoonPhaseWatch,
+        }[settings.theme];
         return (
           <div className="live-clock-analog is-object is-watch">
             <Face date={now} label={ariaTime} />

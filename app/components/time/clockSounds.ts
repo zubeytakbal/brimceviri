@@ -7,7 +7,18 @@ import { unlockAudio } from "./timeSounds";
 // tikler tam saniye (ya da vurus) sinirlarinda, calmalar tam saat basinda duyulur.
 
 export type TickProfile = "none" | "quartz" | "wall" | "pendulum" | "pocket" | "wrist" | "alarm" | "flap";
-export type ChimeProfile = "none" | "westminster" | "cuckoo" | "bell" | "beep" | "ring" | "digital";
+export type ChimeProfile =
+  | "none"
+  | "westminster"
+  | "tower"
+  | "mantel"
+  | "cuckoo"
+  | "bell"
+  | "school"
+  | "ship"
+  | "beep"
+  | "ring"
+  | "digital";
 
 // Saniyedeki vurus sayisi (mekanik saatlerin gercek degerlerine yakin).
 const BEATS_PER_SECOND: Record<TickProfile, number> = {
@@ -150,24 +161,62 @@ function cuckooCall(ctx: AudioContext, out: AudioNode, at: number, vol: number) 
   }
 }
 
+function westminster(ctx: AudioContext, out: AudioNode, at: number, strikes: number, v: number, pitch: number, pace: number) {
+  let t = at;
+  for (const phrase of WESTMINSTER_PHRASES.slice(1)) {
+    for (const note of phrase) {
+      bell(ctx, out, t, WESTMINSTER[note] * pitch, v * 0.22, 2.6 / Math.sqrt(pitch));
+      t += 0.72 * pace;
+    }
+    t += 0.72 * pace;
+  }
+  t += 0.8 * pace;
+  for (let i = 0; i < strikes; i += 1) {
+    bell(ctx, out, t, 164.81 * pitch, v * 0.34, 4 / Math.sqrt(pitch));
+    t += 1.9 * pace;
+  }
+  return t - at + 2;
+}
+
+/** Gemi canlari: 4 saatlik vardiyada her yarim saat bir vurus eklenir (1-8), ciftler halinde. */
+export function shipBellCount(date: Date) {
+  const halfHours = (date.getHours() % 4) * 2 + (date.getMinutes() >= 30 ? 1 : 0);
+  return halfHours === 0 ? 8 : halfHours;
+}
+
+/** Calma araligi: gemi canlari yarim saatte bir, digerleri saat basi. */
+export function chimeIntervalMs(profile: ChimeProfile) {
+  return profile === "ship" ? 1800000 : 3600000;
+}
+
 /** Saat basi calmasini planlar; toplam suresini (sn) dondurur. */
-export function scheduleChime(ctx: AudioContext, out: AudioNode, profile: ChimeProfile, at: number, hour24: number, volume: number) {
-  const strikes = hour24 % 12 || 12;
+export function scheduleChime(ctx: AudioContext, out: AudioNode, profile: ChimeProfile, at: number, when: Date, volume: number) {
+  const strikes = when.getHours() % 12 || 12;
   const v = Math.max(0.02, Math.min(1, volume));
   switch (profile) {
-    case "westminster": {
-      let t = at;
-      for (const phrase of WESTMINSTER_PHRASES.slice(1)) {
-        for (const note of phrase) {
-          bell(ctx, out, t, WESTMINSTER[note], v * 0.22, 2.6);
-          t += 0.72;
-        }
-        t += 0.72;
+    case "westminster":
+      return westminster(ctx, out, at, strikes, v, 1, 1);
+    case "tower":
+      // Buyuk kule: bir oktav pes, daha agir tempo.
+      return westminster(ctx, out, at, strikes, v * 1.1, 0.5, 1.35);
+    case "mantel":
+      // Somine saati: ince teller, hizli tempo.
+      return westminster(ctx, out, at, strikes, v * 0.8, 2, 0.7);
+    case "school": {
+      // Elektrikli okul zili: cekic saniyede ~22 kez vurur.
+      for (let i = 0; i < 48; i += 1) {
+        const t = at + i * 0.045;
+        ping(ctx, out, t, 1480, 0.09, v * 0.12, "triangle");
+        ping(ctx, out, t, 3720, 0.04, v * 0.05);
       }
-      t += 0.8;
-      for (let i = 0; i < strikes; i += 1) {
-        bell(ctx, out, t, 164.81, v * 0.34, 4);
-        t += 1.9;
+      return 2.6;
+    }
+    case "ship": {
+      const count = shipBellCount(when);
+      let t = at;
+      for (let i = 0; i < count; i += 1) {
+        bell(ctx, out, t, 880, v * 0.26, 2.2);
+        t += i % 2 === 0 ? 0.42 : 1.15;
       }
       return t - at + 2;
     }
@@ -240,12 +289,13 @@ export function startClockSound(initial: ClockSoundConfig) {
     }
 
     if (config.chimeOn && config.chime !== "none") {
-      const hourMs = 3600000;
+      const stepMs = chimeIntervalMs(config.chime);
       const offset = new Date().getTimezoneOffset() * 60000;
-      const nextHour = Math.floor((scheduledUntil - offset) / hourMs + 1) * hourMs + offset;
+      const nextHour = Math.floor((scheduledUntil - offset) / stepMs + 1) * stepMs + offset;
       if (nextHour > scheduledUntil && nextHour <= horizon) {
-        const hour = new Date(nextHour + 1000).getHours();
-        const seconds = scheduleChime(ctx, master, config.chime, toCtx(nextHour), hour, 1);
+        const when = new Date(nextHour + 1000);
+        const hour = when.getHours();
+        const seconds = scheduleChime(ctx, master, config.chime, toCtx(nextHour), when, 1);
         const id = window.setTimeout(() => {
           timers.delete(id);
           config.onChime?.(hour, seconds * 1000);
@@ -281,7 +331,7 @@ export function previewChime(profile: ChimeProfile, volume: number) {
   const out = ctx.createGain();
   out.gain.value = volume;
   out.connect(ctx.destination);
-  const seconds = scheduleChime(ctx, out, profile, ctx.currentTime + 0.05, new Date().getHours(), 1);
+  const seconds = scheduleChime(ctx, out, profile, ctx.currentTime + 0.05, new Date(), 1);
   window.setTimeout(() => out.disconnect(), (seconds + 1) * 1000);
   return seconds;
 }

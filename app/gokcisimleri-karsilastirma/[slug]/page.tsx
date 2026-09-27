@@ -7,6 +7,7 @@ import {
   getCelestialBodyComparison,
 } from "../../converter/celestialBodyComparisons";
 import { buildSiteUrl } from "../../siteConfig";
+import { trAblative, trEitherQuestion, trGenitive } from "../../converter/turkishSuffix";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -47,14 +48,14 @@ export async function generateMetadata({
   const largerName = largerId === first.id ? first.nameTr : second.nameTr;
   const smallerName = largerId === first.id ? second.nameTr : first.nameTr;
 
-  const title = `${first.nameTr} mi ${second.nameTr} mi Daha Büyük? Karşılaştırma`;
+  const title = `${trEitherQuestion(first.nameTr, second.nameTr)} Daha Büyük? Karşılaştırma`;
   const description = `${first.nameTr} çapı ${formatNumber(
     first.diameterKm,
     0
   )} km, ${second.nameTr} çapı ${formatNumber(
     second.diameterKm,
     0
-  )} km. ${largerName}, ${smallerName}'den ${formatRatio(
+  )} km. ${largerName}, ${trAblative(smallerName)} ${formatRatio(
     diameterRatio
   )} kat daha büyük. Kütle, yerçekimi ve diğer özellikler karşılaştırması.`;
 
@@ -91,21 +92,21 @@ export default async function CelestialBodyComparisonPage({
 
   const faqItems: FaqItem[] = [
     {
-      question: `${first.nameTr} mi ${second.nameTr} mi daha büyük?`,
-      answer: `${largerBody.nameTr}, ${smallerBody.nameTr}'den çap olarak yaklaşık ${formatRatio(
+      question: `${trEitherQuestion(first.nameTr, second.nameTr)} daha büyük?`,
+      answer: `${largerBody.nameTr}, ${trAblative(smallerBody.nameTr)} çap olarak yaklaşık ${formatRatio(
         diameterRatio
       )} kat, kütle olarak yaklaşık ${formatRatio(massRatio)} kat daha büyüktür.`,
     },
     {
-      question: `${first.nameTr}'in çapı kaç km?`,
-      answer: `${first.nameTr}'in çapı yaklaşık ${formatNumber(
+      question: `${trGenitive(first.nameTr)} çapı kaç km?`,
+      answer: `${trGenitive(first.nameTr)} çapı yaklaşık ${formatNumber(
         first.diameterKm,
         0
       )} km'dir.`,
     },
     {
-      question: `${second.nameTr}'in çapı kaç km?`,
-      answer: `${second.nameTr}'in çapı yaklaşık ${formatNumber(
+      question: `${trGenitive(second.nameTr)} çapı kaç km?`,
+      answer: `${trGenitive(second.nameTr)} çapı yaklaşık ${formatNumber(
         second.diameterKm,
         0
       )} km'dir.`,
@@ -158,10 +159,10 @@ export default async function CelestialBodyComparisonPage({
 
         <header className="all-conversions-header">
           <h1>
-            {first.nameTr} mi {second.nameTr} mi Daha Büyük? Karşılaştırma
+            {trEitherQuestion(first.nameTr, second.nameTr)} Daha Büyük? Karşılaştırma
           </h1>
           <p>
-            {largerBody.nameTr}, {smallerBody.nameTr}&#x27;den çap olarak
+            {largerBody.nameTr}, {trAblative(smallerBody.nameTr)} çap olarak
             yaklaşık {formatRatio(diameterRatio)} kat, kütle olarak yaklaşık{" "}
             {formatRatio(massRatio)} kat daha büyüktür.
           </p>
@@ -206,6 +207,21 @@ export default async function CelestialBodyComparisonPage({
                   <td>{formatNumber(second.escapeVelocityKms, 1)} km/s</td>
                 </tr>
                 <tr>
+                  <td>Gün uzunluğu (dönüş)</td>
+                  <td>{formatNumber(Math.abs(first.rotationPeriodHours), 1)} saat</td>
+                  <td>{formatNumber(Math.abs(second.rotationPeriodHours), 1)} saat</td>
+                </tr>
+                <tr>
+                  <td>Yörünge periyodu</td>
+                  <td>{formatNumber(first.orbitalPeriodDays, 0)} gün</td>
+                  <td>{formatNumber(second.orbitalPeriodDays, 0)} gün</td>
+                </tr>
+                <tr>
+                  <td>Uydu sayısı</td>
+                  <td>{first.moonCount}</td>
+                  <td>{second.moonCount}</td>
+                </tr>
+                <tr>
                   <td>Ortalama Sıcaklık</td>
                   <td>{formatNumber(first.meanTemperatureC, 0)} °C</td>
                   <td>{formatNumber(second.meanTemperatureC, 0)} °C</td>
@@ -215,6 +231,38 @@ export default async function CelestialBodyComparisonPage({
           </div>
 
           <p className="flagship-sector-note">{context}</p>
+
+          <h2>Sayılarla {first.nameTr} ve {second.nameTr}</h2>
+          <ul>
+            <li>
+              Hacim oranı: {trGenitive(largerBody.nameTr)} içine yaklaşık{" "}
+              {formatNumber(Math.pow(largerBody.diameterKm / smallerBody.diameterKm, 3), 0)} tane {smallerBody.nameTr} sığar (küre
+              varsayımıyla, hacim çapın küpüyle orantılıdır).
+            </li>
+            <li>
+              Dünya&apos;da 70 kg gelen biri {first.nameTr} yüzeyinde {formatNumber((70 * first.gravityMs2) / 9.81, 1)} kg,{" "}
+              {second.nameTr} yüzeyinde {formatNumber((70 * second.gravityMs2) / 9.81, 1)} kg gelir.
+            </li>
+            <li>
+              Yüzeyden kurtulmak için gereken kaçış hızı {first.nameTr} için saatte{" "}
+              {formatNumber(first.escapeVelocityKms * 3600, 0)} km, {second.nameTr} için saatte{" "}
+              {formatNumber(second.escapeVelocityKms * 3600, 0)} km&apos;dir.
+            </li>
+          </ul>
+          <p>
+            Kendi kilonuzu farklı gökcisimlerinde hesaplamak için{" "}
+            <Link href={`/gokcisimleri-ozellikleri/${first.id}`}>{first.nameTr}</Link> ya da{" "}
+            <Link href={`/gokcisimleri-ozellikleri/${second.id}`}>{second.nameTr}</Link> sayfasındaki ağırlık hesaplayıcıyı kullanın.
+          </p>
+
+          <h2>Sık Sorulan Sorular</h2>
+          {faqItems.map((item) => (
+            <p key={item.question}>
+              <strong>{item.question}</strong>
+              <br />
+              {item.answer}
+            </p>
+          ))}
         </section>
 
         <section className="category-article-content">

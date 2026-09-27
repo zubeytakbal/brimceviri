@@ -10,6 +10,7 @@ import {
   getProvinceRankContext,
 } from "../../converter/provinceElevationHub";
 import { buildSiteUrl } from "../../siteConfig";
+import { trGenitive, trLocative } from "../../converter/turkishSuffix";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -36,7 +37,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const title = `${province.nameTr} Rakımı: ${province.elevationM} Metre ve İrtifa Etkisi`;
-  const description = `${province.nameTr}'in denizden yüksekliği, bu rakımdaki hava basıncı ve suyun kaç derecede kaynadığı.`;
+  const description = `${trGenitive(province.nameTr)} denizden yüksekliği, bu rakımdaki hava basıncı ve suyun kaç derecede kaynadığı.`;
 
   return {
     title,
@@ -71,13 +72,13 @@ export default async function ProvinceElevationDetailPage({ params }: PageProps)
 
   const faqItems: FaqItem[] = [
     {
-      question: `${province.nameTr}'in rakımı kaç metre?`,
+      question: `${trGenitive(province.nameTr)} rakımı kaç metre?`,
       answer: `${province.nameTr}, deniz seviyesinden ${province.elevationM.toLocaleString("tr-TR")} metre yüksekliktedir.`,
     },
     {
-      question: `${province.nameTr}'de su kaç derecede kaynar?`,
+      question: `${trLocative(province.nameTr)} su kaç derecede kaynar?`,
       answer: altitudeEffect
-        ? `${province.nameTr}'de (${province.elevationM.toLocaleString("tr-TR")} m) su yaklaşık ${formatNumber(altitudeEffect.waterBoilingPointC)}°C'de kaynar. Bu rakımda etki çok küçük olsa da, prensip aynı: irtifa arttıkça hava basıncı düşer, su daha düşük sıcaklıkta kaynar.`
+        ? `${trLocative(province.nameTr)} (${province.elevationM.toLocaleString("tr-TR")} m) su yaklaşık ${formatNumber(altitudeEffect.waterBoilingPointC)}°C'de kaynar. Bu rakımda etki çok küçük olsa da, prensip aynı: irtifa arttıkça hava basıncı düşer, su daha düşük sıcaklıkta kaynar.`
         : "",
     },
   ];

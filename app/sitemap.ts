@@ -5808,7 +5808,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  return [
+  const entries: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
       lastModified: contentLastModified,
@@ -6616,4 +6616,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...bengaliUnitGuideIndexRoute,
     ...corporateRoutes,
   ];
+
+  // Ayni adres birden fazla listede yer alabiliyor; hreflang bilgisi olan kaydi tutarak tekillestir.
+  const byUrl = new Map<string, MetadataRoute.Sitemap[number]>();
+  for (const entry of entries) {
+    const existing = byUrl.get(entry.url);
+    if (!existing || (!existing.alternates && entry.alternates)) byUrl.set(entry.url, entry);
+  }
+  return [...byUrl.values()];
 }

@@ -1,3 +1,4 @@
+import { trDative } from "./turkishSuffix";
 export type NumberFactsLocale = "tr" | "uz";
 
 export interface NumberFacts {
@@ -91,7 +92,7 @@ function computeIsPrime(
 
   for (let i = 3; i * i <= n; i += 2) {
     if (n % i === 0) {
-      return { isPrime: false, reason: `${n}, ${i}'e tam bölündüğü için asal sayı değildir.` };
+      return { isPrime: false, reason: `${n}, ${trDative(i)} tam bölündüğü için asal sayı değildir.` };
     }
   }
 

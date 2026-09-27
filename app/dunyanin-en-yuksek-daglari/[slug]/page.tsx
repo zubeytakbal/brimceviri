@@ -11,6 +11,7 @@ import {
 } from "../../converter/mountainsHub";
 import { findNearestProvince } from "../../converter/provinceElevationHub";
 import { buildSiteUrl } from "../../siteConfig";
+import { trDative, trGenitive } from "../../converter/turkishSuffix";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -37,7 +38,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const title = `${mountain.nameTr} Yüksekliği: ${mountain.elevationM} Metre`;
-  const description = `${mountain.nameTr}'in yüksekliği, göreli yüksekliği, ilk tırmanış tarihi ve zirvede hava basıncının deniz seviyesine göre yüzdesi.`;
+  const description = `${trGenitive(mountain.nameTr)} yüksekliği, göreli yüksekliği, ilk tırmanış tarihi ve zirvede hava basıncının deniz seviyesine göre yüzdesi.`;
 
   return {
     title,
@@ -73,17 +74,17 @@ export default async function MountainDetailPage({ params }: PageProps) {
       answer: `${mountain.nameTr}, ${mountain.rangeTr} sıradağlarında yer alır ve ${mountain.elevationM.toLocaleString("tr-TR")} metre yüksekliğindedir.`,
     },
     {
-      question: `${mountain.nameTr}'e ilk tırmanış ne zaman yapıldı?`,
-      answer: `${mountain.nameTr}'e ilk başarılı tırmanış ${mountain.firstAscentYear} yılında gerçekleştirildi.`,
+      question: `${trDative(mountain.nameTr)} ilk tırmanış ne zaman yapıldı?`,
+      answer: `${trDative(mountain.nameTr)} ilk başarılı tırmanış ${mountain.firstAscentYear} yılında gerçekleştirildi.`,
     },
     {
-      question: `${mountain.nameTr}'e ilk kış tırmanışı ne zaman yapıldı?`,
-      answer: `${mountain.nameTr}'e ilk kış tırmanışı ${mountain.firstWinterAscentYear} yılında gerçekleştirildi. Kış koşullarında (aşırı soğuk, kısa gün ışığı, güçlü rüzgar) tırmanış yaz sezonuna göre çok daha zor kabul edilir.`,
+      question: `${trDative(mountain.nameTr)} ilk kış tırmanışı ne zaman yapıldı?`,
+      answer: `${trDative(mountain.nameTr)} ilk kış tırmanışı ${mountain.firstWinterAscentYear} yılında gerçekleştirildi. Kış koşullarında (aşırı soğuk, kısa gün ışığı, güçlü rüzgar) tırmanış yaz sezonuna göre çok daha zor kabul edilir.`,
     },
     {
-      question: `${mountain.nameTr}'in zirvesinde su kaç derecede kaynar?`,
+      question: `${trGenitive(mountain.nameTr)} zirvesinde su kaç derecede kaynar?`,
       answer: altitudeEffect
-        ? `${mountain.nameTr}'in zirvesinde (${mountain.elevationM.toLocaleString("tr-TR")} m) su yaklaşık ${formatNumber(altitudeEffect.waterBoilingPointC)}°C'de kaynar — deniz seviyesindeki 100°C'ye göre çok daha düşük, çünkü kaynama noktası çevre basıncına bağlıdır ve irtifa arttıkça basınç düşer.`
+        ? `${trGenitive(mountain.nameTr)} zirvesinde (${mountain.elevationM.toLocaleString("tr-TR")} m) su yaklaşık ${formatNumber(altitudeEffect.waterBoilingPointC)}°C'de kaynar — deniz seviyesindeki 100°C'ye göre çok daha düşük, çünkü kaynama noktası çevre basıncına bağlıdır ve irtifa arttıkça basınç düşer.`
         : "",
     },
   ];

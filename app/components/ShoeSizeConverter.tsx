@@ -258,7 +258,7 @@ const copy = {
     group: "Grup",
     brand: "Marka",
     knownSystem: "Bildiğin Sistem",
-    value: "Deger",
+    value: "Değer",
     matchingSizes: "Eşleşen Numaralar",
     invalidValue:
       "Geçerli bir sayı girerek sonucu görebilirsiniz.",

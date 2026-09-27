@@ -1,19 +1,20 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import { DecorativeIcon } from "../components/siteIcons";
+import { scienceHubs } from "../converter/scienceHubs";
 import { buildSiteUrl } from "../siteConfig";
 
 export const metadata: Metadata = {
   title: "Bilim Hesaplayıcıları",
   description:
-    "Kimya, fizik ve diğer fen derslerine yönelik hesaplayıcıları bir arada bulun.",
+    "Kimya, matematik, fizik, geometri ve biyoloji hesaplayıcıları: mol, pH, EBOB-EKOK, denklem çözme, eğik atış, Pisagor, kodon tablosu ve 60'tan fazla araç.",
   alternates: {
     canonical: "/bilim-hesaplayicilari",
   },
   openGraph: {
     title: "Bilim Hesaplayıcıları",
     description:
-      "Kimya, fizik ve diğer fen derslerine yönelik hesaplayıcıları bir arada bulun.",
+      "Kimya, matematik, fizik, geometri ve biyoloji hesaplayıcıları: mol, pH, EBOB-EKOK, denklem çözme, eğik atış, Pisagor, kodon tablosu ve 60'tan fazla araç.",
     url: buildSiteUrl("/bilim-hesaplayicilari"),
     siteName: "BirimCeviri.app",
     locale: "tr_TR",
@@ -21,24 +22,24 @@ export const metadata: Metadata = {
   },
 };
 
-const categories = [
-  {
-    id: "fizik",
-    href: "/bilim-hesaplayicilari/fizik",
-    title: "Fizik",
-    description:
-      "Eğik atış, hareket, kuvvet ve daha fazlası.",
-    iconName: "physicsCalculator" as const,
-  },
-  {
-    id: "biyoloji",
-    href: "/bilim-hesaplayicilari/biyoloji",
-    title: "Biyoloji",
-    description:
-      "Amino asitler, kodon tablosu, DNA/RNA çevirici ve daha fazlası.",
-    iconName: "biologyCalculator" as const,
-  },
-];
+const categories = scienceHubs.map((hub) => ({
+  id: hub.slug,
+  href: hub.path,
+  title: hub.name,
+  description: hub.groups
+    .flatMap((g) => g.tools)
+    .slice(0, 4)
+    .map((t) => t.title.replace(/ Hesaplama$/, ""))
+    .join(", "),
+  count: hub.groups.reduce((sum, g) => sum + g.tools.length, 0),
+  iconName: ({
+    kimya: "chemistryCalculator",
+    matematik: "mathCalculator",
+    fizik: "physicsCalculator",
+    geometri: "geometryCalculator",
+    biyoloji: "biologyCalculator",
+  } as const)[hub.slug],
+}));
 
 const siPrefixTable = [
   ["Tera", "T", "10¹²"],
@@ -69,8 +70,8 @@ export default function BilimHesaplayicilariHubPage() {
           <h1>Bilim Hesaplayıcıları</h1>
           <p>
             Öğrenciler için fizik, kimya, matematik ve geometri
-            hesaplayıcıları — 35&apos;ten fazla araç tek yerde. Liste
-            zamanla büyüyecek.
+            hesaplayıcıları — 60&apos;tan fazla araç tek yerde. Her araç
+            formülü ve adım adım çözümü gösterir.
           </p>
         </header>
 
@@ -85,7 +86,7 @@ export default function BilimHesaplayicilariHubPage() {
               <strong>1 mili-</strong> (m) = 10⁻³, <strong>1 mikro-</strong>{" "}
               (µ) = 10⁻⁶
             </li>
-            <li>35+ fizik, kimya, matematik ve geometri hesaplayıcısı</li>
+            <li>60+ kimya, matematik, fizik, geometri ve biyoloji aracı</li>
           </ul>
         </div>
 
@@ -106,7 +107,12 @@ export default function BilimHesaplayicilariHubPage() {
                       className="home-category-icon-svg"
                     />
                   </span>
-                  <h3 className="home-category-title">{category.title}</h3>
+                  <div>
+                    <h3 className="home-category-title">{category.title}</h3>
+                    <p>
+                      {category.description} ve {category.count - 4 > 0 ? `${category.count - 4} araç daha` : "daha fazlası"}
+                    </p>
+                  </div>
                 </div>
               </Link>
             ))}

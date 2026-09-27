@@ -12959,3 +12959,56 @@ a.all-units-row .all-units-name {
     grid-column: 2;
   }
 }
+
+/* ---------- Bilim hesaplayicilari hub ---------- */
+.science-hub-group {
+  margin: 8px 0 24px;
+}
+
+.science-hub-group h2 {
+  margin: 0 0 12px;
+  font-size: 1.25rem;
+}
+
+.science-hub-group h2 small {
+  color: #7a8794;
+  font-weight: 600;
+}
+
+.science-hub-tools {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.science-hub-tools a {
+  display: grid;
+  gap: 4px;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 14px 16px;
+  border: 1px solid #dde6ec;
+  border-radius: 14px;
+  background: #ffffff;
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.science-hub-tools a:hover {
+  border-color: #3fa7a7;
+  box-shadow: 0 4px 14px rgba(15, 111, 108, 0.12);
+}
+
+.science-hub-tools strong {
+  color: #0f6f6c;
+}
+
+.science-hub-tools span {
+  color: #5b6b7a;
+  font-size: 0.88rem;
+  line-height: 1.45;
+}

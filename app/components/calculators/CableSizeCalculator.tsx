@@ -48,7 +48,7 @@ const copy = {
     automaticResultUnit: "Otomatik sonuç birimi",
     formula: "Yerine koyulmuş formül",
     siEquivalent: "SI eşdeğeri",
-    resistivityNote: "Kullanilan direnc",
+    resistivityNote: "Kullanılan direnç",
     clear: "Değerleri temizle",
   },
   en: {

@@ -12,7 +12,7 @@ import {
   getLocaleDefinition,
   getLocaleFromPathname,
   normalizePathname,
-  SUPPORTED_LOCALES,
+  PUBLISHED_LOCALES,
 } from "../i18n/config";
 import { resolveLanguagePath } from "../i18n/routing";
 
@@ -72,7 +72,7 @@ export default function LanguageSwitcher() {
     }
   }, [isOpen]);
 
-  const localeLinks = SUPPORTED_LOCALES.map((locale) => ({
+  const localeLinks = PUBLISHED_LOCALES.map((locale) => ({
     locale,
     label: getLocaleDefinition(locale).switcherLabel,
     href: resolveLanguagePath(normalizedPathname, locale),
@@ -87,7 +87,7 @@ export default function LanguageSwitcher() {
 
   // 6'dan fazla dil oldugunda arama kutusu gosterilir -- az sayida dilde
   // gereksiz bir ekstra adim eklememek icin.
-  const showSearch = SUPPORTED_LOCALES.length > 6;
+  const showSearch = PUBLISHED_LOCALES.length > 6;
 
   return (
     <div className="language-switcher" ref={wrapperRef}>

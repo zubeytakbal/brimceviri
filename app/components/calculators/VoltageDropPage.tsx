@@ -129,8 +129,8 @@ const copy: Record<CalculatorLocale, PageCopy> = {
     breadcrumbLabel: "Sayfa yolu",
     title: "Gerilim Düşümü Hesaplama",
     description:
-      "Seçili kablo kesitinde volt kaybını, yüzdesel düşümü ve hat sonu gerilimini hesaplayın. Tek faz, üç faz ve DC sistemler ile bakır veya aluminyum iletken destekler.",
-    heroEyebrow: "ELEKTRIK HESAPLAYICISI",
+      "Seçili kablo kesitinde volt kaybını, yüzdesel düşümü ve hat sonu gerilimini hesaplayın. Tek faz, üç faz ve DC sistemler ile bakır veya alüminyum iletken destekler.",
+    heroEyebrow: "ELEKTRİK HESAPLAYICISI",
     heroResultHeading: "Gerilim düşümü sonucu",
     introHeading: "Bu gerilim düşümü aracı ne için kullanılır?",
     formulasHeading: "Kullanılan formül",
@@ -155,7 +155,7 @@ const copy: Record<CalculatorLocale, PageCopy> = {
       typicalUse: "Yaygın kullanım",
     },
     intro: [
-      "Bu araç, seçilen bakır veya aluminyum iletken kesitinde oluşacak volt kaybını, bu kaybın kaynak gerilimine oranını ve hat sonundaki gerilimi hesaplar.",
+      "Bu araç, seçilen bakır veya alüminyum iletken kesitinde oluşacak volt kaybını, bu kaybın kaynak gerilimine oranını ve hat sonundaki gerilimi hesaplar.",
       "İç tesisat kontrolü, motor besleme hatları ve uzak saha panolarında seçilen kesitin yeterli olup olmadığını hızlıca doğrulamak için kullanılabilir.",
     ],
     formulas: [

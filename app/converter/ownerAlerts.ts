@@ -44,3 +44,32 @@ export async function openSourceChangeIssue(input: {
     return "failed";
   }
 }
+
+// Kurulum testi: token eklendikten sonraki ilk cron calismasinda bir kez
+// "bildirimler calisiyor" issue'su acar (sahibe e-posta gider). Tekrar
+// denemek icin Redis'teki kaynak-kontrol:owner-alert-test anahtari silinir.
+export async function openSetupTestIssue(): Promise<"created" | "skipped" | "failed"> {
+  const token = process.env.GITHUB_ISSUE_TOKEN;
+  if (!token) return "skipped";
+
+  try {
+    const response = await fetch(`https://api.github.com/repos/${REPOSITORY}/issues`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: "application/vnd.github+json",
+        "X-GitHub-Api-Version": "2022-11-28",
+        "User-Agent": "birimceviri-kaynak-kontrol",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title: "Test: source change alerts are working",
+        body: "This is a one-time test from the nightly source check. If you received this by email, change alerts are set up correctly. You can close this issue.",
+      }),
+      signal: AbortSignal.timeout(15000),
+    });
+    return response.ok ? "created" : "failed";
+  } catch {
+    return "failed";
+  }
+}

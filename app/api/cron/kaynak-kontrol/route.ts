@@ -6,7 +6,7 @@ import { revalidateTag } from "next/cache";
 import { FX_CACHE_TAG } from "../../../converter/fx/fxData";
 import { cgpaSourceMonitorTargets } from "../../../converter/cgpaSourceMonitor";
 import { getRedisCredentials, licenseSourceMonitorTargets } from "../../../converter/licenseSourceMonitor";
-import { openSourceChangeIssue } from "../../../converter/ownerAlerts";
+import { openSetupTestIssue, openSourceChangeIssue } from "../../../converter/ownerAlerts";
 
 // Kaynaklar paralel kontrol edilir; her biri kendi 20 sn zaman asimina sahip.
 export const maxDuration = 60;
@@ -243,5 +243,19 @@ export async function GET(request: Request) {
     }),
   );
 
-  return jsonResponse({ fxRevalidated, results });
+  // Bildirim kurulum testi: token varken yalnizca bir kez calisir.
+  let ownerAlertTest: "created" | "skipped" | "failed" | "already_sent" = "skipped";
+  if (process.env.GITHUB_ISSUE_TOKEN) {
+    const alreadySent = await redis.get<string>("kaynak-kontrol:owner-alert-test").catch(() => null);
+    if (alreadySent) {
+      ownerAlertTest = "already_sent";
+    } else {
+      ownerAlertTest = await openSetupTestIssue();
+      if (ownerAlertTest === "created") {
+        await redis.set("kaynak-kontrol:owner-alert-test", new Date().toISOString()).catch(() => undefined);
+      }
+    }
+  }
+
+  return jsonResponse({ fxRevalidated, ownerAlertTest, results });
 }

@@ -9,7 +9,7 @@ import { buildSiteUrl } from "../siteConfig";
 
 const title = "Online Saat: Şu An Saat Kaç? Tam Ekran Saat";
 const description =
-  "Canlı saat, 24 tema: sarkaçlı ve guguklu saat, cep saati, dalgıç ve kronograf kol saatleri, flip, nixie, LED. Tik-tak sesi, saat başı çanı, tam ekran.";
+  "Canlı saat, 34 tema: sarkaçlı, guguklu, kule ve gemi saati, cep saati, iskelet ve ay fazlı kol saatleri, flip, nixie. Tik-tak sesi, saat başı çanı.";
 
 export const metadata: Metadata = {
   title,
@@ -54,7 +54,7 @@ export default function OnlineClockPage() {
       crumbs={[{ href: "/", label: "Ana Sayfa" }, { href: "/online-saat", label: "Online Saat" }]}
       crumbLabel="Sayfa yolu"
       title="Online Saat"
-      intro="Şu anki saat, saniyesi saniyesine. 24 temadan birini seç: sarkaçlı duvar saatinden guguklu saate, cep saatinden dalgıç saatine. İstersen tik-tak sesini ve saat başı çanını aç, tek tıkla tam ekran masa saatine dönüştür."
+      intro="Şu anki saat, saniyesi saniyesine. 34 temadan birini seç: sarkaçlı duvar saatinden guguklu saate, cep saatinden dalgıç saatine. İstersen tik-tak sesini ve saat başı çanını aç, tek tıkla tam ekran masa saatine dönüştür."
       tool={<LiveClock locale="tr" />}
       related={{ title: "Diğer zaman araçları", links: timeRelated.tr.tools.filter((t) => t.href !== "/online-saat") }}
       tocTitle="İçindekiler"

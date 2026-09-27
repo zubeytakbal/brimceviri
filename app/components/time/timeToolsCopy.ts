@@ -58,7 +58,25 @@ export type TimeToolsCopy = {
     download: string;
     empty: string;
   };
+  clock: {
+    themes: Record<ClockTheme, string>;
+    analogGroup: string;
+    digitalGroup: string;
+    theme: string;
+    options: string;
+    hour24: string;
+    seconds: string;
+    date: string;
+    timeZone: string;
+    am: string;
+    pm: string;
+    dateLocale: string;
+  };
 };
+
+export const analogClockThemes = ["analog", "station", "roman", "gold", "night"] as const;
+export const digitalClockThemes = ["digital", "minimal", "sunset", "flip", "neon", "led", "terminal", "binary"] as const;
+export type ClockTheme = (typeof analogClockThemes)[number] | (typeof digitalClockThemes)[number];
 
 export type TimeToolsLocale = "tr" | "en";
 
@@ -126,6 +144,34 @@ export const timeToolsCopy: Record<TimeToolsLocale, TimeToolsCopy> = {
       download: "Turları indir (CSV)",
       empty: "Tur kaydetmek için kronometre çalışırken “Tur”a bas.",
     },
+    clock: {
+      themes: {
+        analog: "Klasik",
+        station: "İstasyon",
+        roman: "Roma",
+        gold: "Altın",
+        night: "Gece",
+        digital: "Dijital",
+        minimal: "Sade",
+        sunset: "Gün batımı",
+        flip: "Flip",
+        neon: "Neon",
+        led: "LED",
+        terminal: "Terminal",
+        binary: "İkili",
+      },
+      analogGroup: "Analog",
+      digitalGroup: "Dijital",
+      theme: "Tema",
+      options: "Görünüm",
+      hour24: "24 saat",
+      seconds: "Saniye",
+      date: "Tarih",
+      timeZone: "Saat dilimin",
+      am: "ÖÖ",
+      pm: "ÖS",
+      dateLocale: "tr-TR",
+    },
   },
   en: {
     numberLocale: "en-US",
@@ -189,6 +235,34 @@ export const timeToolsCopy: Record<TimeToolsLocale, TimeToolsCopy> = {
       slowest: "Slowest",
       download: "Download laps (CSV)",
       empty: "Press “Lap” while the stopwatch runs to record laps.",
+    },
+    clock: {
+      themes: {
+        analog: "Classic",
+        station: "Station",
+        roman: "Roman",
+        gold: "Gold",
+        night: "Night",
+        digital: "Digital",
+        minimal: "Minimal",
+        sunset: "Sunset",
+        flip: "Flip",
+        neon: "Neon",
+        led: "LED",
+        terminal: "Terminal",
+        binary: "Binary",
+      },
+      analogGroup: "Analog",
+      digitalGroup: "Digital",
+      theme: "Theme",
+      options: "Display",
+      hour24: "24-hour",
+      seconds: "Seconds",
+      date: "Date",
+      timeZone: "Your time zone",
+      am: "AM",
+      pm: "PM",
+      dateLocale: "en-US",
     },
   },
 };

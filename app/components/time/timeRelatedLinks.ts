@@ -9,6 +9,7 @@ import {
 export const timeRelated = {
   tr: {
     tools: [
+      { href: "/online-saat", label: "Online Saat" },
       { href: "/online-alarm-kur", label: "Online Alarm" },
       { href: "/zamanlayici", label: "Zamanlayıcı" },
       { href: "/kronometre", label: "Kronometre" },
@@ -19,6 +20,7 @@ export const timeRelated = {
   },
   en: {
     tools: [
+      { href: "/en/online-clock", label: "Online Clock" },
       { href: "/en/alarm-clock", label: "Alarm Clock" },
       { href: "/en/timer", label: "Timer" },
       { href: "/en/stopwatch", label: "Stopwatch" },

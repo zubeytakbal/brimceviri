@@ -144,6 +144,7 @@ export const everydayToolLinksByCategory: Record<
     { href: "/yas-hesaplama", label: "Yaş Hesaplama" },
     { href: "/gebelik-haftasi-hesaplama", label: "Gebelik Haftası Hesaplama" },
     { href: "/uyku-hesaplama", label: "Uyku Hesaplama" },
+    { href: "/online-saat", label: "Online Saat" },
     { href: "/online-alarm-kur", label: "Online Alarm" },
     { href: "/zamanlayici", label: "Zamanlayıcı" },
     { href: "/kronometre", label: "Kronometre" },

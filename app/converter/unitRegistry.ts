@@ -495,6 +495,15 @@ export const unitRegistry: UnitRegistryEntry[] = [
     en: { name: "Marla", slug: "marla" },
     de: { name: "Marla", slug: "marla" },
   },
+  // Kuzey Hindistan'da (Delhi, UP, Haryana) arsalar "gaj" ile satilir:
+  // 1 gaj = 1 yarda kare = 9 ft2. Yalnizca Ingilizce sayfalarda kullanilir.
+  {
+    id: "gaj",
+    category: "alan",
+    symbol: "gaj",
+    siFactor: 0.83612736,
+    en: { name: "Gaj", slug: "gaj" },
+  },
   {
     id: "guntha",
     category: "alan",
@@ -1489,6 +1498,11 @@ export const unitRegistry: UnitRegistryEntry[] = [
     enConversionSlug: "atmospheres",
     uz: { name: "Atmosfera", slug: "atmosfera" },
   },
+  // Hindistan insaat muhendisligi (IS kodlari): beton/celik dayanimi N/mm2,
+  // yuk ve zemin tasima gucu kN/m2 ve t/m2 ile yazilir. Yalnizca Ingilizce.
+  { id: "newton-mm2", category: "basinc", symbol: "N/mm²", siFactor: 1_000_000, en: { name: "Newton per Square Millimeter", slug: "newton-per-square-millimeter" } },
+  { id: "kilonewton-m2", category: "basinc", symbol: "kN/m²", siFactor: 1000, en: { name: "Kilonewton per Square Meter", slug: "kilonewton-per-square-meter" } },
+  { id: "tonne-m2", category: "basinc", symbol: "t/m²", siFactor: 9806.65, en: { name: "Tonne per Square Meter", slug: "tonne-per-square-meter" } },
   { id: "teknik-atmosfer", category: "basinc", symbol: "at", siFactor: 98066.5, tr: { name: "Teknik Atmosfer", slug: "teknik-atmosfer" }, en: { name: "Technical Atmosphere", slug: "technical-atmosphere" }, de: { name: "Technische Atmosphäre", slug: "technische-atmosphaere" }, uz: { name: "Texnik Atmosfera", slug: "texnik-atmosfera" } },
   {
     id: "psi",

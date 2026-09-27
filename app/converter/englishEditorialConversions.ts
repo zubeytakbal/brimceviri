@@ -315,6 +315,59 @@ export const englishEditorialConversions: readonly EnglishEditorialConversion[] 
     ],
   },
   {
+    slug: "gaj-to-square-feet",
+    title: "Gaj is a square yard",
+    paragraphs: [
+      "In Delhi, Uttar Pradesh, Haryana and much of North India, plot sizes are quoted in gaj. One gaj is one square yard: 3 ft × 3 ft = 9 sq ft, or about 0.836 m².",
+      "So a 100 gaj plot is 900 sq ft (83.6 m²), a 200 gaj plot is 1,800 sq ft and a 50 gaj plot is 450 sq ft. Builders' carpet area and super built-up area are usually quoted in sq ft instead, so check which figure a listing uses.",
+    ],
+    related: [
+      { href: "/en/marla-to-gaj", label: "Marla to gaj" },
+      { href: "/en/bigha-to-gaj", label: "Bigha to gaj" },
+      { href: "/en/india-land-area-converter", label: "India land area converter (by state)" },
+    ],
+  },
+  {
+    slug: "bigha-to-gaj",
+    title: "Which bigha does this page use?",
+    paragraphs: [
+      "This page uses the Bengal bigha of 14,400 sq ft, which is 1,600 gaj. The bigha is much larger in other states — for example about 27,225 sq ft (3,025 gaj) in Bihar and Jharkhand and 27,000 sq ft (3,000 gaj) in parts of Uttar Pradesh.",
+      "Use the India land area converter to choose your state's bigha before converting.",
+    ],
+    note: "For a sale deed or registration, rely on the size in your local land records.",
+    related: [
+      { href: "/en/india-land-area-converter", label: "India land area converter (all states)" },
+      { href: "/en/gaj-to-square-feet", label: "Gaj to square feet" },
+      { href: "/en/bigha-to-square-feet", label: "Bigha to square feet" },
+    ],
+  },
+  {
+    slug: "n-mm2-to-mpa",
+    title: "N/mm² and MPa are the same",
+    paragraphs: [
+      "1 N/mm² = 1 MPa exactly: a newton on a square millimeter is a million newtons on a square meter. Indian codes such as IS 456 write strengths in N/mm², while many data sheets use MPa — the numbers do not change.",
+      "M20 concrete has a characteristic compressive strength of 20 N/mm² (20 MPa); Fe 500 steel has a yield strength of 500 N/mm². For kg/cm², multiply N/mm² by about 10.2.",
+    ],
+    related: [
+      { href: "/en/n-mm2-to-kg-cm2", label: "N/mm² to kg/cm²" },
+      { href: "/en/cement-sand-aggregate-calculator", label: "Concrete mix calculator (M20, M25)" },
+      { href: "/en/steel-weight-calculator", label: "Steel bar weight calculator" },
+    ],
+  },
+  {
+    slug: "kn-m2-to-t-m2",
+    title: "Soil bearing capacity in kN/m² and t/m²",
+    paragraphs: [
+      "1 t/m² (tonne-force per square meter) = 9.80665 kN/m², so divide kN/m² by about 9.81 to get t/m². Engineers often round this to 10 for a quick check.",
+      "A safe bearing capacity of 150 kN/m² is about 15.3 t/m², or 1.53 kg/cm². Soil reports in India may use any of these units, so convert before comparing a footing design with the report.",
+    ],
+    related: [
+      { href: "/en/t-m2-to-kg-cm2", label: "t/m² to kg/cm²" },
+      { href: "/en/kn-m2-to-kpa", label: "kN/m² to kPa" },
+      { href: "/en/n-mm2-to-mpa", label: "N/mm² to MPa" },
+    ],
+  },
+  {
     slug: "bigha-to-square-meters",
     title: "Which bigha does this page use?",
     paragraphs: [

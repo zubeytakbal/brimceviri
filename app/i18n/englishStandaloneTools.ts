@@ -51,7 +51,9 @@ export type EnglishStandaloneToolComponentKey =
   | "lakhCroreConverter"
   | "indianWeightConverter"
   | "gstCalculatorIndia"
-  | "emiCalculator";
+  | "emiCalculator"
+  | "steelWeightCalculator"
+  | "concreteMixCalculator";
 
 export type EnglishStandaloneTool = {
   slug: string;
@@ -1726,6 +1728,80 @@ export const englishStandaloneTools: EnglishStandaloneTool[] = [
       { question: "What is the EMI for ₹10 lakh for 5 years?", answer: "At 9% interest it is about ₹20,758 per month, with about ₹2.46 lakh of total interest." },
       { question: "Does a longer tenure save money?", answer: "No. It lowers the monthly EMI but increases the total interest paid over the life of the loan." },
       { question: "How is the monthly interest rate calculated?", answer: "Divide the annual rate by 12. An 8.5% annual rate is about 0.708% per month." },
+    ],
+    priority: 0.8,
+  },
+  {
+    slug: "steel-weight-calculator",
+    englishPath: "/en/steel-weight-calculator",
+    turkishPath: "/insaatci-araclari",
+    title: "Steel Bar Weight Calculator (D²/162, kg/m)",
+    description:
+      "Weight of TMT and rebar steel from bar diameter, number of bars and length: kg per meter, per 12 m bar, total kg and tonnes, with the D²/162 formula.",
+    intro:
+      "Pick the bar diameter, enter how many bars you have and their length. You get the weight per meter, the weight of one bar and the total in kg and tonnes, plus a table for all common sizes from 6 mm to 40 mm.",
+    component: "steelWeightCalculator",
+    iconName: "mass",
+    cardDescription: "Rebar weight per meter and total kg with D²/162.",
+    articleSections: [
+      {
+        title: "Where D²/162 comes from",
+        body: "A round bar of diameter D mm has a cross-section of π/4 × D² mm². One meter of it is π/4 × D² × 10⁻⁶ m³, and at a steel density of 7,850 kg/m³ that weighs D² × 0.006165 kg — which is D² ÷ 162.2. Site engineers round this to D²/162, so a 12 mm bar weighs 144 ÷ 162 ≈ 0.889 kg per meter.",
+      },
+      {
+        title: "Worked example",
+        body: "Ten 16 mm bars, each 12 m long: 16² ÷ 162 = 1.58 kg/m, so one bar weighs about 18.96 kg and ten bars weigh about 189.6 kg. Steel is usually bought by the tonne, so that is about 0.19 t.",
+      },
+      {
+        title: "Nominal and actual weight",
+        body: "IS 1786 allows a small tolerance on the actual mass per meter of TMT bars, so a weighbridge reading can differ slightly from the calculated weight. Lap lengths, bends and cutting wastage (typically 3–5%) should be added to the quantity from the drawings before you order.",
+      },
+    ],
+    isEnglishOnly: true,
+    faq: [
+      { question: "What is the weight of a 12 mm bar per meter?", answer: "About 0.888 kg per meter, or 10.65 kg for a standard 12 m bar." },
+      { question: "What is the formula for steel bar weight?", answer: "Weight in kg per meter = D² ÷ 162, where D is the diameter in mm. It comes from steel density 7,850 kg/m³." },
+      { question: "How many 12 mm bars are in one tonne?", answer: "About 94 bars of 12 m length (1,000 ÷ 10.65 kg)." },
+      { question: "What is the weight of 8 mm, 10 mm and 16 mm bars?", answer: "About 0.395, 0.617 and 1.578 kg per meter respectively." },
+    ],
+    priority: 0.8,
+  },
+  {
+    slug: "cement-sand-aggregate-calculator",
+    englishPath: "/en/cement-sand-aggregate-calculator",
+    turkishPath: "/beton-hesaplama",
+    title: "Concrete Mix Calculator: Cement, Sand, Aggregate",
+    description:
+      "Cement bags, sand and aggregate for M5, M7.5, M10, M15, M20 and M25 nominal mix concrete, from volume or slab size, in m³ and cubic feet.",
+    intro:
+      "Choose the concrete grade and enter the volume, or the length, width and thickness of the slab. The calculator gives the 50 kg cement bags, sand and coarse aggregate in m³ and cft, and the water for your water–cement ratio.",
+    component: "concreteMixCalculator",
+    iconName: "concreteCalculator",
+    cardDescription: "Cement bags, sand and aggregate for M20, M25 and other grades.",
+    articleSections: [
+      {
+        title: "How the quantities are worked out",
+        body: "Wet concrete shrinks when the voids fill, so the dry volume of materials is taken as 1.54 times the wet volume. That dry volume is split in the mix ratio. For M20 (1 : 1.5 : 3, total 5.5 parts) and 1 m³ of concrete: cement = 1.54 × 1 ÷ 5.5 = 0.28 m³ = 403 kg ≈ 8.06 bags; sand = 0.42 m³ (about 14.8 cft); aggregate = 0.84 m³ (about 29.7 cft).",
+      },
+      {
+        title: "Nominal mix ratios",
+        body: "M5 = 1 : 5 : 10, M7.5 = 1 : 4 : 8, M10 = 1 : 3 : 6, M15 = 1 : 2 : 4, M20 = 1 : 1.5 : 3 and M25 = 1 : 1 : 2. The number after M is the characteristic compressive strength in N/mm² (MPa) after 28 days, so M20 concrete is designed for 20 N/mm².",
+      },
+      {
+        title: "Nominal mix or design mix?",
+        body: "IS 456 permits nominal mixes for concrete up to M20. For M25 and above, a design mix based on trial batches with your actual cement, sand and aggregate is recommended; it usually uses less cement for the same strength. Treat the M25 row here as an estimate for small works.",
+      },
+      {
+        title: "Example: a slab",
+        body: "A 5 m × 4 m slab 125 mm (0.125 m) thick holds 2.5 m³ of concrete. In M20 that needs about 20.2 bags of cement, 1.05 m³ of sand and 2.1 m³ of aggregate, before wastage.",
+      },
+    ],
+    isEnglishOnly: true,
+    faq: [
+      { question: "How many cement bags are needed for 1 m³ of M20 concrete?", answer: "About 8 bags of 50 kg (403 kg) for a 1 : 1.5 : 3 nominal mix, using a dry volume factor of 1.54." },
+      { question: "What is the M20 concrete ratio?", answer: "1 : 1.5 : 3 — one part cement, one and a half parts sand and three parts coarse aggregate by volume." },
+      { question: "Why multiply by 1.54?", answer: "Dry materials occupy more volume than the finished concrete because the voids between particles fill with cement paste and water. 1.52–1.57 is the usual allowance; 1.54 is the common site value." },
+      { question: "How many cubic feet are in one bag of cement?", answer: "One 50 kg bag is about 0.0347 m³, or about 1.23 cubic feet." },
     ],
     priority: 0.8,
   },

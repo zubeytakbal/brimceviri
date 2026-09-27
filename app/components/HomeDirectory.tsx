@@ -60,6 +60,7 @@ import { homeCategoryOrder } from "../converter/homeCategoryOrder";
 import { englishHomeCategoryOrder, getEnglishCategoryPresentation } from "../i18n/englishCategoryPresentation";
 import type { SiteNotification } from "../converter/siteNotifications";
 import { unitPages } from "../converter/unitPages";
+import { geoToolsTr } from "../converter/geo/geoTools";
 
 type Locale = "tr" | "en" | "uz" | "de";
 
@@ -2373,6 +2374,40 @@ export default function HomeDirectory({
                   <span className="directory-more-label">
                     Diğer Bilim Hesaplayıcıları
                   </span>
+                </div>
+              </article>
+            </div>
+          </section>
+        )}
+
+        {locale === "tr" && (
+          <section className="directory-section" id="cografya-hesaplamalari">
+            <header className="directory-section-header">
+              <div>
+                <h2>Coğrafya hesaplamaları</h2>
+                <p>Harita ölçeği, koordinat, yerel saat ve Türkiye coğrafyası araçları.</p>
+              </div>
+            </header>
+            <div className="directory-tool-grid">
+              {geoToolsTr.slice(0, 5).map((tool) => (
+                <article className="directory-home-card directory-tool-card" key={tool.href}>
+                  <Link className="directory-card-stretch" href={tool.href} aria-label={tool.title} />
+                  <div className="directory-card-body directory-card-body-icon">
+                    <span className="home-category-icon-box" aria-hidden="true">
+                      <DecorativeIcon name="greatCircleCalculator" size={42} className="home-category-icon-svg" />
+                    </span>
+                    <div>
+                      <h3 className="home-category-title">{tool.title}</h3>
+                      <p>{tool.description}</p>
+                    </div>
+                  </div>
+                </article>
+              ))}
+              <article className="directory-home-card directory-tool-card directory-home-card-more">
+                <Link className="directory-card-stretch" href="/cografya-hesaplamalari" aria-label="Tüm Coğrafya Hesaplamaları" />
+                <div className="directory-card-body directory-more-card-body">
+                  <ArrowRight className="directory-more-arrow" size={56} weight="regular" aria-hidden="true" />
+                  <span className="directory-more-label">Tüm Coğrafya Hesaplamaları</span>
                 </div>
               </article>
             </div>

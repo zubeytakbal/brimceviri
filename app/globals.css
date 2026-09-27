@@ -13012,3 +13012,171 @@ a.all-units-row .all-units-name {
   font-size: 0.88rem;
   line-height: 1.45;
 }
+
+/* ---------- Cografya araclari ---------- */
+.calc-steps {
+  margin: 0;
+  padding: 14px 16px 14px 36px;
+  border: 1px solid #dde6ec;
+  border-radius: 14px;
+  background: #f8fbfc;
+  line-height: 1.6;
+}
+
+.calc-steps li + li {
+  margin-top: 4px;
+}
+
+.map-scale-prefix {
+  align-self: center;
+  font-weight: 800;
+}
+
+.map-scale-bar {
+  margin: 0;
+  padding: 12px 16px;
+  border: 1px solid #dde6ec;
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.map-scale-bar svg {
+  display: block;
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+}
+
+.map-scale-bar rect.is-dark {
+  fill: #0f6f6c;
+}
+
+.map-scale-bar rect.is-light {
+  fill: #ffffff;
+  stroke: #0f6f6c;
+  stroke-width: 1.5;
+}
+
+.map-scale-bar text {
+  fill: #172033;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.map-scale-bar figcaption {
+  margin-top: 4px;
+  color: #5b6b7a;
+  font-size: 0.88rem;
+}
+
+.local-time-me {
+  display: grid;
+  gap: 8px;
+  justify-items: start;
+}
+
+.local-time-me p {
+  margin: 0;
+}
+
+.date-calc-geo {
+  padding: 8px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.coord-text {
+  flex: 1 1 100%;
+}
+
+.coord-text input {
+  width: 100%;
+}
+
+.coord-results {
+  display: grid;
+  gap: 6px;
+  padding: 16px;
+  border: 1px solid #dde6ec;
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.coord-results h3 {
+  margin: 8px 0 2px;
+  font-size: 0.95rem;
+  color: #0f6f6c;
+}
+
+.coord-results h3:first-child {
+  margin-top: 0;
+}
+
+.coord-row {
+  display: grid;
+  grid-template-columns: minmax(0, 200px) minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+  border-bottom: 1px solid #eef3f6;
+}
+
+.coord-row span {
+  color: #5b6b7a;
+  font-size: 0.85rem;
+}
+
+.coord-row code {
+  overflow-wrap: anywhere;
+  font-size: 0.98rem;
+  color: #172033;
+}
+
+.coord-row button {
+  padding: 4px 10px;
+  border: 1px solid #cfdde5;
+  border-radius: 8px;
+  background: #ffffff;
+  font: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+@media (max-width: 560px) {
+  .coord-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .coord-row span {
+    grid-column: 1 / -1;
+  }
+}
+
+.date-calc-field-row input {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.date-calc-field-row select,
+.date-calc-field-row button,
+.map-scale-prefix {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+@media (max-width: 560px) {
+  .date-calc-results {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+
+  .date-calc-fields > .date-calc-field,
+  .date-calc-field-row {
+    min-width: 0;
+    max-width: 100%;
+  }
+}

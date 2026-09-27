@@ -7,6 +7,8 @@ export const everydayToolLinksByCategory: Record<
 > = {
   uzunluk: [
     { href: "/uzunluk-karsilastirma", label: "Uzunluk Karşılaştırma" },
+    { href: "/harita-olcegi-hesaplama", label: "Harita Ölçeği Hesaplama" },
+    { href: "/koordinat-donusturucu", label: "Koordinat Dönüştürücü" },
     { href: "/merdiven-hesaplama", label: "Merdiven Hesaplama" },
     { href: "/terzi-araclari", label: "Terzi Araçları" },
     { href: "/diyetisyen-araclari", label: "Diyetisyen Araçları" },
@@ -48,6 +50,7 @@ export const everydayToolLinksByCategory: Record<
     { href: "/elastik-uzama-hesaplama", label: "Elastik Uzama Hesaplama" },
   ],
   alan: [
+    { href: "/harita-olcegi-hesaplama", label: "Harita Ölçeği ve Alan Hesabı" },
     { href: "/tarla-donum-hesaplama", label: "Tarla Dönüm Hesaplama" },
     { href: "/boya-hesaplama", label: "Boya Hesaplama" },
     { href: "/fayans-hesaplama", label: "Fayans Hesaplama" },
@@ -151,6 +154,7 @@ export const everydayToolLinksByCategory: Record<
     { href: "/uyku-hesaplama", label: "Uyku Hesaplama" },
     { href: "/online-saat", label: "Online Saat" },
     { href: "/dunya-saatleri", label: "Dünya Saatleri" },
+    { href: "/yerel-saat-hesaplama", label: "Yerel Saat Farkı Hesaplama" },
     { href: "/geri-sayim", label: "Geri Sayım" },
     { href: "/saat-dilimi-cevirici", label: "Saat Dilimi Çevirici" },
     { href: "/tarih-cevirici", label: "Hicri Rumi Tarih Çevirici" },

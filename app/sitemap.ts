@@ -3033,6 +3033,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly" as const,
       priority: /\d{4}$/.test(path) ? 0.7 : 0.8,
     })),
+    ...["/cografya-hesaplamalari", "/harita-olcegi-hesaplama", "/yerel-saat-hesaplama", "/koordinat-donusturucu"].map((path) => ({
+      url: `${baseUrl}${path}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.75,
+    })),
     ...zonePairs.map((pair) => ({
       url: `${baseUrl}/en/time-zone-converter/${pair.slug}`,
       lastModified: contentLastModified,

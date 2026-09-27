@@ -2,12 +2,13 @@ import type { Locale } from "./config";
 import { buildLanguageAlternates } from "./routing";
 
 // Zaman araclari (alarm, zamanlayici, kronometre): diller hreflang ile baglanir.
-export type TimeToolId = "clock" | "worldClock" | "countdown" | "alarm" | "timer" | "stopwatch";
+export type TimeToolId = "clock" | "worldClock" | "timeZoneConverter" | "countdown" | "alarm" | "timer" | "stopwatch";
 
 export const timeToolPaths: Record<TimeToolId, Partial<Record<Locale, string>>> = {
   clock: { tr: "/online-saat", en: "/en/online-clock" },
   worldClock: { tr: "/dunya-saatleri", en: "/en/world-clock" },
   countdown: { tr: "/geri-sayim", en: "/en/countdown" },
+  timeZoneConverter: { tr: "/saat-dilimi-cevirici", en: "/en/time-zone-converter" },
   alarm: { tr: "/online-alarm-kur", en: "/en/alarm-clock" },
   timer: { tr: "/zamanlayici", en: "/en/timer" },
   stopwatch: { tr: "/kronometre", en: "/en/stopwatch" },

@@ -147,6 +147,7 @@ export const everydayToolLinksByCategory: Record<
     { href: "/online-saat", label: "Online Saat" },
     { href: "/dunya-saatleri", label: "Dünya Saatleri" },
     { href: "/geri-sayim", label: "Geri Sayım" },
+    { href: "/saat-dilimi-cevirici", label: "Saat Dilimi Çevirici" },
     { href: "/online-alarm-kur", label: "Online Alarm" },
     { href: "/zamanlayici", label: "Zamanlayıcı" },
     { href: "/kronometre", label: "Kronometre" },

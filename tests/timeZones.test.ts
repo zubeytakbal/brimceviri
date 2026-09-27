@@ -88,3 +88,20 @@ describe("world cities", () => {
     }
   });
 });
+
+describe("zoned wall time conversion", () => {
+  it("converts wall time to UTC across DST", async () => {
+    const { zonedWallTimeToUtc } = await import("../app/converter/time/timeZoneOptions");
+    // 15:00 Istanbul = 12:00 UTC
+    expect(zonedWallTimeToUtc("Europe/Istanbul", { year: 2026, month: 9, day: 27, hour: 15, minute: 0 }, offsetMinutes).toISOString()).toBe(
+      "2026-09-27T12:00:00.000Z"
+    );
+    // 09:00 New York in January (EST) = 14:00 UTC; in July (EDT) = 13:00 UTC
+    expect(zonedWallTimeToUtc("America/New_York", { year: 2027, month: 1, day: 15, hour: 9, minute: 0 }, offsetMinutes).toISOString()).toBe(
+      "2027-01-15T14:00:00.000Z"
+    );
+    expect(zonedWallTimeToUtc("America/New_York", { year: 2027, month: 7, day: 15, hour: 9, minute: 0 }, offsetMinutes).toISOString()).toBe(
+      "2027-07-15T13:00:00.000Z"
+    );
+  });
+});

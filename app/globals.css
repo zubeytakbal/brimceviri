@@ -11294,3 +11294,247 @@ a.all-units-row .all-units-name {
     grid-column: 1 / -1;
   }
 }
+
+/* ===== Saat dilimi cevirici ===== */
+.tz-converter {
+  display: grid;
+  gap: 16px;
+}
+
+.tz-source {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr auto;
+  align-items: end;
+  gap: 12px;
+  padding: 22px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #1f4f66 0%, #2c7f99 55%, #3fa7a7 100%);
+  color: #ffffff;
+}
+
+.tz-field {
+  display: grid;
+  gap: 4px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.tz-converter select,
+.tz-converter input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border: 1px solid #cfd8e3;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #172033;
+  font-size: 1rem;
+}
+
+.tz-source-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.tz-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tz-result {
+  position: relative;
+  display: grid;
+  gap: 4px;
+  padding: 14px;
+  border: 1px solid #d7e2e8;
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.tz-result-zone select {
+  padding-right: 28px;
+  font-size: 0.9rem;
+}
+
+.tz-result-time {
+  font-size: 2.2rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  color: #1f3b44;
+}
+
+.tz-result-date {
+  color: #475467;
+  font-weight: 600;
+}
+
+.tz-result-diff {
+  justify-self: start;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: #eafaf8;
+  color: #0f6f6c;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.tz-remove {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 50%;
+  background: #f2f4f7;
+  color: #b42318;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.tz-add {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tz-add select {
+  flex: 1 1 260px;
+  width: auto;
+}
+
+.tz-planner {
+  padding: 18px;
+  border: 1px solid #d7e2e8;
+  border-radius: 16px;
+  background: #ffffff;
+}
+
+.tz-planner h2 {
+  margin: 0 0 4px;
+  font-size: 1.15rem;
+}
+
+.tz-planner > p {
+  margin: 0 0 12px;
+  color: #475467;
+  font-size: 0.9rem;
+}
+
+.tz-planner-scroll {
+  overflow-x: auto;
+}
+
+.tz-planner table {
+  border-collapse: separate;
+  border-spacing: 2px;
+  min-width: 100%;
+}
+
+.tz-planner th {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  padding: 0 10px 0 0;
+  background: #ffffff;
+  white-space: nowrap;
+  text-align: left;
+  font-size: 0.85rem;
+}
+
+.tz-planner td {
+  padding: 0;
+}
+
+.tz-planner td button {
+  width: 32px;
+  height: 34px;
+  border: 0;
+  border-radius: 6px;
+  background: #eef2f6;
+  color: #344054;
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+}
+
+.tz-planner td.is-work button {
+  background: #c9f0d8;
+  color: #0d5a32;
+}
+
+.tz-planner td.is-night button {
+  background: #1f2a44;
+  color: #c6d2e6;
+}
+
+.tz-planner td.is-selected button {
+  outline: 3px solid #e8a317;
+  outline-offset: -1px;
+}
+
+.tz-planner sup {
+  font-size: 0.55rem;
+}
+
+.tz-planner-legend {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 10px 0 0;
+  font-size: 0.82rem;
+  color: #475467;
+}
+
+.tz-planner-legend span {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-left: 8px;
+  border-radius: 3px;
+}
+
+.tz-planner-legend span.is-work {
+  background: #c9f0d8;
+}
+
+.tz-planner-legend span.is-night {
+  background: #1f2a44;
+}
+
+.tz-pair-list {
+  columns: 2;
+}
+
+@media (max-width: 720px) {
+  .tz-source {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .tz-source .is-zone,
+  .tz-source-actions {
+    grid-column: 1 / -1;
+  }
+
+  .tz-pair-list {
+    columns: 1;
+  }
+}
+
+.tz-converter,
+.tz-converter > *,
+.tz-source > *,
+.tz-planner {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.tz-planner-scroll {
+  max-width: 100%;
+}

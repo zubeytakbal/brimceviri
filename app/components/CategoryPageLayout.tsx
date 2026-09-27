@@ -41,6 +41,8 @@ type CategoryPageLayoutProps = {
     heading: string;
     content: ReactNode;
   };
+  // Hero'nun hemen altinda, icerikten once (ornegin "Tum birimler" paneli).
+  afterHero?: ReactNode;
   conversionHeading: string;
   conversionCountLabel: string;
   conversionCards: ConversionCard[];
@@ -70,6 +72,7 @@ export default function CategoryPageLayout({
   title,
   description,
   allUnitsSection,
+  afterHero,
   conversionHeading,
   conversionCountLabel,
   conversionCards,
@@ -142,6 +145,8 @@ export default function CategoryPageLayout({
       </section>
 
       <div className="category-page-shell category-page-content-shell">
+        {afterHero}
+
         <section className="category-page-section">
           <div className="category-section-heading">
             <h2>{conversionHeading}</h2>

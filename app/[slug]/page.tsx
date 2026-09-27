@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
+import AllUnitsPanel from "../components/AllUnitsPanel";
+import { buildPairHrefs } from "../components/allUnitsPanelData";
+import { getCategoryUnitOptions } from "../components/categoryUnitOptions";
 import ConversionSeo from "../components/ConversionSeo";
 import EmbedCodeBox from "../components/EmbedCodeBox";
 import PairConverter from "../converter/PairConverter";
+import { smartDefaultInput } from "../converter/smartDefaultInput";
 import { categoryPages } from "../converter/categoryPages";
 import { convert } from "../converter/convert";
 import { conversionPages } from "../converter/conversionPages";
@@ -194,6 +198,10 @@ export default async function ConversionPage({ params }: PageProps) {
   );
   const germanPage = findGermanPageByTurkishSlug(
     conversionPage.slug
+  );
+  const pairUnitOptions = getCategoryUnitOptions(
+    conversionPage.category,
+    "tr"
   );
   const reversePage = conversionPages.find(
     (page) => page.slug === conversionPage.reverseSlug
@@ -393,6 +401,7 @@ export default async function ConversionPage({ params }: PageProps) {
               toUnit={conversionPage.toUnit}
               fromName={conversionPage.fromName}
               toName={conversionPage.toName}
+              syncKey={conversionPage.category}
             />
 
             {popularEmbedSlugs.has(conversionPage.slug) && (
@@ -436,6 +445,31 @@ export default async function ConversionPage({ params }: PageProps) {
           </div>
         </div>
       </section>
+
+      {pairUnitOptions.some(
+        (option) => option.value === conversionPage.fromUnit
+      ) && (
+        <div className="all-units-shell">
+          <AllUnitsPanel
+            category={conversionPage.category}
+            locale="tr"
+            unitOptions={pairUnitOptions}
+            defaultValue={smartDefaultInput(
+              conversionPage.category,
+              conversionPage.fromUnit,
+              conversionPage.toUnit
+            )}
+            defaultUnit={conversionPage.fromUnit}
+            pairHrefs={buildPairHrefs(
+              conversionPages.filter(
+                (page) => page.category === conversionPage.category
+              ),
+              (pageSlug) => `/${pageSlug}`
+            )}
+            variant="pair"
+          />
+        </div>
+      )}
 
       <article className="conversion-content">
         <section className="conversion-section">

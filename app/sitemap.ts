@@ -14,6 +14,7 @@ import {
 } from "./i18n/timeToolPaths";
 import { cgpaUniversities } from "./converter/india/cgpaUniversities";
 import { worldCities } from "./converter/time/worldCities";
+import { countdownEvents, countdownPath, pairedEvent } from "./converter/time/countdownEvents";
 import { buildLanguageAlternates } from "./i18n/routing";
 import { categoryPages } from "./converter/categoryPages";
 import { conversionPages } from "./converter/conversionPages";
@@ -3010,6 +3011,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
         alternates: timeToolAlternates(tool),
       })),
     ),
+    ...countdownEvents.map((event) => {
+      const pair = pairedEvent(event);
+      return {
+        url: `${baseUrl}${countdownPath(event)}`,
+        lastModified: contentLastModified,
+        changeFrequency: "daily" as const,
+        priority: 0.6,
+        alternates: buildLanguageAlternates(
+          pair ? { [event.lang]: countdownPath(event), [pair.lang]: countdownPath(pair) } : { [event.lang]: countdownPath(event) },
+          event.lang
+        ),
+      };
+    }),
     ...worldCities.flatMap((city) =>
       [`/dunya-saatleri/${city.tr}`, `/en/world-clock/${city.en}`].map((path) => ({
         url: `${baseUrl}${path}`,

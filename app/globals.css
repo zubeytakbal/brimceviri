@@ -8059,3 +8059,27 @@ a.all-units-row .all-units-name {
 .cgpa-source-check-result a {
   color: #0f6f6c;
 }
+
+.cgpa-request {
+  display: grid;
+  gap: 12px;
+  max-width: 520px;
+  margin: 8px 0 24px;
+}
+
+.cgpa-request .category-general-converter-field span {
+  color: #3b4658;
+}
+
+.cgpa-request input {
+  border: 1px solid #c9d6de !important;
+}
+
+.cgpa-request .engineering-target-button {
+  justify-self: start;
+  width: auto;
+  padding-inline: 18px;
+  border-color: #168f8c;
+  background: #168f8c;
+  color: #ffffff;
+}

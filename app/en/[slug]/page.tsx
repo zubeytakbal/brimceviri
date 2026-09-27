@@ -54,7 +54,14 @@ import {
 } from "../../components/EnglishEnergyHomeCalculators";
 import YouMayAlsoLike from "../../components/YouMayAlsoLike";
 import { getEnglishYouMayAlsoLike } from "../../i18n/englishRelatedPages";
-import { GoldPriceCalculatorIndia, IndiaLandConverter, LakhCroreConverter } from "../../components/EnglishIndiaCalculators";
+import {
+  EmiCalculator,
+  GoldPriceCalculatorIndia,
+  GstCalculatorIndia,
+  IndiaLandConverter,
+  IndianWeightConverter,
+  LakhCroreConverter,
+} from "../../components/EnglishIndiaCalculators";
 import PregnancyCalculator from "../../components/PregnancyCalculator";
 import RoofingCalculator from "../../components/RoofingCalculator";
 import SleepCalculator from "../../components/SleepCalculator";
@@ -62,6 +69,8 @@ import StairCalculator from "../../components/StairCalculator";
 import VatCalculator from "../../components/VatCalculator";
 import WeightComparisonTool from "../../components/WeightComparisonTool";
 import PairConverter from "../../converter/PairConverter";
+import AllUnitsSection from "../../components/AllUnitsSection";
+import { smartDefaultInput } from "../../converter/smartDefaultInput";
 import { convert } from "../../converter/convert";
 import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
 import { findEnglishUnitPage } from "../../converter/localizedUnitPages";
@@ -139,6 +148,9 @@ const componentMap: Record<EnglishStandaloneToolComponentKey, React.ComponentTyp
     indiaLandConverter: IndiaLandConverter,
     goldPriceCalculatorIndia: GoldPriceCalculatorIndia,
     lakhCroreConverter: LakhCroreConverter,
+    indianWeightConverter: IndianWeightConverter,
+    gstCalculatorIndia: GstCalculatorIndia,
+    emiCalculator: EmiCalculator,
     evChargingCalculator: EvChargingCalculator,
   };
 
@@ -224,9 +236,12 @@ export async function generateMetadata({
   // (cm to in)". Onceki "1 Centimeter to Inch – Converter" kalibi tekil ve
   // aramalarla uyusmuyordu. Sablon sona " | BirimCeviri.app" ekler; toplam
   // 65 karakteri gecmesin diye sigan en uzun bicim secilir.
-  const title = buildEnglishConversionTitle(page);
   const oneUnitResult = formatEnglishShort(
     convert(page.category, 1, page.fromUnit, page.toUnit)
+  );
+  const title = buildEnglishConversionTitle(
+    page,
+    page.category === "sicaklik" ? undefined : oneUnitResult
   );
   const description =
     `1 ${page.fromSymbol} = ${oneUnitResult} ${page.toSymbol}. ` +
@@ -510,7 +525,7 @@ async function EnglishConversionPage({
               toUnit={page.toUnit}
               fromName={page.fromName}
               toName={page.toName}
-              locale="en"
+              locale="en" syncKey={page.category}
             />
           </div>
 
@@ -545,6 +560,16 @@ async function EnglishConversionPage({
           </div>
         </div>
       </section>
+
+      <AllUnitsSection
+        category={page.category}
+        locale="en"
+        conversions={englishConversionPages}
+        hrefPrefix="/en/"
+        variant="pair"
+        defaultUnit={page.fromUnit}
+        defaultValue={smartDefaultInput(page.category, page.fromUnit, page.toUnit)}
+      />
 
       <article className="conversion-content">
         <section className="conversion-section">

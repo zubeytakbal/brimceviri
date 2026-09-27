@@ -7,6 +7,7 @@ import { uzbekUnitPages } from "../../../converter/localizedUzbekUnitPages";
 import { findEnglishCategoryPageByTurkishSlug } from "../../../converter/localizedCategoryPages";
 import { buildFullLanguageAlternates } from "../../../i18n/routing";
 import { buildSiteUrl } from "../../../siteConfig";
+import AllUnitsSection from "../../../components/AllUnitsSection";
 import CategoryUnitConverter from "../../../components/CategoryUnitConverter";
 import { hasUzbekUnitLabels } from "../../../components/categoryUnitOptions";
 import { createConversionCards } from "../../../components/categoryPageUtils";
@@ -155,6 +156,7 @@ export default async function UzbekCategoryPage({ params }: PageProps) {
               <CategoryUnitConverter
                 category={categoryPage.category}
                 locale="uz"
+                syncKey={categoryPage.category}
               />
             </div>
           )}
@@ -162,6 +164,16 @@ export default async function UzbekCategoryPage({ params }: PageProps) {
       </section>
 
       <div className="category-page-shell category-page-content-shell">
+        {showLiveConverter && (
+          <AllUnitsSection
+            category={categoryPage.category}
+            locale="uz"
+            conversions={uzbekConversionPages}
+            hrefPrefix="/uz/"
+            variant="category"
+          />
+        )}
+
         {conversionCards.length > 0 && (
           <section className="category-page-section">
             <div className="category-section-heading">

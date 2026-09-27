@@ -430,6 +430,156 @@ const englishOnlyPairDefinitions: readonly EnglishOnlyPairDefinition[] = [
     reverseSlug: "stone-to-pounds",
   },
   {
+    // Hindistan: arazi olculeri ft2 ve acre ile aranir ("1 bigha in square feet").
+    category: "alan",
+    firstId: "bigha",
+    secondId: "fitkare",
+    firstExamples: [1, 2, 3, 5, 10, 20, 50],
+    secondExamples: [1000, 5000, 10000, 14400, 20000, 50000, 100000],
+    forwardSlug: "bigha-to-square-feet",
+    reverseSlug: "square-feet-to-bigha",
+  },
+  {
+    // Hindistan: arazi olculeri ft2 ve acre ile aranir ("1 bigha in square feet").
+    category: "alan",
+    firstId: "bigha",
+    secondId: "akre",
+    firstExamples: [1, 2, 3, 5, 10, 20, 50],
+    secondExamples: [1, 2, 3, 5, 10, 20, 50],
+    forwardSlug: "bigha-to-acre",
+    reverseSlug: "acre-to-bigha",
+  },
+  {
+    // Hindistan: arazi olculeri ft2 ve acre ile aranir ("1 bigha in square feet").
+    category: "alan",
+    firstId: "bigha",
+    secondId: "hektar",
+    firstExamples: [1, 2, 5, 10, 20, 50, 100],
+    secondExamples: [1, 2, 5, 10, 20, 50, 100],
+    forwardSlug: "bigha-to-hectares",
+    reverseSlug: "hectares-to-bigha",
+  },
+  {
+    // Hindistan: arazi olculeri ft2 ve acre ile aranir ("1 bigha in square feet").
+    category: "alan",
+    firstId: "katha",
+    secondId: "fitkare",
+    firstExamples: [1, 2, 3, 5, 10, 20],
+    secondExamples: [500, 720, 1000, 1440, 2000, 5000, 10000],
+    forwardSlug: "katha-to-square-feet",
+    reverseSlug: "square-feet-to-katha",
+  },
+  {
+    // Hindistan: arazi olculeri ft2 ve acre ile aranir ("1 bigha in square feet").
+    category: "alan",
+    firstId: "cent-arazi",
+    secondId: "fitkare",
+    firstExamples: [1, 2, 3, 5, 10, 20, 50],
+    secondExamples: [500, 1000, 1500, 2000, 2400, 5000, 10000],
+    forwardSlug: "cent-to-square-feet",
+    reverseSlug: "square-feet-to-cent",
+  },
+  {
+    // Hindistan: arazi olculeri ft2 ve acre ile aranir ("1 bigha in square feet").
+    category: "alan",
+    firstId: "cent-arazi",
+    secondId: "akre",
+    firstExamples: [1, 5, 10, 25, 50, 100],
+    secondExamples: [0.25, 0.5, 1, 2, 5, 10],
+    forwardSlug: "cent-to-acre",
+    reverseSlug: "acre-to-cent",
+  },
+  {
+    // Hindistan: arazi olculeri ft2 ve acre ile aranir ("1 bigha in square feet").
+    category: "alan",
+    firstId: "guntha",
+    secondId: "fitkare",
+    firstExamples: [1, 2, 5, 10, 20, 40],
+    secondExamples: [500, 1000, 1089, 2000, 5000, 10000, 43560],
+    forwardSlug: "guntha-to-square-feet",
+    reverseSlug: "square-feet-to-guntha",
+  },
+  {
+    // Hindistan: arazi olculeri ft2 ve acre ile aranir ("1 bigha in square feet").
+    category: "alan",
+    firstId: "guntha",
+    secondId: "akre",
+    firstExamples: [1, 5, 10, 20, 40, 80],
+    secondExamples: [0.25, 0.5, 1, 2, 5, 10],
+    forwardSlug: "guntha-to-acre",
+    reverseSlug: "acre-to-guntha",
+  },
+  {
+    // Hindistan: arazi olculeri ft2 ve acre ile aranir ("1 bigha in square feet").
+    category: "alan",
+    firstId: "marla",
+    secondId: "fitkare",
+    firstExamples: [1, 2, 3, 5, 7, 10, 20],
+    secondExamples: [225, 272.25, 500, 1000, 2000, 5000, 10000],
+    forwardSlug: "marla-to-square-feet",
+    reverseSlug: "square-feet-to-marla",
+  },
+  {
+    // Hindistan: arazi olculeri ft2 ve acre ile aranir ("1 bigha in square feet").
+    category: "alan",
+    firstId: "kanal",
+    secondId: "fitkare",
+    firstExamples: [1, 2, 4, 8, 10, 20],
+    secondExamples: [1000, 5000, 5445, 10000, 20000, 43560],
+    forwardSlug: "kanal-to-square-feet",
+    reverseSlug: "square-feet-to-kanal",
+  },
+  {
+    // Hindistan: arazi olculeri ft2 ve acre ile aranir ("1 bigha in square feet").
+    category: "alan",
+    firstId: "biswa",
+    secondId: "fitkare",
+    firstExamples: [1, 2, 5, 10, 20],
+    secondExamples: [500, 1000, 1361.25, 5000, 10000, 27225],
+    forwardSlug: "biswa-to-square-feet",
+    reverseSlug: "square-feet-to-biswa",
+  },
+  {
+    // Hindistan: arazi olculeri ft2 ve acre ile aranir ("1 bigha in square feet").
+    category: "alan",
+    firstId: "ground",
+    secondId: "fitkare",
+    firstExamples: [1, 2, 3, 5, 10],
+    secondExamples: [600, 1200, 2400, 4800, 10000],
+    forwardSlug: "ground-to-square-feet",
+    reverseSlug: "square-feet-to-ground",
+  },
+  {
+    // Hindistan: arazi olculeri ft2 ve acre ile aranir ("1 bigha in square feet").
+    category: "alan",
+    firstId: "yardakare",
+    secondId: "fitkare",
+    firstExamples: [1, 10, 50, 100, 200, 500, 1000],
+    secondExamples: [9, 100, 500, 900, 1000, 5000, 10000],
+    forwardSlug: "square-yards-to-square-feet",
+    reverseSlug: "square-feet-to-square-yards",
+  },
+  {
+    // Hindistan: arazi olculeri ft2 ve acre ile aranir ("1 bigha in square feet").
+    category: "alan",
+    firstId: "akre",
+    secondId: "fitkare",
+    firstExamples: [0.25, 0.5, 1, 2, 5, 10],
+    secondExamples: [1000, 5000, 10000, 21780, 43560, 100000],
+    forwardSlug: "acre-to-square-feet",
+    reverseSlug: "square-feet-to-acre",
+  },
+  {
+    // Hindistan: arazi olculeri ft2 ve acre ile aranir ("1 bigha in square feet").
+    category: "alan",
+    firstId: "akre",
+    secondId: "hektar",
+    firstExamples: [1, 2, 5, 10, 20, 50, 100],
+    secondExamples: [1, 2, 5, 10, 20, 50, 100],
+    forwardSlug: "acres-to-hectares",
+    reverseSlug: "hectares-to-acres",
+  },
+  {
     category: "uzunluk",
     firstId: "orgyia",
     secondId: "metre",

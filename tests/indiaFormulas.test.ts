@@ -68,3 +68,49 @@ describe("lakh and crore", () => {
     expect(formatIndianGrouping(12345678.9)).toBe("1,23,45,678.9");
   });
 });
+
+describe("Indian weights", async () => {
+  const { convertIndianWeight } = await import("../app/converter/indiaFormulas");
+  it("1 tola = 12 masha = 96 ratti = 11.6638 g", () => {
+    const r = convertIndianWeight(1, "tola")!;
+    expect(r.gram).toBeCloseTo(11.6638, 4);
+    expect(r.masha).toBeCloseTo(12, 10);
+    expect(r.rattiSunari).toBeCloseTo(96, 10);
+  });
+  it("1 pakki ratti ≈ 0.91 carat; 1 sunari ratti = 0.1215 g", () => {
+    expect(convertIndianWeight(1, "rattiPakki")!.carat).toBeCloseTo(0.9112, 4);
+    expect(convertIndianWeight(1, "rattiSunari")!.gram).toBeCloseTo(0.1215, 4);
+  });
+  it("1 maund = 40 seer ≈ 37.32 kg; 1 quintal = 100 kg", () => {
+    const r = convertIndianWeight(1, "maund")!;
+    expect(r.seer).toBeCloseTo(40, 10);
+    expect(r.kilogram).toBeCloseTo(37.3242, 4);
+    expect(convertIndianWeight(1, "quintal")!.kilogram).toBe(100);
+  });
+});
+
+describe("GST", async () => {
+  const { gstCalculation } = await import("../app/converter/indiaFormulas");
+  it("adds 18% GST split into CGST and SGST", () => {
+    expect(gstCalculation({ amount: 10000, ratePercent: 18, mode: "add", supply: "intra" })).toEqual({ net: 10000, gst: 1800, total: 11800, cgst: 900, sgst: 900, igst: 0 });
+  });
+  it("removes 18% GST from an inclusive price (IGST)", () => {
+    const r = gstCalculation({ amount: 11800, ratePercent: 18, mode: "remove", supply: "inter" })!;
+    expect(r.net).toBeCloseTo(10000, 6);
+    expect(r.igst).toBeCloseTo(1800, 6);
+  });
+});
+
+describe("EMI", async () => {
+  const { loanEmi } = await import("../app/converter/indiaFormulas");
+  it("₹30 lakh at 8.5% for 20 years ≈ ₹26,035 per month", () => {
+    const r = loanEmi({ principal: 3000000, annualRatePercent: 8.5, months: 240 })!;
+    expect(r.emi).toBeCloseTo(26034.70, 1);
+    expect(r.totalInterest).toBeCloseTo(3248327.28, 1);
+    expect(r.years).toHaveLength(20);
+    expect(r.years[19].balance).toBeCloseTo(0, 2);
+  });
+  it("zero interest divides evenly", () => {
+    expect(loanEmi({ principal: 120000, annualRatePercent: 0, months: 12 })!.emi).toBe(10000);
+  });
+});

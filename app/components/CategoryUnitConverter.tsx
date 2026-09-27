@@ -1,8 +1,11 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { convert } from "../converter/convert";
+import { formatNumber } from "../converter/fx/fxMath";
 import { getCategoryUnitOptions } from "./categoryUnitOptions";
+import { publishConverterState } from "./converterSync";
+import CopyResultButton from "./CopyResultButton";
 
 type UnitOption = {
   value: string;
@@ -19,6 +22,8 @@ type CategoryUnitConverterProps = {
   // olur -- ornegin bir sayfanin "tarihi" birimlerle sinirli bir alt kume
   // gostermesi icin (tam kategori listesini tekrarlamadan).
   unitOptions?: UnitOption[];
+  // Verilirse deger/birim "Tum birimler" paneliyle (AllUnitsPanel) paylasilir.
+  syncKey?: string;
 };
 
 function parseNumericValue(
@@ -92,19 +97,19 @@ function formatDisplayNumber(
   const absoluteValue = Math.abs(value);
 
   if (absoluteValue === 0) {
-    return new Intl.NumberFormat(localeName).format(0);
+    return formatNumber(0, localeName);
   }
 
   if (absoluteValue >= 1_000_000_000 || absoluteValue < 0.0001) {
-    return new Intl.NumberFormat(localeName, {
+    return formatNumber(value, localeName, {
       maximumSignificantDigits: 8,
       notation: "scientific",
-    }).format(value);
+    });
   }
 
-  return new Intl.NumberFormat(localeName, {
+  return formatNumber(value, localeName, {
     maximumSignificantDigits: absoluteValue >= 1 ? 12 : 10,
-  }).format(value);
+  });
 }
 
 function getEnglishVolumeSystemNotice(
@@ -144,6 +149,7 @@ export default function CategoryUnitConverter({
   category,
   locale,
   unitOptions: unitOptionsOverride,
+  syncKey,
 }: CategoryUnitConverterProps) {
   const derivedUnitOptions = useMemo(
     () => getCategoryUnitOptions(category, locale),
@@ -198,6 +204,24 @@ export default function CategoryUnitConverter({
     Number.isFinite(resultValue ?? Number.NaN)
       ? formatFeetAndInches(resultValue ?? 0)
       : null;
+  const hasResult =
+    parsedInputValue !== null &&
+    !Number.isNaN(parsedInputValue) &&
+    Number.isFinite(resultValue ?? Number.NaN);
+  const syncedValue =
+    parsedInputValue === null || Number.isNaN(parsedInputValue)
+      ? null
+      : parsedInputValue;
+
+  useEffect(() => {
+    if (syncKey) {
+      publishConverterState(syncKey, {
+        value: syncedValue,
+        unit: activeFromUnit,
+      });
+    }
+  }, [syncKey, syncedValue, activeFromUnit]);
+
   const equalityValue =
     activeFromUnit && activeToUnit
       ? convert(category, 1, activeFromUnit, activeToUnit)
@@ -391,15 +415,19 @@ export default function CategoryUnitConverter({
       >
         <p>{labels.result}</p>
 
-        {parsedInputValue === null ||
-        Number.isNaN(parsedInputValue) ||
-        !Number.isFinite(resultValue ?? Number.NaN) ? (
+        {!hasResult ? (
           <strong>{labels.invalid}</strong>
         ) : (
-          <strong>
-            {formatDisplayNumber(locale, resultValue ?? 0)}{" "}
-            {toUnitOption?.symbol ?? toUnit}
-          </strong>
+          <div className="category-general-converter-result-line">
+            <strong>
+              {formatDisplayNumber(locale, resultValue ?? 0)}{" "}
+              {toUnitOption?.symbol ?? toUnit}
+            </strong>
+            <CopyResultButton
+              locale={locale}
+              text={`${inputValue.trim()} ${fromUnitOption?.symbol ?? activeFromUnit} = ${formatDisplayNumber(locale, resultValue ?? 0)} ${toUnitOption?.symbol ?? activeToUnit}`}
+            />
+          </div>
         )}
 
         <span className="category-general-converter-equality">

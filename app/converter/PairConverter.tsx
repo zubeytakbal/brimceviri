@@ -1,8 +1,12 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { convert } from "./convert";
 import { englishDisplaySymbol } from "./englishUnitDisplay";
+import { formatNumber } from "./fx/fxMath";
+import { smartDefaultInput } from "./smartDefaultInput";
+import { publishConverterState } from "../components/converterSync";
+import CopyResultButton from "../components/CopyResultButton";
 
 type PairConverterProps = {
   category: string;
@@ -11,6 +15,8 @@ type PairConverterProps = {
   fromName: string;
   toName: string;
   locale?: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "nl" | "ru" | "sv" | "no" | "da";
+  // Verilirse deger/birim "Tum birimler" paneliyle (AllUnitsPanel) paylasilir.
+  syncKey?: string;
 };
 
 function getNumberLocale(
@@ -94,15 +100,15 @@ function formatResult(
     (Math.abs(value) >= 1_000_000_000 ||
       Math.abs(value) < 0.000001)
   ) {
-    return new Intl.NumberFormat(numberLocale, {
+    return formatNumber(value, numberLocale, {
       maximumSignificantDigits: 8,
       notation: "scientific",
-    }).format(value);
+    });
   }
 
-  return new Intl.NumberFormat(numberLocale, {
+  return formatNumber(Number(value.toPrecision(12)), numberLocale, {
     maximumSignificantDigits: 12,
-  }).format(Number(value.toPrecision(12)));
+  });
 }
 
 function formatFeetAndInches(valueInFeet: number) {
@@ -205,8 +211,11 @@ export default function PairConverter({
   fromName,
   toName,
   locale = "tr",
+  syncKey,
 }: PairConverterProps) {
-  const [inputValue, setInputValue] = useState("1");
+  const [inputValue, setInputValue] = useState(() =>
+    String(smartDefaultInput(category, fromUnit, toUnit))
+  );
   const [isReversed, setIsReversed] = useState(false);
 
   const activeFromUnit = isReversed ? toUnit : fromUnit;
@@ -237,6 +246,20 @@ export default function PairConverter({
     activeFromUnit,
     activeToUnit,
   ]);
+
+  const numericInput = inputValue.trim()
+    ? Number(inputValue.replace(",", "."))
+    : Number.NaN;
+  const syncedValue = Number.isFinite(numericInput) ? numericInput : null;
+
+  useEffect(() => {
+    if (syncKey) {
+      publishConverterState(syncKey, {
+        value: syncedValue,
+        unit: activeFromUnit,
+      });
+    }
+  }, [syncKey, syncedValue, activeFromUnit]);
 
   const result =
     convertedValue === null ? "" : formatResult(convertedValue, locale);
@@ -365,14 +388,12 @@ export default function PairConverter({
   const fromLabel = locale === "en" ? englishDisplaySymbol(category, activeFromUnit) : activeFromUnit;
   const toLabel = locale === "en" ? englishDisplaySymbol(category, activeToUnit) : activeToUnit;
 
+  const displayInput =
+    syncedValue === null ? inputValue : formatResult(syncedValue, locale);
   const resultText =
     locale === "en"
-      ? `${inputValue} ${fromLabel} = ${result} ${toLabel}`
-      : locale === "de"
-        ? `${inputValue} ${activeFromUnit} = ${result} ${activeToUnit}`
-        : locale === "ar"
-          ? `${inputValue} ${activeFromUnit} = ${result} ${activeToUnit}`
-          : `${inputValue} ${activeFromUnit} = ${result} ${activeToUnit}`;
+      ? `${displayInput} ${fromLabel} = ${result} ${toLabel}`
+      : `${displayInput} ${activeFromUnit} = ${result} ${activeToUnit}`;
 
   return (
     <section
@@ -427,9 +448,12 @@ export default function PairConverter({
 
       {result && (
         <>
-          <p className="pair-result-text">
-            {resultText}
-          </p>
+          <div className="pair-result-line">
+            <p className="pair-result-text">
+              {resultText}
+            </p>
+            <CopyResultButton locale={locale} text={resultText} />
+          </div>
           {feetAndInchesResult && (
             <p className="pair-result-text">
               Feet and inches: {feetAndInchesResult}

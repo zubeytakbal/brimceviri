@@ -225,12 +225,93 @@ export const englishEditorialConversions: readonly EnglishEditorialConversion[] 
     title: "Making 22K gold from pure gold",
     paragraphs: [
       "22K gold is 22/24 gold (about 91.67%). Pure 24K gold is too soft for most jewellery, so it is alloyed with copper, silver or zinc.",
-      "Example: 9.17 grams of pure gold makes 9.17 × 24 ÷ 22 = 10 grams of 22K gold. The extra 0.83 g is the alloy metal.",
+      "Formula: 22K weight = 24K weight × 24 ÷ 22. Example: 9.17 grams of pure gold makes 9.17 × 24 ÷ 22 = 10 grams of 22K gold. The extra 0.83 g is the alloy metal.",
     ],
     related: [
       { href: "/en/22k-gold-to-24k-gold", label: "22K to 24K gold" },
       { href: "/en/gold-price-calculator-india", label: "Gold price calculator (India)" },
       { href: "/en/18k-gold-to-22k-gold", label: "18K to 22K gold" },
+    ],
+  },
+  {
+    slug: "milliamperes-to-amperes",
+    title: "Milliamps in everyday electronics",
+    paragraphs: [
+      "Milli means one thousandth, so 1 mA = 0.001 A and 1 A = 1,000 mA. To convert, divide the milliamp value by 1,000: 250 mA = 0.25 A.",
+      "Small currents are usually written in milliamps: a standard indicator LED runs at about 10–20 mA, and a microcontroller pin is often limited to around 20–40 mA. Chargers and fuses are rated in amps, so a 2 A charger can supply 2,000 mA.",
+      "Battery capacity in mAh follows the same rule: a 5,000 mAh power bank stores 5 Ah of charge at its cell voltage.",
+    ],
+    related: [
+      { href: "/en/amperes-to-milliamperes", label: "Amps to milliamps" },
+      { href: "/en/volts-to-millivolt", label: "Volts to millivolts" },
+      { href: "/en/kiloohm-to-ohm", label: "Kiloohms to ohms" },
+    ],
+  },
+  {
+    slug: "cubic-feet-per-minute-to-cubic-meter-per-second",
+    title: "CFM, CMS and CMH in HVAC and fans",
+    paragraphs: [
+      "1 CFM (cubic foot per minute) = 0.000471947 m³/s. In the other direction, 1 m³/s — often written CMS — is about 2,118.88 CFM.",
+      "Duct and fan catalogues also use m³/h (CMH): 1 CFM ≈ 1.699 m³/h, so a 1,000 CFM fan moves about 1,699 m³/h or 0.472 m³/s.",
+    ],
+    note: "Fan ratings are usually given at zero static pressure; real airflow in a duct system is lower.",
+    related: [
+      { href: "/en/cubic-meter-per-second-to-cubic-feet-per-minute", label: "m³/s to CFM" },
+      { href: "/en/gallons-per-minute-to-cubic-meter-per-second", label: "GPM to m³/s" },
+      { href: "/en/engineering-calculators", label: "Engineering calculators" },
+    ],
+  },
+  {
+    slug: "pascals-to-millibar",
+    title: "Pascals, millibars and hectopascals",
+    paragraphs: [
+      "1 mbar = 100 Pa, so divide pascals by 100 to get millibars: 101,325 Pa = 1,013.25 mbar, the standard atmosphere.",
+      "A millibar is exactly one hectopascal (hPa). Weather maps use hPa, while vacuum gauges and older instruments often show mbar — the numbers are identical.",
+    ],
+    related: [
+      { href: "/en/millibar-to-pascals", label: "Millibar to pascals" },
+      { href: "/en/hectopascals-to-pascals", label: "Hectopascals to pascals" },
+      { href: "/en/pascals-to-bars", label: "Pascals to bar" },
+    ],
+  },
+  {
+    slug: "centipoise-to-pascal-second",
+    title: "Centipoise, mPa·s and Pa·s",
+    paragraphs: [
+      "1 cP = 0.001 Pa·s = 1 mPa·s, so a viscosity written in centipoise has the same number in millipascal-seconds.",
+      "Water at 20 °C is about 1.0 cP (0.001 Pa·s). Honey is several thousand cP, which is why data sheets for oils, paints and resins often switch to Pa·s for thick liquids.",
+    ],
+    note: "This is dynamic viscosity. Kinematic viscosity (centistokes) also depends on density.",
+    related: [
+      { href: "/en/pascal-second-to-centipoise", label: "Pa·s to centipoise" },
+      { href: "/en/square-meter-per-second-to-centistoke", label: "m²/s to centistokes" },
+      { href: "/en/engineering-calculators", label: "Engineering calculators" },
+    ],
+  },
+  {
+    slug: "radian-per-second-to-rpm",
+    title: "Angular speed: rad/s and rpm",
+    paragraphs: [
+      "One revolution is 2π radians and a minute has 60 seconds, so rpm = rad/s × 60 ÷ 2π ≈ rad/s × 9.5493.",
+      "Example: a motor shaft at 157 rad/s turns at about 1,500 rpm. The reverse is rad/s = rpm × 2π ÷ 60 ≈ rpm × 0.10472.",
+    ],
+    related: [
+      { href: "/en/rpm-to-radian-per-second", label: "rpm to rad/s" },
+      { href: "/en/degree-per-second-to-rpm", label: "Degrees per second to rpm" },
+      { href: "/en/radian-to-degree", label: "Radians to degrees" },
+    ],
+  },
+  {
+    slug: "micrometer-to-nanometer",
+    title: "Micrometers and nanometers in practice",
+    paragraphs: [
+      "1 µm = 1,000 nm, so multiply micrometers by 1,000: 0.55 µm = 550 nm.",
+      "Visible light spans roughly 380–750 nm (0.38–0.75 µm). Bacteria are a few micrometers long, while chip features, viruses and thin films are described in nanometers.",
+    ],
+    related: [
+      { href: "/en/nanometer-to-micrometer", label: "Nanometers to micrometers" },
+      { href: "/en/micrometer-to-millimeters", label: "Micrometers to millimeters" },
+      { href: "/en/angstrom-to-nanometer", label: "Ångström to nanometers" },
     ],
   },
   {
@@ -284,6 +365,85 @@ export const englishEditorialConversions: readonly EnglishEditorialConversion[] 
       { href: "/en/grams-to-grain", label: "Grams to grains" },
       { href: "/en/grams-to-carats", label: "Grams to carats" },
       { href: "/en/gold-price-calculator-india", label: "Gold price calculator (India)" },
+    ],
+  },
+  {
+    slug: "bigha-to-square-feet",
+    title: "1 bigha in square feet depends on the state",
+    paragraphs: [
+      "This page uses the bigha of West Bengal, Assam and Bangladesh: 1 bigha = 20 katha = 14,400 sq ft (1,600 gaj, about 0.33 acre).",
+      "In other states the bigha is larger or smaller — about 27,225 sq ft in Bihar and Jharkhand, 27,000 sq ft in eastern Uttar Pradesh, 17,424 sq ft in Gujarat, 12,000 sq ft in Madhya Pradesh and 8,712 sq ft in Himachal Pradesh. Use the India land area converter to pick your state.",
+    ],
+    note: "For a sale deed, registration or loan, confirm the size used in your local land records.",
+    related: [
+      { href: "/en/india-land-area-converter", label: "India land area converter (all states)" },
+      { href: "/en/bigha-to-acre", label: "Bigha to acres" },
+      { href: "/en/katha-to-square-feet", label: "Katha to square feet" },
+    ],
+  },
+  {
+    slug: "square-feet-to-bigha",
+    title: "Square feet to bigha: choose the right bigha",
+    paragraphs: [
+      "This page converts to the West Bengal / Assam bigha of 14,400 sq ft, so 10,000 sq ft is about 0.69 bigha and 1 acre (43,560 sq ft) is 3.025 bigha.",
+      "In other states the bigha is larger or smaller — about 27,225 sq ft in Bihar and Jharkhand, 27,000 sq ft in eastern Uttar Pradesh, 17,424 sq ft in Gujarat, 12,000 sq ft in Madhya Pradesh and 8,712 sq ft in Himachal Pradesh. Use the India land area converter to pick your state.",
+    ],
+    related: [
+      { href: "/en/india-land-area-converter", label: "India land area converter (all states)" },
+      { href: "/en/bigha-to-square-feet", label: "Bigha to square feet" },
+      { href: "/en/square-feet-to-katha", label: "Square feet to katha" },
+    ],
+  },
+  {
+    slug: "bigha-to-acre",
+    title: "Bigha to acres",
+    paragraphs: [
+      "With the West Bengal / Assam bigha of 14,400 sq ft, 1 bigha = 0.3306 acre and 1 acre = 3.025 bigha.",
+      "Where the bigha is about 27,225 sq ft (Bihar, Jharkhand, pucca bigha of Rajasthan), 1 bigha is 0.625 acre, so 1 acre is only 1.6 bigha. Use the India land area converter for your state.",
+    ],
+    related: [
+      { href: "/en/india-land-area-converter", label: "India land area converter (all states)" },
+      { href: "/en/acre-to-bigha", label: "Acres to bigha" },
+      { href: "/en/acre-to-square-feet", label: "Acres to square feet" },
+    ],
+  },
+  {
+    slug: "acre-to-bigha",
+    title: "Acres to bigha",
+    paragraphs: [
+      "1 acre = 43,560 sq ft, which is 3.025 bigha of 14,400 sq ft (West Bengal, Assam).",
+      "In Bihar and Jharkhand 1 acre is 1.6 bigha, in Gujarat 2.5 bigha and in Himachal Pradesh 5 bigha, because the bigha is a different size there. Use the India land area converter to choose your state.",
+    ],
+    related: [
+      { href: "/en/india-land-area-converter", label: "India land area converter (all states)" },
+      { href: "/en/bigha-to-acre", label: "Bigha to acres" },
+      { href: "/en/acres-to-hectares", label: "Acres to hectares" },
+    ],
+  },
+  {
+    slug: "marla-to-square-feet",
+    title: "Which marla?",
+    paragraphs: [
+      "This page uses the revenue marla of 272.25 sq ft (1/160 acre), common in Punjab and Haryana land records; 20 marla make 1 kanal of 5,445 sq ft.",
+      "Housing schemes in Pakistan, especially in Lahore, often use a smaller marla of 225 sq ft, and some developers use 250 sq ft. Check which marla a plot advertisement uses before comparing prices.",
+    ],
+    related: [
+      { href: "/en/kanal-to-square-feet", label: "Kanal to square feet" },
+      { href: "/en/india-land-area-converter", label: "India land area converter" },
+      { href: "/en/square-feet-to-marla", label: "Square feet to marla" },
+    ],
+  },
+  {
+    slug: "square-yards-to-square-feet",
+    title: "Gaj and square yards",
+    paragraphs: [
+      "In India a gaj is the same as a square yard: 1 gaj = 9 sq ft = 0.836 m². Plot sizes in North India are often quoted in gaj, for example a 100 gaj plot is 900 sq ft.",
+      "1 acre = 4,840 gaj and 1 guntha = 121 gaj.",
+    ],
+    related: [
+      { href: "/en/square-feet-to-square-yards", label: "Square feet to gaj" },
+      { href: "/en/india-land-area-converter", label: "India land area converter" },
+      { href: "/en/acre-to-square-feet", label: "Acres to square feet" },
     ],
   },
 ];

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
 import PairConverter from "../../converter/PairConverter";
+import AllUnitsSection from "../../components/AllUnitsSection";
+import { smartDefaultInput } from "../../converter/smartDefaultInput";
 import { convert } from "../../converter/convert";
 import { findEnglishPageByTurkishSlug } from "../../converter/localizedConversionPages";
 import {
@@ -147,7 +149,7 @@ export default async function DanishConversionPage({ params }: PageProps) {
               toUnit={page.toUnit}
               fromName={page.fromName}
               toName={page.toName}
-              locale="da"
+              locale="da" syncKey={page.category}
             />
           </div>
 
@@ -182,6 +184,16 @@ export default async function DanishConversionPage({ params }: PageProps) {
           </div>
         </div>
       </section>
+
+      <AllUnitsSection
+        category={page.category}
+        locale="da"
+        conversions={danishConversionPages}
+        hrefPrefix="/da/"
+        variant="pair"
+        defaultUnit={page.fromUnit}
+        defaultValue={smartDefaultInput(page.category, page.fromUnit, page.toUnit)}
+      />
 
       <article className="conversion-content">
         <section className="conversion-section">

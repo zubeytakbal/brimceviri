@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import AllUnitsSection from "../../../components/AllUnitsSection";
 import CategoryUnitConverter from "../../../components/CategoryUnitConverter";
 import { getLocalizedUnitOptions } from "../../../converter/localizedUnitOptions";
 import CategoryPageLayout from "../../../components/CategoryPageLayout";
@@ -190,10 +191,20 @@ export default async function SwedishCategoryPage({ params }: PageProps) {
           <CategoryUnitConverter
             category={categoryPage.category}
             locale="sv"
+            syncKey={categoryPage.category}
             unitOptions={getLocalizedUnitOptions(categoryPage.category, "sv")}
           />
         ),
       }}
+      afterHero={
+        <AllUnitsSection
+          category={categoryPage.category}
+          locale="sv"
+          conversions={swedishConversionPages}
+          hrefPrefix="/sv/"
+          variant="category"
+        />
+      }
       conversionHeading="Populära omvandlingar"
       conversionCountLabel={`${conversionCards.length} par`}
       conversionCards={conversionCards}

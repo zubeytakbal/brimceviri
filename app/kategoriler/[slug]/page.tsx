@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
+import AllUnitsPanel from "../../components/AllUnitsPanel";
+import { buildPairHrefs } from "../../components/allUnitsPanelData";
 import CategoryUnitConverter from "../../components/CategoryUnitConverter";
+import { getCategoryUnitOptions } from "../../components/categoryUnitOptions";
 import CategoryPageLayout from "../../components/CategoryPageLayout";
 import { createConversionCards } from "../../components/categoryPageUtils";
 import { findCategoryArticle } from "../../converter/categoryArticles";
@@ -121,6 +124,11 @@ export default async function CategoryPage({
     titlePairSeparator: "↔",
     titleSingleSeparator: "→",
   });
+
+  const categoryUnitOptions = getCategoryUnitOptions(
+    categoryPage.category,
+    "tr"
+  );
 
   const categoryUnits = unitPages.filter(
     (unit) => unit.category === categoryPage.category
@@ -267,9 +275,25 @@ export default async function CategoryPage({
           <CategoryUnitConverter
             category={categoryPage.category}
             locale="tr"
+            syncKey={categoryPage.category}
           />
         ),
       }}
+      afterHero={
+        categoryUnitOptions.length > 0 ? (
+          <AllUnitsPanel
+            category={categoryPage.category}
+            locale="tr"
+            unitOptions={categoryUnitOptions}
+            defaultValue={1}
+            defaultUnit={categoryUnitOptions[0].value}
+            pairHrefs={buildPairHrefs(
+              categoryConversions,
+              (conversionSlug) => `/${conversionSlug}`
+            )}
+          />
+        ) : undefined
+      }
       conversionHeading="Popüler dönüşümler"
       conversionCountLabel={`${conversionCards.length} çift`}
       conversionCards={conversionCards}

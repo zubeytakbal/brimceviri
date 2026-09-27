@@ -18,6 +18,8 @@ import TileCalculator from "../../components/TileCalculator";
 import VatCalculator from "../../components/VatCalculator";
 import WeightComparisonTool from "../../components/WeightComparisonTool";
 import PairConverter from "../../converter/PairConverter";
+import AllUnitsSection from "../../components/AllUnitsSection";
+import { smartDefaultInput } from "../../converter/smartDefaultInput";
 import { convert } from "../../converter/convert";
 import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
 import { findEnglishCategoryPageByCategory } from "../../converter/localizedCategoryPages";
@@ -444,7 +446,7 @@ function renderConversionPage(slug: string) {
               toUnit={page.toUnit}
               fromName={localizedFromName}
               toName={localizedToName}
-              locale="ar"
+              locale="ar" syncKey={page.category}
             />
           </div>
 
@@ -479,6 +481,16 @@ function renderConversionPage(slug: string) {
           </div>
         </div>
       </section>
+
+      <AllUnitsSection
+        category={page.category}
+        locale="ar"
+        conversions={englishConversionPages}
+        hrefPrefix="/ar/"
+        variant="pair"
+        defaultUnit={page.fromUnit}
+        defaultValue={smartDefaultInput(page.category, page.fromUnit, page.toUnit)}
+      />
 
       <article className="conversion-content">
         <section className="conversion-section">

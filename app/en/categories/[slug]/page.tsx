@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
+import AllUnitsSection from "../../../components/AllUnitsSection";
 import CategoryUnitConverter from "../../../components/CategoryUnitConverter";
 import CategoryPageLayout from "../../../components/CategoryPageLayout";
 import EnglishElectricityConverter from "../../../components/EnglishElectricityConverter";
@@ -348,10 +349,20 @@ export default async function EnglishCategoryPage({
             <CategoryUnitConverter
               category={categoryPage.category}
               locale="en"
+            syncKey={categoryPage.category}
             />
           )
         ),
       }}
+      afterHero={
+        <AllUnitsSection
+          category={categoryPage.category}
+          locale="en"
+          conversions={englishConversionPages}
+          hrefPrefix="/en/"
+          variant="category"
+        />
+      }
       conversionHeading="Popular conversions"
       conversionCountLabel={`${conversionCards.length} pairs`}
       conversionCards={conversionCards}

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
+import AllUnitsSection from "../../../components/AllUnitsSection";
 import CategoryUnitConverter from "../../../components/CategoryUnitConverter";
 import { getLocalizedUnitOptions } from "../../../converter/localizedUnitOptions";
 import CategoryPageLayout from "../../../components/CategoryPageLayout";
@@ -156,10 +157,20 @@ export default async function BengaliCategoryPage({ params }: PageProps) {
           <CategoryUnitConverter
             category={categoryPage.category}
             locale="bn"
+            syncKey={categoryPage.category}
             unitOptions={getLocalizedUnitOptions(categoryPage.category, "bn")}
           />
         ),
       }}
+      afterHero={
+        <AllUnitsSection
+          category={categoryPage.category}
+          locale="bn"
+          conversions={bengaliConversionPages}
+          hrefPrefix="/bn/"
+          variant="category"
+        />
+      }
       conversionHeading="জনপ্রিয় রূপান্তর"
       conversionCountLabel={`${conversionCards.length} জোড়া`}
       conversionCards={conversionCards}

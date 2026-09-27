@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
+import AllUnitsSection from "../../../components/AllUnitsSection";
 import CategoryUnitConverter from "../../../components/CategoryUnitConverter";
 import CategoryPageLayout from "../../../components/CategoryPageLayout";
 import { createConversionCards } from "../../../components/categoryPageUtils";
@@ -249,9 +250,19 @@ export default async function ArabicCategoryPage({
           <CategoryUnitConverter
             category={categoryPage.category}
             locale="ar"
+            syncKey={categoryPage.category}
           />
         ),
       }}
+      afterHero={
+        <AllUnitsSection
+          category={categoryPage.category}
+          locale="ar"
+          conversions={englishConversionPages}
+          hrefPrefix="/ar/"
+          variant="category"
+        />
+      }
       conversionHeading="التحويلات الشائعة"
       conversionCountLabel={`${conversionCards.length} أداة`}
       conversionCards={conversionCards}

@@ -128,3 +128,91 @@ export function convertNumberUnits(value: number, from: NumberUnit) {
   const inUnits = Object.fromEntries(Object.entries(NUMBER_UNITS).map(([key, unit]) => [key, raw / unit.value])) as Record<NumberUnit, number>;
   return { raw, inUnits };
 }
+
+// ---------------- Traditional Indian weights ----------------
+// 1 tola = 180 grains = 11.6638038 g (British India standard); 1 tola =
+// 12 masha = 96 ratti (sunari/goldsmith ratti = 121.5 mg). Gemstone trade
+// uses the "pakki" ratti = 1.5 sunari ratti = 182.25 mg ≈ 0.91 carat.
+// 1 seer = 80 tola; 1 maund = 40 seer; 1 chhatak = 1/16 seer.
+export const TOLA_GRAMS = 11.6638038;
+
+export type IndianWeightUnit =
+  | "gram"
+  | "kilogram"
+  | "tola"
+  | "masha"
+  | "rattiSunari"
+  | "rattiPakki"
+  | "carat"
+  | "chhatak"
+  | "seer"
+  | "maund"
+  | "quintal"
+  | "pound";
+
+export const INDIAN_WEIGHT_UNITS: Record<IndianWeightUnit, { label: string; grams: number }> = {
+  gram: { label: "Grams (g)", grams: 1 },
+  kilogram: { label: "Kilograms (kg)", grams: 1000 },
+  tola: { label: "Tola", grams: TOLA_GRAMS },
+  masha: { label: "Masha", grams: TOLA_GRAMS / 12 },
+  rattiSunari: { label: "Ratti (goldsmith / sunari)", grams: TOLA_GRAMS / 96 },
+  rattiPakki: { label: "Ratti (gemstone / pakki)", grams: (TOLA_GRAMS / 96) * 1.5 },
+  carat: { label: "Carats (ct)", grams: 0.2 },
+  chhatak: { label: "Chhatak", grams: (TOLA_GRAMS * 80) / 16 },
+  seer: { label: "Seer (ser)", grams: TOLA_GRAMS * 80 },
+  maund: { label: "Maund (man)", grams: TOLA_GRAMS * 80 * 40 },
+  quintal: { label: "Quintal", grams: 100000 },
+  pound: { label: "Pounds (lb)", grams: 453.59237 },
+};
+
+export function convertIndianWeight(value: number, from: IndianWeightUnit) {
+  if (!Number.isFinite(value) || value < 0) return null;
+  const grams = value * INDIAN_WEIGHT_UNITS[from].grams;
+  return Object.fromEntries(
+    Object.entries(INDIAN_WEIGHT_UNITS).map(([key, unit]) => [key, grams / unit.grams])
+  ) as Record<IndianWeightUnit, number>;
+}
+
+// ---------------- GST (India) ----------------
+// Eylul 2025 (GST 2.0) sonrasi ana dilimler: %0, %5, %18 ve %40 (luks/zararli
+// urunler). Altin ve gumus icin %3 ozel oran devam ediyor.
+export const GST_RATES = [0, 3, 5, 18, 40] as const;
+
+export type GstInput = { amount: number; ratePercent: number; mode: "add" | "remove"; supply: "intra" | "inter" };
+
+export function gstCalculation(input: GstInput) {
+  const { amount, ratePercent, mode, supply } = input;
+  if (!Number.isFinite(amount) || amount < 0 || !Number.isFinite(ratePercent) || ratePercent < 0) return null;
+  const net = mode === "add" ? amount : amount / (1 + ratePercent / 100);
+  const gst = net * (ratePercent / 100);
+  const total = net + gst;
+  // Eyalet ici satista vergi CGST + SGST olarak ikiye bolunur; eyaletler
+  // arasi satista tamami IGST'dir.
+  return supply === "intra" ? { net, gst, total, cgst: gst / 2, sgst: gst / 2, igst: 0 } : { net, gst, total, cgst: 0, sgst: 0, igst: gst };
+}
+
+// ---------------- Loan EMI ----------------
+export type EmiInput = { principal: number; annualRatePercent: number; months: number };
+
+export function loanEmi(input: EmiInput) {
+  const { principal, annualRatePercent, months } = input;
+  if (!(principal > 0) || !(months >= 1) || !Number.isFinite(annualRatePercent) || annualRatePercent < 0) return null;
+  const n = Math.round(months);
+  const i = annualRatePercent / 12 / 100;
+  const emi = i === 0 ? principal / n : (principal * i * (1 + i) ** n) / ((1 + i) ** n - 1);
+  const totalPayment = emi * n;
+  // Yillik ozet: her yil odenen anapara, faiz ve yil sonu kalan borc.
+  const years: Array<{ year: number; principal: number; interest: number; balance: number }> = [];
+  let balance = principal;
+  for (let month = 1; month <= n; month += 1) {
+    const interest = balance * i;
+    const principalPart = emi - interest;
+    balance = Math.max(0, balance - principalPart);
+    const yearIndex = Math.ceil(month / 12) - 1;
+    if (!years[yearIndex]) years[yearIndex] = { year: yearIndex + 1, principal: 0, interest: 0, balance: 0 };
+    years[yearIndex].principal += principalPart;
+    years[yearIndex].interest += interest;
+    years[yearIndex].balance = balance;
+  }
+  return { emi, totalPayment, totalInterest: totalPayment - principal, years };
+}

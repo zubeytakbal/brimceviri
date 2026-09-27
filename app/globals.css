@@ -8315,3 +8315,65 @@ a.all-units-row .all-units-name {
 .sleep-cycle-strip span.is-filled {
   background: #168f8c;
 }
+
+.sleep-alarm-button {
+  justify-self: start;
+  margin: 0 0 12px;
+  padding: 9px 14px;
+  border: 1px solid #168f8c;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #0f6f6c;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.sleep-alarm-button:hover {
+  background: #eafaf8;
+}
+
+.sleep-alarm-button.is-small {
+  margin: 4px 0 0;
+  padding: 6px 10px;
+  font-size: 0.8rem;
+}
+
+.sleep-alarm-status {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 14px;
+  margin: 12px 0;
+  padding: 12px 16px;
+  border: 1px solid #168f8c;
+  border-radius: 10px;
+  background: #eafaf8;
+  color: #1f3b44;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.sleep-alarm-status.is-ringing {
+  border-color: #b45309;
+  background: #fff4e0;
+  color: #7a3d00;
+  font-size: 1.05rem;
+}
+
+.sleep-alarm-status button {
+  padding: 8px 14px;
+  border: 0;
+  border-radius: 8px;
+  background: #168f8c;
+  color: #ffffff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.sleep-alarm-status.is-ringing button {
+  background: #b45309;
+}

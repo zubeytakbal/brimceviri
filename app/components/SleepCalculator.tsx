@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { alarmCopy, AlarmStatus, useBrowserAlarm } from "./SleepAlarm";
 import type { Locale } from "../i18n/config";
 import { formatLocalizedNumber } from "../i18n/toolLocales";
 import {
@@ -513,6 +514,8 @@ export default function SleepCalculator({
   const [request, setRequest] = useState<{ mode: SleepCalculationMode; timeOfDay: string } | null>(null);
 
   const result = useMemo(() => (request ? calculateSleepTimes(request) : null), [request]);
+  const browserAlarm = useBrowserAlarm();
+  const alarmText = alarmCopy[locale] ?? (locale === "es-419" ? alarmCopy.es : alarmCopy.en);
   const options = result
     ? request?.mode === "wake-to-bedtime"
       ? [...result.options].reverse()
@@ -571,6 +574,14 @@ export default function SleepCalculator({
         </button>
       </div>
 
+      <AlarmStatus
+        copy={alarmText}
+        alarm={browserAlarm.alarm}
+        ringing={browserAlarm.ringing}
+        onCancel={browserAlarm.cancel}
+        onStop={browserAlarm.stop}
+      />
+
       <div aria-live="polite" className="category-general-converter-result">
         {!request ? (
           <p className="sleep-result-intro">{flow.placeholder}</p>
@@ -581,6 +592,11 @@ export default function SleepCalculator({
             <p className="sleep-result-intro">
               {request.mode === "wake-to-bedtime" ? flow.wakeIntro(request.timeOfDay) : flow.nowIntro(request.timeOfDay)}
             </p>
+            {request.mode === "wake-to-bedtime" && (
+              <button type="button" className="sleep-alarm-button" onClick={() => browserAlarm.set(request.timeOfDay)}>
+                {alarmText.setFor(request.timeOfDay)}
+              </button>
+            )}
             <ul className="sleep-result-grid">
               {options.map((option) => (
                 <li className={`sleep-result-card${option.recommended ? " is-recommended" : ""}`} key={option.cycles}>
@@ -594,6 +610,11 @@ export default function SleepCalculator({
                     ))}
                   </span>
                   {option.recommended && <span className="sleep-calculator-badge">{copy.recommended}</span>}
+                  {request.mode === "bedtime-to-wake" && (
+                    <button type="button" className="sleep-alarm-button is-small" onClick={() => browserAlarm.set(option.time)}>
+                      {alarmText.setFor(option.time)}
+                    </button>
+                  )}
                 </li>
               ))}
             </ul>

@@ -19,7 +19,7 @@ const faqItems: FaqItem[] = [
   {
     question: "Şimdi uyusam kaçta kalkmalıyım?",
     answer:
-      "Şu anki saate yaklaşık 15 dakika uykuya dalma süresi ekleyin, sonra 90 dakikalık döngüleri ekleyin. Örneğin 23:00'te yatarsanız 5 döngü için 06:45'te, 6 döngü için 08:15'te kalkmak en rahatıdır. Hesaplayıcıda \"Kaçta kalkmalıyım?\" seçeneğini açıp \"Şu anki saati kullan\" düğmesine basmanız yeterli.",
+      "Şu anki saate yaklaşık 15 dakika uykuya dalma süresi ekleyin, sonra 90 dakikalık döngüleri ekleyin. Örneğin 23:00'te yatarsanız 5 döngü için 06:45'te, 6 döngü için 08:15'te kalkmak en rahatıdır. Hesaplayıcıda \"Şimdi yatarsam…\" altındaki düğmeye basmanız yeterli.",
   },
   {
     question: "6 saat uyku yeterli mi?",

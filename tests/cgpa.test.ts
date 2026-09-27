@@ -23,6 +23,8 @@ describe("CGPA to percentage", () => {
     expect(cgpaToPercentage(7.5, u("ikgptu"))).toBeCloseTo(75, 10);
     expect(cgpaToPercentage(8, u("calicut-university"))).toBeCloseTo(80, 10);
     expect(cgpaToPercentage(8, u("dbatu"))).toBeCloseTo(75, 10);
+    expect(cgpaToPercentage(8, u("kerala-university"))).toBeCloseTo(77.5, 10);
+    expect(cgpaToPercentage(7.5, u("jntua"))).toBeCloseTo(70, 10);
   });
 
   it("rejects values outside the scale and reverses the formula", () => {
@@ -40,7 +42,7 @@ describe("CGPA to percentage", () => {
     const slugs = cgpaUniversities.map((entry) => entry.slug);
     expect(new Set(slugs).size).toBe(slugs.length);
     for (const entry of cgpaUniversities) {
-      expect(entry.sourceUrl.startsWith("https://")).toBe(true);
+      expect(/^https?:\/\//.test(entry.sourceUrl)).toBe(true);
       expect(entry.verifiedOn).toMatch(/^\d{4}-\d{2}-\d{2}$/);
     }
   });

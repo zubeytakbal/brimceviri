@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { appManifestPath, findInstallableApp } from "../converter/time/installableApps";
 import Link from "@/app/components/SiteLink";
 import LiveClock from "../components/time/LiveClock";
 import TimeToolPage from "../components/time/TimeToolPage";
@@ -14,6 +15,8 @@ const description =
 export const metadata: Metadata = {
   title,
   description,
+  manifest: appManifestPath("saat"),
+  appleWebApp: { capable: true, title: findInstallableApp("saat")!.shortName },
   alternates: { canonical: "/online-saat", ...timeToolAlternates("clock") },
   openGraph: { title, description, url: buildSiteUrl("/online-saat"), siteName: "BirimCeviri.app", locale: "tr_TR", type: "website" },
 };
@@ -53,6 +56,7 @@ export default function OnlineClockPage() {
     <TimeToolPage
       crumbs={[{ href: "/", label: "Ana Sayfa" }, { href: "/online-saat", label: "Online Saat" }]}
       crumbLabel="Sayfa yolu"
+      install={{ name: "Online Saat", lang: "tr" }}
       title="Online Saat"
       intro="Şu anki saat, saniyesi saniyesine. 34 temadan birini seç: sarkaçlı duvar saatinden guguklu saate, cep saatinden dalgıç saatine. İstersen tik-tak sesini ve saat başı çanını aç, tek tıkla tam ekran masa saatine dönüştür."
       tool={<LiveClock locale="tr" />}

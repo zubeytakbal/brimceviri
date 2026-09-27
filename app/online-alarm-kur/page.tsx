@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { appManifestPath, findInstallableApp } from "../converter/time/installableApps";
 import Link from "@/app/components/SiteLink";
 import AlarmClock from "../components/time/AlarmClock";
 import TimeToolPage from "../components/time/TimeToolPage";
@@ -14,6 +15,8 @@ const description =
 export const metadata: Metadata = {
   title,
   description,
+  manifest: appManifestPath("alarm"),
+  appleWebApp: { capable: true, title: findInstallableApp("alarm")!.shortName },
   alternates: { canonical: "/online-alarm-kur", ...timeToolAlternates("alarm") },
   openGraph: { title, description, url: buildSiteUrl("/online-alarm-kur"), siteName: "BirimCeviri.app", locale: "tr_TR", type: "website" },
 };
@@ -51,6 +54,7 @@ export default function OnlineAlarmPage() {
     <TimeToolPage
       crumbs={[{ href: "/", label: "Ana Sayfa" }, { href: "/online-alarm-kur", label: "Online Alarm" }]}
       crumbLabel="Sayfa yolu"
+      install={{ name: "Online Alarm", lang: "tr" }}
       title="Online Alarm Kur"
       intro="Saati seç, bir ses belirle ve alarmı ekle. Uygulama indirmeden, tarayıcıda çalışan ücretsiz çalar saat: birden çok alarm, 5 dakika erteleme ve ekranı açık tutma desteği."
       tool={<AlarmClock locale="tr" />}

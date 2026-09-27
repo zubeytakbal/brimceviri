@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { appManifestPath, findInstallableApp } from "../../converter/time/installableApps";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
 import AlarmClock from "../../components/time/AlarmClock";
@@ -33,6 +34,8 @@ export async function generateMetadata({ params }: { params: Promise<{ saat: str
   return {
     title,
     description,
+    manifest: appManifestPath("alarm"),
+    appleWebApp: { capable: true, title: findInstallableApp("alarm")!.shortName },
     alternates: { canonical: path, ...alarmPresetAlternates(time) },
     openGraph: { title, description, url: buildSiteUrl(path), siteName: "BirimCeviri.app", locale: "tr_TR", type: "website" },
   };
@@ -67,6 +70,7 @@ export default async function AlarmPresetPage({ params }: { params: Promise<{ sa
         { href: path, label: `${time} Alarm` },
       ]}
       crumbLabel="Sayfa yolu"
+      install={{ name: "Online Alarm", lang: "tr" }}
       title={`Saat ${time} Alarm Kur`}
       intro={`Alarm saati ${time} olarak hazırlandı. "Alarmı ekle"ye bas, gerekirse sesi ve etiketi değiştir. Aşağıda ${trTimeLocative(time)} dinç kalkmak için önerilen yatış saatlerini de bulabilirsin.`}
       tool={<AlarmClock locale="tr" initialTime={time} />}

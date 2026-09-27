@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import Link from "@/app/components/SiteLink";
+import InstallAppButton from "../InstallAppButton";
 import TableOfContents from "../TableOfContents";
 import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
 import { buildSiteUrl } from "../../siteConfig";
@@ -22,6 +23,7 @@ export default function TimeToolPage({
   faqTitle,
   faqItems,
   related,
+  install,
   children,
 }: {
   crumbs: Crumb[];
@@ -34,6 +36,8 @@ export default function TimeToolPage({
   faqTitle: string;
   faqItems: FaqItem[];
   related?: { title: string; links: Array<{ href: string; label: string }> };
+  /** Sayfa yuklenebilir bir uygulamaya bagliysa "Uygulama olarak yukle" dugmesi. */
+  install?: { name: string; lang: "tr" | "en" };
   children: ReactNode;
 }) {
   const breadcrumbSchema = {
@@ -68,6 +72,8 @@ export default function TimeToolPage({
         </header>
 
         {tool}
+
+        {install && <InstallAppButton name={install.name} lang={install.lang} />}
 
         {related ? (
           <nav className="time-tool-related" aria-label={related.title}>

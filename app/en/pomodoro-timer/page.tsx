@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { appManifestPath, findInstallableApp } from "../../converter/time/installableApps";
 import { PomodoroPage } from "../../components/time/FocusPages";
 import { timeToolAlternates, timeToolPaths } from "../../i18n/timeToolPaths";
 import { buildSiteUrl } from "../../siteConfig";
@@ -10,6 +11,8 @@ const path = timeToolPaths.pomodoro.en!;
 export const metadata: Metadata = {
   title,
   description,
+  manifest: appManifestPath("pomodoro-timer"),
+  appleWebApp: { capable: true, title: findInstallableApp("pomodoro-timer")!.shortName },
   alternates: { canonical: path, ...timeToolAlternates("pomodoro") },
   openGraph: { title, description, url: buildSiteUrl(path), siteName: "BirimCeviri.app", locale: "en_US", type: "website" },
 };

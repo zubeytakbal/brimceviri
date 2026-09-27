@@ -72,6 +72,7 @@ export default function WorldClockHub({ lang }: { lang: Lang }) {
         { href: tr ? "/dunya-saatleri" : "/en/world-clock", label: tr ? "Dünya Saatleri" : "World Clock" },
       ]}
       crumbLabel={tr ? "Sayfa yolu" : "Breadcrumb"}
+      install={{ name: tr ? "Dünya Saatleri" : "World Clock", lang: lang }}
       title={tr ? "Dünya Saatleri" : "World Clock"}
       intro={
         tr

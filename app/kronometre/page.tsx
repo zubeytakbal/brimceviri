@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { appManifestPath, findInstallableApp } from "../converter/time/installableApps";
 import Link from "@/app/components/SiteLink";
 import Stopwatch from "../components/time/Stopwatch";
 import TimeToolPage from "../components/time/TimeToolPage";
@@ -14,6 +15,8 @@ const description =
 export const metadata: Metadata = {
   title,
   description,
+  manifest: appManifestPath("kronometre"),
+  appleWebApp: { capable: true, title: findInstallableApp("kronometre")!.shortName },
   alternates: { canonical: "/kronometre", ...timeToolAlternates("stopwatch") },
   openGraph: { title, description, url: buildSiteUrl("/kronometre"), siteName: "BirimCeviri.app", locale: "tr_TR", type: "website" },
 };
@@ -42,6 +45,7 @@ export default function StopwatchPage() {
     <TimeToolPage
       crumbs={[{ href: "/", label: "Ana Sayfa" }, { href: "/kronometre", label: "Kronometre" }]}
       crumbLabel="Sayfa yolu"
+      install={{ name: "Kronometre", lang: "tr" }}
       title="Online Kronometre"
       intro="Başlat'a bas, süre salise hassasiyetinde işlesin. Tur kaydet, en hızlı ve en yavaş turu gör, sonuçları CSV olarak indir."
       tool={<Stopwatch locale="tr" />}

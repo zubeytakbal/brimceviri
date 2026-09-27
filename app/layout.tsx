@@ -163,10 +163,19 @@ export default function RootLayout({
         <Script id="sw-register" strategy="afterInteractive">
           {`
             if ('serviceWorker' in navigator) {
-              window.addEventListener('load', function () {
+              var registerSw = function () {
                 navigator.serviceWorker.register('/sw.js').catch(function () {});
-              });
+              };
+              // Betik "load" olayindan sonra calisabilir; o durumda hemen kaydet.
+              if (document.readyState === 'complete') registerSw();
+              else window.addEventListener('load', registerSw);
             }
+            // "Uygulamayi yukle" dugmesi icin kurulum istemini sakla.
+            window.addEventListener('beforeinstallprompt', function (event) {
+              event.preventDefault();
+              window.__bcInstallPrompt = event;
+              window.dispatchEvent(new Event('bc-install-ready'));
+            });
           `}
         </Script>
       </head>

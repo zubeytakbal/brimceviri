@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { appManifestPath, findInstallableApp } from "../../converter/time/installableApps";
 import Link from "@/app/components/SiteLink";
 import AlarmClock from "../../components/time/AlarmClock";
 import TimeToolPage from "../../components/time/TimeToolPage";
@@ -14,6 +15,8 @@ const description =
 export const metadata: Metadata = {
   title,
   description,
+  manifest: appManifestPath("alarm-clock"),
+  appleWebApp: { capable: true, title: findInstallableApp("alarm-clock")!.shortName },
   alternates: { canonical: "/en/alarm-clock", ...timeToolAlternates("alarm") },
   openGraph: { title, description, url: buildSiteUrl("/en/alarm-clock"), siteName: "BirimCeviri.app", locale: "en_US", type: "website" },
 };
@@ -50,6 +53,7 @@ export default function EnglishAlarmClockPage() {
     <TimeToolPage
       crumbs={[{ href: "/en", label: "Home" }, { href: "/en/alarm-clock", label: "Alarm Clock" }]}
       crumbLabel="Breadcrumb"
+      install={{ name: "Alarm Clock", lang: "en" }}
       title="Online Alarm Clock"
       intro="Pick a time, choose a sound and add the alarm. A free alarm clock that runs in your browser: multiple alarms, 5-minute snooze and keep-screen-awake support."
       tool={<AlarmClock locale="en" />}

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { appManifestPath, findInstallableApp } from "../../converter/time/installableApps";
 import Link from "@/app/components/SiteLink";
 import Stopwatch from "../../components/time/Stopwatch";
 import TimeToolPage from "../../components/time/TimeToolPage";
@@ -14,6 +15,8 @@ const description =
 export const metadata: Metadata = {
   title,
   description,
+  manifest: appManifestPath("stopwatch"),
+  appleWebApp: { capable: true, title: findInstallableApp("stopwatch")!.shortName },
   alternates: { canonical: "/en/stopwatch", ...timeToolAlternates("stopwatch") },
   openGraph: { title, description, url: buildSiteUrl("/en/stopwatch"), siteName: "BirimCeviri.app", locale: "en_US", type: "website" },
 };
@@ -42,6 +45,7 @@ export default function EnglishStopwatchPage() {
     <TimeToolPage
       crumbs={[{ href: "/en", label: "Home" }, { href: "/en/stopwatch", label: "Stopwatch" }]}
       crumbLabel="Breadcrumb"
+      install={{ name: "Stopwatch", lang: "en" }}
       title="Online Stopwatch"
       intro="Press start and time runs to the hundredth of a second. Record laps, spot your fastest and slowest lap and download the results as CSV."
       tool={<Stopwatch locale="en" />}

@@ -63,6 +63,7 @@ export function PomodoroPage({ lang }: { lang: "tr" | "en" }) {
         { href: tr ? "/pomodoro" : "/en/pomodoro-timer", label: tr ? "Pomodoro" : "Pomodoro Timer" },
       ]}
       crumbLabel={tr ? "Sayfa yolu" : "Breadcrumb"}
+      install={{ name: "Pomodoro", lang }}
       title={tr ? "Pomodoro Zamanlayıcı" : "Pomodoro Timer"}
       intro={
         tr
@@ -178,6 +179,7 @@ export function IntervalPage({ lang }: { lang: "tr" | "en" }) {
         { href: tr ? "/tabata-zamanlayici" : "/en/interval-timer", label: tr ? "Tabata Zamanlayıcı" : "Interval Timer" },
       ]}
       crumbLabel={tr ? "Sayfa yolu" : "Breadcrumb"}
+      install={{ name: tr ? "Tabata" : "Interval Timer", lang }}
       title={tr ? "Tabata ve HIIT Zamanlayıcı" : "Interval Timer: Tabata & HIIT"}
       intro={
         tr

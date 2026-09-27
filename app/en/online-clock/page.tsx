@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { appManifestPath, findInstallableApp } from "../../converter/time/installableApps";
 import Link from "@/app/components/SiteLink";
 import LiveClock from "../../components/time/LiveClock";
 import TimeToolPage from "../../components/time/TimeToolPage";
@@ -14,6 +15,8 @@ const description =
 export const metadata: Metadata = {
   title,
   description,
+  manifest: appManifestPath("clock"),
+  appleWebApp: { capable: true, title: findInstallableApp("clock")!.shortName },
   alternates: { canonical: "/en/online-clock", ...timeToolAlternates("clock") },
   openGraph: { title, description, url: buildSiteUrl("/en/online-clock"), siteName: "BirimCeviri.app", locale: "en_US", type: "website" },
 };
@@ -49,6 +52,7 @@ export default function EnglishOnlineClockPage() {
     <TimeToolPage
       crumbs={[{ href: "/en", label: "Home" }, { href: "/en/online-clock", label: "Online Clock" }]}
       crumbLabel="Breadcrumb"
+      install={{ name: "Online Clock", lang: "en" }}
       title="Online Clock"
       intro="The current time, to the second. Pick one of 34 themes, from a pendulum wall clock to a cuckoo clock, pocket watch or dive watch. Turn on the ticking and hourly chime if you like, and go full screen in one click."
       tool={<LiveClock locale="en" />}

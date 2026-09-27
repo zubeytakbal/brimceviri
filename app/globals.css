@@ -12256,3 +12256,22 @@ a.all-units-row .all-units-name {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+/* ===== Uygulama olarak yukle ===== */
+.install-app {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  margin: 14px 0 0;
+  padding: 14px 16px;
+  border: 1px dashed #9cc9c6;
+  border-radius: 14px;
+  background: #f0faf9;
+}
+
+.install-app small,
+.install-app p {
+  margin: 0;
+  color: #1f3b44;
+}

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { appManifestPath, findInstallableApp } from "../../converter/time/installableApps";
 import CountdownTimer from "../../components/time/CountdownTimer";
 import TimeToolPage from "../../components/time/TimeToolPage";
 import { timeRelated } from "../../components/time/timeRelatedLinks";
@@ -14,6 +15,8 @@ const description =
 export const metadata: Metadata = {
   title,
   description,
+  manifest: appManifestPath("timer"),
+  appleWebApp: { capable: true, title: findInstallableApp("timer")!.shortName },
   alternates: { canonical: "/en/timer", ...timeToolAlternates("timer") },
   openGraph: { title, description, url: buildSiteUrl("/en/timer"), siteName: "BirimCeviri.app", locale: "en_US", type: "website" },
 };
@@ -46,6 +49,7 @@ export default function EnglishTimerPage() {
     <TimeToolPage
       crumbs={[{ href: "/en", label: "Home" }, { href: "/en/timer", label: "Timer" }]}
       crumbLabel="Breadcrumb"
+      install={{ name: "Timer", lang: "en" }}
       title="Online Timer"
       intro="Tap a preset or enter your own time and press start. An alarm sounds when time is up. Pause, add a minute or go full screen."
       tool={<CountdownTimer locale="en" presetLinks={presetLinks} />}

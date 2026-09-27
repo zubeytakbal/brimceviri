@@ -105,3 +105,21 @@ describe("zoned wall time conversion", () => {
     );
   });
 });
+
+describe("golden and blue hour", () => {
+  it("orders the light windows around sunrise and sunset", async () => {
+    const { lightWindows, sunTimes } = await import("../app/converter/time/solar");
+    const w = lightWindows(2026, 6, 21, 41.01, 28.98);
+    const sun = sunTimes(2026, 6, 21, 41.01, 28.98);
+    if (sun.kind !== "normal" || !w.morningBlue || !w.morningGolden || !w.eveningGolden || !w.eveningBlue) throw new Error("expected all windows");
+    expect(w.morningBlue[1].getTime()).toBe(w.morningGolden[0].getTime());
+    expect(w.morningGolden[0].getTime()).toBeLessThan(sun.sunrise.getTime());
+    expect(w.morningGolden[1].getTime()).toBeGreaterThan(sun.sunrise.getTime());
+    expect(w.eveningGolden[0].getTime()).toBeLessThan(sun.sunset.getTime());
+    expect(w.eveningBlue[1].getTime()).toBeGreaterThan(w.eveningGolden[1].getTime());
+    // Istanbul yaz: sabah altin saat ~1 saat surer
+    const minutes = (w.morningGolden[1].getTime() - w.morningGolden[0].getTime()) / 60000;
+    expect(minutes).toBeGreaterThan(50);
+    expect(minutes).toBeLessThan(90);
+  });
+});

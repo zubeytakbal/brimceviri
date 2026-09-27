@@ -11780,3 +11780,143 @@ a.all-units-row .all-units-name {
     gap: 2px;
   }
 }
+
+/* ===== Altin saat ===== */
+.golden-tool {
+  display: grid;
+  gap: 16px;
+  padding: 22px;
+  border-radius: 18px;
+  background: linear-gradient(160deg, #2d1b69 0%, #b53f7d 55%, #ff9a5a 100%);
+  color: #ffffff;
+}
+
+.golden-controls {
+  display: grid;
+  grid-template-columns: 2fr 1fr auto;
+  align-items: end;
+  gap: 10px;
+}
+
+.golden-controls label {
+  display: grid;
+  gap: 4px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  min-width: 0;
+}
+
+.golden-controls select,
+.golden-controls input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 10px;
+  font-size: 1rem;
+  color: #172033;
+}
+
+.golden-error {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.golden-strip {
+  position: relative;
+  height: 34px;
+  margin-bottom: 18px;
+  border-radius: 10px;
+  overflow: visible;
+  background: #0b1026;
+}
+
+.golden-strip span {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+.golden-strip span.is-night {
+  background: #0b1026;
+}
+
+.golden-strip span.is-blue {
+  background: #2f5fb3;
+}
+
+.golden-strip span.is-golden {
+  background: #f5a524;
+}
+
+.golden-strip span.is-day {
+  background: #9fd3f5;
+}
+
+.golden-strip span:first-child {
+  border-radius: 10px 0 0 10px;
+}
+
+.golden-strip span:last-of-type {
+  border-radius: 0 10px 10px 0;
+}
+
+.golden-strip i {
+  position: absolute;
+  top: 38px;
+  transform: translateX(-50%);
+  font-size: 0.72rem;
+  font-style: normal;
+  opacity: 0.85;
+}
+
+.golden-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 10px;
+}
+
+.golden-card {
+  display: grid;
+  gap: 4px;
+  padding: 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.golden-card span {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.9;
+}
+
+.golden-card strong {
+  font-size: 1.35rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.golden-card.is-golden {
+  box-shadow: inset 4px 0 0 #f5a524;
+}
+
+.golden-card.is-blue {
+  box-shadow: inset 4px 0 0 #5b8def;
+}
+
+.golden-sun {
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .golden-controls {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .golden-controls label:first-child {
+    grid-column: 1 / -1;
+  }
+}

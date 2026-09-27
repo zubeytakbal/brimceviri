@@ -150,6 +150,7 @@ export const everydayToolLinksByCategory: Record<
     { href: "/saat-dilimi-cevirici", label: "Saat Dilimi Çevirici" },
     { href: "/tarih-cevirici", label: "Hicri Rumi Tarih Çevirici" },
     { href: "/ay-evreleri", label: "Ay Evreleri" },
+    { href: "/altin-saat", label: "Altın Saat Hesaplama" },
     { href: "/online-alarm-kur", label: "Online Alarm" },
     { href: "/zamanlayici", label: "Zamanlayıcı" },
     { href: "/kronometre", label: "Kronometre" },

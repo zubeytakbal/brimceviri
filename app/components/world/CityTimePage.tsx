@@ -84,6 +84,10 @@ export default function CityTimePage({ city, lang }: { city: WorldCity; lang: La
         },
         { question: `${city.inTr} yaz saati uygulaması var mı?`, answer: `${dstText} ${transitionText}`.trim() },
         {
+          question: `${city.inTr} altın saat kaçta?`,
+          answer: `${sun.date} için ${city.inTr} akşam altın saati ${facts.light.eveningGolden}, sabah altın saati ${facts.light.morningGolden} arasındadır (yerel saat).`,
+        },
+        {
           question: `${city.inTr} güneş kaçta doğuyor ve batıyor?`,
           answer: `${sun.date} için ${city.inTr} gün doğumu ${sun.sunrise}, gün batımı ${sun.sunset}; gün uzunluğu ${sun.dayLength}. Saatler yerel saattir.`,
         },
@@ -98,6 +102,10 @@ export default function CityTimePage({ city, lang }: { city: WorldCity; lang: La
           answer: `${name} is in ${facts.zoneName} (${facts.utcLabel}). IANA time zone ID: ${city.timeZone}.`,
         },
         { question: `Does ${name} observe daylight saving time?`, answer: `${dstText} ${transitionText}`.trim() },
+        {
+          question: `When is golden hour in ${name}?`,
+          answer: `On ${sun.date}, evening golden hour in ${name} runs ${facts.light.eveningGolden} and morning golden hour ${facts.light.morningGolden} (local time).`,
+        },
         {
           question: `What time is sunrise and sunset in ${name}?`,
           answer: `On ${sun.date}, sunrise in ${name} is at ${sun.sunrise} and sunset at ${sun.sunset}, a day length of ${sun.dayLength} (local time).`,
@@ -128,6 +136,7 @@ export default function CityTimePage({ city, lang }: { city: WorldCity; lang: La
     { id: "dunya", label: tr ? "Dünya şehirleriyle karşılaştırma" : "Compared with world cities" },
     { id: "yaz-saati", label: tr ? "Yaz saati uygulaması" : "Daylight saving time" },
     { id: "gunes", label: tr ? "Gün doğumu ve gün batımı" : "Sunrise and sunset" },
+    { id: "altin-saat", label: tr ? "Altın saat ve mavi saat" : "Golden hour and blue hour" },
     { id: "faq", label: tr ? "Sık sorulan sorular" : "FAQ" },
   ];
 
@@ -337,6 +346,38 @@ export default function CityTimePage({ city, lang }: { city: WorldCity; lang: La
           </tbody>
         </table>
       </div>
+
+      <h2 id="altin-saat">{tr ? `${city.inTr} altın saat ve mavi saat` : `Golden hour and blue hour in ${name}`}</h2>
+      <p>
+        {tr
+          ? `Fotoğrafçıların sevdiği yumuşak, sıcak ışık (altın saat) güneş ufkun 6° üstü ile 4° altı arasındayken; mavi saat ise 4° ile 6° altı arasındayken yaşanır. ${sun.date} için yerel saatler:`
+          : `Photographers' soft, warm light (golden hour) happens while the sun is between 6° above and 4° below the horizon; blue hour follows between 4° and 6° below. Local times for ${sun.date}:`}
+      </p>
+      <div className="conversion-table-wrap">
+        <table className="conversion-table">
+          <tbody>
+            <tr>
+              <th scope="row">{tr ? "Sabah mavi saat" : "Morning blue hour"}</th>
+              <td>{facts.light.morningBlue}</td>
+            </tr>
+            <tr>
+              <th scope="row">{tr ? "Sabah altın saat" : "Morning golden hour"}</th>
+              <td>{facts.light.morningGolden}</td>
+            </tr>
+            <tr>
+              <th scope="row">{tr ? "Akşam altın saat" : "Evening golden hour"}</th>
+              <td>{facts.light.eveningGolden}</td>
+            </tr>
+            <tr>
+              <th scope="row">{tr ? "Akşam mavi saat" : "Evening blue hour"}</th>
+              <td>{facts.light.eveningBlue}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        <Link href={tr ? "/altin-saat" : "/en/golden-hour"}>{tr ? "Başka bir tarih ya da konum için altın saat hesaplayıcı" : "Golden hour calculator for any date or location"}</Link>
+      </p>
     </TimeToolPage>
   );
 }

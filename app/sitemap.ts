@@ -3015,6 +3015,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...[
       ["/tarih-cevirici", "/en/hijri-date-converter"],
       ["/ay-evreleri", "/en/moon-phases"],
+      ["/altin-saat", "/en/golden-hour"],
     ].flatMap(([trPath, enPath]) =>
       [trPath, enPath].map((path) => ({
         url: `${baseUrl}${path}`,

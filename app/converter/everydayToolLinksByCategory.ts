@@ -154,6 +154,8 @@ export const everydayToolLinksByCategory: Record<
     { href: "/online-alarm-kur", label: "Online Alarm" },
     { href: "/zamanlayici", label: "Zamanlayıcı" },
     { href: "/kronometre", label: "Kronometre" },
+    { href: "/pomodoro", label: "Pomodoro Zamanlayıcı" },
+    { href: "/tabata-zamanlayici", label: "Tabata Zamanlayıcı" },
     { href: "/devamsizlik-hesaplama", label: "Devamsızlık Hesaplama" },
     { href: "/unix-zaman-damgasi-cevirici", label: "Unix Zaman Damgası Çevirici" },
   ],

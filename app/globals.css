@@ -12058,3 +12058,201 @@ a.all-units-row .all-units-name {
   max-width: 100%;
   box-sizing: border-box;
 }
+
+/* ===== Pomodoro ===== */
+.pomodoro-panel.is-work {
+  background: linear-gradient(150deg, #7a1f2b 0%, #c2413b 55%, #f07a4a 100%);
+}
+
+.pomodoro-panel.is-short {
+  background: linear-gradient(150deg, #0f4d3a 0%, #1f8a5b 60%, #5cc28a 100%);
+}
+
+.pomodoro-panel.is-long {
+  background: linear-gradient(150deg, #13315c 0%, #2c5ea8 60%, #5c9ce6 100%);
+}
+
+.pomodoro-modes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  padding: 4px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.pomodoro-modes button {
+  padding: 7px 14px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: #ffffff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.pomodoro-modes button.is-active {
+  background: #ffffff;
+  color: #7a1f2b;
+}
+
+.pomodoro-panel.is-short .pomodoro-modes button.is-active {
+  color: #0f4d3a;
+}
+
+.pomodoro-panel.is-long .pomodoro-modes button.is-active {
+  color: #13315c;
+}
+
+.pomodoro-progress {
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 10;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.3s linear;
+}
+
+.pomodoro-notice {
+  margin: 0;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.pomodoro-task {
+  display: grid;
+  gap: 6px;
+  width: 100%;
+  max-width: 560px;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.pomodoro-task input {
+  padding: 12px 14px;
+  border: 0;
+  border-radius: 10px;
+  font-size: 1rem;
+  color: #172033;
+}
+
+.pomodoro-settings {
+  justify-items: center;
+  text-align: center;
+}
+
+.pomodoro-grid {
+  max-width: 680px;
+}
+
+.pomodoro-log .time-lap-list li {
+  grid-template-columns: 56px 1fr auto 60px;
+}
+
+/* ===== Aralikli antrenman ===== */
+.interval-panel {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  padding: 32px 18px;
+  border-radius: 18px;
+  background: #1f2937;
+  color: #ffffff;
+  text-align: center;
+  transition: background 0.3s ease;
+}
+
+.interval-panel:fullscreen {
+  align-content: center;
+  min-height: 100vh;
+  border-radius: 0;
+}
+
+.interval-panel.is-prepare {
+  background: linear-gradient(150deg, #8a5a00 0%, #e0a100 100%);
+}
+
+.interval-panel.is-work {
+  background: linear-gradient(150deg, #0f5d34 0%, #22a35a 100%);
+}
+
+.interval-panel.is-rest {
+  background: linear-gradient(150deg, #173e7a 0%, #3b7ddd 100%);
+}
+
+.interval-panel.is-done {
+  background: linear-gradient(150deg, #5b2a86 0%, #b04fd8 100%);
+}
+
+.interval-phase {
+  margin: 0;
+  font-size: clamp(1.6rem, 5vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.interval-clock {
+  font-size: clamp(4.5rem, 20vw, 9rem);
+  font-weight: 800;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.interval-panel:fullscreen .interval-clock {
+  font-size: min(30vw, 50vh);
+}
+
+.interval-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 20px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  opacity: 0.92;
+}
+
+.interval-bar {
+  width: min(520px, 100%);
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.25);
+  overflow: hidden;
+}
+
+.interval-bar span {
+  display: block;
+  height: 100%;
+  background: #ffffff;
+  transition: width 0.3s linear;
+}
+
+.time-tool-chips button.is-active {
+  background: #ffffff;
+  color: #0f6f6c;
+}
+
+.interval-grid {
+  max-width: 640px;
+}
+
+.time-tool-note {
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: #fff7e6;
+  color: #7a4a00;
+}
+
+.interval-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+@media (max-width: 640px) {
+  .interval-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

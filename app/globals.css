@@ -8083,3 +8083,52 @@ a.all-units-row .all-units-name {
   background: #168f8c;
   color: #ffffff;
 }
+
+/* Icindekiler kutusu (uzun rehber sayfalari) */
+.page-toc {
+  margin: 28px 0 8px;
+  border: 1px solid #d7e2e8;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.page-toc summary {
+  padding: 14px 18px;
+  color: #172033;
+  font-size: 1.05rem;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.page-toc ol {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 2px 18px;
+  margin: 0;
+  padding: 0 18px 16px 38px;
+}
+
+.page-toc li {
+  padding: 5px 0;
+  color: #667085;
+}
+
+.page-toc a {
+  color: #0f6f6c;
+  text-decoration: none;
+}
+
+.page-toc a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.category-article-content h2[id] {
+  scroll-margin-top: 90px;
+}
+
+.sleep-now-button {
+  justify-self: start;
+  width: auto;
+  padding-inline: 16px;
+}

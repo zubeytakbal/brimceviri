@@ -32,7 +32,7 @@ const copyByLocale: Record<
       "bedtime-to-wake": "Yatacağın saat",
     },
     emptyState: "Geçerli bir saat girerek sonucu görebilirsin.",
-    cycleLabel: "dongu",
+    cycleLabel: "döngü",
     sleepLabel: "saat uyku",
     recommended: "Önerilen",
   },
@@ -252,6 +252,13 @@ function formatHours(hours: number, locale: Locale) {
   return formatLocalizedNumber(hours, locale, { maximumFractionDigits: 1 });
 }
 
+// "Simdi uyusam kacta kalkmaliyim?" icin: saat alanini simdiki saate ayarlar.
+const nowLabels: Partial<Record<string, string>> = {
+  tr: "Şu anki saati kullan",
+  en: "Use the current time",
+  de: "Aktuelle Uhrzeit verwenden",
+};
+
 export default function SleepCalculator({
   locale = "tr",
 }: {
@@ -304,6 +311,21 @@ export default function SleepCalculator({
             onChange={(event) => setTimeOfDay(event.target.value)}
           />
         </label>
+
+        {mode === "bedtime-to-wake" && (
+          <button
+            type="button"
+            className="engineering-target-button sleep-now-button"
+            onClick={() => {
+              const now = new Date();
+              setTimeOfDay(
+                `${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}`
+              );
+            }}
+          >
+            {nowLabels[locale] ?? nowLabels.en}
+          </button>
+        )}
       </div>
 
       <div aria-live="polite" className="category-general-converter-result">

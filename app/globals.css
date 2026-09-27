@@ -10948,3 +10948,593 @@ a.all-units-row .all-units-name {
     animation: none;
   }
 }
+
+/* ===== Dunya saatleri ===== */
+.city-clock-hero .analog-clock {
+  width: min(230px, 56vw);
+  height: auto;
+}
+
+.city-clock-date {
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.city-facts-table th {
+  width: 38%;
+  text-align: left;
+  font-weight: 700;
+}
+
+.city-hour-table tr.is-overlap td {
+  background: #e7f7ee;
+}
+
+.city-hour-table small {
+  color: #667085;
+}
+
+.world-board {
+  display: grid;
+  gap: 16px;
+}
+
+.world-board-local {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 14px;
+  padding: 18px 22px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #1f4f66 0%, #2c7f99 55%, #3fa7a7 100%);
+  color: #ffffff;
+}
+
+.world-board-local span {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.world-board-local strong {
+  font-size: clamp(2rem, 6vw, 3rem);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.world-board-local em {
+  font-style: normal;
+  opacity: 0.85;
+}
+
+.world-board-controls {
+  display: grid;
+  gap: 10px;
+}
+
+.world-board-controls input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1px solid #cfd8e3;
+  border-radius: 12px;
+  font-size: 1rem;
+}
+
+.world-board-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.world-board-filters button {
+  padding: 7px 12px;
+  border: 1px solid #cfd8e3;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #1f3b44;
+  font-weight: 700;
+  font-size: 0.86rem;
+  cursor: pointer;
+}
+
+.world-board-filters button.is-active {
+  border-color: #168f8c;
+  background: #168f8c;
+  color: #ffffff;
+}
+
+.world-board-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.world-card {
+  position: relative;
+  border: 1px solid #d7e2e8;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #ffffff 0%, #f1f8fb 100%);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.world-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(31, 79, 102, 0.12);
+}
+
+.world-card.is-night {
+  border-color: #26324a;
+  background: linear-gradient(180deg, #1b2540 0%, #10172b 100%);
+}
+
+.world-card.is-favorite {
+  border-color: #e8a317;
+}
+
+.world-card-link {
+  display: grid;
+  gap: 2px;
+  padding: 12px 14px;
+  color: #1f3b44;
+  text-decoration: none;
+}
+
+.world-card.is-night .world-card-link {
+  color: #e6edf7;
+}
+
+.world-card-name {
+  padding-right: 22px;
+  font-weight: 800;
+}
+
+.world-card-country {
+  font-size: 0.78rem;
+  opacity: 0.7;
+}
+
+.world-card-time {
+  margin-top: 4px;
+  font-size: 1.7rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.world-card-meta {
+  font-size: 0.78rem;
+  opacity: 0.8;
+}
+
+.world-card-star {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  border: 0;
+  background: transparent;
+  color: #e8a317;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.world-board-empty {
+  color: #667085;
+}
+
+.city-hour-table td,
+.city-hour-table th {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.city-facts-table th {
+  width: 32%;
+}
+
+/* ===== Geri sayim ===== */
+.countdown-card {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  padding: 32px 20px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #1f4f66 0%, #2c7f99 55%, #3fa7a7 100%);
+  box-shadow: 0 18px 40px rgba(31, 79, 102, 0.22);
+  color: #ffffff;
+  text-align: center;
+}
+
+.countdown-card.is-today {
+  background: linear-gradient(135deg, #7b2ff7 0%, #f107a3 100%);
+}
+
+.countdown-card.is-compact {
+  padding: 14px;
+  gap: 8px;
+  border-radius: 12px;
+  box-shadow: none;
+}
+
+.countdown-title {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.countdown-tiles {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(8px, 2vw, 16px);
+}
+
+.countdown-tile {
+  display: grid;
+  justify-items: center;
+  min-width: clamp(70px, 18vw, 120px);
+  padding: 14px 10px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.countdown-tile strong {
+  font-size: clamp(2.2rem, 7vw, 3.8rem);
+  font-weight: 800;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.countdown-tile small {
+  margin-top: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.85;
+}
+
+.is-compact .countdown-tile {
+  min-width: 58px;
+  padding: 8px 6px;
+}
+
+.is-compact .countdown-tile strong {
+  font-size: 1.6rem;
+}
+
+.countdown-today {
+  margin: 0;
+  font-size: clamp(2rem, 6vw, 3rem);
+  font-weight: 800;
+}
+
+.countdown-date {
+  margin: 0;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.custom-countdown {
+  display: grid;
+  gap: 14px;
+  padding: 22px;
+  border: 1px solid #d7e2e8;
+  border-radius: 18px;
+  background: #ffffff;
+}
+
+.custom-countdown h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.custom-countdown-form {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr auto;
+  align-items: end;
+  gap: 10px;
+}
+
+.custom-countdown-form label {
+  display: grid;
+  gap: 4px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #1f3b44;
+}
+
+.custom-countdown-form input {
+  padding: 10px 12px;
+  border: 1px solid #cfd8e3;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+.custom-countdown-list,
+.custom-countdown-shared ul {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.custom-countdown-item {
+  display: grid;
+  gap: 8px;
+}
+
+.custom-countdown-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.custom-countdown-empty {
+  margin: 0;
+  color: #667085;
+}
+
+@media (max-width: 640px) {
+  .custom-countdown-form {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .custom-countdown-form label:first-child {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ===== Saat dilimi cevirici ===== */
+.tz-converter {
+  display: grid;
+  gap: 16px;
+}
+
+.tz-source {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr auto;
+  align-items: end;
+  gap: 12px;
+  padding: 22px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #1f4f66 0%, #2c7f99 55%, #3fa7a7 100%);
+  color: #ffffff;
+}
+
+.tz-field {
+  display: grid;
+  gap: 4px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.tz-converter select,
+.tz-converter input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border: 1px solid #cfd8e3;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #172033;
+  font-size: 1rem;
+}
+
+.tz-source-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.tz-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tz-result {
+  position: relative;
+  display: grid;
+  gap: 4px;
+  padding: 14px;
+  border: 1px solid #d7e2e8;
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.tz-result-zone select {
+  padding-right: 28px;
+  font-size: 0.9rem;
+}
+
+.tz-result-time {
+  font-size: 2.2rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  color: #1f3b44;
+}
+
+.tz-result-date {
+  color: #475467;
+  font-weight: 600;
+}
+
+.tz-result-diff {
+  justify-self: start;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: #eafaf8;
+  color: #0f6f6c;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.tz-remove {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 50%;
+  background: #f2f4f7;
+  color: #b42318;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.tz-add {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tz-add select {
+  flex: 1 1 260px;
+  width: auto;
+}
+
+.tz-planner {
+  padding: 18px;
+  border: 1px solid #d7e2e8;
+  border-radius: 16px;
+  background: #ffffff;
+}
+
+.tz-planner h2 {
+  margin: 0 0 4px;
+  font-size: 1.15rem;
+}
+
+.tz-planner > p {
+  margin: 0 0 12px;
+  color: #475467;
+  font-size: 0.9rem;
+}
+
+.tz-planner-scroll {
+  overflow-x: auto;
+}
+
+.tz-planner table {
+  border-collapse: separate;
+  border-spacing: 2px;
+  min-width: 100%;
+}
+
+.tz-planner th {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  padding: 0 10px 0 0;
+  background: #ffffff;
+  white-space: nowrap;
+  text-align: left;
+  font-size: 0.85rem;
+}
+
+.tz-planner td {
+  padding: 0;
+}
+
+.tz-planner td button {
+  width: 32px;
+  height: 34px;
+  border: 0;
+  border-radius: 6px;
+  background: #eef2f6;
+  color: #344054;
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+}
+
+.tz-planner td.is-work button {
+  background: #c9f0d8;
+  color: #0d5a32;
+}
+
+.tz-planner td.is-night button {
+  background: #1f2a44;
+  color: #c6d2e6;
+}
+
+.tz-planner td.is-selected button {
+  outline: 3px solid #e8a317;
+  outline-offset: -1px;
+}
+
+.tz-planner sup {
+  font-size: 0.55rem;
+}
+
+.tz-planner-legend {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 10px 0 0;
+  font-size: 0.82rem;
+  color: #475467;
+}
+
+.tz-planner-legend span {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-left: 8px;
+  border-radius: 3px;
+}
+
+.tz-planner-legend span.is-work {
+  background: #c9f0d8;
+}
+
+.tz-planner-legend span.is-night {
+  background: #1f2a44;
+}
+
+.tz-pair-list {
+  columns: 2;
+}
+
+@media (max-width: 720px) {
+  .tz-source {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .tz-source .is-zone,
+  .tz-source-actions {
+    grid-column: 1 / -1;
+  }
+
+  .tz-pair-list {
+    columns: 1;
+  }
+}
+
+.tz-converter,
+.tz-converter > *,
+.tz-source > *,
+.tz-planner {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.tz-planner-scroll {
+  max-width: 100%;
+}

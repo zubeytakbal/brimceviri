@@ -48,7 +48,10 @@ export type EnglishStandaloneToolComponentKey =
   | "depreciationCalculator"
   | "indiaLandConverter"
   | "goldPriceCalculatorIndia"
-  | "lakhCroreConverter";
+  | "lakhCroreConverter"
+  | "indianWeightConverter"
+  | "gstCalculatorIndia"
+  | "emiCalculator";
 
 export type EnglishStandaloneTool = {
   slug: string;
@@ -1605,6 +1608,124 @@ export const englishStandaloneTools: EnglishStandaloneTool[] = [
       { question: "How many crore are in a billion?", answer: "1 billion = 100 crore." },
       { question: "How much is 1 million in lakh?", answer: "1 million = 10 lakh (10,00,000)." },
       { question: "How many zeros are in a crore?", answer: "Seven: 1 crore = 1,00,00,000." },
+    ],
+    priority: 0.8,
+  },
+  {
+    slug: "indian-weight-converter",
+    englishPath: "/en/indian-weight-converter",
+    turkishPath: "/kuyumcu-araclari",
+    title: "Indian Weight Converter: Tola, Ratti, Maund",
+    description:
+      "Convert tola, masha, ratti, seer, maund and quintal to grams, kilograms and carats — including both the goldsmith ratti and the gemstone (pakki) ratti.",
+    intro:
+      "Enter a weight and choose its unit. The converter shows it in every traditional Indian unit and in grams, kilograms, carats and pounds.",
+    component: "indianWeightConverter",
+    iconName: "mass",
+    cardDescription: "Tola, masha, ratti, seer, maund and quintal to grams and carats.",
+    articleSections: [
+      {
+        title: "The tola system",
+        body: "The tola was standardized in British India as 180 grains, which is 11.6638 grams. It is divided into 12 masha, and each masha into 8 ratti, so 1 tola = 96 ratti. Gold is still often discussed in tola, especially for older family jewellery, even though shops now weigh and price gold in grams.",
+      },
+      {
+        title: "Two different ratti: goldsmith and gemstone",
+        body: "The goldsmith (sunari) ratti is 1/96 tola, about 0.1215 grams. Gemstone sellers and astrologers usually use the pakki ratti, which is 1.5 goldsmith ratti, about 0.182 grams or 0.91 carat. That is why '1 ratti in carat' has two answers: about 0.61 carat for the goldsmith ratti and about 0.91 carat for the gemstone ratti. Always ask which ratti a seller means.",
+      },
+      {
+        title: "Seer, maund and quintal",
+        body: "In the standard British India system 1 seer = 80 tola = 0.933 kg, 1 maund = 40 seer = 37.32 kg, and 1 chhatak = 1/16 seer = 58.3 g. In everyday trade the maund is often rounded to 40 kg. The quintal, used for grain and crop prices, is exactly 100 kg — so 10 quintal make 1 metric tonne.",
+      },
+      {
+        title: "Worked examples",
+        body: "A 2-tola gold chain weighs 2 × 11.6638 = 23.33 grams. A 5-ratti gemstone (pakki ratti) is about 4.56 carats. A 2-maund bag of grain is about 74.6 kg in the standard maund, or 80 kg if your market uses the rounded 40 kg maund.",
+      },
+    ],
+    isEnglishOnly: true,
+    faq: [
+      { question: "How many grams are in 1 tola?", answer: "1 tola = 11.6638 grams (often rounded to 11.66 g)." },
+      { question: "How many carats is 1 ratti?", answer: "About 0.91 carat for the gemstone (pakki) ratti used by astrologers and gem sellers, or about 0.61 carat for the goldsmith (sunari) ratti." },
+      { question: "How many ratti are in 1 tola?", answer: "96 ratti. 1 tola = 12 masha and 1 masha = 8 ratti." },
+      { question: "How many kg is 1 maund?", answer: "The standard maund is 40 seer = 37.32 kg. Many markets round it to 40 kg." },
+      { question: "How many kg is 1 quintal?", answer: "Exactly 100 kg. 10 quintal = 1 tonne." },
+    ],
+    priority: 0.8,
+  },
+  {
+    slug: "gst-calculator-india",
+    englishPath: "/en/gst-calculator-india",
+    turkishPath: "/kdv-hesaplama",
+    title: "GST Calculator India (5%, 18%, 40% Slabs)",
+    description:
+      "Add or remove GST from any price with the current slabs (0%, 5%, 18%, 40% and 3% for gold), with the CGST + SGST split or IGST for inter-state sales.",
+    intro:
+      "Choose whether your amount is before or including GST, pick the rate and whether the sale is within a state or between states. You get the net price, the GST and its CGST/SGST or IGST split.",
+    component: "gstCalculatorIndia",
+    iconName: "vatCalculator",
+    cardDescription: "Add or remove GST with CGST/SGST or IGST split, current slabs.",
+    articleSections: [
+      {
+        title: "GST rates after the September 2025 reform",
+        body: "From 22 September 2025 the main GST slabs are 0%, 5% and 18%, with a 40% rate for luxury and sin goods; the earlier 12% and 28% slabs were largely merged into 5% and 18%. Gold and silver keep a special 3% rate. Rates depend on the exact product or service (its HSN or SAC code), so confirm the rate for your item on the official GST portal or your invoice.",
+      },
+      {
+        title: "How to add GST",
+        body: "Multiply the price before tax by the GST rate. ₹10,000 at 18% GST is ₹1,800 of GST, for a total of ₹11,800. For a sale within one state, the tax is split equally into 9% CGST (₹900) and 9% SGST (₹900); for a sale between states the full 18% is charged as IGST.",
+      },
+      {
+        title: "How to remove GST from an inclusive price",
+        body: "Divide the GST-inclusive price by (1 + rate). A price of ₹11,800 including 18% GST ÷ 1.18 = ₹10,000 before tax, so the GST is ₹1,800. Subtracting 18% of ₹11,800 would give a wrong answer (₹9,676).",
+      },
+      {
+        title: "CGST, SGST and IGST",
+        body: "CGST goes to the central government and SGST to the state government when the buyer and seller are in the same state. IGST applies to inter-state sales and imports; its rate equals CGST + SGST. The total tax for the buyer is the same either way.",
+      },
+    ],
+    isEnglishOnly: true,
+    faq: [
+      { question: "How do I calculate 18% GST?", answer: "Multiply the amount by 0.18 for the tax, or by 1.18 for the total. ₹5,000 + 18% GST = ₹900 GST, ₹5,900 total." },
+      { question: "How do I remove GST from a price?", answer: "Divide by (1 + rate): for 18% divide by 1.18, for 5% divide by 1.05. ₹1,050 including 5% GST is ₹1,000 before tax." },
+      { question: "What are the current GST slabs?", answer: "Since 22 September 2025: 0%, 5%, 18% and 40% (luxury and sin goods), plus 3% for gold and silver." },
+      { question: "What is the difference between CGST, SGST and IGST?", answer: "Within a state the GST is split equally between CGST and SGST; between states it is charged as IGST. The total rate is the same." },
+    ],
+    priority: 0.8,
+  },
+  {
+    slug: "emi-calculator",
+    englishPath: "/en/emi-calculator",
+    turkishPath: "/kredi-hesaplama",
+    title: "EMI Calculator: Home, Car & Personal Loan",
+    description:
+      "Calculate the monthly EMI, total interest and total payment for a home, car or personal loan, with a year-by-year repayment table in rupees.",
+    intro:
+      "Enter the loan amount, the annual interest rate and the tenure. The calculator shows the monthly EMI, the total interest and how much principal and interest you pay each year.",
+    component: "emiCalculator",
+    iconName: "amortismanCalculator",
+    cardDescription: "Monthly EMI, total interest and a yearly repayment table.",
+    articleSections: [
+      {
+        title: "The EMI formula",
+        body: "EMI = P × r × (1 + r)^n ÷ ((1 + r)^n − 1), where P is the loan amount, r is the monthly interest rate (annual rate ÷ 12 ÷ 100) and n is the number of monthly instalments. Each EMI is the same, but early EMIs are mostly interest and later EMIs are mostly principal.",
+      },
+      {
+        title: "Worked examples",
+        body: "A ₹30 lakh home loan at 8.5% for 20 years has an EMI of about ₹26,035; over 20 years you pay about ₹32.48 lakh in interest, more than the loan itself. A ₹10 lakh car loan at 9% for 5 years has an EMI of about ₹20,758 and total interest of about ₹2.46 lakh. A ₹5 lakh personal loan at 12% for 3 years has an EMI of about ₹16,607.",
+      },
+      {
+        title: "How tenure changes the cost",
+        body: "A longer tenure lowers the EMI but raises the total interest. The same ₹20 lakh at 8.5% costs about ₹19,695 a month over 15 years (₹15.45 lakh total interest); stretching it to 20 years lowers the EMI to about ₹17,356 but raises the total interest to about ₹21.66 lakh. Part-prepayments early in the loan save the most interest, because they reduce the balance on which interest is charged.",
+      },
+      {
+        title: "What the calculator does not include",
+        body: "It assumes a fixed rate and monthly payments. Floating-rate home loans change with the lender's benchmark, and processing fees, insurance and prepayment charges are not included. Your lender's sanction letter shows the exact figures.",
+      },
+    ],
+    isEnglishOnly: true,
+    faq: [
+      { question: "What is the EMI for a ₹30 lakh home loan?", answer: "At 8.5% for 20 years the EMI is about ₹26,035 per month. At a lower rate or a longer tenure it is lower; with a shorter tenure it is higher." },
+      { question: "What is the EMI for ₹10 lakh for 5 years?", answer: "At 9% interest it is about ₹20,758 per month, with about ₹2.46 lakh of total interest." },
+      { question: "Does a longer tenure save money?", answer: "No. It lowers the monthly EMI but increases the total interest paid over the life of the loan." },
+      { question: "How is the monthly interest rate calculated?", answer: "Divide the annual rate by 12. An 8.5% annual rate is about 0.708% per month." },
     ],
     priority: 0.8,
   },

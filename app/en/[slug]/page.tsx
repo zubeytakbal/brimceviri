@@ -54,7 +54,14 @@ import {
 } from "../../components/EnglishEnergyHomeCalculators";
 import YouMayAlsoLike from "../../components/YouMayAlsoLike";
 import { getEnglishYouMayAlsoLike } from "../../i18n/englishRelatedPages";
-import { GoldPriceCalculatorIndia, IndiaLandConverter, LakhCroreConverter } from "../../components/EnglishIndiaCalculators";
+import {
+  EmiCalculator,
+  GoldPriceCalculatorIndia,
+  GstCalculatorIndia,
+  IndiaLandConverter,
+  IndianWeightConverter,
+  LakhCroreConverter,
+} from "../../components/EnglishIndiaCalculators";
 import PregnancyCalculator from "../../components/PregnancyCalculator";
 import RoofingCalculator from "../../components/RoofingCalculator";
 import SleepCalculator from "../../components/SleepCalculator";
@@ -139,6 +146,9 @@ const componentMap: Record<EnglishStandaloneToolComponentKey, React.ComponentTyp
     indiaLandConverter: IndiaLandConverter,
     goldPriceCalculatorIndia: GoldPriceCalculatorIndia,
     lakhCroreConverter: LakhCroreConverter,
+    indianWeightConverter: IndianWeightConverter,
+    gstCalculatorIndia: GstCalculatorIndia,
+    emiCalculator: EmiCalculator,
     evChargingCalculator: EvChargingCalculator,
   };
 

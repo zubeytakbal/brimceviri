@@ -6,8 +6,13 @@
 import { useMemo, useState } from "react";
 import {
   BIGHA_REGIONS,
+  convertIndianWeight,
   convertNumberUnits,
   FIXED_LAND_UNITS,
+  GST_RATES,
+  gstCalculation,
+  INDIAN_WEIGHT_UNITS,
+  loanEmi,
   formatIndianGrouping,
   formatInternationalGrouping,
   goldJewelleryPrice,
@@ -19,13 +24,18 @@ import {
   rateFromFineness,
   type FixedLandUnit,
   type GoldKarat,
+  type IndianWeightUnit,
   type LandUnitChoice,
   type NumberUnit,
 } from "../converter/indiaFormulas";
 import EnglishModeToggle from "./EnglishModeToggle";
 import { parseInput } from "./englishFormHelpers";
 
-const fmt = (value: number, digits = 4) => formatIndianGrouping(value, digits);
+// 1'in altindaki degerler anlamli basamakla gosterilir (0.0003 degil 0.0003125).
+const fmt = (value: number, digits = 4) =>
+  value !== 0 && Math.abs(value) < 1
+    ? new Intl.NumberFormat("en-IN", { maximumSignificantDigits: 4 }).format(value)
+    : formatIndianGrouping(value, digits);
 const rupees = (value: number) => `₹${new Intl.NumberFormat("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value)}`;
 
 function Field({ label, value, onChange }: { label: string; value: string; onChange: (value: string) => void }) {
@@ -290,6 +300,217 @@ export function LakhCroreConverter() {
           </tbody>
         </table>
       </div>
+    </div>
+  );
+}
+
+// ---------------- Indian weights ----------------
+const WEIGHT_ORDER: IndianWeightUnit[] = ["gram", "kilogram", "tola", "masha", "rattiSunari", "rattiPakki", "carat", "chhatak", "seer", "maund", "quintal", "pound"];
+
+export function IndianWeightConverter() {
+  const [value, setValue] = useState("1");
+  const [unit, setUnit] = useState<IndianWeightUnit>("tola");
+  const result = convertIndianWeight(parseInput(value) ?? NaN, unit);
+
+  return (
+    <div className="category-general-converter">
+      <div className="engineering-calculator-card">
+        <div className="paint-calculator-grid">
+          <Field label="Weight" value={value} onChange={setValue} />
+          <label className="category-general-converter-field">
+            <span>Unit</span>
+            <select value={unit} onChange={(event) => setUnit(event.target.value as IndianWeightUnit)}>
+              {WEIGHT_ORDER.map((key) => (
+                <option key={key} value={key}>
+                  {INDIAN_WEIGHT_UNITS[key].label}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+      </div>
+      <div aria-live="polite" className="category-general-converter-result paint-calculator-result">
+        {result ? (
+          <div className="paint-calculator-result-grid">
+            {WEIGHT_ORDER.filter((key) => key !== unit).map((key) => (
+              <Stat key={key} label={INDIAN_WEIGHT_UNITS[key].label} value={fmt(result[key])} />
+            ))}
+          </div>
+        ) : (
+          <strong>Enter a weight of 0 or more.</strong>
+        )}
+      </div>
+      <div className="conversion-table-wrap">
+        <table className="conversion-table">
+          <caption>Traditional Indian weights</caption>
+          <thead>
+            <tr>
+              <th scope="col">Unit</th>
+              <th scope="col">Relation</th>
+              <th scope="col">Metric</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1 tola</td><td>12 masha = 96 ratti</td><td>11.6638 g</td></tr>
+            <tr><td>1 masha</td><td>8 ratti</td><td>0.9720 g</td></tr>
+            <tr><td>1 ratti (goldsmith)</td><td>1/96 tola</td><td>0.1215 g</td></tr>
+            <tr><td>1 ratti (gemstone, pakki)</td><td>1.5 goldsmith ratti</td><td>0.1823 g ≈ 0.91 ct</td></tr>
+            <tr><td>1 seer</td><td>80 tola = 16 chhatak</td><td>0.9331 kg</td></tr>
+            <tr><td>1 maund</td><td>40 seer</td><td>37.324 kg</td></tr>
+            <tr><td>1 quintal</td><td>100 kg</td><td>100 kg</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p className="calculator-usage-hint">
+        Seer and maund use the standard British India values. In everyday trade the maund is often rounded to 40 kg, and local seers can
+        differ — check the weight your market or mandi uses.
+      </p>
+    </div>
+  );
+}
+
+// ---------------- GST ----------------
+export function GstCalculatorIndia() {
+  const [amount, setAmount] = useState("10000");
+  const [rate, setRate] = useState("18");
+  const [customRate, setCustomRate] = useState("");
+  const [mode, setMode] = useState<"add" | "remove">("add");
+  const [supply, setSupply] = useState<"intra" | "inter">("intra");
+  const ratePercent = rate === "custom" ? parseInput(customRate) ?? NaN : Number(rate);
+  const result = gstCalculation({ amount: parseInput(amount) ?? NaN, ratePercent, mode, supply });
+
+  return (
+    <div className="category-general-converter">
+      <div className="engineering-calculator-card">
+        <EnglishModeToggle<"add" | "remove">
+          label="Your amount is"
+          value={mode}
+          onChange={setMode}
+          options={[
+            { value: "add", label: "Before GST (add GST)" },
+            { value: "remove", label: "Including GST (remove GST)" },
+          ]}
+        />
+        <div className="paint-calculator-grid">
+          <Field label="Amount (₹)" value={amount} onChange={setAmount} />
+          <label className="category-general-converter-field">
+            <span>GST rate</span>
+            <select value={rate} onChange={(event) => setRate(event.target.value)}>
+              {GST_RATES.map((value) => (
+                <option key={value} value={String(value)}>
+                  {value}%{value === 3 ? " (gold, silver)" : value === 40 ? " (luxury & sin goods)" : ""}
+                </option>
+              ))}
+              <option value="custom">Other rate</option>
+            </select>
+          </label>
+          {rate === "custom" && <Field label="Custom rate (%)" value={customRate} onChange={setCustomRate} />}
+        </div>
+        <EnglishModeToggle<"intra" | "inter">
+          label="Sale is"
+          value={supply}
+          onChange={setSupply}
+          options={[
+            { value: "intra", label: "Within a state (CGST + SGST)" },
+            { value: "inter", label: "Between states (IGST)" },
+          ]}
+        />
+      </div>
+      <div aria-live="polite" className="category-general-converter-result paint-calculator-result">
+        {result ? (
+          <div className="paint-calculator-result-grid">
+            <Stat label="Price before GST" value={rupees(result.net)} />
+            <Stat label={`GST (${ratePercent}%)`} value={rupees(result.gst)} />
+            <Stat label="Total including GST" value={rupees(result.total)} />
+            {supply === "intra" ? (
+              <>
+                <Stat label={`CGST (${ratePercent / 2}%)`} value={rupees(result.cgst)} />
+                <Stat label={`SGST (${ratePercent / 2}%)`} value={rupees(result.sgst)} />
+              </>
+            ) : (
+              <Stat label={`IGST (${ratePercent}%)`} value={rupees(result.igst)} />
+            )}
+          </div>
+        ) : (
+          <strong>Enter an amount and a GST rate.</strong>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// ---------------- EMI ----------------
+export function EmiCalculator() {
+  const [amount, setAmount] = useState("3000000");
+  const [rate, setRate] = useState("8.5");
+  const [tenure, setTenure] = useState("20");
+  const [tenureUnit, setTenureUnit] = useState<"years" | "months">("years");
+  const months = (parseInput(tenure) ?? NaN) * (tenureUnit === "years" ? 12 : 1);
+  const principal = parseInput(amount) ?? NaN;
+  const result = loanEmi({ principal, annualRatePercent: parseInput(rate) ?? NaN, months });
+  const inLakh = Number.isFinite(principal) && principal > 0 ? `= ${formatIndianGrouping(principal / 100000, 2)} lakh` : "";
+
+  return (
+    <div className="category-general-converter">
+      <div className="engineering-calculator-card">
+        <div className="paint-calculator-grid">
+          <Field label={`Loan amount (₹) ${inLakh}`} value={amount} onChange={setAmount} />
+          <Field label="Interest rate (% per year)" value={rate} onChange={setRate} />
+          <Field label={tenureUnit === "years" ? "Tenure (years)" : "Tenure (months)"} value={tenure} onChange={setTenure} />
+        </div>
+        <EnglishModeToggle<"years" | "months">
+          label="Tenure in"
+          value={tenureUnit}
+          onChange={(next) => {
+            setTenureUnit(next);
+            setTenure(next === "years" ? "20" : "240");
+          }}
+          options={[
+            { value: "years", label: "Years" },
+            { value: "months", label: "Months" },
+          ]}
+        />
+      </div>
+      <div aria-live="polite" className="category-general-converter-result paint-calculator-result">
+        {result ? (
+          <div className="paint-calculator-result-grid">
+            <Stat label="Monthly EMI" value={rupees(result.emi)} />
+            <Stat label="Total interest" value={rupees(result.totalInterest)} />
+            <Stat label="Total payment" value={rupees(result.totalPayment)} />
+          </div>
+        ) : (
+          <strong>Enter the loan amount, interest rate and tenure.</strong>
+        )}
+      </div>
+      {result && (
+        <div className="conversion-table-wrap">
+          <table className="conversion-table">
+            <caption>Year-by-year repayment</caption>
+            <thead>
+              <tr>
+                <th scope="col">Year</th>
+                <th scope="col">Principal paid</th>
+                <th scope="col">Interest paid</th>
+                <th scope="col">Balance</th>
+              </tr>
+            </thead>
+            <tbody>
+              {result.years.map((row) => (
+                <tr key={row.year}>
+                  <td>{row.year}</td>
+                  <td>{rupees(row.principal)}</td>
+                  <td>{rupees(row.interest)}</td>
+                  <td>{rupees(row.balance)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+      <p className="calculator-usage-hint">
+        Estimate for a fixed-rate loan with monthly payments. Floating-rate home loans change with the lender&apos;s benchmark rate, and
+        processing fees, insurance and prepayments are not included.
+      </p>
     </div>
   );
 }

@@ -20,9 +20,9 @@ export const englishEverydayCalculatorGroups: Array<{
   },
   {
     id: "india",
-    title: "India: land, gold and numbers",
-    description: "Convert bigha, katha, gaj and guntha by state, price gold jewellery with making charges and GST, and switch between lakh, crore and million.",
-    tools: ["indiaLandConverter", "goldPriceCalculatorIndia", "lakhCroreConverter"],
+    title: "India: land, gold, GST and loans",
+    description: "Convert bigha, katha, gaj and guntha by state, tola and ratti, price gold jewellery, work out GST and loan EMIs, and switch between lakh and crore.",
+    tools: ["indiaLandConverter", "goldPriceCalculatorIndia", "indianWeightConverter", "gstCalculatorIndia", "emiCalculator", "lakhCroreConverter"],
   },
   {
     id: "school-and-study",

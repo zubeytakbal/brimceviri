@@ -286,6 +286,85 @@ export const englishEditorialConversions: readonly EnglishEditorialConversion[] 
       { href: "/en/gold-price-calculator-india", label: "Gold price calculator (India)" },
     ],
   },
+  {
+    slug: "bigha-to-square-feet",
+    title: "1 bigha in square feet depends on the state",
+    paragraphs: [
+      "This page uses the bigha of West Bengal, Assam and Bangladesh: 1 bigha = 20 katha = 14,400 sq ft (1,600 gaj, about 0.33 acre).",
+      "In other states the bigha is larger or smaller — about 27,225 sq ft in Bihar and Jharkhand, 27,000 sq ft in eastern Uttar Pradesh, 17,424 sq ft in Gujarat, 12,000 sq ft in Madhya Pradesh and 8,712 sq ft in Himachal Pradesh. Use the India land area converter to pick your state.",
+    ],
+    note: "For a sale deed, registration or loan, confirm the size used in your local land records.",
+    related: [
+      { href: "/en/india-land-area-converter", label: "India land area converter (all states)" },
+      { href: "/en/bigha-to-acre", label: "Bigha to acres" },
+      { href: "/en/katha-to-square-feet", label: "Katha to square feet" },
+    ],
+  },
+  {
+    slug: "square-feet-to-bigha",
+    title: "Square feet to bigha: choose the right bigha",
+    paragraphs: [
+      "This page converts to the West Bengal / Assam bigha of 14,400 sq ft, so 10,000 sq ft is about 0.69 bigha and 1 acre (43,560 sq ft) is 3.025 bigha.",
+      "In other states the bigha is larger or smaller — about 27,225 sq ft in Bihar and Jharkhand, 27,000 sq ft in eastern Uttar Pradesh, 17,424 sq ft in Gujarat, 12,000 sq ft in Madhya Pradesh and 8,712 sq ft in Himachal Pradesh. Use the India land area converter to pick your state.",
+    ],
+    related: [
+      { href: "/en/india-land-area-converter", label: "India land area converter (all states)" },
+      { href: "/en/bigha-to-square-feet", label: "Bigha to square feet" },
+      { href: "/en/square-feet-to-katha", label: "Square feet to katha" },
+    ],
+  },
+  {
+    slug: "bigha-to-acre",
+    title: "Bigha to acres",
+    paragraphs: [
+      "With the West Bengal / Assam bigha of 14,400 sq ft, 1 bigha = 0.3306 acre and 1 acre = 3.025 bigha.",
+      "Where the bigha is about 27,225 sq ft (Bihar, Jharkhand, pucca bigha of Rajasthan), 1 bigha is 0.625 acre, so 1 acre is only 1.6 bigha. Use the India land area converter for your state.",
+    ],
+    related: [
+      { href: "/en/india-land-area-converter", label: "India land area converter (all states)" },
+      { href: "/en/acre-to-bigha", label: "Acres to bigha" },
+      { href: "/en/acre-to-square-feet", label: "Acres to square feet" },
+    ],
+  },
+  {
+    slug: "acre-to-bigha",
+    title: "Acres to bigha",
+    paragraphs: [
+      "1 acre = 43,560 sq ft, which is 3.025 bigha of 14,400 sq ft (West Bengal, Assam).",
+      "In Bihar and Jharkhand 1 acre is 1.6 bigha, in Gujarat 2.5 bigha and in Himachal Pradesh 5 bigha, because the bigha is a different size there. Use the India land area converter to choose your state.",
+    ],
+    related: [
+      { href: "/en/india-land-area-converter", label: "India land area converter (all states)" },
+      { href: "/en/bigha-to-acre", label: "Bigha to acres" },
+      { href: "/en/acres-to-hectares", label: "Acres to hectares" },
+    ],
+  },
+  {
+    slug: "marla-to-square-feet",
+    title: "Which marla?",
+    paragraphs: [
+      "This page uses the revenue marla of 272.25 sq ft (1/160 acre), common in Punjab and Haryana land records; 20 marla make 1 kanal of 5,445 sq ft.",
+      "Housing schemes in Pakistan, especially in Lahore, often use a smaller marla of 225 sq ft, and some developers use 250 sq ft. Check which marla a plot advertisement uses before comparing prices.",
+    ],
+    related: [
+      { href: "/en/kanal-to-square-feet", label: "Kanal to square feet" },
+      { href: "/en/india-land-area-converter", label: "India land area converter" },
+      { href: "/en/square-feet-to-marla", label: "Square feet to marla" },
+    ],
+  },
+  {
+    slug: "square-yards-to-square-feet",
+    title: "Gaj and square yards",
+    paragraphs: [
+      "In India a gaj is the same as a square yard: 1 gaj = 9 sq ft = 0.836 m². Plot sizes in North India are often quoted in gaj, for example a 100 gaj plot is 900 sq ft.",
+      "1 acre = 4,840 gaj and 1 guntha = 121 gaj.",
+    ],
+    related: [
+      { href: "/en/square-feet-to-square-yards", label: "Square feet to gaj" },
+      { href: "/en/india-land-area-converter", label: "India land area converter" },
+      { href: "/en/acre-to-square-feet", label: "Acres to square feet" },
+    ],
+  },
 ];
 
 export const featuredEnglishConversions = englishEditorialConversions.map(

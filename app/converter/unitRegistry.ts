@@ -481,7 +481,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     id: "kanal",
     category: "alan",
     symbol: "kanal",
-    siFactor: 505.8570768,
+    siFactor: 5445 * 0.09290304, // 1 kanal = 20 marla = 5,445 ft2
     tr: { name: "Kanal", slug: "kanal" },
     en: { name: "Kanal", slug: "kanal" },
     de: { name: "Kanal", slug: "kanal" },
@@ -490,7 +490,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     id: "marla",
     category: "alan",
     symbol: "marla",
-    siFactor: 25.29285384,
+    siFactor: 272.25 * 0.09290304, // 1 marla = 272.25 ft2
     tr: { name: "Marla", slug: "marla" },
     en: { name: "Marla", slug: "marla" },
     de: { name: "Marla", slug: "marla" },
@@ -499,7 +499,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     id: "guntha",
     category: "alan",
     symbol: "guntha",
-    siFactor: 101.1714105,
+    siFactor: 1089 * 0.09290304, // 1 guntha = 1,089 ft2 (121 yd2)
     tr: { name: "Guntha", slug: "guntha" },
     en: { name: "Guntha", slug: "guntha" },
     de: { name: "Guntha", slug: "guntha" },
@@ -517,7 +517,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     id: "ground",
     category: "alan",
     symbol: "ground",
-    siFactor: 222.96729,
+    siFactor: 2400 * 0.09290304, // 1 ground = 2,400 ft2
     tr: { name: "Ground", slug: "ground" },
     en: { name: "Ground", slug: "ground" },
     de: { name: "Ground", slug: "ground" },

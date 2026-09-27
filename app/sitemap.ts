@@ -1,6 +1,17 @@
 import type { MetadataRoute } from "next";
 import { calculatorPages } from "./converter/calculatorPages";
 import { sleepGuideAlternates, sleepGuidePaths } from "./i18n/sleepGuidePaths";
+import {
+  alarmPresetAlternates,
+  alarmPresetSlug,
+  alarmPresetTimes,
+  timeToolAlternates,
+  timeToolPaths,
+  timerPresetAlternates,
+  timerPresetMinutes,
+  timerPresetSlug,
+  type TimeToolId,
+} from "./i18n/timeToolPaths";
 import { cgpaUniversities } from "./converter/india/cgpaUniversities";
 import { categoryPages } from "./converter/categoryPages";
 import { conversionPages } from "./converter/conversionPages";
@@ -2988,6 +2999,33 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
       alternates: sleepGuideAlternates(),
     })),
+    ...(Object.keys(timeToolPaths) as TimeToolId[]).flatMap((tool) =>
+      Object.values(timeToolPaths[tool]).map((path) => ({
+        url: `${baseUrl}${path}`,
+        lastModified: contentLastModified,
+        changeFrequency: "monthly" as const,
+        priority: 0.8,
+        alternates: timeToolAlternates(tool),
+      })),
+    ),
+    ...timerPresetMinutes.flatMap((minutes) =>
+      [`/zamanlayici/${timerPresetSlug.tr(minutes)}`, `/en/timer/${timerPresetSlug.en(minutes)}`].map((path) => ({
+        url: `${baseUrl}${path}`,
+        lastModified: contentLastModified,
+        changeFrequency: "monthly" as const,
+        priority: 0.6,
+        alternates: timerPresetAlternates(minutes),
+      })),
+    ),
+    ...alarmPresetTimes.flatMap((time) =>
+      [`/online-alarm-kur/${alarmPresetSlug.tr(time)}`, `/en/alarm-clock/${alarmPresetSlug.en(time)}`].map((path) => ({
+        url: `${baseUrl}${path}`,
+        lastModified: contentLastModified,
+        changeFrequency: "monthly" as const,
+        priority: 0.6,
+        alternates: alarmPresetAlternates(time),
+      })),
+    ),
     {
       url: `${baseUrl}/tarla-donum-hesaplama`,
       lastModified: contentLastModified,

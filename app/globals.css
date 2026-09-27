@@ -8377,3 +8377,549 @@ a.all-units-row .all-units-name {
 .sleep-alarm-status.is-ringing button {
   background: #b45309;
 }
+
+/* ===== Zaman araclari (alarm, zamanlayici, kronometre) ===== */
+.time-tool {
+  display: grid;
+  gap: 18px;
+  margin-top: 8px;
+}
+
+.time-tool-hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 18px 40px;
+  padding: 28px 20px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #1f4f66 0%, #2c7f99 55%, #3fa7a7 100%);
+  box-shadow: 0 18px 40px rgba(20, 60, 80, 0.25);
+  color: #ffffff;
+}
+
+.time-tool-digital {
+  display: grid;
+  gap: 6px;
+  justify-items: center;
+  text-align: center;
+}
+
+.time-tool-caption {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.time-tool-digital strong {
+  font-size: clamp(2.8rem, 12vw, 4.6rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+}
+
+.time-tool-next {
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+/* Analog saat */
+.analog-clock {
+  max-width: 100%;
+  height: auto;
+  filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.3));
+}
+
+.analog-clock-rim {
+  fill: #ffffff;
+}
+
+.analog-clock-face-light {
+  stop-color: #ffffff;
+}
+
+.analog-clock-face-dark {
+  stop-color: #e6f1f4;
+}
+
+.analog-clock-tick {
+  stroke: #9fb3bf;
+  stroke-width: 1;
+  stroke-linecap: round;
+}
+
+.analog-clock-tick.is-major {
+  stroke: #1f4f66;
+  stroke-width: 2.6;
+}
+
+.analog-clock-number {
+  fill: #1f4f66;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.analog-clock-hour {
+  stroke: #172033;
+  stroke-width: 6;
+  stroke-linecap: round;
+}
+
+.analog-clock-minute {
+  stroke: #1f4f66;
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.analog-clock-second {
+  stroke: #e2582c;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
+
+.analog-clock-second-tip,
+.analog-clock-center {
+  fill: #e2582c;
+}
+
+/* Calan alarm */
+.time-tool-ringing {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px;
+  border-radius: 14px;
+  background: #fff1e6;
+  border: 2px solid #e2582c;
+  color: #7a2e10;
+  font-size: 1.1rem;
+  animation: time-pulse 1s ease-in-out infinite;
+}
+
+.time-tool-ringing div {
+  display: flex;
+  gap: 10px;
+}
+
+@keyframes time-pulse {
+  50% {
+    box-shadow: 0 0 0 8px rgba(226, 88, 44, 0.15);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .time-tool-ringing {
+    animation: none;
+  }
+}
+
+/* Dugmeler */
+.time-tool-button {
+  min-height: 46px;
+  padding: 0 20px;
+  border: 2px solid #168f8c;
+  border-radius: 10px;
+  background: #168f8c;
+  color: #ffffff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.time-tool-button:hover {
+  background: #0f7775;
+}
+
+.time-tool-button.is-secondary {
+  background: #ffffff;
+  color: #0f6f6c;
+}
+
+.time-tool-button.is-secondary:hover {
+  background: #eafaf8;
+}
+
+.time-tool-button:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.sleep-primary-button.is-compact,
+.sleep-secondary-button.is-compact {
+  width: auto;
+  min-height: 48px;
+  padding: 0 18px;
+}
+
+.time-tool-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  width: 100%;
+  max-width: 560px;
+  text-align: start;
+}
+
+.time-tool-options label {
+  display: grid;
+  gap: 6px;
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.time-tool-options input:not([type="range"]),
+.time-tool-options select {
+  min-height: 44px;
+  padding: 8px 10px;
+  border: 2px solid #ffffff;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #172033;
+  font: inherit;
+  font-size: 0.95rem;
+}
+
+.time-tool-options input[type="range"] {
+  accent-color: #86c700;
+  min-height: 44px;
+}
+
+.time-tool-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.time-tool-actions .sleep-primary-button {
+  width: auto;
+  flex: 1 1 240px;
+  max-width: 420px;
+}
+
+.time-tool-quick,
+.time-tool-chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #ffffff;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.time-tool-quick button,
+.time-tool-chips a,
+.time-tool-chips button {
+  padding: 8px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  font: inherit;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.time-tool-quick button:hover,
+.time-tool-chips a:hover,
+.time-tool-chips button:hover {
+  background: rgba(255, 255, 255, 0.26);
+}
+
+.time-tool-empty {
+  margin: 0;
+  color: #667085;
+}
+
+.time-alarm-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.time-alarm-list li {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid #d7e2e8;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #667085;
+}
+
+.time-alarm-list li.is-enabled {
+  border-color: #168f8c;
+  background: #eafaf8;
+  color: #1f3b44;
+}
+
+.time-alarm-list strong {
+  color: #172033;
+  font-size: 1.5rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.time-alarm-list button {
+  padding: 6px 10px;
+  border: 1px solid #d7e2e8;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #b42318;
+  font: inherit;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+
+.time-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.time-switch input {
+  width: 18px;
+  height: 18px;
+  accent-color: #168f8c;
+}
+
+.time-tool-footer {
+  display: grid;
+  gap: 8px;
+  justify-items: start;
+}
+
+.time-tool-footer p {
+  margin: 0;
+  color: #667085;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+/* Zamanlayici */
+.time-timer-panel {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+  padding: 28px 18px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #1f4f66 0%, #2c7f99 55%, #3fa7a7 100%);
+  box-shadow: 0 18px 40px rgba(20, 60, 80, 0.25);
+}
+
+.time-timer-panel:fullscreen {
+  align-content: center;
+  border-radius: 0;
+}
+
+.time-timer-ring {
+  width: min(320px, 78vw);
+  height: auto;
+}
+
+.time-timer-panel:fullscreen .time-timer-ring {
+  width: min(70vh, 80vw);
+}
+
+.time-timer-track {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.18);
+  stroke-width: 14;
+}
+
+.time-timer-progress {
+  fill: none;
+  stroke-width: 14;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.2s linear;
+}
+
+.time-timer-readout {
+  position: absolute;
+  top: calc(28px + min(320px, 78vw) / 2);
+  transform: translateY(-50%);
+  color: #ffffff;
+  text-align: center;
+}
+
+.time-timer-panel:fullscreen .time-timer-readout {
+  top: 50%;
+}
+
+.time-timer-readout strong {
+  font-size: clamp(2.2rem, 10vw, 3.6rem);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+}
+
+.time-timer-panel:fullscreen .time-timer-readout strong {
+  font-size: clamp(3rem, 12vh, 7rem);
+}
+
+.time-timer-panel.is-finished {
+  animation: time-pulse 1s ease-in-out infinite;
+}
+
+.time-timer-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.time-timer-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: center;
+  gap: 10px;
+}
+
+.time-timer-inputs label {
+  display: grid;
+  gap: 6px;
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.time-timer-inputs input {
+  width: 84px;
+  min-height: 48px;
+  border: 2px solid #ffffff;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #172033;
+  font: inherit;
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Kronometre */
+.time-stopwatch-panel {
+  display: grid;
+  justify-items: center;
+  gap: 18px;
+  padding: 36px 18px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #1f4f66 0%, #2c7f99 55%, #3fa7a7 100%);
+  box-shadow: 0 18px 40px rgba(20, 60, 80, 0.25);
+}
+
+.time-stopwatch-readout {
+  color: #ffffff;
+  font-size: clamp(2.8rem, 13vw, 5.2rem);
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+}
+
+.time-lap-list {
+  display: grid;
+  gap: 6px;
+  margin: 0 0 12px;
+  padding: 0;
+  list-style: none;
+}
+
+.time-lap-list li {
+  display: grid;
+  grid-template-columns: 48px 1fr 1fr 84px;
+  align-items: center;
+  text-align: left;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid #d7e2e8;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #667085;
+  font-variant-numeric: tabular-nums;
+}
+
+.time-lap-list strong {
+  color: #172033;
+  font-size: 1.1rem;
+}
+
+.time-lap-list em {
+  text-align: right;
+  font-style: normal;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.time-lap-list li.is-fastest {
+  border-color: #168f8c;
+  background: #eafaf8;
+}
+
+.time-lap-list li.is-fastest em {
+  color: #0f6f6c;
+}
+
+.time-lap-list li.is-slowest {
+  border-color: #e2582c;
+  background: #fff4ee;
+}
+
+.time-lap-list li.is-slowest em {
+  color: #b54708;
+}
+
+.time-tool-related {
+  margin: 1.25rem 0;
+}
+
+.time-tool-related h2 {
+  font-size: 1rem;
+  margin: 0 0 0.6rem;
+}
+
+.time-tool-related ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.time-tool-related a {
+  display: inline-block;
+  color: #0f6f6c;
+  background: #ffffff;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--border, #d9e2ec);
+  border-radius: 999px;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.time-tool-related a:hover {
+  border-color: var(--accent, #0f766e);
+}

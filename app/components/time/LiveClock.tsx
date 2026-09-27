@@ -2,19 +2,18 @@
 
 import { useEffect, useRef, useState } from "react";
 import AnalogClock, { type AnalogTheme } from "./AnalogClock";
-import {
-  analogClockThemes,
-  digitalClockThemes,
-  timeToolsCopy,
-  type ClockTheme,
-  type TimeToolsLocale,
-} from "./timeToolsCopy";
+import { previewChime, startClockSound } from "./clockSounds";
+import { clockFamilies, clockThemeDefs, clockThemeIds, themesInFamily, type ClockTheme } from "./clockThemes";
+import { CuckooClock, NixieClock, PendulumClock, PocketWatch, TwinBellClock } from "./faces/VintageFaces";
+import { ChronographWatch, DiveWatch, DressWatch, FieldWatch, LcdWatch, SmartWatch } from "./faces/WatchFaces";
+import { timeToolsCopy, type TimeToolsLocale } from "./timeToolsCopy";
+import { unlockAudio } from "./timeSounds";
 import { pad2, useNow } from "./useNow";
 import { useWakeLock } from "./useWakeLock";
 
 const STORAGE_KEY = "birimceviri:clock";
-const THEMES: readonly ClockTheme[] = [...analogClockThemes, ...digitalClockThemes];
-const ANALOG_THEME: Record<string, AnalogTheme> = {
+
+const ANALOG_THEME: Partial<Record<ClockTheme, AnalogTheme>> = {
   analog: "classic",
   station: "station",
   roman: "roman",
@@ -22,18 +21,23 @@ const ANALOG_THEME: Record<string, AnalogTheme> = {
   night: "night",
 };
 
-type Settings = { theme: ClockTheme; hour24: boolean; seconds: boolean; date: boolean };
+type Settings = { theme: ClockTheme; hour24: boolean; seconds: boolean; date: boolean; tick: boolean; chime: boolean; volume: number };
 
 function loadSettings(fallback: Settings): Settings {
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY);
     if (!raw) return fallback;
     const parsed = JSON.parse(raw) as Partial<Settings>;
+    const bool = (value: unknown, def: boolean) => (typeof value === "boolean" ? value : def);
     return {
-      theme: THEMES.includes(parsed.theme as ClockTheme) ? (parsed.theme as ClockTheme) : fallback.theme,
-      hour24: typeof parsed.hour24 === "boolean" ? parsed.hour24 : fallback.hour24,
-      seconds: typeof parsed.seconds === "boolean" ? parsed.seconds : fallback.seconds,
-      date: typeof parsed.date === "boolean" ? parsed.date : fallback.date,
+      theme: clockThemeIds.includes(parsed.theme as ClockTheme) ? (parsed.theme as ClockTheme) : fallback.theme,
+      hour24: bool(parsed.hour24, fallback.hour24),
+      seconds: bool(parsed.seconds, fallback.seconds),
+      date: bool(parsed.date, fallback.date),
+      // Ses her ziyarette kapali baslar (tarayicilar izinsiz sesi engeller).
+      tick: false,
+      chime: false,
+      volume: typeof parsed.volume === "number" ? Math.min(1, Math.max(0.05, parsed.volume)) : fallback.volume,
     };
   } catch {
     return fallback;
@@ -55,7 +59,6 @@ function FlipDigits({ value }: { value: string }) {
   );
 }
 
-// LED tema: gercek yedi segment gosterge; sonuk segmentler hafifce gorunur.
 const SEGMENTS: Record<string, string> = {
   "0": "abcdef",
   "1": "bc",
@@ -79,7 +82,7 @@ const SEGMENT_POINTS: Record<string, string> = {
   g: "12,50 16,46 44,46 48,50 44,54 16,54",
 };
 
-function SevenSegment({ value }: { value: string }) {
+export function SevenSegment({ value }: { value: string }) {
   return (
     <span className="seg-group">
       {value.split("").map((digit, index) => (
@@ -121,25 +124,47 @@ function BinaryDigits({ value }: { value: string }) {
   );
 }
 
-export default function LiveClock({ locale, initialTheme = "analog" }: { locale: TimeToolsLocale; initialTheme?: ClockTheme }) {
+export default function LiveClock({
+  locale,
+  initialTheme = "analog",
+  lockTheme = false,
+}: {
+  locale: TimeToolsLocale;
+  initialTheme?: ClockTheme;
+  /** Tema sayfalarinda baslangic temasi kayitli tercihi ezer. */
+  lockTheme?: boolean;
+}) {
   const copy = timeToolsCopy[locale];
   const now = useNow();
   const wakeLock = useWakeLock();
   const stageRef = useRef<HTMLDivElement>(null);
-  const defaults: Settings = { theme: initialTheme, hour24: locale !== "en", seconds: true, date: true };
-  const [settings, setSettings] = useState<Settings>(defaults);
+  const [settings, setSettings] = useState<Settings>({
+    theme: initialTheme,
+    hour24: locale !== "en",
+    seconds: true,
+    date: true,
+    tick: false,
+    chime: false,
+    volume: 0.6,
+  });
   const [loaded, setLoaded] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [timeZone, setTimeZone] = useState("");
+  const [activeUntil, setActiveUntil] = useState(0);
+  const soundRef = useRef<ReturnType<typeof startClockSound> | null>(null);
+  const def = clockThemeDefs[settings.theme];
 
   useEffect(() => {
     const frame = requestAnimationFrame(() => {
-      setSettings((current) => loadSettings(current));
+      setSettings((current) => {
+        const stored = loadSettings(current);
+        return lockTheme ? { ...stored, theme: initialTheme } : stored;
+      });
       setTimeZone(Intl.DateTimeFormat().resolvedOptions().timeZone);
       setLoaded(true);
     });
     return () => cancelAnimationFrame(frame);
-  }, []);
+  }, [lockTheme, initialTheme]);
 
   useEffect(() => {
     if (!loaded) return;
@@ -156,7 +181,40 @@ export default function LiveClock({ locale, initialTheme = "analog" }: { locale:
     return () => document.removeEventListener("fullscreenchange", onChange);
   }, []);
 
+  // Ses motoru: tik-tak ya da saat basi acikken calisir, tema degisince guncellenir.
+  const soundOn = settings.tick || settings.chime;
+  useEffect(() => {
+    if (!soundOn) return;
+    const engine = startClockSound({ tick: "none", chime: "none", tickOn: false, chimeOn: false, volume: 0.6 });
+    soundRef.current = engine;
+    return () => {
+      engine.stop();
+      soundRef.current = null;
+    };
+  }, [soundOn]);
+
+  useEffect(() => {
+    soundRef.current?.update({
+      tick: def.tick,
+      chime: def.chime,
+      tickOn: settings.tick,
+      chimeOn: settings.chime,
+      volume: settings.volume,
+      onChime: (_hour, durationMs) => setActiveUntil(Date.now() + durationMs),
+    });
+  }, [def.tick, def.chime, settings.tick, settings.chime, settings.volume, soundOn]);
+
   const update = (patch: Partial<Settings>) => setSettings((current) => ({ ...current, ...patch }));
+
+  const toggleSound = (key: "tick" | "chime") => {
+    unlockAudio();
+    update({ [key]: !settings[key] });
+  };
+
+  const listen = () => {
+    const seconds = previewChime(def.chime, settings.volume);
+    setActiveUntil(Date.now() + seconds * 1000);
+  };
 
   const toggleFullscreen = () => {
     if (document.fullscreenElement) void document.exitFullscreen();
@@ -170,27 +228,72 @@ export default function LiveClock({ locale, initialTheme = "analog" }: { locale:
   const meridiem = settings.hour24 ? null : hours < 12 ? copy.clock.am : copy.clock.pm;
   const dateText = now
     ? new Intl.DateTimeFormat(copy.clock.dateLocale, { weekday: "long", day: "numeric", month: "long", year: "numeric" }).format(now)
-    : " ";
+    : "\u00a0";
+  const shortDate = now ? new Intl.DateTimeFormat(copy.clock.dateLocale, { weekday: "short", day: "numeric", month: "short" }).format(now) : "";
+  const weekday = now ? new Intl.DateTimeFormat(copy.clock.dateLocale, { weekday: "short" }).format(now).slice(0, 2).toUpperCase() : "--";
   const ariaTime = now ? `${hourText}:${minuteText}${meridiem ? ` ${meridiem}` : ""}` : undefined;
+  const active = now ? now.getTime() < activeUntil : false;
   const analogTheme = ANALOG_THEME[settings.theme];
+  const digitalLine = (
+    <p className="live-clock-analog-digital">
+      {hourText}:{minuteText}
+      {settings.seconds ? `:${secondText}` : ""}
+      {meridiem ? ` ${meridiem}` : ""}
+    </p>
+  );
 
-  return (
-    <div className="time-tool category-general-converter">
-      <div ref={stageRef} className={`live-clock-stage is-${settings.theme}${isFullscreen ? " is-fullscreen" : ""}`}>
-        <button type="button" className="live-clock-fullscreen" onClick={toggleFullscreen} aria-label={isFullscreen ? copy.exitFullscreen : copy.fullscreen}>
-          <FullscreenIcon exit={isFullscreen} />
-        </button>
-
-        {analogTheme ? (
-          <div className="live-clock-analog">
-            <AnalogClock date={now} size={340} theme={analogTheme} label={ariaTime} allNumbers />
-            <p className="live-clock-analog-digital">
-              {hourText}:{minuteText}
-              {settings.seconds ? `:${secondText}` : ""}
-              {meridiem ? ` ${meridiem}` : ""}
-            </p>
+  const renderFace = () => {
+    if (analogTheme)
+      return (
+        <div className="live-clock-analog">
+          <AnalogClock date={now} size={340} theme={analogTheme} label={ariaTime} allNumbers motion={def.motion} />
+          {digitalLine}
+        </div>
+      );
+    switch (settings.theme) {
+      case "pendulum":
+      case "cuckoo":
+      case "pocket":
+      case "twinbell": {
+        const Face = { pendulum: PendulumClock, cuckoo: CuckooClock, pocket: PocketWatch, twinbell: TwinBellClock }[settings.theme];
+        return (
+          <div className="live-clock-analog is-object">
+            <Face date={now} label={ariaTime} active={active} />
+            {digitalLine}
           </div>
-        ) : settings.theme === "flip" ? (
+        );
+      }
+      case "diver":
+      case "chrono":
+      case "dress":
+      case "field": {
+        const Face = { diver: DiveWatch, chrono: ChronographWatch, dress: DressWatch, field: FieldWatch }[settings.theme];
+        return (
+          <div className="live-clock-analog is-object is-watch">
+            <Face date={now} label={ariaTime} />
+            {digitalLine}
+          </div>
+        );
+      }
+      case "nixie":
+        return <NixieClock hourText={hourText} minuteText={minuteText} secondText={secondText} showSeconds={settings.seconds} label={ariaTime} />;
+      case "lcd":
+        return (
+          <LcdWatch
+            hourText={hourText}
+            minuteText={minuteText}
+            secondText={secondText}
+            meridiem={meridiem}
+            weekday={weekday}
+            day={now ? String(now.getDate()) : "--"}
+            segments={(value) => <SevenSegment value={value} />}
+            label={ariaTime}
+          />
+        );
+      case "smart":
+        return <SmartWatch date={now} hourText={hourText} minuteText={minuteText} dateText={shortDate} label={ariaTime} />;
+      case "flip":
+        return (
           <div className="live-clock-flip" role="img" aria-label={ariaTime}>
             <FlipDigits value={hourText} />
             <span className="flip-sep">:</span>
@@ -203,7 +306,9 @@ export default function LiveClock({ locale, initialTheme = "analog" }: { locale:
             )}
             {meridiem && <span className="flip-meridiem">{meridiem}</span>}
           </div>
-        ) : settings.theme === "led" ? (
+        );
+      case "led":
+        return (
           <div className="live-clock-led" role="img" aria-label={ariaTime}>
             <SevenSegment value={hourText} />
             <span className="seg-colon" aria-hidden="true">
@@ -218,14 +323,18 @@ export default function LiveClock({ locale, initialTheme = "analog" }: { locale:
             )}
             {meridiem && <span className="flip-meridiem">{meridiem}</span>}
           </div>
-        ) : settings.theme === "binary" ? (
+        );
+      case "binary":
+        return (
           <div className="live-clock-binary" role="img" aria-label={ariaTime}>
             <BinaryDigits value={hourText} />
             <BinaryDigits value={minuteText} />
             {settings.seconds && <BinaryDigits value={secondText} />}
             {meridiem && <span className="flip-meridiem">{meridiem}</span>}
           </div>
-        ) : (
+        );
+      default:
+        return (
           <div className="live-clock-digital" role="img" aria-label={ariaTime}>
             {settings.theme === "terminal" && <span className="live-clock-prompt">&gt;</span>}
             <span>{hourText}</span>
@@ -235,23 +344,29 @@ export default function LiveClock({ locale, initialTheme = "analog" }: { locale:
             {meridiem && <em>{meridiem}</em>}
             {settings.theme === "terminal" && <span className="live-clock-cursor" aria-hidden="true" />}
           </div>
-        )}
+        );
+    }
+  };
 
-        {settings.date && <p className="live-clock-date">{dateText}</p>}
+  const hasObjectDate = settings.theme === "lcd" || settings.theme === "smart";
+
+  return (
+    <div className="time-tool category-general-converter">
+      <div ref={stageRef} className={`live-clock-stage is-${settings.theme} is-family-${def.family}${isFullscreen ? " is-fullscreen" : ""}`}>
+        <button type="button" className="live-clock-fullscreen" onClick={toggleFullscreen} aria-label={isFullscreen ? copy.exitFullscreen : copy.fullscreen}>
+          <FullscreenIcon exit={isFullscreen} />
+        </button>
+        {renderFace()}
+        {settings.date && !hasObjectDate && <p className="live-clock-date">{dateText}</p>}
       </div>
 
       <div className="engineering-calculator-card live-clock-settings">
         <p className="sleep-flow-title">{copy.clock.theme}</p>
-        {(
-          [
-            [copy.clock.analogGroup, analogClockThemes],
-            [copy.clock.digitalGroup, digitalClockThemes],
-          ] as const
-        ).map(([groupLabel, themes]) => (
-          <div key={groupLabel} className="live-clock-theme-group">
-            <span className="live-clock-theme-group-label">{groupLabel}</span>
-            <div className="live-clock-themes" role="radiogroup" aria-label={`${copy.clock.theme}: ${groupLabel}`}>
-              {themes.map((theme) => (
+        {clockFamilies.map((family) => (
+          <div key={family} className="live-clock-theme-group">
+            <span className="live-clock-theme-group-label">{copy.clock.families[family]}</span>
+            <div className="live-clock-themes" role="radiogroup" aria-label={copy.clock.families[family]}>
+              {themesInFamily(family).map((theme) => (
                 <button
                   key={theme}
                   type="button"
@@ -260,15 +375,41 @@ export default function LiveClock({ locale, initialTheme = "analog" }: { locale:
                   className={`live-clock-theme-swatch is-${theme}${settings.theme === theme ? " is-active" : ""}`}
                   onClick={() => update({ theme })}
                 >
-                  <span className="live-clock-swatch-preview" aria-hidden="true">
-                    {ANALOG_THEME[theme] ? (theme === "roman" ? "XII" : "◷") : theme === "binary" ? "⠿⠷" : theme === "terminal" ? ">12:30" : "12:30"}
-                  </span>
+                  <span className="live-clock-swatch-preview" aria-hidden="true" />
                   {copy.clock.themes[theme]}
                 </button>
               ))}
             </div>
           </div>
         ))}
+
+        <p className="sleep-flow-title">{copy.clock.sound}</p>
+        <div className="live-clock-toggles">
+          <label className={`live-clock-toggle${settings.tick ? " is-on" : ""}${def.tick === "none" ? " is-disabled" : ""}`}>
+            <input type="checkbox" checked={settings.tick} disabled={def.tick === "none"} onChange={() => toggleSound("tick")} />
+            <span>{copy.clock.tick}</span>
+          </label>
+          <label className={`live-clock-toggle${settings.chime ? " is-on" : ""}${def.chime === "none" ? " is-disabled" : ""}`}>
+            <input type="checkbox" checked={settings.chime} disabled={def.chime === "none"} onChange={() => toggleSound("chime")} />
+            <span>{copy.clock.chime}</span>
+          </label>
+          <button type="button" className="time-tool-button is-secondary" onClick={listen} disabled={def.chime === "none"}>
+            ♪ {copy.clock.listen}
+          </button>
+          <label className="live-clock-volume">
+            <span className="sr-only">{copy.alarm.volume}</span>
+            <input
+              type="range"
+              min={0.05}
+              max={1}
+              step={0.05}
+              value={settings.volume}
+              onChange={(event) => update({ volume: Number(event.target.value) })}
+              aria-label={copy.alarm.volume}
+            />
+          </label>
+        </div>
+        <p className="live-clock-sound-hint">{copy.clock.soundHint}</p>
 
         <p className="sleep-flow-title">{copy.clock.options}</p>
         <div className="live-clock-toggles">

@@ -1,3 +1,4 @@
+import type { ClockFamily, ClockTheme } from "./clockThemes";
 import type { TimeSoundId } from "./timeSounds";
 
 export type TimeToolsCopy = {
@@ -60,8 +61,12 @@ export type TimeToolsCopy = {
   };
   clock: {
     themes: Record<ClockTheme, string>;
-    analogGroup: string;
-    digitalGroup: string;
+    families: Record<ClockFamily, string>;
+    sound: string;
+    tick: string;
+    chime: string;
+    listen: string;
+    soundHint: string;
     theme: string;
     options: string;
     hour24: string;
@@ -74,9 +79,7 @@ export type TimeToolsCopy = {
   };
 };
 
-export const analogClockThemes = ["analog", "station", "roman", "gold", "night"] as const;
-export const digitalClockThemes = ["digital", "minimal", "sunset", "flip", "neon", "led", "terminal", "binary"] as const;
-export type ClockTheme = (typeof analogClockThemes)[number] | (typeof digitalClockThemes)[number];
+export type { ClockTheme };
 
 export type TimeToolsLocale = "tr" | "en";
 
@@ -159,9 +162,24 @@ export const timeToolsCopy: Record<TimeToolsLocale, TimeToolsCopy> = {
         led: "LED",
         terminal: "Terminal",
         binary: "İkili",
+        pendulum: "Sarkaçlı duvar saati",
+        cuckoo: "Guguklu saat",
+        pocket: "Cep saati",
+        twinbell: "Zilli çalar saat",
+        nixie: "Nixie tüp",
+        diver: "Dalgıç saati",
+        chrono: "Kronograf",
+        dress: "Klasik kol saati",
+        field: "Pilot saati",
+        lcd: "Retro dijital",
+        smart: "Akıllı saat",
       },
-      analogGroup: "Analog",
-      digitalGroup: "Dijital",
+      families: { analog: "Analog", digital: "Dijital", vintage: "Eski usul saatler", watch: "Kol saatleri" },
+      sound: "Ses",
+      tick: "Tik-tak",
+      chime: "Saat başı çalsın",
+      listen: "Çalışını dinle",
+      soundHint: "Sesler tarayıcıda üretilir; her saatin kendi mekanizma sesi ve saat başı çalması vardır.",
       theme: "Tema",
       options: "Görünüm",
       hour24: "24 saat",
@@ -251,9 +269,24 @@ export const timeToolsCopy: Record<TimeToolsLocale, TimeToolsCopy> = {
         led: "LED",
         terminal: "Terminal",
         binary: "Binary",
+        pendulum: "Pendulum wall clock",
+        cuckoo: "Cuckoo clock",
+        pocket: "Pocket watch",
+        twinbell: "Twin-bell alarm clock",
+        nixie: "Nixie tubes",
+        diver: "Dive watch",
+        chrono: "Chronograph",
+        dress: "Dress watch",
+        field: "Pilot watch",
+        lcd: "Retro digital",
+        smart: "Smartwatch",
       },
-      analogGroup: "Analog",
-      digitalGroup: "Digital",
+      families: { analog: "Analog", digital: "Digital", vintage: "Vintage clocks", watch: "Wristwatches" },
+      sound: "Sound",
+      tick: "Ticking",
+      chime: "Hourly chime",
+      listen: "Hear the chime",
+      soundHint: "Sounds are generated in your browser; every clock has its own movement sound and hourly chime.",
       theme: "Theme",
       options: "Display",
       hour24: "24-hour",

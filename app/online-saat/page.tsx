@@ -9,7 +9,7 @@ import { buildSiteUrl } from "../siteConfig";
 
 const title = "Online Saat: Şu An Saat Kaç? Tam Ekran Saat";
 const description =
-  "Saniyesi saniyesine canlı saat: 13 tema (analog, istasyon, flip, neon, LED, ikili…), 12/24 saat, tarih ve tek tıkla tam ekran masa saati.";
+  "Canlı saat, 24 tema: sarkaçlı ve guguklu saat, cep saati, dalgıç ve kronograf kol saatleri, flip, nixie, LED. Tik-tak sesi, saat başı çanı, tam ekran.";
 
 export const metadata: Metadata = {
   title,
@@ -37,6 +37,11 @@ const faqItems: FaqItem[] = [
     answer: "Evet. Tema, 12/24 saat, saniye ve tarih tercihleri bu tarayıcıda saklanır; sayfaya tekrar geldiğinizde aynı görünümle açılır.",
   },
   {
+    question: "Saat sesleri neden kendiliğinden başlamıyor?",
+    answer:
+      "Tarayıcılar, kullanıcı izni olmadan ses çalınmasına izin vermez. \"Tik-tak\" ya da \"Saat başı çalsın\" düğmesine bastığınızda sesler başlar; saat başı çanını beklemeden duymak için \"Çalışını dinle\" düğmesini kullanın.",
+  },
+  {
     question: "İkili (binary) saat nasıl okunur?",
     answer:
       "Her sütun saatin bir rakamıdır. Sütundaki noktalar aşağıdan yukarı 1, 2, 4 ve 8 değerindedir; yanan noktaların toplamı o rakamı verir. Örneğin 4 ve 1 yanıyorsa rakam 5'tir. Sütunların altında rakamlar da yazılıdır.",
@@ -49,12 +54,13 @@ export default function OnlineClockPage() {
       crumbs={[{ href: "/", label: "Ana Sayfa" }, { href: "/online-saat", label: "Online Saat" }]}
       crumbLabel="Sayfa yolu"
       title="Online Saat"
-      intro="Şu anki saat, saniyesi saniyesine. 13 farklı temadan birini seç, 12/24 saat ve tarihi ayarla, tek tıkla tam ekran masa saatine dönüştür."
+      intro="Şu anki saat, saniyesi saniyesine. 24 temadan birini seç: sarkaçlı duvar saatinden guguklu saate, cep saatinden dalgıç saatine. İstersen tik-tak sesini ve saat başı çanını aç, tek tıkla tam ekran masa saatine dönüştür."
       tool={<LiveClock locale="tr" />}
       related={{ title: "Diğer zaman araçları", links: timeRelated.tr.tools.filter((t) => t.href !== "/online-saat") }}
       tocTitle="İçindekiler"
       tocItems={[
         { id: "temalar", label: "Saat temaları" },
+        { id: "sesler", label: "Tik-tak sesleri ve saat başı çalma" },
         { id: "masa-saati", label: "Masa saati ve sunum ekranı olarak kullanım" },
         { id: "turkiye-saati", label: "Türkiye saati ve saat dilimleri" },
         { id: "faq", label: "Sık sorulan sorular" },
@@ -72,7 +78,23 @@ export default function OnlineClockPage() {
           <strong>Dijital:</strong> Dijital, Sade, Gün batımı, katlanan kartlı Flip, parlayan Neon, kırmızı LED, yeşil Terminal ve
           ikili sistemde gösteren İkili saat.
         </li>
+        <li>
+          <strong>Eski usul saatler:</strong> Sarkaçlı duvar saati (sarkaç saniyeleri sayar), saat başı kuşu çıkan Guguklu saat,
+          Breguet ibreli Cep saati, zilli Çalar saat ve turuncu parlayan Nixie tüplü saat.
+        </li>
+        <li>
+          <strong>Kol saatleri:</strong> Dönen bezelli Dalgıç saati, takimetreli Kronograf, altın Klasik kol saati, 24 saat halkalı
+          Pilot saati, LCD ekranlı Retro dijital ve gün ilerleme halkalı Akıllı saat.
+        </li>
       </ul>
+
+      <h2 id="sesler">Tik-tak sesleri ve saat başı çalma</h2>
+      <p>
+        Her saatin kendi sesi vardır ve hepsi tarayıcıda anlık üretilir. Sarkaçlı saat derin bir &quot;tok&quot; sesiyle saniyede
+        bir vurur ve saat başında Westminster melodisini çalıp saat sayısı kadar çan vurur. Guguklu saatte kuş saat kadar öter, zilli
+        çalar saat çınlar. Cep saati saniyede 5, mekanik kol saatleri saniyede 8 hafif tık sesi çıkarır; saniye ibreleri de gerçek
+        mekanizmaları gibi bu adımlarla ilerler. Quartz saatlerin ibresi saniyede bir atlar.
+      </p>
 
       <h2 id="masa-saati">Masa saati ve sunum ekranı olarak kullanım</h2>
       <p>

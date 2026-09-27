@@ -1,5 +1,7 @@
 "use client";
 
+import { handAngles, type SecondMotion } from "./clockThemes";
+
 export type AnalogTheme = "classic" | "night" | "station" | "roman" | "gold";
 
 const ROMAN = ["XII", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI"];
@@ -12,17 +14,16 @@ export default function AnalogClock({
   theme = "classic",
   label,
   allNumbers = false,
+  motion = "sweep",
 }: {
   date: Date | null;
   size?: number;
   theme?: AnalogTheme;
   label?: string;
   allNumbers?: boolean;
+  motion?: SecondMotion;
 }) {
-  const ms = date ? date.getMilliseconds() : 0;
-  const seconds = date ? date.getSeconds() + ms / 1000 : 0;
-  const minutes = date ? date.getMinutes() + seconds / 60 : 0;
-  const hours = date ? (date.getHours() % 12) + minutes / 60 : 0;
+  const angles = date ? handAngles(date, motion) : { hour: 0, minute: 0, second: 0 };
   const hand = (angle: number) => `rotate(${angle} 100 100)`;
   const isStation = theme === "station";
   const numbers =
@@ -77,9 +78,9 @@ export default function AnalogClock({
       })}
       {date && (
         <>
-          <line x1="100" y1={isStation ? 124 : 112} x2="100" y2="52" className="analog-clock-hour" transform={hand(hours * 30)} />
-          <line x1="100" y1={isStation ? 124 : 116} x2="100" y2={isStation ? 20 : 34} className="analog-clock-minute" transform={hand(minutes * 6)} />
-          <g transform={hand(seconds * 6)}>
+          <line x1="100" y1={isStation ? 124 : 112} x2="100" y2="52" className="analog-clock-hour" transform={hand(angles.hour)} />
+          <line x1="100" y1={isStation ? 124 : 116} x2="100" y2={isStation ? 20 : 34} className="analog-clock-minute" transform={hand(angles.minute)} />
+          <g transform={hand(angles.second)}>
             <line x1="100" y1="130" x2="100" y2={isStation ? 38 : 24} className="analog-clock-second" />
             <circle cx="100" cy={isStation ? 38 : 24} r={isStation ? 8 : 3.2} className="analog-clock-second-tip" />
           </g>

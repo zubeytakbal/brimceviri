@@ -9743,3 +9743,755 @@ a.all-units-row .all-units-name {
     min-height: 380px;
   }
 }
+
+/* ===== Eski usul saatler ve kol saatleri ===== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.live-clock-analog.is-object svg {
+  width: min(300px, 70vw);
+  height: auto;
+  filter: drop-shadow(0 14px 26px rgba(0, 0, 0, 0.35));
+}
+
+.live-clock-analog.is-object .vf-pendulum,
+.live-clock-analog.is-object .vf-cuckoo {
+  width: min(250px, 60vw);
+}
+
+.live-clock-analog.is-watch svg {
+  width: min(260px, 64vw);
+}
+
+.live-clock-stage:fullscreen .live-clock-analog.is-object svg {
+  width: auto;
+  height: 78vh;
+}
+
+.live-clock-stage.is-pendulum,
+.live-clock-stage.is-cuckoo {
+  background: linear-gradient(180deg, #efe4d0 0%, #d9c6a6 100%);
+  color: #3b2a20;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(120, 90, 50, 0.06) 0 2px, transparent 2px 60px),
+    linear-gradient(180deg, #efe4d0 0%, #d9c6a6 100%);
+}
+
+.live-clock-stage.is-cuckoo {
+  background-image:
+    radial-gradient(circle at 50% 10%, #fff8e8 0%, transparent 60%),
+    repeating-linear-gradient(90deg, #d8e3cf 0 30px, #cfdcc4 30px 60px);
+}
+
+.live-clock-stage.is-pocket {
+  background: radial-gradient(circle at 50% 40%, #3a2b22 0%, #1c1511 80%);
+  color: #f0d9a8;
+}
+
+.live-clock-stage.is-twinbell {
+  background: linear-gradient(180deg, #fdf3e3 0%, #f2d9b8 100%);
+  color: #6b1a1a;
+}
+
+.live-clock-stage.is-nixie {
+  background: radial-gradient(circle at 50% 30%, #2a1d14 0%, #0c0806 80%);
+  color: #ffb070;
+}
+
+.live-clock-stage.is-diver {
+  background: linear-gradient(180deg, #0d3b5c 0%, #062238 100%);
+  color: #cfe6f7;
+}
+
+.live-clock-stage.is-chrono,
+.live-clock-stage.is-dress {
+  background: linear-gradient(135deg, #e9e5dd 0%, #cfc7b8 100%);
+  color: #2a2620;
+}
+
+.live-clock-stage.is-dress {
+  background: linear-gradient(135deg, #2b211b 0%, #4b3a2e 100%);
+  color: #f0dfc0;
+}
+
+.live-clock-stage.is-field {
+  background: linear-gradient(135deg, #3c4128 0%, #23261a 100%);
+  color: #e6e8d6;
+}
+
+.live-clock-stage.is-lcd {
+  background: linear-gradient(135deg, #d7dde3 0%, #aab4be 100%);
+  color: #1b2127;
+}
+
+.live-clock-stage.is-smart {
+  background: radial-gradient(circle at 50% 30%, #1c2230 0%, #0b0d12 80%);
+  color: #f5f7fb;
+}
+
+.live-clock-stage.is-pendulum .live-clock-fullscreen,
+.live-clock-stage.is-cuckoo .live-clock-fullscreen,
+.live-clock-stage.is-twinbell .live-clock-fullscreen,
+.live-clock-stage.is-chrono .live-clock-fullscreen,
+.live-clock-stage.is-lcd .live-clock-fullscreen {
+  border-color: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.06);
+}
+
+/* Cizim sinif renkleri */
+.vf-ticks-dark line {
+  stroke: #6b5a45;
+  stroke-width: 0.8;
+}
+
+.vf-ticks-dark line.is-major {
+  stroke: #2b1d14;
+  stroke-width: 2;
+}
+
+.vf-ticks-fine line {
+  stroke: #3b3226;
+  stroke-width: 0.6;
+}
+
+.vf-ticks-fine line.is-major {
+  stroke-width: 1.4;
+}
+
+.vf-roman text,
+.vf-pocket-roman text {
+  fill: #2b1d14;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.vf-pocket-roman text {
+  font-size: 14px;
+}
+
+.vf-cuckoo-numbers text {
+  fill: #2b1a0d;
+  font-family: Georgia, serif;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.vf-twinbell-numbers text {
+  fill: #1b1b1b;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+/* Guguk: kapaklar acilir, kus disari cikar */
+.vf-cuckoo-bird {
+  transform: translateX(-10px) scale(0.6);
+  transform-origin: 120px 124px;
+  opacity: 0;
+  transition: transform 0.35s ease, opacity 0.2s ease;
+}
+
+.vf-cuckoo.is-active .vf-cuckoo-bird {
+  opacity: 1;
+  transform: translate(8px, 0) scale(1);
+  animation: vf-cuckoo-bob 1.05s ease-in-out infinite;
+}
+
+@keyframes vf-cuckoo-bob {
+  0%,
+  100% {
+    transform: translate(8px, 0) scale(1);
+  }
+  30% {
+    transform: translate(14px, -2px) scale(1.04);
+  }
+}
+
+.vf-door-left,
+.vf-door-right {
+  transition: transform 0.3s ease;
+  transform-box: fill-box;
+}
+
+.vf-door-left {
+  transform-origin: left center;
+}
+
+.vf-door-right {
+  transform-origin: right center;
+}
+
+.vf-cuckoo.is-active .vf-door-left {
+  transform: scaleX(0.15);
+}
+
+.vf-cuckoo.is-active .vf-door-right {
+  transform: scaleX(0.15);
+}
+
+/* Zilli calar saat: calarken titrer */
+.vf-twinbell.is-active .vf-twinbell-body {
+  animation: vf-shake 0.07s linear infinite;
+  transform-origin: 130px 260px;
+}
+
+.vf-twinbell.is-active .vf-hammer {
+  animation: vf-hammer 0.11s linear infinite;
+  transform-origin: 130px 96px;
+}
+
+@keyframes vf-shake {
+  0% {
+    transform: rotate(-1.4deg);
+  }
+  50% {
+    transform: rotate(1.4deg);
+  }
+  100% {
+    transform: rotate(-1.4deg);
+  }
+}
+
+@keyframes vf-hammer {
+  0%,
+  100% {
+    transform: rotate(-16deg);
+  }
+  50% {
+    transform: rotate(16deg);
+  }
+}
+
+/* Nixie tuplu saat */
+.nixie-clock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(4px, 1vw, 10px);
+  font-size: clamp(2.8rem, 10vw, 6.5rem);
+}
+
+.live-clock-stage:fullscreen .nixie-clock {
+  font-size: min(14vw, 34vh);
+}
+
+.nixie-group {
+  display: flex;
+  align-items: center;
+  gap: clamp(4px, 1vw, 10px);
+}
+
+.nixie-tube {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 0.78em;
+  height: 1.45em;
+  border-radius: 0.38em 0.38em 0.12em 0.12em;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(255, 140, 50, 0.12), transparent 70%),
+    repeating-linear-gradient(60deg, rgba(160, 160, 160, 0.13) 0 1px, transparent 1px 5px),
+    repeating-linear-gradient(-60deg, rgba(160, 160, 160, 0.13) 0 1px, transparent 1px 5px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02));
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.18),
+    inset 0.08em 0 0.12em rgba(255, 255, 255, 0.12),
+    0 0.1em 0.2em rgba(0, 0, 0, 0.6);
+  border-bottom: 0.1em solid #2a2a2a;
+}
+
+.nixie-digit {
+  position: absolute;
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  font-weight: 300;
+  line-height: 1;
+  color: rgba(150, 110, 80, 0.12);
+}
+
+.nixie-digit.is-lit {
+  color: #ffc58a;
+  text-shadow:
+    0 0 0.04em #fff1dd,
+    0 0 0.12em #ff8a2a,
+    0 0 0.3em #ff6a00,
+    0 0 0.6em rgba(255, 90, 0, 0.6);
+}
+
+.nixie-colon {
+  display: grid;
+  gap: 0.35em;
+  margin: 0 0.05em;
+}
+
+.nixie-colon i {
+  display: block;
+  width: 0.12em;
+  height: 0.12em;
+  border-radius: 50%;
+  background: #ff9a40;
+  box-shadow: 0 0 0.2em #ff6a00;
+}
+
+/* Kol saati SVG renkleri */
+.wf-bezel-number {
+  fill: #e8eef5;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.wf-lume {
+  fill: #e9f7ee;
+  stroke: #8fa39a;
+  stroke-width: 0.8;
+  filter: drop-shadow(0 0 2px rgba(180, 255, 210, 0.7));
+}
+
+.wf-lume-hand {
+  fill: #e9f7ee;
+  stroke: #9aa7b2;
+  stroke-width: 1;
+}
+
+.wf-date {
+  fill: #111;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.wf-dial-text {
+  fill: #9fb3c6;
+  font-size: 6.5px;
+  letter-spacing: 0.08em;
+}
+
+.wf-dial-text-dark {
+  fill: #53585f;
+  font-size: 6.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.wf-tachy {
+  fill: #e6e8eb;
+  font-size: 7px;
+  font-weight: 700;
+}
+
+.wf-track-dark line {
+  stroke: #4b5058;
+  stroke-width: 0.6;
+}
+
+.wf-track-dark line.is-major {
+  stroke-width: 1.4;
+}
+
+.wf-track-gold line {
+  stroke: #c9ab6c;
+  stroke-width: 0.5;
+}
+
+.wf-track-light line {
+  stroke: #d8dacb;
+  stroke-width: 0.8;
+}
+
+.wf-track-light line.is-major {
+  stroke-width: 2.2;
+}
+
+.wf-field-number {
+  fill: #f2f2ea;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.wf-field-inner {
+  fill: #9aa089;
+  font-size: 7px;
+  font-weight: 600;
+}
+
+/* Retro dijital kol saati (LCD) */
+.lcd-watch {
+  display: grid;
+  justify-items: center;
+}
+
+.lcd-strap {
+  display: block;
+  width: 130px;
+  height: 70px;
+  background: repeating-linear-gradient(180deg, #1d1f22 0 10px, #26292d 10px 12px);
+}
+
+.lcd-strap.is-top {
+  border-radius: 10px 10px 0 0;
+}
+
+.lcd-strap.is-bottom {
+  border-radius: 0 0 10px 10px;
+}
+
+.lcd-case {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  width: min(300px, 76vw);
+  padding: 18px 22px 16px;
+  border-radius: 26px 26px 34px 34px;
+  background: linear-gradient(180deg, #2a2d31 0%, #151719 100%);
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.08),
+    0 16px 30px rgba(0, 0, 0, 0.4);
+}
+
+.lcd-button {
+  position: absolute;
+  width: 8px;
+  height: 20px;
+  border-radius: 3px;
+  background: #8a9097;
+}
+
+.lcd-button.is-left-top {
+  left: -6px;
+  top: 30%;
+}
+
+.lcd-button.is-left-bottom {
+  left: -6px;
+  top: 64%;
+}
+
+.lcd-button.is-right-top {
+  right: -6px;
+  top: 30%;
+}
+
+.lcd-button.is-right-bottom {
+  right: -6px;
+  top: 64%;
+}
+
+.lcd-brand,
+.lcd-caption {
+  color: #c9ced4;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.lcd-caption {
+  color: #d9534f;
+}
+
+.lcd-screen {
+  width: 100%;
+  padding: 8px 12px 12px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #c4cdb2 0%, #aab694 100%);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.35);
+  color: #1d2418;
+}
+
+.lcd-top {
+  display: flex;
+  justify-content: space-between;
+  font-family: ui-monospace, monospace;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.lcd-main {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 4px;
+  height: 64px;
+}
+
+.lcd-main .seg-group {
+  gap: 4px;
+}
+
+.lcd-main .seg-digit polygon {
+  fill: rgba(29, 36, 24, 0.08);
+}
+
+.lcd-main .seg-digit polygon.is-on {
+  fill: #1d2418;
+  filter: none;
+}
+
+.lcd-colon {
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.6;
+}
+
+.lcd-seconds {
+  height: 60%;
+}
+
+.live-clock-stage:fullscreen .lcd-case {
+  width: min(70vw, 90vh);
+}
+
+.live-clock-stage:fullscreen .lcd-main {
+  height: 22vh;
+}
+
+/* Akilli saat */
+.smart-watch {
+  display: grid;
+  justify-items: center;
+}
+
+.smart-strap {
+  display: block;
+  width: 150px;
+  height: 64px;
+  background: linear-gradient(90deg, #2e3a4f, #3c4a63, #2e3a4f);
+}
+
+.smart-strap.is-top {
+  border-radius: 12px 12px 0 0;
+}
+
+.smart-strap.is-bottom {
+  border-radius: 0 0 12px 12px;
+}
+
+.smart-case {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: min(260px, 68vw);
+  aspect-ratio: 0.86;
+  border-radius: 28%;
+  background: #000000;
+  box-shadow:
+    0 0 0 6px #2a2f38,
+    0 0 0 7px #4a5160,
+    0 18px 36px rgba(0, 0, 0, 0.5);
+}
+
+.smart-crown {
+  position: absolute;
+  right: -14px;
+  top: 30%;
+  width: 8px;
+  height: 30px;
+  border-radius: 4px;
+  background: #5b6270;
+}
+
+.smart-rings {
+  position: absolute;
+  inset: 8%;
+  width: 84%;
+  height: 84%;
+}
+
+.smart-ring-track,
+.smart-ring-value {
+  fill: none;
+  stroke-width: 11;
+}
+
+.smart-ring-value {
+  stroke-linecap: round;
+}
+
+.is-day .smart-ring-track {
+  stroke: rgba(255, 70, 110, 0.18);
+}
+
+.is-day .smart-ring-value {
+  stroke: #ff466e;
+}
+
+.is-hour .smart-ring-track {
+  stroke: rgba(160, 255, 60, 0.16);
+}
+
+.is-hour .smart-ring-value {
+  stroke: #a6ff3c;
+}
+
+.is-minute .smart-ring-track {
+  stroke: rgba(60, 220, 255, 0.16);
+}
+
+.is-minute .smart-ring-value {
+  stroke: #3cdcff;
+}
+
+.smart-time {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  color: #ffffff;
+}
+
+.smart-time strong {
+  font-size: clamp(2rem, 8vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.smart-time span {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #ff9f0a;
+}
+
+.live-clock-stage:fullscreen .smart-case {
+  width: min(60vh, 70vw);
+}
+
+/* Ses paneli */
+.live-clock-toggle.is-disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.live-clock-volume input {
+  width: 130px;
+  accent-color: #86c700;
+}
+
+.live-clock-sound-hint {
+  margin: 0;
+  max-width: 520px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.82rem;
+}
+
+/* Tema onizlemeleri (kucuk kartlar) */
+.live-clock-swatch-preview::after {
+  content: "12:30";
+}
+
+.is-analog .live-clock-swatch-preview::after,
+.is-night .live-clock-swatch-preview::after,
+.is-gold .live-clock-swatch-preview::after,
+.is-station .live-clock-swatch-preview::after {
+  content: "◷";
+}
+
+.is-roman .live-clock-swatch-preview::after {
+  content: "XII";
+}
+
+.is-terminal .live-clock-swatch-preview::after {
+  content: ">12:30";
+}
+
+.is-binary .live-clock-swatch-preview::after {
+  content: "⠿⠷";
+}
+
+.is-pendulum .live-clock-swatch-preview {
+  background: linear-gradient(90deg, #5a2e14, #8a4b26, #5a2e14);
+  color: #f6d98b;
+}
+
+.is-pendulum .live-clock-swatch-preview::after {
+  content: "🕰";
+}
+
+.is-cuckoo .live-clock-swatch-preview {
+  background: #d8e3cf;
+  color: #5a3318;
+}
+
+.is-cuckoo .live-clock-swatch-preview::after {
+  content: "⌂";
+  font-size: 1.6rem;
+}
+
+.is-pocket .live-clock-swatch-preview {
+  background: radial-gradient(circle, #f3dc8e 0%, #b8862f 70%);
+  color: #3b2a20;
+}
+
+.is-pocket .live-clock-swatch-preview::after {
+  content: "IX";
+  font-family: Georgia, serif;
+}
+
+.is-twinbell .live-clock-swatch-preview {
+  background: #fdf3e3;
+  color: #c62828;
+}
+
+.is-twinbell .live-clock-swatch-preview::after {
+  content: "⏰";
+  font-size: 1.4rem;
+}
+
+.is-nixie .live-clock-swatch-preview {
+  background: #120c08;
+  color: #ffb070;
+  text-shadow: 0 0 6px #ff6a00;
+  font-weight: 300;
+}
+
+.is-diver .live-clock-swatch-preview {
+  background: radial-gradient(circle, #0a0e13 45%, #0f2238 46%, #0f2238 70%, #aeb7c2 71%);
+  color: #e9f7ee;
+}
+
+.is-diver .live-clock-swatch-preview::after,
+.is-chrono .live-clock-swatch-preview::after,
+.is-dress .live-clock-swatch-preview::after,
+.is-field .live-clock-swatch-preview::after {
+  content: "⌚";
+  font-size: 1.4rem;
+}
+
+.is-chrono .live-clock-swatch-preview {
+  background: radial-gradient(circle, #f4f4f1 50%, #111317 51%, #111317 70%, #aeb7c2 71%);
+  color: #111;
+}
+
+.is-dress .live-clock-swatch-preview {
+  background: radial-gradient(circle, #fbf8f1 55%, #d4a445 56%);
+  color: #6b3a1f;
+}
+
+.is-field .live-clock-swatch-preview {
+  background: radial-gradient(circle, #15171a 60%, #aeb7c2 61%);
+  color: #f2f2ea;
+}
+
+.is-lcd .live-clock-swatch-preview {
+  background: #aab694;
+  color: #1d2418;
+  font-family: ui-monospace, monospace;
+  box-shadow: inset 0 0 0 4px #1d1f22;
+}
+
+.is-smart .live-clock-swatch-preview {
+  background: #000000;
+  color: #ffffff;
+  border-radius: 12px;
+  box-shadow: inset 0 0 0 3px #ff466e;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vf-cuckoo.is-active .vf-cuckoo-bird,
+  .vf-twinbell.is-active .vf-twinbell-body,
+  .vf-twinbell.is-active .vf-hammer {
+    animation: none;
+  }
+}

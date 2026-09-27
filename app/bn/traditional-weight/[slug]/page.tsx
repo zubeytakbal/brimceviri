@@ -123,6 +123,11 @@ export default async function BengaliWeightPairPage({ params }: PageProps) {
                 </Link>
               </li>
             ))}
+            {pair.fromUnit === "tola" || pair.toUnit === "tola" ? (
+              <li>
+                <Link href="/bn/gold-price-calculator">সোনার দাম ক্যালকুলেটর (ভরি-আনা-রতি)</Link>
+              </li>
+            ) : null}
           </ul>
         </section>
       </div>

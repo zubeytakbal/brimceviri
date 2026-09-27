@@ -54,6 +54,9 @@ export default function BengaliTraditionalWeightHubPage() {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link href="/bn/gold-price-calculator">সোনার দাম ক্যালকুলেটর (ভরি-আনা-রতি)</Link>
+            </li>
           </ul>
 
           <h2>এই এককগুলো কী?</h2>

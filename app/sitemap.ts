@@ -1632,6 +1632,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       },
     },
     {
+      url: `${baseUrl}/bn/gold-price-calculator`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/bn/traditional-weight`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",

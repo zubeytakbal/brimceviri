@@ -169,7 +169,7 @@ function isSearchableSymbol(symbol: string) {
 
 // En fazla 4 anlamli basamakli, bilimsel gosterimsiz katsayi: 0.001, 5,
 // 2.54, 1,000. Sifirlar anlamli basamak sayilmaz.
-function isRoundFactor(value: string) {
+export function isRoundFactor(value: string) {
   if (!/^[0-9.,]+$/.test(value)) {
     return false;
   }
@@ -212,9 +212,13 @@ export function buildEnglishConversionTitle(page: {
 }
 
 /** Unit guide page title within the 47-character budget: "Kilometer (km): Definition & Conversions". */
-export function buildEnglishUnitGuideTitle(name: string, symbol: string) {
+export function buildEnglishUnitGuideTitle(name: string, symbol: string, answer?: string | null) {
   const showSymbol = symbol && symbol.toLowerCase() !== name.toLowerCase();
   const candidates = [
+    // Cevap basliktaysa ("Megapascal (MPa): 1 MPa = 10 bar") arama sonucu
+    // soruyu dogrudan yanitlar.
+    ...(answer && showSymbol ? [`${name} (${symbol}): ${answer} — Unit Guide`, `${name} (${symbol}): ${answer}`] : []),
+    ...(answer ? [`${name}: ${answer} — Unit Guide`, `${name}: ${answer}`] : []),
     ...(showSymbol ? [`${name} (${symbol}): Definition & Conversions`] : []),
     `${name}: Definition & Conversions`,
     ...(showSymbol ? [`${name} (${symbol}): Unit Guide`] : []),
@@ -224,8 +228,14 @@ export function buildEnglishUnitGuideTitle(name: string, symbol: string) {
 }
 
 /** Unit guide meta description, kept under ~160 characters. */
-export function buildEnglishUnitGuideDescription(name: string, symbol: string, categoryName: string) {
+export function buildEnglishUnitGuideDescription(name: string, symbol: string, categoryName: string, answer?: string | null) {
   const unit = englishUnitInSentence(name);
+  if (answer) {
+    const withAnswer = `${answer}. The symbol for ${unit} is ${symbol}. Definition, history and instant conversions to other ${categoryName.toLowerCase()} units.`;
+    if (withAnswer.length <= 160) return withAnswer;
+    const shortAnswer = `${answer}. ${name} (${symbol}): definition, history and instant conversions.`;
+    if (shortAnswer.length <= 160) return shortAnswer;
+  }
   const full = `The symbol for ${unit} is ${symbol}. Definition, history, SI equivalent and instant conversions to other ${categoryName.toLowerCase()} units.`;
   if (full.length <= 160) return full;
   const short = `${name} (${symbol}): definition, history, SI equivalent and instant conversions.`;

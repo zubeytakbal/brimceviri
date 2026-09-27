@@ -171,6 +171,13 @@ type BengaliStandaloneTool = {
 
 const bengaliStandaloneTools: BengaliStandaloneTool[] = [
   {
+    id: "gold-price-calculator",
+    href: "/bn/gold-price-calculator",
+    title: "সোনার দাম ক্যালকুলেটর",
+    description: "ভরি-আনা-রতি ওজন, মজুরি ও ভ্যাটসহ গহনার মোট দাম হিসাব করুন।",
+    iconName: "mass",
+  },
+  {
     id: "traditional-weight",
     href: "/bn/traditional-weight",
     title: "ঐতিহ্যবাহী ওজন একক রূপান্তরকারী",

@@ -49,3 +49,14 @@ describe("ingilizce donusum basliklari", () => {
     expect(inches && buildEnglishConversionTitle(inches, "0.393701")).toBe("Centimeters to Inches Converter (cm to in)");
   });
 });
+
+describe("birim rehberi basliklari", () => {
+  it("yuvarlak katsayida cevap basliga girer", async () => {
+    const { englishUnitGuideAnswer } = await import("../app/converter/englishUnitGuideAnswer");
+    const { buildEnglishUnitGuideTitle } = await import("../app/converter/englishUnitDisplay");
+    const answer = englishUnitGuideAnswer("basinc", "MPa", "MPa");
+    expect(answer).toBe("1 MPa = 10 bar");
+    expect(buildEnglishUnitGuideTitle("Megapascal", "MPa", answer)).toBe("Megapascal (MPa): 1 MPa = 10 bar — Unit Guide");
+    expect(englishUnitGuideAnswer("kutle", "lb", "lb")).toBeNull();
+  });
+});

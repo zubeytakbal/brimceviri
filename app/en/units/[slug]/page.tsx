@@ -14,6 +14,7 @@ import {
 import { getUnitSources } from "../../../converter/unitSources";
 import { unitPages as turkishUnitPages } from "../../../converter/unitPages";
 import { buildEnglishUnitGuideDescription, buildEnglishUnitGuideTitle, englishIndefiniteArticle } from "../../../converter/englishUnitDisplay";
+import { englishUnitGuideAnswer } from "../../../converter/englishUnitGuideAnswer";
 import { SITE_URL, buildSiteUrl } from "../../../siteConfig";
 
 type PageProps = {
@@ -74,8 +75,9 @@ export async function generateMetadata({
     };
   }
 
-  const title = buildEnglishUnitGuideTitle(unitPage.name, unitPage.symbol);
-  const description = buildEnglishUnitGuideDescription(unitPage.name, unitPage.symbol, unitPage.categoryName);
+  const answer = englishUnitGuideAnswer(unitPage.category, unitPage.unit, unitPage.symbol);
+  const title = buildEnglishUnitGuideTitle(unitPage.name, unitPage.symbol, answer);
+  const description = buildEnglishUnitGuideDescription(unitPage.name, unitPage.symbol, unitPage.categoryName, answer);
 
   return {
     title,
@@ -197,7 +199,11 @@ export default async function EnglishUnitInformationPage({
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "TechArticle",
-    headline: buildEnglishUnitGuideTitle(unitPage.name, unitPage.symbol),
+    headline: buildEnglishUnitGuideTitle(
+      unitPage.name,
+      unitPage.symbol,
+      englishUnitGuideAnswer(unitPage.category, unitPage.unit, unitPage.symbol)
+    ),
     description: unitPage.shortDescription,
     mainEntityOfPage: pageUrl,
     inLanguage: "en",

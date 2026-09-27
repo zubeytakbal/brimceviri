@@ -11920,3 +11920,141 @@ a.all-units-row .all-units-name {
     grid-column: 1 / -1;
   }
 }
+
+/* ===== Zamanlayici temalari, ses secici ===== */
+.time-timer-panel.is-theme-night {
+  background: radial-gradient(circle at 50% 30%, #1a2744 0%, #070b1f 80%);
+}
+
+.time-timer-panel.is-theme-sunset {
+  background: linear-gradient(160deg, #2d1b69 0%, #b53f7d 55%, #ff9a5a 100%);
+}
+
+.time-timer-panel.is-theme-forest {
+  background: linear-gradient(160deg, #0f3d2e 0%, #1f6f4a 60%, #7fb069 100%);
+}
+
+.time-timer-panel.is-theme-mono {
+  background: #111418;
+}
+
+.time-timer-ends {
+  display: block;
+  margin-top: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  opacity: 0.85;
+}
+
+.time-timer-sound {
+  align-items: end;
+}
+
+.time-timer-themes {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.time-timer-theme {
+  width: 36px;
+  height: 36px;
+  border: 3px solid rgba(255, 255, 255, 0.55);
+  border-radius: 50%;
+  cursor: pointer;
+  background: linear-gradient(135deg, #1f4f66 0%, #2c7f99 55%, #3fa7a7 100%);
+}
+
+.time-timer-theme.is-theme-night {
+  background: radial-gradient(circle at 50% 30%, #1a2744 0%, #070b1f 80%);
+}
+
+.time-timer-theme.is-theme-sunset {
+  background: linear-gradient(160deg, #2d1b69 0%, #b53f7d 55%, #ff9a5a 100%);
+}
+
+.time-timer-theme.is-theme-forest {
+  background: linear-gradient(160deg, #0f3d2e 0%, #1f6f4a 60%, #7fb069 100%);
+}
+
+.time-timer-theme.is-theme-mono {
+  background: #111418;
+}
+
+.time-timer-theme.is-active {
+  border-color: #b6f25a;
+  box-shadow: 0 0 0 3px rgba(182, 242, 90, 0.35);
+}
+
+.sound-picker {
+  display: grid;
+  gap: 6px;
+}
+
+.sound-picker-custom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.sound-picker-custom button {
+  padding: 5px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.sound-picker-custom small {
+  flex-basis: 100%;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.time-alarm-repeat {
+  font-style: normal;
+  color: #0f6f6c;
+  font-weight: 700;
+}
+
+.time-tool-options > label,
+.time-tool-options > button {
+  min-width: 0;
+}
+
+.time-timer-sound {
+  max-width: 680px;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) auto;
+}
+
+.sound-picker select {
+  width: 100%;
+}
+
+.sound-picker-custom small {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 640px) {
+  .time-timer-sound {
+    grid-template-columns: 1fr;
+  }
+}
+
+.time-tool > *,
+.engineering-calculator-card > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.time-tool-options select,
+.time-tool-options input:not([type="range"]) {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}

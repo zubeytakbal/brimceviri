@@ -2,9 +2,8 @@ import {
   alarmPresetSlug,
   alarmPresetTimes,
   formatEnglishTime,
-  timerPresetMinutes,
-  timerPresetSlug,
 } from "../../i18n/timeToolPaths";
+import { timerPresetPath, timerPresets } from "../../i18n/timerPresets";
 
 export const timeRelated = {
   tr: {
@@ -18,7 +17,7 @@ export const timeRelated = {
       { href: "/kronometre", label: "Kronometre" },
       { href: "/uyku-hesaplama", label: "Uyku Hesaplama" },
     ],
-    timers: timerPresetMinutes.map((m) => ({ href: `/zamanlayici/${timerPresetSlug.tr(m)}`, label: `${m} dakika` })),
+    timers: timerPresets.map((p) => ({ href: timerPresetPath(p, "tr"), label: p.labelTr })),
     alarms: alarmPresetTimes.map((t) => ({ href: `/online-alarm-kur/${alarmPresetSlug.tr(t)}`, label: `${t} alarm` })),
   },
   en: {
@@ -32,10 +31,7 @@ export const timeRelated = {
       { href: "/en/stopwatch", label: "Stopwatch" },
       { href: "/en/sleep-calculator", label: "Sleep Calculator" },
     ],
-    timers: timerPresetMinutes.map((m) => ({
-      href: `/en/timer/${timerPresetSlug.en(m)}`,
-      label: `${m} minute timer`,
-    })),
+    timers: timerPresets.map((p) => ({ href: timerPresetPath(p, "en"), label: `${p.labelEn} timer` })),
     alarms: alarmPresetTimes.map((t) => ({
       href: `/en/alarm-clock/${alarmPresetSlug.en(t)}`,
       label: `${formatEnglishTime(t)} alarm`,

@@ -7,13 +7,11 @@ import {
   alarmPresetTimes,
   timeToolAlternates,
   timeToolPaths,
-  timerPresetAlternates,
-  timerPresetMinutes,
-  timerPresetSlug,
   type TimeToolId,
 } from "./i18n/timeToolPaths";
 import { cgpaUniversities } from "./converter/india/cgpaUniversities";
 import { worldCities } from "./converter/time/worldCities";
+import { timerPresetAlternates, timerPresetPath, timerPresets } from "./i18n/timerPresets";
 import { countdownEvents, countdownPath, pairedEvent } from "./converter/time/countdownEvents";
 import { zonePairs } from "./converter/time/timeZonePairs";
 import { buildLanguageAlternates } from "./i18n/routing";
@@ -3053,13 +3051,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
         alternates: buildLanguageAlternates({ tr: `/dunya-saatleri/${city.tr}`, en: `/en/world-clock/${city.en}` }, "tr"),
       })),
     ),
-    ...timerPresetMinutes.flatMap((minutes) =>
-      [`/zamanlayici/${timerPresetSlug.tr(minutes)}`, `/en/timer/${timerPresetSlug.en(minutes)}`].map((path) => ({
+    ...timerPresets.flatMap((preset) =>
+      [timerPresetPath(preset, "tr"), timerPresetPath(preset, "en")].map((path) => ({
         url: `${baseUrl}${path}`,
         lastModified: contentLastModified,
         changeFrequency: "monthly" as const,
         priority: 0.6,
-        alternates: timerPresetAlternates(minutes),
+        alternates: timerPresetAlternates(preset),
       })),
     ),
     ...alarmPresetTimes.flatMap((time) =>

@@ -4,6 +4,14 @@ import type { TimeSoundId } from "./timeSounds";
 export type TimeToolsCopy = {
   numberLocale: string;
   sounds: Record<TimeSoundId, string>;
+  customSound: {
+    pick: string;
+    change: string;
+    remove: string;
+    note: string;
+    errors: Record<"too-large" | "not-audio" | "storage", string>;
+  };
+  repeat: { label: string; once: string; daily: string; weekdays: string };
   wakeLock: { on: string; off: string; unsupported: string; hint: string };
   fullscreen: string;
   exitFullscreen: string;
@@ -45,6 +53,11 @@ export type TimeToolsCopy = {
     done: string;
     stop: string;
     minuteShort: string;
+    secondShort: string;
+    hourShort: string;
+    endsAt: string;
+    theme: string;
+    themes: Record<"teal" | "night" | "sunset" | "forest" | "mono", string>;
   };
   stopwatch: {
     start: string;
@@ -86,7 +99,19 @@ export type TimeToolsLocale = "tr" | "en";
 export const timeToolsCopy: Record<TimeToolsLocale, TimeToolsCopy> = {
   tr: {
     numberLocale: "tr-TR",
-    sounds: { classic: "Klasik bip", chime: "Zil", digital: "Dijital", soft: "Yumuşak" },
+    sounds: { classic: "Klasik bip", chime: "Zil", digital: "Dijital", soft: "Yumuşak", custom: "Kendi müziğin" },
+    customSound: {
+      pick: "Ses dosyası seç",
+      change: "Başka dosya seç",
+      remove: "Kaldır",
+      note: "Dosya yalnızca bu tarayıcıda saklanır, hiçbir yere yüklenmez (en fazla 15 MB).",
+      errors: {
+        "too-large": "Dosya çok büyük; 15 MB'tan küçük bir ses dosyası seç.",
+        "not-audio": "Bu bir ses dosyası değil. MP3, M4A, WAV ya da OGG seç.",
+        storage: "Dosya bu ziyarette çalışır ama tarayıcı saklamaya izin vermedi.",
+      },
+    },
+    repeat: { label: "Tekrar", once: "Bir kez", daily: "Her gün", weekdays: "Hafta içi" },
     wakeLock: {
       on: "Ekran açık tutuluyor",
       off: "Ekranı açık tut",
@@ -133,6 +158,11 @@ export const timeToolsCopy: Record<TimeToolsLocale, TimeToolsCopy> = {
       done: "Süre doldu!",
       stop: "Sesi kapat",
       minuteShort: "dk",
+      secondShort: "sn",
+      hourShort: "sa",
+      endsAt: "Bitiş",
+      theme: "Renk",
+      themes: { teal: "Turkuaz", night: "Gece", sunset: "Gün batımı", forest: "Orman", mono: "Sade" },
     },
     stopwatch: {
       start: "Başlat",
@@ -203,7 +233,19 @@ export const timeToolsCopy: Record<TimeToolsLocale, TimeToolsCopy> = {
   },
   en: {
     numberLocale: "en-US",
-    sounds: { classic: "Classic beep", chime: "Chime", digital: "Digital", soft: "Soft" },
+    sounds: { classic: "Classic beep", chime: "Chime", digital: "Digital", soft: "Soft", custom: "Your own sound" },
+    customSound: {
+      pick: "Choose an audio file",
+      change: "Choose another file",
+      remove: "Remove",
+      note: "The file stays in this browser only and is never uploaded (max 15 MB).",
+      errors: {
+        "too-large": "That file is too large; pick an audio file under 15 MB.",
+        "not-audio": "That isn't an audio file. Pick an MP3, M4A, WAV or OGG.",
+        storage: "The file works for this visit, but the browser didn't allow saving it.",
+      },
+    },
+    repeat: { label: "Repeat", once: "Once", daily: "Every day", weekdays: "Weekdays" },
     wakeLock: {
       on: "Keeping the screen on",
       off: "Keep screen on",
@@ -250,6 +292,11 @@ export const timeToolsCopy: Record<TimeToolsLocale, TimeToolsCopy> = {
       done: "Time's up!",
       stop: "Stop sound",
       minuteShort: "min",
+      secondShort: "sec",
+      hourShort: "h",
+      endsAt: "Ends at",
+      theme: "Colour",
+      themes: { teal: "Teal", night: "Night", sunset: "Sunset", forest: "Forest", mono: "Minimal" },
     },
     stopwatch: {
       start: "Start",

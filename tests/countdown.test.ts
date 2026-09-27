@@ -71,3 +71,25 @@ describe("countdown date rules", () => {
     }
   });
 });
+
+describe("turkish suffixes", () => {
+  it("picks the right locative for clock times", async () => {
+    const { trTimeLocative } = await import("../app/i18n/timeToolPaths");
+    expect(trTimeLocative("05:00")).toBe("05:00'te");
+    expect(trTimeLocative("06:00")).toBe("06:00'da");
+    expect(trTimeLocative("07:00")).toBe("07:00'de");
+    expect(trTimeLocative("09:00")).toBe("09:00'da");
+    expect(trTimeLocative("11:00")).toBe("11:00'de");
+    expect(trTimeLocative("12:00")).toBe("12:00'de");
+    expect(trTimeLocative("07:30")).toBe("07:30'da");
+    expect(trTimeLocative("04:00")).toBe("04:00'te");
+  });
+
+  it("uses vowel harmony for durations", async () => {
+    const { timerPresets, trLik } = await import("../app/i18n/timerPresets");
+    const by = (tr: string) => trLik(timerPresets.find((p) => p.tr === tr)!);
+    expect(by("5-dakika")).toBe("5 dakikalık");
+    expect(by("30-saniye")).toBe("30 saniyelik");
+    expect(by("2-saat")).toBe("2 saatlik");
+  });
+});

@@ -2,12 +2,33 @@
 
 // Zamanlayici: dolan halka, hazir sureler, +1 dk, tam ekran, bitince ses.
 import { useEffect, useRef, useState } from "react";
-import { startRinging, unlockAudio } from "./timeSounds";
+import SoundPicker from "./SoundPicker";
+import { playSound, startRinging, unlockAudio, type TimeSoundId } from "./timeSounds";
 import { timeToolsCopy, type TimeToolsLocale } from "./timeToolsCopy";
 import { formatDuration, nowMs, useNow } from "./useNow";
 import { useWakeLock } from "./useWakeLock";
 
-const PRESET_MINUTES = [1, 2, 3, 5, 10, 15, 20, 25, 30, 45, 60];
+// Hizli secim dugmeleri (saniye).
+const PREFS_KEY = "birimceviri:timer-prefs";
+const THEMES = ["teal", "night", "sunset", "forest", "mono"] as const;
+type TimerTheme = (typeof THEMES)[number];
+type Prefs = { sound: TimeSoundId; volume: number; theme: TimerTheme };
+
+function loadPrefs(): Prefs {
+  const fallback: Prefs = { sound: "chime", volume: 0.8, theme: "teal" };
+  try {
+    const parsed = JSON.parse(window.localStorage.getItem(PREFS_KEY) ?? "{}") as Partial<Prefs>;
+    return {
+      sound: (["classic", "chime", "digital", "soft", "custom"] as TimeSoundId[]).includes(parsed.sound as TimeSoundId) ? (parsed.sound as TimeSoundId) : fallback.sound,
+      volume: typeof parsed.volume === "number" ? Math.min(1, Math.max(0.1, parsed.volume)) : fallback.volume,
+      theme: (THEMES as readonly string[]).includes(parsed.theme as string) ? (parsed.theme as TimerTheme) : fallback.theme,
+    };
+  } catch {
+    return fallback;
+  }
+}
+
+const PRESET_SECONDS = [30, 60, 120, 180, 300, 600, 900, 1200, 1500, 1800, 2700, 3600, 5400, 7200];
 
 export default function CountdownTimer({
   locale,
@@ -31,6 +52,29 @@ export default function CountdownTimer({
   const stopRef = useRef<(() => void) | null>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [prefs, setPrefs] = useState<Prefs>({ sound: "chime", volume: 0.8, theme: "teal" });
+  const [prefsLoaded, setPrefsLoaded] = useState(false);
+  const prefsRef = useRef(prefs);
+  useEffect(() => {
+    prefsRef.current = prefs;
+  }, [prefs]);
+
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      setPrefs(loadPrefs());
+      setPrefsLoaded(true);
+    });
+    return () => cancelAnimationFrame(frame);
+  }, []);
+
+  useEffect(() => {
+    if (!prefsLoaded) return;
+    try {
+      window.localStorage.setItem(PREFS_KEY, JSON.stringify(prefs));
+    } catch {
+      // Kayit yapilamazsa tercih yalnizca bu ziyarette gecerli.
+    }
+  }, [prefs, prefsLoaded]);
   const wakeLock = useWakeLock();
 
   const current = running && now ? Math.max(0, endAt - now.getTime()) : remainingMs;
@@ -42,7 +86,7 @@ export default function CountdownTimer({
       setEndAt(null);
       setRemainingMs(0);
       setFinished(true);
-      stopRef.current = startRinging("chime", 0.8);
+      stopRef.current = startRinging(prefsRef.current.sound, prefsRef.current.volume);
     }, Math.max(0, endAt - nowMs()));
     return () => window.clearTimeout(id);
   }, [endAt]);
@@ -119,7 +163,7 @@ export default function CountdownTimer({
 
   return (
     <div className="time-tool category-general-converter">
-      <div ref={panelRef} className={`time-timer-panel${finished ? " is-finished" : ""}`}>
+      <div ref={panelRef} className={`time-timer-panel is-theme-${prefs.theme}${finished ? " is-finished" : ""}`}>
         <svg className="time-timer-ring" viewBox="0 0 220 220" role="img" aria-label={formatDuration(current)}>
           <defs>
             <linearGradient id="timer-ring-gradient" x1="0" y1="0" x2="1" y2="1">
@@ -141,6 +185,12 @@ export default function CountdownTimer({
         </svg>
         <div className="time-timer-readout">
           <strong aria-live="off">{finished ? copy.timer.done : formatDuration(current)}</strong>
+          {running && endAt && (
+            <span className="time-timer-ends">
+              {copy.timer.endsAt}{" "}
+              {new Intl.DateTimeFormat(copy.numberLocale, { hour: "2-digit", minute: "2-digit" }).format(new Date(endAt))}
+            </span>
+          )}
         </div>
         <div className="time-timer-controls">
           {finished ? (
@@ -171,19 +221,52 @@ export default function CountdownTimer({
       <div className="engineering-calculator-card">
         <p className="sleep-flow-title">{copy.timer.presets}</p>
         <div className="time-tool-chips">
-          {PRESET_MINUTES.map((value) => {
+          {PRESET_SECONDS.map((value) => {
             const href = presetLinks?.[value];
-            const labelText = `${value} ${copy.timer.minuteShort}`;
+            const labelText =
+              value < 60 || value === 90
+                ? `${value} ${copy.timer.secondShort}`
+                : value >= 7200 && value % 3600 === 0
+                  ? `${value / 3600} ${copy.timer.hourShort}`
+                  : `${value / 60} ${copy.timer.minuteShort}`;
             return href ? (
-              <a key={value} href={href} onClick={(event) => { event.preventDefault(); setDuration(value * 60); window.history.replaceState(null, "", href); }}>
+              <a key={value} href={href} onClick={(event) => { event.preventDefault(); setDuration(value); window.history.replaceState(null, "", href); }}>
                 {labelText}
               </a>
             ) : (
-              <button type="button" key={value} onClick={() => setDuration(value * 60)}>
+              <button type="button" key={value} onClick={() => setDuration(value)}>
                 {labelText}
               </button>
             );
           })}
+        </div>
+        <p className="sleep-flow-title">{copy.alarm.sound}</p>
+        <div className="time-tool-options time-timer-sound">
+          <label>
+            <span>{copy.alarm.sound}</span>
+            <SoundPicker value={prefs.sound} onChange={(sound) => setPrefs((p) => ({ ...p, sound }))} copy={copy} />
+          </label>
+          <label>
+            <span>{copy.alarm.volume}</span>
+            <input type="range" min={0.1} max={1} step={0.1} value={prefs.volume} onChange={(event) => setPrefs((p) => ({ ...p, volume: Number(event.target.value) }))} />
+          </label>
+          <button type="button" className="sleep-secondary-button is-compact" onClick={() => playSound(prefs.sound, prefs.volume)}>
+            🔊 {copy.alarm.test}
+          </button>
+        </div>
+        <div className="time-timer-themes" role="radiogroup" aria-label={copy.timer.theme}>
+          {THEMES.map((theme) => (
+            <button
+              key={theme}
+              type="button"
+              role="radio"
+              aria-checked={prefs.theme === theme}
+              aria-label={copy.timer.themes[theme]}
+              title={copy.timer.themes[theme]}
+              className={`time-timer-theme is-theme-${theme}${prefs.theme === theme ? " is-active" : ""}`}
+              onClick={() => setPrefs((p) => ({ ...p, theme }))}
+            />
+          ))}
         </div>
         <p className="sleep-flow-title">{copy.timer.custom}</p>
         <div className="time-timer-inputs">

@@ -3,7 +3,8 @@ import CountdownTimer from "../../components/time/CountdownTimer";
 import TimeToolPage from "../../components/time/TimeToolPage";
 import { timeRelated } from "../../components/time/timeRelatedLinks";
 import type { FaqItem } from "../../converter/faqSchema";
-import { timerPresetMinutes, timerPresetSlug, timeToolAlternates } from "../../i18n/timeToolPaths";
+import { timeToolAlternates } from "../../i18n/timeToolPaths";
+import { timerPresetLinks } from "../../i18n/timerPresets";
 import { buildSiteUrl } from "../../siteConfig";
 
 const title = "Online Timer: Countdown With Alarm";
@@ -17,9 +18,7 @@ export const metadata: Metadata = {
   openGraph: { title, description, url: buildSiteUrl("/en/timer"), siteName: "BirimCeviri.app", locale: "en_US", type: "website" },
 };
 
-const presetLinks = Object.fromEntries(
-  timerPresetMinutes.map((minutes) => [minutes, `/en/timer/${timerPresetSlug.en(minutes)}`]),
-);
+const presetLinks = timerPresetLinks("en");
 
 const faqItems: FaqItem[] = [
   {

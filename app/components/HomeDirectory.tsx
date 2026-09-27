@@ -65,6 +65,35 @@ type Locale = "tr" | "en" | "uz" | "de";
 
 const englishDecisionSavingsHomeTools = getEnglishToolsByDomain("decision-savings");
 
+// Ana sayfadaki "Zaman araclari" bolumu (TR + EN).
+const timeToolsHome = {
+  tr: [
+    { href: "/online-saat", title: "Online Saat", description: "34 temalı canlı saat: sarkaçlı, guguklu, flip, neon; tik-tak sesi ve tam ekran.", icon: "time" as const },
+    { href: "/online-alarm-kur", title: "Online Alarm", description: "Tekrarlayan alarm, kendi müziğin, erteleme ve ekranı açık tutma.", icon: "time" as const },
+    { href: "/zamanlayici", title: "Zamanlayıcı", description: "10 saniyeden 24 saate geri sayım; tam ekran, renk temaları, bitiş saati.", icon: "paceCalculator" as const },
+    { href: "/kronometre", title: "Kronometre", description: "Salise hassasiyeti, tur kaydı ve CSV indirme.", icon: "paceCalculator" as const },
+    { href: "/dunya-saatleri", title: "Dünya Saatleri", description: "97 şehrin canlı saati, Türkiye ile saat farkı ve yaz saati tarihleri.", icon: "greatCircleCalculator" as const },
+    { href: "/saat-dilimi-cevirici", title: "Saat Dilimi Çevirici", description: "Birden çok şehre aynı anda çevir; toplantı planlayıcı.", icon: "greatCircleCalculator" as const },
+    { href: "/geri-sayim", title: "Geri Sayım", description: "Yılbaşına, bayramlara kaç gün kaldı? Kendi geri sayımını oluştur.", icon: "attendanceCalculator" as const },
+    { href: "/tarih-cevirici", title: "Hicri Rumi Tarih Çevirici", description: "Eski belgelerdeki Rumi ve Hicri tarihleri gün gün Miladiye çevir.", icon: "hijriCalendarCalculator" as const },
+    { href: "/ay-evreleri", title: "Ay Evreleri", description: "Bugün ay hangi evrede, dolunay ne zaman? Canlı ay takvimi.", icon: "sleepCalculator" as const },
+    { href: "/altin-saat", title: "Altın Saat", description: "Fotoğraf için altın saat ve mavi saat; şehir ya da konuma göre.", icon: "solarPanelPaybackCalculator" as const },
+    { href: "/uyku-hesaplama", title: "Uyku Hesaplama", description: "90 dakikalık döngülere göre ideal yatış ve kalkış saati.", icon: "sleepCalculator" as const },
+  ],
+  en: [
+    { href: "/en/online-clock", title: "Online Clock", description: "Live clock with 34 themes — pendulum, cuckoo, flip, neon; ticking and full screen.", icon: "time" as const },
+    { href: "/en/alarm-clock", title: "Alarm Clock", description: "Repeating alarms, your own sound, snooze and keep-screen-awake.", icon: "time" as const },
+    { href: "/en/timer", title: "Timer", description: "Countdowns from 10 seconds to 24 hours; full screen, colours, end time.", icon: "paceCalculator" as const },
+    { href: "/en/stopwatch", title: "Stopwatch", description: "Hundredths of a second, laps and CSV download.", icon: "paceCalculator" as const },
+    { href: "/en/world-clock", title: "World Clock", description: "Live time in 97 cities with time differences and DST dates.", icon: "greatCircleCalculator" as const },
+    { href: "/en/time-zone-converter", title: "Time Zone Converter", description: "Convert to several zones at once, with a meeting planner.", icon: "greatCircleCalculator" as const },
+    { href: "/en/countdown", title: "Countdown", description: "Days until Christmas, New Year and more — or make your own.", icon: "attendanceCalculator" as const },
+    { href: "/en/hijri-date-converter", title: "Hijri Date Converter", description: "Islamic to Gregorian dates and back, plus the Ottoman calendar.", icon: "hijriCalendarCalculator" as const },
+    { href: "/en/moon-phases", title: "Moon Phases", description: "Today's moon phase and the next full moon, with a moon calendar.", icon: "sleepCalculator" as const },
+    { href: "/en/golden-hour", title: "Golden Hour", description: "Golden and blue hour times for photos, by city or your location.", icon: "solarPanelPaybackCalculator" as const },
+  ],
+};
+
 const englishProductAreas = [
   { id: "conversions", href: "/en/all-conversions", title: "Unit Conversions", description: "Accurate unit conversions and practical unit guides.", icon: "allConversions" as const },
   { id: "everyday", href: "/en/everyday-calculators", title: "Everyday Calculators", description: "Home projects, transport, routines and practical planning.", icon: "numberBaseCalculator" as const },
@@ -1908,6 +1937,36 @@ export default function HomeDirectory({
       <RecentToolsWidget locale={locale} />
 
       <div className="directory-shell directory-content">
+        {(locale === "tr" || locale === "en") && (
+          <section className="directory-section" id={locale === "tr" ? "zaman-araclari" : "time-tools"}>
+            <header className="directory-section-header">
+              <div>
+                <h2>{locale === "tr" ? "Zaman araçları" : "Time tools"}</h2>
+                <p>
+                  {locale === "tr"
+                    ? "Online saat, alarm, zamanlayıcı, dünya saatleri, geri sayım ve takvim araçları — kurulum gerektirmez."
+                    : "Online clock, alarm, timer, world clock, countdowns and calendar tools — nothing to install."}
+                </p>
+              </div>
+            </header>
+            <div className="directory-tool-grid">
+              {(locale === "tr" ? timeToolsHome.tr : timeToolsHome.en).map((tool) => (
+                <article className="directory-home-card directory-tool-card" key={tool.href}>
+                  <Link className="directory-card-stretch" href={tool.href} aria-label={tool.title} />
+                  <div className="directory-card-body directory-card-body-icon">
+                    <span className="home-category-icon-box" aria-hidden="true">
+                      <DecorativeIcon name={tool.icon} size={42} className="home-category-icon-svg" />
+                    </span>
+                    <div>
+                      <h3 className="home-category-title">{tool.title}</h3>
+                      <p>{tool.description}</p>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
         {locale === "en" && (
           <section className="directory-section" id="calculator-areas">
             <header className="directory-section-header">

@@ -6,9 +6,9 @@ export type TimeToolId = "clock" | "worldClock" | "timeZoneConverter" | "countdo
 
 export const timeToolPaths: Record<TimeToolId, Partial<Record<Locale, string>>> = {
   clock: { tr: "/online-saat", en: "/en/online-clock" },
-  worldClock: { tr: "/dunya-saatleri", en: "/en/world-clock" },
+  worldClock: { tr: "/dunya-saatleri", en: "/en/world-clock", de: "/de/weltuhr" },
   countdown: { tr: "/geri-sayim", en: "/en/countdown" },
-  timeZoneConverter: { tr: "/saat-dilimi-cevirici", en: "/en/time-zone-converter" },
+  timeZoneConverter: { tr: "/saat-dilimi-cevirici", en: "/en/time-zone-converter", de: "/de/zeitzonenrechner" },
   alarm: { tr: "/online-alarm-kur", en: "/en/alarm-clock" },
   timer: { tr: "/zamanlayici", en: "/en/timer" },
   stopwatch: { tr: "/kronometre", en: "/en/stopwatch" },

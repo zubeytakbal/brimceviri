@@ -38,7 +38,7 @@ export default function WorldClockBoard({
 }: {
   cities: BoardCity[];
   regions: Array<{ id: string; name: string }>;
-  lang: "tr" | "en";
+  lang: "tr" | "en" | "de";
   copy: BoardCopy;
 }) {
   const now = useSecondNow();
@@ -46,7 +46,7 @@ export default function WorldClockBoard({
   const [region, setRegion] = useState("all");
   const [favorites, setFavorites] = useState<string[]>([]);
   const [loaded, setLoaded] = useState(false);
-  const locale = lang === "tr" ? "tr-TR" : "en-US";
+  const locale = lang === "tr" ? "tr-TR" : lang === "de" ? "de-DE" : "en-US";
 
   useEffect(() => {
     const frame = requestAnimationFrame(() => {

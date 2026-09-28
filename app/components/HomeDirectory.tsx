@@ -91,6 +91,8 @@ const timeToolsHome = {
     { href: "/de/feiertage", title: "Feiertage", description: "Gesetzliche Feiertage aller 16 Bundesländer mit Brückentagen.", icon: "attendanceCalculator" as const },
     { href: "/de/arbeitstage-rechner", title: "Arbeitstage-Rechner", description: "Arbeitstage und Werktage zwischen zwei Daten je Bundesland.", icon: "attendanceCalculator" as const },
     { href: "/de/tagerechner", title: "Tagerechner", description: "Tage zwischen zwei Daten zählen oder Tage zu einem Datum addieren.", icon: "attendanceCalculator" as const },
+    { href: "/de/zeitzonenrechner", title: "Zeitzonenrechner", description: "Uhrzeit weltweit umrechnen, mit Sommerzeit und Meeting-Planer.", icon: "greatCircleCalculator" as const },
+    { href: "/de/weltuhr", title: "Weltuhr", description: "Aktuelle Uhrzeit in 97 Städten live.", icon: "greatCircleCalculator" as const },
     { href: "/de/altersrechner", title: "Altersrechner", description: "Genaues Alter in Jahren, Monaten und Tagen.", icon: "dateCalculator" as const },
   ],
   en: [
@@ -1964,7 +1966,7 @@ export default function HomeDirectory({
                   {locale === "tr"
                     ? "Online saat, alarm, zamanlayıcı, dünya saatleri, geri sayım ve takvim araçları — kurulum gerektirmez."
                     : locale === "de"
-                      ? "Aktuelle Kalenderwoche, Feiertage aller Bundesländer, Arbeitstage und Tage zwischen zwei Daten."
+                      ? "Kalenderwoche, Feiertage aller Bundesländer, Arbeitstage, Tagerechner, Zeitzonen und Weltuhr."
                       : "Online clock, alarm, timer, world clock, countdowns and calendar tools — nothing to install."}
                 </p>
               </div>

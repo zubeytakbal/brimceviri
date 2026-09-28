@@ -8,6 +8,8 @@ export const germanCalendarLinks = [
   { href: "/de/feiertage", label: "Feiertage nach Bundesland" },
   { href: "/de/arbeitstage-rechner", label: "Arbeitstage-Rechner" },
   { href: "/de/tagerechner", label: "Tagerechner" },
+  { href: "/de/zeitzonenrechner", label: "Zeitzonenrechner" },
+  { href: "/de/weltuhr", label: "Weltuhr" },
   { href: "/de/altersrechner", label: "Altersrechner" },
   { href: "/de/schwangerschaftswochen-rechner", label: "Schwangerschaftswochen-Rechner" },
 ];

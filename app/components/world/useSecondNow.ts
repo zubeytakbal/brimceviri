@@ -37,12 +37,12 @@ export function wallClockDate(now: Date, timeZone: string) {
   return new Date(now.getTime() + (zoneOffsetMinutes(timeZone, now) - localOffset) * 60000);
 }
 
-export function shortDifference(minutes: number, lang: "tr" | "en") {
-  if (minutes === 0) return lang === "tr" ? "aynı saat" : "same time";
+export function shortDifference(minutes: number, lang: "tr" | "en" | "de") {
+  if (minutes === 0) return lang === "tr" ? "aynı saat" : lang === "de" ? "gleiche Zeit" : "same time";
   const sign = minutes > 0 ? "+" : "−";
   const abs = Math.abs(minutes);
   const h = Math.floor(abs / 60);
   const m = abs % 60;
-  const unit = lang === "tr" ? "sa" : "h";
+  const unit = lang === "tr" ? "sa" : lang === "de" ? "Std." : "h";
   return `${sign}${h}${m ? `:${String(m).padStart(2, "0")}` : ""} ${unit}`;
 }

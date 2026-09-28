@@ -5,6 +5,7 @@ import { sleepGuideAlternates, sleepGuidePaths } from "./i18n/sleepGuidePaths";
 import {
   alarmPresetAlternates,
   alarmPresetSlug,
+  alarmSlugDe,
   alarmPresetTimes,
   timeToolAlternates,
   timeToolPaths,
@@ -3033,6 +3034,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
         alternates: buildLanguageAlternates({ tr: trPath, en: enPath }, "tr"),
       })),
     ),
+    {
+      url: `${baseUrl}/de/eieruhr`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    },
     ...["/de/prozentrechner", "/de/dreisatz-rechner", "/de/notenrechner", "/de/pendlerpauschale-rechner", "/de/urlaubsrechner"].map((path) => ({
       url: `${baseUrl}${path}`,
       lastModified: contentLastModified,
@@ -3112,7 +3119,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       })),
     ),
     ...timerPresets.flatMap((preset) =>
-      [timerPresetPath(preset, "tr"), timerPresetPath(preset, "en")].map((path) => ({
+      [timerPresetPath(preset, "tr"), timerPresetPath(preset, "en"), timerPresetPath(preset, "de")].map((path) => ({
         url: `${baseUrl}${path}`,
         lastModified: contentLastModified,
         changeFrequency: "monthly" as const,
@@ -3121,7 +3128,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       })),
     ),
     ...alarmPresetTimes.flatMap((time) =>
-      [`/online-alarm-kur/${alarmPresetSlug.tr(time)}`, `/en/alarm-clock/${alarmPresetSlug.en(time)}`].map((path) => ({
+      [`/online-alarm-kur/${alarmPresetSlug.tr(time)}`, `/en/alarm-clock/${alarmPresetSlug.en(time)}`, `/de/wecker/${alarmSlugDe(time)}`].map((path) => ({
         url: `${baseUrl}${path}`,
         lastModified: contentLastModified,
         changeFrequency: "monthly" as const,

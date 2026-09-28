@@ -358,8 +358,10 @@ const TR_MIN: Record<number, string> = { 5: "beş", 10: "on", 15: "çeyrek", 20:
 const EN_NUM = ["twelve", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"];
 const EN_MIN: Record<number, string> = { 5: "five", 10: "ten", 15: "quarter", 20: "twenty", 25: "twenty-five" };
 
+const DE_NUM = ["zwölf", "eins", "zwei", "drei", "vier", "fünf", "sechs", "sieben", "acht", "neun", "zehn", "elf", "zwölf"];
+
 /** Saati 5 dakikaya yuvarlayip cumleye cevirir. Vurgulanacak kelimeler ** ile isaretli. */
-export function timeInWords(date: Date, locale: "tr" | "en") {
+export function timeInWords(date: Date, locale: "tr" | "en" | "de") {
   let rounded = Math.round((date.getMinutes() + date.getSeconds() / 60) / 5) * 5;
   let hour = date.getHours() % 12 || 12;
   if (rounded === 60) {
@@ -373,13 +375,26 @@ export function timeInWords(date: Date, locale: "tr" | "en") {
     if (rounded < 30) return ["Saat", `**${TR_ACC[hour]}**`, `**${TR_MIN[rounded]}**`, "geçiyor"];
     return ["Saat", `**${TR_DAT[next]}**`, `**${TR_MIN[60 - rounded]}**`, "var"];
   }
+  if (locale === "de") {
+    // Hochdeutsche Form: "Viertel nach drei", "halb vier", "fünf vor halb vier".
+    const h = (n: number) => `**${DE_NUM[n]}**`;
+    if (rounded === 0) return ["Es", "ist", `**${hour === 1 ? "ein" : DE_NUM[hour]}**`, "Uhr"];
+    if (rounded === 15) return ["Es", "ist", "**Viertel**", "nach", h(hour)];
+    if (rounded === 45) return ["Es", "ist", "**Viertel**", "vor", h(next)];
+    if (rounded === 30) return ["Es", "ist", "**halb**", h(next)];
+    if (rounded === 25) return ["Es", "ist", "**fünf**", "vor", "**halb**", h(next)];
+    if (rounded === 35) return ["Es", "ist", "**fünf**", "nach", "**halb**", h(next)];
+    const words: Record<number, string> = { 5: "fünf", 10: "zehn", 20: "zwanzig" };
+    if (rounded < 30) return ["Es", "ist", `**${words[rounded]}**`, "nach", h(hour)];
+    return ["Es", "ist", `**${words[60 - rounded]}**`, "vor", h(next)];
+  }
   if (rounded === 0) return ["It's", `**${EN_NUM[hour]}**`, "o'clock"];
   if (rounded === 30) return ["It's", "**half**", "past", `**${EN_NUM[hour]}**`];
   if (rounded < 30) return ["It's", `**${EN_MIN[rounded]}**`, "past", `**${EN_NUM[hour]}**`];
   return ["It's", `**${EN_MIN[60 - rounded]}**`, "to", `**${EN_NUM[next]}**`];
 }
 
-export function WordClock({ date, locale, label }: { date: Date | null; locale: "tr" | "en"; label?: string }) {
+export function WordClock({ date, locale, label }: { date: Date | null; locale: "tr" | "en" | "de"; label?: string }) {
   const words = date ? timeInWords(date, locale) : [];
   return (
     <p className="word-clock" role="img" aria-label={label}>

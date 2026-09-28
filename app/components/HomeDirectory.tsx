@@ -97,6 +97,11 @@ const timeToolsHome = {
     { href: "/uyku-hesaplama", title: "Uyku Hesaplama", description: "90 dakikalık döngülere göre ideal yatış ve kalkış saati.", icon: "sleepCalculator" as const },
   ],
   de: [
+    { href: "/de/online-uhr", title: "Online-Uhr", description: "Uhrzeit sekundengenau mit 34 Designs, von der Bahnhofsuhr bis zur Kuckucksuhr.", icon: "time" as const },
+    { href: "/de/timer", title: "Timer", description: "Countdown mit Signalton, Schnellauswahl von 10 Sekunden bis 24 Stunden.", icon: "time" as const },
+    { href: "/de/wecker", title: "Wecker", description: "Online-Wecker mit Ton, Schlummerfunktion und Wiederholung werktags.", icon: "time" as const },
+    { href: "/de/stoppuhr", title: "Stoppuhr", description: "Stoppuhr mit Hundertsteln und Rundenzeiten, Export als CSV.", icon: "time" as const },
+    { href: "/de/eieruhr", title: "Eieruhr", description: "Eier weich, wachsweich oder hart – Kochzeit nach Eigröße.", icon: "time" as const },
     { href: "/de/kalenderwoche", title: "Aktuelle Kalenderwoche", description: "Welche KW haben wir? KW für jedes Datum und alle Wochen des Jahres.", icon: "attendanceCalculator" as const },
     { href: "/de/feiertage", title: "Feiertage", description: "Gesetzliche Feiertage aller 16 Bundesländer mit Brückentagen.", icon: "attendanceCalculator" as const },
     { href: "/de/feiertage-oesterreich", title: "Feiertage Österreich", description: "Alle 13 gesetzlichen Feiertage in Österreich mit Fenstertagen.", icon: "attendanceCalculator" as const },
@@ -1988,12 +1993,12 @@ export default function HomeDirectory({
           <section className="directory-section" id={locale === "tr" ? "zaman-araclari" : locale === "de" ? "kalender" : "time-tools"}>
             <header className="directory-section-header">
               <div>
-                <h2>{locale === "tr" ? "Zaman araçları" : locale === "de" ? "Kalender und Datum" : "Time tools"}</h2>
+                <h2>{locale === "tr" ? "Zaman araçları" : locale === "de" ? "Uhr, Timer und Kalender" : "Time tools"}</h2>
                 <p>
                   {locale === "tr"
                     ? "Online saat, alarm, zamanlayıcı, dünya saatleri, geri sayım ve takvim araçları — kurulum gerektirmez."
                     : locale === "de"
-                      ? "Kalenderwoche, Feiertage aller Bundesländer, Arbeitstage, Tagerechner, Zeitzonen und Weltuhr."
+                      ? "Online-Uhr, Timer, Wecker, Stoppuhr, Kalenderwoche, Feiertage aller Bundesländer, Arbeitstage und Weltuhr."
                       : "Online clock, alarm, timer, world clock, countdowns and calendar tools — nothing to install."}
                 </p>
               </div>

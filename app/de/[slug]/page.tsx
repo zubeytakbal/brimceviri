@@ -1,3 +1,4 @@
+import { seoTitle } from "../../seoTitle";
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
@@ -113,14 +114,14 @@ export async function generateMetadata({
 
   if (tool) {
     return {
-      title: `${tool.title}`,
+      title: seoTitle(tool.metaTitle ?? tool.title, tool.title),
       description: tool.description,
       alternates: {
         canonical: tool.germanPath,
         ...buildFullLanguageAlternates(tool.germanPath),
       },
       openGraph: {
-        title: tool.title,
+        title: tool.metaTitle ?? tool.title,
         description: tool.description,
         url: buildSiteUrl(tool.germanPath),
         siteName: "BirimCeviri.app",
@@ -247,6 +248,39 @@ function GermanStandaloneTool({
               <p>{section.body}</p>
             </div>
           ))}
+        </section>
+
+        {tool.faq && tool.faq.length > 0 && (
+          <section className="conversion-section conversion-faq">
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: serializeJsonLd(buildFaqSchema(tool.faq)) }}
+            />
+            <h2>Häufige Fragen</h2>
+            {tool.faq.map((item) => (
+              <div key={item.question} className="conversion-faq-item">
+                <h3>{item.question}</h3>
+                <p>{item.answer}</p>
+              </div>
+            ))}
+          </section>
+        )}
+
+        <section className="conversion-section">
+          <h2>Das könnte Sie auch interessieren</h2>
+          <ul className="related-conversion-list">
+            {germanStandaloneTools
+              .filter((other) => other.slug !== tool.slug)
+              .sort((a, b) => b.priority - a.priority)
+              .slice(0, 8)
+              .map((other) => (
+                <li key={other.slug}>
+                  <Link href={other.germanPath} prefetch={false}>
+                    {other.title}
+                  </Link>
+                </li>
+              ))}
+          </ul>
         </section>
       </div>
     </main>

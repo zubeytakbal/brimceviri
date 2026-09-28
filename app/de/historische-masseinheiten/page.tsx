@@ -101,7 +101,7 @@ const ottomanUnits = [
     href: "/birimler/dirhem",
     name: "Dirhem",
     value: "= 1/400 okka ~ 3.207 g",
-    note: "Häufig fuer Gewürze, Edelmetalle und Medikamente genutzt.",
+    note: "Häufig für Gewürze, Edelmetalle und Medikamente genutzt.",
   },
 ];
 
@@ -179,7 +179,7 @@ export default function GermanHistoricalUnitsPage() {
           ),
         },
         {
-          heading: "Historischer Laengenumrechner",
+          heading: "Historischer Längenumrechner",
           content: (
             <>
               <p>

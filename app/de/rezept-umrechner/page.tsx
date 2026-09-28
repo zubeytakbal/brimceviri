@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Rezept Umrechner: Rezept skalieren und Tassen in Gramm",
     description:
-      "Verdoppeln, halbieren oder skalieren Sie ein Rezept und sehen Sie Grammwerte fuer erkannte Zutaten.",
+      "Verdoppeln, halbieren oder skalieren Sie ein Rezept und sehen Sie Grammwerte für erkannte Zutaten.",
     url: buildSiteUrl("/de/rezept-umrechner"),
     siteName: "BirimCeviri.app",
     locale: "de_DE",

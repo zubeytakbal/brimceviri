@@ -193,7 +193,7 @@ const copyByLocale: Record<
   },
   de: {
     labels: {
-      wallArea: "Wandfläche (m2)",
+      wallArea: "Wandfläche (m²)",
       brickWidth: "Ziegelbreite (cm)",
       brickHeight: "Ziegelhöhe (cm)",
       joint: "Fugenstärke (mm)",

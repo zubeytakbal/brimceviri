@@ -181,7 +181,7 @@ const copyByLocale: Record<
   },
   de: {
     labels: {
-      area: "Zu belegende Fläche (m2)",
+      area: "Zu belegende Fläche (m²)",
       width: "Fliesenbreite (cm)",
       height: "Fliesenhöhe (cm)",
       waste: "Verschnitt (%)",

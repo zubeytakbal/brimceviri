@@ -71,7 +71,7 @@ const copy = {
     knownSystem: "Bekanntes System",
     value: "Wert",
     matchingSizes: "Passende Größen",
-    invalidValue: "Wählen Sie einen gültigen Wert fuer den nächsten Treffer.",
+    invalidValue: "Wählen Sie einen gültigen Wert für den nächsten Treffer.",
     diameterResult: "Durchmesser (mm)",
     circumferenceResult: "Umfang (mm)",
     usResult: "US",

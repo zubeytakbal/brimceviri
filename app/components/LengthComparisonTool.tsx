@@ -134,7 +134,7 @@ const referenceLabels: Record<Locale, Record<string, string>> = {
     "bogaz-koprusu": "15 July Martyrs Bridge length",
   },
   de: {
-    "insan-boyu": "Durchschnittliche Koerpergroesse eines Erwachsenen",
+    "insan-boyu": "Durchschnittliche Körpergröße eines Erwachsenen",
     zurafa: "Durchschnittliche Giraffenhöhe",
     "sehir-otobusu": "Länge eines Stadtbusses",
     "mavi-balina": "Durchschnittliche Länge eines Blauwals",

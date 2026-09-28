@@ -1,5 +1,6 @@
 // Gemeinsame Links der deutschen Alltagsrechner (Prozent, Dreisatz, Noten …).
 export const germanRechnerLinks = [
+  { href: "/de/mathe-rechner", label: "Mathe-Rechner" },
   { href: "/de/prozentrechner", label: "Prozentrechner" },
   { href: "/de/dreisatz-rechner", label: "Dreisatz-Rechner" },
   { href: "/de/notenrechner", label: "Notenrechner" },

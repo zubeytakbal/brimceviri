@@ -1,3 +1,4 @@
+import { germanMathAlternatesForTurkish } from "@/app/i18n/germanMathPages";
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import FractionCalculator from "../../../components/FractionCalculator";
@@ -33,6 +34,7 @@ export const metadata: Metadata = {
     "İki kesri toplayın, çıkarın, çarpın veya bölün — sonucu sadeleştirilmiş, ondalık ve tam sayılı kesir gösterimiyle adım adım hesaplayın.",
   alternates: {
     canonical: "/bilim-hesaplayicilari/matematik/kesir-hesaplama",
+    ...germanMathAlternatesForTurkish("/bilim-hesaplayicilari/matematik/kesir-hesaplama"),
   },
   openGraph: {
     title: "Kesir Hesaplama: Toplama, Çıkarma, Çarpma, Bölme",

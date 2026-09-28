@@ -70,6 +70,9 @@ const englishDecisionSavingsHomeTools = getEnglishToolsByDomain("decision-saving
 
 // Ana sayfadaki "Zaman araclari" bolumu (TR + EN).
 const germanRechnerHome = [
+  { href: "/de/mathe-rechner", title: "Mathe-Rechner", description: "Bruchrechner, ggT/kgV, Wurzeln, pq-Formel, Mittelwert – mit Rechenweg.", icon: "mathCalculator" as const },
+  { href: "/de/bruchrechner", title: "Bruchrechner", description: "Brüche addieren, kürzen und teilen, mit Hauptnenner und Rechenweg.", icon: "mathCalculator" as const },
+  { href: "/de/pq-formel-rechner", title: "pq-Formel-Rechner", description: "Quadratische Gleichungen mit pq- oder Mitternachtsformel lösen.", icon: "mathCalculator" as const },
   { href: "/de/prozentrechner", title: "Prozentrechner", description: "Prozentwert, Prozentsatz, Grundwert, Veränderung und Rabatt mit Rechenweg.", icon: "vatCalculator" as const },
   { href: "/de/dreisatz-rechner", title: "Dreisatz-Rechner", description: "Proportionaler und antiproportionaler Dreisatz in drei Schritten.", icon: "mathCalculator" as const },
   { href: "/de/notenrechner", title: "Notenrechner", description: "Notendurchschnitt, IHK-Notenschlüssel, Oberstufenpunkte und Abi-Schnitt.", icon: "gradeCalculator" as const },
@@ -2029,7 +2032,7 @@ export default function HomeDirectory({
             <header className="directory-section-header">
               <div>
                 <h2>Alltagsrechner</h2>
-                <p>Prozente, Dreisatz, Noten, Pendlerpauschale und Urlaubsanspruch – mit Formel und Rechenweg.</p>
+                <p>Mathe, Prozente, Dreisatz, Noten, Pendlerpauschale und Urlaubsanspruch – mit Formel und Rechenweg.</p>
               </div>
             </header>
             <div className="directory-tool-grid">

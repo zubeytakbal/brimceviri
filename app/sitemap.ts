@@ -1,3 +1,4 @@
+import { germanMathPages } from "./i18n/germanMathPages";
 import { comparisonPathDe, compoundPathDe, materialPathDe } from "./converter/germanScienceSlugs";
 import type { MetadataRoute } from "next";
 import { calculatorPages } from "./converter/calculatorPages";
@@ -3040,6 +3041,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.7,
     },
+    ...["/de/mathe-rechner", ...germanMathPages.map((page) => page.path)].map((path) => {
+      const page = germanMathPages.find((p) => p.path === path);
+      return {
+        url: `${baseUrl}${path}`,
+        lastModified: contentLastModified,
+        changeFrequency: "monthly" as const,
+        priority: 0.75,
+        ...(page?.trPath ? { alternates: buildLanguageAlternates({ tr: page.trPath, de: page.path }, "tr") } : {}),
+      };
+    }),
     ...["/de/prozentrechner", "/de/dreisatz-rechner", "/de/notenrechner", "/de/pendlerpauschale-rechner", "/de/urlaubsrechner"].map((path) => ({
       url: `${baseUrl}${path}`,
       lastModified: contentLastModified,

@@ -1,3 +1,4 @@
+import { germanMathAlternatesForTurkish } from "@/app/i18n/germanMathPages";
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import SquareRootCalculator from "../../../components/SquareRootCalculator";
@@ -33,6 +34,7 @@ export const metadata: Metadata = {
     "Bir sayının karekökünü, tam sayılarda asal çarpanlara ayırarak en sade radikal formuyla, ondalık sayılarda doğrudan hesaplayın.",
   alternates: {
     canonical: "/bilim-hesaplayicilari/matematik/karekok-hesaplama",
+    ...germanMathAlternatesForTurkish("/bilim-hesaplayicilari/matematik/karekok-hesaplama"),
   },
   openGraph: {
     title: "Karekök Hesaplama: Asal Çarpanlarla Sadeleştirme",

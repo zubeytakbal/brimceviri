@@ -68,6 +68,12 @@ type Locale = "tr" | "en" | "uz" | "de";
 const englishDecisionSavingsHomeTools = getEnglishToolsByDomain("decision-savings");
 
 // Ana sayfadaki "Zaman araclari" bolumu (TR + EN).
+const germanRechnerHome = [
+  { href: "/de/prozentrechner", title: "Prozentrechner", description: "Prozentwert, Prozentsatz, Grundwert, Veränderung und Rabatt mit Rechenweg.", icon: "vatCalculator" as const },
+  { href: "/de/dreisatz-rechner", title: "Dreisatz-Rechner", description: "Proportionaler und antiproportionaler Dreisatz in drei Schritten.", icon: "mathCalculator" as const },
+  { href: "/de/notenrechner", title: "Notenrechner", description: "Notendurchschnitt, IHK-Notenschlüssel, Oberstufenpunkte und Abi-Schnitt.", icon: "gradeCalculator" as const },
+];
+
 const timeToolsHome = {
   tr: [
     { href: "/online-saat", title: "Online Saat", description: "34 temalı canlı saat: sarkaçlı, guguklu, flip, neon; tik-tak sesi ve tam ekran.", icon: "time" as const },
@@ -1976,6 +1982,32 @@ export default function HomeDirectory({
             </header>
             <div className="directory-tool-grid">
               {(locale === "tr" ? timeToolsHome.tr : locale === "de" ? timeToolsHome.de : timeToolsHome.en).map((tool) => (
+                <article className="directory-home-card directory-tool-card" key={tool.href}>
+                  <Link className="directory-card-stretch" href={tool.href} aria-label={tool.title} />
+                  <div className="directory-card-body directory-card-body-icon">
+                    <span className="home-category-icon-box" aria-hidden="true">
+                      <DecorativeIcon name={tool.icon} size={42} className="home-category-icon-svg" />
+                    </span>
+                    <div>
+                      <h3 className="home-category-title">{tool.title}</h3>
+                      <p>{tool.description}</p>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+        {locale === "de" && (
+          <section className="directory-section" id="alltagsrechner">
+            <header className="directory-section-header">
+              <div>
+                <h2>Alltagsrechner</h2>
+                <p>Prozente, Dreisatz und Noten – mit Formel und Rechenweg.</p>
+              </div>
+            </header>
+            <div className="directory-tool-grid">
+              {germanRechnerHome.map((tool) => (
                 <article className="directory-home-card directory-tool-card" key={tool.href}>
                   <Link className="directory-card-stretch" href={tool.href} aria-label={tool.title} />
                   <div className="directory-card-body directory-card-body-icon">

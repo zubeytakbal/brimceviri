@@ -3032,6 +3032,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
         alternates: buildLanguageAlternates({ tr: trPath, en: enPath }, "tr"),
       })),
     ),
+    ...["/de/prozentrechner", "/de/dreisatz-rechner", "/de/notenrechner"].map((path) => ({
+      url: `${baseUrl}${path}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
     ...["/de/feiertage", "/de/feiertage-oesterreich", ...GERMAN_STATES.map((st) => `/de/feiertage/${st.slug}`)].map((path) => ({
       url: `${baseUrl}${path}`,
       lastModified: contentLastModified,

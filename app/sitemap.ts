@@ -14,7 +14,7 @@ import {
 import { cgpaUniversities } from "./converter/india/cgpaUniversities";
 import { worldCities } from "./converter/time/worldCities";
 import { timerPresetAlternates, timerPresetPath, timerPresets } from "./i18n/timerPresets";
-import { countdownEvents, countdownPath, pairedEvent } from "./converter/time/countdownEvents";
+import { countdownAlternatePaths, countdownEvents, countdownPath } from "./converter/time/countdownEvents";
 import { HOLIDAY_YEARS } from "./converter/time/holidays";
 import { routePairs } from "./converter/geo/routePairs";
 import { turkeyProvinces } from "./converter/geo/turkeyProvinces";
@@ -3097,16 +3097,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.6,
     })),
     ...countdownEvents.map((event) => {
-      const pair = pairedEvent(event);
       return {
         url: `${baseUrl}${countdownPath(event)}`,
         lastModified: contentLastModified,
         changeFrequency: "daily" as const,
         priority: 0.6,
-        alternates: buildLanguageAlternates(
-          pair ? { [event.lang]: countdownPath(event), [pair.lang]: countdownPath(pair) } : { [event.lang]: countdownPath(event) },
-          event.lang
-        ),
+        alternates: buildLanguageAlternates(countdownAlternatePaths(event), event.lang === "de" ? "tr" : event.lang),
       };
     }),
     ...worldCities.flatMap((city) =>

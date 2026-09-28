@@ -67,7 +67,12 @@ describe("countdown date rules", () => {
     const keys = countdownEvents.map((e) => `${e.lang}:${e.slug}`);
     expect(new Set(keys).size).toBe(keys.length);
     for (const event of countdownEvents) {
-      if (event.pair) expect(pairedEvent(event)?.pair).toBe(event.slug);
+      if (!event.pair) continue;
+      // Jeder Verweis zeigt auf einen vorhandenen Anlass in einer anderen Sprache;
+      // TR und EN verweisen gegenseitig aufeinander, DE verweist auf EN.
+      const pair = pairedEvent(event);
+      expect(pair).not.toBeNull();
+      if (event.lang !== "de" && pair!.lang !== "de") expect(pair!.pair).toBe(event.slug);
     }
   });
 });

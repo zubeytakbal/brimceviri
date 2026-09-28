@@ -33,14 +33,14 @@ export default function CountdownDisplay({
 }: {
   targets: CountdownTarget[];
   zone: "istanbul" | "local";
-  lang: "tr" | "en";
+  lang: "tr" | "en" | "de";
   title: string;
   copy: CountdownCopy;
   compact?: boolean;
 }) {
   const now = useSecondNow();
   const current = now ? targets.find((t) => targetMs(t, zone) + (t.hour === undefined ? 86400000 : 60000) > now.getTime()) ?? null : targets[0] ?? null;
-  const locale = lang === "tr" ? "tr-TR" : "en-US";
+  const locale = lang === "tr" ? "tr-TR" : lang === "de" ? "de-DE" : "en-US";
 
   if (!current) return null;
   const target = targetMs(current, zone);

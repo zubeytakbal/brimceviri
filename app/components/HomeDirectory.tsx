@@ -101,6 +101,7 @@ const timeToolsHome = {
     { href: "/de/timer", title: "Timer", description: "Countdown mit Signalton, Schnellauswahl von 10 Sekunden bis 24 Stunden.", icon: "time" as const },
     { href: "/de/wecker", title: "Wecker", description: "Online-Wecker mit Ton, Schlummerfunktion und Wiederholung werktags.", icon: "time" as const },
     { href: "/de/stoppuhr", title: "Stoppuhr", description: "Stoppuhr mit Hundertsteln und Rundenzeiten, Export als CSV.", icon: "time" as const },
+    { href: "/de/countdown", title: "Countdown", description: "Wie viele Tage bis Weihnachten, Ostern, Silvester oder Oktoberfest?", icon: "time" as const },
     { href: "/de/eieruhr", title: "Eieruhr", description: "Eier weich, wachsweich oder hart – Kochzeit nach Eigröße.", icon: "time" as const },
     { href: "/de/kalenderwoche", title: "Aktuelle Kalenderwoche", description: "Welche KW haben wir? KW für jedes Datum und alle Wochen des Jahres.", icon: "attendanceCalculator" as const },
     { href: "/de/feiertage", title: "Feiertage", description: "Gesetzliche Feiertage aller 16 Bundesländer mit Brückentagen.", icon: "attendanceCalculator" as const },

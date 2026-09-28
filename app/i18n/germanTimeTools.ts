@@ -96,6 +96,7 @@ export const germanTimeToolLinks = [
   { href: "/de/eieruhr", label: "Eieruhr" },
   { href: "/de/stoppuhr", label: "Stoppuhr" },
   { href: "/de/wecker", label: "Wecker" },
+  { href: "/de/countdown", label: "Countdown" },
   { href: "/de/weltuhr", label: "Weltuhr" },
   { href: "/de/zeitzonenrechner", label: "Zeitzonenrechner" },
   { href: "/de/schlafrechner", label: "Schlafrechner" },

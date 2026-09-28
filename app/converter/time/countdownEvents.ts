@@ -2,12 +2,14 @@
 // (Gregoryen hesap) ve Diyanet'in ilan ettigi dini gunler (yalnizca dogrulanmis yillar).
 
 export type DateParts = { year: number; month: number; day: number; estimated?: boolean };
-export type CountdownLang = "tr" | "en";
+export type CountdownLang = "tr" | "en" | "de";
 
 type Rule =
   | { kind: "fixed"; month: number; day: number }
   | { kind: "nth-weekday"; month: number; weekday: number; nth: number; offsetDays?: number }
   | { kind: "easter"; offsetDays?: number }
+  /** Sonntag vor einem Datum, n Wochen zurück (1. Advent: 4 Sonntage vor dem 25. Dezember). */
+  | { kind: "sunday-before"; month: number; day: number; weeksBack: number }
   /** Hicri takvim gunu: Diyanet'in ilan ettigi yillar "verified"; digerleri Umm al-Qura ile tahmin. */
   | { kind: "hijri"; hijriMonth: number; hijriDay: number; verified: DateParts[] };
 
@@ -18,9 +20,11 @@ export type CountdownEvent = {
   /** Diger dildeki karsiligi (hreflang). */
   pair?: string;
   name: string;
+  /** Deutsch: Wendung nach „bis“, z. B. „zum 1. Advent“ (sonst der Name). */
+  untilDe?: string;
   question: string;
   rule: Rule;
-  /** TR etkinlikleri Turkiye saatiyle (UTC+3), EN etkinlikleri ziyaretcinin yerel saatiyle. */
+  /** TR etkinlikleri Turkiye saatiyle (UTC+3), EN ve DE etkinlikleri ziyaretcinin yerel saatiyle. */
   zone: "istanbul" | "local";
   holiday: string;
   about: string;
@@ -336,6 +340,196 @@ export const countdownEvents: CountdownEvent[] = [
     holiday: "Yes. Christmas Day (December 25) is a US federal holiday and a public holiday in most Western countries.",
     about: "Christmas is celebrated on December 25 in the Gregorian calendar. (Orthodox churches using the Julian calendar celebrate on January 7.)",
   },
+  // Deutsche Anlässe (Deutschland, Österreich, Schweiz). Zeitzone: Ortszeit der Besucher.
+  {
+    id: "de-weihnachten",
+    lang: "de",
+    slug: "weihnachten",
+    pair: "christmas",
+    name: "Heiligabend",
+    question: "Wie viele Tage bis Weihnachten?",
+    rule: { kind: "fixed", month: 12, day: 24 },
+    zone: "local",
+    holiday: "Heiligabend (24. Dezember) ist kein gesetzlicher Feiertag, viele Geschäfte schließen aber mittags. Gesetzliche Feiertage sind der 1. und 2. Weihnachtstag (25. und 26. Dezember).",
+    about: "In Deutschland, Österreich und der Schweiz wird Weihnachten am Abend des 24. Dezember gefeiert, mit Bescherung am Heiligabend. Der Countdown zählt deshalb bis zum 24. Dezember.",
+  },
+  {
+    id: "de-silvester",
+    lang: "de",
+    slug: "silvester",
+    name: "Silvester",
+    question: "Wie viele Tage bis Silvester?",
+    rule: { kind: "fixed", month: 12, day: 31 },
+    zone: "local",
+    holiday: "Silvester ist kein gesetzlicher Feiertag. Der folgende Neujahrstag ist bundesweit Feiertag.",
+    about: "Silvester ist der letzte Tag des Jahres, benannt nach Papst Silvester I., dessen Gedenktag der 31. Dezember ist. Um Mitternacht wird das neue Jahr mit Feuerwerk begrüßt.",
+  },
+  {
+    id: "de-neujahr",
+    lang: "de",
+    slug: "neujahr",
+    pair: "new-year",
+    name: "Neujahr",
+    question: "Wie viele Tage bis Neujahr?",
+    rule: { kind: "fixed", month: 1, day: 1 },
+    zone: "local",
+    holiday: "Ja. Neujahr (1. Januar) ist in ganz Deutschland, Österreich und der Schweiz gesetzlicher Feiertag.",
+    about: "Neujahr ist der erste Tag des Jahres im gregorianischen Kalender. Der Countdown läuft bis Mitternacht in der Nacht von Silvester auf Neujahr.",
+  },
+  {
+    id: "de-valentinstag",
+    lang: "de",
+    slug: "valentinstag",
+    pair: "valentines-day",
+    name: "Valentinstag",
+    question: "Wie viele Tage bis Valentinstag?",
+    rule: { kind: "fixed", month: 2, day: 14 },
+    zone: "local",
+    holiday: "Nein, der Valentinstag ist kein Feiertag.",
+    about: "Der Valentinstag am 14. Februar geht auf den heiligen Valentin zurück. In Deutschland ist er vor allem seit der Nachkriegszeit als Tag der Liebenden mit Blumen und Karten verbreitet.",
+  },
+  {
+    id: "de-rosenmontag",
+    lang: "de",
+    slug: "rosenmontag",
+    name: "Rosenmontag",
+    question: "Wie viele Tage bis Rosenmontag?",
+    rule: { kind: "easter", offsetDays: -48 },
+    zone: "local",
+    holiday: "Rosenmontag ist kein gesetzlicher Feiertag. In Karnevalshochburgen wie Köln, Düsseldorf und Mainz haben aber viele Betriebe, Schulen und Behörden geschlossen.",
+    about: "Rosenmontag liegt 48 Tage vor Ostersonntag und ist der Höhepunkt des rheinischen Karnevals mit den großen Umzügen. Die Straßenkarnevalstage beginnen am Donnerstag davor (Weiberfastnacht) und enden am Aschermittwoch.",
+  },
+  {
+    id: "de-ostern",
+    lang: "de",
+    slug: "ostern",
+    pair: "easter",
+    name: "Ostern",
+    question: "Wie viele Tage bis Ostern?",
+    rule: { kind: "easter" },
+    zone: "local",
+    holiday: "Karfreitag und Ostermontag sind bundesweit gesetzliche Feiertage. Der Ostersonntag ist als Sonntag ohnehin arbeitsfrei; ausdrücklich gesetzlicher Feiertag ist er nur in Brandenburg.",
+    about: "Ostern fällt auf den ersten Sonntag nach dem ersten Frühlingsvollmond und liegt deshalb zwischen dem 22. März und dem 25. April. Das Datum wird mit der gaußschen Osterformel berechnet.",
+  },
+  {
+    id: "de-muttertag",
+    lang: "de",
+    slug: "muttertag",
+    pair: "mothers-day",
+    name: "Muttertag",
+    question: "Wie viele Tage bis Muttertag?",
+    rule: { kind: "nth-weekday", month: 5, weekday: 0, nth: 2 },
+    zone: "local",
+    holiday: "Nein. Der Muttertag fällt immer auf einen Sonntag und ist kein Feiertag.",
+    about: "In Deutschland, Österreich und der Schweiz ist Muttertag am zweiten Sonntag im Mai, also zwischen dem 8. und 14. Mai.",
+  },
+  {
+    id: "de-vatertag",
+    lang: "de",
+    slug: "vatertag",
+    untilDe: "zum Vatertag",
+    name: "Vatertag (Christi Himmelfahrt)",
+    question: "Wie viele Tage bis Vatertag?",
+    rule: { kind: "easter", offsetDays: 39 },
+    zone: "local",
+    holiday: "Ja. Der Vatertag fällt in Deutschland auf Christi Himmelfahrt, einen bundesweiten gesetzlichen Feiertag.",
+    about: "Christi Himmelfahrt liegt 39 Tage nach Ostersonntag und ist immer ein Donnerstag; viele nehmen den Freitag danach als Brückentag. In Österreich ist Vatertag dagegen am zweiten Sonntag im Juni.",
+  },
+  {
+    id: "de-pfingsten",
+    lang: "de",
+    slug: "pfingsten",
+    name: "Pfingsten",
+    question: "Wie viele Tage bis Pfingsten?",
+    rule: { kind: "easter", offsetDays: 49 },
+    zone: "local",
+    holiday: "Pfingstmontag ist bundesweit gesetzlicher Feiertag. Pfingstsonntag ist nur in Brandenburg ausdrücklich gesetzlicher Feiertag.",
+    about: "Pfingsten wird 49 Tage nach Ostersonntag gefeiert, also am siebten Sonntag nach Ostern, und liegt zwischen dem 10. Mai und dem 13. Juni.",
+  },
+  {
+    id: "de-oktoberfest",
+    lang: "de",
+    slug: "oktoberfest",
+    untilDe: "zum Oktoberfest",
+    name: "Oktoberfest (Wiesn-Anstich)",
+    question: "Wie viele Tage bis zum Oktoberfest?",
+    rule: { kind: "nth-weekday", month: 10, weekday: 0, nth: 1, offsetDays: -15 },
+    zone: "local",
+    holiday: "Nein, das Oktoberfest ist kein Feiertag. Der Tag der Deutschen Einheit (3. Oktober) fällt aber in die Wiesn-Zeit.",
+    about: "Die Wiesn in München beginnt an einem Samstag im September mit dem Anstich um 12 Uhr und endet am ersten Sonntag im Oktober – oder am 3. Oktober, wenn dieser später liegt. Sie dauert 16 bis 18 Tage.",
+    source: "Landeshauptstadt München, oktoberfest.de",
+  },
+  {
+    id: "de-tag-der-deutschen-einheit",
+    lang: "de",
+    slug: "tag-der-deutschen-einheit",
+    untilDe: "zum Tag der Deutschen Einheit",
+    name: "Tag der Deutschen Einheit",
+    question: "Wie viele Tage bis zum Tag der Deutschen Einheit?",
+    rule: { kind: "fixed", month: 10, day: 3 },
+    zone: "local",
+    holiday: "Ja. Der 3. Oktober ist der einzige durch Bundesrecht festgelegte gesetzliche Feiertag und gilt in ganz Deutschland.",
+    about: "Am 3. Oktober 1990 trat die DDR der Bundesrepublik bei. Der Tag der Deutschen Einheit ist seitdem Nationalfeiertag.",
+  },
+  {
+    id: "de-halloween",
+    lang: "de",
+    slug: "halloween",
+    pair: "halloween",
+    name: "Halloween",
+    question: "Wie viele Tage bis Halloween?",
+    rule: { kind: "fixed", month: 10, day: 31 },
+    zone: "local",
+    holiday: "Halloween ist kein Feiertag. Am selben Tag ist aber Reformationstag, gesetzlicher Feiertag in Brandenburg, Bremen, Hamburg, Mecklenburg-Vorpommern, Niedersachsen, Sachsen, Sachsen-Anhalt, Schleswig-Holstein und Thüringen.",
+    about: "Halloween am 31. Oktober, dem Abend vor Allerheiligen, ist in Deutschland seit den 1990er-Jahren verbreitet – mit Kostümen, Kürbissen und „Süßes oder Saures“.",
+  },
+  {
+    id: "de-martinstag",
+    lang: "de",
+    slug: "martinstag",
+    untilDe: "Sankt Martin",
+    name: "Martinstag (St. Martin)",
+    question: "Wie viele Tage bis Sankt Martin?",
+    rule: { kind: "fixed", month: 11, day: 11 },
+    zone: "local",
+    holiday: "Nein, der Martinstag ist kein gesetzlicher Feiertag. Im Burgenland ist der heilige Martin Landespatron.",
+    about: "Am 11. November ziehen Kinder mit Laternen durch die Straßen, oft angeführt von einem Reiter als St. Martin. Um 11:11 Uhr beginnt am selben Tag im Rheinland die Karnevalssession.",
+  },
+  {
+    id: "de-black-friday",
+    lang: "de",
+    slug: "black-friday",
+    pair: "black-friday",
+    name: "Black Friday",
+    question: "Wie viele Tage bis Black Friday?",
+    rule: { kind: "nth-weekday", month: 11, weekday: 4, nth: 4, offsetDays: 1 },
+    zone: "local",
+    holiday: "Nein, Black Friday ist kein Feiertag.",
+    about: "Black Friday ist der Freitag nach dem US-amerikanischen Thanksgiving (vierter Donnerstag im November). Auch in Deutschland gibt es an diesem Tag und in der „Black Week“ viele Rabattaktionen.",
+  },
+  {
+    id: "de-erster-advent",
+    lang: "de",
+    slug: "erster-advent",
+    untilDe: "zum 1. Advent",
+    name: "1. Advent",
+    question: "Wie viele Tage bis zum 1. Advent?",
+    rule: { kind: "sunday-before", month: 12, day: 25, weeksBack: 4 },
+    zone: "local",
+    holiday: "Nein. Die Adventssonntage sind Sonntage, aber keine eigenen Feiertage.",
+    about: "Der 1. Advent ist der vierte Sonntag vor Weihnachten und liegt zwischen dem 27. November und dem 3. Dezember. Mit ihm beginnt das Kirchenjahr; am Adventskranz wird die erste Kerze angezündet.",
+  },
+  {
+    id: "de-nikolaus",
+    lang: "de",
+    slug: "nikolaus",
+    name: "Nikolaus",
+    question: "Wie viele Tage bis Nikolaus?",
+    rule: { kind: "fixed", month: 12, day: 6 },
+    zone: "local",
+    holiday: "Nein, der Nikolaustag ist kein Feiertag.",
+    about: "Am 6. Dezember wird des heiligen Nikolaus von Myra gedacht. Kinder stellen am Vorabend Stiefel vor die Tür, die über Nacht mit Süßigkeiten gefüllt werden.",
+  },
 ];
 
 function addDays(parts: DateParts, days: number): DateParts {
@@ -377,6 +571,11 @@ export function occurrenceInYear(event: CountdownEvent, year: number): DateParts
       return addDays(nthWeekday(year, rule.month, rule.weekday, rule.nth), rule.offsetDays ?? 0);
     case "easter":
       return addDays(easterSunday(year), rule.offsetDays ?? 0);
+    case "sunday-before": {
+      const anchor = new Date(Date.UTC(year, rule.month - 1, rule.day));
+      const back = anchor.getUTCDay() || 7;
+      return addDays({ year, month: rule.month, day: rule.day }, -back - (rule.weeksBack - 1) * 7);
+    }
     case "hijri":
       return rule.verified.find((d) => d.year === year) ?? hijriEstimate(year, rule.hijriMonth, rule.hijriDay);
   }
@@ -421,7 +620,27 @@ export function findCountdownEvent(lang: CountdownLang, slug: string) {
 }
 
 export function countdownPath(event: CountdownEvent) {
-  return event.lang === "tr" ? `/geri-sayim/${event.slug}` : `/en/countdown/${event.slug}`;
+  return event.lang === "tr" ? `/geri-sayim/${event.slug}` : event.lang === "de" ? `/de/countdown/${event.slug}` : `/en/countdown/${event.slug}`;
+}
+
+/** Alle Sprachfassungen eines Anlasses (über die pair-Verweise verbunden) als Pfade für hreflang. */
+export function countdownAlternatePaths(event: CountdownEvent): Partial<Record<CountdownLang, string>> {
+  const group = new Set<CountdownEvent>([event]);
+  let grew = true;
+  while (grew) {
+    grew = false;
+    for (const other of countdownEvents) {
+      if (group.has(other)) continue;
+      const linked = [...group].some(
+        (member) => member.lang !== other.lang && ((member.pair && member.pair === other.slug) || (other.pair && other.pair === member.slug)),
+      );
+      if (linked && ![...group].some((member) => member.lang === other.lang)) {
+        group.add(other);
+        grew = true;
+      }
+    }
+  }
+  return Object.fromEntries([...group].map((member) => [member.lang, countdownPath(member)]));
 }
 
 export function pairedEvent(event: CountdownEvent) {

@@ -1,12 +1,27 @@
 import type { CountdownCopy } from "./CountdownDisplay";
 import type { CustomCountdownCopy } from "./CustomCountdown";
 
-export const countdownCopy: Record<"tr" | "en", CountdownCopy> = {
+export const countdownCopy: Record<"tr" | "en" | "de", CountdownCopy> = {
+  de: { days: "Tage", hours: "Stunden", minutes: "Minuten", seconds: "Sekunden", today: "Heute ist es so weit!", until: "Ziel" },
   tr: { days: "gün", hours: "saat", minutes: "dakika", seconds: "saniye", today: "Bugün!", until: "Hedef" },
   en: { days: "days", hours: "hours", minutes: "minutes", seconds: "seconds", today: "It's today!", until: "Target" },
 };
 
-export const customCountdownCopy: Record<"tr" | "en", CustomCountdownCopy> = {
+export const customCountdownCopy: Record<"tr" | "en" | "de", CustomCountdownCopy> = {
+  de: {
+    ...countdownCopy.de,
+    heading: "Eigenen Countdown erstellen",
+    titleLabel: "Titel",
+    titlePlaceholder: "z. B. Geburtstag, Abiprüfung, Urlaub",
+    dateLabel: "Datum",
+    timeLabel: "Uhrzeit",
+    add: "Countdown starten",
+    share: "Link zum Teilen kopieren",
+    copied: "Kopiert ✓",
+    remove: "Löschen",
+    empty: "Noch kein eigener Countdown. Datum wählen und starten – er wird in diesem Browser gespeichert.",
+    shared: "Ein mit Ihnen geteilter Countdown:",
+  },
   tr: {
     ...countdownCopy.tr,
     heading: "Kendi geri sayımını oluştur",

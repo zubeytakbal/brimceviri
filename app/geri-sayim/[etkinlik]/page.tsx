@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { seoTitle } from "../../seoTitle";
 import { notFound } from "next/navigation";
 import CountdownEventPage, { eventSummary, formatEventDate } from "../../components/countdown/CountdownEventPage";
 import { countdownEvents, countdownPath, findCountdownEvent, pairedEvent } from "../../converter/time/countdownEvents";
@@ -27,7 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ etkinlik:
   const pair = pairedEvent(event);
   const paths = pair ? { [event.lang]: path, [pair.lang]: countdownPath(pair) } : { [event.lang]: path };
   return {
-    title,
+    title: seoTitle(title, `${event.question} (${year})`, event.question),
     description,
     alternates: { canonical: path, ...buildLanguageAlternates(paths, "tr") },
     openGraph: { title, description, url: buildSiteUrl(path), siteName: "BirimCeviri.app", locale: event.lang === "tr" ? "tr_TR" : "en_US", type: "website" },

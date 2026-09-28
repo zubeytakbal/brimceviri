@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { seoTitle } from "../../../seoTitle";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
 import MaterialDensityConverter from "../../../components/MaterialDensityConverter";
@@ -61,7 +62,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const description = `${nameDe} Dichte: ${formatDensity(material.densityKgM3)} kg/m³. Dichte in g/cm³, kg/L und weitere Einheiten umrechnen, alle bekannten technischen Eigenschaften ansehen.`;
 
   return {
-    title,
+    title: seoTitle(title, `${nameDe}: Dichte und Eigenschaften`, `${nameDe.match(/\(([^)]+)\)\s*$/)?.[1] ?? nameDe}: Dichte und Eigenschaften`),
     description,
     alternates: {
       canonical: `/de/werkstoffeigenschaften/${slug}`,

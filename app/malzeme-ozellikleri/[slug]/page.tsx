@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { seoTitle } from "../../seoTitle";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
 import MaterialDensityConverter from "../../components/MaterialDensityConverter";
@@ -65,7 +66,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const description = `${material.nameTr} yoğunluğu ${formatDensity(material.densityKgM3)} kg/m³. Yoğunluğu g/cm³, kg/L ve diğer birimlere çevir, bilinen tüm mühendislik özelliklerini gör.`;
 
   return {
-    title,
+    title: seoTitle(title, `${material.nameTr} Yoğunluğu ve Özellikleri`, `${material.nameTr.match(/\(([^)]+)\)\s*$/)?.[1] ?? material.nameTr} Yoğunluğu ve Özellikleri`),
     description,
     alternates: {
       canonical: `/malzeme-ozellikleri/${slug}`,

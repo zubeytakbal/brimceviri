@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { seoTitle } from "../../seoTitle";
 import { notFound } from "next/navigation";
 import Link from "@/app/components/SiteLink";
 import TurkeyMap, { scaleColor } from "../../components/geo/TurkeyMap";
@@ -25,7 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<{ il: strin
   const description = `${trAblative(p.name)} Türkiye'nin 80 iline karayolu ve kuş uçuşu mesafe, tahmini yol süresi ve mesafe haritası. En yakın il ${rows[0].province.name} (${rows[0].road.toLocaleString("tr-TR")} km), en uzak il ${rows[rows.length - 1].province.name} (${rows[rows.length - 1].road.toLocaleString("tr-TR")} km).`;
   const path = `/iller-arasi-mesafe/${p.id}`;
   return {
-    title,
+    title: seoTitle(title, `${trAblative(p.name)} İllere Mesafe (Karayolu ve Kuş Uçuşu)`, `${trAblative(p.name)} 80 İle Mesafe (km)`),
     description,
     alternates: { canonical: path },
     openGraph: { title, description, url: buildSiteUrl(path), siteName: "BirimCeviri.app", locale: "tr_TR", type: "website" },

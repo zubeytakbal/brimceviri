@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { seoTitle } from "../../seoTitle";
 import { appManifestPath, findInstallableApp } from "../../converter/time/installableApps";
 import { notFound } from "next/navigation";
 import CityTimePage, { cityPageDescription, cityPageTitle } from "../../components/world/CityTimePage";
@@ -21,7 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ sehir: st
   const title = cityPageTitle(city, "tr");
   const description = cityPageDescription(city, "tr", new Date());
   return {
-    title,
+    title: seoTitle(title, `${city.nameTr} Saat Kaç? Canlı Saat`),
     description,
     manifest: appManifestPath("dunya-saatleri"),
     appleWebApp: { capable: true, title: findInstallableApp("dunya-saatleri")!.shortName },

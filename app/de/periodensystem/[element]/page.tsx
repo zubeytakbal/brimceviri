@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { seoTitle } from "../../../seoTitle";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
 import ElementLewisDiagram from "../../../components/ElementLewisDiagram";
@@ -53,7 +54,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const description = `Das Symbol von ${nameDe} ist ${element.symbol}, die Ordnungszahl ${element.atomicNumber}, die Atommasse ${formatMass(element.atomicMass)} u. Definition, Eigenschaften und Stoffmengenrechner.`;
 
   return {
-    title,
+    title: seoTitle(title, `${nameDe} (${element.symbol}): Ordnungszahl und Atommasse`, `${nameDe} (${element.symbol}): Eigenschaften`),
     description,
     robots: { index: Boolean(article), follow: true },
     alternates: {

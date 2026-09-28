@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { seoTitle } from "../../../seoTitle";
 import { notFound } from "next/navigation";
 import Link from "@/app/components/SiteLink";
 import ProvinceDistanceCalculator from "../../../components/geo/ProvinceDistanceCalculator";
@@ -32,7 +33,7 @@ export async function generateMetadata({ params }: { params: Promise<{ il: strin
   )}; yakıt tüketimi ve maliyet hesabı, harita.`;
   const path = `/iller-arasi-mesafe/${from.id}/${to.id}`;
   return {
-    title,
+    title: seoTitle(title, `${from.name} ${to.name} Arası Kaç Km? (${road.toLocaleString("tr-TR")} km)`, `${from.name} ${to.name} Arası Kaç Km?`),
     description,
     alternates: { canonical: path },
     openGraph: { title, description, url: buildSiteUrl(path), siteName: "BirimCeviri.app", locale: "tr_TR", type: "website" },

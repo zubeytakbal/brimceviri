@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { seoTitle } from "../../seoTitle";
 import { notFound } from "next/navigation";
 import Link from "@/app/components/SiteLink";
 import WorldMap from "../../components/geo/WorldMap";
@@ -38,7 +39,7 @@ export async function generateMetadata({ params }: { params: Promise<{ ulke: str
   const description = `${trGenitive(c.nameTr)} başkenti ${c.capital}, yüzölçümü ${c.area.toLocaleString("tr-TR")} km². Türkiye ile saat farkı, Ankara'ya uzaklık, para birimi, telefon kodu, komşuları ve konum haritası.`;
   const path = `/ulkeler/${c.id}`;
   return {
-    title,
+    title: seoTitle(title, `${c.nameTr}: Başkenti, Saat Farkı ve Haritası`, `${c.nameTr}: Başkenti ve Haritası`),
     description,
     alternates: { canonical: path, ...buildLanguageAlternates({ tr: path, en: countryPathEn(c) }, "tr") },
     openGraph: { title, description, url: buildSiteUrl(path), siteName: "BirimCeviri.app", locale: "tr_TR", type: "website" },

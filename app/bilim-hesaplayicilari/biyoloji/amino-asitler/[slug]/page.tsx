@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { seoTitle } from "../../../../seoTitle";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
 import PeptideMolarMassCalculator from "../../../../components/PeptideMolarMassCalculator";
@@ -38,7 +39,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const description = `${aminoAcid.nameTr} (${aminoAcid.formula}) molar kütlesi ${formatMolarMass(aminoAcid.molarMass)} g/mol. ${aminoAcid.essential ? "Esansiyel bir amino asittir" : "Esansiyel olmayan bir amino asittir"}, atomik kompozisyonunu gör.`;
 
   return {
-    title,
+    title: seoTitle(title, `${aminoAcid.nameTr} Nedir? Formülü ve Molar Kütlesi`, `${aminoAcid.nameTr}: Formülü ve Molar Kütlesi`),
     description,
     alternates: { canonical: `/bilim-hesaplayicilari/biyoloji/amino-asitler/${slug}` },
     openGraph: {

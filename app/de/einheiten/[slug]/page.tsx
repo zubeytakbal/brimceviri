@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { seoTitle } from "../../../seoTitle";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
 import PairConverter from "../../../converter/PairConverter";
@@ -60,7 +61,7 @@ export async function generateMetadata({
     `Was ist ${unitPage.name.toLowerCase()}? Lesen Sie Definition, Symbol und passende Umrechnungen auf Deutsch.`;
 
   return {
-    title,
+    title: seoTitle(title, `${unitPage.name}: Definition`),
     description,
     alternates: {
       canonical: `/de/einheiten/${unitPage.slug}`,

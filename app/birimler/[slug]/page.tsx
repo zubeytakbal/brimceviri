@@ -24,6 +24,7 @@ import {
 } from "../../converter/unitGuideExtras";
 import { buildFullLanguageAlternates } from "../../i18n/routing";
 import { unitPages } from "../../converter/unitPages";
+import { seoTitle } from "../../seoTitle";
 import { SITE_URL, buildSiteUrl } from "../../siteConfig";
 
 type PageProps = {
@@ -77,9 +78,11 @@ export async function generateMetadata({
   }
 
   return {
-    title:
-      `${unitPage.name} Nedir? Tanımı, Tarihçesi ve ` +
-      `Bilimsel Bilgiler`,
+    title: seoTitle(
+      `${unitPage.name} Nedir? Tanımı, Tarihçesi ve Bilimsel Bilgiler`,
+      `${unitPage.name} Nedir? Tanımı ve Dönüşümleri`,
+      `${unitPage.name} Nedir?`
+    ),
     description:
       `${unitPage.name} biriminin sembolü ${unitPage.symbol}'dir. ` +
       `Tanımını, tarihçesini, bilimsel açıklamasını ve diğer birimlere ` +

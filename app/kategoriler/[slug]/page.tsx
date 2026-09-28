@@ -26,6 +26,7 @@ import {
 } from "../../converter/pressureSectorUsage";
 import { getUnitSources } from "../../converter/unitSources";
 import { unitPages } from "../../converter/unitPages";
+import { seoTitle } from "../../seoTitle";
 import { buildSiteUrl } from "../../siteConfig";
 
 type PageProps = {
@@ -80,7 +81,11 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${categoryPage.title}: Birimler, Tablolar ve Hesaplamalar`,
+    title: seoTitle(
+      `${categoryPage.title}: Birimler, Tablolar ve Hesaplamalar`,
+      `${categoryPage.title}: Birimler ve Tablolar`,
+      categoryPage.title
+    ),
     description: categoryPage.description,
     alternates: {
       canonical: `/kategoriler/${categoryPage.slug}`,

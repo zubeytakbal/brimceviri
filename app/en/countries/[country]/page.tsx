@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { seoTitle } from "../../../seoTitle";
 import { notFound } from "next/navigation";
 import Link from "@/app/components/SiteLink";
 import WorldMap from "../../../components/geo/WorldMap";
@@ -58,7 +59,7 @@ export async function generateMetadata({ params }: { params: Promise<{ country: 
   const description = `The capital of ${withThe(c.nameEn)} is ${e.capital}. Area ${num(c.area)} km² (${sqmi(c.area)} sq mi), ${utcOffsetText(utcOffsetOf(c, new Date()))}, currency, languages, calling code, neighbors and a location map.`;
   const path = countryPathEn(c);
   return {
-    title,
+    title: seoTitle(title, `${c.nameEn}: Capital, Time Zone and Map`, `${c.nameEn}: Capital and Map`),
     description,
     alternates: { canonical: path, ...buildLanguageAlternates({ tr: `/ulkeler/${c.id}`, en: path }, "tr") },
     openGraph: { title, description, url: buildSiteUrl(path), siteName: "BirimCeviri.app", locale: "en_US", type: "website" },

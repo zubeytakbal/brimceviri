@@ -71,7 +71,7 @@ export function unitConversionTable(unitPage: UnitPage, limit = 14): UnitTableRo
   return rows
     .sort((a, b) => Number(b.direct) - Number(a.direct) || a.order - b.order)
     .slice(0, limit)
-    .map(({ direct: _direct, order: _order, ...row }) => row);
+    .map((row) => ({ name: row.name, symbol: row.symbol, value: row.value, text: row.text, href: row.href }));
 }
 
 const COMMON_AMOUNTS = [0.5, 1, 2, 5, 10, 20, 50, 100, 1000];

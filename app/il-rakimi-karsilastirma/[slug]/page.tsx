@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { seoTitle } from "../../seoTitle";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
 import ProvinceComparisonTool from "../../components/ProvinceComparisonTool";
@@ -41,7 +42,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const description = `${result.provinceA.nameTr} ile ${result.provinceB.nameTr} arasındaki rakım farkı, hava basıncı ve kaynama noktası karşılaştırması.`;
 
   return {
-    title,
+    title: seoTitle(title, `${result.provinceA.nameTr} - ${result.provinceB.nameTr} Rakımı`),
     description,
     alternates: { canonical: `/il-rakimi-karsilastirma/${slug}` },
     openGraph: {

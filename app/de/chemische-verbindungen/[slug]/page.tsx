@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { seoTitle } from "../../../seoTitle";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
 import CompoundMolCalculator from "../../../components/CompoundMolCalculator";
@@ -49,7 +50,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const editorial = findCompoundEditorial(compound.id);
 
   return {
-    title,
+    title: seoTitle(title, `${nameDe} (${compound.formula}) Molare Masse`, `${compound.formula} Molare Masse`),
     description,
     robots: { index: Boolean(editorial), follow: true },
     alternates: {

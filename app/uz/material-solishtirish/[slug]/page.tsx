@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { seoTitle } from "../../../seoTitle";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
 import { buildFaqSchema, type FaqItem } from "../../../converter/faqSchema";
@@ -64,7 +65,7 @@ export async function generateMetadata({
   )} marta zichroq. Batafsil solishtirish va muhandislik xususiyatlari.`;
 
   return {
-    title,
+    title: seoTitle(title, `${firstName} yoki ${secondName}: Qaysi Biri Og'irroq?`, `${firstName.match(/\(([^)]+)\)\s*$/)?.[1] ?? firstName} yoki ${secondName.match(/\(([^)]+)\)\s*$/)?.[1] ?? secondName}: Qaysi Biri Og'irroq?`),
     description,
     alternates: {
       canonical: `/uz/material-solishtirish/${slug}`,

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { seoTitle } from "../../../seoTitle";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
 import { buildFaqSchema, type FaqItem } from "../../../converter/faqSchema";
@@ -60,7 +61,7 @@ export async function generateMetadata({
   )}-mal dichter als das andere. Ausführlicher Vergleich mit technischen Eigenschaften.`;
 
   return {
-    title,
+    title: seoTitle(title, `${firstDe} oder ${secondDe}: Was ist schwerer?`, `${firstDe.match(/\(([^)]+)\)\s*$/)?.[1] ?? firstDe} oder ${secondDe.match(/\(([^)]+)\)\s*$/)?.[1] ?? secondDe}: Was ist schwerer?`),
     description,
     alternates: {
       canonical: `/de/werkstoffvergleich/${slug}`,

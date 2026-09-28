@@ -10,6 +10,7 @@ import {
 } from "../../../../converter/compoundsHub";
 import { periodicTable, slugifyElementName } from "../../../../converter/periodicTableData";
 import { findCompoundEditorial } from "../../../../converter/compoundEditorial";
+import { seoTitle } from "../../../../seoTitle";
 import { buildSiteUrl } from "../../../../siteConfig";
 import { trGenitive } from "../../../../converter/turkishSuffix";
 
@@ -43,12 +44,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const title = `${compound.nameTr} (${compound.formula}) Molar Kütlesi ve Mol Hesaplama`;
+  const pageTitle = seoTitle(title, `${compound.nameTr} (${compound.formula}) Molar Kütlesi`, `${compound.formula} Molar Kütlesi`);
   const description = `${compound.nameTr} (${compound.formula}) molar kütlesi ${formatMolarMass(compound.molarMass)} g/mol. Atomik kompozisyonu gör, kendi kütle/mol miktarınla hesaplama yap.`;
 
   const editorial = findCompoundEditorial(compound.id);
 
   return {
-    title,
+    title: pageTitle,
     description,
     robots: { index: Boolean(editorial), follow: true },
     alternates: {

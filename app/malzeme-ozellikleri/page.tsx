@@ -37,7 +37,7 @@ function serializeJsonLd(data: object) {
 }
 
 export const metadata: Metadata = {
-  title: "Malzeme Özellikleri: Yoğunluk, Isıl İletkenlik ve Birim Çevirici",
+  title: "Malzeme Özellikleri: Yoğunluk ve Isıl İletkenlik",
   description:
     "100'den fazla metal, sıvı, plastik, ahşap ve yapı malzemesinin yoğunluğunu ve mühendislik özelliklerini gör, birimler arasında anında çevir.",
   alternates: {
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Malzeme Özellikleri: Yoğunluk, Isıl İletkenlik ve Birim Çevirici",
+    title: "Malzeme Özellikleri: Yoğunluk ve Isıl İletkenlik",
     description: "100'den fazla malzemenin yoğunluğunu ve özelliklerini gör.",
     url: buildSiteUrl("/malzeme-ozellikleri"),
     siteName: "BirimCeviri.app",

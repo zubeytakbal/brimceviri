@@ -24,14 +24,14 @@ const faqItems: FaqItem[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Güneş Paneli Amortisman Hesaplama (Kaç Yılda Kendini Çıkarır?)",
+  title: "Güneş Paneli Amortisman Hesaplama: Kaç Yılda Çıkarır?",
   description:
     "Sistem gücün, bölgen ve elektrik fiyatınla güneş panelinin yıllık ürettiği elektriği, tasarrufu ve kaç yılda kendini çıkardığını hesapla.",
   alternates: {
     canonical: "/gunes-paneli-amortisman-hesaplama",
   },
   openGraph: {
-    title: "Güneş Paneli Amortisman Hesaplama (Kaç Yılda Kendini Çıkarır?)",
+    title: "Güneş Paneli Amortisman Hesaplama: Kaç Yılda Çıkarır?",
     description: "Kendi rakamlarınla güneş panelinin amortisman süresini hesapla.",
     url: buildSiteUrl("/gunes-paneli-amortisman-hesaplama"),
     siteName: "BirimCeviri.app",

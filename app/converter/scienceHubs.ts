@@ -329,7 +329,7 @@ export const scienceHubs: ScienceHub[] = [
     path: "/bilim-hesaplayicilari/biyoloji",
     name: "Biyoloji",
     title: "Biyoloji Hesaplayıcıları",
-    metaTitle: "Biyoloji Hesaplayıcıları: Kodon Tablosu, Amino Asitler, Peptit",
+    metaTitle: "Biyoloji Hesaplayıcıları: Kodon, Amino Asit, Peptit",
     metaDescription:
       "Kodon tablosu ile DNA/RNA dizisini amino asitlere çevirin, 20 amino asidin formül ve molar kütlelerini görün, peptit molar kütlesini hesaplayın.",
     intro:

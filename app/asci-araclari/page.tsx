@@ -27,14 +27,14 @@ const faqItems: FaqItem[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Aşçı Araçları: Mutfak Ölçüleri, Tarif Çevirme, Fırın Sıcaklığı",
+  title: "Aşçı Araçları: Mutfak Ölçüleri, Tarif, Fırın Sıcaklığı",
   description:
     "Aşçı ve ev aşçıları için tek sayfada toplanmış araçlar: mutfak ölçüleri çevirici, tarif ölçekleyici, fırın sıcaklığı dönüşüm tablosu (°C/°F/Gas Mark).",
   alternates: {
     canonical: "/asci-araclari",
   },
   openGraph: {
-    title: "Aşçı Araçları: Mutfak Ölçüleri, Tarif Çevirme, Fırın Sıcaklığı",
+    title: "Aşçı Araçları: Mutfak Ölçüleri, Tarif, Fırın Sıcaklığı",
     description:
       "Mutfak ölçüleri çevirici, tarif ölçekleyici ve fırın sıcaklığı dönüşüm tablosu tek sayfada.",
     url: buildSiteUrl("/asci-araclari"),

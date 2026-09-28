@@ -17,12 +17,12 @@ const faqItems: FaqItem[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Doktor ve Hemşire Araçları: Skorlar, BSA, Laboratuvar Dönüşümleri",
+  title: "Doktor ve Hemşire Araçları: Skorlar, BSA, Laboratuvar",
   description:
     "Doktor, hemşire ve sağlık öğrencileri için tek sayfada toplanmış araçlar: Glasgow Koma Skalası, APGAR, CHA2DS2-VASc, vücut yüzey alanı, kreatinin klirensi, IV damla hızı ve laboratuvar birim dönüşümleri.",
   alternates: { canonical: "/doktor-hemsire-araclari" },
   openGraph: {
-    title: "Doktor ve Hemşire Araçları: Skorlar, BSA, Laboratuvar Dönüşümleri",
+    title: "Doktor ve Hemşire Araçları: Skorlar, BSA, Laboratuvar",
     description: "Klinik skorlar, BSA, kreatinin klirensi, IV damla hızı ve laboratuvar birim dönüşümleri tek sayfada.",
     url: buildSiteUrl("/doktor-hemsire-araclari"),
     siteName: "BirimCeviri.app",

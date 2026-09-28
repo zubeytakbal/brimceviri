@@ -4,7 +4,7 @@ import ElementRankingTable from "../../../components/ElementRankingTable";
 import { buildSiteUrl } from "../../../siteConfig";
 
 export const metadata: Metadata = {
-  title: "En Ağır ve En Hafif Elementler: Sıralanabilir Element Tablosu",
+  title: "En Ağır ve En Hafif Elementler: Sıralı Tablo",
   description:
     "118 elementi atom kütlesine, atom numarasına veya isme göre sırala — en ağır element, en hafif element ve aradaki tüm elementleri tek tabloda gör.",
   alternates: {
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     languages: { de: "/de/elementrangliste" },
   },
   openGraph: {
-    title: "En Ağır ve En Hafif Elementler: Sıralanabilir Element Tablosu",
+    title: "En Ağır ve En Hafif Elementler: Sıralı Tablo",
     description:
       "118 elementi atom kütlesine, atom numarasına veya isme göre sırala.",
     url: buildSiteUrl("/bilim-hesaplayicilari/kimya/element-siralamasi"),

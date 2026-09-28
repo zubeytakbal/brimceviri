@@ -8,7 +8,7 @@ import { buildLanguageAlternates } from "../i18n/routing";
 import { buildSiteUrl } from "../siteConfig";
 
 const path = "/koordinat-donusturucu";
-const title = "Koordinat Dönüştürücü: Derece Dakika Saniye, Ondalık, UTM ve ITRF96";
+const title = "Koordinat Dönüştürücü: Derece Dakika Saniye, UTM, ITRF96";
 const description =
   "Enlem-boylamı derece-dakika-saniye (DMS), ondalık derece ve UTM arasında çevirin; Türkiye tapu ve kadastrosunda kullanılan ITRF96 3 derecelik TM koordinatlarını hesaplayın. Konumumu bul düğmesiyle.";
 

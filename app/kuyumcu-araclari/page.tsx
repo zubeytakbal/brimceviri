@@ -22,14 +22,14 @@ const faqItems: FaqItem[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Kuyumcu Araçları: Ayar, Milyem, Has Hesaplama ve Birim Çevirileri",
+  title: "Kuyumcu Araçları: Ayar, Milyem ve Has Hesaplama",
   description:
     "Kuyumcu ve gümüşçü esnafı için tek sayfada toplanmış araçlar: altın/gümüş ayar dönüşümleri, has hesaplama, troy ons/karat/dirhem çevirileri ve ayar-milyem karşılık tabloları.",
   alternates: {
     canonical: "/kuyumcu-araclari",
   },
   openGraph: {
-    title: "Kuyumcu Araçları: Ayar, Milyem, Has Hesaplama ve Birim Çevirileri",
+    title: "Kuyumcu Araçları: Ayar, Milyem ve Has Hesaplama",
     description:
       "Altın/gümüş ayar dönüşümleri, has hesaplama, troy ons/karat/dirhem çevirileri tek sayfada.",
     url: buildSiteUrl("/kuyumcu-araclari"),

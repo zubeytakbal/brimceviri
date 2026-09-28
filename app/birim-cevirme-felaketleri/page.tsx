@@ -8,7 +8,7 @@ import {
 import { buildSiteUrl } from "../siteConfig";
 
 export const metadata: Metadata = {
-  title: "Birim Çevirme Felaketleri: Yanlış Birim Yüzünden Yaşanan Gerçek Olaylar",
+  title: "Birim Çevirme Felaketleri: Yanlış Birimle Yaşanan Olaylar",
   description:
     "Tek bir birim çevirme hatası yüzünden milyonlarca dolarlık uyduların kaybolduğu, uçakların havada yakıtsız kaldığı gerçek olaylar — doğrulanmış kaynaklarla anlatılıyor.",
   alternates: {
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Birim Çevirme Felaketleri: Yanlış Birim Yüzünden Yaşanan Gerçek Olaylar",
+    title: "Birim Çevirme Felaketleri: Yanlış Birimle Yaşanan Olaylar",
     description:
       "Bir mühendislik ekibi metrik, diğeri imperial kullandığında ne olur? Gerçek, doğrulanmış olaylar.",
     url: buildSiteUrl("/birim-cevirme-felaketleri"),

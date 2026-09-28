@@ -22,12 +22,12 @@ function serializeJsonLd(data: object) {
 }
 
 export const metadata: Metadata = {
-  title: "Amino Asitler: Formülleri, Molar Kütleleri ve Esansiyel Olanlar",
+  title: "Amino Asitler: Formülleri ve Molar Kütleleri",
   description:
     "20 standart amino asidin kimyasal formülünü, molar kütlesini ve esansiyel olup olmadığını gör — her biri için ayrı detay sayfası.",
   alternates: { canonical: "/bilim-hesaplayicilari/biyoloji/amino-asitler" },
   openGraph: {
-    title: "Amino Asitler: Formülleri, Molar Kütleleri ve Esansiyel Olanlar",
+    title: "Amino Asitler: Formülleri ve Molar Kütleleri",
     description: "20 standart amino asidin formülü, molar kütlesi ve esansiyellik durumu.",
     url: buildSiteUrl("/bilim-hesaplayicilari/biyoloji/amino-asitler"),
     siteName: "BirimCeviri.app",

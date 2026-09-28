@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { seoTitle } from "../seoTitle";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
 import AllUnitsPanel from "../components/AllUnitsPanel";
@@ -163,7 +164,7 @@ export async function generateMetadata({
     `Ücretsiz hesaplama aracı, formül ve hazır dönüşüm tablosu için tıklayın.`;
 
   return {
-    title,
+    title: seoTitle(title, `1 ${conversionPage.fromName} Kaç ${conversionPage.toName}?`),
     description,
     alternates: {
       canonical: `/${conversionPage.slug}`,

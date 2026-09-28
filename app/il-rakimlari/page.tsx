@@ -16,7 +16,7 @@ const faqItems: FaqItem[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "İllerin Rakımı: Türkiye'nin 81 İlinin Yüksekliği ve İrtifa Etkisi",
+  title: "İllerin Rakımı: 81 İlin Denizden Yüksekliği",
   description:
     "Türkiye'nin 81 ilinin deniz seviyesinden rakımını, o rakımdaki hava basıncını ve suyun kaç derecede kaynadığını gör.",
   alternates: {

@@ -16,7 +16,7 @@ import { buildSiteUrl } from "../siteConfig";
 export const revalidate = 86400;
 
 const path = "/dunya-haritasi";
-const title = "Dünya Haritası: Ülkeler, Başkentler ve Kıtalar (Tıklanabilir)";
+const title = "Dünya Haritası: Ülkeler, Başkentler ve Kıtalar";
 const description =
   "Tıklanabilir siyasi dünya haritası: 196 ülkenin başkenti, yüzölçümü, Türkiye ile saat farkı ve Ankara'ya uzaklığı. Kıta, yüzölçümü ve saat farkı katmanları.";
 

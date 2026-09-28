@@ -22,14 +22,14 @@ const faqItems: FaqItem[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Elektrikçi Araçları: Kablo Kesiti, Gerilim Düşümü, Amper Hesaplama",
+  title: "Elektrikçi Araçları: Kablo Kesiti, Gerilim Düşümü, Amper",
   description:
     "Elektrikçi ve elektrik mühendisleri için tek sayfada toplanmış araçlar: kablo kesiti, gerilim düşümü, motor akımı, kW-amper hesaplama, Ohm Yasası ve sigorta/kablo renk kodu referans tabloları.",
   alternates: {
     canonical: "/elektrikci-araclari",
   },
   openGraph: {
-    title: "Elektrikçi Araçları: Kablo Kesiti, Gerilim Düşümü, Amper Hesaplama",
+    title: "Elektrikçi Araçları: Kablo Kesiti, Gerilim Düşümü, Amper",
     description:
       "Kablo kesiti, gerilim düşümü, motor akımı, kW-amper hesaplama ve elektrik referans tabloları tek sayfada.",
     url: buildSiteUrl("/elektrikci-araclari"),

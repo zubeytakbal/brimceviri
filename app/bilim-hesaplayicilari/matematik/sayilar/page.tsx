@@ -4,14 +4,14 @@ import { getAllNumberFactsRange } from "../../../converter/numberFacts";
 import { buildSiteUrl } from "../../../siteConfig";
 
 export const metadata: Metadata = {
-  title: "Sayı Özellikleri: Kare, Çarpanlar (Bölenler), Asal mı (1-100)",
+  title: "Sayı Özellikleri: Kare, Bölenler, Asal mı (1-100)",
   description:
     "1'den 100'e kadar her sayının karesini, çarpanlarını (bölenlerini), karekökünü, asal olup olmadığını ve daha fazlasını gör — istediğin sayıyı yazıp anında hesapla.",
   alternates: {
     canonical: "/bilim-hesaplayicilari/matematik/sayilar",
   },
   openGraph: {
-    title: "Sayı Özellikleri: Kare, Çarpanlar (Bölenler), Asal mı (1-100)",
+    title: "Sayı Özellikleri: Kare, Bölenler, Asal mı (1-100)",
     description: "Her sayının kare, karekök, asallık ve bölen bilgilerini gör.",
     url: buildSiteUrl("/bilim-hesaplayicilari/matematik/sayilar"),
     siteName: "BirimCeviri.app",

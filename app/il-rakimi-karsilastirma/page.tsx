@@ -20,7 +20,7 @@ const faqItems: FaqItem[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "İl Rakımı Karşılaştırma: İki Şehri Basınç ve Sağlık Açısından Kıyasla",
+  title: "İl Rakımı Karşılaştırma: İki Şehrin Rakım ve Basıncı",
   description:
     "İki ilin rakımını, hava basıncını ve suyun kaynama noktasını karşılaştır; rakım farkının sağlığa etkisinin belirgin olup olmadığını gör.",
   alternates: {

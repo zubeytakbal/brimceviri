@@ -18,6 +18,7 @@ import { routePairs } from "./converter/geo/routePairs";
 import { turkeyProvinces } from "./converter/geo/turkeyProvinces";
 import { worldCountries } from "./converter/geo/worldCountries";
 import { countryPathEn } from "./converter/geo/worldGeoEn";
+import { GERMAN_STATES } from "./converter/time/germanHolidays";
 import { worldRegionPages } from "./converter/geo/worldRegions";
 import { zonePairs } from "./converter/time/timeZonePairs";
 import { buildLanguageAlternates } from "./i18n/routing";
@@ -3029,6 +3030,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
         alternates: buildLanguageAlternates({ tr: trPath, en: enPath }, "tr"),
       })),
     ),
+    ...["/de/feiertage", ...GERMAN_STATES.map((st) => `/de/feiertage/${st.slug}`)].map((path) => ({
+      url: `${baseUrl}${path}`,
+      lastModified: contentLastModified,
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    })),
     ...[
       ["/resmi-tatiller", ...HOLIDAY_YEARS.map((y) => `/resmi-tatiller/${y}`)],
       ["/en/federal-holidays", ...HOLIDAY_YEARS.map((y) => `/en/federal-holidays/${y}`)],

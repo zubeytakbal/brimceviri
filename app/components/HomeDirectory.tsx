@@ -86,6 +86,13 @@ const timeToolsHome = {
     { href: "/altin-saat", title: "Altın Saat", description: "Fotoğraf için altın saat ve mavi saat; şehir ya da konuma göre.", icon: "solarPanelPaybackCalculator" as const },
     { href: "/uyku-hesaplama", title: "Uyku Hesaplama", description: "90 dakikalık döngülere göre ideal yatış ve kalkış saati.", icon: "sleepCalculator" as const },
   ],
+  de: [
+    { href: "/de/kalenderwoche", title: "Aktuelle Kalenderwoche", description: "Welche KW haben wir? KW für jedes Datum und alle Wochen des Jahres.", icon: "attendanceCalculator" as const },
+    { href: "/de/feiertage", title: "Feiertage", description: "Gesetzliche Feiertage aller 16 Bundesländer mit Brückentagen.", icon: "attendanceCalculator" as const },
+    { href: "/de/arbeitstage-rechner", title: "Arbeitstage-Rechner", description: "Arbeitstage und Werktage zwischen zwei Daten je Bundesland.", icon: "attendanceCalculator" as const },
+    { href: "/de/tagerechner", title: "Tagerechner", description: "Tage zwischen zwei Daten zählen oder Tage zu einem Datum addieren.", icon: "attendanceCalculator" as const },
+    { href: "/de/altersrechner", title: "Altersrechner", description: "Genaues Alter in Jahren, Monaten und Tagen.", icon: "dateCalculator" as const },
+  ],
   en: [
     { href: "/en/online-clock", title: "Online Clock", description: "Live clock with 34 themes — pendulum, cuckoo, flip, neon; ticking and full screen.", icon: "time" as const },
     { href: "/en/alarm-clock", title: "Alarm Clock", description: "Repeating alarms, your own sound, snooze and keep-screen-awake.", icon: "time" as const },
@@ -1948,20 +1955,22 @@ export default function HomeDirectory({
       <RecentToolsWidget locale={locale} />
 
       <div className="directory-shell directory-content">
-        {(locale === "tr" || locale === "en") && (
-          <section className="directory-section" id={locale === "tr" ? "zaman-araclari" : "time-tools"}>
+        {(locale === "tr" || locale === "en" || locale === "de") && (
+          <section className="directory-section" id={locale === "tr" ? "zaman-araclari" : locale === "de" ? "kalender" : "time-tools"}>
             <header className="directory-section-header">
               <div>
-                <h2>{locale === "tr" ? "Zaman araçları" : "Time tools"}</h2>
+                <h2>{locale === "tr" ? "Zaman araçları" : locale === "de" ? "Kalender und Datum" : "Time tools"}</h2>
                 <p>
                   {locale === "tr"
                     ? "Online saat, alarm, zamanlayıcı, dünya saatleri, geri sayım ve takvim araçları — kurulum gerektirmez."
-                    : "Online clock, alarm, timer, world clock, countdowns and calendar tools — nothing to install."}
+                    : locale === "de"
+                      ? "Aktuelle Kalenderwoche, Feiertage aller Bundesländer, Arbeitstage und Tage zwischen zwei Daten."
+                      : "Online clock, alarm, timer, world clock, countdowns and calendar tools — nothing to install."}
                 </p>
               </div>
             </header>
             <div className="directory-tool-grid">
-              {(locale === "tr" ? timeToolsHome.tr : timeToolsHome.en).map((tool) => (
+              {(locale === "tr" ? timeToolsHome.tr : locale === "de" ? timeToolsHome.de : timeToolsHome.en).map((tool) => (
                 <article className="directory-home-card directory-tool-card" key={tool.href}>
                   <Link className="directory-card-stretch" href={tool.href} aria-label={tool.title} />
                   <div className="directory-card-body directory-card-body-icon">

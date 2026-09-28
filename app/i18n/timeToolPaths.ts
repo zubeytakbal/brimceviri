@@ -14,10 +14,10 @@ export const timeToolPaths: Record<TimeToolId, Partial<Record<Locale, string>>> 
   stopwatch: { tr: "/kronometre", en: "/en/stopwatch" },
   pomodoro: { tr: "/pomodoro", en: "/en/pomodoro-timer" },
   interval: { tr: "/tabata-zamanlayici", en: "/en/interval-timer" },
-  dateDiff: { tr: "/iki-tarih-arasi-gun-hesaplama", en: "/en/days-between-dates" },
-  businessDays: { tr: "/is-gunu-hesaplama", en: "/en/business-day-calculator" },
+  dateDiff: { tr: "/iki-tarih-arasi-gun-hesaplama", en: "/en/days-between-dates", de: "/de/tagerechner" },
+  businessDays: { tr: "/is-gunu-hesaplama", en: "/en/business-day-calculator", de: "/de/arbeitstage-rechner" },
   dateAdd: { tr: "/tarihe-gun-ekleme", en: "/en/date-calculator" },
-  weekNumber: { tr: "/kacinci-hafta", en: "/en/week-number" },
+  weekNumber: { tr: "/kacinci-hafta", en: "/en/week-number", de: "/de/kalenderwoche" },
 };
 
 export function timeToolAlternates(tool: TimeToolId) {

@@ -72,6 +72,8 @@ const germanRechnerHome = [
   { href: "/de/prozentrechner", title: "Prozentrechner", description: "Prozentwert, Prozentsatz, Grundwert, Veränderung und Rabatt mit Rechenweg.", icon: "vatCalculator" as const },
   { href: "/de/dreisatz-rechner", title: "Dreisatz-Rechner", description: "Proportionaler und antiproportionaler Dreisatz in drei Schritten.", icon: "mathCalculator" as const },
   { href: "/de/notenrechner", title: "Notenrechner", description: "Notendurchschnitt, IHK-Notenschlüssel, Oberstufenpunkte und Abi-Schnitt.", icon: "gradeCalculator" as const },
+  { href: "/de/pendlerpauschale-rechner", title: "Pendlerpauschale-Rechner", description: "Entfernungs- und Homeoffice-Pauschale 2026 mit geschätzter Steuerersparnis.", icon: "fuelConsumptionCalculator" as const },
+  { href: "/de/urlaubsrechner", title: "Urlaubsrechner", description: "Urlaubsanspruch bei Teilzeit und anteiliger Urlaub bei Jobwechsel.", icon: "attendanceCalculator" as const },
 ];
 
 const timeToolsHome = {
@@ -2003,7 +2005,7 @@ export default function HomeDirectory({
             <header className="directory-section-header">
               <div>
                 <h2>Alltagsrechner</h2>
-                <p>Prozente, Dreisatz und Noten – mit Formel und Rechenweg.</p>
+                <p>Prozente, Dreisatz, Noten, Pendlerpauschale und Urlaubsanspruch – mit Formel und Rechenweg.</p>
               </div>
             </header>
             <div className="directory-tool-grid">

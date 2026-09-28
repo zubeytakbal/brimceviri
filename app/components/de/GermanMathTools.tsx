@@ -185,7 +185,7 @@ export function DreisatzRechner() {
 
   return (
     <div className="date-calc">
-      <div className="date-converter-modes" role="tablist">
+      <div className="date-converter-modes is-light" role="tablist">
         <button type="button" role="tab" aria-selected={mode === "pro"} className={mode === "pro" ? "is-active" : undefined} onClick={() => switchMode("pro")}>
           Proportional
         </button>
@@ -272,7 +272,7 @@ export function Notenrechner() {
 
   return (
     <div className="date-calc">
-      <div className="date-converter-modes" role="tablist">
+      <div className="date-converter-modes is-light" role="tablist">
         {modes.map((m) => (
           <button key={m.id} type="button" role="tab" aria-selected={mode === m.id} className={mode === m.id ? "is-active" : undefined} onClick={() => setMode(m.id)}>
             {m.label}

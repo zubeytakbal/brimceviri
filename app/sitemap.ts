@@ -14,6 +14,7 @@ import { worldCities } from "./converter/time/worldCities";
 import { timerPresetAlternates, timerPresetPath, timerPresets } from "./i18n/timerPresets";
 import { countdownEvents, countdownPath, pairedEvent } from "./converter/time/countdownEvents";
 import { HOLIDAY_YEARS } from "./converter/time/holidays";
+import { routePairs } from "./converter/geo/routePairs";
 import { turkeyProvinces } from "./converter/geo/turkeyProvinces";
 import { worldCountries } from "./converter/geo/worldCountries";
 import { worldRegionPages } from "./converter/geo/worldRegions";
@@ -3044,6 +3045,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       "/iller-arasi-mesafe",
       "/turkiye-il-haritasi",
       ...turkeyProvinces.map((p) => `/iller-arasi-mesafe/${p.id}`),
+      ...routePairs().map((p) => `/iller-arasi-mesafe/${p.from.id}/${p.to.id}`),
       "/dunya-haritasi",
       "/ulkeler",
       ...worldCountries.map((c) => `/ulkeler/${c.id}`),

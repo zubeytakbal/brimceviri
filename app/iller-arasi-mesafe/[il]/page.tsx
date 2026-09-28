@@ -6,6 +6,7 @@ import TimeToolPage from "../../components/time/TimeToolPage";
 import type { FaqItem } from "../../converter/faqSchema";
 import { KGM_DISTANCE_DATE } from "../../converter/geo/kgmDistances";
 import { DEFAULT_AVG_KMH, distancesFrom, driveMinutes, durationText } from "../../converter/geo/provinceDistances";
+import { routePairPath } from "../../converter/geo/routePairs";
 import { findProvince, turkeyProvinces } from "../../converter/geo/turkeyProvinces";
 import { trAblative, trDative, trGenitive, trLocative } from "../../converter/turkishSuffix";
 import { buildSiteUrl } from "../../siteConfig";
@@ -21,7 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ il: strin
   if (!p) return {};
   const rows = distancesFrom(p);
   const title = `${trAblative(p.name)} İllere Mesafe: 80 İl Karayolu ve Kuş Uçuşu (km)`;
-  const description = `${trAblative(p.name)} Türkiye'nin 80 iline karayolu ve kuş uçuşu mesafe, tahmini yol süresi ve mesafe haritası. En yakın il ${rows[0].province.name} (${rows[0].road} km), en uzak il ${rows[rows.length - 1].province.name} (${rows[rows.length - 1].road} km).`;
+  const description = `${trAblative(p.name)} Türkiye'nin 80 iline karayolu ve kuş uçuşu mesafe, tahmini yol süresi ve mesafe haritası. En yakın il ${rows[0].province.name} (${rows[0].road.toLocaleString("tr-TR")} km), en uzak il ${rows[rows.length - 1].province.name} (${rows[rows.length - 1].road.toLocaleString("tr-TR")} km).`;
   const path = `/iller-arasi-mesafe/${p.id}`;
   return {
     title,
@@ -58,13 +59,13 @@ export default async function ProvinceDistancesPage({ params }: { params: Promis
     },
     {
       question: `${trDative(p.name)} en uzak il hangisi?`,
-      answer: `${trDative(p.name)} karayoluyla en uzak il ${farthest[0].province.name}: ${farthest[0].road} km, tahmini ${durationText(
+      answer: `${trDative(p.name)} karayoluyla en uzak il ${farthest[0].province.name}: ${farthest[0].road.toLocaleString("tr-TR")} km, tahmini ${durationText(
         driveMinutes(farthest[0].road, DEFAULT_AVG_KMH)
       )} sürüş.`,
     },
     ...rows.slice(0, 3).map((r) => ({
       question: `${trAblative(p.name)} ${trDative(r.province.name)} kaç km?`,
-      answer: `${p.name} ile ${r.province.name} arası karayoluyla ${r.road} km, kuş uçuşu yaklaşık ${fmt(r.air)} km'dir. ${DEFAULT_AVG_KMH} km/sa ortalamayla yolculuk yaklaşık ${durationText(
+      answer: `${p.name} ile ${r.province.name} arası karayoluyla ${r.road.toLocaleString("tr-TR")} km, kuş uçuşu yaklaşık ${fmt(r.air)} km'dir. ${DEFAULT_AVG_KMH} km/sa ortalamayla yolculuk yaklaşık ${durationText(
         driveMinutes(r.road, DEFAULT_AVG_KMH)
       )} sürer.`,
     })),
@@ -109,7 +110,7 @@ export default async function ProvinceDistancesPage({ params }: { params: Promis
               ariaLabel={`${trAblative(p.name)} illere mesafe haritası`}
               fills={fills}
               hrefFor={(q) => (q.plate === p.plate ? null : `/iller-arasi-mesafe/${q.id}`)}
-              titleFor={(q) => (q.plate === p.plate ? q.name : `${q.name}: ${rows.find((r) => r.province.plate === q.plate)!.road} km`)}
+              titleFor={(q) => (q.plate === p.plate ? q.name : `${q.name}: ${rows.find((r) => r.province.plate === q.plate)!.road.toLocaleString("tr-TR")} km`)}
             />
           </div>
           <p className="tr-map-legend">
@@ -158,7 +159,7 @@ export default async function ProvinceDistancesPage({ params }: { params: Promis
             {rows.map((r) => (
               <tr key={r.province.id}>
                 <td>
-                  <Link href={`/iller-arasi-mesafe?a=${p.id}&b=${r.province.id}`} prefetch={false}>
+                  <Link href={routePairPath(p, r.province) ?? `/iller-arasi-mesafe?a=${p.id}&b=${r.province.id}`} prefetch={false}>
                     {r.province.name}
                   </Link>
                 </td>

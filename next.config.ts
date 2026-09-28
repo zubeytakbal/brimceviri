@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { routePairs } from "./app/converter/geo/routePairs";
 
 // Eski Ingilizce bolum adreslerinden dile ozel adreslere kalici yonlendirme.
 // Ornek: /sv/unit-guides/meter -> /sv/enhetsguider/meter
@@ -96,6 +97,12 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // Il cifti sayfalari tek yonde yayinda; ters yon (ankara/istanbul) kalici olarak yonlendirilir.
+      ...routePairs().map((p) => ({
+        source: `/iller-arasi-mesafe/${p.to.id}/${p.from.id}`,
+        destination: `/iller-arasi-mesafe/${p.from.id}/${p.to.id}`,
+        permanent: true,
+      })),
       // Ozbekce D vitamini kategori sayfasi iki adreste yayindaydi; tek adrese indirildi.
       {
         source: "/uz/turkumlar/d-vitamini",

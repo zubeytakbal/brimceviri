@@ -36,3 +36,18 @@ describe("province data", () => {
     expect(distancesFrom(ank)).toHaveLength(80);
   });
 });
+
+import { findRoutePair, routePairPath, routePairs } from "../app/converter/geo/routePairs";
+
+describe("route pair pages", () => {
+  it("covers hub cities once per pair", () => {
+    const pairs = routePairs();
+    expect(pairs).toHaveLength(237);
+    const keys = new Set(pairs.map((p) => [p.from.id, p.to.id].sort().join("|")));
+    expect(keys.size).toBe(237);
+    expect(findRoutePair("istanbul", "ankara")).not.toBeNull();
+    expect(findRoutePair("ankara", "istanbul")).toBeNull();
+    expect(routePairPath(findProvince("ankara")!, findProvince("istanbul")!)).toBe("/iller-arasi-mesafe/istanbul/ankara");
+    expect(routePairPath(findProvince("van")!, findProvince("mus")!)).toBeNull();
+  });
+});

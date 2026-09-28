@@ -4,6 +4,7 @@ import Link from "@/app/components/SiteLink";
 import { fxContentTr } from "../converter/fx/fxContentTr";
 import { fxContentUz } from "../converter/fx/fxContentUz";
 import { fxContentDe } from "../converter/fx/fxContentDe";
+import { germanStandaloneTools } from "../i18n/germanStandaloneTools";
 import { buildFxSearchEntries, type FxLocaleContent } from "../converter/fx/fxLocale";
 import FxHomeSection from "./fx/FxHomeSection";
 import {
@@ -966,12 +967,12 @@ const copy = {
     moreCalculatorsCardLabel: "Boshqa Kalkulyatorlar",
   },
   de: {
-    eyebrow: "Technische Einheitenumrechnung",
-    title: "Die passende Umrechnung schnell finden",
+    eyebrow: "Einheitenumrechner und Online-Rechner",
+    title: "Einheiten umrechnen und schnell rechnen",
     description:
-      "Nutzen Sie die Suche für eine direkte Seite oder wählen Sie eine Kategorie nach physikalischer Größe.",
+      "Umrechnungen für Länge, Gewicht, Temperatur und mehr, dazu Prozent- und Dreisatzrechner, Feiertage, Kalenderwoche und Währungsrechner. Suchen Sie direkt oder wählen Sie einen Bereich.",
     searchLabel: "Umrechnung oder Rechner suchen",
-    searchPlaceholder: "Beispiel: Meter Kilometer, kg Pfund, psi bar",
+    searchPlaceholder: "Beispiel: Meter Kilometer, kg Pfund, Prozent, Feiertage",
     searchHint:
       "Suchen Sie nach Einheitenname, Symbol oder Umrechnungspaar, um die passende Seite direkt zu öffnen.",
     searchResultsLabel: "Suchergebnisse",
@@ -1713,7 +1714,20 @@ function createHomeData(locale: Locale): HomeData {
               searchText: normalizeSearchText(tool.searchTerms),
             })),
           ]
-        : [];
+        : locale === "de"
+          ? [
+              ...germanStandaloneTools.map((tool) => ({ href: tool.germanPath, title: tool.title, description: tool.cardDescription })),
+              ...germanRechnerHome,
+              ...timeToolsHome.de,
+            ].map((tool) => ({
+              id: `de-tool-${tool.href}`,
+              href: tool.href,
+              label: tool.title,
+              description: tool.description,
+              categoryLabel: "Rechner",
+              searchText: normalizeSearchText(`${tool.title} ${tool.description} rechner berechnen`),
+            }))
+          : [];
 
   // Arama, tek tek birim çifti sayfalarının (conversions) yanında genel
   // kategori özet sayfalarını da (örn. "Yoğunluk Dönüşümleri") göstersin —
@@ -1825,7 +1839,9 @@ function createHomeData(locale: Locale): HomeData {
       engineering:
         locale === "en"
           ? englishLiveCalculatorCount
-          : engineeringCalculators.length,
+          : locale === "de"
+            ? engineeringCalculators.length + germanStandaloneTools.length + germanRechnerHome.length + timeToolsHome.de.length + 1
+            : engineeringCalculators.length,
     },
   };
 }

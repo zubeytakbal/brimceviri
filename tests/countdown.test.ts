@@ -83,7 +83,8 @@ describe("turkish suffixes", () => {
     expect(trTimeLocative("12:00")).toBe("12:00'de");
     expect(trTimeLocative("07:30")).toBe("07:30'da");
     expect(trTimeLocative("04:00")).toBe("04:00'te");
-  });
+    // Ilk dinamik import buyuk rota tablosunu yukler; yavas makinelerde 5 sn'yi asabiliyor.
+  }, 30000);
 
   it("uses vowel harmony for durations", async () => {
     const { timerPresets, trLik } = await import("../app/i18n/timerPresets");

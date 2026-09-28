@@ -1,3 +1,4 @@
+import { comparisonPathDe } from "../../converter/germanScienceSlugs";
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import MaterialWeightCalculator from "../../components/MaterialWeightCalculator";
@@ -99,7 +100,7 @@ export default function GermanMaterialWeightCalculatorPage() {
             Materialien mit Dichte und weiteren Eigenschaften siehe{" "}
             <Link href="/de/werkstoffeigenschaften">Werkstoffeigenschaften</Link>,
             {" "}zum Vergleich zweier Materialien nach Dichte siehe die{" "}
-            <Link href="/de/werkstoffvergleich/aluminyum-celik-karsilastirma">
+            <Link href={comparisonPathDe("aluminyum-celik-karsilastirma")}>
               Werkstoffvergleich
             </Link>
             {" "}Seiten.

@@ -1,3 +1,4 @@
+import { materialPathDe, comparisonPathDe, comparisonIdFromDeSlug, comparisonSlugDe } from "../../../converter/germanScienceSlugs";
 import type { Metadata } from "next";
 import { seoTitle } from "../../../seoTitle";
 import Link from "@/app/components/SiteLink";
@@ -29,14 +30,15 @@ function serializeJsonLd(data: object) {
 
 export function generateStaticParams() {
   return getAllMaterialComparisons().map((comparison) => ({
-    slug: comparison.slug,
+    slug: comparisonSlugDe(comparison.slug),
   }));
 }
 
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug: urlSlug } = await params;
+  const slug = comparisonIdFromDeSlug(urlSlug) ?? "";
   const comparison = getMaterialComparison(slug);
 
   if (!comparison) {
@@ -64,17 +66,17 @@ export async function generateMetadata({
     title: seoTitle(title, `${firstDe} oder ${secondDe}: Was ist schwerer?`, `${firstDe.match(/\(([^)]+)\)\s*$/)?.[1] ?? firstDe} oder ${secondDe.match(/\(([^)]+)\)\s*$/)?.[1] ?? secondDe}: Was ist schwerer?`),
     description,
     alternates: {
-      canonical: `/de/werkstoffvergleich/${slug}`,
+      canonical: comparisonPathDe(slug),
       languages: {
         tr: `/malzeme-karsilastirma/${slug}`,
-        de: `/de/werkstoffvergleich/${slug}`,
+        de: comparisonPathDe(slug),
         "x-default": `/malzeme-karsilastirma/${slug}`,
       },
     },
     openGraph: {
       title,
       description,
-      url: buildSiteUrl(`/de/werkstoffvergleich/${slug}`),
+      url: buildSiteUrl(comparisonPathDe(slug)),
       siteName: "BirimCeviri.app",
       locale: "de_DE",
       type: "article",
@@ -85,7 +87,8 @@ export async function generateMetadata({
 export default async function GermanMaterialComparisonPage({
   params,
 }: PageProps) {
-  const { slug } = await params;
+  const { slug: urlSlug } = await params;
+  const slug = comparisonIdFromDeSlug(urlSlug) ?? "";
   const comparison = getMaterialComparison(slug);
 
   if (!comparison) {
@@ -98,7 +101,7 @@ export default async function GermanMaterialComparisonPage({
   const contextDe = materialComparisonContextDe[slug] ?? "";
   const denserNameDe = denserId === first.id ? firstDe : secondDe;
   const lighterNameDe = denserId === first.id ? secondDe : firstDe;
-  const pageUrl = buildSiteUrl(`/de/werkstoffvergleich/${slug}`);
+  const pageUrl = buildSiteUrl(comparisonPathDe(slug));
 
   const faqItems: FaqItem[] = [
     {
@@ -201,7 +204,7 @@ export default async function GermanMaterialComparisonPage({
               <tbody>
                 <tr>
                   <td>
-                    <Link href={`/de/werkstoffeigenschaften/${first.id}`}>
+                    <Link href={materialPathDe(first.id)}>
                       {firstDe}
                     </Link>
                   </td>
@@ -211,7 +214,7 @@ export default async function GermanMaterialComparisonPage({
                 </tr>
                 <tr>
                   <td>
-                    <Link href={`/de/werkstoffeigenschaften/${second.id}`}>
+                    <Link href={materialPathDe(second.id)}>
                       {secondDe}
                     </Link>
                   </td>
@@ -243,12 +246,12 @@ export default async function GermanMaterialComparisonPage({
           </h2>
           <ul>
             <li>
-              <Link href={`/de/werkstoffeigenschaften/${first.id}`}>
+              <Link href={materialPathDe(first.id)}>
                 {firstDe}: Dichte, Eigenschaften und Einheitenumrechner
               </Link>
             </li>
             <li>
-              <Link href={`/de/werkstoffeigenschaften/${second.id}`}>
+              <Link href={materialPathDe(second.id)}>
                 {secondDe}: Dichte, Eigenschaften und Einheitenumrechner
               </Link>
             </li>

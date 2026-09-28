@@ -1,3 +1,4 @@
+import { compoundPathDe } from "../../converter/germanScienceSlugs";
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
@@ -105,7 +106,7 @@ export default function GermanCompoundsHubPage() {
                 <ul className="related-conversion-list">
                   {categoryCompounds.map((compound) => (
                     <li key={compound.id}>
-                      <Link href={`/de/chemische-verbindungen/${compound.id}`}>
+                      <Link href={compoundPathDe(compound.id)}>
                         {compound.nameDe} ({compound.formula})
                       </Link>
                     </li>

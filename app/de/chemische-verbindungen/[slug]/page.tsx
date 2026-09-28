@@ -1,3 +1,4 @@
+import { compoundPathDe, compoundIdFromDeSlug, compoundSlugDe } from "../../../converter/germanScienceSlugs";
 import type { Metadata } from "next";
 import { seoTitle } from "../../../seoTitle";
 import Link from "@/app/components/SiteLink";
@@ -32,11 +33,12 @@ function serializeJsonLd(data: object) {
 }
 
 export function generateStaticParams() {
-  return getAllCompoundProfiles().map((compound) => ({ slug: compound.id }));
+  return getAllCompoundProfiles().map((compound) => ({ slug: compoundSlugDe(compound.id) }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug: urlSlug } = await params;
+  const slug = compoundIdFromDeSlug(urlSlug) ?? "";
   const compound = findCompoundProfileById(slug);
 
   if (!compound) {
@@ -54,17 +56,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description,
     robots: { index: Boolean(editorial), follow: true },
     alternates: {
-      canonical: `/de/chemische-verbindungen/${slug}`,
+      canonical: compoundPathDe(slug),
       languages: {
         tr: `/bilim-hesaplayicilari/kimya/bilesikler/${slug}`,
-        de: `/de/chemische-verbindungen/${slug}`,
+        de: compoundPathDe(slug),
         "x-default": `/bilim-hesaplayicilari/kimya/bilesikler/${slug}`,
       },
     },
     openGraph: {
       title,
       description,
-      url: buildSiteUrl(`/de/chemische-verbindungen/${slug}`),
+      url: buildSiteUrl(compoundPathDe(slug)),
       siteName: "BirimCeviri.app",
       locale: "de_DE",
       type: "article",
@@ -73,7 +75,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function GermanCompoundPage({ params }: PageProps) {
-  const { slug } = await params;
+  const { slug: urlSlug } = await params;
+  const slug = compoundIdFromDeSlug(urlSlug) ?? "";
   const compound = findCompoundProfileById(slug);
 
   if (!compound) {
@@ -81,7 +84,7 @@ export default async function GermanCompoundPage({ params }: PageProps) {
   }
 
   const nameDe = compoundNamesDe[compound.id] ?? compound.nameTr;
-  const pageUrl = buildSiteUrl(`/de/chemische-verbindungen/${slug}`);
+  const pageUrl = buildSiteUrl(compoundPathDe(slug));
   const editorial = findCompoundEditorial(compound.id);
   const similarCompounds = findSimilarMolarMassCompounds(slug, 5).map((similar) => ({
     ...similar,
@@ -213,7 +216,7 @@ export default async function GermanCompoundPage({ params }: PageProps) {
             <ul className="related-conversion-list">
               {similarCompounds.map((similar) => (
                 <li key={similar.id}>
-                  <Link href={`/de/chemische-verbindungen/${similar.id}`}>
+                  <Link href={compoundPathDe(similar.id)}>
                     {similar.nameDe} ({similar.formula})
                   </Link>{" "}
                   — {formatMolarMass(similar.molarMass)} g/mol

@@ -1,3 +1,4 @@
+import { comparisonPathDe, compoundPathDe, materialPathDe } from "./converter/germanScienceSlugs";
 import type { MetadataRoute } from "next";
 import { calculatorPages } from "./converter/calculatorPages";
 import { sleepGuideAlternates, sleepGuidePaths } from "./i18n/sleepGuidePaths";
@@ -1352,27 +1353,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
       },
     },
     ...materialsDatabase.map((material) => ({
-      url: `${baseUrl}/de/werkstoffeigenschaften/${material.id}`,
+      url: `${baseUrl}${materialPathDe(material.id)}`,
       lastModified: contentLastModified,
       changeFrequency: "monthly" as const,
       priority: 0.6,
       alternates: {
         languages: {
           tr: `${baseUrl}/malzeme-ozellikleri/${material.id}`,
-          de: `${baseUrl}/de/werkstoffeigenschaften/${material.id}`,
+          de: `${baseUrl}${materialPathDe(material.id)}`,
           "x-default": `${baseUrl}/malzeme-ozellikleri/${material.id}`,
         },
       },
     })),
     ...getAllMaterialComparisons().map((comparison) => ({
-      url: `${baseUrl}/de/werkstoffvergleich/${comparison.slug}`,
+      url: `${baseUrl}${comparisonPathDe(comparison.slug)}`,
       lastModified: contentLastModified,
       changeFrequency: "monthly" as const,
       priority: 0.6,
       alternates: {
         languages: {
           tr: `${baseUrl}/malzeme-karsilastirma/${comparison.slug}`,
-          de: `${baseUrl}/de/werkstoffvergleich/${comparison.slug}`,
+          de: `${baseUrl}${comparisonPathDe(comparison.slug)}`,
           "x-default": `${baseUrl}/malzeme-karsilastirma/${comparison.slug}`,
         },
       },
@@ -1543,14 +1544,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...compoundsDatabase
       .filter((compound) => Boolean(findCompoundEditorial(compound.id)))
       .map((compound) => ({
-      url: `${baseUrl}/de/chemische-verbindungen/${compound.id}`,
+      url: `${baseUrl}${compoundPathDe(compound.id)}`,
       lastModified: contentLastModified,
       changeFrequency: "monthly" as const,
       priority: 0.6,
       alternates: {
         languages: {
           tr: `${baseUrl}/bilim-hesaplayicilari/kimya/bilesikler/${compound.id}`,
-          de: `${baseUrl}/de/chemische-verbindungen/${compound.id}`,
+          de: `${baseUrl}${compoundPathDe(compound.id)}`,
           "x-default": `${baseUrl}/bilim-hesaplayicilari/kimya/bilesikler/${compound.id}`,
         },
       },

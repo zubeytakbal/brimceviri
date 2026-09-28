@@ -1,3 +1,4 @@
+import { comparisonPathDe, materialPathDe } from "../../converter/germanScienceSlugs";
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
@@ -110,7 +111,7 @@ export default function GermanMaterialsHubPage() {
                 <ul className="related-conversion-list">
                   {categoryMaterials.map((material) => (
                     <li key={material.id}>
-                      <Link href={`/de/werkstoffeigenschaften/${material.id}`}>
+                      <Link href={materialPathDe(material.id)}>
                         {material.nameDe}
                       </Link>
                     </li>
@@ -124,7 +125,7 @@ export default function GermanMaterialsHubPage() {
           <ul className="related-conversion-list">
             {comparisons.map((comparison) => (
               <li key={comparison.slug}>
-                <Link href={`/de/werkstoffvergleich/${comparison.slug}`}>
+                <Link href={comparisonPathDe(comparison.slug)}>
                   {materialNamesDe[comparison.first.id] ?? comparison.first.nameTr} –{" "}
                   {materialNamesDe[comparison.second.id] ?? comparison.second.nameTr}
                 </Link>

@@ -1,3 +1,4 @@
+import { materialPathDe, comparisonPathDe, materialIdFromDeSlug, materialSlugDe } from "../../../converter/germanScienceSlugs";
 import type { Metadata } from "next";
 import { seoTitle } from "../../../seoTitle";
 import Link from "@/app/components/SiteLink";
@@ -46,11 +47,12 @@ function serializeJsonLd(data: object) {
 }
 
 export function generateStaticParams() {
-  return getAllMaterialProfiles().map((material) => ({ slug: material.id }));
+  return getAllMaterialProfiles().map((material) => ({ slug: materialSlugDe(material.id) }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug: urlSlug } = await params;
+  const slug = materialIdFromDeSlug(urlSlug) ?? "";
   const material = findMaterialProfileById(slug);
 
   if (!material) {
@@ -65,17 +67,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: seoTitle(title, `${nameDe}: Dichte und Eigenschaften`, `${nameDe.match(/\(([^)]+)\)\s*$/)?.[1] ?? nameDe}: Dichte und Eigenschaften`),
     description,
     alternates: {
-      canonical: `/de/werkstoffeigenschaften/${slug}`,
+      canonical: materialPathDe(slug),
       languages: {
         tr: `/malzeme-ozellikleri/${slug}`,
-        de: `/de/werkstoffeigenschaften/${slug}`,
+        de: materialPathDe(slug),
         "x-default": `/malzeme-ozellikleri/${slug}`,
       },
     },
     openGraph: {
       title,
       description,
-      url: buildSiteUrl(`/de/werkstoffeigenschaften/${slug}`),
+      url: buildSiteUrl(materialPathDe(slug)),
       siteName: "BirimCeviri.app",
       locale: "de_DE",
       type: "article",
@@ -84,7 +86,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function GermanMaterialPropertyPage({ params }: PageProps) {
-  const { slug } = await params;
+  const { slug: urlSlug } = await params;
+  const slug = materialIdFromDeSlug(urlSlug) ?? "";
   const material = findMaterialProfileById(slug);
 
   if (!material) {
@@ -93,7 +96,7 @@ export default async function GermanMaterialPropertyPage({ params }: PageProps) 
 
   const nameDe = materialNamesDe[material.id] ?? material.nameTr;
   const variabilityNoteDe = materialVariabilityNotesDe[material.id];
-  const pageUrl = buildSiteUrl(`/de/werkstoffeigenschaften/${slug}`);
+  const pageUrl = buildSiteUrl(materialPathDe(slug));
   const similarMaterials = findSimilarDensityMaterials(slug, 5).map((similar) => ({
     ...similar,
     nameDe: materialNamesDe[similar.id] ?? similar.nameTr,
@@ -229,7 +232,7 @@ export default async function GermanMaterialPropertyPage({ params }: PageProps) 
             <ul className="related-conversion-list">
               {similarMaterials.map((similar) => (
                 <li key={similar.id}>
-                  <Link href={`/de/werkstoffeigenschaften/${similar.id}`}>
+                  <Link href={materialPathDe(similar.id)}>
                     {similar.nameDe}
                   </Link>{" "}
                   — {formatDensity(similar.densityKgM3)} kg/m³
@@ -245,7 +248,7 @@ export default async function GermanMaterialPropertyPage({ params }: PageProps) 
             <ul className="related-conversion-list">
               {relatedComparisons.map((comparison) => (
                 <li key={comparison.slug}>
-                  <Link href={`/de/werkstoffvergleich/${comparison.slug}`}>
+                  <Link href={comparisonPathDe(comparison.slug)}>
                     {materialNamesDe[comparison.first.id] ?? comparison.first.nameTr} –{" "}
                     {materialNamesDe[comparison.second.id] ?? comparison.second.nameTr}
                   </Link>

@@ -1,3 +1,4 @@
+import { compoundPathDe } from "../../../../converter/germanScienceSlugs";
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
@@ -55,7 +56,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     robots: { index: Boolean(editorial), follow: true },
     alternates: {
       canonical: `/bilim-hesaplayicilari/kimya/bilesikler/${slug}`,
-      languages: { de: `/de/chemische-verbindungen/${slug}` },
+      languages: { de: compoundPathDe(slug) },
     },
     openGraph: {
       title,

@@ -1,3 +1,4 @@
+import { comparisonPathDe } from "../../converter/germanScienceSlugs";
 import type { Metadata } from "next";
 import { seoTitle } from "../../seoTitle";
 import Link from "@/app/components/SiteLink";
@@ -65,7 +66,7 @@ export async function generateMetadata({
       canonical: `/malzeme-karsilastirma/${slug}`,
       languages: {
         "uz-UZ": `/uz/material-solishtirish/${slug}`,
-        de: `/de/werkstoffvergleich/${slug}`,
+        de: comparisonPathDe(slug),
       },
     },
     openGraph: {

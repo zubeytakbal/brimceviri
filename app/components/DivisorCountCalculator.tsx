@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { calculateDivisorCount } from "../converter/divisorCountCalculator";
 import { formatFactorization } from "../converter/ebobEkokCalculator";
+import { trGenitive } from "../converter/turkishSuffix";
 
 function parseIntegerValue(rawValue: string) {
   const normalizedValue = rawValue.trim();
@@ -40,7 +41,7 @@ export default function DivisorCountCalculator() {
       return [
         {
           title: "1. Adım — Özel durum",
-          lines: [`${result.n}'in tek pozitif böleni kendisidir (1 dahil).`],
+          lines: [`${trGenitive(result.n)} tek pozitif böleni kendisidir (1 dahil).`],
         },
       ];
     }

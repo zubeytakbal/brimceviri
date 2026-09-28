@@ -116,7 +116,7 @@ const copy: Record<CalculatorLocale, PageCopy> = {
     title: "Amper to kW Hesaplama",
     description:
       "Tek faz, üç faz veya DC sistemlerde hat akımını yaklaşık güce çevirin. Sonuç, seçilen gerilim, güç faktörü ve verime göre okunabilir güç birimiyle verilir.",
-    heroEyebrow: "ELEKTRIK HESAPLAYICISI",
+    heroEyebrow: "ELEKTRİK HESAPLAYICISI",
     heroResultHeading: "Güç sonucu",
     introHeading: "Bu amper to kW aracı ne için kullanılır?",
     formulasHeading: "Kullanılan formüller",

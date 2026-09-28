@@ -1,6 +1,6 @@
 import {
   getLocaleDefinition,
-  SUPPORTED_LOCALES,
+  PUBLISHED_LOCALES,
   type Locale,
 } from "./config";
 import { getLocalizedCategorySummaries } from "./contentRegistry";
@@ -70,8 +70,8 @@ const categoryLabels: Record<
     kutle: "Kütle",
     sicaklik: "Sıcaklık",
     zaman: "Zaman",
-    hiz: "Hiz",
-    basinc: "Basinc",
+    hiz: "Hız",
+    basinc: "Basınç",
     enerji: "Enerji ve Güç",
     veri: "Veri Depolama",
     elektrik: "Elektrik",
@@ -81,9 +81,9 @@ const categoryLabels: Record<
     tork: "Tork",
     momentum: "Momentum",
     viskozite_dinamik: "Viskozite",
-    elektrik_direnc: "Direnc",
+    elektrik_direnc: "Direnç",
     kapasitans: "Kapasitans",
-    enduktans: "Enduktans",
+    enduktans: "Endüktans",
     elektrik_yuk: "Elektrik Yükü",
     altin_ayar: "Altın Ayar",
     gumus_ayar: "Gümüş Ayar",
@@ -1120,7 +1120,7 @@ export function getFooterLinks(locale: Locale) {
 }
 
 export function getFooterLanguageLinks() {
-  return SUPPORTED_LOCALES.map((locale) => ({
+  return PUBLISHED_LOCALES.map((locale) => ({
     locale,
     href: getLocaleDefinition(locale).homePath,
     label: getLocaleDefinition(locale).switcherLabel,

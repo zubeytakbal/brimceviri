@@ -36,7 +36,7 @@ const copyByLocale: Record<
       days: "Ayda Kaç Gün Kullanılıyor",
       price: "Elektrik Birim Fiyatı (TL/kWh) - isteğe bağlı",
     },
-    placeholder: "Faturandaki kWh fiyati",
+    placeholder: "Faturandaki kWh fiyatı",
     emptyState: "Geçerli değerler girerek sonucu görebilirsin.",
     resultLabels: {
       monthly: "Aylık tüketim",

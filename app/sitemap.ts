@@ -14,6 +14,7 @@ import { worldCities } from "./converter/time/worldCities";
 import { timerPresetAlternates, timerPresetPath, timerPresets } from "./i18n/timerPresets";
 import { countdownEvents, countdownPath, pairedEvent } from "./converter/time/countdownEvents";
 import { HOLIDAY_YEARS } from "./converter/time/holidays";
+import { turkeyProvinces } from "./converter/geo/turkeyProvinces";
 import { zonePairs } from "./converter/time/timeZonePairs";
 import { buildLanguageAlternates } from "./i18n/routing";
 import { categoryPages } from "./converter/categoryPages";
@@ -3033,6 +3034,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly" as const,
       priority: /\d{4}$/.test(path) ? 0.7 : 0.8,
     })),
+    ...[
+      "/cografya-hesaplamalari",
+      "/harita-olcegi-hesaplama",
+      "/yerel-saat-hesaplama",
+      "/koordinat-donusturucu",
+      "/iller-arasi-mesafe",
+      "/turkiye-il-haritasi",
+      ...turkeyProvinces.map((p) => `/iller-arasi-mesafe/${p.id}`),
+    ].map((path) => ({
+      url: `${baseUrl}${path}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.75,
+    })),
     ...zonePairs.map((pair) => ({
       url: `${baseUrl}/en/time-zone-converter/${pair.slug}`,
       lastModified: contentLastModified,
@@ -5808,7 +5823,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  return [
+  const entries: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
       lastModified: contentLastModified,
@@ -6616,4 +6631,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...bengaliUnitGuideIndexRoute,
     ...corporateRoutes,
   ];
+
+  // Ayni adres birden fazla listede yer alabiliyor; hreflang bilgisi olan kaydi tutarak tekillestir.
+  const byUrl = new Map<string, MetadataRoute.Sitemap[number]>();
+  for (const entry of entries) {
+    const existing = byUrl.get(entry.url);
+    if (!existing || (!existing.alternates && entry.alternates)) byUrl.set(entry.url, entry);
+  }
+  return [...byUrl.values()];
 }

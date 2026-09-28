@@ -8,6 +8,7 @@ import {
   getStandardGrades,
   type MetalType,
 } from "../converter/hasHesaplamaCalculator";
+import { trDative } from "../converter/turkishSuffix";
 
 type ComponentRow = {
   id: number;
@@ -239,7 +240,7 @@ export default function HasHesaplamaCalculator() {
               <strong>
                 {formatNumber(result.resultMilyem, 1)} milyem (%
                 {formatNumber(result.resultPercent, 2)})
-                {nearestGrade ? ` — ${nearestGrade.label}'a yakın` : ""}
+                {nearestGrade ? ` — ${trDative(nearestGrade.label)} yakın` : ""}
               </strong>
             </div>
           </div>

@@ -18,7 +18,7 @@ const copy = {
   tr: {
     ingredient: "Malzeme",
     knownUnit: "Bildiğin Birim",
-    value: "Deger",
+    value: "Değer",
     resultHeading: "Karşılıklar",
     invalidValue: "Geçerli bir sayı girerek sonucu görebilirsin.",
   },

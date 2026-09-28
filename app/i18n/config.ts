@@ -4,6 +4,9 @@ export type Locale = (typeof SUPPORTED_LOCALES)[number];
 
 export const DEFAULT_LOCALE: Locale = "tr";
 
+/** Sayfalari yayinda olan diller (dil menusu ve alt bilgi). "ru" icin henuz sayfa yok. */
+export const PUBLISHED_LOCALES = SUPPORTED_LOCALES.filter((locale) => locale !== "ru");
+
 export type LocaleDefinition = {
   code: Locale;
   htmlLang: string;

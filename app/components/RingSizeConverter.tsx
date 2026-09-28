@@ -47,7 +47,7 @@ const systemLabels: Record<Locale, Record<RingSizeSystem, string>> = {
 const copy = {
   tr: {
     knownSystem: "Bildiğin Sistem",
-    value: "Deger",
+    value: "Değer",
     matchingSizes: "Eşleşen Bedenler",
     invalidValue: "Geçerli bir değer seçerek sonucu görebilirsin.",
     diameterResult: "TR (mm)",

@@ -11,6 +11,7 @@ import {
 } from "../../../../converter/numberFacts";
 import { buildFaqSchema, type FaqItem } from "../../../../converter/faqSchema";
 import { buildSiteUrl } from "../../../../siteConfig";
+import { trGenitive } from "../../../../converter/turkishSuffix";
 
 type PageProps = {
   params: Promise<{ sayi: string }>;
@@ -85,7 +86,7 @@ export default async function SayiSayfasi({ params }: PageProps) {
     },
     {
       question: `${n} sayısının bölenleri (çarpanları) nelerdir?`,
-      answer: `${n}'in bölenleri: ${facts.divisors.join(", ")} (toplam ${facts.divisorCount} tane, toplamları ${formatNumber(facts.sumOfDivisors)}).`,
+      answer: `${trGenitive(n)} bölenleri: ${facts.divisors.join(", ")} (toplam ${facts.divisorCount} tane, toplamları ${formatNumber(facts.sumOfDivisors)}).`,
     },
   ];
 

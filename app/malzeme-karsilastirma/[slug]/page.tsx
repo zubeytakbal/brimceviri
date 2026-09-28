@@ -8,6 +8,7 @@ import {
 } from "../../converter/materialComparisons";
 import { materialCategoryLabels } from "../../converter/materialsDatabase";
 import { buildSiteUrl } from "../../siteConfig";
+import { trAblative, trEitherQuestion } from "../../converter/turkishSuffix";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -47,7 +48,7 @@ export async function generateMetadata({
   const { first, second, densityRatio, denserId } = comparison;
   const denserName = denserId === first.id ? first.nameTr : second.nameTr;
 
-  const title = `${first.nameTr} mi ${second.nameTr} mi Daha Ağır? Yoğunluk Karşılaştırması`;
+  const title = `${trEitherQuestion(first.nameTr, second.nameTr)} Daha Ağır? Yoğunluk Karşılaştırması`;
   const description = `${first.nameTr} yoğunluğu ${formatDensity(
     first.densityKgM3
   )} kg/m³, ${second.nameTr} yoğunluğu ${formatDensity(
@@ -94,11 +95,11 @@ export default async function MaterialComparisonPage({
 
   const faqItems: FaqItem[] = [
     {
-      question: `${first.nameTr} mi ${second.nameTr} mi daha ağır?`,
+      question: `${trEitherQuestion(first.nameTr, second.nameTr)} daha ağır?`,
       answer:
         denserId === "esit"
           ? `${first.nameTr} ve ${second.nameTr} yaklaşık olarak aynı yoğunluğa sahiptir.`
-          : `${denserMaterial.nameTr}, ${lighterMaterial.nameTr}'den yaklaşık ${formatRatio(
+          : `${denserMaterial.nameTr}, ${trAblative(lighterMaterial.nameTr)} yaklaşık ${formatRatio(
               densityRatio
             )} kat daha yoğundur (ağırdır).`,
     },
@@ -166,13 +167,13 @@ export default async function MaterialComparisonPage({
 
         <header className="all-conversions-header">
           <h1>
-            {first.nameTr} mi {second.nameTr} mi Daha Ağır? Yoğunluk
+            {trEitherQuestion(first.nameTr, second.nameTr)} Daha Ağır? Yoğunluk
             Karşılaştırması
           </h1>
           <p>
             {denserId === "esit"
               ? `${first.nameTr} ve ${second.nameTr} yaklaşık olarak aynı yoğunluğa sahiptir.`
-              : `${denserMaterial.nameTr}, ${lighterMaterial.nameTr}'den yaklaşık ${formatRatio(
+              : `${denserMaterial.nameTr}, ${trAblative(lighterMaterial.nameTr)} yaklaşık ${formatRatio(
                   densityRatio
                 )} kat daha yoğundur.`}
           </p>
@@ -228,6 +229,15 @@ export default async function MaterialComparisonPage({
           <p>
             Bu değerler ilk hesaplama için nominal referanslardır. Gerçek parça ağırlığı hacimle birlikte değişir; gaz, sıvı, ahşap, gıda ve yapı malzemelerinde sıcaklık, basınç, nem veya bileşim ayrıca önemlidir.
           </p>
+
+          <h2>Sık Sorulan Sorular</h2>
+          {faqItems.map((item) => (
+            <p key={item.question}>
+              <strong>{item.question}</strong>
+              <br />
+              {item.answer}
+            </p>
+          ))}
         </section>
 
         <section className="category-article-content">

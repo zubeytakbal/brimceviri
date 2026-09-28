@@ -276,7 +276,7 @@ const copyByLocale: Record<
 > = {
   tr: {
     labels: {
-      value: "Deger",
+      value: "Değer",
       unit: "Birim",
     },
     placeholder: "Orn. 3",

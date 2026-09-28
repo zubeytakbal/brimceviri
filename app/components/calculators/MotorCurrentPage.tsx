@@ -116,7 +116,7 @@ const copy: Record<CalculatorLocale, PageCopy> = {
     title: "Motor Akımı Hesaplama",
     description:
       "Motor gücü, gerilim, güç faktörü ve verimden yaklaşık tam yük akımını (FLA) hesaplayın; seçilen emniyet payıyla kontaktor, termik ve kablo seçimi için tasarım akımını görün.",
-    heroEyebrow: "ELEKTRIK HESAPLAYICISI",
+    heroEyebrow: "ELEKTRİK HESAPLAYICISI",
     heroResultHeading: "Tam yük akımı sonucu",
     introHeading: "Bu motor akımı aracı ne için kullanılır?",
     formulasHeading: "Kullanılan formüller",

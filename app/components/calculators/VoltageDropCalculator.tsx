@@ -47,7 +47,7 @@ const copy = {
     automaticResultUnit: "Otomatik sonuç birimi",
     formula: "Yerine koyulmuş formül",
     siEquivalent: "SI eşdeğeri",
-    resistivityNote: "Kullanilan direnc",
+    resistivityNote: "Kullanılan direnç",
     severeWarning:
       "Gerilim düşümü yaygın proje sınırlarının (yaklaşık %5) üzerinde. Kesiti artırmayı değerlendirin.",
     clear: "Değerleri temizle",

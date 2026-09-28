@@ -94,7 +94,7 @@ export default async function TurkishPlannedElectricalCalculatorPage({
         {
           "@type": "ListItem",
           position: 2,
-          name: "Elektrik Hesaplari",
+          name: "Elektrik Hesapları",
           item: buildSiteUrl(
             "/muhendislik-hesaplayicilari/elektrik-hesaplari"
           ),
@@ -142,7 +142,7 @@ export default async function TurkishPlannedElectricalCalculatorPage({
         {
           "@type": "ListItem",
           position: 2,
-          name: "Elektrik Hesaplari",
+          name: "Elektrik Hesapları",
           item: buildSiteUrl(
             "/muhendislik-hesaplayicilari/elektrik-hesaplari"
           ),
@@ -193,7 +193,7 @@ export default async function TurkishPlannedElectricalCalculatorPage({
         {
           "@type": "ListItem",
           position: 2,
-          name: "Elektrik Hesaplari",
+          name: "Elektrik Hesapları",
           item: buildSiteUrl(
             "/muhendislik-hesaplayicilari/elektrik-hesaplari"
           ),
@@ -238,7 +238,7 @@ export default async function TurkishPlannedElectricalCalculatorPage({
         {
           "@type": "ListItem",
           position: 2,
-          name: "Elektrik Hesaplari",
+          name: "Elektrik Hesapları",
           item: buildSiteUrl(
             "/muhendislik-hesaplayicilari/elektrik-hesaplari"
           ),

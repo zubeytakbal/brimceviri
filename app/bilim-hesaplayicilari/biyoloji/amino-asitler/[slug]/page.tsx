@@ -8,6 +8,7 @@ import {
   getAllAminoAcidProfiles,
 } from "../../../../converter/aminoAcidsHub";
 import { buildSiteUrl } from "../../../../siteConfig";
+import { trGenitive } from "../../../../converter/turkishSuffix";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -64,7 +65,7 @@ export default async function AminoAcidPage({ params }: PageProps) {
   const faqItems: FaqItem[] = [
     {
       question: `${aminoAcid.nameTr} molar kütlesi kaç?`,
-      answer: `${aminoAcid.nameTr}'in molar kütlesi ${formatMolarMass(aminoAcid.molarMass)} g/mol'dür.`,
+      answer: `${trGenitive(aminoAcid.nameTr)} molar kütlesi ${formatMolarMass(aminoAcid.molarMass)} g/mol'dür.`,
     },
     {
       question: `${aminoAcid.nameTr} esansiyel bir amino asit mi?`,
@@ -73,8 +74,8 @@ export default async function AminoAcidPage({ params }: PageProps) {
         : `Hayır, ${aminoAcid.nameTr} esansiyel değildir — vücut kendi ihtiyacı olan miktarı sentezleyebilir.`,
     },
     {
-      question: `${aminoAcid.nameTr}'in kimyasal formülü nedir?`,
-      answer: `${aminoAcid.nameTr}'in kimyasal formülü ${aminoAcid.formula}, üç harfli kodu ${aminoAcid.threeLetterCode}, tek harfli kodu ${aminoAcid.oneLetterCode}'dir.`,
+      question: `${trGenitive(aminoAcid.nameTr)} kimyasal formülü nedir?`,
+      answer: `${trGenitive(aminoAcid.nameTr)} kimyasal formülü ${aminoAcid.formula}, üç harfli kodu ${aminoAcid.threeLetterCode}, tek harfli kodu ise ${aminoAcid.oneLetterCode}.`,
     },
   ];
 

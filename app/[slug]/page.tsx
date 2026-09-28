@@ -431,7 +431,13 @@ export default async function ConversionPage({ params }: PageProps) {
 
               <div>
                 <dt>Kategori</dt>
-                <dd>{conversionPage.category}</dd>
+                <dd>
+                  {categoryPage ? (
+                    <Link href={`/kategoriler/${categoryPage.slug}`}>{categoryPage.title}</Link>
+                  ) : (
+                    conversionPage.category
+                  )}
+                </dd>
               </div>
 
               <div>

@@ -11,6 +11,7 @@ import {
 import { getAllCelestialBodyComparisons } from "../../converter/celestialBodyComparisons";
 import { celestialBodyFacts } from "../../converter/celestialBodyFacts";
 import { buildSiteUrl } from "../../siteConfig";
+import { trGenitive, trLocative } from "../../converter/turkishSuffix";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -37,7 +38,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const title = `${body.nameTr} Yerçekiminde Kaç Kilo Gelirsiniz?`;
-  const description = `Kendi kilonuzu girin, ${body.nameTr} yerçekiminde kaç kilo geleceğinizi anında hesaplayın. Ayrıca ${body.nameTr}'in kütlesi, çapı, yerçekimi ve diğer özelliklerini görün.`;
+  const description = `Kendi kilonuzu girin, ${body.nameTr} yerçekiminde kaç kilo geleceğinizi anında hesaplayın. Ayrıca ${trGenitive(body.nameTr)} kütlesi, çapı, yerçekimi ve diğer özelliklerini görün.`;
 
   return {
     title,
@@ -72,12 +73,12 @@ export default async function CelestialBodyDetailPage({ params }: PageProps) {
 
   const faqItems: FaqItem[] = [
     {
-      question: `${body.nameTr}'in yerçekimi ne kadar?`,
-      answer: `${body.nameTr}'in yüzey yerçekimi ivmesi yaklaşık ${formatNumber(body.gravityMs2, 1)} m/s² — Dünya'nınkinin (9,8 m/s²) yaklaşık ${formatNumber(body.gravityMs2 / 9.8, 2)} katı.`,
+      question: `${trGenitive(body.nameTr)} yerçekimi ne kadar?`,
+      answer: `${trGenitive(body.nameTr)} yüzey yerçekimi ivmesi yaklaşık ${formatNumber(body.gravityMs2, 1)} m/s² — Dünya'nınkinin (9,8 m/s²) yaklaşık ${formatNumber(body.gravityMs2 / 9.8, 2)} katı.`,
     },
     {
-      question: `${body.nameTr}'de bir yıl kaç gün sürer?`,
-      answer: `${body.nameTr}'in Güneş etrafındaki yörünge periyodu yaklaşık ${formatNumber(body.orbitalPeriodDays, 0)} Dünya günüdür.`,
+      question: `${trLocative(body.nameTr)} bir yıl kaç gün sürer?`,
+      answer: `${trGenitive(body.nameTr)} Güneş etrafındaki yörünge periyodu yaklaşık ${formatNumber(body.orbitalPeriodDays, 0)} Dünya günüdür.`,
     },
   ];
 

@@ -45,7 +45,7 @@ const electricalCalculatorBlueprints: ElectricalCalculatorBlueprint[] = [
       ar: "حاسبة مقطع الكابل",
     },
     descriptions: {
-      tr: "Akım, mesafe, faz tipi ve izin verilen gerilim dusumune göre uygun iletken kesitini seçmek için hazırlanan elektrik hesap aracı.",
+      tr: "Akım, mesafe, faz tipi ve izin verilen gerilim düşümüne göre uygun iletken kesitini seçmek için hazırlanan elektrik hesap aracı.",
       en: "Electrical sizing tool for choosing a practical conductor cross-section from current, run length, phase type and allowable voltage drop.",
       de: "Elektro-Werkzeug zur Auswahl eines praxisnahen Leiterquerschnitts aus Strom, Leitungslange, Phasentyp und zulässigem Spannungsfall.",
       ar: "أداة كهربائية لاختيار مقطع موصل عملي بالاعتماد على التيار وطول المسار ونوع الطور وهبوط الجهد المسموح.",
@@ -122,7 +122,7 @@ const electricalCalculatorBlueprints: ElectricalCalculatorBlueprint[] = [
       tr: [
         "Kaynak gerilimi ve hat akımı",
         "Tek yön kablo uzunluğu ve iletken kesiti",
-        "Bakır veya aluminyum seçimi ile faz tipi",
+        "Bakır veya alüminyum seçimi ile faz tipi",
       ],
       en: [
         "Source voltage and line current",

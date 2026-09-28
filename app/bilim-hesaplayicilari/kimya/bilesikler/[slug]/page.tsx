@@ -11,6 +11,7 @@ import {
 import { periodicTable, slugifyElementName } from "../../../../converter/periodicTableData";
 import { findCompoundEditorial } from "../../../../converter/compoundEditorial";
 import { buildSiteUrl } from "../../../../siteConfig";
+import { trGenitive } from "../../../../converter/turkishSuffix";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -87,8 +88,8 @@ export default async function CompoundPage({ params }: PageProps) {
       answer: `${compound.nameTr} molar kütlesi yaklaşık ${formatMolarMass(compound.molarMass)} g/mol'dür. Bu değer, ${compositionLine} atomlarının kütlelerinin toplamıdır.`,
     },
     {
-      question: `${compound.nameTr}'nin kimyasal formülü nedir?`,
-      answer: `${compound.nameTr}'nin kimyasal formülü ${compound.formula}'dir.`,
+      question: `${trGenitive(compound.nameTr)} kimyasal formülü nedir?`,
+      answer: `${trGenitive(compound.nameTr)} kimyasal formülü: ${compound.formula}.`,
     },
   ];
 

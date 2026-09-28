@@ -1,3 +1,4 @@
+import { buildFullLanguageAlternates } from "@/app/i18n/routing";
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import EvChargingCalculator from "../components/EvChargingCalculator";
@@ -29,6 +30,7 @@ export const metadata: Metadata = {
     "Batarya kapasitesi ve şarj gücünden şarj süresini, elektrik fiyatından bu şarjın maliyetini ve benzinliye göre tasarrufunu tek ekranda hesapla.",
   alternates: {
     canonical: "/elektrikli-arac-sarj-hesaplama",
+    ...buildFullLanguageAlternates("/elektrikli-arac-sarj-hesaplama"),
   },
   openGraph: {
     title: "Elektrikli Araç Şarj Süresi ve Maliyeti Hesaplama",

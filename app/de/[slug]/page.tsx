@@ -161,7 +161,7 @@ export async function generateMetadata({
     `Formel, Umrechnungstabelle und Sofortergebnis auf einen Blick.`;
 
   return {
-    title,
+    title: seoTitle(title, `1 ${page.fromName} in ${page.toName} umrechnen`, `1 ${page.fromName} in ${page.toName}`, `${page.fromName} in ${page.toName}`),
     description,
 
     alternates: {

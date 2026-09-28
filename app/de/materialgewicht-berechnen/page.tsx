@@ -1,3 +1,4 @@
+import { seoTitle } from "../../seoTitle";
 import { comparisonPathDe } from "../../converter/germanScienceSlugs";
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
@@ -24,7 +25,7 @@ const faqItems: FaqItem[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Tabelle der Materialdichten und Gewichtsberechnung",
+  title: seoTitle("Tabelle der Materialdichten und Gewichtsberechnung", "Materialgewicht berechnen: Dichtetabelle"),
   description:
     "Berechne aus der Dichtetabelle gängiger Materialien wie Stahl, Aluminium und Kupfer das Gewicht aus dem Volumen oder das Volumen aus dem Gewicht.",
   alternates: {

@@ -1,3 +1,4 @@
+import { seoTitle } from "../../seoTitle";
 import { compoundPathDe } from "../../converter/germanScienceSlugs";
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
@@ -34,7 +35,7 @@ function serializeJsonLd(data: object) {
 }
 
 export const metadata: Metadata = {
-  title: "Chemische Verbindungen: Molare Masse und Stoffmengenrechner",
+  title: seoTitle("Chemische Verbindungen: Molare Masse und Stoffmengenrechner", "Chemische Verbindungen: Molare Masse"),
   description:
     "Wasser, Kochsalz, Glukose und mehr — molare Masse und atomare Zusammensetzung gängiger chemischer Verbindungen ansehen und eigene Stoffmengenberechnungen durchführen.",
   alternates: {

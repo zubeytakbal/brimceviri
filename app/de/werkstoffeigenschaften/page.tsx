@@ -1,3 +1,4 @@
+import { seoTitle } from "../../seoTitle";
 import { comparisonPathDe, materialPathDe } from "../../converter/germanScienceSlugs";
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
@@ -36,7 +37,7 @@ function serializeJsonLd(data: object) {
 }
 
 export const metadata: Metadata = {
-  title: "Werkstoffeigenschaften: Dichte, Wärmeleitfähigkeit und Umrechner",
+  title: seoTitle("Werkstoffeigenschaften: Dichte, Wärmeleitfähigkeit und Umrechner", "Werkstoffeigenschaften: Dichte und Wärmeleitung"),
   description:
     "Über 100 Metalle, Flüssigkeiten, Kunststoffe, Holzarten und Baumaterialien — Dichte und technische Eigenschaften ansehen, sofort zwischen Einheiten umrechnen.",
   alternates: {

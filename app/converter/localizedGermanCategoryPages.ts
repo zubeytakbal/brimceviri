@@ -1,4 +1,5 @@
 import { getGermanCategorySlug } from "../i18n/germanRoutes";
+import { findCategoryPageByCategory } from "./categoryPages";
 
 export type LocalizedGermanCategoryFact = {
   label: string;
@@ -40,7 +41,8 @@ function createCategoryPage(
   return {
     locale: "de",
     slug,
-    sourceSlug,
+    // Türkischer URL-Teil der Kategorie (acisal-hiz), nicht der interne Bezeichner (acisal_hiz).
+    sourceSlug: findCategoryPageByCategory(category)?.slug ?? sourceSlug,
     category,
     title,
     description,

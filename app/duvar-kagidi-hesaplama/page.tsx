@@ -1,3 +1,4 @@
+import { buildFullLanguageAlternates } from "@/app/i18n/routing";
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import WallpaperCalculator from "../components/WallpaperCalculator";
@@ -23,6 +24,7 @@ export const metadata: Metadata = {
     "Oda duvar ölçülerini ve rulo boyutlarını gir; döşeme için gereken duvar kağıdı rulosu sayısını anında hesapla.",
   alternates: {
     canonical: "/duvar-kagidi-hesaplama",
+    ...buildFullLanguageAlternates("/duvar-kagidi-hesaplama"),
   },
   openGraph: {
     title: "Duvar Kağıdı Hesaplama: Kaç Rulo Gerekir?",

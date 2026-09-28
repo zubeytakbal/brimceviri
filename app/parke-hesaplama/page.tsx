@@ -1,3 +1,4 @@
+import { buildFullLanguageAlternates } from "@/app/i18n/routing";
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import LaminateCalculator from "../components/LaminateCalculator";
@@ -23,6 +24,7 @@ export const metadata: Metadata = {
     "Kaplanacak alanı, paket içi m² değerini ve fire payını gir; döşeme için gereken parke paketi sayısını anında hesapla.",
   alternates: {
     canonical: "/parke-hesaplama",
+    ...buildFullLanguageAlternates("/parke-hesaplama"),
   },
   openGraph: {
     title: "Parke Hesaplama: Kaç Paket Laminat Parke Gerekir?",

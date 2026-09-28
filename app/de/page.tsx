@@ -9,7 +9,7 @@ const germanHomeUrl = buildSiteUrl("/de");
 export const metadata: Metadata = {
   title: "Einheitenumrechner und Online-Rechner",
   description:
-    "Einheiten umrechnen (Länge, Gewicht, Temperatur, Druck und mehr), Prozent- und Dreisatzrechner, Feiertage, Kalenderwoche, Weltuhr und Euro-Währungsrechner – kostenlos und ohne Anmeldung.",
+    "Einheiten umrechnen (Länge, Gewicht, Temperatur, Druck), Prozent- und Dreisatzrechner, Feiertage, Kalenderwoche, Weltuhr und Euro-Währungsrechner – kostenlos.",
   alternates: {
     canonical: germanHomeUrl,
     ...buildHomeLanguageAlternates(),

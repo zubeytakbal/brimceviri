@@ -1,3 +1,4 @@
+import { seoTitle } from "../../seoTitle";
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import AtomicMassCalculator from "../../components/AtomicMassCalculator";
@@ -28,7 +29,7 @@ const faqItems: FaqItem[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Atommasse berechnen: Isotopengewichteter Durchschnittsrechner",
+  title: seoTitle("Atommasse berechnen: Isotopengewichteter Durchschnittsrechner", "Atommasse berechnen: Isotopen-Rechner"),
   description:
     "Gib Isotopmassen und natürliche Häufigkeiten ein und berechne sofort per gewichtetem Durchschnitt die durchschnittliche Atommasse eines Elements aus dem Periodensystem.",
   alternates: {

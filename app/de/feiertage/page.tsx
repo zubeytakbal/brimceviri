@@ -88,6 +88,9 @@ export default function FeiertagePage() {
                 {s.name}
               </Link>
             ))}
+            <Link href="/de/feiertage-oesterreich" className="time-tool-button is-secondary" prefetch={false}>
+              Österreich
+            </Link>
           </div>
         }
         related={{ title: "Das könnte Sie auch interessieren", links: calendarRelated(path) }}

@@ -90,6 +90,7 @@ const timeToolsHome = {
   de: [
     { href: "/de/kalenderwoche", title: "Aktuelle Kalenderwoche", description: "Welche KW haben wir? KW für jedes Datum und alle Wochen des Jahres.", icon: "attendanceCalculator" as const },
     { href: "/de/feiertage", title: "Feiertage", description: "Gesetzliche Feiertage aller 16 Bundesländer mit Brückentagen.", icon: "attendanceCalculator" as const },
+    { href: "/de/feiertage-oesterreich", title: "Feiertage Österreich", description: "Alle 13 gesetzlichen Feiertage in Österreich mit Fenstertagen.", icon: "attendanceCalculator" as const },
     { href: "/de/arbeitstage-rechner", title: "Arbeitstage-Rechner", description: "Arbeitstage und Werktage zwischen zwei Daten je Bundesland.", icon: "attendanceCalculator" as const },
     { href: "/de/tagerechner", title: "Tagerechner", description: "Tage zwischen zwei Daten zählen oder Tage zu einem Datum addieren.", icon: "attendanceCalculator" as const },
     { href: "/de/zeitzonenrechner", title: "Zeitzonenrechner", description: "Uhrzeit weltweit umrechnen, mit Sommerzeit und Meeting-Planer.", icon: "greatCircleCalculator" as const },

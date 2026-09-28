@@ -97,6 +97,8 @@ export const germanTimeToolLinks = [
   { href: "/de/stoppuhr", label: "Stoppuhr" },
   { href: "/de/wecker", label: "Wecker" },
   { href: "/de/countdown", label: "Countdown" },
+  { href: "/de/pomodoro-timer", label: "Pomodoro-Timer" },
+  { href: "/de/intervall-timer", label: "Intervall-Timer" },
   { href: "/de/weltuhr", label: "Weltuhr" },
   { href: "/de/zeitzonenrechner", label: "Zeitzonenrechner" },
   { href: "/de/schlafrechner", label: "Schlafrechner" },

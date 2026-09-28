@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { timeToolsCopy } from "./timeToolsCopy";
 import { intervalCopy, intervalPresets, type FocusLang } from "./focusCopy";
 import { beep, unlockAudio } from "./timeSounds";
 import { formatDuration, nowMs, useNow } from "./useNow";
@@ -83,7 +84,7 @@ export default function IntervalTimer({ lang, initialPreset = "tabata" }: { lang
     try {
       window.speechSynthesis.cancel();
       const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = settingsRef.current.lang === "tr" ? "tr-TR" : "en-US";
+      utterance.lang = settingsRef.current.lang === "tr" ? "tr-TR" : settingsRef.current.lang === "de" ? "de-DE" : "en-US";
       window.speechSynthesis.speak(utterance);
     } catch {
       // Konusma desteklenmiyorsa yalnizca bip calar.
@@ -232,7 +233,7 @@ export default function IntervalTimer({ lang, initialPreset = "tabata" }: { lang
         <div className="time-tool-chips">
           {intervalPresets.map((preset) => (
             <button key={preset.id} type="button" className={presetId === preset.id ? "is-active" : undefined} onClick={() => applyPreset(preset.id)}>
-              {lang === "tr" ? preset.tr : preset.en}
+              {lang === "tr" ? preset.tr : lang === "de" ? preset.de : preset.en}
             </button>
           ))}
         </div>
@@ -269,7 +270,7 @@ export default function IntervalTimer({ lang, initialPreset = "tabata" }: { lang
 
       <div className="time-tool-footer">
         <button type="button" className="time-tool-button is-secondary" onClick={wakeLock.toggle} disabled={!wakeLock.supported}>
-          {wakeLock.supported ? (wakeLock.enabled ? (lang === "tr" ? "☀ Ekran açık tutuluyor" : "☀ Keeping the screen on") : lang === "tr" ? "☀ Ekranı açık tut" : "☀ Keep screen on") : ""}
+          {wakeLock.supported ? `☀ ${wakeLock.enabled ? timeToolsCopy[lang].wakeLock.on : timeToolsCopy[lang].wakeLock.off}` : ""}
         </button>
       </div>
     </div>

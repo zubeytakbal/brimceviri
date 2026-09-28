@@ -7,6 +7,7 @@ import type { FaqItem } from "../converter/faqSchema";
 import { geoRelated } from "../converter/geo/geoTools";
 import { KGM_DISTANCE_DATE } from "../converter/geo/kgmDistances";
 import { airKm, DEFAULT_AVG_KMH, driveMinutes, durationText, roadKm } from "../converter/geo/provinceDistances";
+import { routePairPath } from "../converter/geo/routePairs";
 import { findProvince, turkeyProvinces, TURKEY_REGIONS } from "../converter/geo/turkeyProvinces";
 import { getNationalGasolinePrice } from "../converter/liveFuelPrice";
 import { buildSiteUrl } from "../siteConfig";
@@ -122,7 +123,7 @@ export default async function ProvinceDistancePage() {
               return (
                 <tr key={`${x}-${y}`}>
                   <td>
-                    <Link href={`${path}?a=${a.id}&b=${b.id}`} prefetch={false}>
+                    <Link href={routePairPath(a, b) ?? `${path}?a=${a.id}&b=${b.id}`} prefetch={false}>
                       {a.name} – {b.name}
                     </Link>
                   </td>

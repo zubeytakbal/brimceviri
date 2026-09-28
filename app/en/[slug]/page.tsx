@@ -1,3 +1,4 @@
+import { seoTitle } from "../../seoTitle";
 import {
   buildEnglishConversionTitle,
   englishUnitInSentence,
@@ -207,7 +208,7 @@ export async function generateMetadata({
 
   if (tool) {
     return {
-      title: `${tool.title}`,
+      title: seoTitle(tool.metaTitle ?? tool.title, tool.title),
       description: tool.description,
       alternates: tool.isEnglishOnly
         ? { canonical: tool.englishPath }
@@ -216,7 +217,7 @@ export async function generateMetadata({
             ...buildFullLanguageAlternates(tool.englishPath),
           },
       openGraph: {
-        title: tool.title,
+        title: tool.metaTitle ?? tool.title,
         description: tool.description,
         url: buildSiteUrl(tool.englishPath),
         siteName: "BirimCeviri.app",

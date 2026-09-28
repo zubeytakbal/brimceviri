@@ -60,6 +60,8 @@ export type EnglishStandaloneTool = {
   englishPath: string;
   turkishPath: string;
   title: string;
+  /** Arama sonucu basligi; verilmezse title kullanilir. */
+  metaTitle?: string;
   description: string;
   intro: string;
   component: EnglishStandaloneToolComponentKey;
@@ -363,22 +365,23 @@ export const englishStandaloneTools: EnglishStandaloneTool[] = [
     englishPath: "/en/age-calculator",
     turkishPath: "/yas-hesaplama",
     title: "Age Calculator",
-    description:
-      "Precisely calculate the difference between two dates in years, months and days, along with running totals.",
-    intro:
-      "Useful for calculating age, the duration between two dates, or the time remaining until the next anniversary.",
+    metaTitle: "Age Calculator: How Old Am I in Years, Months, Days?",
+    description: "Find your exact age from your date of birth in years, months and days, plus your age in total months, weeks and days and the date of your next birthday.",
+    intro: "Enter a date of birth and, if you like, a different end date. The calculator shows the exact age in years, months and days, running totals in months, weeks and days, and when the next birthday falls.",
     component: "dateCalculator",
     iconName: "dateCalculator",
     cardDescription: "Calculates age or the difference between two dates, plus extra totals.",
     articleSections: [
-      {
-        title: "Why not just show the number of days?",
-        body: "In many cases, a years-months-days breakdown is clearer and more useful than a single total day count.",
-      },
-      {
-        title: "What else does the page show?",
-        body: "Alongside the exact difference, you'll see the total in days, weeks and months, as well as the date of the next anniversary.",
-      },
+      { title: "How age is calculated", body: "Age is counted the standard Western way: you are 0 on the day you are born and gain a year on each birthday. The calculator subtracts the birth year from the current year, takes one year off if this year's birthday has not happened yet, then counts the remaining whole months and finally the days." },
+      { title: "Worked example", body: "Someone born on March 15, 1990 is 36 years, 6 months and 13 days old on September 28, 2026: 36 years to March 15, 2026, six months to September 15, 2026, and 13 more days. The calculator also shows the same span as a total number of months, weeks and days." },
+      { title: "Leap years and February 29 birthdays", body: "Leap years are handled automatically, so every day between the two dates is counted exactly. People born on February 29 usually celebrate on February 28 or March 1 in common years; the date on which they legally reach a given age depends on local law." },
+      { title: "Other uses", body: "Because the tool measures the time between any two dates, you can also use it for the age of a building, the length of employment, the time since a wedding or the exact age on a past or future date, such as the day of an exam or retirement. For plain day counts, use the days between dates calculator." },
+    ],
+    faq: [
+      { question: "How do I calculate my exact age?", answer: "Subtract your birth year from the current year, subtract one more if your birthday has not happened yet this year, then count the months and days since your last birthday. The calculator does this automatically." },
+      { question: "How old am I if I was born in 2000?", answer: "You turn 26 on your birthday in 2026. Before your birthday in 2026 you are 25." },
+      { question: "How many days old am I?", answer: "Enter your date of birth and the calculator shows the total number of days you have been alive, along with the total in weeks and months." },
+      { question: "How is age calculated for a February 29 birthday?", answer: "The exact day count is unaffected. For celebrations, most people use February 28 or March 1 in non-leap years; the legal date depends on the country or state." },
     ],
     priority: 0.75,
   },
@@ -449,22 +452,25 @@ export const englishStandaloneTools: EnglishStandaloneTool[] = [
     englishPath: "/en/pregnancy-week-calculator",
     turkishPath: "/gebelik-haftasi-hesaplama",
     title: "Pregnancy Week Calculator",
-    description:
-      "Calculate the current pregnancy week, expected trimester and estimated due date.",
-    intro:
-      "The calculator uses the first day of your last menstrual period to give a quick, clear estimate.",
+    metaTitle: "Pregnancy Calculator: How Many Weeks Pregnant Am I?",
+    description: "How far along am I? Enter the first day of your last period to see how many weeks and days pregnant you are, your trimester and your estimated due date.",
+    intro: "Enter the first day of your last menstrual period (LMP). The calculator shows your gestational age in weeks and days, the current trimester and the estimated due date, 280 days after the LMP.",
     component: "pregnancyCalculator",
     iconName: "pregnancyCalculator",
     cardDescription: "Shows the current pregnancy week, trimester and estimated due date.",
     articleSections: [
-      {
-        title: "How is the calculation done?",
-        body: "The common medical method starts from the first day of the last menstrual period, and gestational age is calculated forward from that date.",
-      },
-      {
-        title: "Is this tool enough on its own?",
-        body: "It's a good starting guide, but it does not replace a doctor's visit or approved medical follow-up.",
-      },
+      { title: "How pregnancy weeks are counted", body: "Doctors count pregnancy from the first day of your last menstrual period, not from conception. Because ovulation usually happens about two weeks after the period starts, you are already considered \"2 weeks pregnant\" at conception. A full-term pregnancy is about 40 weeks, or 280 days, from the LMP." },
+      { title: "How the due date is calculated", body: "The calculator uses Naegele's rule: due date = first day of the last period + 280 days. A quick way to do it by hand is to add one year, subtract three months and add seven days. Example: if your last period started on January 1, 2026, the estimated due date is October 8, 2026." },
+      { title: "Trimesters by week", body: "First trimester: week 1 to the end of week 13. Second trimester: week 14 to the end of week 27. Third trimester: week 28 until birth. A baby born between 39 weeks 0 days and 40 weeks 6 days is considered full term; 37–38 weeks is early term and 41 weeks is late term." },
+      { title: "When the estimate can be off", body: "The LMP method assumes a regular 28-day cycle with ovulation on day 14. If your cycles are longer, shorter or irregular, or you do not remember the date, the estimate can be off by a week or more. An early ultrasound, ideally in the first trimester, is the most accurate way to date a pregnancy, and your provider may change your due date based on it. For IVF pregnancies the transfer date gives an exact start." },
+      { title: "Only a small share of babies arrive on the due date", body: "Only around 4–5% of babies are born on their estimated due date. Most are born in the two weeks before or after it. Use the date for planning, and follow your doctor or midwife for all medical decisions." },
+    ],
+    faq: [
+      { question: "How many weeks pregnant am I?", answer: "Count the weeks from the first day of your last period to today. If your period started 10 weeks and 3 days ago, you are 10 weeks and 3 days (10w3d) pregnant, in the first trimester." },
+      { question: "How is the due date calculated from the last period?", answer: "Add 280 days (40 weeks) to the first day of your last menstrual period. For an LMP of January 1, 2026, the due date is October 8, 2026." },
+      { question: "When does the second trimester start?", answer: "At 14 weeks 0 days. The third trimester starts at 28 weeks 0 days." },
+      { question: "How many months pregnant is 20 weeks?", answer: "About 4.5 months. Pregnancy is 40 weeks, or roughly 9 calendar months plus one week, so month counts are only approximate; doctors use weeks." },
+      { question: "Can the due date change?", answer: "Yes. If an early ultrasound measurement differs noticeably from the date based on your period, your provider may update the due date. A first-trimester ultrasound is the most accurate dating method." },
     ],
     priority: 0.75,
   },
@@ -521,22 +527,24 @@ export const englishStandaloneTools: EnglishStandaloneTool[] = [
     englishPath: "/en/running-pace-calculator",
     turkishPath: "/kosu-pace-hesaplama",
     title: "Running Pace Calculator",
-    description:
-      "Calculate pace, distance or time, and see estimates for 5K, 10K, half-marathon and marathon races.",
-    intro:
-      "Useful for training, race planning and understanding the relationship between time, distance and pace.",
+    metaTitle: "Running Pace Calculator: Pace per Mile and per Km",
+    description: "Calculate running pace per mile or per kilometer from distance and time, or your finish time from a target pace. Includes 5K, 10K, half marathon and marathon times.",
+    intro: "Choose miles or kilometers, then enter any two of distance, time and pace to find the third. The calculator also shows your speed and the finish times for 5K, 10K, half marathon and marathon at that pace.",
     component: "paceCalculator",
     iconName: "paceCalculator",
     cardDescription: "Calculates running pace, time and distance, with estimates for known race distances.",
     articleSections: [
-      {
-        title: "What can be calculated?",
-        body: "If you know any two of time, distance or pace, the tool can directly find the third value.",
-      },
-      {
-        title: "How should you read the race estimates?",
-        body: "They're estimates based on the assumption that your current pace stays constant across the full distance, so treat them as an approximate reference, not a guarantee.",
-      },
+      { title: "How to calculate running pace", body: "Pace = time ÷ distance. If you run 5 miles in 40 minutes, your pace is 40 ÷ 5 = 8:00 per mile. For a 5K (3.107 miles) in 30:00, the pace is 1,800 s ÷ 3.107 = 579 s, or 9:39 per mile, which is 6:00 per kilometer. To find a finish time, multiply pace by distance; to find distance, divide time by pace." },
+      { title: "Converting pace between miles and kilometers", body: "One mile is 1.609344 km. Multiply a per-kilometer pace by 1.609344 to get the per-mile pace, and divide to go the other way: 5:00 per km is 8:03 per mile, and 8:00 per mile is 4:58 per km. Speed is the inverse of pace: 60 ÷ pace in minutes gives mph, so 8:00 per mile is 7.5 mph and 10:00 per mile is 6 mph." },
+      { title: "Race finish times by pace", body: "At 8:00 per mile: 5K 24:51, 10K 49:43, half marathon 1:44:53, marathon 3:29:45. At 9:00 per mile: 5K 27:58, 10K 55:55, half marathon 1:57:59, marathon 3:55:58. At 10:00 per mile: 5K 31:04, 10K 1:02:08, half marathon 2:11:06, marathon 4:22:11. Race distances: 5K = 3.107 mi, 10K = 6.214 mi, half marathon = 13.109 mi, marathon = 26.219 mi." },
+      { title: "Reading the race estimates", body: "The estimates assume you hold the same pace for the whole distance. In practice most runners slow down over longer races, so a pace you can hold for 5K is usually too fast for a marathon. Use the table as a target for even pacing, not as a prediction of what you can run." },
+    ],
+    faq: [
+      { question: "How do I calculate my pace per mile?", answer: "Divide your total time by the distance in miles. 3 miles in 27 minutes is 27 ÷ 3 = 9:00 per mile." },
+      { question: "What pace is a 30-minute 5K?", answer: "9:39 per mile, or 6:00 per kilometer." },
+      { question: "What pace do I need for a 4-hour marathon?", answer: "About 9:09 per mile, or 5:41 per kilometer, held for the whole 26.2 miles." },
+      { question: "How do I convert min/km to min/mile?", answer: "Multiply by 1.609344. 6:00 per km (360 s) × 1.609344 = 579 s, which is 9:39 per mile." },
+      { question: "What is a good running pace for beginners?", answer: "Many beginners run easy miles at 10 to 13 minutes per mile. A good easy pace is one at which you can still talk in full sentences." },
     ],
     priority: 0.75,
   },
@@ -621,22 +629,25 @@ export const englishStandaloneTools: EnglishStandaloneTool[] = [
     englishPath: "/en/sleep-calculator",
     turkishPath: "/uyku-hesaplama",
     title: "Sleep Calculator",
-    description:
-      "Calculate suggested bedtimes or wake-up times based on roughly 90-minute sleep cycles.",
-    intro:
-      "The page shows several practical options and highlights the durations closest to healthy, adequate sleep.",
+    metaTitle: "Sleep Calculator: What Time Should I Go to Bed?",
+    description: "Find the best time to go to bed or wake up based on 90-minute sleep cycles, with 15 minutes to fall asleep. Bedtimes for 7:00 a.m. and a table for every wake-up time.",
+    intro: "Choose whether you know your wake-up time or your bedtime. The calculator counts back or forward in 90-minute sleep cycles, adds about 15 minutes to fall asleep and highlights the option closest to 7–9 hours of sleep.",
     component: "sleepCalculator",
     iconName: "sleepCalculator",
     cardDescription: "Suggests bedtimes and wake-up times based on sleep cycles.",
     articleSections: [
-      {
-        title: "Why do sleep cycles matter?",
-        body: "Waking near the end of a cycle is generally easier than waking in the middle of a deep-sleep phase.",
-      },
-      {
-        title: "What does the recommended option mean?",
-        body: "It's the option closest to the commonly cited healthy sleep range for adults, offered as a practical reference rather than a strict rule.",
-      },
+      { title: "How the sleep calculator works", body: "A night of sleep is made of repeating cycles of light sleep, deep sleep and REM sleep, each lasting roughly 90 minutes on average (the real length varies from about 80 to 120 minutes). Waking at the end of a cycle, when sleep is light, usually feels easier than waking from deep sleep. The calculator therefore works in whole cycles: bedtime = wake-up time − 15 minutes to fall asleep − (number of cycles × 90 minutes)." },
+      { title: "Example: what time to go to bed to wake up at 7:00 a.m.", body: "For 5 cycles (7.5 hours of sleep): 7:00 a.m. − 7 h 30 min − 15 min = 11:15 p.m. For 6 cycles (9 hours): 9:45 p.m. For 4 cycles (6 hours): 12:45 a.m. Most adults do best with 5 or 6 cycles, so 9:45 p.m. to 11:15 p.m. is the window to aim for." },
+      { title: "Bedtimes for common wake-up times", body: "Wake at 5:00 a.m.: bed at 7:45 p.m. (6 cycles) or 9:15 p.m. (5 cycles). Wake at 6:00 a.m.: 8:45 p.m. or 10:15 p.m. Wake at 6:30 a.m.: 9:15 p.m. or 10:45 p.m. Wake at 7:30 a.m.: 10:15 p.m. or 11:45 p.m. Wake at 8:00 a.m.: 10:45 p.m. or 12:15 a.m. All times include 15 minutes to fall asleep." },
+      { title: "How much sleep do you need?", body: "The American Academy of Sleep Medicine and the CDC recommend at least 7 hours a night for adults, 8–10 hours for teenagers aged 13–18 and 9–12 hours for children aged 6–12. The recommended option in the calculator is the one closest to these adult ranges; adjust the number of cycles if you are younger or need more sleep." },
+      { title: "Limits of the cycle method", body: "Cycle length differs from person to person and even from night to night, and the first cycles of the night contain more deep sleep than the later ones. Treat the times as a starting point: if you regularly wake up tired, try moving your bedtime 15 minutes earlier or later for a week. Persistent insomnia, loud snoring or daytime sleepiness are worth discussing with a doctor." },
+    ],
+    faq: [
+      { question: "What time should I go to bed if I wake up at 6 a.m.?", answer: "Aim for 8:45 p.m. (6 cycles, 9 hours of sleep) or 10:15 p.m. (5 cycles, 7.5 hours). Both include about 15 minutes to fall asleep." },
+      { question: "How long is a sleep cycle?", answer: "About 90 minutes on average, although individual cycles range from roughly 80 to 120 minutes. A typical night has 4 to 6 cycles." },
+      { question: "Is 6 hours of sleep enough?", answer: "For most adults, no. Six hours is 4 full cycles, which lets you wake at the end of a cycle, but the recommended minimum for adults is 7 hours." },
+      { question: "Why does the calculator add 15 minutes?", answer: "Most healthy adults take 10 to 20 minutes to fall asleep. The calculator adds 15 minutes so that the cycles start when you actually fall asleep, not when you get into bed." },
+      { question: "What if I wake up during a nap?", answer: "For a short nap, 20 minutes avoids deep sleep; a 90-minute nap covers one full cycle. Naps between 30 and 60 minutes are the ones most likely to leave you groggy." },
     ],
     priority: 0.75,
   },
@@ -709,16 +720,27 @@ export const englishStandaloneTools: EnglishStandaloneTool[] = [
     englishPath: "/en/number-base-calculator",
     turkishPath: "/sayi-tabani-cevirici",
     title: "Number Base Calculator",
-    description: "Convert whole numbers between binary, octal, decimal and hexadecimal, and perform basic binary arithmetic.",
-    intro: "Enter a whole number in its known base to see its equivalent binary, octal, decimal and hexadecimal forms.",
+    metaTitle: "Number Base Converter: Binary, Octal, Decimal, Hex",
+    description: "Convert whole numbers between binary, octal, decimal and hexadecimal, with step-by-step methods and a quick reference table, plus binary addition and subtraction.",
+    intro: "Enter a non-negative whole number in the base you know: binary, octal, decimal or hexadecimal. You will see its value in all four bases at once. The arithmetic panel adds or subtracts two binary numbers.",
     component: "numberBaseCalculator",
     iconName: "numberBaseCalculator",
     cardDescription: "Converts binary, octal, decimal and hexadecimal whole numbers, with basic binary arithmetic.",
     articleSections: [
-      { title: "Which number bases are supported?", body: "The calculator accepts non-negative whole numbers written in base 2, 8, 10 or 16. Hexadecimal uses digits 0–9 and letters A–F." },
-      { title: "What are the arithmetic limits?", body: "The arithmetic panel works with two non-negative binary whole numbers. It does not evaluate fractions, signed values, algebraic expressions or floating-point notation." },
+      { title: "The four number bases", body: "Binary (base 2) uses the digits 0 and 1 and is how computers store data. Octal (base 8) uses 0–7 and still appears in Unix file permissions such as 755. Decimal (base 10) is everyday counting. Hexadecimal (base 16) uses 0–9 and A–F, where A = 10 and F = 15; it is used for colors (#FF8800), memory addresses and byte values." },
+      { title: "Decimal to binary, octal or hex", body: "Divide the number repeatedly by the target base and write the remainders from last to first. Example: 2026 ÷ 16 = 126 remainder 10 (A); 126 ÷ 16 = 7 remainder 14 (E); 7 ÷ 16 = 0 remainder 7, so 2026 = 7EA in hex. The same method gives 11111101010 in binary and 3752 in octal." },
+      { title: "Binary, octal or hex to decimal", body: "Multiply each digit by the base raised to its position, counting from 0 at the right, and add the results. Hex 7EA = 7 × 16² + 14 × 16 + 10 = 1,792 + 224 + 10 = 2,026. Binary 1011 = 8 + 0 + 2 + 1 = 11." },
+      { title: "Shortcut between binary and hex or octal", body: "Each hex digit is exactly four binary digits and each octal digit is three. Split binary into groups from the right: 1111 1110 1010 is F E A, but with the leading group 111 1110 1010 it reads 7EA. For octal, 11 111 101 010 gives 3 7 5 2." },
+      { title: "Quick reference", body: "Decimal 10 = binary 1010 = octal 12 = hex A. Decimal 15 = 1111 = 17 = F. Decimal 16 = 10000 = 20 = 10. Decimal 100 = 1100100 = 144 = 64. Decimal 255 = 11111111 = 377 = FF (the largest value of one byte). Decimal 1024 = 10000000000 = 2000 = 400." },
     ],
     relatedHub: { href: "/en/data-computing-calculators", label: "Data & Computing Calculators" },
+    faq: [
+      { question: "How do I convert decimal to binary?", answer: "Divide by 2 repeatedly and read the remainders from bottom to top. 13 ÷ 2 = 6 r1, 6 ÷ 2 = 3 r0, 3 ÷ 2 = 1 r1, 1 ÷ 2 = 0 r1, so 13 = 1101." },
+      { question: "What is FF in decimal?", answer: "255. F is 15, so FF = 15 × 16 + 15 = 255, the largest number that fits in one byte." },
+      { question: "How do I convert hex to binary?", answer: "Replace each hex digit with its 4-bit binary value: A = 1010, 3 = 0011, so A3 = 10100011." },
+      { question: "Why do programmers use hexadecimal?", answer: "One hex digit represents exactly four bits, so a byte is always two hex digits. That makes long binary values much shorter and easier to read." },
+      { question: "Does the converter handle negative numbers or fractions?", answer: "No. It converts non-negative whole numbers. Signed values (two's complement) and fractional parts are not supported." },
+    ],
     priority: 0.72,
   },
   {
@@ -760,16 +782,26 @@ export const englishStandaloneTools: EnglishStandaloneTool[] = [
     englishPath: "/en/video-bitrate-calculator",
     turkishPath: "/video-bit-hizi-hesaplama",
     title: "Video Bitrate Calculator",
-    description: "Estimate video file size from bitrate and duration, or the bitrate from file size and duration.",
-    intro: "Enter a video duration and either a target bitrate or file size to make a first-pass export estimate.",
+    metaTitle: "Video Bitrate Calculator: File Size From Bitrate",
+    description: "Estimate video file size from bitrate and duration, or the bitrate you need to hit a target file size. Includes the formula and recommended bitrates for 720p, 1080p and 4K.",
+    intro: "Enter the duration and either the video bitrate or the target file size. The calculator uses decimal units (1 MB = 8 megabits) and shows the result immediately.",
     component: "videoBitrateCalculator",
     iconName: "videoBitrateCalculator",
     cardDescription: "Estimates video file size or bitrate using duration and decimal MB/Mbps units.",
     articleSections: [
-      { title: "How is the estimate calculated?", body: "The tool uses file size in MB = bitrate in Mbps × duration in seconds ÷ 8, because a byte contains eight bits." },
-      { title: "Why can the exported size differ?", body: "Audio tracks, container overhead, metadata, variable bitrate and the encoder settings can all alter the final output file." },
+      { title: "The formula", body: "File size (MB) = bitrate (Mbps) × duration (seconds) ÷ 8, because one byte is eight bits. Rearranged, bitrate (Mbps) = file size (MB) × 8 ÷ duration (seconds). Add the audio bitrate to the video bitrate if you want the total: a 128 kbps audio track adds 0.128 Mbps." },
+      { title: "Worked examples", body: "A 10-minute 1080p video at 8 Mbps: 8 × 600 ÷ 8 = 600 MB. A one-hour recording at 5 Mbps: 5 × 3,600 ÷ 8 = 2,250 MB, about 2.25 GB. To fit a 60-second clip into 100 MB, the total bitrate must be at most 100 × 8 ÷ 60 = 13.3 Mbps." },
+      { title: "Recommended upload bitrates", body: "YouTube's recommended bitrates for standard (SDR) uploads are about 5 Mbps for 720p at 30 fps (7.5 Mbps at 60 fps), 8 Mbps for 1080p at 30 fps (12 Mbps at 60 fps), and 35–45 Mbps for 4K at 30 fps (53–68 Mbps at 60 fps). Higher bitrates keep more detail in fast motion; lower bitrates save space but can show blocky compression artifacts." },
+      { title: "Why the exported file can differ", body: "Most encoders use variable bitrate (VBR), so the actual bitrate rises in complex scenes and drops in simple ones, and the target is only an average. Audio tracks, the container (MP4, MOV, MKV), subtitles and metadata add to the size. Codecs matter too: H.265/HEVC and AV1 reach similar quality to H.264 at a noticeably lower bitrate." },
+      { title: "MB vs MiB", body: "The calculator uses decimal units: 1 MB = 1,000,000 bytes and 1 Mbps = 1,000,000 bits per second. Windows shows sizes in binary units (1 MiB = 1,048,576 bytes) while labeling them MB, so a 600 MB file appears as about 572 MB there." },
     ],
     relatedHub: { href: "/en/data-computing-calculators", label: "Data & Computing Calculators" },
+    faq: [
+      { question: "How do I calculate video file size from bitrate?", answer: "Multiply the bitrate in Mbps by the duration in seconds and divide by 8 to get megabytes. 6 Mbps for 5 minutes (300 s) is 6 × 300 ÷ 8 = 225 MB." },
+      { question: "What bitrate should I use for 1080p?", answer: "About 8 Mbps at 30 fps and 12 Mbps at 60 fps for H.264 uploads, following YouTube's recommendations. Streaming platforms often use less, around 4–6 Mbps." },
+      { question: "How big is a 1-hour 1080p video?", answer: "At 8 Mbps it is about 3.6 GB (8 × 3,600 ÷ 8 = 3,600 MB). At 5 Mbps it is about 2.25 GB." },
+      { question: "How do I make a video fit a size limit?", answer: "Divide the size limit in megabits (MB × 8) by the duration in seconds, then subtract the audio bitrate. For 25 MB and 30 seconds: 25 × 8 ÷ 30 = 6.7 Mbps total, so about 6.5 Mbps for video with 128 kbps audio." },
+    ],
     priority: 0.7,
   },
   {

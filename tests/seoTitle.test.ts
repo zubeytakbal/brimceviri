@@ -17,6 +17,11 @@ describe("seoTitle", () => {
     expect(plainTitle(seoTitle(t))).toBe(t);
   });
 
+  it("prefers an earlier candidate without the suffix over a later, shorter one", () => {
+    const t = "Sleep Calculator: What Time Should I Go to Bed?";
+    expect(seoTitle(t, "Sleep Calculator")).toEqual({ absolute: t });
+  });
+
   it("uses the shortest candidate when nothing fits", () => {
     const a = "x".repeat(90);
     const b = "y".repeat(70);

@@ -9,16 +9,17 @@ export const TITLE_MAX = 60;
 const SUFFIX = ` | ${SITE_NAME}`;
 
 /**
- * Adaylar en ayrintilidan en kisaya sirali verilir. Sonekle birlikte sigan ilk aday
- * olduğu gibi (sonekli) doner; hicbiri sigmazsa sonek olmadan sigan ilk aday, o da
- * yoksa en kisa aday sonekisiz kullanilir.
+ * Adaylar tercih sirasina gore (en ayrintilidan en kisaya) verilir ve sirayla denenir:
+ * sonekle sigan aday sonekli, yalnizca kendisi sigan aday soneksiz kullanilir. Hicbiri
+ * sigmazsa en kisa aday soneksiz kullanilir.
  */
 export function seoTitle(...candidates: string[]): NonNullable<Metadata["title"]> {
   const list = candidates.filter(Boolean);
-  const withSuffix = list.find((t) => t.length + SUFFIX.length <= TITLE_MAX);
-  if (withSuffix) return withSuffix;
-  const bare = list.find((t) => t.length <= TITLE_MAX) ?? list.reduce((a, b) => (b.length < a.length ? b : a));
-  return { absolute: bare };
+  for (const t of list) {
+    if (t.length + SUFFIX.length <= TITLE_MAX) return t;
+    if (t.length <= TITLE_MAX) return { absolute: t };
+  }
+  return { absolute: list.reduce((a, b) => (b.length < a.length ? b : a)) };
 }
 
 /** Sosyal paylasim basliklari icin duz metin (sonek eklenmez). */

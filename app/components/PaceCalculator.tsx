@@ -421,12 +421,19 @@ function formatDuration(totalSeconds: number) {
   return `${minutes}:${String(seconds).padStart(2, "0")}`;
 }
 
-function formatPace(secondsPerKm: number, locale: Locale) {
-  const minutes = Math.floor(secondsPerKm / 60);
-  const seconds = Math.round(secondsPerKm % 60);
-  const suffix = locale === "de" ? "min/km" : "min/km";
+const MILE_KM = 1.609344;
+type DistanceUnit = "km" | "mi";
 
-  return `${minutes}:${String(seconds).padStart(2, "0")} ${suffix}`;
+function formatPace(secondsPerKm: number, unit: DistanceUnit = "km") {
+  const perUnit = unit === "mi" ? secondsPerKm * MILE_KM : secondsPerKm;
+  let minutes = Math.floor(perUnit / 60);
+  let seconds = Math.round(perUnit % 60);
+  if (seconds === 60) {
+    minutes += 1;
+    seconds = 0;
+  }
+
+  return `${minutes}:${String(seconds).padStart(2, "0")} min/${unit}`;
 }
 
 function getRaceLabel(race: RaceEstimate, locale: Locale) {
@@ -462,22 +469,54 @@ export default function PaceCalculator({
 }: {
   locale?: Locale;
 }) {
-  const copy = copyByLocale[locale === "ru" ? "en" : locale];
+  const baseCopy = copyByLocale[locale === "ru" ? "en" : locale];
+  // Ingilizcede mil secenegi (ABD ve Ingiltere'de tempo dakika/mil ile verilir).
+  const allowMiles = locale === "en";
+  const [unit, setUnit] = useState<DistanceUnit>(allowMiles ? "mi" : "km");
+  const copy =
+    unit === "mi"
+      ? {
+          ...baseCopy,
+          labels: {
+            ...baseCopy.labels,
+            distance: "Distance (miles)",
+            paceMinutes: "Pace - Minutes/mile",
+            paceSeconds: "Pace - Seconds/mile",
+          },
+        }
+      : baseCopy;
+  const unitFactor = unit === "mi" ? MILE_KM : 1;
   const [mode, setMode] = useState<PaceCalculationMode>("pace");
-  const [distanceKm, setDistanceKm] = useState("10");
+  const [distanceKm, setDistanceKm] = useState(allowMiles ? "3.1" : "10");
   const [durationHours, setDurationHours] = useState("0");
-  const [durationMinutes, setDurationMinutes] = useState("50");
+  const [durationMinutes, setDurationMinutes] = useState(allowMiles ? "30" : "50");
   const [durationSecondsInput, setDurationSecondsInput] = useState("0");
-  const [paceMinutes, setPaceMinutes] = useState("5");
+  const [paceMinutes, setPaceMinutes] = useState(allowMiles ? "9" : "5");
   const [paceSecondsInput, setPaceSecondsInput] = useState("0");
 
-  const distance = parseNumericValue(distanceKm);
+  // Hesaplar km uzerinden yapilir; mil secildiyse giris km'ye cevrilir.
+  const distance = parseNumericValue(distanceKm) * unitFactor;
   const durationSeconds =
     parseNumericValue(durationHours) * 3600 +
     parseNumericValue(durationMinutes) * 60 +
     parseNumericValue(durationSecondsInput);
   const paceSecondsPerKm =
-    parseNumericValue(paceMinutes) * 60 + parseNumericValue(paceSecondsInput);
+    (parseNumericValue(paceMinutes) * 60 + parseNumericValue(paceSecondsInput)) / unitFactor;
+
+  // Birim degisince girilen mesafe ve tempo ayni anlami korusun diye cevrilir.
+  const changeUnit = (next: DistanceUnit) => {
+    if (next === unit) return;
+    const factor = next === "mi" ? 1 / MILE_KM : MILE_KM;
+    const d = parseNumericValue(distanceKm);
+    if (Number.isFinite(d) && d > 0) setDistanceKm(String(Math.round(d * factor * 100) / 100));
+    const paceTotal = parseNumericValue(paceMinutes) * 60 + parseNumericValue(paceSecondsInput);
+    if (Number.isFinite(paceTotal) && paceTotal > 0) {
+      const converted = Math.round(paceTotal / factor);
+      setPaceMinutes(String(Math.floor(converted / 60)));
+      setPaceSecondsInput(String(converted % 60));
+    }
+    setUnit(next);
+  };
 
   const result: PaceCalculatorResult | null = useMemo(() => {
     if (mode === "pace") {
@@ -521,6 +560,24 @@ export default function PaceCalculator({
             </button>
           </div>
         </div>
+
+        {allowMiles && (
+          <div className="engineering-targets">
+            <span>Units</span>
+            <div className="engineering-target-grid hydrostatic-target-grid">
+              {(["mi", "km"] as const).map((u) => (
+                <button
+                  key={u}
+                  type="button"
+                  className={`engineering-target-button${unit === u ? " is-active" : ""}`}
+                  onClick={() => changeUnit(u)}
+                >
+                  {u === "mi" ? "Miles (min/mile)" : "Kilometers (min/km)"}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
 
         <div className="paint-calculator-grid">
           {mode !== "distance" && (
@@ -600,7 +657,7 @@ export default function PaceCalculator({
             <p className="paint-calculator-liters">
               {mode === "pace" && (
                 <>
-                  {copy.resultLabels.pace}: <strong>{formatPace(result.paceSecondsPerKm, locale)}</strong>
+                  {copy.resultLabels.pace}: <strong>{formatPace(result.paceSecondsPerKm, unit)}</strong>
                 </>
               )}
               {mode === "duration" && (
@@ -612,9 +669,9 @@ export default function PaceCalculator({
                 <>
                   {copy.resultLabels.distance}:{" "}
                   <strong>
-                    {formatLocalizedNumber(result.distanceKm, locale, {
+                    {formatLocalizedNumber(result.distanceKm / unitFactor, locale, {
                       maximumFractionDigits: 2,
-                    })} km
+                    })} {unit}
                   </strong>
                 </>
               )}
@@ -623,22 +680,22 @@ export default function PaceCalculator({
             <div className="paint-calculator-result-grid">
               <div>
                 <span>{copy.resultLabels.pace}</span>
-                <strong>{formatPace(result.paceSecondsPerKm, locale)}</strong>
+                <strong>{formatPace(result.paceSecondsPerKm, unit)}</strong>
               </div>
               <div>
                 <span>{copy.resultLabels.speed}</span>
                 <strong>
-                  {formatLocalizedNumber(result.speedKmh, locale, {
+                  {formatLocalizedNumber(result.speedKmh / unitFactor, locale, {
                     maximumFractionDigits: 1,
-                  })} km/h
+                  })} {unit === "mi" ? "mph" : "km/h"}
                 </strong>
               </div>
               <div>
                 <span>{copy.resultLabels.distance}</span>
                 <strong>
-                  {formatLocalizedNumber(result.distanceKm, locale, {
+                  {formatLocalizedNumber(result.distanceKm / unitFactor, locale, {
                     maximumFractionDigits: 2,
-                  })} km
+                  })} {unit}
                 </strong>
               </div>
             </div>
@@ -651,9 +708,10 @@ export default function PaceCalculator({
                   </span>
                   <span className="sleep-calculator-detail">
                     {getRaceLabel(race, locale)} (
-                    {formatLocalizedNumber(race.distanceKm, locale, {
-                      maximumFractionDigits: 4,
-                    })} km) {copy.resultLabels.estimatedTime}
+                    {unit === "mi"
+                      ? `${formatLocalizedNumber(race.distanceKm / MILE_KM, locale, { maximumFractionDigits: 1 })} mi`
+                      : `${formatLocalizedNumber(race.distanceKm, locale, { maximumFractionDigits: 4 })} km`}
+                    ) {copy.resultLabels.estimatedTime}
                   </span>
                 </li>
               ))}

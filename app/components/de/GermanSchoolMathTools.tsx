@@ -23,7 +23,14 @@ import {
   teiler,
   teilerAnzahl,
   wurzelVereinfachen,
+  flaeche,
+  gauss,
+  koerper,
+  pythagoras,
+  schriftlicheDivision,
   type BruchOp,
+  type Figur,
+  type Koerper,
 } from "../../converter/germanSchoolMath";
 
 function Field({ label, value, onChange, mode = "decimal", wide }: { label: string; value: string; onChange: (v: string) => void; mode?: "decimal" | "numeric" | "text"; wide?: boolean }) {
@@ -418,6 +425,265 @@ export function BinomialRechner() {
         </>
       ) : (
         <Note>Bitte ganze Zahlen mit 0 ≤ k ≤ n ≤ 1000 eingeben.</Note>
+      )}
+    </div>
+  );
+}
+
+/* ---------------- Schriftliche Division ---------------- */
+
+export function SchriftlicheDivision() {
+  const [aRaw, setA] = useState("1234");
+  const [bRaw, setB] = useState("5");
+  const a = int(aRaw);
+  const b = int(bRaw);
+  const d = Number.isInteger(a) && Number.isInteger(b) && a >= 0 && a <= 1e12 && b > 0 && b <= 1e6 ? schriftlicheDivision(a, b) : null;
+
+  // Klassische Darstellung: jede Zahl steht rechtsbündig unter der zuletzt verwendeten Ziffer.
+  const lines: string[] = [];
+  if (d) {
+    const head = `${a} : ${b} = ${d.quotient}${d.rest ? ` Rest ${d.rest}` : ""}`;
+    // Eine Stelle Einzug, damit das Minuszeichen vor der ersten Zahl Platz hat.
+    lines.push(` ${head}`);
+    d.steps.forEach((s, i) => {
+      const col = s.ende + 2;
+      const pad = (text: string) => " ".repeat(Math.max(0, col - text.length)) + text;
+      if (i > 0) lines.push(pad(String(s.teil)));
+      lines.push(pad(`-${s.produkt}`));
+      lines.push(pad("-".repeat(Math.max(String(s.teil).length, String(s.produkt).length + 1))));
+      if (i === d.steps.length - 1) lines.push(pad(String(s.rest)));
+    });
+  }
+  return (
+    <div className="date-calc">
+      <div className="date-calc-input">
+        <div className="date-calc-fields">
+          <Field label="Dividend" value={aRaw} onChange={setA} mode="numeric" />
+          <Field label="Divisor" value={bRaw} onChange={setB} mode="numeric" />
+        </div>
+      </div>
+      {d ? (
+        <>
+          <div className="date-calc-results">
+            <Main label="Ergebnis" value={`${fmtDe(d.quotient)}${d.rest ? ` Rest ${fmtDe(d.rest)}` : ""}`} detail={`Probe: ${fmtDe(d.quotient)} · ${fmtDe(b)}${d.rest ? ` + ${fmtDe(d.rest)}` : ""} = ${fmtDe(a)}`} />
+            <Stat label="Als Dezimalzahl" value={fmtDe(a / b, 6)} />
+          </div>
+          <div className="date-calc-input">
+            <strong>So steht es im Heft</strong>
+            <pre style={{ fontFamily: "ui-monospace, Menlo, monospace", fontSize: "1.05rem", lineHeight: 1.35, overflowX: "auto", margin: "8px 0 0" }}>{lines.join("\n")}</pre>
+          </div>
+          <Steps
+            steps={d.steps.map(
+              (s) =>
+                `${fmtDe(s.teil)} : ${fmtDe(b)} = ${s.ziffer}, ${s.ziffer} · ${fmtDe(b)} = ${fmtDe(s.produkt)}, ${fmtDe(s.teil)} − ${fmtDe(s.produkt)} = ${fmtDe(s.rest)}${s.herunter !== undefined ? `, ${s.herunter} herunterholen` : ""}`,
+            )}
+          />
+        </>
+      ) : (
+        <Note>Bitte zwei natürliche Zahlen eingeben; der Divisor darf nicht 0 sein.</Note>
+      )}
+    </div>
+  );
+}
+
+/* ---------------- Satz des Pythagoras ---------------- */
+
+export function PythagorasRechner() {
+  const [a, setA] = useState("3");
+  const [b, setB] = useState("4");
+  const [c, setC] = useState("");
+  const A = a.trim() ? parseDe(a) : NaN;
+  const B = b.trim() ? parseDe(b) : NaN;
+  const C = c.trim() ? parseDe(c) : NaN;
+  const r = pythagoras(A, B, C);
+  const f = (v: number) => fmtDe(v, 6);
+  let steps: string[] = [];
+  let seiten: [number, number, number] | null = null;
+  if (r) {
+    if (r.seite === "c") {
+      steps = [`c² = a² + b² = ${f(A)}² + ${f(B)}² = ${f(A * A)} + ${f(B * B)} = ${f(A * A + B * B)}`, `c = √${f(A * A + B * B)} = ${f(r.wert)}`];
+      seiten = [A, B, r.wert];
+    } else {
+      const k = r.seite === "a" ? B : A;
+      steps = [`${r.seite}² = c² − ${r.seite === "a" ? "b" : "a"}² = ${f(C)}² − ${f(k)}² = ${f(C * C - k * k)}`, `${r.seite} = √${f(C * C - k * k)} = ${f(r.wert)}`];
+      seiten = r.seite === "a" ? [r.wert, B, C] : [A, r.wert, C];
+    }
+  }
+  return (
+    <div className="date-calc">
+      <div className="date-calc-input">
+        <Note>Zwei Seiten eingeben, die dritte leer lassen. c ist die Hypotenuse (die Seite gegenüber dem rechten Winkel).</Note>
+        <div className="date-calc-fields">
+          <Field label="Kathete a" value={a} onChange={setA} />
+          <Field label="Kathete b" value={b} onChange={setB} />
+          <Field label="Hypotenuse c" value={c} onChange={setC} />
+        </div>
+      </div>
+      {r && seiten ? (
+        <>
+          <div className="date-calc-results">
+            <Main label={`Seite ${r.seite}`} value={f(r.wert)} />
+            <Stat label="Fläche" value={f((seiten[0] * seiten[1]) / 2)} />
+            <Stat label="Umfang" value={f(seiten[0] + seiten[1] + seiten[2])} />
+            <Stat label="Höhe auf c" value={f((seiten[0] * seiten[1]) / seiten[2])} />
+          </div>
+          <Steps steps={steps} />
+        </>
+      ) : (
+        <Note>Genau zwei Seiten eingeben; die Hypotenuse muss länger als jede Kathete sein.</Note>
+      )}
+    </div>
+  );
+}
+
+/* ---------------- Flächen ---------------- */
+
+const FIGUREN: Array<{ id: Figur; label: string; felder: Array<[string, string]>; formel: string }> = [
+  { id: "kreis", label: "Kreis", felder: [["r", "Radius r"]], formel: "A = π · r², U = 2 · π · r" },
+  { id: "rechteck", label: "Rechteck", felder: [["a", "Länge a"], ["b", "Breite b"]], formel: "A = a · b, U = 2 · (a + b)" },
+  { id: "dreieck", label: "Dreieck", felder: [["g", "Grundseite g"], ["h", "Höhe h"]], formel: "A = g · h / 2" },
+  { id: "trapez", label: "Trapez", felder: [["a", "Seite a"], ["c", "Seite c (parallel zu a)"], ["h", "Höhe h"]], formel: "A = (a + c) / 2 · h" },
+  { id: "parallelogramm", label: "Parallelogramm", felder: [["g", "Grundseite g"], ["h", "Höhe h"]], formel: "A = g · h" },
+];
+
+export function FlaechenRechner() {
+  const [fig, setFig] = useState<Figur>("kreis");
+  const [werte, setWerte] = useState<Record<string, string>>({ r: "5", a: "6", b: "4", c: "4", g: "6", h: "3" });
+  const def = FIGUREN.find((x) => x.id === fig)!;
+  const nums = Object.fromEntries(Object.entries(werte).map(([k, v]) => [k, parseDe(v)]));
+  const r = flaeche(fig, nums);
+  const f = (v: number) => fmtDe(v, 4);
+  return (
+    <div className="date-calc">
+      <div className="date-converter-modes is-light" role="tablist">
+        {FIGUREN.map((x) => (
+          <button key={x.id} type="button" role="tab" aria-selected={fig === x.id} className={fig === x.id ? "is-active" : undefined} onClick={() => setFig(x.id)}>
+            {x.label}
+          </button>
+        ))}
+      </div>
+      <div className="date-calc-input">
+        <div className="date-calc-fields">
+          {def.felder.map(([k, label]) => (
+            <Field key={k} label={label} value={werte[k] ?? ""} onChange={(v) => setWerte((w) => ({ ...w, [k]: v }))} />
+          ))}
+        </div>
+        <Note>Formel: {def.formel}</Note>
+      </div>
+      {r ? (
+        <div className="date-calc-results">
+          <Main label="Flächeninhalt A" value={f(r.A)} detail="in Flächeneinheiten (z. B. cm², wenn in cm eingegeben)" />
+          {"U" in r && r.U !== undefined && <Stat label="Umfang U" value={f(r.U)} />}
+          {"d" in r && r.d !== undefined && <Stat label={fig === "kreis" ? "Durchmesser d" : "Diagonale d"} value={f(r.d)} />}
+        </div>
+      ) : (
+        <Note>Bitte alle Maße als positive Zahlen eingeben.</Note>
+      )}
+    </div>
+  );
+}
+
+/* ---------------- Körper ---------------- */
+
+const KOERPER: Array<{ id: Koerper; label: string; felder: Array<[string, string]>; formel: string }> = [
+  { id: "wuerfel", label: "Würfel", felder: [["a", "Kantenlänge a"]], formel: "V = a³, O = 6 · a²" },
+  { id: "quader", label: "Quader", felder: [["a", "Länge a"], ["b", "Breite b"], ["c", "Höhe c"]], formel: "V = a · b · c, O = 2 · (ab + ac + bc)" },
+  { id: "zylinder", label: "Zylinder", felder: [["r", "Radius r"], ["h", "Höhe h"]], formel: "V = π · r² · h, M = 2 · π · r · h" },
+  { id: "kegel", label: "Kegel", felder: [["r", "Radius r"], ["h", "Höhe h"]], formel: "V = ⅓ · π · r² · h, s = √(r² + h²), M = π · r · s" },
+  { id: "kugel", label: "Kugel", felder: [["r", "Radius r"]], formel: "V = ⁴⁄₃ · π · r³, O = 4 · π · r²" },
+  { id: "pyramide", label: "Quadratische Pyramide", felder: [["a", "Grundkante a"], ["h", "Höhe h"]], formel: "V = ⅓ · a² · h, O = a² + 2 · a · hs" },
+];
+
+export function VolumenRechner() {
+  const [k, setK] = useState<Koerper>("zylinder");
+  const [werte, setWerte] = useState<Record<string, string>>({ a: "4", b: "3", c: "2", r: "3", h: "4" });
+  const def = KOERPER.find((x) => x.id === k)!;
+  const nums = Object.fromEntries(Object.entries(werte).map(([key, v]) => [key, parseDe(v)]));
+  const r = koerper(k, nums) as Record<string, number> | null;
+  const f = (v: number) => fmtDe(v, 4);
+  const labels: Record<string, string> = { O: "Oberfläche O", M: "Mantelfläche M", G: "Grundfläche G", s: "Mantellinie s", hs: "Höhe der Seitenfläche hs" };
+  return (
+    <div className="date-calc">
+      <div className="date-converter-modes is-light" role="tablist">
+        {KOERPER.map((x) => (
+          <button key={x.id} type="button" role="tab" aria-selected={k === x.id} className={k === x.id ? "is-active" : undefined} onClick={() => setK(x.id)}>
+            {x.label}
+          </button>
+        ))}
+      </div>
+      <div className="date-calc-input">
+        <div className="date-calc-fields">
+          {def.felder.map(([key, label]) => (
+            <Field key={key} label={label} value={werte[key] ?? ""} onChange={(v) => setWerte((w) => ({ ...w, [key]: v }))} />
+          ))}
+        </div>
+        <Note>Formel: {def.formel}</Note>
+      </div>
+      {r ? (
+        <div className="date-calc-results">
+          <Main label="Volumen V" value={f(r.V)} detail={`in Raumeinheiten; bei Eingabe in cm sind das ${f(r.V / 1000)} Liter`} />
+          {Object.entries(r)
+            .filter(([key]) => key !== "V")
+            .map(([key, val]) => (
+              <Stat key={key} label={labels[key] ?? key} value={f(val)} />
+            ))}
+        </div>
+      ) : (
+        <Note>Bitte alle Maße als positive Zahlen eingeben.</Note>
+      )}
+    </div>
+  );
+}
+
+/* ---------------- Gleichungssystem ---------------- */
+
+export function GleichungssystemRechner() {
+  const [n, setN] = useState<2 | 3>(3);
+  const [raw, setRaw] = useState<string[][]>([
+    ["2", "1", "-1", "8"],
+    ["-3", "-1", "2", "-11"],
+    ["-2", "1", "2", "-3"],
+  ]);
+  const vars = ["x", "y", "z"];
+  const rows = raw.slice(0, n).map((row) => [...row.slice(0, n), row[3]]);
+  const matrix = rows.map((row) => row.map((v) => parseDe(v)));
+  const r = gauss(matrix);
+  const set = (i: number, j: number, v: string) => setRaw((m) => m.map((row, ri) => (ri === i ? row.map((c, ci) => (ci === j ? v : c)) : row)));
+  return (
+    <div className="date-calc">
+      <div className="date-converter-modes is-light" role="tablist">
+        {([2, 3] as const).map((k) => (
+          <button key={k} type="button" role="tab" aria-selected={n === k} className={n === k ? "is-active" : undefined} onClick={() => setN(k)}>
+            {k} Gleichungen
+          </button>
+        ))}
+      </div>
+      <div className="date-calc-input">
+        {Array.from({ length: n }, (_, i) => (
+          <div key={i}>
+            <strong>{["I", "II", "III"][i]}</strong>
+            <div className="date-calc-fields">
+              {Array.from({ length: n }, (_, j) => (
+                <Field key={j} label={`Faktor vor ${vars[j]}`} value={raw[i][j]} onChange={(v) => set(i, j, v)} />
+              ))}
+              <Field label="= rechte Seite" value={raw[i][3]} onChange={(v) => set(i, 3, v)} />
+            </div>
+          </div>
+        ))}
+      </div>
+      {r ? (
+        <>
+          <div className="date-calc-results">
+            {r.status === "eindeutig" && r.loesung ? (
+              <Main label="Lösung" value={r.loesung.map((v, i) => `${vars[i]} = ${fmtDe(v, 6)}`).join(", ")} detail="eindeutig lösbar" />
+            ) : (
+              <Main label="Lösung" value={r.status === "keine" ? "keine Lösung" : "unendlich viele Lösungen"} detail={r.status === "keine" ? "Die Gleichungen widersprechen sich." : "Mindestens eine Gleichung folgt aus den anderen."} />
+            )}
+          </div>
+          <Steps title="Gauß-Verfahren" steps={r.steps} />
+        </>
+      ) : (
+        <Note>Bitte alle Felder mit Zahlen füllen.</Note>
       )}
     </div>
   );

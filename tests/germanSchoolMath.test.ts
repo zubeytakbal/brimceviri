@@ -19,6 +19,7 @@ import {
   teilerAnzahl,
   wurzelVereinfachen,
 } from "../app/converter/germanSchoolMath";
+import { flaeche, gauss, koerper, pythagoras, schriftlicheDivision } from "../app/converter/germanSchoolMath";
 
 describe("Teiler", () => {
   it("ggT, kgV, Euklid", () => {
@@ -106,5 +107,48 @@ describe("Statistik und Kombinatorik", () => {
     expect(nUeberK(49, 6)).toBe(BigInt(13983816));
     expect(nUeberK(5, 2)).toBe(BigInt(10));
     expect(fakultaet(10)).toBe(BigInt(3628800));
+  });
+});
+
+
+describe("Batch 2", () => {
+  it("schriftliche Division", () => {
+    const d = schriftlicheDivision(1234, 5)!;
+    expect(d.quotient).toBe(246);
+    expect(d.rest).toBe(4);
+    expect(d.steps.map((s) => s.teil)).toEqual([12, 23, 34]);
+    expect(schriftlicheDivision(1024, 4)!.quotient).toBe(256);
+    expect(schriftlicheDivision(3, 7)).toEqual({ quotient: 0, rest: 3, steps: [{ teil: 3, ziffer: 0, produkt: 0, rest: 3, herunter: undefined, ende: 0 }] });
+    expect(schriftlicheDivision(5, 0)).toBeNull();
+  });
+  it("Pythagoras", () => {
+    expect(pythagoras(3, 4, NaN)).toEqual({ seite: "c", wert: 5 });
+    expect(pythagoras(NaN, 12, 13)).toEqual({ seite: "a", wert: 5 });
+    expect(pythagoras(5, NaN, 4)).toBeNull();
+  });
+  it("Flächen und Körper", () => {
+    expect(flaeche("trapez", { a: 6, c: 4, h: 3 })!.A).toBe(15);
+    expect(flaeche("kreis", { r: 1 })!.A).toBeCloseTo(Math.PI, 12);
+    expect(koerper("quader", { a: 2, b: 3, c: 4 })).toEqual({ V: 24, O: 52 });
+    expect(koerper("kegel", { r: 3, h: 4 })!.s).toBe(5);
+    expect(koerper("kugel", { r: 3 })!.V).toBeCloseTo(36 * Math.PI, 10);
+    expect(koerper("pyramide", { a: 6, h: 4 })!.V).toBe(48);
+  });
+  it("Gauß-Verfahren", () => {
+    const r = gauss([
+      [2, 1, -1, 8],
+      [-3, -1, 2, -11],
+      [-2, 1, 2, -3],
+    ])!;
+    expect(r.status).toBe("eindeutig");
+    expect(r.loesung!.map((v) => Math.round(v * 1e9) / 1e9)).toEqual([2, 3, -1]);
+    expect(gauss([
+      [1, 1, 2],
+      [2, 2, 4],
+    ])!.status).toBe("unendlich");
+    expect(gauss([
+      [1, 1, 2],
+      [1, 1, 3],
+    ])!.status).toBe("keine");
   });
 });

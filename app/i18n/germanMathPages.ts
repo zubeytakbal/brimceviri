@@ -1,7 +1,7 @@
 // Deutsche Mathe-Rechner: Seiteninhalte (Schulbegriffe, Beispiele aus dem deutschen Alltag).
 import { buildLanguageAlternates } from "./routing";
 
-export type GermanMathKey = "bruch" | "ggtKgv" | "primfaktor" | "wurzel" | "quadratisch" | "roemisch" | "mittelwert" | "binomial";
+export type GermanMathKey = "bruch" | "ggtKgv" | "primfaktor" | "wurzel" | "quadratisch" | "roemisch" | "mittelwert" | "binomial" | "division" | "pythagoras" | "area" | "volumen" | "lgs";
 
 export type GermanMathPage = {
   key: GermanMathKey;
@@ -297,6 +297,208 @@ export const germanMathPages: GermanMathPage[] = [
       { question: "Was bedeutet „n über k“?", answer: "Die Anzahl der Möglichkeiten, k Elemente aus n auszuwählen, ohne auf die Reihenfolge zu achten und ohne Zurücklegen." },
       { question: "Was ist der Unterschied zur Permutation?", answer: "Bei Permutationen zählt die Reihenfolge: Aus 5 Personen lassen sich 20 geordnete Paare (Kapitän und Vize) bilden, aber nur 10 ungeordnete Teams." },
       { question: "Wie hoch ist die Chance auf 6 Richtige mit Superzahl?", answer: "1 : 139.838.160, also etwa 0,0000007 Prozent." },
+    ],
+  },
+  {
+    key: "division",
+    path: "/de/schriftlich-dividieren",
+    title: "Schriftlich dividieren",
+    metaTitle: "Schriftlich dividieren: Rechner mit Rest und Rechenweg",
+    shortTitle: "Schriftliche Division",
+    description: "Schriftliche Division Schritt für Schritt wie im Heft: teilen, multiplizieren, subtrahieren, herunterholen – mit Rest, Probe und Dezimalergebnis.",
+    intro: "Dividend und Divisor eingeben. Der Rechner zeigt die Rechnung genau so, wie sie in der Grundschule ins Heft geschrieben wird, mit Rest und Probe.",
+    sections: [
+      {
+        id: "schritte",
+        title: "Die vier Schritte",
+        list: [
+          "Teilen: Wie oft passt der Divisor in die ersten Stellen? Die Zahl kommt ins Ergebnis.",
+          "Multiplizieren: Diese Ergebnisziffer mal den Divisor rechnen und darunterschreiben.",
+          "Subtrahieren: Abziehen – der Rest muss kleiner als der Divisor sein.",
+          "Herunterholen: Die nächste Ziffer des Dividenden neben den Rest schreiben und von vorn beginnen.",
+        ],
+      },
+      {
+        id: "beispiel",
+        title: "Beispiel 1234 : 5",
+        paragraphs: [
+          "12 : 5 = 2, 2 · 5 = 10, 12 − 10 = 2, die 3 herunterholen: 23. 23 : 5 = 4, 4 · 5 = 20, Rest 3, die 4 herunterholen: 34. 34 : 5 = 6, 6 · 5 = 30, Rest 4. Ergebnis: 1234 : 5 = 246 Rest 4.",
+          "Probe: 246 · 5 + 4 = 1234. Mit Komma weitergerechnet ergibt sich 246,8.",
+        ],
+      },
+      {
+        id: "tipps",
+        title: "Typische Fehler",
+        list: [
+          "Eine Null im Ergebnis vergessen, wenn der Divisor nach dem Herunterholen nicht passt (1224 : 12 = 102).",
+          "Einen Rest stehen lassen, der größer als der Divisor ist – dann war die Ergebnisziffer zu klein.",
+          "Die Probe weglassen: Ergebnis mal Divisor plus Rest muss den Dividenden ergeben.",
+        ],
+      },
+    ],
+    faq: [
+      { question: "Wie schreibt man den Rest?", answer: "Hinter das Ergebnis, etwa „246 Rest 4“ oder kurz „246 R 4“." },
+      { question: "In welcher Klasse lernt man schriftlich dividieren?", answer: "Meist in der 4. Klasse der Grundschule, mit einstelligem Divisor; zweistellige Divisoren folgen oft in Klasse 5." },
+      { question: "Wie rechnet man mit Komma weiter?", answer: "Nach der letzten Ziffer ein Komma ins Ergebnis setzen und statt einer Ziffer eine 0 herunterholen, so lange, bis der Rest 0 ist oder genug Stellen dastehen." },
+    ],
+  },
+  {
+    key: "pythagoras",
+    path: "/de/satz-des-pythagoras-rechner",
+    title: "Satz des Pythagoras",
+    metaTitle: "Satz des Pythagoras Rechner: Hypotenuse und Kathete",
+    shortTitle: "Satz des Pythagoras",
+    description: "Fehlende Seite im rechtwinkligen Dreieck berechnen – Hypotenuse oder Kathete – mit Rechenweg, Fläche, Umfang und Höhe.",
+    intro: "Zwei Seiten eines rechtwinkligen Dreiecks eingeben und die dritte leer lassen. Der Rechner bestimmt die fehlende Seite nach a² + b² = c² und zeigt den Rechenweg.",
+    sections: [
+      {
+        id: "formel",
+        title: "a² + b² = c²",
+        paragraphs: [
+          "Im rechtwinkligen Dreieck ist die Summe der Quadrate über den Katheten gleich dem Quadrat über der Hypotenuse. Die Hypotenuse c liegt dem rechten Winkel gegenüber und ist die längste Seite.",
+          "Hypotenuse gesucht: c = √(a² + b²). Kathete gesucht: a = √(c² − b²).",
+        ],
+      },
+      {
+        id: "tripel",
+        title: "Pythagoreische Tripel",
+        table: {
+          head: ["a", "b", "c"],
+          rows: [
+            ["3", "4", "5"],
+            ["5", "12", "13"],
+            ["6", "8", "10"],
+            ["8", "15", "17"],
+            ["7", "24", "25"],
+            ["20", "21", "29"],
+          ],
+        },
+      },
+      {
+        id: "alltag",
+        title: "Im Alltag",
+        list: [
+          "Bildschirmdiagonale: Ein 55-Zoll-Fernseher im Format 16:9 ist etwa 47,9 Zoll breit und 27 Zoll hoch.",
+          "Leiter an der Wand: Eine 5-m-Leiter, deren Fuß 1,5 m von der Wand steht, reicht √(25 − 2,25) ≈ 4,77 m hoch.",
+          "Rechter Winkel beim Bauen: Mit einer 3-4-5-Schnur prüfen Handwerker, ob eine Ecke rechtwinklig ist.",
+        ],
+      },
+    ],
+    faq: [
+      { question: "Welche Seite ist die Hypotenuse?", answer: "Die Seite gegenüber dem rechten Winkel; sie ist immer die längste Seite im Dreieck." },
+      { question: "Gilt der Satz für jedes Dreieck?", answer: "Nein, nur für rechtwinklige Dreiecke. Für andere Dreiecke verwendet man den Kosinussatz." },
+      { question: "Wie prüfe ich, ob ein Dreieck rechtwinklig ist?", answer: "Wenn a² + b² = c² gilt (mit c als längster Seite), ist es rechtwinklig – etwa 5, 12 und 13, weil 25 + 144 = 169." },
+    ],
+  },
+  {
+    key: "area",
+    path: "/de/flaechenrechner",
+    title: "Flächenrechner",
+    metaTitle: "Flächenrechner: Kreis, Rechteck, Dreieck, Trapez",
+    shortTitle: "Flächenrechner",
+    description: "Flächeninhalt und Umfang berechnen: Kreis, Rechteck, Dreieck, Trapez und Parallelogramm – mit Formeln und Beispielen.",
+    intro: "Figur wählen und die Maße eingeben. Der Rechner zeigt Flächeninhalt, Umfang und – wo sinnvoll – Durchmesser oder Diagonale.",
+    sections: [
+      {
+        id: "formeln",
+        title: "Die Formeln",
+        table: {
+          head: ["Figur", "Flächeninhalt", "Umfang"],
+          rows: [
+            ["Quadrat", "a²", "4 · a"],
+            ["Rechteck", "a · b", "2 · (a + b)"],
+            ["Dreieck", "g · h / 2", "a + b + c"],
+            ["Parallelogramm", "g · h", "2 · (a + b)"],
+            ["Trapez", "(a + c) / 2 · h", "a + b + c + d"],
+            ["Kreis", "π · r²", "2 · π · r"],
+          ],
+        },
+      },
+      {
+        id: "einheiten",
+        title: "Flächeneinheiten",
+        paragraphs: ["1 m² = 100 dm² = 10.000 cm². 1 Ar = 100 m², 1 Hektar = 10.000 m², 1 km² = 100 Hektar."],
+      },
+    ],
+    faq: [
+      { question: "Wie berechne ich die Fläche eines Zimmers?", answer: "Länge mal Breite: 4,5 m · 3,2 m = 14,4 m². L-förmige Räume in Rechtecke zerlegen und die Flächen addieren." },
+      { question: "Wie groß ist ein Kreis mit 1 m Durchmesser?", answer: "Radius 0,5 m, also π · 0,25 ≈ 0,785 m²." },
+      { question: "Was ist die Höhe beim Dreieck?", answer: "Der senkrechte Abstand von der Grundseite zur gegenüberliegenden Ecke – nicht die Länge einer schrägen Seite." },
+    ],
+  },
+  {
+    key: "volumen",
+    path: "/de/volumenrechner",
+    title: "Volumenrechner",
+    metaTitle: "Volumenrechner: Zylinder, Kegel, Kugel, Quader",
+    shortTitle: "Volumenrechner",
+    description: "Volumen, Oberfläche und Mantelfläche berechnen: Würfel, Quader, Zylinder, Kegel, Kugel und quadratische Pyramide – mit Formeln und Umrechnung in Liter.",
+    intro: "Körper wählen und die Maße eingeben. Der Rechner zeigt Volumen, Oberfläche und – je nach Körper – Grund- und Mantelfläche; bei Maßen in Zentimetern auch das Volumen in Litern.",
+    sections: [
+      {
+        id: "formeln",
+        title: "Formelsammlung Körper",
+        table: {
+          head: ["Körper", "Volumen", "Oberfläche"],
+          rows: [
+            ["Würfel", "a³", "6 · a²"],
+            ["Quader", "a · b · c", "2 · (ab + ac + bc)"],
+            ["Zylinder", "π · r² · h", "2 · π · r · (r + h)"],
+            ["Kegel", "⅓ · π · r² · h", "π · r · (r + s)"],
+            ["Kugel", "⁴⁄₃ · π · r³", "4 · π · r²"],
+            ["Quadratische Pyramide", "⅓ · a² · h", "a² + 2 · a · hs"],
+          ],
+        },
+      },
+      {
+        id: "liter",
+        title: "Volumen in Liter umrechnen",
+        paragraphs: ["1 Liter = 1 dm³ = 1.000 cm³, 1 m³ = 1.000 Liter. Ein Zylinder mit 3 cm Radius und 4 cm Höhe fasst π · 9 · 4 ≈ 113,1 cm³, also rund 0,11 Liter."],
+      },
+    ],
+    faq: [
+      { question: "Was ist der Unterschied zwischen Oberfläche und Mantelfläche?", answer: "Die Mantelfläche ist nur die Seitenfläche (beim Zylinder das „Etikett“), die Oberfläche umfasst zusätzlich Grund- und Deckfläche." },
+      { question: "Wie viel passt in einen Eimer?", answer: "Näherungsweise als Zylinder: Radius 14 cm, Höhe 30 cm ergibt π · 196 · 30 ≈ 18.473 cm³, also gut 18 Liter." },
+      { question: "Warum hat der Kegel ein Drittel des Zylindervolumens?", answer: "Ein Kegel mit gleicher Grundfläche und Höhe passt genau dreimal in den Zylinder – das gilt ebenso für Pyramide und Prisma." },
+    ],
+  },
+  {
+    key: "lgs",
+    path: "/de/gleichungssystem-rechner",
+    trPath: `${TR}/2-bilinmeyenli-denklem-sistemi-cozme`,
+    title: "Lineare Gleichungssysteme lösen",
+    metaTitle: "Gleichungssystem Rechner: Gauß-Verfahren mit Rechenweg",
+    shortTitle: "Gleichungssysteme (Gauß)",
+    description: "Lineare Gleichungssysteme mit 2 oder 3 Unbekannten lösen – nach dem Gauß-Verfahren mit Rechenweg; erkennt keine und unendlich viele Lösungen.",
+    intro: "Die Faktoren vor x, y (und z) sowie die rechte Seite jeder Gleichung eingeben. Der Rechner löst das System mit dem Gauß-Verfahren und zeigt jeden Umformungsschritt.",
+    sections: [
+      {
+        id: "gauss",
+        title: "So funktioniert das Gauß-Verfahren",
+        paragraphs: [
+          "Man formt das Gleichungssystem in Stufenform um: Mit Gleichung I wird x aus den anderen Gleichungen eliminiert, dann mit Gleichung II das y aus Gleichung III. Die letzte Gleichung enthält nur noch z; durch Rückwärtseinsetzen folgen y und x.",
+          "Erlaubte Umformungen: Gleichungen vertauschen, mit einer Zahl ungleich 0 multiplizieren und ein Vielfaches einer Gleichung zu einer anderen addieren.",
+        ],
+      },
+      {
+        id: "verfahren",
+        title: "Andere Lösungsverfahren",
+        list: [
+          "Einsetzungsverfahren: eine Gleichung nach einer Variablen auflösen und in die andere einsetzen.",
+          "Gleichsetzungsverfahren: beide Gleichungen nach derselben Variablen auflösen und gleichsetzen.",
+          "Additionsverfahren: Gleichungen so addieren, dass eine Variable wegfällt – das Gauß-Verfahren ist die systematische Form davon.",
+        ],
+      },
+      {
+        id: "loesbarkeit",
+        title: "Keine oder unendlich viele Lösungen",
+        paragraphs: ["Entsteht beim Umformen eine Zeile 0 = 5, widersprechen sich die Gleichungen: keine Lösung. Entsteht 0 = 0, ist eine Gleichung überflüssig: unendlich viele Lösungen."],
+      },
+    ],
+    faq: [
+      { question: "Wie viele Gleichungen brauche ich?", answer: "Für eine eindeutige Lösung so viele unabhängige Gleichungen wie Unbekannte: zwei für x und y, drei für x, y und z." },
+      { question: "Was bedeutet die Schreibweise II − 2 · I?", answer: "Von Gleichung II wird das Zweifache von Gleichung I abgezogen, damit eine Variable wegfällt." },
+      { question: "Wie mache ich die Probe?", answer: "Die gefundenen Werte in jede Ausgangsgleichung einsetzen; beide Seiten müssen übereinstimmen." },
     ],
   },
 ];

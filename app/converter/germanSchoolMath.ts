@@ -297,3 +297,130 @@ export function fakultaet(n: number) {
 export const bigDe = (v: bigint) => v.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
 export { fmtDe };
+
+/* ---------------- Schriftliche Division ---------------- */
+
+export type DivisionsSchritt = { teil: number; ziffer: number; produkt: number; rest: number; herunter?: string; /** Stelle der letzten verwendeten Ziffer im Dividenden */ ende: number };
+
+/** Schriftliche Division natürlicher Zahlen nach dem Schema teilen – multiplizieren – subtrahieren – herunterholen. */
+export function schriftlicheDivision(dividend: number, divisor: number) {
+  if (!Number.isInteger(dividend) || !Number.isInteger(divisor) || dividend < 0 || divisor <= 0) return null;
+  const digits = String(dividend).split("").map(Number);
+  const steps: DivisionsSchritt[] = [];
+  let current = 0;
+  let quotient = "";
+  let started = false;
+  for (let i = 0; i < digits.length; i++) {
+    current = current * 10 + digits[i];
+    if (!started && current < divisor && i < digits.length - 1) continue;
+    started = true;
+    const ziffer = Math.floor(current / divisor);
+    const produkt = ziffer * divisor;
+    const rest = current - produkt;
+    quotient += String(ziffer);
+    steps.push({ teil: current, ziffer, produkt, rest, herunter: i < digits.length - 1 ? String(digits[i + 1]) : undefined, ende: i });
+    current = rest;
+  }
+  return { quotient: Number(quotient || "0"), rest: current, steps };
+}
+
+/* ---------------- Satz des Pythagoras ---------------- */
+
+/** Fehlende Seite im rechtwinkligen Dreieck; c ist die Hypotenuse. Genau ein Wert ist NaN. */
+export function pythagoras(a: number, b: number, c: number) {
+  const missing = [a, b, c].filter((v) => !Number.isFinite(v)).length;
+  if (missing !== 1) return null;
+  if (!Number.isFinite(c)) return a > 0 && b > 0 ? { seite: "c" as const, wert: Math.sqrt(a * a + b * b) } : null;
+  const kathete = Number.isFinite(a) ? a : b;
+  if (!(kathete > 0) || !(c > kathete)) return null;
+  return { seite: (Number.isFinite(a) ? "b" : "a") as "a" | "b", wert: Math.sqrt(c * c - kathete * kathete) };
+}
+
+/* ---------------- Flächen und Körper ---------------- */
+
+export type Figur = "kreis" | "rechteck" | "dreieck" | "trapez" | "parallelogramm";
+
+export function flaeche(figur: Figur, v: Record<string, number>) {
+  const ok = (...keys: string[]) => keys.every((k) => Number.isFinite(v[k]) && v[k] > 0);
+  switch (figur) {
+    case "kreis":
+      return ok("r") ? { A: Math.PI * v.r ** 2, U: 2 * Math.PI * v.r, d: 2 * v.r } : null;
+    case "rechteck":
+      return ok("a", "b") ? { A: v.a * v.b, U: 2 * (v.a + v.b), d: Math.hypot(v.a, v.b) } : null;
+    case "dreieck":
+      return ok("g", "h") ? { A: (v.g * v.h) / 2 } : null;
+    case "trapez":
+      return ok("a", "c", "h") ? { A: ((v.a + v.c) / 2) * v.h } : null;
+    case "parallelogramm":
+      return ok("g", "h") ? { A: v.g * v.h } : null;
+  }
+}
+
+export type Koerper = "wuerfel" | "quader" | "zylinder" | "kegel" | "kugel" | "pyramide";
+
+/** V Volumen, O Oberfläche, M Mantelfläche, G Grundfläche. Pyramide: quadratische Grundfläche. */
+export function koerper(k: Koerper, v: Record<string, number>) {
+  const ok = (...keys: string[]) => keys.every((key) => Number.isFinite(v[key]) && v[key] > 0);
+  const { PI } = Math;
+  switch (k) {
+    case "wuerfel":
+      return ok("a") ? { V: v.a ** 3, O: 6 * v.a ** 2 } : null;
+    case "quader":
+      return ok("a", "b", "c") ? { V: v.a * v.b * v.c, O: 2 * (v.a * v.b + v.a * v.c + v.b * v.c) } : null;
+    case "zylinder":
+      return ok("r", "h") ? { V: PI * v.r ** 2 * v.h, G: PI * v.r ** 2, M: 2 * PI * v.r * v.h, O: 2 * PI * v.r * (v.r + v.h) } : null;
+    case "kegel": {
+      if (!ok("r", "h")) return null;
+      const s = Math.hypot(v.r, v.h);
+      return { V: (PI * v.r ** 2 * v.h) / 3, G: PI * v.r ** 2, M: PI * v.r * s, O: PI * v.r * (v.r + s), s };
+    }
+    case "kugel":
+      return ok("r") ? { V: (4 / 3) * PI * v.r ** 3, O: 4 * PI * v.r ** 2 } : null;
+    case "pyramide": {
+      if (!ok("a", "h")) return null;
+      const hs = Math.hypot(v.a / 2, v.h);
+      return { V: (v.a ** 2 * v.h) / 3, G: v.a ** 2, M: 2 * v.a * hs, O: v.a ** 2 + 2 * v.a * hs, hs };
+    }
+  }
+}
+
+/* ---------------- Lineare Gleichungssysteme (Gauß) ---------------- */
+
+const ROEM = ["I", "II", "III"];
+
+/** Gauß-Verfahren für 2×2 oder 3×3; matrix enthält Zeilen [a1, …, an, b]. */
+export function gauss(matrix: number[][]) {
+  const n = matrix.length;
+  if (!n || matrix.some((row) => row.length !== n + 1 || row.some((x) => !Number.isFinite(x)))) return null;
+  const m = matrix.map((row) => [...row]);
+  const steps: string[] = [];
+  const eps = 1e-12;
+  for (let col = 0; col < n; col++) {
+    let pivot = col;
+    while (pivot < n && Math.abs(m[pivot][col]) < eps) pivot++;
+    if (pivot === n) continue;
+    if (pivot !== col) {
+      [m[pivot], m[col]] = [m[col], m[pivot]];
+      steps.push(`Zeilen ${ROEM[col]} und ${ROEM[pivot]} tauschen`);
+    }
+    for (let r = col + 1; r < n; r++) {
+      const f = m[r][col] / m[col][col];
+      if (Math.abs(f) < eps) continue;
+      for (let c = col; c <= n; c++) m[r][c] -= f * m[col][c];
+      steps.push(`${ROEM[r]} − (${fmtDe(f, 4)}) · ${ROEM[col]}: x${["₁", "₂", "₃"][col]} in Zeile ${ROEM[r]} eliminieren`);
+    }
+  }
+  // Rang prüfen
+  for (let r = 0; r < n; r++) {
+    const zero = m[r].slice(0, n).every((x) => Math.abs(x) < 1e-9);
+    if (zero) return { status: Math.abs(m[r][n]) < 1e-9 ? ("unendlich" as const) : ("keine" as const), steps, loesung: null };
+  }
+  const x = new Array(n).fill(0);
+  for (let r = n - 1; r >= 0; r--) {
+    let s = m[r][n];
+    for (let c = r + 1; c < n; c++) s -= m[r][c] * x[c];
+    x[r] = s / m[r][r];
+  }
+  steps.push("Rückwärts einsetzen: von der letzten Zeile nach oben die Variablen bestimmen");
+  return { status: "eindeutig" as const, steps, loesung: x.map((v) => (Math.abs(v) < 1e-12 ? 0 : v)) };
+}

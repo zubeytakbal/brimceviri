@@ -3,6 +3,7 @@
 import Link from "@/app/components/SiteLink";
 import { fxContentTr } from "../converter/fx/fxContentTr";
 import { fxContentUz } from "../converter/fx/fxContentUz";
+import { fxContentDe } from "../converter/fx/fxContentDe";
 import { buildFxSearchEntries, type FxLocaleContent } from "../converter/fx/fxLocale";
 import FxHomeSection from "./fx/FxHomeSection";
 import {
@@ -1773,6 +1774,7 @@ function createHomeData(locale: Locale): HomeData {
     ...calculatorSearchables,
     ...(locale === "tr" ? currencySearchables(fxContentTr, "Döviz", "döviz kur kurları para birimi çevirici") : []),
     ...(locale === "uz" ? currencySearchables(fxContentUz, "Valyuta", "valyuta kurs kursi pul aylantirgich") : []),
+    ...(locale === "de" ? currencySearchables(fxContentDe, "Währung", "währung währungsrechner wechselkurs kurs euro umrechnen") : []),
   ];
 
   return {
@@ -2190,6 +2192,22 @@ export default function HomeDirectory({
               { href: "/uz/valyuta-aylantirgich/dollar-som", label: "Dollar – So'm", icon: "currencyUsd" },
               { href: "/uz/valyuta-aylantirgich/yevro-som", label: "Yevro – So'm", icon: "currencyEur" },
               { href: "/uz/valyuta-aylantirgich/rubl-som", label: "Rubl – So'm", icon: "currencyConverterCalculator" },
+            ]}
+          />
+        )}
+
+        {locale === "de" && (
+          <FxHomeSection
+            id="waehrungsrechner"
+            title="Währungsrechner"
+            description="Euro in Dollar, Pfund, Franken, Lira und 14 weitere Währungen – mit täglichem Referenzkurs, Kursverlauf und Rechner für den Bank- oder Wechselstubenaufschlag."
+            hubHref="/de/waehrungsrechner"
+            allLabel="Alle Wechselkurse"
+            cards={[
+              { href: "/de/waehrungsrechner/euro-dollar", label: "Euro – Dollar", icon: "currencyUsd" },
+              { href: "/de/waehrungsrechner/euro-pfund", label: "Euro – Pfund", icon: "currencyGbp" },
+              { href: "/de/waehrungsrechner/euro-franken", label: "Euro – Franken", icon: "currencyEur" },
+              { href: "/de/waehrungsrechner/euro-lira", label: "Euro – Lira", icon: "currencyConverterCalculator" },
             ]}
           />
         )}

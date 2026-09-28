@@ -27,6 +27,7 @@ import { categoryPages } from "./converter/categoryPages";
 import { conversionPages } from "./converter/conversionPages";
 import { fxContentBn } from "./converter/fx/fxContentBn";
 import { fxContentUz } from "./converter/fx/fxContentUz";
+import { fxContentDe } from "./converter/fx/fxContentDe";
 import { fxHubAlternates } from "./converter/fx/fxHubAlternates";
 import { fxPairsTr } from "./converter/fx/fxPairsTr";
 import {
@@ -4045,7 +4046,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
       },
     },
-    ...[fxContentUz.basePath, fxContentBn.basePath].map((path) => ({
+    ...[fxContentUz.basePath, fxContentBn.basePath, fxContentDe.basePath].map((path) => ({
       url: `${baseUrl}${path}`,
       lastModified: contentLastModified,
       changeFrequency: "daily" as const,
@@ -4054,7 +4055,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         languages: Object.fromEntries(Object.entries(fxHubAlternates).map(([lang, href]) => [lang, `${baseUrl}${href}`])),
       },
     })),
-    ...[fxContentUz, fxContentBn].flatMap((content) =>
+    ...[fxContentUz, fxContentBn, fxContentDe].flatMap((content) =>
       content.pairs.map((pair) => ({
         url: `${baseUrl}${content.basePath}/${pair.slug}`,
         lastModified: contentLastModified,

@@ -38,6 +38,43 @@ export default function TimerPresetPage({ preset, lang }: { preset: TimerPreset;
         ["Milliseconds", n(s * 1000)],
       ];
 
+  // Ornek baslangic saatlerine gore bitis (gun kaymasi notuyla).
+  const endTimes = [
+    [9, 0],
+    [12, 30],
+    [18, 0],
+    [22, 45],
+  ].map(([h, m]) => {
+    const start = h * 60 + m;
+    const endSec = start * 60 + s;
+    const day = Math.floor(endSec / 86400);
+    const norm = endSec % 86400;
+    const hh = Math.floor(norm / 3600);
+    const mm = Math.floor((norm % 3600) / 60);
+    const ss = norm % 60;
+    const clock = (hour: number, min: number, sec: number) =>
+      `${String(hour).padStart(2, "0")}:${String(min).padStart(2, "0")}${sec ? `:${String(sec).padStart(2, "0")}` : ""}`;
+    const note = day === 0 ? "" : tr ? (day === 1 ? " (ertesi gün)" : ` (+${day} gün)`) : day === 1 ? " (next day)" : ` (+${day} days)`;
+    return { start: clock(h, m, 0), end: `${clock(hh, mm, ss)}${note}` };
+  });
+
+  // Bu surede neler olur: ortalama degerlerle hesaplanir.
+  const facts = tr
+    ? [
+        ["Yürüyüş (5 km/sa)", `${n((5 * s) / 3600, 2)} km`],
+        ["Koşu (10 km/sa)", `${n((10 * s) / 3600, 2)} km`],
+        ["Kalp atışı (dakikada 70)", `yaklaşık ${n(Math.round((70 * s) / 60), 0)}`],
+        ["Işığın aldığı yol", `${n((299792.458 * s) / 1e6, 2)} milyon km`],
+        ["Bir günün yüzdesi", `%${n((s / 86400) * 100, 2)}`],
+      ]
+    : [
+        ["Walking (3 mph)", `${n((3 * s) / 3600, 2)} mi`],
+        ["Running (6 mph)", `${n((6 * s) / 3600, 2)} mi`],
+        ["Heartbeats (70 per minute)", `about ${n(Math.round((70 * s) / 60), 0)}`],
+        ["Distance light travels", `${n((186282.397 * s) / 1e6, 2)} million mi`],
+        ["Share of a day", `${n((s / 86400) * 100, 2)}%`],
+      ];
+
   const faqItems: FaqItem[] = tr
     ? [
         { question: `${preset.labelTr} kaç saniye?`, answer: `${preset.labelTr} = ${n(s)} saniye = ${n(s / 60)} dakika = ${n(s / 3600, 4)} saat.` },
@@ -87,6 +124,8 @@ export default function TimerPresetPage({ preset, lang }: { preset: TimerPreset;
       tocItems={[
         { id: "kullanim", label: tr ? `${cap(preset.labelTr)} nelere yeter?` : `What can you do in ${label}?` },
         { id: "donusum", label: tr ? `${cap(preset.labelTr)} kaç saniye?` : `${cap(label)} in other units` },
+        { id: "bitis", label: tr ? "Ne zaman biter?" : "When will it end?" },
+        { id: "bu-surede", label: tr ? "Bu sürede neler olur?" : "What happens in that time?" },
         { id: "faq", label: tr ? "Sık sorulan sorular" : "FAQ" },
       ]}
       faqTitle={tr ? "Sık Sorulan Sorular" : "Frequently Asked Questions"}
@@ -112,6 +151,49 @@ export default function TimerPresetPage({ preset, lang }: { preset: TimerPreset;
           </tbody>
         </table>
       </div>
+
+      <h2 id="bitis">{tr ? "Ne zaman biter?" : "When will it end?"}</h2>
+      <p>
+        {tr
+          ? `Zamanlayıcıyı başlattığınızda bitiş saati ekranda görünür. Örnek başlangıç saatlerine göre ${preset.labelTr} sonra saat:`
+          : `The timer shows its end time as soon as you press start. Some examples of when ${label} runs out:`}
+      </p>
+      <div className="conversion-table-wrap">
+        <table className="conversion-table">
+          <thead>
+            <tr>
+              <th scope="col">{tr ? "Başlangıç" : "Start"}</th>
+              <th scope="col">{tr ? "Bitiş" : "Ends at"}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {endTimes.map((row) => (
+              <tr key={row.start}>
+                <td>{row.start}</td>
+                <td>{row.end}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="bu-surede">{tr ? "Bu sürede neler olur?" : "What happens in that time?"}</h2>
+      <div className="conversion-table-wrap">
+        <table className="conversion-table">
+          <tbody>
+            {facts.map(([what, value]) => (
+              <tr key={what}>
+                <th scope="row">{what}</th>
+                <td>{value}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p>
+        <small>{tr ? "Ortalama değerlerle hesaplanmıştır; kişiye göre değişir." : "Based on typical averages; individual values vary."}</small>
+      </p>
+
       <p>
         {tr ? "Farklı bir süre için ana " : "For any other length, use the main "}
         <Link href={tr ? "/zamanlayici" : "/en/timer"}>{tr ? "zamanlayıcıyı" : "online timer"}</Link>

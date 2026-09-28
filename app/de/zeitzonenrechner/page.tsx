@@ -5,7 +5,7 @@ import TimeZoneConverter, { type ConverterCopy } from "../../components/world/Ti
 import type { FaqItem } from "../../converter/faqSchema";
 import { nthWeekdayYmd } from "../../converter/time/dateMath";
 import { formatDeLong, todayBerlin } from "../../converter/time/germanDates";
-import { cityNameDe, germanZoneOptions } from "../../converter/time/germanWorld";
+import { cityNameDe, cityPathDe, germanZoneOptions } from "../../converter/time/germanWorld";
 import { differenceMinutes } from "../../converter/time/timezones";
 import { worldCities } from "../../converter/time/worldCities";
 import { calendarRelated } from "../../i18n/germanCalendarTools";
@@ -116,7 +116,7 @@ export default function ZeitzonenrechnerPage() {
               {rows.map(({ c, w, s }) => (
                 <tr key={c.en}>
                   <td>
-                    <Link href={`${path}?f=berlin&t=${c.en}`} prefetch={false}>
+                    <Link href={cityPathDe(c)} prefetch={false}>
                       {cityNameDe(c)}
                     </Link>
                   </td>

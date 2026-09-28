@@ -164,3 +164,29 @@ export function germanZoneOptions() {
       .sort((a, b) => a.label.localeCompare(b.label, "de")),
   ];
 }
+
+function slugifyDe(text: string) {
+  return text
+    .toLocaleLowerCase("de")
+    .replace(/ä/g, "ae")
+    .replace(/ö/g, "oe")
+    .replace(/ü/g, "ue")
+    .replace(/ß/g, "ss")
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+/** Deutscher URL-Teil einer Stadt: aus dem deutschen Namen, sonst der bestehende Bezeichner. */
+export function citySlugDe(city: WorldCity) {
+  return CITY_DE[city.en] ? slugifyDe(CITY_DE[city.en]) : city.en;
+}
+
+export function findCityDe(slug: string) {
+  return worldCities.find((c) => citySlugDe(c) === slug) ?? null;
+}
+
+export function cityPathDe(city: WorldCity) {
+  return `/de/uhrzeit/${citySlugDe(city)}`;
+}

@@ -21,12 +21,12 @@ export default function CityLiveClock({
   copy,
 }: {
   timeZone: string;
-  lang: "tr" | "en";
+  lang: "tr" | "en" | "de";
   cityName: string;
   copy: CityClockCopy;
 }) {
   const now = useNow();
-  const locale = lang === "tr" ? "tr-TR" : "en-US";
+  const locale = lang === "tr" ? "tr-TR" : lang === "de" ? "de-DE" : "en-US";
   const wall = now ? wallClockDate(now, timeZone) : null;
   const time = now
     ? new Intl.DateTimeFormat(locale, { timeZone, hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: lang === "en" }).format(now)
@@ -34,7 +34,7 @@ export default function CityLiveClock({
   const date = now ? new Intl.DateTimeFormat(locale, { timeZone, weekday: "long", day: "numeric", month: "long", year: "numeric" }).format(now) : " ";
   const diff = now ? zoneOffsetMinutes(timeZone, now) + now.getTimezoneOffset() : 0;
   const abs = Math.abs(diff);
-  const amount = `${Math.floor(abs / 60)}${abs % 60 ? `:${String(abs % 60).padStart(2, "0")}` : ""} ${lang === "tr" ? "sa" : "h"}`;
+  const amount = `${Math.floor(abs / 60)}${abs % 60 ? `:${String(abs % 60).padStart(2, "0")}` : ""} ${lang === "tr" ? "sa" : lang === "de" ? "Std." : "h"}`;
   const diffText = diff === 0 ? copy.sameAsYou : `${amount} ${diff > 0 ? copy.ahead : copy.behind}`;
 
   return (

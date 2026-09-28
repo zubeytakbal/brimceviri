@@ -3,7 +3,7 @@ import Link from "@/app/components/SiteLink";
 import TimeToolPage from "../../components/time/TimeToolPage";
 import WorldClockBoard, { type BoardCity } from "../../components/world/WorldClockBoard";
 import type { FaqItem } from "../../converter/faqSchema";
-import { cityNameDe, countryNameDe, regionNamesDe } from "../../converter/time/germanWorld";
+import { cityNameDe, cityPathDe, countryNameDe, regionNamesDe } from "../../converter/time/germanWorld";
 import { worldCities } from "../../converter/time/worldCities";
 import { calendarRelated } from "../../i18n/germanCalendarTools";
 import { timeToolAlternates } from "../../i18n/timeToolPaths";
@@ -33,7 +33,7 @@ export default function WeltuhrPage() {
   const cities: BoardCity[] = worldCities
     .map((c) => ({
       slug: c.en,
-      href: `/de/zeitzonenrechner?f=berlin&t=${c.en}`,
+      href: cityPathDe(c),
       name: cityNameDe(c),
       country: countryNameDe(c),
       timeZone: c.timeZone,

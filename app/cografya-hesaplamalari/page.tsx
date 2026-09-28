@@ -3,6 +3,7 @@ import Link from "@/app/components/SiteLink";
 import TimeToolPage from "../components/time/TimeToolPage";
 import type { FaqItem } from "../converter/faqSchema";
 import { geoGroupLabels, geoToolsTr, type GeoTool } from "../converter/geo/geoTools";
+import { buildLanguageAlternates } from "../i18n/routing";
 import { buildSiteUrl } from "../siteConfig";
 
 const path = "/cografya-hesaplamalari";
@@ -13,7 +14,7 @@ const description =
 export const metadata: Metadata = {
   title,
   description,
-  alternates: { canonical: path },
+  alternates: { canonical: path, ...buildLanguageAlternates({ tr: path, en: "/en/geography-calculators" }, "tr") },
   openGraph: { title, description, url: buildSiteUrl(path), siteName: "BirimCeviri.app", locale: "tr_TR", type: "website" },
 };
 

@@ -13182,6 +13182,10 @@ a.all-units-row .all-units-name {
 }
 
 /* ---------- Turkiye il haritasi ---------- */
+.tr-map-legend {
+  --tr-map-selected: #e4572e;
+}
+
 .tr-map-frame {
   --tr-map-selected: #e4572e;
   position: relative;

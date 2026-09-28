@@ -31,3 +31,29 @@ describe("world countries", () => {
     expect(cropViewBox([findCountry("almanya")!]).split(" ")).toHaveLength(4);
   });
 });
+
+describe("English country data", () => {
+  it("has a unique English URL, capital and region for every country", async () => {
+    const { worldCountriesEn } = await import("../app/converter/geo/worldCountriesEn");
+    const { findCountryEn, countryPathEn } = await import("../app/converter/geo/worldGeoEn");
+    const ids = new Set<string>();
+    for (const c of worldCountries) {
+      const e = worldCountriesEn[c.iso3];
+      expect(e, c.iso3).toBeTruthy();
+      expect(e.capital.length).toBeGreaterThan(1);
+      expect(["Africa", "Americas", "Asia", "Europe", "Oceania"]).toContain(e.region);
+      expect(ids.has(e.id)).toBe(false);
+      ids.add(e.id);
+      expect(findCountryEn(e.id)?.iso3).toBe(c.iso3);
+    }
+    expect(countryPathEn(worldCountries.find((c) => c.iso3 === "USA")!)).toBe("/en/countries/united-states");
+  });
+
+  it("reads English-style numbers on the map scale calculator", async () => {
+    const { parseEnNumber, parseTrNumber } = await import("../app/components/geo/MapScaleCalculator");
+    expect(parseEnNumber("24,000")).toBe(24000);
+    expect(parseEnNumber("1:63,360")).toBe(63360);
+    expect(parseEnNumber("2.5")).toBe(2.5);
+    expect(parseTrNumber("25.000")).toBe(25000);
+  });
+});

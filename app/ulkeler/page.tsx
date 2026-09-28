@@ -5,6 +5,7 @@ import type { FaqItem } from "../converter/faqSchema";
 import { worldRegionPages } from "../converter/geo/worldRegions";
 import { timeDiffWithTurkey } from "../converter/geo/worldGeo";
 import { worldCountries } from "../converter/geo/worldCountries";
+import { buildLanguageAlternates } from "../i18n/routing";
 import { buildSiteUrl } from "../siteConfig";
 
 export const revalidate = 86400;
@@ -17,7 +18,7 @@ const description =
 export const metadata: Metadata = {
   title,
   description,
-  alternates: { canonical: path },
+  alternates: { canonical: path, ...buildLanguageAlternates({ tr: path, en: "/en/countries" }, "tr") },
   openGraph: { title, description, url: buildSiteUrl(path), siteName: "BirimCeviri.app", locale: "tr_TR", type: "website" },
 };
 

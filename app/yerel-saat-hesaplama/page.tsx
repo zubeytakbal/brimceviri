@@ -4,6 +4,7 @@ import LocalTimeCalculator from "../components/geo/LocalTimeCalculator";
 import TimeToolPage from "../components/time/TimeToolPage";
 import type { FaqItem } from "../converter/faqSchema";
 import { geoRelated } from "../converter/geo/geoTools";
+import { buildLanguageAlternates } from "../i18n/routing";
 import { buildSiteUrl } from "../siteConfig";
 
 const path = "/yerel-saat-hesaplama";
@@ -14,7 +15,7 @@ const description =
 export const metadata: Metadata = {
   title,
   description,
-  alternates: { canonical: path },
+  alternates: { canonical: path, ...buildLanguageAlternates({ tr: path, en: "/en/solar-time-calculator" }, "tr") },
   openGraph: { title, description, url: buildSiteUrl(path), siteName: "BirimCeviri.app", locale: "tr_TR", type: "website" },
 };
 

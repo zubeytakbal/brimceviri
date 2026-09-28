@@ -19,6 +19,8 @@ import {
 import { findCountry, worldCountries } from "../../converter/geo/worldCountries";
 import { worldCities } from "../../converter/time/worldCities";
 import { trGenitive, trLocative } from "../../converter/turkishSuffix";
+import { countryPathEn } from "../../converter/geo/worldGeoEn";
+import { buildLanguageAlternates } from "../../i18n/routing";
 import { buildSiteUrl } from "../../siteConfig";
 
 export const dynamicParams = false;
@@ -38,7 +40,7 @@ export async function generateMetadata({ params }: { params: Promise<{ ulke: str
   return {
     title,
     description,
-    alternates: { canonical: path },
+    alternates: { canonical: path, ...buildLanguageAlternates({ tr: path, en: countryPathEn(c) }, "tr") },
     openGraph: { title, description, url: buildSiteUrl(path), siteName: "BirimCeviri.app", locale: "tr_TR", type: "website" },
   };
 }

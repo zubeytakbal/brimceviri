@@ -9,6 +9,7 @@ import { geoRelated } from "../converter/geo/geoTools";
 import { worldRegionPages } from "../converter/geo/worldRegions";
 import { distanceFromAnkara, timeDiffText, timeDiffWithTurkey, WORLD_REGION_COLORS } from "../converter/geo/worldGeo";
 import { worldCountries } from "../converter/geo/worldCountries";
+import { buildLanguageAlternates } from "../i18n/routing";
 import { buildSiteUrl } from "../siteConfig";
 
 // Yaz saati gecisleri icin gunluk yenilenir.
@@ -22,7 +23,7 @@ const description =
 export const metadata: Metadata = {
   title,
   description,
-  alternates: { canonical: path },
+  alternates: { canonical: path, ...buildLanguageAlternates({ tr: path, en: "/en/world-map" }, "tr") },
   openGraph: { title, description, url: buildSiteUrl(path), siteName: "BirimCeviri.app", locale: "tr_TR", type: "website" },
 };
 

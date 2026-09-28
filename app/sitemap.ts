@@ -17,6 +17,7 @@ import { HOLIDAY_YEARS } from "./converter/time/holidays";
 import { routePairs } from "./converter/geo/routePairs";
 import { turkeyProvinces } from "./converter/geo/turkeyProvinces";
 import { worldCountries } from "./converter/geo/worldCountries";
+import { countryPathEn } from "./converter/geo/worldGeoEn";
 import { worldRegionPages } from "./converter/geo/worldRegions";
 import { zonePairs } from "./converter/time/timeZonePairs";
 import { buildLanguageAlternates } from "./i18n/routing";
@@ -3038,17 +3039,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: /\d{4}$/.test(path) ? 0.7 : 0.8,
     })),
     ...[
-      "/cografya-hesaplamalari",
-      "/harita-olcegi-hesaplama",
-      "/yerel-saat-hesaplama",
-      "/koordinat-donusturucu",
+      ["/cografya-hesaplamalari", "/en/geography-calculators"],
+      ["/harita-olcegi-hesaplama", "/en/map-scale-calculator"],
+      ["/yerel-saat-hesaplama", "/en/solar-time-calculator"],
+      ["/koordinat-donusturucu", "/en/coordinate-converter"],
+      ["/dunya-haritasi", "/en/world-map"],
+      ["/ulkeler", "/en/countries"],
+      ...worldCountries.map((c) => [`/ulkeler/${c.id}`, countryPathEn(c)]),
+    ].flatMap(([trPath, enPath]) =>
+      [trPath, enPath].map((path) => ({
+        url: `${baseUrl}${path}`,
+        lastModified: contentLastModified,
+        changeFrequency: "monthly" as const,
+        priority: 0.75,
+        alternates: buildLanguageAlternates({ tr: trPath, en: enPath }, "tr"),
+      })),
+    ),
+    ...[
       "/iller-arasi-mesafe",
       "/turkiye-il-haritasi",
       ...turkeyProvinces.map((p) => `/iller-arasi-mesafe/${p.id}`),
       ...routePairs().map((p) => `/iller-arasi-mesafe/${p.from.id}/${p.to.id}`),
-      "/dunya-haritasi",
-      "/ulkeler",
-      ...worldCountries.map((c) => `/ulkeler/${c.id}`),
       ...worldRegionPages.map((r) => `/bolge-haritalari/${r.id}`),
     ].map((path) => ({
       url: `${baseUrl}${path}`,

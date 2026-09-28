@@ -60,7 +60,7 @@ import { homeCategoryOrder } from "../converter/homeCategoryOrder";
 import { englishHomeCategoryOrder, getEnglishCategoryPresentation } from "../i18n/englishCategoryPresentation";
 import type { SiteNotification } from "../converter/siteNotifications";
 import { unitPages } from "../converter/unitPages";
-import { geoToolsTr } from "../converter/geo/geoTools";
+import { geoToolsEn, geoToolsTr } from "../converter/geo/geoTools";
 
 type Locale = "tr" | "en" | "uz" | "de";
 
@@ -2380,16 +2380,20 @@ export default function HomeDirectory({
           </section>
         )}
 
-        {locale === "tr" && (
-          <section className="directory-section" id="cografya-hesaplamalari">
+        {(locale === "tr" || locale === "en") && (
+          <section className="directory-section" id={locale === "en" ? "geography-calculators" : "cografya-hesaplamalari"}>
             <header className="directory-section-header">
               <div>
-                <h2>Coğrafya hesaplamaları</h2>
-                <p>Harita ölçeği, koordinat, yerel saat ve Türkiye coğrafyası araçları.</p>
+                <h2>{locale === "en" ? "Geography calculators" : "Coğrafya hesaplamaları"}</h2>
+                <p>
+                  {locale === "en"
+                    ? "Map scale, GPS coordinates, solar time and facts for every country."
+                    : "Harita ölçeği, koordinat, yerel saat ve Türkiye coğrafyası araçları."}
+                </p>
               </div>
             </header>
             <div className="directory-tool-grid">
-              {geoToolsTr.slice(0, 5).map((tool) => (
+              {(locale === "en" ? geoToolsEn : geoToolsTr).slice(0, 5).map((tool) => (
                 <article className="directory-home-card directory-tool-card" key={tool.href}>
                   <Link className="directory-card-stretch" href={tool.href} aria-label={tool.title} />
                   <div className="directory-card-body directory-card-body-icon">
@@ -2404,10 +2408,14 @@ export default function HomeDirectory({
                 </article>
               ))}
               <article className="directory-home-card directory-tool-card directory-home-card-more">
-                <Link className="directory-card-stretch" href="/cografya-hesaplamalari" aria-label="Tüm Coğrafya Hesaplamaları" />
+                <Link
+                  className="directory-card-stretch"
+                  href={locale === "en" ? "/en/geography-calculators" : "/cografya-hesaplamalari"}
+                  aria-label={locale === "en" ? "All Geography Calculators" : "Tüm Coğrafya Hesaplamaları"}
+                />
                 <div className="directory-card-body directory-more-card-body">
                   <ArrowRight className="directory-more-arrow" size={56} weight="regular" aria-hidden="true" />
-                  <span className="directory-more-label">Tüm Coğrafya Hesaplamaları</span>
+                  <span className="directory-more-label">{locale === "en" ? "All Geography Calculators" : "Tüm Coğrafya Hesaplamaları"}</span>
                 </div>
               </article>
             </div>

@@ -444,7 +444,7 @@ export const worldCountries: WorldCountry[] = [
     region: "Avrupa",
     subregion: "Güneydoğu Avrupa",
     borders: ["GRC", "MKD", "ROU", "SRB", "TUR"],
-    currencies: ["BGN"],
+    currencies: ["EUR"],
     phone: "+359",
     tld: ".bg",
     tz: "Europe/Sofia",

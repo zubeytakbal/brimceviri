@@ -21,6 +21,7 @@ import { findCountry, worldCountries } from "../../converter/geo/worldCountries"
 import { worldCities } from "../../converter/time/worldCities";
 import { trGenitive, trLocative } from "../../converter/turkishSuffix";
 import { countryPathEn } from "../../converter/geo/worldGeoEn";
+import { countryPathDe } from "../../converter/geo/worldGeoDe";
 import { buildLanguageAlternates } from "../../i18n/routing";
 import { buildSiteUrl } from "../../siteConfig";
 
@@ -41,7 +42,7 @@ export async function generateMetadata({ params }: { params: Promise<{ ulke: str
   return {
     title: seoTitle(title, `${c.nameTr}: Başkenti, Saat Farkı ve Haritası`, `${c.nameTr}: Başkenti ve Haritası`),
     description,
-    alternates: { canonical: path, ...buildLanguageAlternates({ tr: path, en: countryPathEn(c) }, "tr") },
+    alternates: { canonical: path, ...buildLanguageAlternates({ tr: path, en: countryPathEn(c), de: countryPathDe(c) ?? undefined }, "tr") },
     openGraph: { title, description, url: buildSiteUrl(path), siteName: "BirimCeviri.app", locale: "tr_TR", type: "website" },
   };
 }

@@ -1,6 +1,7 @@
 import Link from "@/app/components/SiteLink";
 import { countryBbox, WORLD_MAP_OTHER, WORLD_MAP_PATHS, WORLD_MAP_SIZE } from "../../converter/geo/worldGeo";
 import { worldCountries, type WorldCountry } from "../../converter/geo/worldCountries";
+import { worldCountriesDe } from "../../converter/geo/worldCountriesDe";
 
 /** Secili ulke vurgulari (data-a) icin CSS kurallari. */
 function selectionCss() {
@@ -33,9 +34,9 @@ export default function WorldMap({
   capitalDots?: string[];
   /** Bu ulkelerin adi baskent noktasinin yaninda yazilir */
   labels?: string[];
-  lang?: "tr" | "en";
+  lang?: "tr" | "en" | "de";
 }) {
-  const nameOf = (c: WorldCountry) => (lang === "en" ? c.nameEn : c.nameTr);
+  const nameOf = (c: WorldCountry) => (lang === "en" ? c.nameEn : lang === "de" ? (worldCountriesDe[c.iso3]?.name ?? c.nameEn) : c.nameTr);
   const vb = viewBox ?? `0 0 ${WORLD_MAP_SIZE.width} ${WORLD_MAP_SIZE.height}`;
   const scale = Number(vb.split(" ")[2]) / WORLD_MAP_SIZE.width;
   const styleFor = (c: WorldCountry) => {

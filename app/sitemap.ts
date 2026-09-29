@@ -1,5 +1,6 @@
 import { germanCities } from "./converter/geo/germanCities";
 import { entfernungPaare, entfernungStadtPath } from "./converter/geo/germanDistances";
+import { countriesDe, countryPathDe } from "./converter/geo/worldGeoDe";
 import { germanMathPages } from "./i18n/germanMathPages";
 import { comparisonPathDe, compoundPathDe, materialPathDe } from "./converter/germanScienceSlugs";
 import type { MetadataRoute } from "next";
@@ -3052,6 +3053,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: contentLastModified,
       changeFrequency: "monthly" as const,
       priority: path.split("/").length > 4 ? 0.5 : 0.65,
+    })),
+    ...["/de/laender", ...countriesDe.map((c) => countryPathDe(c)!)].map((path) => ({
+      url: `${baseUrl}${path}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly" as const,
+      priority: path === "/de/laender" ? 0.7 : 0.55,
     })),
     ...["/de/mathe-rechner", ...germanMathPages.map((page) => page.path)].map((path) => {
       const page = germanMathPages.find((p) => p.path === path);

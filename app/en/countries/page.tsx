@@ -18,7 +18,7 @@ const description = `All ${worldCountries.length} countries of the world with th
 export const metadata: Metadata = {
   title,
   description,
-  alternates: { canonical: path, ...buildLanguageAlternates({ tr: "/ulkeler", en: path }, "tr") },
+  alternates: { canonical: path, ...buildLanguageAlternates({ tr: "/ulkeler", en: path, de: "/de/laender" }, "tr") },
   openGraph: { title, description, url: buildSiteUrl(path), siteName: "BirimCeviri.app", locale: "en_US", type: "website" },
 };
 

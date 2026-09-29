@@ -8,6 +8,7 @@ import { cityFacts, describeDifference, hourMapping, nearbyCities } from "../../
 import { cityNameDe, cityPathDe, countryNameDe, findCityDe, citySlugDe } from "../../../converter/time/germanWorld";
 import { differenceMinutes, formatUtcOffset, offsetMinutes } from "../../../converter/time/timezones";
 import { worldCities } from "../../../converter/time/worldCities";
+import { countriesDe, countryPathDe, deOf } from "../../../converter/geo/worldGeoDe";
 import { buildLanguageAlternates } from "../../../i18n/routing";
 import { seoTitle } from "../../../seoTitle";
 import { buildSiteUrl } from "../../../siteConfig";
@@ -72,6 +73,7 @@ export async function generateMetadata({ params }: { params: Promise<{ stadt: st
 export default async function GermanCityTimePage({ params }: { params: Promise<{ stadt: string }> }) {
   const city = findCityDe((await params).stadt);
   if (!city) notFound();
+  const land = countriesDe.find((c) => c.nameEn === city.countryEn) ?? null;
   const name = cityNameDe(city);
   const country = countryNameDe(city);
   const now = new Date();
@@ -167,6 +169,7 @@ export default async function GermanCityTimePage({ params }: { params: Promise<{
           title: "Das könnte Sie auch interessieren",
           links: [
             { href: `/de/zeitzonenrechner?f=berlin&t=${city.en}`, label: `Uhrzeit Deutschland – ${name} umrechnen` },
+            ...(land ? [{ href: countryPathDe(land)!, label: `${deOf(land).name}: Hauptstadt, Währung und Karte` }] : []),
             { href: "/de/weltuhr", label: "Weltuhr" },
             { href: "/de/zeitzonenrechner", label: "Zeitzonenrechner" },
             { href: "/de/kalenderwoche", label: "Aktuelle Kalenderwoche" },

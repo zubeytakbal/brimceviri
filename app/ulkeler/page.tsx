@@ -18,7 +18,7 @@ const description =
 export const metadata: Metadata = {
   title,
   description,
-  alternates: { canonical: path, ...buildLanguageAlternates({ tr: path, en: "/en/countries" }, "tr") },
+  alternates: { canonical: path, ...buildLanguageAlternates({ tr: path, en: "/en/countries", de: "/de/laender" }, "tr") },
   openGraph: { title, description, url: buildSiteUrl(path), siteName: "BirimCeviri.app", locale: "tr_TR", type: "website" },
 };
 

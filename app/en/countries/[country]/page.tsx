@@ -19,6 +19,7 @@ import {
   utcOffsetText,
 } from "../../../converter/geo/worldGeoEn";
 import { worldCities } from "../../../converter/time/worldCities";
+import { countryPathDe } from "../../../converter/geo/worldGeoDe";
 import { buildLanguageAlternates } from "../../../i18n/routing";
 import { buildSiteUrl } from "../../../siteConfig";
 
@@ -61,7 +62,7 @@ export async function generateMetadata({ params }: { params: Promise<{ country: 
   return {
     title: seoTitle(title, `${c.nameEn}: Capital, Time Zone and Map`, `${c.nameEn}: Capital and Map`),
     description,
-    alternates: { canonical: path, ...buildLanguageAlternates({ tr: `/ulkeler/${c.id}`, en: path }, "tr") },
+    alternates: { canonical: path, ...buildLanguageAlternates({ tr: `/ulkeler/${c.id}`, en: path, de: countryPathDe(c) ?? undefined }, "tr") },
     openGraph: { title, description, url: buildSiteUrl(path), siteName: "BirimCeviri.app", locale: "en_US", type: "website" },
   };
 }

@@ -13478,3 +13478,471 @@ a.all-units-row .all-units-name {
   display: block;
   color: #b42318;
 }
+
+/* Türkiye takvimi (/takvim, /ozel-gunler) */
+.takvim-gorsel {
+  flex: none;
+  display: block;
+}
+
+.takvim-bugun {
+  display: grid;
+  gap: 14px;
+  padding: 22px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #1f4f66 0%, #2c7f99 55%, #3fa7a7 100%);
+  color: #ffffff;
+}
+
+.takvim-bugun span {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  opacity: 0.85;
+}
+
+.takvim-bugun strong {
+  display: block;
+  font-size: 1.6rem;
+  line-height: 1.2;
+}
+
+.takvim-bugun em {
+  font-style: normal;
+  opacity: 0.9;
+}
+
+.takvim-bugun dl {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 8px;
+  margin: 0;
+}
+
+.takvim-bugun dl div {
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.takvim-bugun dt {
+  font-size: 0.75rem;
+  opacity: 0.85;
+}
+
+.takvim-bugun dd {
+  margin: 0;
+  font-weight: 700;
+}
+
+.takvim-bugun-etkinlik {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+}
+
+.takvim-bugun-etkinlik a {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #1f4f66;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.takvim-ay-baslik {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.takvim-ay-baslik h2 {
+  flex: 1;
+  margin: 0;
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+.takvim-ay-baslik a {
+  color: #1f6f8b;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.takvim-ay {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 2px;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.takvim-ay b {
+  color: #7a8794;
+  font-size: 0.7rem;
+}
+
+.takvim-ay > span,
+.takvim-ay > a {
+  position: relative;
+  padding: 4px 0;
+  border-radius: 6px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.takvim-ay em {
+  font-style: normal;
+}
+
+.takvim-ay .is-weekend {
+  background: #f1f4f6;
+  color: #7a8794;
+}
+
+.takvim-ay .has-event {
+  box-shadow: inset 0 0 0 2px #7c5cd6;
+  color: #3f2b8c;
+  font-weight: 700;
+}
+
+.takvim-ay .is-holiday {
+  background: #d64545;
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: none;
+}
+
+.takvim-ay .is-half {
+  background: #f0b429;
+  color: #3d2c00;
+  font-weight: 700;
+  box-shadow: none;
+}
+
+.takvim-ay .is-today {
+  outline: 3px solid #1f4f66;
+  outline-offset: -1px;
+}
+
+.takvim-ay > a:hover {
+  filter: brightness(0.93);
+}
+
+.takvim-ay.is-buyuk {
+  gap: 4px;
+  font-size: 0.95rem;
+}
+
+.takvim-ay.is-buyuk > span,
+.takvim-ay.is-buyuk > a {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  min-height: 74px;
+  padding: 6px;
+  border: 1px solid #e3eaef;
+  background: #ffffff;
+  text-align: left;
+}
+
+.takvim-ay.is-buyuk > .is-bos {
+  border: 0;
+  background: transparent;
+}
+
+.takvim-ay.is-buyuk .is-weekend {
+  background: #f6f8fa;
+}
+
+.takvim-ay.is-buyuk .has-event {
+  box-shadow: none;
+  border-color: #b9a8ee;
+  background: #f5f1ff;
+}
+
+.takvim-ay.is-buyuk .is-holiday {
+  border-color: #d64545;
+  background: #fdeaea;
+  color: #8f1f1f;
+}
+
+.takvim-ay.is-buyuk .is-half {
+  border-color: #f0b429;
+  background: #fff6dc;
+  color: #5c4100;
+}
+
+.takvim-ay.is-buyuk small {
+  display: grid;
+  gap: 2px;
+  width: 100%;
+}
+
+.takvim-ay.is-buyuk i {
+  overflow: hidden;
+  font-size: 0.68rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.2;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.takvim-lejant-etkinlik {
+  box-shadow: inset 0 0 0 2px #7c5cd6;
+}
+
+.takvim-yil .holiday-month h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.takvim-yillar {
+  color: #1f4f66;
+}
+
+.takvim-yillar a {
+  border-color: #b8ccd6 !important;
+  background: #ffffff !important;
+  color: #1f4f66 !important;
+}
+
+.takvim-yillar a:hover {
+  background: #eef6f8 !important;
+}
+
+.takvim-liste {
+  display: grid;
+  gap: 8px;
+  margin: 0 0 16px;
+  padding: 0;
+  list-style: none;
+}
+
+.takvim-liste li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid #e3eaef;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.takvim-liste li > div {
+  flex: 1;
+  min-width: 0;
+}
+
+.takvim-gun-adi {
+  color: #5b6b7a;
+  font-size: 0.85rem;
+}
+
+.takvim-kat {
+  flex: none;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: #eef2f5;
+  color: #44525f;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.kat-resmi,
+.takvim-ay.is-buyuk i.kat-resmi {
+  color: #b42323;
+}
+
+.takvim-kat.kat-resmi {
+  background: #fdeaea;
+}
+
+.kat-bayram,
+.takvim-ay.is-buyuk i.kat-bayram {
+  color: #0f7a55;
+}
+
+.takvim-kat.kat-bayram {
+  background: #e3f6ee;
+}
+
+.kat-dini,
+.takvim-ay.is-buyuk i.kat-dini {
+  color: #5b3fc0;
+}
+
+.takvim-kat.kat-dini {
+  background: #efeafd;
+}
+
+.takvim-kat.kat-milli {
+  background: #fdeee2;
+  color: #9a4a12;
+}
+
+.takvim-kat.kat-ozel {
+  background: #fde8f1;
+  color: #a2295f;
+}
+
+.takvim-kat.kat-mevsim {
+  background: #e6f2fb;
+  color: #1d5f8f;
+}
+
+.takvim-kart {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 18px;
+  border: 1px solid #d7e2e8;
+  border-radius: 18px;
+  background: #ffffff;
+}
+
+.takvim-kart h2 {
+  margin: 8px 0 6px;
+  font-size: 1.35rem;
+}
+
+.takvim-kart h2 a {
+  color: #172033;
+  text-decoration: none;
+}
+
+.takvim-kart p {
+  margin: 0 0 8px;
+}
+
+.takvim-kart-alt {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.takvim-etiket {
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: #eef2f5;
+  color: #44525f;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.takvim-etiket.is-tatil {
+  background: #d64545;
+  color: #ffffff;
+}
+
+.takvim-onceki-sonraki {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.9rem;
+}
+
+.takvim-onceki-sonraki a {
+  color: #1f6f8b;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.takvim-ics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 8px 0;
+}
+
+.takvim-ics a {
+  text-decoration: none;
+}
+
+.takvim-hub section + section {
+  margin-top: 18px;
+}
+
+.takvim-hub h2 {
+  margin: 0 0 10px;
+  font-size: 1.15rem;
+}
+
+.takvim-hub-liste {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.takvim-hub-liste a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 100%;
+  padding: 10px;
+  border: 1px solid #e3eaef;
+  border-radius: 14px;
+  background: #ffffff;
+  color: #172033;
+  text-decoration: none;
+}
+
+.takvim-hub-liste a:hover {
+  border-color: #3fa7a7;
+}
+
+.takvim-hub-liste span {
+  display: grid;
+  gap: 2px;
+}
+
+.takvim-hub-liste em {
+  color: #5b6b7a;
+  font-size: 0.82rem;
+  font-style: normal;
+}
+
+@media (max-width: 560px) {
+  .takvim-ay.is-buyuk {
+    gap: 2px;
+    font-size: 0.85rem;
+  }
+
+  .takvim-ay.is-buyuk > span,
+  .takvim-ay.is-buyuk > a {
+    min-height: 48px;
+    padding: 4px;
+  }
+
+  .takvim-ay.is-buyuk i {
+    font-size: 0.58rem;
+    -webkit-line-clamp: 2;
+  }
+
+  .takvim-kart {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .takvim-kart-alt {
+    justify-content: center;
+  }
+
+  .takvim-liste .takvim-kat {
+    display: none;
+  }
+
+  .takvim-onceki-sonraki {
+    flex-direction: column;
+  }
+}

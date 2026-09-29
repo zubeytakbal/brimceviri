@@ -151,6 +151,8 @@ const T = {
 
 const RELATED = {
   tr: [
+    { href: "/takvim", label: "Türkiye Takvimi" },
+    { href: "/ozel-gunler", label: "Özel Günler ve Tarihleri" },
     { href: "/is-gunu-hesaplama", label: "İş Günü Hesaplama" },
     { href: "/iki-tarih-arasi-gun-hesaplama", label: "İki Tarih Arası Gün Hesaplama" },
     { href: "/tarihe-gun-ekleme", label: "Tarihe Gün Ekleme" },

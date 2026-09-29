@@ -22,6 +22,7 @@ import { worldCities } from "./converter/time/worldCities";
 import { timerPresetAlternates, timerPresetPath, timerPresets } from "./i18n/timerPresets";
 import { countdownAlternatePaths, countdownEvents, countdownPath } from "./converter/time/countdownEvents";
 import { HOLIDAY_YEARS } from "./converter/time/holidays";
+import { AY_SLUG, doluGunler, ETKINLIKLER, ozelGunPath, TAKVIM_YILLARI, takvimAyPath, takvimGunPath, takvimYilPath } from "./converter/calendar/trTakvim";
 import { routePairs } from "./converter/geo/routePairs";
 import { turkeyProvinces } from "./converter/geo/turkeyProvinces";
 import { worldCountries } from "./converter/geo/worldCountries";
@@ -3089,6 +3090,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: contentLastModified,
       changeFrequency: "weekly" as const,
       priority: 0.8,
+    })),
+    ...[
+      "/takvim",
+      "/ozel-gunler",
+      ...ETKINLIKLER.map((e) => ozelGunPath(e.id)),
+      ...TAKVIM_YILLARI.flatMap((y) => [takvimYilPath(y), ...AY_SLUG.map((_, i) => takvimAyPath(y, i + 1)), ...doluGunler(y).map(takvimGunPath)]),
+    ].map((path) => ({
+      url: `${baseUrl}${path}`,
+      lastModified: contentLastModified,
+      changeFrequency: (path.split("/").length > 4 ? "yearly" : "weekly") as "yearly" | "weekly",
+      priority: path === "/takvim" || path === "/ozel-gunler" ? 0.8 : path.split("/").length > 4 ? 0.5 : 0.65,
     })),
     ...[
       ["/resmi-tatiller", ...HOLIDAY_YEARS.map((y) => `/resmi-tatiller/${y}`)],

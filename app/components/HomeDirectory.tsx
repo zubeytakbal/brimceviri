@@ -122,6 +122,8 @@ const timeToolsHome = {
     { href: "/tabata-zamanlayici", title: "Tabata / HIIT Zamanlayıcı", description: "20/10, 30/30, EMOM; sesli komut ve son 3 saniye bip.", icon: "paceCalculator" as const },
     { href: "/dunya-saatleri", title: "Dünya Saatleri", description: "97 şehrin canlı saati, Türkiye ile saat farkı ve yaz saati tarihleri.", icon: "greatCircleCalculator" as const },
     { href: "/saat-dilimi-cevirici", title: "Saat Dilimi Çevirici", description: "Birden çok şehre aynı anda çevir; toplantı planlayıcı.", icon: "greatCircleCalculator" as const },
+    { href: "/takvim", title: "Türkiye Takvimi", description: "Bugünün tarihi, Hicri karşılığı, bayramlar, kandiller ve özel günler ay ay.", icon: "dateCalculator" as const },
+    { href: "/ozel-gunler", title: "Özel Günler", description: "Anneler Günü, kandiller, bayramlar ne zaman? Tarihler ve kalan gün.", icon: "dateCalculator" as const },
     { href: "/resmi-tatiller", title: "Resmî Tatiller", description: "Bayram tarihleri, arefe yarım günleri, köprü günleri ve izin planı.", icon: "attendanceCalculator" as const },
     { href: "/is-gunu-hesaplama", title: "İş Günü Hesaplama", description: "Resmî tatiller hariç çalışma günü; tarihe iş günü ekle.", icon: "attendanceCalculator" as const },
     { href: "/iki-tarih-arasi-gun-hesaplama", title: "İki Tarih Arası Gün", description: "Kaç gün, hafta, ay? İş günü ve tatiller dahil ayrıntılı sonuç.", icon: "attendanceCalculator" as const },

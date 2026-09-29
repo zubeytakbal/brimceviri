@@ -8,6 +8,7 @@ import {
   type CountdownEvent,
   type DateParts,
 } from "../../converter/time/countdownEvents";
+import { ETKINLIKLER, ozelGunPath } from "../../converter/calendar/trTakvim";
 import type { FaqItem } from "../../converter/faqSchema";
 import TimeToolPage from "../time/TimeToolPage";
 import CountdownDisplay from "./CountdownDisplay";
@@ -116,10 +117,14 @@ export default function CountdownEventPage({ event }: { event: CountdownEvent })
       related={{
         title: tr ? "İlginizi çekebilir" : "You may also like",
         links: [
+          ...(tr
+            ? ETKINLIKLER.filter((e) => e.geriSayim === event.slug).map((e) => ({ href: ozelGunPath(e.id), label: `${e.ad} tarihleri ve takvim` }))
+            : []),
           ...others.slice(0, 8).map((o) => ({ href: countdownPath(o.event), label: tr ? `${o.event.name} (${o.days} gün)` : `${o.event.name} (${o.days} days)` })),
           ...(tr
             ? [
                 { href: hubPath, label: "Tüm geri sayımlar" },
+                { href: "/takvim", label: "Türkiye Takvimi" },
                 { href: "/resmi-tatiller", label: "Resmî Tatiller ve Köprü Günleri" },
                 { href: "/dunya-saatleri", label: "Dünya Saatleri" },
                 { href: "/zamanlayici", label: "Zamanlayıcı" },

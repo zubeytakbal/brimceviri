@@ -151,6 +151,8 @@ export const everydayToolLinksByCategory: Record<
     { href: "/is-gunu-hesaplama", label: "İş Günü Hesaplama" },
     { href: "/tarihe-gun-ekleme", label: "Tarihe Gün Ekleme" },
     { href: "/kacinci-hafta", label: "Bugün Kaçıncı Hafta?" },
+    { href: "/takvim", label: "Türkiye Takvimi" },
+    { href: "/ozel-gunler", label: "Özel Günler" },
     { href: "/resmi-tatiller", label: "Resmî Tatiller" },
     { href: "/gebelik-haftasi-hesaplama", label: "Gebelik Haftası Hesaplama" },
     { href: "/uyku-hesaplama", label: "Uyku Hesaplama" },

@@ -21,6 +21,8 @@ değişen sayılar tek bir dosyada toplu durur; güncelleme resmi kaynak kontrol
 | Kasım ortası | Pendlerpauschale (DE) | km başına tutar | EStG | `app/converter/germanWork.ts` |
 | Kasım ortası | Grunderwerbsteuer (DE) | Eyalet oranları | Eyalet yasaları | `app/converter/germanKaufnebenkosten.ts` |
 | Kasım ortası | Arbeitszeitrechner (DE) | ArbZG reformu yasalaştı mı | BMAS | `app/converter/germanArbeitszeit.ts` |
+| Diyanet yeni yılı yayımlayınca (genelde yaz) | Türkiye takvimi, özel günler | Dini günler (kandiller, Ramazan) — Umm al-Qura'dan farklı gün varsa düzeltme tablosuna eklenir, `DINI_DOGRULANAN` bir artırılır | Diyanet dini günler takvimi | `app/converter/calendar/trTakvim.ts` |
+| Yıl sonu | Türkiye takvimi | `TAKVIM_YILLARI` listesine yeni yıl eklenir (sayfalar otomatik üretilir) | — | `app/converter/calendar/trTakvim.ts` |
 | Haziran | Brückentage (DE) | Yeni yıl sayfası | Eyalet tatilleri (hesaplanıyor) | `app/i18n/germanBrueckentage.ts` |
 
 Değişmeyen (bakım gerektirmeyen) araçlar: altın hesaplama (Darphane ağırlıkları sabit), Mutterschutz,

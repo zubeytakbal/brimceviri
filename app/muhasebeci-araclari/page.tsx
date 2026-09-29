@@ -110,6 +110,10 @@ export default function MuhasebeciAraclariPage() {
               {" "}— KDV dahil ve KDV hariç tutarları hesapla.
             </li>
             <li>
+              <Link href="/brutten-nete-maas-hesaplama">Brütten Nete Maaş Hesaplama</Link>
+              {" "}— SGK, gelir ve damga vergisiyle 12 aylık bordro, netten brüte ve işveren maliyeti.
+            </li>
+            <li>
               <Link href="/kidem-tazminati-hesaplama">Kıdem ve İhbar Tazminatı Hesaplama</Link>
               {" "}— güncel kıdem tavanı, damga ve gelir vergisiyle net tazminat hesapla.
             </li>

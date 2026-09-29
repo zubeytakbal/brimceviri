@@ -4548,6 +4548,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: path === "/altin-hesaplama" ? 0.85 : 0.75,
     })),
     {
+      url: `${baseUrl}/brutten-nete-maas-hesaplama`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
       url: `${baseUrl}/kidem-tazminati-hesaplama`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",

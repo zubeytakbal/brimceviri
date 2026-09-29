@@ -15,6 +15,19 @@ export type AnnualUpdate = {
 
 export const annualUpdates: AnnualUpdate[] = [
   {
+    id: "tr-maas",
+    label: "Brütten nete maaş (Türkiye)",
+    pageHref: "/brutten-nete-maas-hesaplama",
+    validYear: 2026,
+    remindFrom: "12-20",
+    checklist: [
+      "Update ASGARI_BRUT and MAAS_YILI in app/converter/turkishMaas.ts (new minimum wage, usually announced in December); check the SGK tavan multiplier and employer rates",
+      "Add next year's ücret gelir vergisi tarifesi to GELIR_VERGISI_TARIFESI in app/converter/turkishTazminat.ts",
+      "If a mid-year minimum wage increase is announced, update ASGARI_BRUT from July (the calculator currently assumes one value for the whole year)",
+      "Update the bracket text on the page, then set validYear here",
+    ],
+  },
+  {
     id: "tr-kidem",
     label: "Kıdem ve ihbar tazminatı (Türkiye)",
     pageHref: "/kidem-tazminati-hesaplama",

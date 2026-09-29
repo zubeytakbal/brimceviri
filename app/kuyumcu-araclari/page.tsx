@@ -136,6 +136,10 @@ export default function KuyumcuAraclariPage() {
           <h2>Hesaplama Araçları</h2>
           <ul>
             <li>
+              <Link href="/altin-hesaplama">Altın Hesaplama</Link>
+              {" "}— çeyrek, yarım, tam ve Cumhuriyet altını kaç gram; bilezikte ayar ve işçilikle has karşılığı.
+            </li>
+            <li>
               <Link href="/has-hesaplama">Has Altın ve Gümüş Hesaplama</Link>
               {" "}— gram ve ayar (milyem) girerek saf metal içeriğini
               hesapla, farklı ayarlarda parça karıştır.

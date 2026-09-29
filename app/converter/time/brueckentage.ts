@@ -25,6 +25,8 @@ export type Tag = {
   frei: boolean;
   feiertag: string | null;
   imJahr: boolean;
+  /** Halber Arbeitstag (TR: Arefe) — kostet einen halben Urlaubstag */
+  halb?: boolean;
 };
 
 export type Zeitraum = {
@@ -120,9 +122,9 @@ function kandidaten(
       for (let k = laeufe[j - 1].e + 1; k < laeufe[j].s; k += 1) {
         if (!tage[k].imJahr) gueltig = false;
         urlaub.push(k);
-        kosten += 1;
+        kosten += tage[k].halb ? 1 : 2;
       }
-      if (!gueltig || kosten > maxKosten) break;
+      if (!gueltig || kosten > maxKosten * 2) break;
       feiertag ||= tage
         .slice(laeufe[j].s, laeufe[j].e + 1)
         .some((t) => t.feiertag);
@@ -150,7 +152,7 @@ function alsZeitraum(
     von: tage[k.s].date,
     bis: tage[k.e].date,
     tage: k.e - k.s + 1,
-    urlaub: k.urlaub.length,
+    urlaub: k.urlaub.reduce((sum, i) => sum + (tage[i].halb ? 0.5 : 1), 0),
     urlaubstage: k.urlaub.map((i) => tage[i].date),
     feiertage: [
       ...new Set(teil.filter((t) => t.feiertag).map((t) => t.feiertag!)),
@@ -167,12 +169,17 @@ export function optimalerPlan(
   budget: number,
   maxJeZeitraum = 10,
 ) {
-  const tage = tageDesJahres(o);
+  return planFuerTage(tageDesJahres(o), budget, maxJeZeitraum);
+}
+
+/** Wie optimalerPlan, fuer eine beliebige Tagesliste (z. B. Tuerkei mit halben Arefe-Tagen). */
+export function planFuerTage(tage: Tag[], budget: number, maxJeZeitraum = 10) {
   const laeufe = freieLaeufe(tage);
   const cands = kandidaten(tage, laeufe, Math.min(budget, maxJeZeitraum));
   const byEnd = new Map<number, Kandidat[]>();
   for (const c of cands) byEnd.set(c.j, [...(byEnd.get(c.j) ?? []), c]);
-  const B = Math.max(0, Math.floor(budget));
+  // Kosten in halben Tagen
+  const B = Math.max(0, Math.floor(budget * 2));
   const wert = (k: Kandidat) => k.laenge * 1000 - k.kosten;
   // f[j+1][b]: bester Wert mit Zeitraeumen, die spaetestens in Lauf j enden
   const f: number[][] = [new Array(B + 1).fill(0)];
@@ -228,7 +235,7 @@ export function brueckenJeFeiertag(o: BrueckenOptionen, maxKosten = 9) {
     const mit = cands.filter((c) => c.i <= lauf && lauf <= c.j);
     const optionen: Zeitraum[] = [];
     let best = laeufe[lauf].e - laeufe[lauf].s + 1;
-    for (let k = 1; k <= maxKosten; k += 1) {
+    for (let k = 1; k <= maxKosten * 2; k += 1) {
       const c = mit
         .filter((x) => x.kosten === k)
         .sort((a, b) => b.laenge - a.laenge)[0];

@@ -13,6 +13,7 @@ import {
 } from "../../converter/time/holidays";
 import TimeToolPage from "../time/TimeToolPage";
 import HolidayIcsButton from "./HolidayIcsButton";
+import IzinPlanlayici from "./IzinPlanlayici";
 
 type Lang = HolidayLang;
 
@@ -151,6 +152,8 @@ const T = {
 
 const RELATED = {
   tr: [
+    { href: "/takvim", label: "Türkiye Takvimi" },
+    { href: "/ozel-gunler", label: "Özel Günler ve Tarihleri" },
     { href: "/is-gunu-hesaplama", label: "İş Günü Hesaplama" },
     { href: "/iki-tarih-arasi-gun-hesaplama", label: "İki Tarih Arası Gün Hesaplama" },
     { href: "/tarihe-gun-ekleme", label: "Tarihe Gün Ekleme" },
@@ -518,6 +521,7 @@ export function HolidayYearPage({ lang, year }: { lang: Lang; year: number }) {
       tocTitle={t.toc}
       tocItems={[
         { id: "kopru", label: t.bridgeTitle },
+        ...(tr ? [{ id: "izin-plani", label: "İzin planlayıcı" }] : []),
         { id: "takvim", label: t.calendarTitle },
         { id: "kurallar", label: tr ? "Resmî tatil kuralları" : "How federal holidays work" },
         { id: "faq", label: t.faq },
@@ -541,6 +545,16 @@ export function HolidayYearPage({ lang, year }: { lang: Lang; year: number }) {
         </p>
       )}
       <BridgeList plans={plans} lang={lang} />
+      {tr ? (
+        <>
+          <h2 id="izin-plani">Kaç gün izinle en uzun tatil? ({year})</h2>
+          <p>
+            Kullanabileceğiniz izin gün sayısını girin; planlayıcı izinleri yıl içinde köprü günlerine dağıtarak toplamda en çok tatil gününü veren
+            planı bulur.
+          </p>
+          <IzinPlanlayici year={year} />
+        </>
+      ) : null}
 
       <h2 id="takvim">
         {t.calendarTitle} {year}

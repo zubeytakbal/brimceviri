@@ -79,7 +79,7 @@ export default function TimeToolPage({
           <nav className="time-tool-related" aria-label={related.title}>
             <h2>{related.title}</h2>
             <ul>
-              {related.links.map((link) => (
+              {related.links.filter((link, i, all) => all.findIndex((l) => l.href === link.href) === i).map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} prefetch={false}>
                     {link.label}

@@ -125,6 +125,10 @@ export default function OgretmenAraclariPage() {
               {" "}— okul veya üniversite devamsızlık limitine göre
               kalan hakkı hesapla.
             </li>
+            <li>
+              <Link href="/okul-takvimi">Okul Takvimi</Link>
+              {" "}— ara tatil, yarıyıl ve karne tarihleri; kalan ders günü.
+            </li>
           </ul>
 
           <h2>100&apos;lük - Harf Notu - 4&apos;lük Sistem Tablosu</h2>

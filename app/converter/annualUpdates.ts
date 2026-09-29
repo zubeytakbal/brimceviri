@@ -15,6 +15,63 @@ export type AnnualUpdate = {
 
 export const annualUpdates: AnnualUpdate[] = [
   {
+    id: "tr-maas",
+    label: "Brütten nete maaş (Türkiye)",
+    pageHref: "/brutten-nete-maas-hesaplama",
+    validYear: 2026,
+    remindFrom: "12-20",
+    checklist: [
+      "Update ASGARI_BRUT and MAAS_YILI in app/converter/turkishMaas.ts (new minimum wage, usually announced in December); check the SGK tavan multiplier and employer rates",
+      "Add next year's ücret gelir vergisi tarifesi to GELIR_VERGISI_TARIFESI in app/converter/turkishTazminat.ts",
+      "If a mid-year minimum wage increase is announced, update ASGARI_BRUT from July (the calculator currently assumes one value for the whole year)",
+      "Update the bracket text on the page, then set validYear here",
+    ],
+  },
+  {
+    id: "tr-kidem",
+    label: "Kıdem ve ihbar tazminatı (Türkiye)",
+    pageHref: "/kidem-tazminati-hesaplama",
+    validYear: 2026,
+    remindFrom: "12-20",
+    checklist: [
+      "Add the January kıdem tazminatı tavanı for next year (ÇSGB / Mali ve Sosyal Haklar Genelgesi) to KIDEM_TAVANLARI in app/converter/turkishTazminat.ts",
+      "Add next year's ücret gelir vergisi tarifesi to GELIR_VERGISI_TARIFESI (GVK md. 103, Resmî Gazete in late December)",
+      "Update the title/description year on the page, then set validYear here",
+    ],
+  },
+  {
+    id: "tr-kidem-temmuz",
+    label: "Kıdem tazminatı tavanı Temmuz (Türkiye)",
+    pageHref: "/kidem-tazminati-hesaplama",
+    validYear: 2027,
+    remindFrom: "07-02",
+    checklist: ["Add the July kıdem tazminatı tavanı (announced in early July) to KIDEM_TAVANLARI, then move validYear to the next year"],
+  },
+  {
+    id: "tr-okul-takvimi",
+    label: "Okul takvimi (MEB)",
+    pageHref: "/okul-takvimi",
+    validYear: 2027,
+    remindFrom: "05-15",
+    checklist: [
+      "Find the MEB çalışma takvimi genelgesi for the next school year (usually announced May–June) and verify it on meb.gov.tr",
+      "Append the new year to OKUL_YILLARI in app/converter/calendar/okulTakvimi.ts (uyum, açılış, ara tatiller, karne, yarıyıl, 2. dönem, kapanış)",
+      "Update the page title/description year in app/okul-takvimi/page.tsx, then set validYear here",
+    ],
+  },
+  {
+    id: "tr-takvim",
+    label: "Türkiye takvimi ve dini günler",
+    pageHref: "/takvim",
+    validYear: 2027,
+    remindFrom: "07-01",
+    checklist: [
+      "Compare the Diyanet dini günler list for the next year with the computed dates (etkinlikTarihleri); add differences to DIYANET_DUZELTME in app/converter/calendar/trTakvim.ts",
+      "Raise DINI_DOGRULANAN to the verified year and add a new year to TAKVIM_YILLARI (pages and sitemap follow automatically)",
+      "Check turkeyHolidays / DIYANET_VERIFIED_UNTIL in app/converter/time/holidays.ts, then set validYear here",
+    ],
+  },
+  {
     id: "de-grunderwerbsteuer",
     label: "Grunderwerbsteuer-Rechner (Germany)",
     pageHref: "/de/grunderwerbsteuer-rechner",

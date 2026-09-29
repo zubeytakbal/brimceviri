@@ -1,6 +1,7 @@
 import { germanCities } from "./converter/geo/germanCities";
 import { entfernungPaare, entfernungStadtPath } from "./converter/geo/germanDistances";
 import { countriesDe, countryPathDe } from "./converter/geo/worldGeoDe";
+import { ALTIN_SAYFALARI, altinSayfaPath } from "./converter/turkishAltinPages";
 import { BRUECKENTAGE_JAHRE, brueckentagePfad } from "./i18n/germanBrueckentage";
 import { germanMathPages } from "./i18n/germanMathPages";
 import { comparisonPathDe, compoundPathDe, materialPathDe } from "./converter/germanScienceSlugs";
@@ -21,6 +22,7 @@ import { worldCities } from "./converter/time/worldCities";
 import { timerPresetAlternates, timerPresetPath, timerPresets } from "./i18n/timerPresets";
 import { countdownAlternatePaths, countdownEvents, countdownPath } from "./converter/time/countdownEvents";
 import { HOLIDAY_YEARS } from "./converter/time/holidays";
+import { AY_SLUG, doluGunler, ETKINLIKLER, ozelGunPath, TAKVIM_YILLARI, takvimAyPath, takvimGunPath, takvimYilPath } from "./converter/calendar/trTakvim";
 import { routePairs } from "./converter/geo/routePairs";
 import { turkeyProvinces } from "./converter/geo/turkeyProvinces";
 import { worldCountries } from "./converter/geo/worldCountries";
@@ -3077,7 +3079,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         ...(page?.trPath ? { alternates: buildLanguageAlternates({ tr: page.trPath, de: page.path }, "tr") } : {}),
       };
     }),
-    ...["/de/brutto-netto-rechner", "/de/mutterschutzrechner", "/de/arbeitszeitrechner", "/de/grunderwerbsteuer-rechner", "/de/prozentrechner", "/de/dreisatz-rechner", "/de/notenrechner", "/de/pendlerpauschale-rechner", "/de/urlaubsrechner"].map((path) => ({
+    ...["/de/brutto-netto-rechner", "/de/mutterschutzrechner", "/de/arbeitszeitrechner", "/de/grunderwerbsteuer-rechner", "/de/kuendigungsfrist-rechner", "/de/prozentrechner", "/de/dreisatz-rechner", "/de/notenrechner", "/de/pendlerpauschale-rechner", "/de/urlaubsrechner"].map((path) => ({
       url: `${baseUrl}${path}`,
       lastModified: contentLastModified,
       changeFrequency: "monthly" as const,
@@ -3088,6 +3090,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: contentLastModified,
       changeFrequency: "weekly" as const,
       priority: 0.8,
+    })),
+    ...[
+      "/takvim",
+      "/ozel-gunler",
+      "/firtina-takvimi",
+      "/dogdugum-gun-hangi-gun",
+      "/okul-takvimi",
+      "/hicri-takvim",
+      ...ETKINLIKLER.map((e) => ozelGunPath(e.id)),
+      ...TAKVIM_YILLARI.flatMap((y) => [takvimYilPath(y), ...AY_SLUG.map((_, i) => takvimAyPath(y, i + 1)), ...doluGunler(y).map(takvimGunPath)]),
+    ].map((path) => ({
+      url: `${baseUrl}${path}`,
+      lastModified: contentLastModified,
+      changeFrequency: (path.split("/").length > 4 ? "yearly" : "weekly") as "yearly" | "weekly",
+      priority: path === "/takvim" || path === "/ozel-gunler" || path === "/firtina-takvimi" || path === "/dogdugum-gun-hangi-gun" || path === "/okul-takvimi" || path === "/hicri-takvim" ? 0.8 : path.split("/").length > 4 ? 0.5 : 0.65,
     })),
     ...[
       ["/resmi-tatiller", ...HOLIDAY_YEARS.map((y) => `/resmi-tatiller/${y}`)],
@@ -4539,6 +4556,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: contentLastModified,
       changeFrequency: "monthly",
       priority: 0.75,
+    },
+    ...["/altin-hesaplama", ...ALTIN_SAYFALARI.map((id) => altinSayfaPath(id))].map((path) => ({
+      url: `${baseUrl}${path}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly" as const,
+      priority: path === "/altin-hesaplama" ? 0.85 : 0.75,
+    })),
+    {
+      url: `${baseUrl}/brutten-nete-maas-hesaplama`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/yillik-izin-hesaplama`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/kidem-tazminati-hesaplama`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/uz/haydovchilik-toifasi-topish`,

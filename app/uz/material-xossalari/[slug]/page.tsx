@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { seoTitle } from "../../../seoTitle";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
 import MaterialDensityConverterUz from "../../../components/calculators/MaterialDensityConverterUz";
@@ -61,7 +62,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const description = `${name} zichligi ${formatDensity(material.densityKgM3)} kg/m³. Zichlikni g/cm³, kg/L va boshqa birliklarga aylantiring, ma'lum barcha muhandislik xususiyatlarini ko'ring.`;
 
   return {
-    title,
+    title: seoTitle(title, `${name} Zichligi va Xususiyatlari`, `${name.match(/\(([^)]+)\)\s*$/)?.[1] ?? name} Zichligi va Xususiyatlari`),
     description,
     alternates: {
       canonical: `/uz/material-xossalari/${slug}`,

@@ -46,7 +46,7 @@ export const unitDisasterStories: UnitDisasterStory[] = [
   },
   {
     slug: "vasa-gemisi",
-    title: "Vasa Gemisi: İki Farklı 'Ayak' Ölçüsüyle İnşa Edilen Savaş Gemisi",
+    title: "Vasa Gemisi: İki Farklı 'Ayak' Ölçüsüyle Batan Gemi",
     shortTitle: "Vasa Gemisi",
     year: 1628,
     category: "denizcilik",

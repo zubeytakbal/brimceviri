@@ -1,3 +1,4 @@
+import { germanMathAlternatesForTurkish } from "@/app/i18n/germanMathPages";
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import EquationSystemCalculator from "../../../components/EquationSystemCalculator";
@@ -33,6 +34,7 @@ export const metadata: Metadata = {
     "x ve y gibi iki bilinmeyenli, doğrusal veya doğrusal olmayan iki denklemden oluşan sistemi adım adım çöz.",
   alternates: {
     canonical: "/bilim-hesaplayicilari/matematik/2-bilinmeyenli-denklem-sistemi-cozme",
+    ...germanMathAlternatesForTurkish("/bilim-hesaplayicilari/matematik/2-bilinmeyenli-denklem-sistemi-cozme"),
   },
   openGraph: {
     title: "2 Bilinmeyenli Denklem Sistemi Çözme",

@@ -1,4 +1,6 @@
+import { comparisonPathDe } from "../../converter/germanScienceSlugs";
 import type { Metadata } from "next";
+import { seoTitle } from "../../seoTitle";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
 import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
@@ -58,13 +60,13 @@ export async function generateMetadata({
   )} kat daha yoğun. Detaylı karşılaştırma ve mühendislik özellikleri.`;
 
   return {
-    title,
+    title: seoTitle(title, `${trEitherQuestion(first.nameTr, second.nameTr)} Daha Ağır?`, `${trEitherQuestion(first.nameTr.match(/\(([^)]+)\)\s*$/)?.[1] ?? first.nameTr, second.nameTr.match(/\(([^)]+)\)\s*$/)?.[1] ?? second.nameTr)} Daha Ağır?`),
     description,
     alternates: {
       canonical: `/malzeme-karsilastirma/${slug}`,
       languages: {
         "uz-UZ": `/uz/material-solishtirish/${slug}`,
-        de: `/de/werkstoffvergleich/${slug}`,
+        de: comparisonPathDe(slug),
       },
     },
     openGraph: {

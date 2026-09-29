@@ -1,3 +1,4 @@
+import { germanMathAlternatesForTurkish } from "@/app/i18n/germanMathPages";
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import CombinatoricsCalculator from "../../../components/CombinatoricsCalculator";
@@ -33,6 +34,7 @@ export const metadata: Metadata = {
     "nPr (permütasyon), nCr (kombinasyon) ve klasik olasılığı adım adım hesapla — n ve r değerlerini gir, sonucu anında gör.",
   alternates: {
     canonical: "/bilim-hesaplayicilari/matematik/permutasyon-kombinasyon-hesaplama",
+    ...germanMathAlternatesForTurkish("/bilim-hesaplayicilari/matematik/permutasyon-kombinasyon-hesaplama"),
   },
   openGraph: {
     title: "Permütasyon, Kombinasyon ve Olasılık Hesaplama",

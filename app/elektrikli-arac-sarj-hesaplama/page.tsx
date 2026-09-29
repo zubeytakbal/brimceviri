@@ -1,3 +1,4 @@
+import { buildFullLanguageAlternates } from "@/app/i18n/routing";
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import EvChargingCalculator from "../components/EvChargingCalculator";
@@ -24,14 +25,15 @@ const faqItems: FaqItem[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Elektrikli Araç Şarj Süresi, Maliyet ve Tasarruf Hesaplayıcısı",
+  title: "Elektrikli Araç Şarj Süresi ve Maliyeti Hesaplama",
   description:
     "Batarya kapasitesi ve şarj gücünden şarj süresini, elektrik fiyatından bu şarjın maliyetini ve benzinliye göre tasarrufunu tek ekranda hesapla.",
   alternates: {
     canonical: "/elektrikli-arac-sarj-hesaplama",
+    ...buildFullLanguageAlternates("/elektrikli-arac-sarj-hesaplama"),
   },
   openGraph: {
-    title: "Elektrikli Araç Şarj Süresi, Maliyet ve Tasarruf Hesaplayıcısı",
+    title: "Elektrikli Araç Şarj Süresi ve Maliyeti Hesaplama",
     description:
       "Şarj süresi, maliyeti ve benzinliye göre tasarrufu tek ekranda hesapla.",
     url: buildSiteUrl("/elektrikli-arac-sarj-hesaplama"),
@@ -88,7 +90,7 @@ export default async function EvChargingCalculatorPage() {
         </nav>
 
         <header className="all-conversions-header">
-          <h1>Elektrikli Araç Şarj Süresi, Maliyet ve Tasarruf Hesaplayıcısı</h1>
+          <h1>Elektrikli Araç Şarj Süresi ve Maliyeti Hesaplama</h1>
           <p>
             Batarya kapasitesi, şarj gücü ve elektrik fiyatını gir: şarj
             süresini, bu şarjın maliyetini ve benzinliye göre tasarrufunu

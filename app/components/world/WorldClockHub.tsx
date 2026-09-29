@@ -1,5 +1,7 @@
 import Link from "@/app/components/SiteLink";
-import { cityName, cityPath, type Lang } from "../../converter/time/cityFacts";
+import { cityName, cityPath } from "../../converter/time/cityFacts";
+
+type Lang = "tr" | "en";
 import type { FaqItem } from "../../converter/faqSchema";
 import { formatUtcOffset, offsetMinutes } from "../../converter/time/timezones";
 import { regionNames, worldCities, worldRegions } from "../../converter/time/worldCities";

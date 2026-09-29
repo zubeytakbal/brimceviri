@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { seoTitle } from "../../../seoTitle";
 import { notFound } from "next/navigation";
 import AllUnitsSection from "../../../components/AllUnitsSection";
 import CategoryUnitConverter from "../../../components/CategoryUnitConverter";
@@ -60,7 +61,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${categoryPage.title}: unidades, tablas y cálculos`,
+    title: seoTitle(`${categoryPage.title}: unidades, tablas y cálculos`, `${categoryPage.title}: unidades y tablas`, categoryPage.title),
     description: categoryPage.description,
     alternates: {
       canonical: `/es-419/categorias/${categoryPage.slug}`,

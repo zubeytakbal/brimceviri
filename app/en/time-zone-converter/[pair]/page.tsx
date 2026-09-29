@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { seoTitle } from "../../../seoTitle";
 import { notFound } from "next/navigation";
 import { pairTitle, TimeZonePairPage } from "../../../components/world/TimeZoneConverterPages";
 import { findPair, zonePairs } from "../../../converter/time/timeZonePairs";
@@ -18,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ pair: str
   const title = pairTitle(pair);
   const description = `Convert ${pair.fromCode} to ${pair.toCode} instantly: live converter with daylight saving, a 24-hour ${pair.fromCode} to ${pair.toCode} table and the best meeting hours.`;
   return {
-    title,
+    title: seoTitle(title, `${pair.fromCode} to ${pair.toCode} Converter (${pair.fromName.split(" ")[0]} to ${pair.toName.split(" ")[0]})`, `${pair.fromCode} to ${pair.toCode} Time Converter`),
     description,
     alternates: { canonical: path },
     openGraph: { title, description, url: buildSiteUrl(path), siteName: "BirimCeviri.app", locale: "en_US", type: "website" },

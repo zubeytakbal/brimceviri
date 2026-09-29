@@ -37,3 +37,31 @@ export function geoRelated(exclude: string, limit = 8) {
     .slice(0, limit)
     .map((t) => ({ href: t.href, label: t.title }));
 }
+
+// Ingilizce cografya araclari.
+export const geoToolsEn: GeoTool[] = [
+  { href: "/en/map-scale-calculator", title: "Map Scale Calculator", description: "Map distance to ground distance, real area, find the scale and draw a scale bar.", group: "harita" },
+  { href: "/en/coordinate-converter", title: "Coordinate Converter", description: "Decimal degrees, DMS, degrees decimal minutes and UTM.", group: "harita" },
+  { href: "/en/solar-time-calculator", title: "Solar Time Calculator", description: "Local mean time and true solar noon from longitude.", group: "zaman" },
+  { href: "/en/world-map", title: "World Map", description: "Clickable political map of 196 countries with capitals, area and time zones.", group: "dunya" },
+  { href: "/en/countries", title: "Countries and Capitals", description: "Every country by continent with its capital, UTC offset and calling code.", group: "dunya" },
+  { href: "/en/world-clock", title: "World Clock", description: "Live time in 97 cities.", group: "zaman" },
+  { href: "/en/time-zone-converter", title: "Time Zone Converter", description: "Convert a time across several countries.", group: "zaman" },
+  { href: "/en/golden-hour", title: "Golden Hour Calculator", description: "Sunrise, sunset, golden and blue hour.", group: "zaman" },
+  { href: "/en/moon-phases", title: "Moon Phases", description: "Today's moon phase and the next full moon.", group: "zaman" },
+  { href: "/en/acres-to-hectares", title: "Acres to Hectares", description: "Land area conversion.", group: "harita" },
+];
+
+export const geoGroupLabelsEn: Record<GeoTool["group"], string> = {
+  harita: "Maps and measurement",
+  zaman: "Time and the Sun",
+  turkiye: "Turkey",
+  dunya: "World",
+};
+
+export function geoRelatedEn(exclude: string, limit = 8) {
+  return geoToolsEn
+    .filter((t) => t.href !== exclude)
+    .slice(0, limit)
+    .map((t) => ({ href: t.href, label: t.title }));
+}

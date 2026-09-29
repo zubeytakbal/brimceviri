@@ -10,31 +10,36 @@ import {
   offsetMinutes,
   timeZoneLongName,
 } from "./timezones";
+import { cityNameDe, cityPathDe, citySlugDe } from "./germanWorld";
 import { referenceCitySlugs, worldCities, type WorldCity } from "./worldCities";
 
 // Sehir sayfalari icin sunucuda hesaplanan gercek veriler (ISR ile tazelenir).
 
-export type Lang = "tr" | "en";
-const LOCALE: Record<Lang, string> = { tr: "tr-TR", en: "en-US" };
+export type Lang = "tr" | "en" | "de";
+const LOCALE: Record<Lang, string> = { tr: "tr-TR", en: "en-US", de: "de-DE" };
 
 export function cityName(city: WorldCity, lang: Lang) {
-  return lang === "tr" ? city.nameTr : city.nameEn;
+  return lang === "tr" ? city.nameTr : lang === "de" ? cityNameDe(city) : city.nameEn;
 }
 
 export function citySlug(city: WorldCity, lang: Lang) {
-  return lang === "tr" ? city.tr : city.en;
+  return lang === "tr" ? city.tr : lang === "de" ? citySlugDe(city) : city.en;
 }
 
 export function cityPath(city: WorldCity, lang: Lang) {
-  return lang === "tr" ? `/dunya-saatleri/${city.tr}` : `/en/world-clock/${city.en}`;
+  return lang === "tr" ? `/dunya-saatleri/${city.tr}` : lang === "de" ? cityPathDe(city) : `/en/world-clock/${city.en}`;
 }
 
 /** "7 saat geride", "3 saat 30 dakika ileride", "aynı saat" */
 export function describeDifference(minutes: number, lang: Lang) {
-  if (minutes === 0) return lang === "tr" ? "aynı saat" : "the same time";
+  if (minutes === 0) return lang === "tr" ? "aynı saat" : lang === "de" ? "gleiche Uhrzeit" : "the same time";
   const abs = Math.abs(minutes);
   const h = Math.floor(abs / 60);
   const m = abs % 60;
+  if (lang === "de") {
+    const amount = [h ? `${h} Stunde${h === 1 ? "" : "n"}` : "", m ? `${m} Minuten` : ""].filter(Boolean).join(" ");
+    return `${amount} ${minutes > 0 ? "voraus" : "zurück"}`;
+  }
   if (lang === "tr") {
     const amount = [h ? `${h} saat` : "", m ? `${m} dakika` : ""].filter(Boolean).join(" ");
     return `${amount} ${minutes > 0 ? "ileride" : "geride"}`;
@@ -59,7 +64,7 @@ export function formatDate(date: Date, timeZone: string, lang: Lang, withWeekday
 function formatDayLength(minutes: number, lang: Lang) {
   const h = Math.floor(minutes / 60);
   const m = minutes % 60;
-  return lang === "tr" ? `${h} sa ${m} dk` : `${h} h ${m} min`;
+  return lang === "tr" ? `${h} sa ${m} dk` : lang === "de" ? `${h} Std. ${m} Min.` : `${h} h ${m} min`;
 }
 
 export type SunRow = { date: string; sunrise: string; sunset: string; dayLength: string };
@@ -84,7 +89,10 @@ export function cityFacts(city: WorldCity, now: Date, lang: Lang) {
         dayLength: formatDayLength(sun.dayLengthMinutes, lang),
       });
     } else {
-      const text = sun.kind === "polar-day" ? (lang === "tr" ? "Gün batmaz" : "Sun never sets") : lang === "tr" ? "Gün doğmaz" : "Sun never rises";
+      const text =
+        sun.kind === "polar-day"
+          ? lang === "tr" ? "Gün batmaz" : lang === "de" ? "Mitternachtssonne" : "Sun never sets"
+          : lang === "tr" ? "Gün doğmaz" : lang === "de" ? "Polarnacht" : "Sun never rises";
       sunRows.push({ date: label, sunrise: text, sunset: text, dayLength: sun.kind === "polar-day" ? "24 h" : "0" });
     }
   }
@@ -144,7 +152,12 @@ export function hourMapping(fromZone: string, toZone: string, now: Date, lang: L
     return {
       from: `${String(hour).padStart(2, "0")}:00`,
       to: text,
-      dayNote: dayShift === 0 ? "" : dayShift > 0 ? (lang === "tr" ? "ertesi gün" : "next day") : lang === "tr" ? "önceki gün" : "previous day",
+      dayNote:
+        dayShift === 0
+          ? ""
+          : dayShift > 0
+            ? lang === "tr" ? "ertesi gün" : lang === "de" ? "Folgetag" : "next day"
+            : lang === "tr" ? "önceki gün" : lang === "de" ? "Vortag" : "previous day",
       overlap: hour >= 9 && hour < 18 && targetHour >= 9 && targetHour < 18,
     };
   });

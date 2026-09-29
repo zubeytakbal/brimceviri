@@ -372,7 +372,7 @@ export function holidayYearMeta(lang: Lang, year: number) {
     };
   }
   return {
-    title: `US Federal Holidays ${year}: Dates, Observed Days & Long Weekends`,
+    title: `US Federal Holidays ${year}: Dates and Long Weekends`,
     description: `All 11 US federal holidays in ${year} with observed dates, a year calendar, long-weekend PTO ideas and a downloadable .ics calendar.`,
   };
 }

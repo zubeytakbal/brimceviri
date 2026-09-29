@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { seoTitle } from "../../../../seoTitle";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
 import NumberFactsCalculator from "../../../../components/NumberFactsCalculator";
@@ -40,7 +41,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const description = `${n} sayısının karesi (${formatNumber(facts.square)}), çarpanları/bölenleri, karekökü (${formatNumber(facts.squareRoot)}) ve asal olup olmadığı. ${n} ile ilgili tüm sayı özelliklerini gör.`;
 
   return {
-    title,
+    title: seoTitle(title, `${n} Sayısının Karesi, Bölenleri ve Asal mı?`, `${n} Sayısı: Karesi, Bölenleri, Asal mı?`),
     description,
     alternates: { canonical: `/bilim-hesaplayicilari/matematik/sayilar/${n}` },
     openGraph: {

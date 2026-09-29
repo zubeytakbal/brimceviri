@@ -7,17 +7,17 @@ import { getSiteNotifications } from "../converter/siteNotifications";
 const germanHomeUrl = buildSiteUrl("/de");
 
 export const metadata: Metadata = {
-  title: "Die passende Umrechnung finden",
+  title: "Einheitenumrechner und Online-Rechner",
   description:
-    "Durchsuchen Sie Umrechnungsseiten f\u00FCr L\u00E4nge, Masse und Druck auf Deutsch und \u00F6ffnen Sie die passende Umrechnung direkt.",
+    "Einheiten umrechnen (Länge, Gewicht, Temperatur, Druck), Prozent- und Dreisatzrechner, Feiertage, Kalenderwoche, Weltuhr und Euro-Währungsrechner – kostenlos.",
   alternates: {
     canonical: germanHomeUrl,
     ...buildHomeLanguageAlternates(),
   },
   openGraph: {
-    title: "Die passende Umrechnung finden | BirimCeviri.app",
+    title: "Einheitenumrechner und Online-Rechner | BirimCeviri.app",
     description:
-      "Suchen Sie deutsche Umrechnungsseiten f\u00FCr L\u00E4nge, Masse und Druck und \u00F6ffnen Sie die passende Seite direkt.",
+      "Einheiten umrechnen, Prozent- und Dreisatzrechner, Feiertage, Kalenderwoche und Euro-Währungsrechner – kostenlos.",
     url: germanHomeUrl,
     siteName: "BirimCeviri.app",
     locale: "de_DE",

@@ -102,7 +102,7 @@ export default function GermanOtherConversionsPage() {
       href: "/de/rezept-umrechner",
       title: "Rezept Umrechner",
       description:
-        "Skalieren Sie ein Rezept und erhalten Sie passende Grammwerte fuer erkannte Zutaten.",
+        "Skalieren Sie ein Rezept und erhalten Sie passende Grammwerte für erkannte Zutaten.",
       iconName: "recipe" as const,
     },
     {

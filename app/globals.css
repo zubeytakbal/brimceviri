@@ -13182,6 +13182,10 @@ a.all-units-row .all-units-name {
 }
 
 /* ---------- Turkiye il haritasi ---------- */
+.tr-map-legend {
+  --tr-map-selected: #e4572e;
+}
+
 .tr-map-frame {
   --tr-map-selected: #e4572e;
   position: relative;
@@ -13459,4 +13463,18 @@ a.all-units-row .all-units-name {
   .holiday-stats strong {
     font-size: 1.35rem;
   }
+}
+
+.arbeitszeit-woche input {
+  width: 4.6em;
+  padding: 6px 4px;
+  border: 1px solid #c9d3dc;
+  border-radius: 6px;
+  font: inherit;
+  text-align: center;
+}
+
+.arbeitszeit-woche td small {
+  display: block;
+  color: #b42318;
 }

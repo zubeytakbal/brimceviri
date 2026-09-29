@@ -1,9 +1,16 @@
+import { germanCities } from "./converter/geo/germanCities";
+import { entfernungPaare, entfernungStadtPath } from "./converter/geo/germanDistances";
+import { countriesDe, countryPathDe } from "./converter/geo/worldGeoDe";
+import { BRUECKENTAGE_JAHRE, brueckentagePfad } from "./i18n/germanBrueckentage";
+import { germanMathPages } from "./i18n/germanMathPages";
+import { comparisonPathDe, compoundPathDe, materialPathDe } from "./converter/germanScienceSlugs";
 import type { MetadataRoute } from "next";
 import { calculatorPages } from "./converter/calculatorPages";
 import { sleepGuideAlternates, sleepGuidePaths } from "./i18n/sleepGuidePaths";
 import {
   alarmPresetAlternates,
   alarmPresetSlug,
+  alarmSlugDe,
   alarmPresetTimes,
   timeToolAlternates,
   timeToolPaths,
@@ -12,11 +19,14 @@ import {
 import { cgpaUniversities } from "./converter/india/cgpaUniversities";
 import { worldCities } from "./converter/time/worldCities";
 import { timerPresetAlternates, timerPresetPath, timerPresets } from "./i18n/timerPresets";
-import { countdownEvents, countdownPath, pairedEvent } from "./converter/time/countdownEvents";
+import { countdownAlternatePaths, countdownEvents, countdownPath } from "./converter/time/countdownEvents";
 import { HOLIDAY_YEARS } from "./converter/time/holidays";
 import { routePairs } from "./converter/geo/routePairs";
 import { turkeyProvinces } from "./converter/geo/turkeyProvinces";
 import { worldCountries } from "./converter/geo/worldCountries";
+import { countryPathEn } from "./converter/geo/worldGeoEn";
+import { GERMAN_STATES } from "./converter/time/germanHolidays";
+import { cityPathDe } from "./converter/time/germanWorld";
 import { worldRegionPages } from "./converter/geo/worldRegions";
 import { zonePairs } from "./converter/time/timeZonePairs";
 import { buildLanguageAlternates } from "./i18n/routing";
@@ -24,6 +34,7 @@ import { categoryPages } from "./converter/categoryPages";
 import { conversionPages } from "./converter/conversionPages";
 import { fxContentBn } from "./converter/fx/fxContentBn";
 import { fxContentUz } from "./converter/fx/fxContentUz";
+import { fxContentDe } from "./converter/fx/fxContentDe";
 import { fxHubAlternates } from "./converter/fx/fxHubAlternates";
 import { fxPairsTr } from "./converter/fx/fxPairsTr";
 import {
@@ -1348,27 +1359,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
       },
     },
     ...materialsDatabase.map((material) => ({
-      url: `${baseUrl}/de/werkstoffeigenschaften/${material.id}`,
+      url: `${baseUrl}${materialPathDe(material.id)}`,
       lastModified: contentLastModified,
       changeFrequency: "monthly" as const,
       priority: 0.6,
       alternates: {
         languages: {
           tr: `${baseUrl}/malzeme-ozellikleri/${material.id}`,
-          de: `${baseUrl}/de/werkstoffeigenschaften/${material.id}`,
+          de: `${baseUrl}${materialPathDe(material.id)}`,
           "x-default": `${baseUrl}/malzeme-ozellikleri/${material.id}`,
         },
       },
     })),
     ...getAllMaterialComparisons().map((comparison) => ({
-      url: `${baseUrl}/de/werkstoffvergleich/${comparison.slug}`,
+      url: `${baseUrl}${comparisonPathDe(comparison.slug)}`,
       lastModified: contentLastModified,
       changeFrequency: "monthly" as const,
       priority: 0.6,
       alternates: {
         languages: {
           tr: `${baseUrl}/malzeme-karsilastirma/${comparison.slug}`,
-          de: `${baseUrl}/de/werkstoffvergleich/${comparison.slug}`,
+          de: `${baseUrl}${comparisonPathDe(comparison.slug)}`,
           "x-default": `${baseUrl}/malzeme-karsilastirma/${comparison.slug}`,
         },
       },
@@ -1539,14 +1550,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...compoundsDatabase
       .filter((compound) => Boolean(findCompoundEditorial(compound.id)))
       .map((compound) => ({
-      url: `${baseUrl}/de/chemische-verbindungen/${compound.id}`,
+      url: `${baseUrl}${compoundPathDe(compound.id)}`,
       lastModified: contentLastModified,
       changeFrequency: "monthly" as const,
       priority: 0.6,
       alternates: {
         languages: {
           tr: `${baseUrl}/bilim-hesaplayicilari/kimya/bilesikler/${compound.id}`,
-          de: `${baseUrl}/de/chemische-verbindungen/${compound.id}`,
+          de: `${baseUrl}${compoundPathDe(compound.id)}`,
           "x-default": `${baseUrl}/bilim-hesaplayicilari/kimya/bilesikler/${compound.id}`,
         },
       },
@@ -3028,6 +3039,56 @@ export default function sitemap(): MetadataRoute.Sitemap {
         alternates: buildLanguageAlternates({ tr: trPath, en: enPath }, "tr"),
       })),
     ),
+    {
+      url: `${baseUrl}/de/eieruhr`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    },
+    ...[
+      "/de/entfernung",
+      ...germanCities.map((c) => entfernungStadtPath(c)),
+      ...entfernungPaare().map((p) => `/de/entfernung/${p.from.id}/${p.to.id}`),
+    ].map((path) => ({
+      url: `${baseUrl}${path}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly" as const,
+      priority: path.split("/").length > 4 ? 0.5 : 0.65,
+    })),
+    ...["/de/brueckentage", ...BRUECKENTAGE_JAHRE.map((j) => brueckentagePfad(j))].map((path) => ({
+      url: `${baseUrl}${path}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.75,
+    })),
+    ...["/de/laender", ...countriesDe.map((c) => countryPathDe(c)!)].map((path) => ({
+      url: `${baseUrl}${path}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly" as const,
+      priority: path === "/de/laender" ? 0.7 : 0.55,
+    })),
+    ...["/de/mathe-rechner", ...germanMathPages.map((page) => page.path)].map((path) => {
+      const page = germanMathPages.find((p) => p.path === path);
+      return {
+        url: `${baseUrl}${path}`,
+        lastModified: contentLastModified,
+        changeFrequency: "monthly" as const,
+        priority: 0.75,
+        ...(page?.trPath ? { alternates: buildLanguageAlternates({ tr: page.trPath, de: page.path }, "tr") } : {}),
+      };
+    }),
+    ...["/de/brutto-netto-rechner", "/de/mutterschutzrechner", "/de/arbeitszeitrechner", "/de/grunderwerbsteuer-rechner", "/de/prozentrechner", "/de/dreisatz-rechner", "/de/notenrechner", "/de/pendlerpauschale-rechner", "/de/urlaubsrechner"].map((path) => ({
+      url: `${baseUrl}${path}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
+    ...["/de/feiertage", "/de/feiertage-oesterreich", ...GERMAN_STATES.map((st) => `/de/feiertage/${st.slug}`)].map((path) => ({
+      url: `${baseUrl}${path}`,
+      lastModified: contentLastModified,
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    })),
     ...[
       ["/resmi-tatiller", ...HOLIDAY_YEARS.map((y) => `/resmi-tatiller/${y}`)],
       ["/en/federal-holidays", ...HOLIDAY_YEARS.map((y) => `/en/federal-holidays/${y}`)],
@@ -3038,17 +3099,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: /\d{4}$/.test(path) ? 0.7 : 0.8,
     })),
     ...[
-      "/cografya-hesaplamalari",
-      "/harita-olcegi-hesaplama",
-      "/yerel-saat-hesaplama",
-      "/koordinat-donusturucu",
+      ["/cografya-hesaplamalari", "/en/geography-calculators"],
+      ["/harita-olcegi-hesaplama", "/en/map-scale-calculator"],
+      ["/yerel-saat-hesaplama", "/en/solar-time-calculator"],
+      ["/koordinat-donusturucu", "/en/coordinate-converter"],
+      ["/dunya-haritasi", "/en/world-map"],
+      ["/ulkeler", "/en/countries"],
+      ...worldCountries.map((c) => [`/ulkeler/${c.id}`, countryPathEn(c)]),
+    ].flatMap(([trPath, enPath]) =>
+      [trPath, enPath].map((path) => ({
+        url: `${baseUrl}${path}`,
+        lastModified: contentLastModified,
+        changeFrequency: "monthly" as const,
+        priority: 0.75,
+        alternates: buildLanguageAlternates({ tr: trPath, en: enPath }, "tr"),
+      })),
+    ),
+    ...[
       "/iller-arasi-mesafe",
       "/turkiye-il-haritasi",
       ...turkeyProvinces.map((p) => `/iller-arasi-mesafe/${p.id}`),
       ...routePairs().map((p) => `/iller-arasi-mesafe/${p.from.id}/${p.to.id}`),
-      "/dunya-haritasi",
-      "/ulkeler",
-      ...worldCountries.map((c) => `/ulkeler/${c.id}`),
       ...worldRegionPages.map((r) => `/bolge-haritalari/${r.id}`),
     ].map((path) => ({
       url: `${baseUrl}${path}`,
@@ -3063,29 +3134,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.6,
     })),
     ...countdownEvents.map((event) => {
-      const pair = pairedEvent(event);
       return {
         url: `${baseUrl}${countdownPath(event)}`,
         lastModified: contentLastModified,
         changeFrequency: "daily" as const,
         priority: 0.6,
-        alternates: buildLanguageAlternates(
-          pair ? { [event.lang]: countdownPath(event), [pair.lang]: countdownPath(pair) } : { [event.lang]: countdownPath(event) },
-          event.lang
-        ),
+        alternates: buildLanguageAlternates(countdownAlternatePaths(event), event.lang === "de" ? "tr" : event.lang),
       };
     }),
     ...worldCities.flatMap((city) =>
-      [`/dunya-saatleri/${city.tr}`, `/en/world-clock/${city.en}`].map((path) => ({
+      [`/dunya-saatleri/${city.tr}`, `/en/world-clock/${city.en}`, cityPathDe(city)].map((path) => ({
         url: `${baseUrl}${path}`,
         lastModified: contentLastModified,
         changeFrequency: "daily" as const,
         priority: 0.6,
-        alternates: buildLanguageAlternates({ tr: `/dunya-saatleri/${city.tr}`, en: `/en/world-clock/${city.en}` }, "tr"),
+        alternates: buildLanguageAlternates({ tr: `/dunya-saatleri/${city.tr}`, en: `/en/world-clock/${city.en}`, de: cityPathDe(city) }, "tr"),
       })),
     ),
     ...timerPresets.flatMap((preset) =>
-      [timerPresetPath(preset, "tr"), timerPresetPath(preset, "en")].map((path) => ({
+      [timerPresetPath(preset, "tr"), timerPresetPath(preset, "en"), timerPresetPath(preset, "de")].map((path) => ({
         url: `${baseUrl}${path}`,
         lastModified: contentLastModified,
         changeFrequency: "monthly" as const,
@@ -3094,7 +3161,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       })),
     ),
     ...alarmPresetTimes.flatMap((time) =>
-      [`/online-alarm-kur/${alarmPresetSlug.tr(time)}`, `/en/alarm-clock/${alarmPresetSlug.en(time)}`].map((path) => ({
+      [`/online-alarm-kur/${alarmPresetSlug.tr(time)}`, `/en/alarm-clock/${alarmPresetSlug.en(time)}`, `/de/wecker/${alarmSlugDe(time)}`].map((path) => ({
         url: `${baseUrl}${path}`,
         lastModified: contentLastModified,
         changeFrequency: "monthly" as const,
@@ -4026,7 +4093,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
       },
     },
-    ...[fxContentUz.basePath, fxContentBn.basePath].map((path) => ({
+    ...[fxContentUz.basePath, fxContentBn.basePath, fxContentDe.basePath].map((path) => ({
       url: `${baseUrl}${path}`,
       lastModified: contentLastModified,
       changeFrequency: "daily" as const,
@@ -4035,7 +4102,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         languages: Object.fromEntries(Object.entries(fxHubAlternates).map(([lang, href]) => [lang, `${baseUrl}${href}`])),
       },
     })),
-    ...[fxContentUz, fxContentBn].flatMap((content) =>
+    ...[fxContentUz, fxContentBn, fxContentDe].flatMap((content) =>
       content.pairs.map((pair) => ({
         url: `${baseUrl}${content.basePath}/${pair.slug}`,
         lastModified: contentLastModified,
@@ -6646,5 +6713,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const existing = byUrl.get(entry.url);
     if (!existing || (!existing.alternates && entry.alternates)) byUrl.set(entry.url, entry);
   }
-  return [...byUrl.values()];
+  // Google verlangt in hreflang-Alternativen absolute Adressen; relative Pfade (z. B. "/uyku-hesaplama")
+  // werden hier zentral ergänzt, damit keine Quelle sie vergessen kann.
+  const absolute = (href: string) => (href.startsWith("/") ? `${baseUrl}${href}` : href);
+  return [...byUrl.values()].map((entry) => {
+    const languages = entry.alternates?.languages;
+    if (!languages) return entry;
+    return {
+      ...entry,
+      alternates: {
+        ...entry.alternates,
+        languages: Object.fromEntries(Object.entries(languages).map(([lang, href]) => [lang, typeof href === "string" ? absolute(href) : href])),
+      },
+    };
+  });
 }

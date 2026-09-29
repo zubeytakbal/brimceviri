@@ -1,3 +1,4 @@
+import { germanMathAlternatesForTurkish } from "@/app/i18n/germanMathPages";
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import EbobEkokCalculator from "../../../components/EbobEkokCalculator";
@@ -33,6 +34,7 @@ export const metadata: Metadata = {
     "İki veya daha fazla sayının EBOB (OBEB) ve EKOK (OKEK) değerini asal çarpanlara ayırma yöntemiyle adım adım hesaplayın.",
   alternates: {
     canonical: "/bilim-hesaplayicilari/matematik/ebob-ekok-hesaplama",
+    ...germanMathAlternatesForTurkish("/bilim-hesaplayicilari/matematik/ebob-ekok-hesaplama"),
   },
   openGraph: {
     title: "EBOB-EKOK Hesaplama: Asal Çarpanlarla Adım Adım Çözüm",

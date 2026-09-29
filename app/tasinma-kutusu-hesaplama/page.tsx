@@ -1,3 +1,4 @@
+import { buildFullLanguageAlternates } from "@/app/i18n/routing";
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import MovingBoxCalculator from "../components/MovingBoxCalculator";
@@ -23,6 +24,7 @@ export const metadata: Metadata = {
     "Ev tipini seç (stüdyo, 1+1, 2+1, 3+1...); taşınma için tahmini koli sayısını ve kamyon hacmini gör.",
   alternates: {
     canonical: "/tasinma-kutusu-hesaplama",
+    ...buildFullLanguageAlternates("/tasinma-kutusu-hesaplama"),
   },
   openGraph: {
     title: "Taşınma Kutusu Hesaplama: Ev Tipine Göre Kaç Koli Gerekir?",

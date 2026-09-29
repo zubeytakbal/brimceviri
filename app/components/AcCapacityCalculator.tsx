@@ -220,7 +220,7 @@ const copyByLocale: Record<
   },
   de: {
     labels: {
-      area: "Raumfläche (m2)",
+      area: "Raumfläche (m²)",
       people: "Anzahl Personen im Raum",
       sunny: "Bekommt der Raum den ganzen Tag Sonne?",
       sunnyCheckbox: "Ja, direkte Sonneneinstrahlung",

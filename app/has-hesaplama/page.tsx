@@ -28,7 +28,7 @@ const faqItems: FaqItem[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Has Altın ve Gümüş Hesaplama: Alaşım Karıştırma, Saf Metal İçeriği",
+  title: "Has Altın ve Gümüş Hesaplama: Alaşım ve Saf Metal",
   description:
     "Gram ağırlık ve ayar (milyem) gir; has (saf) altın veya gümüş içeriğini hesapla. Farklı ayarlarda hurda/parça karıştırıp sonuç ayarını bul (alaşım karıştırma hesabı), ya da tersten gerekli brüt ağırlığı öğren.",
   alternates: {
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Has Altın ve Gümüş Hesaplama: Alaşım Karıştırma, Saf Metal İçeriği",
+    title: "Has Altın ve Gümüş Hesaplama: Alaşım ve Saf Metal",
     description:
       "Gram ve ayar (milyem) girerek has altın/gümüş içeriğini ve alaşım karıştırma sonucunu hesaplayın.",
     url: buildSiteUrl("/has-hesaplama"),

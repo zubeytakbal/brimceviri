@@ -16,8 +16,8 @@ import { countdownCopy } from "./countdownCopy";
 // Etkinlik geri sayim sayfasi (TR + EN). Tarihler her yenilemede yeniden hesaplanir;
 // bu yil gecince otomatik olarak bir sonraki yila gecer.
 
-export function formatEventDate(parts: DateParts, lang: "tr" | "en", withWeekday = true) {
-  return new Intl.DateTimeFormat(lang === "tr" ? "tr-TR" : "en-US", {
+export function formatEventDate(parts: DateParts, lang: "tr" | "en" | "de", withWeekday = true) {
+  return new Intl.DateTimeFormat(lang === "tr" ? "tr-TR" : lang === "de" ? "de-DE" : "en-US", {
     day: "numeric",
     month: "long",
     year: "numeric",
@@ -40,7 +40,8 @@ export function eventSummary(event: CountdownEvent, now: Date) {
 
 export default function CountdownEventPage({ event }: { event: CountdownEvent }) {
   const tr = event.lang === "tr";
-  const lang = event.lang;
+  // Diese Seite deckt TR und EN ab; deutsche Anlässe nutzen GermanCountdownEventPage.
+  const lang: "tr" | "en" = event.lang === "tr" ? "tr" : "en";
   const now = new Date();
   const occurrences = upcomingOccurrences(event, now, 6);
   const next = occurrences[0];

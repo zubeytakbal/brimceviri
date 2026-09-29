@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { seoTitle } from "../../../../seoTitle";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
 import ElementLewisDiagram from "../../../../components/ElementLewisDiagram";
@@ -77,7 +78,7 @@ export async function generateMetadata({
   const description = `${element.nameTr} elementinin sembolü ${element.symbol}, atom numarası ${element.atomicNumber}, atom kütlesi ${formatMass(element.atomicMass)} u. Tanımı, özellikleri ve kullanım alanlarını inceleyin.`;
 
   return {
-    title,
+    title: seoTitle(title, `${element.nameTr} (${element.symbol}): Atom Numarası ve Kütlesi`, `${element.nameTr} (${element.symbol}) Elementi`),
     description,
     alternates: {
       canonical: `/bilim-hesaplayicilari/kimya/periyodik-tablo/${slug}`,

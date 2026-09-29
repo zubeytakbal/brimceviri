@@ -116,3 +116,45 @@ export async function openUniversityRequestIssue(name: string, count: number): P
     return "failed";
   }
 }
+
+// Yillik deger guncellemesi: yeni resmi degerler yayimlandiginda hatirlatir (her arac ve yil icin bir kez).
+export async function openAnnualUpdateIssue(input: {
+  label: string;
+  pageHref: string;
+  nextYear: number;
+  checklist: string[];
+}): Promise<"created" | "skipped" | "failed"> {
+  const token = process.env.GITHUB_ISSUE_TOKEN;
+  if (!token) return "skipped";
+
+  try {
+    const response = await fetch(`https://api.github.com/repos/${REPOSITORY}/issues`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: "application/vnd.github+json",
+        "X-GitHub-Api-Version": "2022-11-28",
+        "User-Agent": "birimceviri-kaynak-kontrol",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title: `Yearly update: ${input.label} — values for ${input.nextYear}`,
+        body: [
+          `The official values for **${input.nextYear}** are usually published now. Please update:`,
+          "",
+          ...input.checklist.map((item) => `- [ ] ${item}`),
+          "",
+          `- Page: https://www.birimceviri.app${input.pageHref}`,
+          "",
+          `From 1 January ${input.nextYear} the page shows visitors a notice that the figures are for the previous year until validYear is updated in app/converter/annualUpdates.ts.`,
+        ].join("\n"),
+      }),
+      signal: AbortSignal.timeout(15000),
+    });
+    if (!response.ok) console.log(`[kaynak-kontrol] GitHub issue failed: HTTP ${response.status}`);
+    return response.ok ? "created" : "failed";
+  } catch (error) {
+    console.log(`[kaynak-kontrol] GitHub issue failed: ${error instanceof Error ? error.message : String(error)}`);
+    return "failed";
+  }
+}

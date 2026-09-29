@@ -80,3 +80,10 @@ export function lightWindows(year: number, month: number, day: number, lat: numb
     eveningBlue: minus6 && minus4 ? [minus4.evening, minus6.evening] : null,
   };
 }
+
+/** Zaman denklemi (dakika): gercek gunes zamani − ortalama gunes zamani. NOAA yaklasimi, ±30 sn. */
+export function equationOfTimeMinutes(year: number, month: number, day: number) {
+  const dayOfYear = Math.round((Date.UTC(year, month - 1, day) - Date.UTC(year, 0, 0)) / 86400000);
+  const gamma = ((2 * Math.PI) / 365) * (dayOfYear - 1);
+  return 229.18 * (0.000075 + 0.001868 * Math.cos(gamma) - 0.032077 * Math.sin(gamma) - 0.014615 * Math.cos(2 * gamma) - 0.040849 * Math.sin(2 * gamma));
+}

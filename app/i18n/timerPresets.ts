@@ -58,12 +58,22 @@ export function findTimerPreset(lang: "tr" | "en", slug: string) {
   return timerPresets.find((p) => (lang === "tr" ? p.tr : p.en) === slug) ?? null;
 }
 
-export function timerPresetPath(p: TimerPreset, lang: "tr" | "en") {
-  return lang === "tr" ? `/zamanlayici/${p.tr}` : `/en/timer/${p.en}`;
+/** Deutscher URL-Teil: "30-sekunden", "1-minute", "5-minuten", "2-stunden". */
+export function timerSlugDe(p: TimerPreset) {
+  if (p.seconds < 60 || p.seconds === 90) return `${p.seconds}-sekunden`;
+  if (p.seconds < 7200) {
+    const m = p.seconds / 60;
+    return m === 1 ? "1-minute" : `${m}-minuten`;
+  }
+  return `${p.seconds / 3600}-stunden`;
+}
+
+export function timerPresetPath(p: TimerPreset, lang: "tr" | "en" | "de") {
+  return lang === "tr" ? `/zamanlayici/${p.tr}` : lang === "de" ? `/de/timer/${timerSlugDe(p)}` : `/en/timer/${p.en}`;
 }
 
 export function timerPresetAlternates(p: TimerPreset) {
-  return buildLanguageAlternates({ tr: timerPresetPath(p, "tr"), en: timerPresetPath(p, "en") }, "tr");
+  return buildLanguageAlternates({ tr: timerPresetPath(p, "tr"), en: timerPresetPath(p, "en"), de: timerPresetPath(p, "de") }, "tr");
 }
 
 /** Zamanlayici dugmeleri icin: saniye -> hazir sayfa yolu. */

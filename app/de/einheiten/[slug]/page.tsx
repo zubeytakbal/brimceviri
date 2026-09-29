@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { seoTitle } from "../../../seoTitle";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
 import PairConverter from "../../../converter/PairConverter";
@@ -11,6 +12,13 @@ import {
 } from "../../../converter/localizedGermanUnitPages";
 import { germanConversionPages } from "../../../converter/localizedGermanConversionPages";
 import { getUnitSources } from "../../../converter/unitSources";
+import { buildFaqSchema } from "../../../converter/faqSchema";
+import {
+  germanSiblingUnits,
+  germanUnitCommonValues,
+  germanUnitConversionTable,
+  germanUnitFaq,
+} from "../../../converter/germanUnitGuideExtras";
 import { SITE_URL, buildSiteUrl } from "../../../siteConfig";
 
 type PageProps = {
@@ -55,12 +63,15 @@ export async function generateMetadata({
     };
   }
 
-  const title = `${unitPage.name}: Definition und Umrechnungen`;
+  const title = `${unitPage.name}: Definition, Symbol und Umrechnung`;
+  const firstRow = germanUnitConversionTable(unitPage)[0];
   const description =
-    `Was ist ${unitPage.name.toLowerCase()}? Lesen Sie Definition, Symbol und passende Umrechnungen auf Deutsch.`;
+    `Was ist ${unitPage.name}? Symbol ${unitPage.symbol}, Definition und Herkunft` +
+    (firstRow ? `, dazu die Umrechnung: 1 ${unitPage.symbol} = ${firstRow.text} ${firstRow.symbol}` : "") +
+    ` und eine Tabelle mit allen verwandten Einheiten.`;
 
   return {
-    title,
+    title: seoTitle(title, `${unitPage.name}: Definition und Umrechnungen`, `${unitPage.name}: Definition`),
     description,
     alternates: {
       canonical: `/de/einheiten/${unitPage.slug}`,
@@ -127,6 +138,10 @@ export default async function GermanUnitInformationPage({
   }
 
   const pageUrl = buildSiteUrl(`/de/einheiten/${unitPage.slug}`);
+  const conversionTable = germanUnitConversionTable(unitPage);
+  const commonValues = germanUnitCommonValues(unitPage, conversionTable[0]);
+  const siblings = germanSiblingUnits(unitPage);
+  const faqItems = germanUnitFaq(unitPage, conversionTable);
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -209,7 +224,6 @@ export default async function GermanUnitInformationPage({
         <div className="unit-page-layout">
           <div className="unit-page-content">
             <section className="unit-article-introduction">
-              <p>{unitPage.shortDescription}</p>
               <p>{unitPage.historySummary}</p>
               <p>
                 Messsystem: {unitPage.measurementSystem}. SI-Bezug:{" "}
@@ -247,6 +261,70 @@ export default async function GermanUnitInformationPage({
               </dl>
             </section>
 
+            {conversionTable.length > 0 && (
+              <section className="conversion-section" id="umrechnungstabelle">
+                <h2>1 {unitPage.name} in anderen Einheiten</h2>
+                <div className="conversion-table-wrap">
+                  <table className="conversion-table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Einheit</th>
+                        <th scope="col">1 {unitPage.symbol} =</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {conversionTable.map((row) => (
+                        <tr key={row.symbol}>
+                          <td>
+                            {row.href ? (
+                              <Link href={row.href} prefetch={false}>
+                                {row.name}
+                              </Link>
+                            ) : (
+                              row.name
+                            )}
+                          </td>
+                          <td>
+                            {row.text} {row.symbol}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+            )}
+
+            {commonValues.length > 0 && conversionTable[0] && (
+              <section className="conversion-section" id="haeufige-werte">
+                <h2>
+                  {unitPage.name} in {conversionTable[0].name}: häufige Werte
+                </h2>
+                <div className="conversion-table-wrap">
+                  <table className="conversion-table">
+                    <thead>
+                      <tr>
+                        <th scope="col">{unitPage.name}</th>
+                        <th scope="col">{conversionTable[0].name}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {commonValues.map((row) => (
+                        <tr key={row.amount}>
+                          <td>
+                            {row.amount.toLocaleString("de-DE")} {unitPage.symbol}
+                          </td>
+                          <td>
+                            {row.text} {conversionTable[0].symbol}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+            )}
+
             {relatedConversions.length > 0 && (
               <section className="conversion-section" id="conversion-tools">
                 <h2>Passende Umrechnungen</h2>
@@ -255,6 +333,37 @@ export default async function GermanUnitInformationPage({
                     <li key={conversion.slug}>
                       <Link href={`/de/${conversion.slug}`}>
                         {conversion.fromName} zu {conversion.toName}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
+
+            <section className="conversion-section" id="faq">
+              <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: serializeJsonLd(buildFaqSchema(faqItems)) }}
+              />
+              <h2>Häufige Fragen</h2>
+              <div className="faq-list">
+                {faqItems.map((item) => (
+                  <details key={item.question}>
+                    <summary>{item.question}</summary>
+                    <p>{item.answer}</p>
+                  </details>
+                ))}
+              </div>
+            </section>
+
+            {siblings.length > 0 && (
+              <section className="conversion-section" id="weitere-einheiten">
+                <h2>Weitere Einheiten: {unitPage.categoryName}</h2>
+                <ul className="related-conversion-list">
+                  {siblings.map((sibling) => (
+                    <li key={sibling.href}>
+                      <Link href={sibling.href} prefetch={false}>
+                        {sibling.label}
                       </Link>
                     </li>
                   ))}
@@ -302,6 +411,7 @@ export default async function GermanUnitInformationPage({
                 Türkische Version öffnen
               </Link>
 
+              {englishPage && " · "}
               {englishPage && (
                 <Link
                   className="text-link"

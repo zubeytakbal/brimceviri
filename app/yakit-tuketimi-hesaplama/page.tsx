@@ -1,3 +1,4 @@
+import { buildFullLanguageAlternates } from "@/app/i18n/routing";
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import FuelConsumptionCalculator from "../components/FuelConsumptionCalculator";
@@ -28,6 +29,7 @@ export const metadata: Metadata = {
     "km/lt, lt/100km ve mpg arasında yakıt tüketimini çevir; yolculuk mesafesi ve yakıt fiyatına göre toplam maliyeti hesapla.",
   alternates: {
     canonical: "/yakit-tuketimi-hesaplama",
+    ...buildFullLanguageAlternates("/yakit-tuketimi-hesaplama"),
   },
   openGraph: {
     title: "Yakıt Tüketimi Hesaplama: km/lt, lt/100km, mpg Çevirici",

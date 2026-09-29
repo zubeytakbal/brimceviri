@@ -5,19 +5,19 @@ import { buildLanguageAlternates } from "./routing";
 export type TimeToolId = "clock" | "worldClock" | "timeZoneConverter" | "countdown" | "alarm" | "timer" | "stopwatch" | "pomodoro" | "interval" | "dateDiff" | "businessDays" | "dateAdd" | "weekNumber";
 
 export const timeToolPaths: Record<TimeToolId, Partial<Record<Locale, string>>> = {
-  clock: { tr: "/online-saat", en: "/en/online-clock" },
-  worldClock: { tr: "/dunya-saatleri", en: "/en/world-clock" },
-  countdown: { tr: "/geri-sayim", en: "/en/countdown" },
-  timeZoneConverter: { tr: "/saat-dilimi-cevirici", en: "/en/time-zone-converter" },
-  alarm: { tr: "/online-alarm-kur", en: "/en/alarm-clock" },
-  timer: { tr: "/zamanlayici", en: "/en/timer" },
-  stopwatch: { tr: "/kronometre", en: "/en/stopwatch" },
-  pomodoro: { tr: "/pomodoro", en: "/en/pomodoro-timer" },
-  interval: { tr: "/tabata-zamanlayici", en: "/en/interval-timer" },
-  dateDiff: { tr: "/iki-tarih-arasi-gun-hesaplama", en: "/en/days-between-dates" },
-  businessDays: { tr: "/is-gunu-hesaplama", en: "/en/business-day-calculator" },
+  clock: { tr: "/online-saat", en: "/en/online-clock", de: "/de/online-uhr" },
+  worldClock: { tr: "/dunya-saatleri", en: "/en/world-clock", de: "/de/weltuhr" },
+  countdown: { tr: "/geri-sayim", en: "/en/countdown", de: "/de/countdown" },
+  timeZoneConverter: { tr: "/saat-dilimi-cevirici", en: "/en/time-zone-converter", de: "/de/zeitzonenrechner" },
+  alarm: { tr: "/online-alarm-kur", en: "/en/alarm-clock", de: "/de/wecker" },
+  timer: { tr: "/zamanlayici", en: "/en/timer", de: "/de/timer" },
+  stopwatch: { tr: "/kronometre", en: "/en/stopwatch", de: "/de/stoppuhr" },
+  pomodoro: { tr: "/pomodoro", en: "/en/pomodoro-timer", de: "/de/pomodoro-timer" },
+  interval: { tr: "/tabata-zamanlayici", en: "/en/interval-timer", de: "/de/intervall-timer" },
+  dateDiff: { tr: "/iki-tarih-arasi-gun-hesaplama", en: "/en/days-between-dates", de: "/de/tagerechner" },
+  businessDays: { tr: "/is-gunu-hesaplama", en: "/en/business-day-calculator", de: "/de/arbeitstage-rechner" },
   dateAdd: { tr: "/tarihe-gun-ekleme", en: "/en/date-calculator" },
-  weekNumber: { tr: "/kacinci-hafta", en: "/en/week-number" },
+  weekNumber: { tr: "/kacinci-hafta", en: "/en/week-number", de: "/de/kalenderwoche" },
 };
 
 export function timeToolAlternates(tool: TimeToolId) {
@@ -37,6 +37,12 @@ export const alarmPresetSlug = {
   },
 };
 
+/** Deutscher URL-Teil einer Weckzeit: "06:30" → "6-30". */
+export const alarmSlugDe = (time: string) => {
+  const [h, m] = time.split(":");
+  return `${Number(h)}-${m}`;
+};
+
 export function formatEnglishTime(time: string) {
   return alarmPresetSlug.en(time).replace(/-(\d\d)-/, ":$1 ").replace(/-(am|pm)$/, " $1").replace(/ (am|pm)$/, (s) => s.toUpperCase());
 }
@@ -46,6 +52,7 @@ export function alarmPresetAlternates(time: string) {
     {
       tr: `/online-alarm-kur/${alarmPresetSlug.tr(time)}`,
       en: `/en/alarm-clock/${alarmPresetSlug.en(time)}`,
+      de: `/de/wecker/${alarmSlugDe(time)}`,
     },
     "tr",
   );

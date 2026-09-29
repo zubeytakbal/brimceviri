@@ -3,6 +3,8 @@
 import Link from "@/app/components/SiteLink";
 import { fxContentTr } from "../converter/fx/fxContentTr";
 import { fxContentUz } from "../converter/fx/fxContentUz";
+import { fxContentDe } from "../converter/fx/fxContentDe";
+import { germanStandaloneTools } from "../i18n/germanStandaloneTools";
 import { buildFxSearchEntries, type FxLocaleContent } from "../converter/fx/fxLocale";
 import FxHomeSection from "./fx/FxHomeSection";
 import {
@@ -60,13 +62,55 @@ import { homeCategoryOrder } from "../converter/homeCategoryOrder";
 import { englishHomeCategoryOrder, getEnglishCategoryPresentation } from "../i18n/englishCategoryPresentation";
 import type { SiteNotification } from "../converter/siteNotifications";
 import { unitPages } from "../converter/unitPages";
-import { geoToolsTr } from "../converter/geo/geoTools";
+import { geoToolsEn, geoToolsTr } from "../converter/geo/geoTools";
 
 type Locale = "tr" | "en" | "uz" | "de";
 
 const englishDecisionSavingsHomeTools = getEnglishToolsByDomain("decision-savings");
 
 // Ana sayfadaki "Zaman araclari" bolumu (TR + EN).
+// Deutsche Rechner nach Themen gruppiert, damit Startseite und interne Links klare Themenbereiche zeigen.
+type HomeTool = { href: string; title: string; description: string; icon: SiteIconName };
+
+const germanRechnerGroups: Array<{ id: string; title: string; description: string; tools: HomeTool[] }> = [
+  {
+    id: "geld-arbeit",
+    title: "Geld und Arbeit",
+    description: "Nettogehalt, Pendlerpauschale, Urlaubsanspruch, Mutterschutz, Grunderwerbsteuer und Prozentrechnung – nach aktuellem Recht und mit Quellen.",
+    tools: [
+      { href: "/de/brutto-netto-rechner", title: "Brutto-Netto-Rechner 2026", description: "Nettogehalt nach amtlichem Lohnsteuer-Programmablaufplan, alle Steuerklassen.", icon: "vatCalculator" as const },
+      { href: "/de/pendlerpauschale-rechner", title: "Pendlerpauschale-Rechner", description: "Entfernungs- und Homeoffice-Pauschale 2026 mit geschätzter Steuerersparnis.", icon: "fuelConsumptionCalculator" as const },
+      { href: "/de/urlaubsrechner", title: "Urlaubsrechner", description: "Urlaubsanspruch bei Teilzeit und anteiliger Urlaub bei Jobwechsel.", icon: "attendanceCalculator" as const },
+      { href: "/de/mutterschutzrechner", title: "Mutterschutzrechner", description: "Beginn und Ende des Mutterschutzes, Mutterschaftsgeld und Frist für die Elternzeit.", icon: "dateCalculator" as const },
+      { href: "/de/grunderwerbsteuer-rechner", title: "Grunderwerbsteuer-Rechner", description: "Grunderwerbsteuer aller Bundesländer und Kaufnebenkosten beim Immobilienkauf.", icon: "vatCalculator" as const },
+      { href: "/de/prozentrechner", title: "Prozentrechner", description: "Prozentwert, Prozentsatz, Grundwert, Veränderung und Rabatt mit Rechenweg.", icon: "vatCalculator" as const },
+    ],
+  },
+  {
+    id: "mathe-schule",
+    title: "Mathe und Schule",
+    description: "Brüche, pq-Formel, Dreisatz und Noten – mit Formel und Rechenweg.",
+    tools: [
+      { href: "/de/mathe-rechner", title: "Mathe-Rechner", description: "Bruchrechner, ggT/kgV, Wurzeln, pq-Formel, Mittelwert – mit Rechenweg.", icon: "mathCalculator" as const },
+      { href: "/de/bruchrechner", title: "Bruchrechner", description: "Brüche addieren, kürzen und teilen, mit Hauptnenner und Rechenweg.", icon: "mathCalculator" as const },
+      { href: "/de/pq-formel-rechner", title: "pq-Formel-Rechner", description: "Quadratische Gleichungen mit pq- oder Mitternachtsformel lösen.", icon: "mathCalculator" as const },
+      { href: "/de/dreisatz-rechner", title: "Dreisatz-Rechner", description: "Proportionaler und antiproportionaler Dreisatz in drei Schritten.", icon: "mathCalculator" as const },
+      { href: "/de/notenrechner", title: "Notenrechner", description: "Notendurchschnitt, IHK-Notenschlüssel, Oberstufenpunkte und Abi-Schnitt.", icon: "gradeCalculator" as const },
+    ],
+  },
+  {
+    id: "laender-entfernung",
+    title: "Länder und Entfernungen",
+    description: "Länder der Welt mit Zeitverschiebung zu Deutschland und Entfernungen zwischen deutschen Städten.",
+    tools: [
+      { href: "/de/laender", title: "Länder und Hauptstädte", description: "195 Länder mit Karte, Zeitverschiebung zu Deutschland, Währung und Vorwahl.", icon: "greatCircleCalculator" as const },
+      { href: "/de/entfernung", title: "Entfernungsrechner", description: "Luftlinie zwischen 82 deutschen Großstädten, mit Tabellen ab jeder Stadt.", icon: "greatCircleCalculator" as const },
+    ],
+  },
+];
+
+const germanRechnerHome = germanRechnerGroups.flatMap((group) => group.tools);
+
 const timeToolsHome = {
   tr: [
     { href: "/online-saat", title: "Online Saat", description: "34 temalı canlı saat: sarkaçlı, guguklu, flip, neon; tik-tak sesi ve tam ekran.", icon: "time" as const },
@@ -85,6 +129,26 @@ const timeToolsHome = {
     { href: "/ay-evreleri", title: "Ay Evreleri", description: "Bugün ay hangi evrede, dolunay ne zaman? Canlı ay takvimi.", icon: "sleepCalculator" as const },
     { href: "/altin-saat", title: "Altın Saat", description: "Fotoğraf için altın saat ve mavi saat; şehir ya da konuma göre.", icon: "solarPanelPaybackCalculator" as const },
     { href: "/uyku-hesaplama", title: "Uyku Hesaplama", description: "90 dakikalık döngülere göre ideal yatış ve kalkış saati.", icon: "sleepCalculator" as const },
+  ],
+  de: [
+    { href: "/de/online-uhr", title: "Online-Uhr", description: "Uhrzeit sekundengenau mit 34 Designs, von der Bahnhofsuhr bis zur Kuckucksuhr.", icon: "time" as const },
+    { href: "/de/timer", title: "Timer", description: "Countdown mit Signalton, Schnellauswahl von 10 Sekunden bis 24 Stunden.", icon: "time" as const },
+    { href: "/de/wecker", title: "Wecker", description: "Online-Wecker mit Ton, Schlummerfunktion und Wiederholung werktags.", icon: "time" as const },
+    { href: "/de/stoppuhr", title: "Stoppuhr", description: "Stoppuhr mit Hundertsteln und Rundenzeiten, Export als CSV.", icon: "time" as const },
+    { href: "/de/countdown", title: "Countdown", description: "Wie viele Tage bis Weihnachten, Ostern, Silvester oder Oktoberfest?", icon: "time" as const },
+    { href: "/de/pomodoro-timer", title: "Pomodoro-Timer", description: "25 Minuten Fokus, 5 Minuten Pause – zum Lernen und Arbeiten.", icon: "time" as const },
+    { href: "/de/intervall-timer", title: "Intervall-Timer", description: "Tabata, HIIT und EMOM mit Sprachansage auf Deutsch.", icon: "time" as const },
+    { href: "/de/eieruhr", title: "Eieruhr", description: "Eier weich, wachsweich oder hart – Kochzeit nach Eigröße.", icon: "time" as const },
+    { href: "/de/kalenderwoche", title: "Aktuelle Kalenderwoche", description: "Welche KW haben wir? KW für jedes Datum und alle Wochen des Jahres.", icon: "attendanceCalculator" as const },
+    { href: "/de/feiertage", title: "Feiertage", description: "Gesetzliche Feiertage aller 16 Bundesländer mit Brückentagen.", icon: "attendanceCalculator" as const },
+    { href: "/de/brueckentage", title: "Brückentage-Rechner", description: "Urlaub optimal auf die Feiertage verteilen, für jedes Bundesland, mit Kalender-Export.", icon: "dateCalculator" as const },
+    { href: "/de/feiertage-oesterreich", title: "Feiertage Österreich", description: "Alle 13 gesetzlichen Feiertage in Österreich mit Fenstertagen.", icon: "attendanceCalculator" as const },
+    { href: "/de/arbeitstage-rechner", title: "Arbeitstage-Rechner", description: "Arbeitstage und Werktage zwischen zwei Daten je Bundesland.", icon: "attendanceCalculator" as const },
+    { href: "/de/arbeitszeitrechner", title: "Arbeitszeitrechner", description: "Arbeitszeit mit gesetzlicher Pause, Feierabend, Überstunden und Dezimalstunden.", icon: "time" as const },
+    { href: "/de/tagerechner", title: "Tagerechner", description: "Tage zwischen zwei Daten zählen oder Tage zu einem Datum addieren.", icon: "attendanceCalculator" as const },
+    { href: "/de/zeitzonenrechner", title: "Zeitzonenrechner", description: "Uhrzeit weltweit umrechnen, mit Sommerzeit und Meeting-Planer.", icon: "greatCircleCalculator" as const },
+    { href: "/de/weltuhr", title: "Weltuhr", description: "Aktuelle Uhrzeit in 97 Städten live.", icon: "greatCircleCalculator" as const },
+    { href: "/de/altersrechner", title: "Altersrechner", description: "Genaues Alter in Jahren, Monaten und Tagen.", icon: "dateCalculator" as const },
   ],
   en: [
     { href: "/en/online-clock", title: "Online Clock", description: "Live clock with 34 themes — pendulum, cuckoo, flip, neon; ticking and full screen.", icon: "time" as const },
@@ -947,12 +1011,12 @@ const copy = {
     moreCalculatorsCardLabel: "Boshqa Kalkulyatorlar",
   },
   de: {
-    eyebrow: "Technische Einheitenumrechnung",
-    title: "Die passende Umrechnung schnell finden",
+    eyebrow: "Einheitenumrechner und Online-Rechner",
+    title: "Einheiten umrechnen und schnell rechnen",
     description:
-      "Nutzen Sie die Suche für eine direkte Seite oder wählen Sie eine Kategorie nach physikalischer Größe.",
+      "Umrechnungen für Länge, Gewicht, Temperatur und mehr, dazu Prozent- und Dreisatzrechner, Feiertage, Kalenderwoche und Währungsrechner. Suchen Sie direkt oder wählen Sie einen Bereich.",
     searchLabel: "Umrechnung oder Rechner suchen",
-    searchPlaceholder: "Beispiel: Meter Kilometer, kg Pfund, psi bar",
+    searchPlaceholder: "Beispiel: Meter Kilometer, kg Pfund, Prozent, Feiertage",
     searchHint:
       "Suchen Sie nach Einheitenname, Symbol oder Umrechnungspaar, um die passende Seite direkt zu öffnen.",
     searchResultsLabel: "Suchergebnisse",
@@ -1694,7 +1758,20 @@ function createHomeData(locale: Locale): HomeData {
               searchText: normalizeSearchText(tool.searchTerms),
             })),
           ]
-        : [];
+        : locale === "de"
+          ? [
+              ...germanStandaloneTools.map((tool) => ({ href: tool.germanPath, title: tool.title, description: tool.cardDescription })),
+              ...germanRechnerHome,
+              ...timeToolsHome.de,
+            ].map((tool) => ({
+              id: `de-tool-${tool.href}`,
+              href: tool.href,
+              label: tool.title,
+              description: tool.description,
+              categoryLabel: "Rechner",
+              searchText: normalizeSearchText(`${tool.title} ${tool.description} rechner berechnen`),
+            }))
+          : [];
 
   // Arama, tek tek birim çifti sayfalarının (conversions) yanında genel
   // kategori özet sayfalarını da (örn. "Yoğunluk Dönüşümleri") göstersin —
@@ -1764,6 +1841,7 @@ function createHomeData(locale: Locale): HomeData {
     ...calculatorSearchables,
     ...(locale === "tr" ? currencySearchables(fxContentTr, "Döviz", "döviz kur kurları para birimi çevirici") : []),
     ...(locale === "uz" ? currencySearchables(fxContentUz, "Valyuta", "valyuta kurs kursi pul aylantirgich") : []),
+    ...(locale === "de" ? currencySearchables(fxContentDe, "Währung", "währung währungsrechner wechselkurs kurs euro umrechnen") : []),
   ];
 
   return {
@@ -1805,7 +1883,9 @@ function createHomeData(locale: Locale): HomeData {
       engineering:
         locale === "en"
           ? englishLiveCalculatorCount
-          : engineeringCalculators.length,
+          : locale === "de"
+            ? engineeringCalculators.length + germanStandaloneTools.length + germanRechnerHome.length + timeToolsHome.de.length + 1
+            : engineeringCalculators.length,
     },
   };
 }
@@ -1948,20 +2028,22 @@ export default function HomeDirectory({
       <RecentToolsWidget locale={locale} />
 
       <div className="directory-shell directory-content">
-        {(locale === "tr" || locale === "en") && (
-          <section className="directory-section" id={locale === "tr" ? "zaman-araclari" : "time-tools"}>
+        {(locale === "tr" || locale === "en" || locale === "de") && (
+          <section className="directory-section" id={locale === "tr" ? "zaman-araclari" : locale === "de" ? "kalender" : "time-tools"}>
             <header className="directory-section-header">
               <div>
-                <h2>{locale === "tr" ? "Zaman araçları" : "Time tools"}</h2>
+                <h2>{locale === "tr" ? "Zaman araçları" : locale === "de" ? "Uhr, Timer und Kalender" : "Time tools"}</h2>
                 <p>
                   {locale === "tr"
                     ? "Online saat, alarm, zamanlayıcı, dünya saatleri, geri sayım ve takvim araçları — kurulum gerektirmez."
-                    : "Online clock, alarm, timer, world clock, countdowns and calendar tools — nothing to install."}
+                    : locale === "de"
+                      ? "Online-Uhr, Timer, Wecker, Stoppuhr, Kalenderwoche, Feiertage aller Bundesländer, Arbeitstage und Weltuhr."
+                      : "Online clock, alarm, timer, world clock, countdowns and calendar tools — nothing to install."}
                 </p>
               </div>
             </header>
             <div className="directory-tool-grid">
-              {(locale === "tr" ? timeToolsHome.tr : timeToolsHome.en).map((tool) => (
+              {(locale === "tr" ? timeToolsHome.tr : locale === "de" ? timeToolsHome.de : timeToolsHome.en).map((tool) => (
                 <article className="directory-home-card directory-tool-card" key={tool.href}>
                   <Link className="directory-card-stretch" href={tool.href} aria-label={tool.title} />
                   <div className="directory-card-body directory-card-body-icon">
@@ -1978,6 +2060,33 @@ export default function HomeDirectory({
             </div>
           </section>
         )}
+        {locale === "de" &&
+          germanRechnerGroups.map((group) => (
+            <section className="directory-section" id={group.id} key={group.id}>
+              <header className="directory-section-header">
+                <div>
+                  <h2>{group.title}</h2>
+                  <p>{group.description}</p>
+                </div>
+              </header>
+              <div className="directory-tool-grid">
+                {group.tools.map((tool) => (
+                  <article className="directory-home-card directory-tool-card" key={tool.href}>
+                    <Link className="directory-card-stretch" href={tool.href} aria-label={tool.title} />
+                    <div className="directory-card-body directory-card-body-icon">
+                      <span className="home-category-icon-box" aria-hidden="true">
+                        <DecorativeIcon name={tool.icon} size={42} className="home-category-icon-svg" />
+                      </span>
+                      <div>
+                        <h3 className="home-category-title">{tool.title}</h3>
+                        <p>{tool.description}</p>
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </section>
+          ))}
         {locale === "en" && (
           <section className="directory-section" id="calculator-areas">
             <header className="directory-section-header">
@@ -2183,6 +2292,22 @@ export default function HomeDirectory({
           />
         )}
 
+        {locale === "de" && (
+          <FxHomeSection
+            id="waehrungsrechner"
+            title="Währungsrechner"
+            description="Euro in Dollar, Pfund, Franken, Lira und 14 weitere Währungen – mit täglichem Referenzkurs, Kursverlauf und Rechner für den Bank- oder Wechselstubenaufschlag."
+            hubHref="/de/waehrungsrechner"
+            allLabel="Alle Wechselkurse"
+            cards={[
+              { href: "/de/waehrungsrechner/euro-dollar", label: "Euro – Dollar", icon: "currencyUsd" },
+              { href: "/de/waehrungsrechner/euro-pfund", label: "Euro – Pfund", icon: "currencyGbp" },
+              { href: "/de/waehrungsrechner/euro-franken", label: "Euro – Franken", icon: "currencyEur" },
+              { href: "/de/waehrungsrechner/euro-lira", label: "Euro – Lira", icon: "currencyConverterCalculator" },
+            ]}
+          />
+        )}
+
         {data.popularUnits.length > 0 && (
           <section className="directory-section">
             <header className="directory-section-header">
@@ -2380,16 +2505,20 @@ export default function HomeDirectory({
           </section>
         )}
 
-        {locale === "tr" && (
-          <section className="directory-section" id="cografya-hesaplamalari">
+        {(locale === "tr" || locale === "en") && (
+          <section className="directory-section" id={locale === "en" ? "geography-calculators" : "cografya-hesaplamalari"}>
             <header className="directory-section-header">
               <div>
-                <h2>Coğrafya hesaplamaları</h2>
-                <p>Harita ölçeği, koordinat, yerel saat ve Türkiye coğrafyası araçları.</p>
+                <h2>{locale === "en" ? "Geography calculators" : "Coğrafya hesaplamaları"}</h2>
+                <p>
+                  {locale === "en"
+                    ? "Map scale, GPS coordinates, solar time and facts for every country."
+                    : "Harita ölçeği, koordinat, yerel saat ve Türkiye coğrafyası araçları."}
+                </p>
               </div>
             </header>
             <div className="directory-tool-grid">
-              {geoToolsTr.slice(0, 5).map((tool) => (
+              {(locale === "en" ? geoToolsEn : geoToolsTr).slice(0, 5).map((tool) => (
                 <article className="directory-home-card directory-tool-card" key={tool.href}>
                   <Link className="directory-card-stretch" href={tool.href} aria-label={tool.title} />
                   <div className="directory-card-body directory-card-body-icon">
@@ -2404,10 +2533,14 @@ export default function HomeDirectory({
                 </article>
               ))}
               <article className="directory-home-card directory-tool-card directory-home-card-more">
-                <Link className="directory-card-stretch" href="/cografya-hesaplamalari" aria-label="Tüm Coğrafya Hesaplamaları" />
+                <Link
+                  className="directory-card-stretch"
+                  href={locale === "en" ? "/en/geography-calculators" : "/cografya-hesaplamalari"}
+                  aria-label={locale === "en" ? "All Geography Calculators" : "Tüm Coğrafya Hesaplamaları"}
+                />
                 <div className="directory-card-body directory-more-card-body">
                   <ArrowRight className="directory-more-arrow" size={56} weight="regular" aria-hidden="true" />
-                  <span className="directory-more-label">Tüm Coğrafya Hesaplamaları</span>
+                  <span className="directory-more-label">{locale === "en" ? "All Geography Calculators" : "Tüm Coğrafya Hesaplamaları"}</span>
                 </div>
               </article>
             </div>

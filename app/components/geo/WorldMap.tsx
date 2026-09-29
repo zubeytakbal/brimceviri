@@ -1,6 +1,7 @@
 import Link from "@/app/components/SiteLink";
 import { countryBbox, WORLD_MAP_OTHER, WORLD_MAP_PATHS, WORLD_MAP_SIZE } from "../../converter/geo/worldGeo";
 import { worldCountries, type WorldCountry } from "../../converter/geo/worldCountries";
+import { worldCountriesDe } from "../../converter/geo/worldCountriesDe";
 
 /** Secili ulke vurgulari (data-a) icin CSS kurallari. */
 function selectionCss() {
@@ -20,6 +21,7 @@ export default function WorldMap({
   selectable,
   capitalDots,
   labels,
+  lang = "tr",
 }: {
   ariaLabel: string;
   fills?: Record<string, string>;
@@ -32,7 +34,9 @@ export default function WorldMap({
   capitalDots?: string[];
   /** Bu ulkelerin adi baskent noktasinin yaninda yazilir */
   labels?: string[];
+  lang?: "tr" | "en" | "de";
 }) {
+  const nameOf = (c: WorldCountry) => (lang === "en" ? c.nameEn : lang === "de" ? (worldCountriesDe[c.iso3]?.name ?? c.nameEn) : c.nameTr);
   const vb = viewBox ?? `0 0 ${WORLD_MAP_SIZE.width} ${WORLD_MAP_SIZE.height}`;
   const scale = Number(vb.split(" ")[2]) / WORLD_MAP_SIZE.width;
   const styleFor = (c: WorldCountry) => {
@@ -43,7 +47,7 @@ export default function WorldMap({
   const wrap = (c: WorldCountry, node: React.ReactNode) => {
     const href = hrefFor?.(c);
     return href ? (
-      <Link key={c.iso3} href={href} prefetch={false} aria-label={c.nameTr}>
+      <Link key={c.iso3} href={href} prefetch={false} aria-label={nameOf(c)}>
         {node}
       </Link>
     ) : (
@@ -65,7 +69,7 @@ export default function WorldMap({
             wrap(
               c,
               <path d={WORLD_MAP_PATHS[c.iso3]} data-iso={c.iso3} style={styleFor(c)}>
-                <title>{titleFor ? titleFor(c) : c.nameTr}</title>
+                <title>{titleFor ? titleFor(c) : nameOf(c)}</title>
               </path>
             )
           )}
@@ -76,7 +80,7 @@ export default function WorldMap({
             wrap(
               c,
               <circle cx={c.capX} cy={c.capY} r={2.6 * Math.max(scale, 0.35)} data-iso={c.iso3} className="world-map-small" style={styleFor(c)}>
-                <title>{titleFor ? titleFor(c) : c.nameTr}</title>
+                <title>{titleFor ? titleFor(c) : nameOf(c)}</title>
               </circle>
             )
           )}
@@ -92,7 +96,7 @@ export default function WorldMap({
           if (!c || !box || Math.max(box[2] - box[0], (box[3] - box[1]) * 1.4) < vbWidth * 0.09) return null;
           return c ? (
             <text key={`lbl-${iso}`} x={c.capX} y={c.capY - 4 * scale} className="world-map-label" style={{ fontSize: `${11 * scale}px` }}>
-              {c.nameTr}
+              {nameOf(c)}
             </text>
           ) : null;
         })}

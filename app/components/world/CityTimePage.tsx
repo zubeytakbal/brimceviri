@@ -1,5 +1,8 @@
 import Link from "@/app/components/SiteLink";
-import { cityFacts, cityName, cityPath, describeDifference, hourMapping, nearbyCities, type Lang } from "../../converter/time/cityFacts";
+import { cityFacts, cityName, cityPath, describeDifference, hourMapping, nearbyCities } from "../../converter/time/cityFacts";
+
+// Bu sayfa TR/EN icindir; Almanca sehir sayfasi ayri bilesendir.
+type Lang = "tr" | "en";
 import type { FaqItem } from "../../converter/faqSchema";
 import type { WorldCity } from "../../converter/time/worldCities";
 import { worldCities } from "../../converter/time/worldCities";

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { seoTitle } from "../../../seoTitle";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
 import NumberFactsCalculator from "../../../components/NumberFactsCalculator";
@@ -41,7 +42,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const description = `${n} sonining kvadrati (${formatNumber(facts.square)}), bo'luvchilari, kvadrat ildizi (${formatNumber(facts.squareRoot)}) va tub son ekanligi. ${n} bilan bog'liq barcha son xossalarini ko'ring.`;
 
   return {
-    title,
+    title: seoTitle(title, `${n} Soni: Kvadrati, Bo'luvchilari`),
     description,
     alternates: {
       canonical: pagePath,

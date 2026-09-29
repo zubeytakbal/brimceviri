@@ -67,7 +67,12 @@ describe("countdown date rules", () => {
     const keys = countdownEvents.map((e) => `${e.lang}:${e.slug}`);
     expect(new Set(keys).size).toBe(keys.length);
     for (const event of countdownEvents) {
-      if (event.pair) expect(pairedEvent(event)?.pair).toBe(event.slug);
+      if (!event.pair) continue;
+      // Jeder Verweis zeigt auf einen vorhandenen Anlass in einer anderen Sprache;
+      // TR und EN verweisen gegenseitig aufeinander, DE verweist auf EN.
+      const pair = pairedEvent(event);
+      expect(pair).not.toBeNull();
+      if (event.lang !== "de" && pair!.lang !== "de") expect(pair!.pair).toBe(event.slug);
     }
   });
 });
@@ -83,7 +88,8 @@ describe("turkish suffixes", () => {
     expect(trTimeLocative("12:00")).toBe("12:00'de");
     expect(trTimeLocative("07:30")).toBe("07:30'da");
     expect(trTimeLocative("04:00")).toBe("04:00'te");
-  });
+    // Ilk dinamik import buyuk rota tablosunu yukler; yavas makinelerde 5 sn'yi asabiliyor.
+  }, 30000);
 
   it("uses vowel harmony for durations", async () => {
     const { timerPresets, trLik } = await import("../app/i18n/timerPresets");

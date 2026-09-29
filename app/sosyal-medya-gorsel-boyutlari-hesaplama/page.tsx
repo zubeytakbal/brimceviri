@@ -23,14 +23,14 @@ const faqItems: FaqItem[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Sosyal Medya Görsel Boyutları Hesaplama (Instagram, YouTube, X...)",
+  title: "Sosyal Medya Görsel Boyutları (Instagram, YouTube, X)",
   description:
     "Instagram, YouTube, Facebook, X, LinkedIn ve TikTok için doğru görsel boyutunu seç; kendi görselinin bu orana uyup uymadığını ve gereken kırpmayı hesapla.",
   alternates: {
     canonical: "/sosyal-medya-gorsel-boyutlari-hesaplama",
   },
   openGraph: {
-    title: "Sosyal Medya Görsel Boyutları Hesaplama (Instagram, YouTube, X...)",
+    title: "Sosyal Medya Görsel Boyutları (Instagram, YouTube, X)",
     description: "Platformuna göre doğru görsel boyutunu ve kırpma ihtiyacını hesapla.",
     url: buildSiteUrl("/sosyal-medya-gorsel-boyutlari-hesaplama"),
     siteName: "BirimCeviri.app",

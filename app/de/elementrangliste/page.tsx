@@ -1,10 +1,11 @@
+import { seoTitle } from "../../seoTitle";
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import ElementRankingTable from "../../components/ElementRankingTable";
 import { buildSiteUrl } from "../../siteConfig";
 
 export const metadata: Metadata = {
-  title: "Schwerste und leichteste Elemente: Sortierbare Elementtabelle",
+  title: seoTitle("Schwerste und leichteste Elemente: Sortierbare Elementtabelle", "Schwerste und leichteste Elemente: Tabelle"),
   description:
     "Sortiere alle 118 Elemente nach Atommasse, Ordnungszahl oder Name — das schwerste Element, das leichteste Element und alle dazwischen in einer Tabelle.",
   alternates: {

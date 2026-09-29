@@ -26,12 +26,12 @@ function serializeJsonLd(data: object) {
 }
 
 export const metadata: Metadata = {
-  title: "Gökcisimleri Özellikleri: Kütle, Yerçekimi ve Ağırlık Hesaplama",
+  title: "Gökcisimleri: Kütle, Yerçekimi ve Ağırlık Hesaplama",
   description:
     "Güneş sistemindeki gezegenlerin kütlesini, yerçekimini, çapını ve diğer özelliklerini gör; kendi kilonun her gezegende kaç kilo geleceğini hesapla.",
   alternates: { canonical: "/gokcisimleri-ozellikleri" },
   openGraph: {
-    title: "Gökcisimleri Özellikleri: Kütle, Yerçekimi ve Ağırlık Hesaplama",
+    title: "Gökcisimleri: Kütle, Yerçekimi ve Ağırlık Hesaplama",
     description: "Gezegenlerin özelliklerini gör, kendi ağırlığını hesapla.",
     url: buildSiteUrl("/gokcisimleri-ozellikleri"),
     siteName: "BirimCeviri.app",

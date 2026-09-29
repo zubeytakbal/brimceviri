@@ -1,3 +1,4 @@
+import { seoTitle } from "../../seoTitle";
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import CategoryUnitConverter from "../../components/CategoryUnitConverter";
@@ -5,8 +6,7 @@ import StaticPageLayout from "../../components/StaticPageLayout";
 import { buildSiteUrl } from "../../siteConfig";
 
 export const metadata: Metadata = {
-  title:
-    "Historische Maßeinheiten: Byzantinisch, Osmanisch und Alttürkisch",
+  title: seoTitle("Historische Maßeinheiten: Byzantinisch, Osmanisch und Alttürkisch", "Historische Maßeinheiten: Byzantinisch und Osmanisch"),
   description:
     "Rechnen Sie historische Maßeinheiten aus byzantinischer, osmanischer und alttürkischer Zeit in Meter und Gramm um.",
   alternates: {
@@ -101,7 +101,7 @@ const ottomanUnits = [
     href: "/birimler/dirhem",
     name: "Dirhem",
     value: "= 1/400 okka ~ 3.207 g",
-    note: "Häufig fuer Gewürze, Edelmetalle und Medikamente genutzt.",
+    note: "Häufig für Gewürze, Edelmetalle und Medikamente genutzt.",
   },
 ];
 
@@ -179,7 +179,7 @@ export default function GermanHistoricalUnitsPage() {
           ),
         },
         {
-          heading: "Historischer Laengenumrechner",
+          heading: "Historischer Längenumrechner",
           content: (
             <>
               <p>

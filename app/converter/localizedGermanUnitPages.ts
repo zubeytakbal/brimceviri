@@ -83,7 +83,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Das Wort 'Unze' leitet sich von der römischen Einheit 'Uncia' ab, die die 'Libra' (Vorläufer des Pfunds) in zwölf gleiche Teile unterteilte. Die im Alltag verwendete Avoirdupois-Unze (28,349523125 g) entspricht einem Sechzehntel eines Pfunds; die im Edelmetallhandel verwendete Feinunze (Troy-Unze) ist dagegen anders und schwerer (31,1034768 g) -- deshalb bezieht sich der 'Preis pro Unze' bei Gold/Silber auf eine etwa 10 % schwerere Einheit als die Unze im alltäglichen Einkauf. Die Feinunze ist nach Troyes benannt, einer bedeutenden Handelsmessestadt im mittelalterlichen Frankreich.",
     measurementSystem: "Britisches und US-amerikanisches Maßsystem",
-    commonUses: "Verpackung, Lebensmittel und leichte Handelsmaße außerhalb des Schmuckbereichs",
+    commonUses:
+      "Verpackung, Lebensmittel und leichte Handelsmaße außerhalb des Schmuckbereichs",
   },
   pascal: {
     name: "Pascal",
@@ -94,7 +95,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Die Einheit ist nach dem französischen Wissenschaftler Blaise Pascal aus dem 17. Jahrhundert benannt -- Pascal ist bekannt für seine Arbeiten zur Hydrodynamik und Hydrostatik sowie seine bahnbrechenden Druckexperimente mit dem Barometer. Seine Erkenntnis, dass der auf eine eingeschlossene Flüssigkeit ausgeübte Druck in alle Richtungen gleichmäßig übertragen wird (Pascalsches Prinzip), bildet die Grundlage hydraulischer Systeme. Die Einheit wurde 1971 auf der 14. Generalkonferenz für Maß und Gewicht offiziell als SI-Einheit anerkannt und als Newton pro Quadratmeter (N/m²) definiert.",
     measurementSystem: "Internationales Einheitensystem (SI)",
-    commonUses: "Wissenschaftliche Berechnungen, Werkstoffanalyse und Referenzumrechnungen",
+    commonUses:
+      "Wissenschaftliche Berechnungen, Werkstoffanalyse und Referenzumrechnungen",
   },
   kilopascal: {
     name: "Kilopascal",
@@ -137,7 +139,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Millimeter Quecksilbersäule ist eine Druckeinheit, die auf der Höhe einer Quecksilbersäule beruht. Sie besitzt historische Bedeutung in medizinischen und Labormessungen.",
     historySummary:
       "Der Ursprung von mmHg geht auf das 1643 vom italienischen Physiker Evangelista Torricelli erfundene Quecksilberbarometer zurück -- Torricelli füllte ein einseitig geschlossenes Glasrohr mit Quecksilber und drehte es um; dabei zeigte sich, dass der Atmosphärendruck das Quecksilber bis zu einer bestimmten Höhe (auf Meereshöhe etwa 760 mm) stützen konnte, wodurch die erste direkte Messung des Atmosphärendrucks gelang. Diese Entdeckung widerlegte auch die jahrhundertealte aristotelische Ansicht, dass 'die Natur ein Vakuum verabscheut', denn der leere Raum über dem Quecksilber im Rohr war ein echtes Vakuum (heute als 'Torricellisches Vakuum' bekannt). Aufgrund dieser historischen Verbindung wird die Einheit mmHg bis heute als Standardeinheit der Blutdruckmessung in der Medizin verwendet.",
-    measurementSystem: "Historische technische und medizinische Einheit außerhalb des SI",
+    measurementSystem:
+      "Historische technische und medizinische Einheit außerhalb des SI",
     commonUses: "Blutdruckmessungen, Labormanometer und Vakuumreferenzen",
   },
   metrekare: {
@@ -160,7 +163,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Hektar wurde 1795 als Teil des durch die Französische Revolution eingeführten metrischen Systems als das Hundertfache der Einheit Ar (100 m²) definiert und mit der Vorsilbe 'Hekto-' (hundert) benannt. Da er sich für die Beschreibung großer landwirtschaftlicher und forstwirtschaftlicher Flächen als deutlich praktischer erwies als der Ar, wurde er mit der Zeit weltweit zur Standardeinheit für Landflächen. Zum anschaulichen Vergleich: Ein Standardfußballfeld ist etwa 0,7 Hektar groß -- das macht den Hektar im Alltag leicht greifbar.",
     measurementSystem: "Metrisches System, mit dem SI kompatibel",
-    commonUses: "Landwirtschaftliche Flächen, Bebauungspläne und große Grundstückseinträge",
+    commonUses:
+      "Landwirtschaftliche Flächen, Bebauungspläne und große Grundstückseinträge",
   },
   fitkare: {
     name: "Quadratfuß",
@@ -193,7 +197,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Ein Kubikmeter ist definiert als das Innenvolumen eines Würfels mit exakt 1 Meter Kantenlänge und ergibt sich direkt aus der Erweiterung des Meters auf drei Dimensionen. Da er 1000 Litern entspricht (1 m³ = 1000 L), wird er im Alltag weltweit als Standardeinheit für die Abrechnung von Erdgas- und Wasserverbrauch verwendet. In der Bauindustrie werden Beton- und Aushubmengen, in der Industrie Tank- und Lagerkapazitäten ebenfalls häufig in dieser Einheit angegeben.",
     measurementSystem: "Internationales Einheitensystem (SI)",
-    commonUses: "Lagervolumen, Gebäudeinnenraum, Prozesstanks und Durchflussberechnungen",
+    commonUses:
+      "Lagervolumen, Gebäudeinnenraum, Prozesstanks und Durchflussberechnungen",
   },
   mililitre: {
     name: "Milliliter",
@@ -215,7 +220,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Die Celsius-Skala wurde 1742 vom schwedischen Astronomen Anders Celsius erfunden -- interessanterweise war seine ursprüngliche Skala genau umgekehrt zur heutigen: 0 Grad bezeichnete den Siedepunkt, 100 Grad den Gefrierpunkt von Wasser. Der französische Physiker Jean-Pierre Christin kehrte diese Skala 1743 (in seinem 'Lyoner Thermometer') um, wodurch die heutige Ordnung mit 0 °C als Gefrierpunkt und 100 °C als Siedepunkt entstand; der schwedische Botaniker Carl von Linné nahm 1744 unabhängig davon dieselbe Umkehrung für sein Gewächshausthermometer vor. Lange wurde die Skala 'Centigrade' genannt; 1948 benannte das Internationale Komitee für Maß und Gewicht sie offiziell in 'Grad Celsius' um -- sowohl zu Ehren von Celsius als auch um eine Verwechslung des Begriffs 'Centigrade' mit einem Hundertstel einer Winkeleinheit in manchen Sprachen zu vermeiden.",
     measurementSystem: "Mit dem SI verwendete Temperaturskala",
-    commonUses: "Wetter, HLK-Technik, Prozessüberwachung und alltägliche Temperaturangaben",
+    commonUses:
+      "Wetter, HLK-Technik, Prozessüberwachung und alltägliche Temperaturangaben",
   },
   fahrenhayt: {
     name: "Fahrenheit",
@@ -226,7 +232,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Die Fahrenheit-Skala wurde 1724 vom in Polen geborenen niederländischen Physiker Daniel Gabriel Fahrenheit entwickelt. Er legte den Nullpunkt als die kälteste Temperatur fest, bei der sich eine Mischung aus Eis, Wasser und Ammoniumchlorid (oder Meersalz) im Gleichgewicht befand; 32 Grad entsprachen dem Gefrierpunkt von reinem Wasser und 96 Grad (nach seiner eigenen Messung) der menschlichen Körpertemperatur. Fahrenheit hatte die Werte der vor ihm entwickelten Rømer-Skala mit 4 multipliziert, um eine feinere, bruchfreie Unterteilung zu erhalten. 1776/77 standardisierte ein Komitee der Royal Society unter Vorsitz von Henry Cavendish die Skala und legte den Gefrierpunkt von Wasser exakt auf 32 °F und den Siedepunkt auf 212 °F fest -- durch diese Korrektur verschob sich auch die normale Körpertemperatur auf den heute bekannten Wert von 98,6 °F.",
     measurementSystem: "Britische und US-amerikanische Messtradition",
-    commonUses: "US-Wetterdaten, Raumtemperaturen im Haushalt und manche technischen Kataloge",
+    commonUses:
+      "US-Wetterdaten, Raumtemperaturen im Haushalt und manche technischen Kataloge",
   },
   kelvin: {
     name: "Kelvin",
@@ -237,7 +244,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Die Grundlage der Kelvin-Skala legte 1848 der schottische Physiker William Thomson (später Lord Kelvin); in seiner Arbeit 'Über eine absolute thermometrische Skala' berechnete er anhand des thermischen Ausdehnungskoeffizienten idealer Gase, dass der absolute Nullpunkt bei etwa -273 °C liegt -- erstaunlich nahe am heutigen Wert von -273,15 °C. 1854 arbeitete er mit James Prescott Joule zusammen, um die Skala praktikabler und mit Gasthermometern kompatibel zu machen. Offiziell wurde die Einheit 1954 auf der 10. Generalkonferenz für Maß und Gewicht festgelegt, als der Tripelpunkt von Wasser exakt auf 273,16 K definiert wurde; 1967/68 gab die 13. Konferenz der Einheit den Namen 'Kelvin'. 2019 wurde die Definition noch grundlegender geändert: Kelvin beruht nun nicht mehr auf dem Tripelpunkt von Wasser, sondern direkt auf der Boltzmann-Konstante (festgelegt auf 1,380649×10⁻²³ J/K).",
     measurementSystem: "Internationales Einheitensystem (SI)",
-    commonUses: "Thermodynamik, wissenschaftliche Berechnungen und Analysen, die absolute Temperaturen erfordern",
+    commonUses:
+      "Thermodynamik, wissenschaftliche Berechnungen und Analysen, die absolute Temperaturen erfordern",
   },
   saniye: {
     name: "Sekunde",
@@ -248,7 +256,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Historisch war die Sekunde als 1/86.400 eines Tages definiert; es zeigte sich jedoch, dass kleine Unregelmäßigkeiten in der Rotationsgeschwindigkeit der Erde diese Definition nicht stabil genug machten. 1967 wurde die Sekunde auf der 13. Tagung der Generalkonferenz für Maß und Gewicht grundlegend neu definiert: Sie entspricht seitdem exakt 9.192.631.770 Perioden der Strahlung, die dem Übergang zwischen den Grundenergiezuständen eines Cäsium-133-Atoms entspricht. Diese Definition ermöglichte es, dass Atomuhren weltweit mit derselben Präzision (im Bereich von einem Milliardstel) reproduzierbar sind, und band die Sekunde an eine universelle Referenz, unabhängig von der Bewegung von Himmelskörpern.",
     measurementSystem: "Internationales Einheitensystem (SI)",
-    commonUses: "Experimentdauern, Bewegungsanalyse, Datenaufzeichnung und Zeitsteuerung",
+    commonUses:
+      "Experimentdauern, Bewegungsanalyse, Datenaufzeichnung und Zeitsteuerung",
   },
   dakika: {
     name: "Minute",
@@ -303,7 +312,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Die Einheit entwickelte sich aus dem Zusammenspiel von Meile und Stunde in angloamerikanischen Verkehrssystemen.",
     measurementSystem: "Imperiales und US-amerikanisches Maßsystem",
-    commonUses: "Straßenverkehr, Fahrzeugtechnik und Berichte im angloamerikanischen Raum",
+    commonUses:
+      "Straßenverkehr, Fahrzeugtechnik und Berichte im angloamerikanischen Raum",
   },
   joule: {
     name: "Joule",
@@ -314,7 +324,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Die Einheit ist nach dem britischen Physiker James Prescott Joule (1818-1889) benannt, der den Zusammenhang zwischen mechanischer Arbeit und Wärme aufzeigte. Der Name wurde erstmals am 23. August 1882 in der Präsidentschaftsrede von William Siemens vor der British Association for the Advancement of Science vorgeschlagen; Siemens schlug vor, die Einheit zu Ehren 'des Mannes, der so viel zur Entwicklung der dynamischen Wärmetheorie beigetragen hat', 'Joule' zu nennen. Offiziell wurde die Einheit am 31. August 1889 auf dem Zweiten Internationalen Elektrizitätskongress zusammen mit dem Watt angenommen -- durch einen bemerkenswerten Zufall verstarb Joule noch im selben Jahr (am 11. Oktober 1889). 1946 wurde die Definition im Rahmen des Giorgi-Systems aktualisiert und unabhängig von elektromagnetischen Einheiten direkt als 'die Arbeit, die eine Kraft entlang eines Weges von einem Meter verrichtet' neu gefasst.",
     measurementSystem: "Internationales Einheitensystem (SI)",
-    commonUses: "Thermodynamik, Energiebilanzen und wissenschaftliche Berechnungen",
+    commonUses:
+      "Thermodynamik, Energiebilanzen und wissenschaftliche Berechnungen",
   },
   kilovatsaat: {
     name: "Kilowattstunde",
@@ -391,7 +402,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Die Einheit ist nach dem italienischen Physiker Alessandro Volta benannt -- Volta erfand 1800 im Zuge seiner Auseinandersetzung mit seinem Kollegen Luigi Galvani über 'tierische Elektrizität' die 'Voltasche Säule'; er entdeckte, dass Zink und Silber das wirksamste Metallpaar bilden, und schuf damit das weltweit erste Gerät, das kontinuierlichen elektrischen Strom erzeugte (den Vorläufer der Batterie). Der Name 'Volt' wurde erst viel später, 1861, von Latimer Clark und Charles Bright vorgeschlagen. 1873 definierte die British Association for the Advancement of Science offiziell die Einheiten Volt, Ohm und Farad; 1881 erkannte der Internationale Elektrikerkongress das Volt als offizielle Einheit der elektromotorischen Kraft (Spannung) an. Mit der SI-Revision 2019 wurde durch die Festlegung eines exakten Werts für die Elementarladung auch die Definition des Volt aktualisiert.",
     measurementSystem: "Internationales Einheitensystem (SI)",
-    commonUses: "Elektronische Schaltungen, Stromversorgungen und Netzspannungen",
+    commonUses:
+      "Elektronische Schaltungen, Stromversorgungen und Netzspannungen",
   },
   kilovolt: {
     name: "Kilovolt",
@@ -501,7 +513,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Er wird häufig bei der Angabe von Bildschirmgrößen und kleinen Bauteilen in amerikanischen Spezifikationen verwendet.",
     measurementSystem: "Angloamerikanisches Maßsystem (außerhalb des SI)",
-    commonUses: "US-amerikanische Industriespezifikationen und kleine Bildschirme",
+    commonUses:
+      "US-amerikanische Industriespezifikationen und kleine Bildschirme",
   },
   akre: {
     name: "Acre",
@@ -512,7 +525,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Er stammt aus dem Mittelalter und entsprach ursprünglich der Fläche, die ein Ochsengespann an einem Tag pflügen konnte.",
     measurementSystem: "Angloamerikanisches Maßsystem (außerhalb des SI)",
-    commonUses: "Immobilien und landwirtschaftliche Flächen in den USA und Großbritannien",
+    commonUses:
+      "Immobilien und landwirtschaftliche Flächen in den USA und Großbritannien",
   },
   donum: {
     name: "Dönüm",
@@ -578,7 +592,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Die von den USA verwendete Gallone beruht auf der mittelalterlichen englischen Handelstradition der 'Weingallone' und wurde 1706 unter Königin Anne exakt auf 231 Kubikzoll (3,785411784 L) festgelegt -- die USA übernahmen diese Definition offiziell 1836. Großbritannien schlug 1824 einen völlig anderen Weg ein und definierte seine eigene 'britische Gallone' (Imperial Gallon) neu als 'das Volumen, das dem Gewicht von 10 Pfund destilliertem Wasser entspricht' (etwa 4,546 L) und schaffte alle anderen Gallonendefinitionen ab. Aufgrund dieser unterschiedlichen historischen Entscheidungen ist die britische Gallone etwa 20 % größer als die US-Gallone.",
     measurementSystem: "US-amerikanisches Maßsystem (US Liquid Gallon)",
-    commonUses: "Kraftstoffverbrauch, aus den USA stammende Flüssigproduktetiketten und Küchenmaße",
+    commonUses:
+      "Kraftstoffverbrauch, aus den USA stammende Flüssigproduktetiketten und Küchenmaße",
   },
   varil: {
     name: "Barrel",
@@ -666,7 +681,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Der Name stammt von einer historischen Methode, die Schiffsgeschwindigkeit mit einem geknoteten Seil hinter dem Schiff zu messen.",
     measurementSystem: "Außerhalb des SI, internationale Navigationseinheit",
-    commonUses: "Schifffahrts- und Luftfahrtnavigation sowie Windgeschwindigkeitsangaben",
+    commonUses:
+      "Schifffahrts- und Luftfahrtnavigation sowie Windgeschwindigkeitsangaben",
   },
   "isik-hizi": {
     name: "Lichtgeschwindigkeit",
@@ -676,8 +692,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Die Lichtgeschwindigkeit (c) ist die Ausbreitungsgeschwindigkeit elektromagnetischer Wellen (einschließlich Licht) im Vakuum und eine der grundlegendsten physikalischen Konstanten des Universums. Ihr Wert beträgt exakt 299.792.458 m/s.",
     historySummary:
       "Die ersten wissenschaftlichen Messungen der Lichtgeschwindigkeit reichen bis ins 17. Jahrhundert zu Ole Rømer zurück. Da die offizielle SI-Definition des Meters seit 1983 auf der Strecke beruht, die Licht im Vakuum in einer bestimmten Zeit zurücklegt, gilt der Wert der Lichtgeschwindigkeit heute per Definition als exakt (konstant) und nicht mehr als gemessener Wert.",
-    measurementSystem: "Internationales Einheitensystem (SI, fundamentale physikalische Konstante)",
-    commonUses: "Physikalische und astronomische Berechnungen, Relativitätstheorie, GPS- und Satellitenkommunikationssysteme",
+    measurementSystem:
+      "Internationales Einheitensystem (SI, fundamentale physikalische Konstante)",
+    commonUses:
+      "Physikalische und astronomische Berechnungen, Relativitätstheorie, GPS- und Satellitenkommunikationssysteme",
   },
   "metre-saniyekare": {
     name: "Meter pro Sekundequadrat",
@@ -709,7 +727,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Die Erdbeschleunigung ist die Standardbeschleunigung, die ein frei fallender Körper nahe der Erdoberfläche erfährt.",
     historySummary:
       "Der Standardwert 9,80665 m/s² wurde international festgelegt und wird häufig als praktische Vergleichseinheit für Beschleunigung genutzt.",
-    measurementSystem: "Internationales Einheitensystem (SI, Standardkonstante)",
+    measurementSystem:
+      "Internationales Einheitensystem (SI, Standardkonstante)",
     commonUses: "Physik, Raumfahrt und technische Beschleunigungsvergleiche",
   },
   gun: {
@@ -764,8 +783,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Radiant (rad) ist die SI-Einheit des Winkels. Es ist definiert als der Winkel, den ein Kreisbogen mit einer Länge gleich dem Radius im Mittelpunkt eines Kreises bildet.",
     historySummary:
       "Der Begriff 'Radiant' wurde erstmals 1873 vom schottischen Physiker James Thomson (Bruder des berühmten Lord Kelvin) in Prüfungsunterlagen des Queen's College Belfast verwendet; man vermutet, dass er sich aus der Verbindung der Wörter 'Radius' und 'Angle' (Winkel) ableitet. Der mathematische Vorteil des Radianten liegt darin, dass Ableitungen und Integrale trigonometrischer Funktionen (etwa die Ableitung von Sinus zu Kosinus) nur dann ohne zusätzliche Konstante einfach bleiben, wenn der Winkel in Radiant ausgedrückt wird -- deshalb wurde Radiant, trotz der Verbreitung des Grads, als abgeleitete SI-Winkeleinheit übernommen.",
-    measurementSystem: "Internationales Einheitensystem (SI, abgeleitete Einheit)",
-    commonUses: "Trigonometrie, technische Berechnungen, Formeln für Winkelgeschwindigkeit und -beschleunigung",
+    measurementSystem:
+      "Internationales Einheitensystem (SI, abgeleitete Einheit)",
+    commonUses:
+      "Trigonometrie, technische Berechnungen, Formeln für Winkelgeschwindigkeit und -beschleunigung",
   },
   derece: {
     name: "Grad",
@@ -776,7 +797,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Der Vollkreis von 360 Grad geht auf das sexagesimale (60er-)Zahlensystem des antiken Babylon zurück; die Zahl 360 wurde vermutlich gewählt, weil sie durch viele Zahlen wie 2, 3, 4, 5, 6, 8, 9, 10 und 12 teilbar ist, was die Aufteilung von Winkeln in praktische Brüche erleichtert. Auch die Nähe von 360 zur babylonischen Kalenderjahreslänge von etwa 360 Tagen gilt als historischer Einfluss. Dieses System wurde über griechische Astronomen (besonders Hipparchos) an die westliche Wissenschaft weitergegeben und ist bis heute unverändert in Gebrauch.",
     measurementSystem: "Nicht-SI-Einheit, weltweit gebräuchlich",
-    commonUses: "Navigation, Geografie (Breiten-/Längengrad), technisches Zeichnen, alltägliche Winkelmessungen",
+    commonUses:
+      "Navigation, Geografie (Breiten-/Längengrad), technisches Zeichnen, alltägliche Winkelmessungen",
   },
   gradyan: {
     name: "Gon",
@@ -787,7 +809,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Gon ist ein Ergebnis der nach der Französischen Revolution gemeinsam mit dem metrischen System vorgeschlagenen 'Dezimalisierungsbewegung', die darauf abzielte, alle Maßeinheiten auf Zehnerpotenzen zu stützen; es unterteilt einen rechten Winkel in genau 100 Gon und bietet damit ein 'dezimalfreundlicheres' System als Grad. Obwohl es sich nie so weit wie das Grad verbreitete, wird es aufgrund seiner rechnerischen Vorteile im Dezimalsystem bis heute in der Geodäsie und Landvermessung mancher europäischer Länder, allen voran Frankreich, verwendet.",
     measurementSystem: "Nicht-SI-Einheit, Dezimalsystemeinheit",
-    commonUses: "Geodäsie, Landvermessung, manche europäische technische Anwendungen",
+    commonUses:
+      "Geodäsie, Landvermessung, manche europäische technische Anwendungen",
   },
   "tam-tur": {
     name: "Vollwinkel",
@@ -808,8 +831,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Hertz (Hz) ist die SI-Einheit der Frequenz. Sie gibt an, wie oft sich ein Ereignis pro Sekunde wiederholt.",
     historySummary:
       "Die Einheit ist nach dem deutschen Physiker Heinrich Rudolf Hertz (1857-1894) benannt, der als Erster die Existenz elektromagnetischer Wellen experimentell zweifelsfrei nachwies. Der Name 'Hertz' wurde erstmals 1935 von der Internationalen Elektrotechnischen Kommission (IEC) festgelegt; 1960 erkannte die Generalkonferenz für Maß und Gewicht ihn als offizielle SI-Einheit an. Zuvor wurde Frequenz als 'Zyklen pro Sekunde' (cycles per second, cps) und in Vielfachen (Kilocycles, Megacycles) angegeben -- der Übergang von dieser älteren Terminologie zu 'Hertz' setzte sich in der populären Presse erst Ende der 1960er-Jahre durch.",
-    measurementSystem: "Internationales Einheitensystem (SI, abgeleitete Einheit)",
-    commonUses: "Schallwellen, Frequenz des elektrischen Stroms, Computerprozessorgeschwindigkeit, Radiowellen",
+    measurementSystem:
+      "Internationales Einheitensystem (SI, abgeleitete Einheit)",
+    commonUses:
+      "Schallwellen, Frequenz des elektrischen Stroms, Computerprozessorgeschwindigkeit, Radiowellen",
   },
   kilohertz: {
     name: "Kilohertz",
@@ -852,8 +877,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Newton (N) ist die abgeleitete Einheit der Kraft im Internationalen Einheitensystem. Sie entspricht der Kraft, die einer Masse von 1 kg eine Beschleunigung von 1 m/s² verleiht.",
     historySummary:
       "Die Einheit Newton ist nach Isaac Newtons zweitem Bewegungsgesetz benannt, zusammengefasst als F=ma (Kraft = Masse × Beschleunigung). Die Standardisierung erfolgte in zwei Schritten: 1946 definierte die Generalkonferenz für Maß und Gewicht im MKS-System (Meter-Kilogramm-Sekunde) die Krafteinheit als 'die Kraft, die einer Masse von 1 Kilogramm eine Beschleunigung von 1 m/s² verleiht'; 1948 erhielt diese Einheit auf der 9. Tagung der Konferenz offiziell den Namen 'Newton'. Das MKS-System bildete später die Grundlage des heutigen SI-Systems.",
-    measurementSystem: "Internationales Einheitensystem (SI, abgeleitete Einheit)",
-    commonUses: "Maschinenbau, statische und dynamische Berechnungen, Materialfestigkeitsprüfungen",
+    measurementSystem:
+      "Internationales Einheitensystem (SI, abgeleitete Einheit)",
+    commonUses:
+      "Maschinenbau, statische und dynamische Berechnungen, Materialfestigkeitsprüfungen",
   },
   "kilogram-kuvvet": {
     name: "Kilogramm-Kraft",
@@ -874,7 +901,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Das Newtonmeter ist die SI-Einheit des Drehmoments und wird bei Schraubverbindungen und Motoren verwendet.",
     historySummary:
       "Es ist der internationale Standard für Drehmomentangaben in Technik und Fahrzeugbau.",
-    measurementSystem: "Internationales Einheitensystem (SI, abgeleitete Einheit)",
+    measurementSystem:
+      "Internationales Einheitensystem (SI, abgeleitete Einheit)",
     commonUses: "Fahrzeugtechnik, Schraubverbindungen und Maschinenbau",
   },
   "kilogram-kuvvet-metre": {
@@ -885,8 +913,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Kilogramm-Kraft-Meter (kgf·m, gebräuchlich auch als 'kgm' abgekürzt) ist eine traditionelle Einheit außerhalb des SI zur Angabe von Drehmoment. Sie findet sich besonders in älteren technischen Motorunterlagen anstelle des Newtonmeters.",
     historySummary:
       "Kilogramm-Kraft-Meter war vor dem SI-System in der europäischen Ingenieurpraxis eine gebräuchliche Drehmomenteinheit; obwohl sie heute weitgehend durch das Newtonmeter abgelöst wurde, begegnet man ihr noch in alten Fahrzeugmotor-Spezifikationen und auf manchen Drehmomentschlüssel-Anzeigen.",
-    measurementSystem: "Traditionelle, auf der Erdanziehung beruhende Einheit außerhalb des SI",
-    commonUses: "Ältere Motordrehmoment-Spezifikationen, Drehmomentschlüssel, technische Altdokumente",
+    measurementSystem:
+      "Traditionelle, auf der Erdanziehung beruhende Einheit außerhalb des SI",
+    commonUses:
+      "Ältere Motordrehmoment-Spezifikationen, Drehmomentschlüssel, technische Altdokumente",
   },
   "pound-fit": {
     name: "Pfund-Fuß",
@@ -907,7 +937,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Kilogramm-Meter pro Sekunde ist die SI-Einheit des Impulses in der klassischen Mechanik.",
     historySummary:
       "Sie wird in physikalischen Berechnungen zur Beschreibung von Bewegungsgrößen verwendet.",
-    measurementSystem: "Internationales Einheitensystem (SI, abgeleitete Einheit)",
+    measurementSystem:
+      "Internationales Einheitensystem (SI, abgeleitete Einheit)",
     commonUses: "Physik und Mechanikberechnungen",
   },
   "newton-saniye": {
@@ -918,7 +949,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Die Newtonsekunde ist eine alternative Einheit des Impulses, äquivalent zu Kilogramm-Meter pro Sekunde.",
     historySummary:
       "Sie wird verwendet, um den Zusammenhang zwischen Kraft, Zeit und Impulsänderung darzustellen.",
-    measurementSystem: "Internationales Einheitensystem (SI, abgeleitete Einheit)",
+    measurementSystem:
+      "Internationales Einheitensystem (SI, abgeleitete Einheit)",
     commonUses: "Physik und Stoßprozessberechnungen",
   },
   milibar: {
@@ -929,7 +961,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Das Millibar ist eine in der Meteorologie gebräuchliche Druckeinheit zur Angabe des Luftdrucks.",
     historySummary:
       "Es ist die Standardeinheit in weltweiten Wetterberichten zur Beschreibung von Luftdrucksystemen.",
-    measurementSystem: "Außerhalb des SI, gebräuchliche meteorologische Einheit",
+    measurementSystem:
+      "Außerhalb des SI, gebräuchliche meteorologische Einheit",
     commonUses: "Wetterberichte und Wetterkarten",
   },
   atmosfer: {
@@ -940,7 +973,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Die Atmosphäre ist eine Druckeinheit, die auf einem Referenzwert nahe dem mittleren Luftdruck der Erdatmosphäre auf Meereshöhe beruht. Sie wird auch als Standardatmosphäre bezeichnet.",
     historySummary:
       "Die Einheit Atmosphäre verbreitete sich, da barometrische Messungen und der Referenzdruck auf Meereshöhe in Technik und Wissenschaft als Standardvergleichspunkt dienten. 1954 definierte die 10. Generalkonferenz für Maß und Gewicht (CGPM) die Standardatmosphäre exakt auf 101.325 Pa.",
-    measurementSystem: "Referenzeinheit außerhalb des SI, in Meteorologie und Technik gebräuchlich",
+    measurementSystem:
+      "Referenzeinheit außerhalb des SI, in Meteorologie und Technik gebräuchlich",
     commonUses: "Referenzbedingungen, Meteorologie, Vakuum- und Druckmessungen",
   },
   "kilogram-kuvvet-santimetrekare": {
@@ -962,8 +996,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Pascalsekunde (Pa·s) ist die abgeleitete SI-Einheit der dynamischen Viskosität. Sie beschreibt den Fließwiderstand eines Fluids.",
     historySummary:
       "Pascalsekunde ist eine kohärente abgeleitete Einheit des SI-Systems -- sie ergibt sich direkt aus der Multiplikation der Druckeinheit Pascal mit der Zeiteinheit Sekunde, ohne zusätzlichen Umrechnungsfaktor. Trotzdem bevorzugt die Industrie in der Praxis weiterhin die ältere, aus dem CGS-System stammende Einheit Poise beziehungsweise Centipoise -- vor allem, weil die Viskosität von Wasser bei Raumtemperatur in Centipoise einem leicht zu merkenden Wert (etwa 1 cP) entspricht, während derselbe Wert in Pascalsekunde mit 0,001 eine weniger anschauliche Zahl ergibt.",
-    measurementSystem: "Internationales Einheitensystem (SI, abgeleitete Einheit)",
-    commonUses: "Strömungsmechanik, Berechnung der Reynolds-Zahl, Rohrleitungsauslegung und Fluidcharakterisierung",
+    measurementSystem:
+      "Internationales Einheitensystem (SI, abgeleitete Einheit)",
+    commonUses:
+      "Strömungsmechanik, Berechnung der Reynolds-Zahl, Rohrleitungsauslegung und Fluidcharakterisierung",
   },
   santipoise: {
     name: "Centipoise",
@@ -996,7 +1032,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Es entspricht 1 mm²/s und wurde zum Standard bei der Klassifizierung von Motorölen.",
     measurementSystem: "CGS-System (außerhalb des SI, Untereinheit)",
-    commonUses: "Motorölklassifizierung, Kraftstoffeigenschaften und Industrieflüssigkeiten",
+    commonUses:
+      "Motorölklassifizierung, Kraftstoffeigenschaften und Industrieflüssigkeiten",
   },
   "metrekup-saniye": {
     name: "Kubikmeter pro Sekunde",
@@ -1084,7 +1121,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Der Begriff Kalorie wurde im 19. Jahrhundert vom französischen Chemiker Nicolas Clément zur Messung von Wärmemengen eingeführt und verbreitete sich während der Entwicklung der Thermodynamik. Obwohl die SI-Einheit Joule sie heute weitgehend ersetzt hat, wird sie in der Ernährungswissenschaft (als Kilokalorie) weiterhin häufig verwendet.",
     measurementSystem: "Traditionelle Energieeinheit außerhalb des SI",
-    commonUses: "Chemische und thermodynamische Berechnungen, Lebensmittelenergie (über die Kilokalorie)",
+    commonUses:
+      "Chemische und thermodynamische Berechnungen, Lebensmittelenergie (über die Kilokalorie)",
   },
   kilokalori: {
     name: "Kilokalorie",
@@ -1095,7 +1133,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Mit der Entwicklung der Ernährungswissenschaft zeigte sich, dass die kleine Kalorie zur Angabe des Energiegehalts von Lebensmitteln unpraktisch war; stattdessen setzte sich die tausendfach größere Kilokalorie als Standard durch. Auch die heutigen Lebensmittelkennzeichnungsvorschriften beruhen auf dieser Einheit.",
     measurementSystem: "Traditionelle Energieeinheit außerhalb des SI",
-    commonUses: "Lebensmitteletiketten, Diät- und Ernährungsberechnungen, täglicher Kalorienbedarf",
+    commonUses:
+      "Lebensmitteletiketten, Diät- und Ernährungsberechnungen, täglicher Kalorienbedarf",
   },
   btu: {
     name: "BTU",
@@ -1128,7 +1167,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Sie wurde ursprünglich von James Watt definiert und wird in der US-amerikanischen und britischen Fahrzeugtechnik anstelle der metrischen PS verwendet.",
     measurementSystem: "Angloamerikanisches Maßsystem (außerhalb des SI)",
-    commonUses: "US-amerikanische und britische Fahrzeug- und Motorspezifikationen",
+    commonUses:
+      "US-amerikanische und britische Fahrzeug- und Motorspezifikationen",
   },
   "watt-metre-kelvin": {
     name: "Watt pro Meter-Kelvin",
@@ -1138,7 +1178,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Watt pro Meter-Kelvin ist die SI-Einheit der Wärmeleitfähigkeit von Materialien.",
     historySummary:
       "Sie wird in der Bauphysik und Materialwissenschaft zur Bewertung der Dämmeigenschaften von Baustoffen verwendet.",
-    measurementSystem: "Internationales Einheitensystem (SI, abgeleitete Einheit)",
+    measurementSystem:
+      "Internationales Einheitensystem (SI, abgeleitete Einheit)",
     commonUses: "Bauphysik, Dämmstoffe und Materialwissenschaft",
   },
   "btu-saat-fit-f": {
@@ -1160,7 +1201,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Watt pro Quadratmeter ist die SI-Einheit der Wärmestromdichte, also der Wärmeleistung pro Fläche.",
     historySummary:
       "Sie wird in der Bauphysik und Solartechnik zur Beschreibung von Energieflüssen durch Flächen verwendet.",
-    measurementSystem: "Internationales Einheitensystem (SI, abgeleitete Einheit)",
+    measurementSystem:
+      "Internationales Einheitensystem (SI, abgeleitete Einheit)",
     commonUses: "Bauphysik, Solartechnik und Energieflussberechnungen",
   },
   "kilowatt-metrekare": {
@@ -1182,7 +1224,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Joule pro Kilogramm-Kelvin ist die SI-Einheit der spezifischen Wärmekapazität von Materialien.",
     historySummary:
       "Sie gibt an, wie viel Energie nötig ist, um ein Kilogramm eines Stoffes um ein Kelvin zu erwärmen.",
-    measurementSystem: "Internationales Einheitensystem (SI, abgeleitete Einheit)",
+    measurementSystem:
+      "Internationales Einheitensystem (SI, abgeleitete Einheit)",
     commonUses: "Materialwissenschaft und thermodynamische Berechnungen",
   },
   "kalori-gram-kelvin": {
@@ -1204,8 +1247,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Ohm (Ω) ist die SI-Einheit des elektrischen Widerstands. Sie gibt an, wie stark ein Stromkreis dem Stromfluss entgegenwirkt.",
     historySummary:
       "Ohm ist nach dem deutschen Physiker Georg Simon Ohm (1789-1854) benannt, der mit dem Ohmschen Gesetz den Zusammenhang zwischen Spannung, Stromstärke und Widerstand beschrieb. In den 1860er-Jahren schlug Werner Siemens einen reproduzierbaren, auf einer Quecksilbersäule beruhenden Widerstandsstandard vor; 1861 schlugen Latimer Clark und Charles Bright in einem Vortrag vor der British Association for the Advancement of Science Einheitennamen vor, die von berühmten Wissenschaftlern abgeleitet waren, darunter 'Ohma', 'Farad' und 'Volt'. Die Einheit wurde 1864 als 'B.A.-Einheit' oder 'Ohmad' und ab 1867 einfach als 'Ohm' bezeichnet. Am 21. September 1881 wurde auf dem Internationalen Elektrizitätskongress das 'praktische Ohm' offiziell definiert, auf den Kongressen von 1884 (Paris) und 1893 (Chicago) weiterentwickelt, und die endgültige internationale Anerkennung erfolgte 1908 auf einer Konferenz in London. 1948 löste die heutige absolute (exakte) Definition den Quecksilbersäulenstandard ab.",
-    measurementSystem: "Internationales Einheitensystem (SI, abgeleitete Einheit)",
-    commonUses: "Schaltungsentwicklung, Widerstandsangaben, Berechnungen nach dem Ohmschen Gesetz und Auswahl elektronischer Bauteile",
+    measurementSystem:
+      "Internationales Einheitensystem (SI, abgeleitete Einheit)",
+    commonUses:
+      "Schaltungsentwicklung, Widerstandsangaben, Berechnungen nach dem Ohmschen Gesetz und Auswahl elektronischer Bauteile",
   },
   kiloohm: {
     name: "Kiloohm",
@@ -1249,7 +1294,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Es wurde zum praktischen Standard in Energieverteilungssystemen und großen industriellen Elektroanlagen.",
     measurementSystem: "Internationales Einheitensystem (SI, Vielfaches)",
-    commonUses: "Kurzschlussstromberechnungen, Stromverteilungsanlagen und Blitzstromanalysen",
+    commonUses:
+      "Kurzschlussstromberechnungen, Stromverteilungsanlagen und Blitzstromanalysen",
   },
   farad: {
     name: "Farad",
@@ -1259,8 +1305,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Farad (F) ist die SI-Einheit der elektrischen Kapazität. Sie gibt an, wie viel elektrische Ladung ein Kondensator speichern kann.",
     historySummary:
       "Farad ist nach dem britischen Wissenschaftler Michael Faraday benannt; seine Entdeckung der elektromagnetischen Induktion 1831 bildet eine der Grundlagen der modernen Elektrotechnik. Der Einheitenname wurde 1861 von Latimer Clark und Charles Bright vorgeschlagen und 1881 auf dem Internationalen Elektrizitätskongress zusammen mit Volt und Ohm offiziell festgelegt. Da 1 Farad für alltägliche elektronische Bauteile eine extrem große Kapazität darstellt (selbst die Kapazität eines menschlichen Körpers liegt nur bei einigen hundert Pikofarad), werden Kondensatoren in der Praxis fast immer in deutlich kleineren Vielfachen wie Mikrofarad, Nanofarad oder Pikofarad angegeben.",
-    measurementSystem: "Internationales Einheitensystem (SI, abgeleitete Einheit)",
-    commonUses: "Kondensatorkapazitätswerte, Schaltungsentwicklung und Energiespeicherberechnungen",
+    measurementSystem:
+      "Internationales Einheitensystem (SI, abgeleitete Einheit)",
+    commonUses:
+      "Kondensatorkapazitätswerte, Schaltungsentwicklung und Energiespeicherberechnungen",
   },
   milifarad: {
     name: "Millifarad",
@@ -1314,8 +1362,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Henry (H) ist die SI-Einheit der elektrischen Induktivität. Sie gibt an, wie viel Energie eine Spule in einem Magnetfeld speichern kann.",
     historySummary:
       "Henry ist nach dem US-amerikanischen Wissenschaftler Joseph Henry benannt, der 1832 das Phänomen der Selbstinduktion entdeckte -- nur ein Jahr, nachdem Michael Faraday in England die elektromagnetische Induktion unabhängig davon bekannt gegeben hatte. Obwohl es historisch eine Prioritätsdebatte darüber gab, wer zuerst entdeckte, wird die 'Induktion' meist mit Faraday in Verbindung gebracht, da er seine Ergebnisse zuerst veröffentlichte, während der Name Henry als Einheit verewigt wurde. Henry trug zudem mit der Entwicklung leistungsstarker Elektromagnete zur frühen Telegrafentechnik bei.",
-    measurementSystem: "Internationales Einheitensystem (SI, abgeleitete Einheit)",
-    commonUses: "Spulen- und Transformatorenentwicklung, Filterschaltungen und Leistungselektronik",
+    measurementSystem:
+      "Internationales Einheitensystem (SI, abgeleitete Einheit)",
+    commonUses:
+      "Spulen- und Transformatorenentwicklung, Filterschaltungen und Leistungselektronik",
   },
   milihenry: {
     name: "Millihenry",
@@ -1347,8 +1397,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Coulomb (C) ist die SI-Einheit der elektrischen Ladung. Sie gibt die Gesamtmenge elektrischer Ladung an, die durch einen Stromkreis fließt.",
     historySummary:
       "Coulomb ist nach dem französischen Physiker Charles-Augustin de Coulomb benannt; Coulomb zeigte 1785 mit einer von ihm entwickelten präzisen Torsionswaage experimentell, dass die Anziehungs- beziehungsweise Abstoßungskraft zwischen zwei elektrischen Ladungen umgekehrt proportional zum Quadrat ihres Abstands ist (Coulombsches Gesetz) -- damit legte er die quantitative Grundlage der Elektrostatik. Die Einheit selbst wurde erst viel später, auf dem Internationalen Elektrizitätskongress 1881, offiziell festgelegt. Mit der SI-Revision 2019 wird Coulomb nicht mehr über eine indirekte Messung definiert, sondern über den exakt festgelegten Zahlenwert der Elementarladung (der Ladung des Elektrons).",
-    measurementSystem: "Internationales Einheitensystem (SI, abgeleitete Einheit)",
-    commonUses: "Berechnungen der Batteriekapazität, Messung elektrostatischer Ladung und Kondensatorladeberechnungen",
+    measurementSystem:
+      "Internationales Einheitensystem (SI, abgeleitete Einheit)",
+    commonUses:
+      "Berechnungen der Batteriekapazität, Messung elektrostatischer Ladung und Kondensatorladeberechnungen",
   },
   milicoulomb: {
     name: "Millicoulomb",
@@ -1391,8 +1443,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Ampere pro Meter (A/m) ist die abgeleitete SI-Einheit der Magnetfeldstärke. Sie gibt das Verhältnis des die Magnetfeldstärke erzeugenden Stroms zur Länge an.",
     historySummary:
       "Mit der Integration der elektromagnetischen Theorie in das SI-Einheitensystem wurde diese Einheit zur Standardmethode, die Magnetfeldstärke aus den Basiseinheiten Strom und Länge abzuleiten.",
-    measurementSystem: "Internationales Einheitensystem (SI, abgeleitete Einheit)",
-    commonUses: "Elektromagnetische Feldberechnungen, Spulen- und Elektromagnetkonstruktion, Prüfung magnetischer Werkstoffe",
+    measurementSystem:
+      "Internationales Einheitensystem (SI, abgeleitete Einheit)",
+    commonUses:
+      "Elektromagnetische Feldberechnungen, Spulen- und Elektromagnetkonstruktion, Prüfung magnetischer Werkstoffe",
   },
   oersted: {
     name: "Oersted",
@@ -1413,8 +1467,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Weber (Wb) ist die abgeleitete SI-Einheit des magnetischen Flusses. Sie gibt die Gesamtwirkung eines Magnetfelds an, die durch eine bestimmte Fläche tritt.",
     historySummary:
       "Die Einheit ist nach dem deutschen Physiker Wilhelm Eduard Weber benannt; Weber baute in den 1830er-Jahren an der Universität Göttingen gemeinsam mit dem Mathematiker Carl Friedrich Gauß eine der weltweit ersten elektromagnetischen Telegrafenleitungen auf und entwickelte ein präzises Magnetometer. Diese Zusammenarbeit war wegweisend für die wissenschaftliche Standardisierung magnetischer Einheiten und gab dem als 'Weber-Gauß-Einheitensystem' bekannten frühen elektromagnetischen CGS-System seinen Namen -- das heutige SI-Weber steht in direkter Verbindung zu diesem historischen Erbe.",
-    measurementSystem: "Internationales Einheitensystem (SI, abgeleitete Einheit)",
-    commonUses: "Transformatorenentwicklung, Berechnungen der elektromagnetischen Induktion, Elektromotorentechnik",
+    measurementSystem:
+      "Internationales Einheitensystem (SI, abgeleitete Einheit)",
+    commonUses:
+      "Transformatorenentwicklung, Berechnungen der elektromagnetischen Induktion, Elektromotorentechnik",
   },
   miliweber: {
     name: "Milliweber",
@@ -1436,7 +1492,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Der Begriff 'Bit' (Abkürzung von 'Binary Digit') wurde 1947 von dem Mathematiker John W. Tukey bei den Bell Laboratories in einer internen Mitteilung vorgeschlagen; Tukey suchte eine kürzere, einprägsamere Alternative zum sperrigeren Ausdruck 'Binary Information Digit'. Der Begriff setzte sich in der Wissenschaft durch, als er in Claude Shannons bahnbrechendem Aufsatz 'A Mathematical Theory of Communication' von 1948 verwendet wurde, der die Grundlage der Informationstheorie legte.",
     measurementSystem: "Digitale Dateneinheit (Standard der Informatik)",
-    commonUses: "Internetverbindungsgeschwindigkeit (Mbit/s, Gbit/s), Prozessorarchitektur (32-Bit, 64-Bit) und Datenübertragungsraten",
+    commonUses:
+      "Internetverbindungsgeschwindigkeit (Mbit/s, Gbit/s), Prozessorarchitektur (32-Bit, 64-Bit) und Datenübertragungsraten",
   },
   bayt: {
     name: "Byte",
@@ -1447,7 +1504,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Der Begriff 'Byte' wurde 1956 von Werner Buchholz, einem bei IBM am Stretch-Computer arbeitenden Ingenieur, bewusst durch eine veränderte Schreibweise des Wortes 'Bite' (Bissen) geprägt, um eine Verwechslung mit dem Wort 'Bit' zu vermeiden. In den Anfangsjahren konnte ein Byte je nach Computerarchitektur zwischen 1 und 6 Bit lang sein; der 8-Bit-Byte-Standard wurde mit der 1964 von IBM eingeführten System/360-Reihe, einer der einflussreichsten Computerfamilien ihrer Zeit, faktisch zum Industriestandard.",
     measurementSystem: "Digitale Dateneinheit (Standard der Informatik)",
-    commonUses: "Dateigröße, Speicherkapazität und Messung der Datenübertragung",
+    commonUses:
+      "Dateigröße, Speicherkapazität und Messung der Datenübertragung",
   },
   kilobayt: {
     name: "Kilobyte",
@@ -1513,7 +1571,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Es wurde von der IEC eingeführt, um die Mehrdeutigkeit zwischen den Basen 1000 und 1024 zu beseitigen.",
     measurementSystem: "Binäre Dateneinheit (IEC-Standard)",
-    commonUses: "Präzise technische Dokumentation von Betriebssystemen und Speicher",
+    commonUses:
+      "Präzise technische Dokumentation von Betriebssystemen und Speicher",
   },
   mebibayt: {
     name: "Mebibyte",
@@ -1535,7 +1594,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Gibibyte wurde von der IEC standardisiert, um den Unterschied zwischen der dezimalen (auf 1000 basierenden) Marketing-Einheit 'GB' der Hersteller und der tatsächlichen, auf 1024 basierenden Berechnung der Betriebssysteme klarzustellen; dieser Unterschied ist der eigentliche Grund, warum eine neue Festplatte im Betriebssystem kleiner erscheint als vom Hersteller angegeben.",
     measurementSystem: "IEC-System binärer Vorsilben",
-    commonUses: "Anzeige von Betriebssystem-Festplatten-/RAM-Kapazitäten, Servermessungen und Speichervergleiche",
+    commonUses:
+      "Anzeige von Betriebssystem-Festplatten-/RAM-Kapazitäten, Servermessungen und Speichervergleiche",
   },
   tebibayt: {
     name: "Tebibyte",
@@ -1546,7 +1606,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Tebibyte wird als Teil des binären Vorsilbenstandards der IEC verwendet, um die tatsächliche, auf 1024 basierende Kapazität großer Festplattenarrays und Serverspeichersysteme von der auf 1000 basierenden Marketing-Einheit zu unterscheiden.",
     measurementSystem: "IEC-System binärer Vorsilben",
-    commonUses: "Server-Speicherarrays, Kapazitätsplanung in Rechenzentren und große RAID-Systeme",
+    commonUses:
+      "Server-Speicherarrays, Kapazitätsplanung in Rechenzentren und große RAID-Systeme",
   },
   "24-ayar-altin": {
     name: "24 Karat Gold",
@@ -1597,7 +1658,7 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     slug: "feinsilber-999",
     categoryName: "Silberreinheit",
     shortDescription:
-      "Feinsilber (999) besteht zu 99,9 % aus reinem Silber und ist damit nahezu vollständig rein. Es wird auch \"Feinsilber\" genannt und aufgrund seiner Weichheit eher für Barren und Anlagesilber als für Schmuck verwendet.",
+      'Feinsilber (999) besteht zu 99,9 % aus reinem Silber und ist damit nahezu vollständig rein. Es wird auch "Feinsilber" genannt und aufgrund seiner Weichheit eher für Barren und Anlagesilber als für Schmuck verwendet.',
     historySummary:
       "Im Gegensatz zu Gold wird die Silberreinheit direkt als Tausendstelanteil reinen Metalls angegeben; 999 bezeichnet eine praktisch legierungsfreie Reinheit und dient als Reinheitsmaßstab im Edelmetallhandel.",
     measurementSystem: "Feingehaltsstandard für Schmuck (Tausendstelanteil)",
@@ -1608,7 +1669,7 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     slug: "sterlingsilber-925",
     categoryName: "Silberreinheit",
     shortDescription:
-      "925er Silber besteht zu 92,5 % aus reinem Silber, der Rest ist meist eine Kupferlegierung. Weltweit als \"Sterlingsilber\" bekannt und der gebräuchlichste Silberstandard in der Schmuckherstellung.",
+      '925er Silber besteht zu 92,5 % aus reinem Silber, der Rest ist meist eine Kupferlegierung. Weltweit als "Sterlingsilber" bekannt und der gebräuchlichste Silberstandard in der Schmuckherstellung.',
     historySummary:
       "Der Sterlingsilber-Standard entstand in England, um die übermäßige Weichheit von reinem Silber auszugleichen, und wurde mit der Zeit zum weltweit üblichen Standard für Silberschmuck und Haushaltsgegenstände.",
     measurementSystem: "Feingehaltsstandard für Schmuck (Tausendstelanteil)",
@@ -1619,7 +1680,7 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     slug: "muenzsilber-900",
     categoryName: "Silberreinheit",
     shortDescription:
-      "900er Silber besteht zu 90 % aus reinem Silber. Historisch als \"Münzsilber\" bekannt; bis 1965 wurde dieser Feingehalt in den Münzen vieler Länder verwendet.",
+      '900er Silber besteht zu 90 % aus reinem Silber. Historisch als "Münzsilber" bekannt; bis 1965 wurde dieser Feingehalt in den Münzen vieler Länder verwendet.',
     historySummary:
       "Der 900er-Feingehalt setzte sich bei der Münzprägung als Kompromiss zwischen Haltbarkeit und Reinheit durch und wird noch heute für manche traditionellen Schmuck- und Silberwaren verwendet.",
     measurementSystem: "Feingehaltsstandard für Schmuck (Tausendstelanteil)",
@@ -1634,7 +1695,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Der 800er-Feingehalt war historisch in vielen Ländern, unter anderem in der ehemaligen Sowjetunion, für preisgünstigere und widerstandsfähigere Silberwaren gebräuchlich.",
     measurementSystem: "Feingehaltsstandard für Schmuck (Tausendstelanteil)",
-    commonUses: "Traditioneller Silberschmuck, antike Silberwaren, preisgünstigere Produkte",
+    commonUses:
+      "Traditioneller Silberschmuck, antike Silberwaren, preisgünstigere Produkte",
   },
   "milimol-litre": {
     name: "Millimol pro Liter",
@@ -1645,7 +1707,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Mit der Verbreitung des SI-Einheitensystems in der klinischen Chemie wurde die molare Messung von Glukose in den meisten Ländern zum Standard; die USA behielten die massebasierte Einheit mg/dL bei.",
     measurementSystem: "SI (Internationales Einheitensystem), klinische Chemie",
-    commonUses: "Angabe von Blutzuckerwerten (Nüchtern-/postprandiale Glukose) außerhalb der USA",
+    commonUses:
+      "Angabe von Blutzuckerwerten (Nüchtern-/postprandiale Glukose) außerhalb der USA",
   },
   "miligram-desilitre": {
     name: "Milligramm pro Deziliter",
@@ -1655,8 +1718,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Milligramm pro Deziliter (mg/dL) ist die traditionelle Einheit zur Angabe des Blutzuckerspiegels (Glukose), die vor allem in den USA verwendet wird.",
     historySummary:
       "mg/dL ist eine massebasierte Maßeinheit, die seit den Anfängen der klinischen Chemie verwendet wird und im US-amerikanischen Gesundheitssystem bis heute Standard ist.",
-    measurementSystem: "Traditionelle (massebasierte) Einheit der klinischen Chemie",
-    commonUses: "Angabe von Blutzuckerwerten (Nüchtern-/postprandiale Glukose) in den USA",
+    measurementSystem:
+      "Traditionelle (massebasierte) Einheit der klinischen Chemie",
+    commonUses:
+      "Angabe von Blutzuckerwerten (Nüchtern-/postprandiale Glukose) in den USA",
   },
   "nanomol-litre": {
     name: "Nanomol pro Liter",
@@ -1677,10 +1742,11 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Nanogramm pro Milliliter (ng/mL) ist die traditionelle Einheit zur Angabe des Vitamin-D-Spiegels (25-Hydroxyvitamin D) im Blutserum, die vor allem in den USA verwendet wird.",
     historySummary:
       "ng/mL ist eine massebasierte Maßeinheit, die seit den Anfängen der klinischen Chemie verwendet wird und im US-amerikanischen Gesundheitssystem als Standard gilt.",
-    measurementSystem: "Traditionelle (massebasierte) Einheit der klinischen Chemie",
+    measurementSystem:
+      "Traditionelle (massebasierte) Einheit der klinischen Chemie",
     commonUses: "Angabe von Vitamin-D-Werten (25-OH) in den USA",
   },
-  "metre": {
+  metre: {
     name: "Meter",
     slug: "meter",
     categoryName: "Länge",
@@ -1689,9 +1755,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Der Meter entstand während der Französischen Revolution mit dem Ziel, die bis dahin von Region zu Region unterschiedlichen Maßeinheiten durch einen einzigen, universellen und auf der Natur beruhenden Standard zu ersetzen. Zunächst wurde eine Definition auf Basis der Pendelperiode erwogen, doch da ein Pendel von der lokalen Erdanziehung abhängt, wurde diese Idee verworfen. Stattdessen definierte die Französische Nationalversammlung 1791 den Meter als ein Zehnmillionstel der Entfernung vom Nordpol zum Äquator entlang des durch Paris verlaufenden Meridians -- diese Entfernung wurde von den Wissenschaftlern Delambre und Méchain durch jahrelange geodätische Messungen berechnet. 1799 wurde die Definition auf einen Platinstab namens 'Mètre des Archives' gestützt; 1889 ersetzte ein neuer Standard aus einer Platin-Iridium-Legierung, von dem weltweit 29 Kopien verteilt wurden, diesen Stab. 1960 wurde der Meter nicht mehr anhand eines physischen Objekts definiert, sondern anhand der Wellenlänge des von Krypton-86-Atomen ausgestrahlten Lichts. Seit 1983 ist der Meter definiert als die Strecke, die Licht im Vakuum in 1/299.792.458 Sekunde zurücklegt -- dadurch lässt sich der Meter in jedem Labor der Welt reproduzieren, ohne ein physisches Referenzobjekt zu benötigen.",
     measurementSystem: "Internationales Einheitensystem (SI)",
-    commonUses: "Bauwesen, Wissenschaft, Fertigung, Geometrie und allgemeine Messung",
+    commonUses:
+      "Bauwesen, Wissenschaft, Fertigung, Geometrie und allgemeine Messung",
   },
-  "kilometre": {
+  kilometre: {
     name: "Kilometer",
     slug: "kilometer",
     categoryName: "Länge",
@@ -1702,7 +1769,7 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     measurementSystem: "Internationales Einheitensystem (SI, Vielfaches)",
     commonUses: "Straßenentfernungen, Geografie, Kartografie und Infrastruktur",
   },
-  "santimetre": {
+  santimetre: {
     name: "Zentimeter",
     slug: "zentimeter",
     categoryName: "Länge",
@@ -1713,7 +1780,7 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     measurementSystem: "Internationales Einheitensystem (SI, Untereinheit)",
     commonUses: "Möbel, Textilien, Anthropometrie und alltägliche Messungen",
   },
-  "desimetre": {
+  desimetre: {
     name: "Dezimeter",
     slug: "dezimeter",
     categoryName: "Länge",
@@ -1722,9 +1789,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Der Dezimeter wurde 1795 in Frankreich als eine der ersten dezimalen Untereinheiten des angenommenen metrischen Systems definiert. Auch die Einheit Liter wurde historisch über den Kubikdezimeter definiert.",
     measurementSystem: "Internationales Einheitensystem (SI, Untereinheit)",
-    commonUses: "Schulunterricht, Verknüpfung mit der Definition der Volumeneinheit Liter",
+    commonUses:
+      "Schulunterricht, Verknüpfung mit der Definition der Volumeneinheit Liter",
   },
-  "milimetre": {
+  milimetre: {
     name: "Millimeter",
     slug: "millimeter",
     categoryName: "Länge",
@@ -1733,9 +1801,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Der Millimeter verbreitete sich mit dem Bedarf, in Industrie und Technik kleinere Toleranzen zu messen. Er wurde besonders in Fertigungs- und Zeichnungsstandards zu einer grundlegenden Untereinheit.",
     measurementSystem: "Internationales Einheitensystem (SI, Untereinheit)",
-    commonUses: "Mechanische Fertigung, technisches Zeichnen, Bearbeitungstoleranzen",
+    commonUses:
+      "Mechanische Fertigung, technisches Zeichnen, Bearbeitungstoleranzen",
   },
-  "mikrometre": {
+  mikrometre: {
     name: "Mikrometer",
     slug: "mikrometer",
     categoryName: "Länge",
@@ -1744,9 +1813,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Der Mikrometer verbreitete sich mit dem Bedarf, in Fertigung und Werkstofftechnik sehr kleine Abmessungen und Toleranzen anzugeben; er ist auch als Mikron bekannt.",
     measurementSystem: "Internationales Einheitensystem (SI, Untereinheit)",
-    commonUses: "Fertigungstoleranzen, Materialdicke, mikroskopische Messungen und Halbleiterfertigung",
+    commonUses:
+      "Fertigungstoleranzen, Materialdicke, mikroskopische Messungen und Halbleiterfertigung",
   },
-  "nanometre": {
+  nanometre: {
     name: "Nanometer",
     slug: "nanometer",
     categoryName: "Länge",
@@ -1755,9 +1825,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Mit der Entwicklung von Nanotechnologie und Halbleiterfertigung wurde der Nanometer zur Standardeinheit für extrem kleine Messungen wie Chipstrukturgrößen und Lichtwellenlängen.",
     measurementSystem: "Internationales Einheitensystem (SI, Untereinheit)",
-    commonUses: "Lichtwellenlänge, Halbleiterchip-Fertigung, Nanotechnologie und optische Beschichtungen",
+    commonUses:
+      "Lichtwellenlänge, Halbleiterchip-Fertigung, Nanotechnologie und optische Beschichtungen",
   },
-  "pikometre": {
+  pikometre: {
     name: "Pikometer",
     slug: "pikometer",
     categoryName: "Länge",
@@ -1768,7 +1839,7 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     measurementSystem: "Internationales Einheitensystem (SI, Untereinheit)",
     commonUses: "Atomradius, chemische Bindungslänge, Kristallografie",
   },
-  "fit": {
+  fit: {
     name: "Fuß",
     slug: "fuss",
     categoryName: "Länge",
@@ -1779,7 +1850,7 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     measurementSystem: "Britisches und US-amerikanisches Maßsystem",
     commonUses: "Architektur, Gebäudehöhen, Luftfahrt und Geländevermessung",
   },
-  "inc": {
+  inc: {
     name: "Zoll",
     slug: "zoll",
     categoryName: "Länge",
@@ -1788,9 +1859,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Das Wort Zoll (englisch inch) leitet sich vom lateinischen 'uncia' (ein Zwölftel) ab. Die früheste Definition stammt von 1324, als der englische König Edward II. ihn als 'drei hintereinander aufgereihte, trockene Gerstenkörner' festlegte -- eine Definition, die jahrhundertelang verwendet wurde. Überliefert ist auch, dass der schottische König David I. (12. Jahrhundert) den Zoll als Breite eines männlichen Daumens am Nagelansatz definierte. Ein Wendepunkt kam 1896, als der schwedische Ingenieur Carl Edvard Johansson bei der Herstellung präziser Endmaße den Zoll praktisch exakt auf 25,4 mm festlegte -- dieser 'Industriezoll' wurde 1930 von britischen und 1933 von amerikanischen Normungsgremien übernommen. Das endgültige internationale Abkommen trat 1959 in Kraft (in den USA am 1. Juli), seitdem ist der Zoll exakt als 25,4 Millimeter definiert.",
     measurementSystem: "Britisches und US-amerikanisches Maßsystem",
-    commonUses: "Bildschirmgrößen, Rohrleitungsbau, Verbindungselemente und technische Kataloge",
+    commonUses:
+      "Bildschirmgrößen, Rohrleitungsbau, Verbindungselemente und technische Kataloge",
   },
-  "yarda": {
+  yarda: {
     name: "Yard",
     slug: "yard",
     categoryName: "Länge",
@@ -1801,7 +1873,7 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     measurementSystem: "Britisches und US-amerikanisches Maßsystem",
     commonUses: "Sportplätze, Textilien, Landschaftsbau und Geländeplanung",
   },
-  "mil": {
+  mil: {
     name: "Meile",
     slug: "meile",
     categoryName: "Länge",
@@ -1812,7 +1884,7 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     measurementSystem: "Britisches und US-amerikanisches Maßsystem",
     commonUses: "Straßenentfernungen, Navigation und Geländemaßstäbe",
   },
-  "furlong": {
+  furlong: {
     name: "Furlong",
     slug: "furlong",
     categoryName: "Länge",
@@ -1821,7 +1893,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Der Name Furlong stammt aus dem Altenglischen von 'furh' (Furche) und 'lang' (lang) und beruht auf der im mittelalterlichen England üblichen Standardlänge eines mit einem Pflug bearbeiteten Feldstreifens; er wurde exakt auf ein Achtel einer Meile festgelegt. Obwohl er mit der Verbreitung des Meter-Kilogramm-Sekunde-Systems weitgehend aus dem Alltagsgebrauch verschwunden ist, hat er im Pferderennsport (besonders in Großbritannien, den USA, Australien und Irland) seine offizielle und universelle Verwendung als Streckeneinheit behalten.",
     measurementSystem: "Britisches und US-amerikanisches Maßsystem",
-    commonUses: "Pferderennstrecken (weltweit standardisierte Einheit), historische englische Landvermessung",
+    commonUses:
+      "Pferderennstrecken (weltweit standardisierte Einheit), historische englische Landvermessung",
   },
   "astronomik-birim": {
     name: "Astronomische Einheit",
@@ -1832,7 +1905,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Seit den ersten (und weitgehend fehlerhaften) Schätzungen des antiken griechischen Astronomen Aristarch (um 280 v. Chr.), der den Mond-Erde-Sonne-Winkel maß, war die Erde-Sonne-Entfernung eine der wichtigsten Fragen der Astronomie. 1672 erzielten Jean Richer und Giovanni Cassini eine bessere Schätzung, indem sie die Parallaxe des Mars gleichzeitig von Paris und Französisch-Guayana aus maßen. Der eigentliche Durchbruch gelang durch die Beobachtung des Venustransits vor der Sonne -- diese von Edmond Halley vorgeschlagene Methode wurde bei den Transits von 1761 und 1769 im Rahmen einer der größten internationalen wissenschaftlichen Kooperationen ihrer Zeit angewandt. Nachdem die AE Jahrhunderte lang eine beobachtungsbasierte Messgröße blieb, legte die Internationale Astronomische Union sie 2012 exakt auf 149.597.870.700 Meter fest.",
     measurementSystem: "Spezielle Längeneinheit der Astronomie",
-    commonUses: "Entfernungen innerhalb des Sonnensystems, Planetenbahnen, Astronomieunterricht",
+    commonUses:
+      "Entfernungen innerhalb des Sonnensystems, Planetenbahnen, Astronomieunterricht",
   },
   "isik-yili": {
     name: "Lichtjahr",
@@ -1843,9 +1917,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Das Lichtjahr ist eine in populärwissenschaftlicher Literatur und der Allgemeinbildung verwendete Einheit, um die gewaltigen Entfernungen zwischen Sternen fassbar zu machen -- professionelle Astronomen bevorzugen dagegen meist die Einheit Parsec. Seine Definition beruht auf der Strecke, die Licht bei seiner Vakuumgeschwindigkeit (299.792.458 Meter pro Sekunde) in einem julianischen Jahr (genau 365,25 Tage) zurücklegt, was exakt 9.460.730.472.580.800 Metern entspricht.",
     measurementSystem: "Spezielle Längeneinheit der Astronomie",
-    commonUses: "Entfernungen zwischen Sternen, Galaxienmaßstäbe, populärwissenschaftliche Astronomiedarstellung",
+    commonUses:
+      "Entfernungen zwischen Sternen, Galaxienmaßstäbe, populärwissenschaftliche Astronomiedarstellung",
   },
-  "parsek": {
+  parsek: {
     name: "Parsec",
     slug: "parsec",
     categoryName: "Länge",
@@ -1854,9 +1929,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Der Name Parsec wurde 1913 vom britischen Astronomen Herbert Hall Turner als Abkürzung für 'die einer Parallaxe von einer Bogensekunde entsprechende Entfernung' vorgeschlagen (konkurrierende Vorschläge wie Frank Watson Dysons 'Astron' und Carl Charliers 'Siriometer' setzten sich nicht durch). Die Definition funktioniert so: Betrachtet man ein rechtwinkliges Dreieck mit einer Kathete von 1 Astronomischer Einheit und einem gegenüberliegenden Winkel von genau 1 Bogensekunde, entspricht die Länge der langen Kathete diesem Dreieck genau 1 Parsec. Astronomen bevorzugen diese Einheit, da sie sich natürlich mit der Parallaxenmethode von Bessel verbindet -- die Entfernung eines Sterns in Parsec ergibt sich einfach aus dem Kehrwert des Parallaxenwinkels (in Bogensekunden), ohne komplexe trigonometrische Berechnung.",
     measurementSystem: "Spezielle Längeneinheit der Astronomie",
-    commonUses: "Professionelle Astronomie, Entfernungen zwischen Sternen und innerhalb von Galaxien",
+    commonUses:
+      "Professionelle Astronomie, Entfernungen zwischen Sternen und innerhalb von Galaxien",
   },
-  "angstrom": {
+  angstrom: {
     name: "Angström",
     slug: "angstroem",
     categoryName: "Länge",
@@ -1865,9 +1941,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Die Einheit wurde nach dem schwedischen Physiker Anders Jonas Ångström (1814-1874) benannt; Ångström gab 1868 bei der Kartierung des Sonnenlichtspektrums Wellenlängen in 'Zehnmillionstel Millimeter' an. 1892-95 bestimmten Albert Michelson und Jean-René Benoît die präzise Beziehung zwischen dem Meterstandard und Cadmium-Spektrallinien; 1907 legte die Internationale Union für Sonnenforschung darauf basierend die offizielle Definition fest. Mit der spektroskopischen Neudefinition des Meters 1960 wurde das Angström exakt auf 0,1 Nanometer festgelegt. Obwohl es keine SI-Einheit ist, wird es in Physik und Chemie (Atomdurchmesser, chemische Bindungslängen, Röntgenwellenlängen) weiterhin häufig verwendet.",
     measurementSystem: "Nicht-SI-Einheit, in Physik und Chemie verwendet",
-    commonUses: "Atom- und Molekülgrößen, chemische Bindungslängen, Röntgenwellenlänge, Kristallografie",
+    commonUses:
+      "Atom- und Molekülgrößen, chemische Bindungslängen, Röntgenwellenlänge, Kristallografie",
   },
-  "fathom": {
+  fathom: {
     name: "Faden",
     slug: "faden",
     categoryName: "Länge",
@@ -1875,10 +1952,11 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Der Faden (Fathom) ist eine besonders in der Seefahrt zur Messung der Wassertiefe verwendete Längeneinheit. 1 Faden entspricht 1,8288 Metern.",
     historySummary:
       "Der Faden ist eine der ältesten auf dem menschlichen Körper beruhenden Maßeinheiten -- der englische Name 'fathom' stammt vom altenglischen 'fæðm' (umarmende, ausgebreitete Arme) und bezeichnet die Spannweite der beiden seitlich ausgestreckten Arme eines Menschen; verwandt sind das dänische 'favn' und das althochdeutsche 'fadum', vergleichbar auch mit dem altgriechischen Begriff 'orguia' (ausgebreitete Arme). Vor der Standardisierung war der Faden ein unbestimmtes Maß, das auf Handelsschiffen 5,5 Fuß und auf Fischerbooten zwischen 5 und 7 Fuß betrug. Der von der britischen Marine verwendete 'Kriegsschiff-Faden' wurde auf genau 6 Fuß (1,8288 Meter) standardisiert, worauf die heutige internationale Definition beruht. In der Seefahrt wird er noch heute zur Wassertiefenmessung verwendet, etwa in Faden-Abständen markierten Lotleinen.",
-    measurementSystem: "In der Seefahrt verwendete britische/US-amerikanische Maßeinheit",
+    measurementSystem:
+      "In der Seefahrt verwendete britische/US-amerikanische Maßeinheit",
     commonUses: "Messung der Meerestiefe, Seekarten, Loten",
   },
-  "arsin": {
+  arsin: {
     name: "Arschin",
     slug: "arschin",
     categoryName: "Länge",
@@ -1886,10 +1964,12 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Arschin ist eine im Osmanischen Reich verwendete traditionelle Längeneinheit. Ihre gebräuchlichste Form, das Marktarschin, entspricht 68 Zentimetern.",
     historySummary:
       "Je nach Verwendungszweck gab es mehrere Arten des Arschin: Das im Handel verwendete Marktarschin entsprach 68 cm, während das im Bauwesen verwendete Architekturarschin über 24 Finger etwa 75,77 cm betrug. Im Zuge der metrischen Reformen von 1869 wurde ein dezimales Längenmaß namens 'Zira-i Aşari' eingeführt; mit dem 1931 in Kraft getretenen türkischen Maß- und Eichgesetz wurde das Arschin vollständig abgeschafft und durch den Meter ersetzt.",
-    measurementSystem: "Traditionelle osmanische Längeneinheit (nicht mehr in Gebrauch)",
-    commonUses: "Stoff-, Land- und Baumessungen im Osmanischen Reich; heute in der Geschichtsforschung und bei der Interpretation historischer Texte",
+    measurementSystem:
+      "Traditionelle osmanische Längeneinheit (nicht mehr in Gebrauch)",
+    commonUses:
+      "Stoff-, Land- und Baumessungen im Osmanischen Reich; heute in der Geschichtsforschung und bei der Interpretation historischer Texte",
   },
-  "endaze": {
+  endaze: {
     name: "Endaze",
     slug: "endaze",
     categoryName: "Länge",
@@ -1897,10 +1977,12 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Endaze ist eine im Osmanischen Reich besonders zur Stoffmessung verwendete Längeneinheit. Ihr metrisches Äquivalent beträgt 65 Zentimeter.",
     historySummary:
       "Das Endaze war ein aus vier je vier Finger breiten Handspannen bestehendes Maß und wurde, anders als das Arschin, vor allem im Textil- und Manufakturhandel bevorzugt. Wie andere osmanische Maße wurde es durch das Maß- und Eichgesetz von 1931 abgeschafft und durch den Meter ersetzt.",
-    measurementSystem: "Traditionelle osmanische Längeneinheit (nicht mehr in Gebrauch)",
-    commonUses: "Stoff- und Manufakturmessungen im Osmanischen Reich; heute in der Geschichtsforschung und bei der Interpretation historischer Texte",
+    measurementSystem:
+      "Traditionelle osmanische Längeneinheit (nicht mehr in Gebrauch)",
+    commonUses:
+      "Stoff- und Manufakturmessungen im Osmanischen Reich; heute in der Geschichtsforschung und bei der Interpretation historischer Texte",
   },
-  "cig": {
+  cig: {
     name: "Çığ",
     slug: "cig",
     categoryName: "Länge",
@@ -1908,8 +1990,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Çığ ist eine von den frühen Turkvölkern verwendete Längeneinheit. Laut dem Werk Dîvânu Lugâti't-Türk von Kaşgarlı Mahmud entspricht sie metrisch etwa 33,3 Zentimetern.",
     historySummary:
       "Çığ wurde im 11. Jahrhundert von Kaşgarlı Mahmud in seinem Werk Dîvânu Lugâti't-Türk als 'das Längenmaß der Turkvölker' beschrieben, das zwei Dritteln des damaligen arabischen Maßes entsprach. Man vermutet einen chinesischen Ursprung des Begriffs, der über Handelsbeziehungen mit China zur Zeit der Kök-Türken in die Sprache gelangte.",
-    measurementSystem: "Traditionelle frühtürkische (Kök-Türken-Zeit) Längeneinheit (nicht mehr in Gebrauch)",
-    commonUses: "Stoff- und Entfernungsmessungen bei den frühen Turkvölkern; heute in der türkischen Sprachgeschichte und der Dîvânu-Lugâti't-Türk-Forschung",
+    measurementSystem:
+      "Traditionelle frühtürkische (Kök-Türken-Zeit) Längeneinheit (nicht mehr in Gebrauch)",
+    commonUses:
+      "Stoff- und Entfernungsmessungen bei den frühen Turkvölkern; heute in der türkischen Sprachgeschichte und der Dîvânu-Lugâti't-Türk-Forschung",
   },
   "gram-mililitre": {
     name: "Gramm pro Milliliter",
@@ -1919,8 +2003,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Gramm pro Milliliter ist eine Dichteeinheit, die im Labormaßstab zur Angabe der Dichte von Flüssigkeiten und Feststoffen verwendet wird und zahlenmäßig genau Gramm pro Kubikzentimeter entspricht.",
     historySummary:
       "Die Einheit ergibt sich direkt aus dem Verhältnis der metrischen Basiseinheiten für Masse (Gramm) und Volumen (Milliliter); ihre breite Verwendung in Chemie- und Pharmalaboren geht auf die metrische Standardisierung des 19. Jahrhunderts zurück.",
-    measurementSystem: "Internationales Einheitensystem (SI, abgeleitete Einheit)",
-    commonUses: "Chemielabormessungen, Pharmazie, Tabellen zur Flüssigkeitsdichte",
+    measurementSystem:
+      "Internationales Einheitensystem (SI, abgeleitete Einheit)",
+    commonUses:
+      "Chemielabormessungen, Pharmazie, Tabellen zur Flüssigkeitsdichte",
   },
   "kilogram-litre": {
     name: "Kilogramm pro Liter",
@@ -1930,8 +2016,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Kilogramm pro Liter ist eine im Alltag und in der Industrie häufig verwendete Einheit zur Angabe der Dichte von Flüssigkeiten, die zahlenmäßig Gramm pro Milliliter entspricht.",
     historySummary:
       "Dass der Liter zwischen 1901 und 1964 als das Volumen definiert war, das ein Kilogramm reines Wasser einnimmt, führte dazu, dass die Einheit kg/L direkt mit der Dichte von Wasser (etwa 1) verknüpft wurde.",
-    measurementSystem: "Internationales Einheitensystem (SI, abgeleitete Einheit)",
-    commonUses: "Kraftstoff- und Treibstoffdichte, Lebensmittelindustrie, Tank- und Lagerberechnungen",
+    measurementSystem:
+      "Internationales Einheitensystem (SI, abgeleitete Einheit)",
+    commonUses:
+      "Kraftstoff- und Treibstoffdichte, Lebensmittelindustrie, Tank- und Lagerberechnungen",
   },
   "gram-litre": {
     name: "Gramm pro Liter",
@@ -1941,7 +2029,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Gramm pro Liter ist eine Einheit, die besonders zur Angabe der Dichte verdünnter Lösungen und Gase verwendet wird und zahlenmäßig genau der SI-Basisdichteeinheit kg/m³ entspricht.",
     historySummary:
       "Die Einheit ergibt sich aus der direkten Kombination der metrischen Masse- und Volumeneinheiten und wird bereits seit früher Zeit in Standards zur Wasserqualität und Lösungskonzentration verwendet.",
-    measurementSystem: "Internationales Einheitensystem (SI, abgeleitete Einheit)",
+    measurementSystem:
+      "Internationales Einheitensystem (SI, abgeleitete Einheit)",
     commonUses: "Lösungskonzentration, Gasdichte, Wasser- und Abwasseranalyse",
   },
   "miligram-litre": {
@@ -1952,8 +2041,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Milligramm pro Liter ist eine sehr kleine Dichte-/Konzentrationseinheit, die in der Wasserqualitäts- und Umweltanalytik zur Angabe von Schadstoff- oder Stoffkonzentrationen verwendet wird; in der Praxis gilt sie als nahezu gleichwertig mit ppm (Teile pro Million).",
     historySummary:
       "Die Einheit entstand aus dem Bedarf der Wasseraufbereitung und Umwelttechnik des 20. Jahrhunderts nach einer standardisierten Analyseeinheit; heute ist sie die universelle Referenzeinheit in Trinkwasser- und Abwasservorschriften.",
-    measurementSystem: "Internationales Einheitensystem (SI, abgeleitete Untereinheit)",
-    commonUses: "Trinkwasser- und Abwasseranalyse, Umweltverschmutzungsmessung, medizinische Laboruntersuchungen",
+    measurementSystem:
+      "Internationales Einheitensystem (SI, abgeleitete Untereinheit)",
+    commonUses:
+      "Trinkwasser- und Abwasseranalyse, Umweltverschmutzungsmessung, medizinische Laboruntersuchungen",
   },
   "pound-fitkup": {
     name: "Pfund pro Kubikfuß",
@@ -1975,7 +2066,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Die Einheit leitet sich von Pfund pro Kubikfuß ab und dient der praktischen Messung kleinvolumiger, dichter Materialien (Metallteile, Präzisionsbauteile); sie findet sich häufig in US-amerikanischen Maschinenbauzeichnungen.",
     measurementSystem: "Britisches und US-amerikanisches Maßsystem",
-    commonUses: "Dichte von Metallen und Legierungen, Werkstoffberechnungen im Maschinenbau (US-Normen)",
+    commonUses:
+      "Dichte von Metallen und Legierungen, Werkstoffberechnungen im Maschinenbau (US-Normen)",
   },
   "pound-galon": {
     name: "Pfund pro US-Gallone",
@@ -1986,7 +2078,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Die Einheit ergibt sich aus der Kombination von US-Gallone und Pfund und wird in der Erdöl- und Chemieindustrie in aus den USA stammenden technischen Dokumenten standardmäßig verwendet.",
     measurementSystem: "US-amerikanisches Maßsystem",
-    commonUses: "Dichte von Kraftstoffen und chemischen Flüssigkeiten, Berechnungen in der Erdölindustrie (USA)",
+    commonUses:
+      "Dichte von Kraftstoffen und chemischen Flüssigkeiten, Berechnungen in der Erdölindustrie (USA)",
   },
   "slug-fitkup": {
     name: "Slug pro Kubikfuß",
@@ -1997,9 +2090,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Die Einheit Slug wurde Ende des 19. Jahrhunderts definiert, damit die Beziehung F=ma im britischen Ingenieursystem mit Pound-Force und Fuß pro Sekundequadrat konsistent funktioniert; sie wird in der Luftfahrttechnik und Strömungsmechanik (besonders in US-amerikanischer Fachliteratur) verwendet.",
     measurementSystem: "Britisches Ingenieur-Maßsystem",
-    commonUses: "Luftfahrttechnik, Strömungsmechanik (US-amerikanische Fachliteratur)",
+    commonUses:
+      "Luftfahrttechnik, Strömungsmechanik (US-amerikanische Fachliteratur)",
   },
-  "kental": {
+  kental: {
     name: "Doppelzentner",
     slug: "doppelzentner",
     categoryName: "Masse",
@@ -2007,10 +2101,12 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Der Doppelzentner (Kental) ist eine Masseneinheit, die 100 Kilogramm entspricht. In der Türkei wird er vor allem zur Angabe landwirtschaftlicher Erträge und Erntemengen verwendet.",
     historySummary:
       "Der Doppelzentner geht auf das lateinische 'centum' (hundert) zurück und gelangte über das Französische in den türkischen Sprachgebrauch; im metrischen System ist er fest auf 100 Kilogramm festgelegt. Dass das türkische Landwirtschaftsministerium und das Statistikamt TÜİK Ertragsstatistiken für Getreide, Baumwolle und andere Pflanzenprodukte in 'Doppelzentner pro Dekar' angeben, hat diese Einheit zu einem im türkischen Agrarsektor täglich gebräuchlichen Maß gemacht.",
-    measurementSystem: "Metrisches System (französischen Ursprungs, im Agrarsektor gebräuchlich)",
-    commonUses: "Landwirtschaftliche Ertragsberichte in der Türkei (Doppelzentner/Dekar), Getreide- und Erntemengenmessung",
+    measurementSystem:
+      "Metrisches System (französischen Ursprungs, im Agrarsektor gebräuchlich)",
+    commonUses:
+      "Landwirtschaftliche Ertragsberichte in der Türkei (Doppelzentner/Dekar), Getreide- und Erntemengenmessung",
   },
-  "stone": {
+  stone: {
     name: "Stone",
     slug: "stone",
     categoryName: "Masse",
@@ -2019,9 +2115,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Stone entstand im mittelalterlichen England als Einheit, die auf Steingewichten zum Wiegen von Wolle und landwirtschaftlichen Produkten beruhte, und wurde durch das Gewichts- und Maßgesetz von 1835 offiziell auf 14 Pfund festgelegt. Obwohl heute auf das metrische System umgestellt, wird das menschliche Körpergewicht im Vereinigten Königreich und in Irland umgangssprachlich und im medizinischen Kontext weiterhin häufig in Stone angegeben (etwa '12 Stone 5 Pfund').",
     measurementSystem: "Britisches Maßsystem (Imperial)",
-    commonUses: "Angabe des Körpergewichts im Vereinigten Königreich und in Irland, Gewichtsklassenangabe in Sportarten wie Boxen und Ringen",
+    commonUses:
+      "Angabe des Körpergewichts im Vereinigten Königreich und in Irland, Gewichtsklassenangabe in Sportarten wie Boxen und Ringen",
   },
-  "grain": {
+  grain: {
     name: "Grain",
     slug: "grain",
     categoryName: "Masse",
@@ -2029,10 +2126,12 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Grain ist eine historische Masseneinheit, die heute vor allem zur Angabe des Gewichts von Geschossen/Pulverladungen sowie von Pfeilen im Bogensport verwendet wird. 1 Grain entspricht etwa 64,8 Milligramm.",
     historySummary:
       "Grain ist nach dem Durchschnittsgewicht eines Gerstenkorns benannt und wird seit dem Mittelalter als kleinste Masseneinheit des britischen Maßsystems verwendet. Trotz der Verbreitung des metrischen Systems hat sie sich in der Munitionsindustrie als internationaler Standard erhalten.",
-    measurementSystem: "Britisches/US-amerikanisches Maßsystem (Imperial/US Customary)",
-    commonUses: "Geschoss- und Pulvergewicht, Pfeilgewicht im Bogensport, manche Goldschmiedewaagen",
+    measurementSystem:
+      "Britisches/US-amerikanisches Maßsystem (Imperial/US Customary)",
+    commonUses:
+      "Geschoss- und Pulvergewicht, Pfeilgewicht im Bogensport, manche Goldschmiedewaagen",
   },
-  "dalton": {
+  dalton: {
     name: "Dalton",
     slug: "dalton",
     categoryName: "Masse",
@@ -2041,9 +2140,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "1803 schlug John Dalton vor, zur Messung von Atommassen die Masse des Wasserstoffatoms als natürliche Referenz zu verwenden. 1898 schlugen Wilhelm Ostwald und Kollegen vor, die Referenz auf ein Sechzehntel der Masse des Sauerstoffatoms umzustellen, da diese experimentell leichter zu messen war; dies wurde 1903 offiziell übernommen. Auf Vorschlag des Physikers Alfred Nier wurde die Referenz 1957 auf Kohlenstoff-12 verschoben -- diese Änderung wurde 1960 (IUPAP) und 1961 (IUPAC) offiziell, und die Einheit erhielt den Namen 'vereinheitlichte atomare Masseneinheit' (Symbol: u), um sie von der alten sauerstoffbasierten Definition zu unterscheiden. 1993 schlug die IUPAC den kürzeren Namen 'Dalton' vor, der 2005 von der IUPAP bestätigt und 2006 offiziell in die SI-Referenzquellen der BIPM aufgenommen wurde.",
     measurementSystem: "Spezielle Masseneinheit in Chemie und Physik",
-    commonUses: "Atom- und Molekülmasse, Protein-/Biomolekülmasse, Chemie und Biochemie",
+    commonUses:
+      "Atom- und Molekülmasse, Protein-/Biomolekülmasse, Chemie und Biochemie",
   },
-  "miskal": {
+  miskal: {
     name: "Miskal",
     slug: "miskal",
     categoryName: "Masse",
@@ -2051,10 +2151,12 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Miskal ist eine im Osmanischen Reich für präzisionsbedürftige Substanzen wie Gold, Silber und wertvolle Arzneimittel verwendete Masseneinheit. 1 Miskal entspricht genau 1,5 Dirhem (4,81104375 Gramm).",
     historySummary:
       "Miskal hat im islamischen Recht und im osmanischen Maßsystem eine lange Geschichte und wurde in 24 Karat oder 96 Weizenkörner unterteilt. Die osmanische Maß- und Eichverordnung vom 26. September 1869 legte 1 Miskal exakt auf 1,5 Dirhem (4,81104375 g) fest. In der Goldschmiedekunst wird das Goldgewicht gelegentlich noch heute in Miskal angegeben.",
-    measurementSystem: "Traditionelle osmanische Masseneinheit (nicht mehr in Gebrauch)",
-    commonUses: "Wiegen von Gold/Silber und wertvollen Arzneimitteln im Osmanischen Reich; heute bei manchen Goldschmieden als traditionelle Referenz für Goldgewicht",
+    measurementSystem:
+      "Traditionelle osmanische Masseneinheit (nicht mehr in Gebrauch)",
+    commonUses:
+      "Wiegen von Gold/Silber und wertvollen Arzneimitteln im Osmanischen Reich; heute bei manchen Goldschmieden als traditionelle Referenz für Goldgewicht",
   },
-  "batman": {
+  batman: {
     name: "Batman",
     slug: "batman",
     categoryName: "Masse",
@@ -2062,8 +2164,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Batman ist eine in Anatolien gebräuchliche traditionelle Gewichtseinheit. Nach dem in jüngerer Zeit im Handel verwendeten Standard entspricht 1 Batman 6 Okka (etwa 7,698 kg); regional konnte er jedoch stark zwischen 2 und 8 Okka variieren.",
     historySummary:
       "Der Name Batman wird mit einem in Dîvânü Lugâti't-Türk belegten anatolischen Volksbegriff in Verbindung gebracht, der 'groß, schwer; großer Krug/Gefäß' bedeutet. Im 16./17. Jahrhundert entsprach das in der Apothekerkunst verwendete Batman 266 Dirhem, während sich in jüngerer Zeit im anatolischen Handel der Standard von 6 Okka durchsetzte; mit einer Verordnung von 1881 wurde das 'neue Batman' exakt auf 10 Kilogramm festgelegt.",
-    measurementSystem: "Regional unterschiedliche, traditionelle anatolische Masseneinheit (nicht mehr in Gebrauch)",
-    commonUses: "Traditionelle Gewichtseinheit beim Handel mit landwirtschaftlichen Produkten (besonders Wolle, Baumwolle) in Anatolien",
+    measurementSystem:
+      "Regional unterschiedliche, traditionelle anatolische Masseneinheit (nicht mehr in Gebrauch)",
+    commonUses:
+      "Traditionelle Gewichtseinheit beim Handel mit landwirtschaftlichen Produkten (besonders Wolle, Baumwolle) in Anatolien",
   },
   "troy-ons": {
     name: "Feinunze",
@@ -2074,9 +2178,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Das Troy-Gewichtssystem ist nach der französischen Stadt Troyes benannt, die im Mittelalter ein bedeutendes Handelsmessezentrum war. Dieses unter Edelmetall- und Schmuckhändlern verbreitete System wurde in England zum offiziellen Standard der königlichen Münzstätte und des Edelmetallhandels und ist bis heute die offizielle Einheit der weltweiten Gold- und Silbermärkte (einschließlich des Londoner Bullion Market).",
     measurementSystem: "Troy-Gewichtssystem (Standard des Edelmetallhandels)",
-    commonUses: "Preisbildung für Gold, Silber und Platin, Barren- und Börsengeschäfte, internationaler Preisvergleich in der Schmuckbranche",
+    commonUses:
+      "Preisbildung für Gold, Silber und Platin, Barren- und Börsengeschäfte, internationaler Preisvergleich in der Schmuckbranche",
   },
-  "karat": {
+  karat: {
     name: "Karat",
     slug: "karat",
     categoryName: "Masse",
@@ -2084,10 +2189,12 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Karat ist eine Masseneinheit zur Angabe des Gewichts von Edelsteinen wie Diamanten, Rubinen und Smaragden. 1 Karat entspricht genau 0,2 Gramm (200 Milligramm). Es ist nicht mit dem Begriff 'Feingehalt' (Goldkarat) zu verwechseln, der die Goldreinheit angibt -- Karat ist hier ein Gewicht, Feingehalt dagegen ein Reinheitsverhältnis.",
     historySummary:
       "Karat ist nach den Samen des Johannisbrotbaums (Carob) benannt; da das Gewicht dieser Samen recht konstant ist, dienten sie in früheren Zeiten als natürliche Referenz zum Wiegen von Edelsteinen. 1907 wurde das 'metrische Karat' durch ein internationales Abkommen auf 0,2 Gramm standardisiert und weltweit übernommen.",
-    measurementSystem: "Internationaler Schmuck-/Edelsteinstandard (metrisches Karat)",
-    commonUses: "Gewicht von Diamanten und Farbedelsteinen, Schmuckzertifizierung und -bewertung",
+    measurementSystem:
+      "Internationaler Schmuck-/Edelsteinstandard (metrisches Karat)",
+    commonUses:
+      "Gewicht von Diamanten und Farbedelsteinen, Schmuckzertifizierung und -bewertung",
   },
-  "kibibit": {
+  kibibit: {
     name: "Kibibit",
     slug: "kibibit",
     categoryName: "Datenspeicher",
@@ -2096,9 +2203,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Da Computerspeicher naturgemäß im binären System (Zweierpotenzen) arbeitet, wurde 'Kilobit' früher sowohl für 1000 Bit als auch in der Praxis häufig für 1024 Bit verwendet -- diese Mehrdeutigkeit führte besonders bei Streitigkeiten über Speicherkapazitäten (Hersteller rechnen dezimal, Betriebssysteme binär) zu Verwirrung. Die Internationale Elektrotechnische Kommission (IEC) verabschiedete 1998 zur Behebung dieser Mehrdeutigkeit den Standard der binären Vorsilben 'Kibi', 'Mebi', 'Gibi', 'Tebi' -- der Name 'Kibibit' ist die Abkürzung von 'kilobinary bit'. Dadurch konnte klar unterschieden werden: 'Kilobit' bedeutet nun ausschließlich dezimal (1000 Bit), 'Kibibit' ausschließlich binär (1024 Bit).",
     measurementSystem: "IEC-Standard für binäre Vorsilben",
-    commonUses: "Netzwerkbandbreite, Berechnungen der Speicher-/Datenkapazität (bitbasiert)",
+    commonUses:
+      "Netzwerkbandbreite, Berechnungen der Speicher-/Datenkapazität (bitbasiert)",
   },
-  "mebibit": {
+  mebibit: {
     name: "Mebibit",
     slug: "mebibit",
     categoryName: "Datenspeicher",
@@ -2107,9 +2215,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Mebibit ist Teil der 1998 von der IEC standardisierten Familie binärer Vorsilben ('mega' + Abkürzung von 'binary') und bezeichnet exakt 2²⁰ Bit, im Unterschied zum dezimalen 'Megabit' (1.000.000 Bit). Diese Unterscheidung ist besonders bei Diskussionen über Datenspeicherung und Netzwerkgeschwindigkeit wichtig, da der Unterschied zwischen beiden Definitionen mit steigender Größenordnung prozentual zunimmt.",
     measurementSystem: "IEC-Standard für binäre Vorsilben",
-    commonUses: "Netzwerkbandbreite, Berechnungen der Speicherkapazität (bitbasiert)",
+    commonUses:
+      "Netzwerkbandbreite, Berechnungen der Speicherkapazität (bitbasiert)",
   },
-  "gibibit": {
+  gibibit: {
     name: "Gibibit",
     slug: "gibibit",
     categoryName: "Datenspeicher",
@@ -2118,9 +2227,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Gibibit wurde als Teil des IEC-Standards von 1998 definiert, um es vom dezimalen 'Gigabit' (1.000.000.000 Bit) abzugrenzen; es entspricht exakt 2³⁰ Bit. Netzwerkgerätehersteller (etwa bei 1-Gigabit-Ethernet) verwenden meist die dezimale Definition, während Betriebssysteme und manche Hardwareangaben die binäre Definition (Gibibit) bevorzugen -- das kann bei Nutzern zu der Verwunderung führen, warum die angezeigte Geschwindigkeit von der erwarteten abweicht.",
     measurementSystem: "IEC-Standard für binäre Vorsilben",
-    commonUses: "Hochgeschwindigkeits-Netzwerkverbindungen, Berechnungen der Serverspeicherkapazität",
+    commonUses:
+      "Hochgeschwindigkeits-Netzwerkverbindungen, Berechnungen der Serverspeicherkapazität",
   },
-  "tebibit": {
+  tebibit: {
     name: "Tebibit",
     slug: "tebibit",
     categoryName: "Datenspeicher",
@@ -2131,7 +2241,7 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     measurementSystem: "IEC-Standard für binäre Vorsilben",
     commonUses: "Kapazitätsplanung in Rechenzentren, große Speichersysteme",
   },
-  "kilobit": {
+  kilobit: {
     name: "Kilobit",
     slug: "kilobit",
     categoryName: "Datenspeicher",
@@ -2140,9 +2250,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Kilobit ist gemäß dem dezimalen SI-Vorsilbensystem definiert und gilt in Netzwerk-/Telekommunikationsstandards (IEEE, IEC) offiziell als 1000 Bit für die Messung von Datenübertragungsraten -- das unterscheidet sich von der historisch bei Speicherkapazitäten verwendeten binären (1024 Bit) Auslegung. In der Modem-Ära (1990er-Jahre) wurde 'kbit/s' (Kilobit pro Sekunde) zur Standardangabe der Verbindungsgeschwindigkeit, eine Verwendung, die bis heute anhält.",
     measurementSystem: "Dezimales SI-Vorsilbensystem",
-    commonUses: "Internetverbindungsgeschwindigkeit (kbit/s), alte Modemgeschwindigkeiten, Audio-/Datenströme mit niedriger Bitrate",
+    commonUses:
+      "Internetverbindungsgeschwindigkeit (kbit/s), alte Modemgeschwindigkeiten, Audio-/Datenströme mit niedriger Bitrate",
   },
-  "megabit": {
+  megabit: {
     name: "Megabit",
     slug: "megabit",
     categoryName: "Datenspeicher",
@@ -2151,9 +2262,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Megabit ist die Standardeinheit, mit der Internetanbieter ihre Verbindungsgeschwindigkeiten bewerben, und wird häufig mit dem für Dateigrößen verwendeten Megabyte (MB) verwechselt -- dabei gilt 1 Megabyte = 8 Megabit. Diese Verwechslung ist so verbreitet, dass Fragen wie 'ich habe 100 Mbit/s Internet, warum ist meine Downloadgeschwindigkeit nur 12,5 MB/s' zu den häufigsten Fragen in Internetforen zählen; die Unterscheidung besteht seit dem IEEE-802.3-Ethernet-Standard (1980er-Jahre).",
     measurementSystem: "Dezimales SI-Vorsilbensystem",
-    commonUses: "Internetverbindungsgeschwindigkeit (Mbit/s), Glasfaser-/DSL-Geschwindigkeitstests, Bitraten beim Video-Streaming",
+    commonUses:
+      "Internetverbindungsgeschwindigkeit (Mbit/s), Glasfaser-/DSL-Geschwindigkeitstests, Bitraten beim Video-Streaming",
   },
-  "gigabit": {
+  gigabit: {
     name: "Gigabit",
     slug: "gigabit",
     categoryName: "Datenspeicher",
@@ -2162,9 +2274,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Mit dem Gigabit-Ethernet-Standard (IEEE 802.3z, 1998) verbreitete sich der Begriff 'Gigabit' in der Vermarktung von Netzwerkhardware (Switches, Karten); ab den 2010er-Jahren wurde er auch zur Standardangabe bei der Bewerbung von Glasfaser-Internetinfrastruktur (GPON, Gigabit-Glasfaser).",
     measurementSystem: "Dezimales SI-Vorsilbensystem",
-    commonUses: "Glasfaser-Internetgeschwindigkeit (Gbit/s), Gigabit-Ethernet-Netzwerkhardware, Verbindungsgeschwindigkeiten in Rechenzentren",
+    commonUses:
+      "Glasfaser-Internetgeschwindigkeit (Gbit/s), Gigabit-Ethernet-Netzwerkhardware, Verbindungsgeschwindigkeiten in Rechenzentren",
   },
-  "terabit": {
+  terabit: {
     name: "Terabit",
     slug: "terabit",
     categoryName: "Datenspeicher",
@@ -2173,7 +2286,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Die Einheit Terabit wird verwendet, um die gesamte Datenübertragungskapazität der Internet-Backbone-Infrastruktur anzugeben -- die Kapazität von Unterseeglasfaserkabeln wird beispielsweise meist in Terabit pro Sekunde (Tbit/s) angegeben; die ersten Unterseekabel mit Kapazitäten im Multi-Terabit-Bereich gingen Mitte der 2010er-Jahre in Betrieb.",
     measurementSystem: "Dezimales SI-Vorsilbensystem",
-    commonUses: "Unterseekabel-/Backbone-Glasfaserkapazität, große Netzwerkinfrastruktur in Rechenzentren",
+    commonUses:
+      "Unterseekabel-/Backbone-Glasfaserkapazität, große Netzwerkinfrastruktur in Rechenzentren",
   },
   "santimetre-saniyekare": {
     name: "Zentimeter pro Sekundequadrat",
@@ -2184,7 +2298,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Die Einheit leitet sich aus den metrischen Basiseinheiten Länge (Zentimeter) und Zeit (Sekunde) ab und steht in direktem Zusammenhang mit der CGS-basierten Beschleunigungseinheit Gal (1 Gal = 1 cm/s²).",
     measurementSystem: "Internationales Einheitensystem (SI, Untereinheit)",
-    commonUses: "Seismologie (Erdbebenbeschleunigung), CGS-basierte physikalische Berechnungen",
+    commonUses:
+      "Seismologie (Erdbebenbeschleunigung), CGS-basierte physikalische Berechnungen",
   },
   "milimetre-saniyekare": {
     name: "Millimeter pro Sekundequadrat",
@@ -2206,7 +2321,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Die Einheit leitet sich von der großräumigen metrischen Entfernungseinheit Kilometer ab und ermöglicht es, in der Raumfahrttechnik große Beschleunigungswerte mit kleineren Zahlen anzugeben.",
     measurementSystem: "Internationales Einheitensystem (SI, Vielfaches)",
-    commonUses: "Beschleunigung von Raketen und Raumfahrzeugen, ballistische Berechnungen",
+    commonUses:
+      "Beschleunigung von Raketen und Raumfahrzeugen, ballistische Berechnungen",
   },
   "inc-saniyekare": {
     name: "Zoll pro Sekundequadrat",
@@ -2227,8 +2343,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Meter pro Minutequadrat ist eine metrische Einheit zur Angabe der Beschleunigung langsam bewegter Systeme wie Aufzügen oder Förderbändern.",
     historySummary:
       "Die Einheit ergibt sich aus der Division der metrischen Basislängeneinheit durch das Quadrat der in Minuten gemessenen Zeit und ermöglicht eine praktische Darstellung niedriger Beschleunigungswerte.",
-    measurementSystem: "Internationales Einheitensystem (SI, abgeleitete Einheit)",
-    commonUses: "Auslegung von Aufzugs- und Fördersystemen, industrielle Automatisierung",
+    measurementSystem:
+      "Internationales Einheitensystem (SI, abgeleitete Einheit)",
+    commonUses:
+      "Auslegung von Aufzugs- und Fördersystemen, industrielle Automatisierung",
   },
   "fit-dakikakare": {
     name: "Fuß pro Minutequadrat",
@@ -2250,7 +2368,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Die Einheit wurde in Anlehnung an Galileis Fallexperimente benannt und wird seit dem 19. Jahrhundert in Geophysik und Seismologie als Standard-CGS-Einheit für Messungen der Erdbeschleunigung verwendet.",
     measurementSystem: "CGS-System (Zentimeter-Gramm-Sekunde)",
-    commonUses: "Seismologie (Erdbebenbeschleunigungsmessung), geophysikalische Schweremessungen",
+    commonUses:
+      "Seismologie (Erdbebenbeschleunigungsmessung), geophysikalische Schweremessungen",
   },
   "kilometre-saniye": {
     name: "Kilometer pro Sekunde",
@@ -2261,7 +2380,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Die Einheit ergibt sich aus dem Verhältnis der großen metrischen Entfernungseinheit Kilometer zur Sekunde; sie ermöglicht in Raumfahrt und Astronomie eine praktische Darstellung großer Werte wie Fluchtgeschwindigkeit oder Bahngeschwindigkeit.",
     measurementSystem: "Internationales Einheitensystem (SI, Vielfaches)",
-    commonUses: "Geschwindigkeit von Raumfahrzeugen und Satelliten, Astronomie, ballistische Berechnungen",
+    commonUses:
+      "Geschwindigkeit von Raumfahrzeugen und Satelliten, Astronomie, ballistische Berechnungen",
   },
   "fit-saniye": {
     name: "Fuß pro Sekunde",
@@ -2272,7 +2392,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Die Einheit ergibt sich aus dem Verhältnis der britischen Längeneinheit Fuß zur Sekunde und ist eine aus den USA stammende Standardgeschwindigkeitseinheit in Ballistik und Luftfahrttechnik.",
     measurementSystem: "Britisches und US-amerikanisches Maßsystem",
-    commonUses: "Geschossgeschwindigkeit (Ballistik), Strömungsgeschwindigkeit, US-amerikanische Luftfahrttechnik",
+    commonUses:
+      "Geschossgeschwindigkeit (Ballistik), Strömungsgeschwindigkeit, US-amerikanische Luftfahrttechnik",
   },
   "metre-dakika": {
     name: "Meter pro Minute",
@@ -2282,8 +2403,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Meter pro Minute ist eine metrische Einheit zur Angabe der Geschwindigkeit langsam bewegter Systeme wie Förderbändern und Laufstegen.",
     historySummary:
       "Die Einheit ergibt sich aus dem Verhältnis der metrischen Basislängeneinheit zur in Minuten gemessenen Zeit und liefert in Katalogen industrieller Anlagen praktische Werte.",
-    measurementSystem: "Internationales Einheitensystem (SI, abgeleitete Einheit)",
-    commonUses: "Förderbandgeschwindigkeit, Textilmaschinen, Geschwindigkeit von Laufstegen und Rolltreppen",
+    measurementSystem:
+      "Internationales Einheitensystem (SI, abgeleitete Einheit)",
+    commonUses:
+      "Förderbandgeschwindigkeit, Textilmaschinen, Geschwindigkeit von Laufstegen und Rolltreppen",
   },
   "kilometre-dakika": {
     name: "Kilometer pro Minute",
@@ -2293,8 +2416,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Kilometer pro Minute ist eine im Alltag weniger gebräuchliche metrische Geschwindigkeitseinheit zur Angabe mittlerer bis hoher Geschwindigkeiten (etwa von Zügen oder Flugzeugen).",
     historySummary:
       "Die Einheit ergibt sich aus dem Verhältnis der Einheit Kilometer zur in Minuten gemessenen Zeit und wird in manchen sportlichen und verkehrstechnischen Berechnungen als alternative Geschwindigkeitsangabe verwendet.",
-    measurementSystem: "Internationales Einheitensystem (SI, abgeleitete Einheit)",
-    commonUses: "Berechnungen von Zug- und Flugzeuggeschwindigkeit, Sportwissenschaft (Tempoanalysen)",
+    measurementSystem:
+      "Internationales Einheitensystem (SI, abgeleitete Einheit)",
+    commonUses:
+      "Berechnungen von Zug- und Flugzeuggeschwindigkeit, Sportwissenschaft (Tempoanalysen)",
   },
   "santimetre-saniye": {
     name: "Zentimeter pro Sekunde",
@@ -2305,7 +2430,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Die Einheit ergibt sich aus dem Verhältnis der kleinskaligen metrischen Längeneinheit zur Sekunde und begegnet häufig auch in CGS-basierten wissenschaftlichen Messungen.",
     measurementSystem: "Internationales Einheitensystem (SI, Untereinheit)",
-    commonUses: "Laborströmungsversuche, Geschwindigkeit kleiner Robotik- und Mechanismensysteme",
+    commonUses:
+      "Laborströmungsversuche, Geschwindigkeit kleiner Robotik- und Mechanismensysteme",
   },
   "radyan-dakika": {
     name: "Radiant pro Minute",
@@ -2315,8 +2441,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Radiant pro Minute ist eine metrische Einheit der Winkelgeschwindigkeit (Drehgeschwindigkeit), die zur praktischen Darstellung langsamerer Drehbewegungen als Radiant pro Sekunde verwendet wird.",
     historySummary:
       "Die Einheit ist die minutenbezogene Ausdrucksform der grundlegenden SI-Winkelgeschwindigkeitseinheit Radiant pro Sekunde und erleichtert die Analyse langsam drehender Mechanismen wie Uhrwerke.",
-    measurementSystem: "Internationales Einheitensystem (SI, abgeleitete Einheit)",
-    commonUses: "Analyse langsam drehender Mechanismen, Gelenkbewegungen in der Robotik",
+    measurementSystem:
+      "Internationales Einheitensystem (SI, abgeleitete Einheit)",
+    commonUses:
+      "Analyse langsam drehender Mechanismen, Gelenkbewegungen in der Robotik",
   },
   "radyan-saat": {
     name: "Radiant pro Stunde",
@@ -2326,8 +2454,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Radiant pro Stunde ist eine Einheit zur Angabe sehr langsamer Dreh- oder Winkelbewegungen, etwa bei Planetenrotationen oder geologischen Prozessen.",
     historySummary:
       "Die Einheit ist die stundenbezogene Ausdrucksform der grundlegenden SI-Winkelgeschwindigkeitseinheit und ermöglicht es, Winkelbewegungen auf sehr langen Zeitskalen wie in Astronomie und Geologie mit aussagekräftigen Zahlen darzustellen.",
-    measurementSystem: "Internationales Einheitensystem (SI, abgeleitete Einheit)",
-    commonUses: "Astronomische Rotationsbewegungen, Analyse geologischer Prozesse",
+    measurementSystem:
+      "Internationales Einheitensystem (SI, abgeleitete Einheit)",
+    commonUses:
+      "Astronomische Rotationsbewegungen, Analyse geologischer Prozesse",
   },
   "devir-saniye-acisal": {
     name: "Umdrehung pro Sekunde",
@@ -2337,8 +2467,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Umdrehung pro Sekunde ist eine Winkelgeschwindigkeitseinheit, die angibt, wie viele volle Umdrehungen eine Drehbewegung pro Sekunde vollzieht; sie ist das Sekunden-Äquivalent von U/min.",
     historySummary:
       "Obwohl die Einheit denselben Zahlenwert wie die Frequenzeinheit Hertz besitzt, wird sie im Kontext der Winkelgeschwindigkeit begrifflich eigenständig als 'Umdrehungen pro Sekunde' verwendet; in der Motoren- und Turbinentechnik dient sie als Alternative zu U/min.",
-    measurementSystem: "Internationales Einheitensystem (SI, abgeleitete Einheit)",
-    commonUses: "Motor- und Turbinendrehzahl, Maschinenbau für rotierende Anlagen",
+    measurementSystem:
+      "Internationales Einheitensystem (SI, abgeleitete Einheit)",
+    commonUses:
+      "Motor- und Turbinendrehzahl, Maschinenbau für rotierende Anlagen",
   },
   "derece-dakika": {
     name: "Grad pro Minute",
@@ -2360,9 +2492,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Die Einheit ergibt sich aus dem Verhältnis von Grad zur in Stunden gemessenen Zeit und wird auch zur Beschreibung der scheinbaren Bewegung der Sonne am Himmel (etwa 15°/Stunde) verwendet.",
     measurementSystem: "Nicht-SI-Einheit, in der Winkelmessung gebräuchlich",
-    commonUses: "Sonnenuhr- und Schattenbewegungsberechnungen, sehr langsame Drehsysteme",
+    commonUses:
+      "Sonnenuhr- und Schattenbewegungsberechnungen, sehr langsame Drehsysteme",
   },
-  "megapascal": {
+  megapascal: {
     name: "Megapascal",
     slug: "megapascal",
     categoryName: "Druck",
@@ -2371,9 +2504,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Megapascal hat sich als SI-Standardeinheit zur Angabe von Betondruckfestigkeit (etwa C25-Beton = 25 MPa), Stahlstreckgrenze und anderen Materialfestigkeitswerten weltweit im Bauwesen und der Werkstoffkunde durchgesetzt; da 1 MPa genau 1 N/mm² entspricht, ist es zu einer praktischen Einheit für technische Berechnungen geworden.",
     measurementSystem: "Internationales Einheitensystem (SI, Vielfaches)",
-    commonUses: "Festigkeitswerte von Beton und Stahl, Werkstofftechnik, Auslegung von Druckbehältern",
+    commonUses:
+      "Festigkeitswerte von Beton und Stahl, Werkstofftechnik, Auslegung von Druckbehältern",
   },
-  "hektopascal": {
+  hektopascal: {
     name: "Hektopascal",
     slug: "hektopascal",
     categoryName: "Druck",
@@ -2382,7 +2516,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Hektopascal wurde von der Weltorganisation für Meteorologie als SI-konformes Äquivalent der alten Einheit 'Millibar' übernommen (1 hPa = 1 mbar) und wird heute standardmäßig in Wetterberichten, Druckkarten und an Barometern verwendet; der mittlere Luftdruck auf Meereshöhe beträgt etwa 1013,25 hPa.",
     measurementSystem: "Internationales Einheitensystem (SI, Vielfaches)",
-    commonUses: "Wetterberichte, meteorologische Druckmessung, Barometerablesungen",
+    commonUses:
+      "Wetterberichte, meteorologische Druckmessung, Barometerablesungen",
   },
   "teknik-atmosfer": {
     name: "Technische Atmosphäre",
@@ -2392,8 +2527,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Die technische Atmosphäre ist eine besonders in europäischer und ehemals sowjetischer technischer Fachliteratur verwendete Druckeinheit, die Kilogramm-Kraft pro Quadratzentimeter entspricht.",
     historySummary:
       "Die Einheit wurde Anfang des 20. Jahrhunderts als praktische Druckreferenz für technische Berechnungen definiert und beruht, im Unterschied zur physikalischen Standardatmosphäre, auf einem runden Wert (1 kgf/cm²).",
-    measurementSystem: "Technisches/ingenieurwissenschaftliches Einheitensystem (Nicht-SI)",
-    commonUses: "Europäische und ehemals sowjetische technische Dokumente, Auslegung von Druckbehältern",
+    measurementSystem:
+      "Technisches/ingenieurwissenschaftliches Einheitensystem (Nicht-SI)",
+    commonUses:
+      "Europäische und ehemals sowjetische technische Dokumente, Auslegung von Druckbehältern",
   },
   "milimetre-su-sutunu": {
     name: "Millimeter Wassersäule",
@@ -2403,10 +2540,12 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Millimeter Wassersäule ist eine Druckeinheit zur präzisen Angabe geringer Druckunterschiede, besonders in Lüftungskanälen.",
     historySummary:
       "Die Einheit stammt aus der traditionellen Druckmessung über die Höhe einer Flüssigkeitssäule (ähnlich der Quecksilbersäulenmessung); da Wasser deutlich leichter ist als Quecksilber, lassen sich damit niedrige Drücke präziser darstellen.",
-    measurementSystem: "Nicht-SI-Einheit, gebräuchlich in HLK- und Lüftungstechnik",
-    commonUses: "HLK- und Lüftungskanaldruck, Messung geringer Druckunterschiede",
+    measurementSystem:
+      "Nicht-SI-Einheit, gebräuchlich in HLK- und Lüftungstechnik",
+    commonUses:
+      "HLK- und Lüftungskanaldruck, Messung geringer Druckunterschiede",
   },
-  "torr": {
+  torr: {
     name: "Torr",
     slug: "torr",
     categoryName: "Druck",
@@ -2417,7 +2556,7 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     measurementSystem: "Spezielle Druckeinheit in Vakuumtechnik und Laboren",
     commonUses: "Vakuumpumpen, Labordruckmessungen, Halbleiterfertigung",
   },
-  "kilonewton": {
+  kilonewton: {
     name: "Kilonewton",
     slug: "kilonewton",
     categoryName: "Kraft",
@@ -2426,9 +2565,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Die Einheit leitet sich vom grundlegenden SI-Kraftmaß Newton ab (benannt nach Isaac Newton) und ermöglicht es, Lastberechnungen im Bau- und Ingenieurwesen mit praktischen Zahlenwerten auszudrücken.",
     measurementSystem: "Internationales Einheitensystem (SI, Vielfaches)",
-    commonUses: "Lastberechnungen im Bauwesen, Bauingenieurwesen, Triebwerksschubkraft",
+    commonUses:
+      "Lastberechnungen im Bauwesen, Bauingenieurwesen, Triebwerksschubkraft",
   },
-  "dyn": {
+  dyn: {
     name: "Dyn",
     slug: "dyn",
     categoryName: "Kraft",
@@ -2437,7 +2577,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Die Einheit stammt aus der Zeit, als das CGS-System im 19. Jahrhundert vor dem SI-System als physikalischer Standard galt; heute findet man sie hauptsächlich in älterer wissenschaftlicher Literatur und bei manchen Labormessungen.",
     measurementSystem: "CGS-System (Zentimeter-Gramm-Sekunde)",
-    commonUses: "Messungen der Oberflächenspannung, ältere physikalische Fachliteratur, Labormessungen kleinster Kräfte",
+    commonUses:
+      "Messungen der Oberflächenspannung, ältere physikalische Fachliteratur, Labormessungen kleinster Kräfte",
   },
   "pound-kuvvet": {
     name: "Pound-Force",
@@ -2448,7 +2589,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Die begriffliche Unterscheidung zwischen der Masseneinheit Pfund und der Krafteinheit Pound-Force wurde im 20. Jahrhundert klargestellt, um Verwechslungen bei technischen Berechnungen zu vermeiden.",
     measurementSystem: "Britisches und US-amerikanisches Maßsystem",
-    commonUses: "Luft- und Raumfahrttechnik (Schubkraft), US-amerikanische Baustatikberechnungen",
+    commonUses:
+      "Luft- und Raumfahrttechnik (Schubkraft), US-amerikanische Baustatikberechnungen",
   },
   "kilonewton-metre": {
     name: "Kilonewtonmeter",
@@ -2459,7 +2601,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Die Einheit entstand aus dem praktischen Messbedarf großer Industriemaschinen (etwa Nutzfahrzeugmotoren, Windkraftanlagen) für die Einheit Newtonmeter.",
     measurementSystem: "Internationales Einheitensystem (SI, Vielfaches)",
-    commonUses: "Drehmoment schwerer Maschinen und Motoren, Berechnungen im Bauingenieurwesen",
+    commonUses:
+      "Drehmoment schwerer Maschinen und Motoren, Berechnungen im Bauingenieurwesen",
   },
   "pound-fit-saniye": {
     name: "Pfund-Fuß pro Sekunde",
@@ -2481,9 +2624,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Die Einheit ergibt sich als ein Tausendstel der grundlegenden SI-Einheit der dynamischen Viskosität, der Pascalsekunde, und hat sich in der wissenschaftlichen Literatur als SI-Entsprechung der CGS-Einheit Centipoise etabliert.",
     measurementSystem: "Internationales Einheitensystem (SI, Untereinheit)",
-    commonUses: "Messung der Flüssigkeitsviskosität, Chemie- und Lebensmitteltechnik, Rheologie",
+    commonUses:
+      "Messung der Flüssigkeitsviskosität, Chemie- und Lebensmitteltechnik, Rheologie",
   },
-  "poise": {
+  poise: {
     name: "Poise",
     slug: "poise",
     categoryName: "Viskosität",
@@ -2492,7 +2636,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Die Einheit entstand aus Poiseuilles Arbeiten zur Flüssigkeitsströmung in engen Röhren im 19. Jahrhundert und wird als der gegenüber dem SI älterer Viskositätsstandard des CGS-Systems in der Industrie weiterhin verwendet.",
     measurementSystem: "CGS-System (Zentimeter-Gramm-Sekunde)",
-    commonUses: "Erdöl- und Polymerindustrie, Strömungsmechanik (CGS-basierte Fachliteratur)",
+    commonUses:
+      "Erdöl- und Polymerindustrie, Strömungsmechanik (CGS-basierte Fachliteratur)",
   },
   "milimetrekare-saniye": {
     name: "Quadratmillimeter pro Sekunde",
@@ -2514,7 +2659,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Die Einheit leitet sich von der grundlegenden SI-Einheit der Wärmeleitfähigkeit, Watt pro Meter-Kelvin, ab und ermöglicht es, die hohen Leitfähigkeitswerte von Metallen und Legierungen mit kleineren Zahlen anzugeben.",
     measurementSystem: "Internationales Einheitensystem (SI, Vielfaches)",
-    commonUses: "Wärmeleitfähigkeit von Metallen und Legierungen, Wärmetauschertechnik",
+    commonUses:
+      "Wärmeleitfähigkeit von Metallen und Legierungen, Wärmetauschertechnik",
   },
   "watt-santimetre-kelvin": {
     name: "Watt pro Zentimeter-Kelvin",
@@ -2524,8 +2670,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Watt pro Zentimeter-Kelvin ist eine abgeleitete SI-Einheit, die Wärmeleitfähigkeit im Zentimetermaßstab angibt und in materialwissenschaftlichen Labormessungen verwendet wird.",
     historySummary:
       "Die Einheit ist die zentimeterbezogene Ausdrucksform der grundlegenden SI-Wärmeleitfähigkeitseinheit und bietet Praktikabilität bei Probenmessungen im Labormaßstab.",
-    measurementSystem: "Internationales Einheitensystem (SI, abgeleitete Einheit)",
-    commonUses: "Materialwissenschaftliche Labormessungen, thermische Analyse von Halbleitern",
+    measurementSystem:
+      "Internationales Einheitensystem (SI, abgeleitete Einheit)",
+    commonUses:
+      "Materialwissenschaftliche Labormessungen, thermische Analyse von Halbleitern",
   },
   "kalori-santimetrekare-saniye": {
     name: "Kalorie pro Quadratzentimeter-Sekunde",
@@ -2536,7 +2684,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Die Einheit stammt aus der Zeit, als die Kalorie die Standardenergieeinheit für wissenschaftliche Messungen war; heute findet man sie hauptsächlich in älterer meteorologischer Fachliteratur (Sonneneinstrahlung).",
     measurementSystem: "CGS-/kalorienbasiertes System",
-    commonUses: "Messung der Sonneneinstrahlung (ältere meteorologische Fachliteratur), Wärmeübertragungsforschung",
+    commonUses:
+      "Messung der Sonneneinstrahlung (ältere meteorologische Fachliteratur), Wärmeübertragungsforschung",
   },
   "kilojoule-kilogram-kelvin": {
     name: "Kilojoule pro Kilogramm-Kelvin",
@@ -2547,7 +2696,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Die Einheit leitet sich von der grundlegenden SI-Einheit der spezifischen Wärmekapazität, Joule pro Kilogramm-Kelvin, ab und liefert in Kilojoule ausgedrückt praktischere Zahlenwerte für technische Berechnungen.",
     measurementSystem: "Internationales Einheitensystem (SI, Vielfaches)",
-    commonUses: "Thermodynamische technische Berechnungen, Tabellen thermischer Materialeigenschaften",
+    commonUses:
+      "Thermodynamische technische Berechnungen, Tabellen thermischer Materialeigenschaften",
   },
   "btu-pound-fahrenhayt": {
     name: "BTU pro Pfund-Fahrenheit",
@@ -2571,7 +2721,7 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     measurementSystem: "Internationales Einheitensystem (SI, Vielfaches)",
     commonUses: "Industrielle Elektromagnete, Prüfung magnetischer Werkstoffe",
   },
-  "mikroweber": {
+  mikroweber: {
     name: "Mikroweber",
     slug: "mikroweber",
     categoryName: "Magnetischer Fluss",
@@ -2580,9 +2730,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Die Einheit leitet sich von der grundlegenden SI-Einheit des magnetischen Flusses, dem Weber (benannt nach dem deutschen Physiker Wilhelm Eduard Weber), ab und wird bei der Messung des magnetischen Flusses kleiner elektronischer Bauteile (Spulen, Sensoren) verwendet.",
     measurementSystem: "Internationales Einheitensystem (SI, Untereinheit)",
-    commonUses: "Entwicklung elektronischer Sensoren und Spulen, Geräte zur Messung des magnetischen Flusses",
+    commonUses:
+      "Entwicklung elektronischer Sensoren und Spulen, Geräte zur Messung des magnetischen Flusses",
   },
-  "nanoweber": {
+  nanoweber: {
     name: "Nanoweber",
     slug: "nanoweber",
     categoryName: "Magnetischer Fluss",
@@ -2593,7 +2744,7 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     measurementSystem: "Internationales Einheitensystem (SI, Untereinheit)",
     commonUses: "Präzise Magnetsensoren, mikroelektronische Messungen",
   },
-  "rankine": {
+  rankine: {
     name: "Rankine",
     slug: "rankine",
     categoryName: "Temperatur",
@@ -2601,10 +2752,12 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Rankine ist eine absolute Temperaturskala, die Grade in Fahrenheit-Größe verwendet und deren Nullpunkt dem absoluten Nullpunkt entspricht; sie wird besonders in US-amerikanischen technischen Berechnungen verwendet.",
     historySummary:
       "Die Rankine-Skala wurde 1859 von W. J. M. Rankine, Ingenieur und Physiker an der Universität Glasgow, vorgeschlagen -- etwa zehn Jahre nach der Einführung der Kelvin-Skala 1848. Das Besondere an der Rankine-Skala ist, dass sie im Gegensatz zu Kelvins Celsius-Gradgröße die Fahrenheit-Gradgröße verwendet: Eine Differenz von 1 Grad Rankine entspricht genau einer Differenz von 1 Grad Fahrenheit. Wie bei Kelvin entspricht der Nullpunkt dem absoluten Nullpunkt (0 K = 0 °R = -459,67 °F). Heute wird Rankine besonders in der US-amerikanischen Ingenieurwelt weiterhin verwendet, in Systemen, in denen Wärmeberechnungen in Fahrenheit erfolgen (Thermodynamik, Motorenkonstruktion).",
-    measurementSystem: "In der US-amerikanischen Ingenieurwelt verwendete absolute Temperaturskala",
-    commonUses: "US-amerikanische technische Berechnungen, Thermodynamik, Motoren-/Turbinenkonstruktion",
+    measurementSystem:
+      "In der US-amerikanischen Ingenieurwelt verwendete absolute Temperaturskala",
+    commonUses:
+      "US-amerikanische technische Berechnungen, Thermodynamik, Motoren-/Turbinenkonstruktion",
   },
-  "reaumur": {
+  reaumur: {
     name: "Réaumur",
     slug: "reaumur",
     categoryName: "Temperatur",
@@ -2612,10 +2765,12 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Réaumur ist eine historische Temperaturskala, die den Gefrierpunkt von Wasser als 0 und den Siedepunkt als 80 Grad definiert und einst in Europa weit verbreitet war.",
     historySummary:
       "Die Skala trägt den Namen des französischen Wissenschaftlers René Antoine Ferchault de Réaumur, der 1730 als Erster ein ähnliches System vorschlug. Réaumurs ursprüngliches Design verwendete verdünnten Alkohol, wobei jeder Grad einem Tausendstel des Volumens des Thermometergefäßes entsprach; Gefrier- und Siedepunkt von Wasser wurden als 0 beziehungsweise 80 Grad definiert. Die Skala war besonders in Frankreich, Deutschland und Russland verbreitet -- sie findet sich sogar in Werken von Schriftstellern wie Tolstoi und Dostojewski. Als Frankreich in den 1790er-Jahren im Zuge des metrischen Systems zur Celsius-Skala überging, wurde Réaumur aufgegeben, blieb aber in Teilen Europas bis Mitte des 19. Jahrhunderts und in Teilen Russlands bis Anfang des 20. Jahrhunderts in Gebrauch. Heute beschränkt sich ihre Verwendung weitgehend auf bestimmte Lebensmittelherstellungsprozesse (besonders Käse und Süßwaren) in Italien, der Schweiz und den Niederlanden.",
-    measurementSystem: "Historische europäische Temperaturskala (heute sehr eingeschränkt verwendet)",
-    commonUses: "Manche traditionellen Lebensmittelherstellungsprozesse (Käse, Süßwaren), historische Texte",
+    measurementSystem:
+      "Historische europäische Temperaturskala (heute sehr eingeschränkt verwendet)",
+    commonUses:
+      "Manche traditionellen Lebensmittelherstellungsprozesse (Käse, Süßwaren), historische Texte",
   },
-  "milisaniye": {
+  milisaniye: {
     name: "Millisekunde",
     slug: "millisekunde",
     categoryName: "Zeit",
@@ -2624,9 +2779,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Mit der Entwicklung der Informatik und präziser Zeitmesstechnologien verbreitete sich die Millisekunde aus dem Bedarf, deutlich kürzere Zeitintervalle als die Sekunde zu messen.",
     measurementSystem: "Internationales Einheitensystem (SI, Untereinheit)",
-    commonUses: "Messung von Computer- und Netzwerklatenz (Ping), Sportzeitmessung, Audio-/Videosynchronisation",
+    commonUses:
+      "Messung von Computer- und Netzwerklatenz (Ping), Sportzeitmessung, Audio-/Videosynchronisation",
   },
-  "megajoule": {
+  megajoule: {
     name: "Megajoule",
     slug: "megajoule",
     categoryName: "Energie",
@@ -2635,9 +2791,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Die Einheit leitet sich von der grundlegenden SI-Energieeinheit Joule ab (benannt nach James Prescott Joule) und ermöglicht es, große Energieberechnungen mit kleineren, lesbaren Zahlen auszudrücken.",
     measurementSystem: "Internationales Einheitensystem (SI, Vielfaches)",
-    commonUses: "Energiegehalt von Kraftstoff und Lebensmitteln, Berechnungen des industriellen Energieverbrauchs",
+    commonUses:
+      "Energiegehalt von Kraftstoff und Lebensmitteln, Berechnungen des industriellen Energieverbrauchs",
   },
-  "therm": {
+  therm: {
     name: "Therm",
     slug: "therm",
     categoryName: "Energie",
@@ -2645,7 +2802,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Therm ist eine traditionelle Energieeinheit, die bei der Erdgasabrechnung (besonders in den USA und Großbritannien) verwendet wird.",
     historySummary:
       "Die Einheit wurde Anfang des 20. Jahrhunderts in der britischen Gasindustrie als Standardabrechnungseinheit übernommen und so definiert, dass sie etwa 100.000 BTU entspricht.",
-    measurementSystem: "Britisches und US-amerikanisches Maßsystem (Energieabrechnungseinheit)",
+    measurementSystem:
+      "Britisches und US-amerikanisches Maßsystem (Energieabrechnungseinheit)",
     commonUses: "Erdgasabrechnung (USA, Großbritannien)",
   },
   "quad-btu": {
@@ -2656,10 +2814,12 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Quad (Quadrillion BTU) ist eine Einheit zur Angabe extrem großer Energiemengen, die in nationalen und globalen Energiestatistiken verwendet wird.",
     historySummary:
       "Die Einheit wurde eingeführt, damit Institutionen wie die US-amerikanische Energy Information Administration (EIA) den jährlichen landesweiten Energieverbrauch statt mit hunderten Millionen BTU mit einstelligen Zahlen angeben können.",
-    measurementSystem: "Britisches und US-amerikanisches Maßsystem (makroökonomische Energiestatistikeinheit)",
-    commonUses: "Nationale/globale Energieverbrauchsstatistiken, energiepolitische Berichte",
+    measurementSystem:
+      "Britisches und US-amerikanisches Maßsystem (makroökonomische Energiestatistikeinheit)",
+    commonUses:
+      "Nationale/globale Energieverbrauchsstatistiken, energiepolitische Berichte",
   },
-  "elektronvolt": {
+  elektronvolt: {
     name: "Elektronenvolt",
     slug: "elektronenvolt",
     categoryName: "Energie",
@@ -2668,7 +2828,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Elektronenvolt wird bevorzugt, da es direkt mit den experimentellen Aufbauten von Teilchen- und Atomphysikern übereinstimmt -- durchläuft ein geladenes Teilchen eine Spannung von V Volt, gewinnt es die Energie E=qV, wodurch sich das Ergebnis praktisch direkt in Elektronenvolt ausdrücken lässt. Die Verwendung von Elektronenvolt statt Joule erspart in der Teilchenbeschleunigerphysik ständige Einheitenumrechnungen und hält die Zahlenwerte handhabbar (die Energie eines Teilchens in GeV anzugeben ist deutlich praktischer als in Joule). Seit der SI-Revision 2019 besitzt auch das Elektronenvolt dank der exakt festgelegten Elementarladungskonstante einen exakt definierten Wert.",
     measurementSystem: "Spezielle Energieeinheit in Atom- und Teilchenphysik",
-    commonUses: "Teilchenphysik, Atomphysik, Beschleunigerexperimente, Bindungsenergien in Chemie und Materialwissenschaft",
+    commonUses:
+      "Teilchenphysik, Atomphysik, Beschleunigerexperimente, Bindungsenergien in Chemie und Materialwissenschaft",
   },
   "sogutma-tonu": {
     name: "Kältetonne",
@@ -2689,8 +2850,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "BTU pro Stunde (BTU/h) ist eine Einheit zur Angabe von Heiz- und Kühlleistung; sie ist besonders im anglo-amerikanischen Raum und in der Türkei der marktübliche Standard für Klimaanlagenkapazitäten (etwa 9000, 12000 oder 18000 BTU), während in Deutschland die Angabe in Watt oder Kilowatt üblich ist.",
     historySummary:
       "BTU (British Thermal Unit) ist eine britische Energieeinheit, definiert als die Wärmemenge, die nötig ist, um die Temperatur von 1 Pfund Wasser um 1 °F zu erhöhen; BTU pro Stunde, die stündliche Übertragungsrate dieser Energie, wurde durch den globalen Einfluss der US-amerikanischen HLK-Branche (Heizung, Lüftung, Klimatechnik) weltweit -- und besonders auf dem türkischen Markt -- faktisch zum Standard für die Angabe von Klimaanlagenkapazitäten.",
-    measurementSystem: "Britische/US-amerikanische Wärmeleistungseinheit, in der HLK-Branche faktisch weltweiter Standard",
-    commonUses: "Klimaanlagenkapazität (Verkaufsstandard in Türkei, USA und UK), Leistungsangaben auf Heiz-/Kühlgeräten",
+    measurementSystem:
+      "Britische/US-amerikanische Wärmeleistungseinheit, in der HLK-Branche faktisch weltweiter Standard",
+    commonUses:
+      "Klimaanlagenkapazität (Verkaufsstandard in Türkei, USA und UK), Leistungsangaben auf Heiz-/Kühlgeräten",
   },
   "litre-saniye": {
     name: "Liter pro Sekunde",
@@ -2700,7 +2863,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Liter pro Sekunde ist eine praktische metrische Einheit zur Angabe des Volumenstroms (des pro Zeiteinheit durchfließenden Flüssigkeits-/Gasvolumens); sie ist bei Wasser- und Lüftungssystemen gebräuchlich.",
     historySummary:
       "Die Einheit ergibt sich aus dem direkten Verhältnis der metrischen Basiseinheiten Volumen (Liter) und Zeit (Sekunde) und wird in Europa bei Normen für Wassernetze und Pumpenkapazitäten häufig verwendet.",
-    measurementSystem: "Internationales Einheitensystem (SI, abgeleitete Einheit)",
+    measurementSystem:
+      "Internationales Einheitensystem (SI, abgeleitete Einheit)",
     commonUses: "Durchfluss im Wassernetz, Lüftungssysteme, Pumpenkapazität",
   },
   "metrekup-saat-hacimsel": {
@@ -2711,8 +2875,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Kubikmeter pro Stunde ist eine in Europa gebräuchliche Volumenstromeinheit zur Angabe der Kapazität von Industriepumpen und Lüftungssystemen.",
     historySummary:
       "Als praktisches Verhältnis der metrischen Volumen- und Zeiteinheiten im industriellen Maßstab hat sich diese Einheit in europäischen technischen Normen (besonders in aus Deutschland stammenden Gerätekatalogen) etabliert.",
-    measurementSystem: "Internationales Einheitensystem (SI, abgeleitete Einheit)",
-    commonUses: "Kapazität von Industriepumpen, HLK-Systeme, Wasseraufbereitungsanlagen",
+    measurementSystem:
+      "Internationales Einheitensystem (SI, abgeleitete Einheit)",
+    commonUses:
+      "Kapazität von Industriepumpen, HLK-Systeme, Wasseraufbereitungsanlagen",
   },
   "litre-dakika-hacimsel": {
     name: "Liter pro Minute (Volumenstrom)",
@@ -2722,8 +2888,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Liter pro Minute ist eine praktische Einheit zur Angabe des Volumenstroms, besonders bei kleinen Pumpen, Wasserhähnen und medizinischen Geräten.",
     historySummary:
       "Die Einheit hat sich auf Kapazitätsangaben von Haus- und Industriewasserinstallationen als Standard etabliert und entstand aus dem Bedarf, kleine Durchflusswerte mit praktischen, lesbaren Zahlen anzugeben.",
-    measurementSystem: "Internationales Einheitensystem (SI, abgeleitete Einheit)",
-    commonUses: "Durchfluss von Wasserhähnen und Duschen, medizinische Infusionspumpen, Kapazität kleiner Pumpen",
+    measurementSystem:
+      "Internationales Einheitensystem (SI, abgeleitete Einheit)",
+    commonUses:
+      "Durchfluss von Wasserhähnen und Duschen, medizinische Infusionspumpen, Kapazität kleiner Pumpen",
   },
   "gram-saniye": {
     name: "Gramm pro Sekunde",
@@ -2747,7 +2915,7 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     measurementSystem: "Internationales Einheitensystem (SI, Untereinheit)",
     commonUses: "Präzisionsdosiersysteme, Messung von Leck-/Verdunstungsraten",
   },
-  "ar": {
+  ar: {
     name: "Ar",
     slug: "ar",
     categoryName: "Fläche",
@@ -2758,7 +2926,7 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     measurementSystem: "Ältere metrische Einheit (Nicht-SI)",
     commonUses: "Garten- und kleine Grundstücksgrößen, Immobilienanzeigen",
   },
-  "yardakare": {
+  yardakare: {
     name: "Quadratyard",
     slug: "quadratyard",
     categoryName: "Fläche",
@@ -2767,7 +2935,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Quadratyard entwickelte sich als Flächenentsprechung der britischen Längeneinheit Yard und wird heute vor allem in den USA, Großbritannien, Indien und Pakistan bei Immobilienanzeigen, im Teppich-/Bodenbelagsverkauf und bei der Messung von Gartenflächen häufig verwendet.",
     measurementSystem: "Britisches und US-amerikanisches Maßsystem",
-    commonUses: "Immobilien- und Grundstücksanzeigen (besonders Indien/Pakistan), Teppich- und Bodenbelagsverkauf, Messung von Gartenflächen",
+    commonUses:
+      "Immobilien- und Grundstücksanzeigen (besonders Indien/Pakistan), Teppich- und Bodenbelagsverkauf, Messung von Gartenflächen",
   },
   "decimal-arazi": {
     name: "Decimal (Grundstück)",
@@ -2777,10 +2946,12 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Decimal (Shotangsho) ist eine in Bangladesch traditionell verwendete Flächeneinheit zur Landvermessung. 1 Decimal ist definiert als ein Hundertstel (1/100) eines Acre.",
     historySummary:
       "Die Einheit Decimal wurde während der britischen Kolonialzeit in der Region Bengalen als dezimale Unterteilung der Einheit Acre standardisiert und wird bis heute in den amtlichen Grundbucheintragungen Bangladeschs verwendet.",
-    measurementSystem: "Traditionelle bangladeschische Einheit, an das britische Acre-System gekoppelt",
-    commonUses: "Grundstückskauf und -verkauf in Bangladesch, Grundbucheinträge und Immobilienanzeigen",
+    measurementSystem:
+      "Traditionelle bangladeschische Einheit, an das britische Acre-System gekoppelt",
+    commonUses:
+      "Grundstückskauf und -verkauf in Bangladesch, Grundbucheinträge und Immobilienanzeigen",
   },
-  "killa": {
+  killa: {
     name: "Killa",
     slug: "killa",
     categoryName: "Fläche",
@@ -2788,10 +2959,12 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Killa ist eine traditionelle Flächeneinheit, die in den nordindischen Bundesstaaten Punjab und Haryana sowie in Pakistan zur Messung landwirtschaftlicher Flächen verwendet wird und wertmäßig genau einem Acre entspricht.",
     historySummary:
       "Killa etablierte sich während der britischen Kolonialzeit in den Grundbucheinträgen der Punjab-Region als wertgleich mit der Einheit Acre und wird bis heute in den amtlichen Grundbucheinträgen dieser Bundesstaaten (Fard/Jamabandi) verwendet. Obwohl ihr Wert vollständig dem Acre entspricht, bezeichnet die lokale Bevölkerung ihr Land aus historischer Gewohnheit weiterhin als 'Killa'; deshalb wird sie hier als eigenständige Einheit für Nutzer geführt, die gezielt nach 'Killa' statt nach 'Acre' suchen.",
-    measurementSystem: "Traditionelle Einheit aus Punjab und Haryana (Indien-Pakistan), entspricht dem Acre",
-    commonUses: "Grundbucheinträge und Kauf/Verkauf landwirtschaftlicher Flächen in Punjab, Haryana (Indien) und Pakistan",
+    measurementSystem:
+      "Traditionelle Einheit aus Punjab und Haryana (Indien-Pakistan), entspricht dem Acre",
+    commonUses:
+      "Grundbucheinträge und Kauf/Verkauf landwirtschaftlicher Flächen in Punjab, Haryana (Indien) und Pakistan",
   },
-  "kanal": {
+  kanal: {
     name: "Kanal",
     slug: "kanal",
     categoryName: "Fläche",
@@ -2799,10 +2972,12 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Kanal ist eine in Punjab (Indien-Pakistan), Jammu und Kashmir sowie Himachal Pradesh zur Landvermessung verwendete Flächeneinheit. Nach dem offiziellen Punjab-Standard entspricht 1 Kanal 505,857 m².",
     historySummary:
       "Kanal wurde im Grundbuchsystem des kolonialzeitlichen Punjab standardisiert und offiziell auf 5445 Quadratfuß (505,857 m²) festgelegt; 1 Killa (Acre) entspricht genau 8 Kanal. Sie wird bis heute als grundlegende Flächeneinheit in den amtlichen Grundbucheinträgen (Fard/Jamabandi) von Punjab, Jammu und Kashmir sowie Himachal Pradesh verwendet.",
-    measurementSystem: "Traditionelle Einheit aus Punjab, Jammu und Kashmir sowie Himachal Pradesh (Indien-Pakistan)",
-    commonUses: "Kauf/Verkauf landwirtschaftlicher und Wohnflächen in Punjab, Jammu und Kashmir sowie Himachal Pradesh",
+    measurementSystem:
+      "Traditionelle Einheit aus Punjab, Jammu und Kashmir sowie Himachal Pradesh (Indien-Pakistan)",
+    commonUses:
+      "Kauf/Verkauf landwirtschaftlicher und Wohnflächen in Punjab, Jammu und Kashmir sowie Himachal Pradesh",
   },
-  "marla": {
+  marla: {
     name: "Marla",
     slug: "marla",
     categoryName: "Fläche",
@@ -2811,9 +2986,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Marla wurde historisch als 'Quadratrute' mit 16,5 Fuß Seitenlänge (272,25 Quadratfuß) definiert und offiziell als ein Zwanzigstel eines Kanal festgelegt. Heute werden in Pakistan (besonders in Städten wie Lahore und Islamabad) nahezu alle Wohngrundstücksanzeigen in Marla vermarktet, was sie zu einer der meistgesuchten Immobilieneinheiten der Region macht.",
     measurementSystem: "Traditionelle Einheit aus Pakistan und Nordindien",
-    commonUses: "Wohngrundstücksanzeigen in Pakistan (Lahore, Islamabad, Rawalpindi) und Nordindien",
+    commonUses:
+      "Wohngrundstücksanzeigen in Pakistan (Lahore, Islamabad, Rawalpindi) und Nordindien",
   },
-  "guntha": {
+  guntha: {
     name: "Guntha",
     slug: "guntha",
     categoryName: "Fläche",
@@ -2821,8 +2997,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Guntha ist eine in den indischen Bundesstaaten Maharashtra und Karnataka zur Landvermessung verwendete Flächeneinheit. Nach amtlicher Definition entspricht 1 Guntha exakt einem Vierzigstel eines Acre (101,17 m²).",
     historySummary:
       "Guntha wurde im kolonialzeitlichen Bombay Survey System als standardisierte Untereinheit des Acre definiert und offiziell auf genau 1/40 Acre (1089 Quadratfuß) festgelegt. Sie wird bis heute in Maharashtra und Karnataka als Standardeinheit in den Grundbucheinträgen landwirtschaftlicher Flächen (amtliche Dokumente wie 7/12 Utara) verwendet.",
-    measurementSystem: "Traditionelle Einheit aus Maharashtra und Karnataka (Indien), 1/40 Acre",
-    commonUses: "Grundbucheinträge und Grundstückskauf/-verkauf in Maharashtra und Karnataka",
+    measurementSystem:
+      "Traditionelle Einheit aus Maharashtra und Karnataka (Indien), 1/40 Acre",
+    commonUses:
+      "Grundbucheinträge und Grundstückskauf/-verkauf in Maharashtra und Karnataka",
   },
   "cent-arazi": {
     name: "Cent (Grundstück)",
@@ -2832,10 +3010,12 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Cent ist eine in den indischen Bundesstaaten Kerala und Tamil Nadu zur Grundstücksmessung verwendete Flächeneinheit. Per Definition entspricht 1 Cent genau einem Hundertstel eines Acre (40,47 m²).",
     historySummary:
       "Cent leitet sich vom lateinischen 'centum' (hundert) ab und ist als ein Hundertstel eines Acre definiert -- wertmäßig identisch mit der in Bangladesch verwendeten Einheit 'Decimal', doch in Kerala und Tamil Nadu ist auf dem Wohngrundstücksmarkt der Begriff 'Cent' gebräuchlich. In Kerala werden nahezu alle kleinen Wohnparzellen in Cent ausgeschrieben.",
-    measurementSystem: "Traditionelle Einheit aus Kerala und Tamil Nadu (Indien), 1/100 Acre",
-    commonUses: "Wohngrundstücksanzeigen und Kauf/Verkauf kleiner Flächen in Kerala und Tamil Nadu",
+    measurementSystem:
+      "Traditionelle Einheit aus Kerala und Tamil Nadu (Indien), 1/100 Acre",
+    commonUses:
+      "Wohngrundstücksanzeigen und Kauf/Verkauf kleiner Flächen in Kerala und Tamil Nadu",
   },
-  "ground": {
+  ground: {
     name: "Ground",
     slug: "ground",
     categoryName: "Fläche",
@@ -2843,10 +3023,12 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Ground ist eine im indischen Bundesstaat Tamil Nadu, besonders in Chennai, zur Grundstücksmessung verwendete Flächeneinheit. Nach gängigem Standard entspricht 1 Ground 2400 Quadratfuß (222,97 m²).",
     historySummary:
       "Ground etablierte sich während der britischen Kolonialzeit in der Stadtplanung von Madras (dem heutigen Chennai) als Standardgröße einer Wohnparzelle mit 2400 Quadratfuß (222,97 m²) und wird bis heute als Standardeinheit für Wohngrundstücksanzeigen in Chennai und Umgebung verwendet.",
-    measurementSystem: "Traditionelle Einheit aus Tamil Nadu (Indien, besonders Chennai)",
-    commonUses: "Wohngrundstücksanzeigen und Immobilienkauf/-verkauf in und um Chennai",
+    measurementSystem:
+      "Traditionelle Einheit aus Tamil Nadu (Indien, besonders Chennai)",
+    commonUses:
+      "Wohngrundstücksanzeigen und Immobilienkauf/-verkauf in und um Chennai",
   },
-  "biswa": {
+  biswa: {
     name: "Biswa",
     slug: "biswa",
     categoryName: "Fläche",
@@ -2854,10 +3036,12 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Biswa ist eine in Nordindien (besonders Uttar Pradesh) zur Landvermessung verwendete traditionelle Flächeneinheit, die eine Untereinheit des Bigha bildet. Diese Seite legt den Uttar-Pradesh-'Pucca'-Standard zugrunde (1/20 eines Bigha): 1 Biswa = 126,46 m².",
     historySummary:
       "Biswa ist, wie Bigha, eine Einheit, die von Region zu Region stark variiert -- sogar innerhalb Uttar Pradeshs gilt in Westteilen (Umgebung von Meerut, Muzaffarnagar) ein deutlich kleinerer 'Kachha'-Standard, während in Ostteilen (Umgebung von Lucknow, Gorakhpur, Varanasi) der hier zugrunde gelegte größere 'Pucca'-Standard gilt. Aufgrund dieser Uneindeutigkeit wird empfohlen, beim Grundstückskauf den regionalen Wert beim örtlichen Grundbuchamt zu bestätigen.",
-    measurementSystem: "Traditionelle Einheit aus Nordindien, regional stark unterschiedlich",
-    commonUses: "Kauf/Verkauf landwirtschaftlicher Flächen und Grundstücke in Uttar Pradesh und Nachbarstaaten",
+    measurementSystem:
+      "Traditionelle Einheit aus Nordindien, regional stark unterschiedlich",
+    commonUses:
+      "Kauf/Verkauf landwirtschaftlicher Flächen und Grundstücke in Uttar Pradesh und Nachbarstaaten",
   },
-  "katha": {
+  katha: {
     name: "Katha",
     slug: "katha",
     categoryName: "Fläche",
@@ -2866,9 +3050,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Katha ist eine seit Jahrhunderten in der Region Bengalen verwendete lokale Flächeneinheit; ihre Größe kann je nach Region (Bangladesch, Westbengalen, Assam) variieren. Diese Seite legt den in den amtlichen Grundbucheinträgen Bangladeschs verwendeten Standardwert zugrunde.",
     measurementSystem: "Traditionelle Einheit aus Bangladesch",
-    commonUses: "Grundstückskauf/-verkauf, Grundbucheinträge und Immobilienanzeigen in Bangladesch",
+    commonUses:
+      "Grundstückskauf/-verkauf, Grundbucheinträge und Immobilienanzeigen in Bangladesch",
   },
-  "bigha": {
+  bigha: {
     name: "Bigha",
     slug: "bigha",
     categoryName: "Fläche",
@@ -2876,10 +3061,12 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Bigha ist eine in Südasien (Bangladesch, Indien, Nepal) zur Landvermessung verwendete traditionelle Flächeneinheit. Nach bangladeschischem Standard entspricht 1 Bigha 20 Katha (1337,8 m²).",
     historySummary:
       "Bigha ist eine seit Jahrhunderten in Südasien verwendete lokale Flächeneinheit; ihre Größe variiert je nach Land und Region erheblich (verschiedene indische Bundesstaaten haben unterschiedliche Standards). Diese Seite legt den in den amtlichen Grundbucheinträgen Bangladeschs verwendeten Standardwert (20 Katha) zugrunde.",
-    measurementSystem: "Traditionelle Einheit aus Südasien, regional unterschiedlich",
-    commonUses: "Grundstückskauf/-verkauf und Grundbucheinträge in Bangladesch, Indien und Nepal",
+    measurementSystem:
+      "Traditionelle Einheit aus Südasien, regional unterschiedlich",
+    commonUses:
+      "Grundstückskauf/-verkauf und Grundbucheinträge in Bangladesch, Indien und Nepal",
   },
-  "tsubo": {
+  tsubo: {
     name: "Tsubo",
     slug: "tsubo",
     categoryName: "Fläche",
@@ -2888,7 +3075,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Tsubo ist eine historische Einheit, die auf der doppelten Fläche einer traditionellen japanischen Tatami-Matte (etwa 1 x 2 Shaku) beruht, und wird in Japan auch nach der offiziellen Umstellung auf das metrische System (1966) bei Immobilienanzeigen sowie in Architektur und Bauwesen weiterhin häufig verwendet -- besonders in Städten wie Tokio werden Wohnungspreise oft als 'Preis pro Tsubo' angegeben.",
     measurementSystem: "Traditionelle Einheit aus Japan",
-    commonUses: "Immobilienanzeigen, Grundstückskauf/-verkauf, Architektur- und Bauprojekte in Japan",
+    commonUses:
+      "Immobilienanzeigen, Grundstückskauf/-verkauf, Architektur- und Bauprojekte in Japan",
   },
   "yemek-kasigi": {
     name: "Esslöffel",
@@ -2899,7 +3087,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Der Esslöffel ist ein traditionelles Maß, das aus einer Zeit stammt, als Präzisionswaagen in Haushalten nicht verbreitet waren, und dem Bedarf nach einer praktischen, schnellen Küchenmessung entspringt. Dass in türkischen Kochbüchern und Rezeptportalen 1 Esslöffel mit 15 mL angesetzt wird, deckt sich fast genau mit dem US-amerikanischen Standardesslöffelmaß (14,7868 mL) und wird bis heute unverändert verwendet -- auch in Deutschland wird ein Esslöffel im Alltag üblicherweise mit etwa 15 mL gleichgesetzt.",
     measurementSystem: "Küchenmaß (international gebräuchlich)",
-    commonUses: "Rezepte, Messung flüssiger und pulvriger Zutaten (Öl, Zucker, Mehl usw.)",
+    commonUses:
+      "Rezepte, Messung flüssiger und pulvriger Zutaten (Öl, Zucker, Mehl usw.)",
   },
   "cay-kasigi": {
     name: "Teelöffel",
@@ -2921,9 +3110,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Das Maß 'Wasserglas' geht auf das Volumen des in der türkischen Küchenkultur gebräuchlichen Standardglases zurück; in Kochbüchern und Rezeptportalen ist es üblich, 1 Wasserglas mit 200 mL anzusetzen -- dieser Wert unterscheidet sich deutlich vom nichtmetrischen US-amerikanischen 'Cup'-Maß (236,588 mL), weshalb eine direkte Übertragung ausländischer Rezepte zu fehlerhaften Ergebnissen führen kann. Ein direktes deutsches Äquivalent existiert nicht; bei türkischen Rezepten ist dieses Maß jedoch die Standardreferenz.",
     measurementSystem: "Küchenmaß (türkische Tradition)",
-    commonUses: "Türkische Rezepte, volumetrische Messung von Mehl, Zucker, Milch und Ähnlichem",
+    commonUses:
+      "Türkische Rezepte, volumetrische Messung von Mehl, Zucker, Milch und Ähnlichem",
   },
-  "quart": {
+  quart: {
     name: "Quart",
     slug: "quart",
     categoryName: "Volumen",
@@ -2932,7 +3122,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Der Name stammt vom lateinischen 'quartus' (ein Viertel) über das französische 'quart' -- die Einheit ist exakt ein Viertel einer Gallone, doch da die Gallone selbst im Laufe der Geschichte unterschiedliche Werte annahm, änderte sich auch die Größe des Quart mit der Zeit. Das US-amerikanische Flüssigquart wurde mit dem internationalen Yard-Pound-Abkommen von 1959 als exaktes Viertel der US-Gallone (genau 231 Kubikzoll) festgelegt.",
     measurementSystem: "US-amerikanisches Maßsystem (US Liquid Quart)",
-    commonUses: "Kochrezepte, US-amerikanische Flüssigproduktetiketten, Motorölmengen",
+    commonUses:
+      "Kochrezepte, US-amerikanische Flüssigproduktetiketten, Motorölmengen",
   },
   "ingiliz-quart": {
     name: "Imperiale Quart",
@@ -2954,7 +3145,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Die Flüssigunze entstand historisch als 'das Volumen, das eine bestimmte Substanz von einer Unze Gewicht einnimmt' (in England Wein, in Schottland Wasser) -- die Standardisierung war jedoch komplex, da es unterschiedliche 'Unze'-Definitionen (Tower-, Troy- und Avoirdupois-Unze) gab. Die US-amerikanische Flüssigunze leitet sich von der vor 1824 in England verwendeten 'Weingallone' (231 Kubikzoll) ab; mit der Übernahme des internationalen Zolls wurde sie exakt auf 29,5735295625 mL festgelegt.",
     measurementSystem: "US-amerikanisches Maßsystem (US Fluid Ounce)",
-    commonUses: "Getränkeportionen, Arzneimitteldosierungen, Parfüm-/Kosmetikmengen, Kochrezepte",
+    commonUses:
+      "Getränkeportionen, Arzneimitteldosierungen, Parfüm-/Kosmetikmengen, Kochrezepte",
   },
   "ingiliz-sivi-ons": {
     name: "Imperiale Flüssigunze",
@@ -2965,9 +3157,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "1824 definierte das britische Parlament die britische Gallone als 'Gewicht von 10 Pfund Wasser' und teilte sie in 160 Flüssigunzen -- dadurch stimmt die britische Flüssigunze fast genau mit der Avoirdupois-Unze (einer Gewichtseinheit) von Wasser überein (diese Übereinstimmung gilt jedoch nur zufällig für Wasser und ist keine allgemeine Umrechnungsregel). Im Ergebnis ist die britische Flüssigunze etwa 4,084 % kleiner als die US-amerikanische Flüssigunze.",
     measurementSystem: "Britisches Maßsystem (Imperial)",
-    commonUses: "Getränkeportionen im Vereinigten Königreich, traditionelle Rezepte",
+    commonUses:
+      "Getränkeportionen im Vereinigten Königreich, traditionelle Rezepte",
   },
-  "pint": {
+  pint: {
     name: "Pint",
     slug: "pint",
     categoryName: "Volumen",
@@ -2976,7 +3169,8 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Der Name Pint stammt vom altfranzösischen 'pinte' und bezeichnete auf ein Gefäß gemalte Volumenmarkierungen; traditionell ist es als ein Achtel einer Gallone definiert (im Lateinischen mit dem Symbol 'octarius' -- ein Achtel -- bezeichnet). 1707 übernahmen die nordamerikanischen Kolonien Englands die 'Weingallone' (231 Kubikzoll) als Grundlage für Flüssigkeitsmaße; dies bildete die Basis der heutigen US-amerikanischen Flüssigpint. Die US-Pint entspricht exakt 473,176473 Millilitern.",
     measurementSystem: "US-amerikanisches Maßsystem (US Liquid Pint)",
-    commonUses: "Getränkemaße, Kochrezepte, US-amerikanische Flüssigproduktetiketten",
+    commonUses:
+      "Getränkemaße, Kochrezepte, US-amerikanische Flüssigproduktetiketten",
   },
   "ingiliz-pint": {
     name: "Imperiale Pint",
@@ -2987,9 +3181,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "1824 ersetzte das britische Parlament alle alten Gallonendefinitionen durch eine neue 'britische Gallone' (Imperial Gallon), die auf 10 Pfund destilliertem Wasser bei 62 °F beruhte -- ein Achtel davon, die britische Pint, wurde exakt auf 568,26125 Milliliter festgelegt. Kanada übernahm dieses britische System 1873 nach der Konföderation von 1867 gesetzlich. Die britische Pint besitzt bis heute eine lebendige kulturelle Bedeutung in Großbritannien: Fassbier und Cider dürfen gesetzlich nur in Standardmaßen wie 'einer halben Pint' oder 'zwei Dritteln einer Pint' verkauft werden; auch Milch in Pfandflaschen darf weiterhin ohne metrisches Äquivalent in Pint verkauft werden.",
     measurementSystem: "Britisches Maßsystem (Imperial)",
-    commonUses: "Bier-/Getränkeausschank im Vereinigten Königreich, Milchverkauf, traditionelle Maße",
+    commonUses:
+      "Bier-/Getränkeausschank im Vereinigten Königreich, Milchverkauf, traditionelle Maße",
   },
-  "peck": {
+  peck: {
     name: "Peck",
     slug: "peck",
     categoryName: "Volumen",
@@ -3000,7 +3195,7 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     measurementSystem: "US-amerikanisches Maßsystem (Trockenmaß)",
     commonUses: "Obst-/Gemüseverkauf (besonders Äpfel), Bauernmärkte",
   },
-  "bushel": {
+  bushel: {
     name: "Bushel",
     slug: "bushel",
     categoryName: "Volumen",
@@ -3020,9 +3215,10 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
     historySummary:
       "Großbritannien schaffte mit dem Gewichts- und Maßgesetz von 1824 alle alten, uneinheitlichen Gallonendefinitionen ab und definierte eine eigene 'britische Gallone': das Volumen von 10 Pfund destilliertem Wasser, gewogen mit Messinggewichten unter bestimmten Luftbedingungen (etwa 4,546 Liter). Die USA folgten dieser Reform nicht, sondern übernahmen 1836 offiziell die ältere, 1706 definierte Tradition der 'Weingallone' und blieben bei ihrer eigenen (kleineren) Gallonendefinition. Diese unterschiedlichen historischen Entscheidungen führen dazu, dass beiderseits des Atlantiks mit 'Gallone' tatsächlich unterschiedliche Volumina gemeint sind.",
     measurementSystem: "Britisches Maßsystem (Imperial)",
-    commonUses: "Kraftstoffverbrauch im Vereinigten Königreich, Flüssigkeitsmaße in manchen Commonwealth-Ländern",
+    commonUses:
+      "Kraftstoffverbrauch im Vereinigten Königreich, Flüssigkeitsmaße in manchen Commonwealth-Ländern",
   },
-  "kile": {
+  kile: {
     name: "Kile",
     slug: "kile",
     categoryName: "Volumen",
@@ -3030,10 +3226,12 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Kile ist eine im Osmanischen Reich zur Getreidemessung (Weizen, Gerste usw.) verwendete Volumeneinheit. Nach dem Istanbuler Kile-Standard zur Zeit Sultan Selims III. entsprach 1 Kile 37 Litern; regional und je nach Epoche variierte der Wert jedoch stark.",
     historySummary:
       "Kile war die grundlegende Maßeinheit des osmanischen Getreidehandels und wurde in 4 Şinik unterteilt (1 altes Kile = 4 Şinik = 8 Kutu = 16 Zarf = 37 Liter). Mit der Maß- und Eichverordnung von 1869 wurde das 'neue Kile' (Kîle-i Aşari) exakt auf 100 Liter (1 Hektoliter) neu definiert und an das Dezimalsystem angepasst. Wie andere osmanische Einheiten wurde es mit der Umstellung auf das metrische System 1931 aus dem amtlichen Gebrauch genommen.",
-    measurementSystem: "Traditionelle osmanische Volumeneinheit (nicht mehr in Gebrauch), regional und zeitlich unterschiedlich",
-    commonUses: "Getreidehandel (Weizen, Gerste) und Besteuerung im Osmanischen Reich; heute in der Geschichtsforschung und bei der Interpretation alter Grundbuch-/Stiftungsurkunden",
+    measurementSystem:
+      "Traditionelle osmanische Volumeneinheit (nicht mehr in Gebrauch), regional und zeitlich unterschiedlich",
+    commonUses:
+      "Getreidehandel (Weizen, Gerste) und Besteuerung im Osmanischen Reich; heute in der Geschichtsforschung und bei der Interpretation alter Grundbuch-/Stiftungsurkunden",
   },
-  "sinik": {
+  sinik: {
     name: "Shinik",
     slug: "shinik",
     categoryName: "Volumen",
@@ -3041,9 +3239,83 @@ const germanUnitContent: Record<string, GermanUnitContent> = {
       "Shinik ist eine im Osmanischen Reich als Untereinheit des Kile zur Getreidemessung verwendete Volumeneinheit. Nach altem Standard entspricht sie einem Viertel eines Kile, also etwa 9,25 Litern.",
     historySummary:
       "Shinik war im alltäglichen Getreidehandel eine praktische Untereinheit des Kile für kleinere Mengen: definiert über das Verhältnis 1 altes Kile = 4 Shinik = 8 Kutu = 16 Zarf. Nach der Türkischen Enzyklopädie des Islam (TDV İslam Ansiklopedisi) ergibt dieses Verhältnis, bezogen auf das alte Istanbuler Kile von 37 Litern, einen Wert von 1 Shinik = 9,25 Liter. Mit der Maßreform von 1869 wurde das 'neue Shinik' dezimal neu definiert (1 neues Kile = 10 neue Shinik), 1931 wurde es vollständig aus dem Gebrauch genommen.",
-    measurementSystem: "Traditionelle osmanische Volumeneinheit (nicht mehr in Gebrauch)",
-    commonUses: "Alltäglicher Getreidehandel im Osmanischen Reich; heute in der Geschichtsforschung und bei der Interpretation historischer Texte",
+    measurementSystem:
+      "Traditionelle osmanische Volumeneinheit (nicht mehr in Gebrauch)",
+    commonUses:
+      "Alltäglicher Getreidehandel im Osmanischen Reich; heute in der Geschichtsforschung und bei der Interpretation historischer Texte",
   },
+};
+
+// Deutsche Fassung des SI-Bezugs, wo die Ausgangsdaten türkischen Text enthalten.
+const germanSiEquivalent: Record<string, string> = {
+  "radiant-pro-sekunde": "Kohärente SI-Einheit der Winkelgeschwindigkeit",
+  "kilogramm-pro-sekunde": "Kohärente SI-Einheit des Massenstroms",
+  "watt-pro-meter-kelvin": "Kohärente SI-Einheit der Wärmeleitfähigkeit",
+  "watt-pro-quadratmeter": "Kohärente SI-Einheit der Wärmestromdichte",
+  "joule-pro-kilogramm-kelvin":
+    "Kohärente SI-Einheit der spezifischen Wärmekapazität",
+  "ampere-pro-meter": "Kohärente SI-Einheit der magnetischen Feldstärke",
+  "24-karat-gold": "24 Karat = 100 % Feingoldanteil (999er Gold)",
+  "22-karat-gold": "22 Karat = 91,6 % Feingoldanteil (22/24, 916er Gold)",
+  "18-karat-gold": "18 Karat = 75 % Feingoldanteil (18/24, 750er Gold)",
+  "14-karat-gold": "14 Karat = 58,3 % Feingoldanteil (14/24, 585er Gold)",
+  kilogramm: "SI-Basiseinheit der Masse",
+  batman:
+    "1 Batman = 6 Okka ≈ 7,698 kg (Handelsstandard der späten Osmanenzeit)",
+  dalton:
+    "1 Da ≈ 1,66053906892 × 10⁻²⁷ kg (1/12 der Masse eines Kohlenstoff-12-Atoms)",
+  "astronomische-einheit": "1 AE = 149.597.870.700 m (per Definition exakt)",
+  lichtjahr: "1 Lichtjahr = 9.460.730.472.580.800 m (per Definition exakt)",
+  parsec: "1 Parsec ≈ 3,0857 × 10¹⁶ m ≈ 3,26 Lichtjahre ≈ 206.265 AE",
+  angstroem: "1 Å = 0,1 Nanometer = 10⁻¹⁰ m (per Definition exakt)",
+  elektronenvolt: "1 eV = 1,602176634 × 10⁻¹⁹ Joule (per Definition exakt)",
+  "imperiale-gallone": "1 imperiale Gallone = 4,54609 l = 0,00454609 m³",
+  ar: "1 Ar = 100 m² (per Definition exakt)",
+  "imperiale-pint": "1 imperiales Pint = 568,26125 ml = 1/8 imperiale Gallone",
+  "imperiale-quart": "1 imperiales Quart = 1,1365225 l = 1/4 imperiale Gallone",
+  rankine: "0 °R = absoluter Nullpunkt; 1 °R = 5/9 K",
+  kaeltetonne: "1 Kältetonne = 12.000 BTU/h = 3,516853 kW",
+  fluessigunze: "1 US-Flüssigunze = 29,5735295625 ml = 1/16 US-Pint",
+  "imperiale-fluessigunze":
+    "1 imperiale Flüssigunze = 28,4130625 ml = 1/160 imperiale Gallone",
+  essloeffel: "1 Esslöffel ≈ 15 ml = 0,000015 m³",
+  teeloeffel: "1 Teelöffel ≈ 5 ml = 0,000005 m³",
+  "tuerkisches-wasserglas": "1 türkisches Wasserglas = 200 ml = 0,0002 m³",
+  "btu-pro-stunde": "1 BTU/h = 0,29307107 W",
+  pascal: "SI-Einheit des Drucks, 1 Pa = 1 N/m²",
+  atmosphaere: "1 atm = 101.325 Pa (per Definition)",
+  celsius: "Bei Temperaturdifferenzen gilt 1 °C = 1 K; 0 °C = 273,15 K",
+  fahrenheit:
+    "Bei Temperaturdifferenzen gilt 1 °F = 5/9 K; °C = (°F − 32) × 5/9",
+  kelvin: "SI-Basiseinheit der thermodynamischen Temperatur",
+  "meter-pro-sekunde": "Kohärente SI-Einheit der Geschwindigkeit",
+  watt: "SI-Einheit der Leistung, 1 W = 1 J/s",
+  ampere: "SI-Basiseinheit der elektrischen Stromstärke",
+  "kilogramm-kubikmeter": "Kohärente SI-Einheit der Dichte",
+  arschin: "1 Arschin (Basar-Arschin) = 0,68 m",
+  cig: "1 Çığ ≈ 0,333 m",
+  killa: "1 Killa = 4.046,8564224 m² = 1 Acre (exakt gleichwertig)",
+  biswa: "1 Biswa ≈ 126,46 m² = 1/20 Bigha (Pucca-Standard in Uttar Pradesh)",
+  doenuem: "1 Dönüm = 1.000 m² = 1 Dekar",
+  dekar: "1 Dekar = 1.000 m² = 1 Dönüm",
+  katha: "1 Katha = 66,89 m² = 1,65 Decimal (Standard in Bangladesch)",
+  bigha: "1 Bigha = 1.337,8 m² = 20 Katha (Standard in Bangladesch)",
+  "feinsilber-999": "999er Silber = 99,9 % Feinsilberanteil",
+  "sterlingsilber-925":
+    "925er Silber = 92,5 % Feinsilberanteil (Sterlingsilber)",
+  "muenzsilber-900": "900er Silber = 90 % Feinsilberanteil (Münzsilber)",
+  "silber-800": "800er Silber = 80 % Feinsilberanteil",
+  kalorie: "1 cal = 4,184 J (thermochemische Definition)",
+  wattstunde: "1 Wh = 3.600 J (1 W × 3.600 Sekunden)",
+  tag: "1 Tag = 86.400 s = 24 Stunden",
+  lichtgeschwindigkeit: "c = 299.792.458 m/s (per Definition exakt)",
+  kile: "1 altes Kile (Istanbul, Zeit Selims III.) = 37 l = 4 Shinik",
+  shinik: "1 Shinik = 1/4 altes Kile ≈ 9,25 l",
+  weber: "1 Wb = 1 V·s (Voltsekunde)",
+  radiant: "Kohärente SI-Einheit des ebenen Winkels (2π rad = 360°)",
+  hertz: "SI-Einheit der Frequenz (1 Hz = 1 Schwingung pro Sekunde)",
+  "milligramm-pro-liter":
+    "1 mg/l = 0,001 kg/m³ (in verdünnten wässrigen Lösungen etwa 1 ppm)",
 };
 
 export const germanUnitPages: LocalizedGermanUnitPage[] = unitPages
@@ -3065,16 +3337,14 @@ export const germanUnitPages: LocalizedGermanUnitPage[] = unitPages
       historySummary: content.historySummary,
       measurementSystem: content.measurementSystem,
       commonUses: content.commonUses,
+      siEquivalent: germanSiEquivalent[content.slug] ?? page.siEquivalent,
     };
   })
   .filter((page): page is LocalizedGermanUnitPage => page !== null);
 
-export function findGermanUnitPage(
-  category: string,
-  unit: string
-) {
+export function findGermanUnitPage(category: string, unit: string) {
   return germanUnitPages.find(
-    (page) => page.category === category && page.unit === unit
+    (page) => page.category === category && page.unit === unit,
   );
 }
 
@@ -3082,19 +3352,13 @@ export function findGermanUnitPageBySlug(slug: string) {
   return germanUnitPages.find((page) => page.slug === slug);
 }
 
-export function findGermanUnitPageByTurkishSlug(
-  sourceSlug: string
-) {
-  return germanUnitPages.find(
-    (page) => page.sourceSlug === sourceSlug
-  );
+export function findGermanUnitPageByTurkishSlug(sourceSlug: string) {
+  return germanUnitPages.find((page) => page.sourceSlug === sourceSlug);
 }
 
-export function findGermanUnitPageByCategorySlug(
-  category: string
-) {
+export function findGermanUnitPageByCategorySlug(category: string) {
   const slug = getGermanCategorySlug(category);
   return germanUnitPages.filter(
-    (page) => page.category === category || page.categoryName === slug
+    (page) => page.category === category || page.categoryName === slug,
   );
 }

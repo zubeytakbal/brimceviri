@@ -1,3 +1,4 @@
+import { buildFullLanguageAlternates } from "@/app/i18n/routing";
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import NaturalGasCalculator from "../components/NaturalGasCalculator";
@@ -23,6 +24,7 @@ export const metadata: Metadata = {
     "Doğalgaz tüketimini (m³) ve birim fiyatı gir; toplam maliyeti ve yaklaşık kWh karşılığını anında hesapla.",
   alternates: {
     canonical: "/dogalgaz-tuketimi-hesaplama",
+    ...buildFullLanguageAlternates("/dogalgaz-tuketimi-hesaplama"),
   },
   openGraph: {
     title: "Doğalgaz Tüketimi Hesaplama: m³'ten Maliyet Hesabı",

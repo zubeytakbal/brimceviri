@@ -713,7 +713,7 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
     ],
     relatedToolsTitle: "Alltagsrechner",
     relatedToolsDescription:
-      "Neben den SI- und Ingenieurrechnern finden Sie hier auch praktische Werkzeuge fuer Alltag, Einkauf, Bauen und Wohnen.",
+      "Neben den SI- und Ingenieurrechnern finden Sie hier auch praktische Werkzeuge für Alltag, Einkauf, Bauen und Wohnen.",
     relatedToolsLinks: germanStandaloneTools.map((tool) => ({
       href: tool.germanPath,
       label: tool.title,

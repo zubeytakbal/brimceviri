@@ -9,20 +9,21 @@ import { geoRelated } from "../converter/geo/geoTools";
 import { worldRegionPages } from "../converter/geo/worldRegions";
 import { distanceFromAnkara, timeDiffText, timeDiffWithTurkey, WORLD_REGION_COLORS } from "../converter/geo/worldGeo";
 import { worldCountries } from "../converter/geo/worldCountries";
+import { buildLanguageAlternates } from "../i18n/routing";
 import { buildSiteUrl } from "../siteConfig";
 
 // Yaz saati gecisleri icin gunluk yenilenir.
 export const revalidate = 86400;
 
 const path = "/dunya-haritasi";
-const title = "Dünya Haritası: Ülkeler, Başkentler ve Kıtalar (Tıklanabilir)";
+const title = "Dünya Haritası: Ülkeler, Başkentler ve Kıtalar";
 const description =
   "Tıklanabilir siyasi dünya haritası: 196 ülkenin başkenti, yüzölçümü, Türkiye ile saat farkı ve Ankara'ya uzaklığı. Kıta, yüzölçümü ve saat farkı katmanları.";
 
 export const metadata: Metadata = {
   title,
   description,
-  alternates: { canonical: path },
+  alternates: { canonical: path, ...buildLanguageAlternates({ tr: path, en: "/en/world-map" }, "tr") },
   openGraph: { title, description, url: buildSiteUrl(path), siteName: "BirimCeviri.app", locale: "tr_TR", type: "website" },
 };
 

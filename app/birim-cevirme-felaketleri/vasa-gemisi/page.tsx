@@ -27,7 +27,7 @@ const faqItems: FaqItem[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Vasa Gemisi: İki Farklı 'Ayak' Ölçüsüyle İnşa Edilen Savaş Gemisi",
+  title: "Vasa Gemisi: İki Farklı 'Ayak' Ölçüsüyle Batan Gemi",
   description:
     "İsveç'in gururu Vasa savaş gemisi, marangozların bir yanda İsveç ayağını diğer yanda Amsterdam ayağını kullanmasıyla asimetrik çıktı ve ilk seferinde battı.",
   alternates: {
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Vasa Gemisi: İki Farklı 'Ayak' Ölçüsüyle İnşa Edilen Savaş Gemisi",
+    title: "Vasa Gemisi: İki Farklı 'Ayak' Ölçüsüyle Batan Gemi",
     description:
       "Marangozların iki farklı 'ayak' ölçüsü kullanması, geminin asimetrik çıkmasına katkıda bulundu.",
     url: buildSiteUrl("/birim-cevirme-felaketleri/vasa-gemisi"),

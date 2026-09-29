@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { seoTitle } from "../../../seoTitle";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
 import ElementLewisDiagram from "../../../components/ElementLewisDiagram";
@@ -12,6 +13,18 @@ import {
 } from "../../../converter/periodicTableDataDe";
 import { findGermanElementArticle } from "../../../converter/germanElementArticles";
 import { buildSiteUrl } from "../../../siteConfig";
+import { buildFaqSchema, type FaqItem } from "../../../converter/faqSchema";
+import { getAllCompoundProfiles } from "../../../converter/compoundsHub";
+import { compoundNamesDe } from "../../../converter/compoundsDatabaseDe";
+import { compoundPathDe } from "../../../converter/germanScienceSlugs";
+
+const AVOGADRO = 6.02214076e23;
+
+function formatSci(value: number) {
+  const [mantissa, exponent] = value.toExponential(3).split("e");
+  const sup = String(Number(exponent)).replace(/[-0-9]/g, (ch) => "⁻⁰¹²³⁴⁵⁶⁷⁸⁹"["-0123456789".indexOf(ch)]);
+  return `${Number(mantissa).toLocaleString("de-DE", { maximumFractionDigits: 3 })} × 10${sup}`;
+}
 
 type PageProps = {
   params: Promise<{ element: string }>;
@@ -53,7 +66,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const description = `Das Symbol von ${nameDe} ist ${element.symbol}, die Ordnungszahl ${element.atomicNumber}, die Atommasse ${formatMass(element.atomicMass)} u. Definition, Eigenschaften und Stoffmengenrechner.`;
 
   return {
-    title,
+    title: seoTitle(title, `${nameDe} (${element.symbol}): Ordnungszahl und Atommasse`, `${nameDe} (${element.symbol}): Eigenschaften`),
     description,
     robots: { index: Boolean(article), follow: true },
     alternates: {
@@ -91,6 +104,37 @@ export default async function GermanElementPage({ params }: PageProps) {
       ? `${nameDe} gehört zur ${elementCategoryLabelsDe[element.category].toLowerCase()}-Reihe. Diese Elemente werden im Periodensystem getrennt unter der Haupttabelle dargestellt.`
       : `${nameDe} steht in der ${element.period}. Periode und in Gruppe ${element.group} des Periodensystems. Die Einordnung als ${elementCategoryLabelsDe[element.category].toLowerCase()} hilft bei der Einordnung seiner chemischen Verwandtschaft.`;
 
+  const categoryDe = elementCategoryLabelsDe[element.category];
+  const compoundsWith = getAllCompoundProfiles()
+    .filter((c) => c.composition.some((part) => part.symbol === element.symbol))
+    .map((c) => {
+      const count = c.composition.find((part) => part.symbol === element.symbol)!.count;
+      return { id: c.id, name: compoundNamesDe[c.id] ?? c.nameTr, formula: c.formula, share: (count * element.atomicMass) / c.molarMass };
+    })
+    .slice(0, 12);
+
+  const faqItems: FaqItem[] = [
+    {
+      question: `Welches Symbol und welche Ordnungszahl hat ${nameDe}?`,
+      answer: `${nameDe} hat das Elementsymbol ${element.symbol} und die Ordnungszahl ${element.atomicNumber}.`,
+    },
+    {
+      question: `Wie viele Protonen und Elektronen hat ${nameDe}?`,
+      answer: `Ein ${nameDe}-Atom hat ${element.atomicNumber} Protonen im Kern; als neutrales Atom hat es ebenso viele Elektronen (${element.atomicNumber}). Die Zahl der Neutronen hängt vom Isotop ab.`,
+    },
+    {
+      question: `Wie groß ist die molare Masse von ${nameDe}?`,
+      answer: `Die molare Masse von ${nameDe} beträgt ${formatMass(element.atomicMass)} g/mol. 1 mol ${nameDe} wiegt also ${formatMass(element.atomicMass)} g, und 1 g enthält etwa ${formatSci(AVOGADRO / element.atomicMass)} Atome.`,
+    },
+    {
+      question: `Wo steht ${nameDe} im Periodensystem?`,
+      answer:
+        element.group === null
+          ? `${nameDe} gehört zu den ${categoryDe}en und steht in der Sonderreihe unter der Haupttabelle (${element.period}. Periode).`
+          : `${nameDe} steht in der ${element.period}. Periode und in Gruppe ${element.group} und gehört zur Kategorie „${categoryDe}“.`,
+    },
+  ];
+
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -116,6 +160,10 @@ export default async function GermanElementPage({ params }: PageProps) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(buildFaqSchema(faqItems)) }}
       />
 
       <div className="all-conversions-shell">
@@ -203,6 +251,43 @@ export default async function GermanElementPage({ params }: PageProps) {
               nicht für die Indexierung vorgesehen.
             </p>
           )}
+
+          {compoundsWith.length > 0 && (
+            <>
+              <h2>Verbindungen mit {nameDe}</h2>
+              <div className="conversion-table-wrap">
+                <table className="conversion-table">
+                  <thead>
+                    <tr>
+                      <th>Verbindung</th>
+                      <th>Formel</th>
+                      <th>Massenanteil {element.symbol}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {compoundsWith.map((c) => (
+                      <tr key={c.id}>
+                        <td>
+                          <Link href={compoundPathDe(c.id)}>{c.name}</Link>
+                        </td>
+                        <td>{c.formula}</td>
+                        <td>{(c.share * 100).toLocaleString("de-DE", { maximumFractionDigits: 1 })} %</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </>
+          )}
+
+          <h2>Häufig gestellte Fragen</h2>
+          {faqItems.map((item) => (
+            <p key={item.question}>
+              <strong>{item.question}</strong>
+              <br />
+              {item.answer}
+            </p>
+          ))}
 
           <h2>Verwandte Tools</h2>
           <p>

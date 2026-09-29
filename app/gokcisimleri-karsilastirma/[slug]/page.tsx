@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { seoTitle } from "../../seoTitle";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
 import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
@@ -60,7 +61,7 @@ export async function generateMetadata({
   )} kat daha büyük. Kütle, yerçekimi ve diğer özellikler karşılaştırması.`;
 
   return {
-    title,
+    title: seoTitle(title, `${trEitherQuestion(first.nameTr, second.nameTr)} Daha Büyük?`),
     description,
     alternates: { canonical: `/gokcisimleri-karsilastirma/${slug}` },
     openGraph: {

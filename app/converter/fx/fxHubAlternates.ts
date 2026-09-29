@@ -6,5 +6,6 @@ export const fxHubAlternates = {
   tr: "/doviz-cevirici",
   bn: "/bn/currency-converter",
   "uz-UZ": "/uz/valyuta-aylantirgich",
+  de: "/de/waehrungsrechner",
   "x-default": "/doviz-cevirici",
 };

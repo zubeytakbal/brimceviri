@@ -30,7 +30,7 @@ function parse(date: string, time: string) {
 
 // Kendi geri sayimini olustur: dogum gunu, sinav, tatil... Tarayicida saklanir,
 // paylasim linki ile baskasina gonderilebilir (?b=baslik&t=2027-01-01T09:00).
-export default function CustomCountdown({ lang, copy, basePath }: { lang: "tr" | "en"; copy: CustomCountdownCopy; basePath: string }) {
+export default function CustomCountdown({ lang, copy, basePath }: { lang: "tr" | "en" | "de"; copy: CustomCountdownCopy; basePath: string }) {
   const [items, setItems] = useState<Saved[]>([]);
   const [shared, setShared] = useState<Saved | null>(null);
   const [title, setTitle] = useState("");

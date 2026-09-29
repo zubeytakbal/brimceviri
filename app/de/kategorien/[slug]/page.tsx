@@ -1,3 +1,4 @@
+import { seoTitle } from "../../../seoTitle";
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
@@ -82,7 +83,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: categoryPage.title,
+    title: seoTitle(categoryPage.title, categoryPage.title.replace(/einheiten und Umrechnungen$/, " umrechnen")),
     description: categoryPage.description,
     alternates: {
       canonical: `/de/kategorien/${categoryPage.slug}`,

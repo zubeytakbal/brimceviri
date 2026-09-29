@@ -1,7 +1,34 @@
 // Pomodoro ve aralikli antrenman zamanlayicilarinin metinleri (TR + EN).
-export type FocusLang = "tr" | "en";
+export type FocusLang = "tr" | "en" | "de";
 
 export const pomodoroCopy = {
+  de: {
+    modes: { work: "Fokus", short: "Kurze Pause", long: "Lange Pause" },
+    start: "Start",
+    pause: "Pause",
+    resume: "Weiter",
+    skip: "Überspringen",
+    reset: "Zurücksetzen",
+    task: "Woran arbeiten Sie gerade?",
+    taskPlaceholder: "z. B. Hausaufgaben Mathe, Bericht schreiben",
+    session: "Runde",
+    today: "Heute",
+    pomodoros: "Pomodoros",
+    focusMinutes: "Min. Fokus",
+    settings: "Einstellungen",
+    workMin: "Fokus (Min.)",
+    shortMin: "Kurze Pause (Min.)",
+    longMin: "Lange Pause (Min.)",
+    longEvery: "Lange Pause alle",
+    autoStart: "Nächste Runde automatisch starten",
+    notify: "Benachrichtigungen senden",
+    notifyDenied: "Benachrichtigungen wurden blockiert; der Signalton ertönt trotzdem.",
+    history: "Heute erledigt",
+    noHistory: "Noch kein Pomodoro abgeschlossen.",
+    clearHistory: "Heute löschen",
+    done: { work: "Fokuszeit vorbei – Zeit für eine Pause!", short: "Pause vorbei – zurück zum Fokus!", long: "Lange Pause vorbei – bereit für die nächste Runde?" },
+    keyboard: "Leertaste: Start / Pause",
+  },
   tr: {
     modes: { work: "Odak", short: "Kısa mola", long: "Uzun mola" },
     start: "Başlat",
@@ -59,6 +86,28 @@ export const pomodoroCopy = {
 };
 
 export const intervalCopy = {
+  de: {
+    phases: { prepare: "Bereit machen", work: "Los", rest: "Pause", cooldown: "Fertig" },
+    presets: "Fertige Programme",
+    custom: "Eigenes Programm",
+    prepareSec: "Vorbereitung (s)",
+    workSec: "Belastung (s)",
+    restSec: "Pause (s)",
+    rounds: "Runden",
+    round: "Runde",
+    total: "Gesamtdauer",
+    remaining: "Noch",
+    start: "Start",
+    pause: "Pause",
+    resume: "Weiter",
+    reset: "Zurücksetzen",
+    skip: "Nächste Phase",
+    voice: "Sprachansage",
+    beeps: "Piepton in den letzten 3 Sekunden",
+    finished: "Training geschafft! 💪",
+    fullscreen: "Vollbild",
+    exitFullscreen: "Vollbild beenden",
+  },
   tr: {
     phases: { prepare: "Hazırlan", work: "Çalış", rest: "Dinlen", cooldown: "Bitti" },
     presets: "Hazır programlar",
@@ -105,13 +154,13 @@ export const intervalCopy = {
   },
 };
 
-export type IntervalPreset = { id: string; tr: string; en: string; prepare: number; work: number; rest: number; rounds: number };
+export type IntervalPreset = { id: string; tr: string; en: string; de: string; prepare: number; work: number; rest: number; rounds: number };
 
 export const intervalPresets: IntervalPreset[] = [
-  { id: "tabata", tr: "Tabata 20/10 × 8", en: "Tabata 20/10 × 8", prepare: 10, work: 20, rest: 10, rounds: 8 },
-  { id: "hiit-30", tr: "HIIT 30/30 × 10", en: "HIIT 30/30 × 10", prepare: 10, work: 30, rest: 30, rounds: 10 },
-  { id: "hiit-40", tr: "HIIT 40/20 × 8", en: "HIIT 40/20 × 8", prepare: 10, work: 40, rest: 20, rounds: 8 },
-  { id: "emom", tr: "EMOM 60 sn × 10", en: "EMOM 60 s × 10", prepare: 10, work: 60, rest: 0, rounds: 10 },
-  { id: "boxing", tr: "Boks 3 dk × 3 (1 dk ara)", en: "Boxing 3 min × 3 (1 min rest)", prepare: 10, work: 180, rest: 60, rounds: 3 },
-  { id: "plank", tr: "Plank 45/15 × 5", en: "Plank 45/15 × 5", prepare: 10, work: 45, rest: 15, rounds: 5 },
+  { id: "tabata", tr: "Tabata 20/10 × 8", en: "Tabata 20/10 × 8", de: "Tabata 20/10 × 8", prepare: 10, work: 20, rest: 10, rounds: 8 },
+  { id: "hiit-30", tr: "HIIT 30/30 × 10", en: "HIIT 30/30 × 10", de: "HIIT 30/30 × 10", prepare: 10, work: 30, rest: 30, rounds: 10 },
+  { id: "hiit-40", tr: "HIIT 40/20 × 8", en: "HIIT 40/20 × 8", de: "HIIT 40/20 × 8", prepare: 10, work: 40, rest: 20, rounds: 8 },
+  { id: "emom", tr: "EMOM 60 sn × 10", en: "EMOM 60 s × 10", de: "EMOM 60 s × 10", prepare: 10, work: 60, rest: 0, rounds: 10 },
+  { id: "boxing", tr: "Boks 3 dk × 3 (1 dk ara)", en: "Boxing 3 min × 3 (1 min rest)", de: "Boxen 3 Min. × 3 (1 Min. Pause)", prepare: 10, work: 180, rest: 60, rounds: 3 },
+  { id: "plank", tr: "Plank 45/15 × 5", en: "Plank 45/15 × 5", de: "Plank 45/15 × 5", prepare: 10, work: 45, rest: 15, rounds: 5 },
 ];

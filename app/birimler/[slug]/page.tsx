@@ -16,8 +16,15 @@ import {
 import {
   getUnitSources,
 } from "../../converter/unitSources";
+import {
+  siblingUnitGuides,
+  unitCommonValues,
+  unitConversionTable,
+  unitGuideFaq,
+} from "../../converter/unitGuideExtras";
 import { buildFullLanguageAlternates } from "../../i18n/routing";
 import { unitPages } from "../../converter/unitPages";
+import { seoTitle } from "../../seoTitle";
 import { SITE_URL, buildSiteUrl } from "../../siteConfig";
 
 type PageProps = {
@@ -71,9 +78,11 @@ export async function generateMetadata({
   }
 
   return {
-    title:
-      `${unitPage.name} Nedir? Tanımı, Tarihçesi ve ` +
-      `Bilimsel Bilgiler`,
+    title: seoTitle(
+      `${unitPage.name} Nedir? Tanımı, Tarihçesi ve Bilimsel Bilgiler`,
+      `${unitPage.name} Nedir? Tanımı ve Dönüşümleri`,
+      `${unitPage.name} Nedir?`
+    ),
     description:
       `${unitPage.name} biriminin sembolü ${unitPage.symbol}'dir. ` +
       `Tanımını, tarihçesini, bilimsel açıklamasını ve diğer birimlere ` +
@@ -290,11 +299,18 @@ const specificScientificSections =
     },
   };
 
-  const faqSchema = unitArticle
+  const conversionTable = unitConversionTable(unitPage);
+  const commonValues = unitCommonValues(unitPage, conversionTable[0]);
+  const siblings = siblingUnitGuides(unitPage);
+  // Makalesi olmayan birimlerde SSS, hesaplanan degerlerden uretilir.
+  const faqQuestions =
+    unitArticle?.questions ?? unitGuideFaq(unitPage, conversionTable);
+
+  const faqSchema = faqQuestions.length
     ? {
         "@context": "https://schema.org",
         "@type": "FAQPage",
-        mainEntity: unitArticle.questions.map((question) => ({
+        mainEntity: faqQuestions.map((question) => ({
           "@type": "Question",
           name: question.question,
           acceptedAnswer: {
@@ -644,6 +660,80 @@ const specificScientificSections =
               </>
             )}
 
+            {conversionTable.length > 0 && (
+              <section
+                className="conversion-section"
+                id="donusum-tablosu"
+              >
+                <h2>1 {unitPage.name} kaç eder? Dönüşüm tablosu</h2>
+
+                <div className="conversion-table-wrap">
+                  <table className="conversion-table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Birim</th>
+                        <th scope="col">1 {unitPage.symbol} =</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {conversionTable.map((row) => (
+                        <tr key={row.symbol}>
+                          <td>
+                            {row.href ? (
+                              <Link href={row.href} prefetch={false}>
+                                {row.name}
+                              </Link>
+                            ) : (
+                              row.name
+                            )}
+                          </td>
+                          <td>
+                            {row.text} {row.symbol}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+            )}
+
+            {commonValues.length > 0 && conversionTable[0] && (
+              <section
+                className="conversion-section"
+                id="sik-degerler"
+              >
+                <h2>
+                  {unitPage.name} → {conversionTable[0].name} sık
+                  kullanılan değerler
+                </h2>
+
+                <div className="conversion-table-wrap">
+                  <table className="conversion-table">
+                    <thead>
+                      <tr>
+                        <th scope="col">{unitPage.name}</th>
+                        <th scope="col">{conversionTable[0].name}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {commonValues.map((row) => (
+                        <tr key={row.amount}>
+                          <td>
+                            {row.amount.toLocaleString("tr-TR")}{" "}
+                            {unitPage.symbol}
+                          </td>
+                          <td>
+                            {row.text} {conversionTable[0].symbol}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+            )}
+
             {relatedConversions.length > 0 && (
               <section
                 className="conversion-section"
@@ -664,7 +754,7 @@ const specificScientificSections =
               </section>
             )}
 
-            {unitArticle && (
+            {faqQuestions.length > 0 && (
               <section
                 className="conversion-section"
                 id="sik-sorulan-sorular"
@@ -672,13 +762,40 @@ const specificScientificSections =
                 <h2>Sık sorulan sorular</h2>
 
                 <div className="faq-list">
-                  {unitArticle.questions.map((question) => (
+                  {faqQuestions.map((question) => (
                     <details key={question.question}>
                       <summary>{question.question}</summary>
                       <p>{question.answer}</p>
                     </details>
                   ))}
                 </div>
+              </section>
+            )}
+
+            {siblings.length > 0 && (
+              <section
+                className="conversion-section"
+                id="ilgili-birimler"
+              >
+                <h2>
+                  Diğer{" "}
+                  {(
+                    categoryPage?.title.replace(/ Dönüşümleri$/, "") ??
+                    categoryLabels[unitPage.category] ??
+                    unitPage.category
+                  ).toLocaleLowerCase("tr-TR")}{" "}
+                  birimleri
+                </h2>
+
+                <ul className="related-conversion-list">
+                  {siblings.map((sibling) => (
+                    <li key={sibling.href}>
+                      <Link href={sibling.href} prefetch={false}>
+                        {sibling.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </section>
             )}
 

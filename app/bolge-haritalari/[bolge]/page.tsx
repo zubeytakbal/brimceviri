@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { seoTitle } from "../../seoTitle";
 import { notFound } from "next/navigation";
 import Link from "@/app/components/SiteLink";
 import WorldMap from "../../components/geo/WorldMap";
@@ -24,7 +25,7 @@ export async function generateMetadata({ params }: { params: Promise<{ bolge: st
   const description = `${r.title.replace(" Haritası", "")} ülkeleri haritada: ${names.slice(0, 6).join(", ")}${names.length > 6 ? " ve diğerleri" : ""}. Başkentler, yüzölçümleri, Türkiye ile saat farkı ve Ankara'ya uzaklık.`;
   const path = `/bolge-haritalari/${r.id}`;
   return {
-    title,
+    title: seoTitle(title, `${r.title}: Ülkeler ve Başkentler`),
     description,
     alternates: { canonical: path },
     openGraph: { title, description, url: buildSiteUrl(path), siteName: "BirimCeviri.app", locale: "tr_TR", type: "website" },

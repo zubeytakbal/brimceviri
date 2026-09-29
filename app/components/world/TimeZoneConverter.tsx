@@ -52,13 +52,13 @@ export default function TimeZoneConverter({
   basePath,
 }: {
   options: ConverterOption[];
-  lang: "tr" | "en";
+  lang: "tr" | "en" | "de";
   copy: ConverterCopy;
   initialFrom: string;
   initialTo: string[];
   basePath: string;
 }) {
-  const locale = lang === "tr" ? "tr-TR" : "en-US";
+  const locale = lang === "tr" ? "tr-TR" : lang === "de" ? "de-DE" : "en-US";
   const byId = useMemo(() => new Map(options.map((o) => [o.id, o])), [options]);
   const [fromId, setFromId] = useState(initialFrom);
   const [toIds, setToIds] = useState<string[]>(initialTo);

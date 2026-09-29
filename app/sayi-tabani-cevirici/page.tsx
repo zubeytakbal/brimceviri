@@ -23,7 +23,7 @@ const faqItems: FaqItem[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Sayı Tabanı Çevirici: İkili, Sekizli, Onlu, Onaltılık Dönüşüm",
+  title: "Sayı Tabanı Çevirici: İkili, Sekizli, Onlu, Onaltılık",
   description:
     "İkili (binary), sekizli (octal), onlu (decimal) ve onaltılık (hexadecimal) sayı sistemleri arasında anında çevirin; ikili sayılarla toplama, çıkarma ve çarpma yapın.",
   alternates: {
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Sayı Tabanı Çevirici: İkili, Sekizli, Onlu, Onaltılık Dönüşüm",
+    title: "Sayı Tabanı Çevirici: İkili, Sekizli, Onlu, Onaltılık",
     description:
       "İkili, sekizli, onlu ve onaltılık sayı sistemleri arasında anında çevirin.",
     url: buildSiteUrl("/sayi-tabani-cevirici"),

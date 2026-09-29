@@ -1,5 +1,6 @@
 import type { NextConfig } from "next";
 import { routePairs } from "./app/converter/geo/routePairs";
+import { germanScienceRedirects } from "./app/converter/germanScienceSlugs";
 
 // Eski Ingilizce bolum adreslerinden dile ozel adreslere kalici yonlendirme.
 // Ornek: /sv/unit-guides/meter -> /sv/enhetsguider/meter
@@ -114,6 +115,8 @@ const nextConfig: NextConfig = {
         destination: "/bilim-hesaplayicilari/matematik",
         permanent: true,
       },
+      // Deutsche Werkstoff- und Verbindungsseiten hatten türkische Adressen (aluminyum, sofra-tuzu).
+      ...germanScienceRedirects(),
       ...Object.entries(localizedSectionRenames).flatMap(([locale, sections]) =>
         Object.entries(sections).map(([oldSection, newSection]) => ({
           source: `/${locale}/${oldSection}/:path*`,

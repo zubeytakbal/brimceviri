@@ -28,7 +28,7 @@ const faqItems: FaqItem[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Atom Kütlesi Hesaplama: İzotop Ağırlıklı Ortalama Hesaplayıcı",
+  title: "Atom Kütlesi Hesaplama: İzotop Ağırlıklı Ortalama",
   description:
     "İzotop kütlelerini ve doğal bolluk yüzdelerini gir, ağırlıklı ortalama alarak elementin periyodik tablodaki ortalama atom kütlesini anında hesapla.",
   alternates: {
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     languages: { de: "/de/atommasse-berechnen" },
   },
   openGraph: {
-    title: "Atom Kütlesi Hesaplama: İzotop Ağırlıklı Ortalama Hesaplayıcı",
+    title: "Atom Kütlesi Hesaplama: İzotop Ağırlıklı Ortalama",
     description:
       "İzotop kütle ve bolluk yüzdelerinden ortalama atom kütlesini hesaplayın.",
     url: buildSiteUrl("/bilim-hesaplayicilari/kimya/atom-kutlesi-hesaplama"),

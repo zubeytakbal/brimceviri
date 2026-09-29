@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { seoTitle } from "../../../seoTitle";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
 import { buildFaqSchema, type FaqItem } from "../../../converter/faqSchema";
@@ -39,7 +40,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const description = `${region.name} (${region.centerCity})ning dengiz sathidan balandligi, bu balandlikdagi havo bosimi va suvning necha darajada qaynashi.`;
 
   return {
-    title,
+    title: seoTitle(title, `${region.name} Balandligi: ${region.elevationM} Metr`),
     description,
     alternates: { canonical: `/uz/viloyatlar-balandligi/${slug}` },
     openGraph: {

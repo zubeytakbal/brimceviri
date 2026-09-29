@@ -1,3 +1,4 @@
+import { germanMathAlternatesForTurkish } from "@/app/i18n/germanMathPages";
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import StatisticsCalculator from "../../../components/StatisticsCalculator";
@@ -33,6 +34,7 @@ export const metadata: Metadata = {
     "Bir veri listesinin aritmetik ortalamasını, medyanını, modunu, standart sapmasını ve varyansını adım adım hesapla.",
   alternates: {
     canonical: "/bilim-hesaplayicilari/matematik/ortalama-hesaplama",
+    ...germanMathAlternatesForTurkish("/bilim-hesaplayicilari/matematik/ortalama-hesaplama"),
   },
   openGraph: {
     title: "Ortalama, Medyan, Mod ve Standart Sapma Hesaplama",

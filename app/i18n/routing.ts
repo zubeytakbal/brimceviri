@@ -40,7 +40,13 @@ export type StaticRouteKey =
   | "paceCalculator"
   | "acCapacityCalculator"
   | "electricityConsumptionCalculator"
-  | "sleepCalculator";
+  | "sleepCalculator"
+  | "fuelConsumptionCalculator"
+  | "wallpaperCalculator"
+  | "movingBoxCalculator"
+  | "laminateCalculator"
+  | "naturalGasCalculator"
+  | "evChargingCalculator";
 
 type LocalePathMap = Partial<Record<Locale, string>>;
 
@@ -246,6 +252,30 @@ const staticRouteTranslations: Record<StaticRouteKey, LocalePathMap> = {
     tr: "/uyku-hesaplama",
     de: "/de/schlafrechner",
     ar: "/ar/sleep-calculator",
+  },
+  fuelConsumptionCalculator: {
+    tr: "/yakit-tuketimi-hesaplama",
+    de: "/de/kraftstoffverbrauchsrechner",
+  },
+  wallpaperCalculator: {
+    tr: "/duvar-kagidi-hesaplama",
+    de: "/de/tapetenrechner",
+  },
+  movingBoxCalculator: {
+    tr: "/tasinma-kutusu-hesaplama",
+    de: "/de/umzugskartons-rechner",
+  },
+  laminateCalculator: {
+    tr: "/parke-hesaplama",
+    de: "/de/laminatrechner",
+  },
+  naturalGasCalculator: {
+    tr: "/dogalgaz-tuketimi-hesaplama",
+    de: "/de/erdgaskosten-rechner",
+  },
+  evChargingCalculator: {
+    tr: "/elektrikli-arac-sarj-hesaplama",
+    de: "/de/e-auto-laderechner",
   },
 };
 

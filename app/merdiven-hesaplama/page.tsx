@@ -28,7 +28,7 @@ const faqItems: FaqItem[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Merdiven Hesaplama: Basamak Sayısı, Rıht ve Basamak Derinliği",
+  title: "Merdiven Hesaplama: Basamak Sayısı ve Rıht Yüksekliği",
   description:
     "Toplam yükseklik ve istenen rıht yüksekliğine göre merdiven basamak sayısını, rıht yüksekliğini ve Blondel formülüyle basamak derinliğini hesapla.",
   alternates: {
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Merdiven Hesaplama: Basamak Sayısı, Rıht ve Basamak Derinliği",
+    title: "Merdiven Hesaplama: Basamak Sayısı ve Rıht Yüksekliği",
     description:
       "Yüksekliği gir, güvenli ve konforlu merdiven ölçülerini anında hesapla.",
     url: buildSiteUrl("/merdiven-hesaplama"),

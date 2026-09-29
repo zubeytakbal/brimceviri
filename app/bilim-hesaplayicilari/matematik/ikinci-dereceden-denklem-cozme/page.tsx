@@ -1,3 +1,4 @@
+import { germanMathAlternatesForTurkish } from "@/app/i18n/germanMathPages";
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import QuadraticEquationCalculator from "../../../components/QuadraticEquationCalculator";
@@ -33,6 +34,7 @@ export const metadata: Metadata = {
     "ax² + bx + c = 0 denklemindeki delta (diskriminant) değerini ve kökleri adım adım hesapla — iki farklı kök, çift kök veya gerçek kök yok durumlarını gör.",
   alternates: {
     canonical: "/bilim-hesaplayicilari/matematik/ikinci-dereceden-denklem-cozme",
+    ...germanMathAlternatesForTurkish("/bilim-hesaplayicilari/matematik/ikinci-dereceden-denklem-cozme"),
   },
   openGraph: {
     title: "İkinci Dereceden Denklem Çözme (Delta Hesaplama)",

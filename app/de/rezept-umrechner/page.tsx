@@ -1,10 +1,11 @@
+import { seoTitle } from "../../seoTitle";
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import RecipeScalerConverter from "../../components/RecipeScalerConverter";
 import { buildSiteUrl } from "../../siteConfig";
 
 export const metadata: Metadata = {
-  title: "Rezept Umrechner: Rezept skalieren und Tassen in Gramm",
+  title: seoTitle("Rezept Umrechner: Rezept skalieren und Tassen in Gramm", "Rezept-Umrechner: Rezept skalieren"),
   description:
     "Fügen Sie Ihr Rezept ein, wählen Sie einen Faktor und skalieren Sie alle Mengen sofort. Erkannte Zutaten erhalten passende Grammwerte.",
   alternates: {
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Rezept Umrechner: Rezept skalieren und Tassen in Gramm",
     description:
-      "Verdoppeln, halbieren oder skalieren Sie ein Rezept und sehen Sie Grammwerte fuer erkannte Zutaten.",
+      "Verdoppeln, halbieren oder skalieren Sie ein Rezept und sehen Sie Grammwerte für erkannte Zutaten.",
     url: buildSiteUrl("/de/rezept-umrechner"),
     siteName: "BirimCeviri.app",
     locale: "de_DE",

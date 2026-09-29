@@ -115,6 +115,8 @@ export const everydayToolLinksByCategory: Record<
     { href: "/malzeme-agirligi-hesaplama", label: "Malzeme Yoğunlukları Tablosu ve Ağırlık Hesaplama" },
   ],
   altin_ayar: [
+    { href: "/altin-hesaplama", label: "Altın Hesaplama (Çeyrek, Yarım, Tam, Bilezik)" },
+    { href: "/altin-hesaplama/ceyrek-altin", label: "Çeyrek Altın Kaç Gram?" },
     { href: "/has-hesaplama", label: "Has Altın ve Gümüş Hesaplama" },
     { href: "/kuyumcu-araclari", label: "Kuyumcu Araçları" },
   ],

@@ -1,6 +1,7 @@
 import { germanCities } from "./converter/geo/germanCities";
 import { entfernungPaare, entfernungStadtPath } from "./converter/geo/germanDistances";
 import { countriesDe, countryPathDe } from "./converter/geo/worldGeoDe";
+import { ALTIN_SAYFALARI, altinSayfaPath } from "./converter/turkishAltinPages";
 import { BRUECKENTAGE_JAHRE, brueckentagePfad } from "./i18n/germanBrueckentage";
 import { germanMathPages } from "./i18n/germanMathPages";
 import { comparisonPathDe, compoundPathDe, materialPathDe } from "./converter/germanScienceSlugs";
@@ -4540,6 +4541,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.75,
     },
+    ...["/altin-hesaplama", ...ALTIN_SAYFALARI.map((id) => altinSayfaPath(id))].map((path) => ({
+      url: `${baseUrl}${path}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly" as const,
+      priority: path === "/altin-hesaplama" ? 0.85 : 0.75,
+    })),
     {
       url: `${baseUrl}/kidem-tazminati-hesaplama`,
       lastModified: contentLastModified,

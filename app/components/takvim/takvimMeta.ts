@@ -5,6 +5,7 @@ import { buildSiteUrl } from "../../siteConfig";
 export function takvimMetadata(
   path: string,
   m: { title: string; short: string; description: string },
+  locale = "tr_TR",
 ): Metadata {
   return {
     title: seoTitle(m.title, m.short),
@@ -15,8 +16,13 @@ export function takvimMetadata(
       description: m.description,
       url: buildSiteUrl(path),
       siteName: "BirimCeviri.app",
-      locale: "tr_TR",
+      locale,
       type: "website",
     },
   };
 }
+
+export const deKalenderMetadata = (
+  path: string,
+  m: { title: string; short: string; description: string },
+) => takvimMetadata(path, m, "de_DE");

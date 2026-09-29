@@ -14031,3 +14031,68 @@ a.all-units-row .all-units-name {
   box-shadow: inset 0 -4px 0 #f0b429;
   background: #ffffff;
 }
+
+/* Deutscher Kalender: Spalte für Kalenderwochen */
+.takvim-ay.mit-kw {
+  grid-template-columns: 2.2rem repeat(7, minmax(0, 1fr));
+}
+
+.takvim-ay.mit-kw .is-kw {
+  color: #1f6f8b;
+  font-size: 0.7rem;
+  font-weight: 700;
+  background: #eef6f8;
+  border-radius: 6px;
+}
+
+.takvim-ay.mit-kw.is-buyuk > .is-kw {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  border: 0;
+}
+
+.takvim-kat.de-kat-feiertag,
+.takvim-ay.is-buyuk i.de-kat-feiertag {
+  color: #b42323;
+}
+
+.takvim-kat.de-kat-feiertag {
+  background: #fdeaea;
+}
+
+.takvim-kat.de-kat-brauch,
+.takvim-ay.is-buyuk i.de-kat-brauch {
+  color: #5b3fc0;
+}
+
+.takvim-kat.de-kat-brauch {
+  background: #efeafd;
+}
+
+.takvim-kat.de-kat-aktion {
+  background: #fde8f1;
+  color: #a2295f;
+}
+
+.takvim-kat.de-kat-gedenk {
+  background: #eceff3;
+  color: #3a4654;
+}
+
+.takvim-kat.de-kat-lostag {
+  background: #eef3e2;
+  color: #4d6b1f;
+}
+
+.takvim-kat.de-kat-natur {
+  background: #e6f2fb;
+  color: #1d5f8f;
+}
+
+@media (max-width: 560px) {
+  .takvim-ay.mit-kw {
+    grid-template-columns: 1.6rem repeat(7, minmax(0, 1fr));
+  }
+}

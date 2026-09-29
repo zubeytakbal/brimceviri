@@ -4,6 +4,8 @@ import { addDaysYmd, weekdayOf } from "../converter/time/dateMath";
 import { stateHolidays, type StateCode } from "../converter/time/germanHolidays";
 
 export const germanCalendarLinks = [
+  { href: "/de/kalender", label: "Kalender mit Feiertagen" },
+  { href: "/de/besondere-tage", label: "Besondere Tage" },
   { href: "/de/kalenderwoche", label: "Aktuelle Kalenderwoche" },
   { href: "/de/feiertage", label: "Feiertage nach Bundesland" },
   { href: "/de/brueckentage", label: "Brückentage-Rechner" },

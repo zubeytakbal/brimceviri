@@ -22,6 +22,7 @@ import { worldCities } from "./converter/time/worldCities";
 import { timerPresetAlternates, timerPresetPath, timerPresets } from "./i18n/timerPresets";
 import { countdownAlternatePaths, countdownEvents, countdownPath } from "./converter/time/countdownEvents";
 import { HOLIDAY_YEARS } from "./converter/time/holidays";
+import { DE_JAHRE, DE_MONAT_SLUG, DE_TAGE, deBelegteTage, deBesondererTagPfad, deJahrPfad, deMonatPfad, deTagPfad } from "./converter/calendar/deKalender";
 import { AY_SLUG, doluGunler, ETKINLIKLER, ozelGunPath, TAKVIM_YILLARI, takvimAyPath, takvimGunPath, takvimYilPath } from "./converter/calendar/trTakvim";
 import { routePairs } from "./converter/geo/routePairs";
 import { turkeyProvinces } from "./converter/geo/turkeyProvinces";
@@ -3090,6 +3091,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: contentLastModified,
       changeFrequency: "weekly" as const,
       priority: 0.8,
+    })),
+    ...[
+      "/de/kalender",
+      "/de/besondere-tage",
+      ...DE_TAGE.map((t) => deBesondererTagPfad(t.id)),
+      ...DE_JAHRE.flatMap((y) => [deJahrPfad(y), ...DE_MONAT_SLUG.map((_, i) => deMonatPfad(y, i + 1)), ...deBelegteTage(y).map(deTagPfad)]),
+    ].map((path) => ({
+      url: `${baseUrl}${path}`,
+      lastModified: contentLastModified,
+      changeFrequency: (path.split("/").length > 5 ? "yearly" : "weekly") as "yearly" | "weekly",
+      priority: path === "/de/kalender" || path === "/de/besondere-tage" ? 0.8 : path.split("/").length > 5 ? 0.5 : 0.65,
     })),
     ...[
       "/takvim",

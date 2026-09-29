@@ -145,6 +145,8 @@ const timeToolsHome = {
     { href: "/de/pomodoro-timer", title: "Pomodoro-Timer", description: "25 Minuten Fokus, 5 Minuten Pause – zum Lernen und Arbeiten.", icon: "time" as const },
     { href: "/de/intervall-timer", title: "Intervall-Timer", description: "Tabata, HIIT und EMOM mit Sprachansage auf Deutsch.", icon: "time" as const },
     { href: "/de/eieruhr", title: "Eieruhr", description: "Eier weich, wachsweich oder hart – Kochzeit nach Eigröße.", icon: "time" as const },
+    { href: "/de/kalender", title: "Kalender mit Feiertagen", description: "Jeder Monat mit KW, Feiertagen je Bundesland, Karneval, Advent und Zeitumstellung.", icon: "dateCalculator" as const },
+    { href: "/de/besondere-tage", title: "Besondere Tage", description: "Wann ist Ostern, Rosenmontag, Muttertag oder der erste Advent?", icon: "dateCalculator" as const },
     { href: "/de/kalenderwoche", title: "Aktuelle Kalenderwoche", description: "Welche KW haben wir? KW für jedes Datum und alle Wochen des Jahres.", icon: "attendanceCalculator" as const },
     { href: "/de/feiertage", title: "Feiertage", description: "Gesetzliche Feiertage aller 16 Bundesländer mit Brückentagen.", icon: "attendanceCalculator" as const },
     { href: "/de/brueckentage", title: "Brückentage-Rechner", description: "Urlaub optimal auf die Feiertage verteilen, für jedes Bundesland, mit Kalender-Export.", icon: "dateCalculator" as const },

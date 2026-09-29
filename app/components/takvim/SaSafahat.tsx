@@ -28,6 +28,7 @@ import TimeToolPage from "../time/TimeToolPage";
 import SaNavigator from "./SaNavigator";
 import { SaMiftah, SaShahrGrid } from "./SaShahrGrid";
 import TakvimGorsel from "./TakvimGorsel";
+import { buildSiteUrl } from "../../siteConfig";
 
 const T = {
   crumb: "مسار التنقل",
@@ -35,6 +36,20 @@ const T = {
   toc: "المحتويات",
   faq: "الأسئلة الشائعة",
 };
+/** زر الاشتراك في تقويم ics يتحدث تلقائيًا. */
+function SaIshtirak() {
+  return (
+    <div className="takvim-ics">
+      <a
+        className="time-tool-button is-secondary"
+        href={buildSiteUrl("/ar/calendar.ics").replace(/^https?:/, "webcal:")}
+      >
+        🔔 أضف المناسبات ومواعيد الرواتب إلى تقويم هاتفك
+      </a>
+    </div>
+  );
+}
+
 const RAISIYA = { href: "/ar", label: "الرئيسية" };
 const HUB = { href: "/ar/calendar", label: "التقويم" };
 const MUN_HUB = { href: "/ar/occasions", label: "المناسبات" };
@@ -184,6 +199,7 @@ export function SaHub() {
               </dl>
             </div>
             <SaNavigator yawm={yawm} hy0={h.year} hm0={h.month} />
+            <SaIshtirak />
             <div className="time-tool-chips takvim-yillar">
               {SA_HIJRI_SANAWAT.map((y) => (
                 <Link key={y} href={saHijriSanaPath(y)} prefetch={false}>
@@ -512,6 +528,7 @@ export function SaMunasabatHub() {
         intro="متى رمضان والعيد ويوم التأسيس واليوم الوطني؟ الإجازات الرسمية والمناسبات الدينية والوطنية مع موعدها القادم وعدد الأيام المتبقية."
         tool={
           <div className="takvim-hub">
+            <SaIshtirak />
             {TARTIB.map((f) => (
               <section key={f}>
                 <h2 id={`feah-${f}`}>{SA_FEAH[f]}</h2>
@@ -776,6 +793,7 @@ export function SaRawatib() {
               القاعدة: يوم 27 من الشهر الميلادي؛ الجمعة ← الخميس قبله، السبت ←
               الأحد بعده. قد يُقدَّم الصرف بأمر ملكي.
             </p>
+            <SaIshtirak />
           </div>
         }
         related={{ title: T.related, links: SA_ROWABIT }}

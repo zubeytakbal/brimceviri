@@ -52,7 +52,8 @@ export type Gorsel =
   | "hidirellez"
   | "polis"
   | "orman"
-  | "firtina";
+  | "firtina"
+  | "okul";
 
 type Kural =
   | { tip: "sabit"; ay: number; gun: number }

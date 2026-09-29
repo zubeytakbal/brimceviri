@@ -2163,6 +2163,100 @@ function Cizim({ g }: { g: Gorsel }): ReactNode {
           />
         </>
       );
+    case "okul":
+      return (
+        <>
+          <defs>
+            <Grad
+              id={`${p}-gok`}
+              stops={[
+                [0, "#8fc1e6"],
+                [1, "#e9f3fa"],
+              ]}
+            />
+            <Grad
+              id={`${p}-bina`}
+              stops={[
+                [0, "#f3e3c8"],
+                [1, "#d9c29c"],
+              ]}
+            />
+            <Grad
+              id={`${p}-cati`}
+              stops={[
+                [0, "#b5472f"],
+                [1, "#8a3322"],
+              ]}
+            />
+            <Grad
+              id={`${p}-cam`}
+              stops={[
+                [0, "#bfdcf0"],
+                [1, "#7fa9c8"],
+              ]}
+            />
+          </defs>
+          <Gok id={`${p}-gok`} />
+          <circle cx="98" cy="22" r="8" fill="#fff4c4" />
+          {/* bayrak direği */}
+          <rect x="16" y="20" width="1.6" height="78" fill="#7a7f86" />
+          <Bayrak x={17.6} y={22} w={20} />
+          {/* okul binası */}
+          <polygon points="28,52 60,34 92,52" fill={`url(#${p}-cati)`} />
+          <rect x="30" y="52" width="60" height="44" fill={`url(#${p}-bina)`} />
+          <rect x="30" y="52" width="60" height="3" fill="#b99c70" />
+          <circle
+            cx="60"
+            cy="45"
+            r="5"
+            fill="#fbf7ef"
+            stroke="#8a3322"
+            strokeWidth="1"
+          />
+          <line
+            x1="60"
+            y1="45"
+            x2="60"
+            y2="41.8"
+            stroke="#2b2b2b"
+            strokeWidth="0.8"
+          />
+          <line
+            x1="60"
+            y1="45"
+            x2="62.4"
+            y2="45"
+            stroke="#2b2b2b"
+            strokeWidth="0.8"
+          />
+          {[36, 48, 66, 78].map((x) =>
+            [58, 72].map((y) => (
+              <g key={`${x}${y}`}>
+                <rect
+                  x={x}
+                  y={y}
+                  width="7"
+                  height="9"
+                  fill={`url(#${p}-cam)`}
+                />
+                <line
+                  x1={x + 3.5}
+                  y1={y}
+                  x2={x + 3.5}
+                  y2={y + 9}
+                  stroke="#f3e3c8"
+                  strokeWidth="0.8"
+                />
+              </g>
+            )),
+          )}
+          <rect x="55" y="80" width="10" height="16" fill="#6b4428" />
+          <rect x="52" y="78" width="16" height="2" fill="#b99c70" />
+          <path d="M0,96 H120 V120 H0z" fill="#9fb58a" />
+          <path d="M48,96 L72,96 L84,120 L36,120z" fill="#c9bfae" />
+          <Cam x={104} y={70} h={28} />
+        </>
+      );
     case "isci":
       return (
         <>

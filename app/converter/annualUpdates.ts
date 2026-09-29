@@ -48,6 +48,30 @@ export const annualUpdates: AnnualUpdate[] = [
     checklist: ["Add the July kıdem tazminatı tavanı (announced in early July) to KIDEM_TAVANLARI, then move validYear to the next year"],
   },
   {
+    id: "tr-okul-takvimi",
+    label: "Okul takvimi (MEB)",
+    pageHref: "/okul-takvimi",
+    validYear: 2027,
+    remindFrom: "05-15",
+    checklist: [
+      "Find the MEB çalışma takvimi genelgesi for the next school year (usually announced May–June) and verify it on meb.gov.tr",
+      "Append the new year to OKUL_YILLARI in app/converter/calendar/okulTakvimi.ts (uyum, açılış, ara tatiller, karne, yarıyıl, 2. dönem, kapanış)",
+      "Update the page title/description year in app/okul-takvimi/page.tsx, then set validYear here",
+    ],
+  },
+  {
+    id: "tr-takvim",
+    label: "Türkiye takvimi ve dini günler",
+    pageHref: "/takvim",
+    validYear: 2027,
+    remindFrom: "07-01",
+    checklist: [
+      "Compare the Diyanet dini günler list for the next year with the computed dates (etkinlikTarihleri); add differences to DIYANET_DUZELTME in app/converter/calendar/trTakvim.ts",
+      "Raise DINI_DOGRULANAN to the verified year and add a new year to TAKVIM_YILLARI (pages and sitemap follow automatically)",
+      "Check turkeyHolidays / DIYANET_VERIFIED_UNTIL in app/converter/time/holidays.ts, then set validYear here",
+    ],
+  },
+  {
     id: "de-grunderwerbsteuer",
     label: "Grunderwerbsteuer-Rechner (Germany)",
     pageHref: "/de/grunderwerbsteuer-rechner",

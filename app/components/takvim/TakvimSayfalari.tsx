@@ -38,6 +38,7 @@ import { moonPhasesBetween } from "../../converter/time/moon";
 import HolidayIcsButton from "../dates/HolidayIcsButton";
 import { buildSiteUrl } from "../../siteConfig";
 import TimeToolPage from "../time/TimeToolPage";
+import TakvimGezgini from "./TakvimGezgini";
 import TakvimGorsel from "./TakvimGorsel";
 
 const T = {
@@ -65,6 +66,8 @@ export const TAKVIM_ARACLARI = [
   { href: "/ay-evreleri", label: "Ay Evreleri" },
   { href: "/firtina-takvimi", label: "Fırtına Takvimi" },
   { href: "/dogdugum-gun-hangi-gun", label: "Doğduğum Gün Hangi Gündü?" },
+  { href: "/okul-takvimi", label: "Okul Takvimi" },
+  { href: "/hicri-takvim", label: "Hicri Takvim" },
 ];
 
 /** Türkiye saatine göre bugün (UTC+3). */
@@ -366,23 +369,7 @@ export function TakvimHubSayfasi() {
               </p>
             ) : null}
           </div>
-          <div className="takvim-ay-baslik">
-            <h2>
-              <Link
-                href={takvimAyPath(bugun.year, bugun.month)}
-                prefetch={false}
-              >
-                {AY_ADLARI[bugun.month - 1]} {bugun.year}
-              </Link>
-            </h2>
-          </div>
-          <AyIzgarasi
-            year={bugun.year}
-            month={bugun.month}
-            bugun={bugun}
-            buyuk
-          />
-          <Lejant />
+          <TakvimGezgini bugun={bugun} />
           <div className="time-tool-chips takvim-yillar">
             {TAKVIM_YILLARI.map((y) => (
               <Link key={y} href={takvimYilPath(y)} prefetch={false}>

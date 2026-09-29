@@ -92,6 +92,26 @@ export default function DateCalculatorPage() {
 
         <DateCalculator />
 
+        <nav className="time-tool-related" aria-label="İlginizi çekebilir">
+          <h2>İlginizi çekebilir</h2>
+          <ul>
+            {[
+              { href: "/dogdugum-gun-hangi-gun", label: "Doğduğum Gün Hangi Gündü?" },
+              { href: "/iki-tarih-arasi-gun-hesaplama", label: "İki Tarih Arası Gün Hesaplama" },
+              { href: "/tarihe-gun-ekleme", label: "Tarihe Gün Ekleme" },
+              { href: "/tarih-cevirici", label: "Hicri – Miladi Tarih Çevirici" },
+              { href: "/geri-sayim", label: "Geri Sayım" },
+              { href: "/takvim", label: "Türkiye Takvimi" },
+            ].map((l) => (
+              <li key={l.href}>
+                <Link href={l.href} prefetch={false}>
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
         <section className="category-article-content">
           <h2>Yaş nasıl hesaplanır?</h2>
           <p>

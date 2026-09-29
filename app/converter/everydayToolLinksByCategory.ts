@@ -155,6 +155,8 @@ export const everydayToolLinksByCategory: Record<
     { href: "/takvim", label: "Türkiye Takvimi" },
     { href: "/ozel-gunler", label: "Özel Günler" },
     { href: "/firtina-takvimi", label: "Fırtına Takvimi" },
+    { href: "/okul-takvimi", label: "Okul Takvimi" },
+    { href: "/hicri-takvim", label: "Hicri Takvim" },
     { href: "/resmi-tatiller", label: "Resmî Tatiller" },
     { href: "/gebelik-haftasi-hesaplama", label: "Gebelik Haftası Hesaplama" },
     { href: "/uyku-hesaplama", label: "Uyku Hesaplama" },

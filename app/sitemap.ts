@@ -3096,13 +3096,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       "/ozel-gunler",
       "/firtina-takvimi",
       "/dogdugum-gun-hangi-gun",
+      "/okul-takvimi",
+      "/hicri-takvim",
       ...ETKINLIKLER.map((e) => ozelGunPath(e.id)),
       ...TAKVIM_YILLARI.flatMap((y) => [takvimYilPath(y), ...AY_SLUG.map((_, i) => takvimAyPath(y, i + 1)), ...doluGunler(y).map(takvimGunPath)]),
     ].map((path) => ({
       url: `${baseUrl}${path}`,
       lastModified: contentLastModified,
       changeFrequency: (path.split("/").length > 4 ? "yearly" : "weekly") as "yearly" | "weekly",
-      priority: path === "/takvim" || path === "/ozel-gunler" || path === "/firtina-takvimi" || path === "/dogdugum-gun-hangi-gun" ? 0.8 : path.split("/").length > 4 ? 0.5 : 0.65,
+      priority: path === "/takvim" || path === "/ozel-gunler" || path === "/firtina-takvimi" || path === "/dogdugum-gun-hangi-gun" || path === "/okul-takvimi" || path === "/hicri-takvim" ? 0.8 : path.split("/").length > 4 ? 0.5 : 0.65,
     })),
     ...[
       ["/resmi-tatiller", ...HOLIDAY_YEARS.map((y) => `/resmi-tatiller/${y}`)],

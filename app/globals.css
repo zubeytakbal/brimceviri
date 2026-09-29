@@ -13951,3 +13951,83 @@ a.all-units-row .all-units-name {
   background: #eef3e2;
   color: #4d6b1f;
 }
+
+.takvim-gezgini {
+  display: grid;
+  gap: 8px;
+}
+
+.takvim-gezgini .takvim-ay-baslik select {
+  padding: 4px 6px;
+  border: 1px solid #c9d6de;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #172033;
+  font: inherit;
+  font-weight: 700;
+}
+
+.takvim-nav {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #c9d6de;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #1f4f66;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.takvim-nav:hover {
+  background: #eef6f8;
+}
+
+.takvim-hicri-aralik {
+  margin: 0;
+  color: #5b6b7a;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.takvim-bugune {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #1f6f8b;
+  font: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.takvim-ay em sup {
+  margin-left: 4px;
+  color: #8a97a3;
+  font-size: 0.62rem;
+  font-weight: 500;
+}
+
+.takvim-gezgini-liste {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 4px 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.9rem;
+}
+
+.takvim-kat.kat-okul {
+  background: #fff1d6;
+  color: #8a5a00;
+}
+
+.takvim-ay .is-okul {
+  box-shadow: inset 0 -4px 0 #f0b429;
+}
+
+.takvim-lejant-okul {
+  box-shadow: inset 0 -4px 0 #f0b429;
+  background: #ffffff;
+}

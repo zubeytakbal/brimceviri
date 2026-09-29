@@ -14096,3 +14096,46 @@ a.all-units-row .all-units-name {
     grid-template-columns: 1.6rem repeat(7, minmax(0, 1fr));
   }
 }
+
+/* التقويم السعودي */
+.takvim-kat.sa-feah-rasmi,
+.takvim-ay.is-buyuk i.sa-feah-rasmi {
+  color: #b42323;
+}
+
+.takvim-kat.sa-feah-rasmi {
+  background: #fdeaea;
+}
+
+.takvim-kat.sa-feah-watani,
+.takvim-ay.is-buyuk i.sa-feah-watani {
+  color: #0f6b43;
+}
+
+.takvim-kat.sa-feah-watani {
+  background: #e3f6ee;
+}
+
+.takvim-kat.sa-feah-dini,
+.takvim-ay.is-buyuk i.sa-feah-dini {
+  color: #5b3fc0;
+}
+
+.takvim-kat.sa-feah-dini {
+  background: #efeafd;
+}
+
+.takvim-kat.sa-feah-mawsim {
+  background: #e6f2fb;
+  color: #1d5f8f;
+}
+
+[dir="rtl"] .takvim-ay.is-buyuk > span,
+[dir="rtl"] .takvim-ay.is-buyuk > a {
+  text-align: right;
+}
+
+[dir="rtl"] .takvim-ay em sup {
+  margin-left: 0;
+  margin-right: 4px;
+}

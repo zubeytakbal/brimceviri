@@ -22,6 +22,7 @@ import { worldCities } from "./converter/time/worldCities";
 import { timerPresetAlternates, timerPresetPath, timerPresets } from "./i18n/timerPresets";
 import { countdownAlternatePaths, countdownEvents, countdownPath } from "./converter/time/countdownEvents";
 import { HOLIDAY_YEARS } from "./converter/time/holidays";
+import { HIJRI_SLUG, MUNASABAT, SA_HIJRI_SANAWAT, saHijriSanaPath, saHijriShahrPath, saMunasabaPath } from "./converter/calendar/saTaqwim";
 import { DE_JAHRE, DE_MONAT_SLUG, DE_TAGE, deBelegteTage, deBesondererTagPfad, deJahrPfad, deMonatPfad, deTagPfad } from "./converter/calendar/deKalender";
 import { AY_SLUG, doluGunler, ETKINLIKLER, ozelGunPath, TAKVIM_YILLARI, takvimAyPath, takvimGunPath, takvimYilPath } from "./converter/calendar/trTakvim";
 import { routePairs } from "./converter/geo/routePairs";
@@ -3091,6 +3092,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: contentLastModified,
       changeFrequency: "weekly" as const,
       priority: 0.8,
+    })),
+    ...[
+      "/ar/calendar",
+      "/ar/occasions",
+      "/ar/salary-dates",
+      ...MUNASABAT.map((m) => saMunasabaPath(m.id)),
+      ...SA_HIJRI_SANAWAT.flatMap((y) => [saHijriSanaPath(y), ...HIJRI_SLUG.map((_, i) => saHijriShahrPath(y, i + 1))]),
+    ].map((path) => ({
+      url: `${baseUrl}${path}`,
+      lastModified: contentLastModified,
+      changeFrequency: "weekly" as const,
+      priority: ["/ar/calendar", "/ar/occasions", "/ar/salary-dates"].includes(path) ? 0.8 : 0.65,
     })),
     ...[
       "/de/kalender",

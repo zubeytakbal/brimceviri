@@ -3303,6 +3303,189 @@ function Cizim({ g }: { g: Gorsel }): ReactNode {
           <rect x="90" y="97" width="3" height="3" fill="#ffd966" />
         </>
       );
+    case "diriyah":
+      return (
+        <>
+          <defs>
+            <Grad id={`${p}-gok`} stops={[[0, "#e9a15e"], [0.6, "#f6cf96"], [1, "#fbe7c4"]]} />
+            <Grad id={`${p}-kerpic`} stops={[[0, "#d9a36a"], [1, "#a8703e"]]} />
+            <Grad id={`${p}-golge`} x2={1} y2={0} stops={[[0, "#000", 0.18], [1, "#000", 0]]} />
+          </defs>
+          <Gok id={`${p}-gok`} />
+          <circle cx="94" cy="26" r="10" fill="#fff1c9" />
+          <path d="M0,100 Q60,94 120,100 V120 H0z" fill="#c99a62" />
+          {/* Najdi mud-brick tower and walls (At-Turaif) */}
+          <polygon points="18,100 22,40 44,40 48,100" fill={`url(#${p}-kerpic)`} />
+          <polygon points="18,100 22,40 30,40 28,100" fill={`url(#${p}-golge)`} />
+          {Array.from({ length: 6 }, (_, i) => (
+            <polygon key={i} points={`${22 + i * 3.7},40 ${23.8 + i * 3.7},34 ${25.6 + i * 3.7},40`} fill="#b87f48" />
+          ))}
+          {[52, 64, 76].map((y) => (
+            <polygon key={y} points={`${31},${y} ${35},${y - 5} ${39},${y}`} fill="#6b4226" />
+          ))}
+          <rect x="48" y="64" width="60" height="36" fill={`url(#${p}-kerpic)`} />
+          {Array.from({ length: 12 }, (_, i) => (
+            <polygon key={i} points={`${48 + i * 5},64 ${50.5 + i * 5},58 ${53 + i * 5},64`} fill="#b87f48" />
+          ))}
+          {[58, 72, 86, 100].map((x) => (
+            <polygon key={x} points={`${x - 3},80 ${x},75 ${x + 3},80 ${x + 3},88 ${x - 3},88`} fill="#6b4226" />
+          ))}
+          <rect x="74" y="88" width="10" height="12" fill="#5a3a22" />
+          {/* palm tree */}
+          <path d="M112,100 C110,84 112,72 110,62" stroke="#7a5a3a" strokeWidth="2.4" fill="none" />
+          {[-60, -25, 10, 45, 80].map((a) => (
+            <path key={a} d="M0,0 Q10,-4 18,4" stroke="#3f6b3a" strokeWidth="2.6" fill="none" transform={`translate(110 62) rotate(${a + 180})`} />
+          ))}
+        </>
+      );
+    case "watani":
+      return (
+        <>
+          <defs>
+            <Grad id={`${p}-gok`} stops={[[0, "#0b3d2a"], [1, "#16704a"]]} />
+            <Grad id={`${p}-kilic`} x2={1} y2={0} stops={[[0, "#f5f7f8"], [0.5, "#c9cfd4"], [1, "#8e979f"]]} />
+          </defs>
+          <Gok id={`${p}-gok`} />
+          <HavaiFisek cx={26} cy={26} r={14} renk="#ffffff" />
+          <HavaiFisek cx={96} cy={24} r={13} renk="#8fe0a8" />
+          {/* emblem: palm tree above two crossed swords */}
+          <path d="M60,78 C59,64 61,54 60,44" stroke="#f3e2b0" strokeWidth="3" fill="none" />
+          {[-70, -35, 0, 35, 70, 105, 140, 175].map((a) => (
+            <path key={a} d="M0,0 Q11,-5 20,4" stroke="#f3e2b0" strokeWidth="3" fill="none" strokeLinecap="round" transform={`translate(60 44) rotate(${a + 180})`} />
+          ))}
+          <g transform="rotate(-28 60 86)">
+            <rect x="24" y="84" width="64" height="3.4" rx="1.7" fill={`url(#${p}-kilic)`} />
+            <rect x="84" y="81" width="3" height="9" fill="#d8b24a" />
+            <rect x="87" y="84" width="10" height="3.4" rx="1.5" fill="#d8b24a" />
+          </g>
+          <g transform="rotate(28 60 86) scale(-1 1) translate(-120 0)">
+            <rect x="24" y="84" width="64" height="3.4" rx="1.7" fill={`url(#${p}-kilic)`} />
+            <rect x="84" y="81" width="3" height="9" fill="#d8b24a" />
+            <rect x="87" y="84" width="10" height="3.4" rx="1.5" fill="#d8b24a" />
+          </g>
+          <path d="M0,108 Q60,100 120,108 V120 H0z" fill="#07261a" />
+        </>
+      );
+    case "arafat":
+      return (
+        <>
+          <defs>
+            <Grad id={`${p}-gok`} stops={[[0, "#8fb8dc"], [0.7, "#f3dcb4"], [1, "#f8e9cc"]]} />
+            <Grad id={`${p}-dag`} stops={[[0, "#b98d5e"], [1, "#7d5a38"]]} />
+          </defs>
+          <Gok id={`${p}-gok`} />
+          <circle cx="92" cy="30" r="9" fill="#fff4d2" />
+          {/* Jabal ar-Rahmah with its white pillar */}
+          <path d="M8,98 Q30,70 48,62 Q60,56 72,62 Q92,72 112,98z" fill={`url(#${p}-dag)`} />
+          <path d="M40,70 l6,4 l-4,6 M78,72 l-6,3 l3,6 M58,64 l4,6" stroke="#6a4a2c" strokeWidth="1" fill="none" opacity="0.6" />
+          <rect x="57" y="36" width="6" height="24" fill="#f6f4ee" />
+          <rect x="56" y="34" width="8" height="3" fill="#e5e1d6" />
+          <path d="M0,98 Q60,92 120,98 V120 H0z" fill="#e9dcc2" />
+          {/* pilgrims in white */}
+          {Array.from({ length: 70 }, (_, i) => {
+            const x = (i * 37) % 118 + 1;
+            const y = 96 + ((i * 17) % 22);
+            return <circle key={i} cx={x} cy={y} r="1.2" fill="#ffffff" stroke="#c9bfa8" strokeWidth="0.3" />;
+          })}
+          {Array.from({ length: 16 }, (_, i) => (
+            <circle key={`h${i}`} cx={44 + ((i * 13) % 32)} cy={70 + ((i * 7) % 24)} r="0.9" fill="#ffffff" />
+          ))}
+        </>
+      );
+    case "fanous":
+      return (
+        <>
+          <defs>
+            <Grad id={`${p}-gok`} stops={[[0, "#101a3a"], [1, "#3a2f5e"]]} />
+            <RGrad id={`${p}-isik`} stops={[[0, "#ffd678", 0.8], [1, "#ffd678", 0]]} />
+            <Grad id={`${p}-pirinc`} x2={1} y2={0} stops={[[0, "#8a5a1a"], [0.5, "#e8b04a"], [1, "#7a4a12"]]} />
+          </defs>
+          <Gok id={`${p}-gok`} />
+          <Yildizlar seed={29} n={26} maxY={60} />
+          <Hilal id={`${p}-hilal`} cx={26} cy={24} r={9} fill="#fff1c4" />
+          <circle cx="66" cy="62" r="34" fill={`url(#${p}-isik)`} />
+          <line x1="66" y1="0" x2="66" y2="22" stroke="#8a5a1a" strokeWidth="1.4" />
+          <circle cx="66" cy="24" r="3" fill="none" stroke="#c8922e" strokeWidth="1.6" />
+          <path d="M56,34 L66,26 L76,34z" fill={`url(#${p}-pirinc)`} />
+          <rect x="54" y="34" width="24" height="4" fill={`url(#${p}-pirinc)`} />
+          <path d="M54,38 L78,38 L82,74 L50,74z" fill="#ffcf66" />
+          {[0, 1, 2].map((i) => (
+            <path key={i} d={`M${56 + i * 8},40 L${62 + i * 8},40 L${64 + i * 9},72 L${56 + i * 9},72z`} fill={["#e0415a", "#3a8ad6", "#2f9e6e"][i]} opacity="0.55" />
+          ))}
+          <path d="M54,38 L78,38 L82,74 L50,74z" fill="none" stroke={`url(#${p}-pirinc)`} strokeWidth="2" />
+          <path d="M50,74 L82,74 L76,82 L56,82z" fill={`url(#${p}-pirinc)`} />
+          <path d="M0,104 L10,104 L10,96 L18,96 L18,104 L30,104 A8,8 0 0 1 46,104 L60,104 L60,92 L63,86 L66,92 L66,104 L90,104 L90,98 L104,98 L104,104 L120,104 V120 H0z" fill="#0b1026" />
+        </>
+      );
+    case "eid":
+      return (
+        <>
+          <defs>
+            <Grad id={`${p}-gok`} stops={[[0, "#12254a"], [1, "#2c4a7a"]]} />
+            <RGrad id={`${p}-f1`} cx={0.4} cy={0.35} stops={[[0, "#fff3b0"], [1, "#d6a022"]]} />
+            <RGrad id={`${p}-f2`} cx={0.4} cy={0.35} stops={[[0, "#c9f5d8"], [1, "#1f8a5a"]]} />
+          </defs>
+          <Gok id={`${p}-gok`} />
+          <HavaiFisek cx={30} cy={34} r={16} renk="#ffd966" />
+          <HavaiFisek cx={88} cy={28} r={14} renk="#8fe0a8" />
+          <path d="M0,10 Q60,34 120,10" stroke="#c8a24a" strokeWidth="0.8" fill="none" />
+          {[14, 34, 54, 74, 94, 110].map((x, i) => {
+            const y = 10 + 24 * (1 - Math.pow((x - 60) / 60, 2)) * 0.9;
+            return (
+              <g key={x}>
+                <line x1={x} y1={y} x2={x} y2={y + 6} stroke="#c8a24a" strokeWidth="0.6" />
+                <ellipse cx={x} cy={y + 11} rx="4" ry="6" fill={`url(#${p}-${i % 2 ? "f2" : "f1"})`} />
+              </g>
+            );
+          })}
+          <Hilal id={`${p}-hilal`} cx={60} cy={60} r={12} fill="#ffe7a3" />
+          <path d="M0,100 L14,100 L14,86 L22,86 L22,100 L34,100 A10,10 0 0 1 54,100 L66,100 L66,74 L70,66 L74,74 L74,100 L90,100 L90,90 L106,90 L106,100 L120,100 V120 H0z" fill="#0a1530" />
+          {[16, 18, 92, 98, 102].map((x) => (
+            <rect key={x} x={x} y={x > 50 ? 93 : 89} width="1.6" height="2" fill="#ffd966" />
+          ))}
+        </>
+      );
+    case "hilal":
+      return (
+        <>
+          <defs>
+            <Grad id={`${p}-gok`} stops={[[0, "#1a2350"], [0.6, "#7a5a8a"], [1, "#e8a878"]]} />
+            <Grad id={`${p}-kum`} stops={[[0, "#d9a066"], [1, "#a8703e"]]} />
+            <RGrad id={`${p}-hale`} stops={[[0, "#fff1c4", 0.6], [1, "#fff1c4", 0]]} />
+          </defs>
+          <Gok id={`${p}-gok`} />
+          <Yildizlar seed={37} n={22} maxY={50} />
+          <circle cx="70" cy="36" r="18" fill={`url(#${p}-hale)`} />
+          <Hilal id={`${p}-hilal`} cx={70} cy={36} r={11} fill="#fff4d2" />
+          <path d="M0,86 Q30,72 60,82 T120,78 V120 H0z" fill={`url(#${p}-kum)`} opacity="0.7" />
+          <path d="M0,98 Q40,84 80,96 T120,92 V120 H0z" fill={`url(#${p}-kum)`} />
+          <path d="M10,98 Q40,86 70,96" stroke="#f0c48a" strokeWidth="0.8" fill="none" opacity="0.6" />
+        </>
+      );
+    case "maas":
+      return (
+        <>
+          <defs>
+            <Grad id={`${p}-zemin`} stops={[[0, "#eaf4ee"], [1, "#cfe6d8"]]} />
+            <Grad id={`${p}-para`} x2={1} y2={1} stops={[[0, "#6fbf8a"], [1, "#2f7d52"]]} />
+            <RGrad id={`${p}-sikke`} cx={0.35} cy={0.3} r={0.8} stops={[[0, "#fff1b0"], [1, "#c8921c"]]} />
+          </defs>
+          <rect width="120" height="120" fill={`url(#${p}-zemin)`} />
+          <rect x="62" y="16" width="44" height="48" rx="4" fill="#ffffff" stroke="#9fb5a8" />
+          <rect x="62" y="16" width="44" height="12" rx="4" fill="#2f7d52" />
+          <text x="84" y="54" textAnchor="middle" fontSize="22" fontWeight="700" fill="#1f4d36" fontFamily="system-ui, sans-serif">
+            27
+          </text>
+          <g transform="rotate(-10 44 74)">
+            <rect x="12" y="56" width="64" height="34" rx="3" fill={`url(#${p}-para)`} />
+            <rect x="16" y="60" width="56" height="26" rx="2" fill="none" stroke="#e9f6ee" strokeWidth="0.8" />
+            <circle cx="44" cy="73" r="8" fill="none" stroke="#e9f6ee" strokeWidth="1.2" />
+          </g>
+          {[0, 1, 2, 3].map((i) => (
+            <ellipse key={i} cx="84" cy={100 - i * 5} rx="14" ry="4.5" fill={`url(#${p}-sikke)`} stroke="#a8741a" strokeWidth="0.6" />
+          ))}
+        </>
+      );
     case "okul":
       return (
         <>

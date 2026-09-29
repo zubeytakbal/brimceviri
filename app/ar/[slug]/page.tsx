@@ -246,6 +246,22 @@ function renderStandaloneToolPage(slug: string) {
               <p>{section.body}</p>
             </div>
           ))}
+          {tool.slug === "hijri-date-converter" ? (
+            <div>
+              <h2>قد يهمك أيضًا</h2>
+              <ul>
+                <li>
+                  <Link href="/ar/calendar">التقويم الهجري أم القرى والتاريخ الهجري اليوم</Link>
+                </li>
+                <li>
+                  <Link href="/ar/occasions">المناسبات والإجازات الرسمية في السعودية</Link>
+                </li>
+                <li>
+                  <Link href="/ar/salary-dates">مواعيد صرف الرواتب</Link>
+                </li>
+              </ul>
+            </div>
+          ) : null}
         </section>
       </div>
     </main>

@@ -72,6 +72,18 @@ export const annualUpdates: AnnualUpdate[] = [
     ],
   },
   {
+    id: "sa-taqwim",
+    label: "Saudi calendar, occasions and salary dates (Arabic)",
+    pageHref: "/ar/calendar",
+    validYear: 2027,
+    remindFrom: "10-01",
+    checklist: [
+      "Add the next Gregorian year to SA_SANAWAT and the next Hijri year to SA_HIJRI_SANAWAT in app/converter/calendar/saTaqwim.ts (pages and sitemap follow automatically)",
+      "Check HRSD announcements for the Eid al-Fitr / Eid al-Adha private-sector holiday rules and the Founding Day / National Day rules",
+      "Check mof.gov.sa for any royal decree changing the salary date (27th rule in mawidRatib), then set validYear here",
+    ],
+  },
+  {
     id: "de-grunderwerbsteuer",
     label: "Grunderwerbsteuer-Rechner (Germany)",
     pageHref: "/de/grunderwerbsteuer-rechner",

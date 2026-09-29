@@ -68,7 +68,15 @@ export type Gorsel =
   | "silvester"
   | "kinder"
   | "kerze"
-  | "stern";
+  | "stern"
+  // Saudi-Arabien
+  | "diriyah"
+  | "watani"
+  | "arafat"
+  | "fanous"
+  | "eid"
+  | "hilal"
+  | "maas";
 
 type Kural =
   | { tip: "sabit"; ay: number; gun: number }

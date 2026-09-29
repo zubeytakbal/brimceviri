@@ -56,18 +56,15 @@ export type CityPair = { from: GermanCity; to: GermanCity };
 
 let pairCache: CityPair[] | null = null;
 
+/** Paarseiten nur zwischen den zehn größten Städten (45 Strecken); alle anderen Strecken zeigt der Rechner und die Stadttabelle. */
+export const ENTFERNUNG_PAAR_STAEDTE = 10;
+
 export function entfernungPaare(): CityPair[] {
   if (pairCache) return pairCache;
+  const top = germanCities.slice(0, ENTFERNUNG_PAAR_STAEDTE);
   const out: CityPair[] = [];
-  ENTFERNUNG_HUBS.forEach((hubId, hubIndex) => {
-    const from = findGermanCity(hubId)!;
-    for (const to of germanCities) {
-      if (to.id === hubId) continue;
-      const other = ENTFERNUNG_HUBS.indexOf(to.id as (typeof ENTFERNUNG_HUBS)[number]);
-      // Zwischen zwei Hubs nur eine Richtung (berlin/hamburg, nicht hamburg/berlin).
-      if (other !== -1 && other < hubIndex) continue;
-      out.push({ from, to });
-    }
+  top.forEach((from, i) => {
+    for (const to of top.slice(i + 1)) out.push({ from, to });
   });
   pairCache = out;
   return out;

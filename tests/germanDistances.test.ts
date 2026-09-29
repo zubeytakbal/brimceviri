@@ -46,11 +46,11 @@ describe("Luftlinie", () => {
 });
 
 describe("Pair pages", () => {
-  it("builds one page per hub pair without duplicates", () => {
+  it("builds one page per pair of the ten largest cities", () => {
     const pairs = entfernungPaare();
     const keys = pairs.map((p) => [p.from.id, p.to.id].sort().join("|"));
     expect(new Set(keys).size).toBe(pairs.length);
-    expect(pairs.length).toBe(5 * (germanCities.length - 1) - 10);
+    expect(pairs.length).toBe(45);
     expect(entfernungPaarPath(city("muenchen"), city("berlin"))).toBe("/de/entfernung/berlin/muenchen");
     expect(entfernungPaarPath(city("bonn"), city("kiel"))).toBeNull();
   });

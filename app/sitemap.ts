@@ -3095,13 +3095,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...[
       "/de/kalender",
       "/de/besondere-tage",
+      "/de/zeitumstellung",
+      "/de/vollmond",
+      "/de/bauernregeln",
       ...DE_TAGE.map((t) => deBesondererTagPfad(t.id)),
       ...DE_JAHRE.flatMap((y) => [deJahrPfad(y), ...DE_MONAT_SLUG.map((_, i) => deMonatPfad(y, i + 1)), ...deBelegteTage(y).map(deTagPfad)]),
     ].map((path) => ({
       url: `${baseUrl}${path}`,
       lastModified: contentLastModified,
       changeFrequency: (path.split("/").length > 5 ? "yearly" : "weekly") as "yearly" | "weekly",
-      priority: path === "/de/kalender" || path === "/de/besondere-tage" ? 0.8 : path.split("/").length > 5 ? 0.5 : 0.65,
+      priority: ["/de/kalender", "/de/besondere-tage", "/de/zeitumstellung", "/de/vollmond", "/de/bauernregeln"].includes(path) ? 0.8 : path.split("/").length > 5 ? 0.5 : 0.65,
     })),
     ...[
       "/takvim",

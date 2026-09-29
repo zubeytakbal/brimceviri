@@ -64,6 +64,9 @@ export const DE_KALENDER_LINKS = [
   { href: "/de/tagerechner", label: "Tagerechner" },
   { href: "/de/countdown", label: "Countdown" },
   { href: "/de/besondere-tage", label: "Besondere Tage" },
+  { href: "/de/zeitumstellung", label: "Zeitumstellung" },
+  { href: "/de/vollmond", label: "Vollmond-Termine" },
+  { href: "/de/bauernregeln", label: "Bauernregeln und Lostage" },
 ];
 
 const kurz = (d: YMD) => formatDe(d, { day: "numeric", month: "long" });

@@ -477,6 +477,22 @@ export default function ArabicHomeDirectory({
             <article className="directory-home-card">
               <Link
                 className="directory-card-stretch"
+                href="/ar/end-of-service-calculator"
+                aria-label="حساب مكافأة نهاية الخدمة - وفق نظام العمل السعودي مع حصة الاستقالة."
+              />
+
+              <div className="directory-card-body directory-card-body-icon">
+                <CardIcon name="vatCalculator" />
+                <h3 className="home-category-title">مكافأة نهاية الخدمة</h3>
+                <p className="directory-card-description">
+                  وفق نظام العمل السعودي مع حصة الاستقالة.
+                </p>
+              </div>
+            </article>
+
+            <article className="directory-home-card">
+              <Link
+                className="directory-card-stretch"
                 href="/ar/zakat-calculator"
                 aria-label="حاسبة الزكاة - تحسب زكاة المال والذهب والفضة مع سعر السوق الحي"
               />

@@ -6713,5 +6713,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const existing = byUrl.get(entry.url);
     if (!existing || (!existing.alternates && entry.alternates)) byUrl.set(entry.url, entry);
   }
-  return [...byUrl.values()];
+  // Google verlangt in hreflang-Alternativen absolute Adressen; relative Pfade (z. B. "/uyku-hesaplama")
+  // werden hier zentral ergänzt, damit keine Quelle sie vergessen kann.
+  const absolute = (href: string) => (href.startsWith("/") ? `${baseUrl}${href}` : href);
+  return [...byUrl.values()].map((entry) => {
+    const languages = entry.alternates?.languages;
+    if (!languages) return entry;
+    return {
+      ...entry,
+      alternates: {
+        ...entry.alternates,
+        languages: Object.fromEntries(Object.entries(languages).map(([lang, href]) => [lang, typeof href === "string" ? absolute(href) : href])),
+      },
+    };
+  });
 }

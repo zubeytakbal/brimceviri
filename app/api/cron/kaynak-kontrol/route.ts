@@ -3,7 +3,8 @@ import { revalidateTag } from "next/cache";
 import { FX_CACHE_TAG } from "../../../converter/fx/fxData";
 import { cgpaSourceMonitorTargets } from "../../../converter/cgpaSourceMonitor";
 import { getRedisCredentials, licenseSourceMonitorTargets } from "../../../converter/licenseSourceMonitor";
-import { openSetupTestIssue } from "../../../converter/ownerAlerts";
+import { annualUpdates, isReminderDue } from "../../../converter/annualUpdates";
+import { openAnnualUpdateIssue, openSetupTestIssue } from "../../../converter/ownerAlerts";
 import { checkSourceTarget, type MonitorResult } from "../../../converter/sourceCheck";
 
 // Kaynaklar paralel kontrol edilir; her biri kendi 20 sn zaman asimina sahip.
@@ -73,11 +74,25 @@ export async function GET(request: Request) {
     }
   }
 
+  // Yillik degerler: hatirlatma tarihinden sonra her arac ve yil icin bir kez issue.
+  const annualReminders: Record<string, string> = {};
+  for (const update of annualUpdates.filter((u) => isReminderDue(u))) {
+    const key = `kaynak-kontrol:annual:${update.id}:${update.validYear + 1}`;
+    const sent = await redis.get<string>(key).catch(() => null);
+    if (sent) {
+      annualReminders[update.id] = "already_sent";
+      continue;
+    }
+    const status = await openAnnualUpdateIssue({ ...update, nextYear: update.validYear + 1 });
+    annualReminders[update.id] = status;
+    if (status === "created") await redis.set(key, new Date().toISOString()).catch(() => undefined);
+  }
+
   // Vercel Logs'ta gorunsun diye kisa ozet (token degeri asla yazilmaz).
   console.log(
     `[kaynak-kontrol] ownerAlertTest=${ownerAlertTest} tokenSet=${Boolean(process.env.GITHUB_ISSUE_TOKEN)} ` +
       results.map((result) => `${result.id}:${result.status}${result.ownerAlert ? `(${result.ownerAlert})` : ""}`).join(" "),
   );
 
-  return jsonResponse({ fxRevalidated, ownerAlertTest, results });
+  return jsonResponse({ fxRevalidated, ownerAlertTest, annualReminders, results });
 }

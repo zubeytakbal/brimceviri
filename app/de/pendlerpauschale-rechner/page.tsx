@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
+import AnnualOutdatedNotice from "../../components/de/AnnualOutdatedNotice";
 import TimeToolPage from "../../components/time/TimeToolPage";
 import { PendlerpauschaleRechner } from "../../components/de/GermanWorkTools";
 import type { FaqItem } from "../../converter/faqSchema";
@@ -7,6 +8,9 @@ import { pauschaleProTag } from "../../converter/germanWork";
 import { rechnerRelated } from "../../i18n/germanRechnerLinks";
 import { seoTitle } from "../../seoTitle";
 import { buildSiteUrl } from "../../siteConfig";
+
+// Taeglich neu erzeugen, damit der Jahreshinweis rechtzeitig erscheint.
+export const revalidate = 86400;
 
 const path = "/de/pendlerpauschale-rechner";
 const title = "Pendlerpauschale-Rechner 2026: 38 Cent ab dem 1. km";
@@ -56,7 +60,12 @@ export default function PendlerPage() {
         crumbLabel="Brotkrumen"
         title="Pendlerpauschale-Rechner 2026"
         intro="Berechnen Sie Ihre Entfernungspauschale für die Steuererklärung 2026 oder 2025, zusammen mit der Homeoffice-Pauschale. Der Rechner zeigt, ob Sie über den Arbeitnehmer-Pauschbetrag kommen und wie viel Steuern Sie ungefähr sparen."
-        tool={<PendlerpauschaleRechner />}
+        tool={
+          <>
+            <AnnualOutdatedNotice id="de-pendlerpauschale" />
+            <PendlerpauschaleRechner />
+          </>
+        }
         related={{
           title: "Das könnte Sie auch interessieren",
           links: [{ href: "/de/arbeitstage-rechner", label: "Arbeitstage-Rechner" }, { href: "/de/kraftstoffverbrauchsrechner", label: "Kraftstoffverbrauch berechnen" }, ...rechnerRelated(path)],

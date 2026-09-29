@@ -70,6 +70,7 @@ const englishDecisionSavingsHomeTools = getEnglishToolsByDomain("decision-saving
 
 // Ana sayfadaki "Zaman araclari" bolumu (TR + EN).
 const germanRechnerHome = [
+  { href: "/de/brutto-netto-rechner", title: "Brutto-Netto-Rechner 2026", description: "Nettogehalt nach amtlichem Lohnsteuer-Programmablaufplan, alle Steuerklassen.", icon: "vatCalculator" as const },
   { href: "/de/laender", title: "Länder und Hauptstädte", description: "195 Länder mit Karte, Zeitverschiebung zu Deutschland, Währung und Vorwahl.", icon: "greatCircleCalculator" as const },
   { href: "/de/entfernung", title: "Entfernungsrechner", description: "Luftlinie zwischen 82 deutschen Großstädten, mit Tabellen ab jeder Stadt.", icon: "greatCircleCalculator" as const },
   { href: "/de/mathe-rechner", title: "Mathe-Rechner", description: "Bruchrechner, ggT/kgV, Wurzeln, pq-Formel, Mittelwert – mit Rechenweg.", icon: "mathCalculator" as const },

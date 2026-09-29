@@ -80,6 +80,7 @@ export const annualUpdates: AnnualUpdate[] = [
     checklist: [
       "Add the next Gregorian year to SA_SANAWAT and the next Hijri year to SA_HIJRI_SANAWAT in app/converter/calendar/saTaqwim.ts (pages and sitemap follow automatically)",
       "Check HRSD announcements for the Eid al-Fitr / Eid al-Adha private-sector holiday rules and the Founding Day / National Day rules",
+      "Add the next school year (MoE two-semester calendar) to app/converter/calendar/saMadrasi.ts and point AAM_HALI at it before the summer break ends",
       "Check mof.gov.sa for any royal decree changing the salary date (27th rule in mawidRatib), then set validYear here",
     ],
   },

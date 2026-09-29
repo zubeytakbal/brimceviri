@@ -76,7 +76,8 @@ export type Gorsel =
   | "fanous"
   | "eid"
   | "hilal"
-  | "maas";
+  | "maas"
+  | "madrasa";
 
 type Kural =
   | { tip: "sabit"; ay: number; gun: number }

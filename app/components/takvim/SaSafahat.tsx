@@ -20,6 +20,14 @@ import {
   type Munasaba,
   type SaFeah,
 } from "../../converter/calendar/saTaqwim";
+import {
+  AAM_HALI,
+  adadAyyam,
+  ahdath,
+  ijazaQadima,
+  nihayatFasl1,
+  yawmDirasi,
+} from "../../converter/calendar/saMadrasi";
 import type { FaqItem } from "../../converter/faqSchema";
 import { gregorianToHijri, type YMD } from "../../converter/time/calendars";
 import { addDaysYmd, diffDays, ymdKey } from "../../converter/time/dateMath";
@@ -44,11 +52,21 @@ function SaIshtirak() {
         className="time-tool-button is-secondary"
         href={buildSiteUrl("/ar/calendar.ics").replace(/^https?:/, "webcal:")}
       >
-        🔔 أضف المناسبات ومواعيد الرواتب إلى تقويم هاتفك
+        🔔 أضف المناسبات والإجازات ومواعيد الرواتب إلى تقويم هاتفك
       </a>
     </div>
   );
 }
+
+/** عدد الأيام بصيغة عربية صحيحة: 3–10 أيام، 11 فأكثر يومًا. */
+const adadNass = (n: number) =>
+  n === 1
+    ? "يوم واحد"
+    : n === 2
+      ? "يومان"
+      : n <= 10
+        ? `${n} أيام`
+        : `${n} يومًا`;
 
 const RAISIYA = { href: "/ar", label: "الرئيسية" };
 const HUB = { href: "/ar/calendar", label: "التقويم" };
@@ -58,6 +76,7 @@ export const SA_ROWABIT = [
   { href: "/ar/calendar", label: "التقويم الهجري والميلادي" },
   { href: "/ar/hijri-date-converter", label: "تحويل التاريخ هجري ميلادي" },
   { href: "/ar/occasions", label: "المناسبات والإجازات الرسمية" },
+  { href: "/ar/school-calendar", label: "التقويم الدراسي" },
   { href: "/ar/salary-dates", label: "مواعيد صرف الرواتب" },
   { href: "/ar/prayer-times-calculator", label: "مواقيت الصلاة" },
   { href: "/ar/age-calculator", label: "حساب العمر" },
@@ -208,6 +227,9 @@ export function SaHub() {
               ))}
               <Link href="/ar/occasions" prefetch={false}>
                 المناسبات
+              </Link>
+              <Link href="/ar/school-calendar" prefetch={false}>
+                التقويم الدراسي
               </Link>
             </div>
           </div>
@@ -807,6 +829,241 @@ export function SaRawatib() {
           بالتقويم الميلادي في يوم 27 من كل شهر. تنشر وزارة المالية جدول الصرف
           السنوي. لمعرفة الإجازات الرسمية القادمة راجع{" "}
           <Link href="/ar/occasions">المناسبات</Link>.
+        </p>
+      </TimeToolPage>
+    </div>
+  );
+}
+
+/* /ar/school-calendar -------------------------------------------------------- */
+
+export function SaTaqwimDirasi() {
+  const a = AAM_HALI;
+  const yawm = riyadhYawm();
+  const hadath = ahdath(a);
+  const qadima = ijazaQadima(a, yawm);
+  const jariya =
+    qadima && qadima.ila && diffDays(qadima.min, yawm) >= 0 ? qadima : null;
+  const f1 = nihayatFasl1(a);
+  const ayyam1 = adadAyyam(a, a.bidaya, f1);
+  const ayyam2 = adadAyyam(a, a.fasl2, a.nihaya);
+  const baqiya =
+    diffDays(yawm, a.nihaya) >= 0
+      ? adadAyyam(a, diffDays(a.bidaya, yawm) > 0 ? yawm : a.bidaya, a.nihaya)
+      : 0;
+  const dirasi = new Set<string>();
+  for (let d = a.bidaya; diffDays(d, a.nihaya) >= 0; d = addDaysYmd(d, 1))
+    if (yawmDirasi(a, d)) dirasi.add(ymdKey(d));
+  const h0 = gregorianToHijri(a.bidaya);
+  const h1 = gregorianToHijri(a.nihaya);
+  const ashhur: Array<{ hy: number; hm: number }> = [];
+  for (
+    let i = h0.year * 12 + h0.month - 1;
+    i <= h1.year * 12 + h1.month - 1;
+    i++
+  )
+    ashhur.push({ hy: Math.floor(i / 12), hm: (i % 12) + 1 });
+  const mudda = (h: { min: YMD; ila?: YMD }) =>
+    h.ila ? diffDays(h.min, h.ila) + 1 : 0;
+  const faq: FaqItem[] = [
+    {
+      question: `متى يبدأ العام الدراسي ${a.hijri}؟`,
+      answer: `تبدأ الدراسة يوم ${miladiNass(a.bidaya)} (${hijriNass(a.bidaya)})، وفي مكة المكرمة والمدينة المنورة وجدة والطائف يوم ${miladiNass(a.bidayaGharbiya)} (${hijriNass(a.bidayaGharbiya)}).`,
+    },
+    {
+      question: `متى يبدأ الفصل الدراسي الثاني ${a.hijri}؟`,
+      answer: `يبدأ الفصل الدراسي الثاني يوم ${miladiNass(a.fasl2)} (${hijriNass(a.fasl2)}) بعد إجازة منتصف العام.`,
+    },
+    {
+      question: `متى إجازة نهاية العام الدراسي ${a.hijri}؟`,
+      answer: `آخر يوم دراسي ${miladiNass(a.nihaya)} (${hijriNass(a.nihaya)})، وتبدأ إجازة نهاية العام بعد نهاية دوام ذلك اليوم.`,
+    },
+    {
+      question: "كم عدد الأيام الدراسية في العام؟",
+      answer: `بعد استبعاد عطلة نهاية الأسبوع (الجمعة والسبت) والإجازات: ${ayyam1} يومًا دراسيًا في الفصل الأول و${ayyam2} يومًا في الفصل الثاني، أي ${ayyam1 + ayyam2} يومًا (حسب تقويم المناطق التي تبدأ فيها الدراسة ${qasir(a.bidaya)}).`,
+    },
+    {
+      question: "كم مدة إجازة عيد الفطر وعيد الأضحى في المدارس؟",
+      answer: hadath
+        .filter((h) => h.id === "eid-al-fitr" || h.id === "eid-al-adha")
+        .map(
+          (h) =>
+            `${h.ism}: ${adadNass(mudda(h))} من ${miladiNass(h.min)} إلى ${miladiNass(h.ila!)}، والعودة ${miladiNass(h.awda!)}`,
+        )
+        .join(". "),
+    },
+  ];
+  return (
+    <div lang="ar" dir="rtl">
+      <TimeToolPage
+        crumbs={[RAISIYA, HUB, { label: "التقويم الدراسي" }]}
+        crumbLabel={T.crumb}
+        title={`التقويم الدراسي ${a.hijri}`}
+        intro={`التقويم الدراسي للتعليم العام في السعودية ${a.ism} بنظام الفصلين: بداية الدراسة، الإجازات، بداية الفصل الثاني ونهاية العام، مع العد التنازلي للإجازة القادمة.`}
+        tool={
+          <div className="date-calc">
+            <article className="takvim-kart">
+              <TakvimGorsel gorsel="madrasa" size={112} title="المدرسة" />
+              <div>
+                <span className="takvim-kat kat-okul">
+                  {jariya ? "الآن" : "الإجازة القادمة"}
+                </span>
+                {jariya ? (
+                  <>
+                    <h2>{jariya.ism}</h2>
+                    <p>
+                      العودة للدراسة {miladiNass(jariya.awda!)} ·{" "}
+                      {baqi(diffDays(yawm, jariya.awda!))}
+                    </p>
+                  </>
+                ) : qadima ? (
+                  <>
+                    <h2>{qadima.ism}</h2>
+                    <p>
+                      {miladiNass(qadima.min)} · {hijriNass(qadima.min)} ·{" "}
+                      {baqi(diffDays(yawm, qadima.min))}
+                    </p>
+                  </>
+                ) : (
+                  <h2>انتهى العام الدراسي {a.hijri}</h2>
+                )}
+                <p className="takvim-kart-alt">
+                  {hadath
+                    .filter(
+                      (h) => h.id !== qadima?.id && diffDays(yawm, h.min) > 0,
+                    )
+                    .slice(0, 3)
+                    .map((h) => (
+                      <span key={h.id} className="takvim-etiket">
+                        {h.ism}: {baqi(diffDays(yawm, h.min))}
+                      </span>
+                    ))}
+                </p>
+              </div>
+            </article>
+            <div className="date-calc-results">
+              <div className="date-calc-stat">
+                <span>الأيام الدراسية المتبقية</span>
+                <strong>{baqiya} يومًا</strong>
+                <em>حتى إجازة نهاية العام (بدون الإجازات وعطلة الأسبوع)</em>
+              </div>
+              <div className="date-calc-stat">
+                <span>الفصل الأول</span>
+                <strong>{ayyam1} يومًا دراسيًا</strong>
+                <em>
+                  {qasir(a.bidaya)} – {qasir(f1)}
+                </em>
+              </div>
+              <div className="date-calc-stat">
+                <span>الفصل الثاني</span>
+                <strong>{ayyam2} يومًا دراسيًا</strong>
+                <em>
+                  {qasir(a.fasl2)} – {qasir(a.nihaya)}
+                </em>
+              </div>
+            </div>
+            <div className="holiday-table-wrap">
+              <table className="holiday-table">
+                <thead>
+                  <tr>
+                    <th scope="col">الحدث</th>
+                    <th scope="col">من</th>
+                    <th scope="col">إلى</th>
+                    <th scope="col">العودة</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {hadath.map((h) => (
+                    <tr
+                      key={h.id}
+                      className={
+                        diffDays(yawm, h.ila ?? h.min) < 0
+                          ? "is-weekend"
+                          : h.id === qadima?.id
+                            ? "is-half"
+                            : undefined
+                      }
+                    >
+                      <th scope="row">
+                        {h.ism}
+                        {h.ila ? ` (${adadNass(mudda(h))})` : ""}
+                      </th>
+                      <td>
+                        {miladiNass(h.min)}
+                        <br />
+                        <small>{hijriNass(h.min)}</small>
+                      </td>
+                      <td>
+                        {h.ila ? (
+                          <>
+                            {miladiNass(h.ila)}
+                            <br />
+                            <small>{hijriNass(h.ila)}</small>
+                          </>
+                        ) : (
+                          "—"
+                        )}
+                      </td>
+                      <td>{h.awda ? miladiNass(h.awda) : "—"}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="date-calc-note">
+              تبدأ الدراسة في مكة المكرمة والمدينة المنورة وجدة والطائف بعد
+              أسبوع، يوم {miladiNass(a.bidayaGharbiya)}، مراعاةً لمواسم الحج
+              والعمرة. المصدر: {a.masdar}. قد تُعلن إدارات التعليم تعديلات
+              محلية.
+            </p>
+            <div className="holiday-calendar takvim-yil">
+              {ashhur.map((x) => (
+                <div className="holiday-month" key={`${x.hy}-${x.hm}`}>
+                  <h3>
+                    {SA_HIJRI_SANAWAT.includes(x.hy) ? (
+                      <Link
+                        href={saHijriShahrPath(x.hy, x.hm)}
+                        prefetch={false}
+                      >
+                        {HIJRI_MONTHS_AR[x.hm - 1]} {x.hy}
+                      </Link>
+                    ) : (
+                      `${HIJRI_MONTHS_AR[x.hm - 1]} ${x.hy}`
+                    )}
+                  </h3>
+                  <SaShahrGrid
+                    hy={x.hy}
+                    hm={x.hm}
+                    yawm={yawm}
+                    dirasi={dirasi}
+                  />
+                </div>
+              ))}
+            </div>
+            <p className="holiday-legend">
+              <span className="takvim-lejant-okul" /> يوم دراسي{" "}
+              <span className="is-holiday" /> إجازة رسمية{" "}
+              <span className="is-weekend" /> عطلة نهاية الأسبوع · الرقم الكبير
+              هجري والصغير ميلادي
+            </p>
+          </div>
+        }
+        related={{
+          title: T.related,
+          links: SA_ROWABIT.filter((l) => l.href !== "/ar/school-calendar"),
+        }}
+        tocTitle={T.toc}
+        tocItems={[{ id: "faq", label: T.faq }]}
+        faqTitle={T.faq}
+        faqItems={faq}
+      >
+        <p>
+          عادت المدارس في المملكة إلى نظام الفصلين الدراسيين بدءًا من العام
+          1447هـ بعد موافقة مجلس الوزراء، واعتمدت وزارة التعليم التقويم لعدة
+          أعوام مقبلة. تتضمن الإجازات: اليوم الوطني، الخريف، منتصف العام، يوم
+          التأسيس، وعيدي الفطر والأضحى. لمواعيد المناسبات الرسمية راجع{" "}
+          <Link href="/ar/occasions">المناسبات</Link>، وللتاريخ الهجري اليوم
+          راجع <Link href="/ar/calendar">التقويم الهجري</Link>.
         </p>
       </TimeToolPage>
     </div>

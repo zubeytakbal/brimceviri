@@ -5,6 +5,7 @@ import {
   SA_SANAWAT,
   saMunasabaPath,
 } from "../../converter/calendar/saTaqwim";
+import { AAM_HALI, ahdath } from "../../converter/calendar/saMadrasi";
 import { addDaysYmd, ymdKey } from "../../converter/time/dateMath";
 import type { YMD } from "../../converter/time/calendars";
 import { buildSiteUrl } from "../../siteConfig";
@@ -92,6 +93,15 @@ export function GET() {
       );
     }
   }
+  for (const h of ahdath(AAM_HALI))
+    hadath(
+      `sa-madrasa-${AAM_HALI.hijri}-${h.id}`,
+      h.min,
+      h.ila ?? h.min,
+      `المدارس: ${h.ism}`,
+      `التقويم الدراسي ${AAM_HALI.ism}${h.awda ? ` · العودة ${ymdKey(h.awda)}` : ""}`,
+      "/ar/school-calendar",
+    );
   lines.push("END:VCALENDAR");
   const fold = (l: string) => {
     const out: string[] = [];

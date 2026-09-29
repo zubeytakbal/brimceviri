@@ -3487,6 +3487,7 @@ function Cizim({ g }: { g: Gorsel }): ReactNode {
         </>
       );
     case "okul":
+    case "madrasa":
       return (
         <>
           <defs>
@@ -3521,9 +3522,21 @@ function Cizim({ g }: { g: Gorsel }): ReactNode {
           </defs>
           <Gok id={`${p}-gok`} />
           <circle cx="98" cy="22" r="8" fill="#fff4c4" />
-          {/* bayrak direği */}
-          <rect x="16" y="20" width="1.6" height="78" fill="#7a7f86" />
-          <Bayrak x={17.6} y={22} w={20} />
+          {g === "okul" ? (
+            <>
+              {/* bayrak direği */}
+              <rect x="16" y="20" width="1.6" height="78" fill="#7a7f86" />
+              <Bayrak x={17.6} y={22} w={20} />
+            </>
+          ) : (
+            <>
+              {/* نخلة بدل العلم */}
+              <path d="M17,98 C15,80 18,66 16,54" stroke="#7a5a3a" strokeWidth="2.4" fill="none" />
+              {[-60, -25, 10, 45, 80].map((a) => (
+                <path key={a} d="M0,0 Q10,-4 18,4" stroke="#3f6b3a" strokeWidth="2.6" fill="none" transform={`translate(16 54) rotate(${a + 180})`} />
+              ))}
+            </>
+          )}
           {/* okul binası */}
           <polygon points="28,52 60,34 92,52" fill={`url(#${p}-cati)`} />
           <rect x="30" y="52" width="60" height="44" fill={`url(#${p}-bina)`} />

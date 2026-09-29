@@ -429,6 +429,22 @@ export default function ArabicHomeDirectory({
             <article className="directory-home-card">
               <Link
                 className="directory-card-stretch"
+                href="/ar/school-calendar"
+                aria-label="التقويم الدراسي 1448 - بداية الدراسة والإجازات مع العد التنازلي للإجازة القادمة."
+              />
+
+              <div className="directory-card-body directory-card-body-icon">
+                <CardIcon name="dateCalculator" />
+                <h3 className="home-category-title">التقويم الدراسي 1448</h3>
+                <p className="directory-card-description">
+                  بداية الدراسة والإجازات مع العد التنازلي للإجازة القادمة.
+                </p>
+              </div>
+            </article>
+
+            <article className="directory-home-card">
+              <Link
+                className="directory-card-stretch"
                 href="/ar/salary-dates"
                 aria-label="مواعيد صرف الرواتب - موعد نزول الراتب لكل شهر مع العد التنازلي."
               />

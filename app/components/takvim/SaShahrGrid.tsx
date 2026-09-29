@@ -19,11 +19,14 @@ export function SaShahrGrid({
   hm,
   yawm,
   kabir = false,
+  dirasi,
 }: {
   hy: number;
   hm: number;
   yawm?: YMD;
   kabir?: boolean;
+  /** مفاتيح الأيام الدراسية (YYYY-MM-DD) لتمييزها. */
+  dirasi?: Set<string>;
 }) {
   const { bidaya, nihaya } = shahrHijri(hy, hm);
   const lead = weekdayOf(bidaya);
@@ -49,6 +52,7 @@ export function SaShahrGrid({
           ijaza ? "is-holiday" : "",
           ev.length ? "has-event" : "",
           yawm && ymdKey(yawm) === key ? "is-today" : "",
+          dirasi?.has(key) ? "is-okul" : "",
         ]
           .filter(Boolean)
           .join(" ");

@@ -226,7 +226,7 @@ export const germanStandaloneTools: GermanStandaloneTool[] = [
     faq: [
       { question: "In welcher SSW bin ich?", answer: "Zählen Sie die Wochen seit dem ersten Tag der letzten Periode. Liegt dieser 10 Wochen und 3 Tage zurück, sind Sie bei 10+3, also in der 11. SSW." },
       { question: "Was bedeutet 12+3?", answer: "Zwölf vollendete Schwangerschaftswochen und drei Tage. Sie befinden sich damit in der 13. Schwangerschaftswoche." },
-      { question: "Wann beginnt der Mutterschutz?", answer: "Sechs Wochen vor dem errechneten Geburtstermin. Mit dem Rechner können Sie den Termin und damit den Beginn des Mutterschutzes ermitteln." },
+      { question: "Wann beginnt der Mutterschutz?", answer: "Sechs Wochen vor dem errechneten Geburtstermin. Den genauen Zeitraum mit Verlängerung bei Früh- und Mehrlingsgeburten, Mutterschaftsgeld und Elternzeit-Frist zeigt der Mutterschutzrechner." },
       { question: "Wie genau ist der errechnete Termin?", answer: "Er ist eine Schätzung. Die meisten Kinder kommen in den zwei Wochen vor oder nach dem Termin zur Welt; ein früher Ultraschall ist die genaueste Datierung." },
     ],
     priority: 0.75,

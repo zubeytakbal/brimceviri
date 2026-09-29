@@ -69,20 +69,45 @@ type Locale = "tr" | "en" | "uz" | "de";
 const englishDecisionSavingsHomeTools = getEnglishToolsByDomain("decision-savings");
 
 // Ana sayfadaki "Zaman araclari" bolumu (TR + EN).
-const germanRechnerHome = [
-  { href: "/de/brueckentage", title: "Brückentage-Rechner", description: "Urlaub optimal auf die Feiertage verteilen, für jedes Bundesland, mit Kalender-Export.", icon: "dateCalculator" as const },
-  { href: "/de/brutto-netto-rechner", title: "Brutto-Netto-Rechner 2026", description: "Nettogehalt nach amtlichem Lohnsteuer-Programmablaufplan, alle Steuerklassen.", icon: "vatCalculator" as const },
-  { href: "/de/laender", title: "Länder und Hauptstädte", description: "195 Länder mit Karte, Zeitverschiebung zu Deutschland, Währung und Vorwahl.", icon: "greatCircleCalculator" as const },
-  { href: "/de/entfernung", title: "Entfernungsrechner", description: "Luftlinie zwischen 82 deutschen Großstädten, mit Tabellen ab jeder Stadt.", icon: "greatCircleCalculator" as const },
-  { href: "/de/mathe-rechner", title: "Mathe-Rechner", description: "Bruchrechner, ggT/kgV, Wurzeln, pq-Formel, Mittelwert – mit Rechenweg.", icon: "mathCalculator" as const },
-  { href: "/de/bruchrechner", title: "Bruchrechner", description: "Brüche addieren, kürzen und teilen, mit Hauptnenner und Rechenweg.", icon: "mathCalculator" as const },
-  { href: "/de/pq-formel-rechner", title: "pq-Formel-Rechner", description: "Quadratische Gleichungen mit pq- oder Mitternachtsformel lösen.", icon: "mathCalculator" as const },
-  { href: "/de/prozentrechner", title: "Prozentrechner", description: "Prozentwert, Prozentsatz, Grundwert, Veränderung und Rabatt mit Rechenweg.", icon: "vatCalculator" as const },
-  { href: "/de/dreisatz-rechner", title: "Dreisatz-Rechner", description: "Proportionaler und antiproportionaler Dreisatz in drei Schritten.", icon: "mathCalculator" as const },
-  { href: "/de/notenrechner", title: "Notenrechner", description: "Notendurchschnitt, IHK-Notenschlüssel, Oberstufenpunkte und Abi-Schnitt.", icon: "gradeCalculator" as const },
-  { href: "/de/pendlerpauschale-rechner", title: "Pendlerpauschale-Rechner", description: "Entfernungs- und Homeoffice-Pauschale 2026 mit geschätzter Steuerersparnis.", icon: "fuelConsumptionCalculator" as const },
-  { href: "/de/urlaubsrechner", title: "Urlaubsrechner", description: "Urlaubsanspruch bei Teilzeit und anteiliger Urlaub bei Jobwechsel.", icon: "attendanceCalculator" as const },
+// Deutsche Rechner nach Themen gruppiert, damit Startseite und interne Links klare Themenbereiche zeigen.
+type HomeTool = { href: string; title: string; description: string; icon: SiteIconName };
+
+const germanRechnerGroups: Array<{ id: string; title: string; description: string; tools: HomeTool[] }> = [
+  {
+    id: "geld-arbeit",
+    title: "Geld und Arbeit",
+    description: "Nettogehalt, Pendlerpauschale, Urlaubsanspruch und Prozentrechnung – nach aktuellem Recht und mit Quellen.",
+    tools: [
+      { href: "/de/brutto-netto-rechner", title: "Brutto-Netto-Rechner 2026", description: "Nettogehalt nach amtlichem Lohnsteuer-Programmablaufplan, alle Steuerklassen.", icon: "vatCalculator" as const },
+      { href: "/de/pendlerpauschale-rechner", title: "Pendlerpauschale-Rechner", description: "Entfernungs- und Homeoffice-Pauschale 2026 mit geschätzter Steuerersparnis.", icon: "fuelConsumptionCalculator" as const },
+      { href: "/de/urlaubsrechner", title: "Urlaubsrechner", description: "Urlaubsanspruch bei Teilzeit und anteiliger Urlaub bei Jobwechsel.", icon: "attendanceCalculator" as const },
+      { href: "/de/prozentrechner", title: "Prozentrechner", description: "Prozentwert, Prozentsatz, Grundwert, Veränderung und Rabatt mit Rechenweg.", icon: "vatCalculator" as const },
+    ],
+  },
+  {
+    id: "mathe-schule",
+    title: "Mathe und Schule",
+    description: "Brüche, pq-Formel, Dreisatz und Noten – mit Formel und Rechenweg.",
+    tools: [
+      { href: "/de/mathe-rechner", title: "Mathe-Rechner", description: "Bruchrechner, ggT/kgV, Wurzeln, pq-Formel, Mittelwert – mit Rechenweg.", icon: "mathCalculator" as const },
+      { href: "/de/bruchrechner", title: "Bruchrechner", description: "Brüche addieren, kürzen und teilen, mit Hauptnenner und Rechenweg.", icon: "mathCalculator" as const },
+      { href: "/de/pq-formel-rechner", title: "pq-Formel-Rechner", description: "Quadratische Gleichungen mit pq- oder Mitternachtsformel lösen.", icon: "mathCalculator" as const },
+      { href: "/de/dreisatz-rechner", title: "Dreisatz-Rechner", description: "Proportionaler und antiproportionaler Dreisatz in drei Schritten.", icon: "mathCalculator" as const },
+      { href: "/de/notenrechner", title: "Notenrechner", description: "Notendurchschnitt, IHK-Notenschlüssel, Oberstufenpunkte und Abi-Schnitt.", icon: "gradeCalculator" as const },
+    ],
+  },
+  {
+    id: "laender-entfernung",
+    title: "Länder und Entfernungen",
+    description: "Länder der Welt mit Zeitverschiebung zu Deutschland und Entfernungen zwischen deutschen Städten.",
+    tools: [
+      { href: "/de/laender", title: "Länder und Hauptstädte", description: "195 Länder mit Karte, Zeitverschiebung zu Deutschland, Währung und Vorwahl.", icon: "greatCircleCalculator" as const },
+      { href: "/de/entfernung", title: "Entfernungsrechner", description: "Luftlinie zwischen 82 deutschen Großstädten, mit Tabellen ab jeder Stadt.", icon: "greatCircleCalculator" as const },
+    ],
+  },
 ];
+
+const germanRechnerHome = germanRechnerGroups.flatMap((group) => group.tools);
 
 const timeToolsHome = {
   tr: [
@@ -114,6 +139,7 @@ const timeToolsHome = {
     { href: "/de/eieruhr", title: "Eieruhr", description: "Eier weich, wachsweich oder hart – Kochzeit nach Eigröße.", icon: "time" as const },
     { href: "/de/kalenderwoche", title: "Aktuelle Kalenderwoche", description: "Welche KW haben wir? KW für jedes Datum und alle Wochen des Jahres.", icon: "attendanceCalculator" as const },
     { href: "/de/feiertage", title: "Feiertage", description: "Gesetzliche Feiertage aller 16 Bundesländer mit Brückentagen.", icon: "attendanceCalculator" as const },
+    { href: "/de/brueckentage", title: "Brückentage-Rechner", description: "Urlaub optimal auf die Feiertage verteilen, für jedes Bundesland, mit Kalender-Export.", icon: "dateCalculator" as const },
     { href: "/de/feiertage-oesterreich", title: "Feiertage Österreich", description: "Alle 13 gesetzlichen Feiertage in Österreich mit Fenstertagen.", icon: "attendanceCalculator" as const },
     { href: "/de/arbeitstage-rechner", title: "Arbeitstage-Rechner", description: "Arbeitstage und Werktage zwischen zwei Daten je Bundesland.", icon: "attendanceCalculator" as const },
     { href: "/de/tagerechner", title: "Tagerechner", description: "Tage zwischen zwei Daten zählen oder Tage zu einem Datum addieren.", icon: "attendanceCalculator" as const },
@@ -2031,32 +2057,33 @@ export default function HomeDirectory({
             </div>
           </section>
         )}
-        {locale === "de" && (
-          <section className="directory-section" id="alltagsrechner">
-            <header className="directory-section-header">
-              <div>
-                <h2>Alltagsrechner</h2>
-                <p>Mathe, Prozente, Dreisatz, Noten, Pendlerpauschale und Urlaubsanspruch – mit Formel und Rechenweg.</p>
-              </div>
-            </header>
-            <div className="directory-tool-grid">
-              {germanRechnerHome.map((tool) => (
-                <article className="directory-home-card directory-tool-card" key={tool.href}>
-                  <Link className="directory-card-stretch" href={tool.href} aria-label={tool.title} />
-                  <div className="directory-card-body directory-card-body-icon">
-                    <span className="home-category-icon-box" aria-hidden="true">
-                      <DecorativeIcon name={tool.icon} size={42} className="home-category-icon-svg" />
-                    </span>
-                    <div>
-                      <h3 className="home-category-title">{tool.title}</h3>
-                      <p>{tool.description}</p>
+        {locale === "de" &&
+          germanRechnerGroups.map((group) => (
+            <section className="directory-section" id={group.id} key={group.id}>
+              <header className="directory-section-header">
+                <div>
+                  <h2>{group.title}</h2>
+                  <p>{group.description}</p>
+                </div>
+              </header>
+              <div className="directory-tool-grid">
+                {group.tools.map((tool) => (
+                  <article className="directory-home-card directory-tool-card" key={tool.href}>
+                    <Link className="directory-card-stretch" href={tool.href} aria-label={tool.title} />
+                    <div className="directory-card-body directory-card-body-icon">
+                      <span className="home-category-icon-box" aria-hidden="true">
+                        <DecorativeIcon name={tool.icon} size={42} className="home-category-icon-svg" />
+                      </span>
+                      <div>
+                        <h3 className="home-category-title">{tool.title}</h3>
+                        <p>{tool.description}</p>
+                      </div>
                     </div>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </section>
-        )}
+                  </article>
+                ))}
+              </div>
+            </section>
+          ))}
         {locale === "en" && (
           <section className="directory-section" id="calculator-areas">
             <header className="directory-section-header">

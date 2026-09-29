@@ -117,6 +117,10 @@ export default function MuhasebeciAraclariPage() {
               <Link href="/kidem-tazminati-hesaplama">Kıdem ve İhbar Tazminatı Hesaplama</Link>
               {" "}— güncel kıdem tavanı, damga ve gelir vergisiyle net tazminat hesapla.
             </li>
+            <li>
+              <Link href="/yillik-izin-hesaplama">Yıllık İzin Hesaplama</Link>
+              {" "}— kıdeme göre izin hakkı, izin dönüş tarihi ve kullanılmayan izin ücreti.
+            </li>
           </ul>
 
           <h2>Sık Sorulan Sorular</h2>

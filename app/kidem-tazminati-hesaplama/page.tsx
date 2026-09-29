@@ -90,6 +90,7 @@ export default function KidemTazminatiPage() {
           },
           { href: "/is-gunu-hesaplama", label: "İş Günü Hesaplama" },
           { href: "/brutten-nete-maas-hesaplama", label: "Brütten Nete Maaş Hesaplama" },
+          { href: "/yillik-izin-hesaplama", label: "Yıllık İzin Hesaplama" },
           { href: "/kdv-hesaplama", label: "KDV Hesaplama" },
           { href: "/muhasebeci-araclari", label: "Muhasebeci Araçları" },
         ],

@@ -53,7 +53,22 @@ export type Gorsel =
   | "polis"
   | "orman"
   | "firtina"
-  | "okul";
+  | "okul"
+  // Deutschland
+  | "deutschland"
+  | "ostern"
+  | "weihnachten"
+  | "advent"
+  | "karneval"
+  | "kirche"
+  | "laterne"
+  | "kuerbis"
+  | "ernte"
+  | "uhr"
+  | "silvester"
+  | "kinder"
+  | "kerze"
+  | "stern";
 
 type Kural =
   | { tip: "sabit"; ay: number; gun: number }

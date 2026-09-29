@@ -1,3 +1,4 @@
+import { DE_TAGE, deBesondererTagPfad } from "../../converter/calendar/deKalender";
 import Link from "@/app/components/SiteLink";
 import {
   countdownEvents,
@@ -164,8 +165,12 @@ export function GermanCountdownEventPage({ event }: { event: CountdownEvent }) {
         related={{
           title: "Das könnte Sie auch interessieren",
           links: [
+            ...DE_TAGE.filter((t) => t.countdown === event.slug)
+              .slice(0, 1)
+              .map((t) => ({ href: deBesondererTagPfad(t.id), label: `${t.name}: Datum und Bedeutung` })),
             ...others.slice(0, 8).map((o) => ({ href: countdownPath(o.event), label: `${o.event.name} (${dayLabel(o.days, o.started)})` })),
             { href: "/de/countdown", label: "Alle Countdowns" },
+            { href: "/de/kalender", label: "Kalender mit Feiertagen" },
             ...baseLinks.slice(0, 3),
           ],
         }}

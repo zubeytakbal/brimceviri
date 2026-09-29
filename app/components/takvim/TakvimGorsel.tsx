@@ -98,6 +98,60 @@ function Hilal({
   );
 }
 
+function Yildiz({
+  cx,
+  cy,
+  r,
+  fill,
+}: {
+  cx: number;
+  cy: number;
+  r: number;
+  fill: string;
+}) {
+  const pts = Array.from({ length: 10 }, (_, i) => {
+    const a = (Math.PI / 5) * i - Math.PI / 2;
+    const rr = i % 2 ? r * 0.4 : r;
+    return `${(cx + rr * Math.cos(a)).toFixed(2)},${(cy + rr * Math.sin(a)).toFixed(2)}`;
+  }).join(" ");
+  return <polygon points={pts} fill={fill} />;
+}
+
+function Isinlar({
+  cx,
+  cy,
+  r1,
+  r2,
+  n,
+  stroke,
+  w = 4,
+}: {
+  cx: number;
+  cy: number;
+  r1: number;
+  r2: number;
+  n: number;
+  stroke: string;
+  w?: number;
+}) {
+  return (
+    <g stroke={stroke} strokeWidth={w} strokeLinecap="round">
+      {Array.from({ length: n }, (_, i) => {
+        const a = (2 * Math.PI * i) / n;
+        return (
+          <line
+            key={i}
+            x1={cx + r1 * Math.cos(a)}
+            y1={cy + r1 * Math.sin(a)}
+            x2={cx + r2 * Math.cos(a)}
+            y2={cy + r2 * Math.sin(a)}
+          />
+        );
+      })}
+    </g>
+  );
+}
+
 function Yildizlar({
   seed,
   n,
@@ -2161,6 +2215,1092 @@ function Cizim({ g }: { g: Gorsel }): ReactNode {
             strokeOpacity="0.5"
             strokeWidth="1"
           />
+        </>
+      );
+    case "deutschland":
+      return (
+        <>
+          <defs>
+            <Grad
+              id={`${p}-gok`}
+              stops={[
+                [0, "#3d5a85"],
+                [0.6, "#e59c6a"],
+                [1, "#f6d09a"],
+              ]}
+            />
+            <Grad
+              id={`${p}-stein`}
+              stops={[
+                [0, "#e7d4ae"],
+                [1, "#b89a6a"],
+              ]}
+            />
+            <Grad
+              id={`${p}-falte`}
+              x2={1}
+              y2={0}
+              stops={[
+                [0, "#000", 0.2],
+                [0.3, "#fff", 0.12],
+                [0.6, "#000", 0.18],
+                [1, "#fff", 0.08],
+              ]}
+            />
+            <clipPath id={`${p}-flagge`}>
+              <path d="M84,16 C92,12 100,20 110,16 L110,40 C100,44 92,36 84,40z" />
+            </clipPath>
+          </defs>
+          <Gok id={`${p}-gok`} />
+          {/* Brandenburger Tor */}
+          <rect x="14" y="98" width="92" height="22" fill="#6d5a45" />
+          <rect x="18" y="56" width="84" height="8" fill={`url(#${p}-stein)`} />
+          <rect x="16" y="52" width="88" height="5" fill="#cdb489" />
+          <rect x="40" y="44" width="40" height="9" fill={`url(#${p}-stein)`} />
+          <path d="M52,44 l4,-8 h8 l4,8z" fill="#3f5a4a" />
+          <path
+            d="M56,36 l2,-5 l2,5 M62,36 l2,-5 l2,5"
+            stroke="#3f5a4a"
+            strokeWidth="1.5"
+            fill="none"
+          />
+          {Array.from({ length: 6 }, (_, i) => (
+            <rect
+              key={i}
+              x={20 + i * 15.4}
+              y="64"
+              width="5"
+              height="34"
+              fill={`url(#${p}-stein)`}
+            />
+          ))}
+          {Array.from({ length: 5 }, (_, i) => (
+            <rect
+              key={i}
+              x={25 + i * 15.4}
+              y="64"
+              width="10.4"
+              height="34"
+              fill="#4a3a2a"
+              opacity="0.55"
+            />
+          ))}
+          <rect x="18" y="96" width="84" height="3" fill="#cdb489" />
+          <rect x="82.6" y="12" width="1.4" height="86" fill="#5d5a55" />
+          <g clipPath={`url(#${p}-flagge)`}>
+            <rect x="84" y="10" width="26" height="12" fill="#111" />
+            <rect x="84" y="20" width="26" height="10" fill="#dd0000" />
+            <rect x="84" y="29" width="26" height="14" fill="#ffce00" />
+            <rect
+              x="84"
+              y="10"
+              width="26"
+              height="34"
+              fill={`url(#${p}-falte)`}
+            />
+          </g>
+        </>
+      );
+    case "ostern":
+      return (
+        <>
+          <defs>
+            <Grad
+              id={`${p}-gok`}
+              stops={[
+                [0, "#bfe0f3"],
+                [1, "#f4fbf2"],
+              ]}
+            />
+            <Grad
+              id={`${p}-gras`}
+              stops={[
+                [0, "#8cc466"],
+                [1, "#4f8f3a"],
+              ]}
+            />
+            <RGrad
+              id={`${p}-ei1`}
+              cx={0.35}
+              cy={0.3}
+              r={0.8}
+              stops={[
+                [0, "#ffe7a8"],
+                [1, "#e0a322"],
+              ]}
+            />
+            <RGrad
+              id={`${p}-ei2`}
+              cx={0.35}
+              cy={0.3}
+              r={0.8}
+              stops={[
+                [0, "#bfe3ff"],
+                [1, "#3b7fc4"],
+              ]}
+            />
+            <RGrad
+              id={`${p}-ei3`}
+              cx={0.35}
+              cy={0.3}
+              r={0.8}
+              stops={[
+                [0, "#ffc1cf"],
+                [1, "#d6456b"],
+              ]}
+            />
+          </defs>
+          <Gok id={`${p}-gok`} />
+          <path
+            d="M16,40 C24,34 30,24 36,14"
+            stroke="#6b4a32"
+            strokeWidth="2"
+            fill="none"
+          />
+          {[
+            [22, 36],
+            [27, 30],
+            [31, 23],
+            [34, 17],
+          ].map(([x, y]) => (
+            <ellipse
+              key={y}
+              cx={x + 2}
+              cy={y}
+              rx="3"
+              ry="2"
+              fill="#e9e4dc"
+              stroke="#c9c2b8"
+              strokeWidth="0.5"
+            />
+          ))}
+          <path d="M0,86 Q60,74 120,86 V120 H0z" fill={`url(#${p}-gras)`} />
+          <g>
+            <ellipse cx="40" cy="88" rx="12" ry="16" fill={`url(#${p}-ei1)`} />
+            <path
+              d="M29,84 Q40,80 51,84 M29,90 Q40,94 51,90"
+              stroke="#b5461f"
+              strokeWidth="1.6"
+              fill="none"
+            />
+            <ellipse cx="64" cy="84" rx="13" ry="17" fill={`url(#${p}-ei2)`} />
+            {[0, 1, 2, 3, 4].map((i) => (
+              <circle
+                key={i}
+                cx={57 + i * 3.6}
+                cy={i % 2 ? 80 : 86}
+                r="1.5"
+                fill="#fff"
+                opacity="0.9"
+              />
+            ))}
+            <ellipse cx="88" cy="90" rx="11" ry="15" fill={`url(#${p}-ei3)`} />
+            <path
+              d="M78,90 l5,-5 l5,5 l5,-5 l4,4"
+              stroke="#fff"
+              strokeWidth="1.4"
+              fill="none"
+            />
+          </g>
+          {Array.from({ length: 18 }, (_, i) => (
+            <path
+              key={i}
+              d={`M${6 + i * 6.4},120 q${i % 2 ? 2 : -2},-12 ${i % 3 ? 1 : 3},-${16 + (i % 4) * 3}`}
+              stroke="#5a9c42"
+              strokeWidth="1.6"
+              fill="none"
+            />
+          ))}
+        </>
+      );
+    case "weihnachten":
+      return (
+        <>
+          <defs>
+            <Grad
+              id={`${p}-gok`}
+              stops={[
+                [0, "#0d1733"],
+                [1, "#2b3b6b"],
+              ]}
+            />
+            <Grad
+              id={`${p}-baum`}
+              x2={1}
+              y2={0}
+              stops={[
+                [0, "#1e5a38"],
+                [0.5, "#2f7d4c"],
+                [1, "#184a2e"],
+              ]}
+            />
+            <RGrad
+              id={`${p}-glanz`}
+              stops={[
+                [0, "#ffe7a3", 0.8],
+                [1, "#ffe7a3", 0],
+              ]}
+            />
+            <RGrad
+              id={`${p}-rot`}
+              cx={0.35}
+              cy={0.3}
+              r={0.8}
+              stops={[
+                [0, "#ff8a8a"],
+                [1, "#b3122a"],
+              ]}
+            />
+            <RGrad
+              id={`${p}-gold`}
+              cx={0.35}
+              cy={0.3}
+              r={0.8}
+              stops={[
+                [0, "#fff1b0"],
+                [1, "#c8921c"],
+              ]}
+            />
+          </defs>
+          <Gok id={`${p}-gok`} />
+          <Yildizlar seed={23} n={30} maxY={60} />
+          <circle cx="60" cy="18" r="14" fill={`url(#${p}-glanz)`} />
+          <path d="M0,100 Q60,92 120,100 V120 H0z" fill="#e9f0f7" />
+          <rect x="56" y="92" width="8" height="12" fill="#5a3a22" />
+          <polygon points="60,22 84,56 36,56" fill={`url(#${p}-baum)`} />
+          <polygon points="60,36 92,76 28,76" fill={`url(#${p}-baum)`} />
+          <polygon points="60,52 100,96 20,96" fill={`url(#${p}-baum)`} />
+          <path
+            d="M40,54 Q60,62 80,52 M34,74 Q60,84 88,72 M28,94 Q60,102 94,92"
+            stroke="#f3d27a"
+            strokeWidth="1"
+            fill="none"
+            opacity="0.8"
+          />
+          {[
+            [50, 48, "rot"],
+            [70, 64, "gold"],
+            [44, 70, "gold"],
+            [62, 84, "rot"],
+            [82, 88, "gold"],
+            [36, 90, "rot"],
+            [74, 46, "rot"],
+          ].map(([x, y, c]) => (
+            <circle
+              key={`${x}${y}`}
+              cx={x}
+              cy={y}
+              r="3.2"
+              fill={`url(#${p}-${c})`}
+            />
+          ))}
+          <Yildiz cx={60} cy={20} r={7} fill="#ffd966" />
+        </>
+      );
+    case "advent":
+      return (
+        <>
+          <defs>
+            <RGrad
+              id={`${p}-zemin`}
+              cy={0.4}
+              r={0.8}
+              stops={[
+                [0, "#5a3522"],
+                [1, "#1c0f0a"],
+              ]}
+            />
+            <Grad
+              id={`${p}-kerze`}
+              x2={1}
+              y2={0}
+              stops={[
+                [0, "#a3121f"],
+                [0.5, "#e03b46"],
+                [1, "#8f0f1a"],
+              ]}
+            />
+            <RGrad
+              id={`${p}-flamme`}
+              cx={0.5}
+              cy={0.7}
+              stops={[
+                [0, "#fffbe0"],
+                [0.5, "#ffc24a"],
+                [1, "#ff8a1f", 0],
+              ]}
+            />
+            <RGrad
+              id={`${p}-halo`}
+              stops={[
+                [0, "#ffc24a", 0.4],
+                [1, "#ffc24a", 0],
+              ]}
+            />
+          </defs>
+          <rect width="120" height="120" fill={`url(#${p}-zemin)`} />
+          <circle cx="60" cy="50" r="46" fill={`url(#${p}-halo)`} />
+          <ellipse cx="60" cy="92" rx="46" ry="16" fill="#1f4d2c" />
+          {Array.from({ length: 22 }, (_, i) => {
+            const a = (i / 22) * 2 * Math.PI;
+            return (
+              <ellipse
+                key={i}
+                cx={60 + 42 * Math.cos(a)}
+                cy={92 + 13 * Math.sin(a)}
+                rx="7"
+                ry="3"
+                fill={i % 2 ? "#2f6b3e" : "#3d8a4f"}
+                transform={`rotate(${(a * 180) / Math.PI} ${60 + 42 * Math.cos(a)} ${92 + 13 * Math.sin(a)})`}
+              />
+            );
+          })}
+          {[
+            [26, 94],
+            [94, 94],
+            [52, 82],
+            [74, 102],
+          ].map(([x, y]) => (
+            <circle key={`${x}${y}`} cx={x} cy={y} r="2.6" fill="#c8102e" />
+          ))}
+          {[
+            [30, 80],
+            [50, 72],
+            [72, 74],
+            [90, 82],
+          ].map(([x, y]) => (
+            <g key={x}>
+              <rect
+                x={x - 4}
+                y={y - 26}
+                width="8"
+                height="26"
+                rx="1"
+                fill={`url(#${p}-kerze)`}
+              />
+              <line
+                x1={x}
+                y1={y - 26}
+                x2={x}
+                y2={y - 29}
+                stroke="#222"
+                strokeWidth="0.8"
+              />
+              <ellipse
+                cx={x}
+                cy={y - 33}
+                rx="3"
+                ry="6"
+                fill={`url(#${p}-flamme)`}
+              />
+            </g>
+          ))}
+        </>
+      );
+    case "karneval":
+      return (
+        <>
+          <defs>
+            <Grad
+              id={`${p}-zemin`}
+              stops={[
+                [0, "#2a1f4d"],
+                [1, "#6b2a5c"],
+              ]}
+            />
+            <Grad
+              id={`${p}-maske`}
+              x2={1}
+              y2={1}
+              stops={[
+                [0, "#fff1b0"],
+                [0.5, "#e0b23a"],
+                [1, "#a8741a"],
+              ]}
+            />
+          </defs>
+          <rect width="120" height="120" fill={`url(#${p}-zemin)`} />
+          {Array.from({ length: 40 }, (_, i) => {
+            const x = (i * 37) % 118;
+            const y = (i * 53) % 116;
+            const c = ["#e0243a", "#ffffff", "#ffd23a", "#3ab0ff", "#58c46a"][
+              i % 5
+            ];
+            return (
+              <rect
+                key={i}
+                x={x}
+                y={y}
+                width="3"
+                height="1.6"
+                fill={c}
+                transform={`rotate(${i * 29} ${x} ${y})`}
+              />
+            );
+          })}
+          <path
+            d="M10,20 C40,40 20,60 50,70 S 80,100 110,90"
+            stroke="#e0243a"
+            strokeWidth="2"
+            fill="none"
+          />
+          <path
+            d="M110,14 C80,30 100,52 70,60"
+            stroke="#ffd23a"
+            strokeWidth="2"
+            fill="none"
+          />
+          <path
+            d="M22,58 C30,44 48,46 60,52 C72,46 90,44 98,58 C96,70 84,76 72,70 C66,66 64,62 60,62 C56,62 54,66 48,70 C36,76 24,70 22,58z"
+            fill={`url(#${p}-maske)`}
+          />
+          <path
+            d="M34,58 C38,52 46,52 50,58 C46,62 38,62 34,58z M70,58 C74,52 82,52 86,58 C82,62 74,62 70,58z"
+            fill="#2a1f4d"
+          />
+          <path
+            d="M98,58 C104,50 110,40 108,30"
+            stroke="#e0b23a"
+            strokeWidth="2"
+            fill="none"
+          />
+          <path d="M104,34 q8,-10 2,-18 q-6,8 -2,18z" fill="#e0243a" />
+          <path d="M100,40 q10,-4 12,-14 q-10,2 -12,14z" fill="#ffffff" />
+        </>
+      );
+    case "kirche":
+      return (
+        <>
+          <defs>
+            <Grad
+              id={`${p}-gok`}
+              stops={[
+                [0, "#9cc4e6"],
+                [1, "#eef4f8"],
+              ]}
+            />
+            <Grad
+              id={`${p}-wand`}
+              x2={1}
+              y2={0}
+              stops={[
+                [0, "#f4efe6"],
+                [1, "#d8cdbb"],
+              ]}
+            />
+            <Grad
+              id={`${p}-dach`}
+              stops={[
+                [0, "#8a3a2a"],
+                [1, "#5e2418"],
+              ]}
+            />
+          </defs>
+          <Gok id={`${p}-gok`} />
+          <path d="M0,92 Q40,84 80,90 T120,88 V120 H0z" fill="#8fb57a" />
+          <rect x="54" y="40" width="20" height="58" fill={`url(#${p}-wand)`} />
+          <polygon points="52,40 64,6 76,40" fill={`url(#${p}-dach)`} />
+          <line
+            x1="64"
+            y1="6"
+            x2="64"
+            y2="0"
+            stroke="#c8a24a"
+            strokeWidth="1.2"
+          />
+          <line
+            x1="61"
+            y1="2"
+            x2="67"
+            y2="2"
+            stroke="#c8a24a"
+            strokeWidth="1.2"
+          />
+          <circle
+            cx="64"
+            cy="50"
+            r="4.5"
+            fill="#fbf7ef"
+            stroke="#6b5a45"
+            strokeWidth="0.8"
+          />
+          <path d="M60,62 q4,-6 8,0 v10 h-8z" fill="#4a5a6a" />
+          <rect x="22" y="62" width="34" height="36" fill={`url(#${p}-wand)`} />
+          <polygon points="18,64 38,46 58,64" fill={`url(#${p}-dach)`} />
+          {[28, 42].map((x) => (
+            <path key={x} d={`M${x},74 q3,-5 6,0 v12 h-6z`} fill="#4a5a6a" />
+          ))}
+          <path d="M60,98 v-10 q4,-5 8,0 v10z" fill="#5a3a22" />
+          <g fill="#3f6b3a">
+            <ellipse cx="96" cy="78" rx="12" ry="16" />
+            <ellipse cx="10" cy="84" rx="9" ry="12" />
+          </g>
+          <rect x="95" y="90" width="2" height="8" fill="#5a3a22" />
+        </>
+      );
+    case "laterne":
+      return (
+        <>
+          <defs>
+            <Grad
+              id={`${p}-gok`}
+              stops={[
+                [0, "#0c1330"],
+                [1, "#2a3160"],
+              ]}
+            />
+            <RGrad
+              id={`${p}-licht`}
+              stops={[
+                [0, "#fff4c4", 0.9],
+                [0.5, "#ffb84a", 0.5],
+                [1, "#ff8a1f", 0],
+              ]}
+            />
+            <RGrad
+              id={`${p}-l1`}
+              cx={0.4}
+              cy={0.4}
+              stops={[
+                [0, "#fff4c4"],
+                [1, "#f08a24"],
+              ]}
+            />
+            <RGrad
+              id={`${p}-l2`}
+              cx={0.4}
+              cy={0.4}
+              stops={[
+                [0, "#fff4c4"],
+                [1, "#e0415a"],
+              ]}
+            />
+            <RGrad
+              id={`${p}-l3`}
+              cx={0.4}
+              cy={0.4}
+              stops={[
+                [0, "#fff4c4"],
+                [1, "#3a8ad6"],
+              ]}
+            />
+          </defs>
+          <Gok id={`${p}-gok`} />
+          <Yildizlar seed={41} n={24} maxY={50} />
+          <path d="M0,104 Q60,96 120,104 V120 H0z" fill="#10152a" />
+          {[
+            [28, 62, "l1", "rund"],
+            [62, 50, "l2", "stern"],
+            [94, 66, "l3", "rund"],
+          ].map(([x, y, g, f]) => (
+            <g key={x as number}>
+              <line
+                x1={(x as number) - 10}
+                y1={(y as number) + 40}
+                x2={x as number}
+                y2={(y as number) - 16}
+                stroke="#6b4a32"
+                strokeWidth="1.4"
+              />
+              <line
+                x1={x as number}
+                y1={(y as number) - 16}
+                x2={x as number}
+                y2={(y as number) - 11}
+                stroke="#333"
+                strokeWidth="0.8"
+              />
+              <circle
+                cx={x as number}
+                cy={y as number}
+                r="18"
+                fill={`url(#${p}-licht)`}
+              />
+              {f === "stern" ? (
+                <Yildiz
+                  cx={x as number}
+                  cy={y as number}
+                  r={12}
+                  fill={`url(#${p}-${g})`}
+                />
+              ) : (
+                <>
+                  <ellipse
+                    cx={x as number}
+                    cy={y as number}
+                    rx="10"
+                    ry="11"
+                    fill={`url(#${p}-${g})`}
+                  />
+                  <path
+                    d={`M${(x as number) - 10},${y} h20`}
+                    stroke="#fff"
+                    strokeOpacity="0.4"
+                    strokeWidth="0.6"
+                  />
+                </>
+              )}
+            </g>
+          ))}
+        </>
+      );
+    case "kuerbis":
+      return (
+        <>
+          <defs>
+            <Grad
+              id={`${p}-gok`}
+              stops={[
+                [0, "#150d2a"],
+                [1, "#3a1f3f"],
+              ]}
+            />
+            <RGrad
+              id={`${p}-k`}
+              cx={0.4}
+              cy={0.35}
+              r={0.7}
+              stops={[
+                [0, "#ffb347"],
+                [0.7, "#e0701a"],
+                [1, "#a8460f"],
+              ]}
+            />
+            <RGrad
+              id={`${p}-glut`}
+              stops={[
+                [0, "#fff3a0"],
+                [1, "#ff9a1f"],
+              ]}
+            />
+          </defs>
+          <Gok id={`${p}-gok`} />
+          <circle cx="92" cy="24" r="12" fill="#f6ecc4" />
+          <circle cx="97" cy="21" r="10" fill="#150d2a" opacity="0.15" />
+          <path d="M0,100 Q60,94 120,100 V120 H0z" fill="#1a1020" />
+          <path
+            d="M58,40 q2,-10 8,-12"
+            stroke="#4f6b2a"
+            strokeWidth="4"
+            fill="none"
+            strokeLinecap="round"
+          />
+          <ellipse cx="44" cy="72" rx="20" ry="26" fill={`url(#${p}-k)`} />
+          <ellipse cx="76" cy="72" rx="20" ry="26" fill={`url(#${p}-k)`} />
+          <ellipse cx="60" cy="72" rx="20" ry="28" fill={`url(#${p}-k)`} />
+          <path
+            d="M44,62 l8,-8 l6,10z M76,62 l-8,-8 l-6,10z"
+            fill={`url(#${p}-glut)`}
+          />
+          <path
+            d="M40,80 q20,14 40,0 l-5,2 l-3,-4 l-4,5 l-4,-5 l-4,5 l-4,-5 l-4,5 l-4,-5 l-3,4z"
+            fill={`url(#${p}-glut)`}
+          />
+        </>
+      );
+    case "ernte":
+      return (
+        <>
+          <defs>
+            <Grad
+              id={`${p}-zemin`}
+              stops={[
+                [0, "#f6e3c2"],
+                [1, "#e0c08c"],
+              ]}
+            />
+            <Grad
+              id={`${p}-tisch`}
+              stops={[
+                [0, "#8b5a3c"],
+                [1, "#5b3822"],
+              ]}
+            />
+            <RGrad
+              id={`${p}-k`}
+              cx={0.4}
+              cy={0.35}
+              r={0.7}
+              stops={[
+                [0, "#ffb347"],
+                [1, "#c8621a"],
+              ]}
+            />
+            <RGrad
+              id={`${p}-apfel`}
+              cx={0.35}
+              cy={0.3}
+              r={0.8}
+              stops={[
+                [0, "#ff8a7a"],
+                [1, "#b3122a"],
+              ]}
+            />
+          </defs>
+          <rect width="120" height="120" fill={`url(#${p}-zemin)`} />
+          {Array.from({ length: 11 }, (_, i) => {
+            const a = -40 + i * 8;
+            return (
+              <g key={i} transform={`rotate(${a} 60 88)`}>
+                <line
+                  x1="60"
+                  y1="88"
+                  x2="60"
+                  y2="22"
+                  stroke="#c9a24a"
+                  strokeWidth="1.4"
+                />
+                {[0, 1, 2, 3].map((k) => (
+                  <ellipse
+                    key={k}
+                    cx={60 + (k % 2 ? 2 : -2)}
+                    cy={24 + k * 4}
+                    rx="1.8"
+                    ry="3"
+                    fill="#d9b252"
+                  />
+                ))}
+              </g>
+            );
+          })}
+          <rect x="52" y="66" width="16" height="4" fill="#8a6a2a" />
+          <rect y="92" width="120" height="28" fill={`url(#${p}-tisch)`} />
+          <ellipse cx="34" cy="92" rx="18" ry="13" fill={`url(#${p}-k)`} />
+          <path
+            d="M34,80 q1,-5 4,-6"
+            stroke="#4f6b2a"
+            strokeWidth="2"
+            fill="none"
+          />
+          <circle cx="78" cy="96" r="8" fill={`url(#${p}-apfel)`} />
+          <circle cx="94" cy="98" r="7" fill={`url(#${p}-apfel)`} />
+          <path
+            d="M78,88 q1,-3 3,-4"
+            stroke="#5a3a22"
+            strokeWidth="1"
+            fill="none"
+          />
+        </>
+      );
+    case "uhr":
+      return (
+        <>
+          <defs>
+            <Grad
+              id={`${p}-zemin`}
+              stops={[
+                [0, "#e8eef4"],
+                [1, "#c9d6e2"],
+              ]}
+            />
+            <RGrad
+              id={`${p}-rand`}
+              cx={0.4}
+              cy={0.35}
+              r={0.7}
+              stops={[
+                [0, "#f2f4f6"],
+                [0.7, "#a9b2bc"],
+                [1, "#6d7680"],
+              ]}
+            />
+          </defs>
+          <rect width="120" height="120" fill={`url(#${p}-zemin)`} />
+          <circle cx="60" cy="60" r="42" fill={`url(#${p}-rand)`} />
+          <circle cx="60" cy="60" r="36" fill="#fdfdfb" />
+          {Array.from({ length: 12 }, (_, i) => (
+            <line
+              key={i}
+              x1="60"
+              y1="27"
+              x2="60"
+              y2={i % 3 ? 31 : 34}
+              stroke="#2b2f36"
+              strokeWidth={i % 3 ? 1.6 : 2.6}
+              transform={`rotate(${i * 30} 60 60)`}
+            />
+          ))}
+          <line
+            x1="60"
+            y1="60"
+            x2="60"
+            y2="40"
+            stroke="#2b2f36"
+            strokeWidth="3.4"
+            strokeLinecap="round"
+            transform="rotate(75 60 60)"
+          />
+          <line
+            x1="60"
+            y1="60"
+            x2="60"
+            y2="32"
+            stroke="#2b2f36"
+            strokeWidth="2"
+            strokeLinecap="round"
+          />
+          <circle cx="60" cy="60" r="2.6" fill="#d6283a" />
+          <path
+            d="M92,24 A40,40 0 0 1 104,52"
+            stroke="#d6283a"
+            strokeWidth="3"
+            fill="none"
+            strokeLinecap="round"
+          />
+          <polygon points="106,58 99,50 108,48" fill="#d6283a" />
+          <text
+            x="98"
+            y="20"
+            fontSize="10"
+            fontWeight="700"
+            fill="#d6283a"
+            fontFamily="system-ui, sans-serif"
+          >
+            ±1h
+          </text>
+        </>
+      );
+    case "silvester":
+      return (
+        <>
+          <defs>
+            <Grad
+              id={`${p}-gok`}
+              stops={[
+                [0, "#070b1f"],
+                [1, "#27315c"],
+              ]}
+            />
+            <Grad
+              id={`${p}-su`}
+              stops={[
+                [0, "#1b2448"],
+                [1, "#0a0f24"],
+              ]}
+            />
+          </defs>
+          <Gok id={`${p}-gok`} />
+          <Yildizlar seed={9} n={24} maxY={50} />
+          <HavaiFisek cx={30} cy={30} r={17} renk="#ffcc4d" />
+          <HavaiFisek cx={88} cy={26} r={15} renk="#ff5d73" />
+          <HavaiFisek cx={62} cy={48} r={10} renk="#6fd3e0" />
+          {/* Berliner Fernsehturm und Stadtsilhouette */}
+          <g fill="#0c1024">
+            <rect x="72" y="36" width="1.6" height="14" />
+            <circle cx="72.8" cy="56" r="5" />
+            <rect x="71" y="60" width="3.6" height="34" />
+            <rect x="0" y="84" width="30" height="10" />
+            <rect x="8" y="76" width="10" height="18" />
+            <path d="M34,94 v-10 a8,8 0 0 1 16,0 v10z" />
+            <rect x="52" y="80" width="14" height="14" />
+            <rect x="80" y="78" width="16" height="16" />
+            <rect x="98" y="84" width="22" height="10" />
+          </g>
+          <circle cx="72.8" cy="56" r="1" fill="#ffcc4d" />
+          <rect y="94" width="120" height="26" fill={`url(#${p}-su)`} />
+          {[
+            [30, 98],
+            [88, 100],
+            [62, 106],
+          ].map(([x, y]) => (
+            <rect
+              key={x}
+              x={x - 6}
+              y={y}
+              width="12"
+              height="0.8"
+              rx="0.4"
+              fill="#ffcc4d"
+              opacity="0.5"
+            />
+          ))}
+        </>
+      );
+    case "kinder":
+      return (
+        <>
+          <defs>
+            <Grad
+              id={`${p}-gok`}
+              stops={[
+                [0, "#5d9fd6"],
+                [1, "#e4f0f9"],
+              ]}
+            />
+            <RGrad
+              id={`${p}-b1`}
+              cx={0.35}
+              cy={0.3}
+              r={0.8}
+              stops={[
+                [0, "#ff9aa8"],
+                [1, "#d6283a"],
+              ]}
+            />
+            <RGrad
+              id={`${p}-b2`}
+              cx={0.35}
+              cy={0.3}
+              r={0.8}
+              stops={[
+                [0, "#fff1a8"],
+                [1, "#e0a322"],
+              ]}
+            />
+            <RGrad
+              id={`${p}-b3`}
+              cx={0.35}
+              cy={0.3}
+              r={0.8}
+              stops={[
+                [0, "#a8f0b8"],
+                [1, "#2f9e5a"],
+              ]}
+            />
+            <RGrad
+              id={`${p}-b4`}
+              cx={0.35}
+              cy={0.3}
+              r={0.8}
+              stops={[
+                [0, "#b8d8ff"],
+                [1, "#3a6fd6"],
+              ]}
+            />
+          </defs>
+          <Gok id={`${p}-gok`} />
+          <ellipse cx="86" cy="24" rx="16" ry="5" fill="#fff" opacity="0.7" />
+          <path d="M0,100 Q60,90 120,100 V120 H0z" fill="#8fc26a" />
+          {[
+            [34, 40, "b1"],
+            [56, 30, "b2"],
+            [78, 42, "b3"],
+            [46, 56, "b4"],
+          ].map(([x, y, g]) => (
+            <g key={g as string}>
+              <path
+                d={`M${x},${(y as number) + 14} q-2,16 ${60 - (x as number)},${96 - (y as number)}`}
+                stroke="#8a8f99"
+                strokeWidth="0.8"
+                fill="none"
+              />
+              <ellipse
+                cx={x as number}
+                cy={y as number}
+                rx="11"
+                ry="14"
+                fill={`url(#${p}-${g})`}
+              />
+              <path
+                d={`M${(x as number) - 2},${(y as number) + 13} h4 l-2,3z`}
+                fill="#555"
+                opacity="0.4"
+              />
+            </g>
+          ))}
+        </>
+      );
+    case "kerze":
+      return (
+        <>
+          <defs>
+            <RGrad
+              id={`${p}-zemin`}
+              cy={0.35}
+              r={0.8}
+              stops={[
+                [0, "#3a3248"],
+                [1, "#0f0c16"],
+              ]}
+            />
+            <RGrad
+              id={`${p}-halo`}
+              cy={0.35}
+              stops={[
+                [0, "#ffd678", 0.5],
+                [1, "#ffd678", 0],
+              ]}
+            />
+            <Grad
+              id={`${p}-glas`}
+              x2={1}
+              y2={0}
+              stops={[
+                [0, "#8a1c24"],
+                [0.5, "#d6404a"],
+                [1, "#7a141c"],
+              ]}
+            />
+            <RGrad
+              id={`${p}-flamme`}
+              cx={0.5}
+              cy={0.7}
+              stops={[
+                [0, "#fffbe0"],
+                [0.5, "#ffc24a"],
+                [1, "#ff8a1f", 0],
+              ]}
+            />
+          </defs>
+          <rect width="120" height="120" fill={`url(#${p}-zemin)`} />
+          <circle cx="60" cy="44" r="40" fill={`url(#${p}-halo)`} />
+          <path d="M0,100 Q60,94 120,100 V120 H0z" fill="#1b1622" />
+          <path
+            d="M44,98 L48,56 H72 L76,98z"
+            fill={`url(#${p}-glas)`}
+            opacity="0.92"
+          />
+          <rect x="46" y="52" width="28" height="5" rx="1" fill="#c8a24a" />
+          <rect x="42" y="96" width="36" height="5" rx="1" fill="#c8a24a" />
+          <ellipse cx="60" cy="44" rx="5" ry="10" fill={`url(#${p}-flamme)`} />
+          <path
+            d="M26,100 C30,90 38,88 44,92 M94,100 C90,90 82,88 76,92"
+            stroke="#3f6b3a"
+            strokeWidth="3"
+            fill="none"
+          />
+        </>
+      );
+    case "stern":
+      return (
+        <>
+          <defs>
+            <Grad
+              id={`${p}-gok`}
+              stops={[
+                [0, "#0a1230"],
+                [1, "#2a3a6e"],
+              ]}
+            />
+            <RGrad
+              id={`${p}-glanz`}
+              stops={[
+                [0, "#fff4c4", 0.9],
+                [0.3, "#ffd966", 0.5],
+                [1, "#ffd966", 0],
+              ]}
+            />
+          </defs>
+          <Gok id={`${p}-gok`} />
+          <Yildizlar seed={17} n={40} maxY={80} />
+          <circle cx="62" cy="34" r="30" fill={`url(#${p}-glanz)`} />
+          <Isinlar
+            cx={62}
+            cy={34}
+            r1={8}
+            r2={26}
+            n={8}
+            stroke="#fff4c4"
+            w={1.2}
+          />
+          <Yildiz cx={62} cy={34} r={10} fill="#fff1b0" />
+          <path d="M62,44 L58,110 L66,110z" fill="#fff4c4" opacity="0.2" />
+          <path d="M0,96 Q40,84 80,94 T120,92 V120 H0z" fill="#e9f0f7" />
+          <g fill="#1a2248">
+            <path d="M10,104 v-8 l6,-6 l6,6 v8z M84,104 v-10 l8,-7 l8,7 v10z M100,106 v-6 l5,-4 l5,4 v6z" />
+          </g>
+          <rect x="14" y="98" width="3" height="3" fill="#ffd966" />
+          <rect x="90" y="97" width="3" height="3" fill="#ffd966" />
         </>
       );
     case "okul":

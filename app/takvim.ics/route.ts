@@ -1,5 +1,6 @@
 import {
   TAKVIM_YILLARI,
+  tarihliAd,
   yilEtkinlikleri,
 } from "../converter/calendar/trTakvim";
 import { addDaysYmd, ymdKey } from "../converter/time/dateMath";
@@ -39,7 +40,7 @@ export function GET() {
         `DTSTAMP:${stamp}`,
         `DTSTART;VALUE=DATE:${gun(ymdKey(t.tarih))}`,
         `DTEND;VALUE=DATE:${gun(ymdKey(son))}`,
-        `SUMMARY:${esc(t.etkinlik.ad)}`,
+        `SUMMARY:${esc(tarihliAd(t))}`,
         `DESCRIPTION:${esc(t.etkinlik.kisa)}`,
         `URL:${buildSiteUrl(`/ozel-gunler/${t.etkinlik.id}`)}`,
         "TRANSP:TRANSPARENT",

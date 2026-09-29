@@ -153,6 +153,7 @@ export const everydayToolLinksByCategory: Record<
     { href: "/kacinci-hafta", label: "Bugün Kaçıncı Hafta?" },
     { href: "/takvim", label: "Türkiye Takvimi" },
     { href: "/ozel-gunler", label: "Özel Günler" },
+    { href: "/firtina-takvimi", label: "Fırtına Takvimi" },
     { href: "/resmi-tatiller", label: "Resmî Tatiller" },
     { href: "/gebelik-haftasi-hesaplama", label: "Gebelik Haftası Hesaplama" },
     { href: "/uyku-hesaplama", label: "Uyku Hesaplama" },

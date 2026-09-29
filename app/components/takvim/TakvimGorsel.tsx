@@ -1760,6 +1760,409 @@ function Cizim({ g }: { g: Gorsel }): ReactNode {
           ))}
         </>
       );
+    case "cemre":
+      return (
+        <>
+          <defs>
+            <Grad
+              id={`${p}-gok`}
+              stops={[
+                [0, "#9cc4e4"],
+                [0.7, "#e9eef0"],
+                [1, "#f7efe0"],
+              ]}
+            />
+            <RGrad
+              id={`${p}-gunes`}
+              stops={[
+                [0, "#fffbe8"],
+                [0.35, "#ffe9a8", 0.8],
+                [1, "#ffe9a8", 0],
+              ]}
+            />
+            <Grad
+              id={`${p}-kar`}
+              stops={[
+                [0, "#f6f9fb"],
+                [1, "#d7e2ea"],
+              ]}
+            />
+            <Grad
+              id={`${p}-su`}
+              x2={1}
+              y2={0}
+              stops={[
+                [0, "#6f9fc4"],
+                [0.5, "#a9cbe3"],
+                [1, "#6f9fc4"],
+              ]}
+            />
+          </defs>
+          <Gok id={`${p}-gok`} />
+          <circle cx="86" cy="28" r="30" fill={`url(#${p}-gunes)`} />
+          <g stroke="#fff3c4" strokeWidth="1.2" opacity="0.55">
+            <line x1="86" y1="28" x2="40" y2="92" />
+            <line x1="86" y1="28" x2="62" y2="100" />
+            <line x1="86" y1="28" x2="20" y2="74" />
+          </g>
+          <path
+            d="M0,70 Q30,62 60,68 T120,64 V120 H0z"
+            fill="#a9b8a0"
+            opacity="0.6"
+          />
+          <path d="M0,82 Q40,74 120,80 V120 H0z" fill={`url(#${p}-kar)`} />
+          {[
+            [18, 90, 10],
+            [80, 88, 12],
+            [50, 104, 9],
+            [100, 106, 8],
+          ].map(([x, y, r]) => (
+            <ellipse
+              key={x}
+              cx={x}
+              cy={y}
+              rx={r}
+              ry={r * 0.35}
+              fill="#8fae6b"
+            />
+          ))}
+          <path
+            d="M-4,112 C30,98 50,108 70,96 C84,88 100,90 124,84 L124,92 C104,96 90,96 76,104 C56,116 32,108 -4,120z"
+            fill={`url(#${p}-su)`}
+          />
+          {[
+            [26, 108],
+            [60, 104],
+            [96, 92],
+          ].map(([x, y]) => (
+            <path key={x} d={`M${x},${y} l6,-2 l5,1 l-3,2z`} fill="#f4f8fb" />
+          ))}
+          <path
+            d="M30,84 C30,70 28,58 22,46 M28,64 C34,58 38,54 44,52 M29,72 C24,68 18,66 14,66 M24,52 C20,46 20,40 22,36"
+            fill="none"
+            stroke="#4a3527"
+            strokeWidth="2"
+            strokeLinecap="round"
+          />
+          {[
+            [44, 52],
+            [22, 36],
+            [14, 66],
+            [36, 55],
+          ].map(([x, y]) => (
+            <circle key={`${x}${y}`} cx={x} cy={y} r="1.6" fill="#8fc26a" />
+          ))}
+        </>
+      );
+    case "hidirellez":
+      return (
+        <>
+          <defs>
+            <Grad
+              id={`${p}-gok`}
+              stops={[
+                [0, "#2b2350"],
+                [0.6, "#7a4b78"],
+                [1, "#e0916e"],
+              ]}
+            />
+            <RGrad
+              id={`${p}-ates`}
+              cy={0.7}
+              stops={[
+                [0, "#ffb347", 0.8],
+                [1, "#ffb347", 0],
+              ]}
+            />
+            <RGrad
+              id={`${p}-cali`}
+              cx={0.4}
+              cy={0.35}
+              r={0.7}
+              stops={[
+                [0, "#3f7a3a"],
+                [1, "#1f3d22"],
+              ]}
+            />
+            <Grad
+              id={`${p}-alev`}
+              stops={[
+                [0, "#fff1b0"],
+                [0.5, "#ffb238"],
+                [1, "#e0521c"],
+              ]}
+            />
+          </defs>
+          <Gok id={`${p}-gok`} />
+          <Yildizlar seed={19} n={20} maxY={40} />
+          <path d="M0,96 Q60,88 120,96 V120 H0z" fill="#2a1f2a" />
+          {/* dilek gül ağacı */}
+          <path
+            d="M42,100 C42,88 40,80 36,72"
+            stroke="#3b2a1e"
+            strokeWidth="3"
+            fill="none"
+          />
+          <circle cx="36" cy="58" r="22" fill={`url(#${p}-cali)`} />
+          <circle cx="22" cy="68" r="11" fill={`url(#${p}-cali)`} />
+          <circle cx="52" cy="66" r="12" fill={`url(#${p}-cali)`} />
+          {[
+            [26, 50],
+            [40, 44],
+            [48, 58],
+            [30, 64],
+            [18, 70],
+            [54, 70],
+            [38, 56],
+          ].map(([x, y]) => (
+            <g key={`${x}${y}`}>
+              <circle cx={x} cy={y} r="2.6" fill="#d6284a" />
+              <circle cx={x - 0.6} cy={y - 0.6} r="1.1" fill="#f16a82" />
+            </g>
+          ))}
+          {[
+            [30, 72, "#e30a17"],
+            [44, 76, "#f2f2f2"],
+            [22, 78, "#e30a17"],
+            [52, 80, "#f7c948"],
+          ].map(([x, y, c]) => (
+            <path
+              key={`${x}`}
+              d={`M${x},${(y as number) - 4} q2,5 -1,11 l2,0 q2,-6 0,-11z`}
+              fill={c as string}
+            />
+          ))}
+          {/* ateş */}
+          <circle cx="88" cy="90" r="24" fill={`url(#${p}-ates)`} />
+          <path
+            d="M88,64 C96,74 100,82 96,92 C93,99 83,99 80,92 C77,84 84,78 86,72 C87,78 89,80 90,80 C91,74 90,70 88,64z"
+            fill={`url(#${p}-alev)`}
+          />
+          <g stroke="#4a2c1a" strokeWidth="3.5" strokeLinecap="round">
+            <line x1="76" y1="100" x2="100" y2="94" />
+            <line x1="76" y1="94" x2="100" y2="100" />
+          </g>
+        </>
+      );
+    case "polis":
+      return (
+        <>
+          <defs>
+            <Grad
+              id={`${p}-gok`}
+              stops={[
+                [0, "#0c1426"],
+                [1, "#1d2b45"],
+              ]}
+            />
+            <RGrad
+              id={`${p}-mavi`}
+              stops={[
+                [0, "#6fb6ff", 0.9],
+                [1, "#1f6fd1", 0],
+              ]}
+            />
+            <RGrad
+              id={`${p}-kirmizi`}
+              stops={[
+                [0, "#ff7a7a", 0.9],
+                [1, "#d11f2f", 0],
+              ]}
+            />
+            <Grad
+              id={`${p}-kasa`}
+              stops={[
+                [0, "#e9eef4"],
+                [1, "#9aa6b4"],
+              ]}
+            />
+            <Grad
+              id={`${p}-cam`}
+              stops={[
+                [0, "#2c3e5c"],
+                [1, "#101a2c"],
+              ]}
+            />
+          </defs>
+          <Gok id={`${p}-gok`} />
+          <circle cx="40" cy="52" r="34" fill={`url(#${p}-mavi)`} />
+          <circle cx="80" cy="52" r="34" fill={`url(#${p}-kirmizi)`} />
+          <path d="M0,104 H120 V120 H0z" fill="#0a0f1c" />
+          {/* ekip aracı */}
+          <path
+            d="M8,98 C8,88 14,84 24,82 L36,66 C38,63 42,62 46,62 H78 C82,62 85,63 87,66 L98,82 C108,84 112,88 112,98 Z"
+            fill={`url(#${p}-kasa)`}
+          />
+          <path
+            d="M40,68 H58 V82 H30z M62,68 H80 L90,82 H62z"
+            fill={`url(#${p}-cam)`}
+          />
+          <rect x="8" y="88" width="104" height="6" fill="#1f5fbf" />
+          <rect x="44" y="56" width="32" height="6" rx="2" fill="#20242c" />
+          <rect x="46" y="57" width="13" height="4" rx="1.5" fill="#5aa9ff" />
+          <rect x="61" y="57" width="13" height="4" rx="1.5" fill="#ff5a5a" />
+          <circle cx="30" cy="100" r="9" fill="#15181e" />
+          <circle cx="30" cy="100" r="4" fill="#8a929c" />
+          <circle cx="90" cy="100" r="9" fill="#15181e" />
+          <circle cx="90" cy="100" r="4" fill="#8a929c" />
+          <text
+            x="60"
+            y="93"
+            textAnchor="middle"
+            fontSize="5"
+            fontWeight="700"
+            fill="#fff"
+            fontFamily="system-ui, sans-serif"
+            letterSpacing="1"
+          >
+            POLİS
+          </text>
+        </>
+      );
+    case "orman":
+      return (
+        <>
+          <defs>
+            <Grad
+              id={`${p}-gok`}
+              stops={[
+                [0, "#8ec5e8"],
+                [1, "#eaf5f8"],
+              ]}
+            />
+            <Grad
+              id={`${p}-dag`}
+              stops={[
+                [0, "#7b9fb8"],
+                [1, "#a9c3d2"],
+              ]}
+            />
+            <Grad
+              id={`${p}-gol`}
+              stops={[
+                [0, "#5f95b5"],
+                [1, "#2f5f7e"],
+              ]}
+            />
+          </defs>
+          <Gok id={`${p}-gok`} />
+          <circle cx="88" cy="26" r="9" fill="#fff4c4" />
+          <polygon
+            points="-4,70 30,34 52,56 76,30 124,72"
+            fill={`url(#${p}-dag)`}
+          />
+          <path d="M0,72 Q60,64 120,72 V80 H0z" fill="#4f8a55" />
+          <rect y="78" width="120" height="42" fill={`url(#${p}-gol)`} />
+          {[80, 86, 94].map((y, i) => (
+            <line
+              key={y}
+              x1={20 + i * 10}
+              y1={y}
+              x2={50 + i * 12}
+              y2={y}
+              stroke="#fff"
+              strokeOpacity="0.35"
+              strokeWidth="0.8"
+            />
+          ))}
+          <g opacity="0.35" transform="translate(0 156) scale(1 -1)">
+            <Cam x={14} y={50} h={30} />
+            <Cam x={104} y={48} h={32} />
+          </g>
+          <Cam x={14} y={48} h={32} />
+          <Cam x={26} y={56} h={24} />
+          <Cam x={104} y={46} h={34} />
+          <Cam x={92} y={56} h={24} />
+        </>
+      );
+    case "firtina":
+      return (
+        <>
+          <defs>
+            <Grad
+              id={`${p}-gok`}
+              stops={[
+                [0, "#1a2130"],
+                [0.6, "#3a4658"],
+                [1, "#56637a"],
+              ]}
+            />
+            <Grad
+              id={`${p}-deniz`}
+              stops={[
+                [0, "#2d4a5e"],
+                [1, "#122433"],
+              ]}
+            />
+            <Grad
+              id={`${p}-dalga`}
+              stops={[
+                [0, "#6f95a8"],
+                [1, "#2d4a5e"],
+              ]}
+            />
+            <Grad
+              id={`${p}-isik`}
+              x2={1}
+              y2={0}
+              stops={[
+                [0, "#fff3b0", 0.7],
+                [1, "#fff3b0", 0],
+              ]}
+            />
+          </defs>
+          <Gok id={`${p}-gok`} />
+          {[
+            [20, 22, 26],
+            [60, 16, 30],
+            [100, 26, 24],
+          ].map(([x, y, r]) => (
+            <ellipse
+              key={x}
+              cx={x}
+              cy={y}
+              rx={r}
+              ry={r * 0.4}
+              fill="#0f141e"
+              opacity="0.6"
+            />
+          ))}
+          <polygon
+            points="36,24 28,46 34,46 26,66 44,40 37,40 44,24"
+            fill="#fff6c4"
+          />
+          <polygon
+            points="98,58 20,40 20,52"
+            fill={`url(#${p}-isik)`}
+            transform="scale(-1 1) translate(-120 0)"
+          />
+          {/* deniz feneri */}
+          <polygon points="94,92 98,56 106,56 110,92" fill="#f2f2f2" />
+          <polygon points="95.4,80 108.6,80 109.3,86 94.7,86" fill="#d6283a" />
+          <polygon points="96.7,64 107.3,64 107.8,70 96.2,70" fill="#d6283a" />
+          <rect x="96" y="50" width="12" height="6" fill="#fff3b0" />
+          <polygon points="95,50 102,44 109,50" fill="#1f2430" />
+          <rect y="80" width="120" height="40" fill={`url(#${p}-deniz)`} />
+          <path
+            d="M-4,96 C10,84 22,84 30,92 C36,80 50,78 58,90 C66,82 78,82 86,94 C96,86 108,86 124,94 V120 H-4z"
+            fill={`url(#${p}-dalga)`}
+          />
+          <path
+            d="M-4,96 C10,84 22,84 30,92 C36,80 50,78 58,90 C66,82 78,82 86,94 C96,86 108,86 124,94"
+            fill="none"
+            stroke="#e6f0f5"
+            strokeWidth="1.4"
+            strokeLinecap="round"
+          />
+          <path
+            d="M0,108 C20,102 40,106 60,102 C80,98 100,104 120,100"
+            fill="none"
+            stroke="#e6f0f5"
+            strokeOpacity="0.5"
+            strokeWidth="1"
+          />
+        </>
+      );
     case "isci":
       return (
         <>

@@ -5,9 +5,11 @@ import {
   etkinlikTarihleri,
   findEtkinlik,
   gunBilgisi,
+  halkDonemi,
   sonrakiTarih,
   yilEtkinlikleri,
 } from "../app/converter/calendar/trTakvim";
+import { siradakiFirtinalar } from "../app/converter/calendar/firtinaTakvimi";
 import { ymdKey } from "../app/converter/time/dateMath";
 
 const tarih = (id: string, year: number) =>
@@ -81,5 +83,48 @@ describe("Türkiye takvimi", () => {
         })!.tarih,
       ),
     ).toBe("2027-10-29");
+  });
+});
+
+describe("Halk takvimi", () => {
+  it("counts Kasım/Hızır days and Erbain/Hamsin", () => {
+    const h = halkDonemi({ year: 2026, month: 9, day: 29 });
+    expect(h.buyuk).toEqual({ ad: "Hızır günleri", gun: 147 });
+    expect(h.kucuk).toBeNull();
+    const e = halkDonemi({ year: 2027, month: 1, day: 30 });
+    expect(e.buyuk.ad).toBe("Kasım günleri");
+    expect(e.kucuk).toEqual({ ad: "Erbain", gun: 40, toplam: 40 });
+    expect(halkDonemi({ year: 2027, month: 3, day: 21 }).kucuk).toEqual({
+      ad: "Hamsin",
+      gun: 50,
+      toplam: 50,
+    });
+    expect(halkDonemi({ year: 2026, month: 11, day: 8 }).buyuk).toEqual({
+      ad: "Kasım günleri",
+      gun: 1,
+    });
+  });
+
+  it("lists the three cemre dates", () => {
+    const c = etkinlikTarihleri(findEtkinlik("cemre")!, 2027).map(
+      (t) => `${ymdKey(t.tarih)} ${t.not}`,
+    );
+    expect(c).toEqual([
+      "2027-02-20 havaya",
+      "2027-02-27 suya",
+      "2027-03-06 toprağa",
+    ]);
+  });
+
+  it("finds the next storm, including one still running", () => {
+    expect(
+      siradakiFirtinalar({ year: 2026, month: 9, day: 29 }, 1)[0].f.ad,
+    ).toBe("Turna geçimi fırtınası");
+    expect(
+      siradakiFirtinalar({ year: 2026, month: 3, day: 14 }, 1)[0].f.ad,
+    ).toContain("Kocakarı");
+    expect(
+      siradakiFirtinalar({ year: 2026, month: 12, day: 20 }, 1)[0].tarih,
+    ).toEqual({ year: 2027, month: 1, day: 14 });
   });
 });

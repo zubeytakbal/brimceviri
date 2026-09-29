@@ -27,6 +27,7 @@ export type Kategori =
   | "dini"
   | "milli"
   | "ozel"
+  | "halk"
   | "mevsim";
 export type Gorsel =
   | "bayrak"
@@ -46,10 +47,16 @@ export type Gorsel =
   | "sonbahar"
   | "kis"
   | "yilbasi"
-  | "isci";
+  | "isci"
+  | "cemre"
+  | "hidirellez"
+  | "polis"
+  | "orman"
+  | "firtina";
 
 type Kural =
   | { tip: "sabit"; ay: number; gun: number }
+  | { tip: "coklu"; tarihler: Array<{ ay: number; gun: number; not: string }> }
   | { tip: "haftanin-gunu"; ay: number; haftaGunu: number; kacinci: number }
   | { tip: "hicri"; ay: number; gun: number; kaydir?: number }
   | { tip: "regaib" }
@@ -77,6 +84,7 @@ export const KATEGORI_ADI: Record<Kategori, string> = {
   dini: "Dini gün",
   milli: "Milli ve anma günü",
   ozel: "Özel gün",
+  halk: "Halk takvimi",
   mevsim: "Mevsim ve astronomi",
 };
 
@@ -430,6 +438,145 @@ export const ETKINLIKLER: Etkinlik[] = [
     geriSayim: "ogretmenler-gunu",
   },
   {
+    id: "polis-haftasi",
+    ad: "Türk Polis Teşkilatının Kuruluş Yıl Dönümü",
+    kategori: "ozel",
+    gorsel: "polis",
+    kural: { tip: "sabit", ay: 4, gun: 10 },
+    tatil: "yok",
+    kisa: "10 Nisan; Türk Polis Teşkilatının kuruluşu, Polis Haftası'nın başlangıcı.",
+    hakkinda:
+      "Türk Polis Teşkilatı 10 Nisan 1845'te kuruldu. Her yıl 10 Nisan ve onu izleyen hafta Polis Haftası olarak kutlanır. Resmî tatil değildir.",
+  },
+  {
+    id: "hemsireler-gunu",
+    ad: "Hemşireler Günü",
+    kategori: "ozel",
+    gorsel: "saglik",
+    kural: { tip: "sabit", ay: 5, gun: 12 },
+    tatil: "yok",
+    kisa: "12 Mayıs; Florence Nightingale'in doğum günü, Uluslararası Hemşireler Günü.",
+    hakkinda:
+      "Uluslararası Hemşireler Günü, modern hemşireliğin öncüsü Florence Nightingale'in doğum günü olan 12 Mayıs'ta kutlanır. Türkiye'de 12-18 Mayıs Hemşirelik Haftası'dır.",
+  },
+  {
+    id: "cevre-gunu",
+    ad: "Dünya Çevre Günü",
+    kategori: "ozel",
+    gorsel: "orman",
+    kural: { tip: "sabit", ay: 6, gun: 5 },
+    tatil: "yok",
+    kisa: "5 Haziran; Birleşmiş Milletler'in çevre farkındalığı günü.",
+    hakkinda:
+      "Dünya Çevre Günü, Birleşmiş Milletler'in 1972 Stockholm Konferansı'nın açılış günü olan 5 Haziran'da kutlanır. Türkiye'de Haziran'ın ilk haftası Çevre Haftası'dır.",
+  },
+  {
+    id: "gaziler-gunu",
+    ad: "Gaziler Günü",
+    kategori: "milli",
+    gorsel: "bayrak",
+    kural: { tip: "sabit", ay: 9, gun: 19 },
+    tatil: "yok",
+    kisa: "19 Eylül; Sakarya Meydan Muharebesi sonrası Mustafa Kemal'e gazilik unvanı verilmesi.",
+    hakkinda:
+      "Sakarya Meydan Muharebesi'nin kazanılmasının ardından TBMM, 19 Eylül 1921'de Mustafa Kemal'e Mareşal rütbesi ve Gazi unvanı verdi. Gün, tüm gazilerin anıldığı Gaziler Günü'dür.",
+  },
+  {
+    id: "cemre",
+    ad: "Cemre Düşmesi",
+    kategori: "halk",
+    gorsel: "cemre",
+    kural: {
+      tip: "coklu",
+      tarihler: [
+        { ay: 2, gun: 20, not: "havaya" },
+        { ay: 2, gun: 27, not: "suya" },
+        { ay: 3, gun: 6, not: "toprağa" },
+      ],
+    },
+    tatil: "yok",
+    kisa: "Halk takvimine göre cemre 20 Şubat'ta havaya, 27 Şubat'ta suya, 6 Mart'ta toprağa düşer.",
+    hakkinda:
+      "Cemre, halk inanışında baharın gelişini müjdeleyen ısının sırasıyla havaya, suya ve toprağa düşmesidir. Birer hafta arayla düşen cemreler, eski (Rumi) takvime dayandığı için her yıl aynı miladi tarihlere denk gelir; bazı kaynaklar bir gün önceyi (19 Şubat, 26 Şubat, 5 Mart) verir. Bilimsel bir ölçüm değil, uzun gözlemlere dayanan bir gelenektir.",
+    araclar: [
+      { href: "/firtina-takvimi", label: "Fırtına takvimi ve halk takvimi" },
+    ],
+  },
+  {
+    id: "hamsin",
+    ad: "Hamsin'in Başlangıcı",
+    kategori: "halk",
+    gorsel: "kis",
+    kural: { tip: "sabit", ay: 1, gun: 31 },
+    tatil: "yok",
+    kisa: "Erbain'in ardından gelen, 31 Ocak'tan 21 Mart'a kadar süren 50 günlük kış dönemi.",
+    hakkinda:
+      "Hamsin (Arapça \"elli\"), halk takviminde kışın ikinci dönemidir: Erbain'in bitişiyle 31 Ocak'ta başlar ve 21 Mart'a kadar 50 gün sürer. Soğuklar Erbain kadar sert değildir; cemreler ve Kocakarı soğukları bu dönemdedir.",
+    araclar: [
+      { href: "/firtina-takvimi", label: "Fırtına takvimi ve halk takvimi" },
+    ],
+  },
+  {
+    id: "kocakari-soguklari",
+    ad: "Kocakarı Soğukları",
+    kategori: "halk",
+    gorsel: "kis",
+    kural: { tip: "sabit", ay: 3, gun: 11 },
+    tatil: "yok",
+    kisa: "Baharın gelişinden sonra 11-17 Mart arasında görülen, halk arasında Berdül Acuz denen son soğuklar.",
+    hakkinda:
+      "Kocakarı soğukları (Berdül Acuz), halk takvimine göre Mart ayında havalar ısınmaya başladıktan sonra yaşanan kısa ve sert soğuk dönemdir; genellikle 11-17 Mart arasına denk gelir ve denizcilerin fırtına takviminde Kocakarı fırtınası olarak da geçer.",
+    araclar: [{ href: "/firtina-takvimi", label: "Fırtına takvimi" }],
+  },
+  {
+    id: "hidirellez",
+    ad: "Hıdırellez",
+    kategori: "halk",
+    gorsel: "hidirellez",
+    kural: { tip: "sabit", ay: 5, gun: 6 },
+    tatil: "yok",
+    kisa: "5 Mayıs'ı 6 Mayıs'a bağlayan gece kutlanan bahar bayramı; Hızır günlerinin başlangıcı.",
+    hakkinda:
+      "Hıdırellez, Hızır ile İlyas'ın buluştuğuna inanılan ve baharın, bereketin kutlandığı eski bir bayramdır. 5 Mayıs'ı 6 Mayıs'a bağlayan gece ateş üzerinden atlanır, dilekler gül ağacına bağlanır. Halk takviminde yıl, 6 Mayıs'ta başlayan Hızır günleri ve 8 Kasım'da başlayan Kasım günleri olarak ikiye ayrılır. Hıdırellez, UNESCO İnsanlığın Somut Olmayan Kültürel Mirası listesindedir.",
+    araclar: [
+      {
+        href: "/firtina-takvimi",
+        label: "Halk takvimi: Hızır ve Kasım günleri",
+      },
+    ],
+  },
+  {
+    id: "kasim-gunleri",
+    ad: "Kasım Günlerinin Başlangıcı",
+    kategori: "halk",
+    gorsel: "sonbahar",
+    kural: { tip: "sabit", ay: 11, gun: 8 },
+    tatil: "yok",
+    kisa: "Halk takviminde yılın kış yarısı: 8 Kasım'dan 5 Mayıs'a kadar süren Kasım günleri.",
+    hakkinda:
+      "Halk takviminde yıl ikiye ayrılır: 6 Mayıs'ta (Hıdırellez) başlayan yaz yarısı Hızır günleri, 8 Kasım'da başlayan kış yarısı Kasım günleridir. Çiftçiler ekim ve hasat zamanlarını, çobanların anlaşmaları ise bu iki tarihe göre belirlerdi; \"Kasım'ın 50'si\" gibi günler hâlâ kullanılır.",
+    araclar: [
+      {
+        href: "/firtina-takvimi",
+        label: "Halk takvimi: Hızır ve Kasım günleri",
+      },
+    ],
+  },
+  {
+    id: "erbain",
+    ad: "Erbain'in Başlangıcı",
+    kategori: "halk",
+    gorsel: "kis",
+    kural: { tip: "sabit", ay: 12, gun: 22 },
+    tatil: "yok",
+    kisa: "Kışın en sert 40 günü: 22 Aralık'tan 30 Ocak'a kadar süren Erbain (zemheri).",
+    hakkinda:
+      "Erbain (Arapça \"kırk\"), halk takviminde kışın en soğuk ve karlı 40 günlük dönemidir; Kış Gündönümü'nün ertesi günü 22 Aralık'ta başlar, 30 Ocak'ta biter. Zemheri veya karakış olarak da anılır. Ardından 50 günlük Hamsin gelir.",
+    araclar: [
+      { href: "/firtina-takvimi", label: "Fırtına takvimi ve halk takvimi" },
+    ],
+  },
+  {
     id: "ilkbahar",
     ad: "İlkbahar Ekinoksu",
     kategori: "mevsim",
@@ -524,12 +671,22 @@ export type Tarihli = {
   tahmini?: boolean;
 };
 
+/** Tarihli etkinliğin görünen adı: "Cemre Düşmesi (suya)". */
+export const tarihliAd = (t: Tarihli) =>
+  t.not ? `${t.etkinlik.ad} (${t.not})` : t.etkinlik.ad;
+
 /** Bir etkinliğin yıl içindeki tarih(ler)i. */
 export function etkinlikTarihleri(e: Etkinlik, year: number): Tarihli[] {
   const k = e.kural;
   switch (k.tip) {
     case "sabit":
       return [{ etkinlik: e, tarih: { year, month: k.ay, day: k.gun } }];
+    case "coklu":
+      return k.tarihler.map((t) => ({
+        etkinlik: e,
+        tarih: { year, month: t.ay, day: t.gun },
+        not: t.not,
+      }));
     case "haftanin-gunu":
       return [
         {
@@ -699,7 +856,50 @@ export function gunBilgisi(d: YMD) {
     yilinGunu: doy,
     kalanGun: yilGunu - doy,
     etkinlikler: gunHaritasi(d.year).get(ymdKey(d)) ?? [],
+    halk: halkDonemi(d),
   };
+}
+
+/**
+ * Halk takvimine göre dönem: yıl Kasım (8 Kasım–5 Mayıs) ve Hızır (6 Mayıs–7 Kasım) günlerine ayrılır;
+ * kışın en sert 40 günü Erbain (22 Aralık–30 Ocak), ardından 50 gün Hamsin (31 Ocak–21 Mart) gelir.
+ */
+export function halkDonemi(d: YMD) {
+  const k = ymdKey(d).slice(5);
+  const bas = (y: number, m: number, g: number) => ({
+    year: y,
+    month: m,
+    day: g,
+  });
+  const hizirMi = k >= "05-06" && k <= "11-07";
+  const buyukBas = hizirMi
+    ? bas(d.year, 5, 6)
+    : k >= "11-08"
+      ? bas(d.year, 11, 8)
+      : bas(d.year - 1, 11, 8);
+  const buyuk = {
+    ad: hizirMi ? "Hızır günleri" : "Kasım günleri",
+    gun: diffDays(buyukBas, d) + 1,
+  };
+  let kucuk: { ad: string; gun: number; toplam: number } | null = null;
+  if (k >= "12-22" || k <= "01-30") {
+    kucuk = {
+      ad: "Erbain",
+      gun:
+        diffDays(
+          k >= "12-22" ? bas(d.year, 12, 22) : bas(d.year - 1, 12, 22),
+          d,
+        ) + 1,
+      toplam: 40,
+    };
+  } else if (k >= "01-31" && k <= "03-21") {
+    kucuk = {
+      ad: "Hamsin",
+      gun: diffDays(bas(d.year, 1, 31), d) + 1,
+      toplam: diffDays(bas(d.year, 1, 31), bas(d.year, 3, 22)),
+    };
+  }
+  return { buyuk, kucuk };
 }
 
 /** Sayfası olan günler: en az bir etkinliği olan günler. */

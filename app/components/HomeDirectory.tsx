@@ -124,6 +124,7 @@ const timeToolsHome = {
     { href: "/saat-dilimi-cevirici", title: "Saat Dilimi Çevirici", description: "Birden çok şehre aynı anda çevir; toplantı planlayıcı.", icon: "greatCircleCalculator" as const },
     { href: "/takvim", title: "Türkiye Takvimi", description: "Bugünün tarihi, Hicri karşılığı, bayramlar, kandiller ve özel günler ay ay.", icon: "dateCalculator" as const },
     { href: "/ozel-gunler", title: "Özel Günler", description: "Anneler Günü, kandiller, bayramlar ne zaman? Tarihler ve kalan gün.", icon: "dateCalculator" as const },
+    { href: "/firtina-takvimi", title: "Fırtına Takvimi", description: "Sıradaki fırtına, cemreler, Erbain ve Hamsin; halk takvimine göre bugün.", icon: "dateCalculator" as const },
     { href: "/resmi-tatiller", title: "Resmî Tatiller", description: "Bayram tarihleri, arefe yarım günleri, köprü günleri ve izin planı.", icon: "attendanceCalculator" as const },
     { href: "/is-gunu-hesaplama", title: "İş Günü Hesaplama", description: "Resmî tatiller hariç çalışma günü; tarihe iş günü ekle.", icon: "attendanceCalculator" as const },
     { href: "/iki-tarih-arasi-gun-hesaplama", title: "İki Tarih Arası Gün", description: "Kaç gün, hafta, ay? İş günü ve tatiller dahil ayrıntılı sonuç.", icon: "attendanceCalculator" as const },

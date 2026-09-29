@@ -14,6 +14,7 @@ export const everydayCalculators: EverydayCalculator[] = [
   { id: "devamsizlik", href: "/devamsizlik-hesaplama", label: "Devamsızlık Hesaplama" },
   { id: "yas", href: "/yas-hesaplama", label: "Yaş Hesaplama" },
   { id: "kdv", href: "/kdv-hesaplama", label: "KDV Hesaplama" },
+  { id: "kidem-tazminati", href: "/kidem-tazminati-hesaplama", label: "Kıdem ve İhbar Tazminatı Hesaplama" },
   { id: "bmi", href: "/bmi-hesaplama", label: "BMI (Vücut Kitle İndeksi) Hesaplama" },
   {
     id: "gebelik-haftasi",

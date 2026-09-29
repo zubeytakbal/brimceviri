@@ -4541,6 +4541,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
     },
     {
+      url: `${baseUrl}/kidem-tazminati-hesaplama`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/uz/haydovchilik-toifasi-topish`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",

@@ -15,6 +15,26 @@ export type AnnualUpdate = {
 
 export const annualUpdates: AnnualUpdate[] = [
   {
+    id: "tr-kidem",
+    label: "Kıdem ve ihbar tazminatı (Türkiye)",
+    pageHref: "/kidem-tazminati-hesaplama",
+    validYear: 2026,
+    remindFrom: "12-20",
+    checklist: [
+      "Add the January kıdem tazminatı tavanı for next year (ÇSGB / Mali ve Sosyal Haklar Genelgesi) to KIDEM_TAVANLARI in app/converter/turkishTazminat.ts",
+      "Add next year's ücret gelir vergisi tarifesi to GELIR_VERGISI_TARIFESI (GVK md. 103, Resmî Gazete in late December)",
+      "Update the title/description year on the page, then set validYear here",
+    ],
+  },
+  {
+    id: "tr-kidem-temmuz",
+    label: "Kıdem tazminatı tavanı Temmuz (Türkiye)",
+    pageHref: "/kidem-tazminati-hesaplama",
+    validYear: 2027,
+    remindFrom: "07-02",
+    checklist: ["Add the July kıdem tazminatı tavanı (announced in early July) to KIDEM_TAVANLARI, then move validYear to the next year"],
+  },
+  {
     id: "de-grunderwerbsteuer",
     label: "Grunderwerbsteuer-Rechner (Germany)",
     pageHref: "/de/grunderwerbsteuer-rechner",

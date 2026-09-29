@@ -109,6 +109,10 @@ export default function MuhasebeciAraclariPage() {
               <Link href="/kdv-hesaplama">KDV Hesaplama</Link>
               {" "}— KDV dahil ve KDV hariç tutarları hesapla.
             </li>
+            <li>
+              <Link href="/kidem-tazminati-hesaplama">Kıdem ve İhbar Tazminatı Hesaplama</Link>
+              {" "}— güncel kıdem tavanı, damga ve gelir vergisiyle net tazminat hesapla.
+            </li>
           </ul>
 
           <h2>Sık Sorulan Sorular</h2>

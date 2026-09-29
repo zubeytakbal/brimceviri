@@ -133,7 +133,9 @@ export default function DateCalculatorPage() {
 
           <h2>İlgili araçlar</h2>
           <p>
-            Gebelik takibi için{" "}
+            Haftanın hangi günü doğduğunu ve Hicri doğum tarihini görmek için{" "}
+            <Link href="/dogdugum-gun-hangi-gun">Doğduğum Gün Hangi Gündü?</Link>,{" "}
+            gebelik takibi için{" "}
             <Link href="/gebelik-haftasi-hesaplama">Gebelik Haftası Hesaplama</Link>,{" "}
             Unix zaman damgası dönüşümleri için{" "}
             <Link href="/unix-zaman-damgasi-cevirici">Unix Zaman Damgası Çevirici</Link>,{" "}

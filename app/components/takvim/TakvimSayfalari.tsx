@@ -8,7 +8,7 @@ import {
   gunHaritasi,
   KATEGORI_ADI,
   ozelGunPath,
-  halkDonemi,
+  halkMetni,
   sonrakiTarih,
   tarihliAd,
   TAKVIM_YILLARI,
@@ -64,6 +64,7 @@ export const TAKVIM_ARACLARI = [
   { href: "/kacinci-hafta", label: "Bugün Kaçıncı Hafta?" },
   { href: "/ay-evreleri", label: "Ay Evreleri" },
   { href: "/firtina-takvimi", label: "Fırtına Takvimi" },
+  { href: "/dogdugum-gun-hangi-gun", label: "Doğduğum Gün Hangi Gündü?" },
 ];
 
 /** Türkiye saatine göre bugün (UTC+3). */
@@ -107,11 +108,6 @@ function TatilEtiketi({ e }: { e: Etkinlik }) {
       {e.tatil === "tam" ? "Resmî tatil" : "Resmî tatil · önceki gün yarım gün"}
     </span>
   );
-}
-
-/** "Kasım günleri 45. gün · Erbain 12/40" */
-export function halkMetni(h: ReturnType<typeof halkDonemi>) {
-  return `${h.buyuk.ad} ${h.buyuk.gun}. gün${h.kucuk ? ` · ${h.kucuk.ad} ${h.kucuk.gun}/${h.kucuk.toplam}` : ""}`;
 }
 
 /* ------------------------------------------------------------------ */

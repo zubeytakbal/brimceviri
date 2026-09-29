@@ -7,13 +7,14 @@ import {
   AY_ADLARI,
   findEtkinlik,
   halkDonemi,
+  halkMetni,
   ozelGunPath,
   takvimAyPath,
 } from "../../converter/calendar/trTakvim";
 import type { FaqItem } from "../../converter/faqSchema";
 import TimeToolPage from "../time/TimeToolPage";
 import TakvimGorsel from "./TakvimGorsel";
-import { halkMetni, TAKVIM_ARACLARI, trBugun } from "./TakvimSayfalari";
+import { TAKVIM_ARACLARI, trBugun } from "./TakvimSayfalari";
 
 const HALK_GUNLERI = [
   "cemre",

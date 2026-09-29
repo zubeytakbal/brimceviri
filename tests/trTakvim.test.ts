@@ -128,3 +128,12 @@ describe("Halk takvimi", () => {
     ).toEqual({ year: 2027, month: 1, day: 14 });
   });
 });
+
+describe("Geçmiş yıllar", () => {
+  it("does not show days before they were established", () => {
+    expect(etkinlikTarihleri(findEtkinlik("15-temmuz")!, 1990)).toEqual([]);
+    expect(etkinlikTarihleri(findEtkinlik("ogretmenler-gunu")!, 1975)).toEqual([]);
+    expect(etkinlikTarihleri(findEtkinlik("29-ekim")!, 1990)).toHaveLength(1);
+    expect(gunBilgisi({ year: 1990, month: 5, day: 27 }).gunAdi).toBe("Pazar");
+  });
+});

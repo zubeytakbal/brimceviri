@@ -147,6 +147,7 @@ export const everydayToolLinksByCategory: Record<
   ],
   zaman: [
     { href: "/yas-hesaplama", label: "Yaş Hesaplama" },
+    { href: "/dogdugum-gun-hangi-gun", label: "Doğduğum Gün Hangi Gündü?" },
     { href: "/iki-tarih-arasi-gun-hesaplama", label: "İki Tarih Arası Gün Hesaplama" },
     { href: "/is-gunu-hesaplama", label: "İş Günü Hesaplama" },
     { href: "/tarihe-gun-ekleme", label: "Tarihe Gün Ekleme" },

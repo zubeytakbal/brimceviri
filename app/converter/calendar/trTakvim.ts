@@ -76,6 +76,8 @@ export type Etkinlik = {
   /** Mevcut geri sayım sayfası (/geri-sayim/...) */
   geriSayim?: string;
   araclar?: Array<{ href: string; label: string }>;
+  /** İlk kutlandığı / resmîleştiği yıl; öncesindeki yıllarda gösterilmez (doğum günü aracı geçmiş yıllara bakar). */
+  baslangic?: number;
 };
 
 export const KATEGORI_ADI: Record<Kategori, string> = {
@@ -96,6 +98,7 @@ const IZIN = {
 export const ETKINLIKLER: Etkinlik[] = [
   {
     id: "yilbasi",
+    baslangic: 1926,
     ad: "Yılbaşı",
     kategori: "resmi",
     gorsel: "yilbasi",
@@ -109,6 +112,7 @@ export const ETKINLIKLER: Etkinlik[] = [
   },
   {
     id: "23-nisan",
+    baslangic: 1921,
     ad: "Ulusal Egemenlik ve Çocuk Bayramı",
     kategori: "resmi",
     gorsel: "cocuk",
@@ -122,6 +126,7 @@ export const ETKINLIKLER: Etkinlik[] = [
   },
   {
     id: "1-mayis",
+    baslangic: 1890,
     ad: "Emek ve Dayanışma Günü",
     kategori: "resmi",
     gorsel: "isci",
@@ -141,6 +146,7 @@ export const ETKINLIKLER: Etkinlik[] = [
   },
   {
     id: "19-mayis",
+    baslangic: 1938,
     ad: "Atatürk'ü Anma, Gençlik ve Spor Bayramı",
     kategori: "resmi",
     gorsel: "bayrak",
@@ -154,6 +160,7 @@ export const ETKINLIKLER: Etkinlik[] = [
   },
   {
     id: "15-temmuz",
+    baslangic: 2017,
     ad: "Demokrasi ve Millî Birlik Günü",
     kategori: "resmi",
     gorsel: "bayrak",
@@ -167,6 +174,7 @@ export const ETKINLIKLER: Etkinlik[] = [
   },
   {
     id: "30-agustos",
+    baslangic: 1923,
     ad: "Zafer Bayramı",
     kategori: "resmi",
     gorsel: "bayrak",
@@ -180,6 +188,7 @@ export const ETKINLIKLER: Etkinlik[] = [
   },
   {
     id: "29-ekim",
+    baslangic: 1923,
     ad: "Cumhuriyet Bayramı",
     kategori: "resmi",
     gorsel: "bayrak",
@@ -337,6 +346,7 @@ export const ETKINLIKLER: Etkinlik[] = [
   },
   {
     id: "dunya-kadinlar-gunu",
+    baslangic: 1977,
     ad: "Dünya Kadınlar Günü",
     kategori: "ozel",
     gorsel: "cicek",
@@ -348,6 +358,7 @@ export const ETKINLIKLER: Etkinlik[] = [
   },
   {
     id: "istiklal-marsi",
+    baslangic: 1921,
     ad: "İstiklal Marşı'nın Kabulü ve Mehmet Akif Ersoy'u Anma Günü",
     kategori: "milli",
     gorsel: "bayrak",
@@ -359,6 +370,7 @@ export const ETKINLIKLER: Etkinlik[] = [
   },
   {
     id: "tip-bayrami",
+    baslangic: 1919,
     ad: "Tıp Bayramı",
     kategori: "ozel",
     gorsel: "saglik",
@@ -370,6 +382,7 @@ export const ETKINLIKLER: Etkinlik[] = [
   },
   {
     id: "canakkale-zaferi",
+    baslangic: 1915,
     ad: "Şehitleri Anma Günü ve Çanakkale Deniz Zaferi",
     kategori: "milli",
     gorsel: "defne",
@@ -416,6 +429,7 @@ export const ETKINLIKLER: Etkinlik[] = [
   },
   {
     id: "ataturku-anma",
+    baslangic: 1939,
     ad: "Atatürk'ü Anma Günü",
     kategori: "milli",
     gorsel: "anma",
@@ -427,6 +441,7 @@ export const ETKINLIKLER: Etkinlik[] = [
   },
   {
     id: "ogretmenler-gunu",
+    baslangic: 1981,
     ad: "Öğretmenler Günü",
     kategori: "ozel",
     gorsel: "kitap",
@@ -439,6 +454,7 @@ export const ETKINLIKLER: Etkinlik[] = [
   },
   {
     id: "polis-haftasi",
+    baslangic: 1845,
     ad: "Türk Polis Teşkilatının Kuruluş Yıl Dönümü",
     kategori: "ozel",
     gorsel: "polis",
@@ -450,6 +466,7 @@ export const ETKINLIKLER: Etkinlik[] = [
   },
   {
     id: "hemsireler-gunu",
+    baslangic: 1974,
     ad: "Hemşireler Günü",
     kategori: "ozel",
     gorsel: "saglik",
@@ -461,6 +478,7 @@ export const ETKINLIKLER: Etkinlik[] = [
   },
   {
     id: "cevre-gunu",
+    baslangic: 1974,
     ad: "Dünya Çevre Günü",
     kategori: "ozel",
     gorsel: "orman",
@@ -472,6 +490,7 @@ export const ETKINLIKLER: Etkinlik[] = [
   },
   {
     id: "gaziler-gunu",
+    baslangic: 1921,
     ad: "Gaziler Günü",
     kategori: "milli",
     gorsel: "bayrak",
@@ -677,6 +696,7 @@ export const tarihliAd = (t: Tarihli) =>
 
 /** Bir etkinliğin yıl içindeki tarih(ler)i. */
 export function etkinlikTarihleri(e: Etkinlik, year: number): Tarihli[] {
+  if (e.baslangic && year < e.baslangic) return [];
   const k = e.kural;
   switch (k.tip) {
     case "sabit":
@@ -915,4 +935,9 @@ export function sonrakiTarih(e: Etkinlik, from: YMD): Tarihli | null {
     if (t) return t;
   }
   return null;
+}
+
+/** "Kasım günleri 45. gün · Erbain 12/40" */
+export function halkMetni(h: ReturnType<typeof halkDonemi>) {
+  return `${h.buyuk.ad} ${h.buyuk.gun}. gün${h.kucuk ? ` · ${h.kucuk.ad} ${h.kucuk.gun}/${h.kucuk.toplam}` : ""}`;
 }

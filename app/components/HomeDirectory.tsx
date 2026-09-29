@@ -83,6 +83,7 @@ const germanRechnerGroups: Array<{ id: string; title: string; description: strin
       { href: "/de/urlaubsrechner", title: "Urlaubsrechner", description: "Urlaubsanspruch bei Teilzeit und anteiliger Urlaub bei Jobwechsel.", icon: "attendanceCalculator" as const },
       { href: "/de/mutterschutzrechner", title: "Mutterschutzrechner", description: "Beginn und Ende des Mutterschutzes, Mutterschaftsgeld und Frist für die Elternzeit.", icon: "dateCalculator" as const },
       { href: "/de/grunderwerbsteuer-rechner", title: "Grunderwerbsteuer-Rechner", description: "Grunderwerbsteuer aller Bundesländer und Kaufnebenkosten beim Immobilienkauf.", icon: "vatCalculator" as const },
+      { href: "/de/kuendigungsfrist-rechner", title: "Kündigungsfrist-Rechner", description: "Kündigungsfrist für Job und Mietvertrag, mit spätestem Zugangsdatum.", icon: "dateCalculator" as const },
       { href: "/de/prozentrechner", title: "Prozentrechner", description: "Prozentwert, Prozentsatz, Grundwert, Veränderung und Rabatt mit Rechenweg.", icon: "vatCalculator" as const },
     ],
   },

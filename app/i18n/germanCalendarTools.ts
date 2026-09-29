@@ -9,6 +9,7 @@ export const germanCalendarLinks = [
   { href: "/de/brueckentage", label: "Brückentage-Rechner" },
   { href: "/de/feiertage-oesterreich", label: "Feiertage Österreich" },
   { href: "/de/arbeitstage-rechner", label: "Arbeitstage-Rechner" },
+  { href: "/de/arbeitszeitrechner", label: "Arbeitszeitrechner" },
   { href: "/de/tagerechner", label: "Tagerechner" },
   { href: "/de/zeitzonenrechner", label: "Zeitzonenrechner" },
   { href: "/de/weltuhr", label: "Weltuhr" },

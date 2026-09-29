@@ -15,6 +15,18 @@ export type AnnualUpdate = {
 
 export const annualUpdates: AnnualUpdate[] = [
   {
+    id: "de-arbeitszeit",
+    label: "Arbeitszeitrechner (Germany)",
+    pageHref: "/de/arbeitszeitrechner",
+    validYear: 2026,
+    remindFrom: "11-15",
+    checklist: [
+      "Check whether the Arbeitszeitgesetz reform (weekly instead of daily maximum working time, planned from 1 January 2027) has passed",
+      "If so, update REGELN and the notes in app/converter/germanArbeitszeit.ts and the rules table/FAQ on the page",
+      "Set validYear here",
+    ],
+  },
+  {
     id: "de-brueckentage",
     label: "Brückentage pages (Germany)",
     pageHref: "/de/brueckentage",

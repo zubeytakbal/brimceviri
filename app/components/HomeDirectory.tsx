@@ -143,6 +143,7 @@ const timeToolsHome = {
     { href: "/de/brueckentage", title: "Brückentage-Rechner", description: "Urlaub optimal auf die Feiertage verteilen, für jedes Bundesland, mit Kalender-Export.", icon: "dateCalculator" as const },
     { href: "/de/feiertage-oesterreich", title: "Feiertage Österreich", description: "Alle 13 gesetzlichen Feiertage in Österreich mit Fenstertagen.", icon: "attendanceCalculator" as const },
     { href: "/de/arbeitstage-rechner", title: "Arbeitstage-Rechner", description: "Arbeitstage und Werktage zwischen zwei Daten je Bundesland.", icon: "attendanceCalculator" as const },
+    { href: "/de/arbeitszeitrechner", title: "Arbeitszeitrechner", description: "Arbeitszeit mit gesetzlicher Pause, Feierabend, Überstunden und Dezimalstunden.", icon: "time" as const },
     { href: "/de/tagerechner", title: "Tagerechner", description: "Tage zwischen zwei Daten zählen oder Tage zu einem Datum addieren.", icon: "attendanceCalculator" as const },
     { href: "/de/zeitzonenrechner", title: "Zeitzonenrechner", description: "Uhrzeit weltweit umrechnen, mit Sommerzeit und Meeting-Planer.", icon: "greatCircleCalculator" as const },
     { href: "/de/weltuhr", title: "Weltuhr", description: "Aktuelle Uhrzeit in 97 Städten live.", icon: "greatCircleCalculator" as const },

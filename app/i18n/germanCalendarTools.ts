@@ -6,6 +6,7 @@ import { stateHolidays, type StateCode } from "../converter/time/germanHolidays"
 export const germanCalendarLinks = [
   { href: "/de/kalenderwoche", label: "Aktuelle Kalenderwoche" },
   { href: "/de/feiertage", label: "Feiertage nach Bundesland" },
+  { href: "/de/brueckentage", label: "Brückentage-Rechner" },
   { href: "/de/feiertage-oesterreich", label: "Feiertage Österreich" },
   { href: "/de/arbeitstage-rechner", label: "Arbeitstage-Rechner" },
   { href: "/de/tagerechner", label: "Tagerechner" },

@@ -15,6 +15,18 @@ export type AnnualUpdate = {
 
 export const annualUpdates: AnnualUpdate[] = [
   {
+    id: "de-brueckentage",
+    label: "Brückentage pages (Germany)",
+    pageHref: "/de/brueckentage",
+    validYear: 2027,
+    remindFrom: "06-01",
+    checklist: [
+      "Add the next year to BRUECKENTAGE_JAHRE and PLANER_JAHRE in app/i18n/germanBrueckentage.ts (Germans search 'Brückentage <year>' from late summer)",
+      "Extend GERMAN_HOLIDAY_YEARS if needed and check for new or one-off holidays in app/converter/time/germanHolidays.ts",
+      "Add the new year page to the sitemap check, then set validYear here",
+    ],
+  },
+  {
     id: "de-brutto-netto",
     label: "Brutto-Netto-Rechner (Germany)",
     pageHref: "/de/brutto-netto-rechner",

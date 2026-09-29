@@ -155,6 +155,10 @@ export default async function StateHolidaysPage({ params }: { params: Promise<{ 
                 </li>
               ))}
             </ul>
+            <p>
+              Längere Kombinationen und einen persönlichen Urlaubsplan mit Kalender-Export liefert der{" "}
+              <Link href={`/de/brueckentage?land=${s.code}`}>Brückentage-Rechner</Link>.
+            </p>
           </>
         )}
 

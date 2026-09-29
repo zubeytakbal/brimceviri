@@ -8,6 +8,7 @@ export const germanRechnerLinks = [
   { href: "/de/pendlerpauschale-rechner", label: "Pendlerpauschale-Rechner" },
   { href: "/de/urlaubsrechner", label: "Urlaubsrechner" },
   { href: "/de/mutterschutzrechner", label: "Mutterschutzrechner" },
+  { href: "/de/grunderwerbsteuer-rechner", label: "Grunderwerbsteuer-Rechner" },
   { href: "/de/mehrwertsteuer-rechner", label: "Mehrwertsteuer-Rechner" },
   { href: "/de/tagerechner", label: "Tagerechner" },
   { href: "/de/waehrungsrechner", label: "Währungsrechner" },

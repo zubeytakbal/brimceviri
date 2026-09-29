@@ -15,6 +15,17 @@ export type AnnualUpdate = {
 
 export const annualUpdates: AnnualUpdate[] = [
   {
+    id: "de-grunderwerbsteuer",
+    label: "Grunderwerbsteuer-Rechner (Germany)",
+    pageHref: "/de/grunderwerbsteuer-rechner",
+    validYear: 2026,
+    remindFrom: "11-15",
+    checklist: [
+      "Check each state's Grunderwerbsteuer rate for next year (state budget laws) and update GRUNDERWERBSTEUER and GREST_STAND in app/converter/germanKaufnebenkosten.ts",
+      "Update the 'last changes' sentence and FAQ on the page, then set validYear here",
+    ],
+  },
+  {
     id: "de-arbeitszeit",
     label: "Arbeitszeitrechner (Germany)",
     pageHref: "/de/arbeitszeitrechner",

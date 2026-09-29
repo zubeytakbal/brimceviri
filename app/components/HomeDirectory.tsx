@@ -76,12 +76,13 @@ const germanRechnerGroups: Array<{ id: string; title: string; description: strin
   {
     id: "geld-arbeit",
     title: "Geld und Arbeit",
-    description: "Nettogehalt, Pendlerpauschale, Urlaubsanspruch, Mutterschutz und Prozentrechnung – nach aktuellem Recht und mit Quellen.",
+    description: "Nettogehalt, Pendlerpauschale, Urlaubsanspruch, Mutterschutz, Grunderwerbsteuer und Prozentrechnung – nach aktuellem Recht und mit Quellen.",
     tools: [
       { href: "/de/brutto-netto-rechner", title: "Brutto-Netto-Rechner 2026", description: "Nettogehalt nach amtlichem Lohnsteuer-Programmablaufplan, alle Steuerklassen.", icon: "vatCalculator" as const },
       { href: "/de/pendlerpauschale-rechner", title: "Pendlerpauschale-Rechner", description: "Entfernungs- und Homeoffice-Pauschale 2026 mit geschätzter Steuerersparnis.", icon: "fuelConsumptionCalculator" as const },
       { href: "/de/urlaubsrechner", title: "Urlaubsrechner", description: "Urlaubsanspruch bei Teilzeit und anteiliger Urlaub bei Jobwechsel.", icon: "attendanceCalculator" as const },
       { href: "/de/mutterschutzrechner", title: "Mutterschutzrechner", description: "Beginn und Ende des Mutterschutzes, Mutterschaftsgeld und Frist für die Elternzeit.", icon: "dateCalculator" as const },
+      { href: "/de/grunderwerbsteuer-rechner", title: "Grunderwerbsteuer-Rechner", description: "Grunderwerbsteuer aller Bundesländer und Kaufnebenkosten beim Immobilienkauf.", icon: "vatCalculator" as const },
       { href: "/de/prozentrechner", title: "Prozentrechner", description: "Prozentwert, Prozentsatz, Grundwert, Veränderung und Rabatt mit Rechenweg.", icon: "vatCalculator" as const },
     ],
   },

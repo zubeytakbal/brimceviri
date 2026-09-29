@@ -246,6 +246,19 @@ function renderStandaloneToolPage(slug: string) {
               <p>{section.body}</p>
             </div>
           ))}
+          {tool.slug === "age-calculator" ? (
+            <div>
+              <h2>قد يهمك أيضًا</h2>
+              <ul>
+                <li>
+                  <Link href="/ar/hijri-age-calculator">حساب العمر بالهجري والميلادي (أم القرى)</Link>
+                </li>
+                <li>
+                  <Link href="/ar/calendar">التاريخ الهجري اليوم</Link>
+                </li>
+              </ul>
+            </div>
+          ) : null}
           {tool.slug === "hijri-date-converter" ? (
             <div>
               <h2>قد يهمك أيضًا</h2>
@@ -258,6 +271,9 @@ function renderStandaloneToolPage(slug: string) {
                 </li>
                 <li>
                   <Link href="/ar/salary-dates">مواعيد صرف الرواتب</Link>
+                </li>
+                <li>
+                  <Link href="/ar/hijri-age-calculator">حساب العمر بالهجري</Link>
                 </li>
               </ul>
             </div>

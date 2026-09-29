@@ -439,3 +439,22 @@ export function shahrHijri(hy: number, hm: number) {
 export function riyadhYawm(): YMD {
   return riyadh(new Date());
 }
+
+const SIGH = {
+  sana: ["سنة واحدة", "سنتان", "سنوات", "سنة"],
+  shahr: ["شهر واحد", "شهران", "أشهر", "شهرًا"],
+  yawm: ["يوم واحد", "يومان", "أيام", "يومًا"],
+  usbu: ["أسبوع واحد", "أسبوعان", "أسابيع", "أسبوعًا"],
+} as const;
+
+/** العدد مع المعدود بصيغة عربية صحيحة (1، 2، 3–10، 11 فأكثر). */
+export function adadAr(n: number, w: keyof typeof SIGH) {
+  const [wahid, ithnan, jam, mufrad] = SIGH[w];
+  const r = n.toLocaleString("ar-SA-u-nu-latn");
+  if (n === 1) return wahid;
+  if (n === 2) return ithnan;
+  const m = n % 100;
+  if (m >= 3 && m <= 10) return `${r} ${jam}`;
+  if (n === 0) return `0 ${SIGH[w][3].replace(/ًا$/, "")}`;
+  return `${r} ${mufrad}`;
+}

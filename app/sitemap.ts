@@ -3098,13 +3098,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       "/ar/occasions",
       "/ar/salary-dates",
       "/ar/school-calendar",
+      "/ar/hijri-age-calculator",
       ...MUNASABAT.map((m) => saMunasabaPath(m.id)),
       ...SA_HIJRI_SANAWAT.flatMap((y) => [saHijriSanaPath(y), ...HIJRI_SLUG.map((_, i) => saHijriShahrPath(y, i + 1))]),
     ].map((path) => ({
       url: `${baseUrl}${path}`,
       lastModified: contentLastModified,
       changeFrequency: "weekly" as const,
-      priority: ["/ar/calendar", "/ar/occasions", "/ar/salary-dates", "/ar/school-calendar"].includes(path) ? 0.8 : 0.65,
+      priority: ["/ar/calendar", "/ar/occasions", "/ar/salary-dates", "/ar/school-calendar", "/ar/hijri-age-calculator"].includes(path) ? 0.8 : 0.65,
     })),
     ...[
       "/de/kalender",

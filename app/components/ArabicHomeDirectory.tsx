@@ -429,6 +429,22 @@ export default function ArabicHomeDirectory({
             <article className="directory-home-card">
               <Link
                 className="directory-card-stretch"
+                href="/ar/hijri-age-calculator"
+                aria-label="حساب العمر بالهجري - العمر بالهجري والميلادي حسب أم القرى وعيد الميلاد الهجري القادم."
+              />
+
+              <div className="directory-card-body directory-card-body-icon">
+                <CardIcon name="dateCalculator" />
+                <h3 className="home-category-title">حساب العمر بالهجري</h3>
+                <p className="directory-card-description">
+                  العمر بالهجري والميلادي حسب أم القرى وعيد الميلاد الهجري القادم.
+                </p>
+              </div>
+            </article>
+
+            <article className="directory-home-card">
+              <Link
+                className="directory-card-stretch"
                 href="/ar/school-calendar"
                 aria-label="التقويم الدراسي 1448 - بداية الدراسة والإجازات مع العد التنازلي للإجازة القادمة."
               />

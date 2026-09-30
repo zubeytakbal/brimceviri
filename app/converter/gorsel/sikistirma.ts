@@ -99,3 +99,78 @@ export function kirpmaSinirla(b: Bolge, kaynak: Olcu): Bolge {
     h: Math.round(h),
   };
 }
+
+export type Sigdirma = "sigdir" | "bosluk" | "doldur" | "esnet";
+
+export type BoyutAyar =
+  | {
+      mod: "piksel";
+      genislik?: number;
+      yukseklik?: number;
+      oranKoru: boolean;
+      sigdirma: Sigdirma;
+    }
+  | { mod: "yuzde"; yuzde: number }
+  | {
+      mod: "cm";
+      genislikCm?: number;
+      yukseklikCm?: number;
+      dpi: number;
+      oranKoru: boolean;
+      sigdirma: Sigdirma;
+    };
+
+/**
+ * Boyutlandırma planı: çıktı ölçüsü ve (doldur modunda) kaynaktan alınacak bölge.
+ * "sigdir": oran korunur, kutunun içine sığar; "bosluk": kutu ölçüsü korunur, görsel ortalanır ve
+ * kalan boşluk arka plan rengiyle dolar; "doldur": kutu tam doldurulur, taşan kısım ortadan kırpılır;
+ * "esnet": oran bozulur, tam kutu ölçüsü.
+ */
+export function boyutPlani(
+  kaynak: Olcu,
+  a: BoyutAyar,
+): Olcu & { bolge?: Bolge; yerlesim?: Bolge } {
+  if (a.mod === "yuzde") {
+    const k = Math.max(1, a.yuzde) / 100;
+    return olcuHesapla(kaynak, { genislik: kaynak.genislik * k });
+  }
+  const w =
+    a.mod === "cm"
+      ? a.genislikCm
+        ? mmPiksel(a.genislikCm * 10, a.dpi)
+        : undefined
+      : a.genislik;
+  const h =
+    a.mod === "cm"
+      ? a.yukseklikCm
+        ? mmPiksel(a.yukseklikCm * 10, a.dpi)
+        : undefined
+      : a.yukseklik;
+  if (!w || !h || a.oranKoru === false) {
+    if (w && h) return { genislik: w, yukseklik: h };
+    return olcuHesapla(kaynak, { genislik: w, yukseklik: h });
+  }
+  if (a.sigdirma === "esnet") return { genislik: w, yukseklik: h };
+  if (a.sigdirma === "doldur") {
+    const bolge = kirpmaBolgesi(kaynak, w / h, 1, {
+      x: kaynak.genislik / 2,
+      y: kaynak.yukseklik / 2,
+    });
+    return { genislik: w, yukseklik: h, bolge };
+  }
+  const k = Math.min(w / kaynak.genislik, h / kaynak.yukseklik);
+  const gw = Math.max(1, Math.round(kaynak.genislik * k));
+  const gh = Math.max(1, Math.round(kaynak.yukseklik * k));
+  if (a.sigdirma === "bosluk")
+    return {
+      genislik: w,
+      yukseklik: h,
+      yerlesim: {
+        x: Math.round((w - gw) / 2),
+        y: Math.round((h - gh) / 2),
+        w: gw,
+        h: gh,
+      },
+    };
+  return { genislik: gw, yukseklik: gh };
+}

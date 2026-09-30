@@ -45,6 +45,15 @@ export const DOSYA_ARACLARI_YOLU = "/dosya-araclari";
 
 export const DOSYA_ARACLARI: DosyaAraci[] = [
   {
+    href: "/resim-boyutlandirma",
+    baslik: "Resim Boyutlandırma",
+    aciklama:
+      "Piksel, yüzde veya santimetre ile boyutlandırın; sosyal medya ölçüleri hazır.",
+    kategoriler: ["boyut"],
+    ikon: { tip: "boyut" },
+    yeni: true,
+  },
+  {
     href: "/e-okul-fotograf-kucultme",
     baslik: "e-Okul Fotoğraf Küçültme",
     aciklama:

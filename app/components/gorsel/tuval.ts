@@ -21,6 +21,8 @@ export type KodlaAyar = {
   arkaPlan?: string;
   /** Kaynaktan kırpılacak bölge (piksel). Verilmezse tüm görsel kullanılır. */
   bolge?: { x: number; y: number; w: number; h: number };
+  /** Çıktıda görselin yerleşeceği alan; verilirse kalan kısım arka plan rengiyle dolar. */
+  yerlesim?: { x: number; y: number; w: number; h: number };
 };
 
 export async function kodla(bitmap: ImageBitmap, a: KodlaAyar): Promise<Blob> {
@@ -29,13 +31,15 @@ export async function kodla(bitmap: ImageBitmap, a: KodlaAyar): Promise<Blob> {
   tuval.height = a.yukseklik;
   const ctx = tuval.getContext("2d")!;
   const f = FORMATLAR[a.format];
-  if (!f.seffaflik) {
-    ctx.fillStyle = a.arkaPlan ?? "#ffffff";
+  if (!f.seffaflik || (a.yerlesim && a.arkaPlan !== "saydam")) {
+    ctx.fillStyle =
+      a.arkaPlan && a.arkaPlan !== "saydam" ? a.arkaPlan : "#ffffff";
     ctx.fillRect(0, 0, a.genislik, a.yukseklik);
   }
   ctx.imageSmoothingQuality = "high";
   const b = a.bolge ?? { x: 0, y: 0, w: bitmap.width, h: bitmap.height };
-  ctx.drawImage(bitmap, b.x, b.y, b.w, b.h, 0, 0, a.genislik, a.yukseklik);
+  const y = a.yerlesim ?? { x: 0, y: 0, w: a.genislik, h: a.yukseklik };
+  ctx.drawImage(bitmap, b.x, b.y, b.w, b.h, y.x, y.y, y.w, y.h);
   const blob = await new Promise<Blob | null>((res) =>
     tuval.toBlob(res, f.mime, f.kaliteli ? (a.kalite ?? 0.9) : undefined),
   );

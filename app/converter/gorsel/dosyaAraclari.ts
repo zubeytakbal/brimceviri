@@ -53,6 +53,15 @@ export const DOSYA_ARACLARI_YOLU = "/dosya-araclari";
 
 export const DOSYA_ARACLARI: DosyaAraci[] = [
   {
+    href: "/biyometrik-fotograf",
+    baslik: "Biyometrik Fotoğraf (50×60)",
+    aciklama:
+      "Kimlik, pasaport ve ehliyet için 50×60 mm; 10×15 baskı sayfasında 4 adet.",
+    kategoriler: ["resmi"],
+    ikon: { tip: "vesikalik" },
+    yeni: true,
+  },
+  {
     href: "/fotograf-kirpma",
     baslik: "Fotoğraf Kırpma ve Döndürme",
     aciklama: "1:1, 4:5, 16:9 gibi oranlarla kırpın; 90° döndürün, çevirin.",

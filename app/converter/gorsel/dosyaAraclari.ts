@@ -22,7 +22,8 @@ export type AracIkon =
   | { tip: "kucult" }
   | { tip: "boyut" }
   | { tip: "vesikalik" }
-  | { tip: "konum" };
+  | { tip: "konum" }
+  | { tip: "kirp" };
 
 export type DosyaAraci = {
   href: string;
@@ -51,6 +52,14 @@ const KART: Record<string, string> = {
 export const DOSYA_ARACLARI_YOLU = "/dosya-araclari";
 
 export const DOSYA_ARACLARI: DosyaAraci[] = [
+  {
+    href: "/fotograf-kirpma",
+    baslik: "Fotoğraf Kırpma ve Döndürme",
+    aciklama: "1:1, 4:5, 16:9 gibi oranlarla kırpın; 90° döndürün, çevirin.",
+    kategoriler: ["boyut"],
+    ikon: { tip: "kirp" },
+    yeni: true,
+  },
   {
     href: "/fotograf-konum-bilgisi-silme",
     baslik: "Konum Bilgisi (EXIF) Silme",

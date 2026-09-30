@@ -3,13 +3,17 @@
 import { useRef } from "react";
 import {
   kirpmaSinirla,
+  koseSurukle,
   type Bolge,
+  type Kose,
   type Olcu,
 } from "../../converter/gorsel/sikistirma";
 
+const KOSELER: Kose[] = ["ku", "kd", "gu", "gd"];
+
 /**
- * Sabit oranlı kırpma alanı: kutu sürüklenerek taşınır, dışı karartılır.
- * Bölge kaynak görselin piksel koordinatlarındadır.
+ * Kırpma alanı: kutu sürüklenerek taşınır, dışı karartılır. `tutamac` açıkken köşelerden
+ * boyutlandırılır (`oran` verilirse en-boy oranı korunur). Bölge kaynak görselin piksel koordinatlarındadır.
  */
 export default function KirpmaAlani({
   url,
@@ -17,15 +21,26 @@ export default function KirpmaAlani({
   bolge,
   onDegis,
   onBitir,
+  tutamac = false,
+  oran = null,
+  kilavuz = "yuz",
 }: {
   url: string;
   kaynak: Olcu;
   bolge: Bolge;
   onDegis: (b: Bolge) => void;
   onBitir: (b: Bolge) => void;
+  tutamac?: boolean;
+  oran?: number | null;
+  kilavuz?: "yuz" | "ucte-bir";
 }) {
   const kap = useRef<HTMLDivElement>(null);
-  const surukleme = useRef<{ px: number; py: number; b: Bolge } | null>(null);
+  const surukleme = useRef<{
+    px: number;
+    py: number;
+    b: Bolge;
+    kose?: Kose;
+  } | null>(null);
   const son = useRef(bolge);
 
   const yuzde = (v: number, t: number) => `${(v / t) * 100}%`;
@@ -35,14 +50,11 @@ export default function KirpmaAlani({
     const k = kap.current;
     if (!s || !k) return;
     const olcek = kaynak.genislik / k.clientWidth;
-    const b = kirpmaSinirla(
-      {
-        ...s.b,
-        x: s.b.x + (e.clientX - s.px) * olcek,
-        y: s.b.y + (e.clientY - s.py) * olcek,
-      },
-      kaynak,
-    );
+    const dx = (e.clientX - s.px) * olcek;
+    const dy = (e.clientY - s.py) * olcek;
+    const b = s.kose
+      ? koseSurukle(s.b, s.kose, dx, dy, kaynak, oran)
+      : kirpmaSinirla({ ...s.b, x: s.b.x + dx, y: s.b.y + dy }, kaynak);
     son.current = b;
     onDegis(b);
   };
@@ -69,7 +81,10 @@ export default function KirpmaAlani({
     <div
       className="kirpma-kap"
       ref={kap}
-      style={{ aspectRatio: `${kaynak.genislik} / ${kaynak.yukseklik}` }}
+      style={{
+        aspectRatio: `${kaynak.genislik} / ${kaynak.yukseklik}`,
+        width: `min(100%, ${Math.round((520 * kaynak.genislik) / kaynak.yukseklik)}px)`,
+      }}
     >
       {/* eslint-disable-next-line @next/next/no-img-element -- yerel nesne URL'si, optimize edilemez */}
       <img src={url} alt="" draggable={false} />
@@ -90,7 +105,10 @@ export default function KirpmaAlani({
         }}
         onPointerDown={(e) => {
           e.currentTarget.setPointerCapture(e.pointerId);
-          surukleme.current = { px: e.clientX, py: e.clientY, b: bolge };
+          const kose = (e.target as HTMLElement).dataset.kose as
+            | Kose
+            | undefined;
+          surukleme.current = { px: e.clientX, py: e.clientY, b: bolge, kose };
           son.current = bolge;
         }}
         onPointerMove={tasi}
@@ -100,7 +118,20 @@ export default function KirpmaAlani({
         }}
         onKeyDown={oklar}
       >
-        <span className="kirpma-kilavuz" aria-hidden="true" />
+        <span
+          className={kilavuz === "yuz" ? "kirpma-kilavuz" : "kirpma-ucte"}
+          aria-hidden="true"
+        />
+        {tutamac
+          ? KOSELER.map((k) => (
+              <span
+                key={k}
+                className={`kirpma-tutamac is-${k}`}
+                data-kose={k}
+                aria-hidden="true"
+              />
+            ))
+          : null}
       </div>
     </div>
   );

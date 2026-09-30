@@ -174,3 +174,47 @@ export function boyutPlani(
     };
   return { genislik: gw, yukseklik: gh };
 }
+
+export type Kose = "ku" | "kd" | "gu" | "gd"; // kuzey-batı (sol üst), kuzey-doğu, güney-batı, güney-doğu
+
+/**
+ * Köşe tutamacıyla kırpma bölgesini yeniden boyutlandırır. Karşı köşe sabit kalır.
+ * `oran` verilirse en-boy oranı korunur. En küçük kenar `min` pikseldir.
+ */
+export function koseSurukle(
+  b: Bolge,
+  kose: Kose,
+  dx: number,
+  dy: number,
+  kaynak: Olcu,
+  oran?: number | null,
+  min = 16,
+): Bolge {
+  const sag = kose === "kd" || kose === "gd";
+  const alt = kose === "gu" || kose === "gd";
+  // sabit köşe
+  const sx = sag ? b.x : b.x + b.w;
+  const sy = alt ? b.y : b.y + b.h;
+  const maxW = sag ? kaynak.genislik - sx : sx;
+  const maxH = alt ? kaynak.yukseklik - sy : sy;
+  let w = Math.min(maxW, Math.max(min, b.w + (sag ? dx : -dx)));
+  let h = Math.min(maxH, Math.max(min, b.h + (alt ? dy : -dy)));
+  if (oran) {
+    // Genişlikten hesapla; sığmazsa yükseklikten.
+    h = w / oran;
+    if (h > maxH) {
+      h = maxH;
+      w = h * oran;
+    }
+    if (w < min) {
+      w = min;
+      h = w / oran;
+    }
+  }
+  return {
+    x: Math.round(sag ? sx : sx - w),
+    y: Math.round(alt ? sy : sy - h),
+    w: Math.round(w),
+    h: Math.round(h),
+  };
+}

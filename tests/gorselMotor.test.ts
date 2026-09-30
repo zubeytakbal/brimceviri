@@ -244,3 +244,17 @@ describe("boşluklu sığdırma", () => {
     });
   });
 });
+
+describe("köşe tutamacı", () => {
+  it("resizes from a corner keeping the opposite corner fixed", async () => {
+    const { koseSurukle } = await import("../app/converter/gorsel/sikistirma");
+    const k = { genislik: 1000, yukseklik: 800 };
+    const b = { x: 100, y: 100, w: 400, h: 300 };
+    expect(koseSurukle(b, "gd", 50, 20, k)).toEqual({ x: 100, y: 100, w: 450, h: 320 });
+    expect(koseSurukle(b, "ku", 50, 20, k)).toEqual({ x: 150, y: 120, w: 350, h: 280 });
+    expect(koseSurukle(b, "gd", 100, 0, k, 1)).toEqual({ x: 100, y: 100, w: 500, h: 500 });
+    // sınır: sağ alt köşe görselin dışına çıkamaz, oran korunur
+    expect(koseSurukle(b, "gd", 900, 900, k, 1)).toEqual({ x: 100, y: 100, w: 700, h: 700 });
+    expect(koseSurukle(b, "gd", -1000, -1000, k)).toEqual({ x: 100, y: 100, w: 16, h: 16 });
+  });
+});

@@ -14712,3 +14712,98 @@ a.all-units-row .all-units-name {
 .exif-kirmizi {
   color: #b42318;
 }
+
+.kirpma-ucte {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, transparent calc(33.33% - 0.5px), rgba(255, 255, 255, 0.55) calc(33.33% - 0.5px), rgba(255, 255, 255, 0.55) calc(33.33% + 0.5px), transparent calc(33.33% + 0.5px), transparent calc(66.66% - 0.5px), rgba(255, 255, 255, 0.55) calc(66.66% - 0.5px), rgba(255, 255, 255, 0.55) calc(66.66% + 0.5px), transparent calc(66.66% + 0.5px)),
+    linear-gradient(to bottom, transparent calc(33.33% - 0.5px), rgba(255, 255, 255, 0.55) calc(33.33% - 0.5px), rgba(255, 255, 255, 0.55) calc(33.33% + 0.5px), transparent calc(33.33% + 0.5px), transparent calc(66.66% - 0.5px), rgba(255, 255, 255, 0.55) calc(66.66% - 0.5px), rgba(255, 255, 255, 0.55) calc(66.66% + 0.5px), transparent calc(66.66% + 0.5px));
+  pointer-events: none;
+}
+
+.kirpma-tutamac {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #1b2830;
+  border-radius: 50%;
+  background: #ffffff;
+  touch-action: none;
+}
+
+.kirpma-tutamac.is-ku {
+  top: -3px;
+  left: -3px;
+  cursor: nwse-resize;
+}
+
+.kirpma-tutamac.is-kd {
+  top: -3px;
+  right: -3px;
+  cursor: nesw-resize;
+}
+
+.kirpma-tutamac.is-gu {
+  bottom: -3px;
+  left: -3px;
+  cursor: nesw-resize;
+}
+
+.kirpma-tutamac.is-gd {
+  right: -3px;
+  bottom: -3px;
+  cursor: nwse-resize;
+}
+
+/* Fotoğraf kırpma ve döndürme */
+.kirp-araclar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.kirp-araclar button {
+  padding: 8px 14px;
+  border: 1px solid #d5dde3;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #22313c;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.kirp-araclar button:hover,
+.kirp-araclar button[aria-pressed="true"] {
+  border-color: #2c7f99;
+  color: #1f4f66;
+}
+
+.kirp-oranlar button {
+  padding: 6px 12px;
+  font-size: 0.9rem;
+}
+
+.kirp-alt {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  align-items: center;
+  justify-content: center;
+}
+
+.kirp-alt .time-tool-button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 0;
+  padding: 9px 18px;
+}
+
+.kirp-format select {
+  padding: 6px 8px;
+  border: 1px solid #d5dde3;
+  border-radius: 8px;
+  font: inherit;
+}

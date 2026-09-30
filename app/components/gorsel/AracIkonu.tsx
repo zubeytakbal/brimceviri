@@ -89,6 +89,32 @@ export default function AracIkonu({
             />
           ))}
         </>
+      ) : ikon.tip === "kirp" ? (
+        <>
+          <rect x="4" y="4" width="44" height="44" rx="10" fill="#f3ecfd" />
+          <path
+            d="M16 8v26a2 2 0 0 0 2 2h26"
+            stroke="#7b4bd1"
+            strokeWidth="3"
+            fill="none"
+            strokeLinecap="round"
+          />
+          <path
+            d="M8 16h26a2 2 0 0 1 2 2v26"
+            stroke="#7b4bd1"
+            strokeWidth="3"
+            fill="none"
+            strokeLinecap="round"
+          />
+          <rect
+            x="20"
+            y="20"
+            width="12"
+            height="12"
+            fill="#7b4bd1"
+            opacity="0.25"
+          />
+        </>
       ) : ikon.tip === "konum" ? (
         <>
           <rect x="4" y="4" width="44" height="44" rx="10" fill="#fdecea" />

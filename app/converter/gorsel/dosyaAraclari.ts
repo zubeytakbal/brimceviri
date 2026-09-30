@@ -1,5 +1,6 @@
 // Dosya Araçları panelindeki araçların tek kayıt listesi. Yalnızca yayında olan araçlar eklenir.
 import { GORSEL_CIFTLER } from "./ciftler";
+import { SES_CIFTLERI, type SesKaynak } from "../ses/sesCiftler";
 import { KAYNAK_CIFTLER, type KaynakFormat } from "./kaynakCiftler";
 import type { GorselFormat } from "./formatlar";
 
@@ -9,6 +10,7 @@ export type DosyaKategori =
   | "boyut"
   | "duzenle"
   | "pdf"
+  | "ses"
   | "metin"
   | "resmi"
   | "gizlilik";
@@ -19,6 +21,7 @@ export const DOSYA_KATEGORILER: Array<{ id: DosyaKategori; ad: string }> = [
   { id: "boyut", ad: "Boyutlandır" },
   { id: "duzenle", ad: "Düzenle" },
   { id: "pdf", ad: "PDF" },
+  { id: "ses", ad: "Ses ve video" },
   { id: "metin", ad: "Metin tanıma" },
   { id: "resmi", ad: "Resmi belge fotoğrafları" },
   { id: "gizlilik", ad: "Gizlilik" },
@@ -27,8 +30,8 @@ export const DOSYA_KATEGORILER: Array<{ id: DosyaKategori; ad: string }> = [
 export type AracIkon =
   | {
       tip: "cift";
-      kaynak: GorselFormat | KaynakFormat | "tum" | "heic" | "pdf";
-      hedef: GorselFormat | "tum" | "pdf" | "ico" | "b64";
+      kaynak: GorselFormat | KaynakFormat | SesKaynak | "tum" | "heic" | "pdf";
+      hedef: GorselFormat | "tum" | "pdf" | "ico" | "b64" | "mp3" | "wav";
     }
   | {
       tip: "pdf";
@@ -49,7 +52,8 @@ export type AracIkon =
   | { tip: "kirp" }
   | { tip: "filigran" }
   | { tip: "bulanik" }
-  | { tip: "ocr" };
+  | { tip: "ocr" }
+  | { tip: "seskes" };
 
 export type DosyaAraci = {
   href: string;
@@ -78,6 +82,41 @@ const KART: Record<string, string> = {
 export const DOSYA_ARACLARI_YOLU = "/dosya-araclari";
 
 export const DOSYA_ARACLARI: DosyaAraci[] = [
+  {
+    href: "/mp4-mp3-cevirme",
+    baslik: "MP4 MP3 Çevirme",
+    aciklama: SES_CIFTLERI[0].kart,
+    kategoriler: ["ses", "donustur"],
+    ikon: { tip: "cift", kaynak: "mp4", hedef: "mp3" },
+    yeni: true,
+  },
+  {
+    href: "/ses-kesme",
+    baslik: "Ses Kesme (MP3 Kesici)",
+    aciklama:
+      "Dalga formunda bölüm seçin, yumuşak giriş/çıkış ekleyin, zil sesi yapın.",
+    kategoriler: ["ses", "duzenle"],
+    ikon: { tip: "seskes" },
+    yeni: true,
+  },
+  {
+    href: "/ses-donusturucu",
+    baslik: "Ses Dönüştürücü",
+    aciklama: "Her türlü ses ve videoyu MP3 veya WAV'a toplu çevirin.",
+    kategoriler: ["ses", "donustur"],
+    ikon: { tip: "cift", kaynak: "tum", hedef: "mp3" },
+    yeni: true,
+  },
+  ...SES_CIFTLERI.slice(1).map(
+    (c): DosyaAraci => ({
+      href: `/${c.slug}`,
+      baslik: c.baslik.replace(/ \(.*\)$/, ""),
+      aciklama: c.kart,
+      kategoriler: ["ses", "donustur"],
+      ikon: { tip: "cift", kaynak: c.kaynak, hedef: c.hedef },
+      yeni: true,
+    }),
+  ),
   {
     href: "/pdf-birlestirme",
     baslik: "PDF Birleştirme",

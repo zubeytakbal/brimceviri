@@ -15,6 +15,13 @@ const RENK: Record<string, { zemin: string; yazi: string; ad: string }> = {
   jfif: { zemin: "#b8601a", yazi: "#ffffff", ad: "JFIF" },
   ico: { zemin: "#2b2d42", yazi: "#ffffff", ad: "ICO" },
   b64: { zemin: "#3d5a80", yazi: "#ffffff", ad: "B64" },
+  mp3: { zemin: "#7a3fe0", yazi: "#ffffff", ad: "MP3" },
+  mp4: { zemin: "#0b6e99", yazi: "#ffffff", ad: "MP4" },
+  wav: { zemin: "#2a9d8f", yazi: "#ffffff", ad: "WAV" },
+  m4a: { zemin: "#e76f51", yazi: "#ffffff", ad: "M4A" },
+  opus: { zemin: "#25a244", yazi: "#ffffff", ad: "OPUS" },
+  ogg: { zemin: "#8d6e63", yazi: "#ffffff", ad: "OGG" },
+  flac: { zemin: "#264653", yazi: "#ffffff", ad: "FLAC" },
 };
 
 /** Sayfa köşesi kıvrık küçük dosya rozeti. */
@@ -295,6 +302,22 @@ export default function AracIkonu({
             />
           </>
         )
+      ) : ikon.tip === "seskes" ? (
+        <>
+          <rect x="4" y="8" width="44" height="36" rx="8" fill="#7a3fe0" />
+          <path
+            d="M11 26v0M15 20v12M19 16v20M23 22v8M27 14v24M31 19v14M35 23v6M39 18v16M43 25v2"
+            stroke="#ffffff"
+            strokeWidth="2.4"
+            strokeLinecap="round"
+          />
+          <path
+            d="M17 6v40M35 6v40"
+            stroke="#f5a524"
+            strokeWidth="2.4"
+            strokeLinecap="round"
+          />
+        </>
       ) : ikon.tip === "ocr" ? (
         <>
           <rect x="4" y="4" width="44" height="44" rx="10" fill="#fff4e0" />

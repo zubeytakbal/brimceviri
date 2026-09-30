@@ -6,20 +6,30 @@ const GORSEL = (x: File) =>
   x.type.startsWith("image/") ||
   /\.(jpe?g|jfif|png|webp|gif|bmp|avif|heic|heif|tiff?|svg|ico)$/i.test(x.name);
 const PDF = (x: File) => x.type === "application/pdf" || /\.pdf$/i.test(x.name);
+const SES = (x: File) =>
+  x.type.startsWith("audio/") ||
+  x.type.startsWith("video/") ||
+  /\.(mp3|wav|m4a|aac|ogg|oga|opus|flac|wma|amr|weba|mp4|m4v|mov|webm|mkv|3gp)$/i.test(
+    x.name,
+  );
+const SUZGEC = { gorsel: GORSEL, pdf: PDF, ses: SES };
+const KABUL = {
+  gorsel: "image/*,.heic,.heif,.tif,.tiff,.svg,.jfif",
+  pdf: "application/pdf,.pdf",
+  ses: "audio/*,video/*,.opus,.m4a,.flac,.amr,.mkv",
+};
 
-/** Sürükle-bırak destekli dosya seçme alanı (görsel veya PDF). */
+/** Sürükle-bırak destekli dosya seçme alanı (görsel, PDF veya ses/video). */
 export default function DosyaBirak({
   baslik,
   tur = "gorsel",
-  accept = tur === "pdf"
-    ? "application/pdf,.pdf"
-    : "image/*,.heic,.heif,.tif,.tiff,.svg,.jfif",
+  accept = KABUL[tur],
   max,
   coklu = true,
   onSec,
 }: {
   baslik: string;
-  tur?: "gorsel" | "pdf";
+  tur?: "gorsel" | "pdf" | "ses";
   accept?: string;
   max: number;
   coklu?: boolean;
@@ -27,7 +37,7 @@ export default function DosyaBirak({
 }) {
   const [surukle, setSurukle] = useState(false);
   const sec = (liste: FileList | null) => {
-    const d = [...(liste ?? [])].filter(tur === "pdf" ? PDF : GORSEL);
+    const d = [...(liste ?? [])].filter(SUZGEC[tur]);
     if (d.length) onSec(d.slice(0, max));
   };
   return (

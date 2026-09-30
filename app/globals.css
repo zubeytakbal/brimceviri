@@ -15386,3 +15386,87 @@ a.all-units-row .all-units-name {
 .favicon-html + .time-tool-button {
   width: auto;
 }
+
+.ses-liste {
+  display: grid;
+  gap: 10px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.ses-liste li {
+  display: grid;
+  gap: 8px;
+  padding: 12px 14px;
+  border: 1px solid #e3e9ee;
+  border-radius: 12px;
+  background: #ffffff;
+}
+.ses-liste progress {
+  width: 100%;
+}
+.ses-cikti {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+.ses-cikti audio,
+.ses-onizleme {
+  flex: 1 1 240px;
+  max-width: 100%;
+  height: 40px;
+}
+.ses-onizleme {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+}
+.ses-dalga {
+  position: relative;
+  height: 140px;
+  margin: 12px 0;
+  border: 1px solid #d5dde3;
+  border-radius: 12px;
+  background: #f7fafb;
+  cursor: ew-resize;
+  touch-action: none;
+  user-select: none;
+}
+.ses-dalga canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.ses-tutamac {
+  position: absolute;
+  top: -4px;
+  bottom: -4px;
+  width: 4px;
+  margin-left: -2px;
+  border-radius: 2px;
+  background: #f5a524;
+}
+.ses-tutamac::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 28px;
+  border-radius: 6px;
+  background: #f5a524;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+}
+.ses-tutamac:focus-visible {
+  outline: 2px solid #2f6fde;
+  outline-offset: 2px;
+}
+.ses-kontrol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+  margin-bottom: 12px;
+}

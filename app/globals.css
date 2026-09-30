@@ -15321,3 +15321,68 @@ a.all-units-row .all-units-name {
 .pdf-imza-oge.is-secili {
   outline-color: #2f6fde;
 }
+
+.favicon-onizleme {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 18px;
+  margin: 14px 0;
+  padding: 16px;
+  border: 1px solid #e3e9ee;
+  border-radius: 14px;
+  background: repeating-conic-gradient(#eef2f5 0% 25%, #ffffff 0% 50%) 50% / 16px 16px;
+}
+.favicon-onizleme figure {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  margin: 0;
+}
+.favicon-onizleme canvas {
+  image-rendering: pixelated;
+}
+.favicon-onizleme figcaption {
+  font-size: 0.8rem;
+  color: #5b6b78;
+}
+.favicon-html {
+  margin: 14px 0 8px;
+}
+.favicon-html textarea,
+.base64-ornek {
+  width: 100%;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.85rem;
+}
+.base64-ornek {
+  overflow-x: auto;
+  padding: 12px;
+  border-radius: 10px;
+  background: #f3f6f8;
+  white-space: pre;
+}
+.base64-bicim {
+  margin: 10px 0;
+}
+.base64-bicim button {
+  border-color: #c9d3db;
+  background: #ffffff;
+  color: #1f4f66;
+}
+.base64-bicim button.is-active {
+  border-color: #1f4f66;
+  background: #1f4f66;
+  color: #ffffff;
+}
+.base64-resim {
+  max-width: 100%;
+  max-height: 420px;
+}
+.gorsel-arac textarea.ocr-metin {
+  word-break: break-all;
+}
+.favicon-html + .time-tool-button {
+  width: auto;
+}

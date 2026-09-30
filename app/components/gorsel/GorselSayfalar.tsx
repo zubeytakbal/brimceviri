@@ -7,6 +7,7 @@ import {
 } from "../../converter/gorsel/ciftler";
 import type { FaqItem } from "../../converter/faqSchema";
 import { DOSYA_ARACLARI_YOLU } from "../../converter/gorsel/dosyaAraclari";
+import { KAYNAK_CIFTLER } from "../../converter/gorsel/kaynakCiftler";
 import DosyaAracCubugu from "./DosyaAracCubugu";
 import TimeToolPage from "../time/TimeToolPage";
 import { takvimMetadata } from "../takvim/takvimMeta";
@@ -157,12 +158,13 @@ export function GorselHub() {
         crumbs={[ANA, PANEL, { label: "Görsel Dönüştürücü" }]}
         crumbLabel="Sayfa yolu"
         title="Görsel Dönüştürücü"
-        intro="JPG, PNG ve WebP görselleri birbirine çevirin. Çıktı formatını, kaliteyi ve en fazla genişliği seçin; birden fazla dosyayı aynı anda dönüştürüp ZIP olarak indirin. Dosyalar tarayıcınızda işlenir, hiçbir sunucuya yüklenmez."
+        intro="JPG, PNG ve WebP görselleri birbirine çevirin; HEIC, AVIF, GIF, BMP, TIFF ve SVG dosyalarını da açın. Çıktı formatını, kaliteyi ve en fazla genişliği seçin; birden fazla dosyayı aynı anda dönüştürüp ZIP olarak indirin. Dosyalar tarayıcınızda işlenir, hiçbir sunucuya yüklenmez."
         tool={<GorselDonusturucu />}
         related={{ title: "İlginizi çekebilir", links: DIGER_ARACLAR }}
         tocTitle="İçindekiler"
         tocItems={[
           { id: "donusumler", label: "Hazır dönüştürme sayfaları" },
+          { id: "diger-formatlar", label: "Diğer formatlardan JPG ve PNG'ye" },
           { id: "karsilastirma", label: "JPG, PNG ve WebP karşılaştırması" },
           { id: "faq", label: "Sık sorulan sorular" },
         ]}
@@ -175,6 +177,22 @@ export function GorselHub() {
             <li key={c.slug}>
               <Link href={`/${c.slug}`}>{c.baslik}</Link> —{" "}
               {c.aciklama.split(":")[0]}
+            </li>
+          ))}
+        </ul>
+        <h2 id="diger-formatlar">Diğer formatlardan JPG ve PNG&apos;ye</h2>
+        <p>
+          Dönüştürücü JPG, PNG ve WebP&apos;nin yanında HEIC, AVIF, GIF, BMP,
+          TIFF ve SVG dosyalarını da açar. Bu formatlar için ayrı sayfalar:
+        </p>
+        <ul className="takvim-hub-liste">
+          <li>
+            <Link href="/heic-jpg-cevirme">HEIC JPG Çevirme</Link> — iPhone
+            fotoğrafları
+          </li>
+          {KAYNAK_CIFTLER.map((c) => (
+            <li key={c.slug}>
+              <Link href={`/${c.slug}`}>{c.baslik}</Link> — {c.kart}
             </li>
           ))}
         </ul>

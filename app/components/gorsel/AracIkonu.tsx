@@ -7,6 +7,14 @@ const RENK: Record<string, { zemin: string; yazi: string; ad: string }> = {
   tum: { zemin: "#5b6b78", yazi: "#ffffff", ad: "IMG" },
   heic: { zemin: "#1c1c1e", yazi: "#ffffff", ad: "HEIC" },
   pdf: { zemin: "#e5322d", yazi: "#ffffff", ad: "PDF" },
+  avif: { zemin: "#7b3fbf", yazi: "#ffffff", ad: "AVIF" },
+  gif: { zemin: "#d6336c", yazi: "#ffffff", ad: "GIF" },
+  bmp: { zemin: "#0f7c8c", yazi: "#ffffff", ad: "BMP" },
+  svg: { zemin: "#f5a524", yazi: "#1c1c1e", ad: "SVG" },
+  tiff: { zemin: "#4a5a6a", yazi: "#ffffff", ad: "TIFF" },
+  jfif: { zemin: "#b8601a", yazi: "#ffffff", ad: "JFIF" },
+  ico: { zemin: "#2b2d42", yazi: "#ffffff", ad: "ICO" },
+  b64: { zemin: "#3d5a80", yazi: "#ffffff", ad: "B64" },
 };
 
 /** Sayfa köşesi kıvrık küçük dosya rozeti. */

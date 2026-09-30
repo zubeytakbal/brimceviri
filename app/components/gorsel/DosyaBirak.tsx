@@ -4,14 +4,16 @@ import { useState } from "react";
 
 const GORSEL = (x: File) =>
   x.type.startsWith("image/") ||
-  /\.(jpe?g|jfif|png|webp|gif|bmp|avif|heic|heif)$/i.test(x.name);
+  /\.(jpe?g|jfif|png|webp|gif|bmp|avif|heic|heif|tiff?|svg|ico)$/i.test(x.name);
 const PDF = (x: File) => x.type === "application/pdf" || /\.pdf$/i.test(x.name);
 
 /** Sürükle-bırak destekli dosya seçme alanı (görsel veya PDF). */
 export default function DosyaBirak({
   baslik,
   tur = "gorsel",
-  accept = tur === "pdf" ? "application/pdf,.pdf" : "image/*,.heic,.heif",
+  accept = tur === "pdf"
+    ? "application/pdf,.pdf"
+    : "image/*,.heic,.heif,.tif,.tiff,.svg,.jfif",
   max,
   coklu = true,
   onSec,

@@ -30,7 +30,134 @@ export async function heicMi(dosya: Blob): Promise<boolean> {
   ].includes(String.fromCharCode(...b.subarray(8, 12)));
 }
 
+/** SVG kısa kenarı bundan küçükse çizim bu uzun kenara büyütülür (vektör, netlik kaybı olmaz). */
+const SVG_UZUN_KENAR = 2048;
+
+/** TIFF çözücü UTIF.js (MIT) ve sıkıştırılmış TIFF'ler için pako (MIT); yalnızca TIFF seçilince yüklenir. */
+const TIFF_KUTUPHANELER = [
+  "https://cdn.jsdelivr.net/npm/pako@1.0.11/dist/pako_inflate.min.js",
+  "https://cdn.jsdelivr.net/npm/utif@3.1.0/UTIF.js",
+];
+type Utif = {
+  decode: (b: ArrayBuffer) => Array<Record<string, number[] | undefined>>;
+  decodeImage: (b: ArrayBuffer, ifd: object) => void;
+  toRGBA8: (ifd: object) => Uint8Array;
+};
+let tiffModul: Promise<Utif> | null = null;
+
+function betikYukle(src: string) {
+  return new Promise<void>((tamam, hata) => {
+    const s = document.createElement("script");
+    s.src = src;
+    s.async = false;
+    s.onload = () => tamam();
+    s.onerror = () => hata(new Error(src));
+    document.head.appendChild(s);
+  });
+}
+
+async function basBaytlar(d: Blob, n: number) {
+  return new Uint8Array(await d.slice(0, n).arrayBuffer());
+}
+
+async function svgMi(d: Blob) {
+  if (d.type === "image/svg+xml") return true;
+  if (d instanceof File && /\.svg$/i.test(d.name)) return true;
+  const bas = new TextDecoder().decode(await basBaytlar(d, 512));
+  return /<svg[\s>]/i.test(bas);
+}
+
+async function tiffMi(d: Blob) {
+  const b = await basBaytlar(d, 4);
+  return (
+    (b[0] === 0x49 && b[1] === 0x49 && b[2] === 42 && b[3] === 0) ||
+    (b[0] === 0x4d && b[1] === 0x4d && b[2] === 0 && b[3] === 42)
+  );
+}
+
+/** SVG'yi vektör olarak, gerekirse büyütülmüş boyutta tuvale çizer. */
+async function svgAc(d: Blob): Promise<ImageBitmap> {
+  const metin = await d.text();
+  const url = URL.createObjectURL(new Blob([metin], { type: "image/svg+xml" }));
+  try {
+    const img = new Image();
+    img.src = url;
+    await img.decode();
+    let w = img.naturalWidth;
+    let h = img.naturalHeight;
+    // Genişlik/yükseklik yazılmamış SVG'lerde oran viewBox'tan alınır.
+    const kok = new DOMParser()
+      .parseFromString(metin, "image/svg+xml")
+      .querySelector("svg");
+    const vb = kok
+      ?.getAttribute("viewBox")
+      ?.split(/[\s,]+/)
+      .map(Number);
+    const olculu = /^[\d.]+(px)?$/.test(kok?.getAttribute("width") ?? "");
+    if (vb?.length === 4 && vb[2] > 0 && vb[3] > 0 && (!olculu || !w || !h)) {
+      w = vb[2];
+      h = vb[3];
+    }
+    if (!w || !h) [w, h] = [300, 150];
+    const k = Math.max(1, SVG_UZUN_KENAR / Math.max(w, h));
+    const c = document.createElement("canvas");
+    c.width = Math.round(w * k);
+    c.height = Math.round(h * k);
+    c.getContext("2d")!.drawImage(img, 0, 0, c.width, c.height);
+    return await createImageBitmap(c);
+  } catch {
+    throw new Error("SVG dosyası çizilemedi. Dosya bozuk olabilir.");
+  } finally {
+    URL.revokeObjectURL(url);
+  }
+}
+
+/** TIFF'in en büyük sayfasını (çoğunlukla ilk sayfa) açar. */
+async function tiffAc(d: Blob): Promise<ImageBitmap> {
+  let U: Utif;
+  try {
+    tiffModul ??= (async () => {
+      for (const src of TIFF_KUTUPHANELER) await betikYukle(src);
+      return (self as unknown as { UTIF: Utif }).UTIF;
+    })();
+    U = await tiffModul;
+  } catch {
+    tiffModul = null;
+    throw new Error(
+      "TIFF okuyucu yüklenemedi. İnternet bağlantınızı kontrol edip tekrar deneyin.",
+    );
+  }
+  try {
+    const buf = await d.arrayBuffer();
+    const ifdler = U.decode(buf);
+    const alan = (i: Record<string, number[] | undefined>) =>
+      (i.t256?.[0] ?? 0) * (i.t257?.[0] ?? 0);
+    const ifd = ifdler.reduce((a, b) => (alan(b) > alan(a) ? b : a));
+    U.decodeImage(buf, ifd);
+    const w = ifd.width as unknown as number;
+    const h = ifd.height as unknown as number;
+    const rgba = U.toRGBA8(ifd);
+    return await createImageBitmap(
+      new ImageData(
+        new Uint8ClampedArray(
+          rgba.buffer as ArrayBuffer,
+          rgba.byteOffset,
+          w * h * 4,
+        ),
+        w,
+        h,
+      ),
+    );
+  } catch {
+    throw new Error(
+      "TIFF dosyası çözülemedi. Desteklenmeyen bir TIFF türü olabilir.",
+    );
+  }
+}
+
 export async function bitmapAc(dosya: Blob): Promise<ImageBitmap> {
+  if (await svgMi(dosya)) return svgAc(dosya);
+  if (await tiffMi(dosya)) return tiffAc(dosya);
   try {
     return await createImageBitmap(dosya);
   } catch {
@@ -48,7 +175,7 @@ export async function bitmapAc(dosya: Blob): Promise<ImageBitmap> {
       }
     }
     throw new Error(
-      "Bu dosya tarayıcınızda açılamadı. JPG, PNG, WebP veya HEIC bir görsel seçin.",
+      "Bu dosya tarayıcınızda açılamadı. JPG, PNG, WebP, HEIC, AVIF, GIF, BMP, TIFF veya SVG bir görsel seçin.",
     );
   }
 }

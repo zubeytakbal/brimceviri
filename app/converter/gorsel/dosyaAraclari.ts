@@ -1,5 +1,6 @@
 // Dosya Araçları panelindeki araçların tek kayıt listesi. Yalnızca yayında olan araçlar eklenir.
 import { GORSEL_CIFTLER } from "./ciftler";
+import { KAYNAK_CIFTLER, type KaynakFormat } from "./kaynakCiftler";
 import type { GorselFormat } from "./formatlar";
 
 export type DosyaKategori =
@@ -26,8 +27,8 @@ export const DOSYA_KATEGORILER: Array<{ id: DosyaKategori; ad: string }> = [
 export type AracIkon =
   | {
       tip: "cift";
-      kaynak: GorselFormat | "tum" | "heic" | "pdf";
-      hedef: GorselFormat | "tum" | "pdf";
+      kaynak: GorselFormat | KaynakFormat | "tum" | "heic" | "pdf";
+      hedef: GorselFormat | "tum" | "pdf" | "ico" | "b64";
     }
   | {
       tip: "pdf";
@@ -258,6 +259,33 @@ export const DOSYA_ARACLARI: DosyaAraci[] = [
     ikon: { tip: "cift", kaynak: "heic", hedef: "jpg" },
     yeni: true,
   },
+  {
+    href: "/favicon-olusturucu",
+    baslik: "Favicon Oluşturucu",
+    aciklama:
+      "Logodan favicon.ico, Apple ve Android simgeleri; HTML kodu hazır.",
+    kategoriler: ["donustur", "boyut"],
+    ikon: { tip: "cift", kaynak: "png", hedef: "ico" },
+    yeni: true,
+  },
+  {
+    href: "/resim-base64-cevirme",
+    baslik: "Resim Base64 Çevirme",
+    aciklama: "Görseli Base64 / data URI'ye, Base64 metnini resme çevirin.",
+    kategoriler: ["donustur"],
+    ikon: { tip: "cift", kaynak: "tum", hedef: "b64" },
+    yeni: true,
+  },
+  ...KAYNAK_CIFTLER.map(
+    (c): DosyaAraci => ({
+      href: `/${c.slug}`,
+      baslik: c.baslik,
+      aciklama: c.kart,
+      kategoriler: ["donustur"],
+      ikon: { tip: "cift", kaynak: c.kaynak, hedef: c.hedef },
+      yeni: true,
+    }),
+  ),
   ...GORSEL_CIFTLER.map(
     (c): DosyaAraci => ({
       href: `/${c.slug}`,

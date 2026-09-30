@@ -3338,6 +3338,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/pdf-jpg-cevirme`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/pdf-sayfa-duzenleme`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/pdf-sayfa-numarasi-ekleme`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/pdf-metin-cikarma`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/resimden-yaziya-cevirme`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",

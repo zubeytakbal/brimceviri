@@ -15044,3 +15044,145 @@ a.all-units-row .all-units-name {
 .pdf-aralik input {
   width: 100%;
 }
+
+/* PDF sayfa küçük resimleri */
+.pdf-kucuk-resimler {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pdf-kucuk-resimler li {
+  display: grid;
+  gap: 8px;
+  justify-items: center;
+  padding: 12px;
+  border: 1px solid #e3e9ee;
+  border-radius: 14px;
+  background: #ffffff;
+  text-align: center;
+}
+
+.pdf-kucuk-resimler img,
+.pdf-kucuk-resimler canvas {
+  max-width: 100%;
+  max-height: 200px;
+  border: 1px solid #dfe5ea;
+  box-shadow: 0 2px 8px rgba(27, 40, 48, 0.08);
+}
+
+.pdf-kucuk-resimler span {
+  color: #5a6a76;
+  font-size: 0.85rem;
+}
+
+.pdf-kucuk-resimler .time-tool-button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 0;
+  padding: 6px 14px;
+}
+
+/* PDF sayfa düzenleme */
+.pdf-duzen li {
+  cursor: grab;
+}
+
+.pdf-duzen li.is-silindi {
+  opacity: 0.45;
+  background: #fdecea;
+}
+
+.pdf-onizleme {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 210px;
+  overflow: hidden;
+}
+
+.pdf-onizleme img {
+  transition: transform 0.2s;
+}
+
+.pdf-duzen-dugmeler {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  justify-content: center;
+}
+
+.pdf-duzen-dugmeler button {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #d5dde3;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #22313c;
+  cursor: pointer;
+}
+
+.pdf-duzen-dugmeler button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.pdf-duzen-dugmeler .pdf-sil:hover {
+  border-color: #b42318;
+}
+
+.pdf-konum {
+  display: grid;
+  grid-template-columns: repeat(3, 34px);
+  grid-template-rows: repeat(2, 44px);
+  gap: 0;
+  width: max-content;
+  padding: 4px;
+  border: 1px solid var(--line, #d5dbe1);
+  border-radius: 8px;
+  background: #fff;
+}
+.pdf-konum button {
+  display: flex;
+  justify-content: center;
+  padding: 6px 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.pdf-konum button:nth-child(-n + 3) {
+  align-items: flex-start;
+}
+.pdf-konum button:nth-child(n + 4) {
+  align-items: flex-end;
+}
+.pdf-konum button span {
+  width: 14px;
+  height: 6px;
+  border-radius: 2px;
+  background: #c8d0d8;
+}
+.pdf-konum button.is-active span {
+  background: #e5322d;
+}
+.pdf-konum button:focus-visible {
+  outline: 2px solid #2f6fde;
+  outline-offset: -2px;
+}
+.pdf-sonuc-onizleme {
+  margin: 12px 0 0;
+  text-align: center;
+}
+.pdf-sonuc-onizleme img {
+  max-width: min(100%, 360px);
+  height: auto;
+  border: 1px solid var(--line, #d5dbe1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+.pdf-sonuc-onizleme figcaption {
+  font-size: 0.85rem;
+  color: #5b6b78;
+}

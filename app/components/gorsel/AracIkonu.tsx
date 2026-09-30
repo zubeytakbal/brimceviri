@@ -124,6 +124,70 @@ export default function AracIkonu({
             ©LOGO
           </text>
         </>
+      ) : ikon.tip === "pdf" && ikon.islem === "duzenle" ? (
+        <>
+          <Dosya x={4} y={4} f="pdf" />
+          <path
+            d="M44 30a11 11 0 1 1-4-8.5"
+            stroke="#5b6b78"
+            strokeWidth="2.4"
+            fill="none"
+            strokeLinecap="round"
+          />
+          <path
+            d="M41 16l0 7-7 0"
+            stroke="#5b6b78"
+            strokeWidth="2.4"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </>
+      ) : ikon.tip === "pdf" && ikon.islem === "numara" ? (
+        <>
+          <Dosya x={4} y={2} f="pdf" />
+          <rect
+            x="24"
+            y="30"
+            width="24"
+            height="18"
+            rx="4"
+            fill="#ffffff"
+            stroke="#5b6b78"
+            strokeWidth="2"
+          />
+          <text
+            x="36"
+            y="43"
+            textAnchor="middle"
+            fontSize="11"
+            fontWeight="800"
+            fill="#5b6b78"
+            fontFamily="system-ui, sans-serif"
+          >
+            1/3
+          </text>
+        </>
+      ) : ikon.tip === "pdf" && ikon.islem === "metin" ? (
+        <>
+          <Dosya x={2} y={4} f="pdf" />
+          <rect
+            x="30"
+            y="18"
+            width="18"
+            height="26"
+            rx="3"
+            fill="#ffffff"
+            stroke="#5b6b78"
+            strokeWidth="2"
+          />
+          <path
+            d="M34 25h10M34 30h10M34 35h7"
+            stroke="#5b6b78"
+            strokeWidth="2.2"
+            strokeLinecap="round"
+          />
+        </>
       ) : ikon.tip === "pdf" ? (
         ikon.islem === "birlestir" ? (
           <>

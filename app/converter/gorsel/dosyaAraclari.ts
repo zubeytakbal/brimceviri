@@ -29,7 +29,7 @@ export type AracIkon =
       kaynak: GorselFormat | "tum" | "heic" | "pdf";
       hedef: GorselFormat | "tum" | "pdf";
     }
-  | { tip: "pdf"; islem: "birlestir" | "bol" }
+  | { tip: "pdf"; islem: "birlestir" | "bol" | "duzenle" | "numara" | "metin" }
   | { tip: "kucult" }
   | { tip: "boyut" }
   | { tip: "vesikalik" }
@@ -89,6 +89,39 @@ export const DOSYA_ARACLARI: DosyaAraci[] = [
     aciklama: "Fotoğrafları ve taranmış belgeleri A4 PDF'e çevirin.",
     kategoriler: ["pdf", "donustur"],
     ikon: { tip: "cift", kaynak: "jpg", hedef: "pdf" },
+    yeni: true,
+  },
+  {
+    href: "/pdf-jpg-cevirme",
+    baslik: "PDF JPG Çevirme",
+    aciklama:
+      "PDF sayfalarını 300 DPI'ya kadar JPG veya PNG resimlere çevirin.",
+    kategoriler: ["pdf", "donustur"],
+    ikon: { tip: "cift", kaynak: "pdf", hedef: "jpg" },
+    yeni: true,
+  },
+  {
+    href: "/pdf-sayfa-duzenleme",
+    baslik: "PDF Sayfa Silme ve Döndürme",
+    aciklama: "Önizlemeli sayfa silme, döndürme ve sürükleyerek sıralama.",
+    kategoriler: ["pdf", "duzenle"],
+    ikon: { tip: "pdf", islem: "duzenle" },
+    yeni: true,
+  },
+  {
+    href: "/pdf-sayfa-numarasi-ekleme",
+    baslik: "PDF Sayfa Numarası Ekleme",
+    aciklama: "Tez ve raporlara 6 konumda, kapak atlamalı sayfa numarası.",
+    kategoriler: ["pdf"],
+    ikon: { tip: "pdf", islem: "numara" },
+    yeni: true,
+  },
+  {
+    href: "/pdf-metin-cikarma",
+    baslik: "PDF'ten Metin Çıkarma",
+    aciklama: "PDF'i yazıya çevirin; taranmış sayfalar Türkçe OCR ile okunur.",
+    kategoriler: ["pdf", "metin"],
+    ikon: { tip: "pdf", islem: "metin" },
     yeni: true,
   },
   {

@@ -111,7 +111,14 @@ export type AgSimge =
   | "sha"
   | "mac"
   | "port"
-  | "cihaz";
+  | "cihaz"
+  | "harf"
+  | "karakter"
+  | "sayi"
+  | "hece"
+  | "tckn"
+  | "vkn"
+  | "iban";
 
 export type DosyaAraci = {
   href: string;

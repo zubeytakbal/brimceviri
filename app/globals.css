@@ -16268,3 +16268,89 @@ mark.fark-eklendi {
     display: none;
   }
 }
+
+.metin-sonuc {
+  margin: 12px 0;
+  border: 1px solid #e3e9ee;
+  border-radius: 10px;
+  background: #ffffff;
+}
+.metin-sonuc-ust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  align-items: center;
+  padding: 8px 12px;
+  border-bottom: 1px solid #eef2f5;
+}
+.metin-sonuc-ust span {
+  color: #5b6b78;
+  font-size: 0.88rem;
+}
+.metin-sonuc-ust .copy-result-button {
+  margin-left: auto;
+}
+.metin-sonuc-govde {
+  min-height: 3em;
+  max-height: 420px;
+  padding: 12px;
+  overflow: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  line-height: 1.6;
+}
+.metin-sonuc-govde mark {
+  padding: 0 1px;
+  border-radius: 3px;
+  background: #fde68a;
+}
+.metin-buyuk {
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+.metin-kipler button.is-active {
+  border-color: #1b8a7a;
+  background: #1b8a7a;
+  color: #ffffff;
+}
+.hece-liste {
+  margin: 0;
+  padding: 8px 12px 8px 36px;
+}
+.hece-liste li {
+  padding: 4px 0;
+}
+.hece-liste li span {
+  margin-right: 10px;
+}
+.hece-liste li b {
+  display: inline-block;
+  min-width: 28px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: #eef7f5;
+  text-align: center;
+  font-size: 0.85rem;
+}
+.dogrula-sonuc {
+  display: grid;
+  gap: 6px;
+  margin: 12px 0;
+  padding: 14px;
+  border: 1px solid #e3e9ee;
+  border-left: 5px solid #8a98a5;
+  border-radius: 10px;
+  background: #ffffff;
+}
+.dogrula-sonuc.is-gecerli {
+  border-left-color: #1f9d57;
+}
+.dogrula-sonuc.is-gecersiz {
+  border-left-color: #d64545;
+}
+.dogrula-sonuc > b {
+  font-size: 1.1rem;
+}
+.port-tablo tr.is-hatali {
+  background: #fdf1f1;
+}

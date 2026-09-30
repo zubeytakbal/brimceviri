@@ -5,13 +5,18 @@ import {
   AG_KATEGORILER,
 } from "../../converter/ag/agAraclari";
 import {
+  METIN_ARACLARI,
+  METIN_ARACLARI_YOLU,
+  METIN_KATEGORILER,
+} from "../../converter/metin/metinAraclari";
+import {
   DOSYA_ARACLARI,
   DOSYA_ARACLARI_YOLU,
   DOSYA_KATEGORILER,
   type AracIkon,
 } from "../../converter/gorsel/dosyaAraclari";
 
-export type KoleksiyonId = "dosya" | "ag";
+export type KoleksiyonId = "dosya" | "ag" | "metin";
 
 export type Koleksiyon = {
   ad: string;
@@ -67,5 +72,20 @@ export const KOLEKSIYONLAR: Record<KoleksiyonId, Koleksiyon> = {
       "Tarayıcıda hesaplanır",
       "Veri gönderilmez",
     ],
+  },
+  metin: {
+    ad: "Metin Araçları",
+    yol: METIN_ARACLARI_YOLU,
+    tumEtiketi: "Tüm metin araçları",
+    araclar: METIN_ARACLARI,
+    kategoriler: METIN_KATEGORILER,
+    oneCikan: [
+      "/turkce-karakter-duzeltme",
+      "/buyuk-kucuk-harf-donusturme",
+      "/sayiyi-yaziya-cevirme",
+      "/iban-dogrulama",
+      "/tc-kimlik-no-dogrulama",
+    ],
+    guven: ["Ücretsiz", "Kayıt yok", "Türkçeye uygun", "Metin gönderilmez"],
   },
 };

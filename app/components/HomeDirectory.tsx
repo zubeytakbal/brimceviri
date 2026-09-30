@@ -119,6 +119,13 @@ const fileToolsHome = [
   { href: "/png-jpg-cevirme", title: "PNG JPG Çevirme", description: "PNG'leri küçük JPG'lere çevirin; saydam alanlar istediğiniz renkle dolar." },
 ];
 
+const textToolsHome = [
+  { href: "/metin-araclari", title: "Metin Araçları", description: "Türkçe yazım, sayıyı yazıya çevirme ve numara doğrulama tek panelde." },
+  { href: "/turkce-karakter-duzeltme", title: "Türkçe Karakter Düzeltme", description: "\"cok guzel\" yazısını \"çok güzel\" yapın; düzeltilen harfler işaretli." },
+  { href: "/sayiyi-yaziya-cevirme", title: "Sayıyı Yazıya Çevirme", description: "Çek, senet ve fatura için tutarı TL ve kuruşla yazıya çevirin." },
+  { href: "/iban-dogrulama", title: "IBAN Doğrulama", description: "IBAN'da yazım hatası var mı? Kontrol numarası ve banka kodu." },
+];
+
 const netToolsHome = [
   { href: "/ag-araclari", title: "Ağ Araçları", description: "Subnet, IP, hash, port ve indirme süresi araçları tek panelde." },
   { href: "/subnet-hesaplama", title: "Subnet Hesaplama", description: "CIDR ve maskeden ağ, yayın adresi, IP aralığı ve host sayısı." },
@@ -2099,6 +2106,32 @@ export default function HomeDirectory({
                   <div className="directory-card-body directory-card-body-icon">
                     <span className="home-category-icon-box" aria-hidden="true">
                       <DecorativeIcon name="fotografciHub" size={42} className="home-category-icon-svg" />
+                    </span>
+                    <div>
+                      <h3 className="home-category-title">{tool.title}</h3>
+                      <p>{tool.description}</p>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+        {locale === "tr" && (
+          <section className="directory-section" id="metin-araclari">
+            <header className="directory-section-header">
+              <div>
+                <h2>Metin araçları</h2>
+                <p>Türkçe yazım, sayıyı yazıya çevirme, IBAN ve TC kimlik no doğrulama; metinler tarayıcıda işlenir.</p>
+              </div>
+            </header>
+            <div className="directory-tool-grid">
+              {textToolsHome.map((tool) => (
+                <article className="directory-home-card directory-tool-card" key={tool.href}>
+                  <Link className="directory-card-stretch" href={tool.href} aria-label={tool.title} />
+                  <div className="directory-card-body directory-card-body-icon">
+                    <span className="home-category-icon-box" aria-hidden="true">
+                      <DecorativeIcon name="ogretmenHub" size={42} className="home-category-icon-svg" />
                     </span>
                     <div>
                       <h3 className="home-category-title">{tool.title}</h3>

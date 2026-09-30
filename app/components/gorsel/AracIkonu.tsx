@@ -74,6 +74,13 @@ const AG: Record<AgSimge, { renk: string; yazi: string }> = {
   mac: { renk: "#4d7c0f", yazi: "MAC" },
   port: { renk: "#c2410c", yazi: ":443" },
   cihaz: { renk: "#334155", yazi: "" },
+  harf: { renk: "#9333ea", yazi: "Aa" },
+  karakter: { renk: "#e11d48", yazi: "ğüş" },
+  sayi: { renk: "#0d9488", yazi: "123" },
+  hece: { renk: "#d97706", yazi: "he-ce" },
+  tckn: { renk: "#dc2626", yazi: "TC" },
+  vkn: { renk: "#1d4ed8", yazi: "VKN" },
+  iban: { renk: "#047857", yazi: "IBAN" },
 };
 
 /** Ağ araçları için renkli rozet; bazılarında küçük çizim. */

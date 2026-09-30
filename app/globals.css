@@ -14977,3 +14977,70 @@ a.all-units-row .all-units-name {
 .gorsel-alt .time-tool-button {
   min-height: 0;
 }
+
+/* PDF araçları: sıralanabilir liste */
+.sira-liste {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sira-liste li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  align-items: center;
+  padding: 10px 12px;
+  border: 1px solid #dfe7ec;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.sira-no {
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #e2f1f6;
+  color: #1f4f66;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.sira-dugmeler {
+  display: flex;
+  gap: 4px;
+  margin-inline-start: auto;
+}
+
+.sira-dugmeler button {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #d5dde3;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #22313c;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.sira-dugmeler button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.gorsel-alt .time-tool-button[href] {
+  display: inline-flex;
+  align-items: center;
+}
+
+.pdf-aralik {
+  flex: 1 1 320px;
+}
+
+.pdf-aralik input {
+  width: 100%;
+}

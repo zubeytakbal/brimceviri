@@ -6,6 +6,7 @@ const RENK: Record<string, { zemin: string; yazi: string; ad: string }> = {
   webp: { zemin: "#1f9d57", yazi: "#ffffff", ad: "WEBP" },
   tum: { zemin: "#5b6b78", yazi: "#ffffff", ad: "IMG" },
   heic: { zemin: "#1c1c1e", yazi: "#ffffff", ad: "HEIC" },
+  pdf: { zemin: "#e5322d", yazi: "#ffffff", ad: "PDF" },
 };
 
 /** Sayfa köşesi kıvrık küçük dosya rozeti. */
@@ -123,6 +124,53 @@ export default function AracIkonu({
             ©LOGO
           </text>
         </>
+      ) : ikon.tip === "pdf" ? (
+        ikon.islem === "birlestir" ? (
+          <>
+            <Dosya x={2} y={4} f="pdf" />
+            <Dosya x={24} y={4} f="pdf" />
+            <path
+              d="M14 40v4a3 3 0 0 0 3 3h18a3 3 0 0 0 3-3v-4"
+              stroke="#e5322d"
+              strokeWidth="2.4"
+              fill="none"
+              strokeLinecap="round"
+            />
+            <path
+              d="M26 38v9"
+              stroke="#e5322d"
+              strokeWidth="2.4"
+              strokeLinecap="round"
+            />
+          </>
+        ) : (
+          <>
+            <Dosya x={13} y={2} f="pdf" />
+            <path
+              d="M8 40h36"
+              stroke="#e5322d"
+              strokeWidth="2.4"
+              strokeDasharray="4 3"
+              strokeLinecap="round"
+            />
+            <circle
+              cx="14"
+              cy="45"
+              r="3"
+              fill="none"
+              stroke="#5b6b78"
+              strokeWidth="2"
+            />
+            <circle
+              cx="24"
+              cy="45"
+              r="3"
+              fill="none"
+              stroke="#5b6b78"
+              strokeWidth="2"
+            />
+          </>
+        )
       ) : ikon.tip === "ocr" ? (
         <>
           <rect x="4" y="4" width="44" height="44" rx="10" fill="#fff4e0" />

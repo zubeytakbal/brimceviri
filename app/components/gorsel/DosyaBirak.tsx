@@ -2,15 +2,22 @@
 
 import { useState } from "react";
 
-/** Sürükle-bırak destekli dosya seçme alanı. */
+const GORSEL = (x: File) =>
+  x.type.startsWith("image/") ||
+  /\.(jpe?g|jfif|png|webp|gif|bmp|avif|heic|heif)$/i.test(x.name);
+const PDF = (x: File) => x.type === "application/pdf" || /\.pdf$/i.test(x.name);
+
+/** Sürükle-bırak destekli dosya seçme alanı (görsel veya PDF). */
 export default function DosyaBirak({
   baslik,
-  accept = "image/*,.heic,.heif",
+  tur = "gorsel",
+  accept = tur === "pdf" ? "application/pdf,.pdf" : "image/*,.heic,.heif",
   max,
   coklu = true,
   onSec,
 }: {
   baslik: string;
+  tur?: "gorsel" | "pdf";
   accept?: string;
   max: number;
   coklu?: boolean;
@@ -18,11 +25,7 @@ export default function DosyaBirak({
 }) {
   const [surukle, setSurukle] = useState(false);
   const sec = (liste: FileList | null) => {
-    const d = [...(liste ?? [])].filter(
-      (x) =>
-        x.type.startsWith("image/") ||
-        /\.(jpe?g|jfif|png|webp|gif|bmp|avif|heic|heif)$/i.test(x.name),
-    );
+    const d = [...(liste ?? [])].filter(tur === "pdf" ? PDF : GORSEL);
     if (d.length) onSec(d.slice(0, max));
   };
   return (

@@ -16,6 +16,7 @@ const ONE_CIKAN = [
   "/resim-boyutlandirma",
   "/fotograf-boyutu-kucultme",
   "/resimden-yaziya-cevirme",
+  "/pdf-birlestirme",
   "/e-okul-fotograf-kucultme",
 ];
 

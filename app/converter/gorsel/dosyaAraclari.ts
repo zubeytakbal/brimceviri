@@ -7,6 +7,7 @@ export type DosyaKategori =
   | "kucult"
   | "boyut"
   | "duzenle"
+  | "pdf"
   | "metin"
   | "resmi"
   | "gizlilik";
@@ -16,6 +17,7 @@ export const DOSYA_KATEGORILER: Array<{ id: DosyaKategori; ad: string }> = [
   { id: "kucult", ad: "Küçült" },
   { id: "boyut", ad: "Boyutlandır" },
   { id: "duzenle", ad: "Düzenle" },
+  { id: "pdf", ad: "PDF" },
   { id: "metin", ad: "Metin tanıma" },
   { id: "resmi", ad: "Resmi belge fotoğrafları" },
   { id: "gizlilik", ad: "Gizlilik" },
@@ -24,9 +26,10 @@ export const DOSYA_KATEGORILER: Array<{ id: DosyaKategori; ad: string }> = [
 export type AracIkon =
   | {
       tip: "cift";
-      kaynak: GorselFormat | "tum" | "heic";
-      hedef: GorselFormat | "tum";
+      kaynak: GorselFormat | "tum" | "heic" | "pdf";
+      hedef: GorselFormat | "tum" | "pdf";
     }
+  | { tip: "pdf"; islem: "birlestir" | "bol" }
   | { tip: "kucult" }
   | { tip: "boyut" }
   | { tip: "vesikalik" }
@@ -63,6 +66,31 @@ const KART: Record<string, string> = {
 export const DOSYA_ARACLARI_YOLU = "/dosya-araclari";
 
 export const DOSYA_ARACLARI: DosyaAraci[] = [
+  {
+    href: "/pdf-birlestirme",
+    baslik: "PDF Birleştirme",
+    aciklama: "PDF dosyalarını istediğiniz sırayla tek PDF'te birleştirin.",
+    kategoriler: ["pdf"],
+    ikon: { tip: "pdf", islem: "birlestir" },
+    yeni: true,
+  },
+  {
+    href: "/pdf-bolme",
+    baslik: "PDF Bölme",
+    aciklama:
+      "Sayfalara ayırın, aralıklarla bölün veya istediğiniz sayfaları çıkarın.",
+    kategoriler: ["pdf"],
+    ikon: { tip: "pdf", islem: "bol" },
+    yeni: true,
+  },
+  {
+    href: "/jpg-pdf-cevirme",
+    baslik: "JPG PDF Çevirme",
+    aciklama: "Fotoğrafları ve taranmış belgeleri A4 PDF'e çevirin.",
+    kategoriler: ["pdf", "donustur"],
+    ikon: { tip: "cift", kaynak: "jpg", hedef: "pdf" },
+    yeni: true,
+  },
   {
     href: "/resimden-yaziya-cevirme",
     baslik: "Resimden Yazıya Çevirme",

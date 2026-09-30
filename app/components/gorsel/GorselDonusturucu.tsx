@@ -68,9 +68,14 @@ async function donustur(dosya: File, a: Ayar) {
 export default function GorselDonusturucu({
   hedef,
   kaynak,
+  kaynakAd,
+  kabul,
 }: {
   hedef?: GorselFormat;
   kaynak?: GorselFormat;
+  /** Okunup yazılamayan kaynak biçimler için (ör. HEIC) seçim alanı başlığı. */
+  kaynakAd?: string;
+  kabul?: string;
 }) {
   const [ayar, setAyar] = useState<Ayar>({
     hedef: hedef ?? "jpg",
@@ -163,11 +168,18 @@ export default function GorselDonusturucu({
     <div className="date-calc gorsel-arac">
       <DosyaBirak
         baslik={
-          kaynak
-            ? `${FORMATLAR[kaynak].ad} dosyalarını seçin`
-            : "Görselleri seçin"
+          kaynakAd
+            ? `${kaynakAd} dosyalarını seçin`
+            : kaynak
+              ? `${FORMATLAR[kaynak].ad} dosyalarını seçin`
+              : "Görselleri seçin"
         }
-        accept={kaynak ? `${FORMATLAR[kaynak].kabul},image/*` : "image/*"}
+        accept={
+          kabul ??
+          (kaynak
+            ? `${FORMATLAR[kaynak].kabul},image/*`
+            : "image/*,.heic,.heif")
+        }
         max={MAX_DOSYA}
         onSec={ekle}
       />

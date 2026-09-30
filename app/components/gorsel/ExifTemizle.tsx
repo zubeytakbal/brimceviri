@@ -8,7 +8,11 @@ import {
   pngTemizle,
   type ExifBilgi,
 } from "../../converter/gorsel/exif";
-import { boyutMetni, formatTahmin } from "../../converter/gorsel/formatlar";
+import {
+  boyutMetni,
+  ciktiAdi,
+  formatTahmin,
+} from "../../converter/gorsel/formatlar";
 import DosyaBirak from "./DosyaBirak";
 import { bitmapAc, indir, kodla, zipUrlOlustur } from "./tuval";
 
@@ -17,7 +21,7 @@ type Oge = {
   dosya: File;
   bilgi?: ExifBilgi;
   kayipsiz?: boolean;
-  cikti?: { blob: Blob; url: string };
+  cikti?: { blob: Blob; url: string; ad: string };
   hata?: string;
 };
 
@@ -38,7 +42,7 @@ async function isle(dosya: File): Promise<Omit<Oge, "id" | "dosya">> {
     return {
       bilgi,
       kayipsiz: true,
-      cikti: { blob, url: URL.createObjectURL(blob) },
+      cikti: { blob, url: URL.createObjectURL(blob), ad: dosya.name },
     };
   }
   if (tur === "png") {
@@ -49,7 +53,7 @@ async function isle(dosya: File): Promise<Omit<Oge, "id" | "dosya">> {
     return {
       bilgi,
       kayipsiz: true,
-      cikti: { blob, url: URL.createObjectURL(blob) },
+      cikti: { blob, url: URL.createObjectURL(blob), ad: dosya.name },
     };
   }
   // Diğer biçimler: tarayıcıda yeniden kaydedilerek temizlenir (meta veri aktarılmaz).
@@ -65,7 +69,11 @@ async function isle(dosya: File): Promise<Omit<Oge, "id" | "dosya">> {
     return {
       bilgi: { turler: [] },
       kayipsiz: false,
-      cikti: { blob, url: URL.createObjectURL(blob) },
+      cikti: {
+        blob,
+        url: URL.createObjectURL(blob),
+        ad: ciktiAdi(dosya.name, format),
+      },
     };
   } finally {
     bitmap.close();
@@ -105,7 +113,7 @@ export default function ExifTemizle() {
   const zipYap = async () => {
     const url = await zipUrlOlustur(
       ogeler.flatMap((o) =>
-        o.cikti ? [{ ad: o.dosya.name, blob: o.cikti.blob }] : [],
+        o.cikti ? [{ ad: o.cikti.ad, blob: o.cikti.blob }] : [],
       ),
     );
     urller.current.push(url);
@@ -151,7 +159,7 @@ export default function ExifTemizle() {
                       <a
                         className="time-tool-button"
                         href={o.cikti.url}
-                        download={o.dosya.name}
+                        download={o.cikti.ad}
                       >
                         Temiz halini indir
                       </a>

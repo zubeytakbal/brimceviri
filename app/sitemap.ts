@@ -3320,6 +3320,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/heic-jpg-cevirme`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/biyometrik-fotograf`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",

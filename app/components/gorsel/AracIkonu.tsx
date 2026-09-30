@@ -5,6 +5,7 @@ const RENK: Record<string, { zemin: string; yazi: string; ad: string }> = {
   png: { zemin: "#2f6fde", yazi: "#ffffff", ad: "PNG" },
   webp: { zemin: "#1f9d57", yazi: "#ffffff", ad: "WEBP" },
   tum: { zemin: "#5b6b78", yazi: "#ffffff", ad: "IMG" },
+  heic: { zemin: "#1c1c1e", yazi: "#ffffff", ad: "HEIC" },
 };
 
 /** Sayfa köşesi kıvrık küçük dosya rozeti. */

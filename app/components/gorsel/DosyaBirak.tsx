@@ -5,7 +5,7 @@ import { useState } from "react";
 /** Sürükle-bırak destekli dosya seçme alanı. */
 export default function DosyaBirak({
   baslik,
-  accept = "image/*",
+  accept = "image/*,.heic,.heif",
   max,
   coklu = true,
   onSec,
@@ -21,7 +21,7 @@ export default function DosyaBirak({
     const d = [...(liste ?? [])].filter(
       (x) =>
         x.type.startsWith("image/") ||
-        /\.(jpe?g|jfif|png|webp|gif|bmp|avif)$/i.test(x.name),
+        /\.(jpe?g|jfif|png|webp|gif|bmp|avif|heic|heif)$/i.test(x.name),
     );
     if (d.length) onSec(d.slice(0, max));
   };

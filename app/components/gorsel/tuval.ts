@@ -3,12 +3,52 @@ import { FORMATLAR, type GorselFormat } from "../../converter/gorsel/formatlar";
 import { kaliteAra } from "../../converter/gorsel/sikistirma";
 import { zipOlustur } from "../../converter/gorsel/zip";
 
+/**
+ * iPhone fotoğraflarının HEIC/HEIF biçimini çözmek için libheif tabanlı heic-to (LGPL-3.0).
+ * Sitenin paketine gömülmez; yalnızca HEIC dosyası seçildiğinde tarayıcı bir kez CDN'den indirir.
+ */
+const HEIC_KUTUPHANE =
+  "https://cdn.jsdelivr.net/npm/heic-to@1.5.2/dist/csp/heic-to.js";
+type HeicModul = {
+  heicTo: (a: { blob: Blob; type: "bitmap" }) => Promise<ImageBitmap>;
+};
+let heicModul: Promise<HeicModul> | null = null;
+
+/** Dosyanın ISO BMFF "ftyp" markasına bakarak HEIC/HEIF olup olmadığını anlar. */
+export async function heicMi(dosya: Blob): Promise<boolean> {
+  const b = new Uint8Array(await dosya.slice(0, 12).arrayBuffer());
+  if (String.fromCharCode(...b.subarray(4, 8)) !== "ftyp") return false;
+  return [
+    "heic",
+    "heix",
+    "hevc",
+    "hevx",
+    "heim",
+    "heis",
+    "mif1",
+    "msf1",
+  ].includes(String.fromCharCode(...b.subarray(8, 12)));
+}
+
 export async function bitmapAc(dosya: Blob): Promise<ImageBitmap> {
   try {
     return await createImageBitmap(dosya);
   } catch {
+    if (await heicMi(dosya)) {
+      try {
+        heicModul ??= import(
+          /* webpackIgnore: true */ /* turbopackIgnore: true */ HEIC_KUTUPHANE
+        );
+        return await (await heicModul).heicTo({ blob: dosya, type: "bitmap" });
+      } catch {
+        heicModul = null;
+        throw new Error(
+          "HEIC dosyası açılamadı. İnternet bağlantınızı kontrol edip tekrar deneyin.",
+        );
+      }
+    }
     throw new Error(
-      "Bu dosya tarayıcınızda açılamadı. JPG, PNG veya WebP bir görsel seçin.",
+      "Bu dosya tarayıcınızda açılamadı. JPG, PNG, WebP veya HEIC bir görsel seçin.",
     );
   }
 }

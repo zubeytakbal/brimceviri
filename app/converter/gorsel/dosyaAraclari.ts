@@ -18,7 +18,11 @@ export const DOSYA_KATEGORILER: Array<{ id: DosyaKategori; ad: string }> = [
 ];
 
 export type AracIkon =
-  | { tip: "cift"; kaynak: GorselFormat | "tum"; hedef: GorselFormat | "tum" }
+  | {
+      tip: "cift";
+      kaynak: GorselFormat | "tum" | "heic";
+      hedef: GorselFormat | "tum";
+    }
   | { tip: "kucult" }
   | { tip: "boyut" }
   | { tip: "vesikalik" }
@@ -112,6 +116,15 @@ export const DOSYA_ARACLARI: DosyaAraci[] = [
       "JPG, PNG ve WebP'yi birbirine çevirin; kalite ve genişliği ayarlayın.",
     kategoriler: ["donustur"],
     ikon: { tip: "cift", kaynak: "tum", hedef: "tum" },
+  },
+  {
+    href: "/heic-jpg-cevirme",
+    baslik: "HEIC JPG Çevirme",
+    aciklama:
+      "iPhone fotoğraflarını Windows'ta ve her yerde açılan JPG'ye çevirin.",
+    kategoriler: ["donustur"],
+    ikon: { tip: "cift", kaynak: "heic", hedef: "jpg" },
+    yeni: true,
   },
   ...GORSEL_CIFTLER.map(
     (c): DosyaAraci => ({

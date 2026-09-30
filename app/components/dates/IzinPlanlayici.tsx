@@ -1,20 +1,27 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { icsDatei } from "../../converter/time/brueckentage";
 import { formatYmdParts, ymdKey } from "../../converter/time/dateMath";
-import { izinPlani } from "../../converter/time/izinPlani";
+import { kisiselIzinPlani } from "../../converter/time/izinPlani";
 
 const kisa = (d: { year: number; month: number; day: number }) =>
-  formatYmdParts(d, "tr", { day: "numeric", month: "long" });
+  formatYmdParts(d, "tr", { day: "numeric", month: "long", year: "numeric" });
 const gun = (d: { year: number; month: number; day: number }) =>
   formatYmdParts(d, "tr", { weekday: "short" });
 const sayi = (n: number) => String(n).replace(".", ",");
 
 export default function IzinPlanlayici({ year }: { year: number }) {
   const [izin, setIzin] = useState(7);
-  const [cumartesi, setCumartesi] = useState(false);
-  const plan = izinPlani(year, izin, cumartesi);
+  const [workdays, setWorkdays] = useState([false, true, true, true, true, true, false]);
+  const [range, setRange] = useState({ year, start: `${year}-01-01`, end: `${year}-12-31` });
+  const [mode, setMode] = useState<"enUzun" | "enVerimli">("enUzun");
+  const start = range.year === year ? range.start : `${year}-01-01`;
+  const end = range.year === year ? range.end : `${year}-12-31`;
+  const choices = useMemo(() => kisiselIzinPlani(year, izin, workdays, start, end), [year, izin, workdays, start, end]);
+  const selected = choices[mode];
+  const plan = { zeitraeume: selected ? [selected] : [], urlaub: selected?.urlaub ?? 0, freieTage: selected?.tage ?? 0 };
+  const invalid = !start || !end || start > end || !workdays.some(Boolean);
 
   const indir = () => {
     const blob = new Blob([icsDatei(plan.zeitraeume, "Yıllık izin")], {
@@ -36,27 +43,41 @@ export default function IzinPlanlayici({ year }: { year: number }) {
             <span>Kullanabileceğim izin (gün)</span>
             <input
               type="number"
-              min={1}
+              min={0.5}
+              step={0.5}
               max={30}
               value={izin}
               onChange={(event) =>
                 setIzin(
-                  Math.max(1, Math.min(30, Number(event.target.value) || 1)),
+                  Math.max(0.5, Math.min(30, Number(event.target.value) || 0.5)),
                 )
               }
             />
           </label>
         </div>
-        <div className="date-calc-checks">
-          <label>
-            <input
-              type="checkbox"
-              checked={cumartesi}
-              onChange={(event) => setCumartesi(event.target.checked)}
-            />{" "}
-            Cumartesi de çalışıyorum
-          </label>
+        <div className="date-calc-fields">
+          <label className="date-calc-field"><span>En erken tatil başlangıcı</span>
+            <input type="date" min={`${year}-01-01`} max={`${year}-12-31`} value={start}
+              onChange={e => setRange({ year, start: e.target.value, end })} /></label>
+          <label className="date-calc-field"><span>En geç tatil bitişi</span>
+            <input type="date" min={`${year}-01-01`} max={`${year}-12-31`} value={end}
+              onChange={e => setRange({ year, start, end: e.target.value })} /></label>
         </div>
+        <fieldset className="date-calc-checks">
+          <legend>Çalıştığım günler</legend>
+          {[1, 2, 3, 4, 5, 6, 0].map(d => <label key={d}>
+            <input type="checkbox" checked={workdays[d]} onChange={e => setWorkdays(workdays.map((v, i) => i === d ? e.target.checked : v))} />
+            {['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'][d]}
+          </label>)}
+        </fieldset>
+        <label className="date-calc-field"><span>Plan tercihi</span>
+          <select value={mode} onChange={e => setMode(e.target.value as typeof mode)}>
+            <option value="enUzun">En uzun kesintisiz tatil</option>
+            <option value="enVerimli">İzin günü başına en çok tatil</option>
+          </select>
+        </label>
+        {invalid ? <p role="alert">Geçerli bir tarih aralığı ve en az bir çalışma günü seçin.</p> : null}
+        {!invalid && !selected ? <p role="status">Bu aralık ve izin bütçesiyle plan bulunamadı. Tarih aralığını veya bütçeyi genişletin.</p> : null}
       </div>
       <div className="date-calc-results">
         <div className="date-calc-stat is-main">
@@ -107,10 +128,11 @@ export default function IzinPlanlayici({ year }: { year: number }) {
         </div>
       ) : null}
       <p className="date-calc-note">
-        Plan, izin günlerini resmî tatiller ve hafta sonlarıyla birleştirerek en
-        uzun toplam tatili verir; arefeler yarım gün izin sayılır. Tek seferde
-        en fazla 10 gün izin planlanır. İznin kullanım zamanı işverenle birlikte
-        belirlenir.
+        Plan, seçtiğiniz tarih aralığında çalışma günlerinize göre tek bir tatil
+        dönemi önerir. Resmî tatiller izin bütçesinden düşülmez; arefelerdeki
+        çalışma yarım gün izin sayılır. En verimli seçenek, tatil günü / izin
+        günü oranını artırır ve bütçenin tamamını kullanmayabilir. Sabit haftalık
+        çalışma düzeni varsayılır. İznin kullanım zamanı işverenle birlikte belirlenir.
       </p>
     </div>
   );

@@ -22,7 +22,8 @@ function yukle() {
     });
     const g = globalThis as any;
     const olustur = g.Module;
-    delete g.Module;
+    // "var" ile tanımlanan genel değişken silinemez (katı mod hata verir); yalnızca boşaltılır.
+    g.Module = undefined;
     if (typeof olustur !== "function") throw new Error("qpdf yüklenemedi");
     return { olustur, wasm: await wasm };
   })();

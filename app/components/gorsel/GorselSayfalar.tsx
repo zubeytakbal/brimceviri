@@ -6,14 +6,17 @@ import {
   type GorselCift,
 } from "../../converter/gorsel/ciftler";
 import type { FaqItem } from "../../converter/faqSchema";
+import { DOSYA_ARACLARI_YOLU } from "../../converter/gorsel/dosyaAraclari";
 import TimeToolPage from "../time/TimeToolPage";
 import { takvimMetadata } from "../takvim/takvimMeta";
 import GorselDonusturucu from "./GorselDonusturucu";
 
 const ANA = { href: "/", label: "Ana Sayfa" };
+const PANEL = { href: DOSYA_ARACLARI_YOLU, label: "Dosya Araçları" };
 const HUB = { href: GORSEL_HUB, label: "Görsel Dönüştürücü" };
 
 const DIGER_ARACLAR = [
+  { href: "/dosya-araclari", label: "Tüm Dosya Araçları" },
   { href: "/piksel-cm-dpi-hesaplama", label: "Piksel, CM ve DPI Hesaplama" },
   {
     href: "/sosyal-medya-gorsel-boyutlari-hesaplama",
@@ -62,7 +65,7 @@ export const gorselCiftMeta = (c: GorselCift) =>
 export function GorselCiftSayfasi({ cift: c }: { cift: GorselCift }) {
   return (
     <TimeToolPage
-      crumbs={[ANA, HUB, { label: c.baslik }]}
+      crumbs={[ANA, PANEL, HUB, { label: c.baslik }]}
       crumbLabel="Sayfa yolu"
       title={c.baslik}
       intro={c.giris}
@@ -143,7 +146,7 @@ export function GorselHub() {
   ];
   return (
     <TimeToolPage
-      crumbs={[ANA, { label: "Görsel Dönüştürücü" }]}
+      crumbs={[ANA, PANEL, { label: "Görsel Dönüştürücü" }]}
       crumbLabel="Sayfa yolu"
       title="Görsel Dönüştürücü"
       intro="JPG, PNG ve WebP görselleri birbirine çevirin. Çıktı formatını, kaliteyi ve en fazla genişliği seçin; birden fazla dosyayı aynı anda dönüştürüp ZIP olarak indirin. Dosyalar tarayıcınızda işlenir, hiçbir sunucuya yüklenmez."

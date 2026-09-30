@@ -3314,6 +3314,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
+      url: `${baseUrl}/dosya-araclari`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/gorsel-donusturucu`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",

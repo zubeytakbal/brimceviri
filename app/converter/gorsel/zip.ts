@@ -30,9 +30,24 @@ export function benzersizAdlar(adlar: string[]) {
   });
 }
 
-export function zipOlustur(
-  dosyalar: Array<{ ad: string; veri: Uint8Array }>,
-): Uint8Array {
+export type ZipDosya = {
+  ad: string;
+  veri: Uint8Array;
+  /** Deflate ile sıkıştırılmış hâli (yöntem 8); verilmezse "store". */
+  sikisik?: Uint8Array;
+  tarih?: Date;
+};
+
+/** Tarihi MS-DOS saat/tarih alanlarına çevirir. */
+function dos(t?: Date): [number, number] {
+  if (!t || t.getFullYear() < 1980) return [0, 0x21];
+  return [
+    (t.getHours() << 11) | (t.getMinutes() << 5) | (t.getSeconds() >> 1),
+    ((t.getFullYear() - 1980) << 9) | ((t.getMonth() + 1) << 5) | t.getDate(),
+  ];
+}
+
+export function zipOlustur(dosyalar: ZipDosya[]): Uint8Array {
   const enc = new TextEncoder();
   const adlar = benzersizAdlar(dosyalar.map((d) => d.ad));
   const yerel: Uint8Array[] = [];
@@ -42,38 +57,41 @@ export function zipOlustur(
     const ad = enc.encode(adlar[i]);
     const crc = crc32(d.veri);
     const boy = d.veri.length;
+    const govde = d.sikisik ?? d.veri;
+    const yontem = d.sikisik ? 8 : 0;
+    const [saat, gun] = dos(d.tarih);
     const b = new Uint8Array(30 + ad.length);
     const v = new DataView(b.buffer);
     v.setUint32(0, 0x04034b50, true);
     v.setUint16(4, 20, true);
     v.setUint16(6, 0x0800, true); // UTF-8 dosya adı
-    v.setUint16(8, 0, true); // store
-    v.setUint16(10, 0, true);
-    v.setUint16(12, 0x21, true); // 1980-01-01
+    v.setUint16(8, yontem, true);
+    v.setUint16(10, saat, true);
+    v.setUint16(12, gun, true);
     v.setUint32(14, crc, true);
-    v.setUint32(18, boy, true);
+    v.setUint32(18, govde.length, true);
     v.setUint32(22, boy, true);
     v.setUint16(26, ad.length, true);
     v.setUint16(28, 0, true);
     b.set(ad, 30);
-    yerel.push(b, d.veri);
+    yerel.push(b, govde);
     const c = new Uint8Array(46 + ad.length);
     const w = new DataView(c.buffer);
     w.setUint32(0, 0x02014b50, true);
     w.setUint16(4, 20, true);
     w.setUint16(6, 20, true);
     w.setUint16(8, 0x0800, true);
-    w.setUint16(10, 0, true);
-    w.setUint16(12, 0, true);
-    w.setUint16(14, 0x21, true);
+    w.setUint16(10, yontem, true);
+    w.setUint16(12, saat, true);
+    w.setUint16(14, gun, true);
     w.setUint32(16, crc, true);
-    w.setUint32(20, boy, true);
+    w.setUint32(20, govde.length, true);
     w.setUint32(24, boy, true);
     w.setUint16(28, ad.length, true);
     w.setUint32(42, ofset, true);
     c.set(ad, 46);
     merkez.push(c);
-    ofset += b.length + boy;
+    ofset += b.length + govde.length;
   });
   const merkezBoy = merkez.reduce((s, c) => s + c.length, 0);
   const son = new Uint8Array(22);
@@ -91,4 +109,25 @@ export function zipOlustur(
     i += p.length;
   }
   return out;
+}
+
+export async function deflateRaw(veri: Uint8Array): Promise<Uint8Array> {
+  const akis = new Blob([veri as BlobPart])
+    .stream()
+    .pipeThrough(new CompressionStream("deflate-raw"));
+  return new Uint8Array(await new Response(akis).arrayBuffer());
+}
+
+/** Dosyaları Deflate ile sıkıştırarak ZIP yapar; küçülmeyen dosyalar olduğu gibi saklanır. */
+export async function zipSikistir(
+  dosyalar: ZipDosya[],
+  ilerleme?: (i: number) => void,
+): Promise<Uint8Array> {
+  const hazir: ZipDosya[] = [];
+  for (const [i, d] of dosyalar.entries()) {
+    ilerleme?.(i);
+    const s = d.veri.length > 64 ? await deflateRaw(d.veri) : null;
+    hazir.push(s && s.length < d.veri.length ? { ...d, sikisik: s } : d);
+  }
+  return zipOlustur(hazir);
 }

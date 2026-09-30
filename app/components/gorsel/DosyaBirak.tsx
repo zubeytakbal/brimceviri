@@ -15,12 +15,20 @@ const SES = (x: File) =>
 const VIDEO = (x: File) =>
   x.type.startsWith("video/") ||
   /\.(mp4|m4v|mov|webm|mkv|3gp|avi)$/i.test(x.name);
-const SUZGEC = { gorsel: GORSEL, pdf: PDF, ses: SES, video: VIDEO };
+const HEPSI = () => true;
+const SUZGEC = {
+  gorsel: GORSEL,
+  pdf: PDF,
+  ses: SES,
+  video: VIDEO,
+  belge: HEPSI,
+};
 const KABUL = {
   gorsel: "image/*,.heic,.heif,.tif,.tiff,.svg,.jfif",
   pdf: "application/pdf,.pdf",
   ses: "audio/*,video/*,.opus,.m4a,.flac,.amr,.mkv",
   video: "video/*,.mov,.mkv,.m4v",
+  belge: "",
 };
 
 /** Sürükle-bırak destekli dosya seçme alanı (görsel, PDF veya ses/video). */
@@ -33,7 +41,7 @@ export default function DosyaBirak({
   onSec,
 }: {
   baslik: string;
-  tur?: "gorsel" | "pdf" | "ses" | "video";
+  tur?: "gorsel" | "pdf" | "ses" | "video" | "belge";
   accept?: string;
   max: number;
   coklu?: boolean;
@@ -61,7 +69,7 @@ export default function DosyaBirak({
       <input
         type="file"
         multiple={coklu}
-        accept={accept}
+        accept={accept || undefined}
         onChange={(e) => {
           sec(e.target.files);
           e.target.value = "";

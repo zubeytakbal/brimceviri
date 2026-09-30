@@ -15537,3 +15537,143 @@ a.all-units-row .all-units-name {
     grid-template-columns: 1fr;
   }
 }
+
+.veri-yapistir {
+  display: block;
+  margin: 12px 0;
+}
+.veri-yapistir textarea {
+  width: 100%;
+}
+.veri-tablo {
+  overflow: auto;
+  max-height: 420px;
+  margin: 12px 0;
+  border: 1px solid #d5dde3;
+  border-radius: 10px;
+  background: #ffffff;
+}
+.veri-tablo table {
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  white-space: nowrap;
+}
+.veri-tablo th,
+.veri-tablo td {
+  max-width: 280px;
+  overflow: hidden;
+  padding: 6px 10px;
+  border-bottom: 1px solid #edf1f4;
+  border-right: 1px solid #edf1f4;
+  text-overflow: ellipsis;
+  text-align: left;
+}
+.veri-tablo thead th {
+  position: sticky;
+  top: 0;
+  background: #f3f6f8;
+  font-weight: 700;
+}
+.veri-tablo tbody th {
+  color: #8a98a4;
+  font-weight: 500;
+}
+.veri-tablo td.is-sayi {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.veri-not {
+  margin: 0;
+  padding: 8px 10px;
+  color: #5b6b78;
+  font-size: 0.85rem;
+}
+.veri-dugmeler {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0;
+}
+.veri-hata {
+  overflow-x: auto;
+  white-space: pre-wrap;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.85rem;
+}
+.zip-klasor {
+  position: relative;
+  display: inline-block;
+  margin: 10px 0;
+  cursor: pointer;
+}
+.zip-klasor input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.zip-liste {
+  display: grid;
+  max-height: 360px;
+  overflow: auto;
+  margin: 12px 0;
+  padding: 0;
+  border: 1px solid #e3e9ee;
+  border-radius: 10px;
+  background: #ffffff;
+  list-style: none;
+}
+.zip-liste li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 12px;
+  border-bottom: 1px solid #edf1f4;
+  font-size: 0.9rem;
+}
+.zip-liste.is-ac li {
+  grid-template-columns: minmax(0, 1fr) auto auto auto;
+}
+.zip-liste li > span:first-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.zip-liste li > span:nth-child(2) {
+  color: #5b6b78;
+  font-size: 0.82rem;
+}
+.zip-liste button {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #d5dde3;
+  border-radius: 8px;
+  background: #ffffff;
+  cursor: pointer;
+}
+.zip-uzanti {
+  align-self: center;
+  margin-left: 6px;
+  color: #ffffff;
+}
+.zip-onizleme {
+  display: grid;
+  gap: 8px;
+  margin: 12px 0;
+  padding: 12px;
+  border: 1px solid #e3e9ee;
+  border-radius: 10px;
+  background: #ffffff;
+}
+.zip-onizleme img {
+  max-width: 100%;
+  max-height: 360px;
+}
+.zip-onizleme pre {
+  overflow: auto;
+  max-height: 360px;
+  margin: 0;
+  white-space: pre-wrap;
+  font-size: 0.85rem;
+}

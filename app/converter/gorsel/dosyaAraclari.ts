@@ -11,6 +11,7 @@ export type DosyaKategori =
   | "duzenle"
   | "pdf"
   | "ses"
+  | "veri"
   | "metin"
   | "resmi"
   | "gizlilik";
@@ -22,6 +23,7 @@ export const DOSYA_KATEGORILER: Array<{ id: DosyaKategori; ad: string }> = [
   { id: "duzenle", ad: "Düzenle" },
   { id: "pdf", ad: "PDF" },
   { id: "ses", ad: "Ses ve video" },
+  { id: "veri", ad: "Excel, veri ve ZIP" },
   { id: "metin", ad: "Metin tanıma" },
   { id: "resmi", ad: "Resmi belge fotoğrafları" },
   { id: "gizlilik", ad: "Gizlilik" },
@@ -38,7 +40,11 @@ export type AracIkon =
         | "heic"
         | "pdf"
         | "ses"
-        | "mov";
+        | "mov"
+        | "xlsx"
+        | "csv"
+        | "json"
+        | "zip";
       hedef:
         | GorselFormat
         | "tum"
@@ -48,7 +54,11 @@ export type AracIkon =
         | "mp3"
         | "wav"
         | "mp4"
-        | "gif";
+        | "gif"
+        | "xlsx"
+        | "csv"
+        | "json"
+        | "zip";
     }
   | {
       tip: "pdf";
@@ -100,6 +110,64 @@ const KART: Record<string, string> = {
 export const DOSYA_ARACLARI_YOLU = "/dosya-araclari";
 
 export const DOSYA_ARACLARI: DosyaAraci[] = [
+  {
+    href: "/excel-csv-cevirme",
+    baslik: "Excel CSV Çevirme",
+    aciklama:
+      "XLSX sayfalarını ; veya , ayırıcılı, Türkçe karakterli CSV yapın.",
+    kategoriler: ["veri", "donustur"],
+    ikon: { tip: "cift", kaynak: "xlsx", hedef: "csv" },
+    yeni: true,
+  },
+  {
+    href: "/csv-excel-cevirme",
+    baslik: "CSV Excel Çevirme",
+    aciklama: "CSV'yi bozuk karakter ve tek sütun sorunu olmadan XLSX yapın.",
+    kategoriler: ["veri", "donustur"],
+    ikon: { tip: "cift", kaynak: "csv", hedef: "xlsx" },
+    yeni: true,
+  },
+  {
+    href: "/csv-json-cevirme",
+    baslik: "CSV JSON Çevirme",
+    aciklama: "Tabloyu sayı ve iç içe alan tanıyarak JSON dizisine çevirin.",
+    kategoriler: ["veri", "donustur"],
+    ikon: { tip: "cift", kaynak: "csv", hedef: "json" },
+    yeni: true,
+  },
+  {
+    href: "/json-csv-cevirme",
+    baslik: "JSON CSV Çevirme",
+    aciklama:
+      "JSON'u Excel'de açılan tabloya çevirin; iç içe alanlar sütun olur.",
+    kategoriler: ["veri", "donustur"],
+    ikon: { tip: "cift", kaynak: "json", hedef: "csv" },
+    yeni: true,
+  },
+  {
+    href: "/json-duzenleyici",
+    baslik: "JSON Düzenleyici",
+    aciklama: "JSON'u biçimlendirin, hatayı satırıyla bulun, küçültün.",
+    kategoriler: ["veri", "metin"],
+    ikon: { tip: "cift", kaynak: "json", hedef: "json" },
+    yeni: true,
+  },
+  {
+    href: "/zip-olusturma",
+    baslik: "ZIP Oluşturma",
+    aciklama: "Dosya ve klasörleri sıkıştırılmış tek ZIP yapın.",
+    kategoriler: ["veri", "kucult"],
+    ikon: { tip: "cift", kaynak: "tum", hedef: "zip" },
+    yeni: true,
+  },
+  {
+    href: "/zip-acma",
+    baslik: "ZIP Açma",
+    aciklama: "Programsız ZIP açın, dosyaları önizleyip indirin.",
+    kategoriler: ["veri"],
+    ikon: { tip: "cift", kaynak: "zip", hedef: "tum" },
+    yeni: true,
+  },
   {
     href: "/video-sikistirma",
     baslik: "Video Sıkıştırma",

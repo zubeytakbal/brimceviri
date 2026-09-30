@@ -6,6 +6,7 @@ export type DosyaKategori =
   | "donustur"
   | "kucult"
   | "boyut"
+  | "duzenle"
   | "resmi"
   | "gizlilik";
 
@@ -13,6 +14,7 @@ export const DOSYA_KATEGORILER: Array<{ id: DosyaKategori; ad: string }> = [
   { id: "donustur", ad: "Dönüştür" },
   { id: "kucult", ad: "Küçült" },
   { id: "boyut", ad: "Boyutlandır" },
+  { id: "duzenle", ad: "Düzenle" },
   { id: "resmi", ad: "Resmi belge fotoğrafları" },
   { id: "gizlilik", ad: "Gizlilik" },
 ];
@@ -27,7 +29,9 @@ export type AracIkon =
   | { tip: "boyut" }
   | { tip: "vesikalik" }
   | { tip: "konum" }
-  | { tip: "kirp" };
+  | { tip: "kirp" }
+  | { tip: "filigran" }
+  | { tip: "bulanik" };
 
 export type DosyaAraci = {
   href: string;
@@ -56,6 +60,24 @@ const KART: Record<string, string> = {
 export const DOSYA_ARACLARI_YOLU = "/dosya-araclari";
 
 export const DOSYA_ARACLARI: DosyaAraci[] = [
+  {
+    href: "/fotograf-bulaniklastirma",
+    baslik: "Fotoğraf Bulanıklaştırma",
+    aciklama:
+      "Yüzleri, plakaları ve yazıları bulanık, mozaik ya da siyah kutuyla gizleyin.",
+    kategoriler: ["duzenle", "gizlilik"],
+    ikon: { tip: "bulanik" },
+    yeni: true,
+  },
+  {
+    href: "/fotografa-filigran-ekleme",
+    baslik: "Filigran Ekleme",
+    aciklama:
+      "Yazı veya logo filigranı; köşeye ya da tüm görsele döşeyin. Kimlik fotokopisi hazır.",
+    kategoriler: ["duzenle", "gizlilik"],
+    ikon: { tip: "filigran" },
+    yeni: true,
+  },
   {
     href: "/biyometrik-fotograf",
     baslik: "Biyometrik Fotoğraf (50×60)",

@@ -90,6 +90,58 @@ export default function AracIkonu({
             />
           ))}
         </>
+      ) : ikon.tip === "filigran" ? (
+        <>
+          <rect x="4" y="4" width="44" height="44" rx="10" fill="#e8f1fb" />
+          <rect
+            x="11"
+            y="11"
+            width="30"
+            height="30"
+            rx="4"
+            fill="#ffffff"
+            stroke="#2f6fde"
+            strokeWidth="2"
+          />
+          <path
+            d="M11 34l9-9 7 7 5-5 9 9"
+            stroke="#9cbbe9"
+            strokeWidth="2"
+            fill="none"
+          />
+          <text
+            x="26"
+            y="26"
+            textAnchor="middle"
+            fontSize="8"
+            fontWeight="800"
+            fill="#2f6fde"
+            opacity="0.75"
+            transform="rotate(-30 26 26)"
+            fontFamily="system-ui, sans-serif"
+          >
+            ©LOGO
+          </text>
+        </>
+      ) : ikon.tip === "bulanik" ? (
+        <>
+          <rect x="4" y="4" width="44" height="44" rx="10" fill="#eef0f3" />
+          <circle cx="26" cy="20" r="7" fill="#5b6b78" />
+          <path d="M13 40c1.5-7 6.5-11 13-11s11.5 4 13 11" fill="#5b6b78" />
+          {[0, 1, 2].map((i) =>
+            [0, 1, 2].map((j) => (
+              <rect
+                key={`${i}${j}`}
+                x={17 + i * 6}
+                y={11 + j * 6}
+                width="6"
+                height="6"
+                fill={(i + j) % 2 ? "#aab4bd" : "#c9d0d6"}
+                opacity="0.95"
+              />
+            )),
+          )}
+        </>
       ) : ikon.tip === "kirp" ? (
         <>
           <rect x="4" y="4" width="44" height="44" rx="10" fill="#f3ecfd" />

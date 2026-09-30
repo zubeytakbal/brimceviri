@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { boyutMetni, ciktiAdi } from "../../converter/gorsel/formatlar";
+import { jpegDpiYaz } from "../../converter/gorsel/dpi";
 import { jpegDoldur } from "../../converter/gorsel/jpeg";
 import {
   kaliteAra,
@@ -22,6 +23,10 @@ export type VesikalikOlcu = {
   maxBayt?: number;
   /** Kullanıcıya gösterilecek sınır metni, ör. "20–150 KB". */
   sinirMetni?: string;
+  /** Dosyaya yazılacak çözünürlük (baskıda doğru ölçü için). */
+  dpi?: number;
+  /** 10×15 cm baskı sayfası (4 adet, kesim çizgili) sunulsun mu? */
+  baskiSayfasi?: boolean;
 };
 
 type Oge = {
@@ -92,6 +97,13 @@ export default function VesikalikArac({ olcu }: { olcu: VesikalikOlcu }) {
         if (!r)
           throw new Error("Fotoğraf üst boyut sınırının altına indirilemedi.");
         blob = onbellek.get(r.kalite)!;
+      }
+      if (olcu.dpi) {
+        const dpili = jpegDpiYaz(
+          new Uint8Array(await blob.arrayBuffer()),
+          olcu.dpi,
+        );
+        blob = new Blob([dpili as BlobPart], { type: "image/jpeg" });
       }
       let dolduruldu = false;
       if (olcu.minBayt && blob.size < olcu.minBayt) {
@@ -204,6 +216,54 @@ export default function VesikalikArac({ olcu }: { olcu: VesikalikOlcu }) {
     setZipUrl(null);
   };
 
+  /** 10×15 cm (4×6 inç, 300 DPI) sayfaya 2×2 fotoğraf yerleştirir, kesim çizgileri çizer. */
+  const baskiYap = async (o: Oge) => {
+    const bitmap = bitmapler.current.get(o.id);
+    if (!bitmap) return;
+    const W = 1200;
+    const H = 1800;
+    const ara = 12;
+    const c = document.createElement("canvas");
+    c.width = W;
+    c.height = H;
+    const x = c.getContext("2d")!;
+    x.fillStyle = "#ffffff";
+    x.fillRect(0, 0, W, H);
+    x.imageSmoothingQuality = "high";
+    const sol = Math.round((W - 2 * olcu.genislik - ara) / 2);
+    const ust = Math.round((H - 2 * olcu.yukseklik - ara) / 2);
+    x.strokeStyle = "#b8c2ca";
+    x.lineWidth = 1;
+    x.setLineDash([8, 6]);
+    for (const i of [0, 1])
+      for (const j of [0, 1]) {
+        const dx = sol + i * (olcu.genislik + ara);
+        const dy = ust + j * (olcu.yukseklik + ara);
+        x.drawImage(
+          bitmap,
+          o.bolge.x,
+          o.bolge.y,
+          o.bolge.w,
+          o.bolge.h,
+          dx,
+          dy,
+          olcu.genislik,
+          olcu.yukseklik,
+        );
+        x.strokeRect(dx - 0.5, dy - 0.5, olcu.genislik + 1, olcu.yukseklik + 1);
+      }
+    const blob = await new Promise<Blob | null>((r) =>
+      c.toBlob(r, "image/jpeg", 0.95),
+    );
+    if (!blob) return;
+    const veri = jpegDpiYaz(new Uint8Array(await blob.arrayBuffer()), 300);
+    const u = url(new Blob([veri as BlobPart], { type: "image/jpeg" }));
+    indir(
+      u,
+      ciktiAdi(o.dosya.name, "jpg").replace(/\.jpg$/, "-10x15-baski.jpg"),
+    );
+  };
+
   const zipYap = async () => {
     const u = await zipUrlOlustur(
       ogeler.flatMap((o) =>
@@ -292,6 +352,15 @@ export default function VesikalikArac({ olcu }: { olcu: VesikalikOlcu }) {
                 />
                 <strong>{boyutMetni(s.sonuc.blob.size)}</strong>
                 <span className="gorsel-tamam">✓ {olcu.ad} için uygun</span>
+                {olcu.baskiSayfasi ? (
+                  <button
+                    type="button"
+                    className="time-tool-button is-secondary"
+                    onClick={() => void baskiYap(s)}
+                  >
+                    10×15 baskı sayfası (4 adet)
+                  </button>
+                ) : null}
                 <a
                   className="time-tool-button"
                   href={s.sonuc.url}

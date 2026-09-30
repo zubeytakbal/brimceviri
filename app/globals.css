@@ -14633,3 +14633,288 @@ a.all-units-row .all-units-name {
     box-shadow: none;
   }
 }
+
+.gorsel-birim {
+  align-self: center;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* Konum bilgisi (EXIF) aracı */
+.exif-uyari {
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #fdecea;
+  color: #8a1c12;
+  font-weight: 600;
+}
+
+.exif-liste {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.exif-liste > li {
+  display: grid;
+  gap: 10px;
+  padding: 16px;
+  border: 1px solid #e3e9ee;
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.exif-bas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.exif-bas strong {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.exif-bas .time-tool-button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 0;
+  padding: 7px 16px;
+}
+
+.exif-bilgi {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 8px 18px;
+  margin: 0;
+}
+
+.exif-bilgi dt {
+  color: #5a6a76;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.exif-bilgi dd {
+  margin: 2px 0 0;
+  overflow-wrap: anywhere;
+}
+
+.exif-kirmizi {
+  color: #b42318;
+}
+
+.kirpma-ucte {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, transparent calc(33.33% - 0.5px), rgba(255, 255, 255, 0.55) calc(33.33% - 0.5px), rgba(255, 255, 255, 0.55) calc(33.33% + 0.5px), transparent calc(33.33% + 0.5px), transparent calc(66.66% - 0.5px), rgba(255, 255, 255, 0.55) calc(66.66% - 0.5px), rgba(255, 255, 255, 0.55) calc(66.66% + 0.5px), transparent calc(66.66% + 0.5px)),
+    linear-gradient(to bottom, transparent calc(33.33% - 0.5px), rgba(255, 255, 255, 0.55) calc(33.33% - 0.5px), rgba(255, 255, 255, 0.55) calc(33.33% + 0.5px), transparent calc(33.33% + 0.5px), transparent calc(66.66% - 0.5px), rgba(255, 255, 255, 0.55) calc(66.66% - 0.5px), rgba(255, 255, 255, 0.55) calc(66.66% + 0.5px), transparent calc(66.66% + 0.5px));
+  pointer-events: none;
+}
+
+.kirpma-tutamac {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #1b2830;
+  border-radius: 50%;
+  background: #ffffff;
+  touch-action: none;
+}
+
+.kirpma-tutamac.is-ku {
+  top: -3px;
+  left: -3px;
+  cursor: nwse-resize;
+}
+
+.kirpma-tutamac.is-kd {
+  top: -3px;
+  right: -3px;
+  cursor: nesw-resize;
+}
+
+.kirpma-tutamac.is-gu {
+  bottom: -3px;
+  left: -3px;
+  cursor: nesw-resize;
+}
+
+.kirpma-tutamac.is-gd {
+  right: -3px;
+  bottom: -3px;
+  cursor: nwse-resize;
+}
+
+/* Fotoğraf kırpma ve döndürme */
+.kirp-araclar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.kirp-araclar button {
+  padding: 8px 14px;
+  border: 1px solid #d5dde3;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #22313c;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.kirp-araclar button:hover,
+.kirp-araclar button[aria-pressed="true"] {
+  border-color: #2c7f99;
+  color: #1f4f66;
+}
+
+.kirp-oranlar button {
+  padding: 6px 12px;
+  font-size: 0.9rem;
+}
+
+.kirp-alt {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  align-items: center;
+  justify-content: center;
+}
+
+.kirp-alt .time-tool-button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 0;
+  padding: 9px 18px;
+}
+
+.kirp-format select {
+  padding: 6px 8px;
+  border: 1px solid #d5dde3;
+  border-radius: 8px;
+  font: inherit;
+}
+
+/* Filigran aracı */
+.filigran-hazir {
+  margin-inline-start: auto;
+}
+
+.filigran-yazi {
+  flex: 1 1 320px;
+}
+
+.filigran-yazi textarea {
+  width: 100%;
+  min-height: 56px;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 10px;
+  font: inherit;
+  resize: vertical;
+}
+
+.filigran-konum {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  align-items: center;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.filigran-izgara {
+  display: grid;
+  grid-template-columns: repeat(3, 34px);
+  gap: 4px;
+}
+
+.filigran-izgara button,
+.filigran-dose {
+  height: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  font: inherit;
+  cursor: pointer;
+}
+
+.filigran-dose {
+  padding: 0 14px;
+}
+
+.filigran-izgara button.is-active,
+.filigran-dose.is-active {
+  border-color: #ffffff;
+  background: #ffffff;
+  color: #1f4f66;
+}
+
+.filigran-onizleme {
+  display: grid;
+  place-items: center;
+  padding: 12px;
+  border: 1px solid #e3e9ee;
+  border-radius: 14px;
+  background: repeating-conic-gradient(#eef2f5 0% 25%, #ffffff 0% 50%) 50% / 20px 20px;
+}
+
+.filigran-onizleme canvas {
+  max-width: 100%;
+  max-height: 520px;
+  height: auto;
+  border-radius: 6px;
+}
+
+/* Fotoğraf bulanıklaştırma */
+.bulanik-ipucu {
+  margin: 0;
+  color: #22313c;
+  text-align: center;
+}
+
+.bulanik-tuval {
+  cursor: crosshair;
+  touch-action: none;
+}
+
+.bulanik-alanlar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bulanik-alanlar li {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 6px 10px;
+  border: 1px solid #e3e9ee;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.bulanik-alanlar select {
+  padding: 4px 6px;
+  border: 1px solid #d5dde3;
+  border-radius: 8px;
+  font: inherit;
+}

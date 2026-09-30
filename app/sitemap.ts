@@ -3320,6 +3320,48 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/fotograf-bulaniklastirma`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/fotografa-filigran-ekleme`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/heic-jpg-cevirme`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/biyometrik-fotograf`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/fotograf-kirpma`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/fotograf-konum-bilgisi-silme`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/resim-boyutlandirma`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/e-okul-fotograf-kucultme`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",

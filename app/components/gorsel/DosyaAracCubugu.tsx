@@ -13,6 +13,7 @@ import AracIkonu from "./AracIkonu";
 /** Çubukta doğrudan görünen araçlar. */
 const ONE_CIKAN = [
   "/gorsel-donusturucu",
+  "/resim-boyutlandirma",
   "/fotograf-boyutu-kucultme",
   "/e-okul-fotograf-kucultme",
 ];

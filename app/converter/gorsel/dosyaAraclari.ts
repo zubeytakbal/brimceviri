@@ -2,20 +2,36 @@
 import { GORSEL_CIFTLER } from "./ciftler";
 import type { GorselFormat } from "./formatlar";
 
-export type DosyaKategori = "donustur" | "kucult" | "boyut" | "resmi";
+export type DosyaKategori =
+  | "donustur"
+  | "kucult"
+  | "boyut"
+  | "duzenle"
+  | "resmi"
+  | "gizlilik";
 
 export const DOSYA_KATEGORILER: Array<{ id: DosyaKategori; ad: string }> = [
   { id: "donustur", ad: "Dönüştür" },
   { id: "kucult", ad: "Küçült" },
   { id: "boyut", ad: "Boyutlandır" },
+  { id: "duzenle", ad: "Düzenle" },
   { id: "resmi", ad: "Resmi belge fotoğrafları" },
+  { id: "gizlilik", ad: "Gizlilik" },
 ];
 
 export type AracIkon =
-  | { tip: "cift"; kaynak: GorselFormat | "tum"; hedef: GorselFormat | "tum" }
+  | {
+      tip: "cift";
+      kaynak: GorselFormat | "tum" | "heic";
+      hedef: GorselFormat | "tum";
+    }
   | { tip: "kucult" }
   | { tip: "boyut" }
-  | { tip: "vesikalik" };
+  | { tip: "vesikalik" }
+  | { tip: "konum" }
+  | { tip: "kirp" }
+  | { tip: "filigran" }
+  | { tip: "bulanik" };
 
 export type DosyaAraci = {
   href: string;
@@ -45,6 +61,59 @@ export const DOSYA_ARACLARI_YOLU = "/dosya-araclari";
 
 export const DOSYA_ARACLARI: DosyaAraci[] = [
   {
+    href: "/fotograf-bulaniklastirma",
+    baslik: "Fotoğraf Bulanıklaştırma",
+    aciklama:
+      "Yüzleri, plakaları ve yazıları bulanık, mozaik ya da siyah kutuyla gizleyin.",
+    kategoriler: ["duzenle", "gizlilik"],
+    ikon: { tip: "bulanik" },
+    yeni: true,
+  },
+  {
+    href: "/fotografa-filigran-ekleme",
+    baslik: "Filigran Ekleme",
+    aciklama:
+      "Yazı veya logo filigranı; köşeye ya da tüm görsele döşeyin. Kimlik fotokopisi hazır.",
+    kategoriler: ["duzenle", "gizlilik"],
+    ikon: { tip: "filigran" },
+    yeni: true,
+  },
+  {
+    href: "/biyometrik-fotograf",
+    baslik: "Biyometrik Fotoğraf (50×60)",
+    aciklama:
+      "Kimlik, pasaport ve ehliyet için 50×60 mm; 10×15 baskı sayfasında 4 adet.",
+    kategoriler: ["resmi"],
+    ikon: { tip: "vesikalik" },
+    yeni: true,
+  },
+  {
+    href: "/fotograf-kirpma",
+    baslik: "Fotoğraf Kırpma ve Döndürme",
+    aciklama: "1:1, 4:5, 16:9 gibi oranlarla kırpın; 90° döndürün, çevirin.",
+    kategoriler: ["boyut"],
+    ikon: { tip: "kirp" },
+    yeni: true,
+  },
+  {
+    href: "/fotograf-konum-bilgisi-silme",
+    baslik: "Konum Bilgisi (EXIF) Silme",
+    aciklama:
+      "Fotoğraftaki konumu, cihazı ve tarihi görün; kalite kaybı olmadan silin.",
+    kategoriler: ["gizlilik"],
+    ikon: { tip: "konum" },
+    yeni: true,
+  },
+  {
+    href: "/resim-boyutlandirma",
+    baslik: "Resim Boyutlandırma",
+    aciklama:
+      "Piksel, yüzde veya santimetre ile boyutlandırın; sosyal medya ölçüleri hazır.",
+    kategoriler: ["boyut"],
+    ikon: { tip: "boyut" },
+    yeni: true,
+  },
+  {
     href: "/e-okul-fotograf-kucultme",
     baslik: "e-Okul Fotoğraf Küçültme",
     aciklama:
@@ -69,6 +138,15 @@ export const DOSYA_ARACLARI: DosyaAraci[] = [
       "JPG, PNG ve WebP'yi birbirine çevirin; kalite ve genişliği ayarlayın.",
     kategoriler: ["donustur"],
     ikon: { tip: "cift", kaynak: "tum", hedef: "tum" },
+  },
+  {
+    href: "/heic-jpg-cevirme",
+    baslik: "HEIC JPG Çevirme",
+    aciklama:
+      "iPhone fotoğraflarını Windows'ta ve her yerde açılan JPG'ye çevirin.",
+    kategoriler: ["donustur"],
+    ikon: { tip: "cift", kaynak: "heic", hedef: "jpg" },
+    yeni: true,
   },
   ...GORSEL_CIFTLER.map(
     (c): DosyaAraci => ({

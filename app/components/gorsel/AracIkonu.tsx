@@ -5,6 +5,7 @@ const RENK: Record<string, { zemin: string; yazi: string; ad: string }> = {
   png: { zemin: "#2f6fde", yazi: "#ffffff", ad: "PNG" },
   webp: { zemin: "#1f9d57", yazi: "#ffffff", ad: "WEBP" },
   tum: { zemin: "#5b6b78", yazi: "#ffffff", ad: "IMG" },
+  heic: { zemin: "#1c1c1e", yazi: "#ffffff", ad: "HEIC" },
 };
 
 /** Sayfa köşesi kıvrık küçük dosya rozeti. */
@@ -88,6 +89,105 @@ export default function AracIkonu({
               strokeLinejoin="round"
             />
           ))}
+        </>
+      ) : ikon.tip === "filigran" ? (
+        <>
+          <rect x="4" y="4" width="44" height="44" rx="10" fill="#e8f1fb" />
+          <rect
+            x="11"
+            y="11"
+            width="30"
+            height="30"
+            rx="4"
+            fill="#ffffff"
+            stroke="#2f6fde"
+            strokeWidth="2"
+          />
+          <path
+            d="M11 34l9-9 7 7 5-5 9 9"
+            stroke="#9cbbe9"
+            strokeWidth="2"
+            fill="none"
+          />
+          <text
+            x="26"
+            y="26"
+            textAnchor="middle"
+            fontSize="8"
+            fontWeight="800"
+            fill="#2f6fde"
+            opacity="0.75"
+            transform="rotate(-30 26 26)"
+            fontFamily="system-ui, sans-serif"
+          >
+            ©LOGO
+          </text>
+        </>
+      ) : ikon.tip === "bulanik" ? (
+        <>
+          <rect x="4" y="4" width="44" height="44" rx="10" fill="#eef0f3" />
+          <circle cx="26" cy="20" r="7" fill="#5b6b78" />
+          <path d="M13 40c1.5-7 6.5-11 13-11s11.5 4 13 11" fill="#5b6b78" />
+          {[0, 1, 2].map((i) =>
+            [0, 1, 2].map((j) => (
+              <rect
+                key={`${i}${j}`}
+                x={17 + i * 6}
+                y={11 + j * 6}
+                width="6"
+                height="6"
+                fill={(i + j) % 2 ? "#aab4bd" : "#c9d0d6"}
+                opacity="0.95"
+              />
+            )),
+          )}
+        </>
+      ) : ikon.tip === "kirp" ? (
+        <>
+          <rect x="4" y="4" width="44" height="44" rx="10" fill="#f3ecfd" />
+          <path
+            d="M16 8v26a2 2 0 0 0 2 2h26"
+            stroke="#7b4bd1"
+            strokeWidth="3"
+            fill="none"
+            strokeLinecap="round"
+          />
+          <path
+            d="M8 16h26a2 2 0 0 1 2 2v26"
+            stroke="#7b4bd1"
+            strokeWidth="3"
+            fill="none"
+            strokeLinecap="round"
+          />
+          <rect
+            x="20"
+            y="20"
+            width="12"
+            height="12"
+            fill="#7b4bd1"
+            opacity="0.25"
+          />
+        </>
+      ) : ikon.tip === "konum" ? (
+        <>
+          <rect x="4" y="4" width="44" height="44" rx="10" fill="#fdecea" />
+          <path
+            d="M26 10c-7 0-12 5.2-12 11.8C14 30.5 26 42 26 42s12-11.5 12-20.2C38 15.2 33 10 26 10z"
+            fill="#d64532"
+          />
+          <circle cx="26" cy="22" r="4.5" fill="#fdecea" />
+          <path
+            d="M12 40L40 12"
+            stroke="#fdecea"
+            strokeWidth="6"
+            strokeLinecap="round"
+          />
+          <path
+            d="M12 40L40 12"
+            stroke="#8a1c12"
+            strokeWidth="2.6"
+            strokeLinecap="round"
+          />
         </>
       ) : ikon.tip === "boyut" ? (
         <>

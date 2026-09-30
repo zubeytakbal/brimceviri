@@ -43,17 +43,45 @@ export default function VideoBitrateCalculatorPage() {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: buildSiteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "Mesleğe Göre Araçlar", item: buildSiteUrl("/meslekler") },
-      { "@type": "ListItem", position: 3, name: "Video Editör Araçları", item: buildSiteUrl("/video-editor-araclari") },
-      { "@type": "ListItem", position: 4, name: "Video Bit Hızı ve Dosya Boyutu Hesaplama", item: buildSiteUrl("/video-bit-hizi-hesaplama") },
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Ana Sayfa",
+        item: buildSiteUrl("/"),
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Mesleğe Göre Araçlar",
+        item: buildSiteUrl("/meslekler"),
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "Video Editör Araçları",
+        item: buildSiteUrl("/video-editor-araclari"),
+      },
+      {
+        "@type": "ListItem",
+        position: 4,
+        name: "Video Bit Hızı ve Dosya Boyutu Hesaplama",
+        item: buildSiteUrl("/video-bit-hizi-hesaplama"),
+      },
     ],
   };
 
   return (
     <main className="all-conversions-page">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(buildFaqSchema(faqItems)) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: serializeJsonLd(buildFaqSchema(faqItems)),
+        }}
+      />
 
       <div className="all-conversions-shell">
         <nav className="breadcrumbs" aria-label="Sayfa yolu">
@@ -87,11 +115,10 @@ export default function VideoBitrateCalculatorPage() {
           <h2>İlgili araçlar</h2>
           <p>
             Diğer video editör araçları için{" "}
-            <Link href="/video-editor-araclari">Video Editör Araçları</Link>
-            {" "}sayfasına, megabit ve megabayt birimlerini doğrudan
-            çevirmek için{" "}
-            <Link href="/megabit-megabayt">Megabit - Megabayt Çevirici</Link>
-            {" "}sayfasına bakabilirsin.
+            <Link href="/video-editor-araclari">Video Editör Araçları</Link>{" "}
+            sayfasına, megabit ve megabayt birimlerini doğrudan çevirmek için{" "}
+            <Link href="/megabit-megabayt">Megabit - Megabayt Çevirici</Link>{" "}
+            sayfasına bakabilirsin.
           </p>
         </section>
       </div>

@@ -30,8 +30,25 @@ export const DOSYA_KATEGORILER: Array<{ id: DosyaKategori; ad: string }> = [
 export type AracIkon =
   | {
       tip: "cift";
-      kaynak: GorselFormat | KaynakFormat | SesKaynak | "tum" | "heic" | "pdf" | "ses";
-      hedef: GorselFormat | "tum" | "pdf" | "ico" | "b64" | "mp3" | "wav";
+      kaynak:
+        | GorselFormat
+        | KaynakFormat
+        | SesKaynak
+        | "tum"
+        | "heic"
+        | "pdf"
+        | "ses"
+        | "mov";
+      hedef:
+        | GorselFormat
+        | "tum"
+        | "pdf"
+        | "ico"
+        | "b64"
+        | "mp3"
+        | "wav"
+        | "mp4"
+        | "gif";
     }
   | {
       tip: "pdf";
@@ -53,7 +70,8 @@ export type AracIkon =
   | { tip: "filigran" }
   | { tip: "bulanik" }
   | { tip: "ocr" }
-  | { tip: "seskes" };
+  | { tip: "seskes" }
+  | { tip: "video"; islem: "sikistir" | "kes" | "dondur" | "sessiz" };
 
 export type DosyaAraci = {
   href: string;
@@ -82,6 +100,63 @@ const KART: Record<string, string> = {
 export const DOSYA_ARACLARI_YOLU = "/dosya-araclari";
 
 export const DOSYA_ARACLARI: DosyaAraci[] = [
+  {
+    href: "/video-sikistirma",
+    baslik: "Video Sıkıştırma",
+    aciklama:
+      "Videoyu 25 MB, 10 MB gibi hedef boyuta küçültün; kalite ve çözünürlük seçin.",
+    kategoriler: ["ses", "kucult"],
+    ikon: { tip: "video", islem: "sikistir" },
+    yeni: true,
+  },
+  {
+    href: "/mov-mp4-cevirme",
+    baslik: "MOV MP4 Çevirme",
+    aciklama: "iPhone MOV videolarını her yerde açılan MP4'e çevirin.",
+    kategoriler: ["ses", "donustur"],
+    ikon: { tip: "cift", kaynak: "mov", hedef: "mp4" },
+    yeni: true,
+  },
+  {
+    href: "/video-kesme",
+    baslik: "Video Kesme",
+    aciklama: "Videonun başını, sonunu veya bir bölümünü kesin.",
+    kategoriler: ["ses", "duzenle"],
+    ikon: { tip: "video", islem: "kes" },
+    yeni: true,
+  },
+  {
+    href: "/video-dondurme",
+    baslik: "Video Döndürme",
+    aciklama: "Yan veya ters çekilmiş videoyu döndürün, aynalayın.",
+    kategoriler: ["ses", "duzenle"],
+    ikon: { tip: "video", islem: "dondur" },
+    yeni: true,
+  },
+  {
+    href: "/videodan-sesi-kaldirma",
+    baslik: "Videodan Sesi Kaldırma",
+    aciklama: "Videonun sesini silin; görüntü kalitesi değişmez.",
+    kategoriler: ["ses", "duzenle", "gizlilik"],
+    ikon: { tip: "video", islem: "sessiz" },
+    yeni: true,
+  },
+  {
+    href: "/video-gif-cevirme",
+    baslik: "Video GIF Çevirme",
+    aciklama: "Videodan bölüm seçip hareketli GIF yapın.",
+    kategoriler: ["ses", "donustur"],
+    ikon: { tip: "cift", kaynak: "mp4", hedef: "gif" },
+    yeni: true,
+  },
+  {
+    href: "/gif-mp4-cevirme",
+    baslik: "GIF MP4 Çevirme",
+    aciklama: "GIF'leri çok daha küçük MP4 videoya çevirin.",
+    kategoriler: ["ses", "donustur"],
+    ikon: { tip: "cift", kaynak: "gif", hedef: "mp4" },
+    yeni: true,
+  },
   {
     href: "/mp4-mp3-cevirme",
     baslik: "MP4 MP3 Çevirme",

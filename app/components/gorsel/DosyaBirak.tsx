@@ -12,11 +12,15 @@ const SES = (x: File) =>
   /\.(mp3|wav|m4a|aac|ogg|oga|opus|flac|wma|amr|weba|mp4|m4v|mov|webm|mkv|3gp)$/i.test(
     x.name,
   );
-const SUZGEC = { gorsel: GORSEL, pdf: PDF, ses: SES };
+const VIDEO = (x: File) =>
+  x.type.startsWith("video/") ||
+  /\.(mp4|m4v|mov|webm|mkv|3gp|avi)$/i.test(x.name);
+const SUZGEC = { gorsel: GORSEL, pdf: PDF, ses: SES, video: VIDEO };
 const KABUL = {
   gorsel: "image/*,.heic,.heif,.tif,.tiff,.svg,.jfif",
   pdf: "application/pdf,.pdf",
   ses: "audio/*,video/*,.opus,.m4a,.flac,.amr,.mkv",
+  video: "video/*,.mov,.mkv,.m4v",
 };
 
 /** Sürükle-bırak destekli dosya seçme alanı (görsel, PDF veya ses/video). */
@@ -29,7 +33,7 @@ export default function DosyaBirak({
   onSec,
 }: {
   baslik: string;
-  tur?: "gorsel" | "pdf" | "ses";
+  tur?: "gorsel" | "pdf" | "ses" | "video";
   accept?: string;
   max: number;
   coklu?: boolean;

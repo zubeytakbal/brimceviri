@@ -56,16 +56,39 @@ export default function VideoEditorAraclariPage() {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: buildSiteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "Mesleğe Göre Araçlar", item: buildSiteUrl("/meslekler") },
-      { "@type": "ListItem", position: 3, name: "Video Editör Araçları", item: buildSiteUrl("/video-editor-araclari") },
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Ana Sayfa",
+        item: buildSiteUrl("/"),
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Mesleğe Göre Araçlar",
+        item: buildSiteUrl("/meslekler"),
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "Video Editör Araçları",
+        item: buildSiteUrl("/video-editor-araclari"),
+      },
     ],
   };
 
   return (
     <main className="all-conversions-page">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(buildFaqSchema(faqItems)) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: serializeJsonLd(buildFaqSchema(faqItems)),
+        }}
+      />
 
       <div className="all-conversions-shell">
         <nav className="breadcrumbs" aria-label="Sayfa yolu">
@@ -79,10 +102,9 @@ export default function VideoEditorAraclariPage() {
         <header className="all-conversions-header">
           <h1>Video Editör Araçları</h1>
           <p>
-            Video editörlerinin dışa aktarım ayarlarını planlarken
-            ihtiyaç duyduğu hesaplama araçlarını tek sayfada topladık:
-            bit hızı ve dosya boyutu hesaplama, veri depolama birimi
-            dönüşümleri.
+            Video editörlerinin dışa aktarım ayarlarını planlarken ihtiyaç
+            duyduğu hesaplama araçlarını tek sayfada topladık: bit hızı ve dosya
+            boyutu hesaplama, veri depolama birimi dönüşümleri.
           </p>
         </header>
 
@@ -90,7 +112,8 @@ export default function VideoEditorAraclariPage() {
           <p className="key-stat-callout-title">Hızlı Bakış</p>
           <ul>
             <li>
-              <strong>Dosya Boyutu (MB)</strong> = Bit Hızı (Mbps) × Süre (sn) / 8
+              <strong>Dosya Boyutu (MB)</strong> = Bit Hızı (Mbps) × Süre (sn) /
+              8
             </li>
           </ul>
         </div>
@@ -102,24 +125,25 @@ export default function VideoEditorAraclariPage() {
               <Link href="/video-bit-hizi-hesaplama">
                 Video Bit Hızı ve Dosya Boyutu Hesaplama
               </Link>{" "}
-              — bit hızı ve süreden dosya boyutunu, ya da hedef dosya
-              boyutundan bit hızını hesapla.
+              — bit hızı ve süreden dosya boyutunu, ya da hedef dosya boyutundan
+              bit hızını hesapla.
             </li>
             <li>
-              <Link href="/kategoriler/veri">Veri Depolama Dönüşümleri</Link>
-              {" "}— bayt, KB, MB, GB, TB birimleri arasında dönüşüm
-              yap.
+              <Link href="/kategoriler/veri">Veri Depolama Dönüşümleri</Link> —
+              bayt, KB, MB, GB, TB birimleri arasında dönüşüm yap.
             </li>
           </ul>
 
           <h2>YouTube Önerilen Yükleme Bit Hızları</h2>
           <p>
-            YouTube&apos;un yayınladığı önerilen yükleme bit hızı
-            değerleri (H.264 kodek, SDR video):
+            YouTube&apos;un yayınladığı önerilen yükleme bit hızı değerleri
+            (H.264 kodek, SDR video):
           </p>
           <div className="conversion-table-wrap">
             <table className="conversion-table">
-              <caption>Çözünürlük ve kare hızına göre önerilen bit hızları</caption>
+              <caption>
+                Çözünürlük ve kare hızına göre önerilen bit hızları
+              </caption>
               <thead>
                 <tr>
                   <th scope="col">Çözünürlük / Kare Hızı</th>
@@ -139,9 +163,9 @@ export default function VideoEditorAraclariPage() {
           </div>
           <p>
             Bu değerler platform ve kodekten (H.264, H.265/HEVC, VP9 gibi)
-            bağımsız evrensel bir kural değildir; farklı platformlar
-            (Instagram, TikTok, Vimeo) ve daha yeni/verimli kodekler farklı
-            önerilerde bulunabilir.
+            bağımsız evrensel bir kural değildir; farklı platformlar (Instagram,
+            TikTok, Vimeo) ve daha yeni/verimli kodekler farklı önerilerde
+            bulunabilir.
           </p>
 
           <h2>Sık Sorulan Sorular</h2>

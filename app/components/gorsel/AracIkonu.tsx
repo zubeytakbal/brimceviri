@@ -18,6 +18,7 @@ const RENK: Record<string, { zemin: string; yazi: string; ad: string }> = {
   ses: { zemin: "#5b6b78", yazi: "#ffffff", ad: "SES" },
   mp3: { zemin: "#7a3fe0", yazi: "#ffffff", ad: "MP3" },
   mp4: { zemin: "#0b6e99", yazi: "#ffffff", ad: "MP4" },
+  mov: { zemin: "#1c1c1e", yazi: "#ffffff", ad: "MOV" },
   wav: { zemin: "#2a9d8f", yazi: "#ffffff", ad: "WAV" },
   m4a: { zemin: "#e76f51", yazi: "#ffffff", ad: "M4A" },
   opus: { zemin: "#25a244", yazi: "#ffffff", ad: "OPUS" },
@@ -303,6 +304,49 @@ export default function AracIkonu({
             />
           </>
         )
+      ) : ikon.tip === "video" ? (
+        <>
+          <rect x="4" y="10" width="44" height="32" rx="7" fill="#0b6e99" />
+          <path d="M22 19v14l12-7z" fill="#ffffff" />
+          {ikon.islem === "sikistir" ? (
+            <path
+              d="M26 2v6M22 5l4 4 4-4M26 50v-6M22 47l4-4 4 4"
+              stroke="#5b6b78"
+              strokeWidth="2.4"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          ) : ikon.islem === "kes" ? (
+            <path
+              d="M14 6v40M38 6v40"
+              stroke="#f5a524"
+              strokeWidth="2.6"
+              strokeLinecap="round"
+            />
+          ) : ikon.islem === "dondur" ? (
+            <path
+              d="M42 46a10 10 0 0 0 6-9M48 44v-7h-7"
+              stroke="#f5a524"
+              strokeWidth="2.6"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          ) : (
+            <>
+              <circle
+                cx="42"
+                cy="42"
+                r="9"
+                fill="#ffffff"
+                stroke="#e5322d"
+                strokeWidth="2.4"
+              />
+              <path d="M36 48l12-12" stroke="#e5322d" strokeWidth="2.4" />
+            </>
+          )}
+        </>
       ) : ikon.tip === "seskes" ? (
         <>
           <rect x="4" y="8" width="44" height="36" rx="8" fill="#7a3fe0" />

@@ -351,6 +351,87 @@ export default function AracIkonu({
             </>
           )}
         </>
+      ) : ikon.tip === "qr" || ikon.tip === "qroku" ? (
+        <>
+          <rect
+            x="6"
+            y="6"
+            width="40"
+            height="40"
+            rx="6"
+            fill="#ffffff"
+            stroke="#1f2a33"
+            strokeWidth="2.4"
+          />
+          <path
+            d="M12 12h10v10H12zM30 12h10v10H30zM12 30h10v10H12zM15 15h4v4h-4zM33 15h4v4h-4zM15 33h4v4h-4zM30 30h4v4h-4zM36 36h4v4h-4zM30 38h4v2h-4zM38 30h2v4h-2z"
+            fill="#1f2a33"
+          />
+          {ikon.tip === "qroku" ? (
+            <path
+              d="M2 26h48"
+              stroke="#e5322d"
+              strokeWidth="2.6"
+              strokeLinecap="round"
+            />
+          ) : null}
+        </>
+      ) : ikon.tip === "sifre" ? (
+        <>
+          <rect x="10" y="22" width="32" height="24" rx="5" fill="#2a9d8f" />
+          <path
+            d="M17 22v-6a9 9 0 0 1 18 0v6"
+            stroke="#2a9d8f"
+            strokeWidth="4"
+            fill="none"
+          />
+          <text
+            x="26"
+            y="39"
+            textAnchor="middle"
+            fontSize="11"
+            fontWeight="800"
+            fill="#ffffff"
+            fontFamily="system-ui, sans-serif"
+          >
+            ***
+          </text>
+        </>
+      ) : ikon.tip === "fark" ? (
+        <>
+          <rect
+            x="4"
+            y="8"
+            width="20"
+            height="36"
+            rx="4"
+            fill="#fde2e1"
+            stroke="#e5322d"
+            strokeWidth="2"
+          />
+          <rect
+            x="28"
+            y="8"
+            width="20"
+            height="36"
+            rx="4"
+            fill="#dff5e7"
+            stroke="#1f9d57"
+            strokeWidth="2"
+          />
+          <path
+            d="M9 18h10M9 26h6M9 34h10"
+            stroke="#e5322d"
+            strokeWidth="2.4"
+            strokeLinecap="round"
+          />
+          <path
+            d="M33 18h10M33 26h10M33 34h7"
+            stroke="#1f9d57"
+            strokeWidth="2.4"
+            strokeLinecap="round"
+          />
+        </>
       ) : ikon.tip === "seskes" ? (
         <>
           <rect x="4" y="8" width="44" height="36" rx="8" fill="#7a3fe0" />

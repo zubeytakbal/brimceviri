@@ -24,7 +24,7 @@ export const DOSYA_KATEGORILER: Array<{ id: DosyaKategori; ad: string }> = [
   { id: "pdf", ad: "PDF" },
   { id: "ses", ad: "Ses ve video" },
   { id: "veri", ad: "Excel, veri ve ZIP" },
-  { id: "metin", ad: "Metin tanıma" },
+  { id: "metin", ad: "Metin, QR ve şifre" },
   { id: "resmi", ad: "Resmi belge fotoğrafları" },
   { id: "gizlilik", ad: "Gizlilik" },
 ];
@@ -81,6 +81,10 @@ export type AracIkon =
   | { tip: "bulanik" }
   | { tip: "ocr" }
   | { tip: "seskes" }
+  | { tip: "qr" }
+  | { tip: "qroku" }
+  | { tip: "sifre" }
+  | { tip: "fark" }
   | { tip: "video"; islem: "sikistir" | "kes" | "dondur" | "sessiz" };
 
 export type DosyaAraci = {
@@ -342,6 +346,40 @@ export const DOSYA_ARACLARI: DosyaAraci[] = [
     aciklama: "Sayfalara GİZLİ, TASLAK gibi yazı ya da logo filigranı ekleyin.",
     kategoriler: ["pdf", "gizlilik"],
     ikon: { tip: "pdf", islem: "filigran" },
+    yeni: true,
+  },
+  {
+    href: "/qr-kod-olusturucu",
+    baslik: "QR Kod Oluşturucu",
+    aciklama:
+      "Bağlantı, Wi-Fi, kartvizit, WhatsApp için logolu QR; PNG ve SVG.",
+    kategoriler: ["metin"],
+    ikon: { tip: "qr" },
+    yeni: true,
+  },
+  {
+    href: "/qr-kod-okuyucu",
+    baslik: "QR Kod Okuyucu",
+    aciklama: "QR'ı görselden, ekran görüntüsünden veya kameradan okuyun.",
+    kategoriler: ["metin"],
+    ikon: { tip: "qroku" },
+    yeni: true,
+  },
+  {
+    href: "/sifre-olusturucu",
+    baslik: "Şifre Oluşturucu",
+    aciklama: "Güçlü, rastgele şifre üretin; gücünü ve kırma süresini görün.",
+    kategoriler: ["metin", "gizlilik"],
+    ikon: { tip: "sifre" },
+    yeni: true,
+  },
+  {
+    href: "/metin-karsilastirma",
+    baslik: "Metin Karşılaştırma",
+    aciklama:
+      "İki metin arasındaki eklenen, silinen ve değişen kelimeleri bulun.",
+    kategoriler: ["metin"],
+    ikon: { tip: "fark" },
     yeni: true,
   },
   {

@@ -15677,3 +15677,238 @@ a.all-units-row .all-units-name {
   white-space: pre-wrap;
   font-size: 0.85rem;
 }
+
+.qr-turler {
+  margin-bottom: 12px;
+}
+.qr-duzen {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 340px);
+  gap: 16px;
+  align-items: start;
+}
+@media (max-width: 760px) {
+  .qr-duzen {
+    grid-template-columns: 1fr;
+  }
+}
+.qr-genis {
+  grid-column: 1 / -1;
+}
+.qr-genis textarea {
+  width: 100%;
+}
+.qr-ayarlar {
+  margin-top: 12px;
+  color: #ffffff;
+}
+.qr-ayarlar summary {
+  cursor: pointer;
+  font-weight: 700;
+}
+.qr-saydam {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 8px;
+  font-size: 0.85rem;
+}
+.qr-onizleme {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  padding: 16px;
+  border: 1px solid #e3e9ee;
+  border-radius: 14px;
+  background: repeating-conic-gradient(#eef2f5 0% 25%, #ffffff 0% 50%) 50% / 16px 16px;
+}
+.qr-onizleme canvas {
+  width: 100%;
+
+  max-width: 300px;
+  height: auto;
+  image-rendering: pixelated;
+}
+.qr-dugmeler {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+.qr-kamera {
+  position: relative;
+  display: none;
+  overflow: hidden;
+  max-width: 480px;
+  margin: 12px auto;
+  border-radius: 14px;
+  background: #000000;
+}
+.qr-kamera.is-acik {
+  display: block;
+}
+.qr-kamera video {
+  display: block;
+  width: 100%;
+}
+.qr-cerceve {
+  position: absolute;
+  inset: 18%;
+  border: 3px solid rgba(255, 255, 255, 0.85);
+  border-radius: 12px;
+  box-shadow: 0 0 0 999px rgba(0, 0, 0, 0.35);
+}
+.qr-sonuc {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+  padding: 14px;
+  border: 1px solid #e3e9ee;
+  border-radius: 12px;
+  background: #ffffff;
+}
+.qr-sonuc dl {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+}
+.qr-sonuc dl div {
+  display: grid;
+  grid-template-columns: 140px minmax(0, 1fr);
+  gap: 8px;
+}
+.qr-sonuc dt {
+  color: #5b6b78;
+}
+.qr-sonuc dd {
+  margin: 0;
+  font-weight: 700;
+  word-break: break-all;
+}
+.sifre-kumeler {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 6px 16px;
+  margin: 10px 0;
+}
+.sifre-guc {
+  display: grid;
+  gap: 6px;
+  margin: 14px 0 8px;
+}
+.sifre-cubuk {
+  display: block;
+  height: 8px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: #e3e9ee;
+}
+.sifre-cubuk i {
+  display: block;
+  height: 100%;
+  border-radius: 99px;
+  background: #e5322d;
+}
+.sifre-guc.is-2 .sifre-cubuk i {
+  background: #f5a524;
+}
+.sifre-guc.is-3 .sifre-cubuk i {
+  background: #2a9d8f;
+}
+.sifre-guc.is-4 .sifre-cubuk i {
+  background: #1f7a45;
+}
+.sifre-liste {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.sifre-liste li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid #e3e9ee;
+  border-radius: 10px;
+  background: #ffffff;
+}
+.sifre-liste code {
+  flex: 1;
+  overflow-x: auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+.sifre-liste button {
+  padding: 6px 12px;
+  border: 1px solid #d5dde3;
+  border-radius: 8px;
+  background: #ffffff;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.fark-girdiler {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 12px;
+}
+.fark-girdiler textarea {
+  width: 100%;
+}
+@media (max-width: 640px) {
+  .fark-girdiler {
+    grid-template-columns: 1fr;
+  }
+}
+.fark-secenek {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 18px;
+  margin: 10px 0;
+}
+.fark-tablo {
+  overflow: auto;
+  max-height: 560px;
+  border: 1px solid #d5dde3;
+  border-radius: 10px;
+  background: #ffffff;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.85rem;
+}
+.fark-satir {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr) 38px minmax(0, 1fr);
+  border-bottom: 1px solid #f0f3f5;
+}
+.fark-satir > span {
+  padding: 3px 8px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.fark-no {
+  color: #9aa6b0;
+  text-align: right;
+  background: #f7f9fa;
+  user-select: none;
+}
+.fark-satir.is-silindi .fark-sol,
+.fark-satir.is-degisti .fark-sol {
+  background: #fdecea;
+}
+.fark-satir.is-eklendi .fark-sag,
+.fark-satir.is-degisti .fark-sag {
+  background: #e6f6ec;
+}
+mark.fark-silindi {
+  background: #f5b4ae;
+  color: inherit;
+  text-decoration: line-through;
+}
+mark.fark-eklendi {
+  background: #9ee0b5;
+  color: inherit;
+}

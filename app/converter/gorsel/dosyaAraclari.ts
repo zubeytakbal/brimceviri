@@ -10,6 +10,7 @@ export type DosyaKategori =
   | "boyut"
   | "duzenle"
   | "pdf"
+  | "belge"
   | "ses"
   | "veri"
   | "metin"
@@ -22,6 +23,7 @@ export const DOSYA_KATEGORILER: Array<{ id: DosyaKategori; ad: string }> = [
   { id: "boyut", ad: "Boyutlandır" },
   { id: "duzenle", ad: "Düzenle" },
   { id: "pdf", ad: "PDF" },
+  { id: "belge", ad: "UDF ve EYP" },
   { id: "ses", ad: "Ses ve video" },
   { id: "veri", ad: "Excel, veri ve ZIP" },
   { id: "metin", ad: "Metin, QR ve şifre" },
@@ -46,7 +48,9 @@ export type AracIkon =
         | "json"
         | "zip"
         | "rar"
-        | "7z";
+        | "7z"
+        | "udf"
+        | "eyp";
       hedef:
         | GorselFormat
         | "tum"
@@ -60,7 +64,8 @@ export type AracIkon =
         | "xlsx"
         | "csv"
         | "json"
-        | "zip";
+        | "zip"
+        | "docx";
     }
   | {
       tip: "pdf";
@@ -392,6 +397,40 @@ export const DOSYA_ARACLARI: DosyaAraci[] = [
     aciklama: "Sayfalara GİZLİ, TASLAK gibi yazı ya da logo filigranı ekleyin.",
     kategoriler: ["pdf", "gizlilik"],
     ikon: { tip: "pdf", islem: "filigran" },
+    yeni: true,
+  },
+  {
+    href: "/udf-dosyasi-acma",
+    baslik: "UDF Dosyası Açma",
+    aciklama:
+      "UYAP UDF belgesini editör kurmadan açın; PDF, Word veya metin kaydedin.",
+    kategoriler: ["belge"],
+    ikon: { tip: "cift", kaynak: "udf", hedef: "pdf" },
+    yeni: true,
+  },
+  {
+    href: "/udf-pdf-cevirme",
+    baslik: "UDF → PDF",
+    aciklama: "UDF'yi sayfa düzeni, tablo ve biçimiyle seçilebilir PDF yapın.",
+    kategoriler: ["belge", "pdf"],
+    ikon: { tip: "cift", kaynak: "udf", hedef: "pdf" },
+    yeni: true,
+  },
+  {
+    href: "/udf-word-cevirme",
+    baslik: "UDF → Word",
+    aciklama: "UDF'yi düzenlenebilir Word (.docx) belgesine çevirin.",
+    kategoriler: ["belge"],
+    ikon: { tip: "cift", kaynak: "udf", hedef: "docx" },
+    yeni: true,
+  },
+  {
+    href: "/eyp-dosyasi-acma",
+    baslik: "EYP Dosyası Açma",
+    aciklama:
+      "KEP/EBYS'den gelen e-Yazışma Paketini açın; üst yazı, bilgiler ve ekler.",
+    kategoriler: ["belge"],
+    ikon: { tip: "cift", kaynak: "eyp", hedef: "pdf" },
     yeni: true,
   },
   {

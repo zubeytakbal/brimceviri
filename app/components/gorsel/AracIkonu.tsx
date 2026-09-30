@@ -30,6 +30,9 @@ const RENK: Record<string, { zemin: string; yazi: string; ad: string }> = {
   opus: { zemin: "#25a244", yazi: "#ffffff", ad: "OPUS" },
   ogg: { zemin: "#8d6e63", yazi: "#ffffff", ad: "OGG" },
   flac: { zemin: "#264653", yazi: "#ffffff", ad: "FLAC" },
+  udf: { zemin: "#1b3a6b", yazi: "#ffffff", ad: "UDF" },
+  eyp: { zemin: "#8a1c2b", yazi: "#ffffff", ad: "EYP" },
+  docx: { zemin: "#2b579a", yazi: "#ffffff", ad: "DOC" },
 };
 
 /** Sayfa köşesi kıvrık küçük dosya rozeti. */

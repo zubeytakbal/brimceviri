@@ -23,7 +23,7 @@ export const DOSYA_KATEGORILER: Array<{ id: DosyaKategori; ad: string }> = [
   { id: "boyut", ad: "Boyutlandır" },
   { id: "duzenle", ad: "Düzenle" },
   { id: "pdf", ad: "PDF" },
-  { id: "belge", ad: "UDF ve EYP" },
+  { id: "belge", ad: "UYAP, e-İmza, e-Fatura" },
   { id: "ses", ad: "Ses ve video" },
   { id: "veri", ad: "Excel, veri ve ZIP" },
   { id: "metin", ad: "Metin, QR ve şifre" },
@@ -50,7 +50,10 @@ export type AracIkon =
         | "rar"
         | "7z"
         | "udf"
-        | "eyp";
+        | "eyp"
+        | "imz"
+        | "p7s"
+        | "xml";
       hedef:
         | GorselFormat
         | "tum"
@@ -431,6 +434,49 @@ export const DOSYA_ARACLARI: DosyaAraci[] = [
       "KEP/EBYS'den gelen e-Yazışma Paketini açın; üst yazı, bilgiler ve ekler.",
     kategoriler: ["belge"],
     ikon: { tip: "cift", kaynak: "eyp", hedef: "pdf" },
+    yeni: true,
+  },
+  {
+    href: "/imz-dosyasi-acma",
+    baslik: "İMZ Dosyası Açma",
+    aciklama:
+      "e-İmzalı dosyanın içindeki belgeyi çıkarın; imzacıyı ve imzanın geçerliliğini görün.",
+    kategoriler: ["belge"],
+    ikon: { tip: "cift", kaynak: "imz", hedef: "pdf" },
+    yeni: true,
+  },
+  {
+    href: "/p7s-dosyasi-acma",
+    baslik: "P7S / P7M Açma",
+    aciklama: "smime.p7s ve P7M imzalarını açın, asıl dosyayla doğrulayın.",
+    kategoriler: ["belge"],
+    ikon: { tip: "cift", kaynak: "p7s", hedef: "pdf" },
+    yeni: true,
+  },
+  {
+    href: "/e-fatura-goruntuleme",
+    baslik: "e-Fatura Görüntüleme",
+    aciklama:
+      "e-Fatura ve e-Arşiv XML'ini okunaklı fatura olarak açın; kendi şablonuyla da.",
+    kategoriler: ["belge"],
+    ikon: { tip: "cift", kaynak: "xml", hedef: "pdf" },
+    yeni: true,
+  },
+  {
+    href: "/xml-fatura-pdf-cevirme",
+    baslik: "XML Fatura → PDF",
+    aciklama: "XML faturayı yazdırılabilir A4 PDF'ye çevirin.",
+    kategoriler: ["belge", "pdf"],
+    ikon: { tip: "cift", kaynak: "xml", hedef: "pdf" },
+    yeni: true,
+  },
+  {
+    href: "/e-fatura-excel-aktarma",
+    baslik: "e-Fatura → Excel",
+    aciklama:
+      "Yüzlerce fatura XML'ini veya ZIP'ini tek Excel'de toplayın: özet ve kalemler.",
+    kategoriler: ["belge", "veri"],
+    ikon: { tip: "cift", kaynak: "xml", hedef: "xlsx" },
     yeni: true,
   },
   {

@@ -33,6 +33,9 @@ const RENK: Record<string, { zemin: string; yazi: string; ad: string }> = {
   udf: { zemin: "#1b3a6b", yazi: "#ffffff", ad: "UDF" },
   eyp: { zemin: "#8a1c2b", yazi: "#ffffff", ad: "EYP" },
   docx: { zemin: "#2b579a", yazi: "#ffffff", ad: "DOC" },
+  imz: { zemin: "#0d6e5c", yazi: "#ffffff", ad: "İMZ" },
+  p7s: { zemin: "#3a4d8f", yazi: "#ffffff", ad: "P7S" },
+  xml: { zemin: "#c2410c", yazi: "#ffffff", ad: "XML" },
 };
 
 /** Sayfa köşesi kıvrık küçük dosya rozeti. */

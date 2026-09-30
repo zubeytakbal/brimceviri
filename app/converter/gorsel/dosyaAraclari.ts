@@ -30,7 +30,7 @@ export const DOSYA_KATEGORILER: Array<{ id: DosyaKategori; ad: string }> = [
 export type AracIkon =
   | {
       tip: "cift";
-      kaynak: GorselFormat | KaynakFormat | SesKaynak | "tum" | "heic" | "pdf";
+      kaynak: GorselFormat | KaynakFormat | SesKaynak | "tum" | "heic" | "pdf" | "ses";
       hedef: GorselFormat | "tum" | "pdf" | "ico" | "b64" | "mp3" | "wav";
     }
   | {
@@ -104,7 +104,7 @@ export const DOSYA_ARACLARI: DosyaAraci[] = [
     baslik: "Ses Dönüştürücü",
     aciklama: "Her türlü ses ve videoyu MP3 veya WAV'a toplu çevirin.",
     kategoriler: ["ses", "donustur"],
-    ikon: { tip: "cift", kaynak: "tum", hedef: "mp3" },
+    ikon: { tip: "cift", kaynak: "ses", hedef: "mp3" },
     yeni: true,
   },
   ...SES_CIFTLERI.slice(1).map(

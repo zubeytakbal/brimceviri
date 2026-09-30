@@ -15,6 +15,7 @@ const RENK: Record<string, { zemin: string; yazi: string; ad: string }> = {
   jfif: { zemin: "#b8601a", yazi: "#ffffff", ad: "JFIF" },
   ico: { zemin: "#2b2d42", yazi: "#ffffff", ad: "ICO" },
   b64: { zemin: "#3d5a80", yazi: "#ffffff", ad: "B64" },
+  ses: { zemin: "#5b6b78", yazi: "#ffffff", ad: "SES" },
   mp3: { zemin: "#7a3fe0", yazi: "#ffffff", ad: "MP3" },
   mp4: { zemin: "#0b6e99", yazi: "#ffffff", ad: "MP4" },
   wav: { zemin: "#2a9d8f", yazi: "#ffffff", ad: "WAV" },

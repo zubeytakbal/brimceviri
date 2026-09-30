@@ -8,10 +8,10 @@ import DosyaAracPaneli from "./DosyaAracPaneli";
 
 export const dosyaAraclariMeta = () =>
   takvimMetadata(DOSYA_ARACLARI_YOLU, {
-    title: "Dosya Araçları: Görsel Dönüştürme ve Küçültme (Yüklemeden)",
+    title: "Dosya Araçları: Görsel, PDF, Ses Dönüştürme (Ücretsiz, Yüklemeden)",
     short: "Dosya Araçları",
     description:
-      "JPG, PNG ve WebP dönüştürme ve görsel araçları tek panelde. Ücretsiz, kayıtsız, filigransız; dosyalarınız sunucuya yüklenmez, tarayıcınızda işlenir.",
+      "Görsel, PDF, ses ve video araçları tek panelde: JPG/PNG/HEIC dönüştürme, PDF birleştirme ve sıkıştırma, MP4 MP3, ses kesme. Ücretsiz, kayıtsız; dosyalar yüklenmez.",
   });
 
 const SSS: FaqItem[] = [
@@ -48,7 +48,7 @@ export function DosyaAraclariSayfasi() {
         ]}
         crumbLabel="Sayfa yolu"
         title="Dosya Araçları"
-        intro="Görsellerinizi dönüştürmek için ihtiyacınız olan araçlar tek yerde. Hepsi ücretsiz ve kayıtsız; dosyalarınız bilgisayarınızdan çıkmadan tarayıcınızda işlenir."
+        intro="Görsel, PDF, ses ve video dosyalarınız için ihtiyacınız olan araçlar tek yerde. Hepsi ücretsiz ve kayıtsız; dosyalarınız bilgisayarınızdan çıkmadan tarayıcınızda işlenir."
         tool={<DosyaAracPaneli />}
         related={{
           title: "İlginizi çekebilir",

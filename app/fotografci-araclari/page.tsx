@@ -117,6 +117,10 @@ export default function FotografciAraclariPage() {
               tam kare eşdeğerini hesapla.
             </li>
             <li>
+              <Link href="/gorsel-donusturucu">Görsel Dönüştürücü</Link>
+              {" "}— JPG, PNG ve WebP görselleri tarayıcıda, yüklemeden birbirine çevir.
+            </li>
+            <li>
               <Link href="/piksel-cm-dpi-hesaplama">Piksel, CM ve DPI Hesaplama</Link>
               {" "}— baskı veya ekran için piksel, fiziksel boyut ve DPI
               hesabı yap.

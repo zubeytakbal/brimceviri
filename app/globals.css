@@ -14139,3 +14139,97 @@ a.all-units-row .all-units-name {
   margin-left: 0;
   margin-right: 4px;
 }
+
+/* Görsel dönüştürücü (dosyalar tarayıcıda işlenir) */
+.gorsel-birak {
+  position: relative;
+  display: grid;
+  gap: 6px;
+  justify-items: center;
+  padding: 34px 18px;
+  border: 2px dashed #2c7f99;
+  border-radius: 18px;
+  background: #f1f8fb;
+  color: #1f4f66;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.gorsel-birak:hover,
+.gorsel-birak.is-drag,
+.gorsel-birak:focus-within {
+  background: #e2f1f6;
+  border-color: #1f4f66;
+}
+
+.gorsel-birak input[type="file"] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.gorsel-birak strong {
+  font-size: 1.15rem;
+}
+
+.gorsel-birak small {
+  color: #3d6b52;
+}
+
+.gorsel-liste {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.gorsel-liste li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  align-items: center;
+  padding: 10px 12px;
+  border: 1px solid #dfe7ec;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.gorsel-ad {
+  flex: 1 1 180px;
+  min-width: 0;
+  overflow: hidden;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gorsel-boyut {
+  color: #4a5a66;
+  font-size: 0.9rem;
+}
+
+.gorsel-durum {
+  color: #2c7f99;
+  font-size: 0.9rem;
+}
+
+.gorsel-hata {
+  flex-basis: 100%;
+  color: #b42318;
+  font-size: 0.9rem;
+}
+
+.gorsel-alt {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.gorsel-zip-link {
+  font-size: 0.9rem;
+}

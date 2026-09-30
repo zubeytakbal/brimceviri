@@ -125,14 +125,12 @@ export async function gorsellerdenPdf(
     );
     const w = g.genislik * k;
     const h = g.yukseklik * k;
-    pdf
-      .addPage([pw, ph])
-      .drawImage(img, {
-        x: (pw - w) / 2,
-        y: (ph - h) / 2,
-        width: w,
-        height: h,
-      });
+    pdf.addPage([pw, ph]).drawImage(img, {
+      x: (pw - w) / 2,
+      y: (ph - h) / 2,
+      width: w,
+      height: h,
+    });
   }
   return pdf.save();
 }
@@ -181,5 +179,47 @@ export async function sayfaNumarasiEkle(
     const y = a.konum.startsWith("alt") ? pay : height - pay - a.boyut;
     s.drawText(metin, { x, y, size: a.boyut, font, color: rgb(0.2, 0.2, 0.2) });
   });
+  return pdf.save();
+}
+
+/**
+ * Sayfaların üstüne tam sayfa saydam PNG katmanı (filigran, imza) ekler.
+ * `uret` görünen sayfa boyutu (pt) için PNG döndürür; aynı boyuttaki sayfalar tek görseli paylaşır.
+ * Döndürülmüş sayfalarda katman, sayfa ekranda göründüğü yönde dik durur.
+ */
+export async function katmanEkle(
+  veri: Uint8Array,
+  uret: (w: number, h: number, dizin: number) => Promise<Uint8Array | null>,
+  dizinler?: number[],
+  paylas = true,
+): Promise<Uint8Array> {
+  const pdf = await ac(veri);
+  const sayfalar = pdf.getPages();
+  const onbellek = new Map<string, Awaited<ReturnType<typeof pdf.embedPng>>>();
+  for (const i of dizinler ?? sayfalar.map((_, k) => k)) {
+    const s = sayfalar[i];
+    if (!s) continue;
+    const kutu = s.getMediaBox();
+    const donme = ((s.getRotation().angle % 360) + 360) % 360;
+    const [gw, gh] =
+      donme % 180 ? [kutu.height, kutu.width] : [kutu.width, kutu.height];
+    const anahtar = `${Math.round(gw)}x${Math.round(gh)}`;
+    let img = paylas ? onbellek.get(anahtar) : undefined;
+    if (!img) {
+      const png = await uret(gw, gh, i);
+      if (!png) continue;
+      img = await pdf.embedPng(png);
+      if (paylas) onbellek.set(anahtar, img);
+    }
+    const [x, y] =
+      donme === 90
+        ? [kutu.x + kutu.width, kutu.y]
+        : donme === 180
+          ? [kutu.x + kutu.width, kutu.y + kutu.height]
+          : donme === 270
+            ? [kutu.x, kutu.y + kutu.height]
+            : [kutu.x, kutu.y];
+    s.drawImage(img, { x, y, width: gw, height: gh, rotate: degrees(donme) });
+  }
   return pdf.save();
 }

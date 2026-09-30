@@ -124,6 +124,58 @@ export default function AracIkonu({
             ©LOGO
           </text>
         </>
+      ) : ikon.tip === "pdf" && ikon.islem === "sikistir" ? (
+        <>
+          <Dosya x={13} y={10} f="pdf" />
+          <path
+            d="M26 2v7M22 6l4 4 4-4M26 50v-7M22 46l4-4 4 4"
+            stroke="#5b6b78"
+            strokeWidth="2.4"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </>
+      ) : ikon.tip === "pdf" && ikon.islem === "filigran" ? (
+        <>
+          <Dosya x={4} y={4} f="pdf" />
+          <rect
+            x="18"
+            y="16"
+            width="30"
+            height="32"
+            rx="4"
+            fill="#ffffff"
+            stroke="#5b6b78"
+            strokeWidth="2"
+          />
+          <text
+            x="33"
+            y="35"
+            textAnchor="middle"
+            fontSize="8"
+            fontWeight="800"
+            fill="#e5322d"
+            opacity="0.7"
+            transform="rotate(-35 33 32)"
+            fontFamily="system-ui, sans-serif"
+          >
+            GİZLİ
+          </text>
+        </>
+      ) : ikon.tip === "pdf" && ikon.islem === "imza" ? (
+        <>
+          <Dosya x={4} y={4} f="pdf" />
+          <path
+            d="M20 44c4-8 7-10 8-6s-1 6 3 1 5-6 6-2 3 3 8-1"
+            stroke="#1a3fa6"
+            strokeWidth="2.4"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path d="M18 48h30" stroke="#5b6b78" strokeWidth="1.6" />
+        </>
       ) : ikon.tip === "pdf" && ikon.islem === "duzenle" ? (
         <>
           <Dosya x={4} y={4} f="pdf" />

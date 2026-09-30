@@ -9,19 +9,25 @@ import GorselPdf from "./GorselPdf";
 import PdfBirlestir from "./PdfBirlestir";
 import PdfBol from "./PdfBol";
 import PdfDuzenle from "./PdfDuzenle";
+import PdfFiligran from "./PdfFiligran";
+import PdfImza from "./PdfImza";
 import PdfJpg from "./PdfJpg";
 import PdfMetin from "./PdfMetin";
 import PdfNumara from "./PdfNumara";
+import PdfSikistir from "./PdfSikistir";
 
 const PDF_BAGLANTILAR = [
   { href: DOSYA_ARACLARI_YOLU, label: "Tüm Dosya Araçları" },
   { href: "/pdf-birlestirme", label: "PDF Birleştirme" },
+  { href: "/pdf-sikistirma", label: "PDF Sıkıştırma" },
   { href: "/pdf-bolme", label: "PDF Bölme" },
   { href: "/jpg-pdf-cevirme", label: "JPG PDF Çevirme" },
   { href: "/pdf-jpg-cevirme", label: "PDF JPG Çevirme" },
   { href: "/pdf-sayfa-duzenleme", label: "PDF Sayfa Silme ve Döndürme" },
   { href: "/pdf-sayfa-numarasi-ekleme", label: "PDF Sayfa Numarası Ekleme" },
   { href: "/pdf-metin-cikarma", label: "PDF'ten Metin Çıkarma" },
+  { href: "/pdf-imzalama", label: "PDF İmzalama" },
+  { href: "/pdf-filigran-ekleme", label: "PDF Filigran Ekleme" },
   { href: "/resimden-yaziya-cevirme", label: "Resimden Yazıya Çevirme" },
   { href: "/fotograf-boyutu-kucultme", label: "Fotoğraf Boyutu Küçültme" },
 ];
@@ -599,6 +605,245 @@ export function PdfMetinSayfasi() {
               , sayfaları resim olarak kaydetmek için{" "}
               <Link href="/pdf-jpg-cevirme">PDF JPG Çevirme</Link> aracını
               kullanın.
+            </p>
+          ),
+        },
+      ]}
+    />
+  );
+}
+
+/* /pdf-sikistirma */
+export const pdfSikistirMeta = () =>
+  takvimMetadata("/pdf-sikistirma", {
+    title: "PDF Sıkıştırma: PDF Boyutu Küçültme (Ücretsiz, Yüklemeden)",
+    short: "PDF Sıkıştırma",
+    description:
+      "PDF dosya boyutunu küçültün: 3 sıkıştırma düzeyi, toplu sıkıştırma ve ZIP. Yazılar keskin kalır; dosyalar sunucuya yüklenmez, tarayıcınızda sıkıştırılır.",
+  });
+
+export function PdfSikistirSayfasi() {
+  return (
+    <PdfSayfa
+      yol="/pdf-sikistirma"
+      baslik="PDF Sıkıştırma (PDF Boyutu Küçültme)"
+      giris="E-posta, e-Devlet, UYAP veya okul sistemlerinin boyut sınırına takılan PDF'lerinizi küçültün. Sıkıştırma düzeyini seçin, dosyaları bırakın; küçültülmüş PDF'ler hemen hazır."
+      arac={<PdfSikistir />}
+      sss={[
+        {
+          question: "PDF sıkıştırınca kalite düşer mi?",
+          answer:
+            "Yazılar, tablolar ve çizimler vektör olduğu için hiç değişmez; seçilebilir ve keskin kalır. Yalnızca fotoğraflar ve taranmış sayfalar gibi görseller yeniden kodlanır. 'Az sıkıştırma' baskı kalitesini korur, 'Yüksek sıkıştırma' ekranda okumaya yetecek en küçük dosyayı verir.",
+        },
+        {
+          question: "PDF'im neden küçülmedi?",
+          answer:
+            "Yalnızca metin içeren PDF'ler genellikle zaten küçüktür; sıkıştırılacak görsel yoksa dosya olduğu gibi bırakılır. Taranmış belge ya da fotoğraf içeren PDF'lerde küçülme genellikle %50–90 arasındadır.",
+        },
+        {
+          question: "Taranmış PDF nasıl küçültülür?",
+          answer:
+            "Taranmış belgelerin her sayfası büyük bir görseldir. 'Önerilen' veya 'Yüksek sıkıştırma' düzeyi bu görselleri okunaklı bir çözünürlüğe indirir ve boyutu en çok bu tür belgelerde düşürür.",
+        },
+        {
+          question: "Aynı PDF'i tekrar sıkıştırabilir miyim?",
+          answer:
+            "Evet, ama her sıkıştırmada kazanç azalır ve görsel kalitesi biraz daha düşer. Tekrar denemek yerine bir üst düzeyi seçip orijinal dosyadan başlamak daha iyi sonuç verir.",
+        },
+        GUVENLIK,
+      ]}
+      bolumler={[
+        {
+          id: "duzeyler",
+          baslik: "Sıkıştırma düzeyleri",
+          icerik: (
+            <ul>
+              <li>
+                <b>Az sıkıştırma:</b> Görseller en fazla 2400 piksel, yüksek
+                JPEG kalitesi. Yazdırılacak belgeler için.
+              </li>
+              <li>
+                <b>Önerilen:</b> 1600 piksel; ekranda ve A4 çıktıda net, dosya
+                belirgin şekilde küçük.
+              </li>
+              <li>
+                <b>Yüksek sıkıştırma:</b> 1100 piksel; e-posta ve başvuru
+                sistemlerinin düşük boyut sınırları için.
+              </li>
+            </ul>
+          ),
+        },
+        {
+          id: "ipuclari",
+          baslik: "Daha da küçültmek için",
+          icerik: (
+            <p>
+              Gereksiz sayfaları{" "}
+              <Link href="/pdf-sayfa-duzenleme">PDF Sayfa Düzenleme</Link> ile
+              silin veya yalnızca gerekli sayfaları{" "}
+              <Link href="/pdf-bolme">PDF Bölme</Link> ile ayırın. Tek bir
+              fotoğrafı küçültmek için{" "}
+              <Link href="/fotograf-boyutu-kucultme">
+                Fotoğraf Boyutu Küçültme
+              </Link>{" "}
+              aracı hedef KB değerine iner.
+            </p>
+          ),
+        },
+      ]}
+    />
+  );
+}
+
+/* /pdf-filigran-ekleme */
+export const pdfFiligranMeta = () =>
+  takvimMetadata("/pdf-filigran-ekleme", {
+    title:
+      "PDF Filigran Ekleme: Yazı veya Logo Filigranı (Ücretsiz, Yüklemeden)",
+    short: "PDF Filigran Ekleme",
+    description:
+      "PDF sayfalarına GİZLİ, TASLAK, ASLI GİBİDİR gibi yazı ya da logo filigranı ekleyin; opaklık, açı, konum ve döşeme ayarı, canlı önizleme. Türkçe karakter desteği.",
+  });
+
+export function PdfFiligranSayfasi() {
+  return (
+    <PdfSayfa
+      yol="/pdf-filigran-ekleme"
+      baslik="PDF Filigran Ekleme"
+      giris="PDF belgenizin sayfalarına yazı veya logo filigranı ekleyin. Filigranı sayfanın ortasına, bir köşesine ya da tüm sayfaya döşeyerek yerleştirin; ilk sayfada canlı önizlemeyle görün."
+      arac={<PdfFiligran />}
+      sss={[
+        {
+          question: "PDF'e filigran nasıl eklenir?",
+          answer:
+            "PDF'i seçin, filigran yazısını girin (ör. GİZLİ) ya da logo yükleyin; boyut, opaklık, açı ve konumu ayarlayın. Önizlemeyi kontrol edip 'Filigranı PDF'e ekle' düğmesine basın.",
+        },
+        {
+          question: "Kimlik veya belge fotokopisine filigran neden eklenir?",
+          answer:
+            "Bir kuruma gönderdiğiniz kimlik, tapu veya diploma kopyasının başka amaçla kullanılmasını zorlaştırmak için 'Yalnızca … başvurusu içindir' gibi bir yazıyı tüm sayfaya döşemek yaygın bir önlemdir.",
+        },
+        {
+          question: "Türkçe karakterler (ğ, ş, İ) düzgün çıkar mı?",
+          answer:
+            "Evet. Filigran bilgisayarınızın yazı tipleriyle çizildiği için tüm Türkçe ve diğer dillerdeki karakterler doğru görünür.",
+        },
+        {
+          question: "Filigran sonradan kaldırılabilir mi?",
+          answer:
+            "Filigran sayfanın üstüne ayrı bir görsel katman olarak eklenir. Sıradan okuyucularda silinemez ama PDF düzenleme yazılımlarıyla kaldırılabilir; bu nedenle filigran caydırıcıdır, kesin koruma değildir.",
+        },
+        GUVENLIK,
+      ]}
+      bolumler={[
+        {
+          id: "ornekler",
+          baslik: "Sık kullanılan filigran yazıları",
+          icerik: (
+            <ul>
+              <li>GİZLİ, KİŞİYE ÖZEL, TASLAK, ÖRNEKTİR</li>
+              <li>ASLI GİBİDİR, KOPYA, İPTAL</li>
+              <li>© Şirket adı veya web adresi</li>
+              <li>
+                &quot;Yalnızca [kurum] başvurusu için kullanılabilir&quot;
+              </li>
+            </ul>
+          ),
+        },
+        {
+          id: "ilgili",
+          baslik: "Fotoğraflara filigran",
+          icerik: (
+            <p>
+              JPG veya PNG görsellere filigran eklemek için{" "}
+              <Link href="/fotografa-filigran-ekleme">Filigran Ekleme</Link>{" "}
+              aracını kullanın; kimlik fotokopisi için hazır ayar da vardır.
+            </p>
+          ),
+        },
+      ]}
+    />
+  );
+}
+
+/* /pdf-imzalama */
+export const pdfImzaMeta = () =>
+  takvimMetadata("/pdf-imzalama", {
+    title: "PDF İmzalama: PDF'e İmza Ekleme (Çiz, Yaz, Yükle — Ücretsiz)",
+    short: "PDF İmzalama",
+    description:
+      "İmzanızı fare veya parmakla çizin, adınızı yazın ya da imza fotoğrafı yükleyin; PDF'e sürükleyip yerleştirin, tarih ekleyin. Kayıt yok, dosya sunucuya yüklenmez.",
+  });
+
+export function PdfImzaSayfasi() {
+  return (
+    <PdfSayfa
+      yol="/pdf-imzalama"
+      baslik="PDF İmzalama (PDF'e İmza Ekleme)"
+      giris="Sözleşme, dilekçe veya formları yazdırıp taramadan imzalayın. İmzanızı çizin, yazın ya da kâğıda attığınız imzanın fotoğrafını yükleyin; sayfada istediğiniz yere sürükleyin."
+      arac={<PdfImza />}
+      sss={[
+        {
+          question: "PDF'e imza nasıl eklenir?",
+          answer:
+            "PDF'i seçin, 'Çiz' sekmesinde imzanızı atın ve 'İmzayı hazırla' deyin. Ardından 'İmza ekle' ile sayfaya yerleştirin, sürükleyerek konumlandırın, boyutunu ayarlayın ve 'İmzalı PDF'i indir' düğmesine basın.",
+        },
+        {
+          question: "Bu imza e-imza yerine geçer mi?",
+          answer:
+            "Hayır. Bu araç imzanızın görüntüsünü belgeye ekler. 5070 sayılı Elektronik İmza Kanunu'na göre elle atılan imzayla aynı hukuki sonucu doğuran 'güvenli elektronik imza', yetkili bir sağlayıcının verdiği nitelikli sertifikayla (e-imza kartı veya mobil imza) atılır. Görüntü imza; karşı tarafın kabul ettiği yazışma, form ve iç yazışmalar için uygundur.",
+        },
+        {
+          question: "Kâğıda attığım imzayı nasıl kullanırım?",
+          answer:
+            "Beyaz bir kâğıda koyu kalemle imza atıp fotoğrafını çekin ve 'Yükle' sekmesinden seçin. Kâğıdın beyaz zemini otomatik silinir, imza seçtiğiniz mürekkep rengine (siyah veya mavi) boyanır.",
+        },
+        {
+          question: "Her sayfaya paraf atabilir miyim?",
+          answer:
+            "Evet. İmzayı bir sayfaya yerleştirip seçin ve 'Tüm sayfalara kopyala (paraf)' düğmesine basın; aynı konuma tüm sayfalarda eklenir.",
+        },
+        {
+          question: "İmzam kaydediliyor mu?",
+          answer:
+            "Hayır. İmzanız yalnızca bu sayfa açıkken tarayıcınızın belleğinde durur; hiçbir sunucuya gönderilmez ve sayfayı kapattığınızda silinir.",
+        },
+      ]}
+      bolumler={[
+        {
+          id: "yontemler",
+          baslik: "İmza oluşturma yolları",
+          icerik: (
+            <ul>
+              <li>
+                <b>Çiz:</b> Fare, dokunmatik ekran veya kalemle imza alanına
+                çizin.
+              </li>
+              <li>
+                <b>Yaz:</b> Adınızı yazın, el yazısı görünümlü yazı tipiyle
+                imzaya dönüşsün.
+              </li>
+              <li>
+                <b>Yükle:</b> Kâğıttaki imzanızın fotoğrafı; zemin otomatik
+                temizlenir.
+              </li>
+              <li>
+                <b>Tarih:</b> Bugünün tarihini (gg.aa.yyyy) imzanın yanına
+                ekleyin.
+              </li>
+            </ul>
+          ),
+        },
+        {
+          id: "ipuclari",
+          baslik: "İpuçları",
+          icerik: (
+            <p>
+              İmzaladıktan sonra dosya boyutu sınırı olan bir sisteme
+              yükleyecekseniz <Link href="/pdf-sikistirma">PDF Sıkıştırma</Link>{" "}
+              ile küçültebilir, birden fazla belgeyi{" "}
+              <Link href="/pdf-birlestirme">PDF Birleştirme</Link> ile tek
+              dosyada toplayabilirsiniz.
             </p>
           ),
         },

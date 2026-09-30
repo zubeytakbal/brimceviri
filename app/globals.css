@@ -15186,3 +15186,138 @@ a.all-units-row .all-units-name {
   font-size: 0.85rem;
   color: #5b6b78;
 }
+
+.pdf-seviye-aciklama {
+  display: block;
+  margin-top: 6px;
+  opacity: 0.85;
+}
+.pdf-sikistir-liste {
+  display: grid;
+  gap: 8px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.pdf-sikistir-liste li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  padding: 10px 14px;
+  border: 1px solid #e3e9ee;
+  border-radius: 12px;
+  background: #ffffff;
+}
+.pdf-sikistir-liste strong {
+  flex: 1 1 200px;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.pdf-oran {
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: #e5f5ec;
+  color: #1f7a45;
+}
+.pdf-imza-renk {
+  display: flex;
+  gap: 8px;
+  margin: 10px 0;
+}
+.pdf-imza-renk button {
+  width: 28px;
+  height: 28px;
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  cursor: pointer;
+}
+.pdf-imza-renk button.is-active {
+  border-color: #ffffff;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.25);
+}
+.pdf-imza-ped canvas {
+  display: block;
+  width: 100%;
+  max-width: 600px;
+  aspect-ratio: 3 / 1;
+  border-radius: 10px;
+  background: #ffffff;
+  touch-action: none;
+  cursor: crosshair;
+}
+.pdf-imza-ped-alt {
+  display: flex;
+  justify-content: space-between;
+  max-width: 600px;
+  margin-top: 6px;
+  font-size: 0.85rem;
+}
+.pdf-imza-ped-alt button,
+.pdf-imza-secili button,
+.pdf-imza-sayfa button {
+  padding: 4px 12px;
+  border: 1px solid #d5dde3;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #22313c;
+  font: inherit;
+  cursor: pointer;
+}
+.pdf-imza-hazir {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  background: #ffffff;
+}
+.pdf-imza-hazir img {
+  display: block;
+  max-width: 260px;
+  max-height: 80px;
+}
+.pdf-imza-arac,
+.pdf-imza-secili {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 14px 0 8px;
+}
+.pdf-imza-sayfa {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+.pdf-imza-secili label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.pdf-imza-alan {
+  position: relative;
+  width: min(100%, 720px);
+  margin: 0 auto;
+  border: 1px solid #d5dde3;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  touch-action: none;
+  user-select: none;
+}
+.pdf-imza-alan > img:first-child {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.pdf-imza-oge {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  cursor: move;
+  outline: 1px dashed transparent;
+}
+.pdf-imza-oge:hover,
+.pdf-imza-oge.is-secili {
+  outline-color: #2f6fde;
+}

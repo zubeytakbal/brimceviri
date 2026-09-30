@@ -1,4 +1,4 @@
-import { PDFDocument } from "pdf-lib";
+import { degrees, PDFDocument, PDFName, PDFRawStream } from "pdf-lib";
 import { describe, expect, it } from "vitest";
 import {
   aralikCoz,
@@ -6,6 +6,7 @@ import {
   bol,
   esitGruplar,
   gorsellerdenPdf,
+  katmanEkle,
   sayfaNumarasiEkle,
   sayfalariAl,
 } from "../app/converter/pdf/pdfIslem";
@@ -82,5 +83,44 @@ describe("PDF işlemleri", () => {
     await expect(birlestir([new Uint8Array([1, 2, 3])])).rejects.toThrow(
       "PDF dosyası okunamadı.",
     );
+  });
+});
+
+const PNG_1X1 = Uint8Array.from(
+  atob(
+    "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==",
+  ),
+  (c) => c.charCodeAt(0),
+);
+
+describe("katmanEkle", () => {
+  it("görünen boyutla katman ister, aynı boyutları paylaşır, sayfa seçer", async () => {
+    const d = await PDFDocument.create();
+    d.addPage([595, 842]);
+    d.addPage([595, 842]).setRotation(degrees(90));
+    d.addPage([595, 842]);
+    d.addPage([300, 300]);
+    const istek: string[] = [];
+    const cikti = await katmanEkle(
+      await d.save(),
+      async (w, h, i) => {
+        istek.push(`${i}:${w}x${h}`);
+        return PNG_1X1;
+      },
+      [0, 1, 2],
+    );
+    expect(istek).toEqual(["0:595x842", "1:842x595"]);
+    const o = await PDFDocument.load(cikti);
+    expect(o.getPageCount()).toBe(4);
+    const gorsel = o.context
+      .enumerateIndirectObjects()
+      .filter(
+        ([, x]) =>
+          x instanceof PDFRawStream &&
+          x.dict.get(PDFName.of("Subtype")) === PDFName.of("Image") &&
+          x.dict.has(PDFName.of("SMask")),
+      );
+    // saydam PNG: her katman bir görsel + maskesi
+    expect(gorsel.length).toBe(2);
   });
 });

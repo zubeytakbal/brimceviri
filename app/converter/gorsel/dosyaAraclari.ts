@@ -29,7 +29,18 @@ export type AracIkon =
       kaynak: GorselFormat | "tum" | "heic" | "pdf";
       hedef: GorselFormat | "tum" | "pdf";
     }
-  | { tip: "pdf"; islem: "birlestir" | "bol" | "duzenle" | "numara" | "metin" }
+  | {
+      tip: "pdf";
+      islem:
+        | "birlestir"
+        | "bol"
+        | "duzenle"
+        | "numara"
+        | "metin"
+        | "sikistir"
+        | "filigran"
+        | "imza";
+    }
   | { tip: "kucult" }
   | { tip: "boyut" }
   | { tip: "vesikalik" }
@@ -72,6 +83,15 @@ export const DOSYA_ARACLARI: DosyaAraci[] = [
     aciklama: "PDF dosyalarını istediğiniz sırayla tek PDF'te birleştirin.",
     kategoriler: ["pdf"],
     ikon: { tip: "pdf", islem: "birlestir" },
+    yeni: true,
+  },
+  {
+    href: "/pdf-sikistirma",
+    baslik: "PDF Sıkıştırma",
+    aciklama:
+      "PDF boyutunu küçültün; yazılar keskin kalır, yalnız görseller sıkıştırılır.",
+    kategoriler: ["pdf", "kucult"],
+    ikon: { tip: "pdf", islem: "sikistir" },
     yeni: true,
   },
   {
@@ -122,6 +142,23 @@ export const DOSYA_ARACLARI: DosyaAraci[] = [
     aciklama: "PDF'i yazıya çevirin; taranmış sayfalar Türkçe OCR ile okunur.",
     kategoriler: ["pdf", "metin"],
     ikon: { tip: "pdf", islem: "metin" },
+    yeni: true,
+  },
+  {
+    href: "/pdf-imzalama",
+    baslik: "PDF İmzalama",
+    aciklama:
+      "İmzanızı çizin, yazın veya yükleyin; sayfaya sürükleyip yerleştirin.",
+    kategoriler: ["pdf", "duzenle"],
+    ikon: { tip: "pdf", islem: "imza" },
+    yeni: true,
+  },
+  {
+    href: "/pdf-filigran-ekleme",
+    baslik: "PDF Filigran Ekleme",
+    aciklama: "Sayfalara GİZLİ, TASLAK gibi yazı ya da logo filigranı ekleyin.",
+    kategoriler: ["pdf", "gizlilik"],
+    ikon: { tip: "pdf", islem: "filigran" },
     yeni: true,
   },
   {

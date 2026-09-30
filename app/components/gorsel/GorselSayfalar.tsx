@@ -7,6 +7,7 @@ import {
 } from "../../converter/gorsel/ciftler";
 import type { FaqItem } from "../../converter/faqSchema";
 import { DOSYA_ARACLARI_YOLU } from "../../converter/gorsel/dosyaAraclari";
+import DosyaAracCubugu from "./DosyaAracCubugu";
 import TimeToolPage from "../time/TimeToolPage";
 import { takvimMetadata } from "../takvim/takvimMeta";
 import GorselDonusturucu from "./GorselDonusturucu";
@@ -64,52 +65,57 @@ export const gorselCiftMeta = (c: GorselCift) =>
 
 export function GorselCiftSayfasi({ cift: c }: { cift: GorselCift }) {
   return (
-    <TimeToolPage
-      crumbs={[ANA, PANEL, HUB, { label: c.baslik }]}
-      crumbLabel="Sayfa yolu"
-      title={c.baslik}
-      intro={c.giris}
-      tool={<GorselDonusturucu kaynak={c.kaynak} hedef={c.hedef} />}
-      related={{
-        title: "İlginizi çekebilir",
-        links: [
-          HUB,
-          ...GORSEL_CIFTLER.filter((x) => x.slug !== c.slug).map((x) => ({
-            href: `/${x.slug}`,
-            label: x.baslik,
-          })),
-          ...DIGER_ARACLAR,
-        ],
-      }}
-      tocTitle="İçindekiler"
-      tocItems={[
-        ...c.bolumler.map((b) => ({ id: b.id, label: b.baslik })),
-        { id: "karsilastirma", label: "JPG, PNG ve WebP karşılaştırması" },
-        { id: "faq", label: "Sık sorulan sorular" },
-      ]}
-      faqTitle="Sık sorulan sorular"
-      faqItems={c.sss}
-    >
-      {c.bolumler.map((b) => (
-        <section key={b.id}>
-          <h2 id={b.id}>{b.baslik}</h2>
-          {b.paragraflar.map((p) => (
-            <p key={p.slice(0, 40)}>{p}</p>
-          ))}
-        </section>
-      ))}
-      <h2 id="karsilastirma">JPG, PNG ve WebP karşılaştırması</h2>
-      <FormatTablosu />
-      <p>
-        Görselin ekranda ve baskıda kaç santimetre olacağını hesaplamak için{" "}
-        <Link href="/piksel-cm-dpi-hesaplama">Piksel, CM ve DPI Hesaplama</Link>
-        , Instagram ve diğer platformların önerdiği ölçüler için{" "}
-        <Link href="/sosyal-medya-gorsel-boyutlari-hesaplama">
-          Sosyal Medya Görsel Boyutları
-        </Link>{" "}
-        sayfasına bakabilirsiniz.
-      </p>
-    </TimeToolPage>
+    <>
+      <DosyaAracCubugu />
+      <TimeToolPage
+        crumbs={[ANA, PANEL, HUB, { label: c.baslik }]}
+        crumbLabel="Sayfa yolu"
+        title={c.baslik}
+        intro={c.giris}
+        tool={<GorselDonusturucu kaynak={c.kaynak} hedef={c.hedef} />}
+        related={{
+          title: "İlginizi çekebilir",
+          links: [
+            HUB,
+            ...GORSEL_CIFTLER.filter((x) => x.slug !== c.slug).map((x) => ({
+              href: `/${x.slug}`,
+              label: x.baslik,
+            })),
+            ...DIGER_ARACLAR,
+          ],
+        }}
+        tocTitle="İçindekiler"
+        tocItems={[
+          ...c.bolumler.map((b) => ({ id: b.id, label: b.baslik })),
+          { id: "karsilastirma", label: "JPG, PNG ve WebP karşılaştırması" },
+          { id: "faq", label: "Sık sorulan sorular" },
+        ]}
+        faqTitle="Sık sorulan sorular"
+        faqItems={c.sss}
+      >
+        {c.bolumler.map((b) => (
+          <section key={b.id}>
+            <h2 id={b.id}>{b.baslik}</h2>
+            {b.paragraflar.map((p) => (
+              <p key={p.slice(0, 40)}>{p}</p>
+            ))}
+          </section>
+        ))}
+        <h2 id="karsilastirma">JPG, PNG ve WebP karşılaştırması</h2>
+        <FormatTablosu />
+        <p>
+          Görselin ekranda ve baskıda kaç santimetre olacağını hesaplamak için{" "}
+          <Link href="/piksel-cm-dpi-hesaplama">
+            Piksel, CM ve DPI Hesaplama
+          </Link>
+          , Instagram ve diğer platformların önerdiği ölçüler için{" "}
+          <Link href="/sosyal-medya-gorsel-boyutlari-hesaplama">
+            Sosyal Medya Görsel Boyutları
+          </Link>{" "}
+          sayfasına bakabilirsiniz.
+        </p>
+      </TimeToolPage>
+    </>
   );
 }
 
@@ -145,40 +151,45 @@ export function GorselHub() {
     },
   ];
   return (
-    <TimeToolPage
-      crumbs={[ANA, PANEL, { label: "Görsel Dönüştürücü" }]}
-      crumbLabel="Sayfa yolu"
-      title="Görsel Dönüştürücü"
-      intro="JPG, PNG ve WebP görselleri birbirine çevirin. Çıktı formatını, kaliteyi ve en fazla genişliği seçin; birden fazla dosyayı aynı anda dönüştürüp ZIP olarak indirin. Dosyalar tarayıcınızda işlenir, hiçbir sunucuya yüklenmez."
-      tool={<GorselDonusturucu />}
-      related={{ title: "İlginizi çekebilir", links: DIGER_ARACLAR }}
-      tocTitle="İçindekiler"
-      tocItems={[
-        { id: "donusumler", label: "Hazır dönüştürme sayfaları" },
-        { id: "karsilastirma", label: "JPG, PNG ve WebP karşılaştırması" },
-        { id: "faq", label: "Sık sorulan sorular" },
-      ]}
-      faqTitle="Sık sorulan sorular"
-      faqItems={sss}
-    >
-      <h2 id="donusumler">Hazır dönüştürme sayfaları</h2>
-      <ul className="takvim-hub-liste">
-        {GORSEL_CIFTLER.map((c) => (
-          <li key={c.slug}>
-            <Link href={`/${c.slug}`}>{c.baslik}</Link> —{" "}
-            {c.aciklama.split(":")[0]}
-          </li>
-        ))}
-      </ul>
-      <h2 id="karsilastirma">JPG, PNG ve WebP karşılaştırması</h2>
-      <FormatTablosu />
-      <p>
-        Dosya boyutlarını KB ve MB arasında çevirmek için{" "}
-        <Link href="/kategoriler/veri">Veri Depolama Dönüşümleri</Link>, baskı
-        ölçüsü için{" "}
-        <Link href="/piksel-cm-dpi-hesaplama">Piksel, CM ve DPI Hesaplama</Link>{" "}
-        sayfalarını kullanabilirsiniz.
-      </p>
-    </TimeToolPage>
+    <>
+      <DosyaAracCubugu />
+      <TimeToolPage
+        crumbs={[ANA, PANEL, { label: "Görsel Dönüştürücü" }]}
+        crumbLabel="Sayfa yolu"
+        title="Görsel Dönüştürücü"
+        intro="JPG, PNG ve WebP görselleri birbirine çevirin. Çıktı formatını, kaliteyi ve en fazla genişliği seçin; birden fazla dosyayı aynı anda dönüştürüp ZIP olarak indirin. Dosyalar tarayıcınızda işlenir, hiçbir sunucuya yüklenmez."
+        tool={<GorselDonusturucu />}
+        related={{ title: "İlginizi çekebilir", links: DIGER_ARACLAR }}
+        tocTitle="İçindekiler"
+        tocItems={[
+          { id: "donusumler", label: "Hazır dönüştürme sayfaları" },
+          { id: "karsilastirma", label: "JPG, PNG ve WebP karşılaştırması" },
+          { id: "faq", label: "Sık sorulan sorular" },
+        ]}
+        faqTitle="Sık sorulan sorular"
+        faqItems={sss}
+      >
+        <h2 id="donusumler">Hazır dönüştürme sayfaları</h2>
+        <ul className="takvim-hub-liste">
+          {GORSEL_CIFTLER.map((c) => (
+            <li key={c.slug}>
+              <Link href={`/${c.slug}`}>{c.baslik}</Link> —{" "}
+              {c.aciklama.split(":")[0]}
+            </li>
+          ))}
+        </ul>
+        <h2 id="karsilastirma">JPG, PNG ve WebP karşılaştırması</h2>
+        <FormatTablosu />
+        <p>
+          Dosya boyutlarını KB ve MB arasında çevirmek için{" "}
+          <Link href="/kategoriler/veri">Veri Depolama Dönüşümleri</Link>, baskı
+          ölçüsü için{" "}
+          <Link href="/piksel-cm-dpi-hesaplama">
+            Piksel, CM ve DPI Hesaplama
+          </Link>{" "}
+          sayfalarını kullanabilirsiniz.
+        </p>
+      </TimeToolPage>
+    </>
   );
 }

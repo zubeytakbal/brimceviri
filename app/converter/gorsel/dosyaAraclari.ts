@@ -49,7 +49,7 @@ export const DOSYA_ARACLARI: DosyaAraci[] = [
     baslik: "e-Okul Fotoğraf Küçültme",
     aciklama:
       "Öğrenci fotoğraflarını 133×171 piksel, 20–150 KB yapın; bütün sınıf tek seferde.",
-    kategoriler: ["resmi", "boyut"],
+    kategoriler: ["resmi"],
     ikon: { tip: "vesikalik" },
     yeni: true,
   },

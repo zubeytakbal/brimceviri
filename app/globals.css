@@ -14504,3 +14504,132 @@ a.all-units-row .all-units-name {
   min-height: 0;
   padding: 7px 16px;
 }
+
+/* Dosya araçları üst çubuğu ve açılır menü */
+.dosya-cubuk {
+  position: relative;
+  z-index: 20;
+  border-bottom: 1px solid #e3e9ee;
+  background: #ffffff;
+}
+
+.dosya-cubuk-ic {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 22px;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px 16px;
+}
+
+.dosya-cubuk-marka {
+  color: #1b2830;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.dosya-cubuk-liste {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dosya-cubuk-liste a {
+  color: #22313c;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.dosya-cubuk-liste a:hover,
+.dosya-cubuk-liste a[aria-current="page"] {
+  color: #2c7f99;
+}
+
+.dosya-cubuk-tum {
+  margin-inline-start: auto;
+  padding: 7px 14px;
+  border: 1px solid #1b2830;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #1b2830;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.dosya-cubuk-tum[aria-expanded="true"] {
+  background: #1b2830;
+  color: #ffffff;
+}
+
+.dosya-mega {
+  position: absolute;
+  inset-inline: 0;
+  top: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 22px 32px;
+  max-width: 1168px;
+  margin: 0 auto;
+  padding: 28px 32px;
+  border: 1px solid #e3e9ee;
+  border-radius: 0 0 18px 18px;
+  background: #ffffff;
+  box-shadow: 0 18px 40px rgba(27, 40, 48, 0.14);
+}
+
+.dosya-mega[hidden] {
+  display: none;
+}
+
+.dosya-mega-sutun h2 {
+  margin: 0 0 12px;
+  color: #5a6a76;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.dosya-mega-sutun ul {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dosya-mega-sutun a {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 6px 8px;
+  border-radius: 10px;
+  color: #22313c;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.dosya-mega-sutun a:hover,
+.dosya-mega-sutun a[aria-current="page"] {
+  background: #f1f6f9;
+  color: #1f4f66;
+}
+
+@media (max-width: 640px) {
+  .dosya-cubuk-liste {
+    display: none;
+  }
+
+  .dosya-mega {
+    position: static;
+    padding: 18px 16px;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}

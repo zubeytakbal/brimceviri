@@ -1,6 +1,7 @@
 import Link from "@/app/components/SiteLink";
 import type { FaqItem } from "../../converter/faqSchema";
 import { DOSYA_ARACLARI_YOLU } from "../../converter/gorsel/dosyaAraclari";
+import DosyaAracCubugu from "./DosyaAracCubugu";
 import TimeToolPage from "../time/TimeToolPage";
 import { takvimMetadata } from "../takvim/takvimMeta";
 import FotoKucult from "./FotoKucult";
@@ -45,83 +46,88 @@ const SSS: FaqItem[] = [
 
 export function FotoKucultSayfasi() {
   return (
-    <TimeToolPage
-      crumbs={[
-        { href: "/", label: "Ana Sayfa" },
-        { href: DOSYA_ARACLARI_YOLU, label: "Dosya Araçları" },
-        { label: "Fotoğraf Boyutu Küçültme" },
-      ]}
-      crumbLabel="Sayfa yolu"
-      title="Fotoğraf Boyutu Küçültme"
-      intro="Fotoğrafınızı başvuru formunun, e-postanın veya web sitenizin istediği KB sınırının altına indirin. Hedefi seçin, fotoğrafları bırakın; araç kaliteyi mümkün olan en yüksek seviyede tutarak küçültür."
-      tool={<FotoKucult />}
-      related={{
-        title: "İlginizi çekebilir",
-        links: [
-          { href: DOSYA_ARACLARI_YOLU, label: "Tüm Dosya Araçları" },
-          { href: "/gorsel-donusturucu", label: "Görsel Dönüştürücü" },
-          { href: "/png-jpg-cevirme", label: "PNG JPG Çevirme" },
-          { href: "/jpg-webp-cevirme", label: "JPG WebP Çevirme" },
-          { href: "/kilobayt-megabayt", label: "Kilobayt → Megabayt" },
-          { href: "/gigabayt-megabayt", label: "Gigabayt → Megabayt" },
-          {
-            href: "/piksel-cm-dpi-hesaplama",
-            label: "Piksel, CM ve DPI Hesaplama",
-          },
-        ],
-      }}
-      tocTitle="İçindekiler"
-      tocItems={[
-        { id: "nasil", label: "Küçültme nasıl yapılır?" },
-        { id: "kb-mb", label: "KB, MB ve 1000/1024 farkı" },
-        { id: "ipuclari", label: "Başvuru sistemleri için ipuçları" },
-        { id: "faq", label: "Sık sorulan sorular" },
-      ]}
-      faqTitle="Sık sorulan sorular"
-      faqItems={SSS}
-    >
-      <h2 id="nasil">Küçültme nasıl yapılır?</h2>
-      <p>
-        Bir fotoğrafın dosya boyutunu iki şey belirler: piksel ölçüsü ve
-        sıkıştırma kalitesi. Telefonla çekilen bir fotoğraf genellikle 4000
-        piksel genişliğinde ve 2–5 MB boyutundadır. Araç önce JPG kalitesini
-        düşürerek hedefin altındaki en iyi kaliteyi arar. Kalite %40'ın altına
-        inmeden hedefe ulaşılamıyorsa fotoğrafın ölçüsünü orantılı olarak
-        küçültür ve aramayı tekrarlar. Böylece fotoğraf hem hedefin altında
-        kalır hem de gereksiz yere bozulmaz.
-      </p>
-      <h2 id="kb-mb">KB, MB ve 1000/1024 farkı</h2>
-      <p>
-        1 MB, 1000 KB olarak da 1024 KB olarak da hesaplanabilir. Windows dosya
-        boyutlarını 1024 tabanıyla gösterir; bazı başvuru siteleri ise 1000
-        tabanıyla kontrol eder. Bu araç hedefi her zaman 1000 bayt üzerinden
-        hesapladığı için ortaya çıkan dosya iki yöntemde de sınırı aşmaz.
-        Birimler arasında çevirmek için{" "}
-        <Link href="/kilobayt-megabayt">Kilobayt → Megabayt</Link> ve{" "}
-        <Link href="/kategoriler/veri">Veri Depolama Dönüşümleri</Link>{" "}
-        sayfalarını kullanabilirsiniz.
-      </p>
-      <h2 id="ipuclari">Başvuru sistemleri için ipuçları</h2>
-      <ul>
-        <li>
-          Sınırı başvuru sayfasındaki uyarıdan kontrol edin ve hedefi o değere
-          eşit ya da biraz altında seçin.
-        </li>
-        <li>
-          Sistem en az bir boyut da istiyorsa (ör. &quot;20 KB'tan büyük&quot;),
-          çok küçük bir hedef seçmeyin.
-        </li>
-        <li>
-          Fotoğrafın belirli bir piksel ölçüsünde olması gerekiyorsa önce
-          ölçüyü, sonra dosya boyutunu ayarlayın. Ölçüleri santimetreden piksele
-          çevirmek için{" "}
-          <Link href="/piksel-cm-dpi-hesaplama">
-            Piksel, CM ve DPI Hesaplama
-          </Link>{" "}
-          aracını kullanın.
-        </li>
-        <li>Çoğu sistem JPG ister; WebP'yi yalnızca web siteniz için seçin.</li>
-      </ul>
-    </TimeToolPage>
+    <>
+      <DosyaAracCubugu />
+      <TimeToolPage
+        crumbs={[
+          { href: "/", label: "Ana Sayfa" },
+          { href: DOSYA_ARACLARI_YOLU, label: "Dosya Araçları" },
+          { label: "Fotoğraf Boyutu Küçültme" },
+        ]}
+        crumbLabel="Sayfa yolu"
+        title="Fotoğraf Boyutu Küçültme"
+        intro="Fotoğrafınızı başvuru formunun, e-postanın veya web sitenizin istediği KB sınırının altına indirin. Hedefi seçin, fotoğrafları bırakın; araç kaliteyi mümkün olan en yüksek seviyede tutarak küçültür."
+        tool={<FotoKucult />}
+        related={{
+          title: "İlginizi çekebilir",
+          links: [
+            { href: DOSYA_ARACLARI_YOLU, label: "Tüm Dosya Araçları" },
+            { href: "/gorsel-donusturucu", label: "Görsel Dönüştürücü" },
+            { href: "/png-jpg-cevirme", label: "PNG JPG Çevirme" },
+            { href: "/jpg-webp-cevirme", label: "JPG WebP Çevirme" },
+            { href: "/kilobayt-megabayt", label: "Kilobayt → Megabayt" },
+            { href: "/gigabayt-megabayt", label: "Gigabayt → Megabayt" },
+            {
+              href: "/piksel-cm-dpi-hesaplama",
+              label: "Piksel, CM ve DPI Hesaplama",
+            },
+          ],
+        }}
+        tocTitle="İçindekiler"
+        tocItems={[
+          { id: "nasil", label: "Küçültme nasıl yapılır?" },
+          { id: "kb-mb", label: "KB, MB ve 1000/1024 farkı" },
+          { id: "ipuclari", label: "Başvuru sistemleri için ipuçları" },
+          { id: "faq", label: "Sık sorulan sorular" },
+        ]}
+        faqTitle="Sık sorulan sorular"
+        faqItems={SSS}
+      >
+        <h2 id="nasil">Küçültme nasıl yapılır?</h2>
+        <p>
+          Bir fotoğrafın dosya boyutunu iki şey belirler: piksel ölçüsü ve
+          sıkıştırma kalitesi. Telefonla çekilen bir fotoğraf genellikle 4000
+          piksel genişliğinde ve 2–5 MB boyutundadır. Araç önce JPG kalitesini
+          düşürerek hedefin altındaki en iyi kaliteyi arar. Kalite %40'ın altına
+          inmeden hedefe ulaşılamıyorsa fotoğrafın ölçüsünü orantılı olarak
+          küçültür ve aramayı tekrarlar. Böylece fotoğraf hem hedefin altında
+          kalır hem de gereksiz yere bozulmaz.
+        </p>
+        <h2 id="kb-mb">KB, MB ve 1000/1024 farkı</h2>
+        <p>
+          1 MB, 1000 KB olarak da 1024 KB olarak da hesaplanabilir. Windows
+          dosya boyutlarını 1024 tabanıyla gösterir; bazı başvuru siteleri ise
+          1000 tabanıyla kontrol eder. Bu araç hedefi her zaman 1000 bayt
+          üzerinden hesapladığı için ortaya çıkan dosya iki yöntemde de sınırı
+          aşmaz. Birimler arasında çevirmek için{" "}
+          <Link href="/kilobayt-megabayt">Kilobayt → Megabayt</Link> ve{" "}
+          <Link href="/kategoriler/veri">Veri Depolama Dönüşümleri</Link>{" "}
+          sayfalarını kullanabilirsiniz.
+        </p>
+        <h2 id="ipuclari">Başvuru sistemleri için ipuçları</h2>
+        <ul>
+          <li>
+            Sınırı başvuru sayfasındaki uyarıdan kontrol edin ve hedefi o değere
+            eşit ya da biraz altında seçin.
+          </li>
+          <li>
+            Sistem en az bir boyut da istiyorsa (ör. &quot;20 KB'tan
+            büyük&quot;), çok küçük bir hedef seçmeyin.
+          </li>
+          <li>
+            Fotoğrafın belirli bir piksel ölçüsünde olması gerekiyorsa önce
+            ölçüyü, sonra dosya boyutunu ayarlayın. Ölçüleri santimetreden
+            piksele çevirmek için{" "}
+            <Link href="/piksel-cm-dpi-hesaplama">
+              Piksel, CM ve DPI Hesaplama
+            </Link>{" "}
+            aracını kullanın.
+          </li>
+          <li>
+            Çoğu sistem JPG ister; WebP'yi yalnızca web siteniz için seçin.
+          </li>
+        </ul>
+      </TimeToolPage>
+    </>
   );
 }

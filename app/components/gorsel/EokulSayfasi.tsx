@@ -1,6 +1,7 @@
 import Link from "@/app/components/SiteLink";
 import type { FaqItem } from "../../converter/faqSchema";
 import { DOSYA_ARACLARI_YOLU } from "../../converter/gorsel/dosyaAraclari";
+import DosyaAracCubugu from "./DosyaAracCubugu";
 import TimeToolPage from "../time/TimeToolPage";
 import { takvimMetadata } from "../takvim/takvimMeta";
 import VesikalikArac, { type VesikalikOlcu } from "./VesikalikArac";
@@ -55,108 +56,114 @@ const SSS: FaqItem[] = [
 
 export function EokulSayfasi() {
   return (
-    <TimeToolPage
-      crumbs={[
-        { href: "/", label: "Ana Sayfa" },
-        { href: DOSYA_ARACLARI_YOLU, label: "Dosya Araçları" },
-        { label: "e-Okul Fotoğraf Küçültme" },
-      ]}
-      crumbLabel="Sayfa yolu"
-      title="e-Okul Fotoğraf Küçültme"
-      intro="Öğrenci fotoğraflarını e-Okul ve MEBBİS'in istediği 133×171 piksel, 20–150 KB JPG ölçüsüne getirin. Program kurmanıza gerek yok; bütün sınıfın fotoğraflarını tek seferde hazırlayıp ZIP olarak indirin."
-      tool={<VesikalikArac olcu={EOKUL_OLCU} />}
-      related={{
-        title: "İlginizi çekebilir",
-        links: [
-          { href: DOSYA_ARACLARI_YOLU, label: "Tüm Dosya Araçları" },
-          {
-            href: "/fotograf-boyutu-kucultme",
-            label: "Fotoğraf Boyutu Küçültme",
-          },
-          { href: "/gorsel-donusturucu", label: "Görsel Dönüştürücü" },
-          { href: "/okul-takvimi", label: "Okul Takvimi" },
-          { href: "/ogretmen-araclari", label: "Öğretmen Araçları" },
-          { href: "/devamsizlik-hesaplama", label: "Devamsızlık Hesaplama" },
-          { href: "/harf-notu-hesaplama", label: "Harf Notu Hesaplama" },
-        ],
-      }}
-      tocTitle="İçindekiler"
-      tocItems={[
-        { id: "olculer", label: "e-Okul fotoğraf ölçüleri" },
-        { id: "nasil", label: "Nasıl kullanılır?" },
-        { id: "ipuclari", label: "İyi bir öğrenci fotoğrafı için" },
-        { id: "faq", label: "Sık sorulan sorular" },
-      ]}
-      faqTitle="Sık sorulan sorular"
-      faqItems={SSS}
-    >
-      <h2 id="olculer">e-Okul fotoğraf ölçüleri</h2>
-      <div className="holiday-table-wrap">
-        <table className="holiday-table">
-          <tbody>
-            <tr>
-              <th scope="row">Piksel ölçüsü</th>
-              <td>133 × 171 (genişlik × yükseklik)</td>
-            </tr>
-            <tr>
-              <th scope="row">Dosya boyutu</th>
-              <td>En az 20 KB, en fazla 150 KB</td>
-            </tr>
-            <tr>
-              <th scope="row">Format</th>
-              <td>JPG (JPEG)</td>
-            </tr>
-            <tr>
-              <th scope="row">Geçerlilik</th>
-              <td>20 Şubat 2014'ten beri (önceki ölçü 105 × 120 piksel)</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <p>
-        Aynı ölçü MEBBİS'teki personel ve öğrenci fotoğrafları için de
-        kullanılır.
-      </p>
-      <h2 id="nasil">Nasıl kullanılır?</h2>
-      <ol>
-        <li>
-          Fotoğrafları seçin veya sürükleyip bırakın; telefonla çekilmiş
-          fotoğraflar da olur.
-        </li>
-        <li>
-          Her fotoğraf otomatik kırpılır. Yüz ortada değilse dosya adına
-          tıklayın, kutuyu sürükleyin ve &quot;Yakınlaştır&quot; ile ayarlayın.
-        </li>
-        <li>
-          Sağdaki önizlemede sonucu ve dosya boyutunu görün; tek tek veya
-          &quot;Tümünü ZIP olarak indir&quot; ile indirin.
-        </li>
-        <li>
-          İndirdiğiniz dosyaları e-Okul'daki öğrenci fotoğrafı yükleme alanından
-          yükleyin.
-        </li>
-      </ol>
-      <h2 id="ipuclari">İyi bir öğrenci fotoğrafı için</h2>
-      <ul>
-        <li>
-          Düz ve açık renkli bir duvarın önünde, yüz aydınlık olacak şekilde
-          çekin.
-        </li>
-        <li>Telefonu göz hizasında tutun; öğrenci doğrudan kameraya baksın.</li>
-        <li>
-          Baş ve omuzların üst kısmı görünsün; kırpma alanındaki kesikli oval
-          yüzün yerini gösterir.
-        </li>
-        <li>
-          Fotoğrafı yatay çektiyseniz de sorun olmaz; araç dikey 133×171
-          oranında kırpar.
-        </li>
-      </ul>
-      <p>
-        Başka bir KB sınırı olan başvurular için{" "}
-        <Link href="/fotograf-boyutu-kucultme">Fotoğraf Boyutu Küçültme</Link>{" "}
-        aracını kullanabilirsiniz.
-      </p>
-    </TimeToolPage>
+    <>
+      <DosyaAracCubugu />
+      <TimeToolPage
+        crumbs={[
+          { href: "/", label: "Ana Sayfa" },
+          { href: DOSYA_ARACLARI_YOLU, label: "Dosya Araçları" },
+          { label: "e-Okul Fotoğraf Küçültme" },
+        ]}
+        crumbLabel="Sayfa yolu"
+        title="e-Okul Fotoğraf Küçültme"
+        intro="Öğrenci fotoğraflarını e-Okul ve MEBBİS'in istediği 133×171 piksel, 20–150 KB JPG ölçüsüne getirin. Program kurmanıza gerek yok; bütün sınıfın fotoğraflarını tek seferde hazırlayıp ZIP olarak indirin."
+        tool={<VesikalikArac olcu={EOKUL_OLCU} />}
+        related={{
+          title: "İlginizi çekebilir",
+          links: [
+            { href: DOSYA_ARACLARI_YOLU, label: "Tüm Dosya Araçları" },
+            {
+              href: "/fotograf-boyutu-kucultme",
+              label: "Fotoğraf Boyutu Küçültme",
+            },
+            { href: "/gorsel-donusturucu", label: "Görsel Dönüştürücü" },
+            { href: "/okul-takvimi", label: "Okul Takvimi" },
+            { href: "/ogretmen-araclari", label: "Öğretmen Araçları" },
+            { href: "/devamsizlik-hesaplama", label: "Devamsızlık Hesaplama" },
+            { href: "/harf-notu-hesaplama", label: "Harf Notu Hesaplama" },
+          ],
+        }}
+        tocTitle="İçindekiler"
+        tocItems={[
+          { id: "olculer", label: "e-Okul fotoğraf ölçüleri" },
+          { id: "nasil", label: "Nasıl kullanılır?" },
+          { id: "ipuclari", label: "İyi bir öğrenci fotoğrafı için" },
+          { id: "faq", label: "Sık sorulan sorular" },
+        ]}
+        faqTitle="Sık sorulan sorular"
+        faqItems={SSS}
+      >
+        <h2 id="olculer">e-Okul fotoğraf ölçüleri</h2>
+        <div className="holiday-table-wrap">
+          <table className="holiday-table">
+            <tbody>
+              <tr>
+                <th scope="row">Piksel ölçüsü</th>
+                <td>133 × 171 (genişlik × yükseklik)</td>
+              </tr>
+              <tr>
+                <th scope="row">Dosya boyutu</th>
+                <td>En az 20 KB, en fazla 150 KB</td>
+              </tr>
+              <tr>
+                <th scope="row">Format</th>
+                <td>JPG (JPEG)</td>
+              </tr>
+              <tr>
+                <th scope="row">Geçerlilik</th>
+                <td>20 Şubat 2014'ten beri (önceki ölçü 105 × 120 piksel)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          Aynı ölçü MEBBİS'teki personel ve öğrenci fotoğrafları için de
+          kullanılır.
+        </p>
+        <h2 id="nasil">Nasıl kullanılır?</h2>
+        <ol>
+          <li>
+            Fotoğrafları seçin veya sürükleyip bırakın; telefonla çekilmiş
+            fotoğraflar da olur.
+          </li>
+          <li>
+            Her fotoğraf otomatik kırpılır. Yüz ortada değilse dosya adına
+            tıklayın, kutuyu sürükleyin ve &quot;Yakınlaştır&quot; ile
+            ayarlayın.
+          </li>
+          <li>
+            Sağdaki önizlemede sonucu ve dosya boyutunu görün; tek tek veya
+            &quot;Tümünü ZIP olarak indir&quot; ile indirin.
+          </li>
+          <li>
+            İndirdiğiniz dosyaları e-Okul'daki öğrenci fotoğrafı yükleme
+            alanından yükleyin.
+          </li>
+        </ol>
+        <h2 id="ipuclari">İyi bir öğrenci fotoğrafı için</h2>
+        <ul>
+          <li>
+            Düz ve açık renkli bir duvarın önünde, yüz aydınlık olacak şekilde
+            çekin.
+          </li>
+          <li>
+            Telefonu göz hizasında tutun; öğrenci doğrudan kameraya baksın.
+          </li>
+          <li>
+            Baş ve omuzların üst kısmı görünsün; kırpma alanındaki kesikli oval
+            yüzün yerini gösterir.
+          </li>
+          <li>
+            Fotoğrafı yatay çektiyseniz de sorun olmaz; araç dikey 133×171
+            oranında kırpar.
+          </li>
+        </ul>
+        <p>
+          Başka bir KB sınırı olan başvurular için{" "}
+          <Link href="/fotograf-boyutu-kucultme">Fotoğraf Boyutu Küçültme</Link>{" "}
+          aracını kullanabilirsiniz.
+        </p>
+      </TimeToolPage>
+    </>
   );
 }

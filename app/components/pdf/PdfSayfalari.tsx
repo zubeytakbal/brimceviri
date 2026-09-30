@@ -14,6 +14,7 @@ import PdfImza from "./PdfImza";
 import PdfJpg from "./PdfJpg";
 import PdfMetin from "./PdfMetin";
 import PdfNumara from "./PdfNumara";
+import PdfSifre from "./PdfSifre";
 import PdfSikistir from "./PdfSikistir";
 
 const PDF_BAGLANTILAR = [
@@ -27,6 +28,8 @@ const PDF_BAGLANTILAR = [
   { href: "/pdf-sayfa-numarasi-ekleme", label: "PDF Sayfa Numarası Ekleme" },
   { href: "/pdf-metin-cikarma", label: "PDF'ten Metin Çıkarma" },
   { href: "/pdf-imzalama", label: "PDF İmzalama" },
+  { href: "/pdf-sifreleme", label: "PDF Şifreleme" },
+  { href: "/pdf-sifre-kaldirma", label: "PDF Şifre Kaldırma" },
   { href: "/pdf-filigran-ekleme", label: "PDF Filigran Ekleme" },
   { href: "/resimden-yaziya-cevirme", label: "Resimden Yazıya Çevirme" },
   { href: "/fotograf-boyutu-kucultme", label: "Fotoğraf Boyutu Küçültme" },
@@ -844,6 +847,127 @@ export function PdfImzaSayfasi() {
               ile küçültebilir, birden fazla belgeyi{" "}
               <Link href="/pdf-birlestirme">PDF Birleştirme</Link> ile tek
               dosyada toplayabilirsiniz.
+            </p>
+          ),
+        },
+      ]}
+    />
+  );
+}
+
+/* /pdf-sifreleme */
+export const pdfSifreleMeta = () =>
+  takvimMetadata("/pdf-sifreleme", {
+    title: "PDF Şifreleme: PDF'e Şifre Koyma (AES-256, Ücretsiz, Yüklemeden)",
+    short: "PDF Şifreleme",
+    description:
+      "PDF dosyasına açılış şifresi koyun; AES-256 şifreleme, yazdırma/kopyalama/düzenleme izinleri. PDF ve şifreniz sunucuya gönderilmez, tarayıcıda şifrelenir.",
+  });
+
+export function PdfSifreleSayfasi() {
+  return (
+    <PdfSayfa
+      yol="/pdf-sifreleme"
+      baslik="PDF Şifreleme (PDF'e Şifre Koyma)"
+      giris="Maaş bordrosu, kimlik fotokopisi, sözleşme veya tahlil sonucu gibi kişisel PDF'lerinizi göndermeden önce şifreleyin. Şifreyi bilmeyen kimse dosyayı açamaz."
+      arac={<PdfSifre mod="sifrele" />}
+      sss={[
+        {
+          question: "PDF'e nasıl şifre konur?",
+          answer:
+            "PDF'i seçin, şifreyi iki kez yazın, isterseniz yazdırma ve kopyalama izinlerini belirleyin ve 'PDF'i şifrele' düğmesine basın. Şifreli PDF iner; açılırken her PDF okuyucu şifre sorar.",
+        },
+        {
+          question: "Şifreleme ne kadar güvenli?",
+          answer:
+            "PDF 2.0 standardındaki AES-256 şifreleme kullanılır. Uzun ve tahmin edilemez bir şifre seçildiğinde deneme yanılma ile kırılması pratikte mümkün değildir; 'Şifre Oluşturucu' aracıyla güçlü bir şifre üretebilirsiniz.",
+        },
+        {
+          question: "Şifreli PDF her programda açılır mı?",
+          answer:
+            "Adobe Acrobat Reader, tarayıcılar (Chrome, Edge, Firefox, Safari), iPhone ve Android'in PDF görüntüleyicileri AES-256 şifreli PDF'leri açar. Çok eski (2008 öncesi) programlar açamayabilir.",
+        },
+        {
+          question: "Şifreyi unutursam ne olur?",
+          answer:
+            "AES-256 şifresi kurtarılamaz. Şifreyi güvenli bir yere not edin ve orijinal (şifresiz) dosyayı saklayın.",
+        },
+        GUVENLIK,
+      ]}
+      bolumler={[
+        {
+          id: "izinler",
+          baslik: "İzinler ne işe yarar?",
+          icerik: (
+            <p>
+              Yazdırma, kopyalama ve düzenleme izinleri, belgeyi şifreyle açan
+              kişinin neler yapabileceğini belirler. Bu kısıtlamalara uyulması
+              PDF okuyucusuna bağlıdır; asıl koruma açılış şifresidir.
+            </p>
+          ),
+        },
+        {
+          id: "gondermek",
+          baslik: "Şifreli PDF nasıl gönderilir?",
+          icerik: (
+            <p>
+              Dosyayı e-postayla gönderiyorsanız şifreyi aynı e-postaya
+              yazmayın; SMS, telefon veya başka bir uygulamayla iletin. Dosya
+              büyükse önce <Link href="/pdf-sikistirma">PDF Sıkıştırma</Link>{" "}
+              ile küçültüp sonra şifreleyin.
+            </p>
+          ),
+        },
+      ]}
+    />
+  );
+}
+
+/* /pdf-sifre-kaldirma */
+export const pdfSifreKaldirMeta = () =>
+  takvimMetadata("/pdf-sifre-kaldirma", {
+    title: "PDF Şifre Kaldırma: Şifreli PDF'i Şifresiz Kaydet (Yüklemeden)",
+    short: "PDF Şifre Kaldırma",
+    description:
+      "Şifresini bildiğiniz PDF'i şifresiz kaydedin; yazdırma ve kopyalama kısıtlamalarını kaldırın. Banka ekstresi, e-Devlet ve fatura PDF'leri için; dosya yüklenmez.",
+  });
+
+export function PdfSifreKaldirSayfasi() {
+  return (
+    <PdfSayfa
+      yol="/pdf-sifre-kaldirma"
+      baslik="PDF Şifre Kaldırma"
+      giris="Banka ekstresi, fatura veya sigorta poliçesi gibi her açışta şifre soran PDF'leri, şifresini bir kez girerek şifresiz kaydedin. Yazdırma ve kopyalama kısıtlamalarını da kaldırır."
+      arac={<PdfSifre mod="kaldir" />}
+      sss={[
+        {
+          question: "Şifresini bilmediğim PDF'in şifresini kaldırabilir miyim?",
+          answer:
+            "Hayır. Açılış şifresi olan PDF'ler için şifreyi bilmeniz gerekir; araç şifre kırmaz. Yalnızca açılış şifresi olmayan, sadece yazdırma veya kopyalama kısıtlaması bulunan PDF'lerde şifre alanını boş bırakarak kısıtlamaları kaldırabilirsiniz.",
+        },
+        {
+          question: "Banka ekstresi PDF şifresi genellikle nedir?",
+          answer:
+            "Bankalar ekstre PDF'lerini çoğunlukla TC kimlik numarasının veya doğum tarihinin bir kısmından oluşan bir şifreyle korur. Doğru biçim bankadan bankaya değişir; ekstreyi gönderen e-postada veya bankanızın internet sitesinde yazar.",
+        },
+        {
+          question: "Şifreyi kaldırınca belge bozulur mu?",
+          answer:
+            "Hayır. Sayfalar, yazılar, imzalar ve görseller olduğu gibi kalır; yalnızca şifreleme kaldırılır. Elektronik imzalı belgelerde imza doğrulaması etkilenebilir, bu tür belgelerin aslını saklayın.",
+        },
+        GUVENLIK,
+      ]}
+      bolumler={[
+        {
+          id: "sorumluluk",
+          baslik: "Hatırlatma",
+          icerik: (
+            <p>
+              Bu aracı yalnızca size ait ya da açma yetkiniz olan belgelerde
+              kullanın. Şifresiz kaydettiğiniz kişisel belgeleri paylaşırken
+              dikkatli olun; gerekirse{" "}
+              <Link href="/pdf-sifreleme">PDF Şifreleme</Link> ile yeni bir
+              şifre koyabilirsiniz.
             </p>
           ),
         },

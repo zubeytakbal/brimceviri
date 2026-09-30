@@ -5,6 +5,7 @@ import { DOSYA_ARACLARI_YOLU } from "../../converter/gorsel/dosyaAraclari";
 import AracSayfasi from "../gorsel/AracSayfasi";
 import { takvimMetadata } from "../takvim/takvimMeta";
 import VeriDonusturucu, { JsonDuzenleyici } from "./VeriAraclari";
+import ArsivAc from "./ArsivAc";
 import { ZipAc, ZipOlustur } from "./ZipAraclari";
 
 const GIZLILIK: FaqItem = {
@@ -39,6 +40,9 @@ const BAGLANTILAR = [
   { href: "/json-duzenleyici", label: "JSON Düzenleyici" },
   { href: "/zip-olusturma", label: "ZIP Oluşturma" },
   { href: "/zip-acma", label: "ZIP Açma" },
+  { href: "/rar-acma", label: "RAR Açma" },
+  { href: "/7z-acma", label: "7Z Açma" },
+  { href: "/rar-zip-cevirme", label: "RAR ZIP Çevirme" },
   { href: "/pdf-metin-cikarma", label: "PDF'ten Metin Çıkarma" },
 ];
 
@@ -267,6 +271,144 @@ export const VERI_SAYFALARI: Record<string, Sayfa> = {
             Dosya adları UTF-8 olarak ve bunu bildiren işaretle yazılır; Windows
             10/11, macOS ve Android&apos;de &quot;Ödev_Çağla.docx&quot; gibi
             adlar bozulmadan açılır.
+          </p>
+        ),
+      },
+    ],
+  },
+  "rar-acma": {
+    yol: "/rar-acma",
+    baslik: "RAR Açma (Online RAR Çıkarma)",
+    seoBaslik:
+      "RAR Açma: Programsız RAR Dosyası Aç (Şifreli RAR Dahil, Online)",
+    aciklama:
+      "RAR dosyasını WinRAR kurmadan açın; şifreli RAR'ları şifreyle çıkarın, dosyaları tek tek veya ZIP olarak indirin. Telefonda da çalışır, dosya sunucuya yüklenmez.",
+    giris:
+      "WinRAR yüklü olmayan bir bilgisayarda veya telefonda RAR arşivinin içindekilere ulaşın. Arşivi seçin, istediğiniz dosyayı indirin.",
+    arac: <ArsivAc />,
+    sss: [
+      {
+        question: "Program kurmadan RAR dosyası nasıl açılır?",
+        answer:
+          "Bu sayfada arşivi seçin; içindeki dosyalar listelenir, ⬇ ile tek tek ya da 'ZIP olarak indir' ile hepsini birden kaydedebilirsiniz. WinRAR veya 7-Zip kurmanıza gerek yoktur; telefonda da çalışır.",
+      },
+      {
+        question: "Şifreli arşivler açılır mı?",
+        answer:
+          "Evet. Arşiv şifreliyse şifre kutusu açılır; doğru şifreyi girdiğinizde dosyalar çıkarılır. Şifre bilinmiyorsa arşiv açılamaz.",
+      },
+      {
+        question: "Hangi biçimler destekleniyor?",
+        answer:
+          "RAR (RAR4 ve RAR5), 7Z, ZIP, TAR, TAR.GZ/TGZ, GZ, BZ2, XZ, ISO, CAB ve daha fazlası. Çok parçalı arşivlerin yalnızca ilk parçası tek başına açılmaz; tüm parçaları birleştirilmiş tek dosya gerekir.",
+      },
+      {
+        question: "Dosyalarım bir sunucuya yükleniyor mu?",
+        answer:
+          "Hayır. Arşiv tarayıcınızda açılır. Büyük arşivler (1 GB üstü) tarayıcı belleğini aşabilir; bu durumda masaüstü bir arşiv programı kullanın.",
+      },
+    ],
+    bolumler: [
+      {
+        id: "ilgili",
+        baslik: "İlgili araçlar",
+        icerik: (
+          <p>
+            RAR arşivini herkesin açabileceği ZIP biçimine çevirmek için{" "}
+            <Link href="/rar-zip-cevirme">RAR ZIP Çevirme</Link>, yeni bir arşiv
+            hazırlamak için <Link href="/zip-olusturma">ZIP Oluşturma</Link>{" "}
+            aracını kullanın.
+          </p>
+        ),
+      },
+    ],
+  },
+  "7z-acma": {
+    yol: "/7z-acma",
+    baslik: "7Z Açma (7-Zip Arşivi Açma)",
+    seoBaslik: "7Z Açma: 7-Zip Dosyasını Programsız Aç (Online, Ücretsiz)",
+    aciklama:
+      "7Z arşivlerini 7-Zip kurmadan açın; şifreli 7Z desteği, TAR.GZ ve ISO dahil. Dosyaları tek tek veya ZIP olarak indirin; arşiv sunucuya yüklenmez.",
+    giris:
+      "7-Zip ile sıkıştırılmış .7z dosyalarını program kurmadan açın. Mac ve telefonlarda da çalışır.",
+    arac: <ArsivAc />,
+    sss: [
+      {
+        question: "Program kurmadan RAR dosyası nasıl açılır?",
+        answer:
+          "Bu sayfada arşivi seçin; içindeki dosyalar listelenir, ⬇ ile tek tek ya da 'ZIP olarak indir' ile hepsini birden kaydedebilirsiniz. WinRAR veya 7-Zip kurmanıza gerek yoktur; telefonda da çalışır.",
+      },
+      {
+        question: "Şifreli arşivler açılır mı?",
+        answer:
+          "Evet. Arşiv şifreliyse şifre kutusu açılır; doğru şifreyi girdiğinizde dosyalar çıkarılır. Şifre bilinmiyorsa arşiv açılamaz.",
+      },
+      {
+        question: "Hangi biçimler destekleniyor?",
+        answer:
+          "RAR (RAR4 ve RAR5), 7Z, ZIP, TAR, TAR.GZ/TGZ, GZ, BZ2, XZ, ISO, CAB ve daha fazlası. Çok parçalı arşivlerin yalnızca ilk parçası tek başına açılmaz; tüm parçaları birleştirilmiş tek dosya gerekir.",
+      },
+      {
+        question: "Dosyalarım bir sunucuya yükleniyor mu?",
+        answer:
+          "Hayır. Arşiv tarayıcınızda açılır. Büyük arşivler (1 GB üstü) tarayıcı belleğini aşabilir; bu durumda masaüstü bir arşiv programı kullanın.",
+      },
+    ],
+    bolumler: [
+      {
+        id: "7z-nedir",
+        baslik: "7Z nedir?",
+        icerik: (
+          <p>
+            7Z, açık kaynaklı 7-Zip programının LZMA/LZMA2 sıkıştırmasını
+            kullanan arşiv biçimidir; çoğu zaman ZIP&apos;ten belirgin şekilde
+            daha küçük dosya üretir. Windows&apos;un eski sürümleri ve
+            telefonlar 7Z&apos;yi kendiliğinden açamaz.
+          </p>
+        ),
+      },
+    ],
+  },
+  "rar-zip-cevirme": {
+    yol: "/rar-zip-cevirme",
+    baslik: "RAR ZIP Çevirme",
+    seoBaslik: "RAR ZIP Çevirme: RAR ve 7Z Arşivlerini ZIP'e Dönüştür (Online)",
+    aciklama:
+      "RAR, 7Z veya TAR.GZ arşivlerini her bilgisayarda açılan ZIP dosyasına çevirin; klasör yapısı korunur, şifreli arşivler desteklenir. Yüklemeden, ücretsiz.",
+    giris:
+      "RAR veya 7Z arşivini, Windows ve macOS'un kendiliğinden açabildiği ZIP biçimine çevirin; e-postayla veya başvuru sistemlerine yüklemek için idealdir.",
+    arac: <ArsivAc zipOdakli />,
+    sss: [
+      {
+        question: "Program kurmadan RAR dosyası nasıl açılır?",
+        answer:
+          "Bu sayfada arşivi seçin; içindeki dosyalar listelenir, ⬇ ile tek tek ya da 'ZIP olarak indir' ile hepsini birden kaydedebilirsiniz. WinRAR veya 7-Zip kurmanıza gerek yoktur; telefonda da çalışır.",
+      },
+      {
+        question: "Şifreli arşivler açılır mı?",
+        answer:
+          "Evet. Arşiv şifreliyse şifre kutusu açılır; doğru şifreyi girdiğinizde dosyalar çıkarılır. Şifre bilinmiyorsa arşiv açılamaz.",
+      },
+      {
+        question: "Hangi biçimler destekleniyor?",
+        answer:
+          "RAR (RAR4 ve RAR5), 7Z, ZIP, TAR, TAR.GZ/TGZ, GZ, BZ2, XZ, ISO, CAB ve daha fazlası. Çok parçalı arşivlerin yalnızca ilk parçası tek başına açılmaz; tüm parçaları birleştirilmiş tek dosya gerekir.",
+      },
+      {
+        question: "Dosyalarım bir sunucuya yükleniyor mu?",
+        answer:
+          "Hayır. Arşiv tarayıcınızda açılır. Büyük arşivler (1 GB üstü) tarayıcı belleğini aşabilir; bu durumda masaüstü bir arşiv programı kullanın.",
+      },
+    ],
+    bolumler: [
+      {
+        id: "neden",
+        baslik: "Neden ZIP?",
+        icerik: (
+          <p>
+            ZIP; Windows, macOS, Android ve iPhone&apos;da ek program gerekmeden
+            açılır. Birçok okul, kamu ve iş başvuru sistemi de yalnızca ZIP
+            kabul eder. Çevirme sırasında klasör yapısı ve dosya adları korunur.
           </p>
         ),
       },

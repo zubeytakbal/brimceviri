@@ -44,7 +44,9 @@ export type AracIkon =
         | "xlsx"
         | "csv"
         | "json"
-        | "zip";
+        | "zip"
+        | "rar"
+        | "7z";
       hedef:
         | GorselFormat
         | "tum"
@@ -70,7 +72,9 @@ export type AracIkon =
         | "metin"
         | "sikistir"
         | "filigran"
-        | "imza";
+        | "imza"
+        | "kilit"
+        | "kilitac";
     }
   | { tip: "kucult" }
   | { tip: "boyut" }
@@ -154,6 +158,30 @@ export const DOSYA_ARACLARI: DosyaAraci[] = [
     aciklama: "JSON'u biçimlendirin, hatayı satırıyla bulun, küçültün.",
     kategoriler: ["veri", "metin"],
     ikon: { tip: "cift", kaynak: "json", hedef: "json" },
+    yeni: true,
+  },
+  {
+    href: "/rar-acma",
+    baslik: "RAR Açma",
+    aciklama: "WinRAR kurmadan RAR açın; şifreli RAR, telefonda da çalışır.",
+    kategoriler: ["veri"],
+    ikon: { tip: "cift", kaynak: "rar", hedef: "tum" },
+    yeni: true,
+  },
+  {
+    href: "/7z-acma",
+    baslik: "7Z Açma",
+    aciklama: "7-Zip arşivlerini ve TAR.GZ, ISO dosyalarını programsız açın.",
+    kategoriler: ["veri"],
+    ikon: { tip: "cift", kaynak: "7z", hedef: "tum" },
+    yeni: true,
+  },
+  {
+    href: "/rar-zip-cevirme",
+    baslik: "RAR ZIP Çevirme",
+    aciklama: "RAR ve 7Z arşivlerini her yerde açılan ZIP'e çevirin.",
+    kategoriler: ["veri", "donustur"],
+    ikon: { tip: "cift", kaynak: "rar", hedef: "zip" },
     yeni: true,
   },
   {
@@ -279,6 +307,24 @@ export const DOSYA_ARACLARI: DosyaAraci[] = [
       "PDF boyutunu küçültün; yazılar keskin kalır, yalnız görseller sıkıştırılır.",
     kategoriler: ["pdf", "kucult"],
     ikon: { tip: "pdf", islem: "sikistir" },
+    yeni: true,
+  },
+  {
+    href: "/pdf-sifreleme",
+    baslik: "PDF Şifreleme",
+    aciklama:
+      "PDF'e AES-256 açılış şifresi koyun, yazdırma/kopyalama izni verin.",
+    kategoriler: ["pdf", "gizlilik"],
+    ikon: { tip: "pdf", islem: "kilit" },
+    yeni: true,
+  },
+  {
+    href: "/pdf-sifre-kaldirma",
+    baslik: "PDF Şifre Kaldırma",
+    aciklama:
+      "Şifresini bildiğiniz PDF'i şifresiz kaydedin, kısıtlamaları kaldırın.",
+    kategoriler: ["pdf"],
+    ikon: { tip: "pdf", islem: "kilitac" },
     yeni: true,
   },
   {

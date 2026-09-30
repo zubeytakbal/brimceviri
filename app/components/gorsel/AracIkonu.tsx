@@ -23,6 +23,8 @@ const RENK: Record<string, { zemin: string; yazi: string; ad: string }> = {
   csv: { zemin: "#3b8f5c", yazi: "#ffffff", ad: "CSV" },
   json: { zemin: "#f0b400", yazi: "#1c1c1e", ad: "JSON" },
   zip: { zemin: "#8e6c3a", yazi: "#ffffff", ad: "ZIP" },
+  rar: { zemin: "#6d2a8c", yazi: "#ffffff", ad: "RAR" },
+  "7z": { zemin: "#1f1f1f", yazi: "#ffffff", ad: "7Z" },
   wav: { zemin: "#2a9d8f", yazi: "#ffffff", ad: "WAV" },
   m4a: { zemin: "#e76f51", yazi: "#ffffff", ad: "M4A" },
   opus: { zemin: "#25a244", yazi: "#ffffff", ad: "OPUS" },
@@ -196,6 +198,23 @@ export default function AracIkonu({
             strokeLinejoin="round"
           />
           <path d="M18 48h30" stroke="#5b6b78" strokeWidth="1.6" />
+        </>
+      ) : ikon.tip === "pdf" &&
+        (ikon.islem === "kilit" || ikon.islem === "kilitac") ? (
+        <>
+          <Dosya x={4} y={2} f="pdf" />
+          <rect x="26" y="30" width="20" height="16" rx="3" fill="#1f2a33" />
+          <path
+            d={
+              ikon.islem === "kilit"
+                ? "M30 30v-5a6 6 0 0 1 12 0v5"
+                : "M30 30v-5a6 6 0 0 1 11.5-2.4"
+            }
+            stroke="#1f2a33"
+            strokeWidth="2.6"
+            fill="none"
+          />
+          <circle cx="36" cy="38" r="2.2" fill="#ffffff" />
         </>
       ) : ikon.tip === "pdf" && ikon.islem === "duzenle" ? (
         <>

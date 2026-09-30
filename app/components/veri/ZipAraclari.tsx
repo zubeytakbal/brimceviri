@@ -213,7 +213,7 @@ export function ZipAc() {
     const f = d[0];
     if (/\.(rar|7z|tar|gz|tgz)$/i.test(f.name)) {
       setHata(
-        "Şu an yalnızca ZIP arşivleri açılabiliyor; RAR, 7Z ve TAR desteği yakında.",
+        "Bu sayfa yalnızca ZIP içindir. RAR, 7Z ve TAR arşivleri için RAR Açma aracını kullanın (/rar-acma).",
       );
       return;
     }

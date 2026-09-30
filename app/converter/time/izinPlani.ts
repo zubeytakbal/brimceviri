@@ -1,7 +1,7 @@
 // Türkiye için izin planı: resmî tatiller tam gün boş, arefeler (13.00'e kadar çalışılan) yarım gün izin sayılır.
 // Planlama algoritması Brückentage planlayıcısıyla ortaktır (brueckentage.ts).
-import { planFuerTage, type Tag } from "./brueckentage";
-import { addDaysYmd, weekdayOf, ymdKey } from "./dateMath";
+import { planFuerTage, type Tag, type Zeitraum } from "./brueckentage";
+import { addDaysYmd, weekdayOf, ymdKey, parseYmd } from "./dateMath";
 import { turkeyHolidays } from "./holidays";
 
 const PAD = 14;
@@ -9,6 +9,7 @@ const PAD = 14;
 export function turkiyeTatilGunleri(
   year: number,
   cumartesiCalisilir: boolean,
+  workdays?: boolean[],
 ): Tag[] {
   const tam = new Map<string, string>();
   const yarim = new Map<string, string>();
@@ -25,7 +26,7 @@ export function turkiyeTatilGunleri(
   ) {
     const key = ymdKey(d);
     const wd = weekdayOf(d);
-    const isGunu = wd !== 0 && (wd !== 6 || cumartesiCalisilir);
+    const isGunu = workdays ? workdays[wd] : wd !== 0 && (wd !== 6 || cumartesiCalisilir);
     const feiertag = tam.get(key) ?? null;
     out.push({
       date: d,
@@ -50,4 +51,39 @@ export function izinPlani(
     izinGunu,
     10,
   );
+}
+
+
+/** All proposed time off stays inside the selected range, including weekends. */
+export function kisiselIzinPlani(year: number, budget: number, workdays: boolean[], start: string, end: string) {
+  const empty = { enUzun: null as Zeitraum | null, enVerimli: null as Zeitraum | null };
+  if (!parseYmd(start) || !parseYmd(end) || start > end ||
+      !start.startsWith(`${year}-`) || !end.startsWith(`${year}-`) ||
+      workdays.length !== 7 || !workdays.some(Boolean) ||
+      !Number.isFinite(budget) || budget < 0.5 || budget > 30) return empty;
+  const days = turkiyeTatilGunleri(year, false, workdays).filter(t => t.key >= start && t.key <= end);
+  let enUzun: Zeitraum | null = null;
+  let enVerimli: Zeitraum | null = null;
+  for (let i = 0; i < days.length; i++) {
+    let cost = 0;
+    const leave: Zeitraum['urlaubstage'] = [];
+    const holidays = new Set<string>();
+    for (let j = i; j < days.length; j++) {
+      const t = days[j];
+      if (!t.frei) { cost += t.halb ? 0.5 : 1; leave.push(t.date); }
+      if (cost > budget) break;
+      if (t.feiertag) holidays.add(t.feiertag);
+      if (cost === 0) continue;
+      const length = j - i + 1;
+      const longest = !enUzun || length > enUzun.tage || (length === enUzun.tage && cost < enUzun.urlaub);
+      const efficient = !enVerimli || length / cost > enVerimli.tage / enVerimli.urlaub ||
+        (length / cost === enVerimli.tage / enVerimli.urlaub && cost < enVerimli.urlaub);
+      if (longest || efficient) {
+        const z: Zeitraum = { von: days[i].date, bis: t.date, tage: length, urlaub: cost, urlaubstage: [...leave], feiertage: [...holidays] };
+        if (longest) enUzun = z;
+        if (efficient) enVerimli = z;
+      }
+    }
+  }
+  return { enUzun, enVerimli };
 }

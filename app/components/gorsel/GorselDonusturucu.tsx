@@ -9,7 +9,8 @@ import {
   type GorselFormat,
 } from "../../converter/gorsel/formatlar";
 import { olcuHesapla } from "../../converter/gorsel/sikistirma";
-import { zipOlustur } from "../../converter/gorsel/zip";
+import DosyaBirak from "./DosyaBirak";
+import { bitmapAc, indir, kodla, zipUrlOlustur } from "./tuval";
 
 type Ayar = {
   hedef: GorselFormat;
@@ -35,45 +36,29 @@ type Oge = {
 const MAX_DOSYA = 30;
 
 async function donustur(dosya: File, a: Ayar) {
-  let bitmap: ImageBitmap;
-  try {
-    bitmap = await createImageBitmap(dosya);
-  } catch {
-    throw new Error(
-      "Bu dosya tarayıcınızda açılamadı. JPG, PNG veya WebP bir görsel seçin.",
-    );
-  }
+  const bitmap = await bitmapAc(dosya);
   const { genislik, yukseklik } = olcuHesapla(
     { genislik: bitmap.width, yukseklik: bitmap.height },
     a.genislik && a.genislik < bitmap.width ? { genislik: a.genislik } : {},
   );
-  const tuval = document.createElement("canvas");
-  tuval.width = genislik;
-  tuval.height = yukseklik;
-  const ctx = tuval.getContext("2d")!;
-  const f = FORMATLAR[a.hedef];
-  if (!f.seffaflik) {
-    ctx.fillStyle = a.arkaPlan;
-    ctx.fillRect(0, 0, genislik, yukseklik);
+  try {
+    const blob = await kodla(bitmap, {
+      genislik,
+      yukseklik,
+      format: a.hedef,
+      kalite: a.kalite,
+      arkaPlan: a.arkaPlan,
+    });
+    return {
+      blob,
+      url: URL.createObjectURL(blob),
+      ad: ciktiAdi(dosya.name, a.hedef),
+      genislik,
+      yukseklik,
+    };
+  } finally {
+    bitmap.close();
   }
-  ctx.imageSmoothingQuality = "high";
-  ctx.drawImage(bitmap, 0, 0, genislik, yukseklik);
-  bitmap.close();
-  const blob = await new Promise<Blob | null>((res) =>
-    tuval.toBlob(res, f.mime, f.kaliteli ? a.kalite : undefined),
-  );
-  if (!blob) throw new Error("Görsel kaydedilemedi.");
-  if (blob.type !== f.mime)
-    throw new Error(
-      `Tarayıcınız ${f.ad} olarak kaydetmeyi desteklemiyor. Chrome, Edge veya Firefox'un güncel sürümünü deneyin.`,
-    );
-  return {
-    blob,
-    url: URL.createObjectURL(blob),
-    ad: ciktiAdi(dosya.name, a.hedef),
-    genislik,
-    yukseklik,
-  };
 }
 
 /**
@@ -94,7 +79,6 @@ export default function GorselDonusturucu({
     genislik: null,
   });
   const [ogeler, setOgeler] = useState<Oge[]>([]);
-  const [surukle, setSurukle] = useState(false);
   const [zipUrl, setZipUrl] = useState<string | null>(null);
   const sayac = useRef(0);
   const calisma = useRef(0);
@@ -146,17 +130,10 @@ export default function GorselDonusturucu({
     }
   };
 
-  const ekle = (dosyalar: FileList | null) => {
-    if (!dosyalar?.length) return;
-    const yeni = [...dosyalar]
-      .filter(
-        (d) =>
-          d.type.startsWith("image/") ||
-          /\.(jpe?g|jfif|png|webp|gif|bmp|avif)$/i.test(d.name),
-      )
-      .slice(0, MAX_DOSYA)
-      .map((dosya): Oge => ({ id: ++sayac.current, dosya, durum: "bekliyor" }));
-    if (!yeni.length) return;
+  const ekle = (dosyalar: File[]) => {
+    const yeni = dosyalar.map(
+      (dosya): Oge => ({ id: ++sayac.current, dosya, durum: "bekliyor" }),
+    );
     void isle([...ogeler, ...yeni].slice(-MAX_DOSYA), ayar);
   };
 
@@ -167,22 +144,14 @@ export default function GorselDonusturucu({
   };
 
   const zipYap = async () => {
-    const hazir = ogeler.filter((o) => o.cikti);
-    const dosyalar = await Promise.all(
-      hazir.map(async (o) => ({
-        ad: o.cikti!.ad,
-        veri: new Uint8Array(await o.cikti!.blob.arrayBuffer()),
-      })),
-    );
-    const url = URL.createObjectURL(
-      new Blob([zipOlustur(dosyalar) as BlobPart], { type: "application/zip" }),
+    const url = await zipUrlOlustur(
+      ogeler.flatMap((o) =>
+        o.cikti ? [{ ad: o.cikti.ad, blob: o.cikti.blob }] : [],
+      ),
     );
     urller.current.push(url);
     setZipUrl(url);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `gorseller-${FORMATLAR[ayar.hedef].uzanti}.zip`;
-    a.click();
+    indir(url, `gorseller-${FORMATLAR[ayar.hedef].uzanti}.zip`);
   };
 
   const f = FORMATLAR[ayar.hedef];
@@ -192,39 +161,16 @@ export default function GorselDonusturucu({
 
   return (
     <div className="date-calc gorsel-arac">
-      <label
-        className={`gorsel-birak${surukle ? " is-drag" : ""}`}
-        onDragOver={(e) => {
-          e.preventDefault();
-          setSurukle(true);
-        }}
-        onDragLeave={() => setSurukle(false)}
-        onDrop={(e) => {
-          e.preventDefault();
-          setSurukle(false);
-          ekle(e.dataTransfer.files);
-        }}
-      >
-        <input
-          type="file"
-          multiple
-          accept={kaynak ? `${FORMATLAR[kaynak].kabul},image/*` : "image/*"}
-          onChange={(e) => {
-            ekle(e.target.files);
-            e.target.value = "";
-          }}
-        />
-        <strong>
-          {kaynak
+      <DosyaBirak
+        baslik={
+          kaynak
             ? `${FORMATLAR[kaynak].ad} dosyalarını seçin`
-            : "Görselleri seçin"}
-        </strong>
-        <span>veya buraya sürükleyip bırakın · en fazla {MAX_DOSYA} dosya</span>
-        <small>
-          🔒 Dosyalarınız bilgisayarınızdan çıkmaz; dönüştürme tarayıcınızda
-          yapılır.
-        </small>
-      </label>
+            : "Görselleri seçin"
+        }
+        accept={kaynak ? `${FORMATLAR[kaynak].kabul},image/*` : "image/*"}
+        max={MAX_DOSYA}
+        onSec={ekle}
+      />
 
       <div className="date-calc-input">
         <div className="date-calc-fields">

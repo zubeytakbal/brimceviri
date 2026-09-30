@@ -14342,3 +14342,36 @@ a.all-units-row .all-units-name {
   font-size: 0.72rem;
   font-weight: 700;
 }
+
+.gorsel-hedefler {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.gorsel-hedefler button {
+  padding: 8px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.gorsel-hedefler button:hover {
+  background: rgba(255, 255, 255, 0.24);
+}
+
+.gorsel-hedefler button.is-active {
+  border-color: #ffffff;
+  background: #ffffff;
+  color: #1f4f66;
+}
+
+.gorsel-tamam {
+  color: #1f7a45;
+  font-size: 0.9rem;
+  font-weight: 600;
+}

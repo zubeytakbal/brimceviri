@@ -45,6 +45,15 @@ export const DOSYA_ARACLARI_YOLU = "/dosya-araclari";
 
 export const DOSYA_ARACLARI: DosyaAraci[] = [
   {
+    href: "/fotograf-boyutu-kucultme",
+    baslik: "Fotoğraf Boyutu Küçültme",
+    aciklama:
+      "Fotoğrafı 20, 50, 100, 200 KB veya istediğiniz sınırın altına düşürün.",
+    kategoriler: ["kucult"],
+    ikon: { tip: "kucult" },
+    yeni: true,
+  },
+  {
     href: "/gorsel-donusturucu",
     baslik: "Görsel Dönüştürücü",
     aciklama:

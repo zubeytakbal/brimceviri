@@ -118,7 +118,14 @@ export type AgSimge =
   | "hece"
   | "tckn"
   | "vkn"
-  | "iban";
+  | "iban"
+  | "mikrofon"
+  | "kamera"
+  | "hoparlor"
+  | "klavye"
+  | "fare"
+  | "piksel"
+  | "kayit";
 
 export type DosyaAraci = {
   href: string;

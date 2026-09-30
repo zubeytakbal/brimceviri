@@ -81,6 +81,72 @@ const AG: Record<AgSimge, { renk: string; yazi: string }> = {
   tckn: { renk: "#dc2626", yazi: "TC" },
   vkn: { renk: "#1d4ed8", yazi: "VKN" },
   iban: { renk: "#047857", yazi: "IBAN" },
+  mikrofon: { renk: "#be185d", yazi: "" },
+  kamera: { renk: "#0369a1", yazi: "" },
+  hoparlor: { renk: "#7c3aed", yazi: "" },
+  klavye: { renk: "#374151", yazi: "" },
+  fare: { renk: "#57534e", yazi: "" },
+  piksel: { renk: "#111827", yazi: "" },
+  kayit: { renk: "#dc2626", yazi: "" },
+};
+
+const C = {
+  stroke: "#fff",
+  strokeWidth: 2.6,
+  fill: "none",
+  strokeLinecap: "round",
+  strokeLinejoin: "round",
+} as const;
+
+/** Cihaz testleri için basit beyaz çizimler. */
+const CIZIM: Partial<Record<AgSimge, React.ReactNode>> = {
+  mikrofon: (
+    <>
+      <rect x="21" y="11" width="10" height="18" rx="5" {...C} />
+      <path d="M16 25a10 10 0 0 0 20 0M26 35v6M20 41h12" {...C} />
+    </>
+  ),
+  kamera: (
+    <>
+      <rect x="11" y="17" width="22" height="18" rx="3" {...C} />
+      <path d="M33 23l8-5v16l-8-5z" {...C} />
+    </>
+  ),
+  hoparlor: (
+    <>
+      <path d="M12 22h6l8-7v22l-8-7h-6z" {...C} />
+      <path d="M31 21a7 7 0 0 1 0 10M35 17a12 12 0 0 1 0 18" {...C} />
+    </>
+  ),
+  klavye: (
+    <>
+      <rect x="9" y="16" width="34" height="20" rx="3" {...C} />
+      <path
+        d="M14 22h2M20 22h2M26 22h2M32 22h2M38 22h0M14 27h2M20 27h2M26 27h2M32 27h2M18 31h16"
+        {...C}
+      />
+    </>
+  ),
+  fare: (
+    <>
+      <rect x="17" y="11" width="18" height="30" rx="9" {...C} />
+      <path d="M26 11v9M17 20h18" {...C} />
+    </>
+  ),
+  piksel: (
+    <>
+      <rect x="10" y="12" width="32" height="22" rx="2" {...C} />
+      <rect x="23" y="20" width="6" height="6" fill="#ef4444" />
+      <path d="M20 40h12M26 34v6" {...C} />
+    </>
+  ),
+  kayit: (
+    <>
+      <rect x="9" y="13" width="34" height="22" rx="3" {...C} />
+      <circle cx="26" cy="24" r="5" fill="#fff" />
+      <path d="M20 40h12" {...C} />
+    </>
+  ),
 };
 
 /** Ağ araçları için renkli rozet; bazılarında küçük çizim. */
@@ -89,7 +155,9 @@ function AgRozet({ simge }: { simge: AgSimge }) {
   return (
     <>
       <rect x="4" y="4" width="44" height="44" rx="11" fill={r.renk} />
-      {simge === "indirme" ? (
+      {CIZIM[simge] ? (
+        CIZIM[simge]
+      ) : simge === "indirme" ? (
         <>
           <path
             d="M26 13v17m-7-7 7 7 7-7"

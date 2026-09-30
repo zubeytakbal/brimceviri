@@ -9,7 +9,7 @@ export const AG_KATEGORILER: Array<{ id: AgKategori; ad: string }> = [
   { id: "ip", ad: "IP ve Subnet" },
   { id: "hiz", ad: "Hız ve Bağlantı" },
   { id: "guvenlik", ad: "Hash ve Güvenlik" },
-  { id: "cihaz", ad: "Tarayıcı ve Cihaz" },
+  { id: "cihaz", ad: "Cihaz testleri" },
   { id: "basvuru", ad: "Port ve Başvuru" },
 ];
 
@@ -99,6 +99,67 @@ export const AG_ARACLARI: AgAraci[] = [
       "Tarayıcı sürümü, işletim sistemi, ekran çözünürlüğü, dil ve saat dilimi.",
     kategoriler: ["cihaz"],
     ikon: { tip: "ag", simge: "cihaz" },
+    yeni: true,
+  },
+  {
+    href: "/mikrofon-testi",
+    baslik: "Mikrofon Testi",
+    aciklama: "Mikrofonunuz çalışıyor mu? Ses seviyesi, kayıt ve dinleme.",
+    kategoriler: ["cihaz"],
+    ikon: { tip: "ag", simge: "mikrofon" },
+    yeni: true,
+  },
+  {
+    href: "/kamera-testi",
+    baslik: "Kamera Testi",
+    aciklama:
+      "Web kameranızı test edin; çözünürlük, kare hızı ve fotoğraf çekme.",
+    kategoriler: ["cihaz"],
+    ikon: { tip: "ag", simge: "kamera" },
+    yeni: true,
+  },
+  {
+    href: "/hoparlor-testi",
+    baslik: "Hoparlör Testi (Sol Sağ)",
+    aciklama:
+      "Sol ve sağ kanal, stereo ve frekans testi; kulaklık yönünü bulun.",
+    kategoriler: ["cihaz"],
+    ikon: { tip: "ag", simge: "hoparlor" },
+    yeni: true,
+  },
+  {
+    href: "/klavye-testi",
+    baslik: "Klavye Testi",
+    aciklama:
+      "Tuşları tek tek deneyin; basılan, takılan ve çalışmayan tuşları görün.",
+    kategoriler: ["cihaz"],
+    ikon: { tip: "ag", simge: "klavye" },
+    yeni: true,
+  },
+  {
+    href: "/fare-testi",
+    baslik: "Fare Testi (Çift Tıklama)",
+    aciklama:
+      "Sol, sağ, orta tuş ve tekerleği deneyin; istenmeyen çift tıklamayı yakalayın.",
+    kategoriler: ["cihaz"],
+    ikon: { tip: "ag", simge: "fare" },
+    yeni: true,
+  },
+  {
+    href: "/olu-piksel-testi",
+    baslik: "Ölü Piksel Testi",
+    aciklama:
+      "Tam ekran renklerle ölü ve takılı pikselleri, ışık sızmasını bulun.",
+    kategoriler: ["cihaz"],
+    ikon: { tip: "ag", simge: "piksel" },
+    yeni: true,
+  },
+  {
+    href: "/ekran-kaydi",
+    baslik: "Ekran Kaydı Alma",
+    aciklama: "Program kurmadan ekranı, pencereyi veya sekmeyi sesli kaydedin.",
+    kategoriler: ["cihaz"],
+    ikon: { tip: "ag", simge: "kayit" },
     yeni: true,
   },
   {

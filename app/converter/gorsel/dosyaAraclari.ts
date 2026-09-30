@@ -97,7 +97,21 @@ export type AracIkon =
   | { tip: "qroku" }
   | { tip: "sifre" }
   | { tip: "fark" }
-  | { tip: "video"; islem: "sikistir" | "kes" | "dondur" | "sessiz" };
+  | { tip: "video"; islem: "sikistir" | "kes" | "dondur" | "sessiz" }
+  | { tip: "ag"; simge: AgSimge };
+
+/** Ağ Araçları kart ikonları */
+export type AgSimge =
+  | "subnet"
+  | "ip"
+  | "ipv6"
+  | "indirme"
+  | "hash"
+  | "md5"
+  | "sha"
+  | "mac"
+  | "port"
+  | "cihaz";
 
 export type DosyaAraci = {
   href: string;

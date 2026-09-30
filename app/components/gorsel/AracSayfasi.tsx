@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
 import type { FaqItem } from "../../converter/faqSchema";
-import { DOSYA_ARACLARI_YOLU } from "../../converter/gorsel/dosyaAraclari";
 import TimeToolPage from "../time/TimeToolPage";
 import DosyaAracCubugu from "./DosyaAracCubugu";
+import { KOLEKSIYONLAR, type KoleksiyonId } from "./koleksiyon";
 
 /** Dosya aracı sayfası iskeleti: araç çubuğu, kırıntı, araç, bölümler, SSS, ilgili bağlantılar. */
 export default function AracSayfasi({
@@ -14,6 +14,7 @@ export default function AracSayfasi({
   bolumler,
   baglantilar,
   ara,
+  koleksiyon = "dosya",
 }: {
   yol: string;
   baslik: string;
@@ -22,16 +23,18 @@ export default function AracSayfasi({
   sss: FaqItem[];
   bolumler: Array<{ id: string; baslik: string; icerik: ReactNode }>;
   baglantilar: Array<{ href: string; label: string }>;
-  /** Dosya Araçları ile sayfa arasındaki ara kırıntı (ör. Görsel Dönüştürücü). */
+  /** Koleksiyon ana sayfası ile sayfa arasındaki ara kırıntı (ör. Görsel Dönüştürücü). */
   ara?: { href: string; label: string };
+  koleksiyon?: KoleksiyonId;
 }) {
+  const kol = KOLEKSIYONLAR[koleksiyon];
   return (
     <>
-      <DosyaAracCubugu />
+      <DosyaAracCubugu koleksiyon={koleksiyon} />
       <TimeToolPage
         crumbs={[
           { href: "/", label: "Ana Sayfa" },
-          { href: DOSYA_ARACLARI_YOLU, label: "Dosya Araçları" },
+          { href: kol.yol, label: kol.ad },
           ...(ara ? [ara] : []),
           { label: baslik },
         ]}

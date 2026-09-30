@@ -1,4 +1,4 @@
-import type { AracIkon } from "../../converter/gorsel/dosyaAraclari";
+import type { AgSimge, AracIkon } from "../../converter/gorsel/dosyaAraclari";
 
 const RENK: Record<string, { zemin: string; yazi: string; ad: string }> = {
   jpg: { zemin: "#f08a24", yazi: "#ffffff", ad: "JPG" },
@@ -63,6 +63,101 @@ function Dosya({ x, y, f }: { x: number; y: number; f: string }) {
   );
 }
 
+const AG: Record<AgSimge, { renk: string; yazi: string }> = {
+  subnet: { renk: "#2563eb", yazi: "/24" },
+  ip: { renk: "#0f766e", yazi: "IP" },
+  ipv6: { renk: "#7c3aed", yazi: "v6" },
+  indirme: { renk: "#0891b2", yazi: "" },
+  hash: { renk: "#475569", yazi: "#" },
+  md5: { renk: "#b45309", yazi: "MD5" },
+  sha: { renk: "#be123c", yazi: "SHA" },
+  mac: { renk: "#4d7c0f", yazi: "MAC" },
+  port: { renk: "#c2410c", yazi: ":443" },
+  cihaz: { renk: "#334155", yazi: "" },
+};
+
+/** Ağ araçları için renkli rozet; bazılarında küçük çizim. */
+function AgRozet({ simge }: { simge: AgSimge }) {
+  const r = AG[simge];
+  return (
+    <>
+      <rect x="4" y="4" width="44" height="44" rx="11" fill={r.renk} />
+      {simge === "indirme" ? (
+        <>
+          <path
+            d="M26 13v17m-7-7 7 7 7-7"
+            stroke="#fff"
+            strokeWidth="3.2"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M16 37h20"
+            stroke="#fff"
+            strokeWidth="3.2"
+            strokeLinecap="round"
+          />
+        </>
+      ) : simge === "cihaz" ? (
+        <>
+          <rect
+            x="12"
+            y="14"
+            width="22"
+            height="16"
+            rx="2"
+            fill="none"
+            stroke="#fff"
+            strokeWidth="2.6"
+          />
+          <path
+            d="M18 36h10M23 30v6"
+            stroke="#fff"
+            strokeWidth="2.6"
+            strokeLinecap="round"
+          />
+          <rect
+            x="33"
+            y="22"
+            width="9"
+            height="16"
+            rx="2"
+            fill={r.renk}
+            stroke="#fff"
+            strokeWidth="2.4"
+          />
+        </>
+      ) : simge === "subnet" ? (
+        <>
+          <circle cx="26" cy="15" r="4" fill="#fff" />
+          <circle cx="15" cy="36" r="4" fill="#fff" />
+          <circle cx="26" cy="36" r="4" fill="#fff" />
+          <circle cx="37" cy="36" r="4" fill="#fff" />
+          <path
+            d="M26 19v13M26 25H15v7M26 25h11v7"
+            stroke="#fff"
+            strokeWidth="2.4"
+            fill="none"
+          />
+        </>
+      ) : (
+        <text
+          x="26"
+          y="31"
+          textAnchor="middle"
+          fontSize={r.yazi.length > 3 ? 11 : r.yazi.length > 2 ? 13 : 16}
+          fontWeight="800"
+          fill="#fff"
+          fontFamily="system-ui, sans-serif"
+        >
+          {r.yazi}
+        </text>
+      )}
+    </>
+  );
+}
+
 /** Dosya Araçları kartlarının ikonları: format çiftleri için iki dosya rozeti ve ok. */
 export default function AracIkonu({
   ikon,
@@ -79,7 +174,9 @@ export default function AracIkonu({
       aria-hidden="true"
       focusable="false"
     >
-      {ikon.tip === "cift" ? (
+      {ikon.tip === "ag" ? (
+        <AgRozet simge={ikon.simge} />
+      ) : ikon.tip === "cift" ? (
         <>
           <Dosya x={2} y={2} f={ikon.kaynak} />
           <Dosya x={26} y={20} f={ikon.hedef} />

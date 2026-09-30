@@ -119,6 +119,13 @@ const fileToolsHome = [
   { href: "/png-jpg-cevirme", title: "PNG JPG Çevirme", description: "PNG'leri küçük JPG'lere çevirin; saydam alanlar istediğiniz renkle dolar." },
 ];
 
+const netToolsHome = [
+  { href: "/ag-araclari", title: "Ağ Araçları", description: "Subnet, IP, hash, port ve indirme süresi araçları tek panelde." },
+  { href: "/subnet-hesaplama", title: "Subnet Hesaplama", description: "CIDR ve maskeden ağ, yayın adresi, IP aralığı ve host sayısı." },
+  { href: "/hash-hesaplama", title: "Hash Hesaplama", description: "Dosya ve metin için MD5, SHA-256 checksum; indirilen dosyayı doğrulayın." },
+  { href: "/indirme-suresi-hesaplama", title: "İndirme Süresi Hesaplama", description: "Dosya kaç dakikada iner? Mbps ile MB/s farkı ve hız tablosu." },
+];
+
 const timeToolsHome = {
   tr: [
     { href: "/online-saat", title: "Online Saat", description: "34 temalı canlı saat: sarkaçlı, guguklu, flip, neon; tik-tak sesi ve tam ekran.", icon: "time" as const },
@@ -2092,6 +2099,32 @@ export default function HomeDirectory({
                   <div className="directory-card-body directory-card-body-icon">
                     <span className="home-category-icon-box" aria-hidden="true">
                       <DecorativeIcon name="fotografciHub" size={42} className="home-category-icon-svg" />
+                    </span>
+                    <div>
+                      <h3 className="home-category-title">{tool.title}</h3>
+                      <p>{tool.description}</p>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+        {locale === "tr" && (
+          <section className="directory-section" id="ag-araclari">
+            <header className="directory-section-header">
+              <div>
+                <h2>Ağ araçları</h2>
+                <p>IP ve alt ağ hesaplama, checksum doğrulama ve bağlantı araçları; hesaplamalar tarayıcıda yapılır.</p>
+              </div>
+            </header>
+            <div className="directory-tool-grid">
+              {netToolsHome.map((tool) => (
+                <article className="directory-home-card directory-tool-card" key={tool.href}>
+                  <Link className="directory-card-stretch" href={tool.href} aria-label={tool.title} />
+                  <div className="directory-card-body directory-card-body-icon">
+                    <span className="home-category-icon-box" aria-hidden="true">
+                      <DecorativeIcon name="theoreticalLatencyCalculator" size={42} className="home-category-icon-svg" />
                     </span>
                     <div>
                       <h3 className="home-category-title">{tool.title}</h3>

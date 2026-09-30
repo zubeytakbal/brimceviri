@@ -16126,3 +16126,145 @@ mark.fark-eklendi {
     grid-template-columns: 1fr;
   }
 }
+
+.ag-sonuc {
+  width: 100%;
+  margin: 12px 0;
+  border-collapse: collapse;
+  border: 1px solid #e3e9ee;
+  border-radius: 10px;
+  background: #ffffff;
+  overflow: hidden;
+}
+.ag-sonuc th,
+.ag-sonuc td {
+  padding: 7px 10px;
+  border-top: 1px solid #eef2f5;
+  text-align: left;
+  vertical-align: middle;
+}
+.ag-sonuc tr:first-child th,
+.ag-sonuc tr:first-child td {
+  border-top: 0;
+}
+.ag-sonuc th {
+  width: 34%;
+  color: #5b6b78;
+  font-weight: 600;
+}
+.ag-sonuc td:last-child {
+  width: 1%;
+  white-space: nowrap;
+}
+.ag-sonuc code {
+  font-size: 0.95rem;
+  overflow-wrap: anywhere;
+  word-break: break-all;
+}
+.ag-sonuc tr.is-eslesti {
+  background: #e3f5ea;
+}
+.ag-ornekler {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+.ag-ornekler button {
+  padding: 4px 10px;
+  border: 1px solid #d5dde3;
+  border-radius: 999px;
+  background: #ffffff;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+.ag-ornekler button:hover {
+  border-color: #1b8a7a;
+}
+.ag-ikili {
+  display: grid;
+  gap: 4px;
+  margin: 8px 0 12px;
+  font-size: 0.85rem;
+}
+.ag-ikili div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+}
+.ag-ikili span {
+  min-width: 56px;
+  color: #5b6b78;
+}
+.ag-ikili code {
+  overflow-wrap: anywhere;
+}
+.ag-secimler {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin: 10px 0;
+}
+.ag-ilerleme {
+  width: 100%;
+  height: 8px;
+}
+.ag-buyuk-sonuc {
+  display: grid;
+  gap: 2px;
+  margin: 12px 0;
+  padding: 16px;
+  border-radius: 12px;
+  background: #eef7f5;
+  text-align: center;
+}
+.ag-buyuk-sonuc span {
+  color: #3d4a55;
+}
+.ag-buyuk-sonuc strong {
+  font-size: 1.8rem;
+}
+.ag-buyuk-sonuc small {
+  color: #5b6b78;
+}
+.port-tablo {
+  margin: 12px 0;
+  overflow-x: auto;
+  border: 1px solid #e3e9ee;
+  border-radius: 10px;
+  background: #ffffff;
+}
+.port-tablo table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+.port-tablo th,
+.port-tablo td {
+  padding: 7px 10px;
+  border-bottom: 1px solid #eef2f5;
+  text-align: left;
+  vertical-align: top;
+}
+.port-tablo th {
+  background: #f6f8fa;
+  white-space: nowrap;
+}
+.port-tablo small {
+  color: #5b6b78;
+}
+.port-risk {
+  display: block;
+  margin-top: 3px;
+  color: #a12626;
+  font-size: 0.85rem;
+}
+@media (max-width: 640px) {
+  .ag-sonuc th {
+    width: 40%;
+  }
+  .port-tablo td:nth-child(2),
+  .port-tablo th:nth-child(2) {
+    display: none;
+  }
+}

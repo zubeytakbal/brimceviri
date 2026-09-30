@@ -2,49 +2,49 @@
 
 import { useState } from "react";
 import Link from "@/app/components/SiteLink";
-import {
-  DOSYA_ARACLARI,
-  DOSYA_KATEGORILER,
-  type DosyaKategori,
-} from "../../converter/gorsel/dosyaAraclari";
 import AracIkonu from "./AracIkonu";
+import { KOLEKSIYONLAR, type KoleksiyonId } from "./koleksiyon";
 
 /**
  * Dosya Araçları paneli: kategori düğmeleriyle filtrelenen araç kartları.
  * Tüm kartlar sayfada her zaman bulunur (arama motorları için); filtre yalnızca görünürlüğü değiştirir.
  */
-export default function DosyaAracPaneli() {
-  const [secili, setSecili] = useState<DosyaKategori | "tumu">("tumu");
-  const kategoriler = DOSYA_KATEGORILER.filter((k) =>
-    DOSYA_ARACLARI.some((a) => a.kategoriler.includes(k.id)),
+export default function DosyaAracPaneli({
+  koleksiyon = "dosya",
+}: {
+  koleksiyon?: KoleksiyonId;
+}) {
+  const k = KOLEKSIYONLAR[koleksiyon];
+  const [secili, setSecili] = useState<string>("tumu");
+  const kategoriler = k.kategoriler.filter((x) =>
+    k.araclar.some((a) => a.kategoriler.includes(x.id)),
   );
   return (
     <div className="arac-paneli">
       <ul className="arac-guven" aria-label="Özellikler">
-        <li>Ücretsiz</li>
-        <li>Kayıt yok</li>
-        <li>Filigran yok</li>
-        <li>Dosyalar yüklenmez</li>
+        {k.guven.map((g) => (
+          <li key={g}>{g}</li>
+        ))}
       </ul>
       <div
         className="arac-filtre"
         role="group"
         aria-label="Kategoriye göre filtrele"
       >
-        {[{ id: "tumu" as const, ad: "Tümü" }, ...kategoriler].map((k) => (
+        {[{ id: "tumu", ad: "Tümü" }, ...kategoriler].map((x) => (
           <button
-            key={k.id}
+            key={x.id}
             type="button"
-            aria-pressed={secili === k.id}
-            className={secili === k.id ? "is-active" : undefined}
-            onClick={() => setSecili(k.id)}
+            aria-pressed={secili === x.id}
+            className={secili === x.id ? "is-active" : undefined}
+            onClick={() => setSecili(x.id)}
           >
-            {k.ad}
+            {x.ad}
           </button>
         ))}
       </div>
       <ul className="arac-izgara">
-        {DOSYA_ARACLARI.map((a) => (
+        {k.araclar.map((a) => (
           <li
             key={a.href}
             hidden={secili !== "tumu" && !a.kategoriler.includes(secili)}

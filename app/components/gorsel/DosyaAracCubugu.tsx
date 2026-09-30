@@ -3,28 +3,20 @@
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "@/app/components/SiteLink";
-import {
-  DOSYA_ARACLARI,
-  DOSYA_ARACLARI_YOLU,
-  DOSYA_KATEGORILER,
-} from "../../converter/gorsel/dosyaAraclari";
 import AracIkonu from "./AracIkonu";
-
-/** Çubukta doğrudan görünen araçlar. */
-const ONE_CIKAN = [
-  "/gorsel-donusturucu",
-  "/resim-boyutlandirma",
-  "/fotograf-boyutu-kucultme",
-  "/resimden-yaziya-cevirme",
-  "/pdf-birlestirme",
-  "/e-okul-fotograf-kucultme",
-];
+import { KOLEKSIYONLAR, type KoleksiyonId } from "./koleksiyon";
 
 /**
  * Dosya araçları sayfalarının üst çubuğu ve "Tüm dosya araçları" açılır menüsü.
  * Menü kapalıyken de bağlantılar HTML'de bulunur (hidden), arama motorları hepsini görür.
  */
-export default function DosyaAracCubugu() {
+export default function DosyaAracCubugu({
+  koleksiyon = "dosya",
+}: {
+  koleksiyon?: KoleksiyonId;
+}) {
+  const kol = KOLEKSIYONLAR[koleksiyon];
+  const megaId = `${koleksiyon}-mega`;
   const [acik, setAcik] = useState(false);
   const yol = usePathname();
   const kap = useRef<HTMLDivElement>(null);
@@ -47,20 +39,22 @@ export default function DosyaAracCubugu() {
     };
   }, [acik]);
 
-  const kategoriler = DOSYA_KATEGORILER.map((k) => ({
-    ...k,
-    araclar: DOSYA_ARACLARI.filter((a) => a.kategoriler.includes(k.id)),
-  })).filter((k) => k.araclar.length);
+  const kategoriler = kol.kategoriler
+    .map((k) => ({
+      ...k,
+      araclar: kol.araclar.filter((a) => a.kategoriler.includes(k.id)),
+    }))
+    .filter((k) => k.araclar.length);
 
   return (
-    <nav className="dosya-cubuk" aria-label="Dosya araçları" ref={kap}>
+    <nav className="dosya-cubuk" aria-label={kol.ad} ref={kap}>
       <div className="dosya-cubuk-ic">
-        <Link href={DOSYA_ARACLARI_YOLU} className="dosya-cubuk-marka">
-          Dosya Araçları
+        <Link href={kol.yol} className="dosya-cubuk-marka">
+          {kol.ad}
         </Link>
         <ul className="dosya-cubuk-liste">
-          {ONE_CIKAN.map((h) => {
-            const a = DOSYA_ARACLARI.find((x) => x.href === h);
+          {kol.oneCikan.map((h) => {
+            const a = kol.araclar.find((x) => x.href === h);
             if (!a) return null;
             return (
               <li key={h}>
@@ -75,13 +69,13 @@ export default function DosyaAracCubugu() {
           type="button"
           className="dosya-cubuk-tum"
           aria-expanded={acik}
-          aria-controls="dosya-mega"
+          aria-controls={megaId}
           onClick={() => setAcik((x) => !x)}
         >
-          Tüm dosya araçları <span aria-hidden="true">{acik ? "▴" : "▾"}</span>
+          {kol.tumEtiketi} <span aria-hidden="true">{acik ? "▴" : "▾"}</span>
         </button>
       </div>
-      <div id="dosya-mega" className="dosya-mega" hidden={!acik}>
+      <div id={megaId} className="dosya-mega" hidden={!acik}>
         {kategoriler.map((k) => (
           <div key={k.id} className="dosya-mega-sutun">
             <h2>{k.ad}</h2>

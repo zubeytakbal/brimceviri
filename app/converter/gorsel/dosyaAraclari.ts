@@ -7,6 +7,7 @@ export type DosyaKategori =
   | "kucult"
   | "boyut"
   | "duzenle"
+  | "metin"
   | "resmi"
   | "gizlilik";
 
@@ -15,6 +16,7 @@ export const DOSYA_KATEGORILER: Array<{ id: DosyaKategori; ad: string }> = [
   { id: "kucult", ad: "Küçült" },
   { id: "boyut", ad: "Boyutlandır" },
   { id: "duzenle", ad: "Düzenle" },
+  { id: "metin", ad: "Metin tanıma" },
   { id: "resmi", ad: "Resmi belge fotoğrafları" },
   { id: "gizlilik", ad: "Gizlilik" },
 ];
@@ -31,7 +33,8 @@ export type AracIkon =
   | { tip: "konum" }
   | { tip: "kirp" }
   | { tip: "filigran" }
-  | { tip: "bulanik" };
+  | { tip: "bulanik" }
+  | { tip: "ocr" };
 
 export type DosyaAraci = {
   href: string;
@@ -60,6 +63,15 @@ const KART: Record<string, string> = {
 export const DOSYA_ARACLARI_YOLU = "/dosya-araclari";
 
 export const DOSYA_ARACLARI: DosyaAraci[] = [
+  {
+    href: "/resimden-yaziya-cevirme",
+    baslik: "Resimden Yazıya Çevirme",
+    aciklama:
+      "Fotoğraf ve ekran görüntüsündeki yazıyı Türkçe karakterlerle metne çevirin.",
+    kategoriler: ["metin"],
+    ikon: { tip: "ocr" },
+    yeni: true,
+  },
   {
     href: "/fotograf-bulaniklastirma",
     baslik: "Fotoğraf Bulanıklaştırma",

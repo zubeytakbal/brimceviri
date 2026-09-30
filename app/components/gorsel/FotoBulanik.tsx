@@ -44,8 +44,7 @@ function etkiUygula(
   // güç 1–10: blok boyutu alanın kısa kenarının %12–%50 arası (yazının okunmaması için iri tutulur)
   const blok = Math.max(
     2,
-    (Math.min(w, h) * (a.etki === "piksel" ? 8 + guc * 4 : 10 + guc * 4)) /
-      100,
+    (Math.min(w, h) * (a.etki === "piksel" ? 8 + guc * 4 : 10 + guc * 4)) / 100,
   );
   const kw = Math.max(1, Math.round(w / blok));
   const kh = Math.max(1, Math.round(h / blok));

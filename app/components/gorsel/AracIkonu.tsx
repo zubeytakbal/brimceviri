@@ -123,6 +123,28 @@ export default function AracIkonu({
             ©LOGO
           </text>
         </>
+      ) : ikon.tip === "ocr" ? (
+        <>
+          <rect x="4" y="4" width="44" height="44" rx="10" fill="#fff4e0" />
+          <path
+            d="M10 17v-5a2 2 0 0 1 2-2h5M35 10h5a2 2 0 0 1 2 2v5M42 35v5a2 2 0 0 1-2 2h-5M17 42h-5a2 2 0 0 1-2-2v-5"
+            stroke="#d97706"
+            strokeWidth="2.6"
+            fill="none"
+            strokeLinecap="round"
+          />
+          <text
+            x="26"
+            y="31"
+            textAnchor="middle"
+            fontSize="15"
+            fontWeight="800"
+            fill="#b45309"
+            fontFamily="system-ui, sans-serif"
+          >
+            Aa
+          </text>
+        </>
       ) : ikon.tip === "bulanik" ? (
         <>
           <rect x="4" y="4" width="44" height="44" rx="10" fill="#eef0f3" />

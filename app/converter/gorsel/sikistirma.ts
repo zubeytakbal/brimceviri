@@ -57,3 +57,45 @@ export async function kaliteAra(
   }
   return iyi;
 }
+
+export type Bolge = { x: number; y: number; w: number; h: number };
+
+/**
+ * Sabit en-boy oranlı kırpma bölgesi. `olcek` 1 iken sığabilecek en büyük bölgedir;
+ * `merkez` verilmezse yatayda ortalanır, dikeyde portre fotoğraflarda yüz genellikle üstte
+ * olduğu için biraz yukarıda konumlanır.
+ */
+export function kirpmaBolgesi(
+  kaynak: Olcu,
+  oran: number,
+  olcek = 1,
+  merkez?: { x: number; y: number },
+): Bolge {
+  const { genislik: W, yukseklik: H } = kaynak;
+  let w = W;
+  let h = w / oran;
+  if (h > H) {
+    h = H;
+    w = h * oran;
+  }
+  const s = Math.min(1, Math.max(0.1, olcek));
+  w *= s;
+  h *= s;
+  const cx = merkez?.x ?? W / 2;
+  const cy = merkez?.y ?? h / 2 + (H - h) * 0.35;
+  return kirpmaSinirla({ x: cx - w / 2, y: cy - h / 2, w, h }, kaynak);
+}
+
+/** Bölgeyi görselin sınırları içinde tutar ve tam sayıya yuvarlar. */
+export function kirpmaSinirla(b: Bolge, kaynak: Olcu): Bolge {
+  const w = Math.min(b.w, kaynak.genislik);
+  const h = Math.min(b.h, kaynak.yukseklik);
+  const x = Math.min(Math.max(0, b.x), kaynak.genislik - w);
+  const y = Math.min(Math.max(0, b.y), kaynak.yukseklik - h);
+  return {
+    x: Math.round(x),
+    y: Math.round(y),
+    w: Math.round(w),
+    h: Math.round(h),
+  };
+}

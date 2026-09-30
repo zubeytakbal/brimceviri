@@ -3320,6 +3320,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/e-okul-fotograf-kucultme`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/fotograf-boyutu-kucultme`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",

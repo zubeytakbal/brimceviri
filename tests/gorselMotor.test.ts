@@ -67,3 +67,37 @@ describe("zip", () => {
     expect(v.getUint16(z.length - 12, true)).toBe(2);
   });
 });
+
+describe("jpegDoldur", () => {
+  it("pads a JPEG with comment segments without touching image data", async () => {
+    const { jpegDoldur } = await import("../app/converter/gorsel/jpeg");
+    const jpeg = new Uint8Array([0xff, 0xd8, 0xff, 0xe0, 0x00, 0x04, 0x01, 0x02, 0xff, 0xd9]);
+    const out = jpegDoldur(jpeg, 21000);
+    expect(out.length).toBe(21000);
+    expect([...out.subarray(0, 4)]).toEqual([0xff, 0xd8, 0xff, 0xfe]);
+    const len = (out[4] << 8) | out[5];
+    expect([...out.subarray(4 + len, 4 + len + 2)]).toEqual([0xff, 0xe0]);
+    expect([...out.subarray(-2)]).toEqual([0xff, 0xd9]);
+    expect(jpegDoldur(jpeg, 5)).toBe(jpeg);
+    expect(jpegDoldur(jpeg, 200000).length).toBe(200000);
+    expect(() => jpegDoldur(new Uint8Array([1, 2, 3]), 10)).toThrow();
+  });
+});
+
+describe("kırpma", () => {
+  it("builds fixed-ratio crop boxes inside the image", async () => {
+    const { kirpmaBolgesi, kirpmaSinirla } = await import("../app/converter/gorsel/sikistirma");
+    const yatay = kirpmaBolgesi({ genislik: 4000, yukseklik: 3000 }, 133 / 171);
+    expect(yatay.h).toBe(3000);
+    expect(yatay.w).toBe(2333);
+    expect(yatay.x).toBe(833);
+    const dikey = kirpmaBolgesi({ genislik: 3000, yukseklik: 4000 }, 133 / 171);
+    expect(dikey.w).toBe(3000);
+    expect(dikey.h).toBe(3857);
+    expect(dikey.y).toBe(50);
+    const yakin = kirpmaBolgesi({ genislik: 3000, yukseklik: 4000 }, 133 / 171, 0.5, { x: 100, y: 100 });
+    expect(yakin.x).toBe(0);
+    expect(yakin.y).toBe(0);
+    expect(kirpmaSinirla({ x: 3900, y: -20, w: 500, h: 500 }, { genislik: 4000, yukseklik: 3000 })).toEqual({ x: 3500, y: 0, w: 500, h: 500 });
+  });
+});

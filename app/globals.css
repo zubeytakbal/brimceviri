@@ -14375,3 +14375,132 @@ a.all-units-row .all-units-name {
   font-size: 0.9rem;
   font-weight: 600;
 }
+
+/* Vesikalık / belge fotoğrafı aracı */
+.vesikalik-ozet {
+  margin: 0;
+  color: #22313c;
+  text-align: center;
+}
+
+.vesikalik-duzen {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  gap: 20px;
+  align-items: start;
+}
+
+@media (max-width: 640px) {
+  .vesikalik-duzen {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.kirpma-kap {
+  position: relative;
+  overflow: hidden;
+  max-height: 520px;
+  margin: 0 auto;
+  border-radius: 12px;
+  background: #0f1a21;
+  touch-action: none;
+  user-select: none;
+}
+
+.kirpma-kap img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.kirpma-kutu {
+  position: absolute;
+  box-sizing: border-box;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 0 9999px rgba(10, 18, 24, 0.55);
+  cursor: move;
+}
+
+.kirpma-kutu:focus-visible {
+  outline: 3px solid #f0b429;
+}
+
+.kirpma-kilavuz {
+  position: absolute;
+  top: 12%;
+  left: 22%;
+  width: 56%;
+  height: 58%;
+  border: 2px dashed rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.vesikalik-yakin {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.vesikalik-yakin input {
+  flex: 1;
+}
+
+.vesikalik-ipucu {
+  margin: 6px 0 0;
+  color: #5a6a76;
+  font-size: 0.9rem;
+}
+
+.vesikalik-sonuc {
+  display: grid;
+  gap: 8px;
+  justify-items: center;
+  padding: 16px;
+  border: 1px solid #e3e9ee;
+  border-radius: 14px;
+  background: #ffffff;
+  text-align: center;
+}
+
+.vesikalik-sonuc img {
+  border: 1px solid #d5dde3;
+  image-rendering: auto;
+}
+
+.gorsel-liste li.is-secili {
+  border-color: #2c7f99;
+  box-shadow: 0 0 0 2px rgba(44, 127, 153, 0.2);
+}
+
+.vesikalik-sec {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-weight: 600;
+  text-align: start;
+  cursor: pointer;
+}
+
+.vesikalik-sil {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #d5dde3;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #5a6a76;
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.gorsel-liste .time-tool-button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 0;
+  padding: 7px 16px;
+}

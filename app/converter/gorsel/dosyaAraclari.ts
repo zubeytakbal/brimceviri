@@ -45,6 +45,15 @@ export const DOSYA_ARACLARI_YOLU = "/dosya-araclari";
 
 export const DOSYA_ARACLARI: DosyaAraci[] = [
   {
+    href: "/e-okul-fotograf-kucultme",
+    baslik: "e-Okul Fotoğraf Küçültme",
+    aciklama:
+      "Öğrenci fotoğraflarını 133×171 piksel, 20–150 KB yapın; bütün sınıf tek seferde.",
+    kategoriler: ["resmi", "boyut"],
+    ikon: { tip: "vesikalik" },
+    yeni: true,
+  },
+  {
     href: "/fotograf-boyutu-kucultme",
     baslik: "Fotoğraf Boyutu Küçültme",
     aciklama:

@@ -89,6 +89,27 @@ export default function AracIkonu({
             />
           ))}
         </>
+      ) : ikon.tip === "konum" ? (
+        <>
+          <rect x="4" y="4" width="44" height="44" rx="10" fill="#fdecea" />
+          <path
+            d="M26 10c-7 0-12 5.2-12 11.8C14 30.5 26 42 26 42s12-11.5 12-20.2C38 15.2 33 10 26 10z"
+            fill="#d64532"
+          />
+          <circle cx="26" cy="22" r="4.5" fill="#fdecea" />
+          <path
+            d="M12 40L40 12"
+            stroke="#fdecea"
+            strokeWidth="6"
+            strokeLinecap="round"
+          />
+          <path
+            d="M12 40L40 12"
+            stroke="#8a1c12"
+            strokeWidth="2.6"
+            strokeLinecap="round"
+          />
+        </>
       ) : ikon.tip === "boyut" ? (
         <>
           <rect x="4" y="4" width="44" height="44" rx="10" fill="#e9f0fd" />

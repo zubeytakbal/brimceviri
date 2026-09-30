@@ -3320,6 +3320,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/fotograf-konum-bilgisi-silme`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/resim-boyutlandirma`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",

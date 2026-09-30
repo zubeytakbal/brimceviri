@@ -2,20 +2,27 @@
 import { GORSEL_CIFTLER } from "./ciftler";
 import type { GorselFormat } from "./formatlar";
 
-export type DosyaKategori = "donustur" | "kucult" | "boyut" | "resmi";
+export type DosyaKategori =
+  | "donustur"
+  | "kucult"
+  | "boyut"
+  | "resmi"
+  | "gizlilik";
 
 export const DOSYA_KATEGORILER: Array<{ id: DosyaKategori; ad: string }> = [
   { id: "donustur", ad: "Dönüştür" },
   { id: "kucult", ad: "Küçült" },
   { id: "boyut", ad: "Boyutlandır" },
   { id: "resmi", ad: "Resmi belge fotoğrafları" },
+  { id: "gizlilik", ad: "Gizlilik" },
 ];
 
 export type AracIkon =
   | { tip: "cift"; kaynak: GorselFormat | "tum"; hedef: GorselFormat | "tum" }
   | { tip: "kucult" }
   | { tip: "boyut" }
-  | { tip: "vesikalik" };
+  | { tip: "vesikalik" }
+  | { tip: "konum" };
 
 export type DosyaAraci = {
   href: string;
@@ -44,6 +51,15 @@ const KART: Record<string, string> = {
 export const DOSYA_ARACLARI_YOLU = "/dosya-araclari";
 
 export const DOSYA_ARACLARI: DosyaAraci[] = [
+  {
+    href: "/fotograf-konum-bilgisi-silme",
+    baslik: "Konum Bilgisi (EXIF) Silme",
+    aciklama:
+      "Fotoğraftaki konumu, cihazı ve tarihi görün; kalite kaybı olmadan silin.",
+    kategoriler: ["gizlilik"],
+    ikon: { tip: "konum" },
+    yeni: true,
+  },
   {
     href: "/resim-boyutlandirma",
     baslik: "Resim Boyutlandırma",

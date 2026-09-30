@@ -1,0 +1,150 @@
+import type { AracIkon } from "../../converter/gorsel/dosyaAraclari";
+
+const RENK: Record<string, { zemin: string; yazi: string; ad: string }> = {
+  jpg: { zemin: "#f08a24", yazi: "#ffffff", ad: "JPG" },
+  png: { zemin: "#2f6fde", yazi: "#ffffff", ad: "PNG" },
+  webp: { zemin: "#1f9d57", yazi: "#ffffff", ad: "WEBP" },
+  tum: { zemin: "#5b6b78", yazi: "#ffffff", ad: "IMG" },
+};
+
+/** Sayfa köşesi kıvrık küçük dosya rozeti. */
+function Dosya({ x, y, f }: { x: number; y: number; f: string }) {
+  const r = RENK[f];
+  return (
+    <g transform={`translate(${x} ${y})`}>
+      <path
+        d="M0 4a4 4 0 0 1 4-4h14l8 8v20a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4z"
+        fill={r.zemin}
+      />
+      <path d="M18 0v5a3 3 0 0 0 3 3h5z" fill="#ffffff" opacity="0.45" />
+      <text
+        x="13"
+        y="23"
+        textAnchor="middle"
+        fontSize={r.ad.length > 3 ? 7 : 8.5}
+        fontWeight="700"
+        fill={r.yazi}
+        fontFamily="system-ui, sans-serif"
+      >
+        {r.ad}
+      </text>
+    </g>
+  );
+}
+
+/** Dosya Araçları kartlarının ikonları: format çiftleri için iki dosya rozeti ve ok. */
+export default function AracIkonu({
+  ikon,
+  boyut = 52,
+}: {
+  ikon: AracIkon;
+  boyut?: number;
+}) {
+  return (
+    <svg
+      width={boyut}
+      height={boyut}
+      viewBox="0 0 52 52"
+      aria-hidden="true"
+      focusable="false"
+    >
+      {ikon.tip === "cift" ? (
+        <>
+          <Dosya x={2} y={2} f={ikon.kaynak} />
+          <Dosya x={26} y={20} f={ikon.hedef} />
+          <path
+            d="M31 6h6a4 4 0 0 1 4 4v4"
+            stroke="#8a98a5"
+            strokeWidth="2.2"
+            fill="none"
+            strokeLinecap="round"
+          />
+          <path
+            d="M37.5 11.5 41 15l3.5-3.5"
+            stroke="#8a98a5"
+            strokeWidth="2.2"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </>
+      ) : ikon.tip === "kucult" ? (
+        <>
+          <rect x="4" y="4" width="44" height="44" rx="10" fill="#e8f5ee" />
+          <rect x="15" y="15" width="22" height="22" rx="4" fill="#1f9d57" />
+          {[
+            "M8 8l7 7M15 9.5V15H9.5",
+            "M44 8l-7 7M37 9.5V15h5.5",
+            "M8 44l7-7M15 42.5V37H9.5",
+            "M44 44l-7-7M37 42.5V37h5.5",
+          ].map((d) => (
+            <path
+              key={d}
+              d={d}
+              stroke="#1f9d57"
+              strokeWidth="2.4"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          ))}
+        </>
+      ) : ikon.tip === "boyut" ? (
+        <>
+          <rect x="4" y="4" width="44" height="44" rx="10" fill="#e9f0fd" />
+          <rect
+            x="10"
+            y="20"
+            width="22"
+            height="22"
+            rx="3"
+            fill="none"
+            stroke="#2f6fde"
+            strokeWidth="2.4"
+            strokeDasharray="4 3"
+          />
+          <rect
+            x="10"
+            y="10"
+            width="32"
+            height="32"
+            rx="3"
+            fill="none"
+            stroke="#2f6fde"
+            strokeWidth="2.4"
+          />
+          <path
+            d="M26 26l12-12M32 14h6v6"
+            stroke="#2f6fde"
+            strokeWidth="2.4"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </>
+      ) : (
+        <>
+          <rect x="4" y="4" width="44" height="44" rx="10" fill="#fdf0e3" />
+          <rect
+            x="14"
+            y="8"
+            width="24"
+            height="32"
+            rx="3"
+            fill="#ffffff"
+            stroke="#f08a24"
+            strokeWidth="2.2"
+          />
+          <circle cx="26" cy="20" r="5.5" fill="#f08a24" />
+          <path d="M16.5 36c1.5-6 5-9 9.5-9s8 3 9.5 9" fill="#f08a24" />
+          <path
+            d="M10 44h32"
+            stroke="#f08a24"
+            strokeWidth="2.2"
+            strokeLinecap="round"
+          />
+        </>
+      )}
+    </svg>
+  );
+}

@@ -177,6 +177,7 @@ export const everydayToolLinksByCategory: Record<
     { href: "/unix-zaman-damgasi-cevirici", label: "Unix Zaman Damgası Çevirici" },
   ],
   veri: [
+    { href: "/gorsel-donusturucu", label: "Görsel Dönüştürücü (JPG, PNG, WebP)" },
     { href: "/yazilimci-araclari", label: "Yazılımcı Araçları" },
     { href: "/unix-zaman-damgasi-cevirici", label: "Unix Zaman Damgası Çevirici" },
     { href: "/renk-kodu-cevirici", label: "Renk Kodu Çevirici" },

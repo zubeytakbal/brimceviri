@@ -112,6 +112,13 @@ const germanRechnerGroups: Array<{ id: string; title: string; description: strin
 
 const germanRechnerHome = germanRechnerGroups.flatMap((group) => group.tools);
 
+const fileToolsHome = [
+  { href: "/dosya-araclari", title: "Dosya Araçları", description: "Tüm görsel araçları tek panelde; türüne göre süzün." },
+  { href: "/gorsel-donusturucu", title: "Görsel Dönüştürücü", description: "JPG, PNG ve WebP'yi birbirine çevirin; toplu dönüştürüp ZIP indirin." },
+  { href: "/webp-jpg-cevirme", title: "WebP JPG Çevirme", description: "İnternetten inen WebP görselleri her programda açılan JPG yapın." },
+  { href: "/png-jpg-cevirme", title: "PNG JPG Çevirme", description: "PNG'leri küçük JPG'lere çevirin; saydam alanlar istediğiniz renkle dolar." },
+];
+
 const timeToolsHome = {
   tr: [
     { href: "/online-saat", title: "Online Saat", description: "34 temalı canlı saat: sarkaçlı, guguklu, flip, neon; tik-tak sesi ve tam ekran.", icon: "time" as const },
@@ -2059,6 +2066,32 @@ export default function HomeDirectory({
                   <div className="directory-card-body directory-card-body-icon">
                     <span className="home-category-icon-box" aria-hidden="true">
                       <DecorativeIcon name={tool.icon} size={42} className="home-category-icon-svg" />
+                    </span>
+                    <div>
+                      <h3 className="home-category-title">{tool.title}</h3>
+                      <p>{tool.description}</p>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+        {locale === "tr" && (
+          <section className="directory-section" id="dosya-araclari">
+            <header className="directory-section-header">
+              <div>
+                <h2>Dosya araçları</h2>
+                <p>JPG, PNG ve WebP dönüştürme — ücretsiz, kayıtsız; dosyalar yüklenmeden tarayıcıda işlenir.</p>
+              </div>
+            </header>
+            <div className="directory-tool-grid">
+              {fileToolsHome.map((tool) => (
+                <article className="directory-home-card directory-tool-card" key={tool.href}>
+                  <Link className="directory-card-stretch" href={tool.href} aria-label={tool.title} />
+                  <div className="directory-card-body directory-card-body-icon">
+                    <span className="home-category-icon-box" aria-hidden="true">
+                      <DecorativeIcon name="fotografciHub" size={42} className="home-category-icon-svg" />
                     </span>
                     <div>
                       <h3 className="home-category-title">{tool.title}</h3>

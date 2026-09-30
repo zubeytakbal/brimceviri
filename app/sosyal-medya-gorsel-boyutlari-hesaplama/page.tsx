@@ -89,7 +89,9 @@ export default function SocialMediaSizePage() {
 
           <h2>İlgili araçlar</h2>
           <p>
-            Piksel, cm ve DPI dönüşümleri için{" "}
+            Görselinizi JPG, PNG veya WebP'ye çevirmek için{" "}
+            <Link href="/gorsel-donusturucu">Görsel Dönüştürücü</Link>
+            {" "}sayfasına, piksel, cm ve DPI dönüşümleri için{" "}
             <Link href="/piksel-cm-dpi-hesaplama">Piksel, CM ve DPI Hesaplama</Link>
             {" "}sayfasına, renk kodu dönüşümleri için{" "}
             <Link href="/renk-kodu-cevirici">Renk Kodu Çevirici</Link>

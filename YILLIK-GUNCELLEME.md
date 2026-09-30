@@ -24,6 +24,7 @@ değişen sayılar tek bir dosyada toplu durur; güncelleme resmi kaynak kontrol
 | Diyanet yeni yılı yayımlayınca (genelde yaz) | Türkiye takvimi, özel günler | Dini günler (kandiller, Ramazan) — Umm al-Qura'dan farklı gün varsa düzeltme tablosuna eklenir, `DINI_DOGRULANAN` bir artırılır | Diyanet dini günler takvimi | `app/converter/calendar/trTakvim.ts` |
 | Mayıs–Haziran (MEB açıklayınca) | Okul takvimi | Yeni ders yılının açılış, ara tatil, yarıyıl ve karne tarihleri | MEB çalışma takvimi genelgesi | `app/converter/calendar/okulTakvimi.ts` |
 | Yıl sonu | Türkiye takvimi | `TAKVIM_YILLARI` listesine yeni yıl eklenir (sayfalar otomatik üretilir) | — | `app/converter/calendar/trTakvim.ts` |
+| Yıl sonu | Suudi takvimi (/ar/calendar), maaş tarihleri | `SA_SANAWAT` ve `SA_HIJRI_SANAWAT` listelerine yeni yıl eklenir; HRSD bayram tatili kuralları ve Maliye maaş tarihi (27'si) kontrol edilir | hrsd.gov.sa, mof.gov.sa | `app/converter/calendar/saTaqwim.ts` |
 | Haziran | Brückentage (DE) | Yeni yıl sayfası | Eyalet tatilleri (hesaplanıyor) | `app/i18n/germanBrueckentage.ts` |
 
 Değişmeyen (bakım gerektirmeyen) araçlar: altın hesaplama (Darphane ağırlıkları sabit), Mutterschutz,

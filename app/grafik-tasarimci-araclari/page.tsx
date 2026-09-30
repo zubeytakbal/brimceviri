@@ -101,6 +101,10 @@ export default function GrafikTasarimciAraclariPage() {
           <h2>Hesaplama Araçları</h2>
           <ul>
             <li>
+              <Link href="/gorsel-donusturucu">Görsel Dönüştürücü</Link>
+              {" "}— JPG, PNG ve WebP görselleri tarayıcıda, yüklemeden birbirine çevir.
+            </li>
+            <li>
               <Link href="/piksel-cm-dpi-hesaplama">Piksel, CM ve DPI Hesaplama</Link>
               {" "}— piksel sayısı, fiziksel boyut veya DPI
               değerinden ikisini gir, üçüncüsünü hesapla.

@@ -397,6 +397,102 @@ export default function ArabicHomeDirectory({
             <article className="directory-home-card">
               <Link
                 className="directory-card-stretch"
+                href="/ar/calendar"
+                aria-label="التاريخ الهجري اليوم والتقويم - تقويم أم القرى مع الميلادي والإجازات الرسمية والمناسبات."
+              />
+
+              <div className="directory-card-body directory-card-body-icon">
+                <CardIcon name="dateCalculator" />
+                <h3 className="home-category-title">التاريخ الهجري اليوم والتقويم</h3>
+                <p className="directory-card-description">
+                  تقويم أم القرى مع الميلادي والإجازات الرسمية والمناسبات.
+                </p>
+              </div>
+            </article>
+
+            <article className="directory-home-card">
+              <Link
+                className="directory-card-stretch"
+                href="/ar/occasions"
+                aria-label="المناسبات والإجازات - متى رمضان والعيد ويوم التأسيس واليوم الوطني؟ وكم باقي؟"
+              />
+
+              <div className="directory-card-body directory-card-body-icon">
+                <CardIcon name="dateCalculator" />
+                <h3 className="home-category-title">المناسبات والإجازات</h3>
+                <p className="directory-card-description">
+                  متى رمضان والعيد ويوم التأسيس واليوم الوطني؟ وكم باقي؟
+                </p>
+              </div>
+            </article>
+
+            <article className="directory-home-card">
+              <Link
+                className="directory-card-stretch"
+                href="/ar/hijri-age-calculator"
+                aria-label="حساب العمر بالهجري - العمر بالهجري والميلادي حسب أم القرى وعيد الميلاد الهجري القادم."
+              />
+
+              <div className="directory-card-body directory-card-body-icon">
+                <CardIcon name="dateCalculator" />
+                <h3 className="home-category-title">حساب العمر بالهجري</h3>
+                <p className="directory-card-description">
+                  العمر بالهجري والميلادي حسب أم القرى وعيد الميلاد الهجري القادم.
+                </p>
+              </div>
+            </article>
+
+            <article className="directory-home-card">
+              <Link
+                className="directory-card-stretch"
+                href="/ar/school-calendar"
+                aria-label="التقويم الدراسي 1448 - بداية الدراسة والإجازات مع العد التنازلي للإجازة القادمة."
+              />
+
+              <div className="directory-card-body directory-card-body-icon">
+                <CardIcon name="dateCalculator" />
+                <h3 className="home-category-title">التقويم الدراسي 1448</h3>
+                <p className="directory-card-description">
+                  بداية الدراسة والإجازات مع العد التنازلي للإجازة القادمة.
+                </p>
+              </div>
+            </article>
+
+            <article className="directory-home-card">
+              <Link
+                className="directory-card-stretch"
+                href="/ar/salary-dates"
+                aria-label="مواعيد صرف الرواتب - موعد نزول الراتب لكل شهر مع العد التنازلي."
+              />
+
+              <div className="directory-card-body directory-card-body-icon">
+                <CardIcon name="vatCalculator" />
+                <h3 className="home-category-title">مواعيد صرف الرواتب</h3>
+                <p className="directory-card-description">
+                  موعد نزول الراتب لكل شهر مع العد التنازلي.
+                </p>
+              </div>
+            </article>
+
+            <article className="directory-home-card">
+              <Link
+                className="directory-card-stretch"
+                href="/ar/end-of-service-calculator"
+                aria-label="حساب مكافأة نهاية الخدمة - وفق نظام العمل السعودي مع حصة الاستقالة."
+              />
+
+              <div className="directory-card-body directory-card-body-icon">
+                <CardIcon name="vatCalculator" />
+                <h3 className="home-category-title">مكافأة نهاية الخدمة</h3>
+                <p className="directory-card-description">
+                  وفق نظام العمل السعودي مع حصة الاستقالة.
+                </p>
+              </div>
+            </article>
+
+            <article className="directory-home-card">
+              <Link
+                className="directory-card-stretch"
                 href="/ar/zakat-calculator"
                 aria-label="حاسبة الزكاة - تحسب زكاة المال والذهب والفضة مع سعر السوق الحي"
               />

@@ -26,3 +26,5 @@ export const deKalenderMetadata = (
   path: string,
   m: { title: string; short: string; description: string },
 ) => takvimMetadata(path, m, "de_DE");
+
+export const saMetadata = (path: string, m: { title: string; short: string; description: string }) => takvimMetadata(path, m, "ar_SA");

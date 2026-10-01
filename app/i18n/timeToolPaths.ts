@@ -5,13 +5,13 @@ import { buildLanguageAlternates } from "./routing";
 export type TimeToolId = "clock" | "worldClock" | "timeZoneConverter" | "countdown" | "alarm" | "timer" | "stopwatch" | "pomodoro" | "interval" | "dateDiff" | "businessDays" | "dateAdd" | "weekNumber";
 
 export const timeToolPaths: Record<TimeToolId, Partial<Record<Locale, string>>> = {
-  clock: { tr: "/online-saat", en: "/en/online-clock", de: "/de/online-uhr" },
+  clock: { tr: "/online-saat", en: "/en/online-clock", de: "/de/online-uhr", sv: "/sv/klocka", no: "/no/klokka", da: "/da/klokken" },
   worldClock: { tr: "/dunya-saatleri", en: "/en/world-clock", de: "/de/weltuhr" },
   countdown: { tr: "/geri-sayim", en: "/en/countdown", de: "/de/countdown" },
   timeZoneConverter: { tr: "/saat-dilimi-cevirici", en: "/en/time-zone-converter", de: "/de/zeitzonenrechner" },
-  alarm: { tr: "/online-alarm-kur", en: "/en/alarm-clock", de: "/de/wecker" },
-  timer: { tr: "/zamanlayici", en: "/en/timer", de: "/de/timer" },
-  stopwatch: { tr: "/kronometre", en: "/en/stopwatch", de: "/de/stoppuhr" },
+  alarm: { tr: "/online-alarm-kur", en: "/en/alarm-clock", de: "/de/wecker", sv: "/sv/vackarklocka", no: "/no/vekkerklokke", da: "/da/vaekkeur" },
+  timer: { tr: "/zamanlayici", en: "/en/timer", de: "/de/timer", sv: "/sv/timer", no: "/no/timer", da: "/da/timer" },
+  stopwatch: { tr: "/kronometre", en: "/en/stopwatch", de: "/de/stoppuhr", sv: "/sv/stoppur", no: "/no/stoppeklokke", da: "/da/stopur" },
   pomodoro: { tr: "/pomodoro", en: "/en/pomodoro-timer", de: "/de/pomodoro-timer" },
   interval: { tr: "/tabata-zamanlayici", en: "/en/interval-timer", de: "/de/intervall-timer" },
   dateDiff: { tr: "/iki-tarih-arasi-gun-hesaplama", en: "/en/days-between-dates", de: "/de/tagerechner" },

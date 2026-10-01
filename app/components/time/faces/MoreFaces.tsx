@@ -360,8 +360,56 @@ const EN_MIN: Record<number, string> = { 5: "five", 10: "ten", 15: "quarter", 20
 
 const DE_NUM = ["zwölf", "eins", "zwei", "drei", "vier", "fünf", "sechs", "sieben", "acht", "neun", "zehn", "elf", "zwölf"];
 
+type WordClockLocale = "tr" | "en" | "de" | "sv" | "no" | "da";
+
+// İskandinav dillerinde saat "yarım"a göre söylenir: 3:30 "halv fyra" (dördün
+// yarısı), 3:25 "fem i halv fyra". Her dilin günlük konuşmadaki kalıbı:
+// sv 3:20 "tjugo över tre", 3:40 "tjugo i fyra"; no 3:20 "ti på halv fire",
+// 3:40 "ti over halv fire"; da 3:20 "tyve over tre", 3:40 "tyve i fire".
+const NORDIC_CLOCK = {
+  sv: {
+    prefix: ["Klockan", "är"],
+    num: ["tolv", "ett", "två", "tre", "fyra", "fem", "sex", "sju", "åtta", "nio", "tio", "elva", "tolv"],
+    past: "över",
+    to: "i",
+    words: { 5: "fem", 10: "tio", 15: "kvart", 20: "tjugo" } as Record<number, string>,
+    halfRelative: false,
+  },
+  no: {
+    prefix: ["Klokka", "er"],
+    num: ["tolv", "ett", "to", "tre", "fire", "fem", "seks", "sju", "åtte", "ni", "ti", "elleve", "tolv"],
+    past: "over",
+    to: "på",
+    words: { 5: "fem", 10: "ti", 15: "kvart", 20: "tjue" } as Record<number, string>,
+    halfRelative: true,
+  },
+  da: {
+    prefix: ["Klokken", "er"],
+    num: ["tolv", "et", "to", "tre", "fire", "fem", "seks", "syv", "otte", "ni", "ti", "elleve", "tolv"],
+    past: "over",
+    to: "i",
+    words: { 5: "fem", 10: "ti", 15: "kvart", 20: "tyve" } as Record<number, string>,
+    halfRelative: false,
+  },
+};
+
+function nordicTimeInWords(locale: "sv" | "no" | "da", rounded: number, hour: number, next: number) {
+  const c = NORDIC_CLOCK[locale];
+  const h = (n: number) => `**${c.num[n]}**`;
+  const w = (n: number) => `**${c.words[n]}**`;
+  if (rounded === 0) return [...c.prefix, h(hour)];
+  if (rounded === 30) return [...c.prefix, "**halv**", h(next)];
+  if (rounded === 25) return [...c.prefix, w(5), c.to, "**halv**", h(next)];
+  if (rounded === 35) return [...c.prefix, w(5), c.past, "**halv**", h(next)];
+  // Norveççe 20 ve 40 dakikayı da yarıma göre söyler.
+  if (c.halfRelative && rounded === 20) return [...c.prefix, w(10), c.to, "**halv**", h(next)];
+  if (c.halfRelative && rounded === 40) return [...c.prefix, w(10), c.past, "**halv**", h(next)];
+  if (rounded < 30) return [...c.prefix, w(rounded), c.past, h(hour)];
+  return [...c.prefix, w(60 - rounded), c.to, h(next)];
+}
+
 /** Saati 5 dakikaya yuvarlayip cumleye cevirir. Vurgulanacak kelimeler ** ile isaretli. */
-export function timeInWords(date: Date, locale: "tr" | "en" | "de") {
+export function timeInWords(date: Date, locale: WordClockLocale) {
   let rounded = Math.round((date.getMinutes() + date.getSeconds() / 60) / 5) * 5;
   let hour = date.getHours() % 12 || 12;
   if (rounded === 60) {
@@ -369,6 +417,7 @@ export function timeInWords(date: Date, locale: "tr" | "en" | "de") {
     hour = (hour % 12) + 1;
   }
   const next = (hour % 12) + 1;
+  if (locale === "sv" || locale === "no" || locale === "da") return nordicTimeInWords(locale, rounded, hour, next);
   if (locale === "tr") {
     if (rounded === 0) return ["Saat", "tam", `**${TR_NOM[hour]}**`];
     if (rounded === 30) return hour === 12 ? ["Saat", "**yarım**"] : ["Saat", `**${TR_NOM[hour]}**`, "**buçuk**"];
@@ -394,7 +443,7 @@ export function timeInWords(date: Date, locale: "tr" | "en" | "de") {
   return ["It's", `**${EN_MIN[60 - rounded]}**`, "to", `**${EN_NUM[next]}**`];
 }
 
-export function WordClock({ date, locale, label }: { date: Date | null; locale: "tr" | "en" | "de"; label?: string }) {
+export function WordClock({ date, locale, label }: { date: Date | null; locale: WordClockLocale; label?: string }) {
   const words = date ? timeInWords(date, locale) : [];
   return (
     <p className="word-clock" role="img" aria-label={label}>

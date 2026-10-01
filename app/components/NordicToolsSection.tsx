@@ -4,6 +4,7 @@
 import Link from "@/app/components/SiteLink";
 import { NORDIC_WEEK_PATHS, type NordicLocale } from "../converter/time/nordicWeek";
 import { sleepGuidePaths } from "../i18n/sleepGuidePaths";
+import { NORDIC_TIME_CARD_TEXT, NORDIC_TIME_LABELS, NORDIC_TIME_PATHS, type NordicTimeTool } from "./time/nordicTimeCopy";
 import { DecorativeIcon, type SiteIconName } from "./siteIcons";
 
 type ToolCard = { id: string; href: string; title: string; description: string; iconName: SiteIconName };
@@ -29,8 +30,28 @@ const NORDIC_TOOLS: Record<NordicLocale, ToolCard[]> = {
   ],
 };
 
+const TIME_TOOL_ICONS: Record<NordicTimeTool, SiteIconName> = {
+  // Türkçe ana sayfadaki zaman araçlarıyla aynı ikonlar.
+  clock: "time",
+  timer: "paceCalculator",
+  stopwatch: "paceCalculator",
+  alarm: "time",
+};
+
+function timeToolCards(locale: NordicLocale): ToolCard[] {
+  return (["clock", "timer", "stopwatch", "alarm"] as NordicTimeTool[]).map((tool) => ({
+    id: tool,
+    href: NORDIC_TIME_PATHS[tool][locale],
+    title: NORDIC_TIME_LABELS[tool][locale],
+    description: NORDIC_TIME_CARD_TEXT[tool][locale],
+    iconName: TIME_TOOL_ICONS[tool],
+  }));
+}
+
 export default function NordicToolsSection({ locale }: { locale: NordicLocale }) {
   const copy = SECTION_COPY[locale];
+  const [week, ...rest] = NORDIC_TOOLS[locale];
+  const cards = [week, ...timeToolCards(locale), ...rest];
   return (
     <section className="directory-section">
       <header className="directory-section-header">
@@ -40,7 +61,7 @@ export default function NordicToolsSection({ locale }: { locale: NordicLocale })
         </div>
       </header>
       <div className="directory-home-category-grid">
-        {NORDIC_TOOLS[locale].map((tool) => (
+        {cards.map((tool) => (
           <article className="directory-home-card" key={tool.id}>
             <Link className="directory-card-stretch" href={tool.href} aria-label={`${tool.title} - ${tool.description}`} />
             <div className="directory-card-body directory-card-body-icon">

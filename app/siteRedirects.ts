@@ -2,7 +2,7 @@ import { routePairs } from "./converter/geo/routePairs";
 import { germanScienceRedirects } from "./converter/germanScienceSlugs";
 
 // Statik sitede (output: "export") Next.js yonlendirmeleri calismaz. Liste
-// derlemeden sonra scripts/write-redirects.ts ile out/_redirects dosyasina
+// derlemeden sonra scripts/postbuild.ts ile out/_redirects dosyasina
 // (Cloudflare Pages bicimi) yazilir.
 
 export type SiteRedirect = {

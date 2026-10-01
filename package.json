@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "postbuild": "tsx scripts/write-redirects.ts",
+    "postbuild": "tsx scripts/postbuild.ts",
     "start": "npx serve out",
     "lint": "eslint",
     "test": "vitest run",

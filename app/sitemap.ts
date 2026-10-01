@@ -156,6 +156,8 @@ import { danishUnitPages } from "./converter/localizedDanishUnitPages";
 import { danishConversionPages } from "./converter/localizedDanishConversionPages";
 import { SITE_LAST_MODIFIED, SITE_URL } from "./siteConfig";
 
+export const dynamic = "force-static";
+
 const baseUrl = SITE_URL;
 const contentLastModified = SITE_LAST_MODIFIED;
 

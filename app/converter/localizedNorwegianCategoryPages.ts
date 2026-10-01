@@ -136,6 +136,7 @@ export const norwegianCategoryPages: LocalizedNorwegianCategoryPage[] = [
       { name: "Fot", symbol: "ft", referenceValue: "0,3048 m", system: "Britisk/amerikansk", commonUse: "Høyde, bygg og luftfart" },
       { name: "Yard", symbol: "yd", referenceValue: "0,9144 m", system: "Britisk/amerikansk", commonUse: "Idrettsbaner og avstandsmålinger" },
       { name: "Engelsk mil", symbol: "mi", referenceValue: "1609,344 m", system: "Britisk/amerikansk", commonUse: "Veiavstander" },
+      { name: "Mil (norsk mil)", symbol: "mil", referenceValue: "10 000 m", system: "Norsk dagligtale", commonUse: "Reiseavstander og drivstofforbruk i liter per mil" },
       { name: "Nautisk mil", symbol: "nmi", referenceValue: "1852 m", system: "Sjøfart", commonUse: "Sjøfart og luftfart" },
     ],
   },

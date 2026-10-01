@@ -12,7 +12,7 @@ export type SiteRedirect = {
 };
 
 // Eski Ingilizce bolum adreslerinden dile ozel adreslere kalici yonlendirme.
-// Ornek: /sv/unit-guides/meter -> /sv/enhetsguider/meter
+// Ornek: isvecce "unit-guides/meter" -> "enhetsguider/meter"
 const localizedSectionRenames: Record<string, Record<string, string>> = {
   sv: {
     "categories": "kategorier",

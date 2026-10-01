@@ -20,8 +20,7 @@ export const privacyPolicyCopy: Record<"tr" | "en" | "de" | "uz" | "ar", Privacy
     storage: {
       heading: "Tarayıcınızda saklanan bilgiler",
       paragraphs: [
-        "Kullanımı kolaylaştırmak için bazı tercihler yalnızca kendi cihazınızda, tarayıcının yerel depolamasında tutulur: son kullandığınız araçlar, seçtiğiniz meslek, kapattığınız bildirimler ve bir sayfaya daha önce oy verip vermediğiniz. Ayrıca sayfaların çevrimdışı da açılabilmesi için tarayıcı önbelleği kullanılır. Bu bilgileri tarayıcı ayarlarınızdan istediğiniz zaman silebilirsiniz.",
-        "Sayfalardaki \"faydalı buldum / bulmadım\" oylamasında sunucuya yalnızca sayfanın kimliği ve oyunuz gönderilir; kişisel bilgi kaydedilmez.",
+        "Kullanımı kolaylaştırmak için bazı tercihler yalnızca kendi cihazınızda, tarayıcının yerel depolamasında tutulur: son kullandığınız araçlar, seçtiğiniz meslek ve kapattığınız bildirimler. Ayrıca sayfaların çevrimdışı da açılabilmesi için tarayıcı önbelleği kullanılır. Bu bilgileri tarayıcı ayarlarınızdan istediğiniz zaman silebilirsiniz.",
       ],
     },
     analytics: {
@@ -46,7 +45,7 @@ export const privacyPolicyCopy: Record<"tr" | "en" | "de" | "uz" | "ar", Privacy
     hosting: {
       heading: "Barındırma ve sunucu kayıtları",
       paragraphs: [
-        "Site Vercel altyapısında barındırılır. Her web sitesinde olduğu gibi, güvenlik ve sitenin çalışması için barındırma sağlayıcısı IP adresi, tarayıcı bilgisi ve istek zamanı gibi standart sunucu kayıtlarını işleyebilir.",
+        "Site Cloudflare Pages altyapısında barındırılır. Her web sitesinde olduğu gibi, güvenlik ve sitenin çalışması için barındırma sağlayıcısı IP adresi, tarayıcı bilgisi ve istek zamanı gibi standart sunucu kayıtlarını işleyebilir.",
       ],
     },
     links: {
@@ -80,8 +79,7 @@ export const privacyPolicyCopy: Record<"tr" | "en" | "de" | "uz" | "ar", Privacy
     storage: {
       heading: "Information stored in your browser",
       paragraphs: [
-        "To make the site easier to use, a few preferences are kept only on your own device in the browser's local storage: tools you used recently, the profession you selected, notifications you dismissed and whether you have already voted on a page. The browser cache is also used so pages can open offline. You can delete this information at any time in your browser settings.",
-        "When you use the \"helpful / not helpful\" vote on a page, only the page identifier and your vote are sent to our server; no personal information is recorded.",
+        "To make the site easier to use, a few preferences are kept only on your own device in the browser's local storage: tools you used recently, the profession you selected and notifications you dismissed. The browser cache is also used so pages can open offline. You can delete this information at any time in your browser settings.",
       ],
     },
     analytics: {
@@ -106,7 +104,7 @@ export const privacyPolicyCopy: Record<"tr" | "en" | "de" | "uz" | "ar", Privacy
     hosting: {
       heading: "Hosting and server logs",
       paragraphs: [
-        "The site is hosted on Vercel. As with any website, the hosting provider may process standard server logs such as IP address, browser information and request time for security and to operate the site.",
+        "The site is hosted on Cloudflare Pages. As with any website, the hosting provider may process standard server logs such as IP address, browser information and request time for security and to operate the site.",
       ],
     },
     links: {
@@ -136,8 +134,7 @@ export const privacyPolicyCopy: Record<"tr" | "en" | "de" | "uz" | "ar", Privacy
     storage: {
       heading: "In Ihrem Browser gespeicherte Informationen",
       paragraphs: [
-        "Zur einfacheren Nutzung werden einige Einstellungen nur auf Ihrem eigenen Gerät im lokalen Speicher des Browsers abgelegt: zuletzt genutzte Werkzeuge, der gewählte Beruf, geschlossene Hinweise und ob Sie eine Seite bereits bewertet haben. Außerdem wird der Browser-Cache genutzt, damit Seiten auch offline geöffnet werden können. Sie können diese Informationen jederzeit in Ihren Browsereinstellungen löschen.",
-        "Bei der Bewertung „hilfreich / nicht hilfreich“ werden nur die Kennung der Seite und Ihre Bewertung an unseren Server gesendet; personenbezogene Daten werden nicht gespeichert.",
+        "Zur einfacheren Nutzung werden einige Einstellungen nur auf Ihrem eigenen Gerät im lokalen Speicher des Browsers abgelegt: zuletzt genutzte Werkzeuge, der gewählte Beruf und geschlossene Hinweise. Außerdem wird der Browser-Cache genutzt, damit Seiten auch offline geöffnet werden können. Sie können diese Informationen jederzeit in Ihren Browsereinstellungen löschen.",
       ],
     },
     analytics: {
@@ -162,7 +159,7 @@ export const privacyPolicyCopy: Record<"tr" | "en" | "de" | "uz" | "ar", Privacy
     hosting: {
       heading: "Hosting und Server-Protokolle",
       paragraphs: [
-        "Die Website wird bei Vercel gehostet. Wie bei jeder Website kann der Hosting-Anbieter übliche Server-Protokolle wie IP-Adresse, Browserinformationen und Zeitpunkt der Anfrage zur Sicherheit und für den Betrieb der Website verarbeiten.",
+        "Die Website wird bei Cloudflare Pages gehostet. Wie bei jeder Website kann der Hosting-Anbieter übliche Server-Protokolle wie IP-Adresse, Browserinformationen und Zeitpunkt der Anfrage zur Sicherheit und für den Betrieb der Website verarbeiten.",
       ],
     },
     links: {
@@ -192,8 +189,7 @@ export const privacyPolicyCopy: Record<"tr" | "en" | "de" | "uz" | "ar", Privacy
     storage: {
       heading: "Brauzeringizda saqlanadigan ma'lumotlar",
       paragraphs: [
-        "Foydalanishni qulaylashtirish uchun ba'zi sozlamalar faqat o'z qurilmangizda, brauzerning mahalliy xotirasida saqlanadi: oxirgi foydalanilgan vositalar, tanlangan kasb, yopilgan bildirishnomalar va sahifaga ovoz berganingiz. Sahifalar oflayn ham ochilishi uchun brauzer keshi ham ishlatiladi. Bu ma'lumotlarni istalgan vaqtda brauzer sozlamalaridan o'chirishingiz mumkin.",
-        "\"Foydali / foydali emas\" ovozida serverga faqat sahifa identifikatori va ovozingiz yuboriladi; shaxsiy ma'lumot saqlanmaydi.",
+        "Foydalanishni qulaylashtirish uchun ba'zi sozlamalar faqat o'z qurilmangizda, brauzerning mahalliy xotirasida saqlanadi: oxirgi foydalanilgan vositalar, tanlangan kasb va yopilgan bildirishnomalar. Sahifalar oflayn ham ochilishi uchun brauzer keshi ham ishlatiladi. Bu ma'lumotlarni istalgan vaqtda brauzer sozlamalaridan o'chirishingiz mumkin.",
       ],
     },
     analytics: {
@@ -218,7 +214,7 @@ export const privacyPolicyCopy: Record<"tr" | "en" | "de" | "uz" | "ar", Privacy
     hosting: {
       heading: "Xosting va server jurnallari",
       paragraphs: [
-        "Sayt Vercel infratuzilmasida joylashgan. Har qanday veb-saytdagi kabi, xosting provayderi xavfsizlik va saytning ishlashi uchun IP manzil, brauzer ma'lumotlari va so'rov vaqti kabi standart server jurnallarini qayta ishlashi mumkin.",
+        "Sayt Cloudflare Pages infratuzilmasida joylashgan. Har qanday veb-saytdagi kabi, xosting provayderi xavfsizlik va saytning ishlashi uchun IP manzil, brauzer ma'lumotlari va so'rov vaqti kabi standart server jurnallarini qayta ishlashi mumkin.",
       ],
     },
     links: {
@@ -248,8 +244,7 @@ export const privacyPolicyCopy: Record<"tr" | "en" | "de" | "uz" | "ar", Privacy
     storage: {
       heading: "المعلومات المحفوظة في متصفحك",
       paragraphs: [
-        "لتسهيل الاستخدام، تُحفظ بعض التفضيلات على جهازك فقط في التخزين المحلي للمتصفح: الأدوات التي استخدمتها مؤخرًا، والمهنة التي اخترتها، والإشعارات التي أغلقتها، وما إذا كنت قد صوّتَّ على صفحة من قبل. كما تُستخدم ذاكرة التخزين المؤقت للمتصفح حتى تفتح الصفحات دون اتصال. يمكنك حذف هذه المعلومات في أي وقت من إعدادات المتصفح.",
-        "عند التصويت بـ\"مفيد / غير مفيد\" على صفحة ما، يُرسَل إلى خادمنا معرّف الصفحة وتصويتك فقط، ولا تُسجَّل أي معلومات شخصية.",
+        "لتسهيل الاستخدام، تُحفظ بعض التفضيلات على جهازك فقط في التخزين المحلي للمتصفح: الأدوات التي استخدمتها مؤخرًا، والمهنة التي اخترتها، والإشعارات التي أغلقتها. كما تُستخدم ذاكرة التخزين المؤقت للمتصفح حتى تفتح الصفحات دون اتصال. يمكنك حذف هذه المعلومات في أي وقت من إعدادات المتصفح.",
       ],
     },
     analytics: {
@@ -274,7 +269,7 @@ export const privacyPolicyCopy: Record<"tr" | "en" | "de" | "uz" | "ar", Privacy
     hosting: {
       heading: "الاستضافة وسجلات الخادم",
       paragraphs: [
-        "يُستضاف الموقع على منصة Vercel. وكما هو الحال في أي موقع، قد يعالج مزوّد الاستضافة سجلات الخادم المعتادة مثل عنوان IP ومعلومات المتصفح ووقت الطلب لأغراض الأمان وتشغيل الموقع.",
+        "يُستضاف الموقع على منصة Cloudflare Pages. وكما هو الحال في أي موقع، قد يعالج مزوّد الاستضافة سجلات الخادم المعتادة مثل عنوان IP ومعلومات المتصفح ووقت الطلب لأغراض الأمان وتشغيل الموقع.",
       ],
     },
     links: {

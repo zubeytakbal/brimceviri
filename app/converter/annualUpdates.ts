@@ -1,5 +1,5 @@
-// Her yil degisen resmi degerlere dayanan araclar. Gece calisan kaynak kontrolu
-// (api/cron/kaynak-kontrol) remindFrom tarihinden itibaren her arac icin yilda bir
+// Her yil degisen resmi degerlere dayanan araclar. Her gun calisan GitHub Actions
+// (scripts/annual-reminders.ts) remindFrom tarihinden itibaren her arac icin yilda bir
 // kez GitHub issue acar; sayfalar validYear gectikten sonra ziyaretciye uyari gosterir.
 
 export type AnnualUpdate = {

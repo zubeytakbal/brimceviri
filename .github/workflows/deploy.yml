@@ -1,0 +1,55 @@
+# Site tamamen statik (output: "export") olarak derlenir ve Cloudflare Pages'e
+# yuklenir. Gunluk calisma; doviz, altin ve akaryakit fiyatlari ile tarihe
+# bagli sayfalari (takvim, geri sayim, yillik uyarilar) tazeler.
+#
+# Gerekli depo sirlari (Settings > Secrets and variables > Actions):
+#   CLOUDFLARE_API_TOKEN   "Cloudflare Pages: Edit" izinli API token
+#   CLOUDFLARE_ACCOUNT_ID  Cloudflare hesap kimligi
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "15 3 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: deploy
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build
+        run: npm run build
+        env:
+          NODE_OPTIONS: --max-old-space-size=6144
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy out --project-name=birimceviri --branch=main --commit-dirty=true
+
+      - name: Yearly update reminders
+        if: github.event_name == 'schedule'
+        run: npx tsx scripts/annual-reminders.ts
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

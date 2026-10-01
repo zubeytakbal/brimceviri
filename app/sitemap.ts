@@ -940,12 +940,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/ar/ring-size-converter`
       ),
     },
-    {
-      url: `${baseUrl}/gelistirici-api`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.6,
-    },
     ...standaloneToolRoutes,
     ...englishOnlyStandaloneToolRoutes,
     ...arabicOnlyStandaloneToolRoutes,

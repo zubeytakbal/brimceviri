@@ -835,7 +835,6 @@ const footerLinksByLocale: Record<
     { key: "units", label: "Birim Rehberi" },
     { key: "allConversions", label: "Tüm Dönüşümler" },
     { key: "professions", label: "Mesleklere Göre" },
-    { key: "developerApi", label: "Geliştirici API'si" },
     { key: "about", label: "Hakkımızda" },
     { key: "contact", label: "İletişim" },
     { key: "privacy", label: "Gizlilik" },

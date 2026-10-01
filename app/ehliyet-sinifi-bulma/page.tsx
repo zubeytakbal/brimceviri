@@ -96,7 +96,6 @@ export default async function LicenseClassFinderPage() {
         </header>
 
         <TrustBar
-          pageId="ehliyet-sinifi-bulma"
           sources={[
             {
               label: "Karayolları Trafik Yönetmeliği (mevzuat.gov.tr)",

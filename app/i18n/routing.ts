@@ -27,7 +27,6 @@ export type StaticRouteKey =
   | "contact"
   | "privacy"
   | "terms"
-  | "developerApi"
   | "paintCalculator"
   | "tileCalculator"
   | "brickCalculator"
@@ -184,9 +183,6 @@ const staticRouteTranslations: Record<StaticRouteKey, LocalePathMap> = {
     de: "/de/nutzungsbedingungen",
     ar: "/ar/terms",
     uz: "/uz/foydalanish-shartlari",
-  },
-  developerApi: {
-    tr: "/gelistirici-api",
   },
   paintCalculator: {
     tr: "/boya-hesaplama",

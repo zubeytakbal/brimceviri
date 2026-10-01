@@ -1,15 +1,15 @@
 # Yıllık güncelleme takvimi
 
 Bu dosya, her yıl değişen resmi değerlere dayanan araçları tek yerde toplar. Hatırlatmalar otomatik gelir:
-her gece çalışan kontrol (`/api/cron/kaynak-kontrol`) aşağıdaki tarihlerde GitHub'da bir issue açar ve GitHub
+her gün çalışan GitHub Actions iş akışı (`.github/workflows/deploy.yml`, `scripts/annual-reminders.ts`) aşağıdaki tarihlerde GitHub'da bir issue açar ve GitHub
 bunu e-postayla size gönderir. Güncelleme yapılmazsa sayfalar yeni yılda ziyaretçiye "bu hesaplama geçen yılın
 değerlerini kullanıyor" uyarısı gösterir; yanlış sonuç sessizce yayında kalmaz.
 
 **Yapmanız gereken:** Issue e-postası geldiğinde Claude'a "yıllık güncellemeyi yap" demeniz yeterli. Her araçta
 değişen sayılar tek bir dosyada toplu durur; güncelleme resmi kaynak kontrolüyle birlikte kısa bir iştir.
 
-> Ön koşul: Vercel ortam değişkenlerinde `GITHUB_ISSUE_TOKEN` ve Upstash Redis tanımlı olmalı; yoksa
-> hatırlatma issue'ları açılmaz (sayfa uyarıları yine çalışır).
+> Ek bir ayar gerekmez: hatırlatmalar GitHub Actions'ın kendi `GITHUB_TOKEN`'ı ile açılır. Sayfa uyarıları her
+> günlük yeniden derlemede güncellenir.
 
 | Ne zaman | Araç | Ne değişir | Kaynak | Dosya |
 |---|---|---|---|---|

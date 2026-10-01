@@ -111,7 +111,6 @@ export default async function LicenseClassDetailPage({ params }: PageProps) {
         </header>
 
         <TrustBar
-          pageId={`ehliyet-sinifi-bulma-${slug}`}
           sources={[
             {
               label: "Karayolları Trafik Yönetmeliği (mevzuat.gov.tr)",

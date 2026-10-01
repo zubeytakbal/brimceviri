@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
 import CgpaCalculator from "../../../components/CgpaCalculator";
-import CgpaSourceCheckButton from "../../../components/CgpaSourceCheckButton";
 import YouMayAlsoLike from "../../../components/YouMayAlsoLike";
 import { getCgpaSourceAlerts } from "../../../converter/cgpaSourceMonitor";
 import { buildFaqSchema, type FaqItem } from "../../../converter/faqSchema";
@@ -132,11 +131,10 @@ export default async function UniversityCgpaPage({ params }: PageProps) {
             <a href={university.sourceUrl} rel="noopener noreferrer" target="_blank">
               {university.sourceTitle}
             </a>
-            . Last verified on {formatVerifiedDate(university.verifiedOn)}. We check this source every night; if it changes, this page
-            shows a notice until the formula is confirmed again.
+            . Last verified on {formatVerifiedDate(university.verifiedOn)}. If the official document has changed since then, the official
+            document takes precedence over this page.
           </p>
           {university.notes?.map((note) => <p key={note}>{note}</p>)}
-          <CgpaSourceCheckButton slug={university.slug} sourceUrl={university.sourceUrl} sourceTitle={university.sourceTitle} />
 
           <h2>{university.shortName} CGPA to percentage table</h2>
           <div className="conversion-table-wrap">

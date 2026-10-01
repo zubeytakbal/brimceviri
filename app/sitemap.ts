@@ -156,6 +156,8 @@ import { danishUnitPages } from "./converter/localizedDanishUnitPages";
 import { danishConversionPages } from "./converter/localizedDanishConversionPages";
 import { SITE_LAST_MODIFIED, SITE_URL } from "./siteConfig";
 
+export const dynamic = "force-static";
+
 const baseUrl = SITE_URL;
 const contentLastModified = SITE_LAST_MODIFIED;
 
@@ -939,12 +941,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/de/ringgroessen-umrechner`,
         `${baseUrl}/ar/ring-size-converter`
       ),
-    },
-    {
-      url: `${baseUrl}/gelistirici-api`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.6,
     },
     ...standaloneToolRoutes,
     ...englishOnlyStandaloneToolRoutes,

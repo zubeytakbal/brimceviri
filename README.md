@@ -1,6 +1,6 @@
 # Birim Çeviri
 
-Çok dilli birim çevirme ve hesaplama sitesi. Next.js (App Router) ile yazılmıştır ve Vercel üzerinde çalışır.
+Çok dilli birim çevirme ve hesaplama sitesi. Next.js (App Router) ile yazılmıştır. Tamamen statik bir site olarak derlenir (`output: "export"`) ve ücretsiz olarak Cloudflare Pages üzerinde barındırılır; sunucu tarafı kod veya API yoktur.
 
 ## Kurulum
 
@@ -14,20 +14,27 @@ npm run dev      # http://localhost:3000
 | Komut | Açıklama |
 | --- | --- |
 | `npm run dev` | Geliştirme sunucusu |
-| `npm run build` | Üretim derlemesi |
+| `npm run build` | Statik derleme (`out/` klasörüne) |
+| `npm start` | `out/` klasörünü yerelde sunar |
 | `npm run lint` | ESLint |
 | `npm test` | Birim testleri (Vitest) |
 | `npx tsc --noEmit` | Tip kontrolü |
 
 Değişiklikleri push'lamadan önce `npm run lint`, `npx tsc --noEmit` ve `npm test` komutlarının temiz geçtiğinden emin olun.
 
+## Yayınlama (Cloudflare Pages)
+
+`main` dalına her push'ta ve her gün 03:15 UTC'de `.github/workflows/deploy.yml` siteyi derleyip Cloudflare Pages'e yükler. Günlük derleme döviz, altın ve akaryakıt fiyatlarını ve tarihe bağlı sayfaları tazeler. Depo ayarlarında iki sır tanımlı olmalıdır: `CLOUDFLARE_API_TOKEN` ve `CLOUDFLARE_ACCOUNT_ID`.
+
+Statik sitede sunucu olmadığı için yeni bir özellik eklerken API route, `revalidate`, `cookies()`/`headers()` veya istek anında çalışan kod kullanılmamalıdır; dinamik adresli sayfalar `generateStaticParams` ile üretilmelidir.
+
 ## Klasör yapısı
 
 - `app/converter/`: Çeviri ve hesaplama mantığı. `convert.ts` ana çeviri fonksiyonudur, birim katsayıları ise `unitRegistry.ts` içinde tutulur.
 - `app/components/`: Hesaplayıcı arayüz bileşenleri.
 - `app/<dil>/`: Dile özel sayfalar (`en`, `de`, `ar`, `uz`, `bn`, `fr`, `es`, `pt`, `it`, `nl`, `sv`, `no`, `da`). Kök dizindeki sayfalar Türkçedir.
-- `app/api/`: Genel API (`/api/v1/convert`, `/api/v1/categories`) ve cron işleri.
-- `browser-extension/`, `google-sheets-addon/`: Ek istemciler.
+- `app/siteRedirects.ts`: Eski adreslerden yönlendirmeler. `npm run build` sonrasında `out/_redirects` dosyasına yazılır.
+- `scripts/`: Derleme sonrası ve GitHub Actions betikleri.
 - `tests/`: Vitest birim testleri.
 
 ## Çeviri kalite testi

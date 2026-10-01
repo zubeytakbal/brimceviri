@@ -94,7 +94,6 @@ export default async function LicenseRenewalPage() {
         </header>
 
         <TrustBar
-          pageId="ehliyet-yenileme-suresi-hesaplama"
           sources={[
             {
               label: "Karayolları Trafik Yönetmeliği (mevzuat.gov.tr)",

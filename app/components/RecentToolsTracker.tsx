@@ -29,11 +29,10 @@ const EXCLUDED_PATHS = new Set([
   "/en/all-conversions",
   "/de/alle-umrechnungen",
   "/ar/all-conversions",
-  "/gelistirici-api",
   "/cevrimdisi",
 ]);
 
-const EXCLUDED_PREFIXES = ["/embed/", "/api/"];
+const EXCLUDED_PREFIXES = ["/embed/"];
 
 export default function RecentToolsTracker() {
   const pathname = usePathname();

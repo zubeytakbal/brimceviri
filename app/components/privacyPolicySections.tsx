@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 // Gizlilik politikasi: tum dillerde ayni yapi. Icerik sitenin gercek
 // davranisini anlatir (hesap yok, girdiler tarayicida, yerel depolama,
-// anonim oylama, Google Analytics, Google AdSense, Vercel barindirma).
+// Google Analytics, Google AdSense, Cloudflare Pages barindirma).
 // AdSense politikasinin istedigi ucuncu taraf cerez aciklamasi ve
 // kisisellestirilmis reklamlari kapatma baglantilari zorunludur.
 

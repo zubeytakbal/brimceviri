@@ -11,7 +11,11 @@ type PageProps = {
   }>;
 };
 
-export const dynamicParams = true;
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return conversionPages.map((page) => ({ slug: page.slug }));
+}
 
 export async function generateMetadata({
   params,

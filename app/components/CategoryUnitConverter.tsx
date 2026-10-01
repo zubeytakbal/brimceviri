@@ -26,6 +26,146 @@ type CategoryUnitConverterProps = {
   syncKey?: string;
 };
 
+type ConverterLocale = CategoryUnitConverterProps["locale"];
+
+const NUMBER_LOCALES: Record<ConverterLocale, string> = {
+  tr: "tr-TR",
+  en: "en-US",
+  de: "de-DE",
+  ar: "ar",
+  uz: "uz-UZ",
+  bn: "bn-BD",
+  fr: "fr-FR",
+  es: "es-ES",
+  "es-419": "es-419",
+  pt: "pt-BR",
+  it: "it-IT",
+  nl: "nl-NL",
+  sv: "sv-SE",
+  no: "nb-NO",
+  da: "da-DK",
+};
+
+type ConverterLabels = { value: string; from: string; to: string; result: string; swap: string; invalid: string };
+
+const SPANISH_LABELS: ConverterLabels = {
+  value: "Valor",
+  from: "Unidad de origen",
+  to: "Unidad de destino",
+  result: "Resultado instantáneo",
+  swap: "Invertir sentido",
+  invalid: "Introduce un número válido para ver el resultado.",
+};
+
+const CONVERTER_LABELS: Record<ConverterLocale, ConverterLabels> = {
+  tr: {
+    value: "Değer",
+    from: "Kaynak birim",
+    to: "Hedef birim",
+    result: "Anlık sonuç",
+    swap: "Yönü değiştir",
+    invalid: "Geçerli bir sayı girerek sonucu görebilirsiniz.",
+  },
+  en: {
+    value: "Value",
+    from: "From unit",
+    to: "To unit",
+    result: "Live result",
+    swap: "Swap direction",
+    invalid: "Enter a valid number to view the result.",
+  },
+  de: {
+    value: "Wert",
+    from: "Ausgangseinheit",
+    to: "Zieleinheit",
+    result: "Direktes Ergebnis",
+    swap: "Richtung wechseln",
+    invalid: "Geben Sie eine gültige Zahl ein, um das Ergebnis zu sehen.",
+  },
+  ar: {
+    value: "القيمة",
+    from: "من وحدة",
+    to: "إلى وحدة",
+    result: "النتيجة المباشرة",
+    swap: "تبديل الاتجاه",
+    invalid: "أدخل رقما صحيحا لعرض النتيجة.",
+  },
+  uz: {
+    value: "Qiymat",
+    from: "Manba birlik",
+    to: "Maqsad birlik",
+    result: "Aniq natija",
+    swap: "Yo'nalishni almashtirish",
+    invalid: "Natijani ko'rish uchun to'g'ri raqam kiriting.",
+  },
+  bn: {
+    value: "মান",
+    from: "উৎস একক",
+    to: "লক্ষ্য একক",
+    result: "তাৎক্ষণিক ফলাফল",
+    swap: "দিক পরিবর্তন করুন",
+    invalid: "ফলাফল দেখতে একটি সঠিক সংখ্যা লিখুন।",
+  },
+  fr: {
+    value: "Valeur",
+    from: "Unité source",
+    to: "Unité cible",
+    result: "Résultat instantané",
+    swap: "Inverser le sens",
+    invalid: "Saisissez un nombre valide pour voir le résultat.",
+  },
+  es: SPANISH_LABELS,
+  "es-419": SPANISH_LABELS,
+  pt: {
+    value: "Valor",
+    from: "Unidade de origem",
+    to: "Unidade de destino",
+    result: "Resultado instantâneo",
+    swap: "Inverter sentido",
+    invalid: "Digite um número válido para ver o resultado.",
+  },
+  it: {
+    value: "Valore",
+    from: "Unità di origine",
+    to: "Unità di destinazione",
+    result: "Risultato istantaneo",
+    swap: "Inverti direzione",
+    invalid: "Inserisci un numero valido per vedere il risultato.",
+  },
+  nl: {
+    value: "Waarde",
+    from: "Van eenheid",
+    to: "Naar eenheid",
+    result: "Direct resultaat",
+    swap: "Richting omkeren",
+    invalid: "Voer een geldig getal in om het resultaat te zien.",
+  },
+  sv: {
+    value: "Värde",
+    from: "Från enhet",
+    to: "Till enhet",
+    result: "Direkt resultat",
+    swap: "Byt riktning",
+    invalid: "Ange ett giltigt tal för att se resultatet.",
+  },
+  no: {
+    value: "Verdi",
+    from: "Fra enhet",
+    to: "Til enhet",
+    result: "Direkte resultat",
+    swap: "Bytt retning",
+    invalid: "Skriv inn et gyldig tall for å se resultatet.",
+  },
+  da: {
+    value: "Værdi",
+    from: "Fra enhed",
+    to: "Til enhed",
+    result: "Direkte resultat",
+    swap: "Skift retning",
+    invalid: "Indtast et gyldigt tal for at se resultatet.",
+  },
+};
+
 function parseNumericValue(
   rawValue: string,
   locale: CategoryUnitConverterProps["locale"]
@@ -70,30 +210,7 @@ function formatDisplayNumber(
     return "\u2014";
   }
 
-  const localeName =
-    locale === "tr"
-      ? "tr-TR"
-      : locale === "de"
-        ? "de-DE"
-        : locale === "ar"
-          ? "ar"
-          : locale === "uz"
-            ? "uz-UZ"
-            : locale === "bn"
-              ? "bn-BD"
-              : locale === "fr"
-                ? "fr-FR"
-                : locale === "es"
-                  ? "es-ES"
-                  : locale === "es-419"
-                    ? "es-419"
-                    : locale === "pt"
-                      ? "pt-BR"
-                      : locale === "it"
-                        ? "it-IT"
-                        : locale === "nl"
-                          ? "nl-NL"
-        : "en-US";
+  const localeName = NUMBER_LOCALES[locale];
   const absoluteValue = Math.abs(value);
 
   if (absoluteValue === 0) {
@@ -227,110 +344,7 @@ export default function CategoryUnitConverter({
       ? convert(category, 1, activeFromUnit, activeToUnit)
       : Number.NaN;
 
-  const labels =
-    locale === "tr"
-      ? {
-          value: "De\u011Fer",
-          from: "Kaynak birim",
-          to: "Hedef birim",
-          result: "Anl\u0131k sonu\u00E7",
-          swap: "Y\u00F6n\u00FC de\u011Fi\u015Ftir",
-          invalid:
-            "Ge\u00E7erli bir say\u0131 girerek sonucu g\u00F6rebilirsiniz.",
-        }
-      : locale === "de"
-        ? {
-            value: "Wert",
-            from: "Ausgangseinheit",
-            to: "Zieleinheit",
-            result: "Direktes Ergebnis",
-            swap: "Richtung wechseln",
-            invalid:
-              "Geben Sie eine g\u00FCltige Zahl ein, um das Ergebnis zu sehen.",
-          }
-        : locale === "ar"
-          ? {
-              value: "القيمة",
-              from: "من وحدة",
-              to: "إلى وحدة",
-              result: "النتيجة المباشرة",
-              swap: "تبديل الاتجاه",
-              invalid:
-                "أدخل رقما صحيحا لعرض النتيجة.",
-            }
-          : locale === "uz"
-            ? {
-                value: "Qiymat",
-                from: "Manba birlik",
-                to: "Maqsad birlik",
-                result: "Aniq natija",
-                swap: "Yo'nalishni almashtirish",
-                invalid:
-                  "Natijani ko'rish uchun to'g'ri raqam kiriting.",
-              }
-            : locale === "bn"
-              ? {
-                  value: "মান",
-                  from: "উৎস একক",
-                  to: "লক্ষ্য একক",
-                  result: "তাৎক্ষণিক ফলাফল",
-                  swap: "দিক পরিবর্তন করুন",
-                  invalid: "ফলাফল দেখতে একটি সঠিক সংখ্যা লিখুন।",
-                }
-              : locale === "fr"
-              ? {
-                  value: "Valeur",
-                  from: "Unite source",
-                  to: "Unite cible",
-                  result: "Resultat instantane",
-                  swap: "Inverser le sens",
-                  invalid: "Saisissez un nombre valide pour voir le resultat.",
-                }
-              : locale === "es" || locale === "es-419"
-              ? {
-                  value: "Valor",
-                  from: "Unidad de origen",
-                  to: "Unidad de destino",
-                  result: "Resultado instantaneo",
-                  swap: "Invertir sentido",
-                  invalid: "Introduce un numero valido para ver el resultado.",
-                }
-              : locale === "pt"
-              ? {
-                  value: "Valor",
-                  from: "Unidade de origem",
-                  to: "Unidade de destino",
-                  result: "Resultado instantaneo",
-                  swap: "Inverter sentido",
-                  invalid: "Digite um numero valido para ver o resultado.",
-                }
-              : locale === "it"
-              ? {
-                  value: "Valore",
-                  from: "Unita di origine",
-                  to: "Unita di destinazione",
-                  result: "Risultato istantaneo",
-                  swap: "Inverti direzione",
-                  invalid: "Inserisci un numero valido per vedere il risultato.",
-                }
-              : locale === "nl"
-                ? {
-                    value: "Waarde",
-                    from: "Van eenheid",
-                    to: "Naar eenheid",
-                    result: "Direct resultaat",
-                    swap: "Richting omkeren",
-                    invalid: "Voer een geldig getal in om het resultaat te zien.",
-                  }
-              : {
-                value: "Value",
-                from: "From unit",
-                to: "To unit",
-                result: "Live result",
-                swap: "Swap direction",
-                invalid:
-                  "Enter a valid number to view the result.",
-              };
+  const labels = CONVERTER_LABELS[locale];
 
   if (unitOptions.length === 0) {
     return null;

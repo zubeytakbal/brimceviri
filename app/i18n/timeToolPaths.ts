@@ -17,7 +17,7 @@ export const timeToolPaths: Record<TimeToolId, Partial<Record<Locale, string>>> 
   dateDiff: { tr: "/iki-tarih-arasi-gun-hesaplama", en: "/en/days-between-dates", de: "/de/tagerechner" },
   businessDays: { tr: "/is-gunu-hesaplama", en: "/en/business-day-calculator", de: "/de/arbeitstage-rechner" },
   dateAdd: { tr: "/tarihe-gun-ekleme", en: "/en/date-calculator" },
-  weekNumber: { tr: "/kacinci-hafta", en: "/en/week-number", de: "/de/kalenderwoche" },
+  weekNumber: { tr: "/kacinci-hafta", en: "/en/week-number", de: "/de/kalenderwoche", sv: "/sv/veckonummer", no: "/no/ukenummer", da: "/da/ugenummer" },
 };
 
 export function timeToolAlternates(tool: TimeToolId) {

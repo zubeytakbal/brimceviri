@@ -10,6 +10,7 @@ import { homeCategoryOrder } from "../converter/homeCategoryOrder";
 import type { SiteNotification } from "../converter/siteNotifications";
 import { DecorativeIcon, getCategoryIconName, type SiteIconName } from "./siteIcons";
 import NotificationBell from "./NotificationBell";
+import NordicToolsSection from "./NordicToolsSection";
 
 function CardIcon({ name }: { name: SiteIconName }) {
   return (
@@ -321,6 +322,8 @@ export default function DanishHomeDirectory({
             </Link>
           </div>
         </section>
+
+        <NordicToolsSection locale="da" />
 
         {popularConversions.length > 0 && (
           <section className="directory-section">

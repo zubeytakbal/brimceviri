@@ -15183,3 +15183,142 @@ a.all-units-row .all-units-name {
     max-width: 220px;
   }
 }
+
+/* Kaza takip ve zikirmatik */
+
+.kaza-takip-liste {
+  display: grid;
+  gap: 8px;
+}
+
+.kaza-takip-satir {
+  display: grid;
+  grid-template-columns: 80px 110px 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 12px;
+  border: 1px solid #d7e2e8;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.kaza-takip-satir label {
+  display: grid;
+  gap: 2px;
+  font-size: 12px;
+  color: #5b6b7a;
+}
+
+.kaza-takip-satir input {
+  width: 100%;
+  min-height: 36px;
+  padding: 4px 8px;
+  border: 1px solid #c9d3da;
+  border-radius: 8px;
+  font: inherit;
+  font-size: 15px;
+}
+
+.kaza-takip-kalan {
+  color: #30394a;
+  font-size: 14px;
+}
+
+.kaza-takip-butonlar,
+.kaza-takip-alt {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.kaza-takip-btn {
+  min-height: 40px;
+  min-width: 48px;
+  padding: 6px 14px;
+  border: 1px solid #c9d3da;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #172033;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.kaza-takip-btn.is-main {
+  border-color: #0f6f6c;
+  background: #0f6f6c;
+  color: #ffffff;
+}
+
+.kaza-takip-btn.is-wide {
+  align-self: end;
+}
+
+.kaza-takip-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.kaza-takip-cubuk {
+  height: 8px;
+  margin-top: 8px;
+  border-radius: 999px;
+  background: #e6edf1;
+  overflow: hidden;
+}
+
+.kaza-takip-cubuk i {
+  display: block;
+  height: 100%;
+  background: #2e9e6f;
+}
+
+.zikir-buton {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  width: min(280px, 100%);
+  aspect-ratio: 1;
+  margin: 8px auto;
+  border: 6px solid #0f6f6c;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 35%, #ffffff 0%, #e9f6f5 100%);
+  color: #172033;
+  font: inherit;
+  cursor: pointer;
+  align-content: center;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+.zikir-buton:active {
+  transform: scale(0.98);
+}
+
+.zikir-buton strong {
+  font-size: 64px;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.zikir-ad {
+  font-weight: 700;
+  color: #0f6f6c;
+}
+
+.zikir-hedef {
+  color: #5b6b7a;
+  font-size: 14px;
+}
+
+@media (max-width: 640px) {
+  .kaza-takip-satir {
+    grid-template-columns: 70px 1fr auto;
+  }
+
+  .kaza-takip-kalan {
+    grid-column: 1 / -1;
+    order: 4;
+  }
+}

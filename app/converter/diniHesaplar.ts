@@ -324,3 +324,198 @@ export function manyetikSapma(lat: number, lon: number, when: Date = new Date())
 export function pusulaKibleAcisi(lat: number, lon: number, when: Date = new Date()) {
   return (((kibleAcisi(lat, lon) - manyetikSapma(lat, lon, when)) % 360) + 360) % 360;
 }
+
+/* ---------------- Hafızlık planı ---------------- */
+
+export type HafizlikPlani = {
+  kalanSayfa: number;
+  /** Ezber yapılan gün sayısı. */
+  ezberGunu: number;
+  /** Başlangıç günü dahil, son ezber gününe kadar geçen takvim günü. */
+  takvimGunu: number;
+  hafta: number;
+  /** Yaklaşık ay (takvim günü ÷ 30,44). */
+  ay: number;
+};
+
+/**
+ * Günde `gunlukSayfa` ezber, haftada `haftalikGun` gün (haftanın ilk günleri
+ * ezber, kalanları tekrar/dinlenme sayılır). Mushaf 604 sayfa.
+ */
+export function hafizlikPlani(gunlukSayfa: number, haftalikGun: number, ezberlenenSayfa = 0): HafizlikPlani | null {
+  if (!(gunlukSayfa >= 0.25 && gunlukSayfa <= 40)) return null;
+  const k = Math.round(haftalikGun);
+  if (!(k >= 1 && k <= 7) || !(ezberlenenSayfa >= 0) || ezberlenenSayfa >= MUSHAF_SAYFA) return null;
+  const kalanSayfa = MUSHAF_SAYFA - Math.round(ezberlenenSayfa);
+  const ezberGunu = Math.ceil(kalanSayfa / gunlukSayfa - 1e-9);
+  const takvimGunu = Math.floor((ezberGunu - 1) / k) * 7 + ((ezberGunu - 1) % k) + 1;
+  return { kalanSayfa, ezberGunu, takvimGunu, hafta: takvimGunu / 7, ay: takvimGunu / 30.44 };
+}
+
+/** `takvimGunu` içinde haftada `haftalikGun` gün ezberle bitirmek için günlük sayfa. */
+export function hafizlikGunlukSayfa(takvimGunu: number, haftalikGun: number, ezberlenenSayfa = 0) {
+  const t = Math.round(takvimGunu);
+  const k = Math.round(haftalikGun);
+  if (!(t >= 1) || !(k >= 1 && k <= 7) || !(ezberlenenSayfa >= 0) || ezberlenenSayfa >= MUSHAF_SAYFA) return Number.NaN;
+  const ezberGunu = Math.floor(t / 7) * k + Math.min(t % 7, k);
+  return (MUSHAF_SAYFA - Math.round(ezberlenenSayfa)) / ezberGunu;
+}
+
+/* ---------------- Maaştan (birikimden) zekât ---------------- */
+
+export type MaasZekat = {
+  yilSonuBirikim: number;
+  nisapDegeri: number;
+  nisapUstunde: boolean;
+  zekat: number;
+  aylikTaksit: number;
+};
+
+/**
+ * Maaşın kendisi zekâta tabi değildir; harcanmayıp biriken kısım diğer
+ * paralarla toplanır. Yıl sonunda elde olacak tahmini toplam üzerinden
+ * zekât ve 12'ye bölünmüş aylık taksit.
+ */
+export function maasZekat(mevcutBirikim: number, aylikBirikim: number, altinGramFiyati: number): MaasZekat | null {
+  if (!(altinGramFiyati > 0) || !(mevcutBirikim >= 0) || !(aylikBirikim >= 0)) return null;
+  const yilSonuBirikim = mevcutBirikim + aylikBirikim * 12;
+  const nisapDegeri = NISAP_ALTIN_GRAM * altinGramFiyati;
+  const nisapUstunde = yilSonuBirikim >= nisapDegeri;
+  const zekat = nisapUstunde ? yilSonuBirikim * ZEKAT_ORANI : 0;
+  return { yilSonuBirikim, nisapDegeri, nisapUstunde, zekat, aylikTaksit: zekat / 12 };
+}
+
+/* ---------------- Kaza takip çizelgesi ---------------- */
+
+export const KAZA_KALEMLERI = [
+  { id: "sabah", ad: "Sabah", rekat: 2 },
+  { id: "ogle", ad: "Öğle", rekat: 4 },
+  { id: "ikindi", ad: "İkindi", rekat: 4 },
+  { id: "aksam", ad: "Akşam", rekat: 3 },
+  { id: "yatsi", ad: "Yatsı", rekat: 4 },
+  { id: "vitir", ad: "Vitir", rekat: 3 },
+  { id: "oruc", ad: "Oruç", rekat: 0 },
+] as const;
+
+export type KazaKalemi = (typeof KAZA_KALEMLERI)[number]["id"];
+export type KazaSayac = Record<KazaKalemi, number>;
+
+export const bosKazaSayac = (): KazaSayac => ({ sabah: 0, ogle: 0, ikindi: 0, aksam: 0, yatsi: 0, vitir: 0, oruc: 0 });
+
+/** Bozuk ya da eski kayıtları güvenle sayaca çevirir (negatif ve kesirli sayılar atılır). */
+export function kazaSayacOku(raw: unknown): KazaSayac {
+  const s = bosKazaSayac();
+  if (raw && typeof raw === "object") {
+    for (const k of KAZA_KALEMLERI) {
+      const v = (raw as Record<string, unknown>)[k.id];
+      if (typeof v === "number" && Number.isFinite(v) && v > 0) s[k.id] = Math.min(Math.floor(v), 10_000_000);
+    }
+  }
+  return s;
+}
+
+export type KazaIlerleme = { borcNamaz: number; kilinanNamaz: number; kalanNamaz: number; kalanRekat: number; yuzde: number };
+
+/** Namaz kalemlerinde (oruç hariç) toplam ilerleme; borçtan fazla kılınan sayılmaz. */
+export function kazaIlerleme(borc: KazaSayac, kilinan: KazaSayac): KazaIlerleme {
+  let borcNamaz = 0;
+  let kilinanNamaz = 0;
+  let kalanRekat = 0;
+  for (const k of KAZA_KALEMLERI) {
+    if (k.id === "oruc") continue;
+    const yapilan = Math.min(kilinan[k.id], borc[k.id]);
+    borcNamaz += borc[k.id];
+    kilinanNamaz += yapilan;
+    kalanRekat += (borc[k.id] - yapilan) * k.rekat;
+  }
+  const kalanNamaz = borcNamaz - kilinanNamaz;
+  return { borcNamaz, kilinanNamaz, kalanNamaz, kalanRekat, yuzde: borcNamaz ? (kilinanNamaz / borcNamaz) * 100 : 0 };
+}
+
+/* ---------------- Hayız ve nifas (Hanefî) ---------------- */
+
+/** Hanefî mezhebi: hayız en az 3, en çok 10 gün; iki hayız arası temizlik en az 15 gün; nifas en çok 40 gün. */
+export const HAYIZ_MIN_SAAT = 72;
+export const HAYIZ_MAX_SAAT = 240;
+export const TEMIZLIK_MIN_GUN = 15;
+export const NIFAS_MAX_SAAT = 960;
+
+export type HayizSonucu = {
+  durum: "hayiz" | "istihaze" | "karisik" | "nifas" | "temizlik-kisa";
+  /** Hayız/nifas sayılan süre (saat). */
+  hayizSaat: number;
+  /** İstihaze (özür kanı) sayılan süre (saat). */
+  istihazeSaat: number;
+  /** Hesapta âdet mi, azami süre mi esas alındı. */
+  esas: "tamami" | "adet" | "azami" | "yok";
+};
+
+/**
+ * Kanama süresini (saat) Hanefî ölçülerine göre ayırır.
+ * - Hayız: 72 saatten az → istihaze; 72–240 saat → tamamı hayız;
+ *   240 saati aşarsa âdeti olan için âdet günleri, ilk kez görene 10 gün hayız, kalanı istihaze.
+ * - Nifas: 960 saate kadar tamamı nifas; aşarsa âdet (yoksa 40 gün) nifas, kalanı istihaze.
+ * Önceki kanamadan sonra 15 günden az temizlik varsa sonuç verilmez (ayrıntılı hüküm gerekir).
+ */
+export function hayizDegerlendir({
+  tur,
+  saat,
+  adetGun,
+  oncekiTemizlikGun,
+}: {
+  tur: "hayiz" | "nifas";
+  saat: number;
+  adetGun: number | null;
+  oncekiTemizlikGun: number | null;
+}): HayizSonucu | null {
+  if (!(saat > 0 && saat <= 24 * 365)) return null;
+  if (tur === "nifas") {
+    if (adetGun !== null && !(adetGun > 0 && adetGun <= 40)) return null;
+    if (saat <= NIFAS_MAX_SAAT) return { durum: "nifas", hayizSaat: saat, istihazeSaat: 0, esas: "tamami" };
+    const n = adetGun ? adetGun * 24 : NIFAS_MAX_SAAT;
+    return { durum: "karisik", hayizSaat: n, istihazeSaat: saat - n, esas: adetGun ? "adet" : "azami" };
+  }
+  if (adetGun !== null && !(adetGun >= 3 && adetGun <= 10)) return null;
+  if (oncekiTemizlikGun !== null) {
+    if (!(oncekiTemizlikGun >= 0)) return null;
+    if (oncekiTemizlikGun < TEMIZLIK_MIN_GUN) return { durum: "temizlik-kisa", hayizSaat: 0, istihazeSaat: 0, esas: "yok" };
+  }
+  if (saat < HAYIZ_MIN_SAAT) return { durum: "istihaze", hayizSaat: 0, istihazeSaat: saat, esas: "yok" };
+  if (saat <= HAYIZ_MAX_SAAT) return { durum: "hayiz", hayizSaat: saat, istihazeSaat: 0, esas: "tamami" };
+  const h = adetGun ? adetGun * 24 : HAYIZ_MAX_SAAT;
+  return { durum: "karisik", hayizSaat: h, istihazeSaat: saat - h, esas: adetGun ? "adet" : "azami" };
+}
+
+/* ---------------- Namaz rekâtları ---------------- */
+
+export type RekatKalemi = { ad: string; rekat: number; hukum: "farz" | "vacip" | "sunnet-muekked" | "sunnet-gayrimuekked" };
+export type NamazRekat = { id: string; ad: string; kalemler: RekatKalemi[] };
+
+/** Hanefî mezhebine göre (Diyanet) beş vakit namaz. Kılınış sırasıyla. */
+export const VAKIT_NAMAZLARI: NamazRekat[] = [
+  { id: "sabah", ad: "Sabah", kalemler: [{ ad: "Sünnet", rekat: 2, hukum: "sunnet-muekked" }, { ad: "Farz", rekat: 2, hukum: "farz" }] },
+  {
+    id: "ogle",
+    ad: "Öğle",
+    kalemler: [
+      { ad: "İlk sünnet", rekat: 4, hukum: "sunnet-muekked" },
+      { ad: "Farz", rekat: 4, hukum: "farz" },
+      { ad: "Son sünnet", rekat: 2, hukum: "sunnet-muekked" },
+    ],
+  },
+  { id: "ikindi", ad: "İkindi", kalemler: [{ ad: "Sünnet", rekat: 4, hukum: "sunnet-gayrimuekked" }, { ad: "Farz", rekat: 4, hukum: "farz" }] },
+  { id: "aksam", ad: "Akşam", kalemler: [{ ad: "Farz", rekat: 3, hukum: "farz" }, { ad: "Sünnet", rekat: 2, hukum: "sunnet-muekked" }] },
+  {
+    id: "yatsi",
+    ad: "Yatsı",
+    kalemler: [
+      { ad: "İlk sünnet", rekat: 4, hukum: "sunnet-gayrimuekked" },
+      { ad: "Farz", rekat: 4, hukum: "farz" },
+      { ad: "Son sünnet", rekat: 2, hukum: "sunnet-muekked" },
+      { ad: "Vitir", rekat: 3, hukum: "vacip" },
+    ],
+  },
+];
+
+export const toplamRekat = (n: NamazRekat, hukum?: RekatKalemi["hukum"]) =>
+  n.kalemler.filter((k) => !hukum || k.hukum === hukum).reduce((t, k) => t + k.rekat, 0);

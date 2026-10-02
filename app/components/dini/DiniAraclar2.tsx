@@ -11,6 +11,7 @@ import {
   kazaNamaziGun,
   kibleAcisi,
   kurbanHissesi,
+  maasZekat,
   manyetikSapma,
   MUSHAF_SAYFA,
   NISAP_ALTIN_GRAM,
@@ -24,9 +25,9 @@ import { HIJRI_MONTHS_TR, type YMD } from "../../converter/time/calendars";
 import { diffDays, parseYmd } from "../../converter/time/dateMath";
 import { hisabUmr } from "../../converter/time/hijriAge";
 
-const fmt = (n: number, d = 0) => n.toLocaleString("tr-TR", { maximumFractionDigits: d });
-const tl = (n: number) => `${n.toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} TL`;
-const sayi = (raw: string) => {
+export const fmt = (n: number, d = 0) => n.toLocaleString("tr-TR", { maximumFractionDigits: d });
+export const tl = (n: number) => `${n.toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} TL`;
+export const sayi = (raw: string) => {
   const s = raw.trim().replace(/\s|TL|₺/gi, "");
   if (!s) return Number.NaN;
   let norm = s;
@@ -35,7 +36,7 @@ const sayi = (raw: string) => {
   const n = Number(norm);
   return Number.isFinite(n) ? n : Number.NaN;
 };
-const sayi0 = (raw: string) => (raw.trim() === "" ? 0 : sayi(raw));
+export const sayi0 = (raw: string) => (raw.trim() === "" ? 0 : sayi(raw));
 
 function todayIstanbul(): YMD {
   const parts = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Istanbul", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
@@ -44,7 +45,7 @@ function todayIstanbul(): YMD {
 const ymdText = (d: YMD) => `${String(d.day).padStart(2, "0")}.${String(d.month).padStart(2, "0")}.${d.year}`;
 const ymdIso = (d: YMD) => `${d.year}-${String(d.month).padStart(2, "0")}-${String(d.day).padStart(2, "0")}`;
 
-function Field({
+export function Field({
   label,
   value,
   onChange,
@@ -68,7 +69,7 @@ function Field({
   );
 }
 
-function Modes<T extends string>({ value, onChange, options, label }: { value: T; onChange: (v: T) => void; options: Array<[T, string]>; label: string }) {
+export function Modes<T extends string>({ value, onChange, options, label }: { value: T; onChange: (v: T) => void; options: Array<[T, string]>; label: string }) {
   return (
     <div className="date-converter-modes is-light" role="tablist" aria-label={label}>
       {options.map(([v, text]) => (
@@ -459,6 +460,10 @@ export function ZekatHesaplama() {
   const [borc, setBorc] = useState("");
   const [altinGram, setAltinGram] = useState("");
   const [ayar, setAyar] = useState("22");
+  const [mod, setMod] = useState<"varlik" | "maas">("varlik");
+  const [mevcut, setMevcut] = useState("");
+  const [aylik, setAylik] = useState("");
+  const m = maasZekat(sayi0(mevcut), sayi0(aylik), sayi(altinFiyat));
   const r = zekatHesapla({
     nakit: sayi0(nakit),
     banka: sayi0(banka),
@@ -473,37 +478,80 @@ export function ZekatHesaplama() {
 
   return (
     <div className="date-calc">
+      <Modes
+        label="Zekât hesabı türü"
+        value={mod}
+        onChange={setMod}
+        options={[
+          ["varlik", "Varlıklarım"],
+          ["maas", "Maaştan biriken (aylık plan)"],
+        ]}
+      />
       <div className="date-calc-input">
         <strong className="date-calc-input-title">Güncel has altın gram fiyatı (24 ayar) – nisabı hesaplamak için gerekli</strong>
         <div className="date-calc-fields">
           <Field label="Has altın gram fiyatı" suffix="TL" value={altinFiyat} onChange={setAltinFiyat} />
         </div>
-        <strong className="date-calc-input-title">Varlıklarınız (TL)</strong>
-        <div className="date-calc-fields is-amounts">
-          <Field label="Nakit" value={nakit} onChange={setNakit} />
-          <Field label="Banka mevduatı" value={banka} onChange={setBanka} />
-          <Field label="Döviz (TL karşılığı)" value={doviz} onChange={setDoviz} />
-          <Field label="Ticari mal" value={ticari} onChange={setTicari} />
-          <Field label="Tahsili umulan alacak" value={alacak} onChange={setAlacak} />
-          <Field label="Borçlar (düşülür)" value={borc} onChange={setBorc} />
-        </div>
-        <strong className="date-calc-input-title">Altın</strong>
-        <div className="date-calc-fields">
-          <Field label="Altın" suffix="gram" value={altinGram} onChange={setAltinGram} />
-          <label className="date-calc-field">
-            <span>Ayar</span>
-            <select value={ayar} onChange={(event) => setAyar(event.target.value)}>
-              {["24", "22", "18", "14"].map((a) => (
-                <option key={a} value={a}>
-                  {a} ayar
-                </option>
-              ))}
-            </select>
-          </label>
-        </div>
+        {mod === "maas" ? (
+          <>
+            <strong className="date-calc-input-title">Birikim (TL)</strong>
+            <div className="date-calc-fields is-amounts">
+              <Field label="Şu anki birikim" value={mevcut} onChange={setMevcut} />
+              <Field label="Maaştan ayda biriken" value={aylik} onChange={setAylik} />
+            </div>
+          </>
+        ) : (
+          <>
+            <strong className="date-calc-input-title">Varlıklarınız (TL)</strong>
+            <div className="date-calc-fields is-amounts">
+              <Field label="Nakit" value={nakit} onChange={setNakit} />
+              <Field label="Banka mevduatı" value={banka} onChange={setBanka} />
+              <Field label="Döviz (TL karşılığı)" value={doviz} onChange={setDoviz} />
+              <Field label="Ticari mal" value={ticari} onChange={setTicari} />
+              <Field label="Tahsili umulan alacak" value={alacak} onChange={setAlacak} />
+              <Field label="Borçlar (düşülür)" value={borc} onChange={setBorc} />
+            </div>
+            <strong className="date-calc-input-title">Altın</strong>
+            <div className="date-calc-fields">
+              <Field label="Altın" suffix="gram" value={altinGram} onChange={setAltinGram} />
+              <label className="date-calc-field">
+                <span>Ayar</span>
+                <select value={ayar} onChange={(event) => setAyar(event.target.value)}>
+                  {["24", "22", "18", "14"].map((a) => (
+                    <option key={a} value={a}>
+                      {a} ayar
+                    </option>
+                  ))}
+                </select>
+              </label>
+            </div>
+          </>
+        )}
       </div>
 
-      {r ? (
+      {mod === "maas" ? (
+        m ? (
+          <div className="date-calc-results">
+            <div className="date-calc-stat is-main">
+              <span>{m.nisapUstunde ? "Aylık zekât taksiti" : "Nisaba ulaşmıyor"}</span>
+              <strong>{tl(m.aylikTaksit)}</strong>
+              <em>{m.nisapUstunde ? `yıllık ${tl(m.zekat)} ÷ 12` : "yıl sonunda zekât gerekmez"}</em>
+            </div>
+            <div className="date-calc-stat">
+              <span>Yıl sonunda tahmini birikim</span>
+              <strong>{tl(m.yilSonuBirikim)}</strong>
+              <em>şu anki birikim + 12 × aylık birikim</em>
+            </div>
+            <div className="date-calc-stat">
+              <span>Nisap ({fmt(NISAP_ALTIN_GRAM, 2)} g altın)</span>
+              <strong>{tl(m.nisapDegeri)}</strong>
+            </div>
+            <p className="date-calc-note">Taksitler peşin ödenen zekâttır: yıl dolunca elinizdeki gerçek tutarla yeniden hesaplayıp eksik kalanı tamamlayın.</p>
+          </div>
+        ) : (
+          <p className="date-calc-note">Önce has altının güncel gram fiyatını yazın; nisap bu fiyatla hesaplanır.</p>
+        )
+      ) : r ? (
         <div className="date-calc-results">
           <div className="date-calc-stat is-main">
             <span>{r.nisapUstunde ? "Verilecek zekât" : "Nisaba ulaşmıyor"}</span>

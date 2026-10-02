@@ -172,3 +172,99 @@ describe("Manyetik sapma (WMM2025)", () => {
     expect(new Date() < new Date("2029-10-01T00:00:00Z")).toBe(true);
   });
 });
+
+import {
+  hafizlikGunlukSayfa,
+  hafizlikPlani,
+  hayizDegerlendir,
+  kazaIlerleme,
+  kazaSayacOku,
+  maasZekat,
+  toplamRekat,
+  VAKIT_NAMAZLARI,
+} from "../app/converter/diniHesaplar";
+import { ESMAUL_HUSNA } from "../app/converter/esmaulHusna";
+
+describe("Hafızlık planı", () => {
+  it("günde 1 sayfa, her gün: 604 gün; günde 2 sayfa haftada 5 gün", () => {
+    expect(hafizlikPlani(1, 7)).toMatchObject({ kalanSayfa: 604, ezberGunu: 604, takvimGunu: 604 });
+    const p = hafizlikPlani(2, 5)!;
+    expect(p.ezberGunu).toBe(302);
+    // 302 ezber günü = 60 tam hafta (300 gün) + 2 gün → 60×7 + 2
+    expect(p.takvimGunu).toBe(422);
+    expect(hafizlikPlani(1, 7, 104)!.ezberGunu).toBe(500);
+    expect(hafizlikPlani(1, 8)).toBeNull();
+    expect(hafizlikPlani(1, 7, 604)).toBeNull();
+  });
+
+  it("hedef süreden günlük sayfa, plan ile tutarlı", () => {
+    const s = hafizlikGunlukSayfa(422, 5);
+    expect(s).toBeCloseTo(2, 10);
+    for (const [t, k] of [[365, 6], [180, 5], [700, 7]]) {
+      const sayfa = hafizlikGunlukSayfa(t, k);
+      expect(hafizlikPlani(sayfa, k)!.takvimGunu).toBeLessThanOrEqual(t);
+    }
+  });
+});
+
+describe("Maaştan zekât", () => {
+  it("yıl sonu birikimi üzerinden kırkta bir, 12 taksit", () => {
+    const r = maasZekat(200000, 20000, 4000)!;
+    expect(r.yilSonuBirikim).toBe(440000);
+    expect(r.nisapUstunde).toBe(true);
+    expect(r.zekat).toBeCloseTo(11000, 6);
+    expect(r.aylikTaksit).toBeCloseTo(11000 / 12, 6);
+    expect(maasZekat(0, 1000, 4000)!.zekat).toBe(0);
+    expect(maasZekat(0, 1000, 0)).toBeNull();
+  });
+});
+
+describe("Kaza takip", () => {
+  it("bozuk kayıt temizlenir; borçtan fazla kılınan sayılmaz", () => {
+    const borc = kazaSayacOku({ sabah: 10, ogle: 10, ikindi: -3, aksam: "x", yatsi: 2.7, oruc: 30 });
+    expect(borc).toEqual({ sabah: 10, ogle: 10, ikindi: 0, aksam: 0, yatsi: 2, vitir: 0, oruc: 30 });
+    const kilinan = kazaSayacOku({ sabah: 4, ogle: 15, yatsi: 1 });
+    const r = kazaIlerleme(borc, kilinan);
+    expect(r.borcNamaz).toBe(22);
+    expect(r.kilinanNamaz).toBe(4 + 10 + 1);
+    expect(r.kalanNamaz).toBe(7);
+    expect(r.kalanRekat).toBe(6 * 2 + 1 * 4);
+    expect(kazaSayacOku(null).sabah).toBe(0);
+  });
+});
+
+describe("Hayız ve nifas (Hanefî)", () => {
+  it("3 günden az istihaze, 3–10 gün hayız, 10 günü aşınca âdet ya da 10 gün", () => {
+    expect(hayizDegerlendir({ tur: "hayiz", saat: 48, adetGun: null, oncekiTemizlikGun: null })!.durum).toBe("istihaze");
+    expect(hayizDegerlendir({ tur: "hayiz", saat: 72, adetGun: null, oncekiTemizlikGun: 20 })).toMatchObject({ durum: "hayiz", hayizSaat: 72 });
+    expect(hayizDegerlendir({ tur: "hayiz", saat: 240, adetGun: 6, oncekiTemizlikGun: null })).toMatchObject({ durum: "hayiz", hayizSaat: 240 });
+    expect(hayizDegerlendir({ tur: "hayiz", saat: 12 * 24, adetGun: 6, oncekiTemizlikGun: null })).toMatchObject({ durum: "karisik", hayizSaat: 144, istihazeSaat: 144, esas: "adet" });
+    expect(hayizDegerlendir({ tur: "hayiz", saat: 12 * 24, adetGun: null, oncekiTemizlikGun: null })).toMatchObject({ hayizSaat: 240, istihazeSaat: 48, esas: "azami" });
+    expect(hayizDegerlendir({ tur: "hayiz", saat: 100, adetGun: null, oncekiTemizlikGun: 10 })!.durum).toBe("temizlik-kisa");
+    expect(hayizDegerlendir({ tur: "hayiz", saat: 100, adetGun: 11, oncekiTemizlikGun: null })).toBeNull();
+  });
+
+  it("nifas en çok 40 gün", () => {
+    expect(hayizDegerlendir({ tur: "nifas", saat: 5 * 24, adetGun: null, oncekiTemizlikGun: null })!.durum).toBe("nifas");
+    expect(hayizDegerlendir({ tur: "nifas", saat: 45 * 24, adetGun: null, oncekiTemizlikGun: null })).toMatchObject({ hayizSaat: 960, istihazeSaat: 120 });
+    expect(hayizDegerlendir({ tur: "nifas", saat: 45 * 24, adetGun: 30, oncekiTemizlikGun: null })).toMatchObject({ hayizSaat: 720, esas: "adet" });
+  });
+});
+
+describe("Namaz rekâtları", () => {
+  it("günde 17 rekât farz, 3 vitir, toplam 40 rekât", () => {
+    const farz = VAKIT_NAMAZLARI.reduce((t, n) => t + toplamRekat(n, "farz"), 0);
+    expect(farz).toBe(17);
+    expect(VAKIT_NAMAZLARI.reduce((t, n) => t + toplamRekat(n, "vacip"), 0)).toBe(3);
+    expect(VAKIT_NAMAZLARI.reduce((t, n) => t + toplamRekat(n), 0)).toBe(40);
+  });
+});
+
+describe("Esmâ-i Hüsnâ", () => {
+  it("99 benzersiz isim, sıra numaraları 1–99", () => {
+    expect(ESMAUL_HUSNA).toHaveLength(99);
+    expect(new Set(ESMAUL_HUSNA.map((e) => e.ad)).size).toBe(99);
+    expect(ESMAUL_HUSNA[0].ad).toBe("Allah");
+    expect(ESMAUL_HUSNA[98]).toMatchObject({ no: 99, ad: "Es-Sabûr" });
+  });
+});

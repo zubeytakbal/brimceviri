@@ -95,7 +95,7 @@ export const turkishToolGroups: ToolGroup[] = [
   {
     id: "dini",
     title: "Dini Araçlar",
-    description: "Seferî mesafe, sure ve cüz bilgileri, umre yürüyüş mesafesi ve kaza orucu. Değişken tutar ve vakit içermez.",
+    description: "Kıble pusulası, kaza namazı ve orucu, zekât, hatim, hafızlık, seferî mesafe, zikirmatik ve daha fazlası. Değişken tutar ve vakit içermez.",
     links: [
       { href: "/dini-araclar", label: "Tüm Dini Araçlar" },
       { href: "/seferi-mesafe-hesaplama", label: "Seferî Mesafe Hesaplama" },
@@ -108,6 +108,12 @@ export const turkishToolGroups: ToolGroup[] = [
       { href: "/zekat-hesaplama", label: "Zekât Hesaplama" },
       { href: "/hicri-yas-hesaplama", label: "Hicri Yaş Hesaplama" },
       { href: "/kurban-hissesi-hesaplama", label: "Kurban Hissesi Hesaplama" },
+      { href: "/hafizlik-hesaplama", label: "Hafızlık Hesaplama" },
+      { href: "/kaza-takip-cizelgesi", label: "Kaza Takip Çizelgesi" },
+      { href: "/hayiz-hesaplama", label: "Hayız ve Nifas Hesaplama" },
+      { href: "/namaz-rekat-tablosu", label: "Namaz Rekât Tablosu" },
+      { href: "/zikirmatik", label: "Online Zikirmatik" },
+      { href: "/esmaul-husna", label: "Esmaül Hüsna" },
     ],
   },
   {

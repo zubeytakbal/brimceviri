@@ -3193,6 +3193,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       "/zekat-hesaplama",
       "/hicri-yas-hesaplama",
       "/kurban-hissesi-hesaplama",
+      "/hafizlik-hesaplama",
+      "/kaza-takip-cizelgesi",
+      "/hayiz-hesaplama",
+      "/namaz-rekat-tablosu",
+      "/zikirmatik",
+      "/esmaul-husna",
     ].map((path) => ({
       url: `${baseUrl}${path}`,
       lastModified: contentLastModified,

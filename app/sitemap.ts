@@ -155,6 +155,7 @@ import { danishCategoryPages } from "./converter/localizedDanishCategoryPages";
 import { danishUnitPages } from "./converter/localizedDanishUnitPages";
 import { danishConversionPages } from "./converter/localizedDanishConversionPages";
 import { SITE_LAST_MODIFIED, SITE_URL } from "./siteConfig";
+import { SURELER } from "./converter/sureler";
 
 export const dynamic = "force-static";
 
@@ -3177,6 +3178,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
       ...turkeyProvinces.map((p) => `/iller-arasi-mesafe/${p.id}`),
       ...routePairs().map((p) => `/iller-arasi-mesafe/${p.from.id}/${p.to.id}`),
       ...worldRegionPages.map((r) => `/bolge-haritalari/${r.id}`),
+      // Dini araçlar
+      "/dini-araclar",
+      "/seferi-mesafe-hesaplama",
+      ...turkeyProvinces.map((p) => `/seferi-mesafe-hesaplama/${p.id}`),
+      "/sure-bulucu",
+      ...SURELER.map((s) => `/sureler/${s.slug}-suresi`),
+      ...Array.from({ length: 30 }, (_, i) => `/cuzler/${i + 1}-cuz`),
+      "/umre-mesafe-hesaplama",
+      "/kaza-orucu-hesaplama",
+      "/kible-yonu-hesaplama",
+      "/kaza-namazi-hesaplama",
+      "/hatim-hesaplama",
+      "/zekat-hesaplama",
+      "/hicri-yas-hesaplama",
+      "/kurban-hissesi-hesaplama",
+      "/hafizlik-hesaplama",
+      "/kaza-takip-cizelgesi",
+      "/hayiz-hesaplama",
+      "/namaz-rekat-tablosu",
+      "/zikirmatik",
+      "/esmaul-husna",
     ].map((path) => ({
       url: `${baseUrl}${path}`,
       lastModified: contentLastModified,

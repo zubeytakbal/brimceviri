@@ -4,7 +4,7 @@
 // "vekkerklokke", "hva er klokka"; da "stopur", "vækkeur", "hvad er klokken").
 import type { NordicLocale } from "../../converter/time/nordicWeek";
 
-export type NordicTimeTool = "timer" | "stopwatch" | "alarm" | "clock";
+export type NordicTimeTool = "timer" | "stopwatch" | "alarm" | "clock" | "pomodoro" | "interval";
 
 type Section = { id: string; title: string; paragraphs: string[] };
 
@@ -24,6 +24,8 @@ export const NORDIC_TIME_PATHS: Record<NordicTimeTool, Record<NordicLocale, stri
   stopwatch: { sv: "/sv/stoppur", no: "/no/stoppeklokke", da: "/da/stopur" },
   alarm: { sv: "/sv/vackarklocka", no: "/no/vekkerklokke", da: "/da/vaekkeur" },
   clock: { sv: "/sv/klocka", no: "/no/klokka", da: "/da/klokken" },
+  pomodoro: { sv: "/sv/pomodoro", no: "/no/pomodoro", da: "/da/pomodoro" },
+  interval: { sv: "/sv/intervalltimer", no: "/no/intervalltimer", da: "/da/intervaltimer" },
 };
 
 export const NORDIC_TIME_UI: Record<NordicLocale, { home: string; homeHref: string; crumbLabel: string; ogLocale: string; tocTitle: string; faqTitle: string; relatedTitle: string }> = {
@@ -38,6 +40,8 @@ export const NORDIC_TIME_LABELS: Record<NordicTimeTool, Record<NordicLocale, str
   stopwatch: { sv: "Stoppur", no: "Stoppeklokke", da: "Stopur" },
   alarm: { sv: "Väckarklocka", no: "Vekkerklokke", da: "Vækkeur" },
   clock: { sv: "Vad är klockan?", no: "Hva er klokka?", da: "Hvad er klokken?" },
+  pomodoro: { sv: "Pomodoro-timer", no: "Pomodoro-timer", da: "Pomodoro-timer" },
+  interval: { sv: "Intervalltimer", no: "Intervalltimer", da: "Intervaltimer" },
 };
 
 export const NORDIC_TIME_CARD_TEXT: Record<NordicTimeTool, Record<NordicLocale, string>> = {
@@ -55,6 +59,16 @@ export const NORDIC_TIME_CARD_TEXT: Record<NordicTimeTool, Record<NordicLocale, 
     sv: "Ställ in ett alarm i webbläsaren med eget ljud.",
     no: "Still inn en alarm i nettleseren med egen lyd.",
     da: "Indstil en alarm i browseren med din egen lyd.",
+  },
+  pomodoro: {
+    sv: "25 minuters fokus och korta pauser.",
+    no: "25 minutters fokus og korte pauser.",
+    da: "25 minutters fokus og korte pauser.",
+  },
+  interval: {
+    sv: "Tabata, HIIT och EMOM med röstsignaler.",
+    no: "Tabata, HIIT og EMOM med talesignaler.",
+    da: "Tabata, HIIT og EMOM med talesignaler.",
   },
   clock: {
     sv: "Exakt tid med sekunder och 34 klockor.",
@@ -366,6 +380,145 @@ export const NORDIC_TIME_COPY: Record<NordicTimeTool, Record<NordicLocale, Nordi
         { question: "Hvor præcist er uret?", answer: "Det viser tiden fra din computer eller telefon, som normalt synkroniseres automatisk med en tidsserver og derfor er præcis inden for få sekunder." },
         { question: "Hvilken tidszone har Danmark?", answer: "Centraleuropæisk tid, UTC+1. Om sommeren gælder UTC+2." },
         { question: "Kan jeg vise uret i fuld skærm?", answer: "Ja, tryk på »Fuld skærm« under uret. Slå også »Hold skærmen tændt« til, hvis uret skal vises længe." },
+      ],
+    },
+  },
+  pomodoro: {
+    sv: {
+      path: NORDIC_TIME_PATHS.pomodoro.sv,
+      crumb: "Pomodoro",
+      metaTitle: "Pomodoro-timer online – 25 minuters fokus",
+      description: "Gratis pomodoro-timer: 25 minuters fokus, 5 minuters paus och en lång paus efter fyra pass. Justerbara tider, aviseringar och dagens statistik.",
+      h1: "Pomodoro-timer",
+      intro: "Arbeta fokuserat i 25 minuter, ta 5 minuters paus och en längre paus efter fyra pass. Skriv vad du arbetar med och se hur många pomodoros du klarat idag.",
+      sections: [
+        {
+          id: "metoden",
+          title: "Så fungerar pomodorometoden",
+          paragraphs: [
+            "Pomodorotekniken utvecklades av Francesco Cirillo i slutet av 1980-talet. Du arbetar med en enda uppgift i 25 minuter (ett ”pomodoro”), tar sedan 5 minuters paus, och efter fyra pass en längre paus på 15–30 minuter.",
+            "De korta passen gör det lättare att komma igång och att hålla fokus, och pauserna motverkar trötthet. Tiderna kan ändras under Inställningar, till exempel 50/10 för längre arbetspass.",
+          ],
+        },
+      ],
+      faq: [
+        { question: "Varför just 25 minuter?", answer: "25 minuter är tillräckligt kort för att det ska kännas lätt att börja och tillräckligt långt för att hinna göra framsteg. Passar det inte dig kan du ändra tiden under Inställningar." },
+        { question: "Sparas mina pomodoros?", answer: "Dagens avslutade pass sparas bara i din webbläsare. Inget laddas upp." },
+        { question: "Får jag en signal när passet är slut?", answer: "Ja, ett ljud spelas och du kan också slå på webbläsaraviseringar så att du märker det även i en annan flik." },
+      ],
+    },
+    no: {
+      path: NORDIC_TIME_PATHS.pomodoro.no,
+      crumb: "Pomodoro",
+      metaTitle: "Pomodoro-timer på nett – 25 minutters fokus",
+      description: "Gratis pomodoro-timer: 25 minutters fokus, 5 minutters pause og en lang pause etter fire økter. Justerbare tider, varsler og dagens statistikk.",
+      h1: "Pomodoro-timer",
+      intro: "Jobb fokusert i 25 minutter, ta 5 minutters pause og en lengre pause etter fire økter. Skriv hva du jobber med, og se hvor mange pomodoroer du har klart i dag.",
+      sections: [
+        {
+          id: "metoden",
+          title: "Slik fungerer pomodoroteknikken",
+          paragraphs: [
+            "Pomodoroteknikken ble utviklet av Francesco Cirillo på slutten av 1980-tallet. Du jobber med én oppgave i 25 minutter (en «pomodoro»), tar så 5 minutters pause, og etter fire økter en lengre pause på 15–30 minutter.",
+            "De korte øktene gjør det lettere å komme i gang og holde fokus, og pausene motvirker tretthet. Tidene kan endres under Innstillinger, for eksempel 50/10 for lengre arbeidsøkter.",
+          ],
+        },
+      ],
+      faq: [
+        { question: "Hvorfor akkurat 25 minutter?", answer: "25 minutter er kort nok til at det føles lett å begynne, og langt nok til å komme et stykke på vei. Passer det ikke deg, kan du endre tiden under Innstillinger." },
+        { question: "Lagres pomodoroene mine?", answer: "Dagens fullførte økter lagres bare i nettleseren din. Ingenting lastes opp." },
+        { question: "Får jeg et signal når økten er over?", answer: "Ja, en lyd spilles av, og du kan også slå på nettleservarsler så du merker det selv i en annen fane." },
+      ],
+    },
+    da: {
+      path: NORDIC_TIME_PATHS.pomodoro.da,
+      crumb: "Pomodoro",
+      metaTitle: "Pomodoro-timer online – 25 minutters fokus",
+      description: "Gratis pomodoro-timer: 25 minutters fokus, 5 minutters pause og en lang pause efter fire runder. Justerbare tider, notifikationer og dagens statistik.",
+      h1: "Pomodoro-timer",
+      intro: "Arbejd fokuseret i 25 minutter, hold 5 minutters pause og en længere pause efter fire runder. Skriv, hvad du arbejder på, og se, hvor mange pomodoroer du har klaret i dag.",
+      sections: [
+        {
+          id: "metoden",
+          title: "Sådan virker pomodoroteknikken",
+          paragraphs: [
+            "Pomodoroteknikken blev udviklet af Francesco Cirillo i slutningen af 1980'erne. Du arbejder med én opgave i 25 minutter (en »pomodoro«), holder så 5 minutters pause og efter fire runder en længere pause på 15–30 minutter.",
+            "De korte runder gør det lettere at komme i gang og holde fokus, og pauserne modvirker træthed. Tiderne kan ændres under Indstillinger, for eksempel 50/10 til længere arbejdsrunder.",
+          ],
+        },
+      ],
+      faq: [
+        { question: "Hvorfor netop 25 minutter?", answer: "25 minutter er kort nok til, at det føles let at begynde, og langt nok til at nå et stykke. Passer det ikke dig, kan du ændre tiden under Indstillinger." },
+        { question: "Bliver mine pomodoroer gemt?", answer: "Dagens fuldførte runder gemmes kun i din browser. Intet uploades." },
+        { question: "Får jeg et signal, når runden er slut?", answer: "Ja, der afspilles en lyd, og du kan også slå browsernotifikationer til, så du opdager det, selv i en anden fane." },
+      ],
+    },
+  },
+  interval: {
+    sv: {
+      path: NORDIC_TIME_PATHS.interval.sv,
+      crumb: "Intervalltimer",
+      metaTitle: "Intervalltimer – Tabata, HIIT och EMOM online",
+      description: "Gratis intervalltimer för träning: Tabata 20/10, HIIT, EMOM, boxning och planka. Röstsignaler, pip de sista sekunderna och eget program.",
+      h1: "Intervalltimer",
+      intro: "Välj ett färdigt program som Tabata 20/10 eller HIIT, eller ställ in egna tider för arbete, vila och antal varv. Röstsignaler och pip hjälper dig att hålla takten utan att titta på skärmen.",
+      sections: [
+        {
+          id: "program",
+          title: "Tabata, HIIT och EMOM",
+          paragraphs: [
+            "Tabata är 20 sekunders maximal ansträngning följt av 10 sekunders vila, åtta gånger – totalt fyra minuter. HIIT (högintensiv intervallträning) varierar längden, till exempel 30/30 eller 40/20. Vid EMOM (every minute on the minute) gör du en övning i början av varje minut och vilar resten av minuten.",
+          ],
+        },
+      ],
+      faq: [
+        { question: "Hur länge varar ett Tabata-pass?", answer: "Åtta varv på 20 sekunders arbete och 10 sekunders vila tar 4 minuter, plus 10 sekunders förberedelse." },
+        { question: "Kan jag göra ett eget program?", answer: "Ja, ställ in förberedelse, arbete, vila och antal varv under ”Eget program”." },
+        { question: "Fungerar röstsignalerna på mobilen?", answer: "De flesta mobila webbläsare har inbyggd talsyntes. Om rösten inte hörs spelas pipen ändå." },
+      ],
+    },
+    no: {
+      path: NORDIC_TIME_PATHS.interval.no,
+      crumb: "Intervalltimer",
+      metaTitle: "Intervalltimer – Tabata, HIIT og EMOM på nett",
+      description: "Gratis intervalltimer for trening: Tabata 20/10, HIIT, EMOM, boksing og planke. Talesignaler, pip de siste sekundene og eget program.",
+      h1: "Intervalltimer",
+      intro: "Velg et ferdig program som Tabata 20/10 eller HIIT, eller still inn egne tider for arbeid, hvile og antall runder. Talesignaler og pip hjelper deg å holde takten uten å se på skjermen.",
+      sections: [
+        {
+          id: "program",
+          title: "Tabata, HIIT og EMOM",
+          paragraphs: [
+            "Tabata er 20 sekunder maksimal innsats etterfulgt av 10 sekunders hvile, åtte ganger – totalt fire minutter. HIIT (høyintensiv intervalltrening) varierer lengden, for eksempel 30/30 eller 40/20. Ved EMOM (every minute on the minute) gjør du en øvelse i starten av hvert minutt og hviler resten av minuttet.",
+          ],
+        },
+      ],
+      faq: [
+        { question: "Hvor lang tid tar en Tabata-økt?", answer: "Åtte runder med 20 sekunders arbeid og 10 sekunders hvile tar 4 minutter, pluss 10 sekunders forberedelse." },
+        { question: "Kan jeg lage mitt eget program?", answer: "Ja, still inn forberedelse, arbeid, hvile og antall runder under «Eget program»." },
+        { question: "Fungerer talesignalene på mobilen?", answer: "De fleste mobilnettlesere har innebygd talesyntese. Hvis stemmen ikke høres, spilles pipene likevel." },
+      ],
+    },
+    da: {
+      path: NORDIC_TIME_PATHS.interval.da,
+      crumb: "Intervaltimer",
+      metaTitle: "Intervaltimer – Tabata, HIIT og EMOM online",
+      description: "Gratis intervaltimer til træning: Tabata 20/10, HIIT, EMOM, boksning og planke. Talesignaler, bip de sidste sekunder og eget program.",
+      h1: "Intervaltimer",
+      intro: "Vælg et færdigt program som Tabata 20/10 eller HIIT, eller indstil egne tider for arbejde, hvile og antal runder. Talesignaler og bip hjælper dig med at holde tempoet uden at kigge på skærmen.",
+      sections: [
+        {
+          id: "program",
+          title: "Tabata, HIIT og EMOM",
+          paragraphs: [
+            "Tabata er 20 sekunders maksimal indsats efterfulgt af 10 sekunders hvile, otte gange – i alt fire minutter. HIIT (højintensiv intervaltræning) varierer længden, for eksempel 30/30 eller 40/20. Ved EMOM (every minute on the minute) laver du en øvelse i starten af hvert minut og hviler resten af minuttet.",
+          ],
+        },
+      ],
+      faq: [
+        { question: "Hvor lang tid tager et Tabata-pas?", answer: "Otte runder med 20 sekunders arbejde og 10 sekunders hvile tager 4 minutter plus 10 sekunders forberedelse." },
+        { question: "Kan jeg lave mit eget program?", answer: "Ja, indstil forberedelse, arbejde, hvile og antal runder under »Eget program«." },
+        { question: "Virker talesignalerne på mobilen?", answer: "De fleste mobilbrowsere har indbygget talesyntese. Hvis stemmen ikke høres, afspilles bippene stadig." },
       ],
     },
   },

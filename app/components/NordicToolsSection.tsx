@@ -36,10 +36,12 @@ const TIME_TOOL_ICONS: Record<NordicTimeTool, SiteIconName> = {
   timer: "paceCalculator",
   stopwatch: "paceCalculator",
   alarm: "time",
+  pomodoro: "paceCalculator",
+  interval: "paceCalculator",
 };
 
 function timeToolCards(locale: NordicLocale): ToolCard[] {
-  return (["clock", "timer", "stopwatch", "alarm"] as NordicTimeTool[]).map((tool) => ({
+  return (["clock", "timer", "stopwatch", "alarm", "pomodoro", "interval"] as NordicTimeTool[]).map((tool) => ({
     id: tool,
     href: NORDIC_TIME_PATHS[tool][locale],
     title: NORDIC_TIME_LABELS[tool][locale],

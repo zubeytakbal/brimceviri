@@ -8,12 +8,14 @@ import { timeToolAlternates, type TimeToolId } from "../../i18n/timeToolPaths";
 import { buildSiteUrl } from "../../siteConfig";
 import AlarmClock from "./AlarmClock";
 import CountdownTimer from "./CountdownTimer";
+import IntervalTimer from "./IntervalTimer";
 import LiveClock from "./LiveClock";
+import PomodoroTimer from "./PomodoroTimer";
 import { NORDIC_TIME_COPY, NORDIC_TIME_LABELS, NORDIC_TIME_PATHS, NORDIC_TIME_UI, type NordicTimeTool } from "./nordicTimeCopy";
 import Stopwatch from "./Stopwatch";
 import TimeToolPage from "./TimeToolPage";
 
-const TOOL_IDS: Record<NordicTimeTool, TimeToolId> = { timer: "timer", stopwatch: "stopwatch", alarm: "alarm", clock: "clock" };
+const TOOL_IDS: Record<NordicTimeTool, TimeToolId> = { timer: "timer", stopwatch: "stopwatch", alarm: "alarm", clock: "clock", pomodoro: "pomodoro", interval: "interval" };
 
 const WEEK_LABEL: Record<NordicLocale, string> = { sv: "Veckonummer", no: "Ukenummer", da: "Ugenummer" };
 
@@ -37,6 +39,10 @@ function toolFor(tool: NordicTimeTool, locale: NordicLocale) {
       return <AlarmClock locale={locale} />;
     case "clock":
       return <LiveClock locale={locale} />;
+    case "pomodoro":
+      return <PomodoroTimer lang={locale} />;
+    case "interval":
+      return <IntervalTimer lang={locale} />;
   }
 }
 

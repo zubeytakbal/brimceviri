@@ -84,7 +84,7 @@ export default function IntervalTimer({ lang, initialPreset = "tabata" }: { lang
     try {
       window.speechSynthesis.cancel();
       const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = settingsRef.current.lang === "tr" ? "tr-TR" : settingsRef.current.lang === "de" ? "de-DE" : "en-US";
+      utterance.lang = timeToolsCopy[settingsRef.current.lang].numberLocale;
       window.speechSynthesis.speak(utterance);
     } catch {
       // Konusma desteklenmiyorsa yalnizca bip calar.
@@ -233,7 +233,7 @@ export default function IntervalTimer({ lang, initialPreset = "tabata" }: { lang
         <div className="time-tool-chips">
           {intervalPresets.map((preset) => (
             <button key={preset.id} type="button" className={presetId === preset.id ? "is-active" : undefined} onClick={() => applyPreset(preset.id)}>
-              {lang === "tr" ? preset.tr : lang === "de" ? preset.de : preset.en}
+              {preset[lang]}
             </button>
           ))}
         </div>

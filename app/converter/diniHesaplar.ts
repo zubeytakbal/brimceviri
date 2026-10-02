@@ -92,16 +92,19 @@ export function kazaNamazi(yil: number, ay: number, gun: number, vitirDahil: boo
   return { gun: toplamGun, vakit, rekat, bitisGun: Math.ceil(vakit / gunlukVakit) };
 }
 
-export type KazaOrucu = { gun: number; bitisHafta: number; bitisGun: number };
+export type KazaOrucu = { gun: number; bitisHafta: number };
 
-/** Kaza orucu: Ramazan sayısı × gün + ayrı günler; haftada `haftalikGun` tutularak bitiş. */
+/**
+ * Kaza orucu: tamamen tutulmayan Ramazan sayısı × Ramazan'ın gün sayısı
+ * (29 ya da 30) + ayrıca tutulamayan günler. Haftada `haftalikGun` gün
+ * tutularak kaç haftada biteceği.
+ */
 export function kazaOrucu(ramazanSayisi: number, ramazanGunu: number, ekGun: number, haftalikGun: number): KazaOrucu | null {
   if (![ramazanSayisi, ramazanGunu, ekGun, haftalikGun].every((n) => Number.isFinite(n) && n >= 0)) return null;
-  if (ramazanGunu > 30 || haftalikGun < 1 || haftalikGun > 7) return null;
-  const gun = Math.round(ramazanSayisi * ramazanGunu + ekGun);
+  if (ramazanGunu < 29 || ramazanGunu > 30 || haftalikGun < 1 || haftalikGun > 7) return null;
+  const gun = Math.round(ramazanSayisi) * ramazanGunu + Math.round(ekGun);
   if (gun < 1) return null;
-  const bitisHafta = Math.ceil(gun / haftalikGun);
-  return { gun, bitisHafta, bitisGun: Math.ceil(gun / haftalikGun) * 7 };
+  return { gun, bitisHafta: Math.ceil(gun / haftalikGun) };
 }
 
 /* ---------------- Zekât ---------------- */
@@ -161,4 +164,102 @@ export function kurbanHissesi(hayvanFiyati: number, masraf: number, hisse: numbe
   if (!(canliKg >= 0) || !(etVerimiYuzde >= 0 && etVerimiYuzde <= 100)) return null;
   const toplamEt = (canliKg * etVerimiYuzde) / 100;
   return { hisseBasiTutar: (hayvanFiyati + masraf) / h, toplamEt, hisseBasiEt: toplamEt / h };
+}
+
+/* ---------------- Seferîlik ---------------- */
+
+/** Diyanet: gidilecek yer en az 90 km uzaktaysa seferî olunur (15 günden az kalınacaksa). */
+export const SEFER_KM = 90;
+export const IKAMET_GUN = 15;
+
+/**
+ * İl merkezleri arası karayolu mesafesine göre durum. Seferîlik, yaşanan
+ * yerleşim yerinin sınırından itibaren ölçülür; il merkezleri arası mesafe bu
+ * yüzden biraz fazladır. 90–120 km arası "sınırda" sayılır.
+ */
+export type SeferDurumu = "seferi" | "sinirda" | "degil";
+
+/** Arayüz ve il sayfalarında ortak sonuç metinleri. */
+export const SEFER_METIN: Record<SeferDurumu, { baslik: string; aciklama: string }> = {
+  seferi: { baslik: "Seferî olursunuz", aciklama: `Mesafe ${SEFER_KM} km'yi rahatça aşıyor. 15 günden az kalacaksanız seferî sayılırsınız.` },
+  sinirda: {
+    baslik: "Sınırda: yerleşim sınırından ölçün",
+    aciklama: `İl merkezleri arası ${SEFER_KM} km'yi aşıyor ama seferîlik yaşadığınız yerin sınırından ölçülür. Kendi çıkış noktanızdan gideceğiniz yerin sınırına kadar olan mesafeyi alttaki alana yazın.`,
+  },
+  degil: { baslik: "Seferî olmazsınız", aciklama: `Mesafe ${SEFER_KM} km'nin altında; namazlar ve oruç normal şekilde eda edilir.` },
+};
+
+export function seferDurumu(km: number, merkezlerArasi = true): SeferDurumu | null {
+  if (!(km >= 0)) return null;
+  if (km < SEFER_KM) return "degil";
+  if (merkezlerArasi && km < SEFER_KM + 30) return "sinirda";
+  return "seferi";
+}
+
+/* ---------------- Umre: tavaf ve sa'y ---------------- */
+
+/**
+ * Tavaf: Kâbe yaklaşık daire kabul edilir; Kâbe merkezinden duvara ~6 m.
+ * Bir şavt = 2π × (duvara uzaklık + 6 m); tavaf 7 şavttır.
+ * Sa'y: Safâ–Merve arası (tek yön) kullanıcıdan; kaynaklarda 394–450 m geçer. Sa'y 7 şavttır.
+ */
+export const KABE_YARICAP_M = 6;
+export const SAVT_SAYISI = 7;
+
+export type UmreMesafe = {
+  tavafSavtM: number;
+  tavafToplamM: number;
+  sayToplamM: number;
+  toplamM: number;
+  adim: number;
+  dakika: number;
+};
+
+export function umreMesafe({
+  duvaraUzaklikM,
+  tavafSayisi,
+  sayYapilacak,
+  safaMerveM,
+  adimCm,
+  hizKmSaat,
+}: {
+  duvaraUzaklikM: number;
+  tavafSayisi: number;
+  sayYapilacak: boolean;
+  safaMerveM: number;
+  adimCm: number;
+  hizKmSaat: number;
+}): UmreMesafe | null {
+  const t = Math.round(tavafSayisi);
+  if (!(duvaraUzaklikM >= 0 && duvaraUzaklikM <= 300) || !(t >= 0 && t <= 20)) return null;
+  if (sayYapilacak && !(safaMerveM >= 300 && safaMerveM <= 600)) return null;
+  if (!(adimCm >= 30 && adimCm <= 150) || !(hizKmSaat > 0 && hizKmSaat <= 10)) return null;
+  const tavafSavtM = 2 * Math.PI * (duvaraUzaklikM + KABE_YARICAP_M);
+  const tavafToplamM = tavafSavtM * SAVT_SAYISI * t;
+  const sayToplamM = sayYapilacak ? safaMerveM * SAVT_SAYISI : 0;
+  const toplamM = tavafToplamM + sayToplamM;
+  if (toplamM <= 0) return null;
+  return {
+    tavafSavtM,
+    tavafToplamM,
+    sayToplamM,
+    toplamM,
+    adim: Math.round(toplamM / (adimCm / 100)),
+    dakika: (toplamM / 1000 / hizKmSaat) * 60,
+  };
+}
+
+/* ---------------- Türkçe ek ---------------- */
+
+/**
+ * Özel ada ayrılma eki: İstanbul'dan, İzmir'den, Muş'tan, Kilis'ten.
+ * Son ünlüye göre a/e, sert ünsüzle (f s t k ç ş h p) bitiyorsa t.
+ */
+export function ayrilmaEki(ad: string) {
+  const kucuk = ad.toLocaleLowerCase("tr-TR");
+  const unluler = [...kucuk].filter((ch) => "aıoueiöü".includes(ch));
+  const son = unluler[unluler.length - 1] ?? "a";
+  const kalin = "aıou".includes(son);
+  const sert = "fstkçşhp".includes(kucuk[kucuk.length - 1]);
+  return `${ad}'${sert ? "t" : "d"}${kalin ? "a" : "e"}n`;
 }

@@ -93,6 +93,18 @@ export const turkishToolGroups: ToolGroup[] = [
     ],
   },
   {
+    id: "dini",
+    title: "Dini Araçlar",
+    description: "Seferî mesafe, sure ve cüz bilgileri, umre yürüyüş mesafesi ve kaza orucu. Değişken tutar ve vakit içermez.",
+    links: [
+      { href: "/dini-araclar", label: "Tüm Dini Araçlar" },
+      { href: "/seferi-mesafe-hesaplama", label: "Seferî Mesafe Hesaplama" },
+      { href: "/sure-bulucu", label: "Sure Bulucu (Ayet ve Cüz)" },
+      { href: "/umre-mesafe-hesaplama", label: "Umre Mesafe (Tavaf ve Sa'y)" },
+      { href: "/kaza-orucu-hesaplama", label: "Kaza Orucu Hesaplama" },
+    ],
+  },
+  {
     id: "saat",
     title: "Saat ve Zamanlayıcı",
     description: "Dünya saatleri, saat dilimi çevirici, geri sayım sayacı, kronometre ve alarm.",

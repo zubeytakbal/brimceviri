@@ -1,0 +1,20 @@
+// Dini araçlar: /dini-araclar hub sayfası ve araç sayfalarının "ilgili
+// araçlar" bölümü buradan beslenir. Değişken tutar (fitre, fidye) ve namaz
+// vakti gibi her yıl/gün değişen veriler bilerek yok.
+import type { ToolLink } from "./turkishToolDirectory";
+
+export const DINI_ARACLAR_PATH = "/dini-araclar";
+
+export const diniAraclar: Array<ToolLink & { description: string }> = [
+  { href: "/seferi-mesafe-hesaplama", label: "Seferî Mesafe Hesaplama", description: "İki il arası karayolu mesafesi 90 km'yi geçiyor mu? 81 il için seferîlik." },
+  { href: "/sure-bulucu", label: "Sure Bulucu", description: "114 sure: kaç ayet, hangi cüzde, kaçıncı sırada." },
+  { href: "/umre-mesafe-hesaplama", label: "Umre Mesafe Hesaplama", description: "Tavaf ve sa'y kaç km, kaç adım, kaç dakika?" },
+  { href: "/kaza-orucu-hesaplama", label: "Kaza Orucu Hesaplama", description: "Kaza orucu kaç gün, haftada kaç gün tutarak ne zaman biter?" },
+  { href: "/hicri-takvim", label: "Hicri Takvim", description: "Bugünün Hicri tarihi ve aylar." },
+  { href: "/ozel-gunler", label: "Kandiller ve Özel Günler", description: "Kandil geceleri, bayramlar ve tarihleri." },
+  { href: "/tarih-cevirici", label: "Hicri–Miladi Tarih Çevirici", description: "Hicri, Rumi ve Miladi tarihleri birbirine çevirin." },
+];
+
+export function diniRelated(exclude: string) {
+  return diniAraclar.filter((tool) => tool.href !== exclude).map(({ href, label }) => ({ href, label }));
+}

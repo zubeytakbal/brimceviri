@@ -30,7 +30,7 @@ import { turkeyProvinces } from "./converter/geo/turkeyProvinces";
 import { worldCountries } from "./converter/geo/worldCountries";
 import { countryPathEn } from "./converter/geo/worldGeoEn";
 import { GERMAN_STATES } from "./converter/time/germanHolidays";
-import { cityPathDe } from "./converter/time/germanWorld";
+import { worldCityPaths } from "./converter/time/nordicWorld";
 import { worldRegionPages } from "./converter/geo/worldRegions";
 import { zonePairs } from "./converter/time/timeZonePairs";
 import { buildLanguageAlternates } from "./i18n/routing";
@@ -3187,12 +3187,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       };
     }),
     ...worldCities.flatMap((city) =>
-      [`/dunya-saatleri/${city.tr}`, `/en/world-clock/${city.en}`, cityPathDe(city)].map((path) => ({
+      Object.values(worldCityPaths(city)).map((path) => ({
         url: `${baseUrl}${path}`,
         lastModified: contentLastModified,
         changeFrequency: "daily" as const,
         priority: 0.6,
-        alternates: buildLanguageAlternates({ tr: `/dunya-saatleri/${city.tr}`, en: `/en/world-clock/${city.en}`, de: cityPathDe(city) }, "tr"),
+        alternates: buildLanguageAlternates(worldCityPaths(city), "tr"),
       })),
     ),
     ...timerPresets.flatMap((preset) =>

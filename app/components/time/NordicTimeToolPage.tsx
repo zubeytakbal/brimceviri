@@ -3,6 +3,7 @@
 import type { Metadata } from "next";
 import type { NordicLocale } from "../../converter/time/nordicWeek";
 import { NORDIC_WEEK_PATHS } from "../../converter/time/nordicWeek";
+import { nordicTimerPresetLinks } from "../../i18n/nordicTimerPresets";
 import { timeToolAlternates, type TimeToolId } from "../../i18n/timeToolPaths";
 import { buildSiteUrl } from "../../siteConfig";
 import AlarmClock from "./AlarmClock";
@@ -29,7 +30,7 @@ export function nordicTimeMetadata(tool: NordicTimeTool, locale: NordicLocale): 
 function toolFor(tool: NordicTimeTool, locale: NordicLocale) {
   switch (tool) {
     case "timer":
-      return <CountdownTimer locale={locale} />;
+      return <CountdownTimer locale={locale} presetLinks={nordicTimerPresetLinks(locale)} />;
     case "stopwatch":
       return <Stopwatch locale={locale} />;
     case "alarm":

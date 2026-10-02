@@ -19,7 +19,7 @@ import {
 } from "./i18n/timeToolPaths";
 import { cgpaUniversities } from "./converter/india/cgpaUniversities";
 import { worldCities } from "./converter/time/worldCities";
-import { timerPresetAlternates, timerPresetPath, timerPresets } from "./i18n/timerPresets";
+import { nordicTimerPresetPaths, timerPresetAlternates, timerPresetPath, timerPresets } from "./i18n/timerPresets";
 import { countdownAlternatePaths, countdownEvents, countdownPath } from "./converter/time/countdownEvents";
 import { HOLIDAY_YEARS } from "./converter/time/holidays";
 import { HIJRI_SLUG, MUNASABAT, SA_HIJRI_SANAWAT, saHijriSanaPath, saHijriShahrPath, saMunasabaPath } from "./converter/calendar/saTaqwim";
@@ -3196,7 +3196,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       })),
     ),
     ...timerPresets.flatMap((preset) =>
-      [timerPresetPath(preset, "tr"), timerPresetPath(preset, "en"), timerPresetPath(preset, "de")].map((path) => ({
+      [timerPresetPath(preset, "tr"), timerPresetPath(preset, "en"), timerPresetPath(preset, "de"), ...Object.values(nordicTimerPresetPaths(preset))].map((path) => ({
         url: `${baseUrl}${path}`,
         lastModified: contentLastModified,
         changeFrequency: "monthly" as const,

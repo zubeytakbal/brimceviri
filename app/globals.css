@@ -15068,3 +15068,8 @@ a.all-units-row .all-units-name {
 .zins-balken .is-zinsen {
   background: #8bd3c7;
 }
+
+.zins-tabelle tr.is-highlight td {
+  background: #effaf9;
+  font-weight: 700;
+}

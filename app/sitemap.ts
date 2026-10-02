@@ -156,6 +156,8 @@ import { danishUnitPages } from "./converter/localizedDanishUnitPages";
 import { danishConversionPages } from "./converter/localizedDanishConversionPages";
 import { SITE_LAST_MODIFIED, SITE_URL } from "./siteConfig";
 import { SURELER } from "./converter/sureler";
+import { BIBLE_BOOKS } from "./converter/christian/christianCalc";
+import { BIBLE_BOOKS_PATH, CHRISTIAN_TOOLS_PATH, englishChristianTools } from "./i18n/englishChristianTools";
 
 export const dynamic = "force-static";
 
@@ -6458,6 +6460,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.76,
     },
+    ...[CHRISTIAN_TOOLS_PATH, ...englishChristianTools.map((tool) => tool.href), ...BIBLE_BOOKS.map((b) => `${BIBLE_BOOKS_PATH}/${b.slug}`)].map((path) => ({
+      url: `${baseUrl}${path}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.74,
+    })),
     ...englishDecisionSavingsTools.map((tool) => ({
       url: `${baseUrl}${tool.href}`,
       lastModified: contentLastModified,

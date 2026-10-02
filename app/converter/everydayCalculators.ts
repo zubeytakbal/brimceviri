@@ -14,6 +14,7 @@ export const everydayCalculators: EverydayCalculator[] = [
   { id: "devamsizlik", href: "/devamsizlik-hesaplama", label: "Devamsızlık Hesaplama" },
   { id: "yas", href: "/yas-hesaplama", label: "Yaş Hesaplama" },
   { id: "kdv", href: "/kdv-hesaplama", label: "KDV Hesaplama" },
+  { id: "kredi", href: "/kredi-hesaplama", label: "Kredi Hesaplama" },
   { id: "altin", href: "/altin-hesaplama", label: "Altın Hesaplama (Çeyrek, Yarım, Tam Altın)" },
   { id: "brutten-nete", href: "/brutten-nete-maas-hesaplama", label: "Brütten Nete Maaş Hesaplama" },
   { id: "kidem-tazminati", href: "/kidem-tazminati-hesaplama", label: "Kıdem ve İhbar Tazminatı Hesaplama" },

@@ -1,3 +1,4 @@
+import { NORDIC_TIMER_SECONDS, nordicTimerPath } from "./nordicTimerPresets";
 import { buildLanguageAlternates } from "./routing";
 
 // Zamanlayici hazir sure sayfalari (saniye cinsinden). URL kurali:
@@ -72,8 +73,18 @@ export function timerPresetPath(p: TimerPreset, lang: "tr" | "en" | "de") {
   return lang === "tr" ? `/zamanlayici/${p.tr}` : lang === "de" ? `/de/timer/${timerSlugDe(p)}` : `/en/timer/${p.en}`;
 }
 
+/** Hazır süre sayfasının İskandinav karşılıkları (yalnızca 14 popüler süre için var). */
+export function nordicTimerPresetPaths(p: TimerPreset) {
+  return (NORDIC_TIMER_SECONDS as readonly number[]).includes(p.seconds)
+    ? { sv: nordicTimerPath("sv", p.seconds), no: nordicTimerPath("no", p.seconds), da: nordicTimerPath("da", p.seconds) }
+    : {};
+}
+
 export function timerPresetAlternates(p: TimerPreset) {
-  return buildLanguageAlternates({ tr: timerPresetPath(p, "tr"), en: timerPresetPath(p, "en"), de: timerPresetPath(p, "de") }, "tr");
+  return buildLanguageAlternates(
+    { tr: timerPresetPath(p, "tr"), en: timerPresetPath(p, "en"), de: timerPresetPath(p, "de"), ...nordicTimerPresetPaths(p) },
+    "tr"
+  );
 }
 
 /** Zamanlayici dugmeleri icin: saniye -> hazir sayfa yolu. */

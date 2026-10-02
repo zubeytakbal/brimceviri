@@ -37,12 +37,20 @@ export function wallClockDate(now: Date, timeZone: string) {
   return new Date(now.getTime() + (zoneOffsetMinutes(timeZone, now) - localOffset) * 60000);
 }
 
-export function shortDifference(minutes: number, lang: "tr" | "en" | "de") {
-  if (minutes === 0) return lang === "tr" ? "aynı saat" : lang === "de" ? "gleiche Zeit" : "same time";
+export type WorldLang = "tr" | "en" | "de" | "sv" | "no" | "da";
+
+/** Saat ve tarih biçimi için Intl dili. */
+export const WORLD_LOCALE: Record<WorldLang, string> = { tr: "tr-TR", en: "en-US", de: "de-DE", sv: "sv-SE", no: "nb-NO", da: "da-DK" };
+
+const SAME_TIME: Record<WorldLang, string> = { tr: "aynı saat", en: "same time", de: "gleiche Zeit", sv: "samma tid", no: "samme tid", da: "samme tid" };
+const HOUR_UNIT: Record<WorldLang, string> = { tr: "sa", en: "h", de: "Std.", sv: "tim", no: "t", da: "t." };
+
+export function shortDifference(minutes: number, lang: WorldLang) {
+  if (minutes === 0) return SAME_TIME[lang];
   const sign = minutes > 0 ? "+" : "−";
   const abs = Math.abs(minutes);
   const h = Math.floor(abs / 60);
   const m = abs % 60;
-  const unit = lang === "tr" ? "sa" : lang === "de" ? "Std." : "h";
+  const unit = HOUR_UNIT[lang];
   return `${sign}${h}${m ? `:${String(m).padStart(2, "0")}` : ""} ${unit}`;
 }

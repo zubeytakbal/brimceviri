@@ -23,8 +23,9 @@ const groupedCategories: Record<
   Partial<Record<UnitSystemGroup, string[]>>
 > = {
   uzunluk: {
-    imperial: ["ft", "in", "yd", "mi", "mil", "fur", "ftm", "nmi"],
-    traditional: ["arşın", "endaze", "pus", "orgyia", "çığ"],
+    imperial: ["ft", "in", "yd", "mi", "fur", "ftm", "nmi"],
+    // "mil": İsveç/Norveç mili (10 km), yalnızca sv/no/da sayfalarında.
+    traditional: ["mil", "arşın", "endaze", "pus", "orgyia", "çığ"],
     scientific: ["AU", "ly", "pc", "Å"],
   },
   alan: {

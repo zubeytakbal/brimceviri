@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "@/app/components/SiteLink";
-import { shortDifference, useSecondNow, zoneOffsetMinutes } from "./useSecondNow";
+import { shortDifference, useSecondNow, WORLD_LOCALE, zoneOffsetMinutes, type WorldLang } from "./useSecondNow";
 
 export type BoardCity = { slug: string; href: string; name: string; country: string; timeZone: string; region: string };
 
@@ -38,7 +38,7 @@ export default function WorldClockBoard({
 }: {
   cities: BoardCity[];
   regions: Array<{ id: string; name: string }>;
-  lang: "tr" | "en" | "de";
+  lang: WorldLang;
   copy: BoardCopy;
 }) {
   const now = useSecondNow();
@@ -46,7 +46,7 @@ export default function WorldClockBoard({
   const [region, setRegion] = useState("all");
   const [favorites, setFavorites] = useState<string[]>([]);
   const [loaded, setLoaded] = useState(false);
-  const locale = lang === "tr" ? "tr-TR" : lang === "de" ? "de-DE" : "en-US";
+  const locale = WORLD_LOCALE[lang];
 
   useEffect(() => {
     const frame = requestAnimationFrame(() => {

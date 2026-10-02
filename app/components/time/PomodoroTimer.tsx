@@ -183,7 +183,7 @@ export default function PomodoroTimer({ lang }: { lang: FocusLang }) {
   const circumference = 2 * Math.PI * radius;
   const progress = total > 0 ? current / total : 0;
   const focusMinutes = log.reduce((sum, item) => sum + item.minutes, 0);
-  const locale = lang === "tr" ? "tr-TR" : lang === "de" ? "de-DE" : "en-US";
+  const locale = baseCopy.numberLocale;
 
   return (
     <div className="time-tool category-general-converter pomodoro">
@@ -298,7 +298,7 @@ export default function PomodoroTimer({ lang }: { lang: FocusLang }) {
                   <span>🍅 {index + 1}</span>
                   <strong>{item.task || copy.modes.work}</strong>
                   <span>
-                    {item.minutes} {lang === "tr" ? "dk" : lang === "de" ? "Min." : "min"}
+                    {item.minutes} {baseCopy.timer.minuteShort}
                   </span>
                   <em>{new Intl.DateTimeFormat(locale, { hour: "2-digit", minute: "2-digit" }).format(new Date(item.at))}</em>
                 </li>

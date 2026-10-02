@@ -959,6 +959,15 @@ export default function DigerDonusumlerPage() {
       group: "Finans, Eğitim ve Günlük Yaşam Araçları",
     },
     {
+      id: "kredi",
+      href: "/kredi-hesaplama",
+      title: "Kredi Hesaplama",
+      description:
+        "İhtiyaç, taşıt ve konut kredisinde KKDF ve BSMV dahil aylık taksit ve ödeme planı.",
+      iconName: "vatCalculator" as const,
+      group: "Finans, Eğitim ve Günlük Yaşam Araçları",
+    },
+    {
       id: "harf-notu",
       href: "/harf-notu-hesaplama",
       title: "Harf Notu Hesaplama",

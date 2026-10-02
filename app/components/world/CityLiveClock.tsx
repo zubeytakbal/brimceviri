@@ -2,7 +2,9 @@
 
 import AnalogClock from "../time/AnalogClock";
 import { useNow } from "../time/useNow";
-import { wallClockDate, zoneOffsetMinutes } from "./useSecondNow";
+import { WORLD_LOCALE, wallClockDate, zoneOffsetMinutes, type WorldLang } from "./useSecondNow";
+
+const HOUR_SHORT: Record<WorldLang, string> = { tr: "sa", en: "h", de: "Std.", sv: "tim", no: "t", da: "t." };
 
 export type CityClockCopy = {
   localCaption: string;
@@ -21,12 +23,12 @@ export default function CityLiveClock({
   copy,
 }: {
   timeZone: string;
-  lang: "tr" | "en" | "de";
+  lang: WorldLang;
   cityName: string;
   copy: CityClockCopy;
 }) {
   const now = useNow();
-  const locale = lang === "tr" ? "tr-TR" : lang === "de" ? "de-DE" : "en-US";
+  const locale = WORLD_LOCALE[lang];
   const wall = now ? wallClockDate(now, timeZone) : null;
   const time = now
     ? new Intl.DateTimeFormat(locale, { timeZone, hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: lang === "en" }).format(now)
@@ -34,7 +36,7 @@ export default function CityLiveClock({
   const date = now ? new Intl.DateTimeFormat(locale, { timeZone, weekday: "long", day: "numeric", month: "long", year: "numeric" }).format(now) : " ";
   const diff = now ? zoneOffsetMinutes(timeZone, now) + now.getTimezoneOffset() : 0;
   const abs = Math.abs(diff);
-  const amount = `${Math.floor(abs / 60)}${abs % 60 ? `:${String(abs % 60).padStart(2, "0")}` : ""} ${lang === "tr" ? "sa" : lang === "de" ? "Std." : "h"}`;
+  const amount = `${Math.floor(abs / 60)}${abs % 60 ? `:${String(abs % 60).padStart(2, "0")}` : ""} ${HOUR_SHORT[lang]}`;
   const diffText = diff === 0 ? copy.sameAsYou : `${amount} ${diff > 0 ? copy.ahead : copy.behind}`;
 
   return (

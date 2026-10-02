@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { worldCityPaths } from "@/app/converter/time/nordicWorld";
 import { notFound } from "next/navigation";
 import Link from "@/app/components/SiteLink";
 import TimeToolPage from "../../../components/time/TimeToolPage";
@@ -64,7 +65,7 @@ export async function generateMetadata({ params }: { params: Promise<{ stadt: st
     description,
     alternates: {
       canonical: path,
-      ...buildLanguageAlternates({ tr: `/dunya-saatleri/${city.tr}`, en: `/en/world-clock/${city.en}`, de: path }, "tr"),
+      ...buildLanguageAlternates(worldCityPaths(city), "tr"),
     },
     openGraph: { title, description, url: buildSiteUrl(path), siteName: "BirimCeviri.app", locale: "de_DE", type: "website" },
   };

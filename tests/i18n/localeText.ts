@@ -34,12 +34,16 @@ const SKIP_PROPS = new Set([
   "unitSlug", "target", "value",
 ]);
 
+// Yalnizca URL adres parcalari iceren dosyalar: icindeki dil bloklari gorunen metin degil,
+// ozel harf kullanamayan adreslerdir ("kokkenmal-omregner").
+const ROUTE_ONLY_FILES = new Set(["siteRedirects.ts"]);
+
 function walk(dir: string): string[] {
   if (!fs.existsSync(dir)) return [];
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
     const full = path.join(dir, entry.name);
     if (entry.isDirectory()) return walk(full);
-    return /\.tsx?$/.test(entry.name) ? [full] : [];
+    return /\.tsx?$/.test(entry.name) && !ROUTE_ONLY_FILES.has(entry.name) ? [full] : [];
   });
 }
 

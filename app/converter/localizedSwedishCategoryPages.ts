@@ -136,6 +136,7 @@ export const swedishCategoryPages: LocalizedSwedishCategoryPage[] = [
       { name: "Fot", symbol: "ft", referenceValue: "0,3048 m", system: "Brittiskt/amerikanskt", commonUse: "Kroppslängd, byggnation och luftfart" },
       { name: "Yard", symbol: "yd", referenceValue: "0,9144 m", system: "Brittiskt/amerikanskt", commonUse: "Idrottsplaner och avståndsmätning" },
       { name: "Engelsk mil", symbol: "mi", referenceValue: "1609,344 m", system: "Brittiskt/amerikanskt", commonUse: "Vägavstånd" },
+      { name: "Mil (svensk mil)", symbol: "mil", referenceValue: "10 000 m", system: "Svenskt vardagsmått", commonUse: "Reseavstånd och bränsleförbrukning i liter per mil" },
       { name: "Nautisk mil", symbol: "nmi", referenceValue: "1852 m", system: "Sjöfart", commonUse: "Sjöfart och luftfart" },
     ],
   },

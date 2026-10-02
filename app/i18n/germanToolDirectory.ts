@@ -13,6 +13,8 @@ export const germanToolGroups: ToolGroup[] = [
     description: "Nettogehalt, Prozente, Grunderwerbsteuer, Pendlerpauschale, Urlaub und Kündigungsfristen – nach aktuellem Recht.",
     links: [
       { href: "/de/brutto-netto-rechner", label: "Brutto-Netto-Rechner" },
+      { href: "/de/mehrwertsteuer-rechner", label: "Mehrwertsteuer-Rechner" },
+      { href: "/de/zinseszinsrechner", label: "Zinseszinsrechner" },
       { href: "/de/prozentrechner", label: "Prozentrechner" },
       { href: "/de/grunderwerbsteuer-rechner", label: "Grunderwerbsteuer-Rechner" },
       { href: "/de/pendlerpauschale-rechner", label: "Pendlerpauschale-Rechner" },
@@ -29,6 +31,7 @@ export const germanToolGroups: ToolGroup[] = [
     description: "Kalenderwoche, Feiertage aller Bundesländer, Brückentage, Arbeitstage und Countdowns.",
     links: [
       { href: "/de/kalender", label: "Kalender mit Feiertagen" },
+      { href: "/de/altersrechner", label: "Altersrechner" },
       { href: "/de/kalenderwoche", label: "Aktuelle Kalenderwoche" },
       { href: "/de/feiertage", label: "Feiertage Deutschland" },
       { href: "/de/feiertage-oesterreich", label: "Feiertage Österreich" },
@@ -56,6 +59,35 @@ export const germanToolGroups: ToolGroup[] = [
       { href: "/de/pomodoro-timer", label: "Pomodoro-Timer" },
       { href: "/de/intervall-timer", label: "Intervall-Timer" },
       { href: "/de/eieruhr", label: "Eieruhr" },
+    ],
+  },
+  {
+    id: "gesundheit-sport",
+    title: "Gesundheit und Sport",
+    description: "BMI, Schwangerschaftswoche, Schlafenszeit und Lauftempo.",
+    links: [
+      { href: "/de/bmi-rechner", label: "BMI-Rechner" },
+      { href: "/de/schwangerschaftswochen-rechner", label: "Schwangerschaftswochen-Rechner" },
+      { href: "/de/schlafrechner", label: "Schlafrechner" },
+      { href: "/de/lauftempo-rechner", label: "Lauftempo-Rechner" },
+    ],
+  },
+  {
+    id: "haus-energie-auto",
+    title: "Haus, Energie und Auto",
+    description: "Farbe, Fliesen, Laminat und Tapete berechnen, Strom- und Gaskosten, Spritverbrauch und E-Auto laden.",
+    links: [
+      { href: "/de/farbrechner", label: "Farbrechner (Wandfarbe)" },
+      { href: "/de/fliesenrechner", label: "Fliesenrechner" },
+      { href: "/de/laminatrechner", label: "Laminatrechner" },
+      { href: "/de/tapetenrechner", label: "Tapetenrechner" },
+      { href: "/de/ziegelrechner", label: "Ziegelrechner" },
+      { href: "/de/umzugskartons-rechner", label: "Umzugskartons-Rechner" },
+      { href: "/de/stromverbrauch-rechner", label: "Stromverbrauchsrechner" },
+      { href: "/de/erdgaskosten-rechner", label: "Erdgaskosten-Rechner" },
+      { href: "/de/klima-btu-rechner", label: "Klima-BTU-Rechner" },
+      { href: "/de/kraftstoffverbrauchsrechner", label: "Kraftstoffverbrauchsrechner" },
+      { href: "/de/e-auto-laderechner", label: "E-Auto-Laderechner" },
     ],
   },
   {
@@ -88,6 +120,8 @@ export const germanToolGroups: ToolGroup[] = [
     links: [
       { href: "/de/kuechenmass-umrechner", label: "Küchenmaß-Umrechner" },
       { href: "/de/rezept-umrechner", label: "Rezept-Umrechner" },
+      { href: "/de/laengenvergleich", label: "Längenvergleich" },
+      { href: "/de/gewichtsvergleich", label: "Gewichtsvergleich" },
       { href: "/de/schuhgroessen-umrechner", label: "Schuhgrößen-Umrechner" },
       { href: "/de/ringgroessen-umrechner", label: "Ringgrößen-Umrechner" },
     ],
@@ -133,23 +167,25 @@ function pick(hrefs: string[]): ToolLink[] {
 /** Üst menü "Rechner": Almanya'da en çok aranan hesaplayıcılar önde. */
 export const germanCalculatorMenu = pick([
   "/de/brutto-netto-rechner",
+  "/de/mehrwertsteuer-rechner",
+  "/de/zinseszinsrechner",
   "/de/prozentrechner",
   "/de/dreisatz-rechner",
   "/de/bruchrechner",
   "/de/notenrechner",
+  "/de/bmi-rechner",
   "/de/grunderwerbsteuer-rechner",
   "/de/pendlerpauschale-rechner",
   "/de/urlaubsrechner",
   "/de/kuendigungsfrist-rechner",
-  "/de/arbeitszeitrechner",
-  "/de/flaechenrechner",
+  "/de/stromverbrauch-rechner",
   "/de/mathe-rechner",
-  "/de/ingenieurrechner",
 ]);
 
 /** Üst menü "Kalender & Uhr". */
 export const germanTimeMenu = pick([
   "/de/kalender",
+  "/de/altersrechner",
   "/de/kalenderwoche",
   "/de/feiertage",
   "/de/brueckentage",

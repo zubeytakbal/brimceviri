@@ -15038,3 +15038,33 @@ a.all-units-row .all-units-name {
   border-radius: 8px;
   font: inherit;
 }
+
+/* Zinseszinsrechner (/de/zinseszinsrechner) */
+
+.zins-ziel-ergebnis {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.zins-tabelle td:last-child {
+  position: relative;
+  min-width: 180px;
+}
+
+.zins-balken {
+  display: flex;
+  height: 6px;
+  margin-bottom: 4px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #eef3f6;
+}
+
+.zins-balken .is-eingezahlt {
+  background: #2c7f99;
+}
+
+.zins-balken .is-zinsen {
+  background: #8bd3c7;
+}

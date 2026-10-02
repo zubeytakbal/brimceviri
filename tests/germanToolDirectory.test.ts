@@ -3,13 +3,16 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { getMenuGroups, getTopLevelLinks } from "../app/i18n/siteNavigation";
 import { germanToolGroups } from "../app/i18n/germanToolDirectory";
+import { germanStandaloneTools } from "../app/i18n/germanStandaloneTools";
 
 const deDir = path.join(__dirname, "..", "app", "de");
 const hrefs = germanToolGroups.flatMap((group) => group.links.map((link) => link.href));
 
+const standalonePaths = new Set(germanStandaloneTools.map((tool) => tool.germanPath));
+
 function routeExists(href: string) {
   const clean = href.split("#")[0];
-  if (clean === "/de") return true;
+  if (clean === "/de" || standalonePaths.has(clean)) return true;
   return existsSync(path.join(__dirname, "..", "app", clean, "page.tsx"));
 }
 
@@ -40,6 +43,10 @@ describe("Almanca araç dizini (/de/rechner)", () => {
       (name) => !name.startsWith("[") && !NOT_TOOLS.has(name) && existsSync(path.join(deDir, name, "page.tsx"))
     );
     expect(pages.filter((name) => !hrefs.includes(`/de/${name}`))).toEqual([]);
+  });
+
+  it("ortak listeden üretilen araçlar (/de/[slug]) da dizinde", () => {
+    expect([...standalonePaths].filter((href) => !hrefs.includes(href))).toEqual([]);
   });
 });
 

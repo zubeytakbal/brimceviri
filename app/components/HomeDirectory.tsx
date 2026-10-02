@@ -86,6 +86,7 @@ const germanRechnerGroups: Array<{ id: string; title: string; description: strin
       { href: "/de/mutterschutzrechner", title: "Mutterschutzrechner", description: "Beginn und Ende des Mutterschutzes, Mutterschaftsgeld und Frist für die Elternzeit.", icon: "dateCalculator" as const },
       { href: "/de/grunderwerbsteuer-rechner", title: "Grunderwerbsteuer-Rechner", description: "Grunderwerbsteuer aller Bundesländer und Kaufnebenkosten beim Immobilienkauf.", icon: "vatCalculator" as const },
       { href: "/de/kuendigungsfrist-rechner", title: "Kündigungsfrist-Rechner", description: "Kündigungsfrist für Job und Mietvertrag, mit spätestem Zugangsdatum.", icon: "dateCalculator" as const },
+      { href: "/de/zinseszinsrechner", title: "Zinseszinsrechner", description: "Sparplan mit Startkapital und Sparrate: Endkapital, Zinsen und Jahrestabelle.", icon: "vatCalculator" as const },
       { href: "/de/prozentrechner", title: "Prozentrechner", description: "Prozentwert, Prozentsatz, Grundwert, Veränderung und Rabatt mit Rechenweg.", icon: "vatCalculator" as const },
     ],
   },

@@ -14,7 +14,7 @@ export const timeToolPaths: Record<TimeToolId, Partial<Record<Locale, string>>> 
   stopwatch: { tr: "/kronometre", en: "/en/stopwatch", de: "/de/stoppuhr", sv: "/sv/stoppur", no: "/no/stoppeklokke", da: "/da/stopur" },
   pomodoro: { tr: "/pomodoro", en: "/en/pomodoro-timer", de: "/de/pomodoro-timer", sv: "/sv/pomodoro", no: "/no/pomodoro", da: "/da/pomodoro" },
   interval: { tr: "/tabata-zamanlayici", en: "/en/interval-timer", de: "/de/intervall-timer", sv: "/sv/intervalltimer", no: "/no/intervalltimer", da: "/da/intervaltimer" },
-  dateDiff: { tr: "/iki-tarih-arasi-gun-hesaplama", en: "/en/days-between-dates", de: "/de/tagerechner" },
+  dateDiff: { tr: "/iki-tarih-arasi-gun-hesaplama", en: "/en/days-between-dates", de: "/de/tagerechner", sv: "/sv/dagar-mellan-datum", no: "/no/dager-mellom-datoer", da: "/da/dage-mellem-datoer" },
   businessDays: { tr: "/is-gunu-hesaplama", en: "/en/business-day-calculator", de: "/de/arbeitstage-rechner" },
   dateAdd: { tr: "/tarihe-gun-ekleme", en: "/en/date-calculator" },
   weekNumber: { tr: "/kacinci-hafta", en: "/en/week-number", de: "/de/kalenderwoche", sv: "/sv/veckonummer", no: "/no/ukenummer", da: "/da/ugenummer" },

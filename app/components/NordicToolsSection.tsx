@@ -2,6 +2,7 @@
 // birim kategorisi kartlarıyla aynı stili kullanır; yeni bir İskandinav aracı
 // eklendiğinde yalnızca NORDIC_TOOLS listesine bir satır eklenir.
 import Link from "@/app/components/SiteLink";
+import { NORDIC_DAYS_PATHS } from "../converter/time/nordicDays";
 import { NORDIC_WEEK_PATHS, type NordicLocale } from "../converter/time/nordicWeek";
 import { sleepGuidePaths } from "../i18n/sleepGuidePaths";
 import { NORDIC_TIME_CARD_TEXT, NORDIC_TIME_LABELS, NORDIC_TIME_PATHS, type NordicTimeTool } from "./time/nordicTimeCopy";
@@ -18,14 +19,17 @@ const SECTION_COPY: Record<NordicLocale, { title: string; description: string }>
 const NORDIC_TOOLS: Record<NordicLocale, ToolCard[]> = {
   sv: [
     { id: "week", href: NORDIC_WEEK_PATHS.sv, title: "Vilken vecka är det?", description: "Aktuellt veckonummer och alla veckor med datum.", iconName: "weekNumber" },
+    { id: "days", href: NORDIC_DAYS_PATHS.sv, title: "Dagar mellan datum", description: "Räkna dagar mellan två datum eller lägg till dagar.", iconName: "dateCalculator" },
     { id: "sleep", href: sleepGuidePaths.sv!, title: "Sömnkalkylator", description: "Räkna ut när du ska lägga dig eller vakna.", iconName: "sleepCalculator" },
   ],
   no: [
     { id: "week", href: NORDIC_WEEK_PATHS.no, title: "Hvilken uke er det?", description: "Gjeldende ukenummer og alle uker med datoer.", iconName: "weekNumber" },
+    { id: "days", href: NORDIC_DAYS_PATHS.no, title: "Dager mellom datoer", description: "Regn ut dager mellom to datoer eller legg til dager.", iconName: "dateCalculator" },
     { id: "sleep", href: sleepGuidePaths.no!, title: "Søvnkalkulator", description: "Finn ut når du bør legge deg eller stå opp.", iconName: "sleepCalculator" },
   ],
   da: [
     { id: "week", href: NORDIC_WEEK_PATHS.da, title: "Hvilken uge er det?", description: "Aktuelt ugenummer og alle uger med datoer.", iconName: "weekNumber" },
+    { id: "days", href: NORDIC_DAYS_PATHS.da, title: "Dage mellem datoer", description: "Beregn dage mellem to datoer, eller læg dage til.", iconName: "dateCalculator" },
     { id: "sleep", href: sleepGuidePaths.da!, title: "Søvnberegner", description: "Find ud af, hvornår du skal gå i seng eller stå op.", iconName: "sleepCalculator" },
   ],
 };

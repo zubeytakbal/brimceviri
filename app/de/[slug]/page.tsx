@@ -1,4 +1,4 @@
-import { seoTitle } from "../../seoTitle";
+import { plainTitle, seoTitle } from "../../seoTitle";
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
@@ -42,6 +42,7 @@ import {
 import { getUnitSources } from "../../converter/unitSources";
 import { buildFullLanguageAlternates } from "../../i18n/routing";
 import { buildSiteUrl } from "../../siteConfig";
+import { germanConversionSeo, germanSymbol } from "../../converter/germanConversionSeo";
 
 const componentMap: Record<GermanStandaloneToolComponentKey, React.ComponentType<{ locale?: "de" }>> =
   {
@@ -81,14 +82,35 @@ function formatNumber(value: number) {
     return "—";
   }
 
-  if (
-    value !== 0 &&
-    (Math.abs(value) >= 1_000_000_000 || Math.abs(value) < 0.000001)
-  ) {
-    return value.toExponential(8);
+  const abs = Math.abs(value);
+
+  // Çok büyük sayılar Almancada kelimeyle okunur: 9,4607 Billionen.
+  const bigWords: Array<[number, string]> = [
+    [1e18, "Trillionen"],
+    [1e15, "Billiarden"],
+    [1e12, "Billionen"],
+  ];
+  for (const [base, word] of bigWords) {
+    if (abs >= base && abs < base * 1000) {
+      return `${Number((value / base).toPrecision(5)).toLocaleString("de-DE")} ${word}`;
+    }
   }
 
-  return Number(value.toPrecision(12)).toLocaleString("de-DE", {
+  if (value !== 0 && (abs >= 1e21 || abs < 0.000001)) {
+    return value.toExponential(4).replace(".", ",");
+  }
+
+  if (abs >= 1e6) {
+    return value.toLocaleString("de-DE", { maximumFractionDigits: 0 });
+  }
+
+  // 1'den büyükse en fazla 4 ondalık (−17,2222 °C; 176,6667 °C), tam sayılar
+  // (Lichtjahr = 9.460.730.472.580 km) bozulmaz; küçük değerlerde 6 anlamlı basamak.
+  if (abs >= 1) {
+    return value.toLocaleString("de-DE", { maximumFractionDigits: 4 });
+  }
+
+  return Number(value.toPrecision(6)).toLocaleString("de-DE", {
     maximumFractionDigits: 12,
   });
 }
@@ -143,25 +165,14 @@ export async function generateMetadata({
     };
   }
 
-  // Titel enthaelt "1", damit er zur Suchanfrage ("1 X in Y") passt -- das
-  // alte "X in Y Umrechner"-Format erzielte trotz guter Position kaum Klicks.
-  const oneUnitResult = convert(
-    page.category,
-    1,
-    page.fromUnit,
-    page.toUnit
-  );
-  const formattedOneUnitResult = formatNumber(oneUnitResult);
-
-  const title = `1 ${page.fromName} in ${page.toName} – Umrechner`;
-
-  const description =
-    `1 ${page.fromName} = ${formattedOneUnitResult} ${page.toName}. ` +
-    `${page.fromName} in ${page.toName} umrechnen. ` +
-    `Formel, Umrechnungstabelle und Sofortergebnis auf einen Blick.`;
+  // Başlık ve açıklama: Almanların yazdığı kısaltmalar (m³ in l, kn in kmh)
+  // ve çok gösterim alan sayfalarda gerçek aramalara göre özel metin.
+  const seo = germanConversionSeo(page);
+  const title = plainTitle(seoTitle(...seo.titles));
+  const description = seo.description;
 
   return {
-    title: seoTitle(title, `1 ${page.fromName} in ${page.toName} umrechnen`, `1 ${page.fromName} in ${page.toName}`, `${page.fromName} in ${page.toName}`),
+    title: seoTitle(...seo.titles),
     description,
 
     alternates: {
@@ -311,7 +322,10 @@ function GermanConversionPage({
     )
     .slice(0, 8);
 
-  const tableRows = page.exampleValues.map((value) => ({
+  const seo = germanConversionSeo(page);
+  const fromSymbol = germanSymbol(page.fromUnit);
+  const toSymbol = germanSymbol(page.toUnit);
+  const tableRows = seo.exampleValues.map((value) => ({
     input: value,
     result: convert(page.category, value, page.fromUnit, page.toUnit),
   }));
@@ -324,7 +338,7 @@ function GermanConversionPage({
   const faqItems: FaqItem[] = [
     {
       question: `Wie viel ${page.toName} sind 1 ${page.fromName}?`,
-      answer: `1 ${page.fromUnit} = ${formattedOneUnitResult} ${page.toUnit}.`,
+      answer: `1 ${fromSymbol} = ${formattedOneUnitResult} ${toSymbol}.`,
     },
     {
       question: `Wie rechnet man ${page.fromName} in ${page.toName} um?`,
@@ -332,8 +346,9 @@ function GermanConversionPage({
     },
     {
       question: `Wie viel ${page.fromName} sind 1 ${page.toName}?`,
-      answer: `1 ${page.toUnit} = ${reverseOneUnitResult} ${page.fromUnit}.`,
+      answer: `1 ${toSymbol} = ${reverseOneUnitResult} ${fromSymbol}.`,
     },
+    ...seo.extraFaq,
   ];
 
   return (
@@ -366,8 +381,8 @@ function GermanConversionPage({
             </h1>
 
             <p className="conversion-hero-description">
-              Wert eingeben, um das Ergebnis sofort und kostenlos zu
-              berechnen.
+              {seo.intro ??
+                "Wert eingeben, um das Ergebnis sofort und kostenlos zu berechnen."}
             </p>
 
             <PairConverter
@@ -384,9 +399,9 @@ function GermanConversionPage({
             <h2>Umrechnungsübersicht</h2>
 
             <p>
-              1 {page.fromUnit} ={" "}
+              1 {fromSymbol} ={" "}
               <strong>
-                {formattedOneUnitResult} {page.toUnit}
+                {formattedOneUnitResult} {toSymbol}
               </strong>
             </p>
 
@@ -404,7 +419,7 @@ function GermanConversionPage({
               <div>
                 <dt>Einheiten</dt>
                 <dd>
-                  {page.fromUnit} → {page.toUnit}
+                  {fromSymbol} → {toSymbol}
                 </dd>
               </div>
             </dl>
@@ -455,11 +470,11 @@ function GermanConversionPage({
                 {tableRows.map((row) => (
                   <tr key={row.input}>
                     <td>
-                      {formatNumber(row.input)} {page.fromUnit}
+                      {formatNumber(row.input)} {fromSymbol}
                     </td>
 
                     <td>
-                      {formatNumber(row.result)} {page.toUnit}
+                      {formatNumber(row.result)} {toSymbol}
                     </td>
                   </tr>
                 ))}

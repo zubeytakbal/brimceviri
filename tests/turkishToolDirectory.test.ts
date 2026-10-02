@@ -63,7 +63,7 @@ describe("Türkçe üst menü", () => {
   });
 
   it("diğer dillerin menüsü değişmedi", () => {
-    expect(getMenuGroups("de").map((group) => group.id)).toEqual(["conversions"]);
+    expect(getMenuGroups("fr").map((group) => group.id)).toEqual(["conversions"]);
     expect(getMenuGroups("en").map((group) => group.id)).toEqual(["conversions", "calculators"]);
   });
 });

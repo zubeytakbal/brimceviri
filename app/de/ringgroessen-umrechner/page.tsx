@@ -56,7 +56,7 @@ export default function GermanRingSizePage() {
             Umfang, während US und UK eigene Skalen verwenden.
           </p>
           <p>
-            Messen Sie fuer das beste Ergebnis den Innendurchmesser eines
+            Messen Sie für das beste Ergebnis den Innendurchmesser eines
             gut passenden Rings und wählen Sie den nächsten Wert aus.
           </p>
         </section>

@@ -64,6 +64,7 @@ import type { SiteNotification } from "../converter/siteNotifications";
 import { unitPages } from "../converter/unitPages";
 import { geoToolsEn, geoToolsTr } from "../converter/geo/geoTools";
 import { TURKISH_TOOL_HUB_PATH, turkishPopularTools } from "../i18n/turkishToolDirectory";
+import { GERMAN_TOOL_HUB_PATH } from "../i18n/germanToolDirectory";
 
 type Locale = "tr" | "en" | "uz" | "de";
 
@@ -2153,6 +2154,13 @@ export default function HomeDirectory({
               </div>
             </section>
           ))}
+        {locale === "de" && (
+          <div className="directory-section-footer">
+            <Link className="directory-category-guide" href={GERMAN_TOOL_HUB_PATH}>
+              Alle Rechner →
+            </Link>
+          </div>
+        )}
         {locale === "en" && (
           <section className="directory-section" id="calculator-areas">
             <header className="directory-section-header">

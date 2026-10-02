@@ -935,6 +935,17 @@ main {
   min-width: 420px;
 }
 
+/* İlk gruptan sonrakiler ekranın sağına yakın: taşmasın diye sağa hizalı açılır. */
+.site-nav-group ~ .site-nav-group .site-nav-dropdown--columns {
+  left: auto;
+  right: 0;
+}
+
+html[dir="rtl"] .site-nav-group ~ .site-nav-group .site-nav-dropdown--columns {
+  left: 0;
+  right: auto;
+}
+
 .site-nav-dropdown-footer {
   display: flex;
   flex-wrap: wrap;

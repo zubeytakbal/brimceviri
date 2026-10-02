@@ -102,6 +102,12 @@ export const turkishToolGroups: ToolGroup[] = [
       { href: "/sure-bulucu", label: "Sure Bulucu (Ayet ve Cüz)" },
       { href: "/umre-mesafe-hesaplama", label: "Umre Mesafe (Tavaf ve Sa'y)" },
       { href: "/kaza-orucu-hesaplama", label: "Kaza Orucu Hesaplama" },
+      { href: "/kible-yonu-hesaplama", label: "Kıble Yönü (Canlı Pusula)" },
+      { href: "/kaza-namazi-hesaplama", label: "Kaza Namazı Hesaplama" },
+      { href: "/hatim-hesaplama", label: "Hatim Hesaplama" },
+      { href: "/zekat-hesaplama", label: "Zekât Hesaplama" },
+      { href: "/hicri-yas-hesaplama", label: "Hicri Yaş Hesaplama" },
+      { href: "/kurban-hissesi-hesaplama", label: "Kurban Hissesi Hesaplama" },
     ],
   },
   {

@@ -1,6 +1,9 @@
 import { describe, expect, it } from "vitest";
 import {
+  hatimDagit,
   hatimPlani,
+  kazaNamaziGun,
+  okumaSuresiDakika,
   kabeMesafesi,
   kazaNamazi,
   kazaOrucu,
@@ -40,7 +43,24 @@ describe("Hatim", () => {
   });
 });
 
+describe("Hatim ekleri", () => {
+  it("okuma süresi ve grup hatmi dağıtımı", () => {
+    expect(okumaSuresiDakika(20, 2)).toBe(40);
+    expect(okumaSuresiDakika(20, 0)).toBeNaN();
+    const yedi = hatimDagit(7);
+    expect(yedi.map((p) => p.cuzSayisi)).toEqual([5, 5, 4, 4, 4, 4, 4]);
+    expect(yedi[0]).toEqual({ kisi: 1, ilkCuz: 1, sonCuz: 5, cuzSayisi: 5 });
+    expect(yedi[6].sonCuz).toBe(30);
+    expect(hatimDagit(30).every((p) => p.cuzSayisi === 1)).toBe(true);
+    expect(hatimDagit(31)).toEqual([]);
+  });
+});
+
 describe("Kaza namazı ve orucu", () => {
+  it("gün sayısından kaza namazı", () => {
+    expect(kazaNamaziGun(10, false, 5)).toEqual({ gun: 10, vakit: 50, rekat: 170, bitisGun: 10 });
+  });
+
   it("1 yıl, vitir dahil: 2.190 vakit, 7.300 rekât", () => {
     const k = kazaNamazi(1, 0, 0, true, 5)!;
     expect(k.gun).toBe(365);
@@ -71,12 +91,13 @@ describe("Zekât", () => {
 });
 
 describe("Kurban hissesi", () => {
-  it("toplam ÷ hisse; büyükbaş en çok 7 hisse", () => {
-    const r = kurbanHissesi(140000, 7000, 7, 600, 50)!;
+  it("toplam ÷ hisse; büyükbaş en çok 7 hisse; et verimi varsayılmaz", () => {
+    const r = kurbanHissesi(140000, 7000, 7, 175)!;
+    expect(r.toplamTutar).toBe(147000);
     expect(r.hisseBasiTutar).toBe(21000);
-    expect(r.toplamEt).toBe(300);
-    expect(r.hisseBasiEt).toBeCloseTo(300 / 7, 10);
-    expect(kurbanHissesi(140000, 0, 8, 600, 50)).toBeNull();
+    expect(r.hisseBasiEt).toBe(25);
+    expect(kurbanHissesi(140000, 7000, 7)!.hisseBasiEt).toBeNull();
+    expect(kurbanHissesi(140000, 0, 8)).toBeNull();
   });
 });
 
@@ -130,5 +151,24 @@ describe("Türkçe ayrılma eki", () => {
     expect(ayrilmaEki("Ordu")).toBe("Ordu'dan");
     expect(ayrilmaEki("Elazığ")).toBe("Elazığ'dan");
     for (const p of turkeyProvinces) expect(ayrilmaEki(p.name)).toMatch(/'(d|t)(a|e)n$/);
+  });
+});
+
+import { manyetikSapma, pusulaKibleAcisi, WMM_GECERLILIK_SONU } from "../app/converter/diniHesaplar";
+
+describe("Manyetik sapma (WMM2025)", () => {
+  it("Türkiye'de sapma doğuya 5–7°, pusula açısı gerçek açıdan küçük", () => {
+    const tarih = new Date(Date.UTC(2026, 9, 1));
+    const ist = manyetikSapma(41.0082, 28.9784, tarih);
+    expect(ist).toBeGreaterThan(5);
+    expect(ist).toBeLessThan(7);
+    expect(pusulaKibleAcisi(41.0082, 28.9784, tarih)).toBeCloseTo(kibleAcisi(41.0082, 28.9784) - ist, 10);
+  });
+
+  it("GÜVENLİK: WMM2025 geçerlilik süresi dolmadan WMM2030'a geçilmeli", () => {
+    // Bu test bilerek tarihe bağlıdır: 1 Ekim 2029'dan sonra başarısız olur ve
+    // magvar paketinin WMM2030 sürümüne geçilmesi gerektiğini hatırlatır.
+    expect(WMM_GECERLILIK_SONU).toBe("2029-12-31");
+    expect(new Date() < new Date("2029-10-01T00:00:00Z")).toBe(true);
   });
 });

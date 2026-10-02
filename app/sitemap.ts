@@ -3187,6 +3187,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       ...Array.from({ length: 30 }, (_, i) => `/cuzler/${i + 1}-cuz`),
       "/umre-mesafe-hesaplama",
       "/kaza-orucu-hesaplama",
+      "/kible-yonu-hesaplama",
+      "/kaza-namazi-hesaplama",
+      "/hatim-hesaplama",
+      "/zekat-hesaplama",
+      "/hicri-yas-hesaplama",
+      "/kurban-hissesi-hesaplama",
     ].map((path) => ({
       url: `${baseUrl}${path}`,
       lastModified: contentLastModified,

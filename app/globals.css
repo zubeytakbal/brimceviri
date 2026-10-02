@@ -15120,3 +15120,66 @@ a.all-units-row .all-units-name {
   font-weight: 400;
   line-height: 1.5;
 }
+
+/* Kıble pusulası */
+
+.kible-sonuc {
+  display: grid;
+  grid-template-columns: minmax(200px, 260px) 1fr;
+  gap: 20px;
+  align-items: center;
+}
+
+.kible-pusula {
+  width: 100%;
+  max-width: 260px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.kible-daire {
+  fill: #ffffff;
+  stroke: #d7e2e8;
+  stroke-width: 3;
+}
+
+.kible-harf {
+  fill: #5b6b7a;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.kible-ok {
+  stroke: #0f6f6c;
+  stroke-width: 6;
+  stroke-linecap: round;
+}
+
+.kible-uc {
+  fill: #0f6f6c;
+}
+
+.kible-merkez {
+  fill: #172033;
+}
+
+.kible-sonuc.is-hizali .kible-daire {
+  fill: #e9f8f1;
+  stroke: #2e9e6f;
+}
+
+.kible-sonuc.is-hizali .kible-ok,
+.kible-sonuc.is-hizali .kible-uc {
+  stroke: #2e9e6f;
+  fill: #2e9e6f;
+}
+
+@media (max-width: 640px) {
+  .kible-sonuc {
+    grid-template-columns: 1fr;
+  }
+
+  .kible-pusula {
+    max-width: 220px;
+  }
+}

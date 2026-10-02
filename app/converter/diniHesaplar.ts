@@ -1,3 +1,5 @@
+import { magvar } from "magvar";
+
 // Dini araçların hesapları. Yalnızca değişmeyen kurallar ve matematik:
 // yasal ya da yıllık açıklanan bir tutar (fitre, fidye) ve vakit hesabı
 // (namaz vakitleri) bilerek yok. Altın fiyatı ve kurban fiyatı kullanıcıdan.
@@ -64,6 +66,33 @@ export function hatimPlani(gun: number, okunanSayfa = 0, hatimSayisi = 1): Hatim
   };
 }
 
+/** Okuma süresi: sayfa × dakika/sayfa. */
+export function okumaSuresiDakika(sayfa: number, dakikaPerSayfa: number) {
+  if (!(sayfa >= 0) || !(dakikaPerSayfa > 0 && dakikaPerSayfa <= 30)) return Number.NaN;
+  return sayfa * dakikaPerSayfa;
+}
+
+export type CuzPayi = { kisi: number; ilkCuz: number; sonCuz: number; cuzSayisi: number };
+
+/**
+ * Grup hatmi: 30 cüz `kisi` kişiye sırayla ve olabildiğince eşit dağıtılır
+ * (fazla kalan cüzler ilk kişilere birer tane). 30'dan fazla kişi olamaz.
+ */
+export function hatimDagit(kisi: number): CuzPayi[] {
+  const n = Math.round(kisi);
+  if (!(n >= 1 && n <= CUZ_SAYISI)) return [];
+  const taban = Math.floor(CUZ_SAYISI / n);
+  const artan = CUZ_SAYISI % n;
+  const paylar: CuzPayi[] = [];
+  let cuz = 1;
+  for (let i = 1; i <= n; i++) {
+    const adet = taban + (i <= artan ? 1 : 0);
+    paylar.push({ kisi: i, ilkCuz: cuz, sonCuz: cuz + adet - 1, cuzSayisi: adet });
+    cuz += adet;
+  }
+  return paylar;
+}
+
 /* ---------------- Kaza namazı ve orucu ---------------- */
 
 /**
@@ -90,6 +119,11 @@ export function kazaNamazi(yil: number, ay: number, gun: number, vitirDahil: boo
   const vakit = toplamGun * vakitPerGun;
   const rekat = toplamGun * (GUNLUK_FARZ_REKAT + (vitirDahil ? VITIR_REKAT : 0));
   return { gun: toplamGun, vakit, rekat, bitisGun: Math.ceil(vakit / gunlukVakit) };
+}
+
+/** Gün sayısı doğrudan biliniyorsa (iki tarih arası) kaza namazı. */
+export function kazaNamaziGun(gunSayisi: number, vitirDahil: boolean, gunlukVakit: number): KazaNamazi | null {
+  return kazaNamazi(0, 0, gunSayisi, vitirDahil, gunlukVakit);
 }
 
 export type KazaOrucu = { gun: number; bitisHafta: number };
@@ -152,18 +186,23 @@ export function zekatHesapla(g: ZekatGirdisi): ZekatSonucu | null {
 export const BUYUKBAS_MAX_HISSE = 7;
 
 export type KurbanSonucu = {
+  toplamTutar: number;
   hisseBasiTutar: number;
-  toplamEt: number;
-  hisseBasiEt: number;
+  /** Toplam et girildiyse hisse başına et (kg) */
+  hisseBasiEt: number | null;
 };
 
-/** Toplam masraf hisse sayısına bölünür; et = canlı ağırlık × et verimi (%). */
-export function kurbanHissesi(hayvanFiyati: number, masraf: number, hisse: number, canliKg: number, etVerimiYuzde: number): KurbanSonucu | null {
+/**
+ * Hayvan bedeli ve masraflar hisse sayısına eşit bölünür. Et verimi
+ * hayvana göre çok değiştiği için varsayılmaz: toplam et (kg) kullanıcı
+ * girerse hisse başına düşen gösterilir.
+ */
+export function kurbanHissesi(hayvanFiyati: number, masraf: number, hisse: number, toplamEtKg?: number): KurbanSonucu | null {
   const h = Math.round(hisse);
   if (!(hayvanFiyati > 0) || !(masraf >= 0) || !(h >= 1 && h <= BUYUKBAS_MAX_HISSE)) return null;
-  if (!(canliKg >= 0) || !(etVerimiYuzde >= 0 && etVerimiYuzde <= 100)) return null;
-  const toplamEt = (canliKg * etVerimiYuzde) / 100;
-  return { hisseBasiTutar: (hayvanFiyati + masraf) / h, toplamEt, hisseBasiEt: toplamEt / h };
+  const toplamTutar = hayvanFiyati + masraf;
+  const et = toplamEtKg !== undefined && toplamEtKg > 0 ? toplamEtKg / h : null;
+  return { toplamTutar, hisseBasiTutar: toplamTutar / h, hisseBasiEt: et };
 }
 
 /* ---------------- Seferîlik ---------------- */
@@ -262,4 +301,26 @@ export function ayrilmaEki(ad: string) {
   const kalin = "aıou".includes(son);
   const sert = "fstkçşhp".includes(kucuk[kucuk.length - 1]);
   return `${ad}'${sert ? "t" : "d"}${kalin ? "a" : "e"}n`;
+}
+
+/* ---------------- Manyetik sapma (canlı pusula) ---------------- */
+
+
+/**
+ * Pusula manyetik kuzeyi gösterir; kıble açısı gerçek kuzeye göredir.
+ * Manyetik sapma ABD/İngiltere'nin Dünya Manyetik Modeli WMM2025 ile
+ * hesaplanır (magvar paketi). Model 2025.0–2030.0 arası geçerlidir:
+ * WMM_GECERLILIK_SONU yaklaşınca tests/diniHesaplar.test.ts hatırlatır
+ * ve WMM2030'a geçilmelidir.
+ */
+export const WMM_GECERLILIK_SONU = "2029-12-31";
+
+/** Doğuya pozitif manyetik sapma (derece). */
+export function manyetikSapma(lat: number, lon: number, when: Date = new Date()) {
+  return magvar(lat, lon, 0, when);
+}
+
+/** Pusulada okunacak kıble açısı: manyetik kuzeyden saat yönünde. */
+export function pusulaKibleAcisi(lat: number, lon: number, when: Date = new Date()) {
+  return (((kibleAcisi(lat, lon) - manyetikSapma(lat, lon, when)) % 360) + 360) % 360;
 }

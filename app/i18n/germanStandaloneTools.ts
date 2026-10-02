@@ -335,7 +335,7 @@ export const germanStandaloneTools: GermanStandaloneTool[] = [
     articleSections: [
       { title: "Formel", body: "Verbrauch in kWh = Leistung in Watt × Stunden ÷ 1.000. Kosten = kWh × Arbeitspreis. Ein Gerät mit 1.800 W, das eine Stunde läuft, verbraucht 1,8 kWh; bei 0,35 €/kWh kostet das 63 Cent." },
       { title: "Beispiel: Heizlüfter", body: "Ein Heizlüfter mit 2.000 W, der täglich 3 Stunden an 30 Tagen läuft, verbraucht 2 × 3 × 30 = 180 kWh im Monat. Bei 0,35 €/kWh sind das 63 € im Monat." },
-      { title: "Welchen Strompreis eintragen?", body: "Tragen Sie den Arbeitspreis pro kWh aus Ihrer Stromrechnung ein, in Euro (35 Cent = 0,35). Der monatliche Grundpreis fällt unabhängig vom Verbrauch an und ist hier nicht enthalten. Neukundentarife lagen zuletzt oft um 0,27 €/kWh, viele Bestandskunden zahlen mehr." },
+      { title: "Welchen Strompreis eintragen?", body: "Tragen Sie den Arbeitspreis pro kWh aus Ihrer Stromrechnung ein, in Euro (35 Cent = 0,35). Der monatliche Grundpreis fällt unabhängig vom Verbrauch an und ist hier nicht enthalten; Jahreskosten mit Grundpreis und Abschlag berechnet der Stromkostenrechner. Neukundentarife lagen zuletzt oft um 0,27 €/kWh, viele Bestandskunden zahlen mehr." },
       { title: "Typische Leistungen", body: "LED-Lampe 5 bis 10 W, Laptop 30 bis 70 W, Fernseher 50 bis 150 W, Kühlschrank im Mittel 15 bis 40 W (Jahresverbrauch meist 100 bis 250 kWh), Wasserkocher 2.000 bis 3.000 W, Heizlüfter 2.000 W. Geräte mit Thermostat laufen nicht dauerhaft mit voller Leistung; der tatsächliche Verbrauch ist dann niedriger." },
     ],
     faq: [

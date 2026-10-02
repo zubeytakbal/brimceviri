@@ -14,6 +14,7 @@ export const germanRechnerLinks = [
   { href: "/de/zinseszinsrechner", label: "Zinseszinsrechner" },
   { href: "/de/kreditrechner", label: "Kreditrechner" },
   { href: "/de/tilgungsrechner", label: "Tilgungsrechner" },
+  { href: "/de/stromkostenrechner", label: "Stromkostenrechner" },
   { href: "/de/tagerechner", label: "Tagerechner" },
   { href: "/de/waehrungsrechner", label: "Währungsrechner" },
 ];

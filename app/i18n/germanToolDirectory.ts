@@ -85,7 +85,8 @@ export const germanToolGroups: ToolGroup[] = [
       { href: "/de/tapetenrechner", label: "Tapetenrechner" },
       { href: "/de/ziegelrechner", label: "Ziegelrechner" },
       { href: "/de/umzugskartons-rechner", label: "Umzugskartons-Rechner" },
-      { href: "/de/stromverbrauch-rechner", label: "Stromverbrauchsrechner" },
+      { href: "/de/stromkostenrechner", label: "Stromkostenrechner (Abschlag, Tarifvergleich)" },
+      { href: "/de/stromverbrauch-rechner", label: "Stromverbrauchsrechner (pro Gerät)" },
       { href: "/de/erdgaskosten-rechner", label: "Erdgaskosten-Rechner" },
       { href: "/de/klima-btu-rechner", label: "Klima-BTU-Rechner" },
       { href: "/de/kraftstoffverbrauchsrechner", label: "Kraftstoffverbrauchsrechner" },
@@ -181,7 +182,7 @@ export const germanCalculatorMenu = pick([
   "/de/grunderwerbsteuer-rechner",
   "/de/pendlerpauschale-rechner",
   "/de/urlaubsrechner",
-  "/de/stromverbrauch-rechner",
+  "/de/stromkostenrechner",
   "/de/mathe-rechner",
 ]);
 

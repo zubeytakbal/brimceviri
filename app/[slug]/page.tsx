@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { seoTitle } from "../seoTitle";
+import { plainTitle, seoTitle } from "../seoTitle";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
 import AllUnitsPanel from "../components/AllUnitsPanel";
@@ -20,6 +20,7 @@ import { getUnitSources } from "../converter/unitSources";
 import { findUnitPage } from "../converter/unitPages";
 import { buildFullLanguageAlternates } from "../i18n/routing";
 import { buildSiteUrl } from "../siteConfig";
+import { turkishConversionSeo } from "../converter/turkishConversionSeo";
 
 function serializeJsonLd(data: object) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
@@ -149,22 +150,14 @@ export async function generateMetadata({
   // birebir eslessin diye boyle kuruldu -- eski "X - Y Cevirici" formatinda
   // sayfalar ortalama 8. sirada cikmasina ragmen TO %0,1 seviyesindeydi,
   // cunku baslik aramadaki hicbir kelimeyi (1, kac, birim adi) tasimiyordu.
-  const oneUnitResult = convert(
-    conversionPage.category,
-    1,
-    conversionPage.fromUnit,
-    conversionPage.toUnit
-  );
-  const formattedOneUnitResult = formatNumber(oneUnitResult);
-
-  const title = `1 ${conversionPage.fromName} Kaç ${conversionPage.toName}? – Çevirici`;
-  const description =
-    `1 ${conversionPage.fromName} kaç ${conversionPage.toName} eder? ` +
-    `1 ${conversionPage.fromName} = ${formattedOneUnitResult} ${conversionPage.toName}. ` +
-    `Ücretsiz hesaplama aracı, formül ve hazır dönüşüm tablosu için tıklayın.`;
+  // Çok gösterim alan sayfalarda gerçek aramalara göre özel başlık ("1 Metre
+  // Kaç cm?"); diğerlerinde aynı kalıp, açıklamada örnek değerlerle.
+  const seo = turkishConversionSeo(conversionPage);
+  const title = plainTitle(seoTitle(...seo.titles));
+  const description = seo.description;
 
   return {
-    title: seoTitle(title, `1 ${conversionPage.fromName} Kaç ${conversionPage.toName}?`),
+    title: seoTitle(...seo.titles),
     description,
     alternates: {
       canonical: `/${conversionPage.slug}`,
@@ -239,9 +232,12 @@ export default async function ConversionPage({ params }: PageProps) {
   // daha uzun -- gercek trafik burada yogunlasiyor, nis ciftlerde (peck-bushel
   // gibi) standart 6-7 satir yeterli. Ayni popularEmbedSlugs listesi embed
   // kodu tesviki icin de kullaniliyor, ikinci bir liste tutmuyoruz.
-  const exampleValues = popularEmbedSlugs.has(conversionPage.slug)
-    ? extendedTableValues
-    : conversionPage.exampleValues;
+  const seo = turkishConversionSeo(conversionPage);
+  const exampleValues =
+    seo.exampleValues ??
+    (popularEmbedSlugs.has(conversionPage.slug)
+      ? extendedTableValues
+      : conversionPage.exampleValues);
 
   const tableRows = exampleValues.map((value) => ({
     input: value,
@@ -318,6 +314,7 @@ export default async function ConversionPage({ params }: PageProps) {
       question: `1 ${conversionPage.toName} kaç ${conversionPage.fromName} eder?`,
       answer: `1 ${conversionPage.toUnit} = ${formattedReverseOneUnitResult} ${conversionPage.fromUnit}.`,
     },
+    ...seo.extraFaq,
   ];
 
   const breadcrumbSchema = {
@@ -393,7 +390,8 @@ export default async function ConversionPage({ params }: PageProps) {
             </h1>
 
             <p className="conversion-hero-description">
-              Değeri girin, sonucu anında ve ücretsiz olarak hesaplayın.
+              {seo.intro ??
+                "Değeri girin, sonucu anında ve ücretsiz olarak hesaplayın."}
             </p>
 
             <PairConverter

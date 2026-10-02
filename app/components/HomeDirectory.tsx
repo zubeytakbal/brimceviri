@@ -88,6 +88,7 @@ const germanRechnerGroups: Array<{ id: string; title: string; description: strin
       { href: "/de/kuendigungsfrist-rechner", title: "Kündigungsfrist-Rechner", description: "Kündigungsfrist für Job und Mietvertrag, mit spätestem Zugangsdatum.", icon: "dateCalculator" as const },
       { href: "/de/kreditrechner", title: "Kreditrechner", description: "Monatsrate, Zinskosten und Tilgungsplan für Ratenkredite.", icon: "vatCalculator" as const },
       { href: "/de/tilgungsrechner", title: "Tilgungsrechner", description: "Baufinanzierung: Rate, Restschuld nach der Zinsbindung und Sondertilgung.", icon: "vatCalculator" as const },
+      { href: "/de/stromkostenrechner", title: "Stromkostenrechner", description: "Jahreskosten, Abschlag, Zählerstand und Tarifvergleich.", icon: "electricityConsumptionCalculator" as const },
       { href: "/de/zinseszinsrechner", title: "Zinseszinsrechner", description: "Sparplan mit Startkapital und Sparrate: Endkapital, Zinsen und Jahrestabelle.", icon: "vatCalculator" as const },
       { href: "/de/prozentrechner", title: "Prozentrechner", description: "Prozentwert, Prozentsatz, Grundwert, Veränderung und Rabatt mit Rechenweg.", icon: "vatCalculator" as const },
     ],

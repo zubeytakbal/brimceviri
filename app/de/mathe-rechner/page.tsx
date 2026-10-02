@@ -50,7 +50,7 @@ export default function MatheRechnerPage() {
             ))}
           </div>
         }
-        related={{ title: "Das könnte Sie auch interessieren", links: [{ href: "/de/kategorien", label: "Einheiten umrechnen" }, { href: "/de/periodensystem", label: "Periodensystem" }] }}
+        related={{ title: "Das könnte Sie auch interessieren", links: [{ href: "/de/alle-umrechnungen", label: "Einheiten umrechnen" }, { href: "/de/periodensystem", label: "Periodensystem" }] }}
         tocTitle="Inhalt"
         tocItems={[
           { id: "rechner", label: "Alle Rechner" },

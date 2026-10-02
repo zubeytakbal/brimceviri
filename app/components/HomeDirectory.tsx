@@ -63,6 +63,8 @@ import { englishHomeCategoryOrder, getEnglishCategoryPresentation } from "../i18
 import type { SiteNotification } from "../converter/siteNotifications";
 import { unitPages } from "../converter/unitPages";
 import { geoToolsEn, geoToolsTr } from "../converter/geo/geoTools";
+import { TURKISH_TOOL_HUB_PATH, turkishPopularTools } from "../i18n/turkishToolDirectory";
+import { GERMAN_TOOL_HUB_PATH } from "../i18n/germanToolDirectory";
 
 type Locale = "tr" | "en" | "uz" | "de";
 
@@ -84,6 +86,7 @@ const germanRechnerGroups: Array<{ id: string; title: string; description: strin
       { href: "/de/mutterschutzrechner", title: "Mutterschutzrechner", description: "Beginn und Ende des Mutterschutzes, Mutterschaftsgeld und Frist für die Elternzeit.", icon: "dateCalculator" as const },
       { href: "/de/grunderwerbsteuer-rechner", title: "Grunderwerbsteuer-Rechner", description: "Grunderwerbsteuer aller Bundesländer und Kaufnebenkosten beim Immobilienkauf.", icon: "vatCalculator" as const },
       { href: "/de/kuendigungsfrist-rechner", title: "Kündigungsfrist-Rechner", description: "Kündigungsfrist für Job und Mietvertrag, mit spätestem Zugangsdatum.", icon: "dateCalculator" as const },
+      { href: "/de/zinseszinsrechner", title: "Zinseszinsrechner", description: "Sparplan mit Startkapital und Sparrate: Endkapital, Zinsen und Jahrestabelle.", icon: "vatCalculator" as const },
       { href: "/de/prozentrechner", title: "Prozentrechner", description: "Prozentwert, Prozentsatz, Grundwert, Veränderung und Rabatt mit Rechenweg.", icon: "vatCalculator" as const },
     ],
   },
@@ -2045,6 +2048,28 @@ export default function HomeDirectory({
       <RecentToolsWidget locale={locale} />
 
       <div className="directory-shell directory-content">
+        {locale === "tr" && (
+          <section className="directory-section" id="populer-hesaplamalar">
+            <header className="directory-section-header">
+              <div>
+                <h2>Popüler hesaplamalar</h2>
+                <p>En çok kullanılan araçlar. Tüm araçları konularına göre görmek için tüm hesaplamalar sayfasına geçin.</p>
+              </div>
+            </header>
+            <ul className="tool-hub-list">
+              {turkishPopularTools.map((tool) => (
+                <li key={tool.href}>
+                  <Link href={tool.href}>{tool.label}</Link>
+                </li>
+              ))}
+            </ul>
+            <div className="directory-section-footer">
+              <Link className="directory-category-guide" href={TURKISH_TOOL_HUB_PATH}>
+                Tüm hesaplamalar →
+              </Link>
+            </div>
+          </section>
+        )}
         {(locale === "tr" || locale === "en" || locale === "de") && (
           <section className="directory-section" id={locale === "tr" ? "zaman-araclari" : locale === "de" ? "kalender" : "time-tools"}>
             <header className="directory-section-header">
@@ -2130,6 +2155,13 @@ export default function HomeDirectory({
               </div>
             </section>
           ))}
+        {locale === "de" && (
+          <div className="directory-section-footer">
+            <Link className="directory-category-guide" href={GERMAN_TOOL_HUB_PATH}>
+              Alle Rechner →
+            </Link>
+          </div>
+        )}
         {locale === "en" && (
           <section className="directory-section" id="calculator-areas">
             <header className="directory-section-header">

@@ -285,3 +285,16 @@ export function getCategoryPathByCategory(category: string) {
     ? `/kategoriler/${categoryPage.slug}`
     : "/tum-birimler";
 }
+
+/**
+ * Başka dildeki kategori sayfasının Türkçe karşılığının adresi. Kaynak alanı
+ * bazen sayfa slug'ı ("uzunluk"), bazen kategori anahtarı ("viskozite_dinamik")
+ * taşır; Türkçe sayfa yoksa null döner ki 404'e link verilmesin.
+ */
+export function turkishCategoryHref(sourceSlug: string) {
+  const page =
+    categoryPages.find((item) => item.slug === sourceSlug) ??
+    findCategoryPageByCategory(sourceSlug);
+
+  return page ? `/kategoriler/${page.slug}` : null;
+}

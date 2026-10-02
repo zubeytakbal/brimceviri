@@ -21,6 +21,7 @@ import {
 import { findArabicUnitPageBySourceSlug } from "../../../converter/localizedArabicUnitPages";
 import { getUnitSources } from "../../../converter/unitSources";
 import { SITE_URL, buildSiteUrl } from "../../../siteConfig";
+import { turkishUnitHref } from "@/app/converter/unitPages";
 
 type PageProps = {
   params: Promise<{
@@ -407,13 +408,15 @@ export default async function ArabicUnitGuidePage({
             <section className="conversion-section language-alternatives">
               <h2>لغات أخرى</h2>
 
-              <Link
-                className="text-link"
-                href={`/birimler/${unitPage.sourceSlug}`}
-                hrefLang="tr"
-              >
-                عرض النسخة التركية
-              </Link>
+              {turkishUnitHref(unitPage.sourceSlug) && (
+                <Link
+                  className="text-link"
+                  href={turkishUnitHref(unitPage.sourceSlug)!}
+                  hrefLang="tr"
+                >
+                  عرض النسخة التركية
+                </Link>
+              )}
 
               <Link
                 className="text-link"

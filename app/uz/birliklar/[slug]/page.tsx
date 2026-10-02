@@ -13,6 +13,7 @@ import {
 } from "../../../components/categoryUnitOptions";
 import { buildFullLanguageAlternates } from "../../../i18n/routing";
 import { buildSiteUrl } from "../../../siteConfig";
+import { turkishUnitHref } from "@/app/converter/unitPages";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -200,10 +201,10 @@ export default async function UzbekUnitPage({ params }: PageProps) {
           {(unitPage.sourceSlug || englishPage) && (
           <section className="conversion-section language-alternatives">
             <h2>Boshqa tillar</h2>
-            {unitPage.sourceSlug && (
+            {turkishUnitHref(unitPage.sourceSlug) && (
               <Link
                 className="text-link"
-                href={`/birimler/${unitPage.sourceSlug}`}
+                href={turkishUnitHref(unitPage.sourceSlug)!}
                 hrefLang="tr"
               >
                 Turkcha versiyani ochish

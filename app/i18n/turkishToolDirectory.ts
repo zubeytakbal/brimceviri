@@ -1,0 +1,326 @@
+// Türkçe araçların tek listesi: /hesaplayicilar hub sayfası, üst menüdeki
+// "Hesaplamalar" ve "Tarih & Saat" açılır menüleri ve ana sayfadaki
+// "Popüler araçlar" bloğu buradan beslenir. Yeni bir Türkçe araç eklenince
+// buraya da eklenmeli; tests/turkishToolDirectory.test.ts eksik ya da kırık
+// adresleri yakalar.
+
+export type ToolLink = { href: string; label: string };
+
+export type ToolGroup = {
+  id: string;
+  title: string;
+  description: string;
+  links: ToolLink[];
+};
+
+export const TURKISH_TOOL_HUB_PATH = "/hesaplayicilar";
+
+export const turkishToolGroups: ToolGroup[] = [
+  {
+    id: "para-ve-is",
+    title: "Para, Maaş ve Vergi",
+    description: "Kredi taksiti, KDV, net maaş, tazminat ve altın gibi günlük para hesapları.",
+    links: [
+      { href: "/kredi-hesaplama", label: "Kredi Hesaplama" },
+      { href: "/kdv-hesaplama", label: "KDV Hesaplama" },
+      { href: "/brutten-nete-maas-hesaplama", label: "Brütten Nete Maaş" },
+      { href: "/kidem-tazminati-hesaplama", label: "Kıdem ve İhbar Tazminatı" },
+      { href: "/yillik-izin-hesaplama", label: "Yıllık İzin Hesaplama" },
+      { href: "/altin-hesaplama", label: "Altın Hesaplama" },
+      { href: "/has-hesaplama", label: "Has Altın ve Gümüş" },
+      { href: "/doviz-cevirici", label: "Döviz Çevirici" },
+      { href: "/emlak-komisyonu-hesaplama", label: "Emlak Komisyonu" },
+      { href: "/amortisman-hesaplama", label: "Amortisman Hesaplama" },
+      { href: "/reklam-metrikleri-hesaplama", label: "Reklam Metrikleri (CPM, CTR, ROI)" },
+      { href: "/uzaktan-calisma-ofis-maliyeti-karsilastirma", label: "Uzaktan Çalışma mı Ofis mi?" },
+    ],
+  },
+  {
+    id: "saglik-ve-spor",
+    title: "Sağlık ve Spor",
+    description: "Vücut kitle indeksi, ideal kilo, gebelik haftası, uyku ve antrenman hesapları.",
+    links: [
+      { href: "/bmi-hesaplama", label: "BMI (Vücut Kitle İndeksi)" },
+      { href: "/ideal-kilo-hesaplama", label: "İdeal Kilo Hesaplama" },
+      { href: "/vucut-yag-orani-hesaplama", label: "Vücut Yağ Oranı" },
+      { href: "/gebelik-haftasi-hesaplama", label: "Gebelik Haftası Hesaplama" },
+      { href: "/uyku-hesaplama", label: "Uyku Hesaplama" },
+      { href: "/kosu-pace-hesaplama", label: "Koşu Pace (Tempo)" },
+      { href: "/1rm-hesaplama", label: "1RM (Bir Tekrar Maksimum)" },
+      { href: "/abv-standart-icki-hesaplama", label: "ABV ve Standart İçki" },
+      { href: "/vucut-yuzey-alani-hesaplama", label: "Vücut Yüzey Alanı (BSA)" },
+    ],
+  },
+  {
+    id: "klinik",
+    title: "Klinik Skorlar",
+    description: "Sağlık profesyonelleri için skorlama ve doz hesapları. Sonuçları klinik değerlendirmeyle birlikte kullanın.",
+    links: [
+      { href: "/glasgow-koma-skalasi-hesaplama", label: "Glasgow Koma Skalası" },
+      { href: "/apgar-skoru-hesaplama", label: "APGAR Skoru" },
+      { href: "/cha2ds2-vasc-skoru-hesaplama", label: "CHA2DS2-VASc Skoru" },
+      { href: "/wells-skoru-hesaplama", label: "Wells Skoru" },
+      { href: "/qsofa-hesaplama", label: "qSOFA" },
+      { href: "/sofa-skoru-hesaplama", label: "SOFA Skoru" },
+      { href: "/meld-skoru-hesaplama", label: "MELD Skoru" },
+      { href: "/morse-dusme-skalasi-hesaplama", label: "Morse Düşme Skalası" },
+      { href: "/braden-skalasi-hesaplama", label: "Braden Skalası" },
+      { href: "/kreatinin-klirensi-hesaplama", label: "Kreatinin Klirensi" },
+      { href: "/iv-damla-hizi-hesaplama", label: "IV Damla Hızı" },
+      { href: "/veteriner-ilac-dozu-hesaplama", label: "Veteriner İlaç Dozu" },
+    ],
+  },
+  {
+    id: "tarih",
+    title: "Tarih ve Takvim",
+    description: "Yaş, iki tarih arası gün, iş günü, hafta numarası, tatiller ve takvim çevirileri.",
+    links: [
+      { href: "/yas-hesaplama", label: "Yaş Hesaplama" },
+      { href: "/iki-tarih-arasi-gun-hesaplama", label: "İki Tarih Arası Gün" },
+      { href: "/tarihe-gun-ekleme", label: "Tarihe Gün Ekleme" },
+      { href: "/is-gunu-hesaplama", label: "İş Günü Hesaplama" },
+      { href: "/kacinci-hafta", label: "Yılın Kaçıncı Haftası" },
+      { href: "/dogdugum-gun-hangi-gun", label: "Doğduğum Gün Hangi Gün" },
+      { href: "/geri-sayim", label: "Geri Sayım (Kaç Gün Kaldı)" },
+      { href: "/takvim", label: "Türkiye Takvimi" },
+      { href: "/resmi-tatiller", label: "Resmî Tatiller" },
+      { href: "/okul-takvimi", label: "Okul Takvimi" },
+      { href: "/ozel-gunler", label: "Özel Günler" },
+      { href: "/hicri-takvim", label: "Hicri Takvim" },
+      { href: "/tarih-cevirici", label: "Hicri Rumi Miladi Tarih Çevirici" },
+      { href: "/ay-evreleri", label: "Ay Evreleri" },
+      { href: "/firtina-takvimi", label: "Fırtına Takvimi" },
+    ],
+  },
+  {
+    id: "saat",
+    title: "Saat ve Zamanlayıcı",
+    description: "Dünya saatleri, saat dilimi çevirici, geri sayım sayacı, kronometre ve alarm.",
+    links: [
+      { href: "/dunya-saatleri", label: "Dünya Saatleri" },
+      { href: "/saat-dilimi-cevirici", label: "Saat Dilimi Çevirici" },
+      { href: "/online-saat", label: "Online Saat" },
+      { href: "/zamanlayici", label: "Online Zamanlayıcı" },
+      { href: "/kronometre", label: "Kronometre" },
+      { href: "/online-alarm-kur", label: "Online Alarm Kur" },
+      { href: "/pomodoro", label: "Pomodoro Zamanlayıcı" },
+      { href: "/tabata-zamanlayici", label: "Tabata / HIIT Zamanlayıcı" },
+      { href: "/yerel-saat-hesaplama", label: "Yerel Saat Farkı" },
+      { href: "/unix-zaman-damgasi-cevirici", label: "Unix Zaman Damgası" },
+    ],
+  },
+  {
+    id: "ev-ve-yapi",
+    title: "Ev, İnşaat ve Bahçe",
+    description: "Boya, fayans, beton ve tuğla miktarından tarla dönümüne, havuz ve sulamaya kadar.",
+    links: [
+      { href: "/boya-hesaplama", label: "Boya Hesaplama" },
+      { href: "/fayans-hesaplama", label: "Fayans Hesaplama" },
+      { href: "/parke-hesaplama", label: "Parke (Laminat) Hesaplama" },
+      { href: "/duvar-kagidi-hesaplama", label: "Duvar Kağıdı Hesaplama" },
+      { href: "/beton-hesaplama", label: "Beton Hesaplama" },
+      { href: "/tugla-hesaplama", label: "Tuğla Hesaplama" },
+      { href: "/siva-hesaplama", label: "Sıva Hesaplama" },
+      { href: "/merdiven-hesaplama", label: "Merdiven Hesaplama" },
+      { href: "/mantolama-hesaplama", label: "Mantolama Hesaplama" },
+      { href: "/hafriyat-hesaplama", label: "Hafriyat ve Kazı" },
+      { href: "/kereste-hesaplama", label: "Kereste Metreküp" },
+      { href: "/emsal-kaks-hesaplama", label: "Emsal (KAKS) Hesaplama" },
+      { href: "/tarla-donum-hesaplama", label: "Tarla Dönüm Hesaplama" },
+      { href: "/tasinma-kutusu-hesaplama", label: "Taşınma Kutusu Hesaplama" },
+      { href: "/havuz-hacmi-hesaplama", label: "Havuz Hacmi" },
+      { href: "/klor-dozaji-hesaplama", label: "Klor Dozajı (Havuz)" },
+      { href: "/sulama-suresi-hesaplama", label: "Sulama Süresi" },
+      { href: "/gubre-ihtiyaci-hesaplama", label: "Gübre İhtiyacı" },
+      { href: "/gubre-seyreltme-hesaplama", label: "Gübre Seyreltme" },
+      { href: "/tohum-miktari-hesaplama", label: "Tohum Miktarı" },
+    ],
+  },
+  {
+    id: "enerji-ve-arac",
+    title: "Enerji, Fatura ve Araç",
+    description: "Elektrik ve doğalgaz tüketimi, klima BTU, yakıt, LPG ve elektrikli araç hesapları.",
+    links: [
+      { href: "/elektrik-tuketimi-hesaplama", label: "Elektrik Tüketimi" },
+      { href: "/dogalgaz-tuketimi-hesaplama", label: "Doğalgaz Tüketimi" },
+      { href: "/klima-btu-hesaplama", label: "Klima BTU Hesaplama" },
+      { href: "/kombi-klima-isitma-maliyeti-karsilastirma", label: "Kombi mi Klima mı?" },
+      { href: "/isi-pompasi-kombi-karsilastirma", label: "Isı Pompası mı Kombi mi?" },
+      { href: "/led-ampul-tasarruf-hesaplama", label: "LED Ampul Tasarrufu" },
+      { href: "/gunes-paneli-amortisman-hesaplama", label: "Güneş Paneli Amortismanı" },
+      { href: "/yalitim-amortisman-hesaplama", label: "Yalıtım Amortismanı" },
+      { href: "/yakit-tuketimi-hesaplama", label: "Yakıt Tüketimi Hesaplama" },
+      { href: "/lpg-donusum-amortisman-hesaplama", label: "LPG Dönüşüm Amortismanı" },
+      { href: "/elektrikli-arac-sarj-hesaplama", label: "Elektrikli Araç Şarj Süresi" },
+      { href: "/elektrikli-arac-maliyet-karsilastirma", label: "Elektrikli mi Benzinli mi?" },
+      { href: "/lastik-ebati-hesaplama", label: "Lastik Ebatı Hesaplama" },
+      { href: "/ehliyet-sinifi-bulma", label: "Ehliyet Sınıfı Bulma" },
+      { href: "/ehliyet-yenileme-suresi-hesaplama", label: "Ehliyet Yenileme Süresi" },
+    ],
+  },
+  {
+    id: "olcu-ve-gunluk",
+    title: "Mutfak, Beden ve Okul",
+    description: "Mutfak ölçüleri, tarif ölçekleme, ayakkabı ve beden numarası, not ve devamsızlık.",
+    links: [
+      { href: "/mutfak-olculeri-cevirici", label: "Mutfak Ölçüleri Çevirici" },
+      { href: "/tarif-cevirici", label: "Tarif Çevirici" },
+      { href: "/kokteyl-olcusu-cevirici", label: "Kokteyl Ölçüsü Çevirici" },
+      { href: "/alkol-seyreltme-hesaplama", label: "Alkol Seyreltme" },
+      { href: "/ayakkabi-numarasi-cevirme", label: "Ayakkabı Numarası Çevirme" },
+      { href: "/beden-olcusu-cevirici", label: "Beden Ölçüsü Çevirici" },
+      { href: "/yuzuk-olcusu-cevirici", label: "Yüzük Ölçüsü Çevirici" },
+      { href: "/seyahat-priz-voltaj-hesaplama", label: "Seyahat Priz ve Voltaj" },
+      { href: "/devamsizlik-hesaplama", label: "Devamsızlık Hesaplama" },
+      { href: "/harf-notu-hesaplama", label: "Harf Notu Hesaplama" },
+      { href: "/agirlik-karsilastirma", label: "Ağırlık Karşılaştırma" },
+      { href: "/uzunluk-karsilastirma", label: "Uzunluk Karşılaştırma" },
+    ],
+  },
+  {
+    id: "dosya-ve-gorsel",
+    title: "Dosya ve Görsel Araçları",
+    description: "Fotoğraf küçültme, kırpma ve format çevirme. Dosyalar yüklenmez, tarayıcıda işlenir.",
+    links: [
+      { href: "/dosya-araclari", label: "Tüm Dosya Araçları" },
+      { href: "/fotograf-boyutu-kucultme", label: "Fotoğraf Boyutu Küçültme" },
+      { href: "/e-okul-fotograf-kucultme", label: "e-Okul Fotoğraf Küçültme" },
+      { href: "/biyometrik-fotograf", label: "Biyometrik Fotoğraf" },
+      { href: "/resim-boyutlandirma", label: "Resim Boyutlandırma" },
+      { href: "/fotograf-kirpma", label: "Fotoğraf Kırpma" },
+      { href: "/gorsel-donusturucu", label: "Görsel Dönüştürücü" },
+      { href: "/heic-jpg-cevirme", label: "HEIC JPG Çevirme" },
+      { href: "/jpg-png-cevirme", label: "JPG PNG Çevirme" },
+      { href: "/png-jpg-cevirme", label: "PNG JPG Çevirme" },
+      { href: "/jpg-webp-cevirme", label: "JPG WebP Çevirme" },
+      { href: "/webp-jpg-cevirme", label: "WebP JPG Çevirme" },
+      { href: "/png-webp-cevirme", label: "PNG WebP Çevirme" },
+      { href: "/webp-png-cevirme", label: "WebP PNG Çevirme" },
+      { href: "/fotografa-filigran-ekleme", label: "Fotoğrafa Filigran Ekleme" },
+      { href: "/fotograf-bulaniklastirma", label: "Fotoğraf Bulanıklaştırma" },
+      { href: "/fotograf-konum-bilgisi-silme", label: "Konum Bilgisi (EXIF) Silme" },
+      { href: "/sosyal-medya-gorsel-boyutlari-hesaplama", label: "Sosyal Medya Görsel Boyutları" },
+      { href: "/piksel-cm-dpi-hesaplama", label: "Piksel, CM ve DPI" },
+      { href: "/renk-kodu-cevirici", label: "Renk Kodu Çevirici" },
+    ],
+  },
+  {
+    id: "teknik",
+    title: "Teknik ve Mühendislik",
+    description: "Elektrik, tesisat, kaynak, talaşlı imalat, malzeme, fotoğraf ve ses teknik hesapları.",
+    links: [
+      { href: "/muhendislik-hesaplayicilari", label: "Mühendislik Hesaplayıcıları" },
+      { href: "/bilim-hesaplayicilari", label: "Bilim Hesaplayıcıları" },
+      { href: "/awg-mm2-cevirici", label: "AWG - mm² Çevirici" },
+      { href: "/boru-capi-hesaplama", label: "Boru Çapı, Debi ve Akış Hızı" },
+      { href: "/boru-capi-donusum-hesaplama", label: "Boru Çapı Dönüşümü (DN-NPS)" },
+      { href: "/basinc-kaybi-hesaplama", label: "Basınç Kaybı" },
+      { href: "/civata-torku-hesaplama", label: "Cıvata Torku" },
+      { href: "/kaynak-amperaji-hesaplama", label: "Kaynak Amperajı" },
+      { href: "/kaynak-isi-girdisi-hesaplama", label: "Kaynak Isı Girdisi" },
+      { href: "/kesme-hizi-devir-hesaplama", label: "Kesme Hızı - Devir" },
+      { href: "/isil-genlesme-hesaplama", label: "Isıl Genleşme" },
+      { href: "/elastik-uzama-hesaplama", label: "Elastik Uzama" },
+      { href: "/sertlik-donusum-hesaplama", label: "Sertlik Dönüşümü" },
+      { href: "/malzeme-agirligi-hesaplama", label: "Malzeme Ağırlığı" },
+      { href: "/malzeme-ozellikleri", label: "Malzeme Özellikleri" },
+      { href: "/superheat-subcooling-hesaplama", label: "Superheat ve Subcooling" },
+      { href: "/psu-guc-hesaplama", label: "PSU Güç Kaynağı" },
+      { href: "/cbm-hesaplama", label: "CBM ve Hacimsel Ağırlık" },
+      { href: "/anten-uzunlugu-hesaplama", label: "Anten Uzunluğu" },
+      { href: "/sayi-tabani-cevirici", label: "Sayı Tabanı Çevirici" },
+      { href: "/ping-gecikme-hesaplama", label: "Ping / Gecikme" },
+      { href: "/video-bit-hizi-hesaplama", label: "Video Bit Hızı" },
+      { href: "/bpm-ms-hesaplama", label: "BPM - MS" },
+      { href: "/odak-uzakligi-esdegeri-hesaplama", label: "Odak Uzaklığı Eşdeğeri" },
+      { href: "/pozlama-esdegeri-hesaplama", label: "Pozlama Eşdeğeri" },
+      { href: "/altin-saat", label: "Altın Saat ve Mavi Saat" },
+    ],
+  },
+  {
+    id: "harita-ve-havacilik",
+    title: "Harita, Coğrafya ve Havacılık",
+    description: "İller arası mesafe, rakım, koordinat, harita ölçeği ve uçuş hesapları.",
+    links: [
+      { href: "/iller-arasi-mesafe", label: "İller Arası Mesafe" },
+      { href: "/il-rakimlari", label: "İllerin Rakımı" },
+      { href: "/il-rakimi-karsilastirma", label: "İl Rakımı Karşılaştırma" },
+      { href: "/turkiye-il-haritasi", label: "Türkiye İl Haritası" },
+      { href: "/dunya-haritasi", label: "Dünya Haritası" },
+      { href: "/ulkeler", label: "Ülkeler ve Başkentleri" },
+      { href: "/koordinat-donusturucu", label: "Koordinat Dönüştürücü" },
+      { href: "/harita-olcegi-hesaplama", label: "Harita Ölçeği" },
+      { href: "/buyuk-daire-mesafesi-hesaplama", label: "Büyük Daire Mesafesi" },
+      { href: "/dunyanin-en-yuksek-daglari", label: "Dünyanın En Yüksek Dağları" },
+      { href: "/gokcisimleri-ozellikleri", label: "Gökcisimleri" },
+      { href: "/erime-kaynama-noktasi-hesaplama", label: "Erime ve Kaynama Noktası" },
+      { href: "/yogunluk-irtifasi-hesaplama", label: "Yoğunluk İrtifası" },
+      { href: "/yan-ruzgar-hesaplama", label: "Yan Rüzgar Bileşeni" },
+      { href: "/inis-orani-hesaplama", label: "İniş Oranı" },
+      { href: "/agirlik-denge-hesaplama", label: "Ağırlık ve Denge" },
+      { href: "/seyir-suresi-hesaplama", label: "Seyir Süresi" },
+    ],
+  },
+];
+
+const byHref = new Map(
+  turkishToolGroups.flatMap((group) => group.links.map((link) => [link.href, link] as const))
+);
+
+function pick(hrefs: string[]): ToolLink[] {
+  return hrefs.map((href) => {
+    const link = byHref.get(href);
+    if (!link) throw new Error(`turkishToolDirectory: ${href} listede yok`);
+    return link;
+  });
+}
+
+/** Üst menü "Hesaplamalar": Search Console'da en çok gösterim alan araçlar önde. */
+export const turkishCalculatorMenu = pick([
+  "/yas-hesaplama",
+  "/kredi-hesaplama",
+  "/kdv-hesaplama",
+  "/brutten-nete-maas-hesaplama",
+  "/kidem-tazminati-hesaplama",
+  "/altin-hesaplama",
+  "/bmi-hesaplama",
+  "/uyku-hesaplama",
+  "/gebelik-haftasi-hesaplama",
+  "/yakit-tuketimi-hesaplama",
+  "/boya-hesaplama",
+  "/fayans-hesaplama",
+  "/elektrik-tuketimi-hesaplama",
+  "/muhendislik-hesaplayicilari",
+]);
+
+/** Üst menü "Tarih & Saat". */
+export const turkishTimeMenu = pick([
+  "/dunya-saatleri",
+  "/saat-dilimi-cevirici",
+  "/online-saat",
+  "/zamanlayici",
+  "/kronometre",
+  "/online-alarm-kur",
+  "/iki-tarih-arasi-gun-hesaplama",
+  "/kacinci-hafta",
+  "/takvim",
+  "/resmi-tatiller",
+  "/geri-sayim",
+  "/pomodoro",
+]);
+
+/** Ana sayfadaki "Popüler araçlar" bloğu. */
+export const turkishPopularTools = pick([
+  "/yas-hesaplama",
+  "/kredi-hesaplama",
+  "/uyku-hesaplama",
+  "/kdv-hesaplama",
+  "/brutten-nete-maas-hesaplama",
+  "/altin-hesaplama",
+  "/bmi-hesaplama",
+  "/mutfak-olculeri-cevirici",
+  "/yakit-tuketimi-hesaplama",
+  "/fayans-hesaplama",
+  "/boya-hesaplama",
+  "/fotograf-boyutu-kucultme",
+]);

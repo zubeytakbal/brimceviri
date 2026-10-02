@@ -2003,3 +2003,10 @@ export function findUnitPage(category: string, unit: string) {
     (unitPage) => unitPage.category === category && unitPage.unit === unit
   );
 }
+
+/** Türkçe birim rehberi sayfası varsa adresi, yoksa null (404 link vermemek için). */
+export function turkishUnitHref(slug: string | undefined) {
+  return slug && unitPages.some((page) => page.slug === slug)
+    ? `/birimler/${slug}`
+    : null;
+}

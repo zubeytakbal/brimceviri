@@ -209,10 +209,10 @@ export default async function NederlandsCategoryPage({ params }: PageProps) {
 
         <section className="conversion-section language-alternatives">
           <h2>Andere talen</h2>
-          <Link className="text-link" href="/kategoriler" hrefLang="tr">
+          <Link className="text-link" href="/tum-birimler" hrefLang="tr">
             Open de Turkse categorieën
           </Link>
-          <Link className="text-link" href="/en/categories" hrefLang="en">
+          <Link className="text-link" href="/en/all-conversions" hrefLang="en">
             Open de Engelse categorieën
           </Link>
         </section>

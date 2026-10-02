@@ -2723,6 +2723,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
+      url: `${baseUrl}/hesaplayicilar`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/de/rechner`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/insaatci-araclari`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
@@ -3077,7 +3089,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         ...(page?.trPath ? { alternates: buildLanguageAlternates({ tr: page.trPath, de: page.path }, "tr") } : {}),
       };
     }),
-    ...["/de/brutto-netto-rechner", "/de/mutterschutzrechner", "/de/arbeitszeitrechner", "/de/grunderwerbsteuer-rechner", "/de/kuendigungsfrist-rechner", "/de/prozentrechner", "/de/dreisatz-rechner", "/de/notenrechner", "/de/pendlerpauschale-rechner", "/de/urlaubsrechner"].map((path) => ({
+    ...["/de/brutto-netto-rechner", "/de/zinseszinsrechner", "/de/mutterschutzrechner", "/de/arbeitszeitrechner", "/de/grunderwerbsteuer-rechner", "/de/kuendigungsfrist-rechner", "/de/prozentrechner", "/de/dreisatz-rechner", "/de/notenrechner", "/de/pendlerpauschale-rechner", "/de/urlaubsrechner"].map((path) => ({
       url: `${baseUrl}${path}`,
       lastModified: contentLastModified,
       changeFrequency: "monthly" as const,

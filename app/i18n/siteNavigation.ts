@@ -11,6 +11,17 @@ import {
 } from "./routing";
 import { englishCalculatorMenuLinks } from "./englishCalculatorHubs";
 import { englishConversionMenuCategoryOrder } from "./englishCategoryPresentation";
+import { findCategoryPageByCategory } from "../converter/categoryPages";
+import {
+  TURKISH_TOOL_HUB_PATH,
+  turkishCalculatorMenu,
+  turkishTimeMenu,
+} from "./turkishToolDirectory";
+import {
+  GERMAN_TOOL_HUB_PATH,
+  germanCalculatorMenu,
+  germanTimeMenu,
+} from "./germanToolDirectory";
 
 type SiteHeaderCopy = {
   navAriaLabel: string;
@@ -114,7 +125,7 @@ const categoryLabels: Record<
     gumus_ayar: "Silver Purity",
   },
   de: {
-    uzunluk: "Lange",
+    uzunluk: "Länge",
     alan: "Fläche",
     hacim: "Volumen",
     kutle: "Masse",
@@ -939,6 +950,21 @@ export function getTopLevelLinks(locale: Locale): LinkDefinition[] {
     ];
   }
 
+  // Türkçede hesaplayıcılar, birim rehberi ve tüm dönüşümler açılır
+  // menülerin içinde (getMenuGroups); üst satırda yalnızca bunlar kalır.
+  // Almancada da rechner, birim rehberi ve tüm dönüşümler açılır menülerde.
+  if (locale === "de") {
+    return [{ href: "/de", label: labels.home }];
+  }
+
+  if (locale === "tr") {
+    return [
+      { href: "/", label: labels.home },
+      { href: "/dosya-araclari", label: "Dosya Araçları" },
+      { href: getStaticPath(locale, "professions"), label: labels.professions },
+    ];
+  }
+
   return [
     {
       href: getStaticPath(locale, "home"),
@@ -956,14 +982,6 @@ export function getTopLevelLinks(locale: Locale): LinkDefinition[] {
       href: getStaticPath(locale, "allConversions"),
       label: labels.allConversions,
     },
-    ...(locale === "tr"
-      ? [
-          {
-            href: getStaticPath(locale, "professions"),
-            label: labels.professions,
-          },
-        ]
-      : []),
   ];
 }
 
@@ -1009,7 +1027,7 @@ export function getCategoryMenuLinks(locale: Locale) {
       locale === "en"
         ? "Shoe Size"
         : locale === "de"
-          ? "Schuhgroessen"
+          ? "Schuhgrößen"
           : locale === "ar"
             ? "مقاسات الأحذية"
             : locale === "bn"
@@ -1038,7 +1056,7 @@ export function getCategoryMenuLinks(locale: Locale) {
       locale === "en"
         ? "Kitchen Measures"
         : locale === "de"
-          ? "Kuechenmasse"
+          ? "Küchenmaße"
           : locale === "ar"
             ? "مقاييس المطبخ"
             : locale === "bn"
@@ -1067,7 +1085,7 @@ export function getCategoryMenuLinks(locale: Locale) {
       locale === "en"
         ? "Recipe Converter"
         : locale === "de"
-          ? "Rezept Umrechner"
+          ? "Rezept-Umrechner"
           : locale === "ar"
             ? "محول الوصفات"
             : locale === "bn"
@@ -1124,4 +1142,129 @@ export function getFooterLanguageLinks() {
     href: getLocaleDefinition(locale).homePath,
     label: getLocaleDefinition(locale).switcherLabel,
   }));
+}
+
+export type MenuGroup = {
+  id: string;
+  label: string;
+  links: LinkDefinition[];
+  /** Açılır menünün altındaki "Tümü →" bağlantıları. */
+  footer?: LinkDefinition[];
+};
+
+// Türkçe "Dönüşümler" menüsünde yalnızca çok aranan kategoriler; geri
+// kalanlar (momentum, endüktans...) "Tüm dönüşümler" sayfasından erişilir.
+const turkishMenuCategories = [
+  "uzunluk",
+  "alan",
+  "hacim",
+  "kutle",
+  "sicaklik",
+  "zaman",
+  "hiz",
+  "basinc",
+  "enerji",
+  "veri",
+  "elektrik",
+  "altin_ayar",
+] as const;
+
+function getTurkishMenuGroups(): MenuGroup[] {
+  const conversionLinks: LinkDefinition[] = turkishMenuCategories.flatMap((category) => {
+    const page = findCategoryPageByCategory(category);
+    return page ? [{ href: `/kategoriler/${page.slug}`, label: categoryLabels.tr[category] }] : [];
+  });
+
+  return [
+    {
+      id: "conversions",
+      label: "Dönüşümler",
+      links: [
+        ...conversionLinks,
+        { href: "/mutfak-olculeri-cevirici", label: "Mutfak Ölçüleri" },
+        { href: "/ayakkabi-numarasi-cevirme", label: "Ayakkabı Numarası" },
+        { href: "/doviz-cevirici", label: "Döviz Çevirici" },
+      ],
+      footer: [
+        { href: "/tum-birimler", label: "Tüm dönüşümler →" },
+        { href: "/birimler", label: "Birim rehberi →" },
+      ],
+    },
+    {
+      id: "calculators",
+      label: "Hesaplamalar",
+      links: turkishCalculatorMenu,
+      footer: [{ href: TURKISH_TOOL_HUB_PATH, label: "Tüm hesaplamalar →" }],
+    },
+    {
+      id: "time",
+      label: "Tarih & Saat",
+      links: turkishTimeMenu,
+      footer: [{ href: `${TURKISH_TOOL_HUB_PATH}#tarih`, label: "Tüm tarih ve saat araçları →" }],
+    },
+  ];
+}
+
+function getGermanMenuGroups(): MenuGroup[] {
+  const summaries = getLocalizedCategorySummaries("de");
+  const basePath = getCollectionBasePath("de", "categories").slice(0, -1);
+  const conversionLinks: LinkDefinition[] = turkishMenuCategories.flatMap((category) => {
+    const summary = summaries.find((item) => item.category === category);
+    return summary ? [{ href: `${basePath}/${summary.slug}`, label: categoryLabels.de[category] }] : [];
+  });
+
+  return [
+    {
+      id: "conversions",
+      label: "Umrechnungen",
+      links: [
+        ...conversionLinks,
+        { href: "/de/kuechenmass-umrechner", label: "Küchenmaße" },
+        { href: "/de/schuhgroessen-umrechner", label: "Schuhgrößen" },
+        { href: "/de/waehrungsrechner", label: "Währungsrechner" },
+      ],
+      footer: [
+        { href: "/de/alle-umrechnungen", label: "Alle Umrechnungen →" },
+        { href: "/de/einheiten", label: "Einheitenleitfaden →" },
+      ],
+    },
+    {
+      id: "calculators",
+      label: "Rechner",
+      links: germanCalculatorMenu,
+      footer: [{ href: GERMAN_TOOL_HUB_PATH, label: "Alle Rechner →" }],
+    },
+    {
+      id: "time",
+      label: "Kalender & Uhr",
+      links: germanTimeMenu,
+      footer: [{ href: `${GERMAN_TOOL_HUB_PATH}#kalender`, label: "Alle Kalender- und Uhr-Tools →" }],
+    },
+  ];
+}
+
+/** Üst menüdeki açılır gruplar (masaüstü açılır menü, mobilde akordeon). */
+export function getMenuGroups(locale: Locale): MenuGroup[] {
+  if (locale === "tr") {
+    return getTurkishMenuGroups();
+  }
+
+  if (locale === "de") {
+    return getGermanMenuGroups();
+  }
+
+  const groups: MenuGroup[] = [
+    {
+      id: "conversions",
+      label: getSiteHeaderCopy(locale).conversionsLabel,
+      links: getCategoryMenuLinks(locale),
+    },
+  ];
+
+  const calculatorLinks = getCalculatorMenuLinks(locale);
+  if (calculatorLinks.length > 0) {
+    groups.push({ id: "calculators", label: "Calculators", links: calculatorLinks });
+  }
+
+  return groups;
 }

@@ -5,10 +5,10 @@ import { usePathname } from "next/navigation";
 import { useEffect, useId, useState } from "react";
 import { getLocaleFromPathname } from "../i18n/config";
 import {
-  getCalculatorMenuLinks,
-  getCategoryMenuLinks,
+  getMenuGroups,
   getSiteHeaderCopy,
   getTopLevelLinks,
+  type MenuGroup,
 } from "../i18n/siteNavigation";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useNotificationSlot } from "./NotificationSlotProvider";
@@ -32,17 +32,14 @@ function SiteHeaderNavigation({
   pathname: string;
 }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isConversionsOpen, setIsConversionsOpen] = useState(false);
-  const [isCalculatorsOpen, setIsCalculatorsOpen] = useState(false);
+  const [openGroup, setOpenGroup] = useState<string | null>(null);
   const { setSlotElement } = useNotificationSlot();
   const menuId = useId();
-  const conversionsMenuId = useId();
-  const calculatorsMenuId = useId();
+  const groupIdPrefix = useId();
 
   const locale = getLocaleFromPathname(pathname);
   const topLevelLinks: HeaderLink[] = getTopLevelLinks(locale);
-  const categoryLinks: HeaderLink[] = getCategoryMenuLinks(locale);
-  const calculatorLinks: HeaderLink[] = getCalculatorMenuLinks(locale);
+  const menuGroups: MenuGroup[] = getMenuGroups(locale);
   const headerCopy = getSiteHeaderCopy(locale);
   const homeHref = topLevelLinks[0]?.href ?? "/";
 
@@ -50,8 +47,7 @@ function SiteHeaderNavigation({
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
         setIsMenuOpen(false);
-        setIsConversionsOpen(false);
-        setIsCalculatorsOpen(false);
+        setOpenGroup(null);
       }
     }
 
@@ -61,6 +57,9 @@ function SiteHeaderNavigation({
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
+
+  const toggleGroup = (id: string) =>
+    setOpenGroup((current) => (current === id ? null : id));
 
   return (
     <header className={`site-header site-header--${locale}`}>
@@ -89,62 +88,54 @@ function SiteHeaderNavigation({
         >
           <Link href={topLevelLinks[0].href}>{topLevelLinks[0].label}</Link>
 
-          <div className="site-nav-group">
-            <button
-              type="button"
-              className="site-nav-toggle"
-              aria-expanded={isConversionsOpen}
-              aria-controls={conversionsMenuId}
-              onClick={() => {
-                setIsConversionsOpen((open) => !open);
-                setIsCalculatorsOpen(false);
-              }}
-            >
-              {headerCopy.conversionsLabel}
-            </button>
+          {menuGroups.map((group) => {
+            const isOpen = openGroup === group.id;
+            const panelId = `${groupIdPrefix}-${group.id}`;
 
-            <div
-              id={conversionsMenuId}
-              className={`site-nav-dropdown${isConversionsOpen ? " is-open" : ""}`}
-            >
-              {categoryLinks.map((link) => (
-                <Link
-                  href={link.href}
-                  key={`${link.label}-${link.href}`}
-                  onClick={() => setIsConversionsOpen(false)}
+            return (
+              <div className="site-nav-group" key={group.id}>
+                <button
+                  type="button"
+                  className="site-nav-toggle"
+                  aria-expanded={isOpen}
+                  aria-controls={panelId}
+                  onClick={() => toggleGroup(group.id)}
                 >
-                  {link.label}
-                </Link>
-              ))}
-            </div>
-          </div>
+                  {group.label}
+                </button>
 
-          {calculatorLinks.length > 0 && (
-            <div className="site-nav-group">
-              <button
-                type="button"
-                className="site-nav-toggle"
-                aria-expanded={isCalculatorsOpen}
-                aria-controls={calculatorsMenuId}
-                onClick={() => {
-                  setIsCalculatorsOpen((open) => !open);
-                  setIsConversionsOpen(false);
-                }}
-              >
-                Calculators
-              </button>
-              <div
-                id={calculatorsMenuId}
-                className={`site-nav-dropdown${isCalculatorsOpen ? " is-open" : ""}`}
-              >
-                {calculatorLinks.map((link) => (
-                  <Link href={link.href} key={`${link.label}-${link.href}`} onClick={() => setIsCalculatorsOpen(false)}>
-                    {link.label}
-                  </Link>
-                ))}
+                <div
+                  id={panelId}
+                  className={`site-nav-dropdown${
+                    group.links.length > 9 ? " site-nav-dropdown--columns" : ""
+                  }${isOpen ? " is-open" : ""}`}
+                >
+                  {group.links.map((link) => (
+                    <Link
+                      href={link.href}
+                      key={`${link.label}-${link.href}`}
+                      onClick={() => setOpenGroup(null)}
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                  {group.footer && (
+                    <div className="site-nav-dropdown-footer">
+                      {group.footer.map((link) => (
+                        <Link
+                          href={link.href}
+                          key={`footer-${link.href}`}
+                          onClick={() => setOpenGroup(null)}
+                        >
+                          {link.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
-          )}
+            );
+          })}
 
           {topLevelLinks.slice(1).map((link) => (
             <Link href={link.href} key={`${link.label}-${link.href}`}>
@@ -169,80 +160,55 @@ function SiteHeaderNavigation({
             {topLevelLinks[0].label}
           </Link>
 
-          <div className="site-mobile-accordion">
-            <button
-              type="button"
-              className="site-mobile-accordion-toggle"
-              aria-expanded={isConversionsOpen}
-              aria-controls={`${conversionsMenuId}-mobile`}
-              onClick={() => {
-                setIsConversionsOpen((open) => !open);
-                setIsCalculatorsOpen(false);
-              }}
-            >
-              <span>{headerCopy.conversionsLabel}</span>
-              <span aria-hidden="true">
-                {isConversionsOpen ? "\u2212" : "+"}
-              </span>
-            </button>
+          {menuGroups.map((group) => {
+            const isOpen = openGroup === group.id;
+            const panelId = `${groupIdPrefix}-${group.id}-mobile`;
+            const closeAll = () => {
+              setIsMenuOpen(false);
+              setOpenGroup(null);
+            };
 
-            <div
-              id={`${conversionsMenuId}-mobile`}
-              className={`site-mobile-accordion-panel${
-                isConversionsOpen ? " is-open" : ""
-              }`}
-              hidden={!isConversionsOpen}
-            >
-              {categoryLinks.map((link) => (
-                <Link
-                  href={link.href}
-                  key={`mobile-category-${link.label}-${link.href}`}
-                  onClick={() => {
-                    setIsMenuOpen(false);
-                    setIsConversionsOpen(false);
-                  }}
+            return (
+              <div className="site-mobile-accordion" key={group.id}>
+                <button
+                  type="button"
+                  className="site-mobile-accordion-toggle"
+                  aria-expanded={isOpen}
+                  aria-controls={panelId}
+                  onClick={() => toggleGroup(group.id)}
                 >
-                  {link.label}
-                </Link>
-              ))}
-            </div>
-          </div>
+                  <span>{group.label}</span>
+                  <span aria-hidden="true">{isOpen ? "\u2212" : "+"}</span>
+                </button>
 
-          {calculatorLinks.length > 0 && (
-            <div className="site-mobile-accordion">
-              <button
-                type="button"
-                className="site-mobile-accordion-toggle"
-                aria-expanded={isCalculatorsOpen}
-                aria-controls={`${calculatorsMenuId}-mobile`}
-                onClick={() => {
-                  setIsCalculatorsOpen((open) => !open);
-                  setIsConversionsOpen(false);
-                }}
-              >
-                <span>Calculators</span>
-                <span aria-hidden="true">{isCalculatorsOpen ? "\u2212" : "+"}</span>
-              </button>
-              <div
-                id={`${calculatorsMenuId}-mobile`}
-                className={`site-mobile-accordion-panel${isCalculatorsOpen ? " is-open" : ""}`}
-                hidden={!isCalculatorsOpen}
-              >
-                {calculatorLinks.map((link) => (
-                  <Link
-                    href={link.href}
-                    key={`mobile-calculator-${link.label}-${link.href}`}
-                    onClick={() => {
-                      setIsMenuOpen(false);
-                      setIsCalculatorsOpen(false);
-                    }}
-                  >
-                    {link.label}
-                  </Link>
-                ))}
+                <div
+                  id={panelId}
+                  className={`site-mobile-accordion-panel${isOpen ? " is-open" : ""}`}
+                  hidden={!isOpen}
+                >
+                  {group.links.map((link) => (
+                    <Link
+                      href={link.href}
+                      key={`mobile-${group.id}-${link.label}-${link.href}`}
+                      onClick={closeAll}
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                  {group.footer?.map((link) => (
+                    <Link
+                      href={link.href}
+                      key={`mobile-footer-${link.href}`}
+                      className="site-mobile-accordion-more"
+                      onClick={closeAll}
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
               </div>
-            </div>
-          )}
+            );
+          })}
 
           {topLevelLinks.slice(1).map((link) => (
             <Link

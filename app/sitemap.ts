@@ -2723,6 +2723,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
+      url: `${baseUrl}/hesaplayicilar`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/insaatci-araclari`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",

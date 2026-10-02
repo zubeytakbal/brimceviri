@@ -9,6 +9,7 @@ import { findEnglishUnitPageByTurkishSlug } from "../../../converter/localizedUn
 import { getUnitSources } from "../../../converter/unitSources";
 import { buildFullLanguageAlternates } from "../../../i18n/routing";
 import { buildSiteUrl } from "../../../siteConfig";
+import { turkishUnitHref } from "@/app/converter/unitPages";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -216,13 +217,15 @@ export default async function BengaliUnitPage({ params }: PageProps) {
 
           <section className="conversion-section language-alternatives">
             <h2>অন্যান্য ভাষা</h2>
-            <Link
-              className="text-link"
-              href={`/birimler/${unitPage.sourceSlug}`}
-              hrefLang="tr"
-            >
-              তুর্কি সংস্করণ খুলুন
-            </Link>
+            {turkishUnitHref(unitPage.sourceSlug) && (
+              <Link
+                className="text-link"
+                href={turkishUnitHref(unitPage.sourceSlug)!}
+                hrefLang="tr"
+              >
+                তুর্কি সংস্করণ খুলুন
+              </Link>
+            )}
             {englishPage && (
               <Link
                 className="text-link"

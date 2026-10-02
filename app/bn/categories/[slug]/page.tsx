@@ -13,6 +13,7 @@ import { findEnglishCategoryPageByTurkishSlug } from "../../../converter/localiz
 import { getUnitSources } from "../../../converter/unitSources";
 import { buildFullLanguageAlternates } from "../../../i18n/routing";
 import { buildSiteUrl } from "../../../siteConfig";
+import { turkishCategoryHref } from "@/app/converter/categoryPages";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -319,13 +320,15 @@ export default async function BengaliCategoryPage({ params }: PageProps) {
 
           <section className="conversion-section language-alternatives">
             <h2>অন্যান্য ভাষা</h2>
-            <Link
-              className="text-link"
-              href={`/kategoriler/${categoryPage.sourceSlug}`}
-              hrefLang="tr"
-            >
-              তুর্কি সংস্করণ খুলুন
-            </Link>
+            {turkishCategoryHref(categoryPage.sourceSlug) && (
+              <Link
+                className="text-link"
+                href={turkishCategoryHref(categoryPage.sourceSlug)!}
+                hrefLang="tr"
+              >
+                তুর্কি সংস্করণ খুলুন
+              </Link>
+            )}
             {englishPage && (
               <Link
                 className="text-link"

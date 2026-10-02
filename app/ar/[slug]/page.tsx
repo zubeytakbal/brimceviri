@@ -735,13 +735,15 @@ function renderConversionPage(slug: string) {
         <section className="conversion-section language-alternatives">
           <h2>لغات أخرى</h2>
 
-          <Link
-            className="text-link"
-            href={`/${page.sourceSlug}`}
-            hrefLang="tr"
-          >
-            عرض النسخة التركية
-          </Link>
+          {!page.isEnglishOnly && (
+            <Link
+              className="text-link"
+              href={`/${page.sourceSlug}`}
+              hrefLang="tr"
+            >
+              عرض النسخة التركية
+            </Link>
+          )}
 
           <Link
             className="text-link"

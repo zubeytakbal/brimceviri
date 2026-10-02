@@ -12,6 +12,8 @@ export const germanRechnerLinks = [
   { href: "/de/kuendigungsfrist-rechner", label: "Kündigungsfrist-Rechner" },
   { href: "/de/mehrwertsteuer-rechner", label: "Mehrwertsteuer-Rechner" },
   { href: "/de/zinseszinsrechner", label: "Zinseszinsrechner" },
+  { href: "/de/kreditrechner", label: "Kreditrechner" },
+  { href: "/de/tilgungsrechner", label: "Tilgungsrechner" },
   { href: "/de/tagerechner", label: "Tagerechner" },
   { href: "/de/waehrungsrechner", label: "Währungsrechner" },
 ];

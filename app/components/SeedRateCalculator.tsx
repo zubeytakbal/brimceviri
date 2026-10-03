@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { ON_AYARLI } from "../converter/ekimNormu";
 import { calculateSeedRate } from "../converter/seedRateCalculator";
 
 function parseNumericValue(value: string): number | null {
@@ -40,9 +41,30 @@ export default function SeedRateCalculator() {
 
   const invalid = Boolean(plantsInput.trim() || tgwInput.trim()) && !result;
 
+  const [urun, setUrun] = useState("");
+  const urunSec = (id: string) => {
+    setUrun(id);
+    const u = ON_AYARLI.find((x) => x.id === id);
+    if (u) {
+      setPlantsInput(String(u.bitki).replace(".", ","));
+      setTgwInput(String(u.bdA).replace(".", ","));
+    }
+  };
+
   return (
     <div className="category-general-converter">
       <div className="paint-calculator-grid">
+        <label className="category-general-converter-field">
+          <span>Ürün (isteğe bağlı, tipik değerleri doldurur)</span>
+          <select value={urun} onChange={(event) => urunSec(event.target.value)}>
+            <option value="">Ürün seçin</option>
+            {ON_AYARLI.map((u) => (
+              <option key={u.id} value={u.id}>
+                {u.ad}
+              </option>
+            ))}
+          </select>
+        </label>
         <label className="category-general-converter-field">
           <span>Hedef Bitki Sayısı (bitki/m²)</span>
           <input

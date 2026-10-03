@@ -20,6 +20,7 @@ import {
   type HayvanTuru,
   type KanatliTuru,
 } from "../converter/hayvancilik";
+import { hasat, URUNLER } from "../converter/ekimNormu";
 import type { YMD } from "../converter/time/calendars";
 import { addDaysYmd, diffDays, parseYmd, weekdayOf } from "../converter/time/dateMath";
 
@@ -489,6 +490,71 @@ export function IlaclamaHesaplama() {
         Dozu her zaman ilacın etiketinden alın; etiket dozunu aşmayın. Dekara su miktarı makineye ve meme tipine göre değişir: kalibrasyon için 1 dekarı temiz suyla
         ilaçlayıp harcanan suyu ölçün.
       </p>
+    </div>
+  );
+}
+
+/* ---------------- Hasat (verim) ---------------- */
+
+export function HasatHesaplama() {
+  const [urun, setUrun] = useState("bugday");
+  const [verim, setVerim] = useState("400");
+  const [alan, setAlan] = useState("10");
+  const [cuval, setCuval] = useState("50");
+  const r = hasat(ondalik(verim), ondalik(alan), ondalik(cuval));
+  const u = URUNLER.find((x) => x.id === urun);
+
+  return (
+    <div className="date-calc">
+      <div className="date-calc-input">
+        <div className="date-calc-fields is-amounts">
+          <label className="date-calc-field">
+            <span>Ürün</span>
+            <select
+              value={urun}
+              onChange={(e) => {
+                setUrun(e.target.value);
+                const x = URUNLER.find((y) => y.id === e.target.value);
+                if (x) setVerim(String(Math.round((x.verim[0] + x.verim[1]) / 2)));
+              }}
+            >
+              {URUNLER.map((x) => (
+                <option key={x.id} value={x.id}>
+                  {x.ad}
+                </option>
+              ))}
+            </select>
+          </label>
+          <Alan label="Dekara verim (kg)" value={verim} onChange={setVerim} />
+          <Alan label="Alan (dekar)" value={alan} onChange={setAlan} />
+          <Alan label="Çuval (kg)" value={cuval} onChange={setCuval} />
+        </div>
+      </div>
+      {r ? (
+        <div className="date-calc-results">
+          <div className="date-calc-stat is-main">
+            <span>Toplam ürün</span>
+            <strong>{sayiYaz(r.toplam)} kg</strong>
+            <em>{sayiYaz(r.ton, 2)} ton</em>
+          </div>
+          <div className="date-calc-stat">
+            <span>Çuval</span>
+            <strong>{sayiYaz(r.cuval)} adet</strong>
+            <em>{sayiYaz(ondalik(cuval))} kg&apos;lık</em>
+          </div>
+          {u ? (
+            <div className="date-calc-stat">
+              <span>{u.ad} için tipik verim</span>
+              <strong>
+                {sayiYaz(u.verim[0])}–{sayiYaz(u.verim[1])} kg/da
+              </strong>
+              {u.verimNot ? <em>{u.verimNot}</em> : null}
+            </div>
+          ) : null}
+        </div>
+      ) : (
+        <p className="date-calc-note">Verim, alan ve çuval ağırlığını girin.</p>
+      )}
     </div>
   );
 }

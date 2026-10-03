@@ -1,5 +1,5 @@
 import Link from "@/app/components/SiteLink";
-import { countryBbox, WORLD_MAP_OTHER, WORLD_MAP_PATHS, WORLD_MAP_SIZE } from "../../converter/geo/worldGeo";
+import { countryBbox, pathBbox, WORLD_MAP_OTHER, WORLD_MAP_PATHS, WORLD_MAP_SIZE } from "../../converter/geo/worldGeo";
 import { worldCountries, type WorldCountry } from "../../converter/geo/worldCountries";
 import { worldCountriesDe } from "../../converter/geo/worldCountriesDe";
 
@@ -22,6 +22,7 @@ export default function WorldMap({
   capitalDots,
   labels,
   lang = "tr",
+  cullOutside,
 }: {
   ariaLabel: string;
   fills?: Record<string, string>;
@@ -35,17 +36,28 @@ export default function WorldMap({
   /** Bu ulkelerin adi baskent noktasinin yaninda yazilir */
   labels?: string[];
   lang?: "tr" | "en" | "de";
+  /**
+   * Kırpılmış ülke haritası: viewBox dışındaki ülkeler çizilmez; içeridekilerden yalnızca `labels`
+   * listesindekiler (ülkenin kendisi ve komşuları) ad ve bağlantı taşır. Böylece her ülke sayfasına
+   * yüzlerce ortak ülke adı ve bağlantısı girmez.
+   */
+  cullOutside?: boolean;
 }) {
   const nameOf = (c: WorldCountry) => (lang === "en" ? c.nameEn : lang === "de" ? (worldCountriesDe[c.iso3]?.name ?? c.nameEn) : c.nameTr);
   const vb = viewBox ?? `0 0 ${WORLD_MAP_SIZE.width} ${WORLD_MAP_SIZE.height}`;
   const scale = Number(vb.split(" ")[2]) / WORLD_MAP_SIZE.width;
+  const [vx, vy, vw, vh] = vb.split(" ").map(Number);
+  const inView = (b: [number, number, number, number]) => !cullOutside || (b[2] >= vx && b[0] <= vx + vw && b[3] >= vy && b[1] <= vy + vh);
   const styleFor = (c: WorldCountry) => {
     const style: Record<string, string> = fills?.[c.iso3] ? { fill: fills[c.iso3] } : {};
     if (layers) for (const [k, v] of Object.entries(layers)) if (v[c.iso3]) style[`--f-${k}`] = v[c.iso3];
     return style;
   };
+  const focus = cullOutside && labels ? new Set(labels) : null;
+  const quiet = (c: WorldCountry) => focus !== null && !focus.has(c.iso3);
+  const titleOf = (c: WorldCountry) => (quiet(c) ? null : <title>{titleFor ? titleFor(c) : nameOf(c)}</title>);
   const wrap = (c: WorldCountry, node: React.ReactNode) => {
-    const href = hrefFor?.(c);
+    const href = quiet(c) ? null : hrefFor?.(c);
     return href ? (
       <Link key={c.iso3} href={href} prefetch={false} aria-label={nameOf(c)}>
         {node}
@@ -58,29 +70,29 @@ export default function WorldMap({
     <>
       {selectable ? <style>{selectionCss()}</style> : null}
       <svg viewBox={vb} className="tr-map-svg world-map-svg" role="img" aria-label={ariaLabel} style={{ ["--map-scale" as string]: String(scale) }}>
-        {WORLD_MAP_OTHER.map((o) => (
+        {WORLD_MAP_OTHER.filter((o) => inView(pathBbox(o.d))).map((o) => (
           <path key={o.name} d={o.d} className="world-map-other">
-            <title>{o.name}</title>
+            {focus ? null : <title>{o.name}</title>}
           </path>
         ))}
         {worldCountries
-          .filter((c) => WORLD_MAP_PATHS[c.iso3])
+          .filter((c) => WORLD_MAP_PATHS[c.iso3] && inView(pathBbox(WORLD_MAP_PATHS[c.iso3])))
           .map((c) =>
             wrap(
               c,
               <path d={WORLD_MAP_PATHS[c.iso3]} data-iso={c.iso3} style={styleFor(c)}>
-                <title>{titleFor ? titleFor(c) : nameOf(c)}</title>
+                {titleOf(c)}
               </path>
             )
           )}
         {/* Haritada cizimi olmayan kucuk ulkeler */}
         {worldCountries
-          .filter((c) => !c.onMap)
+          .filter((c) => !c.onMap && inView([c.capX, c.capY, c.capX, c.capY]))
           .map((c) =>
             wrap(
               c,
               <circle cx={c.capX} cy={c.capY} r={2.6 * Math.max(scale, 0.35)} data-iso={c.iso3} className="world-map-small" style={styleFor(c)}>
-                <title>{titleFor ? titleFor(c) : nameOf(c)}</title>
+                {titleOf(c)}
               </circle>
             )
           )}

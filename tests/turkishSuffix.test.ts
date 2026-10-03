@@ -51,3 +51,17 @@ describe("case suffixes", () => {
     expect(trDative("2")).toBe("2'ye");
   });
 });
+
+describe("iyelik ekli ülke adları", () => {
+  it("n kaynaştırması", async () => {
+    const { trLocative, trAblative, trDative, trGenitive } = await import("../app/converter/turkishSuffix");
+    expect(trLocative("Amerika Birleşik Devletleri")).toBe("Amerika Birleşik Devletleri'nde");
+    expect(trAblative("Orta Afrika Cumhuriyeti")).toBe("Orta Afrika Cumhuriyeti'nden");
+    expect(trDative("Birleşik Arap Emirlikleri")).toBe("Birleşik Arap Emirlikleri'ne");
+    expect(trLocative("Marshall Adaları")).toBe("Marshall Adaları'nda");
+    expect(trGenitive("Amerika Birleşik Devletleri")).toBe("Amerika Birleşik Devletleri'nin");
+    expect(trLocative("Birleşik Krallık")).toBe("Birleşik Krallık'ta");
+    expect(trLocative("Abu Dabi")).toBe("Abu Dabi'de");
+    expect(trLocative("Mali")).toBe("Mali'de");
+  });
+});

@@ -58,3 +58,25 @@ export function compareProvinces(
     healthTier: getHealthTier(elevationDiffM),
   };
 }
+
+/**
+ * Alçaktan yükseğe taşınan kapalı bir paketin (cips, pet şişe) hacim oranı: Boyle yasası,
+ * sıcaklık sabit varsayımıyla V2/V1 = P1/P2.
+ */
+export function paketGenlesmesi(pAltHpa: number, pUstHpa: number) {
+  return pAltHpa / pUstHpa;
+}
+
+/**
+ * Lastik basınç saati (gösterge basıncı) yükseğe çıkınca dış basınç düştüğü kadar artar.
+ * Sonuç bar cinsinden (1 bar = 1000 hPa).
+ */
+export function lastikGostergeArtisiBar(pAltHpa: number, pUstHpa: number) {
+  return (pAltHpa - pUstHpa) / 1000;
+}
+
+/** Karayolu boyunca ortalama tırmanış: 100 km'de metre ve yüzde eğim. */
+export function ortalamaEgim(rakimFarkiM: number, yolKm: number) {
+  if (!(yolKm > 0)) return null;
+  return { metre100km: (Math.abs(rakimFarkiM) / yolKm) * 100, yuzde: (Math.abs(rakimFarkiM) / (yolKm * 1000)) * 100 };
+}

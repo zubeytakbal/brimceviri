@@ -50,3 +50,13 @@ describe("eksik ilçeler", () => {
     }
   });
 });
+
+describe("il karşılaştırma fizik", () => {
+  it("paket, lastik, eğim", async () => {
+    const { paketGenlesmesi, lastikGostergeArtisiBar, ortalamaEgim } = await import("../app/converter/provinceComparison");
+    expect(paketGenlesmesi(1013, 811)).toBeCloseTo(1.249, 2);
+    expect(lastikGostergeArtisiBar(1013, 913)).toBeCloseTo(0.1, 5);
+    expect(ortalamaEgim(-850, 450)!.metre100km).toBeCloseTo(188.9, 0);
+    expect(ortalamaEgim(100, 0)).toBeNull();
+  });
+});

@@ -163,3 +163,18 @@ export function taki(
     satisFiyati: hasFiyat ? hasIscilikli * hasFiyat : null,
   };
 }
+
+/**
+ * Ziynet/Ata altınlarını bileziğe çevirme: altınlar has karşılığıyla bozdurulur,
+ * bilezik ise ayar milyemi + işçilik milyemiyle satılır. İşçiliksiz karşılık
+ * (aynı ayar) ile işçilikli tahmini bilezik gramını verir.
+ */
+export function bilezikKarsiligi(adetler: Record<string, number>, iscilikMilyem: number, bilezikMilyem = 916) {
+  const t = sikkeToplam(adetler);
+  if (!(t.brut > 0) || !(iscilikMilyem >= 0) || !(bilezikMilyem > 0)) return null;
+  return {
+    ...t,
+    isciliksiz: (t.has * 1000) / bilezikMilyem,
+    iscilikli: (t.has * 1000) / (bilezikMilyem + iscilikMilyem),
+  };
+}

@@ -4753,7 +4753,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.75,
     },
-    ...["/altin-hesaplama", ...ALTIN_SAYFALARI.map((id) => altinSayfaPath(id))].map((path) => ({
+    ...["/altin-hesaplama", "/ceyrek-bilezik-hesaplama", ...ALTIN_SAYFALARI.map((id) => altinSayfaPath(id))].map((path) => ({
       url: `${baseUrl}${path}`,
       lastModified: contentLastModified,
       changeFrequency: "monthly" as const,

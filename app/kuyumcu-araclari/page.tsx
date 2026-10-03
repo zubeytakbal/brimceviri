@@ -140,6 +140,10 @@ export default function KuyumcuAraclariPage() {
               {" "}— çeyrek, yarım, tam ve Cumhuriyet altını kaç gram; bilezikte ayar ve işçilikle has karşılığı.
             </li>
             <li>
+              <Link href="/ceyrek-bilezik-hesaplama">Çeyrek Altın Kaç Gram Bilezik Eder?</Link>
+              {" "}— çeyrek, yarım ve tam altınların işçiliksiz ve işçilikli bilezik karşılığı.
+            </li>
+            <li>
               <Link href="/has-hesaplama">Has Altın ve Gümüş Hesaplama</Link>
               {" "}— gram ve ayar (milyem) girerek saf metal içeriğini
               hesapla, farklı ayarlarda parça karıştır.

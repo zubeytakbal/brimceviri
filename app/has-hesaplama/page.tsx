@@ -6,6 +6,14 @@ import { buildSiteUrl } from "../siteConfig";
 
 const faqItems: FaqItem[] = [
   {
+    question: "Hurda altın nasıl hesaplanır?",
+    answer: "Hurda altının değeri içindeki has altına göre belirlenir: has gram = gram × milyem ÷ 1000. Örneğin 10 gram 14 ayar (585 milyem) hurda altında 5,85 gram, 10 gram 22 ayar (916) hurdada 9,16 gram has altın vardır. Kuyumcu bu has miktarını güncel has altın fiyatıyla çarpar.",
+  },
+  {
+    question: "22 ayar kaç milyem, 14 ayar kaç milyem?",
+    answer: "24 ayar 995–999, 22 ayar 916, 21 ayar 875, 18 ayar 750, 14 ayar 585, 8 ayar 333 milyemdir. Milyem, 1000 birim alaşım içindeki saf altın miktarıdır.",
+  },
+  {
     question: "Has altın/gümüş ne demek?",
     answer:
       "Has, bir alaşımın içindeki saf metal miktarını ifade eder. Örneğin 10 gram 22 ayar (916 milyem) altının has değeri 10 × 0,916 = 9,16 gramdır; kalan kısım gümüş veya bakır gibi katkı metalidir.",
@@ -28,9 +36,9 @@ const faqItems: FaqItem[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Has Altın ve Gümüş Hesaplama: Alaşım ve Saf Metal",
+  title: "Hurda Altın Hesaplama: 14, 22, 24 Ayar Has ve Milyem",
   description:
-    "Gram ağırlık ve ayar (milyem) gir; has (saf) altın veya gümüş içeriğini hesapla. Farklı ayarlarda hurda/parça karıştırıp sonuç ayarını bul (alaşım karıştırma hesabı), ya da tersten gerekli brüt ağırlığı öğren.",
+    "Hurda altınının gramını ve ayarını gir: içindeki has (24 ayar) altını, milyemini ve farklı ayarlardaki parçaları karıştırınca çıkan ayarı hesapla. 22 ayar kaç milyem, 14 ayar hurda nasıl hesaplanır?",
   alternates: {
     canonical: "/has-hesaplama",
     languages: {
@@ -38,7 +46,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Has Altın ve Gümüş Hesaplama: Alaşım ve Saf Metal",
+    title: "Hurda Altın Hesaplama: 14, 22, 24 Ayar Has ve Milyem",
     description:
       "Gram ve ayar (milyem) girerek has altın/gümüş içeriğini ve alaşım karıştırma sonucunu hesaplayın.",
     url: buildSiteUrl("/has-hesaplama"),
@@ -136,47 +144,13 @@ export default function HasHesaplamaPage() {
           </p>
 
           <h2>Sık Sorulan Sorular</h2>
-          <p>
-            <strong>Has altın/gümüş ne demek?</strong>
-            <br />
-            Has, bir alaşımın içindeki saf metal miktarını ifade eder.
-            Örneğin 10 gram 22 ayar (916 milyem) altının has değeri
-            10 × 0,916 = 9,16 gramdır; kalan kısım gümüş veya bakır gibi
-            katkı metalidir.
-          </p>
-          <p>
-            <strong>
-              Farklı ayarlarda hurda altın/gümüş karıştırırsam sonuç
-              ayarı nasıl bulunur?
-            </strong>
-            <br />
-            Her bileşenin gramını milyemiyle çarpıp toplarsın (toplam
-            has), sonra toplam ağırlığa bölüp 1000 ile çarparsın. Araç
-            bunu otomatik yapar: birden fazla bileşen eklediğinde
-            ağırlıklı ortalama ile sonuç ayarı hesaplanır.
-          </p>
-          <p>
-            <strong>Ayar ile milyem arasındaki fark nedir?</strong>
-            <br />
-            Ayar, altında 24 birim üzerinden saflığı ifade eder (24 ayar
-            = tam saf). Milyem ise binde (‰) cinsinden ifade edilen
-            saflıktır ve hem altın hem gümüşte kullanılabilir; 22 ayar =
-            916 milyem, 18 ayar = 750 milyem gibi.
-          </p>
-          <p>
-            <strong>
-              Eski/hurda altınımı yeni takıyla değiştirirken ayar farkı
-              nasıl hesaplanır?
-            </strong>
-            <br />
-            Elindeki hurda parçanın gramını ve ayarını (milyemini),
-            almak istediğin yeni parçanın ayarıyla birlikte Has
-            Hesaplama aracına gir; ikisini &quot;bileşen&quot; olarak
-            ekleyip has (saf) içerikleri karşılaştırabilir, ya da
-            hurdanı yeni ayara eritmek için gereken karışımı
-            hesaplayabilirsin. Bu araç yalnızca ayar/milyem matematiği
-            yapar, güncel gram altın fiyatını içermez.
-          </p>
+          {faqItems.map((item) => (
+            <p key={item.question}>
+              <strong>{item.question}</strong>
+              <br />
+              {item.answer}
+            </p>
+          ))}
 
           <h2>İlgili araçlar</h2>
           <p>

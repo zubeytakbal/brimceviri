@@ -64,6 +64,11 @@ describe("Türkçe üst menü", () => {
 
   it("diğer dillerin menüsü değişmedi", () => {
     expect(getMenuGroups("fr").map((group) => group.id)).toEqual(["conversions"]);
-    expect(getMenuGroups("en").map((group) => group.id)).toEqual(["conversions", "calculators"]);
+    expect(getMenuGroups("en").map((group) => group.id)).toEqual(["conversions", "calculators", "time"]);
+  });
+  it("İngilizce menü: saat araçları var, Christian Tools ana listede değil", () => {
+    const [, calc, time] = getMenuGroups("en");
+    expect(calc.links.some((l) => l.href === "/en/christian-tools")).toBe(false);
+    expect(time.links.map((l) => l.href)).toContain("/en/world-clock");
   });
 });

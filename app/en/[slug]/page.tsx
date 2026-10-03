@@ -656,9 +656,12 @@ async function EnglishConversionPage({
 
             <p>{fromUnitInfo.shortDescription}</p>
 
-            <h3>Short history of {fromUnitInfo.name}</h3>
-
-            <p>{fromUnitInfo.historySummary}</p>
+            {fromUnitInfo.historySummary ? (
+              <>
+                <h3>Short history of {fromUnitInfo.name}</h3>
+                <p>{fromUnitInfo.historySummary}</p>
+              </>
+            ) : null}
 
             <Link
               className="text-link"
@@ -675,9 +678,12 @@ async function EnglishConversionPage({
 
             <p>{toUnitInfo.shortDescription}</p>
 
-            <h3>Short history of {toUnitInfo.name}</h3>
-
-            <p>{toUnitInfo.historySummary}</p>
+            {toUnitInfo.historySummary ? (
+              <>
+                <h3>Short history of {toUnitInfo.name}</h3>
+                <p>{toUnitInfo.historySummary}</p>
+              </>
+            ) : null}
 
             <Link
               className="text-link"

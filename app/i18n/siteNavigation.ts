@@ -933,11 +933,10 @@ export function getTopLevelLinks(locale: Locale): LinkDefinition[] {
     ];
   }
 
+  // İngilizcede birim rehberi ve tüm dönüşümler "Conversions" menüsünün altında.
   if (locale === "en") {
     return [
       { href: getStaticPath(locale, "home"), label: labels.home },
-      { href: getStaticPath(locale, "units"), label: labels.units },
-      { href: getStaticPath(locale, "allConversions"), label: labels.allConversions },
       { href: getStaticPath(locale, "otherConversions"), label: "Other Tools" },
     ];
   }
@@ -1246,6 +1245,45 @@ function getGermanMenuGroups(): MenuGroup[] {
   ];
 }
 
+// İngilizce menü: dönüşümler, hesaplayıcılar ve (ana sayfada en çok öne çıkan) saat araçları.
+const englishTimeMenu: LinkDefinition[] = [
+  { href: "/en/online-clock", label: "Online Clock" },
+  { href: "/en/alarm-clock", label: "Alarm Clock" },
+  { href: "/en/timer", label: "Timer" },
+  { href: "/en/stopwatch", label: "Stopwatch" },
+  { href: "/en/pomodoro-timer", label: "Pomodoro Timer" },
+  { href: "/en/world-clock", label: "World Clock" },
+  { href: "/en/time-zone-converter", label: "Time Zone Converter" },
+  { href: "/en/countdown", label: "Countdown" },
+  { href: "/en/days-between-dates", label: "Days Between Dates" },
+  { href: "/en/date-calculator", label: "Date Calculator" },
+  { href: "/en/age-calculator", label: "Age Calculator" },
+  { href: "/en/week-number", label: "Week Number" },
+  { href: "/en/business-day-calculator", label: "Business Days" },
+  { href: "/en/federal-holidays", label: "US Federal Holidays" },
+];
+
+function getEnglishMenuGroups(): MenuGroup[] {
+  return [
+    {
+      id: "conversions",
+      label: getSiteHeaderCopy("en").conversionsLabel,
+      links: getCategoryMenuLinks("en"),
+      footer: [
+        { href: "/en/all-conversions", label: "All conversions →" },
+        { href: "/en/units", label: "Unit guide →" },
+      ],
+    },
+    {
+      id: "calculators",
+      label: "Calculators",
+      links: englishCalculatorMenuLinks.filter((l) => l.href !== "/en/christian-tools"),
+      footer: [{ href: "/en/christian-tools", label: "Christian calendar tools →" }],
+    },
+    { id: "time", label: "Clock & Calendar", links: englishTimeMenu },
+  ];
+}
+
 /** Üst menüdeki açılır gruplar (masaüstü açılır menü, mobilde akordeon). */
 export function getMenuGroups(locale: Locale): MenuGroup[] {
   if (locale === "tr") {
@@ -1254,6 +1292,10 @@ export function getMenuGroups(locale: Locale): MenuGroup[] {
 
   if (locale === "de") {
     return getGermanMenuGroups();
+  }
+
+  if (locale === "en") {
+    return getEnglishMenuGroups();
   }
 
   const groups: MenuGroup[] = [

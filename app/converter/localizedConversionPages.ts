@@ -52,6 +52,19 @@ const englishCategoryNames: Record<string, string> = {
   gumus_ayar: "Silver Purity",
   kan_sekeri: "Blood Glucose",
   vitamin_d: "Vitamin D",
+  aci: "Angle",
+  acisal_hiz: "Angular Velocity",
+  ivme: "Acceleration",
+  frekans: "Frequency",
+  guc: "Power",
+  debi_hacimsel: "Volumetric Flow Rate",
+  debi_kutlesel: "Mass Flow Rate",
+  manyetik_alan: "Magnetic Field",
+  manyetik_aki: "Magnetic Flux",
+  isi_akisi: "Heat Flux",
+  isil_iletkenlik: "Thermal Conductivity",
+  viskozite_kinematik: "Kinematic Viscosity",
+  ozgul_isi: "Specific Heat",
 };
 
 function formatEnglishValue(value: number) {

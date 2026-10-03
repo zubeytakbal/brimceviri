@@ -208,13 +208,13 @@ const categoryUnitDefinitions: CategoryUnitDefinitions = {
     },
     yk: {
       tr: "Yemek Ka\u015F\u0131\u011F\u0131",
-      en: "Tablespoon",
+      en: "Metric Tablespoon (15 mL)",
       de: "Essl\u00F6ffel",
       uz: "Osh Qoshiq",
     },
     "\u00E7k": {
       tr: "\u00C7ay Ka\u015F\u0131\u011F\u0131",
-      en: "Teaspoon",
+      en: "Metric Teaspoon (5 mL)",
       de: "Teel\u00F6ffel",
       uz: "Choy Qoshiq",
     },

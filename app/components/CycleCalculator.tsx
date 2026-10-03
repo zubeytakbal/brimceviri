@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { cycleOn, cycles, CYCLE_MAX, CYCLE_MIN, dueDate, PERIOD_MAX, PERIOD_MIN, type CycleDay } from "../converter/cycleCalc";
+import { cycleOn, cycles, CYCLE_MAX, CYCLE_MIN, dueDate, LUTEAL_MAX, LUTEAL_MIN, PERIOD_MAX, PERIOD_MIN, type CycleDay } from "../converter/cycleCalc";
 import type { YMD } from "../converter/time/calendars";
 import { addDaysYmd, diffDays, parseYmd, ymdKey } from "../converter/time/dateMath";
 
@@ -11,6 +11,10 @@ type Dict = {
   lmp: string;
   cycle: string;
   period: string;
+  luteal: string;
+  dpo: (n: string) => string;
+  implant: string;
+  implantNote: string;
   today: string;
   cycleDay: (n: string) => string;
   kind: Record<CycleDay, string>;
@@ -42,6 +46,10 @@ const T: Record<CycleLang, Dict> = {
     lmp: "Son adetin ilk günü",
     cycle: "Döngü uzunluğu (gün)",
     period: "Adet süresi (gün)",
+    luteal: "Luteal faz (gün; bilmiyorsanız 14)",
+    dpo: (n) => `yumurtlamadan sonra ${n}. gün (DPO ${n})`,
+    implant: "Tutunma (implantasyon) aralığı",
+    implantNote: "yumurtlamadan 6–12 gün sonra; hafif lekelenme bu günlerde görülebilir",
     today: "Bugün",
     cycleDay: (n) => `döngünün ${n}. günü`,
     kind: { period: "Adet dönemi", fertile: "Doğurgan dönem", ovulation: "Tahmini yumurtlama günü", none: "Doğurganlığın düşük olduğu dönem" },
@@ -68,6 +76,10 @@ const T: Record<CycleLang, Dict> = {
     lmp: "First day of your last period",
     cycle: "Cycle length (days)",
     period: "Period length (days)",
+    luteal: "Luteal phase (days; 14 if unsure)",
+    dpo: (n) => `${n} days past ovulation (${n} DPO)`,
+    implant: "Implantation window",
+    implantNote: "6–12 days past ovulation; light implantation spotting can appear then",
     today: "Today",
     cycleDay: (n) => `cycle day ${n}`,
     kind: { period: "Period", fertile: "Fertile window", ovulation: "Estimated ovulation day", none: "Low-fertility days" },
@@ -94,6 +106,10 @@ const T: Record<CycleLang, Dict> = {
     lmp: "Erster Tag der letzten Periode",
     cycle: "Zykluslänge (Tage)",
     period: "Periodendauer (Tage)",
+    luteal: "Lutealphase (Tage; 14 wenn unbekannt)",
+    dpo: (n) => `ES+${n} (${n} Tage nach dem Eisprung)`,
+    implant: "Einnistung (Zeitfenster)",
+    implantNote: "6–12 Tage nach dem Eisprung; eine leichte Einnistungsblutung ist dann möglich",
     today: "Heute",
     cycleDay: (n) => `Zyklustag ${n}`,
     kind: { period: "Periode", fertile: "Fruchtbare Tage", ovulation: "Voraussichtlicher Eisprung", none: "Tage mit geringer Fruchtbarkeit" },
@@ -120,6 +136,10 @@ const T: Record<CycleLang, Dict> = {
     lmp: "Primer día de tu última regla",
     cycle: "Duración del ciclo (días)",
     period: "Duración de la regla (días)",
+    luteal: "Fase lútea (días; 14 si no la sabes)",
+    dpo: (n) => `${n} días después de la ovulación`,
+    implant: "Ventana de implantación",
+    implantNote: "6–12 días después de la ovulación; puede aparecer un leve sangrado de implantación",
     today: "Hoy",
     cycleDay: (n) => `día ${n} del ciclo`,
     kind: { period: "Menstruación", fertile: "Días fértiles", ovulation: "Día probable de ovulación", none: "Días de baja fertilidad" },
@@ -146,6 +166,10 @@ const T: Record<CycleLang, Dict> = {
     lmp: "Primeiro dia da última menstruação",
     cycle: "Duração do ciclo (dias)",
     period: "Duração da menstruação (dias)",
+    luteal: "Fase lútea (dias; 14 se não souber)",
+    dpo: (n) => `${n} dias após a ovulação`,
+    implant: "Janela de nidação",
+    implantNote: "6–12 dias após a ovulação; pode haver um leve sangramento de nidação",
     today: "Hoje",
     cycleDay: (n) => `${n}º dia do ciclo`,
     kind: { period: "Menstruação", fertile: "Período fértil", ovulation: "Dia provável da ovulação", none: "Dias de baixa fertilidade" },
@@ -172,6 +196,10 @@ const T: Record<CycleLang, Dict> = {
     lmp: "শেষ মাসিকের প্রথম দিন",
     cycle: "চক্রের দৈর্ঘ্য (দিন)",
     period: "মাসিক কত দিন থাকে",
+    luteal: "লুটিয়াল পর্যায় (দিন; না জানলে ১৪)",
+    dpo: (n) => `ওভুলেশনের ${n} দিন পর`,
+    implant: "ইমপ্লান্টেশনের সময়",
+    implantNote: "ওভুলেশনের ৬–১২ দিন পর; এ সময় হালকা রক্তের দাগ দেখা দিতে পারে",
     today: "আজ",
     cycleDay: (n) => `চক্রের ${n}তম দিন`,
     kind: { period: "মাসিক চলছে", fertile: "উর্বর সময়", ovulation: "সম্ভাব্য ওভুলেশনের দিন", none: "গর্ভধারণের সম্ভাবনা কম" },
@@ -198,6 +226,10 @@ const T: Record<CycleLang, Dict> = {
     lmp: "Oxirgi hayzning birinchi kuni",
     cycle: "Sikl davomiyligi (kun)",
     period: "Hayz davomiyligi (kun)",
+    luteal: "Lyuteal faza (kun; bilmasangiz 14)",
+    dpo: (n) => `ovulyatsiyadan keyin ${n}-kun`,
+    implant: "Implantatsiya oralig‘i",
+    implantNote: "ovulyatsiyadan 6–12 kun keyin; bu kunlarda yengil qon dog‘i bo‘lishi mumkin",
     today: "Bugun",
     cycleDay: (n) => `siklning ${n}-kuni`,
     kind: { period: "Hayz kunlari", fertile: "Homilador bo'lish ehtimoli yuqori kunlar", ovulation: "Taxminiy ovulyatsiya kuni", none: "Ehtimol past kunlar" },
@@ -287,19 +319,21 @@ export default function CycleCalculator({ lang, initialDate }: { lang: CycleLang
   const [todayRaw] = useDate(initialDate);
   const [cycleRaw, setCycle] = useState("28");
   const [periodRaw, setPeriod] = useState("5");
+  const [lutealRaw, setLuteal] = useState("14");
   const [offset, setOffset] = useState(0);
   const lmp = parseYmd(lmpRaw);
   const today = parseYmd(todayRaw);
   const cycle = toInt(cycleRaw);
   const period = toInt(periodRaw);
-  const list = lmp ? cycles(lmp, cycle, period, 6) : null;
-  const now = lmp && today ? cycleOn(lmp, cycle, period, today) : null;
+  const luteal = toInt(lutealRaw);
+  const list = lmp ? cycles(lmp, cycle, period, 6, luteal) : null;
+  const now = lmp && today ? cycleOn(lmp, cycle, period, today, luteal) : null;
   // Gösterilecek döngü: bugünü içeren ya da (son adet gelecekteyse) ilki
   const current = now?.cycle ?? list?.[0] ?? null;
   const upcoming = list && today ? list.filter((c) => diffDays(today, c.start) > 0).slice(0, 3) : [];
 
   // Takvim ayı
-  const base = current?.start ?? lmp ?? { year: 2026, month: 1, day: 1 };
+  const base = today ?? current?.start ?? { year: 2026, month: 1, day: 1 };
   const mIndex = base.year * 12 + (base.month - 1) + offset;
   const gy = Math.floor(mIndex / 12);
   const gm = (mIndex % 12) + 1;
@@ -329,6 +363,10 @@ export default function CycleCalculator({ lang, initialDate }: { lang: CycleLang
             <span>{t.period}</span>
             <input inputMode="numeric" value={periodRaw} onChange={(e) => setPeriod(e.target.value)} />
           </label>
+          <label className="date-calc-field">
+            <span>{t.luteal}</span>
+            <input inputMode="numeric" value={lutealRaw} onChange={(e) => setLuteal(e.target.value)} />
+          </label>
         </div>
       </div>
 
@@ -342,7 +380,8 @@ export default function CycleCalculator({ lang, initialDate }: { lang: CycleLang
                 </span>
                 <strong>{t.kind[now.kind]}</strong>
                 <em>
-                  {t.cycleDay(num(now.cycleDay, lang))} · {t.nextPeriod}: {t.inDays(num(now.daysToNext, lang))}
+                  {t.cycleDay(num(now.cycleDay, lang))}
+                  {now.dpo ? ` · ${t.dpo(num(now.dpo, lang))}` : ""} · {t.nextPeriod}: {t.inDays(num(now.daysToNext, lang))}
                 </em>
               </div>
             ) : null}
@@ -353,6 +392,11 @@ export default function CycleCalculator({ lang, initialDate }: { lang: CycleLang
             <div className="date-calc-stat">
               <span>{t.fertile}</span>
               <strong>{range(current.fertileStart, current.fertileEnd, lang)}</strong>
+            </div>
+            <div className="date-calc-stat">
+              <span>{t.implant}</span>
+              <strong>{range(current.implantStart, current.implantEnd, lang)}</strong>
+              <em>{t.implantNote}</em>
             </div>
             <div className="date-calc-stat">
               <span>{t.nextPeriod}</span>
@@ -391,7 +435,7 @@ export default function CycleCalculator({ lang, initialDate }: { lang: CycleLang
               ))}
               {Array.from({ length: daysInMonth }, (_, i) => {
                 const day = { year: gy, month: gm, day: i + 1 };
-                const st = cycleOn(lmp, cycle, period, day);
+                const st = cycleOn(lmp, cycle, period, day, luteal);
                 const kind = st?.kind ?? "none";
                 const isToday = today && diffDays(today, day) === 0;
                 return (
@@ -446,7 +490,9 @@ export default function CycleCalculator({ lang, initialDate }: { lang: CycleLang
           ) : null}
         </>
       ) : (
-        <p className="date-calc-note">{t.invalid}</p>
+        <p className="date-calc-note">
+          {t.invalid} ({t.luteal}: {LUTEAL_MIN}–{LUTEAL_MAX})
+        </p>
       )}
       <p className="date-calc-note">{t.note}</p>
     </div>

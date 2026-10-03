@@ -4,6 +4,16 @@ import { cycleOn, cycles, dueDate, validCycle } from "../app/converter/cycleCalc
 const d = (year: number, month: number, day: number) => ({ year, month, day });
 
 describe("adet ve yumurtlama", () => {
+  it("kısa luteal faz yumurtlamayı geciktirir; DPO ve tutunma aralığı", () => {
+    const [c] = cycles(d(2026, 1, 1), 28, 5, 1, 11)!;
+    expect(c.ovulation).toEqual(d(2026, 1, 18));
+    expect(c.implantStart).toEqual(d(2026, 1, 24));
+    expect(c.implantEnd).toEqual(d(2026, 1, 30));
+    expect(cycleOn(d(2026, 1, 1), 28, 5, d(2026, 1, 25), 11)!.dpo).toBe(7);
+    expect(cycleOn(d(2026, 1, 1), 28, 5, d(2026, 1, 10))!.dpo).toBeNull();
+    expect(cycles(d(2026, 1, 1), 28, 5, 1, 9)).toBeNull();
+  });
+
   it("28 günlük döngü: yumurtlama 14. gün, doğurgan pencere 9–15. gün", () => {
     const [c] = cycles(d(2026, 1, 1), 28, 5)!;
     expect(c.periodEnd).toEqual(d(2026, 1, 5));

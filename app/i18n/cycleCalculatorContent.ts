@@ -52,6 +52,7 @@ export const CYCLE_CONTENT: Record<CycleLang, Content> = {
     how: [
       "Yumurtlama, bir sonraki adetten yaklaşık 14 gün önce olur. Bu yüzden döngü uzunluğundan 14 çıkarılır: 28 günlük döngüde 14. gün, 32 günlük döngüde 18. gün.",
       "Sperm 5 güne kadar canlı kalabildiği için doğurgan dönem yumurtlamadan 5 gün önce başlar ve yumurtlamadan 1 gün sonra biter.",
+      "Yumurtlamadan sonraki evre (luteal faz) çoğu kadında 12–14 gün sürer; bazal ateş ya da ovülasyon testiyle kendi luteal fazınızı biliyorsanız 10–16 arasında girebilirsiniz. Araç ayrıca bugün yumurtlamadan sonraki kaçıncı günde (DPO) olduğunuzu ve tutunma aralığını gösterir.",
     ],
     tableTitle: "Döngü uzunluğuna göre yumurtlama günü",
     tableHead: ["Döngü", "Yumurtlama", "Doğurgan dönem"],
@@ -83,6 +84,7 @@ export const CYCLE_CONTENT: Record<CycleLang, Content> = {
     how: [
       "Ovulation happens about 14 days before your next period, so subtract 14 from your cycle length: day 14 of a 28-day cycle, day 18 of a 32-day cycle.",
       "Sperm can live for up to 5 days, so the fertile window starts 5 days before ovulation and ends the day after it.",
+      "The phase after ovulation (luteal phase) lasts 12–14 days for most women; if you know yours from temperature charting or ovulation tests, enter 10–16. The calculator also shows how many days past ovulation (DPO) you are today and your implantation window.",
     ],
     tableTitle: "Ovulation day by cycle length",
     tableHead: ["Cycle", "Ovulation", "Fertile window"],
@@ -113,6 +115,7 @@ export const CYCLE_CONTENT: Record<CycleLang, Content> = {
     how: [
       "Der Eisprung findet etwa 14 Tage vor der nächsten Periode statt. Man zieht also 14 von der Zykluslänge ab: Tag 14 bei 28 Tagen, Tag 18 bei 32 Tagen.",
       "Spermien überleben bis zu 5 Tage, daher beginnen die fruchtbaren Tage 5 Tage vor dem Eisprung und enden einen Tag danach.",
+      "Die Lutealphase nach dem Eisprung dauert bei den meisten Frauen 12–14 Tage. Wenn Sie Ihre aus der Basaltemperatur oder Ovulationstests kennen (z. B. eine kurze Lutealphase), geben Sie 10–16 Tage ein. Der Rechner zeigt außerdem, bei ES+ wie vielen Tagen Sie heute sind, und das Zeitfenster der Einnistung.",
     ],
     tableTitle: "Eisprung nach Zykluslänge",
     tableHead: ["Zyklus", "Eisprung", "Fruchtbare Tage"],
@@ -140,6 +143,7 @@ export const CYCLE_CONTENT: Record<CycleLang, Content> = {
     how: [
       "La ovulación ocurre unos 14 días antes de la siguiente regla, así que se restan 14 a la duración del ciclo: día 14 en un ciclo de 28 días, día 18 en uno de 32.",
       "Los espermatozoides viven hasta 5 días, por eso los días fértiles empiezan 5 días antes de la ovulación y terminan el día siguiente.",
+      "La fase lútea, después de la ovulación, dura 12–14 días en la mayoría de las mujeres; si conoces la tuya por la temperatura basal o los test de ovulación, escribe entre 10 y 16. La calculadora también muestra cuántos días han pasado desde la ovulación y la ventana de implantación.",
     ],
     tableTitle: "Día de ovulación según la duración del ciclo",
     tableHead: ["Ciclo", "Ovulación", "Días fértiles"],
@@ -167,6 +171,7 @@ export const CYCLE_CONTENT: Record<CycleLang, Content> = {
     how: [
       "A ovulação acontece cerca de 14 dias antes da próxima menstruação, então subtraia 14 da duração do ciclo: dia 14 num ciclo de 28 dias, dia 18 num ciclo de 32 dias.",
       "Os espermatozoides vivem até 5 dias, por isso o período fértil começa 5 dias antes da ovulação e termina no dia seguinte a ela.",
+      "A fase lútea, depois da ovulação, dura 12–14 dias na maioria das mulheres; se você conhece a sua pela temperatura basal ou por testes de ovulação, informe entre 10 e 16. A calculadora também mostra quantos dias se passaram desde a ovulação e a janela de nidação.",
     ],
     tableTitle: "Dia da ovulação pela duração do ciclo",
     tableHead: ["Ciclo", "Ovulação", "Período fértil"],
@@ -194,6 +199,7 @@ export const CYCLE_CONTENT: Record<CycleLang, Content> = {
     how: [
       "পরবর্তী মাসিকের প্রায় ১৪ দিন আগে ওভুলেশন হয়। তাই চক্রের দৈর্ঘ্য থেকে ১৪ বাদ দিন: ২৮ দিনের চক্রে ১৪তম দিন, ৩২ দিনের চক্রে ১৮তম দিন।",
       "শুক্রাণু ৫ দিন পর্যন্ত বাঁচে, তাই উর্বর সময় ওভুলেশনের ৫ দিন আগে শুরু হয়ে ওভুলেশনের পরের দিন শেষ হয়।",
+      "ওভুলেশনের পরের পর্যায় (লুটিয়াল পর্যায়) বেশিরভাগ নারীর ১২–১৪ দিন থাকে; শরীরের তাপমাত্রা বা ওভুলেশন টেস্ট থেকে নিজেরটা জানলে ১০–১৬ দিন লিখুন। ক্যালকুলেটর আজ ওভুলেশনের কত দিন পর এবং ইমপ্লান্টেশনের সময়ও দেখায়।",
     ],
     tableTitle: "চক্রের দৈর্ঘ্য অনুযায়ী ওভুলেশনের দিন",
     tableHead: ["চক্র", "ওভুলেশন", "উর্বর সময়"],
@@ -221,6 +227,7 @@ export const CYCLE_CONTENT: Record<CycleLang, Content> = {
     how: [
       "Ovulyatsiya keyingi hayzdan taxminan 14 kun oldin bo'ladi, shuning uchun sikl davomiyligidan 14 ayiriladi: 28 kunlik siklda 14-kun, 32 kunlik siklda 18-kun.",
       "Spermatozoidlar 5 kungacha yashaydi, shuning uchun unumdor kunlar ovulyatsiyadan 5 kun oldin boshlanib, ovulyatsiyadan keyingi kuni tugaydi.",
+      "Ovulyatsiyadan keyingi davr (lyuteal faza) ko‘pchilik ayollarda 12–14 kun davom etadi; bazal harorat yoki ovulyatsiya testlari orqali o‘zingiznikini bilsangiz, 10–16 kun kiriting. Kalkulyator bugun ovulyatsiyadan keyin necha kun o‘tganini va implantatsiya oralig‘ini ham ko‘rsatadi.",
     ],
     tableTitle: "Sikl davomiyligi bo'yicha ovulyatsiya kuni",
     tableHead: ["Sikl", "Ovulyatsiya", "Unumdor kunlar"],

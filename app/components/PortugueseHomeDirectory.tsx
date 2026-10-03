@@ -84,6 +84,13 @@ const nicheCards: Array<{
     description: "Mistérios do terço de hoje, novenas, calendário litúrgico e datas da Páscoa e do Carnaval.",
     iconName: "dateCalculator",
   },
+  {
+    id: "gold-calculator",
+    href: "/pt/calculadora-de-ouro",
+    title: "Calculadora de ouro",
+    description: "Ouro puro em 18k, 14k ou 10k, teor 750 e mudança de quilates.",
+    iconName: "goldKarat",
+  },
 ];
 
 const primaryCategoryCards = [...primaryCategoryCardsFromCategories, ...nicheCards];

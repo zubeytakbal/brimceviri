@@ -84,6 +84,13 @@ const nicheCards: Array<{
     description: "Misterios del rosario de hoy, novenas, calendario litúrgico y fechas de Semana Santa.",
     iconName: "dateCalculator",
   },
+  {
+    id: "gold-calculator",
+    href: "/es/calculadora-de-oro",
+    title: "Calculadora de oro",
+    description: "Oro puro en 18, 14 o 10 quilates, ley 750 y cambio de quilates.",
+    iconName: "goldKarat",
+  },
 ];
 
 const primaryCategoryCards = [...primaryCategoryCardsFromCategories, ...nicheCards];

@@ -1994,8 +1994,12 @@ function buildGeneratedShortDescription(
     return `${name} is a digital storage unit used to express file size, memory or device capacity.`;
   }
 
-  if (entry.category === "altin_ayar") {
-    return `${name} is a gold-purity grade used to compare karat-based gold content in jewelry and alloyed materials.`;
+  if (entry.category === "altin_ayar" && entry.siFactor !== undefined) {
+    const karat = Math.round(entry.siFactor * 24);
+    const percent = Number((entry.siFactor * 100).toFixed(1));
+    return karat === 24
+      ? `${name} is pure gold: 24 parts out of 24, stamped 999. It is soft, so it is mainly used for bullion bars and coins rather than everyday jewelry.`
+      : `${name} contains ${karat} parts pure gold out of 24, or ${percent}% gold by weight; the rest is alloy metals such as silver, copper or zinc that make it harder and change its color.`;
   }
 
   if (entry.category === "gumus_ayar") {
@@ -2047,8 +2051,10 @@ function buildGeneratedHistorySummary(
     return `${name} became widely used as digital systems needed clearer ways to describe file size, memory capacity and storage allocation.`;
   }
 
-  if (entry.category === "altin_ayar") {
-    return `${name} belongs to the traditional karat system, which became established in jewelry trade as a practical way to describe relative gold purity.`;
+  if (entry.category === "altin_ayar" && entry.siFactor !== undefined) {
+    const karat = Math.round(entry.siFactor * 24);
+    const hallmark = { 24: "999", 22: "916", 18: "750", 14: "585", 10: "417", 9: "375" }[karat];
+    return `The karat system divides gold into 24 parts. ${name} is usually stamped ${hallmark ?? `${karat}K`}, the purity in parts per thousand, which is the mark buyers and assay offices check.`;
   }
 
   if (entry.category === "gumus_ayar") {

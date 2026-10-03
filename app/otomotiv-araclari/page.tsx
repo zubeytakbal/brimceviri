@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import { aracAraclari } from "../i18n/aracAraclari";
 import { buildSiteUrl } from "../siteConfig";
 
 const faqItems: FaqItem[] = [
@@ -27,14 +28,14 @@ const faqItems: FaqItem[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Otomotiv Araçları: Yakıt Tüketimi, Lastik Ebatı, Güç-Tork",
+  title: "Otomotiv Araçları: Ceza Puanı, Muayene, Lastik, Yakıt",
   description:
-    "Araç sahipleri ve otomotiv meraklıları için tek sayfada toplanmış araçlar: yakıt tüketimi, lastik ebatı, elektrikli araç şarj süresi, motor gücü (kW/beygirgücü) ve tork dönüşümleri.",
+    "Araç sahipleri için: trafik cezası erken ödeme, ceza puanı, muayene tarihi, lastik DOT kodu, yakıt tüketimi, lastik ebatı ve elektrikli araç hesapları.",
   alternates: {
     canonical: "/otomotiv-araclari",
   },
   openGraph: {
-    title: "Otomotiv Araçları: Yakıt Tüketimi, Lastik Ebatı, Güç-Tork",
+    title: "Otomotiv Araçları: Ceza Puanı, Muayene, Lastik, Yakıt",
     description:
       "Yakıt tüketimi, lastik ebatı, elektrikli araç şarj süresi, motor gücü ve tork dönüşümleri tek sayfada.",
     url: buildSiteUrl("/otomotiv-araclari"),
@@ -134,6 +135,11 @@ export default function OtomotivAraclariPage() {
         <section className="category-article-content">
           <h2>Hesaplama Araçları</h2>
           <ul>
+            {aracAraclari.slice(0, 4).map((t) => (
+              <li key={t.href}>
+                <Link href={t.href}>{t.label}</Link> — {t.description}
+              </li>
+            ))}
             <li>
               <Link href="/yakit-tuketimi-hesaplama">Yakıt Tüketimi Hesaplama</Link>
               {" "}— L/100km, mpg ve diğer yakıt tüketimi birimleri

@@ -195,6 +195,10 @@ export const turkishToolGroups: ToolGroup[] = [
       { href: "/lastik-ebati-hesaplama", label: "Lastik Ebatı Hesaplama" },
       { href: "/ehliyet-sinifi-bulma", label: "Ehliyet Sınıfı Bulma" },
       { href: "/ehliyet-yenileme-suresi-hesaplama", label: "Ehliyet Yenileme Süresi" },
+      { href: "/trafik-cezasi-erken-odeme-hesaplama", label: "Trafik Cezası Erken Ödeme" },
+      { href: "/ceza-puani-hesaplama", label: "Ceza Puanı Hesaplama" },
+      { href: "/arac-muayene-tarihi-hesaplama", label: "Araç Muayene Tarihi" },
+      { href: "/lastik-dot-kodu-okuma", label: "Lastik DOT Kodu Okuma" },
     ],
   },
   {

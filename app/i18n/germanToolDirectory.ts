@@ -25,6 +25,7 @@ export const germanToolGroups: ToolGroup[] = [
       { href: "/de/mutterschutzrechner", label: "Mutterschutzrechner" },
       { href: "/de/arbeitszeitrechner", label: "Arbeitszeitrechner" },
       { href: "/de/waehrungsrechner", label: "Währungsrechner" },
+      { href: "/de/goldrechner", label: "Goldrechner (333, 585, 750)" },
     ],
   },
   {

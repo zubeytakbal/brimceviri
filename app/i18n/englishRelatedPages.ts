@@ -10,6 +10,7 @@ import { englishStandaloneTools } from "./englishStandaloneTools";
 export type RelatedPageCard = { href: string; title: string; description: string; icon: SiteIconName };
 
 const goldCluster: RelatedPageCard[] = [
+  { href: "/en/gold-karat-calculator", title: "Gold Karat Calculator", description: "Pure gold in 10k–22k, 14k to 18k alloying and melt value.", icon: "goldKarat" },
   { href: "/en/gold-price-calculator-india", title: "Gold Price Calculator India", description: "Jewellery price with making charges and 3% GST.", icon: "goldKarat" },
   { href: "/en/22k-gold-to-24k-gold", title: "22K to 24K Gold", description: "Pure gold content of 22K (916) gold.", icon: "goldKarat" },
   { href: "/en/24k-gold-to-22k-gold", title: "24K to 22K Gold", description: "How much 22K gold a given amount of pure gold makes.", icon: "goldKarat" },
@@ -76,6 +77,7 @@ const extraClusterMembers: Record<string, RelatedPageCard[]> = {
   // Kumede kart olarak gosterilmeyen ama kumenin sayfalarini gostermesi gereken sayfalar.
   "/en/carats-to-grams": goldCluster,
   "/en/grams-to-grain": goldCluster,
+  "/en/gold-karat-calculator": goldCluster,
   "/en/14k-gold-to-18k-gold": goldCluster,
   "/en/18k-gold-to-14k-gold": goldCluster,
   "/en/22k-gold-to-18k-gold": goldCluster,

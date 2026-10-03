@@ -112,6 +112,7 @@ export const turkishToolGroups: ToolGroup[] = [
       { href: "/hafizlik-hesaplama", label: "Hafızlık Hesaplama" },
       { href: "/kaza-takip-cizelgesi", label: "Kaza Takip Çizelgesi" },
       { href: "/hayiz-hesaplama", label: "Hayız ve Nifas Hesaplama" },
+      { href: "/kirk-mevlidi-hesaplama", label: "40 Mevlidi ve 52. Gece Hesaplama" },
       { href: "/namaz-rekat-tablosu", label: "Namaz Rekât Tablosu" },
       { href: "/zikirmatik", label: "Online Zikirmatik" },
       { href: "/esmaul-husna", label: "Esmaül Hüsna" },

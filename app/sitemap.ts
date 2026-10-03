@@ -3204,6 +3204,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       "/hafizlik-hesaplama",
       "/kaza-takip-cizelgesi",
       "/hayiz-hesaplama",
+      "/kirk-mevlidi-hesaplama",
       "/namaz-rekat-tablosu",
       "/zikirmatik",
       "/esmaul-husna",

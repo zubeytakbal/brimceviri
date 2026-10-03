@@ -18,6 +18,7 @@ export const diniAraclar: Array<ToolLink & { description: string }> = [
   { href: "/kurban-hissesi-hesaplama", label: "Kurban Hissesi Hesaplama", description: "Bedel ve masrafları hisselere bölün; et payını hesaplayın." },
   { href: "/hafizlik-hesaplama", label: "Hafızlık Hesaplama", description: "Günde kaç sayfa ezberle kaç ayda hafız olunur? Bitiş tarihi ve hedefe göre günlük sayfa." },
   { href: "/kaza-takip-cizelgesi", label: "Kaza Takip Çizelgesi", description: "Kaza namazı ve orucunu kıldıkça işaretleyin; üyeliksiz, cihazınızda saklanır." },
+  { href: "/kirk-mevlidi-hesaplama", label: "40 Mevlidi Hesaplama", description: "Ölünün 3., 7., 40. ve 52. günü hangi tarihe, gecesi hangi akşama denk geliyor?" },
   { href: "/hayiz-hesaplama", label: "Hayız ve Nifas Hesaplama", description: "Hanefî ölçülerine göre hayız, nifas ve istihaze günleri, gusül zamanı." },
   { href: "/namaz-rekat-tablosu", label: "Namaz Rekât Tablosu", description: "Beş vakit namaz kaç rekât? Farz, sünnet ve vacipler tek tabloda." },
   { href: "/zikirmatik", label: "Online Zikirmatik", description: "33, 99, 100 hedefli dijital tesbih; titreşimli, sayı cihazda saklanır." },

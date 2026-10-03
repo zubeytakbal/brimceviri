@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
-import { BENGALI_ISLAMIC_HUB, ISLAMIC_TOOL_PATHS } from "../../i18n/islamicToolPaths";
+import { BENGALI_ISLAMIC_HUB, ISLAMIC_HUB_ALTERNATES, ISLAMIC_TOOL_PATHS } from "../../i18n/islamicToolPaths";
 import { buildSiteUrl } from "../../siteConfig";
 
 const title = "ইসলামিক টুলস: যাকাত, কাজা নামাজ, খতম ও কসর হিসাব";
@@ -9,7 +9,7 @@ const description = "বাংলায় ইসলামিক ক্যাল
 export const metadata: Metadata = {
   title,
   description,
-  alternates: { canonical: BENGALI_ISLAMIC_HUB, languages: { bn: BENGALI_ISLAMIC_HUB, tr: "/dini-araclar", "x-default": "/dini-araclar" } },
+  alternates: { canonical: BENGALI_ISLAMIC_HUB, languages: ISLAMIC_HUB_ALTERNATES },
   openGraph: { title, description, url: buildSiteUrl(BENGALI_ISLAMIC_HUB), siteName: "BirimCeviri.app", locale: "bn_BD", type: "website" },
 };
 

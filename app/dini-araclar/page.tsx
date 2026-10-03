@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import { DINI_ARACLAR_PATH, diniAraclar } from "../i18n/diniAraclar";
+import { ISLAMIC_HUB_ALTERNATES } from "../i18n/islamicToolPaths";
 import { buildSiteUrl } from "../siteConfig";
 
 const title = "Dini Araçlar: Kıble Pusulası, Kaza Namazı, Zekât, Hatim";
@@ -9,7 +10,7 @@ const description = "Canlı kıble pusulası, kaza namazı ve orucu, zekât, hat
 export const metadata: Metadata = {
   title,
   description,
-  alternates: { canonical: DINI_ARACLAR_PATH, languages: { tr: DINI_ARACLAR_PATH, bn: "/bn/islamic-tools", "x-default": DINI_ARACLAR_PATH } },
+  alternates: { canonical: DINI_ARACLAR_PATH, languages: ISLAMIC_HUB_ALTERNATES },
   openGraph: { title, description, url: buildSiteUrl(DINI_ARACLAR_PATH), siteName: "BirimCeviri.app", locale: "tr_TR", type: "website" },
 };
 

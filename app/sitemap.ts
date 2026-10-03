@@ -1,4 +1,5 @@
 import { germanCities } from "./converter/geo/germanCities";
+import { ARABIC_ISLAMIC_SITEMAP } from "./i18n/arabicIslamicTools";
 import { entfernungPaare, entfernungStadtPath } from "./converter/geo/germanDistances";
 import { countriesDe, countryPathDe } from "./converter/geo/worldGeoDe";
 import { ALTIN_SAYFALARI, altinSayfaPath } from "./converter/turkishAltinPages";
@@ -3114,13 +3115,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       "/ar/school-calendar",
       "/ar/hijri-age-calculator",
       "/ar/end-of-service-calculator",
+      ...ARABIC_ISLAMIC_SITEMAP,
       ...MUNASABAT.map((m) => saMunasabaPath(m.id)),
       ...SA_HIJRI_SANAWAT.flatMap((y) => [saHijriSanaPath(y), ...HIJRI_SLUG.map((_, i) => saHijriShahrPath(y, i + 1))]),
     ].map((path) => ({
       url: `${baseUrl}${path}`,
       lastModified: contentLastModified,
       changeFrequency: "weekly" as const,
-      priority: ["/ar/calendar", "/ar/occasions", "/ar/salary-dates", "/ar/school-calendar", "/ar/hijri-age-calculator", "/ar/end-of-service-calculator"].includes(path) ? 0.8 : 0.65,
+      priority: ["/ar/calendar", "/ar/occasions", "/ar/salary-dates", "/ar/school-calendar", "/ar/hijri-age-calculator", "/ar/end-of-service-calculator", ...ARABIC_ISLAMIC_SITEMAP].includes(path) ? 0.8 : 0.65,
     })),
     ...[
       "/de/kalender",

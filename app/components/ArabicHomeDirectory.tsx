@@ -15,6 +15,8 @@ import { DecorativeIcon, getCategoryIconName, type SiteIconName } from "./siteIc
 import NotificationBell from "./NotificationBell";
 
 import { useSearchTracking } from "./useSearchTracking";
+import { ARABIC_ISLAMIC_TOOLS } from "../i18n/arabicIslamicTools";
+import { ARABIC_ISLAMIC_HUB, ARABIC_ISLAMIC_PATHS, ISLAMIC_TOOL_PATHS } from "../i18n/islamicToolPaths";
 function CardIcon({ name }: { name: SiteIconName }) {
   return (
     <span className="home-category-icon-box" aria-hidden="true">
@@ -129,6 +131,48 @@ const searchables = englishConversionPages.map((page) => {
   };
 });
 
+// كلمات يكتبها الناس فعلًا في البحث (من اقتراحات Google) ولا ترد في عنوان الأداة.
+const TOOL_KEYWORDS: Record<string, string> = {
+  [ISLAMIC_TOOL_PATHS.zakat.ar]: "زكاه زكاة ذهب عيار 21 18 24 نصاب مال مدخر راتب حول فضة",
+  [ARABIC_ISLAMIC_PATHS.iddah]: "عده عدة مطلقة طلاق وفاة ارملة حامل متى تنتهي كم يوم قروء",
+  [ARABIC_ISLAMIC_PATHS.aqiqah]: "عقيقه عقيقة مولود سابع ذبح يوم",
+  [ISLAMIC_TOOL_PATHS.qasr.ar]: "قصر جمع صلاة مسافر سفر كم يوم كم كيلو مسافة",
+  "/ar/prayer-times-calculator": "صلاة اذان أذان مواقيت قبلة",
+  "/ar/occasions": "رمضان عيد الفطر الاضحى عرفة كم باقي",
+};
+
+const extraToolPages = [
+  { href: ARABIC_ISLAMIC_HUB, label: "أدوات وحاسبات إسلامية", text: "الزكاة والعدة والعقيقة وقصر الصلاة" },
+  { href: "/ar/calendar", label: "التاريخ الهجري اليوم والتقويم", text: "تقويم أم القرى مع الميلادي" },
+  { href: "/ar/school-calendar", label: "التقويم الدراسي", text: "مواعيد الدراسة والإجازات" },
+  { href: "/ar/salary-dates", label: "مواعيد صرف الرواتب", text: "موعد نزول الراتب" },
+  { href: "/ar/end-of-service-calculator", label: "مكافأة نهاية الخدمة", text: "نظام العمل السعودي" },
+  { href: "/ar/gold-price-calculator", label: "حاسبة سعر الذهب والفضة", text: "قيمة الذهب حسب الوزن والعيار" },
+];
+
+const toolSearchables = [
+  ...ARABIC_ISLAMIC_TOOLS,
+  ...extraToolPages,
+  ...arabicStandaloneTools.map((tool) => ({ href: tool.arabicPath, label: tool.title, text: tool.cardDescription })),
+]
+  .filter((item, index, all) => all.findIndex((other) => other.href === item.href) === index)
+  .map((item) => ({
+    id: item.href,
+    href: item.href,
+    label: item.label,
+    description: item.text,
+    categoryLabel: "أدوات",
+    searchText: normalizeSearchTextAr([item.label, item.text, TOOL_KEYWORDS[item.href] ?? ""].join(" ")),
+  }));
+
+/** كل كلمة في البحث يجب أن توجد؛ تُحذف "ال" التعريف من أول الكلمة. */
+function matchesQuery(searchText: string, normalizedQuery: string) {
+  return normalizedQuery
+    .split(" ")
+    .map((token) => (token.length > 3 && token.startsWith("ال") ? token.slice(2) : token))
+    .every((token) => searchText.includes(token));
+}
+
 const stats = {
   categories: primaryCategoryCards.length + secondaryCategoryCards.length,
   conversions: englishConversionPages.length,
@@ -148,7 +192,7 @@ export default function ArabicHomeDirectory({
   const normalizedQuery = normalizeSearchTextAr(deferredQuery);
 
   const searchResults = normalizedQuery
-    ? searchables.filter((item) => item.searchText.includes(normalizedQuery)).slice(0, 8)
+    ? [...toolSearchables, ...searchables].filter((item) => matchesQuery(item.searchText, normalizedQuery)).slice(0, 8)
     : [];
   useSearchTracking("ar", query, searchResults.length);
 
@@ -488,6 +532,22 @@ export default function ArabicHomeDirectory({
                 <h3 className="home-category-title">مكافأة نهاية الخدمة</h3>
                 <p className="directory-card-description">
                   وفق نظام العمل السعودي مع حصة الاستقالة.
+                </p>
+              </div>
+            </article>
+
+            <article className="directory-home-card">
+              <Link
+                className="directory-card-stretch"
+                href={ARABIC_ISLAMIC_HUB}
+                aria-label="أدوات إسلامية - حاسبة العدة ويوم العقيقة وقصر الصلاة والزكاة."
+              />
+
+              <div className="directory-card-body directory-card-body-icon">
+                <CardIcon name="dateCalculator" />
+                <h3 className="home-category-title">أدوات إسلامية</h3>
+                <p className="directory-card-description">
+                  حاسبة العدة ويوم العقيقة وقصر الصلاة والزكاة.
                 </p>
               </div>
             </article>

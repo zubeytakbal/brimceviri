@@ -164,6 +164,8 @@ export const turkishToolGroups: ToolGroup[] = [
     links: [
       { href: "/inek-dogum-hesaplama", label: "İnek Doğum Hesaplama" },
       { href: "/kulucka-hesaplama", label: "Kuluçka Hesaplama" },
+      { href: "/dekara-fidan-sayisi-hesaplama", label: "Dekara Fidan Sayısı" },
+      { href: "/ilaclama-hesaplama", label: "İlaçlama Hesaplama" },
       { href: "/gubre-ihtiyaci-hesaplama", label: "Gübre İhtiyacı" },
       { href: "/gubre-seyreltme-hesaplama", label: "Gübre Seyreltme" },
       { href: "/tohum-miktari-hesaplama", label: "Tohum Miktarı" },

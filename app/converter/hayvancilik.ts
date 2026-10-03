@@ -118,3 +118,57 @@ export function kuluckaRandimani(konulan: number, dollu: number, cikan: number) 
     dolluCikis: dollu > 0 ? cikan / dollu : 0,
   };
 }
+
+/* ---------------- Dekara fidan / fide sayısı ---------------- */
+
+export const DEKAR_M2 = 1000;
+/** Eşkenar üçgen dikimde sıralar arası mesafe = dikim mesafesi × √3/2. */
+export const UCGEN_KATSAYI = Math.sqrt(3) / 2;
+
+export type DikimDuzeni = "dikdortgen" | "ucgen";
+
+/**
+ * Dekara bitki sayısı. Dikdörtgen/kare: 1000 ÷ (sıra arası × sıra üzeri);
+ * eşkenar üçgen (şeşbeş): 1000 ÷ (mesafe² × 0,866). Mesafeler metre.
+ */
+export function dekaraBitki(duzen: DikimDuzeni, siraArasi: number, siraUzeri: number) {
+  if (!(siraArasi > 0) || (duzen === "dikdortgen" && !(siraUzeri > 0))) return null;
+  const birimAlan = duzen === "ucgen" ? siraArasi * siraArasi * UCGEN_KATSAYI : siraArasi * siraUzeri;
+  return DEKAR_M2 / birimAlan;
+}
+
+/** Alan için gereken fidan/fide; yedek yüzdesi (ölen fideler için) eklenir, yukarı yuvarlanır. */
+export function toplamBitki(dekaraSayi: number, alanDekar: number, yedekYuzde = 0) {
+  if (!(dekaraSayi > 0) || !(alanDekar > 0) || !(yedekYuzde >= 0)) return null;
+  const net = dekaraSayi * alanDekar;
+  return { net: Math.floor(net), yedekli: Math.ceil(net * (1 + yedekYuzde / 100)) };
+}
+
+/* ---------------- İlaçlama karışımı ---------------- */
+
+export type DozBirimi = "dekar" | "yuzLitre";
+
+/**
+ * Etiket dozu ya dekara (ml veya g/da) ya da 100 litre suya (ml veya g/100 L) verilir.
+ * Dekara su miktarı, depo hacmi ve alandan depo başına ilaç ve depo sayısı.
+ */
+export function ilaclama(opts: { doz: number; birim: DozBirimi; dekaraSu: number; depo: number; alan: number }) {
+  const { doz, birim, dekaraSu, depo, alan } = opts;
+  if (![doz, dekaraSu, depo, alan].every((x) => x > 0)) return null;
+  const toplamSu = dekaraSu * alan;
+  const toplamIlac = birim === "dekar" ? doz * alan : (toplamSu / 100) * doz;
+  const depoBasinaIlac = birim === "dekar" ? (doz * depo) / dekaraSu : (depo / 100) * doz;
+  const depoSayisi = toplamSu / depo;
+  const tamDepo = Math.floor(depoSayisi + 1e-9);
+  const sonDepoSu = toplamSu - tamDepo * depo;
+  return {
+    toplamSu,
+    toplamIlac,
+    depoBasinaIlac,
+    depoBasinaAlan: depo / dekaraSu,
+    depoSayisi,
+    tamDepo,
+    sonDepoSu: sonDepoSu > 1e-6 ? sonDepoSu : 0,
+    sonDepoIlac: sonDepoSu > 1e-6 ? (depoBasinaIlac * sonDepoSu) / depo : 0,
+  };
+}

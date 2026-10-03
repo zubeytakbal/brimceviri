@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { civcivIsisi, dogumTakvimi, gebelikDurumu, kuluckaGunu, kuluckaRandimani, kuluckaTakvimi } from "../app/converter/hayvancilik";
+import { civcivIsisi, dekaraBitki, dogumTakvimi, ilaclama, toplamBitki, gebelikDurumu, kuluckaGunu, kuluckaRandimani, kuluckaTakvimi } from "../app/converter/hayvancilik";
 
 const d = (year: number, month: number, day: number) => ({ year, month, day });
 
@@ -42,5 +42,50 @@ describe("kuluçka", () => {
     expect(r.cikis).toBeCloseTo(0.81);
     expect(r.dolluCikis).toBeCloseTo(0.9);
     expect(kuluckaRandimani(100, 90, 95)).toBeNull();
+  });
+});
+
+describe("dekara fidan", () => {
+  it("dikdörtgen ve üçgen dikim", () => {
+    expect(dekaraBitki("dikdortgen", 10, 10)).toBeCloseTo(10);
+    expect(dekaraBitki("dikdortgen", 4, 1.5)).toBeCloseTo(166.67, 1);
+    expect(dekaraBitki("ucgen", 10, 0)).toBeCloseTo(11.55, 2);
+    expect(dekaraBitki("dikdortgen", 0, 1)).toBeNull();
+  });
+  it("alan ve yedek", () => {
+    expect(toplamBitki(166.67, 3, 10)).toEqual({ net: 500, yedekli: 551 });
+  });
+});
+
+describe("ilaçlama", () => {
+  it("dekara doz", () => {
+    const r = ilaclama({ doz: 50, birim: "dekar", dekaraSu: 20, depo: 200, alan: 25 })!;
+    expect(r.toplamSu).toBe(500);
+    expect(r.toplamIlac).toBe(1250);
+    expect(r.depoBasinaIlac).toBe(500);
+    expect(r.depoBasinaAlan).toBe(10);
+    expect(r.tamDepo).toBe(2);
+    expect(r.sonDepoSu).toBe(100);
+    expect(r.sonDepoIlac).toBe(250);
+  });
+  it("100 litre suya doz", () => {
+    const r = ilaclama({ doz: 150, birim: "yuzLitre", dekaraSu: 100, depo: 1000, alan: 10 })!;
+    expect(r.depoBasinaIlac).toBe(1500);
+    expect(r.toplamIlac).toBe(1500);
+    expect(r.tamDepo).toBe(1);
+    expect(r.sonDepoSu).toBe(0);
+    expect(ilaclama({ doz: 0, birim: "dekar", dekaraSu: 20, depo: 200, alan: 1 })).toBeNull();
+  });
+});
+
+describe("ondalık sayı okuma", () => {
+  it("virgül, nokta ve binlik", async () => {
+    const { ondalik } = await import("../app/components/HayvancilikAraclari");
+    expect(ondalik("1,5")).toBe(1.5);
+    expect(ondalik("1.5")).toBe(1.5);
+    expect(ondalik("1.000")).toBe(1000);
+    expect(ondalik("1.000,5")).toBe(1000.5);
+    expect(ondalik("200")).toBe(200);
+    expect(ondalik("")).toBeNaN();
   });
 });

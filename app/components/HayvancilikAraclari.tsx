@@ -3,7 +3,12 @@
 import { useEffect, useState } from "react";
 import {
   civcivIsisi,
+  dekaraBitki,
   dogumTakvimi,
+  ilaclama,
+  toplamBitki,
+  type DikimDuzeni,
+  type DozBirimi,
   gebelikDurumu,
   HAYVANLAR,
   KANATLILAR,
@@ -328,6 +333,162 @@ export function KuluckaHesaplama({ initialDate }: { initialDate: string }) {
       ) : (
         <p className="date-calc-note">Sayıları girin: döllü sayısı konulandan, çıkan sayısı döllüden büyük olamaz.</p>
       )}
+    </div>
+  );
+}
+
+/* ---------------- Dekara fidan / fide sayısı ---------------- */
+
+/** "1,5" ve "1.5" ondalık; "1.000" ve "1.000,5" binlik ayırıcılı okunur. */
+export const ondalik = (raw: string) => {
+  let s = raw.trim().replace(/\s/g, "");
+  if (!s) return Number.NaN;
+  if (s.includes(",")) s = s.replace(/\./g, "").replace(",", ".");
+  else if (/^\d{1,3}(\.\d{3})+$/.test(s)) s = s.replace(/\./g, "");
+  return Number(s);
+};
+const sayiYaz = (n: number, d = 0) => n.toLocaleString("tr-TR", { maximumFractionDigits: d });
+
+function Alan({ label, value, onChange }: { label: string; value: string; onChange: (v: string) => void }) {
+  return (
+    <label className="date-calc-field">
+      <span>{label}</span>
+      <input inputMode="decimal" value={value} onChange={(e) => onChange(e.target.value)} />
+    </label>
+  );
+}
+
+export function FidanSayisiHesaplama() {
+  const [duzen, setDuzen] = useState<DikimDuzeni>("dikdortgen");
+  const [birim, setBirim] = useState<"m" | "cm">("m");
+  const [a, setA] = useState("4");
+  const [b, setB] = useState("1,5");
+  const [alan, setAlan] = useState("1");
+  const [yedek, setYedek] = useState("5");
+  const k = birim === "cm" ? 0.01 : 1;
+  const dekara = dekaraBitki(duzen, ondalik(a) * k, ondalik(b) * k);
+  const toplam = dekara ? toplamBitki(dekara, ondalik(alan), alan.trim() && yedek.trim() ? ondalik(yedek) : 0) : null;
+
+  return (
+    <div className="date-calc">
+      <div className="date-converter-modes is-light" role="tablist" aria-label="Dikim düzeni">
+        {(
+          [
+            ["dikdortgen", "Kare / dikdörtgen (sıra sıra)"],
+            ["ucgen", "Üçgen (şeşbeş)"],
+          ] as const
+        ).map(([v, t]) => (
+          <button key={v} type="button" role="tab" aria-selected={duzen === v} className={duzen === v ? "is-active" : undefined} onClick={() => setDuzen(v)}>
+            {t}
+          </button>
+        ))}
+      </div>
+      <div className="date-calc-input">
+        <div className="date-calc-fields is-amounts">
+          <label className="date-calc-field">
+            <span>Mesafe birimi</span>
+            <select value={birim} onChange={(e) => setBirim(e.target.value as "m" | "cm")}>
+              <option value="m">metre (ağaç, fidan)</option>
+              <option value="cm">santimetre (fide, sebze)</option>
+            </select>
+          </label>
+          <Alan label={duzen === "ucgen" ? `Bitkiler arası mesafe (${birim})` : `Sıra arası (${birim})`} value={a} onChange={setA} />
+          {duzen === "dikdortgen" ? <Alan label={`Sıra üzeri (${birim})`} value={b} onChange={setB} /> : null}
+          <Alan label="Alan (dekar / dönüm)" value={alan} onChange={setAlan} />
+          <Alan label="Yedek (%)" value={yedek} onChange={setYedek} />
+        </div>
+      </div>
+      {dekara ? (
+        <div className="date-calc-results">
+          <div className="date-calc-stat is-main">
+            <span>Dekara (dönüme) düşen</span>
+            <strong>{sayiYaz(Math.floor(dekara))} adet</strong>
+            <em>
+              {duzen === "ucgen" ? "eşkenar üçgen dikim: kare dikime göre yaklaşık %15 daha fazla bitki" : `bitki başına ${sayiYaz((ondalik(a) * k) * (ondalik(b) * k), 2)} m²`}
+            </em>
+          </div>
+          {toplam ? (
+            <div className="date-calc-stat">
+              <span>{sayiYaz(ondalik(alan), 2)} dekar için</span>
+              <strong>{sayiYaz(toplam.yedekli)} adet</strong>
+              <em>
+                {sayiYaz(toplam.net)} adet + yedek
+              </em>
+            </div>
+          ) : null}
+        </div>
+      ) : (
+        <p className="date-calc-note">Mesafeleri girin.</p>
+      )}
+    </div>
+  );
+}
+
+/* ---------------- İlaçlama karışımı ---------------- */
+
+export function IlaclamaHesaplama() {
+  const [birim, setBirim] = useState<DozBirimi>("dekar");
+  const [doz, setDoz] = useState("50");
+  const [su, setSu] = useState("20");
+  const [depo, setDepo] = useState("200");
+  const [alan, setAlan] = useState("10");
+  const r = ilaclama({ doz: ondalik(doz), birim, dekaraSu: ondalik(su), depo: ondalik(depo), alan: ondalik(alan) });
+
+  return (
+    <div className="date-calc">
+      <div className="date-converter-modes is-light" role="tablist" aria-label="Etiketteki doz">
+        {(
+          [
+            ["dekar", "Etikette: dekara doz"],
+            ["yuzLitre", "Etikette: 100 litre suya doz"],
+          ] as const
+        ).map(([v, t]) => (
+          <button key={v} type="button" role="tab" aria-selected={birim === v} className={birim === v ? "is-active" : undefined} onClick={() => setBirim(v)}>
+            {t}
+          </button>
+        ))}
+      </div>
+      <div className="date-calc-input">
+        <div className="date-calc-fields is-amounts">
+          <Alan label={birim === "dekar" ? "Doz (ml veya g / dekar)" : "Doz (ml veya g / 100 L su)"} value={doz} onChange={setDoz} />
+          <Alan label="Dekara su (litre)" value={su} onChange={setSu} />
+          <Alan label="Depo hacmi (litre)" value={depo} onChange={setDepo} />
+          <Alan label="İlaçlanacak alan (dekar)" value={alan} onChange={setAlan} />
+        </div>
+      </div>
+      {r ? (
+        <div className="date-calc-results">
+          <div className="date-calc-stat is-main">
+            <span>Depo başına ilaç</span>
+            <strong>{sayiYaz(r.depoBasinaIlac, 1)} ml (g)</strong>
+            <em>
+              {sayiYaz(ondalik(depo))} litrelik bir depo {sayiYaz(r.depoBasinaAlan, 2)} dekar ilaçlar
+            </em>
+          </div>
+          <div className="date-calc-stat">
+            <span>Kaç depo?</span>
+            <strong>{sayiYaz(r.depoSayisi, 2)} depo</strong>
+            <em>
+              {r.tamDepo === 0
+                ? `tek depo yeter: ${sayiYaz(r.sonDepoSu, 1)} L su ve ${sayiYaz(r.sonDepoIlac, 1)} ml (g) ilaç koyun`
+                : r.sonDepoSu > 0
+                  ? `${r.tamDepo} tam depo + son depoya ${sayiYaz(r.sonDepoSu, 1)} L su ve ${sayiYaz(r.sonDepoIlac, 1)} ml (g) ilaç`
+                  : `${r.tamDepo} tam depo`}
+            </em>
+          </div>
+          <div className="date-calc-stat">
+            <span>Toplam</span>
+            <strong>{sayiYaz(r.toplamIlac, 1)} ml (g) ilaç</strong>
+            <em>{sayiYaz(r.toplamSu)} litre su ile</em>
+          </div>
+        </div>
+      ) : (
+        <p className="date-calc-note">Doz, su miktarı, depo hacmi ve alanı girin.</p>
+      )}
+      <p className="date-calc-note">
+        Dozu her zaman ilacın etiketinden alın; etiket dozunu aşmayın. Dekara su miktarı makineye ve meme tipine göre değişir: kalibrasyon için 1 dekarı temiz suyla
+        ilaçlayıp harcanan suyu ölçün.
+      </p>
     </div>
   );
 }

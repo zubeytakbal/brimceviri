@@ -3,6 +3,8 @@
 export const tarimAraclari = [
   { href: "/inek-dogum-hesaplama", label: "İnek Doğum Hesaplama", description: "Tohumlamadan doğum tarihi, kızgınlık takibi ve kuruya ayırma; düve, koyun, keçi, manda, kısrak." },
   { href: "/kulucka-hesaplama", label: "Kuluçka Hesaplama", description: "Tavuk, bıldırcın, hindi, ördek ve kaz için kuluçka takvimi, civciv ısısı ve randıman." },
+  { href: "/dekara-fidan-sayisi-hesaplama", label: "Dekara Fidan Sayısı Hesaplama", description: "Dikim mesafesinden dönüme kaç fidan, ağaç ya da fide düştüğü; şeşbeş dikim." },
+  { href: "/ilaclama-hesaplama", label: "İlaçlama Hesaplama", description: "Etiket dozundan depo başına ilaç, kaç depo ve toplam ilaç miktarı." },
   { href: "/tohum-miktari-hesaplama", label: "Tohum Miktarı Hesaplama", description: "Dekara atılacak tohum miktarı." },
   { href: "/gubre-ihtiyaci-hesaplama", label: "Gübre İhtiyacı Hesaplama", description: "N-P-K oranından dekara gübre miktarı." },
   { href: "/gubre-seyreltme-hesaplama", label: "Gübre Seyreltme Hesaplama", description: "Sıvı gübrenin suyla karışım oranı." },

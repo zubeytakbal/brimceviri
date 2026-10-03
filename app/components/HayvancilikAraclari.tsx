@@ -21,6 +21,7 @@ import {
   type KanatliTuru,
 } from "../converter/hayvancilik";
 import { hasat, URUNLER } from "../converter/ekimNormu";
+import { ondalik } from "../converter/sayiOku";
 import type { YMD } from "../converter/time/calendars";
 import { addDaysYmd, diffDays, parseYmd, weekdayOf } from "../converter/time/dateMath";
 
@@ -340,14 +341,7 @@ export function KuluckaHesaplama({ initialDate }: { initialDate: string }) {
 
 /* ---------------- Dekara fidan / fide sayısı ---------------- */
 
-/** "1,5" ve "1.5" ondalık; "1.000" ve "1.000,5" binlik ayırıcılı okunur. */
-export const ondalik = (raw: string) => {
-  let s = raw.trim().replace(/\s/g, "");
-  if (!s) return Number.NaN;
-  if (s.includes(",")) s = s.replace(/\./g, "").replace(",", ".");
-  else if (/^\d{1,3}(\.\d{3})+$/.test(s)) s = s.replace(/\./g, "");
-  return Number(s);
-};
+export { ondalik };
 const sayiYaz = (n: number, d = 0) => n.toLocaleString("tr-TR", { maximumFractionDigits: d });
 
 function Alan({ label, value, onChange }: { label: string; value: string; onChange: (v: string) => void }) {

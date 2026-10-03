@@ -3,9 +3,20 @@ import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import FuelConsumptionCalculator from "../components/FuelConsumptionCalculator";
 import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import { KmMaliyetHesabi } from "../components/EvHesapEkleri";
 import { buildSiteUrl } from "../siteConfig";
 
 const faqItems: FaqItem[] = [
+  {
+    question: "100 km'de 7 litre kaç kuruş?",
+    answer:
+      "1 km'de 0,07 litre yakar; maliyet = 0,07 × litre fiyatı. Litresi 50 TL ise 1 km 3,50 TL, yani 350 kuruştur; 100 km 350 TL tutar. Güncel fiyatı aşağıdaki hesaplayıcıya yazabilirsiniz.",
+  },
+  {
+    question: "Aracım 100 km'de kaç litre yakıyor, nasıl hesaplarım?",
+    answer:
+      "Depoyu ağzına kadar doldurup kilometreyi sıfırlayın; bir sonraki tam dolumda aldığınız litreyi gidilen kilometreye bölüp 100 ile çarpın. Örneğin 600 km'de 42 litre aldıysanız 42 ÷ 600 × 100 = 7 litre/100 km.",
+  },
   {
     question: "km/lt ve lt/100km arasında nasıl çeviri yapılır?",
     answer:
@@ -24,15 +35,15 @@ const faqItems: FaqItem[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Yakıt Tüketimi Hesaplama: km/lt, lt/100km, mpg Çevirici",
+  title: "Yakıt Tüketimi Hesaplama: 100 km'de Kaç Litre, Km Başına Kaç Kuruş?",
   description:
-    "km/lt, lt/100km ve mpg arasında yakıt tüketimini çevir; yolculuk mesafesi ve yakıt fiyatına göre toplam maliyeti hesapla.",
+    "Aracının 100 km'de kaç litre yaktığını, km/lt ve mpg karşılığını, yolculuk maliyetini ve 1 km'nin kaç kuruşa geldiğini hesapla. Yakıt fiyatını sen girersin.",
   alternates: {
     canonical: "/yakit-tuketimi-hesaplama",
     ...buildFullLanguageAlternates("/yakit-tuketimi-hesaplama"),
   },
   openGraph: {
-    title: "Yakıt Tüketimi Hesaplama: km/lt, lt/100km, mpg Çevirici",
+    title: "Yakıt Tüketimi Hesaplama: 100 km'de Kaç Litre, Km Başına Kaç Kuruş?",
     description:
       "Yakıt tüketimini km/lt, lt/100km ve mpg arasında çevirin; yolculuk maliyetini hesaplayın.",
     url: buildSiteUrl("/yakit-tuketimi-hesaplama"),
@@ -97,6 +108,12 @@ export default function FuelConsumptionCalculatorPage() {
         </header>
 
         <FuelConsumptionCalculator />
+
+        <section className="category-article-content">
+          <h2 id="km-maliyet">1 km kaç kuruşa geliyor?</h2>
+          <p>100 km&apos;deki tüketimi ve güncel litre fiyatını girin; kilometre başına ve 100 km için yakıt maliyetini görün.</p>
+        </section>
+        <KmMaliyetHesabi />
 
         <section className="category-article-content">
           <h2>km/lt ve lt/100km nasıl hesaplanır?</h2>

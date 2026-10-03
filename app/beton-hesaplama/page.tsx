@@ -2,9 +2,25 @@ import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import ConcreteCalculator from "../components/ConcreteCalculator";
 import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import { DosemeBetonHesabi } from "../components/EvHesapEkleri";
 import { buildSiteUrl } from "../siteConfig";
 
 const faqItems: FaqItem[] = [
+  {
+    question: "1 m²'ye kaç m³ beton gider?",
+    answer:
+      "Kalınlığa bağlıdır: m³ = m² × kalınlık (m). 10 cm kalınlıkta 1 m²'ye 0,10 m³, 15 cm'de 0,15 m³, 20 cm'de 0,20 m³ beton gider. 100 m² ve 15 cm'lik bir döşeme 15 m³ eder.",
+  },
+  {
+    question: "1 mikser kaç m³ beton alır?",
+    answer:
+      "Transmikserler genellikle 8–12 m³ taşır; şehir içinde en yaygını 8–10 m³'tür. Hazır beton firmasına aracın kapasitesini sorun; döşeme hesabında mikser sayısını buna göre yuvarlayın.",
+  },
+  {
+    question: "1 m³ beton kaç ton gelir?",
+    answer:
+      "Normal beton yaklaşık 2,4 ton/m³, donatılı (demirli) beton yaklaşık 2,5 ton/m³ gelir. 1 m³ 1.000 litredir.",
+  },
   {
     question: "Bir torba çimento kaç kg'dır?",
     answer:
@@ -28,9 +44,9 @@ const faqItems: FaqItem[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Beton Hesaplama: Kaç m³ Beton, Kaç Torba Çimento Gerekir?",
+  title: "Beton Hesaplama: Kaç m³ Beton, Kaç Mikser, Kaç Torba Çimento?",
   description:
-    "Temel, döşeme veya kolon için gereken beton hacmini, çimento torba sayısını, kum ve çakıl miktarını fire payı dahil anında hesapla.",
+    "Döşeme, temel, kolon veya kiriş için kaç m³ beton gerektiğini, kaç mikser ve kaç torba çimento, kum, çakıl lazım olduğunu hesapla. 1 m²'ye kaç m³ beton gider?",
   alternates: {
     canonical: "/beton-hesaplama",
     languages: {
@@ -38,7 +54,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Beton Hesaplama: Kaç m³ Beton, Kaç Torba Çimento Gerekir?",
+    title: "Beton Hesaplama: Kaç m³ Beton, Kaç Mikser, Kaç Torba Çimento?",
     description:
       "Boyutları gir, gereken beton hacmini ve karışım malzemelerini (çimento, kum, çakıl, su) anında hesapla.",
     url: buildSiteUrl("/beton-hesaplama"),
@@ -102,6 +118,12 @@ export default function ConcreteCalculatorPage() {
         </header>
 
         <ConcreteCalculator />
+
+        <section className="category-article-content">
+          <h2 id="doseme">Döşeme betonu: kaç m³, kaç mikser?</h2>
+          <p>Döşeme, şap altı ya da saha betonu için alanı ve kalınlığı girin; gereken betonu, kaç mikser geleceğini ve ağırlığını görün.</p>
+        </section>
+        <DosemeBetonHesabi />
 
         <section className="category-article-content">
           <h2>Beton hacmi nasıl hesaplanır?</h2>

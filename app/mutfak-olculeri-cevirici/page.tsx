@@ -8,6 +8,22 @@ import { buildSiteUrl } from "../siteConfig";
 
 const faqItems: FaqItem[] = [
   {
+    question: "1 su bardağı un kaç gram, şeker kaç gram?",
+    answer: "1 su bardağı (200 ml) un yaklaşık 100 gram, toz şeker yaklaşık 167 gram, pirinç yaklaşık 154 gram gelir. Tüm malzemeler için aşağıdaki tabloya bakın; un elenmiş ve bardak silme doldurulmuş kabul edilir.",
+  },
+  {
+    question: "1 kilo un kaç su bardağı eder?",
+    answer: "1 kg un yaklaşık 10 su bardağı, 1 kg toz şeker yaklaşık 6 su bardağı, 1 kg pirinç yaklaşık 6,5 su bardağı eder. Tablonun son sütunu her malzeme için 1 kg'ın kaç bardak olduğunu gösterir.",
+  },
+  {
+    question: "1 litre kaç su bardağı?",
+    answer: "1 litre 1.000 ml olduğu için 200 ml'lik su bardağıyla 5 bardak eder. 1 çay bardağı yaklaşık 100 ml, yani yarım su bardağıdır.",
+  },
+  {
+    question: "Yarım ve çeyrek su bardağı kaç ml?",
+    answer: "Yarım su bardağı 100 ml, üçte bir su bardağı yaklaşık 67 ml, çeyrek su bardağı 50 ml'dir. Bir \"dolu\" (tepeleme) yemek kaşığı silme kaşığın yaklaşık 1,5 katı gelir.",
+  },
+  {
     question: "1 yemek kaşığı kaç ml, kaç çay kaşığı eder?",
     answer:
       "1 yemek kaşığı 15 ml'dir ve 3 çay kaşığına eşittir (1 çay kaşığı 5 ml). 1 su bardağı ise 200 ml, yani yaklaşık 13,3 yemek kaşığına denk gelir.",
@@ -24,9 +40,9 @@ function serializeJsonLd(data: object) {
 }
 
 export const metadata: Metadata = {
-  title: "Mutfak Ölçüleri Çevirici: Bardak, Kaşık, Gram Hesaplama",
+  title: "1 Su Bardağı Kaç Gram? Mutfak Ölçüleri Çevirici (Un, Şeker, Pirinç)",
   description:
-    "1 su bardağı, yemek kaşığı ve çay kaşığının gram karşılığını malzemeye göre hesaplayın. Un, şeker, pirinç, bal ve 15+ malzeme için ölçü tablosu.",
+    "1 su bardağı un, şeker, pirinç, bulgur kaç gram? 1 kilo un kaç su bardağı? 45 malzeme için su bardağı, yemek kaşığı ve çay kaşığı gram karşılıkları ve çevirici.",
   alternates: {
     canonical: "/mutfak-olculeri-cevirici",
     languages: {
@@ -36,7 +52,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Mutfak Ölçüleri Çevirici: Bardak, Kaşık, Gram Hesaplama",
+    title: "1 Su Bardağı Kaç Gram? Mutfak Ölçüleri Çevirici",
     description:
       "Malzemeye göre bardak, yemek kaşığı, çay kaşığı, gram ve mililitre arasında dönüşüm yapın.",
     url: buildSiteUrl("/mutfak-olculeri-cevirici"),
@@ -135,6 +151,7 @@ export default function KitchenMeasuresPage() {
                   <th scope="col">1 Su Bardağı</th>
                   <th scope="col">1 Yemek Kaşığı</th>
                   <th scope="col">1 Çay Kaşığı</th>
+                  <th scope="col">1 kg kaç bardak</th>
                 </tr>
               </thead>
               <tbody>
@@ -148,6 +165,7 @@ export default function KitchenMeasuresPage() {
                     <td>
                       {Math.round((row.gramsPerBardak * 5) / 200)} g
                     </td>
+                    <td>{(1000 / row.gramsPerBardak).toLocaleString("tr-TR", { maximumFractionDigits: 1 })} bardak</td>
                   </tr>
                 ))}
               </tbody>
@@ -155,31 +173,13 @@ export default function KitchenMeasuresPage() {
           </div>
 
           <h2>Sık Sorulan Sorular</h2>
-          <p>
-            <strong>1 yemek kaşığı kaç ml, kaç çay kaşığı eder?</strong>
-            <br />
-            1 yemek kaşığı 15 ml&apos;dir ve 3 çay kaşığına eşittir (1 çay kaşığı
-            5 ml). 1 su bardağı ise 200 ml, yani yaklaşık 13,3 yemek
-            kaşığına denk gelir.
-          </p>
-          <p>
-            <strong>Neden aynı bardak farklı malzemelerde farklı gram tutuyor?</strong>
-            <br />
-            Bardak ve kaşıklar hacim (mililitre) ölçer, gram ise ağırlıktır.
-            İki ölçü arasındaki bağlantı malzemenin yoğunluğuna bağlıdır;
-            un gibi havadar malzemeler bal gibi yoğun malzemelerden çok
-            daha hafiftir.
-          </p>
-          <p>
-            Elindeki tüm tarifi tek seferde ölçeklendirmek (2 katına
-            çıkarmak, yarıya indirmek) istersen{" "}
-            <Link href="/tarif-cevirici">tarif çevirici sayfasını</Link>{" "}
-            kullanabilirsin — tarifi yapıştır, çarpanı seç, satır satır
-            sonucu gör. Mutfakla ilgili diğer araçlar ve fırın
-            sıcaklığı dönüşüm tablosu için{" "}
-            <Link href="/asci-araclari">Aşçı Araçları</Link> sayfasına
-            bakabilirsin.
-          </p>
+          {faqItems.map((item) => (
+            <p key={item.question}>
+              <strong>{item.question}</strong>
+              <br />
+              {item.answer}
+            </p>
+          ))}
 
           <h2>Kaynaklar</h2>
           <p>

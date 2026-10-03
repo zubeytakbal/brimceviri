@@ -268,3 +268,32 @@ describe("Esmâ-i Hüsnâ", () => {
     expect(ESMAUL_HUSNA[98]).toMatchObject({ no: 99, ad: "Es-Sabûr" });
   });
 });
+
+import { kasrDurumu, KASR_KM, NISAB_GUMUS_VORI, VORI_GRAM, zakatVori } from "../app/converter/diniHesaplar";
+
+describe("Bangladeş zekâtı (ভরি) ve kasr", () => {
+  it("gümüş nisabı 52,5 ভরি = 612,36 g; altın 7,5 ভরি = 87,48 g", () => {
+    expect(NISAB_GUMUS_VORI * VORI_GRAM).toBeCloseTo(612.36, 2);
+    expect(7.5 * VORI_GRAM).toBeCloseTo(87.48, 2);
+  });
+
+  it("gümüş nisabıyla zekât", () => {
+    const base = { nakit: 100000, banka: 50000, ticari: 0, alacak: 0, borc: 20000, altinVori: 2, gumusVori: 0, altinVoriFiyati: 150000, gumusVoriFiyati: 2500, nisab: "gumus" as const };
+    const r = zakatVori(base)!;
+    expect(r.altinDegeri).toBe(300000);
+    expect(r.netVarlik).toBe(430000);
+    expect(r.nisabDegeri).toBe(52.5 * 2500);
+    expect(r.zekat).toBeCloseTo(430000 / 40, 6);
+    // Altın nisabıyla aynı varlık nisabın altında kalır (7,5 × 150.000 = 1.125.000).
+    expect(zakatVori({ ...base, nisab: "altin" })!.nisabUstunde).toBe(false);
+    // Altın var ama fiyatı yoksa hesap yapılmaz.
+    expect(zakatVori({ ...base, altinVoriFiyati: 0 })).toBeNull();
+  });
+
+  it("48 mil ≈ 77,25 km; 15 gün kalış", () => {
+    expect(KASR_KM).toBeCloseTo(77.25, 2);
+    expect(kasrDurumu(80, 3)).toEqual({ mesafeYeterli: true, kalisKisa: true, musafir: true });
+    expect(kasrDurumu(80, 15)!.musafir).toBe(false);
+    expect(kasrDurumu(60, 2)!.musafir).toBe(false);
+  });
+});

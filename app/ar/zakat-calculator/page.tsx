@@ -3,6 +3,7 @@ import Link from "@/app/components/SiteLink";
 import ZakatCalculator from "../../components/ZakatCalculator";
 import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
 import { getGoldPricePerGram, getSilverPricePerGram } from "../../converter/liveMetalPrice";
+import { islamicAlternates } from "../../i18n/islamicToolPaths";
 import { buildSiteUrl } from "../../siteConfig";
 
 const faqItems: FaqItem[] = [
@@ -29,6 +30,7 @@ export const metadata: Metadata = {
     "احسب زكاة المال والذهب والفضة وعروض التجارة باستخدام سعر السوق الحي للذهب والفضة، مع دعم نصاب الذهب ونصاب الفضة.",
   alternates: {
     canonical: "/ar/zakat-calculator",
+    languages: islamicAlternates("zakat"),
   },
   openGraph: {
     title: "حاسبة الزكاة",

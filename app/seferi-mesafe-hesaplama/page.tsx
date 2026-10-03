@@ -8,6 +8,7 @@ import { KGM_DISTANCE_DATE } from "../converter/geo/kgmDistances";
 import { turkeyProvinces } from "../converter/geo/turkeyProvinces";
 import { diniRelated } from "../i18n/diniAraclar";
 import { seoTitle } from "../seoTitle";
+import { islamicAlternates } from "../i18n/islamicToolPaths";
 import { buildSiteUrl } from "../siteConfig";
 
 const path = "/seferi-mesafe-hesaplama";
@@ -17,7 +18,7 @@ const description = `Seferî olmak için gidilecek yer en az ${SEFER_KM} km uzak
 export const metadata: Metadata = {
   title: seoTitle(title, "Seferî Mesafe Hesaplama"),
   description,
-  alternates: { canonical: path },
+  alternates: { canonical: path, languages: islamicAlternates("qasr") },
   openGraph: { title, description, url: buildSiteUrl(path), siteName: "BirimCeviri.app", locale: "tr_TR", type: "website" },
 };
 

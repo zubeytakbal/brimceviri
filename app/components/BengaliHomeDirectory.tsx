@@ -205,6 +205,13 @@ const bengaliStandaloneTools: BengaliStandaloneTool[] = [
     description: "বাইনারি, অক্টাল, ডেসিমেল ও হেক্সাডেসিমেল সংখ্যা রূপান্তর করুন।",
     iconName: "numberBaseCalculator",
   },
+  {
+    id: "islamic-tools",
+    href: "/bn/islamic-tools",
+    title: "ইসলামিক টুলস",
+    description: "ভরি হিসাবে যাকাত, কাজা নামাজ ও রোজা, কুরআন খতম ও কসর দূরত্ব।",
+    iconName: "hijriCalendarCalculator",
+  },
 ];
 
 const stats = {

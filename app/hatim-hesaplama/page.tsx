@@ -6,6 +6,7 @@ import type { FaqItem } from "../converter/faqSchema";
 import { CUZ_SAYISI, hatimPlani, MUSHAF_SAYFA } from "../converter/diniHesaplar";
 import { diniRelated } from "../i18n/diniAraclar";
 import { seoTitle } from "../seoTitle";
+import { islamicAlternates } from "../i18n/islamicToolPaths";
 import { buildSiteUrl } from "../siteConfig";
 
 const path = "/hatim-hesaplama";
@@ -15,7 +16,7 @@ const description = "Kaç günde hatim etmek istediğinizi girin: günde kaç sa
 export const metadata: Metadata = {
   title: seoTitle(title, "Hatim Hesaplama"),
   description,
-  alternates: { canonical: path },
+  alternates: { canonical: path, languages: islamicAlternates("khatam") },
   openGraph: { title, description, url: buildSiteUrl(path), siteName: "BirimCeviri.app", locale: "tr_TR", type: "website" },
 };
 

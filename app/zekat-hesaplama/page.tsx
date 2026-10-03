@@ -6,6 +6,7 @@ import type { FaqItem } from "../converter/faqSchema";
 import { maasZekat, NISAP_ALTIN_GRAM, ZEKAT_ORANI } from "../converter/diniHesaplar";
 import { diniRelated } from "../i18n/diniAraclar";
 import { seoTitle } from "../seoTitle";
+import { islamicAlternates } from "../i18n/islamicToolPaths";
 import { buildSiteUrl } from "../siteConfig";
 
 const path = "/zekat-hesaplama";
@@ -15,7 +16,7 @@ const description = "Nakit, mevduat, döviz, altın ve ticari mallarınızı gir
 export const metadata: Metadata = {
   title: seoTitle(title, "Zekât Hesaplama"),
   description,
-  alternates: { canonical: path, languages: { tr: path, ar: "/ar/zakat-calculator", "x-default": path } },
+  alternates: { canonical: path, languages: islamicAlternates("zakat") },
   openGraph: { title, description, url: buildSiteUrl(path), siteName: "BirimCeviri.app", locale: "tr_TR", type: "website" },
 };
 

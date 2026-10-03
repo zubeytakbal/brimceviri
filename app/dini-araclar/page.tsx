@@ -9,7 +9,7 @@ const description = "Canlı kıble pusulası, kaza namazı ve orucu, zekât, hat
 export const metadata: Metadata = {
   title,
   description,
-  alternates: { canonical: DINI_ARACLAR_PATH },
+  alternates: { canonical: DINI_ARACLAR_PATH, languages: { tr: DINI_ARACLAR_PATH, bn: "/bn/islamic-tools", "x-default": DINI_ARACLAR_PATH } },
   openGraph: { title, description, url: buildSiteUrl(DINI_ARACLAR_PATH), siteName: "BirimCeviri.app", locale: "tr_TR", type: "website" },
 };
 

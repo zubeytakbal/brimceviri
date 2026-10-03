@@ -519,3 +519,58 @@ export const VAKIT_NAMAZLARI: NamazRekat[] = [
 
 export const toplamRekat = (n: NamazRekat, hukum?: RekatKalemi["hukum"]) =>
   n.kalemler.filter((k) => !hukum || k.hukum === hukum).reduce((t, k) => t + k.rekat, 0);
+
+/* ---------------- Bangladeş usulü zekât (ভরি) ve kasr mesafesi ---------------- */
+
+/** Bangladeş ve Hint alt kıtasında nisap: 7,5 ভরি altın ya da 52,5 ভরি gümüş. 1 ভরি = 11,664 g (BAJUS). */
+export const VORI_GRAM = 11.664;
+export const NISAB_ALTIN_VORI = 7.5;
+export const NISAB_GUMUS_VORI = 52.5;
+
+export type ZakatVoriGirdisi = {
+  nakit: number;
+  banka: number;
+  ticari: number;
+  alacak: number;
+  borc: number;
+  altinVori: number;
+  gumusVori: number;
+  /** Kullanıcının girdiği güncel fiyatlar (ভরি başına). */
+  altinVoriFiyati: number;
+  gumusVoriFiyati: number;
+  /** Nakit ve mallar için hangi nisap esas alınacak. */
+  nisab: "gumus" | "altin";
+};
+
+export type ZakatVoriSonucu = {
+  altinDegeri: number;
+  gumusDegeri: number;
+  netVarlik: number;
+  nisabDegeri: number;
+  nisabUstunde: boolean;
+  zekat: number;
+};
+
+export function zakatVori(g: ZakatVoriGirdisi): ZakatVoriSonucu | null {
+  const fiyat = g.nisab === "gumus" ? g.gumusVoriFiyati : g.altinVoriFiyati;
+  if (!(fiyat > 0)) return null;
+  const altinDegeri = pozitif(g.altinVori) * (g.altinVoriFiyati > 0 ? g.altinVoriFiyati : 0);
+  const gumusDegeri = pozitif(g.gumusVori) * (g.gumusVoriFiyati > 0 ? g.gumusVoriFiyati : 0);
+  if ((pozitif(g.altinVori) > 0 && !(g.altinVoriFiyati > 0)) || (pozitif(g.gumusVori) > 0 && !(g.gumusVoriFiyati > 0))) return null;
+  const netVarlik = Math.max(0, pozitif(g.nakit) + pozitif(g.banka) + pozitif(g.ticari) + pozitif(g.alacak) + altinDegeri + gumusDegeri - pozitif(g.borc));
+  const nisabDegeri = (g.nisab === "gumus" ? NISAB_GUMUS_VORI : NISAB_ALTIN_VORI) * fiyat;
+  const nisabUstunde = netVarlik >= nisabDegeri;
+  return { altinDegeri, gumusDegeri, netVarlik, nisabDegeri, nisabUstunde, zekat: nisabUstunde ? netVarlik * ZEKAT_ORANI : 0 };
+}
+
+/** Hanefî âlimlerin Hint alt kıtasında esas aldığı kasr mesafesi: 48 mil. */
+export const KASR_MIL = 48;
+export const MIL_KM = 1.609344;
+export const KASR_KM = KASR_MIL * MIL_KM;
+
+/** Yolculuk mesafesi (km) ve kalış niyeti (gün) → seferî mi? */
+export function kasrDurumu(km: number, kalisGun: number) {
+  if (!(km >= 0) || !(kalisGun >= 0)) return null;
+  const mesafeYeterli = km >= KASR_KM;
+  return { mesafeYeterli, kalisKisa: kalisGun < IKAMET_GUN, musafir: mesafeYeterli && kalisGun < IKAMET_GUN };
+}

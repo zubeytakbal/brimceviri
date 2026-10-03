@@ -92,3 +92,75 @@ describe("Bible books (KJV)", () => {
     for (const b of BIBLE_BOOKS) expect(b.slug).toMatch(/^[a-z0-9-]+$/);
   });
 });
+
+import {
+  catchUp,
+  feastDate,
+  formatChapterRange,
+  MYSTERY_BY_WEEKDAY,
+  NOVENA_FEASTS,
+  novenaFor,
+  readingSchedule,
+  rosarySteps,
+  scopeChapters,
+  tithe,
+  upcomingNovenas,
+} from "../app/converter/christian/christianCalc";
+
+describe("Reading plan", () => {
+  it("whole Bible in 365 days: 1,189 chapters, 94 days of 4 and 271 of 3", () => {
+    const ch = scopeChapters("bible");
+    expect(ch).toHaveLength(1189);
+    const plan = readingSchedule(ch, 365);
+    expect(plan).toHaveLength(365);
+    expect(plan.reduce((t, d) => t + d.chapters, 0)).toBe(1189);
+    expect(plan.filter((d) => d.chapters === 4)).toHaveLength(1189 % 365);
+    expect(formatChapterRange(plan[0].from, plan[0].to)).toBe("Genesis 1–4");
+    expect(plan[364].to).toMatchObject({ chapter: 22 });
+    expect(plan[364].to.book.slug).toBe("revelation");
+    expect(scopeChapters("new")).toHaveLength(260);
+    expect(scopeChapters("gospels")).toHaveLength(89);
+    expect(readingSchedule(scopeChapters("gospels"), 200)).toHaveLength(89);
+  });
+
+  it("catch-up pace", () => {
+    const c = catchUp(1189, 200, 365, 100)!;
+    expect(c.expected).toBe(Math.round((1189 / 365) * 100));
+    expect(c.behind).toBe(c.expected - 200);
+    expect(c.daysLeft).toBe(265);
+    expect(c.newPace).toBeCloseTo(989 / 265, 10);
+    expect(catchUp(1189, 1200, 365, 1)).toBeNull();
+  });
+});
+
+describe("Novena", () => {
+  it("starts nine days before the feast and ends on its eve", () => {
+    expect(novenaFor({ year: 2026, month: 9, day: 29 })).toMatchObject({ start: { year: 2026, month: 9, day: 20 }, end: { year: 2026, month: 9, day: 28 } });
+    expect(novenaFor({ year: 2026, month: 12, day: 25 }).start).toEqual({ year: 2026, month: 12, day: 16 });
+    // Divine Mercy novena begins on Good Friday.
+    const dm = feastDate(NOVENA_FEASTS.find((f) => f.id === "divine-mercy")!, 2026)!;
+    expect(novenaFor(dm).start).toEqual({ year: 2026, month: 4, day: 3 });
+    const up = upcomingNovenas({ year: 2026, month: 10, day: 3 }, 3);
+    expect(up.map((n) => n.feast.id)).toEqual(["francis", "jude", "all-souls"]);
+  });
+});
+
+describe("Rosary", () => {
+  it("weekday mysteries and 5 decades of 10 Hail Marys", () => {
+    expect(MYSTERY_BY_WEEKDAY[4]).toBe("luminous");
+    expect(MYSTERY_BY_WEEKDAY[1]).toBe("joyful");
+    expect(MYSTERY_BY_WEEKDAY[5]).toBe("sorrowful");
+    const steps = rosarySteps("joyful", true);
+    expect(steps.filter((s) => s.prayer === "Hail Mary")).toHaveLength(50);
+    expect(steps.filter((s) => s.bead === "small")).toHaveLength(53);
+    expect(steps.filter((s) => s.bead === "large")).toHaveLength(6);
+  });
+});
+
+describe("Tithe", () => {
+  it("10% per period and per year", () => {
+    expect(tithe(2000, "biweekly")).toEqual({ perPeriod: 200, annual: 5200, monthly: 5200 / 12, weekly: 100 });
+    expect(tithe(5000, "monthly", 5)!.annual).toBe(3000);
+    expect(tithe(100, "monthly", 0)).toBeNull();
+  });
+});

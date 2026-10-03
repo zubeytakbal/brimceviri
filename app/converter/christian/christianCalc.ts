@@ -222,3 +222,233 @@ export function formatMinutes(minutes: number) {
   const r = m % 60;
   return r ? `${h} h ${r} min` : `${h} h`;
 }
+
+/* ---------------- Bible reading plan ---------------- */
+
+export type ReadingScope = "bible" | "old" | "new" | "gospels" | "psalms-proverbs";
+
+export const READING_SCOPES: Array<{ id: ReadingScope; label: string }> = [
+  { id: "bible", label: "Whole Bible" },
+  { id: "old", label: "Old Testament" },
+  { id: "new", label: "New Testament" },
+  { id: "gospels", label: "The four Gospels" },
+  { id: "psalms-proverbs", label: "Psalms and Proverbs" },
+];
+
+export type ChapterRef = { book: BibleBook; chapter: number };
+
+export function scopeBooks(scope: ReadingScope) {
+  return BIBLE_BOOKS.filter((b) =>
+    scope === "bible"
+      ? true
+      : scope === "old"
+        ? b.testament === "Old"
+        : scope === "new"
+          ? b.testament === "New"
+          : scope === "gospels"
+            ? b.section === "Gospels"
+            : b.slug === "psalms" || b.slug === "proverbs",
+  );
+}
+
+export function scopeChapters(scope: ReadingScope): ChapterRef[] {
+  return scopeBooks(scope).flatMap((book) => Array.from({ length: book.chapters }, (_, i) => ({ book, chapter: i + 1 })));
+}
+
+export type PlanDay = { day: number; from: ChapterRef; to: ChapterRef; chapters: number };
+
+/**
+ * Splits the chapters as evenly as possible over `days` days (the first days
+ * get one chapter more when it does not divide exactly).
+ */
+export function readingSchedule(chapters: ChapterRef[], days: number): PlanDay[] {
+  const n = Math.round(days);
+  if (!(n >= 1) || chapters.length === 0) return [];
+  // More days than chapters: one chapter a day, finishing early.
+  const d = Math.min(n, chapters.length);
+  const base = Math.floor(chapters.length / d);
+  const extra = chapters.length % d;
+  const out: PlanDay[] = [];
+  let i = 0;
+  for (let day = 1; day <= d; day++) {
+    const count = base + (day <= extra ? 1 : 0);
+    out.push({ day, from: chapters[i], to: chapters[i + count - 1], chapters: count });
+    i += count;
+  }
+  return out;
+}
+
+export function formatChapterRange(from: ChapterRef, to: ChapterRef) {
+  const ref = (c: ChapterRef) => `${c.book.slug === "psalms" ? "Psalm" : c.book.name} ${c.chapter}`;
+  if (from.book === to.book) {
+    return from.chapter === to.chapter ? ref(from) : `${from.book.name} ${from.chapter}–${to.chapter}`;
+  }
+  return `${ref(from)} – ${ref(to)}`;
+}
+
+export type CatchUp = {
+  total: number;
+  read: number;
+  remaining: number;
+  daysLeft: number;
+  /** Chapters per day planned originally. */
+  planPace: number;
+  /** Chapters that should have been read by today. */
+  expected: number;
+  behind: number;
+  newPace: number;
+};
+
+/**
+ * Catch-up for a plan of `planDays` days started `daysElapsed` days ago
+ * (today counts as a reading day still to come).
+ */
+export function catchUp(total: number, read: number, planDays: number, daysElapsed: number): CatchUp | null {
+  if (!(total > 0) || !(read >= 0) || read > total || !(planDays >= 1) || !(daysElapsed >= 0)) return null;
+  const daysLeft = Math.max(0, Math.round(planDays) - Math.round(daysElapsed));
+  const remaining = total - read;
+  const planPace = total / planDays;
+  const expected = Math.min(total, Math.round(planPace * daysElapsed));
+  return {
+    total,
+    read,
+    remaining,
+    daysLeft,
+    planPace,
+    expected,
+    behind: Math.max(0, expected - read),
+    newPace: daysLeft > 0 ? remaining / daysLeft : Number.POSITIVE_INFINITY,
+  };
+}
+
+/* ---------------- Novenas ---------------- */
+
+export type NovenaFeast = { id: string; name: string; rule: { month: number; day: number } | { easterOffset: number } };
+
+/** Common novenas: fixed feasts of the General Roman Calendar and Easter-based ones. */
+export const NOVENA_FEASTS: NovenaFeast[] = [
+  { id: "lourdes", name: "Our Lady of Lourdes", rule: { month: 2, day: 11 } },
+  { id: "patrick", name: "St. Patrick", rule: { month: 3, day: 17 } },
+  { id: "joseph", name: "St. Joseph", rule: { month: 3, day: 19 } },
+  { id: "annunciation", name: "The Annunciation", rule: { month: 3, day: 25 } },
+  { id: "divine-mercy", name: "Divine Mercy Sunday", rule: { easterOffset: 7 } },
+  { id: "fatima", name: "Our Lady of Fatima", rule: { month: 5, day: 13 } },
+  { id: "rita", name: "St. Rita of Cascia", rule: { month: 5, day: 22 } },
+  { id: "pentecost", name: "Pentecost (Novena to the Holy Spirit)", rule: { easterOffset: 49 } },
+  { id: "anthony", name: "St. Anthony of Padua", rule: { month: 6, day: 13 } },
+  { id: "sacred-heart", name: "The Sacred Heart of Jesus", rule: { easterOffset: 68 } },
+  { id: "mount-carmel", name: "Our Lady of Mount Carmel", rule: { month: 7, day: 16 } },
+  { id: "assumption", name: "The Assumption of Mary", rule: { month: 8, day: 15 } },
+  { id: "padre-pio", name: "St. Padre Pio", rule: { month: 9, day: 23 } },
+  { id: "michael", name: "St. Michael the Archangel", rule: { month: 9, day: 29 } },
+  { id: "therese", name: "St. Thérèse of Lisieux", rule: { month: 10, day: 1 } },
+  { id: "francis", name: "St. Francis of Assisi", rule: { month: 10, day: 4 } },
+  { id: "jude", name: "St. Jude", rule: { month: 10, day: 28 } },
+  { id: "all-souls", name: "All Souls (for the Holy Souls)", rule: { month: 11, day: 2 } },
+  { id: "immaculate-conception", name: "The Immaculate Conception", rule: { month: 12, day: 8 } },
+  { id: "guadalupe", name: "Our Lady of Guadalupe", rule: { month: 12, day: 12 } },
+  { id: "christmas", name: "Christmas", rule: { month: 12, day: 25 } },
+];
+
+export const NOVENA_DAYS = 9;
+
+export function feastDate(feast: NovenaFeast, year: number): YMD | null {
+  if ("easterOffset" in feast.rule) {
+    const easter = westernEaster(year);
+    return easter ? addDaysYmd(easter, feast.rule.easterOffset) : null;
+  }
+  return { year, month: feast.rule.month, day: feast.rule.day };
+}
+
+/**
+ * A novena is prayed on the nine days before the feast: it starts nine days
+ * before and its last day is the eve of the feast. (The Divine Mercy novena
+ * starts on Good Friday, which is the same nine days.)
+ */
+export function novenaFor(feastDay: YMD) {
+  return { start: addDaysYmd(feastDay, -NOVENA_DAYS), end: addDaysYmd(feastDay, -1), feastDay };
+}
+
+/** Novenas whose last day is today or later, from `from` on, sorted by start date. */
+export function upcomingNovenas(from: YMD, count: number) {
+  const list = [from.year, from.year + 1].flatMap((year) =>
+    NOVENA_FEASTS.map((feast) => {
+      const day = feastDate(feast, year);
+      return day ? { feast, ...novenaFor(day) } : null;
+    }),
+  );
+  return list
+    .filter((x): x is NonNullable<typeof x> => x !== null && diffDays(from, x.end) >= 0)
+    .sort((a, b) => diffDays(b.start, a.start))
+    .slice(0, count);
+}
+
+/* ---------------- Rosary ---------------- */
+
+export type MysterySet = "joyful" | "sorrowful" | "glorious" | "luminous";
+
+export const MYSTERIES: Record<MysterySet, { name: string; items: string[] }> = {
+  joyful: { name: "Joyful Mysteries", items: ["The Annunciation", "The Visitation", "The Nativity", "The Presentation in the Temple", "The Finding in the Temple"] },
+  sorrowful: {
+    name: "Sorrowful Mysteries",
+    items: ["The Agony in the Garden", "The Scourging at the Pillar", "The Crowning with Thorns", "The Carrying of the Cross", "The Crucifixion"],
+  },
+  glorious: {
+    name: "Glorious Mysteries",
+    items: ["The Resurrection", "The Ascension", "The Descent of the Holy Spirit", "The Assumption of Mary", "The Coronation of Mary"],
+  },
+  luminous: {
+    name: "Luminous Mysteries",
+    items: [
+      "The Baptism of Jesus",
+      "The Wedding at Cana",
+      "The Proclamation of the Kingdom",
+      "The Transfiguration",
+      "The Institution of the Eucharist",
+    ],
+  },
+};
+
+/** Weekday schedule since Rosarium Virginis Mariae (2002). Index 0 = Sunday. */
+export const MYSTERY_BY_WEEKDAY: MysterySet[] = ["glorious", "joyful", "sorrowful", "glorious", "luminous", "sorrowful", "joyful"];
+
+export const WEEKDAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+export type RosaryStep = { prayer: string; bead: "cross" | "large" | "small" | "none"; decade: number | null; count?: string };
+
+/** The steps of a five-decade Rosary, in order. */
+export function rosarySteps(set: MysterySet, fatimaPrayer: boolean): RosaryStep[] {
+  const steps: RosaryStep[] = [
+    { prayer: "Sign of the Cross and the Apostles' Creed", bead: "cross", decade: null },
+    { prayer: "Our Father", bead: "large", decade: null },
+    ...[1, 2, 3].map((i) => ({ prayer: "Hail Mary (for faith, hope and charity)", bead: "small" as const, decade: null, count: `${i} of 3` })),
+    { prayer: "Glory Be", bead: "none", decade: null },
+  ];
+  MYSTERIES[set].items.forEach((mystery, d) => {
+    steps.push({ prayer: `${d + 1}${["st", "nd", "rd", "th", "th"][d]} mystery: ${mystery} – Our Father`, bead: "large", decade: d + 1 });
+    for (let i = 1; i <= 10; i++) steps.push({ prayer: "Hail Mary", bead: "small", decade: d + 1, count: `${i} of 10` });
+    steps.push({ prayer: fatimaPrayer ? "Glory Be and the Fatima Prayer" : "Glory Be", bead: "none", decade: d + 1 });
+  });
+  steps.push({ prayer: "Hail, Holy Queen and the closing prayer", bead: "none", decade: null });
+  return steps;
+}
+
+/* ---------------- Tithe ---------------- */
+
+export const PAY_PERIODS = [
+  { id: "weekly", label: "Weekly", perYear: 52 },
+  { id: "biweekly", label: "Every two weeks", perYear: 26 },
+  { id: "semimonthly", label: "Twice a month", perYear: 24 },
+  { id: "monthly", label: "Monthly", perYear: 12 },
+  { id: "annual", label: "Yearly", perYear: 1 },
+] as const;
+
+export type PayPeriod = (typeof PAY_PERIODS)[number]["id"];
+
+/** Tithe per period and per year on an income given for one pay period. */
+export function tithe(incomePerPeriod: number, period: PayPeriod, percent = 10) {
+  const p = PAY_PERIODS.find((x) => x.id === period);
+  if (!p || !(incomePerPeriod >= 0) || !(percent > 0 && percent <= 100)) return null;
+  const annual = incomePerPeriod * p.perYear * (percent / 100);
+  return { perPeriod: incomePerPeriod * (percent / 100), annual, monthly: annual / 12, weekly: annual / 52 };
+}

@@ -3,8 +3,8 @@ import Link from "@/app/components/SiteLink";
 import { CHRISTIAN_TOOLS_PATH, englishChristianTools } from "../../i18n/englishChristianTools";
 import { buildSiteUrl } from "../../siteConfig";
 
-const title = "Christian Tools: Easter Date, Lent Calculator, Bible Books";
-const description = "Free Christian calculators: Easter dates for any year (Western and Orthodox), which day of Lent it is, and chapters, verses and reading time for all 66 books of the Bible.";
+const title = "Christian Tools: Easter Date, Lent, Bible Reading Plan, Rosary";
+const description = "Free Christian calculators: Easter dates for any year, Lent day counter, Bible reading plans with catch-up, novena start dates, Rosary mysteries of the day and a tithe calculator.";
 
 export const metadata: Metadata = {
   title,
@@ -25,8 +25,9 @@ export default function ChristianToolsPage() {
         <header className="other-categories-header">
           <h1>Christian Tools</h1>
           <p>
-            Calculators for the church year and Bible reading. Every result comes from a fixed rule: the Easter computus used by Western and
-            Orthodox churches, the traditional count of the 40 days of Lent, and the chapter and verse numbering of the King James Version.
+            Calculators for the church year, prayer, Bible reading and giving. Every result comes from a fixed rule: the Easter computus used
+            by Western and Orthodox churches, the traditional count of the 40 days of Lent, the General Roman Calendar, and the chapter and verse
+            numbering of the King James Version.
           </p>
         </header>
         <ul className="tool-hub-list dini-hub-list">

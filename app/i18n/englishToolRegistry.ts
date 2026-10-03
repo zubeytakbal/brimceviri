@@ -50,7 +50,7 @@ export const englishToolDomains: Array<{
   { id: "fitness", href: "/en/fitness-calculators", label: "Fitness Calculators", description: "One-rep-max and running-pace training estimates." },
   { id: "chemistry", href: englishChemistryHubPath, label: "Chemistry Calculators", description: "Solution chemistry, reaction calculations, equilibrium and electrochemistry." },
   { id: "science", href: "/en/science-calculators", label: "Science Calculators", description: "Mathematics, physics, biology and chemistry learning tools." },
-  { id: "christian", href: CHRISTIAN_TOOLS_PATH, label: "Christian Tools", description: "Easter dates, Lent days and the books of the Bible." },
+  { id: "christian", href: CHRISTIAN_TOOLS_PATH, label: "Christian Tools", description: "Easter dates, Lent, Bible reading plans, novenas, the Rosary and tithing." },
 ];
 
 const elevatedEverydayComponents = new Set(["bmiCalculator", "pregnancyCalculator", "calorieCalculator", "bodyFatCalculator", "idealWeightCalculator", "ivDripRateCalculator", "standardDrinkCalculator", "poolChlorineCalculator"]);

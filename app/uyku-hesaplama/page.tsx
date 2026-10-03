@@ -28,6 +28,16 @@ const faqItems: FaqItem[] = [
       "Yetişkinler için önerilen süre 7-9 saattir. 6 saat (4 döngü) ara sıra idare eder ama düzenli olarak yetersiz kalır; dikkat, ruh hali ve bağışıklık üzerinde olumsuz etkiler görülebilir.",
   },
   {
+    question: "Bir uyku döngüsü kaç dakika?",
+    answer:
+      "Bir uyku döngüsü ortalama 90 dakikadır (kişiye göre 75-120 dakika). Her döngü hafif uyku, derin uyku ve REM evrelerinden oluşur; döngü sonunda uyanmak, derin uykunun ortasında uyanmaktan çok daha az sersemletir.",
+  },
+  {
+    question: "Günde kaç saat uyumalıyım?",
+    answer:
+      "Yetişkinler (18-64 yaş) için 7-9 saat, 65 yaş üstü için 7-8 saat, 14-17 yaş için 8-10 saat önerilir. Bebeklerde ihtiyaç çok daha fazladır: yeni doğan 14-17, 4-11 aylık bebek 12-15 saat uyur. Yaşa göre tablonun tamamı aşağıda.",
+  },
+  {
     question: "Öğle uykusu ne kadar olmalı?",
     answer:
       "Kısa bir şekerleme için 10-20 dakika derin uykuya geçmeden uyanmanızı sağlar. Daha uzun uyuyacaksanız yaklaşık 90 dakikalık tam bir döngü tercih edin; 30-60 dakika arası uyanmak sersemlik hissi yaratabilir.",
@@ -74,15 +84,15 @@ const tocItems = [
 ];
 
 export const metadata: Metadata = {
-  title: "Uyku Hesaplama: Kaçta Yatmalı, Kaçta Kalkmalıyım?",
+  title: "Uyku Hesaplama: Şimdi Uyusam Kaçta Kalkmalıyım?",
   description:
-    "Kalkmak istediğin saati (ya da yatacağın saati) gir: 90 dakikalık uyku döngülerine göre en dinlenmiş uyanacağın saatleri anında hesapla.",
+    "Şimdi uyusan kaçta kalkmalısın, sabah 7'de kalkmak için kaçta yatmalısın? 90 dakikalık uyku döngülerine göre dinlenmiş uyanacağın saatler ve yaşa göre uyku ihtiyacı.",
   alternates: {
     canonical: "/uyku-hesaplama",
     ...sleepGuideAlternates(),
   },
   openGraph: {
-    title: "Uyku Hesaplama: Kaçta Yatmalı, Kaçta Kalkmalıyım?",
+    title: "Uyku Hesaplama: Şimdi Uyusam Kaçta Kalkmalıyım?",
     description:
       "90 dakikalık uyku döngülerine göre ideal yatış ve kalkış saatlerini hesaplayın.",
     url: buildSiteUrl("/uyku-hesaplama"),
@@ -143,6 +153,10 @@ export default function SleepCalculatorPage() {
             dakikalık uyku döngülerine göre hangi saatte uyursan daha
             dinlenmiş uyanacağını gör. 5-6 döngü (7,5-9 saat) genel
             olarak önerilen aralıktır.
+          </p>
+          <p>
+            <strong>Kısa cevap:</strong> 23:00&apos;te yatarsan 06:45 (5 döngü) ya da 08:15&apos;te (6 döngü) kalk; sabah 07:00&apos;de kalkacaksan
+            21:45 ya da 23:15&apos;te yat.
           </p>
         </header>
 

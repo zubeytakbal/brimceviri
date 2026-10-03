@@ -12,6 +12,7 @@ import { DecorativeIcon, getCategoryIconName, type SiteIconName } from "./siteIc
 import NotificationBell from "./NotificationBell";
 import NordicToolsSection from "./NordicToolsSection";
 
+import { useSearchTracking } from "./useSearchTracking";
 function CardIcon({ name }: { name: SiteIconName }) {
   return (
     <span className="home-category-icon-box" aria-hidden="true">
@@ -169,6 +170,7 @@ export default function SwedishHomeDirectory({
   const searchResults = normalizedQuery
     ? searchables.filter((item) => item.searchText.includes(normalizedQuery)).slice(0, 8)
     : [];
+  useSearchTracking("sv", query, searchResults.length);
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();

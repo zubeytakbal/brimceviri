@@ -11,6 +11,8 @@ import type { SiteNotification } from "../converter/siteNotifications";
 import { DecorativeIcon, getCategoryIconName, type SiteIconName } from "./siteIcons";
 import NotificationBell from "./NotificationBell";
 
+import { useSearchTracking } from "./useSearchTracking";
+import { CATHOLIC_PATHS } from "../i18n/catholicTools";
 function CardIcon({ name }: { name: SiteIconName }) {
   return (
     <span className="home-category-icon-box" aria-hidden="true">
@@ -151,7 +153,7 @@ const popularUnits = preferredUnitSourceSlugs
   })
   .filter((unit): unit is NonNullable<typeof unit> => Boolean(unit));
 
-const searchables = spanishConversionPages.map((page) => ({
+const conversionSearchables = spanishConversionPages.map((page) => ({
   id: page.slug,
   href: `/es/${page.slug}`,
   label: `${page.fromName} → ${page.toName}`,
@@ -161,6 +163,35 @@ const searchables = spanishConversionPages.map((page) => ({
     [page.fromName, page.toName, page.fromUnit, page.toUnit, page.slug, page.categoryName].join(" ")
   ),
 }));
+
+
+const catholicSearchItems = [
+  { href: CATHOLIC_PATHS.es.rosary, label: "Misterios del Rosario de hoy", keywords: "rosario misterios hoy gozosos dolorosos gloriosos luminosos" },
+  { href: CATHOLIC_PATHS.es.novena, label: "Calculadora de novenas", keywords: "novena cuándo empezar san judas guadalupe aguinaldos" },
+  { href: CATHOLIC_PATHS.es.liturgical, label: "Calendario litúrgico", keywords: "calendario litúrgico color tiempo ciclo lecturas" },
+  { href: CATHOLIC_PATHS.es.easter, label: "¿Cuándo es Semana Santa?", keywords: "semana santa pascua cuaresma ceniza ramos" },
+];
+
+// Tools (niche cards such as the Catholic and gold calculators) are searchable too.
+const searchables = [
+  ...catholicSearchItems.map((item) => ({
+    id: `tool-${item.href}`,
+    href: item.href,
+    label: item.label,
+    description: "",
+    categoryLabel: "Herramientas católicas",
+    searchText: normalizeSearchTextEs(`${item.label} ${item.keywords}`),
+  })),
+  ...nicheCards.map((card) => ({
+    id: `tool-${card.id}`,
+    href: card.href,
+    label: card.title,
+    description: card.description,
+    categoryLabel: "Herramientas",
+    searchText: normalizeSearchTextEs(`${card.title} ${card.description}`),
+  })),
+  ...conversionSearchables,
+];
 
 const stats = {
   categories: primaryCategoryCards.length + secondaryCategoryCards.length,
@@ -182,6 +213,7 @@ export default function SpanishHomeDirectory({
   const searchResults = normalizedQuery
     ? searchables.filter((item) => item.searchText.includes(normalizedQuery)).slice(0, 8)
     : [];
+  useSearchTracking("es", query, searchResults.length);
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();

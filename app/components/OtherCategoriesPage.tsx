@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useDeferredValue, useId, useState } from "react";
 import { DecorativeIcon, type SiteIconName } from "./siteIcons";
 
+import { useSearchTracking } from "./useSearchTracking";
 type SearchableConversion = {
   id: string;
   href?: string;
@@ -211,6 +212,7 @@ export default function OtherCategoriesPage({
         )
         .slice(0, 8)
     : [];
+  useSearchTracking(locale, query, searchResults.length);
 
   // Gruplu araclari (ust baslikli) siraya gore topla; group belirtilmeyen
   // araclar varsayilan "Araclar" baslığı altinda kalir -- bu, group hic

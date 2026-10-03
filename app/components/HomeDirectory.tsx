@@ -63,9 +63,11 @@ import { englishHomeCategoryOrder, getEnglishCategoryPresentation } from "../i18
 import type { SiteNotification } from "../converter/siteNotifications";
 import { unitPages } from "../converter/unitPages";
 import { geoToolsEn, geoToolsTr } from "../converter/geo/geoTools";
-import { TURKISH_TOOL_HUB_PATH, turkishPopularTools } from "../i18n/turkishToolDirectory";
-import { GERMAN_TOOL_HUB_PATH } from "../i18n/germanToolDirectory";
+import { TURKISH_TOOL_HUB_PATH, turkishPopularTools, turkishToolGroups } from "../i18n/turkishToolDirectory";
+import { GERMAN_TOOL_HUB_PATH, germanToolGroups } from "../i18n/germanToolDirectory";
+import { diniAraclar } from "../i18n/diniAraclar";
 
+import { useSearchTracking } from "./useSearchTracking";
 type Locale = "tr" | "en" | "uz" | "de";
 
 const englishDecisionSavingsHomeTools = getEnglishToolsByDomain("decision-savings");
@@ -1851,8 +1853,32 @@ function createHomeData(locale: Locale): HomeData {
   // hem tek tek birim çiftlerine denk düştüğünde (örn. "yoğunluk"), asıl
   // aranan büyük ihtimalle genel sayfadır — 8 sonuçluk kesme noktasında
   // dar birim çiftlerinin genel sayfayı listeden itmesini engeller.
+  // Every tool listed in the calculator directory (/hesaplayicilar, /de/rechner)
+  // is searchable, with its group name as context; tools already in the
+  // calculator index are not repeated. Dini araçlar also match their description.
+  const knownHrefs = new Set(calculatorSearchables.map((item) => item.href));
+  const toolGroups = locale === "tr" ? turkishToolGroups : locale === "de" ? germanToolGroups : [];
+  const diniDescriptions = new Map(diniAraclar.map((tool) => [tool.href, tool.description]));
+  const directorySearchables: HomeSearchable[] = [];
+  for (const group of toolGroups) {
+    for (const link of group.links) {
+      if (knownHrefs.has(link.href)) continue;
+      knownHrefs.add(link.href);
+      const description = diniDescriptions.get(link.href);
+      directorySearchables.push({
+        id: `dizin-${link.href}`,
+        href: link.href,
+        label: link.label,
+        description,
+        categoryLabel: group.title,
+        searchText: normalizeSearchText(`${link.label} ${group.title} ${description ?? ""}`),
+      });
+    }
+  }
+
   const searchables: HomeSearchable[] = [
     ...categoryOverviewSearchables,
+    ...directorySearchables,
     ...conversions.map((conversion) => ({
       id: conversion.id,
       href: conversion.href,
@@ -1942,6 +1968,7 @@ export default function HomeDirectory({
         .filter((item) => item.searchText.includes(normalizedQuery))
         .slice(0, 8)
     : [];
+  useSearchTracking(locale, query, searchResults.length);
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();

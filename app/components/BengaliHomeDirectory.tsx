@@ -14,6 +14,7 @@ import FxHomeSection from "./fx/FxHomeSection";
 import { fxContentBn } from "../converter/fx/fxContentBn";
 import { buildFxSearchEntries } from "../converter/fx/fxLocale";
 
+import { useSearchTracking } from "./useSearchTracking";
 function CardIcon({ name }: { name: SiteIconName }) {
   return (
     <span className="home-category-icon-box" aria-hidden="true">
@@ -159,7 +160,6 @@ const conversionSearchables = bengaliConversionPages.map((page) => ({
   ),
 }));
 
-const searchables = [...currencySearchables, ...conversionSearchables];
 
 type BengaliStandaloneTool = {
   id: string;
@@ -214,6 +214,29 @@ const bengaliStandaloneTools: BengaliStandaloneTool[] = [
   },
 ];
 
+// Tools and Islamic calculators are searchable too, with the words people type.
+const islamicSearchables = [
+  { href: "/bn/zakat-calculator", label: "যাকাত ক্যালকুলেটর", keywords: "যাকাত জাকাত নিসাব ভরি সোনা রুপা zakat" },
+  { href: "/bn/kaza-namaz-calculator", label: "কাজা নামাজ ও রোজা হিসাব", keywords: "কাজা নামাজ রোজা ওয়াক্ত রাকাত kaza qaza" },
+  { href: "/bn/quran-khatam-planner", label: "কুরআন খতম পরিকল্পনা", keywords: "কুরআন কোরআন খতম পারা quran khatam" },
+  { href: "/bn/qasr-distance-calculator", label: "কসর দূরত্ব হিসাব", keywords: "কসর মুসাফির সফর দূরত্ব নামাজ qasr" },
+];
+
+const toolSearchables = [
+  ...bengaliStandaloneTools.map((tool) => ({ href: tool.href, label: tool.title, description: tool.description, keywords: "" })),
+  ...islamicSearchables.map((tool) => ({ ...tool, description: "" })),
+].map((tool) => ({
+  id: `tool-${tool.href}`,
+  href: tool.href,
+  label: tool.label,
+  description: tool.description,
+  categoryLabel: "টুল",
+  searchText: normalizeSearchTextBn(`${tool.label} ${tool.description} ${tool.keywords}`),
+}));
+
+const searchables = [...toolSearchables, ...currencySearchables, ...conversionSearchables];
+
+
 const stats = {
   categories: primaryCategoryCards.length + secondaryCategoryCards.length,
   conversions: bengaliConversionPages.length,
@@ -235,6 +258,7 @@ export default function BengaliHomeDirectory({
   const searchResults = normalizedQuery
     ? searchables.filter((item) => item.searchText.includes(normalizedQuery)).slice(0, 8)
     : [];
+  useSearchTracking("bn", query, searchResults.length);
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();

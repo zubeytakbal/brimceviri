@@ -151,8 +151,8 @@ export default function EnglishKitchenMeasuresPage() {
                   <tr key={row.key}>
                     <td>{ingredientLabelsEn[row.key] ?? row.label}</td>
                     <td>{gramsInDefaultEnglishCup(row.gramsPerBardak)} g</td>
-                    <td>{Math.round((row.gramsPerBardak * 15) / 200)} g</td>
-                    <td>{Math.round((row.gramsPerBardak * 5) / 200)} g</td>
+                    <td>{Math.round((row.gramsPerBardak * 14.78676478125) / 200)} g</td>
+                    <td>{Math.round((row.gramsPerBardak * 4.92892159375) / 200)} g</td>
                   </tr>
                 ))}
               </tbody>
@@ -163,9 +163,11 @@ export default function EnglishKitchenMeasuresPage() {
           <p>
             <strong>How many ml or teaspoons are in a tablespoon?</strong>
             <br />
-            One tablespoon is 15 ml, equal to 3 teaspoons (1 teaspoon is 5
-            ml). A US customary cup is 236.588 ml, or roughly 15.8
-            tablespoons.
+            A US tablespoon is 14.79 ml (half a US fluid ounce) and equals 3
+            US teaspoons of 4.93 ml; 16 tablespoons make one US customary cup
+            (236.588 ml). Metric, UK and nutrition-label (US legal) recipes use
+            a 15 ml tablespoon and a 5 ml teaspoon — the converter switches
+            spoon sizes with the cup standard you choose.
           </p>
           <p>
             <strong>Is a cup 240 ml or 250 ml?</strong>

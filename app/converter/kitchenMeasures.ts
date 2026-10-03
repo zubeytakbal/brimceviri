@@ -162,13 +162,26 @@ export const mlPerVolumeUnit: Record<KitchenVolumeUnit, number> = {
   litre: 1000,
 };
 
+/**
+ * Spoons follow the cup standard: a US customary cup is exactly 16 US tablespoons
+ * (14.787 ml) and 48 US teaspoons (4.929 ml); US legal (FDA labelling), metric,
+ * imperial (modern UK recipes) and Turkish kitchens use 15 ml / 5 ml spoons.
+ */
+export const mlPerKitchenSpoon: Record<KitchenCupStandard, { yemekKasigi: number; cayKasigi: number }> = {
+  turkish: { yemekKasigi: 15, cayKasigi: 5 },
+  us: { yemekKasigi: 14.78676478125, cayKasigi: 4.92892159375 },
+  usLegal: { yemekKasigi: 15, cayKasigi: 5 },
+  metric: { yemekKasigi: 15, cayKasigi: 5 },
+  imperial: { yemekKasigi: 15, cayKasigi: 5 },
+};
+
 export function getMlPerKitchenVolumeUnit(
   unit: KitchenVolumeUnit,
   cupStandard: KitchenCupStandard = "turkish"
 ) {
-  return unit === "bardak"
-    ? mlPerKitchenCupStandard[cupStandard]
-    : mlPerVolumeUnit[unit];
+  if (unit === "bardak") return mlPerKitchenCupStandard[cupStandard];
+  if (unit === "yemekKasigi" || unit === "cayKasigi") return mlPerKitchenSpoon[cupStandard][unit];
+  return mlPerVolumeUnit[unit];
 }
 
 export type KitchenConversionResult = {
@@ -198,8 +211,8 @@ export function convertKitchenValue(
     bardak:
       mlEquivalent /
       getMlPerKitchenVolumeUnit("bardak", cupStandard),
-    yemekKasigi: mlEquivalent / mlPerVolumeUnit.yemekKasigi,
-    cayKasigi: mlEquivalent / mlPerVolumeUnit.cayKasigi,
+    yemekKasigi: mlEquivalent / getMlPerKitchenVolumeUnit("yemekKasigi", cupStandard),
+    cayKasigi: mlEquivalent / getMlPerKitchenVolumeUnit("cayKasigi", cupStandard),
     ml: mlEquivalent,
     litre: mlEquivalent / mlPerVolumeUnit.litre,
     gram: mlEquivalent * gramsPerMl,

@@ -680,10 +680,10 @@ const curatedEnglishUnitPages: LocalizedUnitPage[] = [
     category: "guc",
     categoryName: "Power",
     unit: "hp",
-    name: "Horsepower",
+    name: "Metric Horsepower (PS)",
     symbol: "hp",
     shortDescription:
-      "Horsepower is a traditional unit of power, most often used to express the output of vehicle and machine engines. The metric horsepower used here equals 735.49875 watts.",
+      "Metric horsepower (PS, CV) is a traditional unit of power used for engine output in Europe and much of the world; it equals 735.49875 watts. The mechanical horsepower (hp) used in the US and UK is slightly larger, 745.7 watts.",
     historySummary:
       "Horsepower was introduced by James Watt in the 18th century to compare the output of steam engines with the work of draft horses; the metric version later became standard across the automotive industry outside the US.",
     measurementSystem: "Metric horsepower family (PS/CV, non-SI)",

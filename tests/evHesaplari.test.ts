@@ -38,3 +38,14 @@ describe("döşeme betonu ve yakıt", () => {
     expect(r.tl100km).toBe(350);
   });
 });
+
+describe("kitchen spoons follow the cup standard", () => {
+  it("US cup = 16 tbsp = 48 tsp; Turkish 200 ml = 13.3 tbsp", async () => {
+    const { convertKitchenValue } = await import("../app/converter/kitchenMeasures");
+    const us = convertKitchenValue("un", "bardak", 1, "us");
+    expect(us.yemekKasigi).toBeCloseTo(16, 6);
+    expect(us.cayKasigi).toBeCloseTo(48, 6);
+    expect(convertKitchenValue("un", "bardak", 1, "turkish").yemekKasigi).toBeCloseTo(13.333, 2);
+    expect(convertKitchenValue("un", "yemekKasigi", 16, "us").bardak).toBeCloseTo(1, 6);
+  });
+});

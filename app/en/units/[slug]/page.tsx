@@ -295,7 +295,7 @@ export default async function EnglishUnitInformationPage({
               ) : (
                 <>
                   <p>{unitPage.shortDescription}</p>
-                  <p>{unitPage.historySummary}</p>
+                  {unitPage.historySummary ? <p>{unitPage.historySummary}</p> : null}
                   <p>
                     Measurement system: {unitPage.measurementSystem}.
                     SI equivalent: {unitPage.siEquivalent}.
@@ -449,14 +449,16 @@ export default async function EnglishUnitInformationPage({
                   <p>SI equivalent: {unitPage.siEquivalent}</p>
                 </section>
 
-                <section className="conversion-section unit-long-section">
-                  <h2>
-                    History of the{" "}
-                    {unitPage.name.toLowerCase()}
-                  </h2>
+                {unitPage.historySummary ? (
+                  <section className="conversion-section unit-long-section">
+                    <h2>
+                      History of the{" "}
+                      {unitPage.name.toLowerCase()}
+                    </h2>
 
-                  <p>{unitPage.historySummary}</p>
-                </section>
+                    <p>{unitPage.historySummary}</p>
+                  </section>
+                ) : null}
 
                 <section className="conversion-section unit-long-section">
                   <h2>

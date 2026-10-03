@@ -105,6 +105,8 @@ const SYMBOL_OVERRIDES: Record<string, string> = {
   "dönüm": "donum",
   "kırat (arazi)": "qirat",
   "çk": "tsp",
+  yk: "tbsp",
+  sb: "glass",
   "şinik": "shinik",
 };
 

@@ -1,3 +1,4 @@
+import { englishUnitHistory } from "./englishUnitHistories";
 import type { UnitPage } from "./unitPages";
 import { KILOGRAM_FORCE_PER_SQUARE_CENTIMETRE_UNIT } from "./engineeringUnits";
 import { englishDisplaySymbol } from "./englishUnitDisplay";
@@ -2167,11 +2168,13 @@ const allEnglishUnitPages: LocalizedUnitPage[] = [
 // must never enter static params, the sitemap or category listings. Keep the
 // first curated record: it is the deliberately written version when a unit
 // was accidentally added to the catalog more than once.
-export const englishUnitPages: LocalizedUnitPage[] = allEnglishUnitPages.filter(
-  (page, index) =>
-    allEnglishUnitPages.findIndex((candidate) => candidate.slug === page.slug) ===
-    index
-);
+export const englishUnitPages: LocalizedUnitPage[] = allEnglishUnitPages
+  .filter(
+    (page, index) =>
+      allEnglishUnitPages.findIndex((candidate) => candidate.slug === page.slug) ===
+      index
+  )
+  .map((page) => ({ ...page, historySummary: englishUnitHistory(page.slug, page.historySummary) }));
 
 export function findEnglishUnitPage(
   category: string,

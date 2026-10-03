@@ -1,3 +1,4 @@
+import { englishDisplaySymbol } from "../converter/englishUnitDisplay";
 import {
   findEnglishCategoryPageByCategory,
   getEnglishCategoryPathByCategory,
@@ -55,8 +56,8 @@ export default function EnglishConversionSeo({
         `What is 1 ${conversionPage.fromName} in ` +
         `${conversionPage.toName}?`,
       answer:
-        `1 ${conversionPage.fromUnit} = ${formattedOneUnitResult} ` +
-        `${conversionPage.toUnit}. Enter another value in the converter ` +
+        `1 ${englishDisplaySymbol(conversionPage.category, conversionPage.fromUnit)} = ${formattedOneUnitResult} ` +
+        `${englishDisplaySymbol(conversionPage.category, conversionPage.toUnit)}. Enter another value in the converter ` +
         "to calculate its equivalent instantly.",
     },
     {

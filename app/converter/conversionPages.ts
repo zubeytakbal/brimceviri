@@ -669,7 +669,7 @@ const pairDefinitions: ConversionPairDefinition[] = [
     firstId: "rpm",
     secondId: "rad-s",
     firstExamples: [60, 500, 1000, 1500, 3000, 6000, 10000],
-    secondExamples: [6.28, 52.36, 104.72, 157.08, 314.16, 628.32, 1047.2],
+    secondExamples: [1, 5, 10, 50, 100, 500, 1000],
   },
   {
     category: "acisal_hiz",

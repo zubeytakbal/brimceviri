@@ -7,7 +7,7 @@ import TurkeyMap, { provinceMapCenters } from "../../../components/geo/TurkeyMap
 import TimeToolPage from "../../../components/time/TimeToolPage";
 import type { FaqItem } from "../../../converter/faqSchema";
 import { KGM_DISTANCE_DATE } from "../../../converter/geo/kgmDistances";
-import { airKm, DEFAULT_AVG_KMH, distancesFrom, driveMinutes, durationText, roadKm } from "../../../converter/geo/provinceDistances";
+import { airKm, DEFAULT_AVG_KMH, distancesFrom, driveMinutes, durationText, roadKm, routeStops } from "../../../converter/geo/provinceDistances";
 import { findRoutePair, routePairPath, routePairs } from "../../../converter/geo/routePairs";
 import { getNationalGasolinePrice } from "../../../converter/liveFuelPrice";
 import { trAblative, trDative, trGenitive, trLocative } from "../../../converter/turkishSuffix";
@@ -56,6 +56,17 @@ export default async function RoutePairPage({ params }: { params: Promise<{ il: 
   const solarDiff = Math.round((to.lon - from.lon) * 4);
   const dateText = new Intl.DateTimeFormat("tr-TR", { month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(KGM_DISTANCE_DATE));
   const path = `/iller-arasi-mesafe/${from.id}/${to.id}`;
+  const stops = routeStops(from, to);
+  const yari = stops.length ? stops.reduce((b, x) => (Math.abs(x.fromStart - road / 2) < Math.abs(b.fromStart - road / 2) ? x : b)) : null;
+  // Yaklaşık her 2,5 saatte (≈210 km) bir mola: o noktaya en yakın yol üstü il
+  const molalar =
+    stops.length && road > 300
+      ? Array.from({ length: Math.floor(road / 210) }, (_, i) => (i + 1) * 210)
+          .filter((km) => km < road - 60)
+          .map((km) => stops.reduce((b, x) => (Math.abs(x.fromStart - km) < Math.abs(b.fromStart - km) ? x : b)))
+          .filter((x, i, arr) => arr.findIndex((y) => y.province.id === x.province.id) === i)
+      : [];
+  const rakimlar = stops.map((x) => x.province.elevationM).concat(from.elevationM, to.elevationM);
   // Ayni cikistan en yakin diger guzergahlar
   const nearby = distancesFrom(from)
     .filter((r) => r.province.id !== to.id)
@@ -80,6 +91,12 @@ export default async function RoutePairPage({ params }: { params: Promise<{ il: 
       answer: `100 km'de 7 litre yakan bir otomobil ${fmt(road)} km'lik yolda yaklaşık ${fmt((road * 7) / 100, 1)} litre yakıt tüketir${
         price ? `; güncel ortalama benzin fiyatıyla bu yaklaşık ${fmt(((road * 7) / 100) * price)} TL eder` : ""
       }. Gidiş-dönüş için bu değerleri iki katına çıkarın.`,
+    },
+    {
+      question: `${from.name} ${to.name} yolu hangi illerden geçer?`,
+      answer: stops.length
+        ? `Karayolları mesafe cetveline göre ${trAblative(from.name)} ${trDative(to.name)} giden yol ${stops.map((x) => `${x.province.name} (${fmt(x.fromStart)}. km)`).join(", ")} il merkezlerinin içinden ya da yakınından geçer.${yari ? ` Yolun yarısı ${yari.province.name} civarındadır.` : ""}`
+        : `${from.name} ile ${to.name} arasında başka bir il merkezinden geçilmez; iki il doğrudan bağlanır.`,
     },
     {
       question: `${from.name} ile ${to.name} arasında rakım farkı ne kadar?`,
@@ -119,6 +136,7 @@ export default async function RoutePairPage({ params }: { params: Promise<{ il: 
       }}
       tocTitle="İçindekiler"
       tocItems={[
+        { id: "guzergah", label: "Yol üzerindeki iller" },
         { id: "sure", label: "Farklı hızlarda yolculuk süresi" },
         { id: "yakit", label: "Yakıt tüketimi ve maliyet" },
         { id: "iller", label: `${from.name} ve ${to.name} karşılaştırması` },
@@ -128,6 +146,75 @@ export default async function RoutePairPage({ params }: { params: Promise<{ il: 
       faqTitle="Sık Sorulan Sorular"
       faqItems={faqItems}
     >
+      <h2 id="guzergah">
+        {from.name} – {to.name} yolu üzerindeki iller
+      </h2>
+      {stops.length ? (
+        <>
+          <div className="holiday-table-wrap">
+            <table className="holiday-table">
+              <thead>
+                <tr>
+                  <th scope="col">İl merkezi</th>
+                  <th scope="col">{trAblative(from.name)}</th>
+                  <th scope="col">{trDative(to.name)} kalan</th>
+                  <th scope="col">Süre ({DEFAULT_AVG_KMH} km/sa)</th>
+                  <th scope="col">Rakım</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">{from.name} (çıkış)</th>
+                  <td>0 km</td>
+                  <td>{fmt(road)} km</td>
+                  <td>—</td>
+                  <td>{fmt(from.elevationM)} m</td>
+                </tr>
+                {stops.map((x) => (
+                  <tr key={x.province.id}>
+                    <th scope="row">
+                      <Link href={`/il-rakimlari/${x.province.id}`} prefetch={false}>
+                        {x.province.name}
+                      </Link>
+                    </th>
+                    <td>{fmt(x.fromStart)} km</td>
+                    <td>{fmt(Math.max(road - x.fromStart, 0))} km</td>
+                    <td>{durationText(driveMinutes(x.fromStart, DEFAULT_AVG_KMH))}</td>
+                    <td>{fmt(x.province.elevationM)} m</td>
+                  </tr>
+                ))}
+                <tr>
+                  <th scope="row">{to.name} (varış)</th>
+                  <td>{fmt(road)} km</td>
+                  <td>0 km</td>
+                  <td>{durationText(driveMinutes(road, DEFAULT_AVG_KMH))}</td>
+                  <td>{fmt(to.elevationM)} m</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            {yari ? <>Yolun yarısı {yari.province.name} civarında ({fmt(yari.fromStart)}. km). </> : null}
+            {molalar.length ? (
+              <>
+                Yaklaşık 2,5 saatte bir mola için uygun duraklar: {molalar.map((x) => `${x.province.name} (${fmt(x.fromStart)}. km)`).join(", ")}.{" "}
+              </>
+            ) : null}
+            Yol boyunca il merkezlerinin rakımı {fmt(Math.min(...rakimlar))} m ile {fmt(Math.max(...rakimlar))} m arasında değişir; dağ geçitleri bundan yüksek olabilir.
+          </p>
+          <p>
+            <small>
+              Güzergâh, Karayolları il merkezleri arası mesafe cetvelinden çıkarılmıştır: listedeki illerden geçmek toplam yolu en fazla %2 uzatır. Yol il
+              merkezinin içinden değil çevre yolundan geçebilir; navigasyon farklı bir güzergâh önerebilir.
+            </small>
+          </p>
+        </>
+      ) : (
+        <p>
+          {from.name} ile {to.name} arasında başka bir il merkezinden geçilmez; iki il doğrudan bağlanır ({fmt(road)} km).
+        </p>
+      )}
+
       <h2 id="sure">Farklı hızlarda yolculuk süresi</h2>
       <div className="holiday-table-wrap">
         <table className="holiday-table">

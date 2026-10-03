@@ -50,3 +50,29 @@ describe("eksik ilçeler", () => {
     }
   });
 });
+
+describe("il karşılaştırma fizik", () => {
+  it("paket, lastik, eğim", async () => {
+    const { paketGenlesmesi, lastikGostergeArtisiBar, ortalamaEgim } = await import("../app/converter/provinceComparison");
+    expect(paketGenlesmesi(1013, 811)).toBeCloseTo(1.249, 2);
+    expect(lastikGostergeArtisiBar(1013, 913)).toBeCloseTo(0.1, 5);
+    expect(ortalamaEgim(-850, 450)!.metre100km).toBeCloseTo(188.9, 0);
+    expect(ortalamaEgim(100, 0)).toBeNull();
+  });
+});
+
+describe("güzergâh üzerindeki iller", () => {
+  it("İstanbul–Ankara ve tutarlılık", async () => {
+    const { routeStops, roadKm } = await import("../app/converter/geo/provinceDistances");
+    const { findProvince } = await import("../app/converter/geo/turkeyProvinces");
+    const ist = findProvince("istanbul")!, ank = findProvince("ankara")!;
+    expect(routeStops(ist, ank).map((s) => s.province.id)).toEqual(["kocaeli", "sakarya", "duzce", "bolu"]);
+    const izm = findProvince("izmir")!, erz = findProvince("erzurum")!;
+    const st = routeStops(izm, erz);
+    const ids = [izm, ...st.map((s) => s.province), erz];
+    let total = 0;
+    for (let i = 1; i < ids.length; i++) total += roadKm(ids[i - 1], ids[i]);
+    expect(total).toBeLessThanOrEqual(roadKm(izm, erz) * 1.02 + 5);
+    expect(st.map((s) => s.fromStart)).toEqual(st.map((s) => s.fromStart).slice().sort((a, b) => a - b));
+  });
+});

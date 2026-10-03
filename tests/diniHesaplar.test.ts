@@ -297,3 +297,15 @@ describe("Bangladeş zekâtı (ভরি) ve kasr", () => {
     expect(kasrDurumu(60, 2)!.musafir).toBe(false);
   });
 });
+
+import { formatUz } from "../app/converter/uzNumber";
+
+describe("Özbekçe sayı biçimi", () => {
+  it("boşlukla binlik, virgülle ondalık", () => {
+    expect(formatUz(2190)).toBe("2 190");
+    expect(formatUz(1.2, 1)).toBe("1,2");
+    expect(formatUz(1.5, 2)).toBe("1,5");
+    expect(formatUz(1234567.891, 2)).toBe("1 234 567,89");
+    expect(formatUz(0.2, 2)).toBe("0,2");
+  });
+});

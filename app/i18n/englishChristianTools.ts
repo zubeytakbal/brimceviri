@@ -47,6 +47,18 @@ export const englishChristianTools = [
     title: "Tithe Calculator",
     description: "Ten percent (or any percentage) of your pay per paycheck, month and year, on gross and on net income.",
   },
+  {
+    id: "orthodox-fasting-calendar",
+    href: "/en/orthodox-fasting-calendar",
+    title: "Orthodox Fasting Calendar",
+    description: "Is today a fast day? Old and new calendar, Apostles' Fast length, Great Lent, Dormition and Nativity Fasts.",
+  },
+  {
+    id: "julian-calendar-converter",
+    href: "/en/julian-calendar-converter",
+    title: "Julian Calendar Converter",
+    description: "Old style ↔ new style dates, and why Orthodox Christmas falls on January 7.",
+  },
 ] as const;
 
 export function christianRelated(exclude: string) {

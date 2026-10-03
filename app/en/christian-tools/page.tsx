@@ -4,7 +4,7 @@ import { CHRISTIAN_TOOLS_PATH, englishChristianTools } from "../../i18n/englishC
 import { buildSiteUrl } from "../../siteConfig";
 
 const title = "Christian Tools: Easter Date, Lent, Bible Reading Plan, Rosary";
-const description = "Free Christian calculators: Easter dates for any year, Lent day counter, Bible reading plans with catch-up, novena start dates, Rosary mysteries of the day and a tithe calculator.";
+const description = "Free Christian calculators: Easter dates for any year, Lent day counter, Orthodox fasting calendar, Bible reading plans with catch-up, novena start dates, Rosary mysteries of the day and a tithe calculator.";
 
 export const metadata: Metadata = {
   title,

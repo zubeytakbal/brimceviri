@@ -4,6 +4,7 @@ import TimeToolPage from "../../components/time/TimeToolPage";
 import type { FaqItem } from "../../converter/faqSchema";
 import { feastDate, formatLongDate, NOVENA_FEASTS, novenaFor } from "../../converter/christian/christianCalc";
 import { CHRISTIAN_TOOLS_PATH, christianRelated } from "../../i18n/englishChristianTools";
+import { catholicAlternates } from "../../i18n/catholicTools";
 import { buildSiteUrl } from "../../siteConfig";
 
 const path = "/en/novena-calculator";
@@ -14,7 +15,7 @@ const description = "Find the start date of a novena so the ninth day falls on t
 export const metadata: Metadata = {
   title,
   description,
-  alternates: { canonical: path },
+  alternates: { canonical: path, languages: catholicAlternates("novena") },
   openGraph: { title, description, url: buildSiteUrl(path), siteName: "BirimCeviri.app", locale: "en_US", type: "website" },
 };
 

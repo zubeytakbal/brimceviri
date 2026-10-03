@@ -48,6 +48,12 @@ export const englishChristianTools = [
     description: "Ten percent (or any percentage) of your pay per paycheck, month and year, on gross and on net income.",
   },
   {
+    id: "liturgical-calendar",
+    href: "/en/liturgical-calendar",
+    title: "Liturgical Calendar",
+    description: "Today's liturgical season, color and week, and the lectionary cycle (Year A, B or C).",
+  },
+  {
     id: "orthodox-fasting-calendar",
     href: "/en/orthodox-fasting-calendar",
     title: "Orthodox Fasting Calendar",

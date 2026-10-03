@@ -9,7 +9,7 @@ const description = "Free Christian calculators: Easter dates for any year, Lent
 export const metadata: Metadata = {
   title,
   description,
-  alternates: { canonical: CHRISTIAN_TOOLS_PATH },
+  alternates: { canonical: CHRISTIAN_TOOLS_PATH, languages: { en: CHRISTIAN_TOOLS_PATH, es: "/es/herramientas-catolicas", pt: "/pt/ferramentas-catolicas", "x-default": CHRISTIAN_TOOLS_PATH } },
   openGraph: { title, description, url: buildSiteUrl(CHRISTIAN_TOOLS_PATH), siteName: "BirimCeviri.app", locale: "en_US", type: "website" },
 };
 

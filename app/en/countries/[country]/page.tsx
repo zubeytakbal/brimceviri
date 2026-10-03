@@ -179,6 +179,7 @@ export default async function EnglishCountryPage({ params }: { params: Promise<{
               fills={fills}
               capitalDots={[c.iso3]}
               labels={[c.iso3, ...neighbors.map((n) => n.iso3)]}
+              cullOutside
               hrefFor={(x) => (x.iso3 === c.iso3 ? null : countryPathEn(x))}
             />
           </div>
@@ -189,7 +190,7 @@ export default async function EnglishCountryPage({ params }: { params: Promise<{
                 <span className="tr-map-legend-swatch" style={{ background: "#9fcfcf" }} /> Neighboring countries
               </>
             )}
-            · Click another country to open its page.
+            · Click a neighboring country to open its page.
           </p>
         </div>
       }

@@ -66,7 +66,7 @@ export function areaRank(country: WorldCountry) {
 
 let bboxCache: Map<string, [number, number, number, number]> | null = null;
 
-function pathBbox(d: string): [number, number, number, number] {
+export function pathBbox(d: string): [number, number, number, number] {
   let minX = Infinity;
   let minY = Infinity;
   let maxX = -Infinity;

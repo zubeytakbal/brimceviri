@@ -71,20 +71,30 @@ export function trGenitive(value: string | number) {
   return `${word}'${info(word).endsWithVowel ? "n" : ""}${narrow(word)}n`;
 }
 
+/**
+ * Tamlama ile biten adlar (Amerika Birleşik Devletleri, Orta Afrika Cumhuriyeti) iyelik eki taşır;
+ * hal eki "n" kaynaştırmasıyla gelir: Devletleri'nde, Cumhuriyeti'nden, Emirlikleri'ne.
+ */
+const IYELIKLI = /\s\S*(Cumhuriyeti|Devletleri|Emirlikleri|Adaları|Yönetimi|Ginesi|Sahili|Krallığı|Federasyonu|Birliği|Topluluğu)$/;
+const iyelikli = (word: string) => IYELIKLI.test(word.trim());
+
 /** Ayrilma hali: Ay'dan, Mars'tan, Dünya'dan, 3'ten */
 export function trAblative(value: string | number) {
   const word = String(value);
+  if (iyelikli(word)) return `${word}'nd${wide(word)}n`;
   return `${word}'${info(word).hard ? "t" : "d"}${wide(word)}n`;
 }
 
 /** Bulunma hali: Ankara'da, Mars'ta, İzmir'de */
 export function trLocative(value: string | number) {
   const word = String(value);
+  if (iyelikli(word)) return `${word}'nd${wide(word)}`;
   return `${word}'${info(word).hard ? "t" : "d"}${wide(word)}`;
 }
 
 /** Yonelme hali: Everest'e, Ankara'ya, 6'ya, 3'e */
 export function trDative(value: string | number) {
   const word = String(value);
+  if (iyelikli(word)) return `${word}'n${wide(word)}`;
   return `${word}'${info(word).endsWithVowel ? "y" : ""}${wide(word)}`;
 }

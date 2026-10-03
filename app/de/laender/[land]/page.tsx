@@ -257,6 +257,7 @@ export default async function LandPage({ params }: PageProps) {
                 fills={fills}
                 capitalDots={[c.iso3]}
                 labels={[c.iso3, ...neighbors.map((n) => n.iso3)]}
+                cullOutside
                 hrefFor={(x) => (x.iso3 === c.iso3 ? null : countryPathDe(x))}
               />
             </div>
@@ -275,7 +276,7 @@ export default async function LandPage({ params }: PageProps) {
                   Nachbarländer
                 </>
               )}
-              · Ein anderes Land anklicken, um seine Seite zu öffnen.
+              · Ein Nachbarland anklicken, um seine Seite zu öffnen.
             </p>
           </div>
         }

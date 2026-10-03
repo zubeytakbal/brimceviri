@@ -18,6 +18,7 @@ import {
   timeDiffWithTurkey,
 } from "../../converter/geo/worldGeo";
 import { findCountry, worldCountries } from "../../converter/geo/worldCountries";
+import { ayiriciAdi, olcuSistemi, resmiDiller, saatDilimleri, TAKVIM_ADI, trafikYonu, utcMetni, yazimBilgisi } from "../../converter/geo/countryLocale";
 import { worldCities } from "../../converter/time/worldCities";
 import { trGenitive, trLocative } from "../../converter/turkishSuffix";
 import { countryPathEn } from "../../converter/geo/worldGeoEn";
@@ -74,6 +75,19 @@ export default async function CountryPage({ params }: { params: Promise<{ ulke: 
   const viewBox = cropViewBox([c, ...neighbors.filter((n) => n.area < c.area * 6 || neighbors.length <= 2)]);
   const localTime = new Intl.DateTimeFormat("tr-TR", { timeZone: c.tz, hour: "2-digit", minute: "2-digit" });
   const path = `/ulkeler/${c.id}`;
+  const diller = resmiDiller(c);
+  const trafik = trafikYonu(c);
+  const olcu = olcuSistemi(c);
+  const dilimler = saatDilimleri(c);
+  const ornekGun = new Date(Date.UTC(now.getUTCFullYear(), 9, 3));
+  const yaz = yazimBilgisi(c, ornekGun);
+  const yazUyari: string[] = [];
+  if (yaz.sira === "ay-gun") yazUyari.push(`Tarihte ay önce yazılır: ${yaz.tarih} bizdeki 3 Ekim'dir, 10 Mart değil.`);
+  if (yaz.sira === "yil-ay-gun") yazUyari.push(`Tarih yıl-ay-gün sırasıyla yazılır (${yaz.tarih}).`);
+  if (yaz.ondalik === ".") yazUyari.push(`Ondalık ayırıcı noktadır: "2.5" iki buçuk demektir, bizdeki yazımla 2,5.`);
+  if (yaz.saat12) yazUyari.push("Günlük hayatta 12 saatlik sistem yaygındır; öğleden sonra 15.30, 3.30 olarak söylenir.");
+  if (yaz.haftaSonu && !(yaz.haftaSonu.length === 2 && yaz.haftaSonu.includes("Cumartesi") && yaz.haftaSonu.includes("Pazar")))
+    yazUyari.push(`Hafta sonu ${yaz.haftaSonu.join(" ve ")} günleridir; iş ve resmî kurum saatlerini buna göre planlayın.`);
   const areaCompare = isTurkey
     ? ""
     : areaRatio >= 1
@@ -101,6 +115,25 @@ export default async function CountryPage({ params }: { params: Promise<{ ulke: 
             answer: `Ankara ile ${c.capital} arasındaki kuş uçuşu mesafe yaklaşık ${km(dist)} km'dir. Uçakla, ortalama 800 km/sa seyir hızıyla yaklaşık ${Math.max(1, Math.round((dist / 800) * 10) / 10).toLocaleString("tr-TR")} saatlik uçuşa karşılık gelir (kalkış-iniş hariç).`,
           },
         ]),
+    ...(diller.length
+      ? [
+          {
+            question: `${trLocative(c.nameTr)} hangi dil konuşulur?`,
+            answer: `${trGenitive(c.nameTr)} resmî ${diller.length > 1 ? "dilleri" : "dili"}: ${diller.join(", ")}.`,
+          },
+        ]
+      : []),
+    {
+      question: `${trLocative(c.nameTr)} trafik soldan mı akar?`,
+      answer:
+        trafik === "sol"
+          ? `Evet. ${trLocative(c.nameTr)} trafik soldan akar ve direksiyon sağdadır; Türkiye'den gidenler için kavşak ve sollamalarda dikkat gerekir.`
+          : `Hayır. ${trLocative(c.nameTr)} trafik, Türkiye'de olduğu gibi sağdan akar.`,
+    },
+    {
+      question: `${trLocative(c.nameTr)} tarih nasıl yazılır?`,
+      answer: `3 Ekim ${ornekGun.getUTCFullYear()} tarihi ${trLocative(c.nameTr)} genellikle ${yaz.tarih} şeklinde yazılır${yaz.tarihYerelTakvim ? `; ülkenin resmî takviminde (${TAKVIM_ADI[yaz.takvim] ?? yaz.takvim}) aynı gün ${yaz.tarihYerelTakvim}` : ""}. Sayılarda ondalık ayırıcı ${ayiriciAdi(yaz.ondalik)}, binlik ayırıcı ${ayiriciAdi(yaz.binlik)}: ${yaz.sayi}.`,
+    },
     {
       question: `${trGenitive(c.nameTr)} para birimi nedir?`,
       answer: `${c.nameTr}, ${c.currencies.map((code) => `${currencyNameTr(code)} (${code})`).join(" ve ")} kullanır.`,
@@ -116,7 +149,7 @@ export default async function CountryPage({ params }: { params: Promise<{ ulke: 
       ]}
       crumbLabel="Sayfa yolu"
       title={`${c.flag} ${c.nameTr}`}
-      intro={`${c.region}${c.subregion ? ` · ${c.subregion}` : ""}. Başkent, yüzölçümü, Türkiye ile saat farkı ve uzaklık, para birimi, telefon kodu ve komşu ülkeler.`}
+      intro={`${c.region}${c.subregion ? ` · ${c.subregion}` : ""}. Başkenti ${c.capital}${diller.length ? `, resmî ${diller.length > 1 ? "dilleri" : "dili"} ${diller.join(", ")}` : ""}; trafik ${trafik === "sol" ? "soldan" : "sağdan"} akar${neighbors.length ? `, ${neighbors.length} komşusu var` : c.landlocked ? "" : ", kara komşusu yok"}. Türkiye ile saat farkı, uzaklık, tarih ve sayı yazımı, para birimi ve harita.`}
       tool={
         <div className="province-distance-tool">
           <div className="holiday-stats">
@@ -148,6 +181,7 @@ export default async function CountryPage({ params }: { params: Promise<{ ulke: 
               fills={fills}
               capitalDots={[c.iso3]}
               labels={[c.iso3, ...neighbors.map((n) => n.iso3)]}
+              cullOutside
               hrefFor={(x) => (x.iso3 === c.iso3 ? null : `/ulkeler/${x.id}`)}
             />
           </div>
@@ -158,7 +192,7 @@ export default async function CountryPage({ params }: { params: Promise<{ ulke: 
                 <span className="tr-map-legend-swatch" style={{ background: "#9fcfcf" }} /> Komşu ülkeler
               </>
             )}
-            · Başka bir ülkeye tıklayarak o ülkenin sayfasına geçin.
+            · Komşu bir ülkeye tıklayarak o ülkenin sayfasına geçin.
           </p>
         </div>
       }
@@ -179,6 +213,7 @@ export default async function CountryPage({ params }: { params: Promise<{ ulke: 
       tocTitle="İçindekiler"
       tocItems={[
         { id: "bilgiler", label: `${c.nameTr} genel bilgiler` },
+        { id: "yazim", label: "Tarih, saat ve sayı yazımı" },
         ...(isTurkey ? [] : [{ id: "turkiye", label: "Türkiye ile karşılaştırma" }]),
         ...(neighbors.length ? [{ id: "komsular", label: "Komşu ülkeler" }] : []),
         { id: "faq", label: "Sık sorulan sorular" },
@@ -211,6 +246,39 @@ export default async function CountryPage({ params }: { params: Promise<{ ulke: 
                 {c.area.toLocaleString("tr-TR")} km² · {km(c.area * 0.386102)} mil² · {km(c.area * 100)} hektar
               </td>
             </tr>
+            {diller.length > 0 && (
+              <tr>
+                <th scope="row">Resmî {diller.length > 1 ? "diller" : "dil"}</th>
+                <td>{diller.join(", ")}</td>
+              </tr>
+            )}
+            <tr>
+              <th scope="row">Trafik</th>
+              <td>{trafik === "sol" ? "Soldan akar (direksiyon sağda)" : "Sağdan akar (Türkiye gibi)"}</td>
+            </tr>
+            <tr>
+              <th scope="row">Ölçü birimleri</th>
+              <td>
+                {olcu.tur === "abd" ? (
+                  <>
+                    ABD ölçüleri: <Link href="/mil-kilometre">mil</Link>, <Link href="/pound-kilogram">pound</Link>, <Link href="/galon-litre">galon</Link>,{" "}
+                    <Link href="/fit-metre">feet</Link>
+                  </>
+                ) : olcu.tur === "karma" ? (
+                  <>
+                    Metrik; ancak yol mesafesi ve hız <Link href="/mil-kilometre">mil</Link>, bira ve süt pint ile
+                  </>
+                ) : (
+                  "Metrik (metre, kilogram, litre)"
+                )}
+                {olcu.fahrenheit ? (
+                  <>
+                    {" "}
+                    · hava sıcaklığı <Link href="/fahrenhayt-santigrat">Fahrenheit</Link>
+                  </>
+                ) : null}
+              </td>
+            </tr>
             <tr>
               <th scope="row">Para birimi</th>
               <td>
@@ -236,6 +304,12 @@ export default async function CountryPage({ params }: { params: Promise<{ ulke: 
               <td>
                 {c.tz.replace(/_/g, " ")} · şu an {localTime.format(now)}
                 {!isTurkey ? ` (${timeDiffText(diff)})` : ""}
+                {dilimler.length > 1 ? (
+                  <small>
+                    {" "}
+                    — ülkede {dilimler.length} farklı saat dilimi var: {dilimler.map(utcMetni).join(", ")}
+                  </small>
+                ) : null}
               </td>
             </tr>
             {c.phone && (
@@ -270,6 +344,61 @@ export default async function CountryPage({ params }: { params: Promise<{ ulke: 
           </tbody>
         </table>
       </div>
+
+      <h2 id="yazim">{trLocative(c.nameTr)} tarih, saat ve sayı yazımı</h2>
+      <div className="holiday-table-wrap">
+        <table className="holiday-table">
+          <thead>
+            <tr>
+              <th scope="col">Türkiye&apos;de</th>
+              <th scope="col">{trLocative(c.nameTr)}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">03.10.{ornekGun.getUTCFullYear()}</th>
+              <td>
+                {yaz.tarih}
+                {yaz.tarihYerelRakam ? ` · yerel rakamlarla ${yaz.tarihYerelRakam}` : ""}
+                {yaz.tarihYerelTakvim ? ` · ${TAKVIM_ADI[yaz.takvim] ?? yaz.takvim}: ${yaz.tarihYerelTakvim}` : ""}
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">15.30</th>
+              <td>
+                {yaz.saat} ({yaz.saat12 ? "12 saatlik" : "24 saatlik"})
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">1.234.567,89</th>
+              <td>
+                {yaz.sayi} (ondalık: {ayiriciAdi(yaz.ondalik)}, binlik: {ayiriciAdi(yaz.binlik)})
+              </td>
+            </tr>
+            {yaz.ilkGun && (
+              <tr>
+                <th scope="row">Hafta Pazartesi başlar</th>
+                <td>Hafta {yaz.ilkGun} başlar</td>
+              </tr>
+            )}
+            {yaz.haftaSonu && (
+              <tr>
+                <th scope="row">Hafta sonu: Cumartesi, Pazar</th>
+                <td>Hafta sonu: {yaz.haftaSonu.join(", ")}</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+      {yazUyari.length > 0 ? (
+        <ul>
+          {yazUyari.map((u) => (
+            <li key={u}>{u}</li>
+          ))}
+        </ul>
+      ) : (
+        <p>Tarih ve sayı yazımı Türkiye&apos;dekine benzer; günlük kullanımda karışıklık beklenmez.</p>
+      )}
 
       {!isTurkey && (
         <>
@@ -309,7 +438,8 @@ export default async function CountryPage({ params }: { params: Promise<{ ulke: 
       )}
       <p>
         <small>
-          Kaynaklar: ülke verileri mledoze/countries (ODbL), başkent koordinatları GeoNames (CC BY 4.0), sınırlar Natural Earth. Yüzölçümü değerleri iç
+          Kaynaklar: ülke ve dil verileri mledoze/countries (ODbL), başkent koordinatları GeoNames (CC BY 4.0), sınırlar Natural Earth, saat dilimleri
+          countries-and-timezones; tarih, saat ve sayı yazımı Unicode CLDR verisinden üretilir (ülkenin en yaygın diline göre). Yüzölçümü değerleri iç
           suları içerebilir; kaynaklar arasında küçük farklar olabilir.
         </small>
       </p>

@@ -1,0 +1,333 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import {
+  civcivIsisi,
+  dogumTakvimi,
+  gebelikDurumu,
+  HAYVANLAR,
+  KANATLILAR,
+  KILIT_GUN,
+  kuluckaGunu,
+  kuluckaRandimani,
+  kuluckaTakvimi,
+  tohumlamaZamani,
+  type HayvanTuru,
+  type KanatliTuru,
+} from "../converter/hayvancilik";
+import type { YMD } from "../converter/time/calendars";
+import { addDaysYmd, diffDays, parseYmd, weekdayOf } from "../converter/time/dateMath";
+
+const AYLAR = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
+const GUNLER = ["Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi"];
+const tarih = (d: YMD) => `${d.day} ${AYLAR[d.month - 1]} ${d.year} ${GUNLER[weekdayOf(d)]}`;
+const kisa = (d: YMD) => `${d.day} ${AYLAR[d.month - 1]}`;
+const yuzde = (x: number) => `%${(x * 100).toLocaleString("tr-TR", { maximumFractionDigits: 1 })}`;
+
+function bugunIso() {
+  return new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Istanbul", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
+}
+
+/** Sabit tarihle ön işlenir; tarayıcıda (kullanıcı değiştirmediyse) bugüne göre ayarlanır. */
+function useTarih(initial: string, kaydir = 0) {
+  const [value, setValue] = useState(initial);
+  const [touched, setTouched] = useState(false);
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      if (!touched) {
+        const b = parseYmd(bugunIso())!;
+        const s = addDaysYmd(b, kaydir);
+        setValue(`${s.year}-${String(s.month).padStart(2, "0")}-${String(s.day).padStart(2, "0")}`);
+      }
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [touched, kaydir]);
+  const set = (v: string) => {
+    setTouched(true);
+    setValue(v);
+  };
+  return [value, set] as const;
+}
+
+const kalanYazi = (hedef: YMD, bugun: YMD | null) => {
+  if (!bugun) return "";
+  const n = diffDays(bugun, hedef);
+  if (n > 0) return `${n} gün kaldı`;
+  if (n === 0) return "bugün";
+  return `${-n} gün önceydi`;
+};
+
+/* ---------------- Doğum hesaplama ---------------- */
+
+export function DogumHesaplama({ initialDate }: { initialDate: string }) {
+  const [tur, setTur] = useState<HayvanTuru>("inek");
+  const [tohumlama, setTohumlama] = useTarih(initialDate, -60);
+  const [bugunRaw] = useTarih(initialDate);
+  const t = parseYmd(tohumlama);
+  const bugun = parseYmd(bugunRaw);
+  const h = HAYVANLAR[tur];
+  const r = t ? dogumTakvimi(tur, t) : null;
+  const durum = t && bugun ? gebelikDurumu(tur, t, bugun) : null;
+  const buyukbas = tur === "inek" || tur === "duve" || tur === "manda";
+
+  return (
+    <div className="date-calc">
+      <div className="date-calc-input">
+        <div className="date-calc-fields">
+          <label className="date-calc-field">
+            <span>Hayvan</span>
+            <select value={tur} onChange={(e) => setTur(e.target.value as HayvanTuru)}>
+              {(Object.keys(HAYVANLAR) as HayvanTuru[]).map((k) => (
+                <option key={k} value={k}>
+                  {HAYVANLAR[k].ad} ({HAYVANLAR[k].gebelik} gün)
+                </option>
+              ))}
+            </select>
+          </label>
+          <label className="date-calc-field">
+            <span>{tur === "koyun" || tur === "keci" ? "Koç/teke katımı veya tohumlama tarihi" : "Tohumlama (aşım) tarihi"}</span>
+            <input type="date" value={tohumlama} onChange={(e) => setTohumlama(e.target.value)} />
+          </label>
+        </div>
+      </div>
+
+      {r && t ? (
+        <>
+          <div className="date-calc-results">
+            <div className="date-calc-stat is-main">
+              <span>Tahmini doğum tarihi</span>
+              <strong>{tarih(r.dogum)}</strong>
+              <em>
+                Normal aralık: {kisa(r.erken)} – {kisa(r.gec)} · {kalanYazi(r.dogum, bugun)}
+              </em>
+            </div>
+            {durum && durum.gun >= 0 && durum.kalan >= 0 ? (
+              <div className="date-calc-stat">
+                <span>Bugün</span>
+                <strong>
+                  {durum.gun}. gün ({durum.ay} aylık gebe)
+                </strong>
+                <em>doğuma {durum.kalan} gün</em>
+              </div>
+            ) : null}
+            <div className="date-calc-stat">
+              <span>Tutmadıysa kızgınlık</span>
+              <strong>
+                {kisa(r.kizginlik[0])} ve {kisa(r.kizginlik[1])}
+              </strong>
+              <em>{h.kizginlik} günlük döngü; bu günlerde kızgınlık görülmezse gebelik ihtimali yüksek</em>
+            </div>
+            <div className="date-calc-stat">
+              <span>Gebelik kontrolü (ultrason)</span>
+              <strong>{tarih(r.kontrol)}</strong>
+              <em>{h.kontrol}. günden itibaren veteriner kontrolü</em>
+            </div>
+            {r.kuru ? (
+              <div className="date-calc-stat">
+                <span>Kuruya ayırma</span>
+                <strong>{tarih(r.kuru)}</strong>
+                <em>sağılıyorsa doğumdan {h.kuru} gün önce sağımı kesin</em>
+              </div>
+            ) : null}
+            <div className="date-calc-stat">
+              <span>Doğum bölmesine alma</span>
+              <strong>{tarih(r.bolme)}</strong>
+              <em>
+                doğumdan {h.bolme} gün önce; {h.yavru} için hazırlık
+              </em>
+            </div>
+          </div>
+          {buyukbas ? (
+            <p className="date-calc-note">
+              Tohumlama zamanı (sabah-akşam kuralı): kızgınlık sabah görülürse {tohumlamaZamani("sabah")}, akşam görülürse {tohumlamaZamani("aksam")}{" "}
+              tohumlatın.
+            </p>
+          ) : null}
+        </>
+      ) : (
+        <p className="date-calc-note">Tohumlama tarihini girin.</p>
+      )}
+      <p className="date-calc-note">Süreler ortalamadır; ırk, yaş ve yavru sayısına göre birkaç gün değişebilir. Kesin gebelik tespiti için veteriner hekime başvurun.</p>
+    </div>
+  );
+}
+
+/* ---------------- Kuluçka ---------------- */
+
+export function KuluckaHesaplama({ initialDate }: { initialDate: string }) {
+  const [tur, setTur] = useState<KanatliTuru>("tavuk");
+  const [baslangic, setBaslangic] = useTarih(initialDate);
+  const [bugunRaw] = useTarih(initialDate);
+  const [konulan, setKonulan] = useState("");
+  const [dollu, setDollu] = useState("");
+  const [cikan, setCikan] = useState("");
+  const b = parseYmd(baslangic);
+  const bugun = parseYmd(bugunRaw);
+  const k = KANATLILAR[tur];
+  const r = b ? kuluckaTakvimi(tur, b) : null;
+  const g = b && bugun ? kuluckaGunu(tur, b, bugun) : null;
+  const sayi = (s: string) => (/^\d+$/.test(s.trim()) ? Number(s) : Number.NaN);
+  const rand = kuluckaRandimani(sayi(konulan), sayi(dollu), sayi(cikan));
+
+  const asamaYazi =
+    g?.asama === "gelisim"
+      ? `${g.gun}. gün: gelişim dönemi, yumurtaları günde en az 3 kez çevirin`
+      : g?.asama === "kilit"
+        ? `${g.gun}. gün: son ${KILIT_GUN} gün, çevirmeyi bırakın, nemi artırın, makineyi açmayın`
+        : g?.asama === "sonra"
+          ? "Çıkım günü geçti"
+          : "Kuluçka henüz başlamadı";
+
+  return (
+    <div className="date-calc">
+      <div className="date-calc-input">
+        <div className="date-calc-fields">
+          <label className="date-calc-field">
+            <span>Kanatlı</span>
+            <select value={tur} onChange={(e) => setTur(e.target.value as KanatliTuru)}>
+              {(Object.keys(KANATLILAR) as KanatliTuru[]).map((x) => (
+                <option key={x} value={x}>
+                  {KANATLILAR[x].ad} ({KANATLILAR[x].gun} gün)
+                </option>
+              ))}
+            </select>
+          </label>
+          <label className="date-calc-field">
+            <span>Yumurtaların kuluçkaya konduğu gün</span>
+            <input type="date" value={baslangic} onChange={(e) => setBaslangic(e.target.value)} />
+          </label>
+        </div>
+      </div>
+
+      {r ? (
+        <>
+          <div className="date-calc-results">
+            <div className="date-calc-stat is-main">
+              <span>Tahmini çıkım günü</span>
+              <strong>{tarih(r.cikim)}</strong>
+              <em>
+                {k.gun}. gün · {kalanYazi(r.cikim, bugun)}
+              </em>
+            </div>
+            <div className="date-calc-stat">
+              <span>Bugün</span>
+              <strong>{g && g.gun >= 1 && g.gun <= k.gun ? `${g.gun}. gün` : "—"}</strong>
+              <em>{asamaYazi}</em>
+            </div>
+          </div>
+          <div className="holiday-table-wrap">
+            <table className="holiday-table">
+              <thead>
+                <tr>
+                  <th scope="col">Gün</th>
+                  <th scope="col">Tarih</th>
+                  <th scope="col">Yapılacak</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>{kisa(b!)}</td>
+                  <td>Yumurtalar makineye; 37,5–37,8 °C, nem %50–55, günde 3–5 kez çevirme</td>
+                </tr>
+                <tr>
+                  <th scope="row">{k.kontrol[0]}</th>
+                  <td>{kisa(r.kontrol1)}</td>
+                  <td>1. ışık kontrolü: damarlanma olmayan (döllü olmayan) yumurtaları çıkarın</td>
+                </tr>
+                <tr>
+                  <th scope="row">{k.kontrol[1]}</th>
+                  <td>{kisa(r.kontrol2)}</td>
+                  <td>2. ışık kontrolü: gelişimi duran (ölü embriyolu) yumurtaları ayırın</td>
+                </tr>
+                <tr>
+                  <th scope="row">{k.gun - KILIT_GUN}</th>
+                  <td>{kisa(r.kilit)}</td>
+                  <td>Çevirmeyi bırakın, nemi %65–70&apos;e çıkarın, makineyi mümkün olduğunca açmayın</td>
+                </tr>
+                <tr>
+                  <th scope="row">{k.gun}</th>
+                  <td>{kisa(r.cikim)}</td>
+                  <td>Çıkım; civcivler kuruyup kabarana kadar makinede bekletin</td>
+                </tr>
+                <tr>
+                  <th scope="row">{k.gun + 2}</th>
+                  <td>{kisa(r.sonBekleme)}</td>
+                  <td>Geç çıkanlar için son bekleme; çıkmayan yumurtaları alın</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </>
+      ) : (
+        <p className="date-calc-note">Kuluçkaya koyma tarihini girin.</p>
+      )}
+
+      <h3>Civciv ana makinesi (ısıtıcı) sıcaklığı</h3>
+      <div className="holiday-table-wrap">
+        <table className="holiday-table">
+          <thead>
+            <tr>
+              <th scope="col">Hafta</th>
+              <th scope="col">Sıcaklık</th>
+              {r ? <th scope="col">Tarih</th> : null}
+            </tr>
+          </thead>
+          <tbody>
+            {[1, 2, 3, 4, 5, 6].map((w) => {
+              const s = civcivIsisi(w);
+              return (
+                <tr key={w}>
+                  <th scope="row">{w}. hafta</th>
+                  <td>{w === 6 ? "Isıtıcı kaldırılabilir (oda sıcaklığı)" : `${s.alt}–${s.ust} °C`}</td>
+                  {r ? (
+                    <td>
+                      {kisa(addDaysYmd(r.cikim, (w - 1) * 7))} – {kisa(addDaysYmd(r.cikim, w * 7 - 1))}
+                    </td>
+                  ) : null}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Kuluçka randımanı</h3>
+      <div className="date-calc-input">
+        <div className="date-calc-fields is-amounts">
+          <label className="date-calc-field">
+            <span>Konulan yumurta</span>
+            <input inputMode="numeric" value={konulan} onChange={(e) => setKonulan(e.target.value)} />
+          </label>
+          <label className="date-calc-field">
+            <span>Döllü çıkan (ışık kontrolü)</span>
+            <input inputMode="numeric" value={dollu} onChange={(e) => setDollu(e.target.value)} />
+          </label>
+          <label className="date-calc-field">
+            <span>Çıkan civciv</span>
+            <input inputMode="numeric" value={cikan} onChange={(e) => setCikan(e.target.value)} />
+          </label>
+        </div>
+      </div>
+      {rand ? (
+        <div className="date-calc-results">
+          <div className="date-calc-stat">
+            <span>Döllülük</span>
+            <strong>{yuzde(rand.dolluluk)}</strong>
+          </div>
+          <div className="date-calc-stat">
+            <span>Konulandan çıkış</span>
+            <strong>{yuzde(rand.cikis)}</strong>
+          </div>
+          <div className="date-calc-stat">
+            <span>Döllüden çıkış</span>
+            <strong>{yuzde(rand.dolluCikis)}</strong>
+            <em>%85 ve üzeri iyi kabul edilir</em>
+          </div>
+        </div>
+      ) : (
+        <p className="date-calc-note">Sayıları girin: döllü sayısı konulandan, çıkan sayısı döllüden büyük olamaz.</p>
+      )}
+    </div>
+  );
+}

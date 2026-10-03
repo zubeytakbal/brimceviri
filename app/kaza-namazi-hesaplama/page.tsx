@@ -6,6 +6,7 @@ import type { FaqItem } from "../converter/faqSchema";
 import { GUNLUK_FARZ_REKAT, kazaNamazi, VITIR_REKAT } from "../converter/diniHesaplar";
 import { diniRelated } from "../i18n/diniAraclar";
 import { seoTitle } from "../seoTitle";
+import { islamicAlternates } from "../i18n/islamicToolPaths";
 import { buildSiteUrl } from "../siteConfig";
 
 const path = "/kaza-namazi-hesaplama";
@@ -15,7 +16,7 @@ const description = "Kılınmayan süreyi ya da tarih aralığını girin: kaza 
 export const metadata: Metadata = {
   title: seoTitle(title, "Kaza Namazı Hesaplama"),
   description,
-  alternates: { canonical: path },
+  alternates: { canonical: path, languages: islamicAlternates("kaza") },
   openGraph: { title, description, url: buildSiteUrl(path), siteName: "BirimCeviri.app", locale: "tr_TR", type: "website" },
 };
 

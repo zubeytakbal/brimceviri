@@ -15329,3 +15329,108 @@ a.all-units-row .all-units-name {
   line-height: 1.25;
   text-align: center;
 }
+
+/* Orthodox fasting calendar */
+
+.fast-cal {
+  display: grid;
+  gap: 10px;
+  max-width: 560px;
+}
+
+.fast-cal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.fast-cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.fast-cal-wd {
+  color: #5b6b7a;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.fast-cal-day {
+  min-height: 42px;
+  border: 1px solid #d7e2e8;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #172033;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.fast-cal-day.is-selected {
+  outline: 3px solid #172033;
+  outline-offset: 1px;
+}
+
+.fast-cal-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+  color: #30394a;
+}
+
+.fast-cal-legend i,
+.fast-dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-right: 6px;
+  border: 1px solid #c9d3da;
+  border-radius: 3px;
+  vertical-align: -1px;
+}
+
+.fast-great-lent {
+  background: #e9ddf5;
+}
+
+.fast-strict {
+  background: #c9b3e6;
+}
+
+.fast-apostles {
+  background: #fde7c7;
+}
+
+.fast-dormition {
+  background: #d6e8fb;
+}
+
+.fast-nativity {
+  background: #d9f0e3;
+}
+
+.fast-wednesday-friday {
+  background: #e4e9ee;
+}
+
+.fast-cheesefare {
+  background: #fff6cc;
+}
+
+.fast-fast-free {
+  background: #ffffff;
+  border-style: dashed;
+}
+
+.date-calc-stat.fast-fast-free,
+.date-calc-stat.fast-none {
+  background: #ffffff;
+  border-style: solid;
+}

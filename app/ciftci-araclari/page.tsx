@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import { tarimAraclari } from "../i18n/tarimAraclari";
 import { buildSiteUrl } from "../siteConfig";
 
 const faqItems: FaqItem[] = [
@@ -27,14 +28,14 @@ const faqItems: FaqItem[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Çiftçi Araçları: Gübre ve Tohum Miktarı Hesaplama",
+  title: "Tarım ve Hayvancılık Araçları: İnek Doğum, Kuluçka, Gübre ve Tohum Hesaplama",
   description:
-    "Çiftçi ve ziraat mühendisleri için tek sayfada toplanmış araçlar: gübre ihtiyacı (kg/dekar), tohum miktarı (tohumluk) hesaplama ve alan birimi dönüşümleri.",
+    "Çiftçi ve yetiştiriciler için ücretsiz araçlar: inek doğum hesaplama, kuluçka takvimi, gübre ihtiyacı, tohum miktarı, sulama süresi ve tarla dönüm hesaplama.",
   alternates: {
     canonical: "/ciftci-araclari",
   },
   openGraph: {
-    title: "Çiftçi Araçları: Gübre ve Tohum Miktarı Hesaplama",
+    title: "Tarım ve Hayvancılık Araçları: İnek Doğum, Kuluçka, Gübre ve Tohum Hesaplama",
     description: "Gübre ve tohum miktarı hesaplama tek sayfada.",
     url: buildSiteUrl("/ciftci-araclari"),
     siteName: "BirimCeviri.app",
@@ -106,20 +107,13 @@ export default function CiftciAraclariPage() {
         <section className="category-article-content">
           <h2>Hesaplama Araçları</h2>
           <ul>
+            {tarimAraclari.map((t) => (
+              <li key={t.href}>
+                <Link href={t.href}>{t.label}</Link> — {t.description}
+              </li>
+            ))}
             <li>
-              <Link href="/gubre-ihtiyaci-hesaplama">Gübre İhtiyacı Hesaplama</Link>
-              {" "}— hedef besin dozu ve gübrenin besin içeriğinden,
-              dekara ve toplam alana gereken gübre miktarını hesapla.
-            </li>
-            <li>
-              <Link href="/tohum-miktari-hesaplama">Tohum Miktarı Hesaplama</Link>
-              {" "}— hedef bitki sayısı, bin dane ağırlığı, çimlenme ve
-              saflık oranından tohumluk miktarını hesapla.
-            </li>
-            <li>
-              <Link href="/kategoriler/alan">Alan Dönüşümleri</Link>
-              {" "}— dönüm, dekar, hektar ve m² birimleri arasında
-              dönüşüm yap.
+              <Link href="/kategoriler/alan">Alan Dönüşümleri</Link> — dönüm, dekar, hektar ve m² birimleri arasında dönüşüm.
             </li>
           </ul>
 

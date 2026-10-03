@@ -73,6 +73,7 @@ export const SA_ROWABIT = [
   { href: "/ar/prayer-times-calculator", label: "مواقيت الصلاة" },
   { href: "/ar/hijri-age-calculator", label: "حساب العمر بالهجري" },
   { href: "/ar/zakat-calculator", label: "حاسبة الزكاة" },
+  { href: "/ar/islamic-tools", label: "أدوات إسلامية: العدة والعقيقة وقصر الصلاة" },
 ];
 
 const MARHALA: Record<string, string> = {

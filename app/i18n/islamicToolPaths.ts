@@ -5,10 +5,20 @@ export const ISLAMIC_TOOL_PATHS = {
   zakat: { tr: "/zekat-hesaplama", ar: "/ar/zakat-calculator", bn: "/bn/zakat-calculator" },
   kaza: { tr: "/kaza-namazi-hesaplama", bn: "/bn/kaza-namaz-calculator", uz: "/uz/qazo-namoz-hisoblash" },
   khatam: { tr: "/hatim-hesaplama", bn: "/bn/quran-khatam-planner", uz: "/uz/quron-xatm-rejasi" },
-  qasr: { tr: "/seferi-mesafe-hesaplama", bn: "/bn/qasr-distance-calculator" },
+  qasr: { tr: "/seferi-mesafe-hesaplama", ar: "/ar/qasr-prayer-calculator", bn: "/bn/qasr-distance-calculator" },
 } as const;
 
 export const BENGALI_ISLAMIC_HUB = "/bn/islamic-tools";
+export const ARABIC_ISLAMIC_HUB = "/ar/islamic-tools";
+
+/** Dini araç merkez sayfaları birbirinin dil sürümü. */
+export const ISLAMIC_HUB_ALTERNATES = { tr: "/dini-araclar", ar: ARABIC_ISLAMIC_HUB, bn: BENGALI_ISLAMIC_HUB, "x-default": "/dini-araclar" };
+
+/** Yalnız Arapça olan dini araçlar. */
+export const ARABIC_ISLAMIC_PATHS = {
+  iddah: "/ar/iddah-calculator",
+  aqiqah: "/ar/aqiqah-calculator",
+} as const;
 
 export function islamicAlternates(tool: keyof typeof ISLAMIC_TOOL_PATHS) {
   const paths: Record<string, string> = { ...ISLAMIC_TOOL_PATHS[tool] };

@@ -184,6 +184,14 @@ export const uzbekStaticCardGroups: readonly UzbekStaticCardGroup[] = [
     ],
   },
   {
+    title: "Islomiy hisoblagichlar",
+    cards: [
+      ["qazo-namoz", "Qazo namoz va ro‘zani hisoblash", "hijriCalendarCalculator", "/uz/qazo-namoz-hisoblash"],
+      ["quron-xatm", "Qur’on xatm rejasi", "hijriCalendarCalculator", "/uz/quron-xatm-rejasi"],
+      ["hijriy-milodiy", "Hijriy-milodiy sana aylantirgich", "hijriCalendarCalculator", "/uz/hijriy-milodiy-sana-aylantirgich"],
+    ],
+  },
+  {
     title: "Moliya, ta’lim va kundalik hayot vositalari",
     cards: [
       ["has-hesaplama", "Sof oltin va kumushni hisoblash", "hasCalculator", "/uz/sof-oltin-hisoblash"],
@@ -196,7 +204,6 @@ export const uzbekStaticCardGroups: readonly UzbekStaticCardGroup[] = [
       ["reklam-metrikleri", "Reklama metrikalarini hisoblash", "adMetricsCalculator", "/uz/reklama-korsatkichlari-hisoblash"],
       ["raqamni-sozga", "Raqamni so'zga aylantirish", "numberToWordsCalculator", "/uz/raqamni-sozga-aylantirish"],
       ["ielts-cefr", "IELTS - CEFR darajasini aylantirish", "ieltsCefrCalculator", "/uz/ielts-cefr-aylantirgich"],
-      ["hijriy-milodiy", "Hijriy-milodiy sana aylantirgich", "hijriCalendarCalculator", "/uz/hijriy-milodiy-sana-aylantirgich"],
       ["ish-haqi-kalkulyatori", "Yalpi va sof ish haqini hisoblash", "salaryCalculator", "/uz/ish-haqi-kalkulyatori"],
     ],
   },

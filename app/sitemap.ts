@@ -160,7 +160,7 @@ import { BIBLE_BOOKS } from "./converter/christian/christianCalc";
 import { BIBLE_BOOKS_PATH, CHRISTIAN_TOOLS_PATH, englishChristianTools } from "./i18n/englishChristianTools";
 import { CATHOLIC_PATHS } from "./i18n/catholicTools";
 import { GOLD_CALCULATOR_PATHS } from "./i18n/goldCalculatorPaths";
-import { BENGALI_ISLAMIC_HUB, ISLAMIC_TOOL_PATHS } from "./i18n/islamicToolPaths";
+import { BENGALI_ISLAMIC_HUB, ISLAMIC_TOOL_PATHS, UZBEK_ISLAMIC_PATHS } from "./i18n/islamicToolPaths";
 
 export const dynamic = "force-static";
 
@@ -6467,6 +6467,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       ...Object.values(GOLD_CALCULATOR_PATHS),
       BENGALI_ISLAMIC_HUB,
       ...Object.values(ISLAMIC_TOOL_PATHS).map((p) => p.bn),
+      ...Object.values(UZBEK_ISLAMIC_PATHS),
       ...(["es", "pt"] as const).flatMap((lang) => Object.values(CATHOLIC_PATHS[lang])),
     ].map((path) => ({
       url: `${baseUrl}${path}`,

@@ -41,3 +41,35 @@ export function distancesFrom(origin: TurkeyProvince): DistanceRow[] {
 
 /** Varsayilan ortalama hiz: sehirlerarasi yolculukta molasiz ortalama (otoyol + devlet yolu karisik). */
 export const DEFAULT_AVG_KMH = 85;
+
+/**
+ * Güzergâh üzerindeki il merkezleri: KGM mesafe cetvelinden, A → il1 → il2 → … → B zincirinin
+ * toplamı doğrudan mesafeyi en fazla %2 (+5 km) aşacak şekilde en çok ili kapsayan zincir.
+ * Alternatif güzergâhlar (ör. Konya mı Ankara mı) karışmasın diye tek bir zincir seçilir.
+ */
+export function routeStops(from: TurkeyProvince, to: TurkeyProvince): { province: TurkeyProvince; fromStart: number }[] {
+  const direct = roadKm(from, to);
+  const limit = direct * 1.02 + 5;
+  const cands = turkeyProvinces
+    .filter((p) => p.plate !== from.plate && p.plate !== to.plate && roadKm(from, p) + roadKm(p, to) <= limit)
+    .sort((x, y) => roadKm(from, x) - roadKm(from, y));
+  // best[i]: i ile biten en uzun zincir (il sayısı) ve o zincirin A'dan i'ye uzunluğu
+  const best = cands.map((p) => ({ count: 1, len: roadKm(from, p), prev: -1 }));
+  for (let i = 0; i < cands.length; i++) {
+    for (let j = 0; j < i; j++) {
+      const len = best[j].len + roadKm(cands[j], cands[i]);
+      if (len + roadKm(cands[i], to) > limit) continue;
+      if (best[j].count + 1 > best[i].count || (best[j].count + 1 === best[i].count && len < best[i].len)) {
+        best[i] = { count: best[j].count + 1, len, prev: j };
+      }
+    }
+  }
+  let end = -1;
+  for (let i = 0; i < cands.length; i++) {
+    if (best[i].len + roadKm(cands[i], to) > limit) continue;
+    if (end < 0 || best[i].count > best[end].count || (best[i].count === best[end].count && best[i].len < best[end].len)) end = i;
+  }
+  const chain: number[] = [];
+  for (let i = end; i >= 0; i = best[i].prev) chain.unshift(i);
+  return chain.map((i) => ({ province: cands[i], fromStart: roadKm(from, cands[i]) }));
+}

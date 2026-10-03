@@ -11,6 +11,8 @@ import type { SiteNotification } from "../converter/siteNotifications";
 import { DecorativeIcon, getCategoryIconName, type SiteIconName } from "./siteIcons";
 import NotificationBell from "./NotificationBell";
 
+import { useSearchTracking } from "./useSearchTracking";
+import { CATHOLIC_PATHS } from "../i18n/catholicTools";
 function CardIcon({ name }: { name: SiteIconName }) {
   return (
     <span className="home-category-icon-box" aria-hidden="true">
@@ -151,7 +153,7 @@ const popularUnits = preferredUnitSourceSlugs
   })
   .filter((unit): unit is NonNullable<typeof unit> => Boolean(unit));
 
-const searchables = portugueseConversionPages.map((page) => ({
+const conversionSearchables = portugueseConversionPages.map((page) => ({
   id: page.slug,
   href: `/pt/${page.slug}`,
   label: `${page.fromName} → ${page.toName}`,
@@ -161,6 +163,35 @@ const searchables = portugueseConversionPages.map((page) => ({
     [page.fromName, page.toName, page.fromUnit, page.toUnit, page.slug, page.categoryName].join(" ")
   ),
 }));
+
+
+const catholicSearchItems = [
+  { href: CATHOLIC_PATHS.pt.rosary, label: "Mistérios do Terço de hoje", keywords: "terço rosário mistérios hoje" },
+  { href: CATHOLIC_PATHS.pt.novena, label: "Calculadora de novenas", keywords: "novena quando começar aparecida são judas" },
+  { href: CATHOLIC_PATHS.pt.liturgical, label: "Calendário litúrgico", keywords: "calendário litúrgico cor tempo ano leituras" },
+  { href: CATHOLIC_PATHS.pt.easter, label: "Quando é a Páscoa?", keywords: "páscoa carnaval semana santa corpus christi cinzas" },
+];
+
+// Tools (niche cards such as the Catholic and gold calculators) are searchable too.
+const searchables = [
+  ...catholicSearchItems.map((item) => ({
+    id: `tool-${item.href}`,
+    href: item.href,
+    label: item.label,
+    description: "",
+    categoryLabel: "Ferramentas católicas",
+    searchText: normalizeSearchTextPt(`${item.label} ${item.keywords}`),
+  })),
+  ...nicheCards.map((card) => ({
+    id: `tool-${card.id}`,
+    href: card.href,
+    label: card.title,
+    description: card.description,
+    categoryLabel: "Ferramentas",
+    searchText: normalizeSearchTextPt(`${card.title} ${card.description}`),
+  })),
+  ...conversionSearchables,
+];
 
 const stats = {
   categories: primaryCategoryCards.length + secondaryCategoryCards.length,
@@ -182,6 +213,7 @@ export default function PortugueseHomeDirectory({
   const searchResults = normalizedQuery
     ? searchables.filter((item) => item.searchText.includes(normalizedQuery)).slice(0, 8)
     : [];
+  useSearchTracking("pt", query, searchResults.length);
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();

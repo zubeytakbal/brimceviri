@@ -11,6 +11,7 @@ import type { SiteNotification } from "../converter/siteNotifications";
 import { DecorativeIcon, getCategoryIconName, type SiteIconName } from "./siteIcons";
 import NotificationBell from "./NotificationBell";
 
+import { useSearchTracking } from "./useSearchTracking";
 function CardIcon({ name }: { name: SiteIconName }) {
   return (
     <span className="home-category-icon-box" aria-hidden="true">
@@ -168,6 +169,7 @@ export default function Es419HomeDirectory({
   const searchResults = normalizedQuery
     ? searchables.filter((item) => item.searchText.includes(normalizedQuery)).slice(0, 8)
     : [];
+  useSearchTracking("es-419", query, searchResults.length);
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();

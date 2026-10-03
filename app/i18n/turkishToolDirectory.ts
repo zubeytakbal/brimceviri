@@ -44,6 +44,7 @@ export const turkishToolGroups: ToolGroup[] = [
       { href: "/ideal-kilo-hesaplama", label: "İdeal Kilo Hesaplama" },
       { href: "/vucut-yag-orani-hesaplama", label: "Vücut Yağ Oranı" },
       { href: "/gebelik-haftasi-hesaplama", label: "Gebelik Haftası Hesaplama" },
+      { href: "/yumurtlama-hesaplama", label: "Yumurtlama ve Adet Takvimi Hesaplama" },
       { href: "/uyku-hesaplama", label: "Uyku Hesaplama" },
       { href: "/kosu-pace-hesaplama", label: "Koşu Pace (Tempo)" },
       { href: "/1rm-hesaplama", label: "1RM (Bir Tekrar Maksimum)" },

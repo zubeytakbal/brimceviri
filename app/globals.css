@@ -15444,3 +15444,23 @@ a.all-units-row .all-units-name {
   border-radius: 50%;
   vertical-align: -2px;
 }
+
+/* Adet ve yumurtlama takvimi */
+.cyc-period {
+  background: #f9d3db;
+}
+
+.cyc-fertile {
+  background: #d4ebf7;
+}
+
+.cyc-ovulation {
+  background: #5fb0dc;
+  color: #ffffff;
+}
+
+.cyc-cal .fast-cal-day {
+  display: grid;
+  place-items: center;
+  cursor: default;
+}

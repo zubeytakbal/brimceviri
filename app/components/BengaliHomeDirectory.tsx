@@ -220,6 +220,7 @@ const islamicSearchables = [
   { href: "/bn/kaza-namaz-calculator", label: "কাজা নামাজ ও রোজা হিসাব", keywords: "কাজা নামাজ রোজা ওয়াক্ত রাকাত kaza qaza" },
   { href: "/bn/quran-khatam-planner", label: "কুরআন খতম পরিকল্পনা", keywords: "কুরআন কোরআন খতম পারা quran khatam" },
   { href: "/bn/qasr-distance-calculator", label: "কসর দূরত্ব হিসাব", keywords: "কসর মুসাফির সফর দূরত্ব নামাজ qasr" },
+  { href: "/bn/ovulation-calculator", label: "ওভুলেশন ও মাসিক ক্যালকুলেটর", keywords: "ওভুলেশন ডিম্বস্ফোটন মাসিক পিরিয়ড উর্বর গর্ভধারণ প্রেগনেন্সি ovulation period" },
 ];
 
 const toolSearchables = [

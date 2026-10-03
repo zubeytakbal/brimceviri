@@ -93,6 +93,13 @@ const nicheCards: Array<{
     description: "Ouro puro em 18k, 14k ou 10k, teor 750 e mudança de quilates.",
     iconName: "goldKarat",
   },
+  {
+    id: "fertile-period-calculator",
+    href: "/pt/calculadora-periodo-fertil",
+    title: "Calculadora de período fértil",
+    description: "Período fértil, dia da ovulação, próxima menstruação e calendário menstrual.",
+    iconName: "dateCalculator",
+  },
 ];
 
 const primaryCategoryCards = [...primaryCategoryCardsFromCategories, ...nicheCards];

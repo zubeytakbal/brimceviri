@@ -15434,3 +15434,13 @@ a.all-units-row .all-units-name {
   background: #ffffff;
   border-style: solid;
 }
+
+.lit-swatch {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-right: 6px;
+  border: 1px solid #9aa7b2;
+  border-radius: 50%;
+  vertical-align: -2px;
+}

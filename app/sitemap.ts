@@ -158,6 +158,7 @@ import { SITE_LAST_MODIFIED, SITE_URL } from "./siteConfig";
 import { SURELER } from "./converter/sureler";
 import { BIBLE_BOOKS } from "./converter/christian/christianCalc";
 import { BIBLE_BOOKS_PATH, CHRISTIAN_TOOLS_PATH, englishChristianTools } from "./i18n/englishChristianTools";
+import { CATHOLIC_PATHS } from "./i18n/catholicTools";
 
 export const dynamic = "force-static";
 
@@ -6460,6 +6461,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.76,
     },
+    ...[
+      ...(["es", "pt"] as const).flatMap((lang) => Object.values(CATHOLIC_PATHS[lang])),
+    ].map((path) => ({
+      url: `${baseUrl}${path}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.74,
+    })),
     ...[CHRISTIAN_TOOLS_PATH, ...englishChristianTools.map((tool) => tool.href), ...BIBLE_BOOKS.map((b) => `${BIBLE_BOOKS_PATH}/${b.slug}`)].map((path) => ({
       url: `${baseUrl}${path}`,
       lastModified: contentLastModified,

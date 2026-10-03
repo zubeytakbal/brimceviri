@@ -343,6 +343,8 @@ export const NOVENA_FEASTS: NovenaFeast[] = [
   { id: "michael", name: "St. Michael the Archangel", rule: { month: 9, day: 29 } },
   { id: "therese", name: "St. Thérèse of Lisieux", rule: { month: 10, day: 1 } },
   { id: "francis", name: "St. Francis of Assisi", rule: { month: 10, day: 4 } },
+  { id: "rosary", name: "Our Lady of the Rosary", rule: { month: 10, day: 7 } },
+  { id: "aparecida", name: "Our Lady of Aparecida", rule: { month: 10, day: 12 } },
   { id: "jude", name: "St. Jude", rule: { month: 10, day: 28 } },
   { id: "all-souls", name: "All Souls (for the Holy Souls)", rule: { month: 11, day: 2 } },
   { id: "immaculate-conception", name: "The Immaculate Conception", rule: { month: 12, day: 8 } },
@@ -415,6 +417,23 @@ export const MYSTERY_BY_WEEKDAY: MysterySet[] = ["glorious", "joyful", "sorrowfu
 export const WEEKDAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
 export type RosaryStep = { prayer: string; bead: "cross" | "large" | "small" | "none"; decade: number | null; count?: string };
+
+export type RosaryStepKind = "creed" | "our-father" | "hail-mary" | "glory" | "closing";
+export type RosaryStepData = { kind: RosaryStepKind; decade: number | null; index?: number; of?: number; fatima?: boolean };
+
+/** Language-independent steps of a five-decade Rosary (pages supply the prayer names). */
+export function rosaryStepData(fatimaPrayer: boolean): RosaryStepData[] {
+  const steps: RosaryStepData[] = [{ kind: "creed", decade: null }, { kind: "our-father", decade: null }];
+  for (let i = 1; i <= 3; i++) steps.push({ kind: "hail-mary", decade: null, index: i, of: 3 });
+  steps.push({ kind: "glory", decade: null });
+  for (let d = 1; d <= 5; d++) {
+    steps.push({ kind: "our-father", decade: d });
+    for (let i = 1; i <= 10; i++) steps.push({ kind: "hail-mary", decade: d, index: i, of: 10 });
+    steps.push({ kind: "glory", decade: d, fatima: fatimaPrayer });
+  }
+  steps.push({ kind: "closing", decade: null });
+  return steps;
+}
 
 /** The steps of a five-decade Rosary, in order. */
 export function rosarySteps(set: MysterySet, fatimaPrayer: boolean): RosaryStep[] {

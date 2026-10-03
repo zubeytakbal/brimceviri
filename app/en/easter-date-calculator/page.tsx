@@ -6,6 +6,7 @@ import { diffDays } from "../../converter/time/dateMath";
 import type { FaqItem } from "../../converter/faqSchema";
 import { formatLongDate, formatShortDate, orthodoxEaster, westernEaster, westernFeasts } from "../../converter/christian/christianCalc";
 import { CHRISTIAN_TOOLS_PATH, christianRelated } from "../../i18n/englishChristianTools";
+import { catholicAlternates } from "../../i18n/catholicTools";
 import { buildSiteUrl } from "../../siteConfig";
 
 const path = "/en/easter-date-calculator";
@@ -16,7 +17,7 @@ const description = "Find the date of Easter Sunday for any year from 1583 to 40
 export const metadata: Metadata = {
   title,
   description,
-  alternates: { canonical: path },
+  alternates: { canonical: path, languages: catholicAlternates("easter") },
   openGraph: { title, description, url: buildSiteUrl(path), siteName: "BirimCeviri.app", locale: "en_US", type: "website" },
 };
 

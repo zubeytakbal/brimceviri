@@ -4,6 +4,7 @@ import TimeToolPage from "../../components/time/TimeToolPage";
 import type { FaqItem } from "../../converter/faqSchema";
 import { MYSTERIES, MYSTERY_BY_WEEKDAY, WEEKDAYS, type MysterySet } from "../../converter/christian/christianCalc";
 import { CHRISTIAN_TOOLS_PATH, christianRelated } from "../../i18n/englishChristianTools";
+import { catholicAlternates } from "../../i18n/catholicTools";
 import { buildSiteUrl } from "../../siteConfig";
 
 const path = "/en/rosary";
@@ -14,7 +15,7 @@ const description = "Which Rosary mysteries are prayed today? Joyful, Sorrowful,
 export const metadata: Metadata = {
   title,
   description,
-  alternates: { canonical: path },
+  alternates: { canonical: path, languages: catholicAlternates("rosary") },
   openGraph: { title, description, url: buildSiteUrl(path), siteName: "BirimCeviri.app", locale: "en_US", type: "website" },
 };
 

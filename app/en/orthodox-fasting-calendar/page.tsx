@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
-import { OrthodoxFastingCalendar, PERIOD_LABEL } from "../../components/christian/OrthodoxFasting";
+import { OrthodoxFastingCalendar } from "../../components/christian/OrthodoxFasting";
+import { PERIOD_LABEL } from "../../i18n/orthodoxFastingLabels";
 import TimeToolPage from "../../components/time/TimeToolPage";
 import type { FaqItem } from "../../converter/faqSchema";
 import { formatLongDate, formatShortDate } from "../../converter/christian/christianCalc";

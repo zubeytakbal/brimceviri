@@ -141,7 +141,7 @@ describe("Novena", () => {
     const dm = feastDate(NOVENA_FEASTS.find((f) => f.id === "divine-mercy")!, 2026)!;
     expect(novenaFor(dm).start).toEqual({ year: 2026, month: 4, day: 3 });
     const up = upcomingNovenas({ year: 2026, month: 10, day: 3 }, 3);
-    expect(up.map((n) => n.feast.id)).toEqual(["francis", "jude", "all-souls"]);
+    expect(up.map((n) => n.feast.id)).toEqual(["francis", "rosary", "aparecida"]);
   });
 });
 
@@ -162,5 +162,40 @@ describe("Tithe", () => {
     expect(tithe(2000, "biweekly")).toEqual({ perPeriod: 200, annual: 5200, monthly: 5200 / 12, weekly: 100 });
     expect(tithe(5000, "monthly", 5)!.annual).toBe(3000);
     expect(tithe(100, "monthly", 0)).toBeNull();
+  });
+});
+
+import { baptismOfTheLord, liturgicalDay } from "../app/converter/christian/liturgicalCalendar";
+import { rosaryStepData } from "../app/converter/christian/christianCalc";
+
+describe("Liturgical calendar", () => {
+  it("cycles: Advent 2025 begins Year A, weekday Year II in 2026", () => {
+    expect(liturgicalDay(ymd(2026, 3, 1))).toMatchObject({ sundayCycle: "A", weekdayCycle: "II", liturgicalYearStart: 2025 });
+    expect(liturgicalDay(ymd(2026, 11, 29))).toMatchObject({ season: "advent", week: 1, sundayCycle: "B", weekdayCycle: "I", color: "violet" });
+    expect(liturgicalDay(ymd(2024, 12, 1))).toMatchObject({ sundayCycle: "C" });
+  });
+
+  it("seasons, colours and Ordinary Time weeks in 2026", () => {
+    expect(baptismOfTheLord(2026)).toEqual(ymd(2026, 1, 11));
+    expect(liturgicalDay(ymd(2026, 1, 11))).toMatchObject({ season: "christmas", celebration: "baptism", color: "white" });
+    expect(liturgicalDay(ymd(2026, 1, 12))).toMatchObject({ season: "ordinary", week: 1, color: "green" });
+    expect(liturgicalDay(ymd(2026, 1, 18))).toMatchObject({ season: "ordinary", week: 2 });
+    expect(liturgicalDay(ymd(2026, 2, 18))).toMatchObject({ season: "lent", celebration: "ash-wednesday", color: "violet" });
+    expect(liturgicalDay(ymd(2026, 3, 15))).toMatchObject({ celebration: "laetare", color: "rose", week: 4 });
+    expect(liturgicalDay(ymd(2026, 3, 29))).toMatchObject({ celebration: "palm-sunday", color: "red" });
+    expect(liturgicalDay(ymd(2026, 4, 3))).toMatchObject({ season: "triduum", color: "red", celebration: "good-friday" });
+    expect(liturgicalDay(ymd(2026, 4, 5))).toMatchObject({ season: "easter", celebration: "easter", week: 1 });
+    expect(liturgicalDay(ymd(2026, 5, 24))).toMatchObject({ celebration: "pentecost", color: "red" });
+    // Monday after Pentecost 2026 is in the 8th week of Ordinary Time.
+    expect(liturgicalDay(ymd(2026, 5, 25))).toMatchObject({ season: "ordinary", week: 8, color: "green" });
+    expect(liturgicalDay(ymd(2026, 10, 4))).toMatchObject({ season: "ordinary", week: 27 });
+    expect(liturgicalDay(ymd(2026, 11, 22))).toMatchObject({ celebration: "christ-the-king", week: 34, color: "white" });
+    expect(liturgicalDay(ymd(2026, 12, 13))).toMatchObject({ celebration: "gaudete", color: "rose" });
+    expect(liturgicalDay(ymd(2026, 12, 25))).toMatchObject({ season: "christmas", celebration: "christmas" });
+  });
+
+  it("rosary step data has 53 Hail Marys", () => {
+    expect(rosaryStepData(true).filter((s) => s.kind === "hail-mary")).toHaveLength(53);
+    expect(rosaryStepData(true)).toHaveLength(rosarySteps("joyful", true).length);
   });
 });

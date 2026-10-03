@@ -77,6 +77,13 @@ const nicheCards: Array<{
     description: "Convierte arşın, okka, dirhem y unidades bizantinas a unidades modernas.",
     iconName: "historical",
   },
+  {
+    id: "catholic-tools",
+    href: "/es/herramientas-catolicas",
+    title: "Herramientas católicas",
+    description: "Misterios del rosario de hoy, novenas, calendario litúrgico y fechas de Semana Santa.",
+    iconName: "dateCalculator",
+  },
 ];
 
 const primaryCategoryCards = [...primaryCategoryCardsFromCategories, ...nicheCards];

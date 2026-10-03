@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import SourceMonitorStatusList from "../../components/SourceMonitorStatusList";
 import TrustBar from "../../components/TrustBar";
 import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
+import { altSiniflar, ON_SART, SINIF_GRUPLARI, UST_SINIF } from "../../converter/licenseClassContext";
 import { licenseClasses, type LicenseClassId } from "../../converter/licenseClassFinder";
 import { getSourceMonitorStatuses } from "../../converter/licenseSourceMonitor";
 import { buildSiteUrl } from "../../siteConfig";
@@ -65,6 +66,12 @@ export default async function LicenseClassDetailPage({ params }: PageProps) {
 
   const pageUrl = buildSiteUrl(`/ehliyet-sinifi-bulma/${slug}`);
 
+  const ustler = UST_SINIF[licenseClass.id];
+  const alttan = altSiniflar(licenseClass.id);
+  const onSart = ON_SART[licenseClass.id];
+  const buYil = new Date().getUTCFullYear();
+  const L = licenseClass.label;
+
   const faqItems: FaqItem[] = [
     {
       question: `${licenseClass.label} sınıfı ehliyet hangi araçları kullanır?`,
@@ -74,6 +81,14 @@ export default async function LicenseClassDetailPage({ params }: PageProps) {
       question: `${licenseClass.label} sınıfı ehliyet almak için asgari yaş kaç?`,
       answer: `${licenseClass.label} sınıfı sürücü belgesi için asgari yaş ${licenseClass.minAge}'dir, geçerlilik süresi ${licenseClass.validityYears} yıldır.`,
     },
+    {
+      question: `${L} ehliyeti kaç yılda bir yenilenir?`,
+      answer: `${L} sınıfı belge ${licenseClass.validityYears} yıl geçerlidir: ${buYil} yılında alınan belge ${buYil + licenseClass.validityYears} yılında yenilenir.`,
+    },
+    ...ustler.map((u) => ({
+      question: `${L} ehliyetle ${u.arac} kullanılır mı?`,
+      answer: `Hayır. ${u.kosul} ${licenseClasses[u.sinif].label} sınıfı belge gerekir (asgari yaş ${licenseClasses[u.sinif].minAge}).`,
+    })),
   ];
 
   const breadcrumbSchema = {
@@ -85,10 +100,6 @@ export default async function LicenseClassDetailPage({ params }: PageProps) {
       { "@type": "ListItem", position: 3, name: `${licenseClass.label} Sınıfı`, item: pageUrl },
     ],
   };
-
-  const otherClasses = Object.values(licenseClasses).filter(
-    (item) => item.id !== licenseClass.id,
-  );
 
   return (
     <main className="all-conversions-page">
@@ -150,17 +161,83 @@ export default async function LicenseClassDetailPage({ params }: PageProps) {
             </p>
           ))}
 
+          {ustler.length > 0 && (
+            <>
+              <h2>{L} Ehliyeti Ne Zaman Yetmez?</h2>
+              <div className="holiday-table-wrap">
+                <table className="holiday-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Durum</th>
+                      <th scope="col">Gereken sınıf</th>
+                      <th scope="col">Asgari yaş</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {ustler.map((u) => (
+                      <tr key={u.sinif + u.kosul}>
+                        <th scope="row">{u.kosul}</th>
+                        <td>
+                          <Link href={`/ehliyet-sinifi-bulma/${u.sinif.toLowerCase()}`}>{licenseClasses[u.sinif].label}</Link>
+                        </td>
+                        <td>{licenseClasses[u.sinif].minAge}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </>
+          )}
+          {ustler.length === 0 && (
+            <>
+              <h2>{L} Kendi Grubunun En Üst Sınıfı</h2>
+              <p>
+                {L} sınıfı, kendi grubundaki en geniş belgedir; bu grupta daha büyük bir araç için ek sınıf yoktur. Başka türde bir araç (ör. otobüs ya da kamyon)
+                için o grubun belgesini ayrıca almanız gerekir.
+              </p>
+            </>
+          )}
+
+          {(onSart || alttan.length > 0) && (
+            <>
+              <h2>{L} Sınıfına Nasıl Geçilir?</h2>
+              <p>
+                {onSart ? <>{onSart.not} </> : null}
+                {alttan.length > 0 && (
+                  <>
+                    {L},{" "}
+                    {alttan.map((a, i) => (
+                      <span key={a}>
+                        {i > 0 ? (i === alttan.length - 1 ? " ya da " : ", ") : ""}
+                        <Link href={`/ehliyet-sinifi-bulma/${a.toLowerCase()}`}>{licenseClasses[a].label}</Link>
+                      </span>
+                    ))}{" "}
+                    sınıfının bir üst basamağıdır: araç o sınıfın sınırını aştığında {L} gerekir.
+                  </>
+                )}
+              </p>
+            </>
+          )}
+
+          <h2>{L} Ehliyetinin Geçerlilik Süresi</h2>
+          <p>
+            {L} sınıfı belge <strong>{licenseClass.validityYears} yıl</strong> geçerlidir. {buYil} yılında alınan bir belgenin yenileme yılı{" "}
+            <strong>{buYil + licenseClass.validityYears}</strong>, ondan sonraki {buYil + 2 * licenseClass.validityYears} olur. Kendi belgenizin tarihini{" "}
+            <Link href="/ehliyet-yenileme-suresi-hesaplama">ehliyet yenileme süresi hesaplama</Link> aracıyla bulabilirsiniz.
+          </p>
+
           <h2>Diğer Ehliyet Sınıfları</h2>
-          <ul className="related-conversion-list">
-            {otherClasses.map((item) => (
-              <li key={item.id}>
-                <Link href={`/ehliyet-sinifi-bulma/${item.id.toLowerCase()}`}>
-                  {item.label} Sınıfı
-                </Link>{" "}
-                — {item.description}
-              </li>
-            ))}
-          </ul>
+          {SINIF_GRUPLARI.map((g) => (
+            <p key={g.baslik}>
+              <strong>{g.baslik}:</strong>{" "}
+              {g.siniflar.map((id, i) => (
+                <span key={id}>
+                  {i > 0 ? " · " : ""}
+                  {id === licenseClass.id ? <strong>{licenseClasses[id].label}</strong> : <Link href={`/ehliyet-sinifi-bulma/${id.toLowerCase()}`}>{licenseClasses[id].label}</Link>}
+                </span>
+              ))}
+            </p>
+          ))}
 
           <h2>İlgili araçlar</h2>
           <p>

@@ -3,6 +3,7 @@ import { getLiveElectricalCalculatorItems } from "../converter/engineeringHubs";
 import { englishChemistryHubPath, englishChemistryTools } from "./englishChemistryToolCatalog";
 import { englishDecisionSavingsHubPath, englishDecisionSavingsTools } from "./englishDecisionSavingsTools";
 import { englishBusinessTools } from "./englishBusinessToolCatalog";
+import { CHRISTIAN_TOOLS_PATH, englishChristianTools } from "./englishChristianTools";
 import { englishEverydayHubPath } from "./englishEverydayCalculatorGroups";
 import { englishFinanceTools } from "./englishFinanceToolCatalog";
 import { englishStandaloneTools } from "./englishStandaloneTools";
@@ -17,7 +18,8 @@ export type EnglishToolDomainId =
   | "data-computing"
   | "fitness"
   | "chemistry"
-  | "science";
+  | "science"
+  | "christian";
 
 export type EnglishToolScope = "universal" | "user-input-localized";
 export type EnglishToolReviewLevel = "standard" | "elevated";
@@ -48,6 +50,7 @@ export const englishToolDomains: Array<{
   { id: "fitness", href: "/en/fitness-calculators", label: "Fitness Calculators", description: "One-rep-max and running-pace training estimates." },
   { id: "chemistry", href: englishChemistryHubPath, label: "Chemistry Calculators", description: "Solution chemistry, reaction calculations, equilibrium and electrochemistry." },
   { id: "science", href: "/en/science-calculators", label: "Science Calculators", description: "Mathematics, physics, biology and chemistry learning tools." },
+  { id: "christian", href: CHRISTIAN_TOOLS_PATH, label: "Christian Tools", description: "Easter dates, Lent, Bible reading plans, novenas, the Rosary and tithing." },
 ];
 
 const elevatedEverydayComponents = new Set(["bmiCalculator", "pregnancyCalculator", "calorieCalculator", "bodyFatCalculator", "idealWeightCalculator", "ivDripRateCalculator", "standardDrinkCalculator", "poolChlorineCalculator"]);
@@ -384,6 +387,16 @@ export const englishToolRegistry: EnglishToolRecord[] = [
     scope: "universal" as const,
     reviewLevel: "standard" as const,
     searchTerms: `${tool.title} ${tool.description} mathematics physics biology science`,
+  })),
+  ...englishChristianTools.map((tool) => ({
+    id: `christian:${tool.id}`,
+    domain: "christian" as const,
+    href: tool.href,
+    title: tool.title,
+    description: tool.description,
+    scope: "universal" as const,
+    reviewLevel: "standard" as const,
+    searchTerms: `${tool.title} ${tool.description} christian church bible easter lent`,
   })),
 ];
 

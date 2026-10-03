@@ -15322,3 +15322,10 @@ a.all-units-row .all-units-name {
     order: 4;
   }
 }
+
+.zikir-buton .rosary-prayer {
+  max-width: 82%;
+  font-size: 22px;
+  line-height: 1.25;
+  text-align: center;
+}

@@ -3,8 +3,8 @@ import Link from "@/app/components/SiteLink";
 import { DINI_ARACLAR_PATH, diniAraclar } from "../i18n/diniAraclar";
 import { buildSiteUrl } from "../siteConfig";
 
-const title = "Dini Araçlar: Seferî Mesafe, Sure Bulucu, Kaza Orucu";
-const description = "Seferî mesafe hesaplama, sure bulucu, umre tavaf ve sa'y mesafesi, kaza orucu, Hicri takvim ve kandiller: hesaplamaya dayalı ücretsiz dini araçlar.";
+const title = "Dini Araçlar: Kıble Pusulası, Kaza Namazı, Zekât, Hatim";
+const description = "Canlı kıble pusulası, kaza namazı ve orucu, zekât, hatim ve hafızlık planı, seferî mesafe, zikirmatik, Esmaül Hüsna ve daha fazlası: ücretsiz dini araçlar.";
 
 export const metadata: Metadata = {
   title,
@@ -26,7 +26,7 @@ export default function DiniAraclarPage() {
         <header className="other-categories-header">
           <h1>Dini Araçlar</h1>
           <p>
-            Hesaplamaya dayalı dini araçlar: seferî mesafe, sure ve cüz bilgileri, umre yürüyüş mesafesi ve kaza orucu. Araçlar değişmeyen
+            Hesaplamaya dayalı dini araçlar: kıble pusulası, kaza namazı ve orucu, zekât, hatim ve hafızlık, seferî mesafe, sure ve cüz bilgileri. Araçlar değişmeyen
             kurallarla ve sabit verilerle çalışır; yıldan yıla değişen tutarlar ve vakitler bu sayfada yer almaz. Dini hükümlerle ilgili
             ayrıntılar için Diyanet İşleri Başkanlığı'na başvurabilirsiniz.
           </p>

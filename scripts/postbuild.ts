@@ -5,8 +5,12 @@
 //    sinirini asar.
 // 2. app/siteRedirects.ts listesini Cloudflare Pages'in okudugu
 //    out/_redirects dosyasina yazar.
-import { existsSync, readdirSync, unlinkSync, writeFileSync } from "node:fs";
+// 3. Kok layout <html lang="tr"> ile statik uretildigi icin her dil
+//    klasorundeki HTML'de lang/dir'i dogru dile cevirir (ham HTML'i okuyan
+//    tarayicilar, ekran okuyucular ve dizin/arama araclari icin).
+import { existsSync, readdirSync, readFileSync, unlinkSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
+import { LOCALE_DEFINITIONS } from "../app/i18n/config";
 import { siteRedirects } from "../app/siteRedirects";
 
 const OUT = "out";
@@ -49,5 +53,33 @@ function writeRedirects(): number {
   return lines.length;
 }
 
+const HTML_TAG = '<html lang="tr" dir="ltr"';
+
+function fixHtmlLang(): number {
+  let fixed = 0;
+  const patch = (file: string, lang: string, dir: string) => {
+    const html = readFileSync(file, "utf8");
+    if (!html.includes(HTML_TAG)) return;
+    writeFileSync(file, html.replace(HTML_TAG, `<html lang="${lang}" dir="${dir}"`));
+    fixed++;
+  };
+  const walk = (dir: string, lang: string, d: string) => {
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      const path = join(dir, entry.name);
+      if (entry.isDirectory()) walk(path, lang, d);
+      else if (entry.name.endsWith(".html")) patch(path, lang, d);
+    }
+  };
+  for (const def of Object.values(LOCALE_DEFINITIONS)) {
+    const prefix = def.pathPrefix.replace(/^\//, "");
+    if (!prefix || (def.htmlLang === "tr" && def.dir === "ltr")) continue;
+    const dir = join(OUT, prefix);
+    if (existsSync(dir)) walk(dir, def.htmlLang, def.dir);
+    if (existsSync(`${dir}.html`)) patch(`${dir}.html`, def.htmlLang, def.dir);
+  }
+  return fixed;
+}
+
 console.log(`${removeRscPayloads(OUT)} sayfa gecis verisi (.txt) silindi`);
+console.log(`${fixHtmlLang()} sayfada <html lang> dile gore duzeltildi`);
 console.log(`out/_redirects: ${writeRedirects()} yonlendirme yazildi`);

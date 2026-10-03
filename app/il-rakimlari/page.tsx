@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import { enYuksekIlceler } from "../converter/geo/ilceRakimHub";
 import { getAllProvinces } from "../converter/provinceElevationHub";
 import { buildSiteUrl } from "../siteConfig";
 
@@ -12,6 +13,10 @@ const faqItems: FaqItem[] = [
   {
     question: "Türkiye'nin en alçak rakımlı ili hangisi?",
     answer: "İzmir, 2 metre ile Türkiye'nin en alçak rakımlı ilidir.",
+  },
+  {
+    question: "Türkiye'nin en yüksek ilçesi hangisi?",
+    answer: `İlçe merkezlerinin uydu yükseklik verisine göre rakımı belirlenebilen ilçeler arasında en yüksek ${enYuksekIlceler(1)[0].ad} (${enYuksekIlceler(1)[0].il}, yaklaşık ${enYuksekIlceler(1)[0].rakim.toLocaleString("tr-TR")} m). İlk 20 ilçe sayfadaki tabloda.`,
   },
 ];
 
@@ -82,6 +87,36 @@ export default function ProvinceElevationHubPage() {
               </li>
             ))}
           </ul>
+
+          <h2>Türkiye&apos;nin En Yüksek İlçeleri</h2>
+          <p>
+            İl merkezleri hariç, ilçe merkezinin yaklaşık rakımına göre ilk 20 ilçe. Merkezi dağ yamacında olan birkaç ilçe (ör. Van Çatak ve Bahçesaray) tek bir
+            rakım değeri verilemediği için listede yok.
+          </p>
+          <div className="holiday-table-wrap">
+            <table className="holiday-table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">İlçe</th>
+                  <th scope="col">İl</th>
+                  <th scope="col">Rakım</th>
+                </tr>
+              </thead>
+              <tbody>
+                {enYuksekIlceler(20).map((x, i) => (
+                  <tr key={`${x.ilId}-${x.ad}`}>
+                    <td>{i + 1}</td>
+                    <th scope="row">{x.ad}</th>
+                    <td>
+                      <Link href={`/il-rakimlari/${x.ilId}`}>{x.il}</Link>
+                    </td>
+                    <td>≈{x.rakim.toLocaleString("tr-TR")} m</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
 
           <h2>Sık Sorulan Sorular</h2>
           {faqItems.map((item) => (

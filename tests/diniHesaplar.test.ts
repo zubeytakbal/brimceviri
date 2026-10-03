@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  anmaGunleri,
   hatimDagit,
   hatimPlani,
   kazaNamaziGun,
@@ -307,5 +308,18 @@ describe("Özbekçe sayı biçimi", () => {
     expect(formatUz(1.5, 2)).toBe("1,5");
     expect(formatUz(1234567.891, 2)).toBe("1 234 567,89");
     expect(formatUz(0.2, 2)).toBe("0,2");
+  });
+});
+
+describe("anma günleri (3, 7, 40, 52)", () => {
+  it("ölüm günü 1. gün sayılınca", () => {
+    const r = anmaGunleri({ year: 2025, month: 1, day: 2 });
+    expect(r.map((x) => x.n)).toEqual([3, 7, 40, 52]);
+    expect(r[2].gun).toEqual({ year: 2025, month: 2, day: 10 });
+    expect(r[2].gecesi).toEqual({ year: 2025, month: 2, day: 9 });
+    expect(r[3].gun).toEqual({ year: 2025, month: 2, day: 22 });
+  });
+  it("ertesi günden sayınca bir gün kayar", () => {
+    expect(anmaGunleri({ year: 2025, month: 1, day: 2 }, false)[2].gun).toEqual({ year: 2025, month: 2, day: 11 });
   });
 });

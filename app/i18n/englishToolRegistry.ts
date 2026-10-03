@@ -398,6 +398,16 @@ export const englishToolRegistry: EnglishToolRecord[] = [
     reviewLevel: "standard" as const,
     searchTerms: `${tool.title} ${tool.description} christian church bible easter lent`,
   })),
+  {
+    id: "everyday:ovulation-calculator",
+    domain: "everyday",
+    href: "/en/ovulation-calculator",
+    title: "Ovulation Calculator",
+    description: "Ovulation day, fertile window, next period and a color-coded cycle calendar.",
+    scope: "universal",
+    reviewLevel: "elevated",
+    searchTerms: "ovulation calculator fertile window fertility period tracker menstrual cycle next period pregnancy test",
+  },
 ];
 
 export function getEnglishToolsByDomain(domain: EnglishToolDomainId) {

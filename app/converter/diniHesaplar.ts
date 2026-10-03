@@ -1,4 +1,5 @@
 import { magvar } from "magvar";
+import { addDaysYmd } from "./time/dateMath";
 
 // Dini araçların hesapları. Yalnızca değişmeyen kurallar ve matematik:
 // yasal ya da yıllık açıklanan bir tutar (fitre, fidye) ve vakit hesabı
@@ -573,4 +574,22 @@ export function kasrDurumu(km: number, kalisGun: number) {
   if (!(km >= 0) || !(kalisGun >= 0)) return null;
   const mesafeYeterli = km >= KASR_KM;
   return { mesafeYeterli, kalisKisa: kalisGun < IKAMET_GUN, musafir: mesafeYeterli && kalisGun < IKAMET_GUN };
+}
+
+/* ---------------- Ölünün 3., 7., 40. ve 52. günü ---------------- */
+
+/** Halk geleneğinde anılan günler (Diyanet'e göre dinî dayanağı yoktur). */
+export const ANMA_GUNLERI = [3, 7, 40, 52] as const;
+
+/**
+ * Anma günleri. `baslangic` ölüm ya da defin günü; `birinciGun` true ise bu gün
+ * 1. gün sayılır (yaygın sayım), false ise ertesi gün 1. gündür.
+ * "Gecesi": İslami günde gece gündüzden önce gelir; N. gecesi (N−1). günün akşamıdır.
+ */
+export function anmaGunleri(baslangic: { year: number; month: number; day: number }, birinciGun = true) {
+  const ilk = birinciGun ? baslangic : addDaysYmd(baslangic, 1);
+  return ANMA_GUNLERI.map((n) => {
+    const gun = addDaysYmd(ilk, n - 1);
+    return { n, gun, gecesi: addDaysYmd(gun, -1) };
+  });
 }

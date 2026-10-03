@@ -184,6 +184,10 @@ export const uzbekStaticCardGroups: readonly UzbekStaticCardGroup[] = [
     ],
   },
   {
+    title: "Ayollar salomatligi",
+    cards: [["ovulyatsiya", "Ovulyatsiya va hayz kalendari", "dateCalculator", "/uz/ovulyatsiya-hisoblash"]],
+  },
+  {
     title: "Islomiy hisoblagichlar",
     cards: [
       ["qazo-namoz", "Qazo namoz va ro‘zani hisoblash", "hijriCalendarCalculator", "/uz/qazo-namoz-hisoblash"],

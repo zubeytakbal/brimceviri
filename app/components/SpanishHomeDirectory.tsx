@@ -93,6 +93,13 @@ const nicheCards: Array<{
     description: "Oro puro en 18, 14 o 10 quilates, ley 750 y cambio de quilates.",
     iconName: "goldKarat",
   },
+  {
+    id: "ovulation-calculator",
+    href: "/es/calculadora-de-ovulacion",
+    title: "Calculadora de ovulación",
+    description: "Días fértiles, día de ovulación, próxima regla y calendario menstrual.",
+    iconName: "dateCalculator",
+  },
 ];
 
 const primaryCategoryCards = [...primaryCategoryCardsFromCategories, ...nicheCards];

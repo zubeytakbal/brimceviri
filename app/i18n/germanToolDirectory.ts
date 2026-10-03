@@ -23,6 +23,7 @@ export const germanToolGroups: ToolGroup[] = [
       { href: "/de/urlaubsrechner", label: "Urlaubsrechner" },
       { href: "/de/kuendigungsfrist-rechner", label: "Kündigungsfrist-Rechner" },
       { href: "/de/mutterschutzrechner", label: "Mutterschutzrechner" },
+      { href: "/de/eisprungrechner", label: "Eisprungrechner (fruchtbare Tage)" },
       { href: "/de/arbeitszeitrechner", label: "Arbeitszeitrechner" },
       { href: "/de/waehrungsrechner", label: "Währungsrechner" },
       { href: "/de/goldrechner", label: "Goldrechner (333, 585, 750)" },

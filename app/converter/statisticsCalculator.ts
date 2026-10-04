@@ -44,8 +44,7 @@ function parseNumberList(raw: string): number[] {
   return tokens
     .map((token) => token.trim())
     .filter((token) => token !== "")
-    .map((token) => Number(token))
-    .filter((value) => Number.isFinite(value));
+    .map((token) => Number(token));
 }
 
 export function calculateStatistics(raw: string): StatisticsOutcome {
@@ -53,6 +52,10 @@ export function calculateStatistics(raw: string): StatisticsOutcome {
 
   if (values.length === 0) {
     return { success: false, message: "En az bir sayı gir." };
+  }
+
+  if (values.some((value) => !Number.isFinite(value))) {
+    return { success: false, message: "Listede geçersiz bir değer var. Her öğeyi sayı olarak gir; geçersiz öğeler hesaplamadan çıkarılmaz." };
   }
 
   const count = values.length;
@@ -91,6 +94,11 @@ export function calculateStatistics(raw: string): StatisticsOutcome {
       ? squaredDiffs.reduce((total, value) => total + value, 0) / (count - 1)
       : null;
   const sampleStdDev = sampleVariance !== null ? Math.sqrt(sampleVariance) : null;
+
+  if (![sum, mean, median, range, populationVariance, populationStdDev,
+    ...(sampleVariance === null ? [] : [sampleVariance, sampleStdDev!])].every(Number.isFinite)) {
+    return { success: false, message: "Bu değerler hesaplama sınırını aşıyor. Daha küçük sayılarla tekrar dene." };
+  }
 
   return {
     success: true,

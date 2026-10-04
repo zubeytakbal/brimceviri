@@ -4,17 +4,19 @@ import { DecorativeIcon } from "../components/siteIcons";
 import { scienceHubs } from "../converter/scienceHubs";
 import { buildSiteUrl } from "../siteConfig";
 
+const uniqueToolCount = new Set(scienceHubs.flatMap((hub) => hub.groups.flatMap((group) => group.tools.map((tool) => tool.href)))).size;
+
 export const metadata: Metadata = {
   title: "Bilim Hesaplayıcıları",
   description:
-    "Kimya, matematik, fizik, geometri ve biyoloji hesaplayıcıları: mol, pH, EBOB-EKOK, denklem çözme, eğik atış, Pisagor, kodon tablosu ve 60'tan fazla araç.",
+    `Kimya, matematik, fizik, geometri ve biyoloji için ${uniqueToolCount} benzersiz hesaplayıcı, dönüşüm ve referans sayfası: mol, pH, EBOB-EKOK ve daha fazlası.`,
   alternates: {
     canonical: "/bilim-hesaplayicilari",
   },
   openGraph: {
     title: "Bilim Hesaplayıcıları",
     description:
-      "Kimya, matematik, fizik, geometri ve biyoloji hesaplayıcıları: mol, pH, EBOB-EKOK, denklem çözme, eğik atış, Pisagor, kodon tablosu ve 60'tan fazla araç.",
+      `Kimya, matematik, fizik, geometri ve biyoloji için ${uniqueToolCount} benzersiz hesaplayıcı, dönüşüm ve referans sayfası: mol, pH, EBOB-EKOK ve daha fazlası.`,
     url: buildSiteUrl("/bilim-hesaplayicilari"),
     siteName: "BirimCeviri.app",
     locale: "tr_TR",
@@ -69,9 +71,9 @@ export default function BilimHesaplayicilariHubPage() {
         <header className="all-conversions-header">
           <h1>Bilim Hesaplayıcıları</h1>
           <p>
-            Öğrenciler için fizik, kimya, matematik ve geometri
-            hesaplayıcıları — 60&apos;tan fazla araç tek yerde. Her araç
-            formülü ve adım adım çözümü gösterir.
+            Öğrenciler için fizik, kimya, matematik, geometri ve biyoloji
+            araçları — {uniqueToolCount} benzersiz hesaplayıcı, birim dönüşümü
+            ve referans sayfası tek yerde.
           </p>
         </header>
 
@@ -86,7 +88,7 @@ export default function BilimHesaplayicilariHubPage() {
               <strong>1 mili-</strong> (m) = 10⁻³, <strong>1 mikro-</strong>{" "}
               (µ) = 10⁻⁶
             </li>
-            <li>60+ kimya, matematik, fizik, geometri ve biyoloji aracı</li>
+            <li>{uniqueToolCount} benzersiz hesaplayıcı, dönüşüm ve referans sayfası</li>
           </ul>
         </div>
 

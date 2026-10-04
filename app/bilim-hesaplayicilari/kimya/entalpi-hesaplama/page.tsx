@@ -116,6 +116,14 @@ export default function EntalpiHesaplamaPage() {
         <div className="unit-page-layout chem-calculator-layout">
         <div className="unit-page-content">
         <section className="category-article-content">
+          <p>
+            Bu araç q = mcΔT ile kalorimetri hesabı yapar. Hess yasası,
+            standart oluşum entalpileri ve bağ enerjilerinden tepkime
+            entalpisi hesaplamaz. Bir çözeltinin sıcaklık artışından bulunan
+            ısı, tepkimenin ısısıyla aynı işaretli değildir: ideal yalıtılmış
+            kalorimetrede q_tepkime = −q_çözelti alınır.
+          </p>
+
           <h2>Entalpi nedir?</h2>
           <p>
             Entalpi (H), bir sistemin toplam ısı içeriğini ifade eden bir

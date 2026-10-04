@@ -36,7 +36,7 @@ export function calculateFraction(
 ): FractionResult | null {
   if (
     ![a.numerator, a.denominator, b.numerator, b.denominator].every(
-      (value) => Number.isInteger(value)
+      (value) => Number.isSafeInteger(value)
     )
   ) {
     return null;
@@ -50,27 +50,24 @@ export function calculateFraction(
     return null;
   }
 
-  let rawNumerator: number;
-  let rawDenominator: number;
-
+  // Keep intermediate products exact; Number multiplication can round before
+  // subtraction and silently turn a nonzero numerator into zero.
+  const an = BigInt(a.numerator), ad = BigInt(a.denominator);
+  const bn = BigInt(b.numerator), bd = BigInt(b.denominator);
+  let numerator: bigint;
+  let denominator: bigint;
   switch (operation) {
-    case "toplama":
-      rawNumerator = a.numerator * b.denominator + b.numerator * a.denominator;
-      rawDenominator = a.denominator * b.denominator;
-      break;
-    case "cikarma":
-      rawNumerator = a.numerator * b.denominator - b.numerator * a.denominator;
-      rawDenominator = a.denominator * b.denominator;
-      break;
-    case "carpma":
-      rawNumerator = a.numerator * b.numerator;
-      rawDenominator = a.denominator * b.denominator;
-      break;
-    case "bolme":
-      rawNumerator = a.numerator * b.denominator;
-      rawDenominator = a.denominator * b.numerator;
-      break;
+    case "toplama": numerator = an * bd + bn * ad; denominator = ad * bd; break;
+    case "cikarma": numerator = an * bd - bn * ad; denominator = ad * bd; break;
+    case "carpma": numerator = an * bn; denominator = ad * bd; break;
+    case "bolme": numerator = an * bd; denominator = ad * bn; break;
+    default: return null;
   }
+  const rawLimit = BigInt(Number.MAX_SAFE_INTEGER);
+  if (numerator > rawLimit || numerator < -rawLimit ||
+      denominator > rawLimit || denominator < -rawLimit) return null;
+  let rawNumerator = Number(numerator);
+  let rawDenominator = Number(denominator);
 
   if (rawDenominator < 0) {
     rawNumerator = -rawNumerator;
@@ -108,8 +105,8 @@ export function simplifyFraction(fraction: Fraction): {
   divisor: number;
 } | null {
   if (
-    !Number.isInteger(fraction.numerator) ||
-    !Number.isInteger(fraction.denominator) ||
+    !Number.isSafeInteger(fraction.numerator) ||
+    !Number.isSafeInteger(fraction.denominator) ||
     fraction.denominator === 0
   ) {
     return null;

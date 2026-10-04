@@ -105,7 +105,7 @@ export default function ScienceHubPage({ hub }: { hub: ScienceHub }) {
           ))}
           <p>
             <small>
-              Bu sayfada {toolCount} hesaplayıcı var. Diğer alanlar için{" "}
+              Bu sayfada {toolCount} araç ve referans bağlantısı var. Diğer alanlar için{" "}
               <Link href="/bilim-hesaplayicilari">tüm bilim hesaplayıcılarına</Link> göz atın.
             </small>
           </p>

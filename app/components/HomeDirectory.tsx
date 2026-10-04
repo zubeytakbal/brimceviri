@@ -2503,8 +2503,8 @@ export default function HomeDirectory({
               <div>
                 <h2>Bilim hesaplayıcıları</h2>
                 <p>
-                  Kimya, fizik ve diğer fen derslerine yönelik
-                  hesaplayıcılar.
+                  Matematik, kimya, fizik, geometri ve biyoloji araçları;
+                  formüller ve hesaplama açıklamaları.
                 </p>
               </div>
             </header>
@@ -2545,6 +2545,20 @@ export default function HomeDirectory({
                     />
                   </span>
                   <h3 className="home-category-title">Matematik</h3>
+                </div>
+              </article>
+
+              <article className="directory-home-card directory-tool-card">
+                <Link
+                  className="directory-card-stretch"
+                  href="/bilim-hesaplayicilari/fizik"
+                  aria-label="Fizik"
+                />
+                <div className="directory-card-body directory-card-body-icon">
+                  <span className="home-category-icon-box" aria-hidden="true">
+                    <DecorativeIcon name="physicsCalculator" size={42} className="home-category-icon-svg" />
+                  </span>
+                  <h3 className="home-category-title">Fizik</h3>
                 </div>
               </article>
 

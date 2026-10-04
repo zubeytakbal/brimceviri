@@ -1,20 +1,24 @@
 "use client";
 
-import { MathfieldElement } from "mathlive";
+import "mathlive";
+import type { MathfieldElement } from "mathlive";
 import type { DetailedHTMLProps, HTMLAttributes } from "react";
 import { useRef } from "react";
 
 // Türkiye'de ondalık ayırıcı virgüldür — MathLive'ın varsayılanı nokta,
 // bunu değiştirmezsek kullanıcı "," tuşuna bastığında ondalık değil,
 // farklı bir LaTeX yapısı ({,}) ekler ve çözücü bunu ayrıştıramaz.
-MathfieldElement.decimalSeparator = ",";
+const mathfieldConstructor = typeof window === "undefined"
+  ? undefined
+  : window.customElements.get("math-field") as typeof MathfieldElement | undefined;
+if (mathfieldConstructor) mathfieldConstructor.decimalSeparator = ",";
 
 // MathLive kendi konumuna göre font yolunu otomatik tahmin etmeye çalışır,
 // ama Next.js/Turbopack'in bundle yapısında bu tahmin yanlış çıkıyor
 // ("fonts could not be loaded from .../chunks/fonts" konsol hatası — gerçek
 // bir kullanıcı raporuyla doğrulandı). Fontları public/mathlive-fonts'a
 // kopyalayıp yolu burada açıkça belirtiyoruz.
-MathfieldElement.fontsDirectory = "/mathlive-fonts";
+if (mathfieldConstructor) mathfieldConstructor.fontsDirectory = "/mathlive-fonts";
 
 declare module "react" {
   // eslint-disable-next-line @typescript-eslint/no-namespace -- required for JSX.IntrinsicElements augmentation

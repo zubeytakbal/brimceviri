@@ -334,6 +334,7 @@ export const turkishCalculatorMenu = pick([
   "/fayans-hesaplama",
   "/elektrik-tuketimi-hesaplama",
   "/muhendislik-hesaplayicilari",
+  "/bilim-hesaplayicilari",
 ]);
 
 /** Üst menü "Tarih & Saat". */

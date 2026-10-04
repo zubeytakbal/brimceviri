@@ -18,7 +18,7 @@ export type EnthalpyCalculationResult = {
   sicaklikDegisimi: number;
 };
 
-export function calculateEnthalpy(
+function calculateEnthalpyUnchecked(
   input: EnthalpyCalculationInput
 ): EnthalpyCalculationResult | null {
   const { target, isiJoule, kutleGram, ozgulIsi, sicaklikDegisimi } = input;
@@ -104,4 +104,15 @@ export function calculateEnthalpy(
     ozgulIsi,
     sicaklikDegisimi: isiJoule / (kutleGram * ozgulIsi),
   };
+}
+
+// Validate computed values too: inverse calculations can produce negative
+// mass/specific heat or overflow even when every input is finite.
+export function calculateEnthalpy(
+  input: EnthalpyCalculationInput
+): EnthalpyCalculationResult | null {
+  const result = calculateEnthalpyUnchecked(input);
+  if (!result || !Object.values(result).every(Number.isFinite)) return null;
+  if (result.kutleGram <= 0 || result.ozgulIsi <= 0) return null;
+  return result;
 }

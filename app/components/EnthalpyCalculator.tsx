@@ -270,7 +270,7 @@ export default function EnthalpyCalculator() {
         className="category-general-converter-result paint-calculator-result"
       >
         {!result ? (
-          <strong>Geçerli değerler girerek sonucu görebilirsin.</strong>
+          <strong>Kütle ve özgül ısı pozitif olmalı; ısı ile sıcaklık değişiminin işaretleri uyumlu olmalı.</strong>
         ) : (
           <div className="paint-calculator-result-grid">
             <div>

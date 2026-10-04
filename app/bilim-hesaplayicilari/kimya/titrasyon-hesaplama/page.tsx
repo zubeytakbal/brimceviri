@@ -18,12 +18,12 @@ const faqItems: FaqItem[] = [
   {
     question: "Asit ve baz değerliği ne anlama gelir?",
     answer:
-      "Asit değerliği, bir asit molekülünün açığa çıkarabildiği H⁺ iyonu sayısıdır (HCl için 1, H₂SO₄ için 2). Baz değerliği ise bir baz molekülünün nötrleyebildiği OH⁻ iyonu sayısıdır (NaOH için 1, Ca(OH)₂ için 2).",
+      "Asit değerliği, bir asit molekülünün açığa çıkarabildiği H⁺ iyonu sayısıdır (HCl için 1, H₂SO₄ için 2). Baz değerliği ise bir bazın tepkimede nötrleyebildiği H⁺ iyonu sayısıdır (NaOH için 1, Ca(OH)₂ için 2).",
   },
   {
     question: "Eşdeğerlik noktası ne demektir?",
     answer:
-      "Eşdeğerlik noktası, asitten açığa çıkan H⁺ mol sayısının, bazın nötrlediği OH⁻ mol sayısına tam olarak eşit olduğu andır — titrasyonun tamamlandığı, indikatörün renk değiştirdiği noktadır.",
+      "Eşdeğerlik noktası, asitten açığa çıkan H⁺ mol sayısının, bazın sağladığı OH⁻ mol sayısına tam olarak eşit olduğu stokiyometrik noktadır. İndikatörün renk değiştirdiği son nokta bundan farklı olabilir.",
   },
 ];
 
@@ -122,14 +122,14 @@ export default function TitrasyonHesaplamaPage() {
             kullanılan temel bir laboratuvar yöntemidir. Derişimi bilinen
             bir çözelti (genellikle baz), derişimi bilinmeyen bir asit
             çözeltisine, indikatör renk değiştirene kadar yavaş yavaş
-            eklenir. Renk değişiminin gerçekleştiği an, eşdeğerlik noktası
-            olarak kabul edilir.
+            eklenir. Renk değişiminin gerçekleştiği an son noktadır; stokiyometrik
+            eşdeğerlik noktasına mümkün olduğunca yakın olması amaçlanır.
           </p>
 
           <h2>Eşdeğerlik noktası bağıntısı</h2>
           <p>
             Eşdeğerlik noktasında, asitten açığa çıkan toplam H⁺ mol
-            sayısı, bazın nötrlediği toplam OH⁻ mol sayısına eşittir:{" "}
+            sayısı, bazın sağladığı toplam OH⁻ mol sayısına eşittir:{" "}
             <strong>Cₐ × Vₐ × asit değerliği = Cb × Vb × baz değerliği</strong>.
             Tek değerlikli (monoprotik) asit ve bazlar için (HCl, NaOH gibi)
             değerlik 1 olduğundan bu bağıntı basitçe CₐVₐ = CbVb'ye
@@ -181,12 +181,12 @@ export default function TitrasyonHesaplamaPage() {
           </p>
           <p>
             Güçlü asit-güçlü baz titrasyonunda (örneğin HCl-NaOH),
-            eşdeğerlik noktası tam pH 7'de gerçekleşir ve pH, eşdeğerlik
+            25 °C'de eşdeğerlik noktası yaklaşık pH 7'de gerçekleşir ve pH, eşdeğerlik
             noktası civarında çok dik bir sıçrama gösterir — bu yüzden
             fenolftalein de metil oranj da kullanılabilir. Ancak zayıf
             asit-güçlü baz titrasyonunda (örneğin asetik asit-NaOH),
-            eşdeğerlik noktası 7'nin üzerinde gerçekleştiği için yalnızca
-            fenolftalein doğru sonuç verir; metil oranj kullanılırsa
+            eşdeğerlik noktası 7'nin üzerinde gerçekleştiği için
+            fenolftalein genellikle uygun bir seçimdir; metil oranj kullanılırsa
             titrasyon noktası gerçek eşdeğerlik noktasından önce, yanlış
             bir yerde tespit edilir.
           </p>
@@ -319,7 +319,7 @@ export default function TitrasyonHesaplamaPage() {
             kimyada bu amaçla <strong>birincil standart</strong> adı verilen,
             yüksek saflıkta, havada kararlı, kolay tartılabilen ve bilinen
             kesin bir molar kütleye sahip maddeler kullanılır — potasyum
-            hidrojen ftalat (KHP), asit çözeltilerinin derişimini kesin
+            hidrojen ftalat (KHP), NaOH gibi baz çözeltilerinin derişimini kesin
             olarak belirlemek için yaygın kullanılan bir birincil standarttır.
             NaOH gibi çözeltiler ise havadaki CO₂'yi hızla absorbe ettiği
             için birincil standart olarak kullanılamaz; bunun yerine önce
@@ -357,7 +357,7 @@ export default function TitrasyonHesaplamaPage() {
             <Link href="/bilim-hesaplayicilari/kimya/molarite-hesaplama">Molarite Hesaplama</Link>,{" "}
             seyreltme hesabı için{" "}
             <Link href="/bilim-hesaplayicilari/kimya/seyreltme-hesaplama">Seyreltme Hesaplama</Link>,{" "}
-            eşdeğerlik noktasındaki pH için{" "}
+            pH ve iyon derişimi dönüşümleri için{" "}
             <Link href="/bilim-hesaplayicilari/kimya/ph-hesaplama">pH Hesaplama</Link>
             {" "}sayfasına bakabilirsin.
           </p>

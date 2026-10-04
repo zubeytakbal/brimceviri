@@ -163,7 +163,7 @@ export default function PhCalculator() {
         <p className="calculator-usage-hint">
           Nasıl çalışır: pH, pOH, [H⁺] veya [OH⁻] değerlerinden hangisini
           biliyorsan onu seç, tek bir sayı gir — diğer üçünü ve asit/baz
-          durumunu biz bulalım.
+          durumunu biz bulalım. Bu araç 25 °C için iyon derişimi dönüşümü yapar; asidin başlangıç derişimi ve Ka değerinden pH hesaplamaz.
         </p>
         <div className="engineering-targets">
           <span>Hangi değeri biliyorsun?</span>

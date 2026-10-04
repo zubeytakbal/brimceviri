@@ -280,7 +280,9 @@ export default function FractionCalculator() {
         {!result ? (
           <strong>
             Geçerli pay/payda değerleri gir (payda sıfır olamaz, bölmede
-            ikinci kesrin payı sıfır olamaz).
+            ikinci kesrin payı sıfır olamaz). Girdiler ve ara işlemlerdeki pay/payda
+            ±9.007.199.254.740.991 sınırını aşmamalı; daha büyük değerlerde
+            yuvarlanmış sonuç gösterilmez.
           </strong>
         ) : (
           <div className="paint-calculator-result-grid">

@@ -66,19 +66,6 @@ export default function EnglishConversionSeo({
         `${conversionPage.toName}?`,
       answer: conversionPage.explanation,
     },
-    {
-      question: "How precise are the results?",
-      answer:
-        "Conversion results are calculated to 12 significant figures. " +
-        "Very large or very small values are shown in scientific notation.",
-    },
-    {
-      question:
-        `Is the ${conversionPage.fromName} to ` +
-        `${conversionPage.toName} converter free?`,
-      answer:
-        "Yes. The conversion tool on BirimCeviri.app is free and requires no sign-up.",
-    },
   ];
 
   const breadcrumbSchema = {

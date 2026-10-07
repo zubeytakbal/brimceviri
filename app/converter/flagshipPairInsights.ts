@@ -21,6 +21,12 @@ export type RealWorldValue = {
 export type FlagshipPairInsight = {
   realWorldValues?: RealWorldValue[];
   sectorNote?: string;
+  /** Bu iki birim günlük hayatta nerede karşılaşılır (tek paragraf). */
+  where?: string;
+  /** Bu çiftte sık yapılan hatalar ve karışan ölçüler. */
+  mistakes?: string[];
+  /** inç–cm: 16:9 ekranların köşegen, genişlik ve yükseklik tablosu. */
+  screenTable?: boolean;
 };
 
 function pairKey(category: string, symbolA: string, symbolB: string): string {
@@ -35,12 +41,22 @@ const insights: Record<string, FlagshipPairInsight> = {
   },
   [pairKey("uzunluk", "cm", "in")]: {
     realWorldValues: [
-      {
-        label: "Standart kredi kartının uzun kenarı",
-        value: 8.56,
-        anchorUnit: "cm",
-      },
+      { label: "Standart kredi kartının uzun kenarı", value: 8.56, anchorUnit: "cm" },
+      { label: "6,1 inç telefon ekranı (köşegen)", value: 6.1, anchorUnit: "in" },
+      { label: "15,6 inç dizüstü bilgisayar ekranı (köşegen)", value: 15.6, anchorUnit: "in" },
+      { label: "Kot pantolon W32 (bel ölçüsü)", value: 32, anchorUnit: "in" },
+      { label: "Otomobil jantı (205/55 R16 lastikteki 16)", value: 16, anchorUnit: "in" },
+      { label: "Dağ bisikleti tekeri", value: 29, anchorUnit: "in" },
     ],
+    where:
+      "İnç Türkiye'de en çok ekran boyutlarında (televizyon, monitör, telefon, tablet), otomobil jantlarında, bisiklet tekerlerinde, kot pantolon bedenlerinde (W bel, L boy) ve tesisat borularında karşına çıkar. ABD'den alınan ürünlerin ölçüleri de çoğunlukla inçtir. 1 inç 1959'dan beri tam olarak 2,54 cm kabul edilir; yani bu dönüşüm yaklaşık değil, kesindir.",
+    mistakes: [
+      "Ekran boyutu köşegendir, genişlik değil: 55 inç bir televizyonun köşegeni 139,7 cm, ama 16:9 ekranın genişliği yaklaşık 121,8 cm'dir. Duvara ya da TV ünitesine sığıp sığmayacağına genişliğe bakarak karar verin.",
+      "Tesisattaki \"1/2 inç boru\" nominal (anma) ölçüdür: borunun dış çapı 12,7 mm değil, yaklaşık 21,3 mm'dir. Boru ve fitting alırken dış çap tablosuna bakın.",
+      "Kesirli inçler ondalığa çevrilmeden hesaplanmamalı: 1/4 inç = 0,635 cm, 1/8 inç = 3,175 mm, 3/8 inç = 9,525 mm.",
+      "Kot pantolonda W32 bel çevresi yaklaşık 81 cm demektir; ama markalar etiket ölçüsünü farklı kestiği için gerçek bel ölçüsü 1-3 cm sapabilir.",
+    ],
+    screenTable: true,
   },
   [pairKey("uzunluk", "m", "ft")]: {
     realWorldValues: [

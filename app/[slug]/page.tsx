@@ -547,6 +547,56 @@ export default async function ConversionPage({ params }: PageProps) {
                 {flagshipInsight.sectorNote}
               </p>
             )}
+
+            {flagshipInsight.screenTable && (
+              <>
+                <h2>Ekran boyutu: köşegen, genişlik ve yükseklik</h2>
+                <div className="conversion-table-wrap">
+                  <table className="conversion-table">
+                    <thead>
+                      <tr>
+                        <th>Ekran (inç)</th>
+                        <th>Köşegen</th>
+                        <th>Genişlik (16:9)</th>
+                        <th>Yükseklik (16:9)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[24, 27, 32, 43, 50, 55, 65, 75, 85].map((d) => (
+                        <tr key={d}>
+                          <td>{d} inç</td>
+                          <td>{formatNumber(Math.round(d * 2.54 * 10) / 10)} cm</td>
+                          <td>{formatNumber(Math.round(((d * 16) / Math.sqrt(337)) * 2.54 * 10) / 10)} cm</td>
+                          <td>{formatNumber(Math.round(((d * 9) / Math.sqrt(337)) * 2.54 * 10) / 10)} cm</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <p>
+                  Genişlik ve yükseklik yalnızca görüntü alanıdır; çerçeve ve ayak için birkaç santimetre
+                  ekleyin. 16:9 ekranda genişlik köşegenin yaklaşık 0,87 katı, yükseklik 0,49 katıdır.
+                </p>
+              </>
+            )}
+
+            {flagshipInsight.where && (
+              <>
+                <h2>Nerede karşına çıkar?</h2>
+                <p>{flagshipInsight.where}</p>
+              </>
+            )}
+
+            {flagshipInsight.mistakes && flagshipInsight.mistakes.length > 0 && (
+              <>
+                <h2>Sık yapılan hatalar</h2>
+                <ul>
+                  {flagshipInsight.mistakes.map((m) => (
+                    <li key={m}>{m}</li>
+                  ))}
+                </ul>
+              </>
+            )}
           </section>
         )}
 

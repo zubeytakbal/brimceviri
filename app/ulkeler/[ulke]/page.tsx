@@ -108,11 +108,11 @@ export default async function CountryPage({ params }: { params: Promise<{ ulke: 
       : [
           {
             question: `${c.nameTr} ile Türkiye arasında kaç saat fark var?`,
-            answer: `${c.capital} saatiyle ${c.nameTr} şu anda ${timeDiffText(diff)}${diff === 0 ? "" : " (Türkiye'ye göre)"}. Yaz saati uygulayan ülkelerde fark yıl içinde değişebilir; sayfa her gün güncellenir.`,
+            answer: `${c.capital} saatiyle ${c.nameTr} şu anda ${timeDiffText(diff)}${diff === 0 ? "" : " (Türkiye'ye göre)"}.`,
           },
           {
             question: `${c.nameTr} Türkiye'ye kaç km?`,
-            answer: `Ankara ile ${c.capital} arasındaki kuş uçuşu mesafe yaklaşık ${km(dist)} km'dir. Uçakla, ortalama 800 km/sa seyir hızıyla yaklaşık ${Math.max(1, Math.round((dist / 800) * 10) / 10).toLocaleString("tr-TR")} saatlik uçuşa karşılık gelir (kalkış-iniş hariç).`,
+            answer: `Ankara ile ${c.capital} arasındaki kuş uçuşu mesafe yaklaşık ${km(dist)} km'dir; bu, yaklaşık ${Math.max(1, Math.round((dist / 800) * 10) / 10).toLocaleString("tr-TR")} saatlik uçuş demektir.`,
           },
         ]),
     ...(diller.length
@@ -192,7 +192,7 @@ export default async function CountryPage({ params }: { params: Promise<{ ulke: 
                 <span className="tr-map-legend-swatch" style={{ background: "#9fcfcf" }} /> Komşu ülkeler
               </>
             )}
-            · Komşu bir ülkeye tıklayarak o ülkenin sayfasına geçin.
+
           </p>
         </div>
       }
@@ -413,8 +413,7 @@ export default async function CountryPage({ params }: { params: Promise<{ ulke: 
               {trLocative(c.capital)} saat {noonThere(diff)}.
             </li>
             <li>
-              Uzaklık: Ankara–{c.capital} arası kuş uçuşu yaklaşık {km(dist)} km. Kuş uçuşu mesafeyi başka noktalar için{" "}
-              <Link href="/buyuk-daire-mesafesi-hesaplama">büyük daire mesafesi hesaplayıcısıyla</Link> bulabilirsiniz.
+              Uzaklık: Ankara–{c.capital} arası kuş uçuşu yaklaşık {km(dist)} km.
             </li>
           </ul>
         </>
@@ -439,9 +438,7 @@ export default async function CountryPage({ params }: { params: Promise<{ ulke: 
       )}
       <p>
         <small>
-          Kaynaklar: ülke ve dil verileri mledoze/countries (ODbL), başkent koordinatları GeoNames (CC BY 4.0), sınırlar Natural Earth, saat dilimleri
-          countries-and-timezones; tarih, saat ve sayı yazımı Unicode CLDR verisinden üretilir (ülkenin en yaygın diline göre). Yüzölçümü değerleri iç
-          suları içerebilir; kaynaklar arasında küçük farklar olabilir.
+          Kaynaklar: mledoze/countries (ODbL), GeoNames (CC BY 4.0), Natural Earth, Unicode CLDR.
         </small>
       </p>
     </TimeToolPage>

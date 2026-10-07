@@ -17,7 +17,6 @@ const ORNEK = 24;
  */
 export const PENDING = new Set<string>([
   // Adım 7: ülkeler, mesafe, rakım, dağlar
-  "/en/countries",
   "/iller-arasi-mesafe/*",
   "/de/entfernung/*",
   "/dunyanin-en-yuksek-daglari",
@@ -28,9 +27,6 @@ export const PENDING = new Set<string>([
   "/de/feiertage",
   "/resmi-tatiller",
   "/en/federal-holidays",
-  "/geri-sayim",
-  "/de/countdown",
-  "/ehliyet-sinifi-bulma",
 ]);
 
 function isPending(group: string) {

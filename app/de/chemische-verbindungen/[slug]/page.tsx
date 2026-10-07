@@ -105,10 +105,6 @@ export default async function GermanCompoundPage({ params }: PageProps) {
       question: `Wie hoch ist die molare Masse von ${nameDe} (${compound.formula})?`,
       answer: `Die molare Masse von ${nameDe} beträgt etwa ${formatMolarMass(compound.molarMass)} g/mol. Dieser Wert ergibt sich aus der Summe der Atommassen von ${compositionLine}.`,
     },
-    {
-      question: `Wie lautet die chemische Formel von ${nameDe}?`,
-      answer: `Die chemische Formel von ${nameDe} lautet ${compound.formula}.`,
-    },
   ];
 
   const breadcrumbSchema = {
@@ -141,9 +137,7 @@ export default async function GermanCompoundPage({ params }: PageProps) {
             {nameDe} ({compound.formula}) Molare Masse und Stoffmengenrechner
           </h1>
           <p>
-            Sieh dir die atomare Zusammensetzung und molare Masse an
-            und berechne direkt mit deiner eigenen Masse oder
-            Stoffmenge.
+            {nameDe} besteht aus {compositionLine}; daraus ergeben sich {formatMolarMass(compound.molarMass)} g/mol.
           </p>
         </header>
 
@@ -236,26 +230,12 @@ export default async function GermanCompoundPage({ params }: PageProps) {
             </p>
           ))}
 
-          <h2>Verwandte Seiten</h2>
           <p>
-            Für alle Verbindungen siehe die Übersicht{" "}
-            <Link href="/de/chemische-verbindungen">Chemische Verbindungen</Link>.
-          </p>
-
-          <h2>Quellen</h2>
-          <p>
-            Die molare Masse wird durch Summierung der Atommassen aus der{" "}
-            <a
-              href="https://iupac.qmul.ac.uk/AtWt/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              IUPAC-Tabelle der Standardatomgewichte
-            </a>{" "}
-            entsprechend der chemischen Formel berechnet. Das Ergebnis ist
-            ein Referenzwert auf Basis der Standardatomgewichte; bei
-            isotopisch angereicherten Proben oder hochpräzisen Analysen muss
-            die Isotopenzusammensetzung zusätzlich berücksichtigt werden.
+            Atommassen:{" "}
+            <a href="https://iupac.qmul.ac.uk/AtWt/" target="_blank" rel="noreferrer">
+              IUPAC-Standardatomgewichte
+            </a>
+            . Alle Verbindungen: <Link href="/de/chemische-verbindungen">Chemische Verbindungen</Link>.
           </p>
         </section>
       </div>

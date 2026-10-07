@@ -16,18 +16,6 @@ const ORNEK = 24;
  * "/x/*" alt klasörlerin hepsini kapsar.
  */
 export const PENDING = new Set<string>([
-  // Adım 3: bilim sayfaları
-  "/bilim-hesaplayicilari/biyoloji/amino-asitler",
-  "/bilim-hesaplayicilari/matematik/sayilar",
-  "/bilim-hesaplayicilari/kimya/periyodik-tablo",
-  "/de/periodensystem",
-  "/de/chemische-verbindungen",
-  "/malzeme-ozellikleri",
-  "/malzeme-karsilastirma",
-  "/uz/material-xossalari",
-  "/uz/material-solishtirish",
-  "/de/werkstoffeigenschaften",
-  "/de/werkstoffvergleich",
   // Adım 4: dünya saati
   "/en/world-clock",
   "/en/time-zone-converter",

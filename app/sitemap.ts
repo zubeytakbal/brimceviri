@@ -102,7 +102,6 @@ import { popularProvinceComparisons } from "./converter/popularProvinceCompariso
 import { getAllRegions } from "./converter/regionElevationHubUz";
 import { compoundsDatabase } from "./converter/compoundsDatabase";
 import { findCompoundEditorial } from "./converter/compoundEditorial";
-import { aminoAcidsDatabase } from "./converter/aminoAcidsDatabase";
 import { bengaliWeightPairs } from "./converter/bengaliWeightPairs";
 import { licenseClasses } from "./converter/licenseClassFinder";
 import { getAllNumberFactsRange } from "./converter/numberFacts";
@@ -1085,20 +1084,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     },
-    ...getAllNumberFactsRange().flatMap((number) => [
-      {
-        url: `${baseUrl}/bilim-hesaplayicilari/matematik/sayilar/${number}`,
-        lastModified: contentLastModified,
-        changeFrequency: "monthly" as const,
-        priority: 0.5,
-      },
-      {
-        url: `${baseUrl}/uz/sonlar/${number}`,
-        lastModified: contentLastModified,
-        changeFrequency: "monthly" as const,
-        priority: 0.5,
-      },
-    ]),
+    ...getAllNumberFactsRange().map((number) => ({
+      url: `${baseUrl}/uz/sonlar/${number}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.5,
+    })),
     {
       url: `${baseUrl}/bilim-hesaplayicilari/matematik/kupkok-hesaplama`,
       lastModified: contentLastModified,
@@ -1563,12 +1554,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     },
-    ...aminoAcidsDatabase.map((aminoAcid) => ({
-      url: `${baseUrl}/bilim-hesaplayicilari/biyoloji/amino-asitler/${aminoAcid.id}`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-    })),
     {
       url: `${baseUrl}/bilim-hesaplayicilari/biyoloji/kodon-tablosu`,
       lastModified: contentLastModified,

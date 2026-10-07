@@ -314,46 +314,18 @@ export default async function ElementPage({ params }: PageProps) {
             </p>
           )}
 
-          <h2>İlgili araçlar</h2>
           <p>
-            Bu elementin izotop ağırlıklı ortalama atom kütlesini incelemek
-            için{" "}
-            <Link href="/bilim-hesaplayicilari/kimya/atom-kutlesi-hesaplama">Atom Kütlesi Hesaplama</Link>,{" "}
-            bu elementi içeren bileşiklerin molar kütlesi için{" "}
-            <Link href="/bilim-hesaplayicilari/kimya/bilesikler">Bileşikler</Link>,{" "}
-            kütleden mol sayısına geçmek için{" "}
-            <Link href="/bilim-hesaplayicilari/kimya/mol-hesaplama">Mol Hesaplama</Link>
-            {" "}sayfasına bakabilirsin.
-          </p>
-
-          <h2>Kaynaklar ve veri notu</h2>
-          <p>
-            Atom kütleleri IUPAC&apos;ın (Uluslararası Temel ve Uygulamalı
-            Kimya Birliği){" "}
-            <a
-              href="https://iupac.qmul.ac.uk/AtWt/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              standart atom ağırlıkları tablosuna
-            </a>{" "}
-            dayanır. Atom numarası, elektron dizilimi ve diğer atomik
-            özellikler, NIST&apos;in{" "}
-            <a
-              href="https://www.nist.gov/pml/periodic-table-elements"
-              target="_blank"
-              rel="noreferrer"
-            >
-              periyodik tablo verileriyle
-            </a>{" "}
-            çapraz kontrol edilmiştir.
-          </p>
-          <p>
-            Erime noktası, kaynama noktası ve yoğunluk gibi fiziksel
-            özellikler elementin formuna, sıcaklığa ve basınca göre
-            değişebilir. Bu sayfadaki değerler genel başvuru içindir;
-            laboratuvar ya da mühendislik uygulamasında ilgili veri setinin
-            ölçüm koşulları esas alınmalıdır.
+            Kaynak: atom kütlesi{" "}
+            <a href="https://iupac.qmul.ac.uk/AtWt/" target="_blank" rel="noreferrer">
+              IUPAC
+            </a>
+            , atomik özellikler{" "}
+            <a href="https://www.nist.gov/pml/periodic-table-elements" target="_blank" rel="noreferrer">
+              NIST
+            </a>
+            . Erime, kaynama ve yoğunluk değerleri standart koşullar içindir. Bileşik kütlesi için{" "}
+            <Link href="/bilim-hesaplayicilari/kimya/bilesikler">Bileşikler</Link>, gram–mol için{" "}
+            <Link href="/bilim-hesaplayicilari/kimya/mol-hesaplama">Mol Hesaplama</Link>.
           </p>
 
           <Link

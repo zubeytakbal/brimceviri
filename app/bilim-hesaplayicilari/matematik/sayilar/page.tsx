@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
-import { getAllNumberFactsRange } from "../../../converter/numberFacts";
+import NumberFactsCalculator from "../../../components/NumberFactsCalculator";
+import { getNumberFacts } from "../../../converter/numberFacts";
 import { buildSiteUrl } from "../../../siteConfig";
 
 export const metadata: Metadata = {
-  title: "Sayı Özellikleri: Kare, Bölenler, Asal mı (1-100)",
+  title: "Sayı Özellikleri Hesaplama: Asal mı, Bölenleri, Karesi",
   description:
-    "1'den 100'e kadar her sayının karesini, çarpanlarını (bölenlerini), karekökünü, asal olup olmadığını ve daha fazlasını gör — istediğin sayıyı yazıp anında hesapla.",
+    "1 ile 1.000.000 arasındaki herhangi bir sayının asal olup olmadığını, bölenlerini, karesini, küpünü, karekökünü ve Romen rakamını anında hesapla. 1-100 asal sayılar ve tam kareler tablosu.",
   alternates: {
     canonical: "/bilim-hesaplayicilari/matematik/sayilar",
   },
   openGraph: {
-    title: "Sayı Özellikleri: Kare, Bölenler, Asal mı (1-100)",
-    description: "Her sayının kare, karekök, asallık ve bölen bilgilerini gör.",
+    title: "Sayı Özellikleri Hesaplama: Asal mı, Bölenleri, Karesi",
+    description: "Herhangi bir sayının asallık, bölen, kare ve karekök bilgilerini anında hesapla.",
     url: buildSiteUrl("/bilim-hesaplayicilari/matematik/sayilar"),
     siteName: "BirimCeviri.app",
     locale: "tr_TR",
@@ -20,9 +21,32 @@ export const metadata: Metadata = {
   },
 };
 
-export default function SayilarHubPage() {
-  const numbers = getAllNumberFactsRange();
+const ONE_TO_HUNDRED = Array.from({ length: 100 }, (_, i) => i + 1);
+const PRIMES = ONE_TO_HUNDRED.filter((n) => getNumberFacts(n)?.isPrime);
+const PERFECT_SQUARES = ONE_TO_HUNDRED.filter((n) => getNumberFacts(n)?.isPerfectSquare);
+const MOST_DIVISORS = [...ONE_TO_HUNDRED]
+  .map((n) => ({ n, count: getNumberFacts(n)?.divisorCount ?? 0 }))
+  .sort((a, b) => b.count - a.count || a.n - b.n)
+  .slice(0, 5);
 
+function NumberLink({ n }: { n: number }) {
+  return (
+    <a href={`?n=${n}#hesapla`} rel="nofollow">
+      {n}
+    </a>
+  );
+}
+
+function joinLinks(list: number[]) {
+  return list.map((n, i) => (
+    <span key={n}>
+      {i > 0 && ", "}
+      <NumberLink n={n} />
+    </span>
+  ));
+}
+
+export default function SayilarHubPage() {
   return (
     <main className="all-conversions-page">
       <div className="all-conversions-shell">
@@ -36,30 +60,68 @@ export default function SayilarHubPage() {
           <span>Sayılar</span>
         </nav>
 
-        <header className="all-conversions-header">
-          <h1>Sayı Özellikleri (1-100)</h1>
+        <header className="all-conversions-header" id="hesapla">
+          <h1>Sayı Özellikleri Hesaplama</h1>
           <p>
-            1&apos;den 100&apos;e kadar her sayının karesini, küpünü,
-            karekökünü, asal olup olmadığını, bölenlerini, faktöriyelini
-            ve Romen rakamı karşılığını gör. Her sayfada, istediğin
-            başka bir sayıyı da anında hesaplayabileceğin canlı bir
-            hesaplayıcı bulunur.
+            Bir sayı yaz; asal olup olmadığı, bölenleri, karesi, küpü, karekökü,
+            faktöriyeli ve Romen rakamı karşılığı anında çıkar. 1 ile 1.000.000
+            arasındaki her tam sayı için çalışır.
           </p>
         </header>
 
+        <NumberFactsCalculator initialNumber={12} readQuery />
+
         <section className="category-article-content">
-          <ul className="tool-list number-grid-list">
-            {numbers.map((n) => (
-              <li className="tool-list-item" key={n}>
-                <Link
-                  className="tool-list-link"
-                  href={`/bilim-hesaplayicilari/matematik/sayilar/${n}`}
-                >
-                  <span className="tool-list-title">{n}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <h2>1&apos;den 100&apos;e kadar asal sayılar</h2>
+          <p>
+            1 ile 100 arasında {PRIMES.length} asal sayı vardır: {joinLinks(PRIMES)}. 2 tek
+            çift asal sayıdır; 1 ise asal sayılmaz, çünkü yalnızca bir böleni vardır.
+          </p>
+
+          <h2>1&apos;den 100&apos;e kadar tam kareler</h2>
+          <p>
+            Karekökü tam sayı olan sayılar: {joinLinks(PERFECT_SQUARES)}. Tam karelerin bölen
+            sayısı her zaman tektir, çünkü kökü kendisiyle eşleşir.
+          </p>
+
+          <h2>En çok böleni olan sayılar (1-100)</h2>
+          <div className="holiday-table-wrap">
+            <table className="holiday-table">
+              <thead>
+                <tr>
+                  <th scope="col">Sayı</th>
+                  <th scope="col">Bölen sayısı</th>
+                  <th scope="col">Bölenleri</th>
+                </tr>
+              </thead>
+              <tbody>
+                {MOST_DIVISORS.map(({ n, count }) => (
+                  <tr key={n}>
+                    <th scope="row">
+                      <NumberLink n={n} />
+                    </th>
+                    <td>{count}</td>
+                    <td>{getNumberFacts(n)?.divisors.join(", ")}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <h2>Mükemmel sayılar</h2>
+          <p>
+            Kendisi hariç bölenlerinin toplamı kendisine eşit olan sayılara mükemmel sayı
+            denir. 1.000.000&apos;a kadar dört tane vardır: <NumberLink n={6} /> (1+2+3),{" "}
+            <NumberLink n={28} /> (1+2+4+7+14), <NumberLink n={496} /> ve <NumberLink n={8128} />.
+          </p>
+
+          <h2>Bir sayının asal olup olmadığı nasıl anlaşılır?</h2>
+          <p>
+            Sayının karekökünden küçük ya da eşit asal sayılara bölünüp bölünmediğine bakmak
+            yeterlidir. Örneğin 97 için √97 ≈ 9,8 olduğundan 2, 3, 5 ve 7&apos;ye bakılır; hiçbiri
+            tam bölmediği için 97 asaldır. Hesaplayıcı bu denetimi her sayı için kendisi yapar ve
+            sonucu gerekçesiyle gösterir.
+          </p>
 
           <h2>İlginizi Çekebilir</h2>
           <p>

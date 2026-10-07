@@ -9,6 +9,7 @@ import {
   getMaterialComparison,
 } from "../../converter/materialComparisons";
 import { materialCategoryLabels } from "../../converter/materialsDatabase";
+import { litresPerKg, sharedShapes } from "../../converter/materialPractical";
 import { buildSiteUrl } from "../../siteConfig";
 import { trAblative, trEitherQuestion } from "../../converter/turkishSuffix";
 
@@ -19,6 +20,22 @@ type PageProps = {
 function formatDensity(value: number) {
   return value.toLocaleString("tr-TR", { maximumFractionDigits: 4 });
 }
+
+function formatMass(kg: number) {
+  if (kg >= 1000) return `${(kg / 1000).toLocaleString("tr-TR", { maximumFractionDigits: 2 })} ton`;
+  if (kg >= 1) return `${kg.toLocaleString("tr-TR", { maximumFractionDigits: 2 })} kg`;
+  if (kg >= 0.001) return `${(kg * 1000).toLocaleString("tr-TR", { maximumFractionDigits: 1 })} g`;
+  return `${(kg * 1e6).toLocaleString("tr-TR", { maximumFractionDigits: 1 })} mg`;
+}
+
+function formatTonVolume(litresPerKgValue: number) {
+  const m3 = litresPerKgValue; // 1 ton = 1000 kg → litre/kg × 1000 L = m³ olarak aynı sayı
+  return m3 >= 1
+    ? `${m3.toLocaleString("tr-TR", { maximumFractionDigits: 2 })} m³`
+    : `${(m3 * 1000).toLocaleString("tr-TR", { maximumFractionDigits: 0 })} litre`;
+}
+
+type PropertyRow = { label: string; unit: string; first: number | null; second: number | null; higher: string };
 
 function formatRatio(value: number) {
   return value.toLocaleString("tr-TR", { maximumFractionDigits: 2 });
@@ -94,6 +111,14 @@ export default async function MaterialComparisonPage({
   const denserMaterial = denserId === first.id ? first : second;
   const lighterMaterial = denserId === first.id ? second : first;
   const pageUrl = buildSiteUrl(`/malzeme-karsilastirma/${slug}`);
+  const shapes = sharedShapes(first, second, "tr");
+  const propertyRows: PropertyRow[] = [
+    { label: "Isıl iletkenlik", unit: "W/(m·K)", first: first.thermalConductivityWmK, second: second.thermalConductivityWmK, higher: "ısıyı daha iyi iletir" },
+    { label: "Elastisite modülü", unit: "GPa", first: first.elasticModulusGPa, second: second.elasticModulusGPa, higher: "daha rijittir (yük altında daha az esner)" },
+    { label: "Isıl genleşme", unit: "× 10⁻⁶/K", first: first.thermalExpansionPerMillionK, second: second.thermalExpansionPerMillionK, higher: "ısınınca daha çok uzar" },
+    { label: "Dinamik viskozite", unit: "mPa·s", first: first.viscosityMPaS, second: second.viscosityMPaS, higher: "daha koyu akar" },
+  ].filter((row) => row.first !== null && row.second !== null);
+  const bothFluid = ["sivi", "gida"].includes(first.category) && ["sivi", "gida"].includes(second.category);
 
   const faqItems: FaqItem[] = [
     {
@@ -116,10 +141,6 @@ export default async function MaterialComparisonPage({
       answer: `${second.nameTr} yoğunluğu yaklaşık ${formatDensity(
         second.densityKgM3
       )} kg/m³ (${formatDensity(second.densityKgM3 / 1000)} g/cm³) değerindedir.`,
-    },
-    {
-      question: "Bu karşılaştırma gerçek parça ağırlığını doğrudan gösterir mi?",
-      answer: "Hayır. Tablo aynı hacimdeki malzemeleri yoğunluğa göre karşılaştırır. Gerçek parça ağırlığı yoğunluğun yanı sıra parçanın hacmine, malzeme sınıfına, sıcaklığa ve nem durumuna bağlıdır.",
     },
   ];
 
@@ -223,14 +244,79 @@ export default async function MaterialComparisonPage({
         </section>
 
         <section className="category-article-content">
-          <h2>Bu karşılaştırma nasıl okunmalı?</h2>
+          <h2>Aynı ölçüde hangisi ne kadar gelir?</h2>
+          <div className="holiday-table-wrap">
+            <table className="holiday-table">
+              <thead>
+                <tr>
+                  <th scope="col">Ölçü</th>
+                  <th scope="col">{first.nameTr}</th>
+                  <th scope="col">{second.nameTr}</th>
+                  <th scope="col">Fark</th>
+                </tr>
+              </thead>
+              <tbody>
+                {shapes.map((row) => (
+                  <tr key={row.label}>
+                    <th scope="row">{row.label}</th>
+                    <td>{formatMass(row.firstKg)}</td>
+                    <td>{formatMass(row.secondKg)}</td>
+                    <td>{formatMass(Math.abs(row.firstKg - row.secondKg))}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
           <p>
-            Tablo, eşit hacimdeki iki malzemeyi karşılaştırır: 1 litre {first.nameTr} yaklaşık {formatDensity(first.densityKgM3 / 1000)} kg,
-            1 litre {second.nameTr} ise yaklaşık {formatDensity(second.densityKgM3 / 1000)} kg gelir.
+            Ters yönden bakınca: 1 ton {first.nameTr} {formatTonVolume(litresPerKg(first))}, 1 ton{" "}
+            {second.nameTr} ise {formatTonVolume(litresPerKg(second))} yer kaplar.
+            {bothFluid &&
+              denserId !== "esit" &&
+              ` Birbirine karışmadıklarında ${lighterMaterial.nameTr} üstte, ${denserMaterial.nameTr} altta toplanır.`}
           </p>
-          <p>
-            Bu değerler ilk hesaplama için nominal referanslardır. Gerçek parça ağırlığı hacimle birlikte değişir; gaz, sıvı, ahşap, gıda ve yapı malzemelerinde sıcaklık, basınç, nem veya bileşim ayrıca önemlidir.
-          </p>
+          {propertyRows.length > 0 && (
+            <>
+              <h2>Diğer özellikler</h2>
+              <div className="holiday-table-wrap">
+                <table className="holiday-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Özellik</th>
+                      <th scope="col">{first.nameTr}</th>
+                      <th scope="col">{second.nameTr}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {propertyRows.map((row) => (
+                      <tr key={row.label}>
+                        <th scope="row">
+                          {row.label} ({row.unit})
+                        </th>
+                        <td>{row.first}</td>
+                        <td>{row.second}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <ul>
+                {propertyRows
+                  .filter((row) => row.first !== row.second)
+                  .map((row) => {
+                    const a = row.first as number;
+                    const b = row.second as number;
+                    const winner = a > b ? first.nameTr : second.nameTr;
+                    const ratio = Math.max(a, b) / Math.min(a, b);
+                    return (
+                      <li key={row.label}>
+                        {winner} {row.higher}
+                        {Number.isFinite(ratio) && ratio >= 1.1 ? ` (yaklaşık ${formatRatio(ratio)} kat)` : ""}.
+                      </li>
+                    );
+                  })}
+              </ul>
+            </>
+          )}
 
           <h2>Sık Sorulan Sorular</h2>
           {faqItems.map((item) => (
@@ -265,20 +351,13 @@ export default async function MaterialComparisonPage({
           </ul>
         </section>
 
-        <section className="category-article-content unit-sources">
-          <h2>Kaynak ve kullanım notu</h2>
+        <section className="category-article-content">
           <p>
-            Karşılaştırmadaki yoğunluk değerleri,{" "}
-            <a
-              href="https://densitycalculator.net/density-table"
-              target="_blank"
-              rel="noreferrer"
-            >
-              232 malzemelik yoğunluk tablosundan
-            </a>{" "}
-            alınan nominal başvuru değerleridir. Aynı hacimdeki malzemeleri
-            karşılaştırmak için uygundur; gerçek parça ağırlığında ürün sınıfı,
-            sıcaklık, nem ve boşluk oranı dikkate alınmalıdır.
+          Yoğunluklar{" "}
+          <a href="https://densitycalculator.net/density-table" target="_blank" rel="noreferrer">
+            yoğunluk tablosundaki
+          </a>{" "}
+          oda sıcaklığı başvuru değerleridir.
           </p>
         </section>
       </div>

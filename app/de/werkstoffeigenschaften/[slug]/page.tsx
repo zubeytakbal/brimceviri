@@ -18,6 +18,8 @@ import {
   materialVariabilityNotesDe,
 } from "../../../converter/materialsDatabaseDe";
 import { type MaterialCategory } from "../../../converter/materialsDatabase";
+import { buoyancy, densityRank, litresPerKg, practicalRows } from "../../../converter/materialPractical";
+import { materialNotesDe } from "../../../converter/materialNotes";
 import { buildSiteUrl } from "../../../siteConfig";
 
 type PageProps = {
@@ -26,6 +28,15 @@ type PageProps = {
 
 function formatDensity(value: number) {
   return value.toLocaleString("de-DE", { maximumFractionDigits: 4 });
+}
+
+const de = (value: number, digits: number) => value.toLocaleString("de-DE", { maximumFractionDigits: digits });
+
+function formatMass(kg: number) {
+  if (kg >= 1000) return `${de(kg / 1000, 2)} t`;
+  if (kg >= 1) return `${de(kg, 2)} kg`;
+  if (kg >= 0.001) return `${de(kg * 1000, 1)} g`;
+  return `${de(kg * 1e6, 1)} mg`;
 }
 
 function getDensityUseNote(category: MaterialCategory) {
@@ -105,6 +116,12 @@ export default async function GermanMaterialPropertyPage({ params }: PageProps) 
     (comparison) => comparison.first.id === slug || comparison.second.id === slug
   );
   const oneLitreMassKg = material.densityKgM3 / 1000;
+  const practical = practicalRows(material, "de");
+  const perKg = litresPerKg(material);
+  const float = buoyancy(material);
+  const rank = densityRank(material);
+  const note = materialNotesDe[material.id];
+  const nameOf = (id: string, fallback: string) => materialNamesDe[id] ?? fallback;
 
   const faqItems: FaqItem[] = [
     {
@@ -206,13 +223,61 @@ export default async function GermanMaterialPropertyPage({ params }: PageProps) 
         </section>
 
         <section className="category-article-content">
-          <h2>Dichtewert von {nameDe} richtig verwenden</h2>
-          <p>{getDensityUseNote(material.category)}</p>
+          <h2>Wie viel wiegt {nameDe}?</h2>
+          <div className="holiday-table-wrap">
+            <table className="holiday-table">
+              <thead>
+                <tr>
+                  <th scope="col">Maß</th>
+                  <th scope="col">Ungefähres Gewicht</th>
+                </tr>
+              </thead>
+              <tbody>
+                {practical.map((row) => (
+                  <tr key={row.label}>
+                    <th scope="row">{row.label}</th>
+                    <td>{formatMass(row.massKg)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
           <p>
-            Mit diesem Referenzwert wiegt 1 Liter {nameDe} etwa {formatDensity(oneLitreMassKg)} kg;
-            1 m³ wiegt etwa {formatDensity(material.densityKgM3)} kg.
+            1 kg {nameDe} nimmt{" "}
+            {perKg >= 1000 ? `etwa ${de(perKg / 1000, 2)} m³` : perKg >= 1 ? `etwa ${de(perKg, 2)} Liter` : `etwa ${de(perKg * 1000, 1)} cm³`}{" "}
+            ein.{" "}
+            {float.kind === "gas"
+              ? float.lighterThanAir
+                ? `Es ist etwa ${de(1 / float.ratio, 1)}-mal leichter als Luft, steigt auf und sammelt sich in geschlossenen Räumen unter der Decke.`
+                : `Es ist etwa ${de(float.ratio, 1)}-mal schwerer als Luft und sammelt sich bei einem Leck am Boden, in Kellern und Gruben.`
+              : float.floats
+                ? `Mit dem ${de(float.ratio, 2)}-Fachen der Dichte von Wasser schwimmt es${material.category === "sivi" || material.category === "gida" ? " (sofern es sich nicht mit Wasser mischt, oben)" : ""}.`
+                : float.ratio < 1.01
+                  ? "Die Dichte liegt sehr nahe an der von Wasser."
+                  : `Mit dem ${de(float.ratio, 2)}-Fachen der Dichte von Wasser geht es unter.`}
+          </p>
+          <p>
+            Unter den {rank.total} Materialien dieser Seite steht {nameDe} nach Dichte (absteigend) auf Platz{" "}
+            {rank.overall}, in der Gruppe {materialCategoryLabelsDe[material.category]} auf Platz {rank.inCategory} von{" "}
+            {rank.categoryTotal}.
+            {rank.denser && rank.lighter && (
+              <>
+                {" "}Direkt darüber liegt {nameOf(rank.denser.id, rank.denser.nameTr)} ({formatDensity(rank.denser.densityKgM3)} kg/m³),
+                darunter {nameOf(rank.lighter.id, rank.lighter.nameTr)} ({formatDensity(rank.lighter.densityKgM3)} kg/m³).
+              </>
+            )}{" "}
+            {getDensityUseNote(material.category)}
           </p>
         </section>
+
+        {note && (
+          <section className="category-article-content">
+            <h2>{note.heading}</h2>
+            {note.paragraphs.map((p) => (
+              <p key={p}>{p}</p>
+            ))}
+          </section>
+        )}
 
         <MaterialMassVolumeCalculator
           locale="de"
@@ -268,41 +333,13 @@ export default async function GermanMaterialPropertyPage({ params }: PageProps) 
             </p>
           ))}
 
-          <h2>Verwandte Rechner</h2>
           <p>
-            {material.thermalConductivityWmK !== null && (
-              <>
-                Für Wärmeleitungsberechnungen siehe den{" "}
-                <Link href="/de/rechner/waermeleitung">Wärmeleitungs-Rechner</Link>
-                {", "}
-              </>
-            )}
-            {material.viscosityMPaS !== null && (
-              <>
-                für Strömungsberechnungen siehe den{" "}
-                <Link href="/de/rechner/reynolds-zahl">Reynolds-Zahl-Rechner</Link>
-                {", "}
-              </>
-            )}
-            für alle Materialien siehe die Übersicht{" "}
-            <Link href="/de/werkstoffeigenschaften">Werkstoffeigenschaften</Link>.
-          </p>
-
-          <h2>Quellen</h2>
-          <p>
-            Als Ausgangsreferenz für die Dichtewerte dient die{" "}
-            <a
-              href="https://densitycalculator.net/density-table"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Dichtetabelle mit 232 Materialien
+            Quelle:{" "}
+            <a href="https://densitycalculator.net/density-table" target="_blank" rel="noreferrer">
+              Dichtetabelle
             </a>
-            . Die Werte sind nominale Referenzwerte für erste Berechnungen.
-            Nicht jeder Wert wurde bei derselben Temperatur oder für dieselbe
-            Werkstoffgüte bestimmt; für Konstruktion, Sicherheit oder
-            Handelsmessungen prüfen Sie den bedingten Wert im technischen
-            Datenblatt des jeweiligen Produkts.
+            ; Referenzwerte bei Raumtemperatur, der Wert im Produktdatenblatt hat Vorrang. Alle Materialien:{" "}
+            <Link href="/de/werkstoffeigenschaften">Werkstoffeigenschaften</Link>.
           </p>
         </section>
       </div>

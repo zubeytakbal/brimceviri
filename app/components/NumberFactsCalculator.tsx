@@ -1,11 +1,13 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { getNumberFacts, type NumberFactsLocale } from "../converter/numberFacts";
 
 type NumberFactsCalculatorProps = {
   initialNumber: number;
   locale?: NumberFactsLocale;
+  /** Adresteki ?n= değerini başlangıç sayısı olarak okur. */
+  readQuery?: boolean;
 };
 
 const copyByLocale: Record<
@@ -83,8 +85,18 @@ function formatNumber(value: number, locale: NumberFactsLocale, maxFractionDigit
 export default function NumberFactsCalculator({
   initialNumber,
   locale = "tr",
+  readQuery = false,
 }: NumberFactsCalculatorProps) {
   const [numberInput, setNumberInput] = useState(String(initialNumber));
+
+  useEffect(() => {
+    if (!readQuery) return;
+    const frame = requestAnimationFrame(() => {
+      const raw = new URLSearchParams(window.location.search).get("n");
+      if (raw && /^\d{1,7}$/.test(raw)) setNumberInput(raw);
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [readQuery]);
   const copy = copyByLocale[locale];
 
   const n = useMemo(() => parseIntegerValue(numberInput), [numberInput]);

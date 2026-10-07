@@ -289,43 +289,17 @@ export default async function GermanElementPage({ params }: PageProps) {
             </p>
           ))}
 
-          <h2>Verwandte Tools</h2>
           <p>
-            Um die isotopengewichtete durchschnittliche Atommasse dieses
-            Elements zu untersuchen, siehe{" "}
-            <Link href="/de/atommasse-berechnen">Atommasse berechnen</Link>,{" "}
-            für die molare Masse von Verbindungen mit diesem Element
-            siehe{" "}
-            <Link href="/de/chemische-verbindungen">Chemische Verbindungen</Link>,{" "}
-            für die Elementrangliste siehe{" "}
-            <Link href="/de/elementrangliste">Elementrangliste</Link>.
-          </p>
-
-          <h2>Quellen und Datenhinweis</h2>
-          <p>
-            Die Atommassen basieren auf der{" "}
-            <a
-              href="https://iupac.qmul.ac.uk/AtWt/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              IUPAC-Tabelle der Standardatomgewichte
+            Quelle: Atommassen{" "}
+            <a href="https://iupac.qmul.ac.uk/AtWt/" target="_blank" rel="noreferrer">
+              IUPAC
             </a>
-            . Ordnungszahl, Elektronenkonfiguration und weitere
-            Atomeigenschaften werden mit den{" "}
-            <a
-              href="https://www.nist.gov/pml/periodic-table-elements"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Periodensystemdaten des NIST
-            </a>{" "}
-            abgeglichen.
-          </p>
-          <p>
-            Standardatomgewichte sind Referenzwerte für natürliches Material.
-            Bei isotopisch angereicherten Proben kann die für eine
-            Laborberechnung relevante Masse abweichen.
+            , Atomeigenschaften{" "}
+            <a href="https://www.nist.gov/pml/periodic-table-elements" target="_blank" rel="noreferrer">
+              NIST
+            </a>
+            . Molmasse von Verbindungen:{" "}
+            <Link href="/de/chemische-verbindungen">Chemische Verbindungen</Link>.
           </p>
 
           <Link className="text-link" href="/de/periodensystem">

@@ -8,6 +8,8 @@ import { fxContentDe, fxPairsDe } from "./converter/fx/fxContentDe";
 import { fxContentUz, fxPairsUz } from "./converter/fx/fxContentUz";
 import { fxPairsTr } from "./converter/fx/fxPairsTr";
 import { uzLicenseClasses } from "./converter/licenseClassFinderUz";
+import { getAllNumberFactsRange } from "./converter/numberFacts";
+import { aminoAcidsDatabase } from "./converter/aminoAcidsDatabase";
 
 export type MergedRedirect = { source: string; destination: string; permanent: true };
 
@@ -52,6 +54,18 @@ function es419Redirects(): MergedRedirect[] {
   return [r("/es-419/:path*", "/es/:path*")];
 }
 
+/** Sayı sayfaları yalnızca hesaplanan değerlerdi; sayı aracı aynı sayıyla açılır. */
+function numberRedirects(): MergedRedirect[] {
+  const base = "/bilim-hesaplayicilari/matematik/sayilar";
+  return getAllNumberFactsRange().map((n) => r(`${base}/${n}`, `${base}?n=${n}`));
+}
+
+/** Amino asit sayfaları formül ve kütleden ibaretti; hepsi tek tabloda. */
+function aminoAcidRedirects(): MergedRedirect[] {
+  const base = "/bilim-hesaplayicilari/biyoloji/amino-asitler";
+  return aminoAcidsDatabase.map((a) => r(`${base}/${a.id}`, base));
+}
+
 export function mergedPageRedirects(): MergedRedirect[] {
-  return [...timerRedirects(), ...alarmRedirects(), ...fxRedirects(), ...uzLicenseRedirects(), ...es419Redirects()];
+  return [...timerRedirects(), ...alarmRedirects(), ...fxRedirects(), ...uzLicenseRedirects(), ...es419Redirects(), ...numberRedirects(), ...aminoAcidRedirects()];
 }

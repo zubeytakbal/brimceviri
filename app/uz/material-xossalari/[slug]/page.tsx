@@ -13,11 +13,21 @@ import {
 import { getAllMaterialComparisons } from "../../../converter/materialComparisons";
 import { type MaterialCategory } from "../../../converter/materialsDatabase";
 import { materialCategoryLabelsUz, materialNamesUz, materialVariabilityNotesUz } from "../../../converter/materialsDatabaseUz";
+import { buoyancy, densityRank, litresPerKg, practicalRows } from "../../../converter/materialPractical";
 import { buildSiteUrl } from "../../../siteConfig";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
 };
+
+const uz = (value: number, digits: number) => value.toLocaleString("uz-UZ", { maximumFractionDigits: digits });
+
+function formatMass(kg: number) {
+  if (kg >= 1000) return `${uz(kg / 1000, 2)} t`;
+  if (kg >= 1) return `${uz(kg, 2)} kg`;
+  if (kg >= 0.001) return `${uz(kg * 1000, 1)} g`;
+  return `${uz(kg * 1e6, 1)} mg`;
+}
 
 function formatDensity(value: number) {
   return value.toLocaleString("uz-UZ", { maximumFractionDigits: 4 });
@@ -99,6 +109,10 @@ export default async function UzbekMaterialPropertyPage({ params }: PageProps) {
   );
   const variabilityNoteUz = materialVariabilityNotesUz[material.id];
   const oneLitreMassKg = material.densityKgM3 / 1000;
+  const practical = practicalRows(material, "uz");
+  const perKg = litresPerKg(material);
+  const float = buoyancy(material);
+  const rank = densityRank(material);
 
   const faqItems: FaqItem[] = [
     {
@@ -200,11 +214,43 @@ export default async function UzbekMaterialPropertyPage({ params }: PageProps) {
         </section>
 
         <section className="category-article-content">
-          <h2>{name} zichlik qiymatidan to'g'ri foydalanish</h2>
-          <p>{getDensityUseNote(material.category)}</p>
+          <h2>{name} qancha og&apos;ir keladi?</h2>
+          <div className="holiday-table-wrap">
+            <table className="holiday-table">
+              <thead>
+                <tr>
+                  <th scope="col">O&apos;lcham</th>
+                  <th scope="col">Taxminiy og&apos;irlik</th>
+                </tr>
+              </thead>
+              <tbody>
+                {practical.map((row) => (
+                  <tr key={row.label}>
+                    <th scope="row">{row.label}</th>
+                    <td>{formatMass(row.massKg)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
           <p>
-            Ushbu ma'lumotnoma qiymati bilan 1 litr {name} taxminan {formatDensity(oneLitreMassKg)} kg,
-            1 m³ esa taxminan {formatDensity(material.densityKgM3)} kg keladi.
+            1 kg {name} taxminan{" "}
+            {perKg >= 1000 ? `${uz(perKg / 1000, 2)} m³` : perKg >= 1 ? `${uz(perKg, 2)} litr` : `${uz(perKg * 1000, 1)} sm³`} joy
+            egallaydi.{" "}
+            {float.kind === "gas"
+              ? float.lighterThanAir
+                ? `Havodan taxminan ${uz(1 / float.ratio, 1)} marta yengil, shuning uchun yuqoriga ko'tariladi.`
+                : `Havodan taxminan ${uz(float.ratio, 1)} marta og'ir, sizib chiqqanda pastda, yerto'la va chuqurlarda to'planadi.`
+              : float.floats
+                ? `Zichligi suvnikining ${uz(float.ratio, 2)} qismiga teng, shuning uchun suvda suzadi.`
+                : float.ratio < 1.01
+                  ? "Zichligi suvnikiga juda yaqin."
+                  : `Suvdan ${uz(float.ratio, 2)} marta zich, shuning uchun suvga cho'kadi.`}
+          </p>
+          <p>
+            Saytdagi {rank.total} material ichida zichlik bo&apos;yicha (eng zichidan boshlab) {rank.overall}-o&apos;rinda,{" "}
+            {materialCategoryLabelsUz[material.category]} guruhida {rank.categoryTotal} tadan {rank.inCategory}-o&apos;rinda.{" "}
+            {getDensityUseNote(material.category)}
           </p>
         </section>
 
@@ -260,46 +306,13 @@ export default async function UzbekMaterialPropertyPage({ params }: PageProps) {
             </p>
           ))}
 
-          <h2>Tegishli vositalar</h2>
           <p>
-            Ushbu materialning zichligidan bo&apos;lak og&apos;irligini
-            hisoblash uchun{" "}
-            <Link href="/uz/material-ogirligi-hisoblash">Material Og&apos;irligi Hisoblash</Link>
-            {" "}sahifasiga,{" "}
-            {material.thermalConductivityWmK !== null && (
-              <>
-                issiqlik o&apos;tkazish hisoblari uchun{" "}
-                <Link href="/uz/issiqlik-otkazuvchanligi-hisoblash">Issiqlik O&apos;tkazuvchanligi Hisoblagichi</Link>
-                {" "}sahifasiga,{" "}
-              </>
-            )}
-            {material.viscosityMPaS !== null && (
-              <>
-                suyuqlik hisoblari uchun{" "}
-                <Link href="/uz/reynolds-soni-hisoblash">Reynolds Soni Hisoblagichi</Link>
-                {" "}sahifasiga,{" "}
-              </>
-            )}
-            barcha materiallar uchun{" "}
-            <Link href="/uz/material-xossalari">Material Xususiyatlari</Link> bosh
-            sahifasiga qarashingiz mumkin.
-          </p>
-
-          <h2>Manbalar</h2>
-          <p>
-            Zichlik ma&apos;lumotlarining boshlang&apos;ich manbasi{" "}
-            <a
-              href="https://densitycalculator.net/density-table"
-              target="_blank"
-              rel="noreferrer"
-            >
-              232 materialdan iborat zichlik jadvalidir
+            Manba:{" "}
+            <a href="https://densitycalculator.net/density-table" target="_blank" rel="noreferrer">
+              zichlik jadvali
             </a>
-            . Qiymatlar dastlabki hisoblar uchun nominal ma&apos;lumotnoma
-            qiymatlaridir. Har bir qiymat bir xil haroratda yoki bir xil
-            material sinfida o&apos;lchanmagan; loyiha, xavfsizlik yoki tijoriy
-            o&apos;lchov uchun tegishli mahsulotning texnik varag&apos;idagi shartli
-            qiymatni tekshiring.
+            ; xona haroratidagi ma&apos;lumotnoma qiymatlari. Bo&apos;lak og&apos;irligi uchun{" "}
+            <Link href="/uz/material-ogirligi-hisoblash">Material Og&apos;irligi Hisoblash</Link>.
           </p>
         </section>
       </div>

@@ -10,6 +10,7 @@ import {
 } from "../../../converter/materialComparisons";
 import { materialComparisonContextDe } from "../../../converter/materialComparisonsDe";
 import { materialCategoryLabelsDe, materialNamesDe } from "../../../converter/materialsDatabaseDe";
+import { sharedShapes } from "../../../converter/materialPractical";
 import { buildSiteUrl } from "../../../siteConfig";
 
 type PageProps = {
@@ -116,12 +117,13 @@ export default async function GermanMaterialComparisonPage({
   const denserNameDe = denserId === first.id ? firstDe : secondDe;
   const lighterNameDe = denserId === first.id ? secondDe : firstDe;
   const pageUrl = buildSiteUrl(comparisonPathDe(slug));
-  const volumes: Array<[string, number]> = [
-    ["1 cm³", 1e-6],
-    ["1 Liter (1 dm³)", 0.001],
-    ["10 Liter", 0.01],
-    ["1 m³", 1],
-  ];
+  const shapes = sharedShapes(first, second, "de");
+  const propertyRows = [
+    { label: "Wärmeleitfähigkeit", unit: "W/(m·K)", first: first.thermalConductivityWmK, second: second.thermalConductivityWmK, higher: "leitet Wärme besser" },
+    { label: "Elastizitätsmodul", unit: "GPa", first: first.elasticModulusGPa, second: second.elasticModulusGPa, higher: "ist steifer (verformt sich unter Last weniger)" },
+    { label: "Wärmeausdehnung", unit: "× 10⁻⁶/K", first: first.thermalExpansionPerMillionK, second: second.thermalExpansionPerMillionK, higher: "dehnt sich beim Erwärmen stärker aus" },
+    { label: "Dynamische Viskosität", unit: "mPa·s", first: first.viscosityMPaS, second: second.viscosityMPaS, higher: "fließt zäher" },
+  ].filter((row): row is { label: string; unit: string; first: number; second: number; higher: string } => row.first !== null && row.second !== null);
   const bothSolid = SOLID_CATEGORIES.has(first.category) && SOLID_CATEGORIES.has(second.category);
   const involved = new Set([first.id, second.id]);
   const all = getAllMaterialComparisons().filter((c) => c.slug !== slug);
@@ -159,10 +161,6 @@ export default async function GermanMaterialComparisonPage({
     {
       question: `Wie viel Volumen nimmt 1 kg ${firstDe} und 1 kg ${secondDe} ein?`,
       answer: `1 kg ${firstDe} nimmt etwa ${formatVolume(1 / first.densityKgM3)} ein, 1 kg ${secondDe} etwa ${formatVolume(1 / second.densityKgM3)}.`,
-    },
-    {
-      question: "Zeigt dieser Vergleich direkt das Gewicht eines Bauteils?",
-      answer: "Nein. Die Tabelle vergleicht Werkstoffe gleicher Größe anhand ihrer Dichte. Das tatsächliche Bauteilgewicht hängt zusätzlich von Volumen, Werkstoffgüte, Temperatur und Feuchte ab.",
     },
   ];
 
@@ -265,33 +263,24 @@ export default async function GermanMaterialComparisonPage({
         </section>
 
         <section className="category-article-content">
-          <h2>So ist dieser Vergleich zu lesen</h2>
-          <p>
-            Die Tabelle vergleicht zwei Werkstoffe bei gleichem Volumen: 1 Liter {firstDe} wiegt etwa {formatDensity(first.densityKgM3 / 1000)} kg,
-            1 Liter {secondDe} etwa {formatDensity(second.densityKgM3 / 1000)} kg.
-          </p>
-          <p>
-            Diese Angaben sind nominale Referenzwerte für eine erste Rechnung. Das tatsächliche Bauteilgewicht ändert sich mit dem Volumen; bei Gasen, Flüssigkeiten, Holz, Lebensmitteln und Baustoffen sind außerdem Temperatur, Druck, Feuchte oder Zusammensetzung relevant.
-          </p>
-        </section>
-
-        <section className="category-article-content">
-          <h2>Gewicht bei gleichem Volumen</h2>
+          <h2>Gewicht bei gleichen Maßen</h2>
           <div className="conversion-table-wrap">
             <table className="conversion-table">
               <thead>
                 <tr>
-                  <th>Volumen</th>
+                  <th>Maß</th>
                   <th>{firstDe}</th>
                   <th>{secondDe}</th>
+                  <th>Differenz</th>
                 </tr>
               </thead>
               <tbody>
-                {volumes.map(([label, m3]) => (
-                  <tr key={label}>
-                    <td>{label}</td>
-                    <td>{formatMass(first.densityKgM3 * m3)}</td>
-                    <td>{formatMass(second.densityKgM3 * m3)}</td>
+                {shapes.map((row) => (
+                  <tr key={row.label}>
+                    <td>{row.label}</td>
+                    <td>{formatMass(row.firstKg)}</td>
+                    <td>{formatMass(row.secondKg)}</td>
+                    <td>{formatMass(Math.abs(row.firstKg - row.secondKg))}</td>
                   </tr>
                 ))}
               </tbody>
@@ -327,6 +316,50 @@ export default async function GermanMaterialComparisonPage({
             </p>
           )}
         </section>
+
+        {propertyRows.length > 0 && (
+          <section className="category-article-content">
+            <h2>Weitere Eigenschaften im Vergleich</h2>
+            <div className="conversion-table-wrap">
+              <table className="conversion-table">
+                <thead>
+                  <tr>
+                    <th>Eigenschaft</th>
+                    <th>{firstDe}</th>
+                    <th>{secondDe}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {propertyRows.map((row) => (
+                    <tr key={row.label}>
+                      <td>
+                        {row.label} ({row.unit})
+                      </td>
+                      <td>{row.first.toLocaleString("de-DE")}</td>
+                      <td>{row.second.toLocaleString("de-DE")}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <ul>
+              {propertyRows
+                .filter((row) => row.first !== row.second)
+                .map((row) => {
+                  const ratio = Math.max(row.first, row.second) / Math.min(row.first, row.second);
+                  return (
+                    <li key={row.label}>
+                      {row.first > row.second ? firstDe : secondDe} {row.higher}
+                      {Number.isFinite(ratio) && ratio >= 1.1
+                        ? ` (etwa ${ratio.toLocaleString("de-DE", { maximumFractionDigits: 2 })}-fach)`
+                        : ""}
+                      .
+                    </li>
+                  );
+                })}
+            </ul>
+          </section>
+        )}
 
         <section className="category-article-content">
           <h2>
@@ -377,21 +410,13 @@ export default async function GermanMaterialComparisonPage({
           ))}
         </section>
 
-        <section className="category-article-content unit-sources">
-          <h2>Quelle und Anwendungshinweis</h2>
+        <section className="category-article-content">
           <p>
-            Die Dichtewerte dieses Vergleichs sind nominale Referenzwerte aus
-            der{" "}
-            <a
-              href="https://densitycalculator.net/density-table"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Dichtetabelle mit 232 Materialien
+            Dichtewerte aus der{" "}
+            <a href="https://densitycalculator.net/density-table" target="_blank" rel="noreferrer">
+              Dichtetabelle
             </a>
-            . Sie eignen sich zum Vergleich gleicher Volumina; für das
-            tatsächliche Bauteilgewicht müssen Werkstoffgüte, Temperatur,
-            Feuchte und Hohlräume berücksichtigt werden.
+            , Referenzwerte bei Raumtemperatur.
           </p>
         </section>
       </div>

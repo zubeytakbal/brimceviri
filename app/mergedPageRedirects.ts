@@ -11,6 +11,7 @@ import { uzLicenseClasses } from "./converter/licenseClassFinderUz";
 import { getAllNumberFactsRange } from "./converter/numberFacts";
 import { aminoAcidsDatabase } from "./converter/aminoAcidsDatabase";
 import { SURELER } from "./converter/sureler";
+import { unitGuideRedirects } from "./converter/unitGlossary";
 
 export type MergedRedirect = { source: string; destination: string; permanent: true };
 
@@ -76,5 +77,5 @@ function sureCuzRedirects(): MergedRedirect[] {
 }
 
 export function mergedPageRedirects(): MergedRedirect[] {
-  return [...timerRedirects(), ...alarmRedirects(), ...fxRedirects(), ...uzLicenseRedirects(), ...es419Redirects(), ...numberRedirects(), ...aminoAcidRedirects(), ...sureCuzRedirects()];
+  return [...timerRedirects(), ...alarmRedirects(), ...fxRedirects(), ...uzLicenseRedirects(), ...es419Redirects(), ...numberRedirects(), ...aminoAcidRedirects(), ...sureCuzRedirects(), ...unitGuideRedirects().map((x) => r(x.source, x.destination))];
 }

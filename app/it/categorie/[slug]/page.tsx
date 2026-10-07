@@ -101,7 +101,6 @@ export default async function ItalianCategoryPage({ params }: PageProps) {
   );
 
   const sources = getUnitSources(categoryPage.category);
-  const featuredUnit = categoryUnits[0];
   const baseName = categoryBaseNames[categoryPage.category] ?? categoryPage.title;
 
   const tableReferenceLabel =
@@ -208,12 +207,14 @@ export default async function ItalianCategoryPage({ params }: PageProps) {
       conversionHeading="Conversioni popolari"
       conversionCountLabel={`${conversionCards.length} coppie`}
       conversionCards={conversionCards}
-      unitGuidesHeading="Guide alle unità"
+      unitGuidesHeading="Glossario delle unità"
       unitGuidesCountLabel={`${categoryUnits.length} unità`}
       unitGuides={categoryUnits.map((unitPage) => ({
-        href: `/it/guide-alle-unita/${unitPage.slug}`,
-        label: `Cos'è ${unitPage.name}?`,
+        id: unitPage.slug,
+        label: unitPage.name,
         symbol: unitPage.symbol,
+        description: unitPage.shortDescription,
+        details: [unitPage.historySummary, `Uso: ${unitPage.commonUses}`],
       }))}
       detailHeading={`Informazioni dettagliate su ${baseName}`}
       detailContent={
@@ -261,16 +262,6 @@ export default async function ItalianCategoryPage({ params }: PageProps) {
                 {section.paragraphs.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
-
-                {index === 1 && featuredUnit && (
-                  <p className="category-inline-link">
-                    Per maggiori informazioni sull'unità {featuredUnit.name}, consulta la{" "}
-                    <a href={`/it/guide-alle-unita/${featuredUnit.slug}`}>
-                      pagina informativa di {featuredUnit.name}
-                    </a>
-                    .
-                  </p>
-                )}
               </section>
             ))}
 

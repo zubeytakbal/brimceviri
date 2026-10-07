@@ -119,7 +119,6 @@ export default async function FrenchCategoryPage({ params }: PageProps) {
   );
 
   const sources = getUnitSources(categoryPage.category);
-  const featuredUnit = categoryUnits[0];
 
   const tableReferenceLabel =
     categoryPage.category === "uzunluk"
@@ -225,12 +224,14 @@ export default async function FrenchCategoryPage({ params }: PageProps) {
       conversionHeading="Conversions populaires"
       conversionCountLabel={`${conversionCards.length} paires`}
       conversionCards={conversionCards}
-      unitGuidesHeading="Guides d’unités"
+      unitGuidesHeading="Glossaire des unités"
       unitGuidesCountLabel={`${categoryUnits.length} unités`}
       unitGuides={categoryUnits.map((unitPage) => ({
-        href: `/fr/guides-des-unites/${unitPage.slug}`,
-        label: `Qu’est-ce que ${unitPage.name} ?`,
+        id: unitPage.slug,
+        label: unitPage.name,
         symbol: unitPage.symbol,
+        description: unitPage.shortDescription,
+        details: [unitPage.historySummary, `Usage: ${unitPage.commonUses}`],
       }))}
       detailHeading={`Informations détaillées sur ${categoryNameWithArticle[categoryPage.category] ?? categoryPage.title}`}
       detailContent={
@@ -278,16 +279,6 @@ export default async function FrenchCategoryPage({ params }: PageProps) {
                 {section.paragraphs.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
-
-                {index === 1 && featuredUnit && (
-                  <p className="category-inline-link">
-                    Pour plus d’informations sur l’unité {featuredUnit.name}, consultez la{" "}
-                    <a href={`/fr/guides-des-unites/${featuredUnit.slug}`}>
-                      page d’information {featuredUnit.name}
-                    </a>
-                    .
-                  </p>
-                )}
               </section>
             ))}
 

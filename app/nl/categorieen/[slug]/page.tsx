@@ -116,16 +116,19 @@ export default async function NederlandsCategoryPage({ params }: PageProps) {
 
         {units.length > 0 && (
           <section className="conversion-section">
-            <h2>Eenhedengidsen</h2>
-            <ul className="related-conversion-list">
+            <h2>Eenhedenlijst</h2>
+            <dl className="category-unit-glossary">
               {units.map((unit) => (
-                <li key={unit.slug}>
-                  <Link href={`/nl/eenheidsgidsen/${unit.slug}`}>
-                    {unit.name} ({unit.symbol})
-                  </Link>
-                </li>
+                <div key={unit.slug} id={unit.slug}>
+                  <dt>
+                    {unit.name} <small>{unit.symbol}</small>
+                  </dt>
+                  <dd>{unit.shortDescription}</dd>
+                  <dd>{unit.historySummary}</dd>
+                  <dd>Gebruik: {unit.commonUses}</dd>
+                </div>
               ))}
-            </ul>
+            </dl>
           </section>
         )}
 

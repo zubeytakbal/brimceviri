@@ -14,6 +14,7 @@ import { findDanishUnitPage } from "../../converter/localizedDanishUnitPages";
 import { getUnitSources } from "../../converter/unitSources";
 import { buildFullLanguageAlternates } from "../../i18n/routing";
 import { buildSiteUrl } from "../../siteConfig";
+import { unitGlossaryHref } from "../../converter/unitGlossary";
 
 type PageProps = {
   params: Promise<{
@@ -248,7 +249,7 @@ export default async function DanishConversionPage({ params }: PageProps) {
 
             <Link
               className="text-link"
-              href={`/da/enhedsguider/${fromUnitInfo.slug}`}
+              href={unitGlossaryHref("da", fromUnitInfo)}
             >
               Se guiden for enheden {fromUnitInfo.name}
             </Link>
@@ -263,7 +264,7 @@ export default async function DanishConversionPage({ params }: PageProps) {
 
             <Link
               className="text-link"
-              href={`/da/enhedsguider/${toUnitInfo.slug}`}
+              href={unitGlossaryHref("da", toUnitInfo)}
             >
               Se guiden for enheden {toUnitInfo.name}
             </Link>

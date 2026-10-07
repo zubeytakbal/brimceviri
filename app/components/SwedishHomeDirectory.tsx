@@ -13,6 +13,7 @@ import NotificationBell from "./NotificationBell";
 import NordicToolsSection from "./NordicToolsSection";
 
 import { useSearchTracking } from "./useSearchTracking";
+import { unitGlossaryHref } from "../converter/unitGlossary";
 function CardIcon({ name }: { name: SiteIconName }) {
   return (
     <span className="home-category-icon-box" aria-hidden="true">
@@ -132,7 +133,7 @@ const popularUnits = preferredUnitSourceSlugs
 
     return {
       id: unitPage.slug,
-      href: `/sv/enhetsguider/${unitPage.slug}`,
+      href: unitGlossaryHref("sv", unitPage),
       label: unitPage.name,
       categoryLabel: unitPage.categoryName,
     };

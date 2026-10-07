@@ -16,12 +16,6 @@ const ORNEK = 24;
  * "/x/*" alt klasörlerin hepsini kapsar.
  */
 export const PENDING = new Set<string>([
-  // Adım 6: birim rehberleri
-  "/es/guias-de-unidades",
-  "/pt/guias-de-unidades",
-  "/fr/guides-des-unites",
-  "/it/guide-alle-unita",
-  "/nl/eenheidsgidsen",
   // Adım 7: ülkeler, mesafe, rakım, dağlar
   "/en/countries",
   "/iller-arasi-mesafe/*",

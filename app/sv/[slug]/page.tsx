@@ -15,6 +15,7 @@ import { findSwedishUnitPage } from "../../converter/localizedSwedishUnitPages";
 import { getUnitSources } from "../../converter/unitSources";
 import { buildFullLanguageAlternates } from "../../i18n/routing";
 import { buildSiteUrl } from "../../siteConfig";
+import { unitGlossaryHref } from "../../converter/unitGlossary";
 
 type PageProps = {
   params: Promise<{
@@ -250,7 +251,7 @@ export default async function SwedishConversionPage({ params }: PageProps) {
 
             <Link
               className="text-link"
-              href={`/sv/enhetsguider/${fromUnitInfo.slug}`}
+              href={unitGlossaryHref("sv", fromUnitInfo)}
             >
               Se guiden för enheten {fromUnitInfo.name}
             </Link>
@@ -265,7 +266,7 @@ export default async function SwedishConversionPage({ params }: PageProps) {
 
             <Link
               className="text-link"
-              href={`/sv/enhetsguider/${toUnitInfo.slug}`}
+              href={unitGlossaryHref("sv", toUnitInfo)}
             >
               Se guiden för enheten {toUnitInfo.name}
             </Link>

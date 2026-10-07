@@ -15,6 +15,7 @@ import { findNorwegianUnitPage } from "../../converter/localizedNorwegianUnitPag
 import { getUnitSources } from "../../converter/unitSources";
 import { buildFullLanguageAlternates } from "../../i18n/routing";
 import { buildSiteUrl } from "../../siteConfig";
+import { unitGlossaryHref } from "../../converter/unitGlossary";
 
 type PageProps = {
   params: Promise<{
@@ -250,7 +251,7 @@ export default async function NorwegianConversionPage({ params }: PageProps) {
 
             <Link
               className="text-link"
-              href={`/no/enhetsguider/${fromUnitInfo.slug}`}
+              href={unitGlossaryHref("no", fromUnitInfo)}
             >
               Se guiden for enheten {fromUnitInfo.name}
             </Link>
@@ -265,7 +266,7 @@ export default async function NorwegianConversionPage({ params }: PageProps) {
 
             <Link
               className="text-link"
-              href={`/no/enhetsguider/${toUnitInfo.slug}`}
+              href={unitGlossaryHref("no", toUnitInfo)}
             >
               Se guiden for enheten {toUnitInfo.name}
             </Link>

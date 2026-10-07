@@ -101,7 +101,6 @@ export default async function SwedishCategoryPage({ params }: PageProps) {
   );
 
   const sources = getUnitSources(categoryPage.category);
-  const featuredUnit = categoryUnits[0];
   const baseName = categoryBaseNames[categoryPage.category] ?? categoryPage.title;
 
   const tableReferenceLabel =
@@ -208,12 +207,14 @@ export default async function SwedishCategoryPage({ params }: PageProps) {
       conversionHeading="Populära omvandlingar"
       conversionCountLabel={`${conversionCards.length} par`}
       conversionCards={conversionCards}
-      unitGuidesHeading="Enhetsguider"
+      unitGuidesHeading="Enhetsordlista"
       unitGuidesCountLabel={`${categoryUnits.length} enheter`}
       unitGuides={categoryUnits.map((unitPage) => ({
-        href: `/sv/enhetsguider/${unitPage.slug}`,
-        label: `Vad är ${unitPage.name}?`,
+        id: unitPage.slug,
+        label: unitPage.name,
         symbol: unitPage.symbol,
+        description: unitPage.shortDescription,
+        details: [unitPage.historySummary, `Användning: ${unitPage.commonUses}`],
       }))}
       detailHeading={`Detaljerad information om ${baseName}`}
       detailContent={
@@ -261,16 +262,6 @@ export default async function SwedishCategoryPage({ params }: PageProps) {
                 {section.paragraphs.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
-
-                {index === 1 && featuredUnit && (
-                  <p className="category-inline-link">
-                    För mer information om enheten {featuredUnit.name}, se{" "}
-                    <a href={`/sv/enhetsguider/${featuredUnit.slug}`}>
-                      informationssidan för {featuredUnit.name}
-                    </a>
-                    .
-                  </p>
-                )}
               </section>
             ))}
 

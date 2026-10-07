@@ -103,7 +103,6 @@ export default async function SpanishCategoryPage({ params }: PageProps) {
   );
 
   const sources = getUnitSources(categoryPage.category);
-  const featuredUnit = categoryUnits[0];
   const baseName =
     categoryBaseNames[categoryPage.category] ??
     spanishCategoryNamesForUnits[categoryPage.category]?.toLowerCase() ??
@@ -213,12 +212,14 @@ export default async function SpanishCategoryPage({ params }: PageProps) {
       conversionHeading="Conversiones populares"
       conversionCountLabel={`${conversionCards.length} pares`}
       conversionCards={conversionCards}
-      unitGuidesHeading="Guías de unidades"
+      unitGuidesHeading="Glosario de unidades"
       unitGuidesCountLabel={`${categoryUnits.length} unidades`}
       unitGuides={categoryUnits.map((unitPage) => ({
-        href: `/es/guias-de-unidades/${unitPage.slug}`,
-        label: `¿Qué es ${unitPage.name}?`,
+        id: unitPage.slug,
+        label: unitPage.name,
         symbol: unitPage.symbol,
+        description: unitPage.shortDescription,
+        details: [unitPage.historySummary, `Uso: ${unitPage.commonUses}`],
       }))}
       detailHeading={`Información detallada sobre ${baseName}`}
       detailContent={
@@ -266,16 +267,6 @@ export default async function SpanishCategoryPage({ params }: PageProps) {
                 {section.paragraphs.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
-
-                {index === 1 && featuredUnit && (
-                  <p className="category-inline-link">
-                    Para más información sobre la unidad {featuredUnit.name}, consulta la{" "}
-                    <a href={`/es/guias-de-unidades/${featuredUnit.slug}`}>
-                      página de información de {featuredUnit.name}
-                    </a>
-                    .
-                  </p>
-                )}
               </section>
             ))}
 

@@ -27,6 +27,8 @@ export type FlagshipPairInsight = {
   mistakes?: string[];
   /** inç–cm: 16:9 ekranların köşegen, genişlik ve yükseklik tablosu. */
   screenTable?: boolean;
+  /** feet–metre: 4'10" ile 6'6" arası boyların cm karşılığı. */
+  heightTable?: boolean;
 };
 
 function pairKey(category: string, symbolA: string, symbolB: string): string {
@@ -36,7 +38,18 @@ function pairKey(category: string, symbolA: string, symbolB: string): string {
 const insights: Record<string, FlagshipPairInsight> = {
   [pairKey("uzunluk", "km", "mi")]: {
     realWorldValues: [
+      { label: "5K koşusu", value: 5, anchorUnit: "km" },
+      { label: "10K koşusu", value: 10, anchorUnit: "km" },
+      { label: "Yarı maraton", value: 21.0975, anchorUnit: "km" },
       { label: "Maraton mesafesi", value: 42.195, anchorUnit: "km" },
+      { label: "İstanbul–Ankara karayolu (yaklaşık)", value: 450, anchorUnit: "km" },
+    ],
+    where:
+      "Mil; ABD ve Birleşik Krallık'ta yol tabelalarında, araç kilometre (mil) sayaçlarında, koşu ve bisiklet uygulamalarında karşına çıkar. Bu ülkelerden ikinci el araç alırken sayaçtaki değer mildir. 1 mil tam olarak 1,609344 km'dir.",
+    mistakes: [
+      "Deniz mili farklı bir birimdir: 1 deniz mili 1,852 km'dir; denizcilikte ve havacılıkta kullanılır. Kara mili (1,609 km) ile karıştırılmamalıdır.",
+      "Kafadan hesap için mili 1,6 ile çarpmak yeterince yakındır (100 mil ≈ 160 km); ters yönde km'yi 0,62 ile çarpın.",
+      "ABD'den getirilen araçta \"miles\" yazan sayaç değeri km değildir: 60.000 mil yaklaşık 96.560 km eder.",
     ],
   },
   [pairKey("uzunluk", "cm", "in")]: {
@@ -60,20 +73,35 @@ const insights: Record<string, FlagshipPairInsight> = {
   },
   [pairKey("uzunluk", "m", "ft")]: {
     realWorldValues: [
-      {
-        label: "Resmi basketbol potası yüksekliği",
-        value: 3.048,
-        anchorUnit: "m",
-      },
+      { label: "Resmi basketbol potası yüksekliği", value: 3.048, anchorUnit: "m" },
+      { label: "Yolcu uçağının seyir irtifası (tipik)", value: 35000, anchorUnit: "ft" },
+      { label: "Everest'in yüksekliği", value: 8849, anchorUnit: "m" },
+      { label: "ABD'de standart tavan yüksekliği", value: 8, anchorUnit: "ft" },
     ],
+    where:
+      "Feet; ABD ve Birleşik Krallık'ta boy ölçüsünde (5'9\" gibi), ev ilanlarındaki oda ve tavan ölçülerinde ve dünyanın her yerinde havacılıkta irtifa birimi olarak kullanılır. Uçuşta pilotun \"35 bin feet\" dediği yükseklik yaklaşık 10.700 metredir. 1 foot tam olarak 0,3048 metredir.",
+    mistakes: [
+      "5'9\" yazımı 5,9 feet demek değildir: 5 feet 9 inç demektir, yani 5,75 feet ≈ 175,3 cm. Boy çevirirken feet ve inç kısmını ayrı hesaplayın.",
+      "Feet'in tekili \"foot\"tur; kısaltması ft ya da tek tırnaktır ('), inç ise çift tırnaktır (\").",
+      "Kafadan hesap için feet'i 0,3 ile çarpmak küçük değerlerde iş görür, ama 35.000 ft'te 168 metre hata yapar; tam katsayı 0,3048'dir.",
+    ],
+    heightTable: true,
   },
   [pairKey("kutle", "kg", "lb")]: {
     realWorldValues: [
-      {
-        label: "Ekonomi sınıfı uçak bagaj limiti (tipik)",
-        value: 23,
-        anchorUnit: "kg",
-      },
+      { label: "Ekonomi sınıfı uçak bagaj limiti (tipik)", value: 23, anchorUnit: "kg" },
+      { label: "Olimpik halter barı (erkek)", value: 20, anchorUnit: "kg" },
+      { label: "Spor salonundaki 45 lb'lik plaka", value: 45, anchorUnit: "lb" },
+      { label: "Yeni doğan bebek (ortalama)", value: 3.4, anchorUnit: "kg" },
+      { label: "Bir kutu un (ABD, 5 lb)", value: 5, anchorUnit: "lb" },
+    ],
+    where:
+      "Pound; ABD ve Birleşik Krallık'ta vücut ağırlığında, spor salonu ekipmanlarında (dambıl, plaka), yurt dışı alışveriş sitelerindeki ürün ağırlıklarında, havayolu bagaj kurallarında ve boks sıklet sınıflarında kullanılır. 1 pound tam olarak 0,45359237 kg'dır.",
+    mistakes: [
+      "Kafadan hesapta pound'u 2'ye bölmek yaklaşık değer verir ama %10'a yakın sapar; doğru kısayol 2,2'ye bölmektir (150 lb ≈ 68 kg).",
+      "Birleşik Krallık'ta vücut ağırlığı çoğu zaman \"stone\" ile söylenir: 1 stone = 14 pound ≈ 6,35 kg. \"11 stone\" yaklaşık 70 kg eder.",
+      "Spor salonunda plaka ve barların hangi birimde olduğuna bakın: 45 lb'lik plaka 20,4 kg'dır, 20 kg'lık plakayla aynı değildir.",
+      "\"lbs\" kısaltması pound'un çoğuludur; birim aynıdır.",
     ],
   },
   [pairKey("kutle", "kg", "g")]: {
@@ -83,11 +111,35 @@ const insights: Record<string, FlagshipPairInsight> = {
   [pairKey("hacim", "gal", "L")]: {
     realWorldValues: [
       { label: "Ortalama otomobil yakıt deposu", value: 50, anchorUnit: "L" },
+      { label: "5 galonluk su damacanası", value: 5, anchorUnit: "gal" },
+      { label: "ABD'de 1 galonluk süt şişesi", value: 1, anchorUnit: "gal" },
+      { label: "ABD'de tipik binek araç deposu", value: 15, anchorUnit: "gal" },
+    ],
+    where:
+      "Galon; ABD'de akaryakıt fiyatlarında (dolar/galon), süt ve içecek ambalajlarında, boya kovalarında ve akvaryum hacimlerinde kullanılır. Türkiye'deki 19 litrelik damacana da aslında 5 ABD galonudur (18,93 L). Bu sayfadaki galon ABD galonudur: 3,785411784 litre.",
+    mistakes: [
+      "ABD galonu ile İngiliz galonu farklıdır: ABD galonu 3,785 L, İngiliz (imperial) galonu 4,546 L'dir. Birleşik Krallık kaynaklı bir değer için İngiliz galonu çeviricisini kullanın.",
+      "ABD'deki yakıt tüketimi \"mpg\" (galon başına mil) olarak verilir ve tersine çalışır: 30 mpg yaklaşık 7,8 L/100 km eder; sayı büyüdükçe tüketim azalır.",
+      "ABD akaryakıt fiyatını litreye çevirirken fiyatı 3,785'e bölün: galonu 3,50 dolar olan benzin litresi yaklaşık 0,92 dolardır.",
     ],
   },
   [pairKey("sicaklik", "F", "C")]: {
     realWorldValues: [
       { label: "Tıbbi ateş eşiği", value: 38, anchorUnit: "C" },
+      { label: "Normal vücut ısısı (klasik değer)", value: 98.6, anchorUnit: "F" },
+      { label: "Amerikan tariflerinde orta fırın", value: 350, anchorUnit: "F" },
+      { label: "Kurabiye ve börek için fırın", value: 375, anchorUnit: "F" },
+      { label: "Kızartma ve közleme için fırın", value: 425, anchorUnit: "F" },
+      { label: "Rahat oda sıcaklığı", value: 70, anchorUnit: "F" },
+      { label: "Suyun donma noktası", value: 32, anchorUnit: "F" },
+    ],
+    where:
+      "Fahrenheit; ABD'de hava durumunda, Amerikan yemek tariflerindeki fırın sıcaklıklarında, ithal termometre ve fırın kadranlarında ve ABD kaynaklı sağlık bilgilerinde (ateş) karşına çıkar. Formül: °C = (°F − 32) × 5 ⁄ 9.",
+    mistakes: [
+      "Fahrenheit oransal değildir: 0 °F, 0 °C değildir (−17,8 °C'dir) ve 100 °F, 50 °F'nin \"iki katı sıcak\" değildir. Önce 32 çıkarılmalıdır.",
+      "\"Fahrenheit'tan 30 çıkar, ikiye böl\" kısayolu oda sıcaklığı civarında iş görür, ama fırın sıcaklığında 15-20 derece sapar: 400 °F gerçekte 204 °C'dir, kısayol 185 °C verir.",
+      "Amerikan tariflerindeki 350 °F genelde 175-180 °C'ye ayarlanır; fanlı (turbo) fırında 10-20 °C düşük ayar yeterlidir.",
+      "−40 derece iki ölçekte de aynıdır: −40 °F = −40 °C.",
     ],
   },
   [pairKey("uzunluk", "m", "cm")]: {
@@ -107,8 +159,19 @@ const insights: Record<string, FlagshipPairInsight> = {
       "Eczacılık ve laboratuvar ölçümlerinde miligram, mutfak tariflerinde gram tercih edilir.",
   },
   [pairKey("kutle", "g", "oz")]: {
-    sectorNote:
-      "Ons, değerli metal (altın, gümüş) ticaretinde uluslararası standart ağırlık birimi olarak kullanılır.",
+    realWorldValues: [
+      { label: "8 oz'luk biftek", value: 8, anchorUnit: "oz" },
+      { label: "16 oz (= 1 pound)", value: 16, anchorUnit: "oz" },
+      { label: "Standart çikolata tableti", value: 100, anchorUnit: "g" },
+      { label: "Bir paket kuru makarna", value: 500, anchorUnit: "g" },
+    ],
+    where:
+      "Ons; ABD ve Birleşik Krallık'ta yemek tariflerinde, et ve paketli gıda etiketlerinde, posta ve kargo ağırlıklarında kullanılır. Bu sayfadaki ons gıda (avoirdupois) onsudur: tam olarak 28,349523125 gram.",
+    mistakes: [
+      "Altın ve gümüş fiyatlarındaki ons \"troy ons\"tur ve 31,1035 gramdır; gıda onsundan (28,35 g) yaklaşık %10 ağırdır. Altının ons fiyatını grama çevirirken 31,1035'e bölün.",
+      "Sıvı ons (fl oz) ağırlık değil hacim birimidir: 1 ABD sıvı onsu 29,57 mL'dir. Tarifte \"8 fl oz süt\" yazıyorsa ölçü kabıyla ölçülür, tartılmaz.",
+      "1 pound 16 onstur; \"1,5 lb\" 24 ons, yani yaklaşık 680 gram eder.",
+    ],
   },
   [pairKey("kutle", "kg", "ton")]: {
     realWorldValues: [
@@ -130,6 +193,17 @@ const insights: Record<string, FlagshipPairInsight> = {
   [pairKey("hiz", "km/h", "mph")]: {
     realWorldValues: [
       { label: "Türkiye otoyol hız sınırı", value: 120, anchorUnit: "km/h" },
+      { label: "Türkiye şehir içi hız sınırı", value: 50, anchorUnit: "km/h" },
+      { label: "Birleşik Krallık otoyol sınırı", value: 70, anchorUnit: "mph" },
+      { label: "ABD'de yaygın otoyol sınırı", value: 65, anchorUnit: "mph" },
+      { label: "ABD'de okul bölgesi sınırı (yaygın)", value: 20, anchorUnit: "mph" },
+    ],
+    where:
+      "Mil/saat (mph); ABD ve Birleşik Krallık'ta hız tabelalarında ve araç göstergelerinde kullanılır. Bu ülkelerde araç kiralayan biri için tabeladaki 70, saatte yaklaşık 113 km demektir. 1 mph tam olarak 1,609344 km/s'dir.",
+    mistakes: [
+      "Knot (deniz mili/saat) farklıdır: 1 knot 1,852 km/s'dir; gemi, uçak ve rüzgâr hızında kullanılır.",
+      "İthal araçların göstergesinde büyük rakamlar mph, küçük iç ölçek km/s olabilir; hangi ölçeğe baktığınızı kontrol edin.",
+      "Kafadan hesap için mph'yi 1,6 ile çarpın (60 mph ≈ 96 km/s); ters yönde km/s'yi 0,62 ile çarpın.",
     ],
   },
   [pairKey("basinc", "bar", "psi")]: {

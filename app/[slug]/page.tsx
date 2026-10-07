@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Fragment } from "react";
 import { plainTitle, seoTitle } from "../seoTitle";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
@@ -577,6 +578,38 @@ export default async function ConversionPage({ params }: PageProps) {
                   Genişlik ve yükseklik yalnızca görüntü alanıdır; çerçeve ve ayak için birkaç santimetre
                   ekleyin. 16:9 ekranda genişlik köşegenin yaklaşık 0,87 katı, yükseklik 0,49 katıdır.
                 </p>
+              </>
+            )}
+
+            {flagshipInsight.heightTable && (
+              <>
+                <h2>Boy tablosu: feet ve inç → santimetre</h2>
+                <div className="conversion-table-wrap">
+                  <table className="conversion-table">
+                    <thead>
+                      <tr>
+                        <th>Boy</th>
+                        <th>Santimetre</th>
+                        <th>Boy</th>
+                        <th>Santimetre</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {Array.from({ length: 10 }, (_, i) => 58 + i).map((inches) => (
+                        <tr key={inches}>
+                          {[inches, inches + 10].map((n) => (
+                            <Fragment key={n}>
+                              <td>
+                                {Math.floor(n / 12)}&apos;{n % 12}&quot;
+                              </td>
+                              <td>{formatNumber(Math.round(n * 2.54 * 10) / 10)} cm</td>
+                            </Fragment>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </>
             )}
 

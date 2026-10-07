@@ -4,7 +4,6 @@ import { entfernungPaare, entfernungStadtPath } from "./converter/geo/germanDist
 import { countriesDe, countryPathDe } from "./converter/geo/worldGeoDe";
 import { BRUECKENTAGE_JAHRE, brueckentagePfad } from "./i18n/germanBrueckentage";
 import { germanMathPages } from "./i18n/germanMathPages";
-import { comparisonPathDe, compoundPathDe, materialPathDe } from "./converter/germanScienceSlugs";
 import type { MetadataRoute } from "next";
 import { calculatorPages } from "./converter/calculatorPages";
 import { sleepGuideAlternates, sleepGuidePaths } from "./i18n/sleepGuidePaths";
@@ -1315,32 +1314,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
       },
     },
-    ...materialsDatabase.map((material) => ({
-      url: `${baseUrl}${materialPathDe(material.id)}`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/malzeme-ozellikleri/${material.id}`,
-          de: `${baseUrl}${materialPathDe(material.id)}`,
-          "x-default": `${baseUrl}/malzeme-ozellikleri/${material.id}`,
-        },
-      },
-    })),
-    ...getAllMaterialComparisons().map((comparison) => ({
-      url: `${baseUrl}${comparisonPathDe(comparison.slug)}`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/malzeme-karsilastirma/${comparison.slug}`,
-          de: `${baseUrl}${comparisonPathDe(comparison.slug)}`,
-          "x-default": `${baseUrl}/malzeme-karsilastirma/${comparison.slug}`,
-        },
-      },
-    })),
     {
       url: `${baseUrl}/de/materialgewicht-berechnen`,
       lastModified: contentLastModified,
@@ -1367,32 +1340,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
       },
     },
-    ...materialsDatabase.map((material) => ({
-      url: `${baseUrl}/uz/material-xossalari/${material.id}`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/malzeme-ozellikleri/${material.id}`,
-          "uz-UZ": `${baseUrl}/uz/material-xossalari/${material.id}`,
-          "x-default": `${baseUrl}/malzeme-ozellikleri/${material.id}`,
-        },
-      },
-    })),
-    ...getAllMaterialComparisons().map((comparison) => ({
-      url: `${baseUrl}/uz/material-solishtirish/${comparison.slug}`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/malzeme-karsilastirma/${comparison.slug}`,
-          "uz-UZ": `${baseUrl}/uz/material-solishtirish/${comparison.slug}`,
-          "x-default": `${baseUrl}/malzeme-karsilastirma/${comparison.slug}`,
-        },
-      },
-    })),
     {
       url: `${baseUrl}/gokcisimleri-ozellikleri`,
       lastModified: contentLastModified,
@@ -1498,21 +1445,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
       },
     },
-    ...compoundsDatabase
-      .filter((compound) => Boolean(findCompoundEditorial(compound.id)))
-      .map((compound) => ({
-      url: `${baseUrl}${compoundPathDe(compound.id)}`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/bilim-hesaplayicilari/kimya/bilesikler/${compound.id}`,
-          de: `${baseUrl}${compoundPathDe(compound.id)}`,
-          "x-default": `${baseUrl}/bilim-hesaplayicilari/kimya/bilesikler/${compound.id}`,
-        },
-      },
-      })),
     {
       url: `${baseUrl}/bilim-hesaplayicilari/biyoloji`,
       lastModified: contentLastModified,

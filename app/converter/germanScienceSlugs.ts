@@ -30,7 +30,8 @@ export function comparisonSlugDe(slug: string) {
 }
 
 export const materialPathDe = (id: string) => `/de/werkstoffeigenschaften/${materialSlugDe(id)}`;
-export const compoundPathDe = (id: string) => `/de/chemische-verbindungen/${compoundSlugDe(id)}`;
+/** Verbindungen stehen auf einer Seite; die Auswahl kommt über ?v=. */
+export const compoundPathDe = (id: string) => `/de/chemische-verbindungen?v=${id}#rechner`;
 export const comparisonPathDe = (slug: string) => `/de/werkstoffvergleich/${comparisonSlugDe(slug)}`;
 
 /** Deutscher URL-Teil → interner Bezeichner. */
@@ -44,14 +45,4 @@ export function compoundIdFromDeSlug(slug: string) {
 
 export function comparisonIdFromDeSlug(slug: string) {
   return getAllMaterialComparisons().find((c) => comparisonSlugDe(c.slug) === slug)?.slug ?? null;
-}
-
-/** Weiterleitungen von den alten (türkischen) Adressen; nur wo sich die Adresse ändert. */
-export function germanScienceRedirects() {
-  const pairs: Array<[string, string]> = [
-    ...getAllMaterialProfiles().map((m): [string, string] => [`/de/werkstoffeigenschaften/${m.id}`, materialPathDe(m.id)]),
-    ...getAllCompoundProfiles().map((c): [string, string] => [`/de/chemische-verbindungen/${c.id}`, compoundPathDe(c.id)]),
-    ...getAllMaterialComparisons().map((c): [string, string] => [`/de/werkstoffvergleich/${c.slug}`, comparisonPathDe(c.slug)]),
-  ];
-  return pairs.filter(([from, to]) => from !== to).map(([source, destination]) => ({ source, destination, permanent: true }));
 }

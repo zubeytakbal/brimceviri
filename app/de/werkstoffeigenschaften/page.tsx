@@ -1,5 +1,7 @@
 import { seoTitle } from "../../seoTitle";
-import { comparisonPathDe, materialPathDe } from "../../converter/germanScienceSlugs";
+import { comparisonSlugDe, materialSlugDe } from "../../converter/germanScienceSlugs";
+import MaterialExplorer from "../../components/MaterialExplorer";
+import { materialComparisonContextDe } from "../../converter/materialComparisonsDe";
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
@@ -39,7 +41,7 @@ function serializeJsonLd(data: object) {
 export const metadata: Metadata = {
   title: seoTitle("Werkstoffeigenschaften: Dichte, Wärmeleitfähigkeit und Umrechner", "Werkstoffeigenschaften: Dichte und Wärmeleitung"),
   description:
-    "Über 100 Metalle, Flüssigkeiten, Kunststoffe, Holzarten und Baumaterialien — Dichte und technische Eigenschaften ansehen, sofort zwischen Einheiten umrechnen.",
+    "Dichtetabelle für über 100 Metalle, Flüssigkeiten, Kunststoffe, Holzarten und Baustoffe: Eigenschaften, Gewicht typischer Bleche und Kanister, Materialvergleich und Masse-Volumen-Rechner.",
   alternates: {
     canonical: "/de/werkstoffeigenschaften",
     languages: {
@@ -61,6 +63,11 @@ export const metadata: Metadata = {
 export default function GermanMaterialsHubPage() {
   const materials = getAllMaterialProfiles();
   const comparisons = getAllMaterialComparisons();
+  // Alte Einzelseiten-Adressen (deutsche Slugs) leiten mit ?m= / ?v= hierher.
+  const aliases = Object.fromEntries([
+    ...materials.map((m) => [materialSlugDe(m.id), m.id]),
+    ...comparisons.map((c) => [comparisonSlugDe(c.slug), c.slug]),
+  ]);
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -83,53 +90,65 @@ export default function GermanMaterialsHubPage() {
         </nav>
 
         <header className="all-conversions-header">
-          <h1>Werkstoffeigenschaften</h1>
+          <h1>Werkstoffeigenschaften: Dichte und Gewicht</h1>
           <p>
-            Sieh dir die Dichte und bekannte technische Eigenschaften
-            (Wärmeleitfähigkeit, Elastizitätsmodul, Wärmeausdehnung,
-            Viskosität) von {materials.length} Metallen, Flüssigkeiten,
-            Kunststoffen, Holzarten, Baumaterialien, Lebensmitteln und
-            Gasen an; jede Materialseite enthält auch einen
-            Live-Einheitenumrechner.
+            Wähle eines von {materials.length} Materialien: Dichte, Wärmeleitfähigkeit, E-Modul,
+            Wärmeausdehnung und Viskosität, dazu das Gewicht typischer Bleche, Stäbe, Kanister und
+            Platten sowie ein Masse-Volumen-Rechner. Mit einem zweiten Material siehst du beide in
+            denselben Maßen nebeneinander.
           </p>
         </header>
 
+        <MaterialExplorer locale="de" aliases={aliases} />
+
         <section className="category-article-content">
+          <h2>Dichtetabelle aller Materialien</h2>
           {categoryOrder.map((category) => {
-            const categoryMaterials = materials
+            const rows = materials
               .filter((material) => material.category === category)
-              .map((material) => ({
-                ...material,
-                nameDe: materialNamesDe[material.id] ?? material.nameTr,
-              }))
-              .sort((a, b) => a.nameDe.localeCompare(b.nameDe, "de"));
-
-            if (categoryMaterials.length === 0) return null;
-
+              .map((material) => ({ ...material, nameDe: materialNamesDe[material.id] ?? material.nameTr }))
+              .sort((a, b) => b.densityKgM3 - a.densityKgM3);
+            if (rows.length === 0) return null;
             return (
               <div key={category}>
-                <h2>{materialCategoryLabelsDe[category]}</h2>
-                <ul className="related-conversion-list">
-                  {categoryMaterials.map((material) => (
-                    <li key={material.id}>
-                      <Link href={materialPathDe(material.id)}>
-                        {material.nameDe}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+                <h3>{materialCategoryLabelsDe[category]}</h3>
+                <div className="holiday-table-wrap">
+                  <table className="holiday-table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Material</th>
+                        <th scope="col">Dichte (kg/m³)</th>
+                        <th scope="col">Wärmeleitfähigkeit (W/(m·K))</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {rows.map((m) => (
+                        <tr key={m.id}>
+                          <th scope="row">
+                            <a href={`?m=${m.id}#rechner`} rel="nofollow">
+                              {m.nameDe}
+                            </a>
+                          </th>
+                          <td>{m.densityKgM3.toLocaleString("de-DE", { maximumFractionDigits: 4 })}</td>
+                          <td>{m.thermalConductivityWmK ?? "–"}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             );
           })}
 
           <h2>Beliebte Dichtevergleiche</h2>
-          <ul className="related-conversion-list">
+          <ul>
             {comparisons.map((comparison) => (
               <li key={comparison.slug}>
-                <Link href={comparisonPathDe(comparison.slug)}>
+                <a href={`?v=${comparison.slug}#rechner`} rel="nofollow">
                   {materialNamesDe[comparison.first.id] ?? comparison.first.nameTr} –{" "}
                   {materialNamesDe[comparison.second.id] ?? comparison.second.nameTr}
-                </Link>
+                </a>
+                : {materialComparisonContextDe[comparison.slug] ?? comparison.context}
               </li>
             ))}
           </ul>

@@ -6,6 +6,8 @@ import { materialCategoryLabelsUz, materialNamesUz } from "../../converter/mater
 import { getAllMaterialProfiles } from "../../converter/materialsHub";
 import { getAllMaterialComparisons } from "../../converter/materialComparisons";
 import { buildSiteUrl } from "../../siteConfig";
+import MaterialExplorer from "../../components/MaterialExplorer";
+import { materialComparisonContextUz } from "../../converter/materialComparisonsUz";
 
 const pagePath = "/uz/material-xossalari";
 
@@ -39,7 +41,7 @@ function serializeJsonLd(data: object) {
 export const metadata: Metadata = {
   title: "Material Xususiyatlari: Zichlik, Issiqlik O'tkazuvchanligi va Birlik Aylantirgich",
   description:
-    "100 dan ortiq metall, suyuqlik, plastmassa, yog'och va qurilish materialining zichligini va muhandislik xususiyatlarini ko'ring, birliklar orasida darhol aylantiring.",
+    "100 dan ortiq metall, suyuqlik, plastmassa, yog'och va qurilish materialining zichlik jadvali: xususiyatlar, odatiy o'lchamlardagi og'irlik, materiallarni solishtirish va massa-hajm hisoblagichi.",
   alternates: {
     canonical: pagePath,
     languages: {
@@ -83,55 +85,64 @@ export default function UzbekMaterialsHubPage() {
         </nav>
 
         <header className="all-conversions-header">
-          <h1>Material Xususiyatlari</h1>
+          <h1>Material Xususiyatlari: Zichlik va Og&apos;irlik</h1>
           <p>
-            {materials.length} ta metall, suyuqlik, plastmassa,
-            yog&apos;och, qurilish materiali, oziq-ovqat va gazning
-            zichligini va ma&apos;lum muhandislik xususiyatlarini
-            (issiqlik o&apos;tkazuvchanligi, elastisiya moduli,
-            issiqlik kengayishi, qovushqoqlik) ko&apos;ring; har bir
-            materialning o&apos;z sahifasida jonli birlik
-            aylantirgich ham mavjud.
+            {materials.length} ta materialdan birini tanlang: zichlik, issiqlik o&apos;tkazuvchanligi,
+            elastiklik moduli, issiqlik kengayishi va qovushqoqlik, shuningdek odatiy list, sterjen,
+            idish va plitalarning og&apos;irligi hamda massa-hajm hisoblagichi. Ikkinchi materialni
+            tanlasangiz, ikkalasi bir xil o&apos;lchamda yonma-yon ko&apos;rsatiladi.
           </p>
         </header>
 
+        <MaterialExplorer locale="uz" />
+
         <section className="category-article-content">
+          <h2>Barcha materiallar zichlik jadvali</h2>
           {categoryOrder.map((category) => {
-            const categoryMaterials = materials
+            const rows = materials
               .filter((material) => material.category === category)
-              .sort((a, b) =>
-                (materialNamesUz[a.id] ?? a.nameTr).localeCompare(
-                  materialNamesUz[b.id] ?? b.nameTr,
-                  "tr"
-                )
-              );
-
-            if (categoryMaterials.length === 0) return null;
-
+              .sort((a, b) => b.densityKgM3 - a.densityKgM3);
+            if (rows.length === 0) return null;
             return (
               <div key={category}>
-                <h2>{materialCategoryLabelsUz[category]}</h2>
-                <ul className="related-conversion-list">
-                  {categoryMaterials.map((material) => (
-                    <li key={material.id}>
-                      <Link href={`/uz/material-xossalari/${material.id}`}>
-                        {materialNamesUz[material.id] ?? material.nameTr}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+                <h3>{materialCategoryLabelsUz[category]}</h3>
+                <div className="holiday-table-wrap">
+                  <table className="holiday-table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Material</th>
+                        <th scope="col">Zichlik (kg/m³)</th>
+                        <th scope="col">Issiqlik o&apos;tkazuvchanligi (W/(m·K))</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {rows.map((m) => (
+                        <tr key={m.id}>
+                          <th scope="row">
+                            <a href={`?m=${m.id}#hisoblash`} rel="nofollow">
+                              {materialNamesUz[m.id] ?? m.nameTr}
+                            </a>
+                          </th>
+                          <td>{m.densityKgM3.toLocaleString("uz-UZ", { maximumFractionDigits: 4 })}</td>
+                          <td>{m.thermalConductivityWmK ?? "–"}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             );
           })}
 
-          <h2>Mashhur Zichlik Solishtirishlari</h2>
-          <ul className="related-conversion-list">
+          <h2>Mashhur zichlik solishtirishlari</h2>
+          <ul>
             {comparisons.map((comparison) => (
               <li key={comparison.slug}>
-                <Link href={`/uz/material-solishtirish/${comparison.slug}`}>
+                <a href={`?v=${comparison.slug}#hisoblash`} rel="nofollow">
                   {materialNamesUz[comparison.first.id] ?? comparison.first.nameTr} –{" "}
                   {materialNamesUz[comparison.second.id] ?? comparison.second.nameTr}
-                </Link>
+                </a>
+                : {materialComparisonContextUz[comparison.slug] ?? comparison.context}
               </li>
             ))}
           </ul>

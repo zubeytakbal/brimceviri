@@ -1,4 +1,3 @@
-import { materialPathDe } from "../../converter/germanScienceSlugs";
 import type { Metadata } from "next";
 import { seoTitle } from "../../seoTitle";
 import Link from "@/app/components/SiteLink";
@@ -80,10 +79,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description,
     alternates: {
       canonical: `/malzeme-ozellikleri/${slug}`,
-      languages: {
-        "uz-UZ": `/uz/material-xossalari/${slug}`,
-        de: materialPathDe(slug),
-      },
     },
     openGraph: {
       title,

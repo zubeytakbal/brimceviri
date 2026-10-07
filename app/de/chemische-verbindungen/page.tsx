@@ -1,10 +1,13 @@
 import { seoTitle } from "../../seoTitle";
-import { compoundPathDe } from "../../converter/germanScienceSlugs";
+import { compoundSlugDe } from "../../converter/germanScienceSlugs";
+import VerbindungsRechner, { type VerbindungDaten } from "../../components/de/VerbindungsRechner";
+import { findCompoundEditorial } from "../../converter/compoundEditorial";
+import { periodicTable } from "../../converter/periodicTableData";
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
 import { type CompoundCategory } from "../../converter/compoundsDatabase";
-import { compoundCategoryLabelsDe, compoundNamesDe } from "../../converter/compoundsDatabaseDe";
+import { compoundCategoryLabelsDe, compoundNamesDe, elementNamesDe } from "../../converter/compoundsDatabaseDe";
 import { getAllCompoundProfiles } from "../../converter/compoundsHub";
 import { buildSiteUrl } from "../../siteConfig";
 
@@ -58,6 +61,30 @@ export const metadata: Metadata = {
 
 export default function GermanCompoundsHubPage() {
   const compounds = getAllCompoundProfiles();
+  const atomicMass = (symbol: string) => periodicTable.find((e) => e.symbol === symbol)?.atomicMass ?? 0;
+  const daten: VerbindungDaten[] = compounds
+    .map((c) => {
+      const editorial = findCompoundEditorial(c.id);
+      return {
+        id: c.id,
+        name: compoundNamesDe[c.id] ?? c.nameTr,
+        formula: c.formula,
+        molarMass: c.molarMass,
+        category: c.category,
+        composition: c.composition.map((item) => ({
+          symbol: item.symbol,
+          name: elementNamesDe[item.symbol] ?? item.symbol,
+          count: item.count,
+          contribution: atomicMass(item.symbol) * item.count,
+        })),
+        context: editorial?.contextDe,
+        uses: editorial?.usesDe,
+        safety: editorial?.safetyDe,
+      };
+    })
+    .sort((a, b) => a.name.localeCompare(b.name, "de"));
+  // Alte Einzelseiten (deutsche Slugs) leiten mit ?v= hierher.
+  const aliases = Object.fromEntries(compounds.map((c) => [compoundSlugDe(c.id), c.id]));
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -80,39 +107,52 @@ export default function GermanCompoundsHubPage() {
         </nav>
 
         <header className="all-conversions-header">
-          <h1>Chemische Verbindungen</h1>
+          <h1>Chemische Verbindungen: Molare Masse</h1>
           <p>
-            Sieh dir die molare Masse und atomare Zusammensetzung von{" "}
-            {compounds.length} gängigen chemischen Verbindungen an; jede
-            Verbindungsseite enthält auch einen eigenen
-            Stoffmengenrechner.
+            Wähle eine von {compounds.length} Verbindungen: molare Masse, atomare Zusammensetzung,
+            typische Verwendung und ein Stoffmengenrechner für Masse, Mol und Teilchenzahl.
           </p>
         </header>
 
+        <VerbindungsRechner
+          compounds={daten}
+          groups={categoryOrder.map((category) => ({ category, label: compoundCategoryLabelsDe[category] }))}
+          aliases={aliases}
+        />
+
         <section className="category-article-content">
           {categoryOrder.map((category) => {
-            const categoryCompounds = compounds
-              .filter((compound) => compound.category === category)
-              .map((compound) => ({
-                ...compound,
-                nameDe: compoundNamesDe[compound.id] ?? compound.nameTr,
-              }))
-              .sort((a, b) => a.nameDe.localeCompare(b.nameDe, "de"));
-
-            if (categoryCompounds.length === 0) return null;
-
+            const rows = daten.filter((c) => c.category === category);
+            if (rows.length === 0) return null;
             return (
               <div key={category}>
                 <h2>{compoundCategoryLabelsDe[category]}</h2>
-                <ul className="related-conversion-list">
-                  {categoryCompounds.map((compound) => (
-                    <li key={compound.id}>
-                      <Link href={compoundPathDe(compound.id)}>
-                        {compound.nameDe} ({compound.formula})
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+                <div className="holiday-table-wrap">
+                  <table className="holiday-table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Verbindung</th>
+                        <th scope="col">Formel</th>
+                        <th scope="col">g/mol</th>
+                        <th scope="col">Typische Verwendung</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {rows.map((c) => (
+                        <tr key={c.id}>
+                          <th scope="row">
+                            <a href={`?v=${c.id}#rechner`} rel="nofollow">
+                              {c.name}
+                            </a>
+                          </th>
+                          <td>{c.formula}</td>
+                          <td>{c.molarMass.toLocaleString("de-DE", { maximumFractionDigits: 3 })}</td>
+                          <td>{c.uses?.join(", ") ?? "–"}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             );
           })}

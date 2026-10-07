@@ -235,6 +235,13 @@ export default async function CompoundPage({ params }: PageProps) {
             <Link href="/bilim-hesaplayicilari/kimya/periyodik-tablo">Periyodik Tablo</Link>
             {" "}sayfasına bakabilirsin.
           </p>
+          {compound.category === "gaz" && compound.id !== "hidrojen-gazi" && (
+            <p>
+              Gazların öz kütlesi molar kütleyle orantılıdır: {compound.nameTr} ({formatMolarMass(compound.molarMass)} g/mol), en hafif gaz{" "}
+              <Link href="/bilim-hesaplayicilari/kimya/bilesikler/hidrojen-gazi">hidrojen gazından</Link> yaklaşık{" "}
+              {(compound.molarMass / 2.016).toLocaleString("tr-TR", { maximumFractionDigits: 1 })} kat ağırdır.
+            </p>
+          )}
 
           <h2>Kaynaklar</h2>
           <p>

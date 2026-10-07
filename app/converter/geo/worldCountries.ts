@@ -4079,7 +4079,7 @@ export const worldCountries: WorldCountry[] = [
   {
     iso2: "ST",
     iso3: "STP",
-    id: "s-o-tome-ve-principe",
+    id: "sao-tome-ve-principe",
     nameTr: "São Tomé ve Príncipe",
     nameEn: "São Tomé and Príncipe",
     capital: "São Tomé",

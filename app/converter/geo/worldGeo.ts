@@ -57,6 +57,16 @@ export function neighborsOf(country: WorldCountry) {
   return country.borders.map((b) => countryByIso3(b)).filter((c): c is WorldCountry => Boolean(c));
 }
 
+/** Kara komsusu olmayanlar dahil, baskentleri en yakin ulkeler (komsular haric). */
+export function nearestCountries(country: WorldCountry, count = 5) {
+  const skip = new Set([country.iso3, ...country.borders]);
+  return worldCountries
+    .filter((c) => !skip.has(c.iso3))
+    .map((c) => ({ country: c, km: airKm({ lat: country.capLat, lon: country.capLon }, { lat: c.capLat, lon: c.capLon }) }))
+    .sort((x, y) => x.km - y.km)
+    .slice(0, count);
+}
+
 export function areaRank(country: WorldCountry) {
   const sorted = [...worldCountries].sort((a, b) => b.area - a.area);
   return sorted.findIndex((c) => c.iso3 === country.iso3) + 1;

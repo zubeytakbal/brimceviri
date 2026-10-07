@@ -10,6 +10,7 @@ import {
   getProvinceRankContext,
 } from "../../converter/provinceElevationHub";
 import { bolgeSirasi, ilceler, ilceOzeti, mutfakNotu, yakinIllerRakim } from "../../converter/geo/ilceRakimHub";
+import { popularProvinceComparisons } from "../../converter/popularProvinceComparisons";
 import { buildSiteUrl } from "../../siteConfig";
 import { trAblative, trGenitive, trLocative } from "../../converter/turkishSuffix";
 
@@ -67,6 +68,7 @@ export default async function ProvinceElevationDetailPage({ params }: PageProps)
   if (!province) {
     notFound();
   }
+  const comparisons = popularProvinceComparisons.filter((x) => x.provinceIdA === province.id || x.provinceIdB === province.id);
 
   const pageUrl = buildSiteUrl(`/il-rakimlari/${slug}`);
   const altitudeEffect = calculateAltitudeEffect(province.elevationM);
@@ -344,6 +346,20 @@ export default async function ProvinceElevationDetailPage({ params }: PageProps)
             <Link href={`/iller-arasi-mesafe/${province.id}`}>{trAblative(province.nameTr)} illere mesafe</Link>, tüm illeri haritada görmek için{" "}
             <Link href="/turkiye-il-haritasi">Türkiye il haritası</Link> sayfasını kullanabilirsin.
           </p>
+          {comparisons.length > 0 && (
+            <p>
+              Hazır karşılaştırmalar:{" "}
+              {comparisons.map((x, i) => (
+                <span key={x.slug}>
+                  {i > 0 ? ", " : ""}
+                  <Link href={`/il-rakimi-karsilastirma/${x.slug}`}>
+                    {findProvinceById(x.provinceIdA)?.nameTr} – {findProvinceById(x.provinceIdB)?.nameTr} rakım farkı
+                  </Link>
+                </span>
+              ))}
+              .
+            </p>
+          )}
 
           <h2>Kaynaklar</h2>
           <p>

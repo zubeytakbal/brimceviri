@@ -204,7 +204,8 @@ export default function EbobEkokHesaplamaPage() {
 
           <h2>İlgili araçlar</h2>
           <p>
-            Kesir sadeleştirme/işlemleri için{" "}
+            1–100 arası asal sayılar için{" "}
+            <Link href="/bilim-hesaplayicilari/matematik/sayilar">Sayılar</Link>{" "}sayfasına, kesir sadeleştirme/işlemleri için{" "}
             <Link href="/bilim-hesaplayicilari/matematik/kesir-hesaplama">Kesir Hesaplama</Link>,{" "}
             bir sayının bölen sayısı için{" "}
             <Link href="/bilim-hesaplayicilari/matematik/bolen-sayisi-hesaplama">Bölen Sayısı Hesaplama</Link>,{" "}

@@ -199,7 +199,8 @@ export default function KarekokHesaplamaPage() {
 
           <h2>İlgili araçlar</h2>
           <p>
-            Küpkök hesaplama için{" "}
+            Tam kare sayıların listesi için{" "}
+            <Link href="/bilim-hesaplayicilari/matematik/sayilar">Sayılar</Link>{" "}sayfasına, küpkök hesaplama için{" "}
             <Link href="/bilim-hesaplayicilari/matematik/kupkok-hesaplama">Küpkök Hesaplama</Link>,{" "}
             üslü sayı hesaplama için{" "}
             <Link href="/bilim-hesaplayicilari/matematik/uslu-sayilar-hesaplama">Üslü Sayılar Hesaplama</Link>,{" "}

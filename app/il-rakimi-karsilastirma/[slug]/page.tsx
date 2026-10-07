@@ -258,11 +258,19 @@ export default async function ProvinceComparisonDetailPage({ params }: PageProps
 
           <h2>İlgili araçlar</h2>
           <p>
-            Diğer il karşılaştırmaları için{" "}
-            <Link href="/il-rakimi-karsilastirma">İl Rakımı Karşılaştırma</Link>
-            {" "}sayfasına, tek tek il rakımları için{" "}
-            <Link href="/il-rakimlari">İllerin Rakımı</Link>
-            {" "}sayfasına bakabilirsin.
+            İki ilin ayrıntılı rakım sayfaları:{" "}
+            <Link href={`/il-rakimlari/${result.provinceA.id}`}>{result.provinceA.nameTr} rakımı</Link>,{" "}
+            <Link href={`/il-rakimlari/${result.provinceB.id}`}>{result.provinceB.nameTr} rakımı</Link>. Diğer karşılaştırmalar:{" "}
+            {popularProvinceComparisons
+              .filter((x) => x.slug !== comparison.slug)
+              .map((x, i) => (
+                <span key={x.slug}>
+                  {i > 0 ? ", " : ""}
+                  <Link href={`/il-rakimi-karsilastirma/${x.slug}`}>{findProvince(x.provinceIdA)?.name} – {findProvince(x.provinceIdB)?.name}</Link>
+                </span>
+              ))}
+            . Kendi seçtiğin iki il için{" "}
+            <Link href="/il-rakimi-karsilastirma">İl Rakımı Karşılaştırma</Link> aracını kullanabilirsin.
           </p>
         </section>
       </div>

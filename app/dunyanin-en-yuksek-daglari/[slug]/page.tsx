@@ -244,6 +244,12 @@ export default async function MountainDetailPage({ params }: PageProps) {
           <p>
             <small>
               Tüm zirveler: <Link href="/dunyanin-en-yuksek-daglari">Dünyanın En Yüksek Dağları</Link>
+              {mountain.id !== "everest" && (
+                <>
+                  {" "}· en yüksek zirve <Link href="/dunyanin-en-yuksek-daglari/everest">Everest</Link> bundan{" "}
+                  {(findMountainById("everest")!.elevationM - mountain.elevationM).toLocaleString("tr-TR")} m daha yüksek
+                </>
+              )}
               {nearestProvince && (
                 <>
                   {" "}· rakımca en yakın il: <Link href={`/il-rakimlari/${nearestProvince.id}`}>{nearestProvince.nameTr}</Link> (

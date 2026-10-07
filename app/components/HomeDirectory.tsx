@@ -68,6 +68,15 @@ import { GERMAN_TOOL_HUB_PATH, germanToolGroups } from "../i18n/germanToolDirect
 import { diniAraclar } from "../i18n/diniAraclar";
 
 import { useSearchTracking } from "./useSearchTracking";
+
+const worldCultureToolsTr: Array<{ href: string; title: string; description: string; icon: SiteIconName }> = [
+  { href: "/ulkeler", title: "Ülkeler ve Başkentleri", description: "196 ülkenin başkenti, saat farkı, para birimi ve komşuları.", icon: "greatCircleCalculator" },
+  { href: "/dunya-haritasi", title: "Dünya Haritası", description: "Kıtalara göre renkli, tıklanabilir dünya haritası.", icon: "greatCircleCalculator" },
+  { href: "/dunyanin-en-yuksek-daglari", title: "Dünyanın En Yüksek Dağları", description: "Zirvelerin rakımı, ilk tırmanışı ve oradaki hava basıncı.", icon: "mountainsHubCalculator" },
+  { href: "/sure-bulucu", title: "Sure Bulucu", description: "Surenin cüzü, sayfası, ayet sayısı ve ezber planı.", icon: "unitGuide" },
+  { href: "/cuzler", title: "Cüzler ve Hatim Dağıtma", description: "30 cüzün sure aralıkları ve kişilere hatim paylaştırma.", icon: "unitGuide" },
+  { href: "/birim-cevirme-felaketleri", title: "Birim Çevirme Felaketleri", description: "Mars uydusundan Gimli uçağına yanlış birimle yaşanan olaylar.", icon: "unitDisaster" },
+];
 type Locale = "tr" | "en" | "uz" | "de";
 
 const englishDecisionSavingsHomeTools = getEnglishToolsByDomain("decision-savings");
@@ -2649,6 +2658,33 @@ export default function HomeDirectory({
                   <span className="directory-more-label">{locale === "en" ? "All Geography Calculators" : "Tüm Coğrafya Hesaplamaları"}</span>
                 </div>
               </article>
+            </div>
+          </section>
+        )}
+
+        {locale === "tr" && (
+          <section className="directory-section" id="dunya-ve-kultur">
+            <header className="directory-section-header">
+              <div>
+                <h2>Dünya ve kültür</h2>
+                <p>Ülke bilgileri, zirveler, Kur&apos;an araçları ve yanlış birimin yol açtığı gerçek olaylar.</p>
+              </div>
+            </header>
+            <div className="directory-tool-grid">
+              {worldCultureToolsTr.map((tool) => (
+                <article className="directory-home-card directory-tool-card" key={tool.href}>
+                  <Link className="directory-card-stretch" href={tool.href} aria-label={tool.title} />
+                  <div className="directory-card-body directory-card-body-icon">
+                    <span className="home-category-icon-box" aria-hidden="true">
+                      <DecorativeIcon name={tool.icon} size={42} className="home-category-icon-svg" />
+                    </span>
+                    <div>
+                      <h3 className="home-category-title">{tool.title}</h3>
+                      <p>{tool.description}</p>
+                    </div>
+                  </div>
+                </article>
+              ))}
             </div>
           </section>
         )}

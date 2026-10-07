@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "@/app/components/SiteLink";
 import {
   BIBLE_BOOKS,
   EASTER_MAX_YEAR,
@@ -17,7 +16,6 @@ import {
   westernLent,
 } from "../../converter/christian/christianCalc";
 import { diffDays, parseYmd } from "../../converter/time/dateMath";
-import { BIBLE_BOOKS_PATH } from "../../i18n/englishChristianTools";
 
 const fmt = (n: number) => n.toLocaleString("en-US");
 
@@ -240,9 +238,23 @@ function addDay(date: { year: number; month: number; day: number }, days: number
 
 const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
 
+/** All books on one page: ?book= opens a book's chapter-by-chapter verse counts. */
 export function BibleBookFinder() {
   const [q, setQ] = useState("");
   const [testament, setTestament] = useState<"all" | "Old" | "New">("all");
+  const [slug, setSlug] = useState("genesis");
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      const book = new URLSearchParams(window.location.search).get("book");
+      if (book && BIBLE_BOOKS.some((b) => b.slug === book)) setSlug(book);
+    });
+    return () => cancelAnimationFrame(frame);
+  }, []);
+  const book = BIBLE_BOOKS.find((b) => b.slug === slug)!;
+  // "Psalm 23", not "Psalms 23".
+  const ref = (n: number) => `${book.slug === "psalms" ? "Psalm" : book.name} ${n}`;
+  const longest = Math.max(...book.versesPerChapter);
+  const shortest = Math.min(...book.versesPerChapter);
   const query = norm(q);
   const rows = BIBLE_BOOKS.filter(
     (b) => (testament === "all" || b.testament === testament) && (!query || norm(`${b.name} ${b.section}`).includes(query)),
@@ -266,6 +278,35 @@ export function BibleBookFinder() {
           </label>
         </div>
       </div>
+      <section className="category-article-content" id="book">
+        <h2>
+          {book.name}: {book.chapters} {book.chapters === 1 ? "chapter" : "chapters"}, {fmt(book.verses)} verses
+        </h2>
+        <p>
+          Book {book.order} of 66 ({book.section}, {book.testament} Testament). About {formatMinutes(book.readingMinutes)} to read
+          {book.chapters > 1
+            ? `; ${ref(book.versesPerChapter.indexOf(longest) + 1)} is the longest chapter (${longest} verses) and ${ref(book.versesPerChapter.indexOf(shortest) + 1)} the shortest (${shortest}).`
+            : "."}
+        </p>
+        <div className="holiday-table-wrap">
+          <table className="holiday-table">
+            <thead>
+              <tr>
+                <th scope="col">Chapter</th>
+                <th scope="col">Verses</th>
+              </tr>
+            </thead>
+            <tbody>
+              {book.versesPerChapter.map((v, i) => (
+                <tr key={i}>
+                  <td>{ref(i + 1)}</td>
+                  <td>{v}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
       <div className="holiday-table-wrap">
         <table className="holiday-table">
           <thead>
@@ -282,7 +323,17 @@ export function BibleBookFinder() {
               <tr key={b.slug}>
                 <td>{b.order}</td>
                 <td>
-                  <Link href={`${BIBLE_BOOKS_PATH}/${b.slug}`}>{b.name}</Link>
+                  <a
+                    href={`?book=${b.slug}#book`}
+                    rel="nofollow"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      setSlug(b.slug);
+                      document.getElementById("book")?.scrollIntoView({ behavior: "smooth" });
+                    }}
+                  >
+                    {b.name}
+                  </a>
                   <br />
                   <small>{b.section}</small>
                 </td>

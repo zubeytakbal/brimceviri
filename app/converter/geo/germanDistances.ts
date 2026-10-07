@@ -49,35 +49,10 @@ export function naechsteStadt(p: { lat: number; lon: number }) {
 
 /* ---------------- Seiten ---------------- */
 
-/** Ausgangsstädte mit eigenen Seiten zu allen anderen Großstädten (meistgesuchte Startpunkte). */
+/** Meistgesuchte Startpunkte, auf der Übersichtsseite hervorgehoben. */
 export const ENTFERNUNG_HUBS = ["berlin", "hamburg", "muenchen", "koeln", "frankfurt-am-main"] as const;
-
-export type CityPair = { from: GermanCity; to: GermanCity };
-
-let pairCache: CityPair[] | null = null;
-
-/** Paarseiten nur zwischen den zehn größten Städten (45 Strecken); alle anderen Strecken zeigt der Rechner und die Stadttabelle. */
-export const ENTFERNUNG_PAAR_STAEDTE = 10;
-
-export function entfernungPaare(): CityPair[] {
-  if (pairCache) return pairCache;
-  const top = germanCities.slice(0, ENTFERNUNG_PAAR_STAEDTE);
-  const out: CityPair[] = [];
-  top.forEach((from, i) => {
-    for (const to of top.slice(i + 1)) out.push({ from, to });
-  });
-  pairCache = out;
-  return out;
-}
 
 export const entfernungStadtPath = (c: GermanCity) => `/de/entfernung/${c.id}`;
 
-/** Pfad der Paarseite (in beliebiger Richtung), falls vorhanden. */
-export function entfernungPaarPath(a: GermanCity, b: GermanCity) {
-  const hit = entfernungPaare().find((p) => (p.from.id === a.id && p.to.id === b.id) || (p.from.id === b.id && p.to.id === a.id));
-  return hit ? `/de/entfernung/${hit.from.id}/${hit.to.id}` : null;
-}
-
-export function findEntfernungPaar(fromId: string, toId: string) {
-  return entfernungPaare().find((p) => p.from.id === fromId && p.to.id === toId) ?? null;
-}
+/** Einzelne Strecken stehen im Rechner der Stadtseite: /de/entfernung/koeln?nach=essen. */
+export const entfernungStreckePath = (a: GermanCity, b: GermanCity) => `/de/entfernung/${a.id}?nach=${b.id}#rechner`;

@@ -1,28 +1,12 @@
-import { DE_TAGE, deBesondererTagPfad } from "../../converter/calendar/deKalender";
-import Link from "@/app/components/SiteLink";
-import {
-  countdownEvents,
-  countdownPath,
-  daysUntil,
-  hasStarted,
-  upcomingOccurrences,
-  type CountdownEvent,
-} from "../../converter/time/countdownEvents";
+import { countdownEvents, upcomingOccurrences } from "../../converter/time/countdownEvents";
 import type { FaqItem } from "../../converter/faqSchema";
 import TimeToolPage from "../time/TimeToolPage";
-import CountdownDisplay from "./CountdownDisplay";
-import { countdownCopy, customCountdownCopy } from "./countdownCopy";
+import { customCountdownCopy } from "./countdownCopy";
 import CustomCountdown from "./CustomCountdown";
 import { eventSummary, formatEventDate } from "./CountdownEventPage";
+import EventCountdownPicker from "./EventCountdownPicker";
 
-// Deutsche Countdown-Seiten: Übersicht und einzelne Anlässe (Weihnachten, Ostern, Oktoberfest …).
-
-function weeksAndDaysDe(days: number) {
-  const weeks = Math.floor(days / 7);
-  const rest = days % 7;
-  const d = (n: number) => `${n} ${n === 1 ? "Tag" : "Tage"}`;
-  return weeks ? `${weeks} ${weeks === 1 ? "Woche" : "Wochen"}${rest ? ` und ${d(rest)}` : ""}` : d(rest);
-}
+// Deutsche Countdown-Übersicht: alle Anlässe (Weihnachten, Ostern, Oktoberfest …) auf einer Seite.
 
 const germanEvents = () => countdownEvents.filter((e) => e.lang === "de");
 
@@ -47,6 +31,13 @@ const baseLinks = [
 export function GermanCountdownHub() {
   const now = new Date();
   const events = upcomingGerman(now);
+  // Alte Einzelseiten leiten mit ?anlass= hierher.
+  const pickerEvents = events.map(({ event }) => ({
+    slug: event.slug,
+    name: event.name,
+    zone: event.zone,
+    targets: upcomingOccurrences(event, now, 6).map(({ year, month, day }) => ({ year, month, day })),
+  }));
   const faqItems: FaqItem[] = [
     {
       question: "Bis zu welcher Uhrzeit zählen die Countdowns?",
@@ -85,6 +76,7 @@ export function GermanCountdownHub() {
         faqTitle="Häufige Fragen"
         faqItems={faqItems}
       >
+        <EventCountdownPicker events={pickerEvents} lang="de" param="anlass" />
         <h2 id="anlaesse">Die nächsten Anlässe</h2>
         <div className="conversion-table-wrap">
           <table className="conversion-table">
@@ -99,9 +91,7 @@ export function GermanCountdownHub() {
               {events.map(({ event, next, days, started }) => (
                 <tr key={event.id}>
                   <td>
-                    <Link href={countdownPath(event)} prefetch={false}>
-                      {event.name}
-                    </Link>
+                    <a href={`#${event.slug}`}>{event.name}</a>
                   </td>
                   <td>{formatEventDate(next!, "de")}</td>
                   <td>
@@ -112,137 +102,28 @@ export function GermanCountdownHub() {
             </tbody>
           </table>
         </div>
+        {events.map(({ event, days, started }) => (
+          <section key={event.id} id={event.slug}>
+            <h2>{event.question}</h2>
+            <p>
+              <strong>
+                {upcomingOccurrences(event, now, 6)
+                  .map((d) => `${d.year}: ${formatEventDate(d, "de")}`)
+                  .join(" · ")}
+              </strong>
+            </p>
+            <p>
+              {event.about} {event.holiday}
+            </p>
+            <p>
+              <a href={`?anlass=${event.slug}#sayac`} rel="nofollow">
+                Live-Countdown bis {event.name} ({dayLabel(days, started)})
+              </a>
+            </p>
+          </section>
+        ))}
       </TimeToolPage>
     </div>
   );
 }
 
-export function GermanCountdownEventPage({ event }: { event: CountdownEvent }) {
-  const now = new Date();
-  const occurrences = upcomingOccurrences(event, now, 6);
-  const next = occurrences[0];
-  const days = next ? daysUntil(next, event.zone, now) : null;
-  const started = next ? hasStarted(next, event.zone, now) : false;
-  const dateText = next ? formatEventDate(next, "de") : "";
-  const selfDays = eventSummary(event, now).days ?? 0;
-  // Zeitlich nahe Anlässe zuerst: die Liste unterscheidet sich je Seite.
-  const others = upcomingGerman(now)
-    .filter((o) => o.event.id !== event.id)
-    .sort((a, b) => Math.abs((a.days ?? 0) - selfDays) - Math.abs((b.days ?? 0) - selfDays));
-
-  const until = event.untilDe ?? event.name;
-  const daysSentence =
-    days === null
-      ? ""
-      : days === 0 && !started
-        ? `Bis ${until} ist es weniger als ein Tag.`
-        : days === 0
-          ? `Heute ist ${event.name}!`
-          : `Bis ${until} sind es noch ${days} Tage (${weeksAndDaysDe(days)}).`;
-
-  const faqItems: FaqItem[] = [
-    { question: `Wann ist ${event.name}?`, answer: next ? `${event.name} ist das nächste Mal am ${dateText}.` : "Der Termin steht noch nicht fest." },
-    { question: event.question, answer: `${daysSentence} Der Countdown zählt sekundengenau bis Mitternacht zu Beginn des Tages in Ihrer Zeitzone.` },
-    { question: `Ist ${event.name} ein Feiertag?`, answer: event.holiday },
-  ];
-
-  return (
-    <div lang="de">
-      <TimeToolPage
-        crumbs={[
-          { href: "/de", label: "Startseite" },
-          { href: "/de/countdown", label: "Countdown" },
-          { href: countdownPath(event), label: event.name },
-        ]}
-        crumbLabel="Brotkrumen"
-        title={event.question}
-        intro={next ? `${event.name}: ${dateText}. ${daysSentence}` : ""}
-        tool={
-          <CountdownDisplay
-            targets={occurrences.map(({ year, month, day }) => ({ year, month, day }))}
-            zone={event.zone}
-            lang="de"
-            title={event.name}
-            copy={countdownCopy.de}
-          />
-        }
-        related={{
-          title: "Das könnte Sie auch interessieren",
-          links: [
-            ...DE_TAGE.filter((t) => t.countdown === event.slug)
-              .slice(0, 1)
-              .map((t) => ({ href: deBesondererTagPfad(t.id), label: `${t.name}: Datum und Bedeutung` })),
-            ...others.slice(0, 4).map((o) => ({ href: countdownPath(o.event), label: `${o.event.name} (${dayLabel(o.days, o.started)})` })),
-            { href: "/de/countdown", label: "Alle Countdowns" },
-            { href: "/de/kalender", label: "Kalender mit Feiertagen" },
-            ...baseLinks.slice(0, 3),
-          ],
-        }}
-        tocTitle="Inhalt"
-        tocItems={[
-          { id: "ueberblick", label: "Datum und Restzeit" },
-          { id: "jahre", label: `${event.name}: Termine der nächsten Jahre` },
-          { id: "hintergrund", label: `Über ${event.name}` },
-          { id: "faq", label: "Häufige Fragen" },
-        ]}
-        faqTitle="Häufige Fragen"
-        faqItems={faqItems}
-      >
-        <h2 id="ueberblick">Datum und Restzeit</h2>
-        {next && (
-          <div className="conversion-table-wrap">
-            <table className="conversion-table city-facts-table">
-              <tbody>
-                <tr>
-                  <th scope="row">Datum</th>
-                  <td>{dateText}</td>
-                </tr>
-                <tr>
-                  <th scope="row">Noch</th>
-                  <td>{days === 0 ? dayLabel(days, started) : `${days} Tage · ${weeksAndDaysDe(days ?? 0)}`}</td>
-                </tr>
-                <tr>
-                  <th scope="row">Feiertag?</th>
-                  <td>{event.holiday}</td>
-                </tr>
-                {event.source && (
-                  <tr>
-                    <th scope="row">Quelle</th>
-                    <td>{event.source}</td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
-        )}
-
-        <h2 id="jahre">{event.name}: Termine der nächsten Jahre</h2>
-        <div className="conversion-table-wrap">
-          <table className="conversion-table">
-            <thead>
-              <tr>
-                <th>Jahr</th>
-                <th>Datum</th>
-              </tr>
-            </thead>
-            <tbody>
-              {occurrences.map((parts) => (
-                <tr key={parts.year}>
-                  <td>{parts.year}</td>
-                  <td>{formatEventDate(parts, "de")}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        <h2 id="hintergrund">Über {event.name}</h2>
-        <p>{event.about}</p>
-        <p>
-          Wie lange es noch bis zu anderen Anlässen ist, zeigt die <Link href="/de/countdown">Countdown-Übersicht</Link>; dort können Sie auch
-          einen eigenen Countdown erstellen. Alle gesetzlichen Feiertage nach Bundesland finden Sie unter <Link href="/de/feiertage">Feiertage</Link>.
-        </p>
-      </TimeToolPage>
-    </div>
-  );
-}

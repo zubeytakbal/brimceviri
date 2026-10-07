@@ -42,7 +42,7 @@ export function GET() {
         `DTEND;VALUE=DATE:${gun(ymdKey(son))}`,
         `SUMMARY:${esc(tarihliAd(t))}`,
         `DESCRIPTION:${esc(t.etkinlik.kisa)}`,
-        `URL:${buildSiteUrl(`/ozel-gunler/${t.etkinlik.id}`)}`,
+        `URL:${buildSiteUrl(`/ozel-gunler#${t.etkinlik.id}`)}`,
         "TRANSP:TRANSPARENT",
         "END:VEVENT",
       );

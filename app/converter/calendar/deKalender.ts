@@ -712,7 +712,8 @@ export const deMonatPfad = (y: number, m: number) =>
 /** Keine Tagesseiten: der Tag steht in der Monatsliste unter #tag-N. */
 export const deTagPfad = (d: YMD) =>
   `/de/kalender/${d.year}/${DE_MONAT_SLUG[d.month - 1]}#tag-${d.day}`;
-export const deBesondererTagPfad = (id: string) => `/de/besondere-tage/${id}`;
+/** Besondere Tage stehen auf einer Seite; jeder Tag hat seinen Abschnitt. */
+export const deBesondererTagPfad = (id: string) => `/de/besondere-tage#${id}`;
 
 export const DE_MONDPHASE: Record<PhaseName, string> = {
   new: "Neumond",

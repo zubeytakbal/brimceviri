@@ -1,23 +1,40 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "@/app/components/SiteLink";
 import { germanCities } from "../../converter/geo/germanCities";
-import { entfernungPaarPath, himmelsrichtung, kurs, luftlinieKm } from "../../converter/geo/germanDistances";
+import { himmelsrichtung, kurs, luftlinieKm, mittelpunkt, naechsteStadt } from "../../converter/geo/germanDistances";
 
 const sorted = [...germanCities].sort((a, b) => a.name.localeCompare(b.name, "de"));
 const km = (v: number) => v.toLocaleString("de-DE", { maximumFractionDigits: 1 });
 
-export default function EntfernungsRechner({ fromId = "berlin", toId = "muenchen" }: { fromId?: string; toId?: string }) {
+/** readQuery: Zielstadt aus ?nach= übernehmen (alte Streckenseiten leiten so hierher). */
+export default function EntfernungsRechner({
+  fromId = "berlin",
+  toId = "muenchen",
+  readQuery = false,
+}: {
+  fromId?: string;
+  toId?: string;
+  readQuery?: boolean;
+}) {
   const [a, setA] = useState(fromId);
   const [b, setB] = useState(toId);
+  useEffect(() => {
+    if (!readQuery) return;
+    const frame = requestAnimationFrame(() => {
+      const nach = new URLSearchParams(window.location.search).get("nach");
+      if (nach && germanCities.some((c) => c.id === nach)) setB(nach);
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [readQuery]);
   const from = germanCities.find((c) => c.id === a)!;
   const to = germanCities.find((c) => c.id === b)!;
   const same = a === b;
   const d = luftlinieKm(from, to);
-  const pair = same ? null : entfernungPaarPath(from, to);
+  const mitte = same ? null : naechsteStadt(mittelpunkt(from, to));
   return (
-    <div className="date-calc">
+    <div className="date-calc" id="rechner">
       <div className="date-calc-input">
         <div className="date-calc-fields">
           {[
@@ -49,7 +66,8 @@ export default function EntfernungsRechner({ fromId = "berlin", toId = "muenchen
             </em>
           </div>
           <p className="date-calc-note">
-            {pair ? <Link href={pair}>Mehr zu dieser Strecke</Link> : <Link href={`/de/entfernung/${from.id}`}>Alle Entfernungen ab {from.name}</Link>}
+            {mitte && <>Die Mitte der Strecke liegt nahe {mitte.city.name} ({km(mitte.km)} km). </>}
+            <Link href={`/de/entfernung/${from.id}`}>Alle Entfernungen ab {from.name}</Link>
           </p>
         </div>
       )}

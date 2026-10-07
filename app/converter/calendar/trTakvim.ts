@@ -866,7 +866,8 @@ export const takvimAyPath = (y: number, m: number) =>
 /** Gün sayfası yok: özel gün, ay sayfasındaki listede #gun-N satırındadır. */
 export const takvimGunPath = (d: YMD) =>
   `/takvim/${d.year}/${AY_SLUG[d.month - 1]}#gun-${d.day}`;
-export const ozelGunPath = (id: string) => `/ozel-gunler/${id}`;
+/** Özel günler tek sayfada; her günün bölümü kendi kimliğiyle. */
+export const ozelGunPath = (id: string) => `/ozel-gunler#${id}`;
 
 export const AY_EVRE_ADI: Record<PhaseName, string> = {
   new: "Yeni ay",

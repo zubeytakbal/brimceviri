@@ -14,7 +14,6 @@ import {
   deTagPfad,
   deTermine,
   type DeKategorie,
-  type DeTag,
   type DeTermin,
 } from "../../converter/calendar/deKalender";
 import type { FaqItem } from "../../converter/faqSchema";
@@ -44,6 +43,7 @@ import TimeToolPage from "../time/TimeToolPage";
 import DeKalenderNavigator from "./DeKalenderNavigator";
 import { DeLegende, DeMonatsGitter } from "./DeMonatsGitter";
 import TakvimGorsel from "./TakvimGorsel";
+import ScrollToQuery from "../ScrollToQuery";
 
 const T = {
   crumb: "Brotkrumen",
@@ -53,7 +53,6 @@ const T = {
 };
 const START = { href: "/de", label: "Startseite" };
 const HUB = { href: "/de/kalender", label: "Kalender" };
-const BT_HUB = { href: "/de/besondere-tage", label: "Besondere Tage" };
 
 export const DE_KALENDER_LINKS = [
   { href: "/de/feiertage", label: "Feiertage nach Bundesland" },
@@ -604,7 +603,7 @@ export function DeBesondereTageHub() {
                     const rest = n ? diffDays(heute, n.datum) : null;
                     return (
                       <li key={t.id}>
-                        <Link href={deBesondererTagPfad(t.id)} prefetch={false}>
+                        <a href={`#${t.id}`}>
                           <TakvimGorsel gorsel={t.bild} size={56} />
                           <span>
                             <strong>{t.name}</strong>
@@ -621,7 +620,7 @@ export function DeBesondereTageHub() {
                               </em>
                             ) : null}
                           </span>
-                        </Link>
+                        </a>
                       </li>
                     );
                   })}
@@ -642,6 +641,51 @@ export function DeBesondereTageHub() {
         faqTitle={T.faq}
         faqItems={faq}
       >
+        <ScrollToQuery param="tag" />
+        {REIHENFOLGE.map((k) =>
+          DE_TAGE.filter((t) => t.kategorie === k).map((t) => {
+            const n = deNaechster(t, heute);
+            const rest = n ? diffDays(heute, n.datum) : null;
+            const zeilen = DE_JAHRE.flatMap((y) => deTermine(t, y));
+            const erste = zeilen[0];
+            return (
+              <section key={t.id} id={t.id}>
+                <h2>Wann ist {t.name}?</h2>
+                <p>
+                  <strong>
+                    {n
+                      ? `${formatDeLong(n.datum)}${n.zeit ? `, ${zeitDe(n.zeit)} Uhr` : ""} (KW ${kalenderwoche(n.datum).week}${
+                          rest !== null ? (rest > 0 ? `, noch ${rest} Tage` : rest < 0 && n.bis ? `, bis ${kurz(n.bis)}` : ", heute") : ""
+                        })`
+                      : ""}
+                  </strong>{" "}
+                  {erste?.laender ? `Feiertag: ${laenderText(erste)}.` : "Kein gesetzlicher Feiertag."}
+                </p>
+                <p>{t.info}</p>
+                <p>
+                  {zeilen.map((x, i) => (
+                    <span key={ymdKey(x.datum)}>
+                      {i > 0 ? " · " : ""}
+                      {x.datum.year}: {spanne(x)} ({formatDe(x.datum, { weekday: "short" })})
+                    </span>
+                  ))}
+                </p>
+                {t.countdown ? (
+                  <p>
+                    <Link href={`/de/countdown#${t.countdown}`} prefetch={false}>
+                      Countdown bis {t.name}
+                    </Link>
+                  </p>
+                ) : null}
+              </section>
+            );
+          }),
+        )}
+        <p>
+          Ostern fällt auf den ersten Sonntag nach dem ersten Frühlingsvollmond; Karneval, Christi Himmelfahrt, Pfingsten
+          und Fronleichnam wandern mit. Muttertag, Erntedank und Advent hängen an einem bestimmten Sonntag, Jahreszeiten
+          werden astronomisch bestimmt.
+        </p>
         <p>
           Alle Tage im Monatsüberblick zeigt der{" "}
           <Link href="/de/kalender">Kalender</Link>; Urlaub rund um die
@@ -653,189 +697,3 @@ export function DeBesondereTageHub() {
   );
 }
 
-/* /de/besondere-tage/[id] ------------------------------------------------- */
-
-const REGEL_TEXT: Record<DeTag["regel"]["typ"], string> = {
-  fest: "Der Tag fällt jedes Jahr auf dasselbe Datum, aber auf einen anderen Wochentag.",
-  ostern:
-    "Das Datum richtet sich nach Ostern und ändert sich deshalb jedes Jahr.",
-  wochentag:
-    "Der Tag fällt immer auf denselben Wochentag im Monat; das Datum ändert sich jedes Jahr.",
-  letzter:
-    "Der Tag fällt immer auf den letzten Sonntag des Monats; das Datum ändert sich jedes Jahr.",
-  advent:
-    "Das Datum richtet sich nach dem ersten Advent (vierter Sonntag vor Weihnachten) und ändert sich jedes Jahr.",
-  feiertag: "Das Datum ergibt sich aus dem Feiertagsrecht der Länder.",
-  astro:
-    "Der Zeitpunkt wird astronomisch bestimmt und liegt zwischen dem 19. und 23. des Monats; die Uhrzeit ändert sich jedes Jahr.",
-  oktoberfest:
-    "Die Wiesn beginnt an einem Samstag im September und endet am ersten Sonntag im Oktober oder am 3. Oktober.",
-};
-
-export function deBesondererTagMeta(t: DeTag) {
-  const y = todayBerlin().year;
-  const jahre = DE_JAHRE.filter((x) => x >= y).slice(0, 2);
-  return {
-    title: `${t.name} ${jahre.join(" und ")}: Datum und Bedeutung`,
-    short: `${t.name} ${jahre[0]}: Datum`,
-    description:
-      `Wann ist ${t.name}? Termine ${DE_JAHRE.join(", ")} mit Wochentag und Kalenderwoche. ${t.kurz}`.slice(
-        0,
-        300,
-      ),
-  };
-}
-
-export function DeBesondererTagSeite({ t }: { t: DeTag }) {
-  const heute = todayBerlin();
-  const n = deNaechster(t, heute);
-  const rest = n ? diffDays(heute, n.datum) : null;
-  const zeilen = DE_JAHRE.flatMap((y) => deTermine(t, y));
-  const erste = zeilen[0];
-  const faq: FaqItem[] = [
-    ...DE_JAHRE.filter((y) => y >= heute.year)
-      .slice(0, 2)
-      .map((y) => {
-        const x = deTermine(t, y)[0];
-        return {
-          question: `Wann ist ${t.name} ${y}?`,
-          answer: x
-            ? `${t.name} ist ${y} am ${formatDeLong(x.datum)} (KW ${kalenderwoche(x.datum).week})${x.zeit ? `, um ${zeitDe(x.zeit)} Uhr` : ""}.`
-            : `${t.name} findet ${y} nicht statt.`,
-        };
-      }),
-    {
-      question: `Ist ${t.name} ein Feiertag?`,
-      answer: erste?.laender
-        ? `Ja, ${t.name} ist gesetzlicher Feiertag: ${laenderText(erste)}.`
-        : `Nein, ${t.name} ist kein gesetzlicher Feiertag.`,
-    },
-  ];
-  return (
-    <div lang="de">
-      <TimeToolPage
-        crumbs={[START, HUB, BT_HUB, { label: t.name }]}
-        crumbLabel={T.crumb}
-        title={`${t.name}: Datum und Bedeutung`}
-        intro={t.kurz}
-        tool={
-          <div className="date-calc">
-            <article className="takvim-kart">
-              <TakvimGorsel gorsel={t.bild} size={112} title={t.name} />
-              <div>
-                <span className={`takvim-kat de-kat-${t.kategorie}`}>
-                  {DE_KATEGORIE[t.kategorie]}
-                </span>
-                {n ? (
-                  <>
-                    <h2>
-                      <Link
-                        href={
-                          hatSeite(n.datum)
-                            ? deTagPfad(n.datum)
-                            : deMonatPfad(n.datum.year, n.datum.month)
-                        }
-                        prefetch={false}
-                      >
-                        {formatDeLong(n.datum)}
-                      </Link>
-                    </h2>
-                    <p>
-                      {rest !== null && rest > 0
-                        ? `Noch ${rest} Tage.`
-                        : rest !== null && rest < 0 && n.bis
-                          ? `Läuft noch bis ${kurz(n.bis)}.`
-                          : "Heute."}
-                      {n.zeit ? ` Um ${zeitDe(n.zeit)} Uhr.` : ""} KW{" "}
-                      {kalenderwoche(n.datum).week}.
-                    </p>
-                  </>
-                ) : null}
-                <p className="takvim-kart-alt">
-                  {erste?.laender ? (
-                    <span className="takvim-etiket is-tatil">
-                      Feiertag: {laenderText(erste)}
-                    </span>
-                  ) : (
-                    <span className="takvim-etiket">
-                      Kein gesetzlicher Feiertag
-                    </span>
-                  )}
-                </p>
-              </div>
-            </article>
-            <div className="holiday-table-wrap">
-              <table className="holiday-table">
-                <thead>
-                  <tr>
-                    <th scope="col">Jahr</th>
-                    <th scope="col">Datum</th>
-                    <th scope="col">Wochentag</th>
-                    <th scope="col">KW</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {zeilen.map((x) => (
-                    <tr key={ymdKey(x.datum)}>
-                      <td>{x.datum.year}</td>
-                      <td>
-                        <Link href={deTagPfad(x.datum)} prefetch={false}>
-                          {spanne(x)}
-                        </Link>
-                        {x.zeit ? <small> · {zeitDe(x.zeit)} Uhr</small> : null}
-                      </td>
-                      <td>{formatDe(x.datum, { weekday: "long" })}</td>
-                      <td>{kalenderwoche(x.datum).week}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        }
-        related={{
-          title: T.related,
-          links: [
-            ...(t.countdown
-              ? [
-                  {
-                    href: `/de/countdown/${t.countdown}`,
-                    label: "Countdown: wie viele Tage noch?",
-                  },
-                ]
-              : []),
-            ...(t.links ?? []),
-            ...(erste
-              ? [
-                  {
-                    href: deMonatPfad(erste.datum.year, erste.datum.month),
-                    label: `Kalender ${DE_MONATE[erste.datum.month - 1]} ${erste.datum.year}`,
-                  },
-                ]
-              : []),
-            BT_HUB,
-            ...DE_KALENDER_LINKS,
-          ],
-        }}
-        tocTitle={T.toc}
-        tocItems={[
-          { id: "bedeutung", label: `${t.name}: Bedeutung` },
-          { id: "faq", label: T.faq },
-        ]}
-        faqTitle={T.faq}
-        faqItems={faq}
-      >
-        <h2 id="bedeutung">{t.name}: Bedeutung</h2>
-        <p>{t.info}</p>
-        <p>{REGEL_TEXT[t.regel.typ]}</p>
-        {erste?.laender && erste.laender.length < 16 ? (
-          <p>
-            Welche Feiertage in Ihrem Bundesland gelten, zeigt die{" "}
-            <Link href="/de/feiertage">Feiertagsübersicht nach Bundesland</Link>
-            .
-          </p>
-        ) : null}
-      </TimeToolPage>
-    </div>
-  );
-}

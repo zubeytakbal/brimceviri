@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { countdownAlternatePaths, findCountdownEvent, occurrenceInYear } from "../app/converter/time/countdownEvents";
+import { findCountdownEvent, occurrenceInYear } from "../app/converter/time/countdownEvents";
 
 const on = (slug: string, year: number) => {
   const d = occurrenceInYear(findCountdownEvent("de", slug)!, year)!;
@@ -26,10 +26,5 @@ describe("German countdown dates", () => {
     expect(on("oktoberfest", 2026)).toBe("2026-09-19");
     expect(on("oktoberfest", 2027)).toBe("2027-09-18");
     expect(on("oktoberfest", 2028)).toBe("2028-09-16");
-  });
-  it("links language versions for hreflang", () => {
-    expect(countdownAlternatePaths(findCountdownEvent("de", "neujahr")!)).toEqual({ de: "/de/countdown/neujahr", en: "/en/countdown/new-year", tr: "/geri-sayim/yilbasi" });
-    expect(countdownAlternatePaths(findCountdownEvent("en", "christmas")!)).toEqual({ en: "/en/countdown/christmas", de: "/de/countdown/weihnachten" });
-    expect(countdownAlternatePaths(findCountdownEvent("de", "oktoberfest")!)).toEqual({ de: "/de/countdown/oktoberfest" });
   });
 });

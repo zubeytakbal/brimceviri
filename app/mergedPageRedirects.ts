@@ -118,6 +118,14 @@ function materialRedirects(): MergedRedirect[] {
     r("/uz/material-solishtirish", "/uz/material-xossalari"),
     r("/uz/material-solishtirish/:slug", "/uz/material-xossalari?v=:slug"),
     r("/de/chemische-verbindungen/:slug", "/de/chemische-verbindungen?v=:slug"),
+    r("/de/entfernung/:stadt/:ziel", "/de/entfernung/:stadt?nach=:ziel"),
+    r("/en/bible-books/:book", "/en/bible-books?book=:book"),
+    r("/ozel-gunler/:id", "/ozel-gunler?gun=:id"),
+    r("/de/besondere-tage/:id", "/de/besondere-tage?tag=:id"),
+    r("/ar/occasions/:id", "/ar/occasions?id=:id"),
+    r("/geri-sayim/:etkinlik", "/geri-sayim?etkinlik=:etkinlik"),
+    r("/en/countdown/:event", "/en/countdown?event=:event"),
+    r("/de/countdown/:anlass", "/de/countdown?anlass=:anlass"),
   ];
 }
 

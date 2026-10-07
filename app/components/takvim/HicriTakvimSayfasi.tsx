@@ -189,7 +189,7 @@ export default function HicriTakvimSayfasi() {
         links: [
           { href: "/tarih-cevirici", label: "Hicri – Miladi Tarih Çevirici" },
           { href: "/ozel-gunler", label: "Dini Günler ve Özel Günler" },
-          { href: "/ozel-gunler/hicri-yilbasi", label: "Hicri Yılbaşı" },
+          { href: "/ozel-gunler#hicri-yilbasi", label: "Hicri Yılbaşı" },
           { href: "/dogdugum-gun-hangi-gun", label: "Hicri Doğum Tarihim" },
           ...TAKVIM_ARACLARI,
         ],

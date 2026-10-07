@@ -1,8 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { germanCities } from "../app/converter/geo/germanCities";
 import {
-  entfernungPaare,
-  entfernungPaarPath,
+  entfernungStreckePath,
   findGermanCity,
   himmelsrichtung,
   kurs,
@@ -45,13 +44,8 @@ describe("Luftlinie", () => {
   });
 });
 
-describe("Pair pages", () => {
-  it("builds one page per pair of the ten largest cities", () => {
-    const pairs = entfernungPaare();
-    const keys = pairs.map((p) => [p.from.id, p.to.id].sort().join("|"));
-    expect(new Set(keys).size).toBe(pairs.length);
-    expect(pairs.length).toBe(45);
-    expect(entfernungPaarPath(city("muenchen"), city("berlin"))).toBe("/de/entfernung/berlin/muenchen");
-    expect(entfernungPaarPath(city("bonn"), city("kiel"))).toBeNull();
+describe("Route links", () => {
+  it("points a route to the calculator on the start city page", () => {
+    expect(entfernungStreckePath(city("berlin"), city("muenchen"))).toBe("/de/entfernung/berlin?nach=muenchen#rechner");
   });
 });

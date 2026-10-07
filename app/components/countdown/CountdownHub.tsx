@@ -1,5 +1,5 @@
-import Link from "@/app/components/SiteLink";
-import { countdownEvents, countdownPath } from "../../converter/time/countdownEvents";
+import { countdownEvents, upcomingOccurrences } from "../../converter/time/countdownEvents";
+import EventCountdownPicker from "./EventCountdownPicker";
 import type { FaqItem } from "../../converter/faqSchema";
 import TimeToolPage from "../time/TimeToolPage";
 import { customCountdownCopy } from "./countdownCopy";
@@ -15,6 +15,14 @@ export default function CountdownHub({ lang }: { lang: "tr" | "en" }) {
     .map((event) => ({ event, ...eventSummary(event, now) }))
     .filter((item) => item.next)
     .sort((a, b) => (a.days ?? 0) - (b.days ?? 0));
+  // Eski tek gün sayfaları ?etkinlik= / ?event= ile buraya yönlenir.
+  const param = tr ? "etkinlik" : "event";
+  const pickerEvents = events.map(({ event }) => ({
+    slug: event.slug,
+    name: event.name,
+    zone: event.zone,
+    targets: upcomingOccurrences(event, now, 6).map(({ year, month, day }) => ({ year, month, day })),
+  }));
 
   const faqItems: FaqItem[] = tr
     ? [
@@ -93,6 +101,7 @@ export default function CountdownHub({ lang }: { lang: "tr" | "en" }) {
       faqTitle={tr ? "Sık Sorulan Sorular" : "Frequently Asked Questions"}
       faqItems={faqItems}
     >
+      <EventCountdownPicker events={pickerEvents} lang={lang} param={param} />
       <h2 id="yaklasan">{tr ? "Yaklaşan günler" : "Upcoming dates"}</h2>
       <div className="conversion-table-wrap">
         <table className="conversion-table">
@@ -107,9 +116,7 @@ export default function CountdownHub({ lang }: { lang: "tr" | "en" }) {
             {events.map(({ event, next, days, started }) => (
               <tr key={event.id}>
                 <td>
-                  <Link href={countdownPath(event)} prefetch={false}>
-                    {event.name}
-                  </Link>
+                  <a href={`#${event.slug}`}>{event.name}</a>
                 </td>
                 <td>
                   {formatEventDate(next!, lang)}
@@ -123,6 +130,26 @@ export default function CountdownHub({ lang }: { lang: "tr" | "en" }) {
           </tbody>
         </table>
       </div>
+      {events.map(({ event, days }) => (
+        <section key={event.id} id={event.slug}>
+          <h2>{event.question}</h2>
+          <p>
+            <strong>
+              {upcomingOccurrences(event, now, 6)
+                .map((d) => `${d.year}: ${formatEventDate(d, lang)}${d.estimated ? (tr ? " (tahmini)" : " (estimated)") : ""}`)
+                .join(" · ")}
+            </strong>
+          </p>
+          <p>
+            {event.about} {event.holiday}
+          </p>
+          <p>
+            <a href={`?${param}=${event.slug}#sayac`} rel="nofollow">
+              {tr ? `${event.name} için canlı geri sayım (${days} gün)` : `Live countdown to ${event.name} (${days} days)`}
+            </a>
+          </p>
+        </section>
+      ))}
     </TimeToolPage>
   );
 }

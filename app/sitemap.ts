@@ -1,6 +1,6 @@
 import { germanCities } from "./converter/geo/germanCities";
 import { ARABIC_ISLAMIC_SITEMAP } from "./i18n/arabicIslamicTools";
-import { entfernungPaare, entfernungStadtPath } from "./converter/geo/germanDistances";
+import { entfernungStadtPath } from "./converter/geo/germanDistances";
 import { countriesDe, countryPathDe } from "./converter/geo/worldGeoDe";
 import { BRUECKENTAGE_JAHRE, brueckentagePfad } from "./i18n/germanBrueckentage";
 import { germanMathPages } from "./i18n/germanMathPages";
@@ -13,11 +13,10 @@ import {
   type TimeToolId,
 } from "./i18n/timeToolPaths";
 import { worldCities } from "./converter/time/worldCities";
-import { countdownAlternatePaths, countdownEvents, countdownPath } from "./converter/time/countdownEvents";
 import { HOLIDAY_YEARS } from "./converter/time/holidays";
-import { HIJRI_SLUG, MUNASABAT, SA_HIJRI_SANAWAT, saHijriSanaPath, saHijriShahrPath, saMunasabaPath } from "./converter/calendar/saTaqwim";
-import { DE_JAHRE, DE_MONAT_SLUG, DE_TAGE, deBesondererTagPfad, deJahrPfad, deMonatPfad } from "./converter/calendar/deKalender";
-import { AY_SLUG, ETKINLIKLER, ozelGunPath, TAKVIM_YILLARI, takvimAyPath, takvimYilPath } from "./converter/calendar/trTakvim";
+import { HIJRI_SLUG, SA_HIJRI_SANAWAT, saHijriSanaPath, saHijriShahrPath } from "./converter/calendar/saTaqwim";
+import { DE_JAHRE, DE_MONAT_SLUG, deJahrPfad, deMonatPfad } from "./converter/calendar/deKalender";
+import { AY_SLUG, TAKVIM_YILLARI, takvimAyPath, takvimYilPath } from "./converter/calendar/trTakvim";
 import { routePairs } from "./converter/geo/routePairs";
 import { turkeyProvinces } from "./converter/geo/turkeyProvinces";
 import { worldCountries } from "./converter/geo/worldCountries";
@@ -139,8 +138,7 @@ import { danishCategoryPages } from "./converter/localizedDanishCategoryPages";
 import { danishUnitPages } from "./converter/localizedDanishUnitPages";
 import { danishConversionPages } from "./converter/localizedDanishConversionPages";
 import { SITE_LAST_MODIFIED, SITE_URL } from "./siteConfig";
-import { BIBLE_BOOKS } from "./converter/christian/christianCalc";
-import { BIBLE_BOOKS_PATH, CHRISTIAN_TOOLS_PATH, englishChristianTools } from "./i18n/englishChristianTools";
+import { CHRISTIAN_TOOLS_PATH, englishChristianTools } from "./i18n/englishChristianTools";
 import { CATHOLIC_PATHS } from "./i18n/catholicTools";
 import { GOLD_CALCULATOR_PATHS } from "./i18n/goldCalculatorPaths";
 import { CYCLE_PATHS } from "./i18n/cycleCalculatorContent";
@@ -2819,7 +2817,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...[
       "/de/entfernung",
       ...germanCities.map((c) => entfernungStadtPath(c)),
-      ...entfernungPaare().map((p) => `/de/entfernung/${p.from.id}/${p.to.id}`),
     ].map((path) => ({
       url: `${baseUrl}${path}`,
       lastModified: contentLastModified,
@@ -2868,7 +2865,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       "/ar/hijri-age-calculator",
       "/ar/end-of-service-calculator",
       ...ARABIC_ISLAMIC_SITEMAP,
-      ...MUNASABAT.map((m) => saMunasabaPath(m.id)),
       ...SA_HIJRI_SANAWAT.flatMap((y) => [saHijriSanaPath(y), ...HIJRI_SLUG.map((_, i) => saHijriShahrPath(y, i + 1))]),
     ].map((path) => ({
       url: `${baseUrl}${path}`,
@@ -2882,7 +2878,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       "/de/zeitumstellung",
       "/de/vollmond",
       "/de/bauernregeln",
-      ...DE_TAGE.map((t) => deBesondererTagPfad(t.id)),
       ...DE_JAHRE.flatMap((y) => [deJahrPfad(y), ...DE_MONAT_SLUG.map((_, i) => deMonatPfad(y, i + 1))]),
     ].map((path) => ({
       url: `${baseUrl}${path}`,
@@ -2897,7 +2892,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       "/dogdugum-gun-hangi-gun",
       "/okul-takvimi",
       "/hicri-takvim",
-      ...ETKINLIKLER.map((e) => ozelGunPath(e.id)),
       ...TAKVIM_YILLARI.flatMap((y) => [takvimYilPath(y), ...AY_SLUG.map((_, i) => takvimAyPath(y, i + 1))])
     ].map((path) => ({
       url: `${baseUrl}${path}`,
@@ -2970,15 +2964,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly" as const,
       priority: 0.6,
     })),
-    ...countdownEvents.map((event) => {
-      return {
-        url: `${baseUrl}${countdownPath(event)}`,
-        lastModified: contentLastModified,
-        changeFrequency: "daily" as const,
-        priority: 0.6,
-        alternates: buildLanguageAlternates(countdownAlternatePaths(event), event.lang === "de" ? "tr" : event.lang),
-      };
-    }),
     ...worldCities.flatMap((city) =>
       Object.values(worldCityPaths(city)).map((path) => ({
         url: `${baseUrl}${path}`,
@@ -6034,7 +6019,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.74,
     })),
-    ...[CHRISTIAN_TOOLS_PATH, ...englishChristianTools.map((tool) => tool.href), ...BIBLE_BOOKS.map((b) => `${BIBLE_BOOKS_PATH}/${b.slug}`)].map((path) => ({
+    ...[CHRISTIAN_TOOLS_PATH, ...englishChristianTools.map((tool) => tool.href)].map((path) => ({
       url: `${baseUrl}${path}`,
       lastModified: contentLastModified,
       changeFrequency: "monthly" as const,

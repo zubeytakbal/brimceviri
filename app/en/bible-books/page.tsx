@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "@/app/components/SiteLink";
 import { BibleBookFinder } from "../../components/christian/ChristianTools";
 import TimeToolPage from "../../components/time/TimeToolPage";
 import type { FaqItem } from "../../converter/faqSchema";
@@ -60,7 +59,7 @@ export default function BibleBooksPage() {
       ]}
       crumbLabel="Breadcrumb"
       title="Books of the Bible"
-      intro={`All ${BIBLE_TOTALS.books} books in order, with chapters, verses and reading time. Search by name or section, or open a book for its chapter-by-chapter verse counts.`}
+      intro={`All ${BIBLE_TOTALS.books} books in order, with chapters, verses and reading time. Search by name or section; pick a book to see the verses in each of its chapters.`}
       tool={<BibleBookFinder />}
       related={{ title: "More Christian tools", links: christianRelated(path) }}
       tocTitle="Contents"
@@ -117,7 +116,9 @@ export default function BibleBooksPage() {
               {books.map((b, i) => (
                 <span key={b.slug}>
                   {i > 0 ? ", " : ""}
-                  <Link href={`${BIBLE_BOOKS_PATH}/${b.slug}`}>{b.name}</Link>
+                  <a href={`?book=${b.slug}#book`} rel="nofollow">
+                    {b.name}
+                  </a>
                 </span>
               ))}
             </li>

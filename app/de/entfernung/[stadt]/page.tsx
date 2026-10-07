@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Link from "@/app/components/SiteLink";
 import EntfernungsRechner from "../../../components/de/EntfernungsRechner";
 import TimeToolPage from "../../../components/time/TimeToolPage";
 import type { FaqItem } from "../../../converter/faqSchema";
 import { GEONAMES_SOURCE, germanCities } from "../../../converter/geo/germanCities";
-import { entfernungenAb, entfernungPaarPath, entfernungStadtPath, findGermanCity, himmelsrichtung } from "../../../converter/geo/germanDistances";
+import { entfernungenAb, entfernungStadtPath, findGermanCity, himmelsrichtung } from "../../../converter/geo/germanDistances";
 import { GERMAN_STATES } from "../../../converter/time/germanHolidays";
 import { seoTitle } from "../../../seoTitle";
 import { buildSiteUrl } from "../../../siteConfig";
@@ -74,7 +73,7 @@ export default async function EntfernungStadtPage({ params }: PageProps) {
         crumbLabel="Brotkrumen"
         title={`Entfernung von ${city.name}`}
         intro={`Luftlinie von ${city.name}${land.name !== city.name ? ` (${land.name})` : ""} zu ${rows.length} deutschen Großstädten, sortiert nach Entfernung. Die nächste ist ${nearest[0].city.name} mit ${km(nearest[0].km)} km, die entfernteste ${farthest.city.name} mit ${km(farthest.km)} km.`}
-        tool={<EntfernungsRechner fromId={city.id} toId={nearest[0].city.id} />}
+        tool={<EntfernungsRechner fromId={city.id} toId={nearest[0].city.id} readQuery />}
         related={{
           title: "Das könnte Sie auch interessieren",
           links: [
@@ -115,13 +114,12 @@ export default async function EntfernungStadtPage({ params }: PageProps) {
             </thead>
             <tbody>
               {rows.map((r) => {
-                const pair = entfernungPaarPath(city, r.city);
                 return (
                   <tr key={r.city.id}>
                     <td>
-                      <Link href={pair ?? entfernungStadtPath(r.city)} prefetch={false}>
+                      <a href={`?nach=${r.city.id}#rechner`} rel="nofollow">
                         {r.city.name}
-                      </Link>
+                      </a>
                     </td>
                     <td>{km(r.km)} km</td>
                     <td>{himmelsrichtung(r.grad)}</td>

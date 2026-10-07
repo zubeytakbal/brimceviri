@@ -144,7 +144,7 @@ export default function BengaliGoldPriceCalculatorPage() {
           <h2>সম্পর্কিত পাতা</h2>
           <ul className="related-conversion-list">
             <li>
-              <Link href="/bn/traditional-weight/tola-to-gram">তোলা থেকে গ্রাম</Link>
+              <Link href="/bn/traditional-weight#tola-to-gram">তোলা থেকে গ্রাম</Link>
             </li>
             <li>
               <Link href="/bn/categories/sonar-ayar">স্বর্ণের ক্যারেট রূপান্তর</Link>

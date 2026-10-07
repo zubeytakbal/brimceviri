@@ -232,7 +232,7 @@ export default async function CelestialBodyDetailPage({ params }: PageProps) {
               <ul className="related-conversion-list">
                 {relatedComparisons.map((comparison) => (
                   <li key={comparison.slug}>
-                    <Link href={`/gokcisimleri-karsilastirma/${comparison.slug}`}>
+                    <Link href={`/gokcisimleri-ozellikleri?v=${comparison.slug}#karsilastir`}>
                       {comparison.first.nameTr} – {comparison.second.nameTr}
                     </Link>
                   </li>

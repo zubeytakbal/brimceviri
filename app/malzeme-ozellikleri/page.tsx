@@ -8,6 +8,7 @@ import {
 import { getAllMaterialProfiles } from "../converter/materialsHub";
 import { getAllMaterialComparisons } from "../converter/materialComparisons";
 import { buildSiteUrl } from "../siteConfig";
+import MaterialExplorer from "../components/MaterialExplorer";
 
 const faqItems: FaqItem[] = [
   {
@@ -87,10 +88,13 @@ export default function MaterialsHubPage() {
             {materials.length} metal, sıvı, plastik, ahşap, yapı
             malzemesi, gıda ve gazın yoğunluğunu ve bilinen mühendislik
             özelliklerini (ısıl iletkenlik, elastisite modülü, ısıl
-            genleşme, viskozite) gör; her malzemenin kendi sayfasında
-            canlı birim çevirici de bulunur.
+            genleşme, viskozite) gör; ikinci bir malzeme seçerek ikisini
+            aynı ölçülerde karşılaştır. Her malzemenin kendi sayfasında
+            daha ayrıntılı bilgi ve birim çevirici bulunur.
           </p>
         </header>
+
+        <MaterialExplorer locale="tr" />
 
         <section className="category-article-content">
           {categoryOrder.map((category) => {
@@ -117,12 +121,13 @@ export default function MaterialsHubPage() {
           })}
 
           <h2>Popüler Yoğunluk Karşılaştırmaları</h2>
-          <ul className="related-conversion-list">
+          <ul>
             {comparisons.map((comparison) => (
               <li key={comparison.slug}>
-                <Link href={`/malzeme-karsilastirma/${comparison.slug}`}>
+                <a href={`?v=${comparison.slug}#hesapla`} rel="nofollow">
                   {comparison.first.nameTr} – {comparison.second.nameTr}
-                </Link>
+                </a>
+                : {comparison.context}
               </li>
             ))}
           </ul>

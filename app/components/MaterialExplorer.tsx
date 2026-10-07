@@ -11,15 +11,24 @@ import { materialComparisonContextDe } from "../converter/materialComparisonsDe"
 import { materialComparisonContextUz } from "../converter/materialComparisonsUz";
 import { materialCategoryLabelsDe, materialNamesDe, materialVariabilityNotesDe } from "../converter/materialsDatabaseDe";
 import { materialCategoryLabelsUz, materialNamesUz, materialVariabilityNotesUz } from "../converter/materialsDatabaseUz";
-import { type MaterialCategory } from "../converter/materialsDatabase";
+import { materialCategoryLabels, type MaterialCategory } from "../converter/materialsDatabase";
 import { buoyancy, densityRank, litresPerKg, practicalRows, sharedShapes } from "../converter/materialPractical";
-import { materialNotesDe } from "../converter/materialNotes";
+import { materialNotesDe, materialNotesTr } from "../converter/materialNotes";
 
-type Locale = "de" | "uz";
+type Locale = "de" | "uz" | "tr";
 
 const CATEGORY_ORDER: MaterialCategory[] = ["metal", "sivi", "gida", "plastik", "yapi-malzemesi", "ahsap", "gaz"];
 
 const USE_NOTES: Record<Locale, Record<MaterialCategory, string>> = {
+  tr: {
+    metal: "Metal yoğunluğu alaşım bileşimine, ısıl işleme ve sıcaklığa göre değişir. Bu değer, malzeme sınıfı belirtilmemiş ilk kütle ve hacim hesapları için nominal referanstır.",
+    sivi: "Sıvı yoğunluğu özellikle sıcaklığa ve karışım oranına bağlıdır. Hassas dolum, ticari ürün veya güvenlik hesabında ürünün teknik föyündeki sıcaklığa bağlı değeri kullanın.",
+    gaz: "Gaz yoğunluğu sıcaklık ve basınca güçlü biçimde bağlıdır. Bu değer, ilk karşılaştırma ve yaklaşık kütle hesabı içindir; proses hesabında aynı sıcaklık ve basınç koşullarındaki ölçülmüş değeri kullanın.",
+    plastik: "Polimer yoğunluğu reçine türüne, dolgu maddesine ve üretim yöntemine göre değişebilir. Ürün tasarımı için üreticinin teknik veri föyündeki sınıfa özgü değeri doğrulayın.",
+    "yapi-malzemesi": "Yapı malzemelerinde nem, gözeneklilik ve sıkışma derecesi yoğunluğu değiştirir. Hesap, kuru ve tipik malzeme için ilk tahmindir.",
+    ahsap: "Ahşap yoğunluğu türün yanı sıra nem oranı ve lif yönüyle değişir. Kesin ağırlık hesabında ölçülen nem oranını ve gerçek parça hacmini kullanın.",
+    gida: "Gıda ve mutfak malzemelerinde su, yağ ve hava oranı markaya ve hazırlama biçimine göre değişir. Sonuç, yaklaşık mutfak ve hacim hesabı içindir.",
+  },
   de: {
     metal: "Die Dichte von Metallen hängt von Legierungszusammensetzung, Wärmebehandlung und Temperatur ab. Dieser Wert ist ein nominaler Ausgangspunkt für erste Massen- und Volumenberechnungen ohne festgelegte Werkstoffgüte.",
     sivi: "Die Dichte von Flüssigkeiten hängt besonders von Temperatur und Mischungsverhältnis ab. Für präzise Befüllung, Handelsprodukte oder Sicherheitsrechnungen verwenden Sie den temperaturbezogenen Wert aus dem technischen Datenblatt.",
@@ -41,6 +50,27 @@ const USE_NOTES: Record<Locale, Record<MaterialCategory, string>> = {
 };
 
 const COPY = {
+  tr: {
+    material: "Malzeme",
+    compare: "Karşılaştır",
+    none: "— karşılaştırma yok —",
+    props: "Özellikler",
+    density: "Yoğunluk",
+    conductivity: "Isıl iletkenlik",
+    modulus: "Elastisite modülü (Young modülü)",
+    expansion: "Isıl genleşme katsayısı",
+    viscosity: "Dinamik viskozite",
+    variability: "Değişkenlik notu:",
+    weighs: (n: string) => `${n} ne kadar gelir?`,
+    measure: "Ölçü",
+    weight: "Yaklaşık ağırlık",
+    difference: "Fark",
+    sameSize: "Aynı ölçüde hangisi ne kadar gelir?",
+    equal: (a: string, b: string) => `${a} ve ${b} yaklaşık aynı yoğunluktadır.`,
+    denser: (a: string, b: string, r: string) => `${a}, ${b} ile karşılaştırıldığında yaklaşık ${r} kat daha yoğundur (ağırdır).`,
+    tonne: (a: string, va: string, b: string, vb: string) => `Ters yönden bakınca: 1 ton ${a} ${va}, 1 ton ${b} ise ${vb} yer kaplar.`,
+    litre: "litre",
+  },
   de: {
     material: "Material",
     compare: "Vergleichen mit",
@@ -85,11 +115,15 @@ const COPY = {
   },
 } as const;
 
-const NAMES = { de: materialNamesDe, uz: materialNamesUz };
-const CATEGORY_LABELS = { de: materialCategoryLabelsDe, uz: materialCategoryLabelsUz };
-const VARIABILITY = { de: materialVariabilityNotesDe, uz: materialVariabilityNotesUz };
-const CONTEXT = { de: materialComparisonContextDe, uz: materialComparisonContextUz };
-const NUMBER_LOCALE = { de: "de-DE", uz: "uz-UZ" };
+const NAMES: Record<Locale, Record<string, string>> = { de: materialNamesDe, uz: materialNamesUz, tr: {} };
+const CATEGORY_LABELS = { de: materialCategoryLabelsDe, uz: materialCategoryLabelsUz, tr: materialCategoryLabels };
+const VARIABILITY: Record<Locale, Record<string, string>> = { de: materialVariabilityNotesDe, uz: materialVariabilityNotesUz, tr: {} };
+const CONTEXT: Record<Locale, Record<string, string>> = {
+  de: materialComparisonContextDe,
+  uz: materialComparisonContextUz,
+  tr: Object.fromEntries(materialComparisonDefinitions.map((d) => [d.slug, d.context])),
+};
+const NUMBER_LOCALE = { de: "de-DE", uz: "uz-UZ", tr: "tr-TR" };
 
 /** Malzeme sayfalarının tek sayfadaki hali: ?m= malzeme, ?vs= karşılaştırılan, ?v= hazır karşılaştırma. */
 export default function MaterialExplorer({ locale, aliases = {} }: { locale: Locale; aliases?: Record<string, string> }) {
@@ -133,8 +167,8 @@ export default function MaterialExplorer({ locale, aliases = {} }: { locale: Loc
   const perKg = litresPerKg(first);
   const float = buoyancy(first);
   const rank = densityRank(first);
-  const variability = VARIABILITY[locale][first.id];
-  const note = locale === "de" ? materialNotesDe[first.id] : undefined;
+  const variability = locale === "tr" ? first.variabilityNote : VARIABILITY[locale][first.id];
+  const note = locale === "de" ? materialNotesDe[first.id] : locale === "tr" ? materialNotesTr[first.id] : undefined;
   const definition = second
     ? materialComparisonDefinitions.find(
         (d) => (d.firstId === first.id && d.secondId === second.id) || (d.firstId === second.id && d.secondId === first.id),
@@ -156,7 +190,17 @@ export default function MaterialExplorer({ locale, aliases = {} }: { locale: Loc
   ));
 
   const floatText =
-    locale === "de"
+    locale === "tr"
+      ? float.kind === "gas"
+        ? float.lighterThanAir
+          ? `Havadan yaklaşık ${fmt(1 / float.ratio, 1)} kat hafif olduğu için yükselir ve kapalı ortamda tavana yakın birikir.`
+          : `Havadan yaklaşık ${fmt(float.ratio, 1)} kat ağır olduğu için zemine çöker; sızıntıda bodrum ve çukurlarda birikir.`
+        : float.floats
+          ? `Suyun ${fmt(float.ratio, 2)} katı yoğunlukta olduğu için suda yüzer.`
+          : float.ratio < 1.01
+            ? "Yoğunluğu suya çok yakındır."
+            : `Sudan ${fmt(float.ratio, 2)} kat yoğun olduğu için suda batar.`
+      : locale === "de"
       ? float.kind === "gas"
         ? float.lighterThanAir
           ? `Es ist etwa ${fmt(1 / float.ratio, 1)}-mal leichter als Luft und steigt auf.`
@@ -175,14 +219,14 @@ export default function MaterialExplorer({ locale, aliases = {} }: { locale: Loc
           : float.ratio < 1.01
             ? "Zichligi suvnikiga juda yaqin."
             : `Suvdan ${fmt(float.ratio, 2)} marta zich, shuning uchun suvga cho'kadi.`;
-  const volumeText = perKg >= 1000 ? `${fmt(perKg / 1000, 2)} m³` : perKg >= 1 ? `${fmt(perKg, 2)} ${t.litre}` : `${fmt(perKg * 1000, 1)} ${locale === "de" ? "cm³" : "sm³"}`;
+  const volumeText = perKg >= 1000 ? `${fmt(perKg / 1000, 2)} m³` : perKg >= 1 ? `${fmt(perKg, 2)} ${t.litre}` : `${fmt(perKg * 1000, 1)} ${locale === "uz" ? "sm³" : "cm³"}`;
   const tonVolume = (m: MaterialProfile) => {
     const m3 = litresPerKg(m);
     return m3 >= 1 ? `${fmt(m3, 2)} m³` : `${fmt(m3 * 1000, 0)} ${t.litre}`;
   };
 
   return (
-    <div className="date-calc" id={locale === "de" ? "rechner" : "hisoblash"}>
+    <div className="date-calc" id={{ de: "rechner", uz: "hisoblash", tr: "hesapla" }[locale]}>
       <div className="date-calc-input">
         <div className="date-calc-fields">
           <label className="date-calc-field">
@@ -209,7 +253,7 @@ export default function MaterialExplorer({ locale, aliases = {} }: { locale: Loc
           <div>
             <dt>{t.density}</dt>
             <dd>
-              {fmt(first.densityKgM3)} kg/m³ ({fmt(first.densityKgM3 / 1000)} {locale === "de" ? "g/cm³" : "g/sm³"})
+              {fmt(first.densityKgM3)} kg/m³ ({fmt(first.densityKgM3 / 1000)} {locale === "uz" ? "g/sm³" : "g/cm³"})
             </dd>
           </div>
           {first.thermalConductivityWmK !== null && (
@@ -312,11 +356,17 @@ export default function MaterialExplorer({ locale, aliases = {} }: { locale: Loc
               </table>
             </div>
             <p>
-              {locale === "de" ? `1 kg ${name} nimmt etwa ${volumeText} ein. ` : `1 kg ${name} taxminan ${volumeText} joy egallaydi. `}
+              {locale === "de"
+                ? `1 kg ${name} nimmt etwa ${volumeText} ein. `
+                : locale === "tr"
+                  ? `1 kg ${name} yaklaşık ${volumeText} yer kaplar. `
+                  : `1 kg ${name} taxminan ${volumeText} joy egallaydi. `}
               {floatText}
             </p>
             <p>
-              {locale === "de"
+              {locale === "tr"
+                ? `Bu sitedeki ${rank.total} malzeme en yoğundan en hafife sıralandığında ${rank.overall}. sırada, ${CATEGORY_LABELS.tr[first.category].toLocaleLowerCase("tr")} arasında ${rank.categoryTotal} malzemenin ${rank.inCategory}. sırasındadır. `
+                : locale === "de"
                 ? `Unter ${rank.total} Materialien steht ${name} nach Dichte auf Platz ${rank.overall}, in der Gruppe ${CATEGORY_LABELS.de[first.category]} auf Platz ${rank.inCategory} von ${rank.categoryTotal}. `
                 : `${rank.total} material ichida zichlik bo'yicha ${rank.overall}-o'rinda, ${CATEGORY_LABELS.uz[first.category]} guruhida ${rank.categoryTotal} tadan ${rank.inCategory}-o'rinda. `}
               {USE_NOTES[locale][first.category]}
@@ -333,15 +383,15 @@ export default function MaterialExplorer({ locale, aliases = {} }: { locale: Loc
         )}
       </section>
 
-      {locale === "de" ? (
-        <>
-          <MaterialMassVolumeCalculator key={`m-${first.id}`} locale="de" densityKgM3={first.densityKgM3} materialName={name} />
-          <MaterialDensityConverter key={`d-${first.id}`} locale="de" densityKgM3={first.densityKgM3} materialName={name} />
-        </>
-      ) : (
+      {locale === "uz" ? (
         <>
           <MaterialMassVolumeCalculatorUz key={`m-${first.id}`} densityKgM3={first.densityKgM3} materialName={name} />
           <MaterialDensityConverterUz key={`d-${first.id}`} densityKgM3={first.densityKgM3} materialName={name} />
+        </>
+      ) : (
+        <>
+          <MaterialMassVolumeCalculator key={`m-${first.id}`} locale={locale} densityKgM3={first.densityKgM3} materialName={name} />
+          <MaterialDensityConverter key={`d-${first.id}`} locale={locale} densityKgM3={first.densityKgM3} materialName={name} />
         </>
       )}
     </div>

@@ -4,6 +4,7 @@ import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
 import { getAllCelestialBodies } from "../converter/celestialBodiesHub";
 import { getAllCelestialBodyComparisons } from "../converter/celestialBodyComparisons";
 import { buildSiteUrl } from "../siteConfig";
+import GokcismiKarsilastir from "../components/GokcismiKarsilastir";
 
 const faqItems: FaqItem[] = [
   {
@@ -80,9 +81,12 @@ export default function CelestialBodiesHubPage() {
             cüce gezegen ve büyük uydular) kütlesini, çapını,
             yoğunluğunu, yerçekimini ve diğer özelliklerini gör; her
             gökcisminin kendi sayfasında kendi ağırlığını
-            hesaplayabileceğin canlı bir araç da bulunur.
+            hesaplayabileceğin canlı bir araç da bulunur. Aşağıdan iki
+            gökcismini seçerek yan yana karşılaştırabilirsin.
           </p>
         </header>
+
+        <GokcismiKarsilastir />
 
         <section className="category-article-content">
           {categories.map((category) => {
@@ -111,12 +115,13 @@ export default function CelestialBodiesHubPage() {
           })}
 
           <h2>Popüler Gökcismi Karşılaştırmaları</h2>
-          <ul className="related-conversion-list">
+          <ul>
             {comparisons.map((comparison) => (
               <li key={comparison.slug}>
-                <Link href={`/gokcisimleri-karsilastirma/${comparison.slug}`}>
+                <a href={`?v=${comparison.slug}#karsilastir`} rel="nofollow">
                   {comparison.first.nameTr} – {comparison.second.nameTr}
-                </Link>
+                </a>
+                : {comparison.context}
               </li>
             ))}
           </ul>

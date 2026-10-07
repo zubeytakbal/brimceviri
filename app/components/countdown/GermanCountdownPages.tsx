@@ -124,7 +124,11 @@ export function GermanCountdownEventPage({ event }: { event: CountdownEvent }) {
   const days = next ? daysUntil(next, event.zone, now) : null;
   const started = next ? hasStarted(next, event.zone, now) : false;
   const dateText = next ? formatEventDate(next, "de") : "";
-  const others = upcomingGerman(now).filter((o) => o.event.id !== event.id);
+  const selfDays = eventSummary(event, now).days ?? 0;
+  // Zeitlich nahe Anlässe zuerst: die Liste unterscheidet sich je Seite.
+  const others = upcomingGerman(now)
+    .filter((o) => o.event.id !== event.id)
+    .sort((a, b) => Math.abs((a.days ?? 0) - selfDays) - Math.abs((b.days ?? 0) - selfDays));
 
   const until = event.untilDe ?? event.name;
   const daysSentence =
@@ -168,7 +172,7 @@ export function GermanCountdownEventPage({ event }: { event: CountdownEvent }) {
             ...DE_TAGE.filter((t) => t.countdown === event.slug)
               .slice(0, 1)
               .map((t) => ({ href: deBesondererTagPfad(t.id), label: `${t.name}: Datum und Bedeutung` })),
-            ...others.slice(0, 8).map((o) => ({ href: countdownPath(o.event), label: `${o.event.name} (${dayLabel(o.days, o.started)})` })),
+            ...others.slice(0, 4).map((o) => ({ href: countdownPath(o.event), label: `${o.event.name} (${dayLabel(o.days, o.started)})` })),
             { href: "/de/countdown", label: "Alle Countdowns" },
             { href: "/de/kalender", label: "Kalender mit Feiertagen" },
             ...baseLinks.slice(0, 3),

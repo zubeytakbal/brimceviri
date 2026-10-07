@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   AYARLAR,
   hasGram,
@@ -31,6 +31,13 @@ export default function AltinHesaplama({ baslangic }: { baslangic?: string }) {
       ? { [baslangic]: "1" }
       : { "ceyrek-altin": "4", "tam-altin": "1" },
   );
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      const tur = new URLSearchParams(window.location.search).get("tur");
+      if (tur && SIKKELER.some((x) => x.id === tur)) setAdet({ [tur]: "1" });
+    });
+    return () => cancelAnimationFrame(frame);
+  }, []);
   const [fiyat, setFiyat] = useState("");
   const [gram, setGram] = useState("20");
   const [milyem, setMilyem] = useState(916);

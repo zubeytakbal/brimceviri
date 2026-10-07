@@ -51,6 +51,7 @@ export default async function StateHolidaysPage({ params }: { params: Promise<{ 
     return { name, work: c.work, holiday: c.holiday };
   });
   const yearWork = months.reduce((a, m) => a + m.work, 0);
+  const nextYear = stateHolidays(s.code, year + 1);
   const onWeekend = list.filter((h) => [0, 6].includes(new Date(Date.UTC(h.date.year, h.date.month - 1, h.date.day)).getUTCDay()));
 
   const faqItems: FaqItem[] = [
@@ -200,22 +201,15 @@ export default async function StateHolidaysPage({ params }: { params: Promise<{ 
         </p>
 
         <h2 id="naechstes">Feiertage {year + 1} in {s.name}</h2>
-        {table(year + 1)}
-
         <p>
-          Feiertage in anderen Bundesländern:{" "}
-          {GERMAN_STATES.filter((o) => o.code !== s.code).map((o, i) => (
-            <span key={o.code}>
-              {i > 0 ? ", " : ""}
-              <Link href={`/de/feiertage/${o.slug}`} prefetch={false}>
-                {o.name}
-              </Link>
+          {nextYear.length} Feiertage:{" "}
+          {nextYear.map((h, i) => (
+            <span key={h.id}>
+              {i > 0 ? "; " : ""}
+              {h.name} {weekdayDeShort(h.date)} {formatDeShort(h.date)}
             </span>
           ))}
-          .
-        </p>
-        <p>
-          <small>Quelle: Feiertagsgesetz des Landes {s.name}; bewegliche Feiertage aus dem Osterdatum berechnet. Angaben ohne Gewähr.</small>
+          . Andere Bundesländer im Vergleich: <Link href="/de/feiertage">Feiertage in Deutschland</Link>. Quelle: Feiertagsgesetz {s.name}.
         </p>
       </TimeToolPage>
     </div>

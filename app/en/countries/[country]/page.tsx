@@ -117,7 +117,7 @@ export default async function EnglishCountryPage({ params }: { params: Promise<{
     },
     {
       question: `What time zone is ${the} in?`,
-      answer: `${e.capital} uses ${utcOffsetText(offset)} (${c.tz.replace(/_/g, " ")}) today. When it is noon in ${e.capital.split(" (")[0]}, it is ${clocks[0].time} in New York and ${clocks[2].time} in London. Countries that observe daylight saving time change their offset during the year; this page is updated daily.`,
+      answer: `${e.capital} uses ${utcOffsetText(offset)} (${c.tz.replace(/_/g, " ")}) today. When it is noon in ${e.capital.split(" (")[0]}, it is ${clocks[0].time} in New York and ${clocks[2].time} in London.`,
     },
     {
       question: `What currency does ${the} use?`,
@@ -190,7 +190,7 @@ export default async function EnglishCountryPage({ params }: { params: Promise<{
                 <span className="tr-map-legend-swatch" style={{ background: "#9fcfcf" }} /> Neighboring countries
               </>
             )}
-            · Click a neighboring country to open its page.
+
           </p>
         </div>
       }
@@ -315,10 +315,6 @@ export default async function EnglishCountryPage({ params }: { params: Promise<{
           </tbody>
         </table>
       </div>
-      <p>
-        To convert other times, use the <Link href="/en/time-zone-converter">time zone converter</Link>. For how far local clocks are from the Sun, see the{" "}
-        <Link href="/en/solar-time-calculator">solar time calculator</Link>.
-      </p>
 
       <h2 id="size">Size and distance</h2>
       <ul>
@@ -353,8 +349,7 @@ export default async function EnglishCountryPage({ params }: { params: Promise<{
       )}
       <p>
         <small>
-          Sources: country data from mledoze/countries (ODbL), capital coordinates from GeoNames (CC BY 4.0), borders from Natural Earth. Area figures may
-          include inland water and differ slightly between sources.
+          Sources: mledoze/countries (ODbL), GeoNames (CC BY 4.0), Natural Earth.
         </small>
       </p>
     </TimeToolPage>

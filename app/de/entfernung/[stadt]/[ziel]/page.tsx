@@ -70,13 +70,14 @@ export default async function EntfernungPaarPage({ params }: PageProps) {
     sun[0].t.kind === "normal" && sun[1].t.kind === "normal" ? Math.round((sun[1].t.sunrise.getTime() - sun[0].t.sunrise.getTime()) / 60000) : null;
   const landA = landOf(from.land);
   const landB = landOf(to.land);
-  const weitere = entfernungenAb(from)
-    .filter((r) => r.city.id !== to.id)
+  // Zielnahe Städte: so unterscheidet sich die Liste je Strecke.
+  const weitere = entfernungenAb(to)
+    .filter((r) => r.city.id !== from.id)
     .slice(0, 6)
-    .map((r) => ({ href: entfernungPaarPath(from, r.city) ?? entfernungStadtPath(r.city), label: `${from.name} – ${r.city.name} (${km(r.km)} km)` }));
+    .map((r) => ({ href: entfernungPaarPath(from, r.city) ?? entfernungStadtPath(r.city), label: `${from.name} – ${r.city.name} (${km(luftlinieKm(from, r.city))} km)` }));
 
   const faqItems: FaqItem[] = [
-    { question: `Wie weit ist es von ${from.name} nach ${to.name}?`, answer: `Die Luftlinie beträgt ${km1(d)} km (${km1(d / 1.609344)} Meilen). Auf der Straße ist die Strecke länger, weil Straßen Kurven und Umwege machen.` },
+    { question: `Wie weit ist es von ${from.name} nach ${to.name}?`, answer: `Die Luftlinie beträgt ${km1(d)} km (${km1(d / 1.609344)} Meilen); die Straße ist länger.` },
     { question: `In welcher Richtung liegt ${to.name} von ${from.name} aus?`, answer: `Im ${himmelsrichtung(grad)}: Der Kurs beträgt ${Math.round(grad)}° (0° = Norden, 90° = Osten).` },
     {
       question: `Wo liegt die Mitte zwischen ${from.name} und ${to.name}?`,
@@ -153,7 +154,6 @@ export default async function EntfernungPaarPage({ params }: PageProps) {
         </div>
 
         <h2 id="sonne">Sonnenaufgang in beiden Städten</h2>
-        <p>Auch ohne Zeitunterschied geht die Sonne im Osten früher auf. Heute:</p>
         <div className="conversion-table-wrap">
           <table className="conversion-table">
             <thead>
@@ -180,10 +180,7 @@ export default async function EntfernungPaarPage({ params }: PageProps) {
           </p>
         )}
         <p>
-          <small>
-            Koordinaten des Stadtzentrums: {GEONAMES_SOURCE}. Luftlinie auf der Kugel (mittlerer Erdradius 6.371 km); Sonnenzeiten nach dem
-            NOAA-Verfahren, Genauigkeit etwa ± 2 Minuten.
-          </small>
+          <small>Koordinaten: {GEONAMES_SOURCE}.</small>
         </p>
       </TimeToolPage>
     </div>

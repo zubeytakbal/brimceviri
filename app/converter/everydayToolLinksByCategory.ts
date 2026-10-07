@@ -116,7 +116,7 @@ export const everydayToolLinksByCategory: Record<
   ],
   altin_ayar: [
     { href: "/altin-hesaplama", label: "Altın Hesaplama (Çeyrek, Yarım, Tam, Bilezik)" },
-    { href: "/altin-hesaplama/ceyrek-altin", label: "Çeyrek Altın Kaç Gram?" },
+    { href: "/altin-hesaplama", label: "Çeyrek Altın Kaç Gram?" },
     { href: "/has-hesaplama", label: "Has Altın ve Gümüş Hesaplama" },
     { href: "/kuyumcu-araclari", label: "Kuyumcu Araçları" },
   ],

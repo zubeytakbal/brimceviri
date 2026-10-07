@@ -82,6 +82,7 @@ export default async function RegionMapPage({ params }: { params: Promise<{ bolg
               fills={fills}
               capitalDots={[...members, ...observers].map((c) => c.iso3)}
               labels={[...members, ...observers].map((c) => c.iso3)}
+              cullOutside
               hrefFor={(c) => `/ulkeler/${c.id}`}
               titleFor={(c) => `${c.nameTr} (${c.capital})`}
             />

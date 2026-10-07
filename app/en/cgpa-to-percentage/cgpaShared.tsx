@@ -1,4 +1,3 @@
-import Link from "@/app/components/SiteLink";
 import type { CgpaFormulaOption } from "../../components/CgpaCalculator";
 import { cgpaUniversities, cgpaToPercentage, type CgpaUniversity } from "../../converter/india/cgpaUniversities";
 
@@ -41,7 +40,7 @@ export function SourceChangeNotice({ university, changedAt }: { university: Cgpa
   );
 }
 
-export function UniversityTable({ activeSlug }: { activeSlug?: string }) {
+export function UniversityTable() {
   return (
     <div className="conversion-table-wrap">
       <table className="conversion-table">
@@ -49,25 +48,54 @@ export function UniversityTable({ activeSlug }: { activeSlug?: string }) {
           <tr>
             <th>University / board</th>
             <th>Formula</th>
-            <th>CGPA 8 =</th>
+            {[6, 7, 8, 9].map((c) => (
+              <th key={c}>CGPA {c}</th>
+            ))}
           </tr>
         </thead>
         <tbody>
           {cgpaUniversities.map((university) => (
             <tr key={university.slug}>
               <td>
-                {university.slug === activeSlug ? (
-                  <strong>{university.shortName}</strong>
-                ) : (
-                  <Link href={`/en/cgpa-to-percentage/${university.slug}`}>{university.shortName}</Link>
-                )}
+                <a href={`#${university.slug}`}>{university.shortName}</a>
               </td>
               <td>{university.offset ? `(CGPA − ${university.offset}) × ${university.multiplier}` : `CGPA × ${university.multiplier}`}</td>
-              <td>{percentLabel(cgpaToPercentage(8, university))}</td>
+              {[6, 7, 8, 9].map((c) => (
+                <td key={c}>{percentLabel(cgpaToPercentage(c, university))}</td>
+              ))}
             </tr>
           ))}
         </tbody>
       </table>
     </div>
+  );
+}
+
+/** Each university's official source, scope and notes; old per-university pages redirect here. */
+export function UniversityDetails() {
+  return (
+    <dl className="category-unit-glossary">
+      {cgpaUniversities.map((university) => (
+        <div key={university.slug} id={university.slug}>
+          <dt>
+            {university.name} <small>{university.location}</small>
+          </dt>
+          <dd>
+            Formula: {university.offset ? `(CGPA − ${university.offset}) × ${university.multiplier}` : `CGPA × ${university.multiplier}`} on a{" "}
+            {university.scale}-point scale. Applies to {university.scope}.
+          </dd>
+          {university.notes?.map((note) => (
+            <dd key={note}>{note}</dd>
+          ))}
+          <dd>
+            Source:{" "}
+            <a href={university.sourceUrl} rel="noopener noreferrer" target="_blank">
+              {university.sourceTitle}
+            </a>{" "}
+            (checked {formatVerifiedDate(university.verifiedOn)}).
+          </dd>
+        </div>
+      ))}
+    </dl>
   );
 }

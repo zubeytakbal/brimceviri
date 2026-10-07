@@ -2,7 +2,7 @@
 
 // CGPA -> yuzde (kuruma ozel resmi formul), yuzde -> CGPA ve SGPA -> CGPA.
 
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   cgpaToPercentage,
   formulaText,
@@ -43,12 +43,23 @@ type Semester = { sgpa: string; credits: string };
 export default function CgpaCalculator({
   options,
   initialSlug,
+  readQuery = false,
 }: {
   options: CgpaFormulaOption[];
   initialSlug?: string;
+  /** Adresteki ?university= değerini başlangıç kurumu olarak okur. */
+  readQuery?: boolean;
 }) {
-  const allOptions = [...options, ...GENERIC_FORMULAS];
+  const allOptions = useMemo(() => [...options, ...GENERIC_FORMULAS], [options]);
   const [slug, setSlug] = useState(initialSlug ?? allOptions[0].slug);
+  useEffect(() => {
+    if (!readQuery) return;
+    const frame = requestAnimationFrame(() => {
+      const q = new URLSearchParams(window.location.search).get("university");
+      if (q && allOptions.some((o) => o.slug === q)) setSlug(q);
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [readQuery, allOptions]);
   const [mode, setMode] = useState<"toPercent" | "toCgpa" | "sgpa">("toPercent");
   const [cgpa, setCgpa] = useState("8");
   const [percentage, setPercentage] = useState("75");

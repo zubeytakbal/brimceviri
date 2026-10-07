@@ -49,7 +49,7 @@ function uzLicenseRedirects(): MergedRedirect[] {
 
 /** Latin Amerika İspanyolcası sayfaları es sayfalarının ondalık ayırıcı dışında aynısıydı. */
 function es419Redirects(): MergedRedirect[] {
-  return [r("/es-419/:path*", "/es/:path*"), r("/es-419", "/es")];
+  return [r("/es-419/:path*", "/es/:path*")];
 }
 
 export function mergedPageRedirects(): MergedRedirect[] {

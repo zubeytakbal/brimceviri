@@ -254,6 +254,8 @@ export const turkishToolGroups: ToolGroup[] = [
     links: [
       { href: "/muhendislik-hesaplayicilari", label: "Mühendislik Hesaplayıcıları" },
       { href: "/bilim-hesaplayicilari", label: "Bilim Hesaplayıcıları" },
+      { href: "/bilim-hesaplayicilari/fizik/egik-atis-hesaplama", label: "Eğik Atış" },
+      { href: "/bilim-hesaplayicilari/matematik/sayilar", label: "Asal, Tam Kare ve Mükemmel Sayılar" },
       { href: "/awg-mm2-cevirici", label: "AWG - mm² Çevirici" },
       { href: "/boru-capi-hesaplama", label: "Boru Çapı, Debi ve Akış Hızı" },
       { href: "/boru-capi-donusum-hesaplama", label: "Boru Çapı Dönüşümü (DN-NPS)" },

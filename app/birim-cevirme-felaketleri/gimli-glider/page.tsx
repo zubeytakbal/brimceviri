@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
+import OtherDisasters from "../../components/OtherDisasters";
 import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
 import { buildSiteUrl } from "../../siteConfig";
 
@@ -190,6 +191,8 @@ export default function GimliGliderPage() {
               {item.answer}
             </p>
           ))}
+
+          <OtherDisasters current="gimli-glider" />
 
           <h2>Kaynaklar</h2>
           <p>

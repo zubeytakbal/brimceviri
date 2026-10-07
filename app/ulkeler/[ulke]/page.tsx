@@ -11,6 +11,7 @@ import {
   currencyNameTr,
   distanceFromAnkara,
   fxPairFor,
+  nearestCountries,
   neighborsOf,
   powerFor,
   TURKEY,
@@ -63,6 +64,7 @@ export default async function CountryPage({ params }: { params: Promise<{ ulke: 
   if (!c) notFound();
   const now = new Date();
   const neighbors = neighborsOf(c);
+  const nearest = nearestCountries(c);
   const diff = timeDiffWithTurkey(c, now);
   const dist = distanceFromAnkara(c);
   const isTurkey = c.iso3 === TURKEY.iso3;
@@ -217,6 +219,7 @@ export default async function CountryPage({ params }: { params: Promise<{ ulke: 
         { id: "yazim", label: "Tarih, saat ve sayı yazımı" },
         ...(isTurkey ? [] : [{ id: "turkiye", label: "Türkiye ile karşılaştırma" }]),
         ...(neighbors.length ? [{ id: "komsular", label: "Komşu ülkeler" }] : []),
+        { id: "yakin", label: "Yakındaki ülkeler" },
         { id: "faq", label: "Sık sorulan sorular" },
       ]}
       faqTitle="Sık Sorulan Sorular"
@@ -436,6 +439,20 @@ export default async function CountryPage({ params }: { params: Promise<{ ulke: 
           </p>
         </>
       )}
+      <h2 id="yakin">Yakındaki ülkeler</h2>
+      <p>
+        {c.capital} şehrine kuş uçuşu en yakın başkentler{neighbors.length ? " (komşular hariç)" : ""}:{" "}
+        {nearest.map((n, i) => (
+          <span key={n.country.iso3}>
+            {i > 0 ? ", " : ""}
+            <Link href={`/ulkeler/${n.country.id}`} prefetch={false}>
+              {n.country.nameTr}
+            </Link>{" "}
+            ({n.country.capital}, {km(n.km)} km)
+          </span>
+        ))}
+        .
+      </p>
       <p>
         <small>
           Kaynaklar: mledoze/countries (ODbL), GeoNames (CC BY 4.0), Natural Earth, Unicode CLDR.

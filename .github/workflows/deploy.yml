@@ -37,8 +37,13 @@ jobs:
 
       - run: npm ci
 
+      # Google Fonts indirmesi ara sıra düşüyor (next/font); yalnızca o hatada bir kez daha dener.
       - name: Build
-        run: npm run build
+        run: |
+          npm run build 2>&1 | tee build.log && exit 0
+          grep -q "An error occurred in \`next/font\`" build.log || exit 1
+          echo "next/font indirme hatası, yeniden deneniyor"
+          npm run build
         env:
           NODE_OPTIONS: --max-old-space-size=6144
 

@@ -12,6 +12,7 @@ import { DecorativeIcon, getCategoryIconName, type SiteIconName } from "./siteIc
 import NotificationBell from "./NotificationBell";
 
 import { useSearchTracking } from "./useSearchTracking";
+import { unitGlossaryHref } from "../converter/unitGlossary";
 function CardIcon({ name }: { name: SiteIconName }) {
   return (
     <span className="home-category-icon-box" aria-hidden="true">
@@ -131,7 +132,7 @@ const popularUnits = preferredUnitSourceSlugs
 
     return {
       id: unitPage.slug,
-      href: `/it/guide-alle-unita/${unitPage.slug}`,
+      href: unitGlossaryHref("it", unitPage),
       label: unitPage.name,
       categoryLabel: unitPage.categoryName,
     };

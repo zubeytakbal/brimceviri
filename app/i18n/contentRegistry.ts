@@ -19,28 +19,20 @@ import { bengaliConversionPages } from "../converter/localizedBengaliConversionP
 import { unitPages } from "../converter/unitPages";
 import { arabicCategoryPages } from "../converter/localizedArabicCategoryPages";
 import { frenchCategoryPages } from "../converter/localizedFrenchCategoryPages";
-import { frenchUnitPages } from "../converter/localizedFrenchUnitPages";
 import { frenchConversionPages } from "../converter/localizedFrenchConversionPages";
 import { spanishCategoryPages } from "../converter/localizedSpanishCategoryPages";
-import { spanishUnitPages } from "../converter/localizedSpanishUnitPages";
 import { spanishConversionPages } from "../converter/localizedSpanishConversionPages";
 import { portugueseCategoryPages } from "../converter/localizedPortugueseCategoryPages";
-import { portugueseUnitPages } from "../converter/localizedPortugueseUnitPages";
 import { portugueseConversionPages } from "../converter/localizedPortugueseConversionPages";
 import { italianCategoryPages } from "../converter/localizedItalianCategoryPages";
-import { italianUnitPages } from "../converter/localizedItalianUnitPages";
 import { italianConversionPages } from "../converter/localizedItalianConversionPages";
 import { nederlandsCategoryPages } from "../converter/localizedNederlandsCategoryPages";
-import { nederlandsUnitPages } from "../converter/localizedNederlandsUnitPages";
 import { nederlandsConversionPages } from "../converter/localizedNederlandsConversionPages";
 import { swedishCategoryPages } from "../converter/localizedSwedishCategoryPages";
-import { swedishUnitPages } from "../converter/localizedSwedishUnitPages";
 import { swedishConversionPages } from "../converter/localizedSwedishConversionPages";
 import { norwegianCategoryPages } from "../converter/localizedNorwegianCategoryPages";
-import { norwegianUnitPages } from "../converter/localizedNorwegianUnitPages";
 import { norwegianConversionPages } from "../converter/localizedNorwegianConversionPages";
 import { danishCategoryPages } from "../converter/localizedDanishCategoryPages";
-import { danishUnitPages } from "../converter/localizedDanishUnitPages";
 import { danishConversionPages } from "../converter/localizedDanishConversionPages";
 
 export type RouteCollectionKey =
@@ -160,6 +152,7 @@ const localizedSlugEntriesByLocale: Record<
   RouteCollectionKey,
   Record<Locale, LocalizedSlugEntry[]>
 > = {
+  // es, fr, pt, it, nl, sv, no, da: birim bilgisi kategori sayfasındaki sözlükte, ayrı sayfa yok.
   units: {
     tr: unitPages.map((page) => ({
       sourceSlug: page.slug,
@@ -185,39 +178,15 @@ const localizedSlugEntriesByLocale: Record<
       sourceSlug: page.sourceSlug,
       slug: page.slug,
     })),
-    fr: frenchUnitPages.map((page) => ({
-      sourceSlug: page.sourceSlug,
-      slug: page.slug,
-    })),
-    es: spanishUnitPages.map((page) => ({
-      sourceSlug: page.sourceSlug,
-      slug: page.slug,
-    })),
-    pt: portugueseUnitPages.map((page) => ({
-      sourceSlug: page.sourceSlug,
-      slug: page.slug,
-    })),
-    it: italianUnitPages.map((page) => ({
-      sourceSlug: page.sourceSlug,
-      slug: page.slug,
-    })),
-    nl: nederlandsUnitPages.map((page) => ({
-      sourceSlug: page.sourceSlug,
-      slug: page.slug,
-    })),
-    sv: swedishUnitPages.map((page) => ({
-      sourceSlug: page.sourceSlug,
-      slug: page.slug,
-    })),
+    fr: [],
+    es: [],
+    pt: [],
+    it: [],
+    nl: [],
+    sv: [],
     ru: [],
-    no: norwegianUnitPages.map((page) => ({
-      sourceSlug: page.sourceSlug,
-      slug: page.slug,
-    })),
-    da: danishUnitPages.map((page) => ({
-      sourceSlug: page.sourceSlug,
-      slug: page.slug,
-    })),
+    no: [],
+    da: [],
   },
   categories: {
     tr: categoryPages.map((page) => ({

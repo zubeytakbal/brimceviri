@@ -12,9 +12,13 @@ type BreadcrumbItem = {
 };
 
 type UnitGuideLink = {
-  href: string;
+  /** Yoksa birim, kendi sayfası olmadan sözlük girdisi olarak gösterilir. */
+  href?: string;
   label: string;
   symbol: string;
+  id?: string;
+  description?: string;
+  details?: string[];
 };
 
 type CalculatorLink = {
@@ -188,23 +192,35 @@ export default function CategoryPageLayout({
             <span>{unitGuidesCountLabel}</span>
           </div>
 
-          <ul className="category-unit-list">
-            {unitGuides.map((unitGuide) => (
-              <li key={unitGuide.href}>
-                <Link href={unitGuide.href}>
-                  <DecorativeIcon
-                    className="category-link-icon"
-                    name="unitGuide"
-                    size={18}
-                  />
-                  <span>
-                    {unitGuide.label}
-                    <small>{unitGuide.symbol}</small>
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
+          {unitGuides.some((unitGuide) => !unitGuide.href) ? (
+            <dl className="category-unit-glossary">
+              {unitGuides.map((unitGuide) => (
+                <div key={unitGuide.id ?? unitGuide.label} id={unitGuide.id}>
+                  <dt>
+                    {unitGuide.label} <small>{unitGuide.symbol}</small>
+                  </dt>
+                  {unitGuide.description && <dd>{unitGuide.description}</dd>}
+                  {unitGuide.details?.map((detail) => (
+                    <dd key={detail}>{detail}</dd>
+                  ))}
+                </div>
+              ))}
+            </dl>
+          ) : (
+            <ul className="category-unit-list">
+              {unitGuides.map((unitGuide) => (
+                <li key={unitGuide.href}>
+                  <Link href={unitGuide.href!}>
+                    <DecorativeIcon className="category-link-icon" name="unitGuide" size={18} />
+                    <span>
+                      {unitGuide.label}
+                      <small>{unitGuide.symbol}</small>
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
         </section>
 
         {calculatorSection &&

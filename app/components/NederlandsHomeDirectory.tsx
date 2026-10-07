@@ -2,6 +2,7 @@ import Link from "@/app/components/SiteLink";
 import { nederlandsCategoryPages } from "../converter/localizedNederlandsCategoryPages";
 import { nederlandsConversionPages } from "../converter/localizedNederlandsConversionPages";
 import { nederlandsUnitPages } from "../converter/localizedNederlandsUnitPages";
+import { unitGlossaryHref } from "../converter/unitGlossary";
 
 const tools = [
   { href: "/nl/schoenmaten-omrekenen", title: "Schoenmaat omrekenen", description: "Vergelijk EU-, US- en UK-schoenmaten." },
@@ -52,7 +53,7 @@ export default function NederlandsHomeDirectory() {
 
         <section className="directory-section">
           <header className="directory-section-header"><div><h2>Eenhedengidsen</h2></div></header>
-          <ul className="directory-popular-list">{popularUnits.map((unit) => <li key={unit.slug}><Link href={`/nl/eenheidsgidsen/${unit.slug}`}><span className="directory-conversion-title">{unit.name}</span><small>{unit.categoryName}</small></Link></li>)}</ul>
+          <ul className="directory-popular-list">{popularUnits.map((unit) => <li key={unit.slug}><Link href={unitGlossaryHref("nl", unit)}><span className="directory-conversion-title">{unit.name}</span><small>{unit.categoryName}</small></Link></li>)}</ul>
         </section>
       </div>
     </main>

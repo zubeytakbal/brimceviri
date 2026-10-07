@@ -13,6 +13,7 @@ import NotificationBell from "./NotificationBell";
 
 import { useSearchTracking } from "./useSearchTracking";
 import { CATHOLIC_PATHS } from "../i18n/catholicTools";
+import { unitGlossaryHref } from "../converter/unitGlossary";
 function CardIcon({ name }: { name: SiteIconName }) {
   return (
     <span className="home-category-icon-box" aria-hidden="true">
@@ -153,7 +154,7 @@ const popularUnits = preferredUnitSourceSlugs
 
     return {
       id: unitPage.slug,
-      href: `/pt/guias-de-unidades/${unitPage.slug}`,
+      href: unitGlossaryHref("pt", unitPage),
       label: unitPage.name,
       categoryLabel: unitPage.categoryName,
     };

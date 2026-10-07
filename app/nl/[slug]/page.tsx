@@ -15,6 +15,7 @@ import { nederlandsCategoryPages } from "../../converter/localizedNederlandsCate
 import { findNederlandsUnitPage } from "../../converter/localizedNederlandsUnitPages";
 import { getUnitSources } from "../../converter/unitSources";
 import { buildSiteUrl } from "../../siteConfig";
+import { unitGlossaryHref } from "../../converter/unitGlossary";
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -189,14 +190,14 @@ export default async function NederlandsConversionPage({ params }: PageProps) {
           <section className="conversion-section unit-information">
             <h2>Wat is {fromUnit.name}?</h2>
             <p>{fromUnit.shortDescription}</p><p>{fromUnit.historySummary}</p>
-            <Link className="text-link" href={`/nl/eenheidsgidsen/${fromUnit.slug}`}>Bekijk de gids voor {fromUnit.name}</Link>
+            <Link className="text-link" href={unitGlossaryHref("nl", fromUnit)}>Bekijk de gids voor {fromUnit.name}</Link>
           </section>
         )}
         {toUnit && (
           <section className="conversion-section unit-information">
             <h2>Wat is {toUnit.name}?</h2>
             <p>{toUnit.shortDescription}</p><p>{toUnit.historySummary}</p>
-            <Link className="text-link" href={`/nl/eenheidsgidsen/${toUnit.slug}`}>Bekijk de gids voor {toUnit.name}</Link>
+            <Link className="text-link" href={unitGlossaryHref("nl", toUnit)}>Bekijk de gids voor {toUnit.name}</Link>
           </section>
         )}
         {reversePage && (

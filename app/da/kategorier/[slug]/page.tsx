@@ -101,7 +101,6 @@ export default async function DanishCategoryPage({ params }: PageProps) {
   );
 
   const sources = getUnitSources(categoryPage.category);
-  const featuredUnit = categoryUnits[0];
   const baseName = categoryBaseNames[categoryPage.category] ?? categoryPage.title;
 
   const tableReferenceLabel =
@@ -208,12 +207,14 @@ export default async function DanishCategoryPage({ params }: PageProps) {
       conversionHeading="Populære omregninger"
       conversionCountLabel={`${conversionCards.length} par`}
       conversionCards={conversionCards}
-      unitGuidesHeading="Enhedsguider"
+      unitGuidesHeading="Enhedsordliste"
       unitGuidesCountLabel={`${categoryUnits.length} enheder`}
       unitGuides={categoryUnits.map((unitPage) => ({
-        href: `/da/enhedsguider/${unitPage.slug}`,
-        label: `Hvad er ${unitPage.name}?`,
+        id: unitPage.slug,
+        label: unitPage.name,
         symbol: unitPage.symbol,
+        description: unitPage.shortDescription,
+        details: [unitPage.historySummary, `Anvendelse: ${unitPage.commonUses}`],
       }))}
       detailHeading={`Detaljeret information om ${baseName}`}
       detailContent={
@@ -261,16 +262,6 @@ export default async function DanishCategoryPage({ params }: PageProps) {
                 {section.paragraphs.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
-
-                {index === 1 && featuredUnit && (
-                  <p className="category-inline-link">
-                    For mere information om enheden {featuredUnit.name}, se{" "}
-                    <a href={`/da/enhedsguider/${featuredUnit.slug}`}>
-                      informationssiden for {featuredUnit.name}
-                    </a>
-                    .
-                  </p>
-                )}
               </section>
             ))}
 

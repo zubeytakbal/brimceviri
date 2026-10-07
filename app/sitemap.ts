@@ -296,14 +296,6 @@ function buildLocalizedCoreAlternates(
       ar: englishPage ? `/ar/unit-guides/${englishPage.slug}` : undefined,
       uz: uzbekPage ? `/uz/birliklar/${uzbekPage.slug}` : undefined,
       bn: bengaliPage ? `/bn/unit-guides/${bengaliPage.slug}` : undefined,
-      fr: frenchPage ? `/fr/guides-des-unites/${frenchPage.slug}` : undefined,
-      es: spanishPage ? `/es/guias-de-unidades/${spanishPage.slug}` : undefined,
-      pt: portuguesePage ? `/pt/guias-de-unidades/${portuguesePage.slug}` : undefined,
-      it: italianPage ? `/it/guide-alle-unita/${italianPage.slug}` : undefined,
-      nl: nederlandsPage ? `/nl/eenheidsgidsen/${nederlandsPage.slug}` : undefined,
-      sv: swedishPage ? `/sv/enhetsguider/${swedishPage.slug}` : undefined,
-      no: norwegianPage ? `/no/enhetsguider/${norwegianPage.slug}` : undefined,
-      da: danishPage ? `/da/enhedsguider/${danishPage.slug}` : undefined,
     },
     conversions: {
       tr: hasTurkishPage ? `/${sourceSlug}` : undefined,
@@ -5146,12 +5138,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       };
     });
 
-  // Her dilin kategori ve birim rehberi dizini kendi dilindeki adreste.
-  const curatedLocaleIndexPaths: Record<string, { categories: string; unitGuides: string }> = {
-    "/fr": { categories: "/categories", unitGuides: "/guides-des-unites" },
-    "/es": { categories: "/categorias", unitGuides: "/guias-de-unidades" },
-    "/pt": { categories: "/categorias", unitGuides: "/guias-de-unidades" },
-    "/nl": { categories: "/categorieen", unitGuides: "/eenheidsgidsen" },
+  // Her dilin kategori dizini kendi dilindeki adreste (birim bilgisi kategori sayfalarında).
+  const curatedLocaleIndexPaths: Record<string, { categories: string }> = {
+    "/fr": { categories: "/categories" },
+    "/es": { categories: "/categorias" },
+    "/pt": { categories: "/categorias" },
+    "/nl": { categories: "/categorieen" },
   };
 
   const curatedLocaleIndexRoutes: MetadataRoute.Sitemap = Object.keys(
@@ -5165,12 +5157,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}${localePath}${curatedLocaleIndexPaths[localePath].categories}`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly" as const,
-      priority: 0.75,
-    },
-    {
-      url: `${baseUrl}${localePath}${curatedLocaleIndexPaths[localePath].unitGuides}`,
       lastModified: contentLastModified,
       changeFrequency: "monthly" as const,
       priority: 0.75,
@@ -5260,10 +5246,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
           ar: `${baseUrl}/ar/unit-guides`,
           "uz-UZ": `${baseUrl}/uz/birliklar`,
           bn: `${baseUrl}/bn/unit-guides`,
-          fr: `${baseUrl}/fr/guides-des-unites`,
-          es: `${baseUrl}/es/guias-de-unidades`,
-          pt: `${baseUrl}/pt/guias-de-unidades`,
-          nl: `${baseUrl}/nl/eenheidsgidsen`,
           "x-default": `${baseUrl}/birimler`,
         },
       },
@@ -5319,54 +5301,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     0.7
   );
 
-  const frenchUnitRoutes = buildLocalizedCoreRoutes(
-    frenchUnitPages,
-    "units",
-    "/fr/guides-des-unites/",
-    0.7
-  );
-  const spanishUnitRoutes = buildLocalizedCoreRoutes(
-    spanishUnitPages,
-    "units",
-    "/es/guias-de-unidades/",
-    0.7
-  );
-  const portugueseUnitRoutes = buildLocalizedCoreRoutes(
-    portugueseUnitPages,
-    "units",
-    "/pt/guias-de-unidades/",
-    0.7
-  );
-  const italianUnitRoutes = buildLocalizedCoreRoutes(
-    italianUnitPages,
-    "units",
-    "/it/guide-alle-unita/",
-    0.7
-  );
-  const nederlandsUnitRoutes = buildLocalizedCoreRoutes(
-    nederlandsUnitPages,
-    "units",
-    "/nl/eenheidsgidsen/",
-    0.7
-  );
-  const swedishUnitRoutes = buildLocalizedCoreRoutes(
-    swedishUnitPages,
-    "units",
-    "/sv/enhetsguider/",
-    0.7
-  );
-  const norwegianUnitRoutes = buildLocalizedCoreRoutes(
-    norwegianUnitPages,
-    "units",
-    "/no/enhetsguider/",
-    0.7
-  );
-  const danishUnitRoutes = buildLocalizedCoreRoutes(
-    danishUnitPages,
-    "units",
-    "/da/enhedsguider/",
-    0.7
-  );
 
   const frenchCategoryRoutes = buildLocalizedCoreRoutes(
     frenchCategoryPages,
@@ -6743,14 +6677,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...arabicUnitRoutes,
     ...uzbekUnitRoutes,
     ...bengaliUnitRoutes,
-    ...frenchUnitRoutes,
-    ...spanishUnitRoutes,
-    ...portugueseUnitRoutes,
-    ...italianUnitRoutes,
-    ...nederlandsUnitRoutes,
-    ...swedishUnitRoutes,
-    ...norwegianUnitRoutes,
-    ...danishUnitRoutes,
     ...curatedLocaleIndexRoutes,
     ...italianIndexRoutes,
     ...swedishIndexRoutes,

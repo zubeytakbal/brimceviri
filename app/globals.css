@@ -15464,3 +15464,34 @@ a.all-units-row .all-units-name {
   place-items: center;
   cursor: default;
 }
+
+/* Kategori sayfasında birim sözlüğü (ayrı birim sayfası olmayan diller) */
+.category-unit-glossary {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+
+.category-unit-glossary > div {
+  padding: 14px 16px;
+  border: 1px solid #d7e2e8;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #172033;
+}
+
+.category-unit-glossary dt {
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.category-unit-glossary dt small {
+  font-weight: 500;
+  margin-left: 6px;
+  opacity: 0.7;
+}
+
+.category-unit-glossary dd {
+  margin: 4px 0 0;
+  line-height: 1.55;
+}

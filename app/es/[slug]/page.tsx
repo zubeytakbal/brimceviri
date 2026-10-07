@@ -15,6 +15,7 @@ import { findSpanishUnitPage } from "../../converter/localizedSpanishUnitPages";
 import { getUnitSources } from "../../converter/unitSources";
 import { buildFullLanguageAlternates } from "../../i18n/routing";
 import { buildSiteUrl } from "../../siteConfig";
+import { unitGlossaryHref } from "../../converter/unitGlossary";
 
 type PageProps = {
   params: Promise<{
@@ -277,7 +278,7 @@ export default async function SpanishConversionPage({ params }: PageProps) {
 
             <Link
               className="text-link"
-              href={`/es/guias-de-unidades/${fromUnitInfo.slug}`}
+              href={unitGlossaryHref("es", fromUnitInfo)}
             >
               Ver la guía de la unidad {fromUnitInfo.name}
             </Link>
@@ -292,7 +293,7 @@ export default async function SpanishConversionPage({ params }: PageProps) {
 
             <Link
               className="text-link"
-              href={`/es/guias-de-unidades/${toUnitInfo.slug}`}
+              href={unitGlossaryHref("es", toUnitInfo)}
             >
               Ver la guía de la unidad {toUnitInfo.name}
             </Link>

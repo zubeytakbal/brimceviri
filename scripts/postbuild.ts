@@ -8,10 +8,13 @@
 // 3. Kok layout <html lang="tr"> ile statik uretildigi icin her dil
 //    klasorundeki HTML'de lang/dir'i dogru dile cevirir (ham HTML'i okuyan
 //    tarayicilar, ekran okuyucular ve dizin/arama araclari icin).
+// 4. Sablon sayfa denetimi (scripts/templateGuard.ts): kopya kardes sayfa
+//    grubu varsa build'i durdurur.
 import { existsSync, readdirSync, readFileSync, unlinkSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { LOCALE_DEFINITIONS } from "../app/i18n/config";
 import { siteRedirects } from "../app/siteRedirects";
+import { checkTemplates } from "./templateGuard";
 
 const OUT = "out";
 
@@ -83,3 +86,13 @@ function fixHtmlLang(): number {
 console.log(`${removeRscPayloads(OUT)} sayfa gecis verisi (.txt) silindi`);
 console.log(`${fixHtmlLang()} sayfada <html lang> dile gore duzeltildi`);
 console.log(`out/_redirects: ${writeRedirects()} yonlendirme yazildi`);
+
+// 4. Şablon sayfa denetimi: kopya kardeş sayfa grubu varsa build durur.
+const guard = checkTemplates(OUT);
+for (const g of guard.fixed) console.warn(`Şablon denetimi: ${g} artık eşiğin altında, templateGuard PENDING listesinden silin.`);
+if (guard.failed.length) {
+  for (const f of guard.failed) console.error(`Şablon sayfa grubu: ${f.group} (${f.n} sayfa, ortalama örtüşme %${Math.round(f.avg * 100)})`);
+  console.error("Bu sayfalar birbirinin kopyası. Ya özgün içerik ekleyin ya da ana sayfada birleştirin.");
+  process.exit(1);
+}
+console.log(`Şablon denetimi geçti (${guard.pending} grup düzeltme bekliyor)`);

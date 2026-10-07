@@ -29,7 +29,6 @@ export const PENDING = new Set<string>([
   "/en/countries",
   "/iller-arasi-mesafe/*",
   "/de/entfernung/*",
-  "/seferi-mesafe-hesaplama",
   "/uz/viloyatlar-balandligi",
   "/dunyanin-en-yuksek-daglari",
   "/uz/dunyoning-eng-baland-toglari",

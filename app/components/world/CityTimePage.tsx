@@ -158,7 +158,7 @@ export default function CityTimePage({ city, lang }: { city: WorldCity; lang: La
           ? `${name} (${country}) şu an ${facts.zoneName} (${facts.utcLabel}) kullanır. ${
               inTurkey ? "Türkiye yıl boyu tek saat dilimi (TRT) kullanır." : `Şu an İstanbul'dan ${describeDifference(facts.diffFromIstanbul, "tr")}.`
             }`
-          : `${name} (${country}) uses ${facts.zoneName}: ${facts.utcLabel}. The live clock below shows the exact local time and how far it is from yours.`
+          : `${name} (${country}) uses ${facts.zoneName}: ${facts.utcLabel}.`
       }
       tool={
         <CityLiveClock
@@ -257,7 +257,7 @@ export default function CityTimePage({ city, lang }: { city: WorldCity; lang: La
           <p>
             {tr
               ? `İstanbul'da saat şu iken ${city.inTr} saat kaç? Yeşil satırlar iki şehirde de mesai saatine (09:00–18:00) denk gelen, toplantı ve arama için en uygun saatlerdir${overlapCount ? ` (${overlapCount} saat)` : ""}.`
-              : `When it is a given hour in ${compareName}, what time is it in ${name}? Highlighted rows fall inside business hours (9 am–6 pm) in both cities — the best window for calls and meetings${overlapCount ? ` (${overlapCount} hours)` : ""}.`}
+              : `${compareName} hour by hour in ${name} time${overlapCount ? `; the ${overlapCount} highlighted rows are business hours (9 am–6 pm) in both cities` : ""}.`}
             {!overlapCount && (tr ? " Bu iki şehrin mesai saatleri çakışmıyor." : " These two cities' business hours don't overlap.")}
           </p>
           <div className="conversion-table-wrap">
@@ -287,7 +287,7 @@ export default function CityTimePage({ city, lang }: { city: WorldCity; lang: La
       <p>
         {tr
           ? `Farklar ${name} saatine göredir. Yaz saati uygulayan şehirlerde fark yıl içinde 1 saat değişebilir.`
-          : `Differences are relative to ${name}. Where daylight saving applies, a gap can change by an hour during the year.`}
+          : `Relative to ${name}; gaps with daylight-saving cities shift by an hour during the year.`}
       </p>
       <div className="conversion-table-wrap">
         <table className="conversion-table">
@@ -326,7 +326,7 @@ export default function CityTimePage({ city, lang }: { city: WorldCity; lang: La
       <p>
         {tr
           ? "Önümüzdeki 7 günün gün doğumu, gün batımı ve gün uzunluğu (yerel saat, atmosferik kırılma dahil, ±2 dakika)."
-          : "Sunrise, sunset and day length for the next 7 days (local time, including atmospheric refraction, ±2 minutes)."}
+          : "Next 7 days, local time (±2 min)."}
       </p>
       <div className="conversion-table-wrap">
         <table className="conversion-table">
@@ -355,7 +355,7 @@ export default function CityTimePage({ city, lang }: { city: WorldCity; lang: La
       <p>
         {tr
           ? `Fotoğrafçıların sevdiği yumuşak, sıcak ışık (altın saat) güneş ufkun 6° üstü ile 4° altı arasındayken; mavi saat ise 4° ile 6° altı arasındayken yaşanır. ${sun.date} için yerel saatler:`
-          : `Photographers' soft, warm light (golden hour) happens while the sun is between 6° above and 4° below the horizon; blue hour follows between 4° and 6° below. Local times for ${sun.date}:`}
+          : `Local times for ${sun.date} (golden hour: sun 6° above to 4° below the horizon; blue hour: 4° to 6° below):`}
       </p>
       <div className="conversion-table-wrap">
         <table className="conversion-table">

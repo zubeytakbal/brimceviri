@@ -100,7 +100,6 @@ import { compoundsDatabase } from "./converter/compoundsDatabase";
 import { findCompoundEditorial } from "./converter/compoundEditorial";
 import { bengaliWeightPairs } from "./converter/bengaliWeightPairs";
 import { licenseClasses } from "./converter/licenseClassFinder";
-import { getAllNumberFactsRange } from "./converter/numberFacts";
 import {
   englishUnitPages,
   findEnglishUnitPageByTurkishSlug,
@@ -289,9 +288,6 @@ function buildLocalizedCoreAlternates(
       tr: hasTurkishPage ? `/birimler/${sourceSlug}` : undefined,
       en: englishPage ? `/en/units/${englishPage.slug}` : undefined,
       de: germanPage ? `/de/einheiten/${germanPage.slug}` : undefined,
-      ar: englishPage ? `/ar/unit-guides/${englishPage.slug}` : undefined,
-      uz: uzbekPage ? `/uz/birliklar/${uzbekPage.slug}` : undefined,
-      bn: bengaliPage ? `/bn/unit-guides/${bengaliPage.slug}` : undefined,
     },
     conversions: {
       tr: hasTurkishPage ? `/${sourceSlug}` : undefined,
@@ -1071,12 +1067,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     },
-    ...getAllNumberFactsRange().map((number) => ({
-      url: `${baseUrl}/uz/sonlar/${number}`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly" as const,
-      priority: 0.5,
-    })),
     {
       url: `${baseUrl}/bilim-hesaplayicilari/matematik/kupkok-hesaplama`,
       lastModified: contentLastModified,
@@ -5216,26 +5206,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  const bengaliUnitGuideIndexRoute: MetadataRoute.Sitemap = [
-    {
-      url: `${baseUrl}/bn/unit-guides`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/birimler`,
-          en: `${baseUrl}/en/units`,
-          de: `${baseUrl}/de/einheiten`,
-          ar: `${baseUrl}/ar/unit-guides`,
-          "uz-UZ": `${baseUrl}/uz/birliklar`,
-          bn: `${baseUrl}/bn/unit-guides`,
-          "x-default": `${baseUrl}/birimler`,
-        },
-      },
-    },
-  ];
-
   const frenchConversionRoutes = buildLocalizedCoreRoutes(
     frenchConversionPages,
     "conversions",
@@ -5413,90 +5383,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
           turkishUrl,
           englishUrl,
           germanUrl
-        ),
-      };
-    });
-
-  const arabicUnitRoutes: MetadataRoute.Sitemap =
-    englishUnitPages.map((page) => {
-      const turkishUrl =
-        `${baseUrl}/birimler/${page.sourceSlug}`;
-      const englishUrl =
-        `${baseUrl}/en/units/${page.slug}`;
-      const germanPage = findGermanUnitPageByTurkishSlug(
-        page.sourceSlug
-      );
-      const germanUrl = germanPage
-        ? `${baseUrl}/de/einheiten/${germanPage.slug}`
-        : undefined;
-      const arabicUrl =
-        `${baseUrl}/ar/unit-guides/${page.slug}`;
-
-      return {
-        url: arabicUrl,
-        lastModified: contentLastModified,
-        changeFrequency: "monthly",
-        priority: 0.73,
-        alternates: languageAlternates(
-          turkishUrl,
-          englishUrl,
-          germanUrl,
-          arabicUrl
-        ),
-      };
-    });
-
-  const uzbekUnitRoutes: MetadataRoute.Sitemap =
-    uzbekUnitPages.map((page) => {
-      const turkishUrl =
-        `${baseUrl}/birimler/${page.sourceSlug}`;
-      const englishPage = findEnglishUnitPageByTurkishSlug(
-        page.sourceSlug
-      );
-      const englishUrl = englishPage
-        ? `${baseUrl}/en/units/${englishPage.slug}`
-        : `${baseUrl}/en/units`;
-      const uzbekUrl = `${baseUrl}/uz/birliklar/${page.slug}`;
-
-      return {
-        url: uzbekUrl,
-        lastModified: contentLastModified,
-        changeFrequency: "monthly",
-        priority: 0.7,
-        alternates: languageAlternates(
-          turkishUrl,
-          englishUrl,
-          undefined,
-          undefined,
-          uzbekUrl
-        ),
-      };
-    });
-
-  const bengaliUnitRoutes: MetadataRoute.Sitemap =
-    bengaliUnitPages.map((page) => {
-      const turkishUrl =
-        `${baseUrl}/birimler/${page.sourceSlug}`;
-      const englishPage = findEnglishUnitPageByTurkishSlug(
-        page.sourceSlug
-      );
-      const englishUrl = englishPage
-        ? `${baseUrl}/en/units/${englishPage.slug}`
-        : `${baseUrl}/en/units`;
-      const bengaliUrl = `${baseUrl}/bn/unit-guides/${page.slug}`;
-
-      return {
-        url: bengaliUrl,
-        lastModified: contentLastModified,
-        changeFrequency: "monthly",
-        priority: 0.7,
-        alternates: languageAlternates(
-          turkishUrl,
-          englishUrl,
-          undefined,
-          undefined,
-          undefined,
-          bengaliUrl
         ),
       };
     });
@@ -6374,8 +6260,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/birimler`,
         `${baseUrl}/en/units`,
         `${baseUrl}/de/einheiten`,
-        undefined,
-        `${baseUrl}/uz/birliklar`
       ),
     },
     {
@@ -6387,8 +6271,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/birimler`,
         `${baseUrl}/en/units`,
         `${baseUrl}/de/einheiten`,
-        undefined,
-        `${baseUrl}/uz/birliklar`
       ),
     },
     {
@@ -6400,8 +6282,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/birimler`,
         `${baseUrl}/en/units`,
         `${baseUrl}/de/einheiten`,
-        undefined,
-        `${baseUrl}/uz/birliklar`
       ),
     },
     {
@@ -6409,32 +6289,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: contentLastModified,
       changeFrequency: "monthly",
       priority: 0.75,
-    },
-    {
-      url: `${baseUrl}/ar/unit-guides`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.8,
-      alternates: languageAlternates(
-        `${baseUrl}/birimler`,
-        `${baseUrl}/en/units`,
-        `${baseUrl}/de/einheiten`,
-        `${baseUrl}/ar/unit-guides`,
-        `${baseUrl}/uz/birliklar`
-      ),
-    },
-    {
-      url: `${baseUrl}/uz/birliklar`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.85,
-      alternates: languageAlternates(
-        `${baseUrl}/birimler`,
-        `${baseUrl}/en/units`,
-        `${baseUrl}/de/einheiten`,
-        undefined,
-        `${baseUrl}/uz/birliklar`
-      ),
     },
     {
       url: `${baseUrl}/uz/turkumlar`,
@@ -6658,15 +6512,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...turkishUnitRoutes,
     ...englishUnitRoutes,
     ...germanUnitRoutes,
-    ...arabicUnitRoutes,
-    ...uzbekUnitRoutes,
-    ...bengaliUnitRoutes,
     ...curatedLocaleIndexRoutes,
     ...italianIndexRoutes,
     ...swedishIndexRoutes,
     ...norwegianIndexRoutes,
     ...danishIndexRoutes,
-    ...bengaliUnitGuideIndexRoute,
     ...corporateRoutes,
   ];
 

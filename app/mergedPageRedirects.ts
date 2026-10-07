@@ -64,7 +64,8 @@ function es419Redirects(): MergedRedirect[] {
 /** Sayı sayfaları yalnızca hesaplanan değerlerdi; sayı aracı aynı sayıyla açılır. */
 function numberRedirects(): MergedRedirect[] {
   const base = "/bilim-hesaplayicilari/matematik/sayilar";
-  return getAllNumberFactsRange().map((n) => r(`${base}/${n}`, `${base}?n=${n}`));
+  // Özbekçe sayı sayfaları da tek hesaplayıcıda: tek kalıp kural (?n= seçimi korur).
+  return [...getAllNumberFactsRange().map((n) => r(`${base}/${n}`, `${base}?n=${n}`)), r("/uz/sonlar/:son", "/uz/sonlar?n=:son")];
 }
 
 /** Amino asit sayfaları formül ve kütleden ibaretti; hepsi tek tabloda. */

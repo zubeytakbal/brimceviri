@@ -1,5 +1,11 @@
-// Ayrı birim rehberi sayfası olmayan dillerde (es, fr, pt, it, nl, sv, no, da) birim bilgisi
+// Ayrı birim rehberi sayfası olmayan dillerde (es, fr, pt, it, nl, sv, no, da, bn, ar, uz) birim bilgisi
 // o dilin kategori sayfasındaki sözlükte durur. Eski rehber adresleri buraya yönlenir.
+import { arabicCategoryPages } from "./localizedArabicCategoryPages";
+import { arabicUnitPages } from "./localizedArabicUnitPages";
+import { bengaliCategoryPages } from "./localizedBengaliCategoryPages";
+import { bengaliUnitPages } from "./localizedBengaliUnitPages";
+import { uzbekCategoryPages } from "./localizedUzbekCategoryPages";
+import { uzbekUnitPages } from "./localizedUzbekUnitPages";
 import { danishCategoryPages } from "./localizedDanishCategoryPages";
 import { danishUnitPages } from "./localizedDanishUnitPages";
 import { frenchCategoryPages } from "./localizedFrenchCategoryPages";
@@ -28,7 +34,13 @@ export const GLOSSARY_LOCALES = {
   sv: { guides: "/sv/enhetsguider", categories: "/sv/kategorier", units: swedishUnitPages, cats: swedishCategoryPages },
   no: { guides: "/no/enhetsguider", categories: "/no/kategorier", units: norwegianUnitPages, cats: norwegianCategoryPages },
   da: { guides: "/da/enhedsguider", categories: "/da/kategorier", units: danishUnitPages, cats: danishCategoryPages },
+  // Bu üç dilde eski adresler tek kalıp kuralla yönlenir (Cloudflare satır sınırı).
+  bn: { guides: "/bn/unit-guides", categories: "/bn/categories", units: bengaliUnitPages, cats: bengaliCategoryPages },
+  ar: { guides: "/ar/unit-guides", categories: "/ar/categories", units: arabicUnitPages, cats: arabicCategoryPages },
+  uz: { guides: "/uz/birliklar", categories: "/uz/turkumlar", units: uzbekUnitPages, cats: uzbekCategoryPages },
 } as const satisfies Record<string, { guides: string; categories: string; units: readonly Page[]; cats: readonly Page[] }>;
+
+const PATTERN_LOCALES = new Set<string>(["bn", "ar", "uz"]);
 
 export type GlossaryLocale = keyof typeof GLOSSARY_LOCALES;
 
@@ -41,8 +53,14 @@ export function unitGlossaryHref(locale: GlossaryLocale, unit: Page) {
 
 /** Eski rehber adresleri → kategori sayfası (301). */
 export function unitGuideRedirects() {
-  return Object.values(GLOSSARY_LOCALES).flatMap((conf) => {
+  return Object.entries(GLOSSARY_LOCALES).flatMap(([locale, conf]) => {
     const cats = conf.cats as readonly Page[];
+    if (PATTERN_LOCALES.has(locale)) {
+      return [
+        { source: conf.guides, destination: conf.categories },
+        { source: `${conf.guides}/:slug`, destination: conf.categories },
+      ];
+    }
     return [
       { source: conf.guides, destination: conf.categories },
       ...(conf.units as readonly Page[]).map((unit) => {

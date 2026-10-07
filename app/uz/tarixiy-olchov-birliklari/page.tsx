@@ -46,31 +46,31 @@ const historicalMassUnitOptions = [
 
 const centralAsianLengthUnits = [
   {
-    href: "/uz/birliklar/gaz",
+    href: "/uz/turkumlar/uzunlik#gaz",
     name: "Gaz",
     value: "≈ 0,71 m (standart qiymat)",
     note: "Buxoroda 16-17-asrlarda ≈0,787 m, 19-asrda ≈1,067 m; Xiva/Xorazmda ≈0,305 m ham qo'llanilgan.",
   },
   {
-    href: "/uz/birliklar/chaqirim",
+    href: "/uz/turkumlar/uzunlik#chaqirim",
     name: "Chaqirim",
     value: "≈ 1 km (zamonaviy qiymat)",
     note: "1894-yildagi rus islohotidan oldin ≈0,9 km, keyin ≈1,06-1,08 km bo'lgan; rus \"verst\"iga mos.",
   },
   {
-    href: "/uz/birliklar/tosh",
+    href: "/uz/turkumlar/uzunlik#tosh",
     name: "Tosh",
     value: "≈ 6-9,6 km (aniq emas)",
     note: "Forscha \"farsah\"ning turkiycha muqobili; 6-8 chaqirim yoki 9000-12000 qadamga teng.",
   },
   {
-    href: "/uz/birliklar/farsah",
+    href: "/uz/turkumlar/uzunlik#farsah",
     name: "Farsah",
     value: "≈ 6 km (eng ko'p qo'llanilgan qiymat)",
     note: "Asli forscha, lekin Buxoro va Xiva rasmiy hujjatlarida ham qo'llanilgan uzoq masofa birligi.",
   },
   {
-    href: "/uz/birliklar/qadam",
+    href: "/uz/turkumlar/uzunlik#qadam",
     name: "Qadam",
     value: "≈ 63-71 sm (standartlashtirilmagan)",
     note: "Kundalik va yer o'lchovlarida taxminiy masofa uchun ishlatilgan xalq birligi.",
@@ -79,31 +79,31 @@ const centralAsianLengthUnits = [
 
 const centralAsianMassUnits = [
   {
-    href: "/uz/birliklar/miskal",
+    href: "/uz/turkumlar/massa#miskal",
     name: "Miskal",
     value: "≈ 4,25 g",
     note: "Oltin, kumush va qimmatbaho narsalarni tortishda ishlatilgan.",
   },
   {
-    href: "/uz/birliklar/pud",
+    href: "/uz/turkumlar/massa#pud",
     name: "Pud",
     value: "= 16,3804815 kg",
     note: "Rus o'lchov tizimidan, 1894-yildan Turkistonda rasmiy massa birligi.",
   },
   {
-    href: "/uz/birliklar/qadoq",
+    href: "/uz/turkumlar/massa#qadoq",
     name: "Qadoq",
     value: "= 409,5 g",
     note: "Rus funtining Turkistondagi mahalliy nomi.",
   },
   {
-    href: "/uz/birliklar/dirham",
+    href: "/uz/turkumlar/massa#dirham",
     name: "Dirham",
     value: "= 7/10 miskal ≈ 3,2 g",
     note: "Buxoro xonligining shariat asosidagi savdo-huquqiy amaliyotida ishlatilgan.",
   },
   {
-    href: "/uz/birliklar/botmon",
+    href: "/uz/turkumlar/massa#botmon",
     name: "Botmon",
     value: "≈ 131 kg (Buxoro/Samarqand, 19-asr)",
     note: "Hududga qarab 1 dan 172 kg gacha keskin farq qilgan — yagona standarti bo'lmagan.",

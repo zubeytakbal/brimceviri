@@ -17,6 +17,7 @@ import NotificationBell from "./NotificationBell";
 import { useSearchTracking } from "./useSearchTracking";
 import { ARABIC_ISLAMIC_TOOLS } from "../i18n/arabicIslamicTools";
 import { ARABIC_ISLAMIC_HUB, ARABIC_ISLAMIC_PATHS, ISLAMIC_TOOL_PATHS } from "../i18n/islamicToolPaths";
+import { unitGlossaryHref } from "../converter/unitGlossary";
 function CardIcon({ name }: { name: SiteIconName }) {
   return (
     <span className="home-category-icon-box" aria-hidden="true">
@@ -107,7 +108,7 @@ const popularUnits = preferredUnitSourceSlugs
 
     return {
       id: englishUnit.slug,
-      href: `/ar/unit-guides/${englishUnit.slug}`,
+      href: unitGlossaryHref("ar", englishUnit),
       label: arabicUnit.name,
       categoryLabel: getArabicCategoryLabel(englishUnit.category),
     };

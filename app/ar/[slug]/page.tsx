@@ -44,6 +44,7 @@ import {
   getArabicCategoryUsage,
 } from "../../i18n/arabicLocalization";
 import { buildSiteUrl } from "../../siteConfig";
+import { unitGlossaryHref } from "../../converter/unitGlossary";
 
 const componentMap: Record<
   ArabicStandaloneToolComponentKey,
@@ -601,9 +602,9 @@ function renderConversionPage(slug: string) {
 
             <Link
               className="text-link"
-              href={`/ar/unit-guides/${fromUnitInfo.slug}`}
+              href={unitGlossaryHref("ar", fromUnitInfo)}
             >
-              فتح دليل وحدة{" "}
+              عرض الوحدة في المعجم:{" "}
               {getArabicUnitName({
                 englishName: fromUnitInfo.name,
                 slug: fromUnitInfo.slug,
@@ -640,9 +641,9 @@ function renderConversionPage(slug: string) {
 
             <Link
               className="text-link"
-              href={`/ar/unit-guides/${toUnitInfo.slug}`}
+              href={unitGlossaryHref("ar", toUnitInfo)}
             >
-              فتح دليل وحدة{" "}
+              عرض الوحدة في المعجم:{" "}
               {getArabicUnitName({
                 englishName: toUnitInfo.name,
                 slug: toUnitInfo.slug,

@@ -15,6 +15,7 @@ import { fxContentBn } from "../converter/fx/fxContentBn";
 import { buildFxSearchEntries } from "../converter/fx/fxLocale";
 
 import { useSearchTracking } from "./useSearchTracking";
+import { unitGlossaryHref } from "../converter/unitGlossary";
 function CardIcon({ name }: { name: SiteIconName }) {
   return (
     <span className="home-category-icon-box" aria-hidden="true">
@@ -136,7 +137,7 @@ const popularUnits = preferredUnitSourceSlugs
 
     return {
       id: unitPage.slug,
-      href: `/bn/unit-guides/${unitPage.slug}`,
+      href: unitGlossaryHref("bn", unitPage),
       label: unitPage.name,
       categoryLabel: unitPage.categoryName,
     };
@@ -467,9 +468,9 @@ export default function BengaliHomeDirectory({
             </ul>
 
             <div className="directory-section-footer">
-              <Link className="directory-section-link" href="/bn/unit-guides">
+              <Link className="directory-section-link" href="/bn/categories">
                 <DecorativeIcon className="directory-link-icon" name="allConversions" size={18} />
-                সব একক গাইড দেখুন
+                সব বিভাগ ও একক অভিধান দেখুন
               </Link>
             </div>
           </section>

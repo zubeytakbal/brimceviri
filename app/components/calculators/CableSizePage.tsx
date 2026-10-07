@@ -536,9 +536,9 @@ const copy: Record<CalculatorLocale, PageCopy> = {
       },
     ],
     relatedGuides: [
-      { label: "دليل الأمبير", href: "/ar/unit-guides/ampere" },
-      { label: "دليل الفولت", href: "/ar/unit-guides/volt" },
-      { label: "دليل المتر", href: "/ar/unit-guides/meter" },
+      { label: "دليل الأمبير", href: "/ar/categories/electricity#ampere" },
+      { label: "دليل الفولت", href: "/ar/categories/electricity#volt" },
+      { label: "دليل المتر", href: "/ar/categories/length#meter" },
     ],
   },
 };

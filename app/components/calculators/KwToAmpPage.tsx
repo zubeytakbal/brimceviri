@@ -494,9 +494,9 @@ const copy: Record<CalculatorLocale, PageCopy> = {
       },
     ],
     relatedGuides: [
-      { label: "دليل الكيلوواط", href: "/ar/unit-guides/kilowatt" },
-      { label: "دليل الفولت", href: "/ar/unit-guides/volt" },
-      { label: "دليل الأمبير", href: "/ar/unit-guides/ampere" },
+      { label: "دليل الكيلوواط", href: "/ar/categories/power#kilowatt" },
+      { label: "دليل الفولت", href: "/ar/categories/electricity#volt" },
+      { label: "دليل الأمبير", href: "/ar/categories/electricity#ampere" },
     ],
   },
 };

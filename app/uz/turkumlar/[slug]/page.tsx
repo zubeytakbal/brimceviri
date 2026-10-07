@@ -234,34 +234,19 @@ export default async function UzbekCategoryPage({ params }: PageProps) {
 
           {categoryUnits.length > 0 && (
             <section className="conversion-section">
-              <h2>Ushbu turkumdagi birliklar</h2>
-              <div className="conversion-table-wrap">
-                <table className="conversion-table">
-                  <thead>
-                    <tr>
-                      <th>Birlik</th>
-                      <th>Belgi</th>
-                      <th>Qo&apos;llanma</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {categoryUnits.map((unitPage) => (
-                      <tr key={unitPage.slug}>
-                        <td>{unitPage.name}</td>
-                        <td>{unitPage.symbol}</td>
-                        <td>
-                          <Link
-                            className="text-link"
-                            href={`/uz/birliklar/${unitPage.slug}`}
-                          >
-                            Ochish
-                          </Link>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+              <h2>Birliklar lug&apos;ati</h2>
+              <dl className="category-unit-glossary">
+                {categoryUnits.map((unitPage) => (
+                  <div key={unitPage.slug} id={unitPage.slug}>
+                    <dt>
+                      {unitPage.name} <small>{unitPage.symbol}</small>
+                    </dt>
+                    <dd>{unitPage.shortDescription}</dd>
+                    <dd>{unitPage.historySummary}</dd>
+                    <dd>Qo&apos;llanilishi: {unitPage.commonUses}</dd>
+                  </div>
+                ))}
+              </dl>
             </section>
           )}
 

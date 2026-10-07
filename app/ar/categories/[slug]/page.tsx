@@ -21,6 +21,7 @@ import {
 } from "../../../i18n/arabicLocalization";
 import { findArabicCategoryPageByTurkishSlug } from "../../../converter/localizedArabicCategoryPages";
 import { SITE_URL, buildSiteUrl } from "../../../siteConfig";
+import { findArabicUnitPageBySourceSlug } from "../../../converter/localizedArabicUnitPages";
 
 type PageProps = {
   params: Promise<{
@@ -266,13 +267,18 @@ export default async function ArabicCategoryPage({
       conversionHeading="التحويلات الشائعة"
       conversionCountLabel={`${conversionCards.length} أداة`}
       conversionCards={conversionCards}
-      unitGuidesHeading="أدلة الوحدات"
+      unitGuidesHeading="معجم الوحدات"
       unitGuidesCountLabel={`${localizedCategoryUnits.length} وحدة`}
-      unitGuides={localizedCategoryUnits.map((unitPage) => ({
-        href: `/ar/unit-guides/${unitPage.slug}`,
-        label: unitPage.localizedName,
-        symbol: unitPage.symbol,
-      }))}
+      unitGuides={localizedCategoryUnits.map((unitPage) => {
+        const info = findArabicUnitPageBySourceSlug(unitPage.sourceSlug);
+        return {
+          id: unitPage.slug,
+          label: unitPage.localizedName,
+          symbol: unitPage.symbol,
+          description: info?.shortDescription,
+          details: info ? [info.historySummary, `الاستخدام: ${info.commonUses}`] : undefined,
+        };
+      })}
       detailHeading={`دليل سريع لفئة ${arabicLabel}`}
       detailContent={
         <>
@@ -336,26 +342,6 @@ export default async function ArabicCategoryPage({
               </section>
             )}
 
-            <section className="conversion-section unit-long-section">
-              <h2>الوحدات الشائعة داخل القسم</h2>
-              <p>
-                تظهر أدناه مجموعة من الوحدات المرتبطة بهذه
-                الفئة. يمكنك فتح كل وحدة على حدة لمعرفة رمزها،
-                استخداماتها، وعلاقتها المرجعية بوحدات أخرى.
-              </p>
-
-              <ul className="related-conversion-list">
-                {localizedCategoryUnits
-                  .slice(0, 8)
-                  .map((unitPage) => (
-                  <li key={unitPage.slug}>
-                    <Link href={`/ar/unit-guides/${unitPage.slug}`}>
-                      {unitPage.localizedName} ({unitPage.symbol})
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </section>
 
             <section className="conversion-section unit-long-section">
               <h2>البدء الأسرع</h2>
@@ -366,11 +352,7 @@ export default async function ArabicCategoryPage({
                 <Link href="/ar/all-conversions">
                   كل التحويلات
                 </Link>{" "}
-                أو إلى{" "}
-                <Link href="/ar/unit-guides">
-                  دليل الوحدات
-                </Link>
-                .
+                أو راجع معجم الوحدات في هذه الصفحة.
               </p>
             </section>
 
@@ -409,10 +391,6 @@ export default async function ArabicCategoryPage({
       relatedToolsSection={{
         heading: "روابط مرتبطة",
         links: [
-          {
-            href: "/ar/unit-guides",
-            label: "دليل الوحدات",
-          },
           {
             href: "/ar/all-conversions",
             label: "كل التحويلات",

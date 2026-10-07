@@ -110,7 +110,6 @@ export default async function BengaliCategoryPage({ params }: PageProps) {
   );
 
   const sources = getUnitSources(categoryPage.category);
-  const featuredUnit = categoryUnits[0];
   const baseName = categoryBaseNames[categoryPage.category] ?? categoryPage.title;
 
   const pageUrl = buildSiteUrl(`/bn/categories/${categoryPage.slug}`);
@@ -175,12 +174,14 @@ export default async function BengaliCategoryPage({ params }: PageProps) {
       conversionHeading="জনপ্রিয় রূপান্তর"
       conversionCountLabel={`${conversionCards.length} জোড়া`}
       conversionCards={conversionCards}
-      unitGuidesHeading="একক গাইড"
+      unitGuidesHeading="একক অভিধান"
       unitGuidesCountLabel={`${categoryUnits.length} একক`}
       unitGuides={categoryUnits.map((unitPage) => ({
-        href: `/bn/unit-guides/${unitPage.slug}`,
-        label: `${unitPage.name} কী?`,
+        id: unitPage.slug,
+        label: unitPage.name,
         symbol: unitPage.symbol,
+        description: unitPage.shortDescription,
+        details: [unitPage.historySummary, `ব্যবহার: ${unitPage.commonUses}`],
       }))}
       detailHeading={`${baseName} সম্পর্কে বিস্তারিত তথ্য`}
       detailContent={
@@ -231,15 +232,6 @@ export default async function BengaliCategoryPage({ params }: PageProps) {
                       <p key={paragraph}>{paragraph}</p>
                     ))}
 
-                    {index === 1 && featuredUnit && (
-                      <p className="category-inline-link">
-                        {featuredUnit.name} একক সম্পর্কে বিস্তারিত জানতে{" "}
-                        <Link href={`/bn/unit-guides/${featuredUnit.slug}`}>
-                          {featuredUnit.name} তথ্য পাতা
-                        </Link>{" "}
-                        দেখুন।
-                      </p>
-                    )}
                   </section>
                 ))}
 

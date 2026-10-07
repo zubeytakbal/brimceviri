@@ -639,10 +639,10 @@ const arabicCopy: PageCopy = {
     { label: "Pascal إلى Bar", href: "/ar/pascals-to-bars" },
   ],
   relatedGuides: [
-    { label: "دليل الباسكال", href: "/ar/unit-guides/pascal" },
-    { label: "دليل الكيلوباسكال", href: "/ar/unit-guides/kilopascal" },
-    { label: "دليل البار", href: "/ar/unit-guides/bar" },
-    { label: "دليل PSI", href: "/ar/unit-guides/psi" },
+    { label: "دليل الباسكال", href: "/ar/categories/pressure#pascal" },
+    { label: "دليل الكيلوباسكال", href: "/ar/categories/pressure#kilopascal" },
+    { label: "دليل البار", href: "/ar/categories/pressure#bar" },
+    { label: "دليل PSI", href: "/ar/categories/pressure#psi" },
   ],
 };
 

@@ -12,6 +12,9 @@ import { getAllNumberFactsRange } from "./converter/numberFacts";
 import { aminoAcidsDatabase } from "./converter/aminoAcidsDatabase";
 import { SURELER } from "./converter/sureler";
 import { unitGuideRedirects } from "./converter/unitGlossary";
+import { ALTIN_SAYFALARI } from "./converter/turkishAltinPages";
+import { cgpaUniversities } from "./converter/india/cgpaUniversities";
+import { getAllRegions } from "./converter/regionElevationHubUz";
 
 export type MergedRedirect = { source: string; destination: string; permanent: true };
 
@@ -76,6 +79,21 @@ function sureCuzRedirects(): MergedRedirect[] {
   ];
 }
 
+/** Altın türü sayfaları ("çeyrek altın kaç gram") altın hesaplama tablosunda. */
+function altinRedirects(): MergedRedirect[] {
+  return ALTIN_SAYFALARI.map((id) => r(`/altin-hesaplama/${id}`, `/altin-hesaplama?tur=${id}`));
+}
+
+/** Üniversite başına CGPA sayfaları; formül, kaynak ve kapsam ana sayfada. */
+function cgpaRedirects(): MergedRedirect[] {
+  return cgpaUniversities.map((u) => r(`/en/cgpa-to-percentage/${u.slug}`, `/en/cgpa-to-percentage?university=${u.slug}`));
+}
+
+/** Özbekistan vilayet rakım sayfaları tek tabloda. */
+function uzRegionRedirects(): MergedRedirect[] {
+  return getAllRegions().map((x) => r(`/uz/viloyatlar-balandligi/${x.id}`, "/uz/viloyatlar-balandligi"));
+}
+
 export function mergedPageRedirects(): MergedRedirect[] {
-  return [...timerRedirects(), ...alarmRedirects(), ...fxRedirects(), ...uzLicenseRedirects(), ...es419Redirects(), ...numberRedirects(), ...aminoAcidRedirects(), ...sureCuzRedirects(), ...unitGuideRedirects().map((x) => r(x.source, x.destination))];
+  return [...timerRedirects(), ...alarmRedirects(), ...fxRedirects(), ...uzLicenseRedirects(), ...es419Redirects(), ...numberRedirects(), ...aminoAcidRedirects(), ...sureCuzRedirects(), ...unitGuideRedirects().map((x) => r(x.source, x.destination)), ...altinRedirects(), ...cgpaRedirects(), ...uzRegionRedirects()];
 }

@@ -1,4 +1,4 @@
-// Ayri sayfasi olan altin turleri (en cok aranan "... kac gram" sorgulari).
+// Eskiden ayrı sayfası olan altın türleri ("... kaç gram"); artık altın hesaplama sayfasındaki tabloda.
 import {
   findSikke,
   hasGram,

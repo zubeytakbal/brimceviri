@@ -248,7 +248,7 @@ export default async function UzbekMountainDetailPage({ params }: PageProps) {
               <>
                 {" "}O&apos;zbekiston viloyatlari orasida balandlik
                 bo&apos;yicha eng yaqin mos yozuv nuqtasi{" "}
-                <Link href={`/uz/viloyatlar-balandligi/${nearestRegion.id}`}>
+                <Link href={`/uz/viloyatlar-balandligi#${nearestRegion.id}`}>
                   {nearestRegion.name}
                 </Link>
                 {" "}({nearestRegion.elevationM.toLocaleString("uz-UZ")} m) — baribir{" "}

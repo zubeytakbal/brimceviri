@@ -9,10 +9,7 @@ import {
   SIKKELER,
   ZIYNET_MILYEM,
 } from "../converter/turkishAltin";
-import {
-  ALTIN_SAYFALARI,
-  altinSayfaPath,
-} from "../converter/turkishAltinPages";
+import { altinOzet } from "../converter/turkishAltinPages";
 import { buildSiteUrl } from "../siteConfig";
 
 const path = "/altin-hesaplama";
@@ -45,6 +42,10 @@ const faqItems: FaqItem[] = [
     question: "Çeyrek altın kaç gram?",
     answer: `Ziynet çeyrek altın 1,754 gramdır ve 22 ayardır; içinde ${gr(hasGram(1.754, ZIYNET_MILYEM))} gram saf altın vardır. Atatürk portreli Ata çeyrek ise 1,804 gramdır.`,
   },
+  ...["yarim-altin", "gremse-altin", "besli-altin"].map((id) => {
+    const s = SIKKELER.find((x) => x.id === id)!;
+    return { question: `${s.ad} kaç gram?`, answer: altinOzet(s).cumle };
+  }),
   {
     question: "Tam altın ile Cumhuriyet altını aynı mı?",
     answer:
@@ -82,10 +83,6 @@ export default function AltinHesaplamaPage() {
       related={{
         title: "İlginizi çekebilir",
         links: [
-          ...ALTIN_SAYFALARI.map((id) => ({
-            href: altinSayfaPath(id),
-            label: `${SIKKELER.find((s) => s.id === id)!.ad} kaç gram?`,
-          })),
           {
             href: "/24-ayar-altin-22-ayar-altin",
             label: "24 ayar altını 22 ayara çevirme",
@@ -112,21 +109,19 @@ export default function AltinHesaplamaPage() {
               <th scope="col">Ağırlık</th>
               <th scope="col">Has altın</th>
               <th scope="col">Çeyrek karşılığı</th>
+              <th scope="col">10 adet</th>
             </tr>
           </thead>
           <tbody>
             {SIKKELER.map((s) => (
               <tr key={s.id}>
-                <td>
-                  {ALTIN_SAYFALARI.includes(s.id) ? (
-                    <Link href={altinSayfaPath(s.id)}>{s.ad}</Link>
-                  ) : (
-                    s.ad
-                  )}
-                </td>
+                <th scope="row" id={s.id}>
+                  {s.ad}
+                </th>
                 <td>{gr(s.gram)} g</td>
                 <td>{gr(hasGram(s.gram, ZIYNET_MILYEM))} g</td>
                 <td>{(s.deger * 4).toLocaleString("tr-TR")}</td>
+                <td>{gr(10 * s.gram)} g</td>
               </tr>
             ))}
           </tbody>

@@ -15,7 +15,7 @@ export const cgpaSourceMonitorTargets: Array<SourceMonitorTarget & { persistent:
     label: `${university.shortName} CGPA formula source`,
     url: university.sourceUrl,
     persistent: true,
-    pageHref: `/en/cgpa-to-percentage/${university.slug}`,
+    pageHref: `/en/cgpa-to-percentage#${university.slug}`,
   }));
 
 export type CgpaSourceAlert = {

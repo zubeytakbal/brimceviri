@@ -20,10 +20,8 @@ export const PENDING = new Set<string>([
   "/en/countries",
   "/iller-arasi-mesafe/*",
   "/de/entfernung/*",
-  "/uz/viloyatlar-balandligi",
   "/dunyanin-en-yuksek-daglari",
   "/uz/dunyoning-eng-baland-toglari",
-  "/bolge-haritalari",
   // Diğer: takvim, tatil, geri sayım, küçük araç grupları
   "/takvim/*",
   "/de/kalender/*",
@@ -32,8 +30,6 @@ export const PENDING = new Set<string>([
   "/en/federal-holidays",
   "/geri-sayim",
   "/de/countdown",
-  "/en/cgpa-to-percentage",
-  "/altin-hesaplama",
   "/ehliyet-sinifi-bulma",
 ]);
 

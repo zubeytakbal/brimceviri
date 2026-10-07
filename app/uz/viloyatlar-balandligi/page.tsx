@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
 import { getAllRegions } from "../../converter/regionElevationHubUz";
+import { calculateAltitudeEffect } from "../../converter/mountainAltitudeEffect";
 import { buildFullLanguageAlternates } from "../../i18n/routing";
 import { buildSiteUrl } from "../../siteConfig";
 
@@ -76,16 +77,44 @@ export default function UzbekRegionElevationHubPage() {
 
         <section className="category-article-content">
           <h2>Hududlar (balandlik bo&apos;yicha tartiblangan)</h2>
-          <ul className="related-conversion-list">
-            {regions.map((region) => (
-              <li key={region.id}>
-                <Link href={`/uz/viloyatlar-balandligi/${region.id}`}>
-                  {region.name}
-                </Link>{" "}
-                ({region.centerCity}) — {region.elevationM.toLocaleString("uz-UZ")} m
-              </li>
-            ))}
-          </ul>
+          <div className="holiday-table-wrap">
+            <table className="holiday-table">
+              <thead>
+                <tr>
+                  <th scope="col">Hudud</th>
+                  <th scope="col">Markaz</th>
+                  <th scope="col">Balandlik</th>
+                  <th scope="col">Havo bosimi</th>
+                  <th scope="col">Suv qaynashi</th>
+                </tr>
+              </thead>
+              <tbody>
+                {regions.map((region) => {
+                  const e = calculateAltitudeEffect(region.elevationM);
+                  return (
+                    <tr key={region.id} id={region.id}>
+                      <th scope="row">{region.name}</th>
+                      <td>{region.centerCity}</td>
+                      <td>{region.elevationM.toLocaleString("uz-UZ")} m</td>
+                      <td>{e ? `${Math.round(e.pressureHpa).toLocaleString("uz-UZ")} hPa (${e.percentOfSeaLevel.toFixed(1)}%)` : "—"}</td>
+                      <td>{e ? `${e.waterBoilingPointC.toFixed(1)} °C` : "—"}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Eng baland markaz {regions[0].name} ({regions[0].elevationM.toLocaleString("uz-UZ")} m), eng pasti{" "}
+            {regions[regions.length - 1].name} ({regions[regions.length - 1].elevationM.toLocaleString("uz-UZ")} m). Farq{" "}
+            {(regions[0].elevationM - regions[regions.length - 1].elevationM).toLocaleString("uz-UZ")} m; bu farq suvning
+            qaynash haroratini taxminan{" "}
+            {(
+              (calculateAltitudeEffect(regions[regions.length - 1].elevationM)?.waterBoilingPointC ?? 0) -
+              (calculateAltitudeEffect(regions[0].elevationM)?.waterBoilingPointC ?? 0)
+            ).toFixed(1)}{" "}
+            °C ga o&apos;zgartiradi. Havo bosimi xalqaro standart atmosfera formulasi bilan hisoblangan.
+          </p>
 
           <h2>Tez-tez So&apos;raladigan Savollar</h2>
           {faqItems.map((item) => (

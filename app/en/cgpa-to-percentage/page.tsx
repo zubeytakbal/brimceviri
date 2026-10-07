@@ -7,7 +7,7 @@ import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
 import { cgpaUniversities } from "../../converter/india/cgpaUniversities";
 import { getEnglishYouMayAlsoLike } from "../../i18n/englishRelatedPages";
 import { buildSiteUrl } from "../../siteConfig";
-import { formulaOptions, formatVerifiedDate, serializeJsonLd, SourceChangeNotice, UniversityTable } from "./cgpaShared";
+import { formulaOptions, formatVerifiedDate, serializeJsonLd, SourceChangeNotice, UniversityDetails, UniversityTable } from "./cgpaShared";
 
 export const revalidate = 43200;
 
@@ -82,16 +82,19 @@ export default async function CgpaToPercentageHubPage() {
           <SourceChangeNotice key={alert.university.slug} university={alert.university} changedAt={alert.changedAt} />
         ))}
 
-        <CgpaCalculator options={formulaOptions()} />
+        <CgpaCalculator options={formulaOptions()} readQuery />
 
         <section className="category-article-content">
           <h2>Official formulas by university</h2>
           <p>
-            Every formula below is taken from the university&apos;s or board&apos;s own regulations or circulars, linked on each
-            university page. Formulas last verified on {formatVerifiedDate(latestVerification)}; we check the official sources every
+            Every formula below is taken from the university&apos;s or board&apos;s own regulations or circulars, linked under
+            each university. Formulas last verified on {formatVerifiedDate(latestVerification)}; we check the official sources every
             night and mark a page when a source changes.
           </p>
           <UniversityTable />
+
+          <h2>Sources and scope by university</h2>
+          <UniversityDetails />
 
           <h2>Why the formulas differ</h2>
           <p>

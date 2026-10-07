@@ -2,7 +2,6 @@ import { germanCities } from "./converter/geo/germanCities";
 import { ARABIC_ISLAMIC_SITEMAP } from "./i18n/arabicIslamicTools";
 import { entfernungPaare, entfernungStadtPath } from "./converter/geo/germanDistances";
 import { countriesDe, countryPathDe } from "./converter/geo/worldGeoDe";
-import { ALTIN_SAYFALARI, altinSayfaPath } from "./converter/turkishAltinPages";
 import { BRUECKENTAGE_JAHRE, brueckentagePfad } from "./i18n/germanBrueckentage";
 import { germanMathPages } from "./i18n/germanMathPages";
 import { comparisonPathDe, compoundPathDe, materialPathDe } from "./converter/germanScienceSlugs";
@@ -14,7 +13,6 @@ import {
   timeToolPaths,
   type TimeToolId,
 } from "./i18n/timeToolPaths";
-import { cgpaUniversities } from "./converter/india/cgpaUniversities";
 import { worldCities } from "./converter/time/worldCities";
 import { countdownAlternatePaths, countdownEvents, countdownPath } from "./converter/time/countdownEvents";
 import { HOLIDAY_YEARS } from "./converter/time/holidays";
@@ -99,7 +97,6 @@ import { mountainsDatabase } from "./converter/mountainsDatabase";
 import { getAllMountainsUz } from "./converter/mountainsDatabaseUz";
 import { turkishProvinceElevations } from "./converter/turkishProvinceElevations";
 import { popularProvinceComparisons } from "./converter/popularProvinceComparisons";
-import { getAllRegions } from "./converter/regionElevationHubUz";
 import { compoundsDatabase } from "./converter/compoundsDatabase";
 import { findCompoundEditorial } from "./converter/compoundEditorial";
 import { bengaliWeightPairs } from "./converter/bengaliWeightPairs";
@@ -1467,12 +1464,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.7,
     },
-    ...getAllRegions().map((region) => ({
-      url: `${baseUrl}/uz/viloyatlar-balandligi/${region.id}`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-    })),
     {
       url: `${baseUrl}/uz/viloyat-balandligini-solishtirish`,
       lastModified: contentLastModified,
@@ -1633,12 +1624,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
-    ...cgpaUniversities.map((university) => ({
-      url: `${baseUrl}/en/cgpa-to-percentage/${university.slug}`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-    })),
     {
       url: `${baseUrl}/bn/gold-price-calculator`,
       lastModified: contentLastModified,
@@ -4565,7 +4550,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.75,
     },
-    ...["/altin-hesaplama", "/ceyrek-bilezik-hesaplama", ...ALTIN_SAYFALARI.map((id) => altinSayfaPath(id))].map((path) => ({
+    ...["/altin-hesaplama", "/ceyrek-bilezik-hesaplama"].map((path) => ({
       url: `${baseUrl}${path}`,
       lastModified: contentLastModified,
       changeFrequency: "monthly" as const,

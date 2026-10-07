@@ -107,7 +107,7 @@ export async function getSiteNotifications(locale: NotificationLocale = "tr"): P
       date: changedAt.slice(0, 10),
       title: `${university.shortName}: CGPA formula being re-checked`,
       message: `The official ${university.shortName} source changed on ${changedAt.slice(0, 10)}. We are re-checking the CGPA to percentage formula.`,
-      href: `/en/cgpa-to-percentage/${university.slug}`,
+      href: `/en/cgpa-to-percentage#${university.slug}`,
     }));
     return [...alertNotifications, ...englishManualNotifications].sort(byDateDesc);
   }

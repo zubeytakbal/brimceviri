@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "@/app/components/SiteLink";
 import {
   findRequiredUzLicenseClass,
   findRequiredUzMotorcycleLicenseClass,
@@ -163,19 +162,19 @@ export default function LicenseClassFinderCalculatorUz() {
             <tr>
               <th scope="col">Toifa</th>
               <th scope="col">Qamrovi</th>
+              <th scope="col">Namunaviy Transport</th>
               <th scope="col">Eng Kichik Yosh</th>
+              <th scope="col">Muddati</th>
             </tr>
           </thead>
           <tbody>
             {Object.values(uzLicenseClasses).map((licenseClass) => (
-              <tr key={licenseClass.id}>
-                <td>
-                  <Link href={`/uz/haydovchilik-toifasi-topish/${licenseClass.id.toLowerCase()}`}>
-                    {licenseClass.label} Toifasi →
-                  </Link>
-                </td>
+              <tr key={licenseClass.id} id={`toifa-${licenseClass.id.toLowerCase()}`}>
+                <th scope="row">{licenseClass.label}</th>
                 <td>{licenseClass.description}</td>
+                <td>{licenseClass.exampleVehicles}</td>
                 <td>{licenseClass.minAge}</td>
+                <td>{licenseClass.validityYears} yil</td>
               </tr>
             ))}
           </tbody>

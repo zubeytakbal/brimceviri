@@ -1,9 +1,3 @@
-import {
-  alarmPresetSlug,
-  alarmPresetTimes,
-  formatEnglishTime,
-} from "../../i18n/timeToolPaths";
-import { timerPresetPath, timerPresets } from "../../i18n/timerPresets";
 
 export const timeRelated = {
   tr: {
@@ -21,8 +15,6 @@ export const timeRelated = {
       { href: "/is-gunu-hesaplama", label: "İş Günü Hesaplama" },
       { href: "/uyku-hesaplama", label: "Uyku Hesaplama" },
     ],
-    timers: timerPresets.map((p) => ({ href: timerPresetPath(p, "tr"), label: p.labelTr })),
-    alarms: alarmPresetTimes.map((t) => ({ href: `/online-alarm-kur/${alarmPresetSlug.tr(t)}`, label: `${t} alarm` })),
   },
   en: {
     tools: [
@@ -39,10 +31,5 @@ export const timeRelated = {
       { href: "/en/business-day-calculator", label: "Business Day Calculator" },
       { href: "/en/sleep-calculator", label: "Sleep Calculator" },
     ],
-    timers: timerPresets.map((p) => ({ href: timerPresetPath(p, "en"), label: `${p.labelEn} timer` })),
-    alarms: alarmPresetTimes.map((t) => ({
-      href: `/en/alarm-clock/${alarmPresetSlug.en(t)}`,
-      label: `${formatEnglishTime(t)} alarm`,
-    })),
   },
 };

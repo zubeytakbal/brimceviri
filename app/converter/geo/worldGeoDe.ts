@@ -41,7 +41,7 @@ export function currencyNameDe(code: string) {
 /** Waehrungsrechner-Seite Euro → Landeswaehrung, falls vorhanden. */
 export function fxPathDe(code: string) {
   const pair = fxPairsDe.find((p) => p.from === "EUR" && p.to === code);
-  return pair ? `/de/waehrungsrechner/${pair.slug}` : null;
+  return pair ? "/de/waehrungsrechner" : null;
 }
 
 /** Zeitverschiebung in Minuten: Land minus Deutschland. */

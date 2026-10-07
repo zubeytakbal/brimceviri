@@ -5,7 +5,8 @@ import TimeToolPage from "../../components/time/TimeToolPage";
 import { timeRelated } from "../../components/time/timeRelatedLinks";
 import type { FaqItem } from "../../converter/faqSchema";
 import { timeToolAlternates } from "../../i18n/timeToolPaths";
-import { timerPresetLinks } from "../../i18n/timerPresets";
+import TimerPresetTable from "../../components/time/TimerPresetTable";
+import { timerPresets } from "../../i18n/timerPresets";
 import { buildSiteUrl } from "../../siteConfig";
 
 const title = "Online Timer: Countdown With Alarm";
@@ -21,7 +22,6 @@ export const metadata: Metadata = {
   openGraph: { title, description, url: buildSiteUrl("/en/timer"), siteName: "BirimCeviri.app", locale: "en_US", type: "website" },
 };
 
-const presetLinks = timerPresetLinks("en");
 
 const faqItems: FaqItem[] = [
   {
@@ -52,11 +52,12 @@ export default function EnglishTimerPage() {
       install={{ name: "Timer", lang: "en" }}
       title="Online Timer"
       intro="Tap a preset or enter your own time and press start. An alarm sounds when time is up. Pause, add a minute or go full screen."
-      tool={<CountdownTimer locale="en" presetLinks={presetLinks} />}
-      related={{ title: "Preset timers and more tools", links: [...related.timers, ...related.tools.filter((t) => t.href !== "/en/timer")] }}
+      tool={<CountdownTimer locale="en" />}
+      related={{ title: "More time tools", links: related.tools.filter((t) => t.href !== "/en/timer") }}
       tocTitle="Contents"
       tocItems={[
         { id: "how", label: "How to use the timer" },
+        { id: "presets", label: "Preset times and what they are for" },
         { id: "uses", label: "Popular uses" },
         { id: "accuracy", label: "How accurate is it?" },
         { id: "faq", label: "FAQ" },
@@ -71,6 +72,15 @@ export default function EnglishTimerPage() {
         <li>Use &quot;Pause&quot;, &quot;+1 min&quot; or &quot;Reset&quot; whenever you need.</li>
         <li>When time is up, your chosen sound plays.</li>
       </ol>
+
+      <TimerPresetTable
+        id="presets"
+        heading="Preset times and what they are for"
+        intro="Tap a time to set the timer to it; the address updates so you can bookmark or share that countdown."
+        durationLabel="Time"
+        usesLabel="Good for"
+        rows={timerPresets.map((p) => ({ seconds: p.seconds, label: p.labelEn.startsWith("1 ") ? p.labelEn : `${p.labelEn}s`, uses: p.usesEn }))}
+      />
 
       <h2 id="uses">Popular uses</h2>
       <ul>

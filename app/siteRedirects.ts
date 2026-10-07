@@ -1,3 +1,4 @@
+import { mergedPageRedirects } from "./mergedPageRedirects";
 import { routePairs } from "./converter/geo/routePairs";
 import { germanScienceRedirects } from "./converter/germanScienceSlugs";
 
@@ -95,6 +96,7 @@ const localizedSectionRenames: Record<string, Record<string, string>> = {
 
 export function siteRedirects(): SiteRedirect[] {
   return [
+    ...mergedPageRedirects(),
     // Il cifti sayfalari tek yonde yayinda; ters yon (ankara/istanbul) kalici olarak yonlendirilir.
     ...routePairs().map((p) => ({
       source: `/iller-arasi-mesafe/${p.to.id}/${p.from.id}`,

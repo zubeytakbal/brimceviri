@@ -5,7 +5,8 @@ import TimeToolPage from "../components/time/TimeToolPage";
 import { timeRelated } from "../components/time/timeRelatedLinks";
 import type { FaqItem } from "../converter/faqSchema";
 import { timeToolAlternates } from "../i18n/timeToolPaths";
-import { timerPresetLinks } from "../i18n/timerPresets";
+import TimerPresetTable from "../components/time/TimerPresetTable";
+import { timerPresets } from "../i18n/timerPresets";
 import { buildSiteUrl } from "../siteConfig";
 
 const title = "Online Zamanlayıcı: Geri Sayım Sayacı";
@@ -21,7 +22,6 @@ export const metadata: Metadata = {
   openGraph: { title, description, url: buildSiteUrl("/zamanlayici"), siteName: "BirimCeviri.app", locale: "tr_TR", type: "website" },
 };
 
-const presetLinks = timerPresetLinks("tr");
 
 const faqItems: FaqItem[] = [
   {
@@ -52,11 +52,12 @@ export default function TimerPage() {
       install={{ name: "Zamanlayıcı", lang: "tr" }}
       title="Online Zamanlayıcı"
       intro="Hazır sürelerden birine dokun ya da kendi süreni gir, başlat. Süre bitince sesli uyarı alırsın. Duraklat, +1 dakika ekle ya da tam ekrana geç."
-      tool={<CountdownTimer locale="tr" presetLinks={presetLinks} />}
-      related={{ title: "Hazır süreler ve diğer araçlar", links: [...related.timers, ...related.tools.filter((t) => t.href !== "/zamanlayici")] }}
+      tool={<CountdownTimer locale="tr" />}
+      related={{ title: "Diğer zaman araçları", links: related.tools.filter((t) => t.href !== "/zamanlayici") }}
       tocTitle="İçindekiler"
       tocItems={[
         { id: "nasil", label: "Zamanlayıcı nasıl kullanılır?" },
+        { id: "sureler", label: "Hazır süreler ve kullanım alanları" },
         { id: "kullanim", label: "Nerelerde işe yarar?" },
         { id: "dogruluk", label: "Ne kadar doğru?" },
         { id: "faq", label: "Sık sorulan sorular" },
@@ -71,6 +72,15 @@ export default function TimerPage() {
         <li>Gerekirse &quot;Duraklat&quot;, &quot;+1 dk&quot; ya da &quot;Sıfırla&quot;yı kullanın.</li>
         <li>Süre bitince seçtiğiniz ses çalar.</li>
       </ol>
+
+      <TimerPresetTable
+        id="sureler"
+        heading="Hazır süreler ve kullanım alanları"
+        intro="Bir süreye dokunduğunuzda zamanlayıcı o süreye kurulur; adres de paylaşılabilir hale gelir."
+        durationLabel="Süre"
+        usesLabel="Ne için?"
+        rows={timerPresets.map((p) => ({ seconds: p.seconds, label: p.labelTr, uses: p.usesTr }))}
+      />
 
       <h2 id="kullanim">Nerelerde işe yarar?</h2>
       <ul>

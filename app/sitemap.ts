@@ -10,17 +10,12 @@ import type { MetadataRoute } from "next";
 import { calculatorPages } from "./converter/calculatorPages";
 import { sleepGuideAlternates, sleepGuidePaths } from "./i18n/sleepGuidePaths";
 import {
-  alarmPresetAlternates,
-  alarmPresetSlug,
-  alarmSlugDe,
-  alarmPresetTimes,
   timeToolAlternates,
   timeToolPaths,
   type TimeToolId,
 } from "./i18n/timeToolPaths";
 import { cgpaUniversities } from "./converter/india/cgpaUniversities";
 import { worldCities } from "./converter/time/worldCities";
-import { nordicTimerPresetPaths, timerPresetAlternates, timerPresetPath, timerPresets } from "./i18n/timerPresets";
 import { countdownAlternatePaths, countdownEvents, countdownPath } from "./converter/time/countdownEvents";
 import { HOLIDAY_YEARS } from "./converter/time/holidays";
 import { HIJRI_SLUG, MUNASABAT, SA_HIJRI_SANAWAT, saHijriSanaPath, saHijriShahrPath, saMunasabaPath } from "./converter/calendar/saTaqwim";
@@ -41,7 +36,6 @@ import { fxContentBn } from "./converter/fx/fxContentBn";
 import { fxContentUz } from "./converter/fx/fxContentUz";
 import { fxContentDe } from "./converter/fx/fxContentDe";
 import { fxHubAlternates } from "./converter/fx/fxHubAlternates";
-import { fxPairsTr } from "./converter/fx/fxPairsTr";
 import {
   englishCalculatorPages,
   findEnglishCalculatorPageByTurkishSlug,
@@ -111,7 +105,6 @@ import { findCompoundEditorial } from "./converter/compoundEditorial";
 import { aminoAcidsDatabase } from "./converter/aminoAcidsDatabase";
 import { bengaliWeightPairs } from "./converter/bengaliWeightPairs";
 import { licenseClasses } from "./converter/licenseClassFinder";
-import { uzLicenseClasses } from "./converter/licenseClassFinderUz";
 import { getAllNumberFactsRange } from "./converter/numberFacts";
 import {
   englishUnitPages,
@@ -3262,24 +3255,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         alternates: buildLanguageAlternates(worldCityPaths(city), "tr"),
       })),
     ),
-    ...timerPresets.flatMap((preset) =>
-      [timerPresetPath(preset, "tr"), timerPresetPath(preset, "en"), timerPresetPath(preset, "de"), ...Object.values(nordicTimerPresetPaths(preset))].map((path) => ({
-        url: `${baseUrl}${path}`,
-        lastModified: contentLastModified,
-        changeFrequency: "monthly" as const,
-        priority: 0.6,
-        alternates: timerPresetAlternates(preset),
-      })),
-    ),
-    ...alarmPresetTimes.flatMap((time) =>
-      [`/online-alarm-kur/${alarmPresetSlug.tr(time)}`, `/en/alarm-clock/${alarmPresetSlug.en(time)}`, `/de/wecker/${alarmSlugDe(time)}`].map((path) => ({
-        url: `${baseUrl}${path}`,
-        lastModified: contentLastModified,
-        changeFrequency: "monthly" as const,
-        priority: 0.6,
-        alternates: alarmPresetAlternates(time),
-      })),
-    ),
     {
       url: `${baseUrl}/tarla-donum-hesaplama`,
       lastModified: contentLastModified,
@@ -4339,14 +4314,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         languages: Object.fromEntries(Object.entries(fxHubAlternates).map(([lang, href]) => [lang, `${baseUrl}${href}`])),
       },
     })),
-    ...[fxContentUz, fxContentBn, fxContentDe].flatMap((content) =>
-      content.pairs.map((pair) => ({
-        url: `${baseUrl}${content.basePath}/${pair.slug}`,
-        lastModified: contentLastModified,
-        changeFrequency: "daily" as const,
-        priority: 0.8,
-      }))
-    ),
     {
       url: `${baseUrl}/uz/tana-yuzasi-maydoni-hisoblash`,
       lastModified: contentLastModified,
@@ -4711,12 +4678,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         languages: Object.fromEntries(Object.entries(fxHubAlternates).map(([lang, href]) => [lang, `${baseUrl}${href}`])),
       },
     },
-    ...fxPairsTr.map((pair) => ({
-      url: `${baseUrl}/doviz-cevirici/${pair.slug}`,
-      lastModified: contentLastModified,
-      changeFrequency: "daily" as const,
-      priority: 0.85,
-    })),
     {
       url: `${baseUrl}/sosyal-medya-gorsel-boyutlari-hesaplama`,
       lastModified: contentLastModified,
@@ -4820,12 +4781,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
       },
     },
-    ...Object.keys(uzLicenseClasses).map((id) => ({
-      url: `${baseUrl}/uz/haydovchilik-toifasi-topish/${id.toLowerCase()}`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly" as const,
-      priority: 0.65,
-    })),
     {
       url: `${baseUrl}/uz/haydovchilik-guvohnomasi-yangilash-muddati-hisoblash`,
       lastModified: contentLastModified,

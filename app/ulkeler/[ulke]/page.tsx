@@ -205,7 +205,8 @@ export default async function CountryPage({ params }: { params: Promise<{ ulke: 
           ...c.currencies
             .map((code) => fxPairFor(code))
             .filter((p): p is NonNullable<typeof p> => Boolean(p))
-            .map((p) => ({ href: `/doviz-cevirici/${p.slug}`, label: `${currencyNameTr(p.from)} kaç TL?` })),
+            .slice(0, 1)
+            .map((p) => ({ href: "/doviz-cevirici", label: `${currencyNameTr(p.from)} kaç TL?` })),
           { href: "/seyahat-priz-voltaj-hesaplama", label: "Priz ve Voltaj Uyumu" },
           { href: "/saat-dilimi-cevirici", label: "Saat Dilimi Çevirici" },
         ],
@@ -291,7 +292,7 @@ export default async function CountryPage({ params }: { params: Promise<{ ulke: 
                       {pair ? (
                         <>
                           {" "}
-                          — <Link href={`/doviz-cevirici/${pair.slug}`}>güncel kur</Link>
+                          — <Link href="/doviz-cevirici">güncel kur</Link>
                         </>
                       ) : null}
                     </span>

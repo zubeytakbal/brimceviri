@@ -121,7 +121,7 @@ export function PomodoroPage({ lang }: { lang: "tr" | "en" }) {
       </ul>
       <p>
         {tr ? "Tek seferlik bir süre için " : "For a one-off countdown use the "}
-        <Link href={tr ? "/zamanlayici/25-dakika" : "/en/timer/25-minutes"}>{tr ? "25 dakikalık zamanlayıcı" : "25 minute timer"}</Link>
+        <Link href={tr ? "/zamanlayici?s=1500" : "/en/timer?s=1500"}>{tr ? "25 dakikalık zamanlayıcı" : "25 minute timer"}</Link>
         {tr ? ", egzersiz için " : ", and for workouts the "}
         <Link href={tr ? "/tabata-zamanlayici" : "/en/interval-timer"}>{tr ? "Tabata zamanlayıcı" : "interval timer"}</Link>
         {tr ? " da işine yarar." : "."}

@@ -79,6 +79,13 @@ export default function AlarmClock({ locale, initialTime }: { locale: TimeToolsL
     const frame = requestAnimationFrame(() => {
       setAlarms(loadAlarms());
       setLoaded(true);
+      // Eski hazır saat sayfaları "?t=07:30" ile buraya yönlenir; saat seçicilere yaz.
+      const t = new URLSearchParams(window.location.search).get("t");
+      const m = t ? /^([01]\d|2[0-3]):([0-5]\d)$/.exec(t) : null;
+      if (m) {
+        setHour(Number(m[1]));
+        setMinute(Number(m[2]));
+      }
     });
     return () => cancelAnimationFrame(frame);
   }, []);

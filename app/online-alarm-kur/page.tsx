@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { appManifestPath, findInstallableApp } from "../converter/time/installableApps";
 import Link from "@/app/components/SiteLink";
+import AlarmPresetTable from "../components/time/AlarmPresetTable";
 import AlarmClock from "../components/time/AlarmClock";
 import TimeToolPage from "../components/time/TimeToolPage";
 import { timeRelated } from "../components/time/timeRelatedLinks";
@@ -58,13 +59,14 @@ export default function OnlineAlarmPage() {
       title="Online Alarm Kur"
       intro="Saati seç, bir ses belirle ve alarmı ekle. Uygulama indirmeden, tarayıcıda çalışan ücretsiz çalar saat: birden çok alarm, 5 dakika erteleme ve ekranı açık tutma desteği."
       tool={<AlarmClock locale="tr" />}
-      related={{ title: "Hazır alarmlar ve diğer araçlar", links: [...related.alarms, ...related.tools.filter((t) => t.href !== "/online-alarm-kur")] }}
+      related={{ title: "Diğer zaman araçları", links: related.tools.filter((t) => t.href !== "/online-alarm-kur") }}
       tocTitle="İçindekiler"
       tocItems={[
         { id: "nasil", label: "Online alarm nasıl kurulur?" },
         { id: "guvenilir", label: "Alarmın güvenle çalması için" },
         { id: "sesler", label: "Alarm sesleri" },
         { id: "uyku", label: "Hangi saate alarm kurmalıyım?" },
+        { id: "saatler", label: "Kalkış saatine göre yatış saati" },
         { id: "faq", label: "Sık sorulan sorular" },
       ]}
       faqTitle="Sık Sorulan Sorular"
@@ -98,6 +100,14 @@ export default function OnlineAlarmPage() {
         Uyku yaklaşık 90 dakikalık döngülerden oluşur ve bir döngünün sonunda uyanmak daha dinç hissettirir. Yatış saatinize göre
         en uygun kalkış saatini <Link href="/uyku-hesaplama">uyku hesaplama</Link> aracıyla bulup buradan alarmını kurabilirsiniz.
       </p>
+
+      <AlarmPresetTable
+        id="saatler"
+        heading="Kalkış saatine göre yatış saati"
+        intro="90 dakikalık uyku döngüsü ve 15 dakikalık uykuya dalma süresiyle hesaplanmıştır. Bir saate dokunduğunuzda alarm o saate ayarlanır."
+        wakeLabel="Kalkış"
+        cycleLabel={(c, h) => `${c} döngü (${h.toLocaleString("tr-TR")} sa)`}
+      />
     </TimeToolPage>
   );
 }

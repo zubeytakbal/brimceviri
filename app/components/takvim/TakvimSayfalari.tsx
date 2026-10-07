@@ -610,7 +610,7 @@ export function TakvimAySayfasi({
       ]}
       crumbLabel={T.crumbLabel}
       title={`${a} ${year} Takvimi`}
-      intro={`${a} ${year} ayının Türkiye takvimi; resmî tatiller, dini ve özel günler, iş günü sayısı ve ay evreleri. Günlerin üzerine tıklayarak ayrıntılara ulaşabilirsiniz.`}
+      intro={`${a} ${year} takvimi: resmî tatiller, özel günler ve ay evreleri.`}
       tool={
         <div className="date-calc">
           <div className="takvim-ay-baslik">
@@ -670,7 +670,7 @@ export function TakvimAySayfasi({
         links: [
           { href: takvimYilPath(year), label: `${year} Takvimi` },
           { href: `/resmi-tatiller/${year}`, label: `${year} Resmî Tatilleri` },
-          ...TAKVIM_ARACLARI,
+          ...TAKVIM_ARACLARI.slice(0, 3),
         ],
       }}
       tocTitle={T.toc}
@@ -696,9 +696,7 @@ export function TakvimAySayfasi({
         <>
           <h2 id="firtinalar">{a} fırtınaları (halk takvimi)</h2>
           <p>
-            Denizcilerin kullandığı{" "}
-            <Link href="/firtina-takvimi">fırtına takvimine</Link> göre {a}{" "}
-            ayında beklenen fırtınalar; 1-3 gün sapabilir.
+            <Link href="/firtina-takvimi">Fırtına takvimine</Link> göre (1-3 gün sapabilir):
           </p>
           <ul>
             {ayFirtinalari(month).map((f) => (

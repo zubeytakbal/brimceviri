@@ -19,8 +19,6 @@ export const PENDING = new Set<string>([
   // Adım 7: ülkeler, mesafe, rakım, dağlar
   "/iller-arasi-mesafe/*",
   "/de/entfernung/*",
-  "/dunyanin-en-yuksek-daglari",
-  "/uz/dunyoning-eng-baland-toglari",
   // Diğer: takvim, tatil, geri sayım, küçük araç grupları
   "/resmi-tatiller",
 ]);

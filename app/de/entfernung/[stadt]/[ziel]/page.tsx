@@ -130,11 +130,11 @@ export default async function EntfernungPaarPage({ params }: PageProps) {
               <tr>
                 <th scope="row">Bundesländer</th>
                 <td>
-                  <Link href={`/de/feiertage/${landA.slug}`}>{landA.name}</Link>
+                  <Link href={`/de/feiertage?land=${landA.slug}`}>{landA.name}</Link>
                   {landA.code !== landB.code && (
                     <>
                       {" "}
-                      und <Link href={`/de/feiertage/${landB.slug}`}>{landB.name}</Link>
+                      und <Link href={`/de/feiertage?land=${landB.slug}`}>{landB.name}</Link>
                     </>
                   )}
                 </td>

@@ -81,12 +81,12 @@ export default async function MountainDetailPage({ params }: PageProps) {
     },
     {
       question: `${trDative(mountain.nameTr)} ilk kış tırmanışı ne zaman yapıldı?`,
-      answer: `${trDative(mountain.nameTr)} ilk kış tırmanışı ${mountain.firstWinterAscentYear} yılında gerçekleştirildi. Kış koşullarında (aşırı soğuk, kısa gün ışığı, güçlü rüzgar) tırmanış yaz sezonuna göre çok daha zor kabul edilir.`,
+      answer: `${trDative(mountain.nameTr)} ilk kış tırmanışı ${mountain.firstWinterAscentYear} yılında gerçekleştirildi.`,
     },
     {
       question: `${trGenitive(mountain.nameTr)} zirvesinde su kaç derecede kaynar?`,
       answer: altitudeEffect
-        ? `${trGenitive(mountain.nameTr)} zirvesinde (${mountain.elevationM.toLocaleString("tr-TR")} m) su yaklaşık ${formatNumber(altitudeEffect.waterBoilingPointC)}°C'de kaynar — deniz seviyesindeki 100°C'ye göre çok daha düşük, çünkü kaynama noktası çevre basıncına bağlıdır ve irtifa arttıkça basınç düşer.`
+        ? `${trGenitive(mountain.nameTr)} zirvesinde (${mountain.elevationM.toLocaleString("tr-TR")} m) su yaklaşık ${formatNumber(altitudeEffect.waterBoilingPointC)}°C'de kaynar.`
         : "",
     },
   ];
@@ -197,15 +197,11 @@ export default async function MountainDetailPage({ params }: PageProps) {
               </>
             )}
           </dl>
-          <p className="calculator-usage-hint">
-            <strong>Not:</strong> Hava basıncı standart ICAO/NOAA barometrik
-            formülüyle hesaplanmıştır; gerçek değer hava durumuna ve mevsime
-            göre değişebilir. Oksijenin hacimsel oranı (%20,9) irtifayla
-            değişmez — değişen, oksijenin kısmi basıncıdır, bu yüzden aynı
-            yüzde hem basınç hem de &quot;etkili oksijen&quot; için geçerlidir.
-            Kaynama noktası, düşen basınca bağlı olarak Clausius-Clapeyron
-            denklemiyle hesaplanmıştır — bu yüzden yüksek irtifada yemek
-            pişirmek daha uzun sürer, çünkü su daha düşük sıcaklıkta kaynar.
+          <p>
+            <small>
+              Basınç ve kaynama noktası standart atmosfer formülüyle hesaplanır; zirvede{" "}
+              {altitudeEffect ? `oksijenin kısmi basıncı deniz seviyesinin %${Math.round(altitudeEffect.percentOfSeaLevel)}'i kadardır` : "basınç düşüktür"}.
+            </small>
           </p>
         </section>
 

@@ -79,7 +79,7 @@ export default async function EntfernungStadtPage({ params }: PageProps) {
           title: "Das könnte Sie auch interessieren",
           links: [
             ...nearest.map((r) => ({ href: entfernungStadtPath(r.city), label: `Entfernung ab ${r.city.name}` })),
-            { href: `/de/feiertage/${land.slug}`, label: `Feiertage ${land.name}` },
+            { href: `/de/feiertage?land=${land.slug}`, label: `Feiertage ${land.name}` },
             { href: "/de/entfernung", label: "Alle Städte" },
           ],
         }}

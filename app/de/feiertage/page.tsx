@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
+import FeiertageBundesland from "../../components/de/FeiertageBundesland";
 import TimeToolPage from "../../components/time/TimeToolPage";
 import type { FaqItem } from "../../converter/faqSchema";
 import { formatDeShort, todayBerlin, weekdayDeShort } from "../../converter/time/germanDates";
@@ -80,7 +81,7 @@ export default function FeiertagePage() {
         ]}
         crumbLabel="Brotkrumen"
         title={`Feiertage ${year} in Deutschland`}
-        intro={`Alle gesetzlichen Feiertage ${year} und ${year + 1} mit Datum, Wochentag und Bundesländern. Wählen Sie Ihr Bundesland für die vollständige Liste mit Brückentagen und Arbeitstagen.`}
+        intro={`Alle gesetzlichen Feiertage ${year} und ${year + 1} mit Datum, Wochentag und Bundesländern. Wählen Sie unten Ihr Bundesland für die vollständige Liste mit Brückentagen.`}
         tool={
           <div className="country-region-nav">
             {GERMAN_STATES.map((s) => (
@@ -97,6 +98,7 @@ export default function FeiertagePage() {
         tocTitle="Inhalt"
         tocItems={[
           { id: "jahr", label: `Feiertage ${year}` },
+          { id: "land", label: "Feiertage nach Bundesland" },
           { id: "anzahl", label: "Feiertage je Bundesland" },
           { id: "naechstes", label: `Feiertage ${year + 1}` },
           { id: "faq", label: "Häufige Fragen" },
@@ -114,6 +116,9 @@ export default function FeiertagePage() {
           </small>
         </p>
 
+        <h2 id="land">Feiertage {year} nach Bundesland</h2>
+        <FeiertageBundesland year={year} />
+
         <h2 id="anzahl">Anzahl der Feiertage je Bundesland {year}</h2>
         <div className="holiday-table-wrap">
           <table className="holiday-table">
@@ -127,9 +132,9 @@ export default function FeiertagePage() {
               {counts.map(({ s, n }) => (
                 <tr key={s.code}>
                   <td>
-                    <Link href={`${path}/${s.slug}`} prefetch={false}>
+                    <a href={`?land=${s.slug}#bundesland`} rel="nofollow">
                       {s.name}
-                    </Link>
+                    </a>
                   </td>
                   <td>
                     {n}

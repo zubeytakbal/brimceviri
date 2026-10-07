@@ -709,8 +709,9 @@ export const DE_JAHRE = [2026, 2027, 2028];
 export const deJahrPfad = (y: number) => `/de/kalender/${y}`;
 export const deMonatPfad = (y: number, m: number) =>
   `/de/kalender/${y}/${DE_MONAT_SLUG[m - 1]}`;
+/** Keine Tagesseiten: der Tag steht in der Monatsliste unter #tag-N. */
 export const deTagPfad = (d: YMD) =>
-  `/de/kalender/${d.year}/${DE_MONAT_SLUG[d.month - 1]}/${d.day}`;
+  `/de/kalender/${d.year}/${DE_MONAT_SLUG[d.month - 1]}#tag-${d.day}`;
 export const deBesondererTagPfad = (id: string) => `/de/besondere-tage/${id}`;
 
 export const DE_MONDPHASE: Record<PhaseName, string> = {

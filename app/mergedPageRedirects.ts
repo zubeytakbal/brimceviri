@@ -15,6 +15,8 @@ import { unitGuideRedirects } from "./converter/unitGlossary";
 import { ALTIN_SAYFALARI } from "./converter/turkishAltinPages";
 import { cgpaUniversities } from "./converter/india/cgpaUniversities";
 import { getAllRegions } from "./converter/regionElevationHubUz";
+import { GERMAN_STATES } from "./converter/time/germanHolidays";
+import { HOLIDAY_YEARS } from "./converter/time/holidays";
 
 export type MergedRedirect = { source: string; destination: string; permanent: true };
 
@@ -94,6 +96,21 @@ function uzRegionRedirects(): MergedRedirect[] {
   return getAllRegions().map((x) => r(`/uz/viloyatlar-balandligi/${x.id}`, "/uz/viloyatlar-balandligi"));
 }
 
+/** Eyalet tatili sayfaları; eyalet seçici ana Feiertage sayfasında. */
+function feiertageRedirects(): MergedRedirect[] {
+  return GERMAN_STATES.map((s) => r(`/de/feiertage/${s.slug}`, `/de/feiertage?land=${s.slug}`));
+}
+
+/** ABD federal tatil yılları ana sayfadaki tarih tablosunda. */
+function federalHolidayRedirects(): MergedRedirect[] {
+  return HOLIDAY_YEARS.map((y) => r(`/en/federal-holidays/${y}`, "/en/federal-holidays"));
+}
+
+/** Takvim gün sayfaları ay sayfasındaki listede; dil başına tek kalıp kural. */
+function takvimGunRedirects(): MergedRedirect[] {
+  return [r("/takvim/:yil/:ay/:gun", "/takvim/:yil/:ay"), r("/de/kalender/:jahr/:monat/:tag", "/de/kalender/:jahr/:monat")];
+}
+
 export function mergedPageRedirects(): MergedRedirect[] {
-  return [...timerRedirects(), ...alarmRedirects(), ...fxRedirects(), ...uzLicenseRedirects(), ...es419Redirects(), ...numberRedirects(), ...aminoAcidRedirects(), ...sureCuzRedirects(), ...unitGuideRedirects().map((x) => r(x.source, x.destination)), ...altinRedirects(), ...cgpaRedirects(), ...uzRegionRedirects()];
+  return [...timerRedirects(), ...alarmRedirects(), ...fxRedirects(), ...uzLicenseRedirects(), ...es419Redirects(), ...numberRedirects(), ...aminoAcidRedirects(), ...sureCuzRedirects(), ...unitGuideRedirects().map((x) => r(x.source, x.destination)), ...altinRedirects(), ...cgpaRedirects(), ...uzRegionRedirects(), ...feiertageRedirects(), ...federalHolidayRedirects(), ...takvimGunRedirects()];
 }

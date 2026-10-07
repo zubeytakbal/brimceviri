@@ -80,12 +80,12 @@ export default async function UzbekMountainDetailPage({ params }: PageProps) {
     },
     {
       question: `${mountain.nameUz}ga birinchi qishki chiqish qachon amalga oshirilgan?`,
-      answer: `${mountain.nameUz}ga birinchi qishki chiqish ${mountain.firstWinterAscentYear}-yilda amalga oshirilgan. Qish sharoitida (o'ta sovuq, qisqa kun yorug'ligi, kuchli shamol) chiqish yoz mavsumiga qaraganda ancha qiyin hisoblanadi.`,
+      answer: `${mountain.nameUz}ga birinchi qishki chiqish ${mountain.firstWinterAscentYear}-yilda amalga oshirilgan.`,
     },
     {
       question: `${mountain.nameUz}ning cho'qqisida suv necha darajada qaynaydi?`,
       answer: altitudeEffect
-        ? `${mountain.nameUz}ning cho'qqisida (${mountain.elevationM.toLocaleString("uz-UZ")} m) suv taxminan ${formatNumber(altitudeEffect.waterBoilingPointC)}°C da qaynaydi — dengiz sathidagi 100°C ga qaraganda ancha past, chunki qaynash nuqtasi atrof-muhit bosimiga bog'liq va balandlik oshgani sari bosim pasayadi.`
+        ? `${mountain.nameUz}ning cho'qqisida (${mountain.elevationM.toLocaleString("uz-UZ")} m) suv taxminan ${formatNumber(altitudeEffect.waterBoilingPointC)}°C da qaynaydi.`
         : "",
     },
   ];
@@ -197,18 +197,11 @@ export default async function UzbekMountainDetailPage({ params }: PageProps) {
               </>
             )}
           </dl>
-          <p className="calculator-usage-hint">
-            <strong>Eslatma:</strong> Havo bosimi standart ICAO/NOAA
-            barometrik formulasi bilan hisoblangan; haqiqiy qiymat
-            ob-havo va mavsumga qarab o&apos;zgarishi mumkin.
-            Kislorodning hajmiy nisbati (%20,9) balandlik bilan
-            o&apos;zgarmaydi — o&apos;zgaradigani kislorodning qisman
-            bosimi, shuning uchun bir xil foiz ham bosim, ham
-            &quot;samarali kislorod&quot; uchun to&apos;g&apos;ri
-            keladi. Qaynash nuqtasi, pasayuvchi bosimga bog&apos;liq
-            holda Klauzius-Klapeyron tenglamasi bilan hisoblangan —
-            shuning uchun baland joyda ovqat pishirish uzoqroq
-            davom etadi, chunki suv pastroq haroratda qaynaydi.
+          <p>
+            <small>
+              Bosim va qaynash nuqtasi standart atmosfera formulasi bilan hisoblangan
+              {altitudeEffect ? `; cho'qqida kislorod bosimi dengiz sathining ${Math.round(altitudeEffect.percentOfSeaLevel)}% iga teng` : ""}.
+            </small>
           </p>
         </section>
 

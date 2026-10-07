@@ -83,7 +83,7 @@ export default function ArbeitstagePage() {
               {rows.map(({ s, a, b }) => (
                 <tr key={s.code}>
                   <td>
-                    <Link href={`/de/feiertage/${s.slug}`} prefetch={false}>
+                    <Link href={`/de/feiertage?land=${s.slug}`} prefetch={false}>
                       {s.name}
                     </Link>
                   </td>

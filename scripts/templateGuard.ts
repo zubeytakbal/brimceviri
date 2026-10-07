@@ -15,13 +15,7 @@ const ORNEK = 24;
  * Henüz özgünleştirilmemiş gruplar (plan adım 2-7). Düzeltildikçe silinir, yenisi eklenmez.
  * "/x/*" alt klasörlerin hepsini kapsar.
  */
-export const PENDING = new Set<string>([
-  // Adım 7: ülkeler, mesafe, rakım, dağlar
-  "/iller-arasi-mesafe/*",
-  "/de/entfernung/*",
-  // Diğer: takvim, tatil, geri sayım, küçük araç grupları
-  "/resmi-tatiller",
-]);
+export const PENDING = new Set<string>([]);
 
 function isPending(group: string) {
   if (PENDING.has(group)) return true;
@@ -43,10 +37,10 @@ function htmlFiles(dir: string, out: Map<string, string[]>) {
 }
 
 function shingles(path: string): Set<string> {
-  // Açılır listeler (ör. 100 şehirlik saat dilimi seçicisi) form denetimidir; SVG haritalardaki il/ülke
-  // adları görseldir. İkisi de sayfa metni sayılmaz.
+  // Form denetimleri (açılır liste, giriş etiketi, düğme; ör. 100 şehirlik saat dilimi seçicisi) ve SVG
+  // haritalardaki il/ülke adları sayfa metni sayılmaz.
   const html = readFileSync(path, "utf8").replace(
-    /<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>|<select[\s\S]*?<\/select>|<svg[\s\S]*?<\/svg>/g,
+    /<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>|<select[\s\S]*?<\/select>|<label[\s\S]*?<\/label>|<button[\s\S]*?<\/button>|<svg[\s\S]*?<\/svg>/g,
     "",
   );
   const main = html.match(/<main[\s\S]*?<\/main>/)?.[0] ?? "";

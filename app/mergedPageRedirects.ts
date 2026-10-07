@@ -108,10 +108,23 @@ function federalHolidayRedirects(): MergedRedirect[] {
 }
 
 /** Takvim gün sayfaları ay sayfasındaki listede; dil başına tek kalıp kural. */
+/** Almanca ve Özbekçe malzeme/karşılaştırma ile Almanca bileşik sayfaları tek seçicili sayfada (?m= malzeme, ?v= karşılaştırma). */
+function materialRedirects(): MergedRedirect[] {
+  return [
+    r("/de/werkstoffeigenschaften/:slug", "/de/werkstoffeigenschaften?m=:slug"),
+    r("/de/werkstoffvergleich", "/de/werkstoffeigenschaften"),
+    r("/de/werkstoffvergleich/:slug", "/de/werkstoffeigenschaften?v=:slug"),
+    r("/uz/material-xossalari/:slug", "/uz/material-xossalari?m=:slug"),
+    r("/uz/material-solishtirish", "/uz/material-xossalari"),
+    r("/uz/material-solishtirish/:slug", "/uz/material-xossalari?v=:slug"),
+    r("/de/chemische-verbindungen/:slug", "/de/chemische-verbindungen?v=:slug"),
+  ];
+}
+
 function takvimGunRedirects(): MergedRedirect[] {
   return [r("/takvim/:yil/:ay/:gun", "/takvim/:yil/:ay"), r("/de/kalender/:jahr/:monat/:tag", "/de/kalender/:jahr/:monat")];
 }
 
 export function mergedPageRedirects(): MergedRedirect[] {
-  return [...timerRedirects(), ...alarmRedirects(), ...fxRedirects(), ...uzLicenseRedirects(), ...es419Redirects(), ...numberRedirects(), ...aminoAcidRedirects(), ...sureCuzRedirects(), ...unitGuideRedirects().map((x) => r(x.source, x.destination)), ...altinRedirects(), ...cgpaRedirects(), ...uzRegionRedirects(), ...feiertageRedirects(), ...federalHolidayRedirects(), ...takvimGunRedirects(), r("/ulkeler/s-o-tome-ve-principe", "/ulkeler/sao-tome-ve-principe")];
+  return [...timerRedirects(), ...alarmRedirects(), ...fxRedirects(), ...uzLicenseRedirects(), ...es419Redirects(), ...numberRedirects(), ...aminoAcidRedirects(), ...sureCuzRedirects(), ...unitGuideRedirects().map((x) => r(x.source, x.destination)), ...altinRedirects(), ...cgpaRedirects(), ...uzRegionRedirects(), ...feiertageRedirects(), ...federalHolidayRedirects(), ...takvimGunRedirects(), ...materialRedirects(), r("/ulkeler/s-o-tome-ve-principe", "/ulkeler/sao-tome-ve-principe")];
 }

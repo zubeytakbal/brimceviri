@@ -1,6 +1,5 @@
 import { mergedPageRedirects } from "./mergedPageRedirects";
 import { routePairs } from "./converter/geo/routePairs";
-import { germanScienceRedirects } from "./converter/germanScienceSlugs";
 
 // Statik sitede (output: "export") Next.js yonlendirmeleri calismaz. Liste
 // derlemeden sonra scripts/postbuild.ts ile out/_redirects dosyasina
@@ -107,7 +106,6 @@ export function siteRedirects(): SiteRedirect[] {
       permanent: true,
     },
     // Deutsche Werkstoff- und Verbindungsseiten hatten türkische Adressen (aluminyum, sofra-tuzu).
-    ...germanScienceRedirects(),
     ...Object.entries(localizedSectionRenames).flatMap(([locale, sections]) =>
       Object.entries(sections).map(([oldSection, newSection]) => ({
         source: `/${locale}/${oldSection}/:path*`,

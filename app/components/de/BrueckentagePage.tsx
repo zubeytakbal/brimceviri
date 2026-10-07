@@ -192,7 +192,7 @@ export default function BrueckentagePage({
                     <tr key={l.state.code}>
                       <td>
                         <Link
-                          href={`/de/feiertage/${l.state.slug}`}
+                          href={`/de/feiertage?land=${l.state.slug}`}
                           prefetch={false}
                         >
                           {l.state.name}

@@ -2,7 +2,6 @@ import Link from "@/app/components/SiteLink";
 import {
   AY_ADLARI,
   DINI_DOGRULANAN,
-  doluGunler,
   ETKINLIKLER,
   gunBilgisi,
   gunHaritasi,
@@ -207,24 +206,27 @@ function Lejant() {
 function EtkinlikListesi({
   list,
   gorsel = true,
+  gunCapasi = false,
 }: {
   list: Tarihli[];
   gorsel?: boolean;
+  /** Ay sayfasında her günün ilk satırına #gun-N çapası koyar. */
+  gunCapasi?: boolean;
 }) {
+  const capali = new Set<number>();
   return (
     <ul className="takvim-liste">
       {list.map((t) => (
-        <li key={`${t.etkinlik.id}-${ymdKey(t.tarih)}`}>
+        <li
+          key={`${t.etkinlik.id}-${ymdKey(t.tarih)}`}
+          id={gunCapasi && !capali.has(t.tarih.day) && capali.add(t.tarih.day) ? `gun-${t.tarih.day}` : undefined}
+        >
           {gorsel ? (
             <TakvimGorsel gorsel={t.etkinlik.gorsel} size={44} />
           ) : null}
           <div>
             <Link
-              href={
-                sayfaVar(t.tarih)
-                  ? takvimGunPath(t.tarih)
-                  : ozelGunPath(t.etkinlik.id)
-              }
+              href={sayfaVar(t.tarih) ? takvimGunPath(t.tarih) : ozelGunPath(t.etkinlik.id)}
               prefetch={false}
             >
               <strong>{aralik(t)}</strong>
@@ -686,7 +688,7 @@ export function TakvimAySayfasi({
         {a} {year} özel günleri
       </h2>
       {list.length ? (
-        <EtkinlikListesi list={list} />
+        <EtkinlikListesi list={list} gunCapasi />
       ) : (
         <p>Bu ayda takvimimizdeki özel günlerden biri bulunmuyor.</p>
       )}
@@ -711,199 +713,6 @@ export function TakvimAySayfasi({
           </ul>
         </>
       ) : null}
-    </TimeToolPage>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-/* /takvim/[yil]/[ay]/[gun]                                             */
-
-export function gunMeta(d: YMD) {
-  const b = gunBilgisi(d);
-  const ad = b.etkinlikler.map((t) => tarihliAd(t));
-  const tarih = `${d.day} ${AY_ADLARI[d.month - 1]} ${d.year}`;
-  return {
-    title: `${tarih}: ${ad.join(", ")}`,
-    short: `${tarih} ${ad[0]}`,
-    description:
-      `${tarih} ${b.gunAdi}: ${ad.join(", ")}. ${b.etkinlikler[0]?.etkinlik.kisa ?? ""} Hicri ${b.hicriMetin}, resmî tatil durumu ve kaç gün kaldığı.`.slice(
-        0,
-        300,
-      ),
-  };
-}
-
-export function TakvimGunSayfasi({ d }: { d: YMD }) {
-  const b = gunBilgisi(d);
-  const tatil = tatilHaritasi(d.year).get(ymdKey(d));
-  const tarih = `${d.day} ${AY_ADLARI[d.month - 1]} ${d.year}`;
-  const hepsi = TAKVIM_YILLARI.flatMap(doluGunler);
-  const i = hepsi.findIndex((g) => ymdKey(g) === ymdKey(d));
-  const onceki = hepsi[i - 1];
-  const sonraki = hepsi[i + 1];
-  const tatilMetni = tatil
-    ? tatil.kind === "full"
-      ? `${tarih} tam gün resmî tatildir (${tatil.name}).`
-      : `${tarih} öğleden sonra (13.00'ten itibaren) yarım gün resmî tatildir (${tatil.name}).`
-    : `${tarih} resmî tatil değildir.`;
-  const faq: FaqItem[] = [
-    {
-      question: `${tarih} hangi gün?`,
-      answer: `${tarih} ${b.gunAdi} gününe denk gelir; yılın ${b.yilinGunu}. günü ve ${b.hafta}. haftasıdır.`,
-    },
-    {
-      question: `${tarih} resmî tatil mi?`,
-      answer: `${tatilMetni}${isWeekend(d) ? " Gün hafta sonuna denk gelir." : ""}`,
-    },
-    {
-      question: `${tarih} Hicri tarih kaç?`,
-      answer: `${tarih}, Hicri takvime göre ${b.hicriMetin} tarihine denk gelir.${b.rumiMetin ? ` Rumi takvimde ${b.rumiMetin}.` : ""}`,
-    },
-  ];
-  return (
-    <TimeToolPage
-      crumbs={[
-        HOME,
-        HUB,
-        { href: takvimYilPath(d.year), label: String(d.year) },
-        { href: takvimAyPath(d.year, d.month), label: AY_ADLARI[d.month - 1] },
-        { label: String(d.day) },
-      ]}
-      crumbLabel={T.crumbLabel}
-      title={`${tarih} ${b.gunAdi}`}
-      intro={`${b.etkinlikler.map((t) => tarihliAd(t)).join(", ")}. ${tatilMetni}`}
-      tool={
-        <div className="date-calc">
-          {b.etkinlikler.map((t) => (
-            <article className="takvim-kart" key={t.etkinlik.id}>
-              <TakvimGorsel
-                gorsel={t.etkinlik.gorsel}
-                size={112}
-                title={t.etkinlik.ad}
-              />
-              <div>
-                <span className={`takvim-kat kat-${t.etkinlik.kategori}`}>
-                  {KATEGORI_ADI[t.etkinlik.kategori]}
-                </span>
-                <h2>
-                  <Link href={ozelGunPath(t.etkinlik.id)} prefetch={false}>
-                    {tarihliAd(t)}
-                  </Link>
-                </h2>
-                <p>
-                  {t.etkinlik.kisa}
-                  {t.saat
-                    ? ` Ekinoks/gündönümü anı: saat ${saatMetni(t.saat)} (Türkiye saati).`
-                    : ""}
-                  {t.tahmini ? " Tarih tahminidir." : ""}
-                </p>
-                <p className="takvim-kart-alt">
-                  <TatilEtiketi e={t.etkinlik} />
-                  {t.bitis ? (
-                    <span className="takvim-etiket">{aralik(t)}</span>
-                  ) : null}
-                </p>
-              </div>
-            </article>
-          ))}
-          <div className="date-calc-results">
-            <div className="date-calc-stat">
-              <span>Hicri</span>
-              <strong>{b.hicriMetin}</strong>
-              {b.rumiMetin ? <em>Rumi: {b.rumiMetin}</em> : null}
-            </div>
-            <div className="date-calc-stat">
-              <span>Hafta · yılın günü</span>
-              <strong>
-                {b.hafta}. hafta · {b.yilinGunu}. gün
-              </strong>
-              <em>yılın bitmesine {b.kalanGun} gün</em>
-            </div>
-            <div className="date-calc-stat">
-              <span>Ay evresi</span>
-              <strong>{b.ayEvresi}</strong>
-              <em>%{Math.round(b.ayAydinlik * 100)} aydınlık</em>
-            </div>
-            <div className="date-calc-stat">
-              <span>Halk takvimi</span>
-              <strong>{halkMetni(b.halk)}</strong>
-              <em>
-                <Link href="/firtina-takvimi" prefetch={false}>
-                  Fırtına ve halk takvimi
-                </Link>
-              </em>
-            </div>
-          </div>
-          <nav className="takvim-onceki-sonraki" aria-label="Diğer özel günler">
-            {onceki ? (
-              <Link href={takvimGunPath(onceki)} prefetch={false}>
-                ‹ {kisaTarih(onceki)} {onceki.year}:{" "}
-                {gunHaritasi(onceki.year).get(ymdKey(onceki))?.[0].etkinlik.ad}
-              </Link>
-            ) : (
-              <span />
-            )}
-            {sonraki ? (
-              <Link href={takvimGunPath(sonraki)} prefetch={false}>
-                {kisaTarih(sonraki)} {sonraki.year}:{" "}
-                {
-                  gunHaritasi(sonraki.year).get(ymdKey(sonraki))?.[0].etkinlik
-                    .ad
-                }{" "}
-                ›
-              </Link>
-            ) : null}
-          </nav>
-        </div>
-      }
-      related={{
-        title: T.related,
-        links: [
-          ...b.etkinlikler.flatMap((t) => [
-            ...(t.etkinlik.geriSayim
-              ? [
-                  {
-                    href: `/geri-sayim/${t.etkinlik.geriSayim}`,
-                    label: `${t.etkinlik.ad}: kaç gün kaldı?`,
-                  },
-                ]
-              : []),
-            ...(t.etkinlik.araclar ?? []),
-          ]),
-          {
-            href: takvimAyPath(d.year, d.month),
-            label: `${AY_ADLARI[d.month - 1]} ${d.year} Takvimi`,
-          },
-          ...TAKVIM_ARACLARI,
-        ],
-      }}
-      tocTitle={T.toc}
-      tocItems={[
-        ...b.etkinlikler.map((t) => ({
-          id: `hakkinda-${t.etkinlik.id}`,
-          label: t.etkinlik.ad,
-        })),
-        { id: "ay", label: `${AY_ADLARI[d.month - 1]} ${d.year}` },
-        { id: "faq", label: T.faq },
-      ]}
-      faqTitle={T.faq}
-      faqItems={faq}
-    >
-      {b.etkinlikler.map((t) => (
-        <section key={t.etkinlik.id}>
-          <h2 id={`hakkinda-${t.etkinlik.id}`}>{t.etkinlik.ad}</h2>
-          <p>{t.etkinlik.hakkinda}</p>
-          <p>
-            <Link href={ozelGunPath(t.etkinlik.id)} prefetch={false}>
-              {t.etkinlik.ad} tarihleri ({TAKVIM_YILLARI.join(", ")})
-            </Link>
-          </p>
-        </section>
-      ))}
-      <h2 id="ay">
-        {AY_ADLARI[d.month - 1]} {d.year}
-      </h2>
-      <AyIzgarasi year={d.year} month={d.month} bugun={d} />
     </TimeToolPage>
   );
 }

@@ -22,11 +22,7 @@ export const PENDING = new Set<string>([
   "/dunyanin-en-yuksek-daglari",
   "/uz/dunyoning-eng-baland-toglari",
   // Diğer: takvim, tatil, geri sayım, küçük araç grupları
-  "/takvim/*",
-  "/de/kalender/*",
-  "/de/feiertage",
   "/resmi-tatiller",
-  "/en/federal-holidays",
 ]);
 
 function isPending(group: string) {

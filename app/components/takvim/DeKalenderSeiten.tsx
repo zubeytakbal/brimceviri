@@ -4,7 +4,6 @@ import {
   DE_KATEGORIE,
   DE_MONATE,
   DE_TAGE,
-  deBelegteTage,
   deBesondererTagPfad,
   deJahresTermine,
   deJahrPfad,
@@ -99,11 +98,15 @@ const laenderText = (t: DeTermin) => {
     .join("; ");
 };
 
-function Liste({ list, bild = true }: { list: DeTermin[]; bild?: boolean }) {
+function Liste({ list, bild = true, tagAnker = false }: { list: DeTermin[]; bild?: boolean; tagAnker?: boolean }) {
+  const verankert = new Set<number>();
   return (
     <ul className="takvim-liste">
       {list.map((t) => (
-        <li key={t.tag.id + ymdKey(t.datum)}>
+        <li
+          key={t.tag.id + ymdKey(t.datum)}
+          id={tagAnker && !verankert.has(t.datum.day) && verankert.add(t.datum.day) ? `tag-${t.datum.day}` : undefined}
+        >
           {bild ? <TakvimGorsel gorsel={t.tag.bild} size={44} /> : null}
           <div>
             <Link
@@ -511,7 +514,7 @@ export function DeMonatSeite({ year, month }: { year: number; month: number }) {
           Besondere Tage im {name} {year}
         </h2>
         {list.length ? (
-          <Liste list={list} />
+          <Liste list={list} tagAnker />
         ) : (
           <p>
             In diesem Monat gibt es keinen der besonderen Tage aus unserem
@@ -533,7 +536,7 @@ export function DeMonatSeite({ year, month }: { year: number; month: number }) {
               {at.map(({ s, n }) => (
                 <tr key={s.code}>
                   <td>
-                    <Link href={`/de/feiertage/${s.slug}`} prefetch={false}>
+                    <Link href={`/de/feiertage?land=${s.slug}`} prefetch={false}>
                       {s.name}
                     </Link>
                   </td>
@@ -548,181 +551,6 @@ export function DeMonatSeite({ year, month }: { year: number; month: number }) {
           Feiertage. Für eigene Zeiträume und Teilzeit nutzen Sie den{" "}
           <Link href="/de/arbeitstage-rechner">Arbeitstage-Rechner</Link>.
         </p>
-      </TimeToolPage>
-    </div>
-  );
-}
-
-/* /de/kalender/[jahr]/[monat]/[tag] -------------------------------------- */
-
-export function deTagMeta(d: YMD) {
-  const info = deTagInfo(d);
-  const namen = info.termine.map((t) => t.tag.name);
-  const datum = `${d.day}. ${DE_MONATE[d.month - 1]} ${d.year}`;
-  return {
-    title: `${datum}: ${namen.join(", ")}`,
-    short: `${datum}: ${namen[0]}`,
-    description:
-      `${info.wochentag}, ${datum} (KW ${info.kw}): ${namen.join(", ")}. ${info.termine[0]?.tag.kurz ?? ""}`.slice(
-        0,
-        300,
-      ),
-  };
-}
-
-export function DeTagSeite({ d }: { d: YMD }) {
-  const info = deTagInfo(d);
-  const datum = `${d.day}. ${DE_MONATE[d.month - 1]} ${d.year}`;
-  const alle = DE_JAHRE.flatMap(deBelegteTage);
-  const i = alle.findIndex((x) => ymdKey(x) === ymdKey(d));
-  const vor = alle[i - 1];
-  const nach = alle[i + 1];
-  const feiertag = info.termine.find((t) => t.laender);
-  const faq: FaqItem[] = [
-    {
-      question: `Welcher Wochentag ist der ${datum}?`,
-      answer: `Der ${datum} ist ein ${info.wochentag} in Kalenderwoche ${info.kw}; es ist der ${info.tagImJahr}. Tag des Jahres.`,
-    },
-    {
-      question: `Ist der ${datum} ein Feiertag?`,
-      answer: feiertag
-        ? `Ja, ${feiertag.tag.name} ist gesetzlicher Feiertag: ${laenderText(feiertag)}.`
-        : `Nein, der ${datum} ist kein gesetzlicher Feiertag.`,
-    },
-  ];
-  return (
-    <div lang="de">
-      <TimeToolPage
-        crumbs={[
-          START,
-          HUB,
-          { href: deJahrPfad(d.year), label: String(d.year) },
-          { href: deMonatPfad(d.year, d.month), label: DE_MONATE[d.month - 1] },
-          { label: String(d.day) },
-        ]}
-        crumbLabel={T.crumb}
-        title={`${info.wochentag}, ${datum}`}
-        intro={`${info.termine.map((t) => t.tag.name).join(", ")}. ${feiertag ? `Gesetzlicher Feiertag: ${laenderText(feiertag)}.` : "Kein gesetzlicher Feiertag."}`}
-        tool={
-          <div className="date-calc">
-            {info.termine.map((t) => (
-              <article className="takvim-kart" key={t.tag.id}>
-                <TakvimGorsel
-                  gorsel={t.tag.bild}
-                  size={112}
-                  title={t.tag.name}
-                />
-                <div>
-                  <span className={`takvim-kat de-kat-${t.tag.kategorie}`}>
-                    {DE_KATEGORIE[t.tag.kategorie]}
-                  </span>
-                  <h2>
-                    <Link href={deBesondererTagPfad(t.tag.id)} prefetch={false}>
-                      {t.tag.name}
-                    </Link>
-                  </h2>
-                  <p>
-                    {t.tag.kurz}
-                    {t.zeit ? ` Genauer Zeitpunkt: ${zeitDe(t.zeit)} Uhr.` : ""}
-                  </p>
-                  <p className="takvim-kart-alt">
-                    {t.laender ? (
-                      <span className="takvim-etiket is-tatil">
-                        Feiertag{" "}
-                        {laenderText(t) === "bundesweit"
-                          ? "bundesweit"
-                          : "in einigen Ländern"}
-                      </span>
-                    ) : (
-                      <span className="takvim-etiket">Kein Feiertag</span>
-                    )}
-                  </p>
-                </div>
-              </article>
-            ))}
-            <div className="date-calc-results">
-              <div className="date-calc-stat">
-                <span>Kalenderwoche</span>
-                <strong>KW {info.kw}</strong>
-                <em>
-                  {info.tagImJahr}. Tag des Jahres · noch {info.restTage} Tage
-                </em>
-              </div>
-              <div className="date-calc-stat">
-                <span>Mondphase</span>
-                <strong>{info.mond}</strong>
-                <em>{Math.round(info.mondHell * 100)} % beleuchtet</em>
-              </div>
-            </div>
-            <nav
-              className="takvim-onceki-sonraki"
-              aria-label="Weitere besondere Tage"
-            >
-              {vor ? (
-                <Link href={deTagPfad(vor)} prefetch={false}>
-                  ‹ {kurz(vor)} {vor.year}:{" "}
-                  {deTagesKarte(vor.year).get(ymdKey(vor))?.[0].tag.name}
-                </Link>
-              ) : (
-                <span />
-              )}
-              {nach ? (
-                <Link href={deTagPfad(nach)} prefetch={false}>
-                  {kurz(nach)} {nach.year}:{" "}
-                  {deTagesKarte(nach.year).get(ymdKey(nach))?.[0].tag.name} ›
-                </Link>
-              ) : null}
-            </nav>
-          </div>
-        }
-        related={{
-          title: T.related,
-          links: [
-            ...info.termine.flatMap((t) => [
-              ...(t.tag.countdown
-                ? [
-                    {
-                      href: `/de/countdown/${t.tag.countdown}`,
-                      label: `Countdown: ${t.tag.name}`,
-                    },
-                  ]
-                : []),
-              ...(t.tag.links ?? []),
-            ]),
-            {
-              href: deMonatPfad(d.year, d.month),
-              label: `Kalender ${DE_MONATE[d.month - 1]} ${d.year}`,
-            },
-            ...DE_KALENDER_LINKS,
-          ],
-        }}
-        tocTitle={T.toc}
-        tocItems={[
-          ...info.termine.map((t) => ({
-            id: `info-${t.tag.id}`,
-            label: t.tag.name,
-          })),
-          { id: "monat", label: `${DE_MONATE[d.month - 1]} ${d.year}` },
-          { id: "faq", label: T.faq },
-        ]}
-        faqTitle={T.faq}
-        faqItems={faq}
-      >
-        {info.termine.map((t) => (
-          <section key={t.tag.id}>
-            <h2 id={`info-${t.tag.id}`}>{t.tag.name}</h2>
-            <p>{t.tag.info}</p>
-            <p>
-              <Link href={deBesondererTagPfad(t.tag.id)}>
-                {t.tag.name}: Termine {DE_JAHRE.join(", ")}
-              </Link>
-            </p>
-          </section>
-        ))}
-        <h2 id="monat">
-          {DE_MONATE[d.month - 1]} {d.year}
-        </h2>
-        <DeMonatsGitter year={d.year} month={d.month} land={null} heute={d} />
       </TimeToolPage>
     </div>
   );

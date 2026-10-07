@@ -863,8 +863,9 @@ export const TAKVIM_YILLARI = [2026, 2027, 2028];
 export const takvimYilPath = (y: number) => `/takvim/${y}`;
 export const takvimAyPath = (y: number, m: number) =>
   `/takvim/${y}/${AY_SLUG[m - 1]}`;
+/** Gün sayfası yok: özel gün, ay sayfasındaki listede #gun-N satırındadır. */
 export const takvimGunPath = (d: YMD) =>
-  `/takvim/${d.year}/${AY_SLUG[d.month - 1]}/${d.day}`;
+  `/takvim/${d.year}/${AY_SLUG[d.month - 1]}#gun-${d.day}`;
 export const ozelGunPath = (id: string) => `/ozel-gunler/${id}`;
 
 export const AY_EVRE_ADI: Record<PhaseName, string> = {

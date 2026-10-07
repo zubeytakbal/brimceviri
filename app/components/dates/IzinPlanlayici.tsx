@@ -128,11 +128,7 @@ export default function IzinPlanlayici({ year }: { year: number }) {
         </div>
       ) : null}
       <p className="date-calc-note">
-        Plan, seçtiğiniz tarih aralığında çalışma günlerinize göre tek bir tatil
-        dönemi önerir. Resmî tatiller izin bütçesinden düşülmez; arefelerdeki
-        çalışma yarım gün izin sayılır. En verimli seçenek, tatil günü / izin
-        günü oranını artırır ve bütçenin tamamını kullanmayabilir. Sabit haftalık
-        çalışma düzeni varsayılır. İznin kullanım zamanı işverenle birlikte belirlenir.
+        Resmî tatiller izin bütçesinden düşülmez; arefe yarım gün izin sayılır.
       </p>
     </div>
   );

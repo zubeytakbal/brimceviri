@@ -19,7 +19,8 @@ type Lang = HolidayLang;
 
 export const holidayPaths = {
   hub: { tr: "/resmi-tatiller", en: "/en/federal-holidays" },
-  year: (lang: Lang, year: number) => (lang === "tr" ? `/resmi-tatiller/${year}` : `/en/federal-holidays/${year}`),
+  // İngilizce yıl sayfaları yok: yıllar ana sayfadaki tarih tablosunda.
+  year: (lang: Lang, year: number) => (lang === "tr" ? `/resmi-tatiller/${year}` : `/en/federal-holidays#y${year}`),
 };
 
 /** Tatil gunu -> geri sayim sayfasi */
@@ -709,6 +710,7 @@ export function HolidayHubPage({ lang }: { lang: Lang }) {
             ]
           : [
               { id: "liste", label: "The 11 federal holidays" },
+              { id: "dates", label: "Dates by year" },
               { id: "faq", label: t.faq },
             ]
       }
@@ -742,6 +744,45 @@ export function HolidayHubPage({ lang }: { lang: Lang }) {
           <li>Thanksgiving Day – fourth Thursday in November</li>
           <li>Christmas Day – December 25</li>
         </ul>
+      )}
+
+      {!tr && (
+        <>
+          <h2 id="dates">
+            Federal holiday dates {HOLIDAY_YEARS[0]}–{HOLIDAY_YEARS[HOLIDAY_YEARS.length - 1]}
+          </h2>
+          <p>Observed dates; when a holiday falls on a weekend, the observed weekday is shown with an asterisk.</p>
+          <div className="holiday-table-wrap">
+            <table className="holiday-table">
+              <thead>
+                <tr>
+                  <th scope="col">Holiday</th>
+                  {HOLIDAY_YEARS.map((y) => (
+                    <th scope="col" key={y} id={`y${y}`}>
+                      {y}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {holidaysFor("en", HOLIDAY_YEARS[0]).map((h) => (
+                  <tr key={h.id}>
+                    <th scope="row">{h.name}</th>
+                    {HOLIDAY_YEARS.map((y) => {
+                      const d = holidaysFor("en", y).find((x) => x.id === h.id);
+                      return (
+                        <td key={y}>
+                          {d ? formatYmdParts(d.date, "en", { weekday: "short", month: "short", day: "numeric" }) : "—"}
+                          {d?.observedFor ? "*" : ""}
+                        </td>
+                      );
+                    })}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
       )}
 
       {tr && (

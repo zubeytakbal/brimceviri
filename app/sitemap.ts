@@ -17,13 +17,12 @@ import { worldCities } from "./converter/time/worldCities";
 import { countdownAlternatePaths, countdownEvents, countdownPath } from "./converter/time/countdownEvents";
 import { HOLIDAY_YEARS } from "./converter/time/holidays";
 import { HIJRI_SLUG, MUNASABAT, SA_HIJRI_SANAWAT, saHijriSanaPath, saHijriShahrPath, saMunasabaPath } from "./converter/calendar/saTaqwim";
-import { DE_JAHRE, DE_MONAT_SLUG, DE_TAGE, deBelegteTage, deBesondererTagPfad, deJahrPfad, deMonatPfad, deTagPfad } from "./converter/calendar/deKalender";
-import { AY_SLUG, doluGunler, ETKINLIKLER, ozelGunPath, TAKVIM_YILLARI, takvimAyPath, takvimGunPath, takvimYilPath } from "./converter/calendar/trTakvim";
+import { DE_JAHRE, DE_MONAT_SLUG, DE_TAGE, deBesondererTagPfad, deJahrPfad, deMonatPfad } from "./converter/calendar/deKalender";
+import { AY_SLUG, ETKINLIKLER, ozelGunPath, TAKVIM_YILLARI, takvimAyPath, takvimYilPath } from "./converter/calendar/trTakvim";
 import { routePairs } from "./converter/geo/routePairs";
 import { turkeyProvinces } from "./converter/geo/turkeyProvinces";
 import { worldCountries } from "./converter/geo/worldCountries";
 import { countryPathEn } from "./converter/geo/worldGeoEn";
-import { GERMAN_STATES } from "./converter/time/germanHolidays";
 import { worldCityPaths } from "./converter/time/nordicWorld";
 import { worldRegionPages } from "./converter/geo/worldRegions";
 import { zonePairs } from "./converter/time/timeZonePairs";
@@ -2933,7 +2932,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.8,
     })),
-    ...["/de/feiertage", "/de/feiertage-oesterreich", ...GERMAN_STATES.map((st) => `/de/feiertage/${st.slug}`)].map((path) => ({
+    ...["/de/feiertage", "/de/feiertage-oesterreich"].map((path) => ({
       url: `${baseUrl}${path}`,
       lastModified: contentLastModified,
       changeFrequency: "weekly" as const,
@@ -2962,7 +2961,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       "/de/vollmond",
       "/de/bauernregeln",
       ...DE_TAGE.map((t) => deBesondererTagPfad(t.id)),
-      ...DE_JAHRE.flatMap((y) => [deJahrPfad(y), ...DE_MONAT_SLUG.map((_, i) => deMonatPfad(y, i + 1)), ...deBelegteTage(y).map(deTagPfad)]),
+      ...DE_JAHRE.flatMap((y) => [deJahrPfad(y), ...DE_MONAT_SLUG.map((_, i) => deMonatPfad(y, i + 1))]),
     ].map((path) => ({
       url: `${baseUrl}${path}`,
       lastModified: contentLastModified,
@@ -2977,7 +2976,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       "/okul-takvimi",
       "/hicri-takvim",
       ...ETKINLIKLER.map((e) => ozelGunPath(e.id)),
-      ...TAKVIM_YILLARI.flatMap((y) => [takvimYilPath(y), ...AY_SLUG.map((_, i) => takvimAyPath(y, i + 1)), ...doluGunler(y).map(takvimGunPath)]),
+      ...TAKVIM_YILLARI.flatMap((y) => [takvimYilPath(y), ...AY_SLUG.map((_, i) => takvimAyPath(y, i + 1))])
     ].map((path) => ({
       url: `${baseUrl}${path}`,
       lastModified: contentLastModified,
@@ -2986,7 +2985,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
     ...[
       ["/resmi-tatiller", ...HOLIDAY_YEARS.map((y) => `/resmi-tatiller/${y}`)],
-      ["/en/federal-holidays", ...HOLIDAY_YEARS.map((y) => `/en/federal-holidays/${y}`)],
+      ["/en/federal-holidays"],
     ].flat().map((path) => ({
       url: `${baseUrl}${path}`,
       lastModified: contentLastModified,

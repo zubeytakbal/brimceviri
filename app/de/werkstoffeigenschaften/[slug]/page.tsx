@@ -216,7 +216,7 @@ export default async function GermanMaterialPropertyPage({ params }: PageProps) 
             )}
           </dl>
           {variabilityNoteDe && (
-            <p className="calculator-usage-hint">
+            <p>
               <strong>Hinweis zur Schwankungsbreite:</strong> {variabilityNoteDe}
             </p>
           )}

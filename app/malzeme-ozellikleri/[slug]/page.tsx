@@ -161,7 +161,7 @@ export default async function MaterialPropertyPage({ params }: PageProps) {
         <header className="all-conversions-header">
           <h1>{material.nameTr} Yoğunluğu, Özellikleri ve Birim Çevirici</h1>
           <p>
-            {material.nameTr} ({materialCategoryLabels[material.category]}
+            {material.nameTr} ({materialCategoryLabels[material.category]}{" "}
             kategorisi) yoğunluğu, bilinen mühendislik özellikleri ve
             canlı birim çevirici.
           </p>
@@ -209,7 +209,7 @@ export default async function MaterialPropertyPage({ params }: PageProps) {
             )}
           </dl>
           {material.variabilityNote && (
-            <p className="calculator-usage-hint">
+            <p>
               <strong>Değişkenlik uyarısı:</strong> {material.variabilityNote}
             </p>
           )}

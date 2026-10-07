@@ -207,7 +207,7 @@ export default async function UzbekMaterialPropertyPage({ params }: PageProps) {
             )}
           </dl>
           {variabilityNoteUz && (
-            <p className="calculator-usage-hint">
+            <p>
               <strong>O&apos;zgaruvchanlik ogohlantirishi:</strong> {variabilityNoteUz}
             </p>
           )}

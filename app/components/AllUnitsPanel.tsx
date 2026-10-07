@@ -181,11 +181,6 @@ const headingTemplates: Record<
     pair: "{value} en otras unidades",
     hint: "Los valores cambian con el conversor de arriba. Elige una fila para abrir la página detallada de esa conversión.",
   },
-  "es-419": {
-    category: "{value} en todas las unidades",
-    pair: "{value} en otras unidades",
-    hint: "Los valores cambian con el conversor de arriba. Elige una fila para abrir la página detallada de esa conversión.",
-  },
   pt: {
     category: "{value} em todas as unidades",
     pair: "{value} em outras unidades",
@@ -233,8 +228,7 @@ export default function AllUnitsPanel({
   const unit = syncedState?.unit ?? defaultUnit;
   const fromOption = unitOptions.find((option) => option.value === unit);
   const labels =
-    groupLabels[locale] ??
-    (locale === "es-419" ? groupLabels.es : groupLabels.en);
+    groupLabels[locale] ?? groupLabels.en;
   const template = headingTemplates[locale] ?? headingTemplates.en;
   const grouped = hasUnitSystemGroups(category);
 

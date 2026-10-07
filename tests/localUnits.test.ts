@@ -7,9 +7,7 @@ import { italianConversionPages } from "../app/converter/localizedItalianConvers
 import { nederlandsConversionPages } from "../app/converter/localizedNederlandsConversionPages";
 import { portugueseConversionPages } from "../app/converter/localizedPortugueseConversionPages";
 import { spanishConversionPages } from "../app/converter/localizedSpanishConversionPages";
-import { es419ConversionPages } from "../app/converter/localizedEs419ConversionPages";
 import { spanishUnitPages } from "../app/converter/localizedSpanishUnitPages";
-import { es419UnitPages } from "../app/converter/localizedEs419UnitPages";
 
 describe("Iskandinav mili (10 km)", () => {
   it("10 km'ye esittir ve Ingiliz milinden farklidir", () => {
@@ -68,7 +66,6 @@ describe("dil basina donusum adresleri benzersiz", () => {
     ["it", italianConversionPages],
     ["pt", portugueseConversionPages],
     ["es", spanishConversionPages],
-    ["es-419", es419ConversionPages],
   ] as const)("%s", (_locale, pages) => {
     const seen = new Set<string>();
     const duplicates = pages.map((page) => page.slug).filter((slug) => (seen.has(slug) ? true : (seen.add(slug), false)));
@@ -79,7 +76,6 @@ describe("dil basina donusum adresleri benzersiz", () => {
 describe("ispanyolca birim sayfalari", () => {
   it.each([
     ["es", spanishUnitPages],
-    ["es-419", es419UnitPages],
   ] as const)("%s: birim adresleri ve kaynaklari benzersiz", (_locale, pages) => {
     const slugs = pages.map((page) => page.slug);
     const sources = pages.map((page) => page.sourceSlug);

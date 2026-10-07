@@ -16,7 +16,6 @@ export const metadata: Metadata = {
       bn: "/bn/shoe-size-converter",
       fr: "/fr/convertisseur-de-pointures",
       es: "/es/conversor-tallas-de-calzado",
-      "es-419": "/es-419/conversor-tallas-de-calzado",
       pt: "/pt/conversor-de-calcados",
       it: "/it/convertitore-taglie-scarpe",
       "x-default": "/ayakkabi-numarasi-cevirme",

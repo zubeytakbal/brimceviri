@@ -720,28 +720,17 @@ function unitTableFor(category: string) {
   });
 }
 
-const latamReplacements: Array<[RegExp, string]> = [
-  [/\bcoches\b/g, "autos"],
-  [/\bcoche\b/g, "auto"],
-  [/\bmóviles\b/g, "celulares"],
-];
-
-function toLatam(text: string) {
-  return latamReplacements.reduce((value, [pattern, replacement]) => value.replace(pattern, replacement), text);
-}
-
-export function buildSpanishScienceCategoryPages(variant: "es" | "es-419"): LocalizedSpanishCategoryPage[] {
-  const text = variant === "es-419" ? toLatam : (value: string) => value;
+export function buildSpanishScienceCategoryPages(): LocalizedSpanishCategoryPage[] {
   return scienceCategories.map((page) => ({
     locale: "es" as const,
     slug: page.slug,
     sourceSlug: page.category,
     category: page.category,
     title: page.title,
-    description: text(page.description),
-    introduction: page.introduction.map(text),
-    facts: page.facts.map((fact) => ({ label: fact.label, value: text(fact.value) })),
-    sections: page.sections.map((section) => ({ title: text(section.title), paragraphs: section.paragraphs.map(text) })),
-    unitTable: unitTableFor(page.category).map((row) => ({ ...row, commonUse: text(row.commonUse) })),
+    description: page.description,
+    introduction: page.introduction,
+    facts: page.facts.map((fact) => ({ label: fact.label, value: fact.value })),
+    sections: page.sections.map((section) => ({ title: section.title, paragraphs: section.paragraphs })),
+    unitTable: unitTableFor(page.category).map((row) => ({ ...row, commonUse: row.commonUse })),
   }));
 }

@@ -81,20 +81,6 @@ const copyByLocale: Record<
     },
     emptyState: "Introduce valores válidos para ver el resultado.",
   },
-  "es-419": {
-    labels: {
-      area: "Superficie a cubrir (m²)",
-      width: "Ancho de la baldosa (cm)",
-      height: "Alto de la baldosa (cm)",
-      waste: "Margen de desperdicio (%)",
-    },
-    resultLabels: {
-      tileArea: "Superficie de una baldosa",
-      totalArea: "Superficie total con desperdicio",
-      count: "Cantidad de baldosas necesaria",
-    },
-    emptyState: "Ingresa valores válidos para ver el resultado.",
-  },
   pt: {
     labels: {
       area: "Área a revestir (m²)",

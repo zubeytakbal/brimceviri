@@ -16,7 +16,6 @@ export const metadata = {
       bn: "/bn/historical-units",
       fr: "/fr/unites-historiques",
       es: "/es/unidades-historicas",
-      "es-419": "/es-419/unidades-historicas",
       pt: "/pt/unidades-historicas",
       it: "/it/unita-storiche",
       nl: "/nl/historische-eenheden",

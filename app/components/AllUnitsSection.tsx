@@ -16,7 +16,6 @@ export function getPanelUnitOptions(category: string, locale: AllUnitsLocale) {
     case "bn":
     case "da":
     case "es":
-    case "es-419":
     case "fr":
     case "it":
     case "no":

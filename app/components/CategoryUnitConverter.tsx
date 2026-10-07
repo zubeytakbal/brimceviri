@@ -15,7 +15,7 @@ type UnitOption = {
 
 type CategoryUnitConverterProps = {
   category: string;
-  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "nl" | "sv" | "no" | "da";
+  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "pt" | "it" | "nl" | "sv" | "no" | "da";
   // Verilmezse getCategoryUnitOptions(category, locale) kullanilir (kategori
   // sayfalarindaki standart davranis). Verilirse, ayni convert() motoru
   // (ayni category/symbol eslesmesi) uzerinde SADECE bu birimler secilebilir
@@ -37,7 +37,6 @@ const NUMBER_LOCALES: Record<ConverterLocale, string> = {
   bn: "bn-BD",
   fr: "fr-FR",
   es: "es-ES",
-  "es-419": "es-419",
   pt: "pt-BR",
   it: "it-IT",
   nl: "nl-NL",
@@ -115,7 +114,6 @@ const CONVERTER_LABELS: Record<ConverterLocale, ConverterLabels> = {
     invalid: "Saisissez un nombre valide pour voir le résultat.",
   },
   es: SPANISH_LABELS,
-  "es-419": SPANISH_LABELS,
   pt: {
     value: "Valor",
     from: "Unidade de origem",
@@ -203,7 +201,7 @@ function parseNumericValue(
 }
 
 function formatDisplayNumber(
-  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "nl" | "sv" | "no" | "da",
+  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "pt" | "it" | "nl" | "sv" | "no" | "da",
   value: number
 ) {
   if (!Number.isFinite(value)) {

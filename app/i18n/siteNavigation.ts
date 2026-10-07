@@ -274,31 +274,6 @@ const categoryLabels: Record<
     altin_ayar: "Quilate de Oro",
     gumus_ayar: "Ley de la Plata",
   },
-  "es-419": {
-    uzunluk: "Longitud",
-    alan: "Superficie",
-    hacim: "Volumen",
-    kutle: "Masa",
-    sicaklik: "Temperatura",
-    zaman: "Tiempo",
-    hiz: "Velocidad",
-    basinc: "Presión",
-    enerji: "Energía y Potencia",
-    veri: "Almacenamiento de Datos",
-    elektrik: "Electricidad",
-    yogunluk: "Densidad",
-    kuvvet: "Fuerza",
-    debi: "Caudal",
-    tork: "Par",
-    momentum: "Momento",
-    viskozite_dinamik: "Viscosidad",
-    elektrik_direnc: "Resistencia",
-    kapasitans: "Capacitancia",
-    enduktans: "Inductancia",
-    elektrik_yuk: "Carga Eléctrica",
-    altin_ayar: "Quilate de Oro",
-    gumus_ayar: "Ley de la Plata",
-  },
   pt: {
     uzunluk: "Comprimento",
     alan: "Área",
@@ -495,11 +470,6 @@ const siteHeaderCopy: Record<Locale, SiteHeaderCopy> = {
     menuLabel: "Menú",
     conversionsLabel: "Conversiones",
   },
-  "es-419": {
-    navAriaLabel: "Navegación principal",
-    menuLabel: "Menú",
-    conversionsLabel: "Conversiones",
-  },
   pt: {
     navAriaLabel: "Navegação principal",
     menuLabel: "Menu",
@@ -629,18 +599,6 @@ const footerCopy: Record<Locale, FooterCopy> = {
       "Para decisiones importantes de ingeniería, salud o seguridad, verifique los resultados con fuentes profesionales.",
     browserProcessingNote:
       "En los flujos de calculo de este sitio, los datos introducidos en las calculadoras se procesan directamente en el navegador.",
-  },
-  "es-419": {
-    navAriaLabel: "Navegación del pie de pagina",
-    pagesHeading: "Paginas",
-    languagesHeading: "Idiomas",
-    categoriesHeading: "Categorías",
-    description:
-      "Herramientas de conversión técnica y guías de unidades preparadas para un uso practico.",
-    disclaimer:
-      "Para decisiones importantes de ingeniería, salud o seguridad, verifica los resultados con fuentes profesionales.",
-    browserProcessingNote:
-      "En los flujos de calculo de este sitio, los datos que ingresas en las calculadoras se procesan directamente en el navegador.",
   },
   pt: {
     navAriaLabel: "Navegação do rodapé",
@@ -785,13 +743,6 @@ const topLevelLabelMap: Record<
     allConversions: "Todas las Conversiones",
     professions: "Por Profesión",
   },
-  "es-419": {
-    home: "Inicio",
-    engineeringHub: "Calculadoras",
-    units: "Guía de Unidades",
-    allConversions: "Todas las Conversiones",
-    professions: "Por Profesión",
-  },
   pt: {
     home: "Inicio",
     engineeringHub: "Calculadoras",
@@ -885,7 +836,6 @@ const footerLinksByLocale: Record<
   bn: [{ key: "home", label: "হোম" }],
   fr: [{ key: "home", label: "Accueil" }],
   es: [{ key: "home", label: "Inicio" }],
-  "es-419": [{ key: "home", label: "Inicio" }],
   pt: [{ key: "home", label: "Inicio" }],
   it: [{ key: "home", label: "Home" }],
   nl: [{ key: "home", label: "Home" }],
@@ -1033,7 +983,7 @@ export function getCategoryMenuLinks(locale: Locale) {
               ? "জুতার মাপ"
               : locale === "fr"
                 ? "Pointures"
-                : locale === "es" || locale === "es-419"
+                : locale === "es"
                   ? "Tallas de Calzado"
                   : locale === "pt"
                     ? "Numeração de Calçados"
@@ -1062,7 +1012,7 @@ export function getCategoryMenuLinks(locale: Locale) {
               ? "রান্নাঘর পরিমাপ"
               : locale === "fr"
                 ? "Mesures de Cuisine"
-                : locale === "es" || locale === "es-419"
+                : locale === "es"
                   ? "Medidas de Cocina"
                   : locale === "pt"
                     ? "Medidas de Cozinha"
@@ -1091,7 +1041,7 @@ export function getCategoryMenuLinks(locale: Locale) {
               ? "রেসিপি রূপান্তরকারী"
               : locale === "fr"
                 ? "Convertisseur de Recettes"
-                : locale === "es" || locale === "es-419"
+                : locale === "es"
                   ? "Conversor de Recetas"
                   : locale === "pt"
                     ? "Conversor de Receitas"

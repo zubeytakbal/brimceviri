@@ -72,13 +72,6 @@ const copy = {
     resultHeading: "Equivalencias",
     invalidValue: "Introduce un numero valido para ver la conversión.",
   },
-  "es-419": {
-    ingredient: "Ingrediente",
-    knownUnit: "Unidad conocida",
-    value: "Valor",
-    resultHeading: "Equivalencias",
-    invalidValue: "Introduce un numero valido para ver la conversión.",
-  },
   pt: {
     ingredient: "Ingrediente",
     knownUnit: "Unidade Conhecida",
@@ -146,8 +139,6 @@ function formatValue(value: number, locale: KitchenLocale) {
                 ? "fr-FR"
                 : locale === "es"
                   ? "es-ES"
-                  : locale === "es-419"
-                    ? "es-419"
                     : locale === "pt"
                       ? "pt-BR"
                       : locale === "it"
@@ -190,7 +181,7 @@ export default function KitchenMeasuresConverter({
   const [cupStandard, setCupStandard] = useState<KitchenCupStandard>(
     locale === "en"
       ? "us"
-      : locale === "fr" || locale === "es-419" || locale === "it" || locale === "nl" || locale === "sv" || locale === "no" || locale === "da"
+      : locale === "fr" || locale === "it" || locale === "nl" || locale === "sv" || locale === "no" || locale === "da"
         ? "metric"
         : locale === "es" || locale === "pt"
           ? "usLegal"

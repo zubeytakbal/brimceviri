@@ -153,35 +153,6 @@ const copyByLocale: Record<Exclude<Locale, "ru">, PaintCalculatorCopy> = {
       liters: "litros",
     },
   },
-  "es-419": {
-    labels: {
-      length: "Largo de la habitación (m)",
-      width: "Ancho de la habitación (m)",
-      height: "Altura de las paredes (m)",
-      doors: "Número de puertas",
-      windows: "Número de ventanas",
-      coats: "Número de manos",
-      coverage: "Rendimiento de la pintura (m²/litro)",
-      ceilingQuestion: "¿Pintar también el techo?",
-      ceilingCheckbox: "Sí, incluir el techo",
-    },
-    coatOptions: {
-      1: "Una mano",
-      2: "Dos manos (recomendado)",
-    },
-    emptyState: "Ingresa valores válidos para ver el resultado.",
-    resultLabels: {
-      netWallArea: "Superficie neta de paredes",
-      ceilingArea: "Superficie del techo",
-      totalPaintedArea: "Superficie total a pintar",
-      litersNeeded: "Pintura necesaria",
-      suggestedCans: "Combinación de galones sugerida",
-    },
-    units: {
-      area: "m2",
-      liters: "litros",
-    },
-  },
   pt: {
     labels: {
       length: "Comprimento do cômodo (m)",

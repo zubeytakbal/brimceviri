@@ -16,7 +16,6 @@ export const metadata: Metadata = {
       bn: "/bn/recipe-converter",
       fr: "/fr/convertisseur-de-recettes",
       es: "/es/conversor-de-recetas",
-      "es-419": "/es-419/conversor-de-recetas",
       pt: "/pt/conversor-de-receitas",
       it: "/it/convertitore-ricette",
       nl: "/nl/recepten-omrekenen",

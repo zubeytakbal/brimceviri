@@ -167,39 +167,6 @@ const copyByLocale: Record<Exclude<Locale, "ru">, BmiCopy> = {
       multiplier: "Factor de actividad",
     },
   },
-  "es-419": {
-    labels: {
-      height: "Estatura (cm)",
-      weight: "Peso (kg)",
-      age: "Edad",
-      gender: "Sexo",
-      activity: "Nivel de actividad",
-    },
-    genders: {
-      male: "Hombre",
-      female: "Mujer",
-    },
-    categories: {
-      underweight: "Bajo peso",
-      normal: "Normal",
-      overweight: "Sobrepeso",
-      obese: "Obesidad",
-    },
-    activities: {
-      sedentary: "Sedentario (trabajo de oficina, sin ejercicio)",
-      light: "Ligeramente activo (ejercicio 1-3 días/semana)",
-      moderate: "Moderadamente activo (ejercicio 3-5 días/semana)",
-      active: "Activo (ejercicio 6-7 días/semana)",
-      "very-active": "Muy activo (entrenamiento dos veces al día / trabajo físico)",
-    },
-    emptyState: "Ingresa valores válidos para ver el resultado.",
-    resultLabels: {
-      bmi: "IMC",
-      bmr: "Tasa metabólica basal",
-      calories: "Necesidad calórica diaria",
-      multiplier: "Factor de actividad",
-    },
-  },
   pt: {
     labels: {
       height: "Altura (cm)",

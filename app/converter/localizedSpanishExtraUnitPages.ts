@@ -1,4 +1,4 @@
-// Paginas de unidad adicionales en espanol (es y es-419).
+// Paginas de unidad adicionales en espanol.
 // Amplian las 13 categorias existentes con las unidades que ya tienen
 // paginas de conversion en turco, para que esas conversiones existan
 // tambien en espanol. Las unidades otomanas, bizantinas y de tierra del
@@ -692,7 +692,6 @@ const spanishEverydayUnits: SpanishExtraUnit[] = [
 export const spanishExtraUnits: SpanishExtraUnit[] = [...spanishEverydayUnits, ...spanishScienceUnits];
 
 export type SpanishExtraUnitPage = {
-  // Las paginas es-419 tambien usan locale "es" (igual que las existentes).
   locale: "es";
   sourceSlug: string;
   slug: string;
@@ -709,27 +708,10 @@ export type SpanishExtraUnitPage = {
 };
 
 // Vocabulario latinoamericano donde difiere del de Espana.
-const latamReplacements: Array<[RegExp, string]> = [
-  [/\bcoches\b/g, "autos"],
-  [/\bcoche\b/g, "auto"],
-  [/\bmóviles\b/g, "celulares"],
-  [/\bmóvil\b/g, "celular"],
-  [/\bordenadores\b/g, "computadoras"],
-  [/\bordenador\b/g, "computadora"],
-  [/\bfrigoríficos\b/g, "refrigeradores"],
-  [/\bportátiles\b/g, "laptops"],
-  [/\bmoquetas\b/g, "tapetes"],
-];
-
-function toLatam(text: string) {
-  return latamReplacements.reduce((value, [pattern, replacement]) => value.replace(pattern, replacement), text);
-}
-
-export function buildSpanishExtraUnitPages(variant: "es" | "es-419"): SpanishExtraUnitPage[] {
+export function buildSpanishExtraUnitPages(): SpanishExtraUnitPage[] {
   return spanishExtraUnits.flatMap((unit) => {
     const entry = unitRegistry.find((candidate) => candidate.tr?.slug === unit.sourceSlug);
     if (!entry) return [];
-    const text = variant === "es-419" ? toLatam : (value: string) => value;
     return [{
       locale: "es" as const,
       sourceSlug: unit.sourceSlug,
@@ -739,11 +721,11 @@ export function buildSpanishExtraUnitPages(variant: "es" | "es-419"): SpanishExt
       unit: entry.symbol,
       name: unit.name,
       symbol: unit.displaySymbol ?? entry.displaySymbol ?? entry.symbol,
-      shortDescription: text(unit.shortDescription),
-      historySummary: text(unit.historySummary),
+      shortDescription: unit.shortDescription,
+      historySummary: unit.historySummary,
       measurementSystem: unit.measurementSystem,
       siEquivalent: unit.siEquivalent,
-      commonUses: text(unit.commonUses),
+      commonUses: unit.commonUses,
     }];
   });
 }

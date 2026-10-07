@@ -3,7 +3,7 @@
 // 5'li kelime grupları karşılaştırılır (Jaccard). Ortalama örtüşme ESIK'i aşan bir klasör,
 // PENDING listesinde değilse hata verir. PENDING yalnızca küçülür: bir grup düzeltilince
 // listeden çıkarılır; listede olup artık eşiği geçmeyen grup da uyarı olarak raporlanır.
-import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
+import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative } from "node:path";
 
 const ESIK = 0.2;
@@ -16,9 +16,6 @@ const ORNEK = 24;
  * "/x/*" alt klasörlerin hepsini kapsar.
  */
 export const PENDING = new Set<string>([
-  // Adım 2: es-419 → es
-  "/es-419=/es",
-  "/es-419/guias-de-unidades",
   // Adım 3: bilim sayfaları
   "/bilim-hesaplayicilari/biyoloji/amino-asitler",
   "/bilim-hesaplayicilari/matematik/sayilar",
@@ -123,36 +120,6 @@ function overlap(files: string[]): number {
   return total / CIFT;
 }
 
-/** Aynı dilin iki bölge sürümü: aynı yoldaki sayfalar birbirinin kopyası olmamalı. */
-const IKIZ_DILLER: [string, string][] = [["es-419", "es"]];
-
-function twinOverlap(outDir: string, a: string, b: string): { n: number; avg: number } {
-  const files = new Map<string, string[]>();
-  htmlFiles(join(outDir, a), files);
-  const pairs = [...files.values()].flat().sort().map((f) => [f, join(outDir, b, relative(join(outDir, a), f))]);
-  const rand = rng(pairs.length);
-  let total = 0;
-  let count = 0;
-  for (let k = 0; k < CIFT && pairs.length; k++) {
-    const [x, y] = pairs[Math.floor(rand() * pairs.length)];
-    let A: Set<string>, B: Set<string>;
-    try {
-      A = shingles(x);
-      B = shingles(y);
-    } catch {
-      continue;
-    }
-    let inter = 0;
-    for (const t of A) if (B.has(t)) inter++;
-    const union = A.size + B.size - inter;
-    if (union) {
-      total += inter / union;
-      count++;
-    }
-  }
-  return { n: pairs.length, avg: count ? total / count : 0 };
-}
-
 export type GuardResult = { failed: { group: string; n: number; avg: number }[]; fixed: string[]; pending: number };
 
 export function checkTemplates(outDir: string): GuardResult {
@@ -167,14 +134,6 @@ export function checkTemplates(outDir: string): GuardResult {
     if (avg <= ESIK) continue;
     over.add(group);
     if (!isPending(group)) failed.push({ group, n: files.length, avg });
-  }
-  for (const [a, b] of IKIZ_DILLER) {
-    if (!existsSync(join(outDir, a))) continue;
-    const group = `/${a}=/${b}`;
-    const { n, avg } = twinOverlap(outDir, a, b);
-    if (avg <= ESIK) continue;
-    over.add(group);
-    if (!isPending(group)) failed.push({ group, n, avg });
   }
   const fixed = [...PENDING].filter((p) =>
     p.endsWith("/*") ? ![...over].some((g) => g.startsWith(p.slice(0, -1))) : !over.has(p),

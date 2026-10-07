@@ -29,10 +29,6 @@ export function getIntlLocale(locale: Locale) {
     return "es-ES";
   }
 
-  if (locale === "es-419") {
-    return "es-419";
-  }
-
   if (locale === "pt") {
     return "pt-BR";
   }

@@ -11,7 +11,6 @@ const copyLabels: Record<string, { copy: string; copied: string }> = {
   bn: { copy: "কপি", copied: "কপি হয়েছে" },
   fr: { copy: "Copier", copied: "Copié" },
   es: { copy: "Copiar", copied: "Copiado" },
-  "es-419": { copy: "Copiar", copied: "Copiado" },
   pt: { copy: "Copiar", copied: "Copiado" },
   it: { copy: "Copia", copied: "Copiato" },
   nl: { copy: "Kopiëren", copied: "Gekopieerd" },

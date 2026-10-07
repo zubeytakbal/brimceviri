@@ -9,7 +9,7 @@ export type SiteNumberLocale =
   | "bn"
   | "fr"
   | "es"
-  | "es-419"
+ 
   | "pt"
   | "it"
   | "nl"
@@ -27,7 +27,6 @@ const intlLocales: Record<SiteNumberLocale, string> = {
   bn: "bn-BD",
   fr: "fr-FR",
   es: "es-ES",
-  "es-419": "es-419",
   pt: "pt-BR",
   it: "it-IT",
   nl: "nl-NL",

@@ -24,7 +24,6 @@ const vatSettingsByLocale: Record<Exclude<Locale, "ru">, VatSettings> = {
   de: { rates: ["7", "19"], defaultRate: "19" },
   fr: { rates: ["5.5", "10", "20"], defaultRate: "20" },
   es: { rates: ["4", "10", "21"], defaultRate: "21" },
-  "es-419": { rates: ["16", "19", "21"], defaultRate: "16" },
   pt: { rates: ["12", "17", "18"], defaultRate: "18" },
   it: { rates: ["4", "5", "10", "22"], defaultRate: "22" },
   nl: { rates: ["9", "21"], defaultRate: "21" },
@@ -137,27 +136,6 @@ const copyByLocale: Record<Exclude<Locale, "ru">, VatCopy> = {
       totalAmount: "Total con IVA",
     },
     emptyState: "Introduce un importe y un tipo válidos para ver el resultado.",
-  },
-  "es-419": {
-    labels: {
-      direction: "Tipo de cálculo",
-      amount: "Monto ($)",
-      rate: "Tasa de IVA",
-      customRate: "Tasa personalizada (%)",
-    },
-    directions: {
-      "exclusive-to-inclusive": "Sin IVA -> Con IVA",
-      "inclusive-to-exclusive": "Con IVA -> Sin IVA",
-    },
-    rateOptions: {
-      custom: "Tasa personalizada",
-    },
-    resultLabels: {
-      baseAmount: "Monto base",
-      vatAmount: "Monto del IVA",
-      totalAmount: "Total con IVA",
-    },
-    emptyState: "Ingresa un monto y una tasa válidos para ver el resultado.",
   },
   pt: {
     labels: {

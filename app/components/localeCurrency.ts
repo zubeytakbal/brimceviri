@@ -10,7 +10,6 @@ export const currencyByLocale: Record<Locale, string> = {
   de: "EUR",
   fr: "EUR",
   es: "EUR",
-  "es-419": "$",
   pt: "R$",
   it: "EUR",
   nl: "EUR",

@@ -71,21 +71,6 @@ const copyByLocale: Record<
     },
     emptyState: "Introduce valores válidos para ver el resultado.",
   },
-  "es-419": {
-    labels: {
-      wallArea: "Superficie del muro (m²)",
-      brickWidth: "Ancho del ladrillo (cm)",
-      brickHeight: "Alto del ladrillo (cm)",
-      joint: "Espesor de la junta (mm)",
-      waste: "Margen de desperdicio (%)",
-    },
-    resultLabels: {
-      brickArea: "Área de un ladrillo con junta",
-      totalArea: "Área total con desperdicio",
-      count: "Bricks needed",
-    },
-    emptyState: "Ingresa valores válidos para ver el resultado.",
-  },
   pt: {
     labels: {
       wallArea: "Área da parede (m²)",

@@ -18,7 +18,6 @@ export const metadata: Metadata = {
       bn: "/bn/kitchen-measurement-converter",
       fr: "/fr/convertisseur-mesures-cuisine",
       es: "/es/conversor-medidas-de-cocina",
-      "es-419": "/es-419/conversor-medidas-de-cocina",
       pt: "/pt/conversor-de-medidas-de-cozinha",
       "x-default": "/mutfak-olculeri-cevirici",
     },

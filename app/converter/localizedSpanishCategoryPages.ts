@@ -1229,7 +1229,7 @@ export const spanishCategoryPages: LocalizedSpanishCategoryPage[] = [
       { name: "Plata 800", symbol: "800", referenceValue: "80 % de plata fina", system: "Ley de plata", commonUse: "Piezas europeas antiguas" },
     ],
   },
-  ...buildSpanishScienceCategoryPages("es"),
+  ...buildSpanishScienceCategoryPages(),
 ];
 
 export function findSpanishCategoryPage(slug: string) {

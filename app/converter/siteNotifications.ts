@@ -91,7 +91,7 @@ const manualNotificationsByLocale: Partial<Record<NotificationLocale, SiteNotifi
   bn: bengaliManualNotifications,
 };
 
-type NotificationLocale = "tr" | "en" | "de" | "ar" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "sv" | "no" | "da";
+type NotificationLocale = "tr" | "en" | "de" | "ar" | "bn" | "fr" | "es" | "pt" | "it" | "sv" | "no" | "da";
 
 const byDateDesc = (a: SiteNotification, b: SiteNotification) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0);
 

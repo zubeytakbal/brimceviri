@@ -47,6 +47,11 @@ function uzLicenseRedirects(): MergedRedirect[] {
   return Object.keys(uzLicenseClasses).map((id) => r(`/uz/haydovchilik-toifasi-topish/${id.toLowerCase()}`, "/uz/haydovchilik-toifasi-topish"));
 }
 
+/** Latin Amerika İspanyolcası sayfaları es sayfalarının ondalık ayırıcı dışında aynısıydı. */
+function es419Redirects(): MergedRedirect[] {
+  return [r("/es-419/:path*", "/es/:path*"), r("/es-419", "/es")];
+}
+
 export function mergedPageRedirects(): MergedRedirect[] {
-  return [...timerRedirects(), ...alarmRedirects(), ...fxRedirects(), ...uzLicenseRedirects()];
+  return [...timerRedirects(), ...alarmRedirects(), ...fxRedirects(), ...uzLicenseRedirects(), ...es419Redirects()];
 }

@@ -193,6 +193,16 @@ const insights: Record<string, FlagshipPairInsight> = {
   [pairKey("hacim", "L", "mL")]: {
     sectorNote:
       "İlaç dozları ve laboratuvar ölçümlerinde mililitre, günlük sıvı ölçümlerinde litre kullanılır.",
+    realWorldValues: [
+      { label: "Küçük su şişesi", value: 500, anchorUnit: "mL" },
+      { label: "Teneke içecek kutusu", value: 330, anchorUnit: "mL" },
+      { label: "Tariflerdeki su bardağı", value: 200, anchorUnit: "mL" },
+      { label: "Damacana", value: 19, anchorUnit: "L" },
+    ],
+    mistakes: [
+      "1 mL = 1 cm³ = 1 cc'dir; şırınga ve motor hacimlerindeki \"cc\" mililitreyle aynıdır.",
+      "Litre hacimdir, ağırlık değildir: 1 litre su yaklaşık 1 kg gelir ama 1 litre zeytinyağı yaklaşık 0,92 kg, 1 litre bal yaklaşık 1,4 kg gelir.",
+    ],
   },
   [pairKey("hiz", "km/h", "mph")]: {
     realWorldValues: [
@@ -229,6 +239,28 @@ const insights: Record<string, FlagshipPairInsight> = {
   [pairKey("veri", "MB", "GB")]: {
     realWorldValues: [
       { label: "Ortalama HD film dosyası", value: 4, anchorUnit: "GB" },
+      { label: "CD kapasitesi", value: 700, anchorUnit: "MB" },
+      { label: "Tek katmanlı DVD kapasitesi", value: 4.7, anchorUnit: "GB" },
+      { label: "Akıllı telefon fotoğrafı (12 MP, JPEG, tipik)", value: 3, anchorUnit: "MB" },
+    ],
+    where: "Veri birimleri; telefon ve bilgisayar depolamasında, mobil internet paketlerinde (GB kota), dosya ve fotoğraf boyutlarında, bulut depolama planlarında karşına çıkar. Bu sayfada 1 GB = 1.000 MB, 1 TB = 1.000 GB (ondalık, SI) kabul edilir; disk üreticileri de bu tanımı kullanır.",
+    mistakes: [
+      "Windows diskleri ikili birimle (GiB) gösterir ama \"GB\" yazar: kutusunda 1 TB yazan disk Windows'ta yaklaşık 931 GB görünür. Disk eksik değildir, birim farklıdır (1 GiB = 1.073.741.824 bayt).",
+      "Megabit (Mb) ile megabayt (MB) farklıdır: 1 bayt 8 bittir. 100 Mbps internet en fazla saniyede 12,5 MB indirir.",
+      "Telefonda \"128 GB\" depolamanın bir kısmını işletim sistemi kullanır; kullanılabilir alan her zaman daha azdır.",
+    ],
+  },
+  [pairKey("veri", "TB", "GB")]: {
+    realWorldValues: [
+      { label: "Yaygın SSD boyutu", value: 512, anchorUnit: "GB" },
+      { label: "Harici disk", value: 2, anchorUnit: "TB" },
+      { label: "Blu-ray disk (çift katman)", value: 50, anchorUnit: "GB" },
+    ],
+    where: "Veri birimleri; telefon ve bilgisayar depolamasında, mobil internet paketlerinde (GB kota), dosya ve fotoğraf boyutlarında, bulut depolama planlarında karşına çıkar. Bu sayfada 1 GB = 1.000 MB, 1 TB = 1.000 GB (ondalık, SI) kabul edilir; disk üreticileri de bu tanımı kullanır.",
+    mistakes: [
+      "Windows diskleri ikili birimle (GiB) gösterir ama \"GB\" yazar: kutusunda 1 TB yazan disk Windows'ta yaklaşık 931 GB görünür. Disk eksik değildir, birim farklıdır (1 GiB = 1.073.741.824 bayt).",
+      "Megabit (Mb) ile megabayt (MB) farklıdır: 1 bayt 8 bittir. 100 Mbps internet en fazla saniyede 12,5 MB indirir.",
+      "Telefonda \"128 GB\" depolamanın bir kısmını işletim sistemi kullanır; kullanılabilir alan her zaman daha azdır.",
     ],
   },
   [pairKey("veri", "KB", "MB")]: {
@@ -324,11 +356,95 @@ const insights: Record<string, FlagshipPairInsight> = {
   },
   [pairKey("enerji", "kWh", "Wh")]: {
     realWorldValues: [
-      {
-        label: "Türkiye'de ortalama hane günlük elektrik tüketimi",
-        value: 10,
-        anchorUnit: "kWh",
-      },
+      { label: "Akıllı telefon bataryası (tipik)", value: 15, anchorUnit: "Wh" },
+      { label: "Dizüstü bilgisayar bataryası (tipik)", value: 50, anchorUnit: "Wh" },
+      { label: "2.000 W su ısıtıcısının 3 dakikası", value: 100, anchorUnit: "Wh" },
+      { label: "Elektrikli otomobil bataryası (tipik)", value: 60, anchorUnit: "kWh" },
+    ],
+    where:
+      "Kilovatsaat elektrik faturasında ve beyaz eşyaların enerji etiketindeki yıllık tüketimde; vatsaat ise powerbank, dizüstü ve elektrikli bisiklet bataryalarında karşına çıkar. Tüketim = güç × süre: 2.000 W'lık bir cihaz yarım saatte 1 kWh harcar.",
+    mistakes: [
+      "kW güç, kWh enerjidir; faturada ödenen kWh'dir. Cihazın etiketindeki W değerini çalıştığı saatle çarpmadan tüketim bulunmaz.",
+      "Powerbank üzerindeki mAh enerji değildir: 20.000 mAh × 3,7 V ≈ 74 Wh. Uçakta kabin bagajında 100 Wh'e kadar powerbank'a genellikle izin verilir.",
+    ],
+  },
+  [pairKey("basinc", "atm", "bar")]: {
+    realWorldValues: [
+      { label: "Deniz seviyesinde hava basıncı", value: 1, anchorUnit: "atm" },
+      { label: "10 metre su altında (mutlak basınç)", value: 2, anchorUnit: "atm" },
+      { label: "Everest zirvesinde hava basıncı (yaklaşık)", value: 0.33, anchorUnit: "atm" },
+    ],
+    where:
+      "Atmosfer; fizik ve kimya derslerinde, dalışta (her 10 metre derinlik yaklaşık 1 atm ekler) ve hava basıncı karşılaştırmalarında kullanılır. 1 atm tam olarak 101.325 Pa, yani 1,01325 bar'dır; ikisi birbirine çok yakındır ama aynı değildir.",
+    mistakes: [
+      "\"Teknik atmosfer\" (at, 1 kgf/cm²) standart atmosferden farklıdır: 1 at ≈ 0,981 bar. Eski makine kataloglarında \"atü\" ve \"at\" bu birimi gösterir.",
+      "Gösterge basıncı atmosferi saymaz: 1 bar gösteren bir tank içinde yaklaşık 2 bar (mutlak) basınç vardır.",
+    ],
+  },
+  [pairKey("basinc", "mmHg", "Pa")]: {
+    realWorldValues: [
+      { label: "Tansiyonda sık verilen referans değer (büyük)", value: 120, anchorUnit: "mmHg" },
+      { label: "Tansiyonda sık verilen referans değer (küçük)", value: 80, anchorUnit: "mmHg" },
+      { label: "Deniz seviyesinde hava basıncı", value: 760, anchorUnit: "mmHg" },
+    ],
+    where:
+      "Milimetre cıva; tansiyon aletlerinde ve eski cıvalı barometrelerde kullanılır. Meteoroloji bugün hektopaskal (hPa) kullanır: 760 mmHg = 1.013,25 hPa. 1 mmHg ≈ 133,32 Pa.",
+    mistakes: [
+      "Türkiye'de tansiyon \"12'ye 8\" diye santimetre cıva ile söylenir; aletteki değer milimetredir: 12/8 = 120/80 mmHg.",
+      "Hava durumundaki 1013 hPa (hektopaskal) 1013 Pa değildir; 101.300 Pa'dır.",
+    ],
+  },
+  [pairKey("hiz", "knot", "km/h")]: {
+    realWorldValues: [
+      { label: "Konteyner gemisi seyir hızı (tipik)", value: 20, anchorUnit: "knot" },
+      { label: "Yolcu uçağı seyir hızı (yaklaşık)", value: 480, anchorUnit: "knot" },
+      { label: "Fırtına (Beaufort 9) alt sınırı", value: 41, anchorUnit: "knot" },
+    ],
+    where:
+      "Knot; denizcilikte tekne ve gemi hızında, havacılıkta uçak hızında ve rüzgâr raporlarında kullanılır. 1 knot saatte 1 deniz milidir: tam olarak 1,852 km/s.",
+    mistakes: [
+      "Knot zaten saatte deniz mili demektir; \"knot/saat\" denmez.",
+      "Knot, mph değildir: 1 knot = 1,852 km/s, 1 mph = 1,609 km/s.",
+      "Rüzgâr hızı kaynağa göre knot, km/s ya da m/s verilir: 20 knot ≈ 37 km/s ≈ 10,3 m/s.",
+    ],
+  },
+  [pairKey("kutle", "ct", "g")]: {
+    realWorldValues: [
+      { label: "1 karatlık pırlanta", value: 1, anchorUnit: "ct" },
+      { label: "Yarım karatlık (50 puan) taş", value: 0.5, anchorUnit: "ct" },
+      { label: "1 gram", value: 1, anchorUnit: "g" },
+    ],
+    where:
+      "Karat (ct); pırlanta, yakut, zümrüt gibi değerli taşların ağırlığında kullanılır. 1 karat tam olarak 0,2 gramdır ve 100 puana (point) bölünür: 0,25 ct, \"25 puanlık\" taş demektir.",
+    mistakes: [
+      "Taşların karatı ağırlıktır; altının \"ayarı\" ise saflıktır. İngilizcede ikisine de karat dendiği için 22 ayar altın ile 22 karatlık taş karıştırılır; aralarında hiçbir ilişki yoktur.",
+      "Karat ağırlıktır, boyut değildir: farklı taşlar farklı yoğunlukta olduğu için aynı karattaki iki taşın büyüklüğü farklı olabilir.",
+    ],
+  },
+  [pairKey("alan", "ha", "m²")]: {
+    realWorldValues: [
+      { label: "Futbol sahası (105 × 68 m)", value: 7140, anchorUnit: "m²" },
+      { label: "100 × 100 m'lik kare alan", value: 10000, anchorUnit: "m²" },
+      { label: "Bir dönüm", value: 1000, anchorUnit: "m²" },
+    ],
+    where:
+      "Hektar; tarım ve orman arazilerinde, AB tarım desteklerinde, şehir planlamada ve park/kampüs alanlarında kullanılır. 1 hektar 10.000 m², yani 10 dönümdür.",
+    mistakes: [
+      "1 hektar 100 × 100 metrelik alandır; 100 metrekare değildir.",
+      "Alan çevirirken kenar uzunluğu değil alan çarpılır: 2 hektarlık kare arazinin kenarı 200 m değil, yaklaşık 141 m'dir.",
+    ],
+  },
+  [pairKey("hacim", "yk", "mL")]: {
+    realWorldValues: [
+      { label: "1 yemek kaşığı (ölçü kaşığı)", value: 1, anchorUnit: "yk" },
+      { label: "Tariflerdeki su bardağı", value: 200, anchorUnit: "mL" },
+    ],
+    where:
+      "Yemek kaşığı tariflerde ve şurup gibi sıvı ilaçların kullanım talimatında karşına çıkar. Bu sayfadaki yemek kaşığı standart ölçü kaşığıdır: 15 mL; çay kaşığı 5 mL'dir.",
+    mistakes: [
+      "Evdeki sofra kaşıkları standart değildir ve 7-20 mL arasında değişebilir; ilaç dozunu ölçerken kutudan çıkan ölçü kaşığını ya da şırıngayı kullanın.",
+      "Kaşık hacim ölçüsüdür: aynı kaşık un, şeker ve tuz farklı gram gelir. Gram yazan tarifte tartı kullanın.",
+      "ABD tariflerindeki tablespoon 14,8 mL'dir; fark küçüktür ama büyük miktarlarda birikir.",
     ],
   },
   [pairKey("sicaklik", "K", "C")]: {

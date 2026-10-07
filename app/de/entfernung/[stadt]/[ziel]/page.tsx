@@ -78,10 +78,10 @@ export default async function EntfernungPaarPage({ params }: PageProps) {
 
   const faqItems: FaqItem[] = [
     { question: `Wie weit ist es von ${from.name} nach ${to.name}?`, answer: `Die Luftlinie beträgt ${km1(d)} km (${km1(d / 1.609344)} Meilen); die Straße ist länger.` },
-    { question: `In welcher Richtung liegt ${to.name} von ${from.name} aus?`, answer: `Im ${himmelsrichtung(grad)}: Der Kurs beträgt ${Math.round(grad)}° (0° = Norden, 90° = Osten).` },
+    { question: `In welcher Richtung liegt ${to.name} von ${from.name} aus?`, answer: `Im ${himmelsrichtung(grad)} (${Math.round(grad)}°).` },
     {
       question: `Wo liegt die Mitte zwischen ${from.name} und ${to.name}?`,
-      answer: `Der Mittelpunkt der Luftlinie liegt bei ${mid.lat.toFixed(2).replace(".", ",")}° N, ${mid.lon.toFixed(2).replace(".", ",")}° O; die nächste Großstadt dort ist ${nearMid.city.name} (${km(nearMid.km)} km entfernt).`,
+      answer: `Bei ${mid.lat.toFixed(2).replace(".", ",")}° N, ${mid.lon.toFixed(2).replace(".", ",")}° O, nahe ${nearMid.city.name} (${km(nearMid.km)} km).`,
     },
   ];
 
@@ -144,10 +144,6 @@ export default async function EntfernungPaarPage({ params }: PageProps) {
                 <td>
                   nahe {nearMid.city.name} ({km(nearMid.km)} km)
                 </td>
-              </tr>
-              <tr>
-                <th scope="row">Zeitzone</th>
-                <td>beide MEZ/MESZ, kein Zeitunterschied</td>
               </tr>
             </tbody>
           </table>

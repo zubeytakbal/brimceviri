@@ -1,7 +1,7 @@
 import Link from "@/app/components/SiteLink";
 import type { FaqItem } from "../../converter/faqSchema";
 import type { YMD } from "../../converter/time/calendars";
-import { addDaysYmd, diffDays, formatYmd, formatYmdParts, isWeekend, weekdayOf, ymdKey } from "../../converter/time/dateMath";
+import { addDaysYmd, diffDays, formatYmd, formatYmdParts, isWeekend, ymdKey } from "../../converter/time/dateMath";
 import {
   bridgePlans,
   DIYANET_VERIFIED_UNTIL,
@@ -223,58 +223,6 @@ function HolidayTable({ list, lang }: { list: Holiday[]; lang: Lang }) {
         </tbody>
       </table>
     </div>
-  );
-}
-
-function YearCalendar({ year, lang, list, plans }: { year: number; lang: Lang; list: Holiday[]; plans: BridgePlan[] }) {
-  const t = T[lang];
-  const byDay = new Map(list.map((h) => [ymdKey(h.date), h]));
-  const bridge = new Set(plans.filter((p) => p.leaveCost <= 1.5).flatMap((p) => p.leaveDays.map(ymdKey)));
-  const mondayFirst = lang === "tr";
-  return (
-    <>
-      <div className="holiday-calendar">
-        {Array.from({ length: 12 }, (_, m) => {
-          const first = { year, month: m + 1, day: 1 };
-          const lead = mondayFirst ? (weekdayOf(first) + 6) % 7 : weekdayOf(first);
-          const days = new Date(Date.UTC(year, m + 1, 0)).getUTCDate();
-          return (
-            <div className="holiday-month" key={m}>
-              <h3>{formatYmdParts(first, lang, { month: "long" })}</h3>
-              <div className="holiday-month-grid">
-                {t.weekdayHeads.map((w) => (
-                  <b key={w}>{w}</b>
-                ))}
-                {Array.from({ length: lead }, (_, i) => (
-                  <span key={`e${i}`} />
-                ))}
-                {Array.from({ length: days }, (_, d) => {
-                  const date = { year, month: m + 1, day: d + 1 };
-                  const key = ymdKey(date);
-                  const h = byDay.get(key);
-                  const cls = [
-                    isWeekend(date) ? "is-weekend" : "",
-                    h ? (h.kind === "full" ? "is-holiday" : "is-half") : "",
-                    bridge.has(key) && !h ? "is-bridge" : "",
-                  ]
-                    .filter(Boolean)
-                    .join(" ");
-                  return (
-                    <span key={key} className={cls || undefined} title={h?.name}>
-                      {d + 1}
-                    </span>
-                  );
-                })}
-              </div>
-            </div>
-          );
-        })}
-      </div>
-      <p className="holiday-legend">
-        <span className="is-holiday" /> {t.legendHoliday} <span className="is-half" /> {t.legendHalf} <span className="is-bridge" /> {t.legendBridge}{" "}
-        <span className="is-weekend" /> {t.legendWeekend}
-      </p>
-    </>
   );
 }
 
@@ -505,7 +453,6 @@ export function HolidayYearPage({ lang, year }: { lang: Lang; year: number }) {
       tocItems={[
         { id: "kopru", label: t.bridgeTitle },
         ...(tr ? [{ id: "izin-plani", label: "İzin planlayıcı" }] : []),
-        { id: "takvim", label: t.calendarTitle },
         { id: "faq", label: t.faq },
       ]}
       faqTitle={t.faq}
@@ -538,10 +485,13 @@ export function HolidayYearPage({ lang, year }: { lang: Lang; year: number }) {
         </>
       ) : null}
 
-      <h2 id="takvim">
-        {t.calendarTitle} {year}
-      </h2>
-      <YearCalendar year={year} lang={lang} list={list} plans={plans} />
+      <p id="takvim">
+        {tr ? (
+          <>
+            Tatillerin işaretli olduğu {year} yılı takvimi: <Link href={`/takvim/${year}`}>{year} takvimi</Link>.
+          </>
+        ) : null}
+      </p>
 
       <p>
         {tr ? (

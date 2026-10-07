@@ -202,12 +202,6 @@ export default async function RoutePairPage({ params }: { params: Promise<{ il: 
             ) : null}
             Yol boyunca il merkezlerinin rakımı {fmt(Math.min(...rakimlar))} m ile {fmt(Math.max(...rakimlar))} m arasında değişir; dağ geçitleri bundan yüksek olabilir.
           </p>
-          <p>
-            <small>
-              Güzergâh, Karayolları il merkezleri arası mesafe cetvelinden çıkarılmıştır: listedeki illerden geçmek toplam yolu en fazla %2 uzatır. Yol il
-              merkezinin içinden değil çevre yolundan geçebilir; navigasyon farklı bir güzergâh önerebilir.
-            </small>
-          </p>
         </>
       ) : (
         <p>
@@ -237,8 +231,7 @@ export default async function RoutePairPage({ params }: { params: Promise<{ il: 
         </table>
       </div>
       <p>
-        Otoyol ağırlıklı güzergâhlarda ortalama hız 95–110 km/sa, devlet yolu ve dağlık bölümlerde 70–85 km/sa civarındadır. Süreler molasız
-        hesaplanmıştır{breaks > 0 ? `; bu mesafede ${breaks} mola vermeniz önerilir` : ""}.
+        Süreler molasızdır{breaks > 0 ? `; ${fmt(road)} km için ${breaks} mola eklemeyi planlayın` : ""}.
       </p>
 
       <h2 id="yakit">Yakıt tüketimi ve maliyet</h2>
@@ -268,10 +261,8 @@ export default async function RoutePairPage({ params }: { params: Promise<{ il: 
         </table>
       </div>
       <p>
-        {price
-          ? `Maliyetler güncel ortalama benzin fiyatına (${fmt(price, 2)} TL/L) göredir. `
-          : "Maliyeti görmek için yukarıdaki hesaplayıcıya yakıt fiyatını girin. "}
-        Aracınızın gerçek tüketimini bilmiyorsanız <Link href="/yakit-tuketimi-hesaplama">yakıt tüketimi hesaplayıcısıyla</Link> bulabilirsiniz.
+        {price ? `Maliyet ${fmt(price, 2)} TL/L benzin fiyatıyla. ` : ""}
+        Kendi aracınız için: <Link href="/yakit-tuketimi-hesaplama">yakıt tüketimi hesaplama</Link>.
       </p>
 
       <h2 id="iller">
@@ -320,8 +311,7 @@ export default async function RoutePairPage({ params }: { params: Promise<{ il: 
           : `${to.name}, ${trGenitive(from.name)} ${solarDiff > 0 ? "doğusunda" : "batısında"} olduğu için ${trLocative(to.name)} Güneş yaklaşık ${Math.abs(solarDiff)} dakika ${
               solarDiff > 0 ? "önce" : "sonra"
             } doğar ve batar (her boylam derecesi 4 dakika).`}{" "}
-        Ayrıntılı açıklama için <Link href="/yerel-saat-hesaplama">yerel saat farkı hesaplama</Link> sayfasına bakabilirsiniz. Karayolu mesafesi
-        Karayolları Genel Müdürlüğü cetvelinden ({dateText}) alınmıştır.
+        Mesafe: Karayolları Genel Müdürlüğü cetveli ({dateText}).
       </p>
 
       {nearby.length > 0 && (

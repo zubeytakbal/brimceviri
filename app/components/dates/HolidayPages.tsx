@@ -425,15 +425,6 @@ export function HolidayYearPage({ lang, year }: { lang: Lang; year: number }) {
                 .join("; ")}. Köprü günleri kendiliğinden tatil değildir; kamuda idari izin verilip verilmeyeceği Cumhurbaşkanlığı genelgesiyle ayrıca duyurulur.`
             : `${year} yılında tek günlük izinle uzayan bir tatil yok; daha uzun izin planları yukarıdaki listede.`,
         },
-        {
-          question: "Arefe günü tatil mi?",
-          answer:
-            "Ramazan ve Kurban Bayramı arefeleri ile 28 Ekim, 2429 sayılı Kanun'a göre saat 13:00'ten itibaren yarım gün resmî tatildir. Kamu kurumları öğleden sonra kapanır; özel sektörde uygulama iş sözleşmesine ve işverene göre değişir.",
-        },
-        {
-          question: "Hafta sonuna denk gelen resmî tatil başka güne kaydırılır mı?",
-          answer: "Hayır. Türkiye'de hafta sonuna denk gelen resmî tatil için hafta içinde telafi tatili verilmez; tatil o gün kullanılmış sayılır.",
-        },
       ]
     : [
         {
@@ -448,15 +439,6 @@ export function HolidayYearPage({ lang, year }: { lang: Lang; year: number }) {
           question: "What happens when a federal holiday falls on a weekend?",
           answer:
             "Under federal law, a holiday that falls on a Saturday is observed on the preceding Friday, and one that falls on a Sunday is observed on the following Monday. Holidays defined as a Monday or Thursday never fall on a weekend.",
-        },
-        {
-          question: "Are banks and the stock market closed on federal holidays?",
-          answer:
-            "Most banks follow the Federal Reserve schedule and close on federal holidays, but when a holiday falls on a Saturday, Federal Reserve Banks stay open the Friday before. The NYSE and Nasdaq follow their own calendar: they are open on Columbus Day and Veterans Day but closed on Good Friday.",
-        },
-        {
-          question: "What is the newest federal holiday?",
-          answer: "Juneteenth National Independence Day (June 19) became the 11th federal holiday in 2021.",
         },
       ];
 
@@ -523,7 +505,6 @@ export function HolidayYearPage({ lang, year }: { lang: Lang; year: number }) {
         { id: "kopru", label: t.bridgeTitle },
         ...(tr ? [{ id: "izin-plani", label: "İzin planlayıcı" }] : []),
         { id: "takvim", label: t.calendarTitle },
-        { id: "kurallar", label: tr ? "Resmî tatil kuralları" : "How federal holidays work" },
         { id: "faq", label: t.faq },
       ]}
       faqTitle={t.faq}
@@ -561,40 +542,19 @@ export function HolidayYearPage({ lang, year }: { lang: Lang; year: number }) {
       </h2>
       <YearCalendar year={year} lang={lang} list={list} plans={plans} />
 
-      <h2 id="kurallar">{tr ? "Resmî tatil kuralları" : "How federal holidays work"}</h2>
-      {tr ? (
-        <>
-          <p>
-            Türkiye&apos;deki resmî tatiller 2429 sayılı Ulusal Bayram ve Genel Tatiller Hakkında Kanun ile belirlenir. Ulusal bayram 29 Ekim
-            Cumhuriyet Bayramı&apos;dır (28 Ekim 13:00&apos;ten itibaren başlar); 1 Ocak, 23 Nisan, 1 Mayıs, 19 Mayıs, 15 Temmuz ve 30 Ağustos genel
-            tatildir. Ramazan Bayramı 3 gün, Kurban Bayramı 4 gün sürer; arefe günleri öğleden sonra yarım gün tatildir.
-          </p>
-          <p>
-            Dini bayramlar Hicri takvime göre belirlendiği için her yıl yaklaşık 11 gün öne gelir.
-            {rb && firstFull(rb) ? ` ${year} yılında Ramazan Bayramı ${rangeText(firstFull(rb)!, rb.end, "tr")},` : ""}
-            {kb && firstFull(kb) ? ` Kurban Bayramı ${rangeText(firstFull(kb)!, kb.end, "tr")} tarihlerindedir.` : ""} Kalan günleri{" "}
-            <Link href="/geri-sayim">bayram geri sayımında</Link>, Hicri tarihleri <Link href="/tarih-cevirici">tarih çeviricide</Link> görebilirsiniz.
-          </p>
-          <p>
-            Özel sektörde resmî tatil günü çalışan işçiye, 4857 sayılı İş Kanunu&apos;nun 47. maddesine göre o günün ücretine ek olarak bir günlük
-            ücret daha ödenir. Bir tarih aralığındaki çalışma günlerini hesaplamak için <Link href="/is-gunu-hesaplama">iş günü hesaplayıcıyı</Link>{" "}
-            kullanın; resmî tatiller otomatik düşülür.
-          </p>
-        </>
-      ) : (
-        <>
-          <p>
-            Federal holidays are set by 5 U.S.C. 6103 and apply to federal employees; most banks, schools and many employers follow them, but
-            private employers are not required to give the day off. Five holidays are fixed dates (New Year&apos;s Day, Juneteenth, Independence
-            Day, Veterans Day, Christmas); the rest always fall on a Monday, except Thanksgiving on the fourth Thursday of November.
-          </p>
-          <p>
-            Inauguration Day (January 20 after a presidential election, next in 2029) is also a holiday for federal employees in the
-            Washington, D.C. area. To count working days between two dates with these holidays removed, use the{" "}
-            <Link href="/en/business-day-calculator">business day calculator</Link>.
-          </p>
-        </>
-      )}
+      <p>
+        {tr ? (
+          <>
+            {rb && firstFull(rb) ? `${year} yılında Ramazan Bayramı ${rangeText(firstFull(rb)!, rb.end, "tr")}. ` : ""}
+            {kb && firstFull(kb) ? `Kurban Bayramı ${rangeText(firstFull(kb)!, kb.end, "tr")}. ` : ""}
+            Tatil kuralları, arefe ve hafta sonu uygulaması için <Link href={holidayPaths.hub[lang]}>resmî tatiller</Link> sayfasına bakın.
+          </>
+        ) : (
+          <>
+            Rules for weekend holidays, banks and markets: <Link href={holidayPaths.hub[lang]}>US federal holidays</Link>.
+          </>
+        )}
+      </p>
       <YearNav lang={lang} current={year} />
     </TimeToolPage>
   );
@@ -655,6 +615,11 @@ export function HolidayHubPage({ lang }: { lang: Lang }) {
           answer:
             "Hayır. Köprü günü, tatille hafta sonu arasında kalan normal iş günüdür. Kamu çalışanlarına bazı yıllarda idari izin verilir; bu karar her seferinde ayrıca açıklanır. Özel sektörde yıllık izin kullanmak gerekir.",
         },
+        {
+          question: "Arefe günü tatil mi?",
+          answer:
+            "Ramazan ve Kurban Bayramı arefeleri ile 28 Ekim, 2429 sayılı Kanun'a göre saat 13:00'ten itibaren yarım gün resmî tatildir. Kamu kurumları öğleden sonra kapanır; özel sektörde uygulama iş sözleşmesine ve işverene göre değişir. Hafta sonuna denk gelen resmî tatil için hafta içinde telafi tatili verilmez.",
+        },
       ]
     : [
         {
@@ -671,6 +636,11 @@ export function HolidayHubPage({ lang }: { lang: Lang }) {
           question: "Why is a holiday sometimes on a different day?",
           answer:
             "When a fixed-date holiday falls on a Saturday it is observed on Friday; when it falls on a Sunday it is observed on Monday. The list above shows the observed day.",
+        },
+        {
+          question: "Are banks and the stock market closed on federal holidays?",
+          answer:
+            "Most banks follow the Federal Reserve schedule and close on federal holidays, but when a holiday falls on a Saturday, Federal Reserve Banks stay open the Friday before. The NYSE and Nasdaq follow their own calendar: they are open on Columbus Day and Veterans Day but closed on Good Friday. Juneteenth (June 19) is the newest federal holiday, added in 2021.",
         },
       ];
 

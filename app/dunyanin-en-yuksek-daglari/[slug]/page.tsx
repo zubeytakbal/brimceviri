@@ -12,6 +12,7 @@ import {
 import { findNearestProvince } from "../../converter/provinceElevationHub";
 import { buildSiteUrl } from "../../siteConfig";
 import { trDative, trGenitive } from "../../converter/turkishSuffix";
+import { FIRST_ASCENTS } from "../../converter/mountainFirstAscents";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -64,6 +65,7 @@ export default async function MountainDetailPage({ params }: PageProps) {
   }
 
   const pageUrl = buildSiteUrl(`/dunyanin-en-yuksek-daglari/${slug}`);
+  const ascent = FIRST_ASCENTS[mountain.id];
   const similarMountains = findSimilarElevationMountains(slug, 3);
   const altitudeEffect = calculateAltitudeEffect(mountain.elevationM);
   const nearestProvince = findNearestProvince(mountain.elevationM);
@@ -207,6 +209,16 @@ export default async function MountainDetailPage({ params }: PageProps) {
           </p>
         </section>
 
+        {ascent && (
+          <section className="category-article-content">
+            <h2>{mountain.nameTr} İlk Tırmanışı ({mountain.firstAscentYear})</h2>
+            <p>
+              {mountain.nameTr} zirvesine ilk kez {mountain.firstAscentYear} yılında {ascent.expeditionTr} çıktı: {ascent.climbers}.
+              {ascent.noteTr ? ` ${ascent.noteTr}` : ""} İlk kış tırmanışı {mountain.firstWinterAscentYear} yılında yapıldı.
+            </p>
+          </section>
+        )}
+
         {similarMountains.length > 0 && (
           <section className="category-article-content">
             <h2>{mountain.nameTr} ile Benzer Yükseklikteki Zirveler</h2>
@@ -233,41 +245,18 @@ export default async function MountainDetailPage({ params }: PageProps) {
             </p>
           ))}
 
-          <h2>İlgili araçlar</h2>
           <p>
-            Diğer zirveler için{" "}
-            <Link href="/dunyanin-en-yuksek-daglari">Dünyanın En Yüksek Dağları</Link>
-            {" "}sayfasına, Türkiye&apos;nin illerinin rakımıyla karşılaştırmak
-            için{" "}
-            <Link href="/il-rakimlari">İllerin Rakımı</Link>
-            {" "}sayfasına bakabilirsin.
-            {nearestProvince && (
-              <>
-                {" "}Türkiye&apos;nin illeri arasında rakımca en yakın referans
-                nokta{" "}
-                <Link href={`/il-rakimlari/${nearestProvince.id}`}>
-                  {nearestProvince.nameTr}
-                </Link>
-                {" "}({nearestProvince.elevationM.toLocaleString("tr-TR")} m) — yine
-                de {mountain.nameTr}&apos;dan binlerce metre daha alçaktır.
-              </>
-            )}
-          </p>
-
-          <h2>Kaynaklar</h2>
-          <p>
-            Yükseklik, göreli yükseklik, ilk tırmanış ve ilk kış tırmanışı
-            tarihleri Wikipedia/Wikidata ve dağcılık kaynaklarından (American
-            Alpine Club, Planetmountain, Explorersweb) çapraz kontrol edilmiş
-            değerlerdir. Hava basıncı standart ICAO/NOAA barometrik formülüyle
-            bu sayfada hesaplanmıştır.
-            {mountain.image && (
-              <>
-                {" "}Fotoğraf Wikimedia Commons&apos;tan,{" "}
-                {mountain.image.photographer} tarafından{" "}
-                {mountain.image.license} lisansıyla paylaşılmıştır.
-              </>
-            )}
+            <small>
+              Tüm zirveler: <Link href="/dunyanin-en-yuksek-daglari">Dünyanın En Yüksek Dağları</Link>
+              {nearestProvince && (
+                <>
+                  {" "}· rakımca en yakın il: <Link href={`/il-rakimlari/${nearestProvince.id}`}>{nearestProvince.nameTr}</Link> (
+                  {nearestProvince.elevationM.toLocaleString("tr-TR")} m)
+                </>
+              )}
+              . Kaynak: Wikidata ve dağcılık kayıtları; basınç ICAO formülüyle hesaplanmıştır.
+              {mountain.image && ` Fotoğraf: ${mountain.image.photographer}, ${mountain.image.license}.`}
+            </small>
           </p>
         </section>
       </div>

@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
-import SourceMonitorStatusList from "../../components/SourceMonitorStatusList";
 import TrustBar from "../../components/TrustBar";
 import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
 import { altSiniflar, ON_SART, SINIF_GRUPLARI, UST_SINIF } from "../../converter/licenseClassContext";
 import { licenseClasses, type LicenseClassId } from "../../converter/licenseClassFinder";
-import { getSourceMonitorStatuses } from "../../converter/licenseSourceMonitor";
 import { buildSiteUrl } from "../../siteConfig";
 
 export const revalidate = 3600;
@@ -61,8 +59,6 @@ export default async function LicenseClassDetailPage({ params }: PageProps) {
   if (!licenseClass) {
     notFound();
   }
-
-  const monitorStatuses = await getSourceMonitorStatuses();
 
   const pageUrl = buildSiteUrl(`/ehliyet-sinifi-bulma/${slug}`);
 
@@ -226,43 +222,30 @@ export default async function LicenseClassDetailPage({ params }: PageProps) {
             <Link href="/ehliyet-yenileme-suresi-hesaplama">ehliyet yenileme süresi hesaplama</Link> aracıyla bulabilirsiniz.
           </p>
 
-          <h2>Diğer Ehliyet Sınıfları</h2>
-          {SINIF_GRUPLARI.map((g) => (
+          <h2>Aynı Gruptaki Diğer Sınıflar</h2>
+          {SINIF_GRUPLARI.filter((g) => g.siniflar.includes(licenseClass.id)).map((g) => (
             <p key={g.baslik}>
               <strong>{g.baslik}:</strong>{" "}
-              {g.siniflar.map((id, i) => (
-                <span key={id}>
-                  {i > 0 ? " · " : ""}
-                  {id === licenseClass.id ? <strong>{licenseClasses[id].label}</strong> : <Link href={`/ehliyet-sinifi-bulma/${id.toLowerCase()}`}>{licenseClasses[id].label}</Link>}
-                </span>
-              ))}
+              {g.siniflar
+                .filter((id) => id !== licenseClass.id)
+                .map((id, i) => (
+                  <span key={id}>
+                    {i > 0 ? " · " : ""}
+                    <Link href={`/ehliyet-sinifi-bulma/${id.toLowerCase()}`}>{licenseClasses[id].label}</Link>
+                  </span>
+                ))}
+              . Tüm sınıflar ve araç tipine göre hesaplama: <Link href="/ehliyet-sinifi-bulma">Hangi Ehliyet Sınıfı Gerekli?</Link>
             </p>
           ))}
-
-          <h2>İlgili araçlar</h2>
           <p>
-            Kendi aracının hangi sınıfa ihtiyaç duyduğunu hesaplamak
-            için{" "}
-            <Link href="/ehliyet-sinifi-bulma">Hangi Ehliyet Sınıfı Gerekli?</Link>
-            {" "}hesaplayıcısına bakabilirsin.
+            <small>
+              Kaynak:{" "}
+              <a href="https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=8182&MevzuatTur=7&MevzuatTertip=5" target="_blank" rel="noopener noreferrer nofollow">
+                Karayolları Trafik Yönetmeliği
+              </a>{" "}
+              (son doğrulama: Eylül 2026).
+            </small>
           </p>
-
-          <h2>Kaynaklar</h2>
-          <p>
-            Bu bilgiler, 2918 sayılı Karayolları Trafik Kanunu&apos;na
-            dayanan Karayolları Trafik Yönetmeliği ile birden fazla
-            bağımsız kaynaktan çapraz doğrulanmıştır.{" "}
-            <a
-              href="https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=8182&MevzuatTur=7&MevzuatTertip=5"
-              target="_blank"
-              rel="noopener noreferrer nofollow"
-            >
-              Resmi yönetmeliği görüntüle →
-            </a>
-            {" "}<em>(Son doğrulama: Eylül 2026)</em>
-          </p>
-
-          <SourceMonitorStatusList statuses={monitorStatuses} />
         </section>
       </div>
     </main>

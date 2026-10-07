@@ -53,8 +53,12 @@ function htmlFiles(dir: string, out: Map<string, string[]>) {
 }
 
 function shingles(path: string): Set<string> {
-  // Açılır listeler (ör. 100 şehirlik saat dilimi seçicisi) form denetimidir, sayfa içeriği değil.
-  const html = readFileSync(path, "utf8").replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>|<select[\s\S]*?<\/select>/g, "");
+  // Açılır listeler (ör. 100 şehirlik saat dilimi seçicisi) form denetimidir; SVG haritalardaki il/ülke
+  // adları görseldir. İkisi de sayfa metni sayılmaz.
+  const html = readFileSync(path, "utf8").replace(
+    /<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>|<select[\s\S]*?<\/select>|<svg[\s\S]*?<\/svg>/g,
+    "",
+  );
   const main = html.match(/<main[\s\S]*?<\/main>/)?.[0] ?? "";
   const words = main.replace(/<[^>]+>/g, " ").toLowerCase().split(/\s+/).filter(Boolean);
   const set = new Set<string>();

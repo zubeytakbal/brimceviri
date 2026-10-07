@@ -1,4 +1,3 @@
-import Link from "@/app/components/SiteLink";
 import {
   countdownEvents,
   countdownPath,
@@ -52,11 +51,13 @@ export default function CountdownEventPage({ event }: { event: CountdownEvent })
   const dateText = next ? formatEventDate(next, lang) : "";
   const estimated = Boolean(next?.estimated);
 
+  const selfDays = eventSummary(event, now).days;
   const others = countdownEvents
     .filter((e) => e.lang === lang && e.id !== event.id)
     .map((e) => ({ event: e, ...eventSummary(e, now) }))
     .filter((e) => e.days !== null)
-    .sort((a, b) => (a.days ?? 0) - (b.days ?? 0));
+    // Bu güne tarihçe en yakın olanlar: liste her sayfada farklı olur.
+    .sort((a, b) => Math.abs((a.days ?? 0) - (selfDays ?? 0)) - Math.abs((b.days ?? 0) - (selfDays ?? 0)));
 
   const started = next ? hasStarted(next, event.zone, now) : false;
   const daysSentence =
@@ -77,7 +78,7 @@ export default function CountdownEventPage({ event }: { event: CountdownEvent })
   const faqItems: FaqItem[] = tr
     ? [
         { question: `${event.name} ne zaman?`, answer: next ? `Bir sonraki ${event.name} ${dateText} günü${estimated ? " (tahmini)" : ""}.` : "Tarih henüz belli değil." },
-        { question: event.question, answer: `${daysSentence} Sayfadaki sayaç Türkiye saatiyle (UTC+3) günün başlangıcına, yani 00:00'a göre saniyesi saniyesine sayar.` },
+        { question: event.question, answer: `${daysSentence} Sayaç Türkiye saatiyle 00:00'a göre sayar.` },
         { question: `${event.name} resmî tatil mi?`, answer: event.holiday },
         ...(event.rule.kind === "hijri"
           ? [
@@ -120,7 +121,7 @@ export default function CountdownEventPage({ event }: { event: CountdownEvent })
           ...(tr
             ? ETKINLIKLER.filter((e) => e.geriSayim === event.slug).map((e) => ({ href: ozelGunPath(e.id), label: `${e.ad} tarihleri ve takvim` }))
             : []),
-          ...others.slice(0, 8).map((o) => ({ href: countdownPath(o.event), label: tr ? `${o.event.name} (${o.days} gün)` : `${o.event.name} (${o.days} days)` })),
+          ...others.slice(0, 4).map((o) => ({ href: countdownPath(o.event), label: tr ? `${o.event.name} (${o.days} gün)` : `${o.event.name} (${o.days} days)` })),
           ...(tr
             ? [
                 { href: hubPath, label: "Tüm geri sayımlar" },
@@ -203,11 +204,6 @@ export default function CountdownEventPage({ event }: { event: CountdownEvent })
 
       <h2 id="hakkinda">{tr ? `${event.name} hakkında` : `About ${event.name}`}</h2>
       <p>{event.about}</p>
-      <p>
-        {tr ? "Diğer önemli günlere ne kadar kaldığını " : "See how long is left until other dates on the "}
-        <Link href={hubPath}>{tr ? "geri sayım sayfasında" : "countdown page"}</Link>
-        {tr ? " görebilir, kendi geri sayımını da oluşturabilirsin." : ", or create your own countdown."}
-      </p>
     </TimeToolPage>
   );
 }

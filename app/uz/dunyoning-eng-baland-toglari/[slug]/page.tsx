@@ -11,6 +11,7 @@ import {
 } from "../../../converter/mountainsDatabaseUz";
 import { findNearestRegion } from "../../../converter/regionElevationHubUz";
 import { buildSiteUrl } from "../../../siteConfig";
+import { FIRST_ASCENTS } from "../../../converter/mountainFirstAscents";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -64,6 +65,7 @@ export default async function UzbekMountainDetailPage({ params }: PageProps) {
 
   const pageUrl = buildSiteUrl(`/uz/dunyoning-eng-baland-toglari/${slug}`);
   const similarMountains = findSimilarElevationMountainsUz(slug, 3);
+  const ascent = FIRST_ASCENTS[mountain.id];
   const altitudeEffect = calculateAltitudeEffect(mountain.elevationM);
   const nearestRegion = findNearestRegion(mountain.elevationM);
 
@@ -210,6 +212,16 @@ export default async function UzbekMountainDetailPage({ params }: PageProps) {
           </p>
         </section>
 
+        {ascent && (
+          <section className="category-article-content">
+            <h2>{mountain.nameUz}ga Birinchi Chiqish ({mountain.firstAscentYear})</h2>
+            <p>
+              {mountain.firstAscentYear}-yilda {ascent.expeditionUz}: {ascent.climbers}.
+              {ascent.noteUz ? ` ${ascent.noteUz}` : ""}
+            </p>
+          </section>
+        )}
+
         {similarMountains.length > 0 && (
           <section className="category-article-content">
             <h2>{mountain.nameUz} Bilan O&apos;xshash Balandlikdagi Cho&apos;qqilar</h2>
@@ -236,43 +248,18 @@ export default async function UzbekMountainDetailPage({ params }: PageProps) {
             </p>
           ))}
 
-          <h2>Tegishli vositalar</h2>
           <p>
-            Boshqa cho&apos;qqilar uchun{" "}
-            <Link href="/uz/dunyoning-eng-baland-toglari">Dunyoning Eng Baland Tog&apos;lari</Link>{" "}
-            sahifasiga, O&apos;zbekiston viloyatlarining balandligi bilan
-            solishtirish uchun{" "}
-            <Link href="/uz/viloyatlar-balandligi">Viloyatlar Balandligi</Link>{" "}
-            sahifasiga qarashingiz mumkin.
-            {nearestRegion && (
-              <>
-                {" "}O&apos;zbekiston viloyatlari orasida balandlik
-                bo&apos;yicha eng yaqin mos yozuv nuqtasi{" "}
-                <Link href={`/uz/viloyatlar-balandligi#${nearestRegion.id}`}>
-                  {nearestRegion.name}
-                </Link>
-                {" "}({nearestRegion.elevationM.toLocaleString("uz-UZ")} m) — baribir{" "}
-                {mountain.nameUz}dan minglab metr pastroq.
-              </>
-            )}
-          </p>
-
-          <h2>Manbalar</h2>
-          <p>
-            Balandlik, nisbiy balandlik, birinchi chiqish va birinchi
-            qishki chiqish sanalari Wikipedia/Wikidata va tog&apos;chilik
-            manbalaridan (American Alpine Club, Planetmountain,
-            Explorersweb) o&apos;zaro tekshirilgan qiymatlardir. Havo
-            bosimi standart ICAO/NOAA barometrik formulasi bilan bu
-            sahifada hisoblangan.
-            {mountain.image && (
-              <>
-                {" "}Foto Wikimedia Commons&apos;dan,{" "}
-                {mountain.image.photographer} tomonidan{" "}
-                {mountain.image.license} litsenziyasi bilan
-                ulashilgan.
-              </>
-            )}
+            <small>
+              Barcha cho&apos;qqilar: <Link href="/uz/dunyoning-eng-baland-toglari">Dunyoning Eng Baland Tog&apos;lari</Link>
+              {nearestRegion && (
+                <>
+                  {" "}· eng yaqin viloyat: <Link href={`/uz/viloyatlar-balandligi#${nearestRegion.id}`}>{nearestRegion.name}</Link> (
+                  {nearestRegion.elevationM.toLocaleString("uz-UZ")} m)
+                </>
+              )}
+              . Manba: Wikidata va tog&apos;chilik yozuvlari; bosim ICAO formulasi bilan hisoblangan.
+              {mountain.image && ` Foto: ${mountain.image.photographer}, ${mountain.image.license}.`}
+            </small>
           </p>
         </section>
       </div>

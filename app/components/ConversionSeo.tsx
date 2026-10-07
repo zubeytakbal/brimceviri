@@ -24,21 +24,6 @@ export default function ConversionSeo({
     getCategoryPathByCategory(conversionPage.category)
   );
 
-  const faqs = [
-    {
-      question: "Sonuçlar ne kadar hassas hesaplanıyor?",
-      answer:
-        "Dönüşüm sonuçları 12 anlamlı basamağa kadar hesaplanır. " +
-        "Çok büyük veya çok küçük değerler bilimsel gösterimle sunulur.",
-    },
-    {
-      question:
-        `${conversionPage.fromName} – ` +
-        `${conversionPage.toName} çevirici ücretsiz mi?`,
-      answer:
-        "Evet. BirimCeviri.app üzerindeki dönüşüm aracı ücretsizdir ve kayıt olmadan kullanılabilir.",
-    },
-  ];
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -87,19 +72,6 @@ export default function ConversionSeo({
     },
   };
 
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.answer,
-      },
-    })),
-  };
-
   return (
     <>
       <script
@@ -115,26 +87,6 @@ export default function ConversionSeo({
           __html: serializeJsonLd(applicationSchema),
         }}
       />
-
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd(faqSchema),
-        }}
-      />
-
-      <section className="conversion-section faq-section">
-        <h2>Sık sorulan sorular</h2>
-
-        <div className="faq-list">
-          {faqs.map((faq) => (
-            <details key={faq.question}>
-              <summary>{faq.question}</summary>
-              <p>{faq.answer}</p>
-            </details>
-          ))}
-        </div>
-      </section>
     </>
   );
 }

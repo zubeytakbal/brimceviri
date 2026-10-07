@@ -14,13 +14,13 @@ type PairConverterProps = {
   toUnit: string;
   fromName: string;
   toName: string;
-  locale?: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "nl" | "ru" | "sv" | "no" | "da";
+  locale?: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "pt" | "it" | "nl" | "ru" | "sv" | "no" | "da";
   // Verilirse deger/birim "Tum birimler" paneliyle (AllUnitsPanel) paylasilir.
   syncKey?: string;
 };
 
 function getNumberLocale(
-  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "nl" | "ru" | "sv" | "no" | "da"
+  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "pt" | "it" | "nl" | "ru" | "sv" | "no" | "da"
 ) {
   if (locale === "tr") {
     return "tr-TR";
@@ -48,10 +48,6 @@ function getNumberLocale(
 
   if (locale === "es") {
     return "es-ES";
-  }
-
-  if (locale === "es-419") {
-    return "es-419";
   }
 
   if (locale === "pt") {
@@ -87,7 +83,7 @@ function getNumberLocale(
 
 function formatResult(
   value: number,
-  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "nl" | "ru" | "sv" | "no" | "da"
+  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "pt" | "it" | "nl" | "ru" | "sv" | "no" | "da"
 ) {
   if (!Number.isFinite(value)) {
     return "";
@@ -304,7 +300,7 @@ export default function PairConverter({
               ? `${activeFromName} \u09AE\u09BE\u09A8`
               : locale === "fr"
                 ? `Valeur de ${activeFromName}`
-                : locale === "es" || locale === "es-419"
+                : locale === "es"
                   ? `Valor de ${activeFromName}`
                   : locale === "pt"
                     ? `Valor de ${activeFromName}`
@@ -335,7 +331,7 @@ export default function PairConverter({
               ? "\u098F\u0995\u099F\u09BF \u09AE\u09BE\u09A8 \u09B2\u09BF\u0996\u09C1\u09A8"
               : locale === "fr"
                 ? "Saisissez une valeur"
-                : locale === "es" || locale === "es-419"
+                : locale === "es"
                   ? "Introduce un valor"
                   : locale === "pt"
                     ? "Digite um valor"
@@ -366,7 +362,7 @@ export default function PairConverter({
               ? "\u09B0\u09C2\u09AA\u09BE\u09A8\u09CD\u09A4\u09B0\u09C7\u09B0 \u09A6\u09BF\u0995 \u09AA\u09B0\u09BF\u09AC\u09B0\u09CD\u09A4\u09A8 \u0995\u09B0\u09C1\u09A8"
               : locale === "fr"
                 ? "Inverser le sens de la conversion"
-                : locale === "es" || locale === "es-419"
+                : locale === "es"
                   ? "Invertir el sentido de la conversion"
                   : locale === "pt"
                     ? "Inverter o sentido da conversão"

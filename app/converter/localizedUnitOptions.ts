@@ -8,7 +8,6 @@ import { getCategoryUnitOptions } from "../components/categoryUnitOptions";
 import { scandinavianUnitNames, type ScandinavianLocale } from "../i18n/scandinavianUnitNames";
 import { bengaliUnitPages } from "./localizedBengaliUnitPages";
 import { danishUnitPages } from "./localizedDanishUnitPages";
-import { es419UnitPages } from "./localizedEs419UnitPages";
 import { frenchUnitPages } from "./localizedFrenchUnitPages";
 import { italianUnitPages } from "./localizedItalianUnitPages";
 import { norwegianUnitPages } from "./localizedNorwegianUnitPages";
@@ -22,7 +21,6 @@ type LocalizedUnitName = { category: string; unit: string; name: string };
 const unitPagesByLocale = {
   bn: bengaliUnitPages,
   da: danishUnitPages,
-  "es-419": es419UnitPages,
   fr: frenchUnitPages,
   it: italianUnitPages,
   no: norwegianUnitPages,

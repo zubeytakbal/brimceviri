@@ -108,25 +108,6 @@ const copyByLocale: Record<Exclude<Locale, "ru">, DateCopy> = {
       days: "días",
     },
   },
-  "es-419": {
-    labels: {
-      startDate: "Fecha de inicio (fecha de nacimiento)",
-      endDate: "Fecha objetivo",
-    },
-    emptyState: "Ingresa dos fechas válidas; la fecha objetivo no puede ser anterior a la de inicio.",
-    resultLabels: {
-      difference: "Diferencia",
-      totalDays: "Total de días",
-      totalWeeks: "Total de semanas",
-      totalMonths: "Total de meses",
-      nextAnniversary: "Próximo cumpleaños",
-    },
-    units: {
-      years: "años",
-      months: "meses",
-      days: "días",
-    },
-  },
   pt: {
     labels: {
       startDate: "Data inicial (data de nascimento)",

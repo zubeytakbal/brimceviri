@@ -24,9 +24,6 @@ import { frenchConversionPages } from "../converter/localizedFrenchConversionPag
 import { spanishCategoryPages } from "../converter/localizedSpanishCategoryPages";
 import { spanishUnitPages } from "../converter/localizedSpanishUnitPages";
 import { spanishConversionPages } from "../converter/localizedSpanishConversionPages";
-import { es419CategoryPages } from "../converter/localizedEs419CategoryPages";
-import { es419UnitPages } from "../converter/localizedEs419UnitPages";
-import { es419ConversionPages } from "../converter/localizedEs419ConversionPages";
 import { portugueseCategoryPages } from "../converter/localizedPortugueseCategoryPages";
 import { portugueseUnitPages } from "../converter/localizedPortugueseUnitPages";
 import { portugueseConversionPages } from "../converter/localizedPortugueseConversionPages";
@@ -120,12 +117,6 @@ const localizedCategorySummariesByLocale: Record<
     category: page.category,
     title: page.title,
   })),
-  "es-419": es419CategoryPages.map((page) => ({
-    sourceSlug: page.sourceSlug,
-    slug: page.slug,
-    category: page.category,
-    title: page.title,
-  })),
   pt: portugueseCategoryPages.map((page) => ({
     sourceSlug: page.sourceSlug,
     slug: page.slug,
@@ -202,10 +193,6 @@ const localizedSlugEntriesByLocale: Record<
       sourceSlug: page.sourceSlug,
       slug: page.slug,
     })),
-    "es-419": es419UnitPages.map((page) => ({
-      sourceSlug: page.sourceSlug,
-      slug: page.slug,
-    })),
     pt: portugueseUnitPages.map((page) => ({
       sourceSlug: page.sourceSlug,
       slug: page.slug,
@@ -265,10 +252,6 @@ const localizedSlugEntriesByLocale: Record<
       sourceSlug: page.sourceSlug,
       slug: page.slug,
     })),
-    "es-419": es419CategoryPages.map((page) => ({
-      sourceSlug: page.sourceSlug,
-      slug: page.slug,
-    })),
     pt: portugueseCategoryPages.map((page) => ({
       sourceSlug: page.sourceSlug,
       slug: page.slug,
@@ -316,7 +299,6 @@ const localizedSlugEntriesByLocale: Record<
     bn: [],
     fr: [],
     es: [],
-    "es-419": [],
     pt: [],
     it: [],
     nl: [],
@@ -355,10 +337,6 @@ const localizedSlugEntriesByLocale: Record<
       slug: page.slug,
     })),
     es: spanishConversionPages.map((page) => ({
-      sourceSlug: page.sourceSlug,
-      slug: page.slug,
-    })),
-    "es-419": es419ConversionPages.map((page) => ({
       sourceSlug: page.sourceSlug,
       slug: page.slug,
     })),

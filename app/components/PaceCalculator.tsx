@@ -131,30 +131,6 @@ const copyByLocale: Record<
       estimatedTime: "tiempo estimado",
     },
   },
-  "es-419": {
-    modePrompt: "¿Qué quieres calcular?",
-    modeButtons: {
-      pace: "Calcular ritmo",
-      duration: "Calcular tiempo",
-      distance: "Calcular distancia",
-    },
-    labels: {
-      distance: "Distancia (km)",
-      durationHours: "Tiempo - horas",
-      durationMinutes: "Tiempo - minutos",
-      durationSeconds: "Tiempo - segundos",
-      paceMinutes: "Ritmo - minutos/km",
-      paceSeconds: "Ritmo - segundos/km",
-    },
-    emptyState: "Ingresa valores válidos para ver el resultado.",
-    resultLabels: {
-      pace: "Ritmo",
-      duration: "Tiempo",
-      distance: "Distancia",
-      speed: "Velocidad",
-      estimatedTime: "tiempo estimado",
-    },
-  },
   pt: {
     modePrompt: "O que você quer calcular?",
     modeButtons: {

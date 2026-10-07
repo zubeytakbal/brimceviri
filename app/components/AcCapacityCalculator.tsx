@@ -99,23 +99,6 @@ const copyByLocale: Record<
       total: "Carga total estimada",
     },
   },
-  "es-419": {
-    labels: {
-      area: "Superficie de la habitación (m²)",
-      people: "Número de personas en la habitación",
-      sunny: "¿Le da el sol todo el día?",
-      sunnyCheckbox: "Sí, recibe luz solar directa",
-      topFloor: "¿Último piso / ático?",
-      topFloorCheckbox: "Sí, último piso o ático",
-    },
-    emptyState: "Ingresa valores válidos para ver el resultado.",
-    resultLabels: {
-      suggested: "Capacidad de aire acondicionado recomendada",
-      base: "Carga por superficie",
-      occupant: "Carga por ocupantes",
-      total: "Carga total estimada",
-    },
-  },
   pt: {
     labels: {
       area: "Área do cômodo (m²)",

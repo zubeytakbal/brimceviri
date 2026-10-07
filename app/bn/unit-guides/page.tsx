@@ -20,7 +20,6 @@ export const metadata: Metadata = {
       bn: "/bn/unit-guides",
       fr: "/fr/guides-des-unites",
       es: "/es/guias-de-unidades",
-      "es-419": "/es-419/guias-de-unidades",
       pt: "/pt/guias-de-unidades",
       "x-default": "/birimler",
     },

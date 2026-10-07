@@ -53,11 +53,6 @@ fr: {
     2: "2.º trimestre",
     3: "3.er trimestre",
   },
-  "es-419": {
-    1: "1.er trimestre",
-    2: "2.º trimestre",
-    3: "3.er trimestre",
-  },
   pt: {
     1: "1º trimestre",
     2: "2º trimestre",
@@ -132,15 +127,6 @@ const copyByLocale: Record<
   es: {
     inputLabel: "Primer día de la última regla",
     emptyState: "Introduce una fecha válida; no puede ser futura ni de hace más de 45 semanas.",
-    summaryLabel: "Edad gestacional",
-    dueDate: "Fecha probable de parto",
-    daysUntil: "Días hasta la fecha probable de parto",
-    weeks: "semanas",
-    days: "días",
-  },
-  "es-419": {
-    inputLabel: "Primer día de la última menstruación",
-    emptyState: "Ingresa una fecha válida; no puede ser futura ni de hace más de 45 semanas.",
     summaryLabel: "Edad gestacional",
     dueDate: "Fecha probable de parto",
     daysUntil: "Días hasta la fecha probable de parto",

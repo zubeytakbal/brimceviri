@@ -97,23 +97,6 @@ const copyByLocale: Record<
       costHint: "Introduce el precio del kWh para estimar el coste.",
     },
   },
-  "es-419": {
-    labels: {
-      power: "Potencia del aparato (watts)",
-      hours: "Tiempo de uso diario (horas)",
-      days: "Días de uso al mes",
-      price: "Tarifa eléctrica ($/kWh) - opcional",
-    },
-    placeholder: "Precio del kWh de tu recibo",
-    emptyState: "Ingresa valores válidos para ver el resultado.",
-    resultLabels: {
-      monthly: "Consumo mensual",
-      daily: "Consumo diario",
-      yearly: "Consumo anual",
-      yearlyCost: "Costo anual",
-      costHint: "Ingresa el precio del kWh para estimar el costo.",
-    },
-  },
   pt: {
     labels: {
       power: "Potência do aparelho (watts)",

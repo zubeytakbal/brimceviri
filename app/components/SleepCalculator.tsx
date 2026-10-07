@@ -81,21 +81,6 @@ const copyByLocale: Record<
     sleepLabel: "horas de sueño",
     recommended: "Recomendado",
   },
-  "es-419": {
-    modePrompt: "¿Qué quieres calcular?",
-    modeButtons: {
-      "wake-to-bedtime": "¿Cuándo debo dormir?",
-      "bedtime-to-wake": "¿Cuándo debo despertarme?",
-    },
-    timeLabel: {
-      "wake-to-bedtime": "Hora de despertar deseada",
-      "bedtime-to-wake": "Hora de acostarse",
-    },
-    emptyState: "Ingresa una hora válida para ver el resultado.",
-    cycleLabel: "ciclos",
-    sleepLabel: "horas de sueño",
-    recommended: "Recomendado",
-  },
   pt: {
     modePrompt: "O que você quer calcular?",
     modeButtons: {
@@ -508,14 +493,14 @@ export default function SleepCalculator({
   locale?: Locale;
 }) {
   const copy = copyByLocale[locale === "ru" ? "en" : locale];
-  const flow = flowCopy[locale] ?? (locale === "es-419" ? flowCopy.es : flowCopy.en);
+  const flow = flowCopy[locale] ?? flowCopy.en;
   const [hour, setHour] = useState(7);
   const [minute, setMinute] = useState(0);
   const [request, setRequest] = useState<{ mode: SleepCalculationMode; timeOfDay: string } | null>(null);
 
   const result = useMemo(() => (request ? calculateSleepTimes(request) : null), [request]);
   const browserAlarm = useBrowserAlarm();
-  const alarmText = alarmCopy[locale] ?? (locale === "es-419" ? alarmCopy.es : alarmCopy.en);
+  const alarmText = alarmCopy[locale] ?? alarmCopy.en;
   const options = result
     ? request?.mode === "wake-to-bedtime"
       ? [...result.options].reverse()

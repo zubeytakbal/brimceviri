@@ -589,15 +589,3 @@ export const sleepGuideContent: Record<string, SleepGuideLocaleContent> = {
   },
 };
 
-sleepGuideContent["es-419"] = {
-  ...sleepGuideContent.es,
-  locale: "es-419",
-  path: sleepGuidePaths["es-419"]!,
-  ogLocale: "es_MX",
-  numberLocale: "es-419",
-  homeHref: "/es-419",
-  related: [
-    { href: "/es-419/conversor-medidas-de-cocina", label: "Conversor de medidas de cocina" },
-    { href: "/es-419/categorias", label: "Todas las categorías de unidades" },
-  ],
-};

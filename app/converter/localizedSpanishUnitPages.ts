@@ -814,7 +814,7 @@ export const spanishUnitPages: LocalizedSpanishUnitPage[] = [
     siEquivalent: "92,5 % de plata fina",
     commonUses: "Joyería y cubertería",
   },
-  ...buildSpanishExtraUnitPages("es"),
+  ...buildSpanishExtraUnitPages(),
 ];
 
 export function findSpanishUnitPageBySourceSlug(sourceSlug: string) {

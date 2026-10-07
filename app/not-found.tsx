@@ -96,17 +96,6 @@ bn: {
     secondaryHref: "/",
     secondaryLabel: "Abrir la pagina de inicio en turco",
   },
-  "es-419": {
-    lang: "es-419",
-    title: "Pagina no encontrada",
-    description:
-      "Es posible que la pagina que buscas se haya movido o que la dirección no sea valida.",
-    continueHeading: "Continuar con",
-    primaryHref: "/es-419",
-    primaryLabel: "Volver a la pagina de inicio en español",
-    secondaryHref: "/",
-    secondaryLabel: "Abrir la pagina de inicio en turco",
-  },
   pt: {
     lang: "pt-BR",
     title: "Página não encontrada",

@@ -68,14 +68,6 @@ const localizedSectionRenames: Record<string, Record<string, string>> = {
     "privacy": "maxfiylik-siyosati",
     "terms": "foydalanish-shartlari",
   },
-  "es-419": {
-    "categories": "categorias",
-    "unit-guides": "guias-de-unidades",
-    "historical-units": "unidades-historicas",
-    "kitchen-measurement-converter": "conversor-medidas-de-cocina",
-    "recipe-converter": "conversor-de-recetas",
-    "shoe-size-converter": "conversor-tallas-de-calzado",
-  },
   it: {
     "categories": "categorie",
     "unit-guides": "guide-alle-unita",

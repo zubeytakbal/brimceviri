@@ -145,7 +145,6 @@ import { danishCategoryPages } from "./converter/localizedDanishCategoryPages";
 import { danishUnitPages } from "./converter/localizedDanishUnitPages";
 import { danishConversionPages } from "./converter/localizedDanishConversionPages";
 import { SITE_LAST_MODIFIED, SITE_URL } from "./siteConfig";
-import { SURELER } from "./converter/sureler";
 import { BIBLE_BOOKS } from "./converter/christian/christianCalc";
 import { BIBLE_BOOKS_PATH, CHRISTIAN_TOOLS_PATH, englishChristianTools } from "./i18n/englishChristianTools";
 import { CATHOLIC_PATHS } from "./i18n/catholicTools";
@@ -3045,8 +3044,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       "/seferi-mesafe-hesaplama",
       ...turkeyProvinces.map((p) => `/seferi-mesafe-hesaplama/${p.id}`),
       "/sure-bulucu",
-      ...SURELER.map((s) => `/sureler/${s.slug}-suresi`),
-      ...Array.from({ length: 30 }, (_, i) => `/cuzler/${i + 1}-cuz`),
+      "/cuzler",
       "/umre-mesafe-hesaplama",
       "/kaza-orucu-hesaplama",
       "/kible-yonu-hesaplama",

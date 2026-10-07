@@ -1,11 +1,11 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import Link from "@/app/components/SiteLink";
+import { useEffect, useMemo, useState } from "react";
 import { kazaOrucu, SEFER_KM, SEFER_METIN, seferDurumu, umreMesafe } from "../../converter/diniHesaplar";
 import { airKm, roadKm } from "../../converter/geo/provinceDistances";
 import { turkeyProvinces } from "../../converter/geo/turkeyProvinces";
 import { SURELER } from "../../converter/sureler";
+import { SURE_META } from "../../converter/sureMeta";
 
 const fmt = (n: number, d = 0) => n.toLocaleString("tr-TR", { maximumFractionDigits: d });
 const sayi = (raw: string) => {
@@ -121,6 +121,14 @@ const normalize = (s: string) =>
 
 export function SureBulucu() {
   const [query, setQuery] = useState("");
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      const slug = new URLSearchParams(window.location.search).get("sure");
+      const sure = slug ? SURELER.find((item) => item.slug === slug) : null;
+      if (sure) setQuery(sure.ad);
+    });
+    return () => cancelAnimationFrame(frame);
+  }, []);
   const results = useMemo(() => {
     const q = normalize(query);
     if (!q) return SURELER;
@@ -146,23 +154,31 @@ export function SureBulucu() {
               <th scope="col">Sure</th>
               <th scope="col">Ayet</th>
               <th scope="col">Cüz</th>
+              <th scope="col">İndiği yer (iniş sırası)</th>
+              <th scope="col">Sayfa*</th>
             </tr>
           </thead>
           <tbody>
-            {results.map((s) => (
-              <tr key={s.no}>
-                <td>{s.no}</td>
-                <td>
-                  <Link href={`/sureler/${s.slug}-suresi`}>{s.ad} Suresi</Link>
-                </td>
-                <td>{s.ayet}</td>
-                <td>{s.cuzBas === s.cuzSon ? `${s.cuzBas}. cüz` : `${s.cuzBas}–${s.cuzSon}. cüz`}</td>
-              </tr>
-            ))}
+            {results.map((s) => {
+              const meta = SURE_META[s.no];
+              return (
+                <tr key={s.no} id={s.slug}>
+                  <td>{s.no}</td>
+                  <th scope="row">{s.ad}</th>
+                  <td>{s.ayet}</td>
+                  <td>{s.cuzBas === s.cuzSon ? `${s.cuzBas}.` : `${s.cuzBas}–${s.cuzSon}.`}</td>
+                  <td>
+                    {meta.mekki ? "Mekke" : "Medine"} ({meta.nuzul}.)
+                  </td>
+                  <td>{meta.sayfaBas === meta.sayfaSon ? meta.sayfaBas : `${meta.sayfaBas}–${meta.sayfaSon}`}</td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
       {results.length === 0 && <p className="date-calc-note">Bu adla bir sure bulunamadı. Yazımı kontrol edin ya da sıra numarası girin.</p>}
+      <p className="date-calc-note">* Medine mushafına (604 sayfa) göre; başka baskılarda bir iki sayfa kayabilir.</p>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 // Kur'an-ı Kerim'in 114 suresi: sıra, Türkçe ad, ayet sayısı (Hafs rivayeti,
-// Kûfe sayımı: toplam 6.236) ve surenin başladığı/bittiği cüz. Sayfa numarası
-// mushaf baskısına göre değiştiği için bilerek yok.
+// Kûfe sayımı: toplam 6.236) ve surenin başladığı/bittiği cüz.
+// Mekkî/Medenî, iniş sırası ve Medine mushafı sayfaları sureMeta.ts dosyasında.
 // Kaynak: quran-meta 7.0.0 (MIT, Hafs listeleri); cüz başlangıçları ayrıca
 // standart listeyle karşılaştırıldı (tests/sureler.test.ts).
 

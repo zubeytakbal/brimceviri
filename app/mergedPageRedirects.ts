@@ -10,6 +10,7 @@ import { fxPairsTr } from "./converter/fx/fxPairsTr";
 import { uzLicenseClasses } from "./converter/licenseClassFinderUz";
 import { getAllNumberFactsRange } from "./converter/numberFacts";
 import { aminoAcidsDatabase } from "./converter/aminoAcidsDatabase";
+import { SURELER } from "./converter/sureler";
 
 export type MergedRedirect = { source: string; destination: string; permanent: true };
 
@@ -66,6 +67,14 @@ function aminoAcidRedirects(): MergedRedirect[] {
   return aminoAcidsDatabase.map((a) => r(`${base}/${a.id}`, base));
 }
 
+/** Sure ve cüz sayfaları sayılardan ibaretti; bilgiler Sure Bulucu ve Cüzler tablolarında. */
+function sureCuzRedirects(): MergedRedirect[] {
+  return [
+    ...SURELER.map((s) => r(`/sureler/${s.slug}-suresi`, `/sure-bulucu?sure=${s.slug}`)),
+    ...Array.from({ length: 30 }, (_, i) => r(`/cuzler/${i + 1}-cuz`, `/cuzler?cuz=${i + 1}`)),
+  ];
+}
+
 export function mergedPageRedirects(): MergedRedirect[] {
-  return [...timerRedirects(), ...alarmRedirects(), ...fxRedirects(), ...uzLicenseRedirects(), ...es419Redirects(), ...numberRedirects(), ...aminoAcidRedirects()];
+  return [...timerRedirects(), ...alarmRedirects(), ...fxRedirects(), ...uzLicenseRedirects(), ...es419Redirects(), ...numberRedirects(), ...aminoAcidRedirects(), ...sureCuzRedirects()];
 }

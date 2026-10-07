@@ -16,9 +16,6 @@ const ORNEK = 24;
  * "/x/*" alt klasörlerin hepsini kapsar.
  */
 export const PENDING = new Set<string>([
-  // Adım 5: sureler ve cüzler
-  "/sureler",
-  "/cuzler",
   // Adım 6: birim rehberleri
   "/es/guias-de-unidades",
   "/pt/guias-de-unidades",

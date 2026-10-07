@@ -7,7 +7,8 @@ export const DINI_ARACLAR_PATH = "/dini-araclar";
 
 export const diniAraclar: Array<ToolLink & { description: string }> = [
   { href: "/seferi-mesafe-hesaplama", label: "Seferî Mesafe Hesaplama", description: "İki il arası karayolu mesafesi 90 km'yi geçiyor mu? 81 il için seferîlik." },
-  { href: "/sure-bulucu", label: "Sure Bulucu", description: "114 sure: kaç ayet, hangi cüzde, kaçıncı sırada." },
+  { href: "/sure-bulucu", label: "Sure Bulucu", description: "114 sure: kaç ayet, hangi cüzde, Mekkî/Medenî, kaçıncı sayfada; ezber planı." },
+  { href: "/cuzler", label: "Cüzler ve Hatim Dağıtımı", description: "30 cüzün başladığı ayetler, hizb ve çeyrekler; hatmi kişilere eşit sayfayla paylaştırın." },
   { href: "/umre-mesafe-hesaplama", label: "Umre Mesafe Hesaplama", description: "Tavaf ve sa'y kaç km, kaç adım, kaç dakika?" },
   { href: "/kaza-orucu-hesaplama", label: "Kaza Orucu Hesaplama", description: "Kaza orucu kaç gün, haftada kaç gün tutarak ne zaman biter?" },
   { href: "/kible-yonu-hesaplama", label: "Kıble Yönü (Canlı Pusula)", description: "Telefonda canlı pusula; 81 ilin kıble açısı, manyetik sapma düzeltmeli." },

@@ -87,16 +87,13 @@ import {
 } from "./converter/periodicTableDataDe";
 import { findGermanElementArticle } from "./converter/germanElementArticles";
 import { materialsDatabase } from "./converter/materialsDatabase";
-import { getAllMaterialComparisons } from "./converter/materialComparisons";
 import { celestialBodiesDatabase } from "./converter/celestialBodiesDatabase";
-import { getAllCelestialBodyComparisons } from "./converter/celestialBodyComparisons";
 import { mountainsDatabase } from "./converter/mountainsDatabase";
 import { getAllMountainsUz } from "./converter/mountainsDatabaseUz";
 import { turkishProvinceElevations } from "./converter/turkishProvinceElevations";
 import { popularProvinceComparisons } from "./converter/popularProvinceComparisons";
 import { compoundsDatabase } from "./converter/compoundsDatabase";
 import { findCompoundEditorial } from "./converter/compoundEditorial";
-import { bengaliWeightPairs } from "./converter/bengaliWeightPairs";
 import { licenseClasses } from "./converter/licenseClassFinder";
 import {
   englishUnitPages,
@@ -1293,12 +1290,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.6,
     })),
-    ...getAllMaterialComparisons().map((comparison) => ({
-      url: `${baseUrl}/malzeme-karsilastirma/${comparison.slug}`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-    })),
     {
       url: `${baseUrl}/de/werkstoffeigenschaften`,
       lastModified: contentLastModified,
@@ -1346,12 +1337,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     ...celestialBodiesDatabase.map((body) => ({
       url: `${baseUrl}/gokcisimleri-ozellikleri/${body.id}`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-    })),
-    ...getAllCelestialBodyComparisons().map((comparison) => ({
-      url: `${baseUrl}/gokcisimleri-karsilastirma/${comparison.slug}`,
       lastModified: contentLastModified,
       changeFrequency: "monthly" as const,
       priority: 0.6,
@@ -2419,12 +2404,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
       },
     },
-    ...bengaliWeightPairs.map((pair) => ({
-      url: `${baseUrl}/bn/traditional-weight/${pair.slug}`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly" as const,
-      priority: 0.65,
-    })),
     {
       url: `${baseUrl}/yakit-tuketimi-hesaplama`,
       lastModified: contentLastModified,

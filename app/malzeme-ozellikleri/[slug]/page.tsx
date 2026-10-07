@@ -303,7 +303,7 @@ export default async function MaterialPropertyPage({ params }: PageProps) {
             <ul className="related-conversion-list">
               {relatedComparisons.map((comparison) => (
                 <li key={comparison.slug}>
-                  <Link href={`/malzeme-karsilastirma/${comparison.slug}`}>
+                  <Link href={`/malzeme-ozellikleri?v=${comparison.slug}#hesapla`}>
                     {comparison.first.nameTr} – {comparison.second.nameTr}
                   </Link>
                 </li>

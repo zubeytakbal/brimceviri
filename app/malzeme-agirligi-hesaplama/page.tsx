@@ -100,7 +100,7 @@ export default function MaterialWeightCalculatorPage() {
             <Link href="/malzeme-ozellikleri">Malzeme Özellikleri</Link>
             {" "}sayfasına, iki malzemeyi yoğunluk açısından karşılaştırmak
             için{" "}
-            <Link href="/malzeme-karsilastirma/aluminyum-celik-karsilastirma">
+            <Link href="/malzeme-ozellikleri?v=aluminyum-celik-karsilastirma#hesapla">
               Malzeme Karşılaştırma
             </Link>
             {" "}sayfalarına bakabilirsin.

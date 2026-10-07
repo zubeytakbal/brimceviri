@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
+import BengaliWeightConverter from "../../components/BengaliWeightConverter";
+import ScrollToQuery from "../../components/ScrollToQuery";
 import { bengaliWeightPairs } from "../../converter/bengaliWeightPairs";
 import { buildSiteUrl } from "../../siteConfig";
 
@@ -44,14 +46,17 @@ export default function BengaliTraditionalWeightHubPage() {
           </p>
         </header>
 
+        <BengaliWeightConverter fromUnit="mon" toUnit="kg" />
+        <ScrollToQuery param="pair" />
+
         <section className="category-article-content">
           <h2>একক রূপান্তরের তালিকা</h2>
           <ul className="related-conversion-list">
             {bengaliWeightPairs.map((pair) => (
               <li key={pair.slug}>
-                <Link href={`/bn/traditional-weight/${pair.slug}`}>
+                <a href={`#${pair.slug}`}>
                   {pair.fromLabel} → {pair.toLabel}
-                </Link>
+                </a>
               </li>
             ))}
             <li>
@@ -69,6 +74,20 @@ export default function BengaliTraditionalWeightHubPage() {
             <strong>তোলা</strong> দক্ষিণ এশিয়া জুড়ে সোনা-গয়না ব্যবসার
             মানক একক হিসেবে ব্যবহৃত হয়।
           </p>
+
+          {bengaliWeightPairs.map((pair) => (
+            <div key={pair.slug} id={pair.slug}>
+              <h2>{pair.title}</h2>
+              <p>{pair.intro}</p>
+              {pair.faq.map((item) => (
+                <p key={item.question}>
+                  <strong>{item.question}</strong>
+                  <br />
+                  {item.answer}
+                </p>
+              ))}
+            </div>
+          ))}
         </section>
       </div>
     </main>

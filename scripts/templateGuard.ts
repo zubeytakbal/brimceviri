@@ -16,9 +16,6 @@ const ORNEK = 24;
  * "/x/*" alt klasörlerin hepsini kapsar.
  */
 export const PENDING = new Set<string>([
-  // Adım 4: dünya saati
-  "/en/world-clock",
-  "/en/time-zone-converter",
   // Adım 5: sureler ve cüzler
   "/sureler",
   "/cuzler",
@@ -32,7 +29,6 @@ export const PENDING = new Set<string>([
   "/en/countries",
   "/iller-arasi-mesafe/*",
   "/de/entfernung/*",
-  "/seferi-mesafe-hesaplama",
   "/uz/viloyatlar-balandligi",
   "/dunyanin-en-yuksek-daglari",
   "/uz/dunyoning-eng-baland-toglari",
@@ -70,7 +66,8 @@ function htmlFiles(dir: string, out: Map<string, string[]>) {
 }
 
 function shingles(path: string): Set<string> {
-  const html = readFileSync(path, "utf8").replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>/g, "");
+  // Açılır listeler (ör. 100 şehirlik saat dilimi seçicisi) form denetimidir, sayfa içeriği değil.
+  const html = readFileSync(path, "utf8").replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>|<select[\s\S]*?<\/select>/g, "");
   const main = html.match(/<main[\s\S]*?<\/main>/)?.[0] ?? "";
   const words = main.replace(/<[^>]+>/g, " ").toLowerCase().split(/\s+/).filter(Boolean);
   const set = new Set<string>();

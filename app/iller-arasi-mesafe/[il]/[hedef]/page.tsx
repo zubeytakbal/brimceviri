@@ -90,7 +90,7 @@ export default async function RoutePairPage({ params }: { params: Promise<{ il: 
       question: `${from.name} ${to.name} arası kaç litre benzin yakar?`,
       answer: `100 km'de 7 litre yakan bir otomobil ${fmt(road)} km'lik yolda yaklaşık ${fmt((road * 7) / 100, 1)} litre yakıt tüketir${
         price ? `; güncel ortalama benzin fiyatıyla bu yaklaşık ${fmt(((road * 7) / 100) * price)} TL eder` : ""
-      }. Gidiş-dönüş için bu değerleri iki katına çıkarın.`,
+      }.`,
     },
     {
       question: `${from.name} ${to.name} yolu hangi illerden geçer?`,
@@ -114,7 +114,7 @@ export default async function RoutePairPage({ params }: { params: Promise<{ il: 
       ]}
       crumbLabel="Sayfa yolu"
       title={`${from.name} ${to.name} Arası Kaç Km?`}
-      intro={`${from.name} ile ${to.name} arası karayoluyla ${fmt(road)} km, kuş uçuşu ${fmt(air)} km. Ortalama hız ve yakıt tüketimini değiştirerek yolculuk süresini ve maliyetini hesaplayın.`}
+      intro={`${from.name} ile ${to.name} arası karayoluyla ${fmt(road)} km, kuş uçuşu ${fmt(air)} km. 85 km/sa ortalamayla yaklaşık ${durationText(driveMinutes(road, DEFAULT_AVG_KMH))} sürer.`}
       tool={
         <ProvinceDistanceCalculator
           centers={provinceMapCenters()}
@@ -200,7 +200,7 @@ export default async function RoutePairPage({ params }: { params: Promise<{ il: 
                 Yaklaşık 2,5 saatte bir mola için uygun duraklar: {molalar.map((x) => `${x.province.name} (${fmt(x.fromStart)}. km)`).join(", ")}.{" "}
               </>
             ) : null}
-            Yol boyunca il merkezlerinin rakımı {fmt(Math.min(...rakimlar))} m ile {fmt(Math.max(...rakimlar))} m arasında değişir; dağ geçitleri bundan yüksek olabilir.
+            Yol boyunca il merkezlerinin rakımı {fmt(Math.min(...rakimlar))} m ile {fmt(Math.max(...rakimlar))} m arasında değişir.
           </p>
         </>
       ) : (

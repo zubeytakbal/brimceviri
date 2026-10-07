@@ -4,7 +4,6 @@ import Link from "@/app/components/SiteLink";
 import EntfernungsRechner from "../../../../components/de/EntfernungsRechner";
 import TimeToolPage from "../../../../components/time/TimeToolPage";
 import type { FaqItem } from "../../../../converter/faqSchema";
-import { GEONAMES_SOURCE } from "../../../../converter/geo/germanCities";
 import {
   entfernungenAb,
   entfernungPaare,
@@ -74,15 +73,11 @@ export default async function EntfernungPaarPage({ params }: PageProps) {
   const weitere = entfernungenAb(to)
     .filter((r) => r.city.id !== from.id)
     .slice(0, 6)
-    .map((r) => ({ href: entfernungPaarPath(from, r.city) ?? entfernungStadtPath(r.city), label: `${from.name} – ${r.city.name} (${km(luftlinieKm(from, r.city))} km)` }));
+    .map((r) => ({ href: entfernungPaarPath(from, r.city) ?? entfernungStadtPath(r.city), label: `nach ${r.city.name}: ${km(luftlinieKm(from, r.city))} km` }));
 
   const faqItems: FaqItem[] = [
-    { question: `Wie weit ist es von ${from.name} nach ${to.name}?`, answer: `Die Luftlinie beträgt ${km1(d)} km (${km1(d / 1.609344)} Meilen); die Straße ist länger.` },
-    { question: `In welcher Richtung liegt ${to.name} von ${from.name} aus?`, answer: `Im ${himmelsrichtung(grad)}: Der Kurs beträgt ${Math.round(grad)}° (0° = Norden, 90° = Osten).` },
-    {
-      question: `Wo liegt die Mitte zwischen ${from.name} und ${to.name}?`,
-      answer: `Der Mittelpunkt der Luftlinie liegt bei ${mid.lat.toFixed(2).replace(".", ",")}° N, ${mid.lon.toFixed(2).replace(".", ",")}° O; die nächste Großstadt dort ist ${nearMid.city.name} (${km(nearMid.km)} km entfernt).`,
-    },
+    { question: `Wie weit ist es von ${from.name} nach ${to.name}?`, answer: `${km1(d)} km Luftlinie.` },
+    { question: `In welcher Richtung liegt ${to.name} von ${from.name} aus?`, answer: `Im ${himmelsrichtung(grad)} (${Math.round(grad)}°).` },
   ];
 
   return (
@@ -105,7 +100,7 @@ export default async function EntfernungPaarPage({ params }: PageProps) {
         tocTitle="Inhalt"
         tocItems={[
           { id: "ueberblick", label: "Überblick" },
-          { id: "sonne", label: "Sonnenaufgang in beiden Städten" },
+          { id: "sonne", label: "Sonne" },
           { id: "faq", label: "Häufige Fragen" },
         ]}
         faqTitle="Häufige Fragen"
@@ -142,18 +137,14 @@ export default async function EntfernungPaarPage({ params }: PageProps) {
               <tr>
                 <th scope="row">Mittelpunkt</th>
                 <td>
-                  nahe {nearMid.city.name} ({km(nearMid.km)} km)
+                  {mid.lat.toFixed(2).replace(".", ",")}° N, {mid.lon.toFixed(2).replace(".", ",")}° O, nahe {nearMid.city.name} ({km(nearMid.km)} km)
                 </td>
-              </tr>
-              <tr>
-                <th scope="row">Zeitzone</th>
-                <td>beide MEZ/MESZ, kein Zeitunterschied</td>
               </tr>
             </tbody>
           </table>
         </div>
 
-        <h2 id="sonne">Sonnenaufgang in beiden Städten</h2>
+        <h2 id="sonne">Sonne in {from.name} und {to.name}</h2>
         <div className="conversion-table-wrap">
           <table className="conversion-table">
             <thead>
@@ -179,9 +170,6 @@ export default async function EntfernungPaarPage({ params }: PageProps) {
             In {sunDiff > 0 ? from.name : to.name} geht die Sonne heute etwa {Math.abs(sunDiff)} Minuten früher auf als in {sunDiff > 0 ? to.name : from.name}.
           </p>
         )}
-        <p>
-          <small>Koordinaten: {GEONAMES_SOURCE}.</small>
-        </p>
       </TimeToolPage>
     </div>
   );

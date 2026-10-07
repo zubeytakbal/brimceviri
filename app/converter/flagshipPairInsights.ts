@@ -175,11 +175,15 @@ const insights: Record<string, FlagshipPairInsight> = {
   },
   [pairKey("kutle", "kg", "ton")]: {
     realWorldValues: [
-      {
-        label: "Ortalama binek otomobil ağırlığı",
-        value: 1.5,
-        anchorUnit: "ton",
-      },
+      { label: "Ortalama binek otomobil ağırlığı", value: 1.5, anchorUnit: "ton" },
+      { label: "B sınıfı ehliyetle kullanılabilecek azami araç ağırlığı", value: 3500, anchorUnit: "kg" },
+      { label: "Beş dingilli tırın azami toplam ağırlığı", value: 40, anchorUnit: "ton" },
+    ],
+    where:
+      "Ton; nakliye ve kargo ücretlerinde, araç ruhsatındaki azami yüklü ağırlıkta, inşaat malzemelerinde (demir, çimento, kum) ve tarım ürünlerinin hasat miktarlarında kullanılır. Türkiye'de ve bu sayfada ton metrik tondur: 1.000 kg.",
+    mistakes: [
+      "ABD'deki \"short ton\" 907,2 kg, Birleşik Krallık'taki \"long ton\" 1.016 kg'dır; yabancı kaynaklı bir tonaj metrik ton olmayabilir.",
+      "Klimalardaki \"ton\" ağırlık değil soğutma gücüdür: 1 ton soğutma 12.000 BTU/saat eder.",
     ],
   },
   [pairKey("kutle", "oz", "lb")]: {
@@ -208,11 +212,18 @@ const insights: Record<string, FlagshipPairInsight> = {
   },
   [pairKey("basinc", "bar", "psi")]: {
     realWorldValues: [
-      {
-        label: "Standart otomobil lastik basıncı",
-        value: 2.2,
-        anchorUnit: "bar",
-      },
+      { label: "Standart otomobil lastik basıncı", value: 2.2, anchorUnit: "bar" },
+      { label: "Yol bisikleti lastiği (tipik)", value: 7, anchorUnit: "bar" },
+      { label: "Espresso makinesi demleme basıncı", value: 9, anchorUnit: "bar" },
+      { label: "Dolu dalış tüpü", value: 200, anchorUnit: "bar" },
+      { label: "Deniz seviyesinde hava basıncı", value: 1.01325, anchorUnit: "bar" },
+    ],
+    where:
+      "Bar ve psi; araç lastik basıncında (kapı kenarındaki etikette ikisi birden yazar), benzin istasyonu hava pompalarında, kompresör ve bisiklet pompası göstergelerinde, dalış tüplerinde ve hidroforlarda karşına çıkar. 1 bar ≈ 14,504 psi.",
+    mistakes: [
+      "Lastik göstergesi atmosfer basıncının üstündeki basıncı (gösterge basıncı) ölçer; 2,2 bar lastikteki mutlak basınç yaklaşık 3,2 bar'dır. Tablolardaki değerler gösterge basıncıdır.",
+      "Lastik basıncını soğukken ölçün: sürüş sonrası ısınan lastik 0,2-0,3 bar fazla gösterebilir.",
+      "Bazı göstergeler kPa kullanır: 2,2 bar = 220 kPa.",
     ],
   },
   [pairKey("veri", "MB", "GB")]: {
@@ -235,20 +246,72 @@ const insights: Record<string, FlagshipPairInsight> = {
   },
   [pairKey("alan", "ft²", "m²")]: {
     realWorldValues: [
-      {
-        label: "Ortalama 2+1 daire (net alan)",
-        value: 90,
-        anchorUnit: "m²",
-      },
+      { label: "Ortalama 2+1 daire (net alan)", value: 90, anchorUnit: "m²" },
+      { label: "ABD ilanında 1.000 sq ft daire", value: 1000, anchorUnit: "ft²" },
+      { label: "Standart otopark yeri (2,5 × 5 m)", value: 12.5, anchorUnit: "m²" },
+    ],
+    where:
+      "Fit kare (sq ft); ABD, Kanada ve Birleşik Krallık'ta ev ve ofis ilanlarında, döşeme ve boya ambalajlarındaki kaplama alanında kullanılır. 1 ft² tam olarak 0,09290304 m²'dir; kabaca 1 m² ≈ 10,76 ft².",
+    mistakes: [
+      "Alan birimleri karesiyle çevrilir: 1 feet 0,3048 m olsa da 1 fit kare 0,3048 değil 0,0929 m²'dir. Uzunluk katsayısını alana uygulamak 3 kat hata yapar.",
+      "Türkiye'deki ilanlarda brüt ve net m² farklıdır (brüt duvarları ve ortak alan payını içerir); ABD'deki sq ft de çoğunlukla dış duvarlardan ölçülür. Karşılaştırırken aynı türü kullanın.",
     ],
   },
   [pairKey("alan", "dekar", "dönüm")]: {
     sectorNote:
       "Türkiye'de tarım arazisi alım satımında ve tapu kayıtlarında dönüm ve dekar birbirinin yerine kullanılan resmi birimlerdir.",
+    where:
+      "Bugünkü (metrik) dönüm ile dekar aynı büyüklüktür: ikisi de 1.000 m². Tarım destekleri ve verim istatistikleri dekar başına, köydeki tarla alım satımı ise çoğunlukla dönüm üzerinden konuşulur.",
+    mistakes: [
+      "Eski kayıtlardaki \"eski dönüm\" 1.000 m² değil, yaklaşık 919 m²'dir (40 × 40 arşın). Eski tapu ve miras belgelerinde hangi dönümün kastedildiğine bakın.",
+      "10 dönüm (dekar) 1 hektardır; uluslararası raporlarda ve AB destek belgelerinde hektar kullanılır.",
+    ],
   },
   [pairKey("alan", "dönüm", "ha")]: {
     sectorNote:
       "Tarım ve orman arazisi büyüklüğü Türkiye'de dönüm, uluslararası raporlamada hektar cinsinden ifade edilir.",
+  },
+  [pairKey("guc", "kW", "hp")]: {
+    realWorldValues: [
+      { label: "Küçük binek otomobil motoru (tipik)", value: 100, anchorUnit: "hp" },
+      { label: "Ev tipi elektrikli süpürge", value: 2, anchorUnit: "kW" },
+      { label: "Orta boy tarım traktörü", value: 75, anchorUnit: "hp" },
+    ],
+    where:
+      "Beygirgücü; araç ilanlarında, tekne motorlarında ve traktörlerde; kilovat ise elektrik motorlarında, jeneratörlerde, elektrikli araçlarda ve teknik belgelerde kullanılır. Bu sayfadaki beygirgücü metrik beygirgücüdür (PS): 1 hp = 735,49875 W.",
+    mistakes: [
+      "Metrik beygirgücü (PS, 735,5 W) ile ABD'nin mekanik beygirgücü (HP, 745,7 W) arasında yaklaşık %1,4 fark vardır; ABD kaynaklı motor değerleri için mekanik beygirgücü çeviricisini kullanın.",
+      "kW güçtür, kWh enerjidir: 2 kW'lık bir cihaz 1 saat çalışınca 2 kWh elektrik harcar.",
+      "Kafadan hesap için kW'ı 1,36 ile çarpın (100 kW ≈ 136 hp); ters yönde hp'yi 0,735 ile çarpın.",
+    ],
+  },
+  [pairKey("alan", "dönüm", "m²")]: {
+    realWorldValues: [
+      { label: "Bir evlek", value: 250, anchorUnit: "m²" },
+      { label: "Futbol sahası (105 × 68 m)", value: 7140, anchorUnit: "m²" },
+      { label: "1 hektar", value: 10000, anchorUnit: "m²" },
+    ],
+    where:
+      "Dönüm; tarla, bağ, bahçe ve sera ilanlarında, köy arazilerinin alım satımında ve tarım kredisi başvurularında kullanılır. İmarlı arsa ve konut ise metrekare ile satılır. Bugünkü dönüm 1.000 m²'dir ve dekarla aynıdır.",
+    mistakes: [
+      "Eski tapu kayıtlarındaki \"eski dönüm\" yaklaşık 919 m²'dir; 1.000 m² ile hesaplamak her dönümde 80 m² fazla çıkarır.",
+      "Tarlanın dönümü ile üzerine yapılabilecek bina alanı farklıdır; inşaat alanı imar durumundaki emsal ve TAKS oranlarına göre hesaplanır.",
+    ],
+  },
+  [pairKey("enerji", "kcal", "kJ")]: {
+    realWorldValues: [
+      { label: "Yetişkin için günlük referans alım", value: 2000, anchorUnit: "kcal" },
+      { label: "1 gram yağ", value: 9, anchorUnit: "kcal" },
+      { label: "1 gram alkol", value: 7, anchorUnit: "kcal" },
+      { label: "1 gram protein veya karbonhidrat", value: 4, anchorUnit: "kcal" },
+    ],
+    where:
+      "Gıda etiketlerindeki besin değeri tablosunda enerji hem kJ hem kcal olarak yazılır (örneğin \"1650 kJ / 394 kcal\"). Diyet ve spor uygulamaları çoğunlukla kcal kullanır. 1 kcal tam olarak 4,184 kJ'dir.",
+    mistakes: [
+      "Günlük dilde \"kalori\" denen şey aslında kilokaloridir: bir elmanın \"80 kalorisi\" 80 kcal, yani 80.000 kaloridir. Etiketteki büyük harfli \"Cal\" da kcal demektir.",
+      "Etikette önce kJ yazdığı için kJ değerini kcal sanmak dört kat hatalı sonuç verir: 1650 kJ, 394 kcal'dir.",
+      "Değerler genellikle 100 g ya da 100 mL içindir; porsiyon başına hesap için porsiyon gramajıyla oranlayın.",
+    ],
   },
   [pairKey("enerji", "J", "cal")]: {
     realWorldValues: [
@@ -271,6 +334,16 @@ const insights: Record<string, FlagshipPairInsight> = {
   [pairKey("sicaklik", "K", "C")]: {
     realWorldValues: [
       { label: "Mutlak sıfır noktası", value: 0, anchorUnit: "K" },
+      { label: "Oda sıcaklığı", value: 20, anchorUnit: "C" },
+      { label: "İnsan vücut sıcaklığı", value: 37, anchorUnit: "C" },
+      { label: "Suyun deniz seviyesinde kaynama noktası", value: 100, anchorUnit: "C" },
+    ],
+    where:
+      "Kelvin; fizik ve kimya hesaplarında (gaz kanunları, termodinamik) ve LED ampul ile ekranların renk sıcaklığında karşına çıkar: 2700 K sıcak beyaz, 4000 K nötr beyaz, 6500 K gün ışığı tonudur. K = °C + 273,15.",
+    mistakes: [
+      "\"Derece Kelvin\" denmez, yalnızca kelvin (K) denir; derece işareti kullanılmaz.",
+      "Sıcaklık farkı iki ölçekte aynıdır: 10 °C artış 10 K artıştır. 273,15 yalnızca sıcaklığın kendisini çevirirken eklenir.",
+      "Ampul kutusundaki 6500 K ışığın rengini anlatır, ampulün ısısını değil.",
     ],
   },
   [pairKey("uzunluk", "m", "yd")]: {

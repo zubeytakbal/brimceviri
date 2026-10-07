@@ -33,11 +33,9 @@ const PRESET_SECONDS = [30, 60, 120, 180, 300, 600, 900, 1200, 1500, 1800, 2700,
 export default function CountdownTimer({
   locale,
   initialSeconds = 300,
-  presetLinks,
 }: {
   locale: TimeToolsLocale;
   initialSeconds?: number;
-  presetLinks?: Record<number, string>;
 }) {
   const copy = timeToolsCopy[locale];
   const [durationMs, setDurationMs] = useState(initialSeconds * 1000);
@@ -120,6 +118,29 @@ export default function CountdownTimer({
     setMinutes(Math.floor((totalSeconds % 3600) / 60));
     setSeconds(totalSeconds % 60);
   };
+
+  // Hazır süre: süreyi kur ve adrese ?s= yaz (paylaşılabilir; eski hazır süre sayfaları buraya yönlenir).
+  const pickPreset = (value: number) => {
+    setDuration(value);
+    try {
+      const url = new URL(window.location.href);
+      url.searchParams.set("s", String(value));
+      window.history.replaceState(null, "", url);
+    } catch {
+      // Adres güncellenemezse süre yine kurulur.
+    }
+  };
+
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      const raw = new URLSearchParams(window.location.search).get("s");
+      const value = raw ? Number(raw) : NaN;
+      if (Number.isInteger(value) && value > 0 && value < 360000) setDuration(value);
+    });
+    return () => cancelAnimationFrame(frame);
+    // Yalnızca ilk yüklemede adresteki süre okunur.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const stopSound = () => {
     stopRef.current?.();
@@ -222,19 +243,14 @@ export default function CountdownTimer({
         <p className="sleep-flow-title">{copy.timer.presets}</p>
         <div className="time-tool-chips">
           {PRESET_SECONDS.map((value) => {
-            const href = presetLinks?.[value];
             const labelText =
               value < 60 || value === 90
                 ? `${value} ${copy.timer.secondShort}`
                 : value >= 7200 && value % 3600 === 0
                   ? `${value / 3600} ${copy.timer.hourShort}`
                   : `${value / 60} ${copy.timer.minuteShort}`;
-            return href ? (
-              <a key={value} href={href} onClick={(event) => { event.preventDefault(); setDuration(value); window.history.replaceState(null, "", href); }}>
-                {labelText}
-              </a>
-            ) : (
-              <button type="button" key={value} onClick={() => setDuration(value)}>
+            return (
+              <button type="button" key={value} onClick={() => pickPreset(value)}>
                 {labelText}
               </button>
             );

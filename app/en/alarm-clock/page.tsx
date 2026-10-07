@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { appManifestPath, findInstallableApp } from "../../converter/time/installableApps";
 import Link from "@/app/components/SiteLink";
+import AlarmPresetTable from "../../components/time/AlarmPresetTable";
+import { formatEnglishTime } from "../../i18n/timeToolPaths";
 import AlarmClock from "../../components/time/AlarmClock";
 import TimeToolPage from "../../components/time/TimeToolPage";
 import { timeRelated } from "../../components/time/timeRelatedLinks";
@@ -57,13 +59,14 @@ export default function EnglishAlarmClockPage() {
       title="Online Alarm Clock"
       intro="Pick a time, choose a sound and add the alarm. A free alarm clock that runs in your browser: multiple alarms, 5-minute snooze and keep-screen-awake support."
       tool={<AlarmClock locale="en" />}
-      related={{ title: "Ready-made alarms and more tools", links: [...related.alarms, ...related.tools.filter((t) => t.href !== "/en/alarm-clock")] }}
+      related={{ title: "More time tools", links: related.tools.filter((t) => t.href !== "/en/alarm-clock") }}
       tocTitle="Contents"
       tocItems={[
         { id: "how", label: "How to set an online alarm" },
         { id: "reliable", label: "Making sure the alarm rings" },
         { id: "sounds", label: "Alarm sounds" },
         { id: "sleep", label: "What time should I set my alarm for?" },
+        { id: "bedtimes", label: "Bedtime for each wake-up time" },
         { id: "faq", label: "FAQ" },
       ]}
       faqTitle="Frequently Asked Questions"
@@ -97,6 +100,15 @@ export default function EnglishAlarmClockPage() {
         Sleep runs in cycles of about 90 minutes, and waking at the end of a cycle feels easier. Find your best wake-up time with the{" "}
         <Link href="/en/sleep-calculator">sleep calculator</Link>, then set the alarm here.
       </p>
+
+      <AlarmPresetTable
+        id="bedtimes"
+        heading="Bedtime for each wake-up time"
+        intro="Based on 90-minute sleep cycles plus 15 minutes to fall asleep. Tap a wake-up time to set the alarm to it."
+        wakeLabel="Wake up at"
+        cycleLabel={(c, h) => `${c} cycles (${h} h)`}
+        format={formatEnglishTime}
+      />
     </TimeToolPage>
   );
 }

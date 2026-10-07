@@ -443,11 +443,7 @@ export default function BengaliHomeDirectory({
           description="দৈনিক রেফারেন্স রেটে ডলার, সৌদি রিয়াল, দিরহাম ও আরও ১১টি মুদ্রা থেকে টাকা; রেট কখন প্রকাশিত হয়েছে, চার্ট ও ব্যাংক রেটের পার্থক্য হিসাব।"
           hubHref="/bn/currency-converter"
           allLabel="সব মুদ্রার রেট"
-          cards={[
-            { href: "/bn/currency-converter/usd-to-bdt", label: "ডলার – টাকা", icon: "currencyUsd" },
-            { href: "/bn/currency-converter/sar-to-bdt", label: "সৌদি রিয়াল – টাকা", icon: "currencyConverterCalculator" },
-            { href: "/bn/currency-converter/aed-to-bdt", label: "দিরহাম – টাকা", icon: "currencyConverterCalculator" },
-          ]}
+          cards={[]}
         />
 
         {popularUnits.length > 0 && (

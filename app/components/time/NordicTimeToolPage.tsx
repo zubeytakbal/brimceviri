@@ -3,7 +3,8 @@
 import type { Metadata } from "next";
 import type { NordicLocale } from "../../converter/time/nordicWeek";
 import { NORDIC_WEEK_PATHS } from "../../converter/time/nordicWeek";
-import { nordicTimerPresetLinks } from "../../i18n/nordicTimerPresets";
+import { NORDIC_TIMER_SECONDS, NORDIC_TIMER_USES, nordicTimerLabel } from "../../i18n/nordicTimerPresets";
+import TimerPresetTable from "./TimerPresetTable";
 import { timeToolAlternates, type TimeToolId } from "../../i18n/timeToolPaths";
 import { buildSiteUrl } from "../../siteConfig";
 import AlarmClock from "./AlarmClock";
@@ -16,6 +17,12 @@ import Stopwatch from "./Stopwatch";
 import TimeToolPage from "./TimeToolPage";
 
 const TOOL_IDS: Record<NordicTimeTool, TimeToolId> = { timer: "timer", stopwatch: "stopwatch", alarm: "alarm", clock: "clock", pomodoro: "pomodoro", interval: "interval" };
+
+const PRESET_COPY: Record<NordicLocale, { heading: string; intro: string; duration: string; uses: string }> = {
+  sv: { heading: "Färdiga tider och vad de passar till", intro: "Klicka på en tid så ställs timern in på den; adressen kan sparas som bokmärke eller delas.", duration: "Tid", uses: "Passar till" },
+  no: { heading: "Ferdige tider og hva de passer til", intro: "Klikk på en tid, så stilles timeren inn på den; adressen kan lagres som bokmerke eller deles.", duration: "Tid", uses: "Passer til" },
+  da: { heading: "Færdige tider og hvad de passer til", intro: "Klik på en tid, så indstilles timeren til den; adressen kan gemmes som bogmærke eller deles.", duration: "Tid", uses: "Passer til" },
+};
 
 const WEEK_LABEL: Record<NordicLocale, string> = { sv: "Veckonummer", no: "Ukenummer", da: "Ugenummer" };
 
@@ -32,7 +39,7 @@ export function nordicTimeMetadata(tool: NordicTimeTool, locale: NordicLocale): 
 function toolFor(tool: NordicTimeTool, locale: NordicLocale) {
   switch (tool) {
     case "timer":
-      return <CountdownTimer locale={locale} presetLinks={nordicTimerPresetLinks(locale)} />;
+      return <CountdownTimer locale={locale} />;
     case "stopwatch":
       return <Stopwatch locale={locale} />;
     case "alarm":
@@ -81,6 +88,16 @@ export default function NordicTimeToolPage({ tool, locale }: { tool: NordicTimeT
             ))}
           </section>
         ))}
+        {tool === "timer" ? (
+          <TimerPresetTable
+            id="tider"
+            heading={PRESET_COPY[locale].heading}
+            intro={PRESET_COPY[locale].intro}
+            durationLabel={PRESET_COPY[locale].duration}
+            usesLabel={PRESET_COPY[locale].uses}
+            rows={NORDIC_TIMER_SECONDS.map((s) => ({ seconds: s, label: nordicTimerLabel(locale, s), uses: NORDIC_TIMER_USES[s][locale] }))}
+          />
+        ) : null}
       </TimeToolPage>
     </div>
   );

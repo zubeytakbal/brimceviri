@@ -98,7 +98,7 @@ export default function IntervallTimerPage() {
           <li>Bei Tabata wirklich an die Grenze gehen – die kurzen Pausen sind Teil der Methode.</li>
           <li>Anfänger starten mit längeren Pausen, etwa 30/30, und steigern sich zu 40/20.</li>
           <li>
-            Für feste Satzpausen beim Krafttraining eignet sich der <Link href="/de/timer/90-sekunden">90-Sekunden-Timer</Link>, für Zeiten
+            Für feste Satzpausen beim Krafttraining eignet sich der <Link href="/de/timer?s=90">90-Sekunden-Timer</Link>, für Zeiten
             und Runden die <Link href="/de/stoppuhr">Stoppuhr</Link>.
           </li>
         </ul>

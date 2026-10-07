@@ -3,7 +3,8 @@ import Link from "@/app/components/SiteLink";
 import CountdownTimer from "../../components/time/CountdownTimer";
 import TimeToolPage from "../../components/time/TimeToolPage";
 import type { FaqItem } from "../../converter/faqSchema";
-import { timerPathDe, timerPresetLinksDe, timerTitleDe, timeToolsRelatedDe } from "../../i18n/germanTimeTools";
+import TimerPresetTable from "../../components/time/TimerPresetTable";
+import { timerLabelDe, timerUsesDe, timeToolsRelatedDe } from "../../i18n/germanTimeTools";
 import { timeToolAlternates } from "../../i18n/timeToolPaths";
 import { timerPresets } from "../../i18n/timerPresets";
 import { buildSiteUrl } from "../../siteConfig";
@@ -50,7 +51,7 @@ export default function GermanTimerPage() {
         crumbLabel="Brotkrumen"
         title="Online-Timer"
         intro="Eine Schnellauswahl antippen oder eigene Zeit eingeben und „Start“ drücken. Ist die Zeit um, ertönt ein Signal. Pausieren, eine Minute hinzufügen oder Vollbild – alles direkt im Browser."
-        tool={<CountdownTimer locale="de" presetLinks={timerPresetLinksDe()} />}
+        tool={<CountdownTimer locale="de" />}
         related={{ title: "Das könnte Sie auch interessieren", links: timeToolsRelatedDe(path) }}
         tocTitle="Inhalt"
         tocItems={[
@@ -71,15 +72,14 @@ export default function GermanTimerPage() {
           <li>Ist die Zeit um, spielt der gewählte Ton – auf Wunsch Ihre eigene Musik.</li>
         </ol>
 
-        <h2 id="zeiten">Timer nach Dauer</h2>
-        <p>Jede Dauer hat eine eigene Seite mit fertig eingestelltem Countdown, die Sie als Lesezeichen speichern können:</p>
-        <div className="time-tool-chips">
-          {timerPresets.map((p) => (
-            <Link key={p.seconds} href={timerPathDe(p)} prefetch={false}>
-              {timerTitleDe(p)}
-            </Link>
-          ))}
-        </div>
+        <TimerPresetTable
+          id="zeiten"
+          heading="Timer nach Dauer"
+          intro="Ein Klick auf eine Dauer stellt den Timer darauf ein; die Adresse lässt sich als Lesezeichen speichern oder teilen."
+          durationLabel="Dauer"
+          usesLabel="Geeignet für"
+          rows={timerPresets.map((p) => ({ seconds: p.seconds, label: timerLabelDe(p), uses: timerUsesDe[p.seconds] ?? [] }))}
+        />
 
         <h2 id="anlaesse">Beliebte Anlässe</h2>
         <ul>

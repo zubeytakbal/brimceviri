@@ -2374,11 +2374,7 @@ export default function HomeDirectory({
             description="Günlük referans kurla dolar, euro, sterlin ve 12 döviz daha; kurun ne zaman yayınlandığı, grafik ve banka kuru farkı hesaplama."
             hubHref="/doviz-cevirici"
             allLabel="Tüm döviz kurları"
-            cards={[
-              { href: "/doviz-cevirici/dolar-tl", label: "Dolar – TL", icon: "currencyUsd" },
-              { href: "/doviz-cevirici/euro-tl", label: "Euro – TL", icon: "currencyEur" },
-              { href: "/doviz-cevirici/sterlin-tl", label: "Sterlin – TL", icon: "currencyGbp" },
-            ]}
+            cards={[]}
           />
         )}
 
@@ -2389,11 +2385,7 @@ export default function HomeDirectory({
             description="Kunlik ma'lumotnoma kursi bilan dollar, yevro, rubl va yana 9 ta valyuta; kurs qachon e'lon qilingani, grafik va bank kursi farqini hisoblash."
             hubHref="/uz/valyuta-aylantirgich"
             allLabel="Barcha valyuta kurslari"
-            cards={[
-              { href: "/uz/valyuta-aylantirgich/dollar-som", label: "Dollar – So'm", icon: "currencyUsd" },
-              { href: "/uz/valyuta-aylantirgich/yevro-som", label: "Yevro – So'm", icon: "currencyEur" },
-              { href: "/uz/valyuta-aylantirgich/rubl-som", label: "Rubl – So'm", icon: "currencyConverterCalculator" },
-            ]}
+            cards={[]}
           />
         )}
 
@@ -2404,12 +2396,7 @@ export default function HomeDirectory({
             description="Euro in Dollar, Pfund, Franken, Lira und 14 weitere Währungen – mit täglichem Referenzkurs, Kursverlauf und Rechner für den Bank- oder Wechselstubenaufschlag."
             hubHref="/de/waehrungsrechner"
             allLabel="Alle Wechselkurse"
-            cards={[
-              { href: "/de/waehrungsrechner/euro-dollar", label: "Euro – Dollar", icon: "currencyUsd" },
-              { href: "/de/waehrungsrechner/euro-pfund", label: "Euro – Pfund", icon: "currencyGbp" },
-              { href: "/de/waehrungsrechner/euro-franken", label: "Euro – Franken", icon: "currencyEur" },
-              { href: "/de/waehrungsrechner/euro-lira", label: "Euro – Lira", icon: "currencyConverterCalculator" },
-            ]}
+            cards={[]}
           />
         )}
 

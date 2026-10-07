@@ -70,7 +70,7 @@ export default function PomodoroPage() {
         </ol>
         <p>
           Vier Pomodoros mit Pausen dauern etwa zwei Stunden – ungefähr so lange wie zwei Doppelstunden ohne Hofpause. Wer eine feste Zeit
-          ohne Rundenwechsel braucht, nutzt den <Link href="/de/timer/25-minuten">25-Minuten-Timer</Link>.
+          ohne Rundenwechsel braucht, nutzt den <Link href="/de/timer?s=1500">25-Minuten-Timer</Link>.
         </p>
 
         <h2 id="tipps">Tipps für Schule, Studium und Büro</h2>

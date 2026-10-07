@@ -3,8 +3,9 @@ import Link from "@/app/components/SiteLink";
 import AlarmClock from "../../components/time/AlarmClock";
 import TimeToolPage from "../../components/time/TimeToolPage";
 import type { FaqItem } from "../../converter/faqSchema";
-import { alarmLabelDe, alarmPathDe, timeToolsRelatedDe } from "../../i18n/germanTimeTools";
-import { alarmPresetTimes, timeToolAlternates } from "../../i18n/timeToolPaths";
+import AlarmPresetTable from "../../components/time/AlarmPresetTable";
+import { timeToolsRelatedDe } from "../../i18n/germanTimeTools";
+import { timeToolAlternates } from "../../i18n/timeToolPaths";
 import { buildSiteUrl } from "../../siteConfig";
 
 const path = "/de/wecker";
@@ -69,15 +70,14 @@ export default function WeckerPage() {
           <li>„Wecker stellen“ drücken und den Tab geöffnet lassen.</li>
         </ol>
 
-        <h2 id="weckzeiten">Wecker nach Uhrzeit</h2>
-        <p>Für häufige Weckzeiten gibt es fertig eingestellte Seiten – mit der passenden Schlafenszeit:</p>
-        <div className="time-tool-chips">
-          {alarmPresetTimes.map((t) => (
-            <Link key={t} href={alarmPathDe(t)} prefetch={false}>
-              Wecker {alarmLabelDe(t)}
-            </Link>
-          ))}
-        </div>
+        <AlarmPresetTable
+          id="weckzeiten"
+          heading="Wecker nach Uhrzeit: passende Schlafenszeit"
+          intro="Berechnet mit 90-minütigen Schlafzyklen und 15 Minuten zum Einschlafen. Ein Klick auf eine Uhrzeit stellt den Wecker darauf ein."
+          wakeLabel="Aufstehen"
+          cycleLabel={(c, h) => `${c} Zyklen (${h.toLocaleString("de-DE")} Std.)`}
+          format={(t) => `${t} Uhr`}
+        />
 
         <h2 id="tipps">Tipps für zuverlässiges Wecken</h2>
         <ul>

@@ -11,10 +11,8 @@ import { germanConversionPages } from "../converter/localizedGermanConversionPag
 import { germanUnitPages } from "../converter/localizedGermanUnitPages";
 import { englishUnitPages } from "../converter/localizedUnitPages";
 import { uzbekCategoryPages } from "../converter/localizedUzbekCategoryPages";
-import { uzbekUnitPages } from "../converter/localizedUzbekUnitPages";
 import { uzbekConversionPages } from "../converter/localizedUzbekConversionPages";
 import { bengaliCategoryPages } from "../converter/localizedBengaliCategoryPages";
-import { bengaliUnitPages } from "../converter/localizedBengaliUnitPages";
 import { bengaliConversionPages } from "../converter/localizedBengaliConversionPages";
 import { unitPages } from "../converter/unitPages";
 import { arabicCategoryPages } from "../converter/localizedArabicCategoryPages";
@@ -152,7 +150,7 @@ const localizedSlugEntriesByLocale: Record<
   RouteCollectionKey,
   Record<Locale, LocalizedSlugEntry[]>
 > = {
-  // es, fr, pt, it, nl, sv, no, da: birim bilgisi kategori sayfasındaki sözlükte, ayrı sayfa yok.
+  // es, fr, pt, it, nl, sv, no, da, ar, uz, bn: birim bilgisi kategori sayfasındaki sözlükte, ayrı sayfa yok.
   units: {
     tr: unitPages.map((page) => ({
       sourceSlug: page.slug,
@@ -166,18 +164,9 @@ const localizedSlugEntriesByLocale: Record<
       sourceSlug: page.sourceSlug,
       slug: page.slug,
     })),
-    ar: englishUnitPages.map((page) => ({
-      sourceSlug: page.sourceSlug,
-      slug: page.slug,
-    })),
-    uz: uzbekUnitPages.map((page) => ({
-      sourceSlug: page.sourceSlug,
-      slug: page.slug,
-    })),
-    bn: bengaliUnitPages.map((page) => ({
-      sourceSlug: page.sourceSlug,
-      slug: page.slug,
-    })),
+    ar: [],
+    uz: [],
+    bn: [],
     fr: [],
     es: [],
     pt: [],

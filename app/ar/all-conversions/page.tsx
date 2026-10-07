@@ -98,7 +98,7 @@ export default function ArabicAllConversionsPage() {
           content: (
             <ul className="related-conversion-list">
               <li>
-                <Link href="/ar/unit-guides">دليل الوحدات</Link>
+                <Link href="/ar/categories">الفئات ومعجم الوحدات</Link>
               </li>
               <li>
                 <Link href="/ar/historical-units">وحدات القياس التاريخية</Link>

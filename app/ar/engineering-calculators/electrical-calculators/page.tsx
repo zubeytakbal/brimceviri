@@ -128,13 +128,13 @@ export default function ArabicElectricalHubPage() {
                 <Link href="/ar/engineering-calculators">العودة إلى الحاسبات الهندسية</Link>
               </li>
               <li>
-                <Link href="/ar/unit-guides/volt">دليل الفولت</Link>
+                <Link href="/ar/categories/electricity#volt">دليل الفولت</Link>
               </li>
               <li>
-                <Link href="/ar/unit-guides/ampere">دليل الأمبير</Link>
+                <Link href="/ar/categories/electricity#ampere">دليل الأمبير</Link>
               </li>
               <li>
-                <Link href="/ar/unit-guides/ohm">دليل الأوم</Link>
+                <Link href="/ar/categories/resistance#ohm">دليل الأوم</Link>
               </li>
             </ul>
           ),

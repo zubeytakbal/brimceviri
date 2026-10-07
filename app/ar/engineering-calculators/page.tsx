@@ -142,16 +142,16 @@ export default function ArabicEngineeringHubPage() {
           content: (
             <ul className="related-conversion-list">
               <li>
-                <Link href="/ar/unit-guides">دليل الوحدات</Link>
+                <Link href="/ar/categories">الفئات ومعجم الوحدات</Link>
               </li>
               <li>
-                <Link href="/ar/unit-guides/pascal">دليل الباسكال</Link>
+                <Link href="/ar/categories/pressure#pascal">دليل الباسكال</Link>
               </li>
               <li>
-                <Link href="/ar/unit-guides/meter">دليل المتر</Link>
+                <Link href="/ar/categories/length#meter">دليل المتر</Link>
               </li>
               <li>
-                <Link href="/ar/unit-guides/kilogram">دليل الكيلوغرام</Link>
+                <Link href="/ar/categories/mass#kilogram">دليل الكيلوغرام</Link>
               </li>
             </ul>
           ),

@@ -39,6 +39,7 @@ import {
   type UzbekStandaloneToolComponentKey,
 } from "../../i18n/uzbekStandaloneTools";
 import { buildSiteUrl } from "../../siteConfig";
+import { unitGlossaryHref } from "../../converter/unitGlossary";
 
 const componentMap: Record<
   UzbekStandaloneToolComponentKey,
@@ -444,7 +445,7 @@ async function UzbekConversionPage({ slug }: { slug: string }) {
 
             <Link
               className="text-link"
-              href={`/uz/birliklar/${fromUnitInfo.slug}`}
+              href={unitGlossaryHref("uz", fromUnitInfo)}
             >
               {fromUnitInfo.name} haqida to&apos;liq ma&apos;lumot
             </Link>
@@ -463,7 +464,7 @@ async function UzbekConversionPage({ slug }: { slug: string }) {
 
             <Link
               className="text-link"
-              href={`/uz/birliklar/${toUnitInfo.slug}`}
+              href={unitGlossaryHref("uz", toUnitInfo)}
             >
               {toUnitInfo.name} haqida to&apos;liq ma&apos;lumot
             </Link>

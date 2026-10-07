@@ -15,6 +15,7 @@ import { findBengaliUnitPage } from "../../converter/localizedBengaliUnitPages";
 import { getUnitSources } from "../../converter/unitSources";
 import { buildFullLanguageAlternates } from "../../i18n/routing";
 import { buildSiteUrl } from "../../siteConfig";
+import { unitGlossaryHref } from "../../converter/unitGlossary";
 
 type PageProps = {
   params: Promise<{
@@ -277,9 +278,9 @@ export default async function BengaliConversionPage({ params }: PageProps) {
 
             <Link
               className="text-link"
-              href={`/bn/unit-guides/${fromUnitInfo.slug}`}
+              href={unitGlossaryHref("bn", fromUnitInfo)}
             >
-              {fromUnitInfo.name} একক গাইড দেখুন
+              {fromUnitInfo.name} একক অভিধানে দেখুন
             </Link>
           </section>
         )}
@@ -292,9 +293,9 @@ export default async function BengaliConversionPage({ params }: PageProps) {
 
             <Link
               className="text-link"
-              href={`/bn/unit-guides/${toUnitInfo.slug}`}
+              href={unitGlossaryHref("bn", toUnitInfo)}
             >
-              {toUnitInfo.name} একক গাইড দেখুন
+              {toUnitInfo.name} একক অভিধানে দেখুন
             </Link>
           </section>
         )}

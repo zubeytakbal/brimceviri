@@ -68,6 +68,7 @@ import { GERMAN_TOOL_HUB_PATH, germanToolGroups } from "../i18n/germanToolDirect
 import { diniAraclar } from "../i18n/diniAraclar";
 
 import { useSearchTracking } from "./useSearchTracking";
+import { unitGlossaryHref } from "../converter/unitGlossary";
 
 const worldCultureToolsTr: Array<{ href: string; title: string; description: string; icon: SiteIconName }> = [
   { href: "/ulkeler", title: "Ülkeler ve Başkentleri", description: "196 ülkenin başkenti, saat farkı, para birimi ve komşuları.", icon: "greatCircleCalculator" },
@@ -1582,7 +1583,7 @@ function createHomeData(locale: Locale): HomeData {
               ? [
                   {
                     id: unitPage.slug,
-                    href: `/uz/birliklar/${unitPage.slug}`,
+                    href: unitGlossaryHref("uz", unitPage),
                     label: unitPage.name,
                     category: unitPage.category as HomeCategoryIconName,
                   },

@@ -3591,6 +3591,25 @@ export const elementArticles: ElementArticle[] = [
     ],
   },
   {
+    slug: "kuriyum",
+    introduction: [
+      "Kuriyum, doğada kayda değer miktarda bulunmayan, nükleer reaktörlerde ve hızlandırıcılarda üretilen, güçlü radyoaktif bir aktinit metalidir.",
+      "Bozunurken o kadar çok ısı açığa çıkarır ki küçük bir kuriyum örneği karanlıkta kendi ısısıyla mor renkte parlar; bu yüzden yalnızca korumalı özel laboratuvarlarda çalışılabilir.",
+    ],
+    discoverySummary:
+      "1944 yazında Glenn T. Seaborg, Ralph A. James ve Albert Ghiorso, plütonyum-239'u Berkeley'deki siklotronda alfa parçacıklarıyla bombardıman ederek elde etti. Adı Marie ve Pierre Curie'nin onuruna verildi; keşif savaştan sonra, 1945'te duyuruldu.",
+    meltingPointC: "1340",
+    boilingPointC: "3110",
+    densityGCm3: "13,51",
+    electronConfiguration: "[Rn] 5f⁷ 6d¹ 7s²",
+    uses: [
+      "Mars gezginlerindeki (Sojourner, Spirit, Opportunity, Curiosity) alfa parçacık X-ışını spektrometrelerinde kaynak olarak kuriyum-244",
+      "Kaliforniyum gibi daha ağır elementlerin üretiminde hedef malzeme",
+      "Livermoryumun (116) keşfinde: kuriyum-248 hedefi kalsiyum-48 ile bombardıman edildi",
+      "Aktinit kimyası ve nükleer veri araştırmaları",
+    ],
+  },
+  {
     slug: "fransiyum",
     introduction: [
       "Fransiyum, bilinen tüm elementler arasında en kararsız olanlarından biridir; doğal olarak bulunan elementler içinde en nadir görülenlerden biri olarak kabul edilir.",

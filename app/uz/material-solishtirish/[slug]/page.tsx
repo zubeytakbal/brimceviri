@@ -9,6 +9,7 @@ import {
 } from "../../../converter/materialComparisons";
 import { materialComparisonContextUz } from "../../../converter/materialComparisonsUz";
 import { materialCategoryLabelsUz, materialNamesUz } from "../../../converter/materialsDatabaseUz";
+import { litresPerKg, sharedShapes } from "../../../converter/materialPractical";
 import { buildSiteUrl } from "../../../siteConfig";
 
 type PageProps = {
@@ -17,6 +18,19 @@ type PageProps = {
 
 function formatDensity(value: number) {
   return value.toLocaleString("uz-UZ", { maximumFractionDigits: 4 });
+}
+
+const uz = (value: number, digits: number) => value.toLocaleString("uz-UZ", { maximumFractionDigits: digits });
+
+function formatMass(kg: number) {
+  if (kg >= 1000) return `${uz(kg / 1000, 2)} t`;
+  if (kg >= 1) return `${uz(kg, 2)} kg`;
+  if (kg >= 0.001) return `${uz(kg * 1000, 1)} g`;
+  return `${uz(kg * 1e6, 1)} mg`;
+}
+
+function formatTonVolume(m3: number) {
+  return m3 >= 1 ? `${uz(m3, 2)} m³` : `${uz(m3 * 1000, 0)} litr`;
 }
 
 function formatRatio(value: number) {
@@ -103,6 +117,7 @@ export default async function UzbekMaterialComparisonPage({
   const denserName = denserId === first.id ? firstName : secondName;
   const lighterName = denserId === first.id ? secondName : firstName;
   const pageUrl = buildSiteUrl(`/uz/material-solishtirish/${slug}`);
+  const shapes = sharedShapes(first, second, "uz");
 
   const faqItems: FaqItem[] = [
     {
@@ -125,10 +140,6 @@ export default async function UzbekMaterialComparisonPage({
       answer: `${secondName} zichligi taxminan ${formatDensity(
         second.densityKgM3
       )} kg/m³ (${formatDensity(second.densityKgM3 / 1000)} g/sm³) qiymatidadir.`,
-    },
-    {
-      question: "Bu solishtirish haqiqiy qism og'irligini bevosita ko'rsatadimi?",
-      answer: "Yo'q. Jadval zichlik orqali bir xil hajmdagi materiallarni solishtiradi. Haqiqiy qism og'irligi hajm, material sinfi, harorat va namlikka ham bog'liq.",
     },
   ];
 
@@ -232,13 +243,32 @@ export default async function UzbekMaterialComparisonPage({
         </section>
 
         <section className="category-article-content">
-          <h2>Bu solishtirishni qanday o'qish kerak?</h2>
+          <h2>Bir xil o&apos;lchamda qaysi biri qancha keladi?</h2>
+          <div className="holiday-table-wrap">
+            <table className="holiday-table">
+              <thead>
+                <tr>
+                  <th scope="col">O&apos;lcham</th>
+                  <th scope="col">{firstName}</th>
+                  <th scope="col">{secondName}</th>
+                  <th scope="col">Farq</th>
+                </tr>
+              </thead>
+              <tbody>
+                {shapes.map((row) => (
+                  <tr key={row.label}>
+                    <th scope="row">{row.label}</th>
+                    <td>{formatMass(row.firstKg)}</td>
+                    <td>{formatMass(row.secondKg)}</td>
+                    <td>{formatMass(Math.abs(row.firstKg - row.secondKg))}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
           <p>
-            Jadval ikki materialni teng hajmda solishtiradi: 1 litr {firstName} taxminan {formatDensity(first.densityKgM3 / 1000)} kg,
-            1 litr {secondName} esa taxminan {formatDensity(second.densityKgM3 / 1000)} kg keladi.
-          </p>
-          <p>
-            Bu qiymatlar dastlabki hisoblar uchun nominal ma'lumotnomadir. Haqiqiy qism og'irligi hajm bilan o'zgaradi; gaz, suyuqlik, yog'och, oziq-ovqat va qurilish materiallarida harorat, bosim, namlik yoki tarkib ham muhimdir.
+            Teskari tomondan: 1 tonna {firstName} {formatTonVolume(litresPerKg(first))}, 1 tonna {secondName} esa{" "}
+            {formatTonVolume(litresPerKg(second))} joy egallaydi.
           </p>
         </section>
 
@@ -265,21 +295,13 @@ export default async function UzbekMaterialComparisonPage({
           </ul>
         </section>
 
-        <section className="category-article-content unit-sources">
-          <h2>Manba va foydalanish izohi</h2>
+        <section className="category-article-content">
           <p>
-            Ushbu solishtirishdagi zichlik qiymatlari{" "}
-            <a
-              href="https://densitycalculator.net/density-table"
-              target="_blank"
-              rel="noreferrer"
-            >
-              232 materialdan iborat zichlik jadvalidan
+            Zichliklar{" "}
+            <a href="https://densitycalculator.net/density-table" target="_blank" rel="noreferrer">
+              zichlik jadvalidan
             </a>{" "}
-            olingan nominal ma&apos;lumotnoma qiymatlaridir. Ular bir xil
-            hajmdagi materiallarni solishtirish uchun mos; haqiqiy bo&apos;lak
-            og&apos;irligida material sinfi, harorat, namlik va bo&apos;shliqlar
-            ham hisobga olinishi kerak.
+            olingan xona haroratidagi ma&apos;lumotnoma qiymatlari.
           </p>
         </section>
       </div>

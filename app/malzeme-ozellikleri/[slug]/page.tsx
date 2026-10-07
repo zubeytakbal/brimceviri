@@ -16,6 +16,8 @@ import {
   materialCategoryLabels,
   type MaterialCategory,
 } from "../../converter/materialsDatabase";
+import { buoyancy, densityRank, litresPerKg, practicalRows } from "../../converter/materialPractical";
+import { materialNotesTr } from "../../converter/materialNotes";
 import { buildSiteUrl } from "../../siteConfig";
 
 type PageProps = {
@@ -24,6 +26,13 @@ type PageProps = {
 
 function formatDensity(value: number) {
   return value.toLocaleString("tr-TR", { maximumFractionDigits: 4 });
+}
+
+function formatMass(kg: number) {
+  if (kg >= 1000) return `${(kg / 1000).toLocaleString("tr-TR", { maximumFractionDigits: 2 })} ton`;
+  if (kg >= 1) return `${kg.toLocaleString("tr-TR", { maximumFractionDigits: 2 })} kg`;
+  if (kg >= 0.001) return `${(kg * 1000).toLocaleString("tr-TR", { maximumFractionDigits: 1 })} g`;
+  return `${(kg * 1e6).toLocaleString("tr-TR", { maximumFractionDigits: 1 })} mg`;
 }
 
 function getDensityUseNote(category: MaterialCategory) {
@@ -101,6 +110,11 @@ export default async function MaterialPropertyPage({ params }: PageProps) {
     (comparison) => comparison.first.id === slug || comparison.second.id === slug
   );
   const oneLitreMassKg = material.densityKgM3 / 1000;
+  const practical = practicalRows(material, "tr");
+  const perKg = litresPerKg(material);
+  const float = buoyancy(material);
+  const rank = densityRank(material);
+  const note = materialNotesTr[material.id];
 
   const faqItems: FaqItem[] = [
     {
@@ -147,7 +161,7 @@ export default async function MaterialPropertyPage({ params }: PageProps) {
         <header className="all-conversions-header">
           <h1>{material.nameTr} Yoğunluğu, Özellikleri ve Birim Çevirici</h1>
           <p>
-            {material.nameTr} ({materialCategoryLabels[material.category]}
+            {material.nameTr} ({materialCategoryLabels[material.category]}{" "}
             kategorisi) yoğunluğu, bilinen mühendislik özellikleri ve
             canlı birim çevirici.
           </p>
@@ -195,20 +209,72 @@ export default async function MaterialPropertyPage({ params }: PageProps) {
             )}
           </dl>
           {material.variabilityNote && (
-            <p className="calculator-usage-hint">
+            <p>
               <strong>Değişkenlik uyarısı:</strong> {material.variabilityNote}
             </p>
           )}
         </section>
 
         <section className="category-article-content">
-          <h2>{material.nameTr} yoğunluk değerini doğru kullanma</h2>
-          <p>{getDensityUseNote(material.category)}</p>
+          <h2>{material.nameTr} ne kadar ağır gelir?</h2>
+          <div className="holiday-table-wrap">
+            <table className="holiday-table">
+              <thead>
+                <tr>
+                  <th scope="col">Ölçü</th>
+                  <th scope="col">Yaklaşık ağırlık</th>
+                </tr>
+              </thead>
+              <tbody>
+                {practical.map((row) => (
+                  <tr key={row.label}>
+                    <th scope="row">{row.label}</th>
+                    <td>{formatMass(row.massKg)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
           <p>
-            Bu referans değerle 1 litre {material.nameTr} yaklaşık {formatDensity(oneLitreMassKg)} kg,
-            1 m³ ise yaklaşık {formatDensity(material.densityKgM3)} kg gelir.
+            1 kg {material.nameTr}{" "}
+            {perKg >= 1000
+              ? `yaklaşık ${(perKg / 1000).toLocaleString("tr-TR", { maximumFractionDigits: 2 })} m³`
+              : perKg >= 1
+                ? `yaklaşık ${perKg.toLocaleString("tr-TR", { maximumFractionDigits: 2 })} litre`
+                : `yaklaşık ${(perKg * 1000).toLocaleString("tr-TR", { maximumFractionDigits: 1 })} cm³`}{" "}
+            yer kaplar.{" "}
+            {float.kind === "gas"
+              ? float.lighterThanAir
+                ? `Havadan yaklaşık ${(1 / float.ratio).toLocaleString("tr-TR", { maximumFractionDigits: 1 })} kat hafif olduğu için yükselir ve kapalı ortamda tavana yakın birikir.`
+                : `Havadan yaklaşık ${float.ratio.toLocaleString("tr-TR", { maximumFractionDigits: 1 })} kat ağır olduğu için zemine çöker; sızıntıda bodrum ve çukurlarda birikir.`
+              : float.floats
+                ? `Suyun ${float.ratio.toLocaleString("tr-TR", { maximumFractionDigits: 2 })} katı yoğunlukta olduğu için suda yüzer${material.category === "sivi" || material.category === "gida" ? " (suyla karışmıyorsa üstte toplanır)" : ""}.`
+                : float.ratio < 1.01
+                  ? "Yoğunluğu suya çok yakındır."
+                  : `Sudan ${float.ratio.toLocaleString("tr-TR", { maximumFractionDigits: 2 })} kat yoğun olduğu için suda batar.`}
+          </p>
+          <p>
+            Bu sitedeki {rank.total} malzeme en yoğundan en hafife sıralandığında {rank.overall}. sırada,{" "}
+            {materialCategoryLabels[material.category].toLocaleLowerCase("tr")} arasında{" "}
+            {rank.categoryTotal} malzemenin {rank.inCategory}. sırasındadır.
+            {rank.denser && rank.lighter && (
+              <>
+                {" "}Bir üstünde {rank.denser.nameTr} ({formatDensity(rank.denser.densityKgM3)} kg/m³), bir altında{" "}
+                {rank.lighter.nameTr} ({formatDensity(rank.lighter.densityKgM3)} kg/m³) var.
+              </>
+            )}{" "}
+            {getDensityUseNote(material.category)}
           </p>
         </section>
+
+        {note && (
+          <section className="category-article-content">
+            <h2>{note.heading}</h2>
+            {note.paragraphs.map((p) => (
+              <p key={p}>{p}</p>
+            ))}
+          </section>
+        )}
 
         <MaterialMassVolumeCalculator
           densityKgM3={material.densityKgM3}
@@ -261,44 +327,13 @@ export default async function MaterialPropertyPage({ params }: PageProps) {
             </p>
           ))}
 
-          <h2>İlgili araçlar</h2>
           <p>
-            Bu malzemenin yoğunluğundan parça ağırlığını hesaplamak için{" "}
-            <Link href="/malzeme-agirligi-hesaplama">Malzeme Ağırlığı Hesaplama</Link>
-            {" "}sayfasına,{" "}
-            {material.thermalConductivityWmK !== null && (
-              <>
-                ısı iletimi hesaplamaları için{" "}
-                <Link href="/hesaplayicilar/isi-iletimi">Isı İletimi Hesaplayıcısı</Link>
-                {" "}sayfasına,{" "}
-              </>
-            )}
-            {material.viscosityMPaS !== null && (
-              <>
-                akışkan hesaplamaları için{" "}
-                <Link href="/hesaplayicilar/reynolds-sayisi">Reynolds Sayısı Hesaplayıcısı</Link>
-                {" "}sayfasına,{" "}
-              </>
-            )}
-            tüm malzemeler için{" "}
-            <Link href="/malzeme-ozellikleri">Malzeme Özellikleri</Link> ana
-            sayfasına bakabilirsin.
-          </p>
-
-          <h2>Kaynaklar</h2>
-          <p>
-            Yoğunluk veritabanının başlangıç referansı,{" "}
-            <a
-              href="https://densitycalculator.net/density-table"
-              target="_blank"
-              rel="noreferrer"
-            >
-              232 malzemelik yoğunluk tablosudur
+            Kaynak:{" "}
+            <a href="https://densitycalculator.net/density-table" target="_blank" rel="noreferrer">
+              yoğunluk tablosu
             </a>
-            . Buradaki değerler ilk hesaplamaya yönelik nominal başvuru
-            değerleridir. Her değer aynı sıcaklıkta veya aynı malzeme sınıfında
-            ölçülmüş değildir; tasarım, güvenlik veya ticari ölçüm için ilgili
-            ürünün teknik veri föyündeki koşullu değeri doğrulayın.
+            ; değerler oda sıcaklığındaki tipik başvuru değerleridir, ürün föyündeki değer önceliklidir.
+            Parça ağırlığı için <Link href="/malzeme-agirligi-hesaplama">Malzeme Ağırlığı Hesaplama</Link>.
           </p>
         </section>
       </div>

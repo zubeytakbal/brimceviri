@@ -1,8 +1,13 @@
 import Link from "@/app/components/SiteLink";
 import MoonCalendarTools from "./MoonCalendarTools";
+import EclipseSection from "./EclipseSection";
+import MoonRiseSet, { type MoonPlace } from "./MoonRiseSet";
+import { turkeyProvinces } from "../../converter/geo/turkeyProvinces";
+import { regionNames, worldCities, worldRegions } from "../../converter/time/worldCities";
 import type { FaqItem } from "../../converter/faqSchema";
 import { moonState, type PhaseKind, type PhaseName } from "../../converter/time/moon";
 import TimeToolPage from "../time/TimeToolPage";
+import { buildSiteUrl } from "../../siteConfig";
 import LiveMoon, { type LiveMoonCopy } from "./LiveMoon";
 import MoonIcon from "./MoonIcon";
 
@@ -50,6 +55,74 @@ const PHASE_GUIDE_TR: Array<{ id: PhaseName; fraction: number; ages: string; loo
   { id: "waning-crescent", fraction: 0.9, ages: "23,2–28,5", look: "Sol kenarda incelen bir hilal.", when: "Gün doğumundan önce doğu ufkunda, sabaha karşı görülür." },
 ];
 
+function CalendarFeeds({ lang }: { lang: "tr" | "en" }) {
+  const tr = lang === "tr";
+  const feeds = tr
+    ? [
+        { path: "/dolunay.ics", title: "Sadece dolunaylar", note: "Her dolunay, tam saatiyle takviminizde." },
+        { path: "/ay-evreleri.ics", title: "Tüm ana evreler", note: "Yeni ay, ilk dördün, dolunay ve son dördün." },
+      ]
+    : [
+        { path: "/en/full-moons.ics", title: "Full moons only", note: "Every full moon at its exact time." },
+        { path: "/en/moon-phases.ics", title: "All principal phases", note: "New moon, first quarter, full moon and third quarter." },
+      ];
+  return (
+    <>
+      <h2 id="takvime-ekle">{tr ? "Dolunayları takviminize ekleyin" : "Add the full moons to your calendar"}</h2>
+      <p>
+        {tr
+          ? "Abone olduğunuzda önümüzdeki 2 yılın evreleri telefonunuzun takvimine eklenir ve liste kendiliğinden güncellenir. Saatler telefonunuzun saat dilimine göre gösterilir."
+          : "Subscribe once and the next two years of phases appear in your phone's calendar and keep updating. Times show in your phone's own time zone."}
+      </p>
+      {feeds.map((f) => {
+        const https = buildSiteUrl(f.path);
+        const webcal = https.replace(/^https?:/, "webcal:");
+        return (
+          <div key={f.path} className="moon-feed">
+            <p>
+              <strong>{f.title}:</strong> {f.note}
+            </p>
+            <div className="takvim-ics">
+              <a className="time-tool-button" href={webcal}>
+                {tr ? "📱 iPhone / Outlook'a abone ol" : "📱 Subscribe (iPhone / Outlook)"}
+              </a>
+              <a className="time-tool-button is-secondary" href={`https://calendar.google.com/calendar/r?cid=${encodeURIComponent(webcal)}`} rel="nofollow noopener" target="_blank">
+                {tr ? "Google Takvim'e ekle" : "Add to Google Calendar"}
+              </a>
+              <a className="time-tool-button is-secondary" href={https} download rel="nofollow">
+                {tr ? "Dosyayı indir (.ics)" : "Download (.ics)"}
+              </a>
+            </div>
+          </div>
+        );
+      })}
+    </>
+  );
+}
+
+function moonPlaces(lang: "tr" | "en"): MoonPlace[] {
+  const tr = lang === "tr";
+  const provinces = [...turkeyProvinces]
+    .sort((a, b) => a.name.localeCompare(b.name, "tr"))
+    .map((p) => ({ id: p.id, label: p.name, group: tr ? "Türkiye (81 il)" : "Türkiye (81 provinces)", lat: p.lat, lon: p.lon, timeZone: "Europe/Istanbul" }));
+  const world = worldRegions
+    .filter((r) => r !== "turkey")
+    .flatMap((r) =>
+      worldCities
+        .filter((c) => c.region === r)
+        .map((c) => ({
+          id: c.en,
+          label: tr ? `${c.nameTr} (${c.countryTr})` : `${c.nameEn} (${c.countryEn})`,
+          group: regionNames[r][lang],
+          lat: c.lat,
+          lon: c.lon,
+          timeZone: c.timeZone,
+        }))
+        .sort((a, b) => a.label.localeCompare(b.label, tr ? "tr" : "en")),
+    );
+  return tr ? [...provinces, ...world] : [...world, ...provinces];
+}
+
 export default function MoonPhasesPage({ lang }: { lang: "tr" | "en" }) {
   const tr = lang === "tr";
   const now = new Date();
@@ -65,7 +138,10 @@ export default function MoonPhasesPage({ lang }: { lang: "tr" | "en" }) {
         { question: "Bir ay evresi kaç gün sürer?", answer: "Yeni ay, ilk dördün, dolunay ve son dördün aslında tek bir anda gerçekleşir; bu sayfada o anın bir gün öncesi ve sonrası aynı adla gösterilir (yaklaşık 2 gün). Aradaki hilal ve şişkin ay evrelerinin her biri yaklaşık 5,4 gün sürer." },
         { question: "Dolunay kaç gün sürer?", answer: `Tam dolunay tek bir andır, ama Ay yaklaşık ${nearFullDays.toLocaleString("tr-TR", { maximumFractionDigits: 1 })} gün boyunca %97'den fazla aydınlık görünür. Bu yüzden dolunaydan bir gün önce ve sonra da gözle dolunay gibi görünür.` },
         { question: "Dolunaydan sonra hangi evre gelir?", answer: "Dolunaydan sonra küçülen şişkin ay, ardından son dördün (sol yarısı aydınlık yarım ay), küçülen hilal ve yeni ay gelir. Sıralama: yeni ay, büyüyen hilal, ilk dördün, büyüyen şişkin ay, dolunay, küçülen şişkin ay, son dördün, küçülen hilal." },
+        { question: "Ay bu gece saat kaçta doğacak?", answer: "Ayın doğuş saati şehre göre değişir; örneğin Van'da İstanbul'dan genellikle 50-70 dakika (ortalama 1 saat) önce doğar. \"Ay bugün saat kaçta doğuyor\" bölümünden ilinizi seçtiğinizde bugünün ve önümüzdeki 6 günün doğuş, batış ve en yüksek nokta saatleri görünür." },
         { question: "Ay hangi saatlerde görülür?", answer: "Evreye bağlıdır: dolunay gün batımında doğar ve bütün gece görülür; ilk dördün öğlen doğar, akşamları görülür; son dördün gece yarısı doğar, sabah görülür. Hilal ise ya akşam batı ufkunda ya da sabaha karşı doğu ufkunda kısa süre görünür." },
+        { question: "Bir sonraki ay tutulması ne zaman?", answer: "Önümüzdeki ay ve güneş tutulmaları, Türkiye'den görünüp görünmeyecekleriyle birlikte \"Ay ve Güneş tutulmaları\" bölümündeki tablolarda yer alır. Türkiye'den izlenebilecek en dikkat çekici olay 1 Haziran 2030 halkalı güneş tutulmasıdır; halkalı evre İstanbul, Bursa ve Edirne dahil kuzeybatıdaki 13 il merkezinden görülür." },
+        { question: "Dolunayları telefon takvimime nasıl eklerim?", answer: "\"Dolunayları takviminize ekleyin\" bölümündeki abone ol düğmesine dokunun. iPhone'da takvim uygulaması aboneliği onaylamanızı ister; Android'de \"Google Takvim'e ekle\" düğmesini kullanın. Takvim önümüzdeki 2 yılın dolunaylarını içerir ve kendiliğinden güncellenir." },
         { question: "Ay neden evre değiştirir?", answer: "Ay kendi ışığını üretmez; Güneş ışığını yansıtır. Dünya etrafında dönerken Güneş'le yaptığı açı değiştikçe aydınlık yüzünün ne kadarını gördüğümüz de değişir." },
       ]
     : [
@@ -113,17 +189,40 @@ export default function MoonPhasesPage({ lang }: { lang: "tr" | "en" }) {
       tocTitle={tr ? "İçindekiler" : "Contents"}
       tocItems={[
         { id: "hafta", label: tr ? "Son 7 gün ve önümüzdeki 7 gün" : "Last and next 7 days" },
+        { id: "dogus", label: tr ? "Ay doğuş ve batış saatleri" : "Moonrise and moonset" },
         { id: "tarih", label: tr ? "Herhangi bir günde ay" : "The Moon on any date" },
         { id: "takvim", label: tr ? "Aylık ay takvimi" : "Monthly moon calendar" },
         { id: "dolunaylar", label: tr ? "Önümüzdeki dolunaylar" : "Upcoming full moons" },
         { id: "evreler", label: tr ? "Tüm ay evreleri" : "All moon phases" },
+        { id: tr ? "tutulmalar" : "eclipses", label: tr ? "Ay ve Güneş tutulmaları" : "Lunar and solar eclipses" },
+        { id: "takvime-ekle", label: tr ? "Takviminize ekleyin" : "Add to your calendar" },
         { id: "nedir", label: tr ? "Ay evreleri nelerdir?" : "The eight phases" },
         { id: "faq", label: tr ? "Sık sorulan sorular" : "FAQ" },
       ]}
       faqTitle={tr ? "Sık Sorulan Sorular" : "Frequently Asked Questions"}
       faqItems={faqItems}
     >
-      <MoonCalendarTools lang={lang} initialNow={now.getTime()} names={NAMES[lang]} kindNames={KIND_NAMES[lang]} />
+      <MoonCalendarTools
+        lang={lang}
+        initialNow={now.getTime()}
+        names={NAMES[lang]}
+        kindNames={KIND_NAMES[lang]}
+        riseSet={
+          <>
+            <h2 id="dogus">{tr ? "Ay bugün saat kaçta doğuyor, kaçta batıyor?" : "Moonrise and moonset times"}</h2>
+            <p>
+              {tr
+                ? "Şehrinizi seçin ya da konumunuzu kullanın: bugün ve önümüzdeki 6 gün için ayın doğuş, batış ve gökyüzünde en yüksek olduğu saatler ile Ay'ın şu anki yönü görünür. Türkiye'nin 81 ili ve dünyanın büyük şehirleri listededir."
+                : "Choose a city or use your location to see moonrise, moonset and the Moon's highest point for today and the next 6 days, plus where the Moon is right now."}
+            </p>
+            <MoonRiseSet lang={lang} places={moonPlaces(lang)} defaultId={tr ? "istanbul" : "london"} initialNow={now.getTime()} />
+          </>
+        }
+      />
+
+      <EclipseSection lang={lang} now={now} />
+
+      <CalendarFeeds lang={lang} />
 
       <h2 id="nedir">{tr ? "Ay evreleri nelerdir?" : "The eight phases"}</h2>
       {tr ? (

@@ -14,6 +14,7 @@ import {
 import TimeToolPage from "../time/TimeToolPage";
 import HolidayIcsButton from "./HolidayIcsButton";
 import IzinPlanlayici from "./IzinPlanlayici";
+import { TAKVIM_YILLARI } from "../../converter/calendar/trTakvim";
 
 type Lang = HolidayLang;
 
@@ -485,13 +486,11 @@ export function HolidayYearPage({ lang, year }: { lang: Lang; year: number }) {
         </>
       ) : null}
 
-      <p id="takvim">
-        {tr ? (
-          <>
-            Tatillerin işaretli olduğu {year} yılı takvimi: <Link href={`/takvim/${year}`}>{year} takvimi</Link>.
-          </>
-        ) : null}
-      </p>
+      {tr && TAKVIM_YILLARI.includes(year) ? (
+        <p id="takvim">
+          Tatillerin işaretli olduğu {year} yılı takvimi: <Link href={`/takvim/${year}`}>{year} takvimi</Link>.
+        </p>
+      ) : null}
 
       <p>
         {tr ? (

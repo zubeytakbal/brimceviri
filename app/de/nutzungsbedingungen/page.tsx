@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "@/app/components/SiteLink";
 import StaticPageLayout from "../../components/StaticPageLayout";
 import { SITE_NAME, SITE_URL } from "../../siteConfig";
 import { germanStaticPaths } from "../../i18n/germanRoutes";
@@ -68,6 +69,47 @@ export default function GermanTermsPage() {
                 Gesundheit, Betriebssicherheit oder Recht.
               </p>
             </>
+          ),
+        },
+        {
+          heading: "Nutzung des Angebots",
+          content: (
+            <p>
+              Die Website ist kostenlos und ohne Registrierung nutzbar. Eingaben in
+              den Rechnern werden im Browser verarbeitet. Automatisierte
+              Massenabfragen, die den Betrieb stören, sind nicht gestattet.
+            </p>
+          ),
+        },
+        {
+          heading: "Rechte an Inhalten",
+          content: (
+            <p>
+              Texte, Tabellen und Rechner gehören zu {SITE_NAME}. Kurze Zitate mit
+              Link auf die Quellseite sind willkommen; das vollständige Kopieren
+              ganzer Seiten ist nicht gestattet.
+            </p>
+          ),
+        },
+        {
+          heading: "Externe Links und Werbung",
+          content: (
+            <p>
+              Seiten können Links zu externen Websites sowie Anzeigen von Google
+              AdSense enthalten. Für Inhalte externer Websites übernehmen wir keine
+              Verantwortung. Hinweise zu Cookies stehen in der{" "}
+              <Link href="/de/datenschutz">Datenschutzerklärung</Link>.
+            </p>
+          ),
+        },
+        {
+          heading: "Änderungen",
+          content: (
+            <p>
+              Diese Bedingungen können mit der Weiterentwicklung der Website
+              angepasst werden. Es gilt die jeweils auf dieser Seite
+              veröffentlichte Fassung.
+            </p>
           ),
         },
       ]}

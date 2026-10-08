@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "@/app/components/SiteLink";
 import StaticPageLayout from "../components/StaticPageLayout";
 import {
   SITE_CONTACT_EMAIL,
@@ -60,6 +61,26 @@ export default function ContactPage() {
           ),
         },
         {
+          heading: "Hangi konularda yazabilirsiniz?",
+          content: (
+            <ul>
+              <li>Bir hesaplamada ya da bilgide gördüğünüz hata</li>
+              <li>Çalışmayan bir araç, bozuk bir bağlantı ya da görünüm sorunu</li>
+              <li>Eklenmesini istediğiniz yeni bir birim veya hesaplayıcı</li>
+              <li>Gömülebilir araçlar ve iş birliği talepleri</li>
+            </ul>
+          ),
+        },
+        {
+          heading: "Hata bildirirken",
+          content: (
+            <p>
+              Sayfanın adresini, girdiğiniz değeri, gördüğünüz sonucu ve beklediğiniz sonucu
+              yazmanız sorunun hızlıca bulunmasını sağlar. Hata doğrulanırsa sayfa düzeltilir.
+            </p>
+          ),
+        },
+        {
           heading: "Kapsam",
           content: (
             <>
@@ -70,6 +91,10 @@ export default function ContactPage() {
               <p>
                 Resmî mühendislik onayı, danışmanlık veya acil güvenlik
                 doğrulaması hizmeti sunulmamaktadır.
+              </p>
+              <p>
+                E-posta ile gönderdiğiniz bilgilerin nasıl kullanıldığı{" "}
+                <Link href="/gizlilik">Gizlilik Politikası</Link> sayfasında anlatılır.
               </p>
             </>
           ),

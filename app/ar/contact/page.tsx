@@ -1,3 +1,4 @@
+import Link from "@/app/components/SiteLink";
 import StaticPageLayout from "../../components/StaticPageLayout";
 import { SITE_CONTACT_EMAIL } from "../../siteConfig";
 import { buildArabicMetadata } from "../seo";
@@ -54,6 +55,35 @@ export default function ArabicContactPage() {
                 مراجعة سلامة عاجلة.
               </p>
             </>
+          ),
+        },
+        {
+          heading: "عند الإبلاغ عن خطأ",
+          content: (
+            <ul>
+              <li>العنوان الكامل للصفحة،</li>
+              <li>القيم التي أدخلتها والنتيجة التي ظهرت لك،</li>
+              <li>النتيجة المتوقعة ومصدرها إن أمكن،</li>
+              <li>المتصفح والجهاز إذا بدت المشكلة تقنية.</li>
+            </ul>
+          ),
+        },
+        {
+          heading: "مواضيع أخرى",
+          content: (
+            <p>
+              يمكنك أيضا إرسال اقتراحات لوحدات أو حاسبات غير موجودة، أو ملاحظات
+              على أخطاء الترجمة، إلى العنوان نفسه.
+            </p>
+          ),
+        },
+        {
+          heading: "الخصوصية",
+          content: (
+            <p>
+              يُستخدم بريدك الإلكتروني للرد على رسالتك فقط ولا يُشارك مع أطراف
+              أخرى. التفاصيل في <Link href="/ar/privacy">سياسة الخصوصية</Link>.
+            </p>
           ),
         },
       ]}

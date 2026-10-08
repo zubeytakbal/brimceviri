@@ -368,6 +368,64 @@ const insights: Record<string, FlagshipPairInsight> = {
   [pairKey("zaman", "min", "h")]: {
     sectorNote:
       "Spor, mutfak ve toplantı süresi gibi günlük planlamalarda dakika, uzun süreçlerde saat tercih edilir.",
+    realWorldValues: [
+      { label: "Bir futbol maçı (normal süre)", value: 90, anchorUnit: "min" },
+      { label: "İş Kanunu'na göre haftalık en fazla normal çalışma", value: 45, anchorUnit: "h" },
+    ],
+    mistakes: [
+      "Ondalık saat dakika değildir: 1,5 saat 1 saat 50 dakika değil, 1 saat 30 dakikadır; 2,25 saat 2 saat 15 dakikadır.",
+      "Mesai ve fatura hesaplarında dakikayı saate çevirmek için 60'a bölün: 135 dakika = 2,25 saat.",
+    ],
+  },
+  [pairKey("zaman", "day", "h")]: {
+    realWorldValues: [
+      { label: "Bir hafta", value: 168, anchorUnit: "h" },
+      { label: "30 günlük ay", value: 30, anchorUnit: "day" },
+      { label: "Bir yıl (365 gün)", value: 365, anchorUnit: "day" },
+    ],
+    mistakes: [
+      "Takvim günü ile iş günü farklıdır: \"10 iş günü\" hafta sonları ve resmî tatiller hariç sayılır, takvimde 2 haftadan uzun sürebilir.",
+      "Türkiye 2016'dan beri yıl boyu aynı saati (UTC+3) kullanır, ama yaz saati uygulayan ülkelerde saat değişen gün 23 ya da 25 saat sürer.",
+    ],
+  },
+  [pairKey("uzunluk", "nmi", "km")]: {
+    realWorldValues: [
+      { label: "Karasuları genişliği (Karadeniz ve Akdeniz'de Türkiye)", value: 12, anchorUnit: "nmi" },
+      { label: "Münhasır ekonomik bölgenin en fazla genişliği", value: 200, anchorUnit: "nmi" },
+      { label: "İstanbul Boğazı'nın uzunluğu (yaklaşık)", value: 31, anchorUnit: "km" },
+    ],
+    where:
+      "Deniz mili; denizcilikte, havacılıkta, deniz hukukunda (karasuları) ve seyir haritalarında kullanılır. 1 deniz mili tam olarak 1.852 metredir ve yaklaşık bir enlem dakikasına karşılık gelir; bu yüzden haritada mesafe ölçmek kolaydır.",
+    mistakes: [
+      "Deniz mili (1,852 km) kara milinden (1,609 km) uzundur; ikisi farklı birimdir.",
+      "Hız birimi knot, saatte bir deniz milidir; \"deniz mili/saat\" ile knot aynı şeydir.",
+    ],
+  },
+  [pairKey("veri", "Mbit", "MB")]: {
+    realWorldValues: [
+      { label: "100 Mbps internetin en yüksek indirme hızı (saniyede)", value: 100, anchorUnit: "Mbit" },
+      { label: "1 GB'lık dosyanın boyutu", value: 1000, anchorUnit: "MB" },
+    ],
+    where:
+      "İnternet paketlerinin hızı megabit/saniye (Mbps) ile, indirme programlarının gösterdiği hız ve dosya boyutları ise megabayt (MB) ile verilir. 1 bayt 8 bit olduğu için 8 Mbit = 1 MB'tır.",
+    mistakes: [
+      "100 Mbps internet saniyede 100 MB değil, en fazla 12,5 MB indirir; 1 GB'lık dosya ideal koşulda yaklaşık 80 saniye sürer.",
+      "Küçük b bit, büyük B bayttır: Mb ve MB aynı şey değildir.",
+      "Gerçek indirme hızı protokol yükü, Wi-Fi ve sunucu nedeniyle paket hızının altında kalır; %10-20 düşük görmek olağandır.",
+    ],
+  },
+  [pairKey("hacim", "sb", "yk")]: {
+    realWorldValues: [
+      { label: "Tariflerdeki 1 su bardağı", value: 1, anchorUnit: "sb" },
+      { label: "Yarım su bardağı", value: 0.5, anchorUnit: "sb" },
+    ],
+    where:
+      "Su bardağı ve yemek kaşığı Türk yemek tariflerinin temel ölçüleridir. Bu sayfada su bardağı 200 mL, yemek kaşığı 15 mL kabul edilir; yani 1 su bardağı yaklaşık 13 yemek kaşığıdır.",
+    mistakes: [
+      "Çay bardağı su bardağı değildir: çay bardağı yaklaşık yarısı kadardır. Tarifte hangisinin yazdığına dikkat edin.",
+      "ABD tariflerindeki \"cup\" 240 mL'dir, Türk su bardağından (200 mL) %20 büyüktür.",
+      "Un gibi kuru malzemede bardak ve kaşık ölçüsü malzemenin ne kadar sıkıştırıldığına göre değişir; hassas tariflerde tartı kullanın.",
+    ],
   },
   [pairKey("alan", "ft²", "m²")]: {
     realWorldValues: [

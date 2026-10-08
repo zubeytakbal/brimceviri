@@ -48,6 +48,38 @@ export default function MesleklerPage() {
         <section className="other-categories-section">
           <ProfessionCardGrid professions={professionCards} />
         </section>
+
+        <section className="category-article-content">
+          <h2>Meslek sayfalarında neler var?</h2>
+          <p>
+            Bu sitede {professionCards.length} meslek için ayrı sayfa bulunur. Her sayfa, o meslekte gün içinde en çok yapılan
+            hesapları bir araya getirir: birim çevirileri, formüllü hesaplayıcılar ve elde tutulan referans tablolar. Hesaplar
+            tarayıcınızda yapılır; girdiğiniz değerler hiçbir yere gönderilmez.
+          </p>
+
+          <h2>Birkaç örnek</h2>
+          <ul>
+            <li>
+              <strong>Kuyumcu:</strong> 22 ayar altının saflığı 22 / 24 = 0,9167, yani 916,7 milyemdir. 10 gram 22 ayar bilezikte
+              10 × 0,9167 ≈ 9,17 gram has altın bulunur. Ayar, milyem ve has hesapları kuyumcu sayfasında tek ekranda yapılır.
+            </li>
+            <li>
+              <strong>Elektrikçi:</strong> 230 V tek fazlı hatta 3 kW&apos;lık bir rezistanslı ısıtıcı yaklaşık 3000 / 230 ≈ 13 A
+              çeker. Bu akıma ve hat uzunluğuna göre kablo kesiti ile gerilim düşümü elektrikçi sayfasındaki araçlarla bulunur.
+            </li>
+            <li>
+              <strong>Havuz teknisyeni:</strong> 8 × 4 m, ortalama 1,5 m derinlikteki bir havuz 48 m³ su alır; klor ve pH
+              kimyasallarının dozu bu hacme göre hesaplanır.
+            </li>
+          </ul>
+
+          <h2>Kendi mesleğinizi öne çıkarın</h2>
+          <p>
+            Kartlardaki yıldız simgesine dokunduğunuzda seçtiğiniz meslek ana sayfada en üstte gösterilir. Bu tercih yalnızca
+            sizin tarayıcınızda saklanır. Listede olmayan bir meslek ya da eksik gördüğünüz bir hesap varsa{" "}
+            <Link href="/iletisim">iletişim sayfasından</Link> bize yazabilirsiniz.
+          </p>
+        </section>
       </div>
     </main>
   );

@@ -96,6 +96,117 @@ export default function BradenScalePage() {
             puanlanır ve toplam 6-23 aralığındadır.
           </p>
 
+          <h2>Altı alt ölçek ve puanları</h2>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>Alt ölçek</th>
+                  <th>Neyi değerlendirir?</th>
+                  <th>En düşük puan</th>
+                  <th>En yüksek puan</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Duyusal algı</td>
+                  <td>Basınçtan kaynaklanan rahatsızlığı hissedip ifade edebilme</td>
+                  <td>1: Tamamen kısıtlı</td>
+                  <td>4: Bozulma yok</td>
+                </tr>
+                <tr>
+                  <td>Nem</td>
+                  <td>Cildin ter, idrar ya da yara akıntısıyla ıslak kalma sıklığı</td>
+                  <td>1: Sürekli nemli</td>
+                  <td>4: Nadiren nemli</td>
+                </tr>
+                <tr>
+                  <td>Aktivite</td>
+                  <td>Fiziksel aktivite düzeyi</td>
+                  <td>1: Yatağa bağımlı</td>
+                  <td>4: Sık yürüyor</td>
+                </tr>
+                <tr>
+                  <td>Hareketlilik</td>
+                  <td>Vücut pozisyonunu kendi başına değiştirebilme</td>
+                  <td>1: Tamamen hareketsiz</td>
+                  <td>4: Kısıtlılık yok</td>
+                </tr>
+                <tr>
+                  <td>Beslenme</td>
+                  <td>Olağan besin alımı</td>
+                  <td>1: Çok yetersiz</td>
+                  <td>4: Mükemmel</td>
+                </tr>
+                <tr>
+                  <td>Sürtünme ve kayma</td>
+                  <td>Yatakta kayma ve çarşafa sürtünme</td>
+                  <td>1: Sorun var</td>
+                  <td>3: Belirgin sorun yok</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2>Toplam puan ve risk düzeyi</h2>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>Toplam puan</th>
+                  <th>Risk düzeyi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>9 ve altı</td>
+                  <td>Çok yüksek risk</td>
+                </tr>
+                <tr>
+                  <td>10-12</td>
+                  <td>Yüksek risk</td>
+                </tr>
+                <tr>
+                  <td>13-14</td>
+                  <td>Orta risk</td>
+                </tr>
+                <tr>
+                  <td>15-18</td>
+                  <td>Hafif risk</td>
+                </tr>
+                <tr>
+                  <td>19-23</td>
+                  <td>Risk yok</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Bu aralıklar yaygın kullanılan sınıflamadır; bazı kurumlar farklı kesme noktaları kullanabilir. Hesaplayıcı yukarıdaki
+            tabloya göre sonuç verir.
+          </p>
+
+          <h2>Örnek değerlendirme</h2>
+          <p>
+            Uzun süredir yatakta yatan, ağrısını ifade edebilen ama pozisyon değiştirmekte zorlanan bir hasta düşünelim: duyusal algı
+            3, nem 2 (çok nemli), aktivite 1 (yatağa bağımlı), hareketlilik 2 (çok kısıtlı), beslenme 2 (muhtemelen yetersiz),
+            sürtünme ve kayma 2 (potansiyel sorun). Toplam 3 + 2 + 1 + 2 + 2 + 2 = <strong>12</strong> puandır ve tabloya göre{" "}
+            <strong>yüksek risk</strong> grubuna girer. En düşük puanı alan alt ölçekler (burada aktivite ve hareketlilik), bakım ekibinin
+            öncelikle odaklanacağı alanları gösterir.
+          </p>
+
+          <h2>Değerlendirmede dikkat edilecekler</h2>
+          <ul>
+            <li>Skor tek başına tanı koymaz; cilt muayenesi ve klinik değerlendirmeyle birlikte yorumlanır.</li>
+            <li>
+              Hastanın durumu değiştikçe (ameliyat, ateş, beslenmenin bozulması) puan da değişir; değerlendirmenin ne sıklıkla
+              tekrarlanacağı kurumun protokolüne göre belirlenir.
+            </li>
+            <li>
+              Toplam puan &quot;risk yok&quot; çıksa bile tek bir alt ölçekteki çok düşük puan (örneğin sürekli nem) ayrıca dikkate alınmalıdır.
+            </li>
+          </ul>
+
           <h2>İlgili araçlar</h2>
           <p>
             Düşme riski için{" "}

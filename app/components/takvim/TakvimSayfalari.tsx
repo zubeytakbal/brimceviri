@@ -34,6 +34,8 @@ import {
 } from "../../converter/time/dateMath";
 import { turkeyHolidays } from "../../converter/time/holidays";
 import { moonPhasesBetween } from "../../converter/time/moon";
+import { sunTimes } from "../../converter/time/solar";
+import { trLocative } from "../../converter/turkishSuffix";
 import HolidayIcsButton from "../dates/HolidayIcsButton";
 import { buildSiteUrl } from "../../siteConfig";
 import TimeToolPage from "../time/TimeToolPage";
@@ -549,6 +551,91 @@ function ayIstatistik(year: number, month: number) {
   return { isGunu, tatilGunu, evreler };
 }
 
+// Ayin 1'i, 15'i ve son gunu icin il merkezinde gun dogumu / batimi (Turkiye saati).
+const IL_KOORD = {
+  ankara: { ad: "Ankara", lat: 39.93, lon: 32.86 },
+  edirne: { ad: "Edirne", lat: 41.68, lon: 26.56 },
+  van: { ad: "Van", lat: 38.49, lon: 43.38 },
+} as const;
+
+function gunesSatiri(year: number, month: number, day: number, il: keyof typeof IL_KOORD) {
+  const k = IL_KOORD[il];
+  const g = sunTimes(year, month, day, k.lat, k.lon);
+  return g.kind === "normal" ? g : null;
+}
+
+const dakikaMetni = (dk: number) => `${Math.floor(dk / 60)} sa ${dk % 60} dk`;
+
+function GunesVeAyBolumu({ year, month, a }: { year: number; month: number; a: string }) {
+  const son = daysInMonth(year, month);
+  const gunler = [1, 15, son];
+  const satirlar = gunler.map((d) => ({ d, g: gunesSatiri(year, month, d, "ankara") }));
+  const ilk = satirlar[0].g;
+  const sonG = satirlar[2].g;
+  const fark = ilk && sonG ? sonG.dayLengthMinutes - ilk.dayLengthMinutes : 0;
+  const ed = gunesSatiri(year, month, 15, "edirne");
+  const van = gunesSatiri(year, month, 15, "van");
+  const doguBatiFarki = ed && van ? Math.round((ed.sunrise.getTime() - van.sunrise.getTime()) / 60000) : 0;
+  const evreler = moonPhasesBetween(new Date(Date.UTC(year, month - 1, 1, -3)), new Date(Date.UTC(year, month, 1, -3)));
+  const EVRE = { new: "Yeni ay", first: "İlk dördün", full: "Dolunay", last: "Son dördün" } as const;
+  return (
+    <>
+      <h2 id="gunes">
+        {a} {trLocative(year)} gün doğumu, gün batımı ve gün uzunluğu
+      </h2>
+      <div className="conversion-table-wrap">
+        <table className="conversion-table">
+          <thead>
+            <tr>
+              <th>Tarih (Ankara)</th>
+              <th>Gün doğumu</th>
+              <th>Gün batımı</th>
+              <th>Gün uzunluğu</th>
+            </tr>
+          </thead>
+          <tbody>
+            {satirlar.map(({ d, g }) => (
+              <tr key={d}>
+                <td>
+                  {d} {a}
+                </td>
+                <td>{g ? saatMetni(g.sunrise) : "—"}</td>
+                <td>{g ? saatMetni(g.sunset) : "—"}</td>
+                <td>{g ? dakikaMetni(g.dayLengthMinutes) : "—"}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p>
+        {fark === 0
+          ? `${a} boyunca Ankara'da gün uzunluğu neredeyse değişmez.`
+          : `${a} boyunca Ankara'da günler toplam ${Math.abs(fark)} dakika ${fark > 0 ? "uzar" : "kısalır"}.`}{" "}
+        Türkiye tek saat dilimini kullandığı için Güneş doğuda batıdan çok daha erken doğar: {a} ortasında Van&apos;da gün
+        doğumu Edirne&apos;den yaklaşık {doguBatiFarki} dakika öncedir. Saatler düz ufuk ve deniz seviyesi için hesaplanmıştır;
+        şehrinize göre saatler için <Link href="/altin-saat">gün doğumu, gün batımı ve altın saat</Link> sayfasına bakabilirsiniz.
+      </p>
+
+      <h2 id="evreler">
+        {a} {year} ay evreleri
+      </h2>
+      <ul>
+        {evreler.map((e) => (
+          <li key={e.date.toISOString()}>
+            <strong>{EVRE[e.kind]}</strong>:{" "}
+            {e.date.toLocaleDateString("tr-TR", { day: "numeric", month: "long", weekday: "long", timeZone: "Europe/Istanbul" })}{" "}
+            saat {saatMetni(e.date)}
+          </li>
+        ))}
+      </ul>
+      <p>
+        Ayın her günkü görünümü, doğuş ve batış saatleri için <Link href="/ay-evreleri">ay evreleri</Link> sayfasını
+        kullanabilirsiniz.
+      </p>
+    </>
+  );
+}
+
 export function TakvimAySayfasi({
   year,
   month,
@@ -577,19 +664,19 @@ export function TakvimAySayfasi({
   );
   const faq: FaqItem[] = [
     {
-      question: `${a} ${year}'te kaç iş günü var?`,
-      answer: `${a} ${year}'te hafta sonları ve resmî tatiller çıkarıldığında ${String(st.isGunu).replace(".", ",")} iş günü vardır (Cumartesi tatil kabul edilerek).`,
+      question: `${a} ${trLocative(year)} kaç iş günü var?`,
+      answer: `${a} ${trLocative(year)} hafta sonları ve resmî tatiller çıkarıldığında ${String(st.isGunu).replace(".", ",")} iş günü vardır (Cumartesi tatil kabul edilerek).`,
     },
     {
-      question: `${a} ${year}'te resmî tatil var mı?`,
+      question: `${a} ${trLocative(year)} resmî tatil var mı?`,
       answer: st.tatilGunu
-        ? `Evet, ${a} ${year}'te ${st.tatilGunu} gün tam gün resmî tatil var: ${turkeyHolidays(
+        ? `Evet, ${a} ${trLocative(year)} ${st.tatilGunu} gün tam gün resmî tatil var: ${turkeyHolidays(
             year,
           )
             .filter((h) => h.date.month === month && h.kind === "full")
             .map((h) => `${kisaTarih(h.date)} ${h.name}`)
             .join(", ")}.`
-        : `Hayır, ${a} ${year}'te resmî tatil yok.`,
+        : `Hayır, ${a} ${trLocative(year)} resmî tatil yok.`,
     },
     {
       question: `${a} ${year} hangi gün başlıyor?`,
@@ -676,6 +763,8 @@ export function TakvimAySayfasi({
       tocTitle={T.toc}
       tocItems={[
         { id: "gunler", label: `${a} ${year} özel günleri` },
+        { id: "gunes", label: "Gün doğumu ve gün uzunluğu" },
+        { id: "evreler", label: `${a} ay evreleri` },
         ...(ayFirtinalari(month).length
           ? [{ id: "firtinalar", label: `${a} fırtınaları` }]
           : []),
@@ -692,6 +781,7 @@ export function TakvimAySayfasi({
       ) : (
         <p>Bu ayda takvimimizdeki özel günlerden biri bulunmuyor.</p>
       )}
+      <GunesVeAyBolumu year={year} month={month} a={a} />
       {ayFirtinalari(month).length ? (
         <>
           <h2 id="firtinalar">{a} fırtınaları (halk takvimi)</h2>

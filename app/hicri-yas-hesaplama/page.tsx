@@ -39,6 +39,8 @@ export default function HicriYasPage() {
       tocTitle="İçindekiler"
       tocItems={[
         { id: "fark", label: "Hicri ve Miladi yaş farkı" },
+        { id: "tablo", label: "Miladi yaşa göre Hicri yaş" },
+        { id: "ornek", label: "Örnek hesap" },
         { id: "faq", label: "Sık sorulan sorular" },
       ]}
       faqTitle="Sık sorulan sorular"
@@ -49,6 +51,46 @@ export default function HicriYasPage() {
         Hicri takvim ay yılına dayanır ve bir yılı Miladi yıldan yaklaşık 11 gün kısadır. Bu yüzden Hicri yaşınız Miladi yaşınızla aynı ya da
         daha büyüktür; fark yaklaşık her 33 yılda bir yaş açılır. Miladi yaşınızı ayrıntılı görmek için <Link href="/yas-hesaplama">yaş hesaplama</Link>, tarihleri birbirine çevirmek
         için <Link href="/tarih-cevirici">Hicri–Miladi tarih çevirici</Link> aracını kullanabilirsiniz.
+      </p>
+
+      <h2 id="tablo">Miladi yaşa göre yaklaşık Hicri yaş</h2>
+      <p>
+        Ortalama Miladi yıl 365,2425 gün, ortalama Hicri yıl ise 354,367 gündür (30 yıllık döngüde 10.631 gün). Oran 365,2425 /
+        354,367 ≈ 1,0307 olduğu için Hicri yaş, Miladi yaşın yaklaşık yüzde 3 fazlasıdır. Tablodaki değerler doğum gününüzden
+        sonraki gün için yaklaşık sonuçtur; kesin yaş için yukarıdaki araçta doğum tarihinizi girin.
+      </p>
+      <div className="conversion-table-wrap">
+        <table className="conversion-table">
+          <thead>
+            <tr>
+              <th>Miladi yaş</th>
+              <th>Geçen gün (yaklaşık)</th>
+              <th>Hicri yaş (yaklaşık)</th>
+              <th>Fark</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[10, 18, 20, 30, 33, 40, 50, 60, 65, 70, 80].map((yas) => {
+              const gun = yas * 365.2425;
+              const hicri = gun / 354.367;
+              return (
+                <tr key={yas}>
+                  <td>{yas}</td>
+                  <td>{Math.round(gun).toLocaleString("tr-TR")}</td>
+                  <td>{hicri.toLocaleString("tr-TR", { maximumFractionDigits: 1 })}</td>
+                  <td>+{(hicri - yas).toLocaleString("tr-TR", { maximumFractionDigits: 1 })} yıl</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="ornek">Örnek hesap</h2>
+      <p>
+        15 Mart 1990&apos;da doğan biri 15 Mart 2026&apos;da Miladi takvime göre 36 yaşını doldurur. Bu süre yaklaşık 36 × 365,2425 ≈
+        13.149 gündür. 13.149 / 354,367 ≈ 37,1 olduğundan aynı gün Hicri takvime göre 37 yaşındadır ve 38. Hicri yaşına girmesine
+        yaklaşık 0,9 Hicri yıl (yaklaşık 317 gün) vardır. Hicri doğum günü her yıl Miladi takvimde yaklaşık 11 gün geriye kayar.
       </p>
     </TimeToolPage>
   );

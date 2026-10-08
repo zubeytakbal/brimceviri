@@ -17,6 +17,19 @@ const faqItems: FaqItem[] = [
   },
 ];
 
+// EN 1011-1 isil verim katsayilari (k) ve ornek MAG parametreleri icin ark enerjisi tablosu.
+const VERIM: Array<[string, string, number]> = [
+  ["Tozaltı kaynağı (SAW)", "121", 1.0],
+  ["Örtülü elektrot (MMA)", "111", 0.8],
+  ["MIG/MAG", "131 / 135", 0.8],
+  ["Özlü tel (FCAW)", "114 / 136", 0.8],
+  ["TIG", "141", 0.6],
+  ["Plazma", "15", 0.6],
+];
+const HIZLAR = [150, 200, 250, 300, 400, 500];
+const arkEnerjisi = (u: number, i: number, v: number) => (u * i * 60) / (v * 1000);
+const kj = (n: number) => n.toLocaleString("tr-TR", { maximumFractionDigits: 2 });
+
 export const metadata: Metadata = {
   title: "Kaynak Isı Girdisi Hesaplama (kJ/mm)",
   description:
@@ -75,6 +88,82 @@ export default function HeatInputCalculatorPage() {
         <HeatInputCalculator />
 
         <section className="category-article-content">
+          <h2>Ark enerjisi ve ısı girdisi farkı</h2>
+          <p>
+            Formülün verdiği değer aslında <strong>ark enerjisidir</strong>: arktan çıkan toplam enerjinin dikiş boyuna bölümü. Bu
+            enerjinin tamamı parçaya geçmez. EN 1011-1 standardı, ısı girdisini bulmak için ark enerjisini kaynak yöntemine özgü ısıl
+            verim katsayısı (k) ile çarpar: Q = k × U × I × 60 / (v × 1000).
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>Kaynak yöntemi</th>
+                  <th>ISO 4063 no</th>
+                  <th>Isıl verim (k)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {VERIM.map(([ad, no, k]) => (
+                  <tr key={ad}>
+                    <td>{ad}</td>
+                    <td>{no}</td>
+                    <td>{kj(k)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <h2>Örnek hesap: MAG kaynağı</h2>
+          <p>
+            24 V gerilim, 220 A akım ve 300 mm/dk kaynak hızıyla yapılan bir MAG dikişinde ark enerjisi 24 × 220 × 60 / (300 × 1000) ≈{" "}
+            <strong>{kj(arkEnerjisi(24, 220, 300))} kJ/mm</strong> olur. MAG için k = 0,8 olduğundan ısı girdisi{" "}
+            {kj(arkEnerjisi(24, 220, 300))} × 0,8 ≈ <strong>{kj(arkEnerjisi(24, 220, 300) * 0.8)} kJ/mm</strong>&apos;dir. Kaynak prosedür
+            şartnamesinde (WPS) hangi değerin (ark enerjisi mi, ısı girdisi mi) istendiğine dikkat edin.
+          </p>
+
+          <h2>Kaynak hızının etkisi (24 V, 220 A)</h2>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>Kaynak hızı (mm/dk)</th>
+                  <th>Ark enerjisi (kJ/mm)</th>
+                  <th>Isı girdisi, k = 0,8 (kJ/mm)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {HIZLAR.map((v) => (
+                  <tr key={v}>
+                    <td>{v}</td>
+                    <td>{kj(arkEnerjisi(24, 220, v))}</td>
+                    <td>{kj(arkEnerjisi(24, 220, v) * 0.8)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Hız yarıya inince ısı girdisi iki katına çıkar. Salınımlı (zikzak) kaynakta hız, dikiş boyunca ilerleme hızıdır; salınım
+            yaparken torcun kat ettiği yol değildir. Bu yüzden salınımlı pasolarda ısı girdisi genellikle düz pasolardan yüksektir.
+          </p>
+
+          <h2>Sık yapılan hatalar</h2>
+          <ul>
+            <li>
+              <strong>Makinedeki ayar değerini kullanmak:</strong> Gerilim ve akım, kaynak sırasında ölçülen gerçek değerler olmalıdır;
+              ayar ile ark gerilimi kablo kayıpları nedeniyle farklı olabilir.
+            </li>
+            <li>
+              <strong>Hızı cm/dk girmek:</strong> Formül mm/dk içindir; 30 cm/dk = 300 mm/dk&apos;dır.
+            </li>
+            <li>
+              <strong>Darbeli (pulse) kaynakta ortalama değerler:</strong> Darbeli akımda gerilim × akım çarpımı yerine makinenin gösterdiği
+              anlık güç ya da enerji değeri kullanılmalıdır.
+            </li>
+          </ul>
+
           <h2>Sık Sorulan Sorular</h2>
           {faqItems.map((item) => (
             <p key={item.question}>

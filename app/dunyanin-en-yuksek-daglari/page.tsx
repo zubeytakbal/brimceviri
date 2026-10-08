@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import { calculateAltitudeEffect } from "../converter/mountainAltitudeEffect";
 import { getAllMountains } from "../converter/mountainsHub";
 import { buildSiteUrl } from "../siteConfig";
 
@@ -41,6 +42,18 @@ function serializeJsonLd(data: object) {
 
 export default function MountainsHubPage() {
   const mountains = getAllMountains().slice().sort((a, b) => b.elevationM - a.elevationM);
+  const himalaya = mountains.filter((m) => m.rangeTr === "Himalaya").length;
+  const karakoram = mountains.filter((m) => m.rangeTr === "Karakoram").length;
+  const nepal = mountains.filter((m) => m.countriesTr.includes("Nepal")).length;
+  const enYuksek = mountains[0];
+  const enAlcak = mountains[mountains.length - 1];
+  const enDusukGoreli = mountains.reduce((a, b) => (b.prominenceM < a.prominenceM ? b : a));
+  const yillar = (key: "firstAscentYear" | "firstWinterAscentYear") => {
+    const list = mountains.map((m) => m[key]);
+    return [Math.min(...list), Math.max(...list)];
+  };
+  const ilkTirmanis = yillar("firstAscentYear");
+  const kis = yillar("firstWinterAscentYear");
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -75,16 +88,67 @@ export default function MountainsHubPage() {
 
         <section className="category-article-content">
           <h2>Zirveler (yüksekliğe göre sıralı)</h2>
-          <ul className="related-conversion-list">
-            {mountains.map((mountain) => (
-              <li key={mountain.id}>
-                <Link href={`/dunyanin-en-yuksek-daglari/${mountain.id}`}>
-                  {mountain.nameTr}
-                </Link>{" "}
-                — {mountain.elevationM.toLocaleString("tr-TR")} m
-              </li>
-            ))}
-          </ul>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>Dağ</th>
+                  <th>Yükseklik</th>
+                  <th>Göreli yükseklik</th>
+                  <th>Sıradağ / ülke</th>
+                  <th>İlk tırmanış</th>
+                  <th>İlk kış tırmanışı</th>
+                  <th>Zirvede basınç</th>
+                </tr>
+              </thead>
+              <tbody>
+                {mountains.map((m) => (
+                  <tr key={m.id}>
+                    <td>
+                      <Link href={`/dunyanin-en-yuksek-daglari/${m.id}`}>{m.nameTr}</Link>
+                    </td>
+                    <td>{m.elevationM.toLocaleString("tr-TR")} m</td>
+                    <td>{m.prominenceM.toLocaleString("tr-TR")} m</td>
+                    <td>
+                      {m.rangeTr} · {m.countriesTr.join(", ")}
+                    </td>
+                    <td>{m.firstAscentYear}</td>
+                    <td>{m.firstWinterAscentYear}</td>
+                    <td>%{Math.round(calculateAltitudeEffect(m.elevationM)?.percentOfSeaLevel ?? 0)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <h2>Rakamlarla 14 zirve</h2>
+          <p>
+            Zirvelerin {himalaya} tanesi Himalaya&apos;da, {karakoram} tanesi Karakoram&apos;dadır; {nepal} tanesi tamamen ya da
+            kısmen Nepal sınırları içindedir. En yüksek zirve {enYuksek.nameTr} ({enYuksek.elevationM.toLocaleString("tr-TR")} m) ile
+            listenin sonundaki {enAlcak.nameTr} ({enAlcak.elevationM.toLocaleString("tr-TR")} m) arasındaki fark{" "}
+            {(enYuksek.elevationM - enAlcak.elevationM).toLocaleString("tr-TR")} metredir. İlk tırmanışlar {ilkTirmanis[0]} ile{" "}
+            {ilkTirmanis[1]} arasındaki {ilkTirmanis[1] - ilkTirmanis[0]} yıla sığar; kışın ilk kez tırmanılması ise çok daha uzun
+            sürmüştür: ilk kış zirvesi {kis[0]}, sonuncusu {kis[1]} yılında yapılmıştır.
+          </p>
+
+          <h2>Yükseklik ile göreli yükseklik farkı</h2>
+          <p>
+            Yükseklik, zirvenin deniz seviyesinden ölçülen boyudur. Göreli yükseklik (prominence) ise zirveden, daha yüksek bir
+            komşu zirveye geçmek için inilmesi gereken en düşük noktaya kadar olan farktır; bir dağın çevresinden ne kadar
+            &quot;bağımsız&quot; yükseldiğini gösterir. Everest dünyanın en yüksek noktası olduğu için göreli yüksekliği kendi
+            yüksekliğine eşittir. {enDusukGoreli.nameTr} ise {enDusukGoreli.elevationM.toLocaleString("tr-TR")} m yüksekliğine karşın
+            yalnızca {enDusukGoreli.prominenceM.toLocaleString("tr-TR")} m göreli yüksekliğe sahiptir, çünkü komşu bir zirveye bağlı
+            bir sırt üzerinde yükselir.
+          </p>
+
+          <h2>Ölüm bölgesi ve hava basıncı</h2>
+          <p>
+            Dağcılıkta 8.000 metrenin üstü &quot;ölüm bölgesi&quot; olarak anılır: hava basıncı ve dolayısıyla soluduğunuz
+            havadaki oksijenin kısmi basıncı deniz seviyesinin yaklaşık üçte birine iner ve insan vücudu bu yükseklikte uzun
+            süre uyum sağlayamaz. Tablodaki basınç yüzdeleri Uluslararası Standart Atmosfer (ICAO) formülüyle hesaplanmıştır;
+            gerçek değer hava durumuna ve mevsime göre birkaç yüzde değişebilir. Türkiye&apos;deki yükseklikleri karşılaştırmak
+            için <Link href="/il-rakimlari">il rakımları</Link> sayfasına bakabilirsiniz.
+          </p>
 
           <h2>Sık Sorulan Sorular</h2>
           {faqItems.map((item) => (

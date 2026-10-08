@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "@/app/components/SiteLink";
 import StaticPageLayout from "../../components/StaticPageLayout";
 import {
   SITE_CONTACT_EMAIL,
@@ -78,6 +79,44 @@ export default function EnglishContactPage() {
                 consulting or urgent safety validation.
               </p>
             </>
+          ),
+        },
+        {
+          heading: "What you can write to us about",
+          content: (
+            <>
+              <p>
+                Typical messages include a conversion factor that looks wrong, a
+                calculator that returns an unexpected result, a broken link, a
+                translation mistake or a suggestion for a unit or tool that is
+                missing from the site.
+              </p>
+              <p>
+                Messages about advertising, partnerships or reuse of the embeddable
+                tools can also be sent to the same address.
+              </p>
+            </>
+          ),
+        },
+        {
+          heading: "When reporting an error",
+          content: (
+            <ul>
+              <li>the full address of the page,</li>
+              <li>the values you entered and the result you saw,</li>
+              <li>the result you expected and, if possible, its source,</li>
+              <li>your browser and device, if the problem looks technical.</li>
+            </ul>
+          ),
+        },
+        {
+          heading: "Privacy",
+          content: (
+            <p>
+              Your email address is used only to reply to your message and is not
+              shared with third parties. How data is processed on the site is
+              explained in the <Link href="/en/privacy">Privacy Policy</Link>.
+            </p>
           ),
         },
       ]}

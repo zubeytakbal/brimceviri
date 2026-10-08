@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "@/app/components/SiteLink";
 import StaticPageLayout from "../../components/StaticPageLayout";
 import { SITE_CONTACT_EMAIL, SITE_NAME, SITE_URL } from "../../siteConfig";
 import { germanStaticPaths } from "../../i18n/germanRoutes";
@@ -60,6 +61,37 @@ export default function GermanContactPage() {
                 damit Rückfragen schneller geprüft werden können.
               </p>
             </>
+          ),
+        },
+        {
+          heading: "Bei einer Fehlermeldung",
+          content: (
+            <ul>
+              <li>die vollständige Adresse der Seite,</li>
+              <li>die eingegebenen Werte und das angezeigte Ergebnis,</li>
+              <li>das erwartete Ergebnis und, wenn möglich, dessen Quelle,</li>
+              <li>Browser und Gerät, falls das Problem technisch wirkt.</li>
+            </ul>
+          ),
+        },
+        {
+          heading: "Weitere Anliegen",
+          content: (
+            <p>
+              Vorschläge für fehlende Einheiten oder Rechner, Hinweise auf
+              Übersetzungsfehler sowie Anfragen zur Einbindung der Rechner auf
+              anderen Websites können ebenfalls an diese Adresse gesendet werden.
+            </p>
+          ),
+        },
+        {
+          heading: "Datenschutz",
+          content: (
+            <p>
+              Ihre E-Mail-Adresse wird nur zur Beantwortung Ihrer Nachricht
+              verwendet und nicht an Dritte weitergegeben. Einzelheiten finden Sie
+              in der <Link href="/de/datenschutz">Datenschutzerklärung</Link>.
+            </p>
           ),
         },
       ]}

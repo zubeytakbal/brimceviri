@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "@/app/components/SiteLink";
 import StaticPageLayout from "../components/StaticPageLayout";
 import { SITE_NAME, SITE_URL } from "../siteConfig";
 
@@ -54,6 +55,17 @@ export default function TermsPage() {
           ),
         },
         {
+          heading: "Hizmetin kullanımı",
+          content: (
+            <p>
+              Sitedeki araçlar ücretsizdir ve hesap açmadan kullanılabilir. Araçları kişisel,
+              eğitim ve iş amaçlı hesaplamalarınızda kullanabilirsiniz. Siteyi otomatik
+              programlarla aşırı yükleyecek, işleyişini bozacak ya da güvenliğini tehlikeye
+              atacak kullanımlara izin verilmez.
+            </p>
+          ),
+        },
+        {
           heading: "Sorumluluk sınırı",
           content: (
             <>
@@ -67,6 +79,37 @@ export default function TermsPage() {
                 oluşabileceğini göz önünde bulundurun.
               </p>
             </>
+          ),
+        },
+        {
+          heading: "İçerik hakları ve gömülebilir araçlar",
+          content: (
+            <p>
+              Sayfalardaki metinler, tablolar ve tasarım BirimCeviri.app&apos;e aittir; toplu olarak
+              kopyalanıp başka bir sitede yayımlanamaz. Gömülebilir araç olarak sunulan
+              çeviricileri, sayfada verilen kodla ve kaynak bağlantısını koruyarak kendi
+              sitenizde ücretsiz kullanabilirsiniz.
+            </p>
+          ),
+        },
+        {
+          heading: "Dış bağlantılar ve reklamlar",
+          content: (
+            <p>
+              Sitede başka sitelere bağlantılar ve üçüncü taraflarca sunulan reklamlar yer
+              alabilir. Bu sitelerin içeriğinden ve uygulamalarından ilgili site sahipleri
+              sorumludur. Çerezler ve reklam ayarları için{" "}
+              <Link href="/gizlilik">Gizlilik Politikası</Link> sayfasına bakın.
+            </p>
+          ),
+        },
+        {
+          heading: "Değişiklikler",
+          content: (
+            <p>
+              Araçlar, içerikler ve bu koşullar zaman zaman güncellenebilir. Güncel koşullar her
+              zaman bu sayfada yayımlanır.
+            </p>
           ),
         },
       ]}

@@ -13,6 +13,7 @@ import {
   type TimeToolId,
 } from "./i18n/timeToolPaths";
 import { worldCities } from "./converter/time/worldCities";
+import { countdownAlternatePaths, countdownEvents, countdownPath } from "./converter/time/countdownEvents";
 import { HOLIDAY_YEARS } from "./converter/time/holidays";
 import { HIJRI_SLUG, SA_HIJRI_SANAWAT, saHijriSanaPath, saHijriShahrPath } from "./converter/calendar/saTaqwim";
 import { DE_JAHRE, DE_MONAT_SLUG, deJahrPfad, deMonatPfad } from "./converter/calendar/deKalender";
@@ -2943,6 +2944,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly" as const,
       priority: 0.6,
     })),
+    ...countdownEvents.map((event) => {
+      return {
+        url: `${baseUrl}${countdownPath(event)}`,
+        lastModified: contentLastModified,
+        changeFrequency: "daily" as const,
+        priority: 0.6,
+        alternates: buildLanguageAlternates(countdownAlternatePaths(event), event.lang === "de" ? "tr" : event.lang),
+      };
+    }),
     ...worldCities.flatMap((city) =>
       Object.values(worldCityPaths(city)).map((path) => ({
         url: `${baseUrl}${path}`,

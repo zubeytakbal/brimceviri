@@ -84,9 +84,9 @@ const tocItems = [
 ];
 
 export const metadata: Metadata = {
-  title: "Uyku Hesaplama: Şimdi Uyusam Kaçta Kalkmalıyım?",
+  title: { absolute: "Uyku Hesaplama: Şimdi Uyusam Kaçta Kalkmalıyım?" },
   description:
-    "Şimdi uyusan kaçta kalkmalısın, sabah 7'de kalkmak için kaçta yatmalısın? 90 dakikalık uyku döngülerine göre dinlenmiş uyanacağın saatler ve yaşa göre uyku ihtiyacı.",
+    "Şimdi uyusan kaçta kalkmalısın, sabah 7'de kalkmak için kaçta yatmalısın? Tek tıkla 90 dakikalık uyku döngülerine göre dinç uyanacağın saatler. Ücretsiz.",
   alternates: {
     canonical: "/uyku-hesaplama",
     ...sleepGuideAlternates(),

@@ -10,11 +10,14 @@
 //    tarayicilar, ekran okuyucular ve dizin/arama araclari icin).
 // 4. Sablon sayfa denetimi (scripts/templateGuard.ts): kopya kardes sayfa
 //    grubu varsa build'i durdurur.
+// 5. Ince sayfa denetimi (scripts/thinGuard.ts): dizine acik yeni bir sayfanin
+//    metni cok kisaysa build'i durdurur.
 import { existsSync, readdirSync, readFileSync, unlinkSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { LOCALE_DEFINITIONS } from "../app/i18n/config";
 import { siteRedirects } from "../app/siteRedirects";
 import { checkTemplates } from "./templateGuard";
+import { checkThinPages, MIN_KARAKTER } from "./thinGuard";
 
 const OUT = "out";
 
@@ -96,3 +99,13 @@ if (guard.failed.length) {
   process.exit(1);
 }
 console.log(`Şablon denetimi geçti (${guard.pending} grup düzeltme bekliyor)`);
+
+// 5. İnce sayfa denetimi: dizine açık yeni bir sayfanın metni çok kısaysa build durur.
+const thin = checkThinPages(OUT);
+for (const u of thin.fixed) console.warn(`İnce sayfa denetimi: ${u} artık yeterli, thinGuard PENDING listesinden silin.`);
+if (thin.failed.length) {
+  for (const f of thin.failed) console.error(`İnce sayfa: ${f.url} (${f.chars} karakter, en az ${MIN_KARAKTER})`);
+  console.error("Bu sayfaların metni çok kısa. Özgün açıklama, örnek ve tablo ekleyin ya da ana sayfada birleştirin.");
+  process.exit(1);
+}
+console.log(`İnce sayfa denetimi geçti (${thin.pending} sayfa düzeltme bekliyor)`);

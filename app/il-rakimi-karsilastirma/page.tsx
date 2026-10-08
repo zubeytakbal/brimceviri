@@ -3,7 +3,9 @@ import Link from "@/app/components/SiteLink";
 import ProvinceComparisonTool from "../components/ProvinceComparisonTool";
 import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
 import { popularProvinceComparisons } from "../converter/popularProvinceComparisons";
+import { calculateAltitudeEffect } from "../converter/mountainAltitudeEffect";
 import { findProvinceById } from "../converter/provinceElevationHub";
+import { turkeyProvinces } from "../converter/geo/turkeyProvinces";
 import { buildSiteUrl } from "../siteConfig";
 
 const faqItems: FaqItem[] = [
@@ -35,6 +37,10 @@ export const metadata: Metadata = {
     type: "website",
   },
 };
+
+const SIRALI = [...turkeyProvinces].sort((a, b) => b.elevationM - a.elevationM);
+const UC_ILLER = [...SIRALI.slice(0, 5), ...SIRALI.slice(-5)];
+const n1 = (n: number) => n.toLocaleString("tr-TR", { maximumFractionDigits: 1 });
 
 function serializeJsonLd(data: object) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
@@ -90,6 +96,48 @@ export default function ProvinceComparisonHubPage() {
               );
             })}
           </ul>
+
+          <h2>Türkiye&apos;nin en yüksek ve en alçak il merkezleri</h2>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>İl</th>
+                  <th>Rakım</th>
+                  <th>Hava basıncı</th>
+                  <th>Deniz seviyesine göre</th>
+                  <th>Suyun kaynama noktası</th>
+                </tr>
+              </thead>
+              <tbody>
+                {UC_ILLER.map((p) => {
+                  const e = calculateAltitudeEffect(p.elevationM);
+                  return (
+                    <tr key={p.id}>
+                      <td>{p.name}</td>
+                      <td>{p.elevationM.toLocaleString("tr-TR")} m</td>
+                      <td>{e ? `${Math.round(e.pressureHpa)} hPa` : "—"}</td>
+                      <td>{e ? `%${n1(e.percentOfSeaLevel)}` : "—"}</td>
+                      <td>{e ? `${n1(e.waterBoilingPointC)} °C` : "—"}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Tablonun ilk beş satırı en yüksek, son beş satırı en alçak il merkezleridir. Değerler Uluslararası Standart Atmosfer
+            (ICAO) modeliyle hesaplanır; günlük hava basıncı hava durumuna göre bundan birkaç hPa sapabilir.
+          </p>
+
+          <h2>Rakım farkı neyi değiştirir?</h2>
+          <p>
+            Deniz seviyesine yakın yerlerde her 8 metre yükselişte basınç yaklaşık 1 hPa düşer. {SIRALI[0].name} ile{" "}
+            {SIRALI[SIRALI.length - 1].name} arasındaki {(SIRALI[0].elevationM - SIRALI[SIRALI.length - 1].elevationM).toLocaleString("tr-TR")}{" "}
+            metrelik fark, havadaki oksijen miktarında da aynı oranda bir azalma demektir: basınç düştükçe her nefeste alınan
+            oksijen azalır. Suyun kaynama noktası da düşer; yüksek illerde makarna ve kuru baklagiller aynı sürede daha az
+            pişer, düdüklü tencere bu farkı kapatır. Ovadan yaylaya çıkarken kapalı bir plastik şişenin şişmesi de aynı basınç farkından kaynaklanır.
+          </p>
 
           <h2>Sık Sorulan Sorular</h2>
           {faqItems.map((item) => (

@@ -17,6 +17,18 @@ const faqItems: FaqItem[] = [
   },
 ];
 
+// YouTube'un yukleme icin onerdigi SDR video bit hizlari (Mbps; standart / yuksek kare hizi).
+const YOUTUBE_ONERI: Array<[string, number, number]> = [
+  ["360p", 1, 1.5],
+  ["480p", 2.5, 4],
+  ["720p", 5, 7.5],
+  ["1080p", 8, 12],
+  ["1440p", 16, 24],
+  ["2160p (4K)", 40, 60],
+];
+const dakikaMb = (mbps: number) => (mbps * 60) / 8;
+const tr = (n: number) => n.toLocaleString("tr-TR", { maximumFractionDigits: 1 });
+
 export const metadata: Metadata = {
   title: "Video Bit Hızı ve Dosya Boyutu Hesaplama",
   description:
@@ -75,6 +87,72 @@ export default function VideoBitrateCalculatorPage() {
         <VideoBitrateCalculator />
 
         <section className="category-article-content">
+          <h2>Dakikada kaç MB? Çözünürlüğe göre tablo</h2>
+          <p>
+            Aşağıdaki bit hızları YouTube&apos;un yükleme için önerdiği SDR değerleridir (4K için önerilen 35-45 Mbps aralığının
+            ortası alınmıştır). Dosya boyutu yalnızca video akışı içindir; ses akışı ve kapsayıcı (MP4, MKV) birkaç yüzde ekler.
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>Çözünürlük</th>
+                  <th>24-30 fps</th>
+                  <th>1 dakika</th>
+                  <th>1 saat</th>
+                  <th>48-60 fps</th>
+                  <th>1 dakika</th>
+                </tr>
+              </thead>
+              <tbody>
+                {YOUTUBE_ONERI.map(([ad, std, yuksek]) => (
+                  <tr key={ad}>
+                    <td>{ad}</td>
+                    <td>{tr(std)} Mbps</td>
+                    <td>{tr(dakikaMb(std))} MB</td>
+                    <td>{tr((dakikaMb(std) * 60) / 1000)} GB</td>
+                    <td>{tr(yuksek)} Mbps</td>
+                    <td>{tr(dakikaMb(yuksek))} MB</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <h2>Örnek: 2 GB&apos;lık sınıra sığdırmak</h2>
+          <p>
+            45 dakikalık bir ders kaydını 2 GB (2000 MB) sınırı olan bir platforma yükleyeceksiniz. Süre 45 × 60 = 2700 saniye.
+            Gereken toplam bit hızı 2000 × 8 / 2700 ≈ 5,9 Mbps. Ses için 192 kbps (0,19 Mbps) ayırırsanız videoya yaklaşık{" "}
+            <strong>5,7 Mbps</strong> kalır; bu da 1080p için önerilen 8 Mbps&apos;in altında, 720p için yeterli bir değerdir.
+            Güvenli tarafta kalmak için sonucu yüzde 3-5 düşük tutmak, kapsayıcı ek yükünü karşılar.
+          </p>
+
+          <h2>Neden 8&apos;e bölüyoruz?</h2>
+          <p>
+            Bit hızı saniyedeki <em>bit</em> sayısıdır (Mbps = megabit/saniye), dosya boyutu ise <em>bayt</em> ile ölçülür.
+            1 bayt = 8 bit olduğu için megabit cinsinden toplamı 8&apos;e bölmek megabaytı verir. İnternet hızı da Mbps ile
+            verildiğinden aynı mantık indirme süresi için de geçerlidir: 100 Mbps bağlantı saniyede en fazla 12,5 MB indirir.
+          </p>
+
+          <h2>Sık yapılan hatalar</h2>
+          <ul>
+            <li>
+              <strong>Mb ile MB&apos;ı karıştırmak:</strong> Küçük b bit, büyük B bayttır; aradaki fark 8 kattır.
+            </li>
+            <li>
+              <strong>Değişken bit hızını (VBR) sabit sanmak:</strong> Hareketli sahnelerde bit hızı yükselir; hedef boyut için
+              ortalama bit hızı ayarlanmalı, en yüksek değer sınırlanmalıdır.
+            </li>
+            <li>
+              <strong>Sesi unutmak:</strong> Stereo AAC ses tipik olarak 128-320 kbps&apos;dir; uzun videolarda toplam boyuta
+              yüzlerce megabayt ekleyebilir.
+            </li>
+            <li>
+              <strong>MB ile MiB farkı:</strong> İşletim sistemleri bazen 1 MB = 1.048.576 bayt (MiB) gösterir; bu yüzden
+              dosya, hesaplanandan yaklaşık yüzde 5 küçük görünebilir.
+            </li>
+          </ul>
+
           <h2>Sık Sorulan Sorular</h2>
           {faqItems.map((item) => (
             <p key={item.question}>

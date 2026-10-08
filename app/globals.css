@@ -15623,3 +15623,13 @@ a.all-units-row .all-units-name {
 .moon-eclipse-highlight h3 {
   margin-top: 0;
 }
+
+.color-swatch {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-right: 4px;
+  border: 1px solid #d0d5dd;
+  border-radius: 3px;
+  vertical-align: -2px;
+}

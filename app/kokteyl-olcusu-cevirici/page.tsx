@@ -21,6 +21,11 @@ const faqItems: FaqItem[] = [
   },
 ];
 
+// 1 ABD sivi onsu = 29,5735 mL (tanim: 1/128 ABD galonu).
+const OZ_ML = 29.5735;
+const OZ_SATIRLARI = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 2, 2.5, 3, 4];
+const ml = (n: number, basamak = 1) => n.toLocaleString("tr-TR", { maximumFractionDigits: basamak });
+
 export const metadata: Metadata = {
   title: "Kokteyl Ölçüsü Çevirici: Oz, mL, Cl",
   description:
@@ -79,6 +84,75 @@ export default function BarVolumeCalculatorPage() {
         <BarVolumeCalculator />
 
         <section className="category-article-content">
+          <h2>Oz - mL - cl çeviri tablosu</h2>
+          <p>
+            Kokteyl tariflerinde en sık geçen ölçüler aşağıdadır. Bar ölçekleri genellikle yuvarlanmış değerlerle işaretlenir;
+            bu yüzden Avrupa&apos;da 1 oz çoğu zaman 30 mL, 1,5 oz da 45 mL olarak alınır. Tablonun son sütunu bu pratik değeri
+            gösterir.
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>Sıvı ons (oz)</th>
+                  <th>Tam karşılık (mL)</th>
+                  <th>Santilitre (cl)</th>
+                  <th>Bardaki pratik ölçü</th>
+                </tr>
+              </thead>
+              <tbody>
+                {OZ_SATIRLARI.map((oz) => (
+                  <tr key={oz}>
+                    <td>{ml(oz, 2)} oz</td>
+                    <td>{ml(oz * OZ_ML)} mL</td>
+                    <td>{ml((oz * OZ_ML) / 10, 2)} cl</td>
+                    <td>{ml(oz * 30, 0)} mL</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <h2>Örnek: tarifi 8 kişilik sürahiye çevirmek</h2>
+          <p>
+            2 oz ana içki, 1 oz likör ve 0,75 oz taze limon suyu içeren tek kişilik bir ekşi kokteyl düşünün. Pratik ölçüyle
+            bu 60 + 30 + 22,5 = 112,5 mL eder. 8 kişilik sürahi için her malzeme 8 ile çarpılır: 480 mL ana içki, 240 mL likör
+            ve 180 mL limon suyu. Shaker ile çalkalanan kokteyllerde buz eriyerek hacme yaklaşık yüzde 20-25 su ekler; sürahide
+            hazırlarken bu suyu tarife ayrıca eklemek ya da servis öncesi buzla karıştırmak gerekir.
+          </p>
+
+          <h2>Ölçü aletleri</h2>
+          <ul>
+            <li>
+              <strong>Jigger:</strong> İki uçlu metal ölçek. ABD tipinde uçlar genellikle 1 oz ve 1,5 oz (yaklaşık 30 ve 45 mL),
+              Avrupa tipinde 20/40 mL ya da 25/50 mL&apos;dir. Kendi jigger&apos;ınızın ölçüsünü içindeki çizgilerden kontrol edin.
+            </li>
+            <li>
+              <strong>Bar kaşığı:</strong> Yaklaşık 5 mL alır; şurup ve likör gibi az miktarlar için kullanılır.
+            </li>
+            <li>
+              <strong>Dash:</strong> Bitter şişesinin bir sallanışıdır, standart bir hacmi yoktur; genellikle 1 mL&apos;nin altında kalır.
+            </li>
+            <li>
+              <strong>Ülkelere göre tek ölçü:</strong> Birleşik Krallık&apos;ta barlarda satılan tek ölçü yasal olarak 25 mL ya da 35 mL&apos;dir;
+              ABD tariflerindeki &quot;shot&quot; ise genellikle 1,5 oz&apos;tur.
+            </li>
+          </ul>
+
+          <h2>Sık yapılan hatalar</h2>
+          <ul>
+            <li>
+              <strong>Ağırlık onsunu kullanmak:</strong> Mutfak terazisindeki oz bir kütle birimidir (28,35 g); tarifteki oz ise hacimdir.
+            </li>
+            <li>
+              <strong>İngiliz sıvı onsunu ABD onsuyla karıştırmak:</strong> Eski İngiliz tariflerindeki imperial fl oz 28,41 mL&apos;dir;
+              fark küçük görünse de büyük partilerde birikir.
+            </li>
+            <li>
+              <strong>Oranı bozmak:</strong> Tarifi büyütürken tüm malzemeleri aynı katsayıyla çarpın; ekşi ve tatlı dengesi oranlara bağlıdır.
+            </li>
+          </ul>
+
           <h2>Sık Sorulan Sorular</h2>
           {faqItems.map((item) => (
             <p key={item.question}>

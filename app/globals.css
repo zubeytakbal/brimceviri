@@ -15607,3 +15607,19 @@ a.all-units-row .all-units-name {
 .moon-riseset-body h3 {
   margin-top: 0;
 }
+
+.moon-feed p {
+  margin-bottom: 6px;
+}
+
+.moon-eclipse-highlight {
+  margin: 12px 0 18px;
+  padding: 14px 18px;
+  border-left: 4px solid #e8a317;
+  border-radius: 10px;
+  background: #fff7e6;
+}
+
+.moon-eclipse-highlight h3 {
+  margin-top: 0;
+}

@@ -107,6 +107,15 @@ const insights: Record<string, FlagshipPairInsight> = {
   [pairKey("kutle", "kg", "g")]: {
     sectorNote:
       "Mutfak tariflerinde ve eczacılıkta hassas malzeme ölçümü için gram, toplu/ticari miktarlar için kilogram kullanılır.",
+    realWorldValues: [
+      { label: "Paket kuru makarna", value: 500, anchorUnit: "g" },
+      { label: "Paket öğütülmüş kahve", value: 250, anchorUnit: "g" },
+      { label: "1 litre suyun kütlesi (yaklaşık)", value: 1, anchorUnit: "kg" },
+    ],
+    mistakes: [
+      "Türkçede ondalık ayırıcı virgüldür: 1,5 kg bir buçuk kilogramdır; 1.500 g ise bin beş yüz gramdır. İngilizce kaynaklardaki \"1.5 kg\" yine bir buçuk kilogram demektir.",
+      "Grama çevirmek için 1.000 ile çarpılır, kilograma çevirmek için 1.000'e bölünür; 250 g, 0,25 kg'dır.",
+    ],
   },
   [pairKey("hacim", "gal", "L")]: {
     realWorldValues: [
@@ -464,16 +473,92 @@ const insights: Record<string, FlagshipPairInsight> = {
   },
   [pairKey("uzunluk", "m", "yd")]: {
     realWorldValues: [
-      {
-        label: "Amerikan futbolu sahası uzunluğu",
-        value: 91.44,
-        anchorUnit: "m",
-      },
+      { label: "Amerikan futbolu sahası uzunluğu", value: 91.44, anchorUnit: "m" },
+      { label: "Golfte uzun bir ilk vuruş (drive)", value: 250, anchorUnit: "yd" },
+      { label: "Bir top kumaş (tipik)", value: 50, anchorUnit: "yd" },
+    ],
+    where:
+      "Yarda; golfte mesafelerde, Amerikan futbolunda, ABD ve Birleşik Krallık'ta kumaş satışında ve İngiltere'de kısa yol mesafelerinde kullanılır. 1 yarda tam olarak 0,9144 metredir.",
+    mistakes: [
+      "Yarda metreye yakındır ama %8,6 kısadır: 100 yarda 91,44 metredir; uzun mesafede fark büyür.",
+      "Eski Türk ölçüsü arşın yarda değildir: çarşı arşını yaklaşık 68 cm'dir.",
     ],
   },
   [pairKey("uzunluk", "ft", "in")]: {
     sectorNote:
       "Marangozluk ve inşaatta sıkça kullanılan İngiliz ölçü biriminde 1 fit tam olarak 12 inçe eşittir.",
+    realWorldValues: [
+      { label: "6 feet boy", value: 6, anchorUnit: "ft" },
+      { label: "ABD'de standart kontrplak levha boyu", value: 8, anchorUnit: "ft" },
+    ],
+    mistakes: [
+      "Feet onluk değil on ikilik bölünür: 5,5 feet 5 feet 6 inçtir (5'6\"), 5'5\" değildir.",
+      "Tek tırnak (') feet, çift tırnak (\") inç demektir: 6'2\" = 6 feet 2 inç = 74 inç.",
+    ],
+  },
+  [pairKey("hiz", "m/s", "km/h")]: {
+    realWorldValues: [
+      { label: "Yürüme hızı (ortalama)", value: 1.4, anchorUnit: "m/s" },
+      { label: "100 m dünya rekorunun ortalama hızı (9,58 s)", value: 10.44, anchorUnit: "m/s" },
+      { label: "Kuvvetli rüzgâr", value: 10, anchorUnit: "m/s" },
+      { label: "Havada ses hızı (20 °C)", value: 343, anchorUnit: "m/s" },
+    ],
+    where:
+      "Metre/saniye; meteorolojide rüzgâr hızında, fizik problemlerinde ve atletizm analizlerinde; km/saat ise trafikte ve günlük hayatta kullanılır. Çevirmek için m/s × 3,6 = km/saat.",
+    mistakes: [
+      "Türkçe metinlerde \"km/s\" çoğu zaman km/saat anlamında yazılır, ama bilimsel gösterimde km/s kilometre/saniyedir. Bu sayfada km/saat km/h olarak gösterilir.",
+      "km/saatten m/s'ye geçerken 3,6 ile çarpılmaz, bölünür: 90 km/saat = 25 m/s.",
+    ],
+  },
+  [pairKey("uzunluk", "mm", "in")]: {
+    realWorldValues: [
+      { label: "Kulaklık jakı", value: 3.5, anchorUnit: "mm" },
+      { label: "Kredi kartı kalınlığı", value: 0.76, anchorUnit: "mm" },
+      { label: "1/4 inç matkap ucu", value: 0.25, anchorUnit: "in" },
+      { label: "Yaz lastiğinde yasal en az diş derinliği", value: 1.6, anchorUnit: "mm" },
+    ],
+    where:
+      "Milimetre–inç dönüşümü hırdavatta (vida, matkap ucu, anahtar), bisiklet parçalarında, tesisatta ve ABD'den gelen ürünlerin ölçülerinde karşına çıkar. 1 inç tam olarak 25,4 mm'dir.",
+    mistakes: [
+      "İnç anahtarlar metrik somunlara tam oturmaz: 1/2 inç (12,7 mm) anahtar 13 mm somunda boşluk yapar ve somunu yuvarlatabilir.",
+      "Kesirli inçleri ondalığa çevirin: 1/8 inç = 3,175 mm, 3/16 inç = 4,7625 mm, 5/16 inç = 7,9375 mm.",
+    ],
+  },
+  [pairKey("alan", "km²", "m²")]: {
+    realWorldValues: [
+      { label: "1 hektar", value: 10000, anchorUnit: "m²" },
+      { label: "İstanbul il alanı (yaklaşık)", value: 5461, anchorUnit: "km²" },
+    ],
+    where:
+      "Kilometrekare; il, ülke ve göl yüzölçümlerinde ve nüfus yoğunluğunda (kişi/km²) kullanılır. 1 km² = 1.000.000 m² = 100 hektar = 1.000 dönüm.",
+    mistakes: [
+      "1 km² 1.000 m² değildir; 1.000 × 1.000 = 1.000.000 m²'dir. Kenar 1.000 kat büyüyünce alan bir milyon kat büyür.",
+    ],
+  },
+  [pairKey("hacim", "m³", "L")]: {
+    realWorldValues: [
+      { label: "IBC tankı", value: 1000, anchorUnit: "L" },
+      { label: "Bir ton suyun hacmi", value: 1, anchorUnit: "m³" },
+      { label: "Damacana", value: 19, anchorUnit: "L" },
+    ],
+    where:
+      "Metreküp; su ve doğalgaz sayaçlarında ve faturalarında, hazır beton siparişinde, depo ve havuz hacimlerinde kullanılır. 1 m³ = 1.000 litredir; su faturasındaki \"ton\" da pratikte metreküptür.",
+    mistakes: [
+      "Hacmi hesaplarken birimleri aynı yapın: 2 m × 1 m × 50 cm'lik bir depo 2 × 1 × 0,5 = 1 m³, yani 1.000 litredir.",
+      "Doğalgaz sayacındaki m³ gazın hacmidir; ödenen enerji miktarı bu hacmin gazın ısıl değeriyle çarpılmasıyla bulunur.",
+    ],
+  },
+  [pairKey("alan", "m²", "cm²")]: {
+    realWorldValues: [
+      { label: "A4 kâğıt (21 × 29,7 cm)", value: 623.7, anchorUnit: "cm²" },
+      { label: "60 × 60 cm fayans", value: 3600, anchorUnit: "cm²" },
+    ],
+    where:
+      "Santimetrekare; fayans, kâğıt, kumaş ve küçük yüzeylerin alanında; metrekare ise oda, duvar ve arsa alanında kullanılır. 1 m² = 10.000 cm².",
+    mistakes: [
+      "m²'den cm²'ye geçerken 100 ile değil 10.000 ile çarpılır (100 × 100).",
+      "Fayans hesabında 1 m²'ye 60 × 60 cm fayanstan 2,78 adet düşer; kesim payı için genellikle %10 fazla alınır.",
+    ],
   },
 };
 

@@ -167,6 +167,15 @@ const insights: Record<string, FlagshipPairInsight> = {
   [pairKey("uzunluk", "cm", "mm")]: {
     sectorNote:
       "Hassas mühendislik ve teknik çizimlerde milimetre, günlük ölçümlerde santimetre tercih edilir.",
+    realWorldValues: [
+      { label: "A4 kâğıdın kısa kenarı", value: 210, anchorUnit: "mm" },
+      { label: "Kredi kartının uzun kenarı", value: 85.6, anchorUnit: "mm" },
+      { label: "Okul cetveli", value: 30, anchorUnit: "cm" },
+    ],
+    mistakes: [
+      "Teknik resim ve mobilya ölçülerinde birim yazılmamışsa genellikle milimetredir: \"600 × 400\" 60 × 40 cm demektir.",
+      "Yağış miktarındaki milimetre bir uzunluktur ama alana yayılmış su miktarını anlatır: 1 mm yağış, 1 m²'ye 1 litre su demektir.",
+    ],
   },
   [pairKey("uzunluk", "km", "m")]: {
     sectorNote:
@@ -282,6 +291,14 @@ const insights: Record<string, FlagshipPairInsight> = {
   [pairKey("kutle", "oz", "lb")]: {
     sectorNote:
       "İngiliz/ABD ölçü sisteminde küçük ağırlıklar ons, daha büyük ağırlıklar pound ile ifade edilir (1 pound = 16 ons).",
+    realWorldValues: [
+      { label: "Çeyrek pound (4 oz) hamburger köftesi", value: 4, anchorUnit: "oz" },
+      { label: "Yeni doğan bebek \"7 lb 8 oz\"", value: 7.5, anchorUnit: "lb" },
+    ],
+    mistakes: [
+      "\"7 lb 8 oz\" 7,8 pound değildir: 8 ons yarım pound olduğu için 7,5 pound, yaklaşık 3,4 kg'dır.",
+      "Altın ve gümüşte kullanılan troy ons (31,1 g) bu onstan ağırdır ve bir troy pound 12 troy onstur.",
+    ],
   },
   [pairKey("hacim", "L", "mL")]: {
     sectorNote:
@@ -364,6 +381,14 @@ const insights: Record<string, FlagshipPairInsight> = {
   [pairKey("zaman", "h", "s")]: {
     sectorNote:
       "Bilimsel ve teknik hesaplamalarda saniye, günlük zaman planlamasında saat kullanılır.",
+    realWorldValues: [
+      { label: "Bir gün", value: 86400, anchorUnit: "s" },
+      { label: "İki saatlik film", value: 2, anchorUnit: "h" },
+    ],
+    mistakes: [
+      "Saniyeyi saat-dakika-saniyeye ayırırken önce 3.600'e, kalanı 60'a bölün: 3.725 saniye 1 saat 2 dakika 5 saniyedir, 1,03 saat yazmak yanıltıcıdır.",
+      "Ondalık saat dakika değildir: 0,5 saat 30 dakika, 0,1 saat 6 dakikadır.",
+    ],
   },
   [pairKey("zaman", "min", "h")]: {
     sectorNote:
@@ -453,6 +478,41 @@ const insights: Record<string, FlagshipPairInsight> = {
   [pairKey("alan", "dönüm", "ha")]: {
     sectorNote:
       "Tarım ve orman arazisi büyüklüğü Türkiye'de dönüm, uluslararası raporlamada hektar cinsinden ifade edilir.",
+    realWorldValues: [
+      { label: "1 hektar", value: 1, anchorUnit: "ha" },
+      { label: "Futbol sahası (105 × 68 m)", value: 0.714, anchorUnit: "ha" },
+      { label: "25 dönümlük tarla", value: 25, anchorUnit: "dönüm" },
+    ],
+    mistakes: [
+      "1 hektar 10 dönümdür; AB destek belgesindeki 2,5 ha, 25 dönüm eder.",
+      "Eski kayıtlardaki \"eski dönüm\" yaklaşık 919 m²'dir; o durumda 1 hektar yaklaşık 10,9 eski dönüm eder.",
+    ],
+  },
+  [pairKey("kutle", "kg", "st")]: {
+    realWorldValues: [
+      { label: "11 stone", value: 11, anchorUnit: "st" },
+      { label: "12 stone", value: 12, anchorUnit: "st" },
+      { label: "70 kg", value: 70, anchorUnit: "kg" },
+    ],
+    where:
+      "Stone; Birleşik Krallık ve İrlanda'da vücut ağırlığını söylemekte kullanılır. 1 stone = 14 pound = tam olarak 6,35029318 kg.",
+    mistakes: [
+      "\"11 st 4 lb\" 11,4 stone değildir: 11 stone artı 4 pound, yani 158 pound ≈ 71,7 kg'dır.",
+      "Stone yalnızca vücut ağırlığında kullanılır; aynı ülkelerde market ve tarif ölçüleri gram/kilogram ya da pound/ons iledir.",
+    ],
+  },
+  [pairKey("basinc", "bar", "kPa")]: {
+    realWorldValues: [
+      { label: "Otomobil lastik basıncı", value: 2.2, anchorUnit: "bar" },
+      { label: "Deniz seviyesinde hava basıncı", value: 101.325, anchorUnit: "kPa" },
+      { label: "Şebeke suyu basıncı (tipik)", value: 3, anchorUnit: "bar" },
+    ],
+    where:
+      "Kilopaskal; lastik basınç göstergelerinde, kombi ve tesisat kataloglarında ve fizik problemlerinde, bar ise günlük dilde ve göstergelerde kullanılır. 1 bar tam olarak 100 kPa'dır.",
+    mistakes: [
+      "kPa ile MPa karıştırılmamalı: 1 MPa = 1.000 kPa = 10 bar; hidrolik ve beton dayanımı MPa ile verilir.",
+      "Hava durumundaki hPa (hektopaskal) 10 kat küçüktür: 1.013 hPa = 101,3 kPa.",
+    ],
   },
   [pairKey("guc", "kW", "hp")]: {
     realWorldValues: [
@@ -498,11 +558,14 @@ const insights: Record<string, FlagshipPairInsight> = {
   },
   [pairKey("enerji", "J", "cal")]: {
     realWorldValues: [
-      {
-        label: "Kalori-joule bilimsel sabiti (1 kalori)",
-        value: 1,
-        anchorUnit: "cal",
-      },
+      { label: "1 gram suyu 1 °C ısıtan enerji (1 kalori)", value: 1, anchorUnit: "cal" },
+      { label: "1 kilojoule", value: 1000, anchorUnit: "J" },
+    ],
+    where:
+      "Joule fizik ve mühendislikte enerji birimidir; kalori ise kimya derslerinde ve beslenmede (kilokalori olarak) kullanılır. Bu sayfada 1 cal = 4,184 J (termokimyasal kalori) kabul edilir.",
+    mistakes: [
+      "Gıda etiketlerindeki \"kalori\" aslında kilokaloridir (1.000 cal); bir elmanın 80 \"kalorisi\" 80 kcal ≈ 335 kJ'dir.",
+      "Bazı tablolarda Uluslararası Buhar Tablosu kalorisi (4,1868 J) kullanılır; fark binde birden azdır ama hassas hesapta kaynağa bakın.",
     ],
   },
   [pairKey("enerji", "kWh", "Wh")]: {

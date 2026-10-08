@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { moonPhasesBetween, moonState, phaseName, type PhaseKind, type PhaseName } from "../../converter/time/moon";
 import MoonIcon from "./MoonIcon";
 
@@ -84,11 +84,13 @@ export default function MoonCalendarTools({
   initialNow,
   names,
   kindNames,
+  riseSet,
 }: {
   lang: Lang;
   initialNow: number;
   names: Record<PhaseName, string>;
   kindNames: Record<PhaseKind, string>;
+  riseSet?: ReactNode;
 }) {
   const t = T[lang];
   const tr = lang === "tr";
@@ -190,6 +192,8 @@ export default function MoonCalendarTools({
           </li>
         ))}
       </ol>
+
+      {riseSet}
 
       <h2 id="tarih">{t.pickerTitle}</h2>
       <div className="date-calc">

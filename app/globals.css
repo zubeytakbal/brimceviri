@@ -15587,3 +15587,23 @@ a.all-units-row .all-units-name {
     text-align: center;
   }
 }
+
+.moon-locate {
+  align-self: end;
+  padding: 10px 14px;
+  border: 0;
+  border-radius: 10px;
+  background: #fff;
+  color: #1d2939;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.moon-riseset-body {
+  padding: 16px;
+}
+
+.moon-riseset-body h3 {
+  margin-top: 0;
+}

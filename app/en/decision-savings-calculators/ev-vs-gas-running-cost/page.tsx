@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import EnglishEvVsGasRunningCostCalculator from "../../../components/EnglishEvVsGasRunningCostCalculator";
 import StaticPageLayout from "../../../components/StaticPageLayout";
+import { ENGLISH_PAGE_GUIDES } from "../../../i18n/englishHubGuides";
 import { englishDecisionSavingsHubPath } from "../../../i18n/englishDecisionSavingsTools";
 import { SITE_NAME, buildSiteUrl } from "../../../siteConfig";
 
@@ -15,5 +16,5 @@ export const metadata: Metadata = {
 };
 
 export default function EvVsGasRunningCostPage() {
-  return <StaticPageLayout locale="en" breadcrumbAriaLabel="Breadcrumb" breadcrumbs={[{ href: "/en", label: "Home" }, { href: englishDecisionSavingsHubPath, label: "Decision & Savings Calculators" }, { label: "EV vs Gas Running Cost" }]} title="EV vs Gas Running Cost Calculator" description="Estimate annual energy costs and a simple payback period with inputs you can adapt to your vehicle, tariff and location." sections={[{ heading: "Compare your annual running costs", content: <EnglishEvVsGasRunningCostCalculator /> }, { heading: "What this comparison includes", content: <p>It compares energy used over the distance you drive in a year. The optional purchase premium is divided by the annual operating saving to show a simple payback estimate.</p> }, { heading: "What to check before deciding", content: <p>For a fuller ownership comparison, also consider insurance, maintenance, financing, charging access, resale value, taxes and any public-charging fees. You can return to the <Link href={englishDecisionSavingsHubPath}>Decision &amp; Savings Calculators</Link> hub as more focused comparison tools are added.</p> }]} />;
+  return <StaticPageLayout locale="en" breadcrumbAriaLabel="Breadcrumb" breadcrumbs={[{ href: "/en", label: "Home" }, { href: englishDecisionSavingsHubPath, label: "Decision & Savings Calculators" }, { label: "EV vs Gas Running Cost" }]} title="EV vs Gas Running Cost Calculator" description="Estimate annual energy costs and a simple payback period with inputs you can adapt to your vehicle, tariff and location." sections={[{ heading: "Compare your annual running costs", content: <EnglishEvVsGasRunningCostCalculator /> }, { heading: "What this comparison includes", content: <p>It compares energy used over the distance you drive in a year. The optional purchase premium is divided by the annual operating saving to show a simple payback estimate.</p> }, { heading: "What to check before deciding", content: <p>For a fuller ownership comparison, also consider insurance, maintenance, financing, charging access, resale value, taxes and any public-charging fees. You can return to the <Link href={englishDecisionSavingsHubPath}>Decision &amp; Savings Calculators</Link> hub as more focused comparison tools are added.</p> }, ...(ENGLISH_PAGE_GUIDES[pagePath] ?? [])]} />;
 }

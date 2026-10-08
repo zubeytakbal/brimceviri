@@ -6059,12 +6059,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.72,
     })),
     {
-      url: `${baseUrl}/en/biology-calculators`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.74,
-    },
-    {
       url: `${baseUrl}/en/biology-calculators/dna-sequence-helper`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",

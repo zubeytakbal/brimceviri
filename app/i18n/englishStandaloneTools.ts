@@ -495,6 +495,18 @@ export const englishStandaloneTools: EnglishStandaloneTool[] = [
         title: "How are the results ordered?",
         body: "The reference closest in proportion to your entered value appears first, followed by the rest of the comparisons.",
       },
+      {
+        title: "Reference values used",
+        body: "Adult human height 1.7 m; giraffe 5.5 m (adults are roughly 4.3-5.7 m tall); single-deck city bus 12 m; blue whale 25 m (adults are commonly 24-30 m long); football pitch 105 m, the length FIFA recommends; Eiffel Tower 330 m including its antennas; and Istanbul's 15 July Martyrs Bridge 1,560 m in total length.",
+      },
+      {
+        title: "Worked example",
+        body: "A 50 m swimming pool is about 29 adult heights laid end to end (50 / 1.7 ≈ 29.4), two blue whales (50 / 25 = 2) or just under half a football pitch (50 / 105 ≈ 0.48). A 2 km walk is about 6 Eiffel Towers stacked (2,000 / 330 ≈ 6.1).",
+      },
+      {
+        title: "Reading large and small ratios",
+        body: "Ratios below 1 mean your value is shorter than the reference: 0.5 is half as long. For very small lengths, such as millimetres, the human-scale references give tiny ratios; convert to a familiar unit first with the length converter if you need everyday comparisons like the width of a coin or a sheet of paper.",
+      },
     ],
     priority: 0.6,
   },
@@ -518,6 +530,18 @@ export const englishStandaloneTools: EnglishStandaloneTool[] = [
       {
         title: "Are the values exact?",
         body: "The values are approximate averages, intended for illustration and quick comparison rather than final scientific measurement.",
+      },
+      {
+        title: "Reference values used",
+        body: "House cat 4 kg, adult human 70 kg, motorcycle 200 kg, riding horse 500 kg, passenger car 1,500 kg, adult African elephant 6,000 kg and adult blue whale 150,000 kg. Real animals and vehicles vary widely around these averages; an elephant bull can weigh much more than a cow.",
+      },
+      {
+        title: "Worked example",
+        body: "A 1-tonne load (1,000 kg) is about 14 adults (1,000 / 70 ≈ 14.3), two riding horses or two-thirds of a passenger car (1,000 / 1,500 ≈ 0.67). A 40-tonne lorry weighs roughly as much as 27 cars or about a quarter of a blue whale.",
+      },
+      {
+        title: "Mass, not weight on a scale",
+        body: "Values are masses in kilograms. A bathroom scale shows mass by assuming Earth's gravity; on the Moon the same 70 kg person would read about one-sixth of the force but still have a mass of 70 kg.",
       },
     ],
     priority: 0.6,
@@ -773,6 +797,9 @@ export const englishStandaloneTools: EnglishStandaloneTool[] = [
     articleSections: [
       { title: "How are pixels and print size related?", body: "Physical size in inches multiplied by DPI gives the pixel count along one dimension. The calculation can use centimetres or inches for the physical measurement." },
       { title: "What does DPI not determine?", body: "DPI/PPI describes density at a stated physical size. It does not improve image detail, color quality, crop composition or printer capability." },
+      { title: "Common print sizes at 300 DPI", body: "A4 (210 × 297 mm, 8.27 × 11.69 in) needs about 2480 × 3508 pixels. A 6 × 4 in photo needs 1800 × 1200 pixels, and a US letter page (8.5 × 11 in) needs 2550 × 3300 pixels. At 150 DPI, often enough for posters viewed from a distance, each figure halves." },
+      { title: "Worked example", body: "A 4000 × 3000 pixel photo printed at 300 DPI comes out 13.33 × 10 inches (33.9 × 25.4 cm). To print the same photo 60 cm wide, the density would be 4000 / (60 / 2.54) ≈ 169 DPI, which is usually acceptable for a wall print viewed from arm's length." },
+      { title: "DPI or PPI?", body: "PPI (pixels per inch) describes an image or screen; DPI (dots per inch) strictly describes printer dots. Image software and print shops use the two interchangeably when they ask for a 300 DPI file, meaning 300 image pixels per printed inch. Changing the DPI field in an image's metadata alone does not add pixels or detail." },
     ],
     relatedHub: { href: "/en/data-computing-calculators", label: "Data & Computing Calculators" },
     priority: 0.7,
@@ -1339,6 +1366,9 @@ export const englishStandaloneTools: EnglishStandaloneTool[] = [
     articleSections: [
       { title: "HEX, RGB and HSL", body: "HEX writes the red, green and blue channels as three two-digit hexadecimal numbers (#FF5733). RGB gives the same channels as numbers from 0 to 255 (255, 87, 51). HSL describes the color as hue (0–360°), saturation and lightness (%), which is easier for making lighter or darker shades." },
       { title: "How to convert HEX to RGB", body: "Split the six digits into pairs and convert each pair from base 16 to base 10: FF = 255, 57 = 87, 33 = 51. Three-digit shorthand codes double each digit, so #F53 is #FF5533." },
+      { title: "How RGB becomes HSL", body: "Divide each channel by 255. Lightness is the average of the largest and smallest of the three values; saturation measures how far they are apart relative to lightness; hue is the angle on the colour wheel set by which channel is largest (red near 0°, green near 120°, blue near 240°). For #FF5733 the largest channel is red and the smallest blue, giving a hue of about 11°, an orange-red." },
+      { title: "Making lighter and darker shades", body: "Keep hue and saturation and change only lightness: hsl(11, 100%, 60%) becomes a darker hsl(11, 100%, 45%) for a hover state or a lighter hsl(11, 100%, 85%) for a background. Adding transparency is done with an alpha value, as in rgba(255, 87, 51, 0.5) or an eight-digit HEX code such as #FF573380." },
+      { title: "Screen colours and print", body: "HEX, RGB and HSL describe light from a screen. Printers mix inks using CMYK, and some bright screen colours cannot be printed exactly; for print work, ask the printer for their colour profile." },
     ],
     faq: [
       { question: "What is #FF5733 in RGB?", answer: "#FF5733 is rgb(255, 87, 51), or hsl(11, 100%, 60%)." },

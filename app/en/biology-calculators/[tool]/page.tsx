@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { BiologyCoreCalculator } from "../../../components/EnglishScienceCalculators";
 import { StemLimitations, StemMethods, StemWorkedExamples } from "../../../components/StemMethodNotes";
 import StaticPageLayout from "../../../components/StaticPageLayout";
+import { ENGLISH_TOOL_GUIDES } from "../../../i18n/englishToolGuides";
 import { getEnglishScienceToolsBySubject } from "../../../i18n/englishScienceToolCatalog";
 import { SITE_NAME, buildSiteUrl } from "../../../siteConfig";
 
@@ -23,5 +24,5 @@ export default async function BiologyToolPage({ params }: PageProps) {
   const { tool: slug } = await params;
   const tool = slug === "dna-sequence-helper" ? tools[0] : undefined;
   if (!tool) notFound();
-  return <StaticPageLayout locale="en" breadcrumbAriaLabel="Breadcrumb" breadcrumbs={[{ href: "/en", label: "Home" }, { href: "/en/applied-stem", label: "Engineering & STEM Tools" }, { href: "/en/biology-calculators", label: "Biology Calculators" }, { label: tool.title }]} title={tool.title} description={tool.description} sections={[{ heading: "Calculator", content: <BiologyCoreCalculator /> }, { heading: "Method and input format", content: <StemMethods tools={[tool]} /> }, { heading: "Worked example", content: <StemWorkedExamples tools={[tool]} /> }, { heading: "Important limits", content: <StemLimitations tools={[tool]} /> }]} />;
+  return <StaticPageLayout locale="en" breadcrumbAriaLabel="Breadcrumb" breadcrumbs={[{ href: "/en", label: "Home" }, { href: "/en/applied-stem", label: "Engineering & STEM Tools" }, { href: "/en/science-calculators", label: "Science Calculators" }, { label: tool.title }]} title={tool.title} description={tool.description} sections={[{ heading: "Calculator", content: <BiologyCoreCalculator /> }, { heading: "Method and input format", content: <StemMethods tools={[tool]} /> }, { heading: "Worked example", content: <StemWorkedExamples tools={[tool]} /> }, ...(ENGLISH_TOOL_GUIDES[tool.id] ? [{ heading: ENGLISH_TOOL_GUIDES[tool.id].heading, content: ENGLISH_TOOL_GUIDES[tool.id].content }] : []), { heading: "Important limits", content: <StemLimitations tools={[tool]} /> }]} />;
 }

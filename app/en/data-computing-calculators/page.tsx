@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import StaticPageLayout from "../../components/StaticPageLayout";
+import { ENGLISH_HUB_GUIDES } from "../../i18n/englishHubGuides";
 import { SITE_NAME, buildSiteUrl } from "../../siteConfig";
 
 const pagePath = "/en/data-computing-calculators";
@@ -20,5 +21,5 @@ export const metadata: Metadata = { title: `Data & Computing Calculators`, descr
 export default function DataComputingCalculatorsPage() {
   const pageUrl = buildSiteUrl(pagePath);
   const collectionSchema = { "@context": "https://schema.org", "@type": "CollectionPage", name: "Data & Computing Calculators", url: pageUrl, inLanguage: "en-US", mainEntity: { "@type": "ItemList", numberOfItems: tools.length, itemListElement: tools.map((tool, index) => ({ "@type": "ListItem", position: index + 1, name: tool.title, url: buildSiteUrl(tool.href) })) } };
-  return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema).replace(/</g, "\\u003c") }} /><StaticPageLayout locale="en" breadcrumbAriaLabel="Breadcrumb" breadcrumbs={[{ href: "/en", label: "Home" }, { label: "Data & Computing Calculators" }]} title="Data & Computing Calculators" description="Use explicit units and assumptions for practical number, image, video and data-storage calculations." sections={[{ heading: "Available tools", content: <ul className="related-conversion-list">{tools.map((tool) => <li key={tool.href}><Link href={tool.href}>{tool.title}</Link><span> - {tool.description}</span></li>)}</ul> }, { heading: "Bits, bytes and binary prefixes", content: <p>File sizes and transfer rates are easy to confuse: a byte contains eight bits, while storage labels may use decimal GB or binary GiB. Check the stated unit before comparing a file, device or network figure.</p> }]} /></>;
+  return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema).replace(/</g, "\\u003c") }} /><StaticPageLayout locale="en" breadcrumbAriaLabel="Breadcrumb" breadcrumbs={[{ href: "/en", label: "Home" }, { label: "Data & Computing Calculators" }]} title="Data & Computing Calculators" description="Use explicit units and assumptions for practical number, image, video and data-storage calculations." sections={[{ heading: "Available tools", content: <ul className="related-conversion-list">{tools.map((tool) => <li key={tool.href}><Link href={tool.href}>{tool.title}</Link><span> - {tool.description}</span></li>)}</ul> }, { heading: "Bits, bytes and binary prefixes", content: <p>File sizes and transfer rates are easy to confuse: a byte contains eight bits, while storage labels may use decimal GB or binary GiB. Check the stated unit before comparing a file, device or network figure.</p> }, ...(ENGLISH_HUB_GUIDES["/en/data-computing-calculators"] ?? [])]} /></>;
 }

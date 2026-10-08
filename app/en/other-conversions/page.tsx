@@ -126,6 +126,60 @@ export default function EnglishOtherConversionsPage() {
         hrefLang: "tr",
         label: "View the Turkish version",
       }}
-    />
+    >
+      <section className="category-article-content">
+        <h2>Quick reference for technical units</h2>
+        <div className="conversion-table-wrap">
+          <table className="conversion-table">
+            <thead>
+              <tr>
+                <th>Quantity</th>
+                <th>SI unit</th>
+                <th>Common conversion</th>
+                <th>Everyday example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Density</td>
+                <td>kg/m³</td>
+                <td>1 g/cm³ = 1,000 kg/m³</td>
+                <td>Water is about 1,000 kg/m³; steel about 7,850 kg/m³</td>
+              </tr>
+              <tr>
+                <td>Force</td>
+                <td>newton (N)</td>
+                <td>1 lbf = 4.448 N; 1 kgf = 9.807 N</td>
+                <td>Holding a 1 kg bag takes about 9.8 N</td>
+              </tr>
+              <tr>
+                <td>Torque</td>
+                <td>newton metre (N·m)</td>
+                <td>1 lbf·ft = 1.356 N·m</td>
+                <td>Wheel nuts on many cars are tightened to roughly 80-140 N·m (check the handbook)</td>
+              </tr>
+              <tr>
+                <td>Dynamic viscosity</td>
+                <td>pascal second (Pa·s)</td>
+                <td>1 cP = 1 mPa·s</td>
+                <td>Water at 20 °C is about 1 mPa·s</td>
+              </tr>
+              <tr>
+                <td>Momentum</td>
+                <td>kg·m/s</td>
+                <td>1 N·s = 1 kg·m/s</td>
+                <td>A 70 kg runner at 5 m/s has 350 kg·m/s</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          These quantities are derived from the SI base units: a newton is 1 kg·m/s², a pascal is 1 N/m², and a newton metre of torque
+          is a force of one newton acting one metre from the axis. Writing out the base units is a quick way to check that a conversion
+          makes sense: torque in N·m and energy in joules have the same base units but describe different things, so they should not be
+          converted into each other.
+        </p>
+      </section>
+    </OtherCategoriesPage>
   );
 }

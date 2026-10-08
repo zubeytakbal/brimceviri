@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import StaticPageLayout from "../../components/StaticPageLayout";
+import { ENGLISH_HUB_GUIDES } from "../../i18n/englishHubGuides";
 import { englishDecisionSavingsHubPath, englishDecisionSavingsTools } from "../../i18n/englishDecisionSavingsTools";
 import { SITE_NAME, buildSiteUrl } from "../../siteConfig";
 
@@ -32,5 +33,5 @@ export default function DecisionSavingsCalculatorsPage() {
     },
   };
 
-  return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema).replace(/</g, "\\u003c") }} /><StaticPageLayout locale="en" breadcrumbAriaLabel="Breadcrumb" breadcrumbs={[{ href: "/en", label: "Home" }, { label: "Decision & Savings Calculators" }]} title="Decision & Savings Calculators" description="Compare recurring costs using your own prices and assumptions before you make a practical decision." sections={[{ heading: "Available calculators", content: <ul className="related-conversion-list">{englishDecisionSavingsTools.map((tool) => <li key={tool.slug}><Link href={tool.href}>{tool.title}</Link><span> — {tool.description}</span></li>)}</ul> }, { heading: "A careful approach to savings estimates", content: <p>Prices, tariffs, property conditions and personal habits vary by place. These tools show their assumptions in the inputs, so you can replace every cost with your own figure.</p> }]} /></>;
+  return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema).replace(/</g, "\\u003c") }} /><StaticPageLayout locale="en" breadcrumbAriaLabel="Breadcrumb" breadcrumbs={[{ href: "/en", label: "Home" }, { label: "Decision & Savings Calculators" }]} title="Decision & Savings Calculators" description="Compare recurring costs using your own prices and assumptions before you make a practical decision." sections={[{ heading: "Available calculators", content: <ul className="related-conversion-list">{englishDecisionSavingsTools.map((tool) => <li key={tool.slug}><Link href={tool.href}>{tool.title}</Link><span> — {tool.description}</span></li>)}</ul> }, { heading: "A careful approach to savings estimates", content: <p>Prices, tariffs, property conditions and personal habits vary by place. These tools show their assumptions in the inputs, so you can replace every cost with your own figure.</p> }, ...(ENGLISH_HUB_GUIDES["/en/decision-savings-calculators"] ?? [])]} /></>;
 }

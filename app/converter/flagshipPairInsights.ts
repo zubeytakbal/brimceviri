@@ -154,6 +154,15 @@ const insights: Record<string, FlagshipPairInsight> = {
   [pairKey("uzunluk", "m", "cm")]: {
     sectorNote:
       "Terzilik, mühendislik çizimleri ve günlük boy/mesafe ölçümlerinde en sık başvurulan uzunluk dönüşümüdür.",
+    realWorldValues: [
+      { label: "Standart iç kapı yüksekliği", value: 210, anchorUnit: "cm" },
+      { label: "Çalışma masası yüksekliği (tipik)", value: 75, anchorUnit: "cm" },
+      { label: "Yetişkin boyu örneği", value: 1.75, anchorUnit: "m" },
+    ],
+    mistakes: [
+      "Boy yazarken ondalık virgülü karıştırmayın: 1,75 m = 175 cm'dir; \"1,75 cm\" yazmak bir buçuk santimetre demektir.",
+      "Metreden santimetreye 100 ile çarpılır; alan (m² → cm²) çevirirken 10.000 ile çarpılır.",
+    ],
   },
   [pairKey("uzunluk", "cm", "mm")]: {
     sectorNote:
@@ -162,10 +171,85 @@ const insights: Record<string, FlagshipPairInsight> = {
   [pairKey("uzunluk", "km", "m")]: {
     sectorNote:
       "Şehirler arası mesafelerde kilometre, saha/bina ölçümlerinde metre kullanılır.",
+    realWorldValues: [
+      { label: "Atletizm pisti bir tur", value: 400, anchorUnit: "m" },
+      { label: "İstanbul Boğazı'nın en dar yeri (yaklaşık)", value: 700, anchorUnit: "m" },
+      { label: "Maraton", value: 42.195, anchorUnit: "km" },
+    ],
   },
   [pairKey("kutle", "g", "mg")]: {
     sectorNote:
       "Eczacılık ve laboratuvar ölçümlerinde miligram, mutfak tariflerinde gram tercih edilir.",
+    where:
+      "Miligram; ilaç kutularında bir tabletteki etken madde miktarında, gıda takviyelerinin ve besin değeri tablolarının vitamin-mineral satırlarında karşına çıkar. 1 g = 1.000 mg.",
+    mistakes: [
+      "Miligram (mg) ile mikrogram (µg veya mcg) arasında 1.000 kat fark vardır; özellikle vitamin ve ilaç etiketlerinde birimi dikkatle okuyun.",
+      "Eski ABD kaynaklarındaki \"gr\" gram değil, \"grain\" olabilir: 1 grain yaklaşık 64,8 mg'dır.",
+      "İlaç dozları için bu sayfayı değil, ilacın prospektüsünü ve hekim ya da eczacının talimatını esas alın.",
+    ],
+  },
+  [pairKey("guc", "BTU/h", "W")]: {
+    realWorldValues: [
+      { label: "9.000 BTU klima (soğutma kapasitesi)", value: 9000, anchorUnit: "BTU/h" },
+      { label: "12.000 BTU klima", value: 12000, anchorUnit: "BTU/h" },
+      { label: "18.000 BTU klima", value: 18000, anchorUnit: "BTU/h" },
+      { label: "24.000 BTU klima", value: 24000, anchorUnit: "BTU/h" },
+    ],
+    where:
+      "BTU/saat; Türkiye'de en çok klimaların soğutma ve ısıtma kapasitesinde karşına çıkar (\"9.000 BTU klima\" aslında 9.000 BTU/saattir). Teknik kataloglar aynı kapasiteyi kW olarak da verir: 1 BTU/saat ≈ 0,293 W.",
+    mistakes: [
+      "BTU klimanın verdiği soğutma gücüdür, çektiği elektrik değildir: 9.000 BTU (yaklaşık 2,6 kW) bir klima, enerji verimliliğine (EER/SEER) bağlı olarak bunun yaklaşık üçte biri kadar elektrik gücü çeker.",
+      "Klimalardaki \"1 ton\" 12.000 BTU/saat demektir; ağırlıkla ilgisi yoktur.",
+      "Odaya uygun BTU yalnızca metrekareyle değil, cephe, yalıtım, kat ve kişi sayısıyla da değişir; satıcının keşif hesabı daha doğru sonuç verir.",
+    ],
+  },
+  [pairKey("guc", "kW", "W")]: {
+    realWorldValues: [
+      { label: "LED ampul (tipik)", value: 9, anchorUnit: "W" },
+      { label: "Su ısıtıcısı (kettle)", value: 2000, anchorUnit: "W" },
+      { label: "Dizüstü bilgisayar şarj adaptörü (tipik)", value: 65, anchorUnit: "W" },
+    ],
+    mistakes: [
+      "kW güçtür, kWh enerjidir: 2.000 W'lık su ısıtıcısı 6 dakika çalışınca 0,2 kWh harcar.",
+      "Aynı anda çalışan cihazların gücü toplanır; toplam güç sigortanın taşıyabileceğini aşarsa sigorta atar.",
+    ],
+  },
+  [pairKey("elektrik", "A", "mA")]: {
+    realWorldValues: [
+      { label: "Kırmızı LED'in tipik çalışma akımı", value: 20, anchorUnit: "mA" },
+      { label: "Hızlı olmayan telefon şarj aleti (5 V)", value: 2, anchorUnit: "A" },
+      { label: "Evlerde yaygın priz sigortası", value: 16, anchorUnit: "A" },
+    ],
+    mistakes: [
+      "mA akımdır, mAh ise batarya kapasitesidir: 5.000 mAh batarya 500 mA çekilirse yaklaşık 10 saat dayanır.",
+      "Şarj aletindeki A değeri en fazla verebileceği akımdır; cihaz ihtiyacı kadarını çeker.",
+    ],
+  },
+  [pairKey("kuvvet", "kgf", "N")]: {
+    realWorldValues: [
+      { label: "1 kg kütlenin Dünya'daki ağırlığı", value: 1, anchorUnit: "kgf" },
+      { label: "Ortalama bir elmanın ağırlığı (yaklaşık)", value: 1, anchorUnit: "N" },
+    ],
+    where:
+      "Kilogram-kuvvet eski mühendislik belgelerinde, askı ve halat yük sınırlarında ve el dinamometrelerinde; newton ise fizik derslerinde ve güncel teknik belgelerde kullanılır. 1 kgf tam olarak 9,80665 N'dir.",
+    mistakes: [
+      "Kilogram kütledir, kilogram-kuvvet kuvvettir. 1 kg kütle Ay'da da 1 kg'dır, ama ağırlığı yaklaşık 1,6 N'a düşer.",
+      "Kafadan hesapta 1 kgf ≈ 10 N almak %2 fazla verir; hassas hesapta 9,81 kullanın.",
+    ],
+  },
+  [pairKey("aci", "°", "rad")]: {
+    realWorldValues: [
+      { label: "Dik açı", value: 90, anchorUnit: "°" },
+      { label: "Yarım tur", value: 180, anchorUnit: "°" },
+      { label: "Tam tur", value: 360, anchorUnit: "°" },
+      { label: "1 radyan", value: 1, anchorUnit: "rad" },
+    ],
+    where:
+      "Derece günlük hayatta, haritada ve yapıda; radyan ise matematik, fizik ve programlamada (trigonometrik fonksiyonlar) kullanılır. π radyan = 180°, 1 radyan ≈ 57,2958°.",
+    mistakes: [
+      "Hesap makinesinin DEG/RAD modunu kontrol edin: sin 30 derece modunda 0,5, radyan modunda yaklaşık −0,988 çıkar.",
+      "Excel ve çoğu programlama dilinde SIN, COS fonksiyonları radyan bekler; dereceyi önce RADIANS() ya da π/180 ile çevirin.",
+    ],
   },
   [pairKey("kutle", "g", "oz")]: {
     realWorldValues: [

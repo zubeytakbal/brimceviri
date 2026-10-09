@@ -60,6 +60,7 @@ export default function ArabicCategoriesIndexPage() {
               <thead>
                 <tr>
                   <th>الفئة</th>
+                  <th>ماذا تجد فيها</th>
                   <th></th>
                 </tr>
               </thead>
@@ -67,6 +68,7 @@ export default function ArabicCategoriesIndexPage() {
                 {sortedCategories.map((category) => (
                   <tr key={category.slug}>
                     <td>{category.title}</td>
+                    <td>{category.description}</td>
                     <td>
                       <Link className="text-link" href={`/ar/categories/${category.slug}`}>
                         عرض
@@ -77,6 +79,16 @@ export default function ArabicCategoriesIndexPage() {
               </tbody>
             </table>
           </div>
+          <h2>كيف تعمل صفحات الفئات؟</h2>
+          <p>
+            تجمع كل فئة الوحدات التي تقيس الكمية نفسها، مثل الطول أو الكتلة أو الضغط. تُحوَّل القيمة أولًا إلى الوحدة الأساسية في
+            النظام الدولي للوحدات (المتر أو الكيلوغرام أو الباسكال)، ثم إلى الوحدة المطلوبة، ولذلك تبقى النتائج متسقة بين أي وحدتين.
+            مثال: 5 بوصات = 5 × 0.0254 = 0.127 م = 12.7 سم.
+          </p>
+          <p>
+            درجة الحرارة استثناء: بين السلسيوس والفهرنهايت يوجد جمع إلى جانب الضرب (°ف = °م × 1.8 + 32)، لذا فإن فرق 10 درجات
+            مئوية يقابله فرق 18 درجة فهرنهايت وليس 50.
+          </p>
         </section>
       </div>
     </main>

@@ -83,6 +83,38 @@ export default async function GoldPriceCalculatorPage() {
         />
 
         <section className="category-article-content">
+          <h2>كيف يُحسب سعر كل عيار؟</h2>
+          <p>
+            سعر الغرام لأي عيار = سعر غرام الذهب الخالص (عيار 24) × العيار ÷ 24. للتوضيح فقط، إذا افترضنا أن غرام عيار 24 بسعر 100
+            دولار:
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>العيار</th>
+                  <th>نسبة الذهب الخالص</th>
+                  <th>سعر الغرام عند 100 دولار لعيار 24</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[24, 22, 21, 18, 14].map((k) => (
+                  <tr key={k}>
+                    <td>عيار {k}</td>
+                    <td>{((k / 24) * 100).toLocaleString("ar-EG-u-nu-latn", { maximumFractionDigits: 1 })}%</td>
+                    <td>{((100 * k) / 24).toLocaleString("ar-EG-u-nu-latn", { maximumFractionDigits: 2 })} دولار</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <h2>وحدات وزن الذهب</h2>
+          <p>
+            تُسعَّر البورصات العالمية الذهب بالأونصة التروية، وتساوي 31.1035 غرامًا، وهي أثقل من الأونصة العادية (28.35 غرامًا). وفي
+            بعض أسواق الخليج وجنوب آسيا يُستخدم التولة، وتساوي 11.6638 غرامًا. لتحويل سعر الأونصة إلى سعر الغرام اقسمه على 31.1035.
+          </p>
+
           <h2>الأسئلة الشائعة</h2>
           {faqItems.map((item) => (
             <p key={item.question}>

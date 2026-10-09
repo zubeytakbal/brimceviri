@@ -31,7 +31,8 @@ import {
 import type { FaqItem } from "../../converter/faqSchema";
 import { gregorianToHijri, type YMD } from "../../converter/time/calendars";
 import { addDaysYmd, diffDays, ymdKey } from "../../converter/time/dateMath";
-import { moonState, phaseName } from "../../converter/time/moon";
+import { moonPhasesBetween, moonState, phaseName } from "../../converter/time/moon";
+import { sunTimes } from "../../converter/time/solar";
 import TimeToolPage from "../time/TimeToolPage";
 import SaNavigator from "./SaNavigator";
 import SaUmrHijri from "./SaUmrHijri";
@@ -392,6 +393,86 @@ export function saShahrMeta(hy: number, hm: number) {
   };
 }
 
+
+// Mawaqit al-shams fi Makka wa al-Riyad li bidayat al-shahr wa muntasafihi wa nihayatihi (tawqit al-Riyad).
+const MUDUN = [
+  { ism: "مكة المكرمة", lat: 21.4225, lon: 39.8262 },
+  { ism: "الرياض", lat: 24.7136, lon: 46.6753 },
+] as const;
+const saa = (d: Date) => new Intl.DateTimeFormat("ar-SA-u-nu-latn", { hour: "2-digit", minute: "2-digit", hour12: false, timeZone: "Asia/Riyadh" }).format(d);
+const tulNahar = (dk: number) => `${Math.floor(dk / 60)} س ${dk % 60} د`;
+const AWJUH = { new: "المحاق (القمر الجديد)", first: "التربيع الأول", full: "البدر", last: "التربيع الأخير" } as const;
+
+function ShamsWaQamar({ ism, hy, bidaya, nihaya }: { ism: string; hy: number; bidaya: YMD; nihaya: YMD }) {
+  const ayyam = [bidaya, addDaysYmd(bidaya, 14), nihaya];
+  const atwar = moonPhasesBetween(
+    new Date(Date.UTC(bidaya.year, bidaya.month - 1, bidaya.day, -3)),
+    new Date(Date.UTC(nihaya.year, nihaya.month - 1, nihaya.day + 1, -3)),
+  );
+  const awwal = sunTimes(bidaya.year, bidaya.month, bidaya.day, MUDUN[0].lat, MUDUN[0].lon);
+  const akhir = sunTimes(nihaya.year, nihaya.month, nihaya.day, MUDUN[0].lat, MUDUN[0].lon);
+  const farq = awwal.kind === "normal" && akhir.kind === "normal" ? akhir.dayLengthMinutes - awwal.dayLengthMinutes : 0;
+  return (
+    <>
+      <h2 id="shams">
+        الشروق والغروب في شهر {ism} {hy}هـ
+      </h2>
+      <div className="conversion-table-wrap">
+        <table className="conversion-table">
+          <thead>
+            <tr>
+              <th>التاريخ</th>
+              {MUDUN.map((m) => (
+                <th key={m.ism}>{m.ism}: الشروق / الغروب</th>
+              ))}
+              <th>طول النهار في مكة</th>
+            </tr>
+          </thead>
+          <tbody>
+            {ayyam.map((d) => {
+              const makka = sunTimes(d.year, d.month, d.day, MUDUN[0].lat, MUDUN[0].lon);
+              return (
+                <tr key={ymdKey(d)}>
+                  <td>{miladiNass(d)}</td>
+                  {MUDUN.map((m) => {
+                    const t = sunTimes(d.year, d.month, d.day, m.lat, m.lon);
+                    return <td key={m.ism}>{t.kind === "normal" ? `${saa(t.sunrise)} / ${saa(t.sunset)}` : "—"}</td>;
+                  })}
+                  <td>{makka.kind === "normal" ? tulNahar(makka.dayLengthMinutes) : "—"}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+      <p>
+        {farq === 0
+          ? `لا يتغير طول النهار في مكة المكرمة تقريبًا خلال شهر ${ism}.`
+          : `${farq > 0 ? "يطول" : "يقصر"} النهار في مكة المكرمة خلال شهر ${ism} بمقدار ${Math.abs(farq)} دقيقة.`}{" "}
+        الأوقات بتوقيت السعودية (UTC+3) ومحسوبة لأفق مستوٍ؛ وهي أوقات فلكية للشمس وليست مواقيت الصلاة. وتشرق الشمس في الرياض قبل مكة
+        بنحو 20 إلى 35 دقيقة حسب الموسم لأنها تقع إلى الشرق منها.
+      </p>
+
+      <h2 id="qamar">
+        أطوار القمر في شهر {ism} {hy}هـ
+      </h2>
+      <ul>
+        {atwar.map((e) => (
+          <li key={e.date.toISOString()}>
+            <strong>{AWJUH[e.kind]}</strong>:{" "}
+            {new Intl.DateTimeFormat("ar-SA-u-ca-gregory-nu-latn", { weekday: "long", day: "numeric", month: "long", timeZone: "Asia/Riyadh" }).format(e.date)}{" "}
+            الساعة {saa(e.date)}
+          </li>
+        ))}
+      </ul>
+      <p>
+        يبدأ الشهر الهجري برؤية الهلال بعد المحاق، ولذلك يقع البدر عادة في منتصف الشهر الهجري. أوقات الأطوار فلكية محسوبة، أما
+        بداية الشهر الرسمية فتُعلن بعد تحري الرؤية.
+      </p>
+    </>
+  );
+}
+
 export function SaShahr({ hy, hm }: { hy: number; hm: number }) {
   const ism = HIJRI_MONTHS_AR[hm - 1];
   const s = shahrHijri(hy, hm);
@@ -492,6 +573,8 @@ export function SaShahr({ hy, hm }: { hy: number; hm: number }) {
         tocTitle={T.toc}
         tocItems={[
           { id: "munasabat", label: `مناسبات ${ism}` },
+          { id: "shams", label: "الشروق والغروب" },
+          { id: "qamar", label: "أطوار القمر" },
           { id: "faq", label: T.faq },
         ]}
         faqTitle={T.faq}
@@ -505,6 +588,7 @@ export function SaShahr({ hy, hm }: { hy: number; hm: number }) {
         ) : (
           <p>لا توجد في هذا الشهر مناسبة من مناسبات التقويم.</p>
         )}
+        <ShamsWaQamar ism={ism} hy={hy} bidaya={s.bidaya} nihaya={s.nihaya} />
       </TimeToolPage>
     </div>
   );

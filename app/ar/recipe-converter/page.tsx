@@ -12,6 +12,16 @@ export const metadata = buildArabicMetadata({
   germanPath: "/de/rezept-umrechner",
 });
 
+// Wasfa mithal: al-maqadir li 4 ashkhas (tudrab fi 1.5).
+const RECIPE: Array<[string, number, string]> = [
+  ["دقيق", 2, "كوب"],
+  ["سكر", 1, "كوب"],
+  ["بيض", 3, "حبات"],
+  ["حليب", 0.75, "كوب"],
+  ["زبدة", 100, "غرام"],
+  ["بيكنج باودر", 2, "ملعقة صغيرة"],
+];
+
 export default function ArabicRecipeConverterPage() {
   return (
     <main className="all-conversions-page" lang="ar" dir="rtl">
@@ -61,6 +71,49 @@ export default function ArabicRecipeConverterPage() {
               محول مقاييس المطبخ
             </Link>
             .
+          </p>
+        </section>
+
+        <section className="category-article-content">
+          <h2>مثال: كعكة لـ 4 أشخاص تصبح لـ 6</h2>
+          <p>المعامل = 6 ÷ 4 = 1.5، فتُضرب كل كمية في 1.5:</p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>المكوّن</th>
+                  <th>لـ 4 أشخاص</th>
+                  <th>لـ 6 أشخاص</th>
+                </tr>
+              </thead>
+              <tbody>
+                {RECIPE.map(([ism, kamiya, wahda]) => (
+                  <tr key={ism}>
+                    <td>{ism}</td>
+                    <td>
+                      {kamiya} {wahda}
+                    </td>
+                    <td>
+                      {(kamiya * 1.5).toLocaleString("ar-EG-u-nu-latn", { maximumFractionDigits: 2 })} {wahda}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p>
+            الناتج 4.5 بيضات لا يمكن قياسه مباشرة؛ استخدم 4 بيضات كبيرة أو 5 صغيرة، أو أضف إلى 4 بيضات نحو 25 غرامًا من بيضة
+            مخفوقة.
+          </p>
+
+          <h2>حجم الصينية ووقت الخبز</h2>
+          <p>
+            عند تكبير الوصفة يتغير حجم الصينية أيضًا. مساحة الصينية الدائرية تتناسب مع مربع القطر: الانتقال من قالب قطره 20 سم إلى
+            قالب قطره 26 سم يزيد المساحة بنسبة (26 ÷ 20)² ≈ 1.69، أي أنه يناسب وصفة مضروبة في 1.7 تقريبًا بالارتفاع نفسه.
+          </p>
+          <p>
+            وقت الخبز لا يتضاعف مع الكمية؛ ما يحدده هو سماكة العجين. إذا بقيت السماكة نفسها في صينية أكبر فالوقت يبقى قريبًا من
+            الأصلي، أما إذا صار العجين أسمك فخفّض الحرارة قليلًا وأطل الوقت، وتحقق من النضج بعود خشبي.
           </p>
         </section>
 

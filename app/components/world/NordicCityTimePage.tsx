@@ -3,6 +3,8 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import { cityFacts, describeDifference, hourMapping, nearbyCities } from "../../converter/time/cityFacts";
+import { nordicCityDistance } from "../../converter/time/nordicCityDistance";
+import { worldCities } from "../../converter/time/worldCities";
 import type { NordicLocale } from "../../converter/time/nordicWeek";
 import { cityNameNordic, cityPathNordic, countryNameNordic, NORDIC_WORLD_BASE, worldCityPaths } from "../../converter/time/nordicWorld";
 import { differenceMinutes, formatUtcOffset, offsetMinutes } from "../../converter/time/timezones";
@@ -14,6 +16,7 @@ import TimeToolPage from "../time/TimeToolPage";
 import CityLiveClock from "./CityLiveClock";
 
 const HOME_ZONE: Record<NordicLocale, string> = { sv: "Europe/Stockholm", no: "Europe/Oslo", da: "Europe/Copenhagen" };
+const HOME_CITY: Record<NordicLocale, string> = { sv: "stockholm", no: "oslo", da: "copenhagen" };
 
 type Copy = {
   home: string;
@@ -255,6 +258,26 @@ export default function NordicCityTimePage({ locale, city }: { locale: NordicLoc
   const sameZone = diff === 0 && winter === 0 && summer === 0;
   const noon = mapping[12];
   const base = NORDIC_WORLD_BASE[locale];
+  const homeCity = worldCities.find((item) => item.en === HOME_CITY[locale]) ?? city;
+  const distance = nordicCityDistance({
+    locale,
+    name,
+    country,
+    lat: city.lat,
+    lon: city.lon,
+    timeZone: city.timeZone,
+    countryWide: city.countryWide,
+    utcLabel: facts.utcLabel,
+    zoneName: facts.zoneName,
+    homeName: cityNameNordic(locale, homeCity),
+    homeLat: homeCity.lat,
+    homeLon: homeCity.lon,
+    diffMinutes: diff,
+    winterMinutes: winter,
+    summerMinutes: summer,
+    atNine: `${mapping[9].to}${mapping[9].dayNote ? ` (${mapping[9].dayNote})` : ""}`,
+    atEighteen: `${mapping[18].to}${mapping[18].dayNote ? ` (${mapping[18].dayNote})` : ""}`,
+  });
 
   const dstAnswer = facts.observesDst
     ? facts.transition
@@ -317,6 +340,7 @@ export default function NordicCityTimePage({ locale, city }: { locale: NordicLoc
           { id: "tidsskillnad", label: c.diffTitle(name) },
           ...(sameZone ? [] : [{ id: "omvandla", label: c.convertTitle(name) }]),
           { id: "sol", label: c.sunTitle(name) },
+          { id: "avstand", label: distance.title },
           { id: "stader", label: c.moreTitle },
           { id: "faq", label: ui.faqTitle },
         ]}
@@ -417,6 +441,11 @@ export default function NordicCityTimePage({ locale, city }: { locale: NordicLoc
         <p>
           <small>{c.sunNote(name)}</small>
         </p>
+
+        <h2 id="avstand">{distance.title}</h2>
+        {distance.paragraphs.map((paragraph) => (
+          <p key={paragraph.slice(0, 24)}>{paragraph}</p>
+        ))}
 
         <h2 id="stader">{c.moreTitle}</h2>
         <p>

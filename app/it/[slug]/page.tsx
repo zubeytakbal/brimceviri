@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
+import PairPracticeGuide from "../../components/PairPracticeGuide";
 import PairConverter from "../../converter/PairConverter";
 import AllUnitsSection from "../../components/AllUnitsSection";
 import { smartDefaultInput } from "../../converter/smartDefaultInput";
@@ -270,6 +271,8 @@ export default async function ItalianConversionPage({ params }: PageProps) {
             </table>
           </div>
         </section>
+
+        <PairPracticeGuide locale="it" category={page.category} fromUnit={page.fromUnit} toUnit={page.toUnit} fromName={page.fromName} toName={page.toName} />
 
         {fromUnitInfo && (
           <section className="conversion-section unit-information">

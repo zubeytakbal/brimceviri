@@ -60,12 +60,12 @@ const copyByLocale: Record<SupportedLocale, MovingBoxCopy> = {
     note: (label) =>
       `Bu raqamlar ko'chirish sohasida ${label} uylar uchun ishlatiladigan o'rtacha taxminlardir; buyumlaringiz miqdoriga qarab o'zgarishi mumkin.`,
     homeTypeLabels: {
-      studio: "Studiya",
-      "1+1": "1 xonali",
-      "2+1": "2 xonali",
-      "3+1": "3 xonali",
-      "4+1": "4 xonali",
-      "5+1": "5 xonali va undan ko'p",
+      studio: "Studiya (bitta xona)",
+      "1+1": "2 xonali (yotoqxona + mehmonxona)",
+      "2+1": "3 xonali",
+      "3+1": "4 xonali",
+      "4+1": "5 xonali",
+      "5+1": "6 xonali va undan katta",
     },
   },
   de: {

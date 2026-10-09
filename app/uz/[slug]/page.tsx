@@ -38,6 +38,7 @@ import {
   findUzbekStandaloneToolBySlug,
   type UzbekStandaloneToolComponentKey,
 } from "../../i18n/uzbekStandaloneTools";
+import { UZBEK_TOOL_GUIDES } from "../../i18n/uzbekToolGuides";
 import { buildSiteUrl } from "../../siteConfig";
 import { unitGlossaryHref } from "../../converter/unitGlossary";
 
@@ -238,6 +239,7 @@ function UzbekStandaloneTool({
               <p>{section.body}</p>
             </div>
           ))}
+          {UZBEK_TOOL_GUIDES[tool.slug]}
         </section>
       </div>
     </main>

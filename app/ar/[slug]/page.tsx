@@ -35,6 +35,10 @@ import {
   findArabicStandaloneToolBySlug,
   type ArabicStandaloneToolComponentKey,
 } from "../../i18n/arabicStandaloneTools";
+import {
+  findArabicToolGuide,
+  type ArabicGuideBlock,
+} from "../../i18n/arabicStandaloneToolGuides";
 import { buildFullLanguageAlternates } from "../../i18n/routing";
 import {
   buildArabicConversionFormula,
@@ -181,6 +185,62 @@ export async function generateMetadata({
   };
 }
 
+function renderGuideBlock(block: ArabicGuideBlock, index: number) {
+  switch (block.type) {
+    case "paragraph":
+      return <p key={index}>{block.text}</p>;
+    case "steps":
+      return (
+        <ol key={index}>
+          {block.items.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ol>
+      );
+    case "list":
+      return (
+        <ul key={index}>
+          {block.items.map((item) => (
+            <li key={item.term}>
+              <strong>{item.term}:</strong> {item.text}
+            </li>
+          ))}
+        </ul>
+      );
+    case "table":
+      return (
+        <div className="conversion-table-wrap" key={index}>
+          <table className="conversion-table">
+            <thead>
+              <tr>
+                {block.headers.map((header) => (
+                  <th key={header} scope="col">
+                    {header}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {block.rows.map((row) => (
+                <tr key={row.join("|")}>
+                  {row.map((cell, cellIndex) => (
+                    <td key={cellIndex}>{cell}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+    case "notice":
+      return (
+        <p className="engineering-note-box" key={index}>
+          {block.text}
+        </p>
+      );
+  }
+}
+
 function renderStandaloneToolPage(slug: string) {
   const tool = findArabicStandaloneToolBySlug(slug);
 
@@ -188,6 +248,7 @@ function renderStandaloneToolPage(slug: string) {
     return null;
   }
 
+  const guide = findArabicToolGuide(tool.slug);
   const ToolComponent = componentMap[tool.component];
   const pageUrl = buildSiteUrl(tool.arabicPath);
   const breadcrumbSchema = {
@@ -224,6 +285,15 @@ function renderStandaloneToolPage(slug: string) {
         }}
       />
 
+      {guide?.faq ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: serializeJsonLd(buildFaqSchema(guide.faq)),
+          }}
+        />
+      ) : null}
+
       <div className="all-conversions-shell">
         <nav className="breadcrumbs" aria-label="مسار الصفحة">
           <Link href="/ar">الرئيسية</Link>
@@ -247,12 +317,46 @@ function renderStandaloneToolPage(slug: string) {
               <p>{section.body}</p>
             </div>
           ))}
+          {guide?.sections.map((section) => (
+            <div key={section.title}>
+              <h2>{section.title}</h2>
+              {section.blocks.map(renderGuideBlock)}
+            </div>
+          ))}
+          {guide?.faq ? (
+            <div>
+              <h2>أسئلة شائعة</h2>
+              {guide.faq.map((item) => (
+                <div key={item.question}>
+                  <h3>{item.question}</h3>
+                  <p>{item.answer}</p>
+                </div>
+              ))}
+            </div>
+          ) : null}
+          {guide?.sources ? (
+            <div>
+              <h2>المصادر</h2>
+              <ul>
+                {guide.sources.map((source) => (
+                  <li key={source.url}>
+                    <a href={source.url} target="_blank" rel="noreferrer">
+                      {source.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
           {tool.slug === "age-calculator" ? (
             <div>
               <h2>قد يهمك أيضًا</h2>
               <ul>
                 <li>
                   <Link href="/ar/hijri-age-calculator">حساب العمر بالهجري والميلادي (أم القرى)</Link>
+                </li>
+                <li>
+                  <Link href="/ar/hijri-date-converter">محول التاريخ الهجري الميلادي</Link>
                 </li>
                 <li>
                   <Link href="/ar/calendar">التاريخ الهجري اليوم</Link>

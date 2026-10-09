@@ -45,6 +45,10 @@ Statik sitede sunucu olmadığı için yeni bir özellik eklerken API route, `re
 - Aynı kelimede İskandinav ve Türkçe harfler karışmamalı.
 - Bir dilin bölümüne yeni çevrilmemiş İngilizce metin eklenmemeli. Bugün var olan çevrilmemiş metinler `englishBaseline.json` dosyasında listelidir; bu liste yalnızca küçülmeli. Bir metni çevirdikten sonra listeyi `UPDATE_I18N_BASELINE=1 npx vitest run tests/i18n` ile güncelleyin.
 
+## İçerik kalitesi
+
+Sayfa sayısı artırılmaz, var olan sayfalar iyileştirilir. Standart ve iyileştirme akışı `docs/icerik-kalite-standardi.md` dosyasındadır. `npm run build` sonunda ince sayfa, şablon kopyası ve içerik kalite denetimleri çalışır; `npm run quality` en zayıf sayfaların öncelik listesini verir.
+
 ## Birim eklerken
 
 `unitRegistry.ts` dosyasına yeni birim eklerken `siFactor` değerine yuvarlanmış bir sayı değil, tanımdaki kesin değer yazılmalıdır (örneğin US galon = `0.003785411784` m³). `tests/convert.test.ts` testleri id ve sembol çakışmalarını, geçersiz katsayıları ve gidiş-dönüş çevrim hatalarını otomatik olarak yakalar.

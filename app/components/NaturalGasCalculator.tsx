@@ -37,7 +37,7 @@ const copyByLocale: Record<SupportedLocale, NaturalGasCopy> = {
   },
   uz: {
     fieldConsumption: "Sarf (m³)",
-    fieldPrice: "Birlik Narxi (EUR/m³)",
+    fieldPrice: "Birlik Narxi (so'm/m³)",
     emptyState: "Natijani ko'rish uchun to'g'ri sarf va narx kiriting.",
     resultTotalCost: "Jami Xarajat",
     resultEnergy: "Taxminiy Energiya Ekvivalenti",
@@ -69,6 +69,10 @@ function formatCurrency(value: number, locale: SupportedLocale) {
   const formatted = formatLocalizedNumber(value, locale, {
     maximumFractionDigits: 2,
   });
+
+  if (locale === "uz") {
+    return `${formatted} so'm`;
+  }
 
   return locale === "tr" ? `${formatted} ₺` : `${formatted} EUR`;
 }

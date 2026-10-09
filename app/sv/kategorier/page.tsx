@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import { swedishCategoryPages } from "../../converter/localizedSwedishCategoryPages";
+import DirectoryGuide from "../../components/DirectoryGuide";
+import { CATEGORY_DIRECTORY_GUIDES } from "../../i18n/categoryDirectoryGuides";
 import { buildSiteUrl } from "../../siteConfig";
 
 export const metadata: Metadata = {
@@ -71,6 +73,8 @@ export default function SwedishCategoriesIndexPage() {
             </table>
           </div>
         </section>
+
+        <DirectoryGuide guide={CATEGORY_DIRECTORY_GUIDES.sv} />
       </div>
     </main>
   );

@@ -12,10 +12,13 @@
 //    grubu varsa build'i durdurur.
 // 5. Ince sayfa denetimi (scripts/thinGuard.ts): dizine acik yeni bir sayfanin
 //    metni cok kisaysa build'i durdurur.
+// 6. Icerik kalite denetimi (scripts/qualityGuard.ts): ozgun metin, link orani,
+//    baslik yapisi ve meta bilgisinde yeni bir kusur varsa build'i durdurur.
 import { existsSync, readdirSync, readFileSync, unlinkSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { LOCALE_DEFINITIONS } from "../app/i18n/config";
 import { siteRedirects } from "../app/siteRedirects";
+import { checkQuality, OZGUN_HEDEF, writeBaseline } from "./qualityGuard";
 import { checkTemplates } from "./templateGuard";
 import { checkThinPages, MIN_KARAKTER } from "./thinGuard";
 
@@ -109,3 +112,24 @@ if (thin.failed.length) {
   process.exit(1);
 }
 console.log(`İnce sayfa denetimi geçti (${thin.pending} sayfa düzeltme bekliyor)`);
+
+// 6. İçerik kalite denetimi: listede olmayan yeni bir kalite kusuru build'i durdurur.
+const quality = checkQuality(OUT);
+if (quality.failed.length) {
+  for (const { page, yeni } of quality.failed) {
+    console.error(
+      `Kalite kusuru: ${page.url} [${yeni.join(", ")}] (özgün metin ${page.uniqueChars}/${OZGUN_HEDEF}, link %${Math.round(page.linkRatio * 100)}, h1 ${page.h1}, h2 ${page.h2})`,
+    );
+  }
+  console.error("Ayrıntılar ve düzeltme yolu: docs/icerik-kalite-standardi.md");
+  process.exit(1);
+}
+if (quality.fixed && process.env.UPDATE_QUALITY_BASELINE === "1") {
+  writeBaseline(quality.next);
+  console.log(`Kalite listesi güncellendi: ${quality.fixed} kusur listeden çıkarıldı`);
+} else if (quality.fixed) {
+  console.warn(
+    `Kalite denetimi: ${quality.fixed} kusur düzeltildi. Listeyi küçültmek için: UPDATE_QUALITY_BASELINE=1 npx tsx scripts/postbuild.ts`,
+  );
+}
+console.log(`Kalite denetimi geçti (${quality.pending} kusur düzeltme bekliyor)`);

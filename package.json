@@ -7,6 +7,7 @@
     "build": "next build --webpack",
     "postbuild": "tsx scripts/postbuild.ts",
     "start": "npx serve out",
+    "quality": "tsx scripts/qualityReport.ts",
     "lint": "eslint",
     "test": "vitest run",
     "test:watch": "vitest"

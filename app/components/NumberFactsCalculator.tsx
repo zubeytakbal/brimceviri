@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { getNumberFacts, type NumberFactsLocale } from "../converter/numberFacts";
+import { formatLocalizedNumber } from "../i18n/toolLocales";
 
 type NumberFactsCalculatorProps = {
   initialNumber: number;
@@ -77,9 +78,8 @@ function formatNumber(value: number, locale: NumberFactsLocale, maxFractionDigit
     return "—";
   }
 
-  return value.toLocaleString(locale === "uz" ? "uz-UZ" : "tr-TR", {
-    maximumFractionDigits: maxFractionDigits,
-  });
+  if (locale === "uz") return formatLocalizedNumber(value, "uz", { maximumFractionDigits: maxFractionDigits });
+  return value.toLocaleString("tr-TR", { maximumFractionDigits: maxFractionDigits });
 }
 
 export default function NumberFactsCalculator({

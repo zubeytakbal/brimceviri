@@ -74,6 +74,26 @@ export default function UzbekContactPage() {
             </>
           ),
         },
+        {
+          heading: "Xato haqida xabar berishda",
+          content: (
+            <ul>
+              <li>sahifaning to&apos;liq manzili,</li>
+              <li>kiritgan qiymatlaringiz va ko&apos;rgan natija,</li>
+              <li>kutgan natijangiz va iloji bo&apos;lsa uning manbasi,</li>
+              <li>muammo texnik bo&apos;lsa, brauzer va qurilma.</li>
+            </ul>
+          ),
+        },
+        {
+          heading: "Tillar",
+          content: (
+            <p>
+              O&apos;zbek, turk yoki ingliz tilida yozishingiz mumkin. Qiymat va hisoblash xatolari haqidagi xabarlar ko&apos;rib
+              chiqiladi va xato tasdiqlansa, tegishli sahifada tuzatiladi.
+            </p>
+          ),
+        },
       ]}
       alternateLink={{
         href: "/iletisim",

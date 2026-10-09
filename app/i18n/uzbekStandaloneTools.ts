@@ -101,6 +101,18 @@ export const uzbekStandaloneTools: UzbekStandaloneTool[] = [
         title: "Sahifada yana nima ko'rsatiladi?",
         body: "Aniq farq bilan birga, jami kun, hafta va oy soni, shuningdek keyingi yil to'lish sanasi ham ko'rinadi.",
       },
+      {
+        title: "Hisoblangan misol",
+        body: "1990-yil 15-martda tug'ilgan odam 2026-yil 9-oktyabrda 36 yosh 6 oy 24 kunlik bo'ladi, ya'ni 13 357 kun. Avval to'liq yillar, keyin to'liq oylar, so'ng qolgan kunlar hisoblanadi.",
+      },
+      {
+        title: "Kabisa yillari",
+        body: "Kabisa yillaridagi qo'shimcha kunlar avtomatik hisobga olinadi. 29-fevralda tug'ilganlar kabisa bo'lmagan yillarda 28-fevral o'tgach yangi yoshga to'ladi.",
+      },
+      {
+        title: "Ikki sana orasidagi muddat",
+        body: "Kalkulyator istalgan ikki sana orasidagi muddatni ham hisoblaydi: 2026-yil 1-sentyabrdan 2027-yil 30-iyungacha 9 oy 29 kun (302 kun). Shartnoma yoki o'qish muddatini hisoblashda qulay.",
+      },
     ],
     priority: 0.75,
   },
@@ -124,6 +136,18 @@ export const uzbekStandaloneTools: UzbekStandaloneTool[] = [
       {
         title: "Sof va jami summa orasidagi farq nima?",
         body: "Sof summa — soliqdan oldingi narx; jami summa esa soliq qo'shilgandan keyingi yakuniy narx.",
+      },
+      {
+        title: "O'zbekistonda QQS stavkasi",
+        body: "2023-yil 1-yanvardan boshlab O'zbekistonda qo'shilgan qiymat solig'ining umumiy stavkasi 12% (avval 15% edi). Ayrim tovar va xizmatlar soliqdan ozod qilingan bo'lishi mumkin, aniq holatlar uchun Soliq qo'mitasi ma'lumotlariga qarang.",
+      },
+      {
+        title: "QQS ichidagi narxdan soliqni ajratish",
+        body: "Foizni to'g'ridan-to'g'ri ayirib bo'lmaydi. QQS bilan 1 120 000 so'mlik narxda soliqsiz narx 1 120 000 ÷ 1,12 = 1 000 000 so'm, QQS esa 120 000 so'm. 1 120 000 dan 12% ni ayirish 985 600 so'm beradi, bu xato.",
+      },
+      {
+        title: "Qo'shish misoli",
+        body: "QQSsiz 2 500 000 so'mlik hisob-faktura: soliq 2 500 000 × 0,12 = 300 000 so'm, jami 2 800 000 so'm.",
       },
     ],
     priority: 0.75,
@@ -149,6 +173,18 @@ export const uzbekStandaloneTools: UzbekStandaloneTool[] = [
         title: "Nega faollik darajasi ko'rsatiladi?",
         body: "Chunki kunlik energiya sarfi faqat vazn va bo'yga bog'liq emas — qancha harakat qilishingiz ham unga ta'sir qiladi.",
       },
+      {
+        title: "JSST tasnifi (kattalar uchun)",
+        body: "18,5 dan past: vazn yetishmasligi. 18,5–24,9: normal vazn. 25–29,9: ortiqcha vazn. 30 va undan yuqori: semizlik. Bolalar va o'smirlar uchun yosh va jinsga qarab o'sish jadvallari ishlatiladi.",
+      },
+      {
+        title: "Hisoblangan misol",
+        body: "Vazn 70 kg, bo'y 1,75 m: indeks = 70 ÷ (1,75 × 1,75) ≈ 22,9, normal oraliqda. 1,70 m bo'y uchun normal vazn taxminan 53,5 dan 72 kg gacha.",
+      },
+      {
+        title: "Indeksning chegaralari",
+        body: "Indeks mushak va yog'ni ajratmaydi, sportchilarda yuqori chiqishi mumkin, homilador ayollar uchun mos emas. Sog'liq bo'yicha xulosa uchun shifokorga murojaat qiling.",
+      },
     ],
     priority: 0.75,
   },
@@ -172,6 +208,18 @@ export const uzbekStandaloneTools: UzbekStandaloneTool[] = [
       {
         title: "Natijadan qanday foydalaniladi?",
         body: "Chiqqan sonni ta'minotchingizdagi qutidagi dona soniga solishtirib, taxminan nechta quti kerakligini bilib olishingiz mumkin.",
+      },
+      {
+        title: "Kvadrat metrda nechta plitka?",
+        body: "60 × 60 sm: taxminan 2,78 dona. 30 × 60 sm: 5,56 dona. 45 × 45 sm: 4,94 dona. 20 × 20 sm: 25 dona. Son = 1 ÷ bitta plitka maydoni (m²).",
+      },
+      {
+        title: "Hisoblangan misol",
+        body: "4 × 5 m pol maydoni 20 m². 10% chiqindi bilan 22 m². 60 × 60 sm plitka 0,36 m², shuning uchun 22 ÷ 0,36 = 61,1, ya'ni yuqoriga yaxlitlab 62 dona. Qutidagi plitkalar soniga bo'lib, qutilar sonini toping.",
+      },
+      {
+        title: "Chiqindini qachon oshirish kerak?",
+        body: "Diagonal (45°) yotqizishda, noto'g'ri shakldagi xonalarda yoki naqshli plitkada chiqindini 15% va undan ko'proq oling. Plitkani bitta partiyadan sotib oling, chunki partiyalar orasida rang tusi farq qilishi mumkin.",
       },
     ],
     priority: 0.7,
@@ -197,6 +245,18 @@ export const uzbekStandaloneTools: UzbekStandaloneTool[] = [
         title: "Natija yakuniymi?",
         body: "Natija dastlabki rejalashtirish uchun mos, ammo haqiqiy qurilish qurilish usuli, joy sharoiti va devor turiga qarab farq qilishi mumkin.",
       },
+      {
+        title: "Hisoblangan misol: oddiy g'isht",
+        body: "250 × 120 × 65 mm o'lchamli g'isht yarim g'isht qalinlikdagi devorda 25 × 6,5 sm yuzasi bilan yotadi. 1 sm qorishma bilan bitta g'isht devorda (0,26 × 0,075) m² joy egallaydi, ya'ni 1 m² ga taxminan 51 dona. 4 × 3 m devor (12 m²) uchun 12 × 51,3 ≈ 616 dona, 5% chiqindi bilan taxminan 647 dona kerak.",
+      },
+      {
+        title: "Nega qorishma qalinligi hisobga olinadi?",
+        body: "Har bir g'isht devorda o'z yuzasi va choklarning yarmini egallaydi. Qorishmani hisobga olmaslik kerakli sonni ortiqcha ko'rsatadi, ayniqsa mayda g'ishtlarda.",
+      },
+      {
+        title: "Kalkulyator nimani hisoblamaydi?",
+        body: "Qorishma miqdori, beton ustunlar va to'sinlar hisobga olinmaydi. Hisoblashdan oldin eshik va deraza maydonini devor maydonidan ayiring.",
+      },
     ],
     priority: 0.7,
   },
@@ -220,6 +280,18 @@ export const uzbekStandaloneTools: UzbekStandaloneTool[] = [
       {
         title: "Bu vosita yetarlimi?",
         body: "Bu yaxshi boshlang'ich yo'l ko'rsatuvchi, ammo shifokorga tashrif buyurish yoki tasdiqlangan tibbiy kuzatuvning o'rnini bosmaydi.",
+      },
+      {
+        title: "Tug'ish sanasi qanday hisoblanadi?",
+        body: "Oxirgi hayz kunining birinchi kuniga 280 kun (40 hafta) qo'shiladi. Masalan, oxirgi hayz 2026-yil 1-yanvarda boshlangan bo'lsa, taxminiy sana 2026-yil 8-oktyabr. 37 va 42 haftalar orasidagi tug'ilish o'z vaqtida hisoblanadi.",
+      },
+      {
+        title: "Uch trimestr",
+        body: "Birinchi trimestr 13-hafta oxirigacha, ikkinchisi 14-haftadan 27-hafta oxirigacha, uchinchisi 28-haftadan tug'ilishgacha.",
+      },
+      {
+        title: "Sana qachon o'zgaradi?",
+        body: "Erta ultratovush tekshiruvi o'lchovi hayz bo'yicha hisobdan sezilarli farq qilsa, shifokor taxminiy sanani o'zgartirishi mumkin. Birinchi trimestrdagi tekshiruv homiladorlik muddatini aniqlashda eng aniq usul hisoblanadi.",
       },
     ],
     priority: 0.75,
@@ -245,6 +317,18 @@ export const uzbekStandaloneTools: UzbekStandaloneTool[] = [
         title: "Natijalar qanday tartiblangan?",
         body: "Kiritilgan qiymatga nisbat jihatidan eng yaqin ma'lumotnoma birinchi bo'lib chiqadi, undan keyin qolgan solishtirishlar keladi.",
       },
+      {
+        title: "Ishlatiladigan solishtirma qiymatlar",
+        body: "Katta yoshli odam bo'yi 1,7 m, jirafa 5,5 m, shahar avtobusi 12 m, ko'k kit 25 m, futbol maydoni 105 m (FIFA tavsiya qilgan uzunlik), antennasi bilan Eyfel minorasi 330 m va Istanbuldagi 15-iyul shahidlari ko'prigi 1 560 m.",
+      },
+      {
+        title: "Hisoblangan misol",
+        body: "50 m lik suzish havzasi taxminan 29 ta odam bo'yiga (50 ÷ 1,7 ≈ 29,4), ikkita ko'k kitga yoki yarim futbol maydonidan sal kamroqqa teng. 2 km masofa taxminan 6 ta ustma-ust Eyfel minorasiga teng.",
+      },
+      {
+        title: "Nisbatlarni o'qish",
+        body: "1 dan kichik nisbat sizning qiymatingiz solishtirma ob'ektdan qisqa ekanini bildiradi: 0,5 yarmi demakdir. Juda kichik uzunliklar uchun avval uzunlik konvertori bilan tanish birlikka o'tkazing.",
+      },
     ],
     priority: 0.6,
   },
@@ -268,6 +352,18 @@ export const uzbekStandaloneTools: UzbekStandaloneTool[] = [
       {
         title: "Qiymatlar aniqmi?",
         body: "Qiymatlar taxminiy o'rtacha ko'rsatkichlar bo'lib, yakuniy ilmiy o'lchov emas, balki tasvirlash va tezkor solishtirish uchun mo'ljallangan.",
+      },
+      {
+        title: "Ishlatiladigan solishtirma qiymatlar",
+        body: "Uy mushugi 4 kg, katta yoshli odam 70 kg, mototsikl 200 kg, minish oti 500 kg, yengil avtomobil 1 500 kg, katta yoshli Afrika fili 6 000 kg va katta ko'k kit 150 000 kg. Bular o'rtacha taxminiy qiymatlar, haqiqiy vaznlar ancha farq qiladi.",
+      },
+      {
+        title: "Hisoblangan misol",
+        body: "1 tonna (1 000 kg) yuk taxminan 14 ta kattaga (1 000 ÷ 70 ≈ 14,3), ikkita otga yoki yengil avtomobilning uchdan ikki qismiga teng. 40 tonnalik yuk mashinasi taxminan 27 ta avtomobil yoki ko'k kitning chorak qismiga teng.",
+      },
+      {
+        title: "Massa, kuch emas",
+        body: "Qiymatlar kilogrammdagi massadir. Oyda tarozi taxminan oltidan bir kuchni ko'rsatadi, lekin odamning massasi baribir 70 kg bo'lib qoladi.",
       },
     ],
     priority: 0.6,
@@ -341,6 +437,18 @@ export const uzbekStandaloneTools: UzbekStandaloneTool[] = [
         title: "Nega elektr narxi ixtiyoriy?",
         body: "Narxsiz ham sarfni bilishdan foyda olishingiz mumkin, keyin xarajatni baholash uchun o'z tarifingizni qo'shishingiz mumkin.",
       },
+      {
+        title: "Formula",
+        body: "Iste'mol (kVt·soat) = quvvat (Vt) × ishlash soati ÷ 1 000. Narx = iste'mol × hisobingizdagi 1 kVt·soat narxi.",
+      },
+      {
+        title: "Oylik misollar (30 kun)",
+        body: "1,5 kVt konditsioner kuniga 8 soat: 1,5 × 8 × 30 = 360 kVt·soat. 10 Vt LED lampa kuniga 6 soat: 10 × 6 × 30 ÷ 1 000 = 1,8 kVt·soat. 2 000 Vt suv isitgich kuniga 2 soat: 120 kVt·soat.",
+      },
+      {
+        title: "Nega hisob farq qiladi?",
+        body: "Qurilmadagi quvvat eng yuqori qiymat; muzlatgich va konditsioner uzilib-uzilib ishlaydi, shuning uchun haqiqiy iste'mol to'liq quvvat bo'yicha hisobdan kam bo'ladi. Ba'zi tariflar iste'mol hajmiga qarab bosqichma-bosqich narxlanadi.",
+      },
     ],
     priority: 0.75,
   },
@@ -364,6 +472,18 @@ export const uzbekStandaloneTools: UzbekStandaloneTool[] = [
       {
         title: "Tavsiya etilgan variant nimani anglatadi?",
         body: "Bu voyaga yetganlar uchun keng tan olingan sog'lom uyqu oralig'iga eng yaqin variant bo'lib, qat'iy qoida emas, amaliy ma'lumotnoma sifatida taklif qilinadi.",
+      },
+      {
+        title: "Hisob qanday ishlaydi?",
+        body: "Kalkulyator uyqu sikli taxminan 90 daqiqa va uxlab qolish uchun 15 daqiqa kerak deb hisoblaydi, keyin to'liq sikl tugaydigan vaqtlarni taklif qiladi, shunda siz yengilroq uyqu bosqichida uyg'onasiz.",
+      },
+      {
+        title: "Hisoblangan misol",
+        body: "Ertalab 6:30 da turish uchun 5 sikl (7,5 soat) bilan kechki 22:45 da, 6 sikl (9 soat) bilan 21:15 da yoting. 7:00 da turish uchun: 23:15 yoki 21:45.",
+      },
+      {
+        title: "Eslatma",
+        body: "Uyqu sikli odamdan odamga va kechadan kechaga farq qiladi, shuning uchun vaqtlar taxminiy. Ko'pchilik kattalarga 7–9 soat uyqu kerak; uyqusizlik yoki kunduzgi uyquchanlik davom etsa, shifokorga murojaat qiling.",
       },
     ],
     priority: 0.75,
@@ -413,6 +533,18 @@ export const uzbekStandaloneTools: UzbekStandaloneTool[] = [
         title: "Natijadan qanday foydalaniladi?",
         body: "Kerakli jami maydonni ta'minotchingizdagi bitta paket qamrovi bilan solishtirib, aynan nechta paket kerakligini bilib olasiz.",
       },
+      {
+        title: "Hisoblangan misol: 3,6 × 4,2 m xona",
+        body: "Xona maydoni 15,12 m². 10% chiqindi bilan 16,63 m². Qadoqda 2,22 m² bo'lsa: 16,63 ÷ 2,22 = 7,49, yuqoriga yaxlitlab 8 qadoq. Plintus uchun perimetr 2 × (3,6 + 4,2) = 15,6 m, 0,9 m eshikni ayirsak 14,7 m.",
+      },
+      {
+        title: "Diagonal yotqizish",
+        body: "Diagonal yoki «archa» usulida kesish chiqindisi ko'payadi, shuning uchun chiqindi odatda 15% va undan yuqori olinadi.",
+      },
+      {
+        title: "Yotqizishdan oldin",
+        body: "Bir xil partiya raqamidagi qadoqlarni oling, chunki partiyalar orasida tus farqi bo'lishi mumkin. Devor bo'yidagi kengayish oralig'i va qadoqlarni xonada qancha ushlab turish kerakligi ishlab chiqaruvchiga bog'liq, qadoqdagi ko'rsatmaga amal qiling.",
+      },
     ],
     priority: 0.7,
   },
@@ -461,6 +593,18 @@ export const uzbekStandaloneTools: UzbekStandaloneTool[] = [
         title: "Yuk mashinasi hajmi nima uchun kerak?",
         body: "Bu ko'chish mashinasi yoki furgon o'lchamini tanlashdan oldin solishtirish uchun boshlang'ich nuqta beradi.",
       },
+      {
+        title: "Hisoblangan misol: 2+1 xonadon",
+        body: "Jadvalga ko'ra 2+1 uy uchun taxminan 28 ta kichik va 18 ta katta, jami 46 ta quti va 18 m³ mashina hajmi kerak. Kitoblar ko'p bo'lsa, kichik qutilar sonini oshiring: kitoblar katta qutiga solinsa, ko'tarib bo'lmaydigan darajada og'irlashadi.",
+      },
+      {
+        title: "Qaysi narsa qaysi qutiga?",
+        body: "Kichik quti: kitob, idish-tovoq, asboblar kabi kichik, lekin og'ir narsalar. Katta quti: yostiq, ko'rpa, kiyim kabi yengil, lekin hajmli narsalar. Mebel va maishiy texnika quti soniga kirmaydi, lekin mashina hajmida hisobga olingan.",
+      },
+      {
+        title: "Qadoqlash tartibi",
+        body: "Mavsumdan tashqari kiyim va kitoblarni bir necha kun oldin qadoqlang. Ko'chish kuni kerak bo'ladigan narsalarni (hujjatlar, zaryadlagichlar, dorilar) alohida sumkada saqlang. Har bir qutiga xona nomini yozing.",
+      },
     ],
     priority: 0.65,
   },
@@ -484,6 +628,18 @@ export const uzbekStandaloneTools: UzbekStandaloneTool[] = [
       {
         title: "Bu qachon foydali?",
         body: "Gaz hisob-fakturasini boshqa energiya manbalari bilan solishtirishda yoki hisob-kitob davri tugashidan oldin xarajatni baholashda yordam beradi.",
+      },
+      {
+        title: "Kub metrdan kilovatt-soatga",
+        body: "Kalkulyator 1 m³ tabiiy gaz uchun taxminan 10,55 kVt·soat issiqlik qiymatidan foydalanadi. Haqiqiy qiymat gaz tarkibiga qarab o'zgaradi. Misol: oyiga 120 m³ sarf ≈ 1 266 kVt·soat energiya.",
+      },
+      {
+        title: "Qishki sarf misoli",
+        body: "Agar uy qishda kuniga 6 m³ gaz sarflasa, 30 kunda 180 m³ bo'ladi. Narxni hisoblash uchun bu miqdorni o'z tarifingizdagi 1 m³ narxiga ko'paytiring.",
+      },
+      {
+        title: "Sarfni kamaytirish",
+        body: "Termostatni 1 °C pastga tushirish, eshik va derazalardagi tirqishlarni yopish va radiatorlar orqasiga issiqlik qaytaruvchi qatlam qo'yish qishki gaz sarfini kamaytiradi. Natija uyning izolyatsiyasiga bog'liq.",
       },
     ],
     priority: 0.65,

@@ -8,25 +8,8 @@ import { join, relative } from "node:path";
 
 export const MIN_KARAKTER = 800;
 
-/** Henüz zenginleştirilmemiş sayfalar (zayıf içerik planı, adım 1-5). */
-export const PENDING = new Set<string>([
-  "/uz/aloqa",
-  "/uz/uzunlik-solishtirish",
-  "/uz/qqs-hisoblash",
-  "/uz/ogirlik-solishtirish",
-  "/uz/yosh-hisoblash",
-  "/uz/homiladorlik-haftasi-hisoblash",
-  "/uz/bmi-hisoblash",
-  "/uz/laminat-hisoblash",
-  "/uz/uyqu-hisoblash",
-  "/uz/fayans-hisoblash",
-  "/uz/video-bit-tezligi-hisoblash",
-  "/uz/gisht-hisoblash",
-  "/uz/elektr-tuketimi-hisoblash",
-  "/uz/tabiiy-gaz-sarfi-hisoblash",
-  "/uz/rang-kodi-aylantirgich",
-  "/uz/kochish-qutisi-hisoblash",
-]);
+/** Henüz zenginleştirilmemiş sayfalar. Zayıf içerik planı tamamlandı; liste boş kalmalı. */
+export const PENDING = new Set<string>([]);
 
 export function pageText(html: string) {
   const main = html.match(/<main[\s\S]*?<\/main>/)?.[0] ?? html;

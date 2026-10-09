@@ -53,6 +53,7 @@ export default function SwedishCategoriesIndexPage() {
               <thead>
                 <tr>
                   <th>Kategori</th>
+                  <th>Vad du hittar här</th>
                   <th></th>
                 </tr>
               </thead>
@@ -60,6 +61,7 @@ export default function SwedishCategoriesIndexPage() {
                 {swedishCategoryPages.map((category) => (
                   <tr key={category.slug}>
                     <td>{category.title}</td>
+                    <td>{category.description}</td>
                     <td>
                       <Link className="text-link" href={`/sv/kategorier/${category.slug}`}>
                         Visa
@@ -70,6 +72,9 @@ export default function SwedishCategoriesIndexPage() {
               </tbody>
             </table>
           </div>
+          <h2>Så fungerar omvandlingarna</h2>
+          <p>Varje kategori samlar enheter som mäter samma storhet, till exempel längd, massa eller tryck. Värdet räknas först om till SI-grundenheten (meter, kilogram eller pascal) och sedan till målenheten, så att resultatet alltid blir konsekvent mellan två enheter. Exempel: 5 tum = 5 × 0,0254 = 0,127 m = 12,7 cm.</p>
+          <p>Temperatur är ett undantag: mellan celsius och fahrenheit ingår även en addition (°F = °C × 1,8 + 32). En temperaturskillnad på 10 °C motsvarar därför 18 °F, inte 50 °F.</p>
         </section>
       </div>
     </main>

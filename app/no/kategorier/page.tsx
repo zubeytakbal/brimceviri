@@ -54,6 +54,7 @@ export default function NorwegianCategoriesIndexPage() {
               <thead>
                 <tr>
                   <th>Kategori</th>
+                  <th>Hva du finner her</th>
                   <th></th>
                 </tr>
               </thead>
@@ -61,6 +62,7 @@ export default function NorwegianCategoriesIndexPage() {
                 {norwegianCategoryPages.map((category) => (
                   <tr key={category.slug}>
                     <td>{category.title}</td>
+                    <td>{category.description}</td>
                     <td>
                       <Link className="text-link" href={`/no/kategorier/${category.slug}`}>
                         Vis
@@ -71,6 +73,9 @@ export default function NorwegianCategoriesIndexPage() {
               </tbody>
             </table>
           </div>
+          <h2>Hvordan omregningene fungerer</h2>
+          <p>Hver kategori samler enheter som måler samme størrelse, for eksempel lengde, masse eller trykk. Verdien regnes først om til SI-grunnenheten (meter, kilogram eller pascal) og deretter til målenheten, slik at resultatet alltid er konsistent mellom to enheter. Eksempel: 5 tommer = 5 × 0,0254 = 0,127 m = 12,7 cm.</p>
+          <p>Temperatur er et unntak: mellom celsius og fahrenheit inngår også en addisjon (°F = °C × 1,8 + 32). En temperaturforskjell på 10 °C tilsvarer derfor 18 °F, ikke 50 °F.</p>
         </section>
       </div>
     </main>

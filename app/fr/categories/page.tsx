@@ -48,6 +48,7 @@ export default function FrenchCategoriesIndexPage() {
               <thead>
                 <tr>
                   <th>Catégorie</th>
+                  <th>Ce que vous y trouvez</th>
                   <th></th>
                 </tr>
               </thead>
@@ -55,6 +56,7 @@ export default function FrenchCategoriesIndexPage() {
                 {frenchCategoryPages.map((category) => (
                   <tr key={category.slug}>
                     <td>{category.title}</td>
+                    <td>{category.description}</td>
                     <td>
                       <Link className="text-link" href={`/fr/categories/${category.slug}`}>
                         Voir
@@ -65,6 +67,9 @@ export default function FrenchCategoriesIndexPage() {
               </tbody>
             </table>
           </div>
+          <h2>Comment fonctionnent les conversions</h2>
+          <p>Chaque catégorie regroupe les unités qui mesurent la même grandeur, comme la longueur, la masse ou la pression. La valeur est d’abord convertie dans l’unité de base du SI (mètre, kilogramme ou pascal), puis dans l’unité voulue : le résultat reste ainsi cohérent entre deux unités quelconques. Exemple : 5 pouces = 5 × 0,0254 = 0,127 m = 12,7 cm.</p>
+          <p>La température fait exception : entre Celsius et Fahrenheit intervient aussi une addition (°F = °C × 1,8 + 32). Un écart de 10 °C correspond donc à 18 °F, et non à 50 °F.</p>
         </section>
       </div>
     </main>

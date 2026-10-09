@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
+import CatholicHubGuide from "../../components/dini/CatholicHubGuide";
 import { CATHOLIC_PATHS } from "../../i18n/catholicTools";
 import { buildSiteUrl } from "../../siteConfig";
 
@@ -47,6 +48,7 @@ export default function HerramientasCatolicasPage() {
             </li>
           ))}
         </ul>
+        <CatholicHubGuide lang="es" fromYear={new Date().getUTCFullYear()} />
       </div>
     </main>
   );

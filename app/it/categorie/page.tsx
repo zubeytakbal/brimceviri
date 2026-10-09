@@ -51,6 +51,7 @@ export default function ItalianCategoriesIndexPage() {
               <thead>
                 <tr>
                   <th>Categoria</th>
+                  <th>Cosa trovi qui</th>
                   <th></th>
                 </tr>
               </thead>
@@ -58,6 +59,7 @@ export default function ItalianCategoriesIndexPage() {
                 {italianCategoryPages.map((category) => (
                   <tr key={category.slug}>
                     <td>{category.title}</td>
+                    <td>{category.description}</td>
                     <td>
                       <Link className="text-link" href={`/it/categorie/${category.slug}`}>
                         Vedi
@@ -68,6 +70,9 @@ export default function ItalianCategoriesIndexPage() {
               </tbody>
             </table>
           </div>
+          <h2>Come funzionano le conversioni</h2>
+          <p>Ogni categoria raccoglie le unità che misurano la stessa grandezza, come lunghezza, massa o pressione. Il valore viene convertito prima nell’unità di base del SI (metro, chilogrammo o pascal) e poi nell’unità desiderata, così il risultato è sempre coerente tra due unità qualsiasi. Esempio: 5 pollici = 5 × 0,0254 = 0,127 m = 12,7 cm.</p>
+          <p>La temperatura è un’eccezione: tra Celsius e Fahrenheit c’è anche una somma (°F = °C × 1,8 + 32). Una differenza di 10 °C corrisponde quindi a 18 °F, non a 50 °F.</p>
         </section>
       </div>
     </main>

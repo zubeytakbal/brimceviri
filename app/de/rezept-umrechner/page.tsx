@@ -28,6 +28,15 @@ export const metadata: Metadata = {
   },
 };
 
+// Beispielrezept für 6 Personen; die Spalte "Für 4" wird mit 4/6 berechnet.
+const REZEPT: Array<[string, number, string]> = [
+  ["Mehl", 300, "g"],
+  ["Zucker", 180, "g"],
+  ["Butter", 150, "g"],
+  ["Eier", 3, "Stück"],
+  ["Milch", 150, "ml"],
+];
+
 export default function GermanRecipeScalerPage() {
   return (
     <main className="all-conversions-page" lang="de">
@@ -53,7 +62,7 @@ export default function GermanRecipeScalerPage() {
           <h2>Wie verdoppelt man ein Rezept?</h2>
           <p>
             Jede Mengenangabe wird mit dem gewünschten Faktor
-            multipliziert. Diese Seite übernimmt das automatisch fuer
+            multipliziert. Diese Seite übernimmt das automatisch für
             ganze Zahlen, Dezimalwerte und einfache Brüche.
           </p>
           <p>
@@ -63,6 +72,42 @@ export default function GermanRecipeScalerPage() {
               Küchenmaß Umrechner
             </Link>
             .
+          </p>
+
+          <h2>Beispiel: Kuchen für 4 statt 6 Personen</h2>
+          <p>Der Faktor ist 4 / 6 ≈ 0,67. Jede Menge wird damit multipliziert:</p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>Zutat</th>
+                  <th>Für 6</th>
+                  <th>Für 4</th>
+                </tr>
+              </thead>
+              <tbody>
+                {REZEPT.map(([zutat, menge, einheit]) => (
+                  <tr key={zutat}>
+                    <td>{zutat}</td>
+                    <td>
+                      {menge} {einheit}
+                    </td>
+                    <td>
+                      {((menge * 4) / 6).toLocaleString("de-DE", { maximumFractionDigits: 0 })} {einheit}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p>Aus 3 Eiern werden rechnerisch 2: das geht hier glatt auf. Bei halben Eiern ein Ei verquirlen und die Hälfte abwiegen, etwa 25 g.</p>
+
+          <h2>Backform und Backzeit</h2>
+          <p>
+            Die Fläche einer runden Form wächst mit dem Quadrat des Durchmessers. Eine 26-cm-Springform hat (26 / 20)² ≈ 1,69-mal so viel
+            Fläche wie eine 20-cm-Form; für die gleiche Teighöhe passt also die etwa 1,7-fache Menge. Die Backzeit hängt von der Teighöhe
+            ab, nicht von der Menge: Bleibt der Teig gleich hoch, ändert sich wenig. Wird er höher, etwas niedriger und länger backen und
+            mit einem Holzstäbchen prüfen.
           </p>
         </section>
       </div>

@@ -55,6 +55,7 @@ export default function DanishCategoriesIndexPage() {
               <thead>
                 <tr>
                   <th>Kategori</th>
+                  <th>Hvad du finder her</th>
                   <th></th>
                 </tr>
               </thead>
@@ -62,6 +63,7 @@ export default function DanishCategoriesIndexPage() {
                 {danishCategoryPages.map((category) => (
                   <tr key={category.slug}>
                     <td>{category.title}</td>
+                    <td>{category.description}</td>
                     <td>
                       <Link className="text-link" href={`/da/kategorier/${category.slug}`}>
                         Vis
@@ -72,6 +74,9 @@ export default function DanishCategoriesIndexPage() {
               </tbody>
             </table>
           </div>
+          <h2>Sådan fungerer omregningerne</h2>
+          <p>Hver kategori samler enheder, der måler den samme størrelse, for eksempel længde, masse eller tryk. Værdien regnes først om til SI-grundenheden (meter, kilogram eller pascal) og derefter til den ønskede enhed, så resultatet altid er konsistent mellem to enheder. Eksempel: 5 tommer = 5 × 0,0254 = 0,127 m = 12,7 cm.</p>
+          <p>Temperatur er en undtagelse: mellem celsius og fahrenheit indgår også en addition (°F = °C × 1,8 + 32). En temperaturforskel på 10 °C svarer derfor til 18 °F, ikke 50 °F.</p>
         </section>
       </div>
     </main>

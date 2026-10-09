@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import { norwegianCategoryPages } from "../../converter/localizedNorwegianCategoryPages";
+import DirectoryGuide from "../../components/DirectoryGuide";
+import { CATEGORY_DIRECTORY_GUIDES } from "../../i18n/categoryDirectoryGuides";
 import { buildSiteUrl } from "../../siteConfig";
 
 export const metadata: Metadata = {
@@ -72,6 +74,8 @@ export default function NorwegianCategoriesIndexPage() {
             </table>
           </div>
         </section>
+
+        <DirectoryGuide guide={CATEGORY_DIRECTORY_GUIDES.no} />
       </div>
     </main>
   );

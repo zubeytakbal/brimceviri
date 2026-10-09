@@ -2775,7 +2775,7 @@ export default function HomeDirectory({
               {[
                 { href: "/en/mathematics-calculators", label: "Mathematics", icon: "mathCalculator" as const },
                 { href: "/en/physics-calculators", label: "Physics", icon: "physicsCalculator" as const },
-                { href: "/en/biology-calculators", label: "Biology", icon: "biologyCalculator" as const },
+                { href: "/en/biology-calculators/dna-sequence-helper", label: "Biology", icon: "biologyCalculator" as const },
                 { href: "/en/chemistry-calculators", label: "Chemistry", icon: "chemistryCalculator" as const },
               ].map((subject) => <article className="directory-home-card directory-tool-card" key={subject.href}><Link className="directory-card-stretch" href={subject.href} aria-label={subject.label} /><div className="directory-card-body directory-card-body-icon"><span className="home-category-icon-box" aria-hidden="true"><DecorativeIcon name={subject.icon} size={42} className="home-category-icon-svg" /></span><h3 className="home-category-title">{subject.label}</h3></div></article>)}
             </div>

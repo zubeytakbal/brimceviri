@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import EnglishRemoteWorkVsOfficeCalculator from "../../../components/EnglishRemoteWorkVsOfficeCalculator";
 import StaticPageLayout from "../../../components/StaticPageLayout";
+import { ENGLISH_PAGE_GUIDES } from "../../../i18n/englishHubGuides";
 import { englishDecisionSavingsHubPath } from "../../../i18n/englishDecisionSavingsTools";
 import { SITE_NAME, buildSiteUrl } from "../../../siteConfig";
 
@@ -14,5 +15,5 @@ export const metadata: Metadata = {
 };
 
 export default function RemoteWorkVsOfficeCostPage() {
-  return <StaticPageLayout locale="en" breadcrumbAriaLabel="Breadcrumb" breadcrumbs={[{ href: "/en", label: "Home" }, { href: englishDecisionSavingsHubPath, label: "Decision & Savings Calculators" }, { label: "Remote Work vs Office Cost" }]} title="Remote Work vs Office Cost Calculator" description="Estimate the annual cash-cost difference of working remotely for part of the week." sections={[{ heading: "Compare your work arrangements", content: <EnglishRemoteWorkVsOfficeCalculator /> }, { heading: "How the estimate works", content: <p>The calculator estimates the number of remote work days from your annual schedule, adds avoided commute and lunch costs, then subtracts any extra at-home cost.</p> }, { heading: "Keep the comparison personal", content: <p>Work arrangements have effects beyond expenses. Use this result alongside practical factors such as commuting time, work environment, family needs and career goals.</p> }]} />;
+  return <StaticPageLayout locale="en" breadcrumbAriaLabel="Breadcrumb" breadcrumbs={[{ href: "/en", label: "Home" }, { href: englishDecisionSavingsHubPath, label: "Decision & Savings Calculators" }, { label: "Remote Work vs Office Cost" }]} title="Remote Work vs Office Cost Calculator" description="Estimate the annual cash-cost difference of working remotely for part of the week." sections={[{ heading: "Compare your work arrangements", content: <EnglishRemoteWorkVsOfficeCalculator /> }, { heading: "How the estimate works", content: <p>The calculator estimates the number of remote work days from your annual schedule, adds avoided commute and lunch costs, then subtracts any extra at-home cost.</p> }, { heading: "Keep the comparison personal", content: <p>Work arrangements have effects beyond expenses. Use this result alongside practical factors such as commuting time, work environment, family needs and career goals.</p> }, ...(ENGLISH_PAGE_GUIDES[pagePath] ?? [])]} />;
 }

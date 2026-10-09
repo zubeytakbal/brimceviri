@@ -2,7 +2,7 @@
 
 import Link from "@/app/components/SiteLink";
 import { useRouter } from "next/navigation";
-import { useDeferredValue, useId, useState } from "react";
+import { useDeferredValue, useId, useState, type ReactNode } from "react";
 import { DecorativeIcon, type SiteIconName } from "./siteIcons";
 
 import { useSearchTracking } from "./useSearchTracking";
@@ -185,6 +185,7 @@ export default function OtherCategoriesPage({
   locale = "tr",
   alternateLink,
   hideCategoryGrid = false,
+  children,
 }: {
   conversions: SearchableConversion[];
   categories: SecondaryCategory[];
@@ -192,6 +193,7 @@ export default function OtherCategoriesPage({
   locale?: Locale;
   alternateLink?: AlternateLink;
   hideCategoryGrid?: boolean;
+  children?: ReactNode;
 }) {
   const router = useRouter();
   const inputId = useId();
@@ -385,6 +387,8 @@ export default function OtherCategoriesPage({
             </div>
           </section>
         )}
+
+        {children}
 
         {alternateLink ? (
           <section className="conversion-section language-alternatives">

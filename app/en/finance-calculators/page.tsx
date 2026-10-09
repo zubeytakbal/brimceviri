@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import StaticPageLayout from "../../components/StaticPageLayout";
+import { ENGLISH_HUB_GUIDES } from "../../i18n/englishHubGuides";
 import { englishFinanceTools } from "../../i18n/englishFinanceToolCatalog";
 import { SITE_NAME, buildSiteUrl } from "../../siteConfig";
 
@@ -10,5 +11,5 @@ export const metadata: Metadata = { title: `Finance Calculators`, description: "
 export default function FinanceCalculatorsPage() {
   const pageUrl = buildSiteUrl(pagePath);
   const collectionSchema = { "@context": "https://schema.org", "@type": "CollectionPage", name: "Finance Calculators", url: pageUrl, inLanguage: "en-US", mainEntity: { "@type": "ItemList", numberOfItems: englishFinanceTools.length, itemListElement: englishFinanceTools.map((tool, index) => ({ "@type": "ListItem", position: index + 1, name: tool.title, url: buildSiteUrl(tool.href) })) } };
-  return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema).replace(/</g, "\\u003c") }} /><StaticPageLayout locale="en" breadcrumbAriaLabel="Breadcrumb" breadcrumbs={[{ href: "/en", label: "Home" }, { label: "Finance Calculators" }]} title="Finance Calculators" description="Explore financial estimates with their formulas, inputs and practical limits visible." sections={[{ heading: "Available tools", content: <ul className="related-conversion-list">{englishFinanceTools.map((tool) => <li key={tool.id}><Link href={tool.href}>{tool.title}</Link><span> - {tool.description}</span></li>)}</ul> }, { heading: "Important financial limits", content: <p>These are planning estimates, not lending, tax, legal or investment advice. Compare the result against official lender disclosures, account terms and your own professional advice where needed.</p> }]} /></>;
+  return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema).replace(/</g, "\\u003c") }} /><StaticPageLayout locale="en" breadcrumbAriaLabel="Breadcrumb" breadcrumbs={[{ href: "/en", label: "Home" }, { label: "Finance Calculators" }]} title="Finance Calculators" description="Explore financial estimates with their formulas, inputs and practical limits visible." sections={[{ heading: "Available tools", content: <ul className="related-conversion-list">{englishFinanceTools.map((tool) => <li key={tool.id}><Link href={tool.href}>{tool.title}</Link><span> - {tool.description}</span></li>)}</ul> }, { heading: "Important financial limits", content: <p>These are planning estimates, not lending, tax, legal or investment advice. Compare the result against official lender disclosures, account terms and your own professional advice where needed.</p> }, ...(ENGLISH_HUB_GUIDES["/en/finance-calculators"] ?? [])]} /></>;
 }

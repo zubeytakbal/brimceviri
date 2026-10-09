@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
+import { ENGLISH_CHEMISTRY_GUIDES } from "../../../i18n/englishChemistryGuides";
 import { notFound } from "next/navigation";
 import { DilutionCalculator, MolarityCalculator, PhCalculator } from "../../../components/EnglishChemistryCalculator";
 import { CellPotentialCalculator, EquilibriumConstantCalculator, HalfLifeCalculator, MolalityCalculator, MoleCalculator, PercentYieldCalculator, PpmCalculator, StoichiometryCalculator, TitrationCalculator } from "../../../components/EnglishChemistryExpandedCalculators";
@@ -41,6 +42,7 @@ export default async function ChemistryToolPage({ params }: PageProps) {
     { heading: "Formula and assumptions", content: <><p><strong>{tool.formula}</strong></p><p>{tool.explanation}</p><p><strong>Assumption:</strong> {quality.assumptions}</p></> },
     { heading: "Variables and units", content: <ul className="related-conversion-list">{quality.variables.map((variable) => <li key={variable.symbol}><strong>{variable.symbol}</strong> — {variable.label}{variable.unit ? ` (${variable.unit})` : ""}</li>)}</ul> },
     { heading: "Worked example", content: <p>{tool.example}</p> },
+    ...(ENGLISH_CHEMISTRY_GUIDES[slug] ? [ENGLISH_CHEMISTRY_GUIDES[slug]] : []),
     { heading: "Important limits", content: <p>{quality.limitations}</p> },
     { heading: "Reference and related tools", content: <p><a href={tool.source.href}>{tool.source.label}</a>. Return to <Link href="/en/chemistry-calculators">Chemistry Calculators</Link> for the other tools in this group.</p> },
   ]} />;

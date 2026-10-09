@@ -7,6 +7,7 @@ import EnglishRatioProportionCalculator from "../../../components/EnglishRatioPr
 import { MeanCalculator, PercentageCalculator, QuadraticRootsCalculator } from "../../../components/EnglishScienceCalculators";
 import { StemLimitations, StemMethods, StemWorkedExamples } from "../../../components/StemMethodNotes";
 import StaticPageLayout from "../../../components/StaticPageLayout";
+import { ENGLISH_TOOL_GUIDES } from "../../../i18n/englishToolGuides";
 import { getEnglishScienceToolsBySubject } from "../../../i18n/englishScienceToolCatalog";
 import { SITE_NAME, buildSiteUrl } from "../../../siteConfig";
 
@@ -31,5 +32,5 @@ export default async function MathematicsToolPage({ params }: PageProps) {
   const calculatorId = slug === "quadratic-roots" ? "quadratic" : slug;
   const Calculator = calculators[calculatorId as MathematicsToolId];
   if (!tool || !Calculator) notFound();
-  return <StaticPageLayout locale="en" breadcrumbAriaLabel="Breadcrumb" breadcrumbs={[{ href: "/en", label: "Home" }, { href: "/en/applied-stem", label: "Engineering & STEM Tools" }, { href: "/en/mathematics-calculators", label: "Mathematics Calculators" }, { label: tool.title }]} title={tool.title} description={tool.description} sections={[{ heading: "Calculator", content: <Calculator /> }, { heading: "Method and variables", content: <StemMethods tools={[tool]} /> }, { heading: "Worked example", content: <StemWorkedExamples tools={[tool]} /> }, { heading: "Important limits", content: <StemLimitations tools={[tool]} /> }]} />;
+  return <StaticPageLayout locale="en" breadcrumbAriaLabel="Breadcrumb" breadcrumbs={[{ href: "/en", label: "Home" }, { href: "/en/applied-stem", label: "Engineering & STEM Tools" }, { href: "/en/mathematics-calculators", label: "Mathematics Calculators" }, { label: tool.title }]} title={tool.title} description={tool.description} sections={[{ heading: "Calculator", content: <Calculator /> }, { heading: "Method and variables", content: <StemMethods tools={[tool]} /> }, { heading: "Worked example", content: <StemWorkedExamples tools={[tool]} /> }, ...(ENGLISH_TOOL_GUIDES[tool.id] ? [{ heading: ENGLISH_TOOL_GUIDES[tool.id].heading, content: ENGLISH_TOOL_GUIDES[tool.id].content }] : []), { heading: "Important limits", content: <StemLimitations tools={[tool]} /> }]} />;
 }

@@ -123,13 +123,25 @@ export async function listFingerprint(people: readonly string[], locale: string)
 }
 
 export const WHEEL_THEMES = {
-  turkuaz: ["#168f8c", "#f0b429", "#1f4f66", "#3fa7a7", "#e4572e", "#2c7f99", "#0f6f6c", "#f6d365"],
+  turkuaz: ["#168f8c", "#f0b429", "#1f4f66", "#3fa7a7", "#e4572e", "#0f6f6c", "#f6d365", "#9ad8d3"],
   seker: ["#ffadad", "#ffd6a5", "#fdffb6", "#caffbf", "#9bf6ff", "#a0c4ff", "#bdb2ff", "#ffc6ff"],
   klasik: ["#d62828", "#f77f00", "#fcbf49", "#2a9d8f", "#264653", "#4361ee", "#8338ec", "#06d6a0"],
   gece: ["#1b1f3b", "#53354a", "#903749", "#e84545", "#2b2e4a", "#3f72af", "#112d4e", "#f9a826"],
 } as const;
 
 export type WheelThemeId = keyof typeof WHEEL_THEMES;
+
+function rgb(hex: string) {
+  const n = parseInt(hex.slice(1), 16);
+  return [n >> 16, (n >> 8) & 255, n & 255];
+}
+
+/** Iki renk arasindaki kaba fark (RGB uzakligi). */
+function colorGap(a: string, b: string) {
+  const [r1, g1, b1] = rgb(a);
+  const [r2, g2, b2] = rgb(b);
+  return Math.hypot(r1 - r2, g1 - g2, b1 - b2);
+}
 
 function inkFor(hex: string) {
   const n = parseInt(hex.slice(1), 16);
@@ -173,8 +185,13 @@ export function drawWheel(canvas: HTMLCanvasElement, entries: WheelEntry[], rot:
   }
   arcs.forEach(([a0, a1], i) => {
     let col: string = pal[i % pal.length];
-    // Son dilim ilkiyle ayni renge denk gelmesin.
-    if (i === arcs.length - 1 && arcs.length > 1 && col === pal[0]) col = pal[(i + 3) % pal.length];
+    // Son dilim, iki komsusu olan ilk ve sondan onceki dilime benzemesin.
+    if (i === arcs.length - 1 && arcs.length > 2) {
+      const prev = pal[(i - 1) % pal.length];
+      if (colorGap(col, pal[0]) < 90 || colorGap(col, prev) < 90) {
+        col = pal.find((c) => colorGap(c, pal[0]) >= 90 && colorGap(c, prev) >= 90) ?? col;
+      }
+    }
     ctx.beginPath();
     ctx.moveTo(0, 0);
     ctx.arc(0, 0, r, a0, a1);

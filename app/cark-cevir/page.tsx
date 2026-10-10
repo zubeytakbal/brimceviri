@@ -4,6 +4,7 @@ import { takvimMetadata } from "../components/takvim/takvimMeta";
 import TimeToolPage from "../components/time/TimeToolPage";
 import WheelSpinner from "../components/wheel/WheelSpinner";
 import type { FaqItem } from "../converter/faqSchema";
+import { buildSiteUrl } from "../siteConfig";
 
 export const metadata: Metadata = takvimMetadata("/cark-cevir", {
   title: "Çark Çevir: İsim Çarkı, Kura ve Instagram Çekilişi",
@@ -45,6 +46,20 @@ const faq: FaqItem[] = [
   },
 ];
 
+const appSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Çark Çevir",
+  url: buildSiteUrl("/cark-cevir"),
+  applicationCategory: "UtilitiesApplication",
+  operatingSystem: "Tüm tarayıcılar",
+  inLanguage: "tr",
+  isAccessibleForFree: true,
+  offers: { "@type": "Offer", price: "0", priceCurrency: "TRY" },
+  description:
+    "İsim çarkı ve kura aracı: ağırlıklı dilim, takımlara bölme, 10.000 çevirmelik adillik testi ve liste parmak izli Instagram çekilişi.",
+};
+
 export default function CarkCevirRoute() {
   return (
     <TimeToolPage
@@ -78,6 +93,7 @@ export default function CarkCevirRoute() {
       faqTitle="Sık Sorulan Sorular"
       faqItems={faq}
     >
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }} />
       <h2 id="ne-ise-yarar">Çark ne işe yarar?</h2>
       <p>Kimsenin itiraz etmeyeceği bir kura gereken her yerde işe yarar:</p>
       <ul>

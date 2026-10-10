@@ -39,6 +39,7 @@ const T = {
     spinLabel: "Çarkı çevir",
     hint: "Çarka ya da ortadaki düğmeye dokunun · listedeyken Ctrl + Enter",
     callTop: "Çevirmek için tıkla",
+    callTopTouch: "Çevirmek için dokun",
     callBottom: "ya da Ctrl + Enter",
     callBottomTouch: "ya da ortaya dokun",
     tabs: { entries: "Girdiler", results: "Sonuçlar", teams: "Takımlar", draw: "Çekiliş" },
@@ -672,12 +673,17 @@ export default function WheelSpinner({ lang = "tr" }: { lang?: "tr" }) {
             </svg>
             <svg className={`wheel-call${started ? " is-gone" : ""}`} viewBox="0 0 100 100" aria-hidden="true">
               <defs>
-                <path id="wheel-call-top" d="M 19 50 A 31 31 0 0 1 81 50" />
-                <path id="wheel-call-bottom" d="M 13 50 A 37 37 0 0 0 87 50" />
+                <path id="wheel-call-top" d="M 20 50 A 30 30 0 0 1 80 50" />
+                <path id="wheel-call-bottom" d="M 15 50 A 35 35 0 0 0 85 50" />
               </defs>
-              <text>
+              <text className="wheel-call-desk">
                 <textPath href="#wheel-call-top" startOffset="50%" textAnchor="middle">
                   {t.callTop}
+                </textPath>
+              </text>
+              <text className="wheel-call-touch">
+                <textPath href="#wheel-call-top" startOffset="50%" textAnchor="middle">
+                  {t.callTopTouch}
                 </textPath>
               </text>
               <text className="wheel-call-desk">
@@ -923,7 +929,7 @@ export default function WheelSpinner({ lang = "tr" }: { lang?: "tr" }) {
 
       <div {...dialogProps("custom")}>
         <div className="wheel-card is-wide" role="dialog" aria-modal="true" aria-labelledby="wheel-custom-title">
-          <h2 id="wheel-custom-title">{t.customTitle}</h2>
+          <p className="wheel-card-title" id="wheel-custom-title">{t.customTitle}</p>
           <div className="wheel-field">
             {t.theme}
             <div className="wheel-swatches">
@@ -973,7 +979,7 @@ export default function WheelSpinner({ lang = "tr" }: { lang?: "tr" }) {
 
       <div {...dialogProps("saved")}>
         <div className="wheel-card" role="dialog" aria-modal="true" aria-labelledby="wheel-saved-title">
-          <h2 id="wheel-saved-title">{t.savedTitle}</h2>
+          <p className="wheel-card-title" id="wheel-saved-title">{t.savedTitle}</p>
           <p className="wheel-help">{t.savedHelp}</p>
           {Object.keys(saved).length ? (
             <ul className="wheel-list">
@@ -1024,7 +1030,7 @@ export default function WheelSpinner({ lang = "tr" }: { lang?: "tr" }) {
 
       <div {...dialogProps("save")}>
         <div className="wheel-card" role="dialog" aria-modal="true" aria-labelledby="wheel-save-title">
-          <h2 id="wheel-save-title">{t.saveTitle}</h2>
+          <p className="wheel-card-title" id="wheel-save-title">{t.saveTitle}</p>
           <label className="wheel-field">
             {t.saveName}
             <input
@@ -1049,7 +1055,7 @@ export default function WheelSpinner({ lang = "tr" }: { lang?: "tr" }) {
 
       <div {...dialogProps("fair")}>
         <div className="wheel-card is-wide" role="dialog" aria-modal="true" aria-labelledby="wheel-fair-title">
-          <h2 id="wheel-fair-title">{t.fairTitle}</h2>
+          <p className="wheel-card-title" id="wheel-fair-title">{t.fairTitle}</p>
           <p className="wheel-help">{t.fairHelp}</p>
           <div className="wheel-row">
             <button type="button" className="wheel-btn is-primary" onClick={runFair}>

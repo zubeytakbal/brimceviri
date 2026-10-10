@@ -15810,12 +15810,12 @@ a.all-units-row .all-units-name {
   pointer-events: none;
   fill: #ffffff;
   font-family: var(--font-heading), Arial, sans-serif;
-  font-size: 7px;
+  font-size: 5.6px;
   font-weight: 700;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
   paint-order: stroke;
-  stroke: rgba(23, 32, 51, 0.78);
-  stroke-width: 1.6px;
+  stroke: rgba(23, 32, 51, 0.72);
+  stroke-width: 1.2px;
   stroke-linejoin: round;
   filter: drop-shadow(0 1px 1.5px rgba(0, 0, 0, 0.35));
   transition: opacity 0.4s ease, transform 0.4s ease;
@@ -16158,9 +16158,11 @@ a.all-units-row .all-units-name {
   width: min(620px, 100%);
 }
 
-.wheel-card h2 {
+.wheel-card-title {
   margin: 0;
+  font-family: var(--font-heading), Arial, sans-serif;
   font-size: 1.35rem;
+  font-weight: 600;
 }
 
 @keyframes wheel-pop {

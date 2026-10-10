@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { convert } from "../app/converter/convert";
-import { findGermanConversionPage } from "../app/converter/localizedGermanConversionPages";
+import { findGermanConversionPage, germanConversionPages } from "../app/converter/localizedGermanConversionPages";
 import { flaeche, inRoemisch, koerper, primfaktoren, primfaktorText, teilerAnzahl } from "../app/converter/germanSchoolMath";
 import { fmtDe } from "../app/converter/germanMath";
 import { germanPair } from "../app/converter/germanConversionSeo";
@@ -96,6 +96,8 @@ describe("German leftover page facts", () => {
     expect(contact).toContain("/de/meter-zentimeter");
     expect(contact).toContain("1 m = 100 cm");
     expect(contact).not.toMatch(/\+49|Telefon|Musterstraße/);
-    expect(germanContactParagraphs().length).toBeGreaterThanOrEqual(6);
+    expect(germanContactParagraphs()).toHaveLength(5);
+    expect(about).toContain(String(germanConversionPages.length));
+    expect(about).toContain("1 m = 100 cm");
   });
 });

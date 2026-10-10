@@ -59,12 +59,9 @@ function pageByUnits(category: string, fromUnit: string, toUnit: string) {
 const CONTACT_SAMPLES: Array<[string, string, string, number]> = [
   ["uzunluk", "m", "cm", 1],
   ["uzunluk", "km", "m", 2],
-  ["uzunluk", "m", "mm", 5],
   ["kutle", "kg", "g", 3],
-  ["kutle", "g", "mg", 8],
   ["hacim", "L", "mL", 4],
   ["zaman", "h", "min", 6],
-  ["zaman", "min", "s", 9],
 ];
 
 export function germanContactParagraphs() {
@@ -95,13 +92,19 @@ export function germanAboutParagraphs() {
       .map(([name, count]) => `${name} ${count}`)
       .join(", ")}.`,
   );
-  for (const [name, count] of categories) {
-    const sample = germanConversionPages.find((page) => page.categoryName === name);
-    if (!sample) continue;
-    const raw = convert(sample.category, 1, sample.fromUnit, sample.toUnit);
+  const samples: Array<[string, string, string]> = [
+    ["uzunluk", "m", "cm"],
+    ["kutle", "kg", "g"],
+    ["hacim", "L", "mL"],
+    ["zaman", "h", "min"],
+  ];
+  for (const [category, fromUnit, toUnit] of samples) {
+    const page = pageByUnits(category, fromUnit, toUnit);
+    if (!page) continue;
+    const raw = convert(category, 1, fromUnit, toUnit);
     if (!Number.isFinite(raw)) continue;
     paragraphs.push(
-      `Über uns, Kategorie ${name}: ${count} Paare auf BirimCeviri, darunter /de/${sample.slug} mit ${germanPair(sample, 1)}.`,
+      `Über uns, ${page.categoryName} auf BirimCeviri: ${germanPair(page, 1)} steht auf /de/${page.slug}.`,
     );
   }
   return paragraphs;

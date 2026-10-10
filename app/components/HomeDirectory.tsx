@@ -1,4 +1,3 @@
-"use client";
 
 import Link from "@/app/components/SiteLink";
 import { fxContentTr } from "../converter/fx/fxContentTr";
@@ -32,12 +31,10 @@ import {
   Waveform,
   Waves,
   Wind,
-} from "@phosphor-icons/react";
-import { useDeferredValue, useId, useState } from "react";
+} from "@phosphor-icons/react/ssr";
 import NotificationBell from "./NotificationBell";
 import ProfessionPreferenceWidget from "./ProfessionPreferenceWidget";
 import RecentToolsWidget from "./RecentToolsWidget";
-import { useRouter } from "next/navigation";
 import { DecorativeIcon, getCategoryIconName, type SiteIconName } from "./siteIcons";
 import { calculatorPages } from "../converter/calculatorPages";
 import { calculatorSearchIndex } from "../converter/calculatorSearchIndex";
@@ -67,7 +64,7 @@ import { TURKISH_TOOL_HUB_PATH, turkishPopularTools, turkishToolGroups } from ".
 import { GERMAN_TOOL_HUB_PATH, germanToolGroups } from "../i18n/germanToolDirectory";
 import { diniAraclar } from "../i18n/diniAraclar";
 
-import { useSearchTracking } from "./useSearchTracking";
+import HomeSearch, { type HomeSearchItem } from "./HomeSearch";
 import { unitGlossaryHref } from "../converter/unitGlossary";
 
 const worldCultureToolsTr: Array<{ href: string; title: string; description: string; icon: SiteIconName }> = [
@@ -1956,6 +1953,11 @@ const homeData = {
   de: createHomeData("de"),
 } as const;
 
+/** Ana sayfa arama dizini; /arama-dizini/<dil>.json olarak ayri yayinlanir (bkz. HomeSearch). */
+export function homeSearchIndex(locale: Locale): HomeSearchItem[] {
+  return homeData[locale].searchables;
+}
+
 export default function HomeDirectory({
   locale,
   notifications = [],
@@ -1963,30 +1965,8 @@ export default function HomeDirectory({
   locale: Locale;
   notifications?: SiteNotification[];
 }) {
-  const router = useRouter();
-  const inputId = useId();
-  const resultsId = useId();
-  const [query, setQuery] = useState("");
-
-  const deferredQuery = useDeferredValue(query);
   const strings = copy[locale];
   const data = homeData[locale];
-  const normalizedQuery = normalizeSearchText(deferredQuery);
-
-  const searchResults = normalizedQuery
-    ? data.searchables
-        .filter((item) => item.searchText.includes(normalizedQuery))
-        .slice(0, 8)
-    : [];
-  useSearchTracking(locale, query, searchResults.length);
-
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-
-    if (searchResults[0]) {
-      router.push(searchResults[0].href);
-    }
-  }
 
   return (
     <main className="directory-home" lang={locale === "en" ? "en" : locale === "de" ? "de" : undefined}>
@@ -1999,63 +1979,19 @@ export default function HomeDirectory({
           </div>
 
           <div className="directory-hero-panel">
-            <form className="directory-search" onSubmit={handleSubmit} role="search">
-              <label htmlFor={inputId}>{strings.searchLabel}</label>
-
-              <div className="directory-search-field">
-                <input
-                  id={inputId}
-                  type="search"
-                  value={query}
-                  placeholder={strings.searchPlaceholder}
-                  autoComplete="off"
-                  spellCheck={false}
-                  aria-describedby={`${inputId}-hint`}
-                  aria-controls={resultsId}
-                  onChange={(event) => setQuery(event.target.value)}
-                />
-
-                <button type="submit">
-                  <DecorativeIcon
-                    className="directory-button-icon"
-                    name="search"
-                    size={18}
-                  />
-                  {strings.openLabel}
-                </button>
-              </div>
-
-              <p className="directory-search-hint" id={`${inputId}-hint`}>
-                {strings.searchHint}
-              </p>
-
-              {query.trim() ? (
-                <div className="directory-search-results-wrap">
-                  <div className="directory-search-results-head">
-                    <strong>{strings.searchResultsLabel}</strong>
-                    <span>{strings.searchEnterHint}</span>
-                  </div>
-
-                  {searchResults.length > 0 ? (
-                    <ul className="directory-search-results" id={resultsId}>
-                      {searchResults.map((result) => (
-                        <li key={result.id}>
-                          <Link href={result.href}>
-                            <span>{result.label}</span>
-                            <small>
-                              {strings.searchCategoryPrefix}: {result.categoryLabel}
-                              {result.description ? <> · {result.description}</> : null}
-                            </small>
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <p className="directory-search-empty">{strings.searchEmpty}</p>
-                  )}
-                </div>
-              ) : null}
-            </form>
+            <HomeSearch
+              locale={locale}
+              strings={{
+                searchLabel: strings.searchLabel,
+                searchPlaceholder: strings.searchPlaceholder,
+                searchHint: strings.searchHint,
+                searchResultsLabel: strings.searchResultsLabel,
+                searchEmpty: strings.searchEmpty,
+                searchEnterHint: strings.searchEnterHint,
+                searchCategoryPrefix: strings.searchCategoryPrefix,
+                openLabel: strings.openLabel,
+              }}
+            />
 
             <dl className="directory-stats">
               <div>

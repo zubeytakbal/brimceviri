@@ -1,8 +1,5 @@
-"use client";
 
 import Link from "@/app/components/SiteLink";
-import { useRouter } from "next/navigation";
-import { useDeferredValue, useId, useState } from "react";
 import { norwegianCategoryPages } from "../converter/localizedNorwegianCategoryPages";
 import { norwegianConversionPages } from "../converter/localizedNorwegianConversionPages";
 import { norwegianUnitPages } from "../converter/localizedNorwegianUnitPages";
@@ -12,7 +9,7 @@ import { DecorativeIcon, getCategoryIconName, type SiteIconName } from "./siteIc
 import NotificationBell from "./NotificationBell";
 import NordicToolsSection from "./NordicToolsSection";
 
-import { useSearchTracking } from "./useSearchTracking";
+import HomeSearch from "./HomeSearch";
 import { unitGlossaryHref } from "../converter/unitGlossary";
 function CardIcon({ name }: { name: SiteIconName }) {
   return (
@@ -156,30 +153,16 @@ const stats = {
   conversions: norwegianConversionPages.length,
 };
 
+/** Ana sayfa arama dizini; /arama-dizini/no.json olarak ayri yayinlanir (bkz. HomeSearch). */
+export function homeSearchIndex() {
+  return searchables;
+}
+
 export default function NorwegianHomeDirectory({
   notifications = [],
 }: {
   notifications?: SiteNotification[];
 }) {
-  const router = useRouter();
-  const inputId = useId();
-  const resultsId = useId();
-  const [query, setQuery] = useState("");
-  const deferredQuery = useDeferredValue(query);
-  const normalizedQuery = normalizeSearchTextNo(deferredQuery);
-
-  const searchResults = normalizedQuery
-    ? searchables.filter((item) => item.searchText.includes(normalizedQuery)).slice(0, 8)
-    : [];
-  useSearchTracking("no", query, searchResults.length);
-
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-
-    if (searchResults[0]) {
-      router.push(searchResults[0].href);
-    }
-  }
 
   return (
     <main className="directory-home" lang="nb">
@@ -197,59 +180,19 @@ export default function NorwegianHomeDirectory({
           </div>
 
           <div className="directory-hero-panel">
-            <form className="directory-search" onSubmit={handleSubmit} role="search">
-              <label htmlFor={inputId}>Søk en omregning</label>
-
-              <div className="directory-search-field">
-                <input
-                  id={inputId}
-                  type="search"
-                  value={query}
-                  placeholder="F.eks.: meter fot"
-                  autoComplete="off"
-                  spellCheck={false}
-                  aria-describedby={`${inputId}-hint`}
-                  aria-controls={resultsId}
-                  onChange={(event) => setQuery(event.target.value)}
-                />
-
-                <button type="submit">
-                  <DecorativeIcon className="directory-button-icon" name="search" size={18} />
-                  Åpne
-                </button>
-              </div>
-
-              <p className="directory-search-hint" id={`${inputId}-hint`}>
-                Skriv navnet på en enhet på norsk eller engelsk og trykk
-                Enter for å åpne det første resultatet.
-              </p>
-
-              {query.trim() ? (
-                <div className="directory-search-results-wrap">
-                  <div className="directory-search-results-head">
-                    <strong>Søkeresultater</strong>
-                    <span>Trykk Enter for å åpne</span>
-                  </div>
-
-                  {searchResults.length > 0 ? (
-                    <ul className="directory-search-results" id={resultsId}>
-                      {searchResults.map((result) => (
-                        <li key={result.id}>
-                          <Link href={result.href}>
-                            <span>{result.label}</span>
-                            <small>
-                              Kategori: {result.categoryLabel} · {result.description}
-                            </small>
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <p className="directory-search-empty">Ingen treff funnet.</p>
-                  )}
-                </div>
-              ) : null}
-            </form>
+            <HomeSearch
+              locale="no"
+              strings={{
+                searchLabel: "Søk en omregning",
+                searchPlaceholder: "F.eks.: meter fot",
+                searchHint: "Skriv navnet på en enhet på norsk eller engelsk og trykk Enter for å åpne det første resultatet.",
+                searchResultsLabel: "Søkeresultater",
+                searchEmpty: "Ingen treff funnet.",
+                searchEnterHint: "Trykk Enter for å åpne",
+                searchCategoryPrefix: "Kategori",
+                openLabel: "Åpne",
+              }}
+            />
 
             <dl className="directory-stats">
               <div>

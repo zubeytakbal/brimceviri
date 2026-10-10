@@ -1,8 +1,5 @@
-"use client";
 
 import Link from "@/app/components/SiteLink";
-import { useRouter } from "next/navigation";
-import { useDeferredValue, useId, useState } from "react";
 import { arabicStandaloneTools } from "../i18n/arabicStandaloneTools";
 import { arabicCategoryPages } from "../converter/localizedArabicCategoryPages";
 import { arabicUnitPages } from "../converter/localizedArabicUnitPages";
@@ -14,7 +11,7 @@ import type { SiteNotification } from "../converter/siteNotifications";
 import { DecorativeIcon, getCategoryIconName, type SiteIconName } from "./siteIcons";
 import NotificationBell from "./NotificationBell";
 
-import { useSearchTracking } from "./useSearchTracking";
+import HomeSearch from "./HomeSearch";
 import { ARABIC_ISLAMIC_TOOLS } from "../i18n/arabicIslamicTools";
 import { ARABIC_ISLAMIC_HUB, ARABIC_ISLAMIC_PATHS, ISLAMIC_TOOL_PATHS } from "../i18n/islamicToolPaths";
 import { unitGlossaryHref } from "../converter/unitGlossary";
@@ -166,44 +163,22 @@ const toolSearchables = [
     searchText: normalizeSearchTextAr([item.label, item.text, TOOL_KEYWORDS[item.href] ?? ""].join(" ")),
   }));
 
-/** كل كلمة في البحث يجب أن توجد؛ تُحذف "ال" التعريف من أول الكلمة. */
-function matchesQuery(searchText: string, normalizedQuery: string) {
-  return normalizedQuery
-    .split(" ")
-    .map((token) => (token.length > 3 && token.startsWith("ال") ? token.slice(2) : token))
-    .every((token) => searchText.includes(token));
-}
-
 const stats = {
   categories: primaryCategoryCards.length + secondaryCategoryCards.length,
   conversions: englishConversionPages.length,
   tools: arabicStandaloneTools.length,
 };
 
+/** Ana sayfa arama dizini; /arama-dizini/ar.json olarak ayri yayinlanir (bkz. HomeSearch). */
+export function homeSearchIndex() {
+  return [...toolSearchables, ...searchables];
+}
+
 export default function ArabicHomeDirectory({
   notifications = [],
 }: {
   notifications?: SiteNotification[];
 }) {
-  const router = useRouter();
-  const inputId = useId();
-  const resultsId = useId();
-  const [query, setQuery] = useState("");
-  const deferredQuery = useDeferredValue(query);
-  const normalizedQuery = normalizeSearchTextAr(deferredQuery);
-
-  const searchResults = normalizedQuery
-    ? [...toolSearchables, ...searchables].filter((item) => matchesQuery(item.searchText, normalizedQuery)).slice(0, 8)
-    : [];
-  useSearchTracking("ar", query, searchResults.length);
-
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-
-    if (searchResults[0]) {
-      router.push(searchResults[0].href);
-    }
-  }
 
   return (
     <main className="directory-home" lang="ar" dir="rtl">
@@ -221,58 +196,19 @@ export default function ArabicHomeDirectory({
           </div>
 
           <div className="directory-hero-panel">
-            <form className="directory-search" onSubmit={handleSubmit} role="search">
-              <label htmlFor={inputId}>ابحث عن تحويل</label>
-
-              <div className="directory-search-field">
-                <input
-                  id={inputId}
-                  type="search"
-                  value={query}
-                  placeholder="مثال: متر إلى قدم"
-                  autoComplete="off"
-                  spellCheck={false}
-                  aria-describedby={`${inputId}-hint`}
-                  aria-controls={resultsId}
-                  onChange={(event) => setQuery(event.target.value)}
-                />
-
-                <button type="submit">
-                  <DecorativeIcon className="directory-button-icon" name="search" size={18} />
-                  فتح
-                </button>
-              </div>
-
-              <p className="directory-search-hint" id={`${inputId}-hint`}>
-                اكتب اسم الوحدة بالعربية أو الإنجليزية، ثم اضغط Enter لفتح أول نتيجة.
-              </p>
-
-              {query.trim() ? (
-                <div className="directory-search-results-wrap">
-                  <div className="directory-search-results-head">
-                    <strong>نتائج البحث</strong>
-                    <span>اضغط Enter للفتح</span>
-                  </div>
-
-                  {searchResults.length > 0 ? (
-                    <ul className="directory-search-results" id={resultsId}>
-                      {searchResults.map((result) => (
-                        <li key={result.id}>
-                          <Link href={result.href}>
-                            <span>{result.label}</span>
-                            <small>
-                              الفئة: {result.categoryLabel} · {result.description}
-                            </small>
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <p className="directory-search-empty">لا توجد نتائج مطابقة.</p>
-                  )}
-                </div>
-              ) : null}
-            </form>
+            <HomeSearch
+              locale="ar"
+              strings={{
+                searchLabel: "ابحث عن تحويل",
+                searchPlaceholder: "مثال: متر إلى قدم",
+                searchHint: "اكتب اسم الوحدة بالعربية أو الإنجليزية، ثم اضغط Enter لفتح أول نتيجة.",
+                searchResultsLabel: "نتائج البحث",
+                searchEmpty: "لا توجد نتائج مطابقة.",
+                searchEnterHint: "اضغط Enter للفتح",
+                searchCategoryPrefix: "الفئة",
+                openLabel: "فتح",
+              }}
+            />
 
             <dl className="directory-stats">
               <div>

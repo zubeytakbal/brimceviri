@@ -1,8 +1,5 @@
-"use client";
 
 import Link from "@/app/components/SiteLink";
-import { useRouter } from "next/navigation";
-import { useDeferredValue, useId, useState } from "react";
 import { bengaliCategoryPages } from "../converter/localizedBengaliCategoryPages";
 import { bengaliConversionPages } from "../converter/localizedBengaliConversionPages";
 import { bengaliUnitPages } from "../converter/localizedBengaliUnitPages";
@@ -14,7 +11,7 @@ import FxHomeSection from "./fx/FxHomeSection";
 import { fxContentBn } from "../converter/fx/fxContentBn";
 import { buildFxSearchEntries } from "../converter/fx/fxLocale";
 
-import { useSearchTracking } from "./useSearchTracking";
+import HomeSearch from "./HomeSearch";
 import { unitGlossaryHref } from "../converter/unitGlossary";
 function CardIcon({ name }: { name: SiteIconName }) {
   return (
@@ -245,30 +242,16 @@ const stats = {
   tools: bengaliStandaloneTools.length,
 };
 
+/** Ana sayfa arama dizini; /arama-dizini/bn.json olarak ayri yayinlanir (bkz. HomeSearch). */
+export function homeSearchIndex() {
+  return searchables;
+}
+
 export default function BengaliHomeDirectory({
   notifications = [],
 }: {
   notifications?: SiteNotification[];
 }) {
-  const router = useRouter();
-  const inputId = useId();
-  const resultsId = useId();
-  const [query, setQuery] = useState("");
-  const deferredQuery = useDeferredValue(query);
-  const normalizedQuery = normalizeSearchTextBn(deferredQuery);
-
-  const searchResults = normalizedQuery
-    ? searchables.filter((item) => item.searchText.includes(normalizedQuery)).slice(0, 8)
-    : [];
-  useSearchTracking("bn", query, searchResults.length);
-
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-
-    if (searchResults[0]) {
-      router.push(searchResults[0].href);
-    }
-  }
 
   return (
     <main className="directory-home" lang="bn">
@@ -286,58 +269,19 @@ export default function BengaliHomeDirectory({
           </div>
 
           <div className="directory-hero-panel">
-            <form className="directory-search" onSubmit={handleSubmit} role="search">
-              <label htmlFor={inputId}>রূপান্তর খুঁজুন</label>
-
-              <div className="directory-search-field">
-                <input
-                  id={inputId}
-                  type="search"
-                  value={query}
-                  placeholder="উদাহরণ: মিটার ফুট"
-                  autoComplete="off"
-                  spellCheck={false}
-                  aria-describedby={`${inputId}-hint`}
-                  aria-controls={resultsId}
-                  onChange={(event) => setQuery(event.target.value)}
-                />
-
-                <button type="submit">
-                  <DecorativeIcon className="directory-button-icon" name="search" size={18} />
-                  খুলুন
-                </button>
-              </div>
-
-              <p className="directory-search-hint" id={`${inputId}-hint`}>
-                বাংলা বা ইংরেজিতে একক নাম লিখুন, তারপর প্রথম ফলাফল খুলতে Enter চাপুন।
-              </p>
-
-              {query.trim() ? (
-                <div className="directory-search-results-wrap">
-                  <div className="directory-search-results-head">
-                    <strong>অনুসন্ধান ফলাফল</strong>
-                    <span>খুলতে Enter চাপুন</span>
-                  </div>
-
-                  {searchResults.length > 0 ? (
-                    <ul className="directory-search-results" id={resultsId}>
-                      {searchResults.map((result) => (
-                        <li key={result.id}>
-                          <Link href={result.href}>
-                            <span>{result.label}</span>
-                            <small>
-                              বিভাগ: {result.categoryLabel} · {result.description}
-                            </small>
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <p className="directory-search-empty">কোনো মিল পাওয়া যায়নি।</p>
-                  )}
-                </div>
-              ) : null}
-            </form>
+            <HomeSearch
+              locale="bn"
+              strings={{
+                searchLabel: "রূপান্তর খুঁজুন",
+                searchPlaceholder: "উদাহরণ: মিটার ফুট",
+                searchHint: "বাংলা বা ইংরেজিতে একক নাম লিখুন, তারপর প্রথম ফলাফল খুলতে Enter চাপুন।",
+                searchResultsLabel: "অনুসন্ধান ফলাফল",
+                searchEmpty: "কোনো মিল পাওয়া যায়নি।",
+                searchEnterHint: "খুলতে Enter চাপুন",
+                searchCategoryPrefix: "বিভাগ",
+                openLabel: "খুলুন",
+              }}
+            />
 
             <dl className="directory-stats">
               <div>

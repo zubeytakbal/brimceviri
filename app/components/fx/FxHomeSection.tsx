@@ -1,4 +1,4 @@
-import { ArrowRight } from "@phosphor-icons/react";
+import { ArrowRight } from "@phosphor-icons/react/ssr";
 import Link from "@/app/components/SiteLink";
 import { DecorativeIcon, type SiteIconName } from "../siteIcons";
 

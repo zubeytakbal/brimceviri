@@ -145,6 +145,8 @@ function takvimGunRedirects(): MergedRedirect[] {
 /** Search Console 404 listesinden: eski sürümlerde kalan, artık hiçbir sayfanın bağlamadığı adresler. */
 function legacyRedirects(): MergedRedirect[] {
   return [
+    // Cark Cevir araci kaldirildi (Ekim 2026); kisa sure yayinda kaldigi icin hesaplayicilar sayfasina yonlenir.
+    r("/cark-cevir", "/hesaplayicilar"),
     r("/uz/atmosfera-bar", "/uz/turkumlar/bosim"),
     r("/uz/bar-atmosfera", "/uz/turkumlar/bosim"),
     r("/uz/psi-bar", "/uz/turkumlar/bosim"),

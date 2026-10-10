@@ -38,6 +38,9 @@ const T = {
     spin: "ÇEVİR",
     spinLabel: "Çarkı çevir",
     hint: "Çarka ya da ortadaki düğmeye dokunun · listedeyken Ctrl + Enter",
+    callTop: "Çevirmek için tıkla",
+    callBottom: "ya da Ctrl + Enter",
+    callBottomTouch: "ya da ortaya dokun",
     tabs: { entries: "Girdiler", results: "Sonuçlar", teams: "Takımlar", draw: "Çekiliş" },
     shuffle: "Karıştır",
     sort: "A–Z",
@@ -191,6 +194,7 @@ export default function WheelSpinner({ lang = "tr" }: { lang?: "tr" }) {
   const [tab, setTab] = useState<Tab>("entries");
   const [dialog, setDialog] = useState<Dialog>(null);
   const [spinning, setSpinning] = useState(false);
+  const [started, setStarted] = useState(false);
   const [winner, setWinner] = useState<{ index: number; name: string } | null>(null);
   const [removeMode, setRemoveMode] = useState(false);
   const [results, setResults] = useState<Array<{ name: string; at: string }>>([]);
@@ -393,6 +397,7 @@ export default function WheelSpinner({ lang = "tr" }: { lang?: "tr" }) {
     ensureAudio();
     spinningRef.current = true;
     setSpinning(true);
+    setStarted(true);
     setDialog(null);
     const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
     const { duration } = settingsRef.current;
@@ -664,6 +669,27 @@ export default function WheelSpinner({ lang = "tr" }: { lang?: "tr" }) {
               </defs>
               <path d="M2 20 L36 3 A17 17 0 0 1 36 37 Z" fill="url(#wheel-pointer-fill)" stroke="#7a3d0b" strokeOpacity=".35" strokeWidth="1.5" />
               <circle cx="33" cy="20" r="6" fill="#fff" fillOpacity=".85" />
+            </svg>
+            <svg className={`wheel-call${started ? " is-gone" : ""}`} viewBox="0 0 100 100" aria-hidden="true">
+              <defs>
+                <path id="wheel-call-top" d="M 19 50 A 31 31 0 0 1 81 50" />
+                <path id="wheel-call-bottom" d="M 13 50 A 37 37 0 0 0 87 50" />
+              </defs>
+              <text>
+                <textPath href="#wheel-call-top" startOffset="50%" textAnchor="middle">
+                  {t.callTop}
+                </textPath>
+              </text>
+              <text className="wheel-call-desk">
+                <textPath href="#wheel-call-bottom" startOffset="50%" textAnchor="middle">
+                  {t.callBottom}
+                </textPath>
+              </text>
+              <text className="wheel-call-touch">
+                <textPath href="#wheel-call-bottom" startOffset="50%" textAnchor="middle">
+                  {t.callBottomTouch}
+                </textPath>
+              </text>
             </svg>
             <button type="button" className="wheel-hub" onClick={spin} disabled={spinning}>
               {t.spin}

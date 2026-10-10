@@ -15800,6 +15800,54 @@ a.all-units-row .all-units-name {
   transition: transform 0.04s linear;
 }
 
+.wheel-call {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  fill: #ffffff;
+  font-family: var(--font-heading), Arial, sans-serif;
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  paint-order: stroke;
+  stroke: rgba(23, 32, 51, 0.78);
+  stroke-width: 1.6px;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 1px 1.5px rgba(0, 0, 0, 0.35));
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  animation: wheel-call-pulse 2.4s ease-in-out infinite;
+}
+
+.wheel-call.is-gone {
+  opacity: 0;
+  transform: scale(1.08);
+  animation: none;
+}
+
+.wheel-call-touch {
+  display: none;
+}
+
+@media (hover: none) {
+  .wheel-call-desk {
+    display: none;
+  }
+
+  .wheel-call-touch {
+    display: inline;
+  }
+}
+
+@keyframes wheel-call-pulse {
+  50% {
+    transform: scale(1.03);
+  }
+}
+
 .wheel-hub {
   position: absolute;
   top: 50%;
@@ -16346,5 +16394,9 @@ a.all-units-row .all-units-name {
   .wheel-tilt,
   .wheel-pointer {
     transition: none;
+  }
+
+  .wheel-call {
+    animation: none;
   }
 }

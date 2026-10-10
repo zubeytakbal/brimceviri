@@ -7,7 +7,8 @@ import { getAllCompoundProfiles } from "../app/converter/compoundsHub";
 import { buildElementReading, elementReadingPlain } from "../app/converter/elementReadingTr";
 import { periodicTable } from "../app/converter/periodicTableData";
 import { countryReadingPlain } from "../app/converter/geo/countryReadingEn";
-import { provinceReadingPlain } from "../app/converter/geo/provinceReadingTr";
+import { provinceReadingPlain, routeReadingParagraph } from "../app/converter/geo/provinceReadingTr";
+import { routePairs } from "../app/converter/geo/routePairs";
 import { worldCountries } from "../app/converter/geo/worldCountries";
 import { turkeyProvinces } from "../app/converter/geo/turkeyProvinces";
 import { buildMaterialReading, materialReadingPlain } from "../app/converter/materialReadingTr";
@@ -163,5 +164,20 @@ describe("Turkish readings", () => {
     expect(text).toContain("Ankara");
     expect(text).toContain("06");
     expect(text).toContain("KGM");
+  });
+
+  it("clears the route-pair gap for every hub", () => {
+    const byHub = new Map<string, Array<{ name: string; text: string }>>();
+    for (const pair of routePairs()) {
+      const list = byHub.get(pair.from.id) ?? [];
+      list.push({ name: `${pair.from.id}-${pair.to.id}`, text: routeReadingParagraph(pair.from, pair.to) });
+      byHub.set(pair.from.id, list);
+    }
+    for (const [hub, texts] of byHub) {
+      expectFloor(texts, 200, 8);
+      expect(texts.length, hub).toBeGreaterThan(10);
+    }
+    const sample = routePairs().find((pair) => pair.from.id === "ankara" && pair.to.id === "adana");
+    expect(sample && routeReadingParagraph(sample.from, sample.to)).toContain("Adana");
   });
 });

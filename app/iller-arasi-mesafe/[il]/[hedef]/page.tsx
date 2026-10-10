@@ -8,6 +8,7 @@ import TimeToolPage from "../../../components/time/TimeToolPage";
 import type { FaqItem } from "../../../converter/faqSchema";
 import { KGM_DISTANCE_DATE } from "../../../converter/geo/kgmDistances";
 import { airKm, DEFAULT_AVG_KMH, distancesFrom, driveMinutes, durationText, roadKm, routeStops } from "../../../converter/geo/provinceDistances";
+import { routeReadingParagraph } from "../../../converter/geo/provinceReadingTr";
 import { findRoutePair, routePairPath, routePairs } from "../../../converter/geo/routePairs";
 import { getNationalGasolinePrice } from "../../../converter/liveFuelPrice";
 import { trAblative, trDative, trGenitive, trLocative } from "../../../converter/turkishSuffix";
@@ -149,6 +150,7 @@ export default async function RoutePairPage({ params }: { params: Promise<{ il: 
       <h2 id="guzergah">
         {from.name} – {to.name} yolu üzerindeki iller
       </h2>
+      <p>{routeReadingParagraph(from, to)}</p>
       {stops.length ? (
         <>
           <div className="holiday-table-wrap">

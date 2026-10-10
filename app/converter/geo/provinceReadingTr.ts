@@ -1,7 +1,7 @@
 // Il mesafe sayfasi: en yakin, en uzak ve ortalama karayolu. Sayilar KGM
 // cetveli ve kus ucusu hesabindan gelir.
 import { KGM_DISTANCE_DATE } from "./kgmDistances";
-import { DEFAULT_AVG_KMH, distancesFrom, driveMinutes, durationText } from "./provinceDistances";
+import { airKm, DEFAULT_AVG_KMH, distancesFrom, driveMinutes, durationText, roadKm, routeStops } from "./provinceDistances";
 import type { TurkeyProvince } from "./turkeyProvinces";
 
 const tr = (value: number, digits = 0) =>
@@ -32,4 +32,32 @@ export function provinceReadingParagraphs(province: TurkeyProvince) {
 
 export function provinceReadingPlain(province: TurkeyProvince) {
   return provinceReadingParagraphs(province).join(" ");
+}
+
+/** Iki ilin kendi karayolu, kus ucusu, rakim ve koordinat farki. */
+export function routeReadingParagraph(from: TurkeyProvince, to: TurkeyProvince) {
+  const road = roadKm(from, to);
+  const air = airKm(from, to);
+  const ratio = air > 0 ? road / air : 0;
+  const solar = Math.round((to.lon - from.lon) * 4);
+  const minutes = Math.round(driveMinutes(road, DEFAULT_AVG_KMH));
+  const breaks = Math.floor(minutes / 150);
+  const plate = String(to.plate).padStart(2, "0");
+  const extra = Math.round(Math.abs(road - air));
+  const climb = to.elevationM - from.elevationM;
+  const stops = routeStops(from, to).map((stop) => stop.province.name);
+  const via = stops.length > 1 ? `${stops.slice(0, -1).join(", ")} ve ${stops[stops.length - 1]}` : stops[0];
+  const clock = durationText(minutes);
+  const duration = clock.includes("sa") ? `${clock} (${tr(minutes)} dakika)` : `${tr(minutes)} dakika`;
+  const height =
+    climb === 0
+      ? `${to.name} ${tr(to.elevationM)} m rakımda, ${from.name} ile aynı`
+      : `${to.name} ${tr(to.elevationM)} m rakımda, ${from.name} rakımından ${tr(Math.abs(climb))} m ${climb > 0 ? "yüksek" : "alçak"}`;
+  const sentences = [
+    `${from.name} çıkışından ${to.name} ${tr(road)} km, kuş uçuşu ${tr(air)} km. ${to.name} yolu kuş uçuşunun ${tr(ratio, 2)} katı ve ${tr(extra)} km daha uzun.`,
+    `${height}. Plakası ${plate}, bölgesi ${to.region}, koordinatı ${tr(to.lat, 2)}° K ${tr(to.lon, 2)}° D; enlem farkı ${tr(Math.abs(to.lat - from.lat), 2)}°, boylam farkı ${tr(Math.abs(to.lon - from.lon), 2)}°.`,
+    `${duration} molasız sürer${breaks > 0 ? `; mola ${tr(breaks)}` : ""}. ${to.name} yerel saati ${from.name} saatinden ${tr(Math.abs(solar))} dakika ${solar >= 0 ? "ileride" : "geride"}.`,
+  ];
+  if (stops.length) sentences.push(`${to.name} üzerinden ${via} geçilir.`);
+  return sentences.join(" ");
 }

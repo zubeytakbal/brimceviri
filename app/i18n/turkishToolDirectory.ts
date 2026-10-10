@@ -359,6 +359,7 @@ export const turkishTimeMenu = pick([
 /** Ana sayfadaki "Popüler araçlar" bloğu. */
 export const turkishPopularTools = pick([
   "/yas-hesaplama",
+  "/cark-cevir",
   "/kredi-hesaplama",
   "/uyku-hesaplama",
   "/kdv-hesaplama",

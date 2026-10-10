@@ -3013,6 +3013,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
     },
     {
+      url: `${baseUrl}/cark-cevir`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/yazilimci-araclari`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",

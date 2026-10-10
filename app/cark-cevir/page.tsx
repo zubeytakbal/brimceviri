@@ -65,15 +65,31 @@ export default function CarkCevirRoute() {
       }}
       tocTitle="İçindekiler"
       tocItems={[
+        { id: "ne-ise-yarar", label: "Çark ne işe yarar?" },
         { id: "nasil", label: "Nasıl kullanılır?" },
+        { id: "ozellikler", label: "Özellikler" },
         { id: "adil", label: "Çark adil mi?" },
+        { id: "ust-uste", label: "Aynı isim neden üst üste çıktı?" },
         { id: "sinif", label: "Sınıfta ve oyunlarda" },
         { id: "cekilis", label: "Instagram çekilişi" },
+        { id: "gizlilik", label: "Listeniz nerede saklanır?" },
         { id: "faq", label: "Sık Sorulan Sorular" },
       ]}
       faqTitle="Sık Sorulan Sorular"
       faqItems={faq}
     >
+      <h2 id="ne-ise-yarar">Çark ne işe yarar?</h2>
+      <p>Kimsenin itiraz etmeyeceği bir kura gereken her yerde işe yarar:</p>
+      <ul>
+        <li>Sınıfta soruyu kimin cevaplayacağını ya da tahtaya kimin kalkacağını seçmek</li>
+        <li>İş yerindeki sabah toplantısında söz sırasını belirlemek</li>
+        <li>Sunum ya da etkinlik sonunda katılımcılar arasından hediye kazananı seçmek</li>
+        <li>Dükkânın sadık müşterileri ya da Instagram yorumları arasından çekiliş yapmak</li>
+        <li>Akşam ne yeneceğine, hangi filmin izleneceğine karar verilemediğinde seçenekleri çarka koymak</li>
+        <li>Yapılacaklar listesi kabarık olduğunda hangi işten başlanacağını çarka bırakmak</li>
+        <li>Oyunlarda kimin başlayacağını, doğruluk mu cesaret mi sırasını ya da takımları belirlemek</li>
+      </ul>
+
       <h2 id="nasil">Nasıl kullanılır?</h2>
       <p>
         Girdiler sekmesindeki kutuya her satıra bir isim yazın ya da “Hazır listeler” menüsünden birini seçin; çark siz
@@ -88,6 +104,39 @@ export default function CarkCevirRoute() {
         tahtaya ya da toplantıda ekrana yansıtmak için uygundur.
       </p>
 
+      <h2 id="ozellikler">Özellikler</h2>
+      <ul>
+        <li>
+          <strong>Ağırlıklı dilim:</strong> “Pizza *3” yazınca o seçenek üç kat geniş dilim alır; ağırlık çarkın
+          üstünde açıkça görünür.
+        </li>
+        <li>
+          <strong>Takımlara bölme:</strong> Listeyi tek dokunuşla 2 ile 6 arasında eşit takıma ayırır.
+        </li>
+        <li>
+          <strong>Sonuç geçmişi:</strong> O oturumda çıkan isimler saatiyle birlikte listelenir ve kopyalanabilir.
+        </li>
+        <li>
+          <strong>Kayıtlı çarklar ve paylaşım:</strong> Listeleri adıyla kaydedip yeniden açabilir, linkini
+          paylaşabilirsiniz.
+        </li>
+        <li>
+          <strong>Görünüm ve ses:</strong> 4 renk teması, 3, 6 ya da 10 saniyelik dönüş, tahta tık, zil ya da sessiz
+          mod, isteğe bağlı konfeti.
+        </li>
+        <li>
+          <strong>Tam ekran:</strong> Menüleri gizleyip yalnızca çarkı büyük gösterir; projeksiyon ve canlı yayın için
+          uygundur.
+        </li>
+        <li>
+          <strong>Çekiliş modu:</strong> Asıl ve yedek kazanan, tekrar eden yorumları ayıklama ve liste parmak izi.
+        </li>
+        <li>
+          <strong>Büyük listeler:</strong> 500 isme kadar liste girilebilir; isim uzunsa dilimdeki yazı otomatik
+          küçülür.
+        </li>
+      </ul>
+
       <h2 id="adil">Çark adil mi?</h2>
       <p>
         Kazanan çark dönmeye başlamadan, tarayıcının kriptografik rastgele sayı üreticisiyle seçilir; animasyon yalnızca
@@ -99,6 +148,18 @@ export default function CarkCevirRoute() {
       <p>
         Ağırlık verdiğiniz isimler (“Ali *2” gibi) çarkta da iki kat geniş görünür, yani hile gizli değildir: herkes
         hangi seçeneğin daha büyük dilim aldığını çarkın üstünde görür.
+      </p>
+
+      <h2 id="ust-uste">Aynı isim neden üst üste çıktı?</h2>
+      <p>
+        Bu, çarkın bozuk olduğunu değil, gerçekten rastgele olduğunu gösterir. Her çevirme bir öncekinden bağımsızdır;
+        çark bir önceki sonucu hatırlamaz. 12 isimlik bir listede az önce çıkan ismin bir sonraki çevirmede yeniden
+        çıkma ihtimali yine 12&apos;de 1&apos;dir (yaklaşık %8,3); aynı ismin üç kez üst üste çıkma ihtimali ise
+        144&apos;te 1&apos;dir. Yazı tura atarken üst üste üç kez yazı gelmesi ne kadar olağansa bu da o kadar olağandır.
+      </p>
+      <p>
+        Herkesin bir kez seçilmesini istiyorsanız kazanan kartında “Listeden çıkar”a basın ya da Girdiler sekmesinde
+        “Çıkan ismi listeden çıkar” kutusunu işaretleyin; böylece aynı kişi liste bitmeden ikinci kez çıkmaz.
       </p>
 
       <h2 id="sinif">Sınıfta ve oyunlarda</h2>
@@ -127,6 +188,14 @@ export default function CarkCevirRoute() {
         Yedek kazanan, asıl kazanan belirtilen sürede ulaşmazsa ödülün kime geçeceğini baştan belli eder ve ikinci bir
         çekilişe gerek bırakmaz. Türkiye&apos;de işletmelerin ödüllü çekilişleri Milli Piyango İdaresi iznine tabi
         olabilir; bu araç kazananı adil biçimde seçer, ancak gereken izinlerin yerine geçmez.
+      </p>
+
+      <h2 id="gizlilik">Listeniz nerede saklanır?</h2>
+      <p>
+        Yazdığınız isimler, kaydettiğiniz çarklar ve ayarlar yalnızca kendi tarayıcınızın hafızasında tutulur;
+        hesap açmanız gerekmez ve listeler sunucumuza gönderilmez. Tarayıcı verilerini silerseniz ya da gizli pencere
+        kullanırsanız kayıtlar da silinir. “Paylaş” ile oluşan linkte liste, adresin # işaretinden sonraki kısmında
+        durur; bu kısım tarayıcılar tarafından sunucuya iletilmez, linki yalnızca gönderdiğiniz kişiler açabilir.
       </p>
     </TimeToolPage>
   );

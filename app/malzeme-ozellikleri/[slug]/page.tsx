@@ -17,6 +17,7 @@ import {
 } from "../../converter/materialsDatabase";
 import { buoyancy, densityRank, litresPerKg, practicalRows } from "../../converter/materialPractical";
 import { materialNotesTr } from "../../converter/materialNotes";
+import { buildMaterialReading } from "../../converter/materialReadingTr";
 import { buildSiteUrl } from "../../siteConfig";
 
 type PageProps = {
@@ -110,6 +111,7 @@ export default async function MaterialPropertyPage({ params }: PageProps) {
   const float = buoyancy(material);
   const rank = densityRank(material);
   const note = materialNotesTr[material.id];
+  const reading = buildMaterialReading(material);
 
   const faqItems: FaqItem[] = [
     {
@@ -260,6 +262,32 @@ export default async function MaterialPropertyPage({ params }: PageProps) {
             )}{" "}
             {getDensityUseNote(material.category)}
           </p>
+        </section>
+
+        <section className="category-article-content">
+          <h2>{reading.heading}</h2>
+          {reading.paragraphs.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
+          <div className="holiday-table-wrap">
+            <table className="holiday-table">
+              <thead>
+                <tr>
+                  {reading.headers.map((header) => (
+                    <th key={header} scope="col">{header}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {reading.rows.map((row) => (
+                  <tr key={row[0]}>
+                    <th scope="row">{row[0]}</th>
+                    <td>{row[1]}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </section>
 
         {note && (

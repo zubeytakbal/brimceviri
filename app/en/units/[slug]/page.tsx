@@ -15,6 +15,7 @@ import { getUnitSources } from "../../../converter/unitSources";
 import { unitPages as turkishUnitPages } from "../../../converter/unitPages";
 import { buildEnglishUnitGuideDescription, buildEnglishUnitGuideTitle, englishIndefiniteArticle } from "../../../converter/englishUnitDisplay";
 import { englishUnitGuideAnswer } from "../../../converter/englishUnitGuideAnswer";
+import { buildEnglishUnitWorked } from "../../../converter/englishUnitWorked";
 import { SITE_URL, buildSiteUrl } from "../../../siteConfig";
 
 type PageProps = {
@@ -116,6 +117,7 @@ export default async function EnglishUnitInformationPage({
   }
 
   const unitArticle = findEnglishUnitArticle(unitPage.slug);
+  const worked = buildEnglishUnitWorked(unitPage);
   const germanPage = findGermanUnitPageByTurkishSlug(
     unitPage.sourceSlug
   );
@@ -351,6 +353,38 @@ export default async function EnglishUnitInformationPage({
               </dl>
             </section>
 
+            {worked.rows.length > 0 && (
+              <section className="conversion-section" id="worked">
+                <h2>{worked.heading}</h2>
+                {worked.paragraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+                <div className="conversion-table-wrap">
+                  <table className="conversion-table">
+                    <thead>
+                      <tr>
+                        {worked.headers.map((header) => (
+                          <th key={header} scope="col">{header}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {worked.rows.map((row) => (
+                        <tr key={row.join("|")}>
+                          {row.map((cell, index) => (
+                            <td key={`${row[0]}-${index}`}>{cell}</td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                {worked.notes.map((note) => (
+                  <p key={note}>{note}</p>
+                ))}
+              </section>
+            )}
+
             {historicalUnitSlugs.has(unitPage.slug) && (
               <p className="category-inline-link">
                 {unitPage.name} is also listed together with other
@@ -379,6 +413,12 @@ export default async function EnglishUnitInformationPage({
                       </li>
                     )
                   )}
+
+                  <li>
+                    <a href="#worked">
+                      {unitPage.name} conversions
+                    </a>
+                  </li>
 
                   <li>
                     <a href="#timeline">

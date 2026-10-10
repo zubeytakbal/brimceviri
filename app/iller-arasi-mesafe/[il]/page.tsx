@@ -9,6 +9,7 @@ import { KGM_DISTANCE_DATE } from "../../converter/geo/kgmDistances";
 import { DEFAULT_AVG_KMH, distancesFrom, driveMinutes, durationText } from "../../converter/geo/provinceDistances";
 import { routePairPath } from "../../converter/geo/routePairs";
 import { findProvince, turkeyProvinces } from "../../converter/geo/turkeyProvinces";
+import { provinceReadingParagraphs } from "../../converter/geo/provinceReadingTr";
 import { trAblative, trDative, trGenitive, trLocative } from "../../converter/turkishSuffix";
 import { buildSiteUrl } from "../../siteConfig";
 
@@ -183,6 +184,9 @@ export default async function ProvinceDistancesPage({ params }: { params: Promis
         {trDative(p.name)} karayoluyla en yakın beş il: {nearest.map((r) => `${r.province.name} (${r.road} km)`).join(", ")}. En uzak beş il:{" "}
         {farthest.map((r) => `${r.province.name} (${r.road.toLocaleString("tr-TR")} km)`).join(", ")}.
       </p>
+      {provinceReadingParagraphs(p).map((paragraph) => (
+        <p key={paragraph}>{paragraph}</p>
+      ))}
 
       <h2 id="il-bilgisi">{p.name} hakkında</h2>
       <p>

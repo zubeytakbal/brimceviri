@@ -13,6 +13,7 @@ import { findCompoundEditorial } from "../../../../converter/compoundEditorial";
 import { seoTitle } from "../../../../seoTitle";
 import { buildSiteUrl } from "../../../../siteConfig";
 import { trGenitive } from "../../../../converter/turkishSuffix";
+import { buildCompoundReading } from "../../../../converter/compoundReadingTr";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -78,6 +79,7 @@ export default async function CompoundPage({ params }: PageProps) {
   const pageUrl = buildSiteUrl(`/bilim-hesaplayicilari/kimya/bilesikler/${slug}`);
   const similarCompounds = findSimilarMolarMassCompounds(slug, 5);
   const editorial = findCompoundEditorial(compound.id);
+  const reading = buildCompoundReading(compound);
 
   const compositionLine = compound.composition
     .map((item) => `${item.count} × ${item.nameTr} (${item.symbol})`)
@@ -179,6 +181,32 @@ export default async function CompoundPage({ params }: PageProps) {
           molarMass={compound.molarMass}
           compoundName={compound.nameTr}
         />
+
+        <section className="category-article-content">
+          <h2>{reading.heading}</h2>
+          {reading.paragraphs.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  {reading.headers.map((header) => (
+                    <th key={header} scope="col">{header}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {reading.rows.map((row) => (
+                  <tr key={row[0]}>
+                    <th scope="row">{row[0]}</th>
+                    <td>{row[1]}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
 
         {editorial && (
           <section className="category-article-content">

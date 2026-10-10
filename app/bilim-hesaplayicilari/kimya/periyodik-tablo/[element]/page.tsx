@@ -17,6 +17,7 @@ import {
   elementNamesDeBySymbol,
   slugifyElementNameDe,
 } from "../../../../converter/periodicTableDataDe";
+import { buildElementReading } from "../../../../converter/elementReadingTr";
 import { buildSiteUrl } from "../../../../siteConfig";
 
 type PageProps = {
@@ -106,6 +107,7 @@ export default async function ElementPage({ params }: PageProps) {
   }
 
   const article = findElementArticle(slug);
+  const reading = buildElementReading(element);
   const pageUrl = buildSiteUrl(
     `/bilim-hesaplayicilari/kimya/periyodik-tablo/${slug}`
   );
@@ -233,6 +235,30 @@ export default async function ElementPage({ params }: PageProps) {
           </dl>
 
           <ElementLewisDiagram element={element} />
+
+          <h2>{reading.heading}</h2>
+          {reading.paragraphs.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  {reading.headers.map((header) => (
+                    <th key={header} scope="col">{header}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {reading.rows.map((row) => (
+                  <tr key={row[0]}>
+                    <th scope="row">{row[0]}</th>
+                    <td>{row[1]}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
 
           {article ? (
             <>

@@ -18,6 +18,7 @@ import {
   utcOffsetOf,
   utcOffsetText,
 } from "../../../converter/geo/worldGeoEn";
+import { countryReadingParagraphs } from "../../../converter/geo/countryReadingEn";
 import { worldCities } from "../../../converter/time/worldCities";
 import { countryPathDe } from "../../../converter/geo/worldGeoDe";
 import { buildLanguageAlternates } from "../../../i18n/routing";
@@ -211,6 +212,7 @@ export default async function EnglishCountryPage({ params }: { params: Promise<{
         { id: "time", label: "Time difference" },
         { id: "size", label: "Size and distance" },
         ...(neighbors.length ? [{ id: "neighbors", label: "Neighboring countries" }] : []),
+        { id: "figures", label: "Key figures" },
         { id: "faq", label: "Frequently asked questions" },
       ]}
       faqTitle="Frequently Asked Questions"
@@ -347,6 +349,10 @@ export default async function EnglishCountryPage({ params }: { params: Promise<{
           </p>
         </>
       )}
+      <h2 id="figures">Key figures</h2>
+      {countryReadingParagraphs(c, now).map((paragraph) => (
+        <p key={paragraph}>{paragraph}</p>
+      ))}
       <p>
         <small>
           Sources: mledoze/countries (ODbL), GeoNames (CC BY 4.0), Natural Earth.

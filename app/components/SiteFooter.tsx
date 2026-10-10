@@ -3,12 +3,8 @@
 import Link from "@/app/components/SiteLink";
 import { usePathname } from "next/navigation";
 import { getLocaleFromPathname } from "../i18n/config";
-import {
-  getCategoryFooterLinks,
-  getFooterLanguageLinks,
-  getFooterLinks,
-  getSiteFooterCopy,
-} from "../i18n/siteNavigation";
+// Alt bilgi verisi derleme oncesi uretilen kucuk modulden gelir (scripts/generateSiteNav.ts).
+import { SITE_NAV_DATA } from "../i18n/siteNavData.generated";
 import {
   SITE_CONTACT_EMAIL,
   SITE_NAME,
@@ -20,10 +16,11 @@ export default function SiteFooter() {
     return null;
   }
   const locale = getLocaleFromPathname(pathname);
-  const categoryFooterLinks = getCategoryFooterLinks(locale);
-  const footerLinks = getFooterLinks(locale);
-  const footerLanguageLinks = getFooterLanguageLinks();
-  const footerCopy = getSiteFooterCopy(locale);
+  const nav = SITE_NAV_DATA.locales[locale];
+  const categoryFooterLinks = nav.categoryFooterLinks;
+  const footerLinks = nav.footerLinks;
+  const footerLanguageLinks = SITE_NAV_DATA.footerLanguageLinks;
+  const footerCopy = nav.footerCopy;
 
   return (
     <footer className="site-footer">

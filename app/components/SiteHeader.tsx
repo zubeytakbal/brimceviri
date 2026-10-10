@@ -4,12 +4,10 @@ import Link from "@/app/components/SiteLink";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useState } from "react";
 import { getLocaleFromPathname } from "../i18n/config";
-import {
-  getMenuGroups,
-  getSiteHeaderCopy,
-  getTopLevelLinks,
-  type MenuGroup,
-} from "../i18n/siteNavigation";
+import type { MenuGroup } from "../i18n/siteNavigation";
+// Menu verisi derleme oncesi uretilen kucuk modulden gelir (scripts/generateSiteNav.ts);
+// siteNavigation'i dogrudan aktarmak butun sayfa veritabanini her sayfaya yukluyordu.
+import { SITE_NAV_DATA } from "../i18n/siteNavData.generated";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useNotificationSlot } from "./NotificationSlotProvider";
 
@@ -38,9 +36,10 @@ function SiteHeaderNavigation({
   const groupIdPrefix = useId();
 
   const locale = getLocaleFromPathname(pathname);
-  const topLevelLinks: HeaderLink[] = getTopLevelLinks(locale);
-  const menuGroups: MenuGroup[] = getMenuGroups(locale);
-  const headerCopy = getSiteHeaderCopy(locale);
+  const nav = SITE_NAV_DATA.locales[locale];
+  const topLevelLinks: HeaderLink[] = nav.topLevelLinks;
+  const menuGroups: MenuGroup[] = nav.menuGroups;
+  const headerCopy = nav.headerCopy;
   const homeHref = topLevelLinks[0]?.href ?? "/";
 
   useEffect(() => {

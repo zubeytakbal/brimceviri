@@ -13,8 +13,28 @@ import {
   getLocaleFromPathname,
   normalizePathname,
   PUBLISHED_LOCALES,
+  type Locale,
 } from "../i18n/config";
-import { resolveLanguagePath } from "../i18n/routing";
+
+// Dil menusu, sayfanin diger dillerdeki karsiliklarini <head> icindeki hreflang
+// etiketlerinden okur. Butun dillerin sayfa listesini tutan yonlendirme modulu (birkac MB)
+// her sayfaya yuklenmesin diye yalnizca menu acildiginda ve bir dil hreflang'de yoksa
+// ayri bir parca olarak indirilir.
+const SITE_ORIGIN = "https://www.birimceviri.app";
+
+
+function headAlternates(): Partial<Record<Locale, string>> {
+  const out: Partial<Record<Locale, string>> = {};
+  document.querySelectorAll<HTMLLinkElement>('link[rel="alternate"][hreflang]').forEach((link) => {
+    const lang = (link.getAttribute("hreflang") || "").toLowerCase();
+    // hreflang kodlari dil kodudur; Ozbekce icin "uz-UZ".
+    const locale = PUBLISHED_LOCALES.find((l) => lang.split("-")[0] === l);
+    if (!locale || out[locale]) return;
+    const href = link.getAttribute("href") || "";
+    out[locale] = href.startsWith(SITE_ORIGIN) ? href.slice(SITE_ORIGIN.length) || "/" : href;
+  });
+  return out;
+}
 
 function normalizeSearchQuery(value: string) {
   return value.toLocaleLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").trim();
@@ -28,6 +48,7 @@ export default function LanguageSwitcher() {
     getLocaleDefinition(currentLocale);
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState("");
+  const [resolved, setResolved] = useState<{ path: string; hrefs: Partial<Record<Locale, string>> }>({ path: "", hrefs: {} });
   const closeMenu = () => {
     setIsOpen(false);
     setQuery("");
@@ -72,10 +93,37 @@ export default function LanguageSwitcher() {
     }
   }, [isOpen]);
 
+  // Sayfa degisince karsiliklari head'den oku.
+  useEffect(() => {
+    const frame = requestAnimationFrame(() =>
+      setResolved({ path: normalizedPathname, hrefs: { ...headAlternates(), [currentLocale]: normalizedPathname } }),
+    );
+    return () => cancelAnimationFrame(frame);
+  }, [normalizedPathname, currentLocale]);
+
+  // Menu acilinca, head'de karsiligi olmayan diller icin tam yonlendirme modulunu yukle.
+  useEffect(() => {
+    if (!isOpen || resolved.path !== normalizedPathname) return;
+    if (PUBLISHED_LOCALES.every((l) => resolved.hrefs[l])) return;
+    let cancelled = false;
+    import("../i18n/routing").then(({ resolveLanguagePath }) => {
+      if (cancelled) return;
+      const hrefs = { ...resolved.hrefs };
+      PUBLISHED_LOCALES.forEach((l) => {
+        if (!hrefs[l]) hrefs[l] = resolveLanguagePath(normalizedPathname, l);
+      });
+      setResolved({ path: normalizedPathname, hrefs });
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [isOpen, normalizedPathname, resolved]);
+
+  const hrefs = resolved.path === normalizedPathname ? resolved.hrefs : {};
   const localeLinks = PUBLISHED_LOCALES.map((locale) => ({
     locale,
     label: getLocaleDefinition(locale).switcherLabel,
-    href: resolveLanguagePath(normalizedPathname, locale),
+    href: locale === currentLocale ? normalizedPathname : hrefs[locale] ?? getLocaleDefinition(locale).homePath,
   }));
 
   const normalizedQuery = normalizeSearchQuery(query);

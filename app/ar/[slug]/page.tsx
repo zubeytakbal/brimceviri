@@ -20,6 +20,7 @@ import WeightComparisonTool from "../../components/WeightComparisonTool";
 import PairConverter from "../../converter/PairConverter";
 import AllUnitsSection from "../../components/AllUnitsSection";
 import { smartDefaultInput } from "../../converter/smartDefaultInput";
+import { buildArabicConversionReading } from "../../converter/arabicConversionReading";
 import { convert } from "../../converter/convert";
 import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
 import { findEnglishCategoryPageByCategory } from "../../converter/localizedCategoryPages";
@@ -357,6 +358,14 @@ function renderConversionPage(slug: string) {
     page.category
   );
   const formattedOneUnitResult = formatNumber(oneUnitResult);
+  const reading = buildArabicConversionReading({
+    category: page.category,
+    fromUnit: page.fromUnit,
+    toUnit: page.toUnit,
+    fromName: localizedFromName,
+    toName: localizedToName,
+    exampleValues: page.exampleValues,
+  });
   const reverseOneUnitResult = formatNumber(
     convert(page.category, 1, page.toUnit, page.fromUnit)
   );
@@ -542,6 +551,13 @@ function renderConversionPage(slug: string) {
             <strong>صيغة التحويل</strong>
             <p>{formulaText}</p>
           </div>
+        </section>
+
+        <section className="conversion-section">
+          <h2>{reading.heading}</h2>
+          {reading.paragraphs.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
         </section>
 
         <section className="conversion-section">

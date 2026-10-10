@@ -37,7 +37,8 @@ const T = {
     drawMode: "Çekiliş modu",
     spin: "ÇEVİR",
     spinLabel: "Çarkı çevir",
-    hint: "Çarka ya da ortadaki düğmeye dokunun · listedeyken Ctrl + Enter",
+    hint: "Çarka ya da ortadaki düğmeye tıklayın · listedeyken Ctrl + Enter",
+    hintTouch: "Çevirmek için çarka ya da ortadaki düğmeye dokunun",
     callTop: "Çevirmek için tıkla",
     callTopTouch: "Çevirmek için dokun",
     callBottom: "ya da Ctrl + Enter",
@@ -701,7 +702,10 @@ export default function WheelSpinner({ lang = "tr" }: { lang?: "tr" }) {
               {t.spin}
             </button>
           </div>
-          <p className="wheel-hint">{t.hint}</p>
+          <p className="wheel-hint">
+            <span className="wheel-call-desk">{t.hint}</span>
+            <span className="wheel-call-touch">{t.hintTouch}</span>
+          </p>
         </section>
 
         <aside className="wheel-panel">

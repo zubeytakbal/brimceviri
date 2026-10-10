@@ -174,7 +174,7 @@ export default function MoonPhasesPage({ lang }: { lang: "tr" | "en" }) {
         links: tr
           ? [
               { href: "/tarih-cevirici", label: "Hicri Rumi Tarih Çevirici" },
-              { href: "/geri-sayim#ramazan", label: "Ramazan'a kaç gün kaldı?" },
+              { href: "/geri-sayim/ramazan", label: "Ramazan'a kaç gün kaldı?" },
               { href: "/dunya-saatleri", label: "Dünya Saatleri" },
               { href: "/online-saat", label: "Online Saat" },
               { href: "/geri-sayim", label: "Geri Sayım" },

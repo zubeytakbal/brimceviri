@@ -917,7 +917,7 @@ export function OzelGunlerHub() {
               </p>
               {e.geriSayim ? (
                 <p>
-                  <Link href={`/geri-sayim#${e.geriSayim}`} prefetch={false}>
+                  <Link href={`/geri-sayim/${e.geriSayim}`} prefetch={false}>
                     {e.ad} için canlı geri sayım
                   </Link>
                 </p>

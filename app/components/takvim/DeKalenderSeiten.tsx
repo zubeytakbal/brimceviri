@@ -672,7 +672,7 @@ export function DeBesondereTageHub() {
                 </p>
                 {t.countdown ? (
                   <p>
-                    <Link href={`/de/countdown#${t.countdown}`} prefetch={false}>
+                    <Link href={`/de/countdown/${t.countdown}`} prefetch={false}>
                       Countdown bis {t.name}
                     </Link>
                   </p>

@@ -132,9 +132,6 @@ function materialRedirects(): MergedRedirect[] {
     r("/ozel-gunler/:id", "/ozel-gunler?gun=:id"),
     r("/de/besondere-tage/:id", "/de/besondere-tage?tag=:id"),
     r("/ar/occasions/:id", "/ar/occasions?id=:id"),
-    r("/geri-sayim/:etkinlik", "/geri-sayim?etkinlik=:etkinlik"),
-    r("/en/countdown/:event", "/en/countdown?event=:event"),
-    r("/de/countdown/:anlass", "/de/countdown?anlass=:anlass"),
   ];
 }
 

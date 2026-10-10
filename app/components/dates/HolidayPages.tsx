@@ -26,19 +26,19 @@ export const holidayPaths = {
 
 /** Tatil gunu -> geri sayim sayfasi */
 const COUNTDOWN: Record<string, string> = {
-  yilbasi: "/geri-sayim#yilbasi",
-  "ramazan-bayrami": "/geri-sayim#ramazan-bayrami",
-  "kurban-bayrami": "/geri-sayim#kurban-bayrami",
-  "23-nisan": "/geri-sayim#23-nisan",
-  "1-mayis": "/geri-sayim#1-mayis",
-  "19-mayis": "/geri-sayim#19-mayis",
-  "15-temmuz": "/geri-sayim#15-temmuz",
-  "30-agustos": "/geri-sayim#30-agustos",
-  "29-ekim": "/geri-sayim#29-ekim",
-  "new-years-day": "/en/countdown#new-year",
-  "independence-day": "/en/countdown#independence-day",
-  thanksgiving: "/en/countdown#thanksgiving",
-  christmas: "/en/countdown#christmas",
+  yilbasi: "/geri-sayim/yilbasi",
+  "ramazan-bayrami": "/geri-sayim/ramazan-bayrami",
+  "kurban-bayrami": "/geri-sayim/kurban-bayrami",
+  "23-nisan": "/geri-sayim/23-nisan",
+  "1-mayis": "/geri-sayim/1-mayis",
+  "19-mayis": "/geri-sayim/19-mayis",
+  "15-temmuz": "/geri-sayim/15-temmuz",
+  "30-agustos": "/geri-sayim/30-agustos",
+  "29-ekim": "/geri-sayim/29-ekim",
+  "new-years-day": "/en/countdown/new-year",
+  "independence-day": "/en/countdown/independence-day",
+  thanksgiving: "/en/countdown/thanksgiving",
+  christmas: "/en/countdown/christmas",
 };
 
 export type HolidayGroup = { id: string; name: string; start: YMD; end: YMD; fullDays: number; half?: YMD; items: Holiday[]; estimated?: boolean };

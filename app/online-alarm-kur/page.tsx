@@ -9,12 +9,12 @@ import type { FaqItem } from "../converter/faqSchema";
 import { timeToolAlternates } from "../i18n/timeToolPaths";
 import { buildSiteUrl } from "../siteConfig";
 
-const title = "Online Alarm Kur: Ücretsiz Çalar Saat";
+const title = "Alarm Kur: Ücretsiz Online Çalar Saat, Sesli ve Kurulumsuz";
 const description =
-  "Tarayıcıda anında alarm kur: saat seç, sesi ve etiketi belirle, birden çok alarm ekle. Erteleme, ekranı açık tutma ve kurulum gerektirmeyen çalar saat.";
+  "Hemen alarm kur: saati seç, alarm sesini dinle ve başlat. Kayıt ve uygulama gerektirmeyen ücretsiz çalar saat; erteleme, birden çok alarm ve hazır saatler.";
 
 export const metadata: Metadata = {
-  title,
+  title: { absolute: title },
   description,
   manifest: appManifestPath("alarm"),
   appleWebApp: { capable: true, title: findInstallableApp("alarm")!.shortName },

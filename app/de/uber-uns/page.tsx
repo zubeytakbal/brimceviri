@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import StaticPageLayout from "../../components/StaticPageLayout";
 import { SITE_NAME, SITE_URL } from "../../siteConfig";
 import { germanStaticPaths } from "../../i18n/germanRoutes";
+import { germanAboutParagraphs } from "../../converter/germanPageFacts";
 
 export const metadata: Metadata = {
   title: "Über uns",
@@ -28,6 +29,7 @@ export const metadata: Metadata = {
 };
 
 export default function GermanAboutPage() {
+  const facts = germanAboutParagraphs();
   return (
     <StaticPageLayout
       locale="de"
@@ -66,6 +68,16 @@ export default function GermanAboutPage() {
                 Weitere Einheitenleitfäden, Umrechnungspaare und technische
                 Werkzeuge können schrittweise ergänzt werden.
               </p>
+            </>
+          ),
+        },
+        {
+          heading: "Umfang in Zahlen",
+          content: (
+            <>
+              {facts.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
             </>
           ),
         },

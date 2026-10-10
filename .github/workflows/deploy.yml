@@ -40,6 +40,8 @@ jobs:
       # Google Fonts indirmesi ara sıra düşüyor (next/font); yalnızca o hatada bir kez daha dener.
       - name: Build
         run: |
+          # pipefail olmadan boru hattinin sonucu tee'ninkidir (hep 0) ve yeniden deneme hic calismaz.
+          set -o pipefail
           npm run build 2>&1 | tee build.log && exit 0
           grep -q "An error occurred in \`next/font\`" build.log || exit 1
           echo "next/font indirme hatası, yeniden deneniyor"

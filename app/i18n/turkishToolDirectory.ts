@@ -204,7 +204,7 @@ export const turkishToolGroups: ToolGroup[] = [
   {
     id: "olcu-ve-gunluk",
     title: "Mutfak, Beden ve Okul",
-    description: "Mutfak ölçüleri, tarif ölçekleme, ayakkabı ve beden numarası, not ve devamsızlık.",
+    description: "Mutfak ölçüleri, tarif ölçekleme, ayakkabı ve beden numarası, not, devamsızlık ve sınıf için çark çevirme.",
     links: [
       { href: "/mutfak-olculeri-cevirici", label: "Mutfak Ölçüleri Çevirici" },
       { href: "/tarif-cevirici", label: "Tarif Çevirici" },
@@ -215,6 +215,7 @@ export const turkishToolGroups: ToolGroup[] = [
       { href: "/yuzuk-olcusu-cevirici", label: "Yüzük Ölçüsü Çevirici" },
       { href: "/seyahat-priz-voltaj-hesaplama", label: "Seyahat Priz ve Voltaj" },
       { href: "/devamsizlik-hesaplama", label: "Devamsızlık Hesaplama" },
+      { href: "/cark-cevir", label: "Çark Çevir (İsim Çarkı ve Çekiliş)" },
       { href: "/harf-notu-hesaplama", label: "Harf Notu Hesaplama" },
       { href: "/agirlik-karsilastirma", label: "Ağırlık Karşılaştırma" },
       { href: "/uzunluk-karsilastirma", label: "Uzunluk Karşılaştırma" },
@@ -358,6 +359,7 @@ export const turkishTimeMenu = pick([
 /** Ana sayfadaki "Popüler araçlar" bloğu. */
 export const turkishPopularTools = pick([
   "/yas-hesaplama",
+  "/cark-cevir",
   "/kredi-hesaplama",
   "/uyku-hesaplama",
   "/kdv-hesaplama",

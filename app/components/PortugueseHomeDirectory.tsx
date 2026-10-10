@@ -1,8 +1,5 @@
-"use client";
 
 import Link from "@/app/components/SiteLink";
-import { useRouter } from "next/navigation";
-import { useDeferredValue, useId, useState } from "react";
 import { portugueseCategoryPages } from "../converter/localizedPortugueseCategoryPages";
 import { portugueseConversionPages } from "../converter/localizedPortugueseConversionPages";
 import { portugueseUnitPages } from "../converter/localizedPortugueseUnitPages";
@@ -11,7 +8,7 @@ import type { SiteNotification } from "../converter/siteNotifications";
 import { DecorativeIcon, getCategoryIconName, type SiteIconName } from "./siteIcons";
 import NotificationBell from "./NotificationBell";
 
-import { useSearchTracking } from "./useSearchTracking";
+import HomeSearch from "./HomeSearch";
 import { CATHOLIC_PATHS } from "../i18n/catholicTools";
 import { unitGlossaryHref } from "../converter/unitGlossary";
 function CardIcon({ name }: { name: SiteIconName }) {
@@ -206,30 +203,16 @@ const stats = {
   conversions: portugueseConversionPages.length,
 };
 
+/** Ana sayfa arama dizini; /arama-dizini/pt.json olarak ayri yayinlanir (bkz. HomeSearch). */
+export function homeSearchIndex() {
+  return searchables;
+}
+
 export default function PortugueseHomeDirectory({
   notifications = [],
 }: {
   notifications?: SiteNotification[];
 }) {
-  const router = useRouter();
-  const inputId = useId();
-  const resultsId = useId();
-  const [query, setQuery] = useState("");
-  const deferredQuery = useDeferredValue(query);
-  const normalizedQuery = normalizeSearchTextPt(deferredQuery);
-
-  const searchResults = normalizedQuery
-    ? searchables.filter((item) => item.searchText.includes(normalizedQuery)).slice(0, 8)
-    : [];
-  useSearchTracking("pt", query, searchResults.length);
-
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-
-    if (searchResults[0]) {
-      router.push(searchResults[0].href);
-    }
-  }
 
   return (
     <main className="directory-home" lang="pt-BR">
@@ -247,59 +230,19 @@ export default function PortugueseHomeDirectory({
           </div>
 
           <div className="directory-hero-panel">
-            <form className="directory-search" onSubmit={handleSubmit} role="search">
-              <label htmlFor={inputId}>Buscar uma conversão</label>
-
-              <div className="directory-search-field">
-                <input
-                  id={inputId}
-                  type="search"
-                  value={query}
-                  placeholder="Ex.: metros para pés"
-                  autoComplete="off"
-                  spellCheck={false}
-                  aria-describedby={`${inputId}-hint`}
-                  aria-controls={resultsId}
-                  onChange={(event) => setQuery(event.target.value)}
-                />
-
-                <button type="submit">
-                  <DecorativeIcon className="directory-button-icon" name="search" size={18} />
-                  Abrir
-                </button>
-              </div>
-
-              <p className="directory-search-hint" id={`${inputId}-hint`}>
-                Digite o nome de uma unidade em português ou inglês e pressione
-                Enter para abrir o primeiro resultado.
-              </p>
-
-              {query.trim() ? (
-                <div className="directory-search-results-wrap">
-                  <div className="directory-search-results-head">
-                    <strong>Resultados da busca</strong>
-                    <span>Pressione Enter para abrir</span>
-                  </div>
-
-                  {searchResults.length > 0 ? (
-                    <ul className="directory-search-results" id={resultsId}>
-                      {searchResults.map((result) => (
-                        <li key={result.id}>
-                          <Link href={result.href}>
-                            <span>{result.label}</span>
-                            <small>
-                              Categoria: {result.categoryLabel} · {result.description}
-                            </small>
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <p className="directory-search-empty">Nenhum resultado encontrado.</p>
-                  )}
-                </div>
-              ) : null}
-            </form>
+            <HomeSearch
+              locale="pt"
+              strings={{
+                searchLabel: "Buscar uma conversão",
+                searchPlaceholder: "Ex.: metros para pés",
+                searchHint: "Digite o nome de uma unidade em português ou inglês e pressione Enter para abrir o primeiro resultado.",
+                searchResultsLabel: "Resultados da busca",
+                searchEmpty: "Nenhum resultado encontrado.",
+                searchEnterHint: "Pressione Enter para abrir",
+                searchCategoryPrefix: "Categoria",
+                openLabel: "Abrir",
+              }}
+            />
 
             <dl className="directory-stats">
               <div>

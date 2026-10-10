@@ -1,8 +1,5 @@
-"use client";
 
 import Link from "@/app/components/SiteLink";
-import { useRouter } from "next/navigation";
-import { useDeferredValue, useId, useState } from "react";
 import { italianCategoryPages } from "../converter/localizedItalianCategoryPages";
 import { italianConversionPages } from "../converter/localizedItalianConversionPages";
 import { italianUnitPages } from "../converter/localizedItalianUnitPages";
@@ -11,7 +8,7 @@ import type { SiteNotification } from "../converter/siteNotifications";
 import { DecorativeIcon, getCategoryIconName, type SiteIconName } from "./siteIcons";
 import NotificationBell from "./NotificationBell";
 
-import { useSearchTracking } from "./useSearchTracking";
+import HomeSearch from "./HomeSearch";
 import { unitGlossaryHref } from "../converter/unitGlossary";
 function CardIcon({ name }: { name: SiteIconName }) {
   return (
@@ -155,30 +152,16 @@ const stats = {
   conversions: italianConversionPages.length,
 };
 
+/** Ana sayfa arama dizini; /arama-dizini/it.json olarak ayri yayinlanir (bkz. HomeSearch). */
+export function homeSearchIndex() {
+  return searchables;
+}
+
 export default function ItalianHomeDirectory({
   notifications = [],
 }: {
   notifications?: SiteNotification[];
 }) {
-  const router = useRouter();
-  const inputId = useId();
-  const resultsId = useId();
-  const [query, setQuery] = useState("");
-  const deferredQuery = useDeferredValue(query);
-  const normalizedQuery = normalizeSearchTextIt(deferredQuery);
-
-  const searchResults = normalizedQuery
-    ? searchables.filter((item) => item.searchText.includes(normalizedQuery)).slice(0, 8)
-    : [];
-  useSearchTracking("it", query, searchResults.length);
-
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-
-    if (searchResults[0]) {
-      router.push(searchResults[0].href);
-    }
-  }
 
   return (
     <main className="directory-home" lang="it">
@@ -196,59 +179,19 @@ export default function ItalianHomeDirectory({
           </div>
 
           <div className="directory-hero-panel">
-            <form className="directory-search" onSubmit={handleSubmit} role="search">
-              <label htmlFor={inputId}>Cerca una conversione</label>
-
-              <div className="directory-search-field">
-                <input
-                  id={inputId}
-                  type="search"
-                  value={query}
-                  placeholder="Es.: metri in piedi"
-                  autoComplete="off"
-                  spellCheck={false}
-                  aria-describedby={`${inputId}-hint`}
-                  aria-controls={resultsId}
-                  onChange={(event) => setQuery(event.target.value)}
-                />
-
-                <button type="submit">
-                  <DecorativeIcon className="directory-button-icon" name="search" size={18} />
-                  Apri
-                </button>
-              </div>
-
-              <p className="directory-search-hint" id={`${inputId}-hint`}>
-                Digita il nome di un'unità in italiano o inglese e premi
-                Invio per aprire il primo risultato.
-              </p>
-
-              {query.trim() ? (
-                <div className="directory-search-results-wrap">
-                  <div className="directory-search-results-head">
-                    <strong>Risultati della ricerca</strong>
-                    <span>Premi Invio per aprire</span>
-                  </div>
-
-                  {searchResults.length > 0 ? (
-                    <ul className="directory-search-results" id={resultsId}>
-                      {searchResults.map((result) => (
-                        <li key={result.id}>
-                          <Link href={result.href}>
-                            <span>{result.label}</span>
-                            <small>
-                              Categoria: {result.categoryLabel} · {result.description}
-                            </small>
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <p className="directory-search-empty">Nessun risultato trovato.</p>
-                  )}
-                </div>
-              ) : null}
-            </form>
+            <HomeSearch
+              locale="it"
+              strings={{
+                searchLabel: "Cerca una conversione",
+                searchPlaceholder: "Es.: metri in piedi",
+                searchHint: "Digita il nome di un'unità in italiano o inglese e premi Invio per aprire il primo risultato.",
+                searchResultsLabel: "Risultati della ricerca",
+                searchEmpty: "Nessun risultato trovato.",
+                searchEnterHint: "Premi Invio per aprire",
+                searchCategoryPrefix: "Categoria",
+                openLabel: "Apri",
+              }}
+            />
 
             <dl className="directory-stats">
               <div>

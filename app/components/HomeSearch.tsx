@@ -29,10 +29,14 @@ export type HomeSearchStrings = {
   openLabel: string;
 };
 
-// HomeDirectory'deki dizinle ayni normallestirme (searchText bununla uretilir).
-function normalizeSearchText(value: string) {
-  return value
-    .toLocaleLowerCase("tr-TR")
+export type HomeSearchLocale = "tr" | "en" | "uz" | "de" | "ar" | "fr" | "es" | "pt" | "it" | "sv" | "no" | "da" | "bn";
+
+// Her dilin ana sayfa dizinindeki searchText ile ayni normallestirme (dizin bununla uretilir).
+function normalizeSearchText(value: string, locale: HomeSearchLocale) {
+  if (locale === "ar") return value.toLocaleLowerCase("ar").replace(/[^\u0600-\u06ffa-z0-9]+/g, " ").trim();
+  if (locale === "bn") return value.toLocaleLowerCase("bn").replace(/[^\u0980-\u09ffa-z0-9]+/g, " ").trim();
+  const lower = locale === "tr" || locale === "en" || locale === "uz" || locale === "de" ? value.toLocaleLowerCase("tr-TR") : value.toLocaleLowerCase(locale);
+  return lower
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
     .replace(/\u0131/g, "i")
@@ -40,7 +44,19 @@ function normalizeSearchText(value: string) {
     .trim();
 }
 
-export default function HomeSearch({ locale, strings }: { locale: "tr" | "en" | "uz" | "de"; strings: HomeSearchStrings }) {
+/**
+ * Arapcada her kelime ayri aranir ve basindaki "ال" takisi atilir; diger dillerde aranan
+ * ifade metinde bir butun olarak gecmeli (ana sayfalarin onceki davranisiyla ayni).
+ */
+function matches(searchText: string, query: string, locale: HomeSearchLocale) {
+  if (locale !== "ar") return searchText.includes(query);
+  return query
+    .split(" ")
+    .map((token) => (token.length > 3 && token.startsWith("ال") ? token.slice(2) : token))
+    .every((token) => searchText.includes(token));
+}
+
+export default function HomeSearch({ locale, strings }: { locale: HomeSearchLocale; strings: HomeSearchStrings }) {
   const router = useRouter();
   const inputId = useId();
   const resultsId = useId();
@@ -48,7 +64,7 @@ export default function HomeSearch({ locale, strings }: { locale: "tr" | "en" | 
   const [items, setItems] = useState<HomeSearchItem[] | null>(null);
   const loading = useRef(false);
   const deferredQuery = useDeferredValue(query);
-  const normalizedQuery = normalizeSearchText(deferredQuery);
+  const normalizedQuery = normalizeSearchText(deferredQuery, locale);
 
   const load = () => {
     if (items || loading.current) return;
@@ -61,7 +77,7 @@ export default function HomeSearch({ locale, strings }: { locale: "tr" | "en" | 
       });
   };
 
-  const searchResults = normalizedQuery && items ? items.filter((item) => item.searchText.includes(normalizedQuery)).slice(0, 8) : [];
+  const searchResults = normalizedQuery && items ? items.filter((item) => matches(item.searchText, normalizedQuery, locale)).slice(0, 8) : [];
   useSearchTracking(locale, items ? query : "", searchResults.length);
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {

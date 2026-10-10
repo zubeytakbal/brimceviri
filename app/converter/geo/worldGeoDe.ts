@@ -208,7 +208,12 @@ export function groessenvergleich(country: WorldCountry) {
   const r = country.area / GERMANY.area;
   if (r >= 1.05) return `etwa ${num(r, 1)}-mal so groß wie Deutschland`;
   if (r > 0.95) return "etwa so groß wie Deutschland";
-  return `etwa ${num(r * 100, r < 0.01 ? 2 : 1)} % der Fläche Deutschlands`;
+  const pct = r * 100;
+  const text =
+    pct >= 0.01
+      ? num(pct, pct >= 1 ? 1 : 2)
+      : pct.toLocaleString("de-DE", { maximumSignificantDigits: 2 });
+  return `etwa ${text} % der Fläche Deutschlands`;
 }
 
 /** Hinweis zu Steckdosen aus Sicht eines Reisenden mit deutschen Geraeten (Typ C/F, 230 V). */

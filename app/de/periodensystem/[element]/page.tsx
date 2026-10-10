@@ -12,6 +12,7 @@ import {
   slugifyElementNameDe,
 } from "../../../converter/periodicTableDataDe";
 import { findGermanElementArticle } from "../../../converter/germanElementArticles";
+import { buildGermanElementReading } from "../../../converter/germanElementReading";
 import { buildSiteUrl } from "../../../siteConfig";
 import { buildFaqSchema, type FaqItem } from "../../../converter/faqSchema";
 import { getAllCompoundProfiles } from "../../../converter/compoundsHub";
@@ -105,6 +106,7 @@ export default async function GermanElementPage({ params }: PageProps) {
       : `${nameDe} steht in der ${element.period}. Periode und in Gruppe ${element.group} des Periodensystems. Die Einordnung als ${elementCategoryLabelsDe[element.category].toLowerCase()} hilft bei der Einordnung seiner chemischen Verwandtschaft.`;
 
   const categoryDe = elementCategoryLabelsDe[element.category];
+  const reading = buildGermanElementReading(element);
   const compoundsWith = getAllCompoundProfiles()
     .filter((c) => c.composition.some((part) => part.symbol === element.symbol))
     .map((c) => {
@@ -230,6 +232,29 @@ export default async function GermanElementPage({ params }: PageProps) {
             {formatMass(element.atomicMass)} u ist der Referenzwert für
             Stoffmengen- und molare-Masse-Berechnungen mit diesem Element.
           </p>
+
+          <h2>{reading.heading}</h2>
+          {reading.paragraphs.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>{reading.headers[0]}</th>
+                  <th>{reading.headers[1]}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {reading.rows.map((row) => (
+                  <tr key={row.label}>
+                    <td>{row.label}</td>
+                    <td>{row.value}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
 
           {article ? (
             <>

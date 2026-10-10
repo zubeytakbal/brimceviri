@@ -49,6 +49,8 @@ describe("Germany comparisons", () => {
     expect(paris).toBeGreaterThan(870);
     expect(paris).toBeLessThan(890);
     expect(groessenvergleich(c("FRA"))).toMatch(/mal so groß/);
+    expect(groessenvergleich(c("VAT"))).toMatch(/0,0001/);
+    expect(groessenvergleich(c("VAT"))).not.toMatch(/0,00 %/);
     expect(aehnlichesBundesland(c("CHE").area)?.name).toBe("Baden-Württemberg");
     expect(aehnlichesBundesland(c("FRA").area)).toBeNull();
     const winter = new Date(Date.UTC(2026, 0, 15, 12));

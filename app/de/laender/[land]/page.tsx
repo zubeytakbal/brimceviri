@@ -12,6 +12,7 @@ import {
 } from "../../../converter/geo/worldGeo";
 import { type WorldCountry } from "../../../converter/geo/worldCountries";
 import { WORLD_REGIONS_DE } from "../../../converter/geo/worldCountriesDe";
+import { buildGermanCountryReading, formatGermanArea } from "../../../converter/geo/germanCountryReading";
 import {
   aehnlichesBundesland,
   countriesDe,
@@ -81,8 +82,8 @@ export async function generateMetadata({
   const title = `${d.name}: Hauptstadt, Karte, Zeitverschiebung und Währung`;
   const description =
     c.iso3 === "DEU"
-      ? `Deutschland in Zahlen: Hauptstadt Berlin, Fläche ${num(c.area)} km², Nachbarländer, Vorwahl, Zeitzone und Lage auf der Karte.`
-      : `Hauptstadt von ${d.name} ist ${d.capital}. ${num(c.area)} km², ${zeitverschiebungText(diff)}, ${num(hauptstadtKm(GERMANY, c))} km Luftlinie ab Berlin, Währung, Sprachen, Vorwahl und Steckdosen.`;
+      ? `Deutschland in Zahlen: Hauptstadt Berlin, Fläche ${formatGermanArea(c.area)} km², Nachbarländer, Vorwahl, Zeitzone und Lage auf der Karte.`
+      : `Hauptstadt von ${d.name} ist ${d.capital}. ${formatGermanArea(c.area)} km², ${zeitverschiebungText(diff)}, ${num(hauptstadtKm(GERMANY, c))} km Luftlinie ab Berlin, Währung, Sprachen, Vorwahl und Steckdosen.`;
   return {
     title: seoTitle(
       title,
@@ -153,6 +154,7 @@ export default async function LandPage({ params }: PageProps) {
     isEuro && "Eurozone",
     isSchengen && "Schengen-Raum",
   ].filter(Boolean) as string[];
+  const reading = buildGermanCountryReading(c, now);
 
   const faqItems: FaqItem[] = [
     {
@@ -162,8 +164,8 @@ export default async function LandPage({ params }: PageProps) {
     {
       question: `Wie groß ist ${d.name}?`,
       answer: isDe
-        ? `Deutschland ist ${num(c.area)} km² groß und liegt damit auf Platz ${rank} von ${countriesDe.length} Ländern. Größtes Bundesland ist Bayern (70.542 km²), kleinstes Bremen (420 km²).`
-        : `${d.name} hat eine Fläche von ${num(c.area)} km² (Platz ${rank} von ${countriesDe.length}) und ist damit ${groessenvergleich(c)} (${num(GERMANY.area)} km²).${bundesland ? ` Das entspricht ungefähr der Fläche von ${bundesland.name} (${num(bundesland.area)} km²).` : ""}`,
+        ? `Deutschland ist ${formatGermanArea(c.area)} km² groß und liegt damit auf Platz ${rank} von ${countriesDe.length} Ländern. Größtes Bundesland ist Bayern (70.542 km²), kleinstes Bremen (420 km²).`
+        : `${d.name} hat eine Fläche von ${formatGermanArea(c.area)} km² (Platz ${rank} von ${countriesDe.length}) und ist damit ${groessenvergleich(c)} (${formatGermanArea(GERMANY.area)} km²).${bundesland ? ` Das entspricht ungefähr der Fläche von ${bundesland.name} (${formatGermanArea(bundesland.area)} km²).` : ""}`,
     },
     ...(isDe
       ? []
@@ -226,7 +228,7 @@ export default async function LandPage({ params }: PageProps) {
                 <span>Hauptstadt</span>
               </div>
               <div>
-                <strong>{num(c.area)} km²</strong>
+                <strong>{formatGermanArea(c.area)} km²</strong>
                 <span>
                   {isDe ? `Platz ${rank} nach Fläche` : groessenvergleich(c)}
                 </span>
@@ -322,6 +324,7 @@ export default async function LandPage({ params }: PageProps) {
           { id: "steckbrief", label: `Steckbrief ${d.name}` },
           ...(isDe ? [] : [{ id: "zeit", label: "Zeitverschiebung" }]),
           { id: "groesse", label: isDe ? "Größe" : "Größe und Entfernung" },
+          { id: "zahlen", label: "Gerechnete Vergleiche" },
           ...(power && !isDe
             ? [{ id: "steckdosen", label: "Steckdosen und Spannung" }]
             : []),
@@ -354,7 +357,7 @@ export default async function LandPage({ params }: PageProps) {
               <tr>
                 <th scope="row">Fläche</th>
                 <td>
-                  {num(c.area)} km² · Platz {rank} von {countriesDe.length}
+                  {formatGermanArea(c.area)} km² · Platz {rank} von {countriesDe.length}
                 </td>
               </tr>
               <tr>
@@ -465,7 +468,7 @@ export default async function LandPage({ params }: PageProps) {
         <h2 id="groesse">{isDe ? "Größe" : "Größe und Entfernung"}</h2>
         {isDe ? (
           <p>
-            Deutschland ist mit {num(c.area)} km² das {rank}.-größte Land der
+            Deutschland ist mit {formatGermanArea(c.area)} km² das {rank}.-größte Land der
             Welt und nach Frankreich, Spanien und Schweden das viertgrößte der
             EU. Die Entfernungen zwischen den Großstädten berechnet der{" "}
             <Link href="/de/entfernung">Entfernungsrechner</Link>.
@@ -473,12 +476,12 @@ export default async function LandPage({ params }: PageProps) {
         ) : (
           <ul>
             <li>
-              {d.name} ist {groessenvergleich(c)} ({num(GERMANY.area)} km²).
+              {d.name} ist {groessenvergleich(c)} ({formatGermanArea(GERMANY.area)} km²).
             </li>
             {bundesland && (
               <li>
                 Die Fläche entspricht ungefähr der von {bundesland.name} (
-                {num(bundesland.area)} km²).
+                {formatGermanArea(bundesland.area)} km²).
               </li>
             )}
             <li>
@@ -490,6 +493,27 @@ export default async function LandPage({ params }: PageProps) {
             )}
           </ul>
         )}
+
+        <h2 id="zahlen">{reading.heading}</h2>
+        <p>{reading.intro}</p>
+        <p>{reading.shape}</p>
+        <div className="holiday-table-wrap">
+          <table className="holiday-table">
+            <tbody>
+              {reading.rows.map((row) => (
+                <tr key={row.label}>
+                  <th scope="row">{row.label}</th>
+                  <td>{row.value}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p>{reading.nearest}</p>
+        <p>{reading.clock}</p>
+        <p>
+          <small>{reading.method}</small>
+        </p>
 
         {power && !isDe && (
           <>

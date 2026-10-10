@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import PairConverter from "../../converter/PairConverter";
 import AllUnitsSection from "../../components/AllUnitsSection";
 import { smartDefaultInput } from "../../converter/smartDefaultInput";
+import { buildSpanishConversionReading } from "../../converter/spanishConversionReading";
 import { convert } from "../../converter/convert";
 import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
 import { findEnglishPageByTurkishSlug } from "../../converter/localizedConversionPages";
@@ -120,6 +121,14 @@ export default async function SpanishConversionPage({ params }: PageProps) {
   }));
 
   const oneUnitResult = convert(page.category, 1, page.fromUnit, page.toUnit);
+  const reading = buildSpanishConversionReading({
+    category: page.category,
+    fromUnit: page.fromUnit,
+    toUnit: page.toUnit,
+    fromName: page.fromName,
+    toName: page.toName,
+    exampleValues: page.exampleValues,
+  });
   const formattedOneUnitResult = formatNumber(oneUnitResult);
   const reverseOneUnitResult = formatNumber(
     convert(page.category, 1, page.toUnit, page.fromUnit)
@@ -237,6 +246,13 @@ export default async function SpanishConversionPage({ params }: PageProps) {
             <strong>Fórmula de conversión</strong>
             <p>{page.formula}</p>
           </div>
+        </section>
+
+        <section className="conversion-section">
+          <h2>{reading.heading}</h2>
+          {reading.paragraphs.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
         </section>
 
         <section className="conversion-section">

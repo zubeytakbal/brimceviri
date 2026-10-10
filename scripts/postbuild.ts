@@ -12,6 +12,7 @@
 //    grubu varsa build'i durdurur.
 // 5. Ince sayfa denetimi (scripts/thinGuard.ts): dizine acik yeni bir sayfanin
 //    metni cok kisaysa build'i durdurur.
+// 6. Parametreli site ici baglantilara rel="nofollow" (nofollowQueryLinks).
 import { existsSync, readdirSync, readFileSync, unlinkSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { LOCALE_DEFINITIONS } from "../app/i18n/config";
@@ -86,9 +87,40 @@ function fixHtmlLang(): number {
   return fixed;
 }
 
+// Sorgu parametreli site içi bağlantılar (?a=..&b=.., ?land=.., ?v=..) ayrı sayfa değil, aynı
+// sayfada bir seçimi açar; standart adres her zaman parametresiz sayfadır. Google'ın bunları
+// binlerce ayrı adres olarak kuyruğa almaması için rel="nofollow" eklenir.
+function nofollowQueryLinks(): number {
+  let changed = 0;
+  const walk = (dir: string) => {
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      const path = join(dir, entry.name);
+      if (entry.isDirectory()) {
+        if (entry.name !== "_next") walk(path);
+        continue;
+      }
+      if (!entry.name.endsWith(".html")) continue;
+      const html = readFileSync(path, "utf8");
+      let count = 0;
+      const next = html.replace(/<a\b([^>]*?)\shref="((?:\/(?!\/)|\?)[^"]*\?[^"]*)"([^>]*)>/g, (tag, before: string, href: string, after: string) => {
+        if (/\brel="/.test(before + after)) return tag;
+        count++;
+        return `<a${before} href="${href}" rel="nofollow"${after}>`;
+      });
+      if (count) {
+        writeFileSync(path, next);
+        changed += count;
+      }
+    }
+  };
+  walk(OUT);
+  return changed;
+}
+
 console.log(`${removeRscPayloads(OUT)} sayfa gecis verisi (.txt) silindi`);
 console.log(`${fixHtmlLang()} sayfada <html lang> dile gore duzeltildi`);
 console.log(`out/_redirects: ${writeRedirects()} yonlendirme yazildi`);
+console.log(`${nofollowQueryLinks()} parametreli site ici baglantiya rel="nofollow" eklendi`);
 
 // 4. Şablon sayfa denetimi: kopya kardeş sayfa grubu varsa build durur.
 const guard = checkTemplates(OUT);

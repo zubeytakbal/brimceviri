@@ -5,17 +5,17 @@ import { getSiteNotifications } from "../converter/siteNotifications";
 import { buildSiteUrl } from "../siteConfig";
 
 export const metadata: Metadata = {
-  title: "Encontre a conversão de unidades que você precisa",
+  title: "Conversor de Unidades Online: Comprimento, Peso e Temperatura",
   description:
-    "Converta grátis e instantaneamente comprimento, massa, temperatura e outras unidades físicas. Mais de 12 categorias, com fórmulas precisas.",
+    "Conversor de unidades online e grátis: comprimento, peso, temperatura, pressão e outras unidades físicas, com fórmulas e tabelas precisas.",
   alternates: {
     canonical: "/pt",
     ...buildHomeLanguageAlternates(),
   },
   openGraph: {
-    title: "Encontre a conversão de unidades que você precisa",
+    title: "Conversor de Unidades Online: Comprimento, Peso e Temperatura",
     description:
-      "Converta grátis e instantaneamente comprimento, massa, temperatura e outras unidades físicas.",
+      "Conversor de unidades grátis: comprimento, peso, temperatura e mais, com fórmulas precisas.",
     url: buildSiteUrl("/pt"),
     siteName: "BirimCeviri.app",
     locale: "pt_BR",

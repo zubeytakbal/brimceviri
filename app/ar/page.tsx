@@ -7,17 +7,17 @@ import { getSiteNotifications } from "../converter/siteNotifications";
 const arabicHomeUrl = buildSiteUrl("/ar");
 
 export const metadata: Metadata = {
-  title: "اعثر على أداة التحويل المناسبة",
+  title: "تحويل الوحدات أونلاين: الطول والوزن ودرجة الحرارة",
   description:
-    "استعرض الأدوات والحاسبات المتاحة بالعربية وافتح الصفحة المناسبة مباشرة من القسم العربي.",
+    "تحويل الوحدات مجانًا وبالعربية: الطول والوزن ودرجة الحرارة والضغط، مع حاسبات للبناء والصحة والزكاة والتقويم الهجري.",
   alternates: {
     canonical: arabicHomeUrl,
     ...buildHomeLanguageAlternates(),
   },
   openGraph: {
-    title: "اعثر على أداة التحويل المناسبة | BirimCeviri.app",
+    title: "تحويل الوحدات أونلاين: الطول والوزن ودرجة الحرارة | BirimCeviri.app",
     description:
-      "ابدأ من الصفحة العربية الرئيسية للوصول إلى الأدوات المعربة الجاهزة حاليا.",
+      "تحويل الوحدات مجانًا بالعربية مع حاسبات عملية وشرح للمعادلات.",
     url: arabicHomeUrl,
     siteName: "BirimCeviri.app",
     locale: "ar_AR",

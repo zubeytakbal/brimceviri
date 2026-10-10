@@ -43,6 +43,7 @@ import { getUnitSources } from "../../converter/unitSources";
 import { buildFullLanguageAlternates } from "../../i18n/routing";
 import { buildSiteUrl } from "../../siteConfig";
 import { germanConversionSeo, germanSymbol } from "../../converter/germanConversionSeo";
+import { germanComparisonFact, germanConversionExamples } from "../../converter/germanPageFacts";
 
 const componentMap: Record<GermanStandaloneToolComponentKey, React.ComponentType<{ locale?: "de" }>> =
   {
@@ -203,6 +204,7 @@ function GermanStandaloneTool({
   tool: NonNullable<ReturnType<typeof findGermanStandaloneToolBySlug>>;
 }) {
   const ToolComponent = componentMap[tool.component];
+  const comparisonFacts = germanComparisonFact(tool.slug);
   const pageUrl = buildSiteUrl(tool.germanPath);
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -251,6 +253,15 @@ function GermanStandaloneTool({
         </header>
 
         <ToolComponent locale="de" />
+
+        {comparisonFacts && (
+          <section className="category-article-content">
+            <h2>{comparisonFacts.title}</h2>
+            {comparisonFacts.paragraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </section>
+        )}
 
         <section className="category-article-content">
           {tool.articleSections.map((section) => (
@@ -323,6 +334,7 @@ function GermanConversionPage({
     .slice(0, 8);
 
   const seo = germanConversionSeo(page);
+  const workedExamples = germanConversionExamples(page);
   const fromSymbol = germanSymbol(page.fromUnit);
   const toSymbol = germanSymbol(page.toUnit);
   const tableRows = seo.exampleValues.map((value) => ({
@@ -482,6 +494,15 @@ function GermanConversionPage({
             </table>
           </div>
         </section>
+
+        {workedExamples.length > 0 && (
+          <section className="conversion-section">
+            <h2>Weitere Beispiele</h2>
+            {workedExamples.map((line) => (
+              <p key={line}>{line}</p>
+            ))}
+          </section>
+        )}
 
         {fromUnitInfo && (
           <section className="conversion-section unit-information">

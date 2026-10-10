@@ -3,6 +3,7 @@ import Link from "@/app/components/SiteLink";
 import StaticPageLayout from "../../components/StaticPageLayout";
 import { SITE_CONTACT_EMAIL, SITE_NAME, SITE_URL } from "../../siteConfig";
 import { germanStaticPaths } from "../../i18n/germanRoutes";
+import { germanContactParagraphs } from "../../converter/germanPageFacts";
 
 export const metadata: Metadata = {
   title: "Kontakt",
@@ -29,6 +30,7 @@ export const metadata: Metadata = {
 };
 
 export default function GermanContactPage() {
+  const examples = germanContactParagraphs();
   return (
     <StaticPageLayout
       locale="de"
@@ -82,6 +84,16 @@ export default function GermanContactPage() {
               Übersetzungsfehler sowie Anfragen zur Einbindung der Rechner auf
               anderen Websites können ebenfalls an diese Adresse gesendet werden.
             </p>
+          ),
+        },
+        {
+          heading: "So prüfen Sie eine Umrechnung",
+          content: (
+            <>
+              {examples.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </>
           ),
         },
         {

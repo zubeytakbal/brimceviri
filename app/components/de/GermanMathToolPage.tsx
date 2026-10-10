@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import TimeToolPage from "../time/TimeToolPage";
 import { findGermanMathPage, germanMathAlternates, germanMathLinks, type GermanMathKey } from "../../i18n/germanMathPages";
+import { germanMathFact } from "../../converter/germanPageFacts";
 import { seoTitle } from "../../seoTitle";
 import { buildSiteUrl } from "../../siteConfig";
 
@@ -18,6 +19,7 @@ export function germanMathMetadata(key: GermanMathKey): Metadata {
 
 export default function GermanMathToolPage({ pageKey, tool }: { pageKey: GermanMathKey; tool: React.ReactNode }) {
   const page = findGermanMathPage(pageKey);
+  const facts = germanMathFact(pageKey);
   return (
     <div lang="de">
       <TimeToolPage
@@ -32,7 +34,11 @@ export default function GermanMathToolPage({ pageKey, tool }: { pageKey: GermanM
         tool={tool}
         related={{ title: "Weitere Mathe-Rechner", links: germanMathLinks.filter((l) => l.href !== page.path) }}
         tocTitle="Inhalt"
-        tocItems={[...page.sections.map((s) => ({ id: s.id, label: s.title })), { id: "faq", label: "Häufige Fragen" }]}
+        tocItems={[
+          ...page.sections.map((s) => ({ id: s.id, label: s.title })),
+          ...(facts ? [{ id: facts.id, label: facts.title }] : []),
+          { id: "faq", label: "Häufige Fragen" },
+        ]}
         faqTitle="Häufige Fragen"
         faqItems={page.faq}
       >
@@ -75,6 +81,14 @@ export default function GermanMathToolPage({ pageKey, tool }: { pageKey: GermanM
             )}
           </section>
         ))}
+        {facts && (
+          <section>
+            <h2 id={facts.id}>{facts.title}</h2>
+            {facts.paragraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </section>
+        )}
         <p>
           Alle Rechner im Überblick finden Sie unter <Link href="/de/mathe-rechner">Mathe-Rechner</Link>.
         </p>

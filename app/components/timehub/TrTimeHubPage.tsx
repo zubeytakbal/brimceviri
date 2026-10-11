@@ -10,6 +10,7 @@ import { trBugun } from "../takvim/TakvimSayfalari";
 import TimeToolPage from "../time/TimeToolPage";
 import { turkeyProvinces } from "../../converter/geo/turkeyProvinces";
 import { worldCities } from "../../converter/time/worldCities";
+import DayNightMap from "./DayNightMap";
 import TimeHubHero, { type HubHeroCopy } from "./TimeHubHero";
 
 export const TR_TIME_HUB_PATH = "/saat-ve-tarih";
@@ -119,6 +120,14 @@ function TrHero() {
   );
 }
 
+const MAP_CITIES = ["istanbul", "london", "new-york", "los-angeles", "sao-paulo", "cairo", "johannesburg", "moscow", "new-delhi", "beijing", "tokyo", "sydney"];
+
+function mapCities() {
+  return MAP_CITIES.map((slug) => worldCities.find((c) => c.en === slug))
+    .filter((c) => c !== undefined)
+    .map((c) => ({ name: c.nameTr, lat: c.lat, lon: c.lon, timeZone: c.timeZone }));
+}
+
 /** Bugünden itibaren en yakın özel günler (bugün dahil). */
 function upcoming(today: { year: number; month: number; day: number }, count: number) {
   return ETKINLIKLER.map((e) => sonrakiTarih(e, today))
@@ -161,6 +170,7 @@ export default function TrTimeHubPage() {
       tocTitle="İçindekiler"
       tocItems={[
         { id: "bugun", label: "Bugün" },
+        { id: "gece-gunduz", label: "Gece ve gündüz haritası" },
         { id: "yaklasan", label: "Yaklaşan günler" },
         { id: "araclar", label: "Tüm saat ve tarih araçları" },
         { id: "faq", label: "Sık sorulan sorular" },
@@ -223,6 +233,13 @@ export default function TrTimeHubPage() {
           .
         </p>
       ) : null}
+
+      <h2 id="gece-gunduz">Dünyada şu an neresi gece, neresi gündüz?</h2>
+      <p>
+        Koyu bölge şu an gece olan yerleri gösterir; sarı nokta güneşin tam tepede olduğu yer. Harita her dakika güncellenir. Gece ile gündüzün
+        sınırı mevsime göre eğilir: sonbahar ekinoksundan (22-23 Eylül) ilkbahar ekinoksuna (20-21 Mart) kadar kuzey yarım kürede geceler gündüzlerden uzundur.
+      </p>
+      <DayNightMap ariaLabel="Gece ve gündüz dünya haritası" lang="tr" intlLocale="tr-TR" cities={mapCities()} dayLabel="gündüz" nightLabel="gece" />
 
       <h2 id="yaklasan">Yaklaşan günler</h2>
       <ul className="timehub-upcoming">

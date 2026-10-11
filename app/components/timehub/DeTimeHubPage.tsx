@@ -12,6 +12,7 @@ import { cityNameDe, cityPathDe } from "../../converter/time/germanWorld";
 import { worldCities } from "../../converter/time/worldCities";
 import { DecorativeIcon, type SiteIconName } from "../siteIcons";
 import TimeToolPage from "../time/TimeToolPage";
+import DayNightMap from "./DayNightMap";
 import TimeHubHero, { type HubHeroCopy } from "./TimeHubHero";
 
 export const DE_TIME_HUB_PATH = "/de/uhrzeit-und-datum";
@@ -117,6 +118,14 @@ function nextClockChange(today: YMD) {
   return null;
 }
 
+const MAP_CITIES = ["berlin", "london", "new-york", "los-angeles", "sao-paulo", "cairo", "johannesburg", "moscow", "new-delhi", "beijing", "tokyo", "sydney"];
+
+function mapCities() {
+  return MAP_CITIES.map((slug) => worldCities.find((c) => c.en === slug))
+    .filter((c) => c !== undefined)
+    .map((c) => ({ name: cityNameDe(c), lat: c.lat, lon: c.lon, timeZone: c.timeZone }));
+}
+
 function upcoming(today: YMD, count: number) {
   return DE_TAGE.map((t) => deNaechster(t, today))
     .filter((t) => t !== null)
@@ -179,6 +188,7 @@ export default function DeTimeHubPage() {
         tocTitle="Inhalt"
         tocItems={[
           { id: "heute", label: "Heute" },
+          { id: "tag-und-nacht", label: "Tag und Nacht" },
           { id: "demnaechst", label: "Demnächst" },
           { id: "werkzeuge", label: "Alle Werkzeuge" },
           { id: "faq", label: "Häufige Fragen" },
@@ -233,6 +243,14 @@ export default function DeTimeHubPage() {
             .
           </p>
         ) : null}
+
+        <h2 id="tag-und-nacht">Wo ist gerade Tag, wo Nacht?</h2>
+        <p>
+          Der dunkle Bereich zeigt, wo gerade Nacht ist; der gelbe Punkt markiert den Ort, an dem die Sonne im Zenit steht. Die Karte
+          aktualisiert sich jede Minute. Die Tag-Nacht-Grenze neigt sich mit den Jahreszeiten: Zwischen Herbst-Tagundnachtgleiche (22./23. September) und
+          Frühlings-Tagundnachtgleiche (20./21. März) sind die Nächte auf der Nordhalbkugel länger als die Tage.
+        </p>
+        <DayNightMap ariaLabel="Weltkarte mit Tag und Nacht" lang="de" intlLocale="de-DE" cities={mapCities()} dayLabel="Tag" nightLabel="Nacht" />
 
         <h2 id="demnaechst">Demnächst</h2>
         <ul className="timehub-upcoming">

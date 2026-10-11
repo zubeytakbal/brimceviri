@@ -172,6 +172,10 @@ export const SITE_NAV_DATA: SiteNavData = {
      "label": "Tarih & Saat",
      "links": [
       {
+       "href": "/saat-ve-tarih",
+       "label": "Saat ve Tarih (Ana Sayfa)"
+      },
+      {
        "href": "/dunya-saatleri",
        "label": "Dünya Saatleri"
       },
@@ -222,7 +226,7 @@ export const SITE_NAV_DATA: SiteNavData = {
      ],
      "footer": [
       {
-       "href": "/hesaplayicilar#tarih",
+       "href": "/saat-ve-tarih",
        "label": "Tüm tarih ve saat araçları →"
       },
       {

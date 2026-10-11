@@ -15633,3 +15633,236 @@ a.all-units-row .all-units-name {
   border-radius: 3px;
   vertical-align: -2px;
 }
+
+/* ---- Saat ve Tarih ana sayfası (timehub) ---- */
+.timehub-hero {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  padding: 28px 20px 22px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #12304a 0%, #1d5f6f 55%, #2a8c86 100%);
+  color: #ffffff;
+  text-align: center;
+}
+
+.timehub-hero-label {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.timehub-clock {
+  margin: 0;
+  font-family: var(--font-heading), Arial, sans-serif;
+  font-size: clamp(3.4rem, 15vw, 8.5rem);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.timehub-date {
+  min-height: 1.5em;
+  margin: 0;
+  font-size: clamp(1rem, 3.4vw, 1.35rem);
+  font-weight: 600;
+}
+
+.timehub-local {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+}
+
+.timehub-sun {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px 14px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  font-size: 0.95rem;
+}
+
+.timehub-sun label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+}
+
+.timehub-sun select {
+  padding: 4px 8px;
+  border: 0;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #172033;
+  font: inherit;
+  font-weight: 600;
+}
+
+.timehub-sun-values {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+.timehub-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+  gap: 8px;
+  width: 100%;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.timehub-strip a {
+  display: grid;
+  gap: 2px;
+  padding: 10px 6px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.timehub-strip a:hover,
+.timehub-strip a:focus-visible {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.timehub-strip strong {
+  font-size: 0.85rem;
+}
+
+.timehub-strip span {
+  font-size: 1.35rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.timehub-strip em {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.75rem;
+  font-style: normal;
+}
+
+.timehub-today {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 10px;
+  margin: 12px 0 16px;
+}
+
+.timehub-today-item {
+  display: grid;
+  align-content: start;
+  gap: 4px;
+  padding: 14px 16px;
+  border: 1px solid #d7e2e8;
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.timehub-today-item span {
+  color: #5b6b7a;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.timehub-today-item strong {
+  color: #172033;
+  font-size: 1.1rem;
+  line-height: 1.3;
+}
+
+.timehub-today-item em {
+  color: #5b6b7a;
+  font-size: 0.88rem;
+  font-style: normal;
+}
+
+.timehub-today-item.is-accent {
+  border-color: #0f6f6c;
+  background: #eef8f6;
+}
+
+.timehub-upcoming {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 8px;
+  margin: 12px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.timehub-upcoming a,
+.timehub-group a {
+  display: grid;
+  gap: 2px;
+  padding: 12px 14px;
+  border: 1px solid #e3eaef;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #172033;
+  text-decoration: none;
+}
+
+.timehub-upcoming a:hover,
+.timehub-group a:hover,
+.timehub-upcoming a:focus-visible,
+.timehub-group a:focus-visible {
+  border-color: #0f6f6c;
+}
+
+.timehub-upcoming span,
+.timehub-group a span {
+  color: #3d4b5c;
+  font-size: 0.9rem;
+}
+
+.timehub-upcoming em {
+  color: #0f6f6c;
+  font-size: 0.85rem;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.timehub-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.timehub-group h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 10px;
+  font-size: 1.1rem;
+}
+
+.timehub-group .home-category-icon-box {
+  width: 40px;
+  height: 40px;
+}
+
+.timehub-group ul {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}

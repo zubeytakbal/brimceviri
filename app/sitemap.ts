@@ -2767,6 +2767,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
       alternates: sleepGuideAlternates(),
     })),
+    {
+      url: `${baseUrl}/saat-ve-tarih`,
+      lastModified: contentLastModified,
+      changeFrequency: "daily",
+      priority: 0.9,
+    },
     ...Object.values(NORDIC_HOLIDAY_PATHS).map((path) => ({
       url: `${baseUrl}${path}`,
       lastModified: contentLastModified,

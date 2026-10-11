@@ -1150,7 +1150,7 @@ function getTurkishMenuGroups(): MenuGroup[] {
       label: "Tarih & Saat",
       links: turkishTimeMenu,
       footer: [
-        { href: `${TURKISH_TOOL_HUB_PATH}#tarih`, label: "Tüm tarih ve saat araçları →" },
+        { href: "/saat-ve-tarih", label: "Tüm tarih ve saat araçları →" },
         { href: "/dini-araclar", label: "Dini araçlar →" },
       ],
     },

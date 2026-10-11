@@ -34,6 +34,7 @@ export const germanToolGroups: ToolGroup[] = [
     title: "Kalender und Feiertage",
     description: "Kalenderwoche, Feiertage aller Bundesländer, Brückentage, Arbeitstage und Countdowns.",
     links: [
+      { href: "/de/uhrzeit-und-datum", label: "Uhrzeit und Datum (Übersicht)" },
       { href: "/de/kalender", label: "Kalender mit Feiertagen" },
       { href: "/de/altersrechner", label: "Altersrechner" },
       { href: "/de/kalenderwoche", label: "Aktuelle Kalenderwoche" },
@@ -190,6 +191,7 @@ export const germanCalculatorMenu = pick([
 
 /** Üst menü "Kalender & Uhr". */
 export const germanTimeMenu = pick([
+  "/de/uhrzeit-und-datum",
   "/de/kalender",
   "/de/altersrechner",
   "/de/kalenderwoche",

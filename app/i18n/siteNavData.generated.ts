@@ -1026,6 +1026,10 @@ export const SITE_NAV_DATA: SiteNavData = {
      "label": "Kalender & Uhr",
      "links": [
       {
+       "href": "/de/uhrzeit-und-datum",
+       "label": "Uhrzeit und Datum (Übersicht)"
+      },
+      {
        "href": "/de/kalender",
        "label": "Kalender mit Feiertagen"
       },
@@ -1084,7 +1088,7 @@ export const SITE_NAV_DATA: SiteNavData = {
      ],
      "footer": [
       {
-       "href": "/de/rechner#kalender",
+       "href": "/de/uhrzeit-und-datum",
        "label": "Alle Kalender- und Uhr-Tools →"
       }
      ]

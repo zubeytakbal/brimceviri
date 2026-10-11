@@ -8,7 +8,10 @@ import { turkeyHolidays } from "../../converter/time/holidays";
 import { DecorativeIcon, type SiteIconName } from "../siteIcons";
 import { trBugun } from "../takvim/TakvimSayfalari";
 import TimeToolPage from "../time/TimeToolPage";
-import TrTimeHero from "./TrTimeHero";
+import { turkeyProvinces } from "../../converter/geo/turkeyProvinces";
+import { worldCities } from "../../converter/time/worldCities";
+import DayNightMap from "./DayNightMap";
+import TimeHubHero, { type HubHeroCopy } from "./TimeHubHero";
 
 export const TR_TIME_HUB_PATH = "/saat-ve-tarih";
 
@@ -86,6 +89,45 @@ const GROUPS: Group[] = [
   },
 ];
 
+const HERO_COPY: HubHeroCopy = {
+  ariaLabel: "Şu anki saat",
+  zoneLabel: "Türkiye saati (UTC+3)",
+  dateLine: "{date} · {week}. hafta · yılın {doy}. günü",
+  deviceTime: "Cihazınızın saati: {time} ({zone})",
+  sun: "Güneş",
+  placeLabel: "İl seçin",
+  dayLength: "{h} sa {m} dk gündüz",
+  same: "aynı saat",
+  hourAbbr: "sa",
+};
+
+const STRIP_SLUGS = ["new-york", "londra", "berlin", "moskova", "mekke", "dubai", "pekin", "tokyo", "sidney"];
+
+function TrHero() {
+  const strip = STRIP_SLUGS.map((slug) => worldCities.find((c) => c.tr === slug))
+    .filter((c) => c !== undefined)
+    .map((c) => ({ name: c.nameTr, timeZone: c.timeZone, href: `/dunya-saatleri/${c.tr}` }));
+  return (
+    <TimeHubHero
+      intlLocale="tr-TR"
+      timeZone="Europe/Istanbul"
+      copy={HERO_COPY}
+      places={turkeyProvinces.map((p) => ({ id: p.id, name: p.name, lat: p.lat, lon: p.lon }))}
+      defaultPlace="istanbul"
+      storageKey="saat-ve-tarih-il"
+      strip={strip}
+    />
+  );
+}
+
+const MAP_CITIES = ["istanbul", "london", "new-york", "los-angeles", "sao-paulo", "cairo", "johannesburg", "moscow", "new-delhi", "beijing", "tokyo", "sydney"];
+
+function mapCities() {
+  return MAP_CITIES.map((slug) => worldCities.find((c) => c.en === slug))
+    .filter((c) => c !== undefined)
+    .map((c) => ({ name: c.nameTr, lat: c.lat, lon: c.lon, timeZone: c.timeZone }));
+}
+
 /** Bugünden itibaren en yakın özel günler (bugün dahil). */
 function upcoming(today: { year: number; month: number; day: number }, count: number) {
   return ETKINLIKLER.map((e) => sonrakiTarih(e, today))
@@ -124,10 +166,11 @@ export default function TrTimeHubPage() {
       crumbLabel="Sayfa yolu"
       title="Saat ve Tarih"
       intro="Türkiye'de saat şu an kaç, bugün ne günü, sıradaki tatile kaç gün var? Canlı saat, bugünün hicri ve rumi tarihi, ay evresi, güneşin doğuş ve batış saatleri ile bütün saat ve takvim araçları bu sayfada."
-      tool={<TrTimeHero />}
+      tool={<TrHero />}
       tocTitle="İçindekiler"
       tocItems={[
         { id: "bugun", label: "Bugün" },
+        { id: "gece-gunduz", label: "Gece ve gündüz haritası" },
         { id: "yaklasan", label: "Yaklaşan günler" },
         { id: "araclar", label: "Tüm saat ve tarih araçları" },
         { id: "faq", label: "Sık sorulan sorular" },
@@ -190,6 +233,13 @@ export default function TrTimeHubPage() {
           .
         </p>
       ) : null}
+
+      <h2 id="gece-gunduz">Dünyada şu an neresi gece, neresi gündüz?</h2>
+      <p>
+        Koyu bölge şu an gece olan yerleri gösterir; sarı nokta güneşin tam tepede olduğu yer. Harita her dakika güncellenir. Gece ile gündüzün
+        sınırı mevsime göre eğilir: sonbahar ekinoksundan (22-23 Eylül) ilkbahar ekinoksuna (20-21 Mart) kadar kuzey yarım kürede geceler gündüzlerden uzundur.
+      </p>
+      <DayNightMap ariaLabel="Gece ve gündüz dünya haritası" lang="tr" intlLocale="tr-TR" cities={mapCities()} dayLabel="gündüz" nightLabel="gece" />
 
       <h2 id="yaklasan">Yaklaşan günler</h2>
       <ul className="timehub-upcoming">

@@ -15866,3 +15866,82 @@ a.all-units-row .all-units-name {
   padding: 0;
   list-style: none;
 }
+
+/* Canlı gece-gündüz haritası */
+.daynight-map {
+  position: relative;
+  margin: 12px 0 8px;
+  padding: 12px;
+  border-radius: 20px;
+  background: #0d1b2a;
+}
+
+.daynight-map .world-map-svg {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.daynight-map .world-map-svg path,
+.daynight-map .world-map-svg circle {
+  fill: #6fae8f;
+  stroke: #0d1b2a;
+  stroke-width: 0.4;
+}
+
+.daynight-map .world-map-svg .world-map-other {
+  fill: #9cc7b0;
+}
+
+.daynight-sphere,
+.daynight-overlay {
+  position: absolute;
+  inset: 12px;
+  width: calc(100% - 24px);
+  height: auto;
+  pointer-events: none;
+}
+
+.daynight-sphere path {
+  fill: #1f4e79;
+}
+
+.daynight-night {
+  fill: #050b14;
+  opacity: 0.55;
+}
+
+.daynight-sun {
+  fill: #ffd34d;
+  stroke: rgba(255, 211, 77, 0.45);
+  stroke-width: 6;
+}
+
+.daynight-city circle {
+  stroke: #0d1b2a;
+  stroke-width: 1;
+}
+
+.daynight-city.is-day circle {
+  fill: #ffd34d;
+}
+
+.daynight-city.is-night circle {
+  fill: #b9c7ff;
+}
+
+.daynight-city text {
+  fill: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  paint-order: stroke;
+  stroke: #0d1b2a;
+  stroke-width: 3px;
+}
+
+@media (max-width: 640px) {
+  .daynight-city text {
+    font-size: 16px;
+  }
+}

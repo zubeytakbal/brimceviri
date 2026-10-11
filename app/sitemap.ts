@@ -27,6 +27,7 @@ import { zonePairs } from "./converter/time/timeZonePairs";
 import { buildLanguageAlternates } from "./i18n/routing";
 import { categoryPages } from "./converter/categoryPages";
 import { conversionPages } from "./converter/conversionPages";
+import { NORDIC_FUEL_PATHS } from "./converter/fuel/nordicFuel";
 import { fxContentBn } from "./converter/fx/fxContentBn";
 import { fxContentUz } from "./converter/fx/fxContentUz";
 import { fxContentDe } from "./converter/fx/fxContentDe";
@@ -2764,6 +2765,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.7,
       alternates: sleepGuideAlternates(),
+    })),
+    ...Object.values(NORDIC_FUEL_PATHS).map((path) => ({
+      url: `${baseUrl}${path}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+      alternates: buildLanguageAlternates(NORDIC_FUEL_PATHS, "sv"),
     })),
     ...(Object.keys(timeToolPaths) as TimeToolId[]).flatMap((tool) =>
       Object.values(timeToolPaths[tool]).map((path) => ({

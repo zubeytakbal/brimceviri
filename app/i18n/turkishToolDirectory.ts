@@ -77,6 +77,7 @@ export const turkishToolGroups: ToolGroup[] = [
     title: "Tarih ve Takvim",
     description: "Yaş, iki tarih arası gün, iş günü, hafta numarası, tatiller ve takvim çevirileri.",
     links: [
+      { href: "/saat-ve-tarih", label: "Saat ve Tarih (Ana Sayfa)" },
       { href: "/yas-hesaplama", label: "Yaş Hesaplama" },
       { href: "/iki-tarih-arasi-gun-hesaplama", label: "İki Tarih Arası Gün" },
       { href: "/tarihe-gun-ekleme", label: "Tarihe Gün Ekleme" },
@@ -341,6 +342,7 @@ export const turkishCalculatorMenu = pick([
 
 /** Üst menü "Tarih & Saat". */
 export const turkishTimeMenu = pick([
+  "/saat-ve-tarih",
   "/dunya-saatleri",
   "/saat-dilimi-cevirici",
   "/online-saat",

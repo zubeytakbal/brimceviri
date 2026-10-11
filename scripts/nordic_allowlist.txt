@@ -1,0 +1,73 @@
+# nordic_language_check.py icin sozlukte olmayan ama dogru terimler.
+# Bicim: <dil>:<kelime>  (dil: common, sv, no, da). Yalnizca incelenmis kelimeler.
+
+# Birim sembolleri ve kisaltmalar (sozlukte yok, dogru)
+common:atm
+common:kPa
+common:hPa
+common:mbar
+common:psi
+common:mmHg
+common:mmH
+common:ftm
+common:nmi
+common:ozt
+common:mph
+common:bbl
+common:kgf
+common:lbf
+common:keV
+common:kbit
+common:bps
+common:imp
+common:quad
+common:abs
+common:rel
+common:mdr
+common:osv
+
+# Dil secici: Turkce surum baglantisi Turkce yazilir ("Türkçe versiyonu aç")
+common:versiyonu
+
+# Kaynakca basliklari (NIST, BIPM, National Sleep Foundation) Ingilizce kalir
+common:the
+common:hour
+common:horsepower
+common:sleep
+common:duration
+common:recommendations
+common:avoirdupois
+common:troy
+
+# Hafta gunu kisaltmalari (dunya saati takvimi)
+sv:mån
+sv:tis
+sv:ons
+sv:tors
+sv:fre
+sv:lör
+sv:sön
+sv:tim
+no:man
+no:tir
+no:ons
+no:tor
+no:fre
+no:lør
+no:søn
+da:man
+da:tir
+da:ons
+da:tor
+da:fre
+da:lør
+da:søn
+
+# Dogrulanmis kelimeler
+no:app
+no:verdensklokka
+no:omregneren
+no:noe
+no:noen
+no:datoer
+da:omregneren

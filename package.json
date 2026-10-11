@@ -10,7 +10,8 @@
     "start": "npx serve out",
     "lint": "eslint",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "check:nordic": "python3 scripts/nordic_language_check.py"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",
@@ -33,6 +34,9 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "dictionary-da": "^6.0.0",
+    "dictionary-nb": "^3.0.0",
+    "dictionary-sv": "^4.0.0",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
     "tailwindcss": "^4",

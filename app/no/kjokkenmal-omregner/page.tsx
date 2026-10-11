@@ -147,7 +147,7 @@ export default function NorwegianKitchenMeasurementsPage() {
             href="/mutfak-olculeri-cevirici"
             hrefLang="tr"
           >
-            Oppnå den turkiska versionen
+            Åpne den tyrkiske versjonen
           </Link>
         </section>
       </div>

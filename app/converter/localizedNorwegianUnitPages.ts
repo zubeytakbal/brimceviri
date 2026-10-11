@@ -536,10 +536,10 @@ export const norwegianUnitPages: LocalizedNorwegianUnitPage[] = [
     unit: "Pa",
     name: "Pascal",
     symbol: "Pa",
-    shortDescription: "Pascal er SIs avledede enhet for trykk. Den defineres ved sammenhengen 1 På = 1 N/m².",
+    shortDescription: "Pascal er SIs avledede enhet for trykk. Den defineres ved sammenhengen 1 Pa = 1 N/m².",
     historySummary: "Enheten er oppkalt etter den franske vitenskapsmannen Blaise Pascal fra 1600-tallet -- Pascal er kjent for sitt arbeid innen hydrodynamikk og hydrostatikk, og for sine banebrytende trykkforsøk med barometeret. Pascals funn om at 'trykk påført en lukket væske overføres likt i alle retninger' (Pascals lov) danner grunnlaget for hydrauliske systemer. Enheten ble formelt vedtatt som SI-enhet på det 14. møte til Generalkonferansen for mål og vekt i 1971, og definert som newton per kvadratmeter (N/m²).",
     measurementSystem: "Det internasjonale enhetssystemet (SI)",
-    siEquivalent: "SIs grunnleggende trykkenhet, 1 På = 1 N/m²",
+    siEquivalent: "SIs grunnleggende trykkenhet, 1 Pa = 1 N/m²",
     commonUses: "Vitenskapelige beregninger, materialanalyse og referanseomregninger",
   },
   {
@@ -554,7 +554,7 @@ export const norwegianUnitPages: LocalizedNorwegianUnitPage[] = [
     shortDescription: "Bar er en trykkenhet lik 100 000 pascal. Den er en svært utbredt praktisk visning på industri- og utstyrsmålere.",
     historySummary: "Bar-enheten ble lansert av den norske meteorologen Vilhelm Bjerknes, en av pionerene innen moderne værvarsling; navnet kommer fra det oldgreske ordet 'baros', som betyr 'vekt' (interessant nok ble ordet 'bar' også brukt mellom 1793 og 1795 i det tidlige metriske systemet, om en masseenhet tilsvarende dagens tonn). 1 bar tilsvarer nøyaktig 100 000 pascal og ligger svært nær gjennomsnittlig atmosfæretrykk ved havnivå (om lag 1,013 bar). Selv om bar ikke er en offisiell SI-enhet, brukes den fortsatt mye av meteorologer og luftfartsbransjen i dag, fordi den tallmessig tilsvarer millibar/hektopascal og er praktisk i bruk.",
     measurementSystem: "Metrisk ingeniørenhet utenfor SI",
-    siEquivalent: "1 bar = 100 000 På",
+    siEquivalent: "1 bar = 100 000 Pa",
     commonUses: "Kompressorer, hydraulikk, pneumatikk og servicemanometre",
   },
   {
@@ -569,7 +569,7 @@ export const norwegianUnitPages: LocalizedNorwegianUnitPage[] = [
     shortDescription: "PSI er forkortelsen for pound-force per square inch. Den er en utbredt trykkenhet i angloamerikanske tekniske systemer.",
     historySummary: "PSI er, som navnet tilsier, en sammensatt enhet dannet ved å dele en kraftenhet (pound-force) på en arealenhet (kvadrattomme), og ble utbredt i britisk ingeniørtradisjon på 1800-tallet for å angi kjeletrykk i dampmaskinenes tidsalder. Selv om det metriske systemet er blitt globalt standard, er PSI fortsatt den de facto bransjestandarden innen bilindustri (dekktrykk), hydrauliske systemer og amerikanskproduserte industrikataloger.",
     measurementSystem: "Britisk og amerikansk ingeniørbruk",
-    siEquivalent: "1 psi = 6894,757293168 På",
+    siEquivalent: "1 psi = 6894,757293168 Pa",
     commonUses: "Dekktrykk, hydrauliske systemer og teknisk service",
   },
   {
@@ -582,9 +582,9 @@ export const norwegianUnitPages: LocalizedNorwegianUnitPage[] = [
     name: "Atmosfære",
     symbol: "atm",
     shortDescription: "Atmosfære er en trykkenhet basert på en referanseverdi nær gjennomsnittlig trykk i jordens atmosfære ved havnivå. Også kalt standard atmosfære.",
-    historySummary: "Atmosfære-enheten ble utbredt etter hvert som barometriske målinger og havnivåreferansetrykk ble brukt som standard sammenligningspunkt i tekniske og vitenskapelige arbeider. I 1954 definerte den 10. Generalkonferansen for mål og vekt (CGPM) standard atmosfære til nøyaktig 101 325 På.",
+    historySummary: "Atmosfære-enheten ble utbredt etter hvert som barometriske målinger og havnivåreferansetrykk ble brukt som standard sammenligningspunkt i tekniske og vitenskapelige arbeider. I 1954 definerte den 10. Generalkonferansen for mål og vekt (CGPM) standard atmosfære til nøyaktig 101 325 Pa.",
     measurementSystem: "Utenfor SI, referanseenhet i meteorologi og ingeniørfag",
-    siEquivalent: "1 atm = 101 325 På (definert verdi)",
+    siEquivalent: "1 atm = 101 325 Pa (definert verdi)",
     commonUses: "Referanseforhold, meteorologi, vakuum- og trykkmålinger",
   },
   // Energi

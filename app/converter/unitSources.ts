@@ -101,7 +101,7 @@ const densitySources: UnitSource[] = [
 const nistPowerEnergyConversions: UnitSource = {
   title:
     "NIST Guide to the SI — Appendix B.8: Factors for Units Listed " +
-    "Alphabetically (horsepower, watt-hour dahil)",
+    "Alphabetically",
   organization: "NIST",
   url: "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8",
 };

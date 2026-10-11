@@ -106,7 +106,7 @@ export default function NorwegianShoeSizePage() {
             href="/ayakkabi-numarasi-cevirme"
             hrefLang="tr"
           >
-            Oppnå den turkiska versionen
+            Åpne den tyrkiske versjonen
           </Link>
         </section>
       </div>

@@ -1221,7 +1221,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
   {
     id: "gun",
     category: "zaman",
-    symbol: "day",
+    symbol: "d",
     siFactor: 86400,
     tr: { name: "Gün", slug: "gun" },
     en: { name: "Day", slug: "day" },

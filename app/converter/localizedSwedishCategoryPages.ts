@@ -178,7 +178,7 @@ export const swedishCategoryPages: LocalizedSwedishCategoryPage[] = [
         title: "Varför omvandlas areaenheter med ett kvadratiskt förhållande?",
         paragraphs: [
           "Vid omvandling av längdenheter måste det använda förhållandet kvadreras för areaenheter. Till exempel motsvarar 1 kilometer 1000 meter, men 1 kvadratkilometer motsvarar inte 1000 kvadratmeter, utan 1000², det vill säga 1 000 000 kvadratmeter.",
-          "Detta beror på att både dimensionerna (längd och bredd) ökar eller minskar i samma proportion för en area. Att ignorera detta kvadratiska samband är det vanligaste rakenfelet vid areaomvandlingar -- antagandet att '1 km² = 1000 m²' är en vanlig missuppfattning.",
+          "Detta beror på att både dimensionerna (längd och bredd) ökar eller minskar i samma proportion för en area. Att ignorera detta kvadratiska samband är det vanligaste räknefelet vid areaomvandlingar -- antagandet att '1 km² = 1000 m²' är en vanlig missuppfattning.",
         ],
       },
       {
@@ -217,7 +217,7 @@ export const swedishCategoryPages: LocalizedSwedishCategoryPage[] = [
         ],
       },
       {
-        title: "Att tänka på vid arematning",
+        title: "Att tänka på vid areamätning",
         paragraphs: [
           "Areavärdet i en fastighetsannons eller ett dokument måste tolkas utifrån den använda enheten (m², dönüm, acre, bigha, osv.) och den regionala standard som den enheten definieras med.",
           "Särskilt vid internationella fastighetstransaktioner minskar det missförstånd att beakta den exakta motsvarigheten i kvadratmeter istället för bara likheten i enhetens namn; omvandlingsverktyget på denna sida jämför alla enheter utifrån en gemensam referens i kvadratmeter.",
@@ -553,7 +553,7 @@ export const swedishCategoryPages: LocalizedSwedishCategoryPage[] = [
         title: "Vad är tid?",
         paragraphs: [
           "Tid är en grundläggande storhet som uttrycker ordningen i vilken händelser inträffar och den varaktighet som förflyter mellan två händelser. Inom fysiken representeras den med dimensionssymbolen T och spelar en roll i definitionen av många härledda storheter, som hastighet, acceleration och frekvens.",
-          "I klassisk fysik betraktades tid som en absolut storhet som förflöt på samma sätt för alla observatörer; med Einsteins relativitetsteori förstod man att tid kan förflyta olika beroende på observatörns hastighet och gravitationsfältet (tidsdilation).",
+          "I klassisk fysik betraktades tid som en absolut storhet som förflöt på samma sätt för alla observatörer; med Einsteins relativitetsteori förstod man att tid kan förflyta olika beroende på observatörens hastighet och gravitationsfältet (tidsdilation).",
         ],
       },
       {
@@ -706,7 +706,7 @@ export const swedishCategoryPages: LocalizedSwedishCategoryPage[] = [
       "Omvandla tryck mellan pascal, kilopascal, bar och PSI; se formler och tekniska tillämpningar.",
     introduction: [
       "Tryck är den fysikaliska storhet som uttrycker mängden kraft som verkar vinkelrätt mot en yta, i förhållande till den ytan. Tillämpningsområdet är mycket brett, från kontaktspänningar mellan fasta ämnen till vätska i en ledning, från atmosfären till vakuumsystem. Inom teknik är tryck inte bara ett tal: det är en grundläggande designvariabel för säkerhet, tätning, strukturell hållfasthet, energiomvandling och processreglering.",
-      "I det Internationella Enhetssystemet är tryckets härledda enhet pascal, med symbolen På. En pascal motsvarar det tryck som utövas av en kraft på en newton jämnt fördelad över en yta på en kvadratmeter. Därför är tryck direkt kopplat till begreppen kraft och yta; det delar samma dimensionella struktur som mekanisk spänning i material, även om den fysiska kontexten inte alltid är densamma.",
+      "I det Internationella Enhetssystemet är tryckets härledda enhet pascal, med symbolen Pa. En pascal motsvarar det tryck som utövas av en kraft på en newton jämnt fördelad över en yta på en kvadratmeter. Därför är tryck direkt kopplat till begreppen kraft och yta; det delar samma dimensionella struktur som mekanisk spänning i material, även om den fysiska kontexten inte alltid är densamma.",
       "I vardagslivet och industrin uttrycks tryck oftast i mer praktiska enheter än pascal. Kilopascal och PSI används i stor utsträckning för däcktryck, bar i processystem, atm vid atmosfäriska förhållanden och millibar inom meteorologi. Att olika sektorer historiskt har antagit olika enheter gör det särskilt viktigt att första tryckomvandlingar väl och inte förväxla absolut, relativt eller differentiellt tryck.",
     ],
     facts: [
@@ -714,9 +714,9 @@ export const swedishCategoryPages: LocalizedSwedishCategoryPage[] = [
       { label: "Härledd SI-enhet", value: "Pascal" },
       { label: "SI-symbol", value: "På" },
       { label: "Grundsamband", value: "P = F / A" },
-      { label: "SI-motsvarighet", value: "1 På = 1 N/m²" },
+      { label: "SI-motsvarighet", value: "1 Pa = 1 N/m²" },
       { label: "Dimensionell formel", value: "M L⁻¹ T⁻²" },
-      { label: "Standardatmosfär", value: "101 325 På" },
+      { label: "Standardatmosfär", value: "101 325 Pa" },
       { label: "Absolut nollreferens", value: "Fullständigt vakuum" },
     ],
     sections: [
@@ -739,7 +739,7 @@ export const swedishCategoryPages: LocalizedSwedishCategoryPage[] = [
       {
         title: "Varför är pascal SI-enheten för tryck?",
         paragraphs: [
-          "Pascal uppstår naturligt ur kombinationen av newton, SI:s kraftenhet, och kvadratmeter, SI:s areaenhet. Likheten 1 På = 1 N/m² är inte bara en definition, utan också ett dimensionellt uttryck som visar tryckets mekaniska ursprung. Därför behövs ingen oberoende grundenhet för tryck definieras.",
+          "Pascal uppstår naturligt ur kombinationen av newton, SI:s kraftenhet, och kvadratmeter, SI:s areaenhet. Likheten 1 Pa = 1 N/m² är inte bara en definition, utan också ett dimensionellt uttryck som visar tryckets mekaniska ursprung. Därför behövs ingen oberoende grundenhet för tryck definieras.",
           "SI-systemet strävar efter att på ett konsekvent sätt koppla härledda storheter till grundenheter. Att uttrycka tryck i pascal ger ett ramverk som är kompatibelt med energitäthet, spänning, elasticitetsmodul och ekvationer från vätskemekaniken. Att samma enhet kan användas inom olika områden minskar omvandlingsfel i beräkningar.",
           "På vardaglig skala är pascal oftast en mycket liten enhet. Därför föredrar tekniken mer praktiska skalor som kilopascal, megapascal eller bar. Ändå är de alla i slutändan kopplade till pascal och således till SI-basen.",
         ],
@@ -763,7 +763,7 @@ export const swedishCategoryPages: LocalizedSwedishCategoryPage[] = [
       {
         title: "Atmosfäriskt tryck",
         paragraphs: [
-          "Atmosfäriskt tryck är det tryck som utövas på ytor av vikten hos jordatmosfärens luftpelare. Under standardförhållanden nära havsnivå anses det vara cirka 101 325 På, det vill säga 1 atm. Detta är dock inget konstant värde; det varierar med höjd, väderförhållanden och temperatur.",
+          "Atmosfäriskt tryck är det tryck som utövas på ytor av vikten hos jordatmosfärens luftpelare. Under standardförhållanden nära havsnivå anses det vara cirka 101 325 Pa, det vill säga 1 atm. Detta är dock inget konstant värde; det varierar med höjd, väderförhållanden och temperatur.",
           "Barometrar används för att mäta det atmosfäriska trycket. Kvicksilverbarometrar var historiskt referensinstrument, medan elektroniska trycksensorer har blivit vanliga i moderna tillämpningar. Atmosfäriskt tryck är inte bara viktigt för meteorologin, utan även för vakuumteknik, förbränningssystem och omvandlingar mellan relativt och absolut tryck.",
           "I system som arbetar med relativt tryck kan variationer i det atmosfäriska trycket påverka tolkningen av mätningen. Ett relativt tryck på 2 bar vid havsnivå och ett relativt tryck på 2 bar på hög höjd ger till exempel inte samma absoluta värde. Denna distinktion kan vara avgörande, särskilt vid kompressionsberäkningar, gasdensitet och kokpunkt.",
         ],
@@ -796,7 +796,7 @@ export const swedishCategoryPages: LocalizedSwedishCategoryPage[] = [
         title: "Varför finns det olika tryckenheter?",
         paragraphs: [
           "Mångfalden av tryckenheter förklaras till stor del av historiska och sektoriella skäl. Medan SI-systemet tar pascal som referens, fortsätter industrin att använda bar, medicinen mmHg, meteorologin millibar, fordonsbranschen PSI, och vissa gamla tekniska dokument den tekniska atmosfären. Denna situation beror på att de olika områdena behåller sina egna bruksvanor.",
-          "Vissa enheter är mer intuitiva för användaren. Däcktrycket kan till exempel verka mer läsbart uttryckt i cirka 35 psi än i 240 kPa, och processtrycket i 3,5 bar istället för i 350 000 På. Valet av enhet beror inte bara på precision, utan även på förhållandekultur, instrumentens skala och bruksvanor i fält.",
+          "Vissa enheter är mer intuitiva för användaren. Däcktrycket kan till exempel verka mer läsbart uttryckt i cirka 35 psi än i 240 kPa, och processtrycket i 3,5 bar istället för i 350 000 Pa. Valet av enhet beror inte bara på precision, utan även på branschtradition, instrumentens skala och bruksvanor i fält.",
           "Eftersom olika enheter dock uttrycker samma fysikaliska storhet är en noggrann omvandling oumbärlig vid kombinerade beräkningar. Att förväxla approximativa omvandlingsfaktorer med exakt definierade faktorer, ignorera distinktionen relativ-absolut, och läsa symboler fel är viktiga felkällor.",
         ],
       },
@@ -850,16 +850,16 @@ export const swedishCategoryPages: LocalizedSwedishCategoryPage[] = [
       },
     ],
     unitTable: [
-      { name: "Pascal", symbol: "Pa", referenceValue: "1 På", system: "SI", commonUse: "Vetenskapliga och tekniska beräkningar" },
-      { name: "Kilopascal", symbol: "kPa", referenceValue: "1000 På", system: "SI", commonUse: "Anläggningar, däck och processtryck" },
-      { name: "Bar", symbol: "bar", referenceValue: "100 000 På", system: "Metriskt, utanför SI", commonUse: "Industri, kompressorer och processystem" },
-      { name: "Millibar", symbol: "mbar", referenceValue: "100 På", system: "Metriskt, utanför SI", commonUse: "Meteorologi och atmosfäriska mätningar" },
-      { name: "Standardatmosfär", symbol: "atm", referenceValue: "101 325 På", system: "Utanför SI", commonUse: "Atmosfär och referensförhållanden" },
-      { name: "PSI", symbol: "psi", referenceValue: "≈6894,757293 På", system: "Brittiskt/amerikanskt", commonUse: "Däck, hydrauliska och pneumatiska system" },
-      { name: "Teknisk atmosfär", symbol: "at", referenceValue: "98 066,5 På", system: "Utanför SI", commonUse: "Äldre tekniska tillämpningar" },
-      { name: "Millimeter kvicksilverpelare", symbol: "mmHg", referenceValue: "≈133,322 På", system: "Utanför SI", commonUse: "Medicin, vakuum och tryckmätningar" },
-      { name: "Millimeter vattenpelare", symbol: "mmH₂O", referenceValue: "≈9,80665 På", system: "Utanför SI", commonUse: "Lågtrycksmätningar och ventilation" },
-      { name: "Kilogram-kraft per kvadratcentimeter", symbol: "kgf/cm²", referenceValue: "98 066,5 På", system: "Metriskt, utanför SI", commonUse: "Äldre pump- och pannmanometrar" },
+      { name: "Pascal", symbol: "Pa", referenceValue: "1 Pa", system: "SI", commonUse: "Vetenskapliga och tekniska beräkningar" },
+      { name: "Kilopascal", symbol: "kPa", referenceValue: "1000 Pa", system: "SI", commonUse: "Anläggningar, däck och processtryck" },
+      { name: "Bar", symbol: "bar", referenceValue: "100 000 Pa", system: "Metriskt, utanför SI", commonUse: "Industri, kompressorer och processystem" },
+      { name: "Millibar", symbol: "mbar", referenceValue: "100 Pa", system: "Metriskt, utanför SI", commonUse: "Meteorologi och atmosfäriska mätningar" },
+      { name: "Standardatmosfär", symbol: "atm", referenceValue: "101 325 Pa", system: "Utanför SI", commonUse: "Atmosfär och referensförhållanden" },
+      { name: "PSI", symbol: "psi", referenceValue: "≈6894,757293 Pa", system: "Brittiskt/amerikanskt", commonUse: "Däck, hydrauliska och pneumatiska system" },
+      { name: "Teknisk atmosfär", symbol: "at", referenceValue: "98 066,5 Pa", system: "Utanför SI", commonUse: "Äldre tekniska tillämpningar" },
+      { name: "Millimeter kvicksilverpelare", symbol: "mmHg", referenceValue: "≈133,322 Pa", system: "Utanför SI", commonUse: "Medicin, vakuum och tryckmätningar" },
+      { name: "Millimeter vattenpelare", symbol: "mmH₂O", referenceValue: "≈9,80665 Pa", system: "Utanför SI", commonUse: "Lågtrycksmätningar och ventilation" },
+      { name: "Kilogram-kraft per kvadratcentimeter", symbol: "kgf/cm²", referenceValue: "98 066,5 Pa", system: "Metriskt, utanför SI", commonUse: "Äldre pump- och pannmanometrar" },
     ],
   },
   {
@@ -975,7 +975,7 @@ export const swedishCategoryPages: LocalizedSwedishCategoryPage[] = [
       {
         title: "Vad är bit och byte?",
         paragraphs: [
-          "Biten (binär siffra) är den minsta informationsenhet en dator kan behandla och kan bara anta två värden: 0 eller 1. Åtta bitar tillsammans bildar en byte; en byte kan representera 256 (2⁸) olika värden -- tillräckligt för att till exempel koda ett textecken.",
+          "Biten (binär siffra) är den minsta informationsenhet en dator kan behandla och kan bara anta två värden: 0 eller 1. Åtta bitar tillsammans bildar en byte; en byte kan representera 256 (2⁸) olika värden -- tillräckligt för att till exempel koda ett texttecken.",
           "Bit förkortas vanligtvis med ett litet 'b' och byte med ett stort 'B'; denna distinktion kan skapa förvirring, särskilt mellan internethastigheter (Mbps = megabit per sekund) och filstorlek (MB = megabyte) -- en internetanslutning på 100 Mbps motsvarar teoretiskt en nedladdningshastighet på cirka 12,5 MB per sekund (100 ÷ 8).",
         ],
       },
@@ -1093,7 +1093,7 @@ export const swedishCategoryPages: LocalizedSwedishCategoryPage[] = [
       {
         title: "Likström (DC) och växelström (AC)",
         paragraphs: [
-          "Vid likström (DC) flödar elektroner konstant i en enda riktning -- batterier och solpaneler producerar DC. Vid växelström (AC) ändrar strömriktningen ett visst antal gånger per sekund (50 Hz i Sverige, det vill säga 50 gånger per sekund) -- nätel är AC.",
+          "Vid likström (DC) flödar elektroner konstant i en enda riktning -- batterier och solpaneler producerar DC. Vid växelström (AC) ändrar strömriktningen ett visst antal gånger per sekund (50 Hz i Sverige, det vill säga 50 gånger per sekund) -- elnätet levererar växelström (AC).",
           "Den huvudsakliga anledningen till att AC föredras vid nätdistribution är att spänningen enkelt kan höjas eller sänkas med transformatorer; detta gör det möjligt att transportera elektricitet över långa avstånd med låga förluster.",
         ],
       },
@@ -1179,7 +1179,7 @@ export const swedishCategoryPages: LocalizedSwedishCategoryPage[] = [
       { label: "Mätsystem", value: "Promillesystem" },
       { label: "Huvudreferens", value: "999 = 99,9 % rent silver" },
       { label: "Vanligaste smyckeshalten", value: "925 (sterlingsilver)" },
-      { label: "Investerings-/tackssilver", value: "Halt 999 (finsilver)" },
+      { label: "Investeringssilver (tackor)", value: "Halt 999 (finsilver)" },
       { label: "Beräkningsregel", value: "Gram × (ursprungshalt / 1000) ÷ (målhalt / 1000)" },
     ],
     sections: [

@@ -156,7 +156,7 @@ export default function NorwegianHistoricalUnitsPage() {
       alternateLink={{
         href: "/tarihi-olcu-birimleri",
         hrefLang: "tr",
-        label: "Oppnå den turkiska versionen",
+        label: "Åpne den tyrkiske versjonen",
       }}
       sections={[
         {

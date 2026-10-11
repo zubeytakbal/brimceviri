@@ -107,7 +107,7 @@ export default function NorwegianRecipeConverterPage() {
         <section className="conversion-section language-alternatives">
           <h2>Andre språk</h2>
           <Link className="text-link" href="/tarif-cevirici" hrefLang="tr">
-            Oppnå den turkiska versionen
+            Åpne den tyrkiske versjonen
           </Link>
         </section>
       </div>

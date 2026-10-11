@@ -2,6 +2,7 @@
 export const timeRelated = {
   tr: {
     tools: [
+      { href: "/saat-ve-tarih", label: "Saat ve Tarih" },
       { href: "/online-saat", label: "Online Saat" },
       { href: "/dunya-saatleri", label: "Dünya Saatleri" },
       { href: "/geri-sayim", label: "Geri Sayım" },

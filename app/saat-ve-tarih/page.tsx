@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import TrTimeHubPage, { TR_TIME_HUB_PATH } from "../components/timehub/TrTimeHubPage";
+import { timeHubAlternates } from "../components/timehub/timeHubPaths";
 import { buildSiteUrl } from "../siteConfig";
 
 // "Bugün" ve "yaklaşan günler" her gün değişir; site her gece yeniden derlenir.
@@ -12,7 +13,7 @@ const description =
 export const metadata: Metadata = {
   title,
   description,
-  alternates: { canonical: TR_TIME_HUB_PATH },
+  alternates: { canonical: TR_TIME_HUB_PATH, ...timeHubAlternates() },
   openGraph: { title, description, url: buildSiteUrl(TR_TIME_HUB_PATH), siteName: "BirimCeviri.app", locale: "tr_TR", type: "website" },
 };
 

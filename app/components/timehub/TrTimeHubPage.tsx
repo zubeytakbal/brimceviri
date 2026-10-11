@@ -8,7 +8,9 @@ import { turkeyHolidays } from "../../converter/time/holidays";
 import { DecorativeIcon, type SiteIconName } from "../siteIcons";
 import { trBugun } from "../takvim/TakvimSayfalari";
 import TimeToolPage from "../time/TimeToolPage";
-import TrTimeHero from "./TrTimeHero";
+import { turkeyProvinces } from "../../converter/geo/turkeyProvinces";
+import { worldCities } from "../../converter/time/worldCities";
+import TimeHubHero, { type HubHeroCopy } from "./TimeHubHero";
 
 export const TR_TIME_HUB_PATH = "/saat-ve-tarih";
 
@@ -86,6 +88,37 @@ const GROUPS: Group[] = [
   },
 ];
 
+const HERO_COPY: HubHeroCopy = {
+  ariaLabel: "Şu anki saat",
+  zoneLabel: "Türkiye saati (UTC+3)",
+  dateLine: "{date} · {week}. hafta · yılın {doy}. günü",
+  deviceTime: "Cihazınızın saati: {time} ({zone})",
+  sun: "Güneş",
+  placeLabel: "İl seçin",
+  dayLength: "{h} sa {m} dk gündüz",
+  same: "aynı saat",
+  hourAbbr: "sa",
+};
+
+const STRIP_SLUGS = ["new-york", "londra", "berlin", "moskova", "mekke", "dubai", "pekin", "tokyo", "sidney"];
+
+function TrHero() {
+  const strip = STRIP_SLUGS.map((slug) => worldCities.find((c) => c.tr === slug))
+    .filter((c) => c !== undefined)
+    .map((c) => ({ name: c.nameTr, timeZone: c.timeZone, href: `/dunya-saatleri/${c.tr}` }));
+  return (
+    <TimeHubHero
+      intlLocale="tr-TR"
+      timeZone="Europe/Istanbul"
+      copy={HERO_COPY}
+      places={turkeyProvinces.map((p) => ({ id: p.id, name: p.name, lat: p.lat, lon: p.lon }))}
+      defaultPlace="istanbul"
+      storageKey="saat-ve-tarih-il"
+      strip={strip}
+    />
+  );
+}
+
 /** Bugünden itibaren en yakın özel günler (bugün dahil). */
 function upcoming(today: { year: number; month: number; day: number }, count: number) {
   return ETKINLIKLER.map((e) => sonrakiTarih(e, today))
@@ -124,7 +157,7 @@ export default function TrTimeHubPage() {
       crumbLabel="Sayfa yolu"
       title="Saat ve Tarih"
       intro="Türkiye'de saat şu an kaç, bugün ne günü, sıradaki tatile kaç gün var? Canlı saat, bugünün hicri ve rumi tarihi, ay evresi, güneşin doğuş ve batış saatleri ile bütün saat ve takvim araçları bu sayfada."
-      tool={<TrTimeHero />}
+      tool={<TrHero />}
       tocTitle="İçindekiler"
       tocItems={[
         { id: "bugun", label: "Bugün" },

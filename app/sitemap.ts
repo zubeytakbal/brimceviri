@@ -28,6 +28,7 @@ import { buildLanguageAlternates } from "./i18n/routing";
 import { categoryPages } from "./converter/categoryPages";
 import { conversionPages } from "./converter/conversionPages";
 import { NORDIC_FUEL_PATHS } from "./converter/fuel/nordicFuel";
+import { TIME_HUB_PATHS, timeHubAlternates } from "./components/timehub/timeHubPaths";
 import { NORDIC_HOLIDAY_PATHS } from "./converter/time/nordicHolidays";
 import { fxContentBn } from "./converter/fx/fxContentBn";
 import { fxContentUz } from "./converter/fx/fxContentUz";
@@ -2767,12 +2768,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
       alternates: sleepGuideAlternates(),
     })),
-    {
-      url: `${baseUrl}/saat-ve-tarih`,
+    ...Object.values(TIME_HUB_PATHS).map((path) => ({
+      url: `${baseUrl}${path}`,
       lastModified: contentLastModified,
-      changeFrequency: "daily",
+      changeFrequency: "daily" as const,
       priority: 0.9,
-    },
+      alternates: timeHubAlternates(),
+    })),
     ...Object.values(NORDIC_HOLIDAY_PATHS).map((path) => ({
       url: `${baseUrl}${path}`,
       lastModified: contentLastModified,

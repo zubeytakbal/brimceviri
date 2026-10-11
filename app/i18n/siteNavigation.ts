@@ -1190,7 +1190,7 @@ function getGermanMenuGroups(): MenuGroup[] {
       id: "time",
       label: "Kalender & Uhr",
       links: germanTimeMenu,
-      footer: [{ href: `${GERMAN_TOOL_HUB_PATH}#kalender`, label: "Alle Kalender- und Uhr-Tools →" }],
+      footer: [{ href: "/de/uhrzeit-und-datum", label: "Alle Kalender- und Uhr-Tools →" }],
     },
   ];
 }

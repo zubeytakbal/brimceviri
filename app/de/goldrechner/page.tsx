@@ -59,7 +59,6 @@ export default function GoldrechnerPage() {
       related={{
         title: "Weitere Gold-Umrechnungen",
         links: [
-          { href: "/de/14-karat-gold-18-karat-gold", label: "14 Karat in 18 Karat Gold" },
           { href: "/de/kategorien/goldkarat", label: "Alle Goldkarat-Umrechnungen" },
           { href: "/de/gramm-unze", label: "Gramm in Unze" },
         ],

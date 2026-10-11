@@ -189,7 +189,7 @@ export const englishEditorialConversions: readonly EnglishEditorialConversion[] 
     note: "Diamonds and gemstones are weighed in carats; gold is weighed in grams (or tola) and graded in karats.",
     related: [
       { href: "/en/carats-to-grams", label: "Carats to grams" },
-      { href: "/en/22k-gold-to-24k-gold", label: "22K to 24K gold" },
+      { href: "/en/gold-karat-calculator", label: "Gold karat calculator" },
       { href: "/en/gold-price-calculator-india", label: "Gold price calculator (India)" },
     ],
   },
@@ -204,33 +204,6 @@ export const englishEditorialConversions: readonly EnglishEditorialConversion[] 
       { href: "/en/grams-to-carats", label: "Grams to carats" },
       { href: "/en/gold-price-calculator-india", label: "Gold price calculator (India)" },
       { href: "/en/grain-to-grams", label: "Grains to grams" },
-    ],
-  },
-  {
-    slug: "22k-gold-to-24k-gold",
-    title: "22K (916) gold and its pure gold content",
-    paragraphs: [
-      "22K gold is 22 parts gold out of 24, about 91.67% in theory; in India, BIS-hallmarked 22K jewellery is stamped 916, meaning at least 91.6% gold. This converter uses 22/24.",
-      "Example: 10 grams of 22K gold contains 10 × 22 ÷ 24 = 9.17 grams of pure (24K) gold. That is why the 22K rate per gram is lower than the 24K rate. To price jewellery with making charges and GST, use the gold price calculator.",
-    ],
-    note: "When you sell or exchange old jewellery, the buyer tests the actual purity; the value is based on the pure gold content, usually after a deduction.",
-    related: [
-      { href: "/en/24k-gold-to-22k-gold", label: "24K to 22K gold" },
-      { href: "/en/gold-price-calculator-india", label: "Gold price calculator (India)" },
-      { href: "/en/22k-gold-to-18k-gold", label: "22K to 18K gold" },
-    ],
-  },
-  {
-    slug: "24k-gold-to-22k-gold",
-    title: "Making 22K gold from pure gold",
-    paragraphs: [
-      "22K gold is 22/24 gold (about 91.67%). Pure 24K gold is too soft for most jewellery, so it is alloyed with copper, silver or zinc.",
-      "Formula: 22K weight = 24K weight × 24 ÷ 22. Example: 9.17 grams of pure gold makes 9.17 × 24 ÷ 22 = 10 grams of 22K gold. The extra 0.83 g is the alloy metal.",
-    ],
-    related: [
-      { href: "/en/22k-gold-to-24k-gold", label: "22K to 24K gold" },
-      { href: "/en/gold-price-calculator-india", label: "Gold price calculator (India)" },
-      { href: "/en/18k-gold-to-22k-gold", label: "18K to 22K gold" },
     ],
   },
   {

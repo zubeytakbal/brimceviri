@@ -867,27 +867,8 @@ const pairDefinitions: ConversionPairDefinition[] = [
     firstExamples: [0.1, 0.5, 1, 5, 10, 50, 100],
     secondExamples: [100, 500, 1000, 5000, 10000, 50000, 100000],
   },
-  {
-    category: "altin_ayar",
-    firstId: "ayar-24",
-    secondId: "ayar-22",
-    firstExamples: [1, 5, 10, 20, 50, 100, 250],
-    secondExamples: [1, 5, 10, 20, 50, 100, 250],
-  },
-  {
-    category: "altin_ayar",
-    firstId: "ayar-22",
-    secondId: "ayar-18",
-    firstExamples: [1, 5, 10, 20, 50, 100, 250],
-    secondExamples: [1, 5, 10, 20, 50, 100, 250],
-  },
-  {
-    category: "altin_ayar",
-    firstId: "ayar-18",
-    secondId: "ayar-14",
-    firstExamples: [1, 5, 10, 20, 50, 100, 250],
-    secondExamples: [1, 5, 10, 20, 50, 100, 250],
-  },
+  // Altin ayar cifti sayfalari (24-22, 22-18, 18-14) rakamlar disinda birbirinin
+  // aynisiydi; her dilde altin ayar kategorisindeki ceviriciye yonlenir (mergedPageRedirects).
   {
     category: "gumus_ayar",
     firstId: "gumus-999",

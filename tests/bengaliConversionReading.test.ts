@@ -61,15 +61,11 @@ describe("bengali conversion reading", () => {
     for (const text of texts) expect(text).not.toMatch(/NaN|undefined/);
   });
 
-  it("uses the converter for metres, gold, temperature and calories", () => {
+  it("uses the converter for metres, temperature and calories", () => {
     const metres = bengaliConversionReadingPlain(readingFor("uzunluk", "m", "cm"));
     expect(metres).toContain(formatBn(100));
     expect(metres).toContain("মিটার");
     expect(metres).toContain("cm");
-
-    const gold = bengaliConversionReadingPlain(readingFor("altin_ayar", "18K", "14K"));
-    expect(gold).toContain(formatBn(10 * (18 / 24)));
-    expect(gold).toContain("দাঁড়িপাল্লা");
 
     const temperature = bengaliConversionReadingPlain(readingFor("sicaklik", "C", "F"));
     expect(temperature).toContain(formatBn(-40));

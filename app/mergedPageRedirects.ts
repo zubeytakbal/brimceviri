@@ -86,6 +86,27 @@ function altinRedirects(): MergedRedirect[] {
   return ALTIN_SAYFALARI.map((id) => r(`/altin-hesaplama/${id}`, `/altin-hesaplama?tur=${id}`));
 }
 
+/** Altın ayar çifti sayfaları (24↔22, 22↔18, 18↔14) rakamlar dışında aynıydı; her dilde altın hesaplayıcısına ya da altın ayar kategorisindeki çeviriciye yönlenir. */
+function goldKaratPairRedirects(): MergedRedirect[] {
+  const pairs: Record<string, { to: string; slugs: string[] }> = {
+    "": { to: "/kategoriler/altin-ayar", slugs: ["14-ayar-altin-18-ayar-altin", "18-ayar-altin-14-ayar-altin", "18-ayar-altin-22-ayar-altin", "22-ayar-altin-18-ayar-altin", "22-ayar-altin-24-ayar-altin", "24-ayar-altin-22-ayar-altin"] },
+    en: { to: "/en/gold-karat-calculator", slugs: ["14k-gold-to-18k-gold", "18k-gold-to-14k-gold", "18k-gold-to-22k-gold", "22k-gold-to-18k-gold", "22k-gold-to-24k-gold", "24k-gold-to-22k-gold"] },
+    ar: { to: "/ar/categories/gold-karat", slugs: ["14k-gold-to-18k-gold", "18k-gold-to-14k-gold", "18k-gold-to-22k-gold", "22k-gold-to-18k-gold", "22k-gold-to-24k-gold", "24k-gold-to-22k-gold"] },
+    de: { to: "/de/goldrechner", slugs: ["14-karat-gold-18-karat-gold", "18-karat-gold-14-karat-gold", "18-karat-gold-22-karat-gold", "22-karat-gold-18-karat-gold", "22-karat-gold-24-karat-gold", "24-karat-gold-22-karat-gold"] },
+    es: { to: "/es/calculadora-de-oro", slugs: ["oro-14-quilates-oro-18-quilates", "oro-18-quilates-oro-14-quilates", "oro-18-quilates-oro-22-quilates", "oro-22-quilates-oro-18-quilates", "oro-22-quilates-oro-24-quilates", "oro-24-quilates-oro-22-quilates"] },
+    pt: { to: "/pt/calculadora-de-ouro", slugs: ["ouro-18-quilates-ouro-22-quilates", "ouro-22-quilates-ouro-18-quilates", "ouro-22-quilates-ouro-24-quilates", "ouro-24-quilates-ouro-22-quilates"] },
+    bn: { to: "/bn/categories/sonar-ayar", slugs: ["14-carat-gold-18-carat-gold", "18-carat-gold-14-carat-gold", "18-carat-gold-22-carat-gold", "22-carat-gold-18-carat-gold", "22-carat-gold-24-carat-gold", "24-carat-gold-22-carat-gold"] },
+    uz: { to: "/uz/turkumlar/oltin-karati", slugs: ["14-karat-dan-18-karatga", "18-karat-dan-14-karatga", "18-karat-dan-22-karatga", "22-karat-dan-18-karatga", "22-karat-dan-24-karatga", "24-karat-dan-22-karatga"] },
+    fr: { to: "/fr/categories/carat-or", slugs: ["or-18-carats-or-22-carats", "or-22-carats-or-18-carats", "or-22-carats-or-24-carats", "or-24-carats-or-22-carats"] },
+    it: { to: "/it/categorie/caratura-oro", slugs: ["oro-18-carati-oro-22-carati", "oro-22-carati-oro-18-carati", "oro-22-carati-oro-24-carati", "oro-24-carati-oro-22-carati"] },
+    nl: { to: "/nl/categorieen/goudkaraat", slugs: ["18-karaat-goud-22-karaat-goud", "22-karaat-goud-18-karaat-goud", "22-karaat-goud-24-karaat-goud", "24-karaat-goud-22-karaat-goud"] },
+    sv: { to: "/sv/kategorier/guldkarat", slugs: ["18-karat-guld-22-karat-guld", "22-karat-guld-18-karat-guld", "22-karat-guld-24-karat-guld", "24-karat-guld-22-karat-guld"] },
+    no: { to: "/no/kategorier/gullkarat", slugs: ["18-karat-gull-22-karat-gull", "22-karat-gull-18-karat-gull", "22-karat-gull-24-karat-gull", "24-karat-gull-22-karat-gull"] },
+    da: { to: "/da/kategorier/guldkarat", slugs: ["18-karat-guld-22-karat-guld", "22-karat-guld-18-karat-guld", "22-karat-guld-24-karat-guld", "24-karat-guld-22-karat-guld"] },
+  };
+  return Object.entries(pairs).flatMap(([locale, { to, slugs }]) => slugs.map((slug) => r(`${locale ? `/${locale}` : ""}/${slug}`, to)));
+}
+
 /** Üniversite başına CGPA sayfaları; formül, kaynak ve kapsam ana sayfada. */
 function cgpaRedirects(): MergedRedirect[] {
   return cgpaUniversities.map((u) => r(`/en/cgpa-to-percentage/${u.slug}`, `/en/cgpa-to-percentage?university=${u.slug}`));
@@ -219,5 +240,5 @@ function legacyRedirects(): MergedRedirect[] {
 }
 
 export function mergedPageRedirects(): MergedRedirect[] {
-  return [...timerRedirects(), ...alarmRedirects(), ...fxRedirects(), ...uzLicenseRedirects(), ...es419Redirects(), ...numberRedirects(), ...aminoAcidRedirects(), ...sureCuzRedirects(), ...unitGuideRedirects().map((x) => r(x.source, x.destination)), ...altinRedirects(), ...cgpaRedirects(), ...uzRegionRedirects(), ...feiertageRedirects(), ...federalHolidayRedirects(), ...takvimGunRedirects(), ...materialRedirects(), r("/ulkeler/s-o-tome-ve-principe", "/ulkeler/sao-tome-ve-principe"), ...legacyRedirects()];
+  return [...timerRedirects(), ...alarmRedirects(), ...fxRedirects(), ...uzLicenseRedirects(), ...es419Redirects(), ...numberRedirects(), ...aminoAcidRedirects(), ...sureCuzRedirects(), ...unitGuideRedirects().map((x) => r(x.source, x.destination)), ...altinRedirects(), ...goldKaratPairRedirects(), ...cgpaRedirects(), ...uzRegionRedirects(), ...feiertageRedirects(), ...federalHolidayRedirects(), ...takvimGunRedirects(), ...materialRedirects(), r("/ulkeler/s-o-tome-ve-principe", "/ulkeler/sao-tome-ve-principe"), ...legacyRedirects()];
 }

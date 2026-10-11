@@ -64,8 +64,7 @@ export default function GoldKaratCalculatorPage() {
       related={{
         title: "Related gold tools",
         links: [
-          { href: "/en/14k-gold-to-18k-gold", label: "14K to 18K gold (same pure gold)" },
-          { href: "/en/22k-gold-to-24k-gold", label: "22K to 24K gold" },
+          { href: "/en/gold-price-calculator-india", label: "Gold price calculator (India)" },
           { href: "/en/carats-to-grams", label: "Gemstone carats to grams" },
           { href: "/en/categories/gold-karat", label: "All gold karat conversions" },
         ],

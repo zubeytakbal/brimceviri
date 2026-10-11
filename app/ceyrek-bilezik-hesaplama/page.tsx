@@ -60,7 +60,6 @@ export default function CeyrekBilezikPage() {
         links: [
           { href: "/altin-hesaplama", label: "Altın Hesaplama (çeyrek, yarım, tam)" },
           { href: "/has-hesaplama", label: "Hurda Altın ve Has Hesaplama" },
-          { href: "/24-ayar-altin-22-ayar-altin", label: "24 Ayar → 22 Ayar Çevirme" },
           { href: "/kategoriler/altin-ayar", label: "Altın Ayar Dönüşümleri" },
           { href: "/zekat-hesaplama", label: "Altın Zekâtı Hesaplama" },
         ],

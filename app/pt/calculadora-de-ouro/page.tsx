@@ -57,7 +57,6 @@ export default function CalculadoraOuroPage() {
       related={{
         title: "Mais conversões de ouro",
         links: [
-          { href: "/pt/ouro-18-quilates-ouro-22-quilates", label: "Ouro 18k para 22k" },
           { href: "/pt/categorias/quilate-de-ouro", label: "Todas as conversões de quilates" },
         ],
       }}

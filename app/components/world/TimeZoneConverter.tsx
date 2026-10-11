@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { zonedWallTimeToUtc } from "../../converter/time/timeZoneOptions";
-import { shortDifference, zoneOffsetMinutes } from "./useSecondNow";
+import { shortDifference, WORLD_LOCALE, zoneOffsetMinutes, type WorldLang } from "./useSecondNow";
 
 export type ConverterOption = { id: string; label: string; timeZone: string; group: "abbr" | "city" };
 
@@ -52,13 +52,13 @@ export default function TimeZoneConverter({
   basePath,
 }: {
   options: ConverterOption[];
-  lang: "tr" | "en" | "de";
+  lang: WorldLang;
   copy: ConverterCopy;
   initialFrom: string;
   initialTo: string[];
   basePath: string;
 }) {
-  const locale = lang === "tr" ? "tr-TR" : lang === "de" ? "de-DE" : "en-US";
+  const locale = WORLD_LOCALE[lang];
   const byId = useMemo(() => new Map(options.map((o) => [o.id, o])), [options]);
   const [fromId, setFromId] = useState(initialFrom);
   const [toIds, setToIds] = useState<string[]>(initialTo);

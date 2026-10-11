@@ -14,6 +14,7 @@ import { formatNordicDate, formatNordicLong, NORDIC_WEEK_PATHS, type NordicLocal
 import { cityNameNordic, cityPathNordic, NORDIC_WORLD_BASE } from "../../converter/time/nordicWorld";
 import { worldCities } from "../../converter/time/worldCities";
 import { sleepGuidePaths } from "../../i18n/sleepGuidePaths";
+import { timeToolPaths } from "../../i18n/timeToolPaths";
 import { DecorativeIcon, type SiteIconName } from "../siteIcons";
 import { NORDIC_TIME_LABELS, NORDIC_TIME_PATHS, NORDIC_TIME_UI } from "../time/nordicTimeCopy";
 import TimeToolPage from "../time/TimeToolPage";
@@ -112,7 +113,7 @@ type Copy = {
   toolsTitle: string;
   groups: { clock: string; calendar: string; world: string; more: string };
   notes: Record<string, string>;
-  labels: { days: string; week: string; holidays: string; sleep: string; fuel: string; world: string };
+  labels: { days: string; week: string; holidays: string; sleep: string; fuel: string; world: string; tz: string };
   faq: (week: number) => FaqItem[];
 };
 
@@ -163,8 +164,8 @@ const COPY: Record<NordicLocale, Copy> = {
     holiday: "helgdag",
     toolsTitle: "Alla verktyg för tid och datum",
     groups: { clock: "Klocka och timer", calendar: "Kalender", world: "Världen", more: "Mer" },
-    notes: { clock: "Klocka i realtid", alarm: "Väckning i webbläsaren", timer: "Nedräkning med signal", stopwatch: "Med varvtider", pomodoro: "25 + 5 minuter", interval: "Tabata och HIIT", days: "Räkna dagar och datum", week: "Aktuellt veckonummer", holidays: "Med klämdagar", world: "Tid i 97 städer", sleep: "När ska du sova?", fuel: "Bränsle och resekostnad" },
-    labels: { days: "Dagar mellan datum", week: "Veckonummer", holidays: "Röda dagar", sleep: "Sömnkalkylator", fuel: "Liter per mil", world: "Världsklocka" },
+    notes: { clock: "Klocka i realtid", alarm: "Väckning i webbläsaren", timer: "Nedräkning med signal", stopwatch: "Med varvtider", pomodoro: "25 + 5 minuter", interval: "Tabata och HIIT", days: "Räkna dagar och datum", week: "Aktuellt veckonummer", holidays: "Med klämdagar", world: "Tid i 97 städer", tz: "Med mötesplanerare", sleep: "När ska du sova?", fuel: "Bränsle och resekostnad" },
+    labels: { days: "Dagar mellan datum", week: "Veckonummer", holidays: "Röda dagar", sleep: "Sömnkalkylator", fuel: "Liter per mil", world: "Världsklocka", tz: "Tidsskillnad" },
     faq: (w) => [
       { question: "Vilken tidszon har Sverige?", answer: "Sverige har centraleuropeisk tid (CET, UTC+1) på vintern och centraleuropeisk sommartid (CEST, UTC+2) på sommaren. Klockan ställs om sista söndagen i mars och sista söndagen i oktober." },
       { question: "Hur räknas veckonumret?", answer: `Sverige följer ISO 8601: veckan börjar på måndag och vecka 1 är den vecka som innehåller årets första torsdag. Just nu är det vecka ${w}.` },
@@ -217,8 +218,8 @@ const COPY: Record<NordicLocale, Copy> = {
     holiday: "helligdag",
     toolsTitle: "Alle verktøy for tid og dato",
     groups: { clock: "Klokke og timer", calendar: "Kalender", world: "Verden", more: "Mer" },
-    notes: { clock: "Klokke i sanntid", alarm: "Vekking i nettleseren", timer: "Nedtelling med signal", stopwatch: "Med rundetider", pomodoro: "25 + 5 minutter", interval: "Tabata og HIIT", days: "Regn ut dager og datoer", week: "Gjeldende ukenummer", holidays: "Med inneklemte dager", world: "Tid i 97 byer", sleep: "Når bør du legge deg?", fuel: "Drivstoff og turkostnad" },
-    labels: { days: "Dager mellom datoer", week: "Ukenummer", holidays: "Røde dager", sleep: "Søvnkalkulator", fuel: "Liter per mil", world: "Verdensklokke" },
+    notes: { clock: "Klokke i sanntid", alarm: "Vekking i nettleseren", timer: "Nedtelling med signal", stopwatch: "Med rundetider", pomodoro: "25 + 5 minutter", interval: "Tabata og HIIT", days: "Regn ut dager og datoer", week: "Gjeldende ukenummer", holidays: "Med inneklemte dager", world: "Tid i 97 byer", tz: "Med møteplanlegger", sleep: "Når bør du legge deg?", fuel: "Drivstoff og turkostnad" },
+    labels: { days: "Dager mellom datoer", week: "Ukenummer", holidays: "Røde dager", sleep: "Søvnkalkulator", fuel: "Liter per mil", world: "Verdensklokke", tz: "Tidsforskjell" },
     faq: (w) => [
       { question: "Hvilken tidssone har Norge?", answer: "Norge har sentraleuropeisk tid (CET, UTC+1) om vinteren og sentraleuropeisk sommertid (CEST, UTC+2) om sommeren. Klokka stilles om siste søndag i mars og siste søndag i oktober." },
       { question: "Hvordan telles ukenummeret?", answer: `Norge følger ISO 8601: uka begynner på mandag, og uke 1 er uka som inneholder årets første torsdag. Nå er det uke ${w}.` },
@@ -269,8 +270,8 @@ const COPY: Record<NordicLocale, Copy> = {
     holiday: "helligdag",
     toolsTitle: "Alle værktøjer til tid og dato",
     groups: { clock: "Ur og timer", calendar: "Kalender", world: "Verden", more: "Mere" },
-    notes: { clock: "Ur i realtid", alarm: "Vækning i browseren", timer: "Nedtælling med signal", stopwatch: "Med omgangstider", pomodoro: "25 + 5 minutter", interval: "Tabata og HIIT", days: "Beregn dage og datoer", week: "Aktuelt ugenummer", holidays: "Med klemmedage", world: "Tid i 97 byer", sleep: "Hvornår skal du sove?", fuel: "Brændstof og turpris" },
-    labels: { days: "Dage mellem datoer", week: "Ugenummer", holidays: "Helligdage", sleep: "Søvnberegner", fuel: "Km pr. liter", world: "Verdensur" },
+    notes: { clock: "Ur i realtid", alarm: "Vækning i browseren", timer: "Nedtælling med signal", stopwatch: "Med omgangstider", pomodoro: "25 + 5 minutter", interval: "Tabata og HIIT", days: "Beregn dage og datoer", week: "Aktuelt ugenummer", holidays: "Med klemmedage", world: "Tid i 97 byer", tz: "Med mødeplanlægger", sleep: "Hvornår skal du sove?", fuel: "Brændstof og turpris" },
+    labels: { days: "Dage mellem datoer", week: "Ugenummer", holidays: "Helligdage", sleep: "Søvnberegner", fuel: "Km pr. liter", world: "Verdensur", tz: "Tidsforskel" },
     faq: (w) => [
       { question: "Hvilken tidszone har Danmark?", answer: "Danmark har centraleuropæisk tid (CET, UTC+1) om vinteren og centraleuropæisk sommertid (CEST, UTC+2) om sommeren. Uret stilles om den sidste søndag i marts og den sidste søndag i oktober." },
       { question: "Hvordan tælles ugenummeret?", answer: `Danmark følger ISO 8601: ugen begynder mandag, og uge 1 er den uge, der indeholder årets første torsdag. Lige nu er det uge ${w}.` },
@@ -340,7 +341,10 @@ export default function NordicTimeHubPage({ locale }: { locale: NordicLocale }) 
       id: "varlden",
       title: t.groups.world,
       icon: "greatCircleCalculator",
-      links: [{ href: NORDIC_WORLD_BASE[locale], label: t.labels.world, note: t.notes.world }],
+      links: [
+        { href: NORDIC_WORLD_BASE[locale], label: t.labels.world, note: t.notes.world },
+        { href: timeToolPaths.timeZoneConverter[locale]!, label: t.labels.tz, note: t.notes.tz },
+      ],
     },
     {
       id: "mer",

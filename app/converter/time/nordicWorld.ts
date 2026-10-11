@@ -1,5 +1,6 @@
 // İsveççe, Norveççe ve Danca dünya saati için şehir, ülke ve bölge adları.
 // Listede olmayan şehirler İngilizce adıyla kalır (New York, London, Tokyo...).
+import { abbreviationZones } from "./timeZoneOptions";
 import type { NordicLocale } from "./nordicWeek";
 import { citySlugDe } from "./germanWorld";
 import { worldCities, type WorldCity } from "./worldCities";
@@ -173,4 +174,14 @@ export function worldCityPaths(city: WorldCity) {
     no: cityPathNordic("no", city),
     da: cityPathNordic("da", city),
   };
+}
+
+/** Saat dilimi çevirici seçenekleri: kısaltmalar (İngilizce adlarıyla) + şehirler ülke adıyla. */
+export function nordicZoneOptions(locale: NordicLocale) {
+  return [
+    ...abbreviationZones.map((z) => ({ id: z.id, label: z.en, timeZone: z.timeZone, group: z.group })),
+    ...worldCities
+      .map((c) => ({ id: c.en, label: `${cityNameNordic(locale, c)} (${countryNameNordic(locale, c)})`, timeZone: c.timeZone, group: "city" as const }))
+      .sort((a, b) => a.label.localeCompare(b.label, locale === "no" ? "nb" : locale)),
+  ];
 }

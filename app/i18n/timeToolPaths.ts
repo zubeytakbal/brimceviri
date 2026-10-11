@@ -8,7 +8,7 @@ export const timeToolPaths: Record<TimeToolId, Partial<Record<Locale, string>>> 
   clock: { tr: "/online-saat", en: "/en/online-clock", de: "/de/online-uhr", sv: "/sv/klocka", no: "/no/klokka", da: "/da/klokken" },
   worldClock: { tr: "/dunya-saatleri", en: "/en/world-clock", de: "/de/weltuhr", sv: "/sv/varldsklocka", no: "/no/verdensklokke", da: "/da/verdensur" },
   countdown: { tr: "/geri-sayim", en: "/en/countdown", de: "/de/countdown" },
-  timeZoneConverter: { tr: "/saat-dilimi-cevirici", en: "/en/time-zone-converter", de: "/de/zeitzonenrechner" },
+  timeZoneConverter: { tr: "/saat-dilimi-cevirici", en: "/en/time-zone-converter", de: "/de/zeitzonenrechner", sv: "/sv/tidsskillnad", no: "/no/tidsforskjell", da: "/da/tidsforskel" },
   alarm: { tr: "/online-alarm-kur", en: "/en/alarm-clock", de: "/de/wecker", sv: "/sv/vackarklocka", no: "/no/vekkerklokke", da: "/da/vaekkeur" },
   timer: { tr: "/zamanlayici", en: "/en/timer", de: "/de/timer", sv: "/sv/timer", no: "/no/timer", da: "/da/timer" },
   stopwatch: { tr: "/kronometre", en: "/en/stopwatch", de: "/de/stoppuhr", sv: "/sv/stoppur", no: "/no/stoppeklokke", da: "/da/stopur" },

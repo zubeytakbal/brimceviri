@@ -27,6 +27,9 @@ export const formatNordicLong = (locale: NordicLocale, date: YMD) =>
 export const formatNordicDate = (locale: NordicLocale, date: YMD) =>
   fmt(locale, date, { day: "numeric", month: "long", year: "numeric" });
 
+/** "1 oktober" */
+export const formatNordicDayMonth = (locale: NordicLocale, date: YMD) => fmt(locale, date, { day: "numeric", month: "long" });
+
 /** "torsdag" */
 export const formatNordicWeekday = (locale: NordicLocale, date: YMD) => fmt(locale, date, { weekday: "long" });
 

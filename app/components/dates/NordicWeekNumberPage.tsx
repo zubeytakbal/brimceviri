@@ -1,6 +1,8 @@
 // İsveççe, Norveççe ve Danca hafta numarası sayfası (Almanca KW sayfasının
 // İskandinav karşılığı). Metinler converter/time/nordicWeek.ts içinde.
 import type { Metadata } from "next";
+import WeekHero from "./WeekHero";
+import { weekRangeText } from "../../converter/time/weekRange";
 import { addDaysYmd, isoWeeksInYear } from "../../converter/time/dateMath";
 import { kalenderwoche, todayBerlin, ymdInput } from "../../converter/time/germanDates";
 import {
@@ -31,6 +33,12 @@ export function nordicWeekMetadata(locale: NordicLocale): Metadata {
     openGraph: { title, description, url: buildSiteUrl(path), siteName: "BirimCeviri.app", locale: t.ogLocale, type: "website" },
   };
 }
+
+const HERO: Record<NordicLocale, { intl: string; zone: string; label: string; template: string }> = {
+  sv: { intl: "sv-SE", zone: "Europe/Stockholm", label: "Just nu är det", template: "vecka {week}" },
+  no: { intl: "nb-NO", zone: "Europe/Oslo", label: "Nå er det", template: "uke {week}" },
+  da: { intl: "da-DK", zone: "Europe/Copenhagen", label: "Lige nu er det", template: "uge {week}" },
+};
 
 export default function NordicWeekNumberPage({ locale }: { locale: NordicLocale }) {
   const t = NORDIC_WEEK_COPY[locale];
@@ -68,7 +76,20 @@ export default function NordicWeekNumberPage({ locale }: { locale: NordicLocale 
         crumbLabel={t.crumbLabel}
         title={t.h1(w.week)}
         intro={t.intro(formatNordicLong(locale, today), w.week, nordicWeekRange(locale, w.monday, w.sunday))}
-        tool={<NordicWeekTool locale={locale} today={ymdInput(today)} />}
+        tool={
+          <>
+            <WeekHero
+              intlLocale={HERO[locale].intl}
+              timeZone={HERO[locale].zone}
+              label={HERO[locale].label}
+              numberTemplate={HERO[locale].template}
+              initialWeek={w.week}
+              initialYear={year}
+              initialRange={weekRangeText(HERO[locale].intl, year, w.week)}
+            />
+            <NordicWeekTool locale={locale} today={ymdInput(today)} />
+          </>
+        }
         related={{ title: t.relatedTitle, links: t.related }}
         tocTitle={t.tocTitle}
         tocItems={[

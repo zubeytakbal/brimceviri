@@ -7,6 +7,8 @@ import { timeToolAlternates, timeToolPaths, type TimeToolId } from "../../i18n/t
 import { buildSiteUrl } from "../../siteConfig";
 import TimeToolPage from "../time/TimeToolPage";
 import { BusinessDayCalculator, DateAddCalculator, DateDiffCalculator, WeekNumberTool } from "./DateCalculators";
+import WeekHero from "./WeekHero";
+import { weekRangeText } from "../../converter/time/weekRange";
 
 type Lang = "tr" | "en";
 type DateToolId = Extract<TimeToolId, "dateDiff" | "businessDays" | "dateAdd" | "weekNumber">;
@@ -32,6 +34,11 @@ const RELATED: Record<Lang, Array<{ id: DateToolId | "holidays" | "age" | "count
     { id: "hijri", href: "/en/hijri-date-converter", label: "Hijri Date Converter" },
   ],
 };
+
+function todayTurkey(): YMD {
+  const d = new Date(Date.now() + 3 * 3600000);
+  return { year: d.getUTCFullYear(), month: d.getUTCMonth() + 1, day: d.getUTCDate() };
+}
 
 function todayUtc(): YMD {
   const d = new Date();
@@ -429,7 +436,8 @@ export function weekNumberTitle(lang: Lang) {
 
 export function WeekNumberPage({ lang }: { lang: Lang }) {
   const tr = lang === "tr";
-  const today = todayUtc();
+  // Türkiye sürekli UTC+3; İngilizce sayfa UTC'den başlar, tarayıcı kendi gününe göre düzeltir.
+  const today = tr ? todayTurkey() : todayUtc();
   const current = isoWeek(today);
   const year = current.year;
   const weeks = isoWeeksInYear(year);
@@ -483,7 +491,20 @@ export function WeekNumberPage({ lang }: { lang: Lang }) {
           ? "Bugünün hafta numarası, yılın kaçıncı günü ve yıl sonuna kalan gün. Herhangi bir tarihin haftasını bulun ya da tüm yılın hafta tablosuna bakın."
           : "Today's week number, the day of the year and days left in the year. Look up the week of any date or browse this year's full week table."
       }
-      tool={<WeekNumberTool lang={lang} />}
+      tool={
+        <>
+          <WeekHero
+            intlLocale={tr ? "tr-TR" : "en-GB"}
+            timeZone={tr ? "Europe/Istanbul" : ""}
+            label={tr ? "Bugün yılın" : "This week is"}
+            numberTemplate={tr ? "{week}. haftası" : "Week {week}"}
+            initialWeek={current.week}
+            initialYear={year}
+            initialRange={weekRangeText(tr ? "tr-TR" : "en-GB", year, current.week)}
+          />
+          <WeekNumberTool lang={lang} />
+        </>
+      }
       tocItems={[
         { id: "tablo", label: tr ? `${year} hafta tablosu` : `${year} week table` },
         { id: "iso", label: tr ? "ISO 8601 hafta kuralı" : "ISO 8601 week rules" },

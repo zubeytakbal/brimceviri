@@ -58,7 +58,6 @@ export default function CalculadoraOroPage() {
       related={{
         title: "Más conversiones de oro",
         links: [
-          { href: "/es/oro-14-quilates-oro-18-quilates", label: "Oro de 14 a 18 quilates" },
           { href: "/es/categorias/quilate-de-oro", label: "Todas las conversiones de quilates" },
         ],
       }}

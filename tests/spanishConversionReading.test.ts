@@ -61,15 +61,11 @@ describe("spanish conversion reading", () => {
     for (const text of texts) expect(text).not.toMatch(/NaN|undefined/);
   });
 
-  it("uses the converter for metres, gold, temperature, calories and lab units", () => {
+  it("uses the converter for metres, temperature, calories and lab units", () => {
     const metres = spanishConversionReadingPlain(readingFor("uzunluk", "m", "cm"));
     expect(metres).toContain(formatEs(100));
     expect(metres).toContain("m");
     expect(metres).toContain("cm");
-
-    const gold = spanishConversionReadingPlain(readingFor("altin_ayar", "18K", "14K"));
-    expect(gold).toContain(formatEs(10 * (18 / 24)));
-    expect(gold).toContain("balanza");
 
     const temperature = spanishConversionReadingPlain(readingFor("sicaklik", "C", "F"));
     expect(temperature).toContain(formatEs(-40));

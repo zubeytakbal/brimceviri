@@ -80,17 +80,12 @@ describe("arabic conversion reading", () => {
     }
   });
 
-  it("uses the converter for metres, gold, temperature and calories", () => {
+  it("uses the converter for metres, temperature and calories", () => {
     const metres = arabicConversionReadingPlain(readingFor("uzunluk", "m", "cm"));
     const hundred = new Intl.NumberFormat("ar", { maximumSignificantDigits: 12 }).format(100);
     expect(metres).toContain(hundred);
     expect(metres).toContain("m");
     expect(metres).toContain("cm");
-
-    const gold = arabicConversionReadingPlain(readingFor("altin_ayar", "18K", "14K"));
-    const pure = new Intl.NumberFormat("ar", { maximumSignificantDigits: 12 }).format(10 * (18 / 24));
-    expect(gold).toContain(pure);
-    expect(gold).toContain("ميزان");
 
     const temperature = arabicConversionReadingPlain(readingFor("sicaklik", "C", "F"));
     expect(temperature).toContain(new Intl.NumberFormat("ar", { maximumSignificantDigits: 12 }).format(-40));

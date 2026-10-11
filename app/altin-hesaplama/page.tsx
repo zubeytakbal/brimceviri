@@ -84,8 +84,8 @@ export default function AltinHesaplamaPage() {
         title: "İlginizi çekebilir",
         links: [
           {
-            href: "/24-ayar-altin-22-ayar-altin",
-            label: "24 ayar altını 22 ayara çevirme",
+            href: "/kategoriler/altin-ayar",
+            label: "Altın ayar dönüşümleri (24, 22, 18, 14 ayar)",
           },
           { href: "/has-hesaplama", label: "Has altın ve alaşım hesaplama" },
           { href: "/kuyumcu-araclari", label: "Kuyumcu Araçları" },

@@ -67,3 +67,14 @@ jobs:
         run: npx tsx scripts/annual-reminders.ts
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # AdSense ads.txt dosyasini kok alan adinda (birimceviri.app) arar; yonlendirmeyi izler.
+      # Bulamazsa derlemeyi durdurmaz, uyari yazar.
+      - name: Check ads.txt
+        continue-on-error: true
+        run: |
+          for url in https://birimceviri.app/ads.txt https://www.birimceviri.app/ads.txt; do
+            echo "== $url"
+            curl -sS -L --max-time 20 -o ads.txt.check -w "durum=%{http_code} son_adres=%{url_effective} yonlendirme=%{num_redirects}\n" "$url" || echo "::warning::$url erisilemedi"
+            grep -q "pub-4103878788447160" ads.txt.check 2>/dev/null && echo "icerik dogru" || echo "::warning::$url icinde yayinci kimligi yok"
+          done

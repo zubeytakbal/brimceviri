@@ -13,12 +13,14 @@
 // 5. Ince sayfa denetimi (scripts/thinGuard.ts): dizine acik yeni bir sayfanin
 //    metni cok kisaysa build'i durdurur.
 // 6. Parametreli site ici baglantilara rel="nofollow" (nofollowQueryLinks).
+// 7. Site haritasi denetimi (scripts/sitemapGuard.ts): dizine acik her sayfa sitemap.xml'de olmali.
 import { existsSync, readdirSync, readFileSync, unlinkSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { LOCALE_DEFINITIONS } from "../app/i18n/config";
 import { siteRedirects } from "../app/siteRedirects";
 import { checkTemplates } from "./templateGuard";
 import { checkThinPages, MIN_KARAKTER } from "./thinGuard";
+import { checkSitemap } from "./sitemapGuard";
 
 const OUT = "out";
 
@@ -141,3 +143,12 @@ if (thin.failed.length) {
   process.exit(1);
 }
 console.log(`İnce sayfa denetimi geçti (${thin.pending} sayfa düzeltme bekliyor)`);
+
+// 7. Site haritasi denetimi (scripts/sitemapGuard.ts): dizine acik her sayfa haritada olmali.
+const map = checkSitemap(OUT);
+if (map.missing.length || map.orphaned.length) {
+  for (const u of map.missing) console.error(`Site haritası denetimi: ${u} dizine açık ama sitemap.xml'de yok (app/sitemap.ts).`);
+  for (const u of map.orphaned) console.error(`Site haritası denetimi: ${u} sitemap.xml'de var ama böyle bir sayfa derlenmedi.`);
+  process.exit(1);
+}
+console.log(`Site haritası denetimi geçti (${map.listed} adres)`);

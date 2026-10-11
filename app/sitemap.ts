@@ -5014,6 +5014,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/es": { categories: "/categorias" },
     "/pt": { categories: "/categorias" },
     "/nl": { categories: "/categorieen" },
+    "/bn": { categories: "/categories" },
   };
 
   const curatedLocaleIndexRoutes: MetadataRoute.Sitemap = Object.keys(
@@ -5036,6 +5037,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // L'italiano non ha ancora una pagina indice /it/guide-alle-unita (funzionalita
   // separata in corso per altre lingue), quindi qui si aggiungono solo home
   // e categories invece di riusare curatedLocaleIndexRoutes.
+  // Arapca muhendislik hesaplayicilari (/ar/calculators/<slug>) ve Ozbekce bagimsiz araclar.
+  // Bunlar onceden haritada yoktu; postbuild'deki site haritasi denetimi artik eksik sayfa birakmaz.
+  const arabicCalculatorRoutes: MetadataRoute.Sitemap = englishCalculatorPages.map((page) => ({
+    url: `${baseUrl}/ar/calculators/${page.slug}`,
+    lastModified: contentLastModified,
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+  const uzbekStandaloneRoutes: MetadataRoute.Sitemap = [
+    "/uz/oshxona-olchovlari",
+    "/uz/retsept-aylantirgich",
+    "/uz/oyoq-kiyim-olchami",
+    "/uz/tarixiy-olchov-birliklari",
+  ].map((path) => ({
+    url: `${baseUrl}${path}`,
+    lastModified: contentLastModified,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
   const italianIndexRoutes: MetadataRoute.Sitemap = [
     {
       url: `${baseUrl}/it`,
@@ -6403,6 +6424,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...englishUnitRoutes,
     ...germanUnitRoutes,
     ...curatedLocaleIndexRoutes,
+    ...arabicCalculatorRoutes,
+    ...uzbekStandaloneRoutes,
     ...italianIndexRoutes,
     ...swedishIndexRoutes,
     ...norwegianIndexRoutes,

@@ -667,25 +667,9 @@ function WeekCard({ date, lang, main }: { date: YMD; lang: Lang; main?: boolean 
 export function WeekNumberTool({ lang }: { lang: Lang }) {
   const t = WEEK_COPY[lang];
   const [values, set] = useInitialDates(["date"], (today) => ({ date: today }));
-  const [today, setToday] = useState<YMD | null>(null);
-  useEffect(() => {
-    const frame = requestAnimationFrame(() => setToday(todayYmd()));
-    return () => cancelAnimationFrame(frame);
-  }, []);
   const date = parseYmd(values.date ?? "");
   return (
     <div className="date-calc">
-      {today && (
-        <div className="week-now">
-          <span>{t.todayTitle}</span>
-          <strong>{isoWeek(today).week}</strong>
-          <em>{t.week(isoWeek(today).week, isoWeek(today).year)}</em>
-          <small>
-            {formatYmd(isoWeekStart(isoWeek(today).year, isoWeek(today).week), lang, false)} –{" "}
-            {formatYmd(addDaysYmd(isoWeekStart(isoWeek(today).year, isoWeek(today).week), 6), lang, false)}
-          </small>
-        </div>
-      )}
       <div className="date-calc-input">
         <strong className="date-calc-input-title">{t.check}</strong>
         <div className="date-calc-fields">

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import { KalenderwocheTool } from "../../components/dates/GermanDateTools";
+import WeekHero from "../../components/dates/WeekHero";
+import { weekRangeText } from "../../converter/time/weekRange";
 import TimeToolPage from "../../components/time/TimeToolPage";
 import type { FaqItem } from "../../converter/faqSchema";
 import { addDaysYmd, isoWeeksInYear } from "../../converter/time/dateMath";
@@ -60,7 +62,20 @@ export default function KalenderwochePage() {
         crumbLabel="Brotkrumen"
         title={`Aktuelle Kalenderwoche: KW ${kw.week}`}
         intro={`Heute ist ${formatDeLong(today)}. Wir befinden uns in Kalenderwoche ${kw.week} (${weekRangeDe(kw.monday, kw.sunday)}). Berechnen Sie die KW für jedes Datum oder finden Sie heraus, in welchem Zeitraum eine bestimmte Kalenderwoche liegt.`}
-        tool={<KalenderwocheTool today={ymdInput(today)} />}
+        tool={
+          <>
+            <WeekHero
+              intlLocale="de-DE"
+              timeZone="Europe/Berlin"
+              label="Heute ist"
+              numberTemplate="KW {week}"
+              initialWeek={kw.week}
+              initialYear={kw.year}
+              initialRange={weekRangeText("de-DE", kw.year, kw.week)}
+            />
+            <KalenderwocheTool today={ymdInput(today)} />
+          </>
+        }
         related={{ title: "Das könnte Sie auch interessieren", links: calendarRelated(path) }}
         tocTitle="Inhalt"
         tocItems={[

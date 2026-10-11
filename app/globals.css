@@ -15945,3 +15945,50 @@ a.all-units-row .all-units-name {
     font-size: 16px;
   }
 }
+
+/* Hafta numarası sayfalarının en üstündeki büyük cevap */
+.week-hero {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  margin-bottom: 18px;
+  padding: 26px 16px 22px;
+  border-radius: 22px;
+  background: #dcecf6;
+  color: #155f8f;
+  text-align: center;
+}
+
+.week-hero-label {
+  margin: 0;
+  color: #2f5f7f;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.week-hero-number {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.15em;
+  margin: 0;
+  font-family: var(--font-heading), Arial, sans-serif;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.week-hero-number time {
+  font-size: clamp(6rem, 30vw, 13rem);
+  letter-spacing: -0.03em;
+}
+
+.week-hero-affix {
+  font-size: clamp(1.6rem, 6vw, 3rem);
+}
+
+.week-hero-range {
+  margin: 4px 0 0;
+  color: #2f5f7f;
+  font-size: clamp(1rem, 3.5vw, 1.25rem);
+  font-weight: 600;
+}

@@ -20,6 +20,9 @@ export type HubHeroCopy = {
   dayLength: string;
   same: string;
   hourAbbr: string;
+  /** Kutup bölgeleri: güneş hiç batmıyor / hiç doğmuyor. */
+  polarDay?: string;
+  polarNight?: string;
 };
 
 const fill = (template: string, values: Record<string, string | number>) =>
@@ -96,8 +99,7 @@ export default function TimeHubHero({
 
   const sun = useMemo(() => {
     if (!ymd) return null;
-    const s = sunTimes(ymd.year, ymd.month, ymd.day, place.lat, place.lon);
-    return s.kind === "normal" ? s : null;
+    return sunTimes(ymd.year, ymd.month, ymd.day, place.lat, place.lon);
     // dayKey günü temsil eder; saniyelik yeniden hesaplamayı önler.
   }, [dayKey, place.lat, place.lon]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -140,12 +142,14 @@ export default function TimeHubHero({
           </select>
         </label>
         <span className="timehub-sun-values">
-          {sun ? (
+          {sun?.kind === "normal" ? (
             <>
               <span>↑ {hm.format(sun.sunrise)}</span>
               <span>↓ {hm.format(sun.sunset)}</span>
               <span>{fill(copy.dayLength, { h: Math.floor(sun.dayLengthMinutes / 60), m: sun.dayLengthMinutes % 60 })}</span>
             </>
+          ) : sun ? (
+            <span>{sun.kind === "polar-day" ? (copy.polarDay ?? "☀") : (copy.polarNight ?? "☾")}</span>
           ) : (
             "--:--"
           )}

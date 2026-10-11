@@ -5,7 +5,8 @@ import { useEffect, useMemo, useState } from "react";
 import { dayOfYear, isoWeek } from "../../converter/time/dateMath";
 import { sunTimes } from "../../converter/time/solar";
 
-export type HubPlace = { id: string; name: string; lat: number; lon: number };
+/** timeZone: yerin kendi dilimi; verilmezse güneş saatleri sayfanın diliminde yazılır. */
+export type HubPlace = { id: string; name: string; lat: number; lon: number; timeZone?: string };
 export type HubStripCity = { name: string; timeZone: string; href: string };
 export type HubHeroCopy = {
   ariaLabel: string;
@@ -49,14 +50,18 @@ function ymdInZone(timeZone: string, at: Date) {
  */
 export default function TimeHubHero({
   intlLocale,
-  timeZone,
+  timeZone: configuredZone,
   copy,
   places,
   defaultPlace,
   storageKey,
   strip,
+  hourCycle = "h23",
 }: {
+  /** İngilizce (ABD) için 12 saatlik gösterim. */
+  hourCycle?: "h12" | "h23";
   intlLocale: string;
+  /** Boş bırakılırsa ziyaretçinin kendi saat dilimi kullanılır (İngilizce sayfa). */
   timeZone: string;
   copy: HubHeroCopy;
   places: HubPlace[];
@@ -66,6 +71,8 @@ export default function TimeHubHero({
 }) {
   const [now, setNow] = useState<Date | null>(null);
   const [placeId, setPlaceId] = useState(defaultPlace);
+  // Sunucuda cihaz dilimi bilinmez; ilk çizimde saat zaten "--:--:--" olduğundan UTC yeterli.
+  const timeZone = configuredZone || (now ? Intl.DateTimeFormat().resolvedOptions().timeZone : "UTC");
 
   useEffect(() => {
     try {
@@ -86,20 +93,22 @@ export default function TimeHubHero({
 
   const fmt = useMemo(
     () => ({
-      time: new Intl.DateTimeFormat(intlLocale, { timeZone, hour: "2-digit", minute: "2-digit", second: "2-digit", hourCycle: "h23" }),
-      hm: (zone: string) => new Intl.DateTimeFormat(intlLocale, { timeZone: zone, hour: "2-digit", minute: "2-digit", hourCycle: "h23" }),
+      time: new Intl.DateTimeFormat(intlLocale, { timeZone, hour: "2-digit", minute: "2-digit", second: "2-digit", hourCycle }),
+      hm: (zone: string) => new Intl.DateTimeFormat(intlLocale, { timeZone: zone, hour: hourCycle === "h12" ? "numeric" : "2-digit", minute: "2-digit", hourCycle }),
       date: new Intl.DateTimeFormat(intlLocale, { timeZone, day: "numeric", month: "long", year: "numeric", weekday: "long" }),
     }),
-    [intlLocale, timeZone],
+    [intlLocale, timeZone, hourCycle],
   );
 
   const place = places.find((p) => p.id === placeId) ?? places[0];
   const ymd = now ? ymdInZone(timeZone, now) : null;
-  const dayKey = ymd ? `${ymd.year}-${ymd.month}-${ymd.day}` : "";
+  // Güneş saatleri seçilen yerin kendi takvim gününe göre hesaplanır.
+  const sunDay = now ? ymdInZone(place.timeZone ?? timeZone, now) : null;
+  const dayKey = sunDay ? `${sunDay.year}-${sunDay.month}-${sunDay.day}` : "";
 
   const sun = useMemo(() => {
-    if (!ymd) return null;
-    return sunTimes(ymd.year, ymd.month, ymd.day, place.lat, place.lon);
+    if (!sunDay) return null;
+    return sunTimes(sunDay.year, sunDay.month, sunDay.day, place.lat, place.lon);
     // dayKey günü temsil eder; saniyelik yeniden hesaplamayı önler.
   }, [dayKey, place.lat, place.lon]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -121,7 +130,7 @@ export default function TimeHubHero({
 
   const deviceZone = typeof Intl !== "undefined" ? Intl.DateTimeFormat().resolvedOptions().timeZone : timeZone;
   const abroad = now !== null && offsetMinutes(deviceZone, now) !== offsetMinutes(timeZone, now);
-  const hm = fmt.hm(timeZone);
+  const hm = fmt.hm(place.timeZone ?? timeZone);
 
   return (
     <section className="timehub-hero" aria-label={copy.ariaLabel}>

@@ -1197,6 +1197,7 @@ function getGermanMenuGroups(): MenuGroup[] {
 
 // İngilizce menü: dönüşümler, hesaplayıcılar ve (ana sayfada en çok öne çıkan) saat araçları.
 const englishTimeMenu: LinkDefinition[] = [
+  { href: "/en/time-and-date", label: "Time and Date (overview)" },
   { href: "/en/online-clock", label: "Online Clock" },
   { href: "/en/alarm-clock", label: "Alarm Clock" },
   { href: "/en/timer", label: "Timer" },
@@ -1230,7 +1231,7 @@ function getEnglishMenuGroups(): MenuGroup[] {
       links: englishCalculatorMenuLinks.filter((l) => l.href !== "/en/christian-tools"),
       footer: [{ href: "/en/christian-tools", label: "Christian calendar tools →" }],
     },
-    { id: "time", label: "Clock & Calendar", links: englishTimeMenu },
+    { id: "time", label: "Clock & Calendar", links: englishTimeMenu, footer: [{ href: "/en/time-and-date", label: "All clock and calendar tools →" }] },
   ];
 }
 

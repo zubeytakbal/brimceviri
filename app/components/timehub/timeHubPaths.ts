@@ -3,6 +3,7 @@ import { buildLanguageAlternates } from "../../i18n/routing";
 
 export const TIME_HUB_PATHS = {
   tr: "/saat-ve-tarih",
+  en: "/en/time-and-date",
   de: "/de/uhrzeit-und-datum",
   sv: "/sv/tid-och-datum",
   no: "/no/tid-og-dato",

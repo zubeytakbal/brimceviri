@@ -604,6 +604,10 @@ export const SITE_NAV_DATA: SiteNavData = {
      "label": "Clock & Calendar",
      "links": [
       {
+       "href": "/en/time-and-date",
+       "label": "Time and Date (overview)"
+      },
+      {
        "href": "/en/online-clock",
        "label": "Online Clock"
       },
@@ -658,6 +662,12 @@ export const SITE_NAV_DATA: SiteNavData = {
       {
        "href": "/en/federal-holidays",
        "label": "US Federal Holidays"
+      }
+     ],
+     "footer": [
+      {
+       "href": "/en/time-and-date",
+       "label": "All clock and calendar tools →"
       }
      ]
     }

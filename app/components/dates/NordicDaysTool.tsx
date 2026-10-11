@@ -47,7 +47,7 @@ export default function NordicDaysTool({ locale, today }: { locale: NordicLocale
 
   return (
     <div className="date-calc">
-      <div className="date-converter-modes" role="tablist">
+      <div className="date-converter-modes is-light" role="tablist">
         {[
           { id: "diff" as const, label: t.modeDiff },
           { id: "add" as const, label: t.modeAdd },

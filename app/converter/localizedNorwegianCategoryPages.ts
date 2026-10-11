@@ -199,7 +199,7 @@ export const norwegianCategoryPages: LocalizedNorwegianCategoryPage[] = [
         title: "Arealenheter i det britiske/amerikanske systemet",
         paragraphs: [
           "Kvadratfot (ft²) og kvadrattomme (in²) brukes for små flater, mens acre brukes for store jordstykker i det britiske/amerikanske målesystemet. En acre tilsvarer nøyaktig 4046,8564224 kvadratmeter.",
-          "Den historiske opprinnelsen til acre er størrelsen på jordet et par okser kunne pluye på en dag. Den brukes fortsatt i eiendomsannonser i USA, Storbritannia og enkelte samveldeland.",
+          "Den historiske opprinnelsen til acre er størrelsen på jordet et par okser kunne pløye på en dag. Den brukes fortsatt i eiendomsannonser i USA, Storbritannia og enkelte samveldeland.",
         ],
       },
       {
@@ -706,7 +706,7 @@ export const norwegianCategoryPages: LocalizedNorwegianCategoryPage[] = [
       "Regn gratis og direkte om mellom pascal, bar, psi og atmosfære; se formler og tabeller.",
     introduction: [
       "Trykk beskriver hvor mye av kraften som virker vinkelrett på en flate som faller på hver arealenhet. Bruksområdet strekker seg fra kontaktspenninger mellom faste stoffer til væsken i et rør, fra atmosfæren til vakuumsystemer. I ingeniørfag er trykk ikke bare en tallverdi, men en grunnleggende designvariabel for sikkerhet, tetthet, strukturell styrke, energiomforming og prosesskontroll.",
-      "I Det internasjonale enhetssystemet er den avledede enheten for trykk pascal, som betegnes med symbolet På. En pascal tilsvarer trykket som oppstår når en kraft på en newton fordeler seg jevnt over et areal på en kvadratmeter. Derfor er trykkenheten direkte knyttet til begrepene kraft og areal; samme dimensjonsstruktur deles også med materialspenning, men den fysiske sammenhengen er ikke alltid den samme.",
+      "I Det internasjonale enhetssystemet er den avledede enheten for trykk pascal, som betegnes med symbolet Pa. En pascal tilsvarer trykket som oppstår når en kraft på en newton fordeler seg jevnt over et areal på en kvadratmeter. Derfor er trykkenheten direkte knyttet til begrepene kraft og areal; samme dimensjonsstruktur deles også med materialspenning, men den fysiske sammenhengen er ikke alltid den samme.",
       "I dagliglivet og industrien uttrykkes trykk oftest med mer praktiske enheter enn pascal. Kilopascal og PSI brukes for dekktrykk, bar i prosessanlegg, atm ved atmosfæriske forhold, og millibar i meteorologi. At ulike sektorer historisk har tatt i bruk ulike enheter, gjør det særlig viktig å forstå trykkomregning riktig og ikke blande sammen absolutt, manometrisk og differensielt trykk.",
     ],
     facts: [
@@ -714,9 +714,9 @@ export const norwegianCategoryPages: LocalizedNorwegianCategoryPage[] = [
       { label: "SI-avledet enhet", value: "Pascal" },
       { label: "SI-symbol", value: "På" },
       { label: "Grunnsammenheng", value: "P = F / Å" },
-      { label: "SI-ekvivalent", value: "1 På = 1 N/m²" },
+      { label: "SI-ekvivalent", value: "1 Pa = 1 N/m²" },
       { label: "Dimensjonsformel", value: "M L⁻¹ T⁻²" },
-      { label: "Standard atmosfære", value: "101 325 På" },
+      { label: "Standard atmosfære", value: "101 325 Pa" },
       { label: "Absolutt nullpunktsreferanse", value: "Fullstendig vakuum" },
     ],
     sections: [
@@ -739,7 +739,7 @@ export const norwegianCategoryPages: LocalizedNorwegianCategoryPage[] = [
       {
         title: "Hvorfor er pascal SI-trykkenheten?",
         paragraphs: [
-          "Pascal fremkommer som en naturlig kombinasjon av newton, SI-enheten for kraft, og kvadratmeter, SI-enheten for areal. Sammenhengen 1 På = 1 N/m² er derfor ikke bare en definisjon, men også et dimensjonsuttrykk som viser den mekaniske opprinnelsen til trykk. Det er ikke nødvendig å definere en egen grunnenhet for trykk.",
+          "Pascal fremkommer som en naturlig kombinasjon av newton, SI-enheten for kraft, og kvadratmeter, SI-enheten for areal. Sammenhengen 1 Pa = 1 N/m² er derfor ikke bare en definisjon, men også et dimensjonsuttrykk som viser den mekaniske opprinnelsen til trykk. Det er ikke nødvendig å definere en egen grunnenhet for trykk.",
           "SI-systemet tar sikte på å knytte avledede størrelser konsekvent til grunnenheter. At trykk uttrykkes i pascal, gir et rammeverk som er konsistent med ligninger for energitetthet, spenning, elastisitetsmodul og strømningsmekanikk. At samme enhet kan brukes på tvers av ulike fagfelt, reduserer omregningsfeil i beregninger.",
           "Pascal er ofte en liten enhet i dagliglivet. Derfor foretrekkes mer praktiske skalaer som kilopascal, megapascal eller bar i ingeniørfag. Likevel er alle disse til syvende og sist knyttet til pascal, og dermed til SI-grunnlaget.",
         ],
@@ -763,7 +763,7 @@ export const norwegianCategoryPages: LocalizedNorwegianCategoryPage[] = [
       {
         title: "Atmosfæretrykk",
         paragraphs: [
-          "Atmosfæretrykk er trykket luftsøylen i jordens atmosfære utover på flater på grunn av sin vekt. Under standardforhold nær havnivå regnes det som om lag 101 325 På, altså 1 atm. Denne verdien er imidlertid ikke konstant; den varierer med høyde, værforhold og temperaturendringer.",
+          "Atmosfæretrykk er trykket luftsøylen i jordens atmosfære utover på flater på grunn av sin vekt. Under standardforhold nær havnivå regnes det som om lag 101 325 Pa, altså 1 atm. Denne verdien er imidlertid ikke konstant; den varierer med høyde, værforhold og temperaturendringer.",
           "Barometre brukes til å måle atmosfæretrykket. Kvikksølvbarometre har historisk vært referanseinstrumenter, mens elektroniske trykksensorer har blitt stadig mer utbredt i moderne anvendelser. Atmosfæretrykk er viktig ikke bare for meteorologi, men også for vakuumteknologi, forbrenningssystemer og omregning mellom manometrisk og absolutt trykk.",
           "I systemer som arbeider med manometrisk trykk, kan endringer i atmosfæretrykket påvirke måletolkningen. For eksempel gir 2 bar manometrisk trykk ved havnivå og 2 bar manometrisk trykk i høyereliggende områder ikke samme absoluttverdi. Dette skillet kan være avgjørende særlig i beregninger av kompresjon, gasstetthet og kokepunkt.",
         ],
@@ -796,7 +796,7 @@ export const norwegianCategoryPages: LocalizedNorwegianCategoryPage[] = [
         title: "Hvorfor er trykkenhetene forskjellige?",
         paragraphs: [
           "Mangfoldet av trykkenheter skyldes i stor grad historiske og bransjespesifikke årsaker. Mens SI-systemet legger til grunn pascal, brukes fortsatt bar i industrien, mmHg i medisin, millibar i meteorologi, PSI i bilindustrien, og enheter som at i enkelte eldre tekniske dokumenter. Dette skyldes at ulike fagfelt har beholdt sine egne bruksvaner.",
-          "Enkelte enheter oppleves som mer intuitive for brukeren. For eksempel kan dekktrykk være mer lesbart som om lag 35 psi enn som 240 kPa, og prosesstrykk som 3,5 bar i stedet for 350 000 På. Valg av enhet handler ikke bare om nøyaktighet, men også om rapporteringskultur, instrumentskalering og feltvaner.",
+          "Enkelte enheter oppleves som mer intuitive for brukeren. For eksempel kan dekktrykk være mer lesbart som om lag 35 psi enn som 240 kPa, og prosesstrykk som 3,5 bar i stedet for 350 000 Pa. Valg av enhet handler ikke bare om nøyaktighet, men også om rapporteringskultur, instrumentskalering og feltvaner.",
           "Men fordi ulike enheter uttrykker samme fysiske størrelse, er nøyaktig omregning nødvendig i felles beregninger. Særlig å blande sammen omtrentlige og eksakt definerte koeffisienter, overse skillet mellom manometrisk og absolutt trykk, og feillesing av symboler er viktige feilkilder.",
         ],
       },
@@ -820,7 +820,7 @@ export const norwegianCategoryPages: LocalizedNorwegianCategoryPage[] = [
         title: "Bruksområder for trykk i ingeniørfag",
         paragraphs: [
           "Trykk er en grunnleggende designvariabel innen mange ingeniørfelt, som rørlegging, HVAC, hydraulikk, pneumatikk, kjemisk prosessindustri, kraftverk, vannforsyningssystemer, bilindustri og luftfart. Fra tankveggtykkelse til ventilvalg, fra kompressorutløpsforhold til filterytelse, bygger mange beslutninger på trykkinformasjon.",
-          "I prosessteknikk overvåkes trykkgrenser for å sikre trygg drift av reaktorer, kjeler, varmevekslere og separatorer. Trykksikkerhetsventiler, sprengningsskiver og kontrollsystemer er derfor kritisk utstyr. Trykk brukes også til indirekte måling av andre prosessvariabler, som debitt og nivå.",
+          "I prosessteknikk overvåkes trykkgrenser for å sikre trygg drift av reaktorer, kjeler, varmevekslere og separatorer. Trykksikkerhetsventiler, sprengningsskiver og kontrollsystemer er derfor kritisk utstyr. Trykk brukes også til indirekte måling av andre prosessvariabler, som strømning og nivå.",
           "I maskin- og bygningsteknikk knyttes trykk til spenningsanalyser via kontaktflater og væskekrefter. I medisin og biomedisinsk utstyr er blodtrykk, ventilasjonstrykk og vakuumanvendelser sentrale; i miljø og meteorologi er det atmosfæriske og differensielle trykkmålinger som står i fokus.",
         ],
       },
@@ -850,16 +850,16 @@ export const norwegianCategoryPages: LocalizedNorwegianCategoryPage[] = [
       },
     ],
     unitTable: [
-      { name: "Pascal", symbol: "Pa", referenceValue: "1 På", system: "SI", commonUse: "Vitenskapelige og ingeniørmessige beregninger" },
-      { name: "Kilopascal", symbol: "kPa", referenceValue: "1000 På", system: "SI", commonUse: "Rørsystemer, dekk og prosesstrykk" },
-      { name: "Bar", symbol: "bar", referenceValue: "100 000 På", system: "Metrisk, utenfor SI", commonUse: "Industri, kompressorer og prosessanlegg" },
-      { name: "Millibar", symbol: "mbar", referenceValue: "100 På", system: "Metrisk, utenfor SI", commonUse: "Meteorologi og atmosfæriske målinger" },
-      { name: "Standard atmosfære", symbol: "atm", referenceValue: "101 325 På", system: "Utenfor SI", commonUse: "Atmosfære og referanseforhold" },
-      { name: "PSI", symbol: "psi", referenceValue: "≈ 6894,757293 På", system: "Britisk/amerikansk", commonUse: "Dekk, hydraulikk og pneumatiske systemer" },
-      { name: "Teknisk atmosfære", symbol: "at", referenceValue: "98 066,5 På", system: "Utenfor SI", commonUse: "Eldre tekniske og ingeniørfaglige anvendelser" },
-      { name: "Millimeter kvikksølv", symbol: "mmHg", referenceValue: "≈ 133,322 På", system: "Utenfor SI", commonUse: "Medisin, vakuum og trykkmålinger" },
-      { name: "Millimeter vannsøyle", symbol: "mmH₂O", referenceValue: "≈ 9,80665 På", system: "Utenfor SI", commonUse: "Lavtrykks- og ventilasjonsmålinger" },
-      { name: "Kilogram-kraft/kvadratcentimeter", symbol: "kgf/cm²", referenceValue: "98 066,5 På", system: "Metrisk, utenfor SI", commonUse: "Eldre pumpe- og kjelemålere, servicehandbøker" },
+      { name: "Pascal", symbol: "Pa", referenceValue: "1 Pa", system: "SI", commonUse: "Vitenskapelige og ingeniørmessige beregninger" },
+      { name: "Kilopascal", symbol: "kPa", referenceValue: "1000 Pa", system: "SI", commonUse: "Rørsystemer, dekk og prosesstrykk" },
+      { name: "Bar", symbol: "bar", referenceValue: "100 000 Pa", system: "Metrisk, utenfor SI", commonUse: "Industri, kompressorer og prosessanlegg" },
+      { name: "Millibar", symbol: "mbar", referenceValue: "100 Pa", system: "Metrisk, utenfor SI", commonUse: "Meteorologi og atmosfæriske målinger" },
+      { name: "Standard atmosfære", symbol: "atm", referenceValue: "101 325 Pa", system: "Utenfor SI", commonUse: "Atmosfære og referanseforhold" },
+      { name: "PSI", symbol: "psi", referenceValue: "≈ 6894,757293 Pa", system: "Britisk/amerikansk", commonUse: "Dekk, hydraulikk og pneumatiske systemer" },
+      { name: "Teknisk atmosfære", symbol: "at", referenceValue: "98 066,5 Pa", system: "Utenfor SI", commonUse: "Eldre tekniske og ingeniørfaglige anvendelser" },
+      { name: "Millimeter kvikksølv", symbol: "mmHg", referenceValue: "≈ 133,322 Pa", system: "Utenfor SI", commonUse: "Medisin, vakuum og trykkmålinger" },
+      { name: "Millimeter vannsøyle", symbol: "mmH₂O", referenceValue: "≈ 9,80665 Pa", system: "Utenfor SI", commonUse: "Lavtrykks- og ventilasjonsmålinger" },
+      { name: "Kilogram-kraft/kvadratcentimeter", symbol: "kgf/cm²", referenceValue: "98 066,5 Pa", system: "Metrisk, utenfor SI", commonUse: "Eldre pumpe- og kjelemålere, servicehandbøker" },
     ],
   },
   {

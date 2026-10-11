@@ -198,7 +198,7 @@ export const danishCategoryPages: LocalizedDanishCategoryPage[] = [
         title: "Arealenheder i det britiske/amerikanske system",
         paragraphs: [
           "Kvadratfod (ft²) og kvadrattomme (in²) bruges til små flader, mens acre bruges til store jordstykker i det britiske/amerikanske målesystem. En acre svarer nøjagtigt til 4046,8564224 kvadratmeter.",
-          "Den historiske oprindelse af acre er størrelsen af det jorde, et par okser kunne plojne på en dag. Den bruges stadig i ejendomsannoncer i USA, Storbritannien og enkelte samveldelande.",
+          "Den historiske oprindelse af acre er størrelsen af det jorde, et par okser kunne pløje på en dag. Den bruges stadig i ejendomsannoncer i USA, Storbritannien og enkelte Commonwealth-lande.",
         ],
       },
       {
@@ -705,7 +705,7 @@ export const danishCategoryPages: LocalizedDanishCategoryPage[] = [
       "Omregn gratis og direkte mellem pascal, bar, psi og atmosfære; se formler og tabeller.",
     introduction: [
       "Tryk beskriver, hvor meget af den kraft, der virker vinkelret på en flade, der falder på hver arealenhed. Anvendelsesområdet strækker sig fra kontaktspændinger mellem faste stoffer til væsken i et rør, fra atmosfæren til vakuumsystemer. I ingeniørfag er tryk ikke kun en talværdi, men en grundlæggende designvariabel for sikkerhed, tæthed, strukturel styrke, energiomdannelse og processtyring.",
-      "I Det Internationale Enhedssystem er den afledte enhed for tryk pascal, som betegnes med symbolet På. En pascal svarer til det tryk, der opstår, når en kraft på en newton fordeler sig jævnt over et areal på en kvadratmeter. Derfor er trykenheden direkte knyttet til begreberne kraft og areal; samme dimensionsstruktur deles også med materialespænding, men den fysiske sammenhæng er ikke altid den samme.",
+      "I Det Internationale Enhedssystem er den afledte enhed for tryk pascal, som betegnes med symbolet Pa. En pascal svarer til det tryk, der opstår, når en kraft på en newton fordeler sig jævnt over et areal på en kvadratmeter. Derfor er trykenheden direkte knyttet til begreberne kraft og areal; samme dimensionsstruktur deles også med materialespænding, men den fysiske sammenhæng er ikke altid den samme.",
       "I dagligdagen og industrien udtrykkes tryk oftest med mere praktiske enheder end pascal. Kilopascal og PSI bruges til dæktryk, bar i procesanlæg, atm ved atmosfæriske forhold, og millibar i meteorologi. At forskellige sektorer historisk har taget forskellige enheder i brug, gør det særligt vigtigt at forstå trykomregning korrekt og ikke blande absolut, manometrisk og differenstryk sammen.",
     ],
     facts: [
@@ -713,9 +713,9 @@ export const danishCategoryPages: LocalizedDanishCategoryPage[] = [
       { label: "SI-afledt enhed", value: "Pascal" },
       { label: "SI-symbol", value: "På" },
       { label: "Grundsammenhæng", value: "P = F / A" },
-      { label: "SI-ekvivalent", value: "1 På = 1 N/m²" },
+      { label: "SI-ækvivalent", value: "1 Pa = 1 N/m²" },
       { label: "Dimensionsformel", value: "M L⁻¹ T⁻²" },
-      { label: "Standardatmosfære", value: "101 325 På" },
+      { label: "Standardatmosfære", value: "101 325 Pa" },
       { label: "Absolut nulpunktsreference", value: "Fuldstændigt vakuum" },
     ],
     sections: [
@@ -738,7 +738,7 @@ export const danishCategoryPages: LocalizedDanishCategoryPage[] = [
       {
         title: "Hvorfor er pascal SI-trykenheden?",
         paragraphs: [
-          "Pascal fremkommer som en naturlig kombination af newton, SI-enheden for kraft, og kvadratmeter, SI-enheden for areal. Sammenhængen 1 På = 1 N/m² er derfor ikke kun en definition, men også et dimensionsudtryk, der viser den mekaniske oprindelse af tryk. Det er ikke nødvendigt at definere en separat grundenhed for tryk.",
+          "Pascal fremkommer som en naturlig kombination af newton, SI-enheden for kraft, og kvadratmeter, SI-enheden for areal. Sammenhængen 1 Pa = 1 N/m² er derfor ikke kun en definition, men også et dimensionsudtryk, der viser den mekaniske oprindelse af tryk. Det er ikke nødvendigt at definere en separat grundenhed for tryk.",
           "SI-systemet sigter mod at knytte afledte størrelser konsekvent til grundenheder. At tryk udtrykkes i pascal, giver et rammeværk, der er konsistent med ligninger for energitæthed, spænding, elasticitetsmodul og strømningsmekanik. At samme enhed kan bruges på tværs af forskellige fagområder, reducerer omregningsfejl i beregninger.",
           "Pascal er ofte en lille enhed i dagligdagen. Derfor foretrækkes mere praktiske skalaer som kilopascal, megapascal eller bar i ingeniørfag. Alligevel er alle disse i sidste ende knyttet til pascal, og dermed til SI-grundlaget.",
         ],
@@ -756,13 +756,13 @@ export const danishCategoryPages: LocalizedDanishCategoryPage[] = [
         paragraphs: [
           "Absolut tryk måles i forhold til fuldstændigt vakuum. Denne reference er den teoretiske tilstand, hvor trykket er nul, og absolut tryk kan ikke være negativt. Særligt gaslove, termodynamiske beregninger og enkelte tæthedsrelaterede sammenhænge arbejder med absolut tryk.",
           "Manometrisk tryk måles derimod i forhold til atmosfæretrykket. De fleste manometre på anlæg bruger den omgivende atmosfære som nulreference; derfor er den værdi, der vises på skærmen, oftest manometrisk tryk. Sammenhængen mellem absolut og manometrisk tryk er P_abs = P_manometrisk + P_atm.",
-          "Differenstryk er trykforskellen mellem to punkter. I anvendelsesområder som filtertilstopning, debitmåling over en blændeplade, rumtrykssætning og varmevekslerydelse overvåges direkte trykforskellen mellem to forskellige linjer eller rumfang. Denne størrelse defineres hverken i forhold til fuldstændigt vakuum eller kun i forhold til atmosfæren; den er direkte forskellen mellem to punkter.",
+          "Differenstryk er trykforskellen mellem to punkter. I anvendelsesområder som filtertilstopning, flowmåling over en blændeplade, rumtryksstyring og varmevekslerydelse overvåges direkte trykforskellen mellem to forskellige linjer eller rumfang. Denne størrelse defineres hverken i forhold til fuldstændigt vakuum eller kun i forhold til atmosfæren; den er direkte forskellen mellem to punkter.",
         ],
       },
       {
         title: "Atmosfæretryk",
         paragraphs: [
-          "Atmosfæretryk er det tryk, luftsøjlen i jordens atmosfære udøver på flader på grund af sin vægt. Under standardforhold nær havoverfladen regnes det for omkring 101 325 På, altså 1 atm. Denne værdi er dog ikke konstant; den varierer med højde, vejrforhold og temperaturændringer.",
+          "Atmosfæretryk er det tryk, luftsøjlen i jordens atmosfære udøver på flader på grund af sin vægt. Under standardforhold nær havoverfladen regnes det for omkring 101 325 Pa, altså 1 atm. Denne værdi er dog ikke konstant; den varierer med højde, vejrforhold og temperaturændringer.",
           "Barometre bruges til at måle atmosfæretrykket. Kviksølvbarometre har historisk været referenceinstrumenter, mens elektroniske tryksensorer er blevet stadig mere udbredte i moderne anvendelser. Atmosfæretryk er vigtigt ikke kun for meteorologi, men også for vakuumteknologi, forbrændingssystemer og omregning mellem manometrisk og absolut tryk.",
           "I systemer, der arbejder med manometrisk tryk, kan ændringer i atmosfæretrykket påvirke måletolkningen. For eksempel giver 2 bar manometrisk tryk ved havoverfladen og 2 bar manometrisk tryk i højereliggende områder ikke samme absolutte værdi. Denne sondring kan være afgørende særligt i beregninger af kompression, gastæthed og kogepunkt.",
         ],
@@ -795,8 +795,8 @@ export const danishCategoryPages: LocalizedDanishCategoryPage[] = [
         title: "Hvorfor er trykenhederne forskellige?",
         paragraphs: [
           "Mangfoldigheden af trykenheder skyldes i vid udstrækning historiske og brancherelaterede årsager. Mens SI-systemet lægger pascal til grund, bruges stadig bar i industrien, mmHg i medicin, millibar i meteorologi, PSI i bilindustrien, og enheder som at i enkelte ældre tekniske dokumenter. Dette skyldes, at forskellige fagområder har bevaret deres egne brugsvaner.",
-          "Enkelte enheder opleves som mere intuitive for brugeren. For eksempel kan dæktryk være mere læsbart som omkring 35 psi end som 240 kPa, og procestryk som 3,5 bar i stedet for 350 000 På. Valg af enhed handler ikke kun om nøjagtighed, men også om rapporteringskultur, instrumentskalering og feltvaner.",
-          "Men fordi forskellige enheder udtrykker samme fysiske størrelse, er nøjagtig omregning nødvendig i fælles beregninger. Særligt at blande tilnærmede og eksakt definerede koefficienter sammen, overse sondringen mellem manometrisk og absolut tryk, og fejlaeslsning af symboler er vigtige fejlkilder.",
+          "Enkelte enheder opleves som mere intuitive for brugeren. For eksempel kan dæktryk være mere læsbart som omkring 35 psi end som 240 kPa, og procestryk som 3,5 bar i stedet for 350 000 Pa. Valg af enhed handler ikke kun om nøjagtighed, men også om rapporteringskultur, instrumentskalering og feltvaner.",
+          "Men fordi forskellige enheder udtrykker samme fysiske størrelse, er nøjagtig omregning nødvendig i fælles beregninger. Særligt at blande tilnærmede og eksakt definerede koefficienter sammen, overse sondringen mellem manometrisk og absolut tryk, og fejlaflæsning af symboler er vigtige fejlkilder.",
         ],
       },
       {
@@ -810,7 +810,7 @@ export const danishCategoryPages: LocalizedDanishCategoryPage[] = [
       {
         title: "Tryksensorer og manometre",
         paragraphs: [
-          "Mekaniske manometre, som Bourdon-rørmålere, omdanner tryk til en aflæselig visserbevægelse via deformation af et elastisk element. På grund af deres robuste, enkle og energifri konstruktion har de været i brug i industrien i lang tid. Men i anvendelser, der kræver høj præcision og datalogning, er elektroniske sensorer mere fleksible.",
+          "Mekaniske manometre, som Bourdon-rørmålere, omdanner tryk til en aflæselig viserbevægelse via deformation af et elastisk element. På grund af deres robuste, enkle og energifri konstruktion har de været i brug i industrien i lang tid. Men i anvendelser, der kræver høj præcision og datalogning, er elektroniske sensorer mere fleksible.",
           "Elektroniske tryksensorer kan være piezoresistive, kapacitive, strækmåler- eller resonansbaserede. Disse sensorer omdanner trykændringer til elektriske signaler, der overføres til PLC-, SCADA- eller dataindsamlingssystemer. Dermed bliver ikke kun øjeblikkelig aflæsning mulig, men også alarmering, styring og trendanalyse.",
           "Differensmanometre giver trykforskellen mellem to punkter, absolutte sensorer giver trykket i forhold til fuldstændigt vakuum, og manometriske instrumenter giver trykket i forhold til atmosfæren. Kun at se på talværdien uden at bekræfte referencetypen i et instruments datablad kan føre til alvorlige fortolkningsfejl.",
         ],
@@ -849,16 +849,16 @@ export const danishCategoryPages: LocalizedDanishCategoryPage[] = [
       },
     ],
     unitTable: [
-      { name: "Pascal", symbol: "Pa", referenceValue: "1 På", system: "SI", commonUse: "Videnskabelige og ingeniørmæssige beregninger" },
-      { name: "Kilopascal", symbol: "kPa", referenceValue: "1000 På", system: "SI", commonUse: "Rørsystemer, dæk og procestryk" },
-      { name: "Bar", symbol: "bar", referenceValue: "100 000 På", system: "Metrisk, uden for SI", commonUse: "Industri, kompressorer og procesanlæg" },
-      { name: "Millibar", symbol: "mbar", referenceValue: "100 På", system: "Metrisk, uden for SI", commonUse: "Meteorologi og atmosfæriske målinger" },
-      { name: "Standardatmosfære", symbol: "atm", referenceValue: "101 325 På", system: "Uden for SI", commonUse: "Atmosfære og referenceforhold" },
-      { name: "PSI", symbol: "psi", referenceValue: "≈ 6894,757293 På", system: "Britisk/amerikansk", commonUse: "Dæk, hydraulik og pneumatiske systemer" },
-      { name: "Teknisk atmosfære", symbol: "at", referenceValue: "98 066,5 På", system: "Uden for SI", commonUse: "Ældre tekniske og ingeniørfaglige anvendelser" },
-      { name: "Millimeter kviksølv", symbol: "mmHg", referenceValue: "≈ 133,322 På", system: "Uden for SI", commonUse: "Medicin, vakuum og trykmålinger" },
-      { name: "Millimeter vandsøjle", symbol: "mmH₂O", referenceValue: "≈ 9,80665 På", system: "Uden for SI", commonUse: "Lavtryks- og ventilationsmålinger" },
-      { name: "Kilogram-kraft/kvadratcentimeter", symbol: "kgf/cm²", referenceValue: "98 066,5 På", system: "Metrisk, uden for SI", commonUse: "Ældre pumpe- og kedelmålere, servicehandbøger" },
+      { name: "Pascal", symbol: "Pa", referenceValue: "1 Pa", system: "SI", commonUse: "Videnskabelige og ingeniørmæssige beregninger" },
+      { name: "Kilopascal", symbol: "kPa", referenceValue: "1000 Pa", system: "SI", commonUse: "Rørsystemer, dæk og procestryk" },
+      { name: "Bar", symbol: "bar", referenceValue: "100 000 Pa", system: "Metrisk, uden for SI", commonUse: "Industri, kompressorer og procesanlæg" },
+      { name: "Millibar", symbol: "mbar", referenceValue: "100 Pa", system: "Metrisk, uden for SI", commonUse: "Meteorologi og atmosfæriske målinger" },
+      { name: "Standardatmosfære", symbol: "atm", referenceValue: "101 325 Pa", system: "Uden for SI", commonUse: "Atmosfære og referenceforhold" },
+      { name: "PSI", symbol: "psi", referenceValue: "≈ 6894,757293 Pa", system: "Britisk/amerikansk", commonUse: "Dæk, hydraulik og pneumatiske systemer" },
+      { name: "Teknisk atmosfære", symbol: "at", referenceValue: "98 066,5 Pa", system: "Uden for SI", commonUse: "Ældre tekniske og ingeniørfaglige anvendelser" },
+      { name: "Millimeter kviksølv", symbol: "mmHg", referenceValue: "≈ 133,322 Pa", system: "Uden for SI", commonUse: "Medicin, vakuum og trykmålinger" },
+      { name: "Millimeter vandsøjle", symbol: "mmH₂O", referenceValue: "≈ 9,80665 Pa", system: "Uden for SI", commonUse: "Lavtryks- og ventilationsmålinger" },
+      { name: "Kilogram-kraft/kvadratcentimeter", symbol: "kgf/cm²", referenceValue: "98 066,5 Pa", system: "Metrisk, uden for SI", commonUse: "Ældre pumpe- og kedelmålere, servicehandbøger" },
     ],
   },
   {
@@ -1143,7 +1143,7 @@ export const danishCategoryPages: LocalizedDanishCategoryPage[] = [
       {
         title: "Hvordan beregnes indholdet af rent guld?",
         paragraphs: [
-          "For at finde mængden af rent guld i et armbånd på 10 gram, 22 karat: 10 × (22 / 24) = 9,17 gram svarer til rent (24-karats ekvivalent) guld. De resterende omkring 0,83 gram er andre metaller tilføjet for holdbarhed.",
+          "For at finde mængden af rent guld i et armbånd på 10 gram, 22 karat: 10 × (22 / 24) = 9,17 gram svarer til rent (24-karats ækvivalent) guld. De resterende omkring 0,83 gram er andre metaller tilføjet for holdbarhed.",
           "Omvendt: hvis en guldsmed skulle smelte disse 9,17 gram rent guld om til 18 karat, ville han få: 9,17 ÷ (18 / 24) = 12,22 gram total legering -- fordi andelen af rent guld er lavere ved 18 karat, fordeler samme mængde rent guld sig over en større totalvægt.",
         ],
       },
@@ -1207,7 +1207,7 @@ export const danishCategoryPages: LocalizedDanishCategoryPage[] = [
         title: "Hvordan beregnes indholdet af rent sølv?",
         paragraphs: [
           "For at finde mængden af rent sølv i en sølvring på 10 gram, 925 finhed: 10 × (925 / 1000) = 9,25 gram rent sølv. De resterende 0,75 gram er kobber eller andre metaller tilføjet for holdbarhed.",
-          "Samme logik bruges ved omregning mellem forskellige finheder: hvis mængden af rent sølv i en legering på 925 finhed er kendt, finder man 999-finhedsekvivalenten ved at dividere mængden af rent sølv med 999/1000.",
+          "Samme logik bruges ved omregning mellem forskellige finheder: hvis mængden af rent sølv i en legering på 925 finhed er kendt, finder man 999-finhedsækvivalenten ved at dividere mængden af rent sølv med 999/1000.",
         ],
       },
       {

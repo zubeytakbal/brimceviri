@@ -80,7 +80,7 @@ export default function SwedishRecipeConverterPage() {
           <p>
             För att se listan över ingredienser som stöds, öppna{" "}
             <Link href="/sv/koksmatt-omvandlare">
-              kokmåttskonverteraren
+              köksmåttsomvandlaren
             </Link>
             .
           </p>

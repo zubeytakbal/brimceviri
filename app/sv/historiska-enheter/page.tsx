@@ -257,7 +257,7 @@ export default function SwedishHistoricalUnitsPage() {
           content: (
             <>
               <p>
-                Dessa namn förekommer fortfarande idag i vakufhandlingar,
+                Dessa namn förekommer fortfarande idag i vakıf-handlingar (stiftelsedokument),
                 gamla register, historisk forskning och översättningsarbete;
                 att omvandla dem till meter eller gram hjälper till att
                 snabbt första dem.

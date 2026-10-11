@@ -325,7 +325,7 @@ export const NORDIC_TIME_COPY: Record<NordicTimeTool, Record<NordicLocale, Nordi
           id: "klockor",
           title: "34 klockor att välja mellan",
           paragraphs: [
-            "Analoga klockor som stationsur och pendelur, digitala som LED och vippsiffror, gamla klockor som gökur och fickur, armbandsur och speciella klockor som ordklockan, som skriver tiden i ord: ”Klockan är fem i halv fyra”.",
+            "Analoga klockor som stationsur och pendelur, digitala som LED och fällbladssiffror, gamla klockor som gökur och fickur, armbandsur och speciella klockor som ordklockan, som skriver tiden i ord: ”Klockan är fem i halv fyra”.",
             "Sverige följer centraleuropeisk tid (CET, UTC+1) och sommartid (CEST, UTC+2) från sista söndagen i mars till sista söndagen i oktober.",
           ],
         },

@@ -15992,3 +15992,56 @@ a.all-units-row .all-units-name {
   font-size: clamp(1rem, 3.5vw, 1.25rem);
   font-weight: 600;
 }
+
+/* Metal ağırlık hesaplayıcıları (demir, sac, boru, kutu profil) */
+.metal-calc .date-calc-field input {
+  width: 130px;
+}
+
+.metal-calc .date-calc-input > .date-calc-fields + .date-calc-fields {
+  margin-top: 10px;
+}
+
+.metal-row-add,
+.metal-row-remove {
+  padding: 9px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 10px;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+}
+
+.metal-row-add {
+  justify-self: start;
+  margin-top: 10px;
+}
+
+.metal-row-remove:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.metal-calc .holiday-table-wrap {
+  margin-top: 12px;
+  background: #ffffff;
+  border-radius: 10px;
+}
+
+@media (max-width: 600px) {
+  .metal-calc .date-calc-fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .metal-calc .date-calc-field:has(select) {
+    grid-column: 1 / -1;
+  }
+
+  .metal-calc .date-calc-field input {
+    width: 100%;
+  }
+}

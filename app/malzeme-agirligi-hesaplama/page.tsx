@@ -103,7 +103,12 @@ export default function MaterialWeightCalculatorPage() {
             <Link href="/malzeme-ozellikleri?v=aluminyum-celik-karsilastirma#hesapla">
               Malzeme Karşılaştırma
             </Link>
-            {" "}sayfalarına bakabilirsin.
+            {" "}sayfalarına bakabilirsin. Hazır şekilli ürünler için{" "}
+            <Link href="/demir-agirlik-hesaplama">İnşaat Demiri</Link>,{" "}
+            <Link href="/sac-agirlik-hesaplama">Sac</Link>,{" "}
+            <Link href="/boru-agirlik-hesaplama">Boru</Link> ve{" "}
+            <Link href="/kutu-profil-agirlik-hesaplama">Kutu Profil</Link>
+            {" "}ağırlık hesaplayıcıları ölçüden doğrudan kg/m verir.
           </p>
 
           <h2>Kaynaklar</h2>

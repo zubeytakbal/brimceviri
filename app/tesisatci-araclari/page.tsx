@@ -111,6 +111,11 @@ export default function TesisatciAraclariPage() {
               — üç değerden ikisini gir, üçüncüsünü hesapla.
             </li>
             <li>
+              <Link href="/boru-agirlik-hesaplama">Boru Ağırlık Hesaplama</Link>
+              {" "}— DN ve et kalınlığından borunun boş ve su dolu
+              metre ağırlığını hesapla.
+            </li>
+            <li>
               <Link href="/basinc-kaybi-hesaplama">
                 Basınç Kaybı Hesaplama (Hazen-Williams)
               </Link>{" "}

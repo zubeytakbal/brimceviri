@@ -113,6 +113,10 @@ export const everydayToolLinksByCategory: Record<
     { href: "/antrenor-araclari", label: "Antrenör Araçları" },
     { href: "/1rm-hesaplama", label: "1RM Hesaplama" },
     { href: "/malzeme-agirligi-hesaplama", label: "Malzeme Yoğunlukları Tablosu ve Ağırlık Hesaplama" },
+    { href: "/demir-agirlik-hesaplama", label: "İnşaat Demiri Ağırlık Hesaplama" },
+    { href: "/sac-agirlik-hesaplama", label: "Sac Ağırlık Hesaplama" },
+    { href: "/boru-agirlik-hesaplama", label: "Boru Ağırlık Hesaplama" },
+    { href: "/kutu-profil-agirlik-hesaplama", label: "Kutu Profil Ağırlık Hesaplama" },
   ],
   altin_ayar: [
     { href: "/altin-hesaplama", label: "Altın Hesaplama (Çeyrek, Yarım, Tam, Bilezik)" },

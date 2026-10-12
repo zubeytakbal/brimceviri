@@ -100,6 +100,21 @@ export default function KaynakciAraclariPage() {
               parça ağırlığını hesapla.
             </li>
             <li>
+              <Link href="/sac-agirlik-hesaplama">Sac Ağırlık Hesaplama</Link>
+              {" "}— levha ölçüsü ve kalınlığından sac ağırlığını ve
+              kg/m² değerini hesapla.
+            </li>
+            <li>
+              <Link href="/kutu-profil-agirlik-hesaplama">Kutu Profil Ağırlık Hesaplama</Link>
+              {" "}— kare ve dikdörtgen profilin metre ağırlığını köşe
+              yarıçapı etkisiyle birlikte hesapla.
+            </li>
+            <li>
+              <Link href="/boru-agirlik-hesaplama">Boru Ağırlık Hesaplama</Link>
+              {" "}— dış çap ve et kalınlığından boru metre ağırlığını
+              hesapla.
+            </li>
+            <li>
               <Link href="/civata-torku-hesaplama">Cıvata Torku Hesaplama</Link>
               {" "}— cıvata ölçüsü ve dayanım sınıfından önerilen
               sıkma torkunu hesapla.

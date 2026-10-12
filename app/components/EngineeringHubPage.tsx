@@ -17,8 +17,9 @@ type EngineeringTool = {
   slug: string;
   href: string;
   title: string;
-  formula: string;
+  formula?: string;
   description: string;
+  icon?: SiteIconName;
 };
 
 type EngineeringGuideLink = {
@@ -37,7 +38,7 @@ type EngineeringFocusCard = {
   href: string;
   title: string;
   description: string;
-  iconName: "energy" | "pressure" | "temperature" | "flowRate";
+  iconName: SiteIconName;
   meta: string;
 };
 
@@ -76,218 +77,441 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
     breadcrumbAriaLabel: "Sayfa yolu",
     breadcrumbs: [
       { label: "Ana Sayfa", href: "/" },
-      { label: "M\u00fchendislik Hesaplay\u0131c\u0131lar\u0131" },
+      { label: "Mühendislik Hesaplayıcıları" },
     ],
-    title: "M\u00fchendislik Hesaplay\u0131c\u0131lar\u0131",
+    title: "Mühendislik Hesaplayıcıları",
     description:
-      "Birim d\u00f6n\u00fc\u015f\u00fcmleriyle birlikte elektrik, \u0131s\u0131 transferi, ak\u0131\u015fkanlar ve bas\u0131n\u00e7 hesaplar\u0131n\u0131 konu k\u00fcmeleri halinde sunan m\u00fchendislik merkezini inceleyin.",
-    focusTitle: "M\u00fchendislik b\u00f6l\u00fcmleri",
+      "Elektrik, akışkanlar ve tesisat, ısı, makine ve imalat, malzeme, inşaat ve ısıtma-soğutma hesaplarını tek yerde toplayan mühendislik merkezi. Her araç birimleri SI tabanına çevirerek hesaplar ve kullandığı formülü gösterir.",
+    focusTitle: "Mühendislik bölümleri",
     focusDescription:
-      "M\u00fchendislik hesaplay\u0131c\u0131lar\u0131n\u0131 art\u0131k tek liste yerine konu merkezleri halinde b\u00fcy\u00fct\u00fcyoruz. Elektrik hesaplar\u0131 ilk aktif alt merkez olarak ayr\u0131ld\u0131; di\u011fer gruplar da ayn\u0131 yap\u0131yla geni\u015fleyecek.",
+      "Önce çalıştığınız alanı seçin, sonra o alandaki hesaplayıcıya geçin. Elektrik hesapları kendi alt merkezinde; diğer bölümler bu sayfanın içinde gruplandı.",
     focusCards: [
       {
         href: getElectricalHubPath("tr"),
-        title: "Elektrik Hesaplar\u0131",
+        title: "Elektrik Hesapları",
         description:
-          "Kablo kesiti, gerilim d\u00fc\u015f\u00fcm\u00fc, g\u00fc\u00e7-ak\u0131m d\u00f6n\u00fc\u015f\u00fcmleri ve motor \u00f6n hesaplar\u0131 i\u00e7in ayr\u0131 merkez.",
+          "Kablo kesiti, gerilim düşümü, kW-amper dönüşümleri ve motor akımı için ayrı alt merkez.",
         iconName: "energy",
-        meta: "Yeni alt merkez",
+        meta: "Alt merkez",
       },
       {
         href: "#basinc-ve-akiskanlar",
-        title: "Bas\u0131n\u00e7 ve Ak\u0131\u015fkanlar",
-        description:
-          "Bas\u0131n\u00e7, hidrostatik y\u00fck ve boru i\u00e7i ak\u0131\u015f kontrol\u00fc i\u00e7in mevcut ara\u00e7 grubu.",
-        iconName: "pressure",
-        meta: "Mevcut grup",
+        title: "Akışkanlar ve Tesisat",
+        description: "Basınç, hidrostatik yük, boru çapı, debi ve basınç kaybı hesapları.",
+        iconName: "flowRate",
+        meta: "Bölüm",
       },
       {
         href: "#isi-transferi",
-        title: "Is\u0131 Transferi",
-        description:
-          "Is\u0131 enerjisi ve \u0131s\u0131 iletimi hesaplar\u0131n\u0131 birlikte toplayan termal ara\u00e7 grubu.",
+        title: "Isı ve Termodinamik",
+        description: "Isı enerjisi, ısı iletimi, ısıl genleşme ve soğutma devresi hesapları.",
         iconName: "temperature",
-        meta: "Mevcut grup",
+        meta: "Bölüm",
+      },
+      {
+        href: "#makine-ve-imalat",
+        title: "Makine ve İmalat",
+        description: "Cıvata torku, kesme hızı, kaynak ve elastik uzama hesapları.",
+        iconName: "torque",
+        meta: "Bölüm",
+      },
+      {
+        href: "#malzeme",
+        title: "Malzeme",
+        description: "Malzeme özellikleri, yoğunluk, ağırlık ve sertlik dönüşümleri.",
+        iconName: "density",
+        meta: "Bölüm",
+      },
+      {
+        href: "#insaat",
+        title: "İnşaat",
+        description: "Beton, tuğla, sıva, hafriyat, merdiven ve kereste metrajları.",
+        iconName: "concreteCalculator",
+        meta: "Bölüm",
+      },
+      {
+        href: "#isitma-sogutma",
+        title: "Isıtma ve Soğutma",
+        description: "Klima kapasitesi, yalıtım, doğalgaz tüketimi ve ısıtma maliyeti hesapları.",
+        iconName: "acCapacityCalculator",
+        meta: "Bölüm",
       },
     ],
-    introTitle: "Teknik hesaplamalar i\u00e7in k\u00fcmeli bir merkez",
+    introTitle: "Bu merkez nasıl düzenlendi?",
     introBody:
-      "Bu sayfa, mevcut m\u00fchendislik hesaplay\u0131c\u0131lar\u0131n\u0131 konu ba\u015fl\u0131klar\u0131na g\u00f6re toplar ve yeni alt merkezlere ge\u00e7i\u015f noktas\u0131 olarak davran\u0131r. Kullan\u0131c\u0131 \u00f6nce do\u011fru m\u00fchendislik alan\u0131n\u0131, sonra tekil hesab\u0131 se\u00e7ebilir; b\u00f6ylece i\u00e7erik mimarisi hem kullan\u0131c\u0131 hem arama motoru i\u00e7in daha net hale gelir.",
+      "Sitedeki mühendislik araçları farklı sayfalara dağılmıştı; bu sayfa hepsini mühendislik dallarına göre bir araya getirir. Her grup, sahada ya da derste aynı iş akışında kullanılan hesapları birlikte gösterir: örneğin boru çapını seçtikten sonra aynı gruptaki basınç kaybı hesabına geçebilirsiniz. Hesaplayıcılar ön boyutlandırma ve kontrol içindir; proje, ruhsat veya güvenlik kararlarında ilgili standart ve yetkili mühendis onayı esas alınmalıdır.",
     groups: [
-      {
-        id: "basinc-ve-akiskanlar",
-        title: "Bas\u0131n\u00e7 ve Ak\u0131\u015fkanlar",
-        description:
-          "Bas\u0131n\u00e7, hidrostatik y\u00fck ve boru i\u00e7i ak\u0131\u015f davran\u0131\u015f\u0131 i\u00e7in kullan\u0131lan temel hesaplay\u0131c\u0131lar.",
-        tools: [
-          {
-            slug: "basinc-kuvvet-alan",
-            href: "/hesaplayicilar/basinc-kuvvet-alan",
-            title: "Bas\u0131n\u00e7, Kuvvet ve Alan",
-            formula: "P = F / A",
-            description:
-              "Bas\u0131nc\u0131, kuvveti veya alan\u0131 ger\u00e7ek birim d\u00f6n\u00fc\u015f\u00fcmleriyle hesaplay\u0131n.",
-          },
-          {
-            slug: "hidrostatik-basinc",
-            href: "/hesaplayicilar/hidrostatik-basinc",
-            title: "Hidrostatik Bas\u0131n\u00e7",
-            formula: "\u0394P = \u03c1gh",
-            description:
-              "Yo\u011funluk, derinlik ve yer\u00e7ekimi ivmesine g\u00f6re hidrostatik bas\u0131n\u00e7 fark\u0131n\u0131 bulun.",
-          },
-          {
-            slug: "reynolds-sayisi",
-            href: "/hesaplayicilar/reynolds-sayisi",
-            title: "Reynolds Say\u0131s\u0131",
-            formula: "Re = \u03c1 x v x D / \u03bc",
-            description:
-              "Ak\u0131\u015f h\u0131z\u0131 ve karakteristik boyut ile yakla\u015f\u0131k ak\u0131\u015f rejimini de\u011ferlendirin.",
-          },
-        ],
-      },
-      {
-        id: "isi-transferi",
-        title: "Is\u0131 Transferi",
-        description:
-          "Enerji miktar\u0131, malzeme iletkenli\u011fi ve s\u0131cakl\u0131k fark\u0131 \u00fczerinden \u00e7al\u0131\u015fan \u0131s\u0131l hesap ara\u00e7lar\u0131.",
-        tools: [
-          {
-            slug: "isi-enerjisi",
-            href: "/hesaplayicilar/isi-enerjisi",
-            title: "Is\u0131 Enerjisi",
-            formula: "Q = m x c x \u0394T",
-            description:
-              "Is\u0131 enerjisini, k\u00fctleyi, \u00f6zg\u00fcl \u0131s\u0131y\u0131 veya s\u0131cakl\u0131k fark\u0131n\u0131 SI taban\u0131nda hesaplay\u0131n.",
-          },
-          {
-            slug: "isi-iletimi",
-            href: "/hesaplayicilar/isi-iletimi",
-            title: "Is\u0131 \u0130letimi",
-            formula: "Qdot = k x A x \u0394T / L",
-            description:
-              "Malzeme iletkenli\u011fi, alan ve kal\u0131nl\u0131k \u00fczerinden \u0131s\u0131 ge\u00e7i\u015f h\u0131z\u0131n\u0131 kar\u015f\u0131la\u015ft\u0131r\u0131n.",
-          },
-        ],
-      },
       {
         id: "elektrik",
         title: "Elektrik",
         description:
-          "Gerilim, ak\u0131m ve diren\u00e7 ili\u015fkileriyle ba\u015flayan ve ayr\u0131 elektrik hesaplar\u0131 merkezine do\u011fru geni\u015fleyen devre hesaplay\u0131c\u0131lar\u0131.",
+          "Güç-akım dönüşümleri, kablo seçimi, gerilim düşümü ve temel devre hesapları.",
         tools: [
           {
             slug: "kw-to-amper-hesaplama",
             href: "/muhendislik-hesaplayicilari/elektrik-hesaplari/kw-to-amper-hesaplama",
             title: "kW to Amper",
-            formula: "I = P / (\u221a3 x V x cos phi x eta)",
-            description:
-              "Üç faz, tek faz ve DC seçenekleriyle gücü yaklaşık hat akımına çevirin.",
+            formula: "I = P / (√3 x V x cos phi x eta)",
+            description: "Üç faz, tek faz ve DC seçenekleriyle gücü yaklaşık hat akımına çevirin.",
           },
           {
             slug: "amper-to-kw-hesaplama",
             href: "/muhendislik-hesaplayicilari/elektrik-hesaplari/amper-to-kw-hesaplama",
             title: "Amper to kW",
-            formula: "P = \u221a3 x V x I x cos phi x eta",
-            description:
-              "Hat akımından üç faz, tek faz ve DC seçenekleriyle yaklaşık gücü hesaplayın.",
+            formula: "P = √3 x V x I x cos phi x eta",
+            description: "Hat akımından üç faz, tek faz ve DC seçenekleriyle yaklaşık gücü hesaplayın.",
+          },
+          {
+            slug: "gerilim-dusumu-hesaplama",
+            href: "/muhendislik-hesaplayicilari/elektrik-hesaplari/gerilim-dusumu-hesaplama",
+            title: "Gerilim Düşümü",
+            description: "Hat uzunluğu, kesit ve akıma göre gerilim düşümünü ve yüzdesini bulun.",
+          },
+          {
+            slug: "kablo-kesiti-hesaplama",
+            href: "/muhendislik-hesaplayicilari/elektrik-hesaplari/kablo-kesiti-hesaplama",
+            title: "Kablo Kesiti",
+            description: "Yük akımı ve izin verilen gerilim düşümüne göre kablo kesitini ön boyutlandırın.",
+          },
+          {
+            slug: "motor-akimi-hesaplama",
+            href: "/muhendislik-hesaplayicilari/elektrik-hesaplari/motor-akimi-hesaplama",
+            title: "Motor Akımı",
+            description: "Motor gücü, gerilim, güç faktörü ve verimden çalışma akımını hesaplayın.",
           },
           {
             slug: "ohm-yasasi",
             href: "/hesaplayicilar/ohm-yasasi",
-            title: "Ohm Yasas\u0131",
+            title: "Ohm Yasası",
             formula: "V = I x R",
-            description:
-              "Gerilimi, ak\u0131m\u0131 veya direnci Ohm Yasas\u0131 ile hesaplay\u0131n.",
+            description: "Gerilimi, akımı veya direnci Ohm Yasası ile hesaplayın.",
+          },
+          {
+            slug: "awg-mm2-cevirici",
+            href: "/awg-mm2-cevirici",
+            title: "AWG - mm² Çevirici",
+            icon: "awgConverter",
+            description: "Amerikan tel numarasını (AWG) mm² kesite ve çapa çevirin.",
+          },
+          {
+            slug: "psu-guc-hesaplama",
+            href: "/psu-guc-hesaplama",
+            title: "PSU Güç Kaynağı",
+            icon: "psuCalculator",
+            description: "CPU, GPU ve diğer bileşenlerin gücünden güvenlik payı dahil PSU wattajını bulun.",
+          },
+          {
+            slug: "anten-uzunlugu-hesaplama",
+            href: "/anten-uzunlugu-hesaplama",
+            title: "Anten Uzunluğu",
+            icon: "antennaCalculator",
+            description: "Frekansa göre dipol ve çeyrek dalga anten boylarını bulun.",
+          },
+        ],
+      },
+      {
+        id: "basinc-ve-akiskanlar",
+        title: "Akışkanlar ve Tesisat",
+        description:
+          "Basınç, hidrostatik yük, akış rejimi, boru çapı ve borulardaki basınç kaybı için birbirini izleyen hesaplar.",
+        tools: [
+          {
+            slug: "basinc-kuvvet-alan",
+            href: "/hesaplayicilar/basinc-kuvvet-alan",
+            title: "Basınç, Kuvvet ve Alan",
+            formula: "P = F / A",
+            description: "Basıncı, kuvveti veya alanı gerçek birim dönüşümleriyle hesaplayın.",
+          },
+          {
+            slug: "hidrostatik-basinc",
+            href: "/hesaplayicilar/hidrostatik-basinc",
+            title: "Hidrostatik Basınç",
+            formula: "ΔP = ρgh",
+            description: "Yoğunluk, derinlik ve yerçekimi ivmesine göre hidrostatik basınç farkını bulun.",
+          },
+          {
+            slug: "reynolds-sayisi",
+            href: "/hesaplayicilar/reynolds-sayisi",
+            title: "Reynolds Sayısı",
+            formula: "Re = ρ x v x D / μ",
+            description: "Akış hızı ve karakteristik boyut ile yaklaşık akış rejimini değerlendirin.",
+          },
+          {
+            slug: "boru-capi-hesaplama",
+            href: "/boru-capi-hesaplama",
+            title: "Boru Çapı, Debi ve Akış Hızı",
+            icon: "pipeFlowCalculator",
+            formula: "Q = A x v",
+            description: "Debi, akış hızı veya iç çaptan birini diğer ikisinden hesaplayın.",
+          },
+          {
+            slug: "basinc-kaybi-hesaplama",
+            href: "/basinc-kaybi-hesaplama",
+            title: "Basınç Kaybı",
+            icon: "pressureLossCalculator",
+            description: "Boru boyu, çapı, debi ve malzeme katsayısından Hazen-Williams ile basınç kaybını hesaplayın.",
+          },
+          {
+            slug: "boru-capi-donusum-hesaplama",
+            href: "/boru-capi-donusum-hesaplama",
+            title: "Boru Çapı Dönüşümü (DN-NPS)",
+            icon: "pipeNominalSizeCalculator",
+            description: "DN nominal ölçüsünü NPS (inç) karşılığına ve gerçek dış çapa çevirin.",
+          },
+        ],
+      },
+      {
+        id: "isi-transferi",
+        title: "Isı ve Termodinamik",
+        description:
+          "Enerji miktarı, ısı iletimi, sıcaklıkla boyut değişimi ve soğutma devresi ölçümleri.",
+        tools: [
+          {
+            slug: "isi-enerjisi",
+            href: "/hesaplayicilar/isi-enerjisi",
+            title: "Isı Enerjisi",
+            formula: "Q = m x c x ΔT",
+            description: "Isı enerjisini, kütleyi, özgül ısıyı veya sıcaklık farkını SI tabanında hesaplayın.",
+          },
+          {
+            slug: "isi-iletimi",
+            href: "/hesaplayicilar/isi-iletimi",
+            title: "Isı İletimi",
+            formula: "Qdot = k x A x ΔT / L",
+            description: "Malzeme iletkenliği, alan ve kalınlık üzerinden ısı geçiş hızını karşılaştırın.",
+          },
+          {
+            slug: "isil-genlesme-hesaplama",
+            href: "/isil-genlesme-hesaplama",
+            title: "Isıl Genleşme",
+            icon: "thermalExpansionCalculator",
+            formula: "ΔL = α x L x ΔT",
+            description: "Sıcaklık değişimiyle boy uzamasını malzemeye göre hesaplayın.",
+          },
+          {
+            slug: "superheat-subcooling-hesaplama",
+            href: "/superheat-subcooling-hesaplama",
+            title: "Superheat ve Subcooling",
+            icon: "superheatSubcoolingCalculator",
+            description: "Ölçülen boru sıcaklığı ve doyma sıcaklığından superheat ve subcooling değerlerini bulun.",
+          },
+          {
+            slug: "erime-kaynama-noktasi-hesaplama",
+            href: "/erime-kaynama-noktasi-hesaplama",
+            title: "Erime ve Kaynama Noktası",
+            icon: "elementMeltingBoilingCalculator",
+            description: "27 elementin erime ve kaynama noktalarını °C, °F ve K cinsinden görün.",
+          },
+        ],
+      },
+      {
+        id: "makine-ve-imalat",
+        title: "Makine ve İmalat",
+        description:
+          "Bağlantı elemanları, talaşlı imalat, kaynak ve yük altındaki uzama için atölye hesapları.",
+        tools: [
+          {
+            slug: "civata-torku-hesaplama",
+            href: "/civata-torku-hesaplama",
+            title: "Cıvata Torku",
+            icon: "boltTorqueCalculator",
+            description: "Cıvata ölçüsü ve dayanım sınıfından önerilen sıkma torkunu ve tahmini sıkma kuvvetini hesaplayın.",
+          },
+          {
+            slug: "kesme-hizi-devir-hesaplama",
+            href: "/kesme-hizi-devir-hesaplama",
+            title: "Kesme Hızı - Devir",
+            icon: "cuttingSpeedCalculator",
+            description: "Takım çapı ve kesme hızından torna ve freze devrini bulun.",
+          },
+          {
+            slug: "kaynak-amperaji-hesaplama",
+            href: "/kaynak-amperaji-hesaplama",
+            title: "Kaynak Amperajı",
+            icon: "weldingCurrentCalculator",
+            description: "Elektrot çekirdek çapı ve örtü tipine göre önerilen kaynak akımı aralığını bulun.",
+          },
+          {
+            slug: "kaynak-isi-girdisi-hesaplama",
+            href: "/kaynak-isi-girdisi-hesaplama",
+            title: "Kaynak Isı Girdisi",
+            icon: "heatInputCalculator",
+            description: "Akım, gerilim ve ilerleme hızından kaynak ısı girdisini (kJ/mm) bulun.",
+          },
+          {
+            slug: "elastik-uzama-hesaplama",
+            href: "/elastik-uzama-hesaplama",
+            title: "Elastik Uzama",
+            icon: "elongationCalculator",
+            formula: "ΔL = F x L / (A x E)",
+            description: "Kuvvet, kesit ve elastisite modülünden çubuktaki uzamayı hesaplayın.",
+          },
+        ],
+      },
+      {
+        id: "malzeme",
+        title: "Malzeme",
+        description:
+          "Metal, polimer, ahşap, yapı malzemesi ve sıvıların yoğunluk ve mühendislik özellikleri ile bunlara dayalı ağırlık hesapları.",
+        tools: [
+          {
+            slug: "malzeme-ozellikleri",
+            href: "/malzeme-ozellikleri",
+            title: "Malzeme Özellikleri",
+            icon: "materialsHubCalculator",
+            description: "100'den fazla malzemenin yoğunluk, ısıl iletkenlik ve elastisite değerleri.",
+          },
+          {
+            slug: "malzeme-agirligi-hesaplama",
+            href: "/malzeme-agirligi-hesaplama",
+            title: "Malzeme Ağırlığı",
+            icon: "materialWeightCalculator",
+            formula: "m = ρ x V",
+            description: "Malzeme ve hacimden ağırlığı, ağırlıktan hacmi hesaplayın.",
+          },
+          {
+            slug: "sertlik-donusum-hesaplama",
+            href: "/sertlik-donusum-hesaplama",
+            title: "Sertlik Dönüşümü",
+            icon: "hardnessConversionCalculator",
+            description: "Brinell, Vickers ve Rockwell sertlik değerlerini yaklaşık olarak birbirine çevirin.",
+          },
+        ],
+      },
+      {
+        id: "insaat",
+        title: "İnşaat",
+        description: "Şantiyede malzeme siparişi ve metraj için kullanılan miktar hesapları.",
+        tools: [
+          {
+            slug: "beton-hesaplama",
+            href: "/beton-hesaplama",
+            title: "Beton Hesaplama",
+            icon: "concreteCalculator",
+            description: "Döşeme, kolon ve temel için beton hacmini ve malzeme miktarını bulun.",
+          },
+          {
+            slug: "tugla-hesaplama",
+            href: "/tugla-hesaplama",
+            title: "Tuğla Hesaplama",
+            icon: "brickCalculator",
+            description: "Duvar alanı ve tuğla ölçüsünden derz payı ve fire dahil tuğla adedini hesaplayın.",
+          },
+          {
+            slug: "siva-hesaplama",
+            href: "/siva-hesaplama",
+            title: "Sıva Hesaplama",
+            icon: "plasterCalculator",
+            description: "Yüzey alanı ve kalınlığa göre sıva miktarını bulun.",
+          },
+          {
+            slug: "hafriyat-hesaplama",
+            href: "/hafriyat-hesaplama",
+            title: "Hafriyat ve Kazı",
+            icon: "excavationCalculator",
+            description: "Kazı hacmini, gevşeme payı eklenmiş hacmi ve gereken kamyon sayısını hesaplayın.",
+          },
+          {
+            slug: "merdiven-hesaplama",
+            href: "/merdiven-hesaplama",
+            title: "Merdiven Hesaplama",
+            icon: "stairCalculator",
+            description: "Toplam yükseklikten basamak sayısını, rıht yüksekliğini ve Blondel kuralıyla basamak derinliğini bulun.",
+          },
+          {
+            slug: "kereste-hesaplama",
+            href: "/kereste-hesaplama",
+            title: "Kereste Metreküp",
+            icon: "keresteCalculator",
+            description: "Kereste ölçülerinden metreküp hacmini hesaplayın.",
+          },
+        ],
+      },
+      {
+        id: "isitma-sogutma",
+        title: "Isıtma ve Soğutma",
+        description:
+          "Klima kapasitesi, ısı yalıtımı ve ısıtma enerjisi tüketimiyle ilgili hesaplar.",
+        tools: [
+          {
+            slug: "klima-btu-hesaplama",
+            href: "/klima-btu-hesaplama",
+            title: "Klima BTU Hesaplama",
+            icon: "acCapacityCalculator",
+            description: "Oda alanı ve koşullarına göre gereken klima kapasitesini bulun.",
+          },
+          {
+            slug: "mantolama-hesaplama",
+            href: "/mantolama-hesaplama",
+            title: "Mantolama Hesaplama",
+            icon: "insulationCalculator",
+            description: "Dış cephe alanı ve levha ebadından fire dahil yalıtım levhası adedini hesaplayın.",
+          },
+          {
+            slug: "dogalgaz-tuketimi-hesaplama",
+            href: "/dogalgaz-tuketimi-hesaplama",
+            title: "Doğalgaz Tüketimi",
+            icon: "naturalGasCalculator",
+            description: "Tüketilen m³ ve birim fiyattan toplam maliyeti ve yaklaşık kWh karşılığını bulun.",
+          },
+          {
+            slug: "isi-pompasi-kombi-karsilastirma",
+            href: "/isi-pompasi-kombi-karsilastirma",
+            title: "Isı Pompası - Kombi",
+            icon: "heatPumpVsBoilerCalculator",
+            description: "Isı pompasının kombiye göre kendini kaç yılda çıkardığını hesaplayın.",
+          },
+          {
+            slug: "yalitim-amortisman-hesaplama",
+            href: "/yalitim-amortisman-hesaplama",
+            title: "Yalıtım Amortismanı",
+            icon: "insulationPaybackCalculator",
+            description: "Yalıtım yatırımının kendini kaç yılda geri ödediğini hesaplayın.",
           },
         ],
       },
     ],
-    howToTitle: "Bu hesaplay\u0131c\u0131lar nas\u0131l kullan\u0131l\u0131r?",
+    howToTitle: "Bu hesaplayıcılar nasıl kullanılır?",
     howToSteps: [
-      "\u00d6nce hangi b\u00fcy\u00fckl\u00fc\u011f\u00fc \u00e7\u00f6zece\u011finizi se\u00e7in ve yaln\u0131zca bilinen de\u011ferleri girin.",
-      "Her giri\u015fte uygun birimi belirleyin; ara\u00e7lar t\u00fcm de\u011ferleri \u00f6nce SI taban\u0131na \u00e7evirerek hesaplar.",
-      "Ana sonucu, form\u00fclde yerine koyulmu\u015f ifadeyi ve SI e\u015fde\u011ferini birlikte kontrol ederek do\u011frulama yap\u0131n.",
+      "Önce hangi büyüklüğü çözeceğinizi seçin ve yalnızca bilinen değerleri girin.",
+      "Her girişte uygun birimi belirleyin; araçlar tüm değerleri önce SI tabanına çevirerek hesaplar.",
+      "Ana sonucu, formülde yerine konmuş ifadeyi ve SI eşdeğerini birlikte kontrol ederek doğrulayın.",
+      "Sonucu aynı gruptaki bir sonraki hesapla sınayın: örneğin kablo kesitini seçtikten sonra gerilim düşümünü, boru çapını seçtikten sonra basınç kaybını kontrol edin.",
     ],
-    guidesTitle: "\u0130lgili birim rehberleri",
+    guidesTitle: "İlgili birim dönüşümleri ve rehberler",
     guidesDescription:
-      "Temel m\u00fchendislik birimlerinin tan\u0131m\u0131n\u0131, sembollerini ve kullan\u0131m alanlar\u0131n\u0131 g\u00f6rmek i\u00e7in rehber sayfalar\u0131n\u0131 a\u00e7abilirsiniz.",
+      "Hesaplarda en sık geçen büyüklüklerin dönüşüm sayfaları ve birim rehberleri.",
     guideLinks: [
+      { href: "/kategoriler/basinc", label: "Basınç dönüşümleri" },
+      { href: "/kategoriler/guc", label: "Güç dönüşümleri" },
+      { href: "/kategoriler/enerji", label: "Enerji dönüşümleri" },
+      { href: "/kategoriler/tork", label: "Tork dönüşümleri" },
+      { href: "/kategoriler/kuvvet", label: "Kuvvet dönüşümleri" },
+      { href: "/kategoriler/debi", label: "Debi dönüşümleri" },
+      { href: "/kategoriler/viskozite", label: "Viskozite dönüşümleri" },
+      { href: "/kategoriler/isil-iletkenlik", label: "Isıl iletkenlik dönüşümleri" },
+      { href: "/kategoriler/elektrik", label: "Elektrik birimi dönüşümleri" },
       { href: "/birimler/pascal", label: "Pascal (Pa) rehberi" },
-      { href: "/birimler/metre", label: "Metre (m) rehberi" },
-      { href: "/birimler/kilogram", label: "Kilogram (kg) rehberi" },
+      { href: "/birimler/newton-metre", label: "Newton metre (N·m) rehberi" },
+      { href: "/birimler/watt", label: "Watt (W) rehberi" },
     ],
-    relatedToolsTitle: "G\u00fcndelik hesaplay\u0131c\u0131lar",
+    relatedToolsTitle: "Mesleğe göre araç sayfaları",
     relatedToolsDescription:
-      "Bu m\u00fchendislik/SI hesaplay\u0131c\u0131lar\u0131n\u0131n d\u0131\u015f\u0131nda, ev ve g\u00fcndelik ihtiya\u00e7lar i\u00e7in haz\u0131rlanan pratik hesap ara\u00e7lar\u0131na da g\u00f6z atabilirsiniz.",
+      "Aynı hesapları meslek ve iş akışına göre gruplanmış olarak görmek için ilgili meslek sayfalarını açabilirsiniz.",
     relatedToolsLinks: [
-      { href: "/boya-hesaplama", label: "Boya Hesaplama" },
-      { href: "/fayans-hesaplama", label: "Fayans Hesaplama" },
-      { href: "/tugla-hesaplama", label: "Tuğla Hesaplama" },
-      { href: "/beton-hesaplama", label: "Beton Hesaplama" },
-      { href: "/siva-hesaplama", label: "Sıva Hesaplama" },
-      { href: "/merdiven-hesaplama", label: "Merdiven Hesaplama" },
-      { href: "/devamsizlik-hesaplama", label: "Devamsızlık Hesaplama" },
-      { href: "/yas-hesaplama", label: "Yaş Hesaplama" },
-      { href: "/kdv-hesaplama", label: "KDV Hesaplama" },
-      { href: "/has-hesaplama", label: "Has Altın ve Gümüş Hesaplama" },
-      { href: "/kuyumcu-araclari", label: "Kuyumcu Araçları" },
       { href: "/elektrikci-araclari", label: "Elektrikçi Araçları" },
-      { href: "/insaatci-araclari", label: "İnşaatçı Araçları" },
-      { href: "/hafriyat-hesaplama", label: "Hafriyat ve Kazı Hesaplama" },
-      { href: "/mantolama-hesaplama", label: "Mantolama Hesaplama" },
-      { href: "/lastik-ebati-hesaplama", label: "Lastik Ebatı Hesaplama" },
-      { href: "/otomotiv-araclari", label: "Otomotiv Araçları" },
-      { href: "/asci-araclari", label: "Aşçı Araçları" },
-      { href: "/vucut-yag-orani-hesaplama", label: "Vücut Yağ Oranı Hesaplama" },
-      { href: "/diyetisyen-araclari", label: "Diyetisyen Araçları" },
-      { href: "/ideal-kilo-hesaplama", label: "İdeal Kilo Hesaplama" },
-      { href: "/beden-olcusu-cevirici", label: "Beden Ölçüsü Çevirici" },
-      { href: "/terzi-araclari", label: "Terzi Araçları" },
-      { href: "/emlak-komisyonu-hesaplama", label: "Emlak Komisyonu Hesaplama" },
-      { href: "/emlakci-araclari", label: "Emlakçı Araçları" },
-      { href: "/seyir-suresi-hesaplama", label: "Seyir Süresi Hesaplama" },
-      { href: "/pilot-araclari", label: "Pilot Araçları" },
-      { href: "/kaptan-araclari", label: "Kaptan Araçları" },
-      { href: "/yogunluk-irtifasi-hesaplama", label: "Yoğunluk İrtifası Hesaplama" },
-      { href: "/yan-ruzgar-hesaplama", label: "Yan Rüzgar Bileşeni Hesaplama" },
-      { href: "/inis-orani-hesaplama", label: "İniş Oranı Hesaplama" },
-      { href: "/agirlik-denge-hesaplama", label: "Ağırlık ve Denge Hesaplama" },
-      { href: "/buyuk-daire-mesafesi-hesaplama", label: "Büyük Daire Mesafesi Hesaplama" },
-      { href: "/doktor-hemsire-araclari", label: "Doktor ve Hemşire Araçları" },
-      { href: "/vucut-yuzey-alani-hesaplama", label: "Vücut Yüzey Alanı Hesaplama" },
-      { href: "/kreatinin-klirensi-hesaplama", label: "Kreatinin Klirensi Hesaplama" },
-      { href: "/iv-damla-hizi-hesaplama", label: "IV Damla Hızı Hesaplama" },
-      { href: "/glasgow-koma-skalasi-hesaplama", label: "Glasgow Koma Skalası Hesaplama" },
-      { href: "/apgar-skoru-hesaplama", label: "APGAR Skoru Hesaplama" },
-      { href: "/cha2ds2-vasc-skoru-hesaplama", label: "CHA2DS2-VASc Skoru Hesaplama" },
-      { href: "/wells-skoru-hesaplama", label: "Wells Skoru Hesaplama" },
-      { href: "/qsofa-hesaplama", label: "qSOFA Hesaplama" },
-      { href: "/sofa-skoru-hesaplama", label: "SOFA Skoru Hesaplama" },
-      { href: "/meld-skoru-hesaplama", label: "MELD Skoru Hesaplama" },
-      { href: "/morse-dusme-skalasi-hesaplama", label: "Morse Düşme Skalası Hesaplama" },
-      { href: "/braden-skalasi-hesaplama", label: "Braden Skalası Hesaplama" },
-      { href: "/nakliyeci-araclari", label: "Nakliyeci Araçları" },
-      { href: "/cbm-hesaplama", label: "CBM ve Hacimsel Ağırlık Hesaplama" },
       { href: "/tesisatci-araclari", label: "Tesisatçı Araçları" },
-      { href: "/boru-capi-hesaplama", label: "Boru Çapı, Debi ve Akış Hızı Hesaplama" },
-      { href: "/basinc-kaybi-hesaplama", label: "Basınç Kaybı Hesaplama" },
-      { href: "/muhasebeci-araclari", label: "Muhasebeci Araçları" },
-      { href: "/amortisman-hesaplama", label: "Amortisman Hesaplama" },
-      { href: "/bmi-hesaplama", label: "BMI Hesaplama" },
-      { href: "/gebelik-haftasi-hesaplama", label: "Gebelik Haftası Hesaplama" },
-      { href: "/klima-btu-hesaplama", label: "Klima BTU Hesaplama" },
-      { href: "/elektrik-tuketimi-hesaplama", label: "Elektrik Tüketimi Hesaplama" },
-      { href: "/uyku-hesaplama", label: "Uyku Hesaplama" },
-      { href: "/kosu-pace-hesaplama", label: "Koşu Pace Hesaplama" },
-      { href: "/yakit-tuketimi-hesaplama", label: "Yakıt Tüketimi Hesaplama" },
-      { href: "/parke-hesaplama", label: "Parke Hesaplama" },
-      { href: "/duvar-kagidi-hesaplama", label: "Duvar Kağıdı Hesaplama" },
-      { href: "/tasinma-kutusu-hesaplama", label: "Taşınma Kutusu Hesaplama" },
-      { href: "/dogalgaz-tuketimi-hesaplama", label: "Doğalgaz Tüketimi Hesaplama" },
-      { href: "/elektrikli-arac-sarj-hesaplama", label: "Elektrikli Araç Şarj Hesaplama" },
+      { href: "/kaynakci-araclari", label: "Kaynakçı Araçları" },
+      { href: "/cnc-torna-araclari", label: "CNC / Torna Operatörü Araçları" },
+      { href: "/insaatci-araclari", label: "İnşaatçı Araçları" },
+      { href: "/klima-sogutma-teknisyeni-araclari", label: "Klima ve Soğutma Teknisyeni Araçları" },
+      { href: "/mimar-araclari", label: "Mimar Araçları" },
+      { href: "/marangoz-araclari", label: "Marangoz Araçları" },
+      { href: "/otomotiv-araclari", label: "Otomotiv Araçları" },
+      { href: "/amator-telsiz-araclari", label: "Amatör Telsiz Araçları" },
+      { href: "/bilim-hesaplayicilari", label: "Bilim Hesaplayıcıları" },
     ],
-    alternateTitle: "Di\u011fer diller",
+    alternateTitle: "Diğer diller",
     alternateLink: {
       href: "/en/engineering-calculators",
       hrefLang: "en",
@@ -802,7 +1026,7 @@ export default function EngineeringHubPage({
                     />
 
                     <div className="directory-card-body directory-card-body-icon">
-                      <CardIcon name={getCalculatorIconName(tool.slug)} />
+                      <CardIcon name={tool.icon ?? getCalculatorIconName(tool.slug)} />
                       <h3 className="home-category-title">{tool.title}</h3>
                     </div>
                   </article>

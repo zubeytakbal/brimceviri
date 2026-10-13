@@ -35,6 +35,7 @@ export const ENGINEERING_FLOWS: Record<string, FlowLink[]> = {
   // Akışkanlar ve tesisat
   "/boru-capi-hesaplama": [
     { href: "/basinc-kaybi-hesaplama", label: "Basınç Kaybı", why: "Seçtiğiniz çapta borudaki sürtünme kaybını hesaplayın." },
+    { href: "/pompa-gucu-hesaplama", label: "Pompa Gücü", why: "Debi ve basma yüksekliğinden pompa gücünü bulun." },
     { href: "/boru-capi-donusum-hesaplama", label: "Boru Çapı Dönüşümü (DN-NPS)", why: "Bulduğunuz iç çapa karşılık gelen DN ölçüsünü seçin." },
     { href: "/hesaplayicilar/reynolds-sayisi", label: "Reynolds Sayısı", why: "Akışın laminer mi türbülanslı mı olduğunu kontrol edin." },
   ],
@@ -112,6 +113,27 @@ export const ENGINEERING_FLOWS: Record<string, FlowLink[]> = {
   "/mil-burulma-hesaplama": [
     { href: `${E}/motor-akimi-hesaplama`, label: "Motor Akımı", why: "Mili döndüren motorun çektiği akımı hesaplayın." },
     { href: "/kesme-hizi-devir-hesaplama", label: "Kesme Hızı - Devir", why: "Mili işlerken torna devrini bulun." },
+  ],
+
+  // Isı ve akışkan
+  "/u-degeri-hesaplama": [
+    { href: "/mantolama-hesaplama", label: "Mantolama Hesaplama", why: "Seçtiğiniz yalıtım kalınlığı için gereken levha adedini bulun." },
+    { href: "/yalitim-amortisman-hesaplama", label: "Yalıtım Amortismanı", why: "Yalıtımın kendini kaç yılda çıkardığını hesaplayın." },
+    { href: "/debi-isi-yuku-hesaplama", label: "Debiden Isı Yükü", why: "Toplam ısı kaybına göre kalorifer su debisini bulun." },
+  ],
+  "/pompa-gucu-hesaplama": [
+    { href: "/basinc-kaybi-hesaplama", label: "Basınç Kaybı", why: "Pompanın yeneceği boru sürtünme kaybını hesaplayın." },
+    { href: `${E}/motor-akimi-hesaplama`, label: "Motor Akımı", why: "Seçilen pompa motorunun çektiği akımı bulun." },
+    { href: "/boru-capi-hesaplama", label: "Boru Çapı ve Akış Hızı", why: "Debiye uygun boru çapını seçin." },
+  ],
+  "/lmtd-hesaplama": [
+    { href: "/debi-isi-yuku-hesaplama", label: "Debiden Isı Yükü", why: "Eşanjörden geçen debi ve sıcaklık farkından ısı yükünü bulun." },
+    { href: "/pompa-gucu-hesaplama", label: "Pompa Gücü", why: "Eşanjör devresindeki sirkülasyon pompasını boyutlandırın." },
+  ],
+  "/debi-isi-yuku-hesaplama": [
+    { href: "/boru-capi-hesaplama", label: "Boru Çapı ve Akış Hızı", why: "Bulduğunuz su debisine uygun boru çapını seçin." },
+    { href: "/pompa-gucu-hesaplama", label: "Pompa Gücü", why: "Bu debiyi dolaştıracak pompanın gücünü hesaplayın." },
+    { href: "/u-degeri-hesaplama", label: "U Değeri", why: "Isı yükünün kaynağı olan duvar ve çatı kayıplarını hesaplayın." },
   ],
 
   // Isıtma ve soğutma

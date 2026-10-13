@@ -26,6 +26,7 @@ export const ENGINEERING_FLOWS: Record<string, FlowLink[]> = {
   [`${E}/motor-akimi-hesaplama`]: [
     { href: `${E}/kablo-kesiti-hesaplama`, label: "Kablo Kesiti", why: "Motor besleme kablosunun kesitini seçin." },
     { href: `${E}/gerilim-dusumu-hesaplama`, label: "Gerilim Düşümü", why: "Motor hattındaki gerilim düşümünü kontrol edin." },
+    { href: "/mil-burulma-hesaplama", label: "Mil Burulma Hesabı", why: "Motor gücü ve devrinden mil torkunu ve gereken mil çapını bulun." },
   ],
   "/awg-mm2-cevirici": [
     { href: `${E}/kablo-kesiti-hesaplama`, label: "Kablo Kesiti", why: "Metrik kesit seçimini yük akımına göre yapın." },
@@ -72,6 +73,7 @@ export const ENGINEERING_FLOWS: Record<string, FlowLink[]> = {
   "/elastik-uzama-hesaplama": [
     { href: "/isil-genlesme-hesaplama", label: "Isıl Genleşme", why: "Sıcaklık değişiminden gelen uzamayı da ekleyin." },
     { href: "/sertlik-donusum-hesaplama", label: "Sertlik Dönüşümü", why: "Malzemenin sertlik değerlerini ölçekler arasında çevirin." },
+    { href: "/kiris-hesaplama", label: "Kiriş Hesabı", why: "Eksenel uzama yerine eğilmeyi hesaplamak için kiriş aracına geçin." },
   ],
   "/isil-genlesme-hesaplama": [
     { href: "/elastik-uzama-hesaplama", label: "Elastik Uzama", why: "Genleşme engellenirse oluşacak kuvveti Hooke yasasıyla yorumlayın." },
@@ -93,6 +95,25 @@ export const ENGINEERING_FLOWS: Record<string, FlowLink[]> = {
     { href: "/elastik-uzama-hesaplama", label: "Elastik Uzama", why: "Sıkma kuvvetinin cıvatada oluşturduğu uzamayı hesaplayın." },
   ],
 
+  // Statik ve mukavemet
+  "/kiris-hesaplama": [
+    { href: "/atalet-momenti-hesaplama", label: "Atalet Momenti", why: "Profil dışı bir kesitin atalet momentini ve kesit modülünü bulun." },
+    { href: "/burkulma-hesaplama", label: "Burkulma Hesabı", why: "Kirişi taşıyan kolonların burkulma yükünü kontrol edin." },
+    { href: "/celik-profil-tablolari", label: "Çelik Profil Tabloları", why: "Alternatif profillerin ağırlık ve kesit değerlerini karşılaştırın." },
+  ],
+  "/atalet-momenti-hesaplama": [
+    { href: "/kiris-hesaplama", label: "Kiriş Hesabı", why: "Bu kesitle kirişin sehimini ve gerilmesini hesaplayın." },
+    { href: "/burkulma-hesaplama", label: "Burkulma Hesabı", why: "Atalet yarıçapıyla basınç çubuğunun narinliğini bulun." },
+  ],
+  "/burkulma-hesaplama": [
+    { href: "/atalet-momenti-hesaplama", label: "Atalet Momenti", why: "Boru, kutu veya özel kesitin zayıf eksen değerlerini hesaplayın." },
+    { href: "/kiris-hesaplama", label: "Kiriş Hesabı", why: "Kolonun taşıdığı kirişin mesnet tepkisini bulun." },
+  ],
+  "/mil-burulma-hesaplama": [
+    { href: `${E}/motor-akimi-hesaplama`, label: "Motor Akımı", why: "Mili döndüren motorun çektiği akımı hesaplayın." },
+    { href: "/kesme-hizi-devir-hesaplama", label: "Kesme Hızı - Devir", why: "Mili işlerken torna devrini bulun." },
+  ],
+
   // Isıtma ve soğutma
   "/klima-btu-hesaplama": [
     { href: "/superheat-subcooling-hesaplama", label: "Superheat ve Subcooling", why: "Kurulumdan sonra soğutma devresinin ayarını kontrol edin." },
@@ -105,6 +126,8 @@ export const ENGINEERING_FLOWS: Record<string, FlowLink[]> = {
 
 /** Çelik profil tablolarından ortak sonraki adımlar. */
 export const STEEL_TABLE_FLOW: FlowLink[] = [
+  { href: "/kiris-hesaplama", label: "Kiriş Hesabı", why: "Seçtiğiniz profille kirişin sehimini, momentini ve gerilmesini hesaplayın." },
+  { href: "/burkulma-hesaplama", label: "Burkulma Hesabı", why: "Profili kolon olarak kullanacaksanız Euler burkulma yükünü bulun." },
   { href: "/kutu-profil-agirlik-hesaplama", label: "Kutu Profil Ağırlığı", why: "Kare ve dikdörtgen kutu profillerle karşılaştırın." },
   { href: "/sac-agirlik-hesaplama", label: "Sac Ağırlığı", why: "Bağlantı ve taban levhalarının ağırlığını ekleyin." },
 ];

@@ -121,8 +121,8 @@ export default function DateConverterPage({ lang }: { lang: "tr" | "en" }) {
         links: tr
           ? [
               { href: "/tarihi-olcu-birimleri", label: "Tarihi Ölçü Birimleri" },
-              { href: "/geri-sayim#ramazan-bayrami", label: "Ramazan Bayramı'na kaç gün kaldı?" },
-              { href: "/geri-sayim#kurban-bayrami", label: "Kurban Bayramı'na kaç gün kaldı?" },
+              { href: "/geri-sayim/ramazan-bayrami", label: "Ramazan Bayramı'na kaç gün kaldı?" },
+              { href: "/geri-sayim/kurban-bayrami", label: "Kurban Bayramı'na kaç gün kaldı?" },
               { href: "/ay-evreleri", label: "Ay Evreleri" },
               { href: "/yas-hesaplama", label: "Yaş Hesaplama" },
               { href: "/geri-sayim", label: "Geri Sayım" },

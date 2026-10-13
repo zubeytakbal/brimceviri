@@ -619,9 +619,28 @@ export function findCountdownEvent(lang: CountdownLang, slug: string) {
   return countdownEvents.find((event) => event.lang === lang && event.slug === slug) ?? null;
 }
 
-/** Hazır günlerin geri sayımı dilin ana geri sayım sayfasında, kendi bölümünde. */
 export function countdownPath(event: CountdownEvent) {
-  return event.lang === "tr" ? `/geri-sayim#${event.slug}` : event.lang === "de" ? `/de/countdown#${event.slug}` : `/en/countdown#${event.slug}`;
+  return event.lang === "tr" ? `/geri-sayim/${event.slug}` : event.lang === "de" ? `/de/countdown/${event.slug}` : `/en/countdown/${event.slug}`;
+}
+
+/** Alle Sprachfassungen eines Anlasses (über die pair-Verweise verbunden) als Pfade für hreflang. */
+export function countdownAlternatePaths(event: CountdownEvent): Partial<Record<CountdownLang, string>> {
+  const group = new Set<CountdownEvent>([event]);
+  let grew = true;
+  while (grew) {
+    grew = false;
+    for (const other of countdownEvents) {
+      if (group.has(other)) continue;
+      const linked = [...group].some(
+        (member) => member.lang !== other.lang && ((member.pair && member.pair === other.slug) || (other.pair && other.pair === member.slug)),
+      );
+      if (linked && ![...group].some((member) => member.lang === other.lang)) {
+        group.add(other);
+        grew = true;
+      }
+    }
+  }
+  return Object.fromEntries([...group].map((member) => [member.lang, countdownPath(member)]));
 }
 
 export function pairedEvent(event: CountdownEvent) {

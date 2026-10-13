@@ -166,6 +166,11 @@ export default function InsaatciAraclariPage() {
               çimento torba sayısını, kum ve çakıl miktarını hesapla.
             </li>
             <li>
+              <Link href="/demir-agirlik-hesaplama">İnşaat Demiri Ağırlık Hesaplama</Link> —
+              çap, boy ve adetten demir tonajını, 1 tonun kaç metre
+              ettiğini ve pozlara göre metraj toplamını hesapla.
+            </li>
+            <li>
               <Link href="/siva-hesaplama">Sıva Hesaplama</Link> —
               sıvanacak alan ve kalınlığa göre gereken alçı veya çimento
               esaslı sıva miktarını hesapla.

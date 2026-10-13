@@ -115,6 +115,11 @@ export default function KaynakciAraclariPage() {
               hesapla.
             </li>
             <li>
+              <Link href="/celik-profil-tablolari">Çelik Profil Tabloları</Link>
+              {" "}— IPE, HEA, HEB, NPU ve NPI ölçüleri, kg/m ağırlıkları ve
+              boya yüzeyi.
+            </li>
+            <li>
               <Link href="/civata-torku-hesaplama">Cıvata Torku Hesaplama</Link>
               {" "}— cıvata ölçüsü ve dayanım sınıfından önerilen
               sıkma torkunu hesapla.

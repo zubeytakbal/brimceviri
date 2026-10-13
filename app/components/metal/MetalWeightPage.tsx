@@ -28,6 +28,7 @@ import {
 } from "../../converter/metal/metalWeight";
 import { buildSiteUrl } from "../../siteConfig";
 import TimeToolPage from "../time/TimeToolPage";
+import DataTable from "./DataTable";
 import MetalWeightTool, { type MetalWeightKind } from "./MetalWeightTool";
 
 export const METAL_WEIGHT_PATHS: Record<MetalWeightKind, string> = {
@@ -63,35 +64,9 @@ type PageContent = {
 
 /* ---------------- Tablolar ---------------- */
 
-function Table({ caption, head, rows }: { caption: string; head: string[]; rows: Array<Array<string>> }) {
-  return (
-    <div className="holiday-table-wrap">
-      <table className="holiday-table">
-        <caption>{caption}</caption>
-        <thead>
-          <tr>
-            {head.map((h) => (
-              <th scope="col" key={h}>
-                {h}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((row) => (
-            <tr key={row[0]}>
-              {row.map((cell, i) => (i === 0 ? <th scope="row" key={i}>{cell}</th> : <td key={i}>{cell}</td>))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-}
-
 function RebarTable() {
   return (
-    <Table
+    <DataTable
       caption="İnşaat demiri teorik ağırlık tablosu (çelik yoğunluğu 7850 kg/m³)"
       head={["Çap", "Kesit alanı (mm²)", "Ağırlık (kg/m)", `${REBAR_BAR_LENGTH_M} m boy (kg)`, "1 ton (m)", `1 ton (${REBAR_BAR_LENGTH_M} m boy)`]}
       rows={REBAR_DIAMETERS_MM.map((d) => {
@@ -113,12 +88,12 @@ const PLATE_SIZES: Array<[number, number]> = [
 function PlateTables() {
   return (
     <>
-      <Table
+      <DataTable
         caption="Sac metrekare ağırlığı (kg/m²)"
         head={["Kalınlık", "Çelik", "Paslanmaz", "Alüminyum"]}
         rows={PLATE_THICKNESSES.map((t) => [`${f(t, 1)} mm`, f(plateKgPerM2(t, steel), 2), f(plateKgPerM2(t, stainless), 2), f(plateKgPerM2(t, aluminum), 2)])}
       />
-      <Table
+      <DataTable
         caption="Çelik levha ağırlığı ölçüye göre (kg/adet)"
         head={["Kalınlık", ...PLATE_SIZES.map(([w, l]) => `${f(w, 0)} × ${f(l, 0)} mm`)]}
         rows={PLATE_THICKNESSES.map((t) => [`${f(t, 1)} mm`, ...PLATE_SIZES.map(([w, l]) => f(plateMassKg(l, w, t), 1))])}
@@ -139,7 +114,7 @@ function PipeTable() {
       ...PIPE_WALLS.map((t) => (isValidPipe(r.outerDiameterMm, t) && t <= r.outerDiameterMm / 6 ? f(pipeKgPerMeter(r.outerDiameterMm, t), 2) : "–")),
     ]);
   return (
-    <Table
+    <DataTable
       caption="Çelik boru metre ağırlığı (kg/m), et kalınlığına göre"
       head={["Nominal çap", "Dış çap (mm)", ...PIPE_WALLS.map((t) => `${f(t, 1)} mm`)]}
       rows={rows}
@@ -167,7 +142,7 @@ const BOX_WALLS = [1.5, 2, 3, 4, 5];
 
 function BoxTable() {
   return (
-    <Table
+    <DataTable
       caption="Çelik kutu profil metre ağırlığı (kg/m), yuvarlak köşe hesabı"
       head={["Profil (mm)", ...BOX_WALLS.map((t) => `${f(t, 1)} mm`)]}
       rows={BOX_SIZES.map(([h, b]) => [
@@ -190,7 +165,7 @@ function rebarContent(): PageContent {
   const m16 = rebarMetersForMass(16, 1000);
   const m20 = rebarMetersForMass(20, 1000);
   return {
-    metaTitle: "Demir Ağırlık Hesaplama – İnşaat Demiri kg/m Tablosu (Ø6–Ø40)",
+    metaTitle: "Demir Ağırlık Hesaplama ve Tablosu (kg/m)",
     description: `İnşaat demirinin çap, boy ve adetten kaç kg geldiğini hesaplayın; 1 ton demir kaç metre ve kaç boy, metraj listesi ve Ø6–Ø40 ağırlık tablosu. Ø12 = ${f(kg12, 3)} kg/m.`,
     h1: "İnşaat Demiri Ağırlık Hesaplama",
     intro:
@@ -305,7 +280,7 @@ function plateContent(): PageContent {
   const sheet = plateMassKg(2000, 1000, 2);
   const alu = plateKgPerM2(1, aluminum);
   return {
-    metaTitle: "Sac Ağırlık Hesaplama – Çelik, Paslanmaz, Alüminyum Sac kg/m² Tablosu",
+    metaTitle: "Sac Ağırlık Hesaplama ve kg/m² Tablosu",
     description: `Sac ve levha ağırlığını ölçü, kalınlık ve malzemeye göre hesaplayın. 1 mm çelik sac ${f(plateKgPerM2(1), 2)} kg/m²; 1000×2000×2 mm levha ${f(sheet, 1)} kg. Kalınlığa göre kg/m² tablosu.`,
     h1: "Sac Ağırlık Hesaplama",
     intro:
@@ -392,7 +367,7 @@ function pipeContent(): PageContent {
   const thin = pipeKgPerMeter(114.3, 3.2);
   const thick = pipeKgPerMeter(114.3, 6.3);
   return {
-    metaTitle: "Boru Ağırlık Hesaplama – Çelik Boru kg/m Tablosu (DN15–DN300)",
+    metaTitle: "Boru Ağırlık Hesaplama ve kg/m Tablosu",
     description: `Boru ağırlığını dış çap ve et kalınlığından hesaplayın; DN seçin, malzemeyi değiştirin, su dolu ağırlığı görün. DN50 (60,3 × 3,2 mm) çelik boru ${f(kg, 2)} kg/m.`,
     h1: "Boru Ağırlık Hesaplama",
     intro:
@@ -481,7 +456,7 @@ function boxContent(): PageContent {
   const rounded = kgPerMeter(boxAreaRoundedMm2(40, 40, 3));
   const big = kgPerMeter(boxAreaRoundedMm2(100, 50, 3));
   return {
-    metaTitle: "Kutu Profil Ağırlık Hesaplama – Kare ve Dikdörtgen Profil kg/m Tablosu",
+    metaTitle: "Kutu Profil Ağırlık Hesaplama ve Tablosu",
     description: `Kare ve dikdörtgen kutu profil ağırlığını ölçü ve et kalınlığından hesaplayın; köşe yarıçapının etkisini görün. 40×40×3 profil ≈ ${f(rounded, 2)} kg/m.`,
     h1: "Kutu Profil Ağırlık Hesaplama",
     intro:
@@ -549,6 +524,7 @@ function boxContent(): PageContent {
       { question: "Alüminyum kutu profil ağırlığı nasıl bulunur?", answer: `Malzemeyi alüminyum seçin. Alüminyumun yoğunluğu ${f(aluminum, 0)} kg/m³ olduğundan aynı ölçüdeki profil çeliğin yaklaşık %${f((aluminum / steel) * 100, 0)}'i kadar gelir.` },
     ],
     extraRelated: [
+      { href: "/celik-profil-tablolari", label: "Çelik Profil Tabloları (IPE, HEA, HEB)" },
       { href: "/kaynakci-araclari", label: "Kaynakçı Araçları" },
       { href: "/malzeme-agirligi-hesaplama", label: "Malzeme Ağırlığı" },
     ],

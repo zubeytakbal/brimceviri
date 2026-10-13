@@ -182,6 +182,23 @@ export default function ElektrikciAraclariPage() {
               hesapla.
             </li>
             <li>
+              <Link href="/kva-kw-hesaplama">kVA kW Hesaplama</Link>{" "}
+              — jeneratör ve trafo gücünü kW, kVAr ve hat akımına çevir.
+            </li>
+            <li>
+              <Link href="/kompanzasyon-hesaplama">Kompanzasyon Hesabı</Link>{" "}
+              — güç faktörünü düzeltmek için gereken kVAr ve kondansatör
+              µF değerini hesapla.
+            </li>
+            <li>
+              <Link href="/motor-devir-hesaplama">Motor Devri Hesaplama</Link>{" "}
+              — kutup sayısı ve frekanstan senkron devri ve kaymayı bul.
+            </li>
+            <li>
+              <Link href="/direnc-renk-kodu">Direnç Renk Kodu</Link>{" "}
+              — 4, 5 ve 6 bantlı dirençlerin değerini renklerden oku.
+            </li>
+            <li>
               <Link href="/muhendislik-hesaplayicilari/elektrik-hesaplari/kw-to-amper-hesaplama">
                 kW → Amper Hesaplama
               </Link>{" "}

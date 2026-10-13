@@ -3445,6 +3445,42 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
     },
     {
+      url: `${baseUrl}/hidrolik-silindir-hesaplama`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.75,
+    },
+    {
+      url: `${baseUrl}/pnomatik-silindir-hesaplama`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.75,
+    },
+    {
+      url: `${baseUrl}/kva-kw-hesaplama`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.75,
+    },
+    {
+      url: `${baseUrl}/kompanzasyon-hesaplama`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.75,
+    },
+    {
+      url: `${baseUrl}/motor-devir-hesaplama`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.75,
+    },
+    {
+      url: `${baseUrl}/direnc-renk-kodu`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.75,
+    },
+    {
       url: `${baseUrl}/peyzaj-araclari`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",

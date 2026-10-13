@@ -16129,3 +16129,13 @@ a.all-units-row .all-units-name {
 .engineering-next-steps li a:hover {
   text-decoration: underline;
 }
+
+.resistor-drawing {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  margin: 0 auto 12px;
+  border-radius: 10px;
+  background: #ffffff;
+}

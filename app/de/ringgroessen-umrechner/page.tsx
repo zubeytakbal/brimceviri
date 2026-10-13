@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import RingSizeConverter from "../../components/RingSizeConverter";
+import { germanRingFact } from "../../converter/germanPageFacts";
 import { buildSiteUrl } from "../../siteConfig";
 
 export const metadata: Metadata = {
@@ -28,6 +29,7 @@ export const metadata: Metadata = {
 };
 
 export default function GermanRingSizePage() {
+  const facts = germanRingFact();
   return (
     <main className="all-conversions-page" lang="de">
       <div className="all-conversions-shell">
@@ -59,6 +61,10 @@ export default function GermanRingSizePage() {
             Messen Sie für das beste Ergebnis den Innendurchmesser eines
             gut passenden Rings und wählen Sie den nächsten Wert aus.
           </p>
+          <h2>{facts.title}</h2>
+          {facts.paragraphs.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
         </section>
       </div>
     </main>

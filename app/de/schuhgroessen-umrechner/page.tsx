@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import ShoeSizeConverter from "../../components/ShoeSizeConverter";
+import { germanShoeFact } from "../../converter/germanPageFacts";
 import { buildSiteUrl } from "../../siteConfig";
 
 export const metadata: Metadata = {
@@ -28,6 +29,7 @@ export const metadata: Metadata = {
 };
 
 export default function GermanShoeSizePage() {
+  const facts = germanShoeFact();
   return (
     <main className="all-conversions-page" lang="de">
       <div className="all-conversions-shell">
@@ -61,6 +63,10 @@ export default function GermanShoeSizePage() {
             Fuer die beste Annäherung messen Sie Ihre Fußlänge in
             Zentimetern und verwenden diese als Ausgangswert.
           </p>
+          <h2>{facts.title}</h2>
+          {facts.paragraphs.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
         </section>
       </div>
     </main>

@@ -2,6 +2,11 @@ import { seoTitle } from "../../seoTitle";
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import RecipeScalerConverter from "../../components/RecipeScalerConverter";
+import {
+  GERMAN_CAKE_RECIPE,
+  germanPanRatio,
+  germanRecipeFact,
+} from "../../converter/germanPageFacts";
 import { buildSiteUrl } from "../../siteConfig";
 
 export const metadata: Metadata = {
@@ -28,16 +33,9 @@ export const metadata: Metadata = {
   },
 };
 
-// Beispielrezept für 6 Personen; die Spalte "Für 4" wird mit 4/6 berechnet.
-const REZEPT: Array<[string, number, string]> = [
-  ["Mehl", 300, "g"],
-  ["Zucker", 180, "g"],
-  ["Butter", 150, "g"],
-  ["Eier", 3, "Stück"],
-  ["Milch", 150, "ml"],
-];
-
 export default function GermanRecipeScalerPage() {
+  const facts = germanRecipeFact();
+  const pan26 = germanPanRatio(26).toLocaleString("de-DE", { maximumFractionDigits: 2 });
   return (
     <main className="all-conversions-page" lang="de">
       <div className="all-conversions-shell">
@@ -86,7 +84,7 @@ export default function GermanRecipeScalerPage() {
                 </tr>
               </thead>
               <tbody>
-                {REZEPT.map(([zutat, menge, einheit]) => (
+                {GERMAN_CAKE_RECIPE.map(([zutat, menge, einheit]) => (
                   <tr key={zutat}>
                     <td>{zutat}</td>
                     <td>
@@ -104,11 +102,15 @@ export default function GermanRecipeScalerPage() {
 
           <h2>Backform und Backzeit</h2>
           <p>
-            Die Fläche einer runden Form wächst mit dem Quadrat des Durchmessers. Eine 26-cm-Springform hat (26 / 20)² ≈ 1,69-mal so viel
+            Die Fläche einer runden Form wächst mit dem Quadrat des Durchmessers. Eine 26-cm-Springform hat (26 / 20)² ≈ {pan26}-mal so viel
             Fläche wie eine 20-cm-Form; für die gleiche Teighöhe passt also die etwa 1,7-fache Menge. Die Backzeit hängt von der Teighöhe
             ab, nicht von der Menge: Bleibt der Teig gleich hoch, ändert sich wenig. Wird er höher, etwas niedriger und länger backen und
             mit einem Holzstäbchen prüfen.
           </p>
+          <h2>{facts.title}</h2>
+          {facts.paragraphs.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
         </section>
       </div>
     </main>

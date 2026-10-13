@@ -16073,3 +16073,59 @@ a.all-units-row .all-units-name {
   font-size: 0.92rem;
   color: #4b5b6b;
 }
+
+/* Mukavemet araçları */
+.metal-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.beam-diagram {
+  margin: 14px 0 0;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.beam-diagram figcaption {
+  margin-bottom: 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #172033;
+}
+
+.beam-diagram svg {
+  display: block;
+  width: 100%;
+  height: 110px;
+}
+
+.beam-diagram-axis {
+  stroke: #9aa9b6;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.beam-diagram-fill {
+  fill: rgba(15, 111, 108, 0.14);
+}
+
+.beam-diagram-line {
+  fill: none;
+  stroke: #0f6f6c;
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
+
+.engineering-next-steps li a {
+  color: #0f6f6c;
+  text-decoration: none;
+}
+
+.engineering-next-steps li a:hover {
+  text-decoration: underline;
+}

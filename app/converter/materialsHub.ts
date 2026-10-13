@@ -66,7 +66,9 @@ const conductivityIdMap: Record<string, string> = {
   granit: "granite",
   bazalt: "basalt",
   mermer: "marble",
-  alci: "gypsum",
+  // alci: kaldırıldı. Eski 2,3 W/mK değeri alçı için yanlıştı (alçı ve alçıpan 0,17–0,71 W/mK aralığında;
+  // Engineering Toolbox karşılaştırması). Malzemenin yoğunluğu (2320 kg/m³) ham alçıtaşına ait olduğundan
+  // tek bir doğru değer verilemiyor; ısıl iletkenlik gösterilmiyor.
   kum: "sand",
   cakil: "gravel",
   tugla: "brick",

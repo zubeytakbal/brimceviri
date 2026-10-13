@@ -629,7 +629,6 @@ export const conductivityPresets: Record<
     { id: "granite", label: "Granit", value: "2.8" },
     { id: "basalt", label: "Bazalt", value: "3.5" },
     { id: "marble", label: "Mermer", value: "3.5" },
-    { id: "gypsum", label: "Alçı", value: "2.3" },
     { id: "sand", label: "Kum", value: "0.7" },
     { id: "gravel", label: "Çakıl", value: "0.7" },
     { id: "brick", label: "Tuğla", value: "0.81" },

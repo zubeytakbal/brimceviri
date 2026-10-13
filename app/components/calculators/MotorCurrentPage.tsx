@@ -10,6 +10,8 @@ import { formatEngineeringValue } from "../../converter/pressureForceArea";
 import type { CalculatorLocale } from "../../converter/pressureForceArea";
 import type { EngineeringUnitDefinition } from "../../converter/engineeringUnits";
 import MotorCurrentCalculator from "./MotorCurrentCalculator";
+import EngineeringNextSteps from "../engineering/EngineeringNextSteps";
+import { ENGINEERING_FLOWS } from "../../converter/engineeringFlows";
 
 type UnitTableSection = {
   id: string;
@@ -660,6 +662,8 @@ export default function MotorCurrentPage({
             ))}
           </ol>
         </section>
+
+        {locale === "tr" ? <EngineeringNextSteps links={ENGINEERING_FLOWS["/muhendislik-hesaplayicilari/elektrik-hesaplari/motor-akimi-hesaplama"]} /> : null}
 
         <section className="conversion-section">
           <h2>{strings.relatedHeading}</h2>

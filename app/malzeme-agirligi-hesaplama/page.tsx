@@ -3,6 +3,8 @@ import Link from "@/app/components/SiteLink";
 import MaterialWeightCalculator from "../components/MaterialWeightCalculator";
 import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+import EngineeringNextSteps from "../components/engineering/EngineeringNextSteps";
+import { ENGINEERING_FLOWS } from "../converter/engineeringFlows";
 
 const faqItems: FaqItem[] = [
   {
@@ -86,6 +88,8 @@ export default function MaterialWeightCalculatorPage() {
               {item.answer}
             </p>
           ))}
+
+          <EngineeringNextSteps links={ENGINEERING_FLOWS["/malzeme-agirligi-hesaplama"]} />
 
           <h2>İlgili araçlar</h2>
           <p>

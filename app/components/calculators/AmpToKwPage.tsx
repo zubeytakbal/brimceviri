@@ -10,6 +10,8 @@ import { formatEngineeringValue } from "../../converter/pressureForceArea";
 import type { CalculatorLocale } from "../../converter/pressureForceArea";
 import type { EngineeringUnitDefinition } from "../../converter/engineeringUnits";
 import AmpToKwCalculator from "./AmpToKwCalculator";
+import EngineeringNextSteps from "../engineering/EngineeringNextSteps";
+import { ENGINEERING_FLOWS } from "../../converter/engineeringFlows";
 
 type UnitTableSection = {
   id: string;
@@ -657,6 +659,8 @@ export default function AmpToKwPage({
             ))}
           </ol>
         </section>
+
+        {locale === "tr" ? <EngineeringNextSteps links={ENGINEERING_FLOWS["/muhendislik-hesaplayicilari/elektrik-hesaplari/amper-to-kw-hesaplama"]} /> : null}
 
         <section className="conversion-section">
           <h2>{strings.relatedHeading}</h2>

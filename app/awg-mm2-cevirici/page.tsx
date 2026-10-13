@@ -3,6 +3,8 @@ import Link from "@/app/components/SiteLink";
 import AwgConverter from "../components/AwgConverter";
 import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+import EngineeringNextSteps from "../components/engineering/EngineeringNextSteps";
+import { ENGINEERING_FLOWS } from "../converter/engineeringFlows";
 
 const faqItems: FaqItem[] = [
   {
@@ -85,6 +87,8 @@ export default function AwgConverterPage() {
               {item.answer}
             </p>
           ))}
+
+          <EngineeringNextSteps links={ENGINEERING_FLOWS["/awg-mm2-cevirici"]} />
 
           <h2>İlgili araçlar</h2>
           <p>

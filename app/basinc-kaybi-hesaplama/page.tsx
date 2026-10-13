@@ -3,6 +3,8 @@ import Link from "@/app/components/SiteLink";
 import PressureLossCalculator from "../components/PressureLossCalculator";
 import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+import EngineeringNextSteps from "../components/engineering/EngineeringNextSteps";
+import { ENGINEERING_FLOWS } from "../converter/engineeringFlows";
 
 const faqItems: FaqItem[] = [
   {
@@ -85,6 +87,8 @@ export default function PressureLossPage() {
             bakır) yüksek C değerine, paslı/eski çelik borular düşük
             C değerine sahiptir.
           </p>
+
+          <EngineeringNextSteps links={ENGINEERING_FLOWS["/basinc-kaybi-hesaplama"]} />
 
           <h2>İlgili araçlar</h2>
           <p>

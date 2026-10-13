@@ -9,6 +9,8 @@ import { radiusOfGyrationCm } from "../../converter/metal/steelSectionMath";
 import { STEEL_SECTIONS, type SteelSection, type SteelSeriesId } from "../../converter/metal/steelSections";
 import { buildSiteUrl } from "../../siteConfig";
 import TimeToolPage from "../time/TimeToolPage";
+import { STEEL_TABLE_FLOW } from "../../converter/engineeringFlows";
+import EngineeringNextSteps from "../engineering/EngineeringNextSteps";
 import DataTable from "./DataTable";
 import { sectionName } from "../../converter/metal/steelNames";
 import SteelSectionTool from "./SteelSectionTool";
@@ -513,6 +515,7 @@ export default function SteelSectionPage({ id }: { id: SteelPageId }) {
           {s.body}
         </section>
       ))}
+      <EngineeringNextSteps links={STEEL_TABLE_FLOW} />
       <h2 id="kaynaklar">Kaynaklar ve doğrulama</h2>
       <p>
         Ölçüler ve kesit değerleri: ArcelorMittal Europe, &quot;Sections and Merchant Bars – Sales Programme&quot; (2026) ve IPN eki; boyut standardı EN 10365:2017. Her profil için kesit alanı, metre ağırlığı,

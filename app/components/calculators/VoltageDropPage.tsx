@@ -12,6 +12,8 @@ import type { CalculatorLocale } from "../../converter/pressureForceArea";
 import type { EngineeringUnitDefinition } from "../../converter/engineeringUnits";
 import { resistivityReferenceTable } from "../../converter/electricalConductor";
 import VoltageDropCalculator from "./VoltageDropCalculator";
+import EngineeringNextSteps from "../engineering/EngineeringNextSteps";
+import { ENGINEERING_FLOWS } from "../../converter/engineeringFlows";
 
 type UnitTableSection = {
   id: string;
@@ -716,6 +718,8 @@ export default function VoltageDropPage({
             ))}
           </ol>
         </section>
+
+        {locale === "tr" ? <EngineeringNextSteps links={ENGINEERING_FLOWS["/muhendislik-hesaplayicilari/elektrik-hesaplari/gerilim-dusumu-hesaplama"]} /> : null}
 
         <section className="conversion-section">
           <h2>{strings.relatedHeading}</h2>

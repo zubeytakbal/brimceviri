@@ -3,6 +3,8 @@ import Link from "@/app/components/SiteLink";
 import AcCapacityCalculator from "../components/AcCapacityCalculator";
 import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+import EngineeringNextSteps from "../components/engineering/EngineeringNextSteps";
+import { ENGINEERING_FLOWS } from "../converter/engineeringFlows";
 
 const faqItems: FaqItem[] = [
   {
@@ -143,6 +145,8 @@ export default function AcCapacityCalculatorPage() {
             kapasiteyi almak odayı yeterince soğutamamana yol açar, bu
             yüzden bir üst standart kapasite güvenli tercihtir.
           </p>
+
+          <EngineeringNextSteps links={ENGINEERING_FLOWS["/klima-btu-hesaplama"]} />
 
           <h2>İlgili araçlar</h2>
           <p>

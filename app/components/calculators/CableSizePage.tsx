@@ -14,6 +14,8 @@ import {
   STANDARD_CROSS_SECTIONS_MM2,
 } from "../../converter/electricalConductor";
 import CableSizeCalculator from "./CableSizeCalculator";
+import EngineeringNextSteps from "../engineering/EngineeringNextSteps";
+import { ENGINEERING_FLOWS } from "../../converter/engineeringFlows";
 
 type UnitTableSection = {
   id: string;
@@ -729,6 +731,8 @@ export default function CableSizePage({
             ))}
           </ol>
         </section>
+
+        {locale === "tr" ? <EngineeringNextSteps links={ENGINEERING_FLOWS["/muhendislik-hesaplayicilari/elektrik-hesaplari/kablo-kesiti-hesaplama"]} /> : null}
 
         <section className="conversion-section">
           <h2>{strings.relatedHeading}</h2>

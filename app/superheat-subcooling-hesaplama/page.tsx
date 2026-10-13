@@ -3,6 +3,8 @@ import Link from "@/app/components/SiteLink";
 import SuperheatSubcoolingCalculator from "../components/SuperheatSubcoolingCalculator";
 import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+import EngineeringNextSteps from "../components/engineering/EngineeringNextSteps";
+import { ENGINEERING_FLOWS } from "../converter/engineeringFlows";
 
 const faqItems: FaqItem[] = [
   {
@@ -100,6 +102,8 @@ export default function SuperheatSubcoolingCalculatorPage() {
               {item.answer}
             </p>
           ))}
+
+          <EngineeringNextSteps links={ENGINEERING_FLOWS["/superheat-subcooling-hesaplama"]} />
 
           <h2>İlgili araçlar</h2>
           <p>

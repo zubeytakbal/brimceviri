@@ -3,6 +3,8 @@ import Link from "@/app/components/SiteLink";
 import CuttingSpeedCalculator from "../components/CuttingSpeedCalculator";
 import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+import EngineeringNextSteps from "../components/engineering/EngineeringNextSteps";
+import { ENGINEERING_FLOWS } from "../converter/engineeringFlows";
 
 const faqItems: FaqItem[] = [
   {
@@ -148,6 +150,8 @@ export default function CuttingSpeedCalculatorPage() {
               {item.answer}
             </p>
           ))}
+
+          <EngineeringNextSteps links={ENGINEERING_FLOWS["/kesme-hizi-devir-hesaplama"]} />
 
           <h2>İlgili araçlar</h2>
           <p>

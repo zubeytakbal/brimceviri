@@ -3,6 +3,8 @@ import Link from "@/app/components/SiteLink";
 import ElongationCalculator from "../components/ElongationCalculator";
 import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+import EngineeringNextSteps from "../components/engineering/EngineeringNextSteps";
+import { ENGINEERING_FLOWS } from "../converter/engineeringFlows";
 
 const faqItems: FaqItem[] = [
   {
@@ -86,6 +88,8 @@ export default function ElongationCalculatorPage() {
               {item.answer}
             </p>
           ))}
+
+          <EngineeringNextSteps links={ENGINEERING_FLOWS["/elastik-uzama-hesaplama"]} />
 
           <h2>İlgili araçlar</h2>
           <p>

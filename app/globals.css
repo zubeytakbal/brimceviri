@@ -16045,3 +16045,31 @@ a.all-units-row .all-units-name {
     width: 100%;
   }
 }
+
+/* Mühendislik araçlarında "Sonraki adım" bağlantıları */
+.engineering-next-steps ul {
+  display: grid;
+  gap: 10px;
+  padding: 0;
+  margin: 12px 0 24px;
+  list-style: none;
+}
+
+.engineering-next-steps li {
+  display: grid;
+  gap: 2px;
+  padding: 12px 14px;
+  border: 1px solid #d7e3ea;
+  border-left: 4px solid #0f6f6c;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.engineering-next-steps li a {
+  font-weight: 700;
+}
+
+.engineering-next-steps li span {
+  font-size: 0.92rem;
+  color: #4b5b6b;
+}

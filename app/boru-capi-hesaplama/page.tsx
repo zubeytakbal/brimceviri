@@ -3,6 +3,8 @@ import Link from "@/app/components/SiteLink";
 import PipeFlowCalculator from "../components/PipeFlowCalculator";
 import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+import EngineeringNextSteps from "../components/engineering/EngineeringNextSteps";
+import { ENGINEERING_FLOWS } from "../converter/engineeringFlows";
 
 const faqItems: FaqItem[] = [
   {
@@ -85,6 +87,8 @@ export default function PipeFlowPage() {
             0,5-2,5 m/s aralığındadır. Çok düşük hız çökelmeye, çok
             yüksek hız aşınma ve gürültüye yol açabilir.
           </p>
+
+          <EngineeringNextSteps links={ENGINEERING_FLOWS["/boru-capi-hesaplama"]} />
 
           <h2>İlgili araçlar</h2>
           <p>

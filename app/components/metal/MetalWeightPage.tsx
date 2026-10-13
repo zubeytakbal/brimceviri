@@ -28,6 +28,8 @@ import {
 } from "../../converter/metal/metalWeight";
 import { buildSiteUrl } from "../../siteConfig";
 import TimeToolPage from "../time/TimeToolPage";
+import { ENGINEERING_FLOWS } from "../../converter/engineeringFlows";
+import EngineeringNextSteps from "../engineering/EngineeringNextSteps";
 import DataTable from "./DataTable";
 import MetalWeightTool, { type MetalWeightKind } from "./MetalWeightTool";
 
@@ -585,6 +587,7 @@ export default function MetalWeightPage({ kind }: { kind: MetalWeightKind }) {
           {s.body}
         </section>
       ))}
+      <EngineeringNextSteps links={ENGINEERING_FLOWS[path] ?? []} />
       <h2 id="kaynaklar">Kaynaklar ve hesap yöntemi</h2>
       <p>{SOURCES[kind]}</p>
       <p>Sonuçlar teorik ağırlıktır; sipariş, nakliye ve statik hesap gibi kararlarda üreticinin ürün belgesini esas alın.</p>

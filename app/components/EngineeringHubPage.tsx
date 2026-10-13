@@ -399,6 +399,13 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
             description: "Kare ve dikdörtgen profilin metre ağırlığını köşe yarıçapı etkisiyle bulun.",
           },
           {
+            slug: "celik-profil-tablolari",
+            href: "/celik-profil-tablolari",
+            title: "Çelik Profil Tabloları",
+            icon: "materialWeightCalculator",
+            description: "IPE, HEA, HEB, HEM, NPU ve NPI profillerin ölçü, ağırlık ve kesit değerleri.",
+          },
+          {
             slug: "sertlik-donusum-hesaplama",
             href: "/sertlik-donusum-hesaplama",
             title: "Sertlik Dönüşümü",

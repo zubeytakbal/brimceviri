@@ -117,6 +117,7 @@ export const everydayToolLinksByCategory: Record<
     { href: "/sac-agirlik-hesaplama", label: "Sac Ağırlık Hesaplama" },
     { href: "/boru-agirlik-hesaplama", label: "Boru Ağırlık Hesaplama" },
     { href: "/kutu-profil-agirlik-hesaplama", label: "Kutu Profil Ağırlık Hesaplama" },
+    { href: "/celik-profil-tablolari", label: "Çelik Profil Tabloları (IPE, HEA, HEB, NPU, NPI)" },
   ],
   altin_ayar: [
     { href: "/altin-hesaplama", label: "Altın Hesaplama (Çeyrek, Yarım, Tam, Bilezik)" },

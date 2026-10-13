@@ -171,6 +171,11 @@ export default function InsaatciAraclariPage() {
               ettiğini ve pozlara göre metraj toplamını hesapla.
             </li>
             <li>
+              <Link href="/celik-profil-tablolari">Çelik Profil Tabloları</Link> —
+              IPE, HEA, HEB, NPU ve NPI profillerin ölçü ve ağırlıkları,
+              boy ve adetten toplam tonaj.
+            </li>
+            <li>
               <Link href="/siva-hesaplama">Sıva Hesaplama</Link> —
               sıvanacak alan ve kalınlığa göre gereken alçı veya çimento
               esaslı sıva miktarını hesapla.

@@ -88,6 +88,57 @@ export function germanSiblingUnits(unitPage: LocalizedGermanUnitPage, limit = 12
     .map((p) => ({ href: `/de/einheiten/${p.slug}`, label: `${p.name} (${p.symbol})` }));
 }
 
+const WORKED_AMOUNTS = [3, 4, 6, 8, 9, 12, 15, 18, 24, 30, 45, 60, 90, 120];
+
+function registrySymbol(category: string, shown: string) {
+  return (
+    getUnitsForCategory(category).find((unit) => (unit.displaySymbol ?? unit.symbol) === shown)?.symbol ?? shown
+  );
+}
+
+/** Weitere Beträge in bis zu vier Zieleinheiten, außerhalb der häufigen Werte. */
+export function germanUnitWorked(unitPage: LocalizedGermanUnitPage) {
+  const targets = germanUnitConversionTable(unitPage, 4);
+  if (!targets.length) return null;
+  const rows = targets.flatMap((target) => {
+    const targetSymbol = registrySymbol(unitPage.category, target.symbol);
+    return WORKED_AMOUNTS.map((amount) => {
+      let value = Number.NaN;
+      try {
+        value = convert(unitPage.category, amount, unitPage.unit, targetSymbol);
+      } catch {
+        /* ungültige Umrechnung */
+      }
+      const text = formatGermanUnitValue(value);
+      if (text === "—") return null;
+      return {
+        label: `${amount.toLocaleString("de-DE")} ${unitPage.name} in ${target.name}`,
+        value: `${text} ${target.symbol}`,
+      };
+    }).filter((row): row is { label: string; value: string } => Boolean(row));
+  });
+  if (!rows.length) return null;
+  const reverse = targets
+    .map((target) => {
+      const targetSymbol = registrySymbol(unitPage.category, target.symbol);
+      let back = Number.NaN;
+      try {
+        back = convert(unitPage.category, 1, targetSymbol, unitPage.unit);
+      } catch {
+        /* Rückrichtung gibt es nicht */
+      }
+      const backText = formatGermanUnitValue(back);
+      return backText === "—" ? "" : `1 ${target.name} = ${backText} ${unitPage.symbol} (${unitPage.name}).`;
+    })
+    .filter(Boolean)
+    .join(" ");
+  return {
+    heading: `Weitere Beispiele für ${unitPage.name}`,
+    rows,
+    reverse,
+  };
+}
+
 /** FAQ aus den berechneten Werten und den Einheitendaten. */
 export function germanUnitFaq(unitPage: LocalizedGermanUnitPage, table: GermanUnitTableRow[]): FaqItem[] {
   const items: FaqItem[] = table.slice(0, 3).map((row) => ({

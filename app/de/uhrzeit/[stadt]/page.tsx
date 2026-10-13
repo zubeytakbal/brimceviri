@@ -6,6 +6,7 @@ import TimeToolPage from "../../../components/time/TimeToolPage";
 import CityLiveClock from "../../../components/world/CityLiveClock";
 import type { FaqItem } from "../../../converter/faqSchema";
 import { cityFacts, describeDifference, hourMapping, nearbyCities } from "../../../converter/time/cityFacts";
+import { buildGermanCityReading } from "../../../converter/time/germanCityReading";
 import { cityNameDe, cityPathDe, countryNameDe, findCityDe, citySlugDe } from "../../../converter/time/germanWorld";
 import { differenceMinutes, formatUtcOffset, offsetMinutes } from "../../../converter/time/timezones";
 import { worldCities } from "../../../converter/time/worldCities";
@@ -95,6 +96,7 @@ export default async function GermanCityTimePage({ params }: { params: Promise<{
     ? ` Ausnahme: ${exceptions.map((p) => `vom ${dm(p.from)} bis ${dm(p.to)} ${hoursText(p.diff)}`).join(" und ")}, weil ${name} und Deutschland die Uhren an unterschiedlichen Tagen umstellen.`
     : "";
   const noon = mapping[12];
+  const reading = buildGermanCityReading(city, now);
 
   const faqItems: FaqItem[] = [
     {
@@ -181,6 +183,7 @@ export default async function GermanCityTimePage({ params }: { params: Promise<{
           { id: "zeitverschiebung", label: `Zeitverschiebung Deutschland – ${name}` },
           { id: "umrechnen", label: "Uhrzeiten umrechnen" },
           { id: "sonne", label: "Sonnenaufgang und Sonnenuntergang" },
+          { id: "zahlen", label: `${name} in Zahlen` },
           { id: "staedte", label: "Weitere Städte" },
           { id: "faq", label: "Häufige Fragen" },
         ]}
@@ -287,6 +290,11 @@ export default async function GermanCityTimePage({ params }: { params: Promise<{
         <p>
           <small>Ortszeit {name}; berechnet nach dem NOAA-Verfahren, Genauigkeit etwa ±2 Minuten.</small>
         </p>
+
+        <h2 id="zahlen">{reading.heading}</h2>
+        {reading.paragraphs.map((paragraph) => (
+          <p key={paragraph}>{paragraph}</p>
+        ))}
 
         <h2 id="staedte">Weitere Städte</h2>
         <p>

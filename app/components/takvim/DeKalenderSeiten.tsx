@@ -1,4 +1,5 @@
 import Link from "@/app/components/SiteLink";
+import { buildGermanMonthReading } from "../../converter/calendar/germanMonthReading";
 import {
   DE_JAHRE,
   DE_KATEGORIE,
@@ -406,6 +407,7 @@ export function DeMonatSeite({ year, month }: { year: number; month: number }) {
     month,
     day: daysInMonth(year, month),
   }).week;
+  const reading = buildGermanMonthReading(year, month);
   const faq: FaqItem[] = [
     {
       question: `Wie viele Arbeitstage hat der ${name} ${year}?`,
@@ -503,6 +505,7 @@ export function DeMonatSeite({ year, month }: { year: number; month: number }) {
         tocTitle={T.toc}
         tocItems={[
           { id: "tage", label: `Besondere Tage im ${name}` },
+          { id: "zahlen", label: `${name} ${year} in Zahlen` },
           { id: "arbeitstage", label: "Arbeitstage nach Bundesland" },
           { id: "faq", label: T.faq },
         ]}
@@ -520,6 +523,10 @@ export function DeMonatSeite({ year, month }: { year: number; month: number }) {
             Kalender.
           </p>
         )}
+        <h2 id="zahlen">{reading.heading}</h2>
+        {reading.paragraphs.map((paragraph) => (
+          <p key={paragraph}>{paragraph}</p>
+        ))}
         <h2 id="arbeitstage">
           Arbeitstage im {name} {year} nach Bundesland
         </h2>
@@ -539,7 +546,9 @@ export function DeMonatSeite({ year, month }: { year: number; month: number }) {
                       {s.name}
                     </Link>
                   </td>
-                  <td>{n}</td>
+                  <td>
+                    {n} Arbeitstage im {name} {year}
+                  </td>
                 </tr>
               ))}
             </tbody>

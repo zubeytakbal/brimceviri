@@ -18,6 +18,7 @@ import {
   germanUnitCommonValues,
   germanUnitConversionTable,
   germanUnitFaq,
+  germanUnitWorked,
 } from "../../../converter/germanUnitGuideExtras";
 import { SITE_URL, buildSiteUrl } from "../../../siteConfig";
 
@@ -142,6 +143,7 @@ export default async function GermanUnitInformationPage({
   const commonValues = germanUnitCommonValues(unitPage, conversionTable[0]);
   const siblings = germanSiblingUnits(unitPage);
   const faqItems = germanUnitFaq(unitPage, conversionTable);
+  const worked = germanUnitWorked(unitPage);
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -322,6 +324,25 @@ export default async function GermanUnitInformationPage({
                     </tbody>
                   </table>
                 </div>
+              </section>
+            )}
+
+            {worked && (
+              <section className="conversion-section" id="beispiele">
+                <h2>{worked.heading}</h2>
+                <div className="conversion-table-wrap">
+                  <table className="conversion-table">
+                    <tbody>
+                      {worked.rows.map((row) => (
+                        <tr key={row.label}>
+                          <td>{row.label}</td>
+                          <td>{row.value}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                {worked.reverse ? <p>{worked.reverse}</p> : null}
               </section>
             )}
 

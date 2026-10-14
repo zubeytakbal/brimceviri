@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { buildShareUrl } from "../converter/shareLink";
+import { getFloatingButtonLabels } from "../converter/floatingButtonLabels";
 import { isTrackablePath } from "../converter/recentTools";
 
 // Arac sayfalarinda baglantiyi panoya kopyalar (tarayici izin vermezse sessizce hicbir sey yapmaz).
@@ -18,7 +19,8 @@ export default function ShareLinkButton() {
 
   if (!pathname || !isTrackablePath(pathname)) return null;
 
-  const label = copied ? "Bağlantı kopyalandı / Link copied" : "Bağlantıyı kopyala / Copy link";
+  const labels = getFloatingButtonLabels(pathname);
+  const label = copied ? labels.linkCopied : labels.copyLink;
 
   return (
     <button

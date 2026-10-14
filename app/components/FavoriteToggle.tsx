@@ -8,6 +8,7 @@ import {
   subscribeToFavorites,
   toggleFavorite,
 } from "../converter/favoriteTools";
+import { getFloatingButtonLabels } from "../converter/floatingButtonLabels";
 import { isTrackablePath } from "../converter/recentTools";
 
 // Arac sayfalarinda sag altta kucuk bir yildiz dugmesi; sayfayi favorilere ekler/cikarir.
@@ -18,7 +19,8 @@ export default function FavoriteToggle() {
   if (!pathname || !isTrackablePath(pathname)) return null;
 
   const active = favorites.some((item) => item.href === pathname);
-  const label = active ? "Favorilerden çıkar / Remove favorite" : "Favorilere ekle / Add to favorites";
+  const labels = getFloatingButtonLabels(pathname);
+  const label = active ? labels.favoriteRemove : labels.favoriteAdd;
 
   return (
     <button

@@ -95,6 +95,22 @@ export const ENGINEERING_FLOWS: Record<string, FlowLink[]> = {
   ],
   "/civata-torku-hesaplama": [
     { href: "/elastik-uzama-hesaplama", label: "Elastik Uzama", why: "Sıkma kuvvetinin cıvatada oluşturduğu uzamayı hesaplayın." },
+    { href: "/civata-mukavemet-siniflari", label: "Cıvata Mukavemet Sınıfları", why: "Seçtiğiniz sınıfın kopma ve akma yükünü görün." },
+  ],
+  "/metrik-vida-tablosu": [
+    { href: "/civata-mukavemet-siniflari", label: "Cıvata Mukavemet Sınıfları", why: "Vidanın 8.8, 10.9 ya da 12.9 sınıfında taşıyacağı yükü bulun." },
+    { href: "/civata-torku-hesaplama", label: "Cıvata Torku", why: "Bu ölçüdeki cıvatanın sıkma momentini hesaplayın." },
+    { href: "/boru-disi-olculeri", label: "Boru Dişi Ölçüleri", why: "Metrik olmayan inç boru dişlerini tanıyın." },
+  ],
+  "/civata-mukavemet-siniflari": [
+    { href: "/civata-torku-hesaplama", label: "Cıvata Torku", why: "Sınıfa uygun sıkma momentini bulun." },
+    { href: "/metrik-vida-tablosu", label: "Metrik Vida Tablosu", why: "Adım, kılavuz matkap ve anahtar ağzı ölçülerine bakın." },
+    { href: "/elastik-uzama-hesaplama", label: "Elastik Uzama", why: "Yük altında cıvatanın ne kadar uzadığını hesaplayın." },
+  ],
+  "/boru-disi-olculeri": [
+    { href: "/boru-capi-donusum-hesaplama", label: "DN-NPS Boru Çapı", why: "Boru anma çapının dış çap ve et kalınlığı karşılığını görün." },
+    { href: "/boru-agirlik-hesaplama", label: "Boru Ağırlığı", why: "Çelik borunun metre ağırlığını hesaplayın." },
+    { href: "/metrik-vida-tablosu", label: "Metrik Vida Tablosu", why: "Metrik vidaların adım ve kılavuz ölçülerine bakın." },
   ],
 
   // Statik ve mukavemet

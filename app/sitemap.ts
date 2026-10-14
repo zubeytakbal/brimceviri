@@ -3485,6 +3485,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
     },
     {
+      url: `${baseUrl}/metrik-vida-tablosu`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.75,
+    },
+    {
+      url: `${baseUrl}/civata-mukavemet-siniflari`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.75,
+    },
+    {
+      url: `${baseUrl}/boru-disi-olculeri`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.75,
+    },
+    {
       url: `${baseUrl}/hidrolik-silindir-hesaplama`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",

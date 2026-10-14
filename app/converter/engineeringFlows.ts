@@ -27,6 +27,7 @@ export const ENGINEERING_FLOWS: Record<string, FlowLink[]> = {
     { href: `${E}/kablo-kesiti-hesaplama`, label: "Kablo Kesiti", why: "Motor besleme kablosunun kesitini seçin." },
     { href: `${E}/gerilim-dusumu-hesaplama`, label: "Gerilim Düşümü", why: "Motor hattındaki gerilim düşümünü kontrol edin." },
     { href: "/mil-burulma-hesaplama", label: "Mil Burulma Hesabı", why: "Motor gücü ve devrinden mil torkunu ve gereken mil çapını bulun." },
+    { href: "/motor-devir-hesaplama", label: "Motor Devri", why: "Kutup sayısından senkron devri ve kaymayı bulun." },
   ],
   "/awg-mm2-cevirici": [
     { href: `${E}/kablo-kesiti-hesaplama`, label: "Kablo Kesiti", why: "Metrik kesit seçimini yük akımına göre yapın." },
@@ -134,6 +135,32 @@ export const ENGINEERING_FLOWS: Record<string, FlowLink[]> = {
     { href: "/boru-capi-hesaplama", label: "Boru Çapı ve Akış Hızı", why: "Bulduğunuz su debisine uygun boru çapını seçin." },
     { href: "/pompa-gucu-hesaplama", label: "Pompa Gücü", why: "Bu debiyi dolaştıracak pompanın gücünü hesaplayın." },
     { href: "/u-degeri-hesaplama", label: "U Değeri", why: "Isı yükünün kaynağı olan duvar ve çatı kayıplarını hesaplayın." },
+  ],
+
+  // Hidrolik ve pnömatik
+  "/hidrolik-silindir-hesaplama": [
+    { href: "/pompa-gucu-hesaplama", label: "Pompa Gücü", why: "Hidrolik ünitenin debi ve basınçtan pompa gücünü bulun." },
+    { href: "/burkulma-hesaplama", label: "Burkulma Hesabı", why: "Uzun stroklu silindirde rotun burkulma yükünü kontrol edin." },
+    { href: `${E}/motor-akimi-hesaplama`, label: "Motor Akımı", why: "Hidrolik pompa motorunun akımını hesaplayın." },
+  ],
+  "/pnomatik-silindir-hesaplama": [
+    { href: "/hidrolik-silindir-hesaplama", label: "Hidrolik Silindir", why: "Daha büyük kuvvetler için hidrolik silindirle karşılaştırın." },
+  ],
+
+  // Elektrik ek araçları
+  "/kva-kw-hesaplama": [
+    { href: "/kompanzasyon-hesaplama", label: "Kompanzasyon", why: "Düşük güç faktörünü düzeltmek için gereken kVAr'ı bulun." },
+    { href: `${E}/kablo-kesiti-hesaplama`, label: "Kablo Kesiti", why: "Bulduğunuz akıma göre kablo kesitini seçin." },
+  ],
+  "/kompanzasyon-hesaplama": [
+    { href: "/kva-kw-hesaplama", label: "kVA kW Hesaplama", why: "Kompanzasyon öncesi ve sonrası görünür gücü ve akımı karşılaştırın." },
+  ],
+  "/motor-devir-hesaplama": [
+    { href: "/mil-burulma-hesaplama", label: "Mil Burulma Hesabı", why: "Motor gücü ve devrinden mil torkunu ve çapını bulun." },
+    { href: `${E}/motor-akimi-hesaplama`, label: "Motor Akımı", why: "Motorun çalışma akımını hesaplayın." },
+  ],
+  "/direnc-renk-kodu": [
+    { href: "/hesaplayicilar/ohm-yasasi", label: "Ohm Yasası", why: "Direnç değeriyle akımı ve gerilimi hesaplayın." },
   ],
 
   // Isıtma ve soğutma

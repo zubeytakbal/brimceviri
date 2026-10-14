@@ -108,7 +108,7 @@ function YearChart({ year, lat, lon, mark }: { year: number; lat: number; lon: n
   const W = 720;
   const H = 260;
   const L = 48;
-  const T = 14;
+  const T = 22;
   const pw = W - L - 8;
   const ph = H - T - 24;
   const x = (i: number) => L + (i / (days.length - 1)) * pw;

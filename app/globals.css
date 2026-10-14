@@ -12031,6 +12031,17 @@ a.all-units-row .all-units-name {
   margin: 0;
 }
 
+/* ===== Hesaplayıcı içinde açılır tablo ===== */
+.calc-details {
+  display: grid;
+  gap: 10px;
+}
+
+.calc-details summary {
+  cursor: pointer;
+  font-weight: 700;
+}
+
 /* ===== Güneş doğuşu / gündönümü araçları ===== */
 .sun-tool {
   background: linear-gradient(165deg, #12244a 0%, #1f5f8b 55%, #f2a65a 100%);
@@ -13563,6 +13574,18 @@ a.all-units-row .all-units-name {
 }
 
 .date-converter-modes.is-light button.is-active {
+  border-color: #0f6f6c;
+  background: #0f6f6c;
+  color: #ffffff;
+}
+
+/* Hesaplayıcıda sekmeler koyu giriş kutusunun dışında (açık zeminde) duruyorsa açık tema. */
+.date-calc > .date-converter-modes button {
+  border-color: #cfdde5;
+  color: #0f6f6c;
+}
+
+.date-calc > .date-converter-modes button.is-active {
   border-color: #0f6f6c;
   background: #0f6f6c;
   color: #ffffff;

@@ -107,6 +107,26 @@ export const ENGINEERING_FLOWS: Record<string, FlowLink[]> = {
     { href: "/metrik-vida-tablosu", label: "Metrik Vida Tablosu", why: "Adım, kılavuz matkap ve anahtar ağzı ölçülerine bakın." },
     { href: "/elastik-uzama-hesaplama", label: "Elastik Uzama", why: "Yük altında cıvatanın ne kadar uzadığını hesaplayın." },
   ],
+  "/petek-dilim-hesaplama": [
+    { href: "/u-degeri-hesaplama", label: "U Değeri", why: "Duvarınızın gerçek U değerini katmanlarına göre hesaplayın." },
+    { href: "/kombi-kac-kw-hesaplama", label: "Kombi Kaç kW?", why: "Odaların toplam ısı kaybına ve sıcak suya göre kombi gücünü bulun." },
+    { href: "/debi-isi-yuku-hesaplama", label: "Debiden Isı Yükü", why: "Petek devresindeki su debisini hesaplayın." },
+  ],
+  "/kombi-kac-kw-hesaplama": [
+    { href: "/petek-dilim-hesaplama", label: "Petek Dilim Hesabı", why: "Oda oda ısı kaybını ve gereken peteği bulun." },
+    { href: "/dogalgaz-tuketimi-hesaplama", label: "Doğalgaz Tüketimi", why: "Kombinin aylık doğalgaz tüketimini tahmin edin." },
+    { href: "/u-degeri-hesaplama", label: "U Değeri", why: "Yalıtımın ısı kaybını ne kadar düşürdüğünü görün." },
+  ],
+  "/pis-su-borusu-egimi-hesaplama": [
+    { href: "/basinc-kaybi-hesaplama", label: "Basınç Kaybı", why: "Basınçlı temiz su hatlarında sürtünme kaybını hesaplayın." },
+    { href: "/boru-capi-hesaplama", label: "Boru Çapı ve Akış Hızı", why: "Basınçlı hatta debiye uygun boru çapını seçin." },
+    { href: "/tank-hacmi-hesaplama", label: "Tank Hacmi", why: "Atık su ya da yağmur suyu deposunun hacmini hesaplayın." },
+  ],
+  "/tank-hacmi-hesaplama": [
+    { href: "/su-ozellikleri-tablosu", label: "Su Özellikleri", why: "Sıcaklığa göre suyun yoğunluğunu ve hacim değişimini görün." },
+    { href: "/boru-capi-hesaplama", label: "Boru Çapı ve Akış Hızı", why: "Tankı dolduracak ya da boşaltacak hattın çapını seçin." },
+    { href: "/pompa-gucu-hesaplama", label: "Pompa Gücü", why: "Tankı belirli sürede doldurmak için gereken pompa gücünü bulun." },
+  ],
   "/boru-disi-olculeri": [
     { href: "/boru-capi-donusum-hesaplama", label: "DN-NPS Boru Çapı", why: "Boru anma çapının dış çap ve et kalınlığı karşılığını görün." },
     { href: "/boru-agirlik-hesaplama", label: "Boru Ağırlığı", why: "Çelik borunun metre ağırlığını hesaplayın." },
@@ -134,6 +154,7 @@ export const ENGINEERING_FLOWS: Record<string, FlowLink[]> = {
 
   // Isı ve akışkan
   "/u-degeri-hesaplama": [
+    { href: "/petek-dilim-hesaplama", label: "Petek Dilim Hesabı", why: "Bulduğunuz U değeriyle odanın petek ihtiyacını hesaplayın." },
     { href: "/mantolama-hesaplama", label: "Mantolama Hesaplama", why: "Seçtiğiniz yalıtım kalınlığı için gereken levha adedini bulun." },
     { href: "/yalitim-amortisman-hesaplama", label: "Yalıtım Amortismanı", why: "Yalıtımın kendini kaç yılda çıkardığını hesaplayın." },
     { href: "/debi-isi-yuku-hesaplama", label: "Debiden Isı Yükü", why: "Toplam ısı kaybına göre kalorifer su debisini bulun." },

@@ -5,6 +5,7 @@ import Script from "next/script";
 import { NotificationSlotProvider } from "./components/NotificationSlotProvider";
 import RecentToolsTracker from "./components/RecentToolsTracker";
 import FavoriteToggle from "./components/FavoriteToggle";
+import ShareLinkButton from "./components/ShareLinkButton";
 import SiteHeader from "./components/SiteHeader";
 import SiteFooter from "./components/SiteFooter";
 import { LOCALE_DEFINITIONS } from "./i18n/config";
@@ -187,6 +188,7 @@ export default function RootLayout({
           <SiteHeader />
           <RecentToolsTracker />
           <FavoriteToggle />
+          <ShareLinkButton />
           {children}
         </NotificationSlotProvider>
         <SiteFooter />

@@ -12109,6 +12109,10 @@ a.all-units-row .all-units-name {
   .sun-chart-label {
     font-size: 26px;
   }
+
+  .sun-chart-odd {
+    display: none;
+  }
 }
 
 .sun-chart figcaption {

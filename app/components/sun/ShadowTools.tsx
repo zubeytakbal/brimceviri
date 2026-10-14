@@ -143,7 +143,7 @@ export function ShadowTool({ cities }: { cities: SunCity[] }) {
           <div className="golden-cards">
             <Card tone="golden" label="Güneşin yüksekliği" value={deg(pos.elevation)} note={pos.elevation > 0 ? "Ufuktan açı" : "Güneş ufkun altında"} />
             <Card label="Güneşin yönü" value={`${deg(pos.azimuth)} ${compass(pos.azimuth)}`} note={`Güneş ${compassName(pos.azimuth)} yönünde`} />
-            <Card tone="golden" label="Gölge boyu" value={len !== null ? meters(len) : "Gölge yok"} note={len !== null ? `Gölge ${compassName(pos.azimuth + 180)} yönüne düşer` : undefined} />
+            <Card tone="golden" label="Gölge boyu" value={len === null ? "Gölge yok" : pos.elevation < 3 ? "Çok uzun" : meters(len)} note={len !== null ? `Gölge ${compassName(pos.azimuth + 180)} yönüne düşer` : undefined} />
           </div>
         ) : null}
         {rows.length ? (
@@ -166,7 +166,7 @@ export function ShadowTool({ cities }: { cities: SunCity[] }) {
                     <td>
                       {f(r.azimuth, 0)}° {compass(r.azimuth)}
                     </td>
-                    <td>{r.shadow !== null ? meters(r.shadow) : "—"}</td>
+                    <td>{r.shadow !== null && r.elevation >= 3 ? meters(r.shadow) : "Çok uzun (güneş ufukta)"}</td>
                   </tr>
                 ))}
               </tbody>

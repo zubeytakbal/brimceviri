@@ -23,11 +23,14 @@ export function heightByReference(stickHeight: number, stickShadow: number, obje
 }
 
 const DIRS = ["K", "KKD", "KD", "DKD", "D", "DGD", "GD", "GGD", "G", "GGB", "GB", "BGB", "B", "BKB", "KB", "KKB"];
-const DIR_NAMES: Record<string, string> = { K: "kuzey", D: "doğu", G: "güney", B: "batı", KD: "kuzeydoğu", GD: "güneydoğu", GB: "güneybatı", KB: "kuzeybatı" };
+const DIR_NAMES: Record<string, string> = {
+  K: "kuzey", KKD: "kuzey-kuzeydoğu", KD: "kuzeydoğu", DKD: "doğu-kuzeydoğu", D: "doğu", DGD: "doğu-güneydoğu", GD: "güneydoğu", GGD: "güney-güneydoğu",
+  G: "güney", GGB: "güney-güneybatı", GB: "güneybatı", BGB: "batı-güneybatı", B: "batı", BKB: "batı-kuzeybatı", KB: "kuzeybatı", KKB: "kuzey-kuzeybatı",
+};
 /** Azimutu 16 yönlü pusula kısaltmasına çevirir (K, KKD, KD, …). */
 export const compass = (az: number) => DIRS[Math.round((((az % 360) + 360) % 360) / 22.5) % 16];
-/** Ana ve ara yönlerin adı; ara-ara yönlerde kısaltmayı döndürür. */
-export const compassName = (az: number) => DIR_NAMES[compass(az)] ?? compass(az);
+/** 16 yönün Türkçe adı ("güney-güneydoğu"). */
+export const compassName = (az: number) => DIR_NAMES[compass(az)];
 
 /** Türkiye saatiyle (UTC+3) verilen yerel tarih ve saatin Date karşılığı. */
 export const trDate = (y: number, m: number, d: number, hour: number, minute = 0) => new Date(Date.UTC(y, m - 1, d, hour, minute) - TR_OFFSET_MIN * 60000);

@@ -5,9 +5,9 @@ import { buildSiteUrl } from "../siteConfig";
 
 export const revalidate = 21600;
 
-const title = "Ay Evreleri: Bugün, Dün ve Bu Hafta Ay Nasıl? Dolunay Takvimi";
+const title = "Ay Evreleri: Bugün ve Dün Ay Nasıl?";
 const description =
-  "Bugün, dün ya da salı günü ay nasıldı? Son 7 gün ve önümüzdeki 7 günün ay görünümü, istediğiniz tarihteki ay evresi, 8 evrenin anlamı, dolunay ve yeni ay saatleri (Türkiye saati).";
+  "Bugün, dün ya da salı günü ay nasıldı? Son 7 ve sonraki 7 günün ayı, istediğiniz tarihteki evre (ör. büyüyen hilal, %23 aydınlık), 8 evrenin anlamı, dolunay saatleri ve ay takvimi.";
 
 export const metadata: Metadata = {
   title,

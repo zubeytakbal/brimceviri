@@ -22,7 +22,7 @@ export default function LiveMoon({ lang, copy, initialFraction }: { lang: "tr" |
   const nextFull = upcoming.find((e) => e.kind === "full");
   const nextNew = upcoming.find((e) => e.kind === "new");
   const locale = lang === "tr" ? "tr-TR" : "en-US";
-  const fmt = (date: Date) => new Intl.DateTimeFormat(locale, { weekday: "long", day: "numeric", month: "long", hour: "2-digit", minute: "2-digit" }).format(date);
+  const fmt = (date: Date) => new Intl.DateTimeFormat(locale, { timeZone: lang === "tr" ? "Europe/Istanbul" : "UTC", weekday: "long", day: "numeric", month: "long", hour: "2-digit", minute: "2-digit" }).format(date);
   const until = (date: Date) => {
     if (!now) return "";
     const ms = date.getTime() - now.getTime();

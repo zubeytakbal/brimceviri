@@ -12105,6 +12105,12 @@ a.all-units-row .all-units-name {
 .sun-chart-label { fill: #ffffff; font-size: 12px; }
 .sun-chart-mark { stroke: #ff4d4d; stroke-width: 2; }
 
+@media (max-width: 640px) {
+  .sun-chart-label {
+    font-size: 26px;
+  }
+}
+
 .sun-chart figcaption {
   margin-top: 6px;
   font-size: 0.78rem;

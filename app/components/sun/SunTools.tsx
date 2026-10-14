@@ -87,7 +87,7 @@ function DayStrip({ y, m, d, lat, lon }: { y: number; m: number; d: number; lat:
         )}
         {[0, 6, 12, 18, 24].map((h) => (
           <i key={h} style={{ left: `${(h / 24) * 100}%` }}>
-            {pad(h % 24)}
+            {pad(h)}
           </i>
         ))}
       </div>
@@ -107,7 +107,7 @@ function YearChart({ year, lat, lon, mark }: { year: number; lat: number; lon: n
   const days = useMemo(() => sunYear(year, lat, lon), [year, lat, lon]);
   const W = 720;
   const H = 260;
-  const L = 34;
+  const L = 48;
   const T = 8;
   const pw = W - L - 8;
   const ph = H - T - 24;
@@ -130,7 +130,7 @@ function YearChart({ year, lat, lon, mark }: { year: number; lat: number; lon: n
           <g key={h}>
             <line x1={L} x2={L + pw} y1={y(h * 60)} y2={y(h * 60)} className="sun-chart-grid" />
             <text x={L - 6} y={y(h * 60) + 4} textAnchor="end" className="sun-chart-label">
-              {pad(h % 24)}
+              {pad(h)}
             </text>
           </g>
         ))}

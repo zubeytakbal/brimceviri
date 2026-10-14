@@ -76,6 +76,7 @@ const GROUPS: Group[] = [
       { href: "/ay-evreleri", label: "Ay Evreleri", note: "Dolunay ve yeni ay saatleri" },
       { href: "/gunes-dogusu-ve-batisi", label: "Güneş Doğuşu ve Batışı", note: "81 ilde doğuş, batış, alacakaranlık" },
       { href: "/en-uzun-gun-ve-en-kisa-gun", label: "En Uzun ve En Kısa Gün", note: "Gündönümü ve ekinoks anları" },
+      { href: "/gunes-acisi-ve-golge-boyu-hesaplama", label: "Güneş Açısı ve Gölge", note: "Gölge boyu, evim güneş alır mı" },
       { href: "/altin-saat", label: "Altın Saat", note: "Fotoğraf için en iyi ışık" },
     ],
   },

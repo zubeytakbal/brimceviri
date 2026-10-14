@@ -104,6 +104,8 @@ export default function SolarPanelPaybackPage() {
             <Link href="/yalitim-amortisman-hesaplama">Yalıtım Amortisman Hesaplama</Link>
             {" "}sayfasına, diğer elektrikçi araçları için{" "}
             <Link href="/elektrikci-araclari">Elektrikçi Araçları</Link>
+            {" "}sayfasına, panelin öğle güneşine dik açısı için{" "}
+            <Link href="/gunes-acisi-ve-golge-boyu-hesaplama">Güneş Açısı ve Gölge Boyu</Link>
             {" "}sayfasına bakabilirsin.
           </p>
 

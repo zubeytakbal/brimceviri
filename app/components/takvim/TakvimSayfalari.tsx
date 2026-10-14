@@ -613,7 +613,7 @@ function GunesVeAyBolumu({ year, month, a }: { year: number; month: number; a: s
           : `${a} boyunca Ankara'da günler toplam ${Math.abs(fark)} dakika ${fark > 0 ? "uzar" : "kısalır"}.`}{" "}
         Türkiye tek saat dilimini kullandığı için Güneş doğuda batıdan çok daha erken doğar: {a} ortasında Van&apos;da gün
         doğumu Edirne&apos;den yaklaşık {doguBatiFarki} dakika öncedir. Saatler düz ufuk ve deniz seviyesi için hesaplanmıştır;
-        şehrinize göre saatler için <Link href="/altin-saat">gün doğumu, gün batımı ve altın saat</Link> sayfasına bakabilirsiniz.
+        ilinize ve gününüze göre saatler için <Link href="/gunes-dogusu-ve-batisi">güneş doğuşu ve batışı</Link> sayfasına bakabilirsiniz.
       </p>
 
       <h2 id="evreler">

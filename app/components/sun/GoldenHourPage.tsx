@@ -114,6 +114,7 @@ export default function GoldenHourPage({ lang }: { lang: "tr" | "en" }) {
         title: tr ? "İlginizi çekebilir" : "You may also like",
         links: tr
           ? [
+              { href: "/gunes-dogusu-ve-batisi", label: "Güneş Doğuşu ve Batışı" },
               { href: "/ay-evreleri", label: "Ay Evreleri" },
               { href: "/dunya-saatleri", label: "Dünya Saatleri" },
               { href: "/online-saat", label: "Online Saat" },

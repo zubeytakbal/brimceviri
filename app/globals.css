@@ -12031,6 +12031,126 @@ a.all-units-row .all-units-name {
   margin: 0;
 }
 
+/* ===== Güneş doğuşu / gündönümü araçları ===== */
+.sun-tool {
+  background: linear-gradient(165deg, #12244a 0%, #1f5f8b 55%, #f2a65a 100%);
+}
+
+.sun-strip span.is-astro {
+  background: #1b2a5c;
+}
+
+.sun-strip span.is-nautical {
+  background: #2f4f9a;
+}
+
+.sun-strip span.is-civil {
+  background: #5b8def;
+}
+
+.sun-strip span.is-day {
+  background: #ffd36e;
+}
+
+.sun-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin: 6px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.78rem;
+}
+
+.sun-legend li::before {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 6px;
+  border-radius: 3px;
+  vertical-align: -1px;
+  background: currentColor;
+}
+
+.sun-legend li.is-day::before { background: #ffd36e; }
+.sun-legend li.is-civil::before { background: #5b8def; }
+.sun-legend li.is-nautical::before { background: #2f4f9a; }
+.sun-legend li.is-astro::before { background: #1b2a5c; }
+.sun-legend li.is-night::before { background: #0b1026; }
+
+.sun-card-note {
+  font-size: 0.78rem;
+  font-style: normal;
+  opacity: 0.85;
+}
+
+.sun-chart {
+  margin: 0;
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.sun-chart svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.sun-chart-night { fill: #0b1026; }
+.sun-chart-day { fill: #ffd36e; opacity: 0.85; }
+.sun-chart-line { fill: none; stroke: #f5a524; stroke-width: 2; }
+.sun-chart-grid { stroke: rgba(255, 255, 255, 0.25); stroke-width: 1; }
+.sun-chart-label { fill: #ffffff; font-size: 12px; }
+.sun-chart-mark { stroke: #ff4d4d; stroke-width: 2; }
+
+.sun-chart figcaption {
+  margin-top: 6px;
+  font-size: 0.78rem;
+  opacity: 0.85;
+}
+
+.sun-compare {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 360px;
+}
+
+.sun-compare-text,
+.sun-foot {
+  margin: 0;
+}
+
+.sun-foot {
+  font-size: 0.8rem;
+  opacity: 0.85;
+}
+
+.sun-countdown {
+  display: grid;
+  gap: 4px;
+  padding: 16px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.sun-countdown span {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sun-countdown strong {
+  font-size: 1.8rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.sun-countdown em {
+  font-style: normal;
+  opacity: 0.9;
+}
+
 @media (max-width: 640px) {
   .golden-controls {
     grid-template-columns: 1fr 1fr;

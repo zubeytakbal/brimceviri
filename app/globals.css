@@ -13579,6 +13579,18 @@ a.all-units-row .all-units-name {
   color: #ffffff;
 }
 
+/* Hesaplayıcıda sekmeler koyu giriş kutusunun dışında (açık zeminde) duruyorsa açık tema. */
+.date-calc > .date-converter-modes button {
+  border-color: #cfdde5;
+  color: #0f6f6c;
+}
+
+.date-calc > .date-converter-modes button.is-active {
+  border-color: #0f6f6c;
+  background: #0f6f6c;
+  color: #ffffff;
+}
+
 .province-explorer .date-calc-check {
   color: #172033;
 }

@@ -3132,6 +3132,28 @@ main.category-page {
   transform: translateY(-1px);
 }
 
+.favorite-toggle {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 40;
+  width: 44px;
+  height: 44px;
+  border: 1px solid #d6e1e7;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #667085;
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(23, 32, 51, 0.12);
+}
+
+.favorite-toggle.is-active {
+  color: #d99a00;
+  border-color: #d99a00;
+}
+
 .profession-preference-hint {
   margin: 0 0 10px;
   color: #4f5b6b;

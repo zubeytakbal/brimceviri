@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useDeferredValue, useId, useRef, useState } from "react";
 import { DecorativeIcon } from "./siteIcons";
 import { useSearchTracking } from "./useSearchTracking";
+import { rankSearchResults } from "../converter/homeSearchRanking";
 
 // Ana sayfa aramasi. Arama dizini (dil basina ~200 KB) sayfaya gomulmez; ziyaretci arama
 // kutusuna ilk kez dokundugunda /arama-dizini/<dil>.json dosyasindan indirilir.
@@ -77,7 +78,7 @@ export default function HomeSearch({ locale, strings }: { locale: HomeSearchLoca
       });
   };
 
-  const searchResults = normalizedQuery && items ? items.filter((item) => matches(item.searchText, normalizedQuery, locale)).slice(0, 8) : [];
+  const searchResults = normalizedQuery && items ? rankSearchResults(items, normalizedQuery, (text, q) => matches(text, q, locale), 8) : [];
   useSearchTracking(locale, items ? query : "", searchResults.length);
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {

@@ -25,6 +25,7 @@ npm run dev      # http://localhost:3000
 | `npm run lint` | ESLint |
 | `npm test` | Birim testleri (Vitest) |
 | `npx tsc --noEmit` | Tip kontrolü |
+| `npx tsx scripts/linkDepth.ts` | `npm run build` sonrası: ana sayfadan her sayfaya tıklama derinliğini ve yetim sayfaları raporlar (`--max=3`, `--dir=out`) |
 
 Değişiklikleri push'lamadan önce `npm run lint`, `npx tsc --noEmit` ve `npm test` komutlarının temiz geçtiğinden emin olun.
 

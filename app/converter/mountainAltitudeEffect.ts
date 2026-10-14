@@ -1,3 +1,5 @@
+import { boilingPointC } from "./thermal/fluidProps";
+
 // Standart ICAO/NOAA barometrik basinc formulu (troposfer, ~11 km'ye
 // kadar gecerli -- tum 8.000+ zirveler bu araligin icinde). Deniz
 // seviyesi standart basinci 1013,25 hPa kabul edilir; oksijen orani
@@ -28,6 +30,11 @@ function calculateBoilingPointC(pressureHpa: number): number {
   return 1 / inverseTemp - 273.15;
 }
 
+/** IAPWS-95 tablosundan kaynama noktası; tablo aralığı dışında Clausius-Clapeyron yaklaşımı. */
+function boilingPointFromTable(pressureHpa: number): number {
+  return boilingPointC(pressureHpa / 10) ?? calculateBoilingPointC(pressureHpa);
+}
+
 export function calculateAltitudeEffect(
   elevationM: number
 ): AltitudeEffectResult | null {
@@ -38,7 +45,7 @@ export function calculateAltitudeEffect(
   const pressureHpa =
     SEA_LEVEL_PRESSURE_HPA * Math.pow(1 - 0.0000225577 * elevationM, 5.25588);
   const percentOfSeaLevel = (pressureHpa / SEA_LEVEL_PRESSURE_HPA) * 100;
-  const waterBoilingPointC = calculateBoilingPointC(pressureHpa);
+  const waterBoilingPointC = boilingPointFromTable(pressureHpa);
 
   return { pressureHpa, percentOfSeaLevel, waterBoilingPointC };
 }

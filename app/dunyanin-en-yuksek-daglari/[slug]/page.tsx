@@ -199,7 +199,8 @@ export default async function MountainDetailPage({ params }: PageProps) {
           </dl>
           <p>
             <small>
-              Basınç ve kaynama noktası standart atmosfer formülüyle hesaplanır; zirvede{" "}
+              Basınç standart atmosfer formülüyle, kaynama noktası bu basınçta IAPWS-95 buhar tablosundan hesaplanır (
+              <Link href="/suyun-kaynama-noktasi-hesaplama">suyun kaynama noktası hesaplama</Link>); zirvede{" "}
               {altitudeEffect ? `oksijenin kısmi basıncı deniz seviyesinin %${Math.round(altitudeEffect.percentOfSeaLevel)}'i kadardır` : "basınç düşüktür"}.
             </small>
           </p>

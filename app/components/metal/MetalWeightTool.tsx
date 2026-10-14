@@ -125,7 +125,7 @@ function RebarTool() {
 
   return (
     <div className="date-calc metal-calc">
-      <div className="date-converter-modes is-light" role="tablist">
+      <div className="date-converter-modes" role="tablist">
         {[
           { id: "weight" as const, label: "Ağırlık hesapla" },
           { id: "length" as const, label: "Tonajdan metre" },

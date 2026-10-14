@@ -44,7 +44,7 @@ function Field({ label, value, onChange }: { label: string; value: string; onCha
 
 function Tabs<T extends string>({ value, options, onChange }: { value: T; options: Array<{ id: T; label: string }>; onChange: (v: T) => void }) {
   return (
-    <div className="date-converter-modes is-light" role="tablist">
+    <div className="date-converter-modes" role="tablist">
       {options.map((o) => (
         <button key={o.id} type="button" role="tab" aria-selected={value === o.id} className={value === o.id ? "is-active" : undefined} onClick={() => onChange(o.id)}>
           {o.label}

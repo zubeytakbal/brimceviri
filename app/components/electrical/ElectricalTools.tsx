@@ -248,7 +248,7 @@ export function ColorCodeTool() {
   const name = (id: ColorId) => COLORS.find((c) => c.id === id)!.tr;
   return (
     <div className="date-calc metal-calc">
-      <div className="date-converter-modes is-light" role="tablist">
+      <div className="date-converter-modes" role="tablist">
         {([4, 5, 6] as const).map((c) => (
           <button key={c} type="button" role="tab" aria-selected={count === c} className={count === c ? "is-active" : undefined} onClick={() => setCount(c)}>
             {c} bant

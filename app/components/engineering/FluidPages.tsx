@@ -6,6 +6,7 @@ import { formatTr } from "../../converter/metal/metalWeight";
 import { boilingPointC, interpolate, interpolateSat, isaPressureKpa } from "../../converter/thermal/fluidProps";
 import { AIR_1ATM, SAT_STEAM_P, SAT_STEAM_T, WATER_1ATM } from "../../converter/thermal/fluidTables";
 import { turkishProvinceElevations } from "../../converter/turkishProvinceElevations";
+import { trLocative } from "../../converter/turkishSuffix";
 import DataTable from "../metal/DataTable";
 import { AirPropsTool, BoilingPointTool, SteamTableTool, WaterPropsTool } from "../thermal/FluidTools";
 import ToolArticlePage, { toolArticleMetadata, type ToolArticle } from "./ToolArticlePage";
@@ -239,7 +240,7 @@ function boilingArticle(): ToolArticle {
           <DataTable
             caption="Standart atmosferde basınç ve suyun kaynama noktası"
             head={["Rakım (m)", "Basınç (hPa)", "Kaynama noktası (°C)"]}
-            rows={alts.map((h) => [h === 8849 ? "8.849 (Everest)" : f(h, 0), f(isaPressureKpa(h) * 10, 0), f(boil(h), 1)])}
+            rows={alts.map((h) => [h === 8849 ? "8.849 (Everest)" : f(h, 0), f(isaPressureKpa(h) * 10, 0), f(boil(h), 1, 1)])}
           />
         ),
       },
@@ -249,7 +250,7 @@ function boilingArticle(): ToolArticle {
         body: (
           <>
             <p>
-              İl merkezlerinin rakımına göre hesaplanmıştır. En yüksek il merkezi {top.nameTr}'da ({f(top.elevationM, 0)} m) su {f(boil(top.elevationM), 1)} °C'de, en alçak {low.nameTr}'da {f(boil(low.elevationM), 1)} °C'de
+              İl merkezlerinin rakımına göre hesaplanmıştır. En yüksek il merkezi {trLocative(top.nameTr)} ({f(top.elevationM, 0)} m) su {f(boil(top.elevationM), 1)} °C'de, en alçak {trLocative(low.nameTr)} {f(boil(low.elevationM), 2)} °C'de
               kaynar{ankara ? `; Ankara'da (${f(ankara.elevationM, 0)} m) bu değer ${f(boil(ankara.elevationM), 1)} °C'dir` : ""}. İl adına tıklayarak rakım ve basınç ayrıntılarını görebilirsiniz; tüm liste{" "}
               <Link href="/il-rakimlari">il rakımları</Link> sayfasında.
             </p>
@@ -272,7 +273,7 @@ function boilingArticle(): ToolArticle {
                       </th>
                       <td>{f(p.elevationM, 0)}</td>
                       <td>{f(isaPressureKpa(p.elevationM) * 10, 0)}</td>
-                      <td>{f(boil(p.elevationM), 1)}</td>
+                      <td>{f(boil(p.elevationM), 1, 1)}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -293,7 +294,7 @@ function boilingArticle(): ToolArticle {
             <DataTable
               caption="Deniz seviyesinde gösterge basıncına göre kaynama noktası"
               head={["Gösterge basıncı (bar)", "Mutlak basınç (bar)", "Kaynama noktası (°C)"]}
-              rows={gauges.map((g) => [f(g, 1), f(g + ATM_KPA / 100, 2), f(satP(g + ATM_KPA / 100).t, 1)])}
+              rows={gauges.map((g) => [f(g, 1), f(g + ATM_KPA / 100, 2), f(satP(g + ATM_KPA / 100).t, 1, 1)])}
             />
             <p>
               Yüksek rakımda dış basınç düştüğü için aynı gösterge basıncı daha düşük mutlak basınca karşılık gelir; 2000 m'de 1 bar gösterge basıncında su yaklaşık {f(satP(1 + isaPressureKpa(2000) / 100).t, 1)} °C'de kaynar. Daha

@@ -263,6 +263,7 @@ export const turkishToolGroups: ToolGroup[] = [
       { href: "/boru-capi-hesaplama", label: "Boru Çapı, Debi ve Akış Hızı" },
       { href: "/boru-capi-donusum-hesaplama", label: "Boru Çapı Dönüşümü (DN-NPS)" },
       { href: "/tank-hacmi-hesaplama", label: "Tank Hacmi ve Doluluk" },
+      { href: "/pis-su-borusu-egimi-hesaplama", label: "Pis Su Borusu Eğimi" },
       { href: "/basinc-kaybi-hesaplama", label: "Basınç Kaybı" },
       { href: "/civata-torku-hesaplama", label: "Cıvata Torku" },
       { href: "/metrik-vida-tablosu", label: "Metrik Vida ve Kılavuz Matkap" },

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { formatTr } from "../../converter/metal/metalWeight";
+import { DRAIN_PIPES, drainCapacity, slopeForFlow } from "../../converter/plumbing/drainage";
 import { dhwFlowLpm, dhwPowerKw, panelLength, radiatorFactor, roomHeatLoss, sectionsNeeded } from "../../converter/plumbing/heating";
 import { dipChart, filledVolume, heightForVolume, LIQUIDS, tankHeight, tankVolume, type TankShape } from "../../converter/plumbing/tank";
 
@@ -324,6 +325,77 @@ export function BoilerTool() {
             <Stat label="ΔT 25 K'de (katalog değeri)" value={`${f(dhwFlowLpm(P, 25), 1)} L/dk`} />
             <Stat label="ΔT 30 K'de" value={`${f(dhwFlowLpm(P, 30), 1)} L/dk`} />
           </div>
+        ) : null}
+      </div>
+    </div>
+  );
+}
+
+/* ---------------- Pis su borusu ---------------- */
+
+export function DrainTool() {
+  const [pipe, setPipe] = useState("110");
+  const [wall, setWall] = useState("2,2");
+  const [slope, setSlope] = useState("2");
+  const [fill, setFill] = useState("0.5");
+  const [flow, setFlow] = useState("2");
+  const p = DRAIN_PIPES.find((x) => x.id === pipe)!;
+  const w = num(wall);
+  const s = num(slope);
+  const q = num(flow);
+  const di = w !== null && w * 2 < p.od ? (p.od - 2 * w) / 1000 : null;
+  const hd = Number(fill);
+  const cap = di !== null && s !== null && s > 0 ? drainCapacity(di, s / 100, hd) : null;
+  const need = di !== null && q !== null && q > 0 ? slopeForFlow(di, q / 1000, hd) : null;
+  return (
+    <div className="date-calc metal-calc">
+      <div className="date-calc-input">
+        <div className="date-calc-fields">
+          <label className="date-calc-field">
+            <span>Boru (dış çap)</span>
+            <select
+              value={pipe}
+              onChange={(e) => {
+                setPipe(e.target.value);
+                setWall(String(DRAIN_PIPES.find((x) => x.id === e.target.value)!.wall).replace(".", ","));
+              }}
+            >
+              {DRAIN_PIPES.map((x) => (
+                <option key={x.id} value={x.id}>
+                  {x.label}
+                </option>
+              ))}
+            </select>
+          </label>
+          <Field label="Et kalınlığı (mm)" value={wall} onChange={setWall} />
+          <Field label="Eğim (%), metrede cm" value={slope} onChange={setSlope} />
+          <label className="date-calc-field">
+            <span>Doluluk oranı</span>
+            <select value={fill} onChange={(e) => setFill(e.target.value)}>
+              <option value="0.5">Yarı dolu (h/d = 0,5)</option>
+              <option value="0.7">%70 dolu (h/d = 0,7)</option>
+            </select>
+          </label>
+        </div>
+        {cap && di !== null ? (
+          <div className="date-calc-results">
+            <Stat main label="Taşıma kapasitesi" value={`${f(cap.Q * 1000, 2)} L/s`} note={`${f(cap.Q * 60000, 0)} L/dk · iç çap ${f(di * 1000, 1)} mm`} />
+            <Stat label="Akış hızı" value={`${f(cap.v, 2)} m/s`} />
+            <Stat label="Eğim" value={`%${f(s!, 2)}`} note={`10 m boruda ${f(s! * 10, 0)} cm kot farkı`} />
+          </div>
+        ) : (
+          <p className="date-calc-note">Geçerli bir et kalınlığı ve eğim girin.</p>
+        )}
+        <p className="date-calc-note">Belirli bir debi için gereken eğimi bulmak isterseniz debiyi girin.</p>
+        <div className="date-calc-fields">
+          <Field label="Taşınacak debi (L/s)" value={flow} onChange={setFlow} />
+        </div>
+        {need !== null ? (
+          <div className="date-calc-results">
+            <Stat main label="Gereken en az eğim" value={`%${f(need * 100, 2)}`} note={`Metrede ${f(need * 100, 2)} cm`} />
+          </div>
+        ) : di !== null && q !== null ? (
+          <p className="date-calc-note">Bu debi seçilen boruda makul bir eğimle taşınamıyor; daha büyük çap seçin.</p>
         ) : null}
       </div>
     </div>

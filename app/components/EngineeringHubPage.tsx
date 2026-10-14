@@ -320,6 +320,14 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
             description: "DN nominal ölçüsünü NPS (inç) karşılığına ve gerçek dış çapa çevirin.",
           },
           {
+            slug: "pis-su-borusu-egimi-hesaplama",
+            href: "/pis-su-borusu-egimi-hesaplama",
+            title: "Pis Su Borusu Eğimi",
+            icon: "flowRate",
+            formula: "Prandtl-Colebrook",
+            description: "Atık su borusunun eğime göre kapasitesi ve gereken en az eğim.",
+          },
+          {
             slug: "tank-hacmi-hesaplama",
             href: "/tank-hacmi-hesaplama",
             title: "Tank Hacmi ve Doluluk",

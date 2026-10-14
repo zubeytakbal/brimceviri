@@ -3521,6 +3521,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
     },
     {
+      url: `${baseUrl}/pis-su-borusu-egimi-hesaplama`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.75,
+    },
+    {
       url: `${baseUrl}/hidrolik-silindir-hesaplama`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",

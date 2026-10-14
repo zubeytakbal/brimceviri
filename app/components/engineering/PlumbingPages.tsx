@@ -2,18 +2,20 @@
 import type { ReactNode } from "react";
 import Link from "@/app/components/SiteLink";
 import { formatTr } from "../../converter/metal/metalWeight";
+import { DRAIN_PIPES, drainCapacity } from "../../converter/plumbing/drainage";
 import { dhwFlowLpm, dhwPowerKw, radiatorFactor, roomHeatLoss, sectionsNeeded } from "../../converter/plumbing/heating";
 import { dipChart, filledVolume, LIQUIDS, tankVolume, type TankShape } from "../../converter/plumbing/tank";
 import DataTable from "../metal/DataTable";
-import { BoilerTool, RadiatorTool, TankTool } from "../plumbing/PlumbingTools";
+import { BoilerTool, DrainTool, RadiatorTool, TankTool } from "../plumbing/PlumbingTools";
 import ToolArticlePage, { toolArticleMetadata, type ToolArticle } from "./ToolArticlePage";
 
-export type PlumbingKind = "tank" | "radiator" | "boiler";
+export type PlumbingKind = "tank" | "radiator" | "boiler" | "drain";
 
 export const PLUMBING_PATHS: Record<PlumbingKind, string> = {
   tank: "/tank-hacmi-hesaplama",
   radiator: "/petek-dilim-hesaplama",
   boiler: "/kombi-kac-kw-hesaplama",
+  drain: "/pis-su-borusu-egimi-hesaplama",
 };
 
 const f = formatTr;
@@ -242,8 +244,79 @@ function boilerArticle(): ToolArticle {
   };
 }
 
-const ARTICLES: Record<PlumbingKind, () => ToolArticle> = { tank: tankArticle, radiator: radiatorArticle, boiler: boilerArticle };
-const TOOLS: Record<PlumbingKind, () => ReactNode> = { tank: () => <TankTool />, radiator: () => <RadiatorTool />, boiler: () => <BoilerTool /> };
+/* ---------------- Pis su borusu ---------------- */
+
+function drainArticle(): ToolArticle {
+  const slopes = [0.5, 1, 1.5, 2, 3, 5];
+  const di = (p: (typeof DRAIN_PIPES)[number]) => (p.od - 2 * p.wall) / 1000;
+  const p110 = DRAIN_PIPES.find((p) => p.id === "110")!;
+  const c1 = drainCapacity(di(p110), 0.01)!;
+  const c2 = drainCapacity(di(p110), 0.02)!;
+  return {
+    path: PLUMBING_PATHS.drain,
+    metaTitle: "Pis Su Borusu Eğimi ve Kapasitesi",
+    description: `Atık su borusunun eğime göre taşıma kapasitesi ve akış hızı; istenen debi için gereken eğim. Ø110 PVC boru yarı doluyken %1 eğimde ${f(c1.Q * 1000, 1)} L/s, %2 eğimde ${f(c2.Q * 1000, 1)} L/s taşır.`,
+    h1: "Pis Su Borusu Eğimi ve Kapasitesi",
+    intro:
+      "Boru çapını, et kalınlığını ve eğimi girin; yerçekimiyle akan atık su borusunun yarı ya da %70 doluyken taşıyabileceği debiyi ve akış hızını görün. Belirli bir debi için gereken en az eğimi de hesaplayabilirsiniz.",
+    sections: [
+      {
+        id: "egim",
+        title: "Eğim ne demek, nasıl ölçülür?",
+        body: (
+          <p>
+            Eğim, borunun her metrede ne kadar alçaldığıdır: %1 eğim metrede 1 cm, %2 eğim metrede 2 cm kot farkı demektir. 5 metrelik bir hatta %2 eğim için başla son arasında 10 cm fark olmalıdır. Eğimi su
+            terazisinin altına bilinen kalınlıkta bir takoz koyarak ya da lazer nivoyla kontrol edebilirsiniz. Bina içi atık su tesisatı TS EN 12056-2 ile tasarlanır; boru üreticilerinin bu standarda
+            dayanan teknik dokümanlarında havalandırmasız bağlantı boruları için en az %1, havalandırmalı bağlantı boruları için en az %0,5 eğim verilir. Projeniz ya da yerel yönetmelik daha büyük eğim
+            istiyorsa ona uyun.
+          </p>
+        ),
+      },
+      {
+        id: "kapasite",
+        title: "Eğime göre boru kapasitesi",
+        body: (
+          <>
+            <p>
+              Atık su boruları dolu akmaz; havanın geçebilmesi için genellikle yarı (h/d = 0,5) ya da en çok %70 dolu çalışacak şekilde boyutlandırılır. Kapasite Prandtl-Colebrook formülüyle, pürüzlülük kb = 1
+              mm alınarak hesaplanır. Tablo yarı dolu PVC borular içindir; et kalınlığı örnektir.
+            </p>
+            <DataTable
+              caption="Yarı dolu (h/d = 0,5) PVC atık su borusunun kapasitesi (L/s)"
+              head={["Boru", "İç çap (mm)", ...slopes.map((s) => `%${f(s, 1)}`)]}
+              rows={DRAIN_PIPES.map((p) => [p.label, f(di(p) * 1000, 1), ...slopes.map((s) => f(drainCapacity(di(p), s / 100)!.Q * 1000, 2))])}
+            />
+            <p>
+              Yöntem, EN 12056&apos;ya dayanan üretici tablolarıyla karşılaştırıldı: 98 mm iç çaplı boru, %1 eğim ve %70 dolulukta tablo yaklaşık 4,2 L/s ve 0,8 m/s verirken bu hesap{" "}
+              {f(drainCapacity(0.098, 0.01, 0.7)!.Q * 1000, 1)} L/s ve {f(drainCapacity(0.098, 0.01, 0.7)!.v, 2)} m/s bulur.
+            </p>
+          </>
+        ),
+      },
+      {
+        id: "debi",
+        title: "Bir evden ne kadar atık su gelir?",
+        body: (
+          <p>
+            Atık su debisi aynı anda kullanılan armatürlere bağlıdır ve TS EN 12056-2&apos;de armatür birimleri (DU) ile hesaplanır; her armatürün bir debi değeri vardır ve aynı anda kullanım olasılığı bir katsayıyla
+            hesaba katılır. Türkiye&apos;de klozetin bağlandığı hatlarda uygulamada 100&apos;lük (Ø110) boru kullanılır. Hesap sonucunda bulduğunuz debiyi araca girerek gereken eğimi kontrol edebilirsiniz.
+          </p>
+        ),
+      },
+    ],
+    faq: [
+      { question: "Pis su borusu eğimi kaç olmalı?", answer: "Bina içi atık su tesisatı TS EN 12056-2'ye göre tasarlanır. Üretici teknik dokümanları havalandırmasız bağlantı boruları için en az %1, havalandırmalı bağlantı boruları için en az %0,5 eğim verir; projeniz daha fazlasını isteyebilir." },
+      { question: "%2 eğim ne demek?", answer: "Borunun her metrede 2 cm alçalması demektir; 5 metrelik hatta toplam 10 cm kot farkı." },
+      { question: "100'lük pis su borusu kaç litre taşır?", answer: `Ø110 PVC boru yarı doluyken %1 eğimde yaklaşık ${f(c1.Q * 1000, 1)} L/s, %2 eğimde ${f(c2.Q * 1000, 1)} L/s taşır.` },
+      { question: "Eğim artınca boru daha çok taşır mı?", answer: "Evet; hız ve kapasite eğimin yaklaşık kareköküyle artar. Eğimi iki katına çıkarmak kapasiteyi yaklaşık %40 artırır." },
+    ],
+    sources:
+      "Kapasiteler Prandtl-Colebrook formülüyle (kb = 1 mm, 10 °C su) kısmi dolu dairesel kesit için hesaplanır. En az eğim değerleri TS EN 12056-2'ye dayanan boru üreticisi dokümanlarından alınmıştır.",
+  };
+}
+
+const ARTICLES: Record<PlumbingKind, () => ToolArticle> = { tank: tankArticle, radiator: radiatorArticle, boiler: boilerArticle, drain: drainArticle };
+const TOOLS: Record<PlumbingKind, () => ReactNode> = { tank: () => <TankTool />, radiator: () => <RadiatorTool />, boiler: () => <BoilerTool />, drain: () => <DrainTool /> };
 
 export const plumbingMetadata = (kind: PlumbingKind) => toolArticleMetadata(ARTICLES[kind]());
 

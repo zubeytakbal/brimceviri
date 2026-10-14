@@ -117,6 +117,11 @@ export const ENGINEERING_FLOWS: Record<string, FlowLink[]> = {
     { href: "/dogalgaz-tuketimi-hesaplama", label: "Doğalgaz Tüketimi", why: "Kombinin aylık doğalgaz tüketimini tahmin edin." },
     { href: "/u-degeri-hesaplama", label: "U Değeri", why: "Yalıtımın ısı kaybını ne kadar düşürdüğünü görün." },
   ],
+  "/pis-su-borusu-egimi-hesaplama": [
+    { href: "/basinc-kaybi-hesaplama", label: "Basınç Kaybı", why: "Basınçlı temiz su hatlarında sürtünme kaybını hesaplayın." },
+    { href: "/boru-capi-hesaplama", label: "Boru Çapı ve Akış Hızı", why: "Basınçlı hatta debiye uygun boru çapını seçin." },
+    { href: "/tank-hacmi-hesaplama", label: "Tank Hacmi", why: "Atık su ya da yağmur suyu deposunun hacmini hesaplayın." },
+  ],
   "/tank-hacmi-hesaplama": [
     { href: "/su-ozellikleri-tablosu", label: "Su Özellikleri", why: "Sıcaklığa göre suyun yoğunluğunu ve hacim değişimini görün." },
     { href: "/boru-capi-hesaplama", label: "Boru Çapı ve Akış Hızı", why: "Tankı dolduracak ya da boşaltacak hattın çapını seçin." },

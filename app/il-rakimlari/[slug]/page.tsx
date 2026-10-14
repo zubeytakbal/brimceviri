@@ -180,10 +180,9 @@ export default async function ProvinceElevationDetailPage({ params }: PageProps)
           <p>
             <small>
               <strong>Not:</strong> Hava basıncı standart ICAO/NOAA barometrik
-              formülüyle, kaynama noktası ise IAPWS-95 buhar tablosundan
-              hesaplanmıştır. Başka bir rakım ya da basınç için{" "}
-              <Link href="/suyun-kaynama-noktasi-hesaplama">suyun kaynama noktası hesaplama</Link>{" "}
-              aracını kullanabilirsiniz.
+              formülüyle, kaynama noktası ise{" "}
+              <Link href="/suyun-kaynama-noktasi-hesaplama">IAPWS-95 buhar tablosundan</Link>{" "}
+              hesaplanmıştır.
             </small>
           </p>
         </section>

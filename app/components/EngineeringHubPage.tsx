@@ -319,6 +319,14 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
             icon: "pipeNominalSizeCalculator",
             description: "DN nominal ölçüsünü NPS (inç) karşılığına ve gerçek dış çapa çevirin.",
           },
+          {
+            slug: "tank-hacmi-hesaplama",
+            href: "/tank-hacmi-hesaplama",
+            title: "Tank Hacmi ve Doluluk",
+            icon: "flowRate",
+            formula: "V = A(h) × L",
+            description: "Yatay, dikey ve dikdörtgen tankta seviyeye göre litre; ölçü çubuğu tablosu.",
+          },
         ],
       },
       {
@@ -655,6 +663,22 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
             title: "Klima BTU Hesaplama",
             icon: "acCapacityCalculator",
             description: "Oda alanı ve koşullarına göre gereken klima kapasitesini bulun.",
+          },
+          {
+            slug: "petek-dilim-hesaplama",
+            href: "/petek-dilim-hesaplama",
+            title: "Petek Dilim Hesabı",
+            icon: "temperature",
+            formula: "Φ = Φ50 × (ΔT/49,83)ⁿ",
+            description: "Odanın ısı kaybından dilim sayısı ve panel boyu; su sıcaklığına göre EN 442 düzeltmesi.",
+          },
+          {
+            slug: "kombi-kac-kw-hesaplama",
+            href: "/kombi-kac-kw-hesaplama",
+            title: "Kombi Kaç kW Olmalı?",
+            icon: "flowRate",
+            formula: "P = Q/60 × 4,186 × ΔT",
+            description: "Isıtma ve sıcak su ihtiyacından kombi gücü; kombinin dakikada verdiği sıcak su.",
           },
           {
             slug: "mantolama-hesaplama",

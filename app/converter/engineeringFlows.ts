@@ -132,9 +132,30 @@ export const ENGINEERING_FLOWS: Record<string, FlowLink[]> = {
     { href: "/pompa-gucu-hesaplama", label: "Pompa Gücü", why: "Eşanjör devresindeki sirkülasyon pompasını boyutlandırın." },
   ],
   "/debi-isi-yuku-hesaplama": [
+    { href: "/su-ozellikleri-tablosu", label: "Su Özellikleri", why: "Sıcaklığa göre suyun yoğunluğunu ve özgül ısısını alın." },
     { href: "/boru-capi-hesaplama", label: "Boru Çapı ve Akış Hızı", why: "Bulduğunuz su debisine uygun boru çapını seçin." },
     { href: "/pompa-gucu-hesaplama", label: "Pompa Gücü", why: "Bu debiyi dolaştıracak pompanın gücünü hesaplayın." },
     { href: "/u-degeri-hesaplama", label: "U Değeri", why: "Isı yükünün kaynağı olan duvar ve çatı kayıplarını hesaplayın." },
+  ],
+  "/su-ozellikleri-tablosu": [
+    { href: "/debi-isi-yuku-hesaplama", label: "Debiden Isı Yükü", why: "Su debisi ve sıcaklık farkından ısı yükünü bulun." },
+    { href: "/basinc-kaybi-hesaplama", label: "Basınç Kaybı", why: "Viskoziteye bağlı boru sürtünme kaybını hesaplayın." },
+    { href: "/doymus-buhar-tablosu", label: "Doymuş Buhar Tablosu", why: "100 °C üstündeki su ve buhar değerlerine bakın." },
+  ],
+  "/doymus-buhar-tablosu": [
+    { href: "/boru-capi-hesaplama", label: "Boru Çapı ve Akış Hızı", why: "Buhar hacim debisine uygun hat çapını seçin." },
+    { href: "/suyun-kaynama-noktasi-hesaplama", label: "Suyun Kaynama Noktası", why: "Atmosfer altı basınçta ve yükseklerde kaynama sıcaklığını bulun." },
+    { href: "/lmtd-hesaplama", label: "LMTD ve Eşanjör", why: "Buharlı ısıtıcının eşanjör alanını hesaplayın." },
+  ],
+  "/suyun-kaynama-noktasi-hesaplama": [
+    { href: "/il-rakimlari", label: "İl Rakımları", why: "81 il merkezinin rakımını ve hava basıncını görün." },
+    { href: "/doymus-buhar-tablosu", label: "Doymuş Buhar Tablosu", why: "Düdüklü tencere ve kazan basınçlarında doyma sıcaklığını bulun." },
+    { href: "/hava-ozellikleri-tablosu", label: "Hava Özellikleri", why: "Rakıma göre havanın yoğunluğunu hesaplayın." },
+  ],
+  "/hava-ozellikleri-tablosu": [
+    { href: "/debi-isi-yuku-hesaplama", label: "Debiden Isı Yükü", why: "Hava debisinden ısıtma-soğutma gücünü bulun." },
+    { href: "/yogunluk-irtifasi-hesaplama", label: "Yoğunluk İrtifası", why: "Sıcaklık ve basınçtan yoğunluk irtifasını hesaplayın." },
+    { href: "/suyun-kaynama-noktasi-hesaplama", label: "Suyun Kaynama Noktası", why: "Aynı rakımda suyun kaç derecede kaynadığını görün." },
   ],
 
   // Hidrolik ve pnömatik

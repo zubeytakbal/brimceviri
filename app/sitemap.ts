@@ -3455,6 +3455,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
     },
     {
+      url: `${baseUrl}/su-ozellikleri-tablosu`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.75,
+    },
+    {
+      url: `${baseUrl}/doymus-buhar-tablosu`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.75,
+    },
+    {
+      url: `${baseUrl}/suyun-kaynama-noktasi-hesaplama`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.75,
+    },
+    {
+      url: `${baseUrl}/hava-ozellikleri-tablosu`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.75,
+    },
+    {
       url: `${baseUrl}/hidrolik-silindir-hesaplama`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",

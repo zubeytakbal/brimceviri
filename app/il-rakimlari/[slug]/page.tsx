@@ -18,6 +18,8 @@ type PageProps = {
   params: Promise<{ slug: string }>;
 };
 
+const SEA_LEVEL_BOILING_C = calculateAltitudeEffect(0)!.waterBoilingPointC;
+
 function formatNumber(value: number): string {
   return value.toLocaleString("tr-TR", { maximumFractionDigits: 1 });
 }
@@ -92,7 +94,7 @@ export default async function ProvinceElevationDetailPage({ params }: PageProps)
     {
       question: `${trLocative(province.nameTr)} su kaç derecede kaynar?`,
       answer: altitudeEffect
-        ? `${trLocative(province.nameTr)} (${province.elevationM.toLocaleString("tr-TR")} m) su yaklaşık ${formatNumber(altitudeEffect.waterBoilingPointC)}°C'de kaynar. ${province.elevationM < 300 ? "Bu rakımda fark çok küçüktür." : `Bu, deniz seviyesinden ${formatNumber(100 - altitudeEffect.waterBoilingPointC)} derece düşüktür; haşlama ve pişirme biraz uzar.`} İrtifa arttıkça hava basıncı düşer, su daha düşük sıcaklıkta kaynar.`
+        ? `${trLocative(province.nameTr)} (${province.elevationM.toLocaleString("tr-TR")} m) su yaklaşık ${formatNumber(altitudeEffect.waterBoilingPointC)}°C'de kaynar. ${province.elevationM < 300 ? "Bu rakımda fark çok küçüktür." : `Bu, deniz seviyesinden ${formatNumber(SEA_LEVEL_BOILING_C - altitudeEffect.waterBoilingPointC)} derece düşüktür; haşlama ve pişirme biraz uzar.`} İrtifa arttıkça hava basıncı düşer, su daha düşük sıcaklıkta kaynar.`
         : "",
     },
     ...(ozet
@@ -178,8 +180,10 @@ export default async function ProvinceElevationDetailPage({ params }: PageProps)
           <p>
             <small>
               <strong>Not:</strong> Hava basıncı standart ICAO/NOAA barometrik
-              formülüyle, kaynama noktası ise Clausius-Clapeyron denklemiyle
-              hesaplanmıştır.
+              formülüyle, kaynama noktası ise IAPWS-95 buhar tablosundan
+              hesaplanmıştır. Başka bir rakım ya da basınç için{" "}
+              <Link href="/suyun-kaynama-noktasi-hesaplama">suyun kaynama noktası hesaplama</Link>{" "}
+              aracını kullanabilirsiniz.
             </small>
           </p>
         </section>

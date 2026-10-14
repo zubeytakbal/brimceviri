@@ -66,8 +66,9 @@ export type MutfakNotu = { baslik: string; metin: string };
  */
 export function mutfakNotu(rakim: number): MutfakNotu {
   const etki = calculateAltitudeEffect(rakim);
-  const kaynama = etki ? etki.waterBoilingPointC : 100;
-  const dusus = 100 - kaynama;
+  const deniz = calculateAltitudeEffect(0)!.waterBoilingPointC;
+  const kaynama = etki ? etki.waterBoilingPointC : deniz;
+  const dusus = deniz - kaynama;
   const k = kaynama.toLocaleString("tr-TR", { maximumFractionDigits: 1 });
   const d = dusus.toLocaleString("tr-TR", { maximumFractionDigits: 1 });
   if (rakim < 300) {

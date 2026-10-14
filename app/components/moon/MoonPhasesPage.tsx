@@ -55,6 +55,18 @@ const PHASE_GUIDE_TR: Array<{ id: PhaseName; fraction: number; ages: string; loo
   { id: "waning-crescent", fraction: 0.9, ages: "23,2–28,5", look: "Sol kenarda incelen bir hilal.", when: "Gün doğumundan önce doğu ufkunda, sabaha karşı görülür." },
 ];
 
+// Her evrenin adının anlamı (H3 başlıklarının altında ilk cümle).
+const PHASE_DEFS_TR: Record<PhaseName, string> = {
+  new: "Yeni ay, Ay'ın Güneş ile Dünya arasına girdiği ve aydınlık yüzünün tamamen bize ters döndüğü andır; döngü buradan başlar.",
+  "waxing-crescent": "Hilal, ayın ince yay biçiminde göründüğü evredir; \"büyüyen\" sözü aydınlık kısmın her gün arttığını anlatır.",
+  first: "Dördün, döngünün dörtte birinin tamamlandığı anlamına gelir: Ay yolunun ilk çeyreğindedir ve yarısı aydınlık görünür.",
+  "waxing-gibbous": "Şişkin ay, yarımdan fazlası aydınlık olan ama henüz dolmamış aydır; dolunaya birkaç gün kalmıştır.",
+  full: "Dolunay, Dünya'nın Ay ile Güneş arasında kaldığı ve Ay'ın bize dönük yüzünün tamamen aydınlandığı andır.",
+  "waning-gibbous": "Küçülen şişkin ay dolunaydan hemen sonra gelir; ay hâlâ yarıdan fazla aydınlıktır ama her gün biraz daha incelir.",
+  last: "Son dördün, döngünün dörtte üçünün tamamlandığı yarım aydır; bu kez sol yarısı aydınlıktır.",
+  "waning-crescent": "Küçülen hilal, yeni aydan önceki son günlerdir; ince yay her sabah biraz daha küçülür ve sonunda kaybolur.",
+};
+
 function CalendarFeeds({ lang }: { lang: "tr" | "en" }) {
   const tr = lang === "tr";
   const feeds = tr
@@ -173,6 +185,7 @@ export default function MoonPhasesPage({ lang }: { lang: "tr" | "en" }) {
         title: tr ? "İlginizi çekebilir" : "You may also like",
         links: tr
           ? [
+              { href: "/ay-gozlem-cizelgesi", label: "Ay Gözlem Çizelgesi (30 gün)" },
               { href: "/tarih-cevirici", label: "Hicri Rumi Tarih Çevirici" },
               { href: "/geri-sayim/ramazan", label: "Ramazan'a kaç gün kaldı?" },
               { href: "/dunya-saatleri", label: "Dünya Saatleri" },
@@ -196,7 +209,7 @@ export default function MoonPhasesPage({ lang }: { lang: "tr" | "en" }) {
         { id: "evreler", label: tr ? "Tüm ay evreleri" : "All moon phases" },
         { id: tr ? "tutulmalar" : "eclipses", label: tr ? "Ay ve Güneş tutulmaları" : "Lunar and solar eclipses" },
         { id: "takvime-ekle", label: tr ? "Takviminize ekleyin" : "Add to your calendar" },
-        { id: "nedir", label: tr ? "Ay evreleri nelerdir?" : "The eight phases" },
+        { id: "nedir", label: tr ? "Ay evreleri nelerdir? (8 evre)" : "The eight phases" },
         { id: "faq", label: tr ? "Sık sorulan sorular" : "FAQ" },
       ]}
       faqTitle={tr ? "Sık Sorulan Sorular" : "Frequently Asked Questions"}
@@ -224,42 +237,28 @@ export default function MoonPhasesPage({ lang }: { lang: "tr" | "en" }) {
 
       <CalendarFeeds lang={lang} />
 
-      <h2 id="nedir">{tr ? "Ay evreleri nelerdir?" : "The eight phases"}</h2>
+      <h2 id="nedir">{tr ? "Ay evreleri nelerdir? 8 evrenin adı ve anlamı" : "The eight phases"}</h2>
       {tr ? (
         <>
           <p>
             Ay yaklaşık 29,5 günde sekiz evreden geçer. Dört ana evre (yeni ay, ilk dördün, dolunay, son dördün) belirli bir anda
-            gerçekleşir; aradaki hilal ve şişkin ay evreleri birkaç gün sürer. Aşağıdaki tablo her evrenin hangi ay yaşı aralığına
-            denk geldiğini, Türkiye&apos;den (kuzey yarımküre) nasıl göründüğünü ve gökyüzünde ne zaman aranacağını özetler.
+            gerçekleşir; aradaki hilal ve şişkin ay evreleri birkaç gün sürer. Aşağıda her evrenin adının anlamı, Türkiye&apos;den (kuzey
+            yarımküre) nasıl göründüğü, gökyüzünde ne zaman aranacağı ve hangi ay yaşına denk geldiği yer alır.
           </p>
-          <div className="conversion-table-wrap">
-            <table className="conversion-table">
-              <thead>
-                <tr>
-                  <th>Evre</th>
-                  <th>Ay yaşı (gün)</th>
-                  <th>Görünüş</th>
-                  <th>Ne zaman görülür?</th>
-                </tr>
-              </thead>
-              <tbody>
-                {PHASE_GUIDE_TR.map((p) => (
-                  <tr key={p.id}>
-                    <td>
-                      <span className="moon-phase-cell">
-                        <MoonIcon fraction={p.fraction} size={22} /> {NAMES.tr[p.id]}
-                      </span>
-                    </td>
-                    <td>{p.ages}</td>
-                    <td>{p.look}</td>
-                    <td>{p.when}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          {PHASE_GUIDE_TR.map((p) => (
+            <div key={p.id} className="moon-phase-entry">
+              <h3 id={`evre-${p.id}`}>
+                <MoonIcon fraction={p.fraction} size={32} /> {NAMES.tr[p.id]}
+              </h3>
+              <p>
+                {PHASE_DEFS_TR[p.id]} <strong>Görünüş:</strong> {p.look} <strong>Ne zaman görülür?</strong> {p.when}{" "}
+                <span className="moon-phase-age">(Ay yaşı {p.ages}. gün)</span>
+              </p>
+            </div>
+          ))}
           <p>
-            Kolay hatırlama yolu: Türkiye&apos;den bakıldığında ay <strong>sağdan dolar, sağdan boşalır</strong>. Sağ tarafı aydınlıksa
+            Ayın şeklini 30 gün boyunca kendiniz takip etmek isterseniz (okul ödevi gibi) <Link href="/ay-gozlem-cizelgesi">ay gözlem çizelgesi</Link>{" "}
+            seçtiğiniz günden başlayan, yazdırılabilir bir tablo hazırlar. Kolay hatırlama yolu: Türkiye&apos;den bakıldığında ay <strong>sağdan dolar, sağdan boşalır</strong>. Sağ tarafı aydınlıksa
             büyüyor (dolunaya gidiyor), sol tarafı aydınlıksa küçülüyordur (yeni aya gidiyor). Güney yarımkürede bu görünüm tersine döner.
           </p>
           <p>

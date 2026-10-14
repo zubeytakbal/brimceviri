@@ -74,6 +74,7 @@ const GROUPS: Group[] = [
     icon: "sleepCalculator",
     links: [
       { href: "/ay-evreleri", label: "Ay Evreleri", note: "Dolunay ve yeni ay saatleri" },
+      { href: "/ay-gozlem-cizelgesi", label: "Ay Gözlem Çizelgesi", note: "30 günlük, yazdırılabilir" },
       { href: "/gunes-dogusu-ve-batisi", label: "Güneş Doğuşu ve Batışı", note: "81 ilde doğuş, batış, alacakaranlık" },
       { href: "/en-uzun-gun-ve-en-kisa-gun", label: "En Uzun ve En Kısa Gün", note: "Gündönümü ve ekinoks anları" },
       { href: "/gunes-acisi-ve-golge-boyu-hesaplama", label: "Güneş Açısı ve Gölge", note: "Gölge boyu, evim güneş alır mı" },

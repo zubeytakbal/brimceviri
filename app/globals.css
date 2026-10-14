@@ -16292,3 +16292,217 @@ a.all-units-row .all-units-name {
   border-radius: 10px;
   background: #ffffff;
 }
+
+/* ===== Ay gözlem çizelgesi ===== */
+.moon-chart-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.moon-chart-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 650;
+}
+
+.moon-chart-summary {
+  margin: 0;
+  padding: 14px 16px;
+  line-height: 1.55;
+}
+
+.moon-chart-sheet {
+  margin: 18px 0 8px;
+}
+
+.moon-chart-sheet-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 14px;
+  margin-bottom: 10px;
+}
+
+.moon-chart-sheet-head strong {
+  font-size: 1.1rem;
+}
+
+.moon-chart-sheet-head span {
+  color: #475467;
+  font-size: 0.9rem;
+}
+
+.moon-chart-sheet-fields {
+  display: none;
+}
+
+.moon-chart-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.moon-chart-day {
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: 3px;
+  min-height: 150px;
+  padding: 8px 4px;
+  border-radius: 12px;
+  background: #10172e;
+  color: #e6ebf7;
+  text-align: center;
+}
+
+.moon-chart-day b {
+  font-size: 0.8rem;
+}
+
+.moon-chart-date,
+.moon-chart-day small {
+  font-size: 0.72rem;
+  line-height: 1.25;
+  opacity: 0.85;
+}
+
+.moon-chart-name {
+  font-size: 0.74rem;
+  line-height: 1.2;
+  color: #ffd98a;
+}
+
+.moon-chart-sky.is-down {
+  color: #f4a3a3;
+}
+
+.moon-chart-day.is-main {
+  box-shadow: inset 0 0 0 2px #e8a317;
+}
+
+.moon-chart-grid.is-blank .moon-chart-day {
+  background: #ffffff;
+  color: #1d2939;
+  border: 1px solid #d0d5dd;
+}
+
+.moon-chart-empty {
+  width: 64px;
+  height: 64px;
+  margin: 6px 0;
+  border: 2px solid #1d2939;
+  border-radius: 50%;
+}
+
+.moon-chart-foot {
+  color: #667085;
+  font-size: 0.8rem;
+}
+
+.moon-draw-list {
+  display: grid;
+  gap: 10px;
+  padding: 0;
+  list-style: none;
+}
+
+.moon-draw-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.moon-draw-list .moon-icon {
+  flex: none;
+  background: #10172e;
+  border-radius: 50%;
+}
+
+@media (max-width: 720px) {
+  .moon-chart-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media print {
+  body:has(.moon-chart) .site-header,
+  body:has(.moon-chart) .site-footer,
+  body:has(.moon-chart) .breadcrumbs,
+  body:has(.moon-chart) .all-conversions-header,
+  body:has(.moon-chart) .time-tool-related,
+  body:has(.moon-chart) .page-toc,
+  body:has(.moon-chart) .category-article-content,
+  body:has(.moon-chart) .moon-chart-controls,
+  body:has(.moon-chart) .install-app {
+    display: none !important;
+  }
+
+  .moon-chart-sheet {
+    margin: 0;
+  }
+
+  .moon-chart-sheet-fields {
+    display: block;
+    width: 100%;
+    margin-top: 6px;
+    color: #000 !important;
+  }
+
+  .moon-chart-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 4px;
+  }
+
+  .moon-chart-day {
+    min-height: 0;
+    padding: 4px 2px;
+    break-inside: avoid;
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: 1px solid #98a2b3;
+  }
+
+  .moon-chart-name,
+  .moon-chart-sky.is-down {
+    color: #000000 !important;
+  }
+
+  .moon-chart-day .moon-icon-dark {
+    fill: #4a4f5c;
+  }
+
+  .moon-chart-grid.is-blank .moon-chart-day {
+    min-height: 130px;
+  }
+}
+
+.moon-strip-answer {
+  margin-bottom: 4px;
+  font-weight: 600;
+  line-height: 1.55;
+}
+
+.moon-phase-entry h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.moon-phase-entry h3 .moon-icon {
+  flex: none;
+  background: #10172e;
+  border-radius: 50%;
+}
+
+.moon-phase-age {
+  color: #667085;
+}

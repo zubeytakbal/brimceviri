@@ -19,6 +19,7 @@ const T = {
   tr: {
     stripTitle: "Son 7 gün ve önümüzdeki 7 gün ay nasıl?",
     stripNote: "Her gün için Türkiye saatiyle 21:00'deki görünüm. Ana evrenin gerçekleştiği gün çerçeveli gösterilir.",
+    dayAnswer: (label: string, date: string, name: string, illum: string) => `${label} (${date}) akşam ay: ${name}, %${illum} aydınlık.`,
     yesterday: "Dün",
     today: "Bugün",
     tomorrow: "Yarın",
@@ -46,6 +47,7 @@ const T = {
   en: {
     stripTitle: "The Moon over the last 7 and next 7 days",
     stripNote: "Each day shows the Moon at 21:00 UTC. Days with a principal phase are outlined.",
+    dayAnswer: (label: string, date: string, name: string, illum: string) => `${label} (${date}) evening: ${name}, ${illum}% lit.`,
     yesterday: "Yesterday",
     today: "Today",
     tomorrow: "Tomorrow",
@@ -180,12 +182,18 @@ export default function MoonCalendarTools({
   return (
     <>
       <h2 id="hafta">{t.stripTitle}</h2>
+      <p className="moon-strip-answer">
+        {strip
+          .filter((d) => d.rel >= -1 && d.rel <= 1)
+          .map((d) => t.dayAnswer(d.label, fmt(atLocal(d.ymd, 12), { day: "numeric", month: "long", weekday: "long" }), d.main ? kindNames[d.main.kind] : names[phaseName(d.s.age)], pct(d.s.illumination)))
+          .join(" ")}
+      </p>
       <p className="moon-strip-note">{t.stripNote}</p>
       <ol className="moon-strip">
         {strip.map(({ ymd, rel, label, s, main }) => (
           <li key={ymdKey(ymd)} className={`moon-strip-day${rel === 0 ? " is-today" : ""}${main ? " is-main" : ""}`}>
             <b>{label}</b>
-            <span className="moon-strip-date">{fmt(atLocal(ymd, 12), { day: "numeric", month: "short" })}</span>
+            <span className="moon-strip-date">{fmt(atLocal(ymd, 12), Math.abs(rel) <= 1 ? { day: "numeric", month: "short", weekday: "short" } : { day: "numeric", month: "short" })}</span>
             <MoonIcon fraction={main ? KIND_FRACTION[main.kind] : s.fraction} size={44} />
             <span className="moon-strip-name">{main ? kindNames[main.kind] : names[phaseName(s.age)]}</span>
             <small>%{pct(s.illumination)}</small>

@@ -16,6 +16,7 @@ export const geoToolsTr: GeoTool[] = [
   { href: "/gunes-acisi-ve-golge-boyu-hesaplama", title: "Güneş Açısı ve Gölge Boyu", description: "Güneşin yüksekliği, gölge boyu ve kışın güneş alma süresi.", group: "zaman" },
   { href: "/altin-saat", title: "Altın Saat", description: "Fotoğraf için altın saat ve mavi saat.", group: "zaman" },
   { href: "/ay-evreleri", title: "Ay Evreleri", description: "Bugün Ay hangi evrede, dolunay ne zaman?", group: "zaman" },
+  { href: "/ay-gozlem-cizelgesi", title: "Ay Gözlem Çizelgesi", description: "30 günlük ay evreleri, yönü ve yazdırılabilir boş çizelge.", group: "zaman" },
   { href: "/il-rakimlari", title: "İllerin Rakımı", description: "Türkiye'nin 81 ilinin denizden yüksekliği.", group: "turkiye" },
   { href: "/dunya-haritasi", title: "Dünya Haritası", description: "Tıklanabilir siyasi harita: 196 ülkenin başkenti, yüzölçümü ve saat farkı.", group: "dunya" },
   { href: "/ulkeler", title: "Ülkeler ve Başkentleri", description: "Kıtalara göre tüm ülkeler, başkentler ve Türkiye ile saat farkları.", group: "dunya" },

@@ -2812,6 +2812,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
         alternates: buildLanguageAlternates({ tr: trPath, en: enPath }, "tr"),
       })),
     ),
+    ...["/gunes-dogusu-ve-batisi", "/en-uzun-gun-ve-en-kisa-gun"].map((path) => ({
+      url: `${baseUrl}${path}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.75,
+    })),
     {
       url: `${baseUrl}/de/eieruhr`,
       lastModified: contentLastModified,

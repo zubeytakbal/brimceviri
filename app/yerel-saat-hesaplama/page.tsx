@@ -105,7 +105,7 @@ export default function LocalTimePage() {
         belirgin biçimde ileridedir: 29° D boylamındaki İstanbul&apos;da Güneş&apos;e göre saat, resmî saatten (45 − 29) × 4 = 64 dakika geridedir.
         Şehirler arasındaki resmî saat farkını görmek için <Link href="/dunya-saatleri">dünya saatlerini</Link> ya da{" "}
         <Link href="/saat-dilimi-cevirici">saat dilimi çeviriciyi</Link>, Güneş&apos;in doğuş ve batış saatleri için{" "}
-        <Link href="/altin-saat">gün doğumu ve altın saat</Link> sayfasını kullanın.
+        <Link href="/gunes-dogusu-ve-batisi">güneş doğuşu ve batışı</Link> sayfasını kullanın.
       </p>
     </TimeToolPage>
   );

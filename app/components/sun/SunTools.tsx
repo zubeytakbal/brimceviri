@@ -108,7 +108,7 @@ function YearChart({ year, lat, lon, mark }: { year: number; lat: number; lon: n
   const W = 720;
   const H = 260;
   const L = 48;
-  const T = 8;
+  const T = 14;
   const pw = W - L - 8;
   const ph = H - T - 24;
   const x = (i: number) => L + (i / (days.length - 1)) * pw;
@@ -135,7 +135,7 @@ function YearChart({ year, lat, lon, mark }: { year: number; lat: number; lon: n
           </g>
         ))}
         {monthStarts.map((i, k) => (
-          <text key={i} x={x(i) + 4} y={H - 6} className="sun-chart-label">
+          <text key={i} x={x(i) + 4} y={H - 6} className={k % 2 ? "sun-chart-label sun-chart-odd" : "sun-chart-label"}>
             {MONTHS[k]}
           </text>
         ))}

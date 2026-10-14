@@ -311,6 +311,7 @@ export const turkishToolGroups: ToolGroup[] = [
       { href: "/altin-saat", label: "Altın Saat ve Mavi Saat" },
       { href: "/gunes-dogusu-ve-batisi", label: "Güneş Doğuşu ve Batışı" },
       { href: "/en-uzun-gun-ve-en-kisa-gun", label: "En Uzun ve En Kısa Gün" },
+      { href: "/gunes-acisi-ve-golge-boyu-hesaplama", label: "Güneş Açısı ve Gölge Boyu" },
     ],
   },
   {

@@ -12,6 +12,9 @@ import {
 import { bolgeSirasi, ilceler, ilceOzeti, mutfakNotu, yakinIllerRakim } from "../../converter/geo/ilceRakimHub";
 import { popularProvinceComparisons } from "../../converter/popularProvinceComparisons";
 import { buildSiteUrl } from "../../siteConfig";
+import { turkeyProvinces } from "../../converter/geo/turkeyProvinces";
+import { sunTimes } from "../../converter/time/solar";
+import { durationLabel, trClock } from "../../converter/time/sunYear";
 import { trAblative, trGenitive, trLocative } from "../../converter/turkishSuffix";
 
 type PageProps = {
@@ -74,6 +77,14 @@ export default async function ProvinceElevationDetailPage({ params }: PageProps)
 
   const pageUrl = buildSiteUrl(`/il-rakimlari/${slug}`);
   const altitudeEffect = calculateAltitudeEffect(province.elevationM);
+  const coord = turkeyProvinces.find((p) => p.id === province.id);
+  const sunYearNow = new Date().getFullYear();
+  const sunDay = (m: number) => {
+    const s = coord ? sunTimes(sunYearNow, m, 21, coord.lat, coord.lon) : null;
+    return s && s.kind === "normal" ? `${trClock(s.sunrise)} – ${trClock(s.sunset)} (${durationLabel((s.sunset.getTime() - s.sunrise.getTime()) / 60000)})` : null;
+  };
+  const sunJune = sunDay(6);
+  const sunDec = sunDay(12);
   const nearestMountain = findNearestMountain(province.elevationM);
   const rankContext = getProvinceRankContext(slug);
   const ilceListesi = ilceler(slug);
@@ -173,6 +184,20 @@ export default async function ProvinceElevationDetailPage({ params }: PageProps)
                 <div>
                   <dt>Su Kaç Derecede Kaynar?</dt>
                   <dd>{formatNumber(altitudeEffect.waterBoilingPointC)} °C</dd>
+                </div>
+              </>
+            )}
+            {sunJune && sunDec && (
+              <>
+                <div>
+                  <dt>
+                    <Link href="/gunes-dogusu-ve-batisi">Güneş</Link>, 21 Haziran
+                  </dt>
+                  <dd>{sunJune}</dd>
+                </div>
+                <div>
+                  <dt>Güneş, 21 Aralık</dt>
+                  <dd>{sunDec}</dd>
                 </div>
               </>
             )}

@@ -13,6 +13,7 @@ export const geoToolsTr: GeoTool[] = [
   { href: "/saat-dilimi-cevirici", title: "Saat Dilimi Çevirici", description: "Bir saati birden çok ülkenin saatine çevir.", group: "zaman" },
   { href: "/gunes-dogusu-ve-batisi", title: "Güneş Doğuşu ve Batışı", description: "81 ilde güneşin doğuş, batış ve alacakaranlık saatleri.", group: "zaman" },
   { href: "/en-uzun-gun-ve-en-kisa-gun", title: "En Uzun ve En Kısa Gün", description: "Gündönümü ve ekinoks anları, 81 ilde gün uzunluğu.", group: "zaman" },
+  { href: "/gunes-acisi-ve-golge-boyu-hesaplama", title: "Güneş Açısı ve Gölge Boyu", description: "Güneşin yüksekliği, gölge boyu ve kışın güneş alma süresi.", group: "zaman" },
   { href: "/altin-saat", title: "Altın Saat", description: "Fotoğraf için altın saat ve mavi saat.", group: "zaman" },
   { href: "/ay-evreleri", title: "Ay Evreleri", description: "Bugün Ay hangi evrede, dolunay ne zaman?", group: "zaman" },
   { href: "/il-rakimlari", title: "İllerin Rakımı", description: "Türkiye'nin 81 ilinin denizden yüksekliği.", group: "turkiye" },

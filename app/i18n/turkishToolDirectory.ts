@@ -206,6 +206,7 @@ export const turkishToolGroups: ToolGroup[] = [
       { href: "/ceza-puani-hesaplama", label: "Ceza Puanı Hesaplama" },
       { href: "/arac-muayene-tarihi-hesaplama", label: "Araç Muayene Tarihi" },
       { href: "/lastik-dot-kodu-okuma", label: "Lastik DOT Kodu Okuma" },
+      { href: "/bisiklet-jant-olcusu", label: "Bisiklet Jant Ölçüsü" },
     ],
   },
   {
@@ -264,6 +265,7 @@ export const turkishToolGroups: ToolGroup[] = [
       { href: "/bilim-hesaplayicilari/fizik/egik-atis-hesaplama", label: "Eğik Atış" },
       { href: "/bilim-hesaplayicilari/matematik/sayilar", label: "Asal, Tam Kare ve Mükemmel Sayılar" },
       { href: "/awg-mm2-cevirici", label: "AWG - mm² Çevirici" },
+      { href: "/mesh-mikron-cevirme", label: "Mesh - Mikron (Elek)" },
       { href: "/boru-capi-hesaplama", label: "Boru Çapı, Debi ve Akış Hızı" },
       { href: "/boru-capi-donusum-hesaplama", label: "Boru Çapı Dönüşümü (DN-NPS)" },
       { href: "/tank-hacmi-hesaplama", label: "Tank Hacmi ve Doluluk" },
@@ -343,6 +345,7 @@ export const turkishToolGroups: ToolGroup[] = [
       { href: "/gokcisimleri-ozellikleri", label: "Gökcisimleri" },
       { href: "/erime-kaynama-noktasi-hesaplama", label: "Erime ve Kaynama Noktası" },
       { href: "/yogunluk-irtifasi-hesaplama", label: "Yoğunluk İrtifası" },
+      { href: "/bofor-cevirme", label: "Bofor (Rüzgâr) Çevirme" },
       { href: "/yan-ruzgar-hesaplama", label: "Yan Rüzgar Bileşeni" },
       { href: "/inis-orani-hesaplama", label: "İniş Oranı" },
       { href: "/agirlik-denge-hesaplama", label: "Ağırlık ve Denge" },

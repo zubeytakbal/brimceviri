@@ -1919,7 +1919,8 @@ export const unitRegistry: UnitRegistryEntry[] = [
     id: "cal-gk",
     category: "ozgul_isi",
     symbol: "cal/g·K",
-    siFactor: 4.184,
+    // 1 cal/(g·K) = 4,184 J / 0,001 kg·K = 4184 J/(kg·K).
+    siFactor: 4184,
     tr: { name: "Kalori/gram-Kelvin", slug: "kalori-gram-kelvin" },
     en: { name: "Calorie per Gram-Kelvin", slug: "calorie-per-gram-kelvin" },
     de: { name: "Kalorie pro Gramm-Kelvin", slug: "kalorie-pro-gramm-kelvin" },

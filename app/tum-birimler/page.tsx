@@ -21,12 +21,38 @@ function groupedCategories() {
   return groups.map((g) => ({ ...g, items: g.slugs.map((slug) => categoryPages.find((c) => c.slug === slug)).filter((c) => c !== undefined) }));
 }
 
-/** Kategorinin ilk birkaç dönüşüm çifti (ters yönü olanların yalnızca biri). */
+// Search Console, son 28 gün (14 Ekim 2026): kategorisinde en çok tıklanan ve gösterilen çift sayfaları.
+const POPULAR: Record<string, string[]> = {
+  "uzunluk": ["metre-santimetre", "kilometre-metre", "santimetre-milimetre", "fit-metre"],
+  "kutle": ["kilogram-gram", "ton-kilogram", "gram-miligram", "pound-kilogram"],
+  "hacim": ["metrekup-litre", "mililitre-litre", "galon-litre", "varil-litre"],
+  "basinc": ["bar-psi", "atmosfer-bar", "milibar-pascal"],
+  "alan": ["metrekare-donum", "hektar-donum", "dekar-donum", "dekar-metrekare"],
+  "zaman": ["saat-saniye", "milisaniye-saniye"],
+  "hiz": ["knot-kilometre-saat", "kilometre-saat-metre-saniye", "isik-hizi-metre-saniye", "kilometre-dakika-metre-saniye"],
+  "debi_hacimsel": ["galon-dakika-metrekup-saniye", "litre-dakika-hacimsel-metrekup-saniye", "metrekup-saniye-metrekup-saat-hacimsel", "metrekup-saniye-litre-saniye"],
+  "guc": ["watt-kilowatt"],
+  "debi": ["metrekup-saat-litre-dakika"],
+  "elektrik": ["amper-miliamper"],
+  "yogunluk": ["kilogram-litre-kilogram-metrekup"],
+  "kuvvet": ["newton-kilogram-kuvvet", "kilonewton-newton"],
+  "tork": ["newton-metre-kilogram-kuvvet-metre"],
+  "veri": ["megabayt-gigabayt"],
+  "elektrik_direnc": ["kiloohm-ohm", "ohm-megaohm"],
+  "kapasitans": ["farad-mikrofarad"],
+  "vitamin_d": ["nanogram-mililitre-nanomol-litre"],
+  "sicaklik": ["santigrat-fahrenhayt"],
+};
+
+/** Kategoride öne çıkan dönüşüm çiftleri: önce arama verisindeki popüler çiftler, sonra kayıt sırası. */
 function topPairs(category: string, limit = 4) {
+  const inCategory = conversionPages.filter((c) => c.category === category);
+  const bySlug = new Map(inCategory.map((c) => [c.slug, c]));
+  const ordered = [...(POPULAR[category] ?? []).map((slug) => bySlug.get(slug)).filter((c) => c !== undefined), ...inCategory];
   const seen = new Set<string>();
   const out: Array<{ slug: string; label: string }> = [];
-  for (const c of conversionPages) {
-    if (c.category !== category || seen.has(c.slug)) continue;
+  for (const c of ordered) {
+    if (seen.has(c.slug)) continue;
     seen.add(c.slug);
     seen.add(c.reverseSlug);
     out.push({ slug: c.slug, label: `${c.fromName} → ${c.toName}` });

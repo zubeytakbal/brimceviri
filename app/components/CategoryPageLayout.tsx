@@ -186,6 +186,7 @@ export default function CategoryPageLayout({
           </ul>
         </section>
 
+        {unitGuides.length > 0 && (
         <section className="category-page-section">
           <div className="category-section-heading">
             <h2>{unitGuidesHeading}</h2>
@@ -222,6 +223,7 @@ export default function CategoryPageLayout({
             </ul>
           )}
         </section>
+        )}
 
         {calculatorSection &&
           calculatorSection.calculators.length > 0 && (

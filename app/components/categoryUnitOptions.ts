@@ -1256,10 +1256,11 @@ export function getCategoryUnitOptions(
   }
 
   return unitRegistry
-    .filter((unit) => unit.category === category && unit.tr && unit.en)
+    // Yalnızca Türkçe adı olan yeni kategoriler (konsantrasyon, radyasyon dozu...) Türkçe sayfada da listelenir.
+    .filter((unit) => unit.category === category && unit.tr && (unit.en || locale === "tr"))
     .map((unit) => ({
       value: unit.symbol,
-      label: (locale === "tr" ? unit.tr?.name : locale === "de" ? unit.de?.name : locale === "uz" ? unit.uz?.name : undefined) ?? unit.en!.name,
+      label: (locale === "tr" ? unit.tr?.name : locale === "de" ? unit.de?.name : locale === "uz" ? unit.uz?.name : undefined) ?? unit.en?.name ?? unit.tr!.name,
       symbol: unit.displaySymbol ?? unit.symbol,
     }));
 }

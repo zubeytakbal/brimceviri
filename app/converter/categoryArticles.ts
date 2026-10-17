@@ -23,6 +23,18 @@ import { elektrikYukuCategoryArticle } from "./articles/elektrikYukuCategory/Art
 import { gumusAyarCategoryArticle } from "./articles/gumusAyarCategory/Article";
 import { kanSekeriCategoryArticle } from "./articles/kanSekeriCategory/Article";
 import { vitaminDCategoryArticle } from "./articles/vitaminDCategory/Article";
+import { konsantrasyonCategoryArticle } from "./articles/konsantrasyonCategory/Article";
+import { radyasyonDozuCategoryArticle } from "./articles/radyasyonDozuCategory/Article";
+import { aydinlatmaSiddetiCategoryArticle } from "./articles/aydinlatmaSiddetiCategory/Article";
+import { sogurulanDozCategoryArticle } from "./articles/sogurulanDozCategory/Article";
+import { dozHiziCategoryArticle } from "./articles/dozHiziCategory/Article";
+import { radyoaktiviteCategoryArticle } from "./articles/radyoaktiviteCategory/Article";
+import { isinlamaCategoryArticle } from "./articles/isinlamaCategory/Article";
+import { suSertligiCategoryArticle } from "./articles/suSertligiCategory/Article";
+import { gramajCategoryArticle } from "./articles/gramajCategory/Article";
+import { yakitVerimliligiCategoryArticle } from "./articles/yakitVerimliligiCategory/Article";
+import { tempoCategoryArticle } from "./articles/tempoCategory/Article";
+import { iplikNumarasiCategoryArticle } from "./articles/iplikNumarasiCategory/Article";
 import { hacimselDebiCategoryArticle } from "./articles/hacimselDebiCategory/Article";
 import { kutleselDebiCategoryArticle } from "./articles/kutleselDebiCategory/Article";
 import { manyetikAlanCategoryArticle } from "./articles/manyetikAlanCategory/Article";
@@ -362,6 +374,18 @@ export const categoryArticles: CategoryArticle[] = [
   gumusAyarCategoryArticle,
   kanSekeriCategoryArticle,
   vitaminDCategoryArticle,
+  konsantrasyonCategoryArticle,
+  radyasyonDozuCategoryArticle,
+  aydinlatmaSiddetiCategoryArticle,
+  sogurulanDozCategoryArticle,
+  dozHiziCategoryArticle,
+  radyoaktiviteCategoryArticle,
+  isinlamaCategoryArticle,
+  suSertligiCategoryArticle,
+  gramajCategoryArticle,
+  yakitVerimliligiCategoryArticle,
+  tempoCategoryArticle,
+  iplikNumarasiCategoryArticle,
   hacimselDebiCategoryArticle,
   kutleselDebiCategoryArticle,
   manyetikAlanCategoryArticle,

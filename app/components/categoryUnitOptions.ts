@@ -1217,7 +1217,15 @@ export function getCategoryUnitOptions(
   locale: Locale
 ) {
   const definedOptions = (units[category] ?? []).flatMap((value) => {
-    const definition = categoryUnitDefinitions[category]?.[value];
+    const registryEntry = unitRegistry.find((unit) => unit.category === category && unit.symbol === value);
+    // Elle tanımlı etiketi olmayan (sonradan eklenen) birimler kayıttaki adlarıyla listelenir.
+    const definition =
+      categoryUnitDefinitions[category]?.[value] ??
+      (registryEntry?.tr && registryEntry.en
+        ? { tr: registryEntry.tr.name, en: registryEntry.en.name, de: registryEntry.de?.name, uz: registryEntry.uz?.name, symbol: registryEntry.displaySymbol }
+        : registryEntry?.tr && locale === "tr"
+          ? { tr: registryEntry.tr.name, en: "", symbol: registryEntry.displaySymbol }
+          : undefined);
 
     if (!definition) {
       return [];
@@ -1256,10 +1264,11 @@ export function getCategoryUnitOptions(
   }
 
   return unitRegistry
-    .filter((unit) => unit.category === category && unit.tr && unit.en)
+    // Yalnızca Türkçe adı olan yeni kategoriler (konsantrasyon, radyasyon dozu...) Türkçe sayfada da listelenir.
+    .filter((unit) => unit.category === category && unit.tr && (unit.en || locale === "tr"))
     .map((unit) => ({
       value: unit.symbol,
-      label: (locale === "tr" ? unit.tr?.name : locale === "de" ? unit.de?.name : locale === "uz" ? unit.uz?.name : undefined) ?? unit.en!.name,
+      label: (locale === "tr" ? unit.tr?.name : locale === "de" ? unit.de?.name : locale === "uz" ? unit.uz?.name : undefined) ?? unit.en?.name ?? unit.tr!.name,
       symbol: unit.displaySymbol ?? unit.symbol,
     }));
 }

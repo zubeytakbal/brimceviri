@@ -272,6 +272,90 @@ export const categoryPages: CategoryPage[] = [
     description:
       "30 ng/mL vitamin D (25-OH) = 74,88 nmol/L; laboratuvar sonuçlarında ng/mL ile nmol/L arası dönüşüm.",
   },
+  {
+    slug: "konsantrasyon",
+    category: "konsantrasyon",
+    title: "Konsantrasyon Dönüşümleri",
+    description:
+      "%1 = 10.000 ppm, 1 ppm = 1.000 ppb, 1 mg/kg = 1 ppm; yüzde, binde, ppm, ppb ve ppt arası kütle oranı dönüşümü (suda 1 mg/L ≈ 1 ppm).",
+  },
+  {
+    slug: "radyasyon-dozu",
+    category: "radyasyon_dozu",
+    title: "Radyasyon Dozu Dönüşümleri",
+    description:
+      "1 Sv = 100 rem, 1 mSv = 1.000 µSv, 1 rem = 10 mSv; sievert, milisievert, mikrosievert ve rem arası eşdeğer doz dönüşümü.",
+  },
+  {
+    slug: "aydinlatma-siddeti",
+    category: "aydinlatma_siddeti",
+    title: "Aydınlatma Şiddeti Dönüşümleri",
+    description:
+      "1 foot-candle = 10,7639 lüks, 1 phot = 10.000 lüks; lüks, kilolüks, foot-candle ve phot arası aydınlık dönüşümü.",
+  },
+  {
+    slug: "sogurulan-doz",
+    category: "sogurulan_doz",
+    title: "Soğurulan Doz Dönüşümleri",
+    description:
+      "1 Gy = 100 rad, 1 cGy = 1 rad, 1 mGy = 100 mrad; gray, miligray, santigray, rad ve erg/g arası soğurulan doz dönüşümü.",
+  },
+  {
+    slug: "doz-hizi",
+    category: "doz_hizi",
+    title: "Radyasyon Doz Hızı Dönüşümleri",
+    description:
+      "0,1 µSv/saat = 0,876 mSv/yıl, 1 mrem/saat = 10 µSv/saat; µSv/saat, mSv/yıl, µSv/gün ve rem/saat arası doz hızı dönüşümü.",
+  },
+  {
+    slug: "radyoaktivite",
+    category: "radyoaktivite",
+    title: "Radyoaktivite Dönüşümleri",
+    description:
+      "1 Ci = 37 GBq, 1 mCi = 37 MBq, 1 pCi = 0,037 Bq; becquerel, curie, rutherford ve bozunma/dakika arası aktivite dönüşümü.",
+  },
+  {
+    slug: "isinlama",
+    category: "isinlama",
+    title: "Işınlama (Röntgen) Dönüşümleri",
+    description:
+      "1 R = 2,58 × 10⁻⁴ C/kg, 1 mR = 0,258 µC/kg; röntgen, miliröntgen, mikroröntgen ve coulomb/kilogram arası ışınlama dönüşümü.",
+  },
+  {
+    slug: "su-sertligi",
+    category: "su_sertligi",
+    title: "Su Sertliği Dönüşümleri",
+    description:
+      "1 Fransız sertliği (°fH) = 10 mg/L CaCO₃, 1 Alman sertliği (°dH) = 1,785 °fH, 1 mmol/L = 10,01 °fH; Fransız, Alman, İngiliz sertliği ve ppm arası dönüşüm.",
+  },
+  {
+    slug: "gramaj",
+    category: "gramaj",
+    title: "Kumaş Gramajı Dönüşümleri",
+    description:
+      "1 oz/yd² = 33,906 g/m², 200 g/m² = 5,9 oz/yd², 1 momme = 4,34 g/m²; GSM, oz/yd², oz/ft² ve momme arası kumaş ağırlığı dönüşümü.",
+  },
+  {
+    slug: "yakit-verimliligi",
+    category: "yakit_verimliligi",
+    title: "Yakıt Tüketimi Birim Dönüşümleri",
+    description:
+      "5 L/100 km = 20 km/L, 30 mpg (ABD) = 7,84 L/100 km, 8 L/100 km = 35,3 mpg (İngiliz); L/100 km, km/L ve mpg arası yakıt tüketimi dönüşümü.",
+  },
+  {
+    slug: "tempo",
+    category: "tempo",
+    title: "Koşu Temposu Dönüşümleri",
+    description:
+      "5:30 dk/km tempo = 10,9 km/saat, 12 km/saat = 5:00 dk/km, 8:00 dk/mil = 4:58 dk/km; koşu, yürüyüş, yüzme ve kürek temposu dönüşümü.",
+  },
+  {
+    slug: "iplik-numarasi",
+    category: "iplik_numarasi",
+    title: "İplik Numarası Dönüşümleri",
+    description:
+      "Ne 30 = 19,7 tex, Nm 50 = Ne 29,5, 150 denye = 166,7 dtex; tex, dtex, denye, metrik (Nm), pamuk (Ne), yün ve keten numarası dönüşümü.",
+  },
 ];
 
 export function findCategoryPageByCategory(category: string) {

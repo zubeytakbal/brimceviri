@@ -393,6 +393,54 @@ export const SITE_NAV_DATA: SiteNavData = {
     {
      "href": "/kategoriler/vitamin-d",
      "label": "Vitamin D Birim Dönüşümleri"
+    },
+    {
+     "href": "/kategoriler/konsantrasyon",
+     "label": "Konsantrasyon Dönüşümleri"
+    },
+    {
+     "href": "/kategoriler/radyasyon-dozu",
+     "label": "Radyasyon Dozu Dönüşümleri"
+    },
+    {
+     "href": "/kategoriler/aydinlatma-siddeti",
+     "label": "Aydınlatma Şiddeti Dönüşümleri"
+    },
+    {
+     "href": "/kategoriler/sogurulan-doz",
+     "label": "Soğurulan Doz Dönüşümleri"
+    },
+    {
+     "href": "/kategoriler/doz-hizi",
+     "label": "Radyasyon Doz Hızı Dönüşümleri"
+    },
+    {
+     "href": "/kategoriler/radyoaktivite",
+     "label": "Radyoaktivite Dönüşümleri"
+    },
+    {
+     "href": "/kategoriler/isinlama",
+     "label": "Işınlama (Röntgen) Dönüşümleri"
+    },
+    {
+     "href": "/kategoriler/su-sertligi",
+     "label": "Su Sertliği Dönüşümleri"
+    },
+    {
+     "href": "/kategoriler/gramaj",
+     "label": "Kumaş Gramajı Dönüşümleri"
+    },
+    {
+     "href": "/kategoriler/yakit-verimliligi",
+     "label": "Yakıt Tüketimi Birim Dönüşümleri"
+    },
+    {
+     "href": "/kategoriler/tempo",
+     "label": "Koşu Temposu Dönüşümleri"
+    },
+    {
+     "href": "/kategoriler/iplik-numarasi",
+     "label": "İplik Numarası Dönüşümleri"
     }
    ],
    "footerLinks": [

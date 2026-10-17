@@ -26,6 +26,16 @@ const K: Record<string, Record<string, number>> = {
   momentum: { "kg·m/s": 1, "N·s": 1, "lb·ft/s": 0.138254954376 },
   aci: { rad: 1, "°": Math.PI / 180, gon: Math.PI / 200, tur: 2 * Math.PI },
   zaman: { s: 1, ms: 1e-3, min: 60, h: 3600, d: 86400 },
+  konsantrasyon: { "%": 1e-2, "‰": 1e-3, ppm: 1e-6, ppb: 1e-9, ppt: 1e-12, "g/kg": 1e-3, "mg/kg": 1e-6, "µg/kg": 1e-9 },
+  radyasyon_dozu: { Sv: 1, mSv: 1e-3, "µSv": 1e-6, nSv: 1e-9, rem: 0.01, mrem: 1e-5 },
+  aydinlatma_siddeti: { lx: 1, klx: 1e3, fc: 10.763910417, ph: 1e4, mlx: 1e-3, "lm/m²": 1, "lm/cm²": 1e4, "lm/ft²": 10.763910417, nox: 1e-3 },
+  sogurulan_doz: { Gy: 1, kGy: 1e3, cGy: 1e-2, mGy: 1e-3, "µGy": 1e-6, rad: 1e-2, mrad: 1e-5, krad: 10, "erg/g": 1e-4 },
+  doz_hizi: { "µSv/h": 1, "mSv/h": 1e3, "Sv/h": 1e6, "nSv/h": 1e-3, "µSv/gün": 1 / 24, "mSv/yıl": 1000 / 8760, "Sv/s": 3.6e9, "rem/h": 1e4, "mrem/h": 10 },
+  radyoaktivite: { Bq: 1, kBq: 1e3, MBq: 1e6, GBq: 1e9, TBq: 1e12, Ci: 3.7e10, mCi: 3.7e7, "µCi": 3.7e4, nCi: 37, pCi: 0.037, Rd: 1e6, dpm: 1 / 60 },
+  isinlama: { "C/kg": 1, "mC/kg": 1e-3, "µC/kg": 1e-6, R: 2.58e-4, mR: 2.58e-7, "µR": 2.58e-10 },
+  su_sertligi: { "mg/L CaCO₃": 1, "°fH": 10, "°dH": 17.848, "°e": 14.254, gpg: 17.118, "mmol/L": 100.0869, "meq/L": 50.04345 },
+  gramaj: { "g/m²": 1, "kg/m²": 1000, "oz/yd²": 33.90575, "oz/ft²": 305.1517, "lb/yd²": 542.492, "mm (momme)": 4.3398 },
+  altin_ayar: { "24K": 1, "22K": 22 / 24, "21K": 0.875, "18K": 0.75, "14K": 14 / 24, "10K": 10 / 24, "9K": 0.375, "8K": 1 / 3, "585‰": 0.585, "750‰": 0.75, "916‰": 0.916 },
 };
 
 const C: Array<[string, number, string, string, number]> = [
@@ -46,6 +56,22 @@ const C: Array<[string, number, string, string, number]> = [
   ["kutle", 1, "q", "kg", 100], ["kutle", 1, "Da", "kg", 1.66053906660e-27], ["uzunluk", 1, "ly", "m", 9.4607304725808e15], ["uzunluk", 1, "pc", "m", 3.0856775814914e16], ["uzunluk", 1, "ftm", "m", 1.8288], ["uzunluk", 1, "fur", "m", 201.168],
   ["alan", 1, "in²", "cm²", 6.4516], ["alan", 1, "yd²", "m²", 0.83612736],
   ["ivme", 1, "in/s²", "m/s²", 0.0254],
+  ["hiz", 1, "Ma", "km/h", 1225.0584], ["hiz", 1, "in/s", "mm/s", 25.4],
+  ["uzunluk", 1, "ch", "ft", 66], ["uzunluk", 12, "pt (tipo)", "px", 16], ["uzunluk", 1, "lea", "mi", 3],
+  ["alan", 1, "mi²", "ac", 640], ["alan", 1, "rood", "ac", 0.25],
+  ["hacim", 1, "cup", "tbsp", 16], ["hacim", 1, "tbsp", "tsp", 3], ["hacim", 1, "ac·ft", "m³", 1233.48183754752],
+  ["kutle", 1, "sh tn", "lb", 2000], ["kutle", 1, "lg tn", "lb", 2240], ["kutle", 1, "ozt-lb", "ozt", 12], ["kutle", 1, "dwt", "gr", 24],
+  ["basinc", 1, "ksi", "psi", 1000], ["basinc", 1, "mH2O", "mmH2O", 1000], ["basinc", 1, "cmHg", "mmHg", 10],
+  ["enerji", 1, "MWh", "kWh", 1000], ["enerji", 1, "toe", "GJ", 41.868],
+  ["guc", 1, "kcal/h", "W", 1.163], ["kuvvet", 1, "kip", "lbf", 1000], ["kuvvet", 1, "tf", "kgf", 1000],
+  ["tork", 1, "kgf·cm", "N·m", 0.0980665], ["tork", 12, "lbf·in", "lb·ft", 1],
+  ["zaman", 1, "hf", "d", 7], ["zaman", 1, "yıl", "d", 365], ["zaman", 1, "yy", "yıl (Greg.)", 100],
+  ["aci", 60, "′", "°", 1], ["aci", 3600, "″", "°", 1], ["aci", 6400, "mil (NATO)", "tur", 1],
+  ["yogunluk", 1, "t/m³", "g/cm³", 1], ["frekans", 60, "1/dk", "Hz", 1],
+  // Ters orantılı birimler
+  ["yakit_verimliligi", 5, "L/100 km", "km/L", 20], ["yakit_verimliligi", 30, "mpg (ABD)", "L/100 km", 7.840486], ["yakit_verimliligi", 8, "L/100 km", "mpg (İng.)", 35.31012],
+  ["tempo", 5.5, "dk/km", "km/saat", 10.909091], ["tempo", 12, "km/saat", "dk/km", 5], ["tempo", 8, "dk/mil", "dk/km", 4.970970],
+  ["iplik_numarasi", 30, "Ne", "tex", 19.684706], ["iplik_numarasi", 150, "den", "dtex", 166.666667], ["iplik_numarasi", 20, "tex", "Nm", 50], ["iplik_numarasi", 1, "tex", "den", 9],
 ];
 
 describe("birim katsayıları", () => {

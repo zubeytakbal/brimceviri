@@ -62,6 +62,18 @@ const categoryLabels: Record<string, string> = {
   elektrik_yuk: "Elektrik yükü",
   manyetik_alan: "Manyetik alan",
   manyetik_aki: "Manyetik akı",
+  konsantrasyon: "Konsantrasyon",
+  radyasyon_dozu: "Radyasyon dozu",
+  aydinlatma_siddeti: "Aydınlatma şiddeti",
+  sogurulan_doz: "Soğurulan doz",
+  doz_hizi: "Doz hızı",
+  radyoaktivite: "Radyoaktivite",
+  isinlama: "Işınlama",
+  su_sertligi: "Su sertliği",
+  gramaj: "Kumaş gramajı",
+  yakit_verimliligi: "Yakıt tüketimi",
+  tempo: "Tempo",
+  iplik_numarasi: "İplik numarası",
 };
 
 // Gruplar (4 tab)
@@ -73,13 +85,15 @@ const groups: {
   {
     id: "temel",
     title: "Temel büyüklükler",
-    categories: ["alan", "uzunluk", "hacim", "kutle", "yogunluk", "sicaklik", "zaman"],
+    categories: ["alan", "uzunluk", "hacim", "kutle", "yogunluk", "sicaklik", "zaman", "konsantrasyon", "su_sertligi", "gramaj", "iplik_numarasi"],
   },
   {
     id: "kinematik",
     title: "Kinematik ve mekanik",
     categories: [
       "hiz",
+      "tempo",
+      "yakit_verimliligi",
       "ivme",
       "acisal_hiz",
       "aci",
@@ -96,8 +110,8 @@ const groups: {
   },
   {
     id: "isi",
-    title: "Isı ve enerji",
-    categories: ["enerji", "guc", "isil_iletkenlik", "isi_akisi", "ozgul_isi"],
+    title: "Isı, ışık ve radyasyon",
+    categories: ["enerji", "guc", "isil_iletkenlik", "isi_akisi", "ozgul_isi", "aydinlatma_siddeti", "radyasyon_dozu", "sogurulan_doz", "doz_hizi", "radyoaktivite", "isinlama"],
   },
   {
     id: "elektrik",

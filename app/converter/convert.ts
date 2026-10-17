@@ -17,6 +17,8 @@ function temperatureFromCelsius(celsius: number, unit: string): number {
 }
 
 const factorTables = new Map<string, Record<string, number>>();
+// Ters orantılı birimler ("kategori|sembol"): taban = katsayı / değer.
+const inverseUnits = new Set<string>();
 
 const electricityQuantityBySymbol: Record<string, "voltage" | "current"> = {
   mV: "voltage",
@@ -40,6 +42,7 @@ for (const entry of unitRegistry) {
   }
 
   table[entry.symbol] = entry.siFactor;
+  if (entry.inverse) inverseUnits.add(`${entry.category}|${entry.symbol}`);
 }
 
 export function convert(
@@ -82,5 +85,17 @@ export function convert(
     return value;
   }
 
+  const fromInverse = inverseUnits.has(`${category}|${from}`);
+  const toInverse = inverseUnits.has(`${category}|${to}`);
+  if (fromInverse || toInverse) {
+    const base = fromInverse ? t[from] / value : value * t[from];
+    return toInverse ? t[to] / base : base / t[to];
+  }
+
   return (value * t[from]) / t[to];
+}
+
+/** Birim ters orantılıysa true (değer büyüdükçe taban büyüklük küçülür). */
+export function isInverseUnit(category: string, symbol: string) {
+  return inverseUnits.has(`${category}|${symbol}`);
 }

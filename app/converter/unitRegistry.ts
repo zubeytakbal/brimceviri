@@ -1036,7 +1036,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
     id: "pud",
     category: "kutle",
     symbol: "pud",
-    siFactor: 16.3804815,
+    siFactor: 40 * 0.40951718,
     uz: { name: "Pud", slug: "pud" },
   },
   {
@@ -2859,6 +2859,39 @@ export const unitRegistry: UnitRegistryEntry[] = [
   { id: "ip-nek", category: "iplik_numarasi", symbol: "Nek", siFactor: 453.59237 / (560 * 0.9144) * 1000, inverse: true, tr: { name: "Yün numarası (Nek, worsted)", slug: "yun-numarasi" } },
   { id: "ip-nl", category: "iplik_numarasi", symbol: "Nl", siFactor: 453.59237 / (300 * 0.9144) * 1000, inverse: true, tr: { name: "Keten numarası (Nl, lea)", slug: "keten-numarasi" } },
   { id: "ip-gm", category: "iplik_numarasi", symbol: "g/m", siFactor: 1000, tr: { name: "Gram/metre", slug: "gram-bolu-metre-iplik" } },
+
+  // ---- Eski Türk (Osmanlı) ölçüleri: yalnızca tanımdan türetilen, birbiriyle tutarlı değerler ----
+  // Ağırlık: okka = 400 dirhem (dirhem 3,2073625 g); kantar = 44 okka; çeki = 4 kantar = 176 okka; dönük = 1/4 dirhem.
+  // Uzunluk: mimar (zirai) arşını = 75,774 cm = 24 parmak; parmak = 12 hat; hat = 12 nokta; çarşı arşını 68 cm = 8 rubu; rubu = 2 kerah;
+  //   fersah = 5.685 m, merhale = 8 fersah. Alan: zirai arşın² = 0,57417 m²; atik evlek = 400 zirai arşın²; atik dönüm = 4 evlek;
+  //   cerip = 3.600 zirai arşın². (Fethi Yücel, Pratik Matematik, 1963; TDV İslâm Ansiklopedisi "arşın".)
+  { id: "os-kantar", category: "kutle", symbol: "kantar", siFactor: 44 * 1.282945, tr: { name: "Kantar (44 okka)", slug: "kantar" } },
+  { id: "os-ceki", category: "kutle", symbol: "çeki", siFactor: 176 * 1.282945, tr: { name: "Çeki (4 kantar)", slug: "ceki" } },
+  { id: "os-donuk", category: "kutle", symbol: "dönük", siFactor: 0.0032073625 / 4, tr: { name: "Dönük (1/4 dirhem)", slug: "donuk" } },
+  { id: "os-mimar-arsin", category: "uzunluk", symbol: "mimar arşını", siFactor: 0.75774, tr: { name: "Mimar (zirai) arşını", slug: "mimar-arsini" } },
+  { id: "os-parmak", category: "uzunluk", symbol: "parmak", siFactor: 0.75774 / 24, tr: { name: "Parmak (Osmanlı)", slug: "osmanli-parmak" } },
+  { id: "os-hat", category: "uzunluk", symbol: "hat", siFactor: 0.75774 / 288, tr: { name: "Hat (Osmanlı)", slug: "osmanli-hat" } },
+  { id: "os-nokta", category: "uzunluk", symbol: "nokta", siFactor: 0.75774 / 3456, tr: { name: "Nokta (Osmanlı)", slug: "osmanli-nokta" } },
+  { id: "os-rubu", category: "uzunluk", symbol: "rubu", siFactor: 0.68 / 8, tr: { name: "Rubu (1/8 çarşı arşını)", slug: "rubu" } },
+  { id: "os-kerah", category: "uzunluk", symbol: "kerah", siFactor: 0.68 / 16, tr: { name: "Kerah (1/16 çarşı arşını)", slug: "kerah" } },
+  { id: "os-fersah", category: "uzunluk", symbol: "fersah (Osm.)", siFactor: 5685, tr: { name: "Fersah (Osmanlı)", slug: "osmanli-fersah" } },
+  { id: "os-merhale", category: "uzunluk", symbol: "merhale", siFactor: 8 * 5685, tr: { name: "Merhale (8 fersah)", slug: "merhale" } },
+  { id: "os-zirai-arsin2", category: "alan", symbol: "zirai arşın²", siFactor: 0.75774 * 0.75774, tr: { name: "Zirai arşın kare", slug: "zirai-arsin-kare" } },
+  { id: "os-atik-evlek", category: "alan", symbol: "atik evlek", siFactor: 400 * 0.75774 * 0.75774, tr: { name: "Atik (eski) evlek", slug: "atik-evlek" } },
+  { id: "os-atik-donum", category: "alan", symbol: "atik dönüm", siFactor: 1600 * 0.75774 * 0.75774, tr: { name: "Atik (eski) dönüm", slug: "atik-donum" } },
+  { id: "os-cerip", category: "alan", symbol: "cerip", siFactor: 3600 * 0.75774 * 0.75774, tr: { name: "Cerip", slug: "cerip" } },
+
+  // ---- Rus İmparatorluğu ölçüleri (Azerbaycan, Türkmenistan, Özbekistan ve Kazakistan'da kullanıldı) ----
+  // 1835 tanımları: arşın = 28 inç = 0,7112 m; sajen = 3 arşın; verşok = 1/16 arşın; verst = 500 sajen;
+  // desyatina = 2.400 kare sajen; funt = 0,40951718 kg; zolotnik = 1/96 funt; lot = 1/32 funt.
+  { id: "ru-arsin", category: "uzunluk", symbol: "arşın (Rus)", siFactor: 0.7112, tr: { name: "Rus arşını", slug: "rus-arsini" } },
+  { id: "ru-sajen", category: "uzunluk", symbol: "sajen", siFactor: 2.1336, tr: { name: "Sajen (Rus kulacı)", slug: "sajen" } },
+  { id: "ru-versok", category: "uzunluk", symbol: "verşok", siFactor: 0.7112 / 16, tr: { name: "Verşok", slug: "versok" } },
+  { id: "ru-verst", category: "uzunluk", symbol: "verst", siFactor: 1066.8, tr: { name: "Verst", slug: "verst" } },
+  { id: "ru-desyatina", category: "alan", symbol: "desyatina", siFactor: 2400 * 2.1336 * 2.1336, tr: { name: "Desyatina", slug: "desyatina" } },
+  { id: "ru-funt", category: "kutle", symbol: "funt", siFactor: 0.40951718, tr: { name: "Funt (Rus libresi)", slug: "funt" } },
+  { id: "ru-zolotnik", category: "kutle", symbol: "zolotnik", siFactor: 0.40951718 / 96, tr: { name: "Zolotnik", slug: "zolotnik" } },
+  { id: "ru-lot", category: "kutle", symbol: "lot", siFactor: 0.40951718 / 32, tr: { name: "Lot (Rus)", slug: "rus-lot" } },
 ];
 
 export function findUnit(category: string, symbol: string) {

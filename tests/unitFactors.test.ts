@@ -28,7 +28,11 @@ const K: Record<string, Record<string, number>> = {
   zaman: { s: 1, ms: 1e-3, min: 60, h: 3600, d: 86400 },
   konsantrasyon: { "%": 1e-2, "‰": 1e-3, ppm: 1e-6, ppb: 1e-9, ppt: 1e-12, "g/kg": 1e-3, "mg/kg": 1e-6, "µg/kg": 1e-9 },
   radyasyon_dozu: { Sv: 1, mSv: 1e-3, "µSv": 1e-6, nSv: 1e-9, rem: 0.01, mrem: 1e-5 },
-  aydinlatma_siddeti: { lx: 1, klx: 1e3, fc: 10.763910417, ph: 1e4 },
+  aydinlatma_siddeti: { lx: 1, klx: 1e3, fc: 10.763910417, ph: 1e4, mlx: 1e-3, "lm/m²": 1, "lm/cm²": 1e4, "lm/ft²": 10.763910417, nox: 1e-3 },
+  sogurulan_doz: { Gy: 1, kGy: 1e3, cGy: 1e-2, mGy: 1e-3, "µGy": 1e-6, rad: 1e-2, mrad: 1e-5, krad: 10, "erg/g": 1e-4 },
+  doz_hizi: { "µSv/h": 1, "mSv/h": 1e3, "Sv/h": 1e6, "nSv/h": 1e-3, "µSv/gün": 1 / 24, "mSv/yıl": 1000 / 8760, "Sv/s": 3.6e9, "rem/h": 1e4, "mrem/h": 10 },
+  radyoaktivite: { Bq: 1, kBq: 1e3, MBq: 1e6, GBq: 1e9, TBq: 1e12, Ci: 3.7e10, mCi: 3.7e7, "µCi": 3.7e4, nCi: 37, pCi: 0.037, Rd: 1e6, dpm: 1 / 60 },
+  isinlama: { "C/kg": 1, "mC/kg": 1e-3, "µC/kg": 1e-6, R: 2.58e-4, mR: 2.58e-7, "µR": 2.58e-10 },
 };
 
 const C: Array<[string, number, string, string, number]> = [

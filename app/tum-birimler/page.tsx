@@ -11,7 +11,7 @@ const GROUPS: Array<{ id: string; title: string; slugs: string[] }> = [
   { id: "akiskan-isi", title: "Akışkanlar ve ısı", slugs: ["debi", "hacimsel-debi", "kutlesel-debi", "viskozite", "kinematik-viskozite", "isil-iletkenlik", "isi-akisi", "ozgul-isi"] },
   { id: "elektrik", title: "Elektrik ve manyetizma", slugs: ["elektrik", "direnc", "kapasitans", "enduktans", "elektrik-yuku", "manyetik-alan", "manyetik-aki"] },
   { id: "kuyumculuk", title: "Kuyumculuk", slugs: ["altin-ayar", "gumus-ayar"] },
-  { id: "isik-radyasyon", title: "Işık, radyasyon ve kimya", slugs: ["aydinlatma-siddeti", "radyasyon-dozu", "konsantrasyon"] },
+  { id: "isik-radyasyon", title: "Işık, radyasyon ve kimya", slugs: ["radyasyon-dozu", "doz-hizi", "sogurulan-doz", "radyoaktivite", "isinlama", "aydinlatma-siddeti", "konsantrasyon"] },
   { id: "saglik", title: "Laboratuvar değerleri", slugs: ["kan-sekeri", "vitamin-d"] },
 ];
 
@@ -122,6 +122,7 @@ export default function AllConversionsPage() {
                         {c.title}
                       </Link>
                       <p>{c.description}</p>
+                      {topPairs(c.category).length > 0 && (
                       <p className="tool-list-pairs">
                         {topPairs(c.category).map((pair) => (
                           <Link key={pair.slug} href={`/${pair.slug}`}>
@@ -129,6 +130,7 @@ export default function AllConversionsPage() {
                           </Link>
                         ))}
                       </p>
+                      )}
                     </li>
                   ))}
                 </ul>

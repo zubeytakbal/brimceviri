@@ -2544,6 +2544,12 @@ export const unitRegistry: UnitRegistryEntry[] = [
   { id: "oran-gkg", category: "konsantrasyon", symbol: "g/kg", siFactor: 1e-3, tr: { name: "Gram/kilogram", slug: "gram-bolu-kilogram" } },
   { id: "oran-mgkg", category: "konsantrasyon", symbol: "mg/kg", siFactor: 1e-6, tr: { name: "Miligram/kilogram", slug: "miligram-bolu-kilogram" } },
   { id: "oran-ugkg", category: "konsantrasyon", symbol: "µg/kg", siFactor: 1e-9, tr: { name: "Mikrogram/kilogram", slug: "mikrogram-bolu-kilogram" } },
+  { id: "oran-ppq", category: "konsantrasyon", symbol: "ppq", siFactor: 1e-15, tr: { name: "ppq", slug: "ppq" } },
+  { id: "oran-mgg", category: "konsantrasyon", symbol: "mg/g", siFactor: 1e-3, tr: { name: "Miligram/gram", slug: "miligram-bolu-gram" } },
+  { id: "oran-ugg", category: "konsantrasyon", symbol: "µg/g", siFactor: 1e-6, tr: { name: "Mikrogram/gram", slug: "mikrogram-bolu-gram" } },
+  { id: "oran-ngg", category: "konsantrasyon", symbol: "ng/g", siFactor: 1e-9, tr: { name: "Nanogram/gram", slug: "nanogram-bolu-gram" } },
+  { id: "oran-ngkg", category: "konsantrasyon", symbol: "ng/kg", siFactor: 1e-12, tr: { name: "Nanogram/kilogram", slug: "nanogram-bolu-kilogram" } },
+  { id: "oran-kesir", category: "konsantrasyon", symbol: "oran", siFactor: 1, tr: { name: "Ondalık oran", slug: "ondalik-oran" } },
 
   // ---- radyasyon_dozu / eşdeğer ve etkin doz ----
   // Taban: sievert (Sv). 1 rem = 0,01 Sv (NIST SP 811).
@@ -2553,6 +2559,9 @@ export const unitRegistry: UnitRegistryEntry[] = [
   { id: "doz-nsv", category: "radyasyon_dozu", symbol: "nSv", siFactor: 1e-9, tr: { name: "Nanosievert", slug: "nanosievert" } },
   { id: "doz-rem", category: "radyasyon_dozu", symbol: "rem", siFactor: 1e-2, tr: { name: "Rem", slug: "rem" } },
   { id: "doz-mrem", category: "radyasyon_dozu", symbol: "mrem", siFactor: 1e-5, tr: { name: "Milirem", slug: "milirem" } },
+  { id: "doz-csv", category: "radyasyon_dozu", symbol: "cSv", siFactor: 1e-2, tr: { name: "Santisievert", slug: "santisievert" } },
+  { id: "doz-urem", category: "radyasyon_dozu", symbol: "µrem", siFactor: 1e-8, tr: { name: "Mikrorem", slug: "mikrorem" } },
+  { id: "doz-jkg", category: "radyasyon_dozu", symbol: "J/kg (Sv)", siFactor: 1, tr: { name: "Joule/kilogram (eşdeğer doz)", slug: "joule-bolu-kilogram-esdeger" } },
 
   // ---- aydinlatma_siddeti / aydınlık (illuminance) ----
   // Taban: lüks (lx = lm/m²). 1 fc = 1 lm/ft² = 1 / 0,09290304 lx; 1 phot = 10⁴ lx.
@@ -2560,6 +2569,66 @@ export const unitRegistry: UnitRegistryEntry[] = [
   { id: "kilolux", category: "aydinlatma_siddeti", symbol: "klx", siFactor: 1e3, tr: { name: "Kilolüks", slug: "kiloluks" } },
   { id: "footcandle", category: "aydinlatma_siddeti", symbol: "fc", siFactor: 1 / 0.09290304, tr: { name: "Foot-candle", slug: "foot-candle" } },
   { id: "phot", category: "aydinlatma_siddeti", symbol: "ph", siFactor: 1e4, tr: { name: "Phot", slug: "phot" } },
+  { id: "millilux", category: "aydinlatma_siddeti", symbol: "mlx", siFactor: 1e-3, tr: { name: "Mililüks", slug: "mililuks" } },
+  { id: "lmm2", category: "aydinlatma_siddeti", symbol: "lm/m²", siFactor: 1, tr: { name: "Lümen/metrekare", slug: "lumen-bolu-metrekare" } },
+  { id: "lmcm2", category: "aydinlatma_siddeti", symbol: "lm/cm²", siFactor: 1e4, tr: { name: "Lümen/santimetrekare", slug: "lumen-bolu-santimetrekare" } },
+  { id: "lmft2", category: "aydinlatma_siddeti", symbol: "lm/ft²", siFactor: 1 / 0.09290304, tr: { name: "Lümen/fitkare", slug: "lumen-bolu-fitkare" } },
+  { id: "lmin2", category: "aydinlatma_siddeti", symbol: "lm/in²", siFactor: 1 / 0.00064516, tr: { name: "Lümen/inçkare", slug: "lumen-bolu-inckare" } },
+  { id: "nox", category: "aydinlatma_siddeti", symbol: "nox", siFactor: 1e-3, tr: { name: "Nox", slug: "nox" } },
+
+  // ---- soğurulan doz (gray) ----
+  // Taban: gray (Gy = J/kg). 1 rad = 0,01 Gy; 1 erg/g = 10⁻⁴ Gy (NIST SP 811).
+  { id: "gray", category: "sogurulan_doz", symbol: "Gy", siFactor: 1, tr: { name: "Gray", slug: "gray" } },
+  { id: "kgray", category: "sogurulan_doz", symbol: "kGy", siFactor: 1e3, tr: { name: "Kilogray", slug: "kilogray" } },
+  { id: "cgray", category: "sogurulan_doz", symbol: "cGy", siFactor: 1e-2, tr: { name: "Santigray", slug: "santigray" } },
+  { id: "mgray", category: "sogurulan_doz", symbol: "mGy", siFactor: 1e-3, tr: { name: "Miligray", slug: "miligray" } },
+  { id: "ugray", category: "sogurulan_doz", symbol: "µGy", siFactor: 1e-6, tr: { name: "Mikrogray", slug: "mikrogray" } },
+  { id: "rad", category: "sogurulan_doz", symbol: "rad", siFactor: 1e-2, tr: { name: "Rad", slug: "rad-doz" } },
+  { id: "mrad", category: "sogurulan_doz", symbol: "mrad", siFactor: 1e-5, tr: { name: "Milirad", slug: "milirad" } },
+  { id: "krad", category: "sogurulan_doz", symbol: "krad", siFactor: 10, tr: { name: "Kilorad", slug: "kilorad" } },
+  { id: "erg-g", category: "sogurulan_doz", symbol: "erg/g", siFactor: 1e-4, tr: { name: "Erg/gram", slug: "erg-bolu-gram" } },
+  { id: "jkg-gy", category: "sogurulan_doz", symbol: "J/kg (Gy)", siFactor: 1, tr: { name: "Joule/kilogram (soğurulan)", slug: "joule-bolu-kilogram-sogurulan" } },
+
+  // ---- radyasyon doz hızı ----
+  // Taban: µSv/saat. 1 gün = 24 saat, 1 yıl = 365 gün = 8.760 saat.
+  { id: "dh-sv-h", category: "doz_hizi", symbol: "Sv/h", siFactor: 1e6, tr: { name: "Sievert/saat", slug: "sievert-bolu-saat" } },
+  { id: "dh-msv-h", category: "doz_hizi", symbol: "mSv/h", siFactor: 1e3, tr: { name: "Milisievert/saat", slug: "milisievert-bolu-saat" } },
+  { id: "dh-usv-h", category: "doz_hizi", symbol: "µSv/h", siFactor: 1, tr: { name: "Mikrosievert/saat", slug: "mikrosievert-bolu-saat" } },
+  { id: "dh-nsv-h", category: "doz_hizi", symbol: "nSv/h", siFactor: 1e-3, tr: { name: "Nanosievert/saat", slug: "nanosievert-bolu-saat" } },
+  { id: "dh-usv-d", category: "doz_hizi", symbol: "µSv/gün", siFactor: 1 / 24, tr: { name: "Mikrosievert/gün", slug: "mikrosievert-bolu-gun" } },
+  { id: "dh-msv-d", category: "doz_hizi", symbol: "mSv/gün", siFactor: 1000 / 24, tr: { name: "Milisievert/gün", slug: "milisievert-bolu-gun" } },
+  { id: "dh-msv-y", category: "doz_hizi", symbol: "mSv/yıl", siFactor: 1000 / 8760, tr: { name: "Milisievert/yıl", slug: "milisievert-bolu-yil" } },
+  { id: "dh-usv-y", category: "doz_hizi", symbol: "µSv/yıl", siFactor: 1 / 8760, tr: { name: "Mikrosievert/yıl", slug: "mikrosievert-bolu-yil" } },
+  { id: "dh-sv-s", category: "doz_hizi", symbol: "Sv/s", siFactor: 3.6e9, tr: { name: "Sievert/saniye", slug: "sievert-bolu-saniye" } },
+  { id: "dh-rem-h", category: "doz_hizi", symbol: "rem/h", siFactor: 1e4, tr: { name: "Rem/saat", slug: "rem-bolu-saat" } },
+  { id: "dh-mrem-h", category: "doz_hizi", symbol: "mrem/h", siFactor: 10, tr: { name: "Milirem/saat", slug: "milirem-bolu-saat" } },
+  { id: "dh-urem-h", category: "doz_hizi", symbol: "µrem/h", siFactor: 1e-2, tr: { name: "Mikrorem/saat", slug: "mikrorem-bolu-saat" } },
+  { id: "dh-mrem-y", category: "doz_hizi", symbol: "mrem/yıl", siFactor: 10 / 8760, tr: { name: "Milirem/yıl", slug: "milirem-bolu-yil" } },
+
+  // ---- radyoaktivite (aktivite) ----
+  // Taban: becquerel (Bq = 1/s). 1 Ci = 3,7·10¹⁰ Bq (tanım); 1 Rd = 10⁶ Bq; 1 dpm = 1/60 Bq.
+  { id: "bq", category: "radyoaktivite", symbol: "Bq", siFactor: 1, tr: { name: "Becquerel", slug: "becquerel" } },
+  { id: "kbq", category: "radyoaktivite", symbol: "kBq", siFactor: 1e3, tr: { name: "Kilobecquerel", slug: "kilobecquerel" } },
+  { id: "mbq", category: "radyoaktivite", symbol: "MBq", siFactor: 1e6, tr: { name: "Megabecquerel", slug: "megabecquerel" } },
+  { id: "gbq", category: "radyoaktivite", symbol: "GBq", siFactor: 1e9, tr: { name: "Gigabecquerel", slug: "gigabecquerel" } },
+  { id: "tbq", category: "radyoaktivite", symbol: "TBq", siFactor: 1e12, tr: { name: "Terabecquerel", slug: "terabecquerel" } },
+  { id: "ci", category: "radyoaktivite", symbol: "Ci", siFactor: 3.7e10, tr: { name: "Curie", slug: "curie" } },
+  { id: "mci", category: "radyoaktivite", symbol: "mCi", siFactor: 3.7e7, tr: { name: "Milicurie", slug: "milicurie" } },
+  { id: "uci", category: "radyoaktivite", symbol: "µCi", siFactor: 3.7e4, tr: { name: "Mikrocurie", slug: "mikrocurie" } },
+  { id: "nci", category: "radyoaktivite", symbol: "nCi", siFactor: 37, tr: { name: "Nanocurie", slug: "nanocurie" } },
+  { id: "pci", category: "radyoaktivite", symbol: "pCi", siFactor: 0.037, tr: { name: "Pikocurie", slug: "pikocurie" } },
+  { id: "rd", category: "radyoaktivite", symbol: "Rd", siFactor: 1e6, tr: { name: "Rutherford", slug: "rutherford" } },
+  { id: "dps", category: "radyoaktivite", symbol: "dps", siFactor: 1, tr: { name: "Bozunma/saniye", slug: "bozunma-bolu-saniye" } },
+  { id: "dpm", category: "radyoaktivite", symbol: "dpm", siFactor: 1 / 60, tr: { name: "Bozunma/dakika", slug: "bozunma-bolu-dakika" } },
+
+  // ---- ışınlama (maruz kalma, X ve gama ışını) ----
+  // Taban: C/kg. 1 R = 2,58·10⁻⁴ C/kg (tanım, NIST SP 811).
+  { id: "ckg", category: "isinlama", symbol: "C/kg", siFactor: 1, tr: { name: "Coulomb/kilogram", slug: "coulomb-bolu-kilogram" } },
+  { id: "mckg", category: "isinlama", symbol: "mC/kg", siFactor: 1e-3, tr: { name: "Milicoulomb/kilogram", slug: "milicoulomb-bolu-kilogram" } },
+  { id: "uckg", category: "isinlama", symbol: "µC/kg", siFactor: 1e-6, tr: { name: "Mikrocoulomb/kilogram", slug: "mikrocoulomb-bolu-kilogram" } },
+  { id: "roentgen", category: "isinlama", symbol: "R", siFactor: 2.58e-4, tr: { name: "Röntgen", slug: "rontgen" } },
+  { id: "mroentgen", category: "isinlama", symbol: "mR", siFactor: 2.58e-7, tr: { name: "Miliröntgen", slug: "milirontgen" } },
+  { id: "uroentgen", category: "isinlama", symbol: "µR", siFactor: 2.58e-10, tr: { name: "Mikroröntgen", slug: "mikrorontgen" } },
 ];
 
 export function findUnit(category: string, symbol: string) {

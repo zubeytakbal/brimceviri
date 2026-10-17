@@ -405,6 +405,22 @@ export const SITE_NAV_DATA: SiteNavData = {
     {
      "href": "/kategoriler/aydinlatma-siddeti",
      "label": "Aydınlatma Şiddeti Dönüşümleri"
+    },
+    {
+     "href": "/kategoriler/sogurulan-doz",
+     "label": "Soğurulan Doz Dönüşümleri"
+    },
+    {
+     "href": "/kategoriler/doz-hizi",
+     "label": "Radyasyon Doz Hızı Dönüşümleri"
+    },
+    {
+     "href": "/kategoriler/radyoaktivite",
+     "label": "Radyoaktivite Dönüşümleri"
+    },
+    {
+     "href": "/kategoriler/isinlama",
+     "label": "Işınlama (Röntgen) Dönüşümleri"
     }
    ],
    "footerLinks": [

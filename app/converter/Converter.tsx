@@ -65,6 +65,10 @@ const categoryLabels: Record<string, string> = {
   konsantrasyon: "Konsantrasyon",
   radyasyon_dozu: "Radyasyon dozu",
   aydinlatma_siddeti: "Aydınlatma şiddeti",
+  sogurulan_doz: "Soğurulan doz",
+  doz_hizi: "Doz hızı",
+  radyoaktivite: "Radyoaktivite",
+  isinlama: "Işınlama",
 };
 
 // Gruplar (4 tab)
@@ -100,7 +104,7 @@ const groups: {
   {
     id: "isi",
     title: "Isı, ışık ve radyasyon",
-    categories: ["enerji", "guc", "isil_iletkenlik", "isi_akisi", "ozgul_isi", "aydinlatma_siddeti", "radyasyon_dozu"],
+    categories: ["enerji", "guc", "isil_iletkenlik", "isi_akisi", "ozgul_isi", "aydinlatma_siddeti", "radyasyon_dozu", "sogurulan_doz", "doz_hizi", "radyoaktivite", "isinlama"],
   },
   {
     id: "elektrik",

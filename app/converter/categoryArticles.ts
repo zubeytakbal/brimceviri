@@ -26,6 +26,10 @@ import { vitaminDCategoryArticle } from "./articles/vitaminDCategory/Article";
 import { konsantrasyonCategoryArticle } from "./articles/konsantrasyonCategory/Article";
 import { radyasyonDozuCategoryArticle } from "./articles/radyasyonDozuCategory/Article";
 import { aydinlatmaSiddetiCategoryArticle } from "./articles/aydinlatmaSiddetiCategory/Article";
+import { sogurulanDozCategoryArticle } from "./articles/sogurulanDozCategory/Article";
+import { dozHiziCategoryArticle } from "./articles/dozHiziCategory/Article";
+import { radyoaktiviteCategoryArticle } from "./articles/radyoaktiviteCategory/Article";
+import { isinlamaCategoryArticle } from "./articles/isinlamaCategory/Article";
 import { hacimselDebiCategoryArticle } from "./articles/hacimselDebiCategory/Article";
 import { kutleselDebiCategoryArticle } from "./articles/kutleselDebiCategory/Article";
 import { manyetikAlanCategoryArticle } from "./articles/manyetikAlanCategory/Article";
@@ -368,6 +372,10 @@ export const categoryArticles: CategoryArticle[] = [
   konsantrasyonCategoryArticle,
   radyasyonDozuCategoryArticle,
   aydinlatmaSiddetiCategoryArticle,
+  sogurulanDozCategoryArticle,
+  dozHiziCategoryArticle,
+  radyoaktiviteCategoryArticle,
+  isinlamaCategoryArticle,
   hacimselDebiCategoryArticle,
   kutleselDebiCategoryArticle,
   manyetikAlanCategoryArticle,

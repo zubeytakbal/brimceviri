@@ -293,6 +293,34 @@ export const categoryPages: CategoryPage[] = [
     description:
       "1 foot-candle = 10,7639 lüks, 1 phot = 10.000 lüks; lüks, kilolüks, foot-candle ve phot arası aydınlık dönüşümü.",
   },
+  {
+    slug: "sogurulan-doz",
+    category: "sogurulan_doz",
+    title: "Soğurulan Doz Dönüşümleri",
+    description:
+      "1 Gy = 100 rad, 1 cGy = 1 rad, 1 mGy = 100 mrad; gray, miligray, santigray, rad ve erg/g arası soğurulan doz dönüşümü.",
+  },
+  {
+    slug: "doz-hizi",
+    category: "doz_hizi",
+    title: "Radyasyon Doz Hızı Dönüşümleri",
+    description:
+      "0,1 µSv/saat = 0,876 mSv/yıl, 1 mrem/saat = 10 µSv/saat; µSv/saat, mSv/yıl, µSv/gün ve rem/saat arası doz hızı dönüşümü.",
+  },
+  {
+    slug: "radyoaktivite",
+    category: "radyoaktivite",
+    title: "Radyoaktivite Dönüşümleri",
+    description:
+      "1 Ci = 37 GBq, 1 mCi = 37 MBq, 1 pCi = 0,037 Bq; becquerel, curie, rutherford ve bozunma/dakika arası aktivite dönüşümü.",
+  },
+  {
+    slug: "isinlama",
+    category: "isinlama",
+    title: "Işınlama (Röntgen) Dönüşümleri",
+    description:
+      "1 R = 2,58 × 10⁻⁴ C/kg, 1 mR = 0,258 µC/kg; röntgen, miliröntgen, mikroröntgen ve coulomb/kilogram arası ışınlama dönüşümü.",
+  },
 ];
 
 export function findCategoryPageByCategory(category: string) {

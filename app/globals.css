@@ -16506,3 +16506,163 @@ a.all-units-row .all-units-name {
 .moon-phase-age {
   color: #667085;
 }
+
+/* ===== Bölüm düzeni: sol menü + araç listesi (bölüm ana sayfaları) ===== */
+.section-layout {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 32px;
+  align-items: start;
+  margin-top: 8px;
+}
+
+.section-nav {
+  position: sticky;
+  top: 16px;
+  padding: 14px 0;
+  border-right: 1px solid #e4e7ec;
+}
+
+.section-nav-title {
+  margin: 0 0 8px;
+  padding-right: 12px;
+  color: #667085;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.section-nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.section-nav a {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 12px 6px 0;
+  color: #155eef;
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.section-nav a:hover {
+  text-decoration: underline;
+}
+
+.section-nav a span {
+  color: #98a2b3;
+  font-weight: 500;
+}
+
+.tool-list-section {
+  margin-bottom: 28px;
+}
+
+.tool-list-section h2 {
+  margin: 0 0 4px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #e4e7ec;
+}
+
+.tool-list-lead {
+  margin: 6px 0 10px;
+  color: #475467;
+}
+
+.tool-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tool-list li {
+  display: block;
+  padding: 10px 0;
+  border-bottom: 1px solid #f2f4f7;
+  list-style: none;
+}
+
+.tool-list .tool-list-title {
+  display: inline;
+  color: #155eef;
+  font-size: 1.02rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.tool-list-title:hover {
+  text-decoration: underline;
+}
+
+.tool-list-kind {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: #f2f4f7;
+  color: #475467;
+  font-size: 0.72rem;
+  font-weight: 600;
+  vertical-align: 2px;
+}
+
+.tool-list li p {
+  margin: 3px 0 0;
+  color: #344054;
+  line-height: 1.5;
+}
+
+.tool-list-formula {
+  margin-left: 8px;
+  padding: 1px 6px;
+  border-radius: 6px;
+  background: #f5f8ff;
+  color: #3538cd;
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 860px) {
+  .section-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .section-nav {
+    position: static;
+    padding: 0;
+    border-right: 0;
+  }
+
+  .section-nav ul {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding-bottom: 6px;
+  }
+
+  .section-nav li {
+    flex: none;
+  }
+
+  .section-nav-title {
+    display: none;
+  }
+
+  .section-nav a {
+    padding: 6px 12px;
+    border: 1px solid #d0d5dd;
+    border-radius: 999px;
+    background: #fff;
+    white-space: nowrap;
+  }
+
+  .tool-list-formula {
+    white-space: normal;
+  }
+}

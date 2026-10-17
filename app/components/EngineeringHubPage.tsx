@@ -1,14 +1,22 @@
 import Link from "@/app/components/SiteLink";
 import { getElectricalHubPath } from "../converter/engineeringHubs";
 import { germanStandaloneTools } from "../i18n/germanStandaloneTools";
-import { DecorativeIcon, getCalculatorIconName, type SiteIconName } from "./siteIcons";
+import type { SiteIconName } from "./siteIcons";
 
-function CardIcon({ name }: { name: SiteIconName }) {
-  return (
-    <span className="home-category-icon-box" aria-hidden="true">
-      <DecorativeIcon name={name} size={48} className="home-category-icon-svg" />
-    </span>
-  );
+const KIND_LABELS: Record<Locale, Record<"table" | "converter" | "calculator", string>> = {
+  tr: { table: "Tablo", converter: "Dönüştürücü", calculator: "Hesaplayıcı" },
+  en: { table: "Table", converter: "Converter", calculator: "Calculator" },
+  de: { table: "Tabelle", converter: "Umrechner", calculator: "Rechner" },
+};
+
+/** Araç türü adresinden çıkarılır: tablo sayfaları, çeviriciler ve geri kalan hesaplayıcılar. */
+function toolKind(slug: string, locale: Locale) {
+  const kind = /tablo|table|tabelle|ozellikleri|properties/.test(slug)
+    ? "table"
+    : /cevirici|converter|umrechner|donusum/.test(slug)
+      ? "converter"
+      : "calculator";
+  return KIND_LABELS[locale][kind];
 }
 
 type Locale = "tr" | "en" | "de";
@@ -1233,55 +1241,54 @@ export default function EngineeringHubPage({
 
         <div className="unit-page-content">
           <section className="conversion-section">
-            <h2>{content.focusTitle}</h2>
-            <p>{content.focusDescription}</p>
-
-            <div className="directory-tool-grid">
-              {content.focusCards.map((card) => (
-                <article className="directory-home-card" key={card.href}>
-                  <Link
-                    className="directory-card-stretch"
-                    href={card.href}
-                    aria-label={`${card.title} — ${card.description}`}
-                  />
-
-                  <div className="directory-card-body directory-card-body-icon">
-                    <CardIcon name={card.iconName} />
-                    <h3 className="home-category-title">{card.title}</h3>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </section>
-
-          <section className="conversion-section">
             <h2>{content.introTitle}</h2>
             <p>{content.introBody}</p>
           </section>
 
-          {content.groups.map((group) => (
-            <section className="conversion-section" id={group.id} key={group.title}>
-              <h2>{group.title}</h2>
-              <p>{group.description}</p>
-
-              <div className="directory-tool-grid">
-                {group.tools.map((tool) => (
-                  <article className="directory-home-card" key={tool.href}>
-                    <Link
-                      className="directory-card-stretch"
-                      href={tool.href}
-                      aria-label={`${tool.title} — ${tool.description}`}
-                    />
-
-                    <div className="directory-card-body directory-card-body-icon">
-                      <CardIcon name={tool.icon ?? getCalculatorIconName(tool.slug)} />
-                      <h3 className="home-category-title">{tool.title}</h3>
-                    </div>
-                  </article>
+          <div className="section-layout">
+            <nav className="section-nav" aria-label={content.focusTitle}>
+              <p className="section-nav-title">{content.focusTitle}</p>
+              <ul>
+                {content.focusCards
+                  .filter((card) => !card.href.startsWith("#"))
+                  .map((card) => (
+                    <li key={card.href}>
+                      <Link href={card.href}>{card.title}</Link>
+                    </li>
+                  ))}
+                {content.groups.map((group) => (
+                  <li key={group.id}>
+                    <a href={`#${group.id}`}>
+                      {group.title} <span>{group.tools.length}</span>
+                    </a>
+                  </li>
                 ))}
-              </div>
-            </section>
-          ))}
+              </ul>
+            </nav>
+
+            <div className="section-main">
+              {content.groups.map((group) => (
+                <section className="tool-list-section" id={group.id} key={group.title}>
+                  <h2>{group.title}</h2>
+                  <p className="tool-list-lead">{group.description}</p>
+                  <ul className="tool-list">
+                    {group.tools.map((tool) => (
+                      <li key={tool.href}>
+                        <Link href={tool.href} className="tool-list-title">
+                          {tool.title}
+                        </Link>
+                        <span className="tool-list-kind">{toolKind(tool.slug, locale)}</span>
+                        <p>
+                          {tool.description}
+                          {tool.formula ? <code className="tool-list-formula">{tool.formula}</code> : null}
+                        </p>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              ))}
+            </div>
+          </div>
 
           <section className="conversion-section">
             <h2>{content.howToTitle}</h2>

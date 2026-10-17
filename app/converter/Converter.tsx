@@ -62,6 +62,9 @@ const categoryLabels: Record<string, string> = {
   elektrik_yuk: "Elektrik yükü",
   manyetik_alan: "Manyetik alan",
   manyetik_aki: "Manyetik akı",
+  konsantrasyon: "Konsantrasyon",
+  radyasyon_dozu: "Radyasyon dozu",
+  aydinlatma_siddeti: "Aydınlatma şiddeti",
 };
 
 // Gruplar (4 tab)
@@ -73,7 +76,7 @@ const groups: {
   {
     id: "temel",
     title: "Temel büyüklükler",
-    categories: ["alan", "uzunluk", "hacim", "kutle", "yogunluk", "sicaklik", "zaman"],
+    categories: ["alan", "uzunluk", "hacim", "kutle", "yogunluk", "sicaklik", "zaman", "konsantrasyon"],
   },
   {
     id: "kinematik",
@@ -96,8 +99,8 @@ const groups: {
   },
   {
     id: "isi",
-    title: "Isı ve enerji",
-    categories: ["enerji", "guc", "isil_iletkenlik", "isi_akisi", "ozgul_isi"],
+    title: "Isı, ışık ve radyasyon",
+    categories: ["enerji", "guc", "isil_iletkenlik", "isi_akisi", "ozgul_isi", "aydinlatma_siddeti", "radyasyon_dozu"],
   },
   {
     id: "elektrik",

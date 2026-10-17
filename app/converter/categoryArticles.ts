@@ -23,6 +23,9 @@ import { elektrikYukuCategoryArticle } from "./articles/elektrikYukuCategory/Art
 import { gumusAyarCategoryArticle } from "./articles/gumusAyarCategory/Article";
 import { kanSekeriCategoryArticle } from "./articles/kanSekeriCategory/Article";
 import { vitaminDCategoryArticle } from "./articles/vitaminDCategory/Article";
+import { konsantrasyonCategoryArticle } from "./articles/konsantrasyonCategory/Article";
+import { radyasyonDozuCategoryArticle } from "./articles/radyasyonDozuCategory/Article";
+import { aydinlatmaSiddetiCategoryArticle } from "./articles/aydinlatmaSiddetiCategory/Article";
 import { hacimselDebiCategoryArticle } from "./articles/hacimselDebiCategory/Article";
 import { kutleselDebiCategoryArticle } from "./articles/kutleselDebiCategory/Article";
 import { manyetikAlanCategoryArticle } from "./articles/manyetikAlanCategory/Article";
@@ -362,6 +365,9 @@ export const categoryArticles: CategoryArticle[] = [
   gumusAyarCategoryArticle,
   kanSekeriCategoryArticle,
   vitaminDCategoryArticle,
+  konsantrasyonCategoryArticle,
+  radyasyonDozuCategoryArticle,
+  aydinlatmaSiddetiCategoryArticle,
   hacimselDebiCategoryArticle,
   kutleselDebiCategoryArticle,
   manyetikAlanCategoryArticle,

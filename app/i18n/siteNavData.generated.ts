@@ -393,6 +393,18 @@ export const SITE_NAV_DATA: SiteNavData = {
     {
      "href": "/kategoriler/vitamin-d",
      "label": "Vitamin D Birim Dönüşümleri"
+    },
+    {
+     "href": "/kategoriler/konsantrasyon",
+     "label": "Konsantrasyon Dönüşümleri"
+    },
+    {
+     "href": "/kategoriler/radyasyon-dozu",
+     "label": "Radyasyon Dozu Dönüşümleri"
+    },
+    {
+     "href": "/kategoriler/aydinlatma-siddeti",
+     "label": "Aydınlatma Şiddeti Dönüşümleri"
     }
    ],
    "footerLinks": [

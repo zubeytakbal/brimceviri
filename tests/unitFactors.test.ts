@@ -26,6 +26,9 @@ const K: Record<string, Record<string, number>> = {
   momentum: { "kg·m/s": 1, "N·s": 1, "lb·ft/s": 0.138254954376 },
   aci: { rad: 1, "°": Math.PI / 180, gon: Math.PI / 200, tur: 2 * Math.PI },
   zaman: { s: 1, ms: 1e-3, min: 60, h: 3600, d: 86400 },
+  konsantrasyon: { "%": 1e-2, "‰": 1e-3, ppm: 1e-6, ppb: 1e-9, ppt: 1e-12, "g/kg": 1e-3, "mg/kg": 1e-6, "µg/kg": 1e-9 },
+  radyasyon_dozu: { Sv: 1, mSv: 1e-3, "µSv": 1e-6, nSv: 1e-9, rem: 0.01, mrem: 1e-5 },
+  aydinlatma_siddeti: { lx: 1, klx: 1e3, fc: 10.763910417, ph: 1e4 },
 };
 
 const C: Array<[string, number, string, string, number]> = [

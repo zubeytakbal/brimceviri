@@ -2533,6 +2533,33 @@ export const unitRegistry: UnitRegistryEntry[] = [
     uz: { name: "Nanogramm/Millilitr", slug: "nanogramm-millilitr" },
     de: { name: "Nanogramm pro Milliliter", slug: "nanogramm-pro-milliliter" },
   },
+
+  // ---- konsantrasyon / kütle oranı (boyutsuz) ----
+  // Taban: oran = 1. ppm, ppb ve ppt kütle oranıdır (mg/kg, µg/kg, ng/kg ile birebir aynı).
+  { id: "oran-yuzde", category: "konsantrasyon", symbol: "%", siFactor: 1e-2, tr: { name: "Yüzde", slug: "yuzde" } },
+  { id: "oran-binde", category: "konsantrasyon", symbol: "‰", siFactor: 1e-3, tr: { name: "Binde (promil)", slug: "binde" } },
+  { id: "oran-ppm", category: "konsantrasyon", symbol: "ppm", siFactor: 1e-6, tr: { name: "ppm (milyonda bir)", slug: "ppm" } },
+  { id: "oran-ppb", category: "konsantrasyon", symbol: "ppb", siFactor: 1e-9, tr: { name: "ppb (milyarda bir)", slug: "ppb" } },
+  { id: "oran-ppt", category: "konsantrasyon", symbol: "ppt", siFactor: 1e-12, tr: { name: "ppt (trilyonda bir)", slug: "ppt" } },
+  { id: "oran-gkg", category: "konsantrasyon", symbol: "g/kg", siFactor: 1e-3, tr: { name: "Gram/kilogram", slug: "gram-bolu-kilogram" } },
+  { id: "oran-mgkg", category: "konsantrasyon", symbol: "mg/kg", siFactor: 1e-6, tr: { name: "Miligram/kilogram", slug: "miligram-bolu-kilogram" } },
+  { id: "oran-ugkg", category: "konsantrasyon", symbol: "µg/kg", siFactor: 1e-9, tr: { name: "Mikrogram/kilogram", slug: "mikrogram-bolu-kilogram" } },
+
+  // ---- radyasyon_dozu / eşdeğer ve etkin doz ----
+  // Taban: sievert (Sv). 1 rem = 0,01 Sv (NIST SP 811).
+  { id: "doz-sv", category: "radyasyon_dozu", symbol: "Sv", siFactor: 1, tr: { name: "Sievert", slug: "sievert" } },
+  { id: "doz-msv", category: "radyasyon_dozu", symbol: "mSv", siFactor: 1e-3, tr: { name: "Milisievert", slug: "milisievert" } },
+  { id: "doz-usv", category: "radyasyon_dozu", symbol: "µSv", siFactor: 1e-6, tr: { name: "Mikrosievert", slug: "mikrosievert" } },
+  { id: "doz-nsv", category: "radyasyon_dozu", symbol: "nSv", siFactor: 1e-9, tr: { name: "Nanosievert", slug: "nanosievert" } },
+  { id: "doz-rem", category: "radyasyon_dozu", symbol: "rem", siFactor: 1e-2, tr: { name: "Rem", slug: "rem" } },
+  { id: "doz-mrem", category: "radyasyon_dozu", symbol: "mrem", siFactor: 1e-5, tr: { name: "Milirem", slug: "milirem" } },
+
+  // ---- aydinlatma_siddeti / aydınlık (illuminance) ----
+  // Taban: lüks (lx = lm/m²). 1 fc = 1 lm/ft² = 1 / 0,09290304 lx; 1 phot = 10⁴ lx.
+  { id: "lux", category: "aydinlatma_siddeti", symbol: "lx", siFactor: 1, tr: { name: "Lüks", slug: "luks" } },
+  { id: "kilolux", category: "aydinlatma_siddeti", symbol: "klx", siFactor: 1e3, tr: { name: "Kilolüks", slug: "kiloluks" } },
+  { id: "footcandle", category: "aydinlatma_siddeti", symbol: "fc", siFactor: 1 / 0.09290304, tr: { name: "Foot-candle", slug: "foot-candle" } },
+  { id: "phot", category: "aydinlatma_siddeti", symbol: "ph", siFactor: 1e4, tr: { name: "Phot", slug: "phot" } },
 ];
 
 export function findUnit(category: string, symbol: string) {

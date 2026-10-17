@@ -272,6 +272,27 @@ export const categoryPages: CategoryPage[] = [
     description:
       "30 ng/mL vitamin D (25-OH) = 74,88 nmol/L; laboratuvar sonuçlarında ng/mL ile nmol/L arası dönüşüm.",
   },
+  {
+    slug: "konsantrasyon",
+    category: "konsantrasyon",
+    title: "Konsantrasyon Dönüşümleri",
+    description:
+      "%1 = 10.000 ppm, 1 ppm = 1.000 ppb, 1 mg/kg = 1 ppm; yüzde, binde, ppm, ppb ve ppt arası kütle oranı dönüşümü (suda 1 mg/L ≈ 1 ppm).",
+  },
+  {
+    slug: "radyasyon-dozu",
+    category: "radyasyon_dozu",
+    title: "Radyasyon Dozu Dönüşümleri",
+    description:
+      "1 Sv = 100 rem, 1 mSv = 1.000 µSv, 1 rem = 10 mSv; sievert, milisievert, mikrosievert ve rem arası eşdeğer doz dönüşümü.",
+  },
+  {
+    slug: "aydinlatma-siddeti",
+    category: "aydinlatma_siddeti",
+    title: "Aydınlatma Şiddeti Dönüşümleri",
+    description:
+      "1 foot-candle = 10,7639 lüks, 1 phot = 10.000 lüks; lüks, kilolüks, foot-candle ve phot arası aydınlık dönüşümü.",
+  },
 ];
 
 export function findCategoryPageByCategory(category: string) {

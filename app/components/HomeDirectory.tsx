@@ -35,6 +35,7 @@ import {
 import NotificationBell from "./NotificationBell";
 import ProfessionPreferenceWidget from "./ProfessionPreferenceWidget";
 import RecentToolsWidget from "./RecentToolsWidget";
+import FavoriteToolsWidget from "./FavoriteToolsWidget";
 import { DecorativeIcon, getCategoryIconName, type SiteIconName } from "./siteIcons";
 import { calculatorPages } from "../converter/calculatorPages";
 import { calculatorSearchIndex } from "../converter/calculatorSearchIndex";
@@ -2021,6 +2022,7 @@ export default function HomeDirectory({
         />
       )}
       {locale === "tr" && <ProfessionPreferenceWidget />}
+      <FavoriteToolsWidget locale={locale} />
       <RecentToolsWidget locale={locale} />
 
       <div className="directory-shell directory-content">

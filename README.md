@@ -2,6 +2,12 @@
 
 Çok dilli birim çevirme ve hesaplama sitesi. Next.js (App Router) ile yazılmıştır. Tamamen statik bir site olarak derlenir (`output: "export"`) ve ücretsiz olarak Cloudflare Pages üzerinde barındırılır; sunucu tarafı kod veya API yoktur.
 
+## Kullanıcı akışı
+
+1. Ana sayfada arama kutusu, kategori kartları ve popüler araçlar ziyaretçiyi doğru dönüşüm veya hesaplayıcıya götürür.
+2. Arama dizini (`/arama-dizini/<dil>.json`) ilk dokunuşta indirilir; sonuçlar başlık eşleşmesine göre sıralanır (`app/converter/homeSearchRanking.ts`).
+3. "Son baktıkların" bölümü tarayıcıda (localStorage) tutulur; sunucu veya hesap gerektirmez.
+
 ## Kurulum
 
 ```bash
@@ -19,6 +25,7 @@ npm run dev      # http://localhost:3000
 | `npm run lint` | ESLint |
 | `npm test` | Birim testleri (Vitest) |
 | `npx tsc --noEmit` | Tip kontrolü |
+| `npx tsx scripts/linkDepth.ts` | `npm run build` sonrası: ana sayfadan her sayfaya tıklama derinliğini ve yetim sayfaları raporlar (`--max=3`, `--dir=out`) |
 
 Değişiklikleri push'lamadan önce `npm run lint`, `npx tsc --noEmit` ve `npm test` komutlarının temiz geçtiğinden emin olun.
 

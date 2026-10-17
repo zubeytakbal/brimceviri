@@ -9,6 +9,42 @@ export type RecentToolEntry = {
   visitedAt: number;
 };
 
+// Yalnizca gercek arac/icerik sayfalarini (tek bir donusum, tek bir
+// hesaplayici, tek bir birim rehberi, tek bir kategori sayfasi) izliyoruz
+// -- sadece baska sayfalari listeleyen saf dizin/hub sayfalarini
+// (anasayfa, "Diger Donusumler", "Muhendislik Hesaplayicilari", "Tum
+// Birimler") degil, cunku bunlarin kendisi bir "arac" degil.
+const EXCLUDED_PATHS = new Set([
+  "/",
+  "/en",
+  "/de",
+  "/ar",
+  "/diger-donusumler",
+  "/en/other-conversions",
+  "/ar/other-conversions",
+  "/muhendislik-hesaplayicilari",
+  "/en/engineering-calculators",
+  "/de/ingenieurrechner",
+  "/ar/engineering-calculators",
+  "/muhendislik-hesaplayicilari/elektrik-hesaplari",
+  "/en/engineering-calculators/electrical-calculators",
+  "/de/ingenieurrechner/elektrorechner",
+  "/ar/engineering-calculators/electrical-calculators",
+  "/tum-birimler",
+  "/en/all-conversions",
+  "/de/alle-umrechnungen",
+  "/ar/all-conversions",
+  "/cevrimdisi",
+]);
+
+const EXCLUDED_PREFIXES = ["/embed/"];
+
+export function isTrackablePath(pathname: string): boolean {
+  return !EXCLUDED_PATHS.has(pathname) && !EXCLUDED_PREFIXES.some((prefix) => pathname.startsWith(prefix));
+}
+
+
+
 const STORAGE_KEY = "birimceviri:recent-tools";
 const MAX_ENTRIES = 6;
 const EMPTY_SNAPSHOT: RecentToolEntry[] = [];

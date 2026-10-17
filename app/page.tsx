@@ -2,6 +2,7 @@ import { buildHomeLanguageAlternates } from "./i18n/routing";
 import type { Metadata } from "next";
 import HomeDirectory from "./components/HomeDirectory";
 import { buildSiteUrl } from "./siteConfig";
+import { buildWebsiteSchema, serializeJsonLd } from "./converter/websiteSchema";
 import { getSiteNotifications } from "./converter/siteNotifications";
 
 export const revalidate = 3600;
@@ -29,5 +30,13 @@ export const metadata: Metadata = {
 
 export default async function Page() {
   const notifications = await getSiteNotifications();
-  return <HomeDirectory locale="tr" notifications={notifications} />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(buildWebsiteSchema("tr")) }}
+      />
+      <HomeDirectory locale="tr" notifications={notifications} />
+    </>
+  );
 }

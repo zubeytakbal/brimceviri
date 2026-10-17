@@ -5,7 +5,6 @@ import {
   getElectricalHubCopy,
   getEngineeringHubPath,
   getLiveElectricalCalculatorItems,
-  getPlannedElectricalCalculatorItems,
   type EngineeringLocale,
 } from "../converter/engineeringHubs";
 
@@ -16,7 +15,6 @@ export default function ElectricalEngineeringHubPage({
 }) {
   const copy = getElectricalHubCopy(locale);
   const liveItems = getLiveElectricalCalculatorItems(locale);
-  const plannedItems = getPlannedElectricalCalculatorItems(locale);
   const engineeringHubPath = getEngineeringHubPath(locale);
 
   const homeHref =
@@ -100,10 +98,6 @@ export default function ElectricalEngineeringHubPage({
       description={copy.description}
       sections={[
         {
-          heading: copy.overviewTitle,
-          content: <p>{copy.overviewBody}</p>,
-        },
-        {
           heading: copy.liveToolsTitle,
           content: (
             <ul className="category-calculator-list engineering-hub-list">
@@ -114,9 +108,6 @@ export default function ElectricalEngineeringHubPage({
                     <span className="category-tool-title">
                       <strong>{liveTool.title}</strong>
                     </span>
-                  </span>
-                  <span className="engineering-status-pill is-live">
-                    {copy.liveStatus}
                   </span>
                   <span className="category-tool-formula">
                     {liveTool.formula}
@@ -133,9 +124,6 @@ export default function ElectricalEngineeringHubPage({
                         <strong>{item.title}</strong>
                       </span>
                     </span>
-                    <span className="engineering-status-pill is-live">
-                      {copy.liveStatus}
-                    </span>
                     <span className="category-tool-formula">
                       {item.formula}
                     </span>
@@ -144,45 +132,6 @@ export default function ElectricalEngineeringHubPage({
                 </li>
               ))}
             </ul>
-          ),
-        },
-        {
-          heading: copy.plannedToolsTitle,
-          content: (
-            <>
-              <p>{copy.plannedToolsBody}</p>
-              <ul className="category-calculator-list engineering-hub-list">
-                {plannedItems.map((item) => (
-                  <li key={item.href}>
-                    <Link className="category-calculator-card" href={item.href}>
-                      <span className="engineering-hub-card-header">
-                        <DecorativeIcon name="energy" size={28} />
-                        <span className="category-tool-title">
-                          <strong>{item.title}</strong>
-                        </span>
-                      </span>
-                      <span className="engineering-status-pill">
-                        {copy.plannedStatus}
-                      </span>
-                      <span className="category-tool-formula">
-                        {item.formula}
-                      </span>
-                      <span>{item.description}</span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </>
-          ),
-        },
-        {
-          heading: copy.processTitle,
-          content: (
-            <ol className="engineering-hub-steps">
-              {copy.processSteps.map((step) => (
-                <li key={step}>{step}</li>
-              ))}
-            </ol>
           ),
         },
         {

@@ -370,90 +370,34 @@ const electricalHubCopy = {
   tr: {
     title: "Elektrik Hesapları",
     description:
-      "Kablo seçimi, gerilim düşümü, güç-akım dönüşümü ve motor on boyutlandırma gibi elektrik proje hesaplarını tek bir mühendislik kümesinde toplayın.",
-    overviewTitle: "Bu alt merkez ne için açıldı?",
-    overviewBody:
-      "Elektrik hesapları genel bir hesaplayıcı listesinin içinde kaybolmasın diye bu alt merkez oluşturuldu. Buradaki amaç, aynı karar akışına ait araçları bir araya getirerek kullanıcının önce kategoriyi, sonra doğru aracı seçmesini kolaylaştırmak.",
-    liveToolsTitle: "Canlı araçlar",
-    plannedToolsTitle: "Sıradaki araç rotaları",
-    plannedToolsBody:
-      "Aşağıdaki rotalar hesap motorları tamamlanmadan önce bilgi mimarisini sabitlemek için açıldı. Bu sayfalar indexlenmeyecek; gerçek hesaplayıcı mantığı eklendiğinde canlı araca dönecekler.",
-    processTitle: "Bu cluster nasıl büyüyecek?",
-    processSteps: [
-      "Önce yük akımı ve güç hesapları açılacak.",
-      "Ardından kablo kesiti ve gerilim düşümü birbirine bağlı şekilde tamamlanacak.",
-      "Son aşamada seçim araçları sigorta, kontaktor ve termik katmanına genişleyecek.",
-    ],
-    relatedTitle: "Üst merkez",
+      "Kablo kesiti, gerilim düşümü, kW-amper ve amper-kW dönüşümü, motor akımı ve Ohm yasası hesapları; tek faz, üç faz ve DC için formülüyle birlikte.",
+    liveToolsTitle: "Hesaplayıcılar",
+    relatedTitle: "Diğer mühendislik hesapları",
     relatedLinkLabel: "Tüm Mühendislik Hesaplayıcıları",
-    liveStatus: "Canlı",
-    plannedStatus: "Planlı rota",
   },
   en: {
     title: "Electrical Calculators",
     description:
-      "Group electrical project tools for cable sizing, voltage-drop checks, power-current conversion and preliminary motor sizing in one engineering cluster.",
-    overviewTitle: "Why open this sub-hub?",
-    overviewBody:
-      "Electrical tools should not disappear inside a generic calculator list. This sub-hub keeps one decision flow together so people can choose the right category first and then move into the exact tool they need.",
-    liveToolsTitle: "Live tools",
-    plannedToolsTitle: "Planned calculator routes",
-    plannedToolsBody:
-      "The routes below are being opened to lock the information architecture before the full calculation engines are shipped. These pages stay out of the index until they become live calculators.",
-    processTitle: "How this cluster will grow",
-    processSteps: [
-      "Power-to-current and current-to-power checks will come first.",
-      "Cable size and voltage-drop tools will then be completed as a connected pair.",
-      "Protection-device tools such as fuse and contactor selection will follow next.",
-    ],
-    relatedTitle: "Parent hub",
+      "Cable size, voltage drop, kW to amps, amps to kW, motor current and Ohm's law calculators for single-phase, three-phase and DC circuits, each with its formula.",
+    liveToolsTitle: "Calculators",
+    relatedTitle: "More engineering calculators",
     relatedLinkLabel: "All Engineering Calculators",
-    liveStatus: "Live",
-    plannedStatus: "Planned route",
   },
   de: {
     title: "Elektrorechner",
     description:
-      "Bündeln Sie Elektro-Projektwerkzeuge für Kabeldimensionierung, Spannungsfall, Leistungs-Strom-Umrechnung und erste Motorauslegung in einem gemeinsamen Ingenieur-Cluster.",
-    overviewTitle: "Warum gibt es dieses Teilzentrum?",
-    overviewBody:
-      "Elektro-Werkzeuge sollen nicht in einer allgemeinen Rechnerliste untergehen. Dieses Teilzentrum halt einen zusammenhangenden Entscheidungsfluss zusammen, damit Nutzer zuerst den richtigen Bereich und danach das passende Werkzeug wahlen können.",
-    liveToolsTitle: "Live-Werkzeuge",
-    plannedToolsTitle: "Geplante Rechner-Routen",
-    plannedToolsBody:
-      "Die folgenden Routen werden geöffnet, um die Informationsarchitektur vor dem Start der vollständigen Rechenlogik festzulegen. Diese Seiten bleiben bis zum Live-Tool aus dem Index.",
-    processTitle: "Wie wachst dieses Cluster?",
-    processSteps: [
-      "Zuerst folgen Leistung-Strom- und Strom-Leistung-Prüfungen.",
-      "Danach werden Kabelquerschnitt und Spannungsfall als verbundenes Werkzeugpaar ausgebaut.",
-      "Im Anschluss folgen Auswahlhilfen für Schutzorgane wie Sicherung und Schutz.",
-    ],
-    relatedTitle: "Übergeordnetes Zentrum",
+      "Rechner für Kabelquerschnitt, Spannungsfall, kW in Ampere, Ampere in kW, Motorstrom und ohmsches Gesetz für Einphasen-, Drehstrom- und Gleichstromkreise, jeweils mit Formel.",
+    liveToolsTitle: "Rechner",
+    relatedTitle: "Weitere Ingenieurrechner",
     relatedLinkLabel: "Alle Ingenieurrechner",
-    liveStatus: "Live",
-    plannedStatus: "Geplante Route",
   },
   ar: {
     title: "الحاسبات الكهربائية",
     description:
-      "اجمع أدوات مشاريع الكهرباء الخاصة بمقاطع الكابلات وهبوط الجهد وتحويل القدرة والتيار والتقدير الأولي للمحركات داخل قسم هندسي واحد.",
-    overviewTitle: "لماذا أنشأنا هذا القسم الفرعي؟",
-    overviewBody:
-      "حتى لا تضيع أدوات الكهرباء داخل قائمة عامة طويلة. هذا القسم يجمع مسار القرار الكهربائي في مكان واحد بحيث يختار المستخدم المجال أولا ثم الأداة الدقيقة التي يحتاجها.",
-    liveToolsTitle: "أدوات متاحة الآن",
-    plannedToolsTitle: "مسارات حاسبات قادمة",
-    plannedToolsBody:
-      "تُفتح هذه المسارات مبكرا لتثبيت بنية المحتوى والروابط الداخلية قبل اكتمال كل محرك حسابي. ستبقى خارج الفهرسة إلى أن تتحول إلى أدوات حية.",
-    processTitle: "كيف سينمو هذا القسم؟",
-    processSteps: [
-      "تبدأ المرحلة الأولى بأدوات القدرة والتيار.",
-      "ثم يكتمل مسارا مقطع الكابل وهبوط الجهد كزوج مترابط.",
-      "بعد ذلك تتوسع الأدوات نحو الحماية والاختيار مثل الفيوز والكونتاكتور.",
-    ],
-    relatedTitle: "القسم الأم",
+      "حاسبات مقطع الكابل وهبوط الجهد وتحويل الكيلوواط إلى أمبير والعكس وتيار المحرك وقانون أوم للدوائر أحادية الطور وثلاثية الطور والتيار المستمر مع المعادلة.",
+    liveToolsTitle: "الحاسبات",
+    relatedTitle: "حاسبات هندسية أخرى",
     relatedLinkLabel: "كل الحاسبات الهندسية",
-    liveStatus: "متاح",
-    plannedStatus: "مسار مخطط",
   },
 } as const;
 

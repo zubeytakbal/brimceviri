@@ -89,9 +89,9 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
         href: getElectricalHubPath("tr"),
         title: "Elektrik Hesapları",
         description:
-          "Kablo kesiti, gerilim düşümü, kW-amper dönüşümleri ve motor akımı için ayrı alt merkez.",
+          "Kablo kesiti, gerilim düşümü, kW-amper dönüşümleri ve motor akımı.",
         iconName: "energy",
-        meta: "Alt merkez",
+        meta: "Bölüm",
       },
       {
         href: "#basinc-ve-akiskanlar",
@@ -759,14 +759,14 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
     ],
     title: "Engineering Calculators",
     description:
-      "Browse a broader engineering center that combines unit-aware electrical, fluid-flow, heat-transfer, mechanics and materials tools under clearer topic clusters.",
+      "Cable size and voltage drop, pipe pressure loss, heat conduction, beam deflection, shaft torsion and dimensionless-number calculators, each showing the formula behind the result.",
     focusTitle: "Engineering sections",
     focusCards: [
       {
         href: getElectricalHubPath("en"),
         title: "Electrical Calculators",
         description:
-          "Dedicated sub-hub for cable sizing, voltage-drop checks, power-current conversion and related electrical project tools.",
+          "Cable sizing, voltage-drop checks and power-current conversion.",
         iconName: "energy",
         meta: "Dedicated hub",
       },
@@ -774,7 +774,7 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
         href: "/en/engineering-calculators/fluids-piping",
         title: "Fluids & Piping",
         description:
-          "Dedicated sub-hub for pipe flow, internal velocity, pressure-drop and pump-power checks.",
+          "Pipe flow, internal velocity, pressure drop and pump power.",
         iconName: "flowRate",
         meta: "Dedicated hub",
       },
@@ -790,7 +790,7 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
         href: "/en/engineering-calculators/heat-transfer",
         title: "Heat Transfer",
         description:
-          "Dedicated sub-hub for thermal energy, conduction, expansion and heat-transfer screening.",
+          "Thermal energy, conduction, expansion and heat transfer.",
         iconName: "temperature",
         meta: "Dedicated hub",
       },
@@ -798,7 +798,7 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
         href: "/en/engineering-calculators/mechanics-materials",
         title: "Mechanics & Materials",
         description:
-          "Dedicated sub-hub for stress and strain, beam deflection, shaft torsion, buckling and material-response checks.",
+          "Stress and strain, beam deflection, shaft torsion and buckling.",
         iconName: "pressure",
         meta: "Dedicated hub",
       },
@@ -968,7 +968,7 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
         id: "electricity",
         title: "Electricity",
         description:
-          "Practical circuit tools built around voltage, current and resistance, grouped in a dedicated electrical sub-hub.",
+          "Circuit tools built around voltage, current and resistance.",
         tools: [
           {
             slug: "kw-to-amper-hesaplama",
@@ -1018,16 +1018,16 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
     ],
     title: "Ingenieurrechner",
     description:
-      "Erkunden Sie ein ausgebautes Ingenieurzentrum, das elektrische Werkzeuge, Wärmeübertragung, Strömung, Druck und technische Einheiten in klaren Themenclustern verbindet.",
+      "Rechner für Kabelquerschnitt und Spannungsfall, Druckverlust in Rohren, Wärmeleitung und Strömung, jeweils mit der Formel hinter dem Ergebnis.",
     focusTitle: "Ingenieurbereiche",
     focusCards: [
       {
         href: getElectricalHubPath("de"),
         title: "Elektrorechner",
         description:
-          "Eigenes Teilzentrum für Kabeldimensionierung, Spannungsfall und Leistungs-Strom-Umrechnung.",
+          "Kabeldimensionierung, Spannungsfall und Leistungs-Strom-Umrechnung.",
         iconName: "energy",
-        meta: "Neues Teilzentrum",
+        meta: "Bereich",
       },
       {
         href: "#druck-und-stromung",
@@ -1107,7 +1107,7 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
         id: "elektrizitat",
         title: "Elektrizität",
         description:
-          "Werkzeuge für Spannung, Strom und Widerstand, ergänzt durch ein neues eigenes Teilzentrum für Elektrorechner.",
+          "Werkzeuge für Spannung, Strom und Widerstand.",
         tools: [
           {
             slug: "kw-to-amper-hesaplama",

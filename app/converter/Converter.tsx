@@ -71,6 +71,9 @@ const categoryLabels: Record<string, string> = {
   isinlama: "Işınlama",
   su_sertligi: "Su sertliği",
   gramaj: "Kumaş gramajı",
+  yakit_verimliligi: "Yakıt tüketimi",
+  tempo: "Tempo",
+  iplik_numarasi: "İplik numarası",
 };
 
 // Gruplar (4 tab)
@@ -82,13 +85,15 @@ const groups: {
   {
     id: "temel",
     title: "Temel büyüklükler",
-    categories: ["alan", "uzunluk", "hacim", "kutle", "yogunluk", "sicaklik", "zaman", "konsantrasyon", "su_sertligi", "gramaj"],
+    categories: ["alan", "uzunluk", "hacim", "kutle", "yogunluk", "sicaklik", "zaman", "konsantrasyon", "su_sertligi", "gramaj", "iplik_numarasi"],
   },
   {
     id: "kinematik",
     title: "Kinematik ve mekanik",
     categories: [
       "hiz",
+      "tempo",
+      "yakit_verimliligi",
       "ivme",
       "acisal_hiz",
       "aci",

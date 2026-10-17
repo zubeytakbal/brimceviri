@@ -68,6 +68,10 @@ const C: Array<[string, number, string, string, number]> = [
   ["zaman", 1, "hf", "d", 7], ["zaman", 1, "yıl", "d", 365], ["zaman", 1, "yy", "yıl (Greg.)", 100],
   ["aci", 60, "′", "°", 1], ["aci", 3600, "″", "°", 1], ["aci", 6400, "mil (NATO)", "tur", 1],
   ["yogunluk", 1, "t/m³", "g/cm³", 1], ["frekans", 60, "1/dk", "Hz", 1],
+  // Ters orantılı birimler
+  ["yakit_verimliligi", 5, "L/100 km", "km/L", 20], ["yakit_verimliligi", 30, "mpg (ABD)", "L/100 km", 7.840486], ["yakit_verimliligi", 8, "L/100 km", "mpg (İng.)", 35.31012],
+  ["tempo", 5.5, "dk/km", "km/saat", 10.909091], ["tempo", 12, "km/saat", "dk/km", 5], ["tempo", 8, "dk/mil", "dk/km", 4.970970],
+  ["iplik_numarasi", 30, "Ne", "tex", 19.684706], ["iplik_numarasi", 150, "den", "dtex", 166.666667], ["iplik_numarasi", 20, "tex", "Nm", 50], ["iplik_numarasi", 1, "tex", "den", 9],
 ];
 
 describe("birim katsayıları", () => {

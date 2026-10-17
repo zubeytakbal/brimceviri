@@ -11,6 +11,8 @@ export type UnitRegistryEntry = {
   symbol: string;
   displaySymbol?: string;
   siFactor?: number;
+  /** Ters orantılı birim: taban değeri = siFactor / değer (ör. L/100 km, dk/km, Nm iplik numarası). */
+  inverse?: boolean;
   isTemperature?: boolean;
   tr?: LocalizedUnitName;
   en?: LocalizedUnitName;
@@ -2823,6 +2825,40 @@ export const unitRegistry: UnitRegistryEntry[] = [
   { id: "gr-ozft2", category: "gramaj", symbol: "oz/ft²", siFactor: 28.349523125 / 0.09290304, tr: { name: "Ons/fitkare", slug: "ons-bolu-fitkare" } },
   { id: "gr-lbyd2", category: "gramaj", symbol: "lb/yd²", siFactor: 453.59237 / 0.83612736, tr: { name: "Pound/yardakare", slug: "pound-bolu-yardakare" } },
   { id: "gr-momme", category: "gramaj", symbol: "mm (momme)", siFactor: 4.3398, tr: { name: "Momme (ipek)", slug: "momme" } },
+
+  // ---- yakıt verimliliği ----
+  // Taban: km/L. L/100 km ters orantılıdır (km/L = 100 / değer). mpg: 1 mil = 1,609344 km; ABD galonu 3,785411784 L, İngiliz galonu 4,54609 L.
+  { id: "yv-kml", category: "yakit_verimliligi", symbol: "km/L", siFactor: 1, tr: { name: "Kilometre/litre", slug: "kilometre-bolu-litre" } },
+  { id: "yv-l100", category: "yakit_verimliligi", symbol: "L/100 km", siFactor: 100, inverse: true, tr: { name: "Litre/100 km", slug: "litre-bolu-100-km" } },
+  { id: "yv-mpgus", category: "yakit_verimliligi", symbol: "mpg (ABD)", siFactor: 1.609344 / 3.785411784, tr: { name: "Mil/galon (ABD)", slug: "mpg-abd" } },
+  { id: "yv-mpguk", category: "yakit_verimliligi", symbol: "mpg (İng.)", siFactor: 1.609344 / 4.54609, tr: { name: "Mil/galon (İngiliz)", slug: "mpg-ingiliz" } },
+  { id: "yv-ml", category: "yakit_verimliligi", symbol: "mi/L", siFactor: 1.609344, tr: { name: "Mil/litre", slug: "mil-bolu-litre" } },
+  { id: "yv-lkm", category: "yakit_verimliligi", symbol: "L/km", siFactor: 1, inverse: true, tr: { name: "Litre/kilometre", slug: "litre-bolu-kilometre" } },
+  { id: "yv-galus100", category: "yakit_verimliligi", symbol: "gal (ABD)/100 mi", siFactor: 100 * 1.609344 / 3.785411784, inverse: true, tr: { name: "Galon (ABD)/100 mil", slug: "galon-bolu-100-mil" } },
+
+  // ---- tempo (koşu ve yürüyüş) ----
+  // Taban: km/saat. Tempo birimleri ters orantılıdır: dk/km → km/h = 60 / değer; dk/mil → 60 × 1,609344 / değer.
+  { id: "tp-kmh", category: "tempo", symbol: "km/saat", siFactor: 1, tr: { name: "Kilometre/saat", slug: "tempo-kilometre-bolu-saat" } },
+  { id: "tp-mph", category: "tempo", symbol: "mil/saat", siFactor: 1.609344, tr: { name: "Mil/saat", slug: "tempo-mil-bolu-saat" } },
+  { id: "tp-ms", category: "tempo", symbol: "m/s", siFactor: 3.6, tr: { name: "Metre/saniye", slug: "tempo-metre-bolu-saniye" } },
+  { id: "tp-minkm", category: "tempo", symbol: "dk/km", siFactor: 60, inverse: true, tr: { name: "Dakika/kilometre (tempo)", slug: "dakika-bolu-kilometre" } },
+  { id: "tp-minmi", category: "tempo", symbol: "dk/mil", siFactor: 60 * 1.609344, inverse: true, tr: { name: "Dakika/mil (tempo)", slug: "dakika-bolu-mil" } },
+  { id: "tp-s100", category: "tempo", symbol: "sn/100 m", siFactor: 360, inverse: true, tr: { name: "Saniye/100 metre (yüzme)", slug: "saniye-bolu-100-metre" } },
+  { id: "tp-min500", category: "tempo", symbol: "dk/500 m", siFactor: 30, inverse: true, tr: { name: "Dakika/500 metre (kürek)", slug: "dakika-bolu-500-metre" } },
+  { id: "tp-skm", category: "tempo", symbol: "sn/km", siFactor: 3600, inverse: true, tr: { name: "Saniye/kilometre", slug: "saniye-bolu-kilometre" } },
+
+  // ---- iplik numarası (doğrusal yoğunluk) ----
+  // Taban: tex (g/1000 m). denye = g/9000 m; Nm = m/g (ters); Ne (pamuk) = 840 yarda/libre çile sayısı → tex = 590,5412 / Ne (ters);
+  // Nek (yün, 560 yarda/libre) → tex = 885,8118 / değer; Nl (keten, 300 yarda/libre) → tex = 1653,515 / değer.
+  { id: "ip-tex", category: "iplik_numarasi", symbol: "tex", siFactor: 1, tr: { name: "Tex", slug: "tex" } },
+  { id: "ip-dtex", category: "iplik_numarasi", symbol: "dtex", siFactor: 0.1, tr: { name: "Desiteks (dtex)", slug: "desiteks" } },
+  { id: "ip-ktex", category: "iplik_numarasi", symbol: "ktex", siFactor: 1000, tr: { name: "Kilotex", slug: "kilotex" } },
+  { id: "ip-den", category: "iplik_numarasi", symbol: "den", siFactor: 1 / 9, tr: { name: "Denye (denier)", slug: "denye" } },
+  { id: "ip-nm", category: "iplik_numarasi", symbol: "Nm", siFactor: 1000, inverse: true, tr: { name: "Metrik numara (Nm)", slug: "metrik-numara" } },
+  { id: "ip-ne", category: "iplik_numarasi", symbol: "Ne", siFactor: 453.59237 / (840 * 0.9144) * 1000, inverse: true, tr: { name: "İngiliz pamuk numarası (Ne)", slug: "ingiliz-pamuk-numarasi" } },
+  { id: "ip-nek", category: "iplik_numarasi", symbol: "Nek", siFactor: 453.59237 / (560 * 0.9144) * 1000, inverse: true, tr: { name: "Yün numarası (Nek, worsted)", slug: "yun-numarasi" } },
+  { id: "ip-nl", category: "iplik_numarasi", symbol: "Nl", siFactor: 453.59237 / (300 * 0.9144) * 1000, inverse: true, tr: { name: "Keten numarası (Nl, lea)", slug: "keten-numarasi" } },
+  { id: "ip-gm", category: "iplik_numarasi", symbol: "g/m", siFactor: 1000, tr: { name: "Gram/metre", slug: "gram-bolu-metre-iplik" } },
 ];
 
 export function findUnit(category: string, symbol: string) {

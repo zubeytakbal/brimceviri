@@ -335,6 +335,27 @@ export const categoryPages: CategoryPage[] = [
     description:
       "1 oz/yd² = 33,906 g/m², 200 g/m² = 5,9 oz/yd², 1 momme = 4,34 g/m²; GSM, oz/yd², oz/ft² ve momme arası kumaş ağırlığı dönüşümü.",
   },
+  {
+    slug: "yakit-verimliligi",
+    category: "yakit_verimliligi",
+    title: "Yakıt Tüketimi Birim Dönüşümleri",
+    description:
+      "5 L/100 km = 20 km/L, 30 mpg (ABD) = 7,84 L/100 km, 8 L/100 km = 35,3 mpg (İngiliz); L/100 km, km/L ve mpg arası yakıt tüketimi dönüşümü.",
+  },
+  {
+    slug: "tempo",
+    category: "tempo",
+    title: "Koşu Temposu Dönüşümleri",
+    description:
+      "5:30 dk/km tempo = 10,9 km/saat, 12 km/saat = 5:00 dk/km, 8:00 dk/mil = 4:58 dk/km; koşu, yürüyüş, yüzme ve kürek temposu dönüşümü.",
+  },
+  {
+    slug: "iplik-numarasi",
+    category: "iplik_numarasi",
+    title: "İplik Numarası Dönüşümleri",
+    description:
+      "Ne 30 = 19,7 tex, Nm 50 = Ne 29,5, 150 denye = 166,7 dtex; tex, dtex, denye, metrik (Nm), pamuk (Ne), yün ve keten numarası dönüşümü.",
+  },
 ];
 
 export function findCategoryPageByCategory(category: string) {

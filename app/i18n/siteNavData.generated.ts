@@ -429,6 +429,18 @@ export const SITE_NAV_DATA: SiteNavData = {
     {
      "href": "/kategoriler/gramaj",
      "label": "Kumaş Gramajı Dönüşümleri"
+    },
+    {
+     "href": "/kategoriler/yakit-verimliligi",
+     "label": "Yakıt Tüketimi Birim Dönüşümleri"
+    },
+    {
+     "href": "/kategoriler/tempo",
+     "label": "Koşu Temposu Dönüşümleri"
+    },
+    {
+     "href": "/kategoriler/iplik-numarasi",
+     "label": "İplik Numarası Dönüşümleri"
     }
    ],
    "footerLinks": [

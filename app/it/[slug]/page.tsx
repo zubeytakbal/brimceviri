@@ -341,10 +341,6 @@ export default async function ItalianConversionPage({ params }: PageProps) {
           <section className="conversion-section unit-sources">
             <h2>Fonti</h2>
 
-            <p>
-              Le definizioni e le relazioni di conversione di questa pagina
-              seguono gli standard metrologici riconosciuti.
-            </p>
 
             <ol>
               {sources.map((source) => (

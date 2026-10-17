@@ -678,11 +678,6 @@ export default async function EnglishCategoryPage({
               >
                 <h2>Sources</h2>
 
-                <p>
-                  The definitions and conversion relationships on
-                  this page are aligned with standard metrology and
-                  SI reference material.
-                </p>
 
                 <ol>
                   {sources.map((source) => (

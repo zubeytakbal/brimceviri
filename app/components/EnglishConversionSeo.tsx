@@ -57,8 +57,7 @@ export default function EnglishConversionSeo({
         `${conversionPage.toName}?`,
       answer:
         `1 ${englishDisplaySymbol(conversionPage.category, conversionPage.fromUnit)} = ${formattedOneUnitResult} ` +
-        `${englishDisplaySymbol(conversionPage.category, conversionPage.toUnit)}. Enter another value in the converter ` +
-        "to calculate its equivalent instantly.",
+        `${englishDisplaySymbol(conversionPage.category, conversionPage.toUnit)}.`,
     },
     {
       question:

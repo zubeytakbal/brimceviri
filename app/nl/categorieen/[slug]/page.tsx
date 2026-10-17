@@ -193,10 +193,6 @@ export default async function NederlandsCategoryPage({ params }: PageProps) {
           {sources.length > 0 && (
             <section className="conversion-section unit-sources" id="sources">
               <h2>Bronnen</h2>
-              <p>
-                De definities en omrekenwaarden op deze pagina zijn gebaseerd
-                op erkende officiële metrologische referenties.
-              </p>
               <ol>
                 {sources.map((source) => (
                   <li key={source.url}>

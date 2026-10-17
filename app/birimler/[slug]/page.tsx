@@ -805,10 +805,6 @@ const specificScientificSections =
             >
               <h2>Kaynaklar</h2>
 
-              <p>
-                Bu sayfadaki tanımlar ve dönüşüm değerleri aşağıdaki
-                resmî metroloji kaynakları temel alınarak hazırlanmıştır.
-              </p>
 
               <ol>
                 {sources.map((source) => (

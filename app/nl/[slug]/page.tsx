@@ -226,7 +226,6 @@ export default async function NederlandsConversionPage({ params }: PageProps) {
         {sources.length > 0 && (
           <section className="conversion-section unit-sources">
             <h2>Bronnen</h2>
-            <p>De definities en omrekenverhoudingen op deze pagina volgen erkende metrologische standaarden en SI-bronnen.</p>
             <ol>{sources.map((source) => <li key={source.url}><a href={source.url} target="_blank" rel="noreferrer">{source.organization}: {source.title}</a></li>)}</ol>
           </section>
         )}

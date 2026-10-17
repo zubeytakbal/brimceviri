@@ -301,10 +301,6 @@ export default async function DanishConversionPage({ params }: PageProps) {
           <section className="conversion-section unit-sources">
             <h2>Kilder</h2>
 
-            <p>
-              Definitionerne og omregningsforholdene på denne side følger
-              anerkendte metrologiske standarder.
-            </p>
 
             <ol>
               {sources.map((source) => (

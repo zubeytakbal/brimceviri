@@ -92,7 +92,7 @@ export function germanSiblingUnits(unitPage: LocalizedGermanUnitPage, limit = 12
 export function germanUnitFaq(unitPage: LocalizedGermanUnitPage, table: GermanUnitTableRow[]): FaqItem[] {
   const items: FaqItem[] = table.slice(0, 3).map((row) => ({
     question: `Wie viel ${row.name} sind 1 ${unitPage.name}?`,
-    answer: `1 ${unitPage.name} (${unitPage.symbol}) = ${row.text} ${row.symbol}. Für andere Werte nutzen Sie den Umrechner oder die Tabelle auf dieser Seite.`,
+    answer: `1 ${unitPage.name} (${unitPage.symbol}) = ${row.text} ${row.symbol}.`,
   }));
   items.push({
     question: `Welches Symbol hat ${unitPage.name}?`,

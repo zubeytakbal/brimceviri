@@ -478,8 +478,7 @@ function renderConversionPage(slug: string) {
             <h1>محول {localizedFromName} إلى {localizedToName}</h1>
 
             <p className="conversion-hero-description">
-              أدخل القيمة المطلوبة للحصول على نتيجة التحويل
-              بشكل فوري داخل الواجهة العربية.
+              1 {localizedFromName} = {formattedOneUnitResult} {localizedToName}.
             </p>
 
             <PairConverter
@@ -542,9 +541,7 @@ function renderConversionPage(slug: string) {
 
           <p>
             يعتمد هذا التحويل على العلاقة الرياضية الثابتة بين{" "}
-            {localizedFromName} و{localizedToName}. يمكنك استخدام الأداة
-            في أعلى الصفحة لإدخال أي قيمة، أو الاعتماد على
-            الصيغة التالية عند الحاجة إلى مراجعة سريعة.
+            {localizedFromName} و{localizedToName}.
           </p>
 
           <div className="conversion-formula">

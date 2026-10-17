@@ -9,7 +9,7 @@ const GROUPS: Array<{ id: string; title: string; slugs: string[] }> = [
   { id: "temel", title: "Temel ölçüler", slugs: ["uzunluk", "alan", "hacim", "kutle", "sicaklik", "zaman", "hiz", "aci", "veri", "tempo", "yakit-verimliligi"] },
   { id: "mekanik", title: "Mekanik", slugs: ["basinc", "kuvvet", "tork", "enerji", "guc", "ivme", "acisal-hiz", "momentum", "yogunluk", "frekans"] },
   { id: "akiskan-isi", title: "Akışkanlar ve ısı", slugs: ["debi", "hacimsel-debi", "kutlesel-debi", "viskozite", "kinematik-viskozite", "isil-iletkenlik", "isi-akisi", "ozgul-isi"] },
-  { id: "elektrik", title: "Elektrik ve manyetizma", slugs: ["elektrik", "direnc", "kapasitans", "enduktans", "elektrik-yuku", "manyetik-alan", "manyetik-aki"] },
+  { id: "elektrik", title: "Elektrik ve manyetizma", slugs: ["elektrik", "direnc", "kapasitans", "enduktans", "elektrik-yuku", "manyetik-alan", "manyetik-aki", "elektrik-iletkenligi"] },
   { id: "kuyumculuk", title: "Kuyumculuk", slugs: ["altin-ayar", "gumus-ayar"] },
   { id: "su-tekstil", title: "Su ve tekstil", slugs: ["su-sertligi", "gramaj", "iplik-numarasi"] },
   { id: "isik-radyasyon", title: "Işık, radyasyon ve kimya", slugs: ["radyasyon-dozu", "doz-hizi", "sogurulan-doz", "radyoaktivite", "isinlama", "aydinlatma-siddeti", "konsantrasyon"] },

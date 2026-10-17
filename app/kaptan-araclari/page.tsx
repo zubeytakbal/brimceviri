@@ -219,7 +219,8 @@ export default function KaptanAraclariPage() {
             Kaptan Francis Beaufort tarafından geliştirilen bu skala,
             rüzgar hızını görsel deniz durumu gözlemlerine bağlayan
             0-12 arası bir sınıflandırmadır — hâlâ hava/deniz
-            raporlarında yaygın kullanılır:
+            raporlarında yaygın kullanılır. Tüm dereceler ve hızdan bofor
+            hesabı için <Link href="/bofor-cevirme">bofor çevirme</Link> aracına bakın:
           </p>
           <div className="conversion-table-wrap">
             <table className="conversion-table">

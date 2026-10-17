@@ -87,7 +87,7 @@ const centralAsianMassUnits = [
   {
     href: "/uz/turkumlar/massa#pud",
     name: "Pud",
-    value: "= 16,3804815 kg",
+    value: "= 16,3806872 kg",
     note: "Rus o'lchov tizimidan, 1894-yildan Turkistonda rasmiy massa birligi.",
   },
   {

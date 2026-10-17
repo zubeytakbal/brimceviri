@@ -31,6 +31,7 @@ import { dozHiziCategoryArticle } from "./articles/dozHiziCategory/Article";
 import { radyoaktiviteCategoryArticle } from "./articles/radyoaktiviteCategory/Article";
 import { isinlamaCategoryArticle } from "./articles/isinlamaCategory/Article";
 import { suSertligiCategoryArticle } from "./articles/suSertligiCategory/Article";
+import { elektrikIletkenligiCategoryArticle } from "./articles/elektrikIletkenligiCategory/Article";
 import { gramajCategoryArticle } from "./articles/gramajCategory/Article";
 import { yakitVerimliligiCategoryArticle } from "./articles/yakitVerimliligiCategory/Article";
 import { tempoCategoryArticle } from "./articles/tempoCategory/Article";
@@ -382,6 +383,7 @@ export const categoryArticles: CategoryArticle[] = [
   radyoaktiviteCategoryArticle,
   isinlamaCategoryArticle,
   suSertligiCategoryArticle,
+  elektrikIletkenligiCategoryArticle,
   gramajCategoryArticle,
   yakitVerimliligiCategoryArticle,
   tempoCategoryArticle,

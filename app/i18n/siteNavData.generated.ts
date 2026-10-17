@@ -423,6 +423,10 @@ export const SITE_NAV_DATA: SiteNavData = {
      "label": "Işınlama (Röntgen) Dönüşümleri"
     },
     {
+     "href": "/kategoriler/elektrik-iletkenligi",
+     "label": "Elektrik İletkenliği Dönüşümleri"
+    },
+    {
      "href": "/kategoriler/su-sertligi",
      "label": "Su Sertliği Dönüşümleri"
     },

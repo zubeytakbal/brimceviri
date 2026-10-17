@@ -1518,7 +1518,7 @@ export const uzbekUnitPages: LocalizedUzbekUnitPage[] = [
     shortDescription: "Pud — rus o'lchov tizimidan kelib chiqqan, 1894-yildagi rus metrologik islohotidan so'ng Turkistonda rasmiy massa birligiga aylangan katta og'irlik birligi.",
     historySummary: "Pud rus imperiyasining standart massa birligi bo'lgan va Turkiston general-gubernatorligida rasmiylashtirilgach, mintaqada keng qo'llanilgan — xuddi \"chaqirim\"ning \"verst\"ga moslashtirilishi kabi.",
     measurementSystem: "Rus o'lchov tizimi, Turkistonda rasmiylashtirilgan (SI dan tashqari)",
-    siEquivalent: "1 pud = 16,3804815 kg",
+    siEquivalent: "1 pud = 16,3806872 kg",
     commonUses: "Don va qishloq xo'jaligi mahsulotlari savdosi, sovetgacha rasmiy hisob-kitoblar",
   },
   {

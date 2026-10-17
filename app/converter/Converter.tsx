@@ -70,6 +70,7 @@ const categoryLabels: Record<string, string> = {
   radyoaktivite: "Radyoaktivite",
   isinlama: "Işınlama",
   su_sertligi: "Su sertliği",
+  elektrik_iletkenligi: "Elektrik iletkenliği",
   gramaj: "Kumaş gramajı",
   yakit_verimliligi: "Yakıt tüketimi",
   tempo: "Tempo",
@@ -125,6 +126,7 @@ const groups: {
       "elektrik_yuk",
       "manyetik_alan",
       "manyetik_aki",
+      "elektrik_iletkenligi",
     ],
   },
 ];

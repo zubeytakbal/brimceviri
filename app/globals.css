@@ -16688,3 +16688,68 @@ a.all-units-row .all-units-name {
   color: #0f6f6c;
   font-weight: 700;
 }
+
+/* Ebced çevirici */
+.ebced-field textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 10px;
+  font: inherit;
+  font-size: 1.6rem;
+  line-height: 1.5;
+  color: #172033;
+  background: #ffffff;
+  resize: vertical;
+}
+
+.ebced-keys {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(42px, 1fr));
+  gap: 6px;
+}
+
+.ebced-keys button {
+  min-height: 42px;
+  padding: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  font: inherit;
+  font-size: 1.35rem;
+  cursor: pointer;
+}
+
+.ebced-keys button:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.ebced-keys .ebced-key-wide {
+  grid-column: span 2;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.ebced-breakdown {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+}
+
+.ebced-breakdown span {
+  padding: 4px 10px;
+  border: 1px solid #d7e2e8;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #3b4a5a;
+  font-size: 0.85rem;
+}
+
+.ebced-breakdown b {
+  font-size: 1.15rem;
+  color: #0f6f6c;
+}

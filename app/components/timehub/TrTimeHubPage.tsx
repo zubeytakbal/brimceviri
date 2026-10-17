@@ -89,6 +89,7 @@ const GROUPS: Group[] = [
       { href: "/hicri-takvim", label: "Hicri Takvim", note: "Bugünün hicri tarihi" },
       { href: "/tarih-cevirici", label: "Hicri, Rumi, Miladi Çevirici", note: "Eski belgeler için" },
       { href: "/ezani-saat-cevirme", label: "Ezani Saat Çevirme", note: "Alaturka saat, gün batımı 12:00" },
+      { href: "/ebced-hesabi", label: "Ebced Hesabı", note: "Harf değeri, tarih düşürme" },
       { href: "/firtina-takvimi", label: "Fırtına Takvimi", note: "Halk takviminden" },
     ],
   },

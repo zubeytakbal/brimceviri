@@ -129,7 +129,7 @@ export default function HeatTransferHubPage() {
           { label: "Heat Transfer" },
         ]}
         title="Heat Transfer Calculators"
-        description="A focused engineering cluster for moving from stored thermal energy to conduction, expansion and transient heat-transfer checks."
+        description="Heat energy (Q = m·c·ΔT), conduction through walls, thermal expansion and transient heat-transfer calculators with the formula shown for each result."
         sections={[
           {
             heading: "Start with the physical question",

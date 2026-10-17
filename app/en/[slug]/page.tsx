@@ -522,8 +522,7 @@ async function EnglishConversionPage({
             </h1>
 
             <p className="conversion-hero-description">
-              Enter a value to calculate the result instantly
-              and free of charge.
+              1 {page.fromSymbol} = {formattedOneUnitResult} {page.toSymbol}. Type any value below for the exact {page.toPlural.toLowerCase()} figure.
             </p>
 
             <PairConverter
@@ -760,11 +759,6 @@ async function EnglishConversionPage({
           <section className="conversion-section unit-sources">
             <h2>Sources</h2>
 
-            <p>
-              The definitions and conversion relationships on this
-              page are aligned with standard metrology and SI
-              reference material.
-            </p>
 
             <ol>
               {sources.map((source) => (

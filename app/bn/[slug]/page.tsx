@@ -356,10 +356,6 @@ export default async function BengaliConversionPage({ params }: PageProps) {
           <section className="conversion-section unit-sources">
             <h2>সূত্রসমূহ</h2>
 
-            <p>
-              এই পৃষ্ঠার সংজ্ঞা ও রূপান্তর সম্পর্ক স্বীকৃত পরিমাপবিজ্ঞান
-              সূত্রের সাথে সামঞ্জস্যপূর্ণ।
-            </p>
 
             <ol>
               {sources.map((source) => (

@@ -296,10 +296,6 @@ export default async function DanishCategoryPage({ params }: PageProps) {
 
             <section className="conversion-section unit-sources" id="kategori-kilder">
               <h2>Kilder</h2>
-              <p>
-                Definitionerne og omregningsværdierne på denne side bygger
-                på anerkendte officielle metrologiske referencer.
-              </p>
               <ol>
                 {sources.map((source) => (
                   <li key={source.url}>

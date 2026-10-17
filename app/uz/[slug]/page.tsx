@@ -511,10 +511,6 @@ async function UzbekConversionPage({ slug }: { slug: string }) {
           <section className="conversion-section unit-sources">
             <h2>Manbalar</h2>
 
-            <p>
-              Ushbu sahifadagi ta&apos;riflar va aylantirish nisbatlari
-              standart metrologiya va SI ma&apos;lumotnomalariga mos keladi.
-            </p>
 
             <ol>
               {sources.map((source) => (

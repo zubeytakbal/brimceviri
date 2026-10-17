@@ -381,8 +381,7 @@ function GermanConversionPage({
             </h1>
 
             <p className="conversion-hero-description">
-              {seo.intro ??
-                "Wert eingeben, um das Ergebnis sofort und kostenlos zu berechnen."}
+              {seo.intro ?? `1 ${fromSymbol} = ${formattedOneUnitResult} ${toSymbol}.`}
             </p>
 
             <PairConverter
@@ -563,10 +562,6 @@ function GermanConversionPage({
           <section className="conversion-section unit-sources">
             <h2>Quellen</h2>
 
-            <p>
-              Die Definitionen und Umrechnungsbeziehungen auf dieser Seite
-              orientieren sich an anerkannten metrologischen Referenzen.
-            </p>
 
             <ol>
               {sources.map((source) => (

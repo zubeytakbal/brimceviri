@@ -540,11 +540,6 @@ export default async function EnglishUnitInformationPage({
               >
                 <h2>Sources</h2>
 
-                <p>
-                  The definitions and conversion relationships on this
-                  page are aligned with standard metrology and SI
-                  reference material.
-                </p>
 
                 <ol>
                   {unitSources.map((source) => (

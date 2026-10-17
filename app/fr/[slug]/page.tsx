@@ -342,10 +342,6 @@ export default async function FrenchConversionPage({ params }: PageProps) {
           <section className="conversion-section unit-sources">
             <h2>Sources</h2>
 
-            <p>
-              Les definitions et relations de conversion de cette page sont
-              conformes aux normes metrologiques reconnues.
-            </p>
 
             <ol>
               {sources.map((source) => (

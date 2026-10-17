@@ -296,10 +296,6 @@ export default async function ItalianCategoryPage({ params }: PageProps) {
 
             <section className="conversion-section unit-sources" id="categoria-fonti">
               <h2>Fonti</h2>
-              <p>
-                Le definizioni e i valori di conversione di questa pagina si
-                basano su riferimenti metrologici ufficiali riconosciuti.
-              </p>
               <ol>
                 {sources.map((source) => (
                   <li key={source.url}>

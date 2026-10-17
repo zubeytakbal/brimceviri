@@ -378,11 +378,6 @@ export default async function GermanUnitInformationPage({
               >
                 <h2>Quellen</h2>
 
-                <p>
-                  Die Definitionen und Umrechnungsbeziehungen auf
-                  dieser Seite orientieren sich an anerkannten
-                  metrologischen Referenzen und SI-Quellen.
-                </p>
 
                 <ol>
                   {sources.map((source) => (

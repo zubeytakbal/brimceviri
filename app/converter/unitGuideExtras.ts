@@ -103,7 +103,7 @@ export function siblingUnitGuides(unitPage: UnitPage, limit = 12) {
 export function unitGuideFaq(unitPage: UnitPage, table: UnitTableRow[]): FaqItem[] {
   const items: FaqItem[] = table.slice(0, 3).map((row) => ({
     question: `1 ${unitPage.name} kaç ${row.name}?`,
-    answer: `1 ${unitPage.name} (${unitPage.symbol}) = ${row.text} ${row.symbol}. Başka değerler için sayfadaki dönüştürücüyü ya da dönüşüm tablosunu kullanabilirsiniz.`,
+    answer: `1 ${unitPage.name} (${unitPage.symbol}) = ${row.text} ${row.symbol}.`,
   }));
   items.push({
     question: `${unitPage.name} sembolü nedir?`,

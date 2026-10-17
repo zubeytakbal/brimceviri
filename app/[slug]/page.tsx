@@ -718,11 +718,6 @@ export default async function ConversionPage({ params }: PageProps) {
           <section className="conversion-section unit-sources">
             <h2>Kaynaklar</h2>
 
-            <p>
-              Bu sayfadaki tanımlar ve dönüşüm
-              ilişkileri, standart metroloji ve SI referanslarıyla
-              uyumlu olacak şekilde düzenlenmiştir.
-            </p>
 
             <ol>
               {sources.map((source) => (

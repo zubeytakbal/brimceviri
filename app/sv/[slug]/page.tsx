@@ -303,10 +303,6 @@ export default async function SwedishConversionPage({ params }: PageProps) {
           <section className="conversion-section unit-sources">
             <h2>Källor</h2>
 
-            <p>
-              Definitionerna och omvandlingsförhållandena på denna sida
-              följer erkända metrologiska standarder.
-            </p>
 
             <ol>
               {sources.map((source) => (

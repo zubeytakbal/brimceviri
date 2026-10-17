@@ -296,10 +296,6 @@ export default async function SwedishCategoryPage({ params }: PageProps) {
 
             <section className="conversion-section unit-sources" id="kategori-kallor">
               <h2>Källor</h2>
-              <p>
-                Definitionerna och omvandlingsvärdena på denna sida bygger
-                på erkända officiella metrologiska referenser.
-              </p>
               <ol>
                 {sources.map((source) => (
                   <li key={source.url}>

@@ -303,10 +303,6 @@ export default async function NorwegianConversionPage({ params }: PageProps) {
           <section className="conversion-section unit-sources">
             <h2>Kilder</h2>
 
-            <p>
-              Definisjonene og omregningsforholdene på denne siden følger
-              anerkjente metrologiske standarder.
-            </p>
 
             <ol>
               {sources.map((source) => (

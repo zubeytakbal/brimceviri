@@ -356,10 +356,6 @@ export default async function SpanishConversionPage({ params }: PageProps) {
           <section className="conversion-section unit-sources">
             <h2>Fuentes</h2>
 
-            <p>
-              Las definiciones y relaciones de conversión de esta página se
-              basan en referencias metrológicas reconocidas.
-            </p>
 
             <ol>
               {sources.map((source) => (

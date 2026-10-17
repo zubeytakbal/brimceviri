@@ -16682,3 +16682,9 @@ a.all-units-row .all-units-name {
 .tool-list-pairs a:hover {
   text-decoration: underline;
 }
+
+.date-calc-chips button[aria-pressed="true"] {
+  background: #ffffff;
+  color: #0f6f6c;
+  font-weight: 700;
+}

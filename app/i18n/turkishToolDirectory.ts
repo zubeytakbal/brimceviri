@@ -30,6 +30,7 @@ export const turkishToolGroups: ToolGroup[] = [
       { href: "/has-hesaplama", label: "Hurda Altın ve Has Hesaplama" },
       { href: "/ceyrek-bilezik-hesaplama", label: "Çeyrekten Bileziğe Hesaplama" },
       { href: "/doviz-cevirici", label: "Döviz Çevirici" },
+      { href: "/eski-para-yeni-para-cevirme", label: "Eski Para Yeni Para Çevirme" },
       { href: "/emlak-komisyonu-hesaplama", label: "Emlak Komisyonu" },
       { href: "/amortisman-hesaplama", label: "Amortisman Hesaplama" },
       { href: "/reklam-metrikleri-hesaplama", label: "Reklam Metrikleri (CPM, CTR, ROI)" },

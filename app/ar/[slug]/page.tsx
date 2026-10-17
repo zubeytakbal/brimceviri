@@ -725,11 +725,6 @@ function renderConversionPage(slug: string) {
           <section className="conversion-section unit-sources">
             <h2>المراجع</h2>
 
-            <p>
-              تعتمد علاقات التحويل في هذه الصفحة على مراجع
-              القياس القياسية المستخدمة داخل الموقع.
-            </p>
-
             <ol>
               {sources.map((source) => (
                 <li key={source.url}>

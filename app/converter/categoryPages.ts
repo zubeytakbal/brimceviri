@@ -322,6 +322,13 @@ export const categoryPages: CategoryPage[] = [
       "1 R = 2,58 × 10⁻⁴ C/kg, 1 mR = 0,258 µC/kg; röntgen, miliröntgen, mikroröntgen ve coulomb/kilogram arası ışınlama dönüşümü.",
   },
   {
+    slug: "elektrik-iletkenligi",
+    category: "elektrik_iletkenligi",
+    title: "Elektrik İletkenliği Dönüşümleri",
+    description:
+      "1 mS/cm = 1000 µS/cm = 1 dS/m, 18,2 MΩ·cm saf su = 0,055 µS/cm, %100 IACS = 58 MS/m; µS/cm, mS/cm, S/m, mho ve özdirenç arası dönüşüm.",
+  },
+  {
     slug: "su-sertligi",
     category: "su_sertligi",
     title: "Su Sertliği Dönüşümleri",

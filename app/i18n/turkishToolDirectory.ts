@@ -94,6 +94,7 @@ export const turkishToolGroups: ToolGroup[] = [
       { href: "/tarih-cevirici", label: "Hicri Rumi Miladi Tarih Çevirici" },
       { href: "/ezani-saat-cevirme", label: "Ezani Saat Çevirme" },
       { href: "/ebced-hesabi", label: "Ebced Hesabı" },
+      { href: "/roma-rakamlari-cevirme", label: "Roma Rakamları Çevirici" },
       { href: "/ay-evreleri", label: "Ay Evreleri" },
       { href: "/ay-gozlem-cizelgesi", label: "Ay Gözlem Çizelgesi" },
       { href: "/firtina-takvimi", label: "Fırtına Takvimi" },

@@ -2858,6 +2858,24 @@ export const unitRegistry: UnitRegistryEntry[] = [
   { id: "ip-ne", category: "iplik_numarasi", symbol: "Ne", siFactor: 453.59237 / (840 * 0.9144) * 1000, inverse: true, tr: { name: "İngiliz pamuk numarası (Ne)", slug: "ingiliz-pamuk-numarasi" } },
   { id: "ip-nek", category: "iplik_numarasi", symbol: "Nek", siFactor: 453.59237 / (560 * 0.9144) * 1000, inverse: true, tr: { name: "Yün numarası (Nek, worsted)", slug: "yun-numarasi" } },
   { id: "ip-nl", category: "iplik_numarasi", symbol: "Nl", siFactor: 453.59237 / (300 * 0.9144) * 1000, inverse: true, tr: { name: "Keten numarası (Nl, lea)", slug: "keten-numarasi" } },
+
+  // ---- elektrik iletkenliği ve özdirenç ----
+  // Taban: S/m. mho = S. % IACS: tavlanmış standart bakır (1/58 Ω·mm²/m, 20 °C) = %100 = 58 MS/m.
+  // Özdirenç birimleri ters orantılıdır: S/m = katsayı / değer (Ω·m → 1, Ω·cm → 100, MΩ·cm → 10⁻⁴, Ω·mm²/m → 10⁶).
+  { id: "ei-sm", category: "elektrik_iletkenligi", symbol: "S/m", siFactor: 1, tr: { name: "Siemens/metre", slug: "siemens-bolu-metre" } },
+  { id: "ei-msm", category: "elektrik_iletkenligi", symbol: "mS/m", siFactor: 1e-3, tr: { name: "Milisiemens/metre", slug: "milisiemens-bolu-metre" } },
+  { id: "ei-dsm", category: "elektrik_iletkenligi", symbol: "dS/m", siFactor: 0.1, tr: { name: "Desisiemens/metre (toprak EC)", slug: "desisiemens-bolu-metre" } },
+  { id: "ei-scm", category: "elektrik_iletkenligi", symbol: "S/cm", siFactor: 100, tr: { name: "Siemens/santimetre", slug: "siemens-bolu-santimetre" } },
+  { id: "ei-mscm", category: "elektrik_iletkenligi", symbol: "mS/cm", siFactor: 0.1, tr: { name: "Milisiemens/santimetre", slug: "milisiemens-bolu-santimetre" } },
+  { id: "ei-uscm", category: "elektrik_iletkenligi", symbol: "µS/cm", siFactor: 1e-4, tr: { name: "Mikrosiemens/santimetre", slug: "mikrosiemens-bolu-santimetre" } },
+  { id: "ei-msm2", category: "elektrik_iletkenligi", symbol: "MS/m", siFactor: 1e6, tr: { name: "Megasiemens/metre", slug: "megasiemens-bolu-metre" } },
+  { id: "ei-mhocm", category: "elektrik_iletkenligi", symbol: "mmho/cm", siFactor: 0.1, tr: { name: "Milimho/santimetre", slug: "milimho-bolu-santimetre" } },
+  { id: "ei-umhocm", category: "elektrik_iletkenligi", symbol: "µmho/cm", siFactor: 1e-4, tr: { name: "Mikromho/santimetre", slug: "mikromho-bolu-santimetre" } },
+  { id: "ei-iacs", category: "elektrik_iletkenligi", symbol: "% IACS", siFactor: 5.8e5, tr: { name: "% IACS (bakıra göre)", slug: "yuzde-iacs" } },
+  { id: "ei-ohmm", category: "elektrik_iletkenligi", symbol: "Ω·m", siFactor: 1, inverse: true, tr: { name: "Ohm·metre (özdirenç)", slug: "ohm-metre-ozdirenc" } },
+  { id: "ei-ohmcm", category: "elektrik_iletkenligi", symbol: "Ω·cm", siFactor: 100, inverse: true, tr: { name: "Ohm·santimetre (özdirenç)", slug: "ohm-santimetre-ozdirenc" } },
+  { id: "ei-mohmcm", category: "elektrik_iletkenligi", symbol: "MΩ·cm", siFactor: 1e-4, inverse: true, tr: { name: "Megaohm·santimetre (saf su)", slug: "megaohm-santimetre" } },
+  { id: "ei-ohmmm2m", category: "elektrik_iletkenligi", symbol: "Ω·mm²/m", siFactor: 1e6, inverse: true, tr: { name: "Ohm·mm²/metre (iletken)", slug: "ohm-milimetrekare-bolu-metre" } },
   { id: "ip-gm", category: "iplik_numarasi", symbol: "g/m", siFactor: 1000, tr: { name: "Gram/metre", slug: "gram-bolu-metre-iplik" } },
 
   // ---- Eski Türk (Osmanlı) ölçüleri: yalnızca tanımdan türetilen, birbiriyle tutarlı değerler ----

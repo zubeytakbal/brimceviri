@@ -2786,6 +2786,43 @@ export const unitRegistry: UnitRegistryEntry[] = [
   { id: "x-frekans-milihertz", category: "frekans", symbol: "mHz", siFactor: 1e-3, tr: { name: "Milihertz", slug: "milihertz" } },
   { id: "x-frekans-devir-bolu-dakika-frekans", category: "frekans", symbol: "1/dk", siFactor: 1/60, tr: { name: "Devir/dakika (frekans)", slug: "devir-bolu-dakika-frekans" } },
   { id: "x-frekans-devir-bolu-saat", category: "frekans", symbol: "1/h", siFactor: 1/3600, tr: { name: "Devir/saat", slug: "devir-bolu-saat" } },
+
+  // ---- altın ayar genişletme: eksik ayarlar ve milyem (binde saflık) damgaları ----
+  { id: "altin-21k", category: "altin_ayar", symbol: "21K", siFactor: 21 / 24, tr: { name: "21 Ayar Altın", slug: "21-ayar-altin" } },
+  { id: "altin-10k", category: "altin_ayar", symbol: "10K", siFactor: 10 / 24, tr: { name: "10 Ayar Altın", slug: "10-ayar-altin" } },
+  { id: "altin-9k", category: "altin_ayar", symbol: "9K", siFactor: 9 / 24, tr: { name: "9 Ayar Altın", slug: "9-ayar-altin" } },
+  { id: "altin-8k", category: "altin_ayar", symbol: "8K", siFactor: 8 / 24, tr: { name: "8 Ayar Altın", slug: "8-ayar-altin" } },
+  { id: "altin-m999", category: "altin_ayar", symbol: "999‰", siFactor: 0.999, tr: { name: "999 milyem (has altın)", slug: "999-milyem-altin" } },
+  { id: "altin-m995", category: "altin_ayar", symbol: "995‰", siFactor: 0.995, tr: { name: "995 milyem (külçe)", slug: "995-milyem-altin" } },
+  { id: "altin-m916", category: "altin_ayar", symbol: "916‰", siFactor: 0.916, tr: { name: "916 milyem", slug: "916-milyem-altin" } },
+  { id: "altin-m875", category: "altin_ayar", symbol: "875‰", siFactor: 0.875, tr: { name: "875 milyem", slug: "875-milyem-altin" } },
+  { id: "altin-m750", category: "altin_ayar", symbol: "750‰", siFactor: 0.75, tr: { name: "750 milyem", slug: "750-milyem-altin" } },
+  { id: "altin-m585", category: "altin_ayar", symbol: "585‰", siFactor: 0.585, tr: { name: "585 milyem", slug: "585-milyem-altin" } },
+  { id: "altin-m417", category: "altin_ayar", symbol: "417‰", siFactor: 0.417, tr: { name: "417 milyem", slug: "417-milyem-altin" } },
+  { id: "altin-m375", category: "altin_ayar", symbol: "375‰", siFactor: 0.375, tr: { name: "375 milyem", slug: "375-milyem-altin" } },
+  { id: "altin-m333", category: "altin_ayar", symbol: "333‰", siFactor: 0.333, tr: { name: "333 milyem", slug: "333-milyem-altin" } },
+
+  // ---- su sertliği ----
+  // Taban: mg/L CaCO₃. CaCO₃ = 100,0869 g/mol, CaO = 56,0774 g/mol.
+  // 1 °fH = 10 mg/L CaCO₃; 1 °dH = 10 mg/L CaO = 17,848 mg/L CaCO₃; 1 °e (Clark) = 1 grain CaCO₃/İngiliz galonu = 14,254 mg/L;
+  // 1 gpg (ABD) = 1 grain/ABD galonu = 17,118 mg/L.
+  { id: "ss-mgl", category: "su_sertligi", symbol: "mg/L CaCO₃", siFactor: 1, tr: { name: "mg/L CaCO₃ (ppm)", slug: "mg-l-kalsiyum-karbonat" } },
+  { id: "ss-fh", category: "su_sertligi", symbol: "°fH", siFactor: 10, tr: { name: "Fransız sertliği", slug: "fransiz-sertligi" } },
+  { id: "ss-dh", category: "su_sertligi", symbol: "°dH", siFactor: (10 * 100.0869) / 56.0774, tr: { name: "Alman sertliği", slug: "alman-sertligi" } },
+  { id: "ss-e", category: "su_sertligi", symbol: "°e", siFactor: (64.79891 / 4.54609), tr: { name: "İngiliz sertliği (Clark)", slug: "ingiliz-sertligi" } },
+  { id: "ss-gpg", category: "su_sertligi", symbol: "gpg", siFactor: (64.79891 / 3.785411784), tr: { name: "Grain/galon (ABD)", slug: "grain-bolu-galon" } },
+  { id: "ss-mmol", category: "su_sertligi", symbol: "mmol/L", siFactor: 100.0869, tr: { name: "mmol/L (Ca + Mg)", slug: "milimol-bolu-litre-sertlik" } },
+  { id: "ss-meq", category: "su_sertligi", symbol: "meq/L", siFactor: 100.0869 / 2, tr: { name: "meq/L (mval/L)", slug: "miliekivalan-bolu-litre" } },
+
+  // ---- kumaş gramajı (alan yoğunluğu) ----
+  // Taban: g/m². oz/yd² = 28,349523125 g / 0,83612736 m²; momme (ipek) = 4,3398 g/m².
+  { id: "gr-gm2", category: "gramaj", symbol: "g/m²", siFactor: 1, tr: { name: "Gram/metrekare (GSM)", slug: "gram-bolu-metrekare" } },
+  { id: "gr-kgm2", category: "gramaj", symbol: "kg/m²", siFactor: 1000, tr: { name: "Kilogram/metrekare", slug: "kilogram-bolu-metrekare" } },
+  { id: "gr-gcm2", category: "gramaj", symbol: "g/cm²", siFactor: 1e4, tr: { name: "Gram/santimetrekare", slug: "gram-bolu-santimetrekare" } },
+  { id: "gr-ozyd2", category: "gramaj", symbol: "oz/yd²", siFactor: 28.349523125 / 0.83612736, tr: { name: "Ons/yardakare", slug: "ons-bolu-yardakare" } },
+  { id: "gr-ozft2", category: "gramaj", symbol: "oz/ft²", siFactor: 28.349523125 / 0.09290304, tr: { name: "Ons/fitkare", slug: "ons-bolu-fitkare" } },
+  { id: "gr-lbyd2", category: "gramaj", symbol: "lb/yd²", siFactor: 453.59237 / 0.83612736, tr: { name: "Pound/yardakare", slug: "pound-bolu-yardakare" } },
+  { id: "gr-momme", category: "gramaj", symbol: "mm (momme)", siFactor: 4.3398, tr: { name: "Momme (ipek)", slug: "momme" } },
 ];
 
 export function findUnit(category: string, symbol: string) {

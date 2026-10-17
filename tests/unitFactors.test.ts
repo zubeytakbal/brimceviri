@@ -33,6 +33,9 @@ const K: Record<string, Record<string, number>> = {
   doz_hizi: { "µSv/h": 1, "mSv/h": 1e3, "Sv/h": 1e6, "nSv/h": 1e-3, "µSv/gün": 1 / 24, "mSv/yıl": 1000 / 8760, "Sv/s": 3.6e9, "rem/h": 1e4, "mrem/h": 10 },
   radyoaktivite: { Bq: 1, kBq: 1e3, MBq: 1e6, GBq: 1e9, TBq: 1e12, Ci: 3.7e10, mCi: 3.7e7, "µCi": 3.7e4, nCi: 37, pCi: 0.037, Rd: 1e6, dpm: 1 / 60 },
   isinlama: { "C/kg": 1, "mC/kg": 1e-3, "µC/kg": 1e-6, R: 2.58e-4, mR: 2.58e-7, "µR": 2.58e-10 },
+  su_sertligi: { "mg/L CaCO₃": 1, "°fH": 10, "°dH": 17.848, "°e": 14.254, gpg: 17.118, "mmol/L": 100.0869, "meq/L": 50.04345 },
+  gramaj: { "g/m²": 1, "kg/m²": 1000, "oz/yd²": 33.90575, "oz/ft²": 305.1517, "lb/yd²": 542.492, "mm (momme)": 4.3398 },
+  altin_ayar: { "24K": 1, "22K": 22 / 24, "21K": 0.875, "18K": 0.75, "14K": 14 / 24, "10K": 10 / 24, "9K": 0.375, "8K": 1 / 3, "585‰": 0.585, "750‰": 0.75, "916‰": 0.916 },
 };
 
 const C: Array<[string, number, string, string, number]> = [

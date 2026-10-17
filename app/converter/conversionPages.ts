@@ -28,6 +28,8 @@ type ConversionPairDefinition = {
   // usage sites below for why each one exists.
   factorOverride?: number;
   nameOverrides?: Record<string, string>;
+  /** Yalnızca ileri yön sayfası üretilir; ters yön sayfadaki "yönü değiştir" düğmesiyle hesaplanır (tekrar eden sayfa açılmaz). */
+  oneWay?: boolean;
 };
 
 function getRegistryUnit(id: string): UnitRegistryEntry {
@@ -166,7 +168,7 @@ function createConversionPair(
     englishReverseSlug: forwardEnglishSlug,
   };
 
-  return [forwardPage, reversePage];
+  return definition.oneWay ? [forwardPage] : [forwardPage, reversePage];
 }
 
 const pairDefinitions: ConversionPairDefinition[] = [
@@ -897,6 +899,11 @@ const pairDefinitions: ConversionPairDefinition[] = [
     firstExamples: [70, 100, 126, 140, 180, 200, 250],
     secondExamples: [3.9, 5.6, 7.0, 7.8, 10, 11.1, 13.9],
   },
+  // Tek yönlü sayfalar: ters yön sayfadaki "yönü değiştir" düğmesiyle hesaplanır.
+  { category: "su_sertligi", firstId: "ss-fh", secondId: "ss-dh", firstExamples: [5, 10, 15, 20, 25, 30, 40], secondExamples: [], oneWay: true },
+  { category: "gramaj", firstId: "gr-ozyd2", secondId: "gr-gm2", firstExamples: [3, 5, 8, 10, 12, 14, 16], secondExamples: [], oneWay: true },
+  { category: "konsantrasyon", firstId: "oran-ppm", secondId: "oran-yuzde", firstExamples: [1, 10, 100, 500, 1000, 10000, 400000], secondExamples: [], oneWay: true },
+  { category: "doz_hizi", firstId: "dh-usv-h", secondId: "dh-msv-y", firstExamples: [0.05, 0.1, 0.15, 0.2, 0.3, 0.5, 1], secondExamples: [], oneWay: true },
   {
     category: "vitamin_d",
     firstId: "vitamin-d-ngml",

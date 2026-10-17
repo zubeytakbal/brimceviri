@@ -69,6 +69,8 @@ const categoryLabels: Record<string, string> = {
   doz_hizi: "Doz hızı",
   radyoaktivite: "Radyoaktivite",
   isinlama: "Işınlama",
+  su_sertligi: "Su sertliği",
+  gramaj: "Kumaş gramajı",
 };
 
 // Gruplar (4 tab)
@@ -80,7 +82,7 @@ const groups: {
   {
     id: "temel",
     title: "Temel büyüklükler",
-    categories: ["alan", "uzunluk", "hacim", "kutle", "yogunluk", "sicaklik", "zaman", "konsantrasyon"],
+    categories: ["alan", "uzunluk", "hacim", "kutle", "yogunluk", "sicaklik", "zaman", "konsantrasyon", "su_sertligi", "gramaj"],
   },
   {
     id: "kinematik",

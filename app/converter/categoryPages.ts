@@ -321,6 +321,20 @@ export const categoryPages: CategoryPage[] = [
     description:
       "1 R = 2,58 × 10⁻⁴ C/kg, 1 mR = 0,258 µC/kg; röntgen, miliröntgen, mikroröntgen ve coulomb/kilogram arası ışınlama dönüşümü.",
   },
+  {
+    slug: "su-sertligi",
+    category: "su_sertligi",
+    title: "Su Sertliği Dönüşümleri",
+    description:
+      "1 Fransız sertliği (°fH) = 10 mg/L CaCO₃, 1 Alman sertliği (°dH) = 1,785 °fH, 1 mmol/L = 10,01 °fH; Fransız, Alman, İngiliz sertliği ve ppm arası dönüşüm.",
+  },
+  {
+    slug: "gramaj",
+    category: "gramaj",
+    title: "Kumaş Gramajı Dönüşümleri",
+    description:
+      "1 oz/yd² = 33,906 g/m², 200 g/m² = 5,9 oz/yd², 1 momme = 4,34 g/m²; GSM, oz/yd², oz/ft² ve momme arası kumaş ağırlığı dönüşümü.",
+  },
 ];
 
 export function findCategoryPageByCategory(category: string) {

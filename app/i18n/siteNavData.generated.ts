@@ -421,6 +421,14 @@ export const SITE_NAV_DATA: SiteNavData = {
     {
      "href": "/kategoriler/isinlama",
      "label": "Işınlama (Röntgen) Dönüşümleri"
+    },
+    {
+     "href": "/kategoriler/su-sertligi",
+     "label": "Su Sertliği Dönüşümleri"
+    },
+    {
+     "href": "/kategoriler/gramaj",
+     "label": "Kumaş Gramajı Dönüşümleri"
     }
    ],
    "footerLinks": [

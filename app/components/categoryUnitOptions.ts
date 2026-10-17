@@ -1217,7 +1217,15 @@ export function getCategoryUnitOptions(
   locale: Locale
 ) {
   const definedOptions = (units[category] ?? []).flatMap((value) => {
-    const definition = categoryUnitDefinitions[category]?.[value];
+    const registryEntry = unitRegistry.find((unit) => unit.category === category && unit.symbol === value);
+    // Elle tanımlı etiketi olmayan (sonradan eklenen) birimler kayıttaki adlarıyla listelenir.
+    const definition =
+      categoryUnitDefinitions[category]?.[value] ??
+      (registryEntry?.tr && registryEntry.en
+        ? { tr: registryEntry.tr.name, en: registryEntry.en.name, de: registryEntry.de?.name, uz: registryEntry.uz?.name, symbol: registryEntry.displaySymbol }
+        : registryEntry?.tr && locale === "tr"
+          ? { tr: registryEntry.tr.name, en: "", symbol: registryEntry.displaySymbol }
+          : undefined);
 
     if (!definition) {
       return [];

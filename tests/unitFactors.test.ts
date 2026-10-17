@@ -53,6 +53,18 @@ const C: Array<[string, number, string, string, number]> = [
   ["kutle", 1, "q", "kg", 100], ["kutle", 1, "Da", "kg", 1.66053906660e-27], ["uzunluk", 1, "ly", "m", 9.4607304725808e15], ["uzunluk", 1, "pc", "m", 3.0856775814914e16], ["uzunluk", 1, "ftm", "m", 1.8288], ["uzunluk", 1, "fur", "m", 201.168],
   ["alan", 1, "in²", "cm²", 6.4516], ["alan", 1, "yd²", "m²", 0.83612736],
   ["ivme", 1, "in/s²", "m/s²", 0.0254],
+  ["hiz", 1, "Ma", "km/h", 1225.0584], ["hiz", 1, "in/s", "mm/s", 25.4],
+  ["uzunluk", 1, "ch", "ft", 66], ["uzunluk", 12, "pt (tipo)", "px", 16], ["uzunluk", 1, "lea", "mi", 3],
+  ["alan", 1, "mi²", "ac", 640], ["alan", 1, "rood", "ac", 0.25],
+  ["hacim", 1, "cup", "tbsp", 16], ["hacim", 1, "tbsp", "tsp", 3], ["hacim", 1, "ac·ft", "m³", 1233.48183754752],
+  ["kutle", 1, "sh tn", "lb", 2000], ["kutle", 1, "lg tn", "lb", 2240], ["kutle", 1, "ozt-lb", "ozt", 12], ["kutle", 1, "dwt", "gr", 24],
+  ["basinc", 1, "ksi", "psi", 1000], ["basinc", 1, "mH2O", "mmH2O", 1000], ["basinc", 1, "cmHg", "mmHg", 10],
+  ["enerji", 1, "MWh", "kWh", 1000], ["enerji", 1, "toe", "GJ", 41.868],
+  ["guc", 1, "kcal/h", "W", 1.163], ["kuvvet", 1, "kip", "lbf", 1000], ["kuvvet", 1, "tf", "kgf", 1000],
+  ["tork", 1, "kgf·cm", "N·m", 0.0980665], ["tork", 12, "lbf·in", "lb·ft", 1],
+  ["zaman", 1, "hf", "d", 7], ["zaman", 1, "yıl", "d", 365], ["zaman", 1, "yy", "yıl (Greg.)", 100],
+  ["aci", 60, "′", "°", 1], ["aci", 3600, "″", "°", 1], ["aci", 6400, "mil (NATO)", "tur", 1],
+  ["yogunluk", 1, "t/m³", "g/cm³", 1], ["frekans", 60, "1/dk", "Hz", 1],
 ];
 
 describe("birim katsayıları", () => {

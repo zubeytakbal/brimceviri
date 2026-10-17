@@ -391,8 +391,7 @@ export default async function ConversionPage({ params }: PageProps) {
             </h1>
 
             <p className="conversion-hero-description">
-              {seo.intro ??
-                "Değeri girin, sonucu anında ve ücretsiz olarak hesaplayın."}
+              {seo.intro ?? `1 ${conversionPage.fromUnit} = ${formattedOneUnitResult} ${conversionPage.toUnit}.`}
             </p>
 
             <PairConverter

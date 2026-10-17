@@ -9,15 +9,15 @@ export const revalidate = 3600;
 const homeUrl = buildSiteUrl("/");
 
 export const metadata: Metadata = {
-  title: "Birim Çevirici — İhtiyacınız Olan Birim Dönüşümünü Bulun",
+  title: "Birim Çevirici: Birim Çevirme ve Hesaplama",
   description:
-    "Uzunluk, kütle ve basınç birimlerini çevirin; kategori bazında tarayın, ilgili hesaplayıcıyı, birim rehberini ve bilgi sayfasını doğrudan açın.",
+    "Metre, kilogram, litre, dönüm, bar ve santigrat dahil 38 kategoride birim çevirme (1 inç = 2,54 cm, 1 dönüm = 1.000 m²); mühendislik, takvim ve günlük hesaplayıcılar.",
   alternates: {
     canonical: homeUrl,
     ...buildHomeLanguageAlternates(),
   },
   openGraph: {
-    title: "Birim Çevirici — İhtiyacınız Olan Birim Dönüşümünü Bulun | BirimCeviri.app",
+    title: "Birim Çevirici: Birim Çevirme ve Hesaplama | BirimCeviri.app",
     description:
       "Kategori kartları, popüler hesaplayıcılar ve birim rehberleriyle doğru dönüşüm sayfasına hızlıca ulaşın.",
     url: homeUrl,

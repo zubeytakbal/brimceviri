@@ -16566,7 +16566,6 @@ a.all-units-row .all-units-name {
 .tool-list-section h2 {
   margin: 0 0 4px;
   padding-bottom: 6px;
-  border-bottom: 2px solid #e4e7ec;
 }
 
 .tool-list-lead {
@@ -16665,4 +16664,21 @@ a.all-units-row .all-units-name {
   .tool-list-formula {
     white-space: normal;
   }
+}
+
+.tool-list .tool-list-pairs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  margin-top: 4px;
+  font-size: 0.86rem;
+}
+
+.tool-list-pairs a {
+  color: #155eef;
+  text-decoration: none;
+}
+
+.tool-list-pairs a:hover {
+  text-decoration: underline;
 }

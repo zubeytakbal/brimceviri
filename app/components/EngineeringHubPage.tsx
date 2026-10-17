@@ -59,18 +59,11 @@ type EngineeringHubContent = {
   title: string;
   description: string;
   focusTitle: string;
-  focusDescription: string;
   focusCards: EngineeringFocusCard[];
-  introTitle: string;
-  introBody: string;
   groups: EngineeringGroup[];
-  howToTitle: string;
-  howToSteps: string[];
   guidesTitle: string;
-  guidesDescription: string;
   guideLinks: EngineeringGuideLink[];
   relatedToolsTitle?: string;
-  relatedToolsDescription?: string;
   relatedToolsLinks?: EngineeringGuideLink[];
   alternateTitle: string;
   alternateLink: {
@@ -89,10 +82,8 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
     ],
     title: "Mühendislik Hesaplayıcıları",
     description:
-      "Elektrik, akışkanlar ve tesisat, ısı, makine ve imalat, malzeme, inşaat ve ısıtma-soğutma hesaplarını tek yerde toplayan mühendislik merkezi. Her araç birimleri SI tabanına çevirerek hesaplar ve kullandığı formülü gösterir.",
+      "Kablo kesiti ve gerilim düşümü, boru basınç kaybı, kiriş sehimi, metrik vida ölçüleri, petek dilim sayısı, beton metrajı ve klima kapasitesi gibi elektrik, akışkanlar, ısı, makine, malzeme, inşaat ve ısıtma-soğutma hesapları; her sonuçta kullanılan formül de gösterilir.",
     focusTitle: "Mühendislik bölümleri",
-    focusDescription:
-      "Önce çalıştığınız alanı seçin, sonra o alandaki hesaplayıcıya geçin. Elektrik hesapları kendi alt merkezinde; diğer bölümler bu sayfanın içinde gruplandı.",
     focusCards: [
       {
         href: getElectricalHubPath("tr"),
@@ -152,9 +143,6 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
         meta: "Bölüm",
       },
     ],
-    introTitle: "Bu merkez nasıl düzenlendi?",
-    introBody:
-      "Sitedeki mühendislik araçları farklı sayfalara dağılmıştı; bu sayfa hepsini mühendislik dallarına göre bir araya getirir. Her grup, sahada ya da derste aynı iş akışında kullanılan hesapları birlikte gösterir: örneğin boru çapını seçtikten sonra aynı gruptaki basınç kaybı hesabına geçebilirsiniz. Hesaplayıcılar ön boyutlandırma ve kontrol içindir; proje, ruhsat veya güvenlik kararlarında ilgili standart ve yetkili mühendis onayı esas alınmalıdır.",
     groups: [
       {
         id: "elektrik",
@@ -727,16 +715,7 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
         ],
       },
     ],
-    howToTitle: "Bu hesaplayıcılar nasıl kullanılır?",
-    howToSteps: [
-      "Önce hangi büyüklüğü çözeceğinizi seçin ve yalnızca bilinen değerleri girin.",
-      "Her girişte uygun birimi belirleyin; araçlar tüm değerleri önce SI tabanına çevirerek hesaplar.",
-      "Ana sonucu, formülde yerine konmuş ifadeyi ve SI eşdeğerini birlikte kontrol ederek doğrulayın.",
-      "Sonucu aynı gruptaki bir sonraki hesapla sınayın: örneğin kablo kesitini seçtikten sonra gerilim düşümünü, boru çapını seçtikten sonra basınç kaybını kontrol edin.",
-    ],
     guidesTitle: "İlgili birim dönüşümleri ve rehberler",
-    guidesDescription:
-      "Hesaplarda en sık geçen büyüklüklerin dönüşüm sayfaları ve birim rehberleri.",
     guideLinks: [
       { href: "/kategoriler/basinc", label: "Basınç dönüşümleri" },
       { href: "/kategoriler/guc", label: "Güç dönüşümleri" },
@@ -752,8 +731,6 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
       { href: "/birimler/watt", label: "Watt (W) rehberi" },
     ],
     relatedToolsTitle: "Mesleğe göre araç sayfaları",
-    relatedToolsDescription:
-      "Aynı hesapları meslek ve iş akışına göre gruplanmış olarak görmek için ilgili meslek sayfalarını açabilirsiniz.",
     relatedToolsLinks: [
       { href: "/elektrikci-araclari", label: "Elektrikçi Araçları" },
       { href: "/tesisatci-araclari", label: "Tesisatçı Araçları" },
@@ -784,8 +761,6 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
     description:
       "Browse a broader engineering center that combines unit-aware electrical, fluid-flow, heat-transfer, mechanics and materials tools under clearer topic clusters.",
     focusTitle: "Engineering sections",
-    focusDescription:
-      "The engineering area is organized into dedicated topic hubs for electrical work, fluids and piping, dimensionless numbers, heat transfer, and mechanics and materials. Choose a branch first, then open the calculation that matches the task.",
     focusCards: [
       {
         href: getElectricalHubPath("en"),
@@ -828,9 +803,6 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
         meta: "Dedicated hub",
       },
     ],
-    introTitle: "A parent hub for clustered engineering tools",
-    introBody:
-      "This page groups the current engineering calculators by topic and now acts as the parent entry point for dedicated sub-hubs. People can choose the right engineering branch first, then move into the exact calculation flow they need without browsing a generic mixed list.",
     groups: [
       {
         id: "pressure-and-fluids",
@@ -1025,15 +997,7 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
         ],
       },
     ],
-    howToTitle: "How to use these calculators",
-    howToSteps: [
-      "Choose the variable you want to solve for and enter the known values only.",
-      "Set the units for each input; every tool converts to SI first before running the calculation.",
-      "Check the main result, substituted formula and SI equivalent together for a quick engineering sanity check.",
-    ],
     guidesTitle: "Related unit guides",
-    guidesDescription:
-      "Open the unit guides if you want definitions, symbols and context for the base quantities used in these tools.",
     guideLinks: [
       { href: "/en/units/pascal", label: "Pascal (Pa) guide" },
       { href: "/en/units/meter", label: "Meter (m) guide" },
@@ -1056,8 +1020,6 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
     description:
       "Erkunden Sie ein ausgebautes Ingenieurzentrum, das elektrische Werkzeuge, Wärmeübertragung, Strömung, Druck und technische Einheiten in klaren Themenclustern verbindet.",
     focusTitle: "Ingenieurbereiche",
-    focusDescription:
-      "Der Ingenieurbereich wird von einer flachen Liste zu Themenzentren ausgebaut. Elektrorechner ist das erste eigene Teilzentrum; die anderen Gruppen bleiben weiterhin direkt erreichbar.",
     focusCards: [
       {
         href: getElectricalHubPath("de"),
@@ -1084,9 +1046,6 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
         meta: "Aktuelle Gruppe",
       },
     ],
-    introTitle: "Ein Elternzentrum für technische Rechencluster",
-    introBody:
-      "Diese Seite fasst die aktuellen Ingenieurrechner nach Themenfeldern zusammen und dient jetzt als übergeordnetes Zentrum für eigene Teil-Hubs. So können Nutzer zuerst das passende Fachgebiet und danach den genauen Rechenweg auswahlen.",
     groups: [
       {
         id: "druck-und-stromung",
@@ -1177,23 +1136,13 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
         ],
       },
     ],
-    howToTitle: "Wie verwendet man diese Rechner?",
-    howToSteps: [
-      "Wahlen Sie zuerst die gesuchte Zielgröße und tragen Sie nur die bekannten Werte ein.",
-      "Legen Sie für jeden Eingabewert die richtige Einheit fest; alle Werkzeuge rechnen intern zuerst auf SI um.",
-      "Prüfen Sie Hauptresultat, eingesetzte Formel und SI-Äquivalent gemeinsam, um Plausibilitätsfehler schnell zu erkennen.",
-    ],
     guidesTitle: "Passende Einheitenleitfaden",
-    guidesDescription:
-      "Wenn Sie Definitionen, Symbole oder Hintergrundwissen zu den verwendeten Basisgrößen brauchen, öffnen Sie die passenden Einheitenleitfaden.",
     guideLinks: [
       { href: "/de/einheiten/pascal", label: "Pascal (Pa) Leitfaden" },
       { href: "/de/einheiten/meter", label: "Meter (m) Leitfaden" },
       { href: "/de/einheiten/kilogramm", label: "Kilogramm (kg) Leitfaden" },
     ],
     relatedToolsTitle: "Alltagsrechner",
-    relatedToolsDescription:
-      "Neben den SI- und Ingenieurrechnern finden Sie hier auch praktische Werkzeuge für Alltag, Einkauf, Bauen und Wohnen.",
     relatedToolsLinks: germanStandaloneTools.map((tool) => ({
       href: tool.germanPath,
       label: tool.title,
@@ -1240,11 +1189,6 @@ export default function EngineeringHubPage({
         </header>
 
         <div className="unit-page-content">
-          <section className="conversion-section">
-            <h2>{content.introTitle}</h2>
-            <p>{content.introBody}</p>
-          </section>
-
           <div className="section-layout">
             <nav className="section-nav" aria-label={content.focusTitle}>
               <p className="section-nav-title">{content.focusTitle}</p>
@@ -1291,17 +1235,7 @@ export default function EngineeringHubPage({
           </div>
 
           <section className="conversion-section">
-            <h2>{content.howToTitle}</h2>
-            <ol className="engineering-hub-steps">
-              {content.howToSteps.map((step) => (
-                <li key={step}>{step}</li>
-              ))}
-            </ol>
-          </section>
-
-          <section className="conversion-section">
             <h2>{content.guidesTitle}</h2>
-            <p>{content.guidesDescription}</p>
             <ul className="related-conversion-list engineering-hub-guides">
               {content.guideLinks.map((guide) => (
                 <li key={guide.href}>
@@ -1314,7 +1248,6 @@ export default function EngineeringHubPage({
           {content.relatedToolsLinks && content.relatedToolsLinks.length > 0 && (
             <section className="conversion-section">
               <h2>{content.relatedToolsTitle}</h2>
-              <p>{content.relatedToolsDescription}</p>
               <ul className="related-conversion-list engineering-hub-guides">
                 {content.relatedToolsLinks.map((tool) => (
                   <li key={tool.href}>

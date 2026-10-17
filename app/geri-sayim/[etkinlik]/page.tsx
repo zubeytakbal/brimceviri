@@ -25,7 +25,8 @@ export async function generateMetadata({ params }: { params: Promise<{ etkinlik:
   const description = `${remaining} ${event.name}: ${next ? formatEventDate(next, "tr") : ""}${next?.estimated ? " (tahmini)" : ""}. Gün, saat, dakika ve saniye olarak canlı geri sayım, yıllara göre tarihler ve resmî tatil bilgisi.`;
   const paths = countdownAlternatePaths(event);
   return {
-    title: seoTitle(title, `${event.question} (${year})`, event.question),
+    // Site her gün yeniden derlendiği için kalan gün başlıkta da güncel kalır; arama sonucunda sayı doğrudan görünür.
+    title: seoTitle(...(days ? [`${event.question} ${days} gün – ${year} Geri Sayım`] : []), title, `${event.question} (${year})`, event.question),
     description,
     alternates: { canonical: path, ...buildLanguageAlternates(paths, "tr") },
     openGraph: { title, description, url: buildSiteUrl(path), siteName: "BirimCeviri.app", locale: event.lang === "tr" ? "tr_TR" : "en_US", type: "website" },

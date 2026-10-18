@@ -266,6 +266,8 @@ export const turkishToolGroups: ToolGroup[] = [
       { href: "/bilim-hesaplayicilari/fizik/egik-atis-hesaplama", label: "Eğik Atış" },
       { href: "/bilim-hesaplayicilari/matematik/sayilar", label: "Asal, Tam Kare ve Mükemmel Sayılar" },
       { href: "/awg-mm2-cevirici", label: "AWG - mm² Çevirici" },
+      { href: "/swg-mm-cevirici", label: "SWG - mm (Tel Kalınlığı)" },
+      { href: "/matkap-ucu-olcusu-cevirme", label: "Matkap Ucu Ölçüsü (İnç - mm)" },
       { href: "/mesh-mikron-cevirme", label: "Mesh - Mikron (Elek)" },
       { href: "/egim-cevirme", label: "Eğim Çevirme (% - Derece)" },
       { href: "/brix-baume-cevirme", label: "Brix - Baumé Çevirme" },

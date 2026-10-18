@@ -13,6 +13,7 @@ import { directSunMinutes, noonElevation, perpendicularTilt, shadowLength } from
 import { formatTr } from "../../converter/metal/metalWeight";
 import { ShadowTool } from "./ShadowTools";
 import { SolsticeTool, SunriseTool, type SunCity } from "./SunTools";
+import { DayLengthYear, SunTodayHero, TodayProvinceTable, todaySummary, trDayText, trToday } from "./SunToday";
 
 export const SUN_PATHS = { sunrise: "/gunes-dogusu-ve-batisi", solstice: "/en-uzun-gun-ve-en-kisa-gun", shadow: "/gunes-acisi-ve-golge-boyu-hesaplama" } as const;
 
@@ -91,12 +92,16 @@ function sunriseData() {
   return { rows, firstRise, lastSet, firstDark, lastRiseDec, ankJun, ankDec, ankMar, dipMinutes, tw };
 }
 
+/** Sayfa her gece yeniden derlenir: "bugün" Türkiye'de derleme günüdür. */
+const TODAY = trToday();
+const todayPlaces = ["istanbul", "ankara", "izmir"].map((id) => cities.find((c) => c.id === id)!);
+
 export function sunriseMetadata(): Metadata {
-  const d = sunriseData();
+  const ist = todaySummary(todayPlaces[0], TODAY);
   return meta(
     SUN_PATHS.sunrise,
     "Güneş Doğuşu ve Batışı Saatleri: 81 İl",
-    `81 ilde güneşin doğuş, batış ve alacakaranlık saatleri. Ankara'da 21 Haziran'da güneş ${atClock(d.ankJun.sunrise)} doğar, 21 Aralık'ta ${atClock(d.ankDec.sunset)} batar.`,
+    `${trDayText(TODAY)}: İstanbul'da gün doğumu ${trClock(ist.sunrise)}, gün batımı ${trClock(ist.sunset)} (gün ${durationLabel(ist.dayLengthMinutes)}). 81 ilde bugünkü doğuş, batış ve alacakaranlık saatleri.`,
   );
 }
 
@@ -133,7 +138,12 @@ export function SunrisePage() {
       crumbLabel="Sayfa yolu"
       title="Güneş Doğuşu ve Batışı Saatleri"
       intro="İli ve tarihi seçin; güneşin doğuş ve batış saatini, gün uzunluğunu, alacakaranlık sürelerini, güneşin en tepede olduğu anı ve yıl boyunca nasıl değiştiğini görün. İki ili karşılaştırabilir ya da konumunuzu kullanabilirsiniz."
-      tool={<SunriseTool cities={cities} />}
+      tool={
+        <>
+          <SunTodayHero places={todayPlaces} t={TODAY} />
+          <SunriseTool cities={cities} />
+        </>
+      }
       related={{
         title: "İlgili araçlar",
         links: [
@@ -145,7 +155,9 @@ export function SunrisePage() {
       }}
       tocTitle="Bu sayfada"
       tocItems={[
-        { id: "iller", label: "81 ilde güneş doğuşu ve batışı" },
+        { id: "bugun-iller", label: "81 ilde bugün gün doğumu ve batımı" },
+        { id: "yil", label: "Yıl boyunca gün uzunluğu" },
+        { id: "iller", label: "81 ilde en uzun ve en kısa günde saatler" },
         { id: "dogu-bati", label: "Türkiye'de güneş ilk nerede doğar?" },
         { id: "alacakaranlik", label: "Alacakaranlık türleri" },
         { id: "tanim", label: "Gün doğumu nasıl hesaplanır?" },
@@ -154,7 +166,16 @@ export function SunrisePage() {
       faqTitle="Sık sorulan sorular"
       faqItems={faq}
     >
-      <h2 id="iller">81 ilde güneş doğuşu ve batışı ({YEAR})</h2>
+      <h2 id="bugun-iller">81 ilde bugün gün doğumu ve batımı</h2>
+      <p>
+        Saatler {trDayText(TODAY)} için il merkezinde, Türkiye saatiyle (UTC+3) verilmiştir ve her gün yenilenir. Başka bir gün ya da konum için yukarıdaki aracı kullanın.
+      </p>
+      <TodayProvinceTable places={cities} t={TODAY} />
+
+      <h2 id="yil">Yıl boyunca gün uzunluğu</h2>
+      <DayLengthYear place={todayPlaces[0]} t={TODAY} />
+
+      <h2 id="iller">81 ilde en uzun ve en kısa günde saatler ({YEAR})</h2>
       <p>
         Tablo yılın en uzun (21 Haziran) ve en kısa (21 Aralık) günündeki saatleri ve güneşin yılbaşından sonra ilk kez akşam 18:00&apos;den sonra battığı günü gösterir. Saatler il merkezi için, Türkiye saatiyle
         (UTC+3) verilmiştir. İl adına tıklayarak ilin rakımını ve hava basıncını görebilirsiniz.

@@ -18,5 +18,6 @@ describe("atölye numaraları", () => {
     expect(FRACTION_DRILLS[63].id).toBe('1"');
     expect(FRACTION_DRILLS[4].id).toBe('5/64"');
     expect(nearestMetricDrill(3.175)).toBe(3.2);
+    expect(nearestMetricDrill(6.35)).toBe(6.4);
   });
 });

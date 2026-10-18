@@ -54,4 +54,4 @@ export function nearest(table: GaugeRow[], mm: number): GaugeRow | null {
 }
 
 /** 0,1 mm adımlı metrik matkap serisindeki en yakın uç. */
-export const nearestMetricDrill = (mm: number) => Math.round(mm * 10) / 10;
+export const nearestMetricDrill = (mm: number) => Math.round(mm * 10 + 1e-9) / 10;

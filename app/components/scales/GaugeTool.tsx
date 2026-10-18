@@ -89,7 +89,7 @@ export default function GaugeTool({ tables, prefix, metricStep, defaultRow }: { 
             {metricStep && (
               <div className="date-calc-stat">
                 <span>En yakın metrik uç</span>
-                <strong>{mmF(Math.round(row.mm / metricStep) * metricStep)} mm</strong>
+                <strong>{mmF(Math.round(row.mm / metricStep + 1e-9) * metricStep)} mm</strong>
                 <em>{metricStep.toLocaleString("tr-TR")} mm adımlı seride</em>
               </div>
             )}

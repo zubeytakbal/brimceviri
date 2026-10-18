@@ -148,6 +148,14 @@ export default function RootLayout({
           id="locale-correction"
           dangerouslySetInnerHTML={{ __html: localeCorrectionScript }}
         />
+        {/* AdSense kodu: site onayı ve ads.txt denetimi için her sayfanın ham HTML'inde bulunmalı.
+            Özbekçe sayfalardan postbuild çıkarır (AdSense'in desteklediği diller arasında değil). */}
+        <script
+          id="adsense"
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4103878788447160"
+          crossOrigin="anonymous"
+        />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-9PGNSBT970"
           strategy="afterInteractive"

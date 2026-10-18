@@ -1,4 +1,4 @@
-// Search Console, son 3 ay (18 Temmuz – 18 Ekim 2026), "Sayfalar" dökümü: en az 2 tıklama alan 1000 adres.
+// Search Console, son 3 ay (18 Temmuz – 18 Ekim 2026), "Sayfalar" dökümü: en az 2 tıklama alan 998 adres (artık var olmayan eski bölüm adresleri hariç).
 // indexPolicy.ts bu listeyi kısmen kapatılan bölümlerde "açık kalsın" listesi olarak kullanır.
 export const CLICKED_PATHS: readonly string[] = [
 "/",
@@ -479,7 +479,6 @@ export const CLICKED_PATHS: readonly string[] = [
 "/es/categorias/almacenamiento-de-datos",
 "/es/categorias/electricidad",
 "/es/categorias/masa",
-"/es/categories/volumen",
 "/es/centimetro-cuadrado-metro-cuadrado",
 "/es/decimetro-centimetro",
 "/es/galon-litro",
@@ -887,7 +886,6 @@ export const CLICKED_PATHS: readonly string[] = [
 "/pt/ampere-miliampere",
 "/pt/calendario-liturgico",
 "/pt/categorias/eletricidade",
-"/pt/categories/massa",
 "/pt/milimetro-metro",
 "/pt/psi-bar",
 "/resim-boyutlandirma",

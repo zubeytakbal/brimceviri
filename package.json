@@ -17,6 +17,7 @@
     "@phosphor-icons/react": "^2.1.10",
     "@react-pdf/renderer": "^4.6.1",
     "@upstash/redis": "^1.38.4",
+    "astronomy-engine": "^2.1.19",
     "jspdf": "^4.2.1",
     "jspdf-autotable": "^5.0.8",
     "lohnsteuerrechner": "1.0.7",

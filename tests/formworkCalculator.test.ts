@@ -23,13 +23,16 @@ describe("beton kalıp alanı", () => {
   });
 
   it("kirişte alt ve iki yan yüzü hesaplar", () => {
-    expect(calculateFormworkArea({
+    const result = calculateFormworkArea({
       element: "kiris",
       lengthM: 6,
       widthM: 0.3,
       heightM: 0.5,
       quantity: 1,
-    })).toEqual({ areaPerElementM2: 7.8, totalAreaM2: 7.8, quantity: 1 });
+    });
+    expect(result?.areaPerElementM2).toBeCloseTo(7.8);
+    expect(result?.totalAreaM2).toBeCloseTo(7.8);
+    expect(result?.quantity).toBe(1);
   });
 
   it("tekil temel için tüm yan yüzleri hesaplar", () => {

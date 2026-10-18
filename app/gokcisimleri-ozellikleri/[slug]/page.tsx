@@ -263,6 +263,10 @@ export default async function CelestialBodyDetailPage({ params }: PageProps) {
               <Link href="/gezegenlerde-yas-hesaplama">gezegenlerde yaş hesaplama</Link> aracıyla öğrenebilirsin.
             </p>
           )}
+          <p>
+            Kilonun bütün gezegenlerde, Ay&apos;da ve Güneş&apos;te kaç kilo ettiğini yan yana görmek için{" "}
+            <Link href="/gezegenlerde-kac-kilo-gelirim">gezegenlerde kaç kilo gelirim</Link> aracına bakabilirsin.
+          </p>
 
           <h2>Kaynaklar</h2>
           <p>

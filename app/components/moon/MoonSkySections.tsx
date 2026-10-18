@@ -1,3 +1,4 @@
+import Link from "@/app/components/SiteLink";
 import { moonPhasesBetween } from "../../converter/time/moon";
 import { moonPosition, moonSign, signIngresses, ZODIAC_EN, ZODIAC_TR } from "../../converter/time/moonPosition";
 
@@ -64,7 +65,8 @@ export function MoonSignSection({ lang, now }: { lang: "tr" | "en"; now: Date })
           Burç, Ay&apos;ın ekliptik boylamının 30°&apos;lik dilimlere bölünmesiyle bulunur (tropikal zodyak: 0° Koç, ilkbahar ekinoksu noktasıdır).
           Hesap Jean Meeus&apos;un Ay konumu formülleriyle yapılır; geçiş saatleri birkaç dakika içinde doğrudur. Bu bölüm Ay&apos;ın gökyüzündeki
           konumunu verir, astrolojik yorum içermez. Burçlar, aynı adı taşıyan takımyıldızlarla artık örtüşmez: yer ekseninin yalpalaması
-          (presesyon) yüzünden Ay, Koç burcundayken çoğu zaman Balık takımyıldızının önünde görünür.
+          (presesyon) yüzünden Ay, Koç burcundayken çoğu zaman Balık takımyıldızının önünde görünür. Doğduğunuz andaki Ay burcunu ve yükselen
+          burcu <Link href="/yukselen-burc-hesaplama">yükselen burç hesaplama</Link> aracıyla bulabilirsiniz.
         </p>
       )}
     </>

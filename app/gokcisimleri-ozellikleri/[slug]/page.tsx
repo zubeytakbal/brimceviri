@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
+import { PLANET_YEARS } from "@/app/converter/time/planetAge";
 import { notFound } from "next/navigation";
 import CelestialBodyWeightCalculator from "../../components/CelestialBodyWeightCalculator";
 import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
@@ -256,6 +257,12 @@ export default async function CelestialBodyDetailPage({ params }: PageProps) {
             <Link href="/gokcisimleri-ozellikleri">Gökcisimleri Özellikleri</Link>
             {" "}sayfasına bakabilirsin.
           </p>
+          {PLANET_YEARS.some((p) => p.id === body.id) && (
+            <p>
+              {body.nameTr} yılına göre kaç yaşında olduğunu ve diğer gezegenlerdeki yaşını{" "}
+              <Link href="/gezegenlerde-yas-hesaplama">gezegenlerde yaş hesaplama</Link> aracıyla öğrenebilirsin.
+            </p>
+          )}
 
           <h2>Kaynaklar</h2>
           <p>

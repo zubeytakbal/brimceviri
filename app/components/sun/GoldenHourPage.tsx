@@ -6,6 +6,14 @@ import { localDateParts } from "../../converter/time/timezones";
 import { worldCities } from "../../converter/time/worldCities";
 import TimeToolPage from "../time/TimeToolPage";
 import GoldenHourTool, { type GoldenCopy } from "./GoldenHourTool";
+import { turkeyProvinces } from "../../converter/geo/turkeyProvinces";
+import { GoldenProvinceTable, GoldenTodayHero } from "./GoldenToday";
+import { trToday, type TodayPlace } from "./SunToday";
+
+const collator = new Intl.Collator("tr");
+/** Türkçe sayfada 81 il önce gelir (alfabetik), dünya şehirleri ardından. */
+export const trProvinces: TodayPlace[] = [...turkeyProvinces].sort((a, b) => collator.compare(a.name, b.name)).map((p) => ({ id: p.id, name: p.name, lat: p.lat, lon: p.lon }));
+export const goldenTodayPlaces = ["istanbul", "ankara", "izmir"].map((id) => trProvinces.find((p) => p.id === id)!);
 
 const COPY: Record<"tr" | "en", GoldenCopy> = {
   tr: {
@@ -51,7 +59,14 @@ const COPY: Record<"tr" | "en", GoldenCopy> = {
 export default function GoldenHourPage({ lang }: { lang: "tr" | "en" }) {
   const tr = lang === "tr";
   const now = new Date();
-  const cities = worldCities.map((c) => ({ slug: c.en, name: tr ? `${c.nameTr} (${c.countryTr})` : `${c.nameEn} (${c.countryEn})`, lat: c.lat, lon: c.lon, timeZone: c.timeZone }));
+  const world = worldCities.map((c) => ({ slug: c.en, name: tr ? `${c.nameTr} (${c.countryTr})` : `${c.nameEn} (${c.countryEn})`, lat: c.lat, lon: c.lon, timeZone: c.timeZone }));
+  const cities = tr
+    ? [
+        ...trProvinces.map((p) => ({ slug: p.id, name: p.name, lat: p.lat, lon: p.lon, timeZone: "Europe/Istanbul" })),
+        ...world.filter((c) => !trProvinces.some((p) => p.id === c.slug) && !c.name.endsWith("(Türkiye)")),
+      ]
+    : world;
+  const today = trToday(now);
   const featured = ["istanbul", "ankara", "izmir", "london", "paris", "new-york", "tokyo", "dubai"].map((slug) => worldCities.find((c) => c.en === slug)!);
   const rows = featured.map((city) => {
     const p = localDateParts(city.timeZone, now);
@@ -109,7 +124,16 @@ export default function GoldenHourPage({ lang }: { lang: "tr" | "en" }) {
           ? "Fotoğraf için en güzel ışık ne zaman? Şehrini ya da konumunu ve tarihi seç; sabah ve akşam altın saat ile mavi saati dakikası dakikasına gör."
           : "When is the best light for photos? Pick a city or use your location and a date to see the exact morning and evening golden hour and blue hour."
       }
-      tool={<GoldenHourTool cities={cities} lang={lang} copy={COPY[lang]} initialCity={tr ? "istanbul" : "new-york"} />}
+      tool={
+        tr ? (
+          <>
+            <GoldenTodayHero places={goldenTodayPlaces} t={today} />
+            <GoldenHourTool cities={cities} lang={lang} copy={COPY[lang]} initialCity="istanbul" />
+          </>
+        ) : (
+          <GoldenHourTool cities={cities} lang={lang} copy={COPY[lang]} initialCity="new-york" />
+        )
+      }
       related={{
         title: tr ? "İlginizi çekebilir" : "You may also like",
         links: tr
@@ -128,14 +152,22 @@ export default function GoldenHourPage({ lang }: { lang: "tr" | "en" }) {
       }}
       tocTitle={tr ? "İçindekiler" : "Contents"}
       tocItems={[
-        { id: "bugun", label: tr ? "Bugün şehirlerde altın saat" : "Golden hour today in major cities" },
+        ...(tr ? [{ id: "iller", label: "81 ilde bugün altın saat ve mavi saat" }] : []),
+        { id: "bugun", label: tr ? "Bugün dünya şehirlerinde altın saat" : "Golden hour today in major cities" },
         { id: "ipuclari", label: tr ? "Altın saatte fotoğraf ipuçları" : "Golden hour photo tips" },
         { id: "faq", label: tr ? "Sık sorulan sorular" : "FAQ" },
       ]}
       faqTitle={tr ? "Sık Sorulan Sorular" : "Frequently Asked Questions"}
       faqItems={faqItems}
     >
-      <h2 id="bugun">{tr ? "Bugün şehirlerde altın saat" : "Golden hour today in major cities"}</h2>
+      {tr && (
+        <>
+          <h2 id="iller">81 ilde bugün altın saat ve mavi saat</h2>
+          <p>Saatler il merkezi için, Türkiye saatiyle verilmiştir ve her gün yenilenir. Başka bir gün için yukarıdaki aracı kullanın.</p>
+          <GoldenProvinceTable places={trProvinces} t={today} />
+        </>
+      )}
+      <h2 id="bugun">{tr ? "Bugün dünya şehirlerinde altın saat" : "Golden hour today in major cities"}</h2>
       <div className="conversion-table-wrap">
         <table className="conversion-table">
           <thead>

@@ -16807,3 +16807,19 @@ a.all-units-row .all-units-name {
   background: #f1f5f9;
   border: 1px solid #e2e8f0;
 }
+
+.sun-legend::before {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 4px;
+  border-radius: 2px;
+  vertical-align: -1px;
+}
+.sun-legend { margin-right: 10px; }
+.sun-legend.is-blue::before { background: #3b6fd8; }
+.sun-legend.is-golden::before { background: #f59e0b; }
+.sun-legend.is-day::before { background: #fde68a; }
+.sun-legend.is-night::before { background: #1f2d4a; }
+.sun-path figcaption .sun-legend { display: inline-block; }

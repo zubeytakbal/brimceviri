@@ -217,6 +217,80 @@ function applyIndexPolicy() {
   return { closed, alternates };
 }
 
+/**
+ * hreflang tutarlılığı (site denetimi "hreflang çakışması"): noindex sayfalarda hreflang olmaz; dizine açık
+ * sayfalarda yalnızca karşılıklı bağlantılar kalır (A→B varsa B→A da olmalı), kendine bağlantı eksikse eklenir,
+ * tek başına kalan kendine bağlantı silinir. Dizin politikasından sonra çalışır.
+ */
+function fixHreflangReciprocity() {
+  const altTag = /<link rel="alternate" hrefLang="([^"]*)" href="([^"]*)"\/>/g;
+  const files: Array<{ path: string; url: string }> = [];
+  const walk = (dir: string) => {
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      const path = join(dir, entry.name);
+      if (entry.isDirectory()) {
+        if (entry.name !== "_next") walk(path);
+      } else if (entry.name.endsWith(".html")) {
+        const rel = "/" + path.slice(OUT.length + 1).replace(/\\/g, "/").replace(/\.html$/, "");
+        files.push({ path, url: rel === "/index" ? "/" : rel.endsWith("/index") ? rel.slice(0, -6) : rel });
+      }
+    }
+  };
+  walk(OUT);
+  const alts = new Map<string, Array<{ lang: string; url: string }>>();
+  const noindex = new Set<string>();
+  const selfCode = new Map<string, string>(); // dil öneki ("" = Türkçe) → hreflang kodu
+  const prefix = (url: string) => (/^\/(en|de|ar|es|fr|it|pt|nl|sv|no|da|bn|uz)(\/|$)/.exec(url)?.[1] ?? "");
+  for (const f of files) {
+    const html = readFileSync(f.path, "utf8");
+    if (/<meta name="robots" content="[^"]*noindex/.test(html)) noindex.add(f.url);
+    const list = [...html.matchAll(altTag)].filter((m) => m[2].startsWith(SITE)).map((m) => ({ lang: m[1], url: m[2].slice(SITE.length) || "/" }));
+    alts.set(f.url, list);
+    for (const a of list) if (a.url === f.url && a.lang !== "x-default") selfCode.set(prefix(f.url), a.lang);
+  }
+  const lists = (from: string, to: string) => (alts.get(from) ?? []).some((a) => a.url === to);
+  let removed = 0;
+  let added = 0;
+  const final = new Map<string, Set<string>>(); // sayfa → kalan "dil|adres" bağlantıları (site haritası için)
+  for (const f of files) {
+    const list = alts.get(f.url) ?? [];
+    if (!list.length) continue;
+    let keep = noindex.has(f.url) ? [] : list.filter((a) => a.url === f.url || (!noindex.has(a.url) && lists(a.url, f.url)));
+    if (!keep.some((a) => a.url !== f.url)) keep = [];
+    const addSelf = keep.length > 0 && !keep.some((a) => a.url === f.url && a.lang !== "x-default") && selfCode.has(prefix(f.url));
+    final.set(f.url, new Set([...keep.map((a) => `${a.lang}|${a.url}`), ...(addSelf ? [`${selfCode.get(prefix(f.url))}|${f.url}`] : [])]));
+    if (keep.length === list.length && !addSelf) continue;
+    removed += list.length - keep.length;
+    let html = readFileSync(f.path, "utf8");
+    html = html.replace(altTag, (tag, lang: string, href: string) =>
+      !href.startsWith(SITE) || keep.some((a) => a.lang === lang && a.url === (href.slice(SITE.length) || "/")) ? tag : "",
+    );
+    if (addSelf) {
+      added++;
+      const tag = `<link rel="alternate" hrefLang="${selfCode.get(prefix(f.url))}" href="${SITE}${f.url === "/" ? "" : f.url}"/>`;
+      html = html.replace(/<link rel="alternate" hrefLang=/, `${tag}<link rel="alternate" hrefLang=`);
+    }
+    writeFileSync(f.path, html);
+  }
+
+  // Site haritasındaki xhtml:link bağlantıları sayfadakilerle birebir aynı yazılır.
+  const smPath = join(OUT, "sitemap.xml");
+  const linkRe = /\s*<xhtml:link rel="alternate" hreflang="[^"]*" href="[^"]*"\s*\/>/g;
+  const before = (readFileSync(smPath, "utf8").match(linkRe) ?? []).length;
+  let after = 0;
+  const sitemap = readFileSync(smPath, "utf8").replace(/<url>([\s\S]*?)<\/url>/g, (block, inner: string) => {
+    const loc = /<loc>([^<]*)<\/loc>/.exec(inner)?.[1].slice(SITE.length) || "/";
+    const links = [...(final.get(loc) ?? [])].map((k) => {
+      const [lang, url] = k.split("|");
+      return `<xhtml:link rel="alternate" hreflang="${lang}" href="${SITE}${url === "/" ? "" : url}" />`;
+    });
+    after += links.length;
+    return block.replace(linkRe, "").replace("</loc>", `</loc>${links.join("")}`);
+  });
+  writeFileSync(smPath, sitemap);
+  return { removed, added, smRemoved: before - after };
+}
+
 function fixMergedPairLinks() {
   const SITE = "https://www.birimceviri.app";
   const slugs = Object.keys(MERGED_PAIRS).sort((a, b) => b.length - a.length).join("|");
@@ -249,6 +323,10 @@ const merged = fixMergedPairLinks();
 console.log(`Birleştirilen çiftler: ${merged.links} bağlantı kalan sayfaya çevrildi, ${merged.alternates} hreflang silindi`);
 const policy = applyIndexPolicy();
 console.log(`Dizin politikası: ${policy.closed} sayfa noindex yapıldı, ${policy.alternates} hreflang bağlantısı kaldırıldı`);
+const hreflang = fixHreflangReciprocity();
+console.log(
+  `hreflang: ${hreflang.removed} karşılıksız bağlantı silindi, ${hreflang.added} sayfaya kendi dil bağlantısı eklendi, site haritasında ${hreflang.smRemoved} bağlantı farkı`,
+);
 console.log(`${fixHtmlLang()} sayfada <html lang> dile gore duzeltildi`);
 console.log(`${stripAdsenseFromUzbek()} Ozbekce sayfadan AdSense kodu cikarildi`);
 const redirects = writeRedirects();

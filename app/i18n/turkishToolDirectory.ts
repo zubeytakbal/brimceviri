@@ -267,6 +267,7 @@ export const turkishToolGroups: ToolGroup[] = [
       { href: "/bilim-hesaplayicilari/matematik/sayilar", label: "Asal, Tam Kare ve Mükemmel Sayılar" },
       { href: "/awg-mm2-cevirici", label: "AWG - mm² Çevirici" },
       { href: "/mesh-mikron-cevirme", label: "Mesh - Mikron (Elek)" },
+      { href: "/egim-cevirme", label: "Eğim Çevirme (% - Derece)" },
       { href: "/boru-capi-hesaplama", label: "Boru Çapı, Debi ve Akış Hızı" },
       { href: "/boru-capi-donusum-hesaplama", label: "Boru Çapı Dönüşümü (DN-NPS)" },
       { href: "/tank-hacmi-hesaplama", label: "Tank Hacmi ve Doluluk" },

@@ -34,6 +34,7 @@ const TOOL_GROUPS: Array<{ id: string; title: string; items: Array<{ href: strin
     id: "tablo-cevirileri",
     title: "Ölçü numaraları ve tablolar",
     items: [
+      { href: "/egim-cevirme", title: "Eğim Çevirme", description: "Yüzde ↔ derece ↔ binde ↔ 1:n: %10 = 5,71°, %100 = 45°, 1:12 = %8,33; yükseklik farkı ve eğik uzunluk." },
       { href: "/bofor-cevirme", title: "Bofor (Rüzgâr) Çevirme", description: "Rüzgâr hızı ↔ bofor: 45 km/h = 6 bofor, 8 bofor = 62–74 km/h; WMO tablosu ve dalga yüksekliği." },
       { href: "/mesh-mikron-cevirme", title: "Mesh - Mikron (Elek)", description: "Elek numarası ↔ açıklık: 200 mesh = 75 µm, 100 mesh = 150 µm; ASTM E11 tablosu." },
       { href: "/bisiklet-jant-olcusu", title: "Bisiklet Jant Ölçüsü", description: "İnç ↔ ETRTO: 28\" = 700c = 622 mm, 26\" = 559 mm; 37-622 lastik kodu okuma." },

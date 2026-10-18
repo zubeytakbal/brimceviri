@@ -154,6 +154,7 @@ export const turkishToolGroups: ToolGroup[] = [
       { href: "/beton-hesaplama", label: "Beton Hesaplama" },
       { href: "/kalip-alani-hesaplama", label: "Kalıp Alanı Hesaplama" },
       { href: "/sap-hacmi-hesaplama", label: "Şap Hacmi Hesaplama" },
+      { href: "/membran-rulo-hesaplama", label: "Membran Rulo Hesaplama" },
       { href: "/tugla-hesaplama", label: "Tuğla Hesaplama" },
       { href: "/siva-hesaplama", label: "Sıva Hesaplama" },
       { href: "/merdiven-hesaplama", label: "Merdiven Hesaplama" },

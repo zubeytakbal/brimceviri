@@ -174,6 +174,10 @@ export default function InsaatciAraclariPage() {
               zemin alanı ve ortalama kalınlıktan gereken hacmi hesapla.
             </li>
             <li>
+              <Link href="/membran-rulo-hesaplama">Membran Rulo Hesaplama</Link> —
+              bindirme ve fire payıyla yaklaşık su yalıtımı membran ihtiyacını bul.
+            </li>
+            <li>
               <Link href="/demir-agirlik-hesaplama">İnşaat Demiri Ağırlık Hesaplama</Link> —
               çap, boy ve adetten demir tonajını, 1 tonun kaç metre
               ettiğini ve pozlara göre metraj toplamını hesapla.

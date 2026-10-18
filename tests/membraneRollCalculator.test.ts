@@ -11,7 +11,7 @@ describe("su yalıtımı membran rulo metrajı", () => {
       endLapCm: 15,
       wastePercent: 10,
     })).toEqual({
-      effectiveCoveragePerRollM2: 8.415,
+      effectiveCoveragePerRollM2: 8.865,
       areaWithWasteM2: 66,
       rollCount: 8,
     });

@@ -6,8 +6,11 @@ import { buildSiteUrl } from "../../siteConfig";
 export const metadata: Metadata = {
   title: "Yalıtım Amortisman Hesaplama",
   robots: {
-    index: false,
-    follow: false,
+    index: true,
+    follow: true,
+  },
+  alternates: {
+    canonical: "/yalitim-amortisman-hesaplama",
   },
 };
 

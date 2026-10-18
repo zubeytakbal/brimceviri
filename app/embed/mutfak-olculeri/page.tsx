@@ -6,8 +6,11 @@ import { buildSiteUrl } from "../../siteConfig";
 export const metadata: Metadata = {
   title: "Mutfak Ölçüleri Çevirici",
   robots: {
-    index: false,
-    follow: false,
+    index: true,
+    follow: true,
+  },
+  alternates: {
+    canonical: "/mutfak-olculeri-cevirici",
   },
 };
 

@@ -6,8 +6,11 @@ import { buildSiteUrl } from "../../siteConfig";
 export const metadata: Metadata = {
   title: "Uzaktan Çalışma mı Ofis mi?",
   robots: {
-    index: false,
-    follow: false,
+    index: true,
+    follow: true,
+  },
+  alternates: {
+    canonical: "/uzaktan-calisma-ofis-maliyeti-karsilastirma",
   },
 };
 

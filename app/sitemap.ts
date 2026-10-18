@@ -89,7 +89,6 @@ import {
   elementNamesDeBySymbol,
   slugifyElementNameDe,
 } from "./converter/periodicTableDataDe";
-import { findGermanElementArticle } from "./converter/germanElementArticles";
 import { materialsDatabase } from "./converter/materialsDatabase";
 import { celestialBodiesDatabase } from "./converter/celestialBodiesDatabase";
 import { mountainsDatabase } from "./converter/mountainsDatabase";
@@ -97,7 +96,6 @@ import { getAllMountainsUz } from "./converter/mountainsDatabaseUz";
 import { turkishProvinceElevations } from "./converter/turkishProvinceElevations";
 import { popularProvinceComparisons } from "./converter/popularProvinceComparisons";
 import { compoundsDatabase } from "./converter/compoundsDatabase";
-import { findCompoundEditorial } from "./converter/compoundEditorial";
 import { licenseClasses } from "./converter/licenseClassFinder";
 import {
   englishUnitPages,
@@ -1234,13 +1232,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
       },
     },
-    ...periodicTable.filter((element) =>
-      Boolean(
-        findGermanElementArticle(
-          slugifyElementNameDe(elementNamesDeBySymbol[element.symbol] ?? element.symbol)
-        )
-      )
-    ).map((element) => {
+    ...periodicTable.map((element) => {
       const deSlug = slugifyElementNameDe(elementNamesDeBySymbol[element.symbol] ?? element.symbol);
       return {
         url: `${baseUrl}/de/periodensystem/${deSlug}`,
@@ -1412,7 +1404,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     ...compoundsDatabase
-      .filter((compound) => Boolean(findCompoundEditorial(compound.id)))
       .map((compound) => ({
       url: `${baseUrl}/bilim-hesaplayicilari/kimya/bilesikler/${compound.id}`,
       lastModified: contentLastModified,

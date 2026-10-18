@@ -7,8 +7,11 @@ import { buildSiteUrl } from "../../siteConfig";
 export const metadata: Metadata = {
   title: "Elektrikli Araç mı Benzinli Araç mı?",
   robots: {
-    index: false,
-    follow: false,
+    index: true,
+    follow: true,
+  },
+  alternates: {
+    canonical: "/elektrikli-arac-maliyet-karsilastirma",
   },
 };
 

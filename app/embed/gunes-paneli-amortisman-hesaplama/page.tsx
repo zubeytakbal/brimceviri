@@ -6,8 +6,11 @@ import { buildSiteUrl } from "../../siteConfig";
 export const metadata: Metadata = {
   title: "Güneş Paneli Amortisman Hesaplama",
   robots: {
-    index: false,
-    follow: false,
+    index: true,
+    follow: true,
+  },
+  alternates: {
+    canonical: "/gunes-paneli-amortisman-hesaplama",
   },
 };
 

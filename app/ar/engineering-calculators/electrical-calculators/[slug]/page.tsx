@@ -9,7 +9,6 @@ import {
   getElectricalCalculatorByLocalizedSlug,
   getElectricalCalculatorPath,
   getElectricalStaticParams,
-  isLiveElectricalCalculator,
 } from "../../../../converter/engineeringHubs";
 import { buildSiteUrl } from "../../../../siteConfig";
 import { buildArabicMetadata } from "../../../seo";
@@ -93,7 +92,7 @@ export async function generateMetadata({
         getElectricalCalculatorPath("de", item.sourceSlug) ?? undefined,
     }),
     robots: {
-      index: isLiveElectricalCalculator(item.sourceSlug),
+      index: true,
       follow: true,
     },
   };
@@ -105,7 +104,7 @@ export default async function ArabicElectricalCalculatorPage({
   const { slug } = await params;
   const item = getElectricalCalculatorByLocalizedSlug("ar", slug);
 
-  if (!item || !isLiveElectricalCalculator(item.sourceSlug)) {
+  if (!item) {
     notFound();
   }
 

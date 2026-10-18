@@ -4,8 +4,7 @@ export type GermanElementArticle = {
   uses: string[];
 };
 
-// Only pages with a dedicated editorial article are eligible for indexing.
-// This keeps the German periodic-table section useful while it is expanded in batches.
+// Alman periyodik tablo sayfalarına eklenen editoryal giriş ve kullanım notları.
 export const germanElementArticles: GermanElementArticle[] = [
   {
     slug: "wasserstoff",

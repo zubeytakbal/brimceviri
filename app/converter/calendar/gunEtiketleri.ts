@@ -61,7 +61,7 @@ export function ayEtiketleri(year: number, month: number): Map<number, Etiket[]>
     const key = `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
     for (const t of harita.get(key) ?? []) {
       const k = t.etkinlik.kategori;
-      ekle(day, { tur: KATEGORI_TUR[k], ad: tarihliAd(t), href: ozelGunPath(t.etkinlik.id), tahmini: t.tahmini });
+      ekle(day, { tur: KATEGORI_TUR[k], ad: tarihliAd(t), href: t.etkinlik.geriSayim ? `/geri-sayim/${t.etkinlik.geriSayim}` : ozelGunPath(t.etkinlik.id), tahmini: t.tahmini });
     }
   }
 

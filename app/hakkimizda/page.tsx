@@ -44,7 +44,7 @@ export default function AboutPage() {
           content: (
             <>
               <p>
-                BirimCeviri.app, birim çevirilerini ve hesaplama araçlarını ücretsiz sunan bağımsız bir sitedir. Sitedeki
+                BirimCeviri.app, <strong>Z. A.</strong> tarafından hazırlanan ve birim çevirilerini, hesaplama araçlarını ücretsiz sunan bağımsız bir sitedir. Sitedeki
                 çeviriciler, açıklamalar ve tablolar tek tek hazırlanır; her yeni araç yayımlanmadan önce hesaplamaları kaynaklarıyla
                 karşılaştırılarak denenir.
               </p>

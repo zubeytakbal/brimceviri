@@ -322,6 +322,55 @@ export const categoryPages: CategoryPage[] = [
       "1 R = 2,58 × 10⁻⁴ C/kg, 1 mR = 0,258 µC/kg; röntgen, miliröntgen, mikroröntgen ve coulomb/kilogram arası ışınlama dönüşümü.",
   },
   {
+    slug: "alkol-derecesi",
+    category: "alkol_derecesi",
+    title: "Alkol Derecesi Dönüşümleri (Proof)",
+    description:
+      "45° = %45 vol = 90 ABD proof = 78,75 İngiliz proof, 40° = 80 proof; alkol derecesini hacimce yüzde, ABD proof ve İngiliz proof arasında çevirin.",
+  },
+  {
+    slug: "vida-hatvesi",
+    category: "vida_hatvesi",
+    title: "Vida Hatvesi Dönüşümleri (TPI - mm)",
+    description:
+      "20 TPI = 1,27 mm hatve, 1,5 mm = 16,93 TPI, 14 TPI = 1,814 mm; vida diş adımını milimetre, diş/inç ve diş/cm arasında çevirin.",
+  },
+  {
+    slug: "hali-dugum-sikligi",
+    category: "hali_dugum",
+    title: "Halı Düğüm Sıklığı Dönüşümleri",
+    description:
+      "100 düğüm/dm² = 10.000 düğüm/m² = 6,45 KPSI, 1 KPSI = 1550 düğüm/m², 1 düğüm/cm² = 100 düğüm/dm²; halı düğüm sıklığını m², dm², cm² ve inçkare arasında çevirin.",
+  },
+  {
+    slug: "yagis-miktari",
+    category: "yagis",
+    title: "Yağış Miktarı Dönüşümleri",
+    description:
+      "1 mm yağış = 1 kg/m² = 1 L/m², 25 kg/m² yağış dekara 25 ton su, 1 inç = 25,4 mm; meteoroloji yağış değerlerini mm, litre ve ton suya çevirin.",
+  },
+  {
+    slug: "dekar-basina-verim",
+    category: "alan_verim",
+    title: "Dekar Başına Verim Dönüşümleri",
+    description:
+      "500 kg/da = 5 t/ha = 5000 kg/ha, 1 t/ha = 100 kg/da, 100 lb/acre = 11,2 kg/da; verim, gübre ve tohum miktarını dekar, hektar ve acre arasında çevirin.",
+  },
+  {
+    slug: "dekar-basina-doz",
+    category: "alan_doz",
+    title: "Dekar Başına Doz Dönüşümleri",
+    description:
+      "100 mL/da = 1 L/ha, 2 L/da = 20 L/ha, 1 gal/acre = 9,35 L/ha; ilaç ve sıvı gübre dozlarını dekar, hektar, metrekare ve acre arasında çevirin.",
+  },
+  {
+    slug: "alana-gore-fiyat",
+    category: "alan_fiyat",
+    title: "Alana Göre Fiyat Dönüşümleri",
+    description:
+      "Dönümü 500.000 TL olan arsanın metrekaresi 500 TL; 1.000 TL/m² = 1.000.000 TL/dönüm = 10 milyon TL/hektar. Arsa ve tarla fiyatlarını birim alana göre çevirin.",
+  },
+  {
     slug: "elektrik-iletkenligi",
     category: "elektrik_iletkenligi",
     title: "Elektrik İletkenliği Dönüşümleri",

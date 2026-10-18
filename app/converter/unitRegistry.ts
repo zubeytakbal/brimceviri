@@ -2682,6 +2682,8 @@ export const unitRegistry: UnitRegistryEntry[] = [
   { id: "x-hacim-abd-cay-kasigi", category: "hacim", symbol: "tsp", siFactor: 4.92892159375e-6, tr: { name: "Çay kaşığı (ABD)", slug: "abd-cay-kasigi" } },
   { id: "x-hacim-abd-gill", category: "hacim", symbol: "gill", siFactor: 1.1829411825e-4, tr: { name: "Gill (ABD)", slug: "abd-gill" } },
   { id: "x-hacim-hogshead", category: "hacim", symbol: "hhd", siFactor: 0.238480942392, tr: { name: "Fıçı (hogshead, ABD)", slug: "hogshead" } },
+  // Ster: yakacak odunun istif hacmi; 1 m × 1 m × 1 m'lik istif, aradaki boşluklar dahil (1 ster = 1 m³ istif).
+  { id: "x-hacim-ster", category: "hacim", symbol: "ster", siFactor: 1, tr: { name: "Ster (istif odun)", slug: "ster" } },
   { id: "x-kutle-mikrogram", category: "kutle", symbol: "µg", siFactor: 1e-9, tr: { name: "Mikrogram", slug: "mikrogram" } },
   { id: "x-kutle-nanogram", category: "kutle", symbol: "ng", siFactor: 1e-12, tr: { name: "Nanogram", slug: "nanogram" } },
   { id: "x-kutle-santigram", category: "kutle", symbol: "cg", siFactor: 1e-5, tr: { name: "Santigram", slug: "santigram" } },
@@ -2858,6 +2860,69 @@ export const unitRegistry: UnitRegistryEntry[] = [
   { id: "ip-ne", category: "iplik_numarasi", symbol: "Ne", siFactor: 453.59237 / (840 * 0.9144) * 1000, inverse: true, tr: { name: "İngiliz pamuk numarası (Ne)", slug: "ingiliz-pamuk-numarasi" } },
   { id: "ip-nek", category: "iplik_numarasi", symbol: "Nek", siFactor: 453.59237 / (560 * 0.9144) * 1000, inverse: true, tr: { name: "Yün numarası (Nek, worsted)", slug: "yun-numarasi" } },
   { id: "ip-nl", category: "iplik_numarasi", symbol: "Nl", siFactor: 453.59237 / (300 * 0.9144) * 1000, inverse: true, tr: { name: "Keten numarası (Nl, lea)", slug: "keten-numarasi" } },
+
+  // ---- alkol derecesi ----
+  // Taban: % hacim (ABV). Türkiye'de "derece" (45° rakı) ve Gay-Lussac (°GL) % hacimle aynıdır.
+  // ABD proof = 2 × ABV. İngiliz proof (eski sistem): 100° proof = %57,14 ABV, yani proof = ABV × 7/4.
+  { id: "al-abv", category: "alkol_derecesi", symbol: "% vol", siFactor: 1, tr: { name: "Hacimce yüzde (% vol)", slug: "hacimce-yuzde-alkol" } },
+  { id: "al-derece", category: "alkol_derecesi", symbol: "°", siFactor: 1, tr: { name: "Derece (°, Gay-Lussac)", slug: "alkol-derecesi" } },
+  { id: "al-usproof", category: "alkol_derecesi", symbol: "US proof", siFactor: 0.5, tr: { name: "ABD proof", slug: "abd-proof" } },
+  { id: "al-ukproof", category: "alkol_derecesi", symbol: "UK proof", siFactor: 4 / 7, tr: { name: "İngiliz proof", slug: "ingiliz-proof" } },
+
+  // ---- vida hatvesi ----
+  // Taban: mm (diş adımı). Diş/inç (TPI) ters orantılıdır: hatve (mm) = 25,4 / TPI; diş/cm için 10 / değer.
+  { id: "vh-mm", category: "vida_hatvesi", symbol: "mm", siFactor: 1, tr: { name: "Milimetre (hatve)", slug: "milimetre-hatve" } },
+  { id: "vh-tpi", category: "vida_hatvesi", symbol: "TPI", siFactor: 25.4, inverse: true, tr: { name: "Diş/inç (TPI)", slug: "dis-bolu-inc" } },
+  { id: "vh-tpcm", category: "vida_hatvesi", symbol: "diş/cm", siFactor: 10, inverse: true, tr: { name: "Diş/santimetre", slug: "dis-bolu-santimetre" } },
+  { id: "vh-in", category: "vida_hatvesi", symbol: "inç", siFactor: 25.4, tr: { name: "İnç (hatve)", slug: "inc-hatve" } },
+  { id: "vh-um", category: "vida_hatvesi", symbol: "µm", siFactor: 0.001, tr: { name: "Mikrometre (hatve)", slug: "mikrometre-hatve" } },
+
+  // ---- halı düğüm sıklığı ----
+  // Taban: düğüm/m². 1 dm² = 0,01 m², 1 cm² = 0,0001 m², 1 inç² = 6,4516 cm² (KPSI: knots per square inch).
+  { id: "hd-m2", category: "hali_dugum", symbol: "düğüm/m²", siFactor: 1, tr: { name: "Düğüm/metrekare", slug: "dugum-bolu-metrekare" } },
+  { id: "hd-dm2", category: "hali_dugum", symbol: "düğüm/dm²", siFactor: 100, tr: { name: "Düğüm/desimetrekare", slug: "dugum-bolu-desimetrekare" } },
+  { id: "hd-cm2", category: "hali_dugum", symbol: "düğüm/cm²", siFactor: 10000, tr: { name: "Düğüm/santimetrekare", slug: "dugum-bolu-santimetrekare" } },
+  { id: "hd-in2", category: "hali_dugum", symbol: "KPSI", siFactor: 1 / 0.00064516, tr: { name: "Düğüm/inçkare (KPSI)", slug: "dugum-bolu-inckare" } },
+  { id: "hd-ft2", category: "hali_dugum", symbol: "düğüm/ft²", siFactor: 1 / 0.09290304, tr: { name: "Düğüm/fitkare", slug: "dugum-bolu-fitkare" } },
+
+  // ---- yağış miktarı ----
+  // Taban: mm. 1 mm yağış = 1 m² alana 1 litre su = 1 kg/m². 1 dekarda (1000 m²) 1 mm = 1 m³ = yaklaşık 1 ton su; 1 hektarda 10 m³.
+  { id: "yg-mm", category: "yagis", symbol: "mm", siFactor: 1, tr: { name: "Milimetre (yağış)", slug: "milimetre-yagis" } },
+  { id: "yg-kgm2", category: "yagis", symbol: "kg/m²", siFactor: 1, tr: { name: "Kilogram/metrekare (kg/m²)", slug: "kilogram-bolu-metrekare-yagis" } },
+  { id: "yg-lm2", category: "yagis", symbol: "L/m²", siFactor: 1, tr: { name: "Litre/metrekare", slug: "litre-bolu-metrekare-yagis" } },
+  { id: "yg-cm", category: "yagis", symbol: "cm", siFactor: 10, tr: { name: "Santimetre (yağış)", slug: "santimetre-yagis" } },
+  { id: "yg-in", category: "yagis", symbol: "inç", siFactor: 25.4, tr: { name: "İnç (yağış)", slug: "inc-yagis" } },
+  { id: "yg-m3da", category: "yagis", symbol: "m³/da", siFactor: 1, tr: { name: "Metreküp (ton) su/dekar", slug: "metrekup-bolu-dekar-yagis" } },
+  { id: "yg-m3ha", category: "yagis", symbol: "m³/ha", siFactor: 0.1, tr: { name: "Metreküp su/hektar", slug: "metrekup-bolu-hektar-yagis" } },
+
+  // ---- alana göre miktar (verim, gübre, tohum) ----
+  // Taban: kg/ha. 1 dekar = 1000 m², 1 hektar = 10 dekar, 1 acre = 4046,8564224 m², 1 lb = 0,45359237 kg.
+  { id: "av-kgha", category: "alan_verim", symbol: "kg/ha", siFactor: 1, tr: { name: "Kilogram/hektar", slug: "kilogram-bolu-hektar" } },
+  { id: "av-kgda", category: "alan_verim", symbol: "kg/da", siFactor: 10, tr: { name: "Kilogram/dekar", slug: "kilogram-bolu-dekar" } },
+  { id: "av-tha", category: "alan_verim", symbol: "t/ha", siFactor: 1000, tr: { name: "Ton/hektar", slug: "ton-bolu-hektar" } },
+  { id: "av-tda", category: "alan_verim", symbol: "t/da", siFactor: 10000, tr: { name: "Ton/dekar", slug: "ton-bolu-dekar" } },
+  { id: "av-gm2", category: "alan_verim", symbol: "g/m²", siFactor: 10, tr: { name: "Gram/metrekare", slug: "gram-bolu-metrekare-verim" } },
+  { id: "av-kgm2", category: "alan_verim", symbol: "kg/m²", siFactor: 10000, tr: { name: "Kilogram/metrekare", slug: "kilogram-bolu-metrekare-verim" } },
+  { id: "av-lbac", category: "alan_verim", symbol: "lb/acre", siFactor: 0.45359237 / 0.40468564224, tr: { name: "Pound/acre", slug: "pound-bolu-acre" } },
+
+  // ---- alana göre doz (ilaç, sıvı gübre, su) ----
+  // Taban: L/ha. ABD galonu 3,785411784 L, ABD sıvı onsu 29,5735295625 mL.
+  { id: "ad-lha", category: "alan_doz", symbol: "L/ha", siFactor: 1, tr: { name: "Litre/hektar", slug: "litre-bolu-hektar" } },
+  { id: "ad-lda", category: "alan_doz", symbol: "L/da", siFactor: 10, tr: { name: "Litre/dekar", slug: "litre-bolu-dekar" } },
+  { id: "ad-mlda", category: "alan_doz", symbol: "mL/da", siFactor: 0.01, tr: { name: "Mililitre/dekar", slug: "mililitre-bolu-dekar" } },
+  { id: "ad-mlha", category: "alan_doz", symbol: "mL/ha", siFactor: 0.001, tr: { name: "Mililitre/hektar", slug: "mililitre-bolu-hektar" } },
+  { id: "ad-mlm2", category: "alan_doz", symbol: "mL/m²", siFactor: 10, tr: { name: "Mililitre/metrekare", slug: "mililitre-bolu-metrekare" } },
+  { id: "ad-galac", category: "alan_doz", symbol: "gal/acre", siFactor: 3.785411784 / 0.40468564224, tr: { name: "Galon (ABD)/acre", slug: "galon-bolu-acre" } },
+  { id: "ad-flozac", category: "alan_doz", symbol: "fl oz/acre", siFactor: 0.0295735295625 / 0.40468564224, tr: { name: "Sıvı ons (ABD)/acre", slug: "sivi-ons-bolu-acre" } },
+
+  // ---- alana göre fiyat ----
+  // Taban: ₺/m². Dönüm burada bugünkü (yeni) dönümdür: 1 dönüm = 1 dekar = 1000 m². Para biriminden bağımsızdır.
+  { id: "af-m2", category: "alan_fiyat", symbol: "₺/m²", siFactor: 1, tr: { name: "TL/metrekare", slug: "tl-bolu-metrekare" } },
+  { id: "af-donum", category: "alan_fiyat", symbol: "₺/dönüm", siFactor: 1e-3, tr: { name: "TL/dönüm (dekar)", slug: "tl-bolu-donum" } },
+  { id: "af-ha", category: "alan_fiyat", symbol: "₺/ha", siFactor: 1e-4, tr: { name: "TL/hektar", slug: "tl-bolu-hektar" } },
+  { id: "af-km2", category: "alan_fiyat", symbol: "₺/km²", siFactor: 1e-6, tr: { name: "TL/kilometrekare", slug: "tl-bolu-kilometrekare" } },
+  { id: "af-ft2", category: "alan_fiyat", symbol: "₺/ft²", siFactor: 1 / 0.09290304, tr: { name: "TL/fitkare", slug: "tl-bolu-fitkare" } },
+  { id: "af-acre", category: "alan_fiyat", symbol: "₺/acre", siFactor: 1 / 4046.8564224, tr: { name: "TL/acre", slug: "tl-bolu-acre" } },
 
   // ---- elektrik iletkenliği ve özdirenç ----
   // Taban: S/m. mho = S. % IACS: tavlanmış standart bakır (1/58 Ω·mm²/m, 20 °C) = %100 = 58 MS/m.

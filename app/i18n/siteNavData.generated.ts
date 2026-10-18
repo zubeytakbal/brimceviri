@@ -423,6 +423,34 @@ export const SITE_NAV_DATA: SiteNavData = {
      "label": "Işınlama (Röntgen) Dönüşümleri"
     },
     {
+     "href": "/kategoriler/alkol-derecesi",
+     "label": "Alkol Derecesi Dönüşümleri (Proof)"
+    },
+    {
+     "href": "/kategoriler/vida-hatvesi",
+     "label": "Vida Hatvesi Dönüşümleri (TPI - mm)"
+    },
+    {
+     "href": "/kategoriler/hali-dugum-sikligi",
+     "label": "Halı Düğüm Sıklığı Dönüşümleri"
+    },
+    {
+     "href": "/kategoriler/yagis-miktari",
+     "label": "Yağış Miktarı Dönüşümleri"
+    },
+    {
+     "href": "/kategoriler/dekar-basina-verim",
+     "label": "Dekar Başına Verim Dönüşümleri"
+    },
+    {
+     "href": "/kategoriler/dekar-basina-doz",
+     "label": "Dekar Başına Doz Dönüşümleri"
+    },
+    {
+     "href": "/kategoriler/alana-gore-fiyat",
+     "label": "Alana Göre Fiyat Dönüşümleri"
+    },
+    {
      "href": "/kategoriler/elektrik-iletkenligi",
      "label": "Elektrik İletkenliği Dönüşümleri"
     },

@@ -71,6 +71,13 @@ const categoryLabels: Record<string, string> = {
   isinlama: "Işınlama",
   su_sertligi: "Su sertliği",
   elektrik_iletkenligi: "Elektrik iletkenliği",
+  yagis: "Yağış miktarı",
+  hali_dugum: "Halı düğüm sıklığı",
+  alkol_derecesi: "Alkol derecesi",
+  vida_hatvesi: "Vida hatvesi",
+  alan_verim: "Dekar başına verim",
+  alan_doz: "Dekar başına doz",
+  alan_fiyat: "Alana göre fiyat",
   gramaj: "Kumaş gramajı",
   yakit_verimliligi: "Yakıt tüketimi",
   tempo: "Tempo",
@@ -86,7 +93,7 @@ const groups: {
   {
     id: "temel",
     title: "Temel büyüklükler",
-    categories: ["alan", "uzunluk", "hacim", "kutle", "yogunluk", "sicaklik", "zaman", "konsantrasyon", "su_sertligi", "gramaj", "iplik_numarasi"],
+    categories: ["alan", "uzunluk", "hacim", "kutle", "yogunluk", "sicaklik", "zaman", "konsantrasyon", "alkol_derecesi", "su_sertligi", "gramaj", "iplik_numarasi", "hali_dugum"],
   },
   {
     id: "kinematik",
@@ -107,6 +114,7 @@ const groups: {
       "viskozite_kinematik",
       "debi_hacimsel",
       "debi_kutlesel",
+      "vida_hatvesi",
     ],
   },
   {
@@ -128,6 +136,11 @@ const groups: {
       "manyetik_aki",
       "elektrik_iletkenligi",
     ],
+  },
+  {
+    id: "tarim",
+    title: "Tarım ve arazi",
+    categories: ["yagis", "alan_verim", "alan_doz", "alan_fiyat"],
   },
 ];
 

@@ -630,6 +630,7 @@ export const ETKINLIKLER: Etkinlik[] = [
     kisa: "Gece ile gündüzün eşitlendiği, astronomik ilkbaharın başladığı an.",
     hakkinda:
       "Mart ekinoksunda Güneş gök ekvatorunu güneyden kuzeye geçer; Kuzey Yarımküre'de ilkbahar başlar ve gece ile gündüz yaklaşık eşit olur.",
+    geriSayim: "ilkbahar",
   },
   {
     id: "yaz",
@@ -653,6 +654,7 @@ export const ETKINLIKLER: Etkinlik[] = [
     kisa: "Gece ile gündüzün yeniden eşitlendiği, astronomik sonbaharın başladığı an.",
     hakkinda:
       "Eylül ekinoksunda Güneş gök ekvatorunu kuzeyden güneye geçer; Kuzey Yarımküre'de sonbahar başlar ve bundan sonra geceler gündüzlerden uzundur.",
+    geriSayim: "sonbahar",
   },
   {
     id: "kis",
@@ -664,6 +666,7 @@ export const ETKINLIKLER: Etkinlik[] = [
     kisa: "Yılın en uzun gecesi; astronomik kışın başlangıcı.",
     hakkinda:
       "Aralık gündönümünde Güneş öğle vakti yılın en alçak noktasındadır; Kuzey Yarımküre'de en uzun gece yaşanır ve astronomik kış başlar.",
+    geriSayim: "kis",
   },
 ];
 

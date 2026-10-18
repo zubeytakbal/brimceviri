@@ -1,6 +1,8 @@
 // Geri sayim etkinlikleri. Tarih kurallari: sabit gun, "ayin N. X gunu", Paskalya
 // (Gregoryen hesap) ve Diyanet'in ilan ettigi dini gunler (yalnizca dogrulanmis yillar).
 
+import { mevsimAni, type Mevsim } from "../calendar/astro";
+
 export type DateParts = { year: number; month: number; day: number; estimated?: boolean };
 export type CountdownLang = "tr" | "en" | "de";
 
@@ -11,7 +13,9 @@ type Rule =
   /** Sonntag vor einem Datum, n Wochen zurück (1. Advent: 4 Sonntage vor dem 25. Dezember). */
   | { kind: "sunday-before"; month: number; day: number; weeksBack: number }
   /** Hicri takvim gunu: Diyanet'in ilan ettigi yillar "verified"; digerleri Umm al-Qura ile tahmin. */
-  | { kind: "hijri"; hijriMonth: number; hijriDay: number; verified: DateParts[] };
+  | { kind: "hijri"; hijriMonth: number; hijriDay: number; verified: DateParts[] }
+  /** Ekinoks ya da gündönümü anının Türkiye saatine göre günü (Meeus, bkz. calendar/astro.ts). */
+  | { kind: "season"; season: Mevsim };
 
 export type CountdownEvent = {
   id: string;
@@ -214,16 +218,52 @@ export const countdownEvents: CountdownEvent[] = [
     about: "24 Kasım, Atatürk'ün 1928'de Millet Mektepleri Başöğretmenliğini kabul ettiği gündür ve 1981'den beri Öğretmenler Günü olarak kutlanır.",
   },
   {
+    id: "ilkbahar",
+    lang: "tr",
+    slug: "ilkbahar",
+    name: "İlkbahar",
+    question: "İlkbahara kaç gün kaldı?",
+    rule: { kind: "season", season: "mart-ekinoksu" },
+    zone: "istanbul",
+    holiday: "Hayır, ilkbaharın başlangıcı resmî tatil değildir.",
+    about:
+      "Kuzey yarımkürede ilkbahar, gece ile gündüzün eşitlendiği mart ekinoksuyla başlar. Ekinoks anı Türkiye saatiyle 2025-2030 arasında her yıl 20 Mart'a denk gelir; halk arasında bilinen 21 Mart, eski takvim hesabından kalan bir gelenektir. Meteorolojide ilkbahar 1 Mart'ta başlamış sayılır.",
+  },
+  {
     id: "yaz",
     lang: "tr",
     slug: "yaz",
     name: "Yaz",
     question: "Yaza kaç gün kaldı?",
-    rule: { kind: "fixed", month: 6, day: 21 },
+    rule: { kind: "season", season: "haziran-gundonumu" },
     zone: "istanbul",
     holiday: "Hayır, yazın başlangıcı resmî tatil değildir.",
     about:
-      "Kuzey yarımkürede yaz, en uzun günün yaşandığı yaz gündönümüyle başlar. Gündönümü yıla göre 20 ya da 21 Haziran'a denk gelir; bu sayfa geleneksel başlangıç olan 21 Haziran'ı esas alır. Meteorolojide ise yaz 1 Haziran'da başlamış sayılır.",
+      "Kuzey yarımkürede yaz, en uzun günün yaşandığı yaz gündönümüyle başlar. Gündönümü anı Türkiye saatiyle yıla göre 20 ya da 21 Haziran'a denk gelir (2028'de 20 Haziran). Meteorolojide ise yaz 1 Haziran'da başlamış sayılır.",
+  },
+  {
+    id: "sonbahar",
+    lang: "tr",
+    slug: "sonbahar",
+    name: "Sonbahar",
+    question: "Sonbahara kaç gün kaldı?",
+    rule: { kind: "season", season: "eylul-ekinoksu" },
+    zone: "istanbul",
+    holiday: "Hayır, sonbaharın başlangıcı resmî tatil değildir.",
+    about:
+      "Kuzey yarımkürede sonbahar, gece ile gündüzün yeniden eşitlendiği eylül ekinoksuyla başlar. Ekinoks anı Türkiye saatiyle yıla göre 22 ya da 23 Eylül'e denk gelir; bundan sonra geceler gündüzlerden uzundur. Meteorolojide sonbahar 1 Eylül'de başlamış sayılır.",
+  },
+  {
+    id: "kis",
+    lang: "tr",
+    slug: "kis",
+    name: "Kış",
+    question: "Kışa kaç gün kaldı?",
+    rule: { kind: "season", season: "aralik-gundonumu" },
+    zone: "istanbul",
+    holiday: "Hayır, kışın başlangıcı resmî tatil değildir.",
+    about:
+      "Kuzey yarımkürede kış, yılın en uzun gecesinin yaşandığı kış gündönümüyle başlar. Gündönümü anı Türkiye saatiyle yıla göre 21 ya da 22 Aralık'a denk gelir; bu günden sonra günler yeniden uzamaya başlar. Meteorolojide kış 1 Aralık'ta başlamış sayılır.",
   },
   {
     id: "new-year",
@@ -578,6 +618,10 @@ export function occurrenceInYear(event: CountdownEvent, year: number): DateParts
     }
     case "hijri":
       return rule.verified.find((d) => d.year === year) ?? hijriEstimate(year, rule.hijriMonth, rule.hijriDay);
+    case "season": {
+      const t = new Date(mevsimAni(year, rule.season).getTime() + 3 * 3600000);
+      return { year, month: t.getUTCMonth() + 1, day: t.getUTCDate() };
+    }
   }
 }
 

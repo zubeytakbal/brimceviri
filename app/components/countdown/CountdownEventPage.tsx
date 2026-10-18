@@ -11,6 +11,7 @@ import { ETKINLIKLER, ozelGunPath } from "../../converter/calendar/trTakvim";
 import type { FaqItem } from "../../converter/faqSchema";
 import TimeToolPage from "../time/TimeToolPage";
 import CountdownDisplay from "./CountdownDisplay";
+import GeriSayimTakvim from "./GeriSayimTakvim";
 import { countdownCopy } from "./countdownCopy";
 
 // Etkinlik geri sayim sayfasi (TR + EN). Tarihler her yenilemede yeniden hesaplanir;
@@ -142,6 +143,7 @@ export default function CountdownEventPage({ event }: { event: CountdownEvent })
       tocTitle={tr ? "İçindekiler" : "Contents"}
       tocItems={[
         { id: "ozet", label: tr ? "Tarih ve kalan süre" : "Date and time left" },
+        ...(tr && next && days ? [{ id: "takvim", label: `${event.name} gelene kadar takvim` }] : []),
         { id: "yillar", label: tr ? `Yıllara göre ${event.name} tarihleri` : `${event.name} dates by year` },
         { id: "hakkinda", label: tr ? `${event.name} hakkında` : `About ${event.name}` },
         { id: "faq", label: tr ? "Sık sorulan sorular" : "FAQ" },
@@ -179,6 +181,8 @@ export default function CountdownEventPage({ event }: { event: CountdownEvent })
           </table>
         </div>
       )}
+
+      {tr && next && days ? <GeriSayimTakvim event={event} next={next} now={now} kalan={days} /> : null}
 
       <h2 id="yillar">{tr ? `Yıllara göre ${event.name} tarihleri` : `${event.name} dates by year`}</h2>
       <div className="conversion-table-wrap">

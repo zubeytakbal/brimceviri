@@ -17016,3 +17016,63 @@ a.all-units-row .all-units-name {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+/* Geri sayım: takvim bölümü */
+.gs-ilerleme {
+  margin: 0 0 16px;
+}
+.gs-ilerleme-cubuk {
+  height: 10px;
+  border-radius: 999px;
+  background: #e3eaef;
+  overflow: hidden;
+}
+.gs-ilerleme-cubuk span {
+  display: block;
+  height: 100%;
+  background: #2b6f8a;
+}
+.gs-ilerleme figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 6px;
+  font-size: 0.82rem;
+  color: #5b6b7a;
+}
+.gs-ilerleme figcaption strong {
+  color: #1f2d3a;
+}
+.gs-ay h4 {
+  margin: 14px 0 6px;
+}
+.gs-ay ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.gs-ay li {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 3px 0;
+  color: inherit;
+}
+.gs-ay li .etk-nokta {
+  transform: translateY(-1px);
+}
+.gs-ay li strong {
+  min-width: 72px;
+}
+.gs-hedef-ay {
+  max-width: 360px;
+}
+@media (max-width: 560px) {
+  .gs-ilerleme figcaption {
+    flex-wrap: wrap;
+  }
+  .gs-ilerleme figcaption strong {
+    order: -1;
+    width: 100%;
+  }
+}

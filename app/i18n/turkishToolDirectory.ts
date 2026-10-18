@@ -216,6 +216,7 @@ export const turkishToolGroups: ToolGroup[] = [
     description: "Mutfak ölçüleri, tarif ölçekleme, ayakkabı ve beden numarası, not ve devamsızlık.",
     links: [
       { href: "/mutfak-olculeri-cevirici", label: "Mutfak Ölçüleri Çevirici" },
+      { href: "/kagit-boyutlari", label: "Kâğıt Boyutları (A4 Kaç cm)" },
       { href: "/tarif-cevirici", label: "Tarif Çevirici" },
       { href: "/kokteyl-olcusu-cevirici", label: "Kokteyl Ölçüsü Çevirici" },
       { href: "/alkol-seyreltme-hesaplama", label: "Alkol Seyreltme" },
@@ -268,6 +269,7 @@ export const turkishToolGroups: ToolGroup[] = [
       { href: "/awg-mm2-cevirici", label: "AWG - mm² Çevirici" },
       { href: "/swg-mm-cevirici", label: "SWG - mm (Tel Kalınlığı)" },
       { href: "/matkap-ucu-olcusu-cevirme", label: "Matkap Ucu Ölçüsü (İnç - mm)" },
+      { href: "/igne-numarasi-gauge-mm", label: "İğne ve Branül Numarası (G - mm)" },
       { href: "/mesh-mikron-cevirme", label: "Mesh - Mikron (Elek)" },
       { href: "/egim-cevirme", label: "Eğim Çevirme (% - Derece)" },
       { href: "/brix-baume-cevirme", label: "Brix - Baumé Çevirme" },

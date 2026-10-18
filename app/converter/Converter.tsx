@@ -72,6 +72,7 @@ const categoryLabels: Record<string, string> = {
   su_sertligi: "Su sertliği",
   elektrik_iletkenligi: "Elektrik iletkenliği",
   yagis: "Yağış miktarı",
+  hali_dugum: "Halı düğüm sıklığı",
   alkol_derecesi: "Alkol derecesi",
   vida_hatvesi: "Vida hatvesi",
   alan_verim: "Dekar başına verim",
@@ -92,7 +93,7 @@ const groups: {
   {
     id: "temel",
     title: "Temel büyüklükler",
-    categories: ["alan", "uzunluk", "hacim", "kutle", "yogunluk", "sicaklik", "zaman", "konsantrasyon", "alkol_derecesi", "su_sertligi", "gramaj", "iplik_numarasi"],
+    categories: ["alan", "uzunluk", "hacim", "kutle", "yogunluk", "sicaklik", "zaman", "konsantrasyon", "alkol_derecesi", "su_sertligi", "gramaj", "iplik_numarasi", "hali_dugum"],
   },
   {
     id: "kinematik",

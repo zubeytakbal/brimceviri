@@ -55,3 +55,17 @@ export function nearest(table: GaugeRow[], mm: number): GaugeRow | null {
 
 /** 0,1 mm adımlı metrik matkap serisindeki en yakın uç. */
 export const nearestMetricDrill = (mm: number) => Math.round(mm * 10 + 1e-9) / 10;
+
+// İğne numarası (Birmingham / Stubs iğne ölçüsü): nominal dış çap, inç. Kaynak: Birmingham gauge tablosu (ISO 9626 ile uyumlu).
+const NEEDLE_INCH: Array<[number, number]> = [
+  [7, 0.18], [8, 0.165], [9, 0.148], [10, 0.134], [11, 0.12], [12, 0.109], [13, 0.095], [14, 0.083], [15, 0.072], [16, 0.065],
+  [17, 0.058], [18, 0.05], [19, 0.042], [20, 0.03575], [21, 0.03225], [22, 0.02825], [23, 0.02525], [24, 0.02225], [25, 0.02025],
+  [26, 0.01825], [27, 0.01625], [28, 0.01425], [29, 0.01325], [30, 0.01225], [31, 0.01025], [32, 0.00925], [33, 0.00825], [34, 0.00725],
+];
+export const NEEDLES: GaugeRow[] = NEEDLE_INCH.map(([g, inch]) => ({ id: `${g}G`, inch, mm: inch * IN }));
+
+/** French (Charrière) kateter ölçüsü: 1 Fr = 1/3 mm dış çap (tanım gereği). */
+export const FRENCH: GaugeRow[] = Array.from({ length: 32 }, (_, i) => {
+  const fr = i + 3;
+  return { id: `${fr} Fr`, inch: fr / 3 / IN, mm: fr / 3 };
+});

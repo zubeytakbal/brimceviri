@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { FRACTION_DRILLS, NUMBER_LETTER_DRILLS, SWG, nearest, nearestMetricDrill } from "../app/converter/scales/workshop";
+import { FRACTION_DRILLS, FRENCH, NEEDLES, NUMBER_LETTER_DRILLS, SWG, nearest, nearestMetricDrill } from "../app/converter/scales/workshop";
 
 describe("atölye numaraları", () => {
   it("SWG tablosu azalan ve doğru", () => {
@@ -19,5 +19,14 @@ describe("atölye numaraları", () => {
     expect(FRACTION_DRILLS[4].id).toBe('5/64"');
     expect(nearestMetricDrill(3.175)).toBe(3.2);
     expect(nearestMetricDrill(6.35)).toBe(6.4);
+  });
+});
+
+describe("iğne ve French", () => {
+  it("iğne dış çapları", () => {
+    expect(NEEDLES.find((r) => r.id === "18G")!.mm).toBeCloseTo(1.27, 6);
+    expect(NEEDLES.find((r) => r.id === "22G")!.mm).toBeCloseTo(0.71755, 5);
+    expect(FRENCH.find((r) => r.id === "12 Fr")!.mm).toBeCloseTo(4, 10);
+    for (let i = 1; i < NEEDLES.length; i++) expect(NEEDLES[i].mm).toBeLessThan(NEEDLES[i - 1].mm);
   });
 });

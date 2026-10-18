@@ -35,6 +35,7 @@ const K: Record<string, Record<string, number>> = {
   isinlama: { "C/kg": 1, "mC/kg": 1e-3, "µC/kg": 1e-6, R: 2.58e-4, mR: 2.58e-7, "µR": 2.58e-10 },
   alkol_derecesi: { "% vol": 1, "°": 1, "US proof": 0.5, "UK proof": 0.5714286 },
   vida_hatvesi: { mm: 1, "inç": 25.4, "µm": 0.001 },
+  hali_dugum: { "düğüm/m²": 1, "düğüm/dm²": 100, "düğüm/cm²": 10000, KPSI: 1550.0031, "düğüm/ft²": 10.7639104 },
   yagis: { mm: 1, "kg/m²": 1, "L/m²": 1, cm: 10, "inç": 25.4, "m³/da": 1, "m³/ha": 0.1 },
   alan_verim: { "kg/ha": 1, "kg/da": 10, "t/ha": 1000, "t/da": 10000, "g/m²": 10, "kg/m²": 10000, "lb/acre": 1.12085116 },
   alan_doz: { "L/ha": 1, "L/da": 10, "mL/da": 0.01, "mL/ha": 0.001, "mL/m²": 10, "gal/acre": 9.35396, "fl oz/acre": 0.0730778 },

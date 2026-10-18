@@ -2877,6 +2877,14 @@ export const unitRegistry: UnitRegistryEntry[] = [
   { id: "vh-in", category: "vida_hatvesi", symbol: "inç", siFactor: 25.4, tr: { name: "İnç (hatve)", slug: "inc-hatve" } },
   { id: "vh-um", category: "vida_hatvesi", symbol: "µm", siFactor: 0.001, tr: { name: "Mikrometre (hatve)", slug: "mikrometre-hatve" } },
 
+  // ---- halı düğüm sıklığı ----
+  // Taban: düğüm/m². 1 dm² = 0,01 m², 1 cm² = 0,0001 m², 1 inç² = 6,4516 cm² (KPSI: knots per square inch).
+  { id: "hd-m2", category: "hali_dugum", symbol: "düğüm/m²", siFactor: 1, tr: { name: "Düğüm/metrekare", slug: "dugum-bolu-metrekare" } },
+  { id: "hd-dm2", category: "hali_dugum", symbol: "düğüm/dm²", siFactor: 100, tr: { name: "Düğüm/desimetrekare", slug: "dugum-bolu-desimetrekare" } },
+  { id: "hd-cm2", category: "hali_dugum", symbol: "düğüm/cm²", siFactor: 10000, tr: { name: "Düğüm/santimetrekare", slug: "dugum-bolu-santimetrekare" } },
+  { id: "hd-in2", category: "hali_dugum", symbol: "KPSI", siFactor: 1 / 0.00064516, tr: { name: "Düğüm/inçkare (KPSI)", slug: "dugum-bolu-inckare" } },
+  { id: "hd-ft2", category: "hali_dugum", symbol: "düğüm/ft²", siFactor: 1 / 0.09290304, tr: { name: "Düğüm/fitkare", slug: "dugum-bolu-fitkare" } },
+
   // ---- yağış miktarı ----
   // Taban: mm. 1 mm yağış = 1 m² alana 1 litre su = 1 kg/m². 1 dekarda (1000 m²) 1 mm = 1 m³ = yaklaşık 1 ton su; 1 hektarda 10 m³.
   { id: "yg-mm", category: "yagis", symbol: "mm", siFactor: 1, tr: { name: "Milimetre (yağış)", slug: "milimetre-yagis" } },

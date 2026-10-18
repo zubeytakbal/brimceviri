@@ -431,6 +431,10 @@ export const SITE_NAV_DATA: SiteNavData = {
      "label": "Vida Hatvesi Dönüşümleri (TPI - mm)"
     },
     {
+     "href": "/kategoriler/hali-dugum-sikligi",
+     "label": "Halı Düğüm Sıklığı Dönüşümleri"
+    },
+    {
      "href": "/kategoriler/yagis-miktari",
      "label": "Yağış Miktarı Dönüşümleri"
     },

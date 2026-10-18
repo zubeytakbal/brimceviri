@@ -336,6 +336,13 @@ export const categoryPages: CategoryPage[] = [
       "20 TPI = 1,27 mm hatve, 1,5 mm = 16,93 TPI, 14 TPI = 1,814 mm; vida diş adımını milimetre, diş/inç ve diş/cm arasında çevirin.",
   },
   {
+    slug: "hali-dugum-sikligi",
+    category: "hali_dugum",
+    title: "Halı Düğüm Sıklığı Dönüşümleri",
+    description:
+      "100 düğüm/dm² = 10.000 düğüm/m² = 6,45 KPSI, 1 KPSI = 1550 düğüm/m², 1 düğüm/cm² = 100 düğüm/dm²; halı düğüm sıklığını m², dm², cm² ve inçkare arasında çevirin.",
+  },
+  {
     slug: "yagis-miktari",
     category: "yagis",
     title: "Yağış Miktarı Dönüşümleri",

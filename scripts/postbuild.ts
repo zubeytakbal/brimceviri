@@ -14,9 +14,12 @@
 //    metni cok kisaysa build'i durdurur.
 // 6. Parametreli site ici baglantilara rel="nofollow" (nofollowQueryLinks).
 // 7. Site haritasi denetimi (scripts/sitemapGuard.ts): dizine acik her sayfa sitemap.xml'de olmali.
+// 8. Dizin politikasi (app/indexPolicy.ts): kapali sayfalar "noindex, follow" olur ve hicbir sayfanin
+//    hreflang alternatiflerinde yer almaz. Sablon ve ince sayfa denetimlerinden once calisir.
 import { existsSync, readdirSync, readFileSync, unlinkSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { LOCALE_DEFINITIONS } from "../app/i18n/config";
+import { isClosedPath } from "../app/indexPolicy";
 import { siteRedirects } from "../app/siteRedirects";
 import { checkTemplates } from "./templateGuard";
 import { checkThinPages, MIN_KARAKTER } from "./thinGuard";
@@ -119,7 +122,44 @@ function nofollowQueryLinks(): number {
   return changed;
 }
 
+const SITE = "https://www.birimceviri.app";
+
+function applyIndexPolicy() {
+  let closed = 0;
+  let alternates = 0;
+  const walk = (dir: string) => {
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      const path = join(dir, entry.name);
+      if (entry.isDirectory()) {
+        if (entry.name !== "_next") walk(path);
+        continue;
+      }
+      if (!entry.name.endsWith(".html")) continue;
+      const rel = "/" + path.slice(OUT.length + 1).replace(/\\/g, "/").replace(/\.html$/, "");
+      const url = rel === "/index" ? "/" : rel.endsWith("/index") ? rel.slice(0, -6) : rel;
+      let html = readFileSync(path, "utf8");
+      const before = html;
+      html = html.replace(/<link rel="alternate" hrefLang="[^"]*" href="([^"]*)"\/>/g, (tag, href: string) => {
+        if (!href.startsWith(SITE) || !isClosedPath(href.slice(SITE.length) || "/")) return tag;
+        alternates++;
+        return "";
+      });
+      if (isClosedPath(url) && !/<meta name="robots" content="[^"]*noindex/.test(html)) {
+        html = /<meta name="robots" content="[^"]*"\/>/.test(html)
+          ? html.replace(/<meta name="robots" content="[^"]*"\/>/, '<meta name="robots" content="noindex, follow"/>')
+          : html.replace("</head>", '<meta name="robots" content="noindex, follow"/></head>');
+        closed++;
+      }
+      if (html !== before) writeFileSync(path, html);
+    }
+  };
+  walk(OUT);
+  return { closed, alternates };
+}
+
 console.log(`${removeRscPayloads(OUT)} sayfa gecis verisi (.txt) silindi`);
+const policy = applyIndexPolicy();
+console.log(`Dizin politikası: ${policy.closed} sayfa noindex yapıldı, ${policy.alternates} hreflang bağlantısı kaldırıldı`);
 console.log(`${fixHtmlLang()} sayfada <html lang> dile gore duzeltildi`);
 console.log(`out/_redirects: ${writeRedirects()} yonlendirme yazildi`);
 console.log(`${nofollowQueryLinks()} parametreli site ici baglantiya rel="nofollow" eklendi`);

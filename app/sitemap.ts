@@ -5,6 +5,7 @@ import { countriesDe, countryPathDe } from "./converter/geo/worldGeoDe";
 import { BRUECKENTAGE_JAHRE, brueckentagePfad } from "./i18n/germanBrueckentage";
 import { germanMathPages } from "./i18n/germanMathPages";
 import type { MetadataRoute } from "next";
+import { isClosedPath } from "./indexPolicy";
 import { calculatorPages } from "./converter/calculatorPages";
 import { sleepGuideAlternates, sleepGuidePaths } from "./i18n/sleepGuidePaths";
 import {
@@ -6692,15 +6693,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Google verlangt in hreflang-Alternativen absolute Adressen; relative Pfade (z. B. "/uyku-hesaplama")
   // werden hier zentral ergänzt, damit keine Quelle sie vergessen kann.
   const absolute = (href: string) => (href.startsWith("/") ? `${baseUrl}${href}` : href);
-  return [...byUrl.values()].map((entry) => {
-    const languages = entry.alternates?.languages;
-    if (!languages) return entry;
-    return {
-      ...entry,
-      alternates: {
-        ...entry.alternates,
-        languages: Object.fromEntries(Object.entries(languages).map(([lang, href]) => [lang, typeof href === "string" ? absolute(href) : href])),
-      },
-    };
-  });
+  // Dizine kapalı adresler (app/indexPolicy.ts) haritaya ve hreflang alternatiflerine girmez.
+  const closed = (href: string) => isClosedPath(href.startsWith(baseUrl) ? href.slice(baseUrl.length) || "/" : href);
+  return [...byUrl.values()]
+    .filter((entry) => !closed(entry.url))
+    .map((entry) => {
+      const languages = entry.alternates?.languages;
+      if (!languages) return entry;
+      return {
+        ...entry,
+        alternates: {
+          ...entry.alternates,
+          languages: Object.fromEntries(
+            Object.entries(languages)
+              .filter(([, href]) => typeof href !== "string" || !closed(href))
+              .map(([lang, href]) => [lang, typeof href === "string" ? absolute(href) : href]),
+          ),
+        },
+      };
+    });
 }

@@ -15,6 +15,7 @@ import {
   PUBLISHED_LOCALES,
   type Locale,
 } from "../i18n/config";
+import { CLOSED_LOCALES } from "../i18n/closedLocales";
 
 // Dil menusu, sayfanin diger dillerdeki karsiliklarini <head> icindeki hreflang
 // etiketlerinden okur. Butun dillerin sayfa listesini tutan yonlendirme modulu (birkac MB)
@@ -120,7 +121,9 @@ export default function LanguageSwitcher() {
   }, [isOpen, normalizedPathname, resolved]);
 
   const hrefs = resolved.path === normalizedPathname ? resolved.hrefs : {};
-  const localeLinks = PUBLISHED_LOCALES.map((locale) => ({
+  // Dizine kapalı diller (app/indexPolicy.ts) menüde gösterilmez; o dilin bir sayfasındaysanız kendi dili görünür.
+  const menuLocales = PUBLISHED_LOCALES.filter((l) => l === currentLocale || !(CLOSED_LOCALES as readonly string[]).includes(l));
+  const localeLinks = menuLocales.map((locale) => ({
     locale,
     label: getLocaleDefinition(locale).switcherLabel,
     href: locale === currentLocale ? normalizedPathname : hrefs[locale] ?? getLocaleDefinition(locale).homePath,
@@ -135,7 +138,7 @@ export default function LanguageSwitcher() {
 
   // 6'dan fazla dil oldugunda arama kutusu gosterilir -- az sayida dilde
   // gereksiz bir ekstra adim eklememek icin.
-  const showSearch = PUBLISHED_LOCALES.length > 6;
+  const showSearch = menuLocales.length > 6;
 
   return (
     <div className="language-switcher" ref={wrapperRef}>

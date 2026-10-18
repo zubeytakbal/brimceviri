@@ -2813,7 +2813,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         alternates: buildLanguageAlternates({ tr: trPath, en: enPath }, "tr"),
       })),
     ),
-    ...["/gunes-dogusu-ve-batisi", "/en-uzun-gun-ve-en-kisa-gun", "/gunes-acisi-ve-golge-boyu-hesaplama", "/ay-gozlem-cizelgesi", "/eski-para-yeni-para-cevirme", "/ezani-saat-cevirme", "/ebced-hesabi", "/bofor-cevirme", "/mesh-mikron-cevirme", "/bisiklet-jant-olcusu", "/roma-rakamlari-cevirme", "/egim-cevirme", "/brix-baume-cevirme", "/swg-mm-cevirici", "/matkap-ucu-olcusu-cevirme", "/igne-numarasi-gauge-mm", "/kagit-boyutlari", "/yukselen-burc-hesaplama", "/bu-gece-gezegenler", "/gokyuzu-olaylari-takvimi"].map((path) => ({
+    ...["/gunes-dogusu-ve-batisi", "/en-uzun-gun-ve-en-kisa-gun", "/gunes-acisi-ve-golge-boyu-hesaplama", "/ay-gozlem-cizelgesi", "/eski-para-yeni-para-cevirme", "/ezani-saat-cevirme", "/ebced-hesabi", "/bofor-cevirme", "/mesh-mikron-cevirme", "/bisiklet-jant-olcusu", "/roma-rakamlari-cevirme", "/egim-cevirme", "/brix-baume-cevirme", "/swg-mm-cevirici", "/matkap-ucu-olcusu-cevirme", "/igne-numarasi-gauge-mm", "/kagit-boyutlari", "/yukselen-burc-hesaplama", "/bu-gece-gezegenler", "/gokyuzu-olaylari-takvimi", "/gezegenlerde-yas-hesaplama"].map((path) => ({
       url: `${baseUrl}${path}`,
       lastModified: contentLastModified,
       changeFrequency: "monthly" as const,

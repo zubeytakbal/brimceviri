@@ -74,6 +74,7 @@ export default function YasHesaplamaPage() {
         title: "İlgili araçlar",
         links: [
           { href: "/hicri-yas-hesaplama", label: "Hicri Yaş Hesaplama" },
+          { href: "/gezegenlerde-yas-hesaplama", label: "Diğer Gezegenlerde Kaç Yaşındayım?" },
           { href: "/dogdugum-gun-hangi-gun", label: "Doğduğum Gün Hangi Gündü?" },
           { href: "/iki-tarih-arasi-gun-hesaplama", label: "İki Tarih Arası Gün Hesaplama" },
           { href: "/gebelik-haftasi-hesaplama", label: "Gebelik Haftası Hesaplama" },

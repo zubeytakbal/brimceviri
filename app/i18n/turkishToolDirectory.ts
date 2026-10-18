@@ -100,6 +100,7 @@ export const turkishToolGroups: ToolGroup[] = [
       { href: "/yukselen-burc-hesaplama", label: "Yükselen Burç ve Ay Burcu Hesaplama" },
       { href: "/bu-gece-gezegenler", label: "Bu Gece Hangi Gezegenler Görünür?" },
       { href: "/gokyuzu-olaylari-takvimi", label: "Gökyüzü Olayları Takvimi" },
+      { href: "/gezegenlerde-yas-hesaplama", label: "Diğer Gezegenlerde Kaç Yaşındayım?" },
       { href: "/firtina-takvimi", label: "Fırtına Takvimi" },
     ],
   },

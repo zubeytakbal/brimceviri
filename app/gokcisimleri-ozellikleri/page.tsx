@@ -114,6 +114,13 @@ export default function CelestialBodiesHubPage() {
             );
           })}
 
+          <h2>Diğer gezegenlerde kaç yaşındasın?</h2>
+          <p>
+            Bir gezegende yıl, o gezegenin Güneş&apos;in çevresini bir kez dolanma süresidir: Merkür&apos;de 88 gün, Mars&apos;ta 687 gün, Neptün&apos;de yaklaşık
+            165 Dünya yılı. Yaşını ya da doğum tarihini girip her gezegendeki yaşını sırayla görmek için{" "}
+            <Link href="/gezegenlerde-yas-hesaplama">gezegenlerde yaş hesaplama</Link> aracını kullanabilirsin.
+          </p>
+
           <h2>Popüler Gökcismi Karşılaştırmaları</h2>
           <ul>
             {comparisons.map((comparison) => (

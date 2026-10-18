@@ -21,6 +21,10 @@ import {
   type Tarihli,
 } from "../../converter/calendar/trTakvim";
 import { ayFirtinalari } from "../../converter/calendar/firtinaTakvimi";
+import { siradakiOkulOlaylari } from "../../converter/calendar/okulTakvimi";
+import { skyEvents } from "../../converter/time/skyEvents";
+import { ayTumEtiketleri, yilGokyuzuEtiketleri } from "../../converter/calendar/gokyuzuEtiketleri";
+import { trGunu, type Etiket } from "../../converter/calendar/gunEtiketleri";
 import type { FaqItem } from "../../converter/faqSchema";
 import type { YMD } from "../../converter/time/calendars";
 import {
@@ -39,6 +43,7 @@ import { trLocative } from "../../converter/turkishSuffix";
 import HolidayIcsButton from "../dates/HolidayIcsButton";
 import { buildSiteUrl } from "../../siteConfig";
 import TimeToolPage from "../time/TimeToolPage";
+import TakvimFiltre from "./TakvimFiltre";
 import TakvimGezgini from "./TakvimGezgini";
 import TakvimGorsel from "./TakvimGorsel";
 import ScrollToQuery from "../ScrollToQuery";
@@ -83,7 +88,7 @@ export function trBugun(): YMD {
 
 export const tarihMetni = (d: YMD, gun = true) => formatYmd(d, "tr", gun);
 const kisaTarih = (d: YMD) => `${d.day} ${AY_ADLARI[d.month - 1]}`;
-const aralik = (t: Tarihli) =>
+const aralik = (t: Pick<Tarihli, "tarih" | "bitis">) =>
   t.bitis && ymdKey(t.bitis) !== ymdKey(t.tarih)
     ? t.bitis.month === t.tarih.month
       ? `${t.tarih.day}–${kisaTarih(t.bitis)}`
@@ -122,11 +127,14 @@ export function AyIzgarasi({
   month,
   bugun,
   buyuk = false,
+  etiketler,
 }: {
   year: number;
   month: number;
   bugun?: YMD;
   buyuk?: boolean;
+  /** Verilirse büyük ızgarada her günün bütün etiketleri (tatil, okul, fırtına, ay, gökyüzü) yazılır. */
+  etiketler?: Map<number, Etiket[]>;
 }) {
   const first = { year, month, day: 1 };
   const lead = (weekdayOf(first) + 6) % 7;
@@ -145,10 +153,12 @@ export function AyIzgarasi({
         const key = ymdKey(d);
         const h = tatil.get(key);
         const ev = harita.get(key) ?? [];
+        const etk = etiketler?.get(i + 1) ?? [];
         const cls = [
           isWeekend(d) ? "is-weekend" : "",
           h ? (h.kind === "full" ? "is-holiday" : "is-half") : "",
           ev.length ? "has-event" : "",
+          etk.some((e) => e.tur === "okul") ? "is-okul" : "",
           bugun && ymdKey(bugun) === key ? "is-today" : "",
         ]
           .filter(Boolean)
@@ -156,7 +166,20 @@ export function AyIzgarasi({
         const icerik = (
           <>
             <em>{i + 1}</em>
-            {buyuk && ev.length ? (
+            {buyuk && etiketler ? (
+              etk.some((e) => !e.devam) ? (
+                <small>
+                  {etk
+                    .filter((e) => !e.devam)
+                    .map((e) => (
+                      <i key={e.ad} className={`etk etk-${e.tur}`}>
+                        <b className="etk-nokta" aria-hidden="true" />
+                        <span>{e.ad}</span>
+                      </i>
+                    ))}
+                </small>
+              ) : null
+            ) : buyuk && ev.length ? (
               <small>
                 {ev.slice(0, 2).map((t) => (
                   <i
@@ -171,11 +194,11 @@ export function AyIzgarasi({
           </>
         );
         const title =
-          [h?.name, ...ev.map((t) => tarihliAd(t))]
+          [h?.name, ...ev.map((t) => tarihliAd(t)), ...etk.map((e) => e.ad)]
             .filter(Boolean)
             .filter((v, j, a) => a.indexOf(v) === j)
             .join(" · ") || undefined;
-        return ev.length && TAKVIM_YILLARI.includes(year) ? (
+        return (ev.length || etk.length) && TAKVIM_YILLARI.includes(year) ? (
           <Link
             key={key}
             href={takvimGunPath(d)}
@@ -195,34 +218,81 @@ export function AyIzgarasi({
   );
 }
 
-function Lejant() {
+function Lejant({ okul = false }: { okul?: boolean }) {
   return (
     <p className="holiday-legend">
       <span className="is-holiday" /> Resmî tatil <span className="is-half" />{" "}
       Yarım gün <span className="takvim-lejant-etkinlik" /> Özel/dini gün{" "}
       <span className="is-weekend" /> Hafta sonu
+      {okul ? (
+        <>
+          {" "}
+          <span className="takvim-lejant-okul" /> Okul tatili
+        </>
+      ) : null}
     </p>
+  );
+}
+
+type Siradaki = { baslik: string; ad: string; tarih: YMD; bitis?: YMD; href: string };
+
+/** Bugünden sonraki ilk tatil, bayram, kandil, özel gün, okul olayı ve gökyüzü olayı; kaç gün kaldığıyla. */
+function siradakiler(bugun: YMD): Siradaki[] {
+  const bk = ymdKey(bugun);
+  const etk = [...yilEtkinlikleri(bugun.year), ...yilEtkinlikleri(bugun.year + 1)].filter((t) => ymdKey(t.bitis ?? t.tarih) >= bk);
+  const ilk = (f: (t: Tarihli) => boolean, baslik: string): Siradaki | null => {
+    const t = etk.find(f);
+    return t
+      ? { baslik, ad: tarihliAd(t), tarih: t.tarih, bitis: t.bitis, href: t.etkinlik.geriSayim ? `/geri-sayim/${t.etkinlik.geriSayim}` : ozelGunPath(t.etkinlik.id) }
+      : null;
+  };
+  const tatil = [...turkeyHolidays(bugun.year), ...turkeyHolidays(bugun.year + 1)].find((h) => h.kind === "full" && ymdKey(h.date) >= bk);
+  const okul = siradakiOkulOlaylari(bugun)[0];
+  const simdi = new Date(Date.UTC(bugun.year, bugun.month - 1, bugun.day, -3));
+  const gok = skyEvents(simdi, new Date(simdi.getTime() + 120 * 86400000)).find(
+    (e) => e.kind === "meteor" || e.kind === "eclipse" || (e.kind === "moon" && e.title !== "Dolunay") || (e.kind === "planet" && e.title.includes("karşı konumda")),
+  );
+  return [
+    tatil ? { baslik: "Sıradaki resmî tatil", ad: tatil.name, tarih: tatil.date, href: "/resmi-tatiller" } : null,
+    ilk((t) => t.etkinlik.kategori === "bayram", "Sıradaki bayram"),
+    ilk((t) => t.etkinlik.kategori === "dini" && /kandil|kadir/.test(t.etkinlik.id), "Sıradaki kandil"),
+    ilk((t) => t.etkinlik.kategori === "ozel" || t.etkinlik.kategori === "milli", "Sıradaki özel gün"),
+    okul ? { baslik: "Okul takvimi", ad: okul.ad, tarih: okul.bas, bitis: okul.bit, href: "/okul-takvimi" } : null,
+    gok ? { baslik: "Gökyüzünde sıradaki", ad: gok.title.replace(/ zirvesi$/, ""), tarih: trGunu(gok.at), href: "/gokyuzu-olaylari-takvimi" } : null,
+  ].filter((x): x is Siradaki => Boolean(x));
+}
+
+function SiradakiKartlar({ bugun }: { bugun: YMD }) {
+  return (
+    <div className="takvim-siradaki">
+      {siradakiler(bugun).map((s) => {
+        const kalan = diffDays(bugun, s.tarih);
+        return (
+          <Link key={s.baslik} href={s.href} prefetch={false}>
+            <span>{s.baslik}</span>
+            <strong>{s.ad}</strong>
+            <em>
+              {s.bitis ? `${aralik(s)} ${s.bitis.year}` : tarihMetni(s.tarih)} ·{" "}
+              <b>{kalan > 0 ? `${kalan} gün kaldı` : kalan === 0 ? "bugün" : "sürüyor"}</b>
+            </em>
+          </Link>
+        );
+      })}
+    </div>
   );
 }
 
 function EtkinlikListesi({
   list,
   gorsel = true,
-  gunCapasi = false,
 }: {
   list: Tarihli[];
   gorsel?: boolean;
-  /** Ay sayfasında her günün ilk satırına #gun-N çapası koyar. */
-  gunCapasi?: boolean;
 }) {
-  const capali = new Set<number>();
   return (
     <ul className="takvim-liste">
       {list.map((t) => (
-        <li
-          key={`${t.etkinlik.id}-${ymdKey(t.tarih)}`}
-          id={gunCapasi && !capali.has(t.tarih.day) && capali.add(t.tarih.day) ? `gun-${t.tarih.day}` : undefined}
-        >
+        <li key={`${t.etkinlik.id}-${ymdKey(t.tarih)}`}>
           {gorsel ? (
             <TakvimGorsel gorsel={t.etkinlik.gorsel} size={44} />
           ) : null}
@@ -373,7 +443,8 @@ export function TakvimHubSayfasi() {
               </p>
             ) : null}
           </div>
-          <TakvimGezgini bugun={bugun} />
+          <SiradakiKartlar bugun={bugun} />
+          <TakvimGezgini bugun={bugun} gokyuzu={yilGokyuzuEtiketleri([bugun.year, bugun.year + 1])} />
           <div className="time-tool-chips takvim-yillar">
             {TAKVIM_YILLARI.map((y) => (
               <Link key={y} href={takvimYilPath(y)} prefetch={false}>
@@ -523,12 +594,21 @@ export function TakvimYilSayfasi({ year }: { year: number }) {
 /* ------------------------------------------------------------------ */
 /* /takvim/[yil]/[ay]                                                   */
 
+const META_SIRA = ["tatil", "dini", "milli", "ozel", "okul", "halk", "gokyuzu"];
+
 export function ayMeta(year: number, month: number) {
   const a = AY_ADLARI[month - 1];
+  // Açıklamadaki örnekler: ayın en önemli üç günü (önce tatiller, sonra dini, milli ve özel günler).
+  const ornek = [...ayTumEtiketleri(year, month)]
+    .flatMap(([day, list]) => list.filter((e) => !e.devam).map((e) => ({ day, e })))
+    .sort((x, y) => META_SIRA.indexOf(x.e.tur) - META_SIRA.indexOf(y.e.tur) || x.day - y.day)
+    .slice(0, 3)
+    .sort((x, y) => x.day - y.day)
+    .map(({ day, e }) => `${day} ${a} ${e.ad}`);
   return {
     title: `${a} ${year} Takvimi: Resmî Tatiller ve Özel Günler`,
     short: `${a} ${year} Takvimi`,
-    description: `${a} ${year} takvimi: ayın özel günleri, resmî tatiller, iş günü sayısı, dolunay ve yeni ay tarihleri ile Hicri karşılıklar.`,
+    description: `${a} ${year} takvimi gün gün: ${ornek.join(", ")}. Resmî tatiller, kandiller, okul tatilleri, fırtınalar, ay evreleri ve gökyüzü olayları.`,
   };
 }
 
@@ -636,6 +716,54 @@ function GunesVeAyBolumu({ year, month, a }: { year: number; month: number; a: s
   );
 }
 
+/** Ayın her günü: haftanın günü, Hicri karşılığı ve o günün bütün etiketleri. Satırlar #gun-N çapasıyla açılır. */
+function GunGunTablosu({ year, month, etiketler, bugun }: { year: number; month: number; etiketler: Map<number, Etiket[]>; bugun: YMD }) {
+  const a = AY_ADLARI[month - 1];
+  return (
+    <div className="holiday-table-wrap">
+      <table className="holiday-table takvim-gun-gun">
+        <caption>
+          {a} {year}: her gün hangi güne denk geliyor, Hicri tarihi ve o gün neler var
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Tarih</th>
+            <th scope="col">Hicri</th>
+            <th scope="col">O gün</th>
+          </tr>
+        </thead>
+        <tbody>
+          {Array.from({ length: daysInMonth(year, month) }, (_, i) => {
+            const d = { year, month, day: i + 1 };
+            const etk = etiketler.get(i + 1) ?? [];
+            const cls = [isWeekend(d) ? "is-weekend" : "", ymdKey(d) === ymdKey(bugun) ? "is-today" : ""].filter(Boolean).join(" ");
+            return (
+              <tr key={i} id={`gun-${i + 1}`} className={cls || undefined}>
+                <th scope="row">
+                  {i + 1} {a} <span className="takvim-gun-adi">{formatYmd(d, "tr").split(" ").pop()}</span>
+                </th>
+                <td>{gunBilgisi(d).hicriMetin}</td>
+                <td>
+                  {etk.map((e, j) => (
+                    <span key={e.ad} className={`etk etk-${e.tur}`}>
+                      {j ? " " : ""}
+                      <span className="etk-nokta" aria-hidden="true" />
+                      <Link href={e.href} prefetch={false}>
+                        {e.ad}
+                      </Link>
+                      {e.tahmini ? <small> (tahmini)</small> : null}
+                    </span>
+                  ))}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
 export function TakvimAySayfasi({
   year,
   month,
@@ -650,6 +778,8 @@ export function TakvimAySayfasi({
       (t.bitis && t.bitis.month === month && t.tarih.month !== month),
   );
   const st = ayIstatistik(year, month);
+  const etiketler = ayTumEtiketleri(year, month);
+  const bugun = trBugun();
   const onceki =
     month === 1 ? { y: year - 1, m: 12 } : { y: year, m: month - 1 };
   const sonraki =
@@ -727,8 +857,10 @@ export function TakvimAySayfasi({
               <span />
             )}
           </div>
-          <AyIzgarasi year={year} month={month} buyuk />
-          <Lejant />
+          <TakvimFiltre>
+            <AyIzgarasi year={year} month={month} bugun={bugun} buyuk etiketler={etiketler} />
+          </TakvimFiltre>
+          <Lejant okul />
           <div className="date-calc-results">
             <div className="date-calc-stat">
               <span>İş günü</span>
@@ -762,6 +894,7 @@ export function TakvimAySayfasi({
       }}
       tocTitle={T.toc}
       tocItems={[
+        { id: "gun-gun", label: `${a} ${year} gün gün` },
         { id: "gunler", label: `${a} ${year} özel günleri` },
         { id: "gunes", label: "Gün doğumu ve gün uzunluğu" },
         { id: "evreler", label: `${a} ay evreleri` },
@@ -773,11 +906,20 @@ export function TakvimAySayfasi({
       faqTitle={T.faq}
       faqItems={faq}
     >
+      <h2 id="gun-gun">
+        {a} {year} gün gün
+      </h2>
+      <p>
+        {a} {year} takviminin her günü: haftanın hangi gününe denk geldiği, Hicri tarihi ve o gün olanlar. Resmî tatil
+        ve bayramların yanında kandiller, özel günler, halk takvimindeki fırtınalar, MEB okul takvimi, ay evreleri ve
+        meteor yağmuru, tutulma gibi gökyüzü olayları birlikte gösterilir.
+      </p>
+      <GunGunTablosu year={year} month={month} etiketler={etiketler} bugun={bugun} />
       <h2 id="gunler">
         {a} {year} özel günleri
       </h2>
       {list.length ? (
-        <EtkinlikListesi list={list} gunCapasi />
+        <EtkinlikListesi list={list} />
       ) : (
         <p>Bu ayda takvimimizdeki özel günlerden biri bulunmuyor.</p>
       )}

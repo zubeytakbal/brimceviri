@@ -16871,3 +16871,148 @@ a.all-units-row .all-units-name {
     display: inline;
   }
 }
+
+/* Takvim: tür etiketleri ve filtre çipleri (renk yalnızca küçük nokta ve ince çizgide) */
+.etk-tatil { --etk: #c0392b; }
+.etk-dini { --etk: #6a4fc4; }
+.etk-milli { --etk: #b45f1b; }
+.etk-ozel { --etk: #b0336b; }
+.etk-halk { --etk: #6b7a2a; }
+.etk-okul { --etk: #12808c; }
+.etk-gokyuzu { --etk: #2b6ca3; }
+.etk-nokta {
+  display: inline-block;
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--etk, #8a96a3);
+}
+.takvim-filtre {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  margin: 0 0 10px;
+  padding: 8px 2px;
+  border-bottom: 1px solid #e3eaef;
+}
+.etk-cip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 0;
+  background: none;
+  padding: 2px 0;
+  font: inherit;
+  font-size: 0.82rem;
+  color: #2b3a47;
+  cursor: pointer;
+}
+.etk-cip[aria-pressed="false"] {
+  color: #9aa6b1;
+}
+.etk-cip[aria-pressed="false"] .etk-nokta {
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px #b8c2cb;
+}
+.takvim-ay.is-buyuk i.etk {
+  padding-left: 5px;
+  border-left: 2px solid var(--etk);
+  color: #2b3a47;
+  font-weight: 500;
+  -webkit-line-clamp: 2;
+}
+.takvim-ay.is-buyuk i.etk b {
+  display: none;
+}
+.takvim-gun-gun td .etk .etk-nokta {
+  margin-right: 5px;
+  vertical-align: 1px;
+}
+.gizle-tatil .takvim-ay .etk-tatil,
+.gizle-dini .takvim-ay .etk-dini,
+.gizle-milli .takvim-ay .etk-milli,
+.gizle-ozel .takvim-ay .etk-ozel,
+.gizle-halk .takvim-ay .etk-halk,
+.gizle-okul .takvim-ay .etk-okul,
+.gizle-gokyuzu .takvim-ay .etk-gokyuzu {
+  display: none !important;
+}
+.gizle-okul .takvim-ay .is-okul {
+  box-shadow: none;
+}
+.takvim-gun-gun th[scope="row"] {
+  white-space: nowrap;
+  text-align: left;
+}
+.takvim-gun-gun td:nth-child(2) {
+  white-space: nowrap;
+}
+.takvim-gun-gun td .etk {
+  display: inline-block;
+  margin-right: 8px;
+}
+.takvim-gun-gun tr.is-today th,
+.takvim-gun-gun tr.is-today td {
+  background: #fff6dc;
+}
+.takvim-siradaki {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 14px 0;
+}
+.takvim-siradaki a {
+  display: grid;
+  gap: 2px;
+  padding: 12px 14px;
+  border: 1px solid #d7e2e8;
+  border-radius: 14px;
+  background: #ffffff;
+  color: inherit;
+  text-decoration: none;
+}
+.takvim-siradaki a:hover {
+  border-color: #8fb3c4;
+}
+.takvim-siradaki span {
+  font-size: 0.78rem;
+  color: #5b6b7a;
+}
+.takvim-siradaki strong {
+  font-size: 1rem;
+}
+.takvim-siradaki em {
+  font-style: normal;
+  font-size: 0.85rem;
+}
+.takvim-siradaki b {
+  color: #b42323;
+}
+@media (max-width: 560px) {
+  .takvim-ay.is-buyuk small {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1px;
+  }
+  .takvim-ay.is-buyuk i.etk {
+    padding: 0;
+    border: 0;
+  }
+  .takvim-ay.is-buyuk i.etk span {
+    display: none;
+  }
+  .takvim-ay.is-buyuk i.etk b {
+    display: inline-block;
+  }
+  .takvim-ay.is-buyuk small {
+    gap: 3px;
+  }
+  .takvim-gun-gun td:nth-child(2) {
+    font-size: 0.78rem;
+    white-space: normal;
+  }
+  .takvim-siradaki {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

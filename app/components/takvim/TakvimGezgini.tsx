@@ -28,36 +28,23 @@ import {
   HOLIDAY_FIRST_YEAR,
   turkeyHolidays,
 } from "../../converter/time/holidays";
-import { moonPhasesBetween } from "../../converter/time/moon";
 import { okulTatiliMi } from "../../converter/calendar/okulTakvimi";
+import { ayEtiketleri, type Etiket } from "../../converter/calendar/gunEtiketleri";
+import TakvimFiltre from "./TakvimFiltre";
 
 const HAFTA = ["Pzt", "Sal", "Çar", "Per", "Cum", "Cmt", "Paz"];
 const ILK = 1900;
 const SON = 2100;
 
-/** İstanbul saatine göre ay evresi günleri: dolunay ve yeni ay. */
-function evreler(year: number, month: number) {
-  const m = new Map<string, string>();
-  for (const e of moonPhasesBetween(
-    new Date(Date.UTC(year, month - 1, 1, -3)),
-    new Date(Date.UTC(year, month, 1, -3)),
-  )) {
-    if (e.kind !== "full" && e.kind !== "new") continue;
-    const t = new Date(e.date.getTime() + 3 * 3600000);
-    m.set(
-      ymdKey({
-        year: t.getUTCFullYear(),
-        month: t.getUTCMonth() + 1,
-        day: t.getUTCDate(),
-      }),
-      e.kind === "full" ? "🌕" : "🌑",
-    );
-  }
-  return m;
-}
-
 /** Herhangi bir ay ve yıl için etkileşimli Türkiye takvimi (1900–2100). */
-export default function TakvimGezgini({ bugun }: { bugun: YMD }) {
+export default function TakvimGezgini({
+  bugun,
+  gokyuzu = {},
+}: {
+  bugun: YMD;
+  /** Sunucuda hesaplanan gökyüzü olayları ("YYYY-MM-DD" anahtarıyla); verilen yıllarda ızgaraya eklenir. */
+  gokyuzu?: Record<string, Etiket[]>;
+}) {
   const [ay, setAy] = useState({ year: bugun.year, month: bugun.month });
   const git = (delta: number) =>
     setAy((c) => {
@@ -75,7 +62,7 @@ export default function TakvimGezgini({ bugun }: { bugun: YMD }) {
       ? new Map(turkeyHolidays(year).map((h) => [ymdKey(h.date), h]))
       : new Map();
   const harita = gunHaritasi(year);
-  const ayEvre = evreler(year, month);
+  const etiketler = ayEtiketleri(year, month);
   const sayfali = TAKVIM_YILLARI.includes(year);
   const ayEtkinlik = [...harita.entries()]
     .filter(([k]) => Number(k.slice(5, 7)) === month)
@@ -155,6 +142,7 @@ export default function TakvimGezgini({ bugun }: { bugun: YMD }) {
           </>
         ) : null}
       </p>
+      <TakvimFiltre turler={["tatil", "dini", "milli", "ozel", "halk", "okul", "gokyuzu"]}>
       <div className="takvim-ay is-buyuk">
         {HAFTA.map((w) => (
           <b key={w}>{w}</b>
@@ -167,18 +155,21 @@ export default function TakvimGezgini({ bugun }: { bugun: YMD }) {
           const key = ymdKey(d);
           const h = tatil.get(key);
           const ev = harita.get(key) ?? [];
+          const etk = [...(etiketler.get(i + 1) ?? []), ...(gokyuzu[key] ?? [])].filter(
+            (e, _, all) => !(e.ad === "Dolunay" && all.some((x) => /^(Süper|Mikro) ay/.test(x.ad))),
+          );
           const hicri = gregorianToHijri(d);
           const cls = [
             isWeekend(d) ? "is-weekend" : "",
             h ? (h.kind === "full" ? "is-holiday" : "is-half") : "",
             ev.length ? "has-event" : "",
-            okulTatiliMi(d) ? "is-okul" : "",
+            etk.some((e) => e.tur === "okul") || okulTatiliMi(d) ? "is-okul" : "",
             ymdKey(bugun) === key ? "is-today" : "",
           ]
             .filter(Boolean)
             .join(" ");
           const title =
-            [h?.name, ...ev.map(tarihliAd)]
+            [h?.name, ...ev.map(tarihliAd), ...etk.map((e) => e.ad)]
               .filter((v, j, a) => v && a.indexOf(v) === j)
               .join(" · ") || undefined;
           const icerik = (
@@ -189,19 +180,18 @@ export default function TakvimGezgini({ bugun }: { bugun: YMD }) {
                   {hicri.day === 1
                     ? HIJRI_MONTHS_TR[hicri.month - 1].slice(0, 3)
                     : hicri.day}
-                  {ayEvre.get(key) ?? ""}
                 </sup>
               </em>
-              {ev.length ? (
+              {etk.some((e) => !e.devam) ? (
                 <small>
-                  {ev.slice(0, 2).map((t) => (
-                    <i
-                      key={t.etkinlik.id + (t.not ?? "")}
-                      className={`kat-${t.etkinlik.kategori}`}
-                    >
-                      {tarihliAd(t)}
-                    </i>
-                  ))}
+                  {etk
+                    .filter((e) => !e.devam)
+                    .map((e) => (
+                      <i key={e.ad} className={`etk etk-${e.tur}`}>
+                        <b className="etk-nokta" aria-hidden="true" />
+                        <span>{e.ad}</span>
+                      </i>
+                    ))}
                 </small>
               ) : null}
             </>
@@ -223,11 +213,11 @@ export default function TakvimGezgini({ bugun }: { bugun: YMD }) {
           );
         })}
       </div>
+      </TakvimFiltre>
       <p className="holiday-legend">
         <span className="is-holiday" /> Resmî tatil <span className="is-half" />{" "}
         Yarım gün <span className="takvim-lejant-etkinlik" /> Özel/dini gün{" "}
-        <span className="is-weekend" /> Hafta sonu <span className="takvim-lejant-okul" /> Okul tatili · küçük rakam Hicri gün · 🌕
-        dolunay · 🌑 yeni ay
+        <span className="is-weekend" /> Hafta sonu <span className="takvim-lejant-okul" /> Okul tatili · küçük rakam Hicri gün
       </p>
       {tekil.length ? (
         <ul className="takvim-gezgini-liste">

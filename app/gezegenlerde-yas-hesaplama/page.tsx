@@ -34,6 +34,10 @@ const faqItems: FaqItem[] = [
     answer: `Jüpiter Güneş'in çevresini 4.332,6 Dünya gününde (yaklaşık 11,86 yılda) dolanır. Bu yüzden 25 yaşındaki biri Jüpiter'de yalnızca ${num(at("jupiter").age, 2)} yaşındadır; Jüpiter'de 1 yaşına girmek için Dünya'da yaklaşık 12 yıl geçmesi gerekir.`,
   },
   {
+    question: "Gezegen yaşı neden virgüllü çıkıyor?",
+    answer: `Çünkü Dünya'da yaşadığınız süre, gezegenin yıl uzunluğuna tam bölünmez. 25 yaş yaklaşık 9.131 gündür, Mars'ta bir yıl 687 gün sürer: 9.131 ÷ 687 = ${num(at("mars").age, 2)}. Yani Mars'ta 13 yaşını doldurmuş ve 14. yılınızın yaklaşık %29'unu geçirmişsinizdir. Hesaplayıcı tam yaşınızı büyük yazıyla, bir sonraki yaşa ne zaman gireceğinizi de altında gösterir.`,
+  },
+  {
     question: "En yaşlı olduğum gezegen hangisi?",
     answer: `Merkür. Güneş'e en yakın gezegen olan Merkür bir turunu 88 günde tamamlar; Dünya'da geçen her yıl Merkür'de yaklaşık 4,15 yıl eder. 25 yaşındaki biri Merkür'de ${num(at("merkur").age)} yaşındadır.`,
   },
@@ -81,7 +85,9 @@ export default function PlanetAgePage() {
       <h2 id="tablo">Yaşa göre gezegen yaşları tablosu</h2>
       <p>
         Aşağıdaki tablo Dünya&apos;daki bazı yaşların her gezegende kaça karşılık geldiğini gösterir. Güneş&apos;e yakın gezegenlerde yıl kısa olduğu için
-        yaşınız büyür, uzak gezegenlerde ise küçülür.
+        yaşınız büyür, uzak gezegenlerde ise küçülür. Virgülden sonraki kısım, bir sonraki yaşa doğru ne kadar ilerlendiğini gösterir: Mars&apos;ta
+        13,3 yaş, 13 yaşını doldurup 14. yılın yaklaşık üçte birini geçirmiş olmak demektir; 1&apos;in altındaki değerler (Neptün&apos;de 0,15 gibi) o
+        gezegende henüz 1 yaşına girilmediğini gösterir.
       </p>
       <div className="conversion-table-wrap">
         <table className="conversion-table">

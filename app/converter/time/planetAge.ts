@@ -38,7 +38,8 @@ function anniversary(birth: Date, age: number) {
 /** days: Dünya'da yaşanan gün sayısı; birth verilirse sonraki doğum günleri de hesaplanır. */
 export function planetAges(days: number, birth?: Date): PlanetAge[] {
   return PLANET_YEARS.map((p) => {
-    const age = days / p.orbitDays;
+    // Dünya yaşı takvim yılıyla (365,25 gün) sayılır; yoksa "25 yaş" girdisi 24,9996 olup 24'e yuvarlanırdı.
+    const age = days / (p.id === "dunya" ? EARTH_YEAR_DAYS : p.orbitDays);
     const nextAge = Math.floor(age) + 1;
     return {
       id: p.id,

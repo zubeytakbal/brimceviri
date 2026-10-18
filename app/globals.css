@@ -16753,3 +16753,57 @@ a.all-units-row .all-units-name {
   font-size: 1.15rem;
   color: #0f6f6c;
 }
+
+/* Güneş doğuşu: bugünün cevabı ve çizimler */
+.sun-today {
+  margin: 0 0 24px;
+  padding: 20px;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid #d7e2e8;
+}
+
+.sun-today h2 {
+  margin: 0 0 8px;
+  font-size: 1.25rem;
+}
+
+.sun-today-lead {
+  margin: 0 0 14px;
+  font-size: 1.05rem;
+  line-height: 1.55;
+}
+
+.sun-today-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.sun-path {
+  margin: 0 0 8px;
+}
+
+.sun-path svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #f8fafc;
+}
+
+.sun-path figcaption {
+  margin-top: 6px;
+  font-size: 0.92rem;
+  color: #475569;
+}
+
+.sun-today {
+  color: #0f172a;
+}
+
+.sun-today .golden-card {
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+}

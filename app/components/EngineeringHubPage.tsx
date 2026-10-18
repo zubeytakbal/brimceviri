@@ -1,5 +1,6 @@
 import Link from "@/app/components/SiteLink";
 import { getElectricalHubPath } from "../converter/engineeringHubs";
+import { engineeringTopics, getEngineeringTopicLinks } from "../converter/engineeringTopics";
 import { germanStandaloneTools } from "../i18n/germanStandaloneTools";
 import type { SiteIconName } from "./siteIcons";
 
@@ -1254,6 +1255,27 @@ export default function EngineeringHubPage({
                     <Link href={tool.href}>{tool.label}</Link>
                   </li>
                 ))}
+              </ul>
+            </section>
+          )}
+
+          {locale === "tr" && (
+            <section className="conversion-section" id="konu-haritasi">
+              <h2>Konulara göre dönüştürücüler ve referanslar</h2>
+              <ul className="related-conversion-list engineering-hub-guides">
+                {engineeringTopics
+                  .filter((topic) => topic.categorySlugs.length > 0 || topic.unitSlugs.length > 0)
+                  .map((topic) => (
+                    <li key={topic.id}>
+                      <strong>{topic.title}:</strong>{" "}
+                      {getEngineeringTopicLinks(topic).map((link, index) => (
+                        <span key={link.href}>
+                          {index > 0 ? ", " : null}
+                          <Link href={link.href}>{link.label}</Link>
+                        </span>
+                      ))}
+                    </li>
+                  ))}
               </ul>
             </section>
           )}

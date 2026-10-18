@@ -166,6 +166,10 @@ export default function InsaatciAraclariPage() {
               çimento torba sayısını, kum ve çakıl miktarını hesapla.
             </li>
             <li>
+              <Link href="/kalip-alani-hesaplama">Kalıp Alanı Hesaplama</Link> —
+              döşeme, kolon, kiriş ve tekil temel için yaklaşık kalıp temas alanını bul.
+            </li>
+            <li>
               <Link href="/demir-agirlik-hesaplama">İnşaat Demiri Ağırlık Hesaplama</Link> —
               çap, boy ve adetten demir tonajını, 1 tonun kaç metre
               ettiğini ve pozlara göre metraj toplamını hesapla.

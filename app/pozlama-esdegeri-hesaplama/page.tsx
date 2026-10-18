@@ -49,8 +49,8 @@ export default function ExposureCalculatorPage() {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: buildSiteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "Mesleğe Göre Araçlar", item: buildSiteUrl("/meslekler") },
-      { "@type": "ListItem", position: 3, name: "Fotoğrafçı Araçları", item: buildSiteUrl("/fotografci-araclari") },
+      { "@type": "ListItem", position: 2, name: "Tüm Hesaplamalar", item: buildSiteUrl("/hesaplayicilar") },
+      { "@type": "ListItem", position: 3, name: "Dosya ve Görsel Araçları", item: buildSiteUrl("/hesaplayicilar#dosya-ve-gorsel") },
       { "@type": "ListItem", position: 4, name: "Pozlama Eşdeğeri Hesaplama", item: buildSiteUrl("/pozlama-esdegeri-hesaplama") },
     ],
   };
@@ -64,7 +64,7 @@ export default function ExposureCalculatorPage() {
         <nav className="breadcrumbs" aria-label="Sayfa yolu">
           <Link href="/">Ana Sayfa</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/fotografci-araclari">Fotoğrafçı Araçları</Link>
+          <Link href="/hesaplayicilar#dosya-ve-gorsel">Dosya ve Görsel Araçları</Link>
           <span aria-hidden="true">&rsaquo;</span>
           <span>Pozlama Eşdeğeri Hesaplama</span>
         </nav>
@@ -102,7 +102,7 @@ export default function ExposureCalculatorPage() {
           <h2>İlgili araçlar</h2>
           <p>
             Diğer fotoğrafçı araçları için{" "}
-            <Link href="/fotografci-araclari">Fotoğrafçı Araçları</Link>
+            <Link href="/hesaplayicilar#dosya-ve-gorsel">Dosya ve Görsel Araçları</Link>
             {" "}sayfasına, sensör formatına göre odak uzaklığı eşdeğeri için{" "}
             <Link href="/odak-uzakligi-esdegeri-hesaplama">Odak Uzaklığı Eşdeğeri Hesaplama</Link>
             {" "}sayfasına bakabilirsin.

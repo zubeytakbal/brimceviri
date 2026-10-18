@@ -48,7 +48,7 @@ export default function CeyrekBilezikPage() {
     <TimeToolPage
       crumbs={[
         { href: "/", label: "Ana Sayfa" },
-        { href: "/kuyumcu-araclari", label: "Kuyumcu Araçları" },
+        { href: "/altin-hesaplama", label: "Altın Hesaplama" },
         { href: path, label: "Çeyrek → Bilezik" },
       ]}
       crumbLabel="Sayfa yolu"

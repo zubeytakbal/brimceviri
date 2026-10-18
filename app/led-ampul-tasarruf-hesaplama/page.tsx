@@ -105,7 +105,7 @@ export default function LedSavingsPage() {
             sayfasına, yalıtım amortismanı için{" "}
             <Link href="/yalitim-amortisman-hesaplama">Yalıtım Amortisman Hesaplama</Link>
             {" "}sayfasına, diğer elektrikçi araçları için{" "}
-            <Link href="/elektrikci-araclari">Elektrikçi Araçları</Link>
+            <Link href="/muhendislik-hesaplayicilari/elektrik-hesaplari">Elektrik Hesapları</Link>
             {" "}sayfasına bakabilirsin.
           </p>
 

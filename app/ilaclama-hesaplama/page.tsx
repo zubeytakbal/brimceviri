@@ -42,7 +42,7 @@ export default function IlaclamaPage() {
     <TimeToolPage
       crumbs={[
         { href: "/", label: "Ana Sayfa" },
-        { href: "/ciftci-araclari", label: "Tarım ve Hayvancılık" },
+        { href: "/hesaplayicilar#tarim", label: "Tarım ve Hayvancılık" },
         { href: path, label: "İlaçlama Hesaplama" },
       ]}
       crumbLabel="Sayfa yolu"

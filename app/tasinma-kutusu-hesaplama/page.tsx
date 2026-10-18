@@ -172,7 +172,7 @@ export default function MovingBoxCalculatorPage() {
           <h2>İlgili araçlar</h2>
           <p>
             Diğer nakliyeci araçları için{" "}
-            <Link href="/nakliyeci-araclari">Nakliyeci Araçları</Link>{" "}
+            <Link href="/hesaplayicilar#enerji-ve-arac">Enerji, Fatura ve Araç</Link>{" "}
             sayfasına bakabilirsin.
           </p>
         </section>

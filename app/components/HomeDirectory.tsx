@@ -33,7 +33,6 @@ import {
   Wind,
 } from "@phosphor-icons/react/ssr";
 import NotificationBell from "./NotificationBell";
-import ProfessionPreferenceWidget from "./ProfessionPreferenceWidget";
 import RecentToolsWidget from "./RecentToolsWidget";
 import { DecorativeIcon, getCategoryIconName, type SiteIconName } from "./siteIcons";
 import { calculatorPages } from "../converter/calculatorPages";
@@ -2021,7 +2020,6 @@ export default function HomeDirectory({
           showWhenEmpty={locale === "uz"}
         />
       )}
-      {locale === "tr" && <ProfessionPreferenceWidget />}
       <RecentToolsWidget locale={locale} />
 
       <div className="directory-shell directory-content">

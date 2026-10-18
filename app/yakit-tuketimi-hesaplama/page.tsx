@@ -162,7 +162,7 @@ export default function FuelConsumptionCalculatorPage() {
             lastik ebadı için{" "}
             <Link href="/lastik-ebati-hesaplama">Lastik Ebatı Hesaplama</Link>,{" "}
             diğer otomotiv araçları için{" "}
-            <Link href="/otomotiv-araclari">Otomotiv Araçları</Link>
+            <Link href="/hesaplayicilar#enerji-ve-arac">Enerji, Fatura ve Araç</Link>
             {" "}sayfasına bakabilirsin.
           </p>
         </section>

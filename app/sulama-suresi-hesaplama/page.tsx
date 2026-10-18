@@ -49,8 +49,8 @@ export default function IrrigationCalculatorPage() {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: buildSiteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "Mesleğe Göre Araçlar", item: buildSiteUrl("/meslekler") },
-      { "@type": "ListItem", position: 3, name: "Peyzaj Araçları", item: buildSiteUrl("/peyzaj-araclari") },
+      { "@type": "ListItem", position: 2, name: "Tüm Hesaplamalar", item: buildSiteUrl("/hesaplayicilar") },
+      { "@type": "ListItem", position: 3, name: "Tarım ve Hayvancılık", item: buildSiteUrl("/hesaplayicilar#tarim") },
       { "@type": "ListItem", position: 4, name: "Sulama Süresi Hesaplama", item: buildSiteUrl("/sulama-suresi-hesaplama") },
     ],
   };
@@ -64,7 +64,7 @@ export default function IrrigationCalculatorPage() {
         <nav className="breadcrumbs" aria-label="Sayfa yolu">
           <Link href="/">Ana Sayfa</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/peyzaj-araclari">Peyzaj Araçları</Link>
+          <Link href="/hesaplayicilar#tarim">Tarım ve Hayvancılık</Link>
           <span aria-hidden="true">&rsaquo;</span>
           <span>Sulama Süresi Hesaplama</span>
         </nav>
@@ -93,7 +93,7 @@ export default function IrrigationCalculatorPage() {
           <h2>İlgili araçlar</h2>
           <p>
             Diğer peyzaj araçları için{" "}
-            <Link href="/peyzaj-araclari">Peyzaj Araçları</Link>
+            <Link href="/hesaplayicilar#tarim">Tarım ve Hayvancılık</Link>
             {" "}sayfasına, alan birimi dönüşümleri için{" "}
             <Link href="/kategoriler/alan">Alan Dönüşümleri</Link>
             {" "}sayfasına, gübre seyreltme oranı için{" "}

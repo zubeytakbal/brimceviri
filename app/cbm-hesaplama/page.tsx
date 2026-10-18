@@ -144,7 +144,7 @@ export default function CbmPage() {
           <h2>İlgili araçlar</h2>
           <p>
             Diğer nakliyeci ve lojistik araçları için{" "}
-            <Link href="/nakliyeci-araclari">Nakliyeci Araçları</Link>{" "}
+            <Link href="/hesaplayicilar#enerji-ve-arac">Enerji, Fatura ve Araç</Link>{" "}
             sayfasına, hacim birimleri arasında genel dönüşüm için{" "}
             <Link href="/kategoriler/hacim">Hacim Dönüşümleri</Link>{" "}
             sayfasına bakabilirsin.

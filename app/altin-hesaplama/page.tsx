@@ -73,7 +73,7 @@ export default function AltinHesaplamaPage() {
     <TimeToolPage
       crumbs={[
         { href: "/", label: "Ana sayfa" },
-        { href: "/kuyumcu-araclari", label: "Kuyumcu Araçları" },
+        { href: "/altin-hesaplama", label: "Altın Hesaplama" },
         { href: path, label: "Altın Hesaplama" },
       ]}
       crumbLabel="Sayfa yolu"
@@ -88,7 +88,7 @@ export default function AltinHesaplamaPage() {
             label: "Altın ayar dönüşümleri (24, 22, 18, 14 ayar)",
           },
           { href: "/has-hesaplama", label: "Has altın ve alaşım hesaplama" },
-          { href: "/kuyumcu-araclari", label: "Kuyumcu Araçları" },
+          { href: "/altin-hesaplama", label: "Altın Hesaplama" },
         ],
       }}
       tocTitle="İçindekiler"

@@ -148,7 +148,7 @@ export default function NumberBaseCalculatorPage() {
           <h2>İlgili araçlar</h2>
           <p>
             Diğer yazılımcı araçları için{" "}
-            <Link href="/yazilimci-araclari">Yazılımcı Araçları</Link>{" "}
+            <Link href="/hesaplayicilar#teknik">Teknik ve Mühendislik</Link>{" "}
             sayfasına, renk kodu çevirme için{" "}
             <Link href="/renk-kodu-cevirici">Renk Kodu Çevirici</Link>
             {" "}sayfasına, veri boyutu birim dönüşümleri için{" "}

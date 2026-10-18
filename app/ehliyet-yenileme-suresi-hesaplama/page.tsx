@@ -160,7 +160,7 @@ export default async function LicenseRenewalPage() {
             görmek için{" "}
             <Link href="/ehliyet-sinifi-bulma">Hangi Ehliyet Sınıfı Gerekli?</Link>
             {" "}sayfasına, diğer otomotiv araçları için{" "}
-            <Link href="/otomotiv-araclari">Otomotiv Araçları</Link>
+            <Link href="/hesaplayicilar#enerji-ve-arac">Enerji, Fatura ve Araç</Link>
             {" "}sayfasına bakabilirsin.
           </p>
 

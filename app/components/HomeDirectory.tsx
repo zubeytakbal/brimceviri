@@ -40,6 +40,7 @@ import { calculatorPages } from "../converter/calculatorPages";
 import { calculatorSearchIndex } from "../converter/calculatorSearchIndex";
 import { categoryPages } from "../converter/categoryPages";
 import { conversionPages } from "../converter/conversionPages";
+import { isMergedAway } from "../converter/mergedPairs";
 import { englishCalculatorPages } from "../converter/localizedCalculatorPages";
 import { englishCategoryPages } from "../converter/localizedCategoryPages";
 import { englishConversionPages } from "../converter/localizedConversionPages";
@@ -1283,7 +1284,7 @@ function createHomeData(locale: Locale): HomeData {
 
   const conversions =
     locale === "tr"
-      ? conversionPages.map((page) => ({
+      ? conversionPages.filter((page) => !isMergedAway(page.slug)).map((page) => ({
           id: page.slug,
           sourceSlug: page.slug,
           href: `/${page.slug}`,

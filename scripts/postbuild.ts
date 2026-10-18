@@ -14,6 +14,8 @@
 //    metni cok kisaysa build'i durdurur.
 // 6. Parametreli site ici baglantilara rel="nofollow" (nofollowQueryLinks).
 // 7. Site haritasi denetimi (scripts/sitemapGuard.ts): dizine acik her sayfa sitemap.xml'de olmali.
+// 9. Birleştirilen çift sayfalar (app/converter/mergedPairs.ts): kaldırılan yöne kalan site içi bağlantılar kalan
+//    sayfaya çevrilir, ona verilen hreflang bağlantıları silinir (yönlendirmeye bağlantı ve hreflang verilmez).
 // 8. Dizin politikasi (app/indexPolicy.ts): kapali sayfalar "noindex, follow" olur ve hicbir sayfanin
 //    hreflang alternatiflerinde yer almaz. Sablon ve ince sayfa denetimlerinden once calisir.
 import { existsSync, readdirSync, readFileSync, unlinkSync, writeFileSync } from "node:fs";
@@ -22,6 +24,7 @@ import { LOCALE_DEFINITIONS } from "../app/i18n/config";
 import { isClosedPath } from "../app/indexPolicy";
 import { CLICKED_PATHS } from "../app/indexPolicyClicked";
 import { siteRedirects } from "../app/siteRedirects";
+import { MERGED_PAIRS } from "../app/converter/mergedPairs";
 import { checkTemplates } from "./templateGuard";
 import { checkThinPages, MIN_KARAKTER } from "./thinGuard";
 import { checkSitemap } from "./sitemapGuard";
@@ -214,7 +217,36 @@ function applyIndexPolicy() {
   return { closed, alternates };
 }
 
+function fixMergedPairLinks() {
+  const SITE = "https://www.birimceviri.app";
+  const slugs = Object.keys(MERGED_PAIRS).sort((a, b) => b.length - a.length).join("|");
+  // href="/x", JSON içindeki "href":"/x" ve \"href\":\"/x\" biçimleri; arkasından tırnak, ?, # ya da ters bölü gelmeli.
+  const linkRe = new RegExp(`((?:href=|\\\\?"href\\\\?":)\\\\?")/(${slugs})(?=["?#\\\\])`, "g");
+  const altRe = new RegExp(`<link rel="alternate" hrefLang="[^"]*" href="${SITE}/(?:${slugs})"/>`, "g");
+  let links = 0;
+  let alternates = 0;
+  const walk = (dir: string) => {
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      const path = join(dir, entry.name);
+      if (entry.isDirectory()) {
+        if (path !== join(OUT, "_next")) walk(path);
+        continue;
+      }
+      if (!entry.name.endsWith(".html")) continue;
+      const html = readFileSync(path, "utf8");
+      const next = html
+        .replace(altRe, () => (alternates++, ""))
+        .replace(linkRe, (_m, prefix: string, slug: string) => (links++, `${prefix}/${MERGED_PAIRS[slug]}`));
+      if (next !== html) writeFileSync(path, next);
+    }
+  };
+  walk(OUT);
+  return { links, alternates };
+}
+
 console.log(`${removeRscPayloads(OUT)} sayfa gecis verisi (.txt) silindi`);
+const merged = fixMergedPairLinks();
+console.log(`Birleştirilen çiftler: ${merged.links} bağlantı kalan sayfaya çevrildi, ${merged.alternates} hreflang silindi`);
 const policy = applyIndexPolicy();
 console.log(`Dizin politikası: ${policy.closed} sayfa noindex yapıldı, ${policy.alternates} hreflang bağlantısı kaldırıldı`);
 console.log(`${fixHtmlLang()} sayfada <html lang> dile gore duzeltildi`);

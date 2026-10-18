@@ -7,6 +7,7 @@ import {
   getCategoryPathByCategory,
 } from "../../converter/categoryPages";
 import { conversionPages } from "../../converter/conversionPages";
+import { isMergedAway } from "../../converter/mergedPairs";
 import {
   findUnitArticle,
 } from "../../converter/unitArticles";
@@ -239,8 +240,10 @@ const specificScientificSections =
     };
   }
 
+  // Ters yönü birleştirilmiş çiftler tek sayfa olduğu için bir kez listelenir (iki yön, ↔).
   const relatedConversions = conversionPages.filter(
     (page) =>
+      !isMergedAway(page.slug) &&
       page.category === unitPage.category &&
       (page.fromUnit === unitPage.unit ||
         page.toUnit === unitPage.unit)
@@ -745,7 +748,7 @@ const specificScientificSections =
                   {relatedConversions.map((conversion) => (
                     <li key={conversion.slug}>
                       <Link href={`/${conversion.slug}`}>
-                        {conversion.fromName} →{" "}
+                        {conversion.fromName} ↔{" "}
                         {conversion.toName}
                       </Link>
                     </li>
@@ -845,7 +848,7 @@ const specificScientificSections =
                         href={`/${conversion.slug}`}
                         key={conversion.slug}
                       >
-                        {conversion.fromName} →{" "}
+                        {conversion.fromName} ↔{" "}
                         {conversion.toName}
                       </Link>
                     ))}

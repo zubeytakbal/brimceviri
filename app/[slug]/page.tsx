@@ -22,6 +22,7 @@ import { findUnitPage } from "../converter/unitPages";
 import { buildFullLanguageAlternates } from "../i18n/routing";
 import { buildSiteUrl } from "../siteConfig";
 import { turkishConversionSeo } from "../converter/turkishConversionSeo";
+import { canonicalPairSlug, isMergedAway } from "../converter/mergedPairs";
 
 function serializeJsonLd(data: object) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
@@ -127,9 +128,10 @@ function formatNumber(value: number) {
 }
 
 export function generateStaticParams() {
-  return conversionPages.map((conversionPage) => ({
-    slug: conversionPage.slug,
-  }));
+  // Ters yönü bu sayfaya birleştirilen adresler üretilmez; postbuild onları kalan sayfaya 301 ile yönlendirir.
+  return conversionPages
+    .filter((conversionPage) => !isMergedAway(conversionPage.slug))
+    .map((conversionPage) => ({ slug: conversionPage.slug }));
 }
 
 export async function generateMetadata({
@@ -153,7 +155,7 @@ export async function generateMetadata({
   // cunku baslik aramadaki hicbir kelimeyi (1, kac, birim adi) tasimiyordu.
   // Çok gösterim alan sayfalarda gerçek aramalara göre özel başlık ("1 Metre
   // Kaç cm?"); diğerlerinde aynı kalıp, açıklamada örnek değerlerle.
-  const seo = turkishConversionSeo(conversionPage);
+  const seo = turkishConversionSeo(conversionPage, isMergedAway(conversionPage.reverseSlug));
   const title = plainTitle(seoTitle(...seo.titles));
   const description = seo.description;
 
@@ -201,6 +203,8 @@ export default async function ConversionPage({ params }: PageProps) {
   const reversePage = conversionPages.find(
     (page) => page.slug === conversionPage.reverseSlug
   );
+  // Ters yön ayrı bir sayfa değil, bu sayfanın ikinci yarısı: tablosu, açıklaması ve SSS'si burada.
+  const mergedReverse = reversePage && isMergedAway(reversePage.slug) ? reversePage : undefined;
   const categoryPage = categoryPages.find(
     (page) => page.category === conversionPage.category
   );
@@ -210,6 +214,7 @@ export default async function ConversionPage({ params }: PageProps) {
       (page) =>
         page.slug !== conversionPage.slug &&
         page.slug !== conversionPage.reverseSlug &&
+        !isMergedAway(page.slug) &&
         page.category === conversionPage.category &&
         (page.fromUnit === conversionPage.fromUnit ||
           page.toUnit === conversionPage.fromUnit ||
@@ -233,12 +238,22 @@ export default async function ConversionPage({ params }: PageProps) {
   // daha uzun -- gercek trafik burada yogunlasiyor, nis ciftlerde (peck-bushel
   // gibi) standart 6-7 satir yeterli. Ayni popularEmbedSlugs listesi embed
   // kodu tesviki icin de kullaniliyor, ikinci bir liste tutmuyoruz.
-  const seo = turkishConversionSeo(conversionPage);
+  const seo = turkishConversionSeo(conversionPage, Boolean(mergedReverse));
   const exampleValues =
     seo.exampleValues ??
     (popularEmbedSlugs.has(conversionPage.slug)
       ? extendedTableValues
       : conversionPage.exampleValues);
+
+  const reverseSeo = mergedReverse ? turkishConversionSeo(mergedReverse) : undefined;
+  const reverseTableRows = mergedReverse
+    ? (reverseSeo?.exampleValues ??
+        (popularEmbedSlugs.has(mergedReverse.slug) ? extendedTableValues : mergedReverse.exampleValues)
+      ).map((value) => ({
+        input: value,
+        result: convert(conversionPage.category, value, mergedReverse.fromUnit, mergedReverse.toUnit),
+      }))
+    : [];
 
   const tableRows = exampleValues.map((value) => ({
     input: value,
@@ -316,7 +331,8 @@ export default async function ConversionPage({ params }: PageProps) {
       answer: `1 ${conversionPage.toUnit} = ${formattedReverseOneUnitResult} ${conversionPage.fromUnit}.`,
     },
     ...seo.extraFaq,
-  ];
+    ...(reverseSeo?.extraFaq ?? []),
+  ].filter((item, index, list) => list.findIndex((other) => other.question === item.question) === index);
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -469,7 +485,7 @@ export default async function ConversionPage({ params }: PageProps) {
               conversionPages.filter(
                 (page) => page.category === conversionPage.category
               ),
-              (pageSlug) => `/${pageSlug}`
+              (pageSlug) => `/${canonicalPairSlug(pageSlug)}`
             )}
             variant="pair"
           />
@@ -524,6 +540,46 @@ export default async function ConversionPage({ params }: PageProps) {
             </table>
           </div>
         </section>
+
+        {mergedReverse && (
+          <section className="conversion-section" id="ters-donusum">
+            <h2>
+              {mergedReverse.fromName} → {mergedReverse.toName}: ters yönde çevirme
+            </h2>
+
+            <p>{mergedReverse.explanation}</p>
+
+            <div className="conversion-formula">
+              <strong>Dönüşüm formülü</strong>
+              <p>{mergedReverse.formula}</p>
+            </div>
+
+            <div className="conversion-table-wrap">
+              <table className="conversion-table">
+                <thead>
+                  <tr>
+                    <th>{mergedReverse.fromName}</th>
+                    <th>{mergedReverse.toName}</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {reverseTableRows.map((row) => (
+                    <tr key={row.input}>
+                      <td>
+                        {formatNumber(row.input)} {mergedReverse.fromUnit}
+                      </td>
+
+                      <td>
+                        {formatNumber(row.result)} {mergedReverse.toUnit}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+        )}
 
         {flagshipInsight && (
           <section className="conversion-section flagship-insight">
@@ -672,7 +728,7 @@ export default async function ConversionPage({ params }: PageProps) {
 
         <ConversionSeo conversionPage={conversionPage} />
 
-        {reversePage && (
+        {reversePage && !mergedReverse && (
           <section className="conversion-section related-conversions">
             <h2>Ters dönüşüm</h2>
 

@@ -29,6 +29,7 @@ import { zonePairs } from "./converter/time/timeZonePairs";
 import { buildLanguageAlternates } from "./i18n/routing";
 import { categoryPages } from "./converter/categoryPages";
 import { conversionPages } from "./converter/conversionPages";
+import { isMergedAway } from "./converter/mergedPairs";
 import { NORDIC_FUEL_PATHS } from "./converter/fuel/nordicFuel";
 import { TIME_HUB_PATHS, timeHubAlternates } from "./components/timehub/timeHubPaths";
 import { NORDIC_HOLIDAY_PATHS } from "./converter/time/nordicHolidays";
@@ -264,7 +265,7 @@ function buildLocalizedCoreAlternates(
     collection === "categories" ||
     (collection === "units"
       ? unitPages.some((page) => page.slug === sourceSlug)
-      : conversionPages.some((page) => page.slug === sourceSlug));
+      : conversionPages.some((page) => page.slug === sourceSlug) && !isMergedAway(sourceSlug));
 
   const paths = {
     categories: {
@@ -5110,7 +5111,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   const turkishConversionRoutes: MetadataRoute.Sitemap =
-    conversionPages.map((page) => {
+    conversionPages.filter((page) => !isMergedAway(page.slug)).map((page) => {
       const englishPage = findEnglishPageByTurkishSlug(
         page.slug
       );

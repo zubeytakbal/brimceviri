@@ -415,17 +415,19 @@ export const turkishTimeMenu = pick([
 ]);
 
 /** Ana sayfadaki "Popüler araçlar" bloğu. */
+// Ana sayfadaki "En çok kullanılan araçlar": Search Console'un son 3 ayında (18 Temmuz – 17 Ekim 2026) Google'dan en çok
+// tıklama alan Türkçe araç sayfaları, tıklama sırasıyla (birim dönüşüm sayfaları ana sayfada ayrı bölümde).
 export const turkishPopularTools = pick([
-  "/yas-hesaplama",
-  "/kredi-hesaplama",
-  "/uyku-hesaplama",
-  "/kdv-hesaplama",
-  "/brutten-nete-maas-hesaplama",
+  "/iller-arasi-mesafe",
+  "/ay-evreleri",
+  "/il-rakimlari",
+  "/takvim",
+  "/dunya-saatleri",
+  "/geri-sayim",
+  "/malzeme-ozellikleri",
   "/altin-hesaplama",
-  "/bmi-hesaplama",
-  "/mutfak-olculeri-cevirici",
-  "/yakit-tuketimi-hesaplama",
-  "/fayans-hesaplama",
-  "/boya-hesaplama",
-  "/fotograf-boyutu-kucultme",
+  "/kible-yonu-hesaplama",
+  "/uyku-hesaplama",
+  "/koordinat-donusturucu",
+  "/ulkeler",
 ]);

@@ -2029,8 +2029,8 @@ export default function HomeDirectory({
           <section className="directory-section" id="populer-hesaplamalar">
             <header className="directory-section-header">
               <div>
-                <h2>Popüler hesaplamalar</h2>
-                <p>En çok kullanılan araçlar. Tüm araçları konularına göre görmek için tüm hesaplamalar sayfasına geçin.</p>
+                <h2>En çok kullanılan araçlar</h2>
+                <p>Ziyaretçilerin en sık açtığı araçlar. Tüm araçları konularına göre görmek için tüm hesaplamalar sayfasına geçin.</p>
               </div>
             </header>
             <ul className="tool-hub-list">

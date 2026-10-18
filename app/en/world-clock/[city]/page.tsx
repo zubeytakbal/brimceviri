@@ -24,6 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ city: str
   return {
     title: seoTitle(title, `Current Time in ${city.nameEn}: Live Clock`, `Time in ${city.nameEn} Now`),
     description,
+    robots: { index: false, follow: true },
     manifest: appManifestPath("world-clock"),
     appleWebApp: { capable: true, title: findInstallableApp("world-clock")!.shortName },
     alternates: { canonical: path, ...buildLanguageAlternates(worldCityPaths(city), "tr") },

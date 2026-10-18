@@ -63,6 +63,7 @@ export async function generateMetadata({ params }: { params: Promise<{ stadt: st
   return {
     title: seoTitle(title, `Uhrzeit ${name}: Wie spät ist es in ${name}?`, `Uhrzeit ${name} jetzt`),
     description,
+    robots: { index: false, follow: true },
     alternates: {
       canonical: path,
       ...buildLanguageAlternates(worldCityPaths(city), "tr"),

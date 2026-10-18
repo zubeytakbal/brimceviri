@@ -62,6 +62,7 @@ export async function generateMetadata({ params }: { params: Promise<{ country: 
   return {
     title: seoTitle(title, `${c.nameEn}: Capital, Time Zone and Map`, `${c.nameEn}: Capital and Map`),
     description,
+    robots: { index: false, follow: true },
     alternates: { canonical: path, ...buildLanguageAlternates({ tr: `/ulkeler/${c.id}`, en: path, de: countryPathDe(c) ?? undefined }, "tr") },
     openGraph: { title, description, url: buildSiteUrl(path), siteName: "BirimCeviri.app", locale: "en_US", type: "website" },
   };

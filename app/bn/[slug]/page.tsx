@@ -15,6 +15,7 @@ import {
 import { findBengaliUnitPage } from "../../converter/localizedBengaliUnitPages";
 import { getUnitSources } from "../../converter/unitSources";
 import { buildFullLanguageAlternates } from "../../i18n/routing";
+import { pathRobots } from "../../seo/indexPolicy";
 import { buildSiteUrl } from "../../siteConfig";
 import { unitGlossaryHref } from "../../converter/unitGlossary";
 
@@ -73,6 +74,7 @@ export async function generateMetadata({
   return {
     title,
     description,
+    robots: pathRobots(`/bn/${page.slug}`),
     alternates: {
       canonical: `/bn/${page.slug}`,
       ...buildFullLanguageAlternates(`/bn/${page.slug}`),

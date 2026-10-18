@@ -78,6 +78,7 @@ export async function generateMetadata({
   }
 
   return {
+    robots: { index: false, follow: true },
     title: seoTitle(
       `${unitPage.name} Nedir? Tanımı, Tarihçesi ve Bilimsel Bilgiler`,
       `${unitPage.name} Nedir? Tanımı ve Dönüşümleri`,

@@ -41,6 +41,7 @@ import {
 } from "../../i18n/germanStandaloneTools";
 import { getUnitSources } from "../../converter/unitSources";
 import { buildFullLanguageAlternates } from "../../i18n/routing";
+import { pathRobots } from "../../seo/indexPolicy";
 import { buildSiteUrl } from "../../siteConfig";
 import { germanConversionSeo, germanSymbol } from "../../converter/germanConversionSeo";
 
@@ -174,6 +175,7 @@ export async function generateMetadata({
   return {
     title: seoTitle(...seo.titles),
     description,
+    robots: pathRobots(`/de/${page.slug}`),
 
     alternates: {
       canonical: `/de/${page.slug}`,

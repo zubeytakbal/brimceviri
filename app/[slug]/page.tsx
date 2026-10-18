@@ -21,6 +21,7 @@ import { getUnitSources } from "../converter/unitSources";
 import { findUnitPage } from "../converter/unitPages";
 import { buildFullLanguageAlternates } from "../i18n/routing";
 import { buildSiteUrl } from "../siteConfig";
+import { pathRobots } from "../seo/indexPolicy";
 import { turkishConversionSeo } from "../converter/turkishConversionSeo";
 
 function serializeJsonLd(data: object) {
@@ -160,6 +161,7 @@ export async function generateMetadata({
   return {
     title: seoTitle(...seo.titles),
     description,
+    robots: pathRobots(`/${conversionPage.slug}`),
     alternates: {
       canonical: `/${conversionPage.slug}`,
       ...buildFullLanguageAlternates(`/${conversionPage.slug}`),

@@ -33,6 +33,8 @@ const K: Record<string, Record<string, number>> = {
   doz_hizi: { "µSv/h": 1, "mSv/h": 1e3, "Sv/h": 1e6, "nSv/h": 1e-3, "µSv/gün": 1 / 24, "mSv/yıl": 1000 / 8760, "Sv/s": 3.6e9, "rem/h": 1e4, "mrem/h": 10 },
   radyoaktivite: { Bq: 1, kBq: 1e3, MBq: 1e6, GBq: 1e9, TBq: 1e12, Ci: 3.7e10, mCi: 3.7e7, "µCi": 3.7e4, nCi: 37, pCi: 0.037, Rd: 1e6, dpm: 1 / 60 },
   isinlama: { "C/kg": 1, "mC/kg": 1e-3, "µC/kg": 1e-6, R: 2.58e-4, mR: 2.58e-7, "µR": 2.58e-10 },
+  alkol_derecesi: { "% vol": 1, "°": 1, "US proof": 0.5, "UK proof": 0.5714286 },
+  vida_hatvesi: { mm: 1, "inç": 25.4, "µm": 0.001 },
   yagis: { mm: 1, "kg/m²": 1, "L/m²": 1, cm: 10, "inç": 25.4, "m³/da": 1, "m³/ha": 0.1 },
   alan_verim: { "kg/ha": 1, "kg/da": 10, "t/ha": 1000, "t/da": 10000, "g/m²": 10, "kg/m²": 10000, "lb/acre": 1.12085116 },
   alan_doz: { "L/ha": 1, "L/da": 10, "mL/da": 0.01, "mL/ha": 0.001, "mL/m²": 10, "gal/acre": 9.35396, "fl oz/acre": 0.0730778 },
@@ -82,6 +84,8 @@ const C: Array<[string, number, string, string, number]> = [
   ["yakit_verimliligi", 5, "L/100 km", "km/L", 20], ["yakit_verimliligi", 30, "mpg (ABD)", "L/100 km", 7.840486], ["yakit_verimliligi", 8, "L/100 km", "mpg (İng.)", 35.31012],
   ["tempo", 5.5, "dk/km", "km/saat", 10.909091], ["tempo", 12, "km/saat", "dk/km", 5], ["tempo", 8, "dk/mil", "dk/km", 4.970970],
   ["elektrik_iletkenligi", 18.2, "MΩ·cm", "µS/cm", 0.054945], ["elektrik_iletkenligi", 0.0172414, "Ω·mm²/m", "% IACS", 99.9999], ["elektrik_iletkenligi", 2, "dS/m", "µS/cm", 2000],
+  ["vida_hatvesi", 20, "TPI", "mm", 1.27], ["vida_hatvesi", 1.5, "mm", "TPI", 16.933333], ["alkol_derecesi", 45, "°", "US proof", 90], ["alkol_derecesi", 40, "% vol", "UK proof", 70],
+  ["hacim", 5, "ster", "m³", 5],
   ["iplik_numarasi", 30, "Ne", "tex", 19.684706], ["iplik_numarasi", 150, "den", "dtex", 166.666667], ["iplik_numarasi", 20, "tex", "Nm", 50], ["iplik_numarasi", 1, "tex", "den", 9],
 ];
 

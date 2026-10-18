@@ -423,6 +423,14 @@ export const SITE_NAV_DATA: SiteNavData = {
      "label": "Işınlama (Röntgen) Dönüşümleri"
     },
     {
+     "href": "/kategoriler/alkol-derecesi",
+     "label": "Alkol Derecesi Dönüşümleri (Proof)"
+    },
+    {
+     "href": "/kategoriler/vida-hatvesi",
+     "label": "Vida Hatvesi Dönüşümleri (TPI - mm)"
+    },
+    {
      "href": "/kategoriler/yagis-miktari",
      "label": "Yağış Miktarı Dönüşümleri"
     },

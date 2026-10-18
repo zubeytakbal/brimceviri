@@ -322,6 +322,20 @@ export const categoryPages: CategoryPage[] = [
       "1 R = 2,58 × 10⁻⁴ C/kg, 1 mR = 0,258 µC/kg; röntgen, miliröntgen, mikroröntgen ve coulomb/kilogram arası ışınlama dönüşümü.",
   },
   {
+    slug: "alkol-derecesi",
+    category: "alkol_derecesi",
+    title: "Alkol Derecesi Dönüşümleri (Proof)",
+    description:
+      "45° = %45 vol = 90 ABD proof = 78,75 İngiliz proof, 40° = 80 proof; alkol derecesini hacimce yüzde, ABD proof ve İngiliz proof arasında çevirin.",
+  },
+  {
+    slug: "vida-hatvesi",
+    category: "vida_hatvesi",
+    title: "Vida Hatvesi Dönüşümleri (TPI - mm)",
+    description:
+      "20 TPI = 1,27 mm hatve, 1,5 mm = 16,93 TPI, 14 TPI = 1,814 mm; vida diş adımını milimetre, diş/inç ve diş/cm arasında çevirin.",
+  },
+  {
     slug: "yagis-miktari",
     category: "yagis",
     title: "Yağış Miktarı Dönüşümleri",

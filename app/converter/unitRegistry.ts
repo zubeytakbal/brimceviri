@@ -2682,6 +2682,8 @@ export const unitRegistry: UnitRegistryEntry[] = [
   { id: "x-hacim-abd-cay-kasigi", category: "hacim", symbol: "tsp", siFactor: 4.92892159375e-6, tr: { name: "Çay kaşığı (ABD)", slug: "abd-cay-kasigi" } },
   { id: "x-hacim-abd-gill", category: "hacim", symbol: "gill", siFactor: 1.1829411825e-4, tr: { name: "Gill (ABD)", slug: "abd-gill" } },
   { id: "x-hacim-hogshead", category: "hacim", symbol: "hhd", siFactor: 0.238480942392, tr: { name: "Fıçı (hogshead, ABD)", slug: "hogshead" } },
+  // Ster: yakacak odunun istif hacmi; 1 m × 1 m × 1 m'lik istif, aradaki boşluklar dahil (1 ster = 1 m³ istif).
+  { id: "x-hacim-ster", category: "hacim", symbol: "ster", siFactor: 1, tr: { name: "Ster (istif odun)", slug: "ster" } },
   { id: "x-kutle-mikrogram", category: "kutle", symbol: "µg", siFactor: 1e-9, tr: { name: "Mikrogram", slug: "mikrogram" } },
   { id: "x-kutle-nanogram", category: "kutle", symbol: "ng", siFactor: 1e-12, tr: { name: "Nanogram", slug: "nanogram" } },
   { id: "x-kutle-santigram", category: "kutle", symbol: "cg", siFactor: 1e-5, tr: { name: "Santigram", slug: "santigram" } },
@@ -2858,6 +2860,22 @@ export const unitRegistry: UnitRegistryEntry[] = [
   { id: "ip-ne", category: "iplik_numarasi", symbol: "Ne", siFactor: 453.59237 / (840 * 0.9144) * 1000, inverse: true, tr: { name: "İngiliz pamuk numarası (Ne)", slug: "ingiliz-pamuk-numarasi" } },
   { id: "ip-nek", category: "iplik_numarasi", symbol: "Nek", siFactor: 453.59237 / (560 * 0.9144) * 1000, inverse: true, tr: { name: "Yün numarası (Nek, worsted)", slug: "yun-numarasi" } },
   { id: "ip-nl", category: "iplik_numarasi", symbol: "Nl", siFactor: 453.59237 / (300 * 0.9144) * 1000, inverse: true, tr: { name: "Keten numarası (Nl, lea)", slug: "keten-numarasi" } },
+
+  // ---- alkol derecesi ----
+  // Taban: % hacim (ABV). Türkiye'de "derece" (45° rakı) ve Gay-Lussac (°GL) % hacimle aynıdır.
+  // ABD proof = 2 × ABV. İngiliz proof (eski sistem): 100° proof = %57,14 ABV, yani proof = ABV × 7/4.
+  { id: "al-abv", category: "alkol_derecesi", symbol: "% vol", siFactor: 1, tr: { name: "Hacimce yüzde (% vol)", slug: "hacimce-yuzde-alkol" } },
+  { id: "al-derece", category: "alkol_derecesi", symbol: "°", siFactor: 1, tr: { name: "Derece (°, Gay-Lussac)", slug: "alkol-derecesi" } },
+  { id: "al-usproof", category: "alkol_derecesi", symbol: "US proof", siFactor: 0.5, tr: { name: "ABD proof", slug: "abd-proof" } },
+  { id: "al-ukproof", category: "alkol_derecesi", symbol: "UK proof", siFactor: 4 / 7, tr: { name: "İngiliz proof", slug: "ingiliz-proof" } },
+
+  // ---- vida hatvesi ----
+  // Taban: mm (diş adımı). Diş/inç (TPI) ters orantılıdır: hatve (mm) = 25,4 / TPI; diş/cm için 10 / değer.
+  { id: "vh-mm", category: "vida_hatvesi", symbol: "mm", siFactor: 1, tr: { name: "Milimetre (hatve)", slug: "milimetre-hatve" } },
+  { id: "vh-tpi", category: "vida_hatvesi", symbol: "TPI", siFactor: 25.4, inverse: true, tr: { name: "Diş/inç (TPI)", slug: "dis-bolu-inc" } },
+  { id: "vh-tpcm", category: "vida_hatvesi", symbol: "diş/cm", siFactor: 10, inverse: true, tr: { name: "Diş/santimetre", slug: "dis-bolu-santimetre" } },
+  { id: "vh-in", category: "vida_hatvesi", symbol: "inç", siFactor: 25.4, tr: { name: "İnç (hatve)", slug: "inc-hatve" } },
+  { id: "vh-um", category: "vida_hatvesi", symbol: "µm", siFactor: 0.001, tr: { name: "Mikrometre (hatve)", slug: "mikrometre-hatve" } },
 
   // ---- yağış miktarı ----
   // Taban: mm. 1 mm yağış = 1 m² alana 1 litre su = 1 kg/m². 1 dekarda (1000 m²) 1 mm = 1 m³ = yaklaşık 1 ton su; 1 hektarda 10 m³.

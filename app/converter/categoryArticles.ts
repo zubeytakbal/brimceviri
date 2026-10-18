@@ -32,6 +32,8 @@ import { radyoaktiviteCategoryArticle } from "./articles/radyoaktiviteCategory/A
 import { isinlamaCategoryArticle } from "./articles/isinlamaCategory/Article";
 import { suSertligiCategoryArticle } from "./articles/suSertligiCategory/Article";
 import { elektrikIletkenligiCategoryArticle } from "./articles/elektrikIletkenligiCategory/Article";
+import { vidaHatvesiCategoryArticle } from "./articles/vidaHatvesiCategory/Article";
+import { alkolDerecesiCategoryArticle } from "./articles/alkolDerecesiCategory/Article";
 import { alanaGoreFiyatCategoryArticle } from "./articles/alanaGoreFiyatCategory/Article";
 import { dekarBasinaDozCategoryArticle } from "./articles/dekarBasinaDozCategory/Article";
 import { dekarBasinaVerimCategoryArticle } from "./articles/dekarBasinaVerimCategory/Article";
@@ -388,6 +390,8 @@ export const categoryArticles: CategoryArticle[] = [
   isinlamaCategoryArticle,
   suSertligiCategoryArticle,
   elektrikIletkenligiCategoryArticle,
+  vidaHatvesiCategoryArticle,
+  alkolDerecesiCategoryArticle,
   alanaGoreFiyatCategoryArticle,
   dekarBasinaDozCategoryArticle,
   dekarBasinaVerimCategoryArticle,

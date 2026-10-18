@@ -268,6 +268,7 @@ export const turkishToolGroups: ToolGroup[] = [
       { href: "/awg-mm2-cevirici", label: "AWG - mm² Çevirici" },
       { href: "/mesh-mikron-cevirme", label: "Mesh - Mikron (Elek)" },
       { href: "/egim-cevirme", label: "Eğim Çevirme (% - Derece)" },
+      { href: "/brix-baume-cevirme", label: "Brix - Baumé Çevirme" },
       { href: "/boru-capi-hesaplama", label: "Boru Çapı, Debi ve Akış Hızı" },
       { href: "/boru-capi-donusum-hesaplama", label: "Boru Çapı Dönüşümü (DN-NPS)" },
       { href: "/tank-hacmi-hesaplama", label: "Tank Hacmi ve Doluluk" },

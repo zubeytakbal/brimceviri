@@ -101,6 +101,7 @@ export const turkishToolGroups: ToolGroup[] = [
       { href: "/bu-gece-gezegenler", label: "Bu Gece Hangi Gezegenler Görünür?" },
       { href: "/gokyuzu-olaylari-takvimi", label: "Gökyüzü Olayları Takvimi" },
       { href: "/gezegenlerde-yas-hesaplama", label: "Diğer Gezegenlerde Kaç Yaşındayım?" },
+      { href: "/gezegenlerde-kac-kilo-gelirim", label: "Diğer Gezegenlerde Kaç Kilo Gelirim?" },
       { href: "/firtina-takvimi", label: "Fırtına Takvimi" },
     ],
   },

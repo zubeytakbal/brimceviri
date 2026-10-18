@@ -62,7 +62,8 @@ export default function PlanetAgePage() {
       related={{
         title: "İlginizi çekebilir",
         links: [
-          { href: "/gokcisimleri-ozellikleri", label: "Gezegenlerde Kaç Kilo Gelirim?" },
+          { href: "/gezegenlerde-kac-kilo-gelirim", label: "Diğer Gezegenlerde Kaç Kilo Gelirim?" },
+          { href: "/gokcisimleri-ozellikleri", label: "Gezegenlerin Özellikleri" },
           { href: "/yas-hesaplama", label: "Yaş Hesaplama" },
           { href: "/bu-gece-gezegenler", label: "Bu Gece Hangi Gezegenler Görünür?" },
           { href: "/gokyuzu-olaylari-takvimi", label: "Gökyüzü Olayları Takvimi" },
@@ -143,7 +144,7 @@ export default function PlanetAgePage() {
         Yıl uzunlukları NASA&apos;nın gezegen bilgi sayfalarındaki yıldızıl yörünge dönemleridir (gezegenin yıldızlara göre Güneş çevresinde bir tur
         atma süresi). Gün uzunluğu Güneş&apos;in bir doğuşundan ötekine geçen süredir; Merkür ve Venüs&apos;te kendi ekseni çevresinde dönüş çok yavaş olduğu
         için bir Güneş günü aylarca sürer. Her gezegende kaç kilo geleceğinizi görmek için{" "}
-        <Link href="/gokcisimleri-ozellikleri">gezegenlerin özellikleri</Link> sayfasına bakabilirsiniz.
+        <Link href="/gezegenlerde-kac-kilo-gelirim">gezegenlerde kaç kilo gelirim</Link> aracına bakabilirsiniz.
       </p>
     </TimeToolPage>
   );

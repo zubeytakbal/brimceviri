@@ -170,6 +170,10 @@ export default function InsaatciAraclariPage() {
               döşeme, kolon, kiriş ve tekil temel için yaklaşık kalıp temas alanını bul.
             </li>
             <li>
+              <Link href="/sap-hacmi-hesaplama">Şap Hacmi Hesaplama</Link> —
+              zemin alanı ve ortalama kalınlıktan gereken hacmi hesapla.
+            </li>
+            <li>
               <Link href="/demir-agirlik-hesaplama">İnşaat Demiri Ağırlık Hesaplama</Link> —
               çap, boy ve adetten demir tonajını, 1 tonun kaç metre
               ettiğini ve pozlara göre metraj toplamını hesapla.

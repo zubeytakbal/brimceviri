@@ -3,6 +3,7 @@ import Link from "@/app/components/SiteLink";
 import Converter from "../converter/Converter";
 import { categoryPages } from "../converter/categoryPages";
 import { conversionPages } from "../converter/conversionPages";
+import { canonicalPairSlug, isMergedAway } from "../converter/mergedPairs";
 
 // Kategoriler konuya göre gruplanır; listede olmayan yeni kategori "Diğer" grubuna düşer.
 const GROUPS: Array<{ id: string; title: string; slugs: string[] }> = [
@@ -86,9 +87,9 @@ const POPULAR: Record<string, string[]> = {
 
 /** Kategoride öne çıkan dönüşüm çiftleri: önce arama verisindeki popüler çiftler, sonra kayıt sırası. */
 function topPairs(category: string, limit = 4) {
-  const inCategory = conversionPages.filter((c) => c.category === category);
+  const inCategory = conversionPages.filter((c) => c.category === category && !isMergedAway(c.slug));
   const bySlug = new Map(inCategory.map((c) => [c.slug, c]));
-  const ordered = [...(POPULAR[category] ?? []).map((slug) => bySlug.get(slug)).filter((c) => c !== undefined), ...inCategory];
+  const ordered = [...(POPULAR[category] ?? []).map((slug) => bySlug.get(canonicalPairSlug(slug))).filter((c) => c !== undefined), ...inCategory];
   const seen = new Set<string>();
   const out: Array<{ slug: string; label: string }> = [];
   for (const c of ordered) {

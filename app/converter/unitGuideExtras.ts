@@ -3,6 +3,7 @@
 // birim sayfalarinin da kendine ozgu, kullanisli icerik tasimasini saglar.
 import { convert } from "./convert";
 import { conversionPages } from "./conversionPages";
+import { canonicalPairSlug } from "./mergedPairs";
 import type { FaqItem } from "./faqSchema";
 import { unitPages, type UnitPage } from "./unitPages";
 import { getUnitsForCategory } from "./unitRegistry";
@@ -37,7 +38,7 @@ export function formatUnitValue(value: number) {
 
 function conversionHref(category: string, from: string, to: string) {
   const page = conversionPages.find((p) => p.category === category && p.fromUnit === from && p.toUnit === to);
-  return page ? `/${page.slug}` : null;
+  return page ? `/${canonicalPairSlug(page.slug)}` : null;
 }
 
 function guideHref(category: string, symbol: string) {

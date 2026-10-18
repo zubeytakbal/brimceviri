@@ -29,6 +29,8 @@ export function trPair(page: PageLike, value: number) {
   return `${formatTrNumber(value)} ${page.fromUnit} = ${formatTrNumber(result)} ${page.toUnit}`;
 }
 
+const reversed = (page: PageLike): PageLike => ({ ...page, fromUnit: page.toUnit, toUnit: page.fromUnit, fromName: page.toName, toName: page.fromName });
+
 type Override = {
   titles: string[];
   description: string;
@@ -219,7 +221,8 @@ export const TURKISH_SEO_OVERRIDES: Record<string, Override> = {
   },
 };
 
-export function turkishConversionSeo(page: PageLike) {
+/** twoWay: ters yönlü sayfa bu sayfaya birleştirildiyse açıklama iki yönü de verir. */
+export function turkishConversionSeo(page: PageLike, twoWay = false) {
   const override = TURKISH_SEO_OVERRIDES[page.slug];
   if (override) {
     return {
@@ -239,9 +242,11 @@ export function turkishConversionSeo(page: PageLike) {
     .join(", ");
   return {
     titles: [`1 ${page.fromName} Kaç ${page.toName}? – Çevirici`, `1 ${page.fromName} Kaç ${page.toName}?`],
-    description:
-      `1 ${page.fromName} kaç ${page.toName} eder? ${trPair(page, 1)}. ` +
-      `${sample ? `Örnek: ${sample}. ` : ""}Hesaplama aracı, formül ve dönüşüm tablosu.`,
+    description: twoWay
+      ? `1 ${page.fromName} kaç ${page.toName} eder? ${trPair(page, 1)}, ${trPair(reversed(page), 1)}. ` +
+        `${sample ? `Örnek: ${sample}. ` : ""}İki yönlü hesaplama aracı ve dönüşüm tabloları.`
+      : `1 ${page.fromName} kaç ${page.toName} eder? ${trPair(page, 1)}. ` +
+        `${sample ? `Örnek: ${sample}. ` : ""}Hesaplama aracı, formül ve dönüşüm tablosu.`,
     intro: undefined,
     extraFaq: [] as FaqItem[],
     exampleValues: undefined,

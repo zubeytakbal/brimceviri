@@ -1,5 +1,6 @@
 import { mergedPageRedirects } from "./mergedPageRedirects";
 import { routePairs } from "./converter/geo/routePairs";
+import { canonicalPairSlug, MERGED_PAIRS } from "./converter/mergedPairs";
 
 // Statik sitede (output: "export") Next.js yonlendirmeleri calismaz. Liste
 // derlemeden sonra scripts/postbuild.ts ile out/_redirects dosyasina
@@ -88,6 +89,8 @@ const localizedSectionRenames: Record<string, Record<string, string>> = {
 export function siteRedirects(): SiteRedirect[] {
   return [
     ...mergedPageRedirects(),
+    // Türkçe çift sayfalarda ters yön (ör. metre-kilometre) iki yönü birlikte anlatan sayfaya kalıcı yönlenir.
+    ...Object.entries(MERGED_PAIRS).map(([from, to]) => ({ source: `/${from}`, destination: `/${to}`, permanent: true })),
     // Il cifti sayfalari tek yonde yayinda; ters yon (ankara/istanbul) kalici olarak yonlendirilir.
     ...routePairs().map((p) => ({
       source: `/iller-arasi-mesafe/${p.to.id}/${p.from.id}`,
@@ -113,5 +116,9 @@ export function siteRedirects(): SiteRedirect[] {
         permanent: true,
       }))
     ),
-  ];
+  ].map((r) => ({
+    ...r,
+    // Hedefi birleştirilmiş bir çift olan eski yönlendirmeler zincir oluşturmasın, doğrudan kalan sayfaya gitsin.
+    destination: r.destination.replace(/^\/([a-z0-9-]+)(?=$|[?#])/, (_m, slug: string) => `/${canonicalPairSlug(slug)}`),
+  }));
 }

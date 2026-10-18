@@ -3,6 +3,7 @@ import OtherCategoriesPage from "../components/OtherCategoriesPage";
 import { getCategoryIconName } from "../components/siteIcons";
 import { categoryPages } from "../converter/categoryPages";
 import { conversionPages } from "../converter/conversionPages";
+import { isMergedAway } from "../converter/mergedPairs";
 import { homeCategoryOrder } from "../converter/homeCategoryOrder";
 import { buildSiteUrl } from "../siteConfig";
 
@@ -50,7 +51,7 @@ export default function DigerDonusumlerPage() {
   );
 
   const conversions = conversionPages
-    .filter((page) => secondaryCategorySet.has(page.category))
+    .filter((page) => secondaryCategorySet.has(page.category) && !isMergedAway(page.slug))
     .map((page) => ({
       id: page.slug,
       href: `/${page.slug}`,

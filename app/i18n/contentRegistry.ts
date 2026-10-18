@@ -1,6 +1,7 @@
 import { calculatorPages } from "../converter/calculatorPages";
 import { categoryPages } from "../converter/categoryPages";
 import { conversionPages } from "../converter/conversionPages";
+import { isMergedAway } from "../converter/mergedPairs";
 import { englishCalculatorPages } from "../converter/localizedCalculatorPages";
 import { englishCategoryPages } from "../converter/localizedCategoryPages";
 import { englishConversionPages } from "../converter/localizedConversionPages";
@@ -266,7 +267,8 @@ const localizedSlugEntriesByLocale: Record<
     da: [],
   },
   conversions: {
-    tr: conversionPages.map((page) => ({
+    // Ters yönü birleştirilen Türkçe adresler yayında değil; diğer diller onlara hreflang vermesin.
+    tr: conversionPages.filter((page) => !isMergedAway(page.slug)).map((page) => ({
       sourceSlug: page.slug,
       slug: page.slug,
     })),

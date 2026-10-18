@@ -11,6 +11,7 @@ import { findCategoryArticle } from "../../converter/categoryArticles";
 import { calculatorPages } from "../../converter/calculatorPages";
 import { categoryPages } from "../../converter/categoryPages";
 import { conversionPages } from "../../converter/conversionPages";
+import { canonicalPairSlug, isMergedAway } from "../../converter/mergedPairs";
 import { everydayToolLinksByCategory } from "../../converter/everydayToolLinksByCategory";
 import { buildFullLanguageAlternates } from "../../i18n/routing";
 import { homeCategoryOrder } from "../../converter/homeCategoryOrder";
@@ -122,7 +123,7 @@ export default async function CategoryPage({
   );
   const conversionCards = createConversionCards({
     conversions: categoryConversions,
-    hrefForSlug: (conversionSlug) => `/${conversionSlug}`,
+    hrefForSlug: (conversionSlug) => `/${canonicalPairSlug(conversionSlug)}`,
     directionLabel: (conversion) =>
       `${conversion.fromName} → ${conversion.toName}`,
     symbolSeparator: "↔",
@@ -222,7 +223,7 @@ export default async function CategoryPage({
     mainEntity: {
       "@type": "ItemList",
       numberOfItems: categoryConversions.length,
-      itemListElement: categoryConversions.map(
+      itemListElement: categoryConversions.filter((conversion) => !isMergedAway(conversion.slug)).map(
         (conversion, index) => ({
           "@type": "ListItem",
           position: index + 1,

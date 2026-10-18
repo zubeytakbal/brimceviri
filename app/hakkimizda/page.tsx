@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import StaticPageLayout from "../components/StaticPageLayout";
-import { SITE_NAME, SITE_URL } from "../siteConfig";
+import { categoryPages } from "../converter/categoryPages";
+import { SITE_CONTACT_EMAIL, SITE_NAME, SITE_URL } from "../siteConfig";
 
 export const metadata: Metadata = {
   title: "Hakkımızda",
   description:
-    "BirimCeviri.app nedir, sitede hangi araçlar var, hesaplamalar hangi kaynaklara dayanıyor ve hatalar nasıl düzeltiliyor?",
+    "BirimCeviri.app'i kim hazırlıyor, sitede hangi araçlar var, hesaplamalar hangi kaynaklara dayanıyor ve nasıl doğrulanıyor?",
   alternates: {
     canonical: "/hakkimizda",
     languages: {
@@ -36,21 +37,22 @@ export default function AboutPage() {
         { label: "Hakkımızda" },
       ]}
       title="Hakkımızda"
-      description="BirimCeviri.app; birim çevirme, günlük hesaplama ve teknik hesaplama araçlarını ücretsiz ve hesap açmadan kullanılabilir şekilde bir araya getiren bir sitedir."
+      description="BirimCeviri.app; birim çevirilerini, Türkiye'ye özgü ölçüleri ve günlük hesaplama araçlarını ücretsiz, hesap açmadan ve kaynaklarıyla birlikte sunan bağımsız bir sitedir."
       sections={[
         {
           heading: "BirimCeviri.app nedir?",
           content: (
             <>
               <p>
-                BirimCeviri.app; birim çevirme, günlük hesaplama ve teknik hesaplama araçlarını
-                bir arada sunan ücretsiz bir sitedir. Araçları kullanmak için hesap açmanız
-                gerekmez; hesaplamalar doğrudan tarayıcınızda yapılır.
+                BirimCeviri.app, <strong>Z. A.</strong> tarafından hazırlanan ve birim çevirilerini, hesaplama araçlarını ücretsiz sunan bağımsız bir sitedir. Sitedeki
+                çeviriciler, açıklamalar ve tablolar tek tek hazırlanır; her yeni araç yayımlanmadan önce hesaplamaları kaynaklarıyla
+                karşılaştırılarak denenir.
               </p>
               <p>
-                Amaç, günlük kullanım ile teknik ihtiyaçlar arasında köprü kuran hızlı ve
-                anlaşılır araçlar sunmak; sonucun yanında birimin nerede kullanıldığını ve sık
-                yapılan hataları da anlatmaktır.
+                Sitenin çıkış noktası basit bir ihtiyaçtır: Türkçe kaynaklarda birim çevirileri dağınık, çoğu zaman eksik ya da yanlış
+                yuvarlanmış durumda. Dönüm, okka, arşın, ezani saat, eski Türk lirası gibi Türkiye&apos;ye özgü ölçülerin doğru karşılığını
+                bulmak ise daha da zor. BirimCeviri.app bu çevirileri tek bir yerde, açıklamaları ve hesap yöntemiyle birlikte sunmak
+                için hazırlandı.
               </p>
             </>
           ),
@@ -59,40 +61,53 @@ export default function AboutPage() {
           heading: "Sitede neler var?",
           content: (
             <ul>
-              <li>Birim çeviricileri: uzunluk, kütle, sıcaklık, hacim, alan, basınç, enerji, güç, veri, hız ve tarihî ölçüler.</li>
-              <li>Günlük hesaplayıcılar: yaş, kredi, KDV, maaş, vücut kitle indeksi, uyku, yakıt tüketimi, boya ve fayans gibi.</li>
-              <li>Tarih ve zaman araçları: Türkiye takvimi, resmî tatiller, özel günler, geri sayım, dünya saatleri ve zamanlayıcılar.</li>
-              <li>Mühendislik ve bilim: elektrik, akışkanlar, malzeme özellikleri, kimya, matematik, fizik ve biyoloji hesapları.</li>
-              <li>Coğrafya: ülkeler ve başkentleri, iller arası mesafe, il rakımları, harita ölçeği ve koordinat dönüştürücü.</li>
+              <li>
+                <Link href="/tum-birimler">Birim çeviricileri</Link>: uzunluk, kütle, alan, hacim, sıcaklık ve basınçtan elektrik
+                iletkenliğine, su sertliğine ve kumaş gramajına kadar {categoryPages.length} kategori.
+              </li>
+              <li>
+                Türkiye&apos;ye özgü çeviriler: <Link href="/eski-para-yeni-para-cevirme">eski para - yeni para</Link>,{" "}
+                <Link href="/ezani-saat-cevirme">ezani saat</Link>, <Link href="/ebced-hesabi">ebced hesabı</Link>,{" "}
+                <Link href="/tarih-cevirici">hicri ve Rumi tarih</Link>, dönüm ve eski Osmanlı ölçüleri.
+              </li>
+              <li>
+                Ölçü numaraları ve tablolar: <Link href="/kagit-boyutlari">kâğıt boyutları</Link>,{" "}
+                <Link href="/bofor-cevirme">bofor</Link>, <Link href="/mesh-mikron-cevirme">elek numaraları</Link>,{" "}
+                <Link href="/egim-cevirme">eğim</Link>, ayakkabı, beden ve yüzük ölçüleri.
+              </li>
+              <li>Günlük hesaplayıcılar: yaş, KDV, maaş, kredi, yakıt tüketimi, boya ve fayans gibi.</li>
+              <li>Tarih ve zaman araçları: Türkiye takvimi, resmî tatiller, ay evreleri, gün doğumu ve batımı, geri sayım.</li>
+              <li>Mühendislik araçları: elektrik, akışkanlar, malzeme ve çelik profil tabloları.</li>
             </ul>
           ),
         },
         {
-          heading: "Hesaplamalar ve kaynaklar",
+          heading: "Hesaplamalar nasıl doğrulanıyor?",
           content: (
             <>
               <p>
-                Birim katsayıları uluslararası tanımlara dayanır (SI Birim Sistemi ve ABD Ulusal
-                Standartlar ve Teknoloji Enstitüsü NIST yayınları); örneğin 1 inç tam olarak
-                2,54 cm, 1 pound tam olarak 0,45359237 kg kabul edilir. Kimyasal hesaplarda IUPAC
-                standart atom kütleleri, coğrafi hesaplarda GeoNames koordinatları, dini günlerde
-                Diyanet İşleri Başkanlığı takvimi kullanılır.
+                Birim katsayıları uluslararası tanımlardan alınır: SI Birim Sistemi (BIPM) ve ABD Ulusal Standartlar ve Teknoloji
+                Enstitüsü&apos;nün NIST SP 811 yayını. Örneğin 1 inç tam olarak 2,54 cm, 1 pound tam olarak 0,45359237 kg&apos;dır. Sitedeki
+                bütün katsayılar her güncellemede otomatik testlerle bu tanım değerlerine karşı yeniden kontrol edilir; bir katsayı
+                yanlış girilirse site yayımlanmadan önce hata verir.
               </p>
               <p>
-                Sayfaların altında o sayfada kullanılan kaynaklar ayrıca belirtilir. Kesin
-                tanımı olmayan değerler (örneğin malzeme yoğunluğu, tahmini tarihler) sayfada
-                &quot;yaklaşık&quot; ya da &quot;tahmini&quot; olarak işaretlenir.
+                Tablolar ilgili standartlardan hazırlanır: kâğıt boyutları ISO 216, elek açıklıkları ASTM E11, bofor ölçeği Dünya
+                Meteoroloji Örgütü tabloları, para sadeleştirmeleri ilgili kanunlar ve merkez bankası duyurularıdır. Kaynağı
+                doğrulanamayan bir değer siteye eklenmez; kesin tanımı olmayan değerler (örneğin malzeme yoğunluğu) sayfada
+                &quot;yaklaşık&quot; olarak işaretlenir ve kullanılan kaynak sayfanın altında belirtilir.
               </p>
             </>
           ),
         },
         {
-          heading: "Doğruluk ve düzeltmeler",
+          heading: "Hata bildirimi ve düzeltmeler",
           content: (
             <p>
-              Bir hesaplamada ya da bilgide hata görürseniz{" "}
-              <Link href="/iletisim">iletişim sayfasındaki</Link> e-posta adresine sayfa adresiyle birlikte
-              yazabilirsiniz. Bildirilen hatalar incelenir ve doğrulanırsa sayfa düzeltilir.
+              Bir hesaplamada ya da bilgide hata görürseniz sayfa adresiyle birlikte{" "}
+              <a href={`mailto:${SITE_CONTACT_EMAIL}`}>{SITE_CONTACT_EMAIL}</a> adresine yazabilirsiniz (
+              <Link href="/iletisim">iletişim sayfası</Link>). Bildirilen hatalar incelenir; doğrulanırsa sayfa düzeltilir ve aynı
+              hatanın tekrar etmemesi için gerekirse otomatik testlere eklenir.
             </p>
           ),
         },
@@ -100,26 +115,20 @@ export default function AboutPage() {
           heading: "Reklam ve bağımsızlık",
           content: (
             <p>
-              Site ücretsizdir; barındırma ve geliştirme giderlerini karşılamak için sayfalarda
-              reklam gösterilebilir. Reklamlar içerikten ayrı alanlarda yer alır ve hesaplama
-              sonuçlarını ya da sayfalardaki bilgileri etkilemez. Kişisel verilerin nasıl
-              işlendiği <Link href="/gizlilik">Gizlilik Politikası</Link> sayfasında anlatılır.
+              Site ücretsizdir ve hesap açmadan kullanılır; hesaplamalar tarayıcınızda yapılır, girdiğiniz değerler saklanmaz. Barındırma
+              ve geliştirme giderlerini karşılamak için sayfalarda reklam gösterilebilir. Reklamlar içerikten ayrı alanlarda yer alır ve
+              hesaplama sonuçlarını etkilemez. Kişisel verilerin nasıl işlendiği <Link href="/gizlilik">Gizlilik Politikası</Link>{" "}
+              sayfasında, kullanım şartları <Link href="/kullanim-kosullari">Kullanım Koşulları</Link> sayfasında anlatılır.
             </p>
           ),
         },
         {
           heading: "Önemli kullanım notu",
           content: (
-            <>
-              <p>
-                Hesaplayıcılar ve bilgi sayfaları bilgilendirme ve ön değerlendirme amacıyla
-                sunulur.
-              </p>
-              <p>
-                Kritik mühendislik, sağlık, hukuk veya güvenlik kararlarında sonuçları proje,
-                standart ve profesyonel doğrulama kaynaklarıyla ayrıca kontrol edin.
-              </p>
-            </>
+            <p>
+              Araçlar bilgilendirme ve ön değerlendirme amacıyla sunulur. Kritik mühendislik, sağlık, hukuk veya güvenlik kararlarında
+              sonuçları ilgili standart ve uzman görüşüyle ayrıca kontrol edin.
+            </p>
           ),
         },
       ]}

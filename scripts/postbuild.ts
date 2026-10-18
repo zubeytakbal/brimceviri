@@ -14,9 +14,12 @@
 //    metni cok kisaysa build'i durdurur.
 // 6. Parametreli site ici baglantilara rel="nofollow" (nofollowQueryLinks).
 // 7. Site haritasi denetimi (scripts/sitemapGuard.ts): dizine acik her sayfa sitemap.xml'de olmali.
+// 8. Dizin politikasi (app/indexPolicy.ts): kapali sayfalar "noindex, follow" olur ve hicbir sayfanin
+//    hreflang alternatiflerinde yer almaz. Sablon ve ince sayfa denetimlerinden once calisir.
 import { existsSync, readdirSync, readFileSync, unlinkSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { LOCALE_DEFINITIONS } from "../app/i18n/config";
+import { isClosedPath } from "../app/indexPolicy";
 import { siteRedirects } from "../app/siteRedirects";
 import { checkTemplates } from "./templateGuard";
 import { checkThinPages, MIN_KARAKTER } from "./thinGuard";
@@ -43,7 +46,14 @@ function removeRscPayloads(dir: string): number {
   return removed;
 }
 
-function writeRedirects(): number {
+// Cloudflare Pages en fazla 2000 sabit ve 100 dinamik (":ad" ya da "*" iceren) kural okur. Okuyucu ilk dinamik
+// kuraldan sonra gelen her kurali dinamik sayar ve 100'u gecince dosyanin geri kalanini atlar; bu yuzden sabit
+// kurallar her zaman once yazilir. (Ekim 2026'ya kadar karisik sira yuzunden 364. satirdan sonrasi calismiyordu.)
+const MAX_STATIC_REDIRECTS = 2000;
+const MAX_DYNAMIC_REDIRECTS = 100;
+const isDynamic = (from: string) => /[:*]/.test(from);
+
+function writeRedirects() {
   const lines: string[] = [];
   for (const { source, destination, permanent } of siteRedirects()) {
     const status = permanent ? 301 : 302;
@@ -58,8 +68,10 @@ function writeRedirects(): number {
       lines.push(`${source} ${destination} ${status}`);
     }
   }
-  writeFileSync(join(OUT, "_redirects"), lines.join("\n") + "\n");
-  return lines.length;
+  const staticLines = lines.filter((l) => !isDynamic(l.split(" ")[0]));
+  const dynamicLines = lines.filter((l) => isDynamic(l.split(" ")[0]));
+  writeFileSync(join(OUT, "_redirects"), [...staticLines, ...dynamicLines].join("\n") + "\n");
+  return { static: staticLines.length, dynamic: dynamicLines.length };
 }
 
 const HTML_TAG = '<html lang="tr" dir="ltr"';
@@ -119,9 +131,85 @@ function nofollowQueryLinks(): number {
   return changed;
 }
 
+// Ozbekce AdSense'in destekledigi diller arasinda degil (app/uz/layout.tsx): kok layout'taki AdSense kodu bu sayfalardan silinir.
+function stripAdsenseFromUzbek() {
+  let n = 0;
+  const walk = (dir: string) => {
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      const path = join(dir, entry.name);
+      if (entry.isDirectory()) walk(path);
+      else if (entry.name.endsWith(".html")) {
+        const html = readFileSync(path, "utf8");
+        const next = html.replace(/<script id="adsense"[^>]*><\/script>/, "");
+        if (next !== html) {
+          writeFileSync(path, next);
+          n++;
+        }
+      }
+    }
+  };
+  if (existsSync(join(OUT, "uz"))) walk(join(OUT, "uz"));
+  for (const f of [join(OUT, "uz.html")]) {
+    if (!existsSync(f)) continue;
+    const html = readFileSync(f, "utf8");
+    const next = html.replace(/<script id="adsense"[^>]*><\/script>/, "");
+    if (next !== html) {
+      writeFileSync(f, next);
+      n++;
+    }
+  }
+  return n;
+}
+
+const SITE = "https://www.birimceviri.app";
+
+function applyIndexPolicy() {
+  let closed = 0;
+  let alternates = 0;
+  const walk = (dir: string) => {
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      const path = join(dir, entry.name);
+      if (entry.isDirectory()) {
+        if (entry.name !== "_next") walk(path);
+        continue;
+      }
+      if (!entry.name.endsWith(".html")) continue;
+      const rel = "/" + path.slice(OUT.length + 1).replace(/\\/g, "/").replace(/\.html$/, "");
+      const url = rel === "/index" ? "/" : rel.endsWith("/index") ? rel.slice(0, -6) : rel;
+      let html = readFileSync(path, "utf8");
+      const before = html;
+      html = html.replace(/<link rel="alternate" hrefLang="[^"]*" href="([^"]*)"\/>/g, (tag, href: string) => {
+        if (!href.startsWith(SITE) || !isClosedPath(href.slice(SITE.length) || "/")) return tag;
+        alternates++;
+        return "";
+      });
+      if (isClosedPath(url) && !/<meta name="robots" content="[^"]*noindex/.test(html)) {
+        html = /<meta name="robots" content="[^"]*"\/>/.test(html)
+          ? html.replace(/<meta name="robots" content="[^"]*"\/>/, '<meta name="robots" content="noindex, follow"/>')
+          : html.replace("</head>", '<meta name="robots" content="noindex, follow"/></head>');
+        closed++;
+      }
+      if (html !== before) writeFileSync(path, html);
+    }
+  };
+  walk(OUT);
+  return { closed, alternates };
+}
+
 console.log(`${removeRscPayloads(OUT)} sayfa gecis verisi (.txt) silindi`);
+const policy = applyIndexPolicy();
+console.log(`Dizin politikası: ${policy.closed} sayfa noindex yapıldı, ${policy.alternates} hreflang bağlantısı kaldırıldı`);
 console.log(`${fixHtmlLang()} sayfada <html lang> dile gore duzeltildi`);
-console.log(`out/_redirects: ${writeRedirects()} yonlendirme yazildi`);
+console.log(`${stripAdsenseFromUzbek()} Ozbekce sayfadan AdSense kodu cikarildi`);
+const redirects = writeRedirects();
+console.log(`out/_redirects: ${redirects.static} sabit + ${redirects.dynamic} dinamik yonlendirme yazildi`);
+if (redirects.static > MAX_STATIC_REDIRECTS || redirects.dynamic > MAX_DYNAMIC_REDIRECTS) {
+  console.error(
+    `Cloudflare Pages siniri asildi: en fazla ${MAX_STATIC_REDIRECTS} sabit ve ${MAX_DYNAMIC_REDIRECTS} dinamik yonlendirme okunur. ` +
+      "Fazlasi sessizce yok sayilir; app/siteRedirects.ts listesini kisaltin ya da dinamik kurallari birlestirin.",
+  );
+  process.exit(1);
+}
 console.log(`${nofollowQueryLinks()} parametreli site ici baglantiya rel="nofollow" eklendi`);
 
 // 4. Şablon sayfa denetimi: kopya kardeş sayfa grubu varsa build durur.

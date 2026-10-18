@@ -5,11 +5,13 @@ import MoonRiseSet, { type MoonPlace } from "./MoonRiseSet";
 import { turkeyProvinces } from "../../converter/geo/turkeyProvinces";
 import { regionNames, worldCities, worldRegions } from "../../converter/time/worldCities";
 import type { FaqItem } from "../../converter/faqSchema";
-import { moonState, type PhaseKind, type PhaseName } from "../../converter/time/moon";
+import { moonPhasesBetween, type PhaseKind, type PhaseName } from "../../converter/time/moon";
 import TimeToolPage from "../time/TimeToolPage";
 import { buildSiteUrl } from "../../siteConfig";
 import LiveMoon, { type LiveMoonCopy } from "./LiveMoon";
 import MoonIcon from "./MoonIcon";
+import { moonPosition, moonSign, ZODIAC_EN, ZODIAC_TR } from "../../converter/time/moonPosition";
+import { MoonSignSection, SupermoonSection } from "./MoonSkySections";
 
 // Ay evreleri ve dolunay takvimi (TR: Turkiye saati, EN: UTC). Meeus algoritmasiyla
 // hesaplanir; tarihe bagli bolumler tarayicida ziyaretcinin saatiyle yenilenir.
@@ -138,7 +140,13 @@ function moonPlaces(lang: "tr" | "en"): MoonPlace[] {
 export default function MoonPhasesPage({ lang }: { lang: "tr" | "en" }) {
   const tr = lang === "tr";
   const now = new Date();
-  const state = moonState(now);
+  const sign = moonSign(now);
+  const signFmt = new Intl.DateTimeFormat("tr-TR", { timeZone: "Europe/Istanbul", day: "numeric", month: "long", hour: "2-digit", minute: "2-digit" });
+  const yearNow = Number(new Intl.DateTimeFormat("en", { timeZone: "Europe/Istanbul", year: "numeric" }).format(now));
+  const nextFulls = moonPhasesBetween(now, new Date(now.getTime() + 400 * 86400000))
+    .filter((e) => e.kind === "full")
+    .map((e) => ({ date: e.date, km: moonPosition(e.date).distance }));
+  const nextSuper = nextFulls.reduce((a, b) => (b.km < a.km ? b : a));
   // Dolunayin %97'den fazla aydinlik gorundugu sure: (1 - cos a) / 2 >= 0.97.
   const nearFullDays = ((Math.PI - Math.acos(1 - 2 * 0.97)) / Math.PI) * 29.530589;
 
@@ -147,6 +155,8 @@ export default function MoonPhasesPage({ lang }: { lang: "tr" | "en" }) {
         { question: "Bugün ay hangi evrede?", answer: "Sayfanın en üstündeki canlı gösterge Ay'ın şu anki evresini, aydınlanma yüzdesini ve ay yaşını saniye saniye gösterir. Hemen altındaki şeritte dün, yarın ve önümüzdeki günlerin ayı da görülür." },
         { question: "Geçen salı (ya da dün) ay nasıldı?", answer: "\"Son 7 gün ve önümüzdeki 7 gün\" şeridinde her günün akşamki ay görünümü, evre adı ve aydınlanma yüzdesi yer alır. Daha eski bir gün için \"Herhangi bir günde ay nasıldı?\" bölümünden tarihi seçmeniz yeterli." },
         { question: "Ay döngüsü kaç gün sürer?", answer: "Bir yeni aydan diğerine ortalama 29,53 gün geçer (sinodik ay). Ay'ın yörüngesi eliptik olduğu için tek tek döngüler 29,2 ile 29,9 gün arasında değişebilir." },
+        { question: "Ay şu an hangi burçta?", answer: `Ay şu an ${ZODIAC_TR[sign.sign]} burcunda ve ${signFmt.format(sign.ingress)} sularında ${ZODIAC_TR[sign.next]} burcuna geçiyor. Ay bir burçta ortalama 2,5 gün kalır; önümüzdeki iki haftanın geçiş saatleri "Ay bugün hangi burçta?" bölümündeki tabloda yer alır. Burç, Ay'ın gökyüzündeki konumuna (tropikal zodyak) göre hesaplanır.` },
+        { question: "Bir sonraki süper ay ne zaman?", answer: `Önümüzdeki 13 ayın Dünya'ya en yakın dolunayı ${signFmt.format(nextSuper.date)} (Türkiye saati) tarihinde, Ay ${Math.round(nextSuper.km).toLocaleString("tr-TR")} km uzaktayken gerçekleşiyor. ${yearNow} ve ${yearNow + 1} yıllarının bütün dolunayları uzaklıklarıyla birlikte "Süper ay ve mikro ay" bölümündedir.` },
         { question: "Bir ay evresi kaç gün sürer?", answer: "Yeni ay, ilk dördün, dolunay ve son dördün aslında tek bir anda gerçekleşir; bu sayfada o anın bir gün öncesi ve sonrası aynı adla gösterilir (yaklaşık 2 gün). Aradaki hilal ve şişkin ay evrelerinin her biri yaklaşık 5,4 gün sürer." },
         { question: "Dolunay kaç gün sürer?", answer: `Tam dolunay tek bir andır, ama Ay yaklaşık ${nearFullDays.toLocaleString("tr-TR", { maximumFractionDigits: 1 })} gün boyunca %97'den fazla aydınlık görünür. Bu yüzden dolunaydan bir gün önce ve sonra da gözle dolunay gibi görünür.` },
         { question: "Dolunaydan sonra hangi evre gelir?", answer: "Dolunaydan sonra küçülen şişkin ay, ardından son dördün (sol yarısı aydınlık yarım ay), küçülen hilal ve yeni ay gelir. Sıralama: yeni ay, büyüyen hilal, ilk dördün, büyüyen şişkin ay, dolunay, küçülen şişkin ay, son dördün, küçülen hilal." },
@@ -164,8 +174,8 @@ export default function MoonPhasesPage({ lang }: { lang: "tr" | "en" }) {
       ];
 
   const copy: LiveMoonCopy = tr
-    ? { caption: "Ay şu an", illumination: "Aydınlanma", age: "Ay yaşı", days: "gün", nextFull: "Sonraki dolunay", nextNew: "Sonraki yeni ay", names: NAMES.tr }
-    : { caption: "The Moon now", illumination: "Illumination", age: "Moon age", days: "days", nextFull: "Next full moon", nextNew: "Next new moon", names: NAMES.en };
+    ? { caption: "Ay şu an", illumination: "Aydınlanma", age: "Ay yaşı", days: "gün", nextFull: "Sonraki dolunay", nextNew: "Sonraki yeni ay", names: NAMES.tr, sign: "Burcu", distance: "Dünya'ya uzaklık", signNames: ZODIAC_TR, until: "burcuna geçiş:" }
+    : { caption: "The Moon now", illumination: "Illumination", age: "Moon age", days: "days", nextFull: "Next full moon", nextNew: "Next new moon", names: NAMES.en, sign: "Zodiac sign", distance: "Distance from Earth", signNames: ZODIAC_EN, until: "from" };
 
   return (
     <TimeToolPage
@@ -180,7 +190,7 @@ export default function MoonPhasesPage({ lang }: { lang: "tr" | "en" }) {
           ? "Ay'ın şu anki evresi, son 7 gün ile önümüzdeki 7 günün ay görünümü, istediğiniz bir tarihte ayın nasıl olduğu ve dolunay, yeni ay saatleri. Tüm saatler Türkiye saatidir."
           : "The Moon's current phase, the last and next 7 days, the Moon on any date you choose, and exact full and new moon times in UTC."
       }
-      tool={<LiveMoon lang={lang} copy={copy} initialFraction={state.fraction} />}
+      tool={<LiveMoon lang={lang} copy={copy} initialNow={now.getTime()} />}
       related={{
         title: tr ? "İlginizi çekebilir" : "You may also like",
         links: tr
@@ -207,6 +217,8 @@ export default function MoonPhasesPage({ lang }: { lang: "tr" | "en" }) {
         { id: "takvim", label: tr ? "Aylık ay takvimi" : "Monthly moon calendar" },
         { id: "dolunaylar", label: tr ? "Önümüzdeki dolunaylar" : "Upcoming full moons" },
         { id: "evreler", label: tr ? "Tüm ay evreleri" : "All moon phases" },
+        { id: "burc", label: tr ? "Ay bugün hangi burçta?" : "Moon zodiac sign" },
+        { id: "super-ay", label: tr ? "Süper ay ve mikro ay" : "Supermoon and micromoon" },
         { id: tr ? "tutulmalar" : "eclipses", label: tr ? "Ay ve Güneş tutulmaları" : "Lunar and solar eclipses" },
         { id: "takvime-ekle", label: tr ? "Takviminize ekleyin" : "Add to your calendar" },
         { id: "nedir", label: tr ? "Ay evreleri nelerdir? (8 evre)" : "The eight phases" },
@@ -232,6 +244,10 @@ export default function MoonPhasesPage({ lang }: { lang: "tr" | "en" }) {
           </>
         }
       />
+
+      <MoonSignSection lang={lang} now={now} />
+
+      <SupermoonSection lang={lang} now={now} />
 
       <EclipseSection lang={lang} now={now} />
 

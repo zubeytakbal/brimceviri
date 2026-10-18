@@ -34,3 +34,9 @@ describe("gezegenlerde yaş", () => {
     expect((mars.date.getTime() - birth.getTime()) / 86400000).toBeCloseTo(15 * 686.98, 3);
   });
 });
+
+describe("tam yaş", () => {
+  it("girilen Dünya yaşı aşağı yuvarlanmaz", () => {
+    for (const a of [1, 18, 25, 40, 65]) expect(Math.floor(byId(planetAges(daysFromYears(a)), "dunya").age)).toBe(a);
+  });
+});

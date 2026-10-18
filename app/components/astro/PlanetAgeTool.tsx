@@ -5,6 +5,15 @@ import { daysBetween, daysFromYears, planetAges } from "../../converter/time/pla
 
 const num = (v: number, digits: number) => v.toLocaleString("tr-TR", { minimumFractionDigits: digits, maximumFractionDigits: digits });
 const ageText = (v: number) => num(v, v < 10 ? 2 : 1);
+/** Kalan süre: iki yıldan kısaysa gün, uzunsa Dünya yılı olarak. */
+const waitText = (days: number) =>
+  days < 730 ? `${Math.ceil(days).toLocaleString("tr-TR")} Dünya günü` : `yaklaşık ${num(days / 365.25, 1)} Dünya yılı`;
+/** Dünya yaşını virgülsüz yazar: "25 yaşınızı 12 gün geçince". */
+function earthAgeText(years: number) {
+  const whole = Math.floor(years);
+  const days = Math.round((years - whole) * 365.25);
+  return days ? `${whole} yaşınızı ${days} gün geçince` : `${whole} yaşınıza girdiğinizde`;
+}
 const dateText = (d: Date) => new Intl.DateTimeFormat("tr-TR", { timeZone: "UTC", day: "numeric", month: "long", year: "numeric" }).format(d);
 
 export default function PlanetAgeTool({ defaultAge }: { defaultAge: number }) {
@@ -44,16 +53,28 @@ export default function PlanetAgeTool({ defaultAge }: { defaultAge: number }) {
       </div>
       <div className="date-calc-results" aria-live="polite">
         {rows ? (
-          rows.map((r) => (
-            <div key={r.id} className={r.id === "dunya" ? "date-calc-stat is-main" : "date-calc-stat"}>
-              <span>{r.name}</span>
-              <strong>{ageText(r.age)} yaş</strong>
-              <em>
-                Bir yılı {num(r.orbitDays, 0)} Dünya günü · orada {Math.floor(r.localDays).toLocaleString("tr-TR")} gün yaşadınız
-                {r.next ? ` · ${r.next.age}. doğum gününüz: ${dateText(r.next.date)}` : ""}
-              </em>
-            </div>
-          ))
+          rows.map((r) => {
+            const whole = Math.floor(r.age);
+            const nextText = whole >= 1 ? `${whole + 1} yaşına` : "1 yaşına";
+            // Doğum tarihi biliniyorsa kalan süre ve tarih; yalnızca yaş girildiyse o yaşa Dünya'da kaç yaşındayken girildiği.
+            const when = r.next
+              ? `${nextText} girmenize ${waitText((r.next.date.getTime() - birthDate!.getTime()) / 86400000 - days!)} kaldı (${dateText(r.next.date)}).`
+              : r.id === "dunya"
+                ? ""
+                : `${nextText}, Dünya'da ${earthAgeText(((whole + 1) * r.orbitDays) / 365.25)} girersiniz.`;
+            return (
+              <div key={r.id} className={r.id === "dunya" ? "date-calc-stat is-main" : "date-calc-stat"}>
+                <span>{r.name}</span>
+                <strong>{whole >= 1 ? `${whole} yaşındasınız` : "Henüz 1 yaşında değilsiniz"}</strong>
+                <em>
+                  {whole < 1 ? `İlk yılınız %${Math.floor(r.age * 100)} tamamlandı. ` : ""}
+                  {when}
+                  {(when || whole < 1) && <br />}
+                  Tam değer {ageText(r.age)} yıl · bir yılı {num(r.orbitDays, 0)} Dünya günü · orada {Math.floor(r.localDays).toLocaleString("tr-TR")} gün yaşadınız
+                </em>
+              </div>
+            );
+          })
         ) : (
           <div className="date-calc-stat is-main">
             <span>Gezegenlerdeki yaşınız</span>

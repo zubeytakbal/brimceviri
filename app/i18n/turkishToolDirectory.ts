@@ -97,6 +97,7 @@ export const turkishToolGroups: ToolGroup[] = [
       { href: "/roma-rakamlari-cevirme", label: "Roma Rakamları Çevirici" },
       { href: "/ay-evreleri", label: "Ay Evreleri" },
       { href: "/ay-gozlem-cizelgesi", label: "Ay Gözlem Çizelgesi" },
+      { href: "/yukselen-burc-hesaplama", label: "Yükselen Burç ve Ay Burcu Hesaplama" },
       { href: "/firtina-takvimi", label: "Fırtına Takvimi" },
     ],
   },

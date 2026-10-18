@@ -95,7 +95,7 @@ export default function TheoreticalLatencyPage() {
               Büyük Daire Mesafesi Hesaplama
             </Link>
             {" "}sayfasına, diğer bilgisayar donanımı araçları için{" "}
-            <Link href="/bilgisayar-donanimcisi-araclari">Bilgisayar Donanımcısı Araçları</Link>
+            <Link href="/hesaplayicilar#teknik">Teknik ve Mühendislik</Link>
             {" "}sayfasına bakabilirsin.
           </p>
 

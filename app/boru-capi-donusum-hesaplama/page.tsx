@@ -93,7 +93,7 @@ export default function PipeNominalSizePage() {
           <h2>İlgili araçlar</h2>
           <p>
             Tesisatçı işleri için{" "}
-            <Link href="/tesisatci-araclari">Tesisatçı Araçları</Link>
+            <Link href="/hesaplayicilar#teknik">Teknik ve Mühendislik</Link>
             {" "}sayfasına, genel uzunluk dönüşümleri için{" "}
             <Link href="/kategoriler/uzunluk">Uzunluk Dönüşümleri</Link>
             {" "}sayfasına bakabilirsin.

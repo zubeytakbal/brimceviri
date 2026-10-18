@@ -94,9 +94,9 @@ export default function ThermalExpansionCalculatorPage() {
           <h2>İlgili araçlar</h2>
           <p>
             Tesisatçı işleri için{" "}
-            <Link href="/tesisatci-araclari">Tesisatçı Araçları</Link>
+            <Link href="/hesaplayicilar#teknik">Teknik ve Mühendislik</Link>
             {" "}sayfasına, inşaat hesaplamaları için{" "}
-            <Link href="/insaatci-araclari">İnşaatçı Araçları</Link>
+            <Link href="/hesaplayicilar#ev-ve-yapi">Ev, İnşaat ve Bahçe</Link>
             {" "}sayfasına, malzeme yoğunluğu ve diğer özellikleri için{" "}
             <Link href="/malzeme-ozellikleri">Malzeme Özellikleri</Link>
             {" "}sayfasına, yük altında uzama miktarı için{" "}

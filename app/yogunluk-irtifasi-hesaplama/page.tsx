@@ -134,7 +134,7 @@ export default function DensityAltitudeCalculatorPage() {
           <h2>İlgili araçlar</h2>
           <p>
             Diğer pilot araçları için{" "}
-            <Link href="/pilot-araclari">Pilot Araçları</Link> sayfasına,
+            <Link href="/hesaplayicilar#harita-ve-havacilik">Harita, Coğrafya ve Havacılık</Link> sayfasına,
             uçuş planlaması için{" "}
             <Link href="/inis-orani-hesaplama">İniş Oranı Hesaplama</Link>,{" "}
             <Link href="/yan-ruzgar-hesaplama">Yan Rüzgar Hesaplama</Link>,{" "}

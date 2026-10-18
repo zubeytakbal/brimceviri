@@ -796,7 +796,6 @@ const footerLinksByLocale: Record<
     { key: "home", label: "Ana Sayfa" },
     { key: "units", label: "Birim Rehberi" },
     { key: "allConversions", label: "Tüm Dönüşümler" },
-    { key: "professions", label: "Mesleklere Göre" },
     { key: "about", label: "Hakkımızda" },
     { key: "contact", label: "İletişim" },
     { key: "privacy", label: "Gizlilik" },
@@ -910,7 +909,6 @@ export function getTopLevelLinks(locale: Locale): LinkDefinition[] {
     return [
       { href: "/", label: labels.home },
       { href: "/dosya-araclari", label: "Dosya Araçları" },
-      { href: getStaticPath(locale, "professions"), label: labels.professions },
     ];
   }
 

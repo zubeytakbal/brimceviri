@@ -93,7 +93,7 @@ export default function AwgConverterPage() {
           <h2>İlgili araçlar</h2>
           <p>
             Elektrikçi araçları için{" "}
-            <Link href="/elektrikci-araclari">Elektrikçi Araçları</Link>
+            <Link href="/muhendislik-hesaplayicilari/elektrik-hesaplari">Elektrik Hesapları</Link>
             {" "}sayfasına, mm² cinsinden kablo kesiti hesaplama için{" "}
             <Link href="/muhendislik-hesaplayicilari/elektrik-hesaplari/kablo-kesiti-hesaplama">
               Kablo Kesiti Hesaplama

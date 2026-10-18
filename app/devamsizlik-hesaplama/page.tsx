@@ -155,7 +155,7 @@ export default function AttendanceCalculatorPage() {
             Not/harf notu hesaplama için{" "}
             <Link href="/harf-notu-hesaplama">Harf Notu Hesaplama</Link>,{" "}
             diğer öğretmen araçları için{" "}
-            <Link href="/ogretmen-araclari">Öğretmen Araçları</Link>
+            <Link href="/hesaplayicilar#olcu-ve-gunluk">Mutfak, Beden ve Okul</Link>
             {" "}sayfasına bakabilirsin.
           </p>
 

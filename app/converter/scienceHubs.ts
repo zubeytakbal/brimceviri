@@ -298,8 +298,6 @@ export const scienceHubs: ScienceHub[] = [
     related: [
       { href: M, label: "Matematik Hesaplayıcıları" },
       { href: "/bilim-hesaplayicilari/fizik", label: "Fizik Hesaplayıcıları" },
-      { href: "/insaatci-araclari", label: "İnşaatçı Araçları" },
-      { href: "/mimar-araclari", label: "Mimar Araçları" },
     ],
     sections: [
       {
@@ -355,7 +353,6 @@ export const scienceHubs: ScienceHub[] = [
     ],
     related: [
       { href: K, label: "Kimya Hesaplayıcıları" },
-      { href: "/doktor-hemsire-araclari", label: "Doktor ve Hemşire Araçları" },
       { href: "/bmi-hesaplama", label: "BMI Hesaplama" },
       { href: "/kategoriler/vitamin-d", label: "D Vitamini Birimleri" },
     ],

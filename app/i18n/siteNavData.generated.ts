@@ -12,10 +12,6 @@ export const SITE_NAV_DATA: SiteNavData = {
     {
      "href": "/dosya-araclari",
      "label": "Dosya Araçları"
-    },
-    {
-     "href": "/meslekler",
-     "label": "Mesleklere Göre"
     }
    ],
    "menuGroups": [
@@ -487,10 +483,6 @@ export const SITE_NAV_DATA: SiteNavData = {
     {
      "href": "/tum-birimler",
      "label": "Tüm Dönüşümler"
-    },
-    {
-     "href": "/meslekler",
-     "label": "Mesleklere Göre"
     },
     {
      "href": "/hakkimizda",

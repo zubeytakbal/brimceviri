@@ -65,26 +65,6 @@ export const everydayCalculators: EverydayCalculator[] = [
     label: "Has Altın ve Gümüş Hesaplama",
   },
   {
-    id: "kuyumcu-araclari",
-    href: "/kuyumcu-araclari",
-    label: "Kuyumcu Araçları",
-  },
-  {
-    id: "elektrikci-araclari",
-    href: "/elektrikci-araclari",
-    label: "Elektrikçi Araçları",
-  },
-  {
-    id: "meslekler",
-    href: "/meslekler",
-    label: "Mesleğe Göre Araçlar",
-  },
-  {
-    id: "insaatci-araclari",
-    href: "/insaatci-araclari",
-    label: "İnşaatçı Araçları",
-  },
-  {
     id: "hafriyat-hesaplama",
     href: "/hafriyat-hesaplama",
     label: "Hafriyat ve Kazı Hesaplama",
@@ -100,24 +80,9 @@ export const everydayCalculators: EverydayCalculator[] = [
     label: "Lastik Ebatı Hesaplama",
   },
   {
-    id: "otomotiv-araclari",
-    href: "/otomotiv-araclari",
-    label: "Otomotiv Araçları",
-  },
-  {
-    id: "asci-araclari",
-    href: "/asci-araclari",
-    label: "Aşçı Araçları",
-  },
-  {
     id: "vucut-yag-orani-hesaplama",
     href: "/vucut-yag-orani-hesaplama",
     label: "Vücut Yağ Oranı Hesaplama",
-  },
-  {
-    id: "diyetisyen-araclari",
-    href: "/diyetisyen-araclari",
-    label: "Diyetisyen Araçları",
   },
   {
     id: "ideal-kilo-hesaplama",
@@ -130,34 +95,14 @@ export const everydayCalculators: EverydayCalculator[] = [
     label: "Beden Ölçüsü Çevirici",
   },
   {
-    id: "terzi-araclari",
-    href: "/terzi-araclari",
-    label: "Terzi Araçları",
-  },
-  {
     id: "emlak-komisyonu-hesaplama",
     href: "/emlak-komisyonu-hesaplama",
     label: "Emlak Komisyonu Hesaplama",
   },
   {
-    id: "emlakci-araclari",
-    href: "/emlakci-araclari",
-    label: "Emlakçı Araçları",
-  },
-  {
     id: "seyir-suresi-hesaplama",
     href: "/seyir-suresi-hesaplama",
     label: "Seyir Süresi Hesaplama",
-  },
-  {
-    id: "pilot-araclari",
-    href: "/pilot-araclari",
-    label: "Pilot Araçları",
-  },
-  {
-    id: "kaptan-araclari",
-    href: "/kaptan-araclari",
-    label: "Kaptan Araçları",
   },
   {
     id: "yogunluk-irtifasi-hesaplama",
@@ -183,11 +128,6 @@ export const everydayCalculators: EverydayCalculator[] = [
     id: "buyuk-daire-mesafesi-hesaplama",
     href: "/buyuk-daire-mesafesi-hesaplama",
     label: "Büyük Daire Mesafesi Hesaplama",
-  },
-  {
-    id: "doktor-hemsire-araclari",
-    href: "/doktor-hemsire-araclari",
-    label: "Doktor ve Hemşire Araçları",
   },
   {
     id: "vucut-yuzey-alani-hesaplama",
@@ -250,19 +190,9 @@ export const everydayCalculators: EverydayCalculator[] = [
     label: "Braden Skalası Hesaplama",
   },
   {
-    id: "nakliyeci-araclari",
-    href: "/nakliyeci-araclari",
-    label: "Nakliyeci Araçları",
-  },
-  {
     id: "cbm-hesaplama",
     href: "/cbm-hesaplama",
     label: "CBM ve Hacimsel Ağırlık Hesaplama",
-  },
-  {
-    id: "tesisatci-araclari",
-    href: "/tesisatci-araclari",
-    label: "Tesisatçı Araçları",
   },
   {
     id: "boru-capi-hesaplama",
@@ -273,11 +203,6 @@ export const everydayCalculators: EverydayCalculator[] = [
     id: "basinc-kaybi-hesaplama",
     href: "/basinc-kaybi-hesaplama",
     label: "Basınç Kaybı Hesaplama",
-  },
-  {
-    id: "muhasebeci-araclari",
-    href: "/muhasebeci-araclari",
-    label: "Muhasebeci Araçları",
   },
   {
     id: "amortisman-hesaplama",

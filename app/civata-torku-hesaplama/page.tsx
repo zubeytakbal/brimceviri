@@ -93,9 +93,9 @@ export default function BoltTorqueCalculatorPage() {
           <h2>İlgili araçlar</h2>
           <p>
             Kaynak işleri için{" "}
-            <Link href="/kaynakci-araclari">Kaynakçı Araçları</Link>
+            <Link href="/hesaplayicilar#teknik">Teknik ve Mühendislik</Link>
             {" "}sayfasına, CNC/torna işleri için{" "}
-            <Link href="/cnc-torna-araclari">CNC/Torna Operatörü Araçları</Link>
+            <Link href="/hesaplayicilar#teknik">Teknik ve Mühendislik</Link>
             {" "}sayfasına bakabilirsin.
           </p>
 

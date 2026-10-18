@@ -117,7 +117,7 @@ export default function PixelCalculatorPage() {
           <h2>İlgili araçlar</h2>
           <p>
             Diğer grafik tasarımcı araçları için{" "}
-            <Link href="/grafik-tasarimci-araclari">Grafik Tasarımcı Araçları</Link>{" "}
+            <Link href="/hesaplayicilar#dosya-ve-gorsel">Dosya ve Görsel Araçları</Link>{" "}
             sayfasına, uzunluk birimleri arasında genel dönüşüm için{" "}
             <Link href="/kategoriler/uzunluk">Uzunluk Dönüşümleri</Link>{" "}
             sayfasına, fotoğraf makinesi odak uzaklığı eşdeğeri için{" "}

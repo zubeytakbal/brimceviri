@@ -58,8 +58,8 @@ export default function PoolVolumeCalculatorPage() {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: buildSiteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "Mesleğe Göre Araçlar", item: buildSiteUrl("/meslekler") },
-      { "@type": "ListItem", position: 3, name: "Havuz Teknisyeni Araçları", item: buildSiteUrl("/havuz-teknisyeni-araclari") },
+      { "@type": "ListItem", position: 2, name: "Tüm Hesaplamalar", item: buildSiteUrl("/hesaplayicilar") },
+      { "@type": "ListItem", position: 3, name: "Ev, İnşaat ve Bahçe", item: buildSiteUrl("/hesaplayicilar#ev-ve-yapi") },
       { "@type": "ListItem", position: 4, name: "Havuz Hacmi Hesaplama", item: buildSiteUrl("/havuz-hacmi-hesaplama") },
     ],
   };
@@ -73,7 +73,7 @@ export default function PoolVolumeCalculatorPage() {
         <nav className="breadcrumbs" aria-label="Sayfa yolu">
           <Link href="/">Ana Sayfa</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/havuz-teknisyeni-araclari">Havuz Teknisyeni Araçları</Link>
+          <Link href="/hesaplayicilar#ev-ve-yapi">Ev, İnşaat ve Bahçe</Link>
           <span aria-hidden="true">&rsaquo;</span>
           <span>Havuz Hacmi Hesaplama</span>
         </nav>
@@ -169,7 +169,7 @@ export default function PoolVolumeCalculatorPage() {
           <h2>İlgili araçlar</h2>
           <p>
             Diğer havuz teknisyeni araçları için{" "}
-            <Link href="/havuz-teknisyeni-araclari">Havuz Teknisyeni Araçları</Link>
+            <Link href="/hesaplayicilar#ev-ve-yapi">Ev, İnşaat ve Bahçe</Link>
             {" "}sayfasına, klor dozajı hesaplama için{" "}
             <Link href="/klor-dozaji-hesaplama">Klor Dozajı Hesaplama</Link>
             {" "}sayfasına bakabilirsin.

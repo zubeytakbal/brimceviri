@@ -1,5 +1,8 @@
 import Link from "@/app/components/SiteLink";
 import { getElectricalHubPath } from "../converter/engineeringHubs";
+import { engineeringTopicMap } from "../converter/engineeringTopicMap";
+import { categoryPages } from "../converter/categoryPages";
+import { unitPages } from "../converter/unitPages";
 import { germanStandaloneTools } from "../i18n/germanStandaloneTools";
 import type { SiteIconName } from "./siteIcons";
 
@@ -63,6 +66,7 @@ type EngineeringHubContent = {
   groups: EngineeringGroup[];
   guidesTitle: string;
   guideLinks: EngineeringGuideLink[];
+  topicConnectionsTitle?: string;
   relatedToolsTitle?: string;
   relatedToolsLinks?: EngineeringGuideLink[];
   alternateTitle: string;
@@ -730,6 +734,7 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
       { href: "/birimler/newton-metre", label: "Newton metre (N·m) rehberi" },
       { href: "/birimler/watt", label: "Watt (W) rehberi" },
     ],
+    topicConnectionsTitle: "Konuya göre dönüştürücüler ve referanslar",
     relatedToolsTitle: "Mesleğe göre araç sayfaları",
     relatedToolsLinks: [
       { href: "/elektrikci-araclari", label: "Elektrikçi Araçları" },
@@ -1244,6 +1249,38 @@ export default function EngineeringHubPage({
               ))}
             </ul>
           </section>
+
+          {content.topicConnectionsTitle && (
+            <section className="conversion-section">
+              <h2>{content.topicConnectionsTitle}</h2>
+              {engineeringTopicMap.map((topic) => (
+                <div key={topic.groupId}>
+                  <h3>{topic.title}</h3>
+                  <ul className="related-conversion-list engineering-hub-guides">
+                    {topic.categorySlugs.map((slug) => (
+                      <li key={`kategori-${slug}`}>
+                        <Link href={`/kategoriler/${slug}`}>
+                          {categoryPages.find((page) => page.slug === slug)?.title ?? slug}
+                        </Link>
+                      </li>
+                    ))}
+                    {topic.unitSlugs.map((slug) => (
+                      <li key={`birim-${slug}`}>
+                        <Link href={`/birimler/${slug}`}>
+                          {unitPages.find((page) => page.slug === slug)?.name ?? slug}
+                        </Link>
+                      </li>
+                    ))}
+                    {topic.converterSlugs.map(({ slug, label }) => (
+                      <li key={`arac-${slug}`}>
+                        <Link href={`/${slug}`}>{label}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </section>
+          )}
 
           {content.relatedToolsLinks && content.relatedToolsLinks.length > 0 && (
             <section className="conversion-section">

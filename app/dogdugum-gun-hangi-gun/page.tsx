@@ -5,12 +5,26 @@ import { takvimMetadata } from "../components/takvim/takvimMeta";
 import { TAKVIM_ARACLARI } from "../components/takvim/TakvimSayfalari";
 import TimeToolPage from "../components/time/TimeToolPage";
 import type { FaqItem } from "../converter/faqSchema";
+import { trAblative, trLocative } from "../converter/turkishSuffix";
+import { trToday } from "../components/sun/SunToday";
+import {
+  DogumGunuBugunHero,
+  GelecekYillarTablosu,
+  gunAdi,
+  gunAyMetni,
+  ILK_YIL,
+  ornekYillar,
+  YilGunTablosu,
+} from "../components/takvim/DogumGunuBugun";
+
+// Derleme günü (Türkiye saati); site her gece yeniden derlenir.
+const TODAY = trToday();
+const ORNEK = ornekYillar(TODAY);
 
 export const metadata: Metadata = takvimMetadata("/dogdugum-gun-hangi-gun", {
   title: "Doğduğum Gün Hangi Gündü? Doğum Günü Hesaplama",
   short: "Doğduğum Gün Hangi Gündü?",
-  description:
-    "Doğum tarihini gir: haftanın hangi günü doğduğunu, Hicri ve Rumi doğum tarihini, o gece ayın evresini, kaç gün yaşadığını ve doğum gününün önümüzdeki yıllarda hangi güne denk geleceğini gör.",
+  description: `${trLocative(gunAyMetni(TODAY))} doğanlar: ${ORNEK[3]} ${gunAdi(TODAY, ORNEK[3])}, ${ORNEK[2]} ${gunAdi(TODAY, ORNEK[2])}, ${ORNEK[1]} ${gunAdi(TODAY, ORNEK[1])}. Doğum tarihini gir: hangi gün doğduğunu, Hicri ve Rumi tarihini, ayın evresini gör.`,
 });
 
 const faq: FaqItem[] = [
@@ -47,7 +61,12 @@ export default function DogdugumGunRoute() {
       crumbLabel="Sayfa yolu"
       title="Doğduğum Gün Hangi Gündü?"
       intro="Doğum tarihini gir; haftanın hangi günü doğduğunu, Hicri ve Rumi doğum tarihini, o gece ayın hangi evrede olduğunu ve doğum gününün önümüzdeki yıllarda hangi güne denk geleceğini gör."
-      tool={<DogumGunuHesaplama />}
+      tool={
+        <>
+          <DogumGunuBugunHero t={TODAY} />
+          <DogumGunuHesaplama />
+        </>
+      }
       related={{
         title: "İlginizi çekebilir",
         links: [
@@ -59,12 +78,32 @@ export default function DogdugumGunRoute() {
       }}
       tocTitle="İçindekiler"
       tocItems={[
+        { id: "yillar", label: `${gunAyMetni(TODAY)} hangi yıl hangi gün?` },
+        { id: "gelecek", label: "Önümüzdeki yıllarda" },
         { id: "nasil", label: "Nasıl hesaplanır?" },
         { id: "faq", label: "Sık Sorulan Sorular" },
       ]}
       faqTitle="Sık Sorulan Sorular"
       faqItems={faq}
     >
+      <h2 id="yillar">{gunAyMetni(TODAY)} hangi yıl hangi güne denk geldi?</h2>
+      <p>
+        Tabloda {trAblative(ILK_YIL)} bu yana her yıl, {gunAyMetni(TODAY)} tarihinin
+        haftanın hangi gününe denk geldiği yer alıyor; sütun başlığındaki sayı o
+        güne kaç kez denk geldiğini gösterir. Doğum yılınızı bulduğunuz sütun,
+        bugün doğum günü olanlar için doğdukları gündür. Tablo her gün o günün
+        tarihine göre yenilenir; başka bir tarih için yukarıdaki aracı kullanın.
+      </p>
+      <YilGunTablosu t={TODAY} />
+
+      <h2 id="gelecek">{gunAyMetni(TODAY)} önümüzdeki yıllarda hangi gün?</h2>
+      <p>
+        Tarih her yıl haftanın bir sonraki gününe, artık yıldan sonra iki gün
+        ileri kayar. Önümüzdeki yıllarda {gunAyMetni(TODAY)} şu günlere denk
+        geliyor (hafta sonları vurgulu):
+      </p>
+      <GelecekYillarTablosu t={TODAY} />
+
       <h2 id="nasil">Nasıl hesaplanır?</h2>
       <p>
         Haftanın günü, 1 Ocak 1900&apos;den itibaren geçen gün sayısının

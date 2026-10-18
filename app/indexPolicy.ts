@@ -9,12 +9,10 @@ import { CLICKED_PATHS } from "./indexPolicyClicked";
 
 export { CLOSED_LOCALES };
 
-/** Bu dillerde dil ana sayfası, yasal sayfalar ve tıklama alan sayfalar açık; kalanı kapalı. */
-const PARTIAL_LOCALES = ["en", "de", "ar", "es", "uz", "bn"];
+/** Bu dillerde dil ana sayfası, yasal sayfalar ve tıklama alan sayfalar açık; kalanı kapalı.
+ * İngilizce, Almanca, İspanyolca ve Arapça Ekim 2026'da yeniden tamamen açıldı (site sahibinin kararı). */
+const PARTIAL_LOCALES = ["uz", "bn"];
 const PARTIAL_KEEP = new Set([
-  "/en/about", "/en/contact", "/en/privacy", "/en/terms",
-  "/de/uber-uns", "/de/kontakt", "/de/datenschutz", "/de/nutzungsbedingungen",
-  "/ar/about", "/ar/contact", "/ar/privacy", "/ar/terms",
   "/uz/aloqa", "/uz/maxfiylik-siyosati", "/uz/foydalanish-shartlari",
 ]);
 

@@ -16823,3 +16823,51 @@ a.all-units-row .all-units-name {
 .sun-legend.is-day::before { background: #fde68a; }
 .sun-legend.is-night::before { background: #1f2d4a; }
 .sun-path figcaption .sun-legend { display: inline-block; }
+
+.birthday-year-grid th,
+.birthday-year-grid td {
+  text-align: center;
+  vertical-align: top;
+  padding: 0.4rem 0.25rem;
+}
+.birthday-year-grid thead th {
+  text-transform: none;
+  letter-spacing: 0;
+}
+.birthday-year-grid th small {
+  display: block;
+  font-weight: 400;
+  color: #78716c;
+}
+.birthday-year-grid td.is-weekend {
+  background: #fef3c7;
+}
+.birthday-year {
+  display: block;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.6;
+}
+@media (max-width: 560px) {
+  .birthday-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.birthday-day-short {
+  display: none;
+  text-decoration: none;
+}
+@media (max-width: 560px) {
+  .birthday-year-grid {
+    font-size: 0.8rem;
+  }
+  .birthday-year-grid th,
+  .birthday-year-grid td {
+    padding: 0.35rem 0.1rem;
+  }
+  .birthday-day-full {
+    display: none;
+  }
+  .birthday-day-short {
+    display: inline;
+  }
+}

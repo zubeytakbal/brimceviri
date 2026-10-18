@@ -3,7 +3,6 @@ import type { ReactNode } from "react";
 
 // Özbekçe AdSense'in desteklediği diller arasında değil: bu bölümde AdSense hesap etiketi yer almaz.
 export const metadata: Metadata = {
-  robots: { index: false, follow: true },
   other: { "google-adsense-account": [] },
 };
 

@@ -25,7 +25,6 @@ export async function generateMetadata({ params }: { params: Promise<{ sehir: st
   return {
     title: seoTitle(title, `${city.nameTr} Saat Kaç? Canlı Saat`),
     description,
-    robots: { index: false, follow: true },
     manifest: appManifestPath("dunya-saatleri"),
     appleWebApp: { capable: true, title: findInstallableApp("dunya-saatleri")!.shortName },
     alternates: { canonical: path, ...buildLanguageAlternates(worldCityPaths(city), "tr") },

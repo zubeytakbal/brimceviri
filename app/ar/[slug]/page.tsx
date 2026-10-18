@@ -44,7 +44,6 @@ import {
   getArabicUnitName,
   getArabicCategoryUsage,
 } from "../../i18n/arabicLocalization";
-import { pathRobots } from "../../seo/indexPolicy";
 import { buildSiteUrl } from "../../siteConfig";
 import { unitGlossaryHref } from "../../converter/unitGlossary";
 
@@ -163,7 +162,6 @@ export async function generateMetadata({
   return {
     title,
     description,
-    robots: pathRobots(`/ar/${page.slug}`),
     alternates: {
       canonical: `/ar/${page.slug}`,
       ...buildFullLanguageAlternates(`/ar/${page.slug}`),

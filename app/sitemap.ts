@@ -139,7 +139,6 @@ import { danishCategoryPages } from "./converter/localizedDanishCategoryPages";
 import { danishUnitPages } from "./converter/localizedDanishUnitPages";
 import { danishConversionPages } from "./converter/localizedDanishConversionPages";
 import { SITE_LAST_MODIFIED, SITE_URL } from "./siteConfig";
-import { shouldIndexPath } from "./seo/indexPolicy";
 import { CHRISTIAN_TOOLS_PATH, englishChristianTools } from "./i18n/englishChristianTools";
 import { CATHOLIC_PATHS } from "./i18n/catholicTools";
 import { GOLD_CALCULATOR_PATHS } from "./i18n/goldCalculatorPaths";
@@ -6693,28 +6692,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Google verlangt in hreflang-Alternativen absolute Adressen; relative Pfade (z. B. "/uyku-hesaplama")
   // werden hier zentral ergänzt, damit keine Quelle sie vergessen kann.
   const absolute = (href: string) => (href.startsWith("/") ? `${baseUrl}${href}` : href);
-  const pathOf = (href: string) => {
-    try {
-      return new URL(href, baseUrl).pathname;
-    } catch {
-      return href;
-    }
-  };
-  return [...byUrl.values()]
-    .map((entry) => {
-      const languages = entry.alternates?.languages;
-      if (!languages) return entry;
-      return {
-        ...entry,
-        alternates: {
-          ...entry.alternates,
-          languages: Object.fromEntries(
-            Object.entries(languages)
-              .map(([lang, href]) => [lang, typeof href === "string" ? absolute(href) : href] as const)
-              .filter(([, href]) => typeof href === "string" && shouldIndexPath(pathOf(href))),
-          ),
-        },
-      };
-    })
-    .filter((entry) => shouldIndexPath(pathOf(entry.url)));
+  return [...byUrl.values()].map((entry) => {
+    const languages = entry.alternates?.languages;
+    if (!languages) return entry;
+    return {
+      ...entry,
+      alternates: {
+        ...entry.alternates,
+        languages: Object.fromEntries(Object.entries(languages).map(([lang, href]) => [lang, typeof href === "string" ? absolute(href) : href])),
+      },
+    };
+  });
 }

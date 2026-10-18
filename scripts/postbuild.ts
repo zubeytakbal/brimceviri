@@ -15,9 +15,8 @@
 // 6. Parametreli site ici baglantilara rel="nofollow" (nofollowQueryLinks).
 // 7. Site haritasi denetimi (scripts/sitemapGuard.ts): dizine acik her sayfa sitemap.xml'de olmali.
 import { existsSync, readdirSync, readFileSync, unlinkSync, writeFileSync } from "node:fs";
-import { join, relative } from "node:path";
+import { join } from "node:path";
 import { LOCALE_DEFINITIONS } from "../app/i18n/config";
-import { noindexHeaderRules, shouldIndexPath } from "../app/seo/indexPolicy";
 import { siteRedirects } from "../app/siteRedirects";
 import { checkTemplates } from "./templateGuard";
 import { checkThinPages, MIN_KARAKTER } from "./thinGuard";
@@ -120,51 +119,9 @@ function nofollowQueryLinks(): number {
   return changed;
 }
 
-function writeNoindexHeaders(): void {
-  writeFileSync(join(OUT, "_headers"), noindexHeaderRules());
-}
-
-function urlOfHtml(file: string): string {
-  const rel = `/${relative(OUT, file).replaceAll("\\", "/").replace(/\.html$/, "")}`;
-  if (rel === "/index") return "/";
-  return rel.endsWith("/index") ? rel.slice(0, -6) : rel;
-}
-
-function injectNoindexMeta(): number {
-  let changed = 0;
-  const walk = (dir: string) => {
-    for (const entry of readdirSync(dir, { withFileTypes: true })) {
-      const path = join(dir, entry.name);
-      if (entry.isDirectory()) {
-        if (path !== join(OUT, "_next")) walk(path);
-        continue;
-      }
-      if (!entry.name.endsWith(".html")) continue;
-      const url = urlOfHtml(path);
-      if (!url || shouldIndexPath(url)) continue;
-      let html = readFileSync(path, "utf8");
-      if (/\bnoindex\b/i.test(html)) continue;
-      if (/<meta\s+name="robots"/i.test(html)) {
-        html = html.replace(/<meta\s+name="robots"\s+content="[^"]*"/i, '<meta name="robots" content="noindex, follow"');
-      } else if (html.includes("</head>")) {
-        html = html.replace("</head>", '<meta name="robots" content="noindex, follow"/>\n</head>');
-      } else {
-        continue;
-      }
-      writeFileSync(path, html);
-      changed++;
-    }
-  };
-  walk(OUT);
-  return changed;
-}
-
 console.log(`${removeRscPayloads(OUT)} sayfa gecis verisi (.txt) silindi`);
 console.log(`${fixHtmlLang()} sayfada <html lang> dile gore duzeltildi`);
 console.log(`out/_redirects: ${writeRedirects()} yonlendirme yazildi`);
-writeNoindexHeaders();
-console.log(`out/_headers: sablon yollarina X-Robots-Tag noindex yazildi`);
-console.log(`${injectNoindexMeta()} HTML sayfasina noindex eklendi`);
 console.log(`${nofollowQueryLinks()} parametreli site ici baglantiya rel="nofollow" eklendi`);
 
 // 4. Şablon sayfa denetimi: kopya kardeş sayfa grubu varsa build durur.

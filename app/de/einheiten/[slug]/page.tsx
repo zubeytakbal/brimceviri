@@ -73,7 +73,6 @@ export async function generateMetadata({
   return {
     title: seoTitle(title, `${unitPage.name}: Definition und Umrechnungen`, `${unitPage.name}: Definition`),
     description,
-    robots: { index: false, follow: true },
     alternates: {
       canonical: `/de/einheiten/${unitPage.slug}`,
       ...buildFullLanguageAlternates(`/de/einheiten/${unitPage.slug}`),

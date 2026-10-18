@@ -91,7 +91,6 @@ export async function generateMetadata({
       `${d.name}: Hauptstadt und Karte`,
     ),
     description,
-    robots: { index: false, follow: true },
     alternates: { canonical: path, ...alternates(c) },
     openGraph: {
       title,

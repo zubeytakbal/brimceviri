@@ -44,7 +44,6 @@ export async function generateMetadata({ params }: { params: Promise<{ ulke: str
   return {
     title: seoTitle(title, `${c.nameTr}: Başkenti, Saat Farkı ve Haritası`, `${c.nameTr}: Başkenti ve Haritası`),
     description,
-    robots: { index: false, follow: true },
     alternates: { canonical: path, ...buildLanguageAlternates({ tr: path, en: countryPathEn(c), de: countryPathDe(c) ?? undefined }, "tr") },
     openGraph: { title, description, url: buildSiteUrl(path), siteName: "BirimCeviri.app", locale: "tr_TR", type: "website" },
   };

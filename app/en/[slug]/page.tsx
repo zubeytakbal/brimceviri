@@ -93,7 +93,6 @@ import {
 } from "../../i18n/englishStandaloneTools";
 import { getUnitSources } from "../../converter/unitSources";
 import { getEnglishEditorialConversion } from "../../converter/englishEditorialConversions";
-import { pathRobots } from "../../seo/indexPolicy";
 import { buildSiteUrl } from "../../siteConfig";
 import {
   englishEverydayCalculatorGroups,
@@ -259,7 +258,6 @@ export async function generateMetadata({
   return {
     title,
     description,
-    robots: pathRobots(`/en/${page.slug}`),
 
     alternates: page.isEnglishOnly
       ? { canonical: `/en/${page.slug}` }

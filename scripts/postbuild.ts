@@ -20,6 +20,7 @@ import { existsSync, readdirSync, readFileSync, unlinkSync, writeFileSync } from
 import { join } from "node:path";
 import { LOCALE_DEFINITIONS } from "../app/i18n/config";
 import { isClosedPath } from "../app/indexPolicy";
+import { CLICKED_PATHS } from "../app/indexPolicyClicked";
 import { siteRedirects } from "../app/siteRedirects";
 import { checkTemplates } from "./templateGuard";
 import { checkThinPages, MIN_KARAKTER } from "./thinGuard";
@@ -68,8 +69,25 @@ function writeRedirects() {
       lines.push(`${source} ${destination} ${status}`);
     }
   }
-  const staticLines = lines.filter((l) => !isDynamic(l.split(" ")[0]));
-  const dynamicLines = lines.filter((l) => isDynamic(l.split(" ")[0]));
+  // Cloudflare, hedefin sorgu kismina (?a=:b) degisken yerlestirmez ("%3Ab" olarak birakir). Bu kurallar icin
+  // Search Console'da tiklama alan eski adreslere sabit kural yazilir; kalan adresler sorgusuz ana sayfaya gider.
+  const known = [...CLICKED_PATHS];
+  const expanded: string[] = [];
+  const fixed = lines.map((l) => {
+    const [from, to, status] = l.split(" ");
+    const q = to.indexOf("?");
+    if (!isDynamic(from) || q < 0 || !/:[a-z]/i.test(to.slice(q))) return l;
+    const names: string[] = [];
+    const re = new RegExp("^" + from.replace(/:([a-z]+)/gi, (_m, n: string) => (names.push(n), "([^/]+)")) + "$", "i");
+    for (const path of known) {
+      const m = path.match(re);
+      if (!m) continue;
+      expanded.push(`${path} ${names.reduce((d, n, i) => d.replaceAll(`:${n}`, m[i + 1]), to)} ${status}`);
+    }
+    return `${from} ${to.slice(0, q)} ${status}`;
+  });
+  const staticLines = [...expanded, ...fixed.filter((l) => !isDynamic(l.split(" ")[0]))];
+  const dynamicLines = fixed.filter((l) => isDynamic(l.split(" ")[0]));
   writeFileSync(join(OUT, "_redirects"), [...staticLines, ...dynamicLines].join("\n") + "\n");
   return { static: staticLines.length, dynamic: dynamicLines.length };
 }

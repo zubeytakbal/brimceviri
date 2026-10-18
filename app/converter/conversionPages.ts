@@ -54,7 +54,8 @@ function formatValue(value: number) {
     return value.toExponential(8);
   }
 
-  return Number(value.toPrecision(12)).toLocaleString("tr-TR", {
+  // 8 anlamlı basamak: 14,503774 (14,503773773 yerine); çevirici tam değerle hesaplar.
+  return Number(value.toPrecision(8)).toLocaleString("tr-TR", {
     maximumFractionDigits: 12,
   });
 }
@@ -66,6 +67,9 @@ function createOperation(fromName: string, toName: string, factor: number) {
 
   return `${toName} = ${fromName} ÷ ${formatValue(1 / factor)}`;
 }
+
+/** Cümle içinde küçük harf; PSI, BTU gibi kısaltmalar olduğu gibi kalır ("psı" olmasın). */
+const lowerName = (name: string) => (name === name.toLocaleUpperCase("tr-TR") ? name : name.toLocaleLowerCase("tr-TR"));
 
 function createExplanation(
   fromName: string,
@@ -81,7 +85,7 @@ function createExplanation(
 
   return (
     `${fromName} ile ${toName} arasındaki dönüşümde ` +
-    `${fromName.toLocaleLowerCase("tr-TR")} değeri ${operation}. ` +
+    `${lowerName(fromName)} değeri ${operation}. ` +
     `1 ${fromUnit}, ${formatValue(factor)} ${toUnit} değerine eşittir.`
   );
 }

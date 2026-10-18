@@ -122,7 +122,8 @@ function formatNumber(value: number) {
     return value.toExponential(8);
   }
 
-  return Number(value.toPrecision(12)).toLocaleString("tr-TR", {
+  // 7 anlamlı basamak yeterli (0,06894757 bar); daha fazlası okunmayı zorlaştırır.
+  return Number(value.toPrecision(7)).toLocaleString("tr-TR", {
     maximumFractionDigits: 12,
   });
 }
@@ -323,7 +324,7 @@ export default async function ConversionPage({ params }: PageProps) {
       answer: `1 ${conversionPage.fromUnit} = ${formattedOneUnitResult} ${conversionPage.toUnit}.`,
     },
     {
-      question: `${conversionPage.fromName}, ${conversionPage.toName} birimine nasıl çevrilir?`,
+      question: `${conversionPage.fromName} değeri ${conversionPage.toName} birimine nasıl çevrilir?`,
       answer: conversionPage.explanation,
     },
     {
@@ -495,8 +496,7 @@ export default async function ConversionPage({ params }: PageProps) {
       <article className="conversion-content">
         <section className="conversion-section">
           <h2>
-            {conversionPage.fromName},{" "}
-            {conversionPage.toName} birimine nasıl çevrilir?
+            {conversionPage.fromName} değeri {conversionPage.toName} birimine nasıl çevrilir?
           </h2>
 
           <p>{conversionPage.explanation}</p>

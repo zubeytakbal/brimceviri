@@ -59,6 +59,7 @@ export const turkishToolGroups: ToolGroup[] = [
     title: "Klinik Skorlar",
     description: "Sağlık profesyonelleri için skorlama ve doz hesapları. Sonuçları klinik değerlendirmeyle birlikte kullanın.",
     links: [
+      { href: "/tahlil-degerleri-cevirme", label: "Tahlil Değerleri Birim Çevirme (mg/dL ↔ mmol/L)" },
       { href: "/glasgow-koma-skalasi-hesaplama", label: "Glasgow Koma Skalası" },
       { href: "/apgar-skoru-hesaplama", label: "APGAR Skoru" },
       { href: "/cha2ds2-vasc-skoru-hesaplama", label: "CHA2DS2-VASc Skoru" },

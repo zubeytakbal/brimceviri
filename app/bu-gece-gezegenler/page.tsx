@@ -59,6 +59,7 @@ export default function PlanetPage() {
       related={{
         title: "İlginizi çekebilir",
         links: [
+          { href: "/gokyuzu-olaylari-takvimi", label: "Gökyüzü Olayları Takvimi" },
           { href: "/ay-evreleri", label: "Ay Evreleri" },
           { href: "/gunes-dogusu-ve-batisi", label: "Güneş Doğuşu ve Batışı" },
           { href: "/gokcisimleri-ozellikleri", label: "Gezegenlerin Özellikleri" },

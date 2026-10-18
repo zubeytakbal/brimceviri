@@ -196,6 +196,7 @@ export default function MoonPhasesPage({ lang }: { lang: "tr" | "en" }) {
         links: tr
           ? [
               { href: "/ay-gozlem-cizelgesi", label: "Ay Gözlem Çizelgesi (30 gün)" },
+              { href: "/gokyuzu-olaylari-takvimi", label: "Gökyüzü Olayları Takvimi" },
               { href: "/tarih-cevirici", label: "Hicri Rumi Tarih Çevirici" },
               { href: "/geri-sayim/ramazan", label: "Ramazan'a kaç gün kaldı?" },
               { href: "/dunya-saatleri", label: "Dünya Saatleri" },

@@ -322,6 +322,34 @@ export const categoryPages: CategoryPage[] = [
       "1 R = 2,58 × 10⁻⁴ C/kg, 1 mR = 0,258 µC/kg; röntgen, miliröntgen, mikroröntgen ve coulomb/kilogram arası ışınlama dönüşümü.",
   },
   {
+    slug: "yagis-miktari",
+    category: "yagis",
+    title: "Yağış Miktarı Dönüşümleri",
+    description:
+      "1 mm yağış = 1 kg/m² = 1 L/m², 25 kg/m² yağış dekara 25 ton su, 1 inç = 25,4 mm; meteoroloji yağış değerlerini mm, litre ve ton suya çevirin.",
+  },
+  {
+    slug: "dekar-basina-verim",
+    category: "alan_verim",
+    title: "Dekar Başına Verim Dönüşümleri",
+    description:
+      "500 kg/da = 5 t/ha = 5000 kg/ha, 1 t/ha = 100 kg/da, 100 lb/acre = 11,2 kg/da; verim, gübre ve tohum miktarını dekar, hektar ve acre arasında çevirin.",
+  },
+  {
+    slug: "dekar-basina-doz",
+    category: "alan_doz",
+    title: "Dekar Başına Doz Dönüşümleri",
+    description:
+      "100 mL/da = 1 L/ha, 2 L/da = 20 L/ha, 1 gal/acre = 9,35 L/ha; ilaç ve sıvı gübre dozlarını dekar, hektar, metrekare ve acre arasında çevirin.",
+  },
+  {
+    slug: "alana-gore-fiyat",
+    category: "alan_fiyat",
+    title: "Alana Göre Fiyat Dönüşümleri",
+    description:
+      "Dönümü 500.000 TL olan arsanın metrekaresi 500 TL; 1.000 TL/m² = 1.000.000 TL/dönüm = 10 milyon TL/hektar. Arsa ve tarla fiyatlarını birim alana göre çevirin.",
+  },
+  {
     slug: "elektrik-iletkenligi",
     category: "elektrik_iletkenligi",
     title: "Elektrik İletkenliği Dönüşümleri",

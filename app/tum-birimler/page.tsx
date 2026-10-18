@@ -10,10 +10,42 @@ const GROUPS: Array<{ id: string; title: string; slugs: string[] }> = [
   { id: "mekanik", title: "Mekanik", slugs: ["basinc", "kuvvet", "tork", "enerji", "guc", "ivme", "acisal-hiz", "momentum", "yogunluk", "frekans"] },
   { id: "akiskan-isi", title: "Akışkanlar ve ısı", slugs: ["debi", "hacimsel-debi", "kutlesel-debi", "viskozite", "kinematik-viskozite", "isil-iletkenlik", "isi-akisi", "ozgul-isi"] },
   { id: "elektrik", title: "Elektrik ve manyetizma", slugs: ["elektrik", "direnc", "kapasitans", "enduktans", "elektrik-yuku", "manyetik-alan", "manyetik-aki", "elektrik-iletkenligi"] },
+  { id: "tarim-arazi", title: "Tarım ve arazi", slugs: ["yagis-miktari", "dekar-basina-verim", "dekar-basina-doz", "alana-gore-fiyat"] },
   { id: "kuyumculuk", title: "Kuyumculuk", slugs: ["altin-ayar", "gumus-ayar"] },
   { id: "su-tekstil", title: "Su ve tekstil", slugs: ["su-sertligi", "gramaj", "iplik-numarasi"] },
   { id: "isik-radyasyon", title: "Işık, radyasyon ve kimya", slugs: ["radyasyon-dozu", "doz-hizi", "sogurulan-doz", "radyoaktivite", "isinlama", "aydinlatma-siddeti", "konsantrasyon"] },
   { id: "saglik", title: "Laboratuvar değerleri", slugs: ["kan-sekeri", "vitamin-d"] },
+];
+
+// Birim kategorisi olmayan, tabloya ya da tanıma dayalı çeviri araçları.
+const TOOL_GROUPS: Array<{ id: string; title: string; items: Array<{ href: string; title: string; description: string }> }> = [
+  {
+    id: "turkiye-cevirileri",
+    title: "Türkiye'ye özgü çeviriler",
+    items: [
+      { href: "/eski-para-yeni-para-cevirme", title: "Eski Para - Yeni Para", description: "1 YTL = 1.000.000 eski TL; Azerbaycan ve Türkmen manatı sadeleştirmeleri (1 yeni manat = 5.000 eski manat)." },
+      { href: "/ezani-saat-cevirme", title: "Ezani Saat Çevirme", description: "Alaturka saat ↔ normal saat: gün batımı ezani 12:00'dır; 81 ilde ve her tarihte batış saatine göre." },
+      { href: "/ebced-hesabi", title: "Ebced Hesabı", description: "Arap harfli metnin sayı değeri ve sayının ebced harfleri: besmele = 786, 1453 = غتنج." },
+      { href: "/tarih-cevirici", title: "Hicri, Rumi, Miladi Tarih", description: "Eski belgelerdeki hicri ve Rumi tarihleri gün gün miladi tarihe çevirin." },
+      { href: "/altin-hesaplama", title: "Ziynet Altını - Gram", description: "Çeyrek, yarım, tam ve ata altının gram ve has altın karşılığı." },
+    ],
+  },
+  {
+    id: "tablo-cevirileri",
+    title: "Ölçü numaraları ve tablolar",
+    items: [
+      { href: "/bofor-cevirme", title: "Bofor (Rüzgâr) Çevirme", description: "Rüzgâr hızı ↔ bofor: 45 km/h = 6 bofor, 8 bofor = 62–74 km/h; WMO tablosu ve dalga yüksekliği." },
+      { href: "/mesh-mikron-cevirme", title: "Mesh - Mikron (Elek)", description: "Elek numarası ↔ açıklık: 200 mesh = 75 µm, 100 mesh = 150 µm; ASTM E11 tablosu." },
+      { href: "/bisiklet-jant-olcusu", title: "Bisiklet Jant Ölçüsü", description: "İnç ↔ ETRTO: 28\" = 700c = 622 mm, 26\" = 559 mm; 37-622 lastik kodu okuma." },
+      { href: "/roma-rakamlari-cevirme", title: "Roma Rakamları", description: "Sayı ↔ Roma rakamı: 1923 = MCMXXIII, XXI = 21; 1–100 tablosu ve yüzyıllar." },
+      { href: "/ayakkabi-numarasi-cevirme", title: "Ayakkabı Numarası", description: "TR/EU, ABD ve İngiltere ayakkabı numaraları ile ayak uzunluğu karşılıkları." },
+      { href: "/beden-olcusu-cevirici", title: "Beden Ölçüsü", description: "TR, EU, US ve UK giyim bedenleri arası çeviri." },
+      { href: "/yuzuk-olcusu-cevirici", title: "Yüzük Ölçüsü", description: "TR yüzük numarası ↔ ABD ve İngiltere ölçüleri, iç çap ve çevre." },
+      { href: "/mutfak-olculeri-cevirici", title: "Mutfak Ölçüleri", description: "Su bardağı, çay bardağı ve kaşık ↔ gram: 1 su bardağı un ≈ 100 g, toz şeker ≈ 167 g." },
+      { href: "/awg-mm2-cevirici", title: "AWG - mm²", description: "Amerikan tel numarası ↔ tel çapı ve kesit alanı (mm²)." },
+      { href: "/boru-capi-donusum-hesaplama", title: "Boru Çapı (DN - NPS)", description: "DN, NPS (inç) ve dış çap (mm) arası boru ölçüsü çevirisi." },
+    ],
+  },
 ];
 
 function groupedCategories() {
@@ -109,6 +141,13 @@ export default function AllConversionsPage() {
                   </a>
                 </li>
               ))}
+              {TOOL_GROUPS.map((g) => (
+                <li key={g.id}>
+                  <a href={`#${g.id}`}>
+                    {g.title} <span>{g.items.length}</span>
+                  </a>
+                </li>
+              ))}
             </ul>
           </nav>
 
@@ -132,6 +171,21 @@ export default function AllConversionsPage() {
                         ))}
                       </p>
                       )}
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            ))}
+            {TOOL_GROUPS.map((g) => (
+              <section className="tool-list-section" id={g.id} key={g.id}>
+                <h2>{g.title}</h2>
+                <ul className="tool-list">
+                  {g.items.map((t) => (
+                    <li key={t.href}>
+                      <Link href={t.href} className="tool-list-title">
+                        {t.title}
+                      </Link>
+                      <p>{t.description}</p>
                     </li>
                   ))}
                 </ul>

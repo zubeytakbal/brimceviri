@@ -423,6 +423,22 @@ export const SITE_NAV_DATA: SiteNavData = {
      "label": "Işınlama (Röntgen) Dönüşümleri"
     },
     {
+     "href": "/kategoriler/yagis-miktari",
+     "label": "Yağış Miktarı Dönüşümleri"
+    },
+    {
+     "href": "/kategoriler/dekar-basina-verim",
+     "label": "Dekar Başına Verim Dönüşümleri"
+    },
+    {
+     "href": "/kategoriler/dekar-basina-doz",
+     "label": "Dekar Başına Doz Dönüşümleri"
+    },
+    {
+     "href": "/kategoriler/alana-gore-fiyat",
+     "label": "Alana Göre Fiyat Dönüşümleri"
+    },
+    {
      "href": "/kategoriler/elektrik-iletkenligi",
      "label": "Elektrik İletkenliği Dönüşümleri"
     },

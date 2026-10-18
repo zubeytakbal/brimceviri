@@ -71,6 +71,10 @@ const categoryLabels: Record<string, string> = {
   isinlama: "Işınlama",
   su_sertligi: "Su sertliği",
   elektrik_iletkenligi: "Elektrik iletkenliği",
+  yagis: "Yağış miktarı",
+  alan_verim: "Dekar başına verim",
+  alan_doz: "Dekar başına doz",
+  alan_fiyat: "Alana göre fiyat",
   gramaj: "Kumaş gramajı",
   yakit_verimliligi: "Yakıt tüketimi",
   tempo: "Tempo",
@@ -128,6 +132,11 @@ const groups: {
       "manyetik_aki",
       "elektrik_iletkenligi",
     ],
+  },
+  {
+    id: "tarim",
+    title: "Tarım ve arazi",
+    categories: ["yagis", "alan_verim", "alan_doz", "alan_fiyat"],
   },
 ];
 

@@ -6,7 +6,7 @@ import { ayTumEtiketleri } from "../../converter/calendar/gokyuzuEtiketleri";
 import { EVRE_ADI, trGunu, type Etiket } from "../../converter/calendar/gunEtiketleri";
 import { AY_ADLARI, TAKVIM_YILLARI, takvimAyPath } from "../../converter/calendar/trTakvim";
 import type { YMD } from "../../converter/time/calendars";
-import { occurrenceInYear, type CountdownEvent, type DateParts } from "../../converter/time/countdownEvents";
+import { occurrencesInYear, type CountdownEvent, type DateParts } from "../../converter/time/countdownEvents";
 import { addDaysYmd, diffDays, formatYmd, isWeekend, ymdKey } from "../../converter/time/dateMath";
 import { turkeyHolidays } from "../../converter/time/holidays";
 
@@ -52,7 +52,8 @@ export default function GeriSayimTakvim({ event, next, now, kalan }: { event: Co
   const bugun = trGunu(now);
   const hedef = ymd(next);
   if (kalan <= 0 || diffDays(bugun, hedef) <= 0) return null;
-  const onceki = occurrenceInYear(event, next.year - 1);
+  // Bir önceki tarih (Aya Yorgi gibi yılda iki tarihli etkinliklerde aynı yıl içinde de olabilir).
+  const onceki = [...occurrencesInYear(event, next.year - 1), ...occurrencesInYear(event, next.year)].filter((o) => diffDays(ymd(o), hedef) > 0).pop() ?? null;
   const toplam = onceki ? diffDays(ymd(onceki), hedef) : 0;
   const yuzde = onceki && toplam > 0 ? Math.min(100, Math.max(0, Math.round((diffDays(ymd(onceki), bugun) / toplam) * 100))) : null;
   const d = araDokum(bugun, hedef);

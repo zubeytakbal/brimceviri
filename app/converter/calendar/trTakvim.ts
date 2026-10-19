@@ -20,6 +20,7 @@ import {
 import { turkeyHolidays } from "../time/holidays";
 import { moonState, phaseName, type PhaseName } from "../time/moon";
 import { mevsimAni, type Mevsim } from "./astro";
+import { easterSunday, orthodoxEasterSunday } from "../time/countdownEvents";
 
 export type Kategori =
   | "resmi"
@@ -28,6 +29,7 @@ export type Kategori =
   | "milli"
   | "ozel"
   | "halk"
+  | "hristiyan"
   | "mevsim";
 export type Gorsel =
   | "bayrak"
@@ -86,7 +88,9 @@ type Kural =
   | { tip: "hicri"; ay: number; gun: number; kaydir?: number }
   | { tip: "regaib" }
   | { tip: "resmi"; tatilId: string }
-  | { tip: "astro"; olay: Mevsim };
+  | { tip: "astro"; olay: Mevsim }
+  /** Paskalya'ya göre (Batı: Gregoryen hesap, Ortodoks: Jülyen hesap) gün farkı. */
+  | { tip: "paskalya"; ortodoks?: boolean; kaydir?: number };
 
 export type Etkinlik = {
   id: string;
@@ -112,8 +116,11 @@ export const KATEGORI_ADI: Record<Kategori, string> = {
   milli: "Milli ve anma günü",
   ozel: "Özel gün",
   halk: "Halk takvimi",
+  hristiyan: "Hristiyan bayramı",
   mevsim: "Mevsim ve astronomi",
 };
+
+const PASKALYA = { href: "/paskalya-ne-zaman", label: "Paskalya ne zaman? (Batı ve Ortodoks)" };
 
 const IZIN = {
   href: "/resmi-tatiller",
@@ -620,6 +627,121 @@ export const ETKINLIKLER: Etkinlik[] = [
       { href: "/firtina-takvimi", label: "Fırtına takvimi ve halk takvimi" },
     ],
   },
+  // Hristiyan bayramları: Türkiye'deki Ermeni, Rum Ortodoks, Süryani, Katolik ve Protestan toplulukların günleri.
+  {
+    id: "paskalya",
+    ad: "Paskalya",
+    kategori: "hristiyan",
+    gorsel: "ostern",
+    kural: { tip: "paskalya" },
+    tatil: "yok",
+    kisa: "İsa'nın dirilişinin kutlandığı bayram; Katolik, Protestan ve Ermeni kiliseleri (Batı hesabı).",
+    hakkinda:
+      "Paskalya, 21 Mart'tan sonraki ilk dolunayı izleyen pazar günüdür ve 22 Mart ile 25 Nisan arasında değişir. Türkiye'de Ermeni Patrikhanesi, Katolik ve Protestan kiliseleri bu Gregoryen (Batı) tarihi kullanır; Ermeniler bayrama Surp Zadik der.",
+    geriSayim: "paskalya",
+    araclar: [PASKALYA],
+  },
+  {
+    id: "ortodoks-paskalyasi",
+    ad: "Ortodoks Paskalyası",
+    kategori: "hristiyan",
+    gorsel: "ostern",
+    kural: { tip: "paskalya", ortodoks: true },
+    tatil: "yok",
+    kisa: "Rum Ortodoks ve Süryanilerin Paskalyası; Jülyen hesabıyla bulunur.",
+    hakkinda:
+      "Ortodoks kiliseleri Paskalya'yı Jülyen takvimine göre hesaplar; bu yüzden Batı Paskalyası ile aynı gün ya da 1-5 hafta sonra kutlanır. Türkiye'de Fener Rum Patrikhanesi'ne bağlı Rum Ortodokslar ve Mardin, Midyat gibi yerlerdeki Süryaniler bu tarihi kullanır.",
+    geriSayim: "ortodoks-paskalyasi",
+    araclar: [PASKALYA],
+  },
+  {
+    id: "kul-carsambasi",
+    ad: "Kül Çarşambası",
+    kategori: "hristiyan",
+    gorsel: "kerze",
+    kural: { tip: "paskalya", kaydir: -46 },
+    tatil: "yok",
+    kisa: "Katolik ve Protestanlarda Büyük Perhizin (40 günlük oruç) ilk günü.",
+    hakkinda:
+      "Kül Çarşambası, Batı Paskalyası'ndan 46 gün öncedir ve Büyük Perhizin başladığı gündür. Ayinde rahip katılanların alnına külle haç işareti yapar. Perhizdeki pazar günleri oruçtan sayılmadığı için 46 gün, 40 günlük oruca karşılık gelir.",
+    araclar: [PASKALYA],
+  },
+  {
+    id: "temiz-pazartesi",
+    ad: "Büyük Perhiz Başlangıcı (Ortodoks)",
+    kategori: "hristiyan",
+    gorsel: "kerze",
+    kural: { tip: "paskalya", ortodoks: true, kaydir: -48 },
+    tatil: "yok",
+    kisa: "Ortodoks kiliselerinde Büyük Perhizin ilk günü (Temiz Pazartesi).",
+    hakkinda:
+      "Ortodoks Büyük Perhizi, Ortodoks Paskalyası'ndan 48 gün önceki pazartesi başlar; bu güne Temiz Pazartesi (Kathara Deftera) denir. Perhiz Paskalya'ya kadar sürer ve son haftası Kutsal Hafta'dır.",
+    araclar: [PASKALYA],
+  },
+  {
+    id: "aya-yorgi",
+    ad: "Aya Yorgi",
+    kategori: "hristiyan",
+    gorsel: "kirche",
+    kural: {
+      tip: "coklu",
+      tarihler: [
+        { ay: 4, gun: 23, not: "Aziz Yorgi yortusu" },
+        { ay: 9, gun: 24, not: "sonbahar ziyareti" },
+      ],
+    },
+    tatil: "yok",
+    kisa: "Büyükada'daki Aya Yorgi Kilisesi'ne dilek ziyareti günleri.",
+    hakkinda:
+      "Büyükada'nın Yüce Tepe'sindeki Aya Yorgi Kilisesi her yıl 23 Nisan ve 24 Eylül'de binlerce ziyaretçi ağırlar. 23 Nisan Aziz Yorgi'nin yortusudur. Geleneğe göre yokuşta ağaçlara bağlanan ip kopmadan kiliseye kadar götürülürse dilek kabul olur; ziyaretçilerin çoğu Hristiyan değildir.",
+    geriSayim: "aya-yorgi",
+  },
+  {
+    id: "meryem-ana",
+    ad: "Meryem Ana'nın Göğe Alınışı",
+    kategori: "hristiyan",
+    gorsel: "kirche",
+    kural: { tip: "sabit", ay: 8, gun: 15 },
+    tatil: "yok",
+    kisa: "Katolik ve Ortodoks kiliselerinde Meryem Ana bayramı; Ermeniler en yakın pazar günü kutlar.",
+    hakkinda:
+      "15 Ağustos, Katolik kilisesinde Meryem'in Göğe Alınışı, Ortodoks kilisesinde Meryem'in Uyuyuşu olarak kutlanır. Türkiye'de Efes'teki Meryem Ana Evi ve Trabzon'daki Sümela Manastırı'nda bu güne bağlı ayinler yapılabilir. Ermeni Kilisesi bayramı (Surp Asdvadzadzin, halk arasında Üzüm Bayramı) 15 Ağustos'a en yakın pazar günü kutlar ve o gün üzüm kutsanır.",
+  },
+  {
+    id: "noel",
+    ad: "Noel",
+    kategori: "hristiyan",
+    gorsel: "weihnachten",
+    kural: { tip: "sabit", ay: 12, gun: 25 },
+    tatil: "yok",
+    kisa: "İsa'nın doğumu; Katolik, Protestan ve Rum Ortodokslar 25 Aralık'ta kutlar.",
+    hakkinda:
+      "Noel, İsa'nın doğumunun kutlandığı bayramdır. Katolikler, Protestanlar ve Fener Rum Patrikhanesi'ne bağlı Rum Ortodokslar 25 Aralık'ta kutlar. Ermeniler 6 Ocak'ta, Jülyen takvimini kullanan Rus, Sırp ve Gürcü kiliseleri 7 Ocak'ta kutlar.",
+    geriSayim: "noel",
+  },
+  {
+    id: "ermeni-noeli",
+    ad: "Ermeni Noeli (Surp Dznunt)",
+    kategori: "hristiyan",
+    gorsel: "weihnachten",
+    kural: { tip: "sabit", ay: 1, gun: 6 },
+    tatil: "yok",
+    kisa: "Türkiye Ermenilerinin Noeli; doğum ve vaftiz aynı gün anılır.",
+    hakkinda:
+      "Türkiye Ermenileri Noel'i 6 Ocak'ta Surp Dznunt adıyla kutlar. Ermeni Kilisesi, erken kilise geleneğindeki gibi İsa'nın doğumunu ve vaftizini aynı gün anar; ayinden sonra su kutsama töreni yapılır. Bu gün Rum Ortodokslar için Epifani (Theofania) bayramıdır.",
+    geriSayim: "ermeni-noeli",
+  },
+  {
+    id: "julyen-noeli",
+    ad: "Ortodoks Noeli (Jülyen takvimi)",
+    kategori: "hristiyan",
+    gorsel: "weihnachten",
+    kural: { tip: "sabit", ay: 1, gun: 7 },
+    tatil: "yok",
+    kisa: "Jülyen takvimini kullanan Rus, Sırp ve Gürcü Ortodoks kiliselerinin Noeli.",
+    hakkinda:
+      "Jülyen takviminde 25 Aralık, bugünkü takvimde 7 Ocak'a denk gelir (aradaki fark 2100'e kadar 13 gündür). Rus, Sırp, Gürcü Ortodoks kiliseleri ve Kudüs Patrikhanesi Noel'i bu tarihte kutlar; Türkiye'de özellikle Rusça konuşan Ortodoks topluluklar için önemlidir.",
+  },
   {
     id: "ilkbahar",
     ad: "İlkbahar Ekinoksu",
@@ -789,6 +911,10 @@ export function etkinlikTarihleri(e: Etkinlik, year: number): Tarihli[] {
           tahmini: gunler[0].estimated,
         },
       ];
+    }
+    case "paskalya": {
+      const p = k.ortodoks ? orthodoxEasterSunday(year) : easterSunday(year);
+      return [{ etkinlik: e, tarih: addDaysYmd({ year: p.year, month: p.month, day: p.day }, k.kaydir ?? 0) }];
     }
     case "astro": {
       const an = mevsimAni(year, k.olay);

@@ -15,6 +15,9 @@ import { findCategoryPageByCategory } from "../converter/categoryPages";
 import {
   TURKISH_TOOL_HUB_PATH,
   turkishCalculatorMenu,
+  turkishEngineeringMenu,
+  turkishGeoMenu,
+  turkishScienceMenu,
   turkishTimeMenu,
 } from "./turkishToolDirectory";
 import {
@@ -908,7 +911,6 @@ export function getTopLevelLinks(locale: Locale): LinkDefinition[] {
   if (locale === "tr") {
     return [
       { href: "/", label: labels.home },
-      { href: "/dosya-araclari", label: "Dosya Araçları" },
     ];
   }
 
@@ -1141,7 +1143,28 @@ function getTurkishMenuGroups(): MenuGroup[] {
       id: "calculators",
       label: "Hesaplamalar",
       links: turkishCalculatorMenu,
-      footer: [{ href: TURKISH_TOOL_HUB_PATH, label: "Tüm hesaplamalar →" }],
+      footer: [
+        { href: TURKISH_TOOL_HUB_PATH, label: "Tüm hesaplamalar →" },
+        { href: "/dosya-araclari", label: "Dosya araçları →" },
+      ],
+    },
+    {
+      id: "engineering",
+      label: "Mühendislik",
+      links: turkishEngineeringMenu,
+      footer: [{ href: "/muhendislik-hesaplayicilari", label: "Tüm mühendislik hesaplayıcıları →" }],
+    },
+    {
+      id: "science",
+      label: "Bilim",
+      links: turkishScienceMenu,
+      footer: [{ href: "/bilim-hesaplayicilari", label: "Tüm bilim hesaplayıcıları →" }],
+    },
+    {
+      id: "geo",
+      label: "Dünya ve Coğrafya",
+      links: turkishGeoMenu,
+      footer: [{ href: "/cografya-hesaplamalari", label: "Tüm coğrafya araçları →" }],
     },
     {
       id: "time",

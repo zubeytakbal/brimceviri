@@ -33,6 +33,7 @@ import {
   Wind,
 } from "@phosphor-icons/react/ssr";
 import HizliCevirme from "./HizliCevirme";
+import TumAraclar from "./TumAraclar";
 import MuhendislikKartlari, { type KartMalzeme } from "./MuhendislikKartlari";
 import ZamanKartlari, { type KartGeriSayim } from "./ZamanKartlari";
 import type { HizliVeri } from "../converter/hizliCevirmeVeri";
@@ -71,14 +72,6 @@ import { diniAraclar } from "../i18n/diniAraclar";
 import HomeSearch, { type HomeSearchItem } from "./HomeSearch";
 import { unitGlossaryHref } from "../converter/unitGlossary";
 
-const worldCultureToolsTr: Array<{ href: string; title: string; description: string; icon: SiteIconName }> = [
-  { href: "/ulkeler", title: "Ülkeler ve Başkentleri", description: "196 ülkenin başkenti, saat farkı, para birimi ve komşuları.", icon: "greatCircleCalculator" },
-  { href: "/dunya-haritasi", title: "Dünya Haritası", description: "Kıtalara göre renkli, tıklanabilir dünya haritası.", icon: "greatCircleCalculator" },
-  { href: "/dunyanin-en-yuksek-daglari", title: "Dünyanın En Yüksek Dağları", description: "Zirvelerin rakımı, ilk tırmanışı ve oradaki hava basıncı.", icon: "mountainsHubCalculator" },
-  { href: "/sure-bulucu", title: "Sure Bulucu", description: "Surenin cüzü, sayfası, ayet sayısı ve ezber planı.", icon: "unitGuide" },
-  { href: "/cuzler", title: "Cüzler ve Hatim Dağıtma", description: "30 cüzün sure aralıkları ve kişilere hatim paylaştırma.", icon: "unitGuide" },
-  { href: "/birim-cevirme-felaketleri", title: "Birim Çevirme Felaketleri", description: "Mars uydusundan Gimli uçağına yanlış birimle yaşanan olaylar.", icon: "unitDisaster" },
-];
 type Locale = "tr" | "en" | "uz" | "de";
 
 const englishDecisionSavingsHomeTools = getEnglishToolsByDomain("decision-savings");
@@ -131,12 +124,6 @@ const germanRechnerGroups: Array<{ id: string; title: string; description: strin
 
 const germanRechnerHome = germanRechnerGroups.flatMap((group) => group.tools);
 
-const fileToolsHome = [
-  { href: "/dosya-araclari", title: "Dosya Araçları", description: "Tüm görsel araçları tek panelde; türüne göre süzün." },
-  { href: "/gorsel-donusturucu", title: "Görsel Dönüştürücü", description: "JPG, PNG ve WebP'yi birbirine çevirin; toplu dönüştürüp ZIP indirin." },
-  { href: "/webp-jpg-cevirme", title: "WebP JPG Çevirme", description: "İnternetten inen WebP görselleri her programda açılan JPG yapın." },
-  { href: "/png-jpg-cevirme", title: "PNG JPG Çevirme", description: "PNG'leri küçük JPG'lere çevirin; saydam alanlar istediğiniz renkle dolar." },
-];
 
 const timeToolsHome = {
   tr: [
@@ -2068,30 +2055,19 @@ export default function HomeDirectory({
             </div>
           </section>
         )}
-        {(locale === "tr" || locale === "en" || locale === "de") && (
-          <section className="directory-section" id={locale === "tr" ? "zaman-araclari" : locale === "de" ? "kalender" : "time-tools"}>
+        {locale === "tr" && <TumAraclar />}
+        {(locale === "en" || locale === "de") && (
+          <section className="directory-section" id={locale === "de" ? "kalender" : "time-tools"}>
             <header className="directory-section-header">
               <div>
-                <h2>{locale === "tr" ? "Zaman araçları" : locale === "de" ? "Uhr, Timer und Kalender" : "Time tools"}</h2>
+                <h2>{locale === "de" ? "Uhr, Timer und Kalender" : "Time tools"}</h2>
                 <p>
-                  {locale === "tr"
-                    ? "Online saat, alarm, zamanlayıcı, dünya saatleri, geri sayım ve takvim araçları — kurulum gerektirmez."
-                    : locale === "de"
+                  {locale === "de"
                       ? "Online-Uhr, Timer, Wecker, Stoppuhr, Kalenderwoche, Feiertage aller Bundesländer, Arbeitstage und Weltuhr."
                       : "Online clock, alarm, timer, world clock, countdowns and calendar tools — nothing to install."}
                 </p>
               </div>
             </header>
-            {locale === "tr" ? (
-              // Türkçede zaman araçlarının öne çıkanları yukarıdaki Zaman kartlarında; geri kalanlar kısa bağlantı listesi.
-              <p className="zaman-araclari-linkler">
-                {timeToolsHome.tr.map((tool) => (
-                  <Link key={tool.href} href={tool.href}>
-                    {tool.title}
-                  </Link>
-                ))}
-              </p>
-            ) : (
             <div className="directory-tool-grid">
               {(locale === "de" ? timeToolsHome.de : timeToolsHome.en).map((tool) => (
                 <article className="directory-home-card directory-tool-card" key={tool.href}>
@@ -2099,33 +2075,6 @@ export default function HomeDirectory({
                   <div className="directory-card-body directory-card-body-icon">
                     <span className="home-category-icon-box" aria-hidden="true">
                       <DecorativeIcon name={tool.icon} size={42} className="home-category-icon-svg" />
-                    </span>
-                    <div>
-                      <h3 className="home-category-title">{tool.title}</h3>
-                      <p>{tool.description}</p>
-                    </div>
-                  </div>
-                </article>
-              ))}
-            </div>
-            )}
-          </section>
-        )}
-        {locale === "tr" && (
-          <section className="directory-section" id="dosya-araclari">
-            <header className="directory-section-header">
-              <div>
-                <h2>Dosya araçları</h2>
-                <p>JPG, PNG ve WebP dönüştürme — ücretsiz, kayıtsız; dosyalar yüklenmeden tarayıcıda işlenir.</p>
-              </div>
-            </header>
-            <div className="directory-tool-grid">
-              {fileToolsHome.map((tool) => (
-                <article className="directory-home-card directory-tool-card" key={tool.href}>
-                  <Link className="directory-card-stretch" href={tool.href} aria-label={tool.title} />
-                  <div className="directory-card-body directory-card-body-icon">
-                    <span className="home-category-icon-box" aria-hidden="true">
-                      <DecorativeIcon name="fotografciHub" size={42} className="home-category-icon-svg" />
                     </span>
                     <div>
                       <h3 className="home-category-title">{tool.title}</h3>
@@ -2406,10 +2355,10 @@ export default function HomeDirectory({
           </section>
         )}
 
-        {data.engineeringCalculators.length > 0 && (
+        {locale !== "tr" && data.engineeringCalculators.length > 0 && (
         <section
           className="directory-section"
-          id={locale === "tr" ? "muhendislik-hesaplayicilari" : "engineering-calculators"}
+          id="engineering-calculators"
         >
           <header className="directory-section-header">
             <div>
@@ -2462,135 +2411,9 @@ export default function HomeDirectory({
         </section>
         )}
 
-        {locale === "tr" && (
-          <section className="directory-section" id="bilim-hesaplayicilari">
-            <header className="directory-section-header">
-              <div>
-                <h2>Bilim hesaplayıcıları</h2>
-                <p>
-                  Matematik, kimya, fizik, geometri ve biyoloji araçları;
-                  formüller ve hesaplama açıklamaları.
-                </p>
-              </div>
-            </header>
 
-            <div className="directory-tool-grid">
-              <article className="directory-home-card directory-tool-card">
-                <Link
-                  className="directory-card-stretch"
-                  href="/bilim-hesaplayicilari/kimya"
-                  aria-label="Kimya"
-                />
-
-                <div className="directory-card-body directory-card-body-icon">
-                  <span className="home-category-icon-box" aria-hidden="true">
-                    <DecorativeIcon
-                      name="chemistryCalculator"
-                      size={42}
-                      className="home-category-icon-svg"
-                    />
-                  </span>
-                  <h3 className="home-category-title">Kimya</h3>
-                </div>
-              </article>
-
-              <article className="directory-home-card directory-tool-card">
-                <Link
-                  className="directory-card-stretch"
-                  href="/bilim-hesaplayicilari/matematik"
-                  aria-label="Matematik"
-                />
-
-                <div className="directory-card-body directory-card-body-icon">
-                  <span className="home-category-icon-box" aria-hidden="true">
-                    <DecorativeIcon
-                      name="mathCalculator"
-                      size={42}
-                      className="home-category-icon-svg"
-                    />
-                  </span>
-                  <h3 className="home-category-title">Matematik</h3>
-                </div>
-              </article>
-
-              <article className="directory-home-card directory-tool-card">
-                <Link
-                  className="directory-card-stretch"
-                  href="/bilim-hesaplayicilari/fizik"
-                  aria-label="Fizik"
-                />
-                <div className="directory-card-body directory-card-body-icon">
-                  <span className="home-category-icon-box" aria-hidden="true">
-                    <DecorativeIcon name="physicsCalculator" size={42} className="home-category-icon-svg" />
-                  </span>
-                  <h3 className="home-category-title">Fizik</h3>
-                </div>
-              </article>
-
-              <article className="directory-home-card directory-tool-card">
-                <Link
-                  className="directory-card-stretch"
-                  href="/bilim-hesaplayicilari/geometri"
-                  aria-label="Geometri"
-                />
-
-                <div className="directory-card-body directory-card-body-icon">
-                  <span className="home-category-icon-box" aria-hidden="true">
-                    <DecorativeIcon
-                      name="geometryCalculator"
-                      size={42}
-                      className="home-category-icon-svg"
-                    />
-                  </span>
-                  <h3 className="home-category-title">Geometri</h3>
-                </div>
-              </article>
-
-              <article className="directory-home-card directory-tool-card">
-                <Link
-                  className="directory-card-stretch"
-                  href="/bilim-hesaplayicilari/biyoloji"
-                  aria-label="Biyoloji"
-                />
-
-                <div className="directory-card-body directory-card-body-icon">
-                  <span className="home-category-icon-box" aria-hidden="true">
-                    <DecorativeIcon
-                      name="biologyCalculator"
-                      size={42}
-                      className="home-category-icon-svg"
-                    />
-                  </span>
-                  <h3 className="home-category-title">Biyoloji</h3>
-                </div>
-              </article>
-
-              <article className="directory-home-card directory-tool-card directory-home-card-more">
-                <Link
-                  className="directory-card-stretch"
-                  href="/bilim-hesaplayicilari"
-                  aria-label="Diğer Bilim Hesaplayıcıları"
-                />
-
-                <div className="directory-card-body directory-more-card-body">
-                  <ArrowRight
-                    className="directory-more-arrow"
-                    size={56}
-                    weight="regular"
-                    aria-hidden="true"
-                  />
-
-                  <span className="directory-more-label">
-                    Diğer Bilim Hesaplayıcıları
-                  </span>
-                </div>
-              </article>
-            </div>
-          </section>
-        )}
-
-        {(locale === "tr" || locale === "en") && (
-          <section className="directory-section" id={locale === "en" ? "geography-calculators" : "cografya-hesaplamalari"}>
+        {locale === "en" && (
+          <section className="directory-section" id="geography-calculators">
             <header className="directory-section-header">
               <div>
                 <h2>{locale === "en" ? "Geography calculators" : "Coğrafya hesaplamaları"}</h2>
@@ -2631,32 +2454,6 @@ export default function HomeDirectory({
           </section>
         )}
 
-        {locale === "tr" && (
-          <section className="directory-section" id="dunya-ve-kultur">
-            <header className="directory-section-header">
-              <div>
-                <h2>Dünya ve kültür</h2>
-                <p>Ülke bilgileri, zirveler, Kur&apos;an araçları ve yanlış birimin yol açtığı gerçek olaylar.</p>
-              </div>
-            </header>
-            <div className="directory-tool-grid">
-              {worldCultureToolsTr.map((tool) => (
-                <article className="directory-home-card directory-tool-card" key={tool.href}>
-                  <Link className="directory-card-stretch" href={tool.href} aria-label={tool.title} />
-                  <div className="directory-card-body directory-card-body-icon">
-                    <span className="home-category-icon-box" aria-hidden="true">
-                      <DecorativeIcon name={tool.icon} size={42} className="home-category-icon-svg" />
-                    </span>
-                    <div>
-                      <h3 className="home-category-title">{tool.title}</h3>
-                      <p>{tool.description}</p>
-                    </div>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </section>
-        )}
 
         {locale === "en" && (
           <section className="directory-section" id="everyday-calculators">

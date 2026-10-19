@@ -6,6 +6,7 @@ import { getSiteNotifications } from "./converter/siteNotifications";
 import { getFxLatest } from "./converter/fx/fxData";
 import { hizliCevirmeVerisi } from "./converter/hizliCevirmeVeri";
 import { materialsDatabase } from "./converter/materialsDatabase";
+import { countdownEvents, startMs, upcomingOccurrences } from "./converter/time/countdownEvents";
 
 // "Litre kaç kilo" kartı: sıvılar ve gıdalar, ada göre sıralı.
 const KART_MALZEMELERI = materialsDatabase
@@ -38,5 +39,11 @@ export const metadata: Metadata = {
 
 export default async function Page() {
   const [notifications, fx] = await Promise.all([getSiteNotifications(), getFxLatest()]);
-  return <HomeDirectory locale="tr" notifications={notifications} hizli={hizliCevirmeVerisi(fx)} malzemeler={KART_MALZEMELERI} />;
+  // Zaman kartındaki geri sayımlar: her etkinliğin sıradaki iki tarihi (tarayıcı geçmiş olanı atlar).
+  const now = new Date();
+  const geriSayimlar = countdownEvents
+    .filter((e) => e.lang === "tr")
+    .map((e) => ({ slug: e.slug, ad: e.name, anlar: upcomingOccurrences(e, now, 2).map((o) => startMs(o, e.zone)) }))
+    .filter((g) => g.anlar.length > 0);
+  return <HomeDirectory locale="tr" notifications={notifications} hizli={hizliCevirmeVerisi(fx)} malzemeler={KART_MALZEMELERI} geriSayimlar={geriSayimlar} olusturma={now.getTime()} />;
 }

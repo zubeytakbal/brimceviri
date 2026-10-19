@@ -34,6 +34,7 @@ import {
 } from "@phosphor-icons/react/ssr";
 import HizliCevirme from "./HizliCevirme";
 import MuhendislikKartlari, { type KartMalzeme } from "./MuhendislikKartlari";
+import ZamanKartlari, { type KartGeriSayim } from "./ZamanKartlari";
 import type { HizliVeri } from "../converter/hizliCevirmeVeri";
 import NotificationBell from "./NotificationBell";
 import RecentToolsWidget from "./RecentToolsWidget";
@@ -1966,6 +1967,8 @@ export default function HomeDirectory({
   notifications = [],
   hizli,
   malzemeler,
+  geriSayimlar,
+  olusturma = 0,
 }: {
   locale: Locale;
   notifications?: SiteNotification[];
@@ -1973,6 +1976,9 @@ export default function HomeDirectory({
   hizli?: HizliVeri;
   /** Türkçe ana sayfadaki "litre kaç kilo" kartının malzemeleri. */
   malzemeler?: KartMalzeme[];
+  /** Türkçe ana sayfadaki zaman kartının geri sayımları ve sayfanın derlendiği an (ms). */
+  geriSayimlar?: KartGeriSayim[];
+  olusturma?: number;
 }) {
   const strings = copy[locale];
   const data = homeData[locale];
@@ -2026,6 +2032,7 @@ export default function HomeDirectory({
         <div className="directory-shell">
           <HizliCevirme veri={hizli} />
           {malzemeler?.length ? <MuhendislikKartlari malzemeler={malzemeler} /> : null}
+          {geriSayimlar?.length ? <ZamanKartlari geriSayimlar={geriSayimlar} olusturma={olusturma} /> : null}
         </div>
       ) : null}
 
@@ -2075,8 +2082,18 @@ export default function HomeDirectory({
                 </p>
               </div>
             </header>
+            {locale === "tr" ? (
+              // Türkçede zaman araçlarının öne çıkanları yukarıdaki Zaman kartlarında; geri kalanlar kısa bağlantı listesi.
+              <p className="zaman-araclari-linkler">
+                {timeToolsHome.tr.map((tool) => (
+                  <Link key={tool.href} href={tool.href}>
+                    {tool.title}
+                  </Link>
+                ))}
+              </p>
+            ) : (
             <div className="directory-tool-grid">
-              {(locale === "tr" ? timeToolsHome.tr : locale === "de" ? timeToolsHome.de : timeToolsHome.en).map((tool) => (
+              {(locale === "de" ? timeToolsHome.de : timeToolsHome.en).map((tool) => (
                 <article className="directory-home-card directory-tool-card" key={tool.href}>
                   <Link className="directory-card-stretch" href={tool.href} aria-label={tool.title} />
                   <div className="directory-card-body directory-card-body-icon">
@@ -2091,6 +2108,7 @@ export default function HomeDirectory({
                 </article>
               ))}
             </div>
+            )}
           </section>
         )}
         {locale === "tr" && (

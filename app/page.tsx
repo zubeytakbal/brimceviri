@@ -5,6 +5,13 @@ import { buildSiteUrl } from "./siteConfig";
 import { getSiteNotifications } from "./converter/siteNotifications";
 import { getFxLatest } from "./converter/fx/fxData";
 import { hizliCevirmeVerisi } from "./converter/hizliCevirmeVeri";
+import { materialsDatabase } from "./converter/materialsDatabase";
+
+// "Litre kaç kilo" kartı: sıvılar ve gıdalar, ada göre sıralı.
+const KART_MALZEMELERI = materialsDatabase
+  .filter((m) => m.category === "sivi" || m.category === "gida")
+  .map((m) => ({ id: m.id, ad: m.nameTr, yogunluk: m.densityKgM3 }))
+  .sort((a, b) => a.ad.localeCompare(b.ad, "tr"));
 
 export const revalidate = 3600;
 
@@ -31,5 +38,5 @@ export const metadata: Metadata = {
 
 export default async function Page() {
   const [notifications, fx] = await Promise.all([getSiteNotifications(), getFxLatest()]);
-  return <HomeDirectory locale="tr" notifications={notifications} hizli={hizliCevirmeVerisi(fx)} />;
+  return <HomeDirectory locale="tr" notifications={notifications} hizli={hizliCevirmeVerisi(fx)} malzemeler={KART_MALZEMELERI} />;
 }

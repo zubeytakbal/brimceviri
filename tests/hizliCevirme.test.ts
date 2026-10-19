@@ -28,3 +28,16 @@ describe("hızlı çeviri kartları", () => {
     expect(veri.doviz).toBeNull();
   });
 });
+
+import { betonHacmi, kwAmper } from "../app/converter/hizliCevir";
+
+describe("mühendislik kartları", () => {
+  it("beton: 5 × 4 m, 15 cm, %5 fire = 3,15 m³", () => {
+    expect(betonHacmi(5, 4, 15, 5)).toBeCloseTo(3.15, 10);
+  });
+  it("kW → amper: tam sayfadaki örneklerle aynı", () => {
+    // 2 kW, 230 V tek faz, cos φ 0,95 → 9,15 A; 5,5 kW 400 V üç faz cos φ 0,9 (verim %100) → 8,82 A
+    expect(kwAmper(2, 230, false, 0.95)).toBeCloseTo(9.153, 2);
+    expect(kwAmper(5.5, 400, true, 0.9)).toBeCloseTo(8.821, 2);
+  });
+});

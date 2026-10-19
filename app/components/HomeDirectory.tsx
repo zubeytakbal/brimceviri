@@ -33,6 +33,7 @@ import {
   Wind,
 } from "@phosphor-icons/react/ssr";
 import HizliCevirme from "./HizliCevirme";
+import MuhendislikKartlari, { type KartMalzeme } from "./MuhendislikKartlari";
 import type { HizliVeri } from "../converter/hizliCevirmeVeri";
 import NotificationBell from "./NotificationBell";
 import RecentToolsWidget from "./RecentToolsWidget";
@@ -1964,11 +1965,14 @@ export default function HomeDirectory({
   locale,
   notifications = [],
   hizli,
+  malzemeler,
 }: {
   locale: Locale;
   notifications?: SiteNotification[];
   /** Türkçe ana sayfadaki hızlı çeviri kartlarının verisi. */
   hizli?: HizliVeri;
+  /** Türkçe ana sayfadaki "litre kaç kilo" kartının malzemeleri. */
+  malzemeler?: KartMalzeme[];
 }) {
   const strings = copy[locale];
   const data = homeData[locale];
@@ -2021,6 +2025,7 @@ export default function HomeDirectory({
       {hizli ? (
         <div className="directory-shell">
           <HizliCevirme veri={hizli} />
+          {malzemeler?.length ? <MuhendislikKartlari malzemeler={malzemeler} /> : null}
         </div>
       ) : null}
 
@@ -2188,6 +2193,8 @@ export default function HomeDirectory({
           </section>
         )}
 
+        {/* Türkçe ana sayfada kategori ızgarası yok: hızlı çeviri kartları ve tüm birimler sayfası bu işi görüyor. */}
+        {locale !== "tr" && (
         <section className="directory-section">
           <header className="directory-section-header">
             <div>
@@ -2225,11 +2232,7 @@ export default function HomeDirectory({
               <article className="directory-home-card directory-home-card-more">
                 <Link
                   className="directory-card-stretch"
-                  href={
-                    locale === "tr"
-                      ? "/diger-donusumler"
-                      : data.allConversionsHref
-                  }
+                  href={data.allConversionsHref}
                   aria-label={strings.moreCategoriesCardLabel}
                 />
 
@@ -2291,6 +2294,7 @@ export default function HomeDirectory({
             </Link>
           </div>
         </section>
+        )}
 
         <section className="directory-section">
           <header className="directory-section-header">

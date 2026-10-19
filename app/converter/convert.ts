@@ -1,20 +1,5 @@
+import { temperatureFromCelsius, temperatureToCelsius } from "./temperature";
 import { unitRegistry } from "./unitRegistry";
-
-function temperatureToCelsius(value: number, unit: string): number {
-  if (unit === "F") return ((value - 32) * 5) / 9;
-  if (unit === "K") return value - 273.15;
-  if (unit === "R") return (value * 5) / 9 - 273.15;
-  if (unit === "Re") return (value * 5) / 4;
-  return value;
-}
-
-function temperatureFromCelsius(celsius: number, unit: string): number {
-  if (unit === "F") return (celsius * 9) / 5 + 32;
-  if (unit === "K") return celsius + 273.15;
-  if (unit === "R") return (celsius + 273.15) * (9 / 5);
-  if (unit === "Re") return (celsius * 4) / 5;
-  return celsius;
-}
 
 const factorTables = new Map<string, Record<string, number>>();
 // Ters orantılı birimler ("kategori|sembol"): taban = katsayı / değer.

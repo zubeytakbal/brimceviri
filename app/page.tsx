@@ -3,6 +3,8 @@ import type { Metadata } from "next";
 import HomeDirectory from "./components/HomeDirectory";
 import { buildSiteUrl } from "./siteConfig";
 import { getSiteNotifications } from "./converter/siteNotifications";
+import { getFxLatest } from "./converter/fx/fxData";
+import { hizliCevirmeVerisi } from "./converter/hizliCevirmeVeri";
 
 export const revalidate = 3600;
 
@@ -28,6 +30,6 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  const notifications = await getSiteNotifications();
-  return <HomeDirectory locale="tr" notifications={notifications} />;
+  const [notifications, fx] = await Promise.all([getSiteNotifications(), getFxLatest()]);
+  return <HomeDirectory locale="tr" notifications={notifications} hizli={hizliCevirmeVerisi(fx)} />;
 }

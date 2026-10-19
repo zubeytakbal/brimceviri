@@ -70,7 +70,7 @@ export default function ZikirmatikPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Online Zikirmatik"
-      intro="Daireye dokunarak sayın. Namaz tesbihatı kendiliğinden sıradaki zikre geçer; kayıtlar bu cihazda saklanır."
+      intro="Daireye dokunarak sayın; kayıtlar bu cihazda saklanır."
       tool={<Zikirmatik />}
       related={{ title: "Diğer dini araçlar", links: diniRelated(path) }}
       tocTitle="İçindekiler"

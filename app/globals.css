@@ -18233,3 +18233,25 @@ a.all-units-row .all-units-name {
   font-style: normal;
   color: #5b6b7a;
 }
+@media (max-width: 640px) {
+  .zk {
+    gap: 10px;
+  }
+  .zk-kart {
+    gap: 10px;
+    padding: 14px 12px;
+  }
+  .zk-sayac {
+    width: min(220px, 60vw);
+  }
+  .zk-sayac-ic strong {
+    font-size: 3.8rem;
+  }
+  .zk-anlam {
+    margin-top: 2px;
+    font-size: 0.85rem;
+  }
+  .zk-baslik h3 {
+    font-size: 1.25rem;
+  }
+}

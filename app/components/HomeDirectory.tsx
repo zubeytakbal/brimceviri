@@ -2297,17 +2297,6 @@ export default function HomeDirectory({
           </ul>
         </section>
 
-        {locale === "tr" && (
-          <FxHomeSection
-            id="doviz-cevirici"
-            title="Döviz çevirici"
-            description="Günlük referans kurla dolar, euro, sterlin ve 12 döviz daha; kurun ne zaman yayınlandığı, grafik ve banka kuru farkı hesaplama."
-            hubHref="/doviz-cevirici"
-            allLabel="Tüm döviz kurları"
-            cards={[]}
-          />
-        )}
-
         {locale === "uz" && (
           <FxHomeSection
             id="valyuta-aylantirgich"
@@ -2330,7 +2319,7 @@ export default function HomeDirectory({
           />
         )}
 
-        {data.popularUnits.length > 0 && (
+        {locale !== "tr" && data.popularUnits.length > 0 && (
           <section className="directory-section">
             <header className="directory-section-header">
               <div>

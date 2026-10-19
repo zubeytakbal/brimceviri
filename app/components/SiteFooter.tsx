@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "@/app/components/SiteLink";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { getLocaleFromPathname } from "../i18n/config";
 // Alt bilgi verisi derleme oncesi uretilen kucuk modulden gelir (scripts/generateSiteNav.ts).
 import { SITE_NAV_DATA } from "../i18n/siteNavData.generated";
@@ -10,6 +10,79 @@ import {
   SITE_NAME,
 } from "../siteConfig";
 
+const ARAC_SAYISI = 5;
+// Bilgi sayfaları alt satırda; Ana Sayfa ve araç dizinleri üstteki sütunlarda zaten var.
+const ALT_SATIR = new Set(["/hakkimizda", "/iletisim", "/gizlilik", "/kullanim-kosullari"]);
+
+/** Türkçe alt bilgi: üst menünün altı başlığı sütun olarak, dil seçimi açılır listede, yasal bağlantılar tek satırda. */
+function TurkceFooter({ nav }: { nav: (typeof SITE_NAV_DATA.locales)["tr"] }) {
+  const router = useRouter();
+  return (
+    <footer className="site-footer site-footer--tr">
+      <div className="site-footer-tr">
+        <div className="site-footer-tr-ust">
+          <div>
+            <strong>{SITE_NAME}</strong>
+            <p>{nav.footerCopy.description}</p>
+          </div>
+          <label className="site-footer-dil">
+            <span>{nav.footerCopy.languagesHeading}</span>
+            <select value="tr" onChange={(e) => router.push(SITE_NAV_DATA.footerLanguageLinks.find((l) => l.locale === e.target.value)!.href)}>
+              {SITE_NAV_DATA.footerLanguageLinks.map((l) => (
+                <option key={l.locale} value={l.locale}>
+                  {l.label}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+
+        <nav className="site-footer-tr-sutunlar" aria-label={nav.footerCopy.navAriaLabel}>
+          {nav.menuGroups.map((g) => {
+            const tumu = g.footer?.[0];
+            return (
+              <div key={g.id}>
+                <strong>{g.label}</strong>
+                <ul>
+                  {g.links.slice(0, ARAC_SAYISI).map((l) => (
+                    <li key={l.href}>
+                      <Link href={l.href}>{l.label}</Link>
+                    </li>
+                  ))}
+                  {tumu ? (
+                    <li>
+                      <Link className="site-footer-tumu" href={tumu.href}>
+                        {tumu.label}
+                      </Link>
+                    </li>
+                  ) : null}
+                </ul>
+              </div>
+            );
+          })}
+        </nav>
+
+        <div className="site-footer-tr-alt">
+          <p>
+            <span>© {new Date().getFullYear()} {SITE_NAME}</span>
+            {nav.footerLinks
+              .filter((l) => ALT_SATIR.has(l.href))
+              .map((l) => (
+                <Link href={l.href} key={l.href}>
+                  {l.label}
+                </Link>
+              ))}
+            <a href={`mailto:${SITE_CONTACT_EMAIL}`}>{SITE_CONTACT_EMAIL}</a>
+          </p>
+          <small>
+            {nav.footerCopy.disclaimer} {nav.footerCopy.browserProcessingNote}
+          </small>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
 export default function SiteFooter() {
   const pathname = usePathname();
   if (pathname.startsWith("/embed/")) {
@@ -17,6 +90,9 @@ export default function SiteFooter() {
   }
   const locale = getLocaleFromPathname(pathname);
   const nav = SITE_NAV_DATA.locales[locale];
+  if (locale === "tr") {
+    return <TurkceFooter nav={nav} />;
+  }
   const categoryFooterLinks = nav.categoryFooterLinks;
   const footerLinks = nav.footerLinks;
   const footerLanguageLinks = SITE_NAV_DATA.footerLanguageLinks;

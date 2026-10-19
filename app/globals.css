@@ -17576,3 +17576,105 @@ a.all-units-row .all-units-name {
   font-weight: 700;
   color: #1f2d3a;
 }
+
+/* Türkçe alt bilgi: üstte ad ve dil seçimi, ortada üst menünün altı başlığı, altta yasal bağlantılar. */
+.site-footer-tr {
+  width: min(1120px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 1.6rem 0 1.4rem;
+  display: grid;
+  gap: 1.4rem;
+}
+.site-footer-tr-ust {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.site-footer-tr-ust strong {
+  font-size: 1.1rem;
+}
+.site-footer-tr-ust p {
+  margin: 0.3rem 0 0;
+  max-width: 560px;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: #355769;
+}
+.site-footer-dil {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  font-size: 0.85rem;
+  color: #355769;
+}
+.site-footer-dil select {
+  padding: 7px 10px;
+  border: 1px solid #c9d6de;
+  border-radius: 10px;
+  background: #ffffff;
+  font: inherit;
+  color: #0f657f;
+}
+.site-footer-tr-sutunlar {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 1.25rem;
+  padding: 1.2rem 0;
+  border-top: 1px solid rgba(14, 116, 144, 0.12);
+  border-bottom: 1px solid rgba(14, 116, 144, 0.12);
+}
+.site-footer-tr-sutunlar strong {
+  display: block;
+  margin-bottom: 0.55rem;
+  font-size: 0.92rem;
+  color: #1c3a4a;
+}
+.site-footer-tr-sutunlar ul {
+  display: grid;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.site-footer-tr a {
+  color: #0f657f;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+.site-footer-tr a:hover,
+.site-footer-tr a:focus-visible {
+  text-decoration: underline;
+}
+.site-footer-tr .site-footer-tumu {
+  font-weight: 600;
+}
+.site-footer-tr-alt p {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.2rem;
+  margin: 0;
+  font-size: 0.88rem;
+  color: #355769;
+}
+.site-footer-tr-alt small {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: #5b6b7a;
+}
+@media (max-width: 900px) {
+  .site-footer-tr-sutunlar {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (max-width: 560px) {
+  .site-footer-tr-ust {
+    flex-direction: column;
+  }
+  .site-footer-tr-sutunlar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

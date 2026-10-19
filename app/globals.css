@@ -17211,10 +17211,15 @@ a.all-units-row .all-units-name {
   outline: 2px solid #1f8a8a;
   outline-offset: 1px;
 }
-.hizli-degistir {
-  display: flex;
-  justify-content: flex-end;
-  margin: -4px 0;
+.hizli-birimler {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: end;
+  gap: 6px;
+}
+.hizli-birimler select {
+  padding: 10px 6px;
+  font-size: 0.9rem;
 }
 .hizli-sonuc {
   display: flex;
@@ -17249,7 +17254,19 @@ a.all-units-row .all-units-name {
   color: #1f4f66;
 }
 @media (max-width: 900px) {
+  /* Telefonda kartlar yan yana kaydırılır; bölüm tek kart yüksekliğinde kalır. */
   .hizli-kartlar {
-    grid-template-columns: 1fr;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 6px;
+    margin: 0 -16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    scroll-padding-left: 16px;
+  }
+  .hizli-kart {
+    flex: 0 0 86%;
+    scroll-snap-align: start;
   }
 }

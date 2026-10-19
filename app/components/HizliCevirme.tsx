@@ -45,15 +45,18 @@ function duzelt(k: Kart, veri: HizliVeri): Kart {
 }
 
 function Ikon({ ad }: { ad: "disli" | "degistir" | "kopyala" }) {
-  const yol = {
-    disli:
-      "M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm7.4-2.5 1.6 1.2-1.6 2.8-1.9-.7a7.7 7.7 0 0 1-1.7 1l-.3 2h-3.2l-.3-2a7.7 7.7 0 0 1-1.7-1l-1.9.7-1.6-2.8L4.6 13a7.8 7.8 0 0 1 0-2L3 9.8l1.6-2.8 1.9.7a7.7 7.7 0 0 1 1.7-1l.3-2h3.2l.3 2a7.7 7.7 0 0 1 1.7 1l1.9-.7 1.6 2.8-1.6 1.2a7.8 7.8 0 0 1 0 2Z",
-    degistir: "M7 4v13m0 0-3-3m3 3 3-3M17 20V7m0 0-3 3m3-3 3 3",
-    kopyala: "M9 9h10v11H9zM5 15H4V4h11v1",
-  }[ad];
   return (
     <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d={yol} />
+      {ad === "disli" ? (
+        <>
+          <circle cx="12" cy="12" r="3" />
+          <path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1" />
+        </>
+      ) : ad === "degistir" ? (
+        <path d="M4 8h14m0 0-3-3m3 3-3 3M20 16H6m0 0 3-3m-3 3 3 3" />
+      ) : (
+        <path d="M9 9h10v11H9zM5 15H4V4h11v1" />
+      )}
     </svg>
   );
 }
@@ -123,31 +126,31 @@ function HizliKart({ kart, veri, degis }: { kart: Kart; veri: HizliVeri; degis: 
         <span>Değer</span>
         <input type="text" inputMode="decimal" value={kart.deger} onChange={(e) => degis({ ...kart, deger: e.target.value })} />
       </label>
-      <label className="hizli-alan">
-        <span>Kimden</span>
-        <select value={kart.from} onChange={(e) => degis({ ...kart, from: e.target.value })}>
-          {secenekler.map((o) => (
-            <option key={o.deger} value={o.deger}>
-              {o.ad}
-            </option>
-          ))}
-        </select>
-      </label>
-      <div className="hizli-degistir">
+      <div className="hizli-birimler">
+        <label className="hizli-alan">
+          <span>Kimden</span>
+          <select value={kart.from} onChange={(e) => degis({ ...kart, from: e.target.value })}>
+            {secenekler.map((o) => (
+              <option key={o.deger} value={o.deger}>
+                {o.ad}
+              </option>
+            ))}
+          </select>
+        </label>
         <button type="button" className="hizli-ikon" aria-label="Birimlerin yerini değiştir" onClick={() => degis({ ...kart, from: kart.to, to: kart.from })}>
           <Ikon ad="degistir" />
         </button>
+        <label className="hizli-alan">
+          <span>Kime</span>
+          <select value={kart.to} onChange={(e) => degis({ ...kart, to: e.target.value })}>
+            {secenekler.map((o) => (
+              <option key={o.deger} value={o.deger}>
+                {o.ad}
+              </option>
+            ))}
+          </select>
+        </label>
       </div>
-      <label className="hizli-alan">
-        <span>Kime</span>
-        <select value={kart.to} onChange={(e) => degis({ ...kart, to: e.target.value })}>
-          {secenekler.map((o) => (
-            <option key={o.deger} value={o.deger}>
-              {o.ad}
-            </option>
-          ))}
-        </select>
-      </label>
       <div className="hizli-sonuc" aria-live="polite">
         <button type="button" className="hizli-ikon" aria-label="Sonucu kopyala" onClick={kopyala} disabled={!Number.isFinite(sonuc)}>
           <Ikon ad="kopyala" />

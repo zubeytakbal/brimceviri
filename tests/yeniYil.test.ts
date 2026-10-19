@@ -10,7 +10,7 @@ describe("yılbaşı", () => {
   });
   it("sıralama: ilk Kiribati, son Amerikan Samoası", () => {
     const s = yeniYilSirasi(2027);
-    expect(s[0].ulke).toBe("Kiribati");
+    expect(s[0].ulke).toBe("Kiribati, Line Adaları");
     expect(s[s.length - 1].ulke).toBe("Amerikan Samoası");
   });
   it("yılbaşı tatili", () => {

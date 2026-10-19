@@ -6,7 +6,7 @@ export type YeniYilYeri = { ad: string; ulke: string; tz: string };
 
 /** worldCities'te olmayan, yeni yıla ilk ve son girenler. */
 const EK_YERLER: YeniYilYeri[] = [
-  { ad: "Kiritimati (Line Adaları)", ulke: "Kiribati", tz: "Pacific/Kiritimati" },
+  { ad: "Kiritimati", ulke: "Kiribati, Line Adaları", tz: "Pacific/Kiritimati" },
   { ad: "Apia", ulke: "Samoa", tz: "Pacific/Apia" },
   { ad: "Nuku'alofa", ulke: "Tonga", tz: "Pacific/Tongatapu" },
   { ad: "Pago Pago", ulke: "Amerikan Samoası", tz: "Pacific/Pago_Pago" },

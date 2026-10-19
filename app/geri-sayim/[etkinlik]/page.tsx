@@ -31,7 +31,13 @@ export async function generateMetadata({ params }: { params: Promise<{ etkinlik:
   const paths = countdownAlternatePaths(event);
   return {
     // Site her gün yeniden derlendiği için kalan gün başlıkta da güncel kalır; arama sonucunda sayı doğrudan görünür.
-    title: seoTitle(title, `${event.question} ${year} Canlı Geri Sayım`, `${event.question} (${year})`, event.question),
+    title: seoTitle(
+      title,
+      ...(event.id === "yilbasi" ? [`${event.question} ${year} Yeni Yıl Sayacı (Tam Ekran)`, `${event.question} ${year} Yeni Yıl Sayacı`] : []),
+      `${event.question} ${year} Canlı Geri Sayım`,
+      `${event.question} (${year})`,
+      event.question,
+    ),
     description,
     alternates: { canonical: path, ...buildLanguageAlternates(paths, "tr") },
     openGraph: { title, description, url: buildSiteUrl(path), siteName: "BirimCeviri.app", locale: event.lang === "tr" ? "tr_TR" : "en_US", type: "website" },

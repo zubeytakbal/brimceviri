@@ -432,6 +432,10 @@ export const SITE_NAV_DATA: SiteNavData = {
        "label": "Geri Sayım (Kaç Gün Kaldı)"
       },
       {
+       "href": "/paskalya-ne-zaman",
+       "label": "Paskalya Ne Zaman? (Batı ve Ortodoks)"
+      },
+      {
        "href": "/pomodoro",
        "label": "Pomodoro Zamanlayıcı"
       }

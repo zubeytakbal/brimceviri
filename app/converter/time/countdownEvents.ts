@@ -10,6 +10,10 @@ type Rule =
   | { kind: "fixed"; month: number; day: number }
   | { kind: "nth-weekday"; month: number; weekday: number; nth: number; offsetDays?: number }
   | { kind: "easter"; offsetDays?: number }
+  /** Ortodoks Paskalyası (Jülyen hesabı, Gregoryen tarihe çevrilmiş). */
+  | { kind: "orthodox-easter"; offsetDays?: number }
+  /** Yılda birden fazla sabit gün (ör. Aya Yorgi: 23 Nisan ve 24 Eylül). */
+  | { kind: "fixed-many"; dates: Array<{ month: number; day: number }> }
   /** Sonntag vor einem Datum, n Wochen zurück (1. Advent: 4 Sonntage vor dem 25. Dezember). */
   | { kind: "sunday-before"; month: number; day: number; weeksBack: number }
   /** Hicri takvim gunu: Diyanet'in ilan ettigi yillar "verified"; digerleri Umm al-Qura ile tahmin. */
@@ -265,6 +269,69 @@ export const countdownEvents: CountdownEvent[] = [
     about:
       "Kuzey yarımkürede kış, yılın en uzun gecesinin yaşandığı kış gündönümüyle başlar. Gündönümü anı Türkiye saatiyle yıla göre 21 ya da 22 Aralık'a denk gelir; bu günden sonra günler yeniden uzamaya başlar. Meteorolojide kış 1 Aralık'ta başlamış sayılır.",
   },
+  // Hristiyan bayramları (Türkiye'deki Ermeni, Rum, Süryani, Katolik ve Protestan topluluklar).
+  {
+    id: "paskalya",
+    lang: "tr",
+    slug: "paskalya",
+    pair: "easter",
+    name: "Paskalya",
+    question: "Paskalya'ya kaç gün kaldı?",
+    rule: { kind: "easter" },
+    zone: "istanbul",
+    holiday: "Hayır. Paskalya Türkiye'de resmî tatil değildir; Hristiyan vatandaşlar için dini bayramdır.",
+    about:
+      "Paskalya, Hristiyanlıkta İsa'nın dirilişinin kutlandığı en büyük bayramdır. 21 Mart'tan sonraki ilk dolunayı izleyen pazar günü kutlanır, bu yüzden tarihi 22 Mart ile 25 Nisan arasında değişir. Bu sayaç Katolik, Protestan ve Ermeni kiliselerinin kullandığı Gregoryen (Batı) hesabına göredir; Rum Ortodoks ve Süryaniler çoğu yıl daha geç bir tarihte kutlar.",
+  },
+  {
+    id: "ortodoks-paskalyasi",
+    lang: "tr",
+    slug: "ortodoks-paskalyasi",
+    name: "Ortodoks Paskalyası",
+    question: "Ortodoks Paskalyası'na kaç gün kaldı?",
+    rule: { kind: "orthodox-easter" },
+    zone: "istanbul",
+    holiday: "Hayır. Ortodoks Paskalyası Türkiye'de resmî tatil değildir.",
+    about:
+      "Ortodoks kiliseleri Paskalya tarihini Jülyen takvimine göre hesaplar; bulunan tarih bugünkü takvimde 13 gün ileriye denk gelir. Bu yüzden Ortodoks Paskalyası Batı Paskalyası ile aynı gün ya da 1 ila 5 hafta sonra olur. Türkiye'de Fener Rum Patrikhanesi'ne bağlı Rum Ortodokslar ve Süryaniler Paskalya'yı bu tarihte kutlar.",
+  },
+  {
+    id: "aya-yorgi",
+    lang: "tr",
+    slug: "aya-yorgi",
+    name: "Aya Yorgi",
+    question: "Aya Yorgi'ye kaç gün kaldı?",
+    rule: { kind: "fixed-many", dates: [{ month: 4, day: 23 }, { month: 9, day: 24 }] },
+    zone: "istanbul",
+    holiday: "Hayır. Aya Yorgi günleri resmî tatil değildir; 23 Nisan ise Ulusal Egemenlik ve Çocuk Bayramı olduğu için tatildir.",
+    about:
+      "Büyükada'daki Aya Yorgi Kilisesi'ne her yıl 23 Nisan ve 24 Eylül'de binlerce kişi dilek için çıkar. 23 Nisan, Aziz Yorgi'nin (Aziz Georgios) yortusudur. Geleneğe göre ziyaretçiler yokuştaki ağaçlara ip bağlar ve ipi kopmadan kiliseye kadar götürmeye çalışır; ziyaretçilerin çoğu Hristiyan değildir. Bu günlerde adaya ulaşım çok yoğun olur.",
+  },
+  {
+    id: "noel",
+    lang: "tr",
+    slug: "noel",
+    pair: "christmas",
+    name: "Noel",
+    question: "Noel'e kaç gün kaldı?",
+    rule: { kind: "fixed", month: 12, day: 25 },
+    zone: "istanbul",
+    holiday: "Hayır. Noel Türkiye'de resmî tatil değildir; Hristiyan vatandaşlar için dini bayramdır.",
+    about:
+      "Noel, İsa'nın doğumunun kutlandığı bayramdır. Katolikler, Protestanlar ve Fener Rum Patrikhanesi'ne bağlı Rum Ortodokslar 25 Aralık'ta kutlar. Türkiye Ermenileri Noel'i (Surp Dznunt) 6 Ocak'ta, Jülyen takvimini kullanan Rus, Sırp ve Gürcü Ortodoks kiliseleri ise 7 Ocak'ta kutlar.",
+  },
+  {
+    id: "ermeni-noeli",
+    lang: "tr",
+    slug: "ermeni-noeli",
+    name: "Ermeni Noeli (Surp Dznunt)",
+    question: "Ermeni Noeli'ne kaç gün kaldı?",
+    rule: { kind: "fixed", month: 1, day: 6 },
+    zone: "istanbul",
+    holiday: "Hayır. 6 Ocak Türkiye'de resmî tatil değildir.",
+    about:
+      "Türkiye Ermenileri Noel'i 6 Ocak'ta Surp Dznunt (Kutsal Doğuş) adıyla kutlar. Ermeni Kilisesi, İsa'nın doğumunu ve vaftizini erken kilise geleneğindeki gibi aynı gün anar; bu yüzden ayinden sonra su kutsama töreni yapılır. Arife olan 5 Ocak akşamı Cırakaluyts denir.",
+  },
   {
     id: "new-year",
     lang: "en",
@@ -293,6 +360,7 @@ export const countdownEvents: CountdownEvent[] = [
     id: "easter",
     lang: "en",
     slug: "easter",
+    pair: "paskalya",
     name: "Easter",
     question: "How many days until Easter?",
     rule: { kind: "easter" },
@@ -373,6 +441,7 @@ export const countdownEvents: CountdownEvent[] = [
     id: "christmas",
     lang: "en",
     slug: "christmas",
+    pair: "noel",
     name: "Christmas",
     question: "How many days until Christmas?",
     rule: { kind: "fixed", month: 12, day: 25 },
@@ -596,6 +665,18 @@ export function easterSunday(year: number): DateParts {
   return { year, month, day };
 }
 
+/** Ortodoks Paskalya pazarı: Meeus'un Jülyen hesabı, Gregoryen takvime çevrilmiş (1900–2099'da +13 gün). */
+export function orthodoxEasterSunday(year: number): DateParts {
+  const a = year % 4;
+  const b = year % 7;
+  const c = year % 19;
+  const d = (19 * c + 15) % 30;
+  const e = (2 * a + 4 * b - d + 34) % 7;
+  const month = Math.floor((d + e + 114) / 31);
+  const day = ((d + e + 114) % 31) + 1;
+  return addDays({ year, month, day }, Math.floor(year / 100) - Math.floor(year / 400) - 2);
+}
+
 export function nthWeekday(year: number, month: number, weekday: number, nth: number): DateParts {
   const first = new Date(Date.UTC(year, month - 1, 1)).getUTCDay();
   const day = 1 + ((weekday - first + 7) % 7) + (nth - 1) * 7;
@@ -611,6 +692,10 @@ export function occurrenceInYear(event: CountdownEvent, year: number): DateParts
       return addDays(nthWeekday(year, rule.month, rule.weekday, rule.nth), rule.offsetDays ?? 0);
     case "easter":
       return addDays(easterSunday(year), rule.offsetDays ?? 0);
+    case "orthodox-easter":
+      return addDays(orthodoxEasterSunday(year), rule.offsetDays ?? 0);
+    case "fixed-many":
+      return { year, month: rule.dates[0].month, day: rule.dates[0].day };
     case "sunday-before": {
       const anchor = new Date(Date.UTC(year, rule.month - 1, rule.day));
       const back = anchor.getUTCDay() || 7;
@@ -623,6 +708,13 @@ export function occurrenceInYear(event: CountdownEvent, year: number): DateParts
       return { year, month: t.getUTCMonth() + 1, day: t.getUTCDate() };
     }
   }
+}
+
+/** Yıl içindeki bütün tarihler (çoğu etkinlikte tek tarih). */
+export function occurrencesInYear(event: CountdownEvent, year: number): DateParts[] {
+  if (event.rule.kind === "fixed-many") return event.rule.dates.map((d) => ({ year, month: d.month, day: d.day }));
+  const one = occurrenceInYear(event, year);
+  return one ? [one] : [];
 }
 
 let hijriFormatter: Intl.DateTimeFormat | null = null;
@@ -651,10 +743,10 @@ export function upcomingOccurrences(event: CountdownEvent, now: Date, count: num
   const result: DateParts[] = [];
   const startYear = now.getUTCFullYear() - 1;
   for (let year = startYear; year < startYear + 12 && result.length < count; year += 1) {
-    const parts = occurrenceInYear(event, year);
-    if (!parts) continue;
-    // Etkinlik gunu tamamen gecmediyse dahil (gun boyu "bugun" gosterilir).
-    if (startMs(parts, event.zone) + 86400000 > now.getTime()) result.push(parts);
+    for (const parts of occurrencesInYear(event, year)) {
+      // Etkinlik gunu tamamen gecmediyse dahil (gun boyu "bugun" gosterilir).
+      if (startMs(parts, event.zone) + 86400000 > now.getTime() && result.length < count) result.push(parts);
+    }
   }
   return result;
 }

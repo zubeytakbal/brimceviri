@@ -14199,6 +14199,11 @@ a.all-units-row .all-units-name {
   color: #a2295f;
 }
 
+.takvim-kat.kat-hristiyan {
+  background: #e8eef9;
+  color: #2c4a8a;
+}
+
 .takvim-kat.kat-mevsim {
   background: #e6f2fb;
   color: #1d5f8f;
@@ -17011,6 +17016,7 @@ a.all-units-row .all-units-name {
 .etk-dini { --etk: #6a4fc4; }
 .etk-milli { --etk: #b45f1b; }
 .etk-ozel { --etk: #b0336b; }
+.etk-hristiyan { --etk: #2c4a8a; }
 .etk-halk { --etk: #6b7a2a; }
 .etk-okul { --etk: #12808c; }
 .etk-gokyuzu { --etk: #2b6ca3; }
@@ -17067,6 +17073,7 @@ a.all-units-row .all-units-name {
 .gizle-dini .takvim-ay .etk-dini,
 .gizle-milli .takvim-ay .etk-milli,
 .gizle-ozel .takvim-ay .etk-ozel,
+.gizle-hristiyan .takvim-ay .etk-hristiyan,
 .gizle-halk .takvim-ay .etk-halk,
 .gizle-okul .takvim-ay .etk-okul,
 .gizle-gokyuzu .takvim-ay .etk-gokyuzu {
@@ -17694,4 +17701,36 @@ a.all-units-row .all-units-name {
   border-radius: 10px;
   font: inherit;
   text-align: center;
+}
+
+/* /paskalya-ne-zaman yıl seçicisi */
+.paskalya-hesap {
+  display: grid;
+  gap: 14px;
+}
+.paskalya-yil {
+  max-width: 180px;
+}
+.paskalya-ozet {
+  margin: 0;
+  font-weight: 600;
+}
+.paskalya-ikili {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+.paskalya-ikili h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+.paskalya-ikili .is-paskalya dt,
+.paskalya-ikili .is-paskalya dd {
+  font-weight: 700;
+  color: #0f657f;
+}
+@media (max-width: 700px) {
+  .paskalya-ikili {
+    grid-template-columns: 1fr;
+  }
 }

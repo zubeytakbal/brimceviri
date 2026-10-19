@@ -29,7 +29,7 @@ describe("German countdown dates", () => {
   });
   it("links language versions for hreflang", () => {
     expect(countdownAlternatePaths(findCountdownEvent("de", "neujahr")!)).toEqual({ de: "/de/countdown/neujahr", en: "/en/countdown/new-year", tr: "/geri-sayim/yilbasi" });
-    expect(countdownAlternatePaths(findCountdownEvent("en", "christmas")!)).toEqual({ en: "/en/countdown/christmas", de: "/de/countdown/weihnachten" });
+    expect(countdownAlternatePaths(findCountdownEvent("en", "christmas")!)).toEqual({ en: "/en/countdown/christmas", de: "/de/countdown/weihnachten", tr: "/geri-sayim/noel" });
     expect(countdownAlternatePaths(findCountdownEvent("de", "oktoberfest")!)).toEqual({ de: "/de/countdown/oktoberfest" });
   });
 });

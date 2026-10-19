@@ -2814,6 +2814,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       "/dogdugum-gun-hangi-gun",
       "/okul-takvimi",
       "/hicri-takvim",
+      "/paskalya-ne-zaman",
       ...TAKVIM_YILLARI.flatMap((y) => [takvimYilPath(y), ...AY_SLUG.map((_, i) => takvimAyPath(y, i + 1))])
     ].map((path) => ({
       url: `${baseUrl}${path}`,

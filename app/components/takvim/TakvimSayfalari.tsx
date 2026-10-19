@@ -956,6 +956,7 @@ const KATEGORI_SIRA: Kategori[] = [
   "dini",
   "milli",
   "ozel",
+  "hristiyan",
   "halk",
   "mevsim",
 ];

@@ -10,7 +10,7 @@ import { OKUL_YILLARI, okulOlaylari } from "./okulTakvimi";
 import { gunHaritasi, ozelGunPath, tarihliAd, type Kategori } from "./trTakvim";
 
 /** Filtre grupları: ızgaradaki çipler bu adlarla açılıp kapanır. */
-export type EtiketTur = "tatil" | "dini" | "milli" | "ozel" | "halk" | "okul" | "gokyuzu";
+export type EtiketTur = "tatil" | "dini" | "milli" | "ozel" | "hristiyan" | "halk" | "okul" | "gokyuzu";
 
 /** devam: birkaç gün süren olayın ilk günden sonraki günleri (ızgarada etiket yalnızca ilk günde yazılır). */
 export type Etiket = { tur: EtiketTur; ad: string; href: string; tahmini?: boolean; devam?: boolean };
@@ -20,6 +20,7 @@ export const ETIKET_TURLERI: Array<{ tur: EtiketTur; ad: string }> = [
   { tur: "dini", ad: "Dini günler" },
   { tur: "milli", ad: "Milli günler" },
   { tur: "ozel", ad: "Özel günler" },
+  { tur: "hristiyan", ad: "Hristiyan bayramları" },
   { tur: "halk", ad: "Halk takvimi" },
   { tur: "okul", ad: "Okul" },
   { tur: "gokyuzu", ad: "Ay ve gökyüzü" },
@@ -32,6 +33,7 @@ const KATEGORI_TUR: Record<Kategori, EtiketTur> = {
   milli: "milli",
   ozel: "ozel",
   halk: "halk",
+  hristiyan: "hristiyan",
   mevsim: "gokyuzu",
 };
 

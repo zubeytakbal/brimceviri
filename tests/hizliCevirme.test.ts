@@ -29,7 +29,7 @@ describe("hızlı çeviri kartları", () => {
   });
 });
 
-import { betonHacmi, demirKg, ebobEkok, kvaKw, kwAmper } from "../app/converter/hizliCevir";
+import { betonHacmi, demirKg, denklem2, ebobEkok, kvaKw, kwAmper } from "../app/converter/hizliCevir";
 
 describe("mühendislik kartları", () => {
   it("beton: 5 × 4 m, 15 cm, %5 fire = 3,15 m³", () => {
@@ -50,5 +50,9 @@ describe("mühendislik kartları", () => {
   it("EBOB – EKOK", () => {
     expect(ebobEkok(24, 36)).toEqual({ ebob: 12, ekok: 72 });
     expect(ebobEkok(7, 13)).toEqual({ ebob: 1, ekok: 91 });
+  });
+  it("2 bilinmeyenli denklem: x + y = 10, x − y = 4 → x = 7, y = 3 (tam sayfadaki örnek)", () => {
+    expect(denklem2(1, 1, 10, 1, -1, 4)).toEqual({ x: 7, y: 3 });
+    expect(denklem2(1, 2, 3, 2, 4, 6)).toBeNull();
   });
 });

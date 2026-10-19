@@ -17678,3 +17678,20 @@ a.all-units-row .all-units-name {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+.denklem-satir {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: #5b6b7a;
+}
+.denklem-satir input {
+  width: 100%;
+  min-width: 0;
+  padding: 9px 8px;
+  border: 1px solid #c9d6de;
+  border-radius: 10px;
+  font: inherit;
+  text-align: center;
+}

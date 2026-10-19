@@ -17791,3 +17791,65 @@ a.all-units-row .all-units-name {
     grid-template-columns: 1fr;
   }
 }
+
+/* Yaş hesaplama: gün/ay/yıl listeleri, doğum saati, ilk ekranda kompakt sekmeler */
+.yas-tarih {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.yas-tarih legend {
+  margin-bottom: 4px;
+  padding: 0;
+}
+.yas-tarih-secim {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr) 96px;
+  gap: 6px;
+}
+.yas-saat input {
+  max-width: 140px;
+}
+.yas-baska {
+  justify-self: start;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #ffffff;
+  font: inherit;
+  font-size: 0.85rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.yas-alt {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.yas-kopyala {
+  padding: 8px 14px;
+  border: 1px solid #0f6f6c;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #0f6f6c;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+@media (max-width: 640px) {
+  .yas-hesap .date-converter-modes {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .yas-hesap .date-converter-modes button {
+    flex: none;
+    padding: 6px 12px;
+    font-size: 0.85rem;
+  }
+  .yas-hesap .date-calc-input {
+    padding: 16px;
+  }
+}

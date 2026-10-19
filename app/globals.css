@@ -17260,10 +17260,6 @@ a.all-units-row .all-units-name {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     padding-bottom: 6px;
-    margin: 0 -16px;
-    padding-left: 16px;
-    padding-right: 16px;
-    scroll-padding-left: 16px;
   }
   .hizli-kart {
     flex: 0 0 86%;

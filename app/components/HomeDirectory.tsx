@@ -32,6 +32,8 @@ import {
   Waves,
   Wind,
 } from "@phosphor-icons/react/ssr";
+import HizliCevirme from "./HizliCevirme";
+import type { HizliVeri } from "../converter/hizliCevirmeVeri";
 import NotificationBell from "./NotificationBell";
 import RecentToolsWidget from "./RecentToolsWidget";
 import { DecorativeIcon, getCategoryIconName, type SiteIconName } from "./siteIcons";
@@ -1961,9 +1963,12 @@ export function homeSearchIndex(locale: Locale): HomeSearchItem[] {
 export default function HomeDirectory({
   locale,
   notifications = [],
+  hizli,
 }: {
   locale: Locale;
   notifications?: SiteNotification[];
+  /** Türkçe ana sayfadaki hızlı çeviri kartlarının verisi. */
+  hizli?: HizliVeri;
 }) {
   const strings = copy[locale];
   const data = homeData[locale];
@@ -2012,6 +2017,12 @@ export default function HomeDirectory({
           </div>
         </div>
       </section>
+
+      {hizli ? (
+        <div className="directory-shell">
+          <HizliCevirme veri={hizli} />
+        </div>
+      ) : null}
 
       {(locale === "tr" || locale === "en" || locale === "uz" || locale === "de") && (
         <NotificationBell

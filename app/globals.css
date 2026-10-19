@@ -17130,3 +17130,139 @@ a.all-units-row .all-units-name {
 .tum-birimler-ciftler .tool-list-pairs a:hover {
   border-color: #1f8a8a;
 }
+
+/* Ana sayfa: hızlı çeviri kartları */
+.hizli-cevirme {
+  margin: 28px 0 8px;
+}
+.hizli-cevirme-ust h2 {
+  margin: 0 0 4px;
+  font-size: 1.35rem;
+}
+.hizli-cevirme-ust p {
+  margin: 0 0 14px;
+  color: #5b6b7a;
+  font-size: 0.92rem;
+}
+.hizli-kartlar {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.hizli-kart {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+  padding: 18px;
+  border: 1px solid #d7e2e8;
+  border-radius: 16px;
+  background: #ffffff;
+}
+.hizli-kart-baslik {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.hizli-kart-baslik h3 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+.hizli-ikon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid #d7e2e8;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #2b3a47;
+  cursor: pointer;
+}
+.hizli-ikon:hover {
+  border-color: #1f8a8a;
+  color: #1f8a8a;
+}
+.hizli-ikon:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+.hizli-alan {
+  display: grid;
+  gap: 4px;
+}
+.hizli-alan span {
+  font-size: 0.78rem;
+  color: #5b6b7a;
+}
+.hizli-alan input,
+.hizli-alan select {
+  width: 100%;
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid #c9d6de;
+  border-radius: 10px;
+  background: #ffffff;
+  font: inherit;
+  font-size: 0.98rem;
+}
+.hizli-alan input:focus,
+.hizli-alan select:focus {
+  outline: 2px solid #1f8a8a;
+  outline-offset: 1px;
+}
+.hizli-birimler {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: end;
+  gap: 6px;
+}
+.hizli-birimler select {
+  padding: 10px 6px;
+  font-size: 0.9rem;
+}
+.hizli-sonuc {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #e4f3f1;
+  border: 1px solid #b9dedb;
+}
+.hizli-sonuc strong {
+  flex: 1;
+  text-align: right;
+  font-size: 1.35rem;
+  color: #0f3f46;
+  overflow-wrap: anywhere;
+}
+.hizli-sonuc .hizli-ikon {
+  background: transparent;
+  border-color: #b9dedb;
+}
+.hizli-alt {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 0;
+  font-size: 0.82rem;
+  color: #5b6b7a;
+}
+.hizli-alt a {
+  margin-left: auto;
+  color: #1f4f66;
+}
+@media (max-width: 900px) {
+  /* Telefonda kartlar yan yana kaydırılır; bölüm tek kart yüksekliğinde kalır. */
+  .hizli-kartlar {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 6px;
+  }
+  .hizli-kart {
+    flex: 0 0 86%;
+    scroll-snap-align: start;
+  }
+}

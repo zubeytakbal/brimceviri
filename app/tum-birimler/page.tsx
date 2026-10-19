@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
-import Converter from "../converter/Converter";
+import TumBirimlerArama, { type AramaCifti, type AramaGrubu } from "../components/TumBirimlerArama";
+import { aramaMetni } from "../converter/aramaMetni";
 import { categoryPages } from "../converter/categoryPages";
+import { unitRegistry } from "../converter/unitRegistry";
 import { conversionPages } from "../converter/conversionPages";
 import { canonicalPairSlug, isMergedAway } from "../converter/mergedPairs";
 
@@ -116,6 +118,47 @@ export const metadata: Metadata = {
   },
 };
 
+/** Arama için her kategorinin metni: başlık, açıklama ve kategorideki bütün birimlerin adı ve simgesi. */
+function aramaGruplari(): AramaGrubu[] {
+  const birimler = (category: string) =>
+    unitRegistry
+      .filter((u) => u.category === category)
+      .flatMap((u) => [u.tr?.name ?? "", u.symbol, u.displaySymbol ?? ""])
+      .join(" ");
+  return [
+    ...groupedCategories().map((g) => ({
+      id: g.id,
+      title: g.title,
+      items: g.items.map((c) => {
+        const pairs = topPairs(c.category).map((p) => ({ href: `/${p.slug}`, label: p.label }));
+        return {
+          href: `/kategoriler/${c.slug}`,
+          title: c.title,
+          description: c.description,
+          pairs,
+          keys: aramaMetni(`${c.title} ${c.description} ${birimler(c.category)} ${pairs.map((p) => p.label).join(" ")}`),
+        };
+      }),
+    })),
+    ...TOOL_GROUPS.map((g) => ({
+      id: g.id,
+      title: g.title,
+      items: g.items.map((t) => ({ href: t.href, title: t.title, description: t.description, pairs: [], keys: aramaMetni(`${t.title} ${t.description}`) })),
+    })),
+  ];
+}
+
+/** Aramada doğrudan gösterilecek dönüşüm sayfaları (birleştirilen ters çiftler hariç). */
+function aramaCiftleri(): AramaCifti[] {
+  return conversionPages
+    .filter((c) => !isMergedAway(c.slug))
+    .map((c) => ({
+      href: `/${c.slug}`,
+      label: `${c.fromName} → ${c.toName}`,
+      keys: aramaMetni(`${c.fromName} ${c.toName} ${c.fromUnit} ${c.toUnit}`),
+    }));
+}
+
 export default function AllConversionsPage() {
   return (
     <main className="all-conversions-page">
@@ -130,76 +173,12 @@ export default function AllConversionsPage() {
           <h1>Tüm Birim Dönüşümleri</h1>
 
           <p>
-            Kategoriyi seçin, değeri girin ve kullanmak istediğiniz
-            birimler arasında anında çeviri yapın.
+            Uzunluktan basınca, elektrikten tarıma bütün birim çevirileri kategorilere göre. Aradığınız birimi yazın ya da
+            kategoriyi seçin; her kategori sayfasında çevirici ve dönüşüm tabloları vardır.
           </p>
         </header>
 
-        <Converter />
-
-        <div className="section-layout">
-          <nav className="section-nav" aria-label="Dönüşüm kategorileri">
-            <p className="section-nav-title">Kategoriler</p>
-            <ul>
-              {groupedCategories().map((g) => (
-                <li key={g.id}>
-                  <a href={`#${g.id}`}>
-                    {g.title} <span>{g.items.length}</span>
-                  </a>
-                </li>
-              ))}
-              {TOOL_GROUPS.map((g) => (
-                <li key={g.id}>
-                  <a href={`#${g.id}`}>
-                    {g.title} <span>{g.items.length}</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          <div className="section-main">
-            {groupedCategories().map((g) => (
-              <section className="tool-list-section" id={g.id} key={g.id}>
-                <h2>{g.title}</h2>
-                <ul className="tool-list">
-                  {g.items.map((c) => (
-                    <li key={c.slug}>
-                      <Link href={`/kategoriler/${c.slug}`} className="tool-list-title">
-                        {c.title}
-                      </Link>
-                      <p>{c.description}</p>
-                      {topPairs(c.category).length > 0 && (
-                      <p className="tool-list-pairs">
-                        {topPairs(c.category).map((pair) => (
-                          <Link key={pair.slug} href={`/${pair.slug}`}>
-                            {pair.label}
-                          </Link>
-                        ))}
-                      </p>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            ))}
-            {TOOL_GROUPS.map((g) => (
-              <section className="tool-list-section" id={g.id} key={g.id}>
-                <h2>{g.title}</h2>
-                <ul className="tool-list">
-                  {g.items.map((t) => (
-                    <li key={t.href}>
-                      <Link href={t.href} className="tool-list-title">
-                        {t.title}
-                      </Link>
-                      <p>{t.description}</p>
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            ))}
-          </div>
-        </div>
+        <TumBirimlerArama groups={aramaGruplari()} pairs={aramaCiftleri()} />
 
         <section className="category-article-content">
           <h2>Bu çevirici nasıl çalışır?</h2>

@@ -1346,6 +1346,140 @@ html[dir="rtl"] .site-nav-group ~ .site-nav-group .site-nav-dropdown--columns {
     padding: 12px;
   }
 }
+
+/* Türkçe üst menü altı başlıklı: 1180 pikselin altında masaüstü menü sığmaz, mobil menüye geçilir. */
+@media (max-width: 1180px) {
+  .site-header--tr .site-header-inner {
+    width: min(100% - 28px, 1120px);
+    min-height: 72px;
+    gap: 14px;
+  }
+
+  .site-header--tr .site-navigation-desktop {
+    display: none;
+  }
+
+  .site-header--tr .site-menu-toggle {
+    display: inline-flex;
+  }
+
+  .site-header--tr .site-mobile-menu {
+    display: block;
+    width: min(100% - 28px, 1120px);
+    margin: 0 auto;
+    padding: 0 0 16px;
+  }
+
+  .site-header--tr .site-mobile-menu[hidden] {
+    display: none;
+  }
+
+  .site-header--tr .site-navigation-mobile {
+    display: grid;
+    gap: 0;
+    width: 100%;
+    padding-top: 8px;
+    border-top: 1px solid #d7dce3;
+  }
+
+  .site-header--tr .site-navigation-mobile a,
+  .site-header--tr .site-navigation-mobile .language-switcher-button,
+  .site-header--tr .site-mobile-accordion-toggle {
+    width: 100%;
+    padding: 14px 0;
+    border-bottom: 1px solid #d7dce3;
+  }
+
+  .site-header--tr .site-navigation-mobile a:hover,
+  .site-header--tr .site-navigation-mobile .language-switcher-button:hover,
+  .site-header--tr .site-mobile-accordion-toggle:hover {
+    border-bottom-color: #d7dce3;
+  }
+
+  .site-header--tr .site-mobile-accordion {
+    display: grid;
+  }
+
+  .site-header--tr .site-mobile-accordion-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    background: transparent;
+    color: #30394a;
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.96rem;
+    font-weight: 500;
+    text-align: left;
+  }
+
+  .site-header--tr .site-mobile-accordion-toggle:focus-visible {
+    outline: 2px solid #168f8c;
+    outline-offset: 2px;
+  }
+
+  .site-header--tr .site-mobile-accordion-panel {
+    display: grid;
+    padding: 0 0 6px 14px;
+    border-bottom: 1px solid #d7dce3;
+  }
+
+  .site-header--tr .site-mobile-accordion-panel[hidden] {
+    display: none;
+  }
+
+  .site-header--tr .site-mobile-accordion-panel a {
+    padding: 12px 0;
+  }
+
+  .site-header--tr .site-navigation-mobile .language-switcher {
+    width: 100%;
+  }
+
+  .site-header--tr .site-navigation-mobile .language-switcher-button {
+    justify-content: space-between;
+    font-size: 0.96rem;
+  }
+
+  .site-header--tr .site-navigation-mobile .language-switcher-current {
+    white-space: normal;
+  }
+
+  .site-header--tr .site-navigation-mobile .language-switcher-menu {
+    position: static;
+    display: none;
+    min-width: 0;
+    margin-top: 8px;
+    border-radius: 10px;
+    box-shadow: none;
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+  }
+
+  .site-header--tr .site-navigation-mobile .language-switcher-menu.is-open {
+    display: flex;
+  }
+
+  .site-header--tr .site-navigation-mobile .language-switcher-option {
+    padding: 12px;
+  }
+}
+
+.site-header--tr .site-navigation-desktop {
+  gap: 20px;
+}
+.site-header--tr .site-navigation-desktop > a:first-child {
+  display: none;
+}
+.site-header--tr .site-nav-toggle,
+.site-header--tr .site-navigation-desktop > a {
+  white-space: nowrap;
+  font-size: 0.92rem;
+}
 /* SaveFrom esintili dönüşüm üst alanı */
 
 .conversion-breadcrumb-wrap {

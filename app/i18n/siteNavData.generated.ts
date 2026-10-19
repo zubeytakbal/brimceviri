@@ -8,10 +8,6 @@ export const SITE_NAV_DATA: SiteNavData = {
     {
      "href": "/",
      "label": "Ana Sayfa"
-    },
-    {
-     "href": "/dosya-araclari",
-     "label": "Dosya Araçları"
     }
    ],
    "menuGroups": [
@@ -136,6 +132,14 @@ export const SITE_NAV_DATA: SiteNavData = {
        "label": "Yakıt Tüketimi Hesaplama"
       },
       {
+       "href": "/elektrik-tuketimi-hesaplama",
+       "label": "Elektrik Tüketimi"
+      },
+      {
+       "href": "/beton-hesaplama",
+       "label": "Beton Hesaplama"
+      },
+      {
        "href": "/boya-hesaplama",
        "label": "Boya Hesaplama"
       },
@@ -144,22 +148,226 @@ export const SITE_NAV_DATA: SiteNavData = {
        "label": "Fayans Hesaplama"
       },
       {
-       "href": "/elektrik-tuketimi-hesaplama",
-       "label": "Elektrik Tüketimi"
+       "href": "/tarla-donum-hesaplama",
+       "label": "Tarla Dönüm Hesaplama"
       },
       {
-       "href": "/muhendislik-hesaplayicilari",
-       "label": "Mühendislik Hesaplayıcıları"
-      },
-      {
-       "href": "/bilim-hesaplayicilari",
-       "label": "Bilim Hesaplayıcıları"
+       "href": "/e-okul-fotograf-kucultme",
+       "label": "e-Okul Fotoğraf Küçültme"
       }
      ],
      "footer": [
       {
        "href": "/hesaplayicilar",
        "label": "Tüm hesaplamalar →"
+      },
+      {
+       "href": "/dosya-araclari",
+       "label": "Dosya araçları →"
+      }
+     ]
+    },
+    {
+     "id": "engineering",
+     "label": "Mühendislik",
+     "links": [
+      {
+       "href": "/muhendislik-hesaplayicilari/elektrik-hesaplari",
+       "label": "Elektrik Hesapları (kW-Amper, Kablo Kesiti)"
+      },
+      {
+       "href": "/malzeme-ozellikleri",
+       "label": "Malzeme Özellikleri"
+      },
+      {
+       "href": "/malzeme-agirligi-hesaplama",
+       "label": "Malzeme Ağırlığı"
+      },
+      {
+       "href": "/demir-agirlik-hesaplama",
+       "label": "İnşaat Demiri Ağırlığı"
+      },
+      {
+       "href": "/celik-profil-tablolari",
+       "label": "Çelik Profil Tabloları"
+      },
+      {
+       "href": "/kiris-hesaplama",
+       "label": "Kiriş Hesabı"
+      },
+      {
+       "href": "/kva-kw-hesaplama",
+       "label": "kVA kW Hesaplama"
+      },
+      {
+       "href": "/kompanzasyon-hesaplama",
+       "label": "Kompanzasyon Hesabı"
+      },
+      {
+       "href": "/boru-capi-hesaplama",
+       "label": "Boru Çapı ve Debi"
+      },
+      {
+       "href": "/civata-torku-hesaplama",
+       "label": "Cıvata Torku"
+      },
+      {
+       "href": "/metrik-vida-tablosu",
+       "label": "Metrik Vida Tablosu"
+      },
+      {
+       "href": "/direnc-renk-kodu",
+       "label": "Direnç Renk Kodu"
+      },
+      {
+       "href": "/u-degeri-hesaplama",
+       "label": "U Değeri"
+      },
+      {
+       "href": "/doymus-buhar-tablosu",
+       "label": "Doymuş Buhar Tablosu"
+      }
+     ],
+     "footer": [
+      {
+       "href": "/muhendislik-hesaplayicilari",
+       "label": "Tüm mühendislik hesaplayıcıları →"
+      }
+     ]
+    },
+    {
+     "id": "science",
+     "label": "Bilim",
+     "links": [
+      {
+       "href": "/bilim-hesaplayicilari/kimya/periyodik-tablo",
+       "label": "Periyodik Tablo"
+      },
+      {
+       "href": "/bilim-hesaplayicilari/kimya/mol-hesaplama",
+       "label": "Mol Hesaplama"
+      },
+      {
+       "href": "/bilim-hesaplayicilari/kimya/molarite-hesaplama",
+       "label": "Molarite"
+      },
+      {
+       "href": "/bilim-hesaplayicilari/kimya/ph-hesaplama",
+       "label": "pH Hesaplama"
+      },
+      {
+       "href": "/bilim-hesaplayicilari/matematik/yuzde-hesaplama",
+       "label": "Yüzde Hesaplama"
+      },
+      {
+       "href": "/bilim-hesaplayicilari/matematik/ebob-ekok-hesaplama",
+       "label": "EBOB - EKOK"
+      },
+      {
+       "href": "/bilim-hesaplayicilari/matematik/ikinci-dereceden-denklem-cozme",
+       "label": "İkinci Dereceden Denklem"
+      },
+      {
+       "href": "/bilim-hesaplayicilari/matematik/kesir-hesaplama",
+       "label": "Kesir Hesaplama"
+      },
+      {
+       "href": "/bilim-hesaplayicilari/matematik/olasilik-hesaplama",
+       "label": "Olasılık"
+      },
+      {
+       "href": "/bilim-hesaplayicilari/geometri/pisagor-teoremi-hesaplama",
+       "label": "Pisagor Teoremi"
+      },
+      {
+       "href": "/bilim-hesaplayicilari/fizik/egik-atis-hesaplama",
+       "label": "Eğik Atış"
+      },
+      {
+       "href": "/bilim-hesaplayicilari/biyoloji/kodon-tablosu",
+       "label": "Kodon Tablosu"
+      },
+      {
+       "href": "/gokcisimleri-ozellikleri",
+       "label": "Gökcisimleri ve Gezegenler"
+      },
+      {
+       "href": "/gezegenlerde-yas-hesaplama",
+       "label": "Gezegenlerde Yaş"
+      },
+      {
+       "href": "/gezegenlerde-kac-kilo-gelirim",
+       "label": "Gezegenlerde Kaç Kilo Gelirim?"
+      },
+      {
+       "href": "/gokyuzu-olaylari-takvimi",
+       "label": "Gökyüzü Olayları Takvimi"
+      }
+     ],
+     "footer": [
+      {
+       "href": "/bilim-hesaplayicilari",
+       "label": "Tüm bilim hesaplayıcıları →"
+      }
+     ]
+    },
+    {
+     "id": "geo",
+     "label": "Dünya ve Coğrafya",
+     "links": [
+      {
+       "href": "/iller-arasi-mesafe",
+       "label": "İller Arası Mesafe"
+      },
+      {
+       "href": "/il-rakimlari",
+       "label": "İllerin Rakımı"
+      },
+      {
+       "href": "/turkiye-il-haritasi",
+       "label": "Türkiye İl Haritası"
+      },
+      {
+       "href": "/ulkeler",
+       "label": "Ülkeler ve Başkentleri"
+      },
+      {
+       "href": "/dunya-haritasi",
+       "label": "Dünya Haritası"
+      },
+      {
+       "href": "/koordinat-donusturucu",
+       "label": "Koordinat Dönüştürücü"
+      },
+      {
+       "href": "/kible-yonu-hesaplama",
+       "label": "Kıble Yönü"
+      },
+      {
+       "href": "/dunyanin-en-yuksek-daglari",
+       "label": "Dünyanın En Yüksek Dağları"
+      },
+      {
+       "href": "/harita-olcegi-hesaplama",
+       "label": "Harita Ölçeği"
+      },
+      {
+       "href": "/buyuk-daire-mesafesi-hesaplama",
+       "label": "Büyük Daire Mesafesi"
+      },
+      {
+       "href": "/il-rakimi-karsilastirma",
+       "label": "İl Rakımı Karşılaştırma"
+      },
+      {
+       "href": "/birim-cevirme-felaketleri",
+       "label": "Birim Çevirme Felaketleri"
+      }
+     ],
+     "footer": [
+      {
+       "href": "/cografya-hesaplamalari",
+       "label": "Tüm coğrafya araçları →"
       }
      ]
     },
@@ -170,6 +378,14 @@ export const SITE_NAV_DATA: SiteNavData = {
       {
        "href": "/saat-ve-tarih",
        "label": "Saat ve Tarih (Ana Sayfa)"
+      },
+      {
+       "href": "/ay-evreleri",
+       "label": "Ay Evreleri"
+      },
+      {
+       "href": "/gunes-dogusu-ve-batisi",
+       "label": "Güneş Doğuşu ve Batışı"
       },
       {
        "href": "/dunya-saatleri",

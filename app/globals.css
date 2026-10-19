@@ -17533,3 +17533,22 @@ a.all-units-row .all-units-name {
     grid-template-columns: 1fr;
   }
 }
+.gorunmez {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+.hizli-tur select {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #c9d6de;
+  border-radius: 10px;
+  background: #f5f9fa;
+  font: inherit;
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: #1f2d3a;
+}

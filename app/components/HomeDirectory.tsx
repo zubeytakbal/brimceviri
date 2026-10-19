@@ -34,7 +34,7 @@ import {
 } from "@phosphor-icons/react/ssr";
 import HizliCevirme from "./HizliCevirme";
 import TumAraclar from "./TumAraclar";
-import MuhendislikKartlari, { type KartMalzeme } from "./MuhendislikKartlari";
+import MuhendislikKartlari, { type KartGezegen, type KartMalzeme } from "./MuhendislikKartlari";
 import ZamanKartlari, { type KartGeriSayim } from "./ZamanKartlari";
 import type { HizliVeri } from "../converter/hizliCevirmeVeri";
 import NotificationBell from "./NotificationBell";
@@ -1954,6 +1954,7 @@ export default function HomeDirectory({
   notifications = [],
   hizli,
   malzemeler,
+  gezegenler,
   geriSayimlar,
   olusturma = 0,
 }: {
@@ -1963,6 +1964,8 @@ export default function HomeDirectory({
   hizli?: HizliVeri;
   /** Türkçe ana sayfadaki "litre kaç kilo" kartının malzemeleri. */
   malzemeler?: KartMalzeme[];
+  /** "Gezegenlerde kaç kilo" kartının gök cisimleri. */
+  gezegenler?: KartGezegen[];
   /** Türkçe ana sayfadaki zaman kartının geri sayımları ve sayfanın derlendiği an (ms). */
   geriSayimlar?: KartGeriSayim[];
   olusturma?: number;
@@ -2018,7 +2021,7 @@ export default function HomeDirectory({
       {hizli ? (
         <div className="directory-shell">
           <HizliCevirme veri={hizli} />
-          {malzemeler?.length ? <MuhendislikKartlari malzemeler={malzemeler} /> : null}
+          {malzemeler?.length ? <MuhendislikKartlari malzemeler={malzemeler} gezegenler={gezegenler ?? []} /> : null}
           {geriSayimlar?.length ? <ZamanKartlari geriSayimlar={geriSayimlar} olusturma={olusturma} /> : null}
         </div>
       ) : null}
@@ -2294,17 +2297,6 @@ export default function HomeDirectory({
           </ul>
         </section>
 
-        {locale === "tr" && (
-          <FxHomeSection
-            id="doviz-cevirici"
-            title="Döviz çevirici"
-            description="Günlük referans kurla dolar, euro, sterlin ve 12 döviz daha; kurun ne zaman yayınlandığı, grafik ve banka kuru farkı hesaplama."
-            hubHref="/doviz-cevirici"
-            allLabel="Tüm döviz kurları"
-            cards={[]}
-          />
-        )}
-
         {locale === "uz" && (
           <FxHomeSection
             id="valyuta-aylantirgich"
@@ -2327,7 +2319,7 @@ export default function HomeDirectory({
           />
         )}
 
-        {data.popularUnits.length > 0 && (
+        {locale !== "tr" && data.popularUnits.length > 0 && (
           <section className="directory-section">
             <header className="directory-section-header">
               <div>

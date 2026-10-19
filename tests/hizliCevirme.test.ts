@@ -29,7 +29,7 @@ describe("hızlı çeviri kartları", () => {
   });
 });
 
-import { betonHacmi, kwAmper } from "../app/converter/hizliCevir";
+import { betonHacmi, demirKg, ebobEkok, kvaKw, kwAmper } from "../app/converter/hizliCevir";
 
 describe("mühendislik kartları", () => {
   it("beton: 5 × 4 m, 15 cm, %5 fire = 3,15 m³", () => {
@@ -39,5 +39,16 @@ describe("mühendislik kartları", () => {
     // 2 kW, 230 V tek faz, cos φ 0,95 → 9,15 A; 5,5 kW 400 V üç faz cos φ 0,9 (verim %100) → 8,82 A
     expect(kwAmper(2, 230, false, 0.95)).toBeCloseTo(9.153, 2);
     expect(kwAmper(5.5, 400, true, 0.9)).toBeCloseTo(8.821, 2);
+  });
+  it("kVA → kW: 100 kVA, cos φ 0,8 = 80 kW", () => {
+    expect(kvaKw(100, 0.8)).toBeCloseTo(80, 10);
+  });
+  it("demir: Ø12 birim ağırlığı 0,888 kg/m (TS 708 tablosu)", () => {
+    expect(demirKg(12, 1, 1)).toBeCloseTo(0.888, 3);
+    expect(demirKg(12, 12, 10)).toBeCloseTo(106.54, 1);
+  });
+  it("EBOB – EKOK", () => {
+    expect(ebobEkok(24, 36)).toEqual({ ebob: 12, ekok: 72 });
+    expect(ebobEkok(7, 13)).toEqual({ ebob: 1, ekok: 91 });
   });
 });

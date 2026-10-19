@@ -44,15 +44,10 @@ function duzelt(k: Kart, veri: HizliVeri): Kart {
   };
 }
 
-function Ikon({ ad }: { ad: "disli" | "degistir" | "kopyala" }) {
+function Ikon({ ad }: { ad: "degistir" | "kopyala" }) {
   return (
     <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      {ad === "disli" ? (
-        <>
-          <circle cx="12" cy="12" r="3" />
-          <path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1" />
-        </>
-      ) : ad === "degistir" ? (
+      {ad === "degistir" ? (
         <path d="M4 8h14m0 0-3-3m3 3-3 3M20 16H6m0 0 3-3m-3 3 3 3" />
       ) : (
         <path d="M9 9h10v11H9zM5 15H4V4h11v1" />
@@ -62,7 +57,6 @@ function Ikon({ ad }: { ad: "disli" | "degistir" | "kopyala" }) {
 }
 
 function HizliKart({ kart, veri, degis }: { kart: Kart; veri: HizliVeri; degis: (k: Kart) => void }) {
-  const [ayar, setAyar] = useState(false);
   const [kopyalandi, setKopyalandi] = useState(false);
   const doviz = kart.tur === DOVIZ && veri.doviz ? veri.doviz : null;
   const kat = doviz ? null : veri.kategoriler.find((c) => c.key === kart.tur)!;
@@ -83,7 +77,6 @@ function HizliKart({ kart, veri, degis }: { kart: Kart; veri: HizliVeri; degis: 
     secenekler = kat!.birimler.map((b) => ({ deger: b.s, ad: `${b.n} (${b.d ?? b.s})` }));
   }
   const sonucMetni = `${bicimle(sonuc)} ${hedefSimge}`;
-  const baslik = doviz ? "Döviz" : kat!.ad;
 
   const kopyala = async () => {
     try {
@@ -97,31 +90,20 @@ function HizliKart({ kart, veri, degis }: { kart: Kart; veri: HizliVeri; degis: 
 
   return (
     <div className="hizli-kart">
-      <div className="hizli-kart-baslik">
-        <h3>{baslik}</h3>
-        <button type="button" className="hizli-ikon" aria-label="Kartın türünü değiştir" aria-expanded={ayar} onClick={() => setAyar((a) => !a)}>
-          <Ikon ad="disli" />
-        </button>
-      </div>
-      {ayar ? (
-        <label className="hizli-alan">
-          <span>Kart türü</span>
-          <select
-            value={kart.tur}
-            onChange={(e) => {
-              degis(duzelt({ tur: e.target.value, from: "", to: "", deger: "1" }, veri));
-              setAyar(false);
-            }}
-          >
-            {veri.doviz ? <option value={DOVIZ}>Döviz</option> : null}
-            {veri.kategoriler.map((c) => (
-              <option key={c.key} value={c.key}>
-                {c.ad}
-              </option>
-            ))}
-          </select>
-        </label>
-      ) : null}
+      <label className="hizli-kart-baslik hizli-tur">
+        <span className="gorunmez">Kart türü</span>
+        <select
+          value={kart.tur}
+          onChange={(e) => degis(duzelt({ tur: e.target.value, from: "", to: "", deger: "1" }, veri))}
+        >
+          {veri.doviz ? <option value={DOVIZ}>Döviz</option> : null}
+          {veri.kategoriler.map((c) => (
+            <option key={c.key} value={c.key}>
+              {c.ad}
+            </option>
+          ))}
+        </select>
+      </label>
       <label className="hizli-alan">
         <span>Değer</span>
         <input type="text" inputMode="decimal" value={kart.deger} onChange={(e) => degis({ ...kart, deger: e.target.value })} />
@@ -201,7 +183,7 @@ export default function HizliCevirme({ veri }: { veri: HizliVeri }) {
     <section className="hizli-cevirme" aria-labelledby="hizli-cevirme-baslik">
       <div className="hizli-cevirme-ust">
         <h2 id="hizli-cevirme-baslik">Hızlı çeviri</h2>
-        <p>Değeri yazın, sonuç anında çıksın. Dişli düğmesiyle her kartı döviz ya da {veri.kategoriler.length} birim türünden birine çevirebilirsiniz.</p>
+        <p>Değeri yazın, sonuç anında çıksın. Kartın başlığından türünü değiştirin: döviz ya da {veri.kategoriler.length} birim türünden biri.</p>
       </div>
       <div className="hizli-kartlar">
         {kartlar.map((k, i) => (

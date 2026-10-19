@@ -88,6 +88,7 @@ export const turkishToolGroups: ToolGroup[] = [
       { href: "/dogdugum-gun-hangi-gun", label: "Doğduğum Gün Hangi Gün" },
       { href: "/geri-sayim", label: "Geri Sayım (Kaç Gün Kaldı)" },
       { href: "/paskalya-ne-zaman", label: "Paskalya Ne Zaman? (Batı ve Ortodoks)" },
+      { href: "/kutsal-kitap-okuma-plani", label: "Kutsal Kitap Okuma Planı" },
       { href: "/takvim", label: "Türkiye Takvimi" },
       { href: "/resmi-tatiller", label: "Resmî Tatiller" },
       { href: "/okul-takvimi", label: "Okul Takvimi" },
@@ -470,6 +471,7 @@ export const turkishTimeMenu = pick([
   "/resmi-tatiller",
   "/geri-sayim",
   "/paskalya-ne-zaman",
+  "/kutsal-kitap-okuma-plani",
   "/pomodoro",
 ]);
 

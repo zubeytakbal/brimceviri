@@ -2815,6 +2815,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       "/okul-takvimi",
       "/hicri-takvim",
       "/paskalya-ne-zaman",
+      "/kutsal-kitap-okuma-plani",
       ...TAKVIM_YILLARI.flatMap((y) => [takvimYilPath(y), ...AY_SLUG.map((_, i) => takvimAyPath(y, i + 1))])
     ].map((path) => ({
       url: `${baseUrl}${path}`,

@@ -42,3 +42,12 @@ describe("Hristiyan bayramları", () => {
     expect(ayEtiketleri(2027, 5).get(2)!.some((e) => e.tur === "hristiyan" && e.ad === "Ortodoks Paskalyası")).toBe(true);
   });
 });
+
+describe("Advent, Göğe Yükseliş, Pentekost", () => {
+  it("2026: Advent 29 Kasım; 2027: Göğe Yükseliş 6 Mayıs, Pentekost 16 Mayıs", () => {
+    expect(etkinlikTarihleri(findEtkinlik("advent")!, 2026)[0].tarih).toEqual({ year: 2026, month: 11, day: 29 });
+    expect(etkinlikTarihleri(findEtkinlik("advent")!, 2027)[0].tarih).toEqual({ year: 2027, month: 11, day: 28 });
+    expect(etkinlikTarihleri(findEtkinlik("goge-yukselis")!, 2027)[0].tarih).toEqual({ year: 2027, month: 5, day: 6 });
+    expect(etkinlikTarihleri(findEtkinlik("pentekost")!, 2027)[0].tarih).toEqual({ year: 2027, month: 5, day: 16 });
+  });
+});

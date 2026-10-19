@@ -6,9 +6,9 @@ import { dogumYilinaGoreYas, yasBilgisi } from "../converter/yasHesap";
 import { buildSiteUrl } from "../siteConfig";
 
 const path = "/yas-hesaplama";
-const title = "Yaş Hesaplama: Kaç Yaşındayım? Yıl, Ay, Gün ve Yaş Farkı";
+const title = "Yaş Hesaplama Makinesi: Kaç Yaşındayım? (Yıl, Ay, Gün, Saniye)";
 const description =
-  "Doğum tarihini gir: kaç yaşında olduğunu yıl, ay ve gün olarak, kaç gün yaşadığını ve doğum gününe kaç gün kaldığını gör. İki kişi arası yaş farkı ve prematüre bebekler için düzeltilmiş yaş.";
+  "Doğum tarihini seç, yaşını yıl, ay, gün ve saniye saniye gör. Doğum gününe kalan süre, doğduğun gün, burcun, Hicri doğum tarihin ve 10.000. günün; iki kişi arası yaş farkı.";
 
 export const metadata: Metadata = {
   title,
@@ -49,6 +49,15 @@ export default function YasHesaplamaPage() {
         "Prematüre doğan bebeklerde gelişim takibi için kullanılan yaştır: bebeğin takvim yaşından, 40 haftadan ne kadar erken doğduysa o kadar hafta düşülür. 32. haftada doğan 6 aylık bir bebeğin düzeltilmiş yaşı yaklaşık 4 aydır. Genellikle 2 yaşına kadar kullanılır; aşılar ise takvim yaşına göre yapılır.",
     },
     {
+      question: "Kaç saniye yaşadım?",
+      answer: `Doğum tarihinizi (ve biliyorsanız doğum saatinizi) seçtiğinizde "Toplam yaşadığınız" kutusu saati, dakikayı ve saniyeyi canlı sayar. Doğum saati girilmezse 00:00 kabul edilir. Örneğin 1 Ocak 2000'de doğan biri bugün yaklaşık ${(ornek.toplamGun * 86400).toLocaleString("tr-TR")} saniyelik olmuştur.`,
+    },
+    {
+      question: "Burcumu ve Hicri doğum tarihimi nasıl öğrenirim?",
+      answer:
+        "Doğum tarihinizi seçmeniz yeterli: sonuçlarda Batı (tropikal) burcunuz ve Umm al-Qura takvimine göre Hicri doğum tarihiniz görünür. Burç sınırına denk gelen günlerde (ör. 20-21 Mart) doğanlarda burç, doğum yılına göre bir gün oynayabilir; Hicri tarih Diyanet takviminden ±1 gün farklı olabilir.",
+    },
+    {
       question: "29 Şubat doğumlular ne zaman yaş alır?",
       answer: "Artık yıl olmayan yıllarda 29 Şubat bulunmadığı için hesaplayıcı yaşı 28 Şubat'ta tamamlanmış sayar; bazı kurumlar 1 Mart'ı esas alır.",
     },
@@ -68,7 +77,7 @@ export default function YasHesaplamaPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Yaş Hesaplama: Kaç Yaşındayım?"
-      intro="Doğum tarihini girin; yaşınızı yıl, ay ve gün olarak, toplam kaç gün yaşadığınızı ve bir sonraki doğum gününüze kaç gün kaldığını görün. İki kişi arasındaki yaş farkını ve prematüre bebeklerin düzeltilmiş yaşını da hesaplayabilirsiniz."
+      intro="Doğum tarihinizi seçin: yaşınız yıl, ay, gün ve saniye saniye hesaplanır."
       tool={<YasHesaplama initialDate={initialDate} />}
       related={{
         title: "İlgili araçlar",

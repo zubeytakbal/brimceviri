@@ -63,3 +63,45 @@ export function duzeltilmisYas(dogum: YMD, gebelikHaftasi: number, bugun: YMD) {
 export function dogumYilinaGoreYas(dogumYili: number, yil: number) {
   return { geldiyse: yil - dogumYili, gelmediyse: yil - dogumYili - 1 };
 }
+
+/** Batı (tropikal) burçları ve başlangıç günleri; sınır günlerinde doğanlarda yıla göre bir gün oynayabilir. */
+const BURCLAR: Array<{ ad: string; ay: number; gun: number }> = [
+  { ad: "Oğlak", ay: 1, gun: 1 },
+  { ad: "Kova", ay: 1, gun: 20 },
+  { ad: "Balık", ay: 2, gun: 19 },
+  { ad: "Koç", ay: 3, gun: 21 },
+  { ad: "Boğa", ay: 4, gun: 20 },
+  { ad: "İkizler", ay: 5, gun: 21 },
+  { ad: "Yengeç", ay: 6, gun: 21 },
+  { ad: "Aslan", ay: 7, gun: 23 },
+  { ad: "Başak", ay: 8, gun: 23 },
+  { ad: "Terazi", ay: 9, gun: 23 },
+  { ad: "Akrep", ay: 10, gun: 23 },
+  { ad: "Yay", ay: 11, gun: 22 },
+  { ad: "Oğlak", ay: 12, gun: 22 },
+];
+
+export function burc(d: YMD) {
+  const k = d.month * 100 + d.day;
+  return [...BURCLAR].reverse().find((b) => k >= b.ay * 100 + b.gun)!.ad;
+}
+
+/** "N günlük" olunan tarih (doğum günü 0. gün sayılır) ve o güne kalan gün; geçtiyse kalan negatiftir. */
+export function gunlukOlma(dogum: YMD, n: number, bugun: YMD) {
+  const tarih = addDaysYmd(dogum, n);
+  return { tarih, kalan: diffDays(bugun, tarih) };
+}
+
+/** Bugünden sonraki ilk yuvarlak gün sayısı (1.000'in katı) ve tarihi. */
+export function sonrakiYuvarlakGun(dogum: YMD, bugun: YMD) {
+  const yasanan = diffDays(dogum, bugun);
+  const n = (Math.floor(yasanan / 1000) + 1) * 1000;
+  return { n, ...gunlukOlma(dogum, n, bugun) };
+}
+
+/** Doğum anı (Türkiye saati, UTC+3) ile `simdiMs` arasındaki saniye, dakika ve saat. */
+export function canliSure(dogum: YMD, saat: number, dakika: number, simdiMs: number) {
+  const dogumMs = Date.UTC(dogum.year, dogum.month - 1, dogum.day, saat, dakika) - 3 * 3600000;
+  const sn = Math.max(0, Math.floor((simdiMs - dogumMs) / 1000));
+  return { saniye: sn, dakika: Math.floor(sn / 60), saat: Math.floor(sn / 3600) };
+}

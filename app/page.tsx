@@ -7,12 +7,18 @@ import { getFxLatest } from "./converter/fx/fxData";
 import { hizliCevirmeVerisi } from "./converter/hizliCevirmeVeri";
 import { materialsDatabase } from "./converter/materialsDatabase";
 import { countdownEvents, startMs, upcomingOccurrences } from "./converter/time/countdownEvents";
+import { bodyWeights, MAIN_BODIES } from "./converter/planetWeights";
 
 // "Litre kaç kilo" kartı: sıvılar ve gıdalar, ada göre sıralı.
 const KART_MALZEMELERI = materialsDatabase
   .filter((m) => m.category === "sivi" || m.category === "gida")
   .map((m) => ({ id: m.id, ad: m.nameTr, yogunluk: m.densityKgM3 }))
   .sort((a, b) => a.ad.localeCompare(b.ad, "tr"));
+
+// "Gezegenlerde kaç kilo" kartı: Dünya'ya göre yerçekimi oranları (Dünya hariç).
+const KART_GEZEGENLERI = bodyWeights(1, MAIN_BODIES)
+  .filter((b) => b.id !== "dunya")
+  .map((b) => ({ id: b.id, ad: b.name, oran: b.ratio }));
 
 export const revalidate = 3600;
 
@@ -45,5 +51,5 @@ export default async function Page() {
     .filter((e) => e.lang === "tr")
     .map((e) => ({ slug: e.slug, ad: e.name, anlar: upcomingOccurrences(e, now, 2).map((o) => startMs(o, e.zone)) }))
     .filter((g) => g.anlar.length > 0);
-  return <HomeDirectory locale="tr" notifications={notifications} hizli={hizliCevirmeVerisi(fx)} malzemeler={KART_MALZEMELERI} geriSayimlar={geriSayimlar} olusturma={now.getTime()} />;
+  return <HomeDirectory locale="tr" notifications={notifications} hizli={hizliCevirmeVerisi(fx)} malzemeler={KART_MALZEMELERI} gezegenler={KART_GEZEGENLERI} geriSayimlar={geriSayimlar} olusturma={now.getTime()} />;
 }

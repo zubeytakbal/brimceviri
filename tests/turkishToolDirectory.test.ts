@@ -54,10 +54,13 @@ describe("Türkçe üst menü", () => {
     expect(broken).toEqual([]);
   });
 
-  it("Dönüşümler, Hesaplamalar ve Tarih & Saat grupları var", () => {
+  it("altı ana başlık var", () => {
     expect(getMenuGroups("tr").map((group) => group.label)).toEqual([
       "Dönüşümler",
       "Hesaplamalar",
+      "Mühendislik",
+      "Bilim",
+      "Dünya ve Coğrafya",
       "Tarih & Saat",
     ]);
   });

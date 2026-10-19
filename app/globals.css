@@ -17347,21 +17347,55 @@ a.all-units-row .all-units-name {
 .hizli-alt a + a {
   margin-left: 12px;
 }
-.zaman-araclari-linkler {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 0;
+
+
+/* Ana sayfa: tüm araçlar (menüdeki altı başlık) */
+.tum-araclar-izgara {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
 }
-.zaman-araclari-linkler a {
-  padding: 6px 12px;
+.tum-araclar-sutun {
+  padding: 16px 18px;
   border: 1px solid #d7e2e8;
-  border-radius: 999px;
+  border-radius: 16px;
   background: #ffffff;
+}
+.tum-araclar-sutun h3 {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+}
+.tum-araclar-sutun h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+.tum-araclar-sutun ul {
+  margin: 0 0 10px;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 4px;
+}
+.tum-araclar-sutun li a {
   color: #1f4f66;
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 0.93rem;
 }
-.zaman-araclari-linkler a:hover {
-  border-color: #1f8a8a;
+.tum-araclar-sutun li a:hover {
+  text-decoration: underline;
+}
+.tum-araclar-tumu {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1f8a8a;
+}
+@media (max-width: 900px) {
+  .tum-araclar-izgara {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 560px) {
+  .tum-araclar-izgara {
+    grid-template-columns: 1fr;
+  }
 }

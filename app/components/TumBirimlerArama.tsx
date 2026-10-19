@@ -19,7 +19,13 @@ export default function TumBirimlerArama({ groups, pairs }: { groups: AramaGrubu
   const gruplar = groups
     .map((g) => ({ ...g, items: aktif ? g.items.filter((i) => eslesir(i.keys, kelimeler)) : g.items }))
     .filter((g) => g.items.length > 0);
-  const ciftler = aktif ? pairs.filter((p) => eslesir(p.keys, kelimeler)).slice(0, 12) : [];
+  // Adı aranan kelimeyle başlayan dönüşümler önce (ör. "kalori" → Kalori → Joule).
+  const ciftler = aktif
+    ? pairs
+        .filter((p) => eslesir(p.keys, kelimeler))
+        .sort((a, b) => Number(b.keys.startsWith(kelimeler[0])) - Number(a.keys.startsWith(kelimeler[0])))
+        .slice(0, 12)
+    : [];
   const toplam = gruplar.reduce((n, g) => n + g.items.length, 0);
 
   return (

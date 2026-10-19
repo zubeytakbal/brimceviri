@@ -27,3 +27,10 @@ export function ebobEkok(a: number, b: number) {
   while (y) [x, y] = [y, x % y];
   return { ebob: x, ekok: x ? Math.abs(a * b) / x : 0 };
 }
+
+/** a1·x + b1·y = c1, a2·x + b2·y = c2 (Cramer kuralı); tek çözüm yoksa null. */
+export function denklem2(a1: number, b1: number, c1: number, a2: number, b2: number, c2: number) {
+  const d = a1 * b2 - a2 * b1;
+  if (!Number.isFinite(d) || d === 0) return null;
+  return { x: (c1 * b2 - c2 * b1) / d, y: (a1 * c2 - a2 * c1) / d };
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   bosKazaSayac,
   hafizlikGunlukSayfa,
@@ -362,108 +362,6 @@ export function HayizHesaplama() {
           Kesilme anı başlangıçtan sonra olmalı. Âdet süresi hayızda 3–10, nifasta en çok 40 gün yazılabilir; bilmiyorsanız boş bırakın.
         </p>
       )}
-    </div>
-  );
-}
-
-/* ---------------- Zikirmatik ---------------- */
-
-const ZIKIRLER = ["Sübhânallah", "Elhamdülillâh", "Allâhu Ekber", "Lâ ilâhe illallâh", "Estağfirullâh", "Salavât-ı şerîfe", "Serbest zikir"];
-const ZIKIR_ANAHTAR = "birimceviri-zikirmatik-v1";
-type ZikirKayit = { sayi: number; hedef: number; zikir: string; toplam: number };
-
-export function Zikirmatik() {
-  const [sayac, setSayac] = useState(0);
-  const [toplam, setToplam] = useState(0);
-  const [hedef, setHedef] = useState(33);
-  const [zikir, setZikir] = useState(ZIKIRLER[0]);
-  const [yuklendi, setYuklendi] = useState(false);
-  const [titresim, setTitresim] = useState(true);
-  const butonRef = useRef<HTMLButtonElement>(null);
-
-  useEffect(() => {
-    const frame = requestAnimationFrame(() => {
-      const k = oku<Partial<ZikirKayit>>(ZIKIR_ANAHTAR);
-      if (k) {
-        if (typeof k.sayi === "number" && k.sayi >= 0) setSayac(Math.floor(k.sayi));
-        if (typeof k.toplam === "number" && k.toplam >= 0) setToplam(Math.floor(k.toplam));
-        if (typeof k.hedef === "number" && k.hedef >= 0) setHedef(Math.floor(k.hedef));
-        if (typeof k.zikir === "string" && ZIKIRLER.includes(k.zikir)) setZikir(k.zikir);
-      }
-      setYuklendi(true);
-    });
-    return () => cancelAnimationFrame(frame);
-  }, []);
-
-  useEffect(() => {
-    if (yuklendi) yaz(ZIKIR_ANAHTAR, { sayi: sayac, hedef, zikir, toplam });
-  }, [sayac, hedef, zikir, toplam, yuklendi]);
-
-  const say = () => {
-    const yeni = sayac + 1;
-    setSayac(yeni);
-    setToplam((t) => t + 1);
-    if (titresim && typeof navigator !== "undefined" && "vibrate" in navigator) {
-      navigator.vibrate(hedef > 0 && yeni % hedef === 0 ? [80, 60, 160] : 15);
-    }
-  };
-  const tur = hedef > 0 ? Math.floor(sayac / hedef) : 0;
-  const turIci = hedef > 0 ? sayac % hedef : sayac;
-
-  return (
-    <div className="date-calc zikir">
-      <div className="date-calc-input">
-        <div className="date-calc-fields">
-          <label className="date-calc-field">
-            <span>Zikir</span>
-            <select value={zikir} onChange={(e) => setZikir(e.target.value)}>
-              {ZIKIRLER.map((z) => (
-                <option key={z}>{z}</option>
-              ))}
-            </select>
-          </label>
-          <label className="date-calc-field">
-            <span>Hedef</span>
-            <select value={String(hedef)} onChange={(e) => setHedef(Number(e.target.value))}>
-              {[33, 99, 100, 500, 1000, 0].map((h) => (
-                <option key={h} value={h}>
-                  {h ? `${h} kez` : "Hedefsiz"}
-                </option>
-              ))}
-            </select>
-          </label>
-        </div>
-        <label className="date-calc-check">
-          <input type="checkbox" checked={titresim} onChange={(e) => setTitresim(e.target.checked)} />
-          Titreşim (hedefe ulaşınca uzun titrer)
-        </label>
-      </div>
-
-      <button ref={butonRef} type="button" className="zikir-buton" onClick={say} aria-label={`${zikir}: say`}>
-        <span className="zikir-ad">{zikir}</span>
-        <strong aria-live="polite">{hedef ? turIci : sayac}</strong>
-        <span className="zikir-hedef">{hedef ? `/ ${hedef} · ${tur} tur tamamlandı` : "hedefsiz"}</span>
-      </button>
-
-      <div className="kaza-takip-alt">
-        <button type="button" className="kaza-takip-btn" onClick={() => setSayac((s) => Math.max(0, s - 1))} disabled={!sayac}>
-          Geri al (−1)
-        </button>
-        <button
-          type="button"
-          className="kaza-takip-btn"
-          onClick={() => {
-            setSayac(0);
-            butonRef.current?.focus();
-          }}
-        >
-          Sayacı sıfırla
-        </button>
-        <span className="kaza-takip-kalan">
-          Sayaç {fmt(sayac)} · tüm zamanlar {fmt(toplam)}
-        </span>
-      </div>
-      <p className="date-calc-note">Sayaç bu cihazda saklanır; sayfayı kapatıp açtığınızda kaldığınız yerden devam eder.</p>
     </div>
   );
 }

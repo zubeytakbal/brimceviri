@@ -17853,3 +17853,383 @@ a.all-units-row .all-units-name {
     padding: 16px;
   }
 }
+
+/* Zikirmatik (v2): koyu kart, halkalı sayaç, tam ekran odak modu, istatistik */
+.zk {
+  display: grid;
+  gap: 16px;
+}
+.zk-modlar {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.zk-modlar button {
+  flex: none;
+  padding: 8px 14px;
+  border: 1px solid #cfdde5;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #0f6f6c;
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.zk-modlar button.is-aktif {
+  border-color: #0f4f4b;
+  background: #0f4f4b;
+  color: #ffffff;
+}
+.zk-kart {
+  display: grid;
+  gap: 14px;
+  justify-items: center;
+  padding: 20px 16px;
+  border-radius: 22px;
+  background: radial-gradient(circle at 50% 0%, #1d6b62 0%, #0e3f3b 55%, #0a2b29 100%);
+  color: #f3efe2;
+  text-align: center;
+}
+.zk-secim {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+}
+.zk-secim select,
+.zk-secim input,
+.zk-liste-duzen input {
+  min-width: 0;
+  padding: 9px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font: inherit;
+}
+.zk-secim select option {
+  color: #172033;
+}
+.zk-baslik h3 {
+  margin: 0;
+  color: #e8c469;
+  font-size: 1.45rem;
+  letter-spacing: 0.02em;
+}
+.zk-arapca {
+  margin: 0 0 4px;
+  font-size: 1.7rem;
+  line-height: 1.6;
+  color: #ffffff;
+}
+.zk-anlam {
+  max-width: 520px;
+  margin: 6px auto 0;
+  font-size: 0.95rem;
+  font-style: italic;
+  color: rgba(243, 239, 226, 0.88);
+}
+.zk-kaynak {
+  margin: 4px 0 0;
+  font-size: 0.78rem;
+  color: rgba(243, 239, 226, 0.65);
+}
+.zk-hedefler {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+}
+.zk-hedefler button,
+.zk-ozel input {
+  min-width: 56px;
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 12px;
+  background: transparent;
+  color: #ffffff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+.zk-ozel input {
+  width: 76px;
+  text-align: center;
+  cursor: text;
+}
+.zk-ozel input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+.zk-hedefler button.is-aktif,
+.zk-ozel.is-aktif input {
+  border-color: #e8c469;
+  background: rgba(232, 196, 105, 0.18);
+}
+.zk-sayac {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: min(270px, 78vw);
+  aspect-ratio: 1;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 40%, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.04) 70%);
+  color: #ffffff;
+  font: inherit;
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.zk-sayac:active {
+  transform: scale(0.98);
+}
+.zk-sayac:focus-visible {
+  outline: 3px solid #e8c469;
+  outline-offset: 4px;
+}
+.zk-halka {
+  position: absolute;
+  inset: 0;
+  transform: rotate(-90deg);
+}
+.zk-halka circle {
+  fill: none;
+  stroke-width: 5;
+}
+.zk-halka-iz {
+  stroke: rgba(255, 255, 255, 0.16);
+}
+.zk-halka-dolu {
+  stroke: #e8c469;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.15s ease;
+}
+.zk-sayac-ic {
+  display: grid;
+  gap: 2px;
+}
+.zk-sayac-ic strong {
+  font-size: 4.6rem;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.zk-sayac-ic span {
+  font-size: 1rem;
+  color: rgba(243, 239, 226, 0.8);
+}
+.zk-sayac.is-bitti strong {
+  color: #e8c469;
+}
+.zk-kalan {
+  margin: 0;
+  font-weight: 600;
+}
+.zk-dugmeler {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+.zk-dugmeler button {
+  min-width: 96px;
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+.zk-dugmeler button.is-ana {
+  border-color: #e8c469;
+  background: #e8c469;
+  color: #0e3f3b;
+}
+.zk-ayarlar {
+  display: flex;
+  gap: 18px;
+  font-size: 0.9rem;
+}
+.zk-ayarlar label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+.zk-kucuk {
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 12px;
+  background: transparent;
+  color: #ffffff;
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+.zk-liste-duzen {
+  display: grid;
+  gap: 8px;
+  width: 100%;
+  max-width: 520px;
+}
+.zk-liste-satir {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 80px auto;
+  gap: 6px;
+}
+.zk-istatistik {
+  padding: 16px;
+  border: 1px solid #d7e2e8;
+  border-radius: 18px;
+  background: #ffffff;
+}
+.zk-istatistik h3 {
+  margin: 0 0 10px;
+}
+.zk-istatistik dl {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
+}
+.zk-istatistik dl div {
+  padding: 10px;
+  border-radius: 12px;
+  background: #f1f6f6;
+}
+.zk-istatistik dt {
+  font-size: 0.78rem;
+  color: #5b6b7a;
+}
+.zk-istatistik dd {
+  margin: 2px 0 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0e3f3b;
+}
+.zk-grafik {
+  display: grid;
+  grid-template-columns: repeat(14, minmax(0, 1fr));
+  align-items: end;
+  gap: 4px;
+  height: 110px;
+  margin-top: 14px;
+}
+.zk-grafik span {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  height: 100%;
+  text-align: center;
+}
+.zk-grafik i {
+  align-self: end;
+  min-height: 2px;
+  border-radius: 4px 4px 0 0;
+  background: #1d6b62;
+}
+.zk-grafik small {
+  font-size: 0.62rem;
+  color: #5b6b7a;
+}
+.zk-not {
+  margin: 10px 0 0;
+  font-size: 0.85rem;
+  color: #5b6b7a;
+}
+.zk-link {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #0f6f6c;
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.zk-mesaj {
+  font-weight: 700;
+  color: #0e3f3b;
+}
+.zk-odak {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 24px;
+  padding: 24px;
+  background: radial-gradient(circle at 50% 30%, #1d6b62 0%, #0a2b29 75%);
+  color: #f3efe2;
+  text-align: center;
+  touch-action: manipulation;
+  user-select: none;
+  cursor: pointer;
+}
+.zk-odak-cik {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 8px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.2);
+  color: #ffffff;
+  font: inherit;
+  font-weight: 700;
+}
+.zk-odak-sayi {
+  display: grid;
+  gap: 8px;
+}
+.zk-odak-sayi strong {
+  font-size: clamp(5rem, 28vw, 10rem);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.zk-odak-ipucu {
+  margin: 0;
+  font-size: 0.85rem;
+  color: rgba(243, 239, 226, 0.6);
+}
+.zk-tablo td[lang="ar"] {
+  font-size: 1.15rem;
+  white-space: nowrap;
+}
+@media (max-width: 640px) {
+  .zk-istatistik dl {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .zk-arapca {
+    font-size: 1.45rem;
+  }
+}
+.zk-naslar {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.zk-naslar li {
+  padding: 14px 16px;
+  border-left: 4px solid #1d6b62;
+  border-radius: 0 12px 12px 0;
+  background: #f1f6f6;
+}
+.zk-naslar blockquote {
+  margin: 0;
+  font-style: italic;
+}
+.zk-naslar cite {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.85rem;
+  font-style: normal;
+  color: #5b6b7a;
+}

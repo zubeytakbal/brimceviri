@@ -436,6 +436,10 @@ export const SITE_NAV_DATA: SiteNavData = {
        "label": "Paskalya Ne Zaman? (Batı ve Ortodoks)"
       },
       {
+       "href": "/kutsal-kitap-okuma-plani",
+       "label": "Kutsal Kitap Okuma Planı"
+      },
+      {
        "href": "/pomodoro",
        "label": "Pomodoro Zamanlayıcı"
       }

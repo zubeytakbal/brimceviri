@@ -90,7 +90,9 @@ type Kural =
   | { tip: "resmi"; tatilId: string }
   | { tip: "astro"; olay: Mevsim }
   /** Paskalya'ya göre (Batı: Gregoryen hesap, Ortodoks: Jülyen hesap) gün farkı. */
-  | { tip: "paskalya"; ortodoks?: boolean; kaydir?: number };
+  | { tip: "paskalya"; ortodoks?: boolean; kaydir?: number }
+  /** Advent'in ilk pazarı: 25 Aralık'tan önceki dördüncü pazar (27 Kasım – 3 Aralık). */
+  | { tip: "advent" };
 
 export type Etkinlik = {
   id: string;
@@ -679,6 +681,41 @@ export const ETKINLIKLER: Etkinlik[] = [
     araclar: [PASKALYA],
   },
   {
+    id: "goge-yukselis",
+    ad: "Göğe Yükseliş",
+    kategori: "hristiyan",
+    gorsel: "kirche",
+    kural: { tip: "paskalya", kaydir: 39 },
+    tatil: "yok",
+    kisa: "İsa'nın göğe yükselişi; Batı Paskalyası'ndan 39 gün sonraki perşembe.",
+    hakkinda:
+      "Göğe Yükseliş, Paskalya'dan 40. gün (Paskalya günü birinci gün sayılır) kutlanır ve her zaman perşembeye denk gelir. Bu tarih Batı kiliselerine göredir; Ortodoks kiliseleri aynı bayramı Ortodoks Paskalyası'ndan 39 gün sonra kutlar.",
+    araclar: [PASKALYA],
+  },
+  {
+    id: "pentekost",
+    ad: "Pentekost",
+    kategori: "hristiyan",
+    gorsel: "kirche",
+    kural: { tip: "paskalya", kaydir: 49 },
+    tatil: "yok",
+    kisa: "Kutsal Ruh'un inişinin anıldığı bayram; Batı Paskalyası'ndan 7 hafta sonraki pazar.",
+    hakkinda:
+      "Pentekost (Hamsin, Yunanca \"ellinci\"), Paskalya'dan sonraki ellinci gündür ve Kutsal Ruh'un havarilere inişini anar. Bu tarih Batı kiliselerine göredir; Ortodoks kiliseleri Pentekost'u Ortodoks Paskalyası'ndan 49 gün sonra kutlar.",
+    araclar: [PASKALYA],
+  },
+  {
+    id: "advent",
+    ad: "Advent'in Başlangıcı",
+    kategori: "hristiyan",
+    gorsel: "advent",
+    kural: { tip: "advent" },
+    tatil: "yok",
+    kisa: "Noel'e hazırlık dönemi; 25 Aralık'tan önceki dördüncü pazar.",
+    hakkinda:
+      "Advent, Katolik ve Protestan kiliselerinde Noel'e hazırlık dönemidir ve Noel'den önceki dördüncü pazar günü başlar; bu gün 27 Kasım ile 3 Aralık arasına denk gelir. Kilise yılı da Advent'in ilk pazarıyla başlar. Her pazar Advent çelengindeki bir mum yakılır.",
+  },
+  {
     id: "aya-yorgi",
     ad: "Aya Yorgi",
     kategori: "hristiyan",
@@ -915,6 +952,10 @@ export function etkinlikTarihleri(e: Etkinlik, year: number): Tarihli[] {
     case "paskalya": {
       const p = k.ortodoks ? orthodoxEasterSunday(year) : easterSunday(year);
       return [{ etkinlik: e, tarih: addDaysYmd({ year: p.year, month: p.month, day: p.day }, k.kaydir ?? 0) }];
+    }
+    case "advent": {
+      const noel = { year, month: 12, day: 25 };
+      return [{ etkinlik: e, tarih: addDaysYmd(noel, -(weekdayOf(noel) || 7) - 21) }];
     }
     case "astro": {
       const an = mevsimAni(year, k.olay);

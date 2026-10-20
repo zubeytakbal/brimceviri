@@ -10,6 +10,7 @@ import TimeToolPage from "../time/TimeToolPage";
 import { buildSiteUrl } from "../../siteConfig";
 import LiveMoon, { type LiveMoonCopy } from "./LiveMoon";
 import MoonIcon from "./MoonIcon";
+import MobilDaralt from "../MobilDaralt";
 import { moonPosition, moonSign, ZODIAC_EN, ZODIAC_TR } from "../../converter/time/moonPosition";
 import { MoonSignSection, SupermoonSection } from "./MoonSkySections";
 
@@ -299,7 +300,7 @@ export default function MoonPhasesPage({ lang }: { lang: "tr" | "en" }) {
         kindNames={KIND_NAMES[lang]}
         afterStrip={tr ? <SekizEvre /> : undefined}
         riseSet={
-          <>
+          <MobilDaralt>
             <h2 id="dogus">{tr ? "Ay bugün saat kaçta doğuyor, kaçta batıyor?" : "Moonrise and moonset times"}</h2>
             <p>
               {tr
@@ -307,17 +308,25 @@ export default function MoonPhasesPage({ lang }: { lang: "tr" | "en" }) {
                 : "Choose a city or use your location to see moonrise, moonset and the Moon's highest point for today and the next 6 days, plus where the Moon is right now."}
             </p>
             <MoonRiseSet lang={lang} places={moonPlaces(lang)} defaultId={tr ? "istanbul" : "london"} initialNow={now.getTime()} />
-          </>
+          </MobilDaralt>
         }
       />
 
-      <MoonSignSection lang={lang} now={now} />
+      <MobilDaralt>
+        <MoonSignSection lang={lang} now={now} />
+      </MobilDaralt>
 
-      <SupermoonSection lang={lang} now={now} />
+      <MobilDaralt>
+        <SupermoonSection lang={lang} now={now} />
+      </MobilDaralt>
 
-      <EclipseSection lang={lang} now={now} />
+      <MobilDaralt>
+        <EclipseSection lang={lang} now={now} />
+      </MobilDaralt>
 
-      <CalendarFeeds lang={lang} />
+      <MobilDaralt>
+        <CalendarFeeds lang={lang} />
+      </MobilDaralt>
 
       {!tr && (
         <>

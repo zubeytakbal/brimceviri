@@ -3,6 +3,7 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { moonPhasesBetween, moonState, phaseName, type PhaseKind, type PhaseName } from "../../converter/time/moon";
 import MoonIcon from "./MoonIcon";
+import MobilDaralt from "../MobilDaralt";
 
 // Ay sayfasinin tarihe bagli bolumleri: son 7 / sonraki 7 gun seridi, tarih secici,
 // aylik takvim ve evre tablolari. Ilk HTML derleme anina gore uretilir; tarayicida
@@ -232,6 +233,7 @@ export default function MoonCalendarTools({
 
       {riseSet}
 
+      <MobilDaralt>
       <h2 id="tarih">{t.pickerTitle}</h2>
       <div className="date-calc">
         <div className="date-calc-input">
@@ -273,6 +275,9 @@ export default function MoonCalendarTools({
         )}
       </div>
 
+      </MobilDaralt>
+
+      <MobilDaralt>
       <h2 id="takvim">{t.calendarTitle(monthTitle)}</h2>
       <div className="moon-calendar-nav">
         <button type="button" onClick={() => setMonthShift((v) => v - 1)}>
@@ -300,6 +305,9 @@ export default function MoonCalendarTools({
         ))}
       </div>
 
+      </MobilDaralt>
+
+      <MobilDaralt>
       <h2 id="dolunaylar">{t.fullsTitle}</h2>
       <div className="conversion-table-wrap">
         <table className="conversion-table">
@@ -322,6 +330,9 @@ export default function MoonCalendarTools({
         </table>
       </div>
 
+      </MobilDaralt>
+
+      <MobilDaralt>
       <h2 id="evreler">{t.allTitle}</h2>
       <div className="conversion-table-wrap">
         <table className="conversion-table">
@@ -345,6 +356,7 @@ export default function MoonCalendarTools({
           </tbody>
         </table>
       </div>
+      </MobilDaralt>
     </>
   );
 }

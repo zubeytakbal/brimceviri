@@ -19324,3 +19324,37 @@ a.all-units-row .all-units-name {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
+
+/* Telefonda daraltılan bölümler (MobilDaralt): yalnızca başlık görünür, dokununca açılır. */
+@media (max-width: 720px) {
+  .mobil-daralt:not(.is-acik) > :not(:first-child) {
+    display: none;
+  }
+
+  .mobil-daralt > h2:first-child {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #d7e2e8;
+    cursor: pointer;
+  }
+
+  .mobil-daralt > h2:first-child::after {
+    flex: 0 0 auto;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #eef4f6;
+    color: #0f6f6c;
+    content: "+";
+    font-size: 1.3rem;
+    line-height: 30px;
+    text-align: center;
+  }
+
+  .mobil-daralt.is-acik > h2:first-child::after {
+    content: "−";
+  }
+}

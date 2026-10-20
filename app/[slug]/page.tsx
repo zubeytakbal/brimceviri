@@ -14,8 +14,6 @@ import { categoryPages } from "../converter/categoryPages";
 import { convert } from "../converter/convert";
 import { conversionPages } from "../converter/conversionPages";
 import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
-import { findEnglishPageByTurkishSlug } from "../converter/localizedConversionPages";
-import { findGermanPageByTurkishSlug } from "../converter/localizedGermanConversionPages";
 import { getFlagshipPairInsight } from "../converter/flagshipPairInsights";
 import { getUnitSources } from "../converter/unitSources";
 import { findUnitPage } from "../converter/unitPages";
@@ -191,12 +189,6 @@ export default async function ConversionPage({ params }: PageProps) {
     notFound();
   }
 
-  const englishPage = findEnglishPageByTurkishSlug(
-    conversionPage.slug
-  );
-  const germanPage = findGermanPageByTurkishSlug(
-    conversionPage.slug
-  );
   const pairUnitOptions = getCategoryUnitOptions(
     conversionPage.category,
     "tr"
@@ -774,30 +766,6 @@ export default async function ConversionPage({ params }: PageProps) {
             />
           </section>
         )}
-
-        <section className="conversion-section language-alternatives">
-          <h2>Diğer diller</h2>
-
-          {englishPage && (
-            <Link
-              className="text-link"
-              href={`/en/${englishPage.slug}`}
-              hrefLang="en"
-            >
-              İngilizce sürümü aç
-            </Link>
-          )}
-
-          {germanPage && (
-            <Link
-              className="text-link"
-              href={`/de/${germanPage.slug}`}
-              hrefLang="de"
-            >
-              Almanca sürümü aç
-            </Link>
-          )}
-        </section>
       </article>
     </main>
   );

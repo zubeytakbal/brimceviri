@@ -19077,9 +19077,104 @@ a.all-units-row .all-units-name {
   padding: 0 28px 56px;
 }
 
+.saat-hero-ust {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 14px 24px;
+}
+
+/* Kaba düğmeler: kalın beyaz çerçeve, büyük harf. */
+.saat-eylemler {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.saat-eylemler button {
+  padding: 9px 14px;
+  border: 3px solid #ffffff;
+  border-radius: 0;
+  background: rgba(0, 0, 0, 0.35);
+  color: #ffffff;
+  font: 800 0.86rem var(--saat-metin), sans-serif;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.saat-eylemler button:hover:not(:disabled),
+.saat-eylemler button[aria-pressed="true"] {
+  border-color: var(--saat-vurgu);
+  background: var(--saat-vurgu);
+}
+
+.saat-eylemler button:disabled {
+  cursor: default;
+}
+
+.saat-alt b {
+  font-weight: 800;
+}
+
+.saat-alt a {
+  color: inherit;
+  text-underline-offset: 3px;
+}
+
+/* Favori şehir şeridi: fotoğrafın üstünde koyu cam kutular, Anton rakamlar. */
+.saat-serit {
+  display: flex;
+  gap: 6px;
+  margin-top: 22px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.saat-serit::-webkit-scrollbar {
+  display: none;
+}
+
+.saat-serit a {
+  flex: 0 0 auto;
+  min-width: 118px;
+  padding: 9px 14px 8px;
+  border-top: 4px solid transparent;
+  background: rgba(0, 0, 0, 0.55);
+  color: #ffffff;
+  text-decoration: none;
+  backdrop-filter: blur(6px);
+}
+
+.saat-serit a span {
+  display: block;
+  font: 800 0.78rem var(--saat-metin), sans-serif;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.saat-serit a b {
+  font-family: var(--saat-rakam), Impact, sans-serif;
+  font-size: 1.9rem;
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.saat-serit a:hover {
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.saat-serit a.is-bu {
+  border-top-color: var(--saat-vurgu);
+  background: rgba(22, 143, 140, 0.55);
+}
+
 .saat-baslik,
 .saat-ulke,
-.saat-alt {
+.saat-alt,
+.saat-eylemler {
   text-shadow: 0 1px 12px rgba(0, 0, 0, 0.55);
 }
 
@@ -19101,7 +19196,7 @@ a.all-units-row .all-units-name {
 .saat-dev {
   margin: 0.04em 0 0 -0.03em;
   font-family: var(--saat-rakam), Impact, sans-serif;
-  font-size: min(31vw, 58vh);
+  font-size: min(30vw, 50vh);
   font-variant-numeric: tabular-nums;
   line-height: 0.88;
   letter-spacing: 0.005em;

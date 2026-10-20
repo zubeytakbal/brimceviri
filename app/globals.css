@@ -15413,69 +15413,6 @@ a.all-units-row .all-units-name {
   line-height: 1.5;
 }
 
-/* Kıble pusulası */
-
-.kible-sonuc {
-  display: grid;
-  grid-template-columns: minmax(200px, 260px) 1fr;
-  gap: 20px;
-  align-items: center;
-}
-
-.kible-pusula {
-  width: 100%;
-  max-width: 260px;
-  height: auto;
-  margin: 0 auto;
-}
-
-.kible-daire {
-  fill: #ffffff;
-  stroke: #d7e2e8;
-  stroke-width: 3;
-}
-
-.kible-harf {
-  fill: #5b6b7a;
-  font-size: 15px;
-  font-weight: 700;
-}
-
-.kible-ok {
-  stroke: #0f6f6c;
-  stroke-width: 6;
-  stroke-linecap: round;
-}
-
-.kible-uc {
-  fill: #0f6f6c;
-}
-
-.kible-merkez {
-  fill: #172033;
-}
-
-.kible-sonuc.is-hizali .kible-daire {
-  fill: #e9f8f1;
-  stroke: #2e9e6f;
-}
-
-.kible-sonuc.is-hizali .kible-ok,
-.kible-sonuc.is-hizali .kible-uc {
-  stroke: #2e9e6f;
-  fill: #2e9e6f;
-}
-
-@media (max-width: 640px) {
-  .kible-sonuc {
-    grid-template-columns: 1fr;
-  }
-
-  .kible-pusula {
-    max-width: 220px;
-  }
-}
-
 /* Kaza takip ve zikirmatik */
 
 .kaza-takip-liste {
@@ -18684,5 +18621,130 @@ a.all-units-row .all-units-name {
   .pusula-igne,
   .pusula-govde {
     transition: none;
+  }
+}
+
+.pusula-gunes-hale {
+  fill: #ffd34d;
+  fill-opacity: 0.3;
+}
+
+.pusula-gunes-ic {
+  fill: #ffd34d;
+  stroke: #0b2a3c;
+  stroke-width: 1;
+}
+
+.pusula-il {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: min(100%, 420px);
+}
+
+.pusula-il span {
+  font-weight: 600;
+}
+
+.pusula-il select {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #172033;
+  font: inherit;
+}
+
+.pusula-gunes-yontemi {
+  display: grid;
+  gap: 6px;
+}
+
+.pusula-gunes-yontemi p {
+  margin: 0;
+}
+
+/* Kıble sayfası: 81 il tablosu satırları tek satırda kalsın */
+.kible-tablo td,
+.kible-tablo th {
+  white-space: nowrap;
+}
+
+.pusula-notlar {
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+  width: min(100%, 420px);
+}
+
+.pusula-notlar:empty {
+  display: none;
+}
+
+.pusula-ikincil {
+  padding: 8px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 999px;
+  background: transparent;
+  color: #ffffff;
+  font: inherit;
+  font-size: 0.88rem;
+  cursor: pointer;
+}
+
+/* Geniş ekranda kadran solda, okuma ve bilgiler sağda. */
+@media (min-width: 960px) {
+  .pusula {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    grid-template-areas:
+      "sahne okuma"
+      "sahne il"
+      "sahne dugmeler"
+      "sahne bilgi"
+      "sahne notlar";
+    grid-template-rows: auto auto auto auto 1fr;
+    align-items: start;
+    column-gap: 40px;
+    padding: 32px 40px;
+  }
+
+  .pusula-sahne {
+    grid-area: sahne;
+    align-self: center;
+  }
+
+  .pusula-okuma {
+    grid-area: okuma;
+    justify-items: start;
+    min-height: 0;
+    text-align: left;
+  }
+
+  .pusula-il {
+    grid-area: il;
+  }
+
+  .pusula-dugmeler {
+    grid-area: dugmeler;
+    justify-content: flex-start;
+  }
+
+  .pusula-bilgi {
+    grid-area: bilgi;
+  }
+
+  .pusula-notlar {
+    grid-area: notlar;
+    justify-items: start;
+  }
+
+  .pusula-okuma,
+  .pusula-il,
+  .pusula-dugmeler,
+  .pusula-bilgi,
+  .pusula-notlar {
+    justify-self: start;
   }
 }

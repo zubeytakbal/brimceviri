@@ -1,5 +1,6 @@
 import { magvar } from "magvar";
 import { addDaysYmd } from "./time/dateMath";
+import { sunPosition } from "./time/solar";
 
 // Dini araçların hesapları. Yalnızca değişmeyen kurallar ve matematik:
 // yasal ya da yıllık açıklanan bir tutar (fitre, fidye) ve vakit hesabı
@@ -21,6 +22,30 @@ export function kibleAcisi(lat: number, lon: number) {
   const y = Math.sin(dl) * Math.cos(f2);
   const x = Math.cos(f1) * Math.sin(f2) - Math.sin(f1) * Math.cos(f2) * Math.cos(dl);
   return (deg(Math.atan2(y, x)) + 360) % 360;
+}
+
+/**
+ * Kıble saati: güneşin tam kıble yönünde (azimutu kıble açısına eşit) olduğu an. O anda güneşe dönen kişi kıbleye
+ * dönmüş olur; pusula gerekmez. Verilen tarihin yerel güneş gününde aranır; güneş o gün kıble yönüne hiç
+ * gelmiyorsa ya da ufkun altındaysa null döner.
+ */
+export function kibleSaati(lat: number, lon: number, gun: Date): Date | null {
+  const kible = kibleAcisi(lat, lon);
+  // Yerel güneş öğlesi yaklaşık UTC 12:00 − boylam×4 dakikadır; arama ±12 saat.
+  const ogle = Date.UTC(gun.getUTCFullYear(), gun.getUTCMonth(), gun.getUTCDate(), 12) - lon * 4 * 60000;
+  const fark = (t: number) => ((sunPosition(new Date(t), lat, lon).azimuth - kible + 540) % 360) - 180;
+  let onceT = ogle - 12 * 3600000;
+  let onceF = fark(onceT);
+  for (let t = onceT + 60000; t <= ogle + 12 * 3600000; t += 60000) {
+    const f = fark(t);
+    if (onceF < 0 && f >= 0 && f - onceF < 10) {
+      const an = onceT + ((0 - onceF) / (f - onceF)) * (t - onceT);
+      return sunPosition(new Date(an), lat, lon).elevation > 0 ? new Date(Math.round(an / 1000) * 1000) : null;
+    }
+    onceT = t;
+    onceF = f;
+  }
+  return null;
 }
 
 /** Kâbe'ye kuş uçuşu mesafe (km), ortalama Dünya yarıçapı 6.371 km. */

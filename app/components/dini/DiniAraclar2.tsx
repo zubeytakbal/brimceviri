@@ -6,21 +6,15 @@ import {
   CUZ_SAYISI,
   hatimDagit,
   hatimPlani,
-  kabeMesafesi,
   kazaNamazi,
   kazaNamaziGun,
-  kibleAcisi,
   kurbanHissesi,
   maasZekat,
-  manyetikSapma,
   MUSHAF_SAYFA,
   NISAP_ALTIN_GRAM,
   okumaSuresiDakika,
-  pusulaKibleAcisi,
-  yonAdi,
   zekatHesapla,
 } from "../../converter/diniHesaplar";
-import { turkeyProvinces } from "../../converter/geo/turkeyProvinces";
 import { HIJRI_MONTHS_TR, type YMD } from "../../converter/time/calendars";
 import { diffDays, parseYmd } from "../../converter/time/dateMath";
 import { hisabUmr } from "../../converter/time/hijriAge";
@@ -251,199 +245,6 @@ export function HatimHesaplama() {
           </table>
         </div>
       )}
-    </div>
-  );
-}
-
-/* ---------------- Kıble ---------------- */
-
-const sortedProvinces = [...turkeyProvinces].sort((a, b) => a.name.localeCompare(b.name, "tr"));
-
-const SABIT_TARIH = new Date(Date.UTC(2026, 9, 1));
-
-type PusulaDurumu = "kapali" | "bekliyor" | "acik" | "desteklenmiyor" | "izin-yok";
-
-type IosOrientationEvent = DeviceOrientationEvent & { webkitCompassHeading?: number; webkitCompassAccuracy?: number };
-type OrientationPermission = { requestPermission?: () => Promise<"granted" | "denied"> };
-
-/** Telefonun baktığı yön (manyetik kuzeyden saat yönünde) ya da null. */
-function manyetikYon(event: IosOrientationEvent): number | null {
-  if (typeof event.webkitCompassHeading === "number") return event.webkitCompassHeading;
-  if (event.absolute && typeof event.alpha === "number") {
-    const ekran = typeof screen !== "undefined" && screen.orientation ? screen.orientation.angle : 0;
-    return (360 - event.alpha + ekran + 360) % 360;
-  }
-  return null;
-}
-
-export function KibleHesaplama() {
-  const [il, setIl] = useState(34);
-  const [konum, setKonum] = useState<{ lat: number; lon: number } | null>(null);
-  const [durum, setDurum] = useState<string | null>(null);
-  const [pusula, setPusula] = useState<PusulaDurumu>("kapali");
-  const [yon, setYon] = useState<number | null>(null);
-  const p = turkeyProvinces[il - 1];
-  const nokta = konum ?? { lat: p.lat, lon: p.lon };
-  const aci = kibleAcisi(nokta.lat, nokta.lon);
-  // Sunucu ve ilk istemci çizimi aynı sabit tarihle hesaplar (hydration
-  // uyumu); sayfa açılınca bugünün tarihine geçilir.
-  const [simdi, setSimdi] = useState<Date>(SABIT_TARIH);
-  useEffect(() => {
-    const frame = requestAnimationFrame(() => setSimdi(new Date()));
-    return () => cancelAnimationFrame(frame);
-  }, []);
-  const sapma = manyetikSapma(nokta.lat, nokta.lon, simdi);
-  const pusulaAcisi = pusulaKibleAcisi(nokta.lat, nokta.lon, simdi);
-
-  useEffect(() => {
-    if (pusula !== "acik" && pusula !== "bekliyor") return;
-    const dinle = (event: Event) => {
-      const m = manyetikYon(event as IosOrientationEvent);
-      if (m === null) return;
-      setYon(m);
-      setPusula("acik");
-    };
-    const olay = "ondeviceorientationabsolute" in window ? "deviceorientationabsolute" : "deviceorientation";
-    window.addEventListener(olay, dinle);
-    const zaman = window.setTimeout(() => setPusula((d) => (d === "bekliyor" ? "desteklenmiyor" : d)), 3000);
-    return () => {
-      window.removeEventListener(olay, dinle);
-      window.clearTimeout(zaman);
-    };
-  }, [pusula]);
-
-  // Kıble ile telefonun gerçek yönü arasındaki fark (−180…180).
-  const gercekYon = yon === null ? null : (yon + sapma + 360) % 360;
-  const fark = gercekYon === null ? null : ((aci - gercekYon + 540) % 360) - 180;
-  const hizali = fark !== null && Math.abs(fark) <= 3;
-
-  useEffect(() => {
-    if (hizali && "vibrate" in navigator) navigator.vibrate(60);
-  }, [hizali]);
-
-  const pusulaBaslat = async () => {
-    if (typeof window === "undefined" || !("DeviceOrientationEvent" in window)) {
-      setPusula("desteklenmiyor");
-      return;
-    }
-    const izin = (DeviceOrientationEvent as unknown as OrientationPermission).requestPermission;
-    if (izin) {
-      try {
-        if ((await izin()) !== "granted") {
-          setPusula("izin-yok");
-          return;
-        }
-      } catch {
-        setPusula("izin-yok");
-        return;
-      }
-    }
-    setPusula("bekliyor");
-  };
-
-  const konumAl = () => {
-    if (!("geolocation" in navigator)) {
-      setDurum("Tarayıcınız konum özelliğini desteklemiyor.");
-      return;
-    }
-    setDurum("Konum alınıyor…");
-    navigator.geolocation.getCurrentPosition(
-      (pos) => {
-        setKonum({ lat: pos.coords.latitude, lon: pos.coords.longitude });
-        setDurum(null);
-      },
-      () => setDurum("Konum izni verilmedi; il seçerek devam edebilirsiniz."),
-      { enableHighAccuracy: true, timeout: 10000 }
-    );
-  };
-
-  // Canlı pusulada ok, ekranın üstü telefonun baktığı yön olacak şekilde döner.
-  const okAcisi = fark !== null ? fark : aci;
-  const harfDonus = gercekYon !== null ? -gercekYon : 0;
-
-  return (
-    <div className="date-calc">
-      <div className="date-calc-input">
-        <div className="date-calc-fields">
-          <label className="date-calc-field">
-            <span>İl</span>
-            <select
-              value={il}
-              onChange={(event) => {
-                setIl(Number(event.target.value));
-                setKonum(null);
-              }}
-            >
-              {sortedProvinces.map((x) => (
-                <option key={x.plate} value={x.plate}>
-                  {x.name}
-                </option>
-              ))}
-            </select>
-          </label>
-        </div>
-        <div className="date-calc-chips">
-          <button type="button" onClick={konumAl}>
-            Konumumu kullan
-          </button>
-          <button type="button" onClick={pusulaBaslat}>
-            {pusula === "acik" ? "Canlı pusula açık" : "Canlı pusulayı başlat"}
-          </button>
-        </div>
-        {durum && <p className="zins-ziel-ergebnis">{durum}</p>}
-        {pusula === "desteklenmiyor" && (
-          <p className="zins-ziel-ergebnis">Bu cihazda yön sensörü bulunamadı. Canlı pusula telefon ve tabletlerde çalışır.</p>
-        )}
-        {pusula === "izin-yok" && <p className="zins-ziel-ergebnis">Pusula için hareket ve yön izni gerekiyor; tarayıcı ayarlarından izin verebilirsiniz.</p>}
-      </div>
-
-      <div className={`kible-sonuc${hizali ? " is-hizali" : ""}`}>
-        <svg viewBox="-110 -110 220 220" className="kible-pusula" role="img" aria-label={`Kıble ${fmt(aci, 1)} derece`}>
-          <circle r="100" className="kible-daire" />
-          <g transform={`rotate(${harfDonus})`}>
-            {["K", "D", "G", "B"].map((h, i) => {
-              const x = Math.sin((i * Math.PI) / 2) * 84;
-              const y = -Math.cos((i * Math.PI) / 2) * 84;
-              // Harf, pusula dönse de dik kalsın diye kendi merkezinde ters döndürülür.
-              return (
-                <text key={h} x={x} y={y + 5} textAnchor="middle" className="kible-harf" transform={`rotate(${-harfDonus} ${x} ${y})`}>
-                  {h}
-                </text>
-              );
-            })}
-          </g>
-          <g transform={`rotate(${okAcisi})`}>
-            <line x1="0" y1="12" x2="0" y2="-72" className="kible-ok" />
-            <polygon points="0,-88 -9,-66 9,-66" className="kible-uc" />
-          </g>
-          <circle r="5" className="kible-merkez" />
-        </svg>
-        <div className="date-calc-results">
-          {fark !== null ? (
-            <div className="date-calc-stat is-main">
-              <span>Canlı pusula</span>
-              <strong>{hizali ? "Kıbleye dönüksünüz" : fark > 0 ? `${fmt(fark)}° sağa dönün` : `${fmt(-fark)}° sola dönün`}</strong>
-              <em>Telefonu yere paralel tutun; metal eşyalardan ve mıknatıslardan uzak durun.</em>
-            </div>
-          ) : (
-            <div className="date-calc-stat is-main">
-              <span>{konum ? "Bulunduğunuz konumdan" : `${p.name} il merkezinden`} kıble</span>
-              <strong>{fmt(aci, 1)}°</strong>
-              <em>gerçek (coğrafi) kuzeyden saat yönünde · {yonAdi(aci)}</em>
-            </div>
-          )}
-          <div className="date-calc-stat">
-            <span>Pusula ile kıble açısı</span>
-            <strong>{fmt(pusulaAcisi, 1)}°</strong>
-            <em>manyetik kuzeyden; sapma {sapma >= 0 ? "+" : ""}{fmt(sapma, 1)}° (WMM2025)</em>
-          </div>
-          <div className="date-calc-stat">
-            <span>Kâbe'ye uzaklık</span>
-            <strong>{fmt(kabeMesafesi(nokta.lat, nokta.lon))} km</strong>
-            <em>kuş uçuşu</em>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }

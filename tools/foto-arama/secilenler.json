@@ -334,5 +334,61 @@
   "yazar": "Diego Delso",
   "lisans": "CC BY-SA 3.0",
   "kaynak": "https://commons.wikimedia.org/wiki/File:Skyline_de_Chicago_desde_el_centro,_Illinois,_Estados_Unidos,_2012-10-20,_DD_06.jpg"
+ },
+ "houston": {
+  "dosya": "houston",
+  "yer": "Houston silueti",
+  "yazar": "David Daniel Turner",
+  "lisans": "CC BY 4.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Downtown_Houston,_TX_Skyline_-_2018.jpg"
+ },
+ "miami": {
+  "dosya": "miami",
+  "yer": "Miami Beach",
+  "yazar": "P. Hughes",
+  "lisans": "CC BY-SA 4.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Miami_-_Skyline_from_Harbor.jpg"
+ },
+ "san-francisco": {
+  "dosya": "san-francisco",
+  "yer": "Golden Gate Köprüsü",
+  "yazar": "Cary Bass",
+  "lisans": "CC BY-SA 3.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Golden_Gate_Bridge_Yang_Ming_Line.jpg"
+ },
+ "las-vegas": {
+  "dosya": "las-vegas",
+  "yer": "Las Vegas Strip",
+  "yazar": "Dietmar Rabich",
+  "lisans": "CC BY-SA 4.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Las_Vegas_(Nevada,_USA),_The_Strip_--_2012_--_6232.jpg"
+ },
+ "toronto": {
+  "dosya": "toronto",
+  "yer": "CN Kulesi",
+  "yazar": "Maksim Sokolov (maxergon.com)",
+  "lisans": "CC BY-SA 4.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Toronto_skyline_viewed_from_Trillium_Park.jpg"
+ },
+ "vancouver": {
+  "dosya": "vancouver",
+  "yer": "Vancouver ve dağlar",
+  "yazar": "Kyle Pearce/ DIY Genius",
+  "lisans": "CC BY-SA 2.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Vancouver_Skyline_and_Mountains.jpg"
+ },
+ "montreal": {
+  "dosya": "montreal",
+  "yer": "Notre-Dame Bazilikası",
+  "yazar": "Taxiarchos228",
+  "lisans": "CC BY 3.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Montreal_-_QC_-_Skyline.jpg"
+ },
+ "meksiko": {
+  "dosya": "meksiko",
+  "yer": "Güzel Sanatlar Sarayı",
+  "yazar": "لا روسا",
+  "lisans": "CC BY-SA 4.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Palacio_de_Bellas_Artes_00_(2).JPG"
  }
 }

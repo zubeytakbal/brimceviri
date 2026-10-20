@@ -54,5 +54,61 @@
   "yazar": "Urb Sinclair",
   "lisans": "CC BY 3.0",
   "kaynak": "https://commons.wikimedia.org/wiki/File:Zuerich_Limmat_Grossmuenster.JPG"
+ },
+ "budapeste": {
+  "dosya": "budapeste",
+  "yer": "Macaristan Parlamentosu",
+  "yazar": "Godot13",
+  "lisans": "CC BY-SA 4.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:HUN-2015-Budapest-Hungarian_Parliament_(Budapest)_2015-02.jpg"
+ },
+ "bukres": {
+  "dosya": "bukres",
+  "yer": "Parlamento Sarayı",
+  "yazar": "William John Gauthier from Denmark",
+  "lisans": "CC BY-SA 2.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Palace_of_the_Parliament_in_Bucharest_(51878975552).jpg"
+ },
+ "baku": {
+  "dosya": "baku",
+  "yer": "Alev Kuleleri",
+  "yazar": "Francisco Anzola",
+  "lisans": "CC BY 3.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:View_From_Maidens_Tower_(221090097).jpeg"
+ },
+ "dubai": {
+  "dosya": "dubai",
+  "yer": "Burj Halife",
+  "yazar": "Tim Reckmann from Hamm, Deutschland",
+  "lisans": "CC BY 2.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Dubai_Skyline_mit_Burj_Khalifa_(18241030269).jpg"
+ },
+ "riyad": {
+  "dosya": "riyad",
+  "yer": "Kingdom Centre",
+  "yazar": "B.alotaby",
+  "lisans": "CC BY-SA 4.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Riyadh_Skyline.jpg"
+ },
+ "doha": {
+  "dosya": "doha",
+  "yer": "Doha silueti",
+  "yazar": "P. Hughes",
+  "lisans": "CC BY 4.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Doha_-_West_Bay_Skyline_04.jpg"
+ },
+ "kuveyt": {
+  "dosya": "kuveyt",
+  "yer": "Kuveyt Kuleleri",
+  "yazar": "Gladiator2030",
+  "lisans": "CC BY-SA 4.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Kuwait_Towers2025.jpg"
+ },
+ "tahran": {
+  "dosya": "tahran",
+  "yer": "Azadi Kulesi",
+  "yazar": "Bernard Gagnon",
+  "lisans": "CC BY-SA 4.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Azadi_Tower,_Tehran.jpg"
  }
 }

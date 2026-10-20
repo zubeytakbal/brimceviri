@@ -1,0 +1,21 @@
+# Geçici iş: yalnızca foto-arama dalına gönderimde çalışır, siteyi yayınlamaz. Aday listesini dosya olarak bırakır.
+name: Foto arama
+
+on:
+  push:
+    branches: [foto-arama]
+
+permissions:
+  contents: read
+
+jobs:
+  ara:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+      - run: python3 tools/foto-arama/ara.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: adaylar
+          path: adaylar.json

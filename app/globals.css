@@ -20646,3 +20646,76 @@ a.all-units-row .all-units-name {
     gap: 28px 20px;
   }
 }
+
+/* ---------------- Şehir bulutu: nüfusa göre boylanan, gazete dizgili şehir adları ---------------- */
+.sehir-bulutu {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.1em 0.9em;
+  margin: 18px 0 0;
+  line-height: 1.15;
+  text-align: center;
+}
+
+.sehir-bulutu a,
+.sehir-bulutu span {
+  color: var(--gazete-murekkep, #141414);
+  text-decoration: none;
+}
+
+.sehir-bulutu a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+
+.sehir-bulutu .bulut-b1 {
+  font-family: var(--saat-eski), Georgia, serif;
+  font-size: 1.05rem;
+  font-style: italic;
+}
+
+.sehir-bulutu .bulut-b2 {
+  font-family: var(--saat-eski), Georgia, serif;
+  font-size: 1.45rem;
+}
+
+.sehir-bulutu .bulut-b3 {
+  font-family: var(--saat-gazete), Georgia, serif;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.sehir-bulutu .bulut-b4 {
+  font-family: var(--saat-gazete), Georgia, serif;
+  font-size: 2.8rem;
+  font-weight: 900;
+}
+
+.sehir-bulutu .bulut-b5 {
+  font-family: var(--saat-gazete), Georgia, serif;
+  font-size: clamp(2.8rem, 6vw, 4.2rem);
+  font-weight: 900;
+  letter-spacing: -0.01em;
+}
+
+.sehir-bulutu .is-bu {
+  padding: 0 0.15em;
+  background: var(--gazete-murekkep, #141414);
+  color: var(--gazete-kagit, #fdfdfb);
+}
+
+@media (max-width: 720px) {
+  .sehir-bulutu .bulut-b3 {
+    font-size: 1.6rem;
+  }
+
+  .sehir-bulutu .bulut-b4 {
+    font-size: 2rem;
+  }
+
+  .sehir-bulutu .bulut-b5 {
+    font-size: 2.5rem;
+  }
+}

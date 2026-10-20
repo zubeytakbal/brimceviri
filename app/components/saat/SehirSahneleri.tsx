@@ -5,6 +5,7 @@ import { referenceCitySlugs, trSaatSehirleri, worldCities, type WorldCity } from
 import { trAblative } from "../../converter/turkishSuffix";
 import { sehrinUlkeSayfasi } from "../../converter/time/ulkeSaatDilimleri";
 import GazeteBaslik from "./GazeteBaslik";
+import SehirBulutu from "./SehirBulutu";
 import { sehirGorseli } from "./sehirGorselleri";
 
 // Saat bölümünde dev saatin altındaki "sahneler": her biri ekran genişliğinde bir bölüm, büyük
@@ -55,7 +56,7 @@ export default function SehirSahneleri({ city }: { city: WorldCity }) {
     .map((c) => ({ c, dakika: differenceMinutes(city.timeZone, c.timeZone, now) }))
     .sort((a, b) => a.dakika - b.dakika);
   const enUzak = Math.max(60, ...referanslar.map((r) => Math.abs(r.dakika)));
-  const yakinlar = nearbyCities(city, 12, trSaatSehirleri);
+  const yakinlar = nearbyCities(city, 18, trSaatSehirleri);
   const gorsel = sehirGorseli(city.tr);
   const ulkeSayfasi = sehrinUlkeSayfasi(city.countryTr);
   const manset = inTurkey ? `${ad}, Türkiye saatinde` : fark === 0 ? `${ad}, İstanbul ile aynı saatte` : `${ad}, ${trAblative("İstanbul")} ${describeDifference(fark, "tr")}`;
@@ -272,13 +273,7 @@ export default function SehirSahneleri({ city }: { city: WorldCity }) {
       {yakinlar.length > 0 && (
         <section className="sahne">
           <p className="sahne-etiket">06 · Yakındaki şehirler</p>
-          <div className="sahne-bulut">
-            {yakinlar.map((c) => (
-              <Link key={c.en} href={`/dunya-saatleri/${c.tr}`} prefetch={false}>
-                {c.nameTr}
-              </Link>
-            ))}
-          </div>
+          <SehirBulutu sehirler={yakinlar} bu={city} />
         </section>
       )}
     </div>

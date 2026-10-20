@@ -6,6 +6,7 @@ import type { UlkeSaatleri } from "../../converter/time/ulkeSaatDilimleri";
 import { trSaatSehirleri } from "../../converter/time/worldCities";
 import { trLocative } from "../../converter/turkishSuffix";
 import GazeteBaslik from "../saat/GazeteBaslik";
+import SehirBulutu from "../saat/SehirBulutu";
 import SaatKabugu from "../saat/SaatKabugu";
 import { sehirGorseli } from "../saat/sehirGorselleri";
 import UlkeSaatiHero from "../saat/UlkeSaatiHero";
@@ -287,13 +288,7 @@ export default function UlkeSaatPage({ ulke }: { ulke: UlkeSaatleri }) {
           {sehirSayfalari.length > 0 && (
             <section className="sahne">
               <p className="sahne-etiket">06 · {ulke.ad} şehirleri</p>
-              <div className="sahne-bulut">
-                {sehirSayfalari.map((c) => (
-                  <Link key={c.en} href={`/dunya-saatleri/${c.tr}`} prefetch={false}>
-                    {c.nameTr}
-                  </Link>
-                ))}
-              </div>
+              <SehirBulutu sehirler={sehirSayfalari} />
             </section>
           )}
         </div>

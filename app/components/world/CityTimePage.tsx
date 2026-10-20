@@ -12,6 +12,9 @@ import TimeToolPage from "../time/TimeToolPage";
 import SaatKabugu from "../saat/SaatKabugu";
 import SehirSaatiHero from "../saat/SehirSaatiHero";
 import { sehirGorseli } from "../saat/sehirGorselleri";
+
+// Saat bölümünün favori şeridi ve ana şehir seçimi için şehir listesi.
+const SAAT_SEHIRLERI = worldCities.map((c) => ({ slug: c.tr, ad: c.nameTr, timeZone: c.timeZone }));
 import CityLiveClock from "./CityLiveClock";
 
 // Sehir saati sayfasi (TR + EN). Tum sayilar sunucuda gercek tz verisinden hesaplanir.
@@ -401,11 +404,7 @@ export default function CityTimePage({ city, lang, variant = "klasik" }: { city:
 
   if (variant === "saat") {
     const sun0 = facts.sunRows[0];
-    const alt = [
-      inTurkey ? "Türkiye saati" : `Türkiye'den ${describeDifference(facts.diffFromIstanbul, "tr")}`,
-      facts.utcLabel,
-      `Gün doğumu ${sun0.sunrise} · batımı ${sun0.sunset}`,
-    ].join(" · ");
+    const gunes = `${facts.utcLabel} · Gün doğumu ${sun0.sunrise} · batımı ${sun0.sunset} · gün ${sun0.dayLength}`;
     return (
       <SaatKabugu
         crumbs={[
@@ -414,7 +413,16 @@ export default function CityTimePage({ city, lang, variant = "klasik" }: { city:
           { href: path, label: name },
         ]}
         faqItems={faqItems}
-        hero={<SehirSaatiHero baslik={`${city.inTr} saat kaç?`} ulke={country} timeZone={city.timeZone} alt={alt} gorsel={sehirGorseli(city.tr)} />}
+        hero={
+          <SehirSaatiHero
+            sehir={{ slug: city.tr, ad: city.nameTr, timeZone: city.timeZone }}
+            baslik={`${city.inTr} saat kaç?`}
+            ulke={country}
+            gunes={gunes}
+            gorsel={sehirGorseli(city.tr)}
+            sehirler={SAAT_SEHIRLERI}
+          />
+        }
       >
         {icerik}
       </SaatKabugu>

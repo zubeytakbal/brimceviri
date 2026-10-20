@@ -22,6 +22,15 @@ function saatYaz(an: Date, timeZone: string) {
   return new Intl.DateTimeFormat("tr-TR", { timeZone, hour: "2-digit", minute: "2-digit", hourCycle: "h23" }).format(an);
 }
 
+/** ISO hafta numarası, şehrin yerel tarihine göre (gazete "sayısı" olarak). */
+function haftaNo(an: Date, timeZone: string) {
+  const [y, m, d] = new Intl.DateTimeFormat("en-CA", { timeZone, year: "numeric", month: "2-digit", day: "2-digit" }).format(an).split("-").map(Number);
+  const t = new Date(Date.UTC(y, m - 1, d));
+  const g = t.getUTCDay() || 7;
+  t.setUTCDate(t.getUTCDate() + 4 - g);
+  return Math.ceil(((t.getTime() - Date.UTC(t.getUTCFullYear(), 0, 1)) / 86400000 + 1) / 7);
+}
+
 function gunduzMu(an: Date, timeZone: string) {
   const s = Number(new Intl.DateTimeFormat("en-GB", { timeZone, hour: "2-digit", hourCycle: "h23" }).format(an));
   return s >= 7 && s < 19;
@@ -56,6 +65,19 @@ export default function SehirSahneleri({ city }: { city: WorldCity }) {
 
   return (
     <div className="sahneler">
+      {/* Gazete başlığı ve tarih satırı */}
+      <header className="gazete-baslik" aria-hidden="true">
+        <div className="gazete-ust">
+          <span>Her gün güncellenir</span>
+          <span>Sayı {haftaNo(now, city.timeZone)}</span>
+        </div>
+        <p className="gazete-ad">Dünya Saatleri</p>
+        <div className="gazete-tarih">
+          <span>{new Intl.DateTimeFormat("tr-TR", { timeZone: city.timeZone, weekday: "long", day: "numeric", month: "long", year: "numeric" }).format(now)}</span>
+          <span>{ad} baskısı</span>
+          <span>birimceviri.app</span>
+        </div>
+      </header>
       {/* 1. Saat dilimi */}
       <section className="sahne" id="ozet">
         <p className="sahne-etiket">01 · Saat dilimi</p>

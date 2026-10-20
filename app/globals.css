@@ -20063,3 +20063,179 @@ a.all-units-row .all-units-name {
 .sahneler {
   font-variant-numeric: lining-nums tabular-nums;
 }
+
+/* ---------------- Eskimiş gazete: sararmış kâğıt, grenli doku, kararmış kenarlar, katlanma izi, mürekkep dağılması,
+   nokta tramlı (halftone) baskı. Doku satır içi SVG gürültüsüdür; dış dosya yok. */
+.sahneler {
+  --gazete-kagit: #e8dfc6;
+  --gazete-murekkep: #1d1a15;
+  --gazete-solgun: #6e6553;
+  --gazete-cizgi: #b9ad8f;
+  position: relative;
+  background-color: var(--gazete-kagit);
+  background-image:
+    /* katlanma izi: ortada ince açık-koyu çift çizgi */
+    linear-gradient(90deg, transparent calc(50% - 2px), rgba(0, 0, 0, 0.07) calc(50% - 1px), rgba(255, 255, 255, 0.35) 50%, transparent calc(50% + 2px)),
+    /* kenarlarda sararma ve kararma */
+    radial-gradient(ellipse at 50% 40%, transparent 55%, rgba(120, 90, 40, 0.22) 100%),
+    /* kâğıt lekeleri */
+    radial-gradient(circle at 18% 22%, rgba(150, 110, 50, 0.1) 0, transparent 22%),
+    radial-gradient(circle at 82% 68%, rgba(150, 110, 50, 0.08) 0, transparent 26%),
+    /* gren */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.35 0 0 0 0 0.28 0 0 0 0 0.15 0 0 0 0.22 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  color: var(--gazete-murekkep);
+  font-family: var(--saat-eski), Georgia, serif;
+  /* mürekkep kâğıda hafif yayılır */
+  text-shadow: 0 0 0.6px rgba(29, 26, 21, 0.55);
+}
+
+.sahneler .sahne {
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+/* Gazete başlığı */
+.gazete-baslik {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 36px 28px 0;
+  text-align: center;
+}
+
+.gazete-ust,
+.gazete-tarih {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 16px;
+  font-family: var(--saat-eski), Georgia, serif;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.gazete-ust {
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--gazete-murekkep);
+}
+
+.gazete-ad {
+  margin: 4px 0 0;
+  font-family: var(--saat-fraktur), "Old English Text MT", serif;
+  font-size: clamp(3.2rem, 10vw, 8rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+}
+
+.gazete-tarih {
+  margin-top: 6px;
+  padding: 8px 0;
+  border-top: 4px double var(--gazete-murekkep);
+  border-bottom: 4px double var(--gazete-murekkep);
+  font-style: normal;
+  font-variant: small-caps;
+  letter-spacing: 0.06em;
+}
+
+/* Metin: eski baskı harfi, iki yana yaslı */
+.sahneler .sahne-kucuk,
+.sahneler .sahne-tablo td,
+.sahneler .sahne-lejant {
+  font-family: var(--saat-eski), Georgia, serif;
+}
+
+.sahneler .sahne-kucuk {
+  text-align: justify;
+  hyphens: auto;
+}
+
+.sahneler .sahne-etiket,
+.sahneler .sahne-tablo th,
+.sahneler .sahne-tablo td,
+.sahneler .sahne-cubuklar li,
+.sahneler .sahne-kucuk li + li,
+.sahneler .sahne-bulut a {
+  border-color: var(--gazete-cizgi);
+}
+
+.sahneler .sahne-etiket {
+  border-top-color: var(--gazete-murekkep);
+  border-bottom-color: var(--gazete-murekkep);
+}
+
+/* Nokta tram: baskı makinesinin gri tonları */
+.sahneler .sahne-cubuk.is-ileri,
+.sahneler .sahne-serit .is-mesai,
+.sahneler .sahne-lejant .is-mesai {
+  background: var(--gazete-murekkep);
+  color: var(--gazete-kagit);
+}
+
+.sahneler .sahne-cubuk.is-geri,
+.sahneler .sahne-serit .is-aksam,
+.sahneler .sahne-lejant .is-aksam {
+  background-color: transparent;
+  background-image: radial-gradient(circle, var(--gazete-murekkep) 0.9px, transparent 1.3px);
+  background-size: 4px 4px;
+  color: var(--gazete-murekkep);
+}
+
+.sahneler .sahne-serit .is-gece,
+.sahneler .sahne-lejant .is-gece {
+  background-color: transparent;
+  background-image: radial-gradient(circle, rgba(29, 26, 21, 0.35) 0.6px, transparent 1px);
+  background-size: 4px 4px;
+  color: var(--gazete-solgun);
+}
+
+.sahneler .sahne-serit .is-aksam {
+  font-weight: 700;
+  text-shadow: 0 0 2px var(--gazete-kagit), 0 0 2px var(--gazete-kagit);
+}
+
+.sahneler .sahne-kartlar,
+.sahneler .sahne-kart {
+  border-color: var(--gazete-murekkep);
+}
+
+.sahneler .sahne-cubuk-alan::before {
+  background: var(--gazete-murekkep);
+}
+
+.sahneler .sahne-cubuk-deger small {
+  font-family: var(--saat-eski), Georgia, serif;
+  font-style: italic;
+}
+
+.saat-bolum .sahneler ~ .saat-icerik {
+  background: var(--gazete-kagit, #e8dfc6);
+  background-color: #e8dfc6;
+  color: #1d1a15;
+  font-family: var(--saat-eski), Georgia, serif;
+}
+
+.saat-bolum .sahneler ~ .saat-icerik p {
+  color: #2a261f;
+}
+
+.saat-bolum .sahneler ~ .saat-icerik .saat-sss {
+  border-bottom-color: #b9ad8f;
+}
+
+@media (max-width: 720px) {
+  .gazete-baslik {
+    padding: 28px 16px 0;
+  }
+
+  .gazete-ust,
+  .gazete-tarih {
+    justify-content: center;
+    font-size: 0.8rem;
+  }
+
+  .sahneler {
+    background-image:
+      radial-gradient(ellipse at 50% 40%, transparent 55%, rgba(120, 90, 40, 0.22) 100%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.35 0 0 0 0 0.28 0 0 0 0 0.15 0 0 0 0.22 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}

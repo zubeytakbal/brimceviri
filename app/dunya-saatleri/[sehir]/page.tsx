@@ -35,5 +35,5 @@ export async function generateMetadata({ params }: { params: Promise<{ sehir: st
 export default async function TurkishCityTimePage({ params }: { params: Promise<{ sehir: string }> }) {
   const city = findCityByTrSlug((await params).sehir);
   if (!city) notFound();
-  return <CityTimePage city={city} lang="tr" />;
+  return <CityTimePage city={city} lang="tr" variant="saat" />;
 }

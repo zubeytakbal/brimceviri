@@ -145,14 +145,13 @@ function MetafZemini() {
 
 /**
  * Kâbe: hafif yukarıdan, eğik izdüşümle çizilmiş küp. Kadran dönse de dik durur (sabit katman). Siyah örtü (kisve),
- * altın kuşak (hizam), altın kapı, Hacerülesved köşesi ve Hicr-i İsmail duvarı.
+ * altın kuşak (hizam), altın kapı ve Hacerülesved köşesi.
  */
 function KabeCizimi() {
   // Ön yüz: x -20..16, y -6..24; derinlik (9, -9).
   return (
-    <g className="kabe" filter="url(#pusula-golge)" transform="translate(5 -8) scale(1.35)">
-      <ellipse cx="2" cy="27" rx="30" ry="6" className="kabe-golge" />
-      <path d="M -20 10 C -40 8 -44 30 -24 34 L -20 30 C -34 27 -31 14 -20 15 Z" className="kabe-hicr" />
+    <g className="kabe" filter="url(#pusula-golge)" transform="translate(-2.7 -9.3) scale(1.1)">
+      <ellipse cx="2" cy="27" rx="27" ry="5" className="kabe-golge" />
       <polygon points="-20,-6 16,-6 25,-15 -11,-15" fill="url(#kabe-cati)" />
       <polygon points="16,-6 25,-15 25,15 16,24" fill="url(#kabe-yan)" />
       <rect x="-20" y="-6" width="36" height="30" fill="url(#kabe-on)" />
@@ -427,6 +426,10 @@ export default function CanliPusula({ mod = "pusula" }: { mod?: "pusula" | "kibl
                 <stop offset="0%" stopColor="#5a5a5a" />
                 <stop offset="100%" stopColor="#8d8d8d" />
               </linearGradient>
+              <linearGradient id="kible-isik" x1="0" y1="1" x2="0" y2="0">
+                <stop offset="0%" stopColor="#f3d27a" stopOpacity="0.15" />
+                <stop offset="100%" stopColor="#d4af4a" stopOpacity="0.9" />
+              </linearGradient>
               <clipPath id="pusula-harita-kirp">
                 <circle r={R_HARITA} />
               </clipPath>
@@ -489,15 +492,20 @@ export default function CanliPusula({ mod = "pusula" }: { mod?: "pusula" | "kibl
               {kibleAcik && (
                 <g transform={`rotate(${kible})`} className="pusula-kible">
                   {kibleModu ? (
+                    // Kıble modu: ortadaki Kâbe'den kenardaki mihraba uzanan ışık yolu. Mihrap, camide kıbleyi
+                    // gösteren kemerli nişin biçimidir; kadranın kenarında kıble yönünü işaretler.
                     <>
-                      <line x1="0" y1="-46" x2="0" y2={-(R_HARITA - 16)} className="pusula-kible-ok" />
-                      <polygon points={`0,${-(R_HARITA - 2)} -10,${-(R_HARITA - 20)} 10,${-(R_HARITA - 20)}`} className="pusula-kible-uc" />
+                      <polygon points="-3,-44 3,-44 11,-104 -11,-104" fill="url(#kible-isik)" className="pusula-kible-isik" />
+                      <path d="M -12 -105 L -12 -121 Q -12 -132 0 -139 Q 12 -132 12 -121 L 12 -105 Z" className="pusula-mihrap" />
+                      <path d="M -6.5 -105 L -6.5 -120 Q -6.5 -127.5 0 -132 Q 6.5 -127.5 6.5 -120 L 6.5 -105 Z" className="pusula-mihrap-nis" />
                     </>
                   ) : (
-                    <line x1="0" y1="-14" x2="0" y2={-(R_HARITA - 2)} className="pusula-kible-cizgi" />
+                    <>
+                      <line x1="0" y1="-14" x2="0" y2={-(R_HARITA - 2)} className="pusula-kible-cizgi" />
+                      <rect x="-7" y={-(R_DIS - 4)} width="14" height="14" rx="2" className="pusula-kabe" />
+                      <rect x="-7" y={-(R_DIS - 8)} width="14" height="3" className="pusula-kabe-serit" />
+                    </>
                   )}
-                  <rect x="-7" y={-(R_DIS - 4)} width="14" height="14" rx="2" className="pusula-kabe" />
-                  <rect x="-7" y={-(R_DIS - 8)} width="14" height="3" className="pusula-kabe-serit" />
                 </g>
               )}
               {kibleAcik && !kibleModu && <circle cx={kabeNokta[0]} cy={kabeNokta[1]} r="3.5" className="pusula-kabe-nokta" />}

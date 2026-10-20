@@ -18781,12 +18781,6 @@ a.all-units-row .all-units-name {
   fill-opacity: 0.35;
 }
 
-.kabe-hicr {
-  fill: #f4f1ea;
-  stroke: #a99d82;
-  stroke-width: 0.8;
-}
-
 .kabe-kusak {
   fill: #d4af4a;
 }
@@ -18824,22 +18818,35 @@ a.all-units-row .all-units-name {
   }
 }
 
-.pusula-kible-ok {
-  stroke: #87c900;
-  stroke-width: 6;
-  stroke-linecap: round;
-}
-
-.pusula-kible-uc {
-  fill: #87c900;
-  stroke: #0b2a3c;
-  stroke-width: 1;
-}
-
 .pusula.is-kible-modu .pusula-harf {
   fill: #5d4a1f;
 }
 
 .pusula.is-kible-modu .pusula-harf.is-kuzey {
   fill: #d7261e;
+}
+
+.pusula-mihrap {
+  fill: #d4af4a;
+  stroke: #6e5413;
+  stroke-width: 1;
+  filter: drop-shadow(0 2px 3px rgba(4, 18, 28, 0.45));
+}
+
+.pusula-mihrap-nis {
+  fill: #0b2a3c;
+}
+
+.pusula-kible-isik {
+  opacity: 0.75;
+  transition: opacity 200ms ease;
+}
+
+/* Kıbleye dönünce ışık yolu tam parlar, mihrabın nişi yeşile döner. */
+.pusula.is-kible .pusula-kible-isik {
+  opacity: 1;
+}
+
+.pusula.is-kible .pusula-mihrap-nis {
+  fill: #87c900;
 }

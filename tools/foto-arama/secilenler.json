@@ -110,5 +110,61 @@
   "yazar": "Bernard Gagnon",
   "lisans": "CC BY-SA 4.0",
   "kaynak": "https://commons.wikimedia.org/wiki/File:Azadi_Tower,_Tehran.jpg"
+ },
+ "amman": {
+  "dosya": "amman",
+  "yer": "Amman Kalesi",
+  "yazar": "Diego Delso",
+  "lisans": "CC BY-SA 3.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Byzantine_Church,_Amman_Citadel,_Jordan1.jpg"
+ },
+ "beyrut": {
+  "dosya": "beyrut",
+  "yer": "Güvercin Kayaları",
+  "yazar": "Peripitus",
+  "lisans": "CC BY-SA 3.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Pigeon_rocks_Beirut_2009.jpg"
+ },
+ "kahire": {
+  "dosya": "kahire",
+  "yer": "Gize Piramitleri",
+  "yazar": "Ricardo Liberato",
+  "lisans": "CC BY-SA 2.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:All_Gizah_Pyramids.jpg"
+ },
+ "tokyo": {
+  "dosya": "tokyo",
+  "yer": "Tokyo silueti ve Fuji",
+  "yazar": "Syced",
+  "lisans": "CC0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Shibuya_and_Mount_Fuji_seen_from_Roppongi_Hills.jpg"
+ },
+ "seul": {
+  "dosya": "seul",
+  "yer": "Gyeongbokgung Sarayı",
+  "yazar": "Frank Schulenburg",
+  "lisans": "CC BY-SA 4.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Gyeonghoeru_(Royal_Banquet_Hall)_at_Gyeongbokgung_Palace,_Seoul.jpg"
+ },
+ "pekin": {
+  "dosya": "pekin",
+  "yer": "Yasak Şehir",
+  "yazar": "Ermell",
+  "lisans": "CC BY-SA 4.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Beijing_forbidden_city_Belvedere_of_Embodying_Benevolence-20071018-RM-142403.jpg"
+ },
+ "sanghay": {
+  "dosya": "sanghay",
+  "yer": "Bund ve Pudong",
+  "yazar": "King of Hearts",
+  "lisans": "CC BY-SA 4.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Pudong_Shanghai_November_2017_panorama.jpg"
+ },
+ "hong-kong": {
+  "dosya": "hong-kong",
+  "yer": "Victoria Limanı",
+  "yazar": "Diego Delso",
+  "lisans": "CC BY-SA 3.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Vista_del_Puerto_de_Victoria_desde_Sky100,_Hong_Kong,_2013-08-09,_DD_10.JPG"
  }
 }

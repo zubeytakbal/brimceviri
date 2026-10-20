@@ -222,5 +222,61 @@
   "yazar": "Marsmux",
   "lisans": "CC BY-SA 4.0",
   "kaynak": "https://commons.wikimedia.org/wiki/File:National_Faisal_Mosque_Islamabad.jpg"
+ },
+ "katmandu": {
+  "dosya": "katmandu",
+  "yer": "Boudhanath Stupası",
+  "yazar": "Nabin K. Sapkota",
+  "lisans": "CC BY-SA 4.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Boudha_Stupa_2018_04.jpg"
+ },
+ "biskek": {
+  "dosya": "biskek",
+  "yer": "Ala-Too Meydanı",
+  "yazar": "Vilya Shoni",
+  "lisans": "CC BY 4.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Kyrgyz_State_Historical_Museum,_Ala_Too_Square,_Bishkek,_Kyrgyzstan.jpg"
+ },
+ "kabil": {
+  "dosya": "kabil",
+  "yer": "Kabil",
+  "yazar": "Olgamielnikiewicz",
+  "lisans": "CC BY-SA 4.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Stolica_Afganistanu_Kabul_w_2009_roku_02.jpg"
+ },
+ "taipei": {
+  "dosya": "taipei",
+  "yer": "Taipei 101",
+  "yazar": "Andrew Van Ova",
+  "lisans": "CC BY 2.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Taipei_skyline_2014.jpg"
+ },
+ "sidney": {
+  "dosya": "sidney",
+  "yer": "Sidney Opera Binası",
+  "yazar": "DXR",
+  "lisans": "CC BY-SA 4.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Sydney_Opera_House_and_Harbour_Bridge,_southeast_view_20230224_1.jpg"
+ },
+ "melbourne": {
+  "dosya": "melbourne",
+  "yer": "Flinders Street İstasyonu",
+  "yazar": "Dietmar Rabich",
+  "lisans": "CC BY-SA 4.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Melbourne_(AU),_Flinders_Street_Railway_Station_--_2019_--_202623.jpg"
+ },
+ "perth": {
+  "dosya": "perth",
+  "yer": "Perth silueti",
+  "yazar": "JamesBromberger",
+  "lisans": "CC BY 4.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Perth_skyline_from_the_Swan_River,_August_2024.jpg"
+ },
+ "auckland": {
+  "dosya": "auckland",
+  "yer": "Sky Tower",
+  "yazar": "Pedro Szekely",
+  "lisans": "CC BY-SA 2.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Auckland,_New_Zealand_CBD_from_the_Sky_Tower.jpg"
  }
 }

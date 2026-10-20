@@ -11,18 +11,17 @@ permissions:
 jobs:
   ara:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 120
     steps:
       - uses: actions/checkout@v5
       # adaylar.json yoksa arar; varsa karşılaştırma sayfalarını ya da (secim.json varsa) seçilen WebP'leri hazırlar.
       - run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
           if [ ! -f tools/foto-arama/adaylar.json ]; then python3 tools/foto-arama/ara.py && mv adaylar.json tools/foto-arama/adaylar.json; fi
           pip install --quiet pillow
           python3 tools/foto-arama/hazirla.py
-      # Sonuç aynı dala commit edilir (GITHUB_TOKEN ile yapılan gönderim bu işi yeniden başlatmaz).
+      # Kalan değişiklikler (ör. secilenler.json) dala yazılır.
       - run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@users.noreply.github.com"
           git add tools/foto-arama
-          git commit -m "Foto arama sonucu"
-          git push
+          git diff --cached --quiet || (git commit -q -m "Foto arama sonucu" && git pull -q --rebase && git push -q)

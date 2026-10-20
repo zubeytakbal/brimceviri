@@ -1,12 +1,21 @@
 # Geçici. secim.json yoksa: adayların küçük resimlerini indirip şehir başına bir satırlık karşılaştırma sayfaları üretir.
 # secim.json varsa: seçilen fotoğrafları 1920 ve 960 piksel WebP'ye çevirir, bilgilerini secilenler.json'a yazar.
-import json, os, re, html, hashlib, time, urllib.request
+import json, os, re, html, hashlib, time, subprocess, urllib.request
 from PIL import Image, ImageDraw
 
 UA = "birimceviri-saat/1.0 (+https://www.birimceviri.app)"
 K = "tools/foto-arama"
 d = json.load(open(f"{K}/adaylar.json"))
 yerler = json.load(open(f"{K}/yerler.json"))
+
+
+def kaydet(mesaj):
+    # Her parça hazır olunca dala yazılır; iş süre sınırına takılsa da yapılan kaybolmaz.
+    subprocess.run(["git", "add", K], check=True)
+    if subprocess.run(["git", "diff", "--cached", "--quiet"]).returncode != 0:
+        subprocess.run(["git", "commit", "-q", "-m", mesaj], check=True)
+        subprocess.run(["git", "pull", "-q", "--rebase"], check=True)
+        subprocess.run(["git", "push", "-q"], check=True)
 
 
 def thumb(title, w):
@@ -16,14 +25,14 @@ def thumb(title, w):
 
 
 def indir(url, yol):
-    for i in range(5):
+    for i in range(3):
         try:
             with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": UA}), timeout=60) as r, open(yol, "wb") as f:
                 f.write(r.read())
             return True
         except Exception as e:
             print("tekrar", url[-60:], e, flush=True)
-            time.sleep(3 * (i + 1))
+            time.sleep(2 * (i + 1))
     return False
 
 
@@ -34,12 +43,15 @@ if not os.path.exists(f"{K}/secim.json"):
     sehirler = [s for s in d if d[s]]
     for parca in range(0, len(sehirler), 6):
         grup = sehirler[parca:parca + 6]
-        c = Image.new("RGB", (100 + 6 * (W + 6), len(grup) * (H + 22)), "white")
+        hedef = f"{K}/sayfalar/sayfa-{parca // 6 + 1:02d}.jpg"
+        if os.path.exists(hedef):
+            continue
+        c = Image.new("RGB", (100 + 4 * (W + 6), len(grup) * (H + 22)), "white")
         dr = ImageDraw.Draw(c)
         for r, s in enumerate(grup):
             y = r * (H + 22)
             dr.text((4, y + H // 2), s, fill="black")
-            for i, a in enumerate(d[s]):
+            for i, a in enumerate(d[s][:4]):
                 p = f"tmp/{s}-{i + 1}.jpg"
                 if not indir(thumb(a["title"], 330), p):
                     continue
@@ -49,8 +61,9 @@ if not os.path.exists(f"{K}/secim.json"):
                 c.paste(im, (x, y + 16))
                 dr.text((x, y + 2), f"{i + 1}  {a['w']}x{a['h']}", fill="black")
                 time.sleep(0.3)
-        c.save(f"{K}/sayfalar/sayfa-{parca // 6 + 1:02d}.jpg", quality=80)
+        c.save(hedef, quality=80)
         print("sayfa", parca // 6 + 1, grup, flush=True)
+        kaydet(f"Foto arama: sayfa {parca // 6 + 1}")
 else:
     secim = json.load(open(f"{K}/secim.json"))
     os.makedirs(f"{K}/webp", exist_ok=True)
@@ -75,4 +88,7 @@ else:
         kayit[slug] = {"dosya": slug, "yer": yerler[slug][0], "yazar": yazar[:80], "lisans": a["lic"], "kaynak": a["page"]}
         print(slug, os.path.getsize(f"{K}/webp/{slug}-1920.webp") // 1024, "KB", flush=True)
         time.sleep(0.5)
+        if len(kayit) % 8 == 0:
+            json.dump(kayit, open(f"{K}/secilenler.json", "w"), ensure_ascii=False, indent=1)
+            kaydet("Foto arama: webp")
     json.dump(kayit, open(f"{K}/secilenler.json", "w"), ensure_ascii=False, indent=1)

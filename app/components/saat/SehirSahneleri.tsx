@@ -4,8 +4,8 @@ import { differenceMinutes, nextTransition, offsetMinutes } from "../../converte
 import { referenceCitySlugs, worldCities, type WorldCity } from "../../converter/time/worldCities";
 import { trAblative } from "../../converter/turkishSuffix";
 
-// Saat bölümünde dev saatin altındaki "sahneler": her biri ekran genişliğinde kendi renginde bir bant, dev
-// yazılarla tek bir bilgiyi anlatır. Derinlik hissi (gölgeli kabartma yazı, eğik kartlar) CSS'tedir (.sahne-*).
+// Saat bölümünde dev saatin altındaki "sahneler": her biri ekran genişliğinde bir bölüm, büyük
+// yazılarla tek bir bilgiyi anlatır; sade düzen, süssüz (.sahne-* CSS).
 // Sayfa her gün yeniden derlenir; tarihe bağlı sayılar (kalan gün gibi) derleme gününe göredir.
 
 const ISTANBUL = "Europe/Istanbul";
@@ -57,9 +57,9 @@ export default function SehirSahneleri({ city }: { city: WorldCity }) {
   return (
     <div className="sahneler">
       {/* 1. Saat dilimi */}
-      <section className="sahne sahne-kagit" id="ozet">
+      <section className="sahne" id="ozet">
         <p className="sahne-etiket">01 · Saat dilimi</p>
-        <h2 className="sahne-dev sahne-kabartma">{facts.utcLabel}</h2>
+        <h2 className="sahne-dev">{facts.utcLabel}</h2>
         <p className="sahne-buyuk">{facts.zoneName}</p>
         <p className="sahne-buyuk">
           {inTurkey ? (
@@ -83,7 +83,7 @@ export default function SehirSahneleri({ city }: { city: WorldCity }) {
 
       {/* 2. Saat değişikliği */}
       {gecis && facts.transition && (
-        <section className="sahne sahne-turkuaz" id="yaz-saati">
+        <section className="sahne" id="yaz-saati">
           <p className="sahne-etiket">02 · Saat değişikliği</p>
           <div className="sahne-takvim-satir">
             <div className="sahne-takvim" aria-hidden="true">
@@ -109,7 +109,7 @@ export default function SehirSahneleri({ city }: { city: WorldCity }) {
 
       {/* 3. Ne zaman aramalı */}
       {!inTurkey && (
-        <section className="sahne sahne-gece" id="saat-farki">
+        <section className="sahne" id="saat-farki">
           <p className="sahne-etiket">03 · Ne zaman aramalı?</p>
           <h2 className="sahne-dev">{ortakMetin ?? "Mesai çakışmıyor"}</h2>
           <p className="sahne-buyuk">
@@ -147,16 +147,16 @@ export default function SehirSahneleri({ city }: { city: WorldCity }) {
       )}
 
       {/* 4. Güneş */}
-      <section className="sahne sahne-gunes" id="gunes">
+      <section className="sahne" id="gunes">
         <p className="sahne-etiket">04 · Güneş</p>
         <div className="sahne-gunes-satir">
           <div>
             <small>Doğuş</small>
-            <h2 className="sahne-dev sahne-kabartma">{sun.sunrise}</h2>
+            <h2 className="sahne-dev">{sun.sunrise}</h2>
           </div>
           <div>
             <small>Batış</small>
-            <p className="sahne-dev sahne-kabartma">{sun.sunset}</p>
+            <p className="sahne-dev">{sun.sunset}</p>
           </div>
         </div>
         <p className="sahne-buyuk">
@@ -202,9 +202,9 @@ export default function SehirSahneleri({ city }: { city: WorldCity }) {
       </section>
 
       {/* 5. Saat farkı */}
-      <section className="sahne sahne-kagit" id="dunya">
+      <section className="sahne" id="dunya">
         <p className="sahne-etiket">05 · Saat farkı</p>
-        <h2 className="sahne-dev sahne-kabartma">{trAblative(ad)}</h2>
+        <h2 className="sahne-dev">{trAblative(ad)}</h2>
         <p className="sahne-buyuk">dünya şehirlerine saat farkı</p>
         <ul className="sahne-cubuklar">
           {referanslar.map(({ c, dakika }) => (
@@ -231,11 +231,11 @@ export default function SehirSahneleri({ city }: { city: WorldCity }) {
 
       {/* 6. Yakındaki şehirler */}
       {yakinlar.length > 0 && (
-        <section className="sahne sahne-gece">
+        <section className="sahne">
           <p className="sahne-etiket">06 · Yakındaki şehirler</p>
           <div className="sahne-bulut">
-            {yakinlar.map((c, i) => (
-              <Link key={c.en} href={`/dunya-saatleri/${c.tr}`} prefetch={false} className={`is-${i < 3 ? "b" : i < 7 ? "o" : "k"}`}>
+            {yakinlar.map((c) => (
+              <Link key={c.en} href={`/dunya-saatleri/${c.tr}`} prefetch={false}>
                 {c.nameTr}
               </Link>
             ))}

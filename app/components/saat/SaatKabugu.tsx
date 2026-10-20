@@ -4,7 +4,7 @@ import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
 import { worldCities } from "../../converter/time/worldCities";
 import { buildSiteUrl } from "../../siteConfig";
 import { SAAT_MENUSU } from "./saatBolumu";
-import { saatMetin, saatRakam } from "./saatFontlari";
+import { saatGazete, saatMetin, saatRakam } from "./saatFontlari";
 import SaatUstMenu from "./SaatUstMenu";
 
 function serializeJsonLd(data: object) {
@@ -36,7 +36,7 @@ export default function SaatKabugu({
     itemListElement: crumbs.map((c, i) => ({ "@type": "ListItem", position: i + 1, name: c.label, item: buildSiteUrl(c.href) })),
   };
   return (
-    <div className={`saat-bolum ${saatRakam.variable} ${saatMetin.variable}`}>
+    <div className={`saat-bolum ${saatRakam.variable} ${saatMetin.variable} ${saatGazete.variable}`}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(buildFaqSchema(faqItems)) }} />
       <SaatUstMenu sehirler={SEHIRLER} />

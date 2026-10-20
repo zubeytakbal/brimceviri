@@ -2864,6 +2864,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       "/umre-mesafe-hesaplama",
       "/kaza-orucu-hesaplama",
       "/kible-yonu-hesaplama",
+      "/canli-pusula",
       "/kaza-namazi-hesaplama",
       "/hatim-hesaplama",
       "/zekat-hesaplama",

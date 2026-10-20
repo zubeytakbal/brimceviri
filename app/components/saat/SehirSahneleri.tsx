@@ -3,6 +3,7 @@ import { cityFacts, describeDifference, hourMapping, nearbyCities } from "../../
 import { differenceMinutes, nextTransition, offsetMinutes } from "../../converter/time/timezones";
 import { referenceCitySlugs, worldCities, type WorldCity } from "../../converter/time/worldCities";
 import { trAblative } from "../../converter/turkishSuffix";
+import { sehirGorseli } from "./sehirGorselleri";
 
 // Saat bölümünde dev saatin altındaki "sahneler": her biri ekran genişliğinde bir bölüm, büyük
 // yazılarla tek bir bilgiyi anlatır; sade düzen, süssüz (.sahne-* CSS).
@@ -62,6 +63,8 @@ export default function SehirSahneleri({ city }: { city: WorldCity }) {
     .sort((a, b) => a.dakika - b.dakika);
   const enUzak = Math.max(60, ...referanslar.map((r) => Math.abs(r.dakika)));
   const yakinlar = nearbyCities(city, 12);
+  const gorsel = sehirGorseli(city.tr);
+  const manset = inTurkey ? `${ad}, Türkiye saatinde` : fark === 0 ? `${ad}, İstanbul ile aynı saatte` : `${ad}, ${trAblative("İstanbul")} ${describeDifference(fark, "tr")}`;
 
   return (
     <div className="sahneler">
@@ -78,6 +81,27 @@ export default function SehirSahneleri({ city }: { city: WorldCity }) {
           <span>birimceviri.app</span>
         </div>
       </header>
+      {/* Şehrin manşeti: gazete fotoğrafı gibi siyah-beyaz, nokta tramlı şehir fotoğrafı */}
+      <div className={`gazete-on${gorsel ? "" : " is-fotosuz"}`}>
+        <div className="gazete-manset-kutu">
+          <p className="gazete-manset">{manset}</p>
+          <p className="gazete-spot">
+            {facts.utcLabel} · Gün doğumu {sun.sunrise}, batımı {sun.sunset}
+            {gecis && kalanGun !== null && <> · Saat değişikliğine {kalanGun} gün</>}
+          </p>
+        </div>
+        {gorsel && (
+          <figure className="gazete-foto">
+            <span className="gazete-foto-cerceve">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={`/saat/${gorsel.dosya}-960.webp`} alt={`${ad}: ${gorsel.yer}`} loading="lazy" decoding="async" width={960} height={540} />
+            </span>
+            <figcaption>
+              {gorsel.yer}, {ad}. Fotoğraf: {gorsel.yazar}, {gorsel.lisans}
+            </figcaption>
+          </figure>
+        )}
+      </div>
       {/* 1. Saat dilimi */}
       <section className="sahne" id="ozet">
         <p className="sahne-etiket">01 · Saat dilimi</p>

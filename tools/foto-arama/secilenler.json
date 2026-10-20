@@ -278,5 +278,61 @@
   "yazar": "Pedro Szekely",
   "lisans": "CC BY-SA 2.0",
   "kaynak": "https://commons.wikimedia.org/wiki/File:Auckland,_New_Zealand_CBD_from_the_Sky_Tower.jpg"
+ },
+ "nairobi": {
+  "dosya": "nairobi",
+  "yer": "Nairobi silueti",
+  "yazar": "This Photo was taken by Timothy A. Gonsalves. Feel free to use my photos, but pl",
+  "lisans": "CC BY-SA 4.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Nairobi_Skyline_Savannah_Kenya_May19_R1600687.jpg"
+ },
+ "johannesburg": {
+  "dosya": "johannesburg",
+  "yer": "Johannesburg silueti",
+  "yazar": "Frankbel",
+  "lisans": "CC BY-SA 4.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Johannesburg-city-skyline-night.jpg"
+ },
+ "kazablanka": {
+  "dosya": "kazablanka",
+  "yer": "II. Hasan Camii",
+  "yazar": "Milamber's portfolio",
+  "lisans": "CC BY 2.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Sunshine_on_mosque_Hassan_II_in_Casablanca,_Morocco_-_Flickr_-_Milamber%27s_portfolio.jpg"
+ },
+ "tunus": {
+  "dosya": "tunus",
+  "yer": "Zeytune Camii ve medine",
+  "yazar": "Kritzolina",
+  "lisans": "CC BY-SA 4.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:View_over_the_Medina_of_Tunis_02.jpg"
+ },
+ "cezayir": {
+  "dosya": "cezayir",
+  "yer": "Cezayir Kasbahı",
+  "yazar": "Unknown authorUnknown author",
+  "lisans": "Public domain",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Algiers_bay_1899.jpg"
+ },
+ "washington": {
+  "dosya": "washington",
+  "yer": "Kongre Binası",
+  "yazar": "Martin Falbisoner",
+  "lisans": "CC BY-SA 3.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:US_Capitol_west_side.JPG"
+ },
+ "los-angeles": {
+  "dosya": "los-angeles",
+  "yer": "Los Angeles silueti",
+  "yazar": "Nserrano",
+  "lisans": "CC BY-SA 3.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:LA_Skyline_Mountains2.jpg"
+ },
+ "sikago": {
+  "dosya": "sikago",
+  "yer": "Şikago silueti",
+  "yazar": "Diego Delso",
+  "lisans": "CC BY-SA 3.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Skyline_de_Chicago_desde_el_centro,_Illinois,_Estados_Unidos,_2012-10-20,_DD_06.jpg"
  }
 }

@@ -390,5 +390,54 @@
   "yazar": "لا روسا",
   "lisans": "CC BY-SA 4.0",
   "kaynak": "https://commons.wikimedia.org/wiki/File:Palacio_de_Bellas_Artes_00_(2).JPG"
+ },
+ "sao-paulo": {
+  "dosya": "sao-paulo",
+  "yer": "São Paulo silueti",
+  "yazar": "Marcosleal",
+  "lisans": "CC BY-SA 3.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Ponte_estaiada_Octavio_Frias_-_Sao_Paulo.jpg"
+ },
+ "rio-de-janeiro": {
+  "dosya": "rio-de-janeiro",
+  "yer": "Kurtarıcı İsa ve Şekerkamışı Dağı",
+  "yazar": "Wilfredor",
+  "lisans": "CC0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Botafogo_Bay_and_Corcovado_viewed_from_Sugarloaf_Mountain,_Rio_de_Janeiro,_Brazil.jpg"
+ },
+ "buenos-aires": {
+  "dosya": "buenos-aires",
+  "yer": "Obelisk",
+  "yazar": "Dpalma01",
+  "lisans": "CC BY-SA 4.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Obelisco_de_Buenos_Aires_at_sunset.jpg"
+ },
+ "lima": {
+  "dosya": "lima",
+  "yer": "Plaza Mayor",
+  "yazar": "Jonathan M. Corredor O.",
+  "lisans": "CC BY-SA 4.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Plaza_Mayor_de_Lima_(1).jpg"
+ },
+ "havana": {
+  "dosya": "havana",
+  "yer": "Capitolio ve eski şehir",
+  "yazar": "Nigel Pacquette",
+  "lisans": "CC BY-SA 3.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:El_Capitolio_Havana_Cuba.jpg"
+ },
+ "honolulu": {
+  "dosya": "honolulu",
+  "yer": "Waikiki ve Diamond Head",
+  "yazar": "Frank Schulenburg",
+  "lisans": "CC BY-SA 4.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Waikiki_Beach_(2024)-L1004709.jpg"
+ },
+ "anchorage": {
+  "dosya": "anchorage",
+  "yer": "Anchorage ve dağlar",
+  "yazar": "Quintin Soloviev",
+  "lisans": "CC BY 4.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Anchorage,_Alaska.jpg"
  }
 }

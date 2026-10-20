@@ -54,5 +54,61 @@
   "yazar": "Ymblanter",
   "lisans": "CC BY-SA 4.0",
   "kaynak": "https://commons.wikimedia.org/wiki/File:Quito_Panorama_of_El_Panecillo_from_Calle_Cuenca.jpg"
+ },
+ "la-paz": {
+  "dosya": "la-paz",
+  "yer": "La Paz",
+  "yazar": "Eneas De Troya",
+  "lisans": "CC BY 2.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Illimani_de_noche.jpg"
+ },
+ "asuncion": {
+  "dosya": "asuncion",
+  "yer": "Asunción",
+  "yazar": "Cmasi",
+  "lisans": "CC BY-SA 4.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Downtown_Asuncion_202_filtered.jpg"
+ },
+ "panama": {
+  "dosya": "panama",
+  "yer": "Panama silueti",
+  "yazar": "Dr. Thomas Liptak",
+  "lisans": "CC BY-SA 4.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Panama_City_Skyline_1.jpg"
+ },
+ "san-jose": {
+  "dosya": "san-jose",
+  "yer": "San José",
+  "yazar": "JERRYE AND ROY KLOTZ MD",
+  "lisans": "CC BY-SA 3.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:PLAZA_MORAZAN,_SAN_JOSE,_COSTA_RICA.jpg"
+ },
+ "santo-domingo": {
+  "dosya": "santo-domingo",
+  "yer": "Santo Domingo",
+  "yazar": "Desox7x",
+  "lisans": "CC0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Calle_las_Damas,_Santo_Domingo,_Zona_Colonial.jpg"
+ },
+ "dakar": {
+  "dosya": "dakar",
+  "yer": "Afrika Rönesans Anıtı",
+  "yazar": "Evan M. Wheeler",
+  "lisans": "CC BY-SA 2.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Mamelles-Dakar-2009.jpg"
+ },
+ "akra": {
+  "dosya": "akra",
+  "yer": "Akra",
+  "yazar": "Synth85",
+  "lisans": "CC BY-SA 4.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Accra_Skyline_-_Ghana.jpg"
+ },
+ "abidjan": {
+  "dosya": "abidjan",
+  "yer": "Abidjan",
+  "yazar": "abdallahh",
+  "lisans": "CC BY 2.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Plateau_Abidjan_de_nuit.jpg"
  }
 }

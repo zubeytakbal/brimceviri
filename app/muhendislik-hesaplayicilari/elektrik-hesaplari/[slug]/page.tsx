@@ -10,7 +10,6 @@ import {
   getElectricalCalculatorByLocalizedSlug,
   getElectricalCalculatorPath,
   getElectricalStaticParams,
-  isLiveElectricalCalculator,
 } from "../../../converter/engineeringHubs";
 import { SITE_NAME, buildSiteUrl } from "../../../siteConfig";
 
@@ -46,7 +45,7 @@ export async function generateMetadata({
     title: `${item.titles.tr}`,
     description: item.descriptions.tr,
     robots: {
-      index: isLiveElectricalCalculator(item.sourceSlug),
+      index: true,
       follow: true,
     },
     alternates: {

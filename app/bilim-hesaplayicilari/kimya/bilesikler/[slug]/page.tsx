@@ -47,12 +47,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const pageTitle = seoTitle(title, `${compound.nameTr} (${compound.formula}) Molar Kütlesi`, `${compound.formula} Molar Kütlesi`);
   const description = `${compound.nameTr} (${compound.formula}) molar kütlesi ${formatMolarMass(compound.molarMass)} g/mol. Atomik kompozisyonu gör, kendi kütle/mol miktarınla hesaplama yap.`;
 
-  const editorial = findCompoundEditorial(compound.id);
-
   return {
     title: pageTitle,
     description,
-    robots: { index: Boolean(editorial), follow: true },
+    robots: { index: true, follow: true },
     alternates: {
       canonical: `/bilim-hesaplayicilari/kimya/bilesikler/${slug}`,
     },

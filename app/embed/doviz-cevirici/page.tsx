@@ -11,8 +11,11 @@ export const revalidate = 43200;
 export const metadata: Metadata = {
   title: "Döviz Çevirici",
   robots: {
-    index: false,
-    follow: false,
+    index: true,
+    follow: true,
+  },
+  alternates: {
+    canonical: "/doviz-cevirici",
   },
 };
 

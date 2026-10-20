@@ -414,7 +414,7 @@ const plannedPreviewCopy = {
     useCasesTitle: "Tipik kullanımlar",
     nextTitle: "Sonraki adım",
     nextBody:
-      "Bu sayfa su anda indexe açılmadı. Hesap motoru, birim seçimleri ve test senaryoları eklendiğinde indekslenebilir canlı araca çevrilecek.",
+      "Hesap motoru, birim seçimleri ve test senaryoları eklendiğinde bu iskelet canlı araca çevrilecek.",
     relatedTitle: "İlgili sayfalar",
     electricalHubLink: "Elektrik Hesapları merkezine don",
     liveToolLink: "Canlı Ohm Yasası aracını ac",
@@ -432,7 +432,7 @@ const plannedPreviewCopy = {
     useCasesTitle: "Typical use cases",
     nextTitle: "Next step",
     nextBody:
-      "This page is intentionally kept out of the index for now. Once the calculation engine, unit options and validation cases are added, it will be promoted into a live indexable calculator.",
+      "Once the calculation engine, unit options and validation cases are added, this skeleton will be promoted into a live calculator.",
     relatedTitle: "Related pages",
     electricalHubLink: "Back to the Electrical Calculators hub",
     liveToolLink: "Open the live Ohm's Law tool",
@@ -450,7 +450,7 @@ const plannedPreviewCopy = {
     useCasesTitle: "Typische Anwendungen",
     nextTitle: "Nächster Schritt",
     nextBody:
-      "Diese Seite bleibt vorerst bewusst aus dem Index. Sobald Rechenlogik, Einheitenauswahl und Validierungsfalle vorliegen, wird sie in einen live indexierbaren Rechner umgewandelt.",
+      "Sobald Rechenlogik, Einheitenauswahl und Validierungsfalle vorliegen, wird dieses Grundgerüst in einen live Rechner umgewandelt.",
     relatedTitle: "Verwandte Seiten",
     electricalHubLink: "Zurück zum Elektrorechner-Zentrum",
     liveToolLink: "Live-Tool für das Ohmsche Gesetz öffnen",
@@ -468,7 +468,7 @@ const plannedPreviewCopy = {
     useCasesTitle: "حالات الاستخدام المعتادة",
     nextTitle: "الخطوة التالية",
     nextBody:
-      "هذه الصفحة غير مفتوحة للفهرسة حاليا. بعد إضافة منطق الحساب وخيارات الوحدات وحالات التحقق ستتحول إلى حاسبة حية قابلة للفهرسة.",
+      "بعد إضافة منطق الحساب وخيارات الوحدات وحالات التحقق سيتحول هذا الهيكل إلى حاسبة حية.",
     relatedTitle: "صفحات مرتبطة",
     electricalHubLink: "العودة إلى مركز الحاسبات الكهربائية",
     liveToolLink: "افتح أداة قانون أوم المتاحة",

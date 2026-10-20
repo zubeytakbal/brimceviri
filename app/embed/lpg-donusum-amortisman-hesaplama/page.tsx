@@ -7,8 +7,11 @@ import { buildSiteUrl } from "../../siteConfig";
 export const metadata: Metadata = {
   title: "LPG Dönüşüm Amortisman Hesaplama",
   robots: {
-    index: false,
-    follow: false,
+    index: true,
+    follow: true,
+  },
+  alternates: {
+    canonical: "/lpg-donusum-amortisman-hesaplama",
   },
 };
 

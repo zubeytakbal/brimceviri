@@ -37,8 +37,10 @@ export function checkThinPages(root: string) {
   let pending = 0;
   for (const file of files) {
     const html = readFileSync(file, "utf8");
-    if (/<meta name="robots" content="[^"]*noindex/.test(html) || html.includes('http-equiv="refresh"')) continue;
     const url = ("/" + relative(root, file).replace(/\\/g, "/").replace(/\.html$/, "")).replace(/\/index$/, "") || "/";
+    // Widget kopyaları ve çevrimdışı kabuk: asıl sayfaya canonical verir, metin kısa kalır.
+    if (url === "/cevrimdisi" || url.startsWith("/embed/")) continue;
+    if (/<meta name="robots" content="[^"]*noindex/.test(html) || html.includes('http-equiv="refresh"')) continue;
     const chars = pageText(html).length;
     const thin = chars < MIN_KARAKTER;
     if (PENDING.has(url)) {

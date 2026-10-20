@@ -4,8 +4,11 @@ import Link from "@/app/components/SiteLink";
 export const metadata: Metadata = {
   title: "İnternet Bağlantısı Yok",
   robots: {
-    index: false,
-    follow: false,
+    index: true,
+    follow: true,
+  },
+  alternates: {
+    canonical: "/",
   },
 };
 

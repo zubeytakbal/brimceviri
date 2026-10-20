@@ -28,9 +28,12 @@ export async function generateMetadata({
       ? `${conversionPage.fromName} – ${conversionPage.toName} Çevirici`
       : "Dönüşüm bulunamadı",
     robots: {
-      index: false,
-      follow: false,
+      index: true,
+      follow: true,
     },
+    alternates: conversionPage
+      ? { canonical: `/${slug}` }
+      : undefined,
   };
 }
 

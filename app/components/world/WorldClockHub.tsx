@@ -5,6 +5,7 @@ type Lang = "tr" | "en";
 import type { FaqItem } from "../../converter/faqSchema";
 import { formatUtcOffset, offsetMinutes } from "../../converter/time/timezones";
 import { regionNames, trSaatSehirleri, worldCities, worldRegions } from "../../converter/time/worldCities";
+import { ulkeSaatleri } from "../../converter/time/ulkeSaatDilimleri";
 import TimeToolPage from "../time/TimeToolPage";
 import WorldClockBoard from "./WorldClockBoard";
 
@@ -195,6 +196,21 @@ export default function WorldClockHub({ lang }: { lang: Lang }) {
         </>
       )}
 
+      {tr && (
+        <>
+          <h2 id="ulkeler">Birden çok saat dilimi olan ülkeler</h2>
+          <p>
+            {ulkeSaatleri.map((u, i) => (
+              <span key={u.slug}>
+                {i > 0 && " · "}
+                <Link href={`/dunya-saatleri/${u.slug}`} prefetch={false}>
+                  {u.ad} ({u.dilimler.length} saat dilimi)
+                </Link>
+              </span>
+            ))}
+          </p>
+        </>
+      )}
       <h2 id="sehirler">{tr ? "Şehirlere göre UTC farkları" : "UTC offsets by city"}</h2>
       {worldRegions.map((region) => (
         <div key={region}>

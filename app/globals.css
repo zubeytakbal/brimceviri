@@ -20445,3 +20445,174 @@ a.all-units-row .all-units-name {
     padding: 22px 16px 4px;
   }
 }
+
+/* ---------------- Ülke saat sayfası: her saat diliminin kalın canlı saati ---------------- */
+.ulke-hero .saat-hero-ic {
+  padding-top: 48px;
+}
+
+.ulke-dilimler {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 8px;
+  margin: 26px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ulke-dilim {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 16px 16px;
+  border-top: 5px solid #ffffff;
+  background: rgba(0, 0, 0, 0.52);
+  backdrop-filter: blur(2px);
+}
+
+.ulke-dilim-ad {
+  font: 800 0.8rem var(--saat-metin), sans-serif;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.ulke-dilim-saat {
+  font-family: var(--saat-rakam), Impact, sans-serif;
+  font-size: clamp(3.4rem, 6.4vw, 6rem);
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+  line-height: 0.95;
+}
+
+.ulke-dilim-alt {
+  color: rgba(255, 255, 255, 0.82);
+  font: 500 0.88rem var(--saat-metin), sans-serif;
+}
+
+.ulke-dilim-alt em {
+  color: #ffffff;
+  white-space: nowrap;
+  font-style: normal;
+  font-weight: 800;
+}
+
+/* Gazete: dilim tablosu, aranacak saat kartları, bölgeler ve notlar */
+.sahneler .ulke-kartlar {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+}
+
+.sahneler .ulke-kartlar b {
+  white-space: nowrap;
+}
+
+.sahneler .ulke-kartlar b + small {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--saat-eski), Georgia, serif;
+  font-size: 0.86rem;
+  font-style: italic;
+  font-variant: normal;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.sahneler .ulke-tablo td b {
+  font-family: var(--saat-gazete), Georgia, serif;
+}
+
+.sahneler .ulke-tablo a,
+.ulke-bolgeler a {
+  color: inherit;
+}
+
+.ulke-bolgeler {
+  columns: 3 280px;
+  column-gap: 32px;
+  column-rule: 1px solid var(--gazete-cizgi, #cfcdc7);
+  margin-top: 18px;
+}
+
+.ulke-bolgeler > div {
+  break-inside: avoid;
+  margin-bottom: 22px;
+}
+
+.ulke-bolgeler h3 {
+  margin: 0 0 6px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid var(--gazete-murekkep, #141414);
+  font-family: var(--saat-gazete), Georgia, serif;
+  font-size: 1.3rem;
+  font-weight: 900;
+}
+
+.ulke-bolgeler h3 small {
+  font-family: var(--saat-eski), Georgia, serif;
+  font-size: 0.85rem;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.ulke-bolgeler p {
+  margin: 0;
+  font-family: var(--saat-eski), Georgia, serif;
+  line-height: 1.55;
+}
+
+.ulke-bolgeler .ulke-not {
+  margin-top: 6px;
+  font-style: italic;
+}
+
+.ulke-notlar {
+  columns: 2 320px;
+  column-gap: 36px;
+  column-rule: 1px solid var(--gazete-cizgi, #cfcdc7);
+  font-family: var(--saat-eski), Georgia, serif;
+  font-size: 1.08rem;
+  line-height: 1.6;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.ulke-notlar p {
+  margin: 0 0 14px;
+}
+
+.ulke-notlar p:first-child::first-letter {
+  float: left;
+  margin: 0.06em 0.08em 0 0;
+  font-family: var(--saat-gazete), Georgia, serif;
+  font-size: 3.4em;
+  font-weight: 900;
+  line-height: 0.8;
+}
+
+@media (max-width: 720px) {
+  .ulke-dilimler {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+  .ulke-dilim {
+    padding: 10px 10px 12px;
+  }
+
+  .ulke-dilim-ad {
+    font-size: 0.66rem;
+  }
+
+  .ulke-dilim-saat {
+    font-size: 2.7rem;
+  }
+
+  .ulke-dilim-alt {
+    font-size: 0.74rem;
+  }
+
+  .sahneler .ulke-tablo {
+    display: block;
+    overflow-x: auto;
+  }
+}

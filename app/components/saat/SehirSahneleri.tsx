@@ -1,8 +1,10 @@
 import Link from "@/app/components/SiteLink";
 import { cityFacts, describeDifference, hourMapping, nearbyCities } from "../../converter/time/cityFacts";
 import { differenceMinutes, nextTransition, offsetMinutes } from "../../converter/time/timezones";
-import { referenceCitySlugs, worldCities, type WorldCity } from "../../converter/time/worldCities";
+import { referenceCitySlugs, trSaatSehirleri, worldCities, type WorldCity } from "../../converter/time/worldCities";
 import { trAblative } from "../../converter/turkishSuffix";
+import { sehrinUlkeSayfasi } from "../../converter/time/ulkeSaatDilimleri";
+import GazeteBaslik from "./GazeteBaslik";
 import { sehirGorseli } from "./sehirGorselleri";
 
 // Saat bölümünde dev saatin altındaki "sahneler": her biri ekran genişliğinde bir bölüm, büyük
@@ -21,15 +23,6 @@ function saatFarki(dakika: number) {
 
 function saatYaz(an: Date, timeZone: string) {
   return new Intl.DateTimeFormat("tr-TR", { timeZone, hour: "2-digit", minute: "2-digit", hourCycle: "h23" }).format(an);
-}
-
-/** ISO hafta numarası, şehrin yerel tarihine göre (gazete "sayısı" olarak). */
-function haftaNo(an: Date, timeZone: string) {
-  const [y, m, d] = new Intl.DateTimeFormat("en-CA", { timeZone, year: "numeric", month: "2-digit", day: "2-digit" }).format(an).split("-").map(Number);
-  const t = new Date(Date.UTC(y, m - 1, d));
-  const g = t.getUTCDay() || 7;
-  t.setUTCDate(t.getUTCDate() + 4 - g);
-  return Math.ceil(((t.getTime() - Date.UTC(t.getUTCFullYear(), 0, 1)) / 86400000 + 1) / 7);
 }
 
 function gunduzMu(an: Date, timeZone: string) {
@@ -62,25 +55,14 @@ export default function SehirSahneleri({ city }: { city: WorldCity }) {
     .map((c) => ({ c, dakika: differenceMinutes(city.timeZone, c.timeZone, now) }))
     .sort((a, b) => a.dakika - b.dakika);
   const enUzak = Math.max(60, ...referanslar.map((r) => Math.abs(r.dakika)));
-  const yakinlar = nearbyCities(city, 12);
+  const yakinlar = nearbyCities(city, 12, trSaatSehirleri);
   const gorsel = sehirGorseli(city.tr);
+  const ulkeSayfasi = sehrinUlkeSayfasi(city.countryTr);
   const manset = inTurkey ? `${ad}, Türkiye saatinde` : fark === 0 ? `${ad}, İstanbul ile aynı saatte` : `${ad}, ${trAblative("İstanbul")} ${describeDifference(fark, "tr")}`;
 
   return (
     <div className="sahneler">
-      {/* Gazete başlığı ve tarih satırı */}
-      <header className="gazete-baslik" aria-hidden="true">
-        <div className="gazete-ust">
-          <span>Her gün güncellenir</span>
-          <span>Sayı {haftaNo(now, city.timeZone)}</span>
-        </div>
-        <p className="gazete-ad">Dünya Saatleri</p>
-        <div className="gazete-tarih">
-          <span>{new Intl.DateTimeFormat("tr-TR", { timeZone: city.timeZone, weekday: "long", day: "numeric", month: "long", year: "numeric" }).format(now)}</span>
-          <span>{ad} baskısı</span>
-          <span>birimceviri.app</span>
-        </div>
-      </header>
+      <GazeteBaslik an={now} timeZone={city.timeZone} baski={ad} />
       {/* Şehrin manşeti: gazete fotoğrafı gibi siyah-beyaz, nokta tramlı şehir fotoğrafı */}
       <div className={`gazete-on${gorsel ? "" : " is-fotosuz"}`}>
         <div className="gazete-manset-kutu">
@@ -123,7 +105,18 @@ export default function SehirSahneleri({ city }: { city: WorldCity }) {
               ? `Yaz saati uygulanır; şu an ${facts.dstNow ? "yaz saati" : "kış (standart) saati"} geçerli.`
               : `Yaz saati uygulanmaz; saat yıl boyu ${facts.utcLabel}.`}
           </li>
-          <li>{city.countryWide ? `${city.countryTr} genelinde tek saat dilimi.` : `${city.countryTr} içinde birden fazla saat dilimi var.`}</li>
+          <li>
+            {city.countryWide ? (
+              `${city.countryTr} genelinde tek saat dilimi.`
+            ) : ulkeSayfasi ? (
+              <>
+                {ulkeSayfasi.ad} içinde {ulkeSayfasi.dilimler.length} saat dilimi var:{" "}
+                <Link href={`/dunya-saatleri/${ulkeSayfasi.slug}`}>{ulkeSayfasi.ad} saat dilimleri →</Link>
+              </>
+            ) : (
+              `${city.countryTr} içinde birden fazla saat dilimi var.`
+            )}
+          </li>
         </ul>
       </section>
 

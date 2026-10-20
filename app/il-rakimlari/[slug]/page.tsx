@@ -12,6 +12,7 @@ import {
 import { bolgeSirasi, ilceler, ilceOzeti, mutfakNotu, yakinIllerRakim } from "../../converter/geo/ilceRakimHub";
 import { popularProvinceComparisons } from "../../converter/popularProvinceComparisons";
 import { buildSiteUrl } from "../../siteConfig";
+import { plainTitle, seoTitle } from "../../seoTitle";
 import { turkeyProvinces } from "../../converter/geo/turkeyProvinces";
 import { sunTimes } from "../../converter/time/solar";
 import { durationLabel, trClock } from "../../converter/time/sunYear";
@@ -44,19 +45,27 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const ozet = ilceOzeti(slug);
-  const title = `${province.nameTr} Rakımı: ${province.elevationM.toLocaleString("tr-TR")} Metre${ozet ? ", İlçe Rakımları" : ""}`;
+  // Başlık ve açıklama rakamı vermez: "Ankara Rakımı: 850 Metre" başlığı 5. sırada çıkıp tıklanmıyordu
+  // (3 ayda il rakımı aramalarında 21 bin gösterim, 47 tıklama). Cevabı Google zaten gösteriyor;
+  // başlık sayfada ek olarak ne olduğunu anlatır.
+  const name = province.nameTr;
+  // Birkaç ilçenin verisi olan illerde "2 İlçenin Rakımı" yanıltıcı; ilçe sayısı başlığa yazılmaz.
+  const ilceBaslik = ozet && ozet.sayi >= 5 ? ozet : null;
+  const fullTitle = ilceBaslik ? `${name} Rakımı: ${ilceBaslik.sayi} İlçenin Rakımı ve Yakın İller` : `${name} Rakımı: Kaynama Noktası, Basınç ve Yakın İller`;
+  const title = seoTitle(fullTitle, ozet ? `${name} Rakımı ve İlçe Rakımları` : `${name} Rakımı ve Yakın İller`, `${name} Rakımı`);
+  const rest = "suyun kaç derecede kaynadığı, hava basıncı, karayoluyla en yakın iller ve Türkiye rakım sıralamasındaki yeri.";
   const description = ozet
     ? ozet.kesin
-      ? `${province.nameTr} il merkezi ${province.elevationM.toLocaleString("tr-TR")} m. En yüksek ilçe ${ozet.enYuksek.ad} (≈${ozet.enYuksek.rakim.toLocaleString("tr-TR")} m), en alçak ${ozet.enAlcak.ad}. ${ozet.sayi} ilçenin rakımı, kaynama noktası ve basınç.`
-      : `${province.nameTr} il merkezi ${province.elevationM.toLocaleString("tr-TR")} m. ${ozet.sayi} ilçenin yaklaşık rakımı, suyun kaynama noktası, hava basıncı ve çevre illerle karşılaştırma.`
-    : `${trGenitive(province.nameTr)} denizden yüksekliği, bu rakımdaki hava basıncı ve suyun kaç derecede kaynadığı.`;
+      ? `${trGenitive(name)} ${ozet.sayi} ilçesinin rakımı (en yüksek ${ozet.enYuksek.ad}, en alçak ${ozet.enAlcak.ad}), ${rest}`
+      : `${trGenitive(name)} ${ozet.sayi} ilçesinin yaklaşık rakımı, ${rest}`
+    : `${trGenitive(name)} rakımı, bu yükseklikte ${rest}`;
 
   return {
     title,
     description,
     alternates: { canonical: `/il-rakimlari/${slug}` },
     openGraph: {
-      title,
+      title: plainTitle(title),
       description,
       url: buildSiteUrl(`/il-rakimlari/${slug}`),
       siteName: "BirimCeviri.app",

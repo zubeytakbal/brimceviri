@@ -3,7 +3,7 @@ import { worldCityPaths } from "@/app/converter/time/nordicWorld";
 import { seoTitle } from "../../seoTitle";
 import { appManifestPath, findInstallableApp } from "../../converter/time/installableApps";
 import { notFound } from "next/navigation";
-import CityTimePage, { cityPageDescription, cityPageTitle } from "../../components/world/CityTimePage";
+import CityTimePage, { cityPageDescription, cityPageTitlesTr } from "../../components/world/CityTimePage";
 import { buildLanguageAlternates } from "../../i18n/routing";
 import { findCityByTrSlug, worldCities } from "../../converter/time/worldCities";
 import { buildSiteUrl } from "../../siteConfig";
@@ -20,10 +20,11 @@ export async function generateMetadata({ params }: { params: Promise<{ sehir: st
   const city = findCityByTrSlug((await params).sehir);
   if (!city) return {};
   const path = `/dunya-saatleri/${city.tr}`;
-  const title = cityPageTitle(city, "tr");
+  const titles = cityPageTitlesTr(city);
+  const title = titles[0];
   const description = cityPageDescription(city, "tr", new Date());
   return {
-    title: seoTitle(title, `${city.nameTr} Saat Kaç? Canlı Saat`),
+    title: seoTitle(...titles),
     description,
     manifest: appManifestPath("dunya-saatleri"),
     appleWebApp: { capable: true, title: findInstallableApp("dunya-saatleri")!.shortName },

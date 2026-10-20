@@ -5,8 +5,9 @@ import { cityFacts, cityName, cityPath, describeDifference, hourMapping, nearbyC
 // Bu sayfa TR/EN icindir; Almanca sehir sayfasi ayri bilesendir.
 type Lang = "tr" | "en";
 import type { FaqItem } from "../../converter/faqSchema";
-import type { WorldCity } from "../../converter/time/worldCities";
+import { temsilEttigiUlke, type WorldCity } from "../../converter/time/worldCities";
 import { worldCities } from "../../converter/time/worldCities";
+import { trLocative } from "../../converter/turkishSuffix";
 import { differenceMinutes } from "../../converter/time/timezones";
 import TimeToolPage from "../time/TimeToolPage";
 import SaatKabugu from "../saat/SaatKabugu";
@@ -28,15 +29,35 @@ function coordinates(city: WorldCity, lang: Lang) {
 
 export function cityPageTitle(city: WorldCity, lang: Lang) {
   return lang === "tr"
-    ? `${city.nameTr} Saat Kaç? Canlı Saat ve Saat Farkı`
+    ? cityPageTitlesTr(city)[0]
     : `Current Time in ${city.nameEn}: Live Clock & Time Zone`;
+}
+
+/**
+ * Türkçe başlık adayları (uzundan kısaya, seoTitle sığanı seçer). Ülkesini temsil eden şehirde ülke adı başta:
+ * "Malezya'da Saat Kaç? Kuala Lumpur Saati ve Türkiye ile Fark". Başlık cevabı (saati) değil, Google'ın saat
+ * kutusunun vermediği şeyi (Türkiye ile fark, ne zaman aranır) vaat eder.
+ */
+export function cityPageTitlesTr(city: WorldCity) {
+  const ulke = temsilEttigiUlke(city);
+  if (ulke) {
+    const yer = trLocative(ulke);
+    return [`${yer} Saat Kaç? ${city.nameTr} Saati ve Türkiye ile Fark`, `${yer} Saat Kaç? ${city.nameTr} Saati`, `${yer} Saat Kaç?`];
+  }
+  if (city.region === "turkey") return [`${city.inTr} Saat Kaç? Canlı Saat ve Tarih`, `${city.inTr} Saat Kaç?`];
+  return [`${city.inTr} Saat Kaç? Türkiye ile Fark, Ne Zaman Aranır`, `${city.inTr} Saat Kaç? Türkiye ile Saat Farkı`, `${city.inTr} Saat Kaç?`];
 }
 
 export function cityPageDescription(city: WorldCity, lang: Lang, now: Date) {
   const facts = cityFacts(city, now, lang);
   if (lang === "tr") {
     const diff = city.region === "turkey" ? "Türkiye saati (UTC+3)" : `Türkiye'den ${describeDifference(facts.diffFromIstanbul, "tr")}`;
-    return `${city.inTr} şu an saat kaç? Canlı saat, ${diff}, ${facts.utcLabel} saat dilimi, yaz saati tarihleri ve gün doğumu-batımı saatleri.`;
+    const ulke = temsilEttigiUlke(city);
+    const soru = ulke ? `${trLocative(ulke)} (${city.nameTr}) şu an saat kaç?` : `${city.inTr} şu an saat kaç?`;
+    if (city.region === "turkey") {
+      return `${soru} Canlı saat, ${diff}, bugünün tarihi, gün doğumu ve batımı, altın saat ve dünya şehirleriyle saat farkı.`;
+    }
+    return `${soru} ${diff}. Aramak için en uygun saatler, ${facts.observesDst ? "yaz saati değişikliğine kalan gün, " : ""}gün doğumu-batımı ve dünya şehirleriyle saat farkı.`;
   }
   return `What time is it in ${city.nameEn} right now? Live clock, ${facts.utcLabel} time zone (${facts.zoneName}), daylight saving dates, time differences and sunrise-sunset times.`;
 }

@@ -139,3 +139,22 @@ export function findCityByEnSlug(slug: string) {
 
 /** Karsilastirma tablolarinda kullanilan buyuk sehirler. */
 export const referenceCitySlugs = ["istanbul", "london", "new-york", "los-angeles", "dubai", "moscow", "tokyo", "sydney"];
+
+// Ülke adıyla yapılan saat aramalarını ("Malezya'da saat kaç") karşılayan şehirler: tek saat dilimli (ya da
+// ana karası tek saat dilimli) ülkede başkent, başkent listede yoksa en çok aranan şehir. Bir ülke için tek
+// şehir seçilir ki iki sayfa aynı aramada yarışmasın. Çok saat dilimli ülkeler (ABD, Rusya, Kanada, Brezilya,
+// Avustralya, Meksika, Endonezya) ve Türkiye burada yok.
+const ULKE_TEMSILCILERI = new Set([
+  "london", "paris", "berlin", "amsterdam", "brussels", "madrid", "rome", "vienna", "zurich", "stockholm", "oslo",
+  "copenhagen", "helsinki", "dublin", "lisbon", "athens", "warsaw", "prague", "budapest", "bucharest", "sofia",
+  "belgrade", "kyiv", "baku", "tbilisi", "dubai", "riyadh", "doha", "baghdad", "tehran", "amman", "beirut", "cairo",
+  "tokyo", "seoul", "beijing", "bangkok", "manila", "kuala-lumpur", "new-delhi", "islamabad", "dhaka", "kathmandu",
+  "tashkent", "astana", "bishkek", "ashgabat", "kabul", "taipei", "auckland", "lagos", "nairobi", "johannesburg",
+  "casablanca", "addis-ababa", "buenos-aires", "santiago", "lima", "bogota", "caracas", "havana",
+]);
+
+/** Şehir kendi ülkesini temsil ediyorsa ülke adı (şehirle aynı adı taşıyan ülkelerde null). */
+export function temsilEttigiUlke(city: WorldCity): string | null {
+  if (!ULKE_TEMSILCILERI.has(city.en) || city.countryTr === city.nameTr) return null;
+  return city.countryTr;
+}

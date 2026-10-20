@@ -434,7 +434,7 @@ function YaklasanGunler({ simdi, liste }: { simdi: number; liste: KartYaklasan[]
   const kalanGun = (x: KartYaklasan) => Math.round((x.bas - bugunBas) / 86400000);
   const kalan = Math.max(0, ilk.bas - simdi);
   const bugun = simdi >= ilk.bas;
-  const not = (x: KartYaklasan) => `${x.katAd}${x.tatil ? " · tatil" : ""}${x.tahmini ? " · tahmini" : ""}`;
+  const not = (x: KartYaklasan) => `${x.katAd}${x.tatil && x.kategori !== "resmi" ? " · tatil" : ""}${x.tahmini ? " · tahmini" : ""}`;
 
   return (
     <div className="yaklasan" aria-labelledby="yaklasan-baslik">

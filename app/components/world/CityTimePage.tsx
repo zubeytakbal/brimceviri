@@ -5,16 +5,18 @@ import { cityFacts, cityName, cityPath, describeDifference, hourMapping, nearbyC
 // Bu sayfa TR/EN icindir; Almanca sehir sayfasi ayri bilesendir.
 type Lang = "tr" | "en";
 import type { FaqItem } from "../../converter/faqSchema";
-import type { WorldCity } from "../../converter/time/worldCities";
-import { worldCities } from "../../converter/time/worldCities";
+import { temsilEttigiUlke, type WorldCity } from "../../converter/time/worldCities";
+import { trSaatSehirleri, worldCities } from "../../converter/time/worldCities";
+import { trAblative, trLocative } from "../../converter/turkishSuffix";
 import { differenceMinutes } from "../../converter/time/timezones";
 import TimeToolPage from "../time/TimeToolPage";
 import SaatKabugu from "../saat/SaatKabugu";
 import SehirSaatiHero from "../saat/SehirSaatiHero";
+import SehirSahneleri from "../saat/SehirSahneleri";
 import { sehirGorseli } from "../saat/sehirGorselleri";
 
 // Saat bölümünün favori şeridi ve ana şehir seçimi için şehir listesi.
-const SAAT_SEHIRLERI = worldCities.map((c) => ({ slug: c.tr, ad: c.nameTr, timeZone: c.timeZone }));
+const SAAT_SEHIRLERI = trSaatSehirleri.map((c) => ({ slug: c.tr, ad: c.nameTr, timeZone: c.timeZone }));
 import CityLiveClock from "./CityLiveClock";
 
 // Sehir saati sayfasi (TR + EN). Tum sayilar sunucuda gercek tz verisinden hesaplanir.
@@ -28,15 +30,40 @@ function coordinates(city: WorldCity, lang: Lang) {
 
 export function cityPageTitle(city: WorldCity, lang: Lang) {
   return lang === "tr"
-    ? `${city.nameTr} Saat Kaç? Canlı Saat ve Saat Farkı`
+    ? cityPageTitlesTr(city)[0]
     : `Current Time in ${city.nameEn}: Live Clock & Time Zone`;
+}
+
+/**
+ * Türkçe başlık adayları (uzundan kısaya, seoTitle sığanı seçer). Ülkesini temsil eden şehirde ülke adı başta:
+ * "Malezya'da Saat Kaç? Kuala Lumpur Saati ve Türkiye ile Fark". Başlık cevabı (saati) değil, Google'ın saat
+ * kutusunun vermediği şeyi (Türkiye ile fark, ne zaman aranır) vaat eder.
+ */
+export function cityPageTitlesTr(city: WorldCity) {
+  const ulke = temsilEttigiUlke(city);
+  if (ulke) {
+    const yer = trLocative(ulke);
+    return [`${yer} Saat Kaç? ${city.nameTr} Saati ve Türkiye ile Fark`, `${yer} Saat Kaç? ${city.nameTr} Saati`, `${yer} Saat Kaç?`];
+  }
+  if (city.region === "turkey") return [`${city.inTr} Saat Kaç? Canlı Saat ve Tarih`, `${city.inTr} Saat Kaç?`];
+  return [`${city.inTr} Saat Kaç? Türkiye ile Fark, Ne Zaman Aranır`, `${city.inTr} Saat Kaç? Türkiye ile Saat Farkı`, `${city.inTr} Saat Kaç?`];
+}
+
+/** "Türkiye'den 2 saat ileride" ya da fark yoksa "Türkiye ile aynı saatte". */
+function turkiyeyeGore(dakika: number, yer = "Türkiye") {
+  return dakika === 0 ? `${yer} ile aynı saatte` : `${trAblative(yer)} ${describeDifference(dakika, "tr")}`;
 }
 
 export function cityPageDescription(city: WorldCity, lang: Lang, now: Date) {
   const facts = cityFacts(city, now, lang);
   if (lang === "tr") {
-    const diff = city.region === "turkey" ? "Türkiye saati (UTC+3)" : `Türkiye'den ${describeDifference(facts.diffFromIstanbul, "tr")}`;
-    return `${city.inTr} şu an saat kaç? Canlı saat, ${diff}, ${facts.utcLabel} saat dilimi, yaz saati tarihleri ve gün doğumu-batımı saatleri.`;
+    const diff = city.region === "turkey" ? "Türkiye saati (UTC+3)" : turkiyeyeGore(facts.diffFromIstanbul);
+    const ulke = temsilEttigiUlke(city);
+    const soru = ulke ? `${trLocative(ulke)} (${city.nameTr}) şu an saat kaç?` : `${city.inTr} şu an saat kaç?`;
+    if (city.region === "turkey") {
+      return `${soru} Canlı saat, ${diff}, bugünün tarihi, gün doğumu ve batımı, altın saat ve dünya şehirleriyle saat farkı.`;
+    }
+    return `${soru} ${diff}. Aramak için en uygun saatler, ${facts.observesDst ? "yaz saati değişikliğine kalan gün, " : ""}gün doğumu-batımı ve dünya şehirleriyle saat farkı.`;
   }
   return `What time is it in ${city.nameEn} right now? Live clock, ${facts.utcLabel} time zone (${facts.zoneName}), daylight saving dates, time differences and sunrise-sunset times.`;
 }
@@ -88,7 +115,7 @@ export default function CityTimePage({ city, lang, variant = "klasik" }: { city:
             }
           : {
               question: `${name} ile Türkiye arasında kaç saat fark var?`,
-              answer: `Şu an ${name}, Türkiye'den ${describeDifference(facts.diffFromIstanbul, "tr")}. ${
+              answer: `Şu an ${name}, ${turkiyeyeGore(facts.diffFromIstanbul)}. ${
                 facts.observesDst ? `${city.inTr} yaz saati uygulandığı ve Türkiye uygulamadığı için bu fark yıl içinde 1 saat değişir.` : "Her iki tarafta da yaz saati uygulanmadığı için fark yıl boyu aynıdır."
               }`,
             },
@@ -126,7 +153,7 @@ export default function CityTimePage({ city, lang, variant = "klasik" }: { city:
         },
       ];
 
-  const related = nearbyCities(city, 10).map((c) => ({
+  const related = nearbyCities(city, 10, tr ? trSaatSehirleri : worldCities).map((c) => ({
     href: cityPath(c, lang),
     label: tr ? `${c.nameTr} saati` : `Time in ${c.nameEn}`,
   }));
@@ -167,7 +194,7 @@ export default function CityTimePage({ city, lang, variant = "klasik" }: { city:
       intro={
         tr
           ? `${name} (${country}) şu an ${facts.zoneName} (${facts.utcLabel}) kullanır. ${
-              inTurkey ? "Türkiye yıl boyu tek saat dilimi (TRT) kullanır." : `Şu an İstanbul'dan ${describeDifference(facts.diffFromIstanbul, "tr")}.`
+              inTurkey ? "Türkiye yıl boyu tek saat dilimi (TRT) kullanır." : `Şu an ${turkiyeyeGore(facts.diffFromIstanbul, "İstanbul")}.`
             }`
           : `${name} (${country}) uses ${facts.zoneName}: ${facts.utcLabel}.`
       }
@@ -413,6 +440,7 @@ export default function CityTimePage({ city, lang, variant = "klasik" }: { city:
           { href: path, label: name },
         ]}
         faqItems={faqItems}
+        sahneler={<SehirSahneleri city={city} />}
         hero={
           <SehirSaatiHero
             sehir={{ slug: city.tr, ad: city.nameTr, timeZone: city.timeZone }}
@@ -423,9 +451,7 @@ export default function CityTimePage({ city, lang, variant = "klasik" }: { city:
             sehirler={SAAT_SEHIRLERI}
           />
         }
-      >
-        {icerik}
-      </SaatKabugu>
+      />
     );
   }
 

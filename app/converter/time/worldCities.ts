@@ -117,6 +117,67 @@ export const worldCities: WorldCity[] = [
   { en: "anchorage", tr: "anchorage", nameTr: "Anchorage", nameEn: "Anchorage", countryTr: "ABD (Alaska)", countryEn: "United States (Alaska)", timeZone: "America/Anchorage", lat: 61.22, lon: -149.90, region: "americas", inTr: "Anchorage'da", countryWide: false },
 ];
 
+// Yalnızca Türkçe sayfası olan başkentler: saat sayfası olmayan ülkelerin Türkiye'den çok aranan başkentleri.
+// Diğer dillerin saat bölümü, menüleri ve site haritası worldCities ile kalır.
+export const trEkSehirler: WorldCity[] = [
+  { en: "lefkosa", tr: "lefkosa", nameTr: "Lefkoşa", nameEn: "Nicosia", countryTr: "KKTC", countryEn: "Northern Cyprus", timeZone: "Asia/Famagusta", lat: 35.18, lon: 33.36, region: "europe", inTr: "Lefkoşa'da", countryWide: true },
+  { en: "sarajevo", tr: "saraybosna", nameTr: "Saraybosna", nameEn: "Sarajevo", countryTr: "Bosna Hersek", countryEn: "Bosnia and Herzegovina", timeZone: "Europe/Sarajevo", lat: 43.86, lon: 18.41, region: "europe", inTr: "Saraybosna'da", countryWide: true },
+  { en: "pristina", tr: "pristine", nameTr: "Priştine", nameEn: "Pristina", countryTr: "Kosova", countryEn: "Kosovo", timeZone: "Europe/Belgrade", lat: 42.66, lon: 21.17, region: "europe", inTr: "Priştine'de", countryWide: true },
+  { en: "skopje", tr: "uskup", nameTr: "Üsküp", nameEn: "Skopje", countryTr: "Kuzey Makedonya", countryEn: "North Macedonia", timeZone: "Europe/Skopje", lat: 42.00, lon: 21.43, region: "europe", inTr: "Üsküp'te", countryWide: true },
+  { en: "tirana", tr: "tiran", nameTr: "Tiran", nameEn: "Tirana", countryTr: "Arnavutluk", countryEn: "Albania", timeZone: "Europe/Tirane", lat: 41.33, lon: 19.82, region: "europe", inTr: "Tiran'da", countryWide: true },
+  { en: "zagreb", tr: "zagreb", nameTr: "Zagreb", nameEn: "Zagreb", countryTr: "Hırvatistan", countryEn: "Croatia", timeZone: "Europe/Zagreb", lat: 45.81, lon: 15.98, region: "europe", inTr: "Zagreb'de", countryWide: true },
+  { en: "ljubljana", tr: "ljubljana", nameTr: "Ljubljana", nameEn: "Ljubljana", countryTr: "Slovenya", countryEn: "Slovenia", timeZone: "Europe/Ljubljana", lat: 46.06, lon: 14.51, region: "europe", inTr: "Ljubljana'da", countryWide: true },
+  { en: "bratislava", tr: "bratislava", nameTr: "Bratislava", nameEn: "Bratislava", countryTr: "Slovakya", countryEn: "Slovakia", timeZone: "Europe/Bratislava", lat: 48.15, lon: 17.11, region: "europe", inTr: "Bratislava'da", countryWide: true },
+  { en: "chisinau", tr: "kisinev", nameTr: "Kişinev", nameEn: "Chișinău", countryTr: "Moldova", countryEn: "Moldova", timeZone: "Europe/Chisinau", lat: 47.01, lon: 28.86, region: "europe", inTr: "Kişinev'de", countryWide: true },
+  { en: "minsk", tr: "minsk", nameTr: "Minsk", nameEn: "Minsk", countryTr: "Belarus", countryEn: "Belarus", timeZone: "Europe/Minsk", lat: 53.90, lon: 27.56, region: "europe", inTr: "Minsk'te", countryWide: true },
+  { en: "vilnius", tr: "vilnius", nameTr: "Vilnius", nameEn: "Vilnius", countryTr: "Litvanya", countryEn: "Lithuania", timeZone: "Europe/Vilnius", lat: 54.69, lon: 25.28, region: "europe", inTr: "Vilnius'ta", countryWide: true },
+  { en: "riga", tr: "riga", nameTr: "Riga", nameEn: "Riga", countryTr: "Letonya", countryEn: "Latvia", timeZone: "Europe/Riga", lat: 56.95, lon: 24.11, region: "europe", inTr: "Riga'da", countryWide: true },
+  { en: "tallinn", tr: "tallinn", nameTr: "Tallinn", nameEn: "Tallinn", countryTr: "Estonya", countryEn: "Estonia", timeZone: "Europe/Tallinn", lat: 59.44, lon: 24.75, region: "europe", inTr: "Tallinn'de", countryWide: true },
+  { en: "valletta", tr: "valletta", nameTr: "Valletta", nameEn: "Valletta", countryTr: "Malta", countryEn: "Malta", timeZone: "Europe/Malta", lat: 35.90, lon: 14.51, region: "europe", inTr: "Valletta'da", countryWide: true },
+  { en: "luxembourg", tr: "luksemburg", nameTr: "Lüksemburg", nameEn: "Luxembourg", countryTr: "Lüksemburg", countryEn: "Luxembourg", timeZone: "Europe/Luxembourg", lat: 49.61, lon: 6.13, region: "europe", inTr: "Lüksemburg'da", countryWide: true },
+  { en: "yerevan", tr: "erivan", nameTr: "Erivan", nameEn: "Yerevan", countryTr: "Ermenistan", countryEn: "Armenia", timeZone: "Asia/Yerevan", lat: 40.18, lon: 44.51, region: "asia", inTr: "Erivan'da", countryWide: true },
+  { en: "damascus", tr: "sam", nameTr: "Şam", nameEn: "Damascus", countryTr: "Suriye", countryEn: "Syria", timeZone: "Asia/Damascus", lat: 33.51, lon: 36.29, region: "middle-east", inTr: "Şam'da", countryWide: true },
+  { en: "muscat", tr: "maskat", nameTr: "Maskat", nameEn: "Muscat", countryTr: "Umman", countryEn: "Oman", timeZone: "Asia/Muscat", lat: 23.59, lon: 58.41, region: "middle-east", inTr: "Maskat'ta", countryWide: true },
+  { en: "manama", tr: "manama", nameTr: "Manama", nameEn: "Manama", countryTr: "Bahreyn", countryEn: "Bahrain", timeZone: "Asia/Bahrain", lat: 26.23, lon: 50.59, region: "middle-east", inTr: "Manama'da", countryWide: true },
+  { en: "sanaa", tr: "sana", nameTr: "Sana", nameEn: "Sanaa", countryTr: "Yemen", countryEn: "Yemen", timeZone: "Asia/Aden", lat: 15.37, lon: 44.19, region: "middle-east", inTr: "Sana'da", countryWide: true },
+  { en: "tripoli", tr: "trablus", nameTr: "Trablus", nameEn: "Tripoli", countryTr: "Libya", countryEn: "Libya", timeZone: "Africa/Tripoli", lat: 32.89, lon: 13.19, region: "africa", inTr: "Trablus'ta", countryWide: true },
+  { en: "khartoum", tr: "hartum", nameTr: "Hartum", nameEn: "Khartoum", countryTr: "Sudan", countryEn: "Sudan", timeZone: "Africa/Khartoum", lat: 15.50, lon: 32.56, region: "africa", inTr: "Hartum'da", countryWide: true },
+  { en: "mogadishu", tr: "mogadisu", nameTr: "Mogadişu", nameEn: "Mogadishu", countryTr: "Somali", countryEn: "Somalia", timeZone: "Africa/Mogadishu", lat: 2.05, lon: 45.32, region: "africa", inTr: "Mogadişu'da", countryWide: true },
+  { en: "dushanbe", tr: "dusanbe", nameTr: "Duşanbe", nameEn: "Dushanbe", countryTr: "Tacikistan", countryEn: "Tajikistan", timeZone: "Asia/Dushanbe", lat: 38.56, lon: 68.77, region: "asia", inTr: "Duşanbe'de", countryWide: true },
+  { en: "ulaanbaatar", tr: "ulan-batur", nameTr: "Ulan Batur", nameEn: "Ulaanbaatar", countryTr: "Moğolistan", countryEn: "Mongolia", timeZone: "Asia/Ulaanbaatar", lat: 47.92, lon: 106.92, region: "asia", inTr: "Ulan Batur'da", countryWide: false },
+  { en: "hanoi", tr: "hanoi", nameTr: "Hanoi", nameEn: "Hanoi", countryTr: "Vietnam", countryEn: "Vietnam", timeZone: "Asia/Ho_Chi_Minh", lat: 21.03, lon: 105.85, region: "asia", inTr: "Hanoi'de", countryWide: true },
+  { en: "male", tr: "male", nameTr: "Male", nameEn: "Malé", countryTr: "Maldivler", countryEn: "Maldives", timeZone: "Indian/Maldives", lat: 4.18, lon: 73.51, region: "asia", inTr: "Male'de", countryWide: true },
+  { en: "reykjavik", tr: "reykjavik", nameTr: "Reykjavik", nameEn: "Reykjavík", countryTr: "İzlanda", countryEn: "Iceland", timeZone: "Atlantic/Reykjavik", lat: 64.15, lon: -21.94, region: "europe", inTr: "Reykjavik'te", countryWide: true },
+  { en: "podgorica", tr: "podgorica", nameTr: "Podgorica", nameEn: "Podgorica", countryTr: "Karadağ", countryEn: "Montenegro", timeZone: "Europe/Podgorica", lat: 42.44, lon: 19.26, region: "europe", inTr: "Podgorica'da", countryWide: true },
+  { en: "colombo", tr: "kolombo", nameTr: "Kolombo", nameEn: "Colombo", countryTr: "Sri Lanka", countryEn: "Sri Lanka", timeZone: "Asia/Colombo", lat: 6.93, lon: 79.85, region: "asia", inTr: "Kolombo'da", countryWide: true },
+  { en: "yangon", tr: "yangon", nameTr: "Yangon", nameEn: "Yangon", countryTr: "Myanmar", countryEn: "Myanmar", timeZone: "Asia/Yangon", lat: 16.84, lon: 96.17, region: "asia", inTr: "Yangon'da", countryWide: true },
+  { en: "phnom-penh", tr: "phnom-penh", nameTr: "Phnom Penh", nameEn: "Phnom Penh", countryTr: "Kamboçya", countryEn: "Cambodia", timeZone: "Asia/Phnom_Penh", lat: 11.56, lon: 104.92, region: "asia", inTr: "Phnom Penh'te", countryWide: true },
+  { en: "pyongyang", tr: "pyongyang", nameTr: "Pyongyang", nameEn: "Pyongyang", countryTr: "Kuzey Kore", countryEn: "North Korea", timeZone: "Asia/Pyongyang", lat: 39.04, lon: 125.76, region: "asia", inTr: "Pyongyang'da", countryWide: true },
+  { en: "bandar-seri-begawan", tr: "bandar-seri-begawan", nameTr: "Bandar Seri Begawan", nameEn: "Bandar Seri Begawan", countryTr: "Brunei", countryEn: "Brunei", timeZone: "Asia/Brunei", lat: 4.89, lon: 114.94, region: "asia", inTr: "Bandar Seri Begawan'da", countryWide: true },
+  { en: "montevideo", tr: "montevideo", nameTr: "Montevideo", nameEn: "Montevideo", countryTr: "Uruguay", countryEn: "Uruguay", timeZone: "America/Montevideo", lat: -34.90, lon: -56.16, region: "americas", inTr: "Montevideo'da", countryWide: true },
+  { en: "quito", tr: "quito", nameTr: "Quito", nameEn: "Quito", countryTr: "Ekvador", countryEn: "Ecuador", timeZone: "America/Guayaquil", lat: -0.18, lon: -78.47, region: "americas", inTr: "Quito'da", countryWide: false },
+  { en: "la-paz", tr: "la-paz", nameTr: "La Paz", nameEn: "La Paz", countryTr: "Bolivya", countryEn: "Bolivia", timeZone: "America/La_Paz", lat: -16.50, lon: -68.15, region: "americas", inTr: "La Paz'da", countryWide: true },
+  { en: "asuncion", tr: "asuncion", nameTr: "Asunción", nameEn: "Asunción", countryTr: "Paraguay", countryEn: "Paraguay", timeZone: "America/Asuncion", lat: -25.26, lon: -57.58, region: "americas", inTr: "Asunción'da", countryWide: true },
+  { en: "panama-city", tr: "panama", nameTr: "Panama", nameEn: "Panama City", countryTr: "Panama", countryEn: "Panama", timeZone: "America/Panama", lat: 8.98, lon: -79.52, region: "americas", inTr: "Panama'da", countryWide: true },
+  { en: "san-jose", tr: "san-jose", nameTr: "San José", nameEn: "San José", countryTr: "Kosta Rika", countryEn: "Costa Rica", timeZone: "America/Costa_Rica", lat: 9.93, lon: -84.08, region: "americas", inTr: "San José'de", countryWide: true },
+  { en: "santo-domingo", tr: "santo-domingo", nameTr: "Santo Domingo", nameEn: "Santo Domingo", countryTr: "Dominik Cumhuriyeti", countryEn: "Dominican Republic", timeZone: "America/Santo_Domingo", lat: 18.49, lon: -69.93, region: "americas", inTr: "Santo Domingo'da", countryWide: true },
+  { en: "kingston", tr: "kingston", nameTr: "Kingston", nameEn: "Kingston", countryTr: "Jamaika", countryEn: "Jamaica", timeZone: "America/Jamaica", lat: 18.02, lon: -76.80, region: "americas", inTr: "Kingston'da", countryWide: true },
+  { en: "dakar", tr: "dakar", nameTr: "Dakar", nameEn: "Dakar", countryTr: "Senegal", countryEn: "Senegal", timeZone: "Africa/Dakar", lat: 14.72, lon: -17.47, region: "africa", inTr: "Dakar'da", countryWide: true },
+  { en: "accra", tr: "akra", nameTr: "Akra", nameEn: "Accra", countryTr: "Gana", countryEn: "Ghana", timeZone: "Africa/Accra", lat: 5.60, lon: -0.19, region: "africa", inTr: "Akra'da", countryWide: true },
+  { en: "abidjan", tr: "abidjan", nameTr: "Abidjan", nameEn: "Abidjan", countryTr: "Fildişi Sahili", countryEn: "Côte d'Ivoire", timeZone: "Africa/Abidjan", lat: 5.36, lon: -4.01, region: "africa", inTr: "Abidjan'da", countryWide: true },
+  { en: "yaounde", tr: "yaunde", nameTr: "Yaunde", nameEn: "Yaoundé", countryTr: "Kamerun", countryEn: "Cameroon", timeZone: "Africa/Douala", lat: 3.85, lon: 11.50, region: "africa", inTr: "Yaunde'de", countryWide: true },
+  { en: "luanda", tr: "luanda", nameTr: "Luanda", nameEn: "Luanda", countryTr: "Angola", countryEn: "Angola", timeZone: "Africa/Luanda", lat: -8.84, lon: 13.23, region: "africa", inTr: "Luanda'da", countryWide: true },
+  { en: "kampala", tr: "kampala", nameTr: "Kampala", nameEn: "Kampala", countryTr: "Uganda", countryEn: "Uganda", timeZone: "Africa/Kampala", lat: 0.35, lon: 32.58, region: "africa", inTr: "Kampala'da", countryWide: true },
+  { en: "dar-es-salaam", tr: "darusselam", nameTr: "Darüsselam", nameEn: "Dar es Salaam", countryTr: "Tanzanya", countryEn: "Tanzania", timeZone: "Africa/Dar_es_Salaam", lat: -6.79, lon: 39.21, region: "africa", inTr: "Darüsselam'da", countryWide: true },
+  { en: "djibouti", tr: "cibuti", nameTr: "Cibuti", nameEn: "Djibouti", countryTr: "Cibuti", countryEn: "Djibouti", timeZone: "Africa/Djibouti", lat: 11.59, lon: 43.15, region: "africa", inTr: "Cibuti'de", countryWide: true },
+  { en: "suva", tr: "suva", nameTr: "Suva", nameEn: "Suva", countryTr: "Fiji", countryEn: "Fiji", timeZone: "Pacific/Fiji", lat: -18.14, lon: 178.44, region: "oceania", inTr: "Suva'da", countryWide: true },
+];
+
+/** Türkçe saat bölümünün tüm şehirleri. */
+export const trSaatSehirleri: WorldCity[] = [...worldCities, ...trEkSehirler];
+
+export const yalnizTurkceMi = (city: WorldCity) => trEkSehirler.includes(city);
+
 export const worldRegions: WorldRegion[] = ["turkey", "europe", "middle-east", "asia", "africa", "americas", "oceania"];
 
 export const regionNames: Record<WorldRegion, { tr: string; en: string }> = {
@@ -130,7 +191,7 @@ export const regionNames: Record<WorldRegion, { tr: string; en: string }> = {
 };
 
 export function findCityByTrSlug(slug: string) {
-  return worldCities.find((city) => city.tr === slug) ?? null;
+  return trSaatSehirleri.find((city) => city.tr === slug) ?? null;
 }
 
 export function findCityByEnSlug(slug: string) {
@@ -139,3 +200,23 @@ export function findCityByEnSlug(slug: string) {
 
 /** Karsilastirma tablolarinda kullanilan buyuk sehirler. */
 export const referenceCitySlugs = ["istanbul", "london", "new-york", "los-angeles", "dubai", "moscow", "tokyo", "sydney"];
+
+// Ülke adıyla yapılan saat aramalarını ("Malezya'da saat kaç") karşılayan şehirler: tek saat dilimli (ya da
+// ana karası tek saat dilimli) ülkede başkent, başkent listede yoksa en çok aranan şehir. Bir ülke için tek
+// şehir seçilir ki iki sayfa aynı aramada yarışmasın. Çok saat dilimli ülkeler (ABD, Rusya, Kanada, Brezilya,
+// Avustralya, Meksika, Endonezya) ve Türkiye burada yok.
+const ULKE_TEMSILCILERI = new Set([
+  "london", "paris", "berlin", "amsterdam", "brussels", "madrid", "rome", "vienna", "zurich", "stockholm", "oslo",
+  "copenhagen", "helsinki", "dublin", "lisbon", "athens", "warsaw", "prague", "budapest", "bucharest", "sofia",
+  "belgrade", "kyiv", "baku", "tbilisi", "dubai", "riyadh", "doha", "baghdad", "tehran", "amman", "beirut", "cairo",
+  "tokyo", "seoul", "beijing", "bangkok", "manila", "kuala-lumpur", "new-delhi", "islamabad", "dhaka", "kathmandu",
+  "tashkent", "astana", "bishkek", "ashgabat", "kabul", "taipei", "auckland", "lagos", "nairobi", "johannesburg",
+  "casablanca", "addis-ababa", "buenos-aires", "santiago", "lima", "bogota", "caracas", "havana",
+  ...trEkSehirler.map((c) => c.en),
+]);
+
+/** Şehir kendi ülkesini temsil ediyorsa ülke adı (şehirle aynı adı taşıyan ülkelerde null). */
+export function temsilEttigiUlke(city: WorldCity): string | null {
+  if (!ULKE_TEMSILCILERI.has(city.en) || city.countryTr === city.nameTr) return null;
+  return city.countryTr;
+}

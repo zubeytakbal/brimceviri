@@ -37,7 +37,6 @@ function utcFarkiDakika(timeZone: string, an: Date) {
 }
 
 function farkYazisi(dakika: number) {
-  if (dakika === 0) return "aynı saat";
   const a = Math.abs(dakika);
   const s = Math.floor(a / 60);
   const d = a % 60;
@@ -115,7 +114,8 @@ export default function SehirSaatiHero({
     const y = new Intl.DateTimeFormat("en-CA", { timeZone: sehir.timeZone, year: "numeric", month: "2-digit", day: "2-digit" }).format(an).split("-").map(Number);
     tarih = `${parca({ weekday: "long", day: "numeric", month: "long", year: "numeric" })} · ${haftaNo(y[0], y[1], y[2])}. hafta`;
   }
-  const fark = an && !anaBu ? `${trAblative(ana.ad)} ${farkYazisi(utcFarkiDakika(sehir.timeZone, an) - utcFarkiDakika(ana.timeZone, an))}` : null;
+  const farkDk = an && !anaBu ? utcFarkiDakika(sehir.timeZone, an) - utcFarkiDakika(ana.timeZone, an) : null;
+  const fark = farkDk === null ? null : farkDk === 0 ? `${ana.ad} ile aynı saatte` : `${trAblative(ana.ad)} ${farkYazisi(farkDk)}`;
 
   const serit = favoriler.map(bul).filter((s): s is SaatSehri => Boolean(s));
 

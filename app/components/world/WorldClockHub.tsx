@@ -4,7 +4,8 @@ import { cityName, cityPath } from "../../converter/time/cityFacts";
 type Lang = "tr" | "en";
 import type { FaqItem } from "../../converter/faqSchema";
 import { formatUtcOffset, offsetMinutes } from "../../converter/time/timezones";
-import { regionNames, worldCities, worldRegions } from "../../converter/time/worldCities";
+import { regionNames, trSaatSehirleri, worldCities, worldRegions } from "../../converter/time/worldCities";
+import { ulkeSaatleri } from "../../converter/time/ulkeSaatDilimleri";
 import TimeToolPage from "../time/TimeToolPage";
 import WorldClockBoard from "./WorldClockBoard";
 
@@ -12,7 +13,8 @@ import WorldClockBoard from "./WorldClockBoard";
 export default function WorldClockHub({ lang }: { lang: Lang }) {
   const tr = lang === "tr";
   const now = new Date();
-  const cities = worldCities.map((city) => ({
+  const sehirler = tr ? trSaatSehirleri : worldCities;
+  const cities = sehirler.map((city) => ({
     slug: city.en,
     href: cityPath(city, lang),
     name: cityName(city, lang),
@@ -78,8 +80,8 @@ export default function WorldClockHub({ lang }: { lang: Lang }) {
       title={tr ? "Dünya Saatleri" : "World Clock"}
       intro={
         tr
-          ? `${worldCities.length} şehrin canlı saati tek ekranda. Şehri ara, bölgeye göre süz, sık baktıklarını yıldızla; kartta senin saatinle farkı ve gece-gündüz durumu yazar.`
-          : `Live time in ${worldCities.length} cities on one screen. Search, filter by region and star the ones you check often; each card shows the difference from your time and whether it is day or night.`
+          ? `${sehirler.length} şehrin canlı saati tek ekranda. Şehri ara, bölgeye göre süz, sık baktıklarını yıldızla; kartta senin saatinle farkı ve gece-gündüz durumu yazar.`
+          : `Live time in ${sehirler.length} cities on one screen. Search, filter by region and star the ones you check often; each card shows the difference from your time and whether it is day or night.`
       }
       tool={
         <WorldClockBoard
@@ -194,6 +196,21 @@ export default function WorldClockHub({ lang }: { lang: Lang }) {
         </>
       )}
 
+      {tr && (
+        <>
+          <h2 id="ulkeler">Birden çok saat dilimi olan ülkeler</h2>
+          <p>
+            {ulkeSaatleri.map((u, i) => (
+              <span key={u.slug}>
+                {i > 0 && " · "}
+                <Link href={`/dunya-saatleri/${u.slug}`} prefetch={false}>
+                  {u.ad} ({u.dilimler.length} saat dilimi)
+                </Link>
+              </span>
+            ))}
+          </p>
+        </>
+      )}
       <h2 id="sehirler">{tr ? "Şehirlere göre UTC farkları" : "UTC offsets by city"}</h2>
       {worldRegions.map((region) => (
         <div key={region}>
@@ -208,7 +225,7 @@ export default function WorldClockHub({ lang }: { lang: Lang }) {
                 </tr>
               </thead>
               <tbody>
-                {worldCities
+                {sehirler
                   .filter((city) => city.region === region)
                   .map((city) => (
                     <tr key={city.en}>

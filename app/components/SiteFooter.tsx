@@ -1,5 +1,6 @@
 "use client";
 
+import { isSaatBolumu } from "./saat/saatBolumu";
 import Link from "@/app/components/SiteLink";
 import { usePathname, useRouter } from "next/navigation";
 import { getLocaleFromPathname } from "../i18n/config";
@@ -85,7 +86,8 @@ function TurkceFooter({ nav }: { nav: (typeof SITE_NAV_DATA.locales)["tr"] }) {
 
 export default function SiteFooter() {
   const pathname = usePathname();
-  if (pathname.startsWith("/embed/")) {
+  // Saat bölümü kendi menüsünü ve alt bilgisini çizer.
+  if (pathname.startsWith("/embed/") || isSaatBolumu(pathname)) {
     return null;
   }
   const locale = getLocaleFromPathname(pathname);

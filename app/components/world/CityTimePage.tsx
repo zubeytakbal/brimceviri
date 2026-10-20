@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import Link from "@/app/components/SiteLink";
 import { cityFacts, cityName, cityPath, describeDifference, hourMapping, nearbyCities } from "../../converter/time/cityFacts";
 
@@ -8,6 +9,9 @@ import type { WorldCity } from "../../converter/time/worldCities";
 import { worldCities } from "../../converter/time/worldCities";
 import { differenceMinutes } from "../../converter/time/timezones";
 import TimeToolPage from "../time/TimeToolPage";
+import SaatKabugu from "../saat/SaatKabugu";
+import SehirSaatiHero from "../saat/SehirSaatiHero";
+import { sehirGorseli } from "../saat/sehirGorselleri";
 import CityLiveClock from "./CityLiveClock";
 
 // Sehir saati sayfasi (TR + EN). Tum sayilar sunucuda gercek tz verisinden hesaplanir.
@@ -34,7 +38,11 @@ export function cityPageDescription(city: WorldCity, lang: Lang, now: Date) {
   return `What time is it in ${city.nameEn} right now? Live clock, ${facts.utcLabel} time zone (${facts.zoneName}), daylight saving dates, time differences and sunrise-sunset times.`;
 }
 
-export default function CityTimePage({ city, lang }: { city: WorldCity; lang: Lang }) {
+/**
+ * variant "saat": Türkçe şehir sayfası saat bölümünün kabuğuyla çizilir (tam ekran fotoğraf ve dev saat);
+ * içerik bölümleri iki görünümde aynıdır.
+ */
+export default function CityTimePage({ city, lang, variant = "klasik" }: { city: WorldCity; lang: Lang; variant?: "klasik" | "saat" }) {
   const now = new Date();
   const tr = lang === "tr";
   const name = cityName(city, lang);
@@ -143,7 +151,7 @@ export default function CityTimePage({ city, lang }: { city: WorldCity; lang: La
     { id: "faq", label: tr ? "Sık sorulan sorular" : "FAQ" },
   ];
 
-  return (
+  const toolPage = (icerik: ReactNode) => (
     <TimeToolPage
       crumbs={[
         { href: tr ? "/" : "/en", label: tr ? "Ana Sayfa" : "Home" },
@@ -178,6 +186,12 @@ export default function CityTimePage({ city, lang }: { city: WorldCity; lang: La
       faqTitle={tr ? "Sık Sorulan Sorular" : "Frequently Asked Questions"}
       faqItems={faqItems}
     >
+      {icerik}
+    </TimeToolPage>
+  );
+
+  const icerik = (
+    <>
       <h2 id="ozet">{tr ? `${name} saat dilimi bilgileri` : `${name} time zone facts`}</h2>
       <div className="conversion-table-wrap">
         <table className="conversion-table city-facts-table">
@@ -382,9 +396,34 @@ export default function CityTimePage({ city, lang }: { city: WorldCity; lang: La
       <p>
         <Link href={tr ? "/altin-saat" : "/en/golden-hour"}>{tr ? "Başka bir tarih ya da konum için altın saat hesaplayıcı" : "Golden hour calculator for any date or location"}</Link>
       </p>
-    </TimeToolPage>
+    </>
   );
+
+  if (variant === "saat") {
+    const sun0 = facts.sunRows[0];
+    const alt = [
+      inTurkey ? "Türkiye saati" : `Türkiye'den ${describeDifference(facts.diffFromIstanbul, "tr")}`,
+      facts.utcLabel,
+      `Gün doğumu ${sun0.sunrise} · batımı ${sun0.sunset}`,
+    ].join(" · ");
+    return (
+      <SaatKabugu
+        crumbs={[
+          { href: "/", label: "Ana Sayfa" },
+          { href: hubPath, label: "Dünya Saatleri" },
+          { href: path, label: name },
+        ]}
+        faqItems={faqItems}
+        hero={<SehirSaatiHero baslik={`${city.inTr} saat kaç?`} ulke={country} timeZone={city.timeZone} alt={alt} gorsel={sehirGorseli(city.tr)} />}
+      >
+        {icerik}
+      </SaatKabugu>
+    );
+  }
+
+  return toolPage(icerik);
 }
+
 
 function englishGap(minutes: number, name: string, other: string) {
   if (minutes === 0) return `${name} is currently on the same time as ${other}.`;

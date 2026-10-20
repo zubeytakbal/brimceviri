@@ -1,5 +1,6 @@
 "use client";
 
+import { isSaatBolumu } from "./saat/saatBolumu";
 import Link from "@/app/components/SiteLink";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useState } from "react";
@@ -18,7 +19,8 @@ type HeaderLink = {
 
 export default function SiteHeader() {
   const pathname = usePathname();
-  if (pathname.startsWith("/embed/")) {
+  // Saat bölümü kendi menüsünü ve alt bilgisini çizer.
+  if (pathname.startsWith("/embed/") || isSaatBolumu(pathname)) {
     return null;
   }
   return <SiteHeaderNavigation key={pathname} pathname={pathname} />;

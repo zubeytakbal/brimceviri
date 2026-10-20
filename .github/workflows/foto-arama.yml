@@ -1,4 +1,4 @@
-# Geçici iş: yalnızca foto-arama dalına gönderimde çalışır, siteyi yayınlamaz. Aday listesini dosya olarak bırakır.
+# Geçici iş: yalnızca foto-arama dalına gönderimde çalışır, siteyi yayınlamaz. Aday listesini aynı dala commit eder.
 name: Foto arama
 
 on:
@@ -6,7 +6,7 @@ on:
     branches: [foto-arama]
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   ara:
@@ -15,7 +15,11 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - run: python3 tools/foto-arama/ara.py
-      - uses: actions/upload-artifact@v4
-        with:
-          name: adaylar
-          path: adaylar.json
+      # Sonuç aynı dala commit edilir (GITHUB_TOKEN ile yapılan gönderim bu işi yeniden başlatmaz).
+      - run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          mv adaylar.json tools/foto-arama/adaylar.json
+          git add tools/foto-arama/adaylar.json
+          git commit -m "Foto arama sonucu"
+          git push

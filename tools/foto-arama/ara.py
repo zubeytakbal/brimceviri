@@ -10,7 +10,7 @@ sonuc = {}
 
 def cagir(q):
     url = API + "?" + urllib.parse.urlencode({
-        "action": "query", "generator": "search", "gsrnamespace": 6, "gsrsearch": q, "gsrlimit": 30,
+        "action": "query", "generator": "search", "gsrnamespace": 6, "gsrsearch": q, "gsrlimit": 40,
         "prop": "imageinfo", "iiprop": "url|size|extmetadata|mime", "iiurlwidth": 320, "format": "json"})
     bekle = 5
     for _ in range(8):
@@ -34,7 +34,7 @@ for slug, (yer, q) in yerler.items():
         rs.append(dict(title=p["title"], w=ii.get("width"), h=ii.get("height"), mime=ii.get("mime"),
                        lic=g("LicenseShortName"), artist=g("Artist"), page=ii.get("descriptionurl")))
     sonuc[slug] = [r for r in rs if r["mime"] == "image/jpeg" and r["w"] and r["w"] >= 1920 and r["h"] * 1.25 <= r["w"] <= r["h"] * 2.2
-                   and r["lic"] and ("CC" in r["lic"] or "Public domain" in r["lic"] or "PD" in r["lic"])][:6]
+                   and r["lic"] and ("CC" in r["lic"] or "Public domain" in r["lic"] or "PD" in r["lic"])][:8]
     print(slug, len(sonuc[slug]), flush=True)
     time.sleep(2)
 

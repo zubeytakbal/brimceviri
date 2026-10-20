@@ -19502,3 +19502,441 @@ a.all-units-row .all-units-name {
     content: "−";
   }
 }
+
+/* ---------------- Saat bölümü: sahneler (dev saatin altındaki bantlar) ----------------
+   Her bant ekran genişliğinde, kendi renginde, tek bir bilgiyi dev yazıyla anlatır. Derinlik: kabartma yazı
+   (katmanlı gölge), eğik duran kartlar ve takvim yaprağı. */
+.sahne {
+  --sahne-ic: min(1320px, 100%);
+  position: relative;
+  padding: clamp(56px, 9vw, 120px) max(28px, calc((100% - 1320px) / 2 + 28px));
+  overflow: hidden;
+}
+
+.sahne-kagit {
+  background: #f4f3ef;
+  color: #111214;
+  --kabartma: #c9c6bd;
+}
+
+.sahne-turkuaz {
+  background: #168f8c;
+  color: #ffffff;
+  --kabartma: #0b5c5a;
+}
+
+.sahne-gece {
+  background: #0b0c0e;
+  color: #ffffff;
+  --kabartma: #2a2d33;
+}
+
+.sahne-gunes {
+  background: linear-gradient(180deg, #1c2a44 0%, #6b4a6e 45%, #e9925c 100%);
+  color: #ffffff;
+  --kabartma: rgba(0, 0, 0, 0.35);
+}
+
+.sahne-etiket {
+  margin: 0 0 18px;
+  font-family: var(--saat-rakam), Impact, sans-serif;
+  font-size: clamp(1rem, 1.6vw, 1.3rem);
+  letter-spacing: 0.08em;
+  opacity: 0.75;
+  text-transform: uppercase;
+}
+
+.sahne-dev {
+  margin: 0;
+  font-family: var(--saat-rakam), Impact, sans-serif;
+  font-size: clamp(4.5rem, 15vw, 13rem);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Kabartma: yazının altına çapraz katmanlar, üç boyut hissi verir. */
+.sahne-kabartma {
+  text-shadow:
+    1px 1px 0 var(--kabartma),
+    2px 2px 0 var(--kabartma),
+    3px 3px 0 var(--kabartma),
+    4px 4px 0 var(--kabartma),
+    5px 5px 0 var(--kabartma),
+    6px 6px 0 var(--kabartma),
+    7px 7px 0 var(--kabartma),
+    8px 8px 0 var(--kabartma),
+    14px 18px 30px rgba(0, 0, 0, 0.25);
+}
+
+.sahne-buyuk {
+  margin: 14px 0 0;
+  font-family: var(--saat-metin), sans-serif;
+  font-size: clamp(1.5rem, 3.6vw, 3rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.sahne-buyuk b {
+  font-weight: 800;
+}
+
+.sahne-kucuk {
+  margin: 26px 0 0;
+  padding: 0;
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  line-height: 1.6;
+  list-style: none;
+  opacity: 0.85;
+}
+
+.sahne-kucuk li::before {
+  content: "■ ";
+  font-size: 0.7em;
+  vertical-align: 2px;
+}
+
+.sahne-kucuk a {
+  color: inherit;
+  text-underline-offset: 4px;
+}
+
+/* Takvim yaprağı: eğik duran, arkasında iki yaprak daha olan kart. */
+.sahne-takvim-satir {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: clamp(28px, 6vw, 80px);
+}
+
+.sahne-takvim {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  width: clamp(160px, 22vw, 260px);
+  padding: 18px 0 22px;
+  background: #ffffff;
+  color: #111214;
+  transform: rotate(-6deg);
+  box-shadow:
+    10px 10px 0 #0b5c5a,
+    20px 20px 0 rgba(0, 0, 0, 0.18),
+    0 30px 50px rgba(0, 0, 0, 0.3);
+}
+
+.sahne-takvim::before {
+  position: absolute;
+  top: -14px;
+  right: 0;
+  left: 0;
+  height: 14px;
+  background: #111214;
+  content: "";
+}
+
+.sahne-takvim span {
+  font-family: var(--saat-rakam), Impact, sans-serif;
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  text-transform: uppercase;
+}
+
+.sahne-takvim b {
+  font-family: var(--saat-rakam), Impact, sans-serif;
+  font-size: clamp(5rem, 11vw, 9rem);
+  font-weight: 400;
+  line-height: 0.95;
+}
+
+/* İki şehrin 24 saati */
+.sahne-serit {
+  display: grid;
+  gap: 6px;
+  margin-top: 34px;
+}
+
+.sahne-serit-satir {
+  display: grid;
+  grid-template-columns: clamp(80px, 12vw, 150px) repeat(24, minmax(0, 1fr));
+  gap: 3px;
+  align-items: stretch;
+}
+
+.sahne-serit-satir > span {
+  display: grid;
+  place-items: center;
+  height: clamp(40px, 5vw, 64px);
+  font-family: var(--saat-rakam), Impact, sans-serif;
+  font-size: clamp(0.75rem, 1.5vw, 1.3rem);
+}
+
+.sahne-serit-satir > .sahne-serit-ad {
+  justify-items: start;
+  font-size: clamp(0.95rem, 1.8vw, 1.5rem);
+  text-transform: uppercase;
+}
+
+.sahne-serit .is-mesai,
+.sahne-lejant .is-mesai {
+  background: #168f8c;
+  color: #ffffff;
+}
+
+.sahne-serit .is-aksam,
+.sahne-lejant .is-aksam {
+  background: #3a3e46;
+  color: #ffffff;
+}
+
+.sahne-serit .is-gece,
+.sahne-lejant .is-gece {
+  background: #16181c;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.sahne-lejant {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 18px;
+  margin: 16px 0 0;
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+
+.sahne-lejant i {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 6px;
+  vertical-align: -3px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+/* Güneş */
+.sahne-gunes-satir {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px clamp(30px, 8vw, 120px);
+}
+
+.sahne-gunes-satir small {
+  display: block;
+  font-family: var(--saat-rakam), Impact, sans-serif;
+  font-size: clamp(1rem, 2vw, 1.6rem);
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.sahne-kartlar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 18px;
+  margin-top: 40px;
+  perspective: 900px;
+}
+
+.sahne-kart {
+  padding: 18px 20px;
+  border-top: 5px solid #ffd27a;
+  background: rgba(0, 0, 0, 0.32);
+  transform: rotateX(8deg) rotateY(-6deg);
+  box-shadow: 12px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.sahne-kart small {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.sahne-kart b {
+  font-family: var(--saat-rakam), Impact, sans-serif;
+  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+  font-weight: 400;
+}
+
+.sahne-tablo {
+  width: 100%;
+  margin-top: 40px;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+.sahne-tablo caption {
+  padding-bottom: 10px;
+  font-family: var(--saat-rakam), Impact, sans-serif;
+  font-size: 1.2rem;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.sahne-tablo th,
+.sahne-tablo td {
+  padding: 10px 8px 10px 0;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.25);
+  text-align: left;
+}
+
+.sahne-tablo th {
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.sahne-tablo td {
+  font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+  font-weight: 600;
+}
+
+/* Saat farkı çubukları: ortadaki çizgiden geri olanlar sola, ileri olanlar sağa. */
+.sahne-cubuklar {
+  margin: 40px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sahne-cubuklar li {
+  display: grid;
+  grid-template-columns: clamp(110px, 18vw, 230px) 1fr clamp(90px, 12vw, 150px);
+  align-items: center;
+  gap: 14px;
+  padding: 6px 0;
+  border-bottom: 2px solid #dcdad4;
+}
+
+.sahne-cubuk-ad {
+  color: inherit;
+  font-family: var(--saat-rakam), Impact, sans-serif;
+  font-size: clamp(1.2rem, 2.4vw, 2rem);
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.sahne-cubuk-ad:hover {
+  color: #168f8c;
+}
+
+.sahne-cubuk-alan {
+  position: relative;
+  height: clamp(22px, 3vw, 34px);
+  border-left: 0;
+}
+
+.sahne-cubuk-alan::before {
+  position: absolute;
+  top: -8px;
+  bottom: -8px;
+  left: 50%;
+  width: 4px;
+  margin-left: -2px;
+  background: #111214;
+  content: "";
+}
+
+.sahne-cubuk {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  min-width: 4px;
+  box-shadow: 6px 6px 0 #c9c6bd;
+}
+
+.sahne-cubuk.is-ileri {
+  left: 50%;
+  background: #168f8c;
+}
+
+.sahne-cubuk.is-geri {
+  right: 50%;
+  background: #111214;
+}
+
+.sahne-cubuk-deger {
+  font-family: var(--saat-rakam), Impact, sans-serif;
+  font-size: clamp(1.2rem, 2.4vw, 2rem);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.sahne-cubuk-deger small {
+  display: block;
+  font-family: var(--saat-metin), sans-serif;
+  font-size: 0.5em;
+  font-weight: 600;
+  opacity: 0.6;
+}
+
+/* Yakındaki şehirler: üç boyda dev isimler. */
+.sahne-bulut {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 6px 34px;
+  text-align: center;
+}
+
+.sahne-bulut a {
+  color: #ffffff;
+  font-family: var(--saat-rakam), Impact, sans-serif;
+  line-height: 1.1;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.sahne-bulut a:hover {
+  color: #3ec7c2;
+}
+
+.sahne-bulut .is-b {
+  font-size: clamp(2.6rem, 7vw, 6rem);
+  text-shadow: 6px 6px 0 #168f8c;
+}
+
+.sahne-bulut .is-o {
+  font-size: clamp(1.8rem, 4.4vw, 3.6rem);
+}
+
+.sahne-bulut .is-k {
+  font-size: clamp(1.2rem, 2.6vw, 2rem);
+  opacity: 0.75;
+}
+
+@media (max-width: 720px) {
+  .sahne {
+    padding: 56px 16px;
+  }
+
+  .sahne-kabartma {
+    text-shadow:
+      1px 1px 0 var(--kabartma),
+      2px 2px 0 var(--kabartma),
+      3px 3px 0 var(--kabartma),
+      4px 4px 0 var(--kabartma),
+      8px 10px 18px rgba(0, 0, 0, 0.25);
+  }
+
+  .sahne-serit-satir {
+    grid-template-columns: 64px repeat(24, minmax(0, 1fr));
+    gap: 1px;
+  }
+
+  .sahne-serit-satir > span:not(.sahne-serit-ad) {
+    font-size: 0.6rem;
+  }
+
+  .sahne-cubuklar li {
+    grid-template-columns: 96px 1fr 70px;
+    gap: 8px;
+  }
+
+  .sahne-takvim {
+    transform: rotate(-4deg);
+  }
+}

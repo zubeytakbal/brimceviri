@@ -20,12 +20,15 @@ export default function SaatKabugu({
   crumbs,
   faqItems,
   hero,
+  sahneler,
   children,
 }: {
   crumbs: Array<{ href: string; label: string }>;
   faqItems: FaqItem[];
   hero: ReactNode;
-  children: ReactNode;
+  /** Başlık alanının altındaki tam genişlik bantlar. */
+  sahneler?: ReactNode;
+  children?: ReactNode;
 }) {
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -39,6 +42,7 @@ export default function SaatKabugu({
       <SaatUstMenu sehirler={SEHIRLER} />
       <main>
         {hero}
+        {sahneler}
         <div className="saat-icerik">
           <nav className="saat-yol" aria-label="Sayfa yolu">
             {crumbs.map((c, i) => (

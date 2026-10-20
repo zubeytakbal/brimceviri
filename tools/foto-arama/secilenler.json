@@ -1,0 +1,44 @@
+{
+ "mekke": {
+  "dosya": "mekke",
+  "yer": "Mescid-i Haram",
+  "yazar": "Wurzelgnohm",
+  "lisans": "CC0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Masjidul-HaramAerialView_(cropped).jpg"
+ },
+ "bogota-2": {
+  "dosya": "bogota-2",
+  "yer": "Bolívar Meydanı",
+  "yazar": "Andrea Gaetano",
+  "lisans": "CC BY-SA 3.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Plaza_de_Bolivar_-_Bogota_-_ANDREA_GAETANO.JPG"
+ },
+ "lefkosa-2": {
+  "dosya": "lefkosa-2",
+  "yer": "Büyük Han",
+  "yazar": "Diego Delso",
+  "lisans": "CC BY-SA 4.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Gran_Posada,_Nicosia_Norte,_Chipre_del_Norte,_2021-12-13,_DD_37-39_HDR.jpg"
+ },
+ "kisinev": {
+  "dosya": "kisinev",
+  "yer": "Doğuş Katedrali",
+  "yazar": "Mike1979 Russia",
+  "lisans": "CC BY-SA 3.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Alexandrov_Nativity_of_Christ_Cathedral_2024-05-01_0048.jpg"
+ },
+ "minsk": {
+  "dosya": "minsk",
+  "yer": "Bağımsızlık Meydanı",
+  "yazar": "Hanna Zelenko",
+  "lisans": "CC BY-SA 3.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Belarus-Minsk-Independence_Square-1.jpg"
+ },
+ "dusanbe": {
+  "dosya": "dusanbe",
+  "yer": "Duşanbe",
+  "yazar": "Prince Roy from Ho Chi Minh City, Vietnam",
+  "lisans": "CC BY 2.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Dushanbe_City_Walk_(17545397665).jpg"
+ }
+}

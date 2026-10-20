@@ -18864,12 +18864,14 @@ a.all-units-row .all-units-name {
   font-family: var(--saat-metin), system-ui, sans-serif;
 }
 
+/* Üst menü bilerek kaba: kalın siyah şerit, saatle aynı dar ve ağır yazı tipi, kalın çizgili simgeler. */
 .saat-ust {
   position: sticky;
   top: 0;
   z-index: 40;
   background: #000000;
   color: #ffffff;
+  border-bottom: 4px solid var(--saat-vurgu);
 }
 
 .saat-ust-ic {
@@ -18877,45 +18879,41 @@ a.all-units-row .all-units-name {
   align-items: center;
   justify-content: space-between;
   max-width: 1320px;
-  height: 64px;
+  height: 72px;
   margin: 0 auto;
   padding: 0 28px;
 }
 
 .saat-logo {
   color: inherit;
-  font-family: var(--saat-metin), sans-serif;
-  font-size: 1.15rem;
-  font-weight: 800;
-  letter-spacing: -0.02em;
+  font-family: var(--saat-rakam), Impact, sans-serif;
+  font-size: 1.9rem;
+  letter-spacing: 0.01em;
+  line-height: 1;
   text-decoration: none;
+  text-transform: uppercase;
 }
 
 .saat-logo span {
   margin-left: 10px;
-  padding: 3px 9px;
-  border-radius: 4px;
+  padding: 2px 10px 3px;
   background: var(--saat-vurgu);
-  color: #0b0b0b;
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  vertical-align: 3px;
+  color: #000000;
+  font-size: 0.8em;
+  vertical-align: 2px;
 }
 
 .saat-ust-dugmeler {
   display: flex;
-  gap: 6px;
+  gap: 4px;
 }
 
 .saat-ust-dugmeler button {
   display: grid;
   place-items: center;
-  width: 44px;
-  height: 44px;
+  width: 54px;
+  height: 54px;
   border: 0;
-  border-radius: 8px;
   background: transparent;
   color: #ffffff;
   cursor: pointer;
@@ -18923,46 +18921,53 @@ a.all-units-row .all-units-name {
 
 .saat-ust-dugmeler button:hover,
 .saat-ust-dugmeler button[aria-expanded="true"] {
-  background: rgba(255, 255, 255, 0.12);
+  background: var(--saat-vurgu);
+  color: #000000;
 }
 
 .saat-katman {
   position: absolute;
-  top: 64px;
+  top: 76px;
   right: 0;
   left: 0;
-  max-height: calc(100vh - 64px);
+  max-height: calc(100vh - 76px);
   overflow-y: auto;
   background: #000000;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .saat-katman-ic {
   max-width: 1320px;
   margin: 0 auto;
-  padding: 24px 28px 32px;
+  padding: 28px 28px 44px;
 }
 
 .saat-arama {
   width: 100%;
-  padding: 14px 0;
+  padding: 8px 0 10px;
   border: 0;
-  border-bottom: 2px solid #ffffff;
+  border-bottom: 6px solid #ffffff;
+  border-radius: 0;
   background: transparent;
   color: #ffffff;
-  font: 700 clamp(1.4rem, 4vw, 2.2rem) var(--saat-metin), sans-serif;
+  font: 400 clamp(2.4rem, 7vw, 5rem) var(--saat-rakam), Impact, sans-serif;
+  text-transform: uppercase;
   outline: none;
 }
 
+.saat-arama::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
 .saat-arama::placeholder {
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.3);
 }
 
 .saat-sonuclar {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 0 24px;
-  margin: 18px 0 0;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 0 28px;
+  margin: 22px 0 0;
   padding: 0;
   list-style: none;
 }
@@ -18970,20 +18975,35 @@ a.all-units-row .all-units-name {
 .saat-sonuclar a,
 .saat-menu a {
   display: block;
-  padding: 11px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 12px 0;
+  border-bottom: 3px solid #ffffff;
   color: #ffffff;
   text-decoration: none;
 }
 
-.saat-sonuclar a span {
-  color: rgba(255, 255, 255, 0.55);
-  font-size: 0.9rem;
+.saat-sonuclar a b {
+  font-family: var(--saat-rakam), Impact, sans-serif;
+  font-size: 1.7rem;
+  font-weight: 400;
+  text-transform: uppercase;
 }
 
-.saat-sonuclar a:hover b,
+.saat-sonuclar a span {
+  margin-left: 6px;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.saat-sonuclar a:hover,
 .saat-menu a:hover {
-  color: var(--saat-vurgu);
+  background: var(--saat-vurgu);
+  color: #000000;
+}
+
+.saat-sonuclar a:hover span {
+  color: #000000;
 }
 
 .saat-bos {
@@ -18993,16 +19013,17 @@ a.all-units-row .all-units-name {
 
 .saat-menu {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 0 24px;
-  font-size: 1.15rem;
-  font-weight: 700;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 0 28px;
+  font-family: var(--saat-rakam), Impact, sans-serif;
+  font-size: clamp(1.8rem, 3.6vw, 2.8rem);
+  line-height: 1.05;
+  text-transform: uppercase;
 }
 
 .saat-menu .saat-menu-ana {
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 0.95rem;
-  font-weight: 500;
+  border-bottom-color: var(--saat-vurgu);
+  color: var(--saat-vurgu);
 }
 
 /* Genel "main" düzenini (yan yana sütunlar, üst boşluk) bu bölümde sıfırla. */
@@ -19019,7 +19040,7 @@ a.all-units-row .all-units-name {
   position: relative;
   display: flex;
   align-items: flex-end;
-  min-height: calc(100svh - 64px);
+  min-height: calc(100svh - 76px);
   background-color: #111214;
   background-position: center;
   background-size: cover;
@@ -19235,7 +19256,19 @@ a.all-units-row .all-units-name {
   }
 
   .saat-hero {
-    min-height: calc(100svh - 64px);
+    min-height: calc(100svh - 76px);
+  }
+
+  .saat-ust-ic {
+    height: 64px;
+  }
+
+  .saat-logo {
+    font-size: 1.5rem;
+  }
+
+  .saat-katman {
+    top: 68px;
   }
 
   .saat-hero-ic {

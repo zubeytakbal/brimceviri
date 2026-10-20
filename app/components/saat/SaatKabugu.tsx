@@ -4,7 +4,7 @@ import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
 import { trSaatSehirleri } from "../../converter/time/worldCities";
 import { buildSiteUrl } from "../../siteConfig";
 import { SAAT_MENUSU } from "./saatBolumu";
-import { saatMetin, saatRakam } from "./saatFontlari";
+import { saatEski, saatFraktur, saatGazete, saatMetin, saatRakam } from "./saatFontlari";
 import SaatUstMenu from "./SaatUstMenu";
 
 function serializeJsonLd(data: object) {
@@ -20,12 +20,15 @@ export default function SaatKabugu({
   crumbs,
   faqItems,
   hero,
+  sahneler,
   children,
 }: {
   crumbs: Array<{ href: string; label: string }>;
   faqItems: FaqItem[];
   hero: ReactNode;
-  children: ReactNode;
+  /** Başlık alanının altındaki tam genişlik bantlar. */
+  sahneler?: ReactNode;
+  children?: ReactNode;
 }) {
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -33,12 +36,13 @@ export default function SaatKabugu({
     itemListElement: crumbs.map((c, i) => ({ "@type": "ListItem", position: i + 1, name: c.label, item: buildSiteUrl(c.href) })),
   };
   return (
-    <div className={`saat-bolum ${saatRakam.variable} ${saatMetin.variable}`}>
+    <div className={`saat-bolum ${saatRakam.variable} ${saatMetin.variable} ${saatGazete.variable} ${saatEski.variable} ${saatFraktur.variable}`}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(buildFaqSchema(faqItems)) }} />
       <SaatUstMenu sehirler={SEHIRLER} />
       <main>
         {hero}
+        {sahneler}
         <div className="saat-icerik">
           <nav className="saat-yol" aria-label="Sayfa yolu">
             {crumbs.map((c, i) => (

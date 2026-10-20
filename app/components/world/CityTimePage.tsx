@@ -12,6 +12,7 @@ import { differenceMinutes } from "../../converter/time/timezones";
 import TimeToolPage from "../time/TimeToolPage";
 import SaatKabugu from "../saat/SaatKabugu";
 import SehirSaatiHero from "../saat/SehirSaatiHero";
+import SehirSahneleri from "../saat/SehirSahneleri";
 import { sehirGorseli } from "../saat/sehirGorselleri";
 
 // Saat bölümünün favori şeridi ve ana şehir seçimi için şehir listesi.
@@ -439,6 +440,7 @@ export default function CityTimePage({ city, lang, variant = "klasik" }: { city:
           { href: path, label: name },
         ]}
         faqItems={faqItems}
+        sahneler={<SehirSahneleri city={city} />}
         hero={
           <SehirSaatiHero
             sehir={{ slug: city.tr, ad: city.nameTr, timeZone: city.timeZone }}
@@ -449,9 +451,7 @@ export default function CityTimePage({ city, lang, variant = "klasik" }: { city:
             sehirler={SAAT_SEHIRLERI}
           />
         }
-      >
-        {icerik}
-      </SaatKabugu>
+      />
     );
   }
 

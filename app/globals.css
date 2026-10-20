@@ -19372,7 +19372,7 @@ a.all-units-row .all-units-name {
   }
 
   .saat-dev {
-    font-size: min(45vw, 52vh);
+    font-size: min(42vw, 52vh);
   }
 
   .saat-sn {
@@ -19500,5 +19500,948 @@ a.all-units-row .all-units-name {
 
   .mobil-daralt.is-acik > h2:first-child::after {
     content: "−";
+  }
+}
+
+/* ---------------- Saat bölümü: sahneler (dev saatin altındaki bölümler) ----------------
+   Sade, düz düzen: düz renk zeminler, ince ayırıcı çizgiler, büyük ama gölgesiz yazılar. Süs, eğim, gölge yok. */
+.sahne {
+  padding: clamp(48px, 7vw, 96px) max(28px, calc((100% - 1320px) / 2 + 28px));
+  border-top: 1px solid #dcdad4;
+  background: #f4f3ef;
+  color: #111214;
+}
+
+.sahne-gece {
+  border-top-color: #000000;
+  background: #0b0c0e;
+  color: #ffffff;
+}
+
+.sahne-etiket {
+  margin: 0 0 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid currentColor;
+  font-family: var(--saat-metin), sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sahne-dev {
+  margin: 0;
+  font-family: var(--saat-rakam), Impact, sans-serif;
+  font-size: clamp(3.5rem, 10vw, 8.5rem);
+  font-weight: 400;
+  line-height: 0.95;
+  font-variant-numeric: tabular-nums;
+}
+
+.sahne-buyuk {
+  margin: 12px 0 0;
+  font-family: var(--saat-metin), sans-serif;
+  font-size: clamp(1.25rem, 2.6vw, 2.1rem);
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+.sahne-buyuk b {
+  font-weight: 800;
+}
+
+.sahne-kucuk {
+  margin: 24px 0 0;
+  padding: 0;
+  font-size: 1rem;
+  line-height: 1.7;
+  list-style: none;
+  color: inherit;
+  opacity: 0.8;
+}
+
+.sahne-kucuk li + li {
+  border-top: 1px solid rgba(127, 127, 127, 0.25);
+}
+
+.sahne-kucuk a {
+  color: inherit;
+  text-underline-offset: 4px;
+}
+
+/* Saat değişikliği: tarih bloğu ve yazı yan yana, düz. */
+.sahne-takvim-satir {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 24px clamp(28px, 6vw, 72px);
+}
+
+.sahne-takvim {
+  display: grid;
+  justify-items: center;
+  width: clamp(130px, 16vw, 190px);
+  padding: 14px 0 16px;
+  border: 2px solid #111214;
+}
+
+.sahne-takvim span {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.sahne-takvim b {
+  font-family: var(--saat-rakam), Impact, sans-serif;
+  font-size: clamp(4rem, 8vw, 6.5rem);
+  font-weight: 400;
+  line-height: 1;
+}
+
+/* İki şehrin 24 saati */
+.sahne-serit {
+  display: grid;
+  gap: 4px;
+  margin-top: 32px;
+}
+
+.sahne-serit-satir {
+  display: grid;
+  grid-template-columns: clamp(80px, 12vw, 140px) repeat(24, minmax(0, 1fr));
+  gap: 2px;
+}
+
+.sahne-serit-satir > span {
+  display: grid;
+  place-items: center;
+  height: clamp(36px, 4vw, 52px);
+  font-family: var(--saat-metin), sans-serif;
+  font-size: clamp(0.7rem, 1.1vw, 0.95rem);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.sahne-serit-satir > .sahne-serit-ad {
+  justify-items: start;
+  font-weight: 700;
+}
+
+.sahne-serit .is-mesai,
+.sahne-lejant .is-mesai {
+  background: #168f8c;
+  color: #ffffff;
+}
+
+.sahne-serit .is-aksam,
+.sahne-lejant .is-aksam {
+  background: #33363c;
+  color: #ffffff;
+}
+
+.sahne-serit .is-gece,
+.sahne-lejant .is-gece {
+  background: #1a1c20;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.sahne-lejant {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 18px;
+  margin: 14px 0 0;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.sahne-lejant i {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-right: 6px;
+  vertical-align: -2px;
+}
+
+/* Güneş */
+.sahne-gunes-satir {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px clamp(30px, 8vw, 110px);
+}
+
+.sahne-gunes-satir small {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.sahne-kartlar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  margin-top: 36px;
+  border-top: 1px solid #dcdad4;
+  border-left: 1px solid #dcdad4;
+}
+
+.sahne-kart {
+  padding: 16px 18px;
+  border-right: 1px solid #dcdad4;
+  border-bottom: 1px solid #dcdad4;
+}
+
+.sahne-kart small {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.sahne-kart b {
+  font-family: var(--saat-rakam), Impact, sans-serif;
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+  font-weight: 400;
+}
+
+.sahne-tablo {
+  width: 100%;
+  margin-top: 36px;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+.sahne-tablo caption {
+  padding-bottom: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.sahne-tablo th,
+.sahne-tablo td {
+  padding: 10px 8px 10px 0;
+  border-bottom: 1px solid #dcdad4;
+  text-align: left;
+}
+
+.sahne-tablo thead th {
+  border-bottom: 2px solid #111214;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.sahne-tablo td {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* Saat farkı: ortadaki çizgiden geri olanlar sola, ileri olanlar sağa; düz çubuklar. */
+.sahne-cubuklar {
+  margin: 32px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sahne-cubuklar li {
+  display: grid;
+  grid-template-columns: clamp(110px, 16vw, 200px) 1fr clamp(80px, 10vw, 120px);
+  align-items: center;
+  gap: 14px;
+  padding: 8px 0;
+  border-bottom: 1px solid #dcdad4;
+}
+
+.sahne-cubuk-ad {
+  color: inherit;
+  font-family: var(--saat-metin), sans-serif;
+  font-size: clamp(1rem, 1.6vw, 1.3rem);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.sahne-cubuk-ad:hover {
+  color: #168f8c;
+  text-decoration: underline;
+}
+
+.sahne-cubuk-alan {
+  position: relative;
+  height: 14px;
+}
+
+.sahne-cubuk-alan::before {
+  position: absolute;
+  top: -8px;
+  bottom: -8px;
+  left: 50%;
+  width: 1px;
+  background: #111214;
+  content: "";
+}
+
+.sahne-cubuk {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  min-width: 2px;
+}
+
+.sahne-cubuk.is-ileri {
+  left: 50%;
+  background: #168f8c;
+}
+
+.sahne-cubuk.is-geri {
+  right: 50%;
+  background: #6b6e75;
+}
+
+.sahne-cubuk-deger {
+  font-family: var(--saat-rakam), Impact, sans-serif;
+  font-size: clamp(1.2rem, 2vw, 1.7rem);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.sahne-cubuk-deger small {
+  display: block;
+  font-family: var(--saat-metin), sans-serif;
+  font-size: 0.55em;
+  font-weight: 600;
+  opacity: 0.6;
+}
+
+/* Yakındaki şehirler: düz liste. */
+.sahne-bulut {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.sahne-bulut a {
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  font-family: var(--saat-metin), sans-serif;
+  font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.sahne-bulut a:hover {
+  color: #3ec7c2;
+}
+
+@media (max-width: 720px) {
+  .sahne {
+    padding: 48px 16px;
+  }
+
+  .sahne-serit-satir {
+    grid-template-columns: 60px repeat(24, minmax(0, 1fr));
+    gap: 1px;
+  }
+
+  .sahne-serit-satir > span:not(.sahne-serit-ad) {
+    font-size: 0.55rem;
+  }
+
+  .sahne-cubuklar li {
+    grid-template-columns: 96px 1fr 64px;
+    gap: 8px;
+  }
+}
+
+/* Gazete düzeni: kâğıt zemin, siyah mürekkep, çift çizgiler, tırnaklı manşet yazısı. Saatin altındaki tüm bölümler. */
+.sahneler {
+  background: #f2efe6;
+  color: #111111;
+}
+
+.sahneler .sahne {
+  border-top: 0;
+  background: transparent;
+  color: inherit;
+}
+
+.sahneler .sahne + .sahne {
+  padding-top: 0;
+}
+
+.sahneler .sahne-etiket {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 28px;
+  padding: 10px 0 8px;
+  border-top: 4px double #111111;
+  border-bottom: 1px solid #111111;
+  font-family: var(--saat-gazete), Georgia, serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-variant: small-caps;
+  letter-spacing: 0.06em;
+  text-transform: none;
+}
+
+.sahneler .sahne-dev {
+  font-family: var(--saat-gazete), Georgia, serif;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+}
+
+.sahneler .sahne-buyuk {
+  font-family: var(--saat-gazete), Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.sahneler .sahne-buyuk b {
+  font-style: normal;
+  font-weight: 900;
+}
+
+.sahneler .sahne-kucuk {
+  max-width: 62ch;
+  font-family: var(--saat-gazete), Georgia, serif;
+  font-size: 1.05rem;
+  opacity: 1;
+}
+
+.sahneler .sahne-kucuk li + li {
+  border-top-color: #cfc9b8;
+}
+
+.sahneler .sahne-takvim {
+  border: 0;
+  border-top: 4px double #111111;
+  border-bottom: 4px double #111111;
+}
+
+.sahneler .sahne-takvim span {
+  font-family: var(--saat-gazete), Georgia, serif;
+  font-variant: small-caps;
+  text-transform: none;
+}
+
+.sahneler .sahne-takvim b,
+.sahneler .sahne-kart b,
+.sahneler .sahne-cubuk-deger {
+  font-family: var(--saat-gazete), Georgia, serif;
+  font-weight: 900;
+}
+
+/* Saat şeridi: mürekkep tonlarıyla. */
+.sahneler .sahne-serit .is-mesai,
+.sahneler .sahne-lejant .is-mesai {
+  background: #111111;
+  color: #f2efe6;
+}
+
+.sahneler .sahne-serit .is-aksam,
+.sahneler .sahne-lejant .is-aksam {
+  background: #9a9483;
+  color: #111111;
+}
+
+.sahneler .sahne-serit .is-gece,
+.sahneler .sahne-lejant .is-gece {
+  background: #e2ddcf;
+  color: #8a8474;
+}
+
+.sahneler .sahne-serit-satir > .sahne-serit-ad {
+  background: transparent;
+  font-family: var(--saat-gazete), Georgia, serif;
+}
+
+.sahneler .sahne-lejant i {
+  border: 1px solid #111111;
+}
+
+/* Güneş: doğuş ve batış iki gazete sütunu, arada dikey çizgi. */
+.sahneler .sahne-gunes-satir > div + div {
+  padding-left: clamp(30px, 8vw, 110px);
+  border-left: 1px solid #111111;
+}
+
+.sahneler .sahne-gunes-satir small,
+.sahneler .sahne-kart small,
+.sahneler .sahne-tablo caption,
+.sahneler .sahne-tablo thead th {
+  font-family: var(--saat-gazete), Georgia, serif;
+  font-variant: small-caps;
+  letter-spacing: 0.05em;
+  text-transform: none;
+}
+
+.sahneler .sahne-kartlar,
+.sahneler .sahne-kart {
+  border-color: #111111;
+}
+
+.sahneler .sahne-tablo td {
+  font-family: var(--saat-gazete), Georgia, serif;
+  font-weight: 400;
+}
+
+.sahneler .sahne-tablo th,
+.sahneler .sahne-tablo td,
+.sahneler .sahne-cubuklar li {
+  border-bottom-color: #cfc9b8;
+}
+
+.sahneler .sahne-tablo thead th {
+  border-bottom: 2px solid #111111;
+}
+
+.sahneler .sahne-cubuk-ad {
+  font-family: var(--saat-gazete), Georgia, serif;
+}
+
+.sahneler .sahne-cubuk.is-ileri {
+  background: #111111;
+}
+
+.sahneler .sahne-cubuk.is-geri {
+  background: #9a9483;
+}
+
+.sahneler .sahne-cubuk-ad:hover,
+.sahneler .sahne-bulut a:hover {
+  color: #168f8c;
+}
+
+/* Yakındaki şehirler: sütun çizgili gazete listesi. */
+.sahneler .sahne-bulut {
+  border-top: 0;
+  column-gap: 0;
+}
+
+.sahneler .sahne-bulut a {
+  padding: 10px 14px;
+  border-right: 1px solid #cfc9b8;
+  border-bottom: 1px solid #cfc9b8;
+  color: #111111;
+  font-family: var(--saat-gazete), Georgia, serif;
+  font-weight: 700;
+}
+
+.sahneler + .saat-icerik,
+.saat-bolum .sahneler ~ .saat-icerik {
+  background: #f2efe6;
+  max-width: none;
+  padding-right: max(24px, calc((100% - 860px) / 2));
+  padding-left: max(24px, calc((100% - 860px) / 2));
+}
+
+.saat-bolum .sahneler ~ .saat-icerik h2 {
+  padding-top: 10px;
+  border-top: 4px double #111111;
+  font-family: var(--saat-gazete), Georgia, serif;
+  font-weight: 900;
+}
+
+.saat-bolum .sahneler ~ .saat-icerik h3 {
+  font-family: var(--saat-gazete), Georgia, serif;
+}
+
+.saat-bolum .sahneler ~ .saat-icerik .saat-sss {
+  border-bottom-color: #cfc9b8;
+}
+
+/* Playfair rakamları varsayılanda eski usul (aşağı sarkan); saatlerde düz hizalı rakam okunaklı. */
+.sahneler {
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+/* ---------------- Yıpranmış gazete: beyaz kâğıt, gri gren, katlanma izleri, sürtünmüş kenarlar, mürekkep dağılması,
+   nokta tramlı (halftone) baskı. Doku satır içi SVG gürültüsüdür; dış dosya yok. */
+.sahneler {
+  --gazete-kagit: #fbfaf7;
+  --gazete-murekkep: #141414;
+  --gazete-solgun: #5d5d5d;
+  --gazete-cizgi: #cfcdc7;
+  --gazete-masa: #161616;
+  position: relative;
+  background-color: var(--gazete-kagit);
+  background-image:
+    /* dikey katlanma izi: ortada ince koyu-açık çift çizgi */
+    linear-gradient(90deg, transparent calc(50% - 2px), rgba(0, 0, 0, 0.08) calc(50% - 1px), rgba(255, 255, 255, 0.9) 50%, transparent calc(50% + 2px)),
+    /* yatay katlanma izleri */
+    linear-gradient(180deg, transparent calc(34% - 2px), rgba(0, 0, 0, 0.06) calc(34% - 1px), rgba(255, 255, 255, 0.9) 34%, transparent calc(34% + 2px)),
+    linear-gradient(180deg, transparent calc(68% - 2px), rgba(0, 0, 0, 0.06) calc(68% - 1px), rgba(255, 255, 255, 0.9) 68%, transparent calc(68% + 2px)),
+    /* elden ele geçmiş kenarlar: hafif gri kirlenme */
+    radial-gradient(ellipse at 50% 45%, transparent 70%, rgba(0, 0, 0, 0.06) 100%),
+    /* sürtünme izleri */
+    radial-gradient(ellipse 18% 6% at 22% 18%, rgba(0, 0, 0, 0.035), transparent),
+    radial-gradient(ellipse 12% 9% at 78% 52%, rgba(0, 0, 0, 0.03), transparent),
+    radial-gradient(ellipse 22% 5% at 35% 86%, rgba(0, 0, 0, 0.035), transparent),
+    /* gren */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.2 0 0 0 0 0.2 0 0 0 0 0.2 0 0 0 0.09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  color: var(--gazete-murekkep);
+  font-family: var(--saat-eski), Georgia, serif;
+  /* mürekkep kâğıda hafif yayılır */
+  text-shadow: 0 0 0.6px rgba(20, 20, 20, 0.5);
+}
+
+.sahneler .sahne {
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+/* Gazete başlığı */
+.gazete-baslik {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 36px 28px 0;
+  text-align: center;
+}
+
+.gazete-ust,
+.gazete-tarih {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 16px;
+  font-family: var(--saat-eski), Georgia, serif;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.gazete-ust {
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--gazete-murekkep);
+}
+
+.gazete-ad {
+  margin: 4px 0 0;
+  font-family: var(--saat-fraktur), "Old English Text MT", serif;
+  font-size: clamp(3.2rem, 10vw, 8rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+}
+
+.gazete-tarih {
+  margin-top: 6px;
+  padding: 8px 0;
+  border-top: 4px double var(--gazete-murekkep);
+  border-bottom: 4px double var(--gazete-murekkep);
+  font-style: normal;
+  font-variant: small-caps;
+  letter-spacing: 0.06em;
+}
+
+/* Metin: eski baskı harfi, iki yana yaslı */
+.sahneler .sahne-kucuk,
+.sahneler .sahne-tablo td,
+.sahneler .sahne-lejant {
+  font-family: var(--saat-eski), Georgia, serif;
+}
+
+.sahneler .sahne-kucuk {
+  text-align: justify;
+  hyphens: auto;
+}
+
+.sahneler .sahne-etiket,
+.sahneler .sahne-tablo th,
+.sahneler .sahne-tablo td,
+.sahneler .sahne-cubuklar li,
+.sahneler .sahne-kucuk li + li,
+.sahneler .sahne-bulut a {
+  border-color: var(--gazete-cizgi);
+}
+
+.sahneler .sahne-etiket {
+  border-top-color: var(--gazete-murekkep);
+  border-bottom-color: var(--gazete-murekkep);
+}
+
+/* Nokta tram: baskı makinesinin gri tonları */
+.sahneler .sahne-cubuk.is-ileri,
+.sahneler .sahne-serit .is-mesai,
+.sahneler .sahne-lejant .is-mesai {
+  background: var(--gazete-murekkep);
+  color: var(--gazete-kagit);
+}
+
+.sahneler .sahne-cubuk.is-geri,
+.sahneler .sahne-serit .is-aksam,
+.sahneler .sahne-lejant .is-aksam {
+  background-color: transparent;
+  background-image: radial-gradient(circle, var(--gazete-murekkep) 0.9px, transparent 1.3px);
+  background-size: 4px 4px;
+  color: var(--gazete-murekkep);
+}
+
+.sahneler .sahne-serit .is-gece,
+.sahneler .sahne-lejant .is-gece {
+  background-color: transparent;
+  background-image: radial-gradient(circle, rgba(29, 26, 21, 0.35) 0.6px, transparent 1px);
+  background-size: 4px 4px;
+  color: var(--gazete-solgun);
+}
+
+.sahneler .sahne-serit .is-aksam {
+  font-weight: 700;
+  text-shadow: 0 0 2px var(--gazete-kagit), 0 0 2px var(--gazete-kagit);
+}
+
+.sahneler .sahne-kartlar,
+.sahneler .sahne-kart {
+  border-color: var(--gazete-murekkep);
+}
+
+.sahneler .sahne-cubuk-alan::before {
+  background: var(--gazete-murekkep);
+}
+
+.sahneler .sahne-cubuk-deger small {
+  font-family: var(--saat-eski), Georgia, serif;
+  font-style: italic;
+}
+
+.saat-bolum .sahneler ~ .saat-icerik {
+  background-color: #fbfaf7;
+  color: #141414;
+  font-family: var(--saat-eski), Georgia, serif;
+}
+
+.saat-bolum .sahneler ~ .saat-icerik p {
+  color: #262626;
+}
+
+.saat-bolum .sahneler ~ .saat-icerik .saat-sss {
+  border-bottom-color: #cfcdc7;
+}
+
+@media (max-width: 720px) {
+  .gazete-baslik {
+    padding: 28px 16px 0;
+  }
+
+  .gazete-ust,
+  .gazete-tarih {
+    justify-content: center;
+    font-size: 0.8rem;
+  }
+
+  .sahneler {
+    background-image:
+      linear-gradient(180deg, transparent calc(34% - 2px), rgba(0, 0, 0, 0.06) calc(34% - 1px), rgba(255, 255, 255, 0.9) 34%, transparent calc(34% + 2px)),
+      radial-gradient(ellipse at 50% 45%, transparent 70%, rgba(0, 0, 0, 0.06) 100%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.2 0 0 0 0 0.2 0 0 0 0 0.2 0 0 0 0.09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+/* ---------------- Yırtık ve eskimiş kenarlar ----------------
+   Kâğıdın üst ve alt kenarı yırtık: kâğıt renginde, çokgenle kesilmiş şeritler (koyu kenar gölgesiyle). */
+.sahneler::before,
+.sahneler::after {
+  position: absolute;
+  right: 0;
+  left: 0;
+  z-index: 2;
+  height: 26px;
+  background: var(--gazete-kagit);
+  content: "";
+  filter: drop-shadow(0 -2px 1px rgba(0, 0, 0, 0.35));
+  pointer-events: none;
+}
+
+.sahneler::before {
+  top: -25px;
+  clip-path: polygon(0.00% 11%, 0.91% 5%, 1.82% 26%, 2.73% 36%, 3.64% 30%, 4.55% 6%, 5.45% 58%, 6.36% 16%, 7.27% 66%, 8.18% 28%, 9.09% 43%, 10.00% 57%, 10.91% 8%, 11.82% 57%, 12.73% 41%, 13.64% 26%, 14.55% 4%, 15.45% 14%, 16.36% 30%, 17.27% 41%, 18.18% 21%, 19.09% 49%, 20.00% 40%, 20.91% 61%, 21.82% 20%, 22.73% 47%, 23.64% 53%, 24.55% 34%, 25.45% 47%, 26.36% 40%, 27.27% 59%, 28.18% 42%, 29.09% 32%, 30.00% 66%, 30.91% 46%, 31.82% 49%, 32.73% 70%, 33.64% 20%, 34.55% 47%, 35.45% 32%, 36.36% 8%, 37.27% 54%, 38.18% 17%, 39.09% 61%, 40.00% 31%, 40.91% 62%, 41.82% 60%, 42.73% 29%, 43.64% 62%, 44.55% 49%, 45.45% 16%, 46.36% 34%, 47.27% 18%, 48.18% 29%, 49.09% 40%, 50.00% 81%, 50.91% 43%, 51.82% 4%, 52.73% 87%, 53.64% 88%, 54.55% 28%, 55.45% 44%, 56.36% 5%, 57.27% 11%, 58.18% 4%, 59.09% 11%, 60.00% 25%, 60.91% 61%, 61.82% 10%, 62.73% 24%, 63.64% 9%, 64.55% 70%, 65.45% 34%, 66.36% 7%, 67.27% 19%, 68.18% 11%, 69.09% 67%, 70.00% 10%, 70.91% 2%, 71.82% 68%, 72.73% 82%, 73.64% 26%, 74.55% 54%, 75.45% 55%, 76.36% 16%, 77.27% 69%, 78.18% 88%, 79.09% 52%, 80.00% 36%, 80.91% 2%, 81.82% 20%, 82.73% 48%, 83.64% 67%, 84.55% 99%, 85.45% 62%, 86.36% 16%, 87.27% 14%, 88.18% 63%, 89.09% 34%, 90.00% 56%, 90.91% 46%, 91.82% 87%, 92.73% 33%, 93.64% 55%, 94.55% 56%, 95.45% 64%, 96.36% 66%, 97.27% 12%, 98.18% 11%, 99.09% 88%, 100.00% 58%, 100% 100%, 0% 100%);
+}
+
+.sahneler::after {
+  bottom: -25px;
+  clip-path: polygon(0% 0%, 100% 0%, 100.00% 100%, 99.09% 31%, 98.18% 37%, 97.27% 25%, 96.36% 58%, 95.45% 64%, 94.55% 96%, 93.64% 44%, 92.73% 77%, 91.82% 61%, 90.91% 36%, 90.00% 43%, 89.09% 67%, 88.18% 59%, 87.27% 47%, 86.36% 46%, 85.45% 67%, 84.55% 96%, 83.64% 66%, 82.73% 34%, 81.82% 39%, 80.91% 71%, 80.00% 61%, 79.09% 95%, 78.18% 48%, 77.27% 85%, 76.36% 71%, 75.45% 61%, 74.55% 61%, 73.64% 50%, 72.73% 49%, 71.82% 81%, 70.91% 73%, 70.00% 33%, 69.09% 91%, 68.18% 80%, 67.27% 76%, 66.36% 98%, 65.45% 98%, 64.55% 51%, 63.64% 72%, 62.73% 52%, 61.82% 33%, 60.91% 67%, 60.00% 6%, 59.09% 89%, 58.18% 56%, 57.27% 57%, 56.36% 16%, 55.45% 31%, 54.55% 62%, 53.64% 89%, 52.73% 63%, 51.82% 65%, 50.91% 78%, 50.00% 97%, 49.09% 92%, 48.18% 66%, 47.27% 40%, 46.36% 67%, 45.45% 45%, 44.55% 84%, 43.64% 66%, 42.73% 97%, 41.82% 34%, 40.91% 97%, 40.00% 57%, 39.09% 74%, 38.18% 35%, 37.27% 92%, 36.36% 38%, 35.45% 50%, 34.55% 36%, 33.64% 61%, 32.73% 76%, 31.82% 35%, 30.91% 83%, 30.00% 45%, 29.09% 77%, 28.18% 62%, 27.27% 58%, 26.36% 39%, 25.45% 79%, 24.55% 56%, 23.64% 15%, 22.73% 52%, 21.82% 56%, 20.91% 64%, 20.00% 64%, 19.09% 30%, 18.18% 37%, 17.27% 40%, 16.36% 86%, 15.45% 68%, 14.55% 97%, 13.64% 50%, 12.73% 51%, 11.82% 58%, 10.91% 81%, 10.00% 59%, 9.09% 81%, 8.18% 68%, 7.27% 35%, 6.36% 70%, 5.45% 53%, 4.55% 49%, 3.64% 48%, 2.73% 40%, 1.82% 100%, 0.91% 66%, 0.00% 85%);
+  filter: drop-shadow(0 2px 1px rgba(0, 0, 0, 0.3));
+}
+
+.saat-bolum .sahneler ~ .saat-icerik {
+  padding-top: 48px;
+}
+
+/* Bölümler arasında kâğıt kenardan içeri doğru yırtılmış: yarıktan alttaki koyu zemin görünür. Sırayla soldan ve sağdan. */
+.sahneler .sahne + .sahne::before {
+  display: block;
+  width: min(62vw, 760px);
+  height: 22px;
+  margin: 0 0 44px calc((100% - 100vw) / 2);
+  /* yarığın kenarında lifli, gri kâğıt kopuğu; ortada koyu zemin */
+  background: linear-gradient(180deg, #b9b8b4 0%, #8d8c88 22%, var(--gazete-masa) 36%, var(--gazete-masa) 64%, #8d8c88 78%, #b9b8b4 100%);
+  clip-path: polygon(0.00% 16%, 0.91% 18%, 1.82% 11%, 2.73% 40%, 3.64% 0%, 4.55% 0%, 5.45% 20%, 6.36% 8%, 7.27% 21%, 8.18% 21%, 9.09% 16%, 10.00% 26%, 10.91% 16%, 11.82% 31%, 12.73% 30%, 13.64% 8%, 14.55% 21%, 15.45% 3%, 16.36% 35%, 17.27% 16%, 18.18% 18%, 19.09% 39%, 20.00% 27%, 20.91% 14%, 21.82% 10%, 22.73% 37%, 23.64% 24%, 24.55% 35%, 25.45% 21%, 26.36% 38%, 27.27% 25%, 28.18% 26%, 29.09% 14%, 30.00% 30%, 30.91% 34%, 31.82% 40%, 32.73% 24%, 33.64% 13%, 34.55% 8%, 35.45% 29%, 36.36% 5%, 37.27% 36%, 38.18% 33%, 39.09% 41%, 40.00% 18%, 40.91% 12%, 41.82% 24%, 42.73% 27%, 43.64% 37%, 44.55% 22%, 45.45% 29%, 46.36% 32%, 47.27% 20%, 48.18% 31%, 49.09% 14%, 50.00% 24%, 50.91% 28%, 51.82% 39%, 52.73% 27%, 53.64% 26%, 54.55% 34%, 55.45% 41%, 56.36% 29%, 57.27% 24%, 58.18% 22%, 59.09% 44%, 60.00% 36%, 60.91% 29%, 61.82% 38%, 62.73% 40%, 63.64% 34%, 64.55% 40%, 65.45% 30%, 66.36% 31%, 67.27% 37%, 68.18% 27%, 69.09% 28%, 70.00% 31%, 70.91% 32%, 71.82% 37%, 72.73% 40%, 73.64% 23%, 74.55% 36%, 75.45% 46%, 76.36% 42%, 77.27% 39%, 78.18% 38%, 79.09% 33%, 80.00% 43%, 80.91% 41%, 81.82% 43%, 82.73% 33%, 83.64% 35%, 84.55% 35%, 85.45% 39%, 86.36% 37%, 87.27% 37%, 88.18% 36%, 89.09% 44%, 90.00% 41%, 90.91% 35%, 91.82% 43%, 92.73% 37%, 93.64% 45%, 94.55% 40%, 95.45% 39%, 96.36% 47%, 97.27% 47%, 98.18% 44%, 99.09% 44%, 100% 50%, 100% 50%, 99.09% 55%, 98.18% 57%, 97.27% 54%, 96.36% 56%, 95.45% 52%, 94.55% 58%, 93.64% 57%, 92.73% 61%, 91.82% 64%, 90.91% 63%, 90.00% 64%, 89.09% 64%, 88.18% 62%, 87.27% 64%, 86.36% 66%, 85.45% 60%, 84.55% 59%, 83.64% 62%, 82.73% 62%, 81.82% 62%, 80.91% 60%, 80.00% 65%, 79.09% 72%, 78.18% 67%, 77.27% 55%, 76.36% 69%, 75.45% 62%, 74.55% 64%, 73.64% 53%, 72.73% 64%, 71.82% 72%, 70.91% 65%, 70.00% 59%, 69.09% 65%, 68.18% 73%, 67.27% 62%, 66.36% 70%, 65.45% 70%, 64.55% 76%, 63.64% 72%, 62.73% 64%, 61.82% 61%, 60.91% 77%, 60.00% 73%, 59.09% 75%, 58.18% 60%, 57.27% 70%, 56.36% 82%, 55.45% 75%, 54.55% 74%, 53.64% 77%, 52.73% 75%, 51.82% 82%, 50.91% 82%, 50.00% 81%, 49.09% 59%, 48.18% 80%, 47.27% 64%, 46.36% 74%, 45.45% 67%, 44.55% 83%, 43.64% 71%, 42.73% 62%, 41.82% 64%, 40.91% 62%, 40.00% 78%, 39.09% 71%, 38.18% 67%, 37.27% 86%, 36.36% 59%, 35.45% 66%, 34.55% 79%, 33.64% 81%, 32.73% 76%, 31.82% 73%, 30.91% 86%, 30.00% 76%, 29.09% 61%, 28.18% 61%, 27.27% 78%, 26.36% 93%, 25.45% 81%, 24.55% 94%, 23.64% 85%, 22.73% 78%, 21.82% 60%, 20.91% 69%, 20.00% 78%, 19.09% 76%, 18.18% 83%, 17.27% 74%, 16.36% 76%, 15.45% 71%, 14.55% 73%, 13.64% 73%, 12.73% 83%, 11.82% 75%, 10.91% 100%, 10.00% 76%, 9.09% 80%, 8.18% 90%, 7.27% 58%, 6.36% 55%, 5.45% 73%, 4.55% 85%, 3.64% 77%, 2.73% 81%, 1.82% 78%, 0.91% 83%, 0.00% 94%);
+  content: "";
+}
+
+.sahneler .sahne + .sahne:nth-of-type(odd)::before {
+  width: min(44vw, 520px);
+  margin-right: calc((100% - 100vw) / 2);
+  margin-left: auto;
+  transform: scaleX(-1);
+}
+
+/* Yıpranma: kenardan koparılmış parça, gri sürtünme lekeleri. */
+/* Yırtık ve leke taşmaları yatay kaydırma yaratmasın; yırtık kenarlar dikeyde dışarı taşabilir. */
+.sahneler {
+  overflow-x: clip;
+  overflow-y: visible;
+}
+
+.sahneler > .gazete-baslik {
+  position: relative;
+}
+
+/* Sağ kenardan koparılmış küçük parça */
+.sahneler > .gazete-baslik::after {
+  position: absolute;
+  top: 30px;
+  right: calc((100% - 100vw) / 2);
+  width: 46px;
+  height: 120px;
+  background: var(--gazete-masa);
+  clip-path: polygon(100% 0%, 78% 6%, 62% 15%, 70% 24%, 41% 33%, 52% 42%, 24% 51%, 38% 60%, 30% 70%, 55% 79%, 63% 88%, 84% 95%, 100% 100%);
+  content: "";
+  pointer-events: none;
+}
+
+.sahneler .sahne {
+  position: relative;
+}
+
+/* Sol kenarda yırtık çentik (3. ve 5. bölüm) */
+.sahneler .sahne:nth-of-type(3)::after,
+.sahneler .sahne:nth-of-type(5)::after {
+  position: absolute;
+  top: 38%;
+  left: calc((100% - 100vw) / 2);
+  width: 34px;
+  height: 90px;
+  background: var(--gazete-masa);
+  clip-path: polygon(0% 0%, 30% 9%, 22% 20%, 58% 31%, 44% 42%, 86% 52%, 50% 63%, 64% 74%, 28% 84%, 36% 93%, 0% 100%);
+  content: "";
+  pointer-events: none;
+}
+
+.sahneler .sahne:nth-of-type(5)::after {
+  top: 62%;
+  height: 64px;
+}
+
+.sahneler .sahne:nth-of-type(2) {
+  background-image:
+    radial-gradient(ellipse 30% 12% at 14% 30%, rgba(0, 0, 0, 0.04), transparent),
+    radial-gradient(ellipse 20% 10% at 88% 72%, rgba(0, 0, 0, 0.035), transparent);
+}
+
+.sahneler .sahne:nth-of-type(4) {
+  background-image:
+    radial-gradient(ellipse 24% 14% at 80% 20%, rgba(0, 0, 0, 0.035), transparent),
+    linear-gradient(170deg, transparent 70%, rgba(0, 0, 0, 0.04) 100%);
+}
+
+@media (max-width: 720px) {
+  .sahneler > .gazete-baslik::after {
+    top: 8px;
+    width: 26px;
+    height: 70px;
+  }
+}
+
+
+/* ---------------- Gazetenin ön sayfası: şehir manşeti ve nokta tramlı şehir fotoğrafı ---------------- */
+.gazete-on {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 28px;
+  align-items: start;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 28px 28px 8px;
+}
+
+.gazete-on.is-fotosuz {
+  grid-template-columns: 1fr;
+}
+
+.gazete-manset {
+  margin: 0;
+  font-family: var(--saat-gazete), Georgia, serif;
+  font-size: clamp(2.2rem, 5.4vw, 4.6rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.gazete-spot {
+  margin: 16px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--gazete-murekkep);
+  font-family: var(--saat-eski), Georgia, serif;
+  font-size: 1.15rem;
+  font-style: italic;
+  line-height: 1.45;
+}
+
+.gazete-foto {
+  margin: 0;
+}
+
+/* Fotoğraf gazete baskısı gibi: siyah-beyaz, sert kontrast, üstünde nokta tram ve hafif solma. */
+.gazete-foto-cerceve {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border: 1px solid var(--gazete-murekkep);
+  aspect-ratio: 16 / 9;
+  background: #d8d8d8;
+}
+
+.gazete-foto img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.35) brightness(1.08);
+}
+
+.gazete-foto-cerceve::after {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle, rgba(0, 0, 0, 0.24) 0.7px, transparent 1.2px) 0 0 / 3px 3px,
+    radial-gradient(ellipse at 50% 50%, transparent 60%, rgba(255, 255, 255, 0.28) 100%);
+  content: "";
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.gazete-foto figcaption {
+  margin-top: 6px;
+  color: var(--gazete-solgun);
+  font-family: var(--saat-eski), Georgia, serif;
+  font-size: 0.85rem;
+  font-style: italic;
+  text-shadow: none;
+}
+
+@media (max-width: 720px) {
+  .gazete-on {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 22px 16px 4px;
   }
 }

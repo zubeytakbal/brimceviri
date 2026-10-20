@@ -1,0 +1,58 @@
+{
+ "istanbul": {
+  "dosya": "istanbul",
+  "yer": "Ayasofya",
+  "yazar": "Arild Vågen",
+  "lisans": "CC BY-SA 3.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Hagia_Sophia_Mars_2013.jpg"
+ },
+ "ankara": {
+  "dosya": "ankara",
+  "yer": "Anıtkabir",
+  "yazar": "William Neuheisel from DC, US",
+  "lisans": "CC BY 2.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Ataturk%27s_Mausoleum_(6225341313).jpg"
+ },
+ "paris": {
+  "dosya": "paris",
+  "yer": "Eyfel Kulesi",
+  "yazar": "ThePromenader",
+  "lisans": "CC BY-SA 3.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Eiffel_st-jacques_horz_jms.jpg"
+ },
+ "berlin": {
+  "dosya": "berlin",
+  "yer": "Brandenburg Kapısı",
+  "yazar": "Thomas Wolf, www.foto-tw.de",
+  "lisans": "CC BY-SA 3.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Brandenburger_Tor_morgens.jpg"
+ },
+ "madrid": {
+  "dosya": "madrid",
+  "yer": "Kraliyet Sarayı",
+  "yazar": "Carlos Delgado",
+  "lisans": "CC BY-SA 3.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Palacio_Real_de_Madrid_-_13.jpg"
+ },
+ "milano": {
+  "dosya": "milano",
+  "yer": "Milano Katedrali",
+  "yazar": "Daniel Case",
+  "lisans": "CC BY-SA 3.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Milan_Duomo_with_tourists_in_Piazza.jpg"
+ },
+ "viyana": {
+  "dosya": "viyana",
+  "yer": "Schönbrunn Sarayı",
+  "yazar": "Martin Falbisoner",
+  "lisans": "CC BY-SA 4.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Schoenbrunn_Palace_as_seen_from_Neptune_Fountain,_September_2016.jpg"
+ },
+ "zurih": {
+  "dosya": "zurih",
+  "yer": "Limmat ve Grossmünster",
+  "yazar": "Urb Sinclair",
+  "lisans": "CC BY 3.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Zuerich_Limmat_Grossmuenster.JPG"
+ }
+}

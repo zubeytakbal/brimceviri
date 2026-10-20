@@ -110,5 +110,33 @@
   "yazar": "abdallahh",
   "lisans": "CC BY 2.0",
   "kaynak": "https://commons.wikimedia.org/wiki/File:Plateau_Abidjan_de_nuit.jpg"
+ },
+ "kampala": {
+  "dosya": "kampala",
+  "yer": "Kampala",
+  "yazar": "Andrew Regan",
+  "lisans": "CC BY-SA 3.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Uganda-Development.JPG"
+ },
+ "darusselam": {
+  "dosya": "darusselam",
+  "yer": "Darüsselam",
+  "yazar": "Chen Hualin",
+  "lisans": "CC BY-SA 3.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:The_waterfront_of_Dar_es_Salaam.JPG"
+ },
+ "cibuti": {
+  "dosya": "cibuti",
+  "yer": "Cibuti",
+  "yazar": "Francisco Anzola",
+  "lisans": "CC BY 2.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Place_Menelik_in_Djibouti_city_(25058480721).jpg"
+ },
+ "suva": {
+  "dosya": "suva",
+  "yer": "Suva",
+  "yazar": "Ftaaffe",
+  "lisans": "CC BY-SA 4.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Suva_harbour_fiji.jpg"
  }
 }

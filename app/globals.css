@@ -19027,6 +19027,15 @@ a.all-units-row .all-units-name {
   isolation: isolate;
 }
 
+.saat-hero-foto {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .saat-hero::before {
   position: absolute;
   inset: 0;
@@ -19044,6 +19053,12 @@ a.all-units-row .all-units-name {
   max-width: 1320px;
   margin: 0 auto;
   padding: 0 28px 56px;
+}
+
+.saat-baslik,
+.saat-ulke,
+.saat-alt {
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.55);
 }
 
 .saat-baslik {

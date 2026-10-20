@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 
-export type SehirGorseli = { src: string; yer: string; yazar: string; lisans: string; kaynak: string };
+/** dosya: public/saat/<dosya>-1920.webp ve -960.webp. */
+export type SehirGorseli = { dosya: string; yer: string; yazar: string; lisans: string; kaynak: string };
 
 /** Şehre özel fotoğrafın üzerinde ekranı dolduran canlı saat. */
 export default function SehirSaatiHero({
@@ -37,7 +38,19 @@ export default function SehirSaatiHero({
   const tarih = parca({ weekday: "long", day: "numeric", month: "long", year: "numeric" }) ?? "";
 
   return (
-    <section className={`saat-hero${gorsel ? "" : " is-gorselsiz"}`} style={gorsel ? { backgroundImage: `url(${gorsel.src})` } : undefined}>
+    <section className={`saat-hero${gorsel ? "" : " is-gorselsiz"}`}>
+      {gorsel && (
+        // Başlık alanının asıl görseli; telefonda küçük, geniş ekranda büyük dosya iner.
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          className="saat-hero-foto"
+          src={`/saat/${gorsel.dosya}-1920.webp`}
+          srcSet={`/saat/${gorsel.dosya}-960.webp 960w, /saat/${gorsel.dosya}-1920.webp 1920w`}
+          sizes="100vw"
+          alt={gorsel.yer}
+          fetchPriority="high"
+        />
+      )}
       <div className="saat-hero-ic">
         <h1 className="saat-baslik">
           {baslik}

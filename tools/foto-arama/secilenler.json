@@ -54,5 +54,61 @@
   "yazar": "Ingo Mehling",
   "lisans": "CC BY-SA 4.0",
   "kaynak": "https://commons.wikimedia.org/wiki/File:Bratislava_Castle_with_Danube.jpeg"
+ },
+ "vilnius": {
+  "dosya": "vilnius",
+  "yer": "Vilnius eski şehir",
+  "yazar": "Karmen media",
+  "lisans": "CC BY-SA 3.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Vilnius_old_town_10.JPG"
+ },
+ "tallinn": {
+  "dosya": "tallinn",
+  "yer": "Tallinn eski şehir",
+  "yazar": "Smiley.toerist",
+  "lisans": "CC BY-SA 4.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Tallinn_panorama_2003_4.jpg"
+ },
+ "valletta": {
+  "dosya": "valletta",
+  "yer": "Valletta",
+  "yazar": "This photo was taken by Anton Zelenov. Please credit this with : Photo : Anton Z",
+  "lisans": "CC BY-SA 4.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Our_Lady_of_Mount_Carmel_and_St_Pauls_Pro-Cathedral.jpg"
+ },
+ "luksemburg": {
+  "dosya": "luksemburg",
+  "yer": "Lüksemburg",
+  "yazar": "Pierre Blaché from Paris, France",
+  "lisans": "CC0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Grund,_Luxembourg_City_(54540538196).jpg"
+ },
+ "erivan": {
+  "dosya": "erivan",
+  "yer": "Erivan ve Ağrı Dağı",
+  "yazar": "Սէրուժ Ուրիշեան (Serouj Ourishian)",
+  "lisans": "CC BY-SA 3.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Mount_Ararat_and_the_Yerevan_skyline.jpg"
+ },
+ "sam": {
+  "dosya": "sam",
+  "yer": "Emevi Camii",
+  "yazar": "Bernard Gagnon",
+  "lisans": "CC BY-SA 3.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Umayyad_Mosque,_Damascus.jpg"
+ },
+ "maskat": {
+  "dosya": "maskat",
+  "yer": "Sultan Kabus Camii",
+  "yazar": "Mostafameraji",
+  "lisans": "CC BY-SA 4.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Sultan_Qaboos_Grand_Mosque_(1).jpg"
+ },
+ "manama": {
+  "dosya": "manama",
+  "yer": "Manama",
+  "yazar": "Zairon",
+  "lisans": "CC BY-SA 4.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Manama_Manama_Skyline_14.jpg"
  }
 }

@@ -86,7 +86,7 @@ export default function SehirSahneleri({ city }: { city: WorldCity }) {
         )}
       </div>
       {/* 1. Saat dilimi */}
-      <section className="sahne" id="ozet">
+      <section className={`sahne${gecis && facts.transition ? " is-sol" : ""}`} id="ozet">
         <p className="sahne-etiket">01 · Saat dilimi</p>
         <h2 className="sahne-dev">{facts.utcLabel}</h2>
         <p className="sahne-buyuk">{facts.zoneName}</p>
@@ -123,7 +123,7 @@ export default function SehirSahneleri({ city }: { city: WorldCity }) {
 
       {/* 2. Saat değişikliği */}
       {gecis && facts.transition && (
-        <section className="sahne" id="yaz-saati">
+        <section className="sahne is-sag" id="yaz-saati">
           <p className="sahne-etiket">02 · Saat değişikliği</p>
           <div className="sahne-takvim-satir">
             <div className="sahne-takvim" aria-hidden="true">
@@ -242,7 +242,7 @@ export default function SehirSahneleri({ city }: { city: WorldCity }) {
       </section>
 
       {/* 5. Saat farkı */}
-      <section className="sahne" id="dunya">
+      <section className={`sahne${yakinlar.length ? " is-sol" : ""}`} id="dunya">
         <p className="sahne-etiket">05 · Saat farkı</p>
         <h2 className="sahne-dev">{trAblative(ad)}</h2>
         <p className="sahne-buyuk">dünya şehirlerine saat farkı</p>
@@ -271,7 +271,7 @@ export default function SehirSahneleri({ city }: { city: WorldCity }) {
 
       {/* 6. Yakındaki şehirler */}
       {yakinlar.length > 0 && (
-        <section className="sahne">
+        <section className="sahne is-sag">
           <p className="sahne-etiket">06 · Yakındaki şehirler</p>
           <SehirBulutu sehirler={yakinlar} bu={city} />
         </section>

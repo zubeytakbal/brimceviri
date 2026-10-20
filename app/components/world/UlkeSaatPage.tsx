@@ -198,7 +198,7 @@ export default function UlkeSaatPage({ ulke }: { ulke: UlkeSaatleri }) {
           </section>
 
           {/* 2. Saat değişikliği */}
-          <section className="sahne" id="yaz-saati">
+          <section className="sahne is-sol" id="yaz-saati">
             <p className="sahne-etiket">02 · Saat değişikliği</p>
             {gecis && kalanGun !== null ? (
               <div className="sahne-takvim-satir">
@@ -236,7 +236,7 @@ export default function UlkeSaatPage({ ulke }: { ulke: UlkeSaatleri }) {
           </section>
 
           {/* 3. Ne zaman aramalı */}
-          <section className="sahne" id="saat-farki">
+          <section className="sahne is-sag" id="saat-farki">
             <p className="sahne-etiket">03 · Ne zaman aramalı?</p>
             <h2 className="sahne-dev">İstanbul saatiyle</h2>
             <p className="sahne-buyuk">iki tarafın da mesaide olduğu saatler (09–18)</p>
@@ -260,7 +260,7 @@ export default function UlkeSaatPage({ ulke }: { ulke: UlkeSaatleri }) {
           {/* 4. Bölgeler */}
           <section className="sahne" id="bolgeler">
             <p className="sahne-etiket">04 · {ulke.bolgeEtiketi}</p>
-            <h2 className="sahne-dev">Hangi bölge hangi saatte?</h2>
+            <h2 className="sahne-dev is-orta">Hangi bölge hangi saatte?</h2>
             <div className="ulke-bolgeler">
               {bilgi.map((d) => (
                 <div key={d.timeZone}>
@@ -275,7 +275,7 @@ export default function UlkeSaatPage({ ulke }: { ulke: UlkeSaatleri }) {
           </section>
 
           {/* 5. Notlar */}
-          <section className="sahne" id="notlar">
+          <section className={`sahne${sehirSayfalari.length ? " is-sol" : ""}`} id="notlar">
             <p className="sahne-etiket">05 · Bilmeniz gerekenler</p>
             <div className="ulke-notlar">
               {ulke.notlar.map((n) => (
@@ -286,7 +286,7 @@ export default function UlkeSaatPage({ ulke }: { ulke: UlkeSaatleri }) {
 
           {/* 6. Şehir sayfaları */}
           {sehirSayfalari.length > 0 && (
-            <section className="sahne">
+            <section className="sahne is-sag">
               <p className="sahne-etiket">06 · {ulke.ad} şehirleri</p>
               <SehirBulutu sehirler={sehirSayfalari} />
             </section>

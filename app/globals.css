@@ -19245,3 +19245,82 @@ a.all-units-row .all-units-name {
     grid-template-columns: 1fr;
   }
 }
+
+/* Ay evreleri: ilk ekrandaki 8 evre şeması ve geçen 7 gün listesi */
+.moon-sema {
+  margin: 14px 0 6px;
+  padding: 16px 16px 12px;
+  border: 1px solid #d7e2e8;
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.moon-sema-baslik {
+  margin: 0 0 10px;
+  color: #172033;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.moon-sema ol {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.moon-sema a {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  padding: 8px 2px;
+  border-radius: 10px;
+  color: #172033;
+  font-size: 0.8rem;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+}
+
+.moon-sema a:hover {
+  background: #f1f7f8;
+}
+
+.moon-sema li.is-bugun a {
+  background: #0f2a3d;
+  color: #ffffff;
+}
+
+.moon-sema small {
+  color: #f5c84a;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.moon-past-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 6px 18px;
+  margin: 6px 0 24px;
+  padding: 0;
+  list-style: none;
+}
+
+.moon-past-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 0;
+  border-bottom: 1px solid #e5ecef;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 640px) {
+  .moon-sema ol {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

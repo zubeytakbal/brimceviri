@@ -5,7 +5,7 @@ import MoonRiseSet, { type MoonPlace } from "./MoonRiseSet";
 import { turkeyProvinces } from "../../converter/geo/turkeyProvinces";
 import { regionNames, worldCities, worldRegions } from "../../converter/time/worldCities";
 import type { FaqItem } from "../../converter/faqSchema";
-import { moonPhasesBetween, type PhaseKind, type PhaseName } from "../../converter/time/moon";
+import { moonPhasesBetween, moonState, phaseName, type PhaseKind, type PhaseName } from "../../converter/time/moon";
 import TimeToolPage from "../time/TimeToolPage";
 import { buildSiteUrl } from "../../siteConfig";
 import LiveMoon, { type LiveMoonCopy } from "./LiveMoon";
@@ -68,6 +68,59 @@ const PHASE_DEFS_TR: Record<PhaseName, string> = {
   last: "Son dördün, döngünün dörtte üçünün tamamlandığı yarım aydır; bu kez sol yarısı aydınlıktır.",
   "waning-crescent": "Küçülen hilal, yeni aydan önceki son günlerdir; ince yay her sabah biraz daha küçülür ve sonunda kaybolur.",
 };
+
+/** İlk ekranda 8 evrenin sırayla şeması; bugünkü evre vurgulanır, her biri aşağıdaki anlatımına gider. */
+function EvreSemasi({ current }: { current: PhaseName }) {
+  return (
+    <nav className="moon-sema" aria-label="Ay evreleri sırası">
+      <p className="moon-sema-baslik">Ayın 8 evresi</p>
+      <ol>
+        {PHASE_GUIDE_TR.map((p) => (
+          <li key={p.id} className={p.id === current ? "is-bugun" : undefined}>
+            <a href={`#evre-${p.id}`}>
+              <MoonIcon fraction={p.fraction} size={46} />
+              <span>{NAMES.tr[p.id]}</span>
+              {p.id === current && <small>Bugün</small>}
+            </a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+  );
+}
+
+function SekizEvre() {
+  return (
+    <>
+      <h2 id="nedir">Ay evreleri nelerdir? 8 evrenin adı ve anlamı</h2>
+      <p>
+        Ay yaklaşık 29,5 günde sekiz evreden geçer. Dört ana evre (yeni ay, ilk dördün, dolunay, son dördün) belirli bir anda
+        gerçekleşir; aradaki hilal ve şişkin ay evreleri birkaç gün sürer. Aşağıda her evrenin adının anlamı, Türkiye&apos;den (kuzey
+        yarımküre) nasıl göründüğü, gökyüzünde ne zaman aranacağı ve hangi ay yaşına denk geldiği yer alır.
+      </p>
+      {PHASE_GUIDE_TR.map((p) => (
+        <div key={p.id} className="moon-phase-entry">
+          <h3 id={`evre-${p.id}`}>
+            <MoonIcon fraction={p.fraction} size={32} /> {NAMES.tr[p.id]}
+          </h3>
+          <p>
+            {PHASE_DEFS_TR[p.id]} <strong>Görünüş:</strong> {p.look} <strong>Ne zaman görülür?</strong> {p.when}{" "}
+            <span className="moon-phase-age">(Ay yaşı {p.ages}. gün)</span>
+          </p>
+        </div>
+      ))}
+      <p>
+        Ayın şeklini 30 gün boyunca kendiniz takip etmek isterseniz (okul ödevi gibi) <Link href="/ay-gozlem-cizelgesi">ay gözlem çizelgesi</Link>{" "}
+        seçtiğiniz günden başlayan, yazdırılabilir bir tablo hazırlar. Kolay hatırlama yolu: Türkiye&apos;den bakıldığında ay <strong>sağdan dolar, sağdan boşalır</strong>. Sağ tarafı aydınlıksa
+        büyüyor (dolunaya gidiyor), sol tarafı aydınlıksa küçülüyordur (yeni aya gidiyor). Güney yarımkürede bu görünüm tersine döner.
+      </p>
+      <p>
+        Hicri takvimde aylar hilalin görülmesiyle başlar; Ramazan ve bayram tarihleri bu yüzden Ay&apos;a bağlıdır. Tarih çevirmek için{" "}
+        <Link href="/tarih-cevirici">Hicri tarih çeviricisine</Link> bakabilirsin.
+      </p>
+    </>
+  );
+}
 
 function CalendarFeeds({ lang }: { lang: "tr" | "en" }) {
   const tr = lang === "tr";
@@ -184,13 +237,23 @@ export default function MoonPhasesPage({ lang }: { lang: "tr" | "en" }) {
         { href: tr ? "/ay-evreleri" : "/en/moon-phases", label: tr ? "Ay Evreleri" : "Moon Phases" },
       ]}
       crumbLabel={tr ? "Sayfa yolu" : "Breadcrumb"}
-      title={tr ? "Ay Evreleri: Bugün, Dün ve Bu Hafta Ay Nasıl?" : "Moon Phases & Full Moon Calendar"}
+      title={tr ? "Ay Evreleri: Bugün, Dün ve Son 7 Gün Ay Nasıl?" : "Moon Phases & Full Moon Calendar"}
       intro={
-        tr
-          ? "Ay'ın şu anki evresi, son 7 gün ile önümüzdeki 7 günün ay görünümü, istediğiniz bir tarihte ayın nasıl olduğu ve dolunay, yeni ay saatleri. Tüm saatler Türkiye saatidir."
-          : "The Moon's current phase, the last and next 7 days, the Moon on any date you choose, and exact full and new moon times in UTC."
+        tr ? (
+          <>
+            Bugünün ayı, ayın 8 evresi, son 7 günde ayın nasıl göründüğü ve bu ayın takvimi. Tüm saatler Türkiye saatidir. Ayın değil
+            de bugünün tarihini mi arıyorsunuz? <Link href="/saat-ve-tarih">Saat ve tarih</Link>
+          </>
+        ) : (
+          "The Moon's current phase, the last and next 7 days, the Moon on any date you choose, and exact full and new moon times in UTC."
+        )
       }
-      tool={<LiveMoon lang={lang} copy={copy} initialNow={now.getTime()} />}
+      tool={
+        <>
+          <LiveMoon lang={lang} copy={copy} initialNow={now.getTime()} />
+          {tr && <EvreSemasi current={phaseName(moonState(now).age)} />}
+        </>
+      }
       related={{
         title: tr ? "İlginizi çekebilir" : "You may also like",
         links: tr
@@ -213,6 +276,7 @@ export default function MoonPhasesPage({ lang }: { lang: "tr" | "en" }) {
       tocTitle={tr ? "İçindekiler" : "Contents"}
       tocItems={[
         { id: "hafta", label: tr ? "Son 7 gün ve önümüzdeki 7 gün" : "Last and next 7 days" },
+        ...(tr ? [{ id: "nedir", label: "Ay evreleri nelerdir? (8 evre)" }] : []),
         { id: "dogus", label: tr ? "Ay doğuş ve batış saatleri" : "Moonrise and moonset" },
         { id: "tarih", label: tr ? "Herhangi bir günde ay" : "The Moon on any date" },
         { id: "takvim", label: tr ? "Aylık ay takvimi" : "Monthly moon calendar" },
@@ -222,7 +286,7 @@ export default function MoonPhasesPage({ lang }: { lang: "tr" | "en" }) {
         { id: "super-ay", label: tr ? "Süper ay ve mikro ay" : "Supermoon and micromoon" },
         { id: tr ? "tutulmalar" : "eclipses", label: tr ? "Ay ve Güneş tutulmaları" : "Lunar and solar eclipses" },
         { id: "takvime-ekle", label: tr ? "Takviminize ekleyin" : "Add to your calendar" },
-        { id: "nedir", label: tr ? "Ay evreleri nelerdir? (8 evre)" : "The eight phases" },
+        ...(tr ? [] : [{ id: "nedir", label: "The eight phases" }]),
         { id: "faq", label: tr ? "Sık sorulan sorular" : "FAQ" },
       ]}
       faqTitle={tr ? "Sık Sorulan Sorular" : "Frequently Asked Questions"}
@@ -233,6 +297,7 @@ export default function MoonPhasesPage({ lang }: { lang: "tr" | "en" }) {
         initialNow={now.getTime()}
         names={NAMES[lang]}
         kindNames={KIND_NAMES[lang]}
+        afterStrip={tr ? <SekizEvre /> : undefined}
         riseSet={
           <>
             <h2 id="dogus">{tr ? "Ay bugün saat kaçta doğuyor, kaçta batıyor?" : "Moonrise and moonset times"}</h2>
@@ -254,42 +319,16 @@ export default function MoonPhasesPage({ lang }: { lang: "tr" | "en" }) {
 
       <CalendarFeeds lang={lang} />
 
-      <h2 id="nedir">{tr ? "Ay evreleri nelerdir? 8 evrenin adı ve anlamı" : "The eight phases"}</h2>
-      {tr ? (
+      {!tr && (
         <>
+          <h2 id="nedir">The eight phases</h2>
           <p>
-            Ay yaklaşık 29,5 günde sekiz evreden geçer. Dört ana evre (yeni ay, ilk dördün, dolunay, son dördün) belirli bir anda
-            gerçekleşir; aradaki hilal ve şişkin ay evreleri birkaç gün sürer. Aşağıda her evrenin adının anlamı, Türkiye&apos;den (kuzey
-            yarımküre) nasıl göründüğü, gökyüzünde ne zaman aranacağı ve hangi ay yaşına denk geldiği yer alır.
-          </p>
-          {PHASE_GUIDE_TR.map((p) => (
-            <div key={p.id} className="moon-phase-entry">
-              <h3 id={`evre-${p.id}`}>
-                <MoonIcon fraction={p.fraction} size={32} /> {NAMES.tr[p.id]}
-              </h3>
-              <p>
-                {PHASE_DEFS_TR[p.id]} <strong>Görünüş:</strong> {p.look} <strong>Ne zaman görülür?</strong> {p.when}{" "}
-                <span className="moon-phase-age">(Ay yaşı {p.ages}. gün)</span>
-              </p>
-            </div>
-          ))}
-          <p>
-            Ayın şeklini 30 gün boyunca kendiniz takip etmek isterseniz (okul ödevi gibi) <Link href="/ay-gozlem-cizelgesi">ay gözlem çizelgesi</Link>{" "}
-            seçtiğiniz günden başlayan, yazdırılabilir bir tablo hazırlar. Kolay hatırlama yolu: Türkiye&apos;den bakıldığında ay <strong>sağdan dolar, sağdan boşalır</strong>. Sağ tarafı aydınlıksa
-            büyüyor (dolunaya gidiyor), sol tarafı aydınlıksa küçülüyordur (yeni aya gidiyor). Güney yarımkürede bu görünüm tersine döner.
-          </p>
-          <p>
-            Hicri takvimde aylar hilalin görülmesiyle başlar; Ramazan ve bayram tarihleri bu yüzden Ay&apos;a bağlıdır. Tarih çevirmek için{" "}
-            <Link href="/tarih-cevirici">Hicri tarih çeviricisine</Link> bakabilirsin.
-          </p>
-        </>
-      ) : (
-        <p>
           Over about 29.5 days the Moon passes through eight phases: new moon, waxing crescent, first quarter, waxing gibbous, full
           moon, waning gibbous, third quarter and waning crescent. The four principal phases happen at a precise instant; the phases
           in between last several days. Times on this page are computed with Jean Meeus&apos;s lunar algorithms and are accurate to
           about a minute.
-        </p>
+          </p>
+        </>
       )}
     </TimeToolPage>
   );

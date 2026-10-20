@@ -23,6 +23,8 @@ const T = {
     yesterday: "Dün",
     today: "Bugün",
     tomorrow: "Yarın",
+    pastTitle: "Geçen 7 günde ay nasıldı?",
+    pastLine: (name: string, illum: string) => `${name}, %${illum} aydınlık`,
     pickerTitle: "Herhangi bir günde ay nasıldı?",
     pickerLabel: "Tarih seçin",
     pickerResult: (date: string, name: string, illum: string, age: string) =>
@@ -51,6 +53,8 @@ const T = {
     yesterday: "Yesterday",
     today: "Today",
     tomorrow: "Tomorrow",
+    pastTitle: "What did the Moon look like over the last 7 days?",
+    pastLine: (name: string, illum: string) => `${name}, ${illum}% lit`,
     pickerTitle: "What did the Moon look like on any date?",
     pickerLabel: "Choose a date",
     pickerResult: (date: string, name: string, illum: string, age: string) =>
@@ -87,12 +91,15 @@ export default function MoonCalendarTools({
   names,
   kindNames,
   riseSet,
+  afterStrip,
 }: {
   lang: Lang;
   initialNow: number;
   names: Record<PhaseName, string>;
   kindNames: Record<PhaseKind, string>;
   riseSet?: ReactNode;
+  /** Şeridin ve geçen 7 gün listesinin hemen altına gelen bölüm (TR: 8 evrenin anlatımı). */
+  afterStrip?: ReactNode;
 }) {
   const t = T[lang];
   const tr = lang === "tr";
@@ -200,6 +207,28 @@ export default function MoonCalendarTools({
           </li>
         ))}
       </ol>
+
+      {/* "Dün / salı günü / 14 Ekim'de ay nasıldı?" aramaları için her gün yazıyla, gün adı ve tarihiyle. */}
+      <h3 id="gecen-gunler">{t.pastTitle}</h3>
+      <ul className="moon-past-list">
+        {strip
+          .filter((d) => d.rel < 0)
+          .reverse()
+          .map(({ ymd, rel, s, main }) => (
+            <li key={ymdKey(ymd)}>
+              <MoonIcon fraction={main ? KIND_FRACTION[main.kind] : s.fraction} size={28} />
+              <span>
+                <b>
+                  {rel === -1 ? `${t.yesterday} · ` : ""}
+                  {fmt(atLocal(ymd, 12), { weekday: "long", day: "numeric", month: "long" })}
+                </b>{" "}
+                {t.pastLine(main ? kindNames[main.kind] : names[phaseName(s.age)], pct(s.illumination))}
+              </span>
+            </li>
+          ))}
+      </ul>
+
+      {afterStrip}
 
       {riseSet}
 

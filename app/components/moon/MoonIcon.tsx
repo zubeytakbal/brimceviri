@@ -5,7 +5,8 @@ export default function MoonIcon({ fraction, size = 40, label }: { fraction: num
   const cx = 50;
   const cy = 50;
   const angle = fraction * 2 * Math.PI;
-  const rx = Math.abs(Math.cos(angle)) * r;
+  // Sunucu ve tarayıcı son basamakta farklı yuvarlayabiliyor (hydration uyumsuzluğu); iki ondalık yeterli.
+  const rx = Math.round(Math.abs(Math.cos(angle)) * r * 100) / 100;
   const waxing = fraction < 0.5;
   const gibbous = Math.cos(angle) < 0;
   // Aydinlik yari daire + terminator elipsi.

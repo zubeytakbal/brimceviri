@@ -18413,3 +18413,116 @@ a.all-units-row .all-units-name {
   background: #fff6db;
   font-weight: 700;
 }
+
+/* Ana sayfa: zaman kartlarının altındaki "Yaklaşan günler" şeridi */
+.yaklasan {
+  margin-top: 14px;
+  padding: 16px;
+  border: 1px solid #d8e2ea;
+  border-radius: 16px;
+  background: #fff;
+}
+.yaklasan-ust {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.yaklasan-ust h3 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+.yaklasan-ust a {
+  font-size: 0.88rem;
+}
+.yaklasan-ic {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: 14px;
+}
+.yaklasan-ana {
+  display: grid;
+  gap: 6px;
+  align-content: start;
+  padding: 14px;
+  border-radius: 12px;
+  border-left: 5px solid currentColor;
+  background: #f6f9fb;
+  text-decoration: none;
+}
+.yaklasan-etiket {
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+.yaklasan-ad {
+  font-size: 1.35rem;
+  line-height: 1.25;
+  color: #10202e;
+}
+.yaklasan-tarih {
+  font-size: 0.9rem;
+  color: #44525f;
+}
+.yaklasan-sayac {
+  margin-top: 4px;
+}
+.yaklasan-liste {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.yaklasan-liste a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border-left: 4px solid currentColor;
+  background: #f6f9fb;
+  text-decoration: none;
+}
+.yaklasan-liste a:hover,
+.yaklasan-ana:hover {
+  background: #eef4f8;
+}
+.yaklasan-gun {
+  flex: 0 0 64px;
+  font-size: 0.85rem;
+  text-align: center;
+}
+.yaklasan-gun b {
+  display: block;
+  font-size: 1.25rem;
+  line-height: 1.1;
+}
+.yaklasan-bilgi {
+  display: grid;
+  min-width: 0;
+}
+.yaklasan-bilgi strong {
+  color: #10202e;
+  font-size: 0.95rem;
+}
+.yaklasan-bilgi small {
+  color: #5b6b7a;
+  font-size: 0.78rem;
+}
+.yaklasan .kat-resmi { color: #b42323; }
+.yaklasan .kat-bayram { color: #0f7a55; }
+.yaklasan .kat-dini { color: #5b3fc0; }
+.yaklasan .kat-milli { color: #9a4a12; }
+.yaklasan .kat-ozel { color: #a2295f; }
+.yaklasan .kat-hristiyan { color: #2c4a8a; }
+.yaklasan .kat-mevsim { color: #1d5f8f; }
+.yaklasan .kat-halk { color: #4d6b1f; }
+@media (max-width: 720px) {
+  .yaklasan-ic {
+    grid-template-columns: 1fr;
+  }
+  .yaklasan-ad {
+    font-size: 1.15rem;
+  }
+}

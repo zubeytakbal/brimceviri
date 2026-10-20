@@ -35,7 +35,7 @@ import {
 import HizliCevirme from "./HizliCevirme";
 import TumAraclar from "./TumAraclar";
 import MuhendislikKartlari, { type KartGezegen, type KartMalzeme } from "./MuhendislikKartlari";
-import ZamanKartlari, { type KartGeriSayim } from "./ZamanKartlari";
+import ZamanKartlari, { type KartGeriSayim, type KartYaklasan } from "./ZamanKartlari";
 import type { HizliVeri } from "../converter/hizliCevirmeVeri";
 import NotificationBell from "./NotificationBell";
 import RecentToolsWidget from "./RecentToolsWidget";
@@ -1956,6 +1956,7 @@ export default function HomeDirectory({
   malzemeler,
   gezegenler,
   geriSayimlar,
+  yaklasan,
   olusturma = 0,
 }: {
   locale: Locale;
@@ -1968,6 +1969,8 @@ export default function HomeDirectory({
   gezegenler?: KartGezegen[];
   /** Türkçe ana sayfadaki zaman kartının geri sayımları ve sayfanın derlendiği an (ms). */
   geriSayimlar?: KartGeriSayim[];
+  /** Zaman kartlarının altındaki "Yaklaşan günler" şeridi. */
+  yaklasan?: KartYaklasan[];
   olusturma?: number;
 }) {
   const strings = copy[locale];
@@ -2022,7 +2025,7 @@ export default function HomeDirectory({
         <div className="directory-shell">
           <HizliCevirme veri={hizli} />
           {malzemeler?.length ? <MuhendislikKartlari malzemeler={malzemeler} gezegenler={gezegenler ?? []} /> : null}
-          {geriSayimlar?.length ? <ZamanKartlari geriSayimlar={geriSayimlar} olusturma={olusturma} /> : null}
+          {geriSayimlar?.length ? <ZamanKartlari geriSayimlar={geriSayimlar} yaklasan={yaklasan ?? []} olusturma={olusturma} /> : null}
         </div>
       ) : null}
 

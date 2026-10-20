@@ -110,5 +110,40 @@
   "yazar": "Zairon",
   "lisans": "CC BY-SA 4.0",
   "kaynak": "https://commons.wikimedia.org/wiki/File:Manama_Manama_Skyline_14.jpg"
+ },
+ "trablus": {
+  "dosya": "trablus",
+  "yer": "Trablus",
+  "yazar": "Mohamed Ben zeglam",
+  "lisans": "CC BY-SA 4.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:The_red_castle_of_Tripoli.jpg"
+ },
+ "hartum": {
+  "dosya": "hartum",
+  "yer": "Hartum",
+  "yazar": "AbhiSuryawanshi",
+  "lisans": "CC BY-SA 3.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Khartoum_aerial_view_from_Corinthia_Hotel.JPG"
+ },
+ "mogadisu": {
+  "dosya": "mogadisu",
+  "yer": "Mogadişu",
+  "yazar": "AMISOM Public Information",
+  "lisans": "CC0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:2013_05_22_Mogadishu_Coast_B.jpg_(8778505657).jpg"
+ },
+ "ulan-batur": {
+  "dosya": "ulan-batur",
+  "yer": "Ulan Batur",
+  "yazar": "Zboogie31",
+  "lisans": "CC BY-SA 4.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Ulaanbaatar_skyline_from_Sukhbaatar_square_in_2025.jpg"
+ },
+ "male": {
+  "dosya": "male",
+  "yer": "Male",
+  "yazar": "Ibrahim Asad",
+  "lisans": "CC BY 3.0",
+  "kaynak": "https://commons.wikimedia.org/wiki/File:Male_City_Aerial,_The_Capital_city_of_Maldives_-_panoramio.jpg"
  }
 }

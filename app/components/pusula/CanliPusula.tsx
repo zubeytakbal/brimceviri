@@ -122,24 +122,48 @@ function onbellek<T>(anahtar: string, hesapla: () => T): T {
 }
 
 /**
- * Kıble modunda haritanın yerine Mescid-i Haram'ın yukarıdan sade çizimi: mermer metaf, tavaf halkaları, Kâbe,
- * Hicr-i İsmail ve Makam-ı İbrahim. Kâbe'nin köşeleri yaklaşık ana yönlere bakar (Hacerülesved köşesi doğuda).
+ * Kıble modunda haritanın yerine Mescid-i Haram'ın metaf zemini: mermer ve saat yönünün tersine yavaşça dönen
+ * tavaf halkaları. Kadranla birlikte döner.
  */
-function MescidiHaram() {
+function MetafZemini() {
   return (
-    <g className="haram">
-      <circle r={R_HARITA} className="haram-zemin" />
-      {[40, 52, 64, 76, 88, 100].map((r) => (
-        <circle key={r} r={r} className="haram-halka" />
+    <g>
+      <circle r={R_HARITA} fill="url(#haram-mermer)" />
+      {[
+        { r: 48, renk: "#ffffff", hiz: "haram-tavaf-1" },
+        { r: 57, renk: "#d9d2c3", hiz: "haram-tavaf-2" },
+        { r: 66, renk: "#ffffff", hiz: "haram-tavaf-1" },
+        { r: 75, renk: "#cfc7b6", hiz: "haram-tavaf-2" },
+        { r: 84, renk: "#ffffff", hiz: "haram-tavaf-3" },
+        { r: 93, renk: "#d9d2c3", hiz: "haram-tavaf-3" },
+      ].map(({ r, renk, hiz }) => (
+        <circle key={r} r={r} className={`haram-tavaf ${hiz}`} stroke={renk} />
       ))}
-      <g transform="rotate(45) scale(1.55)">
-        <path d="M -22 -26 A 26 26 0 0 1 22 -26" className="haram-hicr" transform="rotate(-90)" />
-        <rect x="-15" y="-13" width="30" height="26" rx="1.5" className="haram-kabe" />
-        <rect x="-15" y="-9" width="30" height="4" className="haram-kusak" />
-        <rect x="-11" y="-9" width="22" height="18" className="haram-cati" />
-        <rect x="3" y="12" width="6" height="2" className="haram-kapi" />
-      </g>
-      <circle cx="-3" cy="40" r="3.2" className="haram-makam" />
+    </g>
+  );
+}
+
+/**
+ * Kâbe: hafif yukarıdan, eğik izdüşümle çizilmiş küp. Kadran dönse de dik durur (sabit katman). Siyah örtü (kisve),
+ * altın kuşak (hizam), altın kapı, Hacerülesved köşesi ve Hicr-i İsmail duvarı.
+ */
+function KabeCizimi() {
+  // Ön yüz: x -20..16, y -6..24; derinlik (9, -9).
+  return (
+    <g className="kabe" filter="url(#pusula-golge)" transform="translate(5 -8) scale(1.35)">
+      <ellipse cx="2" cy="27" rx="30" ry="6" className="kabe-golge" />
+      <path d="M -20 10 C -40 8 -44 30 -24 34 L -20 30 C -34 27 -31 14 -20 15 Z" className="kabe-hicr" />
+      <polygon points="-20,-6 16,-6 25,-15 -11,-15" fill="url(#kabe-cati)" />
+      <polygon points="16,-6 25,-15 25,15 16,24" fill="url(#kabe-yan)" />
+      <rect x="-20" y="-6" width="36" height="30" fill="url(#kabe-on)" />
+      <rect x="-20" y="-1" width="36" height="4.2" className="kabe-kusak" />
+      <polygon points="16,-1 25,-10 25,-5.8 16,3.2" className="kabe-kusak is-yan" />
+      {[-16, -11, -6, -1, 4, 9].map((x) => (
+        <rect key={x} x={x} y="0.1" width="3" height="2" rx="0.4" className="kabe-yazi" />
+      ))}
+      <rect x="5" y="7" width="7" height="12" rx="0.8" className="kabe-kapi" />
+      <rect x="6.3" y="8.3" width="4.4" height="9.4" rx="0.5" className="kabe-kapi-ic" />
+      <circle cx="-18.8" cy="21" r="1.6" className="kabe-tas" />
     </g>
   );
 }
@@ -386,6 +410,23 @@ export default function CanliPusula({ mod = "pusula" }: { mod?: "pusula" | "kibl
                 <stop offset="0%" stopColor="#ffffff" />
                 <stop offset="100%" stopColor="#c8d3db" />
               </linearGradient>
+              <radialGradient id="haram-mermer" cx="50%" cy="45%" r="60%">
+                <stop offset="0%" stopColor="#fbfaf6" />
+                <stop offset="100%" stopColor="#e2dccd" />
+              </radialGradient>
+              <linearGradient id="kabe-on" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stopColor="#2b2b2b" />
+                <stop offset="60%" stopColor="#111111" />
+                <stop offset="100%" stopColor="#050505" />
+              </linearGradient>
+              <linearGradient id="kabe-yan" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stopColor="#0a0a0a" />
+                <stop offset="100%" stopColor="#000000" />
+              </linearGradient>
+              <linearGradient id="kabe-cati" x1="0" y1="1" x2="0" y2="0">
+                <stop offset="0%" stopColor="#5a5a5a" />
+                <stop offset="100%" stopColor="#8d8d8d" />
+              </linearGradient>
               <clipPath id="pusula-harita-kirp">
                 <circle r={R_HARITA} />
               </clipPath>
@@ -400,7 +441,7 @@ export default function CanliPusula({ mod = "pusula" }: { mod?: "pusula" | "kibl
             <g className="pusula-kart" style={{ transform: `rotate(${donus}deg)` }}>
               <g clipPath="url(#pusula-harita-kirp)">
                 {kibleModu ? (
-                  <MescidiHaram />
+                  <MetafZemini />
                 ) : (
                   <>
                     <circle r={R_HARITA} className="pusula-deniz" />
@@ -449,7 +490,7 @@ export default function CanliPusula({ mod = "pusula" }: { mod?: "pusula" | "kibl
                 <g transform={`rotate(${kible})`} className="pusula-kible">
                   {kibleModu ? (
                     <>
-                      <line x1="0" y1="-34" x2="0" y2={-(R_HARITA - 16)} className="pusula-kible-ok" />
+                      <line x1="0" y1="-46" x2="0" y2={-(R_HARITA - 16)} className="pusula-kible-ok" />
                       <polygon points={`0,${-(R_HARITA - 2)} -10,${-(R_HARITA - 20)} 10,${-(R_HARITA - 20)}`} className="pusula-kible-uc" />
                     </>
                   ) : (
@@ -481,8 +522,10 @@ export default function CanliPusula({ mod = "pusula" }: { mod?: "pusula" | "kibl
               <polygon points="0,96 11,0 0,-6 -11,0" fill="url(#pusula-guney)" />
             </g>
 
+            {kibleModu && <KabeCizimi />}
+
             {/* Su terazisi: kıble modunda ortadaki Kâbe çizimini kapatmasın diye aşağıda durur. */}
-            <g transform={`translate(0 ${kibleModu ? 72 : 0})`}>
+            <g transform={`translate(0 ${kibleModu ? 72 : 0})`} display={masaustu && durum !== "acik" ? "none" : undefined}>
               <circle r={kibleModu ? 11 : 15} className="pusula-terazi" />
               <circle
                 cx={((egim.x / 30) * 10 * (kibleModu ? 0.7 : 1)).toFixed(1)}

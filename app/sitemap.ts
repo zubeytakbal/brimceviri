@@ -13,7 +13,7 @@ import {
   timeToolPaths,
   type TimeToolId,
 } from "./i18n/timeToolPaths";
-import { worldCities } from "./converter/time/worldCities";
+import { trEkSehirler, worldCities } from "./converter/time/worldCities";
 import { countdownAlternatePaths, countdownEvents, countdownPath } from "./converter/time/countdownEvents";
 import { HOLIDAY_YEARS } from "./converter/time/holidays";
 import { HIJRI_SLUG, SA_HIJRI_SANAWAT, saHijriSanaPath, saHijriShahrPath } from "./converter/calendar/saTaqwim";
@@ -2907,6 +2907,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
         alternates: buildLanguageAlternates(worldCityPaths(city), "tr"),
       })),
     ),
+    ...trEkSehirler.map((city) => ({
+      url: `${baseUrl}/dunya-saatleri/${city.tr}`,
+      lastModified: contentLastModified,
+      changeFrequency: "daily" as const,
+      priority: 0.6,
+    })),
     {
       url: `${baseUrl}/tarla-donum-hesaplama`,
       lastModified: contentLastModified,

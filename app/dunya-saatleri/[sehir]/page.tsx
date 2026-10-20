@@ -5,7 +5,7 @@ import { appManifestPath, findInstallableApp } from "../../converter/time/instal
 import { notFound } from "next/navigation";
 import CityTimePage, { cityPageDescription, cityPageTitlesTr } from "../../components/world/CityTimePage";
 import { buildLanguageAlternates } from "../../i18n/routing";
-import { findCityByTrSlug, worldCities } from "../../converter/time/worldCities";
+import { findCityByTrSlug, trSaatSehirleri, yalnizTurkceMi } from "../../converter/time/worldCities";
 import { buildSiteUrl } from "../../siteConfig";
 
 // Saat farki, yaz saati ve gun dogumu verileri gunluk degisir: 6 saatte bir tazelenir.
@@ -13,7 +13,7 @@ export const revalidate = 21600;
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return worldCities.map((city) => ({ sehir: city.tr }));
+  return trSaatSehirleri.map((city) => ({ sehir: city.tr }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ sehir: string }> }): Promise<Metadata> {
@@ -28,7 +28,8 @@ export async function generateMetadata({ params }: { params: Promise<{ sehir: st
     description,
     manifest: appManifestPath("dunya-saatleri"),
     appleWebApp: { capable: true, title: findInstallableApp("dunya-saatleri")!.shortName },
-    alternates: { canonical: path, ...buildLanguageAlternates(worldCityPaths(city), "tr") },
+    // Yalnızca Türkçe olan başkentlerin başka dil karşılığı yok.
+    alternates: yalnizTurkceMi(city) ? { canonical: path } : { canonical: path, ...buildLanguageAlternates(worldCityPaths(city), "tr") },
     openGraph: { title, description, url: buildSiteUrl(path), siteName: "BirimCeviri.app", locale: "tr_TR", type: "website" },
   };
 }

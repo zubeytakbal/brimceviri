@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import Link from "@/app/components/SiteLink";
 import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
-import { worldCities } from "../../converter/time/worldCities";
+import { trSaatSehirleri } from "../../converter/time/worldCities";
 import { buildSiteUrl } from "../../siteConfig";
 import { SAAT_MENUSU } from "./saatBolumu";
 import { saatMetin, saatRakam } from "./saatFontlari";
@@ -11,7 +11,7 @@ function serializeJsonLd(data: object) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
 }
 
-const SEHIRLER = worldCities
+const SEHIRLER = trSaatSehirleri
   .map((c) => ({ href: `/dunya-saatleri/${c.tr}`, ad: c.nameTr, ulke: c.countryTr }))
   .sort((a, b) => a.ad.localeCompare(b.ad, "tr"));
 

@@ -211,8 +211,8 @@ export function hourMapping(fromZone: string, toZone: string, now: Date, lang: L
   });
 }
 
-export function nearbyCities(city: WorldCity, limit = 10) {
-  return worldCities
+export function nearbyCities(city: WorldCity, limit = 10, liste: WorldCity[] = worldCities) {
+  return liste
     .filter((c) => c.en !== city.en && c.region === city.region)
     .sort((a, b) => Math.hypot(a.lat - city.lat, a.lon - city.lon) - Math.hypot(b.lat - city.lat, b.lon - city.lon))
     .slice(0, limit);

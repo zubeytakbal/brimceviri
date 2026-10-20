@@ -19303,33 +19303,74 @@ a.all-units-row .all-units-name {
 }
 
 .saat-alt-bilgi {
+  border-top: 6px solid var(--saat-vurgu);
   background: #000000;
   color: rgba(255, 255, 255, 0.7);
-  font-size: 0.92rem;
+  font-size: 0.95rem;
 }
 
 .saat-alt-bilgi-ic {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
-  gap: 32px;
   max-width: 1320px;
   margin: 0 auto;
-  padding: 44px 28px 36px;
+  padding: 56px 28px 36px;
 }
 
-.saat-alt-bilgi .saat-logo {
+/* Kaba, dev marka yazısı */
+.saat-alt-marka {
+  margin: 0 0 40px;
   color: #ffffff;
+  font-family: var(--saat-rakam), Impact, sans-serif;
+  font-size: clamp(3rem, 9vw, 8.5rem);
+  line-height: 0.9;
+  letter-spacing: 0.01em;
+}
+
+.saat-alt-marka span {
+  display: inline-block;
+  padding: 0.06em 0.12em 0.02em;
+  background: var(--saat-vurgu);
+  line-height: 0.9;
+}
+
+.saat-alt-marka small {
+  display: block;
+  margin-top: 14px;
+  color: rgba(255, 255, 255, 0.75);
+  font: 800 clamp(1.1rem, 2.4vw, 1.9rem) var(--saat-metin), sans-serif;
+  letter-spacing: 0;
+}
+
+.saat-alt-sutunlar {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 32px;
 }
 
 .saat-alt-bilgi nav {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 8px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.saat-alt-bilgi h2 {
+  margin: 0 0 8px;
+  padding-bottom: 8px;
+  border-bottom: 3px solid #ffffff;
+  color: #ffffff;
+  font: 800 0.85rem var(--saat-metin), sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .saat-alt-bilgi a {
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 1.08rem;
   text-decoration: none;
+}
+
+.saat-alt-bilgi a small {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.8rem;
 }
 
 .saat-alt-bilgi a:hover {
@@ -19337,9 +19378,10 @@ a.all-units-row .all-units-name {
 }
 
 .saat-alt-bilgi-son {
-  grid-column: 1 / -1;
+  margin: 40px 0 0;
   padding-top: 18px;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  font-size: 0.85rem;
 }
 
 @media (max-width: 720px) {
@@ -20595,5 +20637,12 @@ a.all-units-row .all-units-name {
   .sahneler .ulke-tablo {
     display: block;
     overflow-x: auto;
+  }
+}
+
+@media (max-width: 900px) {
+  .saat-alt-sutunlar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px 20px;
   }
 }

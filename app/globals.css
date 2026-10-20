@@ -18748,3 +18748,65 @@ a.all-units-row .all-units-name {
     justify-self: start;
   }
 }
+
+/* Kıble modu: Mescid-i Haram çizimi ve kıble oku */
+.haram-zemin {
+  fill: #ece6d8;
+}
+
+.haram-halka {
+  fill: none;
+  stroke: #c9bfa9;
+  stroke-width: 0.8;
+  stroke-dasharray: 1.5 2.5;
+}
+
+.haram-kabe {
+  fill: #141414;
+  stroke: #000000;
+  stroke-width: 0.6;
+}
+
+.haram-kusak {
+  fill: #c9a23f;
+}
+
+.haram-cati {
+  fill: #2a2a2a;
+}
+
+.haram-kapi {
+  fill: #c9a23f;
+}
+
+.haram-hicr {
+  fill: none;
+  stroke: #b3a888;
+  stroke-width: 2;
+}
+
+.haram-makam {
+  fill: #c9a23f;
+  stroke: #8a6d22;
+  stroke-width: 0.8;
+}
+
+.pusula-kible-ok {
+  stroke: #87c900;
+  stroke-width: 6;
+  stroke-linecap: round;
+}
+
+.pusula-kible-uc {
+  fill: #87c900;
+  stroke: #0b2a3c;
+  stroke-width: 1;
+}
+
+.pusula.is-kible-modu .pusula-harf {
+  fill: #5d4a1f;
+}
+
+.pusula.is-kible-modu .pusula-harf.is-kuzey {
+  fill: #d7261e;
+}

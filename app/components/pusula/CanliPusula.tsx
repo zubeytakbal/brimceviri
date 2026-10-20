@@ -121,6 +121,29 @@ function onbellek<T>(anahtar: string, hesapla: () => T): T {
   return ONBELLEK.get(anahtar) as T;
 }
 
+/**
+ * Kıble modunda haritanın yerine Mescid-i Haram'ın yukarıdan sade çizimi: mermer metaf, tavaf halkaları, Kâbe,
+ * Hicr-i İsmail ve Makam-ı İbrahim. Kâbe'nin köşeleri yaklaşık ana yönlere bakar (Hacerülesved köşesi doğuda).
+ */
+function MescidiHaram() {
+  return (
+    <g className="haram">
+      <circle r={R_HARITA} className="haram-zemin" />
+      {[40, 52, 64, 76, 88, 100].map((r) => (
+        <circle key={r} r={r} className="haram-halka" />
+      ))}
+      <g transform="rotate(45) scale(1.55)">
+        <path d="M -22 -26 A 26 26 0 0 1 22 -26" className="haram-hicr" transform="rotate(-90)" />
+        <rect x="-15" y="-13" width="30" height="26" rx="1.5" className="haram-kabe" />
+        <rect x="-15" y="-9" width="30" height="4" className="haram-kusak" />
+        <rect x="-11" y="-9" width="22" height="18" className="haram-cati" />
+        <rect x="3" y="12" width="6" height="2" className="haram-kapi" />
+      </g>
+      <circle cx="-3" cy="40" r="3.2" className="haram-makam" />
+    </g>
+  );
+}
+
 export default function CanliPusula({ mod = "pusula" }: { mod?: "pusula" | "kible" }) {
   const kibleModu = mod === "kible";
   const [durum, setDurum] = useState<Durum>("kapali");
@@ -273,7 +296,7 @@ export default function CanliPusula({ mod = "pusula" }: { mod?: "pusula" | "kibl
   const sensorYok = masaustu || durum === "desteklenmiyor";
 
   return (
-    <section className={`pusula${durum === "acik" ? " is-acik" : ""}${kibleHizali ? " is-kible" : ""}`} aria-label="Canlı pusula">
+    <section className={`pusula${kibleModu ? " is-kible-modu" : ""}${durum === "acik" ? " is-acik" : ""}${kibleHizali ? " is-kible" : ""}`} aria-label="Canlı pusula">
       <div className="pusula-okuma" aria-live="polite">
         {durum === "acik" && kibleModu && kibleFark !== null ? (
           kibleHizali ? (
@@ -376,11 +399,17 @@ export default function CanliPusula({ mod = "pusula" }: { mod?: "pusula" | "kibl
 
             <g className="pusula-kart" style={{ transform: `rotate(${donus}deg)` }}>
               <g clipPath="url(#pusula-harita-kirp)">
-                <circle r={R_HARITA} className="pusula-deniz" />
-                <path d={harita} className="pusula-kara" />
-                {[30, 60, 90].map((a) => (
-                  <circle key={a} r={(R_HARITA * a) / HARITA_ACI} className="pusula-halka" />
-                ))}
+                {kibleModu ? (
+                  <MescidiHaram />
+                ) : (
+                  <>
+                    <circle r={R_HARITA} className="pusula-deniz" />
+                    <path d={harita} className="pusula-kara" />
+                    {[30, 60, 90].map((a) => (
+                      <circle key={a} r={(R_HARITA * a) / HARITA_ACI} className="pusula-halka" />
+                    ))}
+                  </>
+                )}
               </g>
               <circle r={R_HARITA} className="pusula-harita-kenar" />
 
@@ -418,12 +447,19 @@ export default function CanliPusula({ mod = "pusula" }: { mod?: "pusula" | "kibl
 
               {kibleAcik && (
                 <g transform={`rotate(${kible})`} className="pusula-kible">
-                  <line x1="0" y1="-14" x2="0" y2={-(R_HARITA - 2)} className="pusula-kible-cizgi" />
+                  {kibleModu ? (
+                    <>
+                      <line x1="0" y1="-34" x2="0" y2={-(R_HARITA - 16)} className="pusula-kible-ok" />
+                      <polygon points={`0,${-(R_HARITA - 2)} -10,${-(R_HARITA - 20)} 10,${-(R_HARITA - 20)}`} className="pusula-kible-uc" />
+                    </>
+                  ) : (
+                    <line x1="0" y1="-14" x2="0" y2={-(R_HARITA - 2)} className="pusula-kible-cizgi" />
+                  )}
                   <rect x="-7" y={-(R_DIS - 4)} width="14" height="14" rx="2" className="pusula-kabe" />
                   <rect x="-7" y={-(R_DIS - 8)} width="14" height="3" className="pusula-kabe-serit" />
                 </g>
               )}
-              {kibleAcik && <circle cx={kabeNokta[0]} cy={kabeNokta[1]} r="3.5" className="pusula-kabe-nokta" />}
+              {kibleAcik && !kibleModu && <circle cx={kabeNokta[0]} cy={kabeNokta[1]} r="3.5" className="pusula-kabe-nokta" />}
 
               {gunesGorunur && (
                 <g transform={`rotate(${gunes.azimuth.toFixed(1)})`} className="pusula-gunes">
@@ -439,19 +475,23 @@ export default function CanliPusula({ mod = "pusula" }: { mod?: "pusula" | "kibl
               )}
             </g>
 
-            <g className="pusula-igne" filter="url(#pusula-golge)" style={{ transform: `rotate(${donus}deg)` }}>
+            {/* Kıble modunda iğne yok: ortadaki Kâbe çizimi görünsün, yönü yeşil kıble oku gösterir. */}
+            <g className="pusula-igne" filter="url(#pusula-golge)" style={{ transform: `rotate(${donus}deg)` }} display={kibleModu ? "none" : undefined}>
               <polygon points="0,-96 11,0 0,6 -11,0" fill="url(#pusula-kuzey)" />
               <polygon points="0,96 11,0 0,-6 -11,0" fill="url(#pusula-guney)" />
             </g>
 
-            <circle r="15" className="pusula-terazi" />
-            <circle
-              cx={(egim.x / 30) * 10}
-              cy={(egim.y / 30) * 10}
-              r="5"
-              className={`pusula-kabarcik${terazi ? " is-duz" : ""}`}
-            />
-            <circle r="3" className="pusula-merkez" />
+            {/* Su terazisi: kıble modunda ortadaki Kâbe çizimini kapatmasın diye aşağıda durur. */}
+            <g transform={`translate(0 ${kibleModu ? 72 : 0})`}>
+              <circle r={kibleModu ? 11 : 15} className="pusula-terazi" />
+              <circle
+                cx={((egim.x / 30) * 10 * (kibleModu ? 0.7 : 1)).toFixed(1)}
+                cy={((egim.y / 30) * 10 * (kibleModu ? 0.7 : 1)).toFixed(1)}
+                r={kibleModu ? 4 : 5}
+                className={`pusula-kabarcik${terazi ? " is-duz" : ""}`}
+              />
+              {!kibleModu && <circle r="3" className="pusula-merkez" />}
+            </g>
 
             <polygon points={`0,${-(R_DIS + 4)} -9,${-(R_DIS + 20)} 9,${-(R_DIS + 20)}`} className="pusula-isaret" />
             <circle r={R_DIS + 6} fill="url(#pusula-cam)" pointerEvents="none" />

@@ -21956,3 +21956,170 @@ a.all-units-row .all-units-name {
     content: "−";
   }
 }
+
+/* Geri sayım (saat bölümü): dev kalan gün, altında saat/dakika/saniye ve önceki tarihten bu yana ilerleme çubuğu. */
+.gs-hero {
+  align-items: center;
+  min-height: calc(88svh - 76px);
+  background-image: radial-gradient(110% 90% at 85% 0%, #1f2b2b 0%, #0e1213 50%, #050606 100%);
+}
+
+.gs-hero .saat-hero-ic {
+  padding-top: 26px;
+}
+
+.gs-hero.is-tam {
+  min-height: 100vh;
+}
+
+.gs-sayac {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 8px 36px;
+  margin-top: 10px;
+}
+
+.gs-dev {
+  display: flex;
+  align-items: baseline;
+  gap: 0.08em;
+  font-size: min(26vw, 40vh);
+}
+
+.gs-dev small {
+  font-size: 0.26em;
+  letter-spacing: 0.02em;
+  opacity: 0.8;
+}
+
+.gs-bugun {
+  color: #7fe3df;
+}
+
+.gs-parca {
+  display: flex;
+  gap: 6px;
+  margin: 0 0 0.9em;
+  padding: 0;
+  list-style: none;
+}
+
+.gs-parca li {
+  display: grid;
+  min-width: 2.4ch;
+  padding: 8px 14px 6px;
+  border-top: 4px solid var(--saat-vurgu);
+  background: rgba(255, 255, 255, 0.07);
+  text-align: center;
+}
+
+.gs-parca b {
+  font-family: var(--saat-rakam), Impact, sans-serif;
+  font-size: clamp(2.2rem, 5vw, 4.2rem);
+  font-variant-numeric: tabular-nums;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.gs-parca span {
+  margin-top: 4px;
+  color: rgba(255, 255, 255, 0.7);
+  font: 800 0.72rem var(--saat-metin), sans-serif;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.gs-cubuk {
+  position: relative;
+  max-width: 720px;
+  height: 10px;
+  margin-top: 22px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.gs-cubuk span {
+  display: block;
+  height: 100%;
+  background: var(--saat-vurgu);
+}
+
+.gs-cubuk small {
+  position: absolute;
+  top: 16px;
+  left: 0;
+  color: rgba(255, 255, 255, 0.7);
+  font: 800 0.74rem var(--saat-metin), sans-serif;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Yılbaşı: gece temalı sayaç başlığın içinde, köşesiz ve Anton rakamlarla. */
+.gs-hero.is-yilbasi {
+  background-image: radial-gradient(ellipse at 50% 0%, #1b2a5a 0%, #0b1330 55%, #050a1e 100%);
+}
+
+.gs-hero.is-yilbasi .ys:not(.is-tam) {
+  margin-top: 18px;
+  border-radius: 0;
+  background: transparent;
+}
+
+.gs-hero.is-yilbasi .ys-sayac strong {
+  font-family: var(--saat-rakam), Impact, sans-serif;
+  font-weight: 400;
+  font-size: clamp(3.4rem, 14vw, 9rem);
+}
+
+.gs-hero.is-yilbasi .ys.is-buyuk .ys-sayac strong,
+.gs-hero.is-yilbasi .ys.is-tam .ys-sayac strong {
+  font-size: clamp(4rem, 17vw, 12rem);
+}
+
+.saat-linkler {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  list-style: none;
+}
+
+.saat-linkler a {
+  display: inline-block;
+  padding: 7px 12px;
+  border: 2px solid currentColor;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+@media (max-width: 720px) {
+  .gs-hero {
+    min-height: 0;
+  }
+
+  .gs-hero .saat-hero-ic {
+    padding: 16px 16px 30px;
+  }
+
+  .gs-sayac {
+    gap: 4px;
+  }
+
+  .gs-dev {
+    font-size: 34vw;
+  }
+
+  .gs-parca {
+    width: 100%;
+    margin-bottom: 0;
+  }
+
+  .gs-parca li {
+    flex: 1;
+    padding: 6px 4px 5px;
+  }
+
+  .gs-parca b {
+    font-size: 2.4rem;
+  }
+}

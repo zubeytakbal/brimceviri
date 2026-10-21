@@ -15,7 +15,10 @@ import CountdownDisplay from "./CountdownDisplay";
 import GeriSayimTakvim from "./GeriSayimTakvim";
 import YilbasiSayaci from "./YilbasiSayaci";
 import { yeniYilSirasi, yilbasiTatili } from "../../converter/time/yeniYil";
-import { startMs } from "../../converter/time/countdownEvents";
+import { occurrencesInYear, startMs } from "../../converter/time/countdownEvents";
+import SaatKabugu from "../saat/SaatKabugu";
+import GeriSayimHero from "./GeriSayimHero";
+import GeriSayimSahneleri from "./GeriSayimSahneleri";
 import { countdownCopy } from "./countdownCopy";
 
 // Etkinlik geri sayim sayfasi (TR + EN). Tarihler her yenilemede yeniden hesaplanir;
@@ -119,6 +122,134 @@ export default function CountdownEventPage({ event }: { event: CountdownEvent })
     );
   }
 
+  const yilbasiBolumu =
+    yilbasi && tatil ? (
+      <>
+        <h2 id="dunya">Dünyada yeni yıla kim, ne zaman giriyor?</h2>
+        <p>
+          Dünyada yaklaşık 38 farklı yerel saat kullanıldığı için yeni yıl yaklaşık 26 saat boyunca yerden yere gelir. İlk Kiribati&apos;nin Line Adaları,
+          en son Amerikan Samoası yeni yıla girer. Aşağıdaki saatler Türkiye saatine göredir (her şehrin kendi yerel saatiyle 1 Ocak{" "}
+          {yilbasi.year} 00:00).
+        </p>
+        <div className="conversion-table-wrap">
+          <table className="conversion-table">
+            <thead>
+              <tr>
+                <th>Sıra</th>
+                <th>Yer</th>
+                <th>Türkiye saatiyle</th>
+              </tr>
+            </thead>
+            <tbody>
+              {sira
+                .filter((x, i, a) => i === 0 || x.an !== a[i - 1].an || x.ulke === "Türkiye")
+                .map((x, i) => (
+                  <tr key={x.ad} className={x.ulke === "Türkiye" ? "is-vurgu" : undefined}>
+                    <td>{i + 1}</td>
+                    <td>
+                      {x.ad} <small>({x.ulke})</small>
+                    </td>
+                    <td>{trSaat(x.an)}</td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+        </div>
+        <p>Aynı anda yeni yıla giren şehirlerden yalnızca biri listelenmiştir. Hesap, her şehrin saat dilimine ve o tarihte geçerli yaz saati uygulamasına göre yapılır.</p>
+
+        <h2 id="tatil">{yilbasi.year} yılbaşı tatili</h2>
+        <p>
+          1 Ocak {yilbasi.year} <strong>{GUN_ADI[tatil.gun]}</strong> gününe denk geliyor.{" "}
+          {tatil.sure === 1
+            ? "Yılbaşı tatili yalnızca 1 Ocak'tır."
+            : tatil.gun === 6 || tatil.gun === 0
+              ? "Hafta sonuna denk geldiği için ek bir tatil günü oluşmaz."
+              : `Hafta sonuyla birlikte ${tatil.sure} günlük tatil olur.`}
+          {tatil.kopru ? ` ${tatil.kopru} tatil yapılabilir.` : ""} 31 Aralık resmî tatil değildir. Türkiye&apos;de miladi takvim ve 1 Ocak yılbaşı, 26
+          Aralık 1925 tarihli kanunlarla 1 Ocak 1926&apos;dan itibaren kullanılmaktadır. Diğer tatiller ve köprü günleri için{" "}
+          <Link href="/resmi-tatiller">resmî tatiller</Link> sayfasına bakabilirsiniz.
+        </p>
+      </>
+    ) : null;
+
+  const ilgili = {
+    title: tr ? "İlginizi çekebilir" : "You may also like",
+    links: [
+      ...(tr
+        ? ETKINLIKLER.filter((e) => e.geriSayim === event.slug).map((e) => ({ href: ozelGunPath(e.id), label: `${e.ad} tarihleri ve takvim` }))
+        : []),
+      ...others.slice(0, 4).map((o) => ({ href: countdownPath(o.event), label: tr ? `${o.event.name} (${o.days} gün)` : `${o.event.name} (${o.days} days)` })),
+      ...(tr
+        ? [
+            { href: hubPath, label: "Tüm geri sayımlar" },
+            { href: "/takvim", label: "Türkiye Takvimi" },
+            { href: "/resmi-tatiller", label: "Resmî Tatiller ve Köprü Günleri" },
+            { href: "/dunya-saatleri", label: "Dünya Saatleri" },
+            { href: "/zamanlayici", label: "Zamanlayıcı" },
+            { href: "/yas-hesaplama", label: "Yaş Hesaplama" },
+          ]
+        : [
+            { href: hubPath, label: "All countdowns" },
+            { href: "/en/federal-holidays", label: "US Federal Holidays" },
+            { href: "/en/world-clock", label: "World Clock" },
+            { href: "/en/timer", label: "Timer" },
+          ]),
+    ],
+  };
+
+  if (tr) {
+    // Saat bölümü görünümü: dev sayaç başlığı, gazete (tarih ve yıllar) ve sade içerik.
+    const onceki = next
+      ? ([...occurrencesInYear(event, next.year - 1), ...occurrencesInYear(event, next.year)].filter((o) => startMs(o, "istanbul") < startMs(next, "istanbul")).pop() ?? null)
+      : null;
+    return (
+      <SaatKabugu
+        crumbs={[
+          { href: "/", label: "Ana Sayfa" },
+          { href: hubPath, label: "Geri Sayım" },
+          { href: path, label: event.name },
+        ]}
+        faqItems={faqItems}
+        hero={
+          yilbasi ? (
+            <section className="saat-hero gs-hero is-yilbasi">
+              <div className="saat-hero-ic">
+                <h1 className="saat-baslik">{event.question}</h1>
+                <p className="saat-ulke">
+                  {dateText} · {daysSentence}
+                </p>
+                <YilbasiSayaci hedefMs={startMs(yilbasi, "istanbul")} yil={yilbasi.year} olusturma={now.getTime()} sira={sira.map((x) => ({ ad: x.ad, ulke: x.ulke, an: x.an }))} />
+              </div>
+            </section>
+          ) : (
+            <GeriSayimHero
+              baslik={event.question}
+              ad={event.name}
+              hedefler={occurrences.map((o) => startMs(o, "istanbul"))}
+              oncekiMs={onceki ? startMs(onceki, "istanbul") : null}
+              olusturma={now.getTime()}
+              tahmini={estimated}
+            />
+          )
+        }
+        sahneler={next ? <GeriSayimSahneleri event={event} tarihler={occurrences} kalan={days ?? 0} basladi={started} /> : null}
+      >
+        {next && days ? <GeriSayimTakvim event={event} next={next} now={now} kalan={days} /> : null}
+        {yilbasiBolumu}
+        <h2 id="hakkinda">{event.name} hakkında</h2>
+        <p>{event.about}</p>
+        <h2 id="diger">Diğer geri sayımlar ve takvimler</h2>
+        <ul className="saat-linkler">
+          {ilgili.links.map((l) => (
+            <li key={l.href}>
+              <Link href={l.href}>{l.label}</Link>
+            </li>
+          ))}
+        </ul>
+      </SaatKabugu>
+    );
+  }
+
   return (
     <TimeToolPage
       crumbs={[
@@ -142,30 +273,7 @@ export default function CountdownEventPage({ event }: { event: CountdownEvent })
         />
         )
       }
-      related={{
-        title: tr ? "İlginizi çekebilir" : "You may also like",
-        links: [
-          ...(tr
-            ? ETKINLIKLER.filter((e) => e.geriSayim === event.slug).map((e) => ({ href: ozelGunPath(e.id), label: `${e.ad} tarihleri ve takvim` }))
-            : []),
-          ...others.slice(0, 4).map((o) => ({ href: countdownPath(o.event), label: tr ? `${o.event.name} (${o.days} gün)` : `${o.event.name} (${o.days} days)` })),
-          ...(tr
-            ? [
-                { href: hubPath, label: "Tüm geri sayımlar" },
-                { href: "/takvim", label: "Türkiye Takvimi" },
-                { href: "/resmi-tatiller", label: "Resmî Tatiller ve Köprü Günleri" },
-                { href: "/dunya-saatleri", label: "Dünya Saatleri" },
-                { href: "/zamanlayici", label: "Zamanlayıcı" },
-                { href: "/yas-hesaplama", label: "Yaş Hesaplama" },
-              ]
-            : [
-                { href: hubPath, label: "All countdowns" },
-                { href: "/en/federal-holidays", label: "US Federal Holidays" },
-                { href: "/en/world-clock", label: "World Clock" },
-                { href: "/en/timer", label: "Timer" },
-              ]),
-        ],
-      }}
+      related={ilgili}
       tocTitle={tr ? "İçindekiler" : "Contents"}
       tocItems={[
         { id: "ozet", label: tr ? "Tarih ve kalan süre" : "Date and time left" },
@@ -211,54 +319,7 @@ export default function CountdownEventPage({ event }: { event: CountdownEvent })
 
       {tr && next && days ? <GeriSayimTakvim event={event} next={next} now={now} kalan={days} /> : null}
 
-      {yilbasi && tatil ? (
-        <>
-          <h2 id="dunya">Dünyada yeni yıla kim, ne zaman giriyor?</h2>
-          <p>
-            Dünyada yaklaşık 38 farklı yerel saat kullanıldığı için yeni yıl yaklaşık 26 saat boyunca yerden yere gelir. İlk Kiribati&apos;nin Line Adaları,
-            en son Amerikan Samoası yeni yıla girer. Aşağıdaki saatler Türkiye saatine göredir (her şehrin kendi yerel saatiyle 1 Ocak{" "}
-            {yilbasi.year} 00:00).
-          </p>
-          <div className="conversion-table-wrap">
-            <table className="conversion-table">
-              <thead>
-                <tr>
-                  <th>Sıra</th>
-                  <th>Yer</th>
-                  <th>Türkiye saatiyle</th>
-                </tr>
-              </thead>
-              <tbody>
-                {sira
-                  .filter((x, i, a) => i === 0 || x.an !== a[i - 1].an || x.ulke === "Türkiye")
-                  .map((x, i) => (
-                    <tr key={x.ad} className={x.ulke === "Türkiye" ? "is-vurgu" : undefined}>
-                      <td>{i + 1}</td>
-                      <td>
-                        {x.ad} <small>({x.ulke})</small>
-                      </td>
-                      <td>{trSaat(x.an)}</td>
-                    </tr>
-                  ))}
-              </tbody>
-            </table>
-          </div>
-          <p>Aynı anda yeni yıla giren şehirlerden yalnızca biri listelenmiştir. Hesap, her şehrin saat dilimine ve o tarihte geçerli yaz saati uygulamasına göre yapılır.</p>
-
-          <h2 id="tatil">{yilbasi.year} yılbaşı tatili</h2>
-          <p>
-            1 Ocak {yilbasi.year} <strong>{GUN_ADI[tatil.gun]}</strong> gününe denk geliyor.{" "}
-            {tatil.sure === 1
-              ? "Yılbaşı tatili yalnızca 1 Ocak'tır."
-              : tatil.gun === 6 || tatil.gun === 0
-                ? "Hafta sonuna denk geldiği için ek bir tatil günü oluşmaz."
-                : `Hafta sonuyla birlikte ${tatil.sure} günlük tatil olur.`}
-            {tatil.kopru ? ` ${tatil.kopru} tatil yapılabilir.` : ""} 31 Aralık resmî tatil değildir. Türkiye&apos;de miladi takvim ve 1 Ocak yılbaşı, 26
-            Aralık 1925 tarihli kanunlarla 1 Ocak 1926&apos;dan itibaren kullanılmaktadır. Diğer tatiller ve köprü günleri için{" "}
-            <Link href="/resmi-tatiller">resmî tatiller</Link> sayfasına bakabilirsiniz.
-          </p>
-        </>
-      ) : null}
+      {yilbasiBolumu}
 
       <h2 id="yillar">{tr ? `Yıllara göre ${event.name} tarihleri` : `${event.name} dates by year`}</h2>
       <div className="conversion-table-wrap">

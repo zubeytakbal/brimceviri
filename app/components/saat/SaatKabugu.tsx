@@ -1,25 +1,15 @@
 import type { ReactNode } from "react";
 import Link from "@/app/components/SiteLink";
 import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
-import { trSaatSehirleri } from "../../converter/time/worldCities";
-import { ulkeSaatleri } from "../../converter/time/ulkeSaatDilimleri";
 import { buildSiteUrl } from "../../siteConfig";
-import { SAAT_MENUSU } from "./saatBolumu";
+import SaatAltBilgi from "./SaatAltBilgi";
+import { SAAT_ARAMA } from "./saatListeleri";
 import { saatEski, saatFraktur, saatGazete, saatMetin, saatRakam } from "./saatFontlari";
 import SaatUstMenu from "./SaatUstMenu";
 
 function serializeJsonLd(data: object) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
 }
-
-const POPULER = ["istanbul", "londra", "new-york", "berlin", "paris", "amsterdam", "dubai", "mekke", "moskova", "tokyo", "toronto", "los-angeles"]
-  .map((slug) => trSaatSehirleri.find((c) => c.tr === slug))
-  .filter((c) => c !== undefined);
-
-const SEHIRLER = [
-  ...trSaatSehirleri.map((c) => ({ href: `/dunya-saatleri/${c.tr}`, ad: c.nameTr, ulke: c.countryTr })),
-  ...ulkeSaatleri.map((u) => ({ href: `/dunya-saatleri/${u.slug}`, ad: u.ad, ulke: `${u.dilimler.length} saat dilimi` })),
-].sort((a, b) => a.ad.localeCompare(b.ad, "tr"));
 
 /** Saat bölümünün kabuğu: kendi üst menüsü, tam ekran başlık alanı, sade içerik ve kendi alt bilgisi. */
 export default function SaatKabugu({
@@ -45,7 +35,7 @@ export default function SaatKabugu({
     <div className={`saat-bolum ${saatRakam.variable} ${saatMetin.variable} ${saatGazete.variable} ${saatEski.variable} ${saatFraktur.variable}`}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(buildFaqSchema(faqItems)) }} />
-      <SaatUstMenu sehirler={SEHIRLER} />
+      <SaatUstMenu ogeler={SAAT_ARAMA} />
       <main>
         {hero}
         {sahneler}
@@ -68,50 +58,7 @@ export default function SaatKabugu({
           ))}
         </div>
       </main>
-      <footer className="saat-alt-bilgi">
-        <div className="saat-alt-bilgi-ic">
-          <p className="saat-alt-marka">
-            BİRİMCEVİRİ <span>SAAT</span>
-            <small>dünyanın her köşesi, tek saatte</small>
-          </p>
-          <div className="saat-alt-sutunlar">
-            <nav aria-label="Saat araçları">
-              <h2>Araçlar</h2>
-              {SAAT_MENUSU.map((m) => (
-                <Link key={m.href} href={m.href} prefetch={false}>
-                  {m.label}
-                </Link>
-              ))}
-            </nav>
-            <nav aria-label="Popüler şehirler">
-              <h2>Popüler şehirler</h2>
-              {POPULER.map((c) => (
-                <Link key={c.tr} href={`/dunya-saatleri/${c.tr}`} prefetch={false}>
-                  {c.nameTr}
-                </Link>
-              ))}
-            </nav>
-            <nav aria-label="Saat dilimli ülkeler">
-              <h2>Ülkelerin saat dilimleri</h2>
-              {ulkeSaatleri.map((u) => (
-                <Link key={u.slug} href={`/dunya-saatleri/${u.slug}`} prefetch={false}>
-                  {u.ad} <small>{u.dilimler.length} dilim</small>
-                </Link>
-              ))}
-            </nav>
-            <nav aria-label="Site">
-              <h2>Site</h2>
-              <Link href="/">birimceviri.app</Link>
-              <Link href="/hakkimizda">Hakkımızda</Link>
-              <Link href="/iletisim">İletişim</Link>
-              <Link href="/gizlilik">Gizlilik</Link>
-            </nav>
-          </div>
-          <p className="saat-alt-bilgi-son">
-            {trSaatSehirleri.length} şehir ve {ulkeSaatleri.length} ülkenin saati. Saat dilimi verileri IANA veritabanından; saatler cihazının saatine göre işler.
-          </p>
-        </div>
-      </footer>
+      <SaatAltBilgi />
     </div>
   );
 }

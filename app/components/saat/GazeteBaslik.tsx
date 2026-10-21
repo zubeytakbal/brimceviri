@@ -9,7 +9,7 @@ export function haftaNo(an: Date, timeZone: string) {
 
 /** Saat bölümü gazetesinin başlığı ve tarih satırı. */
 /** ad: gazete adı (gotik harfle yazıldığı için ğ, ı, ş gibi Türkçe harf içermemeli). */
-export default function GazeteBaslik({ an, timeZone, baski, ad = "Dünya Saatleri" }: { an: Date; timeZone: string; baski: string; ad?: string }) {
+export default function GazeteBaslik({ an, timeZone, baski, ad = "Saat ve Takvim" }: { an: Date; timeZone: string; baski: string; ad?: string }) {
   return (
     <header className="gazete-baslik" aria-hidden="true">
       <div className="gazete-ust">

@@ -1,3 +1,4 @@
+import { doluGunler } from "../../converter/calendar/trTakvim";
 import Link from "@/app/components/SiteLink";
 import {
   AY_ADLARI,
@@ -203,7 +204,7 @@ export function AyIzgarasi({
         return (ev.length || etk.length) && TAKVIM_YILLARI.includes(year) ? (
           <Link
             key={key}
-            href={takvimGunPath(d)}
+            href={sayfaVar(d) ? takvimGunPath(d) : `${takvimAyPath(year, month)}#gun-${d.day}`}
             prefetch={false}
             className={cls}
             title={title}
@@ -1201,3 +1202,389 @@ export function OzelGunDetay({ e, icerik }: { e: Etkinlik; icerik: OzelGunIcerik
     </TimeToolPage>
   );
 }
+
+
+/* ---- Birleştirmeden önce bu dosyada olan tanımlar (21 Ekim 2026, sayfalar geri getirildi) ---- */
+const OZEL_HUB = { href: "/ozel-gunler", label: "Özel Günler" };
+
+const KURAL_ACIKLAMA: Record<Etkinlik["kural"]["tip"], string> = {
+  sabit: "Her yıl aynı tarihte kutlanır.",
+  coklu:
+    "Halk takvimi eski (Rumi) takvime dayandığı için her yıl aynı miladi tarihlere denk gelir.",
+  "haftanin-gunu":
+    "Tarihi her yıl değişir; ayın belirli bir pazar gününe denk gelir.",
+  hicri:
+    "Hicri (ay) takvimine göre belirlendiği için miladi takvimde her yıl yaklaşık 11 gün öne gelir.",
+  regaib:
+    "Recep ayının ilk cumasına bağlı olduğu için her yıl yaklaşık 11 gün öne gelir.",
+  advent: "Noel'den önceki dördüncü pazar gününe göre belirlendiği için tarihi her yıl değişir.",
+  paskalya: "Paskalya'ya göre belirlendiği için tarihi her yıl değişir; Paskalya ilkbahar dolunayından sonraki ilk pazardır.",
+  resmi:
+    "Hicri takvime göre belirlendiği için her yıl yaklaşık 11 gün öne gelir.",
+  astro:
+    "Güneş'in konumuna göre belirlenir; tarih 19-23 arasında değişir, saati her yıl farklıdır.",
+};
+
+export function ozelGunMeta(e: Etkinlik) {
+  const y = trBugun().year;
+  return {
+    title: `${e.ad} Ne Zaman? ${TAKVIM_YILLARI.filter((x) => x >= y)
+      .slice(0, 2)
+      .join(" ve ")} Tarihleri`,
+    short: `${e.ad} Ne Zaman?`,
+    description:
+      `${e.ad} ${TAKVIM_YILLARI.join(", ")} tarihleri ve günleri. ${e.kisa}`.slice(
+        0,
+        300,
+      ),
+  };
+}
+
+export function OzelGunSayfasi({ e }: { e: Etkinlik }) {
+  const bugun = trBugun();
+  const s = sonrakiTarih(e, bugun);
+  const kalan = s ? diffDays(bugun, s.tarih) : null;
+  const satirlar = TAKVIM_YILLARI.flatMap((y) => etkinlikTarihleri(e, y));
+  const ilk = satirlar.find((t) => t.tarih.year === bugun.year) ?? satirlar[0];
+  const faq: FaqItem[] = [
+    ...TAKVIM_YILLARI.filter((y) => y >= bugun.year)
+      .slice(0, 2)
+      .map((y) => {
+        const t = etkinlikTarihleri(e, y);
+        return {
+          question: `${y} ${e.ad} ne zaman?`,
+          answer: t.length
+            ? `${y} yılında ${e.ad} ${t.map((x) => `${aralik(x)} ${formatYmd(x.tarih, "tr").split(" ").pop()}${x.not ? ` (${x.not})` : ""}`).join(", ")} tarihindedir.${t.some((x) => x.tahmini) ? " Tarih tahminidir." : ""}`
+            : `${e.ad} ${y} yılına denk gelmiyor.`,
+        };
+      }),
+    {
+      question: `${e.ad} resmî tatil mi?`,
+      answer:
+        e.tatil === "yok"
+          ? `Hayır, ${e.ad} resmî tatil değildir; işyerleri ve okullar açıktır.`
+          : e.tatil === "tam"
+            ? `Evet, ${e.ad} tam gün resmî tatildir.`
+            : `Evet. ${e.ad} resmî tatildir; bir önceki gün (arefe) öğleden sonra yarım gün tatildir.`,
+    },
+    {
+      question:
+        e.kural.tip === "sabit" || e.kural.tip === "coklu"
+          ? `${e.ad} her yıl aynı gün mü?`
+          : `${e.ad} neden her yıl aynı gün değil?`,
+      answer: KURAL_ACIKLAMA[e.kural.tip],
+    },
+  ];
+  return (
+    <TimeToolPage
+      crumbs={[HOME, HUB, OZEL_HUB, { label: e.ad }]}
+      crumbLabel={T.crumbLabel}
+      title={`${e.ad} Ne Zaman?`}
+      intro={e.kisa}
+      tool={
+        <div className="date-calc">
+          <article className="takvim-kart">
+            <TakvimGorsel gorsel={e.gorsel} size={112} title={e.ad} />
+            <div>
+              <span className={`takvim-kat kat-${e.kategori}`}>
+                {KATEGORI_ADI[e.kategori]}
+              </span>
+              {s ? (
+                <>
+                  <h2>
+                    <Link
+                      href={
+                        sayfaVar(s.tarih)
+                          ? takvimGunPath(s.tarih)
+                          : takvimAyPath(s.tarih.year, s.tarih.month)
+                      }
+                      prefetch={false}
+                    >
+                      {tarihMetni(s.tarih)}
+                    </Link>
+                  </h2>
+                  <p>
+                    {kalan !== null && kalan > 0
+                      ? `${kalan} gün kaldı.`
+                      : "Bugün."}
+                    {s.bitis ? ` ${aralik(s)} arası.` : ""}
+                    {s.saat
+                      ? ` Saat ${saatMetni(s.saat)} (Türkiye saati).`
+                      : ""}
+                    {s.tahmini ? " Tarih tahminidir." : ""}
+                  </p>
+                </>
+              ) : null}
+              <p className="takvim-kart-alt">
+                <TatilEtiketi e={e} />
+              </p>
+            </div>
+          </article>
+          <div className="holiday-table-wrap">
+            <table className="holiday-table">
+              <thead>
+                <tr>
+                  <th scope="col">Yıl</th>
+                  <th scope="col">Tarih</th>
+                  <th scope="col">Gün</th>
+                </tr>
+              </thead>
+              <tbody>
+                {satirlar.map((t) => (
+                  <tr key={ymdKey(t.tarih)}>
+                    <td>{t.tarih.year}</td>
+                    <td>
+                      <Link href={takvimGunPath(t.tarih)} prefetch={false}>
+                        {aralik(t)}
+                      </Link>
+                      {t.saat ? <small> · {saatMetni(t.saat)}</small> : null}
+                      {t.not ? <small> · {t.not}</small> : null}
+                      {t.tahmini ? <small> (tahmini)</small> : null}
+                    </td>
+                    <td>{formatYmd(t.tarih, "tr").split(" ").pop()}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      }
+      related={{
+        title: T.related,
+        links: [
+          ...(e.geriSayim
+            ? [
+                {
+                  href: `/geri-sayim/${e.geriSayim}`,
+                  label: "Kaç gün kaldı? (canlı geri sayım)",
+                },
+              ]
+            : []),
+          ...(e.araclar ?? []),
+          ...(ilk
+            ? [
+                {
+                  href: takvimAyPath(ilk.tarih.year, ilk.tarih.month),
+                  label: `${AY_ADLARI[ilk.tarih.month - 1]} ${ilk.tarih.year} Takvimi`,
+                },
+              ]
+            : []),
+          OZEL_HUB,
+          ...TAKVIM_ARACLARI,
+        ],
+      }}
+      tocTitle={T.toc}
+      tocItems={[
+        { id: "hakkinda", label: `${e.ad} hakkında` },
+        { id: "faq", label: T.faq },
+      ]}
+      faqTitle={T.faq}
+      faqItems={faq}
+    >
+      <h2 id="hakkinda">{e.ad} hakkında</h2>
+      <p>{e.hakkinda}</p>
+      <p>{KURAL_ACIKLAMA[e.kural.tip]}</p>
+      {e.kategori === "dini" || e.kategori === "bayram" ? (
+        <p>
+          Tarihler Diyanet İşleri Başkanlığı'nın dini günler takvimine göredir;{" "}
+          {DINI_DOGRULANAN} sonrası yıllar Diyanet takvimi yayımlanana kadar
+          tahminidir.
+        </p>
+      ) : null}
+    </TimeToolPage>
+  );
+}
+
+
+
+/* ---- Birleştirmeden önce bu dosyada olan tanımlar (21 Ekim 2026, sayfalar geri getirildi) ---- */
+export function gunMeta(d: YMD) {
+  const b = gunBilgisi(d);
+  const ad = b.etkinlikler.map((t) => tarihliAd(t));
+  const tarih = `${d.day} ${AY_ADLARI[d.month - 1]} ${d.year}`;
+  return {
+    title: `${tarih}: ${ad.join(", ")}`,
+    short: `${tarih} ${ad[0]}`,
+    description:
+      `${tarih} ${b.gunAdi}: ${ad.join(", ")}. ${b.etkinlikler[0]?.etkinlik.kisa ?? ""} Hicri ${b.hicriMetin}, resmî tatil durumu ve kaç gün kaldığı.`.slice(
+        0,
+        300,
+      ),
+  };
+}
+
+export function TakvimGunSayfasi({ d }: { d: YMD }) {
+  const b = gunBilgisi(d);
+  const tatil = tatilHaritasi(d.year).get(ymdKey(d));
+  const tarih = `${d.day} ${AY_ADLARI[d.month - 1]} ${d.year}`;
+  const hepsi = TAKVIM_YILLARI.flatMap(doluGunler);
+  const i = hepsi.findIndex((g) => ymdKey(g) === ymdKey(d));
+  const onceki = hepsi[i - 1];
+  const sonraki = hepsi[i + 1];
+  const tatilMetni = tatil
+    ? tatil.kind === "full"
+      ? `${tarih} tam gün resmî tatildir (${tatil.name}).`
+      : `${tarih} öğleden sonra (13.00'ten itibaren) yarım gün resmî tatildir (${tatil.name}).`
+    : `${tarih} resmî tatil değildir.`;
+  const faq: FaqItem[] = [
+    {
+      question: `${tarih} hangi gün?`,
+      answer: `${tarih} ${b.gunAdi} gününe denk gelir; yılın ${b.yilinGunu}. günü ve ${b.hafta}. haftasıdır.`,
+    },
+    {
+      question: `${tarih} resmî tatil mi?`,
+      answer: `${tatilMetni}${isWeekend(d) ? " Gün hafta sonuna denk gelir." : ""}`,
+    },
+    {
+      question: `${tarih} Hicri tarih kaç?`,
+      answer: `${tarih}, Hicri takvime göre ${b.hicriMetin} tarihine denk gelir.${b.rumiMetin ? ` Rumi takvimde ${b.rumiMetin}.` : ""}`,
+    },
+  ];
+  return (
+    <TimeToolPage
+      crumbs={[
+        HOME,
+        HUB,
+        { href: takvimYilPath(d.year), label: String(d.year) },
+        { href: takvimAyPath(d.year, d.month), label: AY_ADLARI[d.month - 1] },
+        { label: String(d.day) },
+      ]}
+      crumbLabel={T.crumbLabel}
+      title={`${tarih} ${b.gunAdi}`}
+      intro={`${b.etkinlikler.map((t) => tarihliAd(t)).join(", ")}. ${tatilMetni}`}
+      tool={
+        <div className="date-calc">
+          {b.etkinlikler.map((t) => (
+            <article className="takvim-kart" key={t.etkinlik.id}>
+              <TakvimGorsel
+                gorsel={t.etkinlik.gorsel}
+                size={112}
+                title={t.etkinlik.ad}
+              />
+              <div>
+                <span className={`takvim-kat kat-${t.etkinlik.kategori}`}>
+                  {KATEGORI_ADI[t.etkinlik.kategori]}
+                </span>
+                <h2>
+                  <Link href={ozelGunPath(t.etkinlik.id)} prefetch={false}>
+                    {tarihliAd(t)}
+                  </Link>
+                </h2>
+                <p>
+                  {t.etkinlik.kisa}
+                  {t.saat
+                    ? ` Ekinoks/gündönümü anı: saat ${saatMetni(t.saat)} (Türkiye saati).`
+                    : ""}
+                  {t.tahmini ? " Tarih tahminidir." : ""}
+                </p>
+                <p className="takvim-kart-alt">
+                  <TatilEtiketi e={t.etkinlik} />
+                  {t.bitis ? (
+                    <span className="takvim-etiket">{aralik(t)}</span>
+                  ) : null}
+                </p>
+              </div>
+            </article>
+          ))}
+          <div className="date-calc-results">
+            <div className="date-calc-stat">
+              <span>Hicri</span>
+              <strong>{b.hicriMetin}</strong>
+              {b.rumiMetin ? <em>Rumi: {b.rumiMetin}</em> : null}
+            </div>
+            <div className="date-calc-stat">
+              <span>Hafta · yılın günü</span>
+              <strong>
+                {b.hafta}. hafta · {b.yilinGunu}. gün
+              </strong>
+              <em>yılın bitmesine {b.kalanGun} gün</em>
+            </div>
+            <div className="date-calc-stat">
+              <span>Ay evresi</span>
+              <strong>{b.ayEvresi}</strong>
+              <em>%{Math.round(b.ayAydinlik * 100)} aydınlık</em>
+            </div>
+            <div className="date-calc-stat">
+              <span>Halk takvimi</span>
+              <strong>{halkMetni(b.halk)}</strong>
+              <em>
+                <Link href="/firtina-takvimi" prefetch={false}>
+                  Fırtına ve halk takvimi
+                </Link>
+              </em>
+            </div>
+          </div>
+          <nav className="takvim-onceki-sonraki" aria-label="Diğer özel günler">
+            {onceki ? (
+              <Link href={takvimGunPath(onceki)} prefetch={false}>
+                ‹ {kisaTarih(onceki)} {onceki.year}:{" "}
+                {gunHaritasi(onceki.year).get(ymdKey(onceki))?.[0].etkinlik.ad}
+              </Link>
+            ) : (
+              <span />
+            )}
+            {sonraki ? (
+              <Link href={takvimGunPath(sonraki)} prefetch={false}>
+                {kisaTarih(sonraki)} {sonraki.year}:{" "}
+                {
+                  gunHaritasi(sonraki.year).get(ymdKey(sonraki))?.[0].etkinlik
+                    .ad
+                }{" "}
+                ›
+              </Link>
+            ) : null}
+          </nav>
+        </div>
+      }
+      related={{
+        title: T.related,
+        links: [
+          ...b.etkinlikler.flatMap((t) => [
+            ...(t.etkinlik.geriSayim
+              ? [
+                  {
+                    href: `/geri-sayim/${t.etkinlik.geriSayim}`,
+                    label: `${t.etkinlik.ad}: kaç gün kaldı?`,
+                  },
+                ]
+              : []),
+            ...(t.etkinlik.araclar ?? []),
+          ]),
+          {
+            href: takvimAyPath(d.year, d.month),
+            label: `${AY_ADLARI[d.month - 1]} ${d.year} Takvimi`,
+          },
+          ...TAKVIM_ARACLARI,
+        ],
+      }}
+      tocTitle={T.toc}
+      tocItems={[
+        ...b.etkinlikler.map((t) => ({
+          id: `hakkinda-${t.etkinlik.id}`,
+          label: t.etkinlik.ad,
+        })),
+        { id: "ay", label: `${AY_ADLARI[d.month - 1]} ${d.year}` },
+        { id: "faq", label: T.faq },
+      ]}
+      faqTitle={T.faq}
+      faqItems={faq}
+    >
+      {b.etkinlikler.map((t) => (
+        <section key={t.etkinlik.id}>
+          <h2 id={`hakkinda-${t.etkinlik.id}`}>{t.etkinlik.ad}</h2>
+          <p>{t.etkinlik.hakkinda}</p>
+          <p>
+            <Link href={ozelGunPath(t.etkinlik.id)} prefetch={false}>
+              {t.etkinlik.ad} tarihleri ({TAKVIM_YILLARI.join(", ")})
+            </Link>
+          </p>
+        </section>
+      ))}
+      <h2 id="ay">
+        {AY_ADLARI[d.month - 1]} {d.year}
+      </h2>
+      <AyIzgarasi year={d.year} month={d.month} bugun={d} />
+    </TimeToolPage>
+  );
+}
+

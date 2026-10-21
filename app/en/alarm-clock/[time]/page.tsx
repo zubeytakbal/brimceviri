@@ -5,18 +5,17 @@ import Link from "@/app/components/SiteLink";
 import AlarmClock from "../../../components/time/AlarmClock";
 import TimeToolPage from "../../../components/time/TimeToolPage";
 import type { FaqItem } from "../../../converter/faqSchema";
-import { alarmPresetSlug, formatEnglishTime, GERI_GELEN_ALARM_EN } from "../../../i18n/timeToolPaths";
+import { alarmPresetAlternates, alarmPresetSlug, alarmPresetTimes, formatEnglishTime } from "../../../i18n/timeToolPaths";
 import { buildSiteUrl } from "../../../siteConfig";
 
 export const dynamicParams = false;
 
-// Only the alarm times people still searched for after the October 2026 merge (others redirect to ?t=).
 export function generateStaticParams() {
-  return GERI_GELEN_ALARM_EN.map((time) => ({ time: alarmPresetSlug.en(time) }));
+  return alarmPresetTimes.map((time) => ({ time: alarmPresetSlug.en(time) }));
 }
 
 function findTime(slug: string) {
-  return GERI_GELEN_ALARM_EN.find((time) => alarmPresetSlug.en(time) === slug) ?? null;
+  return alarmPresetTimes.find((time) => alarmPresetSlug.en(time) === slug) ?? null;
 }
 
 function addMinutes(time: string, delta: number) {
@@ -37,7 +36,7 @@ export async function generateMetadata({ params }: { params: Promise<{ time: str
     description,
     manifest: appManifestPath("alarm-clock"),
     appleWebApp: { capable: true, title: findInstallableApp("alarm-clock")!.shortName },
-    alternates: { canonical: path },
+    alternates: { canonical: path, ...alarmPresetAlternates(time) },
     openGraph: { title, description, url: buildSiteUrl(path), siteName: "BirimCeviri.app", locale: "en_US", type: "website" },
   };
 }
@@ -76,14 +75,7 @@ export default async function EnglishAlarmPresetPage({ params }: { params: Promi
       title={`Set Alarm for ${label}`}
       intro={`The alarm is preset to ${label}. Press "Add alarm", and change the sound or label if you like. Below you'll find the best bedtimes for waking up refreshed at ${label}.`}
       tool={<AlarmClock locale="en" initialTime={time} />}
-      related={{
-        title: "Other alarm times",
-        links: [
-          ...GERI_GELEN_ALARM_EN.filter((t) => t !== time).map((t) => ({ href: `/en/alarm-clock/${alarmPresetSlug.en(t)}`, label: `${formatEnglishTime(t)} alarm` })),
-          { href: "/en/alarm-clock", label: "Alarm clock (any time)" },
-          { href: "/en/sleep-calculator", label: "Sleep calculator" },
-        ],
-      }}
+      related={{ title: "Other alarm times", links: alarmPresetTimes.filter((t) => t !== time).map((t) => ({ href: `/en/alarm-clock/${alarmPresetSlug.en(t)}`, label: `${formatEnglishTime(t)} alarm` })) }}
       tocTitle="Contents"
       tocItems={[
         { id: "bedtime", label: `Bedtime for a ${label} wake-up` },

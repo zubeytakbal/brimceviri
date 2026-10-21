@@ -82,8 +82,9 @@ export function isSaatBolumu(pathname: string) {
 }
 
 /** Sitenin ortak araç düzenini kullanan, ama saat bölümünün üst menüsü ve alt bilgisiyle çizilen sayfalar: menüdeki
- * araçlar ile takvimin yıl ve ay sayfaları, tek tek özel gün sayfaları ve yıllara göre resmî tatiller. */
+ * araçlar ile takvimin yıl, ay ve gün sayfaları, tek tek özel gün sayfaları, yıllara göre resmî tatiller ve hazır
+ * zamanlayıcı süreleri ile alarm saatleri. */
 export function isSaatAraci(pathname: string) {
   const p = yol(pathname);
-  return !isSaatBolumu(p) && (ARAC_YOLLARI.has(p) || /^\/(takvim|ozel-gunler|resmi-tatiller|zamanlayici)\/[^/]+(\/[^/]+)?$/.test(p));
+  return !isSaatBolumu(p) && (ARAC_YOLLARI.has(p) || /^\/(takvim|ozel-gunler|resmi-tatiller|zamanlayici|online-alarm-kur)(\/[^/]+){1,3}$/.test(p));
 }

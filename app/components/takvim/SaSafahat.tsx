@@ -1,3 +1,4 @@
+import { Munasaba } from "../../converter/calendar/saTaqwim";
 import Link from "@/app/components/SiteLink";
 import {
   adadAr,
@@ -1156,3 +1157,129 @@ export function SaUmrHijriSafha() {
     </div>
   );
 }
+
+
+/* ---- Birleştirmeden önce bu dosyada olan tanımlar (21 Ekim 2026, sayfalar geri getirildi) ---- */
+const MUN_HUB = { href: "/ar/occasions", label: "المناسبات" };
+
+export function saMunasabaMeta(m: Munasaba) {
+  const y = riyadhYawm().year;
+  const q = mawidQadim(m, riyadhYawm());
+  return {
+    title: `موعد ${m.ism} ${q ? q.tarikh.year : y}: كم باقي؟`,
+    short: `موعد ${m.ism}`,
+    description:
+      `${m.ism}: ${q ? `${miladiNass(q.tarikh)} الموافق ${hijriNass(q.tarikh)}` : ""}. ${m.mujaz}`.slice(
+        0,
+        300,
+      ),
+  };
+}
+
+export function SaMunasaba({ m }: { m: Munasaba }) {
+  const yawm = riyadhYawm();
+  const q = mawidQadim(m, yawm);
+  const n = q ? diffDays(yawm, q.tarikh) : null;
+  const sufuf = [yawm.year, yawm.year + 1, yawm.year + 2].flatMap((y) =>
+    mawaid(m, y),
+  );
+  const faq: FaqItem[] = [
+    ...(q
+      ? [
+          {
+            question: `كم باقي على ${m.ism}؟`,
+            answer: `${m.ism} ${n !== null && n > 0 ? `بعد ${n} يومًا، ` : ""}يوم ${miladiNass(q.tarikh)} الموافق ${hijriNass(q.tarikh)}.`,
+          },
+        ]
+      : []),
+    {
+      question: `هل ${m.ism} إجازة رسمية؟`,
+      answer: m.ijaza
+        ? `نعم، ${m.ism} إجازة رسمية مدتها ${m.ijaza === 1 ? "يوم واحد" : `${m.ijaza} أيام`} للقطاع الخاص.${q && ijazaNass(q) ? ` ${ijazaNass(q)}.` : ""}`
+        : `لا، ${m.ism} ليس إجازة رسمية.`,
+    },
+  ];
+  return (
+    <div lang="ar" dir="rtl">
+      <TimeToolPage
+        crumbs={[RAISIYA, HUB, MUN_HUB, { label: m.ism }]}
+        crumbLabel={T.crumb}
+        title={`موعد ${m.ism}`}
+        intro={m.mujaz}
+        tool={
+          <div className="date-calc">
+            <article className="takvim-kart">
+              <TakvimGorsel gorsel={m.sura} size={112} title={m.ism} />
+              <div>
+                <span className={`takvim-kat sa-feah-${m.feah}`}>
+                  {SA_FEAH[m.feah]}
+                </span>
+                {q ? (
+                  <>
+                    <h2>{miladiNass(q.tarikh)}</h2>
+                    <p>
+                      {hijriNass(q.tarikh)} ·{" "}
+                      {n !== null ? (n < 0 ? "جارية الآن" : baqi(n)) : ""}
+                      {q.waqt ? ` · الساعة ${waqtAr(q.waqt)} بتوقيت مكة` : ""}
+                    </p>
+                    {ijazaNass(q) ? (
+                      <p className="takvim-kart-alt">
+                        <span className="takvim-etiket is-tatil">
+                          {ijazaNass(q)}
+                        </span>
+                      </p>
+                    ) : null}
+                  </>
+                ) : null}
+              </div>
+            </article>
+            <div className="holiday-table-wrap">
+              <table className="holiday-table">
+                <thead>
+                  <tr>
+                    <th scope="col">التاريخ الميلادي</th>
+                    <th scope="col">التاريخ الهجري</th>
+                    <th scope="col">الإجازة</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {sufuf.map((t) => (
+                    <tr key={ymdKey(t.tarikh)}>
+                      <td>{miladiNass(t.tarikh)}</td>
+                      <td>{hijriNass(t.tarikh)}</td>
+                      <td>
+                        {t.ijazaMin && t.ijazaIla
+                          ? ymdKey(t.ijazaMin) === ymdKey(t.ijazaIla)
+                            ? qasir(t.ijazaMin)
+                            : `${qasir(t.ijazaMin)} – ${qasir(t.ijazaIla)}`
+                          : "—"}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        }
+        related={{ title: T.related, links: [MUN_HUB, ...SA_ROWABIT] }}
+        tocTitle={T.toc}
+        tocItems={[
+          { id: "tafsil", label: `عن ${m.ism}` },
+          { id: "faq", label: T.faq },
+        ]}
+        faqTitle={T.faq}
+        faqItems={faq}
+      >
+        <h2 id="tafsil">عن {m.ism}</h2>
+        <p>{m.tafsil}</p>
+        {m.feah === "dini" || m.id.startsWith("eid") ? (
+          <p>
+            المواعيد حسب تقويم أم القرى؛ وتُعلن بدايات رمضان وشوال وذي الحجة
+            رسميًا برؤية الهلال، وقد تختلف يومًا واحدًا.
+          </p>
+        ) : null}
+      </TimeToolPage>
+    </div>
+  );
+}
+

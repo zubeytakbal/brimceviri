@@ -140,6 +140,7 @@ export const turkishToolGroups: ToolGroup[] = [
     links: [
       { href: "/dunya-saatleri", label: "Dünya Saatleri" },
       { href: "/saat-dilimi-cevirici", label: "Saat Dilimi Çevirici" },
+      { href: "/yaz-saati", label: "Yaz Saati: Saatler Ne Zaman Değişiyor?" },
       { href: "/online-saat", label: "Online Saat" },
       { href: "/zamanlayici", label: "Online Zamanlayıcı" },
       { href: "/kronometre", label: "Kronometre" },
@@ -463,6 +464,7 @@ export const turkishTimeMenu = pick([
   "/gunes-dogusu-ve-batisi",
   "/dunya-saatleri",
   "/saat-dilimi-cevirici",
+  "/yaz-saati",
   "/online-saat",
   "/zamanlayici",
   "/kronometre",

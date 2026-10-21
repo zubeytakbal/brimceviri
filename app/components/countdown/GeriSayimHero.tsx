@@ -16,6 +16,8 @@ export default function GeriSayimHero({
   oncekiMs,
   olusturma,
   tahmini,
+  saatEtiketi = "Türkiye saatiyle 00:00",
+  bugunMetni,
 }: {
   baslik: string;
   ad: string;
@@ -25,6 +27,10 @@ export default function GeriSayimHero({
   oncekiMs: number | null;
   olusturma: number;
   tahmini: boolean;
+  /** Tarihin yanındaki saat bilgisi (ör. yaz saati geçişi için "Türkiye saatiyle 04:00"). */
+  saatEtiketi?: string;
+  /** Hedef gün geldiğinde alt satır (varsayılan: "… bugün. Kutlu olsun!"). */
+  bugunMetni?: string;
 }) {
   const [simdi, setSimdi] = useState(olusturma);
   const [tam, setTam] = useState(false);
@@ -87,7 +93,7 @@ export default function GeriSayimHero({
             <h1 className="saat-baslik">{baslik}</h1>
             <p className="saat-ulke" suppressHydrationWarning>
               {tarih}
-              {tahmini ? " (tahmini)" : ""} · Türkiye saatiyle 00:00
+              {tahmini ? " (tahmini)" : ""} · {saatEtiketi}
             </p>
           </div>
           <div className="saat-eylemler">
@@ -129,9 +135,11 @@ export default function GeriSayimHero({
 
         <p className="saat-alt" suppressHydrationWarning>
           {bugun ? (
-            <>
-              <b>{ad}</b> bugün. Kutlu olsun!
-            </>
+            bugunMetni ?? (
+              <>
+                <b>{ad}</b> bugün. Kutlu olsun!
+              </>
+            )
           ) : (
             <>
               <b>{ad}</b> için {gun ? `${gun} gün ${sa} saat` : `${sa} saat ${dk} dakika`} kaldı

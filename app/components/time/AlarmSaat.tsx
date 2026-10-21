@@ -5,15 +5,39 @@
 // karartıp sönük kırmızı bir saat gösterir ve ekranı açık tutar; alarm çalınca tam ekran ERTELE / DURDUR.
 // Alarm altyapısı (saklama, sesler, kendi müziği, titreşim) AlarmClock ile ortaktır; alarmlar aynı yerde saklanır.
 import { useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import SoundPicker from "./SoundPicker";
-import { playSound, startRinging, unlockAudio, type TimeSoundId } from "./timeSounds";
+import {
+  playSound,
+  startRinging,
+  unlockAudio,
+  type TimeSoundId,
+} from "./timeSounds";
 import { timeToolsCopy } from "./timeToolsCopy";
 import { makeId, nowMs, pad2, useNow } from "./useNow";
 import { useWakeLock } from "./useWakeLock";
-import { loadAlarms, nextAt, startVibration, STORAGE_KEY, untilText, type Alarm, type Repeat } from "./AlarmClock";
+import { saatMetin, saatRakam } from "../saat/saatFontlari";
+import {
+  loadAlarms,
+  nextAt,
+  startVibration,
+  STORAGE_KEY,
+  untilText,
+  type Alarm,
+  type Repeat,
+} from "./AlarmClock";
 
 const copy = timeToolsCopy.tr;
-const HAZIR = ["05:00", "05:30", "06:00", "06:30", "07:00", "07:30", "08:00", "08:30"];
+const HAZIR = [
+  "05:00",
+  "05:30",
+  "06:00",
+  "06:30",
+  "07:00",
+  "07:30",
+  "08:00",
+  "08:30",
+];
 const SAATLER = Array.from({ length: 24 }, (_, i) => i);
 const DAKIKALAR = Array.from({ length: 60 }, (_, i) => i);
 const ERTELEME_DK = 5;
@@ -27,7 +51,13 @@ function uykuOnerileri(an: Date) {
   });
 }
 
-const tarihYaz = (an: Date) => new Intl.DateTimeFormat("tr-TR", { weekday: "long", day: "numeric", month: "long", year: "numeric" }).format(an);
+const tarihYaz = (an: Date) =>
+  new Intl.DateTimeFormat("tr-TR", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  }).format(an);
 
 export default function AlarmSaat() {
   const now = useNow();
@@ -99,13 +129,21 @@ export default function AlarmSaat() {
 
   useEffect(() => () => durdurRef.current?.(), []);
 
-  const siradaki = useMemo(() => alarmlar.filter((a) => a.enabled && a.at).sort((a, b) => a.at - b.at)[0], [alarmlar]);
+  const siradaki = useMemo(
+    () =>
+      alarmlar.filter((a) => a.enabled && a.at).sort((a, b) => a.at - b.at)[0],
+    [alarmlar],
+  );
 
   // Sekme başlığında sıradaki alarm.
   useEffect(() => {
     if (!now) return;
     const temel = document.title.replace(/^⏰ [^|]*\| /, "");
-    document.title = calan ? `⏰ ${calan.time} | ${temel}` : siradaki ? `⏰ ${siradaki.time} · ${untilText(siradaki.at - now.getTime(), copy)} | ${temel}` : temel;
+    document.title = calan
+      ? `⏰ ${calan.time} | ${temel}`
+      : siradaki
+        ? `⏰ ${siradaki.time} · ${untilText(siradaki.at - now.getTime(), copy)} | ${temel}`
+        : temel;
   }, [now, siradaki, calan]);
 
   // Gece modu: tam ekran ve ekranı açık tut; tam ekrandan çıkılınca gece modu da kapanır.
@@ -125,8 +163,18 @@ export default function AlarmSaat() {
 
   const kur = (zaman: string) => {
     unlockAudio();
-    const alarm: Alarm = { id: makeId(), time: zaman, label: etiket.trim(), sound: ses, enabled: true, at: nextAt(zaman, nowMs(), tekrar), repeat: tekrar };
-    setAlarmlar((liste) => [...liste, alarm].sort((a, b) => a.time.localeCompare(b.time)));
+    const alarm: Alarm = {
+      id: makeId(),
+      time: zaman,
+      label: etiket.trim(),
+      sound: ses,
+      enabled: true,
+      at: nextAt(zaman, nowMs(), tekrar),
+      repeat: tekrar,
+    };
+    setAlarmlar((liste) =>
+      [...liste, alarm].sort((a, b) => a.time.localeCompare(b.time)),
+    );
     setEtiket("");
   };
   const sec = (zaman: string) => {
@@ -147,14 +195,26 @@ export default function AlarmSaat() {
     if (!calan) return;
     const at = Date.now() + ERTELEME_DK * 60000;
     const t = new Date(at);
-    const ertelenen: Alarm = { ...calan, id: `${calan.id}-z${Date.now()}`, enabled: true, at, repeat: "once", time: `${pad2(t.getHours())}:${pad2(t.getMinutes())}` };
+    const ertelenen: Alarm = {
+      ...calan,
+      id: `${calan.id}-z${Date.now()}`,
+      enabled: true,
+      at,
+      repeat: "once",
+      time: `${pad2(t.getHours())}:${pad2(t.getMinutes())}`,
+    };
     durdur();
     setAlarmlar((liste) => [...liste, ertelenen]);
   };
 
   const secili = `${pad2(saat)}:${pad2(dakika)}`;
-  const kalan = siradaki && now ? untilText(siradaki.at - now.getTime(), copy) : null;
-  const oneriler = now ? uykuOnerileri(now) : [];
+  const kalan =
+    siradaki && now ? untilText(siradaki.at - now.getTime(), copy) : null;
+  // Uyku önerileri yalnızca akşam ve gece anlamlı (18:00–05:00).
+  const oneriler =
+    now && (now.getHours() >= 18 || now.getHours() < 5)
+      ? uykuOnerileri(now)
+      : [];
 
   return (
     <section className="saat-hero alarm-hero">
@@ -170,13 +230,22 @@ export default function AlarmSaat() {
             <button type="button" onClick={() => setGece(true)}>
               ☾ Gece modu
             </button>
-            <button type="button" onClick={wakeLock.toggle} disabled={!wakeLock.supported} aria-pressed={wakeLock.enabled}>
+            <button
+              type="button"
+              onClick={wakeLock.toggle}
+              disabled={!wakeLock.supported}
+              aria-pressed={wakeLock.enabled}
+            >
               {wakeLock.enabled ? "☀ Ekran açık" : "☀ Ekranı açık tut"}
             </button>
           </div>
         </div>
 
-        <div className="saat-dev alarm-dev" aria-live="off" suppressHydrationWarning>
+        <div
+          className="saat-dev alarm-dev"
+          aria-live="off"
+          suppressHydrationWarning
+        >
           {now ? `${pad2(now.getHours())}:${pad2(now.getMinutes())}` : "--:--"}
           <span className="saat-sn">{now ? pad2(now.getSeconds()) : "--"}</span>
         </div>
@@ -192,7 +261,10 @@ export default function AlarmSaat() {
           <div className="alarm-secici">
             <label>
               <span>Saat</span>
-              <select value={saat} onChange={(e) => setSaat(Number(e.target.value))}>
+              <select
+                value={saat}
+                onChange={(e) => setSaat(Number(e.target.value))}
+              >
                 {SAATLER.map((h) => (
                   <option key={h} value={h}>
                     {pad2(h)}
@@ -203,7 +275,10 @@ export default function AlarmSaat() {
             <b aria-hidden="true">:</b>
             <label>
               <span>Dakika</span>
-              <select value={dakika} onChange={(e) => setDakika(Number(e.target.value))}>
+              <select
+                value={dakika}
+                onChange={(e) => setDakika(Number(e.target.value))}
+              >
                 {DAKIKALAR.map((m) => (
                   <option key={m} value={m}>
                     {pad2(m)}
@@ -211,31 +286,54 @@ export default function AlarmSaat() {
                 ))}
               </select>
             </label>
-            <button type="button" className="alarm-kur-dugme" onClick={() => kur(secili)}>
+            <button
+              type="button"
+              className="alarm-kur-dugme"
+              onClick={() => kur(secili)}
+            >
               Alarm kur
             </button>
           </div>
 
           <div className="alarm-cipler" role="group" aria-label="Hazır saatler">
             {HAZIR.map((t) => (
-              <button key={t} type="button" className={t === secili ? "is-secili" : undefined} onClick={() => sec(t)}>
+              <button
+                key={t}
+                type="button"
+                className={t === secili ? "is-secili" : undefined}
+                onClick={() => sec(t)}
+              >
                 {t}
               </button>
             ))}
           </div>
 
           {oneriler.length > 0 && (
-            <div className="alarm-cipler is-uyku" role="group" aria-label="Şimdi yatarsan uyanma saatleri">
+            <div
+              className="alarm-cipler is-uyku"
+              role="group"
+              aria-label="Şimdi yatarsan uyanma saatleri"
+            >
               <span>Şimdi yatarsan dinç uyanırsın:</span>
               {oneriler.map((o) => (
-                <button key={o.n} type="button" className={o.saat === secili ? "is-secili" : undefined} onClick={() => sec(o.saat)} title={`${o.n} uyku döngüsü (${o.n * 1.5} saat) + 15 dk uykuya dalma`}>
+                <button
+                  key={o.n}
+                  type="button"
+                  className={o.saat === secili ? "is-secili" : undefined}
+                  onClick={() => sec(o.saat)}
+                  title={`${o.n} uyku döngüsü (${o.n * 1.5} saat) + 15 dk uykuya dalma`}
+                >
                   {o.saat} <small>{o.n * 1.5} sa</small>
                 </button>
               ))}
             </div>
           )}
 
-          <div className="alarm-cipler is-hizli" role="group" aria-label="Hızlı kur">
+          <div
+            className="alarm-cipler is-hizli"
+            role="group"
+            aria-label="Hızlı kur"
+          >
             <span>Hızlı kur:</span>
             {[5, 10, 15, 30, 60].map((dk) => (
               <button key={dk} type="button" onClick={() => hizli(dk)}>
@@ -249,7 +347,12 @@ export default function AlarmSaat() {
             <div className="alarm-ayar-alanlar">
               <label>
                 <span>Not</span>
-                <input value={etiket} maxLength={40} placeholder="örn. İlaç, toplantı" onChange={(e) => setEtiket(e.target.value)} />
+                <input
+                  value={etiket}
+                  maxLength={40}
+                  placeholder="örn. İlaç, toplantı"
+                  onChange={(e) => setEtiket(e.target.value)}
+                />
               </label>
               <label>
                 <span>Ses</span>
@@ -257,7 +360,10 @@ export default function AlarmSaat() {
               </label>
               <label>
                 <span>Tekrar</span>
-                <select value={tekrar} onChange={(e) => setTekrar(e.target.value as Repeat)}>
+                <select
+                  value={tekrar}
+                  onChange={(e) => setTekrar(e.target.value as Repeat)}
+                >
                   <option value="once">{copy.repeat.once}</option>
                   <option value="daily">{copy.repeat.daily}</option>
                   <option value="weekdays">{copy.repeat.weekdays}</option>
@@ -265,7 +371,14 @@ export default function AlarmSaat() {
               </label>
               <label>
                 <span>Ses düzeyi</span>
-                <input type="range" min={0.1} max={1} step={0.1} value={duzey} onChange={(e) => setDuzey(Number(e.target.value))} />
+                <input
+                  type="range"
+                  min={0.1}
+                  max={1}
+                  step={0.1}
+                  value={duzey}
+                  onChange={(e) => setDuzey(Number(e.target.value))}
+                />
               </label>
               <button type="button" onClick={() => playSound(ses, duzey)}>
                 🔊 Sesi dene
@@ -281,7 +394,9 @@ export default function AlarmSaat() {
                 <b>{a.time}</b>
                 <span>
                   {a.label || copy.sounds[a.sound]}
-                  {a.repeat && a.repeat !== "once" ? ` · ${copy.repeat[a.repeat]}` : ""}
+                  {a.repeat && a.repeat !== "once"
+                    ? ` · ${copy.repeat[a.repeat]}`
+                    : ""}
                 </span>
                 <label>
                   <input
@@ -290,46 +405,87 @@ export default function AlarmSaat() {
                     onChange={(e) => {
                       unlockAudio();
                       const acik = e.target.checked;
-                      setAlarmlar((liste) => liste.map((x) => (x.id === a.id ? { ...x, enabled: acik, at: acik ? nextAt(x.time, Date.now(), x.repeat) : 0 } : x)));
+                      setAlarmlar((liste) =>
+                        liste.map((x) =>
+                          x.id === a.id
+                            ? {
+                                ...x,
+                                enabled: acik,
+                                at: acik
+                                  ? nextAt(x.time, Date.now(), x.repeat)
+                                  : 0,
+                              }
+                            : x,
+                        ),
+                      );
                     }}
                   />
                   {a.enabled ? "Açık" : "Kapalı"}
                 </label>
-                <button type="button" onClick={() => setAlarmlar((liste) => liste.filter((x) => x.id !== a.id))} aria-label={`${a.time} alarmını sil`}>
+                <button
+                  type="button"
+                  onClick={() =>
+                    setAlarmlar((liste) => liste.filter((x) => x.id !== a.id))
+                  }
+                  aria-label={`${a.time} alarmını sil`}
+                >
                   Sil
                 </button>
               </li>
             ))}
           </ul>
         )}
-        <p className="alarm-not">Alarm bu sekme açıkken çalar; sekmeyi kapatmayın. Telefonda &quot;Gece modu&quot;nu açıp şarjda bırakın.</p>
+        <p className="alarm-not">
+          Alarm bu sekme açıkken çalar; sekmeyi kapatmayın. Telefonda &quot;Gece
+          modu&quot;nu açıp şarjda bırakın.
+        </p>
       </div>
 
-      {gece && (
-        <div ref={geceRef} className="alarm-gece" onClick={() => setGece(false)} role="dialog" aria-label="Gece modu (kapatmak için dokunun)">
-          <div className="alarm-gece-saat" suppressHydrationWarning>
-            {now ? `${pad2(now.getHours())}:${pad2(now.getMinutes())}` : "--:--"}
-          </div>
-          <p suppressHydrationWarning>{siradaki ? `⏰ ${siradaki.time} · ${kalan} sonra` : "Kurulu alarm yok"}</p>
-          <small>Çıkmak için dokunun</small>
-        </div>
-      )}
+      {gece &&
+        createPortal(
+          <div
+            ref={geceRef}
+            className={`alarm-gece ${saatRakam.variable} ${saatMetin.variable}`}
+            onClick={() => setGece(false)}
+            role="dialog"
+            aria-label="Gece modu (kapatmak için dokunun)"
+          >
+            <div className="alarm-gece-saat" suppressHydrationWarning>
+              {now
+                ? `${pad2(now.getHours())}:${pad2(now.getMinutes())}`
+                : "--:--"}
+            </div>
+            <p suppressHydrationWarning>
+              {siradaki
+                ? `⏰ ${siradaki.time} · ${kalan} sonra`
+                : "Kurulu alarm yok"}
+            </p>
+            <small>Çıkmak için dokunun</small>
+          </div>,
+          document.body,
+        )}
 
-      {calan && (
-        <div className="alarm-caliyor" role="alertdialog" aria-label="Alarm çalıyor">
-          <p className="alarm-caliyor-ust">Alarm çalıyor</p>
-          <div className="alarm-caliyor-saat">{calan.time}</div>
-          {calan.label && <p className="alarm-caliyor-not">{calan.label}</p>}
-          <div className="alarm-caliyor-dugmeler">
-            <button type="button" onClick={ertele}>
-              Ertele · {ERTELEME_DK} dk
-            </button>
-            <button type="button" className="is-durdur" onClick={durdur}>
-              Durdur
-            </button>
-          </div>
-        </div>
-      )}
+      {calan &&
+        createPortal(
+          <div
+            className={`alarm-caliyor ${saatRakam.variable} ${saatMetin.variable}`}
+            role="alertdialog"
+            aria-label="Alarm çalıyor"
+          >
+            <p className="alarm-caliyor-ust">Alarm çalıyor</p>
+            <div className="alarm-caliyor-saat">{calan.time}</div>
+            {calan.label && <p className="alarm-caliyor-not">{calan.label}</p>}
+            <div className="alarm-caliyor-dugmeler">
+              <button type="button" onClick={ertele}>
+                Ertele · {ERTELEME_DK} dk
+              </button>
+              <button type="button" className="is-durdur" onClick={durdur}>
+                Durdur
+              </button>
+            </div>
+          </div>,
+          document.body,
+        )}
     </section>
   );
 }

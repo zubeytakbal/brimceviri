@@ -21309,6 +21309,13 @@ a.all-units-row .all-units-name {
   font-size: 0.88rem;
 }
 
+/* Tam ekranlar sayfanın en üst katmanında (body) çizilir; bölümün değişkenlerini kendileri taşır. */
+.alarm-gece,
+.alarm-caliyor {
+  --saat-vurgu: #168f8c;
+  font-family: var(--saat-metin), system-ui, sans-serif;
+}
+
 /* Gece modu: tamamen siyah, sönük kırmızı saat (gece görüşünü bozmaz). */
 .alarm-gece {
   position: fixed;
@@ -21420,7 +21427,11 @@ a.all-units-row .all-units-name {
   }
 
   .alarm-dev {
-    font-size: 26vw;
+    font-size: 27vw;
+  }
+
+  .alarm-dev .saat-sn {
+    display: none;
   }
 
   .alarm-kur {

@@ -3,32 +3,45 @@
 
 export type Gecis = { an: number; once: number; sonra: number };
 
-/** Saat diliminin o andaki UTC farkı (dakika). */
+const bicimler = new Map<string, Intl.DateTimeFormat>();
+const gecisOnbellegi = new Map<string, Gecis[]>();
+
+/** Saat diliminin o andaki UTC farkı (dakika). Biçimleyici saat dilimi başına bir kez kurulur (derleme hızı). */
 export function utcFarki(tz: string, an: number): number {
-  const s = new Intl.DateTimeFormat("en-US", { timeZone: tz, timeZoneName: "longOffset" }).formatToParts(an).find((p) => p.type === "timeZoneName")?.value ?? "GMT";
+  let f = bicimler.get(tz);
+  if (!f) {
+    f = new Intl.DateTimeFormat("en-US", { timeZone: tz, timeZoneName: "longOffset" });
+    bicimler.set(tz, f);
+  }
+  const s = f.formatToParts(an).find((p) => p.type === "timeZoneName")?.value ?? "GMT";
   const m = s.match(/GMT([+-])(\d\d):?(\d\d)?/);
   return m ? (m[1] === "-" ? -1 : 1) * (Number(m[2]) * 60 + Number(m[3] ?? 0)) : 0;
 }
 
-/** Bir yılın içindeki saat geçişleri (dakika hassasiyetinde). */
+/** Bir yılın içindeki saat geçişleri (dakika hassasiyetinde): günlük adımla aranır, ikiye bölmeyle daraltılır. */
 export function yilGecisleri(tz: string, yil: number): Gecis[] {
+  const anahtar = `${tz}|${yil}`;
+  const hazir = gecisOnbellegi.get(anahtar);
+  if (hazir) return hazir;
   const out: Gecis[] = [];
+  const GUN = 86400000;
   const son = Date.UTC(yil + 1, 0, 1);
   let t = Date.UTC(yil, 0, 1);
   let o = utcFarki(tz, t);
-  for (; t < son; t += 3600000) {
+  for (t += GUN; t <= son; t += GUN) {
     const o2 = utcFarki(tz, t);
     if (o2 === o) continue;
-    let a = t - 3600000;
+    let a = t - GUN;
     let b = t;
     while (b - a > 60000) {
       const m = a + Math.floor((b - a) / 120000) * 60000;
       if (utcFarki(tz, m) === o) a = m;
       else b = m;
     }
-    out.push({ an: b, once: o, sonra: o2 });
+    if (b < son) out.push({ an: b, once: o, sonra: o2 });
     o = o2;
   }
+  gecisOnbellegi.set(anahtar, out);
   return out;
 }
 

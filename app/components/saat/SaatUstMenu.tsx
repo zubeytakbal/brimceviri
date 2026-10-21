@@ -2,7 +2,14 @@
 
 import Link from "@/app/components/SiteLink";
 import { useEffect, useRef, useState } from "react";
+import { SITE_NAV_DATA } from "../../i18n/siteNavData.generated";
 import { SAAT_GRUPLARI } from "./saatBolumu";
+
+// Sitenin ana bölümleri (genel menüyle aynı veri): saat bölümünden sitenin geri kalanına giden yol.
+const SITE_BOLUMLERI = [
+  { href: "/", label: "Ana sayfa" },
+  ...SITE_NAV_DATA.locales.tr.menuGroups.map((g) => ({ href: g.footer?.[0]?.href ?? g.links[0].href, label: g.label })),
+];
 
 type Oge = { href: string; ad: string; ulke: string };
 
@@ -27,9 +34,14 @@ export default function SaatUstMenu({ ogeler }: { ogeler: Oge[] }) {
   return (
     <header className="saat-ust">
       <div className="saat-ust-ic">
-        <Link href="/" className="saat-logo" aria-label="birimceviri.app ana sayfa">
-          birimceviri<span>Saat</span>
-        </Link>
+        <div className="saat-marka">
+          <Link href="/" className="site-logo saat-site-logo" dir="ltr">
+            birimceviri<span>.app</span>
+          </Link>
+          <Link href="/saat-ve-tarih" className="saat-bolum-etiket">
+            Saat
+          </Link>
+        </div>
         <div className="saat-ust-dugmeler">
           <button type="button" aria-label="Şehir ya da araç ara" aria-expanded={acik === "arama"} onClick={() => setAcik(acik === "arama" ? "yok" : "arama")}>
             <svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true">
@@ -85,9 +97,14 @@ export default function SaatUstMenu({ ogeler }: { ogeler: Oge[] }) {
                 </div>
               ))}
             </div>
-            <Link href="/" className="saat-menu-ana" onClick={() => setAcik("yok")}>
-              birimceviri.app ana sayfa
-            </Link>
+            <div className="saat-menu-site">
+              <p className="saat-menu-baslik">birimceviri.app</p>
+              {SITE_BOLUMLERI.map((b) => (
+                <Link key={b.href} href={b.href} onClick={() => setAcik("yok")}>
+                  {b.label}
+                </Link>
+              ))}
+            </div>
           </nav>
         </div>
       )}

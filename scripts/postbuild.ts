@@ -328,6 +328,8 @@ function fixHreflangReciprocity() {
 function fixMergedPairLinks() {
   const SITE = "https://www.birimceviri.app";
   const slugs = Object.keys(MERGED_PAIRS).sort((a, b) => b.length - a.length).join("|");
+  // Liste boşken desen "/" adresini yakalayıp "/undefined" yapar.
+  if (!slugs) return { links: 0, alternates: 0 };
   // href="/x", JSON içindeki "href":"/x" ve \"href\":\"/x\" biçimleri; arkasından tırnak, ?, # ya da ters bölü gelmeli.
   const linkRe = new RegExp(`((?:href=|\\\\?"href\\\\?":)\\\\?")/(${slugs})(?=["?#\\\\])`, "g");
   const altRe = new RegExp(`<link rel="alternate" hrefLang="[^"]*" href="${SITE}/(?:${slugs})"/>`, "g");

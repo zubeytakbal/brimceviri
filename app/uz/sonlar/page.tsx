@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import NumberFactsCalculator from "../../components/NumberFactsCalculator";
-import { getNumberFacts } from "../../converter/numberFacts";
+import { CURATED_EXTRA_NUMBERS, getNumberFacts, isGeneratedNumberPage } from "../../converter/numberFacts";
 import { buildFullLanguageAlternates } from "../../i18n/routing";
 import { buildSiteUrl } from "../../siteConfig";
 
@@ -34,6 +34,7 @@ const MOST_DIVISORS = [...ONE_TO_HUNDRED]
   .slice(0, 5);
 
 function NumberLink({ n }: { n: number }) {
+  if (isGeneratedNumberPage(n)) return <Link href={`/uz/sonlar/${n}`}>{n}</Link>;
   return (
     <a href={`?n=${n}#hisoblash`} rel="nofollow">
       {n}
@@ -113,6 +114,11 @@ export default function UzbekSonlarHubPage() {
             O&apos;zidan boshqa bo&apos;luvchilarining yig&apos;indisi o&apos;ziga teng bo&apos;lgan son mukammal son
             deyiladi. 1 000 000 gacha to&apos;rttasi bor: <NumberLink n={6} /> (1+2+3),{" "}
             <NumberLink n={28} /> (1+2+4+7+14), <NumberLink n={496} /> va <NumberLink n={8128} />.
+          </p>
+
+          <h2>Maxsus sonlar: kvadratlar, 2 ning darajalari, Fibonachchi va yillar</h2>
+          <p>
+            100 dan katta bu sonlarning har birining alohida sahifasi bor: {joinLinks(CURATED_EXTRA_NUMBERS)}.
           </p>
 
           <h2>Son tub ekanligi qanday aniqlanadi?</h2>

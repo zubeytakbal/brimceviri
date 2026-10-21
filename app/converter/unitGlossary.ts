@@ -1,5 +1,5 @@
-// Ayrı birim rehberi sayfası olmayan dillerde (es, fr, pt, it, nl, sv, no, da, bn, ar, uz) birim bilgisi
-// o dilin kategori sayfasındaki sözlükte durur. Eski rehber adresleri buraya yönlenir.
+// Birim rehberleri (es, fr, pt, it, nl, sv, no, da, bn, ar, uz). Bağlantılar rehber sayfasına gider; rehberi olmayan
+// birimler o dilin kategori sayfasındaki sözlüğe düşer.
 import { arabicCategoryPages } from "./localizedArabicCategoryPages";
 import { arabicUnitPages } from "./localizedArabicUnitPages";
 import { bengaliCategoryPages } from "./localizedBengaliCategoryPages";
@@ -44,9 +44,11 @@ const PATTERN_LOCALES = new Set<string>(["bn", "ar", "uz"]);
 
 export type GlossaryLocale = keyof typeof GLOSSARY_LOCALES;
 
-/** Birimin, kendi dilindeki kategori sayfasındaki sözlük girdisi: /fr/categories/longueur#pied */
+/** Birimin kendi dilindeki rehber sayfası (/fr/guides-des-unites/pied). Rehber sayfaları geri getirildi; liste dışı
+ * birimler kategori sayfasındaki sözlük girdisine gider. */
 export function unitGlossaryHref(locale: GlossaryLocale, unit: Page) {
   const conf = GLOSSARY_LOCALES[locale];
+  if ((conf.units as readonly Page[]).some((u) => u.slug === unit.slug)) return `${conf.guides}/${unit.slug}`;
   const category = (conf.cats as readonly Page[]).find((c) => c.category === unit.category);
   return category ? `${conf.categories}/${category.slug}#${unit.slug}` : conf.categories;
 }

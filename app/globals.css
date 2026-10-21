@@ -21925,3 +21925,34 @@ a.all-units-row .all-units-name {
     font-size: 1.05rem;
   }
 }
+
+/* Telefonda rehber bölümleri "+" ile açılır (MobilBolumler); geniş ekranda her şey açık. */
+@media (max-width: 720px) {
+  .mb-gizli {
+    display: none !important;
+  }
+
+  .mb-baslik {
+    position: relative;
+    padding-right: 40px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .mb-baslik::after {
+    position: absolute;
+    top: 50%;
+    right: 4px;
+    width: 28px;
+    height: 28px;
+    border: 2px solid currentColor;
+    content: "+";
+    font: 700 1.2rem/24px system-ui, sans-serif;
+    text-align: center;
+    transform: translateY(-50%);
+  }
+
+  .mb-baslik[aria-expanded="true"]::after {
+    content: "−";
+  }
+}

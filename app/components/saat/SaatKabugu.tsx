@@ -5,6 +5,7 @@ import { buildSiteUrl } from "../../siteConfig";
 import SaatAltBilgi from "./SaatAltBilgi";
 import { SAAT_ARAMA } from "./saatListeleri";
 import { saatEski, saatFraktur, saatGazete, saatMetin, saatRakam } from "./saatFontlari";
+import MobilBolumler from "./MobilBolumler";
 import SaatUstMenu from "./SaatUstMenu";
 
 function serializeJsonLd(data: object) {
@@ -58,6 +59,7 @@ export default function SaatKabugu({
           ))}
         </div>
       </main>
+      <MobilBolumler />
       <SaatAltBilgi />
     </div>
   );

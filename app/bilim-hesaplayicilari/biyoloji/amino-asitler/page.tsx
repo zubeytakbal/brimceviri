@@ -95,7 +95,9 @@ export default function AminoAcidsHubPage() {
               <tbody>
                 {byMass.map((a) => (
                   <tr key={a.id} id={a.id}>
-                    <th scope="row">{a.nameTr}</th>
+                    <th scope="row">
+                      <Link href={`/bilim-hesaplayicilari/biyoloji/amino-asitler/${a.id}`}>{a.nameTr}</Link>
+                    </th>
                     <td>
                       {a.threeLetterCode} / {a.oneLetterCode}
                     </td>

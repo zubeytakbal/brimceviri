@@ -46,6 +46,7 @@ export default function FxHubView({ content, board }: Props) {
     ],
   };
 
+  const pairSlugFor = (code: string) => content.pairs.find((pair) => pair.from === code && pair.to === content.quote)?.slug;
 
   return (
     <main className="all-conversions-page" lang={content.htmlLang}>
@@ -112,11 +113,12 @@ export default function FxHubView({ content, board }: Props) {
                   <tbody>
                     {board.rows.map((row) => {
                       const currency = content.currencies[row.code];
+                      const slug = pairSlugFor(row.code);
                       const flat = row.change30 === null || Math.abs(row.change30) < 0.05;
                       return (
                         <tr key={row.code}>
                           <td>
-                            {currency.long} ({row.code})
+                            {slug ? <Link href={`${content.basePath}/${slug}`}>{currency.long}</Link> : currency.long} ({row.code})
                           </td>
                           <td>
                             {formatRate(row.rate, numberLocale)} {hub.quoteLabel}
@@ -133,6 +135,17 @@ export default function FxHubView({ content, board }: Props) {
               <p>{hub.boardNote}</p>
             </>
           )}
+
+          <h2>{hub.pairsTitle}</h2>
+          <ul className="related-conversion-list">
+            {content.pairs.map((pair) => (
+              <li key={pair.slug}>
+                <Link href={`${content.basePath}/${pair.slug}`}>
+                  {content.currencies[pair.from].short} → {content.currencies[pair.to].short}
+                </Link>
+              </li>
+            ))}
+          </ul>
 
           <h2>{common.faqTitle}</h2>
           {hub.faq.map((item) => (

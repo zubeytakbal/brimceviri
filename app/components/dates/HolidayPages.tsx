@@ -21,7 +21,7 @@ type Lang = HolidayLang;
 export const holidayPaths = {
   hub: { tr: "/resmi-tatiller", en: "/en/federal-holidays" },
   // İngilizce yıl sayfaları yok: yıllar ana sayfadaki tarih tablosunda.
-  year: (lang: Lang, year: number) => (lang === "tr" ? `/resmi-tatiller/${year}` : `/en/federal-holidays#y${year}`),
+  year: (lang: Lang, year: number) => (lang === "tr" ? `/resmi-tatiller/${year}` : `/en/federal-holidays/${year}`),
 };
 
 /** Tatil gunu -> geri sayim sayfasi */

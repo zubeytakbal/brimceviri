@@ -21934,7 +21934,7 @@ a.all-units-row .all-units-name {
 
   .mb-baslik {
     position: relative;
-    padding-right: 40px;
+    padding-right: 44px !important;
     cursor: pointer;
     user-select: none;
   }

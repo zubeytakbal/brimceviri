@@ -17,6 +17,8 @@ type UnitGuideLink = {
   label: string;
   symbol: string;
   id?: string;
+  /** Sözlük girdisinin ayrıntılı rehber sayfası. */
+  guideHref?: string;
   description?: string;
   details?: string[];
 };
@@ -200,7 +202,8 @@ export default function CategoryPageLayout({
               {unitGuides.map((unitGuide) => (
                 <div key={unitGuide.id ?? unitGuide.label} id={unitGuide.id}>
                   <dt>
-                    {unitGuide.label} <small>{unitGuide.symbol}</small>
+                    {unitGuide.guideHref ? <Link href={unitGuide.guideHref}>{unitGuide.label}</Link> : unitGuide.label}{" "}
+                    <small>{unitGuide.symbol}</small>
                   </dt>
                   {unitGuide.description && <dd>{unitGuide.description}</dd>}
                   {unitGuide.details?.map((detail) => (

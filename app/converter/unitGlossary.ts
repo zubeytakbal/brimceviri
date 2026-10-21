@@ -53,6 +53,12 @@ export function unitGlossaryHref(locale: GlossaryLocale, unit: Page) {
   return category ? `${conf.categories}/${category.slug}#${unit.slug}` : conf.categories;
 }
 
+/** Birimin rehber sayfası; rehberi yoksa undefined. */
+export function unitGuideHref(locale: GlossaryLocale, slug: string) {
+  const conf = GLOSSARY_LOCALES[locale];
+  return (conf.units as readonly Page[]).some((u) => u.slug === slug) ? `${conf.guides}/${slug}` : undefined;
+}
+
 /** Eski rehber adresleri → kategori sayfası (301). */
 export function unitGuideRedirects() {
   return Object.entries(GLOSSARY_LOCALES).flatMap(([locale, conf]) => {

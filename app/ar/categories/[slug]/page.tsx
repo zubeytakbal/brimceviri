@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { unitGuideHref } from "../../../converter/unitGlossary";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
 import AllUnitsSection from "../../../components/AllUnitsSection";
@@ -273,6 +274,7 @@ export default async function ArabicCategoryPage({
         const info = findArabicUnitPageBySourceSlug(unitPage.sourceSlug);
         return {
           id: unitPage.slug,
+          guideHref: unitGuideHref("ar", unitPage.slug),
           label: unitPage.localizedName,
           symbol: unitPage.symbol,
           description: info?.shortDescription,

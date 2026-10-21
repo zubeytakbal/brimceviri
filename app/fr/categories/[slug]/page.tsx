@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { unitGuideHref } from "../../../converter/unitGlossary";
 import { notFound } from "next/navigation";
 import AllUnitsSection from "../../../components/AllUnitsSection";
 import CategoryUnitConverter from "../../../components/CategoryUnitConverter";
@@ -228,6 +229,7 @@ export default async function FrenchCategoryPage({ params }: PageProps) {
       unitGuidesCountLabel={`${categoryUnits.length} unités`}
       unitGuides={categoryUnits.map((unitPage) => ({
         id: unitPage.slug,
+        guideHref: unitGuideHref("fr", unitPage.slug),
         label: unitPage.name,
         symbol: unitPage.symbol,
         description: unitPage.shortDescription,

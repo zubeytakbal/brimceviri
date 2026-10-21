@@ -64,7 +64,7 @@ export default function AyarCevirici({ kaynak, hedef }: { kaynak: number; hedef:
             <span>İçindeki has altın</span>
             <strong>{g(has)} g</strong>
             <em>
-              {g(w)} g × {a1.milyem} / 1000
+              {w.toLocaleString("tr-TR")} g × {a1.milyem} / 1000
             </em>
           </div>
           {k !== h ? (

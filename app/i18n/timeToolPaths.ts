@@ -27,6 +27,9 @@ export function timeToolAlternates(tool: TimeToolId) {
 // Hazir alarm saatleri (24 saat, "HH:MM").
 export const alarmPresetTimes = ["04:00", "04:30", "05:00", "05:30", "06:00", "06:30", "07:00", "07:30", "08:00", "08:30", "09:00", "09:30", "10:00", "11:00", "12:00"] as const;
 
+/** Kendi sayfası geri gelen İngilizce alarm saatleri (son 3 ayda 5+ tıklama). */
+export const GERI_GELEN_ALARM_EN = ["06:30", "07:30", "09:30"] as const;
+
 export const alarmPresetSlug = {
   tr: (time: string) => time.replace(":", "-"),
   en: (time: string) => {

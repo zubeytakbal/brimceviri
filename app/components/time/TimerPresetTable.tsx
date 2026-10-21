@@ -1,6 +1,7 @@
 // Hazır süreler tek sayfada: her süre ayrı bir sayfa yerine zamanlayıcının kendi sayfasında,
 // kullanım örnekleriyle birlikte bir tabloda. Bağlantı "?s=saniye" ile süreyi kurar.
-export type TimerPresetRow = { seconds: number; label: string; uses: string[] };
+/** href: sürenin kendi sayfası varsa (geri gelen süreler) ona bağlanır. */
+export type TimerPresetRow = { seconds: number; label: string; uses: string[]; href?: string };
 
 export default function TimerPresetTable({
   id,
@@ -33,9 +34,13 @@ export default function TimerPresetTable({
             {rows.map((r) => (
               <tr key={r.seconds}>
                 <th scope="row">
-                  <a href={`?s=${r.seconds}`} rel="nofollow">
-                    {r.label}
-                  </a>
+                  {r.href ? (
+                    <a href={r.href}>{r.label}</a>
+                  ) : (
+                    <a href={`?s=${r.seconds}`} rel="nofollow">
+                      {r.label}
+                    </a>
+                  )}
                 </th>
                 <td>{r.uses.join(", ")}</td>
               </tr>

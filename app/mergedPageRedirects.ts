@@ -1,8 +1,8 @@
 // Şablon sayfaların ana araç sayfalarına birleştirilmesiyle kaldırılan adresler (301).
 // Hazır süre ve saat sayfaları, değer korunarak ana araca yönlenir (?s= saniye, ?t= saat).
-import { alarmPresetSlug, alarmPresetTimes, alarmSlugDe } from "./i18n/timeToolPaths";
+import { alarmPresetSlug, alarmPresetTimes, alarmSlugDe, GERI_GELEN_ALARM_EN } from "./i18n/timeToolPaths";
 import { NORDIC_TIMER_SECONDS, nordicTimerPath } from "./i18n/nordicTimerPresets";
-import { timerPresetPath, timerPresets } from "./i18n/timerPresets";
+import { GERI_GELEN_SURELER, timerPresetPath, timerPresets } from "./i18n/timerPresets";
 import { fxContentBn, fxPairsBn } from "./converter/fx/fxContentBn";
 import { fxContentDe, fxPairsDe } from "./converter/fx/fxContentDe";
 import { fxContentUz, fxPairsUz } from "./converter/fx/fxContentUz";
@@ -26,7 +26,8 @@ const r = (source: string, destination: string): MergedRedirect => ({ source, de
 function timerRedirects(): MergedRedirect[] {
   return [
     ...timerPresets.flatMap((p) => [
-      r(timerPresetPath(p, "tr"), `/zamanlayici?s=${p.seconds}`),
+      // Geri gelen süreler kendi sayfasında (GERI_GELEN_SURELER).
+      ...((GERI_GELEN_SURELER as readonly number[]).includes(p.seconds) ? [] : [r(timerPresetPath(p, "tr"), `/zamanlayici?s=${p.seconds}`)]),
       r(timerPresetPath(p, "en"), `/en/timer?s=${p.seconds}`),
       r(timerPresetPath(p, "de"), `/de/timer?s=${p.seconds}`),
     ]),
@@ -37,7 +38,7 @@ function timerRedirects(): MergedRedirect[] {
 function alarmRedirects(): MergedRedirect[] {
   return alarmPresetTimes.flatMap((t) => [
     r(`/online-alarm-kur/${alarmPresetSlug.tr(t)}`, `/online-alarm-kur?t=${t}`),
-    r(`/en/alarm-clock/${alarmPresetSlug.en(t)}`, `/en/alarm-clock?t=${t}`),
+    ...((GERI_GELEN_ALARM_EN as readonly string[]).includes(t) ? [] : [r(`/en/alarm-clock/${alarmPresetSlug.en(t)}`, `/en/alarm-clock?t=${t}`)]),
     r(`/de/wecker/${alarmSlugDe(t)}`, `/de/wecker?t=${t}`),
   ]);
 }

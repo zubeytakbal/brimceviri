@@ -55,6 +55,10 @@ export const timerPresets: TimerPreset[] = [
   preset(24, "h", ["Bir tam gün", "Aralıklı oruç (24 saat)", "Yoğurt/kefir mayalama"], ["A full day", "24-hour fast", "Yogurt or kefir culturing"]),
 ];
 
+/** Birleştirmeden (Ekim 2026) sonra da aranan, kendi sayfası geri gelen Türkçe süreler (son 3 ayda 5+ tıklama). */
+export const GERI_GELEN_SURELER = [30, 120, 900, 2400] as const;
+export const geriGelenSureler = () => timerPresets.filter((p) => (GERI_GELEN_SURELER as readonly number[]).includes(p.seconds));
+
 export function findTimerPreset(lang: "tr" | "en", slug: string) {
   return timerPresets.find((p) => (lang === "tr" ? p.tr : p.en) === slug) ?? null;
 }

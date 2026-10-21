@@ -17,6 +17,20 @@ import YilbasiSayaci from "./YilbasiSayaci";
 import { yeniYilSirasi, yilbasiTatili } from "../../converter/time/yeniYil";
 import { startMs } from "../../converter/time/countdownEvents";
 import { countdownCopy } from "./countdownCopy";
+import { trDative } from "../../converter/turkishSuffix";
+import SaatKabugu from "../saat/SaatKabugu";
+import GazeteBaslik from "../saat/GazeteBaslik";
+import type { SehirGorseli } from "../saat/SehirSaatiHero";
+import YilbasiHero from "./YilbasiHero";
+import { araDokum } from "./GeriSayimTakvim";
+
+const YILBASI_GORSELI: SehirGorseli = {
+  dosya: "yilbasi",
+  yer: "Melbourne'de yılbaşı havai fişekleri",
+  yazar: "Chris Phutully",
+  lisans: "CC BY 2.0",
+  kaynak: "https://commons.wikimedia.org/wiki/File:Melbourne_New_Year_2014_(11726618003).jpg",
+};
 
 // Etkinlik geri sayim sayfasi (TR + EN). Tarihler her yenilemede yeniden hesaplanir;
 // bu yil gecince otomatik olarak bir sonraki yila gecer.
@@ -116,6 +130,170 @@ export default function CountdownEventPage({ event }: { event: CountdownEvent })
         answer: `1 Ocak ${yilbasi.year} ${GUN_ADI[tatil.gun]} gününe denk geliyor; ${tatil.sure === 1 ? "tatil yalnızca 1 Ocak'tır" : tatil.gun === 6 || tatil.gun === 0 ? "hafta sonuna denk geldiği için ek tatil günü oluşmaz" : `hafta sonuyla birlikte ${tatil.sure} günlük tatil olur`}.${tatil.kopru ? ` ${tatil.kopru} tatil yapılabilir.` : ""}`,
       },
       { question: "Dünyada yeni yıla ilk kim girer?", answer: `Yeni yıla ilk giren yer, UTC+14 saat dilimindeki Kiribati'nin Line Adaları'dır (Kiritimati): Türkiye saatiyle ${trSaat(sira[0].an)}. En son Amerikan Samoası gibi UTC−11 bölgeleri girer: Türkiye saatiyle ${trSaat(sira[sira.length - 1].an)}.` },
+    );
+  }
+
+  // Yılbaşı, saat bölümünün kabuğuyla çizilir: fotoğraflı dev sayaç ve altında gazete düzeninde bölümler.
+  if (yilbasi && tatil && days !== null) {
+    const bugun = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Istanbul", year: "numeric", month: "2-digit", day: "2-digit" }).format(now).split("-").map(Number);
+    const dokum = araDokum({ year: bugun[0], month: bugun[1], day: bugun[2] }, { year: yilbasi.year, month: 1, day: 1 });
+    const tatilMetni =
+      tatil.sure === 1
+        ? "Tatil yalnızca 1 Ocak"
+        : tatil.gun === 6 || tatil.gun === 0
+          ? "Hafta sonuna denk geliyor"
+          : `Hafta sonuyla ${tatil.sure} gün tatil`;
+    const tekil = sira.filter((x, i, a) => i === 0 || x.an !== a[i - 1].an || x.ulke === "Türkiye");
+    return (
+      <SaatKabugu
+        crumbs={[
+          { href: "/", label: "Ana Sayfa" },
+          { href: hubPath, label: "Geri Sayım" },
+          { href: path, label: event.name },
+        ]}
+        faqItems={faqItems}
+        hero={
+          <YilbasiHero
+            hedefMs={startMs(yilbasi, "istanbul")}
+            yil={yilbasi.year}
+            olusturma={now.getTime()}
+            sira={sira.map((x) => ({ ad: x.ad, ulke: x.ulke, an: x.an }))}
+            alt={`${dateText} · 00:00 (Türkiye saati)`}
+            gorsel={YILBASI_GORSELI}
+          />
+        }
+        sahneler={
+          <div className="sahneler">
+            <GazeteBaslik an={now} timeZone="Europe/Istanbul" baski="Yılbaşı" />
+            <div className="gazete-on">
+              <div className="gazete-manset-kutu">
+                <p className="gazete-manset">
+                  {trDative(yilbasi.year)} {days} gün
+                </p>
+                <p className="gazete-spot">
+                  1 Ocak {yilbasi.year} {GUN_ADI[tatil.gun]} · {tatilMetni} · 31 Aralık resmî tatil değil
+                </p>
+              </div>
+              <figure className="gazete-foto">
+                <span className="gazete-foto-cerceve">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/saat/yilbasi-960.webp" alt={YILBASI_GORSELI.yer} loading="lazy" decoding="async" width={960} height={490} />
+                </span>
+                <figcaption>
+                  {YILBASI_GORSELI.yer}. Fotoğraf: {YILBASI_GORSELI.yazar}, {YILBASI_GORSELI.lisans}
+                </figcaption>
+              </figure>
+            </div>
+
+            {/* 1. Kalan süre */}
+            <section className="sahne is-sol" id="ozet">
+              <p className="sahne-etiket">01 · Kalan süre</p>
+              <h2 className="sahne-dev">{days} gün</h2>
+              <p className="sahne-buyuk">
+                yani <b>{weeksAndDays(days, "tr")}</b>
+              </p>
+              <ul className="sahne-kucuk">
+                <li>Arada {dokum.isGunu.toLocaleString("tr-TR")} iş günü, {dokum.haftaSonu} hafta sonu günü{dokum.tatilGunu ? `, ${dokum.tatilGunu} resmî tatil` : ""} var.</li>
+                <li>Sayaç Türkiye saatiyle 1 Ocak {yilbasi.year} 00:00&apos;a göre sayar.</li>
+                <li>{event.holiday}</li>
+              </ul>
+            </section>
+
+            {/* 2. Tatil */}
+            <section className="sahne is-sag" id="tatil">
+              <p className="sahne-etiket">02 · {yilbasi.year} yılbaşı tatili</p>
+              <h2 className="sahne-dev">{GUN_ADI[tatil.gun]}</h2>
+              <p className="sahne-buyuk">
+                1 Ocak {yilbasi.year} · <b>{tatilMetni.toLocaleLowerCase("tr")}</b>
+              </p>
+              <ul className="sahne-kucuk">
+                {tatil.kopru && <li>Köprü: {tatil.kopru} tatil yapılabilir.</li>}
+                <li>31 Aralık resmî tatil değildir, yarım gün de değildir.</li>
+                <li>
+                  Diğer tatiller ve köprü günleri: <Link href="/resmi-tatiller">resmî tatiller</Link>
+                </li>
+              </ul>
+            </section>
+
+            {/* 3. Dünyada yeni yıl */}
+            <section className="sahne" id="dunya">
+              <p className="sahne-etiket">03 · Dünyada yeni yıl</p>
+              <h2 className="sahne-dev is-orta">Yeni yıl 26 saat sürer</h2>
+              <p className="sahne-buyuk">
+                ilk <b>{sira[0].ad}</b>, en son <b>{sira[sira.length - 1].ad}</b> · saatler Türkiye saatiyle
+              </p>
+              <ol className="gs-dunya">
+                {tekil.map((x) => (
+                  <li key={x.ad} className={x.ulke === "Türkiye" ? "is-vurgu" : undefined}>
+                    <b>{trSaat(x.an)}</b>
+                    <span>
+                      {x.ad} <small>{x.ulke}</small>
+                    </span>
+                  </li>
+                ))}
+              </ol>
+              <p className="sahne-kucuk">Aynı anda yeni yıla giren şehirlerden biri listelenmiştir; hesap her şehrin saat dilimine ve yaz saatine göre yapılır.</p>
+            </section>
+
+            {/* 4. Yıllara göre */}
+            <section className="sahne is-sol" id="yillar">
+              <p className="sahne-etiket">04 · Yıllara göre yılbaşı</p>
+              <table className="sahne-tablo">
+                <thead>
+                  <tr>
+                    <th>Yıl</th>
+                    <th>1 Ocak</th>
+                    <th>Tatil</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {occurrences.map((o) => {
+                    const t = yilbasiTatili(o.year);
+                    return (
+                      <tr key={o.year}>
+                        <td>
+                          <b>{o.year}</b>
+                        </td>
+                        <td>{GUN_ADI[t.gun]}</td>
+                        <td>{t.sure === 1 ? "1 gün" : t.gun === 6 || t.gun === 0 ? "hafta sonu" : `${t.sure} gün`}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </section>
+
+            {/* 5. Hakkında */}
+            <section className="sahne is-sag" id="hakkinda">
+              <p className="sahne-etiket">05 · Yılbaşı hakkında</p>
+              <div className="ulke-notlar">
+                <p>{event.about}</p>
+                <p>
+                  Türkiye&apos;de miladi takvim ve 1 Ocak yılbaşı, 26 Aralık 1925 tarihli kanunlarla 1 Ocak 1926&apos;dan itibaren kullanılmaktadır.
+                </p>
+              </div>
+            </section>
+
+            {/* 6. Takvim */}
+            <section className="sahne gs-takvim" id="takvim-bolumu">
+              <p className="sahne-etiket">06 · Yılbaşına kadar takvim</p>
+              <GeriSayimTakvim event={event} next={yilbasi} now={now} kalan={days} />
+            </section>
+
+            {/* 7. Diğer geri sayımlar */}
+            <section className="sahne">
+              <p className="sahne-etiket">07 · Diğer geri sayımlar</p>
+              <div className="sahne-bulut">
+                {others.slice(0, 8).map((o) => (
+                  <Link key={o.event.id} href={countdownPath(o.event)} prefetch={false}>
+                    {o.event.name} <small>{o.days} gün</small>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          </div>
+        }
+      />
     );
   }
 

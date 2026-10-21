@@ -1,9 +1,9 @@
 // "Saat" bölümü: sitenin içinde kendi menüsü, yazı tipleri ve düzeni olan ayrı görünümlü bölüm. Adresler
 // değişmez; bu sayfalarda sitenin genel üst menüsü ve alt bilgisi yerine bölümün kendi kabuğu çizilir.
 
-/** Bölümün kabuğunu kullanan Türkçe sayfalar (şimdilik şehir saatleri). */
+/** Bölümün kabuğunu kullanan Türkçe sayfalar: şehir ve ülke saatleri, yılbaşı geri sayımı. */
 export function isSaatBolumu(pathname: string) {
-  return /^\/dunya-saatleri\/[^/]+\/?$/.test(pathname);
+  return /^\/dunya-saatleri\/[^/]+\/?$/.test(pathname) || /^\/geri-sayim\/yilbasi\/?$/.test(pathname);
 }
 
 export const SAAT_MENUSU: Array<{ href: string; label: string }> = [

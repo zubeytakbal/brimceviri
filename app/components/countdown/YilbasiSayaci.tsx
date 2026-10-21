@@ -13,7 +13,7 @@ const iki = (n: number) => String(n).padStart(2, "0");
 
 type Ayar = { saniye: boolean; kar: boolean; boyut: "orta" | "buyuk" };
 
-function Kar() {
+export function Kar() {
   // Sabit dağılım (her çizimde aynı): sunucu ve tarayıcı aynı HTML'i üretir.
   return (
     <div className="ys-kar" aria-hidden="true">
@@ -25,7 +25,7 @@ function Kar() {
 }
 
 /** Basit havai fişek: tuvalde parçacık patlamaları (dosya ve kütüphane yok). */
-function HavaiFisek() {
+export function HavaiFisek() {
   const ref = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
     const c = ref.current;

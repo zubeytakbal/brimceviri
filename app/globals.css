@@ -20820,3 +20820,139 @@ a.all-units-row .all-units-name {
 .sahneler .sahne-dev.is-orta {
   font-size: clamp(2.2rem, 4.6vw, 4.2rem);
 }
+
+/* ---------------- Yılbaşı geri sayımı (saat bölümü görünümü) ---------------- */
+.gs-sayac {
+  margin-top: 10px;
+}
+
+.gs-dev {
+  display: flex;
+  align-items: baseline;
+  gap: 0.12em;
+  font-family: var(--saat-rakam), Impact, sans-serif;
+  font-size: min(30vw, 46vh);
+  font-variant-numeric: tabular-nums;
+  line-height: 0.86;
+  text-shadow: 0 6px 40px rgba(0, 0, 0, 0.35);
+  white-space: nowrap;
+}
+
+.gs-dev small {
+  font-size: 0.32em;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.gs-saat {
+  margin-top: 6px;
+  font-family: var(--saat-rakam), Impact, sans-serif;
+  font-size: clamp(3rem, 9vw, 7.5rem);
+  font-variant-numeric: tabular-nums;
+  line-height: 0.9;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+  white-space: nowrap;
+}
+
+.gs-saat i {
+  font-style: normal;
+}
+
+.gs-kutlama {
+  flex-wrap: wrap;
+  font-size: clamp(3.4rem, 12vw, 10rem);
+}
+
+.gs-kutlama span {
+  color: #ffd166;
+}
+
+.gs-hero .ys-fisek {
+  z-index: 0;
+}
+
+.gs-hero.is-tam {
+  min-height: 100vh;
+}
+
+/* Dünyada yeni yıl: gazete sütunlarında saat sırası */
+.gs-dunya {
+  columns: 3 240px;
+  column-gap: 32px;
+  column-rule: 1px solid var(--gazete-cizgi, #cfcdc7);
+  margin: 22px 0 10px;
+  padding: 0;
+  list-style: none;
+}
+
+.gs-dunya li {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  padding: 5px 0;
+  border-bottom: 1px solid var(--gazete-cizgi, #cfcdc7);
+  break-inside: avoid;
+  font-family: var(--saat-eski), Georgia, serif;
+}
+
+.gs-dunya li b {
+  min-width: 7.6em;
+  font-family: var(--saat-gazete), Georgia, serif;
+  font-variant-numeric: tabular-nums;
+}
+
+.gs-dunya li small {
+  color: var(--gazete-solgun, #5d5d5d);
+  font-style: italic;
+}
+
+.gs-dunya li.is-vurgu {
+  padding-right: 6px;
+  padding-left: 6px;
+  background: var(--gazete-murekkep, #141414);
+  color: var(--gazete-kagit, #fdfdfb);
+}
+
+.gs-dunya li.is-vurgu small {
+  color: inherit;
+}
+
+/* Takvim bölümünün kendi başlığı gazete etiketiyle aynı işi görür */
+.gs-takvim h2#takvim {
+  font-family: var(--saat-gazete), Georgia, serif;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 900;
+}
+
+@media (max-width: 720px) {
+  .gs-dev {
+    font-size: min(40vw, 40vh);
+  }
+}
+
+.gs-takvim h2#takvim {
+  margin-top: 6px;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+}
+
+.gs-takvim a {
+  color: var(--gazete-murekkep, #141414);
+}
+
+.gs-takvim .date-calc-stat {
+  border: 1px solid var(--gazete-murekkep, #141414);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.gs-takvim .gs-ilerleme-cubuk {
+  border-radius: 0;
+}
+
+.gs-saat small {
+  margin: 0 0.35em 0 0.08em;
+  font-size: 0.36em;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}

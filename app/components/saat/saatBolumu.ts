@@ -37,6 +37,7 @@ export const SAAT_GRUPLARI: SaatGrubu[] = [
       { href: "/is-gunu-hesaplama", label: "İş günü hesaplama" },
       { href: "/kacinci-hafta", label: "Kaçıncı hafta" },
       { href: "/dogdugum-gun-hangi-gun", label: "Doğduğum gün hangi gün" },
+      { href: "/yillik-izin-hesaplama", label: "Yıllık izin hesaplama" },
     ],
   },
   {
@@ -47,6 +48,7 @@ export const SAAT_GRUPLARI: SaatGrubu[] = [
       { href: "/resmi-tatiller", label: "Resmî tatiller" },
       { href: "/okul-takvimi", label: "Okul takvimi" },
       { href: "/ozel-gunler", label: "Özel günler" },
+      { href: "/firtina-takvimi", label: "Fırtına takvimi" },
       { href: "/hicri-takvim", label: "Hicri takvim" },
       { href: "/tarih-cevirici", label: "Hicri, Rumi, Miladi çevirici" },
     ],
@@ -59,6 +61,9 @@ export const SAAT_GRUPLARI: SaatGrubu[] = [
       { href: "/altin-saat", label: "Altın saat" },
       { href: "/gokyuzu-olaylari-takvimi", label: "Gökyüzü olayları" },
       { href: "/bu-gece-gezegenler", label: "Bu gece gezegenler" },
+      { href: "/ay-gozlem-cizelgesi", label: "Ay gözlem çizelgesi" },
+      { href: "/en-uzun-gun-ve-en-kisa-gun", label: "En uzun ve en kısa gün" },
+      { href: "/gunes-acisi-ve-golge-boyu-hesaplama", label: "Güneş açısı ve gölge boyu" },
     ],
   },
 ];
@@ -76,8 +81,9 @@ export function isSaatBolumu(pathname: string) {
   return /^\/(dunya-saatleri|geri-sayim)\/[^/]+\/?$/.test(pathname) || /^\/(ay-evreleri|online-alarm-kur|uyku-hesaplama)\/?$/.test(pathname);
 }
 
-/** Sitenin ortak araç düzenini kullanan, ama saat bölümünün üst menüsü ve alt bilgisiyle çizilen sayfalar. */
+/** Sitenin ortak araç düzenini kullanan, ama saat bölümünün üst menüsü ve alt bilgisiyle çizilen sayfalar: menüdeki
+ * araçlar ile takvimin yıl ve ay sayfaları, tek tek özel gün sayfaları ve yıllara göre resmî tatiller. */
 export function isSaatAraci(pathname: string) {
   const p = yol(pathname);
-  return !isSaatBolumu(p) && ARAC_YOLLARI.has(p);
+  return !isSaatBolumu(p) && (ARAC_YOLLARI.has(p) || /^\/(takvim|ozel-gunler|resmi-tatiller)\/[^/]+(\/[^/]+)?$/.test(p));
 }

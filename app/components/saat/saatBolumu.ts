@@ -70,13 +70,14 @@ const ARAC_YOLLARI = new Set(SAAT_MENUSU.map((l) => l.href));
 
 const yol = (pathname: string) => (pathname !== "/" && pathname.endsWith("/") ? pathname.slice(0, -1) : pathname);
 
-/** Kendi tam kabuğunu (SaatKabugu) çizen sayfalar: şehir ve ülke saatleri, ay evreleri, alarm ve uyku hesaplama. */
+/** Kendi tam kabuğunu (SaatKabugu) çizen sayfalar: şehir ve ülke saatleri, ay evreleri, alarm, uyku hesaplama ve
+ * etkinlik geri sayımları. */
 export function isSaatBolumu(pathname: string) {
-  return /^\/dunya-saatleri\/[^/]+\/?$/.test(pathname) || /^\/(ay-evreleri|online-alarm-kur|uyku-hesaplama)\/?$/.test(pathname);
+  return /^\/(dunya-saatleri|geri-sayim)\/[^/]+\/?$/.test(pathname) || /^\/(ay-evreleri|online-alarm-kur|uyku-hesaplama)\/?$/.test(pathname);
 }
 
 /** Sitenin ortak araç düzenini kullanan, ama saat bölümünün üst menüsü ve alt bilgisiyle çizilen sayfalar. */
 export function isSaatAraci(pathname: string) {
   const p = yol(pathname);
-  return !isSaatBolumu(p) && (ARAC_YOLLARI.has(p) || p.startsWith("/geri-sayim/"));
+  return !isSaatBolumu(p) && ARAC_YOLLARI.has(p);
 }

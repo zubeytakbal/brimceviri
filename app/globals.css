@@ -21956,3 +21956,319 @@ a.all-units-row .all-units-name {
     content: "−";
   }
 }
+
+/* Geri sayım (saat bölümü): dev kalan gün, altında saat/dakika/saniye ve önceki tarihten bu yana ilerleme çubuğu. */
+.gs-hero {
+  align-items: center;
+  min-height: calc(88svh - 76px);
+  background-image: radial-gradient(110% 90% at 85% 0%, #1f2b2b 0%, #0e1213 50%, #050606 100%);
+}
+
+.gs-hero .saat-hero-ic {
+  padding-top: 26px;
+}
+
+.gs-hero.is-tam {
+  min-height: 100vh;
+}
+
+.gs-sayac {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 8px 36px;
+  margin-top: 10px;
+}
+
+.gs-dev {
+  display: flex;
+  align-items: baseline;
+  gap: 0.08em;
+  font-size: min(26vw, 40vh);
+}
+
+.gs-dev small {
+  font-size: 0.26em;
+  letter-spacing: 0.02em;
+  opacity: 0.8;
+}
+
+.gs-bugun {
+  color: #7fe3df;
+}
+
+.gs-parca {
+  display: flex;
+  gap: 6px;
+  margin: 0 0 0.9em;
+  padding: 0;
+  list-style: none;
+}
+
+.gs-parca li {
+  display: grid;
+  min-width: 2.4ch;
+  padding: 8px 14px 6px;
+  border-top: 4px solid var(--saat-vurgu);
+  background: rgba(255, 255, 255, 0.07);
+  text-align: center;
+}
+
+.gs-parca b {
+  font-family: var(--saat-rakam), Impact, sans-serif;
+  font-size: clamp(2.2rem, 5vw, 4.2rem);
+  font-variant-numeric: tabular-nums;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.gs-parca span {
+  margin-top: 4px;
+  color: rgba(255, 255, 255, 0.7);
+  font: 800 0.72rem var(--saat-metin), sans-serif;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.gs-cubuk {
+  position: relative;
+  max-width: 720px;
+  height: 10px;
+  margin-top: 22px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.gs-cubuk span {
+  display: block;
+  height: 100%;
+  background: var(--saat-vurgu);
+}
+
+.gs-cubuk small {
+  position: absolute;
+  top: 16px;
+  left: 0;
+  color: rgba(255, 255, 255, 0.7);
+  font: 800 0.74rem var(--saat-metin), sans-serif;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Yılbaşı: sayaç bölümün siyah başlık alanının içinde (kar efekti kalır), köşesiz ve Anton rakamlarla. */
+.gs-hero.is-yilbasi .ys:not(.is-tam) {
+  margin-top: 18px;
+  border-radius: 0;
+  background: transparent;
+}
+
+.gs-hero.is-yilbasi .ys-sayac strong {
+  font-family: var(--saat-rakam), Impact, sans-serif;
+  font-weight: 400;
+  font-size: clamp(3.4rem, 14vw, 9rem);
+}
+
+.gs-hero.is-yilbasi .ys.is-buyuk .ys-sayac strong,
+.gs-hero.is-yilbasi .ys.is-tam .ys-sayac strong {
+  font-size: clamp(4rem, 17vw, 12rem);
+}
+
+/* Yılbaşı sayacının düğmeleri ve vurgusu bölümün düğmeleriyle aynı: kare, kalın beyaz çerçeve, büyük harf. */
+.gs-hero.is-yilbasi .ys-ust {
+  color: #7fe3df;
+}
+
+.gs-hero.is-yilbasi .ys-dugmeler button {
+  border: 3px solid #ffffff;
+  border-radius: 0;
+  background: rgba(0, 0, 0, 0.35);
+  color: #ffffff;
+  font: 800 0.86rem var(--saat-metin), sans-serif;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.gs-hero.is-yilbasi .ys-dugmeler button.is-ana,
+.gs-hero.is-yilbasi .ys-dugmeler button:hover {
+  border-color: var(--saat-vurgu);
+  background: var(--saat-vurgu);
+  color: #ffffff;
+}
+
+.gs-hero.is-yilbasi .ys-sayac small {
+  font: 800 0.74rem var(--saat-metin), sans-serif;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.saat-linkler {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  list-style: none;
+}
+
+.saat-linkler a {
+  display: inline-block;
+  padding: 7px 12px;
+  border: 2px solid currentColor;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+@media (max-width: 720px) {
+  .gs-hero {
+    min-height: 0;
+  }
+
+  .gs-hero .saat-hero-ic {
+    padding: 16px 16px 64px;
+  }
+
+  .gs-sayac {
+    gap: 4px;
+  }
+
+  .gs-dev {
+    font-size: 34vw;
+  }
+
+  .gs-parca {
+    width: 100%;
+    margin-bottom: 0;
+  }
+
+  .gs-parca li {
+    flex: 1;
+    padding: 6px 4px 5px;
+  }
+
+  .gs-parca b {
+    font-size: 2.4rem;
+  }
+}
+
+/* ---------------- Saat bölümü araç sayfaları: ortak düzen ----------------
+   Başlık bandı kenardan kenara siyahtır ve kâğıda yırtık kenarla geçer (alarm, uyku ve ay sayfalarıyla aynı).
+   Araç sayfalarında (data-tur="arac") araç da bu siyah alanın içindedir: köşesiz koyu kutular, ince çizgiler, Anton
+   rakamlar, degrade yok. Liste sayfalarında (data-tur="liste") yırtık kenar başlığın altındadır, liste kâğıtta kalır. */
+:root:has(.saat-arac-ust) .all-conversions-page {
+  overflow-x: clip;
+}
+
+:root:has(.saat-arac-ust) .all-conversions-page .breadcrumbs,
+:root:has(.saat-arac-ust) .all-conversions-page .all-conversions-header {
+  box-shadow: none;
+  clip-path: none;
+  border-image: linear-gradient(#000000 0 0) fill 0 / 0 / 0 100vmax;
+}
+
+:root:has(.saat-arac-ust[data-tur="liste"]) .all-conversions-page .all-conversions-header {
+  position: relative;
+  margin-bottom: 48px;
+  padding-bottom: 64px;
+}
+
+:root:has(.saat-arac-ust[data-tur="liste"]) .all-conversions-page .all-conversions-header::after,
+:root:has(.saat-arac-ust[data-tur="arac"]) .all-conversions-header ~ :not(.time-tool-related, .page-toc, section.category-article-content, .time-tool-related ~ *, .page-toc ~ *, section.category-article-content ~ *):has(+ :is(.time-tool-related, .page-toc, section.category-article-content))::after {
+  position: absolute;
+  right: -100vmax;
+  bottom: -1px;
+  left: -100vmax;
+  height: 26px;
+  background: #fdfdfb;
+  content: "";
+  clip-path: polygon(0.00% 11%, 0.91% 5%, 1.82% 26%, 2.73% 36%, 3.64% 30%, 4.55% 6%, 5.45% 58%, 6.36% 16%, 7.27% 66%, 8.18% 28%, 9.09% 43%, 10.00% 57%, 10.91% 8%, 11.82% 57%, 12.73% 41%, 13.64% 26%, 14.55% 4%, 15.45% 14%, 16.36% 30%, 17.27% 41%, 18.18% 21%, 19.09% 49%, 20.00% 40%, 20.91% 61%, 21.82% 20%, 22.73% 47%, 23.64% 53%, 24.55% 34%, 25.45% 47%, 26.36% 40%, 27.27% 59%, 28.18% 42%, 29.09% 32%, 30.00% 66%, 30.91% 46%, 31.82% 49%, 32.73% 70%, 33.64% 20%, 34.55% 47%, 35.45% 32%, 36.36% 8%, 37.27% 54%, 38.18% 17%, 39.09% 61%, 40.00% 31%, 40.91% 62%, 41.82% 60%, 42.73% 29%, 43.64% 62%, 44.55% 49%, 45.45% 16%, 46.36% 34%, 47.27% 18%, 48.18% 29%, 49.09% 40%, 50.00% 81%, 50.91% 43%, 51.82% 4%, 52.73% 87%, 53.64% 88%, 54.55% 28%, 55.45% 44%, 56.36% 5%, 57.27% 11%, 58.18% 4%, 59.09% 11%, 60.00% 25%, 60.91% 61%, 61.82% 10%, 62.73% 24%, 63.64% 9%, 64.55% 70%, 65.45% 34%, 66.36% 7%, 67.27% 19%, 68.18% 11%, 69.09% 67%, 70.00% 10%, 70.91% 2%, 71.82% 68%, 72.73% 82%, 73.64% 26%, 74.55% 54%, 75.45% 55%, 76.36% 16%, 77.27% 69%, 78.18% 88%, 79.09% 52%, 80.00% 36%, 80.91% 2%, 81.82% 20%, 82.73% 48%, 83.64% 67%, 84.55% 99%, 85.45% 62%, 86.36% 16%, 87.27% 14%, 88.18% 63%, 89.09% 34%, 90.00% 56%, 90.91% 46%, 91.82% 87%, 92.73% 33%, 93.64% 55%, 94.55% 56%, 95.45% 64%, 96.36% 66%, 97.27% 12%, 98.18% 11%, 99.09% 88%, 100.00% 58%, 100% 100%, 0% 100%);
+  pointer-events: none;
+}
+
+:root:has(.saat-arac-ust[data-tur="arac"]) .all-conversions-page .all-conversions-header {
+  margin-bottom: 0;
+  padding-bottom: 26px;
+}
+
+:root:has(.saat-arac-ust[data-tur="arac"]) .all-conversions-header ~ :not(.time-tool-related, .page-toc, section.category-article-content, .time-tool-related ~ *, .page-toc ~ *, section.category-article-content ~ *) {
+  position: relative;
+  max-width: none;
+  margin: 0 !important;
+  padding: 4px 0 24px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  border-image: linear-gradient(#000000 0 0) fill 0 / 0 / 0 100vmax !important;
+  color: #ffffff;
+}
+
+:root:has(.saat-arac-ust[data-tur="arac"]) .all-conversions-header ~ :not(.time-tool-related, .page-toc, section.category-article-content, .time-tool-related ~ *, .page-toc ~ *, section.category-article-content ~ *):has(+ :is(.time-tool-related, .page-toc, section.category-article-content)) {
+  margin-bottom: 56px !important;
+  padding-bottom: 72px !important;
+}
+
+/* Kutular: köşesiz, koyu, ince çizgili; yazılar beyaz. */
+:root:has(.saat-arac-ust[data-tur="arac"]) .all-conversions-header ~ :not(.time-tool-related, .page-toc, section.category-article-content, .time-tool-related ~ *, .page-toc ~ *, section.category-article-content ~ *) :is(.timehub-hero, .golden-tool, .world-card, .live-clock-stage, .engineering-calculator-card, .tz-result, .tz-result-diff, .tz-planner, .date-calc-stat, .calc-steps, .category-general-converter-result, .interval-panel, .date-calc-note, .date-calc-holidays, .week-hero, .sun-today, .golden-card, .custom-countdown, .date-result, .time-tool-hero, .time-timer-panel, .time-stopwatch-panel, .tz-source, .date-converter-input, .date-calc-input, .week-now),
+:root:has(.saat-arac-ust[data-tur="arac"]) .all-conversions-header ~ :not(.time-tool-related, .page-toc, section.category-article-content, .time-tool-related ~ *, .page-toc ~ *, section.category-article-content ~ *):is(.timehub-hero, .golden-tool, .world-card, .live-clock-stage, .engineering-calculator-card, .tz-result, .tz-result-diff, .tz-planner, .date-calc-stat, .calc-steps, .category-general-converter-result, .interval-panel, .date-calc-note, .date-calc-holidays, .week-hero, .sun-today, .golden-card, .custom-countdown, .date-result, .time-tool-hero, .time-timer-panel, .time-stopwatch-panel, .tz-source, .date-converter-input, .date-calc-input, .week-now) {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background-image: none !important;
+}
+
+:root:has(.saat-arac-ust[data-tur="arac"]) .all-conversions-header ~ :not(.time-tool-related, .page-toc, section.category-article-content, .time-tool-related ~ *, .page-toc ~ *, section.category-article-content ~ *) :is(.timehub-hero, .golden-tool, .world-card, .live-clock-stage, .engineering-calculator-card, .tz-result, .tz-result-diff, .tz-planner, .date-calc-stat, .calc-steps, .category-general-converter-result, .interval-panel, .date-calc-note, .date-calc-holidays, .week-hero, .sun-today, .golden-card, .custom-countdown, .date-result, .time-tool-hero, .time-timer-panel, .time-stopwatch-panel, .tz-source, .date-converter-input, .date-calc-input, .week-now) {
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  background-color: rgba(255, 255, 255, 0.06) !important;
+  color: #ffffff !important;
+}
+
+:root:has(.saat-arac-ust[data-tur="arac"]) .all-conversions-header ~ :not(.time-tool-related, .page-toc, section.category-article-content, .time-tool-related ~ *, .page-toc ~ *, section.category-article-content ~ *) :is(p, span, small, em, strong, b, label, li, dt, dd, h2, h3, h4, th, td, output, figcaption, summary, time, div) {
+  color: inherit;
+}
+
+:root:has(.saat-arac-ust[data-tur="arac"]) .all-conversions-header ~ :not(.time-tool-related, .page-toc, section.category-article-content, .time-tool-related ~ *, .page-toc ~ *, section.category-article-content ~ *) :is(small, em, figcaption, label > span) {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+:root:has(.saat-arac-ust[data-tur="arac"]) .all-conversions-header ~ :not(.time-tool-related, .page-toc, section.category-article-content, .time-tool-related ~ *, .page-toc ~ *, section.category-article-content ~ *) a {
+  color: #7fe0dc;
+}
+
+:root:has(.saat-arac-ust[data-tur="arac"]) .all-conversions-header ~ :not(.time-tool-related, .page-toc, section.category-article-content, .time-tool-related ~ *, .page-toc ~ *, section.category-article-content ~ *) * {
+  border-radius: 0 !important;
+}
+
+:root:has(.saat-arac-ust[data-tur="arac"]) .all-conversions-header ~ :not(.time-tool-related, .page-toc, section.category-article-content, .time-tool-related ~ *, .page-toc ~ *, section.category-article-content ~ *) :is(input, select, textarea) {
+  border: 2px solid #ffffff !important;
+  background: #ffffff !important;
+  color: #141414 !important;
+}
+
+:root:has(.saat-arac-ust[data-tur="arac"]) .all-conversions-header ~ :not(.time-tool-related, .page-toc, section.category-article-content, .time-tool-related ~ *, .page-toc ~ *, section.category-article-content ~ *) button {
+  font-family: var(--saat-metin), sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Sonuç rakamları: Anton */
+:root:has(.saat-arac-ust[data-tur="arac"]) .all-conversions-header ~ :not(.time-tool-related, .page-toc, section.category-article-content, .time-tool-related ~ *, .page-toc ~ *, section.category-article-content ~ *) :is(.date-calc-stat strong, .tz-result strong, .date-result strong, .category-general-converter-result strong, .week-hero strong, .golden-card strong, .timehub-hero time, .live-clock-time, .interval-time, .pomodoro-time) {
+  font-family: var(--saat-rakam), Impact, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+/* Seçili ve ana düğmeler: eski yeşil yerine bölümün vurgusu. */
+:root:has(.saat-arac-ust[data-tur="arac"]) .all-conversions-header ~ :not(.time-tool-related, .page-toc, section.category-article-content, .time-tool-related ~ *, .page-toc ~ *, section.category-article-content ~ *) :is(button.is-active, button[aria-pressed="true"], button[aria-selected="true"], .sleep-primary-button, .engineering-target-button.is-active) {
+  border-color: var(--saat-vurgu) !important;
+  background: var(--saat-vurgu) !important;
+  color: #ffffff !important;
+}
+
+/* Liste sayfaları: kâğıt üstünde köşesiz kutular, degrade yok. */
+:root:has(.saat-arac-ust[data-tur="liste"]) .all-conversions-header ~ :not(.time-tool-related, .page-toc, section.category-article-content) * {
+  border-radius: 0 !important;
+}
+
+:root:has(.saat-arac-ust[data-tur="liste"]) :is(.world-card, .holiday-next) {
+  border: 1px solid #141414 !important;
+  background: #fdfdfb !important;
+  box-shadow: none !important;
+}

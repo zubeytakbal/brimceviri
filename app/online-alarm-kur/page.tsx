@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { appManifestPath, findInstallableApp } from "../converter/time/installableApps";
 import Link from "@/app/components/SiteLink";
-import AlarmPresetTable from "../components/time/AlarmPresetTable";
-import AlarmClock from "../components/time/AlarmClock";
-import TimeToolPage from "../components/time/TimeToolPage";
-import { timeRelated } from "../components/time/timeRelatedLinks";
+import AlarmSaat from "../components/time/AlarmSaat";
+import AlarmSahneleri from "../components/time/AlarmSahneleri";
+import SaatKabugu from "../components/saat/SaatKabugu";
 import type { FaqItem } from "../converter/faqSchema";
 import { timeToolAlternates } from "../i18n/timeToolPaths";
 import { buildSiteUrl } from "../siteConfig";
@@ -44,70 +43,60 @@ const faqItems: FaqItem[] = [
       "Tarayıcılar, kullanıcı sayfayla etkileşime girmeden ses çalınmasına izin vermez. Alarmı kurarken bir düğmeye basmanız yeterlidir; emin olmak için \"Sesi dene\" düğmesini kullanın ve cihaz sesinin açık olduğunu kontrol edin.",
   },
   {
+    question: "Gece modu ne işe yarar?",
+    answer:
+      "Gece modu ekranı tamamen karartır, saati ve sıradaki alarmı sönük kırmızı rakamlarla gösterir ve ekranın kapanmasını engeller. Telefon ya da tablet başucunda şarjdayken göz almadan saati görmenizi sağlar; çıkmak için ekrana dokunun.",
+  },
+  {
+    question: "Kendi şarkımı alarm sesi yapabilir miyim?",
+    answer:
+      "Evet. \"Ses, not ve tekrar\" bölümünde ses listesinden \"Kendi müziğin\"i seçip cihazınızdan bir ses dosyası seçin. Dosya yüklenmez, yalnızca bu tarayıcıda çalınır.",
+  },
+  {
     question: "Kaç alarm kurabilirim?",
     answer: "Sınır yok. Her alarmın kendi etiketi, sesi ve ses düzeyi olabilir; tek tek açıp kapatabilirsiniz.",
   },
 ];
 
 export default function OnlineAlarmPage() {
-  const related = timeRelated.tr;
   return (
-    <TimeToolPage
-      crumbs={[{ href: "/", label: "Ana Sayfa" }, { href: "/online-alarm-kur", label: "Online Alarm" }]}
-      crumbLabel="Sayfa yolu"
-      install={{ name: "Online Alarm", lang: "tr" }}
-      title="Online Alarm Kur"
-      intro="Saati seç, bir ses belirle ve alarmı ekle. Uygulama indirmeden, tarayıcıda çalışan ücretsiz çalar saat: birden çok alarm, 5 dakika erteleme ve ekranı açık tutma desteği."
-      tool={<AlarmClock locale="tr" />}
-      related={{ title: "Diğer zaman araçları", links: related.tools.filter((t) => t.href !== "/online-alarm-kur") }}
-      tocTitle="İçindekiler"
-      tocItems={[
-        { id: "nasil", label: "Online alarm nasıl kurulur?" },
-        { id: "guvenilir", label: "Alarmın güvenle çalması için" },
-        { id: "sesler", label: "Alarm sesleri" },
-        { id: "uyku", label: "Hangi saate alarm kurmalıyım?" },
-        { id: "saatler", label: "Kalkış saatine göre yatış saati" },
-        { id: "faq", label: "Sık sorulan sorular" },
+    <SaatKabugu
+      crumbs={[
+        { href: "/", label: "Ana Sayfa" },
+        { href: "/online-alarm-kur", label: "Online Alarm" },
       ]}
-      faqTitle="Sık Sorulan Sorular"
       faqItems={faqItems}
+      hero={<AlarmSaat />}
+      sahneler={<AlarmSahneleri />}
     >
       <h2 id="nasil">Online alarm nasıl kurulur?</h2>
       <ol>
-        <li>Saat ve dakikayı seçin ya da &quot;+10 dk&quot;, &quot;+30 dk&quot; gibi hızlı düğmelerden birine basın.</li>
-        <li>İsterseniz alarma bir etiket verin (ör. &quot;İlaç&quot;, &quot;Toplantı&quot;).</li>
-        <li>Sesi ve ses düzeyini seçip &quot;Sesi dene&quot; ile kontrol edin.</li>
-        <li>&quot;Alarmı ekle&quot;ye basın. Kalan süre listede ve sekme başlığında görünür.</li>
+        <li>Saat ve dakikayı seçin ya da hazır saatlerden (05:00 – 08:30) birine dokunun.</li>
+        <li>
+          Akşam 18:00&apos;den sonra görünen &quot;Şimdi yatarsan dinç uyanırsın&quot; satırı, şu an uyursanız 4, 5 ya da 6 uyku döngüsünün
+          sonunu gösterir; birine dokunmak saati oraya ayarlar.
+        </li>
+        <li>İsterseniz &quot;Ses, not ve tekrar&quot; bölümünden sesi, notu (ör. &quot;İlaç&quot;) ve tekrarı (her gün, hafta içi) seçin.</li>
+        <li>
+          &quot;Alarm kur&quot;a basın. Kalan süre saatin altında ve sekme başlığında görünür. Birkaç dakika sonrası için &quot;Hızlı
+          kur&quot; düğmeleri tek dokunuşta alarm kurar.
+        </li>
       </ol>
-      <p>Alarm çaldığında &quot;5 dk ertele&quot; ile ertelebilir ya da &quot;Durdur&quot; ile kapatabilirsiniz.</p>
-
-      <h2 id="guvenilir">Alarmın güvenle çalması için</h2>
-      <ul>
-        <li>Sekmeyi kapatmayın; başka sekmeye geçmek sorun değildir.</li>
-        <li>Bilgisayarın uyku moduna geçmesini engelleyin ya da &quot;Ekranı açık tut&quot; düğmesini kullanın.</li>
-        <li>Cihazın sesini ve hoparlörü kontrol edin; kulaklık takılıysa ses oradan gelir.</li>
-        <li>Önemli uyanışlarda telefonunuzun yerleşik alarmını yedek olarak kurun.</li>
-      </ul>
+      <p>
+        Alarm çaldığında ekranın tamamı alarm olur: &quot;Ertele&quot; 5 dakika sonraya yeni bir alarm kurar, &quot;Durdur&quot; kapatır.
+        Gece başucunda &quot;Gece modu&quot; ekranı karartır, saati sönük kırmızıyla gösterir ve ekranın kapanmasını engeller.
+      </p>
 
       <h2 id="sesler">Alarm sesleri</h2>
       <p>
-        Dört ses bulunur: klasik zil, yumuşak çan, dijital bip ve sakin ton. Sesler dosya indirmeden, tarayıcıda anlık olarak
-        üretilir; bu yüzden internet yavaş olsa bile gecikmeden çalar.
+        Dört hazır ses bulunur: klasik zil, yumuşak çan, dijital bip ve sakin ton. Sesler dosya indirmeden, tarayıcıda anlık olarak
+        üretilir; bu yüzden internet yavaş olsa bile gecikmeden çalar. &quot;Kendi müziğin&quot; seçeneğiyle cihazınızdaki bir şarkıyı da alarm
+        sesi yapabilirsiniz; dosya yalnızca bu tarayıcıda kalır.
       </p>
-
-      <h2 id="uyku">Hangi saate alarm kurmalıyım?</h2>
       <p>
-        Uyku yaklaşık 90 dakikalık döngülerden oluşur ve bir döngünün sonunda uyanmak daha dinç hissettirir. Yatış saatinize göre
-        en uygun kalkış saatini <Link href="/uyku-hesaplama">uyku hesaplama</Link> aracıyla bulup buradan alarmını kurabilirsiniz.
+        Uyanma saatinizi yatış saatinizden hesaplamak için <Link href="/uyku-hesaplama">uyku hesaplama</Link>, belirli bir süre sonrası
+        için <Link href="/zamanlayici">zamanlayıcı</Link> aracını kullanabilirsiniz.
       </p>
-
-      <AlarmPresetTable
-        id="saatler"
-        heading="Kalkış saatine göre yatış saati"
-        intro="90 dakikalık uyku döngüsü ve 15 dakikalık uykuya dalma süresiyle hesaplanmıştır. Bir saate dokunduğunuzda alarm o saate ayarlanır."
-        wakeLabel="Kalkış"
-        cycleLabel={(c, h) => `${c} döngü (${h.toLocaleString("tr-TR")} sa)`}
-      />
-    </TimeToolPage>
+    </SaatKabugu>
   );
 }

@@ -21080,3 +21080,378 @@ a.all-units-row .all-units-name {
     min-width: 116px;
   }
 }
+
+/* ===== Alarm: saat bölümü görünümü ===== */
+.alarm-hero {
+  align-items: flex-start;
+  background-image: radial-gradient(120% 90% at 85% 0%, #1d2a2a 0%, #0d1112 50%, #050606 100%);
+}
+
+.alarm-hero .saat-hero-ic {
+  padding-top: 26px;
+}
+
+.alarm-dev {
+  font-size: min(22vw, 32vh);
+}
+
+.alarm-durum {
+  margin: 6px 0 0;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: clamp(1.05rem, 2vw, 1.4rem);
+  font-weight: 600;
+}
+
+.alarm-durum b {
+  color: #7fe3df;
+  font-family: var(--saat-rakam), Impact, sans-serif;
+  font-size: 1.5em;
+  font-weight: 400;
+}
+
+.alarm-kur {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+  padding: 18px;
+  border-top: 4px solid var(--saat-vurgu);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.alarm-secici {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 10px 12px;
+}
+
+.alarm-secici label {
+  display: grid;
+  gap: 4px;
+}
+
+.alarm-secici span,
+.alarm-cipler span,
+.alarm-ayarlar summary,
+.alarm-ayar-alanlar span {
+  color: rgba(255, 255, 255, 0.7);
+  font: 800 0.74rem var(--saat-metin), sans-serif;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.alarm-secici select {
+  min-width: 112px;
+  padding: 4px 34px 4px 14px;
+  border: 3px solid #ffffff;
+  border-radius: 0;
+  background: #000000;
+  color: #ffffff;
+  font-family: var(--saat-rakam), Impact, sans-serif;
+  font-size: clamp(2.6rem, 7vw, 4rem);
+  line-height: 1.1;
+  cursor: pointer;
+}
+
+.alarm-secici > b {
+  padding-bottom: 6px;
+  font-family: var(--saat-rakam), Impact, sans-serif;
+  font-size: clamp(2.6rem, 7vw, 4rem);
+  font-weight: 400;
+}
+
+.alarm-kur-dugme {
+  flex: 1 1 200px;
+  min-height: 72px;
+  padding: 8px 22px;
+  border: 0;
+  border-radius: 0;
+  background: var(--saat-vurgu);
+  color: #ffffff;
+  font-family: var(--saat-rakam), Impact, sans-serif;
+  font-size: clamp(1.9rem, 4.4vw, 2.6rem);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.alarm-kur-dugme:hover {
+  background: #1aa8a4;
+}
+
+.alarm-cipler {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.alarm-cipler span {
+  margin-right: 4px;
+}
+
+.alarm-cipler button,
+.alarm-ayar-alanlar button {
+  padding: 6px 12px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-radius: 0;
+  background: transparent;
+  color: #ffffff;
+  font-family: var(--saat-rakam), Impact, sans-serif;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.alarm-cipler button small {
+  font-family: var(--saat-metin), sans-serif;
+  font-size: 0.7rem;
+  opacity: 0.75;
+}
+
+.alarm-cipler button:hover {
+  border-color: #ffffff;
+}
+
+.alarm-cipler button.is-secili {
+  border-color: var(--saat-vurgu);
+  background: var(--saat-vurgu);
+}
+
+.alarm-cipler.is-uyku button {
+  border-color: rgba(127, 227, 223, 0.55);
+}
+
+.alarm-ayarlar summary {
+  cursor: pointer;
+}
+
+.alarm-ayar-alanlar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  align-items: end;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.alarm-ayar-alanlar label {
+  display: grid;
+  gap: 4px;
+}
+
+.alarm-ayar-alanlar input,
+.alarm-ayar-alanlar select {
+  padding: 8px 10px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 0;
+  background: #000000;
+  color: #ffffff;
+  font: 500 0.95rem var(--saat-metin), sans-serif;
+}
+
+.alarm-ayar-alanlar input[type="range"] {
+  padding: 0;
+  border: 0;
+  accent-color: var(--saat-vurgu);
+}
+
+.alarm-liste {
+  display: grid;
+  gap: 6px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.alarm-liste li {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 14px;
+  border-left: 4px solid rgba(255, 255, 255, 0.25);
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.alarm-liste li.is-acik {
+  border-left-color: var(--saat-vurgu);
+}
+
+.alarm-liste b {
+  font-family: var(--saat-rakam), Impact, sans-serif;
+  font-size: 1.9rem;
+  font-weight: 400;
+}
+
+.alarm-liste li:not(.is-acik) b {
+  opacity: 0.5;
+}
+
+.alarm-liste label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+}
+
+.alarm-liste button {
+  padding: 4px 10px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 0;
+  background: transparent;
+  color: #ffffff;
+  font: 700 0.8rem var(--saat-metin), sans-serif;
+  cursor: pointer;
+}
+
+.alarm-not {
+  margin: 14px 0 0;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.88rem;
+}
+
+/* Tam ekranlar sayfanın en üst katmanında (body) çizilir; bölümün değişkenlerini kendileri taşır. */
+.alarm-gece,
+.alarm-caliyor {
+  --saat-vurgu: #168f8c;
+  font-family: var(--saat-metin), system-ui, sans-serif;
+}
+
+/* Gece modu: tamamen siyah, sönük kırmızı saat (gece görüşünü bozmaz). */
+.alarm-gece {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 8px;
+  background: #000000;
+  color: #7a1414;
+  cursor: pointer;
+}
+
+.alarm-gece-saat {
+  font-family: var(--saat-rakam), Impact, sans-serif;
+  font-size: min(34vw, 60vh);
+  line-height: 0.9;
+}
+
+.alarm-gece p {
+  margin: 0;
+  font-size: clamp(1rem, 2.4vw, 1.5rem);
+  font-weight: 700;
+}
+
+.alarm-gece small {
+  color: #3d0a0a;
+}
+
+/* Alarm çalarken: tam ekran yanıp sönen ekran, kocaman düğmeler. */
+.alarm-caliyor {
+  position: fixed;
+  inset: 0;
+  z-index: 210;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 10px;
+  padding: 24px;
+  background: #000000;
+  color: #ffffff;
+  text-align: center;
+  animation: alarm-yanip-son 1s steps(1, end) infinite;
+}
+
+@keyframes alarm-yanip-son {
+  50% {
+    background: var(--saat-vurgu);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .alarm-caliyor {
+    animation: none;
+    background: var(--saat-vurgu);
+  }
+}
+
+.alarm-caliyor-ust {
+  margin: 0;
+  font: 800 clamp(1rem, 2.4vw, 1.4rem) var(--saat-metin), sans-serif;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.alarm-caliyor-saat {
+  font-family: var(--saat-rakam), Impact, sans-serif;
+  font-size: min(32vw, 46vh);
+  line-height: 0.9;
+}
+
+.alarm-caliyor-not {
+  margin: 0;
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  font-weight: 700;
+}
+
+.alarm-caliyor-dugmeler {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.alarm-caliyor-dugmeler button {
+  min-width: 220px;
+  min-height: 84px;
+  padding: 10px 26px;
+  border: 4px solid #ffffff;
+  border-radius: 0;
+  background: transparent;
+  color: #ffffff;
+  font-family: var(--saat-rakam), Impact, sans-serif;
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.alarm-caliyor-dugmeler .is-durdur {
+  background: #ffffff;
+  color: #000000;
+}
+
+@media (max-width: 720px) {
+  .alarm-hero .saat-hero-ic {
+    padding: 16px 16px 28px;
+  }
+
+  .alarm-dev {
+    font-size: 27vw;
+  }
+
+  .alarm-dev .saat-sn {
+    display: none;
+  }
+
+  .alarm-kur {
+    padding: 14px 12px;
+  }
+
+  .alarm-secici select {
+    min-width: 92px;
+  }
+
+  .alarm-kur-dugme {
+    flex-basis: 100%;
+    min-height: 60px;
+  }
+
+  .alarm-liste li {
+    grid-template-columns: auto 1fr auto;
+  }
+
+  .alarm-liste li button {
+    grid-column: 3;
+  }
+}

@@ -73,8 +73,8 @@ export default function OnlineAlarmPage() {
       <ol>
         <li>Saat ve dakikayı seçin ya da hazır saatlerden (05:00 – 08:30) birine dokunun.</li>
         <li>
-          &quot;Şimdi yatarsan dinç uyanırsın&quot; satırı, şu an uyursanız 4, 5 ya da 6 uyku döngüsünün sonunu gösterir; birine dokunmak
-          saati oraya ayarlar.
+          Akşam 18:00&apos;den sonra görünen &quot;Şimdi yatarsan dinç uyanırsın&quot; satırı, şu an uyursanız 4, 5 ya da 6 uyku döngüsünün
+          sonunu gösterir; birine dokunmak saati oraya ayarlar.
         </li>
         <li>İsterseniz &quot;Ses, not ve tekrar&quot; bölümünden sesi, notu (ör. &quot;İlaç&quot;) ve tekrarı (her gün, hafta içi) seçin.</li>
         <li>

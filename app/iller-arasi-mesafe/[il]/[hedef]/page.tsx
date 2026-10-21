@@ -4,7 +4,9 @@ import { notFound } from "next/navigation";
 import Link from "@/app/components/SiteLink";
 import ProvinceDistanceCalculator from "../../../components/geo/ProvinceDistanceCalculator";
 import TurkeyMap, { provinceMapCenters } from "../../../components/geo/TurkeyMap";
-import TimeToolPage from "../../../components/time/TimeToolPage";
+import RotaHaritasi from "../../../components/yol/RotaHaritasi";
+import YolculukPlani from "../../../components/yol/YolculukPlani";
+import YolSayfasi from "../../../components/yol/YolSayfasi";
 import type { FaqItem } from "../../../converter/faqSchema";
 import { KGM_DISTANCE_DATE } from "../../../converter/geo/kgmDistances";
 import { airKm, DEFAULT_AVG_KMH, distancesFrom, driveMinutes, durationText, roadKm, routeStops } from "../../../converter/geo/provinceDistances";
@@ -104,18 +106,201 @@ export default async function RoutePairPage({ params }: { params: Promise<{ il: 
     },
   ];
 
+  const sure = durationText(driveMinutes(road, DEFAULT_AVG_KMH));
+  const benzin = price ? ((road * 7) / 100) * price : null;
+  const crumbs = [
+    { href: "/", label: "Ana Sayfa" },
+    { href: "/iller-arasi-mesafe", label: "İller Arası Mesafe" },
+    { href: `/iller-arasi-mesafe/${from.id}`, label: from.name },
+    { href: path, label: to.name },
+  ];
+
   return (
-    <TimeToolPage
-      crumbs={[
-        { href: "/", label: "Ana Sayfa" },
-        { href: "/iller-arasi-mesafe", label: "İller Arası Mesafe" },
-        { href: `/iller-arasi-mesafe/${from.id}`, label: from.name },
-        { href: path, label: to.name },
-      ]}
-      crumbLabel="Sayfa yolu"
-      title={`${from.name} ${to.name} Arası Kaç Km?`}
-      intro={`${from.name} ile ${to.name} arası karayoluyla ${fmt(road)} km, kuş uçuşu ${fmt(air)} km. 85 km/sa ortalamayla yaklaşık ${durationText(driveMinutes(road, DEFAULT_AVG_KMH))} sürer.`}
-      tool={
+    <YolSayfasi
+      crumbs={crumbs}
+      baslik={`${from.name} ${to.name} Arası Kaç Km?`}
+      faqItems={faqItems}
+      levha={
+        <div className="yol-levha" role="group" aria-label={`${from.name} – ${to.name} mesafe levhası`}>
+          <p className="yol-levha-ust">{trAblative(from.name).toLocaleUpperCase("tr")}</p>
+          <div className="yol-levha-ana">
+            <span className="yol-levha-ok" aria-hidden="true">
+              ➜
+            </span>
+            <b className="yol-levha-hedef">{to.name.toLocaleUpperCase("tr")}</b>
+            <b className="yol-levha-km">
+              {fmt(road)}
+              <small>km</small>
+            </b>
+          </div>
+          <ul className="yol-levha-alt">
+            <li>
+              <span>Arabayla</span> ≈ {sure}
+            </li>
+            <li>
+              <span>Kuş uçuşu</span> {fmt(air)} km
+            </li>
+            {benzin ? (
+              <li>
+                <span>Benzin (7 L/100 km)</span> ≈ {fmt(benzin)} TL
+              </li>
+            ) : null}
+          </ul>
+        </div>
+      }
+    >
+      <p className="yol-ozet">
+        {from.name} ile {to.name} arası karayoluyla {fmt(road)} km, kuş uçuşu {fmt(air)} km. {DEFAULT_AVG_KMH} km/sa ortalamayla yaklaşık {sure} sürer. Mesafe:
+        Karayolları Genel Müdürlüğü cetveli ({dateText}).
+      </p>
+
+      <section className="yol-bolum yol-plan-bolum" id="plan">
+        <h2 className="yol-bolum-baslik">Yolculuk planı</h2>
+        <div className="yol-plan-izgara">
+          <figure className="yol-harita">
+            <RotaHaritasi from={from} to={to} duraklar={stops.map((x) => x.province)} />
+            <figcaption>
+              {stops.length ? `${stops.length} il merkezinden geçer` : "Başka bir il merkezinden geçilmez"} · {fmt(road)} km
+            </figcaption>
+          </figure>
+          <YolculukPlani nereden={from.name} nereye={to.name} km={road} duraklar={stops.map((x) => ({ ad: x.province.name, km: x.fromStart }))} yakitFiyati={price} />
+        </div>
+      </section>
+
+      <section className="yol-bolum" id="guzergah">
+        <h2 className="yol-bolum-baslik">
+          {from.name} – {to.name} yolu üzerindeki iller
+        </h2>
+        <ol className="yol-taslar">
+          <li className="is-uc">
+            <span className="yol-tas">0</span>
+            <b>{from.name}</b>
+            <small>çıkış · {fmt(from.elevationM)} m</small>
+          </li>
+          {stops.map((x) => (
+            <li key={x.province.id}>
+              <span className="yol-tas">{fmt(x.fromStart)}</span>
+              <b>
+                <Link href={`/il-rakimlari/${x.province.id}`} prefetch={false}>
+                  {x.province.name}
+                </Link>
+              </b>
+              <small>
+                {durationText(driveMinutes(x.fromStart, DEFAULT_AVG_KMH))} · {trDative(to.name)} {fmt(Math.max(road - x.fromStart, 0))} km · {fmt(x.province.elevationM)} m
+              </small>
+            </li>
+          ))}
+          <li className="is-uc">
+            <span className="yol-tas">{fmt(road)}</span>
+            <b>{to.name}</b>
+            <small>
+              varış · {sure} · {fmt(to.elevationM)} m
+            </small>
+          </li>
+        </ol>
+        <p className="yol-not">
+          {yari ? <>Yolun yarısı {yari.province.name} civarında ({fmt(yari.fromStart)}. km). </> : null}
+          {molalar.length ? <>Yaklaşık 2,5 saatte bir mola için uygun duraklar: {molalar.map((x) => `${x.province.name} (${fmt(x.fromStart)}. km)`).join(", ")}. </> : null}
+          Yol boyunca il merkezlerinin rakımı {fmt(Math.min(...rakimlar))} m ile {fmt(Math.max(...rakimlar))} m arasında değişir.
+        </p>
+      </section>
+
+      <div className="yol-ikili">
+        <section className="yol-bolum" id="sure">
+          <h2 className="yol-bolum-baslik">Farklı hızlarda süre</h2>
+          <table className="yol-tablo">
+            <thead>
+              <tr>
+                <th scope="col">Ortalama hız</th>
+                <th scope="col">Tek yön</th>
+                <th scope="col">Gidiş-dönüş</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[70, 85, 100, 110].map((v) => (
+                <tr key={v}>
+                  <td>{v} km/sa</td>
+                  <td>{durationText(driveMinutes(road, v))}</td>
+                  <td>{durationText(driveMinutes(road * 2, v))}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="yol-not">Süreler molasızdır{breaks > 0 ? `; ${fmt(road)} km için ${breaks} mola eklemeyi planlayın` : ""}.</p>
+        </section>
+
+        <section className="yol-bolum" id="yakit">
+          <h2 className="yol-bolum-baslik">Yakıt ve maliyet</h2>
+          <table className="yol-tablo">
+            <thead>
+              <tr>
+                <th scope="col">Tüketim</th>
+                <th scope="col">Tek yön</th>
+                <th scope="col">Gidiş-dönüş</th>
+                {price ? <th scope="col">Maliyet</th> : null}
+              </tr>
+            </thead>
+            <tbody>
+              {[5, 6.5, 8, 10].map((c) => {
+                const liters = (road * c) / 100;
+                return (
+                  <tr key={c}>
+                    <td>{fmt(c, 1)} L/100 km</td>
+                    <td>{fmt(liters, 1)} L</td>
+                    <td>{fmt(liters * 2, 1)} L</td>
+                    {price ? <td>≈ {fmt(liters * price)} TL</td> : null}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+          <p className="yol-not">
+            {price ? `Tek yön maliyet ${fmt(price, 2)} TL/L benzin fiyatıyla. ` : ""}
+            Kendi aracınız için: <Link href="/yakit-tuketimi-hesaplama">yakıt tüketimi hesaplama</Link>.
+          </p>
+        </section>
+      </div>
+
+      <section className="yol-bolum" id="iller">
+        <h2 className="yol-bolum-baslik">
+          {from.name} ve {to.name} karşılaştırması
+        </h2>
+        <div className="yol-iller">
+          {[from, to].map((p) => (
+            <div key={p.id} className="yol-il">
+              <span className="yol-plaka">TR {String(p.plate).padStart(2, "0")}</span>
+              <b>{p.name}</b>
+              <dl>
+                <dt>Bölge</dt>
+                <dd>{p.region}</dd>
+                <dt>Rakım</dt>
+                <dd>
+                  <Link href={`/il-rakimlari/${p.id}`} prefetch={false}>
+                    {fmt(p.elevationM)} m
+                  </Link>
+                </dd>
+                <dt>Koordinat</dt>
+                <dd>
+                  {fmt(p.lat, 2)}° K, {fmt(p.lon, 2)}° D
+                </dd>
+              </dl>
+            </div>
+          ))}
+        </div>
+        <p className="yol-not">
+          {Math.abs(elevDiff) < 20
+            ? `İki il neredeyse aynı yükseklikte. `
+            : `${to.name}, ${trAblative(from.name)} ${fmt(Math.abs(elevDiff))} m daha ${elevDiff > 0 ? "yüksekte" : "alçakta"}. `}
+          {Math.abs(solarDiff) < 2
+            ? `İki il neredeyse aynı boylamda olduğu için Güneş hemen hemen aynı anda doğar.`
+            : `${to.name}, ${trGenitive(from.name)} ${solarDiff > 0 ? "doğusunda" : "batısında"} olduğu için ${trLocative(to.name)} Güneş yaklaşık ${Math.abs(solarDiff)} dakika ${
+                solarDiff > 0 ? "önce" : "sonra"
+              } doğar ve batar (her boylam derecesi 4 dakika).`}
+        </p>
+      </section>
+
+      <section className="yol-bolum" id="baska">
+        <h2 className="yol-bolum-baslik">Başka iki il arası</h2>
         <ProvinceDistanceCalculator
           centers={provinceMapCenters()}
           fuelPrice={price}
@@ -123,209 +308,21 @@ export default async function RoutePairPage({ params }: { params: Promise<{ il: 
           initialB={to.plate}
           map={<TurkeyMap ariaLabel={`${from.name} – ${to.name} haritası`} selectable titleFor={(p) => `${p.plate} ${p.name}`} />}
         />
-      }
-      related={{
-        title: "İlginizi çekebilir",
-        links: [
-          { href: `/iller-arasi-mesafe/${from.id}`, label: `${trAblative(from.name)} tüm illere mesafe` },
-          { href: `/iller-arasi-mesafe/${to.id}`, label: `${trAblative(to.name)} tüm illere mesafe` },
-          { href: `/il-rakimlari/${to.id}`, label: `${trGenitive(to.name)} rakımı` },
-          { href: "/yakit-tuketimi-hesaplama", label: "Yakıt Tüketimi Hesaplama" },
-          { href: "/turkiye-il-haritasi", label: "Türkiye İl Haritası" },
-        ],
-      }}
-      tocTitle="İçindekiler"
-      tocItems={[
-        { id: "guzergah", label: "Yol üzerindeki iller" },
-        { id: "sure", label: "Farklı hızlarda yolculuk süresi" },
-        { id: "yakit", label: "Yakıt tüketimi ve maliyet" },
-        { id: "iller", label: `${from.name} ve ${to.name} karşılaştırması` },
-        ...(nearby.length ? [{ id: "diger", label: `${trAblative(from.name)} diğer güzergâhlar` }] : []),
-        { id: "faq", label: "Sık sorulan sorular" },
-      ]}
-      faqTitle="Sık Sorulan Sorular"
-      faqItems={faqItems}
-    >
-      <h2 id="guzergah">
-        {from.name} – {to.name} yolu üzerindeki iller
-      </h2>
-      {stops.length ? (
-        <>
-          <div className="holiday-table-wrap">
-            <table className="holiday-table">
-              <thead>
-                <tr>
-                  <th scope="col">İl merkezi</th>
-                  <th scope="col">{trAblative(from.name)}</th>
-                  <th scope="col">{trDative(to.name)} kalan</th>
-                  <th scope="col">Süre ({DEFAULT_AVG_KMH} km/sa)</th>
-                  <th scope="col">Rakım</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">{from.name} (çıkış)</th>
-                  <td>0 km</td>
-                  <td>{fmt(road)} km</td>
-                  <td>—</td>
-                  <td>{fmt(from.elevationM)} m</td>
-                </tr>
-                {stops.map((x) => (
-                  <tr key={x.province.id}>
-                    <th scope="row">
-                      <Link href={`/il-rakimlari/${x.province.id}`} prefetch={false}>
-                        {x.province.name}
-                      </Link>
-                    </th>
-                    <td>{fmt(x.fromStart)} km</td>
-                    <td>{fmt(Math.max(road - x.fromStart, 0))} km</td>
-                    <td>{durationText(driveMinutes(x.fromStart, DEFAULT_AVG_KMH))}</td>
-                    <td>{fmt(x.province.elevationM)} m</td>
-                  </tr>
-                ))}
-                <tr>
-                  <th scope="row">{to.name} (varış)</th>
-                  <td>{fmt(road)} km</td>
-                  <td>0 km</td>
-                  <td>{durationText(driveMinutes(road, DEFAULT_AVG_KMH))}</td>
-                  <td>{fmt(to.elevationM)} m</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <p>
-            {yari ? <>Yolun yarısı {yari.province.name} civarında ({fmt(yari.fromStart)}. km). </> : null}
-            {molalar.length ? (
-              <>
-                Yaklaşık 2,5 saatte bir mola için uygun duraklar: {molalar.map((x) => `${x.province.name} (${fmt(x.fromStart)}. km)`).join(", ")}.{" "}
-              </>
-            ) : null}
-            Yol boyunca il merkezlerinin rakımı {fmt(Math.min(...rakimlar))} m ile {fmt(Math.max(...rakimlar))} m arasında değişir.
-          </p>
-        </>
-      ) : (
-        <p>
-          {from.name} ile {to.name} arasında başka bir il merkezinden geçilmez; iki il doğrudan bağlanır ({fmt(road)} km).
+      </section>
+
+      <section className="yol-bolum" id="diger">
+        <h2 className="yol-bolum-baslik">İlgili güzergâhlar</h2>
+        <p className="yol-linkler">
+          <Link href={`/iller-arasi-mesafe/${from.id}`}>{trAblative(from.name)} tüm illere</Link>
+          <Link href={`/iller-arasi-mesafe/${to.id}`}>{trAblative(to.name)} tüm illere</Link>
+          {nearby.map((n) => (
+            <Link key={n.p.id} href={n.href} prefetch={false}>
+              {from.name} – {n.p.name} <small>{fmt(roadKm(from, n.p))} km</small>
+            </Link>
+          ))}
+          <Link href="/turkiye-il-haritasi">Türkiye il haritası</Link>
         </p>
-      )}
-
-      <h2 id="sure">Farklı hızlarda yolculuk süresi</h2>
-      <div className="holiday-table-wrap">
-        <table className="holiday-table">
-          <thead>
-            <tr>
-              <th scope="col">Ortalama hız</th>
-              <th scope="col">Tek yön</th>
-              <th scope="col">Gidiş-dönüş</th>
-            </tr>
-          </thead>
-          <tbody>
-            {[70, 85, 100, 110].map((v) => (
-              <tr key={v}>
-                <td>{v} km/sa</td>
-                <td>{durationText(driveMinutes(road, v))}</td>
-                <td>{durationText(driveMinutes(road * 2, v))}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <p>
-        Süreler molasızdır{breaks > 0 ? `; ${fmt(road)} km için ${breaks} mola eklemeyi planlayın` : ""}.
-      </p>
-
-      <h2 id="yakit">Yakıt tüketimi ve maliyet</h2>
-      <div className="holiday-table-wrap">
-        <table className="holiday-table">
-          <thead>
-            <tr>
-              <th scope="col">Tüketim</th>
-              <th scope="col">Tek yön</th>
-              <th scope="col">Gidiş-dönüş</th>
-              {price ? <th scope="col">Tek yön maliyet</th> : null}
-            </tr>
-          </thead>
-          <tbody>
-            {[5, 6.5, 8, 10].map((c) => {
-              const liters = (road * c) / 100;
-              return (
-                <tr key={c}>
-                  <td>{fmt(c, 1)} L/100 km</td>
-                  <td>{fmt(liters, 1)} L</td>
-                  <td>{fmt(liters * 2, 1)} L</td>
-                  {price ? <td>≈ {fmt(liters * price)} TL</td> : null}
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-      <p>
-        {price ? `Maliyet ${fmt(price, 2)} TL/L benzin fiyatıyla. ` : ""}
-        Kendi aracınız için: <Link href="/yakit-tuketimi-hesaplama">yakıt tüketimi hesaplama</Link>.
-      </p>
-
-      <h2 id="iller">
-        {from.name} ve {to.name} karşılaştırması
-      </h2>
-      <div className="holiday-table-wrap">
-        <table className="holiday-table">
-          <thead>
-            <tr>
-              <th scope="col" />
-              <th scope="col">{from.name}</th>
-              <th scope="col">{to.name}</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">Bölge</th>
-              <td>{from.region}</td>
-              <td>{to.region}</td>
-            </tr>
-            <tr>
-              <th scope="row">Plaka</th>
-              <td>{String(from.plate).padStart(2, "0")}</td>
-              <td>{String(to.plate).padStart(2, "0")}</td>
-            </tr>
-            <tr>
-              <th scope="row">Rakım</th>
-              <td>{fmt(from.elevationM)} m</td>
-              <td>{fmt(to.elevationM)} m</td>
-            </tr>
-            <tr>
-              <th scope="row">Koordinat</th>
-              <td>
-                {fmt(from.lat, 2)}° K, {fmt(from.lon, 2)}° D
-              </td>
-              <td>
-                {fmt(to.lat, 2)}° K, {fmt(to.lon, 2)}° D
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <p>
-        {Math.abs(solarDiff) < 2
-          ? `İki il neredeyse aynı boylamda olduğu için Güneş hemen hemen aynı anda doğar.`
-          : `${to.name}, ${trGenitive(from.name)} ${solarDiff > 0 ? "doğusunda" : "batısında"} olduğu için ${trLocative(to.name)} Güneş yaklaşık ${Math.abs(solarDiff)} dakika ${
-              solarDiff > 0 ? "önce" : "sonra"
-            } doğar ve batar (her boylam derecesi 4 dakika).`}{" "}
-        Mesafe: Karayolları Genel Müdürlüğü cetveli ({dateText}).
-      </p>
-
-      {nearby.length > 0 && (
-        <>
-          <h2 id="diger">{trAblative(from.name)} diğer güzergâhlar</h2>
-          <p className="province-link-list">
-            {nearby.map((n) => (
-              <Link key={n.p.id} href={n.href} prefetch={false}>
-                {from.name} – {n.p.name} ({fmt(roadKm(from, n.p))} km)
-              </Link>
-            ))}
-          </p>
-        </>
-      )}
-    </TimeToolPage>
+      </section>
+    </YolSayfasi>
   );
 }

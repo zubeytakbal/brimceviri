@@ -1,0 +1,582 @@
+/* Yol atlası bölümü: yalnızca bu bölümün sayfalarında yüklenir (YolSayfasi bileşeni içe aktarır).
+   Asfalt zeminli başlık, Türkiye otoyol levhası yeşili, kilometre taşları ve atlas tabloları. */
+.yol-sayfa {
+  --yol-asfalt: #1f2327;
+  --yol-levha-yesil: #0b6b3b;
+  --yol-serit: #f2c230;
+  --yol-murekkep: #16191c;
+  --yol-ikincil: #5b6168;
+  --yol-cizgi: #d9dcd6;
+  --yol-zemin: #f6f5f0;
+  display: block;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  background: var(--yol-zemin);
+  color: var(--yol-murekkep);
+  font-family: var(--yol-metin), system-ui, sans-serif;
+}
+
+.yol-ic {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Asfalt başlık: orta şerit çizgisi ve levha */
+.yol-ust {
+  position: relative;
+  padding: 26px 0 70px;
+  background:
+    repeating-linear-gradient(90deg, var(--yol-serit) 0 64px, transparent 64px 112px) 0 calc(100% - 22px) / 100% 7px no-repeat,
+    radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1.4px) 0 0 / 5px 5px,
+    var(--yol-asfalt);
+  color: #ffffff;
+}
+
+.yol-yolu {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.yol-yolu a {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+}
+
+.yol-baslik {
+  margin: 12px 0 22px;
+  font: 800 clamp(1.8rem, 4.4vw, 3.2rem) / 1.05 var(--yol-metin), sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* Otoyol levhası */
+.yol-levha {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+  padding: 18px 26px 20px;
+  border: 5px solid #ffffff;
+  border-radius: 18px;
+  outline: 4px solid var(--yol-levha-yesil);
+  background: var(--yol-levha-yesil);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  font-family: var(--yol-levha), var(--yol-metin), sans-serif;
+}
+
+.yol-levha-ust {
+  margin: 0;
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  opacity: 0.9;
+}
+
+.yol-levha-ana {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 18px;
+  padding: 6px 0 12px;
+  border-bottom: 3px solid rgba(255, 255, 255, 0.9);
+}
+
+.yol-levha-ok {
+  font-size: clamp(2.2rem, 6vw, 4.2rem);
+  font-weight: 900;
+  line-height: 1;
+}
+
+.yol-levha-hedef {
+  flex: 1 1 auto;
+  font-size: clamp(2.6rem, 8vw, 5.6rem);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+}
+
+.yol-levha-km {
+  font-size: clamp(2.6rem, 8vw, 5.6rem);
+  font-weight: 900;
+  line-height: 0.95;
+  font-variant-numeric: tabular-nums;
+}
+
+.yol-levha-km small {
+  margin-left: 6px;
+  font-size: 0.42em;
+  font-weight: 800;
+}
+
+.yol-levha-alt {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 26px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  font-weight: 800;
+}
+
+.yol-levha-alt span {
+  display: block;
+  font-size: 0.62em;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  opacity: 0.8;
+  text-transform: uppercase;
+}
+
+/* Gövde */
+.yol-govde {
+  padding-top: 26px;
+  padding-bottom: 72px;
+}
+
+.yol-ozet {
+  max-width: 860px;
+  margin: 0 0 8px;
+  color: var(--yol-ikincil);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.yol-bolum {
+  margin-top: 40px;
+}
+
+.yol-bolum-baslik {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 16px;
+  font: 800 clamp(1.35rem, 2.6vw, 1.9rem) / 1.15 var(--yol-metin), sans-serif;
+  letter-spacing: -0.01em;
+}
+
+.yol-bolum-baslik::before {
+  flex: 0 0 auto;
+  width: 14px;
+  height: 1.1em;
+  background: repeating-linear-gradient(180deg, var(--yol-serit) 0 6px, var(--yol-murekkep) 6px 12px);
+  content: "";
+}
+
+.yol-not {
+  max-width: 860px;
+  margin: 10px 0 0;
+  color: var(--yol-ikincil);
+  line-height: 1.6;
+}
+
+/* Plan: harita + hesaplayıcı */
+.yol-plan-izgara {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 22px;
+  align-items: start;
+}
+
+.yol-harita {
+  margin: 0;
+  padding: 14px;
+  border: 1px solid var(--yol-cizgi);
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.yol-harita figcaption {
+  margin-top: 8px;
+  color: var(--yol-ikincil);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.rota-harita {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.rota-harita path {
+  fill: #e7e9e2;
+  stroke: #ffffff;
+  stroke-width: 1.2;
+}
+
+.rota-harita path.is-ara {
+  fill: #c9dfcf;
+}
+
+.rota-harita path.is-uc {
+  fill: #8fbf9f;
+}
+
+.rota-harita path {
+  stroke-width: calc(1.2px * var(--olcek, 1));
+}
+
+.rota-yol-kenar {
+  fill: none;
+  stroke: var(--yol-murekkep);
+  stroke-width: calc(9px * var(--olcek, 1));
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.rota-yol {
+  fill: none;
+  stroke: var(--yol-serit);
+  stroke-width: calc(4px * var(--olcek, 1));
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: calc(14px * var(--olcek, 1)) calc(9px * var(--olcek, 1));
+}
+
+.rota-durak circle {
+  fill: #ffffff;
+  stroke: var(--yol-murekkep);
+}
+
+.rota-durak.is-uc circle {
+  fill: var(--yol-levha-yesil);
+  stroke: #ffffff;
+}
+
+.rota-durak text {
+  fill: var(--yol-murekkep);
+  stroke: #ffffff;
+  stroke-width: 4px;
+  paint-order: stroke;
+  stroke-width: calc(4px * var(--olcek, 1));
+  font: 800 calc(17px * var(--olcek, 1)) var(--yol-metin), sans-serif;
+  text-anchor: middle;
+}
+
+.rota-durak.is-uc text {
+  font-size: calc(21px * var(--olcek, 1));
+}
+
+/* Yolculuk planlayıcısı */
+.yol-plan {
+  padding: 18px;
+  border-radius: 14px;
+  background: var(--yol-asfalt);
+  color: #ffffff;
+}
+
+.yol-plan-girdiler {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 12px;
+}
+
+.yol-plan-girdiler label {
+  display: grid;
+  gap: 4px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.yol-plan-girdiler input,
+.yol-plan-girdiler select {
+  width: 100%;
+  min-height: 42px;
+  padding: 6px 10px;
+  border: 2px solid #ffffff;
+  border-radius: 8px;
+  background: #ffffff;
+  color: var(--yol-murekkep);
+  font: 700 1.05rem var(--yol-metin), sans-serif;
+}
+
+.yol-plan-girdiler .yol-plan-kutu {
+  display: flex;
+  grid-column: 1 / -1;
+  align-items: center;
+  gap: 8px;
+  text-transform: none;
+  font-size: 0.95rem;
+}
+
+.yol-plan-girdiler .yol-plan-kutu input {
+  width: 20px;
+  min-height: 20px;
+}
+
+.yol-plan-sonuc {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.yol-plan-sonuc > div {
+  display: grid;
+  gap: 2px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--yol-levha-yesil);
+}
+
+.yol-plan-sonuc small {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  opacity: 0.85;
+  text-transform: uppercase;
+}
+
+.yol-plan-sonuc b {
+  font: 900 clamp(1.5rem, 3vw, 2.2rem) / 1 var(--yol-levha), sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+
+.yol-plan-sonuc b em {
+  font-size: 0.5em;
+  font-style: normal;
+}
+
+.yol-plan-sonuc span {
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+
+.yol-plan-akis {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.yol-plan-akis li {
+  padding: 5px 9px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  font-size: 0.85rem;
+}
+
+.yol-plan-akis b {
+  color: var(--yol-serit);
+  font-variant-numeric: tabular-nums;
+}
+
+.yol-plan-akis small {
+  opacity: 0.7;
+}
+
+/* Kilometre taşları */
+.yol-taslar {
+  position: relative;
+  margin: 0;
+  padding: 0 0 0 4px;
+  list-style: none;
+}
+
+.yol-taslar::before {
+  position: absolute;
+  top: 20px;
+  bottom: 20px;
+  left: 31px;
+  width: 6px;
+  background: repeating-linear-gradient(180deg, var(--yol-serit) 0 14px, transparent 14px 24px), var(--yol-asfalt);
+  content: "";
+}
+
+.yol-taslar li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  column-gap: 16px;
+  padding: 8px 0;
+}
+
+.yol-tas {
+  position: relative;
+  z-index: 1;
+  grid-row: 1 / 3;
+  align-self: center;
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 46px;
+  padding-top: 8px;
+  border: 2px solid var(--yol-murekkep);
+  border-radius: 22px 22px 4px 4px;
+  background: linear-gradient(180deg, var(--yol-serit) 0 12px, #ffffff 12px);
+  font: 900 0.95rem var(--yol-levha), sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+
+.yol-taslar li.is-uc .yol-tas {
+  background: linear-gradient(180deg, var(--yol-levha-yesil) 0 12px, #ffffff 12px);
+}
+
+.yol-taslar b {
+  align-self: end;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.yol-taslar b a {
+  color: inherit;
+}
+
+.yol-taslar small {
+  color: var(--yol-ikincil);
+  font-size: 0.9rem;
+}
+
+/* Tablolar */
+.yol-ikili {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 28px;
+}
+
+.yol-tablo {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+.yol-tablo th {
+  padding: 8px 6px;
+  border-bottom: 3px solid var(--yol-murekkep);
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.yol-tablo td {
+  padding: 9px 6px;
+  border-bottom: 1px solid var(--yol-cizgi);
+  font-weight: 600;
+}
+
+/* İl kartları: plaka şeridi */
+.yol-iller {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.yol-il {
+  padding: 16px;
+  border: 1px solid var(--yol-cizgi);
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.yol-plaka {
+  display: inline-block;
+  padding: 3px 10px 3px 26px;
+  border: 2px solid var(--yol-murekkep);
+  border-radius: 6px;
+  background: linear-gradient(90deg, #1f4fa8 0 18px, #ffffff 18px);
+  font: 900 0.95rem var(--yol-levha), sans-serif;
+  letter-spacing: 0.06em;
+}
+
+.yol-il > b {
+  display: block;
+  margin: 8px 0 6px;
+  font-size: 1.6rem;
+  font-weight: 800;
+}
+
+.yol-il dl {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 4px 14px;
+  margin: 0;
+}
+
+.yol-il dt {
+  color: var(--yol-ikincil);
+}
+
+.yol-il dd {
+  margin: 0;
+  font-weight: 700;
+}
+
+.yol-il a {
+  color: inherit;
+}
+
+/* Bağlantılar ve SSS */
+.yol-linkler {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.yol-linkler a {
+  padding: 8px 12px;
+  border: 2px solid var(--yol-murekkep);
+  border-radius: 8px;
+  background: #ffffff;
+  color: var(--yol-murekkep);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.yol-linkler a:hover {
+  border-color: var(--yol-levha-yesil);
+  background: var(--yol-levha-yesil);
+  color: #ffffff;
+}
+
+.yol-linkler small {
+  opacity: 0.7;
+}
+
+.yol-sss > div {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--yol-cizgi);
+}
+
+.yol-sss h3 {
+  margin: 0 0 4px;
+  font-size: 1.08rem;
+  font-weight: 800;
+}
+
+.yol-sss p {
+  margin: 0;
+  color: #30353a;
+  line-height: 1.6;
+}
+
+@media (max-width: 860px) {
+  .yol-plan-izgara,
+  .yol-ikili,
+  .yol-iller {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .yol-ic {
+    padding: 0 14px;
+  }
+
+  .yol-levha {
+    padding: 14px 16px 16px;
+    border-width: 4px;
+  }
+
+  .yol-plan-sonuc {
+    grid-template-columns: 1fr;
+  }
+}

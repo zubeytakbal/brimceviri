@@ -86,11 +86,13 @@ function altinRedirects(): MergedRedirect[] {
   return ALTIN_SAYFALARI.filter((id) => !AYRI_ALTIN_SAYFALARI.includes(id)).map((id) => r(`/altin-hesaplama/${id}`, `/altin-hesaplama?tur=${id}`));
 }
 
-/** Altın ayar çifti sayfaları (24↔22, 22↔18, 18↔14) rakamlar dışında aynıydı; her dilde altın hesaplayıcısına ya da altın ayar kategorisindeki çeviriciye yönlenir. */
+/** Altın ayar çifti sayfaları (24↔22, 22↔18, 18↔14) rakamlar dışında aynıydı. Tıklama alanlar (TR 24↔22, EN 24k↔22k,
+ * 18k↔22k, 14k→18k) Ekim 2026'da özgün içerikle geri açıldı (app/24-ayar-altin-22-ayar-altin, app/converter/goldKaratPairs.ts);
+ * kalanlar her dilde altın hesaplayıcısına ya da altın ayar kategorisindeki çeviriciye yönlenir. */
 function goldKaratPairRedirects(): MergedRedirect[] {
   const pairs: Record<string, { to: string; slugs: string[] }> = {
-    "": { to: "/kategoriler/altin-ayar", slugs: ["14-ayar-altin-18-ayar-altin", "18-ayar-altin-14-ayar-altin", "18-ayar-altin-22-ayar-altin", "22-ayar-altin-18-ayar-altin", "22-ayar-altin-24-ayar-altin", "24-ayar-altin-22-ayar-altin"] },
-    en: { to: "/en/gold-karat-calculator", slugs: ["14k-gold-to-18k-gold", "18k-gold-to-14k-gold", "18k-gold-to-22k-gold", "22k-gold-to-18k-gold", "22k-gold-to-24k-gold", "24k-gold-to-22k-gold"] },
+    "": { to: "/kategoriler/altin-ayar", slugs: ["14-ayar-altin-18-ayar-altin", "18-ayar-altin-14-ayar-altin", "18-ayar-altin-22-ayar-altin", "22-ayar-altin-18-ayar-altin"] },
+    en: { to: "/en/gold-karat-calculator", slugs: ["18k-gold-to-14k-gold"] },
     ar: { to: "/ar/categories/gold-karat", slugs: ["14k-gold-to-18k-gold", "18k-gold-to-14k-gold", "18k-gold-to-22k-gold", "22k-gold-to-18k-gold", "22k-gold-to-24k-gold", "24k-gold-to-22k-gold"] },
     de: { to: "/de/goldrechner", slugs: ["14-karat-gold-18-karat-gold", "18-karat-gold-14-karat-gold", "18-karat-gold-22-karat-gold", "22-karat-gold-18-karat-gold", "22-karat-gold-24-karat-gold", "24-karat-gold-22-karat-gold"] },
     es: { to: "/es/calculadora-de-oro", slugs: ["oro-14-quilates-oro-18-quilates", "oro-18-quilates-oro-14-quilates", "oro-18-quilates-oro-22-quilates", "oro-22-quilates-oro-18-quilates", "oro-22-quilates-oro-24-quilates", "oro-24-quilates-oro-22-quilates"] },

@@ -64,6 +64,7 @@ const GROUPS: Group[] = [
     links: [
       { href: "/dunya-saatleri", label: "Dünya Saatleri", note: "97 şehirde şu anki saat" },
       { href: "/saat-dilimi-cevirici", label: "Saat Dilimi Çevirici", note: "Toplantı saati bulun" },
+      { href: "/yaz-saati", label: "Yaz Saati", note: "Saatler ne zaman değişiyor" },
       { href: "/yerel-saat-hesaplama", label: "Yerel Saat Hesaplama", note: "Boylama göre güneş saati" },
       { href: "/unix-zaman-damgasi-cevirici", label: "Unix Zaman Damgası", note: "Yazılımcılar için" },
     ],

@@ -24,7 +24,7 @@ export default function GeriSayimSahneleri({
   const next = tarihler[0];
   const bugun = kalan === 0 && basladi;
   const manset = bugun ? `${event.name} bugün` : kalan === 0 ? `${event.name} yarın` : `${event.name}: ${kalan.toLocaleString("tr-TR")} gün kaldı`;
-  const hicri = event.rule.kind === "hijri";
+  const hicri = (event.rule.kind === "hijri" || event.rule.kind === "regaib");
   // Manşet altında soru-cevap kalıbı ("Evet.", "Hayır,") düşülür.
   const tatil = event.holiday.replace(/^(Evet|Hayır)[.,]\s*/, "");
   const tatilCumlesi = tatil.charAt(0).toLocaleUpperCase("tr-TR") + tatil.slice(1);

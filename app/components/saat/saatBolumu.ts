@@ -13,6 +13,7 @@ export const SAAT_GRUPLARI: SaatGrubu[] = [
       { href: "/online-saat", label: "Online saat" },
       { href: "/saat-dilimi-cevirici", label: "Saat dilimi çevirici" },
       { href: "/yaz-saati", label: "Yaz saati (saatler ne zaman değişiyor)" },
+      { href: "/saat-hesaplama", label: "Saat hesaplama (iki saat arası, mesai)" },
       { href: "/yerel-saat-hesaplama", label: "Yerel saat farkı" },
       { href: "/ezani-saat-cevirme", label: "Ezani saat çevirme" },
       { href: "/unix-zaman-damgasi-cevirici", label: "Unix zaman damgası" },
@@ -37,6 +38,7 @@ export const SAAT_GRUPLARI: SaatGrubu[] = [
       { href: "/tarihe-gun-ekleme", label: "Tarihe gün ekleme" },
       { href: "/is-gunu-hesaplama", label: "İş günü hesaplama" },
       { href: "/kacinci-hafta", label: "Kaçıncı hafta" },
+      { href: "/hangi-gun", label: "Tarih hangi gün?" },
       { href: "/dogdugum-gun-hangi-gun", label: "Doğduğum gün hangi gün" },
       { href: "/yillik-izin-hesaplama", label: "Yıllık izin hesaplama" },
     ],
@@ -79,7 +81,7 @@ const yol = (pathname: string) => (pathname !== "/" && pathname.endsWith("/") ? 
 /** Kendi tam kabuğunu (SaatKabugu) çizen sayfalar: şehir ve ülke saatleri, ay evreleri, alarm, uyku hesaplama,
  * yaz saati ve etkinlik geri sayımları. */
 export function isSaatBolumu(pathname: string) {
-  return /^\/(dunya-saatleri|geri-sayim)\/[^/]+\/?$/.test(pathname) || /^\/(ay-evreleri|online-alarm-kur|uyku-hesaplama|yaz-saati)\/?$/.test(pathname);
+  return /^\/(dunya-saatleri|geri-sayim)\/[^/]+\/?$/.test(pathname) || /^\/(ay-evreleri|online-alarm-kur|uyku-hesaplama|yaz-saati|saat-hesaplama|hangi-gun)\/?$/.test(pathname);
 }
 
 /** Sitenin ortak araç düzenini kullanan, ama saat bölümünün üst menüsü ve alt bilgisiyle çizilen sayfalar: menüdeki

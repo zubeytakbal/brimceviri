@@ -14,8 +14,6 @@ import { categoryPages } from "../converter/categoryPages";
 import { convert } from "../converter/convert";
 import { conversionPages } from "../converter/conversionPages";
 import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
-import { findEnglishPageByTurkishSlug } from "../converter/localizedConversionPages";
-import { findGermanPageByTurkishSlug } from "../converter/localizedGermanConversionPages";
 import { getFlagshipPairInsight } from "../converter/flagshipPairInsights";
 import { getUnitSources } from "../converter/unitSources";
 import { findUnitPage } from "../converter/unitPages";
@@ -191,12 +189,6 @@ export default async function ConversionPage({ params }: PageProps) {
     notFound();
   }
 
-  const englishPage = findEnglishPageByTurkishSlug(
-    conversionPage.slug
-  );
-  const germanPage = findGermanPageByTurkishSlug(
-    conversionPage.slug
-  );
   const pairUnitOptions = getCategoryUnitOptions(
     conversionPage.category,
     "tr"
@@ -255,6 +247,18 @@ export default async function ConversionPage({ params }: PageProps) {
         result: convert(conversionPage.category, value, mergedReverse.fromUnit, mergedReverse.toUnit),
       }))
     : [];
+
+  // İlk ekrandaki kısa liste: en çok bakılan değerler. Tam tablo aşağıda.
+  const quickValues =
+    seo.quickValues ??
+    (exampleValues.filter((value) => value >= 1).length >= 4
+      ? exampleValues.filter((value) => value >= 1)
+      : exampleValues
+    ).slice(0, 8);
+  const quickRows = quickValues.map((value) => ({
+    input: value,
+    result: convert(conversionPage.category, value, conversionPage.fromUnit, conversionPage.toUnit),
+  }));
 
   const tableRows = exampleValues.map((value) => ({
     input: value,
@@ -322,10 +326,6 @@ export default async function ConversionPage({ params }: PageProps) {
     {
       question: `1 ${conversionPage.fromName} kaç ${conversionPage.toName} eder?`,
       answer: `1 ${conversionPage.fromUnit} = ${formattedOneUnitResult} ${conversionPage.toUnit}.`,
-    },
-    {
-      question: `${conversionPage.fromName} değeri ${conversionPage.toName} birimine nasıl çevrilir?`,
-      answer: conversionPage.explanation,
     },
     {
       question: `1 ${conversionPage.toName} kaç ${conversionPage.fromName} eder?`,
@@ -419,84 +419,36 @@ export default async function ConversionPage({ params }: PageProps) {
               toName={conversionPage.toName}
               syncKey={conversionPage.category}
             />
-
-            {popularEmbedSlugs.has(conversionPage.slug) && (
-              <EmbedCodeBox
-                embedPath={`/embed/${conversionPage.slug}`}
-                title={`${conversionPage.fromName} – ${conversionPage.toName} Çevirici`}
-              />
-            )}
           </div>
 
-          <div className="conversion-hero-information">
-            <h2>Dönüşüm özeti</h2>
+          <div className="conversion-hero-information conversion-quick-values">
+            <h2>Sık bakılan değerler</h2>
 
-            <p>
-              1 {conversionPage.fromUnit} ={" "}
-              <strong>
-                {formattedOneUnitResult}{" "}
-                {conversionPage.toUnit}
-              </strong>
-            </p>
+            <ul>
+              {quickRows.map((row) => (
+                <li key={row.input}>
+                  <span>
+                    {formatNumber(row.input)} {conversionPage.fromUnit}
+                  </span>
+                  <strong>
+                    {formatNumber(row.result)} {conversionPage.toUnit}
+                  </strong>
+                </li>
+              ))}
+            </ul>
 
-            <dl>
-              <div>
-                <dt>Dönüşüm</dt>
-                <dd>{conversionPage.formula}</dd>
-              </div>
-
-              <div>
-                <dt>Kategori</dt>
-                <dd>
-                  {categoryPage ? (
-                    <Link href={`/kategoriler/${categoryPage.slug}`}>{categoryPage.title}</Link>
-                  ) : (
-                    conversionPage.category
-                  )}
-                </dd>
-              </div>
-
-              <div>
-                <dt>Birimler</dt>
-                <dd>
-                  {conversionPage.fromUnit} →{" "}
-                  {conversionPage.toUnit}
-                </dd>
-              </div>
-            </dl>
+            <a className="conversion-quick-values-more" href="#donusum-tablosu">
+              Tüm tablo
+            </a>
           </div>
         </div>
       </section>
 
-      {pairUnitOptions.some(
-        (option) => option.value === conversionPage.fromUnit
-      ) && (
-        <div className="all-units-shell">
-          <AllUnitsPanel
-            category={conversionPage.category}
-            locale="tr"
-            unitOptions={pairUnitOptions}
-            defaultValue={smartDefaultInput(
-              conversionPage.category,
-              conversionPage.fromUnit,
-              conversionPage.toUnit
-            )}
-            defaultUnit={conversionPage.fromUnit}
-            pairHrefs={buildPairHrefs(
-              conversionPages.filter(
-                (page) => page.category === conversionPage.category
-              ),
-              (pageSlug) => `/${canonicalPairSlug(pageSlug)}`
-            )}
-            variant="pair"
-          />
-        </div>
-      )}
-
       <article className="conversion-content">
-        <section className="conversion-section">
+        <section className="conversion-section" id="donusum-tablosu">
           <h2>
-            {conversionPage.fromName} değeri {conversionPage.toName} birimine nasıl çevrilir?
+            {conversionPage.fromName} –{" "}
+            {conversionPage.toName} dönüşüm tablosu
           </h2>
 
           <p>{conversionPage.explanation}</p>
@@ -505,13 +457,6 @@ export default async function ConversionPage({ params }: PageProps) {
             <strong>Dönüşüm formülü</strong>
             <p>{conversionPage.formula}</p>
           </div>
-        </section>
-
-        <section className="conversion-section">
-          <h2>
-            {conversionPage.fromName} –{" "}
-            {conversionPage.toName} dönüşüm tablosu
-          </h2>
 
           <div className="conversion-table-wrap">
             <table className="conversion-table">
@@ -688,6 +633,35 @@ export default async function ConversionPage({ params }: PageProps) {
           </section>
         )}
 
+      </article>
+
+      {pairUnitOptions.some(
+        (option) => option.value === conversionPage.fromUnit
+      ) && (
+        <div className="all-units-shell">
+          <AllUnitsPanel
+            category={conversionPage.category}
+            locale="tr"
+            unitOptions={pairUnitOptions}
+            defaultValue={smartDefaultInput(
+              conversionPage.category,
+              conversionPage.fromUnit,
+              conversionPage.toUnit
+            )}
+            defaultUnit={conversionPage.fromUnit}
+            pairHrefs={buildPairHrefs(
+              conversionPages.filter(
+                (page) => page.category === conversionPage.category
+              ),
+              (pageSlug) => `/${canonicalPairSlug(pageSlug)}`
+            )}
+            variant="pair"
+            showAllLabel="Tüm birimleri göster"
+          />
+        </div>
+      )}
+
+      <article className="conversion-content">
         {fromUnitInfo && (
           <section className="conversion-section unit-information">
             <h2>{fromUnitInfo.name} nedir?</h2>
@@ -784,29 +758,14 @@ export default async function ConversionPage({ params }: PageProps) {
           </section>
         )}
 
-        <section className="conversion-section language-alternatives">
-          <h2>Diğer diller</h2>
-
-          {englishPage && (
-            <Link
-              className="text-link"
-              href={`/en/${englishPage.slug}`}
-              hrefLang="en"
-            >
-              İngilizce sürümü aç
-            </Link>
-          )}
-
-          {germanPage && (
-            <Link
-              className="text-link"
-              href={`/de/${germanPage.slug}`}
-              hrefLang="de"
-            >
-              Almanca sürümü aç
-            </Link>
-          )}
-        </section>
+        {popularEmbedSlugs.has(conversionPage.slug) && (
+          <section className="conversion-section">
+            <EmbedCodeBox
+              embedPath={`/embed/${conversionPage.slug}`}
+              title={`${conversionPage.fromName} – ${conversionPage.toName} Çevirici`}
+            />
+          </section>
+        )}
       </article>
     </main>
   );

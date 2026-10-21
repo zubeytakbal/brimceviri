@@ -37,14 +37,19 @@ type Override = {
   intro?: string;
   faq?: FaqItem[];
   exampleValues?: number[];
+  // Sayfanın ilk ekranındaki "Sık bakılan değerler" listesi; yoksa tablo değerlerinin başı.
+  quickValues?: number[];
 };
 
 export const TURKISH_SEO_OVERRIDES: Record<string, Override> = {
   "metre-santimetre": {
     titles: ["1 Metre Kaç cm? Metre Santimetre Çevirme Tablosu", "1 Metre Kaç cm? Metre Santimetre Çevirme"],
-    description: "1 metre = 100 cm. 1,5 m = 150 cm, 1,75 m = 175 cm, 2 m = 200 cm. Boy, kumaş ve mobilya ölçüleri için metre-santimetre tablosu ve hesaplama aracı.",
+    // Açıklama cevabı (1 m = 100 cm) vermez: Google cevabı zaten kendisi gösteriyor, açıklamada da
+    // görünce kimse tıklamıyordu (3 ayda 52 bin gösterim, 10 tıklama). Sayfada ne olduğunu anlatır.
+    description: "Metre-santimetre çevirici ve boy tablosu (1,50–1,90 m), kumaş ve mobilya ölçüleri, ondalıklı değerler, cm'den metreye ters çevirme ve sık yapılan hatalar.",
     intro: "1 metre 100 santimetredir (cm): metreyi 100 ile çarpın.",
     exampleValues: [0.01, 0.1, 0.25, 0.5, 1, 1.5, 1.6, 1.7, 1.75, 1.8, 1.9, 2, 2.5, 3, 5, 10],
+    quickValues: [0.5, 1, 1.5, 1.6, 1.7, 1.75, 1.8, 2],
   },
   "santimetre-milimetre": {
     titles: ["1 cm Kaç mm? Santimetre Milimetre Çevirme Tablosu", "1 cm Kaç mm? Santimetre Milimetre Çevirme"],
@@ -231,6 +236,7 @@ export function turkishConversionSeo(page: PageLike, twoWay = false) {
       intro: override.intro,
       extraFaq: override.faq ?? [],
       exampleValues: override.exampleValues,
+      quickValues: override.quickValues,
     };
   }
 
@@ -250,5 +256,6 @@ export function turkishConversionSeo(page: PageLike, twoWay = false) {
     intro: undefined,
     extraFaq: [] as FaqItem[],
     exampleValues: undefined,
+    quickValues: undefined as number[] | undefined,
   };
 }

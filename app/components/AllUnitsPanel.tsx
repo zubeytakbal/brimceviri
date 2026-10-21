@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import Link from "@/app/components/SiteLink";
 import { convert } from "../converter/convert";
 import {
@@ -34,6 +34,9 @@ type AllUnitsPanelProps = {
   // "pair": ceviri sayfasinda ("diger birimlerde"), "category": kategori
   // sayfasinda ("tum birimlerde").
   variant?: "category" | "pair";
+  // Verilirse ilk görünümde yalnızca ayrıntılı sayfası olan birimler listelenir, kalanı bu
+  // düğmeyle açılır. Gizli satırlar HTML'de kalır (hidden), arama motoru hepsini okur.
+  showAllLabel?: string;
 };
 
 const groupLabels: Record<string, Record<UnitSystemGroup, string>> = {
@@ -222,7 +225,9 @@ export default function AllUnitsPanel({
   pairHrefs = {},
   syncKey = category,
   variant = "category",
+  showAllLabel,
 }: AllUnitsPanelProps) {
+  const [expanded, setExpanded] = useState(false);
   const syncedState = useConverterState(syncKey);
   const value = syncedState ? syncedState.value : defaultValue;
   const unit = syncedState?.unit ?? defaultUnit;
@@ -261,6 +266,13 @@ export default function AllUnitsPanel({
     ? `${formatReadableNumber(value, locale)} ${fromOption?.symbol ?? unit}`
     : (fromOption?.label ?? unit);
   const heading = template[variant].replace("{value}", headingValue);
+  const linkedCount = groups.reduce(
+    (sum, { options }) => sum + options.filter((option) => pairHrefs[`${unit}|${option.value}`]).length,
+    0
+  );
+  const totalCount = groups.reduce((sum, { options }) => sum + options.length, 0);
+  // Ayrıntılı sayfası olan birim azsa kısaltmak listeyi boşaltır; o zaman hepsi görünür.
+  const collapsed = Boolean(showAllLabel) && !expanded && linkedCount >= 4 && linkedCount < totalCount;
 
   return (
     <section
@@ -278,7 +290,11 @@ export default function AllUnitsPanel({
         }`}
       >
         {groups.map(({ group, options }) => (
-          <div className="all-units-group" key={group}>
+          <div
+            className="all-units-group"
+            key={group}
+            hidden={collapsed && !options.some((option) => pairHrefs[`${unit}|${option.value}`])}
+          >
             {grouped && groups.length > 1 && <h3>{labels[group]}</h3>}
 
             <ul>
@@ -300,7 +316,7 @@ export default function AllUnitsPanel({
                 );
 
                 return (
-                  <li key={option.value}>
+                  <li key={option.value} hidden={collapsed && !href}>
                     {href ? (
                       <Link className="all-units-row is-link" href={href}>
                         {content}
@@ -315,6 +331,12 @@ export default function AllUnitsPanel({
           </div>
         ))}
       </div>
+
+      {collapsed && (
+        <button type="button" className="all-units-show-all" onClick={() => setExpanded(true)}>
+          {showAllLabel} ({totalCount})
+        </button>
+      )}
     </section>
   );
 }

@@ -340,6 +340,10 @@ export const SITE_NAV_DATA: SiteNavData = {
        "label": "Koordinat Dönüştürücü"
       },
       {
+       "href": "/canli-pusula",
+       "label": "Canlı Pusula"
+      },
+      {
        "href": "/kible-yonu-hesaplama",
        "label": "Kıble Yönü"
       },

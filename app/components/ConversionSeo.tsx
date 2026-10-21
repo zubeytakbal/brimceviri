@@ -1,7 +1,3 @@
-import {
-  findCategoryPageByCategory,
-  getCategoryPathByCategory,
-} from "../converter/categoryPages";
 import type { ConversionPage } from "../converter/conversionPages";
 import { buildSiteUrl } from "../siteConfig";
 
@@ -17,41 +13,6 @@ export default function ConversionSeo({
   conversionPage,
 }: ConversionSeoProps) {
   const pageUrl = buildSiteUrl(`/${conversionPage.slug}`);
-  const categoryPage = findCategoryPageByCategory(
-    conversionPage.category
-  );
-  const categoryUrl = buildSiteUrl(
-    getCategoryPathByCategory(conversionPage.category)
-  );
-
-
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Ana Sayfa",
-        item: buildSiteUrl("/"),
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: categoryPage?.title ?? conversionPage.category,
-        item: categoryUrl,
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        name:
-          `${conversionPage.fromName} – ` +
-          `${conversionPage.toName} Çevirici`,
-        item: pageUrl,
-      },
-    ],
-  };
-
   const applicationSchema = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
@@ -74,13 +35,6 @@ export default function ConversionSeo({
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd(breadcrumbSchema),
-        }}
-      />
-
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

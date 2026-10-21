@@ -13,7 +13,8 @@ import {
   timeToolPaths,
   type TimeToolId,
 } from "./i18n/timeToolPaths";
-import { worldCities } from "./converter/time/worldCities";
+import { trEkSehirler, worldCities } from "./converter/time/worldCities";
+import { ulkeSaatleri } from "./converter/time/ulkeSaatDilimleri";
 import { countdownAlternatePaths, countdownEvents, countdownPath } from "./converter/time/countdownEvents";
 import { HOLIDAY_YEARS } from "./converter/time/holidays";
 import { HIJRI_SLUG, SA_HIJRI_SANAWAT, saHijriSanaPath, saHijriShahrPath } from "./converter/calendar/saTaqwim";
@@ -2864,6 +2865,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       "/umre-mesafe-hesaplama",
       "/kaza-orucu-hesaplama",
       "/kible-yonu-hesaplama",
+      "/canli-pusula",
       "/kaza-namazi-hesaplama",
       "/hatim-hesaplama",
       "/zekat-hesaplama",
@@ -2906,6 +2908,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
         alternates: buildLanguageAlternates(worldCityPaths(city), "tr"),
       })),
     ),
+    ...ulkeSaatleri.map((u) => ({
+      url: `${baseUrl}/dunya-saatleri/${u.slug}`,
+      lastModified: contentLastModified,
+      changeFrequency: "daily" as const,
+      priority: 0.7,
+    })),
+    ...trEkSehirler.map((city) => ({
+      url: `${baseUrl}/dunya-saatleri/${city.tr}`,
+      lastModified: contentLastModified,
+      changeFrequency: "daily" as const,
+      priority: 0.6,
+    })),
     {
       url: `${baseUrl}/tarla-donum-hesaplama`,
       lastModified: contentLastModified,

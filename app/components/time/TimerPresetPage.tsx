@@ -1,11 +1,11 @@
 import Link from "@/app/components/SiteLink";
 import type { FaqItem } from "../../converter/faqSchema";
-import { geriGelenSureler, timerPresetPath, trLik, type TimerPreset } from "../../i18n/timerPresets";
+import { timerPresetPath, timerPresets, trLik, type TimerPreset } from "../../i18n/timerPresets";
 import CountdownTimer from "./CountdownTimer";
 import TimeToolPage from "./TimeToolPage";
 
-// Hazir sure sayfasi: birlestirmeden sonra da aranan sureler (geriGelenSureler). Her surenin kendi kullanim
-// ornekleri, donusum tablosu ve diger geri gelen surelere linkleri vardir.
+// Hazir sure sayfasi (TR + EN): 10 saniyeden 24 saate. Her surenin kendi kullanim
+// ornekleri, donusum tablosu ve komsu surelere linkleri vardir.
 
 const cap = (text: string) => text.replace(/^(\d+) (\p{L})/u, (_, n: string, c: string) => `${n} ${c.toLocaleUpperCase("tr")}`);
 
@@ -19,7 +19,8 @@ export default function TimerPresetPage({ preset, lang }: { preset: TimerPreset;
   const n = (value: number, digits = 3) => value.toLocaleString(locale, { maximumFractionDigits: digits });
   const s = preset.seconds;
   const path = timerPresetPath(preset, lang);
-  const neighbors = geriGelenSureler().filter((p) => p !== preset);
+  const index = timerPresets.indexOf(preset);
+  const neighbors = timerPresets.filter((_, i) => i !== index && Math.abs(i - index) <= 4);
   const label = tr ? preset.labelTr : `${preset.labelEn}${preset.labelEn.startsWith("1 ") ? "" : "s"}`;
   const title = timerPresetTitle(preset, lang);
 

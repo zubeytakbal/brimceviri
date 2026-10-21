@@ -40,7 +40,7 @@ export function SourceChangeNotice({ university, changedAt }: { university: Cgpa
   );
 }
 
-export function UniversityTable() {
+export function UniversityTable({ activeSlug }: { activeSlug?: string }) {
   return (
     <div className="conversion-table-wrap">
       <table className="conversion-table">
@@ -57,7 +57,11 @@ export function UniversityTable() {
           {cgpaUniversities.map((university) => (
             <tr key={university.slug}>
               <td>
-                <a href={`#${university.slug}`}>{university.shortName}</a>
+                {university.slug === activeSlug ? (
+                  <strong>{university.shortName}</strong>
+                ) : (
+                  <a href={`/en/cgpa-to-percentage/${university.slug}`}>{university.shortName}</a>
+                )}
               </td>
               <td>{university.offset ? `(CGPA − ${university.offset}) × ${university.multiplier}` : `CGPA × ${university.multiplier}`}</td>
               {[6, 7, 8, 9].map((c) => (
@@ -71,7 +75,7 @@ export function UniversityTable() {
   );
 }
 
-/** Each university's official source, scope and notes; old per-university pages redirect here. */
+/** Each university's official source, scope and notes (each university also has its own page). */
 export function UniversityDetails() {
   return (
     <dl className="category-unit-glossary">

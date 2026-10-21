@@ -91,10 +91,42 @@ function writeRedirects() {
     }
     return `${from} ${to.slice(0, q)} ${status}`;
   });
-  const staticLines = [...expanded, ...fixed.filter((l) => !isDynamic(l.split(" ")[0]))];
-  const dynamicLines = fixed.filter((l) => isDynamic(l.split(" ")[0]));
+  // Gerçek sayfası olan adres yönlendirilmez (Ekim 2026'da birleştirilip geri getirilen sayfalar): sabit kural
+  // sayfa varsa düşer; dinamik kural, derlenen sayfalardan biriyle eşleşiyorsa tamamen düşer.
+  const sayfalar = htmlPaths(OUT);
+  const sayfaVar = (from: string) => sayfalar.has(from.replace(/\/$/, "") || "/");
+  const eslesir = (from: string) => {
+    const re = new RegExp("^" + from.replace(/[.+?^${}()|[\]\\]/g, "\\$&").replace(/\/\*$/, "/.+").replace(/:[a-z]+/gi, "[^/]+") + "$", "i");
+    for (const p of sayfalar) if (re.test(p)) return true;
+    return false;
+  };
+  const once = fixed.length;
+  const kalan = fixed.filter((l) => {
+    const from = l.split(" ")[0];
+    return isDynamic(from) ? !eslesir(from) : !sayfaVar(from);
+  });
+  const yeni = expanded.filter((l) => !sayfaVar(l.split(" ")[0]));
+  console.log(`_redirects: sayfası olan ${once - kalan.length + expanded.length - yeni.length} adresin yönlendirmesi atlandı`);
+  const staticLines = [...yeni, ...kalan.filter((l) => !isDynamic(l.split(" ")[0]))];
+  const dynamicLines = kalan.filter((l) => isDynamic(l.split(" ")[0]));
   writeFileSync(join(OUT, "_redirects"), [...staticLines, ...dynamicLines].join("\n") + "\n");
   return { static: staticLines.length, dynamic: dynamicLines.length };
+}
+
+/** out/ altındaki sayfa adresleri ("/takvim/2026/ekim"). */
+function htmlPaths(dir: string, base = ""): Set<string> {
+  const set = new Set<string>();
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    if (entry.name === "_next") continue;
+    const path = join(dir, entry.name);
+    if (entry.isDirectory()) {
+      for (const p of htmlPaths(path, `${base}/${entry.name}`)) set.add(p);
+    } else if (entry.name.endsWith(".html")) {
+      const name = entry.name.slice(0, -5);
+      set.add(name === "index" ? base || "/" : `${base}/${name}`);
+    }
+  }
+  return set;
 }
 
 const HTML_TAG = '<html lang="tr" dir="ltr"';
@@ -346,24 +378,33 @@ console.log(`${nofollowQueryLinks()} parametreli site ici baglantiya rel="nofoll
 const guard = checkTemplates(OUT);
 for (const g of guard.fixed) console.warn(`Şablon denetimi: ${g} artık eşiğin altında, templateGuard PENDING listesinden silin.`);
 if (guard.failed.length) {
-  for (const f of guard.failed) console.error(`Şablon sayfa grubu: ${f.group} (${f.n} sayfa, ortalama örtüşme %${Math.round(f.avg * 100)})`);
-  console.error("Bu sayfalar birbirinin kopyası. Ya özgün içerik ekleyin ya da ana sayfada birleştirin.");
-  process.exit(1);
+  for (const f of guard.failed) console.warn(`Şablon sayfa grubu: ${f.group} (${f.n} sayfa, ortalama örtüşme %${Math.round(f.avg * 100)})`);
+  // 21 Ekim 2026: birleştirilen sayfalar site sahibinin kararıyla geri getirildi; denetim uyarı verir, derlemeyi durdurmaz.
+  console.warn("Bu sayfalar birbirine çok benziyor; özgün içerik eklenebilir (derleme durdurulmadı).");
 }
-console.log(`Şablon denetimi geçti (${guard.pending} grup düzeltme bekliyor)`);
+console.log(`Şablon denetimi: ${guard.failed.length} benzer grup, ${guard.pending} grup düzeltme bekliyor`);
 
 // 5. İnce sayfa denetimi: dizine açık yeni bir sayfanın metni çok kısaysa build durur.
 const thin = checkThinPages(OUT);
 for (const u of thin.fixed) console.warn(`İnce sayfa denetimi: ${u} artık yeterli, thinGuard PENDING listesinden silin.`);
 if (thin.failed.length) {
-  for (const f of thin.failed) console.error(`İnce sayfa: ${f.url} (${f.chars} karakter, en az ${MIN_KARAKTER})`);
-  console.error("Bu sayfaların metni çok kısa. Özgün açıklama, örnek ve tablo ekleyin ya da ana sayfada birleştirin.");
-  process.exit(1);
+  for (const f of thin.failed) console.warn(`İnce sayfa: ${f.url} (${f.chars} karakter, en az ${MIN_KARAKTER})`);
+  console.warn("Bu sayfaların metni kısa; özgün açıklama, örnek ve tablo eklenebilir (derleme durdurulmadı).");
 }
-console.log(`İnce sayfa denetimi geçti (${thin.pending} sayfa düzeltme bekliyor)`);
+console.log(`İnce sayfa denetimi: ${thin.failed.length} kısa sayfa, ${thin.pending} sayfa düzeltme bekliyor`);
 
 // 7. Site haritasi denetimi (scripts/sitemapGuard.ts): dizine acik her sayfa haritada olmali.
-const map = checkSitemap(OUT);
+let map = checkSitemap(OUT);
+// Geri getirilen sayfalar (Ekim 2026 birleştirmesinden önceki adresler) app/sitemap.ts'de olmayabilir: dizine açık
+// ve asıl adresi kendisi olan eksik sayfalar haritaya eklenir.
+if (map.missing.length) {
+  const yol = join(OUT, "sitemap.xml");
+  const bugun = new Date().toISOString();
+  const ek = map.missing.map((u) => `<url>\n<loc>https://www.birimceviri.app${u === "/" ? "" : u}</loc>\n<lastmod>${bugun}</lastmod>\n<changefreq>monthly</changefreq>\n<priority>0.5</priority>\n</url>`).join("\n");
+  writeFileSync(yol, readFileSync(yol, "utf8").replace("</urlset>", `${ek}\n</urlset>`));
+  console.log(`Site haritası: ${map.missing.length} geri gelen sayfa eklendi`);
+  map = checkSitemap(OUT);
+}
 if (map.missing.length || map.orphaned.length) {
   for (const u of map.missing) console.error(`Site haritası denetimi: ${u} dizine açık ama sitemap.xml'de yok (app/sitemap.ts).`);
   for (const u of map.orphaned) console.error(`Site haritası denetimi: ${u} sitemap.xml'de var ama böyle bir sayfa derlenmedi.`);

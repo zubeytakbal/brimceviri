@@ -21,7 +21,6 @@ import { turkeyHolidays } from "../time/holidays";
 import { moonState, phaseName, type PhaseName } from "../time/moon";
 import { mevsimAni, type Mevsim } from "./astro";
 import { easterSunday, orthodoxEasterSunday } from "../time/countdownEvents";
-import { OZEL_GUN_SAYFALARI } from "./ozelGunIcerik";
 
 export type Kategori =
   | "resmi"
@@ -1034,11 +1033,11 @@ export const TAKVIM_YILLARI = [2026, 2027, 2028];
 export const takvimYilPath = (y: number) => `/takvim/${y}`;
 export const takvimAyPath = (y: number, m: number) =>
   `/takvim/${y}/${AY_SLUG[m - 1]}`;
-/** Gün sayfası yok: özel gün, ay sayfasındaki listede #gun-N satırındadır. */
+/** Özel günü olan her günün kendi sayfası var (birleştirmeden sonra 21 Ekim 2026'da geri getirildi). */
 export const takvimGunPath = (d: YMD) =>
-  `/takvim/${d.year}/${AY_SLUG[d.month - 1]}#gun-${d.day}`;
-/** Özel günler tek sayfada, her günün bölümü kendi kimliğiyle; arama alan günlerin kendi sayfası var (ozelGunIcerik.ts). */
-export const ozelGunPath = (id: string) => (OZEL_GUN_SAYFALARI.includes(id) ? `/ozel-gunler/${id}` : `/ozel-gunler#${id}`);
+  `/takvim/${d.year}/${AY_SLUG[d.month - 1]}/${d.day}`;
+/** Her özel günün kendi sayfası var; arama alan 9 günün özgün içeriği ozelGunIcerik.ts'de. */
+export const ozelGunPath = (id: string) => `/ozel-gunler/${id}`;
 
 export const AY_EVRE_ADI: Record<PhaseName, string> = {
   new: "Yeni ay",

@@ -1,29 +1,32 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { OzelGunDetay } from "../../components/takvim/TakvimSayfalari";
+import { OzelGunDetay, OzelGunSayfasi, ozelGunMeta } from "../../components/takvim/TakvimSayfalari";
 import { takvimMetadata } from "../../components/takvim/takvimMeta";
-import { OZEL_GUN_ICERIK, OZEL_GUN_SAYFALARI } from "../../converter/calendar/ozelGunIcerik";
-import { findEtkinlik } from "../../converter/calendar/trTakvim";
+import { OZEL_GUN_ICERIK } from "../../converter/calendar/ozelGunIcerik";
+import { ETKINLIKLER, findEtkinlik } from "../../converter/calendar/trTakvim";
 
-// Arama alan özel günlerin kendi sayfası; diğer günler /ozel-gunler sayfasındaki bölümlerinde.
+// Her özel günün kendi sayfası. Arama alan 9 günün özgün içerikli ayrıntı sayfası (OzelGunDetay), diğerleri
+// birleştirmeden (Ekim 2026) önceki günlük sayfa düzeninde (OzelGunSayfasi; 21 Ekim 2026'da geri getirildi).
 export const dynamicParams = false;
 // "Kaç gün kaldı" için günde birkaç kez yenilenir.
 export const revalidate = 21600;
 
 export function generateStaticParams() {
-  return OZEL_GUN_SAYFALARI.map((id) => ({ id }));
+  return ETKINLIKLER.map((e) => ({ id: e.id }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const { id } = await params;
   const icerik = OZEL_GUN_ICERIK[id];
-  return icerik ? takvimMetadata(`/ozel-gunler/${id}`, icerik) : {};
+  if (icerik) return takvimMetadata(`/ozel-gunler/${id}`, icerik);
+  const e = findEtkinlik(id);
+  return e ? takvimMetadata(`/ozel-gunler/${id}`, ozelGunMeta(e)) : {};
 }
 
 export default async function OzelGunRoute({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const e = findEtkinlik(id);
+  if (!e) notFound();
   const icerik = OZEL_GUN_ICERIK[id];
-  if (!e || !icerik) notFound();
-  return <OzelGunDetay e={e} icerik={icerik} />;
+  return icerik ? <OzelGunDetay e={e} icerik={icerik} /> : <OzelGunSayfasi e={e} />;
 }

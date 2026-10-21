@@ -21868,3 +21868,60 @@ a.all-units-row .all-units-name {
 :root:has(.saat-arac-ust) .all-conversions-page .all-conversions-header a {
   color: #7fe0dc;
 }
+
+/* Saat bölümü üst menüsünde sitenin kendi logosu (aynı yazı tipi ve renkler, siyah zeminde beyaz) + bölüm etiketi */
+.saat-marka {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.saat-ust .site-logo.saat-site-logo {
+  color: #ffffff;
+  font-size: clamp(1.7rem, 3vw, 2.3rem);
+}
+
+.saat-ust .site-logo.saat-site-logo span {
+  color: #3ec7c2;
+}
+
+.saat-bolum-etiket {
+  padding: 3px 10px 4px;
+  background: var(--saat-vurgu);
+  color: #ffffff;
+  font-family: var(--saat-rakam), Impact, sans-serif;
+  font-size: 1.35rem;
+  line-height: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.saat-menu-site {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 22px;
+  padding-top: 14px;
+  border-top: 3px solid var(--saat-vurgu);
+}
+
+.saat-menu-site .saat-menu-baslik {
+  margin: 0;
+}
+
+.saat-menu .saat-menu-site a {
+  border-bottom: 0;
+  color: #3ec7c2;
+  font-size: 0.8em;
+}
+
+@media (max-width: 720px) {
+  .saat-ust .site-logo.saat-site-logo {
+    font-size: 1.45rem;
+  }
+
+  .saat-bolum-etiket {
+    font-size: 1.05rem;
+  }
+}

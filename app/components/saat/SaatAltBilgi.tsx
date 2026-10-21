@@ -1,4 +1,5 @@
 import Link from "@/app/components/SiteLink";
+import { SITE_NAV_DATA } from "../../i18n/siteNavData.generated";
 import { SAAT_GRUPLARI } from "./saatBolumu";
 import { POPULER_SEHIRLER, SEHIR_SAYISI, ULKE_LINKLERI } from "./saatListeleri";
 
@@ -38,7 +39,14 @@ export default function SaatAltBilgi() {
               </Link>
             ))}
             <h2 className="saat-alt-ikinci">Site</h2>
-            <Link href="/">birimceviri.app</Link>
+            <Link href="/">birimceviri.app ana sayfa</Link>
+            {SITE_NAV_DATA.locales.tr.menuGroups
+              .filter((g) => g.id !== "time")
+              .map((g) => (
+                <Link key={g.id} href={g.footer?.[0]?.href ?? g.links[0].href} prefetch={false}>
+                  {g.label}
+                </Link>
+              ))}
             <Link href="/hakkimizda">Hakkımızda</Link>
             <Link href="/iletisim">İletişim</Link>
             <Link href="/gizlilik">Gizlilik</Link>

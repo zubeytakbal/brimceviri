@@ -828,19 +828,8 @@ export function occurrenceInYear(event: CountdownEvent, year: number): DateParts
       const back = anchor.getUTCDay() || 7;
       return addDays({ year, month: rule.month, day: rule.day }, -back - (rule.weeksBack - 1) * 7);
     }
-    case "hijri": {
-      const v = rule.verified.find((d) => d.year === year);
-      if (v) return v;
-      const off = rule.offsetDays ?? 0;
-      // Kaydırma tarihi önceki/sonraki yıla taşıyabilir: komşu yılların Hicri günü de denenir.
-      for (const y of [year, year + 1, year - 1]) {
-        const e = hijriEstimate(y, rule.hijriMonth, rule.hijriDay);
-        if (!e) continue;
-        const d = addDays(e, off);
-        if (d.year === year) return { ...d, estimated: year > (rule.verifiedUntil ?? -Infinity) };
-      }
-      return null;
-    }
+    case "hijri":
+      return hijriInYear(rule, year)[0] ?? null;
     case "regaib":
       return regaibGunu(year, rule.verifiedUntil);
     case "list":
@@ -856,16 +845,40 @@ export function occurrenceInYear(event: CountdownEvent, year: number): DateParts
 export function occurrencesInYear(event: CountdownEvent, year: number): DateParts[] {
   if (event.rule.kind === "fixed-many") return event.rule.dates.map((d) => ({ year, month: d.month, day: d.day }));
   if (event.rule.kind === "list") return event.rule.dates.filter((d) => d.year === year);
+  // Hicri günler yılda ~11 gün öne kaydığı için bazı yıllarda iki kez düşer (ör. Miraç Kandili 2027: 4 Ocak ve 24 Aralık).
+  if (event.rule.kind === "hijri") return hijriInYear(event.rule, year);
+  if (event.rule.kind === "regaib") return regaibGunleri(year, event.rule.verifiedUntil);
   const one = occurrenceInYear(event, year);
   return one ? [one] : [];
 }
 
 let hijriFormatter: Intl.DateTimeFormat | null = null;
 
-/** Regaib Kandili: Recep'in ilk cumasından (Umm al-Qura) bir gün önce; yıl içinde düşen ilk tarih. */
-function regaibGunu(year: number, verifiedUntil?: number): DateParts | null {
+/** Hicri kuralın miladi yıl içindeki bütün tarihleri: Diyanet'in ilan ettiği tarih varsa o, yoksa Umm al-Qura
+ * hesabı (gün kaydırması önceki/sonraki yıla taşıyabileceği için komşu yılların Hicri günü de denenir). */
+function hijriInYear(rule: Extract<Rule, { kind: "hijri" }>, year: number): DateParts[] {
+  const v = rule.verified.find((d) => d.year === year);
+  if (v) return [v];
+  const out: DateParts[] = [];
+  for (const y of [year - 1, year, year + 1]) {
+    for (const e of hijriEstimates(y, rule.hijriMonth, rule.hijriDay)) {
+      const d = addDays(e, rule.offsetDays ?? 0);
+      if (d.year === year && !out.some((o) => o.month === d.month && o.day === d.day)) out.push({ ...d, estimated: year > (rule.verifiedUntil ?? -Infinity) });
+    }
+  }
+  return out.sort((a, b) => a.month - b.month || a.day - b.day);
+}
+
+function regaibGunleri(year: number, verifiedUntil?: number): DateParts[] {
+  const out: DateParts[] = [];
+  for (let d = regaibGunu(year, verifiedUntil, 0); d; d = regaibGunu(year, verifiedUntil, Date.UTC(d.year, d.month - 1, d.day) + 8 * 86400000)) out.push(d);
+  return out;
+}
+
+/** Regaib Kandili: Recep'in ilk cumasından (Umm al-Qura) bir gün önce; yıl içinde (başlangıçtan sonra) düşen ilk tarih. */
+function regaibGunu(year: number, verifiedUntil?: number, baslangic = 0): DateParts | null {
   hijriFormatter ??= new Intl.DateTimeFormat("en-u-ca-islamic-umalqura", { month: "numeric", day: "numeric", timeZone: "UTC" });
-  for (let t = Date.UTC(year, 0, 2); new Date(t - 86400000).getUTCFullYear() <= year; t += 86400000) {
+  for (let t = Math.max(Date.UTC(year, 0, 2), baslangic); new Date(t - 86400000).getUTCFullYear() <= year; t += 86400000) {
     const d = new Date(t);
     if (d.getUTCDay() !== 5) continue;
     const parts = hijriFormatter.formatToParts(d);
@@ -879,10 +892,22 @@ function regaibGunu(year: number, verifiedUntil?: number): DateParts | null {
   return null;
 }
 
+/** Verilen miladi yilda Hicri ay/gunun denk geldigi butun tarihler (Umm al-Qura; yilda iki kez olabilir). */
+function hijriEstimates(year: number, hijriMonth: number, hijriDay: number): DateParts[] {
+  const out: DateParts[] = [];
+  for (let first = hijriEstimate(year, hijriMonth, hijriDay); first; ) {
+    out.push(first);
+    const sonraki = Date.UTC(first.year, first.month - 1, first.day) + 300 * 86400000;
+    if (new Date(sonraki).getUTCFullYear() !== year) break;
+    first = hijriEstimate(year, hijriMonth, hijriDay, Math.round((sonraki - Date.UTC(year, 0, 1)) / 86400000));
+  }
+  return out;
+}
+
 /** Verilen miladi yilda Hicri ay/gunun denk geldigi tarih (Umm al-Qura), "tahmini" isaretli. */
-export function hijriEstimate(year: number, hijriMonth: number, hijriDay: number): DateParts | null {
+export function hijriEstimate(year: number, hijriMonth: number, hijriDay: number, startOffset = 0): DateParts | null {
   hijriFormatter ??= new Intl.DateTimeFormat("en-u-ca-islamic-umalqura", { month: "numeric", day: "numeric", timeZone: "UTC" });
-  for (let offset = 0; offset < 366; offset += 1) {
+  for (let offset = startOffset; offset < 366; offset += 1) {
     const date = new Date(Date.UTC(year, 0, 1 + offset));
     if (date.getUTCFullYear() !== year) break;
     const parts = hijriFormatter.formatToParts(date);

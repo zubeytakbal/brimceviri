@@ -22076,6 +22076,34 @@ a.all-units-row .all-units-name {
   font-size: clamp(4rem, 17vw, 12rem);
 }
 
+/* Yılbaşı sayacının düğmeleri ve vurgusu bölümün düğmeleriyle aynı: kare, kalın beyaz çerçeve, büyük harf. */
+.gs-hero.is-yilbasi .ys-ust {
+  color: #7fe3df;
+}
+
+.gs-hero.is-yilbasi .ys-dugmeler button {
+  border: 3px solid #ffffff;
+  border-radius: 0;
+  background: rgba(0, 0, 0, 0.35);
+  color: #ffffff;
+  font: 800 0.86rem var(--saat-metin), sans-serif;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.gs-hero.is-yilbasi .ys-dugmeler button.is-ana,
+.gs-hero.is-yilbasi .ys-dugmeler button:hover {
+  border-color: var(--saat-vurgu);
+  background: var(--saat-vurgu);
+  color: #ffffff;
+}
+
+.gs-hero.is-yilbasi .ys-sayac small {
+  font: 800 0.74rem var(--saat-metin), sans-serif;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
 .saat-linkler {
   display: flex;
   flex-wrap: wrap;
@@ -22098,7 +22126,7 @@ a.all-units-row .all-units-name {
   }
 
   .gs-hero .saat-hero-ic {
-    padding: 16px 16px 30px;
+    padding: 16px 16px 64px;
   }
 
   .gs-sayac {

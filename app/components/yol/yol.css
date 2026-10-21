@@ -580,3 +580,288 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ---------------- Navigasyon ekranı: tam ekran açılış ---------------- */
+.nav-ekran {
+  position: relative;
+  min-height: calc(100svh - 80px);
+  overflow: hidden;
+  background:
+    radial-gradient(120% 80% at 50% 0%, #1b2329 0%, #0d1013 70%),
+    #0d1013;
+  color: #ffffff;
+}
+
+.nav-profil {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 46%;
+}
+
+.nav-profil-yol {
+  fill: none;
+  stroke: #f2c230;
+  stroke-width: 3;
+  stroke-dasharray: 18 10;
+  vector-effect: non-scaling-stroke;
+}
+
+.nav-duraklar {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 46%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  pointer-events: none;
+}
+
+.nav-duraklar li {
+  position: absolute;
+  display: grid;
+  justify-items: center;
+  transform: translate(-50%, calc(-100% - 10px));
+  font-family: var(--yol-metin), sans-serif;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.nav-duraklar li::after {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  border: 3px solid #0d1013;
+  border-radius: 50%;
+  background: #f2c230;
+  content: "";
+  transform: translate(-50%, 50%);
+}
+
+.nav-duraklar li:first-child {
+  transform: translate(0, calc(-100% - 10px));
+  justify-items: start;
+}
+
+.nav-duraklar li:last-child {
+  transform: translate(-100%, calc(-100% - 10px));
+  justify-items: end;
+}
+
+.nav-duraklar li:first-child::after {
+  left: 0;
+}
+
+.nav-duraklar li:last-child::after {
+  right: 0;
+  left: auto;
+  transform: translate(50%, 50%);
+}
+
+.nav-duraklar span {
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.nav-duraklar li.is-uc span {
+  font-size: 1.25rem;
+}
+
+.nav-duraklar small {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.78rem;
+}
+
+.nav-ic {
+  position: relative;
+  z-index: 1;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 28px 24px 0;
+}
+
+.nav-baslik {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.7);
+  font: 700 clamp(1rem, 1.8vw, 1.25rem) var(--yol-metin), sans-serif;
+}
+
+.nav-yon {
+  margin: 6px 0 0;
+  font: 900 clamp(1.8rem, 4.6vw, 3.6rem) / 1 var(--yol-levha), sans-serif;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.nav-yon span {
+  color: #f2c230;
+}
+
+.nav-km {
+  margin: 4px 0 0;
+  font: 900 min(26vw, 30vh) / 0.85 var(--yol-levha), sans-serif;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.03em;
+}
+
+.nav-km small {
+  margin-left: 0.08em;
+  color: #f2c230;
+  font-size: 0.3em;
+  letter-spacing: 0;
+}
+
+.nav-varis {
+  display: grid;
+  max-width: 520px;
+  margin-top: 14px;
+  padding: 14px 18px;
+  border-left: 6px solid #f2c230;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.nav-varis p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 700;
+}
+
+.nav-varis b {
+  font: 900 clamp(3rem, 8vw, 5.4rem) / 1 var(--yol-levha), sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+
+.nav-varis > span {
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 600;
+}
+
+.nav-cikis {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.nav-cikis input {
+  padding: 4px 8px;
+  border: 2px solid #ffffff;
+  border-radius: 6px;
+  background: transparent;
+  color: #ffffff;
+  font: 700 1rem var(--yol-metin), sans-serif;
+  color-scheme: dark;
+}
+
+.nav-alt {
+  margin: 14px 0 0;
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 600;
+}
+
+.nav-alt a {
+  color: #f2c230;
+}
+
+@media (max-width: 720px) {
+  .nav-ekran {
+    min-height: calc(100svh - 64px);
+  }
+
+  .nav-profil,
+  .nav-duraklar {
+    height: 30%;
+  }
+
+  .nav-duraklar li:not(.is-uc) small,
+  .nav-duraklar li:not(.is-uc) span {
+    display: none;
+  }
+
+  .nav-ic {
+    padding: 20px 16px 0;
+  }
+
+  .nav-km {
+    font-size: 30vw;
+  }
+}
+
+.nav-duraklar li.is-gizli span,
+.nav-duraklar li.is-gizli small {
+  display: none;
+}
+
+/* Arka planda varış ilinin fotoğrafı: koyu örtüyle okunur, üstünde yükselti silueti */
+.nav-foto {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.nav-ekran.is-fotolu::before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(90deg, rgba(10, 12, 14, 0.88) 0%, rgba(10, 12, 14, 0.55) 55%, rgba(10, 12, 14, 0.25) 100%),
+    linear-gradient(180deg, rgba(10, 12, 14, 0.2) 0%, rgba(10, 12, 14, 0.15) 45%, rgba(10, 12, 14, 0.9) 100%);
+  content: "";
+}
+
+.nav-ekran.is-fotolu .nav-profil path:first-child {
+  opacity: 0.88;
+}
+
+.nav-profil,
+.nav-duraklar {
+  z-index: 1;
+}
+
+.nav-ic {
+  z-index: 2;
+}
+
+.nav-kredi {
+  position: absolute;
+  right: 14px;
+  bottom: 8px;
+  z-index: 2;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.72rem;
+  text-decoration: none;
+}
+
+/* Katman sırası: fotoğraf < karartma < yükselti silueti < yazılar */
+.nav-ekran {
+  isolation: isolate;
+}
+
+.nav-foto {
+  z-index: 0;
+}
+
+.nav-ekran.is-fotolu::before {
+  z-index: 1;
+}
+
+.nav-profil,
+.nav-duraklar {
+  z-index: 2;
+}
+
+.nav-ic,
+.nav-kredi {
+  z-index: 3;
+}

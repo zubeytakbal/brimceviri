@@ -6,6 +6,8 @@ import ProvinceDistanceCalculator from "../../../components/geo/ProvinceDistance
 import TurkeyMap, { provinceMapCenters } from "../../../components/geo/TurkeyMap";
 import RotaHaritasi from "../../../components/yol/RotaHaritasi";
 import YolculukPlani from "../../../components/yol/YolculukPlani";
+import NavigasyonEkrani from "../../../components/yol/NavigasyonEkrani";
+import { ilGorseli } from "../../../components/yol/ilGorselleri";
 import YolSayfasi from "../../../components/yol/YolSayfasi";
 import type { FaqItem } from "../../../converter/faqSchema";
 import { KGM_DISTANCE_DATE } from "../../../converter/geo/kgmDistances";
@@ -107,7 +109,6 @@ export default async function RoutePairPage({ params }: { params: Promise<{ il: 
   ];
 
   const sure = durationText(driveMinutes(road, DEFAULT_AVG_KMH));
-  const benzin = price ? ((road * 7) / 100) * price : null;
   const crumbs = [
     { href: "/", label: "Ana Sayfa" },
     { href: "/iller-arasi-mesafe", label: "İller Arası Mesafe" },
@@ -120,33 +121,21 @@ export default async function RoutePairPage({ params }: { params: Promise<{ il: 
       crumbs={crumbs}
       baslik={`${from.name} ${to.name} Arası Kaç Km?`}
       faqItems={faqItems}
-      levha={
-        <div className="yol-levha" role="group" aria-label={`${from.name} – ${to.name} mesafe levhası`}>
-          <p className="yol-levha-ust">{trAblative(from.name).toLocaleUpperCase("tr")}</p>
-          <div className="yol-levha-ana">
-            <span className="yol-levha-ok" aria-hidden="true">
-              ➜
-            </span>
-            <b className="yol-levha-hedef">{to.name.toLocaleUpperCase("tr")}</b>
-            <b className="yol-levha-km">
-              {fmt(road)}
-              <small>km</small>
-            </b>
-          </div>
-          <ul className="yol-levha-alt">
-            <li>
-              <span>Arabayla</span> ≈ {sure}
-            </li>
-            <li>
-              <span>Kuş uçuşu</span> {fmt(air)} km
-            </li>
-            {benzin ? (
-              <li>
-                <span>Benzin (7 L/100 km)</span> ≈ {fmt(benzin)} TL
-              </li>
-            ) : null}
-          </ul>
-        </div>
+      ust={
+        <NavigasyonEkrani
+          baslik={`${from.name} ${to.name} Arası Kaç Km?`}
+          nereden={from.name}
+          nereye={to.name}
+          km={road}
+          kusUcusu={Math.round(air)}
+          hiz={DEFAULT_AVG_KMH}
+          gorsel={ilGorseli(to.id)}
+          profil={[
+            { ad: from.name, km: 0, rakim: from.elevationM },
+            ...stops.map((x) => ({ ad: x.province.name, km: x.fromStart, rakim: x.province.elevationM })),
+            { ad: to.name, km: road, rakim: to.elevationM },
+          ]}
+        />
       }
     >
       <p className="yol-ozet">

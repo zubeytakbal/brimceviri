@@ -17,13 +17,16 @@ export default function YolSayfasi({
   crumbs,
   baslik,
   levha,
+  ust,
   faqItems,
   children,
 }: {
   crumbs: Array<{ href: string; label: string }>;
   baslik: string;
   /** Başlığın altındaki levha (cevap). */
-  levha: ReactNode;
+  levha?: ReactNode;
+  /** Verilirse asfalt başlık yerine bu tam ekran açılış çizilir (H1 onun içindedir). */
+  ust?: ReactNode;
   faqItems: FaqItem[];
   children: ReactNode;
 }) {
@@ -36,20 +39,22 @@ export default function YolSayfasi({
     <main className={`yol-sayfa ${yolLevha.variable} ${yolMetin.variable}`}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(buildFaqSchema(faqItems)) }} />
-      <section className="yol-ust">
-        <div className="yol-ic">
-          <nav className="yol-yolu" aria-label="Sayfa yolu">
-            {crumbs.map((c, i) => (
-              <span key={c.href}>
-                {i > 0 && " › "}
-                {i < crumbs.length - 1 ? <Link href={c.href}>{c.label}</Link> : c.label}
-              </span>
-            ))}
-          </nav>
-          <h1 className="yol-baslik">{baslik}</h1>
-          {levha}
-        </div>
-      </section>
+      {ust ?? (
+        <section className="yol-ust">
+          <div className="yol-ic">
+            <nav className="yol-yolu" aria-label="Sayfa yolu">
+              {crumbs.map((c, i) => (
+                <span key={c.href}>
+                  {i > 0 && " › "}
+                  {i < crumbs.length - 1 ? <Link href={c.href}>{c.label}</Link> : c.label}
+                </span>
+              ))}
+            </nav>
+            <h1 className="yol-baslik">{baslik}</h1>
+            {levha}
+          </div>
+        </section>
+      )}
       <div className="yol-ic yol-govde">
         {children}
         <section className="yol-bolum" id="faq">

@@ -21163,3 +21163,7 @@ a.all-units-row .all-units-name {
 :root:has(.saat-arac-ust) :is(.takvim-bugun, .week-now, .world-board-local, .countdown-card) a {
   color: #7fe0dc;
 }
+
+:root:has(.saat-arac-ust) .all-conversions-page .all-conversions-header a {
+  color: #7fe0dc;
+}

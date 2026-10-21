@@ -22290,3 +22290,92 @@ a.all-units-row .all-units-name {
 :root:has(.saat-arac-ust[data-tur="liste"]) :is(.holiday-stats span, .date-calc-stat.is-main :is(span, em)) {
   color: rgba(255, 255, 255, 0.75) !important;
 }
+
+/* Saat hesaplama ve "Tarih hangi gün?" (saat bölümü): siyah başlıkta sekmeler, dev Anton sonuç, kare girdiler. */
+.sh-hero,
+.hg-hero {
+  align-items: flex-start;
+  min-height: 0;
+  background-image: radial-gradient(110% 90% at 85% 0%, #1f2b2b 0%, #0e1213 50%, #050606 100%);
+}
+
+.sh-hero .saat-hero-ic,
+.hg-hero .saat-hero-ic {
+  padding-top: 26px;
+  padding-bottom: 64px;
+}
+
+.sh-sekmeler {
+  margin-top: 18px;
+}
+
+.sh-dev,
+.hg-dev {
+  margin-top: 14px;
+  font-size: clamp(4.2rem, 15vw, 11rem);
+  white-space: normal;
+}
+
+.hg-dev {
+  text-transform: uppercase;
+}
+
+.hg-tarih {
+  margin-top: 18px;
+}
+
+.sh-girdiler {
+  margin-top: 20px;
+}
+
+.sh-girdiler input[type="number"],
+.sh-girdiler input[type="text"] {
+  width: 7.5ch;
+}
+
+.sh-girdiler input[aria-invalid="true"] {
+  border-color: #ff8a80;
+}
+
+.sh-secim select {
+  padding: 6px 10px;
+  border: 3px solid #ffffff;
+  border-radius: 0;
+  background: #000000;
+  color: #ffffff;
+  font: 800 1rem var(--saat-metin), sans-serif;
+}
+
+.hg-bilgi {
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+
+.hg-bilgi li {
+  min-width: 9ch;
+}
+
+.hg-bilgi span {
+  text-transform: none;
+}
+
+@media (max-width: 720px) {
+  .sh-hero .saat-hero-ic,
+  .hg-hero .saat-hero-ic {
+    padding: 16px 16px 60px;
+  }
+
+  .sh-dev,
+  .hg-dev {
+    font-size: 17vw;
+  }
+
+  .sh-sekmeler button {
+    flex: 1 1 45%;
+  }
+}
+
+.saat-eylemler button[aria-selected="true"] {
+  border-color: var(--saat-vurgu);
+  background: var(--saat-vurgu);
+}

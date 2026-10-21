@@ -141,6 +141,8 @@ export const turkishToolGroups: ToolGroup[] = [
       { href: "/dunya-saatleri", label: "Dünya Saatleri" },
       { href: "/saat-dilimi-cevirici", label: "Saat Dilimi Çevirici" },
       { href: "/yaz-saati", label: "Yaz Saati: Saatler Ne Zaman Değişiyor?" },
+      { href: "/saat-hesaplama", label: "Saat Hesaplama" },
+      { href: "/hangi-gun", label: "Tarih Hangi Gün?" },
       { href: "/online-saat", label: "Online Saat" },
       { href: "/zamanlayici", label: "Online Zamanlayıcı" },
       { href: "/kronometre", label: "Kronometre" },

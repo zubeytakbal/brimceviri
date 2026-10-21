@@ -21024,8 +21024,33 @@ a.all-units-row .all-units-name {
   filter: grayscale(1) contrast(1.25);
 }
 
-.saat-icerik:has(> .ay-icerik) {
-  max-width: 1120px;
+/* Ay sayfasında içerik gazeteden sonra daha geniş; koyu kartlar lacivert yerine mürekkep siyahı, bugün turkuaz. */
+.saat-bolum .sahneler ~ .saat-icerik:has(> .ay-icerik) {
+  padding-right: max(24px, calc((100% - 1120px) / 2));
+  padding-left: max(24px, calc((100% - 1120px) / 2));
+}
+
+.ay-icerik .moon-strip-day,
+.ay-icerik .moon-calendar-day {
+  border-radius: 0;
+  background: #111111;
+}
+
+.ay-icerik .moon-strip-day.is-today,
+.ay-icerik .moon-sema li.is-bugun a {
+  background: var(--saat-vurgu);
+}
+
+.ay-icerik .moon-sema {
+  border: 0;
+  border-top: 4px double #111111;
+  border-bottom: 1px solid #111111;
+  border-radius: 0;
+  background: transparent;
+}
+
+.ay-icerik .moon-sema a {
+  border-radius: 0;
 }
 
 .ay-kaynak {

@@ -11,12 +11,12 @@ import { timeToolsCopy, type TimeToolsCopy, type TimeToolsLocale } from "./timeT
 import { formatClock, makeId, nowMs, pad2, useNow } from "./useNow";
 import { useWakeLock } from "./useWakeLock";
 
-type Repeat = "once" | "daily" | "weekdays";
-type Alarm = { id: string; time: string; label: string; sound: TimeSoundId; enabled: boolean; at: number; repeat?: Repeat };
+export type Repeat = "once" | "daily" | "weekdays";
+export type Alarm = { id: string; time: string; label: string; sound: TimeSoundId; enabled: boolean; at: number; repeat?: Repeat };
 
-const STORAGE_KEY = "birimceviri:alarms";
+export const STORAGE_KEY = "birimceviri:alarms";
 
-function nextAt(time: string, from = Date.now(), repeat: Repeat = "once") {
+export function nextAt(time: string, from = Date.now(), repeat: Repeat = "once") {
   const [hours, minutes] = time.split(":").map(Number);
   const target = new Date(from);
   target.setHours(hours, minutes, 0, 0);
@@ -27,7 +27,7 @@ function nextAt(time: string, from = Date.now(), repeat: Repeat = "once") {
 }
 
 // Telefonda titresim: calarken 2 saniyede bir desen tekrarlanir.
-function startVibration() {
+export function startVibration() {
   if (typeof navigator === "undefined" || !("vibrate" in navigator)) return () => {};
   const pattern = [600, 300, 600];
   navigator.vibrate(pattern);
@@ -38,14 +38,14 @@ function startVibration() {
   };
 }
 
-function untilText(ms: number, copy: TimeToolsCopy) {
+export function untilText(ms: number, copy: TimeToolsCopy) {
   const totalMinutes = Math.max(1, Math.ceil(ms / 60000));
   const hours = Math.floor(totalMinutes / 60);
   const minutes = totalMinutes % 60;
   return hours > 0 ? `${hours} ${copy.alarm.hours} ${minutes} ${copy.alarm.minutes}` : `${minutes} ${copy.alarm.minutes}`;
 }
 
-function loadAlarms(): Alarm[] {
+export function loadAlarms(): Alarm[] {
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY);
     const parsed = raw ? (JSON.parse(raw) as Alarm[]) : [];

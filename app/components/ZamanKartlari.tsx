@@ -11,6 +11,7 @@ import { diffDays, diffYmd, isoWeek, parseYmd, ymdKey } from "../converter/time/
 import { moonState, phaseName, type PhaseName } from "../converter/time/moon";
 import { sunTimes } from "../converter/time/solar";
 import { worldCities } from "../converter/time/worldCities";
+import MoonIcon from "./moon/MoonIcon";
 
 /** Yaklaşan gün: takvimdeki bir günün başlangıcı ve bitişi (ms, Türkiye saatiyle gece yarısı; bayramlarda son günün sonu). */
 export type KartYaklasan = { ad: string; kategori: string; katAd: string; bas: number; bit: number; href: string; tatil: boolean; tahmini: boolean };
@@ -65,20 +66,6 @@ function useSimdi(baslangic: number) {
   return simdi;
 }
 
-/** Ayın aydınlık kısmı: k aydınlanma oranı (0–1), büyüyorsa sağ taraf aydınlıktır. */
-function AyCizimi({ k, buyuyor }: { k: number; buyuyor: boolean }) {
-  const r = 26;
-  const rx = Math.abs(1 - 2 * k) * r;
-  const d = buyuyor
-    ? `M30 4 A${r} ${r} 0 0 1 30 56 A${rx} ${r} 0 0 ${k > 0.5 ? 1 : 0} 30 4`
-    : `M30 4 A${r} ${r} 0 0 0 30 56 A${rx} ${r} 0 0 ${k > 0.5 ? 0 : 1} 30 4`;
-  return (
-    <svg viewBox="0 0 60 60" width="56" height="56" aria-hidden="true">
-      <circle cx="30" cy="30" r={r} fill="#24324a" />
-      <path d={d} fill="#f4ecc8" />
-    </svg>
-  );
-}
 
 
 const TARIH = (ms: number) => new Intl.DateTimeFormat("tr-TR", { day: "numeric", month: "long", year: "numeric", weekday: "long", timeZone: TR }).format(ms);
@@ -221,7 +208,7 @@ function Gokyuzu({ simdi }: { simdi: number }) {
   return (
     <>
       <div className="zaman-ay">
-        <AyCizimi k={ay.illumination} buyuyor={ay.waxing} />
+        <MoonIcon fraction={ay.fraction} size={56} />
         <div>
           <strong suppressHydrationWarning>{EVRE[phaseName(ay.age)]}</strong>
           <span suppressHydrationWarning>%{Math.round(ay.illumination * 100)} aydınlık</span>

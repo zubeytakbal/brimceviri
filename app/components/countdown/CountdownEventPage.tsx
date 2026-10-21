@@ -94,7 +94,7 @@ export default function CountdownEventPage({ event }: { event: CountdownEvent })
         { question: `${event.name} ne zaman?`, answer: next ? `Bir sonraki ${event.name} ${dateText} günü${estimated ? " (tahmini)" : ""}.` : "Tarih henüz belli değil." },
         { question: event.question, answer: `${daysSentence} Sayaç Türkiye saatiyle 00:00'a göre sayar.` },
         { question: `${event.name} resmî tatil mi?`, answer: event.holiday },
-        ...(event.rule.kind === "hijri"
+        ...((event.rule.kind === "hijri" || event.rule.kind === "regaib")
           ? [
               {
                 question: "Bu tarihler kesin mi?",
@@ -328,7 +328,7 @@ export default function CountdownEventPage({ event }: { event: CountdownEvent })
             <tr>
               <th>{tr ? "Yıl" : "Year"}</th>
               <th>{tr ? "Tarih" : "Date"}</th>
-              {event.rule.kind === "hijri" && <th>{tr ? "Durum" : "Status"}</th>}
+              {(event.rule.kind === "hijri" || event.rule.kind === "regaib") && <th>{tr ? "Durum" : "Status"}</th>}
             </tr>
           </thead>
           <tbody>
@@ -336,7 +336,7 @@ export default function CountdownEventPage({ event }: { event: CountdownEvent })
               <tr key={parts.year}>
                 <td>{parts.year}</td>
                 <td>{formatEventDate(parts, lang)}</td>
-                {event.rule.kind === "hijri" && <td>{parts.estimated ? (tr ? "Tahmini (Hicri takvim)" : "Estimated") : tr ? "Diyanet takvimi" : "Official"}</td>}
+                {(event.rule.kind === "hijri" || event.rule.kind === "regaib") && <td>{parts.estimated ? (tr ? "Tahmini (Hicri takvim)" : "Estimated") : tr ? "Diyanet takvimi" : "Official"}</td>}
               </tr>
             ))}
           </tbody>

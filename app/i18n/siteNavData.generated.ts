@@ -400,6 +400,10 @@ export const SITE_NAV_DATA: SiteNavData = {
        "label": "Saat Dilimi Çevirici"
       },
       {
+       "href": "/yaz-saati",
+       "label": "Yaz Saati: Saatler Ne Zaman Değişiyor?"
+      },
+      {
        "href": "/online-saat",
        "label": "Online Saat"
       },

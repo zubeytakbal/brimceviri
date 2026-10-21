@@ -284,6 +284,7 @@ export const ETKINLIKLER: Etkinlik[] = [
     kisa: "Recep ayının ilk cumasını önceleyen gece; perşembe akşamı.",
     hakkinda:
       "Regaib Kandili, Recep ayının ilk cuma gününü önceleyen gecedir; bu yüzden perşembe akşamına denk gelir. Kandil geceleri akşam namazıyla başlar.",
+    geriSayim: "regaib-kandili",
   },
   {
     id: "mirac-kandili",
@@ -295,6 +296,7 @@ export const ETKINLIKLER: Etkinlik[] = [
     kisa: "Hz. Muhammed'in miraca yükselişinin anıldığı, 27 Recep'e bağlanan gece.",
     hakkinda:
       "Miraç Kandili, Recep ayının 26. gününü 27. gününe bağlayan gecedir. Takvimde 26 Recep akşamı olarak gösterilir.",
+    geriSayim: "mirac-kandili",
   },
   {
     id: "berat-kandili",
@@ -306,6 +308,7 @@ export const ETKINLIKLER: Etkinlik[] = [
     kisa: "Şaban ayının 15. gecesi; 14 Şaban akşamı.",
     hakkinda:
       "Berat Kandili, Şaban ayının 14. gününü 15. gününe bağlayan gecedir ve Ramazan'dan yaklaşık iki hafta önceye denk gelir.",
+    geriSayim: "berat-kandili",
   },
   {
     id: "ramazan-baslangici",
@@ -329,6 +332,7 @@ export const ETKINLIKLER: Etkinlik[] = [
     kisa: "Kur'an'ın indirilmeye başlandığı kabul edilen gece; 26 Ramazan akşamı.",
     hakkinda:
       "Türkiye'de Kadir Gecesi, Ramazan ayının 26. gününü 27. gününe bağlayan gece olarak idrak edilir ve 26 Ramazan akşamı olarak gösterilir.",
+    geriSayim: "kadir-gecesi",
   },
   {
     id: "hicri-yilbasi",
@@ -365,6 +369,7 @@ export const ETKINLIKLER: Etkinlik[] = [
     kisa: "Hz. Muhammed'in doğumunun anıldığı gece; 11 Rebiülevvel akşamı.",
     hakkinda:
       "Mevlid Kandili, Rebiülevvel ayının 11. gününü 12. gününe bağlayan gecedir. Bu gece mevlid okunur.",
+    geriSayim: "mevlid-kandili",
   },
   {
     id: "sevgililer-gunu",

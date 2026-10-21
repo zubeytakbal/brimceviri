@@ -2,6 +2,7 @@
 // (Gregoryen hesap) ve Diyanet'in ilan ettigi dini gunler (yalnizca dogrulanmis yillar).
 
 import { mevsimAni, type Mevsim } from "../calendar/astro";
+import { OKUL_YILLARI } from "../calendar/okulTakvimi";
 
 export type DateParts = { year: number; month: number; day: number; estimated?: boolean };
 export type CountdownLang = "tr" | "en" | "de";
@@ -16,8 +17,14 @@ type Rule =
   | { kind: "fixed-many"; dates: Array<{ month: number; day: number }> }
   /** Sonntag vor einem Datum, n Wochen zurück (1. Advent: 4 Sonntage vor dem 25. Dezember). */
   | { kind: "sunday-before"; month: number; day: number; weeksBack: number }
-  /** Hicri takvim gunu: Diyanet'in ilan ettigi yillar "verified"; digerleri Umm al-Qura ile tahmin. */
-  | { kind: "hijri"; hijriMonth: number; hijriDay: number; verified: DateParts[] }
+  /** Hicri takvim gunu: Diyanet'in ilan ettigi yillar "verified"; digerleri Umm al-Qura ile tahmin.
+   * offsetDays: kandil gibi Hicri gunden onceki aksam (-1). verifiedUntil: bu yila kadar Umm al-Qura hesabi
+   * Diyanet takvimiyle karsilastirilmis (calendar/trTakvim.ts DINI_DOGRULANAN), tahmini sayilmaz. */
+  | { kind: "hijri"; hijriMonth: number; hijriDay: number; verified: DateParts[]; offsetDays?: number; verifiedUntil?: number }
+  /** Regaib Kandili: Recep ayinin ilk cumasini onceleyen persembe. */
+  | { kind: "regaib"; verifiedUntil?: number }
+  /** Resmi kaynaktan alinmis tarih listesi (or. MEB okul takvimi); listede olmayan yil icin tarih yoktur. */
+  | { kind: "list"; dates: DateParts[] }
   /** Ekinoks ya da gündönümü anının Türkiye saatine göre günü (Meeus, bkz. calendar/astro.ts). */
   | { kind: "season"; season: Mevsim };
 
@@ -52,6 +59,9 @@ const KURBAN_BAYRAMI: DateParts[] = [
 const RAMAZAN_BASLANGICI: DateParts[] = [{ year: 2027, month: 2, day: 8 }];
 
 const DIYANET = "Diyanet İşleri Başkanlığı dini günler takvimi";
+/** Umm al-Qura hesabının Diyanet takvimiyle karşılaştırıldığı son yıl (calendar/trTakvim.ts DINI_DOGRULANAN ile aynı). */
+const DINI_DOGRULANAN_YIL = 2027;
+const OKUL_KAYNAK = OKUL_YILLARI[0]?.kaynak ?? "MEB eğitim-öğretim yılı çalışma takvimi";
 
 export const countdownEvents: CountdownEvent[] = [
   {
@@ -105,6 +115,123 @@ export const countdownEvents: CountdownEvent[] = [
     about:
       "Kurban Bayramı, Hicri takvimin Zilhicce ayının 10. günü başlar ve dört gün sürer. Hac ibadetinin de doruk noktasına denk gelir. Hicri takvim nedeniyle her yıl miladi takvimde yaklaşık 11 gün öne kayar.",
     source: DIYANET,
+  },
+  {
+    id: "regaib-kandili",
+    lang: "tr",
+    slug: "regaib-kandili",
+    name: "Regaib Kandili",
+    question: "Regaib Kandili'ne kaç gün kaldı?",
+    rule: { kind: "regaib", verifiedUntil: DINI_DOGRULANAN_YIL },
+    zone: "istanbul",
+    holiday: "Hayır, Regaib Kandili resmî tatil değildir.",
+    about:
+      "Regaib Kandili, Recep ayının ilk cuma gününü önceleyen gecedir; bu yüzden her yıl perşembe akşamına denk gelir ve üç ayların ilk kandilidir. Kandil gecesi akşam namazıyla başlar; sayaç kandil gününün 00:00'ına göre sayar.",
+    source: DIYANET,
+  },
+  {
+    id: "mirac-kandili",
+    lang: "tr",
+    slug: "mirac-kandili",
+    name: "Miraç Kandili",
+    question: "Miraç Kandili'ne kaç gün kaldı?",
+    rule: { kind: "hijri", hijriMonth: 7, hijriDay: 27, offsetDays: -1, verified: [], verifiedUntil: DINI_DOGRULANAN_YIL },
+    zone: "istanbul",
+    holiday: "Hayır, Miraç Kandili resmî tatil değildir.",
+    about:
+      "Miraç Kandili, Recep ayının 26. gününü 27. gününe bağlayan gecedir ve takvimde 26 Recep akşamı olarak gösterilir. Hicri takvime bağlı olduğu için her yıl yaklaşık 11 gün öne gelir; sayaç kandil gününün 00:00'ına göre sayar.",
+    source: DIYANET,
+  },
+  {
+    id: "berat-kandili",
+    lang: "tr",
+    slug: "berat-kandili",
+    name: "Berat Kandili",
+    question: "Berat Kandili'ne kaç gün kaldı?",
+    rule: { kind: "hijri", hijriMonth: 8, hijriDay: 15, offsetDays: -1, verified: [], verifiedUntil: DINI_DOGRULANAN_YIL },
+    zone: "istanbul",
+    holiday: "Hayır, Berat Kandili resmî tatil değildir.",
+    about:
+      "Berat Kandili, Şaban ayının 14. gününü 15. gününe bağlayan gecedir ve Ramazan'dan yaklaşık iki hafta önceye denk gelir. Hicri takvime bağlı olduğu için her yıl yaklaşık 11 gün öne gelir; sayaç kandil gününün 00:00'ına göre sayar.",
+    source: DIYANET,
+  },
+  {
+    id: "kadir-gecesi",
+    lang: "tr",
+    slug: "kadir-gecesi",
+    name: "Kadir Gecesi",
+    question: "Kadir Gecesi'ne kaç gün kaldı?",
+    rule: { kind: "hijri", hijriMonth: 9, hijriDay: 27, offsetDays: -1, verified: [], verifiedUntil: DINI_DOGRULANAN_YIL },
+    zone: "istanbul",
+    holiday: "Hayır, Kadir Gecesi resmî tatil değildir.",
+    about:
+      "Türkiye'de Kadir Gecesi, Ramazan ayının 26. gününü 27. gününe bağlayan gece olarak idrak edilir ve takvimde 26 Ramazan akşamı olarak gösterilir. Sayaç o günün 00:00'ına göre sayar; gece akşam namazıyla başlar.",
+    source: DIYANET,
+  },
+  {
+    id: "mevlid-kandili",
+    lang: "tr",
+    slug: "mevlid-kandili",
+    name: "Mevlid Kandili",
+    question: "Mevlid Kandili'ne kaç gün kaldı?",
+    rule: { kind: "hijri", hijriMonth: 3, hijriDay: 12, offsetDays: -1, verified: [], verifiedUntil: DINI_DOGRULANAN_YIL },
+    zone: "istanbul",
+    holiday: "Hayır, Mevlid Kandili resmî tatil değildir.",
+    about:
+      "Mevlid Kandili, Hz. Muhammed'in doğumunun anıldığı, Rebiülevvel ayının 11. gününü 12. gününe bağlayan gecedir; bu gece mevlid okunur. Hicri takvime bağlı olduğu için her yıl yaklaşık 11 gün öne gelir; sayaç kandil gününün 00:00'ına göre sayar.",
+    source: DIYANET,
+  },
+  {
+    id: "okullarin-kapanmasi",
+    lang: "tr",
+    slug: "okullarin-kapanmasi",
+    name: "Okulların kapanması",
+    question: "Okulların kapanmasına kaç gün kaldı?",
+    rule: { kind: "list", dates: OKUL_YILLARI.map((y) => y.kapanis) },
+    zone: "istanbul",
+    holiday: "Ders yılının son günüdür; karneler verilir ve ertesi gün yaz tatili başlar. Resmî tatil değildir.",
+    about:
+      "Okulların kapanış günü, MEB'in her yıl genelgeyle açıkladığı eğitim-öğretim yılı çalışma takviminde yer alır. Ders yılının son günü karneler verilir ve yaz tatili başlar. Sonraki yılın tarihi MEB açıklayınca eklenir.",
+    source: OKUL_KAYNAK,
+  },
+  {
+    id: "yariyil-tatili",
+    lang: "tr",
+    slug: "yariyil-tatili",
+    name: "Yarıyıl tatili",
+    question: "Yarıyıl tatiline kaç gün kaldı?",
+    rule: { kind: "list", dates: OKUL_YILLARI.map((y) => y.yariyil[0]) },
+    zone: "istanbul",
+    holiday: "Yarıyıl (sömestr) tatili okullar için iki haftalık tatildir; resmî tatil değildir, çalışanlar için iş günüdür.",
+    about:
+      "Yarıyıl tatili, birinci dönemin bitip karnelerin verilmesinin ardından başlayan iki haftalık sömestr tatilidir. Tarihi MEB'in eğitim-öğretim yılı çalışma takviminde yer alır; sayaç tatilin ilk günü 00:00'a göre sayar.",
+    source: OKUL_KAYNAK,
+  },
+  {
+    id: "karne",
+    lang: "tr",
+    slug: "karne",
+    name: "Karne günü",
+    question: "Karneye kaç gün kaldı?",
+    rule: { kind: "list", dates: OKUL_YILLARI.flatMap((y) => [y.karne1, y.kapanis]) },
+    zone: "istanbul",
+    holiday: "Karne günü dersin yapıldığı son gündür; resmî tatil değildir.",
+    about:
+      "Karneler yılda iki kez verilir: birinci dönemin son günü (yarıyıl tatilinden önce) ve ders yılının son günü (yaz tatilinden önce). Tarihler MEB'in eğitim-öğretim yılı çalışma takviminden alınmıştır.",
+    source: OKUL_KAYNAK,
+  },
+  {
+    id: "ara-tatil",
+    lang: "tr",
+    slug: "ara-tatil",
+    name: "Ara tatil",
+    question: "Ara tatile kaç gün kaldı?",
+    rule: { kind: "list", dates: OKUL_YILLARI.flatMap((y) => [y.araTatil1[0], y.araTatil2[0]]) },
+    zone: "istanbul",
+    holiday: "Ara tatil okullar için bir haftalık tatildir; resmî tatil değildir.",
+    about:
+      "Ara tatil, her dönemin ortasında okulların bir hafta tatil olduğu dönemdir; birinci dönemde kasımda, ikinci dönemde martta yapılır. Tarihler MEB'in eğitim-öğretim yılı çalışma takviminden alınmıştır.",
+    source: OKUL_KAYNAK,
   },
   {
     id: "sevgililer-gunu",
@@ -701,8 +828,23 @@ export function occurrenceInYear(event: CountdownEvent, year: number): DateParts
       const back = anchor.getUTCDay() || 7;
       return addDays({ year, month: rule.month, day: rule.day }, -back - (rule.weeksBack - 1) * 7);
     }
-    case "hijri":
-      return rule.verified.find((d) => d.year === year) ?? hijriEstimate(year, rule.hijriMonth, rule.hijriDay);
+    case "hijri": {
+      const v = rule.verified.find((d) => d.year === year);
+      if (v) return v;
+      const off = rule.offsetDays ?? 0;
+      // Kaydırma tarihi önceki/sonraki yıla taşıyabilir: komşu yılların Hicri günü de denenir.
+      for (const y of [year, year + 1, year - 1]) {
+        const e = hijriEstimate(y, rule.hijriMonth, rule.hijriDay);
+        if (!e) continue;
+        const d = addDays(e, off);
+        if (d.year === year) return { ...d, estimated: year > (rule.verifiedUntil ?? -Infinity) };
+      }
+      return null;
+    }
+    case "regaib":
+      return regaibGunu(year, rule.verifiedUntil);
+    case "list":
+      return rule.dates.find((d) => d.year === year) ?? null;
     case "season": {
       const t = new Date(mevsimAni(year, rule.season).getTime() + 3 * 3600000);
       return { year, month: t.getUTCMonth() + 1, day: t.getUTCDate() };
@@ -713,11 +855,29 @@ export function occurrenceInYear(event: CountdownEvent, year: number): DateParts
 /** Yıl içindeki bütün tarihler (çoğu etkinlikte tek tarih). */
 export function occurrencesInYear(event: CountdownEvent, year: number): DateParts[] {
   if (event.rule.kind === "fixed-many") return event.rule.dates.map((d) => ({ year, month: d.month, day: d.day }));
+  if (event.rule.kind === "list") return event.rule.dates.filter((d) => d.year === year);
   const one = occurrenceInYear(event, year);
   return one ? [one] : [];
 }
 
 let hijriFormatter: Intl.DateTimeFormat | null = null;
+
+/** Regaib Kandili: Recep'in ilk cumasından (Umm al-Qura) bir gün önce; yıl içinde düşen ilk tarih. */
+function regaibGunu(year: number, verifiedUntil?: number): DateParts | null {
+  hijriFormatter ??= new Intl.DateTimeFormat("en-u-ca-islamic-umalqura", { month: "numeric", day: "numeric", timeZone: "UTC" });
+  for (let t = Date.UTC(year, 0, 2); new Date(t - 86400000).getUTCFullYear() <= year; t += 86400000) {
+    const d = new Date(t);
+    if (d.getUTCDay() !== 5) continue;
+    const parts = hijriFormatter.formatToParts(d);
+    const month = Number(parts.find((p) => p.type === "month")?.value);
+    const day = Number(parts.find((p) => p.type === "day")?.value);
+    if (month !== 7 || day > 7) continue;
+    const once = new Date(t - 86400000);
+    if (once.getUTCFullYear() !== year) continue;
+    return { year, month: once.getUTCMonth() + 1, day: once.getUTCDate(), estimated: year > (verifiedUntil ?? -Infinity) };
+  }
+  return null;
+}
 
 /** Verilen miladi yilda Hicri ay/gunun denk geldigi tarih (Umm al-Qura), "tahmini" isaretli. */
 export function hijriEstimate(year: number, hijriMonth: number, hijriDay: number): DateParts | null {

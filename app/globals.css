@@ -11960,7 +11960,12 @@ a.all-units-row .all-units-name {
 
 /* ===== Ay evreleri ===== */
 .moon-icon-dark {
-  fill: #2a2f3d;
+  fill: #15171c;
+}
+
+/* Ayın karanlık yüzü: aynı NASA fotoğrafı çok karartılmış (kül ışığı gibi kraterler seçilir). */
+.moon-icon-golge {
+  filter: brightness(0.11);
 }
 
 .moon-icon-crater {
@@ -16601,6 +16606,10 @@ a.all-units-row .all-units-name {
     fill: #4a4f5c;
   }
 
+  .moon-chart-day .moon-icon-golge {
+    display: none;
+  }
+
   .moon-chart-grid.is-blank .moon-chart-day {
     min-height: 130px;
   }
@@ -20931,5 +20940,118 @@ a.all-units-row .all-units-name {
   }
   .yaklasan-ad {
     font-size: 1.15rem;
+  }
+}
+
+/* ===== Ay evreleri: saat bölümü görünümü ===== */
+/* Gece göğü: koyu lacivertten siyaha, seyrek yıldızlar; dev Ay sağda (mobilde üstte). */
+.ay-hero {
+  overflow: hidden;
+  background-color: #05070c;
+  background-image:
+    radial-gradient(1px 1px at 12% 18%, rgba(255, 255, 255, 0.7) 50%, transparent 51%),
+    radial-gradient(1px 1px at 27% 62%, rgba(255, 255, 255, 0.5) 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 41% 28%, rgba(255, 255, 255, 0.6) 50%, transparent 51%),
+    radial-gradient(1px 1px at 8% 82%, rgba(255, 255, 255, 0.45) 50%, transparent 51%),
+    radial-gradient(1px 1px at 55% 12%, rgba(255, 255, 255, 0.55) 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 33% 44%, rgba(255, 255, 255, 0.4) 50%, transparent 51%),
+    radial-gradient(1px 1px at 18% 38%, rgba(255, 255, 255, 0.5) 50%, transparent 51%),
+    radial-gradient(1px 1px at 47% 76%, rgba(255, 255, 255, 0.35) 50%, transparent 51%),
+    radial-gradient(120% 90% at 75% 40%, #141c2e 0%, #070a12 55%, #030407 100%);
+}
+
+.ay-hero::before {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.1) 55%, rgba(0, 0, 0, 0.55) 100%);
+}
+
+.ay-hero-ay {
+  position: absolute;
+  top: 50%;
+  right: -3vw;
+  z-index: -1;
+  width: min(84vh, 60vw);
+  transform: translateY(-50%);
+}
+
+.ay-hero-ay .moon-icon {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0 70px rgba(255, 252, 235, 0.16));
+}
+
+.ay-dev {
+  font-size: min(24vw, 36vh);
+}
+
+.ay-evre {
+  margin: 0;
+  font-family: var(--saat-rakam), Impact, sans-serif;
+  font-size: clamp(2rem, 5.6vw, 4.6rem);
+  letter-spacing: 0.01em;
+  line-height: 1;
+  text-transform: uppercase;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.6);
+}
+
+.ay-serit a {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 10px;
+  align-items: center;
+  min-width: 132px;
+}
+
+.ay-serit a .moon-icon {
+  grid-row: span 2;
+}
+
+.ay-serit a span {
+  text-transform: capitalize;
+}
+
+/* Gazete fotoğrafı yerine Ay: siyah zemin, tramlı baskı aynı kalır. */
+.ay-gazete-foto .gazete-foto-cerceve {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 10;
+  background: #0b0b0c;
+}
+
+.ay-gazete-foto .moon-icon {
+  width: 72%;
+  height: auto;
+  filter: grayscale(1) contrast(1.25);
+}
+
+.saat-icerik:has(> .ay-icerik) {
+  max-width: 1120px;
+}
+
+.ay-kaynak {
+  margin-top: 28px;
+  color: var(--saat-ikincil);
+  font-size: 0.85rem;
+}
+
+@media (max-width: 720px) {
+  .ay-hero {
+    align-items: flex-end;
+    min-height: 100svh;
+  }
+
+  .ay-hero-ay {
+    top: 64px;
+    right: 50%;
+    width: min(92vw, 52svh);
+    transform: translateX(50%);
+  }
+
+  .ay-dev {
+    font-size: 30vw;
+  }
+
+  .ay-serit a {
+    min-width: 116px;
   }
 }

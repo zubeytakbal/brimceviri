@@ -8,14 +8,15 @@ export function haftaNo(an: Date, timeZone: string) {
 }
 
 /** Saat bölümü gazetesinin başlığı ve tarih satırı. */
-export default function GazeteBaslik({ an, timeZone, baski }: { an: Date; timeZone: string; baski: string }) {
+/** ad: gazete adı (gotik harfle yazıldığı için ğ, ı, ş gibi Türkçe harf içermemeli). */
+export default function GazeteBaslik({ an, timeZone, baski, ad = "Dünya Saatleri" }: { an: Date; timeZone: string; baski: string; ad?: string }) {
   return (
     <header className="gazete-baslik" aria-hidden="true">
       <div className="gazete-ust">
         <span>Her gün güncellenir</span>
         <span>Sayı {haftaNo(an, timeZone)}</span>
       </div>
-      <p className="gazete-ad">Dünya Saatleri</p>
+      <p className="gazete-ad">{ad}</p>
       <div className="gazete-tarih">
         <span>{new Intl.DateTimeFormat("tr-TR", { timeZone, weekday: "long", day: "numeric", month: "long", year: "numeric" }).format(an)}</span>
         <span>{baski} baskısı</span>

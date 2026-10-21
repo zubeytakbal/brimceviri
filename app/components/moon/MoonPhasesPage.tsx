@@ -13,6 +13,9 @@ import MoonIcon from "./MoonIcon";
 import MobilDaralt from "../MobilDaralt";
 import { moonPosition, moonSign, ZODIAC_EN, ZODIAC_TR } from "../../converter/time/moonPosition";
 import { MoonSignSection, SupermoonSection } from "./MoonSkySections";
+import SaatKabugu from "../saat/SaatKabugu";
+import AyHero from "./AyHero";
+import AySahneleri from "./AySahneleri";
 
 // Ay evreleri ve dolunay takvimi (TR: Turkiye saati, EN: UTC). Meeus algoritmasiyla
 // hesaplanir; tarihe bagli bolumler tarayicida ziyaretcinin saatiyle yenilenir.
@@ -231,6 +234,70 @@ export default function MoonPhasesPage({ lang }: { lang: "tr" | "en" }) {
     ? { caption: "Ay şu an", illumination: "Aydınlanma", age: "Ay yaşı", days: "gün", nextFull: "Sonraki dolunay", nextNew: "Sonraki yeni ay", names: NAMES.tr, sign: "Burcu", distance: "Dünya'ya uzaklık", signNames: ZODIAC_TR, until: "burcuna geçiş:" }
     : { caption: "The Moon now", illumination: "Illumination", age: "Moon age", days: "days", nextFull: "Next full moon", nextNew: "Next new moon", names: NAMES.en, sign: "Zodiac sign", distance: "Distance from Earth", signNames: ZODIAC_EN, until: "from" };
 
+  const govde = (
+    <>
+      <MoonCalendarTools
+        lang={lang}
+        initialNow={now.getTime()}
+        names={NAMES[lang]}
+        kindNames={KIND_NAMES[lang]}
+        afterStrip={tr ? <SekizEvre /> : undefined}
+        riseSet={
+          <MobilDaralt>
+            <h2 id="dogus">{tr ? "Ay bugün saat kaçta doğuyor, kaçta batıyor?" : "Moonrise and moonset times"}</h2>
+            <p>
+              {tr
+                ? "Şehrinizi seçin ya da konumunuzu kullanın: bugün ve önümüzdeki 6 gün için ayın doğuş, batış ve gökyüzünde en yüksek olduğu saatler ile Ay'ın şu anki yönü görünür. Türkiye'nin 81 ili ve dünyanın büyük şehirleri listededir."
+                : "Choose a city or use your location to see moonrise, moonset and the Moon's highest point for today and the next 6 days, plus where the Moon is right now."}
+            </p>
+            <MoonRiseSet lang={lang} places={moonPlaces(lang)} defaultId={tr ? "istanbul" : "london"} initialNow={now.getTime()} />
+          </MobilDaralt>
+        }
+      />
+
+      <MobilDaralt>
+        <MoonSignSection lang={lang} now={now} />
+      </MobilDaralt>
+
+      <MobilDaralt>
+        <SupermoonSection lang={lang} now={now} />
+      </MobilDaralt>
+
+      <MobilDaralt>
+        <EclipseSection lang={lang} now={now} />
+      </MobilDaralt>
+
+      <MobilDaralt>
+        <CalendarFeeds lang={lang} />
+      </MobilDaralt>
+
+    </>
+  );
+
+  // Türkçe sayfa saat bölümünün kabuğuyla: gece göğünde dev Ay, "Ay Takvimi" gazetesi, ardından araçlar ve bölümler.
+  if (tr) {
+    return (
+      <SaatKabugu
+        crumbs={[
+          { href: "/", label: "Ana Sayfa" },
+          { href: "/ay-evreleri", label: "Ay Evreleri" },
+        ]}
+        faqItems={faqItems}
+        hero={<AyHero adlar={NAMES.tr} olusturma={now.getTime()} />}
+        sahneler={<AySahneleri adlar={NAMES.tr} anaAdlar={KIND_NAMES.tr} />}
+      >
+        <div className="ay-icerik">
+          <EvreSemasi current={phaseName(moonState(now).age)} />
+          {govde}
+          <p className="ay-kaynak">
+            Ay görüntüleri NASA Scientific Visualization Studio&apos;nun kamuya açık dolunay fotoğrafından, her gün ve saat için o anın evresine göre
+            gölgelenerek çizilir. Evre, doğuş-batış ve tutulma saatleri Jean Meeus&apos;un algoritmalarıyla hesaplanır.
+          </p>
+        </div>
+      </SaatKabugu>
+    );
+  }
+
   return (
     <TimeToolPage
       crumbs={[
@@ -293,41 +360,7 @@ export default function MoonPhasesPage({ lang }: { lang: "tr" | "en" }) {
       faqTitle={tr ? "Sık Sorulan Sorular" : "Frequently Asked Questions"}
       faqItems={faqItems}
     >
-      <MoonCalendarTools
-        lang={lang}
-        initialNow={now.getTime()}
-        names={NAMES[lang]}
-        kindNames={KIND_NAMES[lang]}
-        afterStrip={tr ? <SekizEvre /> : undefined}
-        riseSet={
-          <MobilDaralt>
-            <h2 id="dogus">{tr ? "Ay bugün saat kaçta doğuyor, kaçta batıyor?" : "Moonrise and moonset times"}</h2>
-            <p>
-              {tr
-                ? "Şehrinizi seçin ya da konumunuzu kullanın: bugün ve önümüzdeki 6 gün için ayın doğuş, batış ve gökyüzünde en yüksek olduğu saatler ile Ay'ın şu anki yönü görünür. Türkiye'nin 81 ili ve dünyanın büyük şehirleri listededir."
-                : "Choose a city or use your location to see moonrise, moonset and the Moon's highest point for today and the next 6 days, plus where the Moon is right now."}
-            </p>
-            <MoonRiseSet lang={lang} places={moonPlaces(lang)} defaultId={tr ? "istanbul" : "london"} initialNow={now.getTime()} />
-          </MobilDaralt>
-        }
-      />
-
-      <MobilDaralt>
-        <MoonSignSection lang={lang} now={now} />
-      </MobilDaralt>
-
-      <MobilDaralt>
-        <SupermoonSection lang={lang} now={now} />
-      </MobilDaralt>
-
-      <MobilDaralt>
-        <EclipseSection lang={lang} now={now} />
-      </MobilDaralt>
-
-      <MobilDaralt>
-        <CalendarFeeds lang={lang} />
-      </MobilDaralt>
-
+      {govde}
       {!tr && (
         <>
           <h2 id="nedir">The eight phases</h2>

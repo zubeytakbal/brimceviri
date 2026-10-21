@@ -12,6 +12,8 @@ import { aminoAcidsDatabase } from "./converter/aminoAcidsDatabase";
 import { SURELER } from "./converter/sureler";
 import { unitGuideRedirects } from "./converter/unitGlossary";
 import { ALTIN_SAYFALARI, AYRI_ALTIN_SAYFALARI } from "./converter/turkishAltinPages";
+import { ETKINLIKLER } from "./converter/calendar/trTakvim";
+import { OZEL_GUN_SAYFALARI } from "./converter/calendar/ozelGunIcerik";
 import { cgpaUniversities } from "./converter/india/cgpaUniversities";
 import { getAllRegions } from "./converter/regionElevationHubUz";
 import { GERMAN_STATES } from "./converter/time/germanHolidays";
@@ -151,10 +153,18 @@ function materialRedirects(): MergedRedirect[] {
     r("/de/chemische-verbindungen/:slug", "/de/chemische-verbindungen?v=:slug"),
     r("/de/entfernung/:stadt/:ziel", "/de/entfernung/:stadt?nach=:ziel"),
     r("/en/bible-books/:book", "/en/bible-books?book=:book"),
-    r("/ozel-gunler/:id", "/ozel-gunler?gun=:id"),
     r("/de/besondere-tage/:id", "/de/besondere-tage?tag=:id"),
     r("/ar/occasions/:id", "/ar/occasions?id=:id"),
   ];
+}
+
+/** Ekim 2026'da birleştirilen özel gün sayfaları: kendi sayfası geri açılanlar (ozelGunIcerik.ts) yönlenmez, geri sayımı
+ * olanlar geri sayım sayfasına, kalanlar özel günler sayfasındaki bölümlerine gider. Hristiyan günlerinin hiç ayrı
+ * sayfası olmadığı için kural yazılmaz. */
+function ozelGunRedirects(): MergedRedirect[] {
+  return ETKINLIKLER.filter((e) => e.kategori !== "hristiyan" && !OZEL_GUN_SAYFALARI.includes(e.id)).map((e) =>
+    r(`/ozel-gunler/${e.id}`, e.geriSayim ? `/geri-sayim/${e.geriSayim}` : `/ozel-gunler?gun=${e.id}`),
+  );
 }
 
 function takvimGunRedirects(): MergedRedirect[] {
@@ -239,5 +249,5 @@ function legacyRedirects(): MergedRedirect[] {
 }
 
 export function mergedPageRedirects(): MergedRedirect[] {
-  return [...timerRedirects(), ...alarmRedirects(), ...fxRedirects(), ...uzLicenseRedirects(), ...es419Redirects(), ...numberRedirects(), ...aminoAcidRedirects(), ...sureCuzRedirects(), ...unitGuideRedirects().map((x) => r(x.source, x.destination)), ...altinRedirects(), ...goldKaratPairRedirects(), ...cgpaRedirects(), ...uzRegionRedirects(), ...feiertageRedirects(), ...federalHolidayRedirects(), ...takvimGunRedirects(), ...materialRedirects(), r("/ulkeler/s-o-tome-ve-principe", "/ulkeler/sao-tome-ve-principe"), ...legacyRedirects()];
+  return [...timerRedirects(), ...alarmRedirects(), ...fxRedirects(), ...uzLicenseRedirects(), ...es419Redirects(), ...numberRedirects(), ...aminoAcidRedirects(), ...sureCuzRedirects(), ...unitGuideRedirects().map((x) => r(x.source, x.destination)), ...altinRedirects(), ...goldKaratPairRedirects(), ...cgpaRedirects(), ...uzRegionRedirects(), ...feiertageRedirects(), ...federalHolidayRedirects(), ...takvimGunRedirects(), ...ozelGunRedirects(), ...materialRedirects(), r("/ulkeler/s-o-tome-ve-principe", "/ulkeler/sao-tome-ve-principe"), ...legacyRedirects()];
 }

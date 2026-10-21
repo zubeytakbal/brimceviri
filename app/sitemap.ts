@@ -146,6 +146,7 @@ import { CHRISTIAN_TOOLS_PATH, englishChristianTools } from "./i18n/englishChris
 import { CATHOLIC_PATHS } from "./i18n/catholicTools";
 import { GOLD_CALCULATOR_PATHS } from "./i18n/goldCalculatorPaths";
 import { KARAT_PAIRS } from "./converter/goldKaratPairs";
+import { OZEL_GUN_SAYFALARI } from "./converter/calendar/ozelGunIcerik";
 import { CYCLE_PATHS } from "./i18n/cycleCalculatorContent";
 import { BENGALI_ISLAMIC_HUB, ISLAMIC_TOOL_PATHS, UZBEK_ISLAMIC_PATHS } from "./i18n/islamicToolPaths";
 
@@ -2812,6 +2813,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...[
       "/takvim",
       "/ozel-gunler",
+      ...OZEL_GUN_SAYFALARI.map((id) => `/ozel-gunler/${id}`),
       "/firtina-takvimi",
       "/dogdugum-gun-hangi-gun",
       "/okul-takvimi",

@@ -6,7 +6,7 @@ import { timeRelated } from "../components/time/timeRelatedLinks";
 import type { FaqItem } from "../converter/faqSchema";
 import { timeToolAlternates } from "../i18n/timeToolPaths";
 import TimerPresetTable from "../components/time/TimerPresetTable";
-import { timerPresets } from "../i18n/timerPresets";
+import { timerPresets, GERI_GELEN_SURELER, timerPresetPath } from "../i18n/timerPresets";
 import { buildSiteUrl } from "../siteConfig";
 
 const title = "Online Zamanlayıcı: Geri Sayım Sayacı";
@@ -79,7 +79,7 @@ export default function TimerPage() {
         intro="Bir süreye dokunduğunuzda zamanlayıcı o süreye kurulur; adres de paylaşılabilir hale gelir."
         durationLabel="Süre"
         usesLabel="Ne için?"
-        rows={timerPresets.map((p) => ({ seconds: p.seconds, label: p.labelTr, uses: p.usesTr }))}
+        rows={timerPresets.map((p) => ({ seconds: p.seconds, label: p.labelTr, uses: p.usesTr, href: (GERI_GELEN_SURELER as readonly number[]).includes(p.seconds) ? timerPresetPath(p, "tr") : undefined }))}
       />
 
       <h2 id="kullanim">Nerelerde işe yarar?</h2>

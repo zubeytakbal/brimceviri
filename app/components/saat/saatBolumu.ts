@@ -85,5 +85,5 @@ export function isSaatBolumu(pathname: string) {
  * araçlar ile takvimin yıl ve ay sayfaları, tek tek özel gün sayfaları ve yıllara göre resmî tatiller. */
 export function isSaatAraci(pathname: string) {
   const p = yol(pathname);
-  return !isSaatBolumu(p) && (ARAC_YOLLARI.has(p) || /^\/(takvim|ozel-gunler|resmi-tatiller)\/[^/]+(\/[^/]+)?$/.test(p));
+  return !isSaatBolumu(p) && (ARAC_YOLLARI.has(p) || /^\/(takvim|ozel-gunler|resmi-tatiller|zamanlayici)\/[^/]+(\/[^/]+)?$/.test(p));
 }

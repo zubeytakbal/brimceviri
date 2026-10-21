@@ -9,10 +9,13 @@ import { isClosedPath } from "./indexPolicy";
 import { calculatorPages } from "./converter/calculatorPages";
 import { sleepGuideAlternates, sleepGuidePaths } from "./i18n/sleepGuidePaths";
 import {
+  alarmPresetSlug,
+  GERI_GELEN_ALARM_EN,
   timeToolAlternates,
   timeToolPaths,
   type TimeToolId,
 } from "./i18n/timeToolPaths";
+import { geriGelenSureler, timerPresetPath } from "./i18n/timerPresets";
 import { trEkSehirler, worldCities } from "./converter/time/worldCities";
 import { ulkeSaatleri } from "./converter/time/ulkeSaatDilimleri";
 import { countdownAlternatePaths, countdownEvents, countdownPath } from "./converter/time/countdownEvents";
@@ -2714,6 +2717,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
         alternates: timeToolAlternates(tool),
       })),
     ),
+    // Birleştirmeden sonra da aranan hazır süre ve alarm saati sayfaları.
+    ...[...geriGelenSureler().map((p) => timerPresetPath(p, "tr")), ...GERI_GELEN_ALARM_EN.map((t) => `/en/alarm-clock/${alarmPresetSlug.en(t)}`)].map((path) => ({
+      url: `${baseUrl}${path}`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    })),
     ...[
       ["/tarih-cevirici", "/en/hijri-date-converter"],
       ["/ay-evreleri", "/en/moon-phases"],

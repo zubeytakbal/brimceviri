@@ -22272,3 +22272,21 @@ a.all-units-row .all-units-name {
   background: #fdfdfb !important;
   box-shadow: none !important;
 }
+
+/* Liste sayfalarındaki özet kutuları: eski degrade yerine bölümün siyah kutusu. */
+:root:has(.saat-arac-ust[data-tur="liste"]) :is(.holiday-stats div, .date-calc-stat.is-main) {
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: #000000 !important;
+  color: #ffffff !important;
+}
+
+:root:has(.saat-arac-ust[data-tur="liste"]) :is(.holiday-stats strong, .date-calc-stat.is-main strong) {
+  color: #ffffff !important;
+  font-family: var(--saat-rakam), Impact, sans-serif;
+  font-weight: 400;
+}
+
+:root:has(.saat-arac-ust[data-tur="liste"]) :is(.holiday-stats span, .date-calc-stat.is-main :is(span, em)) {
+  color: rgba(255, 255, 255, 0.75) !important;
+}

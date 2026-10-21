@@ -8,6 +8,8 @@ import { hizliCevirmeVerisi } from "./converter/hizliCevirmeVeri";
 import { materialsDatabase } from "./converter/materialsDatabase";
 import { countdownEvents, startMs, upcomingOccurrences } from "./converter/time/countdownEvents";
 import { bodyWeights, MAIN_BODIES } from "./converter/planetWeights";
+import { KATEGORI_ADI, takvimGunPath, yilEtkinlikleri } from "./converter/calendar/trTakvim";
+import type { KartYaklasan } from "./components/ZamanKartlari";
 
 // "Litre kaç kilo" kartı: sıvılar ve gıdalar, ada göre sıralı.
 const KART_MALZEMELERI = materialsDatabase
@@ -51,5 +53,21 @@ export default async function Page() {
     .filter((e) => e.lang === "tr")
     .map((e) => ({ slug: e.slug, ad: e.name, anlar: upcomingOccurrences(e, now, 2).map((o) => startMs(o, e.zone)) }))
     .filter((g) => g.anlar.length > 0);
-  return <HomeDirectory locale="tr" notifications={notifications} hizli={hizliCevirmeVerisi(fx)} malzemeler={KART_MALZEMELERI} gezegenler={KART_GEZEGENLERI} geriSayimlar={geriSayimlar} olusturma={now.getTime()} />;
+  // "Yaklaşan günler" şeridi: takvimdeki sıradaki günler (site her gün derlenir; tarayıcı geçmiş olanları atlar).
+  const trGece = (d: { year: number; month: number; day: number }) => Date.UTC(d.year, d.month - 1, d.day) - 3 * 3600000;
+  const yil = new Date(now.getTime() + 3 * 3600000).getUTCFullYear();
+  const yaklasan: KartYaklasan[] = [...yilEtkinlikleri(yil), ...yilEtkinlikleri(yil + 1)]
+    .filter((t) => trGece(t.bitis ?? t.tarih) + 86400000 > now.getTime())
+    .slice(0, 14)
+    .map((t) => ({
+      ad: t.not ? `${t.etkinlik.ad} (${t.not})` : t.etkinlik.ad,
+      kategori: t.etkinlik.kategori,
+      katAd: KATEGORI_ADI[t.etkinlik.kategori],
+      bas: trGece(t.tarih),
+      bit: trGece(t.bitis ?? t.tarih) + 86400000,
+      href: t.etkinlik.geriSayim ? `/geri-sayim/${t.etkinlik.geriSayim}` : takvimGunPath(t.tarih),
+      tatil: t.etkinlik.tatil !== "yok",
+      tahmini: Boolean(t.tahmini),
+    }));
+  return <HomeDirectory locale="tr" notifications={notifications} hizli={hizliCevirmeVerisi(fx)} malzemeler={KART_MALZEMELERI} gezegenler={KART_GEZEGENLERI} geriSayimlar={geriSayimlar} yaklasan={yaklasan} olusturma={now.getTime()} />;
 }

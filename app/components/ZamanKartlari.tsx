@@ -12,6 +12,9 @@ import { moonState, phaseName, type PhaseName } from "../converter/time/moon";
 import { sunTimes } from "../converter/time/solar";
 import { worldCities } from "../converter/time/worldCities";
 
+/** Yaklaşan gün: takvimdeki bir günün başlangıcı ve bitişi (ms, Türkiye saatiyle gece yarısı; bayramlarda son günün sonu). */
+export type KartYaklasan = { ad: string; kategori: string; katAd: string; bas: number; bit: number; href: string; tatil: boolean; tahmini: boolean };
+
 /** Geri sayım: slug, ad ve sıradaki iki tarihin başlangıcı (ms, Türkiye saatiyle gece yarısı). */
 export type KartGeriSayim = { slug: string; ad: string; anlar: number[] };
 
@@ -420,6 +423,71 @@ function Zamanlayici() {
   );
 }
 
+const KISA_TARIH = (ms: number) => new Intl.DateTimeFormat("tr-TR", { day: "numeric", month: "long", weekday: "long", timeZone: TR }).format(ms);
+
+/** Zaman kartlarının altındaki şerit: en yakın gün canlı sayaçla, sonraki beş gün kaç gün kaldığıyla. Geçen gün düşer. */
+function YaklasanGunler({ simdi, liste }: { simdi: number; liste: KartYaklasan[] }) {
+  const gunler = liste.filter((x) => x.bit > simdi).slice(0, 6);
+  if (!gunler.length) return null;
+  const [ilk, ...sonraki] = gunler;
+  const bugunBas = Math.floor((simdi + 3 * 3600000) / 86400000) * 86400000 - 3 * 3600000;
+  const kalanGun = (x: KartYaklasan) => Math.round((x.bas - bugunBas) / 86400000);
+  const kalan = Math.max(0, ilk.bas - simdi);
+  const bugun = simdi >= ilk.bas;
+  const not = (x: KartYaklasan) => `${x.katAd}${x.tatil && x.kategori !== "resmi" ? " · tatil" : ""}${x.tahmini ? " · tahmini" : ""}`;
+
+  return (
+    <div className="yaklasan" aria-labelledby="yaklasan-baslik">
+      <div className="yaklasan-ust">
+        <h3 id="yaklasan-baslik">Yaklaşan günler</h3>
+        <Link href="/takvim">Türkiye takvimi</Link>
+      </div>
+      <div className="yaklasan-ic">
+        <Link href={ilk.href} className={`yaklasan-ana kat-${ilk.kategori}`}>
+          <span className="yaklasan-etiket">{bugun ? "Bugün" : "Sıradaki"} · {not(ilk)}</span>
+          <strong className="yaklasan-ad">{ilk.ad}</strong>
+          <span className="yaklasan-tarih">{KISA_TARIH(ilk.bas)}</span>
+          {bugun ? null : (
+            <span className="zaman-sayac yaklasan-sayac" suppressHydrationWarning>
+              {[
+                [Math.floor(kalan / 86400000), "gün"],
+                [Math.floor((kalan % 86400000) / 3600000), "saat"],
+                [Math.floor((kalan % 3600000) / 60000), "dakika"],
+                [Math.floor((kalan % 60000) / 1000), "saniye"],
+              ].map(([v, ad]) => (
+                <span key={ad}>
+                  <strong suppressHydrationWarning>{v}</strong>
+                  <small>{ad}</small>
+                </span>
+              ))}
+            </span>
+          )}
+        </Link>
+        <ol className="yaklasan-liste">
+          {sonraki.map((x) => {
+            const g = kalanGun(x);
+            return (
+              <li key={x.ad + x.bas}>
+                <Link href={x.href} className={`kat-${x.kategori}`}>
+                  <span className="yaklasan-gun" suppressHydrationWarning>
+                    {g <= 0 ? "Bugün" : g === 1 ? "Yarın" : <><b>{g}</b> gün</>}
+                  </span>
+                  <span className="yaklasan-bilgi">
+                    <strong>{x.ad}</strong>
+                    <small>
+                      {KISA_TARIH(x.bas)} · {not(x)}
+                    </small>
+                  </span>
+                </Link>
+              </li>
+            );
+          })}
+        </ol>
+      </div>
+    </div>
+  );
+}
+
 function Kart({ arac, degis, simdi, olusturma, geriSayimlar }: { arac: Arac; degis: (a: Arac) => void; simdi: number; olusturma: number; geriSayimlar: KartGeriSayim[] }) {
   return (
     <div className="hizli-kart">
@@ -445,7 +513,7 @@ function Kart({ arac, degis, simdi, olusturma, geriSayimlar }: { arac: Arac; deg
   );
 }
 
-export default function ZamanKartlari({ geriSayimlar, olusturma }: { geriSayimlar: KartGeriSayim[]; olusturma: number }) {
+export default function ZamanKartlari({ geriSayimlar, yaklasan, olusturma }: { geriSayimlar: KartGeriSayim[]; yaklasan: KartYaklasan[]; olusturma: number }) {
   const simdi = useSimdi(olusturma);
   const [kartlar, setKartlar] = useState<Arac[]>(VARSAYILAN);
 
@@ -480,6 +548,7 @@ export default function ZamanKartlari({ geriSayimlar, olusturma }: { geriSayimla
           <Kart key={i} arac={a} degis={(yeni) => degis(i, yeni)} simdi={simdi} olusturma={olusturma} geriSayimlar={geriSayimlar} />
         ))}
       </div>
+      <YaklasanGunler simdi={simdi} liste={yaklasan} />
     </section>
   );
 }

@@ -1622,7 +1622,7 @@ export const SITE_NAV_DATA: SiteNavData = {
      "label": "الحاسبات"
     },
     {
-     "href": "/ar",
+     "href": "/ar/unit-guides",
      "label": "دليل الوحدات"
     },
     {
@@ -1907,7 +1907,7 @@ export const SITE_NAV_DATA: SiteNavData = {
      "label": "الرئيسية"
     },
     {
-     "href": "/ar",
+     "href": "/ar/unit-guides",
      "label": "دليل الوحدات"
     },
     {
@@ -1956,7 +1956,7 @@ export const SITE_NAV_DATA: SiteNavData = {
      "label": "Kalkulyatorlar"
     },
     {
-     "href": "/uz",
+     "href": "/uz/birliklar",
      "label": "Birliklar"
     },
     {
@@ -2231,6 +2231,10 @@ export const SITE_NAV_DATA: SiteNavData = {
     {
      "href": "/uz",
      "label": "Bosh sahifa"
+    },
+    {
+     "href": "/uz/birliklar",
+     "label": "Birliklar"
     }
    ],
    "footerCopy": {
@@ -2254,7 +2258,7 @@ export const SITE_NAV_DATA: SiteNavData = {
      "label": "ক্যালকুলেটর"
     },
     {
-     "href": "/bn",
+     "href": "/bn/unit-guides",
      "label": "একক গাইড"
     },
     {
@@ -2537,6 +2541,10 @@ export const SITE_NAV_DATA: SiteNavData = {
     {
      "href": "/bn",
      "label": "হোম"
+    },
+    {
+     "href": "/bn/unit-guides",
+     "label": "একক গাইড"
     }
    ],
    "footerCopy": {
@@ -2560,7 +2568,7 @@ export const SITE_NAV_DATA: SiteNavData = {
      "label": "Calculatrices"
     },
     {
-     "href": "/fr",
+     "href": "/fr/guides-des-unites",
      "label": "Guides d'unites"
     },
     {
@@ -2703,6 +2711,10 @@ export const SITE_NAV_DATA: SiteNavData = {
     {
      "href": "/fr",
      "label": "Accueil"
+    },
+    {
+     "href": "/fr/guides-des-unites",
+     "label": "Guides d'unités"
     }
    ],
    "footerCopy": {
@@ -2726,7 +2738,7 @@ export const SITE_NAV_DATA: SiteNavData = {
      "label": "Calculadoras"
     },
     {
-     "href": "/es",
+     "href": "/es/guias-de-unidades",
      "label": "Guía de Unidades"
     },
     {
@@ -3009,6 +3021,10 @@ export const SITE_NAV_DATA: SiteNavData = {
     {
      "href": "/es",
      "label": "Inicio"
+    },
+    {
+     "href": "/es/guias-de-unidades",
+     "label": "Guía de unidades"
     }
    ],
    "footerCopy": {
@@ -3032,7 +3048,7 @@ export const SITE_NAV_DATA: SiteNavData = {
      "label": "Calculadoras"
     },
     {
-     "href": "/pt",
+     "href": "/pt/guias-de-unidades",
      "label": "Guia de Unidades"
     },
     {
@@ -3175,6 +3191,10 @@ export const SITE_NAV_DATA: SiteNavData = {
     {
      "href": "/pt",
      "label": "Inicio"
+    },
+    {
+     "href": "/pt/guias-de-unidades",
+     "label": "Guia de unidades"
     }
    ],
    "footerCopy": {
@@ -3198,7 +3218,7 @@ export const SITE_NAV_DATA: SiteNavData = {
      "label": "Calcolatrici"
     },
     {
-     "href": "/it",
+     "href": "/it/guide-alle-unita",
      "label": "Guida alle Unita"
     },
     {
@@ -3341,6 +3361,10 @@ export const SITE_NAV_DATA: SiteNavData = {
     {
      "href": "/it",
      "label": "Home"
+    },
+    {
+     "href": "/it/guide-alle-unita",
+     "label": "Guida alle unità"
     }
    ],
    "footerCopy": {
@@ -3364,7 +3388,7 @@ export const SITE_NAV_DATA: SiteNavData = {
      "label": "Rekentools"
     },
     {
-     "href": "/nl",
+     "href": "/nl/eenheidsgidsen",
      "label": "Eenhedengids"
     },
     {
@@ -3507,6 +3531,10 @@ export const SITE_NAV_DATA: SiteNavData = {
     {
      "href": "/nl",
      "label": "Home"
+    },
+    {
+     "href": "/nl/eenheidsgidsen",
+     "label": "Eenhedengids"
     }
    ],
    "footerCopy": {

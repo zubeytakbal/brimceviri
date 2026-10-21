@@ -834,13 +834,34 @@ const footerLinksByLocale: Record<
     { key: "privacy", label: "الخصوصية" },
     { key: "terms", label: "الشروط" },
   ],
-  uz: [{ key: "home", label: "Bosh sahifa" }],
-  bn: [{ key: "home", label: "হোম" }],
-  fr: [{ key: "home", label: "Accueil" }],
-  es: [{ key: "home", label: "Inicio" }],
-  pt: [{ key: "home", label: "Inicio" }],
-  it: [{ key: "home", label: "Home" }],
-  nl: [{ key: "home", label: "Home" }],
+  uz: [
+    { key: "home", label: "Bosh sahifa" },
+    { key: "units", label: "Birliklar" },
+  ],
+  bn: [
+    { key: "home", label: "হোম" },
+    { key: "units", label: "একক গাইড" },
+  ],
+  fr: [
+    { key: "home", label: "Accueil" },
+    { key: "units", label: "Guides d'unités" },
+  ],
+  es: [
+    { key: "home", label: "Inicio" },
+    { key: "units", label: "Guía de unidades" },
+  ],
+  pt: [
+    { key: "home", label: "Inicio" },
+    { key: "units", label: "Guia de unidades" },
+  ],
+  it: [
+    { key: "home", label: "Home" },
+    { key: "units", label: "Guida alle unità" },
+  ],
+  nl: [
+    { key: "home", label: "Home" },
+    { key: "units", label: "Eenhedengids" },
+  ],
   ru: [{ key: "home", label: "Главная" }, { key: "allConversions", label: "Все переводы" }],
   sv: [{ key: "home", label: "Hem" }],
   no: [{ key: "home", label: "Hjem" }],

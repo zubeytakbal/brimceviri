@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { unitGuideHref } from "../../../converter/unitGlossary";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
 import AllUnitsSection from "../../../components/AllUnitsSection";
@@ -178,6 +179,7 @@ export default async function BengaliCategoryPage({ params }: PageProps) {
       unitGuidesCountLabel={`${categoryUnits.length} একক`}
       unitGuides={categoryUnits.map((unitPage) => ({
         id: unitPage.slug,
+        guideHref: unitGuideHref("bn", unitPage.slug),
         label: unitPage.name,
         symbol: unitPage.symbol,
         description: unitPage.shortDescription,

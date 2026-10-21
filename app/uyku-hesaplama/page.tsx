@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
-import SleepCalculator from "../components/SleepCalculator";
-import TableOfContents from "../components/TableOfContents";
-import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import SaatKabugu from "../components/saat/SaatKabugu";
+import UykuSaat from "../components/time/UykuSaat";
+import UykuSahneleri, { kalkisIcin, saatYaz, yatisIcin } from "../components/time/UykuSahneleri";
+import type { FaqItem } from "../converter/faqSchema";
 import { sleepGuideAlternates } from "../i18n/sleepGuidePaths";
 import { buildSiteUrl } from "../siteConfig";
 
@@ -49,39 +50,23 @@ const faqItems: FaqItem[] = [
   },
 ];
 
-const FALL_ASLEEP_MINUTES = 15;
-const CYCLE_MINUTES = 90;
-
-function clock(totalMinutes: number) {
-  const minutes = ((totalMinutes % 1440) + 1440) % 1440;
-  return `${String(Math.floor(minutes / 60)).padStart(2, "0")}:${String(minutes % 60).padStart(2, "0")}`;
-}
-
-const wakeTimes = [5 * 60 + 30, 6 * 60, 6 * 60 + 30, 7 * 60, 7 * 60 + 30, 8 * 60, 8 * 60 + 30, 9 * 60];
-const bedTimes = [21 * 60 + 30, 22 * 60, 22 * 60 + 30, 23 * 60, 23 * 60 + 30, 24 * 60, 24 * 60 + 30, 25 * 60];
-const cycleColumns = [6, 5, 4];
-
-const ageRecommendations = [
-  ["Yeni doğan (0-3 ay)", "14-17 saat"],
-  ["Bebek (4-11 ay)", "12-15 saat"],
-  ["1-2 yaş", "11-14 saat"],
-  ["3-5 yaş", "10-13 saat"],
-  ["6-13 yaş", "9-11 saat"],
-  ["14-17 yaş", "8-10 saat"],
-  ["18-64 yaş", "7-9 saat"],
-  ["65 yaş ve üzeri", "7-8 saat"],
-];
-
-const tocItems = [
-  { id: "uyku-dongusu", label: "Uyku döngüsü ve REM" },
-  { id: "yatis-tablosu", label: "Kalkış saatine göre yatış tablosu" },
-  { id: "kalkis-tablosu", label: "Yatış saatine göre kalkış tablosu" },
-  { id: "kac-saat", label: "Yaşa göre kaç saat uyumalıyım?" },
-  { id: "hesaplama", label: "Hesaplama nasıl yapılıyor?" },
-  { id: "uykuya-dalma", label: "Uykuya dalma payı" },
-  { id: "ipuclari", label: "Daha iyi uyku için ipuçları" },
-  { id: "sss", label: "Sık sorulan sorular" },
-];
+// Sık aranan "sabah X'te kalkmak için" ve "gece X'te yatarsam" soruları; cevaplar formülden hesaplanır.
+// Bulunma eki saatin okunuşuna göre: beşte, altıda, yedide, sekizde.
+const EK: Record<number, string> = { 5: "te", 6: "da", 7: "de", 8: "de" };
+const kalkisSorulari: FaqItem[] = [5, 6, 7, 8].map((h) => ({
+  question: `Sabah ${h}'${EK[h]} kalkmak için kaçta yatmalıyım?`,
+  answer: `${saatYaz(h * 60)}'${EK[h]} dinç kalkmak için 5 döngü (7,5 saat) uyku isteniyorsa ${yatisIcin(h * 60, 5)}'te, 6 döngü (9 saat) isteniyorsa ${yatisIcin(h * 60, 6)}'te yatın. Daha geç yatmanız gerekiyorsa 4 döngü için ${yatisIcin(h * 60, 4)} da tam döngüyle biter, ama düzenli olarak 6 saat uyku önerilmez.`,
+}));
+const yatisSorulari: FaqItem[] = [
+  [22 * 60, "Gece 10'da (22:00)"],
+  [23 * 60, "Gece 11'de (23:00)"],
+  [24 * 60, "Gece 12'de (00:00)"],
+  [25 * 60, "Gece 1'de (01:00)"],
+].map(([dk, ad]) => ({
+  question: `${ad} yatarsam kaçta kalkmalıyım?`,
+  answer: `5 döngü (7,5 saat) için ${kalkisIcin(dk as number, 5)}, 6 döngü (9 saat) için ${kalkisIcin(dk as number, 6)} en rahat kalkış saatleridir; 4 döngüyle ${kalkisIcin(dk as number, 4)}'te kalkabilirsiniz. Hesaba 15 dakikalık uykuya dalma süresi dahildir.`,
+}));
+const tumSorular: FaqItem[] = [...faqItems.slice(0, 3), ...kalkisSorulari, ...yatisSorulari, ...faqItems.slice(3)];
 
 export const metadata: Metadata = {
   title: { absolute: "Uyku Hesaplama: Şimdi Uyusam Kaçta Kalkmalıyım?" },
@@ -102,200 +87,58 @@ export const metadata: Metadata = {
   },
 };
 
-function serializeJsonLd(data: object) {
-  return JSON.stringify(data).replace(/</g, "\\u003c");
-}
-
 export default function SleepCalculatorPage() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Ana Sayfa",
-        item: buildSiteUrl("/"),
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Uyku Hesaplama",
-        item: buildSiteUrl("/uyku-hesaplama"),
-      },
-    ],
-  };
-
   return (
-    <main className="all-conversions-page">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd(buildFaqSchema(faqItems)),
-        }}
-      />
+    <SaatKabugu
+      crumbs={[
+        { href: "/", label: "Ana Sayfa" },
+        { href: "/uyku-hesaplama", label: "Uyku Hesaplama" },
+      ]}
+      faqItems={tumSorular}
+      hero={<UykuSaat />}
+      sahneler={<UykuSahneleri />}
+    >
+      <h2 id="uyku-dongusu">Uyku döngüsü ve REM: neden döngü sayısı önemli?</h2>
+      <p>
+        Uyku, yaklaşık 90 dakika süren tekrarlayan döngülerden oluşur. Her döngüde önce hafif uyku (N1, N2), ardından derin uyku (N3) ve
+        en sonda rüyaların görüldüğü REM evresi gelir. Gecenin başında derin uyku uzun, REM kısadır; sabaha doğru bu denge tersine döner.
+      </p>
+      <p>
+        Bir döngünün ortasında, özellikle derin uyku evresinde uyanmak kendinizi sersemlemiş hissetmenize yol açar. Bu yüzden toplam süre
+        kadar, tam bir döngünün sonunda uyanmak da önemlidir. Hesaplayıcı, hedef saatinize göre tam döngüyle biten saatleri önerir;
+        sonuçlardaki &quot;alarm kur&quot; bağlantısı <Link href="/online-alarm-kur">online alarmı</Link> o saate ayarlar.
+      </p>
 
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Sayfa yolu">
-          <Link href="/">Ana Sayfa</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>Uyku Hesaplama</span>
-        </nav>
+      <h2 id="hesaplama">Hesaplama nasıl yapılıyor?</h2>
+      <p>
+        &quot;Kaçta yatmalıyım?&quot; sorusunda kalkış saatinizden geriye doğru 15 dakika uykuya dalma süresi ve 3, 4, 5 ya da 6 döngü × 90
+        dakika çıkarılır. Örneğin 07:00&apos;de kalkmak için 5 döngü: 07:00 − 7 saat 30 dakika − 15 dakika = 23:15. &quot;Kaçta
+        kalkmalıyım?&quot; sorusunda aynı hesap ileri yönde yapılır. &quot;Kaç saat uyudum?&quot; hesabı yatakta geçen süreden 15 dakika düşer
+        ve kalanı 90 dakikalık döngülere böler.
+      </p>
 
-        <header className="all-conversions-header">
-          <h1>Uyku Hesaplama</h1>
-          <p>
-            Kalkmak istediğin saati gir (ya da yatacağın saati): 90
-            dakikalık uyku döngülerine göre hangi saatte uyursan daha
-            dinlenmiş uyanacağını gör. 5-6 döngü (7,5-9 saat) genel
-            olarak önerilen aralıktır.
-          </p>
-          <p>
-            <strong>Kısa cevap:</strong> 23:00&apos;te yatarsan 06:45 (5 döngü) ya da 08:15&apos;te (6 döngü) kalk; sabah 07:00&apos;de kalkacaksan
-            21:45 ya da 23:15&apos;te yat.
-          </p>
-        </header>
+      <h2 id="uykuya-dalma">Uykuya dalma payı</h2>
+      <p>
+        Sağlıklı bir yetişkin genellikle 10-20 dakikada uykuya dalar; hesaplayıcı ortalama 15 dakika kullanır. Daha hızlı uyuyorsanız
+        saatleri birkaç dakika kaydırabilirsiniz. Düzenli olarak 30 dakikadan uzun süre uyuyamıyorsanız bir sağlık uzmanına danışmanız
+        önerilir.
+      </p>
 
-        <SleepCalculator />
+      <h2 id="ipuclari">Daha iyi uyku için ipuçları</h2>
+      <ul>
+        <li>Hafta sonu dahil her gün aynı saatte yatıp kalkın; vücut saati düzenli programa uyum sağlar.</li>
+        <li>Kafeini yatmadan en az 6 saat önce bırakın.</li>
+        <li>Yatmadan önceki saatte ekran ışığını azaltın; yatak odasını karanlık, sessiz ve serin tutun.</li>
+        <li>Ağır yemeği ve yoğun egzersizi yatmadan hemen önce yapmayın.</li>
+        <li>Öğle uykusunu kısa (10-20 dakika) tutun ve akşamüstüne bırakmayın.</li>
+      </ul>
 
-        <TableOfContents items={tocItems} />
-
-        <section className="category-article-content">
-          <h2 id="uyku-dongusu">Uyku döngüsü ve REM: neden döngü sayısı önemli?</h2>
-          <p>
-            Uyku, yaklaşık 90 dakika süren tekrarlayan döngülerden oluşur. Her döngüde önce hafif uyku (N1, N2), ardından derin uyku
-            (N3) ve en sonda rüyaların görüldüğü REM evresi gelir. Gecenin başında derin uyku uzun, REM kısadır; sabaha doğru bu
-            denge tersine döner.
-          </p>
-          <p>
-            Bir döngünün ortasında, özellikle derin uyku evresinde uyanmak kendinizi sersemlemiş hissetmenize yol açar. Bu yüzden
-            toplam süre kadar, tam bir döngünün sonunda uyanmak da önemlidir. Hesaplayıcı, hedef saatinize göre tam döngüyle biten
-            saatleri önerir.
-          </p>
-
-          <h2 id="yatis-tablosu">Kalkış saatine göre yatış saati tablosu</h2>
-          <p>15 dakikalık uykuya dalma süresi dahil. 5-6 döngü (7,5-9 saat) yetişkinler için önerilen aralıktır.</p>
-          <div className="conversion-table-wrap">
-            <table className="conversion-table">
-              <thead>
-                <tr>
-                  <th>Kalkış</th>
-                  {cycleColumns.map((cycles) => (
-                    <th key={cycles}>
-                      {cycles} döngü ({(cycles * 1.5).toLocaleString("tr-TR")} sa)
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {wakeTimes.map((wake) => (
-                  <tr key={wake}>
-                    <td>
-                      <strong>{clock(wake)}</strong>
-                    </td>
-                    {cycleColumns.map((cycles) => (
-                      <td key={cycles}>{clock(wake - FALL_ASLEEP_MINUTES - cycles * CYCLE_MINUTES)}</td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          <h2 id="kalkis-tablosu">Yatış saatine göre kalkış saati tablosu</h2>
-          <p>&quot;Şimdi uyusam kaçta kalkmalıyım?&quot; sorusunun hazır cevabı. Yine 15 dakikalık uykuya dalma süresi eklenmiştir.</p>
-          <div className="conversion-table-wrap">
-            <table className="conversion-table">
-              <thead>
-                <tr>
-                  <th>Yatış</th>
-                  {cycleColumns.map((cycles) => (
-                    <th key={cycles}>
-                      {cycles} döngü ({(cycles * 1.5).toLocaleString("tr-TR")} sa)
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {bedTimes.map((bed) => (
-                  <tr key={bed}>
-                    <td>
-                      <strong>{clock(bed)}</strong>
-                    </td>
-                    {cycleColumns.map((cycles) => (
-                      <td key={cycles}>{clock(bed + FALL_ASLEEP_MINUTES + cycles * CYCLE_MINUTES)}</td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          <h2 id="kac-saat">Yaşa göre kaç saat uyumalıyım?</h2>
-          <p>National Sleep Foundation&apos;ın (2015) yaş gruplarına göre önerdiği günlük uyku süreleri:</p>
-          <div className="conversion-table-wrap">
-            <table className="conversion-table">
-              <thead>
-                <tr>
-                  <th>Yaş grubu</th>
-                  <th>Önerilen uyku</th>
-                </tr>
-              </thead>
-              <tbody>
-                {ageRecommendations.map(([group, hours]) => (
-                  <tr key={group}>
-                    <td>{group}</td>
-                    <td>{hours}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          <h2 id="hesaplama">Hesaplama nasıl yapılıyor?</h2>
-          <p>
-            &quot;Kaçta yatmalıyım?&quot; sorusunda kalkış saatinizden geriye doğru 15 dakika uykuya dalma süresi ve 3, 4, 5 ya da 6
-            döngü × 90 dakika çıkarılır. Örneğin 07:00&apos;de kalkmak için 5 döngü: 07:00 − 7 saat 30 dakika − 15 dakika = 23:15.
-            &quot;Kaçta kalkmalıyım?&quot; sorusunda aynı hesap ileri yönde yapılır.
-          </p>
-
-          <h2 id="uykuya-dalma">Uykuya dalma payı</h2>
-          <p>
-            Sağlıklı bir yetişkin genellikle 10-20 dakikada uykuya dalar; hesaplayıcı ortalama 15 dakika kullanır. Daha hızlı
-            uyuyorsanız saatleri birkaç dakika kaydırabilirsiniz. Düzenli olarak 30 dakikadan uzun süre uyuyamıyorsanız bir sağlık
-            uzmanına danışmanız önerilir.
-          </p>
-
-          <h2 id="ipuclari">Daha iyi uyku için ipuçları</h2>
-          <ul>
-            <li>Hafta sonu dahil her gün aynı saatte yatıp kalkın; vücut saati düzenli programa uyum sağlar.</li>
-            <li>Kafeini yatmadan en az 6 saat önce bırakın.</li>
-            <li>Yatmadan önceki saatte ekran ışığını azaltın; yatak odasını karanlık, sessiz ve serin tutun.</li>
-            <li>Ağır yemeği ve yoğun egzersizi yatmadan hemen önce yapmayın.</li>
-            <li>Öğle uykusunu kısa (10-20 dakika) tutun ve akşamüstüne bırakmayın.</li>
-          </ul>
-
-          <h2 id="sss">Sık Sorulan Sorular</h2>
-          {faqItems.map((item) => (
-            <p key={item.question}>
-              <strong>{item.question}</strong>
-              <br />
-              {item.answer}
-            </p>
-          ))}
-
-          <h2>Kaynaklar</h2>
-          <p>
-            Yaşa göre uyku süreleri: National Sleep Foundation, &quot;How Much Sleep Do We Really Need?&quot; (Hirshkowitz ve ark.,
-            Sleep Health, 2015). 90 dakikalık ortalama döngü süresi ve uykuya dalma süresi genel uyku hijyeni kaynaklarına dayanır. Bu
-            sayfa genel bilgi içindir, tıbbi tavsiye yerine geçmez.
-          </p>
-        </section>
-      </div>
-    </main>
+      <h2 id="kaynaklar">Kaynaklar</h2>
+      <p>
+        Yaşa göre uyku süreleri: National Sleep Foundation, &quot;How Much Sleep Do We Really Need?&quot; (Hirshkowitz ve ark., Sleep
+        Health, 2015). 90 dakikalık ortalama döngü süresi ve uykuya dalma süresi genel uyku hijyeni kaynaklarına dayanır. Bu sayfa genel
+        bilgi içindir, tıbbi tavsiye yerine geçmez.
+      </p>
+    </SaatKabugu>
   );
 }

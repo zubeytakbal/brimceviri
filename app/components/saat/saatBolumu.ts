@@ -1,9 +1,9 @@
 // "Saat" bölümü: sitenin içinde kendi menüsü, yazı tipleri ve düzeni olan ayrı görünümlü bölüm. Adresler
 // değişmez; bu sayfalarda sitenin genel üst menüsü ve alt bilgisi yerine bölümün kendi kabuğu çizilir.
 
-/** Bölümün kabuğunu kullanan Türkçe sayfalar: şehir saatleri, ay evreleri ve alarm. */
+/** Bölümün kabuğunu kullanan Türkçe sayfalar: şehir saatleri, ay evreleri, alarm ve uyku hesaplama. */
 export function isSaatBolumu(pathname: string) {
-  return /^\/dunya-saatleri\/[^/]+\/?$/.test(pathname) || /^\/(ay-evreleri|online-alarm-kur)\/?$/.test(pathname);
+  return /^\/dunya-saatleri\/[^/]+\/?$/.test(pathname) || /^\/(ay-evreleri|online-alarm-kur|uyku-hesaplama)\/?$/.test(pathname);
 }
 
 export const SAAT_MENUSU: Array<{ href: string; label: string }> = [

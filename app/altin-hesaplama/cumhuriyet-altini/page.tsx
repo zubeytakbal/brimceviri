@@ -5,15 +5,16 @@ import TimeToolPage from "../../components/time/TimeToolPage";
 import type { FaqItem } from "../../converter/faqSchema";
 import { findSikke, hasGram, SIKKELER, ZIYNET_MILYEM } from "../../converter/turkishAltin";
 import { buildSiteUrl } from "../../siteConfig";
+import { seoTitle } from "../../seoTitle";
 
 // "Cumhuriyet altını kaç gram" araması için ayrı sayfa: adet tablosu, Ata serisi ve ziynet tam altınla farkı.
 const path = "/altin-hesaplama/cumhuriyet-altini";
-const title = "Cumhuriyet Altını Kaç Gram? Ata Lira Adet Tablosu ve Hesaplama";
+const title = "Cumhuriyet Altını Kaç Gram? Ata Lira Tablosu ve Hesaplama";
 const description =
   "5, 10, 20 Cumhuriyet altını kaç gram eder, içinde kaç gram has altın var? Ata lira adet tablosu, Ata çeyrekten beşliye Cumhuriyet serisi ve ziynet tam altınla ağırlık farkı.";
 
 export const metadata: Metadata = {
-  title,
+  title: seoTitle(title, "Cumhuriyet Altını Kaç Gram? Adet Tablosu, Hesaplama"),
   description,
   alternates: { canonical: path },
   openGraph: { title, description, url: buildSiteUrl(path), siteName: "BirimCeviri.app", locale: "tr_TR", type: "website" },

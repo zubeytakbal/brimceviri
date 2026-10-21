@@ -5,6 +5,7 @@ import TimeToolPage from "../../components/time/TimeToolPage";
 import type { FaqItem } from "../../converter/faqSchema";
 import { findSikke, hasGram, ZIYNET_MILYEM } from "../../converter/turkishAltin";
 import { buildSiteUrl } from "../../siteConfig";
+import { seoTitle } from "../../seoTitle";
 
 // "Çeyrek altın kaç gram" araması için ayrı sayfa: adet tablosu, ziynet–Ata çeyrek farkı ve diğer altınlara karşılığı.
 const path = "/altin-hesaplama/ceyrek-altin";
@@ -13,7 +14,7 @@ const description =
   "2, 5, 10, 20 çeyrek altın kaç gram eder, içinde kaç gram has altın var? Adet adet çeyrek altın tablosu, ziynet ve Ata çeyrek farkı, kaç çeyreğin yarım, tam ve gremse ettiği.";
 
 export const metadata: Metadata = {
-  title,
+  title: seoTitle(title, "Çeyrek Altın Kaç Gram? Adet Tablosu ve Hesaplama"),
   description,
   alternates: { canonical: path },
   openGraph: { title, description, url: buildSiteUrl(path), siteName: "BirimCeviri.app", locale: "tr_TR", type: "website" },

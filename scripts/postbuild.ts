@@ -14,6 +14,7 @@
 //    metni cok kisaysa build'i durdurur.
 // 6. Parametreli site ici baglantilara rel="nofollow" (nofollowQueryLinks).
 // 7. Site haritasi denetimi (scripts/sitemapGuard.ts): dizine acik her sayfa sitemap.xml'de olmali.
+// 10. Site haritasindaki <lastmod> tarihleri sayfa icerigi degistigi gune gore yazilir (scripts/lastmod.ts).
 // 9. Birleştirilen çift sayfalar (app/converter/mergedPairs.ts): kaldırılan yöne kalan site içi bağlantılar kalan
 //    sayfaya çevrilir, ona verilen hreflang bağlantıları silinir (yönlendirmeye bağlantı ve hreflang verilmez).
 // 8. Dizin politikasi (app/indexPolicy.ts): kapali sayfalar "noindex, follow" olur ve hicbir sayfanin
@@ -28,6 +29,7 @@ import { MERGED_PAIRS } from "../app/converter/mergedPairs";
 import { checkTemplates } from "./templateGuard";
 import { checkThinPages, MIN_KARAKTER } from "./thinGuard";
 import { checkSitemap } from "./sitemapGuard";
+import { writeLastmod } from "./lastmod";
 
 const OUT = "out";
 
@@ -368,3 +370,11 @@ if (map.missing.length || map.orphaned.length) {
   process.exit(1);
 }
 console.log(`Site haritası denetimi geçti (${map.listed} adres)`);
+
+// 10. Site haritası tarihleri: içeriği değişen sayfa derleme anını, değişmeyen önceki tarihini alır.
+const lm = writeLastmod(OUT);
+console.log(
+  lm.canli
+    ? `Site haritası tarihleri: ${lm.sayfa} sayfadan ${lm.degisen} tanesinin içeriği değişmiş`
+    : `Site haritası tarihleri: canlı lastmod.json okunamadı, başlangıç tarihleri kullanıldı (${lm.sayfa} sayfa)`,
+);

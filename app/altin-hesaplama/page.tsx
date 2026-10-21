@@ -9,7 +9,7 @@ import {
   SIKKELER,
   ZIYNET_MILYEM,
 } from "../converter/turkishAltin";
-import { altinOzet } from "../converter/turkishAltinPages";
+import { altinOzet, altinSayfaPath, AYRI_ALTIN_SAYFALARI } from "../converter/turkishAltinPages";
 import { buildSiteUrl } from "../siteConfig";
 
 const path = "/altin-hesaplama";
@@ -88,7 +88,8 @@ export default function AltinHesaplamaPage() {
             label: "Altın ayar dönüşümleri (24, 22, 18, 14 ayar)",
           },
           { href: "/has-hesaplama", label: "Has altın ve alaşım hesaplama" },
-          { href: "/altin-hesaplama", label: "Altın Hesaplama" },
+          { href: "/altin-hesaplama/ceyrek-altin", label: "Çeyrek altın kaç gram?" },
+          { href: "/altin-hesaplama/cumhuriyet-altini", label: "Cumhuriyet altını kaç gram?" },
         ],
       }}
       tocTitle="İçindekiler"
@@ -116,7 +117,7 @@ export default function AltinHesaplamaPage() {
             {SIKKELER.map((s) => (
               <tr key={s.id}>
                 <th scope="row" id={s.id}>
-                  {s.ad}
+                  {AYRI_ALTIN_SAYFALARI.includes(s.id) ? <Link href={altinSayfaPath(s.id)}>{s.ad}</Link> : s.ad}
                 </th>
                 <td>{gr(s.gram)} g</td>
                 <td>{gr(hasGram(s.gram, ZIYNET_MILYEM))} g</td>

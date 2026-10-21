@@ -11,7 +11,7 @@ import { uzLicenseClasses } from "./converter/licenseClassFinderUz";
 import { aminoAcidsDatabase } from "./converter/aminoAcidsDatabase";
 import { SURELER } from "./converter/sureler";
 import { unitGuideRedirects } from "./converter/unitGlossary";
-import { ALTIN_SAYFALARI } from "./converter/turkishAltinPages";
+import { ALTIN_SAYFALARI, AYRI_ALTIN_SAYFALARI } from "./converter/turkishAltinPages";
 import { cgpaUniversities } from "./converter/india/cgpaUniversities";
 import { getAllRegions } from "./converter/regionElevationHubUz";
 import { GERMAN_STATES } from "./converter/time/germanHolidays";
@@ -81,9 +81,9 @@ function sureCuzRedirects(): MergedRedirect[] {
   ];
 }
 
-/** Altın türü sayfaları ("çeyrek altın kaç gram") altın hesaplama tablosunda. */
+/** Altın türü sayfaları altın hesaplama tablosunda; çeyrek ve Cumhuriyet altınının kendi sayfası var. */
 function altinRedirects(): MergedRedirect[] {
-  return ALTIN_SAYFALARI.map((id) => r(`/altin-hesaplama/${id}`, `/altin-hesaplama?tur=${id}`));
+  return ALTIN_SAYFALARI.filter((id) => !AYRI_ALTIN_SAYFALARI.includes(id)).map((id) => r(`/altin-hesaplama/${id}`, `/altin-hesaplama?tur=${id}`));
 }
 
 /** Altın ayar çifti sayfaları (24↔22, 22↔18, 18↔14) rakamlar dışında aynıydı; her dilde altın hesaplayıcısına ya da altın ayar kategorisindeki çeviriciye yönlenir. */

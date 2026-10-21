@@ -145,6 +145,8 @@ import { SITE_LAST_MODIFIED, SITE_URL } from "./siteConfig";
 import { CHRISTIAN_TOOLS_PATH, englishChristianTools } from "./i18n/englishChristianTools";
 import { CATHOLIC_PATHS } from "./i18n/catholicTools";
 import { GOLD_CALCULATOR_PATHS } from "./i18n/goldCalculatorPaths";
+import { KARAT_PAIRS } from "./converter/goldKaratPairs";
+import { OZEL_GUN_SAYFALARI } from "./converter/calendar/ozelGunIcerik";
 import { CYCLE_PATHS } from "./i18n/cycleCalculatorContent";
 import { BENGALI_ISLAMIC_HUB, ISLAMIC_TOOL_PATHS, UZBEK_ISLAMIC_PATHS } from "./i18n/islamicToolPaths";
 
@@ -2811,6 +2813,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...[
       "/takvim",
       "/ozel-gunler",
+      ...OZEL_GUN_SAYFALARI.map((id) => `/ozel-gunler/${id}`),
       "/firtina-takvimi",
       "/dogdugum-gun-hangi-gun",
       "/okul-takvimi",
@@ -6060,6 +6063,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     ...[
       ...Object.values(GOLD_CALCULATOR_PATHS),
+      ...KARAT_PAIRS.map((k) => `/en/${k.slug}`),
+      "/24-ayar-altin-22-ayar-altin",
+      "/22-ayar-altin-24-ayar-altin",
       ...Object.values(CYCLE_PATHS),
       BENGALI_ISLAMIC_HUB,
       ...Object.values(ISLAMIC_TOOL_PATHS).map((p) => p.bn),

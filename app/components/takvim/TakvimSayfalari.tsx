@@ -16,6 +16,7 @@ import {
   takvimYilPath,
   yilEtkinlikleri,
   etkinlikTarihleri,
+  GUN_ADLARI,
   type Etkinlik,
   type Kategori,
   type Tarihli,
@@ -26,6 +27,7 @@ import { skyEvents } from "../../converter/time/skyEvents";
 import { ayTumEtiketleri, yilGokyuzuEtiketleri } from "../../converter/calendar/gokyuzuEtiketleri";
 import { trGunu, type Etiket } from "../../converter/calendar/gunEtiketleri";
 import type { FaqItem } from "../../converter/faqSchema";
+import { OZEL_GUN_SAYFALARI, type OzelGunIcerik } from "../../converter/calendar/ozelGunIcerik";
 import type { YMD } from "../../converter/time/calendars";
 import {
   addDaysYmd,
@@ -1065,6 +1067,13 @@ export function OzelGunlerHub() {
                   </Link>
                 </p>
               ) : null}
+              {OZEL_GUN_SAYFALARI.includes(e.id) ? (
+                <p>
+                  <Link href={`/ozel-gunler/${e.id}`} prefetch={false}>
+                    {e.ad}: anlamı, gelenekleri ve yıllara göre tarihleri
+                  </Link>
+                </p>
+              ) : null}
             </section>
           );
         }),
@@ -1084,3 +1093,111 @@ export function OzelGunlerHub() {
   );
 }
 
+
+/* ------------------------------------------------------------------ */
+/* /ozel-gunler/<id>: kendi sayfası olan özel günler                   */
+
+export function OzelGunDetay({ e, icerik }: { e: Etkinlik; icerik: OzelGunIcerik }) {
+  const bugun = trBugun();
+  const s = sonrakiTarih(e, bugun);
+  const kalan = s ? diffDays(bugun, s.tarih) : null;
+  const satirlar = TAKVIM_YILLARI.flatMap((y) => etkinlikTarihleri(e, y));
+  const iliskili = icerik.iliskili.ids
+    .map((id) => ETKINLIKLER.find((x) => x.id === id))
+    .filter((x): x is Etkinlik => Boolean(x))
+    .map((x) => ({ x, t: sonrakiTarih(x, bugun) }))
+    .filter((r): r is { x: Etkinlik; t: Tarihli } => Boolean(r.t))
+    .sort((a, b) => ymdKey(a.t.tarih).localeCompare(ymdKey(b.t.tarih)));
+  const path = `/ozel-gunler/${e.id}`;
+  return (
+    <TimeToolPage
+      crumbs={[HOME, HUB, { href: "/ozel-gunler", label: "Özel Günler" }, { href: path, label: e.ad }]}
+      crumbLabel={T.crumbLabel}
+      title={icerik.h1}
+      intro={icerik.intro}
+      tool={
+        <div className="takvim-kart">
+          <TakvimGorsel gorsel={e.gorsel} size={72} />
+          <div>
+            <span className={`takvim-kat kat-${e.kategori}`}>{KATEGORI_ADI[e.kategori]}</span>
+            <p>
+              <strong>
+                {s ? `${s.not ? `${s.not}: ` : ""}${tarihMetni(s.tarih)}` : "—"}
+                {kalan !== null ? (kalan <= 0 ? " · bugün" : ` · ${kalan} gün kaldı`) : ""}
+                {s?.tahmini ? " (tahmini)" : ""}
+              </strong>
+            </p>
+            <p>{e.kisa}</p>
+            <p>
+              <TatilEtiketi e={e} />
+            </p>
+          </div>
+        </div>
+      }
+      related={{ title: T.related, links: [{ href: "/ozel-gunler", label: "Tüm özel günler" }, ...(e.araclar ?? []), HUB, ...TAKVIM_ARACLARI.slice(0, 4)] }}
+      tocTitle={T.toc}
+      tocItems={[
+        { id: "tarihler", label: `Yıllara göre ${e.ad.toLocaleLowerCase("tr-TR")} tarihleri` },
+        { id: "iliskili", label: icerik.iliskili.baslik },
+        ...icerik.bolumler.map((b) => ({ id: b.id, label: b.baslik })),
+        { id: "faq", label: T.faq },
+      ]}
+      faqTitle={T.faq}
+      faqItems={icerik.sss}
+    >
+      <h2 id="tarihler">Yıllara göre {e.ad.toLocaleLowerCase("tr-TR")} tarihleri</h2>
+      <div className="holiday-table-wrap">
+        <table className="holiday-table">
+          <thead>
+            <tr>
+              <th scope="col">Yıl</th>
+              <th scope="col">Tarih</th>
+              <th scope="col">Gün</th>
+            </tr>
+          </thead>
+          <tbody>
+            {satirlar.map((t) => (
+              <tr key={ymdKey(t.tarih)}>
+                <th scope="row">{t.tarih.year}</th>
+                <td>
+                  {t.not ? `${t.not}: ` : ""}
+                  {aralik(t)}
+                  {t.tahmini ? " (tahmini)" : ""}
+                </td>
+                <td>{GUN_ADLARI[weekdayOf(t.tarih)]}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p>{e.hakkinda}</p>
+
+      <h2 id="iliskili">{icerik.iliskili.baslik}</h2>
+      <ul className="takvim-liste">
+        {iliskili.map(({ x, t }) => (
+          <li key={x.id + ymdKey(t.tarih)}>
+            <strong>{tarihliAd(t)}</strong>: {tarihMetni(t.tarih)}
+            {t.tahmini ? " (tahmini)" : ""} · {diffDays(bugun, t.tarih) <= 0 ? "bugün" : `${diffDays(bugun, t.tarih)} gün sonra`}
+          </li>
+        ))}
+      </ul>
+
+      {icerik.bolumler.map((b) => (
+        <section key={b.id}>
+          <h2 id={b.id}>{b.baslik}</h2>
+          {b.paragraflar.map((p) => (
+            <p key={p.slice(0, 40)}>{p}</p>
+          ))}
+        </section>
+      ))}
+      {e.kategori === "dini" ? (
+        <p>
+          <small>
+            Dini günler Diyanet İşleri Başkanlığı&apos;nın takvimine göredir; {DINI_DOGRULANAN} sonrası yıllar Diyanet takvimi yayımlanana kadar
+            tahminidir.
+          </small>
+        </p>
+      ) : null}
+    </TimeToolPage>
+  );
+}

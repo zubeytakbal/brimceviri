@@ -12,6 +12,8 @@ import { aminoAcidsDatabase } from "./converter/aminoAcidsDatabase";
 import { SURELER } from "./converter/sureler";
 import { unitGuideRedirects } from "./converter/unitGlossary";
 import { ALTIN_SAYFALARI, AYRI_ALTIN_SAYFALARI } from "./converter/turkishAltinPages";
+import { ETKINLIKLER } from "./converter/calendar/trTakvim";
+import { OZEL_GUN_SAYFALARI } from "./converter/calendar/ozelGunIcerik";
 import { cgpaUniversities } from "./converter/india/cgpaUniversities";
 import { getAllRegions } from "./converter/regionElevationHubUz";
 import { GERMAN_STATES } from "./converter/time/germanHolidays";
@@ -86,11 +88,13 @@ function altinRedirects(): MergedRedirect[] {
   return ALTIN_SAYFALARI.filter((id) => !AYRI_ALTIN_SAYFALARI.includes(id)).map((id) => r(`/altin-hesaplama/${id}`, `/altin-hesaplama?tur=${id}`));
 }
 
-/** Altın ayar çifti sayfaları (24↔22, 22↔18, 18↔14) rakamlar dışında aynıydı; her dilde altın hesaplayıcısına ya da altın ayar kategorisindeki çeviriciye yönlenir. */
+/** Altın ayar çifti sayfaları (24↔22, 22↔18, 18↔14) rakamlar dışında aynıydı. Tıklama alanlar (TR 24↔22, EN 24k↔22k,
+ * 18k↔22k, 14k→18k) Ekim 2026'da özgün içerikle geri açıldı (app/24-ayar-altin-22-ayar-altin, app/converter/goldKaratPairs.ts);
+ * kalanlar her dilde altın hesaplayıcısına ya da altın ayar kategorisindeki çeviriciye yönlenir. */
 function goldKaratPairRedirects(): MergedRedirect[] {
   const pairs: Record<string, { to: string; slugs: string[] }> = {
-    "": { to: "/kategoriler/altin-ayar", slugs: ["14-ayar-altin-18-ayar-altin", "18-ayar-altin-14-ayar-altin", "18-ayar-altin-22-ayar-altin", "22-ayar-altin-18-ayar-altin", "22-ayar-altin-24-ayar-altin", "24-ayar-altin-22-ayar-altin"] },
-    en: { to: "/en/gold-karat-calculator", slugs: ["14k-gold-to-18k-gold", "18k-gold-to-14k-gold", "18k-gold-to-22k-gold", "22k-gold-to-18k-gold", "22k-gold-to-24k-gold", "24k-gold-to-22k-gold"] },
+    "": { to: "/kategoriler/altin-ayar", slugs: ["14-ayar-altin-18-ayar-altin", "18-ayar-altin-14-ayar-altin", "18-ayar-altin-22-ayar-altin", "22-ayar-altin-18-ayar-altin"] },
+    en: { to: "/en/gold-karat-calculator", slugs: ["18k-gold-to-14k-gold"] },
     ar: { to: "/ar/categories/gold-karat", slugs: ["14k-gold-to-18k-gold", "18k-gold-to-14k-gold", "18k-gold-to-22k-gold", "22k-gold-to-18k-gold", "22k-gold-to-24k-gold", "24k-gold-to-22k-gold"] },
     de: { to: "/de/goldrechner", slugs: ["14-karat-gold-18-karat-gold", "18-karat-gold-14-karat-gold", "18-karat-gold-22-karat-gold", "22-karat-gold-18-karat-gold", "22-karat-gold-24-karat-gold", "24-karat-gold-22-karat-gold"] },
     es: { to: "/es/calculadora-de-oro", slugs: ["oro-14-quilates-oro-18-quilates", "oro-18-quilates-oro-14-quilates", "oro-18-quilates-oro-22-quilates", "oro-22-quilates-oro-18-quilates", "oro-22-quilates-oro-24-quilates", "oro-24-quilates-oro-22-quilates"] },
@@ -149,10 +153,18 @@ function materialRedirects(): MergedRedirect[] {
     r("/de/chemische-verbindungen/:slug", "/de/chemische-verbindungen?v=:slug"),
     r("/de/entfernung/:stadt/:ziel", "/de/entfernung/:stadt?nach=:ziel"),
     r("/en/bible-books/:book", "/en/bible-books?book=:book"),
-    r("/ozel-gunler/:id", "/ozel-gunler?gun=:id"),
     r("/de/besondere-tage/:id", "/de/besondere-tage?tag=:id"),
     r("/ar/occasions/:id", "/ar/occasions?id=:id"),
   ];
+}
+
+/** Ekim 2026'da birleştirilen özel gün sayfaları: kendi sayfası geri açılanlar (ozelGunIcerik.ts) yönlenmez, geri sayımı
+ * olanlar geri sayım sayfasına, kalanlar özel günler sayfasındaki bölümlerine gider. Hristiyan günlerinin hiç ayrı
+ * sayfası olmadığı için kural yazılmaz. */
+function ozelGunRedirects(): MergedRedirect[] {
+  return ETKINLIKLER.filter((e) => e.kategori !== "hristiyan" && !OZEL_GUN_SAYFALARI.includes(e.id)).map((e) =>
+    r(`/ozel-gunler/${e.id}`, e.geriSayim ? `/geri-sayim/${e.geriSayim}` : `/ozel-gunler?gun=${e.id}`),
+  );
 }
 
 function takvimGunRedirects(): MergedRedirect[] {
@@ -237,5 +249,5 @@ function legacyRedirects(): MergedRedirect[] {
 }
 
 export function mergedPageRedirects(): MergedRedirect[] {
-  return [...timerRedirects(), ...alarmRedirects(), ...fxRedirects(), ...uzLicenseRedirects(), ...es419Redirects(), ...numberRedirects(), ...aminoAcidRedirects(), ...sureCuzRedirects(), ...unitGuideRedirects().map((x) => r(x.source, x.destination)), ...altinRedirects(), ...goldKaratPairRedirects(), ...cgpaRedirects(), ...uzRegionRedirects(), ...feiertageRedirects(), ...federalHolidayRedirects(), ...takvimGunRedirects(), ...materialRedirects(), r("/ulkeler/s-o-tome-ve-principe", "/ulkeler/sao-tome-ve-principe"), ...legacyRedirects()];
+  return [...timerRedirects(), ...alarmRedirects(), ...fxRedirects(), ...uzLicenseRedirects(), ...es419Redirects(), ...numberRedirects(), ...aminoAcidRedirects(), ...sureCuzRedirects(), ...unitGuideRedirects().map((x) => r(x.source, x.destination)), ...altinRedirects(), ...goldKaratPairRedirects(), ...cgpaRedirects(), ...uzRegionRedirects(), ...feiertageRedirects(), ...federalHolidayRedirects(), ...takvimGunRedirects(), ...ozelGunRedirects(), ...materialRedirects(), r("/ulkeler/s-o-tome-ve-principe", "/ulkeler/sao-tome-ve-principe"), ...legacyRedirects()];
 }

@@ -1,6 +1,7 @@
 "use client";
 
-import { isSaatBolumu } from "./saat/saatBolumu";
+import dynamic from "next/dynamic";
+import { isSaatAraci, isSaatBolumu } from "./saat/saatBolumu";
 import Link from "@/app/components/SiteLink";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useState } from "react";
@@ -11,6 +12,9 @@ import type { MenuGroup } from "../i18n/siteNavigation";
 import { SITE_NAV_DATA } from "../i18n/siteNavData.generated";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useNotificationSlot } from "./NotificationSlotProvider";
+
+// Saat bölümünün menüsü ve şehir listesi yalnızca o bölümün sayfalarında yüklenir.
+const SaatAracUst = dynamic(() => import("./saat/SaatAracUst"));
 
 type HeaderLink = {
   href: string;
@@ -23,6 +27,7 @@ export default function SiteHeader() {
   if (pathname.startsWith("/embed/") || isSaatBolumu(pathname)) {
     return null;
   }
+  if (isSaatAraci(pathname)) return <SaatAracUst />;
   return <SiteHeaderNavigation key={pathname} pathname={pathname} />;
 }
 

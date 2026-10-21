@@ -1,6 +1,7 @@
 "use client";
 
-import { isSaatBolumu } from "./saat/saatBolumu";
+import dynamic from "next/dynamic";
+import { isSaatAraci, isSaatBolumu } from "./saat/saatBolumu";
 import Link from "@/app/components/SiteLink";
 import { usePathname, useRouter } from "next/navigation";
 import { getLocaleFromPathname } from "../i18n/config";
@@ -10,6 +11,9 @@ import {
   SITE_CONTACT_EMAIL,
   SITE_NAME,
 } from "../siteConfig";
+
+// Saat bölümünün alt bilgisi yalnızca o bölümün sayfalarında yüklenir.
+const SaatAltBilgi = dynamic(() => import("./saat/SaatAltBilgi"));
 
 const ARAC_SAYISI = 5;
 // Bilgi sayfaları alt satırda; Ana Sayfa ve araç dizinleri üstteki sütunlarda zaten var.
@@ -90,6 +94,7 @@ export default function SiteFooter() {
   if (pathname.startsWith("/embed/") || isSaatBolumu(pathname)) {
     return null;
   }
+  if (isSaatAraci(pathname)) return <SaatAltBilgi />;
   const locale = getLocaleFromPathname(pathname);
   const nav = SITE_NAV_DATA.locales[locale];
   if (locale === "tr") {

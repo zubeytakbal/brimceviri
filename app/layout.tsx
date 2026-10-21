@@ -6,6 +6,7 @@ import { NotificationSlotProvider } from "./components/NotificationSlotProvider"
 import RecentToolsTracker from "./components/RecentToolsTracker";
 import SiteHeader from "./components/SiteHeader";
 import SiteFooter from "./components/SiteFooter";
+import { saatEski, saatFraktur, saatGazete, saatMetin, saatRakam } from "./components/saat/saatFontlari";
 import { LOCALE_DEFINITIONS } from "./i18n/config";
 import { SITE_NAME, SITE_URL } from "./siteConfig";
 
@@ -188,7 +189,7 @@ export default function RootLayout({
         </Script>
       </head>
       <body
-        className={`${plusJakartaSans.variable} ${notoSansHeading.variable} ${logoFont.variable} ${cairo.variable}`}
+        className={`${plusJakartaSans.variable} ${notoSansHeading.variable} ${logoFont.variable} ${cairo.variable} ${saatRakam.variable} ${saatMetin.variable} ${saatGazete.variable} ${saatEski.variable} ${saatFraktur.variable}`}
       >
         <NotificationSlotProvider>
           <SiteHeader />

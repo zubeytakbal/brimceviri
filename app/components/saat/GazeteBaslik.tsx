@@ -15,7 +15,7 @@ export default function GazeteBaslik({ an, timeZone, baski }: { an: Date; timeZo
         <span>Her gün güncellenir</span>
         <span>Sayı {haftaNo(an, timeZone)}</span>
       </div>
-      <p className="gazete-ad">Dünya Saatleri</p>
+      <p className="gazete-ad">Saat ve Takvim</p>
       <div className="gazete-tarih">
         <span>{new Intl.DateTimeFormat("tr-TR", { timeZone, weekday: "long", day: "numeric", month: "long", year: "numeric" }).format(an)}</span>
         <span>{baski} baskısı</span>

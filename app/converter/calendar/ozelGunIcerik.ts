@@ -391,6 +391,223 @@ export const OZEL_GUN_ICERIK: Record<string, OzelGunIcerik> = {
       },
     ],
   },
+  yilbasi: {
+    title: "Yılbaşı Hangi Gün? 1 Ocak Resmî Tatil ve Yılbaşının Tarihçesi",
+    short: "Yılbaşı Hangi Gün?",
+    description:
+      "Yılbaşı (1 Ocak) bu yıl hangi güne denk geliyor, resmî tatil mi? Türkiye'nin miladi takvime geçtiği 1926 yılı, yılbaşı tatilinin yasal dayanağı ve sık sorulan sorular.",
+    h1: "Yılbaşı hangi gün?",
+    intro:
+      "Yılbaşı her yıl 1 Ocak'tır ve Türkiye'de bir günlük resmî tatildir. Tarih değişmez; yalnızca haftanın hangi gününe denk geldiği her yıl bir gün (artık yıldan sonra iki gün) kayar.",
+    iliskili: { baslik: "Kış ve yılbaşı dönemindeki günler", ids: ["yilbasi", "noel", "kis", "erbain", "23-nisan"] },
+    bolumler: [
+      {
+        id: "takvim",
+        baslik: "Türkiye miladi takvime ne zaman geçti?",
+        paragraflar: [
+          "Türkiye 26 Aralık 1925'te kabul edilen 698 sayılı kanunla miladi takvime geçti; kanun 1 Ocak 1926'da yürürlüğe girdi. O tarihe kadar resmî yazışmalarda Rumi ve Hicri takvim kullanılıyordu. Aynı gün kabul edilen 697 sayılı kanunla da günün başlangıcı gece yarısı olarak belirlendi.",
+          "Böylece 1 Ocak, yılın ilk günü olarak resmî takvime girdi. Yılbaşı tatili bugün 2429 sayılı Ulusal Bayram ve Genel Tatiller Hakkında Kanun'a dayanır; 31 Aralık ise tatil değildir.",
+        ],
+      },
+      {
+        id: "gelenek",
+        baslik: "Yılbaşı gelenekleri",
+        paragraflar: [
+          "Türkiye'de yılbaşı gecesi ailece ya da arkadaşlarla bir araya gelinir, gece yarısı geri sayımla yeni yıla girilir. Milli Piyango'nun yılbaşı çekilişi, çam ağacı süslemek ve hindi ya da fırın yemekleri yaygın geleneklerdir. Çam ağacı ve hediye geleneği Noel'den gelse de Türkiye'de dinî bir anlamı olmadan yeni yılın simgesi olarak benimsenmiştir.",
+          "Dünyada yeni yıla ilk giren yerler Pasifik'teki Kiribati'nin Line Adaları (UTC+14), son girenler ise ABD'ye bağlı Baker ve Howland adalarıdır (UTC−12); aralarında 26 saat vardır.",
+        ],
+      },
+    ],
+    sss: [
+      {
+        question: "Yılbaşı resmî tatil mi?",
+        answer: "Evet, 1 Ocak Türkiye'de bir günlük resmî tatildir. 31 Aralık tatil değildir, yarım gün de sayılmaz.",
+      },
+      {
+        question: "Türkiye miladi takvime ne zaman geçti?",
+        answer: "26 Aralık 1925 tarihli 698 sayılı kanunla; miladi takvim 1 Ocak 1926'da yürürlüğe girdi.",
+      },
+      {
+        question: "Yılbaşına kaç gün kaldı?",
+        answer: "Gün, saat ve saniye olarak geri sayım yılbaşı geri sayım sayfasında; tarihin hangi güne denk geldiği yukarıdaki tabloda.",
+      },
+    ],
+  },
+  "sevgililer-gunu": {
+    title: "Sevgililer Günü Ne Zaman? 14 Şubat'ın Hikâyesi",
+    short: "Sevgililer Günü Ne Zaman?",
+    description:
+      "Sevgililer Günü (14 Şubat) bu yıl hangi güne denk geliyor? Günün adını aldığı Aziz Valentin, 14 Şubat'ın sevgiyle nasıl ilişkilendirildiği ve Türkiye'de tatil olup olmadığı.",
+    h1: "Sevgililer Günü ne zaman?",
+    intro:
+      "Sevgililer Günü her yıl 14 Şubat'tadır; tarih değişmez, yalnızca haftanın günü değişir. Türkiye'de resmî tatil değildir.",
+    iliskili: { baslik: "Şubat ve Mart'taki diğer günler", ids: ["sevgililer-gunu", "cemre", "dunya-kadinlar-gunu", "tip-bayrami", "nevruz"] },
+    bolumler: [
+      {
+        id: "tarihce",
+        baslik: "Adını nereden alıyor?",
+        paragraflar: [
+          "Günün adı, 3. yüzyılda Roma'da yaşadığı ve 14 Şubat'ta öldürüldüğü anlatılan Aziz Valentin'den (Valentinus) gelir. Hakkındaki hikâyelerin çoğu efsanedir; Katolik Kilisesi 1969'da bu günü genel azizler takviminden çıkardı.",
+          "14 Şubat'ın romantik sevgiyle ilişkilendirildiği bilinen en eski metin, İngiliz şair Geoffrey Chaucer'ın 14. yüzyılda yazdığı ve kuşların bu günde eş seçtiğini anlatan şiiridir. Kart gönderme geleneği 18. ve 19. yüzyılda İngiltere'de yaygınlaştı, basılı kartlar 19. yüzyılda çıktı.",
+        ],
+      },
+      {
+        id: "turkiye",
+        baslik: "Türkiye'de Sevgililer Günü",
+        paragraflar: [
+          "Türkiye'de 14 Şubat çiçek, özellikle kırmızı gül ve hediye alışverişinin en yoğun olduğu günlerden biridir. Resmî bir anlamı yoktur, iş ve okul günü olarak geçer.",
+        ],
+      },
+    ],
+    sss: [
+      {
+        question: "Sevgililer Günü resmî tatil mi?",
+        answer: "Hayır. Türkiye'de ve dünyanın büyük bölümünde resmî tatil değildir.",
+      },
+      {
+        question: "Sevgililer Günü neden 14 Şubat?",
+        answer: "Aziz Valentin'in anma günü 14 Şubat olduğu için. Günün romantik anlam kazanması 14. yüzyıldaki İngiliz edebiyatına dayanır.",
+      },
+    ],
+  },
+  "tip-bayrami": {
+    title: "Tıp Bayramı Ne Zaman? 14 Mart'ın Tarihçesi",
+    short: "Tıp Bayramı Ne Zaman?",
+    description:
+      "14 Mart Tıp Bayramı bu yıl hangi güne denk geliyor? 1827'de açılan Tıphane-i Âmire, işgal altındaki İstanbul'da 1919'da yapılan ilk kutlama ve bayramın tatil olup olmadığı.",
+    h1: "Tıp Bayramı ne zaman?",
+    intro:
+      "Tıp Bayramı her yıl 14 Mart'ta kutlanır. Türkiye'de resmî tatil değildir; hastanelerde ve tıp fakültelerinde törenler yapılır, sağlık çalışanları anılır.",
+    iliskili: { baslik: "Mart ayındaki diğer günler", ids: ["tip-bayrami", "dunya-kadinlar-gunu", "istiklal-marsi", "canakkale-zaferi", "nevruz", "hemsireler-gunu"] },
+    bolumler: [
+      {
+        id: "tarihce",
+        baslik: "Neden 14 Mart?",
+        paragraflar: [
+          "14 Mart 1827'de II. Mahmud döneminde İstanbul Şehzadebaşı'nda Tıphane-i Âmire ve Cerrahhane-i Âmire açıldı. Batılı anlamda hekim yetiştiren ilk okul olan bu kurum, bugünkü İstanbul Üniversitesi Tıp Fakültesi'nin başlangıcı kabul edilir.",
+          "14 Mart ilk kez 1919'da, İstanbul işgal altındayken tıp öğrencilerinin düzenlediği bir törenle kutlandı. Tören, işgale karşı bir duruş olarak hatırlanır; o yıldan beri 14 Mart Tıp Bayramı olarak anılır.",
+        ],
+      },
+      {
+        id: "bugun",
+        baslik: "Bugün nasıl kutlanıyor?",
+        paragraflar: [
+          "Tıp Bayramı'nda tıp fakültelerinde ve hastanelerde törenler, paneller ve hizmet ödülleri düzenlenir. Gün yalnızca hekimlerin değil, hemşire, ebe, teknisyen ve diğer bütün sağlık çalışanlarının günü olarak kutlanır. Hemşireler ayrıca 12-18 Mayıs'taki Hemşireler Haftası'nda anılır.",
+        ],
+      },
+    ],
+    sss: [
+      {
+        question: "Tıp Bayramı resmî tatil mi?",
+        answer: "Hayır, resmî tatil değildir. Hastaneler ve okullar normal çalışır.",
+      },
+      {
+        question: "Tıp Bayramı ilk ne zaman kutlandı?",
+        answer: "İlk kez 14 Mart 1919'da, işgal altındaki İstanbul'da tıp öğrencilerinin düzenlediği törenle kutlandı.",
+      },
+      {
+        question: "Tıphane-i Âmire ne zaman açıldı?",
+        answer: "14 Mart 1827'de İstanbul'da açıldı; Tıp Bayramı'nın tarihi buradan gelir.",
+      },
+    ],
+  },
+  nevruz: {
+    title: "Nevruz Ne Zaman? 21 Mart Nevruz Bayramı ve Anlamı",
+    short: "Nevruz Ne Zaman?",
+    description:
+      "Nevruz bu yıl hangi güne denk geliyor? Baharın gelişini kutlayan 21 Mart Nevruz Bayramı'nın gece-gündüz eşitliğiyle ilişkisi, UNESCO listesi ve Türkiye'deki gelenekleri.",
+    h1: "Nevruz ne zaman?",
+    intro:
+      "Nevruz her yıl 21 Mart'ta kutlanır ve baharın gelişini, yeni yılın başlangıcını simgeler. Türkiye'de resmî tatil değildir; ateş üstünden atlama ve bahar şenlikleriyle kutlanır.",
+    iliskili: { baslik: "Bahar başındaki günler", ids: ["nevruz", "ilkbahar", "cemre", "canakkale-zaferi", "hidirellez"] },
+    bolumler: [
+      {
+        id: "anlam",
+        baslik: "Nevruz ne demek?",
+        paragraflar: [
+          "Nevruz Farsça \"yeni gün\" demektir. Kuzey yarımkürede gece ile gündüzün eşitlendiği ilkbahar ekinoksuna (20 ya da 21 Mart) denk gelir ve İran'dan Orta Asya'ya, Kafkasya'dan Balkanlar'a kadar geniş bir coğrafyada yeni yılın ve baharın başlangıcı olarak kutlanır.",
+          "Türk kültüründe Nevruz, Ergenekon'dan çıkışın ve yeniden doğuşun günü olarak da anılır. Demir dövme, ateş üzerinden atlama, yumurta boyama ve bahar temizliği yaygın geleneklerdir.",
+        ],
+      },
+      {
+        id: "unesco",
+        baslik: "UNESCO ve Birleşmiş Milletler",
+        paragraflar: [
+          "Nevruz, Türkiye'nin de aralarında bulunduğu ülkelerin ortak başvurusuyla 2009'da UNESCO İnsanlığın Somut Olmayan Kültürel Mirası Temsili Listesi'ne girdi; liste 2016'da yeni ülkelerin katılımıyla genişletildi. Birleşmiş Milletler Genel Kurulu 2010'da 21 Mart'ı Uluslararası Nevruz Günü ilan etti.",
+        ],
+      },
+    ],
+    sss: [
+      {
+        question: "Nevruz resmî tatil mi?",
+        answer: "Türkiye'de resmî tatil değildir. İran, Azerbaycan, Kazakistan, Kırgızistan, Özbekistan ve Türkmenistan gibi ülkelerde ise tatildir.",
+      },
+      {
+        question: "Nevruz neden 21 Mart?",
+        answer: "Gece ile gündüzün eşitlendiği ilkbahar ekinoksuna denk geldiği için. Ekinoks bazı yıllar 20 Mart'a düşer; kutlama geleneksel olarak 21 Mart'ta yapılır.",
+      },
+    ],
+  },
+  "anneler-gunu": {
+    title: "Anneler Günü Ne Zaman? Mayıs'ın İkinci Pazarı",
+    short: "Anneler Günü Ne Zaman?",
+    description:
+      "Anneler Günü bu yıl hangi tarihte? Mayıs ayının ikinci pazarına denk gelen Anneler Günü'nün tarihçesi, Türkiye'de ilk kutlandığı yıl ve sonraki yılların tarihleri.",
+    h1: "Anneler Günü ne zaman?",
+    intro:
+      "Türkiye'de Anneler Günü her yıl Mayıs ayının ikinci pazar günü kutlanır; bu yüzden tarihi her yıl değişir. Pazar gününe denk geldiği için ayrıca tatil sayılmaz.",
+    iliskili: { baslik: "Mayıs ve Haziran'daki günler", ids: ["anneler-gunu", "hidirellez", "hemsireler-gunu", "19-mayis", "babalar-gunu"] },
+    bolumler: [
+      {
+        id: "tarihce",
+        baslik: "Anneler Günü nereden çıktı?",
+        paragraflar: [
+          "Bugünkü Anneler Günü, ABD'de Anna Jarvis'in annesi için 1908'de Batı Virginia'nın Grafton kasabasında düzenlediği anma törenine dayanır. Jarvis'in çabalarıyla ABD Başkanı Woodrow Wilson 1914'te Mayıs'ın ikinci pazarını resmî Anneler Günü ilan etti.",
+          "Türkiye'de ilk kutlama 1955'te Hürriyet gazetesinin öncülüğünde yapıldı. Bugün Türkiye, ABD ve Almanya gibi pek çok ülkede Mayıs'ın ikinci pazarı kutlanır; İngiltere'de ise Paskalya'dan üç hafta önceki pazar (Mothering Sunday) Anneler Günü'dür.",
+        ],
+      },
+    ],
+    sss: [
+      {
+        question: "Anneler Günü her yıl aynı tarihte mi?",
+        answer: "Hayır. Mayıs'ın ikinci pazarı olduğu için tarihi 8 ile 14 Mayıs arasında değişir. Sonraki yılların tarihleri yukarıdaki tabloda.",
+      },
+      {
+        question: "Türkiye'de Anneler Günü ilk ne zaman kutlandı?",
+        answer: "İlk kez 1955'te kutlandı.",
+      },
+    ],
+  },
+  "babalar-gunu": {
+    title: "Babalar Günü Ne Zaman? Haziran'ın Üçüncü Pazarı",
+    short: "Babalar Günü Ne Zaman?",
+    description:
+      "Babalar Günü bu yıl hangi tarihte? Haziran ayının üçüncü pazarına denk gelen Babalar Günü'nün tarihçesi, ilk kutlandığı yer ve sonraki yılların tarihleri.",
+    h1: "Babalar Günü ne zaman?",
+    intro:
+      "Türkiye'de Babalar Günü her yıl Haziran ayının üçüncü pazar günü kutlanır; tarihi her yıl değişir ve 15 ile 21 Haziran arasına düşer.",
+    iliskili: { baslik: "Haziran ve yaz başındaki günler", ids: ["babalar-gunu", "anneler-gunu", "cevre-gunu", "yaz", "15-temmuz"] },
+    bolumler: [
+      {
+        id: "tarihce",
+        baslik: "Babalar Günü nereden çıktı?",
+        paragraflar: [
+          "Babalar Günü ilk kez 19 Haziran 1910'da ABD'nin Washington eyaletindeki Spokane şehrinde, Sonora Smart Dodd'un çocuklarını tek başına büyüten babasını onurlandırmak için başlattığı törenle kutlandı. Gün, ABD'de 1972'de Başkan Richard Nixon'ın imzaladığı yasayla Haziran'ın üçüncü pazarı olarak kalıcı hâle geldi.",
+          "Türkiye de Haziran'ın üçüncü pazarını kutlar. İtalya, İspanya ve Portekiz gibi Katolik ülkelerde ise Babalar Günü, Aziz Yusuf'un günü olan 19 Mart'tır.",
+        ],
+      },
+    ],
+    sss: [
+      {
+        question: "Babalar Günü her yıl aynı tarihte mi?",
+        answer: "Hayır. Haziran'ın üçüncü pazarı olduğu için 15 ile 21 Haziran arasında değişir. Sonraki yılların tarihleri yukarıdaki tabloda.",
+      },
+      {
+        question: "Babalar Günü tatil mi?",
+        answer: "Pazar gününe denk geldiği için ayrıca resmî tatil değildir.",
+      },
+    ],
+  },
 };
 
 export const OZEL_GUN_SAYFALARI = Object.keys(OZEL_GUN_ICERIK);

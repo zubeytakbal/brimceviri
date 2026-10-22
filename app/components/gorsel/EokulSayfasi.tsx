@@ -78,7 +78,7 @@ export function EokulSayfasi() {
             },
             { href: "/gorsel-donusturucu", label: "Görsel Dönüştürücü" },
             { href: "/okul-takvimi", label: "Okul Takvimi" },
-            { href: "/hesaplayicilar#olcu-ve-gunluk", label: "Mutfak, Beden ve Okul" },
+            { href: "/ogretmen-araclari", label: "Öğretmen Araçları" },
             { href: "/devamsizlik-hesaplama", label: "Devamsızlık Hesaplama" },
             { href: "/harf-notu-hesaplama", label: "Harf Notu Hesaplama" },
           ],

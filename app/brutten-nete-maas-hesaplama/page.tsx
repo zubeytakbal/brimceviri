@@ -67,7 +67,7 @@ export default function MaasPage() {
     <TimeToolPage
       crumbs={[
         { href: "/", label: "Ana sayfa" },
-        { href: "/hesaplayicilar#para-ve-is", label: "Para, Maaş ve Vergi" },
+        { href: "/muhasebeci-araclari", label: "Muhasebeci Araçları" },
         { href: path, label: "Brütten Nete Maaş" },
       ]}
       crumbLabel="Sayfa yolu"
@@ -88,7 +88,7 @@ export default function MaasPage() {
           },
           { href: "/kdv-hesaplama", label: "KDV Hesaplama" },
           { href: "/altin-hesaplama", label: "Altın Hesaplama" },
-          { href: "/hesaplayicilar#para-ve-is", label: "Para, Maaş ve Vergi" },
+          { href: "/muhasebeci-araclari", label: "Muhasebeci Araçları" },
         ],
       }}
       tocTitle="İçindekiler"

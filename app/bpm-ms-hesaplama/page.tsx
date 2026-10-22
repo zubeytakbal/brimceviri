@@ -49,8 +49,8 @@ export default function BpmDelayCalculatorPage() {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: buildSiteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "Tüm Hesaplamalar", item: buildSiteUrl("/hesaplayicilar") },
-      { "@type": "ListItem", position: 3, name: "Teknik ve Mühendislik", item: buildSiteUrl("/hesaplayicilar#teknik") },
+      { "@type": "ListItem", position: 2, name: "Mesleğe Göre Araçlar", item: buildSiteUrl("/meslekler") },
+      { "@type": "ListItem", position: 3, name: "Müzisyen Araçları", item: buildSiteUrl("/muzisyen-araclari") },
       { "@type": "ListItem", position: 4, name: "BPM - MS Hesaplama", item: buildSiteUrl("/bpm-ms-hesaplama") },
     ],
   };
@@ -64,7 +64,7 @@ export default function BpmDelayCalculatorPage() {
         <nav className="breadcrumbs" aria-label="Sayfa yolu">
           <Link href="/">Ana Sayfa</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/hesaplayicilar#teknik">Teknik ve Mühendislik</Link>
+          <Link href="/muzisyen-araclari">Müzisyen Araçları</Link>
           <span aria-hidden="true">&rsaquo;</span>
           <span>BPM - MS Hesaplama</span>
         </nav>
@@ -103,7 +103,7 @@ export default function BpmDelayCalculatorPage() {
           <h2>İlgili araçlar</h2>
           <p>
             Diğer müzisyen araçları için{" "}
-            <Link href="/hesaplayicilar#teknik">Teknik ve Mühendislik</Link>{" "}
+            <Link href="/muzisyen-araclari">Müzisyen Araçları</Link>{" "}
             sayfasına, Hz/kHz frekans dönüşümleri için{" "}
             <Link href="/kategoriler/frekans">Frekans Dönüşümleri</Link>
             {" "}sayfasına bakabilirsin.

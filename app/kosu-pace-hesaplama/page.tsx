@@ -123,7 +123,7 @@ export default function PaceCalculatorPage() {
           <h2>İlgili araçlar</h2>
           <p>
             Antrenman/beslenme takibi için{" "}
-            <Link href="/hesaplayicilar#saglik-ve-spor">Sağlık ve Spor</Link>,{" "}
+            <Link href="/antrenor-araclari">Antrenör Araçları</Link>,{" "}
             1 tekrar maksimum hesaplama için{" "}
             <Link href="/1rm-hesaplama">1RM Hesaplama</Link>
             {" "}sayfasına bakabilirsin.

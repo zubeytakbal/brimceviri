@@ -22,6 +22,7 @@ export type StaticRouteKey =
   | "ringSize"
   | "engineeringHub"
   | "electricalEngineeringHub"
+  | "professions"
   | "about"
   | "contact"
   | "privacy"
@@ -156,6 +157,9 @@ const staticRouteTranslations: Record<StaticRouteKey, LocalePathMap> = {
     en: "/en/engineering-calculators/electrical-calculators",
     de: "/de/ingenieurrechner/elektrorechner",
     ar: "/ar/engineering-calculators/electrical-calculators",
+  },
+  professions: {
+    tr: "/meslekler",
   },
   about: {
     tr: "/hakkimizda",

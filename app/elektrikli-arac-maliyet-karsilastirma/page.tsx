@@ -103,7 +103,7 @@ export default async function EvVsIceComparisonPage() {
             Mevcut aracının yakıt tüketimini hesaplamak için{" "}
             <Link href="/yakit-tuketimi-hesaplama">Yakıt Tüketimi Hesaplama</Link>
             {" "}sayfasına, diğer otomotiv araçları için{" "}
-            <Link href="/hesaplayicilar#enerji-ve-arac">Enerji, Fatura ve Araç</Link>
+            <Link href="/otomotiv-araclari">Otomotiv Araçları</Link>
             {" "}sayfasına bakabilirsin.
           </p>
 

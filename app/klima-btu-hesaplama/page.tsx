@@ -157,7 +157,7 @@ export default function AcCapacityCalculatorPage() {
             BTU/saat birim dönüşümü için{" "}
             <Link href="/btu-saat-watt">BTU/Saat - Watt Çevirici</Link>
             {" "}sayfasına, diğer klima-soğutma teknisyeni araçları için{" "}
-            <Link href="/hesaplayicilar#enerji-ve-arac">Enerji, Fatura ve Araç</Link>
+            <Link href="/klima-sogutma-teknisyeni-araclari">Klima-Soğutma Teknisyeni Araçları</Link>
             {" "}sayfasına bakabilirsin.
           </p>
 

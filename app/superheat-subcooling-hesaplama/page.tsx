@@ -51,8 +51,8 @@ export default function SuperheatSubcoolingCalculatorPage() {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: buildSiteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "Tüm Hesaplamalar", item: buildSiteUrl("/hesaplayicilar") },
-      { "@type": "ListItem", position: 3, name: "Enerji, Fatura ve Araç", item: buildSiteUrl("/hesaplayicilar#enerji-ve-arac") },
+      { "@type": "ListItem", position: 2, name: "Mesleğe Göre Araçlar", item: buildSiteUrl("/meslekler") },
+      { "@type": "ListItem", position: 3, name: "Klima ve Soğutma Teknisyeni Araçları", item: buildSiteUrl("/klima-sogutma-teknisyeni-araclari") },
       { "@type": "ListItem", position: 4, name: "Superheat ve Subcooling Hesaplama", item: buildSiteUrl("/superheat-subcooling-hesaplama") },
     ],
   };
@@ -66,7 +66,7 @@ export default function SuperheatSubcoolingCalculatorPage() {
         <nav className="breadcrumbs" aria-label="Sayfa yolu">
           <Link href="/">Ana Sayfa</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/hesaplayicilar#enerji-ve-arac">Enerji, Fatura ve Araç</Link>
+          <Link href="/klima-sogutma-teknisyeni-araclari">Klima ve Soğutma Teknisyeni Araçları</Link>
           <span aria-hidden="true">&rsaquo;</span>
           <span>Superheat ve Subcooling Hesaplama</span>
         </nav>
@@ -108,7 +108,7 @@ export default function SuperheatSubcoolingCalculatorPage() {
           <h2>İlgili araçlar</h2>
           <p>
             Diğer klima ve soğutma teknisyeni araçları için{" "}
-            <Link href="/hesaplayicilar#enerji-ve-arac">Enerji, Fatura ve Araç</Link>
+            <Link href="/klima-sogutma-teknisyeni-araclari">Klima ve Soğutma Teknisyeni Araçları</Link>
             {" "}sayfasına bakabilirsin.
           </p>
 

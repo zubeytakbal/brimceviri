@@ -321,7 +321,7 @@ export const fxContentTr: FxLocaleContent = {
     relatedTitle: "İlgili araçlar",
     relatedLinks: [
       { href: "/kdv-hesaplama", label: "KDV hesaplama" },
-      { href: "/altin-hesaplama", label: "Altın Hesaplama" },
+      { href: "/kuyumcu-araclari", label: "Kuyumcu araçları" },
       { href: "/seyahat-priz-voltaj-hesaplama", label: "Seyahat priz ve voltaj rehberi" },
       { href: "/diger-donusumler", label: "Diğer dönüşümler" },
       { href: "/", label: "Tüm birim çeviricileri" },

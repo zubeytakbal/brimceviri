@@ -53,8 +53,8 @@ export default function BarVolumeCalculatorPage() {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: buildSiteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "Tüm Hesaplamalar", item: buildSiteUrl("/hesaplayicilar") },
-      { "@type": "ListItem", position: 3, name: "Mutfak, Beden ve Okul", item: buildSiteUrl("/hesaplayicilar#olcu-ve-gunluk") },
+      { "@type": "ListItem", position: 2, name: "Mesleğe Göre Araçlar", item: buildSiteUrl("/meslekler") },
+      { "@type": "ListItem", position: 3, name: "Barmen Araçları", item: buildSiteUrl("/barmen-araclari") },
       { "@type": "ListItem", position: 4, name: "Kokteyl Ölçüsü Çevirici", item: buildSiteUrl("/kokteyl-olcusu-cevirici") },
     ],
   };
@@ -68,7 +68,7 @@ export default function BarVolumeCalculatorPage() {
         <nav className="breadcrumbs" aria-label="Sayfa yolu">
           <Link href="/">Ana Sayfa</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/hesaplayicilar#olcu-ve-gunluk">Mutfak, Beden ve Okul</Link>
+          <Link href="/barmen-araclari">Barmen Araçları</Link>
           <span aria-hidden="true">&rsaquo;</span>
           <span>Kokteyl Ölçüsü Çevirici</span>
         </nav>
@@ -165,7 +165,7 @@ export default function BarVolumeCalculatorPage() {
           <h2>İlgili araçlar</h2>
           <p>
             Diğer barmen araçları için{" "}
-            <Link href="/hesaplayicilar#olcu-ve-gunluk">Mutfak, Beden ve Okul</Link>
+            <Link href="/barmen-araclari">Barmen Araçları</Link>
             {" "}sayfasına, alkol yüzdesi ve standart içki hesaplama
             için{" "}
             <Link href="/abv-standart-icki-hesaplama">ABV ve Standart İçki Hesaplama</Link>

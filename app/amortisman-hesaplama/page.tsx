@@ -103,7 +103,7 @@ export default function AmortismanPage() {
             KDV hesaplama için{" "}
             <Link href="/kdv-hesaplama">KDV Hesaplama</Link>, diğer
             muhasebeci araçları için{" "}
-            <Link href="/hesaplayicilar#para-ve-is">Para, Maaş ve Vergi</Link>{" "}
+            <Link href="/muhasebeci-araclari">Muhasebeci Araçları</Link>{" "}
             sayfasına bakabilirsin.
           </p>
 

@@ -47,8 +47,8 @@ export default function LetterGradeCalculatorPage() {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: buildSiteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "Tüm Hesaplamalar", item: buildSiteUrl("/hesaplayicilar") },
-      { "@type": "ListItem", position: 3, name: "Mutfak, Beden ve Okul", item: buildSiteUrl("/hesaplayicilar#olcu-ve-gunluk") },
+      { "@type": "ListItem", position: 2, name: "Mesleğe Göre Araçlar", item: buildSiteUrl("/meslekler") },
+      { "@type": "ListItem", position: 3, name: "Öğretmen Araçları", item: buildSiteUrl("/ogretmen-araclari") },
       { "@type": "ListItem", position: 4, name: "Harf Notu Hesaplama", item: buildSiteUrl("/harf-notu-hesaplama") },
     ],
   };
@@ -62,7 +62,7 @@ export default function LetterGradeCalculatorPage() {
         <nav className="breadcrumbs" aria-label="Sayfa yolu">
           <Link href="/">Ana Sayfa</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/hesaplayicilar#olcu-ve-gunluk">Mutfak, Beden ve Okul</Link>
+          <Link href="/ogretmen-araclari">Öğretmen Araçları</Link>
           <span aria-hidden="true">&rsaquo;</span>
           <span>Harf Notu Hesaplama</span>
         </nav>
@@ -91,7 +91,7 @@ export default function LetterGradeCalculatorPage() {
           <h2>İlgili araçlar</h2>
           <p>
             Diğer öğretmen araçları için{" "}
-            <Link href="/hesaplayicilar#olcu-ve-gunluk">Mutfak, Beden ve Okul</Link>
+            <Link href="/ogretmen-araclari">Öğretmen Araçları</Link>
             {" "}sayfasına, ağırlıklı not ortalaması hesaplama için{" "}
             <Link href="/bilim-hesaplayicilari/matematik/ortalama-hesaplama">Ortalama Hesaplama</Link>
             {" "}sayfasına bakabilirsin.

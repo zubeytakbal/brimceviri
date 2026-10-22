@@ -1042,7 +1042,7 @@ export default function DigerDonusumlerPage() {
     },
     {
       id: "meslekler",
-      href: "/hesaplayicilar",
+      href: "/meslekler",
       title: "Mesleğe Göre Araçlar",
       description:
         "Kuyumcu, elektrikçi gibi mesleklere özel hesaplayıcıların ve referans tablolarının toplandığı sayfalar.",

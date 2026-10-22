@@ -184,7 +184,7 @@ export default function BodyFatCalculatorPage() {
             BMI ve günlük kalori ihtiyacın için{" "}
             <Link href="/bmi-hesaplama">BMI Hesaplama</Link>, sağlık ve
             fitness ile ilgili diğer araçlar için{" "}
-            <Link href="/hesaplayicilar#saglik-ve-spor">Sağlık ve Spor</Link>{" "}
+            <Link href="/diyetisyen-araclari">Diyetisyen Araçları</Link>{" "}
             sayfasına bakabilirsin.
           </p>
 

@@ -94,9 +94,9 @@ export default function MaterialWeightCalculatorPage() {
           <h2>İlgili araçlar</h2>
           <p>
             Kaynak işleri için{" "}
-            <Link href="/hesaplayicilar#teknik">Teknik ve Mühendislik</Link>
+            <Link href="/kaynakci-araclari">Kaynakçı Araçları</Link>
             {" "}sayfasına, CNC/torna işleri için{" "}
-            <Link href="/hesaplayicilar#teknik">Teknik ve Mühendislik</Link>
+            <Link href="/cnc-torna-araclari">CNC/Torna Operatörü Araçları</Link>
             {" "}sayfasına, kütle birimi dönüşümleri için{" "}
             <Link href="/kategoriler/kutle">Kütle Dönüşümleri</Link>
             {" "}sayfasına, 100&apos;den fazla malzemenin yoğunluğu ve

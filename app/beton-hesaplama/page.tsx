@@ -173,7 +173,7 @@ export default function ConcreteCalculatorPage() {
             duvar tuğlası ihtiyacı için{" "}
             <Link href="/tugla-hesaplama">Tuğla Hesaplama</Link>,{" "}
             diğer inşaat araçları için{" "}
-            <Link href="/hesaplayicilar#ev-ve-yapi">Ev, İnşaat ve Bahçe</Link>
+            <Link href="/insaatci-araclari">İnşaatçı Araçları</Link>
             {" "}sayfasına, beton basınç dayanımı (MPa) birim dönüşümü
             için{" "}
             <Link href="/megapascal-kilopascal">Megapascal - Kilopascal Çevirici</Link>

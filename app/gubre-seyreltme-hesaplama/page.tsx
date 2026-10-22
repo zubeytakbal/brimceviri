@@ -93,7 +93,7 @@ export default function FertilizerDilutionPage() {
             {" "}sayfasına, sulama hesaplamaları için{" "}
             <Link href="/sulama-suresi-hesaplama">Sulama Süresi Hesaplama</Link>
             {" "}sayfasına, diğer peyzaj araçları için{" "}
-            <Link href="/hesaplayicilar#tarim">Tarım ve Hayvancılık</Link>
+            <Link href="/peyzaj-araclari">Peyzaj Araçları</Link>
             {" "}sayfasına bakabilirsin.
           </p>
 

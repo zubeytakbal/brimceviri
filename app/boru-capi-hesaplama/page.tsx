@@ -95,7 +95,7 @@ export default function PipeFlowPage() {
             Boru hattındaki basınç kaybı için{" "}
             <Link href="/basinc-kaybi-hesaplama">Basınç Kaybı Hesaplama</Link>,
             diğer tesisatçı araçları için{" "}
-            <Link href="/hesaplayicilar#teknik">Teknik ve Mühendislik</Link>{" "}
+            <Link href="/tesisatci-araclari">Tesisatçı Araçları</Link>{" "}
             sayfasına bakabilirsin.
           </p>
 

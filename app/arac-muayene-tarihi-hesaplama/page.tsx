@@ -59,7 +59,7 @@ export default function MuayenePage() {
     <TimeToolPage
       crumbs={[
         { href: "/", label: "Ana Sayfa" },
-        { href: "/hesaplayicilar#enerji-ve-arac", label: "Enerji, Fatura ve Araç" },
+        { href: "/otomotiv-araclari", label: "Otomotiv Araçları" },
         { href: path, label: "Araç Muayene Tarihi Hesaplama" },
       ]}
       crumbLabel="Sayfa yolu"

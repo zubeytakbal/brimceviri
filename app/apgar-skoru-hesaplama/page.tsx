@@ -113,7 +113,7 @@ export default function ApgarPage() {
           <h2>İlgili araçlar</h2>
           <p>
             Diğer doktor ve hemşire araçları için{" "}
-            <Link href="/hesaplayicilar#klinik">Klinik Skorlar</Link>{" "}
+            <Link href="/doktor-hemsire-araclari">Doktor ve Hemşire Araçları</Link>{" "}
             sayfasına, gebelik takibi için{" "}
             <Link href="/gebelik-haftasi-hesaplama">Gebelik Haftası Hesaplama</Link>{" "}
             aracına bakabilirsin.

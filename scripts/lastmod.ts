@@ -8,9 +8,17 @@ import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
+import { CLICKED_PATHS } from "../app/indexPolicyClicked";
 
 const SITE = "https://www.birimceviri.app";
 type Kayit = { h: string; d: string };
+
+// 18-21 Ekim 2026'da yabancı dillerde tıklama almayan sayfalar noindex'ti; 21 Ekim'de hepsi yeniden açıldı. Sayfanın
+// robots etiketi o gün değiştiği için tarihi en az yeniden açılma anıdır; Google bu sayfaları yeniden tarasın.
+const YENIDEN_ACILMA = "2026-10-21T13:36:00.000Z";
+const KAPANAN_DILLER = new Set(["en", "de", "ar", "es", "uz", "bn", "it", "fr", "pt", "nl", "no", "sv", "da"]);
+const TIKLANAN = new Set(CLICKED_PATHS);
+const kapanmisti = (path: string) => KAPANAN_DILLER.has(path.split("/")[1]) && !TIKLANAN.has(path);
 
 function htmlYolu(root: string, path: string) {
   if (path === "/") return join(root, "index.html");
@@ -77,6 +85,7 @@ export function writeLastmod(root: string) {
     } else {
       d = baslangic[path] ?? eski;
     }
+    if (kapanmisti(path) && d < YENIDEN_ACILMA) d = YENIDEN_ACILMA;
     yeni[path] = { h, d };
     return blok.replace(/<lastmod>.*?<\/lastmod>/, `<lastmod>${d}</lastmod>`);
   });

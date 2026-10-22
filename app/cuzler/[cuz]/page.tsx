@@ -129,8 +129,10 @@ export default async function CuzPage({ params }: { params: Promise<{ cuz: strin
       <h2 id="hakkinda">{n}. cüz hakkında</h2>
       <p>
         {n}. cüz Medine mushafında (604 sayfa) {sayfaBas}–{sayfaSon}. sayfalar arasındadır ({sayfaSon - sayfaBas + 1} sayfa) ve{" "}
-        {2 * n - 1}. ile {2 * n}. hizipleri kapsar. İçindeki {parcalar.length} surenin{" "}
-        {mekki === parcalar.length ? "hepsi Mekkî" : mekki === 0 ? "hepsi Medenî" : `${mekki} tanesi Mekkî, ${parcalar.length - mekki} tanesi Medenî`}.{" "}
+        {2 * n - 1}. ile {2 * n}. hizipleri kapsar.{" "}
+        {parcalar.length === 1
+          ? `Cüzün tamamı ${mekki ? "Mekkî" : "Medenî"} bir sure olan ${ilk.sure.ad} Suresi'ndendir.`
+          : `İçindeki ${parcalar.length} surenin ${mekki === parcalar.length ? "hepsi Mekkî" : mekki === 0 ? "hepsi Medenî" : `${mekki} tanesi Mekkî, ${parcalar.length - mekki} tanesi Medenî`}.`}{" "}
         {baslayan.length > 0 ? `Bu cüzde başlayan sureler: ${baslayan.map((x) => x.ad).join(", ")}. ` : `Bu cüzde yeni başlayan sure yoktur; ${ilk.sure.ad} Suresi'nin devamıyla açılır. `}
         {biten.length > 0 ? `Bu cüzde tamamlanan sureler: ${biten.map((x) => x.ad).join(", ")}.` : `Bu cüzde tamamlanan sure yoktur; ${son.sure.ad} Suresi sonraki cüzde devam eder.`}{" "}
         {secdeler.length > 0

@@ -108,7 +108,7 @@ export default async function SurePage({ params }: { params: Promise<{ sure: str
       <h2 id="hakkinda">{s.ad} Suresi hakkında</h2>
       <p>
         {s.ad} Suresi {meta.mekki ? "Mekke döneminde inen (Mekkî)" : "Medine döneminde inen (Medenî)"} bir suredir ve iniş
-        sırasına göre {meta.nuzul}. suredir; mushaftaki sırası ise {s.no}. {meta.ruku} rükûdan oluşur. Medine mushafında (604
+        sırasına göre {meta.nuzul}. suredir; mushafta ise {s.no}. sırada yer alır ve {meta.ruku} rükûdan oluşur. Medine mushafında (604
         sayfa) {meta.sayfaBas === meta.sayfaSon ? `${meta.sayfaBas}. sayfadadır` : `${meta.sayfaBas}–${meta.sayfaSon}. sayfalar arasındadır (${sayfaSayisi} sayfa)`}.
         {secdeler.length > 0
           ? ` Surede tilavet secdesi gerektiren ${secdeler.length === 1 ? "ayet" : "ayetler"}: ${secdeler.map((a) => `${a}. ayet`).join(", ")}${safiiSecde ? ` (${safiiSecde}. ayetteki secde Şâfiî mezhebine göredir)` : ""}.`

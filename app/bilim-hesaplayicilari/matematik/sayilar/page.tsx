@@ -121,6 +121,11 @@ export default function SayilarHubPage() {
             100&apos;ün üzerindeki bu sayıların her birinin ayrı sayfası var: {joinLinks(CURATED_EXTRA_NUMBERS)}.
           </p>
 
+          <h2>1&apos;den 100&apos;e kadar bütün sayılar</h2>
+          <p>
+            Her sayının bölenleri, karesi, karekökü ve asal olup olmadığı kendi sayfasında: {joinLinks(ONE_TO_HUNDRED)}.
+          </p>
+
           <h2>Bir sayının asal olup olmadığı nasıl anlaşılır?</h2>
           <p>
             Sayının karekökünden küçük ya da eşit asal sayılara bölünüp bölünmediğine bakmak

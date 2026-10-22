@@ -96,7 +96,7 @@ export default function KerestePage() {
           <h2>İlgili araçlar</h2>
           <p>
             Diğer marangoz araçları için{" "}
-            <Link href="/hesaplayicilar#ev-ve-yapi">Ev, İnşaat ve Bahçe</Link>{" "}
+            <Link href="/marangoz-araclari">Marangoz Araçları</Link>{" "}
             sayfasına, hacim birimleri arasında genel dönüşüm için{" "}
             <Link href="/kategoriler/hacim">Hacim Dönüşümleri</Link>{" "}
             sayfasına bakabilirsin.

@@ -76,7 +76,7 @@ export default function RingSizePage() {
             ayakkabı numarası çevirme için{" "}
             <Link href="/ayakkabi-numarasi-cevirme">Ayakkabı Numarası Çevirme</Link>,{" "}
             diğer terzi araçları için{" "}
-            <Link href="/hesaplayicilar#olcu-ve-gunluk">Mutfak, Beden ve Okul</Link> sayfasına
+            <Link href="/terzi-araclari">Terzi Araçları</Link> sayfasına
             bakabilirsin.
           </p>
         </section>

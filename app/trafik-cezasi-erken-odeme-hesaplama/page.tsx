@@ -61,7 +61,7 @@ export default function ErkenOdemePage() {
     <TimeToolPage
       crumbs={[
         { href: "/", label: "Ana Sayfa" },
-        { href: "/hesaplayicilar#enerji-ve-arac", label: "Enerji, Fatura ve Araç" },
+        { href: "/otomotiv-araclari", label: "Otomotiv Araçları" },
         { href: path, label: "Trafik Cezası Erken Ödeme" },
       ]}
       crumbLabel="Sayfa yolu"

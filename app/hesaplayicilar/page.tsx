@@ -49,7 +49,7 @@ export default function HesaplayicilarPage() {
           Hepsi ücretsizdir, kayıt istemez ve hesaplamalar tarayıcınızda
           yapılır. Birim çevirmek için{" "}
           <Link href="/tum-birimler">tüm birim dönüşümlerine</Link>, mesleğinize
-          özel araçlar için <Link href="/hesaplayicilar">Tüm Hesaplamalar</Link>{" "}
+          özel araçlar için <Link href="/meslekler">mesleğe göre araçlara</Link>{" "}
           bakabilirsiniz.
         </>
       }

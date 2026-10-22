@@ -2450,6 +2450,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
     },
     {
+      url: `${baseUrl}/kuyumcu-araclari`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/elektrikci-araclari`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/meslekler`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/hesaplayicilar`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
@@ -2460,6 +2478,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: contentLastModified,
       changeFrequency: "monthly",
       priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/insaatci-araclari`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
     },
     {
       url: `${baseUrl}/hafriyat-hesaplama`,
@@ -2504,7 +2528,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
+      url: `${baseUrl}/otomotiv-araclari`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/asci-araclari`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/vucut-yag-orani-hesaplama`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/diyetisyen-araclari`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
       priority: 0.7,
@@ -2522,13 +2564,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
+      url: `${baseUrl}/terzi-araclari`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/emlak-komisyonu-hesaplama`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
+      url: `${baseUrl}/emlakci-araclari`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/seyir-suresi-hesaplama`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/pilot-araclari`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
       priority: 0.7,
@@ -2559,6 +2619,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/buyuk-daire-mesafesi-hesaplama`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/doktor-hemsire-araclari`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
       priority: 0.7,
@@ -2636,7 +2702,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
+      url: `${baseUrl}/nakliyeci-araclari`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/cbm-hesaplama`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/tesisatci-araclari`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
       priority: 0.7,
@@ -2654,7 +2732,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
+      url: `${baseUrl}/muhasebeci-araclari`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/amortisman-hesaplama`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/kaptan-araclari`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
       priority: 0.7,
@@ -3015,6 +3105,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
     },
     {
+      url: `${baseUrl}/yazilimci-araclari`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/unix-zaman-damgasi-cevirici`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
@@ -3027,10 +3123,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
     },
     {
+      url: `${baseUrl}/marangoz-araclari`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/kereste-hesaplama`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
       priority: 0.75,
+    },
+    {
+      url: `${baseUrl}/grafik-tasarimci-araclari`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
     },
     {
       url: `${baseUrl}/dosya-araclari`,
@@ -3141,16 +3249,34 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
     },
     {
+      url: `${baseUrl}/muzisyen-araclari`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/bpm-ms-hesaplama`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
       priority: 0.75,
     },
     {
+      url: `${baseUrl}/veteriner-araclari`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/veteriner-ilac-dozu-hesaplama`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
       priority: 0.75,
+    },
+    {
+      url: `${baseUrl}/fotografci-araclari`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
     },
     {
       url: `${baseUrl}/pozlama-esdegeri-hesaplama`,
@@ -3165,10 +3291,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
     },
     {
+      url: `${baseUrl}/antrenor-araclari`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/1rm-hesaplama`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
       priority: 0.75,
+    },
+    {
+      url: `${baseUrl}/ciftci-araclari`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
     },
     {
       url: `${baseUrl}/gubre-ihtiyaci-hesaplama`,
@@ -3207,10 +3345,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
     },
     {
+      url: `${baseUrl}/eczaci-araclari`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/alkol-seyreltme-hesaplama`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
       priority: 0.75,
+    },
+    {
+      url: `${baseUrl}/barmen-araclari`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
     },
     {
       url: `${baseUrl}/kokteyl-olcusu-cevirici`,
@@ -3225,6 +3375,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
     },
     {
+      url: `${baseUrl}/kaynakci-araclari`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/kaynak-amperaji-hesaplama`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
@@ -3235,6 +3391,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: contentLastModified,
       changeFrequency: "monthly",
       priority: 0.75,
+    },
+    {
+      url: `${baseUrl}/cnc-torna-araclari`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
     },
     {
       url: `${baseUrl}/kesme-hizi-devir-hesaplama`,
@@ -3453,10 +3615,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
     },
     {
+      url: `${baseUrl}/peyzaj-araclari`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/sulama-suresi-hesaplama`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
       priority: 0.75,
+    },
+    {
+      url: `${baseUrl}/havuz-teknisyeni-araclari`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
     },
     {
       url: `${baseUrl}/havuz-hacmi-hesaplama`,
@@ -3471,10 +3645,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
     },
     {
+      url: `${baseUrl}/amator-telsiz-araclari`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/anten-uzunlugu-hesaplama`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
       priority: 0.75,
+    },
+    {
+      url: `${baseUrl}/bilgisayar-donanimcisi-araclari`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
     },
     {
       url: `${baseUrl}/psu-guc-hesaplama`,
@@ -3483,10 +3669,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
     },
     {
+      url: `${baseUrl}/video-editor-araclari`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/video-bit-hizi-hesaplama`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
       priority: 0.75,
+    },
+    {
+      url: `${baseUrl}/dijital-pazarlamaci-araclari`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
     },
     {
       url: `${baseUrl}/reklam-metrikleri-hesaplama`,
@@ -3495,16 +3693,34 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
     },
     {
+      url: `${baseUrl}/klima-sogutma-teknisyeni-araclari`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/superheat-subcooling-hesaplama`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
       priority: 0.75,
     },
     {
+      url: `${baseUrl}/mimar-araclari`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/emsal-kaks-hesaplama`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
       priority: 0.75,
+    },
+    {
+      url: `${baseUrl}/ogretmen-araclari`,
+      lastModified: contentLastModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
     },
     {
       url: `${baseUrl}/harf-notu-hesaplama`,

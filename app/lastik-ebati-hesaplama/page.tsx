@@ -169,7 +169,7 @@ export default function TireSizeCalculatorPage() {
           <h2>İlgili araçlar</h2>
           <p>
             Diğer otomotiv hesaplayıcıları için{" "}
-            <Link href="/hesaplayicilar#enerji-ve-arac">Enerji, Fatura ve Araç</Link>{" "}
+            <Link href="/otomotiv-araclari">Otomotiv Araçları</Link>{" "}
             sayfasına, yakıt tüketimi hesaplama için{" "}
             <Link href="/yakit-tuketimi-hesaplama">Yakıt Tüketimi Hesaplama</Link>
             {" "}sayfasına bakabilirsin. Bisiklet lastikleri için{" "}

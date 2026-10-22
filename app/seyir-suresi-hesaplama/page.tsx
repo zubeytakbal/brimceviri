@@ -123,9 +123,9 @@ export default function TransitTimeCalculatorPage() {
           <h2>İlgili araçlar</h2>
           <p>
             Diğer havacılık araçları için{" "}
-            <Link href="/hesaplayicilar#harita-ve-havacilik">Harita, Coğrafya ve Havacılık</Link>, denizcilik
+            <Link href="/pilot-araclari">Pilot Araçları</Link>, denizcilik
             araçları için{" "}
-            <Link href="/hesaplayicilar#harita-ve-havacilik">Harita, Coğrafya ve Havacılık</Link> sayfasına,
+            <Link href="/kaptan-araclari">Kaptan Araçları</Link> sayfasına,
             deniz mili ve fit birimi dönüşümleri için{" "}
             <Link href="/kategoriler/uzunluk">Uzunluk Dönüşümleri</Link>{" "}
             sayfasına, uçuş planlaması için{" "}

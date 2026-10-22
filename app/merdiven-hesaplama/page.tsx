@@ -137,9 +137,9 @@ export default function StairCalculatorPage() {
           <h2>İlgili araçlar</h2>
           <p>
             Diğer inşaat hesaplamaları için{" "}
-            <Link href="/hesaplayicilar#ev-ve-yapi">Ev, İnşaat ve Bahçe</Link>,{" "}
+            <Link href="/insaatci-araclari">İnşaatçı Araçları</Link>,{" "}
             mimar araçları için{" "}
-            <Link href="/hesaplayicilar#ev-ve-yapi">Ev, İnşaat ve Bahçe</Link>
+            <Link href="/mimar-araclari">Mimar Araçları</Link>
             {" "}sayfasına bakabilirsin.
           </p>
 

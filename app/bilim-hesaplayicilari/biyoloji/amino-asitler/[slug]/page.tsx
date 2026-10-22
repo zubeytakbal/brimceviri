@@ -185,6 +185,20 @@ export default async function AminoAcidPage({ params }: PageProps) {
             </p>
           ))}
 
+          <h2>{aminoAcid.essential ? "Diğer esansiyel amino asitler" : "Diğer esansiyel olmayan amino asitler"}</h2>
+          <p>
+            {getAllAminoAcidProfiles()
+              .filter((a) => a.essential === aminoAcid.essential && a.id !== aminoAcid.id)
+              .sort((a, b) => a.nameTr.localeCompare(b.nameTr, "tr"))
+              .map((a, i) => (
+                <span key={a.id}>
+                  {i > 0 && ", "}
+                  <Link href={`/bilim-hesaplayicilari/biyoloji/amino-asitler/${a.id}`}>{a.nameTr}</Link>
+                </span>
+              ))}
+            .
+          </p>
+
           <h2>İlginizi Çekebilir</h2>
           <p>
             Tüm amino asitleri görmek için{" "}

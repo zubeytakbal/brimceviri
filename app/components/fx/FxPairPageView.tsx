@@ -19,7 +19,9 @@ function serializeJsonLd(data: object) {
 
 // Ilgili ciftler: once ayni hedef para birimine sahip olanlar.
 export function relatedFxPairs(pairs: FxPair[], pair: FxPair, limit = 8): FxPair[] {
-  const others = pairs.filter((candidate) => candidate.slug !== pair.slug);
+  // Liste çiftin kendi sırasından başlar; böylece sondaki çiftler de başka çift sayfalarından bağlantı alır.
+  const index = pairs.findIndex((candidate) => candidate.slug === pair.slug);
+  const others = [...pairs.slice(index + 1), ...pairs.slice(0, Math.max(index, 0))].filter((candidate) => candidate.slug !== pair.slug);
   const sameTarget = others.filter((candidate) => candidate.to === pair.to);
   const rest = others.filter((candidate) => candidate.to !== pair.to);
   return [...sameTarget, ...rest].slice(0, limit);

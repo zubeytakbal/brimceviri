@@ -110,7 +110,7 @@ export default function MeldPage() {
           <h2>İlgili araçlar</h2>
           <p>
             Diğer doktor ve hemşire araçları için{" "}
-            <Link href="/hesaplayicilar#klinik">Klinik Skorlar</Link>{" "}
+            <Link href="/doktor-hemsire-araclari">Doktor ve Hemşire Araçları</Link>{" "}
             sayfasına bakabilirsin.
           </p>
 

@@ -95,7 +95,7 @@ export default function PressureLossPage() {
             Boru çapı, debi ve akış hızı için{" "}
             <Link href="/boru-capi-hesaplama">Boru Çapı Hesaplama</Link>,
             diğer tesisatçı araçları için{" "}
-            <Link href="/hesaplayicilar#teknik">Teknik ve Mühendislik</Link>{" "}
+            <Link href="/tesisatci-araclari">Tesisatçı Araçları</Link>{" "}
             sayfasına bakabilirsin.
           </p>
 

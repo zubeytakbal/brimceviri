@@ -49,8 +49,8 @@ export default function AlcoholDilutionCalculatorPage() {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: buildSiteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "Tüm Hesaplamalar", item: buildSiteUrl("/hesaplayicilar") },
-      { "@type": "ListItem", position: 3, name: "Kimya Hesaplayıcıları", item: buildSiteUrl("/bilim-hesaplayicilari/kimya") },
+      { "@type": "ListItem", position: 2, name: "Mesleğe Göre Araçlar", item: buildSiteUrl("/meslekler") },
+      { "@type": "ListItem", position: 3, name: "Eczacı Araçları", item: buildSiteUrl("/eczaci-araclari") },
       { "@type": "ListItem", position: 4, name: "Alkol Seyreltme Hesaplama", item: buildSiteUrl("/alkol-seyreltme-hesaplama") },
     ],
   };
@@ -64,7 +64,7 @@ export default function AlcoholDilutionCalculatorPage() {
         <nav className="breadcrumbs" aria-label="Sayfa yolu">
           <Link href="/">Ana Sayfa</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/bilim-hesaplayicilari/kimya">Kimya Hesaplayıcıları</Link>
+          <Link href="/eczaci-araclari">Eczacı Araçları</Link>
           <span aria-hidden="true">&rsaquo;</span>
           <span>Alkol Seyreltme Hesaplama</span>
         </nav>
@@ -93,7 +93,7 @@ export default function AlcoholDilutionCalculatorPage() {
           <h2>İlgili araçlar</h2>
           <p>
             Diğer eczacı araçları için{" "}
-            <Link href="/bilim-hesaplayicilari/kimya">Kimya Hesaplayıcıları</Link>
+            <Link href="/eczaci-araclari">Eczacı Araçları</Link>
             {" "}sayfasına, mol/L cinsinden derişim hesapları için{" "}
             <Link href="/bilim-hesaplayicilari/kimya/seyreltme-hesaplama">Seyreltme Hesaplama</Link>
             {" "}sayfasına bakabilirsin.

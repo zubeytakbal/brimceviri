@@ -105,7 +105,7 @@ export default function BsaCalculatorPage() {
             vücut kitle indeksi için{" "}
             <Link href="/bmi-hesaplama">BMI Hesaplama</Link>
             {" "}sayfasına, diğer doktor ve hemşire araçları için{" "}
-            <Link href="/hesaplayicilar#klinik">Klinik Skorlar</Link>{" "}
+            <Link href="/doktor-hemsire-araclari">Doktor ve Hemşire Araçları</Link>{" "}
             sayfasına bakabilirsin.
           </p>
 

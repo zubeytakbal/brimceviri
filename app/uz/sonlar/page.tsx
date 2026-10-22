@@ -121,6 +121,11 @@ export default function UzbekSonlarHubPage() {
             100 dan katta bu sonlarning har birining alohida sahifasi bor: {joinLinks(CURATED_EXTRA_NUMBERS)}.
           </p>
 
+          <h2>1 dan 100 gacha barcha sonlar</h2>
+          <p>
+            Har bir sonning bo&apos;luvchilari, kvadrati, ildizi va tub ekanligi o&apos;z sahifasida: {joinLinks(ONE_TO_HUNDRED)}.
+          </p>
+
           <h2>Son tub ekanligi qanday aniqlanadi?</h2>
           <p>
             Sonni kvadrat ildizidan kichik yoki unga teng tub sonlarga bo&apos;lib ko&apos;rish yetarli.

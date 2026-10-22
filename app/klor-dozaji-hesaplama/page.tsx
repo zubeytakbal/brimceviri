@@ -49,8 +49,8 @@ export default function ChlorineDoseCalculatorPage() {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: buildSiteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "Tüm Hesaplamalar", item: buildSiteUrl("/hesaplayicilar") },
-      { "@type": "ListItem", position: 3, name: "Ev, İnşaat ve Bahçe", item: buildSiteUrl("/hesaplayicilar#ev-ve-yapi") },
+      { "@type": "ListItem", position: 2, name: "Mesleğe Göre Araçlar", item: buildSiteUrl("/meslekler") },
+      { "@type": "ListItem", position: 3, name: "Havuz Teknisyeni Araçları", item: buildSiteUrl("/havuz-teknisyeni-araclari") },
       { "@type": "ListItem", position: 4, name: "Klor Dozajı Hesaplama", item: buildSiteUrl("/klor-dozaji-hesaplama") },
     ],
   };
@@ -64,7 +64,7 @@ export default function ChlorineDoseCalculatorPage() {
         <nav className="breadcrumbs" aria-label="Sayfa yolu">
           <Link href="/">Ana Sayfa</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/hesaplayicilar#ev-ve-yapi">Ev, İnşaat ve Bahçe</Link>
+          <Link href="/havuz-teknisyeni-araclari">Havuz Teknisyeni Araçları</Link>
           <span aria-hidden="true">&rsaquo;</span>
           <span>Klor Dozajı Hesaplama</span>
         </nav>
@@ -93,7 +93,7 @@ export default function ChlorineDoseCalculatorPage() {
           <h2>İlgili araçlar</h2>
           <p>
             Diğer havuz teknisyeni araçları için{" "}
-            <Link href="/hesaplayicilar#ev-ve-yapi">Ev, İnşaat ve Bahçe</Link>
+            <Link href="/havuz-teknisyeni-araclari">Havuz Teknisyeni Araçları</Link>
             {" "}sayfasına, havuz hacmi hesaplama için{" "}
             <Link href="/havuz-hacmi-hesaplama">Havuz Hacmi Hesaplama</Link>
             {" "}sayfasına bakabilirsin.

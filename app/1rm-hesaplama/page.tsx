@@ -52,8 +52,8 @@ export default function OneRepMaxCalculatorPage() {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: buildSiteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "Tüm Hesaplamalar", item: buildSiteUrl("/hesaplayicilar") },
-      { "@type": "ListItem", position: 3, name: "Sağlık ve Spor", item: buildSiteUrl("/hesaplayicilar#saglik-ve-spor") },
+      { "@type": "ListItem", position: 2, name: "Mesleğe Göre Araçlar", item: buildSiteUrl("/meslekler") },
+      { "@type": "ListItem", position: 3, name: "Antrenör Araçları", item: buildSiteUrl("/antrenor-araclari") },
       { "@type": "ListItem", position: 4, name: "1RM Hesaplama", item: buildSiteUrl("/1rm-hesaplama") },
     ],
   };
@@ -67,7 +67,7 @@ export default function OneRepMaxCalculatorPage() {
         <nav className="breadcrumbs" aria-label="Sayfa yolu">
           <Link href="/">Ana Sayfa</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/hesaplayicilar#saglik-ve-spor">Sağlık ve Spor</Link>
+          <Link href="/antrenor-araclari">Antrenör Araçları</Link>
           <span aria-hidden="true">&rsaquo;</span>
           <span>1RM Hesaplama</span>
         </nav>
@@ -96,9 +96,9 @@ export default function OneRepMaxCalculatorPage() {
           <h2>İlgili araçlar</h2>
           <p>
             Diğer antrenör araçları için{" "}
-            <Link href="/hesaplayicilar#saglik-ve-spor">Sağlık ve Spor</Link>
+            <Link href="/antrenor-araclari">Antrenör Araçları</Link>
             {" "}sayfasına, beslenme ve klinik hesaplamalar için{" "}
-            <Link href="/hesaplayicilar#saglik-ve-spor">Sağlık ve Spor</Link>
+            <Link href="/diyetisyen-araclari">Diyetisyen Araçları</Link>
             {" "}sayfasına bakabilirsin.
           </p>
 

@@ -137,7 +137,7 @@ export default async function EvChargingCalculatorPage() {
             evdeki elektrik tüketimi için{" "}
             <Link href="/elektrik-tuketimi-hesaplama">Elektrik Tüketimi Hesaplama</Link>
             {" "}sayfasına, diğer otomotiv araçları için{" "}
-            <Link href="/hesaplayicilar#enerji-ve-arac">Enerji, Fatura ve Araç</Link>
+            <Link href="/otomotiv-araclari">Otomotiv Araçları</Link>
             {" "}sayfasına bakabilirsin.
           </p>
         </section>

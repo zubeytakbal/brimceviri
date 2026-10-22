@@ -56,7 +56,7 @@ export default function FidanSayisiPage() {
     <TimeToolPage
       crumbs={[
         { href: "/", label: "Ana Sayfa" },
-        { href: "/hesaplayicilar#tarim", label: "Tarım ve Hayvancılık" },
+        { href: "/ciftci-araclari", label: "Tarım ve Hayvancılık" },
         { href: path, label: "Dekara Fidan Sayısı" },
       ]}
       crumbLabel="Sayfa yolu"

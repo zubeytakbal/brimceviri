@@ -96,7 +96,7 @@ export default function SocialMediaSizePage() {
             {" "}sayfasına, renk kodu dönüşümleri için{" "}
             <Link href="/renk-kodu-cevirici">Renk Kodu Çevirici</Link>
             {" "}sayfasına, diğer grafik tasarımcı araçları için{" "}
-            <Link href="/hesaplayicilar#dosya-ve-gorsel">Dosya ve Görsel Araçları</Link>
+            <Link href="/grafik-tasarimci-araclari">Grafik Tasarımcı Araçları</Link>
             {" "}sayfasına bakabilirsin.
           </p>
 

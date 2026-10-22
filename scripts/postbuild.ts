@@ -107,7 +107,15 @@ function writeRedirects() {
   });
   const yeni = expanded.filter((l) => !sayfaVar(l.split(" ")[0]));
   console.log(`_redirects: sayfası olan ${once - kalan.length + expanded.length - yeni.length} adresin yönlendirmesi atlandı`);
-  const staticLines = [...yeni, ...kalan.filter((l) => !isDynamic(l.split(" ")[0]))];
+  // Zincirleri tek adıma indir: hedefi başka bir sabit kuralın kaynağı olan kural doğrudan son hedefe gider.
+  const sabit = [...yeni, ...kalan.filter((l) => !isDynamic(l.split(" ")[0]))];
+  const hedef = new Map(sabit.map((l) => [l.split(" ")[0], l.split(" ")[1]]));
+  const staticLines = sabit.map((l) => {
+    const [from, to, ...rest] = l.split(" ");
+    let son = to;
+    for (let i = 0; i < 5 && hedef.has(son) && hedef.get(son) !== from; i++) son = hedef.get(son)!;
+    return [from, son, ...rest].join(" ");
+  });
   const dynamicLines = kalan.filter((l) => isDynamic(l.split(" ")[0]));
   writeFileSync(join(OUT, "_redirects"), [...staticLines, ...dynamicLines].join("\n") + "\n");
   return { static: staticLines.length, dynamic: dynamicLines.length };

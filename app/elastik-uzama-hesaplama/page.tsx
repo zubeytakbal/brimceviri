@@ -94,9 +94,9 @@ export default function ElongationCalculatorPage() {
           <h2>İlgili araçlar</h2>
           <p>
             İnşaat hesaplamaları için{" "}
-            <Link href="/hesaplayicilar#ev-ve-yapi">Ev, İnşaat ve Bahçe</Link>
+            <Link href="/insaatci-araclari">İnşaatçı Araçları</Link>
             {" "}sayfasına, mimar araçları için{" "}
-            <Link href="/hesaplayicilar#ev-ve-yapi">Ev, İnşaat ve Bahçe</Link>
+            <Link href="/mimar-araclari">Mimar Araçları</Link>
             {" "}sayfasına, malzeme yoğunluğu ve diğer özellikleri için{" "}
             <Link href="/malzeme-ozellikleri">Malzeme Özellikleri</Link>
             {" "}sayfasına, sıcaklığa bağlı boyut değişimi için{" "}

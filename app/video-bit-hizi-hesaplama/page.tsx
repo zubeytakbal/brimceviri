@@ -56,8 +56,8 @@ export default function VideoBitrateCalculatorPage() {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: buildSiteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "Tüm Hesaplamalar", item: buildSiteUrl("/hesaplayicilar") },
-      { "@type": "ListItem", position: 3, name: "Dosya ve Görsel Araçları", item: buildSiteUrl("/hesaplayicilar#dosya-ve-gorsel") },
+      { "@type": "ListItem", position: 2, name: "Mesleğe Göre Araçlar", item: buildSiteUrl("/meslekler") },
+      { "@type": "ListItem", position: 3, name: "Video Editör Araçları", item: buildSiteUrl("/video-editor-araclari") },
       { "@type": "ListItem", position: 4, name: "Video Bit Hızı ve Dosya Boyutu Hesaplama", item: buildSiteUrl("/video-bit-hizi-hesaplama") },
     ],
   };
@@ -71,7 +71,7 @@ export default function VideoBitrateCalculatorPage() {
         <nav className="breadcrumbs" aria-label="Sayfa yolu">
           <Link href="/">Ana Sayfa</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/hesaplayicilar#dosya-ve-gorsel">Dosya ve Görsel Araçları</Link>
+          <Link href="/video-editor-araclari">Video Editör Araçları</Link>
           <span aria-hidden="true">&rsaquo;</span>
           <span>Video Bit Hızı ve Dosya Boyutu Hesaplama</span>
         </nav>
@@ -165,7 +165,7 @@ export default function VideoBitrateCalculatorPage() {
           <h2>İlgili araçlar</h2>
           <p>
             Diğer video editör araçları için{" "}
-            <Link href="/hesaplayicilar#dosya-ve-gorsel">Dosya ve Görsel Araçları</Link>
+            <Link href="/video-editor-araclari">Video Editör Araçları</Link>
             {" "}sayfasına, megabit ve megabayt birimlerini doğrudan
             çevirmek için{" "}
             <Link href="/megabit-megabayt">Megabit - Megabayt Çevirici</Link>

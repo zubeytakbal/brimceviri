@@ -80,7 +80,7 @@ export default function ShoeSizePage() {
               {"Y\u00fcz\u00fck \u00d6l\u00e7\u00fcs\u00fc \u00c7evirici"}
             </Link>
             {", di\u011fer terzi ara\u00e7lar\u0131 i\u00e7in "}
-            <Link href="/hesaplayicilar#olcu-ve-gunluk">Mutfak, Beden ve Okul</Link>
+            <Link href="/terzi-araclari">{"Terzi Ara\u00e7lar\u0131"}</Link>
             {" sayfas\u0131na bakabilirsin."}
           </p>
         </section>

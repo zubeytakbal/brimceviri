@@ -39,7 +39,7 @@ import {
   weekdayOf,
   ymdKey,
 } from "../../converter/time/dateMath";
-import { turkeyHolidays } from "../../converter/time/holidays";
+import { bridgePlans, holidayLookup, turkeyHolidays } from "../../converter/time/holidays";
 import { moonPhasesBetween } from "../../converter/time/moon";
 import { sunTimes } from "../../converter/time/solar";
 import { trLocative } from "../../converter/turkishSuffix";
@@ -1413,8 +1413,100 @@ export function gunMeta(d: YMD) {
   };
 }
 
+const gunluTarih = (d: YMD) => `${kisaTarih(d)} ${d.year} ${GUN_ADLARI[weekdayOf(d)]}`;
+const sayiMetni = (n: number) => String(n).replace(".", ",");
+
+/** Her resmî tatilin ilk tam günü (bayramlar tek kayıt), takvim yıllarının bir öncesi ve sonrasıyla. */
+function resmiTatilBaslangiclari() {
+  const yillar = [TAKVIM_YILLARI[0] - 1, ...TAKVIM_YILLARI, TAKVIM_YILLARI[TAKVIM_YILLARI.length - 1] + 1];
+  return yillar
+    .flatMap(turkeyHolidays)
+    .filter((h) => h.kind === "full" && (h.dayIndex === undefined || h.dayIndex === 1))
+    .map((h) => ({ id: h.id, ad: h.name.replace(/ \d+\. Gün$/, ""), tarih: h.date, tahmini: !!h.estimated }));
+}
+
+/** d gününden başlayan kesintisiz boş gün bloğu (hafta sonu ve tam gün resmî tatiller). */
+function bosBlok(d: YMD) {
+  const lookup = holidayLookup("tr", d.year - 1, d.year + 1);
+  const bos = (x: YMD) => isWeekend(x) || lookup(x)?.kind === "full";
+  if (!bos(d)) return null;
+  let bas = d;
+  let son = d;
+  while (bos(addDaysYmd(bas, -1))) bas = addDaysYmd(bas, -1);
+  while (bos(addDaysYmd(son, 1))) son = addDaysYmd(son, 1);
+  const gun = diffDays(bas, son) + 1;
+  return { bas, son, gun, haftaSonu: Array.from({ length: gun }, (_, i) => addDaysYmd(bas, i)).some(isWeekend) };
+}
+
+/** Güne özgü hesaplanan bilgiler: tatil süresi, köprü, komşu resmî tatiller, yıllara göre gün, aynı hafta, güneş. */
+function gunAyrintilari(d: YMD) {
+  const tarih = `${d.day} ${AY_ADLARI[d.month - 1]} ${d.year}`;
+  const tatilBul = holidayLookup("tr", d.year - 1, d.year + 1);
+  const resmi = tatilBul(d);
+  // Arefe iş gününe düşerse tatil ertesi gün başlar.
+  const arefe = resmi?.kind === "half" && !isWeekend(d);
+  const blok = resmi ? bosBlok(arefe ? addDaysYmd(d, 1) : d) : null;
+  const blokMetni = blok
+    ? blok.gun > 1
+      ? `${arefe ? "Ertesi günden itibaren " : ""}${gunluTarih(blok.bas)} ile ${gunluTarih(blok.son)} arası ${blok.gun} gün kesintisiz tatildir${blok.haftaSonu ? " (hafta sonu dahil)" : ""}.`
+      : arefe
+        ? `Ertesi gün (${gunluTarih(blok.bas)}) tam gün tatildir; ondan sonraki gün iş günüdür.`
+        : `${tarih} tek günlük tatildir; önceki ve sonraki gün iş günüdür.`
+    : null;
+  const haftaSonuNotu = resmi?.kind === "full" && isWeekend(d) ? " Türkiye'de hafta sonuna denk gelen resmî tatil başka bir güne kaydırılmaz." : "";
+  const kopru = resmi
+    ? bridgePlans("tr", d.year)
+        .filter((p) => ymdKey(p.start) <= ymdKey(d) && ymdKey(d) <= ymdKey(p.end))
+        .sort((a, b) => b.totalDays / b.leaveCost - a.totalDays / a.leaveCost)[0]
+    : undefined;
+  const kopruMetni = kopru
+    ? `Araya giren ${kopru.leaveDays.map((x) => `${kisaTarih(x)} ${GUN_ADLARI[weekdayOf(x)]}${tatilBul(x)?.kind === "half" ? " (yarım gün)" : ""}`).join(", ")} yıllık izinle birleştirilirse ${gunluTarih(kopru.start)} – ${gunluTarih(kopru.end)} arası ${kopru.totalDays} gün tatil yapılabilir (${sayiMetni(kopru.leaveCost)} gün izinle).`
+    : null;
+
+  const tatiller = resmiTatilBaslangiclari();
+  const key = ymdKey(d);
+  const yakin = (t: (typeof tatiller)[number]) => resmi && t.id === resmi.id && Math.abs(diffDays(t.tarih, d)) < 10;
+  const onceki = tatiller.filter((t) => ymdKey(t.tarih) < key && !yakin(t)).at(-1);
+  const sonraki = tatiller.find((t) => ymdKey(t.tarih) > key && !yakin(t));
+  const komsuMetni = (t: typeof onceki, yon: "önce" | "sonra") =>
+    t ? `${t.ad} (${gunluTarih(t.tarih)}${t.tahmini ? ", tahmini" : ""}), ${Math.abs(diffDays(d, t.tarih))} gün ${yon}` : null;
+
+  const bugunku = gunHaritasi(d.year).get(key) ?? [];
+  const yillar = bugunku
+    .map((t) => {
+      const liste = TAKVIM_YILLARI.map((y) => etkinlikTarihleri(t.etkinlik, y).find((x) => x.not === t.not)).filter(
+        (x): x is Tarihli => !!x,
+      );
+      if (liste.length < 2) return null;
+      const tip = t.etkinlik.kural.tip;
+      const kayma =
+        tip === "hicri" || tip === "regaib"
+          ? " Hicri takvime bağlı olduğu için her yıl yaklaşık 11 gün öne kayar."
+          : tip === "sabit" || tip === "coklu"
+            ? " Tarihi her yıl aynıdır; denk geldiği gün değişir."
+            : "";
+      return {
+        id: t.etkinlik.id,
+        metin: `${tarihliAd(t)} ${liste
+          .map((x) => `${trLocative(x.tarih.year)} ${kisaTarih(x.tarih)} ${GUN_ADLARI[weekdayOf(x.tarih)]}`)
+          .join(", ")} gününe denk gelir.${kayma}`,
+      };
+    })
+    .filter((x) => x !== null);
+
+  const pazartesi = addDaysYmd(d, -((weekdayOf(d) + 6) % 7));
+  const buIdler = new Set(bugunku.map((t) => t.etkinlik.id));
+  const hafta = Array.from({ length: 7 }, (_, i) => addDaysYmd(pazartesi, i))
+    .filter((x) => ymdKey(x) !== key && sayfaVar(x))
+    .map((x) => ({ d: x, adlar: gunHaritasi(x.year).get(ymdKey(x))!.filter((t) => !buIdler.has(t.etkinlik.id)).map((t) => tarihliAd(t)) }))
+    .filter((x) => x.adlar.length > 0);
+  const gunes = gunesSatiri(d.year, d.month, d.day, "ankara");
+  return { tarih, resmi, blok, blokMetni, haftaSonuNotu, kopruMetni, onceki: komsuMetni(onceki, "önce"), sonraki: komsuMetni(sonraki, "sonra"), sonrakiTatil: sonraki, yillar, hafta, gunes };
+}
+
 export function TakvimGunSayfasi({ d }: { d: YMD }) {
   const b = gunBilgisi(d);
+  const a = gunAyrintilari(d);
   const tatil = tatilHaritasi(d.year).get(ymdKey(d));
   const tarih = `${d.day} ${AY_ADLARI[d.month - 1]} ${d.year}`;
   const hepsi = TAKVIM_YILLARI.flatMap(doluGunler);
@@ -1439,6 +1531,10 @@ export function TakvimGunSayfasi({ d }: { d: YMD }) {
       question: `${tarih} Hicri tarih kaç?`,
       answer: `${tarih}, Hicri takvime göre ${b.hicriMetin} tarihine denk gelir.${b.rumiMetin ? ` Rumi takvimde ${b.rumiMetin}.` : ""}`,
     },
+    ...(a.blokMetni
+      ? [{ question: `${tarih} tatili kaç gün sürüyor?`, answer: `${a.blokMetni}${a.haftaSonuNotu}${a.kopruMetni ? ` ${a.kopruMetni}` : ""}` }]
+      : []),
+    ...(a.sonraki ? [{ question: `${tarih} sonrasındaki ilk resmî tatil ne zaman?`, answer: `Bir sonraki resmî tatil ${a.sonraki}.` }] : []),
   ];
   return (
     <TimeToolPage
@@ -1563,6 +1659,7 @@ export function TakvimGunSayfasi({ d }: { d: YMD }) {
           id: `hakkinda-${t.etkinlik.id}`,
           label: t.etkinlik.ad,
         })),
+        { id: "ayrinti", label: `${tarih} ayrıntıları` },
         { id: "ay", label: `${AY_ADLARI[d.month - 1]} ${d.year}` },
         { id: "faq", label: T.faq },
       ]}
@@ -1580,6 +1677,41 @@ export function TakvimGunSayfasi({ d }: { d: YMD }) {
           </p>
         </section>
       ))}
+      <h2 id="ayrinti">{tarih} ayrıntıları</h2>
+      {a.blokMetni ? (
+        <p>
+          {a.blokMetni}
+          {a.haftaSonuNotu}
+          {a.kopruMetni ? ` ${a.kopruMetni}` : ""}
+        </p>
+      ) : null}
+      {a.yillar.map((y) => (
+        <p key={y.id}>{y.metin}</p>
+      ))}
+      <ul className="tool-hub-list">
+        {a.onceki ? <li>Önceki resmî tatil: {a.onceki}.</li> : null}
+        {a.sonraki ? <li>Sonraki resmî tatil: {a.sonraki}.</li> : null}
+        {a.gunes ? (
+          <li>
+            Ankara'da gün doğumu {saatMetni(a.gunes.sunrise)}, gün batımı {saatMetni(a.gunes.sunset)}; gün uzunluğu{" "}
+            {dakikaMetni(a.gunes.dayLengthMinutes)}.
+          </li>
+        ) : null}
+      </ul>
+      {a.hafta.length > 0 ? (
+        <>
+          <h3>Aynı haftadaki diğer özel günler</h3>
+          <ul className="tool-hub-list">
+            {a.hafta.map((x) => (
+              <li key={ymdKey(x.d)}>
+                <Link href={takvimGunPath(x.d)} prefetch={false}>
+                  {kisaTarih(x.d)} {GUN_ADLARI[weekdayOf(x.d)]}: {x.adlar.join(", ")}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </>
+      ) : null}
       <h2 id="ay">
         {AY_ADLARI[d.month - 1]} {d.year}
       </h2>

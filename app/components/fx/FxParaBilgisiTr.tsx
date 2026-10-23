@@ -41,9 +41,7 @@ export default function FxParaBilgisiTr({ pair, data }: { pair: FxPairTr; data: 
                 <tbody>
                   <tr>
                     <th scope="row">Kod ve simge</th>
-                    <td>
-                      {para.code} · {para.symbol}
-                    </td>
+                    <td>{para.symbol === para.code ? para.code : `${para.code} · ${para.symbol}`}</td>
                   </tr>
                   <tr>
                     <th scope="row">Kullanıldığı yer</th>

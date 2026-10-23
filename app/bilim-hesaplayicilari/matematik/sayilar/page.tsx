@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import NumberFactsCalculator from "../../../components/NumberFactsCalculator";
-import { getNumberFacts } from "../../../converter/numberFacts";
+import { CURATED_EXTRA_NUMBERS, getNumberFacts, isGeneratedNumberPage } from "../../../converter/numberFacts";
 import { buildSiteUrl } from "../../../siteConfig";
 
 export const metadata: Metadata = {
@@ -30,6 +30,7 @@ const MOST_DIVISORS = [...ONE_TO_HUNDRED]
   .slice(0, 5);
 
 function NumberLink({ n }: { n: number }) {
+  if (isGeneratedNumberPage(n)) return <Link href={`/bilim-hesaplayicilari/matematik/sayilar/${n}`}>{n}</Link>;
   return (
     <a href={`?n=${n}#hesapla`} rel="nofollow">
       {n}
@@ -113,6 +114,16 @@ export default function SayilarHubPage() {
             Kendisi hariç bölenlerinin toplamı kendisine eşit olan sayılara mükemmel sayı
             denir. 1.000.000&apos;a kadar dört tane vardır: <NumberLink n={6} /> (1+2+3),{" "}
             <NumberLink n={28} /> (1+2+4+7+14), <NumberLink n={496} /> ve <NumberLink n={8128} />.
+          </p>
+
+          <h2>Özel sayılar: kareler, 2&apos;nin kuvvetleri, Fibonacci ve yıllar</h2>
+          <p>
+            100&apos;ün üzerindeki bu sayıların her birinin ayrı sayfası var: {joinLinks(CURATED_EXTRA_NUMBERS)}.
+          </p>
+
+          <h2>1&apos;den 100&apos;e kadar bütün sayılar</h2>
+          <p>
+            Her sayının bölenleri, karesi, karekökü ve asal olup olmadığı kendi sayfasında: {joinLinks(ONE_TO_HUNDRED)}.
           </p>
 
           <h2>Bir sayının asal olup olmadığı nasıl anlaşılır?</h2>

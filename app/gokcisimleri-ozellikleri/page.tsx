@@ -126,9 +126,9 @@ export default function CelestialBodiesHubPage() {
           <ul>
             {comparisons.map((comparison) => (
               <li key={comparison.slug}>
-                <a href={`?v=${comparison.slug}#karsilastir`} rel="nofollow">
+                <Link href={`/gokcisimleri-karsilastirma/${comparison.slug}`}>
                   {comparison.first.nameTr} – {comparison.second.nameTr}
-                </a>
+                </Link>
                 : {comparison.context}
               </li>
             ))}

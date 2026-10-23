@@ -124,9 +124,9 @@ export default function MaterialsHubPage() {
           <ul>
             {comparisons.map((comparison) => (
               <li key={comparison.slug}>
-                <a href={`?v=${comparison.slug}#hesapla`} rel="nofollow">
+                <Link href={`/malzeme-karsilastirma/${comparison.slug}`}>
                   {comparison.first.nameTr} – {comparison.second.nameTr}
-                </a>
+                </Link>
                 : {comparison.context}
               </li>
             ))}

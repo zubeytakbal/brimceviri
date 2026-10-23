@@ -90,6 +90,8 @@ export default function AltinHesaplamaPage() {
           { href: "/has-hesaplama", label: "Has altın ve alaşım hesaplama" },
           { href: "/altin-hesaplama/ceyrek-altin", label: "Çeyrek altın kaç gram?" },
           { href: "/altin-hesaplama/cumhuriyet-altini", label: "Cumhuriyet altını kaç gram?" },
+          { href: "/24-ayar-altin-22-ayar-altin", label: "24 ayar altın kaç gram 22 ayar eder?" },
+          { href: "/22-ayar-altin-24-ayar-altin", label: "22 ayar altın kaç gram 24 ayar eder?" },
         ],
       }}
       tocTitle="İçindekiler"
@@ -157,7 +159,9 @@ export default function AltinHesaplamaPage() {
       </div>
       <p>
         Ayarlar arasında dönüşüm için{" "}
-        <Link href="/kategoriler/altin-ayar">altın ayar çeviricisi</Link>,
+        <Link href="/kategoriler/altin-ayar">altın ayar çeviricisi</Link> (en çok bakılanlar:{" "}
+        <Link href="/24-ayar-altin-22-ayar-altin">24 ayardan 22 ayara</Link> ve{" "}
+        <Link href="/22-ayar-altin-24-ayar-altin">22 ayardan 24 ayara</Link>),
         birden fazla parçanın karışım ayarı için{" "}
         <Link href="/has-hesaplama">has hesaplama</Link> aracını
         kullanabilirsiniz.

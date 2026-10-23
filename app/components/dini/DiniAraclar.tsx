@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import Link from "@/app/components/SiteLink";
 import { kazaOrucu, SEFER_KM, SEFER_METIN, seferDurumu, umreMesafe } from "../../converter/diniHesaplar";
 import { airKm, roadKm } from "../../converter/geo/provinceDistances";
 import { turkeyProvinces } from "../../converter/geo/turkeyProvinces";
@@ -164,7 +165,9 @@ export function SureBulucu() {
               return (
                 <tr key={s.no} id={s.slug}>
                   <td>{s.no}</td>
-                  <th scope="row">{s.ad}</th>
+                  <th scope="row">
+                    <Link href={`/sureler/${s.slug}-suresi`}>{s.ad}</Link>
+                  </th>
                   <td>{s.ayet}</td>
                   <td>{s.cuzBas === s.cuzSon ? `${s.cuzBas}.` : `${s.cuzBas}–${s.cuzSon}.`}</td>
                   <td>

@@ -121,7 +121,9 @@ export const everydayToolLinksByCategory: Record<
   ],
   altin_ayar: [
     { href: "/altin-hesaplama", label: "Altın Hesaplama (Çeyrek, Yarım, Tam, Bilezik)" },
-    { href: "/altin-hesaplama", label: "Çeyrek Altın Kaç Gram?" },
+    { href: "/altin-hesaplama/ceyrek-altin", label: "Çeyrek Altın Kaç Gram?" },
+    { href: "/24-ayar-altin-22-ayar-altin", label: "24 Ayar Altını 22 Ayara Çevirme" },
+    { href: "/22-ayar-altin-24-ayar-altin", label: "22 Ayar Altını 24 Ayara Çevirme" },
     { href: "/has-hesaplama", label: "Has Altın ve Gümüş Hesaplama" },
     { href: "/kuyumcu-araclari", label: "Kuyumcu Araçları" },
   ],

@@ -498,4 +498,8 @@ export const turkishPopularTools = pick([
   "/uyku-hesaplama",
   "/koordinat-donusturucu",
   "/ulkeler",
+  "/dogalgaz-tuketimi-hesaplama",
+  "/merdiven-hesaplama",
+  "/tarla-donum-hesaplama",
+  "/yas-hesaplama",
 ]);

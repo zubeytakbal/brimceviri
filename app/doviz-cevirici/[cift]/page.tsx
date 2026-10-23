@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import FxPairPageView, { buildFxPairMetadata } from "../../components/fx/FxPairPageView";
+import FxParaBilgisiTr from "../../components/fx/FxParaBilgisiTr";
 import { fxContentTr } from "../../converter/fx/fxContentTr";
 import { requireFxDataOutsideBuild } from "../../converter/fx/fxData";
 import { getFxPairPageData } from "../../converter/fx/fxPageData";
@@ -31,5 +32,5 @@ export default async function FxPairPage({ params }: PageProps) {
 
   const data = await getFxPairPageData(pair.from, pair.to);
   requireFxDataOutsideBuild(data !== null);
-  return <FxPairPageView content={fxContentTr} pair={pair} data={data} />;
+  return <FxPairPageView content={fxContentTr} pair={pair} data={data} extra={<FxParaBilgisiTr pair={pair} data={data} />} />;
 }

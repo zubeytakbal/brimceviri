@@ -5,7 +5,7 @@ import AlarmSaat from "../components/time/AlarmSaat";
 import AlarmSahneleri from "../components/time/AlarmSahneleri";
 import SaatKabugu from "../components/saat/SaatKabugu";
 import type { FaqItem } from "../converter/faqSchema";
-import { timeToolAlternates } from "../i18n/timeToolPaths";
+import { alarmPresetSlug, alarmPresetTimes, timeToolAlternates } from "../i18n/timeToolPaths";
 import { buildSiteUrl } from "../siteConfig";
 
 const title = "Alarm Kur: Ücretsiz Online Çalar Saat, Sesli ve Kurulumsuz";
@@ -85,6 +85,19 @@ export default function OnlineAlarmPage() {
       <p>
         Alarm çaldığında ekranın tamamı alarm olur: &quot;Ertele&quot; 5 dakika sonraya yeni bir alarm kurar, &quot;Durdur&quot; kapatır.
         Gece başucunda &quot;Gece modu&quot; ekranı karartır, saati sönük kırmızıyla gösterir ve ekranın kapanmasını engeller.
+      </p>
+
+      <h2 id="hazir">Hazır alarm saatleri</h2>
+      <p>
+        Sık kurulan saatlerin her birinin kendi sayfası var; sayfa açılınca alarm o saate hazır gelir ve o saate göre önerilen yatış
+        saatleri gösterilir:{" "}
+        {alarmPresetTimes.map((time, i) => (
+          <span key={time}>
+            {i > 0 && ", "}
+            <Link href={`/online-alarm-kur/${alarmPresetSlug.tr(time)}`}>{time}</Link>
+          </span>
+        ))}
+        .
       </p>
 
       <h2 id="sesler">Alarm sesleri</h2>

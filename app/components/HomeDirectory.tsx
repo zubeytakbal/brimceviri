@@ -333,6 +333,17 @@ const preferredSourceSlugs = [
   "kilopascal-bar",
 ];
 
+// Türkçe ana sayfadaki "Popüler dönüşümler": Search Console'un son 3 ayında (20 Ekim 2026'ya kadar) en çok tıklanan
+// Türkçe dönüşüm sayfaları, tıklama sırasıyla.
+const trPopularSourceSlugs = [
+  "metrekare-donum",
+  "dekar-donum",
+  "bar-psi",
+  "metrekup-litre",
+  "kilogram-gram",
+  "fit-metre",
+];
+
 // GSC'de sayfa 1 esiginde (poz. ~6-13) kalan birim rehberi sayfalari --
 // anasayfadan ekstra ic link vermek icin one alindi (2026-08-26).
 const preferredUnitSlugs = [
@@ -681,7 +692,7 @@ const extraCategoryCardsByLocale: Record<Locale, HomeCategoryCard[]> = {
 const copy = {
   tr: {
     eyebrow: "Birim çeviri ve dönüşümü",
-    title: "Doğru dönüşüme hızlıca gidin",
+    title: "Birim çevirici ve hesaplama araçları",
     description:
       "Arama ile sayfayı açın veya fiziksel büyüklüğe göre kategori seçin.",
     searchLabel: "Dönüşüm veya hesaplayıcı ara",
@@ -1527,7 +1538,7 @@ function createHomeData(locale: Locale): HomeData {
       ];
     });
 
-  const preferredPopularConversions = preferredSourceSlugs.flatMap((slug) => {
+  const preferredPopularConversions = (locale === "tr" ? trPopularSourceSlugs : preferredSourceSlugs).flatMap((slug) => {
     const conversion = conversions.find(
       (item) => item.sourceSlug === slug
     );
@@ -1925,10 +1936,13 @@ function createHomeData(locale: Locale): HomeData {
             : "/en/engineering-calculators",
       engineeringHubLabel: strings.engineeringHubLabel,
     stats: {
-      activeCategories: allCategoryCards.length,
+      // Türkçede kutu sitedeki gerçek sayıları gösterir: bütün kategori sayfaları ve araç dizinindeki bütün hesaplayıcılar.
+      activeCategories: locale === "tr" ? categoryPages.length : allCategoryCards.length,
       conversions: conversions.length,
       engineering:
-        locale === "en"
+        locale === "tr"
+          ? new Set(turkishToolGroups.flatMap((group) => group.links.map((link) => link.href))).size
+          : locale === "en"
           ? englishLiveCalculatorCount
           : locale === "de"
             ? engineeringCalculators.length + germanStandaloneTools.length + germanRechnerHome.length + timeToolsHome.de.length + 1

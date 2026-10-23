@@ -93,7 +93,9 @@ export default function CuzlerPage() {
           <tbody>
             {CUZLER.map((c) => (
               <tr key={c.cuz} id={`cuz-${c.cuz}`}>
-                <th scope="row">{c.cuz}.</th>
+                <th scope="row">
+                  <Link href={`/cuzler/${c.cuz}-cuz`}>{c.cuz}. cüz</Link>
+                </th>
                 <td>{parcaMetni(c.parcalar)}</td>
                 <td>{c.son - c.ilk + 1}</td>
                 <td>

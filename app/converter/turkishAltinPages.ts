@@ -1,5 +1,5 @@
-// Eskiden ayrı sayfası olan altın türleri ("... kaç gram"). Arama alan çeyrek ve Cumhuriyet altınının yine
-// kendi sayfası var (AYRI_ALTIN_SAYFALARI); diğerleri altın hesaplama sayfasındaki tabloda.
+// Kendi sayfası olan altın türleri ("... kaç gram"). Ekim 2026'da hepsi geri getirildi; altın hesaplama sayfasındaki
+// tablo her birine bağlanır.
 import {
   findSikke,
   hasGram,
@@ -17,8 +17,8 @@ export const ALTIN_SAYFALARI = [
   "cumhuriyet-altini",
 ];
 
-/** Kendi sayfası olan altın türleri (Search Console'da en çok gösterim alanlar). */
-export const AYRI_ALTIN_SAYFALARI = ["ceyrek-altin", "cumhuriyet-altini"];
+/** Kendi sayfası olan altın türleri. */
+export const AYRI_ALTIN_SAYFALARI = ALTIN_SAYFALARI;
 
 export const altinSayfaPath = (id: string) => `/altin-hesaplama/${id}`;
 

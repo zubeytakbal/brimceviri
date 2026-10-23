@@ -46,9 +46,9 @@ export function buildFxPairMetadata(content: FxLocaleContent, pair: FxPair, data
   };
 }
 
-type Props = { content: FxLocaleContent; pair: FxPair; data: FxPairPageData | null };
+type Props = { content: FxLocaleContent; pair: FxPair; data: FxPairPageData | null; extra?: React.ReactNode };
 
-export default function FxPairPageView({ content, pair, data }: Props) {
+export default function FxPairPageView({ content, pair, data, extra }: Props) {
   const { pair: text, common, labels, numberLocale } = content;
   const from = content.currencies[pair.from];
   const to = content.currencies[pair.to];
@@ -245,6 +245,8 @@ export default function FxPairPageView({ content, pair, data }: Props) {
             {text.midRateP2.after}
           </p>
         </section>
+
+        {extra}
 
         {text.officialRateNote && (
           <section className="conversion-section">

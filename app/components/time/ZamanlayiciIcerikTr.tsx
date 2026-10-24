@@ -81,7 +81,7 @@ function PomodoroProgrami({ baslangic = 9 * 60 }: { baslangic?: number }) {
             <th scope="col">Adım</th>
             <th scope="col">Başlangıç</th>
             <th scope="col">Bitiş</th>
-            <th scope="col">Zamanlayıcı</th>
+            <th scope="col">Süre</th>
           </tr>
         </thead>
         <tbody>

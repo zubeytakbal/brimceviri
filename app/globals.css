@@ -22424,13 +22424,15 @@ a.all-units-row .all-units-name {
 }
 .zm-adimlar li {
   counter-increment: zm;
-  display: grid;
-  grid-template-columns: 30px 1fr;
-  align-items: start;
-  gap: 10px;
+  position: relative;
+  min-height: 28px;
+  padding: 2px 0 0 40px;
 }
 .zm-adimlar li::before {
   content: counter(zm);
+  position: absolute;
+  left: 0;
+  top: 0;
   display: grid;
   place-items: center;
   width: 28px;

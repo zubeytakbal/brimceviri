@@ -22496,3 +22496,12 @@ a.all-units-row .all-units-name {
   background: #10302f;
   color: #ffffff;
 }
+
+/* ---------------- Hesap bölümü: saat bölümünün araç düzeni, kendi rengiyle ---------------- */
+:root:has(.hesap-arac-ust) {
+  --saat-vurgu: #d9480f;
+}
+:root:has(.hesap-arac-ust) :is(.takvim-bugun, .week-now, .world-board-local, .countdown-card) a,
+:root:has(.hesap-arac-ust) .all-conversions-page .all-conversions-header a {
+  color: #ffa36c;
+}

@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { isSaatAraci, isSaatBolumu } from "./saat/saatBolumu";
+import { isHesapAraci } from "./hesap/hesapBolumu";
 import Link from "@/app/components/SiteLink";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useState } from "react";
@@ -15,6 +16,8 @@ import { useNotificationSlot } from "./NotificationSlotProvider";
 
 // Saat bölümünün menüsü ve şehir listesi yalnızca o bölümün sayfalarında yüklenir.
 const SaatAracUst = dynamic(() => import("./saat/SaatAracUst"));
+// Hesap bölümü aynı düzeni kendi adı ve gruplarıyla kullanır.
+const HesapAracUst = dynamic(() => import("./hesap/HesapAracUst"));
 
 type HeaderLink = {
   href: string;
@@ -28,6 +31,7 @@ export default function SiteHeader() {
     return null;
   }
   if (isSaatAraci(pathname)) return <SaatAracUst />;
+  if (isHesapAraci(pathname)) return <HesapAracUst />;
   return <SiteHeaderNavigation key={pathname} pathname={pathname} />;
 }
 

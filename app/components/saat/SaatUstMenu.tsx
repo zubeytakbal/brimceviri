@@ -15,7 +15,12 @@ type Oge = { href: string; ad: string; ulke: string };
 
 const ara = (s: string) => s.toLocaleLowerCase("tr-TR").normalize("NFD").replace(/[̀-ͯ]/g, "");
 
-export default function SaatUstMenu({ ogeler }: { ogeler: Oge[] }) {
+type Bolum = { etiket: string; href: string; gruplar: Array<{ baslik: string; linkler: Array<{ href: string; label: string }> }>; arama: string };
+
+const SAAT: Bolum = { etiket: "Saat", href: "/saat-ve-tarih", gruplar: SAAT_GRUPLARI, arama: "Şehir, ülke ya da araç yazın" };
+
+/** Saat bölümünün üst menüsü; aynı düzen başka bölümlerde (ör. Hesap) kendi adı ve gruplarıyla kullanılır. */
+export default function SaatUstMenu({ ogeler, bolum = SAAT }: { ogeler: Oge[]; bolum?: Bolum }) {
   const [acik, setAcik] = useState<"yok" | "arama" | "menu">("yok");
   const [sorgu, setSorgu] = useState("");
   const girdi = useRef<HTMLInputElement>(null);
@@ -38,8 +43,8 @@ export default function SaatUstMenu({ ogeler }: { ogeler: Oge[] }) {
           <Link href="/" className="site-logo saat-site-logo" dir="ltr">
             birimceviri<span>.app</span>
           </Link>
-          <Link href="/saat-ve-tarih" className="saat-bolum-etiket">
-            Saat
+          <Link href={bolum.href} className="saat-bolum-etiket">
+            {bolum.etiket}
           </Link>
         </div>
         <div className="saat-ust-dugmeler">
@@ -64,7 +69,7 @@ export default function SaatUstMenu({ ogeler }: { ogeler: Oge[] }) {
               ref={girdi}
               type="search"
               className="saat-arama"
-              placeholder="Şehir, ülke ya da araç yazın"
+              placeholder={bolum.arama}
               value={sorgu}
               onChange={(e) => setSorgu(e.target.value)}
             />
@@ -86,7 +91,7 @@ export default function SaatUstMenu({ ogeler }: { ogeler: Oge[] }) {
         <div className="saat-katman" role="dialog" aria-label="Menü">
           <nav className="saat-katman-ic saat-menu">
             <div className="saat-menu-gruplar">
-              {SAAT_GRUPLARI.map((g) => (
+              {bolum.gruplar.map((g) => (
                 <div key={g.baslik}>
                   <p className="saat-menu-baslik">{g.baslik}</p>
                   {g.linkler.map((m) => (

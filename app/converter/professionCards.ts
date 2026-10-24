@@ -266,14 +266,6 @@ export const professionCards: ProfessionCard[] = [
     iconName: "videoEditorHub",
   },
   {
-    id: "dijital-pazarlamaci",
-    href: "/dijital-pazarlamaci-araclari",
-    title: "Dijital Pazarlamacı Araçları",
-    description:
-      "CPM, CTR, CPC ve ROI hesaplama.",
-    iconName: "dijitalPazarlamaciHub",
-  },
-  {
     id: "klima-sogutma-teknisyeni",
     href: "/klima-sogutma-teknisyeni-araclari",
     title: "Klima ve Soğutma Teknisyeni Araçları",

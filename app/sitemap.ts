@@ -3627,12 +3627,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
     },
     {
-      url: `${baseUrl}/dijital-pazarlamaci-araclari`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
       url: `${baseUrl}/klima-sogutma-teknisyeni-araclari`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",

@@ -22452,3 +22452,15 @@ a.all-units-row .all-units-name {
 .zm-tablo tr.is-soluk td {
   color: #6b7785;
 }
+.zm-aile-spor {
+  --zm-renk: #0f7a55;
+  --zm-zemin: #e3f6ee;
+}
+.zm-aile-gunluk {
+  --zm-renk: #1d5f8f;
+  --zm-zemin: #e6f2fb;
+}
+.zm-aile-uzun {
+  --zm-renk: #5b3fc0;
+  --zm-zemin: #efeafd;
+}

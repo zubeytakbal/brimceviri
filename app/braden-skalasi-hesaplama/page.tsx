@@ -212,7 +212,7 @@ export default function BradenScalePage() {
             Düşme riski için{" "}
             <Link href="/morse-dusme-skalasi-hesaplama">Morse Düşme Skalası Hesaplama</Link>,
             diğer doktor ve hemşire araçları için{" "}
-            <Link href="/doktor-hemsire-araclari">Doktor ve Hemşire Araçları</Link>{" "}
+            <Link href="/hesaplayicilar#klinik">Klinik Skorlar</Link>{" "}
             sayfasına bakabilirsin.
           </p>
 

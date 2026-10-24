@@ -228,7 +228,7 @@ export default function ExcavationCalculatorPage() {
             miktarı için{" "}
             <Link href="/beton-hesaplama">Beton Hesaplama</Link>{" "}
             aracına, inşaat işleriyle ilgili diğer araçlar için{" "}
-            <Link href="/insaatci-araclari">İnşaatçı Araçları</Link>{" "}
+            <Link href="/hesaplayicilar#ev-ve-yapi">Ev, İnşaat ve Bahçe</Link>{" "}
             sayfasına bakabilirsin.
           </p>
 

@@ -101,7 +101,7 @@ export default function WellsScorePage() {
           <h2>İlgili araçlar</h2>
           <p>
             Diğer doktor ve hemşire araçları için{" "}
-            <Link href="/doktor-hemsire-araclari">Doktor ve Hemşire Araçları</Link>{" "}
+            <Link href="/hesaplayicilar#klinik">Klinik Skorlar</Link>{" "}
             sayfasına bakabilirsin.
           </p>
 

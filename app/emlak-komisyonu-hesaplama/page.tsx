@@ -207,7 +207,7 @@ export default function RealEstateCommissionPage() {
           <h2>İlgili araçlar</h2>
           <p>
             Diğer emlak/gayrimenkul araçları için{" "}
-            <Link href="/emlakci-araclari">Emlakçı Araçları</Link>{" "}
+            <Link href="/hesaplayicilar#para-ve-is">Para, Maaş ve Vergi</Link>{" "}
             sayfasına, KDV oranını değiştirerek genel hesap yapmak
             için <Link href="/kdv-hesaplama">KDV Hesaplama</Link>{" "}
             aracına bakabilirsin.

@@ -46,7 +46,7 @@ export default function BeaufortPage() {
         links: [
           { href: "/knot-kilometre-saat", label: "Knot - km/h" },
           { href: "/kategoriler/hiz", label: "Hız Çevirici" },
-          { href: "/kaptan-araclari", label: "Kaptan Araçları" },
+          { href: "/hesaplayicilar#harita-ve-havacilik", label: "Harita, Coğrafya ve Havacılık" },
           { href: "/yan-ruzgar-hesaplama", label: "Yan Rüzgâr Hesaplama" },
         ],
       }}

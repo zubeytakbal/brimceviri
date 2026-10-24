@@ -1,4 +1,4 @@
-// Tarım ve hayvancılık araçları: /ciftci-araclari hub sayfası ve araç sayfalarının
+// Tarım ve hayvancılık araçları: hesaplamalar sayfasının tarım bölümü ve araç sayfalarının
 // "ilgili araçlar" bölümü buradan beslenir.
 export const tarimAraclari = [
   { href: "/inek-dogum-hesaplama", label: "İnek Doğum Hesaplama", description: "Tohumlamadan doğum tarihi, kızgınlık takibi ve kuruya ayırma; düve, koyun, keçi, manda, kısrak." },

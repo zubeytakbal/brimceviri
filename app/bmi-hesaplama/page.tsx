@@ -145,7 +145,7 @@ export default function BmiCalculatorPage() {
             , boyuna göre klinik referans kilo için{" "}
             <Link href="/ideal-kilo-hesaplama">İdeal Kilo Hesaplama</Link>{" "}
             aracına, sağlık ve fitness ile ilgili diğer araçlar için{" "}
-            <Link href="/diyetisyen-araclari">Diyetisyen Araçları</Link>{" "}
+            <Link href="/hesaplayicilar#saglik-ve-spor">Sağlık ve Spor</Link>{" "}
             sayfasına bakabilirsin.
           </p>
 

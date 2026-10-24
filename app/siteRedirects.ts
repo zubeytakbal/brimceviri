@@ -1,6 +1,7 @@
 import { mergedPageRedirects } from "./mergedPageRedirects";
 import { routePairs } from "./converter/geo/routePairs";
 import { canonicalPairSlug, MERGED_PAIRS } from "./converter/mergedPairs";
+import { PROFESSION_PAGES } from "./professionRedirects";
 
 // Statik sitede (output: "export") Next.js yonlendirmeleri calismaz. Liste
 // derlemeden sonra scripts/postbuild.ts ile out/_redirects dosyasina
@@ -91,6 +92,8 @@ export function siteRedirects(): SiteRedirect[] {
     ...mergedPageRedirects(),
     // Türkçe çift sayfalarda ters yön (ör. metre-kilometre) iki yönü birlikte anlatan sayfaya kalıcı yönlenir.
     ...Object.entries(MERGED_PAIRS).map(([from, to]) => ({ source: `/${from}`, destination: `/${to}`, permanent: true })),
+    // Meslek liste sayfaları kaldırıldı; her biri araçlarının bulunduğu konu bölümüne yönlenir.
+    ...Object.entries(PROFESSION_PAGES).map(([from, to]) => ({ source: `/${from}`, destination: to.href, permanent: true })),
     // Il cifti sayfalari tek yonde yayinda; ters yon (ankara/istanbul) kalici olarak yonlendirilir.
     ...routePairs().map((p) => ({
       source: `/iller-arasi-mesafe/${p.to.id}/${p.from.id}`,

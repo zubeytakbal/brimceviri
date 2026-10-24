@@ -138,7 +138,7 @@ export default function IdealWeightCalculatorPage() {
               Vücut Yağ Oranı Hesaplama
             </Link>
             , sağlık ve fitness ile ilgili diğer araçlar için{" "}
-            <Link href="/diyetisyen-araclari">Diyetisyen Araçları</Link>{" "}
+            <Link href="/hesaplayicilar#saglik-ve-spor">Sağlık ve Spor</Link>{" "}
             sayfasına bakabilirsin.
           </p>
 

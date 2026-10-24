@@ -102,7 +102,7 @@ export default function SofaPage() {
             Hızlı sepsis taraması için{" "}
             <Link href="/qsofa-hesaplama">qSOFA Hesaplama</Link>, diğer
             doktor ve hemşire araçları için{" "}
-            <Link href="/doktor-hemsire-araclari">Doktor ve Hemşire Araçları</Link>{" "}
+            <Link href="/hesaplayicilar#klinik">Klinik Skorlar</Link>{" "}
             sayfasına bakabilirsin.
           </p>
 

@@ -272,7 +272,7 @@ function rebarContent(): PageContent {
     ],
     extraRelated: [
       { href: "/beton-hesaplama", label: "Beton Hesaplama" },
-      { href: "/insaatci-araclari", label: "İnşaatçı Araçları" },
+      { href: "/hesaplayicilar#ev-ve-yapi", label: "Ev, İnşaat ve Bahçe" },
     ],
   };
 }
@@ -355,7 +355,7 @@ function plateContent(): PageContent {
       { question: "Sac ağırlığı nasıl hesaplanır?", answer: "Uzunluk (mm) × genişlik (mm) × kalınlık (mm) × yoğunluk (kg/m³) / 1.000.000.000. Çelik için kısa yol: kalınlık (mm) × 7,85 = kg/m²." },
     ],
     extraRelated: [
-      { href: "/kaynakci-araclari", label: "Kaynakçı Araçları" },
+      { href: "/hesaplayicilar#teknik", label: "Teknik ve Mühendislik" },
       { href: "/malzeme-ozellikleri", label: "Malzeme Özellikleri" },
     ],
   };
@@ -444,7 +444,7 @@ function pipeContent(): PageContent {
     extraRelated: [
       { href: "/boru-capi-donusum-hesaplama", label: "Boru Çapı Dönüşümü (DN-NPS)" },
       { href: "/boru-capi-hesaplama", label: "Boru Çapı, Debi ve Akış Hızı" },
-      { href: "/tesisatci-araclari", label: "Tesisatçı Araçları" },
+      { href: "/hesaplayicilar#teknik", label: "Teknik ve Mühendislik" },
     ],
   };
 }
@@ -527,7 +527,7 @@ function boxContent(): PageContent {
     ],
     extraRelated: [
       { href: "/celik-profil-tablolari", label: "Çelik Profil Tabloları (IPE, HEA, HEB)" },
-      { href: "/kaynakci-araclari", label: "Kaynakçı Araçları" },
+      { href: "/hesaplayicilar#teknik", label: "Teknik ve Mühendislik" },
       { href: "/malzeme-agirligi-hesaplama", label: "Malzeme Ağırlığı" },
     ],
   };

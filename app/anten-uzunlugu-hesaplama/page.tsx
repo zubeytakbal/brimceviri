@@ -49,8 +49,8 @@ export default function AntennaLengthCalculatorPage() {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: buildSiteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "Mesleğe Göre Araçlar", item: buildSiteUrl("/meslekler") },
-      { "@type": "ListItem", position: 3, name: "Amatör Telsiz Araçları", item: buildSiteUrl("/amator-telsiz-araclari") },
+      { "@type": "ListItem", position: 2, name: "Tüm Hesaplamalar", item: buildSiteUrl("/hesaplayicilar") },
+      { "@type": "ListItem", position: 3, name: "Teknik ve Mühendislik", item: buildSiteUrl("/hesaplayicilar#teknik") },
       { "@type": "ListItem", position: 4, name: "Anten Uzunluğu Hesaplama", item: buildSiteUrl("/anten-uzunlugu-hesaplama") },
     ],
   };
@@ -64,7 +64,7 @@ export default function AntennaLengthCalculatorPage() {
         <nav className="breadcrumbs" aria-label="Sayfa yolu">
           <Link href="/">Ana Sayfa</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/amator-telsiz-araclari">Amatör Telsiz Araçları</Link>
+          <Link href="/hesaplayicilar#teknik">Teknik ve Mühendislik</Link>
           <span aria-hidden="true">&rsaquo;</span>
           <span>Anten Uzunluğu Hesaplama</span>
         </nav>
@@ -94,7 +94,7 @@ export default function AntennaLengthCalculatorPage() {
           <h2>İlgili araçlar</h2>
           <p>
             Diğer amatör telsiz araçları için{" "}
-            <Link href="/amator-telsiz-araclari">Amatör Telsiz Araçları</Link>
+            <Link href="/hesaplayicilar#teknik">Teknik ve Mühendislik</Link>
             {" "}sayfasına, Hz/kHz/MHz frekans dönüşümleri için{" "}
             <Link href="/kategoriler/frekans">Frekans Dönüşümleri</Link>
             {" "}sayfasına bakabilirsin.

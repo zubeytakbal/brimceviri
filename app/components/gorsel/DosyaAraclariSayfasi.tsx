@@ -66,10 +66,10 @@ export function DosyaAraclariSayfasi() {
               label: "Veri Depolama Dönüşümleri (KB, MB, GB)",
             },
             { href: "/renk-kodu-cevirici", label: "Renk Kodu Çevirici" },
-            { href: "/fotografci-araclari", label: "Fotoğrafçı Araçları" },
+            { href: "/hesaplayicilar#dosya-ve-gorsel", label: "Dosya ve Görsel Araçları" },
             {
-              href: "/grafik-tasarimci-araclari",
-              label: "Grafik Tasarımcı Araçları",
+              href: "/hesaplayicilar#dosya-ve-gorsel",
+              label: "Dosya ve Görsel Araçları",
             },
           ],
         }}

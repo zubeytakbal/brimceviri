@@ -169,7 +169,7 @@ export default async function LicenseClassFinderPage() {
             için{" "}
             <Link href="/ehliyet-yenileme-suresi-hesaplama">Ehliyet Yenileme Süresi Hesaplama</Link>
             {" "}aracına, diğer otomotiv araçları için{" "}
-            <Link href="/otomotiv-araclari">Otomotiv Araçları</Link>
+            <Link href="/hesaplayicilar#enerji-ve-arac">Enerji, Fatura ve Araç</Link>
             {" "}sayfasına bakabilirsin.
           </p>
 

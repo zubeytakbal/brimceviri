@@ -216,7 +216,7 @@ export default function OkulTakvimiSayfasi() {
         links: [
           { href: "/resmi-tatiller", label: "Resmî Tatiller" },
           { href: "/geri-sayim", label: "Geri Sayım" },
-          { href: "/ogretmen-araclari", label: "Öğretmen Araçları" },
+          { href: "/hesaplayicilar#olcu-ve-gunluk", label: "Mutfak, Beden ve Okul" },
           { href: "/harf-notu-hesaplama", label: "Harf Notu Hesaplama" },
           { href: "/devamsizlik-hesaplama", label: "Devamsızlık Hesaplama" },
           ...TAKVIM_ARACLARI,

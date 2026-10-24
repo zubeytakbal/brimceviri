@@ -1598,7 +1598,7 @@ export const englishStandaloneTools: EnglishStandaloneTool[] = [
   {
     slug: "gold-price-calculator-india",
     englishPath: "/en/gold-price-calculator-india",
-    turkishPath: "/kuyumcu-araclari",
+    turkishPath: "/altin-hesaplama",
     title: "Gold Price Calculator India (22K, 24K, GST)",
     description:
       "Calculate the price of gold jewellery in India: gold rate × weight, plus making charges and 3% GST. Works for 24K, 22K (916), 18K and 14K, in grams or tola.",
@@ -1678,7 +1678,7 @@ export const englishStandaloneTools: EnglishStandaloneTool[] = [
   {
     slug: "indian-weight-converter",
     englishPath: "/en/indian-weight-converter",
-    turkishPath: "/kuyumcu-araclari",
+    turkishPath: "/kategoriler/kutle",
     title: "Indian Weight Converter: Tola, Ratti, Maund",
     description:
       "Convert tola, masha, ratti, seer, maund and quintal to grams, kilograms and carats — including both the goldsmith ratti and the gemstone (pakki) ratti.",
@@ -1796,7 +1796,7 @@ export const englishStandaloneTools: EnglishStandaloneTool[] = [
   {
     slug: "steel-weight-calculator",
     englishPath: "/en/steel-weight-calculator",
-    turkishPath: "/insaatci-araclari",
+    turkishPath: "/demir-agirlik-hesaplama",
     title: "Steel Bar Weight Calculator (D²/162, kg/m)",
     description:
       "Weight of TMT and rebar steel from bar diameter, number of bars and length: kg per meter, per 12 m bar, total kg and tonnes, with the D²/162 formula.",

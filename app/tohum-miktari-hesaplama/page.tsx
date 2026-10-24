@@ -66,8 +66,8 @@ export default function SeedRateCalculatorPage() {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: buildSiteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "Mesleğe Göre Araçlar", item: buildSiteUrl("/meslekler") },
-      { "@type": "ListItem", position: 3, name: "Çiftçi Araçları", item: buildSiteUrl("/ciftci-araclari") },
+      { "@type": "ListItem", position: 2, name: "Tüm Hesaplamalar", item: buildSiteUrl("/hesaplayicilar") },
+      { "@type": "ListItem", position: 3, name: "Tarım ve Hayvancılık", item: buildSiteUrl("/hesaplayicilar#tarim") },
       { "@type": "ListItem", position: 4, name: "Tohum Miktarı Hesaplama", item: buildSiteUrl("/tohum-miktari-hesaplama") },
     ],
   };
@@ -81,7 +81,7 @@ export default function SeedRateCalculatorPage() {
         <nav className="breadcrumbs" aria-label="Sayfa yolu">
           <Link href="/">Ana Sayfa</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/ciftci-araclari">Çiftçi Araçları</Link>
+          <Link href="/hesaplayicilar#tarim">Tarım ve Hayvancılık</Link>
           <span aria-hidden="true">&rsaquo;</span>
           <span>Tohum Miktarı Hesaplama</span>
         </nav>
@@ -147,7 +147,7 @@ export default function SeedRateCalculatorPage() {
           <h2>İlgili araçlar</h2>
           <p>
             Diğer çiftçi araçları için{" "}
-            <Link href="/ciftci-araclari">Çiftçi Araçları</Link>
+            <Link href="/hesaplayicilar#tarim">Tarım ve Hayvancılık</Link>
             {" "}sayfasına, gübre ihtiyacı hesaplama için{" "}
             <Link href="/gubre-ihtiyaci-hesaplama">Gübre İhtiyacı Hesaplama</Link>
             {" "}sayfasına bakabilirsin.

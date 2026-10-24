@@ -53,7 +53,7 @@ export default function KuluckaPage() {
     <TimeToolPage
       crumbs={[
         { href: "/", label: "Ana Sayfa" },
-        { href: "/ciftci-araclari", label: "Tarım ve Hayvancılık" },
+        { href: "/hesaplayicilar#tarim", label: "Tarım ve Hayvancılık" },
         { href: path, label: "Kuluçka Hesaplama" },
       ]}
       crumbLabel="Sayfa yolu"

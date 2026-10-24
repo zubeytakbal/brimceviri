@@ -96,7 +96,7 @@ export default function TravelPlugVoltagePage() {
             {" "}sayfasına, döviz hesaplamaları için{" "}
             <Link href="/doviz-cevirici">Döviz Çevirici</Link>
             {" "}sayfasına, diğer elektrikçi araçları için{" "}
-            <Link href="/elektrikci-araclari">Elektrikçi Araçları</Link>
+            <Link href="/muhendislik-hesaplayicilari/elektrik-hesaplari">Elektrik Hesapları</Link>
             {" "}sayfasına bakabilirsin.
           </p>
 

@@ -71,7 +71,7 @@ export default function KidemTazminatiPage() {
     <TimeToolPage
       crumbs={[
         { href: "/", label: "Ana sayfa" },
-        { href: "/muhasebeci-araclari", label: "Muhasebeci Araçları" },
+        { href: "/hesaplayicilar#para-ve-is", label: "Para, Maaş ve Vergi" },
         { href: path, label: "Kıdem Tazminatı Hesaplama" },
       ]}
       crumbLabel="Sayfa yolu"
@@ -94,7 +94,7 @@ export default function KidemTazminatiPage() {
           { href: "/brutten-nete-maas-hesaplama", label: "Brütten Nete Maaş Hesaplama" },
           { href: "/yillik-izin-hesaplama", label: "Yıllık İzin Hesaplama" },
           { href: "/kdv-hesaplama", label: "KDV Hesaplama" },
-          { href: "/muhasebeci-araclari", label: "Muhasebeci Araçları" },
+          { href: "/hesaplayicilar#para-ve-is", label: "Para, Maaş ve Vergi" },
         ],
       }}
       tocTitle="İçindekiler"

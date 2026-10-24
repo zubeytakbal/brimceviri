@@ -187,7 +187,6 @@ export const turkishToolGroups: ToolGroup[] = [
       { href: "/tohum-miktari-hesaplama", label: "Tohum Miktarı" },
       { href: "/sulama-suresi-hesaplama", label: "Sulama Süresi" },
       { href: "/tarla-donum-hesaplama", label: "Tarla Dönüm Hesaplama" },
-      { href: "/ciftci-araclari", label: "Tüm Çiftçi Araçları" },
     ],
   },
   {

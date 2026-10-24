@@ -22505,3 +22505,15 @@ a.all-units-row .all-units-name {
 :root:has(.hesap-arac-ust) .all-conversions-page .all-conversions-header a {
   color: #ffa36c;
 }
+:root:has(.hesap-arac-ust) .gorsel-birak {
+  background: #141414;
+  border-color: #ffa36c;
+  color: #ffffff;
+}
+:root:has(.hesap-arac-ust) .gorsel-birak:is(:hover, .is-drag, :focus-within) {
+  background: #1f1f1f;
+  border-color: #ffffff;
+}
+:root:has(.hesap-arac-ust) .gorsel-birak small {
+  color: #c9c9c9;
+}

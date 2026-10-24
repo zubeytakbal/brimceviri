@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import LetterGradeCalculator from "../components/LetterGradeCalculator";
+import { letterGradeScale } from "../converter/letterGradeCalculator";
 import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
 
@@ -16,6 +17,17 @@ const faqItems: FaqItem[] = [
       "Hayır. Bu tablo yaygın kullanılan genel bir referanstır; senin okulunun veya üniversitenin kendi yönetmeliğinde farklı eşik değerleri olabilir. Kesin sonuç için kurumunun resmi kaynağına bakmalısın.",
   },
 ];
+
+const katsayi = (harf: string) => letterGradeScale.find((r) => r.letter === harf)!.gpa;
+const ORNEK_DERSLER: Array<[string, number, string]> = [
+  ["Matematik", 6, "BB"],
+  ["Fizik", 5, "CB"],
+  ["Programlama", 6, "AA"],
+  ["İngilizce", 3, "BA"],
+  ["Tarih", 2, "CC"],
+];
+const TOPLAM_AKTS = ORNEK_DERSLER.reduce((t, d) => t + d[1], 0);
+const TOPLAM_PUAN = ORNEK_DERSLER.reduce((t, d) => t + d[1] * katsayi(d[2]), 0);
 
 export const metadata: Metadata = {
   title: "Harf Notu Hesaplama (100'lük - 4'lük Sistem)",
@@ -79,6 +91,68 @@ export default function LetterGradeCalculatorPage() {
         <LetterGradeCalculator />
 
         <section className="category-article-content">
+          <h2 id="tablo">100&apos;lük not hangi harf notu ve 4&apos;lük nota denk gelir?</h2>
+          <p>
+            Türkiye&apos;de birçok üniversitenin kullandığı aralıklar aşağıdadır. Sınırlar kuruma, hatta bağıl değerlendirme
+            yapılan derslerde sınıfın ortalamasına göre değişebilir; kesin tablo üniversitenizin eğitim-öğretim
+            yönetmeliğindedir.
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>100&apos;lük not</th>
+                  <th>Harf</th>
+                  <th>4&apos;lük karşılık</th>
+                </tr>
+              </thead>
+              <tbody>
+                {letterGradeScale.map((r, i) => (
+                  <tr key={r.letter}>
+                    <td>
+                      {r.minScore}–{i === 0 ? 100 : letterGradeScale[i - 1].minScore - 1}
+                    </td>
+                    <td>{r.letter}</td>
+                    <td>{r.gpa.toLocaleString("tr-TR", { minimumFractionDigits: 2 })}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="ortalama">Dönem ortalaması nasıl hesaplanır?</h2>
+          <p>
+            Dönem ortalaması (genellikle &quot;yarıyıl not ortalaması&quot;), her dersin 4&apos;lük karşılığının dersin AKTS
+            ya da kredisiyle çarpılıp toplanması ve toplam krediye bölünmesiyle bulunur. Örnek bir dönem:
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>Ders</th>
+                  <th>AKTS</th>
+                  <th>Not</th>
+                  <th>AKTS × katsayı</th>
+                </tr>
+              </thead>
+              <tbody>
+                {ORNEK_DERSLER.map(([ad, akts, harf]) => (
+                  <tr key={ad}>
+                    <td>{ad}</td>
+                    <td>{akts}</td>
+                    <td>{harf}</td>
+                    <td>{(akts * katsayi(harf)).toLocaleString("tr-TR")}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Toplam {TOPLAM_PUAN.toLocaleString("tr-TR")} puan, {TOPLAM_AKTS} AKTS&apos;ye bölününce dönem ortalaması{" "}
+            <strong>{(TOPLAM_PUAN / TOPLAM_AKTS).toLocaleString("tr-TR", { maximumFractionDigits: 2 })}</strong> çıkar. Krediyi
+            yüksek bir dersteki düşük not, ortalamayı küçük bir dersteki aynı nottan daha çok etkiler.
+          </p>
+
           <h2>Sık Sorulan Sorular</h2>
           {faqItems.map((item) => (
             <p key={item.question}>

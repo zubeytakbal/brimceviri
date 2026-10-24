@@ -32,8 +32,10 @@ const faqItems: FaqItem[] = [
   },
 ];
 
+const HAFTALIK_SAAT = [2, 3, 4, 5, 6];
+
 export const metadata: Metadata = {
-  title: "Devamsızlık Hesaplama: Kalan Devamsızlık Hakkını Öğren",
+  title: "Devamsızlık Hesaplama (Üniversite ve Okul): Kalan Hakkını Öğren",
   description:
     "Okul (gün bazlı) veya üniversite (yüzde/saat bazlı) devamsızlık limitine göre kalan devamsızlık hakkını ve kullanım oranını anında hesapla.",
   alternates: {
@@ -109,6 +111,45 @@ export default function AttendanceCalculatorPage() {
         <AttendanceCalculator />
 
         <section className="category-article-content">
+          <h2 id="universite">Üniversitede kaç saat devamsızlık hakkım var?</h2>
+          <p>
+            Üniversitelerde sınır çoğunlukla ders saatinin yüzdesi olarak verilir: teorik derslerde sık görülen oran %30,
+            uygulamalı ve laboratuvar derslerinde %20&apos;dir. Tablo 14 haftalık bir dönem için, dersin haftalık saatine göre
+            en fazla kaç saat (ve kaç haftalık ders) kaçırabileceğinizi gösterir. Kendi üniversitenizin oranı farklıysa
+            yukarıdaki araca girin.
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>Haftalık ders</th>
+                  <th>Dönemde toplam</th>
+                  <th>%30 sınırı</th>
+                  <th>%20 sınırı</th>
+                </tr>
+              </thead>
+              <tbody>
+                {HAFTALIK_SAAT.map((h) => (
+                  <tr key={h}>
+                    <td>{h} saat</td>
+                    <td>{h * 14} saat</td>
+                    <td>
+                      {Math.floor(h * 14 * 0.3)} saat ({Math.floor((h * 14 * 0.3) / h)} hafta)
+                    </td>
+                    <td>
+                      {Math.floor(h * 14 * 0.2)} saat ({Math.floor((h * 14 * 0.2) / h)} hafta)
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Tabloda kesirli saatler aşağı yuvarlandı; sınır çoğu yönetmelikte &quot;%30&apos;u aşamaz&quot; diye yazıldığı
+            için tam sınırda durmak yerine bir saat pay bırakmak güvenlidir. Haftada 3 saatlik bir derste %30 kuralı, 14
+            haftada {Math.floor(3 * 14 * 0.3)} saat yani yaklaşık {Math.floor((3 * 14 * 0.3) / 3)} haftalık derse karşılık gelir.
+          </p>
+
           <h2>Gün bazlı mı, yüzde bazlı mı?</h2>
           <p>
             İlkokul, ortaokul ve lisede devamsızlık genellikle{" "}

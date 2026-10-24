@@ -81,12 +81,12 @@ export const GORSEL_CIFTLER: GorselCift[] = [
     kaynak: "jpg",
     hedef: "png",
     baslik: "JPG PNG Çevirme",
-    seoBaslik: "JPG PNG Çevirme: Ücretsiz, Yüklemeden, Toplu",
+    seoBaslik: "PNG Çevirme: JPG'yi PNG'ye Çevir (Ücretsiz, Toplu, Yüklemeden)",
     kisa: "JPG PNG Çevirme",
     aciklama:
       "JPG fotoğraflarınızı tarayıcınızda PNG'ye çevirin: sunucuya yükleme yok, toplu dönüştürme, ZIP indirme. PNG'ye geçmenin ne zaman işe yaradığını öğrenin.",
     giris:
-      "JPG ve JPEG dosyalarınızı PNG formatına çevirin. Dönüştürme tarayıcınızda yapılır; birden fazla dosyayı aynı anda seçip tek ZIP olarak indirebilirsiniz.",
+      "JPG ve JPEG dosyalarınızı PNG formatına çevirin; WebP gibi tarayıcınızın açabildiği diğer görselleri de seçebilirsiniz. Dönüştürme tarayıcınızda yapılır; birden fazla dosyayı aynı anda seçip tek ZIP olarak indirebilirsiniz.",
     bolumler: [
       {
         id: "ne-zaman",

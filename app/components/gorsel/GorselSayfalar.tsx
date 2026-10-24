@@ -26,7 +26,6 @@ const DIGER_ARACLAR = [
   { href: "/kilobayt-megabayt", label: "Kilobayt → Megabayt" },
   { href: "/kategoriler/veri", label: "Veri Depolama Dönüşümleri" },
   { href: "/hesaplayicilar#dosya-ve-gorsel", label: "Dosya ve Görsel Araçları" },
-  { href: "/hesaplayicilar#dosya-ve-gorsel", label: "Dosya ve Görsel Araçları" },
 ];
 
 function FormatTablosu() {

@@ -20,10 +20,10 @@ export const EOKUL_OLCU: VesikalikOlcu = {
 
 export const eokulMeta = () =>
   takvimMetadata(EOKUL_YOLU, {
-    title: "e-Okul Fotoğraf Küçültme: 133×171 ve 20–150 KB (Toplu)",
+    title: "e-Okul Fotoğraf Küçültme (JPG): 133×171, 20–150 KB, Toplu",
     short: "e-Okul Fotoğraf Küçültme",
     description:
-      "Öğrenci fotoğraflarını e-Okul ve MEBBİS'e uygun 133×171 piksel, 20–150 KB JPG yapın. Program kurmadan, toplu, yüklemesiz; yüzü kırpma alanıyla ortalayın.",
+      "Öğrenci fotoğrafını ya da resmini e-Okul ve MEBBİS'e uygun 133×171 piksel, 20–150 KB JPG yapın. Program kurmadan, toplu, yüklemesiz; yüzü kırpma alanıyla ortalayın.",
   });
 
 const SSS: FaqItem[] = [

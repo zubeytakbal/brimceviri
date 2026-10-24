@@ -3,6 +3,8 @@ import { AnmaGunleriHesaplama } from "../components/dini/DiniAraclar4";
 import TimeToolPage from "../components/time/TimeToolPage";
 import type { FaqItem } from "../converter/faqSchema";
 import { anmaGunleri } from "../converter/diniHesaplar";
+import { gregorianToHijri, HIJRI_MONTHS_TR } from "../converter/time/calendars";
+import { weekdayOf } from "../converter/time/dateMath";
 import { diniRelated } from "../i18n/diniAraclar";
 import { seoTitle } from "../seoTitle";
 import { buildSiteUrl } from "../siteConfig";
@@ -21,6 +23,18 @@ export const metadata: Metadata = {
 
 const AYLAR = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
 const kisa = (d: { day: number; month: number }) => `${d.day} ${AYLAR[d.month - 1]}`;
+const GUNLER = ["Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi"];
+const gunlu = (d: { year: number; month: number; day: number }) => `${kisa(d)} ${GUNLER[weekdayOf(d)]}`;
+const hicri = (d: { year: number; month: number; day: number }) => {
+  const h = gregorianToHijri(d);
+  return `${h.day} ${HIJRI_MONTHS_TR[h.month - 1]} ${h.year}`;
+};
+// Ayın 1'inde vefat örnekleri: her ay için kırk ve elli iki (vefat günü 1. gün sayılarak).
+const AYLIK_ORNEK = AYLAR.map((_, i) => {
+  const vefat = { year: 2026, month: i + 1, day: 1 };
+  const g = anmaGunleri(vefat);
+  return { vefat, kirk: g.find((x) => x.n === 40)!, elliIki: g.find((x) => x.n === 52)! };
+});
 const ornek = { year: 2026, month: 1, day: 10 };
 const [, , kirk, elliIki] = anmaGunleri(ornek);
 const [, , kirkErtesi] = anmaGunleri(ornek, false);
@@ -67,6 +81,7 @@ export default function KirkMevlidiPage() {
       tocTitle="İçindekiler"
       tocItems={[
         { id: "sayim", label: "Kırk nasıl sayılır?" },
+        { id: "aylik", label: "Ay ay örnek tarihler (2026)" },
         { id: "diyanet", label: "Diyanet ne diyor?" },
         { id: "faq", label: "Sık sorulan sorular" },
       ]}
@@ -95,6 +110,35 @@ export default function KirkMevlidiPage() {
                 <th scope="row">{x.n}. gün</th>
                 <td>{kisa(x.gun)}</td>
                 <td>{kisa(anmaGunleri(ornek, false)[i].gun)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <h2 id="aylik">Ay ay örnek tarihler (2026)</h2>
+      <p>
+        2026&apos;da her ayın 1&apos;inde gerçekleşen bir vefat için kırkıncı ve elli ikinci günler, gecelerinin hangi akşam olduğu ve
+        kırkıncı günün Hicri tarihi (vefat günü 1. gün sayılarak):
+      </p>
+      <div className="holiday-table-wrap">
+        <table className="holiday-table">
+          <thead>
+            <tr>
+              <th scope="col">Vefat</th>
+              <th scope="col">40. gün</th>
+              <th scope="col">40. gecesi (akşam)</th>
+              <th scope="col">40. gün Hicri</th>
+              <th scope="col">52. gün</th>
+            </tr>
+          </thead>
+          <tbody>
+            {AYLIK_ORNEK.map((r) => (
+              <tr key={r.vefat.month}>
+                <th scope="row">{kisa(r.vefat)}</th>
+                <td>{gunlu(r.kirk.gun)}</td>
+                <td>{gunlu(r.kirk.gecesi)}</td>
+                <td>{hicri(r.kirk.gun)}</td>
+                <td>{gunlu(r.elliIki.gun)}</td>
               </tr>
             ))}
           </tbody>

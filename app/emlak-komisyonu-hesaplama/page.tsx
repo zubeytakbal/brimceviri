@@ -22,6 +22,10 @@ const faqItems: FaqItem[] = [
   },
 ];
 
+const SATISLAR = [1000000, 2000000, 3000000, 5000000, 7500000, 10000000];
+const KIRALAR = [10000, 15000, 20000, 30000, 50000];
+const tl = (n: number) => `${Math.round(n).toLocaleString("tr-TR")} TL`;
+
 export const metadata: Metadata = {
   title: "Emlak Komisyonu Hesaplama: Satış ve Kiralama",
   description:
@@ -115,6 +119,60 @@ export default function RealEstateCommissionPage() {
             Bu oranlar <strong>yasal tavan (üst sınır)</strong> değerleridir
             — taraflar bu tavanın altında serbestçe anlaşabilir, daha
             düşük bir oran üzerinde uzlaşmak mümkündür.
+          </p>
+
+          <h2 id="satis-tablosu">Satış bedeline göre emlak komisyonu</h2>
+          <p>
+            Tablo yasal tavan olan %2 oran ve %20 KDV ile hesaplandı; tutarlar alıcı ve satıcı için ayrı ayrı geçerlidir.
+            Emlakçı her iki taraftan da tavanı alırsa toplam komisyon iki katıdır.
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>Satış bedeli</th>
+                  <th>%2 komisyon</th>
+                  <th>KDV dahil (bir taraf)</th>
+                  <th>İki taraf toplam</th>
+                </tr>
+              </thead>
+              <tbody>
+                {SATISLAR.map((b) => (
+                  <tr key={b}>
+                    <td>{tl(b)}</td>
+                    <td>{tl(b * 0.02)}</td>
+                    <td>{tl(b * 0.02 * 1.2)}</td>
+                    <td>{tl(b * 0.02 * 1.2 * 2)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="kira-tablosu">Kiralamada emlakçı ne kadar alır?</h2>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>Aylık kira</th>
+                  <th>Komisyon</th>
+                  <th>KDV dahil (bir taraf)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {KIRALAR.map((k) => (
+                  <tr key={k}>
+                    <td>{tl(k)}</td>
+                    <td>{tl(k)}</td>
+                    <td>{tl(k * 1.2)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Kiralamada tavan bir aylık kira bedelidir ve kiracı ile kiraya veren için ayrı ayrı uygulanır. Pazarlıkla daha düşük bir tutarda anlaşmak mümkündür; anlaşılan tutarın yetki sözleşmesinde yazılı olması
+            sonradan çıkabilecek tartışmayı önler.
           </p>
 
           <h2>Sık Sorulan Sorular</h2>

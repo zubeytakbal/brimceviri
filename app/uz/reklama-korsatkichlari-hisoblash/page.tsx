@@ -26,9 +26,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: pagePath,
     languages: {
-      tr: "/reklam-metrikleri-hesaplama",
       "uz-UZ": pagePath,
-      "x-default": "/reklam-metrikleri-hesaplama",
+      "x-default": pagePath,
     },
   },
   openGraph: {

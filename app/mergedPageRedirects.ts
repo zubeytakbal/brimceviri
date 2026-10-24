@@ -178,6 +178,10 @@ function legacyRedirects(): MergedRedirect[] {
   return [
     // Cark Cevir araci kaldirildi (Ekim 2026); kisa sure yayinda kaldigi icin hesaplayicilar sayfasina yonlenir.
     r("/cark-cevir", "/hesaplayicilar"),
+    // Arama talebi olmayan iki araç kaldırıldı (Ekim 2026).
+    r("/reklam-metrikleri-hesaplama", "/dijital-pazarlamaci-araclari"),
+    r("/uzaktan-calisma-ofis-maliyeti-karsilastirma", "/hesaplayicilar"),
+    r("/embed/uzaktan-calisma-ofis-maliyeti-karsilastirma", "/hesaplayicilar"),
     r("/uz/atmosfera-bar", "/uz/turkumlar/bosim"),
     r("/uz/bar-atmosfera", "/uz/turkumlar/bosim"),
     r("/uz/psi-bar", "/uz/turkumlar/bosim"),

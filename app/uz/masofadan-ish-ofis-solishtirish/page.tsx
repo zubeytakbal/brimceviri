@@ -31,9 +31,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: pagePath,
     languages: {
-      tr: "/uzaktan-calisma-ofis-maliyeti-karsilastirma",
       "uz-UZ": pagePath,
-      "x-default": "/uzaktan-calisma-ofis-maliyeti-karsilastirma",
+      "x-default": pagePath,
     },
   },
   openGraph: {

@@ -3633,12 +3633,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
-      url: `${baseUrl}/reklam-metrikleri-hesaplama`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-    },
-    {
       url: `${baseUrl}/klima-sogutma-teknisyeni-araclari`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
@@ -4231,9 +4225,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
       alternates: {
         languages: {
-          tr: `${baseUrl}/uzaktan-calisma-ofis-maliyeti-karsilastirma`,
           "uz-UZ": `${baseUrl}/uz/masofadan-ish-ofis-solishtirish`,
-          "x-default": `${baseUrl}/uzaktan-calisma-ofis-maliyeti-karsilastirma`,
+          "x-default": `${baseUrl}/uz/masofadan-ish-ofis-solishtirish`,
         },
       },
     },
@@ -4660,12 +4653,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
     },
     {
-      url: `${baseUrl}/uzaktan-calisma-ofis-maliyeti-karsilastirma`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-    },
-    {
       url: `${baseUrl}/ehliyet-sinifi-bulma`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
@@ -4889,9 +4876,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
       alternates: {
         languages: {
-          tr: `${baseUrl}/reklam-metrikleri-hesaplama`,
           "uz-UZ": `${baseUrl}/uz/reklama-korsatkichlari-hisoblash`,
-          "x-default": `${baseUrl}/reklam-metrikleri-hesaplama`,
+          "x-default": `${baseUrl}/uz/reklama-korsatkichlari-hisoblash`,
         },
       },
     },

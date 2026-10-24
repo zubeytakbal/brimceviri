@@ -94,15 +94,6 @@ export default function DijitalPazarlamaciAraclariPage() {
         </div>
 
         <section className="category-article-content">
-          <h2>Hesaplama Araçları</h2>
-          <ul>
-            <li>
-              <Link href="/reklam-metrikleri-hesaplama">Reklam Metrikleri Hesaplama</Link>
-              {" "}— maliyet, gösterim ve tıklamadan CPM, CTR, CPC ve
-              ROI hesapla.
-            </li>
-          </ul>
-
           <h2>Temel Reklam Metrikleri Formülleri</h2>
           <div className="conversion-table-wrap">
             <table className="conversion-table">

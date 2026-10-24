@@ -135,6 +135,31 @@ export default function WallpaperCalculatorPage() {
             sonradan farklı üretim partisinden gelen ve tonu az da olsa farklı rulolarla uğraşmamak için iyi bir alışkanlıktır.
           </p>
 
+          <h2>Duvar metrekaresine göre kaç rulo?</h2>
+          <p>
+            Elinizde yalnızca duvarın metrekaresi varsa, 53 cm × 10,05 m rulonun {sayi(0.53 * 10.05, 2)} m² kağıt taşıdığını,
+            ama kesim payları yüzünden bunun yaklaşık {sayi(3 * 0.53 * 2.7, 2)} m²&apos;sinin (2,7 m tavanda 3 şerit) duvara
+            geçtiğini hesaba katın. Bu oranla:
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>Duvar alanı</th>
+                  <th>53 cm rulo</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[8, 10, 16, 20, 25, 30, 40].map((a) => (
+                  <tr key={a}>
+                    <td>{a} m²</td>
+                    <td>{Math.ceil(a / (3 * 0.53 * 2.7))} rulo</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
           <h2>Tavan yüksekliği rulo sayısını nasıl değiştirir?</h2>
           <p>
             Şerit sayısı aşamalı değişir. Tavan 3,25 m&apos;yi geçince bir rulodan 3 yerine 2 şerit çıkar ve aynı duvar için

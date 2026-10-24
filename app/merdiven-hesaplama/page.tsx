@@ -27,6 +27,16 @@ const faqItems: FaqItem[] = [
   },
 ];
 
+const KAT_YUKSEKLIKLERI = [250, 270, 280, 300, 320, 350];
+/** 17 cm hedef rıhtla eşit basamaklar ve Blondel (2h + b = 63) basamak genişliği. */
+function merdiven(H: number) {
+  const n = Math.round(H / 17);
+  const h = H / n;
+  const b = 63 - 2 * h;
+  return { n, h, b, boy: (n - 1) * b };
+}
+const cm = (x: number, basamak = 1) => x.toLocaleString("tr-TR", { maximumFractionDigits: basamak });
+
 export const metadata: Metadata = {
   title: "Merdiven Hesaplama: Basamak Sayısı ve Rıht Yüksekliği",
   description:
@@ -104,6 +114,65 @@ export default function StairCalculatorPage() {
         <StairCalculator />
 
         <section className="category-article-content">
+          <h2 id="formul">Merdiven hesaplama formülü</h2>
+          <p>Merdiven hesabı üç adımda yapılır. Kat yüksekliğine H, rıht sayısına n diyelim:</p>
+          <ol>
+            <li>
+              <strong>Rıht sayısı:</strong> n = H ÷ 17 (sonuç en yakın tam sayıya yuvarlanır; 17 cm rahat bir hedef rıhttır).
+            </li>
+            <li>
+              <strong>Gerçek rıht:</strong> h = H ÷ n. Böylece bütün basamaklar eşit yükseklikte olur.
+            </li>
+            <li>
+              <strong>Basamak genişliği:</strong> b = 63 − 2h (Blondel: 2h + b ≈ 60–64 cm). Merdivenin yatay boyu (n − 1) × b
+              kadardır, çünkü son rıht üst kata çıkar.
+            </li>
+          </ol>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>Kat yüksekliği</th>
+                  <th>Rıht sayısı</th>
+                  <th>Rıht</th>
+                  <th>Basamak genişliği</th>
+                  <th>Yatay boy</th>
+                </tr>
+              </thead>
+              <tbody>
+                {KAT_YUKSEKLIKLERI.map((H) => {
+                  const r = merdiven(H);
+                  return (
+                    <tr key={H}>
+                      <td>{H} cm</td>
+                      <td>{r.n}</td>
+                      <td>{cm(r.h)} cm</td>
+                      <td>{cm(r.b)} cm</td>
+                      <td>{cm(r.boy / 100, 2)} m</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="riht">Rıht, basamak ve sahanlık ne demek?</h2>
+          <p>
+            <strong>Rıht</strong>, iki basamak arasındaki dik yüzey ve onun yüksekliğidir; merdivenin ne kadar dik olduğunu
+            belirler. <strong>Basamak (ayak basılan yüzey)</strong>, üzerine basılan yatay yüzeydir; genişliği yürüyüşün
+            rahatlığını belirler. <strong>Sahanlık</strong>, merdiven kolunu ikiye bölen düz dinlenme alanıdır ve dönüşlü
+            merdivenlerde kolun yön değiştirdiği yerdir.
+          </p>
+
+          <h2 id="sahanlik">Sahanlıklı merdiven nasıl hesaplanır?</h2>
+          <p>
+            Rıht sayısı ve rıht yüksekliği sahanlıktan etkilenmez; aynı formülle bulunur. Fark, basamakların iki kola
+            bölünmesidir. Örneğin 300 cm kat yüksekliğinde {merdiven(300).n} rıht çıkar; iki kollu bir merdivende ilk kola{" "}
+            {Math.ceil(merdiven(300).n / 2)}, ikinci kola {merdiven(300).n - Math.ceil(merdiven(300).n / 2)} rıht verilir.
+            Her kolun yatay boyu kendi basamak sayısıyla hesaplanır, araya sahanlık derinliği eklenir. Tasarımda sahanlık
+            derinliği genellikle en az merdiven kolunun genişliği kadar tutulur ki taşınan eşyalar dönüşte sıkışmasın.
+          </p>
+
           <h2>Basamak sayısı ve rıht yüksekliği nasıl belirlenir?</h2>
           <p>
             İki kat arasındaki toplam yükseklik (kat yüksekliği), istediğin

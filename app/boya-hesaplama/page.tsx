@@ -57,6 +57,10 @@ export const metadata: Metadata = {
   },
 };
 
+const KUTULAR_L = [0.75, 1, 2.5, 7.5, 10, 15];
+const ALANLAR = [20, 30, 50, 75, 100];
+const sayi = (n: number, basamak = 0) => n.toLocaleString("tr-TR", { maximumFractionDigits: basamak });
+
 function serializeJsonLd(data: object) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
 }
@@ -157,6 +161,64 @@ export default function PaintCalculatorPage() {
             zaman kullandığın boya kutusunun etiketinde &quot;m²/litre&quot;
             olarak yazılıdır — hesaplayıcıdaki &quot;Boya Verimi&quot;
             alanına o değeri gir, sonuç ona göre yeniden hesaplanır.
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>Kutu</th>
+                  <th>Tek kat</th>
+                  <th>İki kat</th>
+                </tr>
+              </thead>
+              <tbody>
+                {KUTULAR_L.map((l) => (
+                  <tr key={l}>
+                    <td>{sayi(l, 1)} litre</td>
+                    <td>
+                      {sayi(l * 8)}–{sayi(l * 10)} m²
+                    </td>
+                    <td>
+                      {sayi(l * 4)}–{sayi(l * 5)} m²
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Kiloyla satılan boyada aynı hesap, yukarıdaki ev tablosunda kullanılan 10–14 m²/kg tek kat verimiyle yapılır: 10 kg
+            boya tek katta {sayi(10 * 10)}–{sayi(10 * 14)} m², iki katta {sayi(10 * 5)}–{sayi(10 * 7)} m² boyar.
+          </p>
+
+          <h2 id="alan">Belli bir alana kaç litre boya gider?</h2>
+          <p>Soruyu tersinden soranlar için: iki kat uygulamada, 8–10 m²/litre tek kat verimiyle gereken boya.</p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>Boyanacak alan</th>
+                  <th>İki kat için boya</th>
+                  <th>Alınacak kutu (2,5 L)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {ALANLAR.map((a) => (
+                  <tr key={a}>
+                    <td>{a} m²</td>
+                    <td>
+                      {sayi((a * 2) / 10, 1)}–{sayi((a * 2) / 8, 1)} litre
+                    </td>
+                    <td>{Math.ceil((a * 2) / 8 / 2.5)} kutu</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p>
+            &quot;Galon&quot; kelimesi iki farklı ölçü için kullanılır. ABD galonu 3,785 litredir; ülkemizde boya rafında
+            &quot;galon&quot; diye anılan kutular ise çoğunlukla 2,5 litredir. Hesabı her zaman etiketteki litre ya da kilo
+            değeriyle yapın.
           </p>
 
           <h2>Hesaplama nasıl yapılıyor?</h2>

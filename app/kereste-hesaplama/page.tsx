@@ -102,7 +102,7 @@ export default function KerestePage() {
         <section className="category-article-content">
           <h2>1 m³ kereste kaç adet çıkar?</h2>
           <p>
-            Kereste depoları fiyatı çoğunlukla metreküp üzerinden verir, şantiyede ise parça sayılır. Aşağıdaki tablo iki
+            Kereste depoları fiyatı çoğunlukla metreküp (halk arasında &quot;mikap&quot;) üzerinden verir, şantiyede ise parça sayılır. Aşağıdaki tablo iki
             hesabı birbirine bağlar: bir metreküpün kaç parçaya denk geldiğini ve tek parçanın hacmini gösterir. Değerler
             yalnızca geometriden hesaplandı; fire ve kesim payı dahil değildir.
           </p>

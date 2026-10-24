@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import BilezikHesaplama from "../components/BilezikHesaplama";
 import TimeToolPage from "../components/time/TimeToolPage";
 import type { FaqItem } from "../converter/faqSchema";
-import { bilezikKarsiligi, SIKKELER } from "../converter/turkishAltin";
+import { bilezikKarsiligi, ZIYNET_MILYEM, SIKKELER } from "../converter/turkishAltin";
 import { buildSiteUrl } from "../siteConfig";
 
 const path = "/ceyrek-bilezik-hesaplama";
@@ -19,6 +19,7 @@ export const metadata: Metadata = {
 
 const g = (n: number) => n.toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const ceyrek = SIKKELER.find((s) => s.id === "ceyrek-altin")!;
+const ata = SIKKELER.find((s) => s.id === "ata-ceyrek")!;
 const on = bilezikKarsiligi({ "ceyrek-altin": 10 }, 30)!;
 
 const faqItems: FaqItem[] = [
@@ -66,12 +67,45 @@ export default function CeyrekBilezikPage() {
       }}
       tocTitle="İçindekiler"
       tocItems={[
+        { id: "gram", label: "Kaç çeyrek kaç gram altın eder?" },
         { id: "tablo", label: "Çeyrek sayısına göre bilezik gramı" },
         { id: "faq", label: "Sık sorulan sorular" },
       ]}
       faqTitle="Sık sorulan sorular"
       faqItems={faqItems}
     >
+      <h2 id="gram">Kaç çeyrek kaç gram altın eder?</h2>
+      <p>
+        Darphane çeyreği {g(ceyrek.gram)} gram, Ata çeyrek {g(ata.gram)} gramdır; ikisi de 22 ayardır. Bir bileziği
+        tartarken ya da çeyrekleri bozdururken önce toplam ağırlığa, ardından içindeki saf (has) altına bakılır.
+      </p>
+      <div className="holiday-table-wrap">
+        <table className="holiday-table">
+          <thead>
+            <tr>
+              <th scope="col">Adet</th>
+              <th scope="col">Çeyrek (22 ayar)</th>
+              <th scope="col">Has altın</th>
+              <th scope="col">Ata çeyrek</th>
+            </tr>
+          </thead>
+          <tbody>
+            {satirlar.map((n) => (
+              <tr key={n}>
+                <th scope="row">{n} çeyrek</th>
+                <td>{g(n * ceyrek.gram)} g</td>
+                <td>{g((n * ceyrek.gram * ZIYNET_MILYEM) / 1000)} g</td>
+                <td>{g(n * ata.gram)} g</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p>
+        Bileziğe çevirirken bu ağırlık doğrudan bilezik gramı olmaz: kuyumcu işçilik payını düşer. Aşağıdaki tablo bu
+        farkı gösterir.
+      </p>
+
       <h2 id="tablo">Çeyrek sayısına göre bilezik gramı</h2>
       <div className="holiday-table-wrap">
         <table className="holiday-table">

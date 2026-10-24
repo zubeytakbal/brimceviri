@@ -17,6 +17,17 @@ const faqItems: FaqItem[] = [
   },
 ];
 
+/** 100.000 TL, 5 yıl, azalan bakiyeler %40; son yıl kalanın tamamı. */
+const AZALAN = (() => {
+  let kalan = 100000;
+  return [1, 2, 3, 4, 5].map((yil) => {
+    const ayrilan = yil === 5 ? kalan : kalan * 0.4;
+    kalan -= ayrilan;
+    return { yil, ayrilan, kalan };
+  });
+})();
+const tl = (n: number) => `${Math.round(n).toLocaleString("tr-TR")} TL`;
+
 export const metadata: Metadata = {
   title: "Amortisman Hesaplama (Normal ve Azalan Bakiyeler)",
   description:
@@ -75,6 +86,40 @@ export default function AmortismanPage() {
         <AmortismanCalculator />
 
         <section className="category-article-content">
+          <h2 id="ornek">Örnek: 100.000 TL&apos;lik demirbaş, 5 yıl</h2>
+          <p>
+            Normal yöntemde her yıl maliyetin eşit bir payı (1/ömür) gider yazılır. Azalan bakiyeler yönteminde oran normal
+            oranın iki katıdır ve her yıl kalan değere uygulanır; Vergi Usul Kanunu&apos;na göre bu oran %50&apos;yi geçemez
+            ve son yılda kalan tutarın tamamı yazılır. Aynı demirbaş iki yöntemle şöyle itfa olur:
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>Yıl</th>
+                  <th>Normal (%20)</th>
+                  <th>Azalan bakiyeler (%40)</th>
+                  <th>Azalan: yıl sonu kalan</th>
+                </tr>
+              </thead>
+              <tbody>
+                {AZALAN.map((r) => (
+                  <tr key={r.yil}>
+                    <td>{r.yil}</td>
+                    <td>{tl(20000)}</td>
+                    <td>{tl(r.ayrilan)}</td>
+                    <td>{tl(r.kalan)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p>
+            İki yöntemde toplam gider aynıdır (100.000 TL); fark, giderin yıllara dağılışıdır. Azalan bakiyeler ilk yıllarda
+            daha çok gider yazdırdığı için vergiyi öne alınan yıllardan sonraya kaydırır, son yılda ise büyük bir kalan
+            tutar bırakır.
+          </p>
+
           <h2>Sık Sorulan Sorular</h2>
           <p>
             <strong>

@@ -10,7 +10,7 @@ import { buildSiteUrl } from "../siteConfig";
 const path = "/trafik-cezasi-erken-odeme-hesaplama";
 const title = "Trafik Cezası Erken Ödeme İndirimi Hesaplama: Son Gün Ne Zaman?";
 const description =
-  "Ceza tutarını ve tebliğ tarihini girin: %25 indirimle ne kadar ödersiniz, indirimin son günü hangi tarih, kaç gün kaldı? Elden, posta ve e-Tebligat için ayrı hesap.";
+  "2.500 TL ceza erken ödemede 1.875 TL, 4.000 TL ceza 3.000 TL. Ceza tutarını ve tebliğ tarihini girin: %25 indirimli tutarı, son günü ve kaç gün kaldığını görün.";
 
 export const metadata: Metadata = {
   title: seoTitle(title, "Trafik Cezası Erken Ödeme Hesaplama"),
@@ -20,7 +20,8 @@ export const metadata: Metadata = {
 };
 
 const tl = (x: number) => `${x.toLocaleString("tr-TR", { maximumFractionDigits: 2 })} TL`;
-const ornekler = [500, 1000, 1500, 2000, 2500, 3000, 5000, 7500, 10000, 20000];
+// Search Console'da en çok aranan tutarlar (1.246, 2.500, 4.000, 6.000, 8.000, 40.000 TL) tabloda yer alır.
+const ornekler = [500, 1000, 1246, 1500, 2000, 2500, 3000, 4000, 5000, 6000, 7500, 8000, 10000, 20000, 40000];
 
 const faqItems: FaqItem[] = [
   {

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { bulbEquivalents } from "../converter/ledVsIncandescent";
 import Link from "@/app/components/SiteLink";
 import EmbedCodeBox from "../components/EmbedCodeBox";
 import LedSavingsCalculator from "../components/LedSavingsCalculator";
@@ -22,6 +23,9 @@ const faqItems: FaqItem[] = [
       "LED'ler ışığı akkor/halojen ampullere göre çok daha verimli üretir; harcadıkları enerjinin çoğu ısı yerine ışığa dönüşür. Bu yüzden aynı lümen (parlaklık) için çok daha az watt yeterli olur.",
   },
 ];
+
+// Komisyon Yönetmeliği (AT) 244/2009, Ek II Tablo 6: akkor eşdeğerlik iddiası için gereken lümen.
+const LUMEN: Record<number, number> = { 40: 470, 60: 806, 75: 1055, 100: 1521 };
 
 export const metadata: Metadata = {
   title: "LED Ampul Tasarruf Hesaplama (Kaç Yılda Kendini Çıkarır?)",
@@ -87,6 +91,41 @@ export default function LedSavingsPage() {
         <LedSavingsCalculator />
 
         <section className="category-article-content">
+          <h2 id="esdeger">Kaç watt LED kaç watt ampule eşittir?</h2>
+          <p>
+            Ampul seçerken watt değil ışık miktarı (lümen) karşılaştırılır. AB&apos;nin ev tipi lamba yönetmeliği (244/2009 sayılı Komisyon Yönetmeliği), eski akkor
+            ampullerin yerine geçtiğini iddia eden lambalar için aşağıdaki lümen değerlerini şart koşar. LED karşılıkları bu
+            aracın kullandığı tipik değerlerdir; aynı lümeni veren LED&apos;in gücü markaya göre birkaç watt değişebilir.
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>Akkor</th>
+                  <th>Işık</th>
+                  <th>LED</th>
+                  <th>Yılda tasarruf (günde 5 sa)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {bulbEquivalents.map((b) => (
+                  <tr key={b.id}>
+                    <td>{b.incandescentW} W</td>
+                    <td>{LUMEN[b.incandescentW]} lm</td>
+                    <td>{b.ledW} W</td>
+                    <td>{(((b.incandescentW - b.ledW) * 5 * 365) / 1000).toLocaleString("tr-TR", { maximumFractionDigits: 1 })} kWh</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Tablodaki tasarruf tek bir ampul içindir. Evde 10 ampulün 60 W&apos;lık akkordan 9 W&apos;lık LED&apos;e geçmesi,
+            günde 5 saat yanarlarsa yılda{" "}
+            {(((60 - 9) * 5 * 365 * 10) / 1000).toLocaleString("tr-TR", { maximumFractionDigits: 0 })} kWh eder; faturaya
+            etkisini bulmak için bu sayıyı kWh birim fiyatınızla çarpın.
+          </p>
+
           <h2>Sık Sorulan Sorular</h2>
           {faqItems.map((item) => (
             <p key={item.question}>

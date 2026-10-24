@@ -34,6 +34,9 @@ const faqItems: FaqItem[] = [
   },
 ];
 
+const TUKETIMLER = [4, 5, 6, 7, 8, 10, 12];
+const sayi = (n: number, basamak = 0) => n.toLocaleString("tr-TR", { maximumFractionDigits: basamak });
+
 export const metadata: Metadata = {
   title: "Yakıt Tüketimi Hesaplama: 100 km'de Kaç Litre, Km Başına Kaç Kuruş?",
   description:
@@ -116,6 +119,40 @@ export default function FuelConsumptionCalculatorPage() {
         <KmMaliyetHesabi />
 
         <section className="category-article-content">
+          <h2 id="100-km">100 km&apos;de kaç litre yakan araç ne kadar gider?</h2>
+          <p>
+            Araç kataloglarındaki değer 100 km&apos;de yakılan litredir; günlük hayatta ise &quot;1 km&apos;de ne kadar
+            yakar&quot;, &quot;1 litreyle kaç km gider&quot; ya da &quot;depo kaç km götürür&quot; diye sorulur. Tablo üçünü
+            birlikte verir.
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>100 km&apos;de</th>
+                  <th>1 km&apos;de</th>
+                  <th>1 litreyle</th>
+                  <th>50 L depoyla</th>
+                </tr>
+              </thead>
+              <tbody>
+                {TUKETIMLER.map((l) => (
+                  <tr key={l}>
+                    <td>{sayi(l, 1)} L</td>
+                    <td>{sayi(l / 100, 3)} L</td>
+                    <td>{sayi(100 / l, 1)} km</td>
+                    <td>{sayi((50 / l) * 100)} km</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Maliyete çevirmek için 1 km&apos;deki litreyi litre fiyatıyla çarpmanız yeterli: 100 km&apos;de 6 litre yakan bir araç
+            kilometrede 0,06 litre harcar, yani litre fiyatının yüzde 6&apos;sı kadar. Katalog değerleri ölçüm koşullarında
+            alınır; şehir içi trafikte ve klimayla gerçek tüketim çoğu zaman bunun üstündedir.
+          </p>
+
           <h2>km/lt ve lt/100km nasıl hesaplanır?</h2>
           <p>
             İki birim ters orantılıdır, basit bir çarpım/bölüm değildir:{" "}

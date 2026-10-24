@@ -35,9 +35,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: pagePath,
     languages: {
-      tr: "/birim-cevirme-felaketleri/gimli-glider",
       "uz-UZ": pagePath,
-      "x-default": "/birim-cevirme-felaketleri/gimli-glider",
+      "x-default": pagePath,
     },
   },
   openGraph: {

@@ -35,9 +35,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: pagePath,
     languages: {
-      tr: "/birim-cevirme-felaketleri/kargo-ucagi-agirlik-hatasi",
       "uz-UZ": pagePath,
-      "x-default": "/birim-cevirme-felaketleri/kargo-ucagi-agirlik-hatasi",
+      "x-default": pagePath,
     },
   },
   openGraph: {

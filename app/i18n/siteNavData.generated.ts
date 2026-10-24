@@ -362,10 +362,6 @@ export const SITE_NAV_DATA: SiteNavData = {
       {
        "href": "/il-rakimi-karsilastirma",
        "label": "İl Rakımı Karşılaştırma"
-      },
-      {
-       "href": "/birim-cevirme-felaketleri",
-       "label": "Birim Çevirme Felaketleri"
       }
      ],
      "footer": [

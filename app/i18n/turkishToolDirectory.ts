@@ -457,7 +457,6 @@ export const turkishGeoMenu: ToolLink[] = [
   { href: "/harita-olcegi-hesaplama", label: "Harita Ölçeği" },
   { href: "/buyuk-daire-mesafesi-hesaplama", label: "Büyük Daire Mesafesi" },
   { href: "/il-rakimi-karsilastirma", label: "İl Rakımı Karşılaştırma" },
-  { href: "/birim-cevirme-felaketleri", label: "Birim Çevirme Felaketleri" },
 ];
 
 /** Üst menü "Tarih & Saat". */

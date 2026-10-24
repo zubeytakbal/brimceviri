@@ -35,9 +35,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: pagePath,
     languages: {
-      tr: "/birim-cevirme-felaketleri/fenobarbital-doz-hatasi",
       "uz-UZ": pagePath,
-      "x-default": "/birim-cevirme-felaketleri/fenobarbital-doz-hatasi",
+      "x-default": pagePath,
     },
   },
   openGraph: {

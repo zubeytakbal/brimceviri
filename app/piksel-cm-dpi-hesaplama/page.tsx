@@ -170,7 +170,7 @@ export default function PixelCalculatorPage() {
           <p>
             Pikselin tek başına santimetre karşılığı yoktur; kaç cm olacağını DPI belirler. 1 inç 2,54 cm olduğu için{" "}
             <strong>cm = piksel ÷ DPI × 2,54</strong>. 72 DPI&apos;da 1 piksel yaklaşık {sayi(cm(1, 72), 4)} cm, 300 DPI&apos;da{" "}
-            {sayi(cm(1, 300), 4)} cm&apos;dir.
+            {sayi(cm(1, 300), 4)} cm&apos;dir. Tablodaki değerler santimetredir.
           </p>
           <div className="conversion-table-wrap">
             <table className="conversion-table">
@@ -187,9 +187,9 @@ export default function PixelCalculatorPage() {
               <tbody>
                 {PIKSELLER.map((px) => (
                   <tr key={px}>
-                    <td>{sayi(px)} px</td>
+                    <td>{sayi(px)}</td>
                     {DPILAR.map((d) => (
-                      <td key={d}>{sayi(cm(px, d), 1)} cm</td>
+                      <td key={d}>{sayi(cm(px, d), 1)}</td>
                     ))}
                   </tr>
                 ))}

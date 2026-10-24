@@ -18,7 +18,7 @@ const faqItems: FaqItem[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Wells Skoru Hesaplama (Pulmoner Emboli)",
+  title: "Wells Skoru Hesaplama: Pulmoner Emboli Olasılığı ve Yorumu",
   description:
     "Klinik kriterleri işaretle: pulmoner emboli (PE) olasılığı için Wells skorunu ve risk kategorisini hesapla.",
   alternates: { canonical: "/wells-skoru-hesaplama" },
@@ -69,6 +69,51 @@ export default function WellsScorePage() {
         <WellsScoreCalculator />
 
         <section className="category-article-content">
+          <h2 id="yorum">Wells skoru nasıl yorumlanır?</h2>
+          <p>
+            Pulmoner emboli için Wells skoru iki farklı biçimde yorumlanır. Klasik üç basamaklı yorum klinik olasılığı
+            sınıflar; basitleştirilmiş iki basamaklı yorum ise bir sonraki adımı (D-dimer mi, doğrudan görüntüleme mi)
+            seçmekte kullanılır.
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>Puan</th>
+                  <th>Üç basamaklı</th>
+                  <th>İki basamaklı</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>0–1,5</td>
+                  <td>Düşük olasılık</td>
+                  <td>PE olası değil</td>
+                </tr>
+                <tr>
+                  <td>2–4</td>
+                  <td>Orta olasılık</td>
+                  <td>PE olası değil</td>
+                </tr>
+                <tr>
+                  <td>4,5–6</td>
+                  <td>Orta olasılık</td>
+                  <td>PE olası</td>
+                </tr>
+                <tr>
+                  <td>6&apos;nın üzeri</td>
+                  <td>Yüksek olasılık</td>
+                  <td>PE olası</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Örnek: kalp hızı 110/dk olan (1,5), iki hafta önce ameliyat olmuş (1,5) ve başka bir tanı PE&apos;den daha olası
+            görünmeyen (3) bir hastanın skoru 6&apos;dır: üç basamaklı yorumda orta olasılık, iki basamaklı yorumda &quot;PE
+            olası&quot; grubundadır. Skor bir karar destek aracıdır; tanı ve tedavi kararı hekime aittir.
+          </p>
+
           <h2>Sık Sorulan Sorular</h2>
           <p>
             <strong>Wells Skoru ne için kullanılır?</strong>

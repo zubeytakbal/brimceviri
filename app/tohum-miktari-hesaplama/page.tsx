@@ -8,6 +8,10 @@ import { buildSiteUrl } from "../siteConfig";
 
 const kg = (n: number) => n.toLocaleString("tr-TR", { maximumFractionDigits: 1 });
 const urun = (id: string) => URUNLER.find((u) => u.id === id)!;
+const aralik = (id: string) => `${kg(urun(id).tohum[0])}–${kg(urun(id).tohum[1])}`;
+const orta = (id: string) => (urun(id).tohum[0] + urun(id).tohum[1]) / 2;
+const ONE_CIKAN = ["bugday", "arpa", "nohut"];
+const DEKARLAR = [1, 5, 10, 20, 50, 100];
 
 const faqItems: FaqItem[] = [
   {
@@ -98,6 +102,38 @@ export default function SeedRateCalculatorPage() {
         <SeedRateCalculator />
 
         <section className="category-article-content">
+          <h2 id="dekara">Buğday ve arpa dekara kaç kilo ekilir?</h2>
+          <p>
+            <strong>Buğday dekara (dönüme) {aralik("bugday")} kg, arpa {aralik("arpa")} kg ekilir.</strong> Nohut için{" "}
+            {aralik("nohut")} kg, kırmızı mercimek için {aralik("mercimek")} kg yaygın orandır. Kuru tarımda ve geç ekimde
+            aralığın üst ucu, sulu ve erken ekimde alt ucu tercih edilir. Dekar ile dönüm aynı alandır (1.000 m²).
+          </p>
+          <div className="holiday-table-wrap">
+            <table className="holiday-table">
+              <thead>
+                <tr>
+                  <th scope="col">Tarla</th>
+                  {ONE_CIKAN.map((id) => (
+                    <th key={id} scope="col">
+                      {urun(id).ad}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {DEKARLAR.map((d) => (
+                  <tr key={d}>
+                    <th scope="row">{d} dekar</th>
+                    {ONE_CIKAN.map((id) => (
+                      <td key={id}>{kg(d * orta(id))} kg</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p>Tablo her ürünün aralığının ortasıyla hesaplandı; 50 kg&apos;lık çuval sayısı için sonucu 50&apos;ye bölün.</p>
+
           <h2 id="tablo">Ürünlere göre dekara tohum ve verim</h2>
           <div className="holiday-table-wrap">
             <table className="holiday-table">

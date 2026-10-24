@@ -31,7 +31,7 @@ export function calculateGcs(
   const total = eyeOpening + verbalResponse + motorResponse;
 
   let category: GcsCategory = "siddetli";
-  if (total >= 14) {
+  if (total >= 13) {
     category = "hafif";
   } else if (total >= 9) {
     category = "orta";

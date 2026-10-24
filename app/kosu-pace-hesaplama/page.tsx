@@ -4,6 +4,16 @@ import PaceCalculator from "../components/PaceCalculator";
 import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
 
+const PACELER = [4, 4.5, 5, 5.5, 6, 6.5, 7]; // dakika/km
+/** Dakika cinsinden süreyi s:dd:ss ya da d:ss olarak yazar. */
+function sure(dakika: number) {
+  const toplam = Math.round(dakika * 60);
+  const s = Math.floor(toplam / 3600);
+  const d = Math.floor((toplam % 3600) / 60);
+  const sn = String(toplam % 60).padStart(2, "0");
+  return s > 0 ? `${s}:${String(d).padStart(2, "0")}:${sn}` : `${d}:${sn}`;
+}
+
 export const metadata: Metadata = {
   title: "Koşu Pace Hesaplama: Tempo, Hız ve Bitiş Süresi",
   description:
@@ -91,6 +101,39 @@ export default function PaceCalculatorPage() {
         <PaceCalculator />
 
         <section className="category-article-content">
+          <h2 id="tablo">Pace tablosu: 5 km, 10 km, yarı maraton, maraton</h2>
+          <p>
+            Pace, bir kilometreyi kaç dakikada koştuğunuzdur. Aynı tempoyu koruyarak koşulduğunda yarış süreleri şöyle olur:
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>Pace</th>
+                  <th>5 km</th>
+                  <th>10 km</th>
+                  <th>21,1 km</th>
+                  <th>42,2 km</th>
+                </tr>
+              </thead>
+              <tbody>
+                {PACELER.map((p) => (
+                  <tr key={p}>
+                    <td>{sure(p)}</td>
+                    <td>{sure(p * 5)}</td>
+                    <td>{sure(p * 10)}</td>
+                    <td>{sure(p * 21.0975)}</td>
+                    <td>{sure(p * 42.195)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Pace hızın tersidir: 5:00 dk/km, saatte 12 km demektir; 6:00 dk/km saatte 10 km&apos;dir. Koşu bandında hız km/s
+            olarak ayarlandığından, hedef tempoyu 60 ÷ pace (dakika) ile hıza çevirebilirsiniz.
+          </p>
+
           <h2>Pace nasıl hesaplanır?</h2>
           <p>
             Temel formül basittir:{" "}

@@ -8,7 +8,7 @@ const faqItems: FaqItem[] = [
   {
     question: "Glasgow Koma Skalası (GKS) puanları ne anlama gelir?",
     answer:
-      "GKS 3 ile 15 arasında değişir: 14-15 hafif, 9-13 orta, 3-8 şiddetli bilinç bozukluğunu gösterir. Minimum skor 3 (derin koma), maksimum skor 15'tir (tam uyanık ve oryante).",
+      "GKS 3 ile 15 arasında değişir: 13-15 hafif, 9-12 orta, 3-8 şiddetli bilinç bozukluğunu gösterir. Minimum skor 3 (derin koma), maksimum skor 15'tir (tam uyanık ve oryante).",
   },
   {
     question: "Hasta entübeyse sözel yanıt nasıl puanlanır?",
@@ -17,13 +17,22 @@ const faqItems: FaqItem[] = [
   },
 ];
 
+const GKS_SATIRLAR: Array<[number, string, string, string]> = [
+  [6, "—", "—", "Emirlere uyar"],
+  [5, "—", "Oryante, uygun konuşma", "Ağrılı uyaranı lokalize eder"],
+  [4, "Spontan", "Konfüze konuşma", "Ağrıdan çeker (fleksiyon)"],
+  [3, "Sesle", "Uygunsuz kelimeler", "Anormal fleksiyon (dekortike)"],
+  [2, "Ağrılı uyaranla", "Anlaşılmaz sesler", "Ekstansiyon (deserebre)"],
+  [1, "Yanıt yok", "Yanıt yok", "Yanıt yok"],
+];
+
 export const metadata: Metadata = {
-  title: "Glasgow Koma Skalası (GKS) Hesaplama",
+  title: "GKS Hesaplama: Glasgow Koma Skalası Puan Tablosu",
   description:
     "Göz açma, sözel yanıt ve motor yanıtı seç: Glasgow Koma Skalası (GKS) toplam puanını ve bilinç düzeyi kategorisini hesapla.",
   alternates: { canonical: "/glasgow-koma-skalasi-hesaplama" },
   openGraph: {
-    title: "Glasgow Koma Skalası (GKS) Hesaplama",
+    title: "GKS Hesaplama: Glasgow Koma Skalası Puan Tablosu",
     description: "GKS toplam puanını ve bilinç düzeyi kategorisini hesaplayın.",
     url: buildSiteUrl("/glasgow-koma-skalasi-hesaplama"),
     siteName: "BirimCeviri.app",
@@ -59,7 +68,7 @@ export default function GcsPage() {
         </nav>
 
         <header className="all-conversions-header">
-          <h1>Glasgow Koma Skalası (GKS) Hesaplama</h1>
+          <h1>GKS Hesaplama (Glasgow Koma Skalası)</h1>
           <p>
             Göz açma, sözel yanıt ve motor yanıtı seç: GKS toplam
             puanını ve bilinç düzeyi kategorisini anında hesapla.
@@ -80,11 +89,68 @@ export default function GcsPage() {
             yanıt (1-6) puanlarının toplamından oluşur.
           </p>
 
+          <h2 id="tablo">GKS puan tablosu</h2>
+          <p>Üç yanıt ayrı ayrı puanlanır ve toplanır; kayıtta genellikle &quot;G3 S4 M5 = 12&quot; biçiminde yazılır.</p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>Puan</th>
+                  <th>Göz açma (G)</th>
+                  <th>Sözel yanıt (S)</th>
+                  <th>Motor yanıt (M)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {GKS_SATIRLAR.map(([p, g, s, m]) => (
+                  <tr key={p}>
+                    <td>{p}</td>
+                    <td>{g}</td>
+                    <td>{s}</td>
+                    <td>{m}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="yorum">GKS puanı nasıl yorumlanır?</h2>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>Toplam</th>
+                  <th>Bilinç bozukluğu</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>13–15</td>
+                  <td>Hafif</td>
+                </tr>
+                <tr>
+                  <td>9–12</td>
+                  <td>Orta</td>
+                </tr>
+                <tr>
+                  <td>3–8</td>
+                  <td>Ağır (koma)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Örnek: sesle gözünü açan (G3), konfüze konuşan (S4) ve ağrılı uyaranı lokalize eden (M5) bir hastanın GKS&apos;si
+            12&apos;dir ve orta düzey bilinç bozukluğuna karşılık gelir. Toplam puan tek başına yeterli değildir; aynı toplam
+            farklı bileşenlerle oluşabildiği için üç alt puanın ayrı kaydedilmesi önerilir. Bu araç klinik değerlendirmenin
+            yerine geçmez.
+          </p>
+
           <h2>Sık Sorulan Sorular</h2>
           <p>
             <strong>Glasgow Koma Skalası (GKS) puanları ne anlama gelir?</strong>
             <br />
-            GKS 3 ile 15 arasında değişir: 14-15 hafif, 9-13 orta, 3-8
+            GKS 3 ile 15 arasında değişir: 13-15 hafif, 9-12 orta, 3-8
             şiddetli bilinç bozukluğunu gösterir.
           </p>
           <p>

@@ -69,6 +69,19 @@ export default function QsofaPage() {
         <QsofaCalculator />
 
         <section className="category-article-content">
+          <h2 id="yorum">qSOFA kaç olursa anlamlıdır?</h2>
+          <p>
+            qSOFA üç ölçütten oluşur: solunum sayısı dakikada 22 ya da üzeri, bilinç durumunda değişiklik ve sistolik kan
+            basıncı 100 mmHg ya da altı. Her ölçüt 1 puandır. Sepsis-3 uzlaşısında (2016), enfeksiyon şüphesi olan hastada{" "}
+            <strong>2 ya da 3 puan</strong> kötü sonuç riskinin yüksek olduğunu gösterir ve hastanın organ yetmezliği
+            açısından ayrıntılı değerlendirilmesi gerekir.
+          </p>
+          <p>
+            qSOFA&apos;nın düşük olması sepsisi dışlamaz. Bu yüzden 2021 Uluslararası Sepsis Kılavuzu (Surviving Sepsis
+            Campaign), qSOFA&apos;nın sepsis taramasında tek başına kullanılmamasını önerir. Tam değerlendirme için{" "}
+            <Link href="/sofa-skoru-hesaplama">SOFA skoru</Link> hesaplanır. Bu araç klinik değerlendirmenin yerine geçmez.
+          </p>
+
           <h2>Sık Sorulan Sorular</h2>
           <p>
             <strong>qSOFA ne için kullanılır?</strong>

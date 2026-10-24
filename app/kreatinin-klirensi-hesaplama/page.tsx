@@ -18,7 +18,7 @@ const faqItems: FaqItem[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Kreatinin Klirensi Hesaplama (Cockcroft-Gault)",
+  title: "Kreatinin Klirensi (CrCl) Hesaplama: Cockcroft-Gault",
   description:
     "Yaş, kilo, cinsiyet ve serum kreatininden, Cockcroft-Gault formülüyle tahmini kreatinin klirensini hesapla.",
   alternates: { canonical: "/kreatinin-klirensi-hesaplama" },
@@ -59,7 +59,7 @@ export default function CreatinineClearancePage() {
         </nav>
 
         <header className="all-conversions-header">
-          <h1>Kreatinin Klirensi Hesaplama</h1>
+          <h1>Kreatinin Klirensi (CrCl) Hesaplama</h1>
           <p>
             Yaş, kilo, cinsiyet ve serum kreatinini gir: Cockcroft-Gault
             formülüyle tahmini kreatinin klirensini anında hesapla.

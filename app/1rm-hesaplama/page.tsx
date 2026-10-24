@@ -22,6 +22,10 @@ const faqItems: FaqItem[] = [
   },
 ];
 
+const TEKRARLAR = [1, 2, 3, 4, 5, 6, 8, 10, 12];
+/** Epley: ağırlık / 1RM = 1 / (1 + tekrar / 30) */
+const yuzde = (tekrar: number) => (tekrar === 1 ? 100 : 100 / (1 + tekrar / 30));
+
 export const metadata: Metadata = {
   title: "1RM Hesaplama: Bir Tekrar Maksimum ve Antrenman Yüzdesi",
   description:
@@ -84,6 +88,38 @@ export default function OneRepMaxCalculatorPage() {
         <OneRepMaxCalculator />
 
         <section className="category-article-content">
+          <h2 id="tekrar">Kaç tekrar, 1RM&apos;nin yüzde kaçı?</h2>
+          <p>
+            Bu sayfadaki hesap Epley formülünü kullanır: <strong>1RM = ağırlık × (1 + tekrar ÷ 30)</strong>. Formül tersten
+            okunduğunda, belli bir tekrar sayısını ancak kaldırabildiğiniz ağırlığın 1RM&apos;nin yüzde kaçı olduğunu verir.
+            Antrenman programları bu tabloyla kurulur.
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>Tekrar</th>
+                  <th>1RM&apos;nin %&apos;si</th>
+                  <th>1RM 100 kg ise</th>
+                </tr>
+              </thead>
+              <tbody>
+                {TEKRARLAR.map((r) => (
+                  <tr key={r}>
+                    <td>{r}</td>
+                    <td>%{Math.round(yuzde(r))}</td>
+                    <td>{Math.round(yuzde(r) * 10) / 10} kg</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Örnek: bench press&apos;te 80 kg&apos;ı 6 tekrar kaldırabiliyorsanız tahmini 1RM&apos;niz 80 × (1 + 6 ÷ 30) ={" "}
+            {80 * (1 + 6 / 30)} kg&apos;dır. Formül 10–12 tekrara kadar güvenilirdir; daha yüksek tekrarlarda tahmin sapar.
+            Gerçek 1RM denemesini yardımcı (spotter) eşliğinde ve ısındıktan sonra yapın.
+          </p>
+
           <h2>Sık Sorulan Sorular</h2>
           {faqItems.map((item) => (
             <p key={item.question}>

@@ -241,7 +241,13 @@ export default function MoonPhasesPage({ lang }: { lang: "tr" | "en" }) {
         initialNow={now.getTime()}
         names={NAMES[lang]}
         kindNames={KIND_NAMES[lang]}
-        afterStrip={tr ? <SekizEvre /> : undefined}
+        afterStrip={
+          tr ? (
+            <MobilDaralt>
+              <SekizEvre />
+            </MobilDaralt>
+          ) : undefined
+        }
         riseSet={
           <MobilDaralt>
             <h2 id="dogus">{tr ? "Ay bugün saat kaçta doğuyor, kaçta batıyor?" : "Moonrise and moonset times"}</h2>

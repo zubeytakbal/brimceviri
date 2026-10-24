@@ -5,7 +5,9 @@ import { useEffect } from "react";
 // Telefonda uzun rehber metnini kısaltır: kapsayıcıdaki her h2 "+" ile açılan bir başlığa döner, altındaki içerik
 // (bir sonraki h2'ye kadar) kapalı başlar. Geniş ekranda her şey açıktır. Metin HTML'de durduğu için arama
 // motorları okumaya devam eder; içindekiler bağlantısıyla gelinen bölüm kendiliğinden açılır.
-const KAPSAYICI = ".saat-icerik, .category-article-content";
+// Destekleyen tarayıcılarda kapalı içerik hidden="until-found" ile gizlenir: "sayfada bul" kapalı bölümdeki metni
+// bulur ve bölümü kendiliğinden açar. Desteklemeyenlerde .mb-gizli sınıfı kullanılır.
+const KAPSAYICI = ".saat-icerik, .category-article-content, .zm-aile, .zm-bolum, .category-article-content > section, .saat-icerik > section";
 
 export default function MobilBolumler() {
   useEffect(() => {
@@ -24,9 +26,22 @@ export default function MobilBolumler() {
       }
       return out;
     };
+    const bulunur = "onbeforematch" in document.body;
+    const gizle = (el: HTMLElement, gizli: boolean) => {
+      if (bulunur) {
+        if (gizli) el.setAttribute("hidden", "until-found");
+        else el.removeAttribute("hidden");
+      } else el.classList.toggle("mb-gizli", gizli);
+    };
     const ac = (h: HTMLElement, acik: boolean) => {
       h.setAttribute("aria-expanded", String(acik));
-      for (const el of bolum(h)) el.classList.toggle("mb-gizli", !acik);
+      for (const el of bolum(h)) gizle(el, !acik);
+    };
+    // "Sayfada bul" kapalı bir bölümde eşleşme bulduğunda o bölümün başlığını da açık duruma getir.
+    const eslesme = (e: Event) => {
+      const el = e.target as HTMLElement;
+      const h = basliklar.find((b) => bolum(b).some((x) => x === el || x.contains(el)));
+      if (h) ac(h, true);
     };
     const kur = () => {
       for (const h of basliklar) {
@@ -40,7 +55,7 @@ export default function MobilBolumler() {
           h.removeAttribute("role");
           h.removeAttribute("tabindex");
           h.removeAttribute("aria-expanded");
-          for (const el of bolum(h)) el.classList.remove("mb-gizli");
+          for (const el of bolum(h)) gizle(el, false);
         }
       }
       adres();
@@ -71,6 +86,7 @@ export default function MobilBolumler() {
       h.addEventListener("click", tikla);
       h.addEventListener("keydown", tikla);
     }
+    document.addEventListener("beforematch", eslesme, true);
     kur();
     dar.addEventListener("change", kur);
     window.addEventListener("hashchange", adres);
@@ -79,6 +95,7 @@ export default function MobilBolumler() {
         h.removeEventListener("click", tikla);
         h.removeEventListener("keydown", tikla);
       }
+      document.removeEventListener("beforematch", eslesme, true);
       dar.removeEventListener("change", kur);
       window.removeEventListener("hashchange", adres);
     };

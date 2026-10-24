@@ -3,6 +3,7 @@ import Link from "@/app/components/SiteLink";
 import { HicriYasHesaplama } from "../components/dini/DiniAraclar2";
 import TimeToolPage from "../components/time/TimeToolPage";
 import type { FaqItem } from "../converter/faqSchema";
+import { gregorianToHijri, hijriToGregorian, HIJRI_MONTHS_TR } from "../converter/time/calendars";
 import { diniRelated } from "../i18n/diniAraclar";
 import { seoTitle } from "../seoTitle";
 import { buildSiteUrl } from "../siteConfig";
@@ -23,6 +24,24 @@ const faqItems: FaqItem[] = [
   { question: "Hicri doğum tarihi hangi takvime göre hesaplanıyor?", answer: "Hesap, Ümmü'l-Kurâ takvimine göre yapılır. Türkiye'de Diyanet'in yayımladığı Hicri takvimle bazı aylarda bir günlük fark olabilir." },
 ];
 
+const AYLAR = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
+const miladi = (d: { year: number; month: number; day: number }) => `${d.day} ${AYLAR[d.month - 1]} ${d.year}`;
+const hicri = (d: { year: number; month: number; day: number }) => `${d.day} ${HIJRI_MONTHS_TR[d.month - 1]} ${d.year}`;
+
+// Doğum yılına göre Hicri doğum yılı: Miladi yılın ilk ve son günü hangi Hicri yıllara düşer.
+const DOGUM_YILLARI = [1950, 1960, 1970, 1975, 1980, 1985, 1990, 1995, 2000, 2005, 2010, 2015, 2020].map((y) => ({
+  y,
+  bas: gregorianToHijri({ year: y, month: 1, day: 1 }),
+  son: gregorianToHijri({ year: y, month: 12, day: 31 }),
+}));
+
+// Örnek: 15 Mart 1990 doğumlu birinin Hicri doğum günü Miladi takvimde hangi günlere denk gelir.
+const ORNEK = { year: 1990, month: 3, day: 15 };
+const ORNEK_HICRI = gregorianToHijri(ORNEK);
+const KAYMA = [1447, 1448, 1449, 1450, 1451]
+  .map((hy) => ({ hy, g: hijriToGregorian({ year: hy, month: ORNEK_HICRI.month, day: ORNEK_HICRI.day }) }))
+  .filter((x): x is { hy: number; g: { year: number; month: number; day: number } } => x.g !== null);
+
 export default function HicriYasPage() {
   return (
     <TimeToolPage
@@ -41,6 +60,8 @@ export default function HicriYasPage() {
         { id: "fark", label: "Hicri ve Miladi yaş farkı" },
         { id: "tablo", label: "Miladi yaşa göre Hicri yaş" },
         { id: "ornek", label: "Örnek hesap" },
+        { id: "dogum-yili", label: "Doğum yılına göre Hicri yıl" },
+        { id: "kayma", label: "Hicri doğum günü her yıl ne zaman?" },
         { id: "faq", label: "Sık sorulan sorular" },
       ]}
       faqTitle="Sık sorulan sorular"
@@ -92,6 +113,64 @@ export default function HicriYasPage() {
         13.149 gündür. 13.149 / 354,367 ≈ 37,1 olduğundan aynı gün Hicri takvime göre 37 yaşındadır ve 38. Hicri yaşına girmesine
         yaklaşık 0,9 Hicri yıl (yaklaşık 317 gün) vardır. Hicri doğum günü her yıl Miladi takvimde yaklaşık 11 gün geriye kayar.
       </p>
+
+      <h2 id="dogum-yili">Doğum yılına göre Hicri doğum yılı</h2>
+      <p>
+        Bir Miladi yıl iki Hicri yıla yayılır. Doğduğunuz yılın hangi Hicri yıllara denk geldiği aşağıda; kesin Hicri doğum tarihiniz
+        için yukarıdaki araca doğum gününüzü girin.
+      </p>
+      <div className="conversion-table-wrap">
+        <table className="conversion-table">
+          <thead>
+            <tr>
+              <th>Doğum yılı</th>
+              <th>1 Ocak (Hicri)</th>
+              <th>31 Aralık (Hicri)</th>
+              <th>Hicri yıl</th>
+            </tr>
+          </thead>
+          <tbody>
+            {DOGUM_YILLARI.map((r) => (
+              <tr key={r.y}>
+                <td>{r.y}</td>
+                <td>{hicri(r.bas)}</td>
+                <td>{hicri(r.son)}</td>
+                <td>{r.bas.year === r.son.year ? r.bas.year : `${r.bas.year}/${r.son.year}`}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="kayma">Hicri doğum günü her yıl ne zaman?</h2>
+      <p>
+        Örnekteki {miladi(ORNEK)} doğumlu kişinin Hicri doğum tarihi {hicri(ORNEK_HICRI)}&apos;dur. Bu Hicri doğum günü önümüzdeki
+        yıllarda Miladi takvimde şu günlere denk gelir; her yıl 10–12 gün öne kaydığı görülür:
+      </p>
+      <div className="conversion-table-wrap">
+        <table className="conversion-table">
+          <thead>
+            <tr>
+              <th>Hicri yıl</th>
+              <th>Hicri doğum günü</th>
+              <th>Miladi karşılığı</th>
+              <th>Hicri yaş</th>
+            </tr>
+          </thead>
+          <tbody>
+            {KAYMA.map((k) => (
+              <tr key={k.hy}>
+                <td>{k.hy}</td>
+                <td>
+                  {ORNEK_HICRI.day} {HIJRI_MONTHS_TR[ORNEK_HICRI.month - 1]}
+                </td>
+                <td>{miladi(k.g)}</td>
+                <td>{k.hy - ORNEK_HICRI.year}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </TimeToolPage>
   );
 }

@@ -41,6 +41,8 @@ export const SAAT_GRUPLARI: SaatGrubu[] = [
       { href: "/hangi-gun", label: "Tarih hangi gün?" },
       { href: "/dogdugum-gun-hangi-gun", label: "Doğduğum gün hangi gün" },
       { href: "/yillik-izin-hesaplama", label: "Yıllık izin hesaplama" },
+      { href: "/hicri-yas-hesaplama", label: "Hicri yaş hesaplama" },
+      { href: "/kirk-mevlidi-hesaplama", label: "40 mevlidi ve 52. gece" },
     ],
   },
   {
@@ -54,6 +56,8 @@ export const SAAT_GRUPLARI: SaatGrubu[] = [
       { href: "/firtina-takvimi", label: "Fırtına takvimi" },
       { href: "/hicri-takvim", label: "Hicri takvim" },
       { href: "/tarih-cevirici", label: "Hicri, Rumi, Miladi çevirici" },
+      { href: "/paskalya-ne-zaman", label: "Paskalya ne zaman?" },
+      { href: "/kutsal-kitap-okuma-plani", label: "Kutsal Kitap okuma planı" },
     ],
   },
   {
@@ -67,6 +71,7 @@ export const SAAT_GRUPLARI: SaatGrubu[] = [
       { href: "/ay-gozlem-cizelgesi", label: "Ay gözlem çizelgesi" },
       { href: "/en-uzun-gun-ve-en-kisa-gun", label: "En uzun ve en kısa gün" },
       { href: "/gunes-acisi-ve-golge-boyu-hesaplama", label: "Güneş açısı ve gölge boyu" },
+      { href: "/gezegenlerde-yas-hesaplama", label: "Gezegenlerde yaş" },
     ],
   },
 ];

@@ -21932,6 +21932,13 @@ a.all-units-row .all-units-name {
     display: none !important;
   }
 
+  /* hidden="until-found" içeriği çizmez ama kutusunu korur; kapalıyken boşluk bırakmasın. */
+  [hidden="until-found"] {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+  }
+
   .mb-baslik {
     position: relative;
     padding-right: 44px !important;
@@ -22378,4 +22385,114 @@ a.all-units-row .all-units-name {
 .saat-eylemler button[aria-selected="true"] {
   border-color: var(--saat-vurgu);
   background: var(--saat-vurgu);
+}
+
+/* Hazır süre sayfaları: süre ailesine göre düzen (mutfak, ders ve odak, sınav). */
+.zm-aile {
+  --zm-renk: #44525f;
+  --zm-zemin: #eef2f5;
+}
+.zm-aile-mutfak {
+  --zm-renk: #9a4a12;
+  --zm-zemin: #fdeee2;
+}
+.zm-aile-odak {
+  --zm-renk: #b42323;
+  --zm-zemin: #fdeaea;
+}
+.zm-aile-sinav {
+  --zm-renk: #2c4a8a;
+  --zm-zemin: #e8eef9;
+}
+.zm-aile-etiket {
+  margin: 0 0 4px;
+}
+.zm-aile-etiket span {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--zm-zemin);
+  color: var(--zm-renk);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.zm-bolum {
+  padding-left: 14px;
+  border-left: 3px solid var(--zm-zemin);
+}
+.zm-adimlar {
+  counter-reset: zm;
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+.zm-adimlar li {
+  counter-increment: zm;
+  position: relative;
+  min-height: 28px;
+  padding: 2px 0 0 40px;
+}
+.zm-adimlar li::before {
+  content: counter(zm);
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--zm-zemin);
+  color: var(--zm-renk);
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+.zm-tablo tr.is-vurgu td {
+  background: var(--zm-zemin);
+}
+.zm-tablo tr.is-vurgu td:first-child {
+  box-shadow: inset 3px 0 0 var(--zm-renk);
+}
+.zm-tablo tr.is-soluk td {
+  color: #6b7785;
+}
+.zm-aile-spor {
+  --zm-renk: #0f7a55;
+  --zm-zemin: #e3f6ee;
+}
+.zm-aile-gunluk {
+  --zm-renk: #1d5f8f;
+  --zm-zemin: #e6f2fb;
+}
+.zm-aile-uzun {
+  --zm-renk: #5b3fc0;
+  --zm-zemin: #efeafd;
+}
+
+/* Saat bölümüne sonradan katılan araçların kartları (Paskalya, Kutsal Kitap planı): beyaz kart yerine bölümün koyu paneli */
+:root:has(.saat-arac-ust) .all-conversions-header ~ * .hizli-kart {
+  border-color: #2a2a2a;
+  border-radius: 0;
+  background: #0e0e0e;
+  color: #f2f2f2;
+}
+:root:has(.saat-arac-ust) .all-conversions-header ~ * .zaman-liste div {
+  border-bottom-color: #2a2a2a;
+}
+:root:has(.saat-arac-ust) .all-conversions-header ~ * .zaman-liste dt {
+  color: #b9b9b9;
+}
+:root:has(.saat-arac-ust) .all-conversions-header ~ * .paskalya-ikili .is-paskalya :is(dt, dd) {
+  color: #7fe0dc;
+}
+:root:has(.saat-arac-ust) .all-conversions-header ~ * .okuma-tablo thead th {
+  background: #141414;
+  color: #b9b9b9;
+}
+:root:has(.saat-arac-ust) .all-conversions-header ~ * .okuma-tablo tr.is-bugun td {
+  background: #10302f;
+  color: #ffffff;
 }

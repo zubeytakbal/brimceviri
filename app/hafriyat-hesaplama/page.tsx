@@ -22,6 +22,15 @@ const faqItems: FaqItem[] = [
   },
 ];
 
+const KAZILAR = [20, 50, 100, 250, 500, 1000];
+const ZEMINLER: Array<[string, number]> = [
+  ["Kum, çakıl", 12],
+  ["Karışık toprak", 25],
+  ["Kil", 35],
+  ["Patlatılmış kaya", 60],
+];
+const sayi = (n: number) => n.toLocaleString("tr-TR", { maximumFractionDigits: 0 });
+
 export const metadata: Metadata = {
   title: "Hafriyat ve Kazı Hesaplama: Kazı Hacmi ve Kamyon Sayısı",
   description:
@@ -96,6 +105,71 @@ export default function ExcavationCalculatorPage() {
         <ExcavationCalculator />
 
         <section className="category-article-content">
+          <h2>Kaç kamyon hafriyat çıkar?</h2>
+          <p>
+            Kamyon sayısını yerindeki kazı hacmi değil, kazıldıktan sonra kabaran gevşek hacim belirler. Tablo ortalama karışık
+            toprak için %25 kabarma payıyla hesaplandı; kasalar silme dolu kabul edildi.
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>Yerinde kazı</th>
+                  <th>Gevşek hacim</th>
+                  <th>10 m³ kamyon</th>
+                  <th>15 m³ kamyon</th>
+                </tr>
+              </thead>
+              <tbody>
+                {KAZILAR.map((v) => (
+                  <tr key={v}>
+                    <td>{sayi(v)} m³</td>
+                    <td>{sayi(v * 1.25)} m³</td>
+                    <td>{Math.ceil((v * 1.25) / 10)} sefer</td>
+                    <td>{Math.ceil((v * 1.25) / 15)} sefer</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <h2>Toprak türüne göre aynı kazı</h2>
+          <p>
+            100 m³&apos;lük bir kazının kamyona yüklenecek hacmi zemine göre belirgin biçimde değişir. Tablodaki kabarma
+            payları, kazı kılavuzlarında verilen aralıkların ortasıdır.
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>Zemin</th>
+                  <th>Kabarma payı</th>
+                  <th>100 m³ kazının gevşek hacmi</th>
+                  <th>10 m³ kamyonla sefer</th>
+                </tr>
+              </thead>
+              <tbody>
+                {ZEMINLER.map(([ad, pay]) => (
+                  <tr key={ad}>
+                    <td>{ad}</td>
+                    <td>%{pay}</td>
+                    <td>{sayi(100 * (1 + pay / 100))} m³</td>
+                    <td>{Math.ceil((100 * (1 + pay / 100)) / 10)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <h2>Örnek: bodrum katlı bir ev</h2>
+          <p>
+            12 × 10 m tabanlı, 3 m derinliğinde bir bodrum kazısı yerinde {sayi(12 * 10 * 3)} m³ eder. Killi zeminde %35
+            kabarmayla bu hacim {sayi(12 * 10 * 3 * 1.35)} m³&apos;e çıkar ve 10 m³&apos;lük kamyonla{" "}
+            {Math.ceil((12 * 10 * 3 * 1.35) / 10)} sefer demektir. Aynı kazı kumlu zeminde {Math.ceil((12 * 10 * 3 * 1.12) / 10)}{" "}
+            seferde biter. Toprağın bir kısmı geri dolguda kullanılacaksa, bu miktarı sahada bırakıp yalnız fazlasını
+            taşıtmak sefer sayısını düşürür.
+          </p>
+
           <h2>Kazı hacmi nasıl hesaplanır?</h2>
           <p>
             Dikdörtgen kesitli bir kazının yerinde (bank) hacmi{" "}

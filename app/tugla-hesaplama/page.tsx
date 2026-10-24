@@ -17,6 +17,16 @@ const faqItems: FaqItem[] = [
   },
 ];
 
+/** [ad, en (cm), yükseklik (cm), derz (cm)] */
+const MALZEMELER: Array<[string, number, number, number]> = [
+  ["Dolu tuğla (yarım tuğla duvar)", 19, 5.5, 1],
+  ["Yatay delikli tuğla", 19, 19, 1],
+  ["Bims blok", 39, 19, 1],
+  ["Gazbeton (ince derz)", 60, 25, 0.2],
+];
+const adet = (enCm: number, boyCm: number, derzCm: number) => 10000 / ((enCm + derzCm) * (boyCm + derzCm));
+const sayi = (n: number, basamak = 0) => n.toLocaleString("tr-TR", { maximumFractionDigits: basamak });
+
 export const metadata: Metadata = {
   title: "Tuğla Hesaplama: Kaç Adet Tuğla Gerekir?",
   description:
@@ -91,6 +101,57 @@ export default function BrickCalculatorPage() {
         <BrickCalculator />
 
         <section className="category-article-content">
+          <h2>1 m² duvara kaç tuğla gider?</h2>
+          <p>
+            Adet, tuğlanın duvarda görünen yüzüne ve derz kalınlığına bağlıdır. Tablo yaygın duvar malzemelerinin yüz ölçüleri
+            için hesaplandı; fire dahil değildir. Kendi ürününüzün ölçüsü farklıysa yukarıdaki araca girin.
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>Malzeme</th>
+                  <th>Duvarda görünen yüz</th>
+                  <th>Derz</th>
+                  <th>1 m²&apos;ye adet</th>
+                </tr>
+              </thead>
+              <tbody>
+                {MALZEMELER.map(([ad, en, boy, derz]) => (
+                  <tr key={ad}>
+                    <td>{ad}</td>
+                    <td>
+                      {sayi(en, 1)} × {sayi(boy, 1)} cm
+                    </td>
+                    <td>{sayi(derz * 10, 1)} mm</td>
+                    <td>{sayi(adet(en, boy, derz), 1)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p>
+            &quot;13,5&apos;luk&quot; ya da &quot;8,5&apos;luk&quot; tuğla adı tuğlanın kalınlığını, yani duvarın ne kadar kalın
+            olacağını anlatır. İkisinin de duvara bakan yüzü 19 × 19 cm olduğunda metrekareye giden adet aynıdır; değişen,
+            harç miktarı ve duvarın ağırlığıdır.
+          </p>
+
+          <h2>Örnek: kapılı bir bölme duvar</h2>
+          <p>
+            4 m uzunluğunda, 2,7 m yüksekliğinde bir duvarda 90 × 210 cm&apos;lik bir kapı boşluğu olsun. Brüt alan{" "}
+            {sayi(4 * 2.7, 2)} m², kapı {sayi(0.9 * 2.1, 2)} m², net alan {sayi(4 * 2.7 - 0.9 * 2.1, 2)} m²&apos;dir. 19 × 19
+            cm yüzlü tuğlayla 1 cm derzde metrekareye {sayi(adet(19, 19, 1))} tuğla düştüğünden net alan{" "}
+            {Math.ceil((4 * 2.7 - 0.9 * 2.1) * adet(19, 19, 1))} tuğla eder; %5 kırık payıyla sipariş{" "}
+            {Math.ceil((4 * 2.7 - 0.9 * 2.1) * adet(19, 19, 1) * 1.05)} adettir.
+          </p>
+
+          <h2>Derz kalınlığı adedi ne kadar değiştirir?</h2>
+          <p>
+            19 × 19 cm yüzlü tuğlada derz 5 mm olursa metrekareye {sayi(adet(19, 19, 0.5), 1)}, 10 mm olursa{" "}
+            {sayi(adet(19, 19, 1), 1)}, 15 mm olursa {sayi(adet(19, 19, 1.5), 1)} tuğla gider. Küçük yüzlü dolu tuğlada aynı
+            fark çok daha büyüktür, çünkü metrekaredeki derz sayısı artar.
+          </p>
+
           <h2>Derz kalınlığı hesaba neden dahil ediliyor?</h2>
           <p>
             Tuğlalar duvara yan yana değil, aralarında harç dolgusu

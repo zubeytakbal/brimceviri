@@ -485,6 +485,47 @@ const ICERIK: Record<number, ZamanlayiciIcerik> = {
     ],
     sss: [{ question: "Tabata'da dinlenme kaç saniye?", answer: "Tabata düzeninde her 20 saniyelik çalışmadan sonra 10 saniye dinlenilir; 8 tur toplam 4 dakika sürer." }],
   },
+  15: {
+    aile: "spor",
+    giris: "15 saniye, 45/15 aralık antrenmanında her 45 saniyelik çalışmanın ardından gelen dinlenmedir.",
+    bolumler: [
+      {
+        id: "aralik",
+        baslik: "15 saniyelik dinlenme",
+        icerik: (
+          <>
+            <p>45 saniye çalışma ve 15 saniye dinlenme ile her tur tam 1 dakika sürer; tur sayısı doğrudan dakikayı verir.</p>
+            <AralikTablosu vurgu={15} />
+          </>
+        ),
+      },
+    ],
+    sss: [{ question: "45/15 antrenmanında dinlenme kaç saniye?", answer: "15 saniye; 45 saniyelik çalışmayla birlikte her tur 1 dakikadır." }],
+  },
+  60: {
+    aile: "spor",
+    giris: "1 dakika, her dakikanın başında bir hareket setinin yapıldığı antrenman düzenlerinin (EMOM) ve 45/15 aralığının bir turudur.",
+    bolumler: [
+      {
+        id: "emom",
+        baslik: "Dakika başı antrenman (EMOM)",
+        icerik: (
+          <>
+            <p>
+              EMOM&apos;da (every minute on the minute) her dakikanın başında belirlenen tekrar yapılır, dakikanın kalanı dinlenmedir. Tekrar
+              ne kadar hızlı biterse o kadar çok dinlenilir. 45/15 düzeninde de her tur tam 1 dakika sürer:
+            </p>
+            <AralikTablosu vurgu={45} />
+            <p>
+              Dakikaları tek tek başlatmak yerine <Link href="/tabata-zamanlayici">aralık zamanlayıcısını</Link> 60 saniyelik turlara
+              ayarlayabilirsiniz.
+            </p>
+          </>
+        ),
+      },
+    ],
+    sss: [{ question: "EMOM nedir?", answer: "Her dakikanın başında belirli sayıda tekrar yapılıp dakikanın kalanında dinlenilen antrenman düzenidir." }],
+  },
   20: {
     aile: "gunluk",
     giris:

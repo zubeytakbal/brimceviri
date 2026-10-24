@@ -39,7 +39,7 @@ const faqItems: FaqItem[] = [
 ];
 
 const MIKSERLER = [6, 8, 10, 12];
-const KALINLIKLAR = [10, 12, 15, 20];
+const KALINLIKLAR = [10, 15, 20];
 const sayi = (n: number, basamak = 0) => n.toLocaleString("tr-TR", { maximumFractionDigits: basamak });
 
 export const metadata: Metadata = {

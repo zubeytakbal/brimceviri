@@ -24,10 +24,10 @@ const faqItems: FaqItem[] = [
 
 const HACIMLER = [10, 25, 50, 75, 100];
 const URUNLER: Array<[string, number]> = [
-  ["Sıvı sodyum hipoklorit", 12],
+  ["Sıvı", 12],
   ["Dikloro toz", 56],
-  ["Kalsiyum hipoklorit", 65],
-  ["Trikloro tablet", 90],
+  ["Granül", 65],
+  ["Tablet", 90],
 ];
 const sayi = (n: number, basamak = 0) => n.toLocaleString("tr-TR", { maximumFractionDigits: basamak });
 /** m³ × ppm = gram saf klor; ürün miktarı = saf klor ÷ aktif oran. */
@@ -98,14 +98,15 @@ export default function ChlorineDoseCalculatorPage() {
           <h2>Havuza kaç gram klor atılır?</h2>
           <p>
             1 ppm, her litre suda 1 mg klor demektir; 1 m³ (1 ton) su için bu 1 gram saf klor eder. Ürünler saf klor
-            olmadığından gereken miktar, ürünün aktif klor oranına bölünür. Tablo, serbest kloru <strong>1 ppm
+            olmadığından gereken miktar, ürünün aktif klor oranına bölünür. Tabloda sıvı sodyum hipoklorit, dikloro toz, kalsiyum hipoklorit
+            granül ve trikloro tablet için yaygın aktif klor oranları kullanıldı. Tablo, serbest kloru <strong>1 ppm
             yükseltmek</strong> için gereken ürün miktarını gösterir; 2 ppm için değerleri ikiyle, 3 ppm için üçle çarpın.
           </p>
           <div className="conversion-table-wrap">
             <table className="conversion-table">
               <thead>
                 <tr>
-                  <th>Havuz hacmi</th>
+                  <th>Hacim</th>
                   {URUNLER.map(([ad, oran]) => (
                     <th key={ad}>
                       {ad} (%{oran})

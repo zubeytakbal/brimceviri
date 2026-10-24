@@ -132,10 +132,9 @@ export default function StairCalculatorPage() {
             <table className="conversion-table">
               <thead>
                 <tr>
-                  <th>Kat yüksekliği</th>
-                  <th>Rıht sayısı</th>
+                  <th>Kat</th>
                   <th>Rıht</th>
-                  <th>Basamak genişliği</th>
+                  <th>Basamak</th>
                   <th>Yatay boy</th>
                 </tr>
               </thead>
@@ -145,8 +144,9 @@ export default function StairCalculatorPage() {
                   return (
                     <tr key={H}>
                       <td>{H} cm</td>
-                      <td>{r.n}</td>
-                      <td>{cm(r.h)} cm</td>
+                      <td>
+                        {r.n} × {cm(r.h)} cm
+                      </td>
                       <td>{cm(r.b)} cm</td>
                       <td>{cm(r.boy / 100, 2)} m</td>
                     </tr>

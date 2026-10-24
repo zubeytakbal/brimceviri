@@ -120,7 +120,7 @@ export default function KerestePage() {
                 {KESITLER.map(([en, kalinlik]) => (
                   <tr key={`${kalinlik}x${en}`}>
                     <td>
-                      {sayi(kalinlik)} × {sayi(en)}
+                      {sayi(kalinlik, 1)} × {sayi(en)}
                     </td>
                     <td>{sayi(1 / hacim(3, en, kalinlik), 1)} adet</td>
                     <td>{sayi(1 / hacim(4, en, kalinlik), 1)} adet</td>

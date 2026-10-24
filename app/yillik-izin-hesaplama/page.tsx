@@ -45,7 +45,7 @@ export default function YillikIzinRoute() {
     <TimeToolPage
       crumbs={[
         { href: "/", label: "Ana Sayfa" },
-        { href: "/muhasebeci-araclari", label: "Muhasebeci Araçları" },
+        { href: "/hesaplayicilar#para-ve-is", label: "Para, Maaş ve Vergi" },
         { label: "Yıllık İzin Hesaplama" },
       ]}
       crumbLabel="Sayfa yolu"

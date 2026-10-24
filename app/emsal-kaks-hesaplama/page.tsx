@@ -69,8 +69,8 @@ export default function ZoningCalculatorPage() {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: buildSiteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "Mesleğe Göre Araçlar", item: buildSiteUrl("/meslekler") },
-      { "@type": "ListItem", position: 3, name: "Mimar Araçları", item: buildSiteUrl("/mimar-araclari") },
+      { "@type": "ListItem", position: 2, name: "Tüm Hesaplamalar", item: buildSiteUrl("/hesaplayicilar") },
+      { "@type": "ListItem", position: 3, name: "Ev, İnşaat ve Bahçe", item: buildSiteUrl("/hesaplayicilar#ev-ve-yapi") },
       { "@type": "ListItem", position: 4, name: "Emsal (KAKS) Hesaplama", item: buildSiteUrl("/emsal-kaks-hesaplama") },
     ],
   };
@@ -84,7 +84,7 @@ export default function ZoningCalculatorPage() {
         <nav className="breadcrumbs" aria-label="Sayfa yolu">
           <Link href="/">Ana Sayfa</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/mimar-araclari">Mimar Araçları</Link>
+          <Link href="/hesaplayicilar#ev-ve-yapi">Ev, İnşaat ve Bahçe</Link>
           <span aria-hidden="true">&rsaquo;</span>
           <span>Emsal (KAKS) Hesaplama</span>
         </nav>
@@ -190,8 +190,11 @@ export default function ZoningCalculatorPage() {
 
           <h2>İlgili araçlar</h2>
           <p>
-            Diğer mimar araçları için <Link href="/mimar-araclari">Mimar Araçları</Link> sayfasına, dönüm ve metrekare gibi
-            alan birimi dönüşümleri için <Link href="/kategoriler/alan">Alan Dönüşümleri</Link> sayfasına bakabilirsin.
+            Diğer ev ve inşaat araçları için{" "}
+            <Link href="/hesaplayicilar#ev-ve-yapi">Ev, İnşaat ve Bahçe</Link>
+            {" "}bölümüne, alan birimi dönüşümleri için{" "}
+            <Link href="/kategoriler/alan">Alan Dönüşümleri</Link>
+            {" "}sayfasına bakabilirsin.
           </p>
 
           <h2>Kaynaklar</h2>

@@ -36,6 +36,8 @@ const donem = (baslangic: string) => {
   return m === "01" ? `1 Ocak – 30 Haziran ${y}` : `1 Temmuz – 31 Aralık ${y}`;
 };
 const guncel = KIDEM_TAVANLARI[KIDEM_TAVANLARI.length - 1];
+const YILLAR = [1, 3, 5, 10, 15, 20];
+const UCRETLER = [30000, 50000, 80000];
 
 const faqItems: FaqItem[] = [
   {
@@ -69,7 +71,7 @@ export default function KidemTazminatiPage() {
     <TimeToolPage
       crumbs={[
         { href: "/", label: "Ana sayfa" },
-        { href: "/muhasebeci-araclari", label: "Muhasebeci Araçları" },
+        { href: "/hesaplayicilar#para-ve-is", label: "Para, Maaş ve Vergi" },
         { href: path, label: "Kıdem Tazminatı Hesaplama" },
       ]}
       crumbLabel="Sayfa yolu"
@@ -92,11 +94,12 @@ export default function KidemTazminatiPage() {
           { href: "/brutten-nete-maas-hesaplama", label: "Brütten Nete Maaş Hesaplama" },
           { href: "/yillik-izin-hesaplama", label: "Yıllık İzin Hesaplama" },
           { href: "/kdv-hesaplama", label: "KDV Hesaplama" },
-          { href: "/muhasebeci-araclari", label: "Muhasebeci Araçları" },
+          { href: "/hesaplayicilar#para-ve-is", label: "Para, Maaş ve Vergi" },
         ],
       }}
       tocTitle="İçindekiler"
       tocItems={[
+        { id: "yillar", label: "Kaç yıl çalışan ne kadar alır?" },
         { id: "tavan", label: "Kıdem tazminatı tavanı" },
         { id: "haklar", label: "Hangi durumda hangi tazminat?" },
         { id: "ornek", label: "Örnek hesaplama" },
@@ -169,6 +172,41 @@ export default function KidemTazminatiPage() {
           </tbody>
         </table>
       </div>
+
+      <h2 id="yillar">Kaç yıl çalışan ne kadar kıdem tazminatı alır?</h2>
+      <p>
+        Her tam yıl için 30 günlük brüt ücret ödenir, ama yıllık tutar kıdem tavanını ({tl(guncel.tutar)}) geçemez. Tablo
+        tam yıllar ve giydirilmiş brüt ücret için brüt kıdem tazminatını gösterir; tavanı aşan ücretlerde tavan uygulandı.
+        Tutarlar TL&apos;dir; bunlardan yalnızca binde 7,59 damga vergisi kesilir.
+      </p>
+      <div className="holiday-table-wrap">
+        <table className="holiday-table">
+          <thead>
+            <tr>
+              <th scope="col">Brüt ücret →</th>
+              {UCRETLER.map((u) => (
+                <th key={u} scope="col">
+                  {u / 1000} bin TL
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {YILLAR.map((y) => (
+              <tr key={y}>
+                <th scope="row">{y} yıl</th>
+                {UCRETLER.map((u) => (
+                  <td key={u}>{Math.round(y * Math.min(u, guncel.tutar)).toLocaleString("tr-TR")}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p>
+        Tablodan görüldüğü gibi brüt ücret tavanın üzerindeyse ücret ne kadar yüksek olursa olsun yıllık tutar sabitlenir.
+        Artan ay ve günler için yukarıdaki hesaplayıcıya giriş ve çıkış tarihinizi yazın.
+      </p>
 
       <h2 id="ornek">Örnek hesaplama</h2>
       <p>

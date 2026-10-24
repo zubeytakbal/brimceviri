@@ -124,8 +124,7 @@ export default function HesaplayicilarPage() {
       <h2 id="diger">Diğer araçlar</h2>
       <p>
         Tarih, saat, dini hesaplar, teknik hesaplar ve harita araçları kendi bölümlerinde de toplu olarak yer alır. Birim çevirmek için{" "}
-        <Link href="/tum-birimler">tüm birim dönüşümlerine</Link>, mesleğinize özel araçlar için <Link href="/meslekler">mesleğe göre araçlara</Link>{" "}
-        bakabilirsiniz.
+        <Link href="/tum-birimler">tüm birim dönüşümlerine</Link> bakabilirsiniz.
       </p>
       <div className="hesap-hub-diger">
         {digerGruplar.map((d) => (

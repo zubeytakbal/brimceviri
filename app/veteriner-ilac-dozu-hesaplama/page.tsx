@@ -50,8 +50,8 @@ export default function VetDoseCalculatorPage() {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: buildSiteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "Mesleğe Göre Araçlar", item: buildSiteUrl("/meslekler") },
-      { "@type": "ListItem", position: 3, name: "Veteriner Araçları", item: buildSiteUrl("/veteriner-araclari") },
+      { "@type": "ListItem", position: 2, name: "Tüm Hesaplamalar", item: buildSiteUrl("/hesaplayicilar") },
+      { "@type": "ListItem", position: 3, name: "Klinik Skorlar", item: buildSiteUrl("/hesaplayicilar#klinik") },
       { "@type": "ListItem", position: 4, name: "Veteriner İlaç Dozu ve Hacmi Hesaplama", item: buildSiteUrl("/veteriner-ilac-dozu-hesaplama") },
     ],
   };
@@ -65,7 +65,7 @@ export default function VetDoseCalculatorPage() {
         <nav className="breadcrumbs" aria-label="Sayfa yolu">
           <Link href="/">Ana Sayfa</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/veteriner-araclari">Veteriner Araçları</Link>
+          <Link href="/hesaplayicilar#klinik">Klinik Skorlar</Link>
           <span aria-hidden="true">&rsaquo;</span>
           <span>Veteriner İlaç Dozu ve Hacmi Hesaplama</span>
         </nav>
@@ -105,7 +105,7 @@ export default function VetDoseCalculatorPage() {
           <h2>İlgili araçlar</h2>
           <p>
             Diğer veteriner araçları için{" "}
-            <Link href="/veteriner-araclari">Veteriner Araçları</Link>
+            <Link href="/hesaplayicilar#klinik">Klinik Skorlar</Link>
             {" "}sayfasına, ağırlık birimleri (kg/lb) için{" "}
             <Link href="/kategoriler/kutle">Kütle Dönüşümleri</Link>
             {" "}sayfasına bakabilirsin.

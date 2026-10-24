@@ -126,7 +126,7 @@ export default function InsulationCalculatorPage() {
           <p>
             Mantolama öncesi veya sonrası ilgili diğer inşaat
             hesaplayıcıları için{" "}
-            <Link href="/insaatci-araclari">İnşaatçı Araçları</Link>{" "}
+            <Link href="/hesaplayicilar#ev-ve-yapi">Ev, İnşaat ve Bahçe</Link>{" "}
             sayfasına bakabilirsin.
           </p>
 
@@ -135,7 +135,7 @@ export default function InsulationCalculatorPage() {
             Yalıtımın kendini kaç yılda amorti ettiğini görmek için{" "}
             <Link href="/yalitim-amortisman-hesaplama">Yalıtım Amortisman Hesaplama</Link>,{" "}
             diğer inşaat araçları için{" "}
-            <Link href="/insaatci-araclari">İnşaatçı Araçları</Link>
+            <Link href="/hesaplayicilar#ev-ve-yapi">Ev, İnşaat ve Bahçe</Link>
             {" "}sayfasına bakabilirsin.
           </p>
 

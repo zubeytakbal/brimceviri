@@ -54,7 +54,7 @@ export default function CezaPuaniPage() {
     <TimeToolPage
       crumbs={[
         { href: "/", label: "Ana Sayfa" },
-        { href: "/otomotiv-araclari", label: "Otomotiv Araçları" },
+        { href: "/hesaplayicilar#enerji-ve-arac", label: "Enerji, Fatura ve Araç" },
         { href: path, label: "Ceza Puanı Hesaplama" },
       ]}
       crumbLabel="Sayfa yolu"

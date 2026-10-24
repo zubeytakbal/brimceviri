@@ -60,7 +60,7 @@ export default function KrediHesaplamaPage() {
     <TimeToolPage
       crumbs={[
         { href: "/", label: "Ana sayfa" },
-        { href: "/muhasebeci-araclari", label: "Muhasebeci Araçları" },
+        { href: "/hesaplayicilar#para-ve-is", label: "Para, Maaş ve Vergi" },
         { href: path, label: title },
       ]}
       crumbLabel="Sayfa yolu"
@@ -74,7 +74,7 @@ export default function KrediHesaplamaPage() {
           { href: "/brutten-nete-maas-hesaplama", label: "Brütten Nete Maaş Hesaplama" },
           { href: "/emlak-komisyonu-hesaplama", label: "Emlak Komisyonu Hesaplama" },
           { href: "/doviz-cevirici", label: "Döviz Çevirici" },
-          { href: "/muhasebeci-araclari", label: "Muhasebeci Araçları" },
+          { href: "/hesaplayicilar#para-ve-is", label: "Para, Maaş ve Vergi" },
         ],
       }}
       tocTitle="İçindekiler"

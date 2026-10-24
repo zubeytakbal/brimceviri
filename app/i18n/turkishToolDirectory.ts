@@ -33,8 +33,6 @@ export const turkishToolGroups: ToolGroup[] = [
       { href: "/eski-para-yeni-para-cevirme", label: "Eski Para Yeni Para Çevirme" },
       { href: "/emlak-komisyonu-hesaplama", label: "Emlak Komisyonu" },
       { href: "/amortisman-hesaplama", label: "Amortisman Hesaplama" },
-      { href: "/reklam-metrikleri-hesaplama", label: "Reklam Metrikleri (CPM, CTR, ROI)" },
-      { href: "/uzaktan-calisma-ofis-maliyeti-karsilastirma", label: "Uzaktan Çalışma mı Ofis mi?" },
     ],
   },
   {
@@ -189,7 +187,6 @@ export const turkishToolGroups: ToolGroup[] = [
       { href: "/tohum-miktari-hesaplama", label: "Tohum Miktarı" },
       { href: "/sulama-suresi-hesaplama", label: "Sulama Süresi" },
       { href: "/tarla-donum-hesaplama", label: "Tarla Dönüm Hesaplama" },
-      { href: "/ciftci-araclari", label: "Tüm Çiftçi Araçları" },
     ],
   },
   {

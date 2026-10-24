@@ -163,7 +163,7 @@ export default function HasHesaplamaPage() {
             serbest milyem girişine ve birden fazla bileşeni karıştırma
             hesabına izin verir. Kuyumculukla ilgili tüm araçları ve
             referans tabloları tek sayfada görmek için{" "}
-            <Link href="/kuyumcu-araclari">Kuyumcu Araçları</Link>{" "}
+            <Link href="/altin-hesaplama">Altın Hesaplama</Link>{" "}
             sayfasına bakabilirsin.
           </p>
 

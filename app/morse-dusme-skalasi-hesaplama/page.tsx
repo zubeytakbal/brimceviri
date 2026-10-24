@@ -98,7 +98,7 @@ export default function MorseFallScalePage() {
             Basınç yarası riski için{" "}
             <Link href="/braden-skalasi-hesaplama">Braden Skalası Hesaplama</Link>,
             diğer doktor ve hemşire araçları için{" "}
-            <Link href="/doktor-hemsire-araclari">Doktor ve Hemşire Araçları</Link>{" "}
+            <Link href="/hesaplayicilar#klinik">Klinik Skorlar</Link>{" "}
             sayfasına bakabilirsin.
           </p>
 

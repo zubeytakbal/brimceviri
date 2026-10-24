@@ -1,4 +1,4 @@
-// Araç sahibi araçları: araç sayfalarının "ilgili araçlar" bölümü ve /otomotiv-araclari listesi.
+// Araç sahibi araçları: araç sayfalarının "ilgili araçlar" bölümü ve hesaplamalar sayfasındaki araç bölümü.
 export const aracAraclari = [
   { href: "/trafik-cezasi-erken-odeme-hesaplama", label: "Trafik Cezası Erken Ödeme Hesaplama", description: "%25 indirimli tutar ve indirimin son günü; elden, posta ve e-Tebligat." },
   { href: "/ceza-puani-hesaplama", label: "Ceza Puanı Hesaplama", description: "Geçerli ceza puanınız, hangi puanın ne zaman silineceği ve 100 puana kalan." },

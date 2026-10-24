@@ -206,7 +206,7 @@ export default function BedenOlcusuCeviriciPage() {
               Ayakkabı Numarası Çevirici
             </Link>
             , diğer terzi/moda araçları için{" "}
-            <Link href="/terzi-araclari">Terzi Araçları</Link> sayfasına
+            <Link href="/hesaplayicilar#olcu-ve-gunluk">Mutfak, Beden ve Okul</Link> sayfasına
             bakabilirsin.
           </p>
 

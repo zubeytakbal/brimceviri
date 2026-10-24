@@ -133,15 +133,6 @@ export default function DigerDonusumlerPage() {
       group: "Tasarruf ve Karar Hesaplayıcıları",
     },
     {
-      id: "uzaktan-calisma-ofis-karsilastirma",
-      href: "/uzaktan-calisma-ofis-maliyeti-karsilastirma",
-      title: "Uzaktan Çalışma mı Ofis mi?",
-      description:
-        "Kendi yol masrafın, öğle yemeği farkın ve ek ev giderinle uzaktan çalışmanın yıllık net tasarrufunu hesaplayın.",
-      iconName: "remoteWorkVsOfficeCostCalculator" as const,
-      group: "Tasarruf ve Karar Hesaplayıcıları",
-    },
-    {
       id: "ehliyet-sinifi-bulma",
       href: "/ehliyet-sinifi-bulma",
       title: "Hangi Ehliyet Sınıfı Gerekli?",
@@ -979,15 +970,6 @@ export default function DigerDonusumlerPage() {
       group: "Finans, Eğitim ve Günlük Yaşam Araçları",
     },
     {
-      id: "reklam-metrikleri",
-      href: "/reklam-metrikleri-hesaplama",
-      title: "Reklam Metrikleri Hesaplama",
-      description:
-        "Maliyet, gösterim ve tıklamadan CPM, CTR, CPC ve ROI hesaplayın.",
-      iconName: "adMetricsCalculator" as const,
-      group: "Finans, Eğitim ve Günlük Yaşam Araçları",
-    },
-    {
       id: "yuzuk",
       href: "/yuzuk-olcusu-cevirici",
       title: "Yüzük Ölçüsü Çevirici",
@@ -1034,7 +1016,7 @@ export default function DigerDonusumlerPage() {
     },
     {
       id: "meslekler",
-      href: "/meslekler",
+      href: "/hesaplayicilar",
       title: "Mesleğe Göre Araçlar",
       description:
         "Kuyumcu, elektrikçi gibi mesleklere özel hesaplayıcıların ve referans tablolarının toplandığı sayfalar.",

@@ -73,7 +73,7 @@ export default function AltinHesaplamaPage() {
     <TimeToolPage
       crumbs={[
         { href: "/", label: "Ana sayfa" },
-        { href: "/kuyumcu-araclari", label: "Kuyumcu Araçları" },
+        { href: "/altin-hesaplama", label: "Altın Hesaplama" },
         { href: path, label: "Altın Hesaplama" },
       ]}
       crumbLabel="Sayfa yolu"
@@ -96,6 +96,7 @@ export default function AltinHesaplamaPage() {
       }}
       tocTitle="İçindekiler"
       tocItems={[
+        { id: "kac-ceyrek", label: "Tam, yarım ve beşli kaç çeyrek eder?" },
         { id: "tablo", label: "Altın çeşitleri ve gramları" },
         { id: "ayarlar", label: "Ayar ve milyem tablosu" },
         { id: "faq", label: "Sık sorulan sorular" },
@@ -103,6 +104,38 @@ export default function AltinHesaplamaPage() {
       faqTitle="Sık Sorulan Sorular"
       faqItems={faqItems}
     >
+      <h2 id="kac-ceyrek">Tam, yarım ve beşli kaç çeyrek eder?</h2>
+      <p>
+        Darphane ziynet altınları çeyreğin katları olarak basılır; bu yüzden &quot;kaç çeyrek eder&quot; sorusunun cevabı
+        sabittir. Gram karşılıkları da aynı orandadır.
+      </p>
+      <div className="holiday-table-wrap">
+        <table className="holiday-table">
+          <thead>
+            <tr>
+              <th scope="col">Altın</th>
+              <th scope="col">Kaç çeyrek</th>
+              <th scope="col">Ağırlık</th>
+              <th scope="col">Has altın</th>
+            </tr>
+          </thead>
+          <tbody>
+            {SIKKELER.filter((s) => s.seri === "ziynet").map((s) => (
+              <tr key={s.id}>
+                <th scope="row">{s.kisa}</th>
+                <td>{(s.deger / 0.25).toLocaleString("tr-TR", { maximumFractionDigits: 1 })} çeyrek</td>
+                <td>{gr(s.gram)} g</td>
+                <td>{gr((s.gram * ZIYNET_MILYEM) / 1000)} g</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p>
+        Çeyrek sayısına göre toplam gram ve bileziğe çevirince kaç gram ettiği için{" "}
+        <Link href="/ceyrek-bilezik-hesaplama">çeyrekten bileziğe hesaplama</Link> sayfasındaki tabloya bakabilirsiniz.
+      </p>
+
       <h2 id="tablo">Altın çeşitleri ve gramları</h2>
       <div className="holiday-table-wrap">
         <table className="holiday-table">

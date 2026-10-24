@@ -150,7 +150,7 @@ export default function InsulationPaybackPage() {
             Isı iletimi ve malzeme ısıl iletkenlik tablosu için{" "}
             <Link href="/hesaplayicilar/isi-iletimi">Isı İletimi Hesaplayıcısı</Link>
             {" "}sayfasına, diğer inşaat hesaplamaları için{" "}
-            <Link href="/insaatci-araclari">İnşaatçı Araçları</Link>
+            <Link href="/hesaplayicilar#ev-ve-yapi">Ev, İnşaat ve Bahçe</Link>
             {" "}sayfasına bakabilirsin. Isıtma sistemi seçimi için{" "}
             <Link href="/isi-pompasi-kombi-karsilastirma">Isı Pompası - Kombi Karşılaştırma</Link>,{" "}
             <Link href="/kombi-klima-isitma-maliyeti-karsilastirma">Kombi - Klima Isıtma Maliyeti Karşılaştırma</Link>

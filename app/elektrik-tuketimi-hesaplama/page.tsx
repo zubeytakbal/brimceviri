@@ -18,6 +18,9 @@ const faqItems: FaqItem[] = [
   },
 ];
 
+const GUCLER = [10, 60, 130, 500, 1000, 2000, 3000];
+const sayi = (n: number, basamak = 0) => n.toLocaleString("tr-TR", { maximumFractionDigits: basamak });
+
 export const metadata: Metadata = {
   title: "Elektrik Tüketimi Hesaplama: Cihaz Kaç kWh Tüketir?",
   description:
@@ -93,6 +96,40 @@ export default function ElectricityConsumptionPage() {
         <ElectricityConsumptionCalculator />
 
         <section className="category-article-content">
+          <h2 id="watt">Kaç watt ne kadar elektrik harcar?</h2>
+          <p>
+            Cihazın etiketindeki watt değeri, tam güçte çalıştığı her saatte harcadığı enerjiyi verir: 1.000 watt bir saatte 1
+            kWh eder. Tablo, cihaz sürekli tam güçte çalışıyormuş gibi hesaplandı; termostatlı cihazlar (buzdolabı, klima,
+            fırın) gerçekte zamanın bir kısmında çalıştığı için ayda daha az harcar.
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>Güç</th>
+                  <th>1 saatte</th>
+                  <th>Günde 8 saat</th>
+                  <th>Ayda (8 sa × 30 gün)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {GUCLER.map((w) => (
+                  <tr key={w}>
+                    <td>{sayi(w)} W</td>
+                    <td>{sayi(w / 1000, 3)} kWh</td>
+                    <td>{sayi((w * 8) / 1000, 2)} kWh</td>
+                    <td>{sayi((w * 8 * 30) / 1000, 1)} kWh</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Faturaya çevirmek için kWh değerini faturanızdaki birim fiyatla (vergi ve fonlar dahil kWh başına tutar)
+            çarpın. Örneğin 3.000 W&apos;lık bir ısıtıcı günde 2 saat çalışırsa ayda {sayi((3000 * 2 * 30) / 1000)} kWh
+            harcar.
+          </p>
+
           <h2>kWh nasıl hesaplanır?</h2>
           <p>
             Elektrikli cihazların gücü watt (W) cinsinden yazılıdır;

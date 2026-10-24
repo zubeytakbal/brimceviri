@@ -23,8 +23,19 @@ const faqItems: FaqItem[] = [
   },
 ];
 
+/** [ad, kalınlık (cm), ısı iletkenliği λ (W/mK)] */
+const LEVHALAR: Array<[string, number, number]> = [
+  ["3 cm EPS", 3, 0.04],
+  ["5 cm EPS", 5, 0.04],
+  ["5 cm grafitli EPS", 5, 0.032],
+  ["8 cm EPS", 8, 0.04],
+  ["10 cm EPS", 10, 0.04],
+  ["5 cm taş yünü", 5, 0.036],
+];
+const sayi = (n: number, basamak = 0) => n.toLocaleString("tr-TR", { maximumFractionDigits: basamak });
+
 export const metadata: Metadata = {
-  title: "Yalıtım Amortisman Hesaplama (Kaç Yılda Kendini Çıkarır?)",
+  title: "Mantolama Kaç Yılda Kendini Öder? Yalıtım Tasarruf Hesaplama",
   description:
     "Duvar alanı, mevcut duvar ve eklenecek yalıtım malzemesiyle yıllık enerji tasarrufunu ve yalıtımın kaç yılda kendini çıkardığını hesapla.",
   alternates: {
@@ -68,7 +79,7 @@ export default function InsulationPaybackPage() {
 
         <div className="page-top-row">
           <header className="all-conversions-header">
-            <h1>Yalıtım Amortisman Hesaplama</h1>
+            <h1>Mantolama Kaç Yılda Kendini Öder? Yalıtım Tasarruf Hesaplama</h1>
             <p>
               Duvar alanı, mevcut duvar ve eklenecek yalıtım malzemesiyle
               yıllık enerji tasarrufunu ve yalıtımın kaç yılda kendini
@@ -87,6 +98,44 @@ export default function InsulationPaybackPage() {
         <InsulationPaybackCalculator />
 
         <section className="category-article-content">
+          <h2 id="tasarruf">Mantolama duvardan kaçan ısıyı ne kadar azaltır?</h2>
+          <p>
+            Duvardan kaçan ısı, duvarın ısı geçirgenlik katsayısıyla (U, W/m²K) orantılıdır. Yalıtım levhası duvara{" "}
+            <strong>kalınlık ÷ ısı iletkenliği</strong> kadar ısıl direnç ekler ve yeni U değeri{" "}
+            <strong>1 ÷ (1/U + kalınlık/λ)</strong> olur. Tablo, yalıtımsız bir tuğla duvar için örnek olarak U = 1,5 W/m²K
+            alınarak hesaplandı.
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>Levha</th>
+                  <th>Yeni U</th>
+                  <th>Isı kaybındaki azalma</th>
+                </tr>
+              </thead>
+              <tbody>
+                {LEVHALAR.map(([ad, cm, lambda]) => {
+                  const u = 1 / (1 / 1.5 + cm / 100 / lambda);
+                  return (
+                    <tr key={ad}>
+                      <td>{ad}</td>
+                      <td>{sayi(u, 2)} W/m²K</td>
+                      <td>%{sayi((1 - u / 1.5) * 100)}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Tablodan görülen azalan getiri, kalınlık seçimindeki asıl sorudur: 3 cm&apos;den 5 cm&apos;ye geçmek kaybı belirgin
+            biçimde azaltırken, 8 cm&apos;den 10 cm&apos;ye geçişin ek katkısı küçüktür. Bu oran yalnızca duvar içindir; evin
+            toplam ısı kaybında pencere, çatı ve hava sızıntısının da payı olduğundan faturadaki düşüş duvar
+            kaybındaki azalmadan küçük çıkar. Kaç yılda kendini ödediğini görmek için yukarıdaki araca kendi duvar alanınızı,
+            ısıtma fiyatınızı ve mantolama teklifini girin.
+          </p>
+
           <h2>Sık Sorulan Sorular</h2>
           {faqItems.map((item) => (
             <p key={item.question}>

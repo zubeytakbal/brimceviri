@@ -108,6 +108,42 @@ export default async function LicenseClassFinderPage() {
         <LicenseClassFinderCalculator />
 
         <section className="category-article-content">
+          <h2 id="l6-l7">L6 ve L7 sınıfı araçlar hangi ehliyetle kullanılır?</h2>
+          <p>
+            L6 ve L7, Avrupa araç tip onayında dört tekerlekli motosikletlerin (quadricycle) kategori adlarıdır ve ruhsatta
+            &quot;L6e&quot; ya da &quot;L7e&quot; olarak yazar. Ehliyet sınıfı bu kategoriye değil, aracın teknik sınırlarına
+            göre belirlenir:
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>Kategori</th>
+                  <th>Teknik sınır</th>
+                  <th>Karşılık gelen sınıf</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>L6e (hafif)</td>
+                  <td>Azami hız 45 km/s, güç en çok 6 kW</td>
+                  <td>M (motorlu bisiklet)</td>
+                </tr>
+                <tr>
+                  <td>L7e (ağır)</td>
+                  <td>Güç en çok 15 kW, boş ağırlık 400 kg (yük taşıyanda 550 kg)</td>
+                  <td>B1</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            B1 sınıfı tam da bu sınırlara sahip dört tekerlekli motosikletler içindir ve 16 yaşında alınabilir. B sınıfı
+            ehliyet M, B1 ve F sınıflarını da kapsadığından otomobil ehliyeti olan biri bu araçları kullanabilir. Sınırda
+            kalan bir araçta kesin cevap ruhsattaki cins ve kategori satırıdır. Ehliyetinizin geçerlilik süresini öğrenmek
+            için <Link href="/ehliyet-yenileme-suresi-hesaplama">ehliyet yenileme süresi</Link> aracına bakın.
+          </p>
+
           <h2>Ehliyet Maliyeti Hesaplama</h2>
           <p>
             Kendi aldığın sürücü kursu teklifi ve sınav harcıyla

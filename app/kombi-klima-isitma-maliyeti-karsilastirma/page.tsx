@@ -23,8 +23,10 @@ const faqItems: FaqItem[] = [
   },
 ];
 
+const sayi = (n: number, basamak = 0) => n.toLocaleString("tr-TR", { maximumFractionDigits: basamak });
+
 export const metadata: Metadata = {
-  title: "Kombi mi Klima mı? Isıtma Maliyeti Karşılaştırma",
+  title: "Isınırken Doğalgaz mı Klima mı? Hangisi Daha Ucuz Hesaplama",
   description:
     "Doğalgaz ve elektrik fiyatınla, kombi ile klimanın 1 kWh ısı başına maliyetini karşılaştır, hangisinin daha ucuz olduğunu hesapla.",
   alternates: {
@@ -68,7 +70,7 @@ export default function HeatingCostComparisonPage() {
 
         <div className="page-top-row">
           <header className="all-conversions-header">
-            <h1>Kombi mi Klima mı? Isıtma Maliyeti Karşılaştırma</h1>
+            <h1>Isınırken Doğalgaz mı Klima mı? Hangisi Daha Ucuz?</h1>
             <p>
               Doğalgaz ve elektrik fiyatınla, kombi ile klimanın 1 kWh
               ısı başına maliyetini karşılaştır, kendi evin için
@@ -87,6 +89,75 @@ export default function HeatingCostComparisonPage() {
         <HeatingCostComparisonCalculator />
 
         <section className="category-article-content">
+          <h2 id="hangisi-ucuz">Aynı ısı için ne kadar enerji ödersiniz?</h2>
+          <p>
+            Kombi, klima ve elektrikli soba odaya aynı ısıyı farklı miktarda enerjiyle verir. Kombi yaktığı gazın yaklaşık
+            %90&apos;ını ısıya çevirir; klima ise dışarıdaki havadan ısı taşıdığı için harcadığı her kWh elektriğe karşılık
+            SCOP değeri kadar ısı verir. Tablo, evin ayda 1.000 kWh ısıya ihtiyaç duyduğu bir durum için hesaplandı (1 m³
+            doğalgaz = 10,64 kWh).
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>Isıtıcı</th>
+                  <th>Verim</th>
+                  <th>1.000 kWh ısı için</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Kombi</td>
+                  <td>%90</td>
+                  <td>{sayi(1000 / (10.64 * 0.9))} m³ doğalgaz</td>
+                </tr>
+                {[2.5, 3.5, 4.5].map((scop) => (
+                  <tr key={scop}>
+                    <td>Klima</td>
+                    <td>SCOP {sayi(scop, 1)}</td>
+                    <td>{sayi(1000 / scop)} kWh elektrik</td>
+                  </tr>
+                ))}
+                <tr>
+                  <td>Elektrikli soba</td>
+                  <td>%100</td>
+                  <td>1.000 kWh elektrik</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="esik">Klima hangi fiyatta doğalgazdan ucuza gelir?</h2>
+          <p>
+            Faturalardaki iki birim fiyatı karşılaştırmak yeterli: elektriğin kWh fiyatı, doğalgazın m³ fiyatının aşağıdaki
+            oranından düşükse klima daha ucuz ısıtır.
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>Klimanın SCOP değeri</th>
+                  <th>Klima ucuzsa: kWh fiyatı &lt; m³ fiyatı ×</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[2.5, 3, 3.5, 4, 4.5].map((scop) => (
+                  <tr key={scop}>
+                    <td>{sayi(scop, 1)}</td>
+                    <td>{sayi(scop / (10.64 * 0.9), 2)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Örneğin SCOP değeri 3,5 olan bir klimada eşik {sayi(3.5 / (10.64 * 0.9), 2)}&apos;dir: doğalgazın m³ fiyatı 10 TL
+            ise elektriğin kWh fiyatı {sayi((10 * 3.5) / (10.64 * 0.9), 2)} TL&apos;nin altındaysa klima kazanır. Elektrikli
+            soba ise kombiyle ancak elektrik kWh fiyatı m³ fiyatının yaklaşık onda biri olduğunda eşitlenir, bu yüzden
+            pratikte neredeyse her zaman en pahalısıdır. Klima yalnızca bulunduğu odayı ısıtır; tüm evi kombiyle
+            karşılaştırırken aynı alanı hesaba katın.
+          </p>
+
           <h2>Sık Sorulan Sorular</h2>
           {faqItems.map((item) => (
             <p key={item.question}>

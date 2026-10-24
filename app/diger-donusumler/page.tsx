@@ -6,6 +6,7 @@ import { conversionPages } from "../converter/conversionPages";
 import { isMergedAway } from "../converter/mergedPairs";
 import { homeCategoryOrder } from "../converter/homeCategoryOrder";
 import { buildSiteUrl } from "../siteConfig";
+import BreadcrumbSchema from "../components/BreadcrumbSchema";
 
 export const metadata: Metadata = {
   title: "Di\u011fer D\u00f6n\u00fc\u015f\u00fcmler",
@@ -1106,6 +1107,8 @@ export default function DigerDonusumlerPage() {
   ];
 
   return (
+    <>
+    <BreadcrumbSchema items={[{ name: "Ana Sayfa", href: "/" }, { name: "Diğer Dönüşümler", href: "/diger-donusumler" }]} />
     <OtherCategoriesPage
       conversions={conversions}
       categories={categories}
@@ -1117,5 +1120,6 @@ export default function DigerDonusumlerPage() {
         label: "View the English version",
       }}
     />
+    </>
   );
 }

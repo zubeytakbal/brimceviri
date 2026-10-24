@@ -180,7 +180,6 @@ function legacyRedirects(): MergedRedirect[] {
     r("/cark-cevir", "/hesaplayicilar"),
     // Arama talebi olmayan iki araç kaldırıldı (Ekim 2026).
     r("/reklam-metrikleri-hesaplama", "/hesaplayicilar"),
-    r("/dijital-pazarlamaci-araclari", "/meslekler"),
     r("/uzaktan-calisma-ofis-maliyeti-karsilastirma", "/hesaplayicilar"),
     r("/embed/uzaktan-calisma-ofis-maliyeti-karsilastirma", "/hesaplayicilar"),
     r("/uz/atmosfera-bar", "/uz/turkumlar/bosim"),

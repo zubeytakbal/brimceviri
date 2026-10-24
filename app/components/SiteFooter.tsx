@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { isSaatAraci, isSaatBolumu } from "./saat/saatBolumu";
+import { isHesapAraci } from "./hesap/hesapBolumu";
 import Link from "@/app/components/SiteLink";
 import { usePathname, useRouter } from "next/navigation";
 import { getLocaleFromPathname } from "../i18n/config";
@@ -14,6 +15,7 @@ import {
 
 // Saat bölümünün alt bilgisi yalnızca o bölümün sayfalarında yüklenir.
 const SaatAltBilgi = dynamic(() => import("./saat/SaatAltBilgi"));
+const HesapAltBilgi = dynamic(() => import("./hesap/HesapAltBilgi"));
 
 const ARAC_SAYISI = 5;
 // Bilgi sayfaları alt satırda; Ana Sayfa ve araç dizinleri üstteki sütunlarda zaten var.
@@ -95,6 +97,7 @@ export default function SiteFooter() {
     return null;
   }
   if (isSaatAraci(pathname)) return <SaatAltBilgi />;
+  if (isHesapAraci(pathname)) return <HesapAltBilgi />;
   const locale = getLocaleFromPathname(pathname);
   const nav = SITE_NAV_DATA.locales[locale];
   if (locale === "tr") {

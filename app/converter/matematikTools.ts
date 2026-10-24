@@ -125,9 +125,4 @@ export const matematikTools: MatematikTool[] = [
     href: "/bilim-hesaplayicilari/matematik/geometrik-dizi-hesaplama",
     title: "Geometrik Dizi Hesaplama",
   },
-  {
-    id: "sayilar",
-    href: "/bilim-hesaplayicilari/matematik/sayilar",
-    title: "Sayı Özellikleri (Kare, Karekök, Asal mı, Bölenleri)",
-  },
 ];

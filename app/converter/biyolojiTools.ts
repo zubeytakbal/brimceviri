@@ -6,11 +6,6 @@ export interface BiyolojiTool {
 
 export const biyolojiTools: BiyolojiTool[] = [
   {
-    id: "amino-asitler",
-    href: "/bilim-hesaplayicilari/biyoloji/amino-asitler",
-    title: "Amino Asitler (Formülleri, Molar Kütleleri, Esansiyel mi?)",
-  },
-  {
     id: "kodon-tablosu",
     href: "/bilim-hesaplayicilari/biyoloji/kodon-tablosu",
     title: "Kodon Tablosu ve DNA/RNA Amino Asit Çevirici",

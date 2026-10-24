@@ -120,7 +120,6 @@ export const scienceHubs: ScienceHub[] = [
           { href: `${M}/kupkok-hesaplama`, title: "Küpkök Hesaplama", description: "Küpkök ve sadeleştirme." },
           { href: `${M}/uslu-sayilar-hesaplama`, title: "Üslü Sayılar Hesaplama", description: "Pozitif, negatif ve sıfır üslerle üs alma." },
           { href: `${M}/logaritma-hesaplama`, title: "Logaritma Hesaplama", description: "Her tabanda logaritma, ln ve log₁₀; bilinmeyen taban ya da sayı." },
-          { href: `${M}/sayilar`, title: "Sayı Özellikleri", description: "Bir sayının karesi, küpü, asal olup olmadığı ve bölenleri." },
           { href: "/sayi-tabani-cevirici", title: "Sayı Tabanı Çevirici", description: "İkili, sekizli, onlu ve onaltılık tabanlar arasında dönüşüm." },
         ],
       },
@@ -339,7 +338,6 @@ export const scienceHubs: ScienceHub[] = [
         title: "Moleküler biyoloji",
         tools: [
           { href: "/bilim-hesaplayicilari/biyoloji/kodon-tablosu", title: "Kodon Tablosu ve DNA/RNA Çevirici", description: "DNA ya da RNA dizisini amino asit dizisine çevir; 64 kodonun tam listesi." },
-          { href: "/bilim-hesaplayicilari/biyoloji/amino-asitler", title: "Amino Asitler", description: "20 standart amino asidin kısaltmaları, formülleri, molar kütleleri ve esansiyel olup olmadıkları." },
           { href: "/bilim-hesaplayicilari/biyoloji/peptit-molar-kutle-hesaplama", title: "Peptit Molar Kütle Hesaplama", description: "Gly-Ala-Val gibi bir diziden peptit zincirinin molar kütlesi." },
         ],
       },

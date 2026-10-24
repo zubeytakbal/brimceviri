@@ -127,10 +127,6 @@ export default function BolenSayisiHesaplamaPage() {
             12'yi tam böler.
           </p>
 
-          <p>
-            1–100 arasında en çok böleni olan sayıları ve mükemmel sayıları{" "}
-            <Link href="/bilim-hesaplayicilari/matematik/sayilar">Sayılar</Link> sayfasında tablo olarak görebilirsin.
-          </p>
 
           <h2>Bölen sayısı formülü</h2>
           <p>

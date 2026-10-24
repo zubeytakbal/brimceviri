@@ -122,9 +122,7 @@ export default function CodonTablePage() {
 
           <h2>İlginizi Çekebilir</h2>
           <p>
-            Amino asitlerin formül ve molar kütlelerini görmek için{" "}
-            <Link href="/bilim-hesaplayicilari/biyoloji/amino-asitler">Amino Asitler</Link>
-            {" "}sayfasına, bir peptit zincirinin molar kütlesini hesaplamak için{" "}
+            Bir peptit zincirinin molar kütlesini hesaplamak için{" "}
             <Link href="/bilim-hesaplayicilari/biyoloji/peptit-molar-kutle-hesaplama">Peptit Molar Kütle Hesaplama</Link>
             {" "}sayfasına bakabilirsin.
           </p>

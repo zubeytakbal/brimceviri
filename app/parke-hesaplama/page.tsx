@@ -27,6 +27,8 @@ const ODALAR: Array<[string, number, number]> = [
   ["Geniş salon", 5, 7],
 ];
 const PAKET_M2 = 2.22;
+const PAKET_SECENEKLERI = [2, 2.22, 2.5];
+const METREKARELER = [15, 20, 25, 30, 40, 50, 75, 100];
 const paket = (alan: number, fire: number) => Math.ceil((alan * (1 + fire / 100)) / PAKET_M2);
 const m = (n: number) => n.toLocaleString("tr-TR", { maximumFractionDigits: 2 });
 
@@ -104,6 +106,34 @@ export default function LaminateCalculatorPage() {
         <LaminateCalculator />
 
         <section className="category-article-content">
+          <h2 id="metrekare">Kaç metrekareye kaç paket parke gider?</h2>
+          <p>
+            Laminat parke paketleri markaya ve kalınlığa göre 2 ile 2,5 m² arasında içerik taşır. Tablo düz döşeme için %10
+            fire payıyla hesaplandı; paketinizin üzerindeki m² değerine en yakın sütunu kullanın.
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>Alan</th>
+                  {PAKET_SECENEKLERI.map((p) => (
+                    <th key={p}>{m(p)} m² paket</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {METREKARELER.map((a) => (
+                  <tr key={a}>
+                    <td>{a} m²</td>
+                    {PAKET_SECENEKLERI.map((p) => (
+                      <td key={p}>{Math.ceil((a * 1.1) / p)} paket</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
           <h2>Parke ihtiyacı nasıl hesaplanır?</h2>
           <p>
             Önce fire payı eklenmiş toplam alan bulunur:{" "}

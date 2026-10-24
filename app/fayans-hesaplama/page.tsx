@@ -145,6 +145,41 @@ export default function TileCalculatorPage() {
             </table>
           </div>
           <p>Kutu içerikleri üreticiye göre değişebilir; satın alırken kutunun üzerindeki m² ve adet bilgisini esas alın.</p>
+
+          <h2 id="adet">1 adet fayans kaç m², 1 m²&apos;ye kaç adet gider?</h2>
+          <p>
+            Kutu içeriği markaya göre değişse de tek bir parçanın alanı sabittir. Döşeme yüzeyi derzsiz hesaplandı; 2–3 mm
+            derz, büyük ebatlarda adedi pratikte değiştirmez.
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>Ölçü</th>
+                  <th>1 adet</th>
+                  <th>1 m²&apos;ye</th>
+                  <th>10 m²&apos;ye (fire hariç)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {FAYANS_KUTULARI.map(({ olcu: [a, b] }) => (
+                  <tr key={`${a}x${b}`}>
+                    <td>
+                      {a}x{b} cm
+                    </td>
+                    <td>{((a * b) / 10000).toLocaleString("tr-TR", { maximumFractionDigits: 4 })} m²</td>
+                    <td>{(10000 / (a * b)).toLocaleString("tr-TR", { maximumFractionDigits: 1 })} adet</td>
+                    <td>{Math.ceil(100000 / (a * b))} adet</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Büyük ebat her zaman daha az fire demek değildir: 60x120 cm&apos;lik bir parça 0,72 m² olduğundan, dar bir koridorda
+            kenardan kesilen her parça kutunun önemli bir bölümünü harcar. Küçük banyolarda büyük ebat seçilecekse fire payını
+            %15&apos;e çıkarmak daha güvenlidir.
+          </p>
         </section>
 
         <section className="category-article-content">

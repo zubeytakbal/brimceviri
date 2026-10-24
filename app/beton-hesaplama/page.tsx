@@ -12,11 +12,6 @@ const faqItems: FaqItem[] = [
       "Kalınlığa bağlıdır: m³ = m² × kalınlık (m). 10 cm kalınlıkta 1 m²'ye 0,10 m³, 15 cm'de 0,15 m³, 20 cm'de 0,20 m³ beton gider. 100 m² ve 15 cm'lik bir döşeme 15 m³ eder.",
   },
   {
-    question: "1 mikser kaç m³ beton alır?",
-    answer:
-      "Transmikserler genellikle 8–12 m³ taşır; şehir içinde en yaygını 8–10 m³'tür. Hazır beton firmasına aracın kapasitesini sorun; döşeme hesabında mikser sayısını buna göre yuvarlayın.",
-  },
-  {
     question: "1 m³ beton kaç ton gelir?",
     answer:
       "Normal beton yaklaşık 2,4 ton/m³, donatılı (demirli) beton yaklaşık 2,5 ton/m³ gelir. 1 m³ 1.000 litredir.",
@@ -42,6 +37,10 @@ const faqItems: FaqItem[] = [
       "C25, betonun 28 günlük basınç dayanımının yaklaşık 25 MPa (megapaskal) olduğunu belirten standart bir sınıflandırmadır; konut temeli ve döşemelerde yaygın kullanılan bir sınıftır. Farklı projelerde (örn. yüksek yapılar) daha yüksek sınıf beton gerekebilir.",
   },
 ];
+
+const MIKSERLER = [6, 8, 10, 12];
+const KALINLIKLAR = [10, 15, 20];
+const sayi = (n: number, basamak = 0) => n.toLocaleString("tr-TR", { maximumFractionDigits: basamak });
 
 export const metadata: Metadata = {
   title: "Beton Hesaplama: Kaç m³ Beton, Kaç Mikser, Kaç Torba Çimento?",
@@ -124,6 +123,75 @@ export default function ConcreteCalculatorPage() {
           <p>Döşeme, şap altı ya da saha betonu için alanı ve kalınlığı girin; gereken betonu, kaç mikser geleceğini ve ağırlığını görün.</p>
         </section>
         <DosemeBetonHesabi />
+
+        <section className="category-article-content">
+          <h2 id="mikser">1 mikser kaç m³ beton alır?</h2>
+          <p>
+            Transmikserler 8 ile 12 m³ arasında beton taşır; dar sokaklar için 6 m³&apos;lük küçük araçlar da kullanılır.
+            Firmaya aracın kapasitesini sorduktan sonra, bir mikserin ne kadar alan döktüğünü aşağıdaki tablodan
+            görebilirsiniz. Değerler fire eklenmeden, tam dolu araç için hesaplandı.
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>Mikser</th>
+                  {KALINLIKLAR.map((k) => (
+                    <th key={k}>{k} cm döşeme</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {MIKSERLER.map((m) => (
+                  <tr key={m}>
+                    <td>{m} m³</td>
+                    {KALINLIKLAR.map((k) => (
+                      <td key={k}>{sayi(m / (k / 100))} m²</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Ters yönden düşünürseniz: 120 m²&apos;lik, 15 cm kalınlığında bir döşeme {sayi(120 * 0.15)} m³ eder; %5 fireyle{" "}
+            {sayi(120 * 0.15 * 1.05, 1)} m³ sipariş edilir ve bu, 10 m³&apos;lük araçla {Math.ceil((120 * 0.15 * 1.05) / 10)}{" "}
+            mikser demektir. Son mikser yarım dolu gelecekse firmaya önceden söylemek, araç beklerken betonun prize başlamasını
+            önler.
+          </p>
+
+          <h2 id="torba">1 m³ betona kaç torba çimento gider?</h2>
+          <p>
+            Bu sayfadaki hesap, C25 sınıfı için yaygın olan metreküpte yaklaşık 350 kg çimento dozajını kullanır. Buna göre:
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>Beton</th>
+                  <th>Çimento</th>
+                  <th>25 kg torba</th>
+                  <th>50 kg torba</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[0.25, 0.5, 1, 2, 5].map((m3) => (
+                  <tr key={m3}>
+                    <td>{sayi(m3, 2)} m³</td>
+                    <td>{sayi(m3 * 350)} kg</td>
+                    <td>{Math.ceil((m3 * 350) / 25)}</td>
+                    <td>{Math.ceil((m3 * 350) / 50)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Aynı oranın tersi &quot;1 torba çimento kaç m³ beton yapar?&quot; sorusunun cevabıdır: 50 kg&apos;lık torba yaklaşık{" "}
+            {sayi(50 / 350, 3)} m³, 25 kg&apos;lık torba yaklaşık {sayi(25 / 350, 3)} m³ beton çıkarır. Dozaj düşürülürse bir
+            torbadan daha çok beton çıkar ama dayanım da düşer; taşıyıcı elemanlarda projedeki beton sınıfına uyun.
+          </p>
+        </section>
 
         <section className="category-article-content">
           <h2>Beton hacmi nasıl hesaplanır?</h2>

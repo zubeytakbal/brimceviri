@@ -116,8 +116,8 @@ export default function AmortismanPage() {
           </div>
           <p>
             İki yöntemde toplam gider aynıdır (100.000 TL); fark, giderin yıllara dağılışıdır. Azalan bakiyeler ilk yıllarda
-            daha çok gider yazdırdığı için vergiyi öne alınan yıllardan sonraya kaydırır, son yılda ise büyük bir kalan
-            tutar bırakır.
+            daha çok gider yazdırdığı için o yılların vergisini azaltır ve vergi yükünü sonraki yıllara erteler; son yılda
+            ise kalan tutarın tamamı tek seferde gider yazılır.
           </p>
 
           <h2>Sık Sorulan Sorular</h2>

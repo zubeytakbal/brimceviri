@@ -177,16 +177,16 @@ export default function KidemTazminatiPage() {
       <p>
         Her tam yıl için 30 günlük brüt ücret ödenir, ama yıllık tutar kıdem tavanını ({tl(guncel.tutar)}) geçemez. Tablo
         tam yıllar ve giydirilmiş brüt ücret için brüt kıdem tazminatını gösterir; tavanı aşan ücretlerde tavan uygulandı.
-        Bu tutardan yalnızca binde 7,59 damga vergisi kesilir.
+        Tutarlar TL&apos;dir; bunlardan yalnızca binde 7,59 damga vergisi kesilir.
       </p>
       <div className="holiday-table-wrap">
         <table className="holiday-table">
           <thead>
             <tr>
-              <th scope="col">Çalışma</th>
+              <th scope="col">Brüt ücret →</th>
               {UCRETLER.map((u) => (
                 <th key={u} scope="col">
-                  {tl(u)} brüt
+                  {u / 1000} bin TL
                 </th>
               ))}
             </tr>
@@ -196,7 +196,7 @@ export default function KidemTazminatiPage() {
               <tr key={y}>
                 <th scope="row">{y} yıl</th>
                 {UCRETLER.map((u) => (
-                  <td key={u}>{tl(y * Math.min(u, guncel.tutar))}</td>
+                  <td key={u}>{Math.round(y * Math.min(u, guncel.tutar)).toLocaleString("tr-TR")}</td>
                 ))}
               </tr>
             ))}

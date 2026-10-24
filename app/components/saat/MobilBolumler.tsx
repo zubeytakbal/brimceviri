@@ -7,7 +7,7 @@ import { useEffect } from "react";
 // motorları okumaya devam eder; içindekiler bağlantısıyla gelinen bölüm kendiliğinden açılır.
 // Destekleyen tarayıcılarda kapalı içerik hidden="until-found" ile gizlenir: "sayfada bul" kapalı bölümdeki metni
 // bulur ve bölümü kendiliğinden açar. Desteklemeyenlerde .mb-gizli sınıfı kullanılır.
-const KAPSAYICI = ".saat-icerik, .category-article-content, .zm-aile, .zm-bolum";
+const KAPSAYICI = ".saat-icerik, .category-article-content, .zm-aile, .zm-bolum, .category-article-content > section, .saat-icerik > section";
 
 export default function MobilBolumler() {
   useEffect(() => {

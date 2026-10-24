@@ -19,11 +19,12 @@ const faqItems: FaqItem[] = [
 ];
 
 // Sik kullanilan renkler; RGB ve HSL degerleri sayfa uretilirken ceviriciyle hesaplanir.
+const BAYRAK_HEX = "#E30A17";
+
 const RENKLER: Array<[string, string]> = [
   ["Siyah", "#000000"],
   ["Beyaz", "#FFFFFF"],
   ["Kırmızı", "#FF0000"],
-  ["Türk bayrağı kırmızısı", "#E30A17"],
   ["Yeşil (CSS green)", "#008000"],
   ["Mavi", "#0000FF"],
   ["Lacivert (navy)", "#000080"],
@@ -35,14 +36,14 @@ const RENKLER: Array<[string, string]> = [
 ];
 
 export const metadata: Metadata = {
-  title: "Renk Kodu Çevirici: HEX, RGB, HSL Dönüşümü",
+  title: "Renk Kodu Çevirici: HEX, RGB, HSL ve Türk Bayrağı Kırmızısı",
   description:
-    "HEX, RGB ve HSL renk kodları arasında anında çevir; canlı renk önizlemesiyle web ve tasarım projelerinde doğru rengi bul.",
+    "HEX, RGB ve HSL renk kodları arasında anında çevir. Türk bayrağı kırmızısının renk kodu (#E30A17) ve Bayrak Tüzüğü'ndeki resmî renk tanımı.",
   alternates: {
     canonical: "/renk-kodu-cevirici",
   },
   openGraph: {
-    title: "Renk Kodu Çevirici: HEX, RGB, HSL Dönüşümü",
+    title: "Renk Kodu Çevirici: HEX, RGB, HSL ve Türk Bayrağı Kırmızısı",
     description: "HEX, RGB ve HSL renk kodları arasında anında çevir.",
     url: buildSiteUrl("/renk-kodu-cevirici"),
     siteName: "BirimCeviri.app",
@@ -92,6 +93,49 @@ export default function ColorCodeCalculatorPage() {
         <ColorCodeCalculator />
 
         <section className="category-article-content">
+          <h2 id="turk-bayragi">Türk bayrağı kırmızısı renk kodu</h2>
+          {(() => {
+            const rgb = hexToRgb(BAYRAK_HEX)!;
+            const hsl = rgbToHsl(rgb);
+            return (
+              <div className="conversion-table-wrap">
+                <table className="conversion-table">
+                  <tbody>
+                    <tr>
+                      <th scope="row">Renk</th>
+                      <td>
+                        <span className="color-swatch" style={{ background: BAYRAK_HEX }} aria-hidden="true" /> Bayrak kırmızısı (al)
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">HEX</th>
+                      <td>{BAYRAK_HEX}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">RGB</th>
+                      <td>
+                        rgb({rgb.r}, {rgb.g}, {rgb.b})
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row">HSL</th>
+                      <td>
+                        hsl({hsl.h}°, %{hsl.s}, %{hsl.l})
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            );
+          })()}
+          <p>
+            #E30A17, Türk bayrağının kırmızısı için ekranda ve web&apos;de en yaygın kullanılan koddur. Bu kod resmî metinde
+            geçmez: Türk Bayrağı Tüzüğü (25.01.1985, 85/9034) al rengi HEX ya da RGB ile değil, kumaş üzerinde ölçülen renk
+            koordinatlarıyla tanımlar (parlaklık 27,5; kırmızılık-yeşillik 44,8; sarılık-mavilik 15,6; en çok 3 NBS renk farkı
+            sapma). Bu yüzden ekran için yayımlanmış resmî bir HEX kodu yoktur; baskıda da renk kâğıda ve mürekkebe göre farklı
+            görünebilir. Bayrağın beyazı için #FFFFFF kullanılır.
+          </p>
+
           <h2>HEX kodu RGB&apos;ye elle nasıl çevrilir?</h2>
           <p>
             HEX kodu altı onaltılık basamaktan oluşur ve ikişerli üç gruba ayrılır: kırmızı, yeşil, mavi. Her grup 0-255 arası bir
@@ -133,10 +177,6 @@ export default function ColorCodeCalculatorPage() {
               </tbody>
             </table>
           </div>
-          <p>
-            Türk bayrağı kırmızısı için verilen #E30A17, bayrak kırmızısının ekranda ve web&apos;de yaygın olarak
-            kullanılan karşılığıdır; baskıda renk, kâğıt ve mürekkebe göre farklı görünebilir.
-          </p>
 
           <h2>Hangi gösterimi ne zaman kullanmalı?</h2>
           <ul>

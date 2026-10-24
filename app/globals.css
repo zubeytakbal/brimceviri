@@ -22517,3 +22517,134 @@ a.all-units-row .all-units-name {
 :root:has(.hesap-arac-ust) .gorsel-birak small {
   color: #c9c9c9;
 }
+
+/* Hesap bölümü ana sayfası (/hesaplayicilar) */
+.hesap-hub-hero {
+  gap: 14px;
+}
+.hesap-hub-arama {
+  width: 100%;
+  max-width: 640px;
+}
+.hesap-hub-arama input {
+  width: 100%;
+  padding: 16px 18px;
+  border: 2px solid #ffffff;
+  border-radius: 0;
+  background: #000000;
+  color: #ffffff;
+  font: inherit;
+  font-size: 1.1rem;
+}
+.hesap-hub-arama input::placeholder {
+  color: #9a9a9a;
+}
+.hesap-hub-arama input:focus {
+  outline: none;
+  border-color: var(--saat-vurgu, #d9480f);
+}
+.hesap-hub-sonuc {
+  display: grid;
+  width: 100%;
+  max-width: 640px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: left;
+}
+.hesap-hub-sonuc a {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 4px;
+  border-bottom: 1px solid #333333;
+  color: #ffffff;
+  text-decoration: none;
+}
+.hesap-hub-sonuc a:hover,
+.hesap-hub-sonuc a:focus-visible {
+  color: #ffa36c;
+}
+.hesap-hub-sonuc span,
+.hesap-hub-yok {
+  color: #b9b9b9;
+  font-size: 0.85rem;
+}
+.hesap-hub-yok {
+  margin: 0;
+}
+.hesap-hub-gruplar {
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+}
+.hesap-hub-gruplar a {
+  border-radius: 0;
+  background: #141414;
+  border-top: 3px solid var(--saat-vurgu, #d9480f);
+}
+.hesap-hub-gruplar a:hover,
+.hesap-hub-gruplar a:focus-visible {
+  background: #262626;
+}
+.hesap-hub-grup h2 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.hesap-hub-grup h2 small {
+  margin-left: auto;
+  color: #6b6b6b;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.hesap-hub-grup .home-category-icon-box {
+  flex: none;
+  width: 42px;
+  height: 42px;
+}
+.hesap-hub-kartlar {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 8px;
+  margin: 12px 0 28px;
+  padding: 0;
+  list-style: none;
+}
+.hesap-hub-kartlar a {
+  height: 100%;
+  border-radius: 0;
+  border: 1px solid #1a1a1a;
+  border-left: 4px solid var(--saat-vurgu, #d9480f);
+}
+.hesap-hub-kartlar a:hover,
+.hesap-hub-kartlar a:focus-visible {
+  border-color: var(--saat-vurgu, #d9480f);
+  background: #fff4ec;
+}
+.hesap-hub-diger {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 22px;
+  margin-top: 14px;
+}
+.hesap-hub-diger h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 8px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #1a1a1a;
+  font-size: 1.05rem;
+}
+.hesap-hub-diger .home-category-icon-box {
+  width: 34px;
+  height: 34px;
+}
+.hesap-hub-diger ul {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.92rem;
+}

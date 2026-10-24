@@ -31,9 +31,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: pagePath,
     languages: {
-      tr: "/gubre-seyreltme-hesaplama",
       "uz-UZ": pagePath,
-      "x-default": "/gubre-seyreltme-hesaplama",
+      "x-default": pagePath,
     },
   },
   openGraph: {

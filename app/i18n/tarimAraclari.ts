@@ -7,7 +7,6 @@ export const tarimAraclari = [
   { href: "/ilaclama-hesaplama", label: "İlaçlama Hesaplama", description: "Etiket dozundan depo başına ilaç, kaç depo ve toplam ilaç miktarı." },
   { href: "/tohum-miktari-hesaplama", label: "Tohum Miktarı ve Verim Hesaplama", description: "Dekara kaç kilo ekilir, kaç kilo verir? 16 ürün için ekim normu ve hasat hesabı." },
   { href: "/gubre-ihtiyaci-hesaplama", label: "Gübre İhtiyacı Hesaplama", description: "N-P-K oranından dekara gübre miktarı." },
-  { href: "/gubre-seyreltme-hesaplama", label: "Gübre Seyreltme Hesaplama", description: "Sıvı gübrenin suyla karışım oranı." },
   { href: "/sulama-suresi-hesaplama", label: "Sulama Süresi Hesaplama", description: "Damla ve yağmurlama sulamada süre." },
   { href: "/tarla-donum-hesaplama", label: "Tarla Dönüm Hesaplama", description: "Tarla ölçülerinden dönüm, dekar ve hektar." },
 ];

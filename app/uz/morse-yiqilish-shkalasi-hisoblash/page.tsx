@@ -26,9 +26,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: pagePath,
     languages: {
-      tr: "/morse-dusme-skalasi-hesaplama",
       "uz-UZ": pagePath,
-      "x-default": "/morse-dusme-skalasi-hesaplama",
+      "x-default": pagePath,
     },
   },
   openGraph: {

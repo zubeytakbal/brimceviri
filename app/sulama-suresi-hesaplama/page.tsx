@@ -96,8 +96,6 @@ export default function IrrigationCalculatorPage() {
             <Link href="/hesaplayicilar#tarim">Tarım ve Hayvancılık</Link>
             {" "}sayfasına, alan birimi dönüşümleri için{" "}
             <Link href="/kategoriler/alan">Alan Dönüşümleri</Link>
-            {" "}sayfasına, gübre seyreltme oranı için{" "}
-            <Link href="/gubre-seyreltme-hesaplama">Gübre Seyreltme Hesaplama</Link>
             {" "}sayfasına bakabilirsin.
           </p>
 

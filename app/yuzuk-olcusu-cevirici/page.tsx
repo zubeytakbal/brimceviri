@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import RingSizeConverter from "../components/RingSizeConverter";
+import { ringSizeRows } from "../converter/ringSizeTable";
 import { buildSiteUrl } from "../siteConfig";
 import BreadcrumbSchema from "../components/BreadcrumbSchema";
 
@@ -70,6 +71,35 @@ export default function RingSizePage() {
             ölçüp &quot;TR (İç Çap mm)&quot; alanından seçim yapman
             önerilir.
           </p>
+
+          <h2 id="uk-us">İngiliz (UK) ve ABD (US) yüzük ölçüleri</h2>
+          <p>
+            Yurt dışından alınan yüzüklerde ölçü harf (İngiltere) ya da sayı (ABD) olarak yazar. Aşağıdaki tabloda her harf ve
+            sayının iç çap ve çevre karşılığı var; elinizdeki yüzüğün iç çapını ölçüp en yakın satırı seçin. İki ölçü arasında
+            kalırsanız büyük olanı almak, parmağın gün içinde şişmesine karşı daha rahattır.
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>UK</th>
+                  <th>US</th>
+                  <th>İç çap</th>
+                  <th>Çevre</th>
+                </tr>
+              </thead>
+              <tbody>
+                {ringSizeRows.map((r) => (
+                  <tr key={r.uk + r.us}>
+                    <td>{r.uk}</td>
+                    <td>{r.us.toLocaleString("tr-TR")}</td>
+                    <td>{r.diameterMm.toLocaleString("tr-TR")} mm</td>
+                    <td>{r.circumferenceMm.toLocaleString("tr-TR")} mm</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
 
           <h2>İlgili araçlar</h2>
           <p>

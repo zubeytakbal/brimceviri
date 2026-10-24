@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import ShoeSizeConverter from "../components/ShoeSizeConverter";
+import { getShoeSizeRows } from "../converter/shoeSizeTable";
 import { buildSiteUrl } from "../siteConfig";
 import BreadcrumbSchema from "../components/BreadcrumbSchema";
+
+const ERKEK = getShoeSizeRows("erkek", "genel");
+const KADIN = getShoeSizeRows("kadin", "genel");
+const n = (x: number) => x.toLocaleString("tr-TR", { maximumFractionDigits: 1 });
 
 export const metadata: Metadata = {
   title:
@@ -53,6 +58,59 @@ export default function ShoeSizePage() {
         <ShoeSizeConverter locale="tr" />
 
         <section className="category-article-content">
+          <h2 id="uk-us">UK ve US ayakkabı numarası kaç numara?</h2>
+          <p>
+            Türkiye&apos;deki numara Avrupa (EU) numarasıyla aynıdır. Yurt dışı sitelerde ve kutularda görülen İngiltere (UK)
+            ve ABD (US) numaralarının karşılığı erkek ve kadın için farklıdır; aynı &quot;8&quot; erkekte ve kadında başka
+            numaraya denk gelir. Tablo genel ölçü kılavuzundandır, ayak uzunluğu santimetre olarak verilmiştir.
+          </p>
+          <h3>Erkek</h3>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>UK</th>
+                  <th>US</th>
+                  <th>TR / EU</th>
+                  <th>Ayak (cm)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {ERKEK.map((r) => (
+                  <tr key={`e-${r.eu}-${r.uk}`}>
+                    <td>{n(r.uk)}</td>
+                    <td>{n(r.us)}</td>
+                    <td>{n(r.eu)}</td>
+                    <td>{n(r.cm)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <h3>Kadın</h3>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>UK</th>
+                  <th>US</th>
+                  <th>TR / EU</th>
+                  <th>Ayak (cm)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {KADIN.map((r) => (
+                  <tr key={`k-${r.eu}-${r.uk}`}>
+                    <td>{n(r.uk)}</td>
+                    <td>{n(r.us)}</td>
+                    <td>{n(r.eu)}</td>
+                    <td>{n(r.cm)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
           <h2>
             {
               "Ayakkab\u0131 numaras\u0131 neden markaya g\u00f6re de\u011fi\u015fir?"

@@ -2612,12 +2612,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
-      url: `${baseUrl}/morse-dusme-skalasi-hesaplama`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
       url: `${baseUrl}/braden-skalasi-hesaplama`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
@@ -3801,9 +3795,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
       alternates: {
         languages: {
-          tr: `${baseUrl}/gubre-seyreltme-hesaplama`,
           "uz-UZ": `${baseUrl}/uz/ogit-suyultirish-hisoblash`,
-          "x-default": `${baseUrl}/gubre-seyreltme-hesaplama`,
+          "x-default": `${baseUrl}/uz/ogit-suyultirish-hisoblash`,
         },
       },
     },
@@ -4173,9 +4166,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
       alternates: {
         languages: {
-          tr: `${baseUrl}/morse-dusme-skalasi-hesaplama`,
           "uz-UZ": `${baseUrl}/uz/morse-yiqilish-shkalasi-hisoblash`,
-          "x-default": `${baseUrl}/morse-dusme-skalasi-hesaplama`,
+          "x-default": `${baseUrl}/uz/morse-yiqilish-shkalasi-hisoblash`,
         },
       },
     },
@@ -4426,12 +4418,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/ping-gecikme-hesaplama`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-    },
-    {
-      url: `${baseUrl}/gubre-seyreltme-hesaplama`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
       priority: 0.75,

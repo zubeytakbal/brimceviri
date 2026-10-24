@@ -180,11 +180,6 @@ export const everydayCalculators: EverydayCalculator[] = [
     label: "MELD Skoru Hesaplama",
   },
   {
-    id: "morse-dusme-skalasi-hesaplama",
-    href: "/morse-dusme-skalasi-hesaplama",
-    label: "Morse Düşme Skalası Hesaplama",
-  },
-  {
     id: "braden-skalasi-hesaplama",
     href: "/braden-skalasi-hesaplama",
     label: "Braden Skalası Hesaplama",

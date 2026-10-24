@@ -35,14 +35,31 @@ const faqItems: FaqItem[] = [
   },
 ];
 
+const satir = (key: string) => kitchenIngredientRows.find((r) => r.key === key)!.gramsPerBardak;
+const UN_G = satir("un");
+const UN_TAM = satir("tam-bugday-unu");
+const UN_MISIR = satir("misir-unu");
+const KILOLAR: Array<[string, number]> = [
+  ["250 gram", 250],
+  ["Yarım kilo", 500],
+  ["1 kilo", 1000],
+  ["1,5 kilo", 1500],
+  ["2 kilo", 2000],
+  ["3 kilo", 3000],
+  ["5 kilo", 5000],
+];
+const BARDAKLAR = [0.5, 1, 2, 3, 4, 5, 6, 7, 8, 10, 12];
+const bardak = (gram: number) => (gram / UN_G).toLocaleString("tr-TR", { maximumFractionDigits: 1 });
+const gramYaz = (g: number) => (g >= 1000 ? `${(g / 1000).toLocaleString("tr-TR", { maximumFractionDigits: 2 })} kg` : `${Math.round(g)} g`);
+
 function serializeJsonLd(data: object) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
 }
 
 export const metadata: Metadata = {
-  title: "1 Su Bardağı Kaç Gram? Mutfak Ölçüleri Çevirici (Un, Şeker, Pirinç)",
+  title: "1 Kilo Un Kaç Su Bardağı? Mutfak Ölçüleri Çevirici (Un, Şeker, Pirinç)",
   description:
-    "1 su bardağı un, şeker, pirinç, bulgur kaç gram? 1 kilo un kaç su bardağı? 45 malzeme için su bardağı, yemek kaşığı ve çay kaşığı gram karşılıkları ve çevirici.",
+    "1 kilo un yaklaşık 10 su bardağı eder. Yarım, 2, 3 ve 5 kilo un kaç bardak, 1 su bardağı un, şeker, pirinç kaç gram? 45 malzeme için su bardağı, yemek kaşığı ve çay kaşığı gram karşılıkları ve çevirici.",
   alternates: {
     canonical: "/mutfak-olculeri-cevirici",
     languages: {
@@ -104,7 +121,7 @@ export default function KitchenMeasuresPage() {
 
         <div className="page-top-row">
           <header className="all-conversions-header">
-            <h1>Mutfak Ölçüleri Çevirici</h1>
+            <h1>Mutfak Ölçüleri Çevirici: Kaç Bardak, Kaç Gram?</h1>
 
             <p>
               Malzemeyi ve bildiğin ölçüyü seç, bardak, yemek kaşığı, çay
@@ -123,6 +140,58 @@ export default function KitchenMeasuresPage() {
         <KitchenMeasuresConverter locale="tr" />
 
         <section className="category-article-content">
+          <h2 id="kilo-un">1 kilo un kaç su bardağı eder?</h2>
+          <p>
+            <strong>1 kilo un yaklaşık {bardak(1000)} su bardağı eder.</strong> Hesap 200 ml&apos;lik su bardağı ve elenmiş,
+            bardağa silme doldurulmuş buğday unu içindir; bu durumda bir su bardağı un {UN_G} gram gelir. Unu bastırarak ya da
+            tepeleme doldurursanız bardak başına gram artar, kilo başına bardak sayısı azalır.
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>Un</th>
+                  <th>Su bardağı (200 ml)</th>
+                  <th>Çay bardağı (100 ml)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {KILOLAR.map(([ad, g]) => (
+                  <tr key={g}>
+                    <td>{ad}</td>
+                    <td>{bardak(g)} bardak</td>
+                    <td>{bardak(g * 2)} bardak</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="bardak-un">Kaç su bardağı un kaç gram?</h2>
+          <p>Tarifte bardakla verilen unu tartıyla almak isterseniz:</p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>Su bardağı</th>
+                  <th>Un</th>
+                </tr>
+              </thead>
+              <tbody>
+                {BARDAKLAR.map((b) => (
+                  <tr key={b}>
+                    <td>{b.toLocaleString("tr-TR")} su bardağı</td>
+                    <td>{gramYaz(b * UN_G)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Tam buğday unu ({gramYaz(UN_TAM)} / bardak) ve mısır unu ({gramYaz(UN_MISIR)} / bardak) daha ağırdır; bunlarla aynı
+            kiloyu tutturmak için daha az bardak gerekir. Şeker, pirinç ve diğer malzemeler aşağıdaki tabloda.
+          </p>
+
           <h2>1 su bardağı un kaç gram, 1 yemek kaşığı şeker kaç gram?</h2>
           <p>
             Cevap malzemeye göre değişir: 1 su bardağı (200 ml) un yaklaşık
@@ -148,10 +217,10 @@ export default function KitchenMeasuresPage() {
               <thead>
                 <tr>
                   <th scope="col">Malzeme</th>
-                  <th scope="col">1 Su Bardağı</th>
-                  <th scope="col">1 Yemek Kaşığı</th>
-                  <th scope="col">1 Çay Kaşığı</th>
-                  <th scope="col">1 kg kaç bardak</th>
+                  <th scope="col">Su bardağı</th>
+                  <th scope="col">Yemek k.</th>
+                  <th scope="col">Çay k.</th>
+                  <th scope="col">1 kg</th>
                 </tr>
               </thead>
               <tbody>

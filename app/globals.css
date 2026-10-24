@@ -22464,3 +22464,28 @@ a.all-units-row .all-units-name {
   --zm-renk: #5b3fc0;
   --zm-zemin: #efeafd;
 }
+
+/* Saat bölümüne sonradan katılan araçların kartları (Paskalya, Kutsal Kitap planı): beyaz kart yerine bölümün koyu paneli */
+:root:has(.saat-arac-ust) .all-conversions-header ~ * .hizli-kart {
+  border-color: #2a2a2a;
+  border-radius: 0;
+  background: #0e0e0e;
+  color: #f2f2f2;
+}
+:root:has(.saat-arac-ust) .all-conversions-header ~ * .zaman-liste div {
+  border-bottom-color: #2a2a2a;
+}
+:root:has(.saat-arac-ust) .all-conversions-header ~ * .zaman-liste dt {
+  color: #b9b9b9;
+}
+:root:has(.saat-arac-ust) .all-conversions-header ~ * .paskalya-ikili .is-paskalya :is(dt, dd) {
+  color: #7fe0dc;
+}
+:root:has(.saat-arac-ust) .all-conversions-header ~ * .okuma-tablo thead th {
+  background: #141414;
+  color: #b9b9b9;
+}
+:root:has(.saat-arac-ust) .all-conversions-header ~ * .okuma-tablo tr.is-bugun td {
+  background: #10302f;
+  color: #ffffff;
+}

@@ -126,7 +126,7 @@ export default function HicriYasPage() {
               <th>Doğum yılı</th>
               <th>1 Ocak (Hicri)</th>
               <th>31 Aralık (Hicri)</th>
-              <th>Hicri doğum yılı</th>
+              <th>Hicri yıl</th>
             </tr>
           </thead>
           <tbody>
@@ -135,7 +135,7 @@ export default function HicriYasPage() {
                 <td>{r.y}</td>
                 <td>{hicri(r.bas)}</td>
                 <td>{hicri(r.son)}</td>
-                <td>{r.bas.year === r.son.year ? r.bas.year : `${r.bas.year} veya ${r.son.year}`}</td>
+                <td>{r.bas.year === r.son.year ? r.bas.year : `${r.bas.year}/${r.son.year}`}</td>
               </tr>
             ))}
           </tbody>

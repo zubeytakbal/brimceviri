@@ -69,6 +69,19 @@ export default function SofaPage() {
         <SofaCalculator />
 
         <section className="category-article-content">
+          <h2 id="yorum">SOFA skoru nasıl değerlendirilir?</h2>
+          <p>
+            SOFA, altı organ sisteminin her birine 0–4 puan vererek 0–24 arası bir toplam üretir; yüksek puan daha ağır organ
+            yetmezliği demektir. Skorun en sık kullanıldığı yer sepsis tanımıdır: 2016&apos;da yayımlanan Sepsis-3
+            uzlaşısına göre, enfeksiyon şüphesi olan bir hastada SOFA puanında başlangıca göre <strong>2 ya da daha fazla
+            artış</strong> sepsis olarak kabul edilir. Önceden bilinen organ yetmezliği yoksa başlangıç puanı 0 sayılır.
+          </p>
+          <p>
+            Tek bir ölçümden çok puanın zaman içindeki seyri anlamlıdır; yoğun bakımda SOFA genellikle 24 saatte bir
+            yeniden hesaplanır. Yatak başında hızlı tarama için laboratuvar gerektirmeyen{" "}
+            <Link href="/qsofa-hesaplama">qSOFA</Link> kullanılır. Bu araç klinik değerlendirmenin yerine geçmez.
+          </p>
+
           <h2>Sık Sorulan Sorular</h2>
           <p>
             <strong>SOFA skoru ne için kullanılır?</strong>

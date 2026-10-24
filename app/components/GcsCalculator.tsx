@@ -10,8 +10,8 @@ import {
 } from "../converter/gcsCalculator";
 
 const categoryLabels: Record<GcsCategory, string> = {
-  hafif: "Hafif (14-15)",
-  orta: "Orta (9-13)",
+  hafif: "Hafif (13-15)",
+  orta: "Orta (9-12)",
   siddetli: "Şiddetli (3-8)",
 };
 

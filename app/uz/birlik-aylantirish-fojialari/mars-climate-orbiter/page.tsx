@@ -35,9 +35,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: pagePath,
     languages: {
-      tr: "/birim-cevirme-felaketleri/mars-climate-orbiter",
       "uz-UZ": pagePath,
-      "x-default": "/birim-cevirme-felaketleri/mars-climate-orbiter",
+      "x-default": pagePath,
     },
   },
   openGraph: {

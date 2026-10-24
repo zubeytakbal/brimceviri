@@ -3057,48 +3057,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
     },
     {
-      url: `${baseUrl}/birim-cevirme-felaketleri`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/birim-cevirme-felaketleri/mars-climate-orbiter`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/birim-cevirme-felaketleri/gimli-glider`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/birim-cevirme-felaketleri/vasa-gemisi`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/birim-cevirme-felaketleri/kargo-ucagi-agirlik-hatasi`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/birim-cevirme-felaketleri/fenobarbital-doz-hatasi`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/birim-cevirme-felaketleri/british-airways-5390`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.6,
-    },
-    {
       url: `${baseUrl}/devamsizlik-hesaplama`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
@@ -4996,9 +4954,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
       alternates: {
         languages: {
-          tr: `${baseUrl}/birim-cevirme-felaketleri`,
           "uz-UZ": `${baseUrl}/uz/birlik-aylantirish-fojialari`,
-          "x-default": `${baseUrl}/birim-cevirme-felaketleri`,
+          "x-default": `${baseUrl}/uz/birlik-aylantirish-fojialari`,
         },
       },
     },
@@ -5009,9 +4966,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.65,
       alternates: {
         languages: {
-          tr: `${baseUrl}/birim-cevirme-felaketleri/mars-climate-orbiter`,
           "uz-UZ": `${baseUrl}/uz/birlik-aylantirish-fojialari/mars-climate-orbiter`,
-          "x-default": `${baseUrl}/birim-cevirme-felaketleri/mars-climate-orbiter`,
+          "x-default": `${baseUrl}/uz/birlik-aylantirish-fojialari/mars-climate-orbiter`,
         },
       },
     },
@@ -5022,9 +4978,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.65,
       alternates: {
         languages: {
-          tr: `${baseUrl}/birim-cevirme-felaketleri/gimli-glider`,
           "uz-UZ": `${baseUrl}/uz/birlik-aylantirish-fojialari/gimli-glider`,
-          "x-default": `${baseUrl}/birim-cevirme-felaketleri/gimli-glider`,
+          "x-default": `${baseUrl}/uz/birlik-aylantirish-fojialari/gimli-glider`,
         },
       },
     },
@@ -5035,9 +4990,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.65,
       alternates: {
         languages: {
-          tr: `${baseUrl}/birim-cevirme-felaketleri/vasa-gemisi`,
           "uz-UZ": `${baseUrl}/uz/birlik-aylantirish-fojialari/vasa-gemisi`,
-          "x-default": `${baseUrl}/birim-cevirme-felaketleri/vasa-gemisi`,
+          "x-default": `${baseUrl}/uz/birlik-aylantirish-fojialari/vasa-gemisi`,
         },
       },
     },
@@ -5048,9 +5002,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.65,
       alternates: {
         languages: {
-          tr: `${baseUrl}/birim-cevirme-felaketleri/kargo-ucagi-agirlik-hatasi`,
           "uz-UZ": `${baseUrl}/uz/birlik-aylantirish-fojialari/kargo-ucagi-agirlik-hatasi`,
-          "x-default": `${baseUrl}/birim-cevirme-felaketleri/kargo-ucagi-agirlik-hatasi`,
+          "x-default": `${baseUrl}/uz/birlik-aylantirish-fojialari/kargo-ucagi-agirlik-hatasi`,
         },
       },
     },
@@ -5061,9 +5014,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.65,
       alternates: {
         languages: {
-          tr: `${baseUrl}/birim-cevirme-felaketleri/fenobarbital-doz-hatasi`,
           "uz-UZ": `${baseUrl}/uz/birlik-aylantirish-fojialari/fenobarbital-doz-hatasi`,
-          "x-default": `${baseUrl}/birim-cevirme-felaketleri/fenobarbital-doz-hatasi`,
+          "x-default": `${baseUrl}/uz/birlik-aylantirish-fojialari/fenobarbital-doz-hatasi`,
         },
       },
     },
@@ -5074,9 +5026,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.65,
       alternates: {
         languages: {
-          tr: `${baseUrl}/birim-cevirme-felaketleri/british-airways-5390`,
           "uz-UZ": `${baseUrl}/uz/birlik-aylantirish-fojialari/british-airways-5390`,
-          "x-default": `${baseUrl}/birim-cevirme-felaketleri/british-airways-5390`,
+          "x-default": `${baseUrl}/uz/birlik-aylantirish-fojialari/british-airways-5390`,
         },
       },
     },

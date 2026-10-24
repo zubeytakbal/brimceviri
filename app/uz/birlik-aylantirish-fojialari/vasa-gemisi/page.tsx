@@ -35,9 +35,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: pagePath,
     languages: {
-      tr: "/birim-cevirme-felaketleri/vasa-gemisi",
       "uz-UZ": pagePath,
-      "x-default": "/birim-cevirme-felaketleri/vasa-gemisi",
+      "x-default": pagePath,
     },
   },
   openGraph: {

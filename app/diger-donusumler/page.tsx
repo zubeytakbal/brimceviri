@@ -1015,15 +1015,6 @@ export default function DigerDonusumlerPage() {
       group: "Ölçü Çeviricileri ve Eğlenceli Karşılaştırmalar",
     },
     {
-      id: "birim-felaketleri",
-      href: "/birim-cevirme-felaketleri",
-      title: "Birim Çevirme Felaketleri",
-      description:
-        "Yanlış birim kullanımı yüzünden yaşanan gerçek, doğrulanmış olaylar — Mars Climate Orbiter ve daha fazlası.",
-      iconName: "unitDisaster" as const,
-      group: "Ölçü Çeviricileri ve Eğlenceli Karşılaştırmalar",
-    },
-    {
       id: "uzunluk-karsilastirma",
       href: "/uzunluk-karsilastirma",
       title: "Uzunluk Karşılaştırma",

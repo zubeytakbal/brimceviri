@@ -35,9 +35,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: pagePath,
     languages: {
-      tr: "/birim-cevirme-felaketleri/british-airways-5390",
       "uz-UZ": pagePath,
-      "x-default": "/birim-cevirme-felaketleri/british-airways-5390",
+      "x-default": pagePath,
     },
   },
   openGraph: {

@@ -511,15 +511,6 @@ export default function DigerDonusumlerPage() {
       group: "Tıbbi Skorlama Araçları",
     },
     {
-      id: "morse",
-      href: "/morse-dusme-skalasi-hesaplama",
-      title: "Morse Düşme Skalası Hesaplama",
-      description:
-        "Hastanede düşme riski skorunu hesaplayın.",
-      iconName: "morseFallScaleCalculator" as const,
-      group: "Tıbbi Skorlama Araçları",
-    },
-    {
       id: "braden",
       href: "/braden-skalasi-hesaplama",
       title: "Braden Skalası Hesaplama",
@@ -652,15 +643,6 @@ export default function DigerDonusumlerPage() {
       description:
         "Hedef besin dozu ve gübrenin besin içeriğinden, dekara ve toplam alana gereken gübre miktarını hesaplayın.",
       iconName: "fertilizerCalculator" as const,
-      group: "Tarım ve Veterinerlik Hesaplayıcıları",
-    },
-    {
-      id: "gubre-seyreltme",
-      href: "/gubre-seyreltme-hesaplama",
-      title: "Gübre Seyreltme Hesaplama",
-      description:
-        "Sıvı gübre etiketindeki oran veya dozla, hazırlaman gereken su/gübre miktarını hesaplayın.",
-      iconName: "fertilizerDilutionCalculator" as const,
       group: "Tarım ve Veterinerlik Hesaplayıcıları",
     },
     {

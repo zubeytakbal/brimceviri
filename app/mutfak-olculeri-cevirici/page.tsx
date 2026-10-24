@@ -217,10 +217,10 @@ export default function KitchenMeasuresPage() {
               <thead>
                 <tr>
                   <th scope="col">Malzeme</th>
-                  <th scope="col">1 Su Bardağı</th>
-                  <th scope="col">1 Yemek Kaşığı</th>
-                  <th scope="col">1 Çay Kaşığı</th>
-                  <th scope="col">1 kg kaç bardak</th>
+                  <th scope="col">Su bardağı</th>
+                  <th scope="col">Yemek k.</th>
+                  <th scope="col">Çay k.</th>
+                  <th scope="col">1 kg</th>
                 </tr>
               </thead>
               <tbody>

@@ -3,6 +3,7 @@ import type { FaqItem } from "../../converter/faqSchema";
 import { timerPresetPath, timerPresets, trLik, type TimerPreset } from "../../i18n/timerPresets";
 import CountdownTimer from "./CountdownTimer";
 import TimeToolPage from "./TimeToolPage";
+import { AILE_ADI, zamanlayiciIcerigi } from "./ZamanlayiciIcerikTr";
 
 // Hazir sure sayfasi (TR + EN): 10 saniyeden 24 saate. Her surenin kendi kullanim
 // ornekleri, donusum tablosu ve komsu surelere linkleri vardir.
@@ -74,6 +75,72 @@ export default function TimerPresetPage({ preset, lang }: { preset: TimerPreset;
         ["Distance light travels", `${n((186282.397 * s) / 1e6, 2)} million mi`],
         ["Share of a day", `${n((s / 86400) * 100, 2)}%`],
       ];
+
+  const icerik = tr ? zamanlayiciIcerigi(s) : null;
+  if (icerik) {
+    // Süreye özgü içeriği yazılmış Türkçe sayfa: ailesinin düzeni, kendi bölümleri ve tek bir kısa süre bilgisi tablosu.
+    const faq: FaqItem[] = [
+      ...icerik.sss,
+      { question: `${cap(trLik(preset))} zamanlayıcı arka planda çalışır mı?`, answer: "Evet. Süre gerçek saate göre hesaplanır; başka sekmeye geçseniz de doğru anda biter. Yalnızca sekmeyi kapatmayın; telefonda \"Ekranı açık tut\" düğmesini kullanın." },
+    ];
+    return (
+      <TimeToolPage
+        crumbs={[
+          { href: "/", label: "Ana Sayfa" },
+          { href: "/zamanlayici", label: "Zamanlayıcı" },
+          { href: path, label: title },
+        ]}
+        crumbLabel="Sayfa yolu"
+        install={{ name: "Zamanlayıcı", lang }}
+        title={title}
+        intro={icerik.giris}
+        tool={<CountdownTimer locale={lang} initialSeconds={s} />}
+        related={{
+          title: "Diğer süreler",
+          links: [
+            ...neighbors.map((p) => ({ href: timerPresetPath(p, lang), label: timerPresetTitle(p, lang) })),
+            { href: "/zamanlayici", label: "Tüm süreler" },
+            { href: "/pomodoro", label: "Pomodoro" },
+          ],
+        }}
+        tocTitle="İçindekiler"
+        tocItems={[...icerik.bolumler.map((b) => ({ id: b.id, label: b.baslik })), { id: "sure", label: "Süre bilgisi" }, { id: "faq", label: "Sık sorulan sorular" }]}
+        faqTitle="Sık Sorulan Sorular"
+        faqItems={faq}
+      >
+        <div className={`zm-aile zm-aile-${icerik.aile}`}>
+          <p className="zm-aile-etiket">
+            <span>{AILE_ADI[icerik.aile]}</span>
+          </p>
+          {icerik.bolumler.map((b) => (
+            <section key={b.id} className="zm-bolum">
+              <h2 id={b.id}>{b.baslik}</h2>
+              {b.icerik}
+            </section>
+          ))}
+          <h2 id="sure">Süre bilgisi</h2>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <tbody>
+                <tr>
+                  <th scope="row">Saniye</th>
+                  <td>{n(s)}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Dakika</th>
+                  <td>{n(s / 60)}</td>
+                </tr>
+                <tr>
+                  <th scope="row">09:00&apos;da başlatılırsa biter</th>
+                  <td>{endTimes[0].end}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </TimeToolPage>
+    );
+  }
 
   const faqItems: FaqItem[] = tr
     ? [

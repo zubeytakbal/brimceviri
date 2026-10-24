@@ -20,7 +20,7 @@ export default function HesapHubHero({ araclar, gruplar }: { araclar: Arac[]; gr
   return (
     <section className="timehub-hero hesap-hub-hero" aria-label="Hesaplama aracı ara">
       <p className="timehub-hero-label">
-        {araclar.length} araç · {gruplar.length} grup
+        {gruplar.reduce((t, g) => t + g.sayi, 0)} hesaplama aracı · {gruplar.length} grup
       </p>
       <div className="hesap-hub-arama">
         <label htmlFor="hesap-hub-ara" className="sr-only">

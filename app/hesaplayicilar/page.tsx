@@ -88,7 +88,7 @@ export default function HesaplayicilarPage() {
       crumbs={[{ href: "/", label: "Ana Sayfa" }, { label: "Tüm Hesaplamalar" }]}
       crumbLabel="Sayfa yolu"
       title="Tüm Hesaplama Araçları"
-      intro={`Kredi taksitinden boya miktarına, klima kapasitesinden gebelik haftasına kadar günlük hayatın hesapları tek yerde. Sitedeki ${toolCount} aracın hepsi ücretsizdir, kayıt istemez ve hesaplamalar tarayıcınızda yapılır.`}
+      intro={`Kredi taksitinden boya miktarına, klima kapasitesinden gebelik haftasına kadar günlük hayatın hesapları tek yerde. Tarih, saat ve teknik araçlarla birlikte sitedeki ${toolCount} aracın hepsi ücretsizdir, kayıt istemez ve hesaplamalar tarayıcınızda yapılır.`}
       tool={<HesapHubHero araclar={tumAraclar} gruplar={HESAP_GRUPLARI.map((g) => ({ id: g.id, baslik: g.baslik, sayi: g.linkler.length }))} />}
       tocTitle="İçindekiler"
       tocItems={[

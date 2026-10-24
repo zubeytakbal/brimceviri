@@ -22648,3 +22648,33 @@ a.all-units-row .all-units-name {
   list-style: none;
   font-size: 0.92rem;
 }
+:root:has(.hesap-arac-ust) .hesap-hub-gruplar li,
+:root:has(.hesap-arac-ust) .hesap-hub-gruplar a {
+  height: 100%;
+}
+:root:has(.hesap-arac-ust) .hesap-hub-gruplar a {
+  align-content: start;
+}
+:root:has(.hesap-arac-ust) .hesap-hub-gruplar strong,
+:root:has(.hesap-arac-ust) .hesap-hub-sonuc a {
+  color: #ffffff;
+}
+:root:has(.hesap-arac-ust) .hesap-hub-gruplar span {
+  color: #ffa36c;
+}
+:root:has(.hesap-arac-ust) .hesap-hub-sonuc a:hover,
+:root:has(.hesap-arac-ust) .hesap-hub-sonuc a:focus-visible {
+  color: #ffa36c;
+}
+:root:has(.hesap-arac-ust) .hesap-hub-sonuc span {
+  color: #b9b9b9;
+}
+:root:has(.hesap-arac-ust[data-tur="arac"]) .all-conversions-header ~ :not(.time-tool-related, .page-toc, section.category-article-content, .time-tool-related ~ *, .page-toc ~ *, section.category-article-content ~ *) a {
+  color: #ffa36c;
+}
+:root:has(.hesap-arac-ust[data-tur="arac"]) .all-conversions-header ~ :not(.time-tool-related, .page-toc, section.category-article-content, .time-tool-related ~ *, .page-toc ~ *, section.category-article-content ~ *) :is(.hesap-hub-gruplar strong, .hesap-hub-sonuc a) {
+  color: #ffffff;
+}
+:root:has(.hesap-arac-ust[data-tur="arac"]) .all-conversions-header ~ :not(.time-tool-related, .page-toc, section.category-article-content, .time-tool-related ~ *, .page-toc ~ *, section.category-article-content ~ *) .hesap-hub-sonuc a:is(:hover, :focus-visible) {
+  color: #ffa36c;
+}

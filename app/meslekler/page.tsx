@@ -3,6 +3,7 @@ import Link from "@/app/components/SiteLink";
 import ProfessionCardGrid from "../components/ProfessionCardGrid";
 import { professionCards } from "../converter/professionCards";
 import { buildSiteUrl } from "../siteConfig";
+import BreadcrumbSchema from "../components/BreadcrumbSchema";
 
 export const metadata: Metadata = {
   title: "Mesleğe Göre Araçlar: Kuyumcu, Elektrikçi ve Diğerleri",
@@ -26,6 +27,7 @@ export default function MesleklerPage() {
   return (
     <main className="other-categories-page">
       <div className="directory-shell">
+        <BreadcrumbSchema items={[{ name: "Ana Sayfa", href: "/" }, { name: "Mesleğe Göre Araçlar", href: "/meslekler" }]} />
         <nav className="breadcrumbs" aria-label="Sayfa yolu">
           <Link href="/">Ana Sayfa</Link>
           <span aria-hidden="true">&rsaquo;</span>

@@ -3,6 +3,7 @@ import Link from "@/app/components/SiteLink";
 import { DINI_ARACLAR_PATH, diniAraclar } from "../i18n/diniAraclar";
 import { ISLAMIC_HUB_ALTERNATES } from "../i18n/islamicToolPaths";
 import { buildSiteUrl } from "../siteConfig";
+import BreadcrumbSchema from "../components/BreadcrumbSchema";
 
 const title = "Dini Araçlar: Kıble Pusulası, Kaza Namazı, Zekât, Hatim";
 const description = "Canlı kıble pusulası, kaza namazı ve orucu, zekât, hatim ve hafızlık planı, seferî mesafe, zikirmatik, Esmaül Hüsna ve daha fazlası: ücretsiz dini araçlar.";
@@ -18,6 +19,7 @@ export default function DiniAraclarPage() {
   return (
     <main className="other-categories-page">
       <div className="directory-shell">
+        <BreadcrumbSchema items={[{ name: "Ana Sayfa", href: "/" }, { name: "Dini Araçlar", href: "/dini-araclar" }]} />
         <nav className="breadcrumbs" aria-label="Sayfa yolu">
           <Link href="/">Ana Sayfa</Link>
           <span aria-hidden="true">&rsaquo;</span>

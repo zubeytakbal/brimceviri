@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import PeriodicTable from "../../../components/PeriodicTable";
 import { buildSiteUrl } from "../../../siteConfig";
+import BreadcrumbSchema from "../../../components/BreadcrumbSchema";
 
 export const metadata: Metadata = {
   title: "Periyodik Tablo: 118 Elementin Tamamı, Ayrıntılı Bilgilerle",
@@ -26,6 +27,7 @@ export default function PeriyodikTabloPage() {
   return (
     <main className="all-conversions-page">
       <div className="all-conversions-shell">
+        <BreadcrumbSchema items={[{ name: "Ana Sayfa", href: "/" }, { name: "Bilim Hesaplayıcıları", href: "/bilim-hesaplayicilari" }, { name: "Kimya", href: "/bilim-hesaplayicilari/kimya" }, { name: "Periyodik Tablo", href: "/bilim-hesaplayicilari/kimya/periyodik-tablo" }]} />
         <nav className="breadcrumbs" aria-label="Sayfa yolu">
           <Link href="/">Ana Sayfa</Link>
           <span aria-hidden="true">&rsaquo;</span>

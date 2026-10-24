@@ -3,6 +3,7 @@ import Link from "@/app/components/SiteLink";
 import NumberFactsCalculator from "../../../components/NumberFactsCalculator";
 import { CURATED_EXTRA_NUMBERS, getNumberFacts, isGeneratedNumberPage } from "../../../converter/numberFacts";
 import { buildSiteUrl } from "../../../siteConfig";
+import BreadcrumbSchema from "../../../components/BreadcrumbSchema";
 
 export const metadata: Metadata = {
   title: "Sayı Özellikleri Hesaplama: Asal mı, Bölenleri, Karesi",
@@ -51,6 +52,7 @@ export default function SayilarHubPage() {
   return (
     <main className="all-conversions-page">
       <div className="all-conversions-shell">
+        <BreadcrumbSchema items={[{ name: "Ana Sayfa", href: "/" }, { name: "Bilim Hesaplayıcıları", href: "/bilim-hesaplayicilari" }, { name: "Matematik", href: "/bilim-hesaplayicilari/matematik" }, { name: "Sayılar", href: "/bilim-hesaplayicilari/matematik/sayilar" }]} />
         <nav className="breadcrumbs" aria-label="Sayfa yolu">
           <Link href="/">Ana Sayfa</Link>
           <span aria-hidden="true">&rsaquo;</span>

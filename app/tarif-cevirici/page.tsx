@@ -3,6 +3,7 @@ import Link from "@/app/components/SiteLink";
 import EmbedCodeBox from "../components/EmbedCodeBox";
 import RecipeScalerConverter from "../components/RecipeScalerConverter";
 import { buildSiteUrl } from "../siteConfig";
+import BreadcrumbSchema from "../components/BreadcrumbSchema";
 
 export const metadata: Metadata = {
   title: "Tarif Çevirici: Tarifi Ölçekle, Bardağı Grama Çevir",
@@ -31,6 +32,7 @@ export default function RecipeScalerPage() {
   return (
     <main className="all-conversions-page">
       <div className="all-conversions-shell">
+        <BreadcrumbSchema items={[{ name: "Ana Sayfa", href: "/" }, { name: "Tarif Çevirici", href: "/tarif-cevirici" }]} />
         <nav className="breadcrumbs" aria-label="Sayfa yolu">
           <Link href="/">Ana Sayfa</Link>
           <span aria-hidden="true">&rsaquo;</span>

@@ -1225,13 +1225,21 @@ const KURAL_ACIKLAMA: Record<Etkinlik["kural"]["tip"], string> = {
     "Güneş'in konumuna göre belirlenir; tarih 19-23 arasında değişir, saati her yıl farklıdır.",
 };
 
+// "Ne zaman?" aramasını kendi kapsamlı sayfası karşılayan günler: takvimdeki sayfa aynı başlıkla yarışmasın diye
+// başka bir odakla adlandırılır (tarihler için /paskalya-ne-zaman).
+const ODAK_BASLIK: Record<string, string> = {
+  paskalya: "Paskalya Bayramı ve Türkiye'deki Kiliseler",
+  "ortodoks-paskalyasi": "Ortodoks Paskalyası: Rum ve Süryani Kiliseleri",
+};
+const ozelGunBasligi = (e: Etkinlik) => ODAK_BASLIK[e.id] ?? `${e.ad} Ne Zaman?`;
+
 export function ozelGunMeta(e: Etkinlik) {
   const y = trBugun().year;
   return {
-    title: `${e.ad} Ne Zaman? ${TAKVIM_YILLARI.filter((x) => x >= y)
+    title: `${ozelGunBasligi(e)}${ODAK_BASLIK[e.id] ? ":" : ""} ${TAKVIM_YILLARI.filter((x) => x >= y)
       .slice(0, 2)
       .join(" ve ")} Tarihleri`,
-    short: `${e.ad} Ne Zaman?`,
+    short: ozelGunBasligi(e),
     description:
       `${e.ad} ${TAKVIM_YILLARI.join(", ")} tarihleri ve günleri. ${e.kisa}`.slice(
         0,
@@ -1279,8 +1287,8 @@ export function OzelGunSayfasi({ e }: { e: Etkinlik }) {
     <TimeToolPage
       crumbs={[HOME, HUB, OZEL_HUB, { label: e.ad }]}
       crumbLabel={T.crumbLabel}
-      title={`${e.ad} Ne Zaman?`}
-      intro={e.kisa}
+      title={ozelGunBasligi(e)}
+      intro={ODAK_BASLIK[e.id] ? `${e.kisa} Batı ve Ortodoks Paskalyası'nın yıllara göre tüm tarihleri "Paskalya ne zaman?" sayfasındadır.` : e.kisa}
       tool={
         <div className="date-calc">
           <article className="takvim-kart">

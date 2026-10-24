@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import ShoeSizeConverter from "../components/ShoeSizeConverter";
 import { buildSiteUrl } from "../siteConfig";
+import BreadcrumbSchema from "../components/BreadcrumbSchema";
 
 export const metadata: Metadata = {
   title:
@@ -32,6 +33,7 @@ export default function ShoeSizePage() {
   return (
     <main className="all-conversions-page">
       <div className="all-conversions-shell">
+        <BreadcrumbSchema items={[{ name: "Ana Sayfa", href: "/" }, { name: "Ayakkabı Numarası Çevirme", href: "/ayakkabi-numarasi-cevirme" }]} />
         <nav className="breadcrumbs" aria-label="Sayfa yolu">
           <Link href="/">Ana Sayfa</Link>
           <span aria-hidden="true">&rsaquo;</span>

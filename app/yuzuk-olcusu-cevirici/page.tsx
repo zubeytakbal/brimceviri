@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import RingSizeConverter from "../components/RingSizeConverter";
 import { buildSiteUrl } from "../siteConfig";
+import BreadcrumbSchema from "../components/BreadcrumbSchema";
 
 export const metadata: Metadata = {
   title: "Yüzük Ölçüsü Çevirici: TR, ABD, İngiltere Tablosu",
@@ -31,6 +32,7 @@ export default function RingSizePage() {
   return (
     <main className="all-conversions-page">
       <div className="all-conversions-shell">
+        <BreadcrumbSchema items={[{ name: "Ana Sayfa", href: "/" }, { name: "Yüzük Ölçüsü Çevirici", href: "/yuzuk-olcusu-cevirici" }]} />
         <nav className="breadcrumbs" aria-label="Sayfa yolu">
           <Link href="/">Ana Sayfa</Link>
           <span aria-hidden="true">&rsaquo;</span>

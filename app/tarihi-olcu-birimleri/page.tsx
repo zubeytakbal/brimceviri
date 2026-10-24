@@ -3,6 +3,7 @@ import Link from "@/app/components/SiteLink";
 import CategoryUnitConverter from "../components/CategoryUnitConverter";
 import StaticPageLayout from "../components/StaticPageLayout";
 import { buildSiteUrl } from "../siteConfig";
+import BreadcrumbSchema from "../components/BreadcrumbSchema";
 
 export const metadata: Metadata = {
   title: "Tarihi Ölçü Birimleri: Bizans, Osmanlı ve Eski Türk Ölçüleri",
@@ -170,6 +171,8 @@ function UnitList({
 
 export default function TarihiOlcuBirimleriPage() {
   return (
+    <>
+    <BreadcrumbSchema items={[{ name: "Ana Sayfa", href: "/" }, { name: "Tarihi Ölçü Birimleri", href: "/tarihi-olcu-birimleri" }]} />
     <StaticPageLayout
       locale="tr"
       breadcrumbAriaLabel="Sayfa yolu"
@@ -346,5 +349,6 @@ export default function TarihiOlcuBirimleriPage() {
         },
       ]}
     />
+    </>
   );
 }

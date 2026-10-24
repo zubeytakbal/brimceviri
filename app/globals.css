@@ -21932,6 +21932,13 @@ a.all-units-row .all-units-name {
     display: none !important;
   }
 
+  /* hidden="until-found" içeriği çizmez ama kutusunu korur; kapalıyken boşluk bırakmasın. */
+  [hidden="until-found"] {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+  }
+
   .mb-baslik {
     position: relative;
     padding-right: 44px !important;

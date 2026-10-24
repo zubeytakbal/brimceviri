@@ -129,8 +129,8 @@ export default function SolarPanelPaybackPage() {
             </table>
           </div>
           <p>
-            Çatı alanı panel başına yaklaşık 2,2 m² (panel ve aralık) alınarak hesaplandı. Kışın üretim yazın üçte biri kadar
-            düşebildiği için yıllık hesabı tutan bir sistem, kış faturasını tek başına sıfırlamaz; aradaki fark şebekeyle
+            Çatı alanı panel başına yaklaşık 2,2 m² (panel ve aralık) alınarak hesaplandı. Kış aylarında gün kısa ve güneş alçak olduğu için üretim yaz aylarının belirgin biçimde altına
+            düşer; bu yüzden yıllık hesabı tutan bir sistem, kış faturasını tek başına sıfırlamaz; aradaki fark şebekeyle
             mahsuplaşma yoluyla dengelenir. Gölge alan, kuzeye bakan ya da çok yatık çatılarda gerçek üretim tablodakinden
             düşük olur.
           </p>

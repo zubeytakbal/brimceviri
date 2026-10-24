@@ -24,8 +24,11 @@ const faqItems: FaqItem[] = [
   },
 ];
 
+const BENZINLI = [5, 6, 7, 8, 10];
+const sayi = (n: number, basamak = 0) => n.toLocaleString("tr-TR", { maximumFractionDigits: basamak });
+
 export const metadata: Metadata = {
-  title: "Elektrikli Araç mı Benzinli Araç mı? Maliyet Karşılaştırma",
+  title: "Elektrikli mi Benzinli mi? 100 km Maliyet Hesaplama",
   description:
     "Kendi yıllık kilometren, tüketim ve fiyat farkınla elektrikli aracın benzinliye göre kaç yılda (kaç km'de) kendini amorti ettiğini hesapla.",
   alternates: {
@@ -70,7 +73,7 @@ export default async function EvVsIceComparisonPage() {
 
         <div className="page-top-row">
           <header className="all-conversions-header">
-            <h1>Elektrikli Araç mı Benzinli Araç mı? Maliyet Karşılaştırma</h1>
+            <h1>Elektrikli mi Benzinli mi? 100 km Maliyet Hesaplama</h1>
             <p>
               Kendi yıllık kilometren, araçların tüketimi ve aralarındaki
               fiyat farkıyla, elektrikli aracın benzinliye göre kaç
@@ -89,6 +92,40 @@ export default async function EvVsIceComparisonPage() {
         <EvVsIceComparisonCalculator liveGasolinePrice={liveGasolinePrice} />
 
         <section className="category-article-content">
+          <h2 id="100-km">100 km&apos;de benzinli ne yakar, elektrikli ne harcar?</h2>
+          <p>
+            1 litre benzin yaklaşık 8,9 kWh enerji taşır, ama motor bunun ancak küçük bir kısmını yola çevirir. Elektrikli
+            araç ise aynı yolu çok daha az enerjiyle gider. Tablo, benzinli aracın 100 km&apos;deki tüketimine göre aynı
+            yolda harcanan enerjiyi ve 100 km&apos;de 16 kWh harcayan bir elektrikliyle karşılaştırmayı gösterir.
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>Benzinli (100 km)</th>
+                  <th>Enerji karşılığı</th>
+                  <th>Elektrikli ucuzsa: kWh fiyatı &lt; litre fiyatı ×</th>
+                </tr>
+              </thead>
+              <tbody>
+                {BENZINLI.map((l) => (
+                  <tr key={l}>
+                    <td>{sayi(l, 1)} L</td>
+                    <td>{sayi(l * 8.9)} kWh</td>
+                    <td>{sayi(l / 16, 2)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Son sütun, kilometre başına maliyetin eşitlendiği noktadır: 100 km&apos;de 6 litre yakan bir benzinliye karşı
+            elektrikli araç, şarj ettiğiniz elektriğin kWh fiyatı benzinin litre fiyatının {sayi(6 / 16, 2)} katından
+            düşük olduğu sürece daha ucuza gider. Evde şarjda konut tarifesi, yolda hızlı şarjda istasyonun kWh fiyatı
+            geçerlidir; ikisi arasındaki fark çoğu zaman sonucu belirler. Benzinli aracınızın gerçek tüketimini{" "}
+            <Link href="/yakit-tuketimi-hesaplama">yakıt tüketimi hesaplama</Link> aracıyla bulabilirsiniz.
+          </p>
+
           <h2>Sık Sorulan Sorular</h2>
           {faqItems.map((item) => (
             <p key={item.question}>

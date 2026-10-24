@@ -23,15 +23,18 @@ const faqItems: FaqItem[] = [
   },
 ];
 
+const AYLIK_TUKETIM = [150, 200, 250, 300, 400, 500];
+const sayi = (n: number, basamak = 0) => n.toLocaleString("tr-TR", { maximumFractionDigits: basamak });
+
 export const metadata: Metadata = {
-  title: "Güneş Paneli Amortisman Hesaplama: Kaç Yılda Çıkarır?",
+  title: "Güneş Paneli Hesaplama: Eve Kaç Panel Gerekir, Kaç Yılda Çıkarır?",
   description:
-    "Sistem gücün, bölgen ve elektrik fiyatınla güneş panelinin yıllık ürettiği elektriği, tasarrufu ve kaç yılda kendini çıkardığını hesapla.",
+    "Aylık elektrik tüketiminize göre eve kaç kW güneş paneli ve kaç panel gerektiğini, yıllık üretimi ve sistemin kaç yılda kendini çıkardığını hesaplayın.",
   alternates: {
     canonical: "/gunes-paneli-amortisman-hesaplama",
   },
   openGraph: {
-    title: "Güneş Paneli Amortisman Hesaplama: Kaç Yılda Çıkarır?",
+    title: "Güneş Paneli Hesaplama: Eve Kaç Panel Gerekir?",
     description: "Kendi rakamlarınla güneş panelinin amortisman süresini hesapla.",
     url: buildSiteUrl("/gunes-paneli-amortisman-hesaplama"),
     siteName: "BirimCeviri.app",
@@ -68,7 +71,7 @@ export default function SolarPanelPaybackPage() {
 
         <div className="page-top-row">
           <header className="all-conversions-header">
-            <h1>Güneş Paneli Amortisman Hesaplama</h1>
+            <h1>Güneş Paneli Hesaplama: Kaç Panel Gerekir, Kaç Yılda Çıkarır?</h1>
             <p>
               Sistem gücün, bölgen ve elektrik fiyatınla güneş
               panelinin yıllık ürettiği elektriği, tasarrufu ve kaç
@@ -87,6 +90,51 @@ export default function SolarPanelPaybackPage() {
         <SolarPanelPaybackCalculator />
 
         <section className="category-article-content">
+          <h2 id="kac-panel">Eve kaç güneş paneli gerekir?</h2>
+          <p>
+            Hesabın başlangıcı faturanızdaki aylık tüketimdir. Yıllık tüketim, 1 kWp&apos;lik sistemin bulunduğunuz bölgede yılda
+            ürettiği elektriğe bölününce gereken sistem gücü çıkar. Türkiye&apos;de bu üretim Karadeniz&apos;de alt sınıra,
+            Akdeniz ve Güneydoğu&apos;da üst sınıra yakındır. Panel sayısı 450 W&apos;lık panelle hesaplandı.
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>Aylık tüketim</th>
+                  <th>Gereken güç</th>
+                  <th>450 W panel</th>
+                  <th>Çatı alanı</th>
+                </tr>
+              </thead>
+              <tbody>
+                {AYLIK_TUKETIM.map((t) => {
+                  const ust = (t * 12) / 1250;
+                  const alt = (t * 12) / 1700;
+                  return (
+                    <tr key={t}>
+                      <td>{t} kWh</td>
+                      <td>
+                        {sayi(alt, 1)}–{sayi(ust, 1)} kWp
+                      </td>
+                      <td>
+                        {Math.ceil(alt / 0.45)}–{Math.ceil(ust / 0.45)} adet
+                      </td>
+                      <td>
+                        {sayi(Math.ceil(alt / 0.45) * 2.2)}–{sayi(Math.ceil(ust / 0.45) * 2.2)} m²
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Çatı alanı panel başına yaklaşık 2,2 m² (panel ve aralık) alınarak hesaplandı. Kışın üretim yazın üçte biri kadar
+            düşebildiği için yıllık hesabı tutan bir sistem, kış faturasını tek başına sıfırlamaz; aradaki fark şebekeyle
+            mahsuplaşma yoluyla dengelenir. Gölge alan, kuzeye bakan ya da çok yatık çatılarda gerçek üretim tablodakinden
+            düşük olur.
+          </p>
+
           <h2>Sık Sorulan Sorular</h2>
           {faqItems.map((item) => (
             <p key={item.question}>

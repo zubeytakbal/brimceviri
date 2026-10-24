@@ -63,17 +63,17 @@ function es419Redirects(): MergedRedirect[] {
   return [r("/es-419/:path*", "/es/:path*")];
 }
 
-/** Sayı sayfaları yalnızca hesaplanan değerlerdi; sayı aracı aynı sayıyla açılır. */
+/** Türkçe sayı bölümü (Ekim 2026) tamamen kaldırıldı: ana sayfa ve tek tek sayılar Matematik kategorisine yönlenir.
+ * Özbekçe sayı sayfaları da tek hesaplayıcıda: tek kalıp kural (?n= seçimi korur). */
 function numberRedirects(): MergedRedirect[] {
   const base = "/bilim-hesaplayicilari/matematik/sayilar";
-  // Özbekçe sayı sayfaları da tek hesaplayıcıda: tek kalıp kural (?n= seçimi korur).
-  return [r(`${base}/:n`, `${base}?n=:n`), r("/uz/sonlar/:son", "/uz/sonlar?n=:son")];
+  return [r(base, "/bilim-hesaplayicilari/matematik"), r(`${base}/:n`, "/bilim-hesaplayicilari/matematik"), r("/uz/sonlar/:son", "/uz/sonlar?n=:son")];
 }
 
-/** Amino asit sayfaları formül ve kütleden ibaretti; hepsi tek tabloda. */
+/** Amino asit bölümü (Ekim 2026) tamamen kaldırıldı: ana sayfa ve tek tek amino asitler Biyoloji kategorisine yönlenir. */
 function aminoAcidRedirects(): MergedRedirect[] {
   const base = "/bilim-hesaplayicilari/biyoloji/amino-asitler";
-  return aminoAcidsDatabase.map((a) => r(`${base}/${a.id}`, base));
+  return [r(base, "/bilim-hesaplayicilari/biyoloji"), ...aminoAcidsDatabase.map((a) => r(`${base}/${a.id}`, "/bilim-hesaplayicilari/biyoloji"))];
 }
 
 /** Sure ve cüz sayfaları sayılardan ibaretti; bilgiler Sure Bulucu ve Cüzler tablolarında. */

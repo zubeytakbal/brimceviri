@@ -48,7 +48,6 @@ export default function RomanPage() {
         links: [
           { href: "/ebced-hesabi", label: "Ebced Hesabı" },
           { href: "/tarih-cevirici", label: "Hicri Rumi Tarih Çevirici" },
-          { href: "/bilim-hesaplayicilari/matematik/sayilar", label: "Asal ve Tam Kare Sayılar" },
           { href: "/dogdugum-gun-hangi-gun", label: "Doğduğum Gün Hangi Gün" },
         ],
       }}

@@ -339,7 +339,6 @@ export const scienceHubs: ScienceHub[] = [
         title: "Moleküler biyoloji",
         tools: [
           { href: "/bilim-hesaplayicilari/biyoloji/kodon-tablosu", title: "Kodon Tablosu ve DNA/RNA Çevirici", description: "DNA ya da RNA dizisini amino asit dizisine çevir; 64 kodonun tam listesi." },
-          { href: "/bilim-hesaplayicilari/biyoloji/amino-asitler", title: "Amino Asitler", description: "20 standart amino asidin kısaltmaları, formülleri, molar kütleleri ve esansiyel olup olmadıkları." },
           { href: "/bilim-hesaplayicilari/biyoloji/peptit-molar-kutle-hesaplama", title: "Peptit Molar Kütle Hesaplama", description: "Gly-Ala-Val gibi bir diziden peptit zincirinin molar kütlesi." },
         ],
       },

@@ -1065,12 +1065,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
-      url: `${baseUrl}/bilim-hesaplayicilari/matematik/sayilar`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
       url: `${baseUrl}/uz/sonlar`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
@@ -1457,12 +1451,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/bilim-hesaplayicilari/biyoloji`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/bilim-hesaplayicilari/biyoloji/amino-asitler`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
       priority: 0.7,

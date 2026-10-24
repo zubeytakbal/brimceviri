@@ -125,9 +125,7 @@ export default function CompoundsHubPage() {
             Element bilgileri için{" "}
             <Link href="/bilim-hesaplayicilari/kimya/periyodik-tablo">Periyodik Tablo</Link>,{" "}
             mol hesaplamaları için{" "}
-            <Link href="/bilim-hesaplayicilari/kimya/mol-hesaplama">Mol Hesaplama</Link>,{" "}
-            amino asitlerin formül ve molar kütleleri için{" "}
-            <Link href="/bilim-hesaplayicilari/biyoloji/amino-asitler">Amino Asitler</Link>
+            <Link href="/bilim-hesaplayicilari/kimya/mol-hesaplama">Mol Hesaplama</Link>
             {" "}sayfasına bakabilirsin.
           </p>
         </section>

@@ -84,9 +84,7 @@ export default function PeptideMolarMassPage() {
 
           <h2>İlginizi Çekebilir</h2>
           <p>
-            Tüm amino asitlerin formül ve molar kütlelerini görmek için{" "}
-            <Link href="/bilim-hesaplayicilari/biyoloji/amino-asitler">Amino Asitler</Link>
-            {" "}sayfasına, DNA/RNA dizisini amino asit dizisine çevirmek için{" "}
+            DNA/RNA dizisini amino asit dizisine çevirmek için{" "}
             <Link href="/bilim-hesaplayicilari/biyoloji/kodon-tablosu">Kodon Tablosu</Link>
             {" "}sayfasına, genel mol hesaplamaları için{" "}
             <Link href="/bilim-hesaplayicilari/kimya/mol-hesaplama">Mol Hesaplama</Link>

@@ -2,7 +2,20 @@ import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import type { FaqItem } from "../../converter/faqSchema";
 import type { YMD } from "../../converter/time/calendars";
-import { addDaysYmd, formatYmdParts, isoWeek, isoWeeksInYear, isoWeekStart } from "../../converter/time/dateMath";
+import {
+  addDaysYmd,
+  addMonthsYmd,
+  countDays,
+  dayOfYear,
+  daysInMonth,
+  diffDays,
+  formatYmdParts,
+  isLeapYear,
+  isoWeek,
+  isoWeeksInYear,
+  isoWeekStart,
+} from "../../converter/time/dateMath";
+import { DIYANET_VERIFIED_UNTIL, holidayLookup } from "../../converter/time/holidays";
 import { timeToolAlternates, timeToolPaths, type TimeToolId } from "../../i18n/timeToolPaths";
 import { buildSiteUrl } from "../../siteConfig";
 import TimeToolPage from "../time/TimeToolPage";
@@ -43,6 +56,80 @@ function todayTurkey(): YMD {
 function todayUtc(): YMD {
   const d = new Date();
   return { year: d.getUTCFullYear(), month: d.getUTCMonth() + 1, day: d.getUTCDate() };
+}
+
+const uzunTarih = (d: YMD) => formatYmdParts(d, "tr", { day: "numeric", month: "long", year: "numeric", weekday: "long" });
+const sayi = (n: number, basamak = 0) => n.toLocaleString("tr-TR", { maximumFractionDigits: basamak });
+
+/** Gün sayısının hafta ve ortalama ay karşılığı (1 ay = 365,2425 / 12 gün). */
+function GunKarsiliklari() {
+  const gunler = [7, 15, 30, 45, 60, 90, 100, 180, 365, 1000];
+  return (
+    <div className="holiday-table-wrap">
+      <table className="holiday-table">
+        <thead>
+          <tr>
+            <th scope="col">Gün</th>
+            <th scope="col">Hafta</th>
+            <th scope="col">Ay (ortalama)</th>
+            <th scope="col">Saat</th>
+          </tr>
+        </thead>
+        <tbody>
+          {gunler.map((g) => (
+            <tr key={g}>
+              <td>{sayi(g)} gün</td>
+              <td>{g % 7 ? `${Math.floor(g / 7)} hafta ${g % 7} gün` : `${g / 7} hafta`}</td>
+              <td>{sayi(g / (365.2425 / 12), 1)} ay</td>
+              <td>{sayi(g * 24)} saat</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+/** Seçilen yılın her ayındaki iş günü, hafta içi resmî tatil ve yarım gün sayısı (iş günü hesaplayıcısıyla aynı kural). */
+function AylikIsGunleri({ yil }: { yil: number }) {
+  const lookup = holidayLookup("tr", yil, yil);
+  const aylar = Array.from({ length: 12 }, (_, i) => {
+    const ay = i + 1;
+    return { ay, ...countDays({ year: yil, month: ay, day: 1 }, { year: yil, month: ay, day: daysInMonth(yil, ay) }, lookup) };
+  });
+  const toplam = aylar.reduce((t, a) => ({ work: t.work + a.work, holiday: t.holiday + a.holiday, half: t.half + a.half }), { work: 0, holiday: 0, half: 0 });
+  return (
+    <div className="holiday-table-wrap">
+      <table className="holiday-table">
+        <thead>
+          <tr>
+            <th scope="col">{yil}</th>
+            <th scope="col">İş günü</th>
+            <th scope="col">Hafta içi tatil</th>
+            <th scope="col">Yarım gün</th>
+          </tr>
+        </thead>
+        <tbody>
+          {aylar.map((a) => (
+            <tr key={a.ay}>
+              <td>{formatYmdParts({ year: yil, month: a.ay, day: 1 }, "tr", { month: "long" })}</td>
+              <td>{a.work}</td>
+              <td>{a.holiday || "–"}</td>
+              <td>{a.half || "–"}</td>
+            </tr>
+          ))}
+          <tr>
+            <th scope="row">Toplam</th>
+            <td>
+              <strong>{toplam.work}</strong>
+            </td>
+            <td>{toplam.holiday}</td>
+            <td>{toplam.half}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  );
 }
 
 const META: Record<DateToolId, Record<Lang, { title: string; description: string }>> = {
@@ -119,6 +206,7 @@ function shell(id: DateToolId, lang: Lang) {
 
 export function DateDiffPage({ lang }: { lang: Lang }) {
   const tr = lang === "tr";
+  const bugun = todayTurkey();
   const faqItems: FaqItem[] = tr
     ? [
         {
@@ -176,6 +264,12 @@ export function DateDiffPage({ lang }: { lang: Lang }) {
       tocItems={[
         { id: "nasil", label: tr ? "Nasıl hesaplanır?" : "How it works" },
         { id: "ornekler", label: tr ? "Örnek hesaplar" : "Examples" },
+        ...(tr
+          ? [
+              { id: "karsiliklar", label: "Gün, hafta ve ay karşılıkları" },
+              { id: "hatalar", label: "Sık yapılan hatalar" },
+            ]
+          : []),
         { id: "faq", label: s.faqTitle },
       ]}
       faqItems={faqItems}
@@ -202,6 +296,10 @@ export function DateDiffPage({ lang }: { lang: Lang }) {
             <li>1 Ocak – 31 Aralık (aynı yıl): 364 gün; iki gün de sayılırsa 365 gün (artık yılda 366).</li>
             <li>Bir bebeğin doğumundan 100. gününe: doğum tarihine 99 gün ekleyin (doğum günü 1. gün sayılır) — <Link href="/tarihe-gun-ekleme">tarihe gün ekleme</Link>.</li>
             <li>Yaşınızı gün olarak bulmak için doğum tarihinizi ve bugünü seçin ya da <Link href="/yas-hesaplama">yaş hesaplamayı</Link> kullanın.</li>
+            <li>
+              Bu yıl: bugün ({uzunTarih(bugun)}) yılın {dayOfYear(bugun)}. günü; yıl sonuna {diffDays(bugun, { year: bugun.year, month: 12, day: 31 })} gün
+              kaldı. {bugun.year} yılı {isLeapYear(bugun.year) ? "artık yıl, 366" : "365"} gün çekiyor.
+            </li>
           </>
         ) : (
           <>
@@ -211,6 +309,36 @@ export function DateDiffPage({ lang }: { lang: Lang }) {
           </>
         )}
       </ul>
+      {tr && (
+        <>
+          <h2 id="karsiliklar">Gün, hafta ve ay karşılıkları</h2>
+          <p>
+            Sözleşme, garanti ve teslim sürelerinde gün, hafta ve ay birbirine çevrilir. Hafta kesin bir ölçüdür (7 gün); ay ise 28 ile 31 gün arasında
+            değiştiği için tabloda Miladi takvimin ortalaması (yaklaşık 30,44 gün) kullanılır. Belirli iki tarih arasındaki kesin ay sayısı için
+            hesaplayıcının yıl-ay-gün sonucuna bakın.
+          </p>
+          <GunKarsiliklari />
+          <h2 id="hatalar">Sık yapılan hatalar</h2>
+          <ul>
+            <li>
+              <strong>İlk ve son günü birlikte saymak:</strong> 1 Mart ile 10 Mart arası 9 gündür. 1-10 Mart arasında kaç gün izinde olduğunuzu
+              soruyorsanız iki gün de sayılır ve cevap 10&apos;dur. İkisi farklı sorulardır.
+            </li>
+            <li>
+              <strong>Ayı 30 gün saymak:</strong> 15 Ocak ile 15 Nisan arası 3 aydır; gün olarak artık yıl değilse 90, artık yılda 91 gündür. 15 Mart
+              ile 15 Haziran arası da 3 aydır ama 92 gün eder. &quot;3 ay&quot; ile &quot;90 gün&quot; aynı tarihi vermez.
+            </li>
+            <li>
+              <strong>Hafta sonlarını unutmak:</strong> &quot;10 gün içinde&quot; ile &quot;10 iş günü içinde&quot; farklıdır. İş günü soruluyorsa{" "}
+              <Link href="/is-gunu-hesaplama">iş günü hesaplayıcısını</Link> kullanın; resmî tatiller de düşülür.
+            </li>
+            <li>
+              <strong>Saat farkı:</strong> Gün farkı takvim günüyle bulunur. Saat ve dakika farkı gerekiyorsa (vardiya, uçuş){" "}
+              <Link href="/saat-hesaplama">saat hesaplama</Link> aracı daha uygundur.
+            </li>
+          </ul>
+        </>
+      )}
     </TimeToolPage>
   );
 }
@@ -219,6 +347,7 @@ export function DateDiffPage({ lang }: { lang: Lang }) {
 
 export function BusinessDayPage({ lang }: { lang: Lang }) {
   const tr = lang === "tr";
+  const bugunYil = todayTurkey().year;
   const faqItems: FaqItem[] = tr
     ? [
         {
@@ -278,6 +407,12 @@ export function BusinessDayPage({ lang }: { lang: Lang }) {
       tocItems={[
         { id: "kurallar", label: tr ? "Hangi günler düşülür?" : "Which days are excluded" },
         { id: "yillik", label: tr ? "Yılda kaç iş günü var?" : "Business days per year" },
+        ...(tr
+          ? [
+              { id: "aylik", label: "Aylara göre iş günü sayısı" },
+              { id: "hafta-sonu", label: "Tatil hafta sonuna denk gelirse" },
+            ]
+          : []),
         { id: "faq", label: s.faqTitle },
       ]}
       faqItems={faqItems}
@@ -309,6 +444,27 @@ export function BusinessDayPage({ lang }: { lang: Lang }) {
           There are 260 to 262 weekdays in a year; after removing federal holidays, about 250 business days remain. Set the range from January 1 to
           December 31 to get the exact figure for any year.
         </p>
+      )}
+      {tr && (
+        <>
+          <h2 id="aylik">Aylara göre iş günü sayısı</h2>
+          <p>
+            Tablolar hesaplayıcıyla aynı kuralla hazırlanır: cumartesi, pazar ve hafta içine denk gelen resmî tatiller düşülür; arefe yarım günleri
+            sabahı çalışıldığı için iş günü sayılır ve ayrıca gösterilir. Maaş, mesai ve proje planı yaparken ayın kaç iş günü olduğunu buradan
+            görebilirsiniz.
+            {bugunYil + 1 > DIYANET_VERIFIED_UNTIL ? ` ${bugunYil + 1} bayram tarihleri henüz Diyanet takvimiyle doğrulanmadı, tahminidir.` : ""}
+          </p>
+          <AylikIsGunleri yil={bugunYil} />
+          <AylikIsGunleri yil={bugunYil + 1} />
+          <h2 id="hafta-sonu">Tatil hafta sonuna denk gelirse</h2>
+          <p>
+            Türkiye&apos;de hafta sonuna denk gelen resmî tatil başka bir güne kaydırılmaz; o yıl iş günü sayısı bu yüzden artar. Örneğin 29 Ekim
+            pazara denk geldiğinde pazartesi çalışılır. Bayramların bir kısmı hafta sonuna düştüğünde de yalnızca hafta içindeki bayram günleri iş
+            gününden düşer. Hükümet bazı yıllarda bayramı hafta sonuyla birleştirmek için idari izin (köprü) ilan eder; bu günler kamu için
+            geçerlidir ve hesaplayıcı tarafından otomatik düşülmez. Hangi günlerde izin alarak tatili uzatabileceğinizi{" "}
+            <Link href={`/resmi-tatiller/${bugunYil + 1}`}>{bugunYil + 1} resmî tatiller</Link> sayfasındaki izin planlayıcıda görebilirsiniz.
+          </p>
+        </>
       )}
     </TimeToolPage>
   );
@@ -373,6 +529,12 @@ export function DateAddPage({ lang }: { lang: Lang }) {
       tocItems={[
         { id: "tablo", label: tr ? "Bugünden itibaren sık aranan tarihler" : "Common dates from today" },
         { id: "kurallar", label: tr ? "Ay ve yıl ekleme kuralları" : "Adding months and years" },
+        ...(tr
+          ? [
+              { id: "aylar", label: "Bugünden ay ve yıl sonrası" },
+              { id: "sureler", label: "Sık hesaplanan süreler" },
+            ]
+          : []),
         { id: "faq", label: s.faqTitle },
       ]}
       faqItems={faqItems}
@@ -422,6 +584,60 @@ export function DateAddPage({ lang }: { lang: Lang }) {
           otherwise, so February 29 + 1 year gives February 28. To skip weekends and holidays use the{" "}
           <Link href="/en/business-day-calculator">business day calculator</Link>.
         </p>
+      )}
+      {tr && (
+        <>
+          <h2 id="aylar">Bugünden ay ve yıl sonrası</h2>
+          <p>
+            Ay eklemek gün eklemekle aynı sonucu vermez: aşağıdaki tabloda aynı süre hem takvim ayı hem gün olarak eklenmiştir. Kira, abonelik ve
+            taksit gibi &quot;ay&quot; ile yazılan sürelerde soldaki, &quot;gün&quot; ile yazılanlarda sağdaki tarih geçerlidir.
+          </p>
+          <div className="holiday-table-wrap">
+            <table className="holiday-table">
+              <thead>
+                <tr>
+                  <th scope="col">Süre</th>
+                  <th scope="col">Takvim ayı eklenirse</th>
+                  <th scope="col">Gün eklenirse</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  [1, 30],
+                  [3, 90],
+                  [6, 180],
+                  [12, 365],
+                ].map(([ay, gun]) => (
+                  <tr key={ay}>
+                    <td>{ay === 12 ? "1 yıl / 365 gün" : `${ay} ay / ${gun} gün`}</td>
+                    <td>{formatYmdParts(addMonthsYmd(today, ay), "tr", { day: "numeric", month: "long", year: "numeric" })}</td>
+                    <td>{formatYmdParts(addDaysYmd(today, gun), "tr", { day: "numeric", month: "long", year: "numeric" })}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <h2 id="sureler">Sık hesaplanan süreler</h2>
+          <ul>
+            <li>
+              <strong>14 gün cayma hakkı:</strong> İnternetten ya da telefonla alınan ürünlerde tüketici, ürünü teslim aldığı günden itibaren 14 gün
+              içinde gerekçe göstermeden cayabilir (Mesafeli Sözleşmeler Yönetmeliği). Teslim tarihine 14 gün ekleyerek son günü bulabilirsiniz.
+            </li>
+            <li>
+              <strong>40 gün:</strong> Vefat tarihinden sonraki kırkıncı gün için{" "}
+              <Link href="/kirk-mevlidi-hesaplama">kırk mevlidi hesaplama</Link> sayfası tarihi ve hangi akşama denk geldiğini hem vefat gününü 1.
+              gün sayan yaygın yöntemle hem ertesi günden sayan yöntemle gösterir.
+            </li>
+            <li>
+              <strong>280 gün (40 hafta):</strong> Son adet tarihine 280 gün eklemek tahmini doğum tarihini verir (Naegele kuralı). Gebelik haftası
+              ve trimesterler için <Link href="/gebelik-haftasi-hesaplama">gebelik haftası hesaplama</Link> aracını kullanın.
+            </li>
+            <li>
+              <strong>Yaşa gün eklemek:</strong> 10.000. gününüz gibi özel günleri bulmak için doğum tarihinize gün ekleyin; yaşınızın gün olarak
+              değeri için <Link href="/yas-hesaplama">yaş hesaplama</Link> aracına bakın.
+            </li>
+          </ul>
+        </>
       )}
     </TimeToolPage>
   );

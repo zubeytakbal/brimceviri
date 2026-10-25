@@ -20,7 +20,8 @@ let uyarildi = false;
 const uyar = (mesaj: string) => {
   if (uyarildi) return;
   uyarildi = true;
-  console.warn(mesaj);
+  // GitHub Actions'ta "::warning::" satırı çalışmanın özetinde uyarı olarak görünür.
+  console.warn(process.env.GITHUB_ACTIONS ? `::warning::${mesaj}` : mesaj);
 };
 
 async function fetchNationalFuelPrice(fuelType: string): Promise<LiveFuelPrice | null> {

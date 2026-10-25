@@ -54,6 +54,9 @@ export default function StopwatchPage() {
       tocItems={[
         { id: "nasil", label: "Kronometre nasıl kullanılır?" },
         { id: "fark", label: "Kronometre ile zamanlayıcı farkı" },
+        { id: "kullanim", label: "Nerelerde kullanılır?" },
+        { id: "salise", label: "Salise ne demek?" },
+        { id: "tepki", label: "Elle ölçümde tepki payı" },
         { id: "faq", label: "Sık sorulan sorular" },
       ]}
       faqTitle="Sık Sorulan Sorular"
@@ -71,6 +74,72 @@ export default function StopwatchPage() {
         Kronometre sıfırdan yukarı sayar ve geçen süreyi ölçer: koşu, yüzme, deney ya da görev süresi için idealdir. Zamanlayıcı
         ise belirlediğiniz süreden geriye sayar ve bitince uyarır. Geri sayım için <Link href="/zamanlayici">online zamanlayıcıyı</Link>{" "}
         kullanın.
+      </p>
+
+      <h2 id="kullanim">Nerelerde kullanılır?</h2>
+      <ul>
+        <li>
+          <strong>Koşu ve yüzme:</strong> Her tur ya da havuz boyu için &quot;Tur&quot;a basın; liste tur sürelerini ve toplamı tutar, en hızlı ve
+          en yavaş tur ayrıca işaretlenir. Tur sürelerinden tempoyu bulmak için <Link href="/kosu-pace-hesaplama">koşu pace hesaplama</Link>{" "}
+          aracına bakın.
+        </li>
+        <li>
+          <strong>Sunum ve sınav provası:</strong> Konuşmanızın her bölümü için tur alarak hangi bölümün uzun sürdüğünü görebilirsiniz.
+        </li>
+        <li>
+          <strong>Deney ve ölçüm:</strong> Okul deneylerinde bir olayın süresi birkaç kez ölçülüp CSV ile indirilir, ortalama E-Tablolar&apos;da alınır.
+        </li>
+        <li>
+          <strong>İş ve görev süresi:</strong> Bir işin gerçekte ne kadar sürdüğünü ölçmek, sonraki planları daha doğru yapmayı sağlar. Belirli
+          aralıklarla çalışıp mola vermek istiyorsanız <Link href="/zamanlayici">zamanlayıcı</Link> daha uygundur.
+        </li>
+      </ul>
+
+      <h2 id="salise">Salise ne demek?</h2>
+      <p>
+        Kronometrenin en sağdaki iki hanesi saniyenin yüzde birini gösterir ve günlük dilde &quot;salise&quot; diye okunur. Sözlükte ise salise
+        saniyenin altmışta biridir; yüzde bir saniyenin bilimsel adı santisaniyedir. Bu sayfadaki kronometrede iki hane yüzde bir saniyedir: 12,57
+        saniye, 12 saniye ve 57 yüzde bir saniye demektir.
+      </p>
+      <div className="holiday-table-wrap">
+        <table className="holiday-table">
+          <thead>
+            <tr>
+              <th scope="col">Birim</th>
+              <th scope="col">Saniye karşılığı</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1 dakika</td>
+              <td>60 saniye</td>
+            </tr>
+            <tr>
+              <td>1 saniye</td>
+              <td>100 santisaniye = 1.000 milisaniye</td>
+            </tr>
+            <tr>
+              <td>1 santisaniye (kronometre hanesi)</td>
+              <td>0,01 saniye</td>
+            </tr>
+            <tr>
+              <td>1 salise (sözlük anlamı)</td>
+              <td>1/60 saniye ≈ 0,0167 saniye</td>
+            </tr>
+            <tr>
+              <td>1 milisaniye</td>
+              <td>0,001 saniye</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="tepki">Elle ölçümde tepki payı</h2>
+      <p>
+        Düğmeye elle basıldığında ölçüme insanın tepki süresi de girer: bir sesi ya da hareketi görüp parmağı hareket ettirmek genellikle saniyenin
+        onda biri ile üçte biri arasında sürer. Başlatırken ve durdururken aynı gecikme olursa ikisi birbirini büyük ölçüde götürür, ama yarışma
+        gibi saniyenin yüzde birinin önemli olduğu ölçümlerde elektronik zamanlama kullanılır. Elle ölçümde daha tutarlı sonuç için aynı kişinin,
+        aynı işarete bakarak, birkaç ölçüm yapıp ortalamasını alması önerilir.
       </p>
     </TimeToolPage>
   );

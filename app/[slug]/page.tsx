@@ -239,6 +239,11 @@ export default async function ConversionPage({ params }: PageProps) {
       : conversionPage.exampleValues);
 
   const reverseSeo = mergedReverse ? turkishConversionSeo(mergedReverse) : undefined;
+  // Sonuç sütunu: sayfaya özel ondalık sayısı varsa ona yuvarlanır, yoksa 7 anlamlı basamak.
+  const formatResult = (value: number) =>
+    seo.decimals === undefined
+      ? formatNumber(value)
+      : value.toLocaleString("tr-TR", { maximumFractionDigits: seo.decimals });
   const reverseTableRows = mergedReverse
     ? (reverseSeo?.exampleValues ??
         (popularEmbedSlugs.has(mergedReverse.slug) ? extendedTableValues : mergedReverse.exampleValues)
@@ -431,7 +436,7 @@ export default async function ConversionPage({ params }: PageProps) {
                     {formatNumber(row.input)} {conversionPage.fromUnit}
                   </span>
                   <strong>
-                    {formatNumber(row.result)} {conversionPage.toUnit}
+                    {formatResult(row.result)} {conversionPage.toUnit}
                   </strong>
                 </li>
               ))}
@@ -476,7 +481,7 @@ export default async function ConversionPage({ params }: PageProps) {
                     </td>
 
                     <td>
-                      {formatNumber(row.result)}{" "}
+                      {formatResult(row.result)}{" "}
                       {conversionPage.toUnit}
                     </td>
                   </tr>
@@ -485,6 +490,34 @@ export default async function ConversionPage({ params }: PageProps) {
             </table>
           </div>
         </section>
+
+        {seo.extraTables.map((ek) => (
+          <section className="conversion-section" id={ek.id} key={ek.id}>
+            <h2>{ek.title}</h2>
+            <p>{ek.text}</p>
+            <div className="conversion-table-wrap">
+              <table className="conversion-table">
+                <thead>
+                  <tr>
+                    {ek.columns.map((sutun) => (
+                      <th key={sutun}>{sutun}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {ek.rows.map((satir) => (
+                    <tr key={satir[0]}>
+                      {satir.map((hucre, i) => (
+                        <td key={i}>{hucre}</td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            {ek.note ? <p>{ek.note}</p> : null}
+          </section>
+        ))}
 
         {mergedReverse && (
           <section className="conversion-section" id="ters-donusum">

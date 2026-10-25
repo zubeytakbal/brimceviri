@@ -123,13 +123,14 @@ export default function InsulationPaybackCalculator() {
           <input
             type="text"
             inputMode="decimal"
-            placeholder="Örn. doğalgaz için ~1,5"
+            placeholder="Faturandaki birim fiyat"
             value={heatingEnergyPrice}
             onChange={(event) => setHeatingEnergyPrice(event.target.value)}
           />
           <small className="calculator-field-note">
-            Doğalgaz kombi için yaklaşık 1-1,5 ₺/kWh, elektrikli ısıtma
-            için elektrik faturandaki birim fiyat.
+            Doğalgazda faturandaki m³ fiyatını 10,64&apos;e böl (1 m³ doğalgaz
+            yaklaşık 10,64 kWh enerji verir); elektrikli ısıtmada elektrik
+            faturandaki birim fiyatı yaz.
           </small>
         </label>
         <label className="category-general-converter-field">

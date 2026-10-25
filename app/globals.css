@@ -22775,3 +22775,7 @@ a.all-units-row .all-units-name {
 :root:has(.saat-arac-ust[data-tur="arac"]) .all-conversions-header ~ :not(.time-tool-related, .page-toc, section.category-article-content, .time-tool-related ~ *, .page-toc ~ *, section.category-article-content ~ *) .tz-planner th {
   background: #141414;
 }
+/* Yan alanın notu satırı uzattığında giriş kutusu da uzuyordu (örn. "90" kutusu not boyunda): alan içeriği üste hizalanır. */
+.category-general-converter-field {
+  align-content: start;
+}

@@ -15,13 +15,24 @@ type UcuzYakitBulResponse = {
 // asla eski/yanlis bir rakami sessizce gostermez. Next.js ISR ile
 // saatlik yenilenir (fetch her istek yerine cache'den okunur), boylece
 // sayfa statik kalir.
+// Derleme kaydında görünsün diye (günlük GitHub Actions); her sayfa için tekrarlanmaz.
+let uyarildi = false;
+const uyar = (mesaj: string) => {
+  if (uyarildi) return;
+  uyarildi = true;
+  console.warn(mesaj);
+};
+
 async function fetchNationalFuelPrice(fuelType: string): Promise<LiveFuelPrice | null> {
   try {
     const response = await fetch("https://ucuzyakitbul.com.tr/api/prices/national", {
       next: { revalidate: 3600 },
     });
 
-    if (!response.ok) return null;
+    if (!response.ok) {
+      uyar(`Akaryakıt fiyatı alınamadı (HTTP ${response.status}); yakıt alanları boş başlar.`);
+      return null;
+    }
 
     const data: UcuzYakitBulResponse = await response.json();
     const entry = data.prices?.find((item) => item.fuelType === fuelType);
@@ -33,6 +44,7 @@ async function fetchNationalFuelPrice(fuelType: string): Promise<LiveFuelPrice |
       entry.price <= 0 ||
       typeof entry.date !== "string"
     ) {
+      uyar(`Akaryakıt fiyatı beklenmeyen biçimde geldi (${fuelType}); yakıt alanları boş başlar.`);
       return null;
     }
 
@@ -42,6 +54,7 @@ async function fetchNationalFuelPrice(fuelType: string): Promise<LiveFuelPrice |
       source: "ucuzyakitbul.com.tr",
     };
   } catch {
+    uyar("Akaryakıt fiyat servisine ulaşılamadı; yakıt alanları boş başlar.");
     return null;
   }
 }

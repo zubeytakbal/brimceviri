@@ -72,7 +72,7 @@ export default function HeatingCostComparisonCalculator() {
           />
           <small className="calculator-field-note">
             Son güncelleme: {manualElectricityPriceDefault.lastUpdatedLabel} (240
-            kWh/ay üstü mesken dilimi, KDV dahil).
+            kWh/ay üstü mesken dilimi, KDV dahil, EPDK tarifesi).
           </small>
         </label>
         <label className="category-general-converter-field">

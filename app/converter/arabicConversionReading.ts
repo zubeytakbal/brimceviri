@@ -1,5 +1,6 @@
 // Arapça çevirme sayfasına çifte özgü örnekler. Sayılar convert() sonucudur.
 // Uzun birim adları birçok sayfada ortak olduğu için örnek satırı sembol ve sonuç taşır.
+import { adSembol } from "./unitLabel";
 import { convert } from "./convert";
 import { unitRegistry } from "./unitRegistry";
 
@@ -39,7 +40,7 @@ function sameText(left: number, right: number) {
 
 function label(name: string, symbol: string) {
   const words = name.split(/\s+/).filter(Boolean);
-  return words.length <= 2 ? `${name} (${symbol})` : symbol;
+  return words.length <= 2 ? adSembol(name, symbol) : symbol;
 }
 
 function valuesFor(page: ArabicConversionInput) {

@@ -29,7 +29,7 @@ const homeUrl = buildSiteUrl("/");
 export const metadata: Metadata = {
   title: "Birim Çevirici: Birim Çevirme ve Hesaplama",
   description:
-    "Metre, kilogram, litre, dönüm, bar ve santigrat dahil 38 kategoride birim çevirme (1 inç = 2,54 cm, 1 dönüm = 1.000 m²); mühendislik, takvim ve günlük hesaplayıcılar.",
+    "Metre, kilogram, litre, dönüm, bar ve santigrat gibi birimlerde çevirme (1 inç = 2,54 cm, 1 dönüm = 1.000 m²); mühendislik, takvim ve günlük hesaplayıcılar.",
   alternates: {
     canonical: homeUrl,
     ...buildHomeLanguageAlternates(),

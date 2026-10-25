@@ -60,7 +60,7 @@ export default function CompoundsHubPage() {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: buildSiteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "Kimya", item: buildSiteUrl("/bilim-hesaplayicilari/kimya") },
+      { "@type": "ListItem", position: 2, name: "Kimya", item: buildSiteUrl("/hesaplayicilar#kimya") },
       { "@type": "ListItem", position: 3, name: "Bileşikler", item: buildSiteUrl("/bilim-hesaplayicilari/kimya/bilesikler") },
     ],
   };
@@ -74,7 +74,7 @@ export default function CompoundsHubPage() {
         <nav className="breadcrumbs" aria-label="Sayfa yolu">
           <Link href="/">Ana Sayfa</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/bilim-hesaplayicilari/kimya">Kimya</Link>
+          <Link href="/hesaplayicilar#kimya">Kimya</Link>
           <span aria-hidden="true">&rsaquo;</span>
           <span>Bileşikler</span>
         </nav>

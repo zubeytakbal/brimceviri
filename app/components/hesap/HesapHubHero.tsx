@@ -1,26 +1,15 @@
 "use client";
 
-// "Tüm Hesaplama Araçları" sayfasının koyu üst alanı: bütün araçlarda arama ve grup kısayolları. Bilim ana sayfası da
-// aynı alanı kendi metinleriyle kullanır.
+// "Tüm Hesaplama Araçları" sayfasının koyu üst alanı: bütün araçlarda arama ve grup kısayolları.
 import { useMemo, useState } from "react";
 import Link from "@/app/components/SiteLink";
 
 type Arac = { href: string; ad: string; grup: string };
 type Grup = { id: string; baslik: string; sayi: number };
-/** Bölüme göre değişen metinler (Hesap, Bilim). */
-type Metin = { etiket: string; ara: string; ornek: string; yok: string; birim: string };
-
-const HESAP_METNI: Metin = {
-  etiket: "hesaplama aracı",
-  ara: "Hesaplama aracı ara",
-  ornek: "Ne hesaplamak istiyorsunuz? Örn. kdv, boya, klima",
-  yok: "Bu aramaya uyan araç bulunamadı.",
-  birim: "araç",
-};
 
 const sade = (s: string) => s.toLocaleLowerCase("tr").normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/ı/g, "i");
 
-export default function HesapHubHero({ araclar, gruplar, metin = HESAP_METNI }: { araclar: Arac[]; gruplar: Grup[]; metin?: Metin }) {
+export default function HesapHubHero({ araclar, gruplar }: { araclar: Arac[]; gruplar: Grup[] }) {
   const [soru, setSoru] = useState("");
   const sonuc = useMemo(() => {
     const kelimeler = sade(soru).split(/\s+/).filter(Boolean);
@@ -29,15 +18,15 @@ export default function HesapHubHero({ araclar, gruplar, metin = HESAP_METNI }: 
   }, [soru, araclar]);
 
   return (
-    <section className="timehub-hero hesap-hub-hero" aria-label={metin.ara}>
+    <section className="timehub-hero hesap-hub-hero" aria-label="Hesaplama aracı ara">
       <p className="timehub-hero-label">
-        {gruplar.reduce((t, g) => t + g.sayi, 0)} {metin.etiket} · {gruplar.length} grup
+        {gruplar.reduce((t, g) => t + g.sayi, 0)} hesaplama aracı · {gruplar.length} grup
       </p>
       <div className="hesap-hub-arama">
         <label htmlFor="hesap-hub-ara" className="sr-only">
-          {metin.ara}
+          Hesaplama aracı ara
         </label>
-        <input id="hesap-hub-ara" type="search" value={soru} onChange={(e) => setSoru(e.target.value)} placeholder={metin.ornek} autoComplete="off" />
+        <input id="hesap-hub-ara" type="search" value={soru} onChange={(e) => setSoru(e.target.value)} placeholder="Ne hesaplamak istiyorsunuz? Örn. kdv, boya, klima" autoComplete="off" />
       </div>
       {soru.trim() ? (
         sonuc.length ? (
@@ -52,7 +41,7 @@ export default function HesapHubHero({ araclar, gruplar, metin = HESAP_METNI }: 
             ))}
           </ul>
         ) : (
-          <p className="hesap-hub-yok">{metin.yok}</p>
+          <p className="hesap-hub-yok">Bu aramaya uyan araç bulunamadı.</p>
         )
       ) : null}
       <ul className="timehub-strip hesap-hub-gruplar">
@@ -61,7 +50,7 @@ export default function HesapHubHero({ araclar, gruplar, metin = HESAP_METNI }: 
             <a href={`#${g.id}`}>
               <strong>{g.baslik}</strong>
               <span>{g.sayi}</span>
-              <em>{metin.birim}</em>
+              <em>araç</em>
             </a>
           </li>
         ))}

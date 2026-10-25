@@ -12,7 +12,7 @@ export const PROFESSION_PAGES: Readonly<Record<string, { href: string; label: st
   "dijital-pazarlamaci-araclari": { href: "/hesaplayicilar#para-ve-is", label: "Para, Maaş ve Vergi" },
   "diyetisyen-araclari": { href: "/hesaplayicilar#saglik-ve-spor", label: "Sağlık ve Spor" },
   "doktor-hemsire-araclari": { href: "/hesaplayicilar#klinik", label: "Klinik Skorlar" },
-  "eczaci-araclari": { href: "/bilim-hesaplayicilari/kimya", label: "Kimya Hesaplayıcıları" },
+  "eczaci-araclari": { href: "/hesaplayicilar#kimya", label: "Kimya Hesaplayıcıları" },
   "elektrikci-araclari": { href: "/muhendislik-hesaplayicilari/elektrik-hesaplari", label: "Elektrik Hesapları" },
   "emlakci-araclari": { href: "/hesaplayicilar#para-ve-is", label: "Para, Maaş ve Vergi" },
   "fotografci-araclari": { href: "/hesaplayicilar#dosya-ve-gorsel", label: "Dosya ve Görsel Araçları" },

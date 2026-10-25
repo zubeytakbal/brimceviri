@@ -22648,15 +22648,15 @@ a.all-units-row .all-units-name {
   list-style: none;
   font-size: 0.92rem;
 }
-:root:has(:is(.hesap-arac-ust, .bilim-arac-ust)) .hesap-hub-gruplar li,
-:root:has(:is(.hesap-arac-ust, .bilim-arac-ust)) .hesap-hub-gruplar a {
+:root:has(.hesap-arac-ust) .hesap-hub-gruplar li,
+:root:has(.hesap-arac-ust) .hesap-hub-gruplar a {
   height: 100%;
 }
-:root:has(:is(.hesap-arac-ust, .bilim-arac-ust)) .hesap-hub-gruplar a {
+:root:has(.hesap-arac-ust) .hesap-hub-gruplar a {
   align-content: start;
 }
-:root:has(:is(.hesap-arac-ust, .bilim-arac-ust)) .hesap-hub-gruplar strong,
-:root:has(:is(.hesap-arac-ust, .bilim-arac-ust)) .hesap-hub-sonuc a {
+:root:has(.hesap-arac-ust) .hesap-hub-gruplar strong,
+:root:has(.hesap-arac-ust) .hesap-hub-sonuc a {
   color: #ffffff;
 }
 :root:has(.hesap-arac-ust) .hesap-hub-gruplar span {
@@ -22666,7 +22666,7 @@ a.all-units-row .all-units-name {
 :root:has(.hesap-arac-ust) .hesap-hub-sonuc a:focus-visible {
   color: #ffa36c;
 }
-:root:has(:is(.hesap-arac-ust, .bilim-arac-ust)) .hesap-hub-sonuc span {
+:root:has(.hesap-arac-ust) .hesap-hub-sonuc span {
   color: #b9b9b9;
 }
 :root:has(.hesap-arac-ust[data-tur="arac"]) .all-conversions-header ~ :not(.time-tool-related, .page-toc, section.category-article-content, .time-tool-related ~ *, .page-toc ~ *, section.category-article-content ~ *) a {
@@ -22679,67 +22679,21 @@ a.all-units-row .all-units-name {
   color: #ffa36c;
 }
 
-/* ---------------- Bilim bölümü: saat bölümünün araç düzeni, sarı vurguyla ---------------- */
-:root:has(.bilim-arac-ust) {
-  --saat-vurgu: #f2b705;
-}
-/* Sarı zeminde beyaz yazı okunmaz: vurgunun zemin olduğu rozet, menü ve seçili düğmelerde yazı siyah. */
-:root:has(.bilim-arac-ust) :is(.saat-logo span, .saat-ust-dugmeler button[aria-expanded="true"], .saat-sonuclar a:hover, .saat-menu a:hover, .saat-menu .saat-menu-baslik, .saat-eylemler button[aria-pressed="true"], .saat-eylemler button[aria-selected="true"], .saat-alt-marka span, .saat-bolum-etiket) {
-  color: #121212;
-}
-:root:has(.bilim-arac-ust) .saat-sonuclar a:hover span {
-  color: rgba(18, 18, 18, 0.75);
-}
-:root:has(.bilim-arac-ust[data-tur="arac"]) .all-conversions-header ~ :not(.time-tool-related, .page-toc, section.category-article-content, .time-tool-related ~ *, .page-toc ~ *, section.category-article-content ~ *) :is(button.is-active, button[aria-pressed="true"], button[aria-selected="true"], .sleep-primary-button, .engineering-target-button.is-active) {
-  color: #121212 !important;
-}
-:root:has(.bilim-arac-ust) .all-conversions-page .all-conversions-header a,
-:root:has(.bilim-arac-ust) .hesap-hub-gruplar span,
-:root:has(.bilim-arac-ust) .hesap-hub-sonuc a:hover,
-:root:has(.bilim-arac-ust) .hesap-hub-sonuc a:focus-visible {
-  color: #f7c948;
-}
-:root:has(.bilim-arac-ust) :is(.takvim-bugun, .week-now, .world-board-local, .countdown-card) a,
-:root:has(.bilim-arac-ust[data-tur="arac"]) .all-conversions-header ~ :not(.time-tool-related, .page-toc, section.category-article-content, .time-tool-related ~ *, .page-toc ~ *, section.category-article-content ~ *) a {
-  color: #f7c948;
-}
-:root:has(.bilim-arac-ust[data-tur="arac"]) .all-conversions-header ~ :not(.time-tool-related, .page-toc, section.category-article-content, .time-tool-related ~ *, .page-toc ~ *, section.category-article-content ~ *) :is(.hesap-hub-gruplar strong, .hesap-hub-sonuc a) {
-  color: #ffffff;
-}
-:root:has(.bilim-arac-ust[data-tur="arac"]) .all-conversions-header ~ :not(.time-tool-related, .page-toc, section.category-article-content, .time-tool-related ~ *, .page-toc ~ *, section.category-article-content ~ *) .hesap-hub-sonuc a:is(:hover, :focus-visible) {
-  color: #f7c948;
-}
-
-/* Bilim araç sayfalarında hesaplayıcı başlığın hemen altında koyu alanda; eski iki sütunlu düzenin yapışkan kenar çizgisi yok. */
+/* Eski Bilim araç sayfaları (Hesap bölümünde): hesaplayıcı başlığın hemen altında koyu alanda; eski iki sütunlu
+   düzenin yapışkan kenar çizgisi yok. */
 .all-conversions-shell > .unit-page-converter {
   position: static;
   padding-left: 0;
   border-left: 0;
 }
 /* Kimyasal sembollerin harfleri değişmez (Li, Ti, Nb): düğme yazısını büyük harfe çeviren saat kuralı uygulanmaz. */
-:root:has(.bilim-arac-ust) :is(.periodic-table-cell, .periodic-table-cell *, .element-neighbors-mini *, .periodic-table-preview-symbol) {
+:root:has(.saat-arac-ust) :is(.periodic-table-cell, .periodic-table-cell *, .element-neighbors-mini *, .periodic-table-preview-symbol) {
   text-transform: none !important;
   letter-spacing: normal;
 }
 /* Açık zeminli kutular koyu alanda da koyu yazıyla: periyodik tablo önizlemesi ve element komşuları. */
-:root:has(.bilim-arac-ust) .periodic-table-preview,
-:root:has(.bilim-arac-ust) .periodic-table-preview :is(h3, span, p, div),
-:root:has(.bilim-arac-ust) .element-neighbors-mini :is(a, span, strong) {
+:root:has(.saat-arac-ust) .periodic-table-preview,
+:root:has(.saat-arac-ust) .periodic-table-preview :is(h3, span, p, div),
+:root:has(.saat-arac-ust) .element-neighbors-mini :is(a, span, strong) {
   color: #121212 !important;
-}
-/* Kimya ve matematik araç kartları koyu alanda koyu kutular. */
-:root:has(.bilim-arac-ust) .science-hub-tools a {
-  border: 1px solid #333333;
-  border-radius: 0;
-  background: #141414;
-}
-:root:has(.bilim-arac-ust) .science-hub-tools a:hover {
-  border-color: var(--saat-vurgu);
-  box-shadow: none;
-}
-:root:has(.bilim-arac-ust) .science-hub-tools strong {
-  color: #ffffff !important;
-}
-:root:has(.bilim-arac-ust) .science-hub-tools span {
-  color: #c9c9c9 !important;
 }

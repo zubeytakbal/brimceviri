@@ -91,7 +91,7 @@ export default function ElementMeltingBoilingPage() {
             Genel sıcaklık dönüşümleri için{" "}
             <Link href="/kategoriler/sicaklik">Sıcaklık Dönüşümleri</Link>
             {" "}sayfasına, kimya hesaplamaları için{" "}
-            <Link href="/bilim-hesaplayicilari">Bilim Hesaplayıcıları</Link>
+            <Link href="/hesaplayicilar">Hesaplamalar</Link>
             {" "}sayfasına bakabilirsin.
           </p>
 

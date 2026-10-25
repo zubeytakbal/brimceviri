@@ -62,14 +62,14 @@ export default function YuzdeHesaplamaPage() {
       {
         "@type": "ListItem",
         position: 2,
-        name: "Bilim Hesaplayıcıları",
-        item: buildSiteUrl("/bilim-hesaplayicilari"),
+        name: "Hesaplamalar",
+        item: buildSiteUrl("/hesaplayicilar"),
       },
       {
         "@type": "ListItem",
         position: 3,
         name: "Matematik",
-        item: buildSiteUrl("/bilim-hesaplayicilari/matematik"),
+        item: buildSiteUrl("/hesaplayicilar#matematik"),
       },
       {
         "@type": "ListItem",
@@ -97,9 +97,9 @@ export default function YuzdeHesaplamaPage() {
         <nav className="breadcrumbs" aria-label="Sayfa yolu">
           <Link href="/">Ana Sayfa</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/bilim-hesaplayicilari">Bilim Hesaplayıcıları</Link>
+          <Link href="/hesaplayicilar">Hesaplamalar</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/bilim-hesaplayicilari/matematik">Matematik</Link>
+          <Link href="/hesaplayicilar#matematik">Matematik</Link>
           <span aria-hidden="true">&rsaquo;</span>
           <span>Yüzde Hesaplama</span>
         </nav>

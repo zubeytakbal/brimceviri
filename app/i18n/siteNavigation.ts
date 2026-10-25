@@ -17,7 +17,6 @@ import {
   turkishCalculatorMenu,
   turkishEngineeringMenu,
   turkishGeoMenu,
-  turkishScienceMenu,
   turkishTimeMenu,
 } from "./turkishToolDirectory";
 import {
@@ -1174,12 +1173,6 @@ function getTurkishMenuGroups(): MenuGroup[] {
       label: "Mühendislik",
       links: turkishEngineeringMenu,
       footer: [{ href: "/muhendislik-hesaplayicilari", label: "Tüm mühendislik hesaplayıcıları →" }],
-    },
-    {
-      id: "science",
-      label: "Bilim",
-      links: turkishScienceMenu,
-      footer: [{ href: "/bilim-hesaplayicilari", label: "Tüm bilim hesaplayıcıları →" }],
     },
     {
       id: "geo",

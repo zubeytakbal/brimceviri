@@ -998,19 +998,19 @@ export default function DigerDonusumlerPage() {
     },
     {
       id: "kimya",
-      href: "/bilim-hesaplayicilari",
-      title: "Bilim Hesaplayıcıları",
+      href: "/hesaplayicilar#kimya",
+      title: "Kimya Hesaplayıcıları",
       description:
-        "Mol hesaplama ile başlayan kimya hesaplayıcıları; liste zamanla büyüyecek.",
+        "Mol ve atom kütlesi hesaplama, periyodik tablo ve bileşiklerin molar kütlesi.",
       iconName: "chemistryCalculator" as const,
       group: "Diğer Hesaplama Merkezleri",
     },
     {
       id: "sayi-tabani",
-      href: "/bilim-hesaplayicilari/matematik",
+      href: "/hesaplayicilar#matematik",
       title: "Matematik Hesaplayıcıları",
       description:
-        "EBOB-EKOK, sayı tabanı çevirici ve daha fazlası; liste zamanla büyüyecek.",
+        "EBOB-EKOK, karekök, yüzde, denklem çözme, ortalama ve olasılık hesapları.",
       iconName: "numberBaseCalculator" as const,
       group: "Diğer Hesaplama Merkezleri",
     },

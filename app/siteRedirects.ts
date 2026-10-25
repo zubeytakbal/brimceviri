@@ -108,7 +108,7 @@ export function siteRedirects(): SiteRedirect[] {
     },
     {
       source: "/matematik",
-      destination: "/bilim-hesaplayicilari/matematik",
+      destination: "/hesaplayicilar#matematik",
       permanent: true,
     },
     // Deutsche Werkstoff- und Verbindungsseiten hatten türkische Adressen (aluminyum, sofra-tuzu).

@@ -65,7 +65,7 @@ export default function NumberBaseCalculatorPage() {
         "@type": "ListItem",
         position: 2,
         name: "Matematik",
-        item: buildSiteUrl("/bilim-hesaplayicilari/matematik"),
+        item: buildSiteUrl("/hesaplayicilar#matematik"),
       },
       {
         "@type": "ListItem",
@@ -93,7 +93,7 @@ export default function NumberBaseCalculatorPage() {
         <nav className="breadcrumbs" aria-label="Sayfa yolu">
           <Link href="/">Ana Sayfa</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/bilim-hesaplayicilari/matematik">Matematik</Link>
+          <Link href="/hesaplayicilar#matematik">Matematik</Link>
           <span aria-hidden="true">&rsaquo;</span>
           <span>Sayı Tabanı Çevirici</span>
         </nav>

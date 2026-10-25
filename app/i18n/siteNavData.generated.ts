@@ -236,66 +236,6 @@ export const SITE_NAV_DATA: SiteNavData = {
      ]
     },
     {
-     "id": "science",
-     "label": "Bilim",
-     "links": [
-      {
-       "href": "/bilim-hesaplayicilari/kimya/periyodik-tablo",
-       "label": "Periyodik Tablo"
-      },
-      {
-       "href": "/bilim-hesaplayicilari/kimya/mol-hesaplama",
-       "label": "Mol Hesaplama"
-      },
-      {
-       "href": "/bilim-hesaplayicilari/matematik/yuzde-hesaplama",
-       "label": "Yüzde Hesaplama"
-      },
-      {
-       "href": "/bilim-hesaplayicilari/matematik/ebob-ekok-hesaplama",
-       "label": "EBOB - EKOK"
-      },
-      {
-       "href": "/bilim-hesaplayicilari/matematik/ikinci-dereceden-denklem-cozme",
-       "label": "İkinci Dereceden Denklem"
-      },
-      {
-       "href": "/bilim-hesaplayicilari/matematik/olasilik-hesaplama",
-       "label": "Olasılık"
-      },
-      {
-       "href": "/bilim-hesaplayicilari/geometri/pisagor-teoremi-hesaplama",
-       "label": "Pisagor Teoremi"
-      },
-      {
-       "href": "/bilim-hesaplayicilari/biyoloji/kodon-tablosu",
-       "label": "Kodon Tablosu"
-      },
-      {
-       "href": "/gokcisimleri-ozellikleri",
-       "label": "Gökcisimleri ve Gezegenler"
-      },
-      {
-       "href": "/gezegenlerde-yas-hesaplama",
-       "label": "Gezegenlerde Yaş"
-      },
-      {
-       "href": "/gezegenlerde-kac-kilo-gelirim",
-       "label": "Gezegenlerde Kaç Kilo Gelirim?"
-      },
-      {
-       "href": "/gokyuzu-olaylari-takvimi",
-       "label": "Gökyüzü Olayları Takvimi"
-      }
-     ],
-     "footer": [
-      {
-       "href": "/bilim-hesaplayicilari",
-       "label": "Tüm bilim hesaplayıcıları →"
-      }
-     ]
-    },
-    {
      "id": "geo",
      "label": "Dünya ve Coğrafya",
      "links": [

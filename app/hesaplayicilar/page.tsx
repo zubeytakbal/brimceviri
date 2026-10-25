@@ -44,6 +44,9 @@ const IKON: Record<string, SiteIconName> = {
   tarim: "ciftciHub",
   "olcu-ve-gunluk": "kitchenMeasures",
   "dosya-ve-gorsel": "pixelCalculator",
+  matematik: "mathCalculator",
+  kimya: "chemistryCalculator",
+  gokcisimleri: "physicsCalculator",
 };
 
 /** Hesap bölümünün dışında kalan gruplar ve kendi bölüm sayfaları. */

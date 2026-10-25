@@ -27,13 +27,13 @@ export default function PeriyodikTabloPage() {
   return (
     <main className="all-conversions-page">
       <div className="all-conversions-shell">
-        <BreadcrumbSchema items={[{ name: "Ana Sayfa", href: "/" }, { name: "Bilim Hesaplayıcıları", href: "/bilim-hesaplayicilari" }, { name: "Kimya", href: "/bilim-hesaplayicilari/kimya" }, { name: "Periyodik Tablo", href: "/bilim-hesaplayicilari/kimya/periyodik-tablo" }]} />
+        <BreadcrumbSchema items={[{ name: "Ana Sayfa", href: "/" }, { name: "Hesaplamalar", href: "/hesaplayicilar" }, { name: "Kimya", href: "/hesaplayicilar#kimya" }, { name: "Periyodik Tablo", href: "/bilim-hesaplayicilari/kimya/periyodik-tablo" }]} />
         <nav className="breadcrumbs" aria-label="Sayfa yolu">
           <Link href="/">Ana Sayfa</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/bilim-hesaplayicilari">Bilim Hesaplayıcıları</Link>
+          <Link href="/hesaplayicilar">Hesaplamalar</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/bilim-hesaplayicilari/kimya">Kimya</Link>
+          <Link href="/hesaplayicilar#kimya">Kimya</Link>
           <span aria-hidden="true">&rsaquo;</span>
           <span>Periyodik Tablo</span>
         </nav>

@@ -53,7 +53,7 @@ export default function CodonTablePage() {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: buildSiteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "Bilim Hesaplayıcıları", item: buildSiteUrl("/bilim-hesaplayicilari") },
+      { "@type": "ListItem", position: 2, name: "Hesaplamalar", item: buildSiteUrl("/hesaplayicilar") },
       { "@type": "ListItem", position: 3, name: "Kodon Tablosu", item: buildSiteUrl("/bilim-hesaplayicilari/biyoloji/kodon-tablosu") },
     ],
   };
@@ -67,7 +67,7 @@ export default function CodonTablePage() {
         <nav className="breadcrumbs" aria-label="Sayfa yolu">
           <Link href="/">Ana Sayfa</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/bilim-hesaplayicilari">Bilim Hesaplayıcıları</Link>
+          <Link href="/hesaplayicilar">Hesaplamalar</Link>
           <span aria-hidden="true">&rsaquo;</span>
           <span>Kodon Tablosu</span>
         </nav>

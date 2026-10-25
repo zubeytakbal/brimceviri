@@ -101,7 +101,6 @@ export const turkishToolGroups: ToolGroup[] = [
       { href: "/bu-gece-gezegenler", label: "Bu Gece Hangi Gezegenler Görünür?" },
       { href: "/gokyuzu-olaylari-takvimi", label: "Gökyüzü Olayları Takvimi" },
       { href: "/gezegenlerde-yas-hesaplama", label: "Diğer Gezegenlerde Kaç Yaşındayım?" },
-      { href: "/gezegenlerde-kac-kilo-gelirim", label: "Diğer Gezegenlerde Kaç Kilo Gelirim?" },
       { href: "/firtina-takvimi", label: "Fırtına Takvimi" },
     ],
   },
@@ -260,13 +259,54 @@ export const turkishToolGroups: ToolGroup[] = [
       { href: "/renk-kodu-cevirici", label: "Renk Kodu Çevirici" },
     ],
   },
+  // Bilim bölümü 25 Ekim 2026'da Hesaplamalar'a katıldı; araçların adresleri aynı kaldı.
+  {
+    id: "matematik",
+    title: "Matematik",
+    description: "EBOB-EKOK, bölen sayısı, karekök, yüzde, denklem çözme, ortalama, olasılık ve Pisagor teoremi; adım adım çözümlü.",
+    links: [
+      { href: "/bilim-hesaplayicilari/matematik/ebob-ekok-hesaplama", label: "EBOB-EKOK Hesaplama" },
+      { href: "/bilim-hesaplayicilari/matematik/bolen-sayisi-hesaplama", label: "Bölen Sayısı Hesaplama" },
+      { href: "/bilim-hesaplayicilari/matematik/karekok-hesaplama", label: "Karekök Hesaplama" },
+      { href: "/bilim-hesaplayicilari/matematik/yuzde-hesaplama", label: "Yüzde Hesaplama" },
+      { href: "/bilim-hesaplayicilari/matematik/ikinci-dereceden-denklem-cozme", label: "İkinci Dereceden Denklem (Delta)" },
+      { href: "/bilim-hesaplayicilari/matematik/2-bilinmeyenli-denklem-sistemi-cozme", label: "2 Bilinmeyenli Denklem Sistemi" },
+      { href: "/bilim-hesaplayicilari/matematik/3-bilinmeyenli-denklem-sistemi-cozme", label: "3 Bilinmeyenli Denklem Sistemi" },
+      { href: "/bilim-hesaplayicilari/matematik/ortalama-hesaplama", label: "Ortalama, Medyan, Mod, Std. Sapma" },
+      { href: "/bilim-hesaplayicilari/matematik/mod-hesaplama", label: "Mod (Tepe Değer) Hesaplama" },
+      { href: "/bilim-hesaplayicilari/matematik/olasilik-hesaplama", label: "Olasılık Hesaplama" },
+      { href: "/bilim-hesaplayicilari/matematik/permutasyon-kombinasyon-hesaplama", label: "Permütasyon ve Kombinasyon" },
+      { href: "/bilim-hesaplayicilari/geometri/pisagor-teoremi-hesaplama", label: "Pisagor Teoremi Hesaplama" },
+    ],
+  },
+  {
+    id: "kimya",
+    title: "Kimya",
+    description: "Mol ve atom kütlesi, pil potansiyeli; periyodik tablo, yaygın bileşiklerin molar kütlesi ve kodon tablosu.",
+    links: [
+      { href: "/bilim-hesaplayicilari/kimya/periyodik-tablo", label: "Periyodik Tablo" },
+      { href: "/bilim-hesaplayicilari/kimya/bilesikler", label: "Kimyasal Bileşikler (Molar Kütle)" },
+      { href: "/bilim-hesaplayicilari/kimya/mol-hesaplama", label: "Mol Hesaplama" },
+      { href: "/bilim-hesaplayicilari/kimya/atom-kutlesi-hesaplama", label: "Atom Kütlesi Hesaplama" },
+      { href: "/bilim-hesaplayicilari/kimya/pil-potansiyeli-hesaplama", label: "Pil Potansiyeli Hesaplama" },
+      { href: "/bilim-hesaplayicilari/biyoloji/kodon-tablosu", label: "Kodon Tablosu ve DNA/RNA Çevirici" },
+    ],
+  },
+  {
+    id: "gokcisimleri",
+    title: "Gökcisimleri",
+    description: "Gezegenlerin ve uyduların çapı, kütlesi ve yerçekimi; iki gökcismini karşılaştırma ve kilonun her gezegende kaç kilo ettiği.",
+    links: [
+      { href: "/gokcisimleri-ozellikleri", label: "Gökcisimleri ve Gezegenler" },
+      { href: "/gezegenlerde-kac-kilo-gelirim", label: "Gezegenlerde Kaç Kilo Gelirim?" },
+    ],
+  },
   {
     id: "teknik",
     title: "Teknik ve Mühendislik",
     description: "Elektrik, tesisat, kaynak, talaşlı imalat, malzeme, fotoğraf ve ses teknik hesapları.",
     links: [
       { href: "/muhendislik-hesaplayicilari", label: "Mühendislik Hesaplayıcıları" },
-      { href: "/bilim-hesaplayicilari", label: "Bilim Hesaplayıcıları" },
       { href: "/awg-mm2-cevirici", label: "AWG - mm² Çevirici" },
       { href: "/swg-mm-cevirici", label: "SWG - mm (Tel Kalınlığı)" },
       { href: "/matkap-ucu-olcusu-cevirme", label: "Matkap Ucu Ölçüsü (İnç - mm)" },
@@ -350,7 +390,6 @@ export const turkishToolGroups: ToolGroup[] = [
       { href: "/harita-olcegi-hesaplama", label: "Harita Ölçeği" },
       { href: "/buyuk-daire-mesafesi-hesaplama", label: "Büyük Daire Mesafesi" },
       { href: "/dunyanin-en-yuksek-daglari", label: "Dünyanın En Yüksek Dağları" },
-      { href: "/gokcisimleri-ozellikleri", label: "Gökcisimleri" },
       { href: "/erime-kaynama-noktasi-hesaplama", label: "Erime ve Kaynama Noktası" },
       { href: "/yogunluk-irtifasi-hesaplama", label: "Yoğunluk İrtifası" },
       { href: "/bofor-cevirme", label: "Bofor (Rüzgâr) Çevirme" },
@@ -410,22 +449,6 @@ export const turkishEngineeringMenu: ToolLink[] = [
   { href: "/direnc-renk-kodu", label: "Direnç Renk Kodu" },
   { href: "/u-degeri-hesaplama", label: "U Değeri" },
   { href: "/doymus-buhar-tablosu", label: "Doymuş Buhar Tablosu" },
-];
-
-/** Üst menü "Bilim". */
-export const turkishScienceMenu: ToolLink[] = [
-  { href: "/bilim-hesaplayicilari/kimya/periyodik-tablo", label: "Periyodik Tablo" },
-  { href: "/bilim-hesaplayicilari/kimya/mol-hesaplama", label: "Mol Hesaplama" },
-  { href: "/bilim-hesaplayicilari/matematik/yuzde-hesaplama", label: "Yüzde Hesaplama" },
-  { href: "/bilim-hesaplayicilari/matematik/ebob-ekok-hesaplama", label: "EBOB - EKOK" },
-  { href: "/bilim-hesaplayicilari/matematik/ikinci-dereceden-denklem-cozme", label: "İkinci Dereceden Denklem" },
-  { href: "/bilim-hesaplayicilari/matematik/olasilik-hesaplama", label: "Olasılık" },
-  { href: "/bilim-hesaplayicilari/geometri/pisagor-teoremi-hesaplama", label: "Pisagor Teoremi" },
-  { href: "/bilim-hesaplayicilari/biyoloji/kodon-tablosu", label: "Kodon Tablosu" },
-  { href: "/gokcisimleri-ozellikleri", label: "Gökcisimleri ve Gezegenler" },
-  { href: "/gezegenlerde-yas-hesaplama", label: "Gezegenlerde Yaş" },
-  { href: "/gezegenlerde-kac-kilo-gelirim", label: "Gezegenlerde Kaç Kilo Gelirim?" },
-  { href: "/gokyuzu-olaylari-takvimi", label: "Gökyüzü Olayları Takvimi" },
 ];
 
 /** Üst menü "Dünya ve Coğrafya": iller arası mesafe, il rakımları, ülkeler ve koordinat sitenin en çok tıklanan araçlarından. */

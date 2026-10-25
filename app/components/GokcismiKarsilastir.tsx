@@ -71,10 +71,10 @@ export default function GokcismiKarsilastir() {
       {same ? (
         <p className="date-calc-note">İki farklı gökcismi seçin.</p>
       ) : (
-        <section className="category-article-content">
-          <h2>
+        <div className="date-result">
+          <h3>
             {first.nameTr} ve {second.nameTr} karşılaştırması
-          </h2>
+          </h3>
           <p>
             Çap olarak büyük olan {big.nameTr}: {small.nameTr} ile karşılaştırıldığında çapı yaklaşık{" "}
             {fmt(big.diameterKm / small.diameterKm, 2)} kat, kütlesi yaklaşık {fmt(big.massKg / small.massKg, 2)} kat
@@ -105,7 +105,7 @@ export default function GokcismiKarsilastir() {
             Dünya&apos;da 70 kg gelen biri {first.nameTr} yüzeyinde {fmt((70 * first.gravityMs2) / 9.81)} kg, {second.nameTr}{" "}
             yüzeyinde {fmt((70 * second.gravityMs2) / 9.81)} kg gelir.
           </p>
-        </section>
+        </div>
       )}
     </div>
   );

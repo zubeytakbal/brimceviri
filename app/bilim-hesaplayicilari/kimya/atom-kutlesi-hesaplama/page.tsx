@@ -64,14 +64,14 @@ export default function AtomKutlesiHesaplamaPage() {
       {
         "@type": "ListItem",
         position: 2,
-        name: "Bilim Hesaplayıcıları",
-        item: buildSiteUrl("/bilim-hesaplayicilari"),
+        name: "Hesaplamalar",
+        item: buildSiteUrl("/hesaplayicilar"),
       },
       {
         "@type": "ListItem",
         position: 3,
         name: "Kimya",
-        item: buildSiteUrl("/bilim-hesaplayicilari/kimya"),
+        item: buildSiteUrl("/hesaplayicilar#kimya"),
       },
       {
         "@type": "ListItem",
@@ -101,9 +101,9 @@ export default function AtomKutlesiHesaplamaPage() {
         <nav className="breadcrumbs" aria-label="Sayfa yolu">
           <Link href="/">Ana Sayfa</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/bilim-hesaplayicilari">Bilim Hesaplayıcıları</Link>
+          <Link href="/hesaplayicilar">Hesaplamalar</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/bilim-hesaplayicilari/kimya">Kimya</Link>
+          <Link href="/hesaplayicilar#kimya">Kimya</Link>
           <span aria-hidden="true">&rsaquo;</span>
           <span>Atom Kütlesi Hesaplama</span>
         </nav>
@@ -116,8 +116,10 @@ export default function AtomKutlesiHesaplamaPage() {
           </p>
         </header>
 
-        <div className="unit-page-layout chem-calculator-layout">
-        <div className="unit-page-content">
+        <div className="unit-page-converter">
+          <AtomicMassCalculator />
+        </div>
+
         <section className="category-article-content">
           <h2>Ortalama atom kütlesi nedir?</h2>
           <p>
@@ -203,12 +205,7 @@ export default function AtomKutlesiHesaplamaPage() {
             standart atom ağırlıkları tablosuna dayanır.
           </p>
         </section>
-        </div>
 
-        <div className="unit-page-converter">
-          <AtomicMassCalculator />
-        </div>
-        </div>
       </div>
     </main>
   );

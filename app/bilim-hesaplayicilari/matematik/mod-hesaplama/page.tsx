@@ -49,8 +49,8 @@ export default function ModHesaplamaPage() {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: buildSiteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "Bilim Hesaplayıcıları", item: buildSiteUrl("/bilim-hesaplayicilari") },
-      { "@type": "ListItem", position: 3, name: "Matematik", item: buildSiteUrl("/bilim-hesaplayicilari/matematik") },
+      { "@type": "ListItem", position: 2, name: "Hesaplamalar", item: buildSiteUrl("/hesaplayicilar") },
+      { "@type": "ListItem", position: 3, name: "Matematik", item: buildSiteUrl("/hesaplayicilar#matematik") },
       { "@type": "ListItem", position: 4, name: "Mod Hesaplama", item: buildSiteUrl("/bilim-hesaplayicilari/matematik/mod-hesaplama") },
     ],
   };
@@ -64,9 +64,9 @@ export default function ModHesaplamaPage() {
         <nav className="breadcrumbs" aria-label="Sayfa yolu">
           <Link href="/">Ana Sayfa</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/bilim-hesaplayicilari">Bilim Hesaplayıcıları</Link>
+          <Link href="/hesaplayicilar">Hesaplamalar</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/bilim-hesaplayicilari/matematik">Matematik</Link>
+          <Link href="/hesaplayicilar#matematik">Matematik</Link>
           <span aria-hidden="true">&rsaquo;</span>
           <span>Mod Hesaplama</span>
         </nav>
@@ -80,8 +80,10 @@ export default function ModHesaplamaPage() {
           </p>
         </header>
 
-        <div className="unit-page-layout wide-calculator-layout">
-        <div className="unit-page-content">
+        <div className="unit-page-converter">
+          <StatisticsCalculator />
+        </div>
+
         <section className="category-article-content">
           <h2>Mod nedir?</h2>
           <p>
@@ -144,12 +146,7 @@ export default function ModHesaplamaPage() {
             AYT istatistik müfredatına dayanır.
           </p>
         </section>
-        </div>
 
-        <div className="unit-page-converter">
-          <StatisticsCalculator />
-        </div>
-        </div>
       </div>
     </main>
   );

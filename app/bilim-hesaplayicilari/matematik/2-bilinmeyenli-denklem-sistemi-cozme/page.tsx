@@ -73,14 +73,14 @@ export default function IkiBilinmeyenliDenklemSistemiPage() {
       {
         "@type": "ListItem",
         position: 2,
-        name: "Bilim Hesaplayıcıları",
-        item: buildSiteUrl("/bilim-hesaplayicilari"),
+        name: "Hesaplamalar",
+        item: buildSiteUrl("/hesaplayicilar"),
       },
       {
         "@type": "ListItem",
         position: 3,
         name: "Matematik",
-        item: buildSiteUrl("/bilim-hesaplayicilari/matematik"),
+        item: buildSiteUrl("/hesaplayicilar#matematik"),
       },
       {
         "@type": "ListItem",
@@ -110,9 +110,9 @@ export default function IkiBilinmeyenliDenklemSistemiPage() {
         <nav className="breadcrumbs" aria-label="Sayfa yolu">
           <Link href="/">Ana Sayfa</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/bilim-hesaplayicilari">Bilim Hesaplayıcıları</Link>
+          <Link href="/hesaplayicilar">Hesaplamalar</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/bilim-hesaplayicilari/matematik">Matematik</Link>
+          <Link href="/hesaplayicilar#matematik">Matematik</Link>
           <span aria-hidden="true">&rsaquo;</span>
           <span>2 Bilinmeyenli Denklem Sistemi Çözme</span>
         </nav>
@@ -125,8 +125,14 @@ export default function IkiBilinmeyenliDenklemSistemiPage() {
           </p>
         </header>
 
-        <div className="unit-page-layout wide-calculator-layout">
-        <div className="unit-page-content">
+        <div className="unit-page-converter">
+          <EquationSystemCalculator
+            variableCount={2}
+            defaultEquations={["x+y=10", "x-y=4"]}
+            examples={examples}
+          />
+        </div>
+
         <section className="category-article-content">
           <h2>2 bilinmeyenli denklem sistemi nedir?</h2>
           <p>
@@ -187,16 +193,7 @@ export default function IkiBilinmeyenliDenklemSistemiPage() {
             olmayan sistemlerin genel çözüm yöntemine dayanır.
           </p>
         </section>
-        </div>
 
-        <div className="unit-page-converter">
-          <EquationSystemCalculator
-            variableCount={2}
-            defaultEquations={["x+y=10", "x-y=4"]}
-            examples={examples}
-          />
-        </div>
-        </div>
       </div>
     </main>
   );

@@ -22678,3 +22678,33 @@ a.all-units-row .all-units-name {
 :root:has(.hesap-arac-ust[data-tur="arac"]) .all-conversions-header ~ :not(.time-tool-related, .page-toc, section.category-article-content, .time-tool-related ~ *, .page-toc ~ *, section.category-article-content ~ *) .hesap-hub-sonuc a:is(:hover, :focus-visible) {
   color: #ffa36c;
 }
+
+/* Eski Bilim araç sayfaları (Hesap bölümünde): hesaplayıcı başlığın hemen altında koyu alanda; eski iki sütunlu
+   düzenin yapışkan kenar çizgisi yok. */
+.all-conversions-shell > .unit-page-converter {
+  position: static;
+  padding-left: 0;
+  border-left: 0;
+}
+/* Kimyasal sembollerin harfleri değişmez (Li, Ti, Nb): düğme yazısını büyük harfe çeviren saat kuralı uygulanmaz. */
+:root:has(.saat-arac-ust) :is(.periodic-table-cell, .periodic-table-cell *, .element-neighbors-mini *, .periodic-table-preview-symbol) {
+  text-transform: none !important;
+  letter-spacing: normal;
+}
+/* Açık zeminli kutular koyu alanda da koyu yazıyla: periyodik tablo önizlemesi ve element komşuları. */
+:root:has(.saat-arac-ust) .periodic-table-preview,
+:root:has(.saat-arac-ust) .periodic-table-preview :is(h3, span, p, div),
+:root:has(.saat-arac-ust) .element-neighbors-mini :is(.periodic-table-cell, .periodic-table-cell *) {
+  color: #121212 !important;
+}
+/* Adım adım çözüm kutusu koyu alanda koyu kutu (açık zemin üzerinde beyaz yazı okunmuyordu). */
+:root:has(.saat-arac-ust[data-tur="arac"]) .all-conversions-header ~ :not(.time-tool-related, .page-toc, section.category-article-content, .time-tool-related ~ *, .page-toc ~ *, section.category-article-content ~ *) .calculator-steps {
+  border-color: #333333;
+  border-radius: 0;
+  background: #141414;
+}
+/* Renkli kart için yazılmış not kutusu kâğıt zeminde koyu yazıyla. */
+:root:has(.saat-arac-ust) .category-article-content > .calculator-usage-hint {
+  background: rgba(0, 0, 0, 0.04);
+  color: #24324a;
+}

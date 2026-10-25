@@ -733,7 +733,7 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
     relatedToolsTitle: "İlgili sayfalar",
     relatedToolsLinks: [
       { href: "/hesaplayicilar#teknik", label: "Teknik ve Mühendislik Araçları" },
-      { href: "/bilim-hesaplayicilari", label: "Bilim Hesaplayıcıları" },
+      { href: "/hesaplayicilar#matematik", label: "Matematik ve Kimya Hesaplayıcıları" },
     ],
     alternateTitle: "Diğer diller",
     alternateLink: {

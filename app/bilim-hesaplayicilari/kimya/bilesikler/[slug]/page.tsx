@@ -102,8 +102,8 @@ export default async function CompoundPage({ params }: PageProps) {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: buildSiteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "Bilim Hesaplayıcıları", item: buildSiteUrl("/bilim-hesaplayicilari") },
-      { "@type": "ListItem", position: 3, name: "Kimya", item: buildSiteUrl("/bilim-hesaplayicilari/kimya") },
+      { "@type": "ListItem", position: 2, name: "Hesaplamalar", item: buildSiteUrl("/hesaplayicilar") },
+      { "@type": "ListItem", position: 3, name: "Kimya", item: buildSiteUrl("/hesaplayicilar#kimya") },
       { "@type": "ListItem", position: 4, name: "Bileşikler", item: buildSiteUrl("/bilim-hesaplayicilari/kimya/bilesikler") },
       { "@type": "ListItem", position: 5, name: compound.nameTr, item: pageUrl },
     ],
@@ -118,7 +118,7 @@ export default async function CompoundPage({ params }: PageProps) {
         <nav className="breadcrumbs" aria-label="Sayfa yolu">
           <Link href="/">Ana Sayfa</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/bilim-hesaplayicilari/kimya">Kimya</Link>
+          <Link href="/hesaplayicilar#kimya">Kimya</Link>
           <span aria-hidden="true">&rsaquo;</span>
           <Link href="/bilim-hesaplayicilari/kimya/bilesikler">Bileşikler</Link>
           <span aria-hidden="true">&rsaquo;</span>

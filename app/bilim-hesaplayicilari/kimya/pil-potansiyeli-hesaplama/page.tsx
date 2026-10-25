@@ -64,14 +64,14 @@ export default function PilPotansiyeliHesaplamaPage() {
       {
         "@type": "ListItem",
         position: 2,
-        name: "Bilim Hesaplayıcıları",
-        item: buildSiteUrl("/bilim-hesaplayicilari"),
+        name: "Hesaplamalar",
+        item: buildSiteUrl("/hesaplayicilar"),
       },
       {
         "@type": "ListItem",
         position: 3,
         name: "Kimya",
-        item: buildSiteUrl("/bilim-hesaplayicilari/kimya"),
+        item: buildSiteUrl("/hesaplayicilar#kimya"),
       },
       {
         "@type": "ListItem",
@@ -101,9 +101,9 @@ export default function PilPotansiyeliHesaplamaPage() {
         <nav className="breadcrumbs" aria-label="Sayfa yolu">
           <Link href="/">Ana Sayfa</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/bilim-hesaplayicilari">Bilim Hesaplayıcıları</Link>
+          <Link href="/hesaplayicilar">Hesaplamalar</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/bilim-hesaplayicilari/kimya">Kimya</Link>
+          <Link href="/hesaplayicilar#kimya">Kimya</Link>
           <span aria-hidden="true">&rsaquo;</span>
           <span>Pil Potansiyeli Hesaplama</span>
         </nav>
@@ -117,8 +117,10 @@ export default function PilPotansiyeliHesaplamaPage() {
           </p>
         </header>
 
-        <div className="unit-page-layout chem-calculator-layout">
-        <div className="unit-page-content">
+        <div className="unit-page-converter">
+          <CellPotentialCalculator />
+        </div>
+
         <section className="category-article-content">
           <h2>Pil potansiyeli nedir?</h2>
           <p>
@@ -196,12 +198,7 @@ export default function PilPotansiyeliHesaplamaPage() {
             referans tablolarına (25°C, 1 M, 1 atm) dayanır.
           </p>
         </section>
-        </div>
 
-        <div className="unit-page-converter">
-          <CellPotentialCalculator />
-        </div>
-        </div>
       </div>
     </main>
   );

@@ -64,14 +64,14 @@ export default function KarekokHesaplamaPage() {
       {
         "@type": "ListItem",
         position: 2,
-        name: "Bilim Hesaplayıcıları",
-        item: buildSiteUrl("/bilim-hesaplayicilari"),
+        name: "Hesaplamalar",
+        item: buildSiteUrl("/hesaplayicilar"),
       },
       {
         "@type": "ListItem",
         position: 3,
         name: "Matematik",
-        item: buildSiteUrl("/bilim-hesaplayicilari/matematik"),
+        item: buildSiteUrl("/hesaplayicilar#matematik"),
       },
       {
         "@type": "ListItem",
@@ -101,9 +101,9 @@ export default function KarekokHesaplamaPage() {
         <nav className="breadcrumbs" aria-label="Sayfa yolu">
           <Link href="/">Ana Sayfa</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/bilim-hesaplayicilari">Bilim Hesaplayıcıları</Link>
+          <Link href="/hesaplayicilar">Hesaplamalar</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/bilim-hesaplayicilari/matematik">Matematik</Link>
+          <Link href="/hesaplayicilar#matematik">Matematik</Link>
           <span aria-hidden="true">&rsaquo;</span>
           <span>Karekök Hesaplama</span>
         </nav>
@@ -116,8 +116,10 @@ export default function KarekokHesaplamaPage() {
           </p>
         </header>
 
-        <div className="unit-page-layout wide-calculator-layout">
-        <div className="unit-page-content">
+        <div className="unit-page-converter">
+          <SquareRootCalculator />
+        </div>
+
         <section className="category-article-content">
           <h2>Karekök nedir?</h2>
           <p>
@@ -210,12 +212,7 @@ export default function KarekokHesaplamaPage() {
             ortaokul ve lise matematik müfredatına dayanır.
           </p>
         </section>
-        </div>
 
-        <div className="unit-page-converter">
-          <SquareRootCalculator />
-        </div>
-        </div>
       </div>
     </main>
   );

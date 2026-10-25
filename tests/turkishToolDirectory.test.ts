@@ -54,12 +54,12 @@ describe("Türkçe üst menü", () => {
     expect(broken).toEqual([]);
   });
 
-  it("altı ana başlık var", () => {
+  // Bilim, 25 Ekim 2026'da Hesaplamalar'a katıldı.
+  it("beş ana başlık var", () => {
     expect(getMenuGroups("tr").map((group) => group.label)).toEqual([
       "Dönüşümler",
       "Hesaplamalar",
       "Mühendislik",
-      "Bilim",
       "Dünya ve Coğrafya",
       "Tarih & Saat",
     ]);

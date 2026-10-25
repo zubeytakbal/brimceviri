@@ -118,8 +118,10 @@ export default function PermutasyonKombinasyonPage() {
           </p>
         </header>
 
-        <div className="unit-page-layout wide-calculator-layout">
-        <div className="unit-page-content">
+        <div className="unit-page-converter">
+          <CombinatoricsCalculator />
+        </div>
+
         <section className="category-article-content">
           <h2>Permütasyon nedir?</h2>
           <p>
@@ -200,12 +202,7 @@ export default function PermutasyonKombinasyonPage() {
             lise ve AYT matematik müfredatına dayanır.
           </p>
         </section>
-        </div>
 
-        <div className="unit-page-converter">
-          <CombinatoricsCalculator />
-        </div>
-        </div>
       </div>
     </main>
   );

@@ -112,8 +112,10 @@ export default function YuzdeHesaplamaPage() {
           </p>
         </header>
 
-        <div className="unit-page-layout wide-calculator-layout">
-        <div className="unit-page-content">
+        <div className="unit-page-converter">
+          <PercentageCalculator />
+        </div>
+
         <section className="category-article-content">
           <h2>Yüzde nedir?</h2>
           <p>
@@ -179,12 +181,7 @@ export default function YuzdeHesaplamaPage() {
             matematik müfredatına dayanır.
           </p>
         </section>
-        </div>
 
-        <div className="unit-page-converter">
-          <PercentageCalculator />
-        </div>
-        </div>
       </div>
     </main>
   );

@@ -108,8 +108,10 @@ export default function PisagorTeoremiPage() {
           </p>
         </header>
 
-        <div className="unit-page-layout wide-calculator-layout">
-        <div className="unit-page-content">
+        <div className="unit-page-converter">
+          <PythagoreanCalculator />
+        </div>
+
         <section className="category-article-content">
           <h2>Pisagor teoremi nedir?</h2>
           <p>
@@ -174,12 +176,7 @@ export default function PisagorTeoremiPage() {
             geometri müfredatına dayanır.
           </p>
         </section>
-        </div>
 
-        <div className="unit-page-converter">
-          <PythagoreanCalculator />
-        </div>
-        </div>
       </div>
     </main>
   );

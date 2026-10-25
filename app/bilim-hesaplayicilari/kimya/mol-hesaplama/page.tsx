@@ -114,8 +114,10 @@ export default function MolHesaplamaPage() {
           </p>
         </header>
 
-        <div className="unit-page-layout chem-calculator-layout">
-        <div className="unit-page-content">
+        <div className="unit-page-converter">
+          <MolCalculator />
+        </div>
+
         <section className="category-article-content">
           <h2>Mol nedir?</h2>
           <p>
@@ -239,12 +241,7 @@ export default function MolHesaplamaPage() {
             dayanır.
           </p>
         </section>
-        </div>
 
-        <div className="unit-page-converter">
-          <MolCalculator />
-        </div>
-        </div>
       </div>
     </main>
   );

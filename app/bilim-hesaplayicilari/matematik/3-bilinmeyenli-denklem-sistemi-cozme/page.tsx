@@ -131,8 +131,14 @@ export default function UcBilinmeyenliDenklemSistemiPage() {
           </p>
         </header>
 
-        <div className="unit-page-layout wide-calculator-layout">
-        <div className="unit-page-content">
+        <div className="unit-page-converter">
+          <EquationSystemCalculator
+            variableCount={3}
+            defaultEquations={["x+y+z=6", "x-y=1", "y-z=1"]}
+            examples={examples}
+          />
+        </div>
+
         <section className="category-article-content">
           <h2>3 bilinmeyenli denklem sistemi nedir?</h2>
           <p>
@@ -186,16 +192,7 @@ export default function UcBilinmeyenliDenklemSistemiPage() {
             dayanır.
           </p>
         </section>
-        </div>
 
-        <div className="unit-page-converter">
-          <EquationSystemCalculator
-            variableCount={3}
-            defaultEquations={["x+y+z=6", "x-y=1", "y-z=1"]}
-            examples={examples}
-          />
-        </div>
-        </div>
       </div>
     </main>
   );

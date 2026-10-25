@@ -125,8 +125,14 @@ export default function IkiBilinmeyenliDenklemSistemiPage() {
           </p>
         </header>
 
-        <div className="unit-page-layout wide-calculator-layout">
-        <div className="unit-page-content">
+        <div className="unit-page-converter">
+          <EquationSystemCalculator
+            variableCount={2}
+            defaultEquations={["x+y=10", "x-y=4"]}
+            examples={examples}
+          />
+        </div>
+
         <section className="category-article-content">
           <h2>2 bilinmeyenli denklem sistemi nedir?</h2>
           <p>
@@ -187,16 +193,7 @@ export default function IkiBilinmeyenliDenklemSistemiPage() {
             olmayan sistemlerin genel çözüm yöntemine dayanır.
           </p>
         </section>
-        </div>
 
-        <div className="unit-page-converter">
-          <EquationSystemCalculator
-            variableCount={2}
-            defaultEquations={["x+y=10", "x-y=4"]}
-            examples={examples}
-          />
-        </div>
-        </div>
       </div>
     </main>
   );

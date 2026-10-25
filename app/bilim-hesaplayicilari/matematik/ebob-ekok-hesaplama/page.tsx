@@ -120,8 +120,10 @@ export default function EbobEkokHesaplamaPage() {
           </p>
         </header>
 
-        <div className="unit-page-layout wide-calculator-layout">
-        <div className="unit-page-content">
+        <div className="unit-page-converter">
+          <EbobEkokCalculator />
+        </div>
+
         <section className="category-article-content">
           <h2>EBOB (OBEB) nedir?</h2>
           <p>
@@ -217,12 +219,7 @@ export default function EbobEkokHesaplamaPage() {
             standart ortaokul ve lise matematik müfredatına dayanır.
           </p>
         </section>
-        </div>
 
-        <div className="unit-page-converter">
-          <EbobEkokCalculator />
-        </div>
-        </div>
       </div>
     </main>
   );

@@ -85,8 +85,10 @@ export default function OlasilikHesaplamaPage() {
           </p>
         </header>
 
-        <div className="unit-page-layout wide-calculator-layout">
-        <div className="unit-page-content">
+        <div className="unit-page-converter">
+          <CombinatoricsCalculator />
+        </div>
+
         <section className="category-article-content">
           <h2>Olasılık nedir?</h2>
           <p>
@@ -151,12 +153,7 @@ export default function OlasilikHesaplamaPage() {
             matematik müfredatına dayanır.
           </p>
         </section>
-        </div>
 
-        <div className="unit-page-converter">
-          <CombinatoricsCalculator />
-        </div>
-        </div>
       </div>
     </main>
   );

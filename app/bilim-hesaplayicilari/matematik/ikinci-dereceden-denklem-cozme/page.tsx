@@ -118,8 +118,12 @@ export default function IkinciDerecedenDenklemPage() {
           </p>
         </header>
 
-        <div className="unit-page-layout wide-calculator-layout">
-        <div className="unit-page-content">
+        <div className="unit-page-converter">
+          <div className="category-general-converter">
+            <QuadraticEquationCalculator />
+          </div>
+        </div>
+
         <section className="category-article-content">
           <h2>İkinci dereceden denklem nedir?</h2>
           <p>
@@ -197,14 +201,7 @@ export default function IkinciDerecedenDenklemPage() {
             (10. sınıf) matematik müfredatına dayanır.
           </p>
         </section>
-        </div>
 
-        <div className="unit-page-converter">
-          <div className="category-general-converter">
-            <QuadraticEquationCalculator />
-          </div>
-        </div>
-        </div>
       </div>
     </main>
   );

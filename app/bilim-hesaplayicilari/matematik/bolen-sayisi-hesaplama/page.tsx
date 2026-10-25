@@ -116,8 +116,10 @@ export default function BolenSayisiHesaplamaPage() {
           </p>
         </header>
 
-        <div className="unit-page-layout wide-calculator-layout">
-        <div className="unit-page-content">
+        <div className="unit-page-converter">
+          <DivisorCountCalculator />
+        </div>
+
         <section className="category-article-content">
           <h2>Bölen nedir?</h2>
           <p>
@@ -204,12 +206,7 @@ export default function BolenSayisiHesaplamaPage() {
             teorisi kaynaklarına dayanır.
           </p>
         </section>
-        </div>
 
-        <div className="unit-page-converter">
-          <DivisorCountCalculator />
-        </div>
-        </div>
       </div>
     </main>
   );

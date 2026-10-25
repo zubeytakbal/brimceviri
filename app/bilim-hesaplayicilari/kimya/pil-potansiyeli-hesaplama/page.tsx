@@ -117,8 +117,10 @@ export default function PilPotansiyeliHesaplamaPage() {
           </p>
         </header>
 
-        <div className="unit-page-layout chem-calculator-layout">
-        <div className="unit-page-content">
+        <div className="unit-page-converter">
+          <CellPotentialCalculator />
+        </div>
+
         <section className="category-article-content">
           <h2>Pil potansiyeli nedir?</h2>
           <p>
@@ -196,12 +198,7 @@ export default function PilPotansiyeliHesaplamaPage() {
             referans tablolarına (25°C, 1 M, 1 atm) dayanır.
           </p>
         </section>
-        </div>
 
-        <div className="unit-page-converter">
-          <CellPotentialCalculator />
-        </div>
-        </div>
       </div>
     </main>
   );

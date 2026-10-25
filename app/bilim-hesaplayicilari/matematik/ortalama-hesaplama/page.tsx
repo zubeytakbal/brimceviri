@@ -114,8 +114,10 @@ export default function OrtalamaHesaplamaPage() {
           </p>
         </header>
 
-        <div className="unit-page-layout wide-calculator-layout">
-        <div className="unit-page-content">
+        <div className="unit-page-converter">
+          <StatisticsCalculator />
+        </div>
+
         <section className="category-article-content">
           <h2>Merkezi eğilim ölçüleri: ortalama, medyan, mod</h2>
           <p>
@@ -190,12 +192,7 @@ export default function OrtalamaHesaplamaPage() {
             lise ve AYT istatistik müfredatına dayanır.
           </p>
         </section>
-        </div>
 
-        <div className="unit-page-converter">
-          <StatisticsCalculator />
-        </div>
-        </div>
       </div>
     </main>
   );

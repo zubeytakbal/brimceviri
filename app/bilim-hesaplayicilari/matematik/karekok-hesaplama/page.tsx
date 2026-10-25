@@ -116,8 +116,10 @@ export default function KarekokHesaplamaPage() {
           </p>
         </header>
 
-        <div className="unit-page-layout wide-calculator-layout">
-        <div className="unit-page-content">
+        <div className="unit-page-converter">
+          <SquareRootCalculator />
+        </div>
+
         <section className="category-article-content">
           <h2>Karekök nedir?</h2>
           <p>
@@ -210,12 +212,7 @@ export default function KarekokHesaplamaPage() {
             ortaokul ve lise matematik müfredatına dayanır.
           </p>
         </section>
-        </div>
 
-        <div className="unit-page-converter">
-          <SquareRootCalculator />
-        </div>
-        </div>
       </div>
     </main>
   );

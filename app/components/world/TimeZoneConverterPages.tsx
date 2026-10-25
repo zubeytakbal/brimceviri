@@ -57,6 +57,83 @@ function converterOptions(lang: "tr" | "en") {
   return zoneOptions.map((o) => ({ id: o.id, label: lang === "tr" ? o.tr : o.en, timeZone: o.timeZone, group: o.group }));
 }
 
+const saatMetni = (dakika: number) => `${String(Math.floor(dakika / 60)).padStart(2, "0")}:${String(dakika % 60).padStart(2, "0")}`;
+
+/** Türkçe saat dilimi sayfasına özgü bölümler: yaz saati yüzünden mevsime göre değişen farklar ve İstanbul mesaisiyle örtüşme. */
+function TurkiyeSaatEkleri({ now, popular }: { now: Date; popular: { city: (typeof worldCities)[number]; diff: number }[] }) {
+  const yil = now.getUTCFullYear() + 1;
+  const ocak = new Date(Date.UTC(yil, 0, 15, 12));
+  const temmuz = new Date(Date.UTC(yil, 6, 15, 12));
+  const mevsimlik = popular.map(({ city }) => ({
+    city,
+    kis: differenceMinutes("Europe/Istanbul", city.timeZone, ocak),
+    yaz: differenceMinutes("Europe/Istanbul", city.timeZone, temmuz),
+  }));
+  return (
+    <>
+      <h2 id="yaz-saati">Türkiye saati ve yaz saati</h2>
+      <p>
+        Türkiye Eylül 2016&apos;dan beri yıl boyunca UTC+3 saatini kullanıyor ve yaz saati uygulamasına geçmiyor. Avrupa ve Kuzey Amerika&apos;daki
+        birçok ülke ise ilkbaharda saatini bir saat ileri, sonbaharda bir saat geri alıyor. Bu yüzden Türkiye ile bu şehirler arasındaki fark yılda
+        iki kez değişir; Güney Yarımküre&apos;deki Sidney&apos;de değişim ters yöndedir. Aşağıdaki tablo {yil} yılının Ocak ve Temmuz aylarındaki farkı
+        gösterir.
+      </p>
+      <div className="conversion-table-wrap">
+        <table className="conversion-table">
+          <thead>
+            <tr>
+              <th>Şehir</th>
+              <th>Ocak {yil}</th>
+              <th>Temmuz {yil}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {mevsimlik.map(({ city, kis, yaz }) => (
+              <tr key={city.en}>
+                <td>{city.nameTr}</td>
+                <td>{describeDifference(kis, "tr")}</td>
+                <td>{kis === yaz ? "değişmez" : describeDifference(yaz, "tr")}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p>
+        Yaz saatinin hangi gün başlayıp bittiğini ve ülkelerin uygulamalarını <Link href="/yaz-saati">yaz saati</Link> sayfasında bulabilirsiniz.
+      </p>
+
+      <h2 id="mesai">Ortak mesai saatleri</h2>
+      <p>
+        Uluslararası toplantı ya da müşteri görüşmesi planlarken iki tarafın da mesaide olduğu saatleri bilmek gerekir. Tablo, iki tarafın da
+        09:00-18:00 arasında çalıştığını varsayarak bugünkü saat farkıyla ortak saatleri İstanbul saatiyle verir. Ortak saat yoksa toplantı ancak
+        taraflardan birinin mesai dışında yapılabilir.
+      </p>
+      <div className="conversion-table-wrap">
+        <table className="conversion-table">
+          <thead>
+            <tr>
+              <th>Şehir</th>
+              <th>Ortak mesai (İstanbul saati)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {popular.map(({ city, diff }) => {
+              const bas = Math.max(540, 540 - diff);
+              const bit = Math.min(1080, 1080 - diff);
+              return (
+                <tr key={city.en}>
+                  <td>{city.nameTr}</td>
+                  <td>{bit > bas ? `${saatMetni(bas)}-${saatMetni(bit)} (${((bit - bas) / 60).toLocaleString("tr-TR")} saat)` : "ortak saat yok"}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </>
+  );
+}
+
 export function TimeZoneConverterHub({ lang }: { lang: "tr" | "en" }) {
   const tr = lang === "tr";
   const now = new Date();
@@ -140,7 +217,12 @@ export function TimeZoneConverterHub({ lang }: { lang: "tr" | "en" }) {
       tocItems={[
         { id: "nasil", label: tr ? "Nasıl kullanılır?" : "How to use it" },
         { id: "farklar", label: tr ? "Türkiye ile popüler saat farkları" : "Popular differences from New York" },
-        ...(tr ? [] : [{ id: "kisaltmalar", label: "Time zone abbreviation converters" }]),
+        ...(tr
+          ? [
+              { id: "yaz-saati", label: "Türkiye saati ve yaz saati" },
+              { id: "mesai", label: "Ortak mesai saatleri" },
+            ]
+          : [{ id: "kisaltmalar", label: "Time zone abbreviation converters" }]),
         { id: "faq", label: tr ? "Sık sorulan sorular" : "FAQ" },
       ]}
       faqTitle={tr ? "Sık Sorulan Sorular" : "Frequently Asked Questions"}
@@ -188,6 +270,8 @@ export function TimeZoneConverterHub({ lang }: { lang: "tr" | "en" }) {
           </tbody>
         </table>
       </div>
+
+      {tr && <TurkiyeSaatEkleri now={now} popular={popular} />}
 
       {!tr && (
         <>

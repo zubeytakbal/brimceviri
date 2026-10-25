@@ -28,6 +28,32 @@ const faqItems: FaqItem[] = [
   },
 ];
 
+// "Delta ile kök bulma" örnekleri: üç durum (Δ > 0, Δ = 0, Δ < 0); delta ve kökler derlemede hesaplanır.
+const ORNEKLER: Array<[number, number, number]> = [
+  [1, -5, 6],
+  [2, 3, -2],
+  [1, 0, -9],
+  [1, -4, 4],
+  [4, -12, 9],
+  [1, 2, 5],
+];
+const sayi = (n: number) => n.toLocaleString("tr-TR", { maximumFractionDigits: 3 });
+const terim = (k: number, x: string, ilk: boolean) => {
+  if (k === 0) return "";
+  const isaret = k < 0 ? (ilk ? "−" : " − ") : ilk ? "" : " + ";
+  const mutlak = Math.abs(k);
+  return `${isaret}${mutlak === 1 && x ? "" : sayi(mutlak)}${x}`;
+};
+const denklem = ([a, b, c]: [number, number, number]) => `${terim(a, "x²", true)}${terim(b, "x", false)}${terim(c, "", false)} = 0`;
+const cozum = ([a, b, c]: [number, number, number]) => {
+  const delta = b * b - 4 * a * c;
+  if (delta < 0) return { delta, kokler: "Gerçek kök yok (Δ < 0)" };
+  if (delta === 0) return { delta, kokler: `Tek (çakışık) kök: x = ${sayi(-b / (2 * a))}` };
+  const x1 = (-b + Math.sqrt(delta)) / (2 * a);
+  const x2 = (-b - Math.sqrt(delta)) / (2 * a);
+  return { delta, kokler: `x₁ = ${sayi(x1)}, x₂ = ${sayi(x2)}` };
+};
+
 export const metadata: Metadata = {
   title: "İkinci Dereceden Denklem Çözme (Delta Hesaplama)",
   description:
@@ -162,6 +188,35 @@ export default function IkinciDerecedenDenklemPage() {
             x₂ = (−b−√Δ)/2a); Δ = 0 iken √Δ = 0 olduğundan tek bir kök kalır
             (x = −b/2a).
           </p>
+
+          <h2 id="delta-ile-kok-bulma">Delta ile kök bulma: çözülmüş örnekler</h2>
+          <p>
+            Önce Δ = b² − 4ac hesaplanır, sonra işaretine bakılır: Δ &gt; 0 ise iki kök, Δ = 0 ise tek kök vardır, Δ &lt; 0 ise
+            gerçek kök yoktur. Örneğin x² − 5x + 6 = 0 için a = 1, b = −5, c = 6; Δ = 25 − 24 = 1 ve kökler (5 ± 1) / 2, yani 3 ve 2.
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th scope="col">Denklem</th>
+                  <th scope="col">Δ = b² − 4ac</th>
+                  <th scope="col">Kökler</th>
+                </tr>
+              </thead>
+              <tbody>
+                {ORNEKLER.map((o) => {
+                  const r = cozum(o);
+                  return (
+                    <tr key={o.join(",")}>
+                      <td>{denklem(o)}</td>
+                      <td>{sayi(r.delta)}</td>
+                      <td>{r.kokler}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
 
           <h2>Gerçek hayatta nerede kullanılır?</h2>
           <p>

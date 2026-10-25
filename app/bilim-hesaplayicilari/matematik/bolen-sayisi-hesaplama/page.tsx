@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import DivisorCountCalculator from "../../../components/DivisorCountCalculator";
+import { asallikDurumu, calculateDivisorCount } from "../../../converter/divisorCountCalculator";
+import { formatFactorization } from "../../../converter/ebobEkokCalculator";
 import { buildFaqSchema, type FaqItem } from "../../../converter/faqSchema";
 import { buildSiteUrl } from "../../../siteConfig";
 
@@ -27,15 +29,23 @@ const faqItems: FaqItem[] = [
   },
 ];
 
+// Search Console'da (24 Temmuz – 24 Ekim 2026) "… asal mı" ve "… bölenleri" diye en çok sorulan sayılar; sonuçlar
+// derlemede hesaplanır.
+const ASAL_SORULAN = [97, 121, 81, 161, 143, 209, 343, 197, 89, 241, 231, 49, 511, 73, 203, 341, 237, 71];
+const BOLENI_SORULAN = [12, 36, 61, 97, 43, 73, 89, 37, 83, 600];
+const ASAL_ETIKET = { asal: "Asal", bileşik: "Asal değil (bileşik)", bir: "Ne asal ne bileşik" } as const;
+const sayi = (n: number) => n.toLocaleString("tr-TR");
+const asallar200 = Array.from({ length: 199 }, (_, i) => i + 2).filter((n) => calculateDivisorCount(n)!.divisorCount === 2);
+
 export const metadata: Metadata = {
-  title: "Bölen Sayısı Hesaplama: Asal Çarpanlarla Bul",
+  title: "Bölen Sayısı Hesaplama: Bir Sayı Asal mı? Bölenleri",
   description:
-    "Bir sayının kaç pozitif böleni olduğunu, bölenlerinin toplamını ve tüm bölenlerin listesini asal çarpanlara ayırarak hesaplayın.",
+    "Bir sayının asal olup olmadığını, kaç pozitif böleni olduğunu, bölenlerinin listesini ve toplamını asal çarpanlara ayırarak hesaplayın. 97, 121, 143 asal mı?",
   alternates: {
     canonical: "/bilim-hesaplayicilari/matematik/bolen-sayisi-hesaplama",
   },
   openGraph: {
-    title: "Bölen Sayısı Hesaplama: Asal Çarpanlarla Bul",
+    title: "Bölen Sayısı Hesaplama: Bir Sayı Asal mı? Bölenleri",
     description: "Bir sayının bölen sayısını adım adım hesaplayın.",
     url: buildSiteUrl(
       "/bilim-hesaplayicilari/matematik/bolen-sayisi-hesaplama"
@@ -121,6 +131,66 @@ export default function BolenSayisiHesaplamaPage() {
         </div>
 
         <section className="category-article-content">
+          <h2 id="asal-mi">Bir sayı asal mı?</h2>
+          <p>
+            Bir sayı, tam olarak iki pozitif böleni (1 ve kendisi) varsa <strong>asaldır</strong>. Bölen sayısı ikiden fazlaysa
+            sayı <strong>bileşiktir</strong>; 1 ise ne asal ne bileşiktir. Yukarıdaki araca sayıyı yazınca &quot;Asal mı?&quot;
+            kutusu cevabı verir. Aramalarda en sık sorulan sayılar:
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th scope="col">Sayı</th>
+                  <th scope="col">Asal mı?</th>
+                  <th scope="col">Asal çarpanları</th>
+                </tr>
+              </thead>
+              <tbody>
+                {ASAL_SORULAN.map((n) => {
+                  const r = calculateDivisorCount(n)!;
+                  return (
+                    <tr key={n}>
+                      <td>{sayi(n)}</td>
+                      <td>{ASAL_ETIKET[asallikDurumu(n, r.divisorCount)]}</td>
+                      <td>{formatFactorization(r.factors)}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="asal-sayilar">1&apos;den 200&apos;e kadar asal sayılar</h2>
+          <p>
+            200&apos;e kadar {asallar200.length} asal sayı vardır: {asallar200.join(", ")}.
+          </p>
+
+          <h2 id="bolenler">Bölenleri sık sorulan sayılar</h2>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th scope="col">Sayı</th>
+                  <th scope="col">Bölenleri</th>
+                  <th scope="col">Bölen sayısı</th>
+                </tr>
+              </thead>
+              <tbody>
+                {BOLENI_SORULAN.map((n) => {
+                  const r = calculateDivisorCount(n)!;
+                  return (
+                    <tr key={n}>
+                      <td>{sayi(n)}</td>
+                      <td>{r.divisors!.join(", ")}</td>
+                      <td>{r.divisorCount}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+
           <h2>Bölen nedir?</h2>
           <p>
             Bir sayının <strong>böleni</strong>, o sayıyı kalansız

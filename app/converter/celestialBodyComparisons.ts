@@ -201,7 +201,10 @@ export type CelestialBodyComparisonResult = {
   second: CelestialBodyEntry;
   diameterRatio: number;
   massRatio: number;
+  /** Çapça büyük olan. */
   largerId: string;
+  /** Kütlece büyük olan; çapça büyük olandan farklı olabilir (Uranüs daha geniş, Neptün daha ağır). */
+  heavierId: string;
 };
 
 export function getCelestialBodyComparison(
@@ -235,6 +238,8 @@ export function getCelestialBodyComparison(
   const largerId =
     first.diameterKm >= second.diameterKm ? first.id : second.id;
 
+  const heavierId = first.massKg >= second.massKg ? first.id : second.id;
+
   return {
     slug: definition.slug,
     context: definition.context,
@@ -243,6 +248,7 @@ export function getCelestialBodyComparison(
     diameterRatio,
     massRatio,
     largerId,
+    heavierId,
   };
 }
 

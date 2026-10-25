@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { calculateDivisorCount } from "../converter/divisorCountCalculator";
+import { asallikDurumu, calculateDivisorCount } from "../converter/divisorCountCalculator";
 import { formatFactorization } from "../converter/ebobEkokCalculator";
 import { trGenitive } from "../converter/turkishSuffix";
 
@@ -102,6 +102,12 @@ export default function DivisorCountCalculator() {
             <div>
               <span>Bölenler toplamı</span>
               <strong>{formatNumber(result.sumOfDivisors)}</strong>
+            </div>
+            <div>
+              <span>Asal mı?</span>
+              <strong>
+                {{ asal: "Evet, asal", bileşik: "Hayır, bileşik", bir: "Ne asal ne bileşik" }[asallikDurumu(result.n, result.divisorCount)]}
+              </strong>
             </div>
           </div>
         )}

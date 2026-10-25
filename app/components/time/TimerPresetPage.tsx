@@ -100,7 +100,6 @@ export default function TimerPresetPage({ preset, lang }: { preset: TimerPreset;
           links: [
             ...neighbors.map((p) => ({ href: timerPresetPath(p, lang), label: timerPresetTitle(p, lang) })),
             { href: "/zamanlayici", label: "Tüm süreler" },
-            { href: "/pomodoro", label: "Pomodoro" },
           ],
         }}
         tocTitle="İçindekiler"

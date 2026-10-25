@@ -10,8 +10,6 @@ export const timeRelated = {
       { href: "/online-alarm-kur", label: "Online Alarm" },
       { href: "/zamanlayici", label: "Zamanlayıcı" },
       { href: "/kronometre", label: "Kronometre" },
-      { href: "/pomodoro", label: "Pomodoro" },
-      { href: "/tabata-zamanlayici", label: "Tabata Zamanlayıcı" },
       { href: "/resmi-tatiller", label: "Resmî Tatiller" },
       { href: "/is-gunu-hesaplama", label: "İş Günü Hesaplama" },
       { href: "/uyku-hesaplama", label: "Uyku Hesaplama" },

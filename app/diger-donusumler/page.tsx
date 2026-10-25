@@ -736,15 +736,6 @@ export default function DigerDonusumlerPage() {
       group: "Fotoğrafçılık Hesaplayıcıları",
     },
     {
-      id: "unix-zaman-damgasi",
-      href: "/unix-zaman-damgasi-cevirici",
-      title: "Unix Zaman Damgası Çevirici",
-      description:
-        "Epoch (saniye/milisaniye) ile tarih arasında, Türkiye saatine göre çevrim yapın.",
-      iconName: "unixTimestampCalculator" as const,
-      group: "Elektronik, Yazılım ve Medya Araçları",
-    },
-    {
       id: "renk-kodu",
       href: "/renk-kodu-cevirici",
       title: "Renk Kodu Çevirici",

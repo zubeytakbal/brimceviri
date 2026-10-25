@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { saatSayfasiKalkti } from "../../components/saat/kaldirilanSaatSayfalari";
 import { appManifestPath, findInstallableApp } from "../../converter/time/installableApps";
 import { notFound } from "next/navigation";
 import TimerPresetPage, { timerPresetTitle } from "../../components/time/TimerPresetPage";
@@ -8,7 +9,7 @@ import { buildSiteUrl } from "../../siteConfig";
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return timerPresets.map((preset) => ({ sure: preset.tr }));
+  return timerPresets.filter((preset) => !saatSayfasiKalkti(`/zamanlayici/${preset.tr}`)).map((preset) => ({ sure: preset.tr }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ sure: string }> }): Promise<Metadata> {

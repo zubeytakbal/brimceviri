@@ -31,9 +31,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: pagePath,
     languages: {
-      tr: "/unix-zaman-damgasi-cevirici",
       "uz-UZ": pagePath,
-      "x-default": "/unix-zaman-damgasi-cevirici",
+      "x-default": pagePath,
     },
   },
   openGraph: {

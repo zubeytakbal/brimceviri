@@ -1,4 +1,5 @@
 import { germanCities } from "./converter/geo/germanCities";
+import { saatSayfasiKalkti } from "./components/saat/kaldirilanSaatSayfalari";
 import { ARABIC_ISLAMIC_SITEMAP } from "./i18n/arabicIslamicTools";
 import { entfernungStadtPath } from "./converter/geo/germanDistances";
 import { countriesDe, countryPathDe } from "./converter/geo/worldGeoDe";
@@ -2730,7 +2731,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...[
       ["/tarih-cevirici", "/en/hijri-date-converter"],
       ["/ay-evreleri", "/en/moon-phases"],
-      ["/altin-saat", "/en/golden-hour"],
     ].flatMap(([trPath, enPath]) =>
       [trPath, enPath].map((path) => ({
         url: `${baseUrl}${path}`,
@@ -2950,12 +2950,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/devamsizlik-hesaplama`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-    },
-    {
-      url: `${baseUrl}/unix-zaman-damgasi-cevirici`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
       priority: 0.75,
@@ -4191,9 +4185,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
       alternates: {
         languages: {
-          tr: `${baseUrl}/unix-zaman-damgasi-cevirici`,
           "uz-UZ": `${baseUrl}/uz/unix-vaqt-tamgasi-aylantirgich`,
-          "x-default": `${baseUrl}/unix-zaman-damgasi-cevirici`,
+          "x-default": `${baseUrl}/uz/unix-vaqt-tamgasi-aylantirgich`,
         },
       },
     },
@@ -6442,8 +6435,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Google verlangt in hreflang-Alternativen absolute Adressen; relative Pfade (z. B. "/uyku-hesaplama")
   // werden hier zentral ergänzt, damit keine Quelle sie vergessen kann.
   const absolute = (href: string) => (href.startsWith("/") ? `${baseUrl}${href}` : href);
-  // Dizine kapalı adresler (app/indexPolicy.ts) haritaya ve hreflang alternatiflerine girmez.
-  const closed = (href: string) => isClosedPath(href.startsWith(baseUrl) ? href.slice(baseUrl.length) || "/" : href);
+  // Dizine kapalı adresler (app/indexPolicy.ts) ve kaldırılan Tarih & Saat sayfaları haritaya ve hreflang alternatiflerine girmez.
+  const closed = (href: string) => {
+    const path = href.startsWith(baseUrl) ? href.slice(baseUrl.length) || "/" : href;
+    return isClosedPath(path) || saatSayfasiKalkti(path);
+  };
   return [...byUrl.values()]
     .filter((entry) => !closed(entry.url))
     .map((entry) => {

@@ -423,9 +423,11 @@ export default function CityTimePage({ city, lang, variant = "klasik" }: { city:
           </tbody>
         </table>
       </div>
-      <p>
-        <Link href={tr ? "/altin-saat" : "/en/golden-hour"}>{tr ? "Başka bir tarih ya da konum için altın saat hesaplayıcı" : "Golden hour calculator for any date or location"}</Link>
-      </p>
+      {!tr && (
+        <p>
+          <Link href="/en/golden-hour">Golden hour calculator for any date or location</Link>
+        </p>
+      )}
     </>
   );
 

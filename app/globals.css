@@ -3770,7 +3770,7 @@ main.category-page {
 
 .recipe-scaler-chip.is-active {
   background: #87c900;
-  color: #ffffff;
+  color: #10210a;
 }
 
 .recipe-scaler-chip:focus-visible {
@@ -4007,7 +4007,7 @@ main.embed-widget-page {
   border: 0;
   border-radius: 8px;
   background: #87c900;
-  color: #ffffff;
+  color: #10210a;
   font-size: 0.84rem;
   font-weight: 700;
   cursor: pointer;
@@ -14466,7 +14466,7 @@ a.all-units-row .all-units-name {
 
 .takvim-ay em sup {
   margin-left: 4px;
-  color: #8a97a3;
+  color: #5f6b78;
   font-size: 0.62rem;
   font-weight: 500;
 }
@@ -15736,7 +15736,7 @@ a.all-units-row .all-units-name {
 
 .cyc-ovulation {
   background: #5fb0dc;
-  color: #ffffff;
+  color: #0b2a3d;
 }
 
 .cyc-cal .fast-cal-day {
@@ -19535,7 +19535,7 @@ a.all-units-row .all-units-name {
 }
 
 .moon-sema small {
-  color: #f5c84a;
+  color: #fff1bf;
   font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -21038,7 +21038,8 @@ a.all-units-row .all-units-name {
 
 .ay-icerik .moon-strip-day.is-today,
 .ay-icerik .moon-sema li.is-bugun a {
-  background: var(--saat-vurgu);
+  /* Vurgu rengi biraz koyulaşır: üstündeki küçük beyaz yazı okunur kalır. */
+  background: color-mix(in srgb, var(--saat-vurgu) 70%, #000000);
 }
 
 .ay-icerik .moon-sema {
@@ -22707,4 +22708,70 @@ a.all-units-row .all-units-name {
 :root:has(.saat-arac-ust) .category-article-content > .calculator-usage-hint {
   background: rgba(0, 0, 0, 0.04);
   color: #24324a;
+}
+/* Koyu araç alanındaki açık zeminli kutular kendi koyu yazılarını korur; saat düzeninin "koyu alanda yazılar beyaz"
+   kuralı bunları da beyaz yapıyordu: seçenek kutusu, takvim günleri, tempo/uyku satırları, bölen listesi, araç kartları, okuma planı durumu. */
+:root:has(.saat-arac-ust[data-tur="arac"]) .all-conversions-header ~ :not(.time-tool-related, .page-toc, section.category-article-content, .time-tool-related ~ *, .page-toc ~ *, section.category-article-content ~ *) :is(.paint-calculator-checkbox-row, .fast-cal-day, .sleep-calculator-row, .divisor-list-note, .arac-kart, .okuma-durum),
+:root:has(.saat-arac-ust[data-tur="arac"]) .all-conversions-header ~ :not(.time-tool-related, .page-toc, section.category-article-content, .time-tool-related ~ *, .page-toc ~ *, section.category-article-content ~ *) :is(.paint-calculator-checkbox-row, .fast-cal-day, .sleep-calculator-row, .divisor-list-note, .arac-kart, .okuma-durum) :is(span, strong, small, em, b, p, label) {
+  color: #172033;
+}
+:root:has(.saat-arac-ust[data-tur="arac"]) .all-conversions-header ~ :not(.time-tool-related, .page-toc, section.category-article-content, .time-tool-related ~ *, .page-toc ~ *, section.category-article-content ~ *) .arac-kart span {
+  color: #5a6a76;
+}
+:root:has(.saat-arac-ust[data-tur="arac"]) .all-conversions-header ~ :not(.time-tool-related, .page-toc, section.category-article-content, .time-tool-related ~ *, .page-toc ~ *, section.category-article-content ~ *) .arac-kart .arac-yeni {
+  color: #1f7a45;
+}
+:root:has(.saat-arac-ust[data-tur="arac"]) .all-conversions-header ~ :not(.time-tool-related, .page-toc, section.category-article-content, .time-tool-related ~ *, .page-toc ~ *, section.category-article-content ~ *) .ph-classification[data-classification="asidik"] {
+  color: #b3261e;
+}
+:root:has(.saat-arac-ust[data-tur="arac"]) .all-conversions-header ~ :not(.time-tool-related, .page-toc, section.category-article-content, .time-tool-related ~ *, .page-toc ~ *, section.category-article-content ~ *) .ph-classification[data-classification="notr"] {
+  color: #3a4457;
+}
+:root:has(.saat-arac-ust[data-tur="arac"]) .all-conversions-header ~ :not(.time-tool-related, .page-toc, section.category-article-content, .time-tool-related ~ *, .page-toc ~ *, section.category-article-content ~ *) .ph-classification[data-classification="bazik"] {
+  color: #1a4fa0;
+}
+/* Telefonda tablolar sayfaya sığar: masaüstü boşlukları ve harf aralığı daralır, uzun başlıklar alt satıra geçer. */
+@media (max-width: 560px) {
+  :root:has(.saat-arac-ust) .all-conversions-page :is(.conversion-table, .holiday-table) :is(th, td) {
+    padding: 9px 6px;
+    font-size: 0.84rem;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+  }
+  :root:has(.saat-arac-ust) .all-conversions-page :is(.conversion-table, .holiday-table) th {
+    font-size: 0.7rem;
+    letter-spacing: 0;
+  }
+}
+
+/* Koyu alandaki tablo başlıkları açık zemin taşıyordu, üstündeki yazı beyaz kalıyordu: başlık zemini koyu alana bırakılır. */
+:root:has(.saat-arac-ust[data-tur="arac"]) .all-conversions-header ~ :not(.time-tool-related, .page-toc, section.category-article-content, .time-tool-related ~ *, .page-toc ~ *, section.category-article-content ~ *) :is(.conversion-table, .holiday-table) th {
+  background: transparent;
+  color: #ffffff;
+  border-bottom-color: rgba(255, 255, 255, 0.55);
+}
+/* Koyu alanda seçili saat ayarı beyaz düğme, kaynak düğmesi siyah zemin: ikisi de kendi zeminine göre renk alır. */
+:root:has(.saat-arac-ust[data-tur="arac"]) .all-conversions-header ~ :not(.time-tool-related, .page-toc, section.category-article-content, .time-tool-related ~ *, .page-toc ~ *, section.category-article-content ~ *) .live-clock-toggle.is-on,
+:root:has(.saat-arac-ust[data-tur="arac"]) .all-conversions-header ~ :not(.time-tool-related, .page-toc, section.category-article-content, .time-tool-related ~ *, .page-toc ~ *, section.category-article-content ~ *) .live-clock-toggle.is-on span {
+  color: #0f6f6c;
+}
+:root:has(.saat-arac-ust[data-tur="arac"]) .all-conversions-header ~ :not(.time-tool-related, .page-toc, section.category-article-content, .time-tool-related ~ *, .page-toc ~ *, section.category-article-content ~ *) .trust-bar-sources-toggle {
+  color: #ffffff;
+}
+/* Döviz sayfasında kur alınamayınca çıkan uyarı kâğıt zeminde okunur kalır. */
+:root:has(.saat-arac-ust) .all-conversions-shell > .calculator-usage-hint {
+  background: #fff4d6;
+  color: #5a3d00;
+}
+/* Liste sayfalarında gece kartı da kâğıt zeminde durur; gece için yazılmış açık yazı rengi orada kaybolur. */
+:root:has(.saat-arac-ust[data-tur="liste"]) .world-card.is-night .world-card-link {
+  color: #1f3b44;
+}
+/* Takvim renk açıklaması koyu araç alanında beyaz yazılır. */
+:root:has(.saat-arac-ust[data-tur="arac"]) .all-conversions-header ~ :not(.time-tool-related, .page-toc, section.category-article-content, .time-tool-related ~ *, .page-toc ~ *, section.category-article-content ~ *) .fast-cal-legend {
+  color: #ffffff;
+}
+/* Toplantı planlayıcıdaki sabit şehir sütunu kayan hücreleri örtmek için dolu zemin ister; koyu alanda siyah olur. */
+:root:has(.saat-arac-ust[data-tur="arac"]) .all-conversions-header ~ :not(.time-tool-related, .page-toc, section.category-article-content, .time-tool-related ~ *, .page-toc ~ *, section.category-article-content ~ *) .tz-planner th {
+  background: #141414;
 }

@@ -7,7 +7,7 @@ import BreadcrumbSchema from "../../../components/BreadcrumbSchema";
 export const metadata: Metadata = {
   title: "Periyodik Tablo: 118 Elementin Tamamı, Ayrıntılı Bilgilerle",
   description:
-    "İnteraktif periyodik tablo — bir elementin üzerine gelerek hızlı bilgi al, tıklayarak atom numarası, kütlesi, kullanım alanları ve daha fazlasını içeren ayrıntılı sayfaya git.",
+    "İnteraktif periyodik tablo — 118 elementin atom numarası, atom kütlesi, periyodu ve grubu; sık aranan elementler için kullanım alanlarını da içeren ayrıntılı sayfalar.",
   alternates: {
     canonical: "/bilim-hesaplayicilari/kimya/periyodik-tablo",
     languages: { de: "/de/periodensystem" },
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Periyodik Tablo: 118 Elementin Tamamı, Ayrıntılı Bilgilerle",
     description:
-      "İnteraktif periyodik tablo — bir elementin üzerine gelerek hızlı bilgi al, tıklayarak ayrıntılı sayfaya git.",
+      "İnteraktif periyodik tablo — 118 elementin atom numarası, kütlesi, periyodu ve grubu tek tabloda.",
     url: buildSiteUrl("/bilim-hesaplayicilari/kimya/periyodik-tablo"),
     siteName: "BirimCeviri.app",
     locale: "tr_TR",
@@ -42,8 +42,8 @@ export default function PeriyodikTabloPage() {
           <h1>Periyodik Tablo</h1>
           <p>
             118 elementin tamamı — atom numarası, atom kütlesi ve
-            kategorisiyle birlikte. Bir elemente tıklayarak ayrıntılı bilgi
-            sayfasını aç.
+            kategorisiyle birlikte. Bir elemente tıklayınca bilgileri tablonun
+            üstünde görünür; sık aranan elementlerde ayrıntılı sayfaya geçebilirsin.
           </p>
         </header>
 
@@ -72,18 +72,16 @@ export default function PeriyodikTabloPage() {
 
           <h2>Element sayfalarında ne var?</h2>
           <p>
-            Her elementin kendi sayfasında atom numarası, atom kütlesi,
-            periyot/grup bilgisi ve kategorisi bulunur; öncelikli
-            elementlerde (müfredatta sık geçenler) ayrıca tarihçe,
-            kullanım alanları ve ek bilgiler de yer alır. Liste zamanla
-            genişleyecek.
+            Sık aranan elementlerin (karbon, hidrojen, oksijen, azot, demir
+            gibi) kendi sayfası var: atom numarası, atom kütlesi, periyot/grup
+            bilgisi ve kategorisinin yanında tarihçe, kullanım alanları ve ek
+            bilgiler yer alır. Diğer elementlerin temel bilgileri tablonun
+            kendisinde görünür.
           </p>
 
           <h2>İlgili araçlar</h2>
           <p>
-            Elementleri özelliklerine göre sıralamak için{" "}
-            <Link href="/bilim-hesaplayicilari/kimya/element-siralamasi">Element Sıralaması</Link>,{" "}
-            atom kütlesi hesaplama için{" "}
+            Atom kütlesi hesaplama için{" "}
             <Link href="/bilim-hesaplayicilari/kimya/atom-kutlesi-hesaplama">Atom Kütlesi Hesaplama</Link>,{" "}
             bileşiklerin molar kütlesi için{" "}
             <Link href="/bilim-hesaplayicilari/kimya/bilesikler">Bileşikler</Link>

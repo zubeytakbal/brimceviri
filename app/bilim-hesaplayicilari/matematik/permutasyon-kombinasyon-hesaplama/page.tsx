@@ -187,11 +187,7 @@ export default function PermutasyonKombinasyonPage() {
 
           <h2>İlgili araçlar</h2>
           <p>
-            Faktöriyel hesaplamak istersen{" "}
-            <Link href="/bilim-hesaplayicilari/matematik/faktoriyel-hesaplama">
-              Faktöriyel Hesaplama
-            </Link>
-            , sadece klasik olasılık hesaplamak istersen{" "}
+            Sadece klasik olasılık hesaplamak istersen{" "}
             <Link href="/bilim-hesaplayicilari/matematik/olasilik-hesaplama">
               Olasılık Hesaplama
             </Link>{" "}

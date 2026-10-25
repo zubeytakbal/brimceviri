@@ -267,7 +267,6 @@ export const turkishToolGroups: ToolGroup[] = [
     links: [
       { href: "/muhendislik-hesaplayicilari", label: "Mühendislik Hesaplayıcıları" },
       { href: "/bilim-hesaplayicilari", label: "Bilim Hesaplayıcıları" },
-      { href: "/bilim-hesaplayicilari/fizik/egik-atis-hesaplama", label: "Eğik Atış" },
       { href: "/awg-mm2-cevirici", label: "AWG - mm² Çevirici" },
       { href: "/swg-mm-cevirici", label: "SWG - mm (Tel Kalınlığı)" },
       { href: "/matkap-ucu-olcusu-cevirme", label: "Matkap Ucu Ölçüsü (İnç - mm)" },
@@ -417,15 +416,11 @@ export const turkishEngineeringMenu: ToolLink[] = [
 export const turkishScienceMenu: ToolLink[] = [
   { href: "/bilim-hesaplayicilari/kimya/periyodik-tablo", label: "Periyodik Tablo" },
   { href: "/bilim-hesaplayicilari/kimya/mol-hesaplama", label: "Mol Hesaplama" },
-  { href: "/bilim-hesaplayicilari/kimya/molarite-hesaplama", label: "Molarite" },
-  { href: "/bilim-hesaplayicilari/kimya/ph-hesaplama", label: "pH Hesaplama" },
   { href: "/bilim-hesaplayicilari/matematik/yuzde-hesaplama", label: "Yüzde Hesaplama" },
   { href: "/bilim-hesaplayicilari/matematik/ebob-ekok-hesaplama", label: "EBOB - EKOK" },
   { href: "/bilim-hesaplayicilari/matematik/ikinci-dereceden-denklem-cozme", label: "İkinci Dereceden Denklem" },
-  { href: "/bilim-hesaplayicilari/matematik/kesir-hesaplama", label: "Kesir Hesaplama" },
   { href: "/bilim-hesaplayicilari/matematik/olasilik-hesaplama", label: "Olasılık" },
   { href: "/bilim-hesaplayicilari/geometri/pisagor-teoremi-hesaplama", label: "Pisagor Teoremi" },
-  { href: "/bilim-hesaplayicilari/fizik/egik-atis-hesaplama", label: "Eğik Atış" },
   { href: "/bilim-hesaplayicilari/biyoloji/kodon-tablosu", label: "Kodon Tablosu" },
   { href: "/gokcisimleri-ozellikleri", label: "Gökcisimleri ve Gezegenler" },
   { href: "/gezegenlerde-yas-hesaplama", label: "Gezegenlerde Yaş" },

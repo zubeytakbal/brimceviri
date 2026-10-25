@@ -70,12 +70,6 @@ export default function PisagorTeoremiPage() {
       {
         "@type": "ListItem",
         position: 3,
-        name: "Geometri",
-        item: buildSiteUrl("/bilim-hesaplayicilari/geometri"),
-      },
-      {
-        "@type": "ListItem",
-        position: 4,
         name: "Pisagor Teoremi Hesaplama",
         item: buildSiteUrl(
           "/bilim-hesaplayicilari/geometri/pisagor-teoremi-hesaplama"
@@ -102,8 +96,6 @@ export default function PisagorTeoremiPage() {
           <Link href="/">Ana Sayfa</Link>
           <span aria-hidden="true">&rsaquo;</span>
           <Link href="/bilim-hesaplayicilari">Bilim Hesaplayıcıları</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/bilim-hesaplayicilari/geometri">Geometri</Link>
           <span aria-hidden="true">&rsaquo;</span>
           <span>Pisagor Teoremi Hesaplama</span>
         </nav>

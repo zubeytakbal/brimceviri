@@ -25,9 +25,9 @@ const universalHomeSections = {
       uz: "Fan kalkulyatorlari",
     },
     description: {
-      tr: "Kimya, matematik, geometri ve biyolojiye yönelik araç kategorileri.",
-      en: "Shared tool categories for chemistry, mathematics, geometry and biology.",
-      uz: "Kimyo, matematika, geometriya va biologiya uchun vosita turkumlari.",
+      tr: "Kimya ve matematik araç kategorileri.",
+      en: "Tool categories for chemistry and mathematics.",
+      uz: "Kimyo va matematika uchun vosita turkumlari.",
     },
     cards: [
       {
@@ -41,18 +41,6 @@ const universalHomeSections = {
         iconName: "mathCalculator",
         label: { tr: "Matematik", en: "Mathematics", uz: "Matematika" },
         href: { tr: "/bilim-hesaplayicilari/matematik" },
-      },
-      {
-        id: "geometry",
-        iconName: "geometryCalculator",
-        label: { tr: "Geometri", en: "Geometry", uz: "Geometriya" },
-        href: { tr: "/bilim-hesaplayicilari/geometri" },
-      },
-      {
-        id: "biology",
-        iconName: "biologyCalculator",
-        label: { tr: "Biyoloji", en: "Biology", uz: "Biologiya" },
-        href: { tr: "/bilim-hesaplayicilari/biyoloji" },
       },
     ],
   },

@@ -134,11 +134,7 @@ export default function ModHesaplamaPage() {
           <p>
             Ortalama, medyan, varyans ve standart sapmayı birlikte
             hesaplamak için{" "}
-            <Link href="/bilim-hesaplayicilari/matematik/ortalama-hesaplama">Ortalama Hesaplama</Link>,{" "}
-            sadece medyan için{" "}
-            <Link href="/bilim-hesaplayicilari/matematik/medyan-hesaplama">Medyan Hesaplama</Link>,{" "}
-            sadece varyans için{" "}
-            <Link href="/bilim-hesaplayicilari/matematik/varyans-hesaplama">Varyans Hesaplama</Link>
+            <Link href="/bilim-hesaplayicilari/matematik/ortalama-hesaplama">Ortalama Hesaplama</Link>
             {" "}sayfasına bakabilirsin.
           </p>
 

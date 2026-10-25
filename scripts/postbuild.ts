@@ -26,7 +26,7 @@ import { isClosedPath } from "../app/indexPolicy";
 import { CLICKED_PATHS } from "../app/indexPolicyClicked";
 import { siteRedirects } from "../app/siteRedirects";
 import { MERGED_PAIRS } from "../app/converter/mergedPairs";
-import { KALDIRILAN_SAAT_SAYFALARI } from "../app/components/saat/kaldirilanSaatSayfalari";
+import { KALDIRILAN_SAYFALAR } from "../app/kaldirilanSayfalar";
 import { checkTemplates } from "./templateGuard";
 import { checkThinPages, MIN_KARAKTER } from "./thinGuard";
 import { checkSitemap } from "./sitemapGuard";
@@ -363,11 +363,11 @@ function fixMergedPairLinks() {
   return { links, alternates };
 }
 
-/** Kaldırılan Tarih & Saat sayfalarına kalan iç bağlantılar (önceki/sonraki gün, ilgili araçlar gibi) yönlendirme
+/** Kaldırılan sayfalara (kaldirilanSayfalar.ts) kalan iç bağlantılar (önceki/sonraki gün, ilgili araçlar gibi) yönlendirme
  * hedefine çevrilir; bağlantı 301'e değil doğrudan kalan sayfaya gider. */
-function fixRemovedSaatLinks() {
+function fixRemovedPageLinks() {
   const kacis = (p: string) => p.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const yollar = Object.keys(KALDIRILAN_SAAT_SAYFALARI).sort((a, b) => b.length - a.length).map(kacis).join("|");
+  const yollar = Object.keys(KALDIRILAN_SAYFALAR).sort((a, b) => b.length - a.length).map(kacis).join("|");
   const linkRe = new RegExp(`((?:href=|\\\\?"href\\\\?":)\\\\?")(${yollar})(?=["?#\\\\])`, "g");
   let links = 0;
   const walk = (dir: string) => {
@@ -379,7 +379,7 @@ function fixRemovedSaatLinks() {
       }
       if (!entry.name.endsWith(".html")) continue;
       const html = readFileSync(path, "utf8");
-      const next = html.replace(linkRe, (_m, prefix: string, yol: string) => (links++, `${prefix}${KALDIRILAN_SAAT_SAYFALARI[yol]}`));
+      const next = html.replace(linkRe, (_m, prefix: string, yol: string) => (links++, `${prefix}${KALDIRILAN_SAYFALAR[yol]}`));
       if (next !== html) writeFileSync(path, next);
     }
   };
@@ -390,7 +390,7 @@ function fixRemovedSaatLinks() {
 console.log(`${removeRscPayloads(OUT)} sayfa gecis verisi (.txt) silindi`);
 const merged = fixMergedPairLinks();
 console.log(`Birleştirilen çiftler: ${merged.links} bağlantı kalan sayfaya çevrildi, ${merged.alternates} hreflang silindi`);
-console.log(`Kaldırılan saat sayfaları: ${fixRemovedSaatLinks()} bağlantı kalan sayfaya çevrildi`);
+console.log(`Kaldırılan sayfalar: ${fixRemovedPageLinks()} bağlantı kalan sayfaya çevrildi`);
 const policy = applyIndexPolicy();
 console.log(`Dizin politikası: ${policy.closed} sayfa noindex yapıldı, ${policy.alternates} hreflang bağlantısı kaldırıldı`);
 const hreflang = fixHreflangReciprocity();

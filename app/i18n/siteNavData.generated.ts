@@ -248,14 +248,6 @@ export const SITE_NAV_DATA: SiteNavData = {
        "label": "Mol Hesaplama"
       },
       {
-       "href": "/bilim-hesaplayicilari/kimya/molarite-hesaplama",
-       "label": "Molarite"
-      },
-      {
-       "href": "/bilim-hesaplayicilari/kimya/ph-hesaplama",
-       "label": "pH Hesaplama"
-      },
-      {
        "href": "/bilim-hesaplayicilari/matematik/yuzde-hesaplama",
        "label": "Yüzde Hesaplama"
       },
@@ -268,20 +260,12 @@ export const SITE_NAV_DATA: SiteNavData = {
        "label": "İkinci Dereceden Denklem"
       },
       {
-       "href": "/bilim-hesaplayicilari/matematik/kesir-hesaplama",
-       "label": "Kesir Hesaplama"
-      },
-      {
        "href": "/bilim-hesaplayicilari/matematik/olasilik-hesaplama",
        "label": "Olasılık"
       },
       {
        "href": "/bilim-hesaplayicilari/geometri/pisagor-teoremi-hesaplama",
        "label": "Pisagor Teoremi"
-      },
-      {
-       "href": "/bilim-hesaplayicilari/fizik/egik-atis-hesaplama",
-       "label": "Eğik Atış"
       },
       {
        "href": "/bilim-hesaplayicilari/biyoloji/kodon-tablosu",

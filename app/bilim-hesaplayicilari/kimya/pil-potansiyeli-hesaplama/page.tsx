@@ -187,10 +187,7 @@ export default function PilPotansiyeliHesaplamaPage() {
           <h2>İlgili araçlar</h2>
           <p>
             Hücre potansiyeli, ΔG° = -nFE° = -RT ln K bağıntısıyla
-            tepkimenin denge sabitine de bağlıdır — denge sabiti
-            hesaplamaları için{" "}
-            <Link href="/bilim-hesaplayicilari/kimya/kc-hesaplama">Kc Hesaplama</Link>
-            {" "}sayfasına bakabilirsin.
+            tepkimenin denge sabitine de bağlıdır.
           </p>
 
           <h2>Kaynaklar</h2>

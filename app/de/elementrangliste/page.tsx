@@ -11,9 +11,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/de/elementrangliste",
     languages: {
-      tr: "/bilim-hesaplayicilari/kimya/element-siralamasi",
       de: "/de/elementrangliste",
-      "x-default": "/bilim-hesaplayicilari/kimya/element-siralamasi",
+      "x-default": "/de/elementrangliste",
     },
   },
   openGraph: {

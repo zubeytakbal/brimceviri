@@ -225,11 +225,7 @@ export default function MolHesaplamaPage() {
 
           <h2>İlgili araçlar</h2>
           <p>
-            Mol sayısından derişime (mol/L) geçmek için{" "}
-            <Link href="/bilim-hesaplayicilari/kimya/molarite-hesaplama">Molarite Hesaplama</Link>,{" "}
-            reaksiyon stokiyometrisi hesaplamaları için{" "}
-            <Link href="/bilim-hesaplayicilari/kimya/stokiyometri-hesaplama">Stokiyometri Hesaplama</Link>,{" "}
-            atom kütlesi hesaplama için{" "}
+            Atom kütlesi hesaplama için{" "}
             <Link href="/bilim-hesaplayicilari/kimya/atom-kutlesi-hesaplama">Atom Kütlesi Hesaplama</Link>,{" "}
             bileşiklerin molar kütlesi için{" "}
             <Link href="/bilim-hesaplayicilari/kimya/bilesikler">Bileşikler</Link>

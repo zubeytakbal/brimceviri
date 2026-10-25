@@ -180,11 +180,7 @@ export default function IkinciDerecedenDenklemPage() {
 
           <h2>İlgili araçlar</h2>
           <p>
-            Doğrusal veya logaritmik, karışık bir denklemin varsa{" "}
-            <Link href="/bilim-hesaplayicilari/matematik/1-bilinmeyenli-denklem-cozme">
-              1 Bilinmeyenli Denklem Çözme
-            </Link>{" "}
-            aracına, iki veya üç bilinmeyenli bir denklem sistemin varsa{" "}
+            İki veya üç bilinmeyenli bir denklem sistemin varsa{" "}
             <Link href="/bilim-hesaplayicilari/matematik/2-bilinmeyenli-denklem-sistemi-cozme">
               2 Bilinmeyenli
             </Link>{" "}

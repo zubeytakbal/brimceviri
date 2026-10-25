@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { bilimSayfasiKalkti } from "../../../../kaldirilanBilimSayfalari";
 import { seoTitle } from "../../../../seoTitle";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
@@ -56,9 +57,9 @@ function formatTemperatureWithConversions(raw: string) {
 }
 
 export function generateStaticParams() {
-  return periodicTable.map((el) => ({
-    element: slugifyElementName(el.nameTr),
-  }));
+  return periodicTable
+    .map((el) => ({ element: slugifyElementName(el.nameTr) }))
+    .filter((p) => !bilimSayfasiKalkti(`/bilim-hesaplayicilari/kimya/periyodik-tablo/${p.element}`));
 }
 
 export async function generateMetadata({
@@ -293,11 +294,15 @@ export default async function ElementPage({ params }: PageProps) {
 
                       return (
                         <li key={relatedSlug}>
-                          <Link
-                            href={`/bilim-hesaplayicilari/kimya/periyodik-tablo/${relatedSlug}`}
-                          >
-                            {relatedElement.nameTr} ({relatedElement.symbol})
-                          </Link>
+                          {bilimSayfasiKalkti(`/bilim-hesaplayicilari/kimya/periyodik-tablo/${relatedSlug}`) ? (
+                            `${relatedElement.nameTr} (${relatedElement.symbol})`
+                          ) : (
+                            <Link
+                              href={`/bilim-hesaplayicilari/kimya/periyodik-tablo/${relatedSlug}`}
+                            >
+                              {relatedElement.nameTr} ({relatedElement.symbol})
+                            </Link>
+                          )}
                         </li>
                       );
                     })}

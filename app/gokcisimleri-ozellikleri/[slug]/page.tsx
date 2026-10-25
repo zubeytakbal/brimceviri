@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { bilimSayfasiKalkti } from "../../kaldirilanBilimSayfalari";
 import Link from "@/app/components/SiteLink";
 import { PLANET_YEARS } from "@/app/converter/time/planetAge";
 import { notFound } from "next/navigation";
@@ -27,7 +28,9 @@ function serializeJsonLd(data: object) {
 }
 
 export function generateStaticParams() {
-  return getAllCelestialBodies().map((body) => ({ slug: body.id }));
+  return getAllCelestialBodies()
+    .map((body) => ({ slug: body.id }))
+    .filter((p) => !bilimSayfasiKalkti(`/gokcisimleri-ozellikleri/${p.slug}`));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -207,9 +210,13 @@ export default async function CelestialBodyDetailPage({ params }: PageProps) {
             <ul className="related-conversion-list">
               {similarBodies.map((similar) => (
                 <li key={similar.id}>
-                  <Link href={`/gokcisimleri-ozellikleri/${similar.id}`}>
-                    {similar.nameTr}
-                  </Link>{" "}
+                  {bilimSayfasiKalkti(`/gokcisimleri-ozellikleri/${similar.id}`) ? (
+                    similar.nameTr
+                  ) : (
+                    <Link href={`/gokcisimleri-ozellikleri/${similar.id}`}>
+                      {similar.nameTr}
+                    </Link>
+                  )}{" "}
                   — {formatNumber(similar.gravityMs2, 1)} m/s²
                 </li>
               ))}

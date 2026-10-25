@@ -9,6 +9,7 @@ import {
 } from "../converter/periodicTableData";
 import { numberLocales, type ContentLocale } from "./contentLocale";
 import { elementCategoryLabels, getElementName, getElementPath } from "./elementLocale";
+import { bilimSayfasiKalkti } from "../kaldirilanBilimSayfalari";
 
 function formatMass(value: number, locale: ContentLocale) {
   return value.toLocaleString(numberLocales[locale], { maximumFractionDigits: 3 });
@@ -57,7 +58,14 @@ export default function PeriodicTable({ locale = "tr" }: { locale?: ContentLocal
     null
   );
 
+  // Türkçede sayfası kaldırılan elementler (kaldirilanBilimSayfalari.ts) için yalnızca önizleme gösterilir.
+  const sayfasiVar = (element: PeriodicElement) => locale !== "tr" || !bilimSayfasiKalkti(getElementPath(element, locale));
+
   function goToElement(element: PeriodicElement) {
+    if (!sayfasiVar(element)) {
+      setActiveElement(element);
+      return;
+    }
     router.push(getElementPath(element, locale));
   }
 
@@ -111,9 +119,11 @@ export default function PeriodicTable({ locale = "tr" }: { locale?: ContentLocal
                 </span>
               </div>
             </div>
-            <span className="periodic-table-preview-link">
-              {t.openDetails}
-            </span>
+            {sayfasiVar(activeElement) && (
+              <span className="periodic-table-preview-link">
+                {t.openDetails}
+              </span>
+            )}
           </>
         ) : (
           <span className="periodic-table-preview-empty">

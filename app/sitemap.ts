@@ -1,5 +1,5 @@
 import { germanCities } from "./converter/geo/germanCities";
-import { saatSayfasiKalkti } from "./components/saat/kaldirilanSaatSayfalari";
+import { sayfaKalkti } from "./kaldirilanSayfalar";
 import { ARABIC_ISLAMIC_SITEMAP } from "./i18n/arabicIslamicTools";
 import { entfernungStadtPath } from "./converter/geo/germanDistances";
 import { countriesDe, countryPathDe } from "./converter/geo/worldGeoDe";
@@ -6435,10 +6435,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Google verlangt in hreflang-Alternativen absolute Adressen; relative Pfade (z. B. "/uyku-hesaplama")
   // werden hier zentral ergänzt, damit keine Quelle sie vergessen kann.
   const absolute = (href: string) => (href.startsWith("/") ? `${baseUrl}${href}` : href);
-  // Dizine kapalı adresler (app/indexPolicy.ts) ve kaldırılan Tarih & Saat sayfaları haritaya ve hreflang alternatiflerine girmez.
+  // Dizine kapalı adresler (app/indexPolicy.ts) ve kaldırılan sayfalar (kaldirilanSayfalar.ts) haritaya ve hreflang alternatiflerine girmez.
   const closed = (href: string) => {
     const path = href.startsWith(baseUrl) ? href.slice(baseUrl.length) || "/" : href;
-    return isClosedPath(path) || saatSayfasiKalkti(path);
+    return isClosedPath(path) || sayfaKalkti(path);
   };
   return [...byUrl.values()]
     .filter((entry) => !closed(entry.url))

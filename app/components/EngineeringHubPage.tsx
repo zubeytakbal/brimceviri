@@ -685,13 +685,6 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
             description: "Isıtma ve sıcak su ihtiyacından kombi gücü; kombinin dakikada verdiği sıcak su.",
           },
           {
-            slug: "mantolama-hesaplama",
-            href: "/mantolama-hesaplama",
-            title: "Mantolama Hesaplama",
-            icon: "insulationCalculator",
-            description: "Dış cephe alanı ve levha ebadından fire dahil yalıtım levhası adedini hesaplayın.",
-          },
-          {
             slug: "dogalgaz-tuketimi-hesaplama",
             href: "/dogalgaz-tuketimi-hesaplama",
             title: "Doğalgaz Tüketimi",

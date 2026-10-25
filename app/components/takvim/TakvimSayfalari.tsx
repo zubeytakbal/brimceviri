@@ -1062,14 +1062,14 @@ export function OzelGunlerHub() {
                   </span>
                 ))}
               </p>
-              {e.geriSayim ? (
+              {e.geriSayim && !saatSayfasiKalkti(`/geri-sayim/${e.geriSayim}`) ? (
                 <p>
                   <Link href={`/geri-sayim/${e.geriSayim}`} prefetch={false}>
                     {e.ad} için canlı geri sayım
                   </Link>
                 </p>
               ) : null}
-              {OZEL_GUN_SAYFALARI.includes(e.id) ? (
+              {OZEL_GUN_SAYFALARI.includes(e.id) && !saatSayfasiKalkti(`/ozel-gunler/${e.id}`) ? (
                 <p>
                   <Link href={`/ozel-gunler/${e.id}`} prefetch={false}>
                     {e.ad}: anlamı, gelenekleri ve yıllara göre tarihleri

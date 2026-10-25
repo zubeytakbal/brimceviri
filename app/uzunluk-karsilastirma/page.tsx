@@ -128,8 +128,8 @@ export default function LengthComparisonPage() {
 
           <h2>İlgili araçlar</h2>
           <p>
-            Ağırlık karşılaştırması için{" "}
-            <Link href="/agirlik-karsilastirma">Ağırlık Karşılaştırma</Link>
+            Ağırlık birimlerini çevirmek için{" "}
+            <Link href="/kategoriler/kutle">Kütle Dönüşümleri</Link>
             {" "}sayfasına bakabilirsin.
           </p>
         </section>

@@ -322,15 +322,6 @@ export default function DigerDonusumlerPage() {
       group: "Mühendislik Referans Araçları",
     },
     {
-      id: "mantolama",
-      href: "/mantolama-hesaplama",
-      title: "Mantolama Hesaplama",
-      description:
-        "Dış cephe alanından, fire payı dahil gereken yalıtım levhası adedini hesaplayın.",
-      iconName: "insulationCalculator" as const,
-      group: "İnşaat ve Yapı Malzemesi Hesaplayıcıları",
-    },
-    {
       id: "boya",
       href: "/boya-hesaplama",
       title: "Boya Hesaplama",
@@ -454,15 +445,6 @@ export default function DigerDonusumlerPage() {
       description:
         "Göz açma, sözel ve motor yanıttan bilinç düzeyi puanını hesaplayın.",
       iconName: "gcsCalculator" as const,
-      group: "Tıbbi Skorlama Araçları",
-    },
-    {
-      id: "apgar",
-      href: "/apgar-skoru-hesaplama",
-      title: "APGAR Skoru Hesaplama",
-      description:
-        "Yenidoğanın doğum sonrası ilk değerlendirme puanını hesaplayın.",
-      iconName: "apgarCalculator" as const,
       group: "Tıbbi Skorlama Araçları",
     },
     {
@@ -976,15 +958,6 @@ export default function DigerDonusumlerPage() {
       description:
         "Bir uzunluk değerini zürafa boyu, otobüs, futbol sahası gibi tanıdık nesnelerle karşılaştırın.",
       iconName: "length" as const,
-      group: "Ölçü Çeviricileri ve Eğlenceli Karşılaştırmalar",
-    },
-    {
-      id: "agirlik-karsilastirma",
-      href: "/agirlik-karsilastirma",
-      title: "Ağırlık Karşılaştırma",
-      description:
-        "Bir ağırlık değerini kedi, insan, at, fil gibi tanıdık nesnelerle karşılaştırın.",
-      iconName: "mass" as const,
       group: "Ölçü Çeviricileri ve Eğlenceli Karşılaştırmalar",
     },
     {

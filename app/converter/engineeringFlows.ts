@@ -155,7 +155,6 @@ export const ENGINEERING_FLOWS: Record<string, FlowLink[]> = {
   // Isı ve akışkan
   "/u-degeri-hesaplama": [
     { href: "/petek-dilim-hesaplama", label: "Petek Dilim Hesabı", why: "Bulduğunuz U değeriyle odanın petek ihtiyacını hesaplayın." },
-    { href: "/mantolama-hesaplama", label: "Mantolama Hesaplama", why: "Seçtiğiniz yalıtım kalınlığı için gereken levha adedini bulun." },
     { href: "/yalitim-amortisman-hesaplama", label: "Yalıtım Amortismanı", why: "Yalıtımın kendini kaç yılda çıkardığını hesaplayın." },
     { href: "/debi-isi-yuku-hesaplama", label: "Debiden Isı Yükü", why: "Toplam ısı kaybına göre kalorifer su debisini bulun." },
   ],

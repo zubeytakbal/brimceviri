@@ -68,8 +68,6 @@ export function FotoKucultSayfasi() {
           links: [
             { href: DOSYA_ARACLARI_YOLU, label: "Tüm Dosya Araçları" },
             { href: "/gorsel-donusturucu", label: "Görsel Dönüştürücü" },
-            { href: "/png-jpg-cevirme", label: "PNG JPG Çevirme" },
-            { href: "/jpg-webp-cevirme", label: "JPG WebP Çevirme" },
             { href: "/kilobayt-megabayt", label: "Kilobayt → Megabayt" },
             { href: "/gigabayt-megabayt", label: "Gigabayt → Megabayt" },
             {

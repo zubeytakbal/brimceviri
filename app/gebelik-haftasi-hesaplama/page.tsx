@@ -133,8 +133,6 @@ export default function PregnancyCalculatorPage() {
           <p>
             Gebelik öncesi döngü takibi için{" "}
             <Link href="/yumurtlama-hesaplama">Yumurtlama ve Adet Takvimi Hesaplama</Link>,{" "}
-            doğum sonrası bebek değerlendirmesi için{" "}
-            <Link href="/apgar-skoru-hesaplama">Apgar Skoru Hesaplama</Link>,{" "}
             genel tarih/yaş hesaplamaları için{" "}
             <Link href="/yas-hesaplama">Yaş Hesaplama</Link>
             {" "}sayfasına bakabilirsin.

@@ -53,7 +53,7 @@ export default function CodonTablePage() {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: buildSiteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "Biyoloji", item: buildSiteUrl("/bilim-hesaplayicilari/biyoloji") },
+      { "@type": "ListItem", position: 2, name: "Bilim Hesaplayıcıları", item: buildSiteUrl("/bilim-hesaplayicilari") },
       { "@type": "ListItem", position: 3, name: "Kodon Tablosu", item: buildSiteUrl("/bilim-hesaplayicilari/biyoloji/kodon-tablosu") },
     ],
   };
@@ -67,7 +67,7 @@ export default function CodonTablePage() {
         <nav className="breadcrumbs" aria-label="Sayfa yolu">
           <Link href="/">Ana Sayfa</Link>
           <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/bilim-hesaplayicilari/biyoloji">Biyoloji</Link>
+          <Link href="/bilim-hesaplayicilari">Bilim Hesaplayıcıları</Link>
           <span aria-hidden="true">&rsaquo;</span>
           <span>Kodon Tablosu</span>
         </nav>
@@ -119,13 +119,6 @@ export default function CodonTablePage() {
               {item.answer}
             </p>
           ))}
-
-          <h2>İlginizi Çekebilir</h2>
-          <p>
-            Bir peptit zincirinin molar kütlesini hesaplamak için{" "}
-            <Link href="/bilim-hesaplayicilari/biyoloji/peptit-molar-kutle-hesaplama">Peptit Molar Kütle Hesaplama</Link>
-            {" "}sayfasına bakabilirsin.
-          </p>
 
           <h2>Kaynaklar</h2>
           <p>

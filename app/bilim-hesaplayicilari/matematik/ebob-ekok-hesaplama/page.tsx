@@ -204,14 +204,10 @@ export default function EbobEkokHesaplamaPage() {
 
           <h2>İlgili araçlar</h2>
           <p>
-            Kesir sadeleştirme/işlemleri için{" "}
-            <Link href="/bilim-hesaplayicilari/matematik/kesir-hesaplama">Kesir Hesaplama</Link>,{" "}
-            bir sayının bölen sayısı için{" "}
+            Bir sayının bölen sayısı için{" "}
             <Link href="/bilim-hesaplayicilari/matematik/bolen-sayisi-hesaplama">Bölen Sayısı Hesaplama</Link>,{" "}
-            karekök/küpkök sadeleştirme için{" "}
-            <Link href="/bilim-hesaplayicilari/matematik/karekok-hesaplama">Karekök Hesaplama</Link>{" "}
-            ve{" "}
-            <Link href="/bilim-hesaplayicilari/matematik/kupkok-hesaplama">Küpkök Hesaplama</Link>
+            karekök sadeleştirme için{" "}
+            <Link href="/bilim-hesaplayicilari/matematik/karekok-hesaplama">Karekök Hesaplama</Link>
             {" "}sayfalarına bakabilirsin.
           </p>
 

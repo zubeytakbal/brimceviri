@@ -18,7 +18,7 @@ import { cgpaUniversities } from "./converter/india/cgpaUniversities";
 import { getAllRegions } from "./converter/regionElevationHubUz";
 import { GERMAN_STATES } from "./converter/time/germanHolidays";
 import { HOLIDAY_YEARS } from "./converter/time/holidays";
-import { KALDIRILAN_SAAT_SAYFALARI } from "./components/saat/kaldirilanSaatSayfalari";
+import { KALDIRILAN_SAYFALAR } from "./kaldirilanSayfalar";
 
 export type MergedRedirect = { source: string; destination: string; permanent: true };
 
@@ -71,10 +71,10 @@ function numberRedirects(): MergedRedirect[] {
   return [r(base, "/bilim-hesaplayicilari/matematik"), r(`${base}/:n`, "/bilim-hesaplayicilari/matematik"), r("/uz/sonlar/:son", "/uz/sonlar?n=:son")];
 }
 
-/** Amino asit bölümü (Ekim 2026) tamamen kaldırıldı: ana sayfa ve tek tek amino asitler Biyoloji kategorisine yönlenir. */
+/** Amino asit bölümü (Ekim 2026) tamamen kaldırıldı: ana sayfa ve tek tek amino asitler kodon tablosuna yönlenir (Biyoloji bölüm sayfası da 25 Ekim 2026'da kaldırıldı). */
 function aminoAcidRedirects(): MergedRedirect[] {
   const base = "/bilim-hesaplayicilari/biyoloji/amino-asitler";
-  return [r(base, "/bilim-hesaplayicilari/biyoloji"), ...aminoAcidsDatabase.map((a) => r(`${base}/${a.id}`, "/bilim-hesaplayicilari/biyoloji"))];
+  return [r(base, "/bilim-hesaplayicilari/biyoloji/kodon-tablosu"), ...aminoAcidsDatabase.map((a) => r(`${base}/${a.id}`, "/bilim-hesaplayicilari/biyoloji/kodon-tablosu"))];
 }
 
 /** Sure ve cüz sayfaları sayılardan ibaretti; bilgiler Sure Bulucu ve Cüzler tablolarında. */
@@ -257,9 +257,9 @@ function legacyRedirects(): MergedRedirect[] {
 }
 
 export function mergedPageRedirects(): MergedRedirect[] {
-  // Kaldırılan Tarih & Saat sayfaları önce gelir; aynı adres için sonraki kurallar yazılmaz.
+  // Kaldırılan sayfalar (kaldirilanSayfalar.ts) önce gelir; aynı adres için sonraki kurallar yazılmaz.
   const kurallar = [
-    ...Object.entries(KALDIRILAN_SAAT_SAYFALARI).map(([kaynak, hedef]) => r(kaynak, hedef)),
+    ...Object.entries(KALDIRILAN_SAYFALAR).map(([kaynak, hedef]) => r(kaynak, hedef)),
     ...timerRedirects(), ...alarmRedirects(), ...fxRedirects(), ...uzLicenseRedirects(), ...es419Redirects(), ...numberRedirects(), ...aminoAcidRedirects(), ...sureCuzRedirects(), ...unitGuideRedirects().map((x) => r(x.source, x.destination)), ...altinRedirects(), ...goldKaratPairRedirects(), ...cgpaRedirects(), ...uzRegionRedirects(), ...feiertageRedirects(), ...federalHolidayRedirects(), ...takvimGunRedirects(), ...ozelGunRedirects(), ...materialRedirects(), r("/ulkeler/s-o-tome-ve-principe", "/ulkeler/sao-tome-ve-principe"), ...legacyRedirects(),
   ];
   const gorulen = new Set<string>();

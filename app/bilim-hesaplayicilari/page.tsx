@@ -9,14 +9,14 @@ const uniqueToolCount = new Set(scienceHubs.flatMap((hub) => hub.groups.flatMap(
 export const metadata: Metadata = {
   title: "Bilim Hesaplayıcıları",
   description:
-    `Kimya, matematik, fizik, geometri ve biyoloji için ${uniqueToolCount} benzersiz hesaplayıcı, dönüşüm ve referans sayfası: mol, pH, EBOB-EKOK ve daha fazlası.`,
+    `Kimya ve matematik için ${uniqueToolCount} hesaplayıcı ve başvuru sayfası: mol, periyodik tablo, EBOB-EKOK, denklem çözme ve daha fazlası.`,
   alternates: {
     canonical: "/bilim-hesaplayicilari",
   },
   openGraph: {
     title: "Bilim Hesaplayıcıları",
     description:
-      `Kimya, matematik, fizik, geometri ve biyoloji için ${uniqueToolCount} benzersiz hesaplayıcı, dönüşüm ve referans sayfası: mol, pH, EBOB-EKOK ve daha fazlası.`,
+      `Kimya ve matematik için ${uniqueToolCount} hesaplayıcı ve başvuru sayfası: mol, periyodik tablo, EBOB-EKOK, denklem çözme ve daha fazlası.`,
     url: buildSiteUrl("/bilim-hesaplayicilari"),
     siteName: "BirimCeviri.app",
     locale: "tr_TR",
@@ -37,9 +37,6 @@ const categories = scienceHubs.map((hub) => ({
   iconName: ({
     kimya: "chemistryCalculator",
     matematik: "mathCalculator",
-    fizik: "physicsCalculator",
-    geometri: "geometryCalculator",
-    biyoloji: "biologyCalculator",
   } as const)[hub.slug],
 }));
 
@@ -71,9 +68,8 @@ export default function BilimHesaplayicilariHubPage() {
         <header className="all-conversions-header">
           <h1>Bilim Hesaplayıcıları</h1>
           <p>
-            Öğrenciler için fizik, kimya, matematik, geometri ve biyoloji
-            araçları — {uniqueToolCount} benzersiz hesaplayıcı, birim dönüşümü
-            ve referans sayfası tek yerde.
+            Öğrenciler için kimya ve matematik araçları — {uniqueToolCount}{" "}
+            hesaplayıcı ve başvuru sayfası tek yerde.
           </p>
         </header>
 
@@ -88,7 +84,7 @@ export default function BilimHesaplayicilariHubPage() {
               <strong>1 mili-</strong> (m) = 10⁻³, <strong>1 mikro-</strong>{" "}
               (µ) = 10⁻⁶
             </li>
-            <li>{uniqueToolCount} benzersiz hesaplayıcı, dönüşüm ve referans sayfası</li>
+            <li>{uniqueToolCount} hesaplayıcı ve başvuru sayfası</li>
           </ul>
         </div>
 

@@ -166,11 +166,7 @@ export default function YuzdeHesaplamaPage() {
 
           <h2>İlgili araçlar</h2>
           <p>
-            Oran ve orantı problemlerini çözmek istersen{" "}
-            <Link href="/bilim-hesaplayicilari/matematik/oran-oranti-hesaplama">
-              Oran-Orantı Hesaplama
-            </Link>{" "}
-            aracına, ortalama/istatistik hesaplamaları için{" "}
+            Ortalama ve istatistik hesaplamaları için{" "}
             <Link href="/bilim-hesaplayicilari/matematik/ortalama-hesaplama">
               Ortalama Hesaplama
             </Link>{" "}

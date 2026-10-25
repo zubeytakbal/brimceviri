@@ -7,6 +7,7 @@ import {
 } from "../../../converter/compoundsDatabase";
 import { getAllCompoundProfiles } from "../../../converter/compoundsHub";
 import { buildSiteUrl } from "../../../siteConfig";
+import { bilimSayfasiKalkti } from "../../../kaldirilanBilimSayfalari";
 
 const faqItems: FaqItem[] = [
   {
@@ -101,9 +102,13 @@ export default function CompoundsHubPage() {
                 <ul className="related-conversion-list">
                   {categoryCompounds.map((compound) => (
                     <li key={compound.id}>
-                      <Link href={`/bilim-hesaplayicilari/kimya/bilesikler/${compound.id}`}>
-                        {compound.nameTr} ({compound.formula})
-                      </Link>
+                      {bilimSayfasiKalkti(`/bilim-hesaplayicilari/kimya/bilesikler/${compound.id}`) ? (
+                        `${compound.nameTr} (${compound.formula})`
+                      ) : (
+                        <Link href={`/bilim-hesaplayicilari/kimya/bilesikler/${compound.id}`}>
+                          {compound.nameTr} ({compound.formula})
+                        </Link>
+                      )}
                     </li>
                   ))}
                 </ul>

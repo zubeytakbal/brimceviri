@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { bilimSayfasiKalkti } from "../../../../kaldirilanBilimSayfalari";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
 import CompoundMolCalculator from "../../../../components/CompoundMolCalculator";
@@ -32,7 +33,9 @@ function serializeJsonLd(data: object) {
 }
 
 export function generateStaticParams() {
-  return getAllCompoundProfiles().map((compound) => ({ slug: compound.id }));
+  return getAllCompoundProfiles()
+    .map((compound) => ({ slug: compound.id }))
+    .filter((p) => !bilimSayfasiKalkti(`/bilim-hesaplayicilari/kimya/bilesikler/${p.slug}`));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -160,9 +163,13 @@ export default async function CompoundPage({ params }: PageProps) {
                 {compound.composition.map((item) => (
                   <tr key={item.symbol}>
                     <td>
-                      <Link href={`/bilim-hesaplayicilari/kimya/periyodik-tablo/${slugifyElementName(item.nameTr)}`}>
-                        {item.nameTr} ({item.symbol})
-                      </Link>
+                      {bilimSayfasiKalkti(`/bilim-hesaplayicilari/kimya/periyodik-tablo/${slugifyElementName(item.nameTr)}`) ? (
+                        `${item.nameTr} (${item.symbol})`
+                      ) : (
+                        <Link href={`/bilim-hesaplayicilari/kimya/periyodik-tablo/${slugifyElementName(item.nameTr)}`}>
+                          {item.nameTr} ({item.symbol})
+                        </Link>
+                      )}
                     </td>
                     <td>{item.count}</td>
                     <td>
@@ -203,9 +210,13 @@ export default async function CompoundPage({ params }: PageProps) {
             <ul className="related-conversion-list">
               {similarCompounds.map((similar) => (
                 <li key={similar.id}>
-                  <Link href={`/bilim-hesaplayicilari/kimya/bilesikler/${similar.id}`}>
-                    {similar.nameTr} ({similar.formula})
-                  </Link>{" "}
+                  {bilimSayfasiKalkti(`/bilim-hesaplayicilari/kimya/bilesikler/${similar.id}`) ? (
+                    `${similar.nameTr} (${similar.formula})`
+                  ) : (
+                    <Link href={`/bilim-hesaplayicilari/kimya/bilesikler/${similar.id}`}>
+                      {similar.nameTr} ({similar.formula})
+                    </Link>
+                  )}{" "}
                   — {formatMolarMass(similar.molarMass)} g/mol
                 </li>
               ))}

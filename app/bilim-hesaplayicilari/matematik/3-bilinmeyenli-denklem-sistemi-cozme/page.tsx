@@ -167,15 +167,11 @@ export default function UcBilinmeyenliDenklemSistemiPage() {
 
           <h2>İlgili araçlar</h2>
           <p>
-            Tek bilinmeyenli bir denklemin varsa{" "}
-            <Link href="/bilim-hesaplayicilari/matematik/1-bilinmeyenli-denklem-cozme">
-              1 Bilinmeyenli Denklem Çözme
-            </Link>{" "}
-            aracını (ikinci dereceden bir denklem için delta ile{" "}
+            İkinci dereceden bir denklem için delta ile{" "}
             <Link href="/bilim-hesaplayicilari/matematik/ikinci-dereceden-denklem-cozme">
               İkinci Dereceden Denklem Çözme
             </Link>{" "}
-            aracını), iki bilinmeyenli bir sistemin varsa{" "}
+            aracını, iki bilinmeyenli bir sistemin varsa{" "}
             <Link href="/bilim-hesaplayicilari/matematik/2-bilinmeyenli-denklem-sistemi-cozme">
               2 Bilinmeyenli Denklem Sistemi Çözme
             </Link>{" "}

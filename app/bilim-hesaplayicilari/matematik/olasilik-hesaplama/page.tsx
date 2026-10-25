@@ -142,8 +142,6 @@ export default function OlasilikHesaplamaPage() {
             <Link href="/bilim-hesaplayicilari/matematik/permutasyon-kombinasyon-hesaplama">
               Permütasyon, Kombinasyon ve Olasılık Hesaplama
             </Link>
-            , faktöriyel hesaplamak için{" "}
-            <Link href="/bilim-hesaplayicilari/matematik/faktoriyel-hesaplama">Faktöriyel Hesaplama</Link>
             {" "}sayfasına bakabilirsin.
           </p>
 

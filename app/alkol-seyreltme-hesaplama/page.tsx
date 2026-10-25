@@ -132,8 +132,6 @@ export default function AlcoholDilutionCalculatorPage() {
           <p>
             Diğer eczacı araçları için{" "}
             <Link href="/bilim-hesaplayicilari/kimya">Kimya Hesaplayıcıları</Link>
-            {" "}sayfasına, mol/L cinsinden derişim hesapları için{" "}
-            <Link href="/bilim-hesaplayicilari/kimya/seyreltme-hesaplama">Seyreltme Hesaplama</Link>
             {" "}sayfasına bakabilirsin.
           </p>
 

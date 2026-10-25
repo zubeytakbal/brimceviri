@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { bilimSayfasiKalkti } from "../../kaldirilanBilimSayfalari";
 import { seoTitle } from "../../seoTitle";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
@@ -27,9 +28,9 @@ function serializeJsonLd(data: object) {
 }
 
 export function generateStaticParams() {
-  return getAllCelestialBodyComparisons().map((comparison) => ({
-    slug: comparison.slug,
-  }));
+  return getAllCelestialBodyComparisons()
+    .map((comparison) => ({ slug: comparison.slug }))
+    .filter((p) => !bilimSayfasiKalkti(`/gokcisimleri-karsilastirma/${p.slug}`));
 }
 
 export async function generateMetadata({
@@ -251,9 +252,8 @@ export default async function CelestialBodyComparisonPage({
             </li>
           </ul>
           <p>
-            Kendi kilonuzu farklı gökcisimlerinde hesaplamak için{" "}
-            <Link href={`/gokcisimleri-ozellikleri/${first.id}`}>{first.nameTr}</Link> ya da{" "}
-            <Link href={`/gokcisimleri-ozellikleri/${second.id}`}>{second.nameTr}</Link> sayfasındaki ağırlık hesaplayıcıyı kullanın.
+            Kendi kilonuzu bütün gezegenlerde ve Ay&apos;da hesaplamak için{" "}
+            <Link href="/gezegenlerde-kac-kilo-gelirim">gezegenlerde kaç kilo gelirim</Link> aracını kullanın.
           </p>
 
           <h2>Sık Sorulan Sorular</h2>
@@ -271,16 +271,13 @@ export default async function CelestialBodyComparisonPage({
             {first.nameTr} ve {second.nameTr} Hakkında Daha Fazla Bilgi
           </h2>
           <ul>
-            <li>
-              <Link href={`/gokcisimleri-ozellikleri/${first.id}`}>
-                {first.nameTr} özellikleri ve ağırlık hesaplayıcı
-              </Link>
-            </li>
-            <li>
-              <Link href={`/gokcisimleri-ozellikleri/${second.id}`}>
-                {second.nameTr} özellikleri ve ağırlık hesaplayıcı
-              </Link>
-            </li>
+            {[first, second]
+              .filter((b) => !bilimSayfasiKalkti(`/gokcisimleri-ozellikleri/${b.id}`))
+              .map((b) => (
+                <li key={b.id}>
+                  <Link href={`/gokcisimleri-ozellikleri/${b.id}`}>{b.nameTr} özellikleri ve ağırlık hesaplayıcı</Link>
+                </li>
+              ))}
             <li>
               <Link href="/gokcisimleri-ozellikleri">
                 Tüm gökcisimleri özellikleri sayfasına dön

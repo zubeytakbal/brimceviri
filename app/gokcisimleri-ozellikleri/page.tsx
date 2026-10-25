@@ -4,6 +4,7 @@ import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
 import { getAllCelestialBodies } from "../converter/celestialBodiesHub";
 import { getAllCelestialBodyComparisons } from "../converter/celestialBodyComparisons";
 import { buildSiteUrl } from "../siteConfig";
+import { bilimSayfasiKalkti } from "../kaldirilanBilimSayfalari";
 import GokcismiKarsilastir from "../components/GokcismiKarsilastir";
 
 const faqItems: FaqItem[] = [
@@ -104,9 +105,13 @@ export default function CelestialBodiesHubPage() {
                 <ul className="related-conversion-list">
                   {categoryBodies.map((body) => (
                     <li key={body.id}>
-                      <Link href={`/gokcisimleri-ozellikleri/${body.id}`}>
-                        {body.nameTr}
-                      </Link>
+                      {bilimSayfasiKalkti(`/gokcisimleri-ozellikleri/${body.id}`) ? (
+                        body.nameTr
+                      ) : (
+                        <Link href={`/gokcisimleri-ozellikleri/${body.id}`}>
+                          {body.nameTr}
+                        </Link>
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -124,7 +129,7 @@ export default function CelestialBodiesHubPage() {
 
           <h2>Popüler Gökcismi Karşılaştırmaları</h2>
           <ul>
-            {comparisons.map((comparison) => (
+            {comparisons.filter((comparison) => !bilimSayfasiKalkti(`/gokcisimleri-karsilastirma/${comparison.slug}`)).map((comparison) => (
               <li key={comparison.slug}>
                 <Link href={`/gokcisimleri-karsilastirma/${comparison.slug}`}>
                   {comparison.first.nameTr} – {comparison.second.nameTr}

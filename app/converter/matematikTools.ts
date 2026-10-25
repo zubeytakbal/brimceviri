@@ -11,19 +11,9 @@ export const matematikTools: MatematikTool[] = [
     title: "EBOB-EKOK Hesaplama",
   },
   {
-    id: "kesir",
-    href: "/bilim-hesaplayicilari/matematik/kesir-hesaplama",
-    title: "Kesir Hesaplama",
-  },
-  {
     id: "karekok",
     href: "/bilim-hesaplayicilari/matematik/karekok-hesaplama",
     title: "Karekök Hesaplama",
-  },
-  {
-    id: "faktoriyel",
-    href: "/bilim-hesaplayicilari/matematik/faktoriyel-hesaplama",
-    title: "Faktöriyel Hesaplama",
   },
   {
     id: "permutasyon-kombinasyon",
@@ -31,34 +21,14 @@ export const matematikTools: MatematikTool[] = [
     title: "Permütasyon, Kombinasyon ve Olasılık Hesaplama",
   },
   {
-    id: "oran-oranti",
-    href: "/bilim-hesaplayicilari/matematik/oran-oranti-hesaplama",
-    title: "Oran-Orantı Hesaplama",
-  },
-  {
     id: "ortalama",
     href: "/bilim-hesaplayicilari/matematik/ortalama-hesaplama",
     title: "Ortalama, Medyan, Mod ve Standart Sapma Hesaplama",
   },
   {
-    id: "medyan",
-    href: "/bilim-hesaplayicilari/matematik/medyan-hesaplama",
-    title: "Medyan (Ortanca) Hesaplama",
-  },
-  {
     id: "mod",
     href: "/bilim-hesaplayicilari/matematik/mod-hesaplama",
     title: "Mod (Tepe Değer) Hesaplama",
-  },
-  {
-    id: "varyans",
-    href: "/bilim-hesaplayicilari/matematik/varyans-hesaplama",
-    title: "Varyans Hesaplama",
-  },
-  {
-    id: "standart-sapma",
-    href: "/bilim-hesaplayicilari/matematik/standart-sapma-hesaplama",
-    title: "Standart Sapma Hesaplama",
   },
   {
     id: "olasilik",
@@ -69,26 +39,6 @@ export const matematikTools: MatematikTool[] = [
     id: "yuzde",
     href: "/bilim-hesaplayicilari/matematik/yuzde-hesaplama",
     title: "Yüzde Hesaplama",
-  },
-  {
-    id: "uslu-sayilar",
-    href: "/bilim-hesaplayicilari/matematik/uslu-sayilar-hesaplama",
-    title: "Üslü Sayılar Hesaplama",
-  },
-  {
-    id: "kupkok",
-    href: "/bilim-hesaplayicilari/matematik/kupkok-hesaplama",
-    title: "Küpkök Hesaplama",
-  },
-  {
-    id: "logaritma",
-    href: "/bilim-hesaplayicilari/matematik/logaritma-hesaplama",
-    title: "Logaritma Hesaplama",
-  },
-  {
-    id: "1-bilinmeyenli-denklem-cozme",
-    href: "/bilim-hesaplayicilari/matematik/1-bilinmeyenli-denklem-cozme",
-    title: "1 Bilinmeyenli Denklem Çözme",
   },
   {
     id: "ikinci-dereceden-denklem",
@@ -114,15 +64,5 @@ export const matematikTools: MatematikTool[] = [
     id: "sayi-tabani",
     href: "/sayi-tabani-cevirici",
     title: "Sayı Tabanı Çevirici",
-  },
-  {
-    id: "aritmetik-dizi",
-    href: "/bilim-hesaplayicilari/matematik/aritmetik-dizi-hesaplama",
-    title: "Aritmetik Dizi Hesaplama",
-  },
-  {
-    id: "geometrik-dizi",
-    href: "/bilim-hesaplayicilari/matematik/geometrik-dizi-hesaplama",
-    title: "Geometrik Dizi Hesaplama",
   },
 ];

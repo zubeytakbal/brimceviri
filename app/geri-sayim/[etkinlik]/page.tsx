@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { saatSayfasiKalkti } from "../../components/saat/kaldirilanSaatSayfalari";
 import { seoTitle } from "../../seoTitle";
 import { notFound } from "next/navigation";
 import CountdownEventPage, { eventSummary } from "../../components/countdown/CountdownEventPage";
@@ -11,7 +12,9 @@ export const revalidate = 3600;
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return countdownEvents.filter((event) => event.lang === "tr").map((event) => ({ etkinlik: event.slug }));
+  return countdownEvents
+    .filter((event) => event.lang === "tr" && !saatSayfasiKalkti(`/geri-sayim/${event.slug}`))
+    .map((event) => ({ etkinlik: event.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ etkinlik: string }> }): Promise<Metadata> {

@@ -148,7 +148,6 @@ export function SunrisePage() {
         title: "İlgili araçlar",
         links: [
           { href: SUN_PATHS.solstice, label: "En Uzun ve En Kısa Gün" },
-          { href: "/altin-saat", label: "Altın Saat ve Mavi Saat" },
           { href: "/ay-evreleri", label: "Ay Evreleri" },
           { href: "/yerel-saat-hesaplama", label: "Yerel Saat Hesaplama" },
         ],
@@ -212,7 +211,7 @@ export function SunrisePage() {
         </li>
       </ul>
       <p>
-        Fotoğrafçıların kullandığı altın saat ve mavi saat de bu aralıklarla ilgilidir; bunlar için <Link href="/altin-saat">altın saat hesaplama</Link> sayfasına bakın.
+        Fotoğrafçıların kullandığı altın saat ve mavi saat de bu aralıklarla ilgilidir.
       </p>
 
       <h2 id="tanim">Gün doğumu nasıl hesaplanır?</h2>
@@ -302,7 +301,6 @@ export function SolsticePage() {
           { href: SUN_PATHS.sunrise, label: "Güneş Doğuşu ve Batışı" },
           { href: "/ay-evreleri", label: "Ay Evreleri" },
           { href: "/takvim", label: "Takvim" },
-          { href: "/altin-saat", label: "Altın Saat" },
         ],
       }}
       tocTitle="Bu sayfada"

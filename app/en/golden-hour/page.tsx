@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import GoldenHourPage from "../../components/sun/GoldenHourPage";
-import { buildLanguageAlternates } from "../../i18n/routing";
 import { buildSiteUrl } from "../../siteConfig";
 
 export const revalidate = 21600;
@@ -12,7 +11,7 @@ const description =
 export const metadata: Metadata = {
   title,
   description,
-  alternates: { canonical: "/en/golden-hour", ...buildLanguageAlternates({ tr: "/altin-saat", en: "/en/golden-hour" }, "tr") },
+  alternates: { canonical: "/en/golden-hour" },
   openGraph: { title, description, url: buildSiteUrl("/en/golden-hour"), siteName: "BirimCeviri.app", locale: "en_US", type: "website" },
 };
 

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "@/app/components/SiteLink";
+import { saatSayfasiKalkti } from "../saat/kaldirilanSaatSayfalari";
 import {
   AY_ADLARI,
   gunHaritasi,
@@ -196,7 +197,7 @@ export default function TakvimGezgini({
               ) : null}
             </>
           );
-          return ev.length && sayfali ? (
+          return ev.length && sayfali && !saatSayfasiKalkti(takvimGunPath(d)) ? (
             <Link
               key={key}
               href={takvimGunPath(d)}
@@ -240,7 +241,7 @@ export default function TakvimGezgini({
         {year < HOLIDAY_FIRST_YEAR.tr
           ? ` ${year} yılı için resmî tatiller işaretlenmez; tatil kuralları o yıllarda farklıydı.`
           : ""}
-        {sayfali ? (
+        {sayfali && !saatSayfasiKalkti(takvimAyPath(year, month)) ? (
           <>
             {" "}
             <Link href={takvimAyPath(year, month)} prefetch={false}>

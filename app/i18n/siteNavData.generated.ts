@@ -442,10 +442,6 @@ export const SITE_NAV_DATA: SiteNavData = {
       {
        "href": "/kutsal-kitap-okuma-plani",
        "label": "Kutsal Kitap Okuma Planı"
-      },
-      {
-       "href": "/pomodoro",
-       "label": "Pomodoro Zamanlayıcı"
       }
      ],
      "footer": [

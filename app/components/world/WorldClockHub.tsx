@@ -125,7 +125,6 @@ export default function WorldClockHub({ lang }: { lang: Lang }) {
               { href: "/online-alarm-kur", label: "Online Alarm" },
               { href: "/zamanlayici", label: "Zamanlayıcı" },
               { href: "/kronometre", label: "Kronometre" },
-              { href: "/unix-zaman-damgasi-cevirici", label: "Unix Zaman Damgası Çevirici" },
             ]
           : [
               { href: "/en/online-clock", label: "Online Clock" },

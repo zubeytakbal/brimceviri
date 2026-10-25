@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { saatSayfasiKalkti } from "../../../components/saat/kaldirilanSaatSayfalari";
 import { notFound } from "next/navigation";
 import {
   ayMeta,
@@ -16,7 +17,7 @@ export const dynamicParams = false;
 export function generateStaticParams() {
   return TAKVIM_YILLARI.flatMap((y) =>
     AY_SLUG.map((ay) => ({ yil: String(y), ay })),
-  );
+  ).filter((p) => !saatSayfasiKalkti(`/takvim/${p.yil}/${p.ay}`));
 }
 
 type P = { params: Promise<{ yil: string; ay: string }> };

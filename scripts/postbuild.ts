@@ -26,6 +26,7 @@ import { isClosedPath } from "../app/indexPolicy";
 import { CLICKED_PATHS } from "../app/indexPolicyClicked";
 import { siteRedirects } from "../app/siteRedirects";
 import { MERGED_PAIRS } from "../app/converter/mergedPairs";
+import { KALDIRILAN_SAAT_SAYFALARI } from "../app/components/saat/kaldirilanSaatSayfalari";
 import { checkTemplates } from "./templateGuard";
 import { checkThinPages, MIN_KARAKTER } from "./thinGuard";
 import { checkSitemap } from "./sitemapGuard";
@@ -362,9 +363,34 @@ function fixMergedPairLinks() {
   return { links, alternates };
 }
 
+/** Kaldırılan Tarih & Saat sayfalarına kalan iç bağlantılar (önceki/sonraki gün, ilgili araçlar gibi) yönlendirme
+ * hedefine çevrilir; bağlantı 301'e değil doğrudan kalan sayfaya gider. */
+function fixRemovedSaatLinks() {
+  const kacis = (p: string) => p.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const yollar = Object.keys(KALDIRILAN_SAAT_SAYFALARI).sort((a, b) => b.length - a.length).map(kacis).join("|");
+  const linkRe = new RegExp(`((?:href=|\\\\?"href\\\\?":)\\\\?")(${yollar})(?=["?#\\\\])`, "g");
+  let links = 0;
+  const walk = (dir: string) => {
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      const path = join(dir, entry.name);
+      if (entry.isDirectory()) {
+        if (path !== join(OUT, "_next")) walk(path);
+        continue;
+      }
+      if (!entry.name.endsWith(".html")) continue;
+      const html = readFileSync(path, "utf8");
+      const next = html.replace(linkRe, (_m, prefix: string, yol: string) => (links++, `${prefix}${KALDIRILAN_SAAT_SAYFALARI[yol]}`));
+      if (next !== html) writeFileSync(path, next);
+    }
+  };
+  walk(OUT);
+  return links;
+}
+
 console.log(`${removeRscPayloads(OUT)} sayfa gecis verisi (.txt) silindi`);
 const merged = fixMergedPairLinks();
 console.log(`Birleştirilen çiftler: ${merged.links} bağlantı kalan sayfaya çevrildi, ${merged.alternates} hreflang silindi`);
+console.log(`Kaldırılan saat sayfaları: ${fixRemovedSaatLinks()} bağlantı kalan sayfaya çevrildi`);
 const policy = applyIndexPolicy();
 console.log(`Dizin politikası: ${policy.closed} sayfa noindex yapıldı, ${policy.alternates} hreflang bağlantısı kaldırıldı`);
 const hreflang = fixHreflangReciprocity();

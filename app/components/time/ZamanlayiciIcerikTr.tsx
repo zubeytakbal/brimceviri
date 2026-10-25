@@ -385,8 +385,7 @@ const ICERIK: Record<number, ZamanlayiciIcerik> = {
             <p>Dört pomodoro ve molalarla bir tam tur 2 saat 0 dakika sürer (uzun mola 20 dakika alındığında):</p>
             <PomodoroProgrami />
             <p>
-              25 dakika size kısa geliyorsa birçok kişi 50 dakika çalışma ve 10 dakika mola ile de aynı düzeni kurar;{" "}
-              <Link href="/pomodoro">Pomodoro zamanlayıcı</Link> turları ve molaları kendisi sayar.
+              25 dakika size kısa geliyorsa birçok kişi 50 dakika çalışma ve 10 dakika mola ile de aynı düzeni kurar.
             </p>
           </>
         ),
@@ -475,10 +474,6 @@ const ICERIK: Record<number, ZamanlayiciIcerik> = {
               10 saniye ara verilir. Yaygın düzenler ve 8 turun toplam süresi:
             </p>
             <AralikTablosu vurgu={10} />
-            <p>
-              Turları tek tek saymak yerine <Link href="/tabata-zamanlayici">Tabata zamanlayıcı</Link> çalışma ve dinlenmeyi kendisi
-              değiştirir.
-            </p>
           </>
         ),
       },
@@ -516,10 +511,6 @@ const ICERIK: Record<number, ZamanlayiciIcerik> = {
               ne kadar hızlı biterse o kadar çok dinlenilir. 45/15 düzeninde de her tur tam 1 dakika sürer:
             </p>
             <AralikTablosu vurgu={45} />
-            <p>
-              Dakikaları tek tek başlatmak yerine <Link href="/tabata-zamanlayici">aralık zamanlayıcısını</Link> 60 saniyelik turlara
-              ayarlayabilirsiniz.
-            </p>
           </>
         ),
       },
@@ -658,10 +649,6 @@ const ICERIK: Record<number, ZamanlayiciIcerik> = {
               bölümler çok yüksek yoğunlukta yapılmıştır; günümüzde 20/10 düzenindeki her antrenmana Tabata denir.
             </p>
             <TabataTurlari />
-            <p>
-              Çalışma ve dinlenmeyi ayrı ayrı sayan <Link href="/tabata-zamanlayici">Tabata zamanlayıcı</Link> ile turları elle takip
-              etmeniz gerekmez.
-            </p>
           </>
         ),
       },

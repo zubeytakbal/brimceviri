@@ -27,8 +27,6 @@ const GROUPS: Group[] = [
       { href: "/online-alarm-kur", label: "Online Alarm", note: "Sesli alarm, tarayıcıda" },
       { href: "/zamanlayici", label: "Zamanlayıcı", note: "Geri sayan sayaç" },
       { href: "/kronometre", label: "Kronometre", note: "Tur kaydı ve CSV" },
-      { href: "/pomodoro", label: "Pomodoro", note: "25+5 çalışma düzeni" },
-      { href: "/tabata-zamanlayici", label: "Tabata ve Aralık", note: "Antrenman sayacı" },
     ],
   },
   {
@@ -68,7 +66,6 @@ const GROUPS: Group[] = [
       { href: "/saat-hesaplama", label: "Saat Hesaplama", note: "İki saat arası, mesai" },
       { href: "/hangi-gun", label: "Tarih Hangi Gün?", note: "Herhangi bir tarihin günü" },
       { href: "/yerel-saat-hesaplama", label: "Yerel Saat Hesaplama", note: "Boylama göre güneş saati" },
-      { href: "/unix-zaman-damgasi-cevirici", label: "Unix Zaman Damgası", note: "Yazılımcılar için" },
     ],
   },
   {
@@ -81,7 +78,6 @@ const GROUPS: Group[] = [
       { href: "/gunes-dogusu-ve-batisi", label: "Güneş Doğuşu ve Batışı", note: "81 ilde doğuş, batış, alacakaranlık" },
       { href: "/en-uzun-gun-ve-en-kisa-gun", label: "En Uzun ve En Kısa Gün", note: "Gündönümü ve ekinoks anları" },
       { href: "/gunes-acisi-ve-golge-boyu-hesaplama", label: "Güneş Açısı ve Gölge", note: "Gölge boyu, evim güneş alır mı" },
-      { href: "/altin-saat", label: "Altın Saat", note: "Fotoğraf için en iyi ışık" },
     ],
   },
   {

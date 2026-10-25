@@ -236,9 +236,6 @@ export default function SehirSahneleri({ city }: { city: WorldCity }) {
             ))}
           </tbody>
         </table>
-        <p className="sahne-kucuk">
-          <Link href="/altin-saat">Başka bir tarih için altın saat hesaplayıcı →</Link>
-        </p>
       </section>
 
       {/* 5. Saat farkı */}

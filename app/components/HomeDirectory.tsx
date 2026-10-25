@@ -131,8 +131,6 @@ const timeToolsHome = {
     { href: "/online-alarm-kur", title: "Online Alarm", description: "Tekrarlayan alarm, kendi müziğin, erteleme ve ekranı açık tutma.", icon: "time" as const },
     { href: "/zamanlayici", title: "Zamanlayıcı", description: "10 saniyeden 24 saate geri sayım; tam ekran, renk temaları, bitiş saati.", icon: "paceCalculator" as const },
     { href: "/kronometre", title: "Kronometre", description: "Salise hassasiyeti, tur kaydı ve CSV indirme.", icon: "paceCalculator" as const },
-    { href: "/pomodoro", title: "Pomodoro", description: "25 dk odak, 5 dk mola; görev adı, bildirim ve günlük odak süresi.", icon: "paceCalculator" as const },
-    { href: "/tabata-zamanlayici", title: "Tabata / HIIT Zamanlayıcı", description: "20/10, 30/30, EMOM; sesli komut ve son 3 saniye bip.", icon: "paceCalculator" as const },
     { href: "/dunya-saatleri", title: "Dünya Saatleri", description: "97 şehrin canlı saati, Türkiye ile saat farkı ve yaz saati tarihleri.", icon: "greatCircleCalculator" as const },
     { href: "/saat-dilimi-cevirici", title: "Saat Dilimi Çevirici", description: "Birden çok şehre aynı anda çevir; toplantı planlayıcı.", icon: "greatCircleCalculator" as const },
     { href: "/takvim", title: "Türkiye Takvimi", description: "Bugünün tarihi, Hicri karşılığı, bayramlar, kandiller ve özel günler ay ay.", icon: "dateCalculator" as const },
@@ -146,7 +144,6 @@ const timeToolsHome = {
     { href: "/geri-sayim", title: "Geri Sayım", description: "Yılbaşına, bayramlara kaç gün kaldı? Kendi geri sayımını oluştur.", icon: "attendanceCalculator" as const },
     { href: "/tarih-cevirici", title: "Hicri Rumi Tarih Çevirici", description: "Eski belgelerdeki Rumi ve Hicri tarihleri gün gün Miladiye çevir.", icon: "hijriCalendarCalculator" as const },
     { href: "/ay-evreleri", title: "Ay Evreleri", description: "Bugün ay hangi evrede, dolunay ne zaman? Canlı ay takvimi.", icon: "sleepCalculator" as const },
-    { href: "/altin-saat", title: "Altın Saat", description: "Fotoğraf için altın saat ve mavi saat; şehir ya da konuma göre.", icon: "solarPanelPaybackCalculator" as const },
     { href: "/uyku-hesaplama", title: "Uyku Hesaplama", description: "90 dakikalık döngülere göre ideal yatış ve kalkış saati.", icon: "sleepCalculator" as const },
   ],
   de: [

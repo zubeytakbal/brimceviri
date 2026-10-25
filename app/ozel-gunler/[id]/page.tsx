@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { saatSayfasiKalkti } from "../../components/saat/kaldirilanSaatSayfalari";
 import { notFound } from "next/navigation";
 import { OzelGunDetay, OzelGunSayfasi, ozelGunMeta } from "../../components/takvim/TakvimSayfalari";
 import { takvimMetadata } from "../../components/takvim/takvimMeta";
@@ -12,7 +13,7 @@ export const dynamicParams = false;
 export const revalidate = 21600;
 
 export function generateStaticParams() {
-  return ETKINLIKLER.map((e) => ({ id: e.id }));
+  return ETKINLIKLER.filter((e) => !saatSayfasiKalkti(`/ozel-gunler/${e.id}`)).map((e) => ({ id: e.id }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {

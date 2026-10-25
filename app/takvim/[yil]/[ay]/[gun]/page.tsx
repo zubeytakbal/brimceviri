@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { saatSayfasiKalkti } from "../../../../components/saat/kaldirilanSaatSayfalari";
 import { notFound } from "next/navigation";
 import {
   gunMeta,
@@ -23,7 +24,7 @@ export function generateStaticParams() {
       ay: AY_SLUG[d.month - 1],
       gun: String(d.day),
     })),
-  );
+  ).filter((p) => !saatSayfasiKalkti(`/takvim/${p.yil}/${p.ay}/${p.gun}`));
 }
 
 type P = { params: Promise<{ yil: string; ay: string; gun: string }> };

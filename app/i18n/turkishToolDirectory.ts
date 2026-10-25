@@ -144,10 +144,7 @@ export const turkishToolGroups: ToolGroup[] = [
       { href: "/zamanlayici", label: "Online Zamanlayıcı" },
       { href: "/kronometre", label: "Kronometre" },
       { href: "/online-alarm-kur", label: "Online Alarm Kur" },
-      { href: "/pomodoro", label: "Pomodoro Zamanlayıcı" },
-      { href: "/tabata-zamanlayici", label: "Tabata / HIIT Zamanlayıcı" },
       { href: "/yerel-saat-hesaplama", label: "Yerel Saat Farkı" },
-      { href: "/unix-zaman-damgasi-cevirici", label: "Unix Zaman Damgası" },
     ],
   },
   {
@@ -333,7 +330,6 @@ export const turkishToolGroups: ToolGroup[] = [
       { href: "/bpm-ms-hesaplama", label: "BPM - MS" },
       { href: "/odak-uzakligi-esdegeri-hesaplama", label: "Odak Uzaklığı Eşdeğeri" },
       { href: "/pozlama-esdegeri-hesaplama", label: "Pozlama Eşdeğeri" },
-      { href: "/altin-saat", label: "Altın Saat ve Mavi Saat" },
       { href: "/gunes-dogusu-ve-batisi", label: "Güneş Doğuşu ve Batışı" },
       { href: "/en-uzun-gun-ve-en-kisa-gun", label: "En Uzun ve En Kısa Gün" },
       { href: "/gunes-acisi-ve-golge-boyu-hesaplama", label: "Güneş Açısı ve Gölge Boyu" },
@@ -472,7 +468,6 @@ export const turkishTimeMenu = pick([
   "/geri-sayim",
   "/paskalya-ne-zaman",
   "/kutsal-kitap-okuma-plani",
-  "/pomodoro",
 ]);
 
 /** Ana sayfadaki "Popüler araçlar" bloğu. */

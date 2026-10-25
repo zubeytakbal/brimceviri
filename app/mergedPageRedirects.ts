@@ -18,6 +18,7 @@ import { cgpaUniversities } from "./converter/india/cgpaUniversities";
 import { getAllRegions } from "./converter/regionElevationHubUz";
 import { GERMAN_STATES } from "./converter/time/germanHolidays";
 import { HOLIDAY_YEARS } from "./converter/time/holidays";
+import { KALDIRILAN_SAAT_SAYFALARI } from "./components/saat/kaldirilanSaatSayfalari";
 
 export type MergedRedirect = { source: string; destination: string; permanent: true };
 
@@ -256,5 +257,11 @@ function legacyRedirects(): MergedRedirect[] {
 }
 
 export function mergedPageRedirects(): MergedRedirect[] {
-  return [...timerRedirects(), ...alarmRedirects(), ...fxRedirects(), ...uzLicenseRedirects(), ...es419Redirects(), ...numberRedirects(), ...aminoAcidRedirects(), ...sureCuzRedirects(), ...unitGuideRedirects().map((x) => r(x.source, x.destination)), ...altinRedirects(), ...goldKaratPairRedirects(), ...cgpaRedirects(), ...uzRegionRedirects(), ...feiertageRedirects(), ...federalHolidayRedirects(), ...takvimGunRedirects(), ...ozelGunRedirects(), ...materialRedirects(), r("/ulkeler/s-o-tome-ve-principe", "/ulkeler/sao-tome-ve-principe"), ...legacyRedirects()];
+  // Kaldırılan Tarih & Saat sayfaları önce gelir; aynı adres için sonraki kurallar yazılmaz.
+  const kurallar = [
+    ...Object.entries(KALDIRILAN_SAAT_SAYFALARI).map(([kaynak, hedef]) => r(kaynak, hedef)),
+    ...timerRedirects(), ...alarmRedirects(), ...fxRedirects(), ...uzLicenseRedirects(), ...es419Redirects(), ...numberRedirects(), ...aminoAcidRedirects(), ...sureCuzRedirects(), ...unitGuideRedirects().map((x) => r(x.source, x.destination)), ...altinRedirects(), ...goldKaratPairRedirects(), ...cgpaRedirects(), ...uzRegionRedirects(), ...feiertageRedirects(), ...federalHolidayRedirects(), ...takvimGunRedirects(), ...ozelGunRedirects(), ...materialRedirects(), r("/ulkeler/s-o-tome-ve-principe", "/ulkeler/sao-tome-ve-principe"), ...legacyRedirects(),
+  ];
+  const gorulen = new Set<string>();
+  return kurallar.filter((k) => !gorulen.has(k.source) && gorulen.add(k.source));
 }

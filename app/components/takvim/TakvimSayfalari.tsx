@@ -1,5 +1,6 @@
 import { doluGunler } from "../../converter/calendar/trTakvim";
 import Link from "@/app/components/SiteLink";
+import { saatSayfasiKalkti } from "../saat/kaldirilanSaatSayfalari";
 import {
   AY_ADLARI,
   DINI_DOGRULANAN,
@@ -110,7 +111,7 @@ function tatilHaritasi(year: number) {
 }
 
 const sayfaVar = (d: YMD) =>
-  TAKVIM_YILLARI.includes(d.year) && gunHaritasi(d.year).has(ymdKey(d));
+  TAKVIM_YILLARI.includes(d.year) && gunHaritasi(d.year).has(ymdKey(d)) && !saatSayfasiKalkti(takvimGunPath(d));
 
 function TatilEtiketi({ e }: { e: Etkinlik }) {
   if (e.tatil === "yok")

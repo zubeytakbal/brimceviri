@@ -16,7 +16,6 @@ export const SAAT_GRUPLARI: SaatGrubu[] = [
       { href: "/saat-hesaplama", label: "Saat hesaplama (iki saat arası, mesai)" },
       { href: "/yerel-saat-hesaplama", label: "Yerel saat farkı" },
       { href: "/ezani-saat-cevirme", label: "Ezani saat çevirme" },
-      { href: "/unix-zaman-damgasi-cevirici", label: "Unix zaman damgası" },
     ],
   },
   {
@@ -26,8 +25,6 @@ export const SAAT_GRUPLARI: SaatGrubu[] = [
       { href: "/uyku-hesaplama", label: "Uyku hesaplama" },
       { href: "/zamanlayici", label: "Zamanlayıcı" },
       { href: "/kronometre", label: "Kronometre" },
-      { href: "/pomodoro", label: "Pomodoro" },
-      { href: "/tabata-zamanlayici", label: "Tabata / HIIT" },
     ],
   },
   {
@@ -65,7 +62,6 @@ export const SAAT_GRUPLARI: SaatGrubu[] = [
     linkler: [
       { href: "/ay-evreleri", label: "Ay evreleri" },
       { href: "/gunes-dogusu-ve-batisi", label: "Gün doğumu ve batımı" },
-      { href: "/altin-saat", label: "Altın saat" },
       { href: "/gokyuzu-olaylari-takvimi", label: "Gökyüzü olayları" },
       { href: "/bu-gece-gezegenler", label: "Bu gece gezegenler" },
       { href: "/ay-gozlem-cizelgesi", label: "Ay gözlem çizelgesi" },

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { saatSayfasiKalkti } from "../../components/saat/kaldirilanSaatSayfalari";
 import { appManifestPath, findInstallableApp } from "../../converter/time/installableApps";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
@@ -12,7 +13,9 @@ import { buildSiteUrl } from "../../siteConfig";
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return alarmPresetTimes.map((time) => ({ saat: alarmPresetSlug.tr(time) }));
+  return alarmPresetTimes
+    .map((time) => ({ saat: alarmPresetSlug.tr(time) }))
+    .filter((p) => !saatSayfasiKalkti(`/online-alarm-kur/${p.saat}`));
 }
 
 function findTime(slug: string) {

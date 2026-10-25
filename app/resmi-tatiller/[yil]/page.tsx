@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { saatSayfasiKalkti } from "../../components/saat/kaldirilanSaatSayfalari";
 import { notFound } from "next/navigation";
 import { HolidayYearPage, holidayYearMeta } from "../../components/dates/HolidayPages";
 import { HOLIDAY_YEARS } from "../../converter/time/holidays";
@@ -9,7 +10,7 @@ export const dynamicParams = false;
 export const revalidate = 21600;
 
 export function generateStaticParams() {
-  return HOLIDAY_YEARS.map((year) => ({ yil: String(year) }));
+  return HOLIDAY_YEARS.filter((year) => !saatSayfasiKalkti(`/resmi-tatiller/${year}`)).map((year) => ({ yil: String(year) }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ yil: string }> }): Promise<Metadata> {

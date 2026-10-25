@@ -19,7 +19,6 @@ export default function manifest(): MetadataRoute.Manifest {
       { name: "Online Saat", url: "/online-saat", icons: [{ src: "/app-icons/saat/192", sizes: "192x192", type: "image/png" }] },
       { name: "Online Alarm", url: "/online-alarm-kur", icons: [{ src: "/app-icons/alarm/192", sizes: "192x192", type: "image/png" }] },
       { name: "Zamanlayıcı", url: "/zamanlayici", icons: [{ src: "/app-icons/zamanlayici/192", sizes: "192x192", type: "image/png" }] },
-      { name: "Pomodoro", url: "/pomodoro", icons: [{ src: "/app-icons/pomodoro/192", sizes: "192x192", type: "image/png" }] },
     ],
     icons: [
       {

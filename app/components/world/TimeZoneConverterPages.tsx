@@ -129,7 +129,6 @@ export function TimeZoneConverterHub({ lang }: { lang: "tr" | "en" }) {
               { href: "/dunya-saatleri", label: "Dünya Saatleri" },
               { href: "/online-saat", label: "Online Saat" },
               { href: "/geri-sayim", label: "Geri Sayım" },
-              { href: "/unix-zaman-damgasi-cevirici", label: "Unix Zaman Damgası Çevirici" },
             ]
           : [
               ...zonePairs.slice(0, 10).map((p) => ({ href: `/en/time-zone-converter/${p.slug}`, label: `${p.fromCode} to ${p.toCode}` })),

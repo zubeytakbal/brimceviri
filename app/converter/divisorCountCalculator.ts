@@ -1,5 +1,11 @@
 import { primeFactorize, type PrimeFactor } from "./ebobEkokCalculator";
 
+/** Asal sayı tam olarak iki pozitif böleni (1 ve kendisi) olan sayıdır; 1 ne asal ne bileşiktir. */
+export function asallikDurumu(n: number, divisorCount: number): "asal" | "bileşik" | "bir" {
+  if (n === 1) return "bir";
+  return divisorCount === 2 ? "asal" : "bileşik";
+}
+
 export interface DivisorCountResult {
   n: number;
   factors: PrimeFactor[];

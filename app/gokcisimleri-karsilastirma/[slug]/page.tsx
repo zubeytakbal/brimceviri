@@ -86,18 +86,22 @@ export default async function CelestialBodyComparisonPage({
     notFound();
   }
 
-  const { first, second, context, diameterRatio, massRatio, largerId } =
+  const { first, second, context, diameterRatio, massRatio, largerId, heavierId } =
     comparison;
   const largerBody = largerId === first.id ? first : second;
   const smallerBody = largerId === first.id ? second : first;
+  const heavierBody = heavierId === first.id ? first : second;
+  // Çapça büyük olan kütlece de büyük olmayabilir; o zaman iki yargı ayrı kurulur.
+  const buyukluk =
+    heavierBody.id === largerBody.id
+      ? `${largerBody.nameTr}, ${trAblative(smallerBody.nameTr)} çap olarak yaklaşık ${formatRatio(diameterRatio)} kat, kütle olarak yaklaşık ${formatRatio(massRatio)} kat daha büyüktür.`
+      : `${largerBody.nameTr}, ${trAblative(smallerBody.nameTr)} çap olarak yaklaşık ${formatRatio(diameterRatio)} kat büyüktür; ancak ${heavierBody.nameTr} kütle olarak yaklaşık ${formatRatio(massRatio)} kat daha ağırdır.`;
   const pageUrl = buildSiteUrl(`/gokcisimleri-karsilastirma/${slug}`);
 
   const faqItems: FaqItem[] = [
     {
       question: `${trEitherQuestion(first.nameTr, second.nameTr)} daha büyük?`,
-      answer: `${largerBody.nameTr}, ${trAblative(smallerBody.nameTr)} çap olarak yaklaşık ${formatRatio(
-        diameterRatio
-      )} kat, kütle olarak yaklaşık ${formatRatio(massRatio)} kat daha büyüktür.`,
+      answer: buyukluk,
     },
     {
       question: `${trGenitive(first.nameTr)} çapı kaç km?`,
@@ -163,11 +167,7 @@ export default async function CelestialBodyComparisonPage({
           <h1>
             {trEitherQuestion(first.nameTr, second.nameTr)} Daha Büyük? Karşılaştırma
           </h1>
-          <p>
-            {largerBody.nameTr}, {trAblative(smallerBody.nameTr)} çap olarak
-            yaklaşık {formatRatio(diameterRatio)} kat, kütle olarak yaklaşık{" "}
-            {formatRatio(massRatio)} kat daha büyüktür.
-          </p>
+          <p>{buyukluk}</p>
         </header>
 
         <section className="category-article-content">

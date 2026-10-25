@@ -77,8 +77,14 @@ export default function GokcismiKarsilastir() {
           </h3>
           <p>
             Çap olarak büyük olan {big.nameTr}: {small.nameTr} ile karşılaştırıldığında çapı yaklaşık{" "}
-            {fmt(big.diameterKm / small.diameterKm, 2)} kat, kütlesi yaklaşık {fmt(big.massKg / small.massKg, 2)} kat
-            daha büyüktür; içine yaklaşık {fmt((big.diameterKm / small.diameterKm) ** 3, 0)} tane {small.nameTr} sığar.
+            {fmt(big.diameterKm / small.diameterKm, 2)} kat
+            {big.massKg >= small.massKg ? (
+              <>, kütlesi yaklaşık {fmt(big.massKg / small.massKg, 2)} kat daha büyüktür</>
+            ) : (
+              // Çapça büyük olan kütlece küçük olabilir (Uranüs ve Neptün): kütle ayrı söylenir.
+              <> büyüktür, ancak {small.nameTr} kütle olarak yaklaşık {fmt(small.massKg / big.massKg, 2)} kat daha ağırdır</>
+            )}
+            ; içine yaklaşık {fmt((big.diameterKm / small.diameterKm) ** 3, 0)} tane {small.nameTr} sığar.
             {context ? ` ${context}` : ""}
           </p>
           <div className="conversion-table-wrap">

@@ -2,6 +2,7 @@ import { germanMathAlternatesForTurkish } from "@/app/i18n/germanMathPages";
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import EbobEkokCalculator from "../../../components/EbobEkokCalculator";
+import { calculateEbobEkok } from "../../../converter/ebobEkokCalculator";
 import { buildFaqSchema, type FaqItem } from "../../../converter/faqSchema";
 import { buildSiteUrl } from "../../../siteConfig";
 
@@ -27,6 +28,25 @@ const faqItems: FaqItem[] = [
       "İki sayı için EBOB(a,b) × EKOK(a,b) = a × b eşitliği geçerlidir. Üç veya daha fazla sayı için bu basit eşitlik genellikle geçerli değildir.",
   },
 ];
+
+// Search Console'da (24 Temmuz – 24 Ekim 2026) EBOB-EKOK aramalarında en çok sorulan sayılar; sonuçlar derlemede hesaplanır.
+const SORULAN_SAYILAR = [
+  [119, 204],
+  [76, 133],
+  [720, 1344],
+  [36, 54],
+  [408, 442, 340],
+  [36, 48],
+  [136, 255],
+  [8200, 6800],
+  [280, 244],
+  [105, 135],
+  [152, 114],
+  [292, 72],
+  [450, 576],
+  [48, 54],
+];
+const sayi = (n: number) => n.toLocaleString("tr-TR");
 
 export const metadata: Metadata = {
   title: "EBOB-EKOK Hesaplama: Asal Çarpanlarla Adım Adım Çözüm",
@@ -125,6 +145,32 @@ export default function EbobEkokHesaplamaPage() {
         </div>
 
         <section className="category-article-content">
+          <h2 id="sik-sorulanlar">Sık sorulan EBOB ve EKOK hesapları</h2>
+          <p>Aramalarda en çok sorulan sayıların EBOB ve EKOK değerleri. Kendi sayılarınız için yukarıdaki aracı kullanın.</p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th scope="col">Sayılar</th>
+                  <th scope="col">EBOB</th>
+                  <th scope="col">EKOK</th>
+                </tr>
+              </thead>
+              <tbody>
+                {SORULAN_SAYILAR.map((sayilar) => {
+                  const r = calculateEbobEkok(sayilar)!;
+                  return (
+                    <tr key={sayilar.join("-")}>
+                      <td>{sayilar.map(sayi).join(", ")}</td>
+                      <td>{sayi(r.ebob)}</td>
+                      <td>{sayi(r.ekok)}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+
           <h2>EBOB (OBEB) nedir?</h2>
           <p>
             <strong>En Büyük Ortak Bölen (EBOB)</strong>, iki veya daha fazla

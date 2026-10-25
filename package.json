@@ -11,7 +11,8 @@
     "lint": "eslint",
     "test": "vitest run",
     "test:watch": "vitest",
-    "check:nordic": "python3 scripts/nordic_language_check.py"
+    "check:nordic": "python3 scripts/nordic_language_check.py",
+    "denetim": "tsx scripts/kaliteDenetimi.ts"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",

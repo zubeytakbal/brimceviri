@@ -31,6 +31,16 @@ export function trPair(page: PageLike, value: number) {
 
 const reversed = (page: PageLike): PageLike => ({ ...page, fromUnit: page.toUnit, toUnit: page.fromUnit, fromName: page.toName, toName: page.fromName });
 
+/** Aramalardaki belirli değerler için sayfaya eklenen hesaplanmış tablo (lastik basıncı, RAM gibi). */
+export type ExtraTable = {
+  id: string;
+  title: string;
+  text: string;
+  columns: string[];
+  rows: string[][];
+  note?: string;
+};
+
 type Override = {
   titles: string[];
   description: string;
@@ -39,7 +49,19 @@ type Override = {
   exampleValues?: number[];
   // Sayfanın ilk ekranındaki "Sık bakılan değerler" listesi; yoksa tablo değerlerinin başı.
   quickValues?: number[];
+  // Tablolarda sonucun ondalık basamağı; yoksa 7 anlamlı basamak ("36,25943 psi" yerine "36,3 psi").
+  decimals?: number;
+  extraTables?: ExtraTable[];
 };
+
+const tr = (value: number, decimals: number) => value.toLocaleString("tr-TR", { maximumFractionDigits: decimals });
+const adimlar = (bas: number, son: number, adim: number) =>
+  Array.from({ length: Math.round((son - bas) / adim) + 1 }, (_, i) => Math.round((bas + i * adim) * 1000) / 1000);
+const PSI_BAR = 14.503774;
+const ABD_GALON = 3.785411784;
+const INGILIZ_GALON = 4.54609;
+const KNOT_KMH = 1.852;
+const GIB = 1024 ** 3;
 
 export const TURKISH_SEO_OVERRIDES: Record<string, Override> = {
   "metre-santimetre": {
@@ -170,6 +192,18 @@ export const TURKISH_SEO_OVERRIDES: Record<string, Override> = {
     titles: ["1 Galon Kaç Litre? ABD ve İngiliz Galonu", "1 Galon Kaç Litre?"],
     description: "1 ABD galonu = 3,785 litre, 1 İngiliz galonu = 4,546 litre. 5 galon = 18,93 L, 10 galon = 37,85 L. Galon-litre tablosu ve hesaplama aracı.",
     intro: "Bu çevirici ABD galonunu kullanır: 1 galon = 3,785 litre. İngiliz (imperial) galonu ise 4,546 litredir.",
+    exampleValues: [1, 2, 3, 4, 5, 10, 11, 15, 20, 25, 30, 40, 50, 55, 100],
+    decimals: 2,
+    extraTables: [
+      {
+        id: "abd-ingiliz",
+        title: "ABD galonu ve İngiliz galonu kaç litre?",
+        text: "Galonun iki farklı tanımı vardır: ABD'de kullanılan ABD galonu ve İngiliz ölçü sistemindeki İngiliz (imperial) galonu. Aynı sayıda galon, İngiliz galonunda yaklaşık %20 daha fazla litre eder.",
+        columns: ["Galon", "ABD galonu", "İngiliz galonu"],
+        rows: [1, 2, 3, 5, 10, 20, 25, 50].map((g) => [`${g} galon`, `${tr(g * ABD_GALON, 2)} L`, `${tr(g * INGILIZ_GALON, 2)} L`]),
+        note: "Etikette \"US gal\" ABD galonunu, \"imp gal\" ya da \"UK gal\" İngiliz galonunu gösterir.",
+      },
+    ],
     faq: [
       {
         question: "ABD galonu ile İngiliz galonu aynı mı?",
@@ -201,6 +235,25 @@ export const TURKISH_SEO_OVERRIDES: Record<string, Override> = {
     description: "1 bar = 14,5 psi. 2,2 bar = 31,9 psi, 2,5 bar = 36,3 psi. Lastik basıncı, kompresör ve hidrolik için bar-psi tablosu ve hesaplama aracı.",
     intro: "1 bar yaklaşık 14,5 psi'dir; lastik basıncında 2,2 bar ≈ 32 psi.",
     exampleValues: [0.5, 1, 1.8, 2, 2.2, 2.4, 2.5, 3, 5, 6, 8, 10, 100, 200],
+    quickValues: [1, 2, 2.2, 2.5, 2.7, 3, 5, 10],
+    decimals: 1,
+    extraTables: [
+      {
+        id: "lastik-basinci",
+        title: "Lastik basıncı: bar kaç psi?",
+        text: "Araç lastiklerinde basınç çoğunlukla 1,8 ile 3,6 bar arasındadır; pompalar ve basınç ölçerler ise genellikle psi gösterir. Aşağıda bu aralıktaki her 0,1 bar'ın psi karşılığı ve basınç ölçerde göreceğiniz yuvarlak değer var.",
+        columns: ["Bar", "PSI", "Yuvarlak"],
+        rows: adimlar(1.8, 3.6, 0.1).map((b) => [`${tr(b, 1)} bar`, `${tr(b * PSI_BAR, 1)} psi`, `${Math.round(b * PSI_BAR)} psi`]),
+        note: "Aracınız için doğru basınç, sürücü kapısı direğindeki etikette, yakıt kapağının içinde veya kullanım kılavuzunda yazar; lastikler soğukken ölçülmelidir.",
+      },
+      {
+        id: "psi-bar",
+        title: "PSI kaç bar?",
+        text: "Pompa psi gösteriyorsa bar karşılığı: bar = psi ÷ 14,5.",
+        columns: ["PSI", "Bar"],
+        rows: [26, 28, 30, 32, 33, 34, 35, 36, 38, 40, 42, 44, 50].map((p) => [`${p} psi`, `${tr(p / PSI_BAR, 2)} bar`]),
+      },
+    ],
   },
   "terabayt-gigabayt": {
     titles: ["1 TB Kaç GB? Terabayt Gigabayt Çevirme (1000 mi 1024 mü?)", "1 TB Kaç GB?"],
@@ -212,11 +265,75 @@ export const TURKISH_SEO_OVERRIDES: Record<string, Override> = {
         answer: "Disk 1.000.000.000.000 bayttır. Windows bunu 1.024³ bayta (1 GiB) böler: 10¹² ÷ 1.073.741.824 ≈ 931 GB. Kayıp yoktur, sadece hesap tabanı farklıdır.",
       },
     ],
+    extraTables: [
+      {
+        id: "windows",
+        title: "Disk kapasitesi Windows'ta kaç GB görünür?",
+        text: "Kutuda yazan kapasite 1.000 tabanıyla, Windows'ta görünen 1.024 tabanıyla hesaplanır.",
+        columns: ["Disk", "Kutuda", "Windows'ta"],
+        rows: [0.5, 1, 2, 4, 8, 16].map((t) => [
+          t < 1 ? `${tr(t * 1000, 0)} GB` : `${tr(t, 2)} TB`,
+          `${tr(t * 1000, 0)} GB`,
+          `${tr((t * 1e12) / GIB, 1)} GB`,
+        ]),
+      },
+    ],
   },
   "gigabayt-megabayt": {
     titles: ["1 GB Kaç MB? Gigabayt Megabayt Çevirme (1000 mi 1024 mü?)", "1 GB Kaç MB?"],
     description: "1 GB = 1.000 MB; bilgisayarların ikili sisteminde 1 GiB = 1.024 MiB. Telefon paketi, dosya ve disk boyutları için gigabayt-megabayt tablosu ve açıklama.",
     intro: "Ondalık sistemde 1 GB = 1.000 MB; bilgisayarların kullandığı ikili sistemde 1 GiB = 1.024 MiB.",
+  },
+  "megabayt-gigabayt": {
+    titles: ["MB Kaç GB? Megabayt Gigabayt Çevirme (1000 mi 1024 mü?)", "1 MB Kaç GB?"],
+    description: "1.000 MB = 1 GB; RAM ve Windows 1.024 ile hesaplar: 5120 MB = 5 GB, 8192 MB = 8 GB. İki hesabı yan yana gösteren MB-GB tablosu ve hesaplama aracı.",
+    intro: "Ondalık hesapta 1.000 MB = 1 GB; RAM, Windows ve oyun ayarları 1.024 MB = 1 GB alır.",
+    extraTables: [
+      {
+        id: "ram",
+        title: "RAM ve Windows: kaç MB kaç GB?",
+        text: "\"5120 MB kaç GB\" gibi aramalardaki sayılar 1.024'ün katlarıdır; bu değerler RAM, sanal makine ve oyun ayarlarında 1.024 tabanıyla verilir. Aynı değerin 1.000 tabanındaki karşılığı da yanda.",
+        columns: ["MB", "1.024 ile (RAM)", "1.000 ile"],
+        rows: [512, 1024, 2048, 3072, 4096, 5120, 6144, 8192, 10240, 12288, 16384, 32768].map((mb) => [
+          tr(mb, 0),
+          `${tr(mb / 1024, 2)} GB`,
+          `${tr(mb / 1000, 2)} GB`,
+        ]),
+        note: "Mobil internet paketleri ve dosya boyutları için de operatörün veya programın hangi tabanı kullandığına bakın; fark 1 GB'ta 24 MB'tır.",
+      },
+    ],
+    faq: [
+      {
+        question: "5120 MB kaç GB?",
+        answer: "1.024 ile hesaplandığında (RAM, Windows) 5120 MB = 5 GB; 1.000 ile hesaplandığında 5,12 GB.",
+      },
+    ],
+  },
+  "knot-kilometre-saat": {
+    titles: ["1 Knot Kaç Km? Knot Km/Saat Çevirme Tablosu", "1 Knot Kaç Km/Saat?"],
+    description: "1 knot = 1,852 km/saat. 10 knot = 18,5 km/sa, 30 knot = 55,6 km/sa, 40 knot = 74,1 km/sa. Rüzgâr, tekne ve uçak hızı için knot-km tablosu.",
+    intro: "Knot bir hız birimidir: 1 knot saatte 1 deniz mili, yani saatte 1,852 km'dir.",
+    exampleValues: [1, 2, 5, 10, 11, 12, 15, 20, 25, 30, 35, 40, 45, 50, 60, 80, 100, 150, 200, 300, 500],
+    quickValues: [1, 10, 20, 30, 40, 50, 100, 500],
+    decimals: 1,
+    faq: [
+      {
+        question: "1 knot kaç km yol eder?",
+        answer: "Knot hızdır: 1 knot hızla giden bir tekne bir saatte 1,852 km yol alır. 40 knot hızla bir saatte 74,1 km gider.",
+      },
+    ],
+  },
+  "pound-kilogram": {
+    titles: ["1 Pound Kaç Kg? Pound (lb) Kilogram Çevirme Tablosu", "1 Pound Kaç Kg?"],
+    description: "1 pound (lb) = 0,4536 kg. 10 lb = 4,54 kg, 100 lb = 45,36 kg, 500 lb = 226,8 kg. Kilo, kargo ve spor ağırlıkları için pound-kg tablosu.",
+    intro: "1 pound (lb) tam olarak 0,45359237 kilogramdır; kabaca pound'u 2,2'ye bölün.",
+    decimals: 2,
+    faq: [
+      {
+        question: "Ağırlık birimi pound ile para birimi pound aynı mı?",
+        answer: "Hayır. Ağırlık birimi pound \"lb\" ile yazılır ve 0,4536 kg'dır. İngiliz sterlini de \"pound\" (£) diye anılır ama bir para birimidir; kilogramla çevrilmez.",
+      },
+    ],
   },
   "okka-kilogram": {
     titles: ["1 Okka Kaç Kilo? Okka Kilogram Çevirme Tablosu", "1 Okka Kaç Kilogram?"],
@@ -237,6 +354,8 @@ export function turkishConversionSeo(page: PageLike, twoWay = false) {
       extraFaq: override.faq ?? [],
       exampleValues: override.exampleValues,
       quickValues: override.quickValues,
+      decimals: override.decimals,
+      extraTables: override.extraTables ?? [],
     };
   }
 
@@ -257,5 +376,7 @@ export function turkishConversionSeo(page: PageLike, twoWay = false) {
     extraFaq: [] as FaqItem[],
     exampleValues: undefined,
     quickValues: undefined as number[] | undefined,
+    decimals: undefined as number | undefined,
+    extraTables: [] as ExtraTable[],
   };
 }

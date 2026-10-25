@@ -239,6 +239,13 @@ export const KALDIRILAN_SAAT_SAYFALARI: Readonly<Record<string, string>> = {
   "/online-alarm-kur/10-00": "/online-alarm-kur?t=10:00",
   "/online-alarm-kur/11-00": "/online-alarm-kur?t=11:00",
   "/online-alarm-kur/12-00": "/online-alarm-kur?t=12:00",
+  // 25 Ekim 2026, ikinci tur: kalan 5 hazır alarm saati. Ana sayfadaki hazır saat tablosu aynı işi (alarmı o saate kurma
+  // ve yatış önerileri) yapıyor; sayfalar ortak metnin %81'ini paylaşıyordu.
+  "/online-alarm-kur/05-30": "/online-alarm-kur?t=05:30",
+  "/online-alarm-kur/06-30": "/online-alarm-kur?t=06:30",
+  "/online-alarm-kur/07-30": "/online-alarm-kur?t=07:30",
+  "/online-alarm-kur/08-00": "/online-alarm-kur?t=08:00",
+  "/online-alarm-kur/08-30": "/online-alarm-kur?t=08:30",
   // Hazır zamanlayıcı süreleri (4)
   "/zamanlayici/12-saat": "/zamanlayici?s=43200",
   "/zamanlayici/15-saniye": "/zamanlayici?s=15",

@@ -10,6 +10,32 @@ import {
 } from "../../converter/celestialBodyComparisons";
 import { buildSiteUrl } from "../../siteConfig";
 import { trAblative, trEitherQuestion, trGenitive } from "../../converter/turkishSuffix";
+import { CIFT_AYRINTI } from "../../converter/celestialPairDetails";
+import { findCelestialBodyById } from "../../converter/celestialBodiesHub";
+import type { CelestialBodyEntry } from "../../converter/celestialBodiesDatabase";
+
+const ISIK_KM_SN = 299792.458;
+
+/** Işığın süresi: saniye → "8 dakika 19 saniye" gibi. */
+function isikSuresi(saniye: number) {
+  const sa = Math.floor(saniye / 3600);
+  const dk = Math.floor((saniye % 3600) / 60);
+  const sn = Math.round(saniye % 60);
+  return [sa ? `${sa} saat` : "", dk ? `${dk} dakika` : "", !sa && sn ? `${sn} saniye` : ""].filter(Boolean).join(" ");
+}
+
+/** Gökcisminin nerede dolandığını veriden anlatır: Güneş'e ya da gezegenine uzaklık ve bir turun süresi. */
+function konumCumlesi(b: CelestialBodyEntry) {
+  if (b.distanceFromSunMillionKm) {
+    const yil = b.orbitalPeriodDays / 365.25;
+    return `${b.nameTr} Güneş'e ortalama ${formatNumber(b.distanceFromSunMillionKm, 1)} milyon km uzaklıktadır; Güneş ışığı oraya ${isikSuresi((b.distanceFromSunMillionKm * 1e6) / ISIK_KM_SN)} sürede ulaşır. Güneş etrafındaki bir turu ${yil >= 2 ? `yaklaşık ${formatNumber(yil, 1)} Dünya yılı` : `${formatNumber(b.orbitalPeriodDays, 0)} gün`} sürer.`;
+  }
+  if (b.orbitsAroundId && b.distanceFromParentKm) {
+    const ana = findCelestialBodyById(b.orbitsAroundId);
+    return `${b.nameTr}, ${ana ? trGenitive(ana.nameTr) : "gezegeninin"} çevresinde ortalama ${formatNumber(b.distanceFromParentKm, 0)} km uzaklıkta dolanır ve bir turunu ${formatNumber(b.orbitalPeriodDays, 2)} günde tamamlar.`;
+  }
+  return null;
+}
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -251,6 +277,21 @@ export default async function CelestialBodyComparisonPage({
               {formatNumber(second.escapeVelocityKms * 3600, 0)} km&apos;dir.
             </li>
           </ul>
+          <h2>Uzaklık ve yörünge</h2>
+          {[first, second].map((b) => {
+            const cumle = konumCumlesi(b);
+            return cumle ? <p key={b.id}>{cumle}</p> : null;
+          })}
+
+          {CIFT_AYRINTI[slug] && (
+            <>
+              <h2>{CIFT_AYRINTI[slug].baslik}</h2>
+              {CIFT_AYRINTI[slug].paragraflar.map((metin) => (
+                <p key={metin.slice(0, 40)}>{metin}</p>
+              ))}
+            </>
+          )}
+
           <p>
             Kendi kilonuzu bütün gezegenlerde ve Ay&apos;da hesaplamak için{" "}
             <Link href="/gezegenlerde-kac-kilo-gelirim">gezegenlerde kaç kilo gelirim</Link> aracını kullanın.

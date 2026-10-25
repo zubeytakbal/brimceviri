@@ -299,9 +299,362 @@ function MacAkisi() {
   );
 }
 
+/* ---------------- Ortak: çalışma ve mola blokları ---------------- */
+
+function CalismaBloklari({ calis, mola, adet, baslangic = 9 * 60 }: { calis: number; mola: number; adet: number; baslangic?: number }) {
+  const satirlar = Array.from({ length: adet }, (_, i) => {
+    const bas = baslangic + i * (calis + mola);
+    return { no: i + 1, bas, son: bas + calis, molaSon: bas + calis + mola };
+  });
+  return (
+    <div className="conversion-table-wrap">
+      <table className="conversion-table zm-tablo">
+        <thead>
+          <tr>
+            <th scope="col">Blok</th>
+            <th scope="col">Çalışma</th>
+            <th scope="col">Mola</th>
+          </tr>
+        </thead>
+        <tbody>
+          {satirlar.map((r) => (
+            <tr key={r.no}>
+              <td>{r.no}. blok</td>
+              <td>
+                {saat(r.bas)}–{saat(r.son)}
+              </td>
+              <td>
+                {saat(r.son)}–{saat(r.molaSon)}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+/* ---------------- Uzun: İş Kanunu ara dinlenmesi ---------------- */
+
+// 4857 sayılı İş Kanunu md. 68: günlük çalışma süresinin ortasında verilecek en kısa ara dinlenmeleri.
+function AraDinlenmesi({ vurgu }: { vurgu: number }) {
+  const satirlar = [
+    { ad: "4 saat veya daha kısa", ust: 4 * 3600, ara: "15 dakika" },
+    { ad: "4 saatten uzun, 7,5 saate kadar", ust: 7.5 * 3600, ara: "30 dakika" },
+    { ad: "7,5 saatten uzun", ust: Infinity, ara: "1 saat" },
+  ];
+  const secili = satirlar.find((r) => vurgu <= r.ust)!;
+  return (
+    <div className="conversion-table-wrap">
+      <table className="conversion-table zm-tablo">
+        <thead>
+          <tr>
+            <th scope="col">Günlük çalışma</th>
+            <th scope="col">En az ara</th>
+          </tr>
+        </thead>
+        <tbody>
+          {satirlar.map((r) => (
+            <tr key={r.ad} className={r === secili ? "is-vurgu" : undefined}>
+              <td>{r === secili ? <strong>{r.ad}</strong> : r.ad}</td>
+              <td>{r.ara}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+/* ---------------- Spor: Cooper testi ---------------- */
+
+// Cooper (1968): 12 dakikada koşulan mesafeden tahmini maksimal oksijen tüketimi, VO2maks = (metre - 504,9) / 44,73.
+function CooperTablosu() {
+  return (
+    <div className="conversion-table-wrap">
+      <table className="conversion-table zm-tablo">
+        <thead>
+          <tr>
+            <th scope="col">12 dakikada mesafe</th>
+            <th scope="col">400 m pistte tur</th>
+            <th scope="col">Tahmini VO2maks (ml/kg/dk)</th>
+          </tr>
+        </thead>
+        <tbody>
+          {[1600, 2000, 2400, 2800, 3200].map((m) => (
+            <tr key={m}>
+              <td>{m.toLocaleString("tr-TR")} m</td>
+              <td>{m / 400}</td>
+              <td>{((m - 504.9) / 44.73).toLocaleString("tr-TR", { maximumFractionDigits: 1 })}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
 /* ---------------- Süreye özgü içerik ---------------- */
 
 const ICERIK: Record<number, ZamanlayiciIcerik> = {
+  90: {
+    aile: "spor",
+    giris: "90 saniye, ağırlık antrenmanında setler arası dinlenme için en sık seçilen sürelerden biridir. Koşu ile yürüyüşü sırayla yapan aralık antrenmanlarında da 90 saniyelik bloklar kullanılır.",
+    bolumler: [
+      {
+        id: "set-arasi",
+        baslik: "Setler arası 90 saniye dinlenme",
+        icerik: (
+          <p>
+            Amerikan Spor Hekimliği Koleji&apos;nin (ACSM) direnç antrenmanı önerilerinde kas gelişimi için setler arası 1–2 dakika, en yüksek
+            kuvvet için ağır ve az tekrarlı setlerde 2–3 dakika ya da daha uzun dinlenme yer alır. 90 saniye ilk aralığın ortasıdır: nefes
+            toparlanır ama kas tamamen soğumaz. Daha kısa dinlenmeli dairesel antrenman için <Link href={yol(60)}>1 dakika</Link>, ağır setler
+            için <Link href={yol(180)}>3 dakika</Link> kurun.
+          </p>
+        ),
+      },
+      {
+        id: "kos-yuru",
+        baslik: "90 saniye koşu, 90 saniye yürüyüş",
+        icerik: (
+          <>
+            <p>
+              Koşuya yeni başlayanlar sürekli koşmak yerine koşu ve yürüyüşü eşit bloklarla değiştirebilir. 90 saniye koşu ve 90 saniye yürüyüş
+              bir turu 3 dakika yapar:
+            </p>
+            <div className="conversion-table-wrap">
+              <table className="conversion-table zm-tablo">
+                <thead>
+                  <tr>
+                    <th scope="col">Toplam süre</th>
+                    <th scope="col">Tur</th>
+                    <th scope="col">Koşulan süre</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[15, 30, 45].map((dk) => (
+                    <tr key={dk}>
+                      <td>
+                        <Link href={yol(dk * 60)}>{dk} dakika</Link>
+                      </td>
+                      <td>{dk / 3}</td>
+                      <td>{(dk / 2).toLocaleString("tr-TR")} dakika</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </>
+        ),
+      },
+    ],
+    sss: [
+      { question: "Setler arası kaç saniye dinlenmeli?", answer: "Kas gelişimi için genellikle 60–120 saniye, en yüksek kuvvet için ağır setlerde 2–3 dakika ve üzeri önerilir (ACSM). 90 saniye ilk aralığın ortasıdır." },
+      { question: "90 saniye kaç dakika?", answer: "90 saniye 1,5 dakikadır, yani 1 dakika 30 saniye." },
+    ],
+  },
+  720: {
+    aile: "spor",
+    giris: "12 dakika, Cooper testinin süresidir: 12 dakikada koşulabilen en uzun mesafe, dayanıklılığı ölçmenin en bilinen yollarından biridir.",
+    bolumler: [
+      {
+        id: "cooper",
+        baslik: "Cooper testi nasıl yapılır?",
+        icerik: (
+          <>
+            <p>
+              Test, Kenneth Cooper&apos;ın 1968&apos;de ABD Hava Kuvvetleri için geliştirdiği yöntemdir. 10 dakika ısınmadan sonra düz bir pistte
+              12 dakika boyunca olabildiğince uzun mesafe koşulur; gerektiğinde yürünebilir. 400 metrelik pistte tamamlanan tur sayısı 400 ile
+              çarpılır, son turdaki mesafe eklenir. Cooper&apos;ın formülü bu mesafeden vücudun kullanabildiği en yüksek oksijen miktarını (VO2maks)
+              tahmin eder:
+            </p>
+            <CooperTablosu />
+          </>
+        ),
+      },
+      {
+        id: "tekrar",
+        baslik: "Sonucu nasıl kullanmalı?",
+        icerik: (
+          <p>
+            Değerlendirme yaşa ve cinsiyete göre değiştiği için en faydalı kullanım, testi aynı pistte ve benzer havada 6–8 hafta arayla tekrarlayıp
+            kendi mesafenizi karşılaştırmaktır. Kalp, tansiyon ya da eklem sorunu olanların tam efor gerektiren bu testten önce hekime danışması
+            gerekir. Test sonrası yürüyerek soğumak için <Link href={yol(300)}>5 dakika</Link> kurabilirsiniz.
+          </p>
+        ),
+      },
+    ],
+    sss: [
+      { question: "Cooper testi kaç dakika?", answer: "12 dakika. Bu sürede koşulan toplam mesafe ölçülür; 400 metrelik pistte tur sayısı 400 ile çarpılıp son turdaki mesafe eklenir." },
+      { question: "Cooper testinde VO2maks nasıl hesaplanır?", answer: "VO2maks (ml/kg/dk) ≈ (metre cinsinden mesafe − 504,9) / 44,73. Örneğin 2.400 metre yaklaşık 42,4 ml/kg/dk eder." },
+    ],
+  },
+  2100: {
+    aile: "odak",
+    giris: "35 dakika, 5 dakikalık molayla birlikte tam 40 dakika eder; okuldaki ders saatiyle aynı uzunlukta bir çalışma bloğudur.",
+    bolumler: [
+      {
+        id: "otuz-bes-bes",
+        baslik: "35 dakika çalışma, 5 dakika mola",
+        icerik: (
+          <>
+            <p>
+              Ders saati 40 dakika olduğu için 35+5 düzeni okul gününün ritmini evde sürdürmeyi kolaylaştırır. 09:00&apos;da başlayan dört blok
+              şöyle görünür:
+            </p>
+            <CalismaBloklari calis={35} mola={5} adet={4} />
+          </>
+        ),
+      },
+      {
+        id: "secim",
+        baslik: "25, 35 ya da 50 dakika?",
+        icerik: (
+          <p>
+            <Link href={yol(1500)}>25 dakikalık</Link> Pomodoro sık bölündüğü için uzun problemlerde kısa gelebilir;{" "}
+            <Link href={yol(3000)}>50 dakikalık</Link> blok ise başlangıçta uzun gelir. 35 dakika ikisinin arasındadır: 2 saatte 3 blok ve 3 mola
+            sığar. Hangisinin size uyduğunu birkaç gün deneyip dikkatinizin dağılmaya başladığı ana bakarak seçebilirsiniz.
+          </p>
+        ),
+      },
+    ],
+    sss: [
+      { question: "35 dakika kaç saniye?", answer: "35 dakika 2.100 saniyedir. 5 dakikalık molayla birlikte 40 dakika eder." },
+      { question: "2 saatte kaç tane 35 dakikalık blok sığar?", answer: "Her blok 5 dakika molayla 40 dakika sürdüğü için 2 saate 3 blok sığar: toplam 105 dakika çalışma, 15 dakika mola." },
+    ],
+  },
+  3600: {
+    aile: "spor",
+    giris: "1 saat, Dünya Sağlık Örgütü'nün 5–17 yaş arası çocuk ve gençlere önerdiği günlük ortalama hareket süresidir.",
+    bolumler: [
+      {
+        id: "cocuk",
+        baslik: "Çocuklar ve gençler için günde 60 dakika",
+        icerik: (
+          <p>
+            Dünya Sağlık Örgütü&apos;nün 2020 önerilerine göre 5–17 yaş arası çocuk ve gençler haftanın her günü ortalama en az 60 dakika orta ya da
+            yüksek yoğunlukta, çoğu aerobik olan fiziksel aktivite yapmalı; haftada en az üç gün bunun bir kısmı yüksek yoğunluklu ve kas ile
+            kemiği güçlendiren etkinliklerden oluşmalıdır. 60 dakika tek seferde olmak zorunda değildir: iki{" "}
+            <Link href={yol(1800)}>30 dakikalık</Link> oyun ya da yürüyüş de aynı hedefi tutturur. Yetişkinler için öneri haftada en az 150
+            dakikadır.
+          </p>
+        ),
+      },
+      {
+        id: "ara",
+        baslik: "İş yerinde 1 saatlik ara dinlenmesi",
+        icerik: (
+          <>
+            <p>İş Kanunu&apos;na göre günde 7,5 saatten uzun çalışan işçiye iş gününün ortasında en az 1 saat ara verilir:</p>
+            <AraDinlenmesi vurgu={8 * 3600} />
+          </>
+        ),
+      },
+    ],
+    sss: [
+      { question: "Çocuklar günde kaç dakika hareket etmeli?", answer: "Dünya Sağlık Örgütü 5–17 yaş arası için günde ortalama en az 60 dakika orta-yüksek yoğunlukta fiziksel aktivite önerir." },
+      { question: "8 saat çalışana kaç saat mola verilir?", answer: "İş Kanunu'nun 68. maddesine göre 7,5 saatten uzun çalışmada en az 1 saat ara dinlenmesi verilir." },
+    ],
+  },
+  14400: {
+    aile: "uzun",
+    giris: "4 saat, İş Kanunu'nda ara dinlenmesinin en kısa olduğu sınırdır: 4 saat ve daha kısa süren işlerde en az 15 dakika ara verilir.",
+    bolumler: [
+      {
+        id: "ara",
+        baslik: "Çalışma süresine göre ara dinlenmesi",
+        icerik: (
+          <>
+            <p>
+              Ara dinlenmesi iş gününün ortasında, işyerinin geleneklerine ve işin gereğine göre verilir ve çalışma süresinden sayılmaz. İş Kanunu
+              68. madde en kısa süreleri şöyle belirler:
+            </p>
+            <AraDinlenmesi vurgu={14400} />
+          </>
+        ),
+      },
+      {
+        id: "yarim-gun",
+        baslik: "Günde 4 saat: yarım gün ve kısmi süreli çalışma",
+        icerik: (
+          <p>
+            Günde 4 saat, 8 saatlik iş gününün yarısıdır. Haftada 5 gün 4 saat çalışmak haftada 20 saat eder; bu, İş Kanunu&apos;ndaki 45 saatlik
+            haftalık sınırın üçte ikisinin (30 saat) altında kaldığı için kısmi süreli (part-time) çalışma sayılır. Tam gün çalışma ve fazla
+            mesai sınırları için <Link href={yol(28800)}>8 saat</Link> sayfasına bakın.
+          </p>
+        ),
+      },
+    ],
+    sss: [
+      { question: "4 saat çalışana kaç dakika mola verilir?", answer: "İş Kanunu'na göre 4 saat veya daha kısa süreli işlerde en az 15 dakika ara dinlenmesi verilir." },
+      { question: "4 saat kaç dakika?", answer: "4 saat 240 dakika, yani 14.400 saniyedir." },
+    ],
+  },
+  18000: {
+    aile: "uzun",
+    giris: "5 saat, uzun yol sürüşünde mola kurallarının devreye girdiği süredir: ticari sürücüler 4,5 saat direksiyon başında kaldıktan sonra mola vermek zorundadır.",
+    bolumler: [
+      {
+        id: "surus",
+        baslik: "Uzun yolda mola",
+        icerik: (
+          <p>
+            Türkiye&apos;nin de taraf olduğu AETR sözleşmesine göre ticari araç sürücüleri en fazla 4,5 saat kesintisiz araç kullanabilir; ardından en
+            az 45 dakika mola verilir (15 ve 30 dakika olarak ikiye bölünebilir). Günlük sürüş süresi 9 saati, haftada iki gün 10 saati geçemez.
+            Özel araç sürücüleri için yasal bir süre yoktur, ancak trafik güvenliği kampanyalarında genellikle her 2 saatte bir mola önerilir:
+            5 saatlik bir yol bu şekilde iki molayla planlanır.
+          </p>
+        ),
+      },
+      {
+        id: "ara",
+        baslik: "5 saatlik işte ara dinlenmesi",
+        icerik: (
+          <>
+            <p>Günlük çalışma 4 saati geçip 7,5 saati geçmiyorsa İş Kanunu&apos;na göre en az yarım saat ara verilir:</p>
+            <AraDinlenmesi vurgu={18000} />
+          </>
+        ),
+      },
+    ],
+    sss: [
+      { question: "Uzun yolda kaç saatte bir mola verilmeli?", answer: "Ticari sürücüler 4,5 saat sürüşten sonra en az 45 dakika mola vermek zorundadır (AETR). Özel araçlar için genellikle her 2 saatte bir mola önerilir." },
+      { question: "5 saat kaç dakika?", answer: "5 saat 300 dakika, yani 18.000 saniyedir." },
+    ],
+  },
+  21600: {
+    aile: "uzun",
+    giris: "6 saat, yaklaşık 90 dakikalık dört uyku döngüsü eder; ama yetişkinler için önerilen gece uykusunun altında kalır.",
+    bolumler: [
+      {
+        id: "uyku",
+        baslik: "6 saat uyku yeterli mi?",
+        icerik: (
+          <p>
+            Amerikan Uyku Tıbbı Akademisi ve Uyku Araştırmaları Derneği, sağlıklı yetişkinlerin gece düzenli olarak en az 7 saat uyumasını önerir.
+            6 saat bu sınırın bir saat altındadır; ara sıra olması sorun değildir, ama sürekli 6 saat uyumak uyku borcu biriktirir. Uyku yaklaşık 90
+            dakikalık döngülerle ilerlediği için 6 saat dört döngüye denk gelir; döngü sonunda uyanmak daha kolaydır. Yatma saatinize göre uyanma
+            saatini <Link href="/uyku-hesaplama">uyku hesaplama</Link> aracıyla bulabilirsiniz; önerilen süre için{" "}
+            <Link href={yol(28800)}>8 saat</Link> sayfasına bakın.
+          </p>
+        ),
+      },
+      {
+        id: "ara",
+        baslik: "6 saatlik vardiyada ara dinlenmesi",
+        icerik: (
+          <>
+            <p>6 saatlik bir iş günü 4 ile 7,5 saat arasındaki dilime girer; ara dinlenmesi en az yarım saattir:</p>
+            <AraDinlenmesi vurgu={21600} />
+          </>
+        ),
+      },
+    ],
+    sss: [
+      { question: "6 saat uyku yeterli mi?", answer: "Yetişkinler için en az 7 saat önerilir (Amerikan Uyku Tıbbı Akademisi). 6 saat ara sıra yeterli olabilir ama sürekli olursa uyku borcu birikir." },
+      { question: "6 saat kaç dakika?", answer: "6 saat 360 dakika, yani 21.600 saniyedir; yaklaşık 90 dakikalık 4 uyku döngüsü eder." },
+    ],
+  },
   180: {
     aile: "mutfak",
     giris:
@@ -477,8 +830,19 @@ const ICERIK: Record<number, ZamanlayiciIcerik> = {
           </>
         ),
       },
+      {
+        id: "nabiz",
+        baslik: "Antrenmanda 10 saniyelik nabız sayımı",
+        icerik: (
+          <p>
+            Egzersiz sırasında nabız hızla düştüğü için durduktan hemen sonra 10 saniye sayılıp 6 ile çarpılır: 10 saniyede 24 atım dakikada 144
+            atım eder. Dinlenme nabzı için daha doğru olan <Link href={yol(60)}>1 dakikalık</Link> sayımdır.
+          </p>
+        ),
+      },
     ],
-    sss: [{ question: "Tabata'da dinlenme kaç saniye?", answer: "Tabata düzeninde her 20 saniyelik çalışmadan sonra 10 saniye dinlenilir; 8 tur toplam 4 dakika sürer." }],
+    sss: [
+      { question: "10 saniyelik nabız nasıl hesaplanır?", answer: "10 saniyede sayılan atım 6 ile çarpılır; 10 saniyede 24 atım dakikada 144 atımdır." },{ question: "Tabata'da dinlenme kaç saniye?", answer: "Tabata düzeninde her 20 saniyelik çalışmadan sonra 10 saniye dinlenilir; 8 tur toplam 4 dakika sürer." }],
   },
   15: {
     aile: "spor",
@@ -514,8 +878,21 @@ const ICERIK: Record<number, ZamanlayiciIcerik> = {
           </>
         ),
       },
+      {
+        id: "nabiz",
+        baslik: "Nabzı 1 dakikada ölçmek",
+        icerik: (
+          <p>
+            Dinlenme nabzı bilek ya da boyundaki atımların 1 dakika boyunca sayılmasıyla ölçülür; 15 saniye sayıp 4 ile çarpmak da yaklaşık sonuç
+            verir. Amerikan Kalp Derneği&apos;ne göre yetişkinlerde dinlenme nabzı genellikle dakikada 60–100 atımdır; düzenli spor yapanlarda daha
+            düşük olabilir. En doğru sonuç için sabah, oturur durumda ve birkaç gün üst üste ölçün. 15 saniyelik sayım için{" "}
+            <Link href={yol(15)}>15 saniye</Link> zamanlayıcısını kullanabilirsiniz.
+          </p>
+        ),
+      },
     ],
-    sss: [{ question: "EMOM nedir?", answer: "Her dakikanın başında belirli sayıda tekrar yapılıp dakikanın kalanında dinlenilen antrenman düzenidir." }],
+    sss: [
+      { question: "Nabız nasıl ölçülür?", answer: "Bilek ya da boyundaki atımlar 1 dakika sayılır veya 15 saniye sayılıp 4 ile çarpılır. Yetişkinlerde dinlenme nabzı genellikle dakikada 60–100 atımdır (Amerikan Kalp Derneği)." },{ question: "EMOM nedir?", answer: "Her dakikanın başında belirli sayıda tekrar yapılıp dakikanın kalanında dinlenilen antrenman düzenidir." }],
   },
   20: {
     aile: "gunluk",
@@ -573,8 +950,20 @@ const ICERIK: Record<number, ZamanlayiciIcerik> = {
           </>
         ),
       },
+      {
+        id: "dezenfektan",
+        baslik: "El dezenfektanı 20–30 saniye",
+        icerik: (
+          <p>
+            Dünya Sağlık Örgütü alkol bazlı el dezenfektanının avuç içi, parmak araları, başparmaklar ve tırnak uçları dahil tüm ele yayılarak eller
+            kuruyana kadar, yaklaşık 20–30 saniye ovalanmasını önerir. Sabunla yıkamada köpürtme süresi için{" "}
+            <Link href={yol(20)}>20 saniye</Link> sayfasına bakın.
+          </p>
+        ),
+      },
     ],
-    sss: [{ question: "7 dakika antrenmanında her hareket kaç saniye?", answer: "Her hareket 30 saniye yapılır, aralarda 10 saniye dinlenilir; 12 hareket yaklaşık 7–8 dakika sürer." }],
+    sss: [
+      { question: "El dezenfektanı kaç saniye ovalanmalı?", answer: "Dünya Sağlık Örgütü'ne göre eller kuruyana kadar, yaklaşık 20–30 saniye." },{ question: "7 dakika antrenmanında her hareket kaç saniye?", answer: "Her hareket 30 saniye yapılır, aralarda 10 saniye dinlenilir; 12 hareket yaklaşık 7–8 dakika sürer." }],
   },
   45: {
     aile: "spor",
@@ -632,8 +1021,21 @@ const ICERIK: Record<number, ZamanlayiciIcerik> = {
           </>
         ),
       },
+      {
+        id: "iki-dakika-kurali",
+        baslik: "İki dakika kuralı",
+        icerik: (
+          <p>
+            David Allen&apos;ın &quot;Getting Things Done&quot; yönteminde iki dakikadan kısa sürecek bir iş hemen yapılır: listeye yazmak, hatırlamak
+            ve sonra yapmak işin kendisinden uzun sürer. Bir e-postayı yanıtlamak, bulaşığı makineye koymak ya da bir faturayı ödemek için 2
+            dakikalık zamanlayıcı kurup sürenin gerçekten yetip yetmediğini görebilirsiniz. Daha uzun işler için{" "}
+            <Link href={yol(1500)}>25 dakikalık</Link> Pomodoro uygundur.
+          </p>
+        ),
+      },
     ],
-    sss: [{ question: "Dişler kaç dakika fırçalanmalı?", answer: "Diş hekimleri günde en az iki kez, ikişer dakika fırçalamayı önerir; birinin akşam yatmadan önce yapılması önerilir." }],
+    sss: [
+      { question: "İki dakika kuralı nedir?", answer: "İki dakikadan kısa sürecek bir işin ertelenmeden hemen yapılmasıdır; David Allen'ın Getting Things Done yönteminden gelir." },{ question: "Dişler kaç dakika fırçalanmalı?", answer: "Diş hekimleri günde en az iki kez, ikişer dakika fırçalamayı önerir; birinin akşam yatmadan önce yapılması önerilir." }],
   },
   240: {
     aile: "spor",
@@ -673,8 +1075,20 @@ const ICERIK: Record<number, ZamanlayiciIcerik> = {
           </>
         ),
       },
+      {
+        id: "baslamak",
+        baslik: "Ertelenen bir işe 5 dakikayla başlamak",
+        icerik: (
+          <p>
+            Ertelenen bir işe başlamanın sık önerilen bir yolu, kendinize yalnızca 5 dakika çalışma sözü vermektir: süre bitince bırakmakta
+            özgürsünüz. Çoğu zaman en zor kısım başlamaktır ve 5 dakika dolduğunda devam etmek daha kolay gelir. Devam ederseniz{" "}
+            <Link href={yol(1500)}>25 dakikalık</Link> bir Pomodoro ile sürdürebilirsiniz.
+          </p>
+        ),
+      },
     ],
-    sss: [{ question: "Pomodoro'da kısa mola kaç dakika?", answer: "Her 25 dakikalık çalışmadan sonra 5 dakika; dört turdan sonra 15–30 dakika uzun mola verilir." }],
+    sss: [
+      { question: "5 dakika kaç saniye?", answer: "5 dakika 300 saniyedir." },{ question: "Pomodoro'da kısa mola kaç dakika?", answer: "Her 25 dakikalık çalışmadan sonra 5 dakika; dört turdan sonra 15–30 dakika uzun mola verilir." }],
   },
   360: {
     aile: "mutfak",
@@ -694,8 +1108,21 @@ const ICERIK: Record<number, ZamanlayiciIcerik> = {
           </>
         ),
       },
+      {
+        id: "yukseklik",
+        baslik: "Soğuk suya almak ve yükseklik etkisi",
+        icerik: (
+          <p>
+            Süre dolunca yumurtayı hemen soğuk suya almak pişmeyi durdurur, sarının kayısı kıvamında kalmasını sağlar ve kabuğun soyulmasını
+            kolaylaştırır. Deniz seviyesinden yükseldikçe su daha düşük sıcaklıkta kaynar (yaklaşık her 300 metrede 1 °C); Erzurum gibi 1.800–1.900
+            metredeki şehirlerde su 94 °C civarında kaynadığından aynı kıvam için süreye yaklaşık 1 dakika eklemek gerekir:{" "}
+            <Link href={yol(420)}>7 dakika</Link>.
+          </p>
+        ),
+      },
     ],
-    sss: [{ question: "Kayısı kıvamında yumurta kaç dakika?", answer: "Su kaynadıktan sonra buzdolabından çıkmış orta boy yumurta için yaklaşık 6 dakika." }],
+    sss: [
+      { question: "Yumurta haşladıktan sonra neden soğuk suya alınır?", answer: "Pişmeyi durdurup istenen kıvamı korumak ve kabuğun daha kolay soyulması için." },{ question: "Kayısı kıvamında yumurta kaç dakika?", answer: "Su kaynadıktan sonra buzdolabından çıkmış orta boy yumurta için yaklaşık 6 dakika." }],
   },
   420: {
     aile: "spor",
@@ -775,8 +1202,20 @@ const ICERIK: Record<number, ZamanlayiciIcerik> = {
           </p>
         ),
       },
+      {
+        id: "cay",
+        baslik: "Çay demleme süresi",
+        icerik: (
+          <p>
+            Türk çayında demlik kaynayan suyla doldurulduktan sonra çayın genellikle 10–15 dakika demlenmesi önerilir; 10 dakika açık, 15 dakika daha
+            koyu ve buruk bir dem verir. Demi uzun süre ocakta bekletmek çayı acılaştırır. Kısa demlenen poşet çay için{" "}
+            <Link href={yol(180)}>3 dakika</Link> yeterlidir.
+          </p>
+        ),
+      },
     ],
-    sss: [{ question: "Teneffüs kaç dakika?", answer: "MEB yönetmeliğine göre lisede en az 10 dakika; tekli eğitim yapan ilkokul ve ortaokullarda en az 15 dakika, bir teneffüs en az 20 dakikadır." }],
+    sss: [
+      { question: "Çay kaç dakika demlenir?", answer: "Türk çayının genellikle 10–15 dakika demlenmesi önerilir; poşet çay için 2–3 dakika yeterlidir." },{ question: "Teneffüs kaç dakika?", answer: "MEB yönetmeliğine göre lisede en az 10 dakika; tekli eğitim yapan ilkokul ve ortaokullarda en az 15 dakika, bir teneffüs en az 20 dakikadır." }],
   },
   900: {
     aile: "odak",
@@ -803,8 +1242,20 @@ const ICERIK: Record<number, ZamanlayiciIcerik> = {
           </p>
         ),
       },
+      {
+        id: "sekerleme",
+        baslik: "15 dakikalık şekerleme",
+        icerik: (
+          <p>
+            Uyku uzmanları gün içindeki kısa şekerlemenin 10–20 dakikayı geçmemesini önerir: bu sürede derin uykuya geçilmediği için uyanınca
+            sersemlik hissi azdır. 15 dakika bu aralığın ortasıdır; uykuya dalmak birkaç dakika sürdüğü için zamanlayıcıyı uzanır uzanmaz kurun.
+            Gece uykusunu planlamak için <Link href="/uyku-hesaplama">uyku hesaplama</Link> aracına bakın.
+          </p>
+        ),
+      },
     ],
-    sss: [{ question: "İlkokulda teneffüs kaç dakika?", answer: "Tekli eğitim yapan ilkokul ve ortaokullarda teneffüsler en az 15 dakika, bunlardan biri en az 20 dakikadır (2023 yönetmelik değişikliği)." }],
+    sss: [
+      { question: "Şekerleme kaç dakika olmalı?", answer: "Uyanınca sersemlik yaşamamak için genellikle 10–20 dakika önerilir; daha uzun şekerlemede derin uykuya geçilir." },{ question: "İlkokulda teneffüs kaç dakika?", answer: "Tekli eğitim yapan ilkokul ve ortaokullarda teneffüsler en az 15 dakika, bunlardan biri en az 20 dakikadır (2023 yönetmelik değişikliği)." }],
   },
   1200: {
     aile: "odak",
@@ -830,8 +1281,20 @@ const ICERIK: Record<number, ZamanlayiciIcerik> = {
           </>
         ),
       },
+      {
+        id: "yirmi-kurali",
+        baslik: "Ekrandan gözleri dinlendirmek: 20-20-20 kuralı",
+        icerik: (
+          <p>
+            Amerikan Oftalmoloji Akademisi ekran başında göz yorgunluğunu azaltmak için 20-20-20 kuralını önerir: her 20 dakikada bir, 20 fit (yaklaşık
+            6 metre) uzaktaki bir noktaya 20 saniye bakın. 20 dakikalık zamanlayıcıyı bitince yeniden başlatarak hatırlatıcı olarak kullanabilir,
+            bakış süresini <Link href={yol(20)}>20 saniye</Link> zamanlayıcısıyla tutabilirsiniz.
+          </p>
+        ),
+      },
     ],
-    sss: [{ question: "Uzun teneffüs kaç dakika?", answer: "Tekli eğitim yapan ilkokul ve ortaokullarda teneffüslerden biri en az 20 dakikadır." }],
+    sss: [
+      { question: "20-20-20 kuralı nedir?", answer: "Ekran başında her 20 dakikada bir, yaklaşık 6 metre uzaktaki bir noktaya 20 saniye bakmaktır (Amerikan Oftalmoloji Akademisi)." },{ question: "Uzun teneffüs kaç dakika?", answer: "Tekli eğitim yapan ilkokul ve ortaokullarda teneffüslerden biri en az 20 dakikadır." }],
   },
   1800: {
     aile: "spor",
@@ -870,8 +1333,46 @@ const ICERIK: Record<number, ZamanlayiciIcerik> = {
           </>
         ),
       },
+      {
+        id: "yuruyus-mesafe",
+        baslik: "30 dakikada kaç kilometre yürünür?",
+        icerik: (
+          <>
+            <p>Mesafe tempoya bağlıdır; aşağıdaki tablo sabit hızla 30 dakikada alınan yolu gösterir:</p>
+            <div className="conversion-table-wrap">
+              <table className="conversion-table zm-tablo">
+                <thead>
+                  <tr>
+                    <th scope="col">Tempo</th>
+                    <th scope="col">Hız</th>
+                    <th scope="col">30 dakikada</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    ["Yavaş yürüyüş", 4],
+                    ["Tempolu yürüyüş", 5.5],
+                    ["Hafif koşu", 8],
+                    ["Koşu", 10],
+                  ].map(([ad, hiz]) => (
+                    <tr key={ad}>
+                      <td>{ad}</td>
+                      <td>{hiz.toLocaleString("tr-TR")} km/sa</td>
+                      <td>{(Number(hiz) / 2).toLocaleString("tr-TR")} km</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p>
+              Kendi tempo ve sürenizden mesafeyi bulmak için <Link href="/kosu-pace-hesaplama">koşu pace hesaplama</Link> aracını kullanın.
+            </p>
+          </>
+        ),
+      },
     ],
-    sss: [{ question: "Günde kaç dakika yürümek gerekir?", answer: "DSÖ yetişkinlere haftada en az 150 dakika orta yoğunlukta hareket önerir; haftada 5 gün 30 dakika bu hedefi karşılar." }],
+    sss: [
+      { question: "30 dakika yürüyüş kaç km?", answer: "Tempolu yürüyüşte (saatte yaklaşık 5,5 km) 30 dakikada 2,75 km, yavaş yürüyüşte (4 km/sa) 2 km yol alınır." },{ question: "Günde kaç dakika yürümek gerekir?", answer: "DSÖ yetişkinlere haftada en az 150 dakika orta yoğunlukta hareket önerir; haftada 5 gün 30 dakika bu hedefi karşılar." }],
   },
   2400: {
     aile: "odak",
@@ -897,8 +1398,38 @@ const ICERIK: Record<number, ZamanlayiciIcerik> = {
           </p>
         ),
       },
+      {
+        id: "soru",
+        baslik: "40 dakikada kaç soru çözülür?",
+        icerik: (
+          <>
+            <p>
+              Merkezî sınavların süresinden soru başına düşen süre hesaplanabilir. 40 dakikalık bir çalışma bloğunda bu hızla kaç soru çözüleceği:
+            </p>
+            <div className="conversion-table-wrap">
+              <table className="conversion-table zm-tablo">
+                <thead>
+                  <tr>
+                    <th scope="col">Sınav temposu</th>
+                    <th scope="col">40 dakikada</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {SINAVLAR.map((x) => (
+                    <tr key={x.sinav}>
+                      <td>{x.sinav}</td>
+                      <td>{Math.floor((40 * x.soru) / x.dk)} soru</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </>
+        ),
+      },
     ],
-    sss: [{ question: "Okulda bir ders kaç dakika?", answer: "MEB yönetmeliklerine göre ilkokul, ortaokul ve lisede bir ders saati 40 dakikadır." }],
+    sss: [
+      { question: "TYT temposunda 40 dakikada kaç soru çözülür?", answer: "TYT'de 165 dakikada 120 soru vardır, soru başına yaklaşık 1 dakika 22 saniye düşer; bu tempoyla 40 dakikada 29 soru çözülür." },{ question: "Okulda bir ders kaç dakika?", answer: "MEB yönetmeliklerine göre ilkokul, ortaokul ve lisede bir ders saati 40 dakikadır." }],
   },
   2700: {
     aile: "spor",
@@ -926,8 +1457,19 @@ const ICERIK: Record<number, ZamanlayiciIcerik> = {
           </p>
         ),
       },
+      {
+        id: "ogle",
+        baslik: "Lisede 45 dakikalık öğle arası",
+        icerik: (
+          <>
+            <p>Ortaöğretim Kurumları Yönetmeliği&apos;ne göre lisede öğle arası en az 45 dakikadır:</p>
+            <DersSureleri vurgu={2700} />
+          </>
+        ),
+      },
     ],
-    sss: [{ question: "Futbolda bir devre kaç dakika?", answer: "45 dakika; iki devre 90 dakikadır, devre arası en çok 15 dakikadır. Hakem kaybedilen süre kadar uzatma ekler." }],
+    sss: [
+      { question: "Lisede öğle arası kaç dakika?", answer: "MEB Ortaöğretim Kurumları Yönetmeliği'ne göre en az 45 dakikadır." },{ question: "Futbolda bir devre kaç dakika?", answer: "45 dakika; iki devre 90 dakikadır, devre arası en çok 15 dakikadır. Hakem kaybedilen süre kadar uzatma ekler." }],
   },
   3000: {
     aile: "odak",
@@ -978,8 +1520,20 @@ const ICERIK: Record<number, ZamanlayiciIcerik> = {
           </p>
         ),
       },
+      {
+        id: "toplanti",
+        baslik: "Toplantıyı 60 yerine 50 dakika planlamak",
+        icerik: (
+          <p>
+            Arka arkaya toplantı yapılan günlerde bir saatlik toplantıyı 50 dakikada bitirmek, sonraki toplantıdan önce 10 dakikalık ara bırakır.
+            Google Takvim&apos;deki &quot;hızlı toplantılar&quot; ayarı da bu yüzden bir saatlik toplantıları 50 dakika, yarım saatlikleri 25 dakika
+            olarak oluşturur. Toplantıyı 50 dakikalık zamanlayıcıyla başlatmak bitişi herkese görünür kılar.
+          </p>
+        ),
+      },
     ],
-    sss: [{ question: "50/10 çalışma yöntemi nedir?", answer: "50 dakika tek bir işe odaklanıp 10 dakika mola vermektir; her dilim 1 saat sürer." }],
+    sss: [
+      { question: "Hızlı toplantı nedir?", answer: "Bir saatlik toplantıyı 50, yarım saatliği 25 dakikada bitirip toplantılar arasında ara bırakmaktır; Google Takvim'de ayar olarak bulunur." },{ question: "50/10 çalışma yöntemi nedir?", answer: "50 dakika tek bir işe odaklanıp 10 dakika mola vermektir; her dilim 1 saat sürer." }],
   },
   5400: {
     aile: "spor",
@@ -1001,8 +1555,20 @@ const ICERIK: Record<number, ZamanlayiciIcerik> = {
           </>
         ),
       },
+      {
+        id: "uzatma",
+        baslik: "Uzatmalar ve penaltılar",
+        icerik: (
+          <p>
+            Eleme maçlarında 90 dakika berabere biterse IFAB oyun kurallarına göre 15&apos;er dakikalık iki uzatma devresi oynanır; uzatmalar arasında
+            kısa bir ara verilir. Eşitlik sürerse seri penaltı atışlarına geçilir. Uzatmalarla birlikte oyun süresi 120 dakikaya çıkar; her uzatma
+            devresini <Link href={yol(900)}>15 dakikalık</Link> zamanlayıcıyla tutabilirsiniz.
+          </p>
+        ),
+      },
     ],
-    sss: [{ question: "Futbol maçı kaç dakika?", answer: "Oyun süresi 90 dakikadır (2 × 45). Devre arası ve uzatmalarla maç genellikle 105–115 dakika sürer." }],
+    sss: [
+      { question: "Futbolda uzatma kaç dakika?", answer: "15'er dakikalık iki devre, toplam 30 dakikadır (IFAB oyun kuralları); eşitlik sürerse penaltılara geçilir." },{ question: "Futbol maçı kaç dakika?", answer: "Oyun süresi 90 dakikadır (2 × 45). Devre arası ve uzatmalarla maç genellikle 105–115 dakika sürer." }],
   },
   7200: {
     aile: "sinav",
@@ -1021,8 +1587,20 @@ const ICERIK: Record<number, ZamanlayiciIcerik> = {
           </>
         ),
       },
+      {
+        id: "surus",
+        baslik: "Uzun yolda 2 saatte bir mola",
+        icerik: (
+          <p>
+            Özel araçla uzun yolda trafik güvenliği kampanyalarında genellikle her 2 saatte bir mola verilmesi önerilir; ticari sürücüler için yasal
+            sınır 4,5 saat sürüş ve ardından 45 dakika moladır (AETR). 2 saatlik zamanlayıcıyı yola çıkarken başlatmak mola zamanını hatırlatır;
+            mola planı için <Link href={yol(18000)}>5 saat</Link> sayfasına bakın.
+          </p>
+        ),
+      },
     ],
-    sss: [{ question: "YDT kaç dakika?", answer: "2026 YKS'de YDT 80 soru ve 120 dakikadır (2 saat)." }],
+    sss: [
+      { question: "Uzun yolda ne sıklıkla mola verilmeli?", answer: "Özel araçlarda genellikle 2 saatte bir mola önerilir; ticari sürücüler 4,5 saat sürüşten sonra en az 45 dakika mola vermek zorundadır." },{ question: "YDT kaç dakika?", answer: "2026 YKS'de YDT 80 soru ve 120 dakikadır (2 saat)." }],
   },
   28800: {
     aile: "uzun",

@@ -17,11 +17,11 @@ function formatMass(value: number, locale: ContentLocale) {
 
 const copy = {
   tr: {
-    cellLabel: (name: string, symbol: string) => `${name} (${symbol}) - ayrıntılı bilgi için tıkla`,
+    cellLabel: (name: string, symbol: string) => `${name} (${symbol}) - bilgi için tıkla`,
     instructions: (
       <>
-        Fare ile bir elementin üzerine gel: hızlı bilgi burada görünür.
-        Ayrıntılı sayfayı açmak için elemente tıkla.
+        Bir elementin üzerine gel ya da dokun: bilgisi burada görünür. Sık
+        aranan elementlerde tıklayınca ayrıntılı sayfa açılır.
       </>
     ),
     atomicMassPrefix: "Atom kütlesi: ",

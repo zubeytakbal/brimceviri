@@ -57,7 +57,6 @@ export const everydayToolLinksByCategory: Record<
     { href: "/tugla-hesaplama", label: "Tuğla Hesaplama" },
     { href: "/klima-btu-hesaplama", label: "Klima BTU Hesaplama" },
     { href: "/siva-hesaplama", label: "Sıva Hesaplama" },
-    { href: "/mantolama-hesaplama", label: "Mantolama Hesaplama" },
     { href: "/hesaplayicilar#ev-ve-yapi", label: "Ev, İnşaat ve Bahçe" },
     { href: "/hesaplayicilar#para-ve-is", label: "Para, Maaş ve Vergi" },
     { href: "/awg-mm2-cevirici", label: "AWG - mm² Çevirici" },
@@ -102,7 +101,6 @@ export const everydayToolLinksByCategory: Record<
   ],
   kutle: [
     { href: "/bmi-hesaplama", label: "BMI Hesaplama" },
-    { href: "/agirlik-karsilastirma", label: "Ağırlık Karşılaştırma" },
     { href: "/hesaplayicilar#olcu-ve-gunluk", label: "Mutfak, Beden ve Okul" },
     { href: "/vucut-yag-orani-hesaplama", label: "Vücut Yağ Oranı Hesaplama" },
     { href: "/ideal-kilo-hesaplama", label: "İdeal Kilo Hesaplama" },

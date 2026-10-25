@@ -70,11 +70,6 @@ export const everydayCalculators: EverydayCalculator[] = [
     label: "Hafriyat ve Kazı Hesaplama",
   },
   {
-    id: "mantolama-hesaplama",
-    href: "/mantolama-hesaplama",
-    label: "Mantolama Hesaplama",
-  },
-  {
     id: "lastik-ebati-hesaplama",
     href: "/lastik-ebati-hesaplama",
     label: "Lastik Ebatı Hesaplama",
@@ -148,11 +143,6 @@ export const everydayCalculators: EverydayCalculator[] = [
     id: "glasgow-koma-skalasi-hesaplama",
     href: "/glasgow-koma-skalasi-hesaplama",
     label: "Glasgow Koma Skalası Hesaplama",
-  },
-  {
-    id: "apgar-skoru-hesaplama",
-    href: "/apgar-skoru-hesaplama",
-    label: "APGAR Skoru Hesaplama",
   },
   {
     id: "cha2ds2-vasc-skoru-hesaplama",

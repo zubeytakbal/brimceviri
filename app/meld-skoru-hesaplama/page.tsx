@@ -100,7 +100,6 @@ export default function MeldPage() {
           <h2>Diğer Risk Skorlama Araçları</h2>
           <ul className="related-conversion-list">
             <li><Link href="/glasgow-koma-skalasi-hesaplama">Glasgow Koma Skalası Hesaplama</Link></li>
-            <li><Link href="/apgar-skoru-hesaplama">Apgar Skoru Hesaplama</Link></li>
             <li><Link href="/sofa-skoru-hesaplama">SOFA Skoru Hesaplama</Link></li>
             <li><Link href="/qsofa-hesaplama">qSOFA Hesaplama</Link></li>
             <li><Link href="/wells-skoru-hesaplama">Wells Skoru Hesaplama</Link></li>

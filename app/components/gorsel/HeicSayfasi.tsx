@@ -70,8 +70,6 @@ export function HeicSayfasi() {
           links: [
             { href: DOSYA_ARACLARI_YOLU, label: "Tüm Dosya Araçları" },
             { href: "/gorsel-donusturucu", label: "Görsel Dönüştürücü" },
-            { href: "/webp-jpg-cevirme", label: "WebP JPG Çevirme" },
-            { href: "/png-jpg-cevirme", label: "PNG JPG Çevirme" },
             {
               href: "/fotograf-boyutu-kucultme",
               label: "Fotoğraf Boyutu Küçültme",

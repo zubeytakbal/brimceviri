@@ -106,7 +106,6 @@ export default function QsofaPage() {
           <ul className="related-conversion-list">
             <li><Link href="/sofa-skoru-hesaplama">SOFA Skoru Hesaplama</Link></li>
             <li><Link href="/glasgow-koma-skalasi-hesaplama">Glasgow Koma Skalası Hesaplama</Link></li>
-            <li><Link href="/apgar-skoru-hesaplama">Apgar Skoru Hesaplama</Link></li>
             <li><Link href="/meld-skoru-hesaplama">MELD Skoru Hesaplama</Link></li>
             <li><Link href="/wells-skoru-hesaplama">Wells Skoru Hesaplama</Link></li>
             <li><Link href="/cha2ds2-vasc-skoru-hesaplama">CHA2DS2-VASc Skoru Hesaplama</Link></li>

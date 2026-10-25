@@ -158,8 +158,6 @@ export default function InsulationPaybackPage() {
             <Link href="/gunes-paneli-amortisman-hesaplama">Güneş Paneli Amortisman Hesaplama</Link>
             {" "}sayfasına, aydınlatma tasarrufu için{" "}
             <Link href="/led-ampul-tasarruf-hesaplama">LED Ampul Tasarruf Hesaplama</Link>
-            {" "}sayfasına, mantolama malzemesi ihtiyacı için{" "}
-            <Link href="/mantolama-hesaplama">Mantolama Hesaplama</Link>
             {" "}sayfasına bakabilirsin.
           </p>
 

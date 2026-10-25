@@ -163,7 +163,6 @@ export default function GcsPage() {
 
           <h2>Diğer Risk Skorlama Araçları</h2>
           <ul className="related-conversion-list">
-            <li><Link href="/apgar-skoru-hesaplama">Apgar Skoru Hesaplama</Link></li>
             <li><Link href="/meld-skoru-hesaplama">MELD Skoru Hesaplama</Link></li>
             <li><Link href="/sofa-skoru-hesaplama">SOFA Skoru Hesaplama</Link></li>
             <li><Link href="/qsofa-hesaplama">qSOFA Hesaplama</Link></li>

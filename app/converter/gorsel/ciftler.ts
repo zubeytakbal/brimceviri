@@ -1,3 +1,4 @@
+import { hesapSayfasiKalkti } from "../../kaldirilanHesapSayfalari";
 // Görsel dönüştürme sayfalarının içeriği. Her çiftin metni o dönüşüme özeldir.
 import type { FaqItem } from "../faqSchema";
 import type { GorselFormat } from "./formatlar";
@@ -17,7 +18,7 @@ export type GorselCift = {
 
 export const GORSEL_HUB = "/gorsel-donusturucu";
 
-export const GORSEL_CIFTLER: GorselCift[] = [
+const TUM_CIFTLER: GorselCift[] = [
   {
     slug: "png-jpg-cevirme",
     kaynak: "png",
@@ -332,6 +333,9 @@ export const GORSEL_CIFTLER: GorselCift[] = [
     ],
   },
 ];
+
+// Kaldırılan biçim sayfaları (kaldirilanHesapSayfalari.ts) listelerde ve bağlantılarda yer almaz.
+export const GORSEL_CIFTLER = TUM_CIFTLER.filter((c) => !hesapSayfasiKalkti(`/${c.slug}`));
 
 export const findGorselCift = (slug: string) =>
   GORSEL_CIFTLER.find((c) => c.slug === slug) ?? null;

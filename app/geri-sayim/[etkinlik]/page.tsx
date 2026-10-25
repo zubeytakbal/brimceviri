@@ -17,6 +17,8 @@ export function generateStaticParams() {
     .map((event) => ({ etkinlik: event.slug }));
 }
 
+const NE_ZAMAN_ARANAN = new Set(["mirac-kandili", "mevlid-kandili", "ilkbahar"]);
+
 export async function generateMetadata({ params }: { params: Promise<{ etkinlik: string }> }): Promise<Metadata> {
   const event = findCountdownEvent("tr", (await params).etkinlik);
   if (!event) return {};
@@ -25,8 +27,14 @@ export async function generateMetadata({ params }: { params: Promise<{ etkinlik:
   const year = next ? next.year : "";
   // Başlık ve açıklama kalan gün sayısını vermez: cevap arama sonucunda görünürse kimse sayfaya gelmiyordu
   // (yılbaşı: 17 bin gösterimde %0,1 tıklama). Sayfada ne olduğunu anlatır.
+  // Özel gün sayfası buraya yönlenen günlerde aramalar "ne zaman" diye geliyor (Miraç Kandili 3 ayda 1.881 gösterim).
+  const neZaman = NE_ZAMAN_ARANAN.has(event.id);
   const title =
-    event.id === "yilbasi" ? `${event.question} ${year} Yeni Yıl Sayacı (Canlı, Tam Ekran)` : `${event.question} ${year} Canlı Geri Sayım (Tam Ekran)`;
+    event.id === "yilbasi"
+      ? `${event.question} ${year} Yeni Yıl Sayacı (Canlı, Tam Ekran)`
+      : neZaman
+        ? `${event.name} ${year} Ne Zaman? Kaç Gün Kaldı, Canlı Geri Sayım`
+        : `${event.question} ${year} Canlı Geri Sayım (Tam Ekran)`;
   const description =
     event.id === "yilbasi"
       ? `${year} yılına kalan süre saniye saniye: tam ekran yeni yıl sayacı, gece yarısı havai fişek kutlaması, dünyada yeni yıla hangi ülkenin ne zaman girdiği ve ${year} yılbaşı tatili.`
@@ -37,6 +45,7 @@ export async function generateMetadata({ params }: { params: Promise<{ etkinlik:
     title: seoTitle(
       title,
       ...(event.id === "yilbasi" ? [`${event.question} ${year} Yeni Yıl Sayacı (Tam Ekran)`, `${event.question} ${year} Yeni Yıl Sayacı`] : []),
+      ...(neZaman ? [`${event.name} ${year} Ne Zaman? Kaç Gün Kaldı`, `${event.name} ${year} Ne Zaman?`] : []),
       `${event.question} ${year} Canlı Geri Sayım`,
       `${event.question} (${year})`,
       event.question,

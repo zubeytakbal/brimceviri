@@ -192,8 +192,9 @@ export default function EvChargingCalculator({
   const [targetPercent, setTargetPercent] = useState("80");
   const [chargerPower, setChargerPower] = useState("11");
   const [efficiencyPercent, setEfficiencyPercent] = useState("90");
+  // Varsayılan Türkiye mesken tarifesidir (₺); diğer dillerde birim EUR olduğu için alan boş başlar.
   const [electricityPrice, setElectricityPrice] = useState(
-    String(manualElectricityPriceDefault.priceTl)
+    locale === "tr" ? String(manualElectricityPriceDefault.priceTl) : ""
   );
   const [evConsumptionForCost, setEvConsumptionForCost] = useState("18");
   const [iceConsumption, setIceConsumption] = useState("7.5");
@@ -333,6 +334,12 @@ export default function EvChargingCalculator({
                 value={electricityPrice}
                 onChange={(event) => setElectricityPrice(event.target.value)}
               />
+              {locale === "tr" ? (
+                <small className="calculator-field-note">
+                  Son güncelleme: {manualElectricityPriceDefault.lastUpdatedLabel} (240 kWh/ay üstü mesken dilimi, KDV
+                  dahil, EPDK tarifesi) — faturandan bakıp güncelleyebilirsin.
+                </small>
+              ) : null}
             </label>
             <label className="category-general-converter-field">
               <span>{copy.fieldEvConsumption}</span>

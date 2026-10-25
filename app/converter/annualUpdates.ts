@@ -48,6 +48,29 @@ export const annualUpdates: AnnualUpdate[] = [
     checklist: ["Add the July kıdem tazminatı tavanı (announced in early July) to KIDEM_TAVANLARI, then move validYear to the next year"],
   },
   {
+    // EPDK mesken tarifesini genelde Ocak ve Temmuz başında değiştirir; ikisi için ayrı hatırlatma.
+    id: "tr-elektrik",
+    label: "Elektrik mesken tarifesi Ocak (Türkiye)",
+    pageHref: "/elektrikli-arac-sarj-hesaplama",
+    validYear: 2026,
+    remindFrom: "12-30",
+    checklist: [
+      "Check the EPDK tarife tablosu for January: mesken, 240 kWh/ay üstü dilim, all charges and KDV included",
+      "Update priceTl and lastUpdatedLabel in manualElectricityPriceDefault (app/converter/evVsIceComparison.ts); every Turkish energy calculator reads it",
+      "If the tariff did not change, only update lastUpdatedLabel; then set validYear here",
+    ],
+  },
+  {
+    id: "tr-elektrik-temmuz",
+    label: "Elektrik mesken tarifesi Temmuz (Türkiye)",
+    pageHref: "/elektrikli-arac-sarj-hesaplama",
+    validYear: 2027,
+    remindFrom: "07-02",
+    checklist: [
+      "Check the EPDK tarife tablosu for July and update manualElectricityPriceDefault (app/converter/evVsIceComparison.ts) as in the January reminder, then move validYear to the next year",
+    ],
+  },
+  {
     id: "tr-okul-takvimi",
     label: "Okul takvimi (MEB)",
     pageHref: "/okul-takvimi",

@@ -95,7 +95,7 @@ export default function LedSavingsCalculator() {
           />
           <small className="calculator-field-note">
             Son güncelleme: {manualElectricityPriceDefault.lastUpdatedLabel} (240
-            kWh/ay üstü mesken dilimi, KDV dahil) — faturandan bakıp
+            kWh/ay üstü mesken dilimi, KDV dahil, EPDK tarifesi) — faturandan bakıp
             güncelleyebilirsin.
           </small>
         </label>

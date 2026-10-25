@@ -36,6 +36,15 @@ function serializeJsonLd(data: object) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
 }
 
+const BSA_ORNEKLERI: Array<[number, number]> = [
+  [110, 18],
+  [160, 55],
+  [170, 70],
+  [185, 95],
+];
+
+const bsa = (m2: number) => m2.toLocaleString("tr-TR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
 export default function BsaCalculatorPage() {
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -76,6 +85,39 @@ export default function BsaCalculatorPage() {
             yayımlanmış, basitliği ve doğruluğu nedeniyle klinik
             pratikte en yaygın kullanılan BSA tahmin yöntemidir.
             Erişkin normal BSA aralığı yaklaşık 1,6-2,0 m²&apos;dir.
+          </p>
+
+          <h2>Mosteller, Du Bois ve Haycock karşılaştırması</h2>
+          <p>
+            Du Bois formülü 1916&apos;da, Haycock formülü 1978&apos;de çocuklar için yayımlandı. Aynı boy ve kilo için üç formülün sonucu
+            birbirine çok yakındır:
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>Boy / kilo</th>
+                  <th>Mosteller</th>
+                  <th>Du Bois</th>
+                  <th>Haycock</th>
+                </tr>
+              </thead>
+              <tbody>
+                {BSA_ORNEKLERI.map(([boy, kilo]) => (
+                  <tr key={`${boy}-${kilo}`}>
+                    <td>{boy} cm / {kilo} kg</td>
+                    <td>{bsa(Math.sqrt((boy * kilo) / 3600))} m²</td>
+                    <td>{bsa(0.007184 * kilo ** 0.425 * boy ** 0.725)} m²</td>
+                    <td>{bsa(0.024265 * kilo ** 0.5378 * boy ** 0.3964)} m²</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Örneğin 170 cm ve 70 kg için Mosteller sonucu √(170 × 70 / 3600) ≈ {bsa(Math.sqrt((170 * 70) / 3600))} m²&apos;dir. Çok
+            yüksek ya da çok düşük vücut kitle indeksinde formüller arasındaki fark büyüyebilir; kemoterapi gibi dar aralıklı
+            ilaçlarda hangi formülün ve hangi kilonun kullanılacağı kurum protokolüyle belirlenir.
           </p>
 
           <h2>Sık Sorulan Sorular</h2>

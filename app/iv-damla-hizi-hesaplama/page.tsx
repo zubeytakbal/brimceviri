@@ -81,6 +81,43 @@ export default function IvDripRatePage() {
             olmayan durumlar için kullanılır.
           </p>
 
+          <h2>Örnek hesaplar</h2>
+          <p>
+            1.000 mL serum 8 saatte (480 dakika) verilecekse ve set 20 gtt/mL ise: 1.000 × 20 / 480 ≈ 42 damla/dk; pompa hızı 125
+            mL/saattir. Aynı hacim ve süre için farklı setlerde damla hızı:
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>Set (gtt/mL)</th>
+                  <th>500 mL / 4 saat</th>
+                  <th>1.000 mL / 8 saat</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[10, 15, 20, 60].map((f) => (
+                  <tr key={f}>
+                    <td>{f === 60 ? "60 (mikro set)" : f}</td>
+                    <td>{Math.round((500 * f) / 240)} damla/dk</td>
+                    <td>{Math.round((1000 * f) / 480)} damla/dk</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p>
+            İki infüzyonun pompa hızı da aynıdır: 125 mL/saat. 60 gtt/mL mikro sette dakikadaki damla sayısı her zaman mL/saat değerine
+            eşittir; bu yüzden pediatride hız kontrolü kolaylaşır.
+          </p>
+
+          <h2>Damla sayarken dikkat edilecekler</h2>
+          <p>
+            Damla hızı 1 dakika boyunca sayılarak ya da 15 saniye sayılıp 4 ile çarpılarak kontrol edilir. Hastanın kol pozisyonu,
+            torbanın yüksekliği ve kanülün durumu akışı değiştirebildiği için hız infüzyon boyunca aralıklarla yeniden kontrol edilir.
+            Hacim ya da süre yeterince doğru tutturulamıyorsa infüzyon pompası tercih edilir.
+          </p>
+
           <h2>Sık Sorulan Sorular</h2>
           <p>
             <strong>Damla faktörü (gtt/mL) ne demek, nasıl seçilir?</strong>

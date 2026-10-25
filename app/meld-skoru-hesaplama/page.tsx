@@ -36,6 +36,9 @@ function serializeJsonLd(data: object) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
 }
 
+// Örnek hesap: bilirubin 2,0, INR 1,5, kreatinin 1,2 (mg/dL).
+const meldOrnek = 3.78 * Math.log(2) + 11.2 * Math.log(1.5) + 9.57 * Math.log(1.2) + 6.43;
+
 export default function MeldPage() {
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -76,6 +79,39 @@ export default function MeldPage() {
             edilir; kreatinin 4,0 ile sınırlandırılır ve diyalizdeki
             hastalarda otomatik olarak 4,0 kullanılır. Sonuç 6-40
             aralığına yuvarlanır.
+          </p>
+
+          <h2>Örnek hesap</h2>
+          <p>
+            Bilirubin 2,0 mg/dL, INR 1,5 ve kreatinin 1,2 mg/dL olan bir hastada: 3,78 × ln(2,0) + 11,2 × ln(1,5) + 9,57 × ln(1,2) +
+            6,43 ≈ {meldOrnek.toLocaleString("tr-TR", { maximumFractionDigits: 1 })}; yuvarlanmış MELD skoru {Math.round(meldOrnek)}&apos;tir.
+          </p>
+
+          <h2>MELD puanı ne anlatır?</h2>
+          <p>
+            Skor yükseldikçe 3 aylık ölüm riski artar. Hastanede yatan kronik karaciğer hastalarında yapılan ve sık kaynak gösterilen
+            çalışmada (Wiesner ve ark., 2003) puan aralıklarına göre 3 aylık ölüm oranları şöyle bulunmuştur:
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>MELD</th>
+                  <th>3 aylık ölüm oranı</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>9 ve altı</td><td>%1,9</td></tr>
+                <tr><td>10–19</td><td>%6,0</td></tr>
+                <tr><td>20–29</td><td>%19,6</td></tr>
+                <tr><td>30–39</td><td>%52,6</td></tr>
+                <tr><td>40 ve üzeri</td><td>%71,3</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Bu araç özgün MELD formülünü kullanır. ABD&apos;de nakil listesi 2016&apos;da sodyumu da hesaba katan MELD-Na&apos;ya, 2023&apos;te
+            cinsiyet ve albümini de ekleyen MELD 3.0&apos;a geçti; ülkelerin ve merkezlerin kullandığı sürüm farklı olabilir.
           </p>
 
           <h2>Sık Sorulan Sorular</h2>

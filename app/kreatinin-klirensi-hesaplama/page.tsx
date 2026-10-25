@@ -36,6 +36,9 @@ function serializeJsonLd(data: object) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
 }
 
+// Örnek hesap: 60 yaş, 70 kg, kreatinin 1,0 mg/dL, erkek.
+const ccrOrnek = ((140 - 60) * 70) / (72 * 1.0);
+
 export default function CreatinineClearancePage() {
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -78,6 +81,43 @@ export default function CreatinineClearancePage() {
             . 1976&apos;da yayımlanan bu formül, böbrek yoluyla atılan
             ilaçların doz ayarlamasında klinikte yaygın kullanılan
             standart bir tahmin yöntemidir.
+          </p>
+
+          <h2>Örnek hesap</h2>
+          <p>
+            60 yaşında, 70 kg, serum kreatinini 1,0 mg/dL olan bir erkekte: (140 − 60) × 70 / (72 × 1,0) ≈{" "}
+            {ccrOrnek.toLocaleString("tr-TR", { maximumFractionDigits: 1 })} mL/dk. Aynı değerlerdeki bir kadında sonuç 0,85 ile
+            çarpılır: {(ccrOrnek * 0.85).toLocaleString("tr-TR", { maximumFractionDigits: 1 })} mL/dk. Laboratuvar sonucu µmol/L
+            ise mg/dL&apos;ye çevirmek için 88,4&apos;e bölün (88 µmol/L ≈ 1,0 mg/dL).
+          </p>
+
+          <h2>Sonucu yorumlarken</h2>
+          <p>
+            İlaç prospektüslerindeki doz ayarları çoğunlukla Cockcroft-Gault ile bulunan klirense göre verilir. Kronik böbrek
+            hastalığının evrelemesinde ise eGFR kullanılır; KDIGO kategorileri karşılaştırma için şöyledir:
+          </p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>KDIGO kategorisi</th>
+                  <th>GFR (mL/dk/1,73 m²)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>G1 – normal ya da yüksek</td><td>≥90</td></tr>
+                <tr><td>G2 – hafif azalmış</td><td>60–89</td></tr>
+                <tr><td>G3a – hafif-orta azalmış</td><td>45–59</td></tr>
+                <tr><td>G3b – orta-ağır azalmış</td><td>30–44</td></tr>
+                <tr><td>G4 – ağır azalmış</td><td>15–29</td></tr>
+                <tr><td>G5 – böbrek yetmezliği</td><td>&lt;15</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Formül kiloya dayandığı için obez hastalarda gerçek kilo klirensi olduğundan yüksek gösterebilir; bu durumda ideal ya da
+            düzeltilmiş kilo kullanımı tartışılır (<Link href="/ideal-kilo-hesaplama">ideal kilo hesaplama</Link>). Kas kütlesi çok
+            düşük yaşlı hastalarda ve böbrek fonksiyonu hızla değişen akut durumlarda tahmin güvenilirliğini yitirir.
           </p>
 
           <h2>Sık Sorulan Sorular</h2>

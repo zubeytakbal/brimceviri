@@ -79,6 +79,19 @@ export default function Cha2ds2Page() {
             Sc (Kadın cinsiyet, +1). Toplam skor 0-9 arasındadır.
           </p>
 
+          <h2>Örnek hesap</h2>
+          <p>
+            72 yaşında, hipertansiyonu olan bir kadın: yaş 65–74 (+1), hipertansiyon (+1) ve kadın cinsiyet (+1) ile CHA2DS2-VASc
+            skoru 3&apos;tür. Cinsiyetin çıkarıldığı CHA2DS2-VA ile aynı hastanın puanı 2 olur.
+          </p>
+
+          <h2>Puan ne anlama gelir?</h2>
+          <p>
+            Puan arttıkça yıllık inme riski artar. 2024 ESC atriyal fibrilasyon kılavuzu, CHA2DS2-VA puanı 2 ve üzeri olan hastalarda
+            oral antikoagülan tedaviyi önerir, 1 puanda düşünülebileceğini belirtir. Karar tek başına bu skora göre verilmez:
+            kanama riski (örneğin HAS-BLED skoruyla) ve hastanın diğer durumları birlikte değerlendirilir. Bu araç tedavi önermez.
+          </p>
+
           <h2>Sık Sorulan Sorular</h2>
           <p>
             <strong>CHA2DS2-VASc skoru ne için kullanılır?</strong>

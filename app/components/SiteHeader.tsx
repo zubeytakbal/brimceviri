@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import { isSaatAraci, isSaatBolumu } from "./saat/saatBolumu";
 import { isHesapAraci } from "./hesap/hesapBolumu";
+import { isBilimAraci } from "./bilim/bilimBolumu";
 import Link from "@/app/components/SiteLink";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useState } from "react";
@@ -18,6 +19,8 @@ import { useNotificationSlot } from "./NotificationSlotProvider";
 const SaatAracUst = dynamic(() => import("./saat/SaatAracUst"));
 // Hesap bölümü aynı düzeni kendi adı ve gruplarıyla kullanır.
 const HesapAracUst = dynamic(() => import("./hesap/HesapAracUst"));
+// Bilim bölümü de aynı düzeni kendi adı, grupları ve sarı vurgusuyla kullanır.
+const BilimAracUst = dynamic(() => import("./bilim/BilimAracUst"));
 
 type HeaderLink = {
   href: string;
@@ -32,6 +35,7 @@ export default function SiteHeader() {
   }
   if (isSaatAraci(pathname)) return <SaatAracUst />;
   if (isHesapAraci(pathname)) return <HesapAracUst />;
+  if (isBilimAraci(pathname)) return <BilimAracUst />;
   return <SiteHeaderNavigation key={pathname} pathname={pathname} />;
 }
 

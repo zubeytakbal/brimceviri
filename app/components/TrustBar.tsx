@@ -9,7 +9,7 @@ export type TrustBarSource = {
 };
 
 export default function TrustBar({
-  creator = "Emirhan",
+  creator = "Emirhan Akbal",
   sources,
   lastVerified,
 }: {

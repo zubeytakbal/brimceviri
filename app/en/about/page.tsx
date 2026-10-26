@@ -93,7 +93,7 @@ export default function EnglishAboutPage() {
           content: (
             <>
               <p>
-                BirimCeviri.app is an independent project built and maintained in Türkiye. It is not affiliated with any standards body or
+                BirimCeviri.app is an independent project built and maintained in Türkiye by Emirhan Akbal. It is not affiliated with any standards body or
                 manufacturer. Corrections and suggestions are welcome through the <Link href="/en/contact">contact page</Link>.
               </p>
             </>

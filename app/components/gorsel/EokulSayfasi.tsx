@@ -40,7 +40,7 @@ const SSS: FaqItem[] = [
   {
     question: "MEBBİS için de aynı ölçü mü geçerli?",
     answer:
-      "Evet. MEB il ve ilçe müdürlüklerinin duyurularında e-Okul ve MEBBİS fotoğrafları için aynı 133×171 piksel ve 20 KB üstü kuralı belirtilir.",
+      "Evet. MEBBİS'in fotoğraf yükleme ekranı da e-Okul'la aynı 133×171 piksel ve 20–150 KB JPG ölçüsünü ister. Kural değişebileceği için yüklemeden önce ekrandaki güncel uyarıyı kontrol edin.",
   },
   {
     question: "Bütün sınıfın fotoğraflarını aynı anda hazırlayabilir miyim?",
@@ -118,7 +118,9 @@ export function EokulSayfasi() {
         </div>
         <p>
           Aynı ölçü MEBBİS'teki personel ve öğrenci fotoğrafları için de
-          kullanılır.
+          kullanılır. Bu değerler e-Okul ve MEBBİS'in fotoğraf yükleme
+          ekranlarında yazan ölçülerdir; MEB kuralı değiştirirse ekrandaki
+          uyarı esas alınır.
         </p>
         <h2 id="nasil">Nasıl kullanılır?</h2>
         <ol>

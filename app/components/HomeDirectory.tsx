@@ -51,6 +51,7 @@ import { englishConversionPages } from "../converter/localizedConversionPages";
 import { englishUnitPages } from "../converter/localizedUnitPages";
 import { englishEverydayCalculatorGroups } from "../i18n/englishEverydayCalculatorGroups";
 import { englishChemistryCalculatorCount, englishDecisionSavingsCalculatorCount, englishEverydayCalculatorCount } from "../i18n/englishCalculatorHubs";
+import { englishAutomotiveTools } from "../i18n/englishAutomotiveTools";
 import { englishAppliedStemCalculatorCount, englishLiveCalculatorCount, englishToolRegistry, getEnglishToolDomain, getEnglishToolsByDomain } from "../i18n/englishToolRegistry";
 import { uzbekCategoryPages } from "../converter/localizedUzbekCategoryPages";
 import { uzbekConversionPages } from "../converter/localizedUzbekConversionPages";
@@ -2148,6 +2149,7 @@ export default function HomeDirectory({
 
             <div className="directory-tool-grid">
               {englishProductAreas.map((area) => {
+                // Her bölüm kendi araç sayısını gösterir (önceden tanımsız bölümler mühendislik sayısını alıyordu).
                 const count =
                   area.id === "conversions"
                     ? data.stats.activeCategories
@@ -2155,7 +2157,11 @@ export default function HomeDirectory({
                       ? englishEverydayCalculatorCount
                       : area.id === "decision-savings"
                         ? englishDecisionSavingsCalculatorCount
-                        : englishAppliedStemCalculatorCount;
+                        : area.id === "automotive"
+                          ? englishAutomotiveTools.length
+                          : area.id === "business" || area.id === "finance" || area.id === "data-computing" || area.id === "fitness"
+                            ? getEnglishToolsByDomain(area.id).length
+                            : englishAppliedStemCalculatorCount;
 
                 return (
                   <article className="directory-home-card directory-tool-card" key={area.id}>

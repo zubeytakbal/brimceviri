@@ -39,6 +39,14 @@ function serializeJsonLd(data: object) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
 }
 
+// Örnek: SAT 1 Ocak 2026 + 280 gün.
+const dogumOrnek = new Date(Date.UTC(2026, 0, 1 + 280)).toLocaleDateString("tr-TR", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+  timeZone: "UTC",
+});
+
 export default function PregnancyCalculatorPage() {
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -109,6 +117,39 @@ export default function PregnancyCalculatorPage() {
             0-13. haftalar arası, <strong>2. trimester</strong> 13-27.
             haftalar arası ve <strong>3. trimester</strong> 27. haftadan
             doğuma kadar olan dönemdir.
+          </p>
+
+          <h2>Örnek: tahmini doğum tarihi</h2>
+          <p>
+            Son adet tarihi 1 Ocak 2026 olan bir gebelikte Naegele kuralıyla tahmini doğum tarihi SAT + 280 gün ={" "}
+            {dogumOrnek}. 40 haftanın tamamlandığı gün budur.
+          </p>
+
+          <h2>Doğum zamanı nasıl adlandırılır?</h2>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>Gebelik haftası</th>
+                  <th>Tanım</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>37+0 öncesi</td><td>Erken doğum (preterm)</td></tr>
+                <tr><td>37+0 – 38+6</td><td>Erken term</td></tr>
+                <tr><td>39+0 – 40+6</td><td>Tam term</td></tr>
+                <tr><td>41+0 – 41+6</td><td>Geç term</td></tr>
+                <tr><td>42+0 ve sonrası</td><td>Miadı geçmiş (post-term)</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            <small>Tanımlar Amerikan Kadın Doğum Uzmanları Derneği&apos;nin (ACOG) sınıflamasına göredir. &quot;37+0&quot;, 37 hafta 0 gün demektir.</small>
+          </p>
+          <p>
+            Gebelik takibindeki bazı incelemeler belirli haftalarda yapılır: ense kalınlığı ölçümü genellikle 11–14. haftalarda,
+            ayrıntılı ultrason 18–22. haftalarda, gebelik şekeri testi 24–28. haftalarda planlanır. Takvim hekime ve kuruma göre
+            değişebilir.
           </p>
 
           <h2>Sık Sorulan Sorular</h2>

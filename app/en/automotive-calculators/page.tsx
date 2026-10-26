@@ -2,15 +2,11 @@ import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import StaticPageLayout from "../../components/StaticPageLayout";
 import { ENGLISH_HUB_GUIDES } from "../../i18n/englishHubGuides";
+import { englishAutomotiveTools } from "../../i18n/englishAutomotiveTools";
 import { SITE_NAME, buildSiteUrl } from "../../siteConfig";
 
 const pagePath = "/en/automotive-calculators";
-const tools = [
-  { href: "/en/tire-size-calculator", title: "Tire Size Calculator", description: "Compare tire diameter, circumference, revolutions and estimated speedometer difference." },
-  { href: "/en/fuel-consumption-calculator", title: "Fuel Consumption Calculator", description: "Convert common consumption units and estimate trip fuel cost." },
-  { href: "/en/ev-charging-calculator", title: "EV Charging Calculator", description: "Estimate charging time or driving range from stated battery and consumption inputs." },
-  { href: "/en/decision-savings-calculators/ev-vs-gas-running-cost", title: "EV vs Gas Running Cost", description: "Compare annual energy cost using your own prices and consumption figures." },
-];
+const tools = englishAutomotiveTools;
 
 export const metadata: Metadata = { title: `Automotive Calculators`, description: "Practical tire, fuel-consumption, EV-charging and running-cost calculators with clear limits.", alternates: { canonical: pagePath, languages: { en: pagePath } }, openGraph: { title: "Automotive Calculators", description: "Practical transport calculations with clear limits.", url: buildSiteUrl(pagePath), siteName: SITE_NAME, locale: "en_US", type: "website" } };
 

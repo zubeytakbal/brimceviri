@@ -4,6 +4,7 @@
 // Dişli düğmesiyle kart başka bir türe (döviz ya da herhangi bir birim kategorisi) çevrilir; seçim tarayıcıda saklanır.
 // İlk görünüm sunucuda örnek değerlerle derlenir, yani sonuçlar sayfa açılır açılmaz görünür.
 import { useEffect, useState } from "react";
+import { adSembol } from "../converter/unitLabel";
 import Link from "@/app/components/SiteLink";
 import type { HizliVeri } from "../converter/hizliCevirmeVeri";
 import { birimCevir } from "../converter/hizliCevir";
@@ -74,7 +75,7 @@ function HizliKart({ kart, veri, degis }: { kart: Kart; veri: HizliVeri; degis: 
     const to = kat!.birimler.find((b) => b.s === kart.to)!;
     sonuc = gecerli ? birimCevir(kat!, v, from, to) : NaN;
     hedefSimge = to.d ?? to.s;
-    secenekler = kat!.birimler.map((b) => ({ deger: b.s, ad: `${b.n} (${b.d ?? b.s})` }));
+    secenekler = kat!.birimler.map((b) => ({ deger: b.s, ad: adSembol(b.n, b.d ?? b.s) }));
   }
   const sonucMetni = `${bicimle(sonuc)} ${hedefSimge}`;
 

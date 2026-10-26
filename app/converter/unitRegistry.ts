@@ -2641,7 +2641,7 @@ export const unitRegistry: UnitRegistryEntry[] = [
   { id: "x-uzunluk-rod", category: "uzunluk", symbol: "rd", siFactor: 5.0292, tr: { name: "Rod (perch)", slug: "rod" } },
   { id: "x-uzunluk-link-uzunluk", category: "uzunluk", symbol: "li", siFactor: 0.201168, tr: { name: "Link", slug: "link-uzunluk" } },
   { id: "x-uzunluk-el-hand", category: "uzunluk", symbol: "hand", siFactor: 0.1016, tr: { name: "El (hand)", slug: "el-hand" } },
-  { id: "x-uzunluk-league", category: "uzunluk", symbol: "lea", siFactor: 4828.032, tr: { name: "Fersah (kara mili, league)", slug: "league" } },
+  { id: "x-uzunluk-league", category: "uzunluk", symbol: "lea", siFactor: 4828.032, tr: { name: "League (İngiliz fersahı)", slug: "league" } },
   { id: "x-uzunluk-kablo-boyu", category: "uzunluk", symbol: "cbl", siFactor: 185.2, tr: { name: "Kablo boyu (cable)", slug: "kablo-boyu" } },
   { id: "x-uzunluk-abd-olcme-ayagi", category: "uzunluk", symbol: "ftUS", siFactor: 1200/3937, tr: { name: "ABD ölçme ayağı (survey foot)", slug: "abd-olcme-ayagi" } },
   { id: "x-uzunluk-punto", category: "uzunluk", symbol: "pt (tipo)", siFactor: 0.0254/72, tr: { name: "Punto (tipografi)", slug: "punto" } },

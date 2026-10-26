@@ -387,6 +387,55 @@ function fixRemovedPageLinks() {
   return links;
 }
 
+// Sosyal paylaşım etiketleri: kök şablondaki twitter:title/description ("Online Birim Çevirici") her sayfaya aynen
+// geçiyordu. Her sayfanın Twitter etiketleri kendi og: değerlerinden, og: yoksa ya da kök şablonun genel metniyse
+// sayfanın <title> ve açıklamasından alınır.
+function fixSocialTags(): number {
+  const KOK_BASLIK = "Online Birim Çevirici | BirimCeviri.app";
+  const meta = (html: string, attr: string, key: string) =>
+    new RegExp(`<meta ${attr}="${key}" content="([^"]*)"`).exec(html)?.[1];
+  const set = (html: string, attr: string, key: string, value: string) => {
+    const re = new RegExp(`(<meta ${attr}="${key}" content=")[^"]*(")`);
+    return re.test(html) ? html.replace(re, `$1${value}$2`) : html;
+  };
+  let fixed = 0;
+  const walk = (dir: string) => {
+    for (const entry of readdirSync(dir, { withFileTypes: true })) {
+      const path = join(dir, entry.name);
+      if (entry.isDirectory()) {
+        if (entry.name !== "_next") walk(path);
+        continue;
+      }
+      if (!entry.name.endsWith(".html")) continue;
+      const html = readFileSync(path, "utf8");
+      // <title> metin olarak kaçışlıdır ama tırnak işaretini kaçışlamaz; özniteliğe yazmadan önce kaçışlanır.
+      const baslik = /<title>([^<]*)<\/title>/.exec(html)?.[1]?.replace(/"/g, "&quot;");
+      const aciklama = meta(html, "name", "description");
+      if (!baslik) continue;
+      let ogBaslik = meta(html, "property", "og:title");
+      let ogAciklama = meta(html, "property", "og:description");
+      let next = html;
+      if (ogBaslik === KOK_BASLIK && baslik !== KOK_BASLIK) {
+        next = set(next, "property", "og:title", baslik);
+        ogBaslik = baslik;
+        if (aciklama) {
+          next = set(next, "property", "og:description", aciklama);
+          ogAciklama = aciklama;
+        }
+      }
+      next = set(next, "name", "twitter:title", ogBaslik ?? baslik);
+      const twAciklama = ogAciklama ?? aciklama;
+      if (twAciklama) next = set(next, "name", "twitter:description", twAciklama);
+      if (next !== html) {
+        writeFileSync(path, next);
+        fixed++;
+      }
+    }
+  };
+  walk(OUT);
+  return fixed;
+}
+
 console.log(`${removeRscPayloads(OUT)} sayfa gecis verisi (.txt) silindi`);
 const merged = fixMergedPairLinks();
 console.log(`Birleştirilen çiftler: ${merged.links} bağlantı kalan sayfaya çevrildi, ${merged.alternates} hreflang silindi`);
@@ -398,6 +447,7 @@ console.log(
   `hreflang: ${hreflang.removed} karşılıksız bağlantı silindi, ${hreflang.added} sayfaya kendi dil bağlantısı eklendi, site haritasında ${hreflang.smRemoved} bağlantı farkı`,
 );
 console.log(`${fixHtmlLang()} sayfada <html lang> dile gore duzeltildi`);
+console.log(`${fixSocialTags()} sayfada sosyal paylaşım etiketleri sayfanın kendi başlığına göre düzeltildi`);
 console.log(`${stripAdsenseFromUzbek()} Ozbekce sayfadan AdSense kodu cikarildi`);
 const redirects = writeRedirects();
 console.log(`out/_redirects: ${redirects.static} sabit + ${redirects.dynamic} dinamik yonlendirme yazildi`);

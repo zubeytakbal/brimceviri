@@ -82,6 +82,60 @@ export default function SofaPage() {
             <Link href="/qsofa-hesaplama">qSOFA</Link> kullanılır. Bu araç klinik değerlendirmenin yerine geçmez.
           </p>
 
+          <h2 id="esikler">Organ sistemlerine göre puan eşikleri</h2>
+          <p>Vincent ve arkadaşlarının 1996&apos;da tanımladığı SOFA tablosuna göre her sistem 0–4 puan alır:</p>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>Sistem ve ölçüt</th>
+                  <th>Puan eşikleri</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <strong>Solunum</strong>: PaO2/FiO2 (mmHg)
+                  </td>
+                  <td>1: &lt;400 · 2: &lt;300 · 3: &lt;200* · 4: &lt;100*</td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Pıhtılaşma</strong>: Trombosit (×10³/µL)
+                  </td>
+                  <td>1: &lt;150 · 2: &lt;100 · 3: &lt;50 · 4: &lt;20</td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Karaciğer</strong>: Bilirubin (mg/dL)
+                  </td>
+                  <td>1: 1,2–1,9 · 2: 2,0–5,9 · 3: 6,0–11,9 · 4: ≥12</td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Dolaşım</strong>: Ortalama arter basıncı ve vazopressör
+                  </td>
+                  <td>1: OAB &lt;70 · 2: dopamin ≤5 ya da dobutamin · 3: dopamin &gt;5, adrenalin ya da noradrenalin ≤0,1 · 4: dopamin &gt;15, adrenalin ya da noradrenalin &gt;0,1 (µg/kg/dk)</td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Sinir sistemi</strong>: Glasgow Koma Skalası
+                  </td>
+                  <td>1: 13–14 · 2: 10–12 · 3: 6–9 · 4: &lt;6</td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>Böbrek</strong>: Kreatinin (mg/dL) ya da idrar
+                  </td>
+                  <td>1: 1,2–1,9 · 2: 2,0–3,4 · 3: 3,5–4,9 ya da &lt;500 mL/gün · 4: ≥5,0 ya da &lt;200 mL/gün</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            <small>* Solunum desteği altındayken. Bilinç puanı için <Link href="/glasgow-koma-skalasi-hesaplama">Glasgow Koma Skalası</Link> hesaplanabilir.</small>
+          </p>
+
           <h2>Sık Sorulan Sorular</h2>
           <p>
             <strong>SOFA skoru ne için kullanılır?</strong>

@@ -1,6 +1,7 @@
 // Birim rehberi sayfalari icin hesaplanan ek icerik: diger birimlere donusum tablosu,
 // sik kullanilan degerler, ayni kategorideki birimler ve SSS. Makalesi olmayan
 // birim sayfalarinin da kendine ozgu, kullanisli icerik tasimasini saglar.
+import { adSembol } from "./unitLabel";
 import { convert } from "./convert";
 import { conversionPages } from "./conversionPages";
 import { canonicalPairSlug } from "./mergedPairs";
@@ -97,7 +98,7 @@ export function siblingUnitGuides(unitPage: UnitPage, limit = 12) {
   return unitPages
     .filter((p) => p.category === unitPage.category && p.slug !== unitPage.slug)
     .slice(0, limit)
-    .map((p) => ({ href: `/birimler/${p.slug}`, label: `${p.name} (${p.symbol})` }));
+    .map((p) => ({ href: `/birimler/${p.slug}`, label: adSembol(p.name, p.symbol) }));
 }
 
 /** Makalesi olmayan birimler icin hesaplanan SSS. */

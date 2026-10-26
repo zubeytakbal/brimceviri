@@ -82,6 +82,30 @@ export default function QsofaPage() {
             <Link href="/sofa-skoru-hesaplama">SOFA skoru</Link> hesaplanır. Bu araç klinik değerlendirmenin yerine geçmez.
           </p>
 
+          <h2 id="olcutler">Ölçütler ve örnek</h2>
+          <div className="conversion-table-wrap">
+            <table className="conversion-table">
+              <thead>
+                <tr>
+                  <th>Ölçüt</th>
+                  <th>Eşik</th>
+                  <th>Puan</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Solunum sayısı</td><td>≥22 /dk</td><td>1</td></tr>
+                <tr><td>Bilinç</td><td>Değişmiş (GKS &lt;15)</td><td>1</td></tr>
+                <tr><td>Sistolik kan basıncı</td><td>≤100 mmHg</td><td>1</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            Örneğin solunum sayısı dakikada 24, bilinci açık ve sistolik basıncı 95 mmHg olan bir hastanın qSOFA puanı 2&apos;dir. Bilinç
+            değişikliği için Glasgow Koma Skalası&apos;nın 15&apos;in altında olması esas alınır
+            (<Link href="/glasgow-koma-skalasi-hesaplama">Glasgow Koma Skalası hesaplama</Link>). Taramada qSOFA yerine ya da
+            yanında SIRS ölçütleri ve NEWS gibi erken uyarı skorları da kullanılır.
+          </p>
+
           <h2>Sık Sorulan Sorular</h2>
           <p>
             <strong>qSOFA ne için kullanılır?</strong>

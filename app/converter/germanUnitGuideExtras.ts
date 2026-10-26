@@ -1,6 +1,7 @@
 // Deutsche Einheitenseiten: berechnete Umrechnungstabelle, häufige Werte und FAQ.
 // Gegenstück zu unitGuideExtras.ts (Türkisch), damit jede Einheitenseite eigenen,
 // nützlichen Inhalt hat.
+import { adSembol } from "./unitLabel";
 import { convert } from "./convert";
 import type { FaqItem } from "./faqSchema";
 import { germanConversionPages } from "./localizedGermanConversionPages";
@@ -85,7 +86,7 @@ export function germanSiblingUnits(unitPage: LocalizedGermanUnitPage, limit = 12
   return germanUnitPages
     .filter((p) => p.category === unitPage.category && p.slug !== unitPage.slug)
     .slice(0, limit)
-    .map((p) => ({ href: `/de/einheiten/${p.slug}`, label: `${p.name} (${p.symbol})` }));
+    .map((p) => ({ href: `/de/einheiten/${p.slug}`, label: adSembol(p.name, p.symbol) }));
 }
 
 /** FAQ aus den berechneten Werten und den Einheitendaten. */

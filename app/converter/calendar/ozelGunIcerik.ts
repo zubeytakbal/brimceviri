@@ -566,8 +566,20 @@ export const OZEL_GUN_ICERIK: Record<string, OzelGunIcerik> = {
           "Türkiye'de ilk kutlama 1955'te Hürriyet gazetesinin öncülüğünde yapıldı. Bugün Türkiye, ABD ve Almanya gibi pek çok ülkede Mayıs'ın ikinci pazarı kutlanır; İngiltere'de ise Paskalya'dan üç hafta önceki pazar (Mothering Sunday) Anneler Günü'dür.",
         ],
       },
+      {
+        id: "ulkeler",
+        baslik: "Farklı ülkelerde Anneler Günü",
+        paragraflar: [
+          "Anneler Günü her ülkede aynı gün kutlanmaz. İngiltere ve İrlanda'da Paskalya'dan üç hafta önceki pazar (Mothering Sunday), Mısır ve Arap ülkelerinin çoğunda bahar başı olan 21 Mart, Fransa'da Mayıs'ın son pazarı kutlanır; Fransa'da bu gün Hristiyanların Pentekost bayramına denk gelirse Haziran'ın ilk pazarına kayar.",
+          "Yurt dışında yaşayan bir anneye hediye ya da kart gönderecekseniz o ülkenin tarihine bakmak gerekir: örneğin İngiltere'deki Anneler Günü Mart'ta, Türkiye'deki ise Mayıs'tadır.",
+        ],
+      },
     ],
     sss: [
+      {
+        question: "İngiltere'de Anneler Günü ne zaman?",
+        answer: "İngiltere ve İrlanda'da Anneler Günü (Mothering Sunday) Paskalya'dan üç hafta önceki pazardır; genellikle Mart'a, bazen Nisan başına düşer.",
+      },
       {
         question: "Anneler Günü her yıl aynı tarihte mi?",
         answer: "Hayır. Mayıs'ın ikinci pazarı olduğu için tarihi 8 ile 14 Mayıs arasında değişir. Sonraki yılların tarihleri yukarıdaki tabloda.",
@@ -596,8 +608,20 @@ export const OZEL_GUN_ICERIK: Record<string, OzelGunIcerik> = {
           "Türkiye de Haziran'ın üçüncü pazarını kutlar. İtalya, İspanya ve Portekiz gibi Katolik ülkelerde ise Babalar Günü, Aziz Yusuf'un günü olan 19 Mart'tır.",
         ],
       },
+      {
+        id: "ulkeler",
+        baslik: "Farklı ülkelerde Babalar Günü",
+        paragraflar: [
+          "Haziran'ın üçüncü pazarı ABD, Kanada, İngiltere ve Türkiye gibi pek çok ülkenin tarihidir. Almanya'da Babalar Günü (Vatertag), Paskalya'dan 39 gün sonraki Göğe Yükseliş Perşembesi'ne denk gelir ve o gün zaten resmî tatildir. Avustralya ve Yeni Zelanda'da Eylül'ün ilk pazarı, İtalya, İspanya ve Portekiz'de 19 Mart kutlanır.",
+          "Türkiye'de Babalar Günü resmî bir kararla belirlenmiş değildir; ABD'deki tarih benimsenmiştir. Pazar gününe denk geldiği için ayrıca tatil sayılmaz.",
+        ],
+      },
     ],
     sss: [
+      {
+        question: "Almanya'da Babalar Günü ne zaman?",
+        answer: "Almanya'da Babalar Günü (Vatertag) Göğe Yükseliş Perşembesi'dir; Paskalya'dan 39 gün sonraya denk gelir ve resmî tatildir.",
+      },
       {
         question: "Babalar Günü her yıl aynı tarihte mi?",
         answer: "Hayır. Haziran'ın üçüncü pazarı olduğu için 15 ile 21 Haziran arasında değişir. Sonraki yılların tarihleri yukarıdaki tabloda.",
@@ -605,6 +629,81 @@ export const OZEL_GUN_ICERIK: Record<string, OzelGunIcerik> = {
       {
         question: "Babalar Günü tatil mi?",
         answer: "Pazar gününe denk geldiği için ayrıca resmî tatil değildir.",
+      },
+    ],
+  },
+  "15-temmuz": {
+    title: "15 Temmuz Demokrasi ve Milli Birlik Günü: Tarihçe ve Resmî Tatil",
+    short: "15 Temmuz Demokrasi ve Milli Birlik Günü",
+    description:
+      "15 Temmuz Demokrasi ve Milli Birlik Günü hangi gün, resmî tatil mi? 2016 darbe girişimi, günün resmî tatil olması ve sonraki yıllarda haftanın hangi gününe denk geldiği.",
+    h1: "15 Temmuz Demokrasi ve Milli Birlik Günü",
+    intro:
+      "15 Temmuz, 2016'daki darbe girişiminde hayatını kaybedenleri anmak için ilan edilen Demokrasi ve Milli Birlik Günü'dür. 2017'den beri tam gün resmî tatildir.",
+    iliskili: { baslik: "Yaz aylarındaki resmî günler", ids: ["15-temmuz", "30-agustos", "19-mayis", "29-ekim"] },
+    bolumler: [
+      {
+        id: "tarihce",
+        baslik: "15 Temmuz 2016'da ne oldu?",
+        paragraflar: [
+          "15 Temmuz 2016 gecesi Türk Silahlı Kuvvetleri içindeki bir grup, hükümeti devirmek amacıyla darbe girişiminde bulundu. Ankara ve İstanbul başta olmak üzere birçok yerde halk sokaklara çıktı; girişim ertesi sabah bastırıldı. O gece 251 kişi hayatını kaybetti, iki binden fazla kişi yaralandı.",
+          "Girişimin ardından İstanbul'daki Boğaziçi Köprüsü'nün adı 15 Temmuz Şehitler Köprüsü olarak değiştirildi. Her yıl 15 Temmuz'da ve öncesindeki günlerde, hayatını kaybedenler için anma programları düzenlenir.",
+        ],
+      },
+      {
+        id: "tatil",
+        baslik: "Resmî tatil mi?",
+        paragraflar: [
+          "15 Temmuz Demokrasi ve Milli Birlik Günü, 2016'da yapılan yasal düzenlemeyle Ulusal Bayram ve Genel Tatiller Hakkında Kanun'a eklendi ve ilk kez 2017'de resmî tatil olarak uygulandı. Tam gün tatildir; arefesi yoktur. Hafta sonuna denk geldiği yıllarda başka bir güne kaydırılmaz.",
+          "Kamuda çalışanlar için tatildir; özel sektörde resmî tatilde çalışan işçiye İş Kanunu'na göre o gün için ayrıca bir günlük ücret ödenir.",
+        ],
+      },
+    ],
+    sss: [
+      {
+        question: "15 Temmuz resmî tatil mi?",
+        answer: "Evet. 2017'den beri tam gün resmî tatildir. Hafta sonuna denk gelirse başka güne kaydırılmaz.",
+      },
+      {
+        question: "15 Temmuz'da kaç kişi hayatını kaybetti?",
+        answer: "15 Temmuz 2016 gecesi darbe girişimi sırasında 251 kişi hayatını kaybetti, iki binden fazla kişi yaralandı.",
+      },
+    ],
+  },
+  "ataturku-anma": {
+    title: "10 Kasım Atatürk'ü Anma Günü: Saat 09.05 ve Anma Haftası",
+    short: "10 Kasım Atatürk'ü Anma Günü",
+    description:
+      "10 Kasım Atatürk'ü Anma Günü bu yıl hangi gün? Saat 09.05'teki saygı duruşu, Atatürk Haftası, 10 Kasım'ın tatil olup olmadığı ve Atatürk'ün Anıtkabir'e nakli.",
+    h1: "10 Kasım Atatürk'ü Anma Günü",
+    intro:
+      "10 Kasım, Mustafa Kemal Atatürk'ün 1938'de hayatını kaybettiği gündür. Her yıl saat 09.05'te sirenler çalar ve bütün ülkede bir dakikalık saygı duruşunda bulunulur.",
+    iliskili: { baslik: "Kasım ve Ekim'deki günler", ids: ["ataturku-anma", "29-ekim", "ogretmenler-gunu", "23-nisan", "19-mayis"] },
+    bolumler: [
+      {
+        id: "saat",
+        baslik: "Neden saat 09.05?",
+        paragraflar: [
+          "Atatürk 10 Kasım 1938 Perşembe günü saat 09.05'te İstanbul'daki Dolmabahçe Sarayı'nda, 57 yaşında hayatını kaybetti. Her yıl aynı saatte sirenler çalar, trafik durur ve herkes bulunduğu yerde bir dakikalık saygı duruşunda bulunur. Dolmabahçe Sarayı'ndaki saatler bugün de 09.05'i gösterir.",
+          "Okullarda 10–16 Kasım arası Atatürk Haftası olarak anılır; bu hafta boyunca Atatürk'ün hayatı ve ilkeleriyle ilgili etkinlikler düzenlenir. Ankara'da devletin üst düzey temsilcileri anma törenine Anıtkabir'de katılır.",
+        ],
+      },
+      {
+        id: "anitkabir",
+        baslik: "Anıtkabir'e nakil",
+        paragraflar: [
+          "Atatürk'ün naaşı 1938'de Ankara'daki Etnografya Müzesi'ne geçici olarak konuldu. Anıtkabir'in yapımı tamamlanınca 10 Kasım 1953'te, vefatının 15. yılında, büyük bir törenle Anıtkabir'e taşındı.",
+        ],
+      },
+    ],
+    sss: [
+      {
+        question: "10 Kasım resmî tatil mi?",
+        answer: "Hayır. 10 Kasım bir anma günüdür; okullar ve iş yerleri açıktır. Saat 09.05'te bir dakikalık saygı duruşunda bulunulur.",
+      },
+      {
+        question: "Atatürk kaç yaşında öldü?",
+        answer: "1881'de doğan Atatürk, 10 Kasım 1938'de 57 yaşında hayatını kaybetti.",
       },
     ],
   },

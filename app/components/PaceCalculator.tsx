@@ -35,6 +35,7 @@ const copyByLocale: Record<
     };
   }
 > = {
+  get hi() { return this.en; },
   tr: {
     modePrompt: "Ne hesaplamak istiyorsun?",
     modeButtons: {

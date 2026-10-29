@@ -28,6 +28,7 @@ const copyByLocale: Record<
     };
   }
 > = {
+  get hi() { return this.en; },
   tr: {
     labels: {
       area: "Oda Alani (m2)",

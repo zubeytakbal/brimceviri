@@ -33,6 +33,7 @@ type BmiCopy = {
 };
 
 const copyByLocale: Record<Exclude<Locale, "ru">, BmiCopy> = {
+  get hi() { return this.en; },
   tr: {
     labels: {
       height: "Boy (cm)",

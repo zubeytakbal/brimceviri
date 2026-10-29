@@ -21,6 +21,7 @@ const copyByLocale: Record<
     recommended: string;
   }
 > = {
+  get hi() { return this.en; },
   tr: {
     modePrompt: "Ne hesaplamak istiyorsun?",
     modeButtons: {

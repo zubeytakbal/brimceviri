@@ -29,6 +29,7 @@ type VatCopy = {
 };
 
 const copyByLocale: Record<Exclude<Locale, "ru">, VatCopy> = {
+  get hi() { return this.en; },
   tr: {
     labels: {
       direction: "Hesap Yonu",

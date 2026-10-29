@@ -37,6 +37,7 @@ type PaintCalculatorCopy = {
 };
 
 const copyByLocale: Record<Exclude<Locale, "ru">, PaintCalculatorCopy> = {
+  get hi() { return this.en; },
   tr: {
     labels: {
       length: "Oda Uzunlugu (m)",

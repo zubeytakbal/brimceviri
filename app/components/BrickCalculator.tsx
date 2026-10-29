@@ -26,6 +26,7 @@ const copyByLocale: Record<
     emptyState: string;
   }
 > = {
+  get hi() { return this.en; },
   tr: {
     labels: {
       wallArea: "Duvar Alani (m2)",

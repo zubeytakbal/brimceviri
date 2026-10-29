@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { convert } from "./convert";
+import type { Locale } from "../i18n/config";
 
 type PairConverterProps = {
   category: string;
@@ -9,11 +10,11 @@ type PairConverterProps = {
   toUnit: string;
   fromName: string;
   toName: string;
-  locale?: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "nl" | "ru" | "sv" | "no" | "da";
+  locale?: Locale;
 };
 
 function getNumberLocale(
-  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "nl" | "ru" | "sv" | "no" | "da"
+  locale: Locale
 ) {
   if (locale === "tr") {
     return "tr-TR";
@@ -33,6 +34,10 @@ function getNumberLocale(
 
   if (locale === "bn") {
     return "bn-BD";
+  }
+
+  if (locale === "hi") {
+    return "hi-IN";
   }
 
   if (locale === "fr") {
@@ -80,7 +85,7 @@ function getNumberLocale(
 
 function formatResult(
   value: number,
-  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "es-419" | "pt" | "it" | "nl" | "ru" | "sv" | "no" | "da"
+  locale: Locale
 ) {
   if (!Number.isFinite(value)) {
     return "";
@@ -278,6 +283,8 @@ export default function PairConverter({
             ? `${activeFromName} qiymati`
             : locale === "bn"
               ? `${activeFromName} \u09AE\u09BE\u09A8`
+              : locale === "hi"
+                ? `${activeFromName} का मान`
               : locale === "fr"
                 ? `Valeur de ${activeFromName}`
                 : locale === "es" || locale === "es-419"
@@ -309,6 +316,8 @@ export default function PairConverter({
             ? "Qiymat kiriting"
             : locale === "bn"
               ? "\u098F\u0995\u099F\u09BF \u09AE\u09BE\u09A8 \u09B2\u09BF\u0996\u09C1\u09A8"
+              : locale === "hi"
+                ? "मान लिखें"
               : locale === "fr"
                 ? "Saisissez une valeur"
                 : locale === "es" || locale === "es-419"
@@ -340,6 +349,8 @@ export default function PairConverter({
             ? "O'zgartirish yo'nalishini teskari qiling"
             : locale === "bn"
               ? "\u09B0\u09C2\u09AA\u09BE\u09A8\u09CD\u09A4\u09B0\u09C7\u09B0 \u09A6\u09BF\u0995 \u09AA\u09B0\u09BF\u09AC\u09B0\u09CD\u09A4\u09A8 \u0995\u09B0\u09C1\u09A8"
+              : locale === "hi"
+                ? "रूपांतरण की दिशा बदलें"
               : locale === "fr"
                 ? "Inverser le sens de la conversion"
                 : locale === "es" || locale === "es-419"

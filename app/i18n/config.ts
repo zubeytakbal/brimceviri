@@ -1,4 +1,4 @@
-export const SUPPORTED_LOCALES = ["tr", "en", "de", "ar", "uz", "bn", "fr", "es", "es-419", "pt", "it", "nl", "ru", "sv", "no", "da"] as const;
+export const SUPPORTED_LOCALES = ["tr", "en", "de", "ar", "uz", "bn", "hi", "fr", "es", "es-419", "pt", "it", "nl", "ru", "sv", "no", "da"] as const;
 
 export type Locale = (typeof SUPPORTED_LOCALES)[number];
 
@@ -215,6 +215,21 @@ export const LOCALE_DEFINITIONS: Record<Locale, LocaleDefinition> = {
     switcherOptionsLabel: "Языки",
     switcherSearchPlaceholder: "Поиск языка",
     switcherEmptyLabel: "Подходящий язык не найден",
+  },
+  hi: {
+    code: "hi",
+    htmlLang: "hi",
+    dir: "ltr",
+    openGraphLocale: "hi_IN",
+    pathPrefix: "/hi",
+    homePath: "/hi",
+    label: "हिन्दी",
+    switcherLabel: "हिन्दी",
+    switcherCurrentLabel: "HI - हिन्दी",
+    switcherAriaLabel: "भाषा चुनें",
+    switcherOptionsLabel: "भाषाएँ",
+    switcherSearchPlaceholder: "भाषा खोजें",
+    switcherEmptyLabel: "कोई भाषा नहीं मिली",
   },
   sv: {
     code: "sv",

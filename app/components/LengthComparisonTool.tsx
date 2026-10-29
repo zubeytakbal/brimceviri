@@ -13,6 +13,7 @@ const unitOptionLabels: Record<
   Locale,
   Record<LengthComparisonUnit, string>
 > = {
+  get hi() { return this.en; },
   tr: {
     cm: "Santimetre (cm)",
     m: "Metre (m)",
@@ -96,6 +97,7 @@ fr: {
 };
 
 const unitShortLabels: Record<Locale, Record<LengthComparisonUnit, string>> = {
+  get hi() { return this.en; },
   tr: { cm: "cm", m: "m", km: "km" },
   en: { cm: "cm", m: "m", km: "km" },
   de: { cm: "cm", m: "m", km: "km" },
@@ -115,6 +117,7 @@ fr: { cm: "cm", m: "m", km: "km" },
 };
 
 const referenceLabels: Record<Locale, Record<string, string>> = {
+  get hi() { return this.en; },
   tr: {
     "insan-boyu": "Yetiskin insan boyu (ortalama)",
     zurafa: "Zurafa boyu (ortalama)",
@@ -274,6 +277,7 @@ const copyByLocale: Record<
     closestMatch: string;
   }
 > = {
+  get hi() { return this.en; },
   tr: {
     labels: {
       value: "Deger",

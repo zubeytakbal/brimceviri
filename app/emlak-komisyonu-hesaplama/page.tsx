@@ -93,11 +93,6 @@ export default function RealEstateCommissionPage() {
 
         <header className="all-conversions-header">
           <h1>Emlak Komisyonu Hesaplama</h1>
-          <p>
-            İşlem türünü (satış veya kiralama) seç, bedeli gir: yasal
-            tavan oranlarına göre KDV dahil ve KDV hariç emlak
-            komisyonunu anında hesapla.
-          </p>
         </header>
 
         <RealEstateCommissionCalculator />

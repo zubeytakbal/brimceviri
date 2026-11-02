@@ -91,11 +91,6 @@ export default function PaceCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Koşu Pace Hesaplama</h1>
-          <p>
-            Mesafe + süre gir, temponu (dakika/km) bul; ya da tersi
-            yönde hesapla. 5K, 10K, yarı maraton ve maraton için
-            tahmini bitiş sürelerini aynı anda gör.
-          </p>
         </header>
 
         <PaceCalculator />

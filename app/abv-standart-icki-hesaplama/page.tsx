@@ -66,10 +66,6 @@ export default function AbvCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>ABV ve Standart İçki Hesaplama</h1>
-          <p>
-            İçecek hacmi ve alkol yüzdesini (ABV) gir: saf alkol
-            miktarını (mL ve g) ve standart içki sayısını hesapla.
-          </p>
         </header>
 
         <AbvCalculator />

@@ -98,12 +98,6 @@ export default function TileCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Fayans Hesaplama</h1>
-          <p>
-            Kaplanacak alanı ve fayansın en/boy ölçüsünü gir; kesim ve
-            desen kaybı için fire payını ayarla. Sonuçta fayans başına
-            düşen alanı, fire dahil toplam alanı ve gereken fayans
-            adedini görürsün.
-          </p>
         </header>
 
         <TileCalculator />

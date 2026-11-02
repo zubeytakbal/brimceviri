@@ -84,10 +84,6 @@ export default function IdealWeightCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>İdeal Kilo Hesaplama</h1>
-          <p>
-            Boyunu ve cinsiyetini gir: klinik ortamda yaygın kullanılan
-            Devine formülüyle ideal kiloyu anında hesapla.
-          </p>
         </header>
 
         <IdealWeightCalculator />

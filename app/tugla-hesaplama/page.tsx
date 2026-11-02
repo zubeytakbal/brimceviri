@@ -91,11 +91,6 @@ export default function BrickCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Tuğla Hesaplama</h1>
-          <p>
-            Duvar alanını, tuğlanın en/yükseklik ölçüsünü ve derz
-            kalınlığını gir; gereken tuğla adedini fire payı dahil
-            anında gör.
-          </p>
         </header>
 
         <BrickCalculator />

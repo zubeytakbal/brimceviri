@@ -72,11 +72,6 @@ export default function SolarPanelPaybackPage() {
         <div className="page-top-row">
           <header className="all-conversions-header">
             <h1>Güneş Paneli Hesaplama: Kaç Panel Gerekir, Kaç Yılda Çıkarır?</h1>
-            <p>
-              Sistem gücün, bölgen ve elektrik fiyatınla güneş
-              panelinin yıllık ürettiği elektriği, tasarrufu ve kaç
-              yılda kendini çıkardığını hesapla.
-            </p>
           </header>
 
           <EmbedCodeBox

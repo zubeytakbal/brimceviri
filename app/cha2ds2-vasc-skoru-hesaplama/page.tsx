@@ -60,11 +60,6 @@ export default function Cha2ds2Page() {
 
         <header className="all-conversions-header">
           <h1>CHA2DS2-VASc Skoru Hesaplama</h1>
-          <p>
-            Atriyal fibrilasyonda inme riski faktörlerini işaretle:
-            klasik CHA2DS2-VASc ve 2024 revize CHA2DS2-VA skorunu
-            birlikte anında hesapla.
-          </p>
         </header>
 
         <Cha2ds2Calculator />

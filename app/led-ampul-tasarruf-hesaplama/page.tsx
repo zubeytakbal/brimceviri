@@ -73,11 +73,6 @@ export default function LedSavingsPage() {
         <div className="page-top-row">
           <header className="all-conversions-header">
             <h1>LED Ampul Tasarruf Hesaplama</h1>
-            <p>
-              Ampul sayın, günlük kullanım süren ve elektrik fiyatınla,
-              LED ampule geçişin yıllık tasarrufunu ve kaç günde/yılda
-              kendini çıkardığını hesapla.
-            </p>
           </header>
 
           <EmbedCodeBox

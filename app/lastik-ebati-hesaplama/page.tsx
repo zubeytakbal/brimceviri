@@ -89,12 +89,6 @@ export default function TireSizeCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Lastik Ebatı Hesaplama</h1>
-          <p>
-            Lastik ebat kodunu (genişlik/yanak oranı/jant çapı) gir:
-            dış çapı, çevreyi ve km başına devir sayısını hesapla. İki
-            farklı ebat girerek aralarındaki hız göstergesi sapmasını
-            da görebilirsin.
-          </p>
         </header>
 
         <TireSizeCalculator />

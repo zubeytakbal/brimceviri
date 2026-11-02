@@ -81,11 +81,6 @@ export default function BmiCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>BMI Hesaplama</h1>
-          <p>
-            Boyunu, kilonu, yaşını, cinsiyetini ve aktivite seviyeni gir:
-            vücut kitle indeksini (BMI), kategorini ve günlük kalori
-            ihtiyacını anında gör.
-          </p>
         </header>
 
         <BmiCalculator />

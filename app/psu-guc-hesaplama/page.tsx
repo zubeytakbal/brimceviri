@@ -71,10 +71,6 @@ export default function PsuCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>PSU Güç Kaynağı Hesaplama</h1>
-          <p>
-            CPU, GPU ve diğer bileşenlerin gücünü (W) gir: güvenlik
-            payı dahil önerilen PSU wattajını hesapla.
-          </p>
         </header>
 
         <PsuCalculator />

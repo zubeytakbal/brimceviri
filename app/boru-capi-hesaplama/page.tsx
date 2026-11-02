@@ -62,10 +62,6 @@ export default function PipeFlowPage() {
 
         <header className="all-conversions-header">
           <h1>Boru Çapı, Debi ve Akış Hızı Hesaplama</h1>
-          <p>
-            Debi, akış hızı veya boru çapından ikisini gir: eksik olan
-            üçüncü değeri anında hesapla.
-          </p>
         </header>
 
         <PipeFlowCalculator />

@@ -69,11 +69,6 @@ export default function AwgConverterPage() {
 
         <header className="all-conversions-header">
           <h1>AWG - mm² Çevirici</h1>
-          <p>
-            AWG değerinden çap ve kesit alanını, ya da kesit alanından
-            en yakın AWG değerini hesapla. Altta yaygın AWG ölçülerinin
-            tam tablosunu da bulabilirsin.
-          </p>
         </header>
 
         <AwgConverter />

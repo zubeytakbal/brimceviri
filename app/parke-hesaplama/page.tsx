@@ -97,10 +97,6 @@ export default function LaminateCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Parke Hesaplama</h1>
-          <p>
-            Kaplanacak alanı, seçtiğin parkenin paket içi m² değerini ve
-            fire payını gir: gereken parke paketi sayısını anında gör.
-          </p>
         </header>
 
         <LaminateCalculator />

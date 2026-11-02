@@ -83,12 +83,6 @@ export default function AcCapacityCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Klima BTU Hesaplama</h1>
-          <p>
-            Oda alanını, kişi sayısını, güneş alma ve kat durumunu gir:
-            odana uygun soğutma kapasitesini (BTU) ve en yakın standart
-            klima kapasitesini (9.000 / 12.000 / 18.000 / 24.000 /
-            30.000 BTU) anında gör.
-          </p>
         </header>
 
         <AcCapacityCalculator />

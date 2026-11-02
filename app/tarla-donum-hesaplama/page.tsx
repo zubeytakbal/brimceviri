@@ -75,10 +75,6 @@ export default function TarlaDonumPage() {
 
         <header className="all-conversions-header">
           <h1>Tarla Dönüm Hesaplama</h1>
-          <p>
-            Tarlanın ya da arsanın kenarlarını metre olarak girin. Dikdörtgen, üçgen ve düzensiz dört kenarlı araziler için alanı m²,
-            dönüm, eski dönüm, ar ve hektar olarak anında görün.
-          </p>
         </header>
 
         <TarlaDonumCalculator />

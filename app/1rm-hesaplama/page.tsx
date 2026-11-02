@@ -78,11 +78,6 @@ export default function OneRepMaxCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>1RM Hesaplama</h1>
-          <p>
-            Bir hareketle kaldırdığın ağırlığı ve yaptığın tekrar
-            sayısını gir: Epley formülüyle tahmini 1RM&apos;ini ve
-            antrenman programına uygun yüzde tablosunu gör.
-          </p>
         </header>
 
         <OneRepMaxCalculator />

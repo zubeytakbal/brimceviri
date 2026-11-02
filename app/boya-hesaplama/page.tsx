@@ -107,12 +107,6 @@ export default function PaintCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Boya Hesaplama</h1>
-          <p>
-            Oda uzunluğu, genişliği ve duvar yüksekliğini gir; kapı ve
-            pencere sayısını seç. Net duvar alanını, kat sayısına göre
-            gereken boya litresini ve en yakın kutu kombinasyonunu anında
-            görürsün.
-          </p>
         </header>
 
         <PaintCalculator />

@@ -67,12 +67,6 @@ export default function TheoreticalLatencyPage() {
 
         <header className="all-conversions-header">
           <h1>Ping / Gecikme Hesaplama</h1>
-          <p>
-            Konumunu ve oyun sunucusunun/hedef sunucunun yerini seç;
-            aralarındaki mesafeye göre fiziksel olarak mümkün olan en
-            düşük ping (gecikme) süresini ve gerçekçi bir tahmin
-            aralığını hesapla.
-          </p>
         </header>
 
         <TheoreticalLatencyCalculator />

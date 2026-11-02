@@ -71,11 +71,6 @@ export default function HeatingCostComparisonPage() {
         <div className="page-top-row">
           <header className="all-conversions-header">
             <h1>Isınırken Doğalgaz mı Klima mı? Hangisi Daha Ucuz?</h1>
-            <p>
-              Doğalgaz ve elektrik fiyatınla, kombi ile klimanın 1 kWh
-              ısı başına maliyetini karşılaştır, kendi evin için
-              hangisinin daha ucuz olduğunu gör.
-            </p>
           </header>
 
           <EmbedCodeBox

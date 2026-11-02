@@ -76,11 +76,6 @@ export default function AlcoholDilutionCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Alkol Seyreltme Hesaplama</h1>
-          <p>
-            Stok alkol derişimi ve hacminden, ya da hedef derişim ve
-            hacimden eksik değeri C₁V₁ = C₂V₂ bağıntısıyla, yüzde (%)
-            derişim cinsinden hesapla.
-          </p>
         </header>
 
         <AlcoholDilutionCalculator />

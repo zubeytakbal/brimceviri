@@ -69,11 +69,6 @@ export default function PipeNominalSizePage() {
 
         <header className="all-conversions-header">
           <h1>Boru Çapı Dönüşüm Hesaplama</h1>
-          <p>
-            Nominal boru çapı (DN) seç: NPS (inç) karşılığını ve
-            gerçek dış çapını (mm/inç) gör. Altta EN ISO 6708/DIN
-            standardına göre tam boru çapı tablosunu da bulabilirsin.
-          </p>
         </header>
 
         <PipeNominalSizeCalculator />

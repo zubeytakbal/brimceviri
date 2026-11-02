@@ -85,11 +85,6 @@ export default function VatCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>KDV Hesaplama</h1>
-          <p>
-            Hesap yönünü seç (KDV hariç tutardan dahile, ya da tam
-            tersi), tutarı ve oranı gir: KDV tutarını, matrahı ve toplam
-            tutarı anında gör.
-          </p>
         </header>
 
         <VatCalculator />

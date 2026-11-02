@@ -86,11 +86,6 @@ export default function CrosswindCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Yan Rüzgar Bileşeni Hesaplama</h1>
-          <p>
-            Rüzgar yönünü, hızını ve pist yönünü (uçuş başını) gir:
-            standart trigonometrik navigasyon formülüyle yan rüzgar ve
-            baş/kuyruk rüzgar bileşenini anında hesapla.
-          </p>
         </header>
 
         <CrosswindCalculator />

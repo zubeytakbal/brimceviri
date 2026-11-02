@@ -81,11 +81,6 @@ export default function CompoundsHubPage() {
 
         <header className="all-conversions-header">
           <h1>Kimyasal Bileşikler</h1>
-          <p>
-            {compounds.length} yaygın kimyasal bileşiğin molar
-            kütlesini ve atomik kompozisyonunu gör; her bileşiğin
-            kendi sayfasında kişisel mol hesaplayıcı da bulunur.
-          </p>
         </header>
 
         <section className="category-article-content">

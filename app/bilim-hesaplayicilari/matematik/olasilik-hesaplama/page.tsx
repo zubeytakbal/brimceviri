@@ -78,11 +78,6 @@ export default function OlasilikHesaplamaPage() {
 
         <header className="all-conversions-header">
           <h1>Olasılık Hesaplama</h1>
-          <p>
-            Klasik olasılığı adım adım hesapla — istenen ve toplam
-            durum sayısını gir, sonucu kesir, ondalık ve yüzde olarak
-            anında gör.
-          </p>
         </header>
 
         <div className="unit-page-converter">

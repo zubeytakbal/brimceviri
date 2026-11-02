@@ -60,11 +60,6 @@ export default function IvDripRatePage() {
 
         <header className="all-conversions-header">
           <h1>IV Damla Hızı Hesaplama</h1>
-          <p>
-            Toplam hacmi, süreyi ve damla faktörünü gir: dakikadaki
-            damla sayısını (gtt/dk) ve pompa hızı (mL/saat) karşılığını
-            anında hesapla.
-          </p>
         </header>
 
         <IvDripRateCalculator />

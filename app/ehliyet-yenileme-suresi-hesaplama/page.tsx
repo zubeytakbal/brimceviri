@@ -86,11 +86,6 @@ export default async function LicenseRenewalPage() {
 
         <header className="all-conversions-header">
           <h1>Ehliyet Yenileme Süresi Hesaplama</h1>
-          <p>
-            Ehliyet sınıfını, veriliş/son yenileme tarihini ve doğum
-            tarihini gir; sürücü belgenin ne zaman yenilenmesi
-            gerektiğini hesapla.
-          </p>
         </header>
 
         <TrustBar

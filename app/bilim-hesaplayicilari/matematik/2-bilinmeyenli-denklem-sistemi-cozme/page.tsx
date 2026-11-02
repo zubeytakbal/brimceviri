@@ -119,10 +119,6 @@ export default function IkiBilinmeyenliDenklemSistemiPage() {
 
         <header className="all-conversions-header">
           <h1>2 Bilinmeyenli Denklem Sistemi Çözme</h1>
-          <p>
-            x ve y gibi iki bilinmeyenli iki denklemi aynı anda gir, ortak
-            çözümü/çözümlerini adım adım bul.
-          </p>
         </header>
 
         <div className="unit-page-converter">

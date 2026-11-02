@@ -74,11 +74,7 @@ export default function CodonTablePage() {
 
         <header className="all-conversions-header">
           <h1>Kodon Tablosu ve DNA/RNA Amino Asit Çevirici</h1>
-          <p>
-            64 kodonun tam listesi — hangi kodon hangi amino asidi
-            kodluyor, başlangıç ve dur kodonları hangileri. Aşağıdaki
-            araçla kendi DNA/RNA dizini yazıp anında çevirebilirsin.
-          </p>
+          <p>64 kodonun tam listesi — hangi kodon hangi amino asidi kodluyor, başlangıç ve dur kodonları hangileri.</p>
         </header>
 
         <DnaRnaTranslatorCalculator />

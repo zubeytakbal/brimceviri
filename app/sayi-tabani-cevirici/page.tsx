@@ -100,11 +100,6 @@ export default function NumberBaseCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Sayı Tabanı Çevirici</h1>
-          <p>
-            İkili, sekizli, onlu ve onaltılık sayı sistemleri arasında anında
-            çevir; aşağıdaki ikinci araçla iki ikili sayıyı topla, çıkar veya
-            çarp.
-          </p>
         </header>
 
         <NumberBaseCalculator />

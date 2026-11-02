@@ -110,11 +110,6 @@ export default function PilPotansiyeliHesaplamaPage() {
 
         <header className="all-conversions-header">
           <h1>Pil Potansiyeli Hesaplama</h1>
-          <p>
-            Katot ve anot standart indirgenme potansiyellerinden hücre
-            potansiyelini ve tepkimenin kendiliğinden olup olmadığını
-            hesapla.
-          </p>
         </header>
 
         <div className="unit-page-converter">

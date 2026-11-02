@@ -84,10 +84,6 @@ export default function ColorCodeCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Renk Kodu Çevirici</h1>
-          <p>
-            HEX, RGB veya HSL alanlarından herhangi birine değer gir;
-            diğer ikisi ve renk önizlemesi anında güncellensin.
-          </p>
         </header>
 
         <ColorCodeCalculator />

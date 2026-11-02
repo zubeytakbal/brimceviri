@@ -109,11 +109,6 @@ export default function ConcreteCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Beton Hesaplama</h1>
-          <p>
-            Temel/döşeme (dikdörtgen) veya kolon (silindir) için gereken
-            beton hacmini, çimento torba sayısını, kum ve çakıl miktarını
-            fire payı dahil anında hesapla.
-          </p>
         </header>
 
         <ConcreteCalculator />

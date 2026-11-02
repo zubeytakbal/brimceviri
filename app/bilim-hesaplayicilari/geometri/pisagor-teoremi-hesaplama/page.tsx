@@ -102,10 +102,6 @@ export default function PisagorTeoremiPage() {
 
         <header className="all-conversions-header">
           <h1>Pisagor Teoremi Hesaplama</h1>
-          <p>
-            Dik üçgende hipotenüsü veya bir dik kenarı c² = a² + b²
-            formülüyle adım adım hesapla.
-          </p>
         </header>
 
         <div className="unit-page-converter">

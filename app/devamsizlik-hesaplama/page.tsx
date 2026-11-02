@@ -101,11 +101,6 @@ export default function AttendanceCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Devamsızlık Hesaplama</h1>
-          <p>
-            Okul (gün bazlı) veya üniversite (yüzde/saat bazlı) devamsızlık
-            limitine göre kalan devamsızlık hakkını ve kullanım oranını
-            anında hesapla.
-          </p>
         </header>
 
         <AttendanceCalculator />

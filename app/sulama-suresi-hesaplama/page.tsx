@@ -71,11 +71,6 @@ export default function IrrigationCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Sulama Süresi Hesaplama</h1>
-          <p>
-            Hedef sulama miktarını (mm), sulanacak alanı (m²) ve
-            sulama sistemi debisini (L/saat) gir: gereken toplam su
-            ve sulama süresini (dakika) hesapla.
-          </p>
         </header>
 
         <IrrigationCalculator />

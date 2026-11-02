@@ -102,12 +102,6 @@ export default function FuelConsumptionCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Yakıt Tüketimi Hesaplama</h1>
-          <p>
-            km/lt veya lt/100km değerlerinden birini gir, aracın yakıt
-            tüketimini tüm birimlerde (km/lt, lt/100km, mpg) gör; ardından
-            yolculuk mesafesi ve güncel yakıt fiyatıyla toplam maliyeti
-            hesapla.
-          </p>
         </header>
 
         <FuelConsumptionCalculator />

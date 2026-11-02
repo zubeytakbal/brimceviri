@@ -138,10 +138,6 @@ export default function IkinciDerecedenDenklemPage() {
 
         <header className="all-conversions-header">
           <h1>İkinci Dereceden Denklem Çözme (Delta Hesaplama)</h1>
-          <p>
-            ax² + bx + c = 0 denklemindeki a, b, c katsayılarını gir — delta
-            (diskriminant) ve kökler adım adım hesaplansın.
-          </p>
         </header>
 
         <div className="unit-page-converter">

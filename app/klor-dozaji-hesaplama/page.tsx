@@ -85,11 +85,6 @@ export default function ChlorineDoseCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Klor Dozajı Hesaplama</h1>
-          <p>
-            Havuz hacmini, mevcut ve hedef klor seviyesini (ppm) ve
-            ürününün aktif klor yüzdesini gir: gereken ürün miktarını
-            (gram) hesapla.
-          </p>
         </header>
 
         <ChlorineDoseCalculator />

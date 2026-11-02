@@ -61,7 +61,6 @@ export default function HangiGun({ bugun, takvimYillari }: { bugun: YMD; takvimY
         <div className="saat-hero-ust">
           <div>
             <h1 className="saat-baslik">Tarih hangi gün?</h1>
-            <p className="saat-ulke">Bir tarih seçin; haftanın hangi gününe denk geldiğini, Hicri karşılığını ve kalan günü görün</p>
           </div>
         </div>
 

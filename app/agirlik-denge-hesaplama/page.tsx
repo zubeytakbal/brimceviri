@@ -81,12 +81,6 @@ export default function WeightBalanceCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Ağırlık ve Denge Hesaplama</h1>
-          <p>
-            Her yük kaleminin (boş araç, yolcu, bagaj, yakıt) ağırlığını
-            ve kolunu (referans noktasına mesafesi) gir: toplam
-            ağırlığı, toplam momenti ve ağırlık merkezini (CG) anında
-            hesapla.
-          </p>
         </header>
 
         <WeightBalanceCalculator />

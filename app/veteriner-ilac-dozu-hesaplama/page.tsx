@@ -72,12 +72,7 @@ export default function VetDoseCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Veteriner İlaç Dozu ve Hacmi Hesaplama</h1>
-          <p>
-            Zaten belirlenmiş bir mg/kg doz değerini, hayvan ağırlığı
-            ve ilaç konsantrasyonuyla birlikte uygulanacak mL hacme
-            çevir. Bu araç doz değerini belirlemez — yalnızca birim
-            çevirimi yapar.
-          </p>
+          <p>Bu araç doz değerini belirlemez — yalnızca birim çevirimi yapar.</p>
         </header>
 
         <VetDoseCalculator />

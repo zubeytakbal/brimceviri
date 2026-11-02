@@ -70,11 +70,6 @@ export default function TravelPlugVoltagePage() {
 
         <header className="all-conversions-header">
           <h1>Seyahat Priz ve Voltaj Uyumluluk Hesaplama</h1>
-          <p>
-            Geldiğin ülkeyi ve gideceğin ülkeyi seç; priz tipi,
-            voltaj ve frekans farkına göre adaptöre veya voltaj
-            dönüştürücüye ihtiyacın olup olmadığını anında hesapla.
-          </p>
         </header>
 
         <TravelPlugVoltageCalculator />

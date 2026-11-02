@@ -67,12 +67,6 @@ export default function HardnessConversionPage() {
 
         <header className="all-conversions-header">
           <h1>Sertlik Dönüşüm Hesaplama</h1>
-          <p>
-            Brinell (HB), Rockwell C/B (HRC/HRB) veya Vickers (HV)
-            sertlik değerini gir: diğer ölçeklerdeki en yakın eşdeğerini
-            gör. Altta ASTM E140 tabanlı tam dönüşüm tablosunu da
-            bulabilirsin.
-          </p>
         </header>
 
         <HardnessConversionCalculator />

@@ -71,12 +71,6 @@ export default function BpmDelayCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>BPM - MS Hesaplama</h1>
-          <p>
-            Tempo (BPM) değerini gir: dörtlük, sekizlik, onaltılık gibi
-            yaygın nota değerlerinin düz, noktalı ve triole milisaniye
-            karşılıklarını anında gör. Alttaki ikinci araçla, bildiğin
-            bir delay/reverb süresinden geriye doğru BPM de bulabilirsin.
-          </p>
         </header>
 
         <BpmDelayCalculator />

@@ -76,11 +76,6 @@ export default function AmortismanPage() {
 
         <header className="all-conversions-header">
           <h1>Amortisman Hesaplama</h1>
-          <p>
-            Maliyet, faydalı ömür ve hurda değerini gir: normal veya
-            azalan bakiyeler usulüyle yıllara göre amortisman
-            tablosunu anında hesapla.
-          </p>
         </header>
 
         <AmortismanCalculator />

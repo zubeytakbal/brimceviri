@@ -70,11 +70,6 @@ export default function ProvinceComparisonHubPage() {
 
         <header className="all-conversions-header">
           <h1>İl Rakımı Karşılaştırma</h1>
-          <p>
-            İki ili seç: rakım farkını, hava basıncı farkını ve suyun
-            kaynama noktası farkını anında gör; rakım farkının sağlığa
-            etkisinin belirgin olup olmadığını öğren.
-          </p>
         </header>
 
         <ProvinceComparisonTool />

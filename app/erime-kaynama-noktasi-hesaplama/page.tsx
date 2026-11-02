@@ -67,11 +67,6 @@ export default function ElementMeltingBoilingPage() {
 
         <header className="all-conversions-header">
           <h1>Element Erime ve Kaynama Noktası Çevirici</h1>
-          <p>
-            Element seç: erime ve kaynama noktasını °C, °F ve Kelvin
-            cinsinden aynı anda gör. Altta 27 elementin erime/kaynama
-            noktası tablosunu da bulabilirsin.
-          </p>
         </header>
 
         <ElementMeltingBoilingCalculator />

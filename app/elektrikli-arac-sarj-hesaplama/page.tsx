@@ -91,11 +91,6 @@ export default async function EvChargingCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Elektrikli Araç Şarj Süresi ve Maliyeti Hesaplama</h1>
-          <p>
-            Batarya kapasitesi, şarj gücü ve elektrik fiyatını gir: şarj
-            süresini, bu şarjın maliyetini ve benzinliye göre tasarrufunu
-            tek ekranda, anında gör.
-          </p>
         </header>
 
         <EvChargingCalculator liveGasolinePrice={liveGasolinePrice} />

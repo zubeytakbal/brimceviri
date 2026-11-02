@@ -72,11 +72,6 @@ export default function HeatPumpVsBoilerPage() {
         <div className="page-top-row">
           <header className="all-conversions-header">
             <h1>Isı Pompası mı Kombi mi? Hangisi Daha Ucuz Isıtır?</h1>
-            <p>
-              Kendi doğalgaz/elektrik fiyatın, yıllık ısı ihtiyacın ve
-              kurulum maliyeti farkınla, ısı pompasının kombiye göre
-              kaç yılda kendini çıkardığını hesapla.
-            </p>
           </header>
 
           <EmbedCodeBox

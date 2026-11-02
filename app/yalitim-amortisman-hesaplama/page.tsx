@@ -80,11 +80,6 @@ export default function InsulationPaybackPage() {
         <div className="page-top-row">
           <header className="all-conversions-header">
             <h1>Mantolama Kaç Yılda Kendini Öder? Yalıtım Tasarruf Hesaplama</h1>
-            <p>
-              Duvar alanı, mevcut duvar ve eklenecek yalıtım malzemesiyle
-              yıllık enerji tasarrufunu ve yalıtımın kaç yılda kendini
-              çıkardığını hesapla.
-            </p>
           </header>
 
           <EmbedCodeBox

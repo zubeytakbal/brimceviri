@@ -71,11 +71,6 @@ export default function ExposureCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Pozlama Eşdeğeri Hesaplama</h1>
-          <p>
-            Mevcut ISO, diyafram ve enstantane ayarlarını gir. Yeni
-            ayarlardan herhangi ikisini doldur, aynı pozlamayı
-            koruyacak üçüncü değeri anında hesapla.
-          </p>
         </header>
 
         <ExposureCalculator />

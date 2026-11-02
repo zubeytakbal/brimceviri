@@ -81,11 +81,6 @@ export default function TransitTimeCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Seyir Süresi Hesaplama</h1>
-          <p>
-            Mesafeyi (deniz mili, km veya mil) ve hızı (knot, km/saat
-            veya mph) gir: klasik navigasyon formülüyle seyir süresini
-            saat ve dakika olarak anında hesapla.
-          </p>
         </header>
 
         <TransitTimeCalculator />

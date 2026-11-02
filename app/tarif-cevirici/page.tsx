@@ -44,10 +44,7 @@ export default function RecipeScalerPage() {
             <h1>Tarif Çevirici</h1>
 
             <p>
-              Tarifini aşağıya, her malzeme ayrı satırda olacak şekilde
-              yapıştır (ör. &quot;2 su bardağı un&quot;). Bir çarpan seç,
-              tüm miktarlar anında ölçeklenir; bardak, yemek kaşığı veya
-              çay kaşığıyla yazılmış ve{" "}
+              Bardak, yemek kaşığı veya çay kaşığıyla yazılmış ve{" "}
               <Link href="/mutfak-olculeri-cevirici">
                 mutfak ölçüleri tablosunda
               </Link>{" "}

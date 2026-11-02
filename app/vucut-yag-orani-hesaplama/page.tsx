@@ -89,11 +89,6 @@ export default function BodyFatCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Vücut Yağ Oranı Hesaplama</h1>
-          <p>
-            Cinsiyet, boy, boyun ve bel çevresini (kadınlarda kalça
-            çevresini de) gir: US Navy yöntemiyle vücut yağ oranını ve
-            kategorini anında hesapla — sadece bant metre yeterli.
-          </p>
         </header>
 
         <BodyFatCalculator />

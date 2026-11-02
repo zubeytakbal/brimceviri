@@ -89,11 +89,6 @@ export default function PregnancyCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Gebelik Haftası Hesaplama</h1>
-          <p>
-            Son adet tarihinin ilk gününü gir: kaçıncı haftada ve hangi
-            trimesterde olduğunu, tahmini doğum tarihini ve doğuma kalan
-            gün sayısını anında gör.
-          </p>
         </header>
 
         <PregnancyCalculator />

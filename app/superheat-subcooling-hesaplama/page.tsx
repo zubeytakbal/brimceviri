@@ -73,11 +73,6 @@ export default function SuperheatSubcoolingCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Superheat ve Subcooling Hesaplama</h1>
-          <p>
-            Doyma sıcaklığını kendi P-T kartından oku, ölçtüğün
-            sıcaklıkla birlikte gir: superheat ve subcooling
-            değerlerini hesapla.
-          </p>
         </header>
 
         <SuperheatSubcoolingCalculator />

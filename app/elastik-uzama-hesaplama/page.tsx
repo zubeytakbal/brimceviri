@@ -69,12 +69,6 @@ export default function ElongationCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Elastik Uzama Hesaplama</h1>
-          <p>
-            Malzeme seç, kuvvet, kesit alanı ve başlangıç uzunluğunu
-            gir: Hooke Yasası ile gerilmeyi (σ) ve elastik uzamayı
-            (ΔL) hesapla. Altta elastisite modülü tablosunu da
-            bulabilirsin.
-          </p>
         </header>
 
         <ElongationCalculator />

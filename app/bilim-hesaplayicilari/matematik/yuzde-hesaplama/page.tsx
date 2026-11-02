@@ -106,10 +106,6 @@ export default function YuzdeHesaplamaPage() {
 
         <header className="all-conversions-header">
           <h1>Yüzde Hesaplama</h1>
-          <p>
-            Bir sayının yüzdesini, bir sayının diğerinin yüzde kaçı olduğunu
-            veya yüzde artış/azalışını adım adım hesapla.
-          </p>
         </header>
 
         <div className="unit-page-converter">

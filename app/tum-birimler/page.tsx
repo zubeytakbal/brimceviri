@@ -172,10 +172,7 @@ export default function AllConversionsPage() {
         <header className="all-conversions-header">
           <h1>Tüm Birim Dönüşümleri</h1>
 
-          <p>
-            Uzunluktan basınca, elektrikten tarıma bütün birim çevirileri kategorilere göre. Aradığınız birimi yazın ya da
-            kategoriyi seçin; her kategori sayfasında çevirici ve dönüşüm tabloları vardır.
-          </p>
+          <p>Uzunluktan basınca, elektrikten tarıma bütün birim çevirileri kategorilere göre.</p>
         </header>
 
         <TumBirimlerArama groups={aramaGruplari()} pairs={aramaCiftleri()} />

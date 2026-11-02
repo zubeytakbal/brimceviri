@@ -77,11 +77,6 @@ export default function FertilizerCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Gübre İhtiyacı Hesaplama</h1>
-          <p>
-            Hedef besin dozunu (kg/dekar) ve kullanacağın gübrenin
-            besin içeriği yüzdesini gir: dekara ve toplam alana
-            gereken gübre miktarını (kg) hesapla.
-          </p>
         </header>
 
         <FertilizerCalculator />

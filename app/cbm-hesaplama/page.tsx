@@ -76,10 +76,6 @@ export default function CbmPage() {
 
         <header className="all-conversions-header">
           <h1>CBM ve Hacimsel Ağırlık Hesaplama</h1>
-          <p>
-            Koli veya palet ölçülerini gir: toplam CBM (m³), hacimsel
-            ağırlık ve nakliye ücretine esas ağırlığı anında hesapla.
-          </p>
         </header>
 
         <CbmCalculator />

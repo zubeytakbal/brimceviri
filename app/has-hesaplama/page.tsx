@@ -102,12 +102,6 @@ export default function HasHesaplamaPage() {
 
         <header className="all-conversions-header">
           <h1>Has Altın ve Gümüş Hesaplama</h1>
-          <p>
-            Metal türünü seç, ağırlığı (gram) ve ayarı (milyem) gir: has
-            (saf) metal içeriğini anında gör. Farklı ayarlarda birden
-            fazla parça/hurda ekleyerek alaşım karıştırma sonucundaki
-            ayarı da hesaplayabilirsin.
-          </p>
         </header>
 
         <HasHesaplamaCalculator />

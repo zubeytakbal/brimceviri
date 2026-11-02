@@ -81,10 +81,6 @@ export default function HeatInputCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Kaynak Isı Girdisi Hesaplama</h1>
-          <p>
-            Voltaj, akım ve kaynak hızını gir: EN 1011 standardına
-            dayanan ısı girdisini (kJ/mm) hesapla.
-          </p>
         </header>
 
         <HeatInputCalculator />

@@ -84,10 +84,6 @@ export default function MovingBoxCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Taşınma Kutusu Hesaplama</h1>
-          <p>
-            Ev tipini seç: taşınma için tahmini küçük/büyük koli sayısını
-            ve gereken kamyon hacmini gör.
-          </p>
         </header>
 
         <MovingBoxCalculator />

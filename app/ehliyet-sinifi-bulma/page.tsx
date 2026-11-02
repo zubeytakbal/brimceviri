@@ -87,12 +87,6 @@ export default async function LicenseClassFinderPage() {
 
         <header className="all-conversions-header">
           <h1>Hangi Ehliyet Sınıfı Gerekli?</h1>
-          <p>
-            Otomobil/kamyon/otobüs için koltuk sayısı, azami yüklü
-            ağırlık ve römork bilgisini; motosiklet/moped için motor
-            hacmi ve gücünü gir — Türkiye&apos;de hangi ehliyet
-            sınıfına ihtiyacın olduğunu hesapla.
-          </p>
         </header>
 
         <TrustBar

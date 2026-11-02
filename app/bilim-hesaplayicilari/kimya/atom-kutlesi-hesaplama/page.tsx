@@ -110,10 +110,6 @@ export default function AtomKutlesiHesaplamaPage() {
 
         <header className="all-conversions-header">
           <h1>Atom Kütlesi Hesaplama</h1>
-          <p>
-            İzotopların kütlelerini ve doğal bolluk yüzdelerini gir,
-            ağırlıklı ortalama atom kütlesini hesapla.
-          </p>
         </header>
 
         <div className="unit-page-converter">

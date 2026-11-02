@@ -63,10 +63,6 @@ export default function MeldPage() {
 
         <header className="all-conversions-header">
           <h1>MELD Skoru Hesaplama</h1>
-          <p>
-            Bilirubin, INR ve kreatinin değerlerini gir: MELD skorunu
-            ve karaciğer hastalığının ciddiyetini anında hesapla.
-          </p>
         </header>
 
         <MeldCalculator />

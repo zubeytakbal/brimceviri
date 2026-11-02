@@ -99,10 +99,6 @@ export default function PixelCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Piksel, CM ve DPI Hesaplama</h1>
-          <p>
-            Piksel sayısı, fiziksel boyut veya DPI değerinden ikisini
-            gir: eksik olan üçüncü değeri anında hesapla.
-          </p>
         </header>
 
         <PixelCalculator />

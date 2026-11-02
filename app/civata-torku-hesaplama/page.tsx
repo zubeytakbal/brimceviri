@@ -69,11 +69,6 @@ export default function BoltTorqueCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Cıvata Torku Hesaplama</h1>
-          <p>
-            Cıvata ölçüsü ve dayanım sınıfını seç: önerilen başlangıç
-            sıkma torkunu gör. K-faktör yöntemiyle, bu torkun yaklaşık
-            ne kadar sıkma kuvveti oluşturduğunu da hesapla.
-          </p>
         </header>
 
         <BoltTorqueCalculator />

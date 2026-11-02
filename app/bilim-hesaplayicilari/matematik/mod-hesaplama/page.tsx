@@ -73,11 +73,6 @@ export default function ModHesaplamaPage() {
 
         <header className="all-conversions-header">
           <h1>Mod (Tepe Değer) Hesaplama</h1>
-          <p>
-            Bir veri listesinde en sık tekrarlanan değeri (modu) adım
-            adım hesapla — tek mod, birden fazla mod veya hiç mod
-            olmayan durumları otomatik tespit et.
-          </p>
         </header>
 
         <div className="unit-page-converter">

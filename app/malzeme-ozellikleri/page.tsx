@@ -84,14 +84,6 @@ export default function MaterialsHubPage() {
 
         <header className="all-conversions-header">
           <h1>Malzeme Özellikleri</h1>
-          <p>
-            {materials.length} metal, sıvı, plastik, ahşap, yapı
-            malzemesi, gıda ve gazın yoğunluğunu ve bilinen mühendislik
-            özelliklerini (ısıl iletkenlik, elastisite modülü, ısıl
-            genleşme, viskozite) gör; ikinci bir malzeme seçerek ikisini
-            aynı ölçülerde karşılaştır. Her malzemenin kendi sayfasında
-            daha ayrıntılı bilgi ve birim çevirici bulunur.
-          </p>
         </header>
 
         <MaterialExplorer locale="tr" />

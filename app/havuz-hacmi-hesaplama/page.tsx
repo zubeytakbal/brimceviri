@@ -80,10 +80,6 @@ export default function PoolVolumeCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Havuz Hacmi Hesaplama</h1>
-          <p>
-            Dikdörtgen veya yuvarlak havuzunun ölçülerini gir: su
-            hacmini metreküp (m³) cinsinden hesapla.
-          </p>
         </header>
 
         <PoolVolumeCalculator />

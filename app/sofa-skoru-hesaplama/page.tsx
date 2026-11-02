@@ -60,10 +60,6 @@ export default function SofaPage() {
 
         <header className="all-conversions-header">
           <h1>SOFA Skoru Hesaplama</h1>
-          <p>
-            6 organ sisteminin puanlarını seç: SOFA (Sequential Organ
-            Failure Assessment) toplam skorunu anında hesapla.
-          </p>
         </header>
 
         <SofaCalculator />

@@ -81,11 +81,6 @@ export default function GreatCircleCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Büyük Daire Mesafesi Hesaplama</h1>
-          <p>
-            İki noktanın enlem ve boylamını gir: Haversine formülüyle
-            aralarındaki en kısa küre-üzeri (büyük daire) mesafeyi ve
-            başlangıç rotasını anında hesapla.
-          </p>
         </header>
 
         <GreatCircleCalculator />

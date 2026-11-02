@@ -63,10 +63,6 @@ export default function CreatinineClearancePage() {
 
         <header className="all-conversions-header">
           <h1>Kreatinin Klirensi (CrCl) Hesaplama</h1>
-          <p>
-            Yaş, kilo, cinsiyet ve serum kreatinini gir: Cockcroft-Gault
-            formülüyle tahmini kreatinin klirensini anında hesapla.
-          </p>
         </header>
 
         <CreatinineClearanceCalculator />

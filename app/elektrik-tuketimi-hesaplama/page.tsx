@@ -85,12 +85,6 @@ export default function ElectricityConsumptionPage() {
 
         <header className="all-conversions-header">
           <h1>Elektrik Tüketimi Hesaplama</h1>
-          <p>
-            Cihazın gücünü (watt), günlük kaç saat çalıştığını ve ayda
-            kaç gün kullanıldığını gir: günlük, aylık ve yıllık elektrik
-            tüketimini (kWh) anında gör. Faturandaki kWh birim fiyatını
-            eklersen tahmini maliyeti de hesaplar.
-          </p>
         </header>
 
         <ElectricityConsumptionCalculator />

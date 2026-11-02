@@ -91,11 +91,6 @@ export default function ZoningCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Emsal (KAKS) Hesaplama</h1>
-          <p>
-            Arsa alanını ve KAKS (emsal) değerini gir: toplam inşaat
-            alanını hesapla. TAKS değerini de eklersen, maksimum taban
-            alanı ve tahmini kat sayısını da görürsün.
-          </p>
         </header>
 
         <ZoningCalculator />

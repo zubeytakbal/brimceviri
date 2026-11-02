@@ -67,12 +67,6 @@ export default function SocialMediaSizePage() {
 
         <header className="all-conversions-header">
           <h1>Sosyal Medya Görsel Boyutları Hesaplama</h1>
-          <p>
-            Platform ve içerik türünü seç, doğru piksel boyutunu ve
-            en-boy oranını gör. Kendi görselinin ölçülerini girersen,
-            hangi kenardan ne kadar kırpılması gerektiğini de
-            hesaplar.
-          </p>
         </header>
 
         <SocialMediaSizeCalculator />

@@ -95,11 +95,6 @@ export default function ExcavationCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Hafriyat ve Kazı Hesaplama</h1>
-          <p>
-            Kazı alanının uzunluk, genişlik ve derinliğini gir: yerinde
-            kazı hacmini, gevşeme payı eklenmiş taşınacak hacmi ve
-            gereken kamyon yükü sayısını anında hesapla.
-          </p>
         </header>
 
         <ExcavationCalculator />

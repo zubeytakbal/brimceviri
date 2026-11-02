@@ -73,10 +73,6 @@ export default function CuttingSpeedCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Kesme Hızı - Devir (RPM) Hesaplama</h1>
-          <p>
-            Kesme hızı (Vc), çap (D) ve devirden (N) hangisini
-            hesaplamak istediğini seç; diğer ikisini gir.
-          </p>
         </header>
 
         <CuttingSpeedCalculator />

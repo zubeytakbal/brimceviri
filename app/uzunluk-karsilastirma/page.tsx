@@ -81,13 +81,6 @@ export default function LengthComparisonPage() {
 
         <header className="all-conversions-header">
           <h1>Uzunluk Karşılaştırma</h1>
-          <p>
-            Bir uzunluk değeri gir: zürafa boyu, şehir otobüsü, futbol
-            sahası, mavi balina, Eyfel Kulesi ve Boğaz Köprüsü gibi
-            tanıdık nesnelerle kaç kat olduğunu anında gör. Sayılar tek
-            başına soyut kalır — bir referansla kıyaslamak değeri daha
-            somut hale getirir.
-          </p>
         </header>
 
         <LengthComparisonTool />

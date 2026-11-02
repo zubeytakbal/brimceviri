@@ -69,12 +69,6 @@ export default function ThermalExpansionCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Isıl Genleşme Hesaplama</h1>
-          <p>
-            Malzeme seç, başlangıç uzunluğunu ve sıcaklık farkını gir:
-            ısıl genleşme miktarını (uzama veya kısalma) hesapla. Altta
-            yaygın malzemelerin genleşme katsayısı tablosunu da
-            bulabilirsin.
-          </p>
         </header>
 
         <ThermalExpansionCalculator />

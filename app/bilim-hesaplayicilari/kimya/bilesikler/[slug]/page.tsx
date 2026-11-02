@@ -130,10 +130,6 @@ export default async function CompoundPage({ params }: PageProps) {
           <h1>
             {compound.nameTr} ({compound.formula}) Molar Kütlesi ve Mol Hesaplama
           </h1>
-          <p>
-            Atomik kompozisyonunu ve molar kütlesini gör, kendi kütle
-            veya mol miktarınla anında hesapla.
-          </p>
         </header>
 
         <section className="category-article-content">

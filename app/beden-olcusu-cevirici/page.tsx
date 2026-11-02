@@ -107,12 +107,7 @@ export default function BedenOlcusuCeviriciPage() {
 
         <header className="all-conversions-header">
           <h1>Beden Ölçüsü Çevirici</h1>
-          <p>
-            Kadın giyim bedenini TR/EU, US ve UK arasında, erkek gömlek
-            bedenini yaka ve göğüs ölçüsüne göre S-XXL arasında çevir.
-            Bu değerler genel referans tablolardır — markaya göre
-            birkaç numara sapma olabilir.
-          </p>
+          <p>Bu değerler genel referans tablolardır — markaya göre birkaç numara sapma olabilir.</p>
         </header>
 
         <section className="category-article-content">

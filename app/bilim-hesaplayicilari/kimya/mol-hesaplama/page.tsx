@@ -107,11 +107,6 @@ export default function MolHesaplamaPage() {
 
         <header className="all-conversions-header">
           <h1>Mol Hesaplama</h1>
-          <p>
-            Kütle ve molar kütleden mol sayısını, ya da mol sayısından
-            kütleyi hesapla; sonuçta parçacık sayısını da gör. Hazır madde
-            ön ayarlarıyla (su, NaCl, glikoz vb.) hızlıca dene.
-          </p>
         </header>
 
         <div className="unit-page-converter">

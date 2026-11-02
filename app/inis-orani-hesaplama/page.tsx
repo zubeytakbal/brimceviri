@@ -81,10 +81,6 @@ export default function DescentRateCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>İniş Oranı Hesaplama</h1>
-          <p>
-            Yer hızını ve iniş açısını gir: dakikadaki fit cinsinden
-            gereken iniş oranını (rate of descent) anında hesapla.
-          </p>
         </header>
 
         <DescentRateCalculator />

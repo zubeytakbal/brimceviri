@@ -92,11 +92,6 @@ export default function SeedRateCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Tohum Miktarı ve Verim Hesaplama</h1>
-          <p>
-            Hedef bitki sayısını, bin dane ağırlığını, çimlenme ve
-            saflık oranını gir: dekara ve toplam alana gereken
-            tohumluk miktarını (kg) hesapla.
-          </p>
         </header>
 
         <SeedRateCalculator />

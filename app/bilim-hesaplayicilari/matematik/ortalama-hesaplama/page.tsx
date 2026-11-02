@@ -108,10 +108,6 @@ export default function OrtalamaHesaplamaPage() {
 
         <header className="all-conversions-header">
           <h1>Ortalama, Medyan, Mod ve Standart Sapma Hesaplama</h1>
-          <p>
-            Bir veri listesinin aritmetik ortalamasını, medyanını, modunu,
-            standart sapmasını ve varyansını adım adım hesapla.
-          </p>
         </header>
 
         <div className="unit-page-converter">

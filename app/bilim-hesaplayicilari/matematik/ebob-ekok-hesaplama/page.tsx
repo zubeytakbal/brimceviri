@@ -133,11 +133,6 @@ export default function EbobEkokHesaplamaPage() {
 
         <header className="all-conversions-header">
           <h1>EBOB-EKOK Hesaplama</h1>
-          <p>
-            İki veya daha fazla sayının en büyük ortak bölenini (EBOB) ve en
-            küçük ortak katını (EKOK) asal çarpanlara ayırma yöntemiyle adım
-            adım hesapla.
-          </p>
         </header>
 
         <div className="unit-page-converter">

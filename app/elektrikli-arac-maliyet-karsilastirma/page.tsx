@@ -74,11 +74,6 @@ export default async function EvVsIceComparisonPage() {
         <div className="page-top-row">
           <header className="all-conversions-header">
             <h1>Elektrikli mi Benzinli mi? 100 km Maliyet Hesaplama</h1>
-            <p>
-              Kendi yıllık kilometren, araçların tüketimi ve aralarındaki
-              fiyat farkıyla, elektrikli aracın benzinliye göre kaç
-              yılda (ve kaç kilometrede) kendini amorti ettiğini hesapla.
-            </p>
           </header>
 
           <EmbedCodeBox

@@ -60,10 +60,6 @@ export default function QsofaPage() {
 
         <header className="all-conversions-header">
           <h1>qSOFA Hesaplama</h1>
-          <p>
-            Sistolik kan basıncı, solunum sayısı ve bilinç durumunu
-            işaretle: qSOFA puanını anında hesapla.
-          </p>
         </header>
 
         <QsofaCalculator />

@@ -71,11 +71,6 @@ export default function FocalLengthEquivalentCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Odak Uzaklığı Eşdeğeri Hesaplama</h1>
-          <p>
-            Lensinin gerçek odak uzaklığını gir, kameranın sensör
-            formatına göre tam kare (full frame) eşdeğerini ve diğer
-            tüm formatlardaki karşılıklarını tek tabloda gör.
-          </p>
         </header>
 
         <FocalLengthEquivalentCalculator />

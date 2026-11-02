@@ -78,10 +78,6 @@ export default function VideoBitrateCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Video Bit Hızı ve Dosya Boyutu Hesaplama</h1>
-          <p>
-            Bit hızından (Mbps) dosya boyutunu (MB), ya da hedef dosya
-            boyutundan gereken bit hızını hesapla.
-          </p>
         </header>
 
         <VideoBitrateCalculator />

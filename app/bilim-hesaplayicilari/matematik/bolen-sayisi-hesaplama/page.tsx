@@ -120,10 +120,6 @@ export default function BolenSayisiHesaplamaPage() {
 
         <header className="all-conversions-header">
           <h1>Bölen Sayısı Hesaplama</h1>
-          <p>
-            Bir sayının kaç pozitif böleni olduğunu, bölenlerinin
-            toplamını ve tüm bölenlerin listesini adım adım hesapla.
-          </p>
         </header>
 
         <div className="unit-page-converter">

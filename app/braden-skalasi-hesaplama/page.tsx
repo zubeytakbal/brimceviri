@@ -65,11 +65,6 @@ export default function BradenScalePage() {
 
         <header className="all-conversions-header">
           <h1>Braden Skalası Hesaplama</h1>
-          <p>
-            Duyusal algı, nem, aktivite, hareketlilik, beslenme ve
-            sürtünme/kayma alt ölçeklerini seç: Braden Skalası toplam
-            skorunu ve basınç yarası riskini anında hesapla.
-          </p>
         </header>
 
         <BradenScaleCalculator />

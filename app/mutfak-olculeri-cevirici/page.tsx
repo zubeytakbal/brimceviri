@@ -123,12 +123,7 @@ export default function KitchenMeasuresPage() {
           <header className="all-conversions-header">
             <h1>Mutfak Ölçüleri Çevirici: Kaç Bardak, Kaç Gram?</h1>
 
-            <p>
-              Malzemeyi ve bildiğin ölçüyü seç, bardak, yemek kaşığı, çay
-              kaşığı, gram, mililitre ve litre karşılıklarını anında gör.
-              Un, şeker, pirinç, bal, tereyağı ve daha fazlası için ayrı
-              ayrı hesaplanmış ölçü değerleri kullanılıyor.
-            </p>
+            <p>Un, şeker, pirinç, bal, tereyağı ve daha fazlası için ayrı ayrı hesaplanmış ölçü değerleri kullanılıyor.</p>
           </header>
 
           <EmbedCodeBox

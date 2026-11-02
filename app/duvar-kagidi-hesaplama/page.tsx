@@ -91,10 +91,6 @@ export default function WallpaperCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Duvar Kağıdı Hesaplama</h1>
-          <p>
-            Odanın dört duvarının genişliğini, tavan yüksekliğini ve rulo
-            ölçülerini gir: gereken duvar kağıdı rulosu sayısını anında gör.
-          </p>
         </header>
 
         <WallpaperCalculator />

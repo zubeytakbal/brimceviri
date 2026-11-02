@@ -60,10 +60,6 @@ export default function WellsScorePage() {
 
         <header className="all-conversions-header">
           <h1>Wells Skoru Hesaplama (Pulmoner Emboli)</h1>
-          <p>
-            Klinik kriterleri işaretle: pulmoner emboli (PE) olasılığı
-            için Wells skorunu ve risk kategorisini anında hesapla.
-          </p>
         </header>
 
         <WellsScoreCalculator />

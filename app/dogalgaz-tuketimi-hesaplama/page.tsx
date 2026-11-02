@@ -86,10 +86,6 @@ export default function NaturalGasCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Doğalgaz Tüketimi Hesaplama</h1>
-          <p>
-            Doğalgaz tüketimini (m³) ve birim fiyatı gir: toplam maliyeti
-            ve yaklaşık enerji (kWh) karşılığını anında gör.
-          </p>
         </header>
 
         <NaturalGasCalculator />

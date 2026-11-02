@@ -94,11 +94,6 @@ export default function PlasterCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Sıva Hesaplama</h1>
-          <p>
-            Alçı sıva (iç cephe) veya çimento esaslı sıva (dış cephe) için
-            sıvanacak alan ve kalınlığa göre gereken malzeme miktarını ve
-            torba sayısını fire payı dahil anında hesapla.
-          </p>
         </header>
 
         <PlasterCalculator />

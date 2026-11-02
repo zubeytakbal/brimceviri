@@ -70,11 +70,6 @@ export default function MaterialWeightCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Malzeme Yoğunlukları Tablosu ve Ağırlık Hesaplama</h1>
-          <p>
-            Malzeme seç, hacmini (cm³) gir: ağırlığını (kg) hesapla —
-            ya da bildiğin ağırlıktan hacmi bul. Altta yaygın
-            malzemelerin yoğunluk tablosunu da bulabilirsin.
-          </p>
         </header>
 
         <MaterialWeightCalculator />

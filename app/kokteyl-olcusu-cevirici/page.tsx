@@ -75,10 +75,6 @@ export default function BarVolumeCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Kokteyl Ölçüsü Çevirici</h1>
-          <p>
-            Kokteyl tariflerinde geçen oz (sıvı ons), mL ve cl
-            ölçülerini bir değerden diğerlerine anında çevir.
-          </p>
         </header>
 
         <BarVolumeCalculator />

@@ -75,11 +75,6 @@ export default async function LpgConversionPaybackPage() {
         <div className="page-top-row">
           <header className="all-conversions-header">
             <h1>LPG Dönüşüm Amortisman Hesaplama</h1>
-            <p>
-              Kendi yıllık kilometren, aracının tüketimi ve dönüşüm
-              maliyetinle, LPG dönüşümünün kaç yılda (ve kaç
-              kilometrede) kendini çıkardığını hesapla.
-            </p>
           </header>
 
           <EmbedCodeBox

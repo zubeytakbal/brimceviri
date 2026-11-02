@@ -81,11 +81,6 @@ export default function DensityAltitudeCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Yoğunluk İrtifası Hesaplama</h1>
-          <p>
-            Basınç irtifasını ve dış hava sıcaklığını (OAT) gir:
-            standart FAA kısayol formülüyle yoğunluk irtifasını anında
-            hesapla.
-          </p>
         </header>
 
         <DensityAltitudeCalculator />

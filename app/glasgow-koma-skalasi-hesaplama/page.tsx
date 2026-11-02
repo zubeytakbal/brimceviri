@@ -69,10 +69,6 @@ export default function GcsPage() {
 
         <header className="all-conversions-header">
           <h1>GKS Hesaplama (Glasgow Koma Skalası)</h1>
-          <p>
-            Göz açma, sözel yanıt ve motor yanıtı seç: GKS toplam
-            puanını ve bilinç düzeyi kategorisini anında hesapla.
-          </p>
         </header>
 
         <GcsCalculator />

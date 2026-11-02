@@ -43,13 +43,7 @@ export default function RingSizePage() {
         <header className="all-conversions-header">
           <h1>Yüzük Ölçüsü Çevirici</h1>
 
-          <p>
-            Bildiğin yüzük ölçüsünü gir, TR (iç çap mm), Avrupa (çevre
-            mm), ABD (US) ve İngiltere (UK) karşılığını anında gör.
-            Ayakkabının aksine yüzük ölçüsü markaya göre değişmez —
-            kuyumculuk sektöründe dünya genelinde aynı standart tablo
-            kullanılır.
-          </p>
+          <p>Ayakkabının aksine yüzük ölçüsü markaya göre değişmez — kuyumculuk sektöründe dünya genelinde aynı standart tablo kullanılır.</p>
         </header>
 
         <RingSizeConverter locale="tr" />

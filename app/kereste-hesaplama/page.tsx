@@ -90,11 +90,6 @@ export default function KerestePage() {
 
         <header className="all-conversions-header">
           <h1>Kereste Metreküp Hesaplama</h1>
-          <p>
-            Kereste parçalarının uzunluk, genişlik, kalınlık ve
-            adedini gir: toplam hacmi ve fire dahil toplamı anında
-            hesapla.
-          </p>
         </header>
 
         <KeresteCalculator />

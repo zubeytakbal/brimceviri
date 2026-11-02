@@ -112,10 +112,6 @@ export default function PermutasyonKombinasyonPage() {
 
         <header className="all-conversions-header">
           <h1>Permütasyon, Kombinasyon ve Olasılık Hesaplama</h1>
-          <p>
-            nPr, nCr ve klasik olasılığı adım adım hesapla — n ve r
-            değerlerini gir, sonucu anında gör.
-          </p>
         </header>
 
         <div className="unit-page-converter">

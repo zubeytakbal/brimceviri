@@ -71,12 +71,6 @@ export default function AntennaLengthCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Anten Uzunluğu Hesaplama</h1>
-          <p>
-            Çalışmak istediğin frekansı (MHz) gir: yarım dalga dipol
-            ve çeyrek dalga vertikal anten uzunluklarını hesapla. Ya da
-            elindeki dipol uzunluğundan hangi frekansa rezonans
-            yaptığını bul.
-          </p>
         </header>
 
         <AntennaLengthCalculator />

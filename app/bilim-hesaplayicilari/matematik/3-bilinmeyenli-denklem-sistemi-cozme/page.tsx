@@ -125,10 +125,6 @@ export default function UcBilinmeyenliDenklemSistemiPage() {
 
         <header className="all-conversions-header">
           <h1>3 Bilinmeyenli Denklem Sistemi Çözme</h1>
-          <p>
-            x, y ve z gibi üç bilinmeyenli üç denklemi aynı anda gir, ortak
-            çözümü/çözümlerini adım adım bul.
-          </p>
         </header>
 
         <div className="unit-page-converter">

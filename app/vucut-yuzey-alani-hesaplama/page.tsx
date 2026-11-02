@@ -69,10 +69,6 @@ export default function BsaCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Vücut Yüzey Alanı Hesaplama (BSA)</h1>
-          <p>
-            Boy ve kiloyu gir: Mosteller formülüyle vücut yüzey alanını
-            (m²) anında hesapla.
-          </p>
         </header>
 
         <BsaCalculator />

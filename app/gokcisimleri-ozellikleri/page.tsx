@@ -77,14 +77,6 @@ export default function CelestialBodiesHubPage() {
 
         <header className="all-conversions-header">
           <h1>Gökcisimleri Özellikleri</h1>
-          <p>
-            Güneş sistemindeki {bodies.length} gökcisminin (gezegen,
-            cüce gezegen ve büyük uydular) kütlesini, çapını,
-            yoğunluğunu, yerçekimini ve diğer özelliklerini gör; her
-            gökcisminin kendi sayfasında kendi ağırlığını
-            hesaplayabileceğin canlı bir araç da bulunur. Aşağıdan iki
-            gökcismini seçerek yan yana karşılaştırabilirsin.
-          </p>
         </header>
 
         <GokcismiKarsilastir />

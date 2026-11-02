@@ -104,11 +104,6 @@ export default function StairCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Merdiven Hesaplama</h1>
-          <p>
-            Toplam yükseklik ve istenen rıht yüksekliğine göre basamak
-            sayısını, gerçek rıht yüksekliğini ve Blondel formülüyle
-            basamak derinliğini anında hesapla.
-          </p>
         </header>
 
         <StairCalculator />

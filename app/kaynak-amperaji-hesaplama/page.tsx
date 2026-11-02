@@ -68,10 +68,6 @@ export default function WeldingCurrentCalculatorPage() {
 
         <header className="all-conversions-header">
           <h1>Kaynak Amperajı Hesaplama</h1>
-          <p>
-            Elektrot çekirdek çapını ve örtü tipini gir: önerilen
-            amperaj aralığını (başlangıç noktası olarak) hesapla.
-          </p>
         </header>
 
         <WeldingCurrentCalculator />

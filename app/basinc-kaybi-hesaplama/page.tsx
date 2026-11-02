@@ -62,10 +62,6 @@ export default function PressureLossPage() {
 
         <header className="all-conversions-header">
           <h1>Basınç Kaybı Hesaplama (Hazen-Williams)</h1>
-          <p>
-            Boru uzunluğu, çapı, debi ve malzeme katsayısını gir:
-            hattaki sürtünme kaynaklı basınç kaybını anında hesapla.
-          </p>
         </header>
 
         <PressureLossCalculator />

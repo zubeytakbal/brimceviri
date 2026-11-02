@@ -68,11 +68,6 @@ export default function ProvinceElevationHubPage() {
 
         <header className="all-conversions-header">
           <h1>İllerin Rakımı ve İrtifa Etkisi</h1>
-          <p>
-            Türkiye&apos;nin {provinces.length} ilinin deniz seviyesinden
-            rakımını, o rakımdaki hava basıncını ve suyun kaç derecede
-            kaynadığını gör.
-          </p>
         </header>
 
         <section className="category-article-content">

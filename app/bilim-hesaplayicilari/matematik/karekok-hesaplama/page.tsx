@@ -110,10 +110,6 @@ export default function KarekokHesaplamaPage() {
 
         <header className="all-conversions-header">
           <h1>Karekök Hesaplama</h1>
-          <p>
-            Bir sayının karekökünü, asal çarpanlara ayırarak en sade
-            radikal formuyla ve ondalık karşılığıyla adım adım hesapla.
-          </p>
         </header>
 
         <div className="unit-page-converter">

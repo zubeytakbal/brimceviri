@@ -813,7 +813,6 @@ export default function MuhendislikKartlari({ malzemeler, gezegenler }: { malzem
     <section className="hizli-cevirme" aria-labelledby="muhendislik-kartlari-baslik">
       <div className="hizli-cevirme-ust">
         <h2 id="muhendislik-kartlari-baslik">Mühendislik ve bilim</h2>
-        <p>Kartın başlığından hesabı seçin: inşaat, elektrik, makine ve tesisat, bilim ve matematikten {ARACLAR.length} hesap.</p>
       </div>
       <div className="hizli-kartlar">
         {kartlar.map((a, i) => (

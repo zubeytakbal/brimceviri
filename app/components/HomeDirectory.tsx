@@ -33,6 +33,9 @@ import {
   Wind,
 } from "@phosphor-icons/react/ssr";
 import HizliCevirme from "./HizliCevirme";
+import AnaCevirici from "./AnaCevirici";
+import type { AnaCeviriciVeri } from "../converter/anaCeviriciVeri";
+import { populerDonusumler } from "../converter/populerDonusumler";
 import TumAraclar from "./TumAraclar";
 import MuhendislikKartlari, { type KartGezegen, type KartMalzeme } from "./MuhendislikKartlari";
 import ZamanKartlari, { type KartGeriSayim, type KartYaklasan } from "./ZamanKartlari";
@@ -1961,9 +1964,76 @@ export function homeSearchIndex(locale: Locale): HomeSearchItem[] {
   return homeData[locale].searchables;
 }
 
+// Türkçe ana sayfanın yan sütunundaki kategori listesi (sırası: en çok aranan büyüklükler önce).
+const ANA_KATEGORILER = [
+  "uzunluk", "alan", "kutle", "hacim", "sicaklik", "zaman", "hiz", "basinc", "enerji", "guc",
+  "veri", "yogunluk", "kuvvet", "tork", "aci", "altin-ayar",
+].flatMap((slug) => {
+  const page = categoryPages.find((p) => p.slug === slug);
+  return page ? [{ href: `/kategoriler/${page.slug}`, ad: page.title.replace(/ (Birim )?Dönüşümleri.*$/, "") }] : [];
+});
+
+function TurkceAnaUst({ ana, strings }: { ana: AnaCeviriciVeri; strings: (typeof copy)["tr"] }) {
+  return (
+    <>
+      <section className="directory-hero ana-hero">
+        <div className="directory-shell ana-hero-izgara">
+          <div className="ana-hero-sol">
+            <h1>Birim çevirici</h1>
+            <AnaCevirici veri={ana} />
+          </div>
+          <aside className="ana-hero-sag">
+            <HomeSearch
+              locale="tr"
+              strings={{
+                searchLabel: "Birim veya hesaplayıcı bul",
+                searchPlaceholder: "Örnek: dönüm, kilogram, bmi",
+                searchHint: "",
+                searchResultsLabel: strings.searchResultsLabel,
+                searchEmpty: strings.searchEmpty,
+                searchEnterHint: strings.searchEnterHint,
+                searchCategoryPrefix: strings.searchCategoryPrefix,
+                openLabel: strings.openLabel,
+              }}
+            />
+            <nav className="ana-kategoriler" aria-labelledby="ana-kategoriler-baslik">
+              <h2 id="ana-kategoriler-baslik">Bütün çeviriciler</h2>
+              <ul>
+                {ANA_KATEGORILER.map((k) => (
+                  <li key={k.href}>
+                    <Link href={k.href}>{k.ad}</Link>
+                  </li>
+                ))}
+              </ul>
+              <Link className="ana-kategoriler-hepsi" href="/tum-birimler">
+                {categoryPages.length} kategorinin hepsi →
+              </Link>
+            </nav>
+          </aside>
+        </div>
+      </section>
+
+      <div className="directory-shell">
+        <section className="ana-populer" aria-labelledby="ana-populer-baslik">
+          <h2 id="ana-populer-baslik">Sık yapılan dönüşümler</h2>
+          <ul>
+            {populerDonusumler.map(([ileri, ters]) => (
+              <li key={ileri.href}>
+                <Link href={ileri.href}>{ileri.ad}</Link>
+                <Link href={ters.href}>{ters.ad}</Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      </div>
+    </>
+  );
+}
+
 export default function HomeDirectory({
   locale,
   notifications = [],
+  ana,
   hizli,
   malzemeler,
   gezegenler,
@@ -1973,6 +2043,8 @@ export default function HomeDirectory({
 }: {
   locale: Locale;
   notifications?: SiteNotification[];
+  /** Türkçe ana sayfanın ilk ekranındaki çeviricinin verisi; verilirse eski karşılama alanının yerini alır. */
+  ana?: AnaCeviriciVeri;
   /** Türkçe ana sayfadaki hızlı çeviri kartlarının verisi. */
   hizli?: HizliVeri;
   /** Türkçe ana sayfadaki "litre kaç kilo" kartının malzemeleri. */
@@ -1990,6 +2062,9 @@ export default function HomeDirectory({
 
   return (
     <main className="directory-home" lang={locale === "en" ? "en" : locale === "de" ? "de" : undefined}>
+      {locale === "tr" && ana ? (
+        <TurkceAnaUst ana={ana} strings={copy.tr} />
+      ) : (
       <section className="directory-hero">
         <div className="directory-shell">
           <div className="directory-hero-copy">
@@ -2032,10 +2107,11 @@ export default function HomeDirectory({
           </div>
         </div>
       </section>
+      )}
 
       {hizli ? (
         <div className="directory-shell">
-          <HizliCevirme veri={hizli} />
+          {ana ? null : <HizliCevirme veri={hizli} />}
           {malzemeler?.length ? <MuhendislikKartlari malzemeler={malzemeler} gezegenler={gezegenler ?? []} /> : null}
           {geriSayimlar?.length ? <ZamanKartlari geriSayimlar={geriSayimlar} yaklasan={yaklasan ?? []} olusturma={olusturma} /> : null}
         </div>
@@ -2056,7 +2132,6 @@ export default function HomeDirectory({
             <header className="directory-section-header">
               <div>
                 <h2>En çok kullanılan araçlar</h2>
-                <p>Ziyaretçilerin en sık açtığı araçlar. Tüm araçları konularına göre görmek için tüm hesaplamalar sayfasına geçin.</p>
               </div>
             </header>
             <ul className="tool-hub-list">
@@ -2286,6 +2361,8 @@ export default function HomeDirectory({
         </section>
         )}
 
+        {/* Türkçede bu listenin yerini ilk ekrandaki "Sık yapılan dönüşümler" alır. */}
+        {!(locale === "tr" && ana) && (
         <section className="directory-section">
           <header className="directory-section-header">
             <div>
@@ -2316,6 +2393,7 @@ export default function HomeDirectory({
             ))}
           </ul>
         </section>
+        )}
 
         {locale === "uz" && (
           <FxHomeSection

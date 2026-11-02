@@ -22779,3 +22779,272 @@ a.all-units-row .all-units-name {
 .category-general-converter-field {
   align-content: start;
 }
+
+/* ---- Türkçe ana sayfa: ilk ekrandaki çevirici, yan sütun ve sık yapılan dönüşümler ---- */
+.ana-hero {
+  padding: 26px 0 10px;
+}
+.directory-hero .directory-shell.ana-hero-izgara {
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 28px;
+}
+.ana-hero-sol h1 {
+  margin: 0 0 14px;
+  color: #172033;
+  font-size: clamp(1.8rem, 3.2vw, 2.4rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+.ana-cevirici-sekmeler {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.ana-cevirici-sekmeler::-webkit-scrollbar {
+  display: none;
+}
+.ana-cevirici-sekmeler button {
+  flex: 0 0 auto;
+  padding: 9px 16px;
+  border: 1px solid #168f8c;
+  border-bottom: 0;
+  border-radius: 10px 10px 0 0;
+  background: #168f8c;
+  color: #ffffff;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 650;
+  cursor: pointer;
+}
+.ana-cevirici-sekmeler button:hover {
+  background: #137773;
+}
+.ana-cevirici-sekmeler button.secili {
+  position: relative;
+  z-index: 1;
+  margin-bottom: -1px;
+  border-color: #c3d2da;
+  background: #ffffff;
+  color: #137773;
+}
+.ana-cevirici-panel {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid #c3d2da;
+  border-radius: 0 12px 12px 12px;
+  background: #ffffff;
+}
+.ana-cevirici-deger,
+.ana-cevirici-listeler label {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+.ana-cevirici-deger span,
+.ana-cevirici-listeler span {
+  color: #243247;
+  font-size: 0.88rem;
+  font-weight: 650;
+}
+.ana-cevirici-deger input {
+  min-height: 50px;
+  padding: 0 14px;
+  border: 1px solid #c3d2da;
+  border-radius: 10px;
+  color: #172033;
+  font: inherit;
+  font-size: 1.2rem;
+}
+.ana-cevirici-listeler {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+}
+.ana-cevirici-listeler select {
+  width: 100%;
+  padding: 4px;
+  border: 1px solid #c3d2da;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #172033;
+  font: inherit;
+  font-size: 0.95rem;
+  overflow-y: auto;
+}
+.ana-cevirici-listeler option {
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+.ana-cevirici-listeler option:checked {
+  background: #dff1f0 linear-gradient(#dff1f0, #dff1f0);
+  color: #0f5f5c;
+  font-weight: 650;
+}
+.ana-cevirici-deger input:focus,
+.ana-cevirici-listeler select:focus {
+  outline: 2px solid #168f8c;
+  outline-offset: 1px;
+}
+.ana-cevirici-degistir {
+  display: inline-grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  margin-top: 22px;
+  border: 1px solid #c3d2da;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #137773;
+  cursor: pointer;
+}
+.ana-cevirici-degistir:hover {
+  background: #eef7f7;
+}
+.ana-cevirici-sonuc {
+  margin: 0;
+  padding: 14px 16px;
+  border-radius: 10px;
+  background: #eef7f7;
+  color: #243247;
+  font-size: 1.05rem;
+  overflow-wrap: anywhere;
+}
+.ana-cevirici-sonuc strong {
+  color: #0f5f5c;
+  font-size: 1.45rem;
+}
+.ana-cevirici-alt {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 6px 16px;
+  margin: 0;
+  color: #5b6b7a;
+  font-size: 0.88rem;
+}
+.ana-cevirici-alt a {
+  color: #137773;
+}
+.ana-hero-sag {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  min-width: 0;
+}
+.ana-hero-sag .directory-search {
+  padding: 16px;
+}
+.ana-kategoriler {
+  padding: 14px 16px;
+  border: 1px solid #d6e1e7;
+  border-radius: 12px;
+  background: #ffffff;
+}
+.ana-kategoriler h2 {
+  margin: 0 0 8px;
+  color: #172033;
+  font-size: 1rem;
+}
+.ana-kategoriler ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2px 12px;
+  margin: 0 0 10px;
+  padding: 0;
+  list-style: none;
+}
+.ana-kategoriler li a {
+  display: block;
+  padding: 5px 0;
+  color: #137773;
+  font-size: 0.93rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+.ana-kategoriler li a:hover,
+.ana-kategoriler-hepsi:hover {
+  text-decoration: underline;
+}
+.ana-kategoriler-hepsi {
+  color: #243247;
+  font-size: 0.9rem;
+  font-weight: 650;
+  text-decoration: none;
+}
+.ana-populer {
+  margin: 22px 0 8px;
+}
+.ana-populer h2 {
+  margin: 0 0 10px;
+  font-size: 1.3rem;
+}
+.ana-populer ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 32px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.ana-populer li {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  border-bottom: 1px solid #e3ebef;
+}
+.ana-populer li a {
+  padding: 8px 0;
+  color: #137773;
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+.ana-populer li a:hover {
+  text-decoration: underline;
+}
+@media (max-width: 1024px) {
+  .directory-hero .directory-shell.ana-hero-izgara {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 720px) {
+  .ana-hero {
+    padding-top: 16px;
+  }
+  .ana-cevirici-panel {
+    padding: 14px;
+  }
+  .ana-cevirici-listeler {
+    gap: 6px;
+  }
+  .ana-cevirici-listeler select {
+    font-size: 0.9rem;
+  }
+  .ana-populer ul {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 720px) {
+  .ana-cevirici-sekmeler {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+    margin-bottom: 8px;
+    overflow: visible;
+  }
+  .ana-cevirici-sekmeler button {
+    padding: 9px 6px;
+    border-bottom: 1px solid #168f8c;
+    border-radius: 8px;
+  }
+  .ana-cevirici-sekmeler button.secili {
+    margin-bottom: 0;
+    border: 1px solid #168f8c;
+    box-shadow: inset 0 0 0 1px #168f8c;
+  }
+  .ana-cevirici-panel {
+    border-radius: 12px;
+  }
+}

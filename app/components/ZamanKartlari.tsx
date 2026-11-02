@@ -528,7 +528,6 @@ export default function ZamanKartlari({ geriSayimlar, yaklasan, olusturma }: { g
     <section className="hizli-cevirme" aria-labelledby="zaman-kartlari-baslik">
       <div className="hizli-cevirme-ust">
         <h2 id="zaman-kartlari-baslik">Zaman</h2>
-        <p>Kartın başlığından aracı seçin: Türkiye saati, geri sayım, ay ve güneş, iki tarih arası, yaş, hafta, dünya saati ve zamanlayıcı.</p>
       </div>
       <div className="hizli-kartlar">
         {kartlar.map((a, i) => (

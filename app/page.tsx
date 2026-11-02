@@ -5,6 +5,7 @@ import { buildSiteUrl } from "./siteConfig";
 import { getSiteNotifications } from "./converter/siteNotifications";
 import { getFxLatest } from "./converter/fx/fxData";
 import { hizliCevirmeVerisi } from "./converter/hizliCevirmeVeri";
+import { anaCeviriciVerisi } from "./converter/anaCeviriciVeri";
 import { materialsDatabase } from "./converter/materialsDatabase";
 import { countdownEvents, startMs, upcomingOccurrences } from "./converter/time/countdownEvents";
 import { bodyWeights, MAIN_BODIES } from "./converter/planetWeights";
@@ -69,5 +70,6 @@ export default async function Page() {
       tatil: t.etkinlik.tatil !== "yok",
       tahmini: Boolean(t.tahmini),
     }));
-  return <HomeDirectory locale="tr" notifications={notifications} hizli={hizliCevirmeVerisi(fx)} malzemeler={KART_MALZEMELERI} gezegenler={KART_GEZEGENLERI} geriSayimlar={geriSayimlar} yaklasan={yaklasan} olusturma={now.getTime()} />;
+  const hizli = hizliCevirmeVerisi(fx);
+  return <HomeDirectory locale="tr" notifications={notifications} ana={anaCeviriciVerisi(hizli)} hizli={hizli} malzemeler={KART_MALZEMELERI} gezegenler={KART_GEZEGENLERI} geriSayimlar={geriSayimlar} yaklasan={yaklasan} olusturma={now.getTime()} />;
 }

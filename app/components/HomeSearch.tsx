@@ -97,7 +97,7 @@ export default function HomeSearch({ locale, strings }: { locale: HomeSearchLoca
           placeholder={strings.searchPlaceholder}
           autoComplete="off"
           spellCheck={false}
-          aria-describedby={`${inputId}-hint`}
+          aria-describedby={strings.searchHint ? `${inputId}-hint` : undefined}
           aria-controls={resultsId}
           onFocus={load}
           onPointerEnter={load}
@@ -113,9 +113,11 @@ export default function HomeSearch({ locale, strings }: { locale: HomeSearchLoca
         </button>
       </div>
 
-      <p className="directory-search-hint" id={`${inputId}-hint`}>
-        {strings.searchHint}
-      </p>
+      {strings.searchHint ? (
+        <p className="directory-search-hint" id={`${inputId}-hint`}>
+          {strings.searchHint}
+        </p>
+      ) : null}
 
       {query.trim() && items ? (
         <div className="directory-search-results-wrap">

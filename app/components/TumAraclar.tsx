@@ -12,7 +12,6 @@ export default function TumAraclar() {
       <header className="directory-section-header">
         <div>
           <h2>Tüm araçlar</h2>
-          <p>Üst menüdeki başlıklarla aynı sırada; her başlıkta en çok kullanılan araçlar.</p>
         </div>
       </header>
       <div className="tum-araclar-izgara">

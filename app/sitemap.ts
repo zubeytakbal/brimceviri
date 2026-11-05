@@ -1,3 +1,4 @@
+import { guncelHref } from "./converter/guncelHref";
 import { germanCities } from "./converter/geo/germanCities";
 import { sayfaKalkti } from "./kaldirilanSayfalar";
 import { ARABIC_ISLAMIC_SITEMAP } from "./i18n/arabicIslamicTools";
@@ -6440,8 +6441,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const path = href.startsWith(baseUrl) ? href.slice(baseUrl.length) || "/" : href;
     return isClosedPath(path) || sayfaKalkti(path);
   };
+  // Yeni yapiya tasinan Turkce sayfalar (/santimetre-inc -> /uzunluk/santimetre-inc) haritada yeni adresiyle yer alir.
+  const yeni = (href: string) =>
+    href.startsWith(baseUrl) ? `${baseUrl}${guncelHref(href.slice(baseUrl.length) || "/")}` : guncelHref(href);
   return [...byUrl.values()]
     .filter((entry) => !closed(entry.url))
+    .map((entry) => ({ ...entry, url: yeni(entry.url) }))
     .map((entry) => {
       const languages = entry.alternates?.languages;
       if (!languages) return entry;
@@ -6452,7 +6457,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           languages: Object.fromEntries(
             Object.entries(languages)
               .filter(([, href]) => typeof href !== "string" || !closed(href))
-              .map(([lang, href]) => [lang, typeof href === "string" ? absolute(href) : href]),
+              .map(([lang, href]) => [lang, typeof href === "string" ? yeni(absolute(href)) : href]),
           ),
         },
       };

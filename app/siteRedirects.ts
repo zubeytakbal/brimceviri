@@ -1,3 +1,4 @@
+import { guncelHref } from "./converter/guncelHref";
 import { mergedPageRedirects } from "./mergedPageRedirects";
 import { routePairs } from "./converter/geo/routePairs";
 import { canonicalPairSlug, MERGED_PAIRS } from "./converter/mergedPairs";
@@ -122,6 +123,7 @@ export function siteRedirects(): SiteRedirect[] {
   ].map((r) => ({
     ...r,
     // Hedefi birleştirilmiş bir çift olan eski yönlendirmeler zincir oluşturmasın, doğrudan kalan sayfaya gitsin.
-    destination: r.destination.replace(/^\/([a-z0-9-]+)(?=$|[?#])/, (_m, slug: string) => `/${canonicalPairSlug(slug)}`),
+    // Hedef yeni yapiya tasinmis bir sayfaysa dogrudan yeni adrese gider (/santimetre-inc -> /uzunluk/santimetre-inc).
+    destination: guncelHref(r.destination.replace(/^\/([a-z0-9-]+)(?=$|[?#])/, (_m, slug: string) => `/${canonicalPairSlug(slug)}`)),
   }));
 }

@@ -1,3 +1,4 @@
+import { eskiHref, guncelHref } from "../converter/guncelHref";
 import {
   DEFAULT_LOCALE,
   getLocaleDefinition,
@@ -413,6 +414,11 @@ function getLocalizedSlugForSource(
 }
 
 export function resolveLanguagePath(pathname: string, targetLocale: Locale) {
+  const path = resolveLanguagePathLegacy(eskiHref(normalizePathname(pathname)), targetLocale);
+  return targetLocale === "tr" ? guncelHref(path) : path;
+}
+
+function resolveLanguagePathLegacy(pathname: string, targetLocale: Locale) {
   const normalizedPath = normalizePathname(pathname);
 
   const staticRouteEntry = Object.entries(staticRouteTranslations).find(
@@ -455,7 +461,14 @@ export function resolveLanguagePath(pathname: string, targetLocale: Locale) {
   return getLocaleDefinition(targetLocale).homePath;
 }
 
-function resolveLanguagePathOrNull(
+// Yeni yapiya tasinan Turkce sayfalar (/uzunluk/santimetre-inc) dil eslemelerinde eski
+// adresleriyle (/santimetre-inc) tanimli; giriste eski adrese, Turkce cikista yeni adrese cevrilir.
+function resolveLanguagePathOrNull(pathname: string, targetLocale: Locale): string | null {
+  const path = resolveLanguagePathOrNullLegacy(eskiHref(normalizePathname(pathname)), targetLocale);
+  return path && targetLocale === "tr" ? guncelHref(path) : path;
+}
+
+function resolveLanguagePathOrNullLegacy(
   pathname: string,
   targetLocale: Locale
 ): string | null {

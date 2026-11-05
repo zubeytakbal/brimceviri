@@ -92,6 +92,24 @@ export const birimGruplari: BirimGrubu[] = [
   },
 ];
 
+/**
+ * Yeni yapiya tasinmis kategoriler. Bunlarin kategori sayfasi /<kategori>, cift sayfalari
+ * /<kategori>/<cift> adresindedir; eski /kategoriler/<kategori> ve /<cift> adresleri
+ * Cloudflare Bulk Redirects ile 301 yonlenir (scripts/bulkRedirects.ts).
+ */
+export const yeniYapiKategorileri: ReadonlySet<string> = new Set(["uzunluk"]);
+
+/** Yeni kabugun (ust menu, yan panel, alt bilgi) cizilecegi Turkce yollar. */
+export function isYeniYapiYolu(pathname: string) {
+  const ilk = pathname.split("/")[1] ?? "";
+  return yeniYapiKategorileri.has(ilk);
+}
+
+/** Turkce kategori sayfasinin adresi (tasinmis kategoride yeni, digerlerinde eski adres). */
+export function turkceKategoriYolu(kategoriSlug: string) {
+  return yeniYapiKategorileri.has(kategoriSlug) ? `/${kategoriSlug}` : `/kategoriler/${kategoriSlug}`;
+}
+
 /** Ust menude sekme olarak gorunen kategoriler (referanstaki gibi az ve sik kullanilan). */
 export const ustMenuKategorileri = ["uzunluk", "kutle", "alan", "hacim", "sicaklik", "zaman", "hiz", "basinc"];
 

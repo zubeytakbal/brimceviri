@@ -7,6 +7,7 @@ import Link from "@/app/components/SiteLink";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useState } from "react";
 import { getLocaleFromPathname } from "../i18n/config";
+import { isYeniYapiYolu } from "../converter/siteYapisi";
 import type { MenuGroup } from "../i18n/siteNavigation";
 // Menu verisi derleme oncesi uretilen kucuk modulden gelir (scripts/generateSiteNav.ts);
 // siteNavigation'i dogrudan aktarmak butun sayfa veritabanini her sayfaya yukluyordu.
@@ -18,6 +19,8 @@ import { useNotificationSlot } from "./NotificationSlotProvider";
 const SaatAracUst = dynamic(() => import("./saat/SaatAracUst"));
 // Hesap bölümü aynı düzeni kendi adı ve gruplarıyla kullanır.
 const HesapAracUst = dynamic(() => import("./hesap/HesapAracUst"));
+// Yeni yapidaki sayfalarin ust menusu.
+const YeniUst = dynamic(() => import("./yeni/YeniUst"));
 
 type HeaderLink = {
   href: string;
@@ -32,6 +35,7 @@ export default function SiteHeader() {
   }
   if (isSaatAraci(pathname)) return <SaatAracUst />;
   if (isHesapAraci(pathname)) return <HesapAracUst />;
+  if (isYeniYapiYolu(pathname)) return <YeniUst pathname={pathname} />;
   return <SiteHeaderNavigation key={pathname} pathname={pathname} />;
 }
 

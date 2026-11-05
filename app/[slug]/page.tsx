@@ -21,6 +21,9 @@ import { buildFullLanguageAlternates } from "../i18n/routing";
 import { buildSiteUrl } from "../siteConfig";
 import { turkishConversionSeo } from "../converter/turkishConversionSeo";
 import { canonicalPairSlug, isMergedAway } from "../converter/mergedPairs";
+import { yeniYapiKategorileri } from "../converter/siteYapisi";
+import { ciftTasindiMi } from "../converter/turkceYollar";
+import KategoriSayfasi, { kategoriMetadata } from "../components/yeni/KategoriSayfasi";
 
 function serializeJsonLd(data: object) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
@@ -128,15 +131,21 @@ function formatNumber(value: number) {
 
 export function generateStaticParams() {
   // Ters yönü bu sayfaya birleştirilen adresler üretilmez; postbuild onları kalan sayfaya 301 ile yönlendirir.
-  return conversionPages
-    .filter((conversionPage) => !isMergedAway(conversionPage.slug))
-    .map((conversionPage) => ({ slug: conversionPage.slug }));
+  // Yeni yapiya tasinan ciftler /<kategori>/<cift> altinda uretilir ([cift]/page.tsx); burada
+  // yalnizca o kategorilerin yeni kategori sayfasi (/uzunluk) uretilir.
+  return [
+    ...conversionPages
+      .filter((conversionPage) => !isMergedAway(conversionPage.slug) && !ciftTasindiMi(conversionPage.slug))
+      .map((conversionPage) => ({ slug: conversionPage.slug })),
+    ...[...yeniYapiKategorileri].map((slug) => ({ slug })),
+  ];
 }
 
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
+  if (yeniYapiKategorileri.has(slug)) return kategoriMetadata(slug);
 
   const conversionPage = conversionPages.find(
     (page) => page.slug === slug
@@ -180,6 +189,7 @@ export async function generateMetadata({
 
 export default async function ConversionPage({ params }: PageProps) {
   const { slug } = await params;
+  if (yeniYapiKategorileri.has(slug)) return <KategoriSayfasi slug={slug} />;
 
   const conversionPage = conversionPages.find(
     (page) => page.slug === slug

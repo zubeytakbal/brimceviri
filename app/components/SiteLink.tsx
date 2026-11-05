@@ -3,6 +3,7 @@
 // Pages dosya siniri), bu yuzden next/link yerine duz <a> kullanilir:
 // her tiklama hazir HTML sayfasini CDN'den yukler.
 import type { AnchorHTMLAttributes } from "react";
+import { guncelHref } from "../converter/guncelHref";
 
 type SiteLinkProps = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href"> & {
   href: string;
@@ -13,5 +14,6 @@ type SiteLinkProps = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href"> & {
 export default function SiteLink({ href, ...props }: SiteLinkProps) {
   const anchorProps = { ...props };
   delete anchorProps.prefetch;
-  return <a href={href} {...anchorProps} />;
+  // Yeni yapiya tasinan sayfalarin eski adresleri yonlendirmeye takilmadan yeni adrese gider.
+  return <a href={guncelHref(href)} {...anchorProps} />;
 }

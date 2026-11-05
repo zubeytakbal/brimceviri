@@ -1,3 +1,4 @@
+import { yeniYapiKategorileri } from "../../converter/siteYapisi";
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
@@ -61,7 +62,8 @@ function serializeJsonLd(data: object) {
 }
 
 export function generateStaticParams() {
-  return categoryPages.map((categoryPage) => ({
+  // Yeni yapiya tasinan kategoriler /<kategori> adresinde; eski adres 301 ile yonlenir.
+  return categoryPages.filter((categoryPage) => !yeniYapiKategorileri.has(categoryPage.slug)).map((categoryPage) => ({
     slug: categoryPage.slug,
   }));
 }

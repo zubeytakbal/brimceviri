@@ -35,7 +35,7 @@ function tankArticle(): ToolArticle {
     description: `Yatay ve dikey silindir, yuvarlak başlı ve dikdörtgen tankın litre hacmi, seviyeye göre doluluk ve ölçü çubuğu tablosu. Ø100 × 200 cm yatay tank ${f(total, 0)} L; 25 cm seviyede ${f(quarter, 0)} L.`,
     h1: "Tank Hacmi ve Doluluk Hesaplama",
     intro:
-      "Tankın şeklini ve iç ölçülerini girin; toplam hacmi, ölçtüğünüz sıvı seviyesine göre içindeki litreyi ve ağırlığı görün. Litreden seviyeye ters hesap yapabilir, ölçü çubuğu (tank cetveli) tablosu çıkarabilirsiniz.",
+      "",
     sections: [
       {
         id: "yatay",
@@ -118,7 +118,7 @@ function radiatorArticle(): ToolArticle {
     description: `Odanın ısı kaybından gereken petek dilimi ve panel radyatör boyu; su sıcaklığına göre EN 442 düzeltmesi. 55/45 °C'de petek katalog gücünün yalnızca %${f(f5545 * 100, 0)}'ini verir.`,
     h1: "Petek (Radyatör) Dilim ve Boy Hesabı",
     intro:
-      "Odanın ölçülerini, duvar ve pencere U değerlerini girin; ısı kaybını ve bunu karşılayacak dilim sayısını ya da panel radyatör boyunu bulun. Kombinin gidiş-dönüş suyu sıcaklığına göre peteğin gerçek gücü EN 442 yöntemiyle düzeltilir.",
+      "Kombinin gidiş-dönüş suyu sıcaklığına göre peteğin gerçek gücü EN 442 yöntemiyle düzeltilir.",
     sections: [
       {
         id: "kayip",
@@ -193,7 +193,7 @@ function boilerArticle(): ToolArticle {
     description: `Evin ısı kaybı ve istenen sıcak su debisinden kombi gücü; kombinin dakikada kaç litre sıcak su verdiği. 24 kW kombi 25 °C artışla ${f(dhwFlowLpm(24, 25), 1)} L/dk sıcak su verir.`,
     h1: "Kombi Kaç kW Olmalı?",
     intro:
-      "Evinizin ısı kaybını ve aynı anda istediğiniz sıcak su miktarını girin; kombinin ısıtma ve sıcak su için ne kadar güç gerektirdiğini görün. Elinizdeki kombinin dakikada kaç litre sıcak su verebileceğini de hesaplayabilirsiniz.",
+      "",
     sections: [
       {
         id: "iki-ihtiyac",
@@ -258,7 +258,7 @@ function drainArticle(): ToolArticle {
     description: `Atık su borusunun eğime göre taşıma kapasitesi ve akış hızı; istenen debi için gereken eğim. Ø110 PVC boru yarı doluyken %1 eğimde ${f(c1.Q * 1000, 1)} L/s, %2 eğimde ${f(c2.Q * 1000, 1)} L/s taşır.`,
     h1: "Pis Su Borusu Eğimi ve Kapasitesi",
     intro:
-      "Boru çapını, et kalınlığını ve eğimi girin; yerçekimiyle akan atık su borusunun yarı ya da %70 doluyken taşıyabileceği debiyi ve akış hızını görün. Belirli bir debi için gereken en az eğimi de hesaplayabilirsiniz.",
+      "",
     sections: [
       {
         id: "egim",

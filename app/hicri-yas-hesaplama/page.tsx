@@ -52,7 +52,7 @@ export default function HicriYasPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Hicri Yaş Hesaplama"
-      intro="Doğum tarihinizi girin: Hicri takvime göre yaşınızı, Hicri doğum tarihinizi ve bir sonraki Hicri doğum gününüzü görün."
+      intro=""
       tool={<HicriYasHesaplama />}
       related={{ title: "Diğer dini araçlar", links: diniRelated(path) }}
       tocTitle="İçindekiler"

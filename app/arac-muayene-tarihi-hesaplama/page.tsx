@@ -64,7 +64,7 @@ export default function MuayenePage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Araç Muayene Tarihi Hesaplama"
-      intro="Araç türünü seçin, sıfır araçsa ruhsattaki ilk tescil tarihini, daha önce muayene olduysa muayeneden geçtiği günü girin; sonraki muayenelerin son gününü görün."
+      intro=""
       tool={<MuayeneTarihiHesaplama initialDate={initialDate} />}
       related={{ title: "Diğer araç sahibi araçları", links: aracRelated(path) }}
       tocTitle="İçindekiler"

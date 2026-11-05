@@ -58,7 +58,7 @@ export default function KuluckaPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Kuluçka Hesaplama ve Kuluçka Takvimi"
-      intro="Yumurtaları kuluçka makinesine ya da gurk tavuğun altına koyduğunuz günü girin; ışık kontrolü, çevirmeyi bırakma ve çıkım günlerini, civciv ısıtıcı sıcaklığını görün ve kuluçka randımanınızı hesaplayın."
+      intro=""
       tool={<KuluckaHesaplama initialDate={initialDate} />}
       related={{ title: "Diğer tarım ve hayvancılık araçları", links: tarimRelated(path) }}
       tocTitle="İçindekiler"

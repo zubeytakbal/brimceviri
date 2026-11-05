@@ -61,7 +61,7 @@ export default function PlanetAgePage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Diğer Gezegenlerde Kaç Yaşındayım?"
-      intro="Dünya'daki yaşınızı ya da doğum tarihinizi girin: Merkür, Venüs, Mars, Jüpiter, Satürn, Uranüs, Neptün ve Plüton'da kaç yaşında olduğunuz, orada kaç gün yaşadığınız ve her gezegendeki bir sonraki doğum gününüz sırayla gösterilir."
+      intro="Merkür, Venüs, Mars, Jüpiter, Satürn, Uranüs, Neptün ve Plüton'da kaç yaşında olduğunuz, orada kaç gün yaşadığınız ve her gezegendeki bir sonraki doğum gününüz sırayla gösterilir."
       tool={<PlanetAgeTool defaultAge={EXAMPLE} />}
       related={{
         title: "İlginizi çekebilir",

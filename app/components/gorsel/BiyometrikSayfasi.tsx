@@ -61,7 +61,7 @@ export function BiyometrikSayfasi() {
         ]}
         crumbLabel="Sayfa yolu"
         title="Biyometrik Fotoğraf Hazırlama (50×60 mm)"
-        intro="Telefonla çektiğiniz fotoğrafı kimlik kartı, pasaport ve ehliyet için 50×60 mm biyometrik ölçüye getirin. Yüzü kılavuza oturtun, tek fotoğraf olarak veya 10×15 cm baskı sayfasında 4 adet olarak indirin."
+        intro=""
         tool={<VesikalikArac olcu={BIYOMETRIK_OLCU} />}
         related={{
           title: "İlginizi çekebilir",

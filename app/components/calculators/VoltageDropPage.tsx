@@ -131,7 +131,7 @@ const copy: Record<CalculatorLocale, PageCopy> = {
     breadcrumbLabel: "Sayfa yolu",
     title: "Gerilim Düşümü Hesaplama",
     description:
-      "Seçili kablo kesitinde volt kaybını, yüzdesel düşümü ve hat sonu gerilimini hesaplayın. Tek faz, üç faz ve DC sistemler ile bakır veya alüminyum iletken destekler.",
+      "",
     heroEyebrow: "ELEKTRİK HESAPLAYICISI",
     heroResultHeading: "Gerilim düşümü sonucu",
     introHeading: "Bu gerilim düşümü aracı ne için kullanılır?",

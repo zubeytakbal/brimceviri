@@ -41,7 +41,7 @@ export default function RomanPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Roma Rakamları Çevirici"
-      intro="Bir sayıyı Roma rakamına ya da Roma rakamıyla yazılmış bir ifadeyi sayıya çevirin. Yıllar, yüzyıllar, saat kadranları ve kitap bölümleri için kullanabilirsiniz."
+      intro=""
       tool={<RomanTool />}
       related={{
         title: "İlginizi çekebilir",

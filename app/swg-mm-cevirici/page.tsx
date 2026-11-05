@@ -36,7 +36,7 @@ export default function SwgPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="SWG - mm Çevirici"
-      intro="İngiliz standart tel numarasını (SWG) milimetre ve inç olarak görün ya da bir tel kalınlığını milimetre olarak girip en yakın SWG numarasını bulun."
+      intro=""
       tool={<GaugeTool tables={[{ id: "swg", label: "SWG", rows: SWG }]} prefix="SWG " defaultRow="16" />}
       related={{
         title: "İlginizi çekebilir",

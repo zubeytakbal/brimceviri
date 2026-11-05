@@ -126,7 +126,7 @@ const pageCopy: Record<
     breadcrumbLabel: "Sayfa yolu",
     title: "Isı Enerjisi Hesaplayıcısı",
     description:
-      "Q = m × c × ΔT bağıntısıyla ısı enerjisini, kütleyi, özgül ısıyı veya sıcaklık farkını SI temelli olarak hesaplayın. Sonuç okunabilir birimle, SI eşdeğeri ve yerine koyulmuş formülle birlikte gösterilir.",
+      "",
     heroEyebrow: "MÜHENDİSLİK HESAPLAYICISI",
     heroResultHeading: "Hesaplama sonucu",
     introHeading: "Isı enerjisi hesabı ne için kullanılır?",

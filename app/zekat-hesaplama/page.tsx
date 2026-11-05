@@ -53,7 +53,7 @@ export default function ZekatPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Zekât Hesaplama"
-      intro={`Önce has altının güncel gram fiyatını, sonra varlıklarınızı ve borçlarınızı girin. Net varlığınız ${g} g altın değerindeki nisabı geçiyorsa verilecek zekâtı görürsünüz.`}
+      intro={`Nisap ${g} g altın değeridir; nisabı geçen net varlığın üzerinden bir kamerî yıl geçince zekât verilir.`}
       tool={<ZekatHesaplama />}
       related={{ title: "Diğer dini araçlar", links: diniRelated(path) }}
       tocTitle="İçindekiler"

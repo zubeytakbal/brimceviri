@@ -54,7 +54,7 @@ export default function UmreMesafePage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Umre Mesafe Hesaplama"
-      intro="Kâbe'ye ne kadar uzaktan tavaf yapacağınızı seçin: bir şavtın uzunluğunu, tavaf ve sa'y toplam mesafesini, yaklaşık adım sayısını ve süreyi görün."
+      intro=""
       tool={<UmreMesafe />}
       related={{ title: "Diğer dini araçlar", links: diniRelated(path) }}
       tocTitle="İçindekiler"

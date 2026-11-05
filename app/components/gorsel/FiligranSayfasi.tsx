@@ -56,7 +56,7 @@ export function FiligranSayfasi() {
         ]}
         crumbLabel="Sayfa yolu"
         title="Fotoğrafa Filigran Ekleme"
-        intro="Fotoğraflarınıza yazı veya logo filigranı ekleyin, köşeye yerleştirin ya da tüm görsele döşeyin. Kimlik fotokopisini bir kuruma vermeden önce üzerine amacını ve tarihini yazmak için hazır ayarı kullanın."
+        intro=""
         tool={<FiligranEkle />}
         related={{
           title: "İlginizi çekebilir",

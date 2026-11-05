@@ -54,7 +54,7 @@ export default function CeyrekBilezikPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Çeyrek Altın Kaç Gram Bilezik Eder?"
-      intro="Elinizdeki çeyrek, yarım, tam ve Ata altınların sayısını girin; kaç gram 22 ayar bilezik ettiğini işçiliksiz ve kuyumcunun işçilik payıyla birlikte görün."
+      intro=""
       tool={<BilezikHesaplama />}
       related={{
         title: "Diğer altın araçları",

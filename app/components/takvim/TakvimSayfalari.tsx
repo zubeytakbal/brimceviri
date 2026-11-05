@@ -531,7 +531,7 @@ export function TakvimYilSayfasi({ year }: { year: number }) {
       crumbs={[HOME, HUB, { label: String(year) }]}
       crumbLabel={T.crumbLabel}
       title={`${year} Takvimi`}
-      intro={`${year} yılının Türkiye takvimi: resmî tatiller, dini bayramlar, kandiller, milli ve özel günler ile mevsim başlangıçları. Renkli günlere tıklayarak o günün sayfasına gidin.`}
+      intro={`${year} yılının Türkiye takvimi: resmî tatiller, dini bayramlar, kandiller, milli ve özel günler ile mevsim başlangıçları. `}
       tool={
         <div className="date-calc">
           <div className="holiday-calendar takvim-yil">

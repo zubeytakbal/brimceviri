@@ -66,7 +66,7 @@ export function ResimBoyutlandirSayfasi() {
         ]}
         crumbLabel="Sayfa yolu"
         title="Resim Boyutlandırma"
-        intro="Resimlerinizi piksel, yüzde veya santimetre ile yeniden boyutlandırın. Instagram, Facebook, X ve LinkedIn ölçüleri hazır; birden fazla resmi aynı anda işleyip ZIP olarak indirin."
+        intro="Instagram, Facebook, X ve LinkedIn ölçüleri hazır."
         tool={<ResimBoyutlandir />}
         related={{
           title: "İlginizi çekebilir",

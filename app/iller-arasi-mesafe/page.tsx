@@ -85,7 +85,7 @@ export default async function ProvinceDistancePage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="İller Arası Mesafe Hesaplama"
-      intro="İki il seçin: Karayolları'nın resmî cetvelinden karayolu mesafesi, kuş uçuşu mesafe, tahmini yol süresi ve yakıt maliyeti anında hesaplansın."
+      intro="Karayolu mesafeleri Karayolları Genel Müdürlüğü'nün resmî il mesafe cetvelinden alınır."
       tool={
         <ProvinceDistanceCalculator
           centers={centers}

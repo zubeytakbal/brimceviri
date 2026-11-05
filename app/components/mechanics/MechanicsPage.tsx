@@ -53,7 +53,7 @@ function beamContent(): Content {
     description: `Basit mesnetli, konsol ve ankastre kirişte sehim, en büyük moment, mesnet tepkileri ve eğilme gerilmesi. IPE, HEA, HEB profil seçin, tekil ve yayılı yük girin; diyagramları görün.`,
     h1: "Kiriş Hesabı: Sehim, Moment ve Gerilme",
     intro:
-      "Mesnet tipini seçin, kesiti çelik profil tablosundan ya da ölçüyle tanımlayın, tekil ve yayılı yükleri girin. En büyük sehimi, momenti, eğilme gerilmesini ve mesnet tepkilerini moment ve sehim diyagramlarıyla birlikte görün.",
+      "",
     sections: [
       {
         id: "formuller",
@@ -145,7 +145,7 @@ function sectionContent(): Content {
     description: "Dikdörtgen, daire, boru, kutu ve I kesitin atalet momenti, kesit modülü, atalet yarıçapı ve alanını hesaplayın; IPE, HEA, HEB gibi hazır profillerin değerlerini görün.",
     h1: "Atalet Momenti Hesaplama",
     intro:
-      "Kesit şeklini seçip ölçüleri girin ya da çelik profil tablosundan bir profil seçin. Her iki eksen için atalet momentini, kesit modülünü, atalet yarıçapını, alanı ve çelik metre ağırlığını görün.",
+      "",
     sections: [
       {
         id: "formuller",
@@ -227,7 +227,7 @@ function bucklingContent(): Content {
     description: "Euler burkulma yükü, burkulma boyu, narinlik ve kritik gerilme hesabı. Uç koşulunu seçin, IPE, HEA, HEB profil ya da boru, kutu kesit girin; S235 ve S355 için bağıl narinliği görün.",
     h1: "Burkulma Hesabı (Euler)",
     intro:
-      "Basınç çubuğunun kesitini, boyunu ve uç koşulunu girin. Euler kritik yükünü, burkulma boyunu, narinliği ve kritik gerilmeyi görün. Hesap kesitin zayıf ekseni için yapılır.",
+      "Hesap kesitin zayıf ekseni için yapılır.",
     sections: [
       {
         id: "formul",
@@ -310,7 +310,7 @@ function shaftContent(): Content {
     description: `Motor gücü ve devirden tork, dolu ve boru milde kayma gerilmesi, burulma açısı ve gereken mil çapı. 7,5 kW 1450 dev/dk motor ≈ ${f(T, 1)} N·m.`,
     h1: "Mil Burulma Hesabı",
     intro:
-      "Gücü ve devri ya da doğrudan torku girin; mil çapına göre en büyük kayma gerilmesini, burulma açısını ve izin verilen gerilmeye göre gereken dolu mil çapını hesaplayın.",
+      "",
     sections: [
       {
         id: "tork",

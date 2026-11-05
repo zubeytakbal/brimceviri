@@ -57,7 +57,7 @@ export default function NatalPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Yükselen Burç Hesaplama"
-      intro="Doğum tarihinizi, saatinizi ve doğduğunuz ili girin; doğum anında doğu ufkunda yükselen burç (yükselen), Ay'ın ve Güneş'in bulunduğu burçlar derece hassasiyetiyle hesaplanır."
+      intro="Doğum anında doğu ufkunda yükselen burç (yükselen), Ay'ın ve Güneş'in bulunduğu burçlar derece hassasiyetiyle hesaplanır."
       tool={<NatalTool cities={cities} defaultCity="istanbul" />}
       related={{
         title: "İlginizi çekebilir",

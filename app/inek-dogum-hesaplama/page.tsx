@@ -58,7 +58,7 @@ export default function InekDogumPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="İnek Doğum Hesaplama"
-      intro="Tohumlama ya da aşım tarihini girin; tahmini doğum tarihini, tutmazsa kızgınlığın tekrar beklendiği günleri, gebelik kontrolünü, kuruya ayırma ve doğum bölmesine alma tarihlerini görün. Düve, manda, koyun, keçi ve kısrak için de çalışır."
+      intro="Düve, manda, koyun, keçi ve kısrak için de çalışır."
       tool={<DogumHesaplama initialDate={initialDate} />}
       related={{ title: "Diğer tarım ve hayvancılık araçları", links: tarimRelated(path) }}
       tocTitle="İçindekiler"

@@ -67,7 +67,7 @@ export default function EbcedPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Ebced Hesabı Çevirici"
-      intro="Arap harfleriyle yazılmış bir kelime ya da mısranın ebced değerini harf harf hesaplayın ya da bir sayıyı ebced harfleriyle yazın. Telefonda Arap klavyesi yoksa harf düğmelerini kullanabilirsiniz."
+      intro=""
       tool={<EbcedTool />}
       related={{
         title: "İlginizi çekebilir",

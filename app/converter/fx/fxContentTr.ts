@@ -238,7 +238,7 @@ export const fxContentTr: FxLocaleContent = {
     pairName: (pair) => `${fxCurrenciesTr[pair.from].short} – ${fxCurrenciesTr[pair.to].short}`,
     h1: (pairName) => `${pairName} Çevirici`,
     heroDescription: (pair) =>
-      `${fxCurrenciesTr[pair.from].long} ile ${fxCurrenciesTr[pair.to].long} arasında günlük referans kurla çevir. Kurun ne zaman yayınlandığını canlı sayaçla gör.`,
+      `${fxCurrenciesTr[pair.from].long} ile ${fxCurrenciesTr[pair.to].long} arasında günlük referans kurla çevir. `,
     title: (pair) => buildFxTitleTr(pair),
     description: (pair, data) => {
       const from = fxCurrenciesTr[pair.from];
@@ -288,7 +288,7 @@ export const fxContentTr: FxLocaleContent = {
     ogDescription: "Günlük referans kurla TL ve 14 döviz arasında çeviri; yayın saati ve 30 günlük değişim.",
     h1: "Döviz Çevirici",
     intro:
-      "Günlük referans kurla TL ve 14 döviz arasında çeviri yap. Kurun kaynakta ne zaman yayınlandığını, kaç saat önce güncellendiğini ve sonraki güncellemeye ne kadar kaldığını canlı olarak gör.",
+      "",
     boardTitle: "Güncel döviz kurları (TL)",
     colCurrency: "Para birimi",
     colOneUnit: "1 birim",

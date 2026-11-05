@@ -65,7 +65,7 @@ export default function KrediHesaplamaPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title={title}
-      intro="Kredi tutarını, vadeyi ve bankanın aylık faiz oranını girin: aylık taksitinizi, toplam geri ödemeyi ve faiz, KKDF, BSMV tutarlarını ay ay görün. Kredi türünü seçince yasal vergi oranları otomatik gelir."
+      intro="KKDF ve BSMV oranları kredi türüne göre yasal değerlerle uygulanır."
       tool={<KrediHesaplama />}
       related={{
         title: "İlginizi çekebilir",

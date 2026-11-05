@@ -59,7 +59,7 @@ export default function CezaPuaniPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Ceza Puanı Hesaplama ve Silinme Tarihi"
-      intro="Aldığınız cezaların tarihini ve puanını ekleyin; bugün kaç puanınız olduğunu, hangi puanın hangi gün düşeceğini ve 100 puana kaç kaldığını görün."
+      intro=""
       tool={<CezaPuaniHesaplama initialDate={initialDate} />}
       related={{ title: "Diğer araç sahibi araçları", links: aracRelated(path) }}
       tocTitle="İçindekiler"

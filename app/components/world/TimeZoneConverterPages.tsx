@@ -186,7 +186,7 @@ export function TimeZoneConverterHub({ lang }: { lang: "tr" | "en" }) {
       title={tr ? "Saat Dilimi Çevirici" : "Time Zone Converter"}
       intro={
         tr
-          ? "Bir saati aynı anda birden çok şehre çevir: İstanbul 15:00 iken New York, Londra ve Tokyo'da saat kaç? Yaz saati otomatik uygulanır; toplantı planlayıcı ortak uygun saati gösterir."
+          ? "İstanbul 15:00 iken New York, Londra ve Tokyo'da saat kaç? Yaz saati otomatik uygulanır; toplantı planlayıcı ortak uygun saati gösterir."
           : "Convert a time to several cities at once: when it's 3 pm in New York, what time is it in London, Delhi and Tokyo? Daylight saving is applied automatically, and the meeting planner shows the best common slot."
       }
       tool={

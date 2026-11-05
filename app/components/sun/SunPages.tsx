@@ -137,7 +137,7 @@ export function SunrisePage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Güneş Doğuşu ve Batışı Saatleri"
-      intro="İli ve tarihi seçin; güneşin doğuş ve batış saatini, gün uzunluğunu, alacakaranlık sürelerini, güneşin en tepede olduğu anı ve yıl boyunca nasıl değiştiğini görün. İki ili karşılaştırabilir ya da konumunuzu kullanabilirsiniz."
+      intro=""
       tool={
         <>
           <SunTodayHero places={todayPlaces} t={TODAY} />
@@ -440,7 +440,7 @@ export function ShadowPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Güneş Açısı ve Gölge Boyu Hesaplama"
-      intro="İl, tarih ve saat seçin; güneşin ufuktan yüksekliğini, yönünü ve bir cismin gölge boyunu görün. Gölgeden bina ya da ağaç yüksekliği bulun, evinizin kışın güneş alıp almadığını ve güneş panelinin öğle güneşine dik açısını hesaplayın."
+      intro=""
       tool={<ShadowTool cities={cities} />}
       related={{
         title: "İlgili araçlar",

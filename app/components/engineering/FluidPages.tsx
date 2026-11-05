@@ -46,7 +46,7 @@ function waterArticle(): ToolArticle {
     description: `0–100 °C suyun yoğunluğu, viskozitesi, özgül ısısı, ısıl iletkenliği ve buhar basıncı. 20 °C'de ρ = ${f(w20.rho, 1)} kg/m³, μ = ${sig(w20.mu / 1000)} mPa·s.`,
     h1: "Su Özellikleri Tablosu (0–100 °C)",
     intro:
-      "Sıcaklığı girin; suyun yoğunluğunu, dinamik ve kinematik viskozitesini, özgül ısısını, ısıl iletkenliğini, Prandtl sayısını ve buhar basıncını 1 atm için görün. Değerler IAPWS formülasyonlarından üretildi ve NIST verisiyle karşılaştırıldı.",
+      "Değerler IAPWS formülasyonlarından üretildi ve NIST verisiyle karşılaştırıldı.",
     sections: [
       {
         id: "tablo",
@@ -132,7 +132,7 @@ function steamArticle(): ToolArticle {
     description: `Basınca ve sıcaklığa göre doymuş su buharı tablosu: doyma sıcaklığı, özgül hacim, entalpi, entropi. 10 bar'da Tsat = ${f(s10.t, 2)} °C, hfg = ${f(s10.hfg, 1)} kJ/kg.`,
     h1: "Doymuş Buhar Tablosu",
     intro:
-      "Basıncı (manometre ya da mutlak) veya sıcaklığı girin; doyma sıcaklığını ya da basıncını, buharlaşma ısısını, entalpiyi, özgül hacmi ve entropiyi görün. Buhar debisi girerseniz yoğuşmada açığa çıkan ısıyı da hesaplar.",
+      "",
     sections: [
       {
         id: "basinca-gore",
@@ -215,7 +215,7 @@ function boilingArticle(): ToolArticle {
     description: `Rakıma ya da hava basıncına göre suyun kaynama noktası ve 81 ilin tablosu. Deniz seviyesinde ${f(sea, 1)} °C, 2000 m'de ${f(boil(2000), 1)} °C, Everest'te ${f(boil(8849), 1)} °C.`,
     h1: "Suyun Kaynama Noktası Hesaplama",
     intro:
-      "Rakımı ya da barometrede okunan hava basıncını girin; suyun o yerde kaç derecede kaynadığını görün. Basınç standart atmosfer modelinden, kaynama sıcaklığı IAPWS-95 buhar tablosundan hesaplanır. Aşağıda 81 ilin değerleri de var.",
+      "Basınç standart atmosfer modelinden, kaynama sıcaklığı IAPWS-95 buhar tablosundan hesaplanır. Aşağıda 81 ilin değerleri de var.",
     sections: [
       {
         id: "neden",
@@ -334,7 +334,7 @@ function airArticle(): ToolArticle {
     description: `−50 ile 200 °C arasında kuru havanın yoğunluğu, viskozitesi, özgül ısısı ve ısıl iletkenliği; rakıma göre yoğunluk. 20 °C'de ρ = ${f(a20.rho, 3)} kg/m³.`,
     h1: "Hava Özellikleri Tablosu",
     intro:
-      "Hava sıcaklığını ve rakımı girin; kuru havanın yoğunluğunu, dinamik ve kinematik viskozitesini, özgül ısısını, ısıl iletkenliğini ve Prandtl sayısını görün. Fan, kanal ve ısı transferi hesaplarında kullanılan değerlerdir.",
+      "Fan, kanal ve ısı transferi hesaplarında kullanılan değerlerdir.",
     sections: [
       {
         id: "tablo",

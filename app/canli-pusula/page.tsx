@@ -67,7 +67,7 @@ export default function CanliPusulaPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Canlı Pusula"
-      intro="Telefonu yere paralel tutun, “Pusulayı başlat”a dokunun. Yeşil işaret telefonun baktığı yönü gösterir."
+      intro="Yeşil işaret telefonun baktığı yönü gösterir."
       tool={<CanliPusula />}
       related={{
         title: "İlgili araçlar",

@@ -57,7 +57,7 @@ export default function PlanetWeightPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Diğer Gezegenlerde Kaç Kilo Gelirim?"
-      intro="Dünya'daki kilonuzu girin: Merkür, Venüs, Ay, Mars, Jüpiter, Satürn, Uranüs, Neptün ve Plüton'da tartının kaç kilo göstereceği Güneş'e uzaklık sırasıyla listelenir. İsterseniz Jüpiter ve Satürn'ün uydularını, Ceres ve Eris'i de ekleyebilirsiniz."
+      intro="Merkür, Venüs, Ay, Mars, Jüpiter, Satürn, Uranüs, Neptün ve Plüton'da tartının kaç kilo göstereceği Güneş'e uzaklık sırasıyla listelenir. İsterseniz Jüpiter ve Satürn'ün uydularını, Ceres ve Eris'i de ekleyebilirsiniz."
       tool={<PlanetWeightTool defaultKg={EXAMPLE} />}
       related={{
         title: "İlginizi çekebilir",

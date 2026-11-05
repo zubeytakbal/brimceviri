@@ -50,7 +50,7 @@ export default function YillikIzinRoute() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Yıllık İzin Hesaplama"
-      intro="İşe giriş tarihine göre kaç gün yıllık izin hakkın olduğunu, izin dönüş tarihini ve kullanılmayan izin ücretini İş Kanunu'na göre hesapla."
+      intro=""
       tool={<YillikIzinHesaplama />}
       related={{
         title: "İlginizi çekebilir",

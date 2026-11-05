@@ -139,7 +139,7 @@ const pageCopy: Record<Exclude<Locale, "ar">, PageCopy> = {
     breadcrumbLabel: "Sayfa yolu",
     title: "Basınç, Kuvvet ve Alan Hesaplayıcısı",
     description:
-      "Basıncı, kuvveti veya alanı SI taban birimlerine çevirerek hesaplayın. Hesaplayıcı; Pa, hPa, kPa, MPa, GPa, bar, atm, kgf/cm², psi, ksi, N, kN, kgf, lbf, kip, m², cm², mm², ft² ve daha birçok birimi destekler.",
+      "",
     heroEyebrow: "MÜHENDİSLİK HESAPLAYICISI",
     heroResultHeading: "Hesaplama sonucu",
     formulasHeading: "Kullanılan formüller",

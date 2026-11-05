@@ -56,7 +56,7 @@ export default function HafizlikPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Hafızlık Hesaplama"
-      intro="Günde kaç sayfa ve haftada kaç gün ezber yapacağınızı yazın: hafızlığın kaç ay süreceğini ve tahmini bitiş tarihini görün. Ya da hedef sürenizi yazıp günde kaç sayfa ezberlemeniz gerektiğini bulun."
+      intro=""
       tool={<HafizlikHesaplama />}
       related={{ title: "Diğer dini araçlar", links: diniRelated(path) }}
       tocTitle="İçindekiler"

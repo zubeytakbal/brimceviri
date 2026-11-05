@@ -181,7 +181,7 @@ export default function TarihiOlcuBirimleriPage() {
         { label: "Tarihi Ölçü Birimleri" },
       ]}
       title="Tarihi Ölçü Birimleri"
-      description="Bizans, Osmanlı ve eski Türk dönemlerinden kalma ölçü birimlerini modern metre ve gram karşılıklarıyla birlikte inceleyin, aralarında ücretsiz dönüşüm yapın."
+      description=""
       sections={[
         {
           heading: "Bizans'tan Cumhuriyet'e: Türkiye'nin ölçü tarihi",

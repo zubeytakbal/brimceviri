@@ -38,7 +38,7 @@ export default function SugarPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Brix - Baumé Çevirme"
-      intro="Şeker derecesini Brix, Baumé, özgül ağırlık ya da Öchsle olarak girin, diğer ölçeklerdeki karşılığını görün. Pekmez, şurup, bal, meyve suyu ve üzüm şırası ölçümleri için."
+      intro="Pekmez, şurup, bal, meyve suyu ve üzüm şırası ölçümleri için."
       tool={<SugarTool />}
       related={{
         title: "İlginizi çekebilir",

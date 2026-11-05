@@ -60,7 +60,7 @@ export default function YirmiIkiYirmiDortPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="22 ayar altını 24 ayara çevirme"
-      intro="Bilezik, ziynet ve Cumhuriyet altınları 22 ayardır. Gramı girin; içinde kaç gram has altın olduğunu ve kaç gram 24 ayar gram altına denk geldiğini görün."
+      intro="Bilezik, ziynet ve Cumhuriyet altınları 22 ayardır."
       tool={<AyarCevirici kaynak={22} hedef={24} />}
       related={{
         title: "İlginizi çekebilir",

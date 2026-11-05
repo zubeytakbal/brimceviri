@@ -82,7 +82,7 @@ export default function MoonObservationPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Ay Gözlem Çizelgesi (30 Günlük)"
-      intro="Gözleme başladığınız günü seçin: 30 günün her biri için akşam ayın nasıl göründüğü, evre adı, aydınlanma yüzdesi ve ilinizde ayın gökyüzünde nerede olduğu hesaplanır. Ödev için boş çizelgeyi yazdırıp kendiniz de çizebilirsiniz."
+      intro=""
       tool={<MoonObservationChart cities={cities} defaultCity="istanbul" initialNow={now.getTime()} />}
       related={{
         title: "İlginizi çekebilir",

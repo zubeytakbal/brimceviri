@@ -60,7 +60,7 @@ export default function CountdownHub({ lang }: { lang: "tr" | "en" }) {
       title={tr ? "Geri Sayım: Kaç Gün Kaldı?" : "Countdown: How Many Days Until…?"}
       intro={
         tr
-          ? "Yılbaşına, bayramlara ve özel günlere kaç gün kaldığını tek listede gör; ya da doğum günün, sınavın veya tatilin için kendi geri sayımını oluşturup paylaş."
+          ? "Ya da doğum günün, sınavın veya tatilin için kendi geri sayımını oluşturup paylaş."
           : "See how many days are left until holidays and special days in one list, or create and share your own countdown for a birthday, exam or trip."
       }
       tool={<CustomCountdown lang={lang} copy={customCountdownCopy[lang]} basePath={tr ? "/geri-sayim" : "/en/countdown"} />}

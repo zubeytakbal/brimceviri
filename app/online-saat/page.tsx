@@ -58,7 +58,7 @@ export default function OnlineClockPage() {
       crumbLabel="Sayfa yolu"
       install={{ name: "Online Saat", lang: "tr" }}
       title="Online Saat"
-      intro="Şu anki saat, saniyesi saniyesine. 34 temadan birini seç: sarkaçlı duvar saatinden guguklu saate, cep saatinden dalgıç saatine. İstersen tik-tak sesini ve saat başı çanını aç, tek tıkla tam ekran masa saatine dönüştür."
+      intro="Sarkaçlı duvar saatinden guguklu saate, cep saatinden dalgıç saatine. "
       tool={<LiveClock locale="tr" initialTheme="digital" />}
       related={{ title: "Diğer zaman araçları", links: timeRelated.tr.tools.filter((t) => t.href !== "/online-saat") }}
       tocTitle="İçindekiler"

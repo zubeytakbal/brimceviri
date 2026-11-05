@@ -45,7 +45,7 @@ export default function SureBulucuPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Sure Bulucu"
-      intro="Sure adını ya da sıra numarasını yazın: ayet sayısını, cüzünü, Mekkî mi Medenî mi olduğunu, iniş sırasını ve Medine mushafındaki sayfasını görün."
+      intro=""
       tool={<SureBulucu />}
       related={{ title: "Diğer dini araçlar", links: diniRelated(path) }}
       tocTitle="İçindekiler"

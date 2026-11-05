@@ -150,7 +150,7 @@ function hubContent(): Content {
     description: `IPE, HEA, HEB, HEM, NPU ve NPI çelik profillerin ölçü, ağırlık (kg/m) ve kesit değerleri tek yerde. Profil seçip boy girin, toplam ağırlığı ve boya yüzeyini hesaplayın.`,
     h1: "Çelik Profil Tabloları ve Ağırlık Hesaplama",
     intro:
-      "Seriyi ve profili seçin, boyu ve adedi girin; toplam ağırlığı, boya/galvaniz yüzeyini ve profilin kesit değerlerini görün. Aşağıda altı serinin karşılaştırması ve her serinin ayrıntılı tablosuna bağlantılar var.",
+      "Aşağıda altı serinin karşılaştırması ve her serinin ayrıntılı tablosuna bağlantılar var.",
     defaultSize: 200,
     sections: [
       {
@@ -231,7 +231,7 @@ function ipeContent(): Content {
     metaTitle: "IPE Profil Tablosu: Ölçüler ve Ağırlıklar",
     description: `IPE 80 – IPE 600 profil tablosu: kg/m ağırlık, h, b, tw, tf ölçüleri, kesit alanı, Iy, Wel ve Wpl değerleri. IPE 200 = ${f(s200.G, 1)} kg/m. Boy girerek toplam ağırlığı hesaplayın.`,
     h1: "IPE Profil Tablosu",
-    intro: `IPE profilin ölçülerini, metre ağırlığını ve kesit değerlerini bulun; boy ve adet girerek toplam ağırlığı ve boya yüzeyini hesaplayın. Tablo ${range("IPE")} aralığındaki ${STEEL_SECTIONS.IPE.length} profili kapsar.`,
+    intro: `Tablo ${range("IPE")} aralığındaki ${STEEL_SECTIONS.IPE.length} profili kapsar.`,
     series: "IPE",
     defaultSize: 200,
     sections: [
@@ -286,7 +286,7 @@ function heaContent(): Content {
     metaTitle: "HEA Profil Tablosu: Ölçüler ve Ağırlıklar",
     description: `HEA 100 – HEA 1000 profil tablosu: kg/m ağırlık, gerçek yükseklik, başlık genişliği, kesit alanı ve atalet momentleri. HEA 200 = ${f(a200.G, 1)} kg/m. Toplam ağırlığı hesaplayın.`,
     h1: "HEA Profil Tablosu",
-    intro: `HEA profilin gerçek ölçülerini, metre ağırlığını ve kesit değerlerini bulun; boy ve adet girerek toplam ağırlığı hesaplayın. Tablo ${range("HEA")} aralığındaki ${STEEL_SECTIONS.HEA.length} profili kapsar.`,
+    intro: `Tablo ${range("HEA")} aralığındaki ${STEEL_SECTIONS.HEA.length} profili kapsar.`,
     series: "HEA",
     defaultSize: 200,
     sections: [
@@ -332,7 +332,7 @@ function hebContent(): Content {
     metaTitle: "HEB Profil Tablosu: Ölçüler ve Ağırlıklar",
     description: `HEB 100 – HEB 1000 ve ağır seri HEM profil tablosu: kg/m ağırlık, ölçüler, kesit alanı, Iy, Iz, Wel, Wpl. HEB 200 = ${f(b200.G, 1)} kg/m. Boy girerek toplam ağırlığı hesaplayın.`,
     h1: "HEB ve HEM Profil Tablosu",
-    intro: `HEB ve ağır seri HEM profillerin ölçülerini, metre ağırlığını ve kesit değerlerini bulun; boy ve adet girerek toplam ağırlığı hesaplayın. Tablolar ${range("HEB")} ve ${range("HEM")} aralığını kapsar.`,
+    intro: `Tablolar ${range("HEB")} ve ${range("HEM")} aralığını kapsar.`,
     series: "HEB",
     defaultSize: 200,
     sections: [
@@ -380,7 +380,7 @@ function upnContent(): Content {
     metaTitle: "NPU Profil Tablosu (UPN): Ölçü ve Ağırlık",
     description: `NPU (UPN) 50 – 400 U profil tablosu: kg/m ağırlık, h, b, tw, tf ölçüleri, kesit alanı ve atalet momentleri. NPU 100 = ${f(u100.G, 1)} kg/m, NPU 200 = ${f(u200.G, 1)} kg/m.`,
     h1: "NPU (UPN) Profil Tablosu",
-    intro: `NPU (Avrupa standardında UPN) U profilin ölçülerini, metre ağırlığını ve kesit değerlerini bulun; boy ve adet girerek toplam ağırlığı hesaplayın. Tablo ${range("UPN")} aralığındaki ${STEEL_SECTIONS.UPN.length} profili kapsar.`,
+    intro: `Tablo ${range("UPN")} aralığındaki ${STEEL_SECTIONS.UPN.length} profili kapsar.`,
     series: "UPN",
     defaultSize: 100,
     sections: [
@@ -425,7 +425,7 @@ function ipnContent(): Content {
     metaTitle: "NPI Profil Tablosu (IPN): Ölçü ve Ağırlık",
     description: `NPI (IPN) 80 – 600 I profil tablosu: kg/m ağırlık, ölçüler, kesit alanı, Iy, Iz ve kesit modülleri. NPI 200 = ${f(n200.G, 1)} kg/m. IPE ile farkı ve toplam ağırlık hesabı.`,
     h1: "NPI (IPN) Profil Tablosu",
-    intro: `NPI (Avrupa standardında IPN) profilin ölçülerini, metre ağırlığını ve kesit değerlerini bulun; boy ve adet girerek toplam ağırlığı hesaplayın. Tablo ${range("IPN")} aralığındaki ${STEEL_SECTIONS.IPN.length} profili kapsar.`,
+    intro: `Tablo ${range("IPN")} aralığındaki ${STEEL_SECTIONS.IPN.length} profili kapsar.`,
     series: "IPN",
     defaultSize: 200,
     sections: [

@@ -142,7 +142,7 @@ const pageCopy: Record<
     breadcrumbLabel: "Sayfa yolu",
     title: "Isı İletimi Hesaplayıcısı",
     description:
-      "Q̇ = k × A × ΔT / L bağıntısıyla ısı geçiş hızını, ısıl iletkenliği, alanı, sıcaklık farkını veya kalınlığı hesaplayın. Sonuç SI eşdeğeri ve yerine koyulmuş formülle birlikte aynı mavi-turkuaz hesaplayıcı düzeninde gösterilir.",
+      "",
     heroEyebrow: "MÜHENDİSLİK HESAPLAYICISI",
     heroResultHeading: "Hesaplama sonucu",
     introHeading: "Isı iletimi hesabı neyi temsil eder?",

@@ -64,7 +64,7 @@ export default function CeyrekAltinPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Çeyrek altın kaç gram?"
-      intro={`Ziynet çeyrek altın ${gr(ceyrek.gram)} gram ve 22 ayardır. Elinizdeki çeyrek sayısını girin; toplam ağırlığı, içindeki has altını ve güncel gram fiyatıyla değerini hesaplayın.`}
+      intro={`Ziynet çeyrek altın ${gr(ceyrek.gram)} gram ve 22 ayardır.`}
       tool={<AltinHesaplama baslangic="ceyrek-altin" />}
       related={{
         title: "İlginizi çekebilir",

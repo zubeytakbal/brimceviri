@@ -78,7 +78,7 @@ export default function AltinHesaplamaPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Altın Hesaplama"
-      intro="Çeyrek, yarım, tam ve Cumhuriyet altınlarınızın toplam ağırlığını ve içindeki has altını hesaplayın; bilezik ve takılarda ayar ve işçilikle has karşılığını ve güncel gram fiyatıyla TL değerini bulun."
+      intro=""
       tool={<AltinHesaplama />}
       related={{
         title: "İlginizi çekebilir",

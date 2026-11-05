@@ -52,7 +52,7 @@ export default function HayizPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Hayız ve Nifas Hesaplama (Hanefî)"
-      intro="Kanamanın başladığı ve kesildiği anı, biliyorsanız alışılmış âdet sürenizi girin. Hanefî mezhebinin ölçülerine göre hangi sürenin hayız ya da nifas, hangisinin istihaze olduğunu ve gusül zamanını görün."
+      intro="Hesap Hanefî mezhebinin ölçülerine göre yapılır."
       tool={<HayizHesaplama />}
       related={{ title: "Diğer dini araçlar", links: diniRelated(path) }}
       tocTitle="İçindekiler"

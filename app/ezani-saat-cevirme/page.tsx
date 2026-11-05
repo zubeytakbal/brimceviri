@@ -55,7 +55,7 @@ export default function EzaniPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Ezani Saat Çevirme"
-      intro="Ezani (alaturka) saatte gün güneşin batışıyla başlar ve batış anı 12:00 kabul edilir. İlinizi ve tarihi seçin; normal saati ezani saate ya da ezani saati normal saate çevirin."
+      intro="Ezani (alaturka) saatte gün güneşin batışıyla başlar ve batış anı 12:00 kabul edilir."
       tool={<EzaniTool cities={cities} defaultCity="istanbul" />}
       related={{
         title: "İlginizi çekebilir",

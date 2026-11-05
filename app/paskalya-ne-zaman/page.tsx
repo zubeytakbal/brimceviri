@@ -64,7 +64,7 @@ export default function PaskalyaPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Paskalya Ne Zaman?"
-      intro={`${yil + 1} Paskalyası ${trTarih(bati)}, Ortodoks Paskalyası ${trTarih(ortodoks)}. Yılı değiştirerek Batı ve Ortodoks kiliselerinin Paskalya'ya bağlı bütün günlerini görün.`}
+      intro={`${yil + 1} Paskalyası ${trTarih(bati)}, Ortodoks Paskalyası ${trTarih(ortodoks)}. `}
       tool={<PaskalyaHesap ilkYil={yil + 1} />}
       related={{
         title: "İlginizi çekebilir",

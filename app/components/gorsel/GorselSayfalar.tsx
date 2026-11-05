@@ -156,7 +156,7 @@ export function GorselHub() {
         crumbs={[ANA, PANEL, { label: "Görsel Dönüştürücü" }]}
         crumbLabel="Sayfa yolu"
         title="Görsel Dönüştürücü"
-        intro="JPG, PNG ve WebP görselleri birbirine çevirin. Çıktı formatını, kaliteyi ve en fazla genişliği seçin; birden fazla dosyayı aynı anda dönüştürüp ZIP olarak indirin. Dosyalar tarayıcınızda işlenir, hiçbir sunucuya yüklenmez."
+        intro="Dosyalar tarayıcınızda işlenir, hiçbir sunucuya yüklenmez."
         tool={<GorselDonusturucu />}
         related={{ title: "İlginizi çekebilir", links: DIGER_ARACLAR }}
         tocTitle="İçindekiler"

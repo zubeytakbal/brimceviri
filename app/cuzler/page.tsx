@@ -62,7 +62,7 @@ export default function CuzlerPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Cüzler ve Hatim Dağıtımı"
-      intro="Hatmin tamamını ya da tek bir cüzü seçin, kaç kişinin okuyacağını yazın: herkesin hangi sayfaları ve ayetleri okuyacağı eşit paylarla çıkar."
+      intro="Herkesin hangi sayfaları ve ayetleri okuyacağı eşit paylarla çıkar."
       tool={<HatimDagitici />}
       related={{ title: "Diğer dini araçlar", links: diniRelated(path) }}
       tocTitle="İçindekiler"

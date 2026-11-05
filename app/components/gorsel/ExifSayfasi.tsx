@@ -56,7 +56,7 @@ export function ExifSayfasi() {
         ]}
         crumbLabel="Sayfa yolu"
         title="Fotoğraftan Konum Bilgisi Silme"
-        intro="Telefonla çekilen fotoğraflar çoğu zaman çekildiği yerin koordinatlarını, telefon modelini ve tarihini içinde taşır. Fotoğrafınızı bırakın, nelerin kayıtlı olduğunu görün ve kalite kaybı olmadan temizleyin."
+        intro="Telefonla çekilen fotoğraflar çoğu zaman çekildiği yerin koordinatlarını, telefon modelini ve tarihini içinde taşır. "
         tool={<ExifTemizle />}
         related={{
           title: "İlginizi çekebilir",

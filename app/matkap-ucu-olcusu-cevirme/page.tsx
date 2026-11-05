@@ -36,7 +36,7 @@ export default function DrillPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Matkap Ucu Ölçüsü Çevirme"
-      intro="Kesirli inç, numaralı (#1–#80) ya da harfli (A–Z) matkap ucunun milimetre karşılığını görün veya bir ölçüyü milimetre olarak girip her serideki en yakın ucu bulun."
+      intro=""
       tool={
         <GaugeTool
           tables={[

@@ -152,7 +152,7 @@ const pageCopy: Record<Exclude<Locale, "ar">, PageCopy> = {
     breadcrumbLabel: "Sayfa yolu",
     title: "Hidrostatik Basınç Hesaplayıcısı",
     description:
-      "Durgun bir akışkandaki basınç farkını, yoğunluğu, derinliği veya yerçekimi ivmesini SI taban birimlerinden hareketle hesaplayın. Aynı hero tasarımında çalışan araç; mühendislik, dalış, depolama ve manometre uygulamaları için uygun bir başlangıç hesabı sunar.",
+      "",
     heroEyebrow: "MÜHENDİSLİK HESAPLAYICISI",
     heroResultHeading: "Hesaplama sonucu",
     introHeading: "Hidrostatik basınç nedir?",

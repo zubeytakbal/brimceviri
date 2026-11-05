@@ -54,7 +54,7 @@ export default function PlanetPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Bu Gece Hangi Gezegenler Görünür?"
-      intro="İlinizi ve tarihi seçin: çıplak gözle görülen beş gezegenin (Merkür, Venüs, Mars, Jüpiter, Satürn) o gece hangi saatlerde ufkun üstünde olduğu, en iyi görüldüğü saat ve yön, parlaklığı ve bulunduğu takımyıldız."
+      intro="Çıplak gözle görülen beş gezegenin (Merkür, Venüs, Mars, Jüpiter, Satürn) o gece hangi saatlerde ufkun üstünde olduğu, en iyi görüldüğü saat ve yön, parlaklığı ve bulunduğu takımyıldız."
       tool={<PlanetTool cities={cities} defaultCity="istanbul" initialDate={ymd} />}
       related={{
         title: "İlginizi çekebilir",

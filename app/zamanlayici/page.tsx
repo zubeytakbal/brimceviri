@@ -51,7 +51,7 @@ export default function TimerPage() {
       crumbLabel="Sayfa yolu"
       install={{ name: "Zamanlayıcı", lang: "tr" }}
       title="Online Zamanlayıcı"
-      intro="Hazır sürelerden birine dokun ya da kendi süreni gir, başlat. Süre bitince sesli uyarı alırsın. Duraklat, +1 dakika ekle ya da tam ekrana geç."
+      intro="Süre bitince sesli uyarı alırsın. "
       tool={<CountdownTimer locale="tr" />}
       related={{ title: "Diğer zaman araçları", links: related.tools.filter((t) => t.href !== "/zamanlayici") }}
       tocTitle="İçindekiler"

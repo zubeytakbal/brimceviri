@@ -60,7 +60,7 @@ export default function LabValuesPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Tahlil Değerleri Birim Çevirme"
-      intro="Kan tahlili sonucunu mg/dL ile mmol/L (ya da µmol/L, g/L) arasında çevirin: kolesterol, trigliserid, glukoz, kreatinin, üre, ürik asit, kalsiyum, bilirubin, hemoglobin, demir, B12, D vitamini ve HbA1c (% ↔ mmol/mol)."
+      intro="Kolesterol, trigliserid, glukoz, kreatinin, üre, ürik asit, kalsiyum, bilirubin, hemoglobin, demir, B12, D vitamini ve HbA1c (% ↔ mmol/mol)."
       tool={<LabValueTool />}
       related={{
         title: "İlginizi çekebilir",

@@ -77,7 +77,7 @@ export default function YasHesaplamaPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Yaş Hesaplama: Kaç Yaşındayım?"
-      intro="Doğum tarihinizi seçin: yaşınız yıl, ay, gün ve saniye saniye hesaplanır."
+      intro="Yaşınız yıl, ay, gün ve saniye saniye hesaplanır."
       tool={<YasHesaplama initialDate={initialDate} />}
       related={{
         title: "İlgili araçlar",

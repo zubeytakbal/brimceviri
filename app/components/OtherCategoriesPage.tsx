@@ -46,17 +46,14 @@ const pageCopy = {
     homeLabel: "Ana Sayfa",
     breadcrumbAriaLabel: "Sayfa yolu",
     title: "Diğer Dönüşümler",
-    description:
-      "Ana sayfada yer almayan, daha az bilinen ancak mühendislik ve bilim alanlarında gerçekten kullanılan birim kategorilerini burada bulabilirsiniz.",
+    description: "",
     searchLabel: "Dönüşüm ara",
     searchPlaceholder:
       "Ornek: newton, viskozite, beygirgucu, tork",
     searchButton: "Ac",
-    searchHint:
-      "Birim adı, sembol veya dönüşüm çifti yazarak ilgili sayfayı bulun.",
+    searchHint: "",
     searchResultsTitle: "Arama sonuçları",
-    searchResultsHint:
-      "İlk sonucu açmak için Enter kullanabilirsiniz.",
+    searchResultsHint: "",
     searchEmpty: "Eşleşen dönüşüm bulunamadı.",
     toolsTitle: "Araçlar",
     categoriesTitle: "Kategoriler",
@@ -256,7 +253,7 @@ export default function OtherCategoriesPage({
 
         <header className="other-categories-header">
           <h1>{copy.title}</h1>
-          <p>{copy.description}</p>
+          {copy.description ? <p>{copy.description}</p> : null}
         </header>
 
         {conversions.length > 0 ? (
@@ -275,7 +272,7 @@ export default function OtherCategoriesPage({
               placeholder={copy.searchPlaceholder}
               autoComplete="off"
               spellCheck={false}
-              aria-describedby={`${inputId}-hint`}
+              aria-describedby={copy.searchHint ? `${inputId}-hint` : undefined}
               aria-controls={resultsId}
               onChange={(event) => setQuery(event.target.value)}
             />
@@ -290,15 +287,17 @@ export default function OtherCategoriesPage({
             </button>
           </div>
 
-          <p className="directory-search-hint" id={`${inputId}-hint`}>
-            {copy.searchHint}
-          </p>
+          {copy.searchHint ? (
+            <p className="directory-search-hint" id={`${inputId}-hint`}>
+              {copy.searchHint}
+            </p>
+          ) : null}
 
           {query.trim() ? (
             <div className="directory-search-results-wrap">
               <div className="directory-search-results-head">
                 <strong>{copy.searchResultsTitle}</strong>
-                <span>{copy.searchResultsHint}</span>
+                {copy.searchResultsHint ? <span>{copy.searchResultsHint}</span> : null}
               </div>
 
               {searchResults.length > 0 ? (

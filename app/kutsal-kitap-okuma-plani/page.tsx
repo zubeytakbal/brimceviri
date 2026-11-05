@@ -69,7 +69,7 @@ export default function KutsalKitapOkumaPlaniPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Kutsal Kitap Okuma Planı"
-      intro={`Neyi, kaç günde okumak istediğinizi seçin; plan ${fmt(TUMU)} bölümü günlere eşit dağıtır ve her günün okumasını tarihiyle gösterir. Kitap adları Türkçe Kutsal Kitap çevirilerindeki adlardır.`}
+      intro={`Plan ${fmt(TUMU)} bölümü günlere eşit dağıtır ve her günün okumasını tarihiyle gösterir. Kitap adları Türkçe Kutsal Kitap çevirilerindeki adlardır.`}
       tool={<OkumaPlani kitaplar={KITAPLAR} derlemeGunu={derlemeGunu} />}
       related={{
         title: "İlginizi çekebilir",

@@ -41,7 +41,7 @@ export default function RedenominationPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Eski Para Yeni Para Çevirme"
-      intro="Eski Türk lirası, YTL ve TL arasında; eski ve yeni Azerbaycan manatı ile eski ve yeni Türkmen manatı arasında çevirin. Oranlar sadeleştirme kanunlarındaki sabit değerlerdir."
+      intro="Oranlar sadeleştirme kanunlarındaki sabit değerlerdir."
       tool={<RedenominationTool />}
       related={{
         title: "İlginizi çekebilir",

@@ -47,7 +47,7 @@ export default function StopwatchPage() {
       crumbLabel="Sayfa yolu"
       install={{ name: "Kronometre", lang: "tr" }}
       title="Online Kronometre"
-      intro="Başlat'a bas, süre salise hassasiyetinde işlesin. Tur kaydet, en hızlı ve en yavaş turu gör, sonuçları CSV olarak indir."
+      intro=""
       tool={<Stopwatch locale="tr" />}
       related={{ title: "Diğer zaman araçları", links: timeRelated.tr.tools.filter((t) => t.href !== "/kronometre") }}
       tocTitle="İçindekiler"

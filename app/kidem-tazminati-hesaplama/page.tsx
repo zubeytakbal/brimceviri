@@ -76,7 +76,7 @@ export default function KidemTazminatiPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title={title}
-      intro="Çalışma süreniz, brüt maaşınız ve ayrılış nedeninize göre kıdem ve ihbar tazminatınızı hesaplayın. Güncel kıdem tavanı, damga vergisi ve ihbar tazminatındaki gelir vergisi otomatik uygulanır."
+      intro="Güncel kıdem tavanı, damga vergisi ve ihbar tazminatındaki gelir vergisi otomatik uygulanır."
       tool={
         <>
           <AnnualOutdatedNotice id="tr-kidem" lang="tr" />

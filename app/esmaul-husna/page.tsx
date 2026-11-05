@@ -48,7 +48,7 @@ export default function EsmaulHusnaPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Esmaül Hüsna: Allah'ın 99 İsmi"
-      intro="Allah'ın 99 güzel ismi sırasıyla ve kısa anlamlarıyla. Aradığınız ismi ya da anlamı yazarak listeyi daraltın."
+      intro="Allah'ın 99 güzel ismi sırasıyla ve kısa anlamlarıyla. "
       tool={<EsmaListesi />}
       related={{ title: "Diğer dini araçlar", links: diniRelated(path) }}
       tocTitle="İçindekiler"

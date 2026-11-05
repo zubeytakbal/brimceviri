@@ -171,7 +171,7 @@ function rebarContent(): PageContent {
     description: `İnşaat demirinin çap, boy ve adetten kaç kg geldiğini hesaplayın; 1 ton demir kaç metre ve kaç boy, metraj listesi ve Ø6–Ø40 ağırlık tablosu. Ø12 = ${f(kg12, 3)} kg/m.`,
     h1: "İnşaat Demiri Ağırlık Hesaplama",
     intro:
-      "Demir çapını, bir parçanın boyunu ve adedini girin; toplam ağırlığı kg ve ton olarak görün. Elinizdeki tonajın kaç metre ve kaç boy ettiğini bulabilir, projedeki pozları metraj listesinde çap çap toplayabilirsiniz.",
+      "",
     sections: [
       {
         id: "tablo",
@@ -286,7 +286,7 @@ function plateContent(): PageContent {
     description: `Sac ve levha ağırlığını ölçü, kalınlık ve malzemeye göre hesaplayın. 1 mm çelik sac ${f(plateKgPerM2(1), 2)} kg/m²; 1000×2000×2 mm levha ${f(sheet, 1)} kg. Kalınlığa göre kg/m² tablosu.`,
     h1: "Sac Ağırlık Hesaplama",
     intro:
-      "Levhanın uzunluğunu, genişliğini ve kalınlığını milimetre olarak girin, malzemeyi seçin; tek levhanın ve toplam siparişin ağırlığını görün. Altta çelik, paslanmaz ve alüminyum için kalınlığa göre kg/m² tablosu var.",
+      "Altta çelik, paslanmaz ve alüminyum için kalınlığa göre kg/m² tablosu var.",
     sections: [
       {
         id: "tablo",
@@ -373,7 +373,7 @@ function pipeContent(): PageContent {
     description: `Boru ağırlığını dış çap ve et kalınlığından hesaplayın; DN seçin, malzemeyi değiştirin, su dolu ağırlığı görün. DN50 (60,3 × 3,2 mm) çelik boru ${f(kg, 2)} kg/m.`,
     h1: "Boru Ağırlık Hesaplama",
     intro:
-      "Nominal çapı (DN) seçin ya da dış çapı elle girin, et kalınlığını ve boyu yazın; borunun metre ağırlığını ve toplam ağırlığını görün. Tesisat askı hesabı için borunun su dolu ağırlığı da gösterilir.",
+      "Tesisat askı hesabı için borunun su dolu ağırlığı da gösterilir.",
     sections: [
       {
         id: "tablo",
@@ -462,7 +462,7 @@ function boxContent(): PageContent {
     description: `Kare ve dikdörtgen kutu profil ağırlığını ölçü ve et kalınlığından hesaplayın; köşe yarıçapının etkisini görün. 40×40×3 profil ≈ ${f(rounded, 2)} kg/m.`,
     h1: "Kutu Profil Ağırlık Hesaplama",
     intro:
-      "Profilin yüksekliğini, genişliğini ve et kalınlığını girin; metre ağırlığını ve toplam ağırlığı görün. Araç hem köşeleri yuvarlatılmış gerçek profile yakın değeri hem de keskin köşe varsayımının verdiği üst sınırı gösterir.",
+      "Araç hem köşeleri yuvarlatılmış gerçek profile yakın değeri hem de keskin köşe varsayımının verdiği üst sınırı gösterir.",
     sections: [
       {
         id: "tablo",

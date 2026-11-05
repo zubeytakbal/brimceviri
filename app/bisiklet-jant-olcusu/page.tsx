@@ -35,7 +35,7 @@ export default function BikeRimPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Bisiklet Jant Ölçüsü Çevirme"
-      intro="İnç ya da 700c, 650b gibi jant adını ETRTO milimetre ölçüsüne çevirin veya lastik yanağındaki ETRTO kodunu (ör. 37-622) yazıp hangi janta uyduğunu görün."
+      intro=""
       tool={<BikeRimTool />}
       related={{
         title: "İlginizi çekebilir",

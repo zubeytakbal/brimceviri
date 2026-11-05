@@ -89,7 +89,7 @@ export default function WorldMapPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Dünya Haritası"
-      intro="Bir ülkeye tıklayın: başkenti, yüzölçümü, Türkiye ile saat farkı ve Ankara'ya uzaklığı görünsün. Kıtalar, yüzölçümü ve saat farkı katmanları arasında geçiş yapabilirsiniz."
+      intro=""
       tool={
         <WorldMapExplorer
           countries={explorer}

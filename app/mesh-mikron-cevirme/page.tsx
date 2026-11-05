@@ -38,7 +38,7 @@ export default function SievePage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Mesh - Mikron Çevirme"
-      intro="Elek numarasını seçip açıklığını mikron, mm ve inç olarak görün ya da tanecik boyutunu mikron olarak girip en yakın standart eleği bulun."
+      intro=""
       tool={<SieveTool />}
       related={{
         title: "İlginizi çekebilir",

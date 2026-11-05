@@ -658,7 +658,7 @@ const ICERIK: Record<number, ZamanlayiciIcerik> = {
   180: {
     aile: "mutfak",
     giris:
-      "3 dakika mutfakta en çok rafadan yumurta ve poşet çay için kurulan süredir. Su kaynadıktan sonra başlatın; süre bitince sesli uyarı çalar.",
+      "3 dakika mutfakta en çok rafadan yumurta ve poşet çay için kurulan süredir. Süre bitince sesli uyarı çalar.",
     bolumler: [
       {
         id: "yumurta",

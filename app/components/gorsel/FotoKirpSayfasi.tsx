@@ -51,7 +51,7 @@ export function FotoKirpSayfasi() {
         ]}
         crumbLabel="Sayfa yolu"
         title="Fotoğraf Kırpma ve Döndürme"
-        intro="Fotoğrafınızı serbestçe veya Instagram, Story, YouTube gibi hazır oranlarla kırpın; 90° döndürün, yatay veya dikey çevirin. Kırpma orijinal çözünürlükte yapılır."
+        intro="Kırpma orijinal çözünürlükte yapılır."
         tool={<FotoKirp />}
         related={{
           title: "İlginizi çekebilir",

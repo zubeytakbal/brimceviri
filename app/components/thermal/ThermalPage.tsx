@@ -36,7 +36,7 @@ function uContent(): Content {
     description: `Duvar, çatı ve döşemenin U değerini (ısı geçirgenlik katsayısı) katman katman hesaplayın; yalıtım kalınlığının etkisini ve m² başına ısı kaybını görün. EN ISO 6946 yüzey dirençleriyle.`,
     h1: "U Değeri Hesaplama",
     intro:
-      "Yapı elemanının katmanlarını içten dışa doğru kalınlık ve ısıl iletkenlik (λ) değerleriyle girin. U değerini, toplam ısıl direnci, her katmanın payını ve verdiğiniz alan ile sıcaklık farkında ısı kaybını görün.",
+      "",
     sections: [
       {
         id: "formul",
@@ -113,7 +113,7 @@ function pumpContent(): Content {
     metaTitle: "Pompa Gücü Hesaplama (kW)",
     description: `Debi ve basma yüksekliğinden pompa hidrolik gücü, mil gücü ve motorun çektiği güç. m³/h veya L/s, metre veya bar girin. 10 m³/h ve 30 m için hidrolik güç ${f(Ph / 1000, 2)} kW.`,
     h1: "Pompa Gücü Hesaplama",
-    intro: "Debiyi, basma yüksekliğini (ya da basınç farkını), akışkan yoğunluğunu ve verimleri girin. Hidrolik gücü, pompanın mil gücünü ve motorun şebekeden çektiği gücü görün.",
+    intro: "",
     sections: [
       {
         id: "formul",
@@ -182,7 +182,7 @@ function lmtdContent(): Content {
     metaTitle: "LMTD Hesaplama ve Isı Eşanjörü Alanı",
     description: `Isı eşanjöründe logaritmik ortalama sıcaklık farkı (LMTD) ve gereken ısı transfer alanı. Karşı akış ve paralel akış; giriş-çıkış sıcaklıklarından adım adım hesap.`,
     h1: "LMTD Hesaplama (Isı Eşanjörü)",
-    intro: "Sıcak ve soğuk akışkanın giriş ve çıkış sıcaklıklarını girin, akış düzenini seçin. LMTD'yi ve ısı yükü ile toplam ısı transfer katsayısından gereken eşanjör alanını görün.",
+    intro: "",
     sections: [
       {
         id: "formul",
@@ -242,7 +242,7 @@ function flowContent(): Content {
     metaTitle: "Debiden Isı Yükü Hesaplama (Hava ve Su)",
     description: `Hava ve su debisinden ısıtma-soğutma gücünü ya da istenen güç için gereken debiyi hesaplayın. 1000 m³/h hava ve 10 K fark ≈ ${f(airQ, 2)} kW; 24 kW kombi için 20 K farkta su debisi.`,
     h1: "Debiden Isı Yükü Hesaplama",
-    intro: "Hava (havalandırma, klima) ya da su (kalorifer, kombi, soğutma devresi) için debi ve sıcaklık farkından ısı yükünü, ya da istenen ısı yükü için gereken debiyi hesaplayın.",
+    intro: "",
     sections: [
       {
         id: "formul",

@@ -46,7 +46,7 @@ export default function KazaOrucuPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Kaza Orucu Hesaplama"
-      intro="Hiç tutulmayan Ramazanları ve ayrıca tutulamayan günleri girin: kaza orucu borcunuzu ve haftada kaç gün tutarak ne kadar sürede bitireceğinizi görün."
+      intro=""
       tool={<KazaOrucuHesaplama />}
       related={{ title: "Diğer dini araçlar", links: diniRelated(path) }}
       tocTitle="İçindekiler"

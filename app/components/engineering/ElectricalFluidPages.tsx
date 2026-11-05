@@ -32,7 +32,7 @@ function hydraulic(): ToolArticle {
     metaTitle: "Hidrolik Silindir Hesaplama: Kuvvet ve Hız",
     description: `Hidrolik silindirin itme ve çekme kuvveti, gereken basınç, piston hızı, strok süresi ve yağ hacmi. Ø100 piston 160 bar'da ${f(cylinderForce(160, Ap) / 1000, 1)} kN iter.`,
     h1: "Hidrolik Silindir Hesaplama",
-    intro: "Piston ve rot çapını, basıncı ve pompa debisini girin. İtme ve çekme kuvvetini, istenen kuvvet için gereken basıncı, çıkış ve dönüş hızlarını, strok süresini ve strok başına yağ hacmini görün.",
+    intro: "",
     sections: [
       {
         id: "formul",
@@ -100,7 +100,7 @@ function pneumatic(): ToolArticle {
     metaTitle: "Pnömatik Silindir Kuvveti ve Hava Tüketimi",
     description: `Pnömatik silindirin itme ve çekme kuvveti, çevrim başına serbest hava ve kompresörden çekilen NL/dk tüketimi. Ø50 silindir 6 bar'da teorik ${f(cylinderForce(6, pistonArea(50)), 0)} N iter.`,
     h1: "Pnömatik Silindir Hesaplama",
-    intro: "Piston ve rot çapını, çalışma basıncını, verimi, stroku ve dakikadaki çevrim sayısını girin. Silindir kuvvetini ve kompresör seçiminde gereken hava tüketimini (NL/dk) görün.",
+    intro: "",
     sections: [
       {
         id: "kuvvet",
@@ -156,7 +156,7 @@ function kva(): ToolArticle {
     metaTitle: "kVA kW Hesaplama ve Dönüşüm",
     description: "kVA'yı kW'a, kW'ı kVA'ya ve akıma çevirin; güç faktörüyle aktif, reaktif ve görünür gücü hesaplayın. Jeneratör ve trafo gücüne göre tek ve üç fazlı akım tablosu.",
     h1: "kVA kW Hesaplama",
-    intro: "Aktif güç (kW), görünür güç (kVA) ya da akımdan birini, güç faktörünü ve gerilimi girin. Güç üçgeninin üç kenarını ve hat akımını görün.",
+    intro: "",
     sections: [
       {
         id: "fark",
@@ -208,7 +208,7 @@ function compensation(): ToolArticle {
     metaTitle: "Kompanzasyon Hesabı: kVAr ve Kondansatör",
     description: `Güç faktörünü düzeltmek için gereken kondansatör gücü (kVAr) ve faz başına µF değeri. 100 kW yükte cos φ 0,8'den 0,95'e çıkmak için ${f(compensationVar(100e3, 0.8, 0.95) / 1000, 1)} kVAr gerekir.`,
     h1: "Kompanzasyon Hesabı",
-    intro: "Yükün aktif gücünü, mevcut ve hedef güç faktörünü, gerilimi ve frekansı girin. Gereken kondansatör gücünü (kVAr), bağlantı tipine göre faz başına kapasiteyi ve görünür güçteki azalmayı görün.",
+    intro: "",
     sections: [
       {
         id: "formul",
@@ -261,7 +261,7 @@ function motorSpeed(): ToolArticle {
     metaTitle: "Motor Devri Hesaplama (Kutup Sayısı)",
     description: "Asenkron motorun senkron devrini kutup sayısı ve frekanstan, kaymayı etiket devrinden hesaplayın. 50 ve 60 Hz için kutup sayısına göre devir tablosu.",
     h1: "Motor Devri Hesaplama",
-    intro: "Şebeke frekansını ve motorun kutup sayısını seçin; senkron devri görün. Motor etiketindeki devri girerseniz kaymayı ve rotor frekansını da hesaplar.",
+    intro: "",
     sections: [
       {
         id: "formul",
@@ -312,7 +312,7 @@ function colorCode(): ToolArticle {
     metaTitle: "Direnç Renk Kodu Hesaplama (4, 5, 6 Bant)",
     description: "Direnç renk bantlarından değeri, toleransı ve sıcaklık katsayısını bulun ya da değerden renkleri hesaplayın. 4, 5 ve 6 bantlı dirençler için IEC 60062 renk tablosu.",
     h1: "Direnç Renk Kodu Hesaplama",
-    intro: "Bant sayısını seçin ve renkleri girin; direnç değerini, tolerans aralığını ve sıcaklık katsayısını görün. Ya da değeri yazın, hangi renklerle kodlandığını bulun.",
+    intro: "",
     sections: [
       {
         id: "tablo",

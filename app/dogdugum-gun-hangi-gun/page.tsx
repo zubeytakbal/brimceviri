@@ -60,7 +60,7 @@ export default function DogdugumGunRoute() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Doğduğum Gün Hangi Gündü?"
-      intro="Doğum tarihini gir; haftanın hangi günü doğduğunu, Hicri ve Rumi doğum tarihini, o gece ayın hangi evrede olduğunu ve doğum gününün önümüzdeki yıllarda hangi güne denk geleceğini gör."
+      intro=""
       tool={
         <>
           <DogumGunuBugunHero t={TODAY} />

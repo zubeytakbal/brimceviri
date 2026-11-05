@@ -51,7 +51,7 @@ export default function SeferiMesafePage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Seferî Mesafe Hesaplama"
-      intro={`İki il seçin: Karayolları Genel Müdürlüğü'nün il merkezleri arası mesafesine göre ${SEFER_KM} km sınırını geçip geçmediğinizi görün. Kendi yol mesafenizi de yazabilirsiniz.`}
+      intro={`Seferîlik sınırı ${SEFER_KM} km'dir; mesafeler Karayolları Genel Müdürlüğü'nün il merkezleri arası cetvelindendir.`}
       tool={<SeferiHesaplama />}
       related={{ title: "Diğer dini araçlar", links: diniRelated(path) }}
       tocTitle="İçindekiler"

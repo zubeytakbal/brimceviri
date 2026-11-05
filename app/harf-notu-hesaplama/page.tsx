@@ -82,7 +82,7 @@ export default function LetterGradeCalculatorPage() {
         <header className="all-conversions-header">
           <h1>Harf Notu Hesaplama</h1>
           <p>
-            100&apos;lük puanı gir: yaygın kullanılan bir referans
+            Yaygın kullanılan bir referans
             tabloya göre harf notunu ve 4&apos;lük sistem karşılığını
             gör.
           </p>

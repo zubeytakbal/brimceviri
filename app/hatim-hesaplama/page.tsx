@@ -39,7 +39,7 @@ export default function HatimPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Hatim Hesaplama"
-      intro="Kaç günde hatim etmek istediğinizi ve isterseniz okuduğunuz sayfayı girin: günlük sayfa ve cüz miktarını, okuma sürenizi görün. Grup hatmi için cüzleri kişilere dağıtın."
+      intro=""
       tool={<HatimHesaplama />}
       related={{ title: "Diğer dini araçlar", links: diniRelated(path) }}
       tocTitle="İçindekiler"

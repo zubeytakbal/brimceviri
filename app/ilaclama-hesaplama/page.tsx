@@ -47,7 +47,7 @@ export default function IlaclamaPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="İlaçlama Hesaplama (Depo Karışımı)"
-      intro="İlaç etiketindeki dozu, dekara attığınız su miktarını ve depo hacmini girin; depoya kaç ml ilaç koymanız gerektiğini, alanınız için kaç depo ve toplam ne kadar ilaç gerektiğini görün."
+      intro=""
       tool={<IlaclamaHesaplama />}
       related={{ title: "Diğer tarım ve hayvancılık araçları", links: tarimRelated(path) }}
       tocTitle="İçindekiler"

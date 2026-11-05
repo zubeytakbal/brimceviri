@@ -39,7 +39,7 @@ export default function BeaufortPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Bofor (Beaufort) Çevirme"
-      intro="Rüzgâr hızını km/h, knot, m/s ya da mph olarak girin, bofor derecesini görün; ya da bofor derecesini seçip hız aralığını ve deniz durumunu öğrenin."
+      intro=""
       tool={<BeaufortTool />}
       related={{
         title: "İlginizi çekebilir",

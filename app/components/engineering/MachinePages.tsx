@@ -32,7 +32,7 @@ function threadArticle(): ToolArticle {
     description: `M1–M64 metrik vida adımı, kılavuz matkap çapı, geçiş deliği ve anahtar ağzı tablosu. M8 adımı ${f(m8.P, 2)} mm, kılavuz matkabı ${f(m8.tapDrill, 1)} mm; M10 için ${f(m10.tapDrill, 1)} mm.`,
     h1: "Metrik Vida Tablosu ve Kılavuz Matkap Çapları",
     intro:
-      "Vida ölçüsünü seçin; diş adımını, kılavuz matkap çapını, cıvata geçiş deliğini, anahtar ağzını, alyan ölçüsünü ve diş çaplarını görün. Elinizdeki vidanın ölçüsünü bilmiyorsanız kumpasla ölçtüğünüz çapı girerek bulabilirsiniz.",
+      "",
     sections: [
       {
         id: "kaba-dis",
@@ -139,7 +139,7 @@ function boltClassArticle(): ToolArticle {
     description: `8.8, 10.9 ve 12.9 cıvata ne demek, kaç kN'da kopar? ISO 898-1 değerleri ve ölçülere göre yük tablosu. 8.8 M12 cıvatanın en az kopma yükü ${kN(m12b.breaking)} kN.`,
     h1: "Cıvata Mukavemet Sınıfları (8.8, 10.9, 12.9)",
     intro:
-      "Cıvata ölçüsünü ve sınıfını seçin; en az kopma, akma ve deneme yükünü görün. Cıvata başındaki 8.8 ya da 10.9 gibi kodu yazarak çekme ve akma dayanımının ne olduğunu da çözebilirsiniz.",
+      "",
     sections: [
       {
         id: "kod",
@@ -232,7 +232,7 @@ function pipeThreadArticle(): ToolArticle {
     description: `1/8″'ten 4″'e BSP (G, R) ve NPT boru dişi dış çapı, diş sayısı ve DN karşılığı. 1/2″ boru dişinin dış çapı ${f(half.bspMajor, 2)} mm, inç başına ${half.bspTpi} diş.`,
     h1: "Boru Dişi Ölçüleri (BSP ve NPT)",
     intro:
-      "İnç ölçüsünü seçin; BSP ve NPT dişin dış çapını, inç başına diş sayısını, adımını ve boru anma çapını (DN) görün. Elinizdeki rakor ya da borunun dişini tanımak için kumpasla ölçtüğünüz çapı girin.",
+      "",
     sections: [
       {
         id: "neden",

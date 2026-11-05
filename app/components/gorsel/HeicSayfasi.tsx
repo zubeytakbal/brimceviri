@@ -57,7 +57,7 @@ export function HeicSayfasi() {
         ]}
         crumbLabel="Sayfa yolu"
         title="HEIC JPG Çevirme"
-        intro="iPhone'da çekilen HEIC fotoğrafları JPG'ye çevirin; Windows'ta, e-postada ve başvuru sitelerinde sorunsuz açılsın. Birden fazla fotoğrafı aynı anda dönüştürüp ZIP olarak indirin."
+        intro=""
         tool={
           <GorselDonusturucu
             hedef="jpg"

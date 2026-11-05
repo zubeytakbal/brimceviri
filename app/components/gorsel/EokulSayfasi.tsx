@@ -66,7 +66,7 @@ export function EokulSayfasi() {
         ]}
         crumbLabel="Sayfa yolu"
         title="e-Okul Fotoğraf Küçültme"
-        intro="Öğrenci fotoğraflarını e-Okul ve MEBBİS'in istediği 133×171 piksel, 20–150 KB JPG ölçüsüne getirin. Program kurmanıza gerek yok; bütün sınıfın fotoğraflarını tek seferde hazırlayıp ZIP olarak indirin."
+        intro="Program kurmanıza gerek yok."
         tool={<VesikalikArac olcu={EOKUL_OLCU} />}
         related={{
           title: "İlginizi çekebilir",

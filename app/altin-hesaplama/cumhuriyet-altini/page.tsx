@@ -66,7 +66,7 @@ export default function CumhuriyetAltiniPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Cumhuriyet altını kaç gram?"
-      intro={`Atatürk portreli Cumhuriyet altını (Ata lira) ${gr(ata.gram)} gram ve 22 ayardır. Adet girerek toplam ağırlığı, has altını ve güncel gram fiyatıyla değerini hesaplayın.`}
+      intro={`Atatürk portreli Cumhuriyet altını (Ata lira) ${gr(ata.gram)} gram ve 22 ayardır. `}
       tool={<AltinHesaplama baslangic="cumhuriyet-altini" />}
       related={{
         title: "İlginizi çekebilir",

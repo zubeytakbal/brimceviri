@@ -43,7 +43,7 @@ export default function KazaTakipPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Kaza Namazı Takip Çizelgesi"
-      intro="Her vakit için kaza borcunuzu yazın, kıldıkça +1'e basın. Kalan vakit ve rekât sayısını ve ilerlemenizi görün; kayıtlar üyelik olmadan bu cihazda saklanır."
+      intro="Kayıtlar üyelik olmadan bu cihazda saklanır."
       tool={<KazaTakip />}
       related={{ title: "Diğer dini araçlar", links: diniRelated(path) }}
       tocTitle="İçindekiler"

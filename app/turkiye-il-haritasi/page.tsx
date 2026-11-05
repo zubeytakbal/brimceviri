@@ -59,7 +59,7 @@ export default function TurkeyProvinceMapPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Türkiye İl Haritası"
-      intro="81 ilin plaka kodları, coğrafi bölgeleri ve rakımları tek haritada. Bir ile tıklayarak il merkezi bilgilerini, diğer illere mesafeleri ve rakımını görün."
+      intro="81 ilin plaka kodları, coğrafi bölgeleri ve rakımları tek haritada. "
       tool={
         <ProvinceMapExplorer
           map={<TurkeyMap ariaLabel="Türkiye il haritası" layers={layers} labels="plate" selectable titleFor={(p) => `${p.plate} ${p.name} (${p.region})`} />}

@@ -257,7 +257,7 @@ export function DateDiffPage({ lang }: { lang: Lang }) {
       title={tr ? "İki Tarih Arası Gün Hesaplama" : "Days Between Dates"}
       intro={
         tr
-          ? "İki tarih seçin: aradaki gün, hafta, ay ve yıl anında hesaplansın. İş günü, hafta sonu ve resmî tatil sayısı da gösterilir."
+          ? "İş günü, hafta sonu ve resmî tatil sayısı da gösterilir."
           : "Pick two dates to see the days between them, in weeks, months and years, with business days and holidays counted too."
       }
       tool={<DateDiffCalculator lang={lang} />}
@@ -400,7 +400,7 @@ export function BusinessDayPage({ lang }: { lang: Lang }) {
       title={tr ? "İş Günü Hesaplama" : "Business Day Calculator"}
       intro={
         tr
-          ? "İki tarih arasındaki iş gününü resmî tatiller düşülerek hesaplayın ya da bir tarihe iş günü ekleyerek teslim tarihini bulun."
+          ? ""
           : "Count working days between two dates, or add business days to a date to find a deadline. Weekends and US federal holidays are skipped."
       }
       tool={<BusinessDayCalculator lang={lang} />}
@@ -522,7 +522,7 @@ export function DateAddPage({ lang }: { lang: Lang }) {
       title={tr ? "Tarihe Gün Ekleme ve Çıkarma" : "Date Calculator: Add or Subtract Days"}
       intro={
         tr
-          ? "Bir tarihe gün, hafta, ay ya da yıl ekleyin veya çıkarın; sonuç tarihi, haftanın günü ve hafta numarasıyla birlikte görün."
+          ? "Bir tarihe gün, hafta, ay ya da yıl ekleyin veya çıkarın."
           : "Add or subtract days, weeks, months or years from any date and see the resulting date, weekday and week number."
       }
       tool={<DateAddCalculator lang={lang} />}
@@ -704,7 +704,7 @@ export function WeekNumberPage({ lang }: { lang: Lang }) {
       title={tr ? "Bugün Yılın Kaçıncı Haftası?" : "What Week Is It?"}
       intro={
         tr
-          ? "Bugünün hafta numarası, yılın kaçıncı günü ve yıl sonuna kalan gün. Herhangi bir tarihin haftasını bulun ya da tüm yılın hafta tablosuna bakın."
+          ? "Bugünün hafta numarası, yılın kaçıncı günü ve yıl sonuna kalan gün. "
           : "Today's week number, the day of the year and days left in the year. Look up the week of any date or browse this year's full week table."
       }
       tool={

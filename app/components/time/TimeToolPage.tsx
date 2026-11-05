@@ -68,7 +68,7 @@ export default function TimeToolPage({
 
         <header className="all-conversions-header">
           <h1>{title}</h1>
-          <p>{intro}</p>
+          {intro ? <p>{intro}</p> : null}
         </header>
 
         {tool}

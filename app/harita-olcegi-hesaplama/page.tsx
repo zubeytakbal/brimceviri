@@ -55,7 +55,7 @@ export default function MapScalePage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Harita Ölçeği Hesaplama"
-      intro="Haritadaki uzunluğu gerçek uzunluğa, gerçek uzunluğu haritaya çevirin; ölçeği bulun, alan hesaplayın ya da ölçek değiştirin. Her sonuç adım adım çözümüyle gösterilir."
+      intro="Her sonuç adım adım çözümüyle gösterilir."
       tool={<MapScaleCalculator />}
       related={{ title: "İlginizi çekebilir", links: geoRelated(path) }}
       tocTitle="İçindekiler"

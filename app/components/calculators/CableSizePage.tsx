@@ -125,7 +125,7 @@ const copy: Record<CalculatorLocale, PageCopy> = {
     breadcrumbLabel: "Sayfa yolu",
     title: "Kablo Kesiti Hesaplama",
     description:
-      "Akım, mesafe, faz tipi ve izin verilen gerilim dusumune göre gerekli minimum iletken kesitini hesaplayın; sonuç en yakın standart keside de yuvarlanır.",
+      "",
     heroEyebrow: "ELEKTRİK HESAPLAYICISI",
     heroResultHeading: "Kesit sonucu",
     introHeading: "Bu kablo kesiti aracı ne için kullanılır?",

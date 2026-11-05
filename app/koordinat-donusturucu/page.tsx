@@ -57,7 +57,7 @@ export default function CoordinateConverterPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Koordinat Dönüştürücü"
-      intro="Koordinatı istediğiniz biçimde yazın ya da konumunuzu bulun: ondalık derece, derece-dakika-saniye, UTM ve Türkiye için ITRF96 3° TM karşılıkları anında hesaplansın."
+      intro=""
       tool={<CoordinateConverter />}
       related={{ title: "İlginizi çekebilir", links: geoRelated(path) }}
       tocTitle="İçindekiler"

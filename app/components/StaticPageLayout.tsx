@@ -57,7 +57,7 @@ export default function StaticPageLayout({
 
         <header className="unit-page-header">
           <h1>{title}</h1>
-          <p>{description}</p>
+          {description ? <p>{description}</p> : null}
         </header>
 
         <div className="unit-page-content">

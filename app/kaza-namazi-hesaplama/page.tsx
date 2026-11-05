@@ -48,7 +48,7 @@ export default function KazaNamaziPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Kaza Namazı Hesaplama"
-      intro="Namaz kılınmayan süreyi yıl, ay ve gün olarak ya da tarih aralığı olarak girin. Kaza borcunuzu vakit ve rekât olarak, günde kaç vakit kılarak ne zaman bitireceğinizle birlikte görün."
+      intro=""
       tool={<KazaNamaziHesaplama />}
       related={{ title: "Diğer dini araçlar", links: diniRelated(path) }}
       tocTitle="İçindekiler"

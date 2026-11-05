@@ -75,7 +75,7 @@ export default function KirkMevlidiPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="40 Mevlidi ve 52. Gece Hesaplama"
-      intro="Vefat tarihini girin; ölünün üçü, yedisi, kırkı ve elli ikisi hangi güne denk geliyor, gecesi hangi akşam, Hicri tarihi ne? Sayımın vefat gününden mi defin gününden mi başlayacağını siz seçin."
+      intro="Ölünün üçü, yedisi, kırkı ve elli ikisi hangi güne denk geliyor, gecesi hangi akşam, Hicri tarihi ne? "
       tool={<AnmaGunleriHesaplama initialDate={initialDate} />}
       related={{ title: "Diğer dini araçlar", links: diniRelated(path) }}
       tocTitle="İçindekiler"

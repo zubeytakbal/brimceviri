@@ -72,7 +72,7 @@ export default function PaperPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Kâğıt Boyutları"
-      intro="Bir kâğıt boyutu seçin; ölçüsünü mm, cm ve inç olarak, istediğiniz çözünürlükte piksel karşılığını ve gramaja göre bir yaprağın ağırlığını görün."
+      intro=""
       tool={<PaperTool />}
       related={{
         title: "İlginizi çekebilir",

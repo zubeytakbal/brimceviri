@@ -112,7 +112,7 @@ export default function DateConverterPage({ lang }: { lang: "tr" | "en" }) {
       title={tr ? "Hicri, Rumi ve Miladi Tarih Çevirici" : "Hijri Date Converter (Islamic ↔ Gregorian)"}
       intro={
         tr
-          ? `Eski tapu, nüfus ve arşiv belgelerindeki Rumi ya da Hicri tarihleri gün gün Miladiye çevir; ya da tersini yap. Bugün: ${hijriToday.day} ${HIJRI_MONTHS_TR[hijriToday.month - 1]} ${hijriToday.year} (Hicri).`
+          ? `Ya da tersini yap. Bugün: ${hijriToday.day} ${HIJRI_MONTHS_TR[hijriToday.month - 1]} ${hijriToday.year} (Hicri).`
           : `Convert Hijri (Islamic) dates to Gregorian and back, day by day — plus the Ottoman Rumi calendar used in records from 1840 to 1925. Today is ${hijriToday.day} ${HIJRI_MONTHS_EN[hijriToday.month - 1]} ${hijriToday.year} AH.`
       }
       tool={<DateConverter lang={lang} copy={COPY[lang]} />}

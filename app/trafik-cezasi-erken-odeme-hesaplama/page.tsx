@@ -67,7 +67,7 @@ export default function ErkenOdemePage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Trafik Cezası Erken Ödeme İndirimi Hesaplama"
-      intro="Ceza tutarını ve cezanın size tebliğ edildiği günü girin; %25 indirimli tutarı, indirimin son gününü ve kaç gün kaldığını görün."
+      intro=""
       tool={<ErkenOdemeHesaplama initialDate={initialDate} />}
       related={{ title: "Diğer araç sahibi araçları", links: aracRelated(path) }}
       tocTitle="İçindekiler"

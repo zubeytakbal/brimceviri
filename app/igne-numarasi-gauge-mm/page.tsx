@@ -38,7 +38,7 @@ export default function NeedlePage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="İğne ve Branül Numarası Çevirme"
-      intro="İğne ve branül numarasını (gauge, G) ya da sonda ve kateter ölçüsünü (French, Fr) milimetreye çevirin veya bir dış çapı milimetre olarak girip en yakın numarayı bulun. Bu sayfa yalnızca ölçü çevirisi yapar."
+      intro="Bu sayfa yalnızca ölçü çevirisi yapar."
       tool={
         <GaugeTool
           tables={[

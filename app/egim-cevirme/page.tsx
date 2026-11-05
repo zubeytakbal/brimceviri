@@ -42,7 +42,7 @@ export default function SlopePage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Eğim Çevirme"
-      intro="Yüzde, derece, binde ya da 1:n oranı olarak verilmiş bir eğimi diğer gösterimlere çevirin. Yatay mesafeyi girerseniz yükseklik farkını ve eğik uzunluğu da görürsünüz."
+      intro=""
       tool={<SlopeTool />}
       related={{
         title: "İlginizi çekebilir",

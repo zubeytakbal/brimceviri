@@ -133,7 +133,7 @@ const pageCopy: Record<
     breadcrumbLabel: "Sayfa yolu",
     title: "Reynolds Sayısı Hesaplayıcısı",
     description:
-      "Re = ρ × v × D / μ bağıntısıyla Reynolds sayısını, hızı veya karakteristik çapı hesaplayın. Sonuç aynı tasarım dilinde, SI eşdeğeri ve boru içi akış için yaklaşık rejim yorumu ile sunulur.",
+      "",
     heroEyebrow: "MÜHENDİSLİK HESAPLAYICISI",
     heroResultHeading: "Hesaplama sonucu",
     introHeading: "Reynolds sayısı neden önemlidir?",

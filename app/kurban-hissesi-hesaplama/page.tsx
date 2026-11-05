@@ -34,7 +34,7 @@ export default function KurbanPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Kurban Hissesi Hesaplama"
-      intro={`Hayvanın bedelini ve kesim, bakım, nakliye gibi masrafları girin; hisse sayısını seçin (büyükbaşta en çok ${BUYUKBAS_MAX_HISSE}). Hisse başına düşen tutarı ve isterseniz et payını görün.`}
+      intro={`Büyükbaş bir hayvana en çok ${BUYUKBAS_MAX_HISSE} kişi ortak olabilir.`}
       tool={<KurbanHissesiHesaplama />}
       related={{ title: "Diğer dini araçlar", links: diniRelated(path) }}
       tocTitle="İçindekiler"

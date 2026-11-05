@@ -61,7 +61,7 @@ export function FotoKucultSayfasi() {
         ]}
         crumbLabel="Sayfa yolu"
         title="Fotoğraf Boyutu Küçültme"
-        intro="Fotoğrafınızı başvuru formunun, e-postanın veya web sitenizin istediği KB sınırının altına indirin. Hedefi seçin, fotoğrafları bırakın; araç kaliteyi mümkün olan en yüksek seviyede tutarak küçültür."
+        intro="Araç kaliteyi mümkün olan en yüksek seviyede tutarak küçültür."
         tool={<FotoKucult />}
         related={{
           title: "İlginizi çekebilir",

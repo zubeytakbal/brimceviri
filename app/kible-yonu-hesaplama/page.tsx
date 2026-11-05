@@ -81,7 +81,7 @@ export default function KiblePage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Kıble Yönü Bulma"
-      intro="Telefonu yere paralel tutun, “Pusulayı başlat”a dokunun: ekran kıbleye kaç derece dönmeniz gerektiğini söyler, kıbleye dönünce telefon titrer."
+      intro="Ekran kıbleye kaç derece dönmeniz gerektiğini söyler, kıbleye dönünce telefon titrer."
       tool={<CanliPusula mod="kible" />}
       related={{ title: "İlgili araçlar", links: ilgili }}
       tocTitle="İçindekiler"

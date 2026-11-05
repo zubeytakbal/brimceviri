@@ -61,7 +61,7 @@ export default function FidanSayisiPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Dekara Fidan ve Fide Sayısı Hesaplama"
-      intro="Sıra arası ve sıra üzeri dikim mesafesini girin; dekara (dönüme) kaç fidan, ağaç ya da fide düştüğünü ve tarlanız için yedekle birlikte kaç adet almanız gerektiğini görün. Üçgen (şeşbeş) dikim de hesaplanır."
+      intro="Üçgen (şeşbeş) dikim de hesaplanır."
       tool={<FidanSayisiHesaplama />}
       related={{ title: "Diğer tarım ve hayvancılık araçları", links: tarimRelated(path) }}
       tocTitle="İçindekiler"

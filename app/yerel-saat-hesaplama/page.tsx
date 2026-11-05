@@ -55,7 +55,7 @@ export default function LocalTimePage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Yerel Saat Farkı Hesaplama"
-      intro="İki boylamın ya da iki şehrin yerel saat farkını adım adım bulun, saat farkından boylam farkını hesaplayın. Bulunduğunuz yerde Güneş'e göre saatin kaç olduğunu da görebilirsiniz."
+      intro=""
       tool={<LocalTimeCalculator />}
       related={{ title: "İlginizi çekebilir", links: geoRelated(path) }}
       tocTitle="İçindekiler"

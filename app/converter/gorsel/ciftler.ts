@@ -29,7 +29,7 @@ const TUM_CIFTLER: GorselCift[] = [
     aciklama:
       "PNG dosyalarını tarayıcınızda JPG'ye çevirin: dosya sunucuya yüklenmez, toplu dönüştürme, kalite ayarı ve saydam alan rengi seçimi.",
     giris:
-      "PNG görsellerinizi saniyeler içinde JPG'ye çevirin. Dosyalar bilgisayarınızdan çıkmaz; birden fazla dosyayı aynı anda dönüştürüp tek ZIP olarak indirebilirsiniz.",
+      "Dosyalar bilgisayarınızdan çıkmaz.",
     bolumler: [
       {
         id: "neden",
@@ -87,7 +87,7 @@ const TUM_CIFTLER: GorselCift[] = [
     aciklama:
       "JPG fotoğraflarınızı tarayıcınızda PNG'ye çevirin: sunucuya yükleme yok, toplu dönüştürme, ZIP indirme. PNG'ye geçmenin ne zaman işe yaradığını öğrenin.",
     giris:
-      "JPG ve JPEG dosyalarınızı PNG formatına çevirin; WebP gibi tarayıcınızın açabildiği diğer görselleri de seçebilirsiniz. Dönüştürme tarayıcınızda yapılır; birden fazla dosyayı aynı anda seçip tek ZIP olarak indirebilirsiniz.",
+      "Dönüştürme tarayıcınızda yapılır.",
     bolumler: [
       {
         id: "ne-zaman",
@@ -139,7 +139,7 @@ const TUM_CIFTLER: GorselCift[] = [
     aciklama:
       "WebP görselleri tarayıcınızda JPG'ye çevirin: sunucuya yükleme yok, toplu dönüştürme, kalite ayarı. İnternetten indirdiğiniz WebP dosyaları her programda açılsın.",
     giris:
-      "İnternetten kaydettiğiniz WebP görselleri açılmıyor mu? Tarayıcınızda JPG'ye çevirin; dosyalar bilgisayarınızdan çıkmaz, birden fazla dosyayı tek seferde dönüştürebilirsiniz.",
+      "Dosyalar bilgisayarınızdan çıkmaz.",
     bolumler: [
       {
         id: "neden-webp",
@@ -190,7 +190,7 @@ const TUM_CIFTLER: GorselCift[] = [
     aciklama:
       "JPG fotoğrafları tarayıcınızda WebP'ye çevirin ve dosya boyutunu küçültün: sunucuya yükleme yok, toplu dönüştürme, kalite ve genişlik ayarı.",
     giris:
-      "Web siteniz, blogunuz veya e-ticaret mağazanız için JPG görselleri WebP'ye çevirin. Kaliteyi ve en fazla genişliği ayarlayarak sayfalarınızı hızlandırın; dosyalar bilgisayarınızdan çıkmaz.",
+      "Dosyalar bilgisayarınızdan çıkmaz.",
     bolumler: [
       {
         id: "avantaj",
@@ -242,7 +242,7 @@ const TUM_CIFTLER: GorselCift[] = [
     aciklama:
       "WebP görselleri tarayıcınızda PNG'ye çevirin, saydam arka plan korunur: sunucuya yükleme yok, toplu dönüştürme ve ZIP indirme.",
     giris:
-      "Saydam arka planlı WebP logoları, çıkartmaları ve simgeleri PNG'ye çevirin; saydamlık korunur. Dönüştürme tarayıcınızda yapılır, dosyalarınız internete gönderilmez.",
+      "Saydamlık korunur. Dönüştürme tarayıcınızda yapılır, dosyalarınız internete gönderilmez.",
     bolumler: [
       {
         id: "neden-png",
@@ -292,7 +292,7 @@ const TUM_CIFTLER: GorselCift[] = [
     aciklama:
       "PNG görselleri tarayıcınızda WebP'ye çevirin: saydamlık korunur, dosya küçülür. Sunucuya yükleme yok, toplu dönüştürme, kalite ayarı.",
     giris:
-      "Web sitenizdeki PNG görselleri saydamlığı koruyarak WebP'ye çevirin ve sayfalarınızı hızlandırın. Dosyalar tarayıcınızda işlenir, internete yüklenmez.",
+      "Dosyalar tarayıcınızda işlenir, internete yüklenmez.",
     bolumler: [
       {
         id: "avantaj",

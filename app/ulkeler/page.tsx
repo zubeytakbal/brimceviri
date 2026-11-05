@@ -53,7 +53,7 @@ export default function CountriesPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Ülkeler ve Başkentleri"
-      intro={`Dünyadaki ${worldCountries.length} ülkenin başkenti, yüzölçümü ve Türkiye ile saat farkı. Ayrıntılar için ülkenin adına tıklayın ya da dünya haritasını kullanın.`}
+      intro={`Dünyadaki ${worldCountries.length} ülkenin başkenti, yüzölçümü ve Türkiye ile saat farkı. `}
       tool={
         <div className="country-region-nav">
           {REGIONS.map((r) => (

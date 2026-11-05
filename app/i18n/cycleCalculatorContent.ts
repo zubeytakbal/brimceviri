@@ -47,7 +47,7 @@ export const CYCLE_CONTENT: Record<CycleLang, Content> = {
     title: "Yumurtlama ve Adet Takvimi Hesaplama",
     seoTitle: "Yumurtlama Hesaplama: Adet Takvimi ve Doğurgan Günler",
     description: "Son adet tarihini ve döngü uzunluğunu gir: yumurtlama günü, doğurgan dönem, sonraki adet tarihi, gebelik testi günü ve renkli adet takvimi.",
-    intro: "Son adetinin ilk gününü, döngü uzunluğunu ve adet süresini gir; yumurtlama gününü, gebe kalma şansının en yüksek olduğu günleri, sonraki adetini ve renkli takvimi gör.",
+    intro: "",
     howTitle: "Yumurtlama günü nasıl hesaplanır?",
     how: [
       "Yumurtlama, bir sonraki adetten yaklaşık 14 gün önce olur. Bu yüzden döngü uzunluğundan 14 çıkarılır: 28 günlük döngüde 14. gün, 32 günlük döngüde 18. gün.",

@@ -221,7 +221,7 @@ export default function VoltageDropCalculator({
         <div className="conversion-hero-tool calculator-hero-tool">
           <p className="calculator-hero-kicker">{eyebrow}</p>
           <h1>{title}</h1>
-          <p className="conversion-hero-description">{description}</p>
+          {description ? <p className="conversion-hero-description">{description}</p> : null}
 
           <div className="engineering-calculator-card">
             <div className="engineering-targets">

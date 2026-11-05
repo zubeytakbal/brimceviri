@@ -112,7 +112,7 @@ const copy: Record<CalculatorLocale, PageCopy> = {
     breadcrumbLabel: "Sayfa yolu",
     title: "Ohm Yasası Hesaplayıcısı",
     description:
-      "V = I × R bağıntısıyla gerilimi, akımı veya direnci hesaplayın. Sonuç okunabilir birimle, SI eşdeğeri ve yerine koyulmuş formülle birlikte gösterilir.",
+      "",
     heroEyebrow: "MÜHENDİSLİK HESAPLAYICISI",
     heroResultHeading: "Hesaplama sonucu",
     introHeading: "Ohm Yasası hesabı ne için kullanılır?",

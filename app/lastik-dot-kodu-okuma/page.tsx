@@ -59,7 +59,7 @@ export default function DotPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="Lastik Üretim Tarihi (DOT Kodu) Okuma"
-      intro="Lastiğin yanağındaki DOT kodunun son 4 hanesini yazın; lastiğin hangi hafta üretildiğini, kaç yaşında olduğunu ve değiştirmeniz gerekip gerekmediğini görün."
+      intro=""
       tool={<DotKoduOkuma initialDate={initialDate} />}
       related={{ title: "Diğer araç sahibi araçları", links: aracRelated(path) }}
       tocTitle="İçindekiler"

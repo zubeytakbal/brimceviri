@@ -59,7 +59,7 @@ export default function YirmiDortYirmiIkiPage() {
       ]}
       crumbLabel="Sayfa yolu"
       title="24 ayar altını 22 ayara çevirme"
-      intro="Gram altın (24 ayar) bileziğe ya da takıya dönüşürken içine alaşım katılır: has altın aynı kalır, ağırlık artar. Gramı girin; kaç gram 22 ayar ettiğini ve eklenen alaşımı görün."
+      intro="Gram altın (24 ayar) bileziğe ya da takıya dönüşürken içine alaşım katılır: has altın aynı kalır, ağırlık artar."
       tool={<AyarCevirici kaynak={24} hedef={22} />}
       related={{
         title: "İlginizi çekebilir",

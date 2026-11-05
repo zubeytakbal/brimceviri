@@ -1,3 +1,8 @@
+import {
+  ENGINEERING_ROADMAP_TR,
+  ENGINEERING_ROADMAP_TR_LEAD,
+  ENGINEERING_ROADMAP_TR_TITLE,
+} from "../converter/engineeringRoadmapTr";
 import Link from "@/app/components/SiteLink";
 import { getElectricalHubPath } from "../converter/engineeringHubs";
 import { germanStandaloneTools } from "../i18n/germanStandaloneTools";
@@ -1217,6 +1222,27 @@ export default function EngineeringHubPage({
               ))}
             </div>
           </div>
+
+          {locale === "tr" && (
+            <section className="conversion-section" id="yol-haritasi">
+              <h2>{ENGINEERING_ROADMAP_TR_TITLE}</h2>
+              <p className="tool-list-lead">{ENGINEERING_ROADMAP_TR_LEAD}</p>
+              <ul className="tool-list">
+                {ENGINEERING_ROADMAP_TR.map((item) => (
+                  <li key={item.groupId}>
+                    <a href={`#${item.groupId}`} className="tool-list-title">
+                      {item.title}
+                    </a>
+                    <span className="tool-list-kind">{item.priority}</span>
+                    <p>
+                      {item.plannedTools.join(", ")}
+                      {item.standards ? ` — ${item.standards}` : ""}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
 
           <section className="conversion-section">
             <h2>{content.guidesTitle}</h2>

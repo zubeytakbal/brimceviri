@@ -1,5 +1,6 @@
 import Link from "@/app/components/SiteLink";
 import { getElectricalHubPath } from "../converter/engineeringHubs";
+import { engineeringConnectionsTr } from "../converter/engineeringConnections";
 import { germanStandaloneTools } from "../i18n/germanStandaloneTools";
 import type { SiteIconName } from "./siteIcons";
 
@@ -1228,6 +1229,26 @@ export default function EngineeringHubPage({
               ))}
             </ul>
           </section>
+
+          {locale === "tr" && (
+            <section className="conversion-section">
+              <h2>İlgili dönüşümler</h2>
+              {engineeringConnectionsTr.map((connection) => (
+                <div key={connection.groupId}>
+                  <h3>
+                    <a href={`#${connection.groupId}`}>{connection.title}</a>
+                  </h3>
+                  <ul className="related-conversion-list engineering-hub-guides">
+                    {connection.conversions.map((link) => (
+                      <li key={link.href + link.label}>
+                        <Link href={link.href}>{link.label}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </section>
+          )}
 
           {content.relatedToolsLinks && content.relatedToolsLinks.length > 0 && (
             <section className="conversion-section">

@@ -44,3 +44,6 @@ next-env.d.ts
 
 # local project backups / archives
 *.zip
+
+# Search Console verisi içeren karar taslakları (depo herkese açık)
+docs/url-karar/

@@ -97,7 +97,7 @@ export const birimGruplari: BirimGrubu[] = [
  * /<kategori>/<cift> adresindedir; eski /kategoriler/<kategori> ve /<cift> adresleri
  * Cloudflare Bulk Redirects ile 301 yonlenir (scripts/bulkRedirects.ts).
  */
-export const yeniYapiKategorileri: ReadonlySet<string> = new Set(["uzunluk"]);
+export const yeniYapiKategorileri: ReadonlySet<string> = new Set(["uzunluk", "alan"]);
 
 /** Yeni kabugun (ust menu, yan panel, alt bilgi) cizilecegi Turkce yollar. */
 export function isYeniYapiYolu(pathname: string) {

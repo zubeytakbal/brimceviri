@@ -27,13 +27,12 @@ import { parseMolecularFormula } from "../converter/molecularFormulaParser";
 import { calculateAverageAtomicMass } from "../converter/atomicMassCalculator";
 
 export type KartMalzeme = { id: string; ad: string; yogunluk: number };
-export type KartGezegen = { id: string; ad: string; oran: number };
 
 type Arac =
   | "beton" | "demir" | "fayans" | "boya" | "parke" | "merdiven" | "hafriyat" | "kereste" | "emsal"
   | "kw-amper" | "kva-kw" | "ohm" | "tuketim" | "kaynak" | "psu"
   | "civata" | "boru" | "basinc" | "kesme" | "genlesme" | "malzeme" | "litre-kilo"
-  | "yuzde" | "ebob" | "pisagor" | "mol" | "denklem" | "atom" | "isi" | "gezegen";
+  | "yuzde" | "ebob" | "pisagor" | "mol" | "denklem" | "atom" | "isi";
 
 // Menüdeki Mühendislik ve Bilim başlıklarının kartta hesaplanabilen araçları, konulara göre gruplu.
 const GRUPLAR: Array<{ ad: string; araclar: Array<{ id: Arac; ad: string }> }> = [
@@ -84,7 +83,6 @@ const GRUPLAR: Array<{ ad: string; araclar: Array<{ id: Arac; ad: string }> }> =
       { id: "denklem", ad: "2 bilinmeyenli denklem" },
       { id: "atom", ad: "Ortalama atom kütlesi" },
       { id: "isi", ad: "Isı enerjisi (Q = m·c·ΔT)" },
-      { id: "gezegen", ad: "Gezegenlerde kaç kilo?" },
     ],
   },
 ];
@@ -311,29 +309,6 @@ function Pisagor() {
       </div>
       <Sonuc metin={`c = ${bicim(Math.hypot(sayiOku(a), sayiOku(b)), 4)}`} />
       <Alt not="c² = a² + b²" href="/bilim-hesaplayicilari/geometri/pisagor-teoremi-hesaplama" etiket="Pisagor teoremi" />
-    </>
-  );
-}
-
-function Gezegen({ gezegenler }: { gezegenler: KartGezegen[] }) {
-  const [kg, setKg] = useState("70");
-  const [id, setId] = useState(gezegenler.some((g) => g.id === "mars") ? "mars" : gezegenler[0].id);
-  const g = gezegenler.find((x) => x.id === id)!;
-  return (
-    <>
-      <Alan etiket="Dünya'daki kilonuz" birim="kg" deger={kg} degis={setKg} />
-      <label className="hizli-alan">
-        <span>Gök cismi</span>
-        <select value={id} onChange={(e) => setId(e.target.value)}>
-          {gezegenler.map((x) => (
-            <option key={x.id} value={x.id}>
-              {x.ad}
-            </option>
-          ))}
-        </select>
-      </label>
-      <Sonuc metin={`${bicim(sayiOku(kg) * g.oran, 1)} kg`} />
-      <Alt not={`Yerçekimi Dünya'nın ${bicim(g.oran, 2)} katı`} href="/gezegenlerde-kac-kilo-gelirim" etiket="Gezegenlerde kilo" />
     </>
   );
 }
@@ -729,12 +704,10 @@ function Kart({
   arac,
   degis,
   malzemeler,
-  gezegenler,
 }: {
   arac: Arac;
   degis: (a: Arac) => void;
   malzemeler: KartMalzeme[];
-  gezegenler: KartGezegen[];
 }) {
   return (
     <div className="hizli-kart">
@@ -761,7 +734,6 @@ function Kart({
       {arac === "yuzde" ? <Yuzde /> : null}
       {arac === "ebob" ? <Ebob /> : null}
       {arac === "pisagor" ? <Pisagor /> : null}
-      {arac === "gezegen" ? <Gezegen gezegenler={gezegenler} /> : null}
       {arac === "fayans" ? <Fayans /> : null}
       {arac === "boya" ? <Boya /> : null}
       {arac === "parke" ? <Parke /> : null}
@@ -786,7 +758,7 @@ function Kart({
   );
 }
 
-export default function MuhendislikKartlari({ malzemeler, gezegenler }: { malzemeler: KartMalzeme[]; gezegenler: KartGezegen[] }) {
+export default function MuhendislikKartlari({ malzemeler }: { malzemeler: KartMalzeme[] }) {
   const [kartlar, setKartlar] = useState<Arac[]>(VARSAYILAN);
 
   useEffect(() => {
@@ -817,7 +789,7 @@ export default function MuhendislikKartlari({ malzemeler, gezegenler }: { malzem
       </div>
       <div className="hizli-kartlar">
         {kartlar.map((a, i) => (
-          <Kart key={i} arac={a} degis={(yeni) => degis(i, yeni)} malzemeler={malzemeler} gezegenler={gezegenler} />
+          <Kart key={i} arac={a} degis={(yeni) => degis(i, yeni)} malzemeler={malzemeler} />
         ))}
       </div>
     </section>

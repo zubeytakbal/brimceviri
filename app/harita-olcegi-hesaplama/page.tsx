@@ -50,7 +50,6 @@ export default function MapScalePage() {
     <TimeToolPage
       crumbs={[
         { href: "/", label: "Ana Sayfa" },
-        { href: "/cografya-hesaplamalari", label: "Coğrafya Hesaplamaları" },
         { href: path, label: "Harita Ölçeği Hesaplama" },
       ]}
       crumbLabel="Sayfa yolu"

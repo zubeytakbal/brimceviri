@@ -50,7 +50,6 @@ export default function LocalTimePage() {
     <TimeToolPage
       crumbs={[
         { href: "/", label: "Ana Sayfa" },
-        { href: "/cografya-hesaplamalari", label: "Coğrafya Hesaplamaları" },
         { href: path, label: "Yerel Saat Farkı Hesaplama" },
       ]}
       crumbLabel="Sayfa yolu"
@@ -103,9 +102,9 @@ export default function LocalTimePage() {
         Her meridyende farklı saat kullanmak günlük hayatı zorlaştıracağı için ülkeler ortak (resmî) saat kullanır. Türkiye 2016&apos;dan bu yana
         tüm yıl UTC+3 saatini uygular; bu saat 45° doğu meridyeninin yerel saatidir. Bu yüzden Türkiye&apos;nin batısında resmî saat Güneş&apos;ten
         belirgin biçimde ileridedir: 29° D boylamındaki İstanbul&apos;da Güneş&apos;e göre saat, resmî saatten (45 − 29) × 4 = 64 dakika geridedir.
-        Şehirler arasındaki resmî saat farkını görmek için <Link href="/dunya-saatleri">dünya saatlerini</Link> ya da{" "}
+        Şehirler arasındaki resmî saat farkını görmek için dünya saatlerini ya da{" "}
         <Link href="/saat-dilimi-cevirici">saat dilimi çeviriciyi</Link>, Güneş&apos;in doğuş ve batış saatleri için{" "}
-        <Link href="/gunes-dogusu-ve-batisi">güneş doğuşu ve batışı</Link> sayfasını kullanın.
+        güneş doğuşu ve batışı sayfasını kullanın.
       </p>
     </TimeToolPage>
   );

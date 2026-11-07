@@ -1,48 +1,18 @@
 import { guncelHref } from "./converter/guncelHref";
-import { germanCities } from "./converter/geo/germanCities";
 import { sayfaKalkti } from "./kaldirilanSayfalar";
 import { ARABIC_ISLAMIC_SITEMAP } from "./i18n/arabicIslamicTools";
-import { entfernungStadtPath } from "./converter/geo/germanDistances";
-import { countriesDe, countryPathDe } from "./converter/geo/worldGeoDe";
-import { BRUECKENTAGE_JAHRE, brueckentagePfad } from "./i18n/germanBrueckentage";
 import { germanMathPages } from "./i18n/germanMathPages";
 import type { MetadataRoute } from "next";
 import { isClosedPath } from "./indexPolicy";
 import { calculatorPages } from "./converter/calculatorPages";
 import { sleepGuideAlternates, sleepGuidePaths } from "./i18n/sleepGuidePaths";
-import {
-  alarmPresetSlug,
-  GERI_GELEN_ALARM_EN,
-  timeToolAlternates,
-  timeToolPaths,
-  type TimeToolId,
-} from "./i18n/timeToolPaths";
-import { geriGelenSureler, timerPresetPath } from "./i18n/timerPresets";
-import { trEkSehirler, worldCities } from "./converter/time/worldCities";
-import { ulkeSaatleri } from "./converter/time/ulkeSaatDilimleri";
-import { countdownAlternatePaths, countdownEvents, countdownPath } from "./converter/time/countdownEvents";
-import { HOLIDAY_YEARS } from "./converter/time/holidays";
-import { HIJRI_SLUG, SA_HIJRI_SANAWAT, saHijriSanaPath, saHijriShahrPath } from "./converter/calendar/saTaqwim";
-import { DE_JAHRE, DE_MONAT_SLUG, deJahrPfad, deMonatPfad } from "./converter/calendar/deKalender";
-import { AY_SLUG, TAKVIM_YILLARI, takvimAyPath, takvimYilPath } from "./converter/calendar/trTakvim";
-import { routePairs } from "./converter/geo/routePairs";
-import { turkeyProvinces } from "./converter/geo/turkeyProvinces";
-import { worldCountries } from "./converter/geo/worldCountries";
-import { countryPathEn } from "./converter/geo/worldGeoEn";
-import { worldCityPaths } from "./converter/time/nordicWorld";
-import { worldRegionPages } from "./converter/geo/worldRegions";
+import { timeToolAlternates, timeToolPaths, type TimeToolId } from "./i18n/timeToolPaths";
 import { zonePairs } from "./converter/time/timeZonePairs";
 import { buildLanguageAlternates } from "./i18n/routing";
 import { categoryPages } from "./converter/categoryPages";
 import { conversionPages } from "./converter/conversionPages";
 import { isMergedAway } from "./converter/mergedPairs";
 import { NORDIC_FUEL_PATHS } from "./converter/fuel/nordicFuel";
-import { TIME_HUB_PATHS, timeHubAlternates } from "./components/timehub/timeHubPaths";
-import { NORDIC_HOLIDAY_PATHS } from "./converter/time/nordicHolidays";
-import { fxContentBn } from "./converter/fx/fxContentBn";
-import { fxContentUz } from "./converter/fx/fxContentUz";
-import { fxContentDe } from "./converter/fx/fxContentDe";
-import { fxHubAlternates } from "./converter/fx/fxHubAlternates";
 import {
   englishCalculatorPages,
   findEnglishCalculatorPageByTurkishSlug,
@@ -100,16 +70,9 @@ import {
 import { findGermanElementArticle } from "./converter/germanElementArticles";
 import { materialsDatabase } from "./converter/materialsDatabase";
 import { getAllMaterialComparisons } from "./converter/materialComparisons";
-import { celestialBodiesDatabase } from "./converter/celestialBodiesDatabase";
-import { getAllCelestialBodyComparisons } from "./converter/celestialBodyComparisons";
-import { mountainsDatabase } from "./converter/mountainsDatabase";
-import { getAllMountainsUz } from "./converter/mountainsDatabaseUz";
-import { turkishProvinceElevations } from "./converter/turkishProvinceElevations";
-import { popularProvinceComparisons } from "./converter/popularProvinceComparisons";
 import { compoundsDatabase } from "./converter/compoundsDatabase";
 import { findCompoundEditorial } from "./converter/compoundEditorial";
 import { bengaliWeightPairs } from "./converter/bengaliWeightPairs";
-import { licenseClasses } from "./converter/licenseClassFinder";
 import {
   englishUnitPages,
   findEnglishUnitPageByTurkishSlug,
@@ -150,13 +113,10 @@ import { danishCategoryPages } from "./converter/localizedDanishCategoryPages";
 import { danishUnitPages } from "./converter/localizedDanishUnitPages";
 import { danishConversionPages } from "./converter/localizedDanishConversionPages";
 import { SITE_LAST_MODIFIED, SITE_URL } from "./siteConfig";
-import { CHRISTIAN_TOOLS_PATH, englishChristianTools } from "./i18n/englishChristianTools";
-import { CATHOLIC_PATHS } from "./i18n/catholicTools";
 import { GOLD_CALCULATOR_PATHS } from "./i18n/goldCalculatorPaths";
 import { KARAT_PAIRS } from "./converter/goldKaratPairs";
-import { OZEL_GUN_SAYFALARI } from "./converter/calendar/ozelGunIcerik";
 import { CYCLE_PATHS } from "./i18n/cycleCalculatorContent";
-import { BENGALI_ISLAMIC_HUB, ISLAMIC_TOOL_PATHS, UZBEK_ISLAMIC_PATHS } from "./i18n/islamicToolPaths";
+import { ISLAMIC_TOOL_PATHS, UZBEK_ISLAMIC_PATHS } from "./i18n/islamicToolPaths";
 
 export const dynamic = "force-static";
 
@@ -1347,84 +1307,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       },
     },
     {
-      url: `${baseUrl}/gokcisimleri-ozellikleri`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    ...celestialBodiesDatabase.map((body) => ({
-      url: `${baseUrl}/gokcisimleri-ozellikleri/${body.id}`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-    })),
-    ...getAllCelestialBodyComparisons().map((comparison) => ({
-      url: `${baseUrl}/gokcisimleri-karsilastirma/${comparison.slug}`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-    })),
-    {
-      url: `${baseUrl}/dunyanin-en-yuksek-daglari`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    ...mountainsDatabase.map((mountain) => ({
-      url: `${baseUrl}/dunyanin-en-yuksek-daglari/${mountain.id}`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-    })),
-    {
-      url: `${baseUrl}/uz/dunyoning-eng-baland-toglari`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    ...getAllMountainsUz().map((mountain) => ({
-      url: `${baseUrl}/uz/dunyoning-eng-baland-toglari/${mountain.id}`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-    })),
-    {
-      url: `${baseUrl}/il-rakimlari`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    ...turkishProvinceElevations.map((province) => ({
-      url: `${baseUrl}/il-rakimlari/${province.id}`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-    })),
-    {
-      url: `${baseUrl}/uz/viloyatlar-balandligi`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/uz/viloyat-balandligini-solishtirish`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/il-rakimi-karsilastirma`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    ...popularProvinceComparisons.map((comparison) => ({
-      url: `${baseUrl}/il-rakimi-karsilastirma/${comparison.slug}`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly" as const,
-      priority: 0.65,
-    })),
-    {
       url: `${baseUrl}/bilim-hesaplayicilari/kimya/bilesikler`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
@@ -2488,12 +2370,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
-      url: `${baseUrl}/lastik-dot-kodu-okuma`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
       url: `${baseUrl}/vucut-yag-orani-hesaplama`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
@@ -2692,20 +2568,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
       alternates: sleepGuideAlternates(),
     })),
-    ...Object.values(TIME_HUB_PATHS).map((path) => ({
-      url: `${baseUrl}${path}`,
-      lastModified: contentLastModified,
-      changeFrequency: "daily" as const,
-      priority: 0.9,
-      alternates: timeHubAlternates(),
-    })),
-    ...Object.values(NORDIC_HOLIDAY_PATHS).map((path) => ({
-      url: `${baseUrl}${path}`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-      alternates: buildLanguageAlternates(NORDIC_HOLIDAY_PATHS, "sv"),
-    })),
     ...Object.values(NORDIC_FUEL_PATHS).map((path) => ({
       url: `${baseUrl}${path}`,
       lastModified: contentLastModified,
@@ -2722,16 +2584,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
         alternates: timeToolAlternates(tool),
       })),
     ),
-    // Birleştirmeden sonra da aranan hazır süre ve alarm saati sayfaları.
-    ...[...geriGelenSureler().map((p) => timerPresetPath(p, "tr")), ...GERI_GELEN_ALARM_EN.map((t) => `/en/alarm-clock/${alarmPresetSlug.en(t)}`)].map((path) => ({
-      url: `${baseUrl}${path}`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-    })),
     ...[
       ["/tarih-cevirici", "/en/hijri-date-converter"],
-      ["/ay-evreleri", "/en/moon-phases"],
     ].flatMap(([trPath, enPath]) =>
       [trPath, enPath].map((path) => ({
         url: `${baseUrl}${path}`,
@@ -2741,38 +2595,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
         alternates: buildLanguageAlternates({ tr: trPath, en: enPath }, "tr"),
       })),
     ),
-    ...["/gunes-dogusu-ve-batisi", "/en-uzun-gun-ve-en-kisa-gun", "/gunes-acisi-ve-golge-boyu-hesaplama", "/ay-gozlem-cizelgesi", "/eski-para-yeni-para-cevirme", "/ezani-saat-cevirme", "/ebced-hesabi", "/bofor-cevirme", "/mesh-mikron-cevirme", "/bisiklet-jant-olcusu", "/roma-rakamlari-cevirme", "/egim-cevirme", "/brix-baume-cevirme", "/swg-mm-cevirici", "/matkap-ucu-olcusu-cevirme", "/igne-numarasi-gauge-mm", "/kagit-boyutlari", "/yukselen-burc-hesaplama", "/bu-gece-gezegenler", "/gokyuzu-olaylari-takvimi", "/gezegenlerde-yas-hesaplama", "/gezegenlerde-kac-kilo-gelirim", "/tahlil-degerleri-cevirme"].map((path) => ({
+    ...["/gunes-acisi-ve-golge-boyu-hesaplama", "/eski-para-yeni-para-cevirme", "/ebced-hesabi", "/bofor-cevirme", "/mesh-mikron-cevirme", "/bisiklet-jant-olcusu", "/roma-rakamlari-cevirme", "/egim-cevirme", "/brix-baume-cevirme", "/swg-mm-cevirici", "/matkap-ucu-olcusu-cevirme", "/igne-numarasi-gauge-mm", "/tahlil-degerleri-cevirme"].map((path) => ({
       url: `${baseUrl}${path}`,
       lastModified: contentLastModified,
       changeFrequency: "monthly" as const,
       priority: 0.75,
-    })),
-    {
-      url: `${baseUrl}/de/eieruhr`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-    },
-    ...[
-      "/de/entfernung",
-      ...germanCities.map((c) => entfernungStadtPath(c)),
-    ].map((path) => ({
-      url: `${baseUrl}${path}`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly" as const,
-      priority: path.split("/").length > 4 ? 0.5 : 0.65,
-    })),
-    ...["/de/brueckentage", ...BRUECKENTAGE_JAHRE.map((j) => brueckentagePfad(j))].map((path) => ({
-      url: `${baseUrl}${path}`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly" as const,
-      priority: 0.75,
-    })),
-    ...["/de/laender", ...countriesDe.map((c) => countryPathDe(c)!)].map((path) => ({
-      url: `${baseUrl}${path}`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly" as const,
-      priority: path === "/de/laender" ? 0.7 : 0.55,
     })),
     ...["/de/mathe-rechner", ...germanMathPages.map((page) => page.path)].map((path) => {
       const page = germanMathPages.find((p) => p.path === path);
@@ -2790,74 +2617,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.8,
     })),
-    ...["/de/feiertage", "/de/feiertage-oesterreich"].map((path) => ({
+    ...["/ar/hijri-age-calculator", "/ar/end-of-service-calculator", ...ARABIC_ISLAMIC_SITEMAP].map((path) => ({
       url: `${baseUrl}${path}`,
       lastModified: contentLastModified,
       changeFrequency: "weekly" as const,
       priority: 0.8,
     })),
-    ...[
-      "/ar/calendar",
-      "/ar/occasions",
-      "/ar/salary-dates",
-      "/ar/school-calendar",
-      "/ar/hijri-age-calculator",
-      "/ar/end-of-service-calculator",
-      ...ARABIC_ISLAMIC_SITEMAP,
-      ...SA_HIJRI_SANAWAT.flatMap((y) => [saHijriSanaPath(y), ...HIJRI_SLUG.map((_, i) => saHijriShahrPath(y, i + 1))]),
-    ].map((path) => ({
-      url: `${baseUrl}${path}`,
+    {
+      url: `${baseUrl}/dogdugum-gun-hangi-gun`,
       lastModified: contentLastModified,
       changeFrequency: "weekly" as const,
-      priority: ["/ar/calendar", "/ar/occasions", "/ar/salary-dates", "/ar/school-calendar", "/ar/hijri-age-calculator", "/ar/end-of-service-calculator", ...ARABIC_ISLAMIC_SITEMAP].includes(path) ? 0.8 : 0.65,
-    })),
+      priority: 0.8,
+    },
     ...[
-      "/de/kalender",
-      "/de/besondere-tage",
-      "/de/zeitumstellung",
-      "/de/vollmond",
-      "/de/bauernregeln",
-      ...DE_JAHRE.flatMap((y) => [deJahrPfad(y), ...DE_MONAT_SLUG.map((_, i) => deMonatPfad(y, i + 1))]),
-    ].map((path) => ({
-      url: `${baseUrl}${path}`,
-      lastModified: contentLastModified,
-      changeFrequency: (path.split("/").length > 5 ? "yearly" : "weekly") as "yearly" | "weekly",
-      priority: ["/de/kalender", "/de/besondere-tage", "/de/zeitumstellung", "/de/vollmond", "/de/bauernregeln"].includes(path) ? 0.8 : path.split("/").length > 5 ? 0.5 : 0.65,
-    })),
-    ...[
-      "/takvim",
-      "/ozel-gunler",
-      ...OZEL_GUN_SAYFALARI.map((id) => `/ozel-gunler/${id}`),
-      "/firtina-takvimi",
-      "/dogdugum-gun-hangi-gun",
-      "/okul-takvimi",
-      "/hicri-takvim",
-      "/paskalya-ne-zaman",
-      "/kutsal-kitap-okuma-plani",
-      ...TAKVIM_YILLARI.flatMap((y) => [takvimYilPath(y), ...AY_SLUG.map((_, i) => takvimAyPath(y, i + 1))])
-    ].map((path) => ({
-      url: `${baseUrl}${path}`,
-      lastModified: contentLastModified,
-      changeFrequency: (path.split("/").length > 4 ? "yearly" : "weekly") as "yearly" | "weekly",
-      priority: path === "/takvim" || path === "/ozel-gunler" || path === "/firtina-takvimi" || path === "/dogdugum-gun-hangi-gun" || path === "/okul-takvimi" || path === "/hicri-takvim" ? 0.8 : path.split("/").length > 4 ? 0.5 : 0.65,
-    })),
-    ...[
-      ["/resmi-tatiller", ...HOLIDAY_YEARS.map((y) => `/resmi-tatiller/${y}`)],
-      ["/en/federal-holidays"],
-    ].flat().map((path) => ({
-      url: `${baseUrl}${path}`,
-      lastModified: contentLastModified,
-      changeFrequency: "weekly" as const,
-      priority: /\d{4}$/.test(path) ? 0.7 : 0.8,
-    })),
-    ...[
-      ["/cografya-hesaplamalari", "/en/geography-calculators"],
       ["/harita-olcegi-hesaplama", "/en/map-scale-calculator"],
       ["/yerel-saat-hesaplama", "/en/solar-time-calculator"],
       ["/koordinat-donusturucu", "/en/coordinate-converter"],
-      ["/dunya-haritasi", "/en/world-map"],
-      ["/ulkeler", "/en/countries"],
-      ...worldCountries.map((c) => [`/ulkeler/${c.id}`, countryPathEn(c)]),
     ].flatMap(([trPath, enPath]) =>
       [trPath, enPath].map((path) => ({
         url: `${baseUrl}${path}`,
@@ -2868,33 +2643,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       })),
     ),
     ...[
-      "/iller-arasi-mesafe",
-      "/turkiye-il-haritasi",
-      ...turkeyProvinces.map((p) => `/iller-arasi-mesafe/${p.id}`),
-      ...routePairs().map((p) => `/iller-arasi-mesafe/${p.from.id}/${p.to.id}`),
-      ...worldRegionPages.map((r) => `/bolge-haritalari/${r.id}`),
-      // Dini araçlar
-      "/dini-araclar",
-      "/seferi-mesafe-hesaplama",
-      ...turkeyProvinces.map((p) => `/seferi-mesafe-hesaplama/${p.id}`),
-      "/sure-bulucu",
-      "/cuzler",
-      "/umre-mesafe-hesaplama",
+      // Dini hesaplayıcılar
       "/kaza-orucu-hesaplama",
       "/kible-yonu-hesaplama",
-      "/canli-pusula",
       "/kaza-namazi-hesaplama",
       "/hatim-hesaplama",
       "/zekat-hesaplama",
       "/hicri-yas-hesaplama",
       "/kurban-hissesi-hesaplama",
       "/hafizlik-hesaplama",
-      "/kaza-takip-cizelgesi",
       "/hayiz-hesaplama",
       "/kirk-mevlidi-hesaplama",
-      "/namaz-rekat-tablosu",
-      "/zikirmatik",
-      "/esmaul-husna",
     ].map((path) => ({
       url: `${baseUrl}${path}`,
       lastModified: contentLastModified,
@@ -2905,36 +2664,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/en/time-zone-converter/${pair.slug}`,
       lastModified: contentLastModified,
       changeFrequency: "weekly" as const,
-      priority: 0.6,
-    })),
-    ...countdownEvents.map((event) => {
-      return {
-        url: `${baseUrl}${countdownPath(event)}`,
-        lastModified: contentLastModified,
-        changeFrequency: "daily" as const,
-        priority: 0.6,
-        alternates: buildLanguageAlternates(countdownAlternatePaths(event), event.lang === "de" ? "tr" : event.lang),
-      };
-    }),
-    ...worldCities.flatMap((city) =>
-      Object.values(worldCityPaths(city)).map((path) => ({
-        url: `${baseUrl}${path}`,
-        lastModified: contentLastModified,
-        changeFrequency: "daily" as const,
-        priority: 0.6,
-        alternates: buildLanguageAlternates(worldCityPaths(city), "tr"),
-      })),
-    ),
-    ...ulkeSaatleri.map((u) => ({
-      url: `${baseUrl}/dunya-saatleri/${u.slug}`,
-      lastModified: contentLastModified,
-      changeFrequency: "daily" as const,
-      priority: 0.7,
-    })),
-    ...trEkSehirler.map((city) => ({
-      url: `${baseUrl}/dunya-saatleri/${city.tr}`,
-      lastModified: contentLastModified,
-      changeFrequency: "daily" as const,
       priority: 0.6,
     })),
     {
@@ -2968,79 +2697,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
     },
     {
-      url: `${baseUrl}/dosya-araclari`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/fotograf-bulaniklastirma`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/fotografa-filigran-ekleme`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/heic-jpg-cevirme`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/biyometrik-fotograf`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/fotograf-kirpma`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/fotograf-konum-bilgisi-silme`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/resim-boyutlandirma`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/e-okul-fotograf-kucultme`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/fotograf-boyutu-kucultme`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/gorsel-donusturucu`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
       url: `${baseUrl}/png-jpg-cevirme`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-    },
-    {
-      url: `${baseUrl}/jpg-png-cevirme`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
       priority: 0.75,
@@ -3202,42 +2859,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
     },
     {
-      url: `${baseUrl}/celik-profil-tablolari`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-    },
-    {
-      url: `${baseUrl}/ipe-profil-tablosu`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-    },
-    {
-      url: `${baseUrl}/hea-profil-tablosu`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-    },
-    {
-      url: `${baseUrl}/heb-profil-tablosu`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-    },
-    {
-      url: `${baseUrl}/npu-profil-tablosu`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-    },
-    {
-      url: `${baseUrl}/npi-profil-tablosu`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-    },
-    {
       url: `${baseUrl}/kiris-hesaplama`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
@@ -3286,43 +2907,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
     },
     {
-      url: `${baseUrl}/su-ozellikleri-tablosu`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-    },
-    {
-      url: `${baseUrl}/doymus-buhar-tablosu`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-    },
-    {
       url: `${baseUrl}/suyun-kaynama-noktasi-hesaplama`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-    },
-    {
-      url: `${baseUrl}/hava-ozellikleri-tablosu`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-    },
-    {
-      url: `${baseUrl}/metrik-vida-tablosu`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-    },
-    {
-      url: `${baseUrl}/civata-mukavemet-siniflari`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-    },
-    {
-      url: `${baseUrl}/boru-disi-olculeri`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
       priority: 0.75,
@@ -3377,12 +2962,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/motor-devir-hesaplama`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-    },
-    {
-      url: `${baseUrl}/direnc-renk-kodu`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
       priority: 0.75,
@@ -4015,15 +3594,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
       },
     },
-    ...[fxContentUz.basePath, fxContentBn.basePath, fxContentDe.basePath].map((path) => ({
-      url: `${baseUrl}${path}`,
-      lastModified: contentLastModified,
-      changeFrequency: "daily" as const,
-      priority: 0.85,
-      alternates: {
-        languages: Object.fromEntries(Object.entries(fxHubAlternates).map(([lang, href]) => [lang, `${baseUrl}${href}`])),
-      },
-    })),
     {
       url: `${baseUrl}/uz/tana-yuzasi-maydoni-hisoblash`,
       lastModified: contentLastModified,
@@ -4257,19 +3827,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       },
     },
     {
-      url: `${baseUrl}/uz/ijtimoiy-media-tasvir-olchamlari-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/sosyal-medya-gorsel-boyutlari-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/ijtimoiy-media-tasvir-olchamlari-hisoblash`,
-          "x-default": `${baseUrl}/sosyal-medya-gorsel-boyutlari-hesaplama`,
-        },
-      },
-    },
-    {
       url: `${baseUrl}/uz/ping-kechikish-hisoblash`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
@@ -4378,21 +3935,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/doviz-cevirici`,
-      lastModified: contentLastModified,
-      changeFrequency: "daily",
-      priority: 0.9,
-      alternates: {
-        languages: Object.fromEntries(Object.entries(fxHubAlternates).map(([lang, href]) => [lang, `${baseUrl}${href}`])),
-      },
-    },
-    {
-      url: `${baseUrl}/sosyal-medya-gorsel-boyutlari-hesaplama`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-    },
-    {
       url: `${baseUrl}/seyahat-priz-voltaj-hesaplama`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
@@ -4416,18 +3958,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.75,
     },
-    {
-      url: `${baseUrl}/ehliyet-sinifi-bulma`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-    },
-    ...Object.keys(licenseClasses).map((id) => ({
-      url: `${baseUrl}/ehliyet-sinifi-bulma/${id.toLowerCase()}`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly" as const,
-      priority: 0.65,
-    })),
     {
       url: `${baseUrl}/ehliyet-yenileme-suresi-hesaplama`,
       lastModified: contentLastModified,
@@ -4463,19 +3993,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: contentLastModified,
       changeFrequency: "monthly",
       priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/uz/haydovchilik-toifasi-topish`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/ehliyet-sinifi-bulma`,
-          "uz-UZ": `${baseUrl}/uz/haydovchilik-toifasi-topish`,
-          "x-default": `${baseUrl}/ehliyet-sinifi-bulma`,
-        },
-      },
     },
     {
       url: `${baseUrl}/uz/haydovchilik-guvohnomasi-yangilash-muddati-hisoblash`,
@@ -6003,17 +5520,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       "/24-ayar-altin-22-ayar-altin",
       "/22-ayar-altin-24-ayar-altin",
       ...Object.values(CYCLE_PATHS),
-      BENGALI_ISLAMIC_HUB,
       ...Object.values(ISLAMIC_TOOL_PATHS).map((p) => p.bn),
       ...Object.values(UZBEK_ISLAMIC_PATHS),
-      ...(["es", "pt"] as const).flatMap((lang) => Object.values(CATHOLIC_PATHS[lang])),
     ].map((path) => ({
-      url: `${baseUrl}${path}`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly" as const,
-      priority: 0.74,
-    })),
-    ...[CHRISTIAN_TOOLS_PATH, ...englishChristianTools.map((tool) => tool.href)].map((path) => ({
       url: `${baseUrl}${path}`,
       lastModified: contentLastModified,
       changeFrequency: "monthly" as const,

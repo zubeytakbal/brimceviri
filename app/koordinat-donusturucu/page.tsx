@@ -52,7 +52,6 @@ export default function CoordinateConverterPage() {
     <TimeToolPage
       crumbs={[
         { href: "/", label: "Ana Sayfa" },
-        { href: "/cografya-hesaplamalari", label: "Coğrafya Hesaplamaları" },
         { href: path, label: "Koordinat Dönüştürücü" },
       ]}
       crumbLabel="Sayfa yolu"

@@ -410,12 +410,6 @@ export const miladiNass = (d: YMD, maaYawm = true) =>
 export const SA_SANAWAT = [2026, 2027, 2028];
 export const SA_HIJRI_SANAWAT = [1448, 1449];
 
-export const saHubPath = "/ar/calendar";
-export const saHijriSanaPath = (hy: number) => `/ar/hijri-calendar/${hy}`;
-export const saHijriShahrPath = (hy: number, hm: number) =>
-  `/ar/hijri-calendar/${hy}/${HIJRI_SLUG[hm - 1]}`;
-/** المناسبات في صفحة واحدة؛ لكل مناسبة قسمها. */
-export const saMunasabaPath = (id: string) => `/ar/occasions#${id}`;
 
 /** الموعد القادم لمناسبة (بما فيها الجارية). */
 export function mawidQadim(m: Munasaba, min: YMD): Mawid | null {

@@ -526,7 +526,6 @@ function boxContent(): PageContent {
       { question: "Alüminyum kutu profil ağırlığı nasıl bulunur?", answer: `Malzemeyi alüminyum seçin. Alüminyumun yoğunluğu ${f(aluminum, 0)} kg/m³ olduğundan aynı ölçüdeki profil çeliğin yaklaşık %${f((aluminum / steel) * 100, 0)}'i kadar gelir.` },
     ],
     extraRelated: [
-      { href: "/celik-profil-tablolari", label: "Çelik Profil Tabloları (IPE, HEA, HEB)" },
       { href: "/hesaplayicilar#teknik", label: "Teknik ve Mühendislik" },
       { href: "/malzeme-agirligi-hesaplama", label: "Malzeme Ağırlığı" },
     ],

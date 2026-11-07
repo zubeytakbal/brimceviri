@@ -63,7 +63,6 @@ export default function EnglishMapScalePage() {
     <TimeToolPage
       crumbs={[
         { href: "/en", label: "Home" },
-        { href: "/en/geography-calculators", label: "Geography" },
         { href: path, label: "Map Scale Calculator" },
       ]}
       crumbLabel="Breadcrumb"

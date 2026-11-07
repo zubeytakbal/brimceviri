@@ -70,7 +70,6 @@ export default function KirkMevlidiPage() {
     <TimeToolPage
       crumbs={[
         { href: "/", label: "Ana Sayfa" },
-        { href: "/dini-araclar", label: "Dini Araçlar" },
         { href: path, label: "40 Mevlidi Hesaplama" },
       ]}
       crumbLabel="Sayfa yolu"

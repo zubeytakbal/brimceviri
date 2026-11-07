@@ -36,7 +36,6 @@ export default function RomanPage() {
     <TimeToolPage
       crumbs={[
         { href: "/", label: "Ana Sayfa" },
-        { href: "/saat-ve-tarih", label: "Tarih ve Saat" },
         { href: PATH, label: "Roma Rakamları" },
       ]}
       crumbLabel="Sayfa yolu"

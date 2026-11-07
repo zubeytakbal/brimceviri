@@ -3,7 +3,7 @@ import { TitheCalculator } from "../../components/christian/ChristianTools2";
 import TimeToolPage from "../../components/time/TimeToolPage";
 import type { FaqItem } from "../../converter/faqSchema";
 import { tithe } from "../../converter/christian/christianCalc";
-import { CHRISTIAN_TOOLS_PATH, christianRelated } from "../../i18n/englishChristianTools";
+import { christianRelated } from "../../i18n/englishChristianTools";
 import { buildSiteUrl } from "../../siteConfig";
 
 const path = "/en/tithe-calculator";
@@ -41,7 +41,6 @@ export default function TithePage() {
     <TimeToolPage
       crumbs={[
         { href: "/en", label: "Home" },
-        { href: CHRISTIAN_TOOLS_PATH, label: "Christian Tools" },
         { href: path, label: "Tithe Calculator" },
       ]}
       crumbLabel="Breadcrumb"

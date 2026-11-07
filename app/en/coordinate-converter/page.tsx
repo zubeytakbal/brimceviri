@@ -66,7 +66,6 @@ export default function EnglishCoordinateConverterPage() {
     <TimeToolPage
       crumbs={[
         { href: "/en", label: "Home" },
-        { href: "/en/geography-calculators", label: "Geography" },
         { href: path, label: "Coordinate Converter" },
       ]}
       crumbLabel="Breadcrumb"
@@ -168,7 +167,7 @@ export default function EnglishCoordinateConverterPage() {
       </p>
       <p>
         To measure the straight-line distance between two coordinates, use the <Link href="/en/map-scale-calculator">map scale calculator</Link> for
-        paper maps, or see the <Link href="/en/world-map">world map</Link> for countries and capitals.
+        paper maps, or see the world map for countries and capitals.
       </p>
     </TimeToolPage>
   );

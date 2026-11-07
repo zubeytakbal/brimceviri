@@ -9,7 +9,6 @@ import { DecorativeIcon, getCategoryIconName, type SiteIconName } from "./siteIc
 import NotificationBell from "./NotificationBell";
 
 import HomeSearch from "./HomeSearch";
-import { CATHOLIC_PATHS } from "../i18n/catholicTools";
 import { unitGlossaryHref } from "../converter/unitGlossary";
 function CardIcon({ name }: { name: SiteIconName }) {
   return (
@@ -76,13 +75,6 @@ const nicheCards: Array<{
     title: "Unidades históricas",
     description: "Converta arşın, okka, dirhem e unidades bizantinas para unidades modernas.",
     iconName: "historical",
-  },
-  {
-    id: "catholic-tools",
-    href: "/pt/ferramentas-catolicas",
-    title: "Ferramentas católicas",
-    description: "Mistérios do terço de hoje, novenas, calendário litúrgico e datas da Páscoa e do Carnaval.",
-    iconName: "dateCalculator",
   },
   {
     id: "gold-calculator",
@@ -170,23 +162,8 @@ const conversionSearchables = portugueseConversionPages.map((page) => ({
 }));
 
 
-const catholicSearchItems = [
-  { href: CATHOLIC_PATHS.pt.rosary, label: "Mistérios do Terço de hoje", keywords: "terço rosário mistérios hoje" },
-  { href: CATHOLIC_PATHS.pt.novena, label: "Calculadora de novenas", keywords: "novena quando começar aparecida são judas" },
-  { href: CATHOLIC_PATHS.pt.liturgical, label: "Calendário litúrgico", keywords: "calendário litúrgico cor tempo ano leituras" },
-  { href: CATHOLIC_PATHS.pt.easter, label: "Quando é a Páscoa?", keywords: "páscoa carnaval semana santa corpus christi cinzas" },
-];
-
-// Tools (niche cards such as the Catholic and gold calculators) are searchable too.
+// Tools (niche cards such as the gold calculators) are searchable too.
 const searchables = [
-  ...catholicSearchItems.map((item) => ({
-    id: `tool-${item.href}`,
-    href: item.href,
-    label: item.label,
-    description: "",
-    categoryLabel: "Ferramentas católicas",
-    searchText: normalizeSearchTextPt(`${item.label} ${item.keywords}`),
-  })),
   ...nicheCards.map((card) => ({
     id: `tool-${card.id}`,
     href: card.href,

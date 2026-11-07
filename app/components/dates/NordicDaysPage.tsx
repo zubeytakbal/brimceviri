@@ -5,7 +5,7 @@ import { daysAhead, NORDIC_DAYS_COPY, NORDIC_DAYS_PATHS, upcomingTargets } from 
 import { formatNordicDate, formatNordicLong, NORDIC_WEEK_PATHS, type NordicLocale } from "../../converter/time/nordicWeek";
 import { timeToolAlternates } from "../../i18n/timeToolPaths";
 import { buildSiteUrl } from "../../siteConfig";
-import { NORDIC_TIME_LABELS, NORDIC_TIME_PATHS, NORDIC_TIME_UI } from "../time/nordicTimeCopy";
+import { NORDIC_TIME_UI } from "../time/nordicTimeCopy";
 import TimeToolPage from "../time/TimeToolPage";
 import NordicDaysTool from "./NordicDaysTool";
 
@@ -47,8 +47,6 @@ export default function NordicDaysPage({ locale }: { locale: NordicLocale }) {
           title: ui.relatedTitle,
           links: [
             { href: NORDIC_WEEK_PATHS[locale], label: WEEK_LABEL[locale] },
-            { href: NORDIC_TIME_PATHS.timer[locale], label: NORDIC_TIME_LABELS.timer[locale] },
-            { href: NORDIC_TIME_PATHS.clock[locale], label: NORDIC_TIME_LABELS.clock[locale] },
           ],
         }}
         tocTitle={ui.tocTitle}

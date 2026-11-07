@@ -124,15 +124,3 @@ describe("pair math", () => {
   });
 });
 
-describe("parseAmountInput", async () => {
-  const { parseAmountInput } = await import("../app/components/fx/fxClientHelpers");
-  it("accepts local formats and native digits", () => {
-    expect(parseAmountInput("1.250,50")).toBe(1250.5);
-    expect(parseAmountInput("1,250.50")).toBe(1250.5);
-    expect(parseAmountInput("12 500")).toBe(12500);
-    expect(parseAmountInput("১০০")).toBe(100);
-    expect(parseAmountInput("১,২৫০.৫")).toBe(1250.5);
-    expect(parseAmountInput("abc")).toBeNull();
-    expect(parseAmountInput("")).toBeNull();
-  });
-});

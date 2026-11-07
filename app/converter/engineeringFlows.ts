@@ -57,19 +57,16 @@ export const ENGINEERING_FLOWS: Record<string, FlowLink[]> = {
   // Malzeme ve çelik
   "/malzeme-agirligi-hesaplama": [
     { href: "/sac-agirlik-hesaplama", label: "Sac Ağırlığı", why: "Levhalarda ölçüden doğrudan ağırlık bulun." },
-    { href: "/celik-profil-tablolari", label: "Çelik Profil Tabloları", why: "IPE, HEA, HEB gibi hazır profillerin metre ağırlıkları." },
     { href: "/demir-agirlik-hesaplama", label: "İnşaat Demiri Ağırlığı", why: "Çap ve boydan donatı tonajını hesaplayın." },
   ],
   "/demir-agirlik-hesaplama": [
     { href: "/beton-hesaplama", label: "Beton Hesaplama", why: "Aynı eleman için beton hacmini ve malzeme miktarını bulun." },
-    { href: "/celik-profil-tablolari", label: "Çelik Profil Tabloları", why: "Çelik yapı elemanlarının ağırlığını tablodan alın." },
   ],
   "/sac-agirlik-hesaplama": [
     { href: "/kutu-profil-agirlik-hesaplama", label: "Kutu Profil Ağırlığı", why: "Sactan bükülen kutu profillerin metre ağırlığı." },
     { href: "/kaynak-isi-girdisi-hesaplama", label: "Kaynak Isı Girdisi", why: "Sacı kaynaklarken ısı girdisini kontrol edin." },
   ],
   "/kutu-profil-agirlik-hesaplama": [
-    { href: "/celik-profil-tablolari", label: "Çelik Profil Tabloları", why: "I ve U profillerle ağırlık ve kesit değerlerini karşılaştırın." },
     { href: "/sac-agirlik-hesaplama", label: "Sac Ağırlığı", why: "Bağlantı levhalarının ağırlığını ekleyin." },
   ],
   "/elastik-uzama-hesaplama": [
@@ -95,17 +92,6 @@ export const ENGINEERING_FLOWS: Record<string, FlowLink[]> = {
   ],
   "/civata-torku-hesaplama": [
     { href: "/elastik-uzama-hesaplama", label: "Elastik Uzama", why: "Sıkma kuvvetinin cıvatada oluşturduğu uzamayı hesaplayın." },
-    { href: "/civata-mukavemet-siniflari", label: "Cıvata Mukavemet Sınıfları", why: "Seçtiğiniz sınıfın kopma ve akma yükünü görün." },
-  ],
-  "/metrik-vida-tablosu": [
-    { href: "/civata-mukavemet-siniflari", label: "Cıvata Mukavemet Sınıfları", why: "Vidanın 8.8, 10.9 ya da 12.9 sınıfında taşıyacağı yükü bulun." },
-    { href: "/civata-torku-hesaplama", label: "Cıvata Torku", why: "Bu ölçüdeki cıvatanın sıkma momentini hesaplayın." },
-    { href: "/boru-disi-olculeri", label: "Boru Dişi Ölçüleri", why: "Metrik olmayan inç boru dişlerini tanıyın." },
-  ],
-  "/civata-mukavemet-siniflari": [
-    { href: "/civata-torku-hesaplama", label: "Cıvata Torku", why: "Sınıfa uygun sıkma momentini bulun." },
-    { href: "/metrik-vida-tablosu", label: "Metrik Vida Tablosu", why: "Adım, kılavuz matkap ve anahtar ağzı ölçülerine bakın." },
-    { href: "/elastik-uzama-hesaplama", label: "Elastik Uzama", why: "Yük altında cıvatanın ne kadar uzadığını hesaplayın." },
   ],
   "/petek-dilim-hesaplama": [
     { href: "/u-degeri-hesaplama", label: "U Değeri", why: "Duvarınızın gerçek U değerini katmanlarına göre hesaplayın." },
@@ -123,21 +109,14 @@ export const ENGINEERING_FLOWS: Record<string, FlowLink[]> = {
     { href: "/tank-hacmi-hesaplama", label: "Tank Hacmi", why: "Atık su ya da yağmur suyu deposunun hacmini hesaplayın." },
   ],
   "/tank-hacmi-hesaplama": [
-    { href: "/su-ozellikleri-tablosu", label: "Su Özellikleri", why: "Sıcaklığa göre suyun yoğunluğunu ve hacim değişimini görün." },
     { href: "/boru-capi-hesaplama", label: "Boru Çapı ve Akış Hızı", why: "Tankı dolduracak ya da boşaltacak hattın çapını seçin." },
     { href: "/pompa-gucu-hesaplama", label: "Pompa Gücü", why: "Tankı belirli sürede doldurmak için gereken pompa gücünü bulun." },
-  ],
-  "/boru-disi-olculeri": [
-    { href: "/boru-capi-donusum-hesaplama", label: "DN-NPS Boru Çapı", why: "Boru anma çapının dış çap ve et kalınlığı karşılığını görün." },
-    { href: "/boru-agirlik-hesaplama", label: "Boru Ağırlığı", why: "Çelik borunun metre ağırlığını hesaplayın." },
-    { href: "/metrik-vida-tablosu", label: "Metrik Vida Tablosu", why: "Metrik vidaların adım ve kılavuz ölçülerine bakın." },
   ],
 
   // Statik ve mukavemet
   "/kiris-hesaplama": [
     { href: "/atalet-momenti-hesaplama", label: "Atalet Momenti", why: "Profil dışı bir kesitin atalet momentini ve kesit modülünü bulun." },
     { href: "/burkulma-hesaplama", label: "Burkulma Hesabı", why: "Kirişi taşıyan kolonların burkulma yükünü kontrol edin." },
-    { href: "/celik-profil-tablolari", label: "Çelik Profil Tabloları", why: "Alternatif profillerin ağırlık ve kesit değerlerini karşılaştırın." },
   ],
   "/atalet-momenti-hesaplama": [
     { href: "/kiris-hesaplama", label: "Kiriş Hesabı", why: "Bu kesitle kirişin sehimini ve gerilmesini hesaplayın." },
@@ -168,30 +147,11 @@ export const ENGINEERING_FLOWS: Record<string, FlowLink[]> = {
     { href: "/pompa-gucu-hesaplama", label: "Pompa Gücü", why: "Eşanjör devresindeki sirkülasyon pompasını boyutlandırın." },
   ],
   "/debi-isi-yuku-hesaplama": [
-    { href: "/su-ozellikleri-tablosu", label: "Su Özellikleri", why: "Sıcaklığa göre suyun yoğunluğunu ve özgül ısısını alın." },
     { href: "/boru-capi-hesaplama", label: "Boru Çapı ve Akış Hızı", why: "Bulduğunuz su debisine uygun boru çapını seçin." },
     { href: "/pompa-gucu-hesaplama", label: "Pompa Gücü", why: "Bu debiyi dolaştıracak pompanın gücünü hesaplayın." },
     { href: "/u-degeri-hesaplama", label: "U Değeri", why: "Isı yükünün kaynağı olan duvar ve çatı kayıplarını hesaplayın." },
   ],
-  "/su-ozellikleri-tablosu": [
-    { href: "/debi-isi-yuku-hesaplama", label: "Debiden Isı Yükü", why: "Su debisi ve sıcaklık farkından ısı yükünü bulun." },
-    { href: "/basinc-kaybi-hesaplama", label: "Basınç Kaybı", why: "Viskoziteye bağlı boru sürtünme kaybını hesaplayın." },
-    { href: "/doymus-buhar-tablosu", label: "Doymuş Buhar Tablosu", why: "100 °C üstündeki su ve buhar değerlerine bakın." },
-  ],
-  "/doymus-buhar-tablosu": [
-    { href: "/boru-capi-hesaplama", label: "Boru Çapı ve Akış Hızı", why: "Buhar hacim debisine uygun hat çapını seçin." },
-    { href: "/suyun-kaynama-noktasi-hesaplama", label: "Suyun Kaynama Noktası", why: "Atmosfer altı basınçta ve yükseklerde kaynama sıcaklığını bulun." },
-    { href: "/lmtd-hesaplama", label: "LMTD ve Eşanjör", why: "Buharlı ısıtıcının eşanjör alanını hesaplayın." },
-  ],
   "/suyun-kaynama-noktasi-hesaplama": [
-    { href: "/il-rakimlari", label: "İl Rakımları", why: "81 il merkezinin rakımını ve hava basıncını görün." },
-    { href: "/doymus-buhar-tablosu", label: "Doymuş Buhar Tablosu", why: "Düdüklü tencere ve kazan basınçlarında doyma sıcaklığını bulun." },
-    { href: "/hava-ozellikleri-tablosu", label: "Hava Özellikleri", why: "Rakıma göre havanın yoğunluğunu hesaplayın." },
-  ],
-  "/hava-ozellikleri-tablosu": [
-    { href: "/debi-isi-yuku-hesaplama", label: "Debiden Isı Yükü", why: "Hava debisinden ısıtma-soğutma gücünü bulun." },
-    { href: "/yogunluk-irtifasi-hesaplama", label: "Yoğunluk İrtifası", why: "Sıcaklık ve basınçtan yoğunluk irtifasını hesaplayın." },
-    { href: "/suyun-kaynama-noktasi-hesaplama", label: "Suyun Kaynama Noktası", why: "Aynı rakımda suyun kaç derecede kaynadığını görün." },
   ],
 
   // Hidrolik ve pnömatik
@@ -215,9 +175,6 @@ export const ENGINEERING_FLOWS: Record<string, FlowLink[]> = {
   "/motor-devir-hesaplama": [
     { href: "/mil-burulma-hesaplama", label: "Mil Burulma Hesabı", why: "Motor gücü ve devrinden mil torkunu ve çapını bulun." },
     { href: `${E}/motor-akimi-hesaplama`, label: "Motor Akımı", why: "Motorun çalışma akımını hesaplayın." },
-  ],
-  "/direnc-renk-kodu": [
-    { href: "/hesaplayicilar/ohm-yasasi", label: "Ohm Yasası", why: "Direnç değeriyle akımı ve gerilimi hesaplayın." },
   ],
 
   // Isıtma ve soğutma

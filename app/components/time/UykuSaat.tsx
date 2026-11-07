@@ -5,7 +5,6 @@
 // tek dokunuşla alarm kurma), "Şimdi yatarsam" ve "Kaç saat uyudum?" hesabı. Seçilen kalkış saati isteğe bağlı
 // olarak bu tarayıcıda hatırlanır. Hesap: 15 dk uykuya dalma + n × 90 dk döngü.
 import { useEffect, useState } from "react";
-import Link from "@/app/components/SiteLink";
 import { pad2, useNow } from "./useNow";
 
 const DALMA = 15;
@@ -155,9 +154,9 @@ export default function UykuSaat() {
                   ))}
                 </span>
                 {k.dongu >= 5 && <em>Önerilen</em>}
-                <Link href={`/online-alarm-kur?t=${k.alarm}`} prefetch={false} rel="nofollow">
+                
                   ⏰ {k.alarm} için alarm kur
-                </Link>
+                
               </li>
             ))}
           </ul>

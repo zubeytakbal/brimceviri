@@ -1,11 +1,6 @@
 
 import Link from "@/app/components/SiteLink";
-import { fxContentTr } from "../converter/fx/fxContentTr";
-import { fxContentUz } from "../converter/fx/fxContentUz";
-import { fxContentDe } from "../converter/fx/fxContentDe";
 import { germanStandaloneTools } from "../i18n/germanStandaloneTools";
-import { buildFxSearchEntries, type FxLocaleContent } from "../converter/fx/fxLocale";
-import FxHomeSection from "./fx/FxHomeSection";
 import {
   ArrowRight,
   ArrowsInSimple,
@@ -34,8 +29,7 @@ import {
 } from "@phosphor-icons/react/ssr";
 import HizliCevirme from "./HizliCevirme";
 import TumAraclar from "./TumAraclar";
-import MuhendislikKartlari, { type KartGezegen, type KartMalzeme } from "./MuhendislikKartlari";
-import ZamanKartlari, { type KartGeriSayim, type KartYaklasan } from "./ZamanKartlari";
+import MuhendislikKartlari, { type KartMalzeme } from "./MuhendislikKartlari";
 import type { HizliVeri } from "../converter/hizliCevirmeVeri";
 import NotificationBell from "./NotificationBell";
 import RecentToolsWidget from "./RecentToolsWidget";
@@ -117,8 +111,6 @@ const germanRechnerGroups: Array<{ id: string; title: string; description: strin
     title: "Länder und Entfernungen",
     description: "Länder der Welt mit Zeitverschiebung zu Deutschland und Entfernungen zwischen deutschen Städten.",
     tools: [
-      { href: "/de/laender", title: "Länder und Hauptstädte", description: "195 Länder mit Karte, Zeitverschiebung zu Deutschland, Währung und Vorwahl.", icon: "greatCircleCalculator" as const },
-      { href: "/de/entfernung", title: "Entfernungsrechner", description: "Luftlinie zwischen 82 deutschen Großstädten, mit Tabellen ab jeder Stadt.", icon: "greatCircleCalculator" as const },
     ],
   },
 ];
@@ -128,65 +120,26 @@ const germanRechnerHome = germanRechnerGroups.flatMap((group) => group.tools);
 
 const timeToolsHome = {
   tr: [
-    { href: "/online-saat", title: "Online Saat", description: "34 temalı canlı saat: sarkaçlı, guguklu, flip, neon; tik-tak sesi ve tam ekran.", icon: "time" as const },
-    { href: "/online-alarm-kur", title: "Online Alarm", description: "Tekrarlayan alarm, kendi müziğin, erteleme ve ekranı açık tutma.", icon: "time" as const },
-    { href: "/zamanlayici", title: "Zamanlayıcı", description: "10 saniyeden 24 saate geri sayım; tam ekran, renk temaları, bitiş saati.", icon: "paceCalculator" as const },
-    { href: "/kronometre", title: "Kronometre", description: "Salise hassasiyeti, tur kaydı ve CSV indirme.", icon: "paceCalculator" as const },
-    { href: "/dunya-saatleri", title: "Dünya Saatleri", description: "97 şehrin canlı saati, Türkiye ile saat farkı ve yaz saati tarihleri.", icon: "greatCircleCalculator" as const },
     { href: "/saat-dilimi-cevirici", title: "Saat Dilimi Çevirici", description: "Birden çok şehre aynı anda çevir; toplantı planlayıcı.", icon: "greatCircleCalculator" as const },
-    { href: "/takvim", title: "Türkiye Takvimi", description: "Bugünün tarihi, Hicri karşılığı, bayramlar, kandiller ve özel günler ay ay.", icon: "dateCalculator" as const },
-    { href: "/ozel-gunler", title: "Özel Günler", description: "Anneler Günü, kandiller, bayramlar ne zaman? Tarihler ve kalan gün.", icon: "dateCalculator" as const },
-    { href: "/okul-takvimi", title: "Okul Takvimi", description: "Okulların açılışı, ara tatil, yarıyıl ve karne tarihleri; kaç gün kaldı.", icon: "dateCalculator" as const },
     { href: "/dogdugum-gun-hangi-gun", title: "Doğduğum Gün Hangi Gündü?", description: "Doğduğun gün, Hicri doğum tarihin, o gece ay ve kaç gün yaşadığın.", icon: "dateCalculator" as const },
-    { href: "/firtina-takvimi", title: "Fırtına Takvimi", description: "Sıradaki fırtına, cemreler, Erbain ve Hamsin; halk takvimine göre bugün.", icon: "dateCalculator" as const },
-    { href: "/resmi-tatiller", title: "Resmî Tatiller", description: "Bayram tarihleri, arefe yarım günleri, köprü günleri ve izin planı.", icon: "attendanceCalculator" as const },
     { href: "/is-gunu-hesaplama", title: "İş Günü Hesaplama", description: "Resmî tatiller hariç çalışma günü; tarihe iş günü ekle.", icon: "attendanceCalculator" as const },
     { href: "/iki-tarih-arasi-gun-hesaplama", title: "İki Tarih Arası Gün", description: "Kaç gün, hafta, ay? İş günü ve tatiller dahil ayrıntılı sonuç.", icon: "attendanceCalculator" as const },
-    { href: "/geri-sayim", title: "Geri Sayım", description: "Yılbaşına, bayramlara kaç gün kaldı? Kendi geri sayımını oluştur.", icon: "attendanceCalculator" as const },
     { href: "/tarih-cevirici", title: "Hicri Rumi Tarih Çevirici", description: "Eski belgelerdeki Rumi ve Hicri tarihleri gün gün Miladiye çevir.", icon: "hijriCalendarCalculator" as const },
-    { href: "/ay-evreleri", title: "Ay Evreleri", description: "Bugün ay hangi evrede, dolunay ne zaman? Canlı ay takvimi.", icon: "sleepCalculator" as const },
     { href: "/uyku-hesaplama", title: "Uyku Hesaplama", description: "90 dakikalık döngülere göre ideal yatış ve kalkış saati.", icon: "sleepCalculator" as const },
   ],
   de: [
-    { href: "/de/online-uhr", title: "Online-Uhr", description: "Uhrzeit sekundengenau mit 34 Designs, von der Bahnhofsuhr bis zur Kuckucksuhr.", icon: "time" as const },
-    { href: "/de/timer", title: "Timer", description: "Countdown mit Signalton, Schnellauswahl von 10 Sekunden bis 24 Stunden.", icon: "time" as const },
-    { href: "/de/wecker", title: "Wecker", description: "Online-Wecker mit Ton, Schlummerfunktion und Wiederholung werktags.", icon: "time" as const },
-    { href: "/de/stoppuhr", title: "Stoppuhr", description: "Stoppuhr mit Hundertsteln und Rundenzeiten, Export als CSV.", icon: "time" as const },
-    { href: "/de/countdown", title: "Countdown", description: "Wie viele Tage bis Weihnachten, Ostern, Silvester oder Oktoberfest?", icon: "time" as const },
-    { href: "/de/pomodoro-timer", title: "Pomodoro-Timer", description: "25 Minuten Fokus, 5 Minuten Pause – zum Lernen und Arbeiten.", icon: "time" as const },
-    { href: "/de/intervall-timer", title: "Intervall-Timer", description: "Tabata, HIIT und EMOM mit Sprachansage auf Deutsch.", icon: "time" as const },
-    { href: "/de/eieruhr", title: "Eieruhr", description: "Eier weich, wachsweich oder hart – Kochzeit nach Eigröße.", icon: "time" as const },
-    { href: "/de/kalender", title: "Kalender mit Feiertagen", description: "Jeder Monat mit KW, Feiertagen je Bundesland, Karneval, Advent und Zeitumstellung.", icon: "dateCalculator" as const },
-    { href: "/de/zeitumstellung", title: "Zeitumstellung", description: "Wann wird die Uhr umgestellt – vor oder zurück? Alle Termine bis 2035.", icon: "time" as const },
-    { href: "/de/vollmond", title: "Vollmond-Termine", description: "Alle Vollmonde und Neumonde mit Uhrzeit, nächster Vollmond mit Countdown.", icon: "sleepCalculator" as const },
-    { href: "/de/besondere-tage", title: "Besondere Tage", description: "Wann ist Ostern, Rosenmontag, Muttertag oder der erste Advent?", icon: "dateCalculator" as const },
     { href: "/de/kalenderwoche", title: "Aktuelle Kalenderwoche", description: "Welche KW haben wir? KW für jedes Datum und alle Wochen des Jahres.", icon: "attendanceCalculator" as const },
-    { href: "/de/feiertage", title: "Feiertage", description: "Gesetzliche Feiertage aller 16 Bundesländer mit Brückentagen.", icon: "attendanceCalculator" as const },
-    { href: "/de/brueckentage", title: "Brückentage-Rechner", description: "Urlaub optimal auf die Feiertage verteilen, für jedes Bundesland, mit Kalender-Export.", icon: "dateCalculator" as const },
-    { href: "/de/feiertage-oesterreich", title: "Feiertage Österreich", description: "Alle 13 gesetzlichen Feiertage in Österreich mit Fenstertagen.", icon: "attendanceCalculator" as const },
     { href: "/de/arbeitstage-rechner", title: "Arbeitstage-Rechner", description: "Arbeitstage und Werktage zwischen zwei Daten je Bundesland.", icon: "attendanceCalculator" as const },
     { href: "/de/arbeitszeitrechner", title: "Arbeitszeitrechner", description: "Arbeitszeit mit gesetzlicher Pause, Feierabend, Überstunden und Dezimalstunden.", icon: "time" as const },
     { href: "/de/tagerechner", title: "Tagerechner", description: "Tage zwischen zwei Daten zählen oder Tage zu einem Datum addieren.", icon: "attendanceCalculator" as const },
     { href: "/de/zeitzonenrechner", title: "Zeitzonenrechner", description: "Uhrzeit weltweit umrechnen, mit Sommerzeit und Meeting-Planer.", icon: "greatCircleCalculator" as const },
-    { href: "/de/weltuhr", title: "Weltuhr", description: "Aktuelle Uhrzeit in 97 Städten live.", icon: "greatCircleCalculator" as const },
     { href: "/de/altersrechner", title: "Altersrechner", description: "Genaues Alter in Jahren, Monaten und Tagen.", icon: "dateCalculator" as const },
   ],
   en: [
-    { href: "/en/online-clock", title: "Online Clock", description: "Live clock with 34 themes — pendulum, cuckoo, flip, neon; ticking and full screen.", icon: "time" as const },
-    { href: "/en/alarm-clock", title: "Alarm Clock", description: "Repeating alarms, your own sound, snooze and keep-screen-awake.", icon: "time" as const },
-    { href: "/en/timer", title: "Timer", description: "Countdowns from 10 seconds to 24 hours; full screen, colours, end time.", icon: "paceCalculator" as const },
-    { href: "/en/stopwatch", title: "Stopwatch", description: "Hundredths of a second, laps and CSV download.", icon: "paceCalculator" as const },
-    { href: "/en/pomodoro-timer", title: "Pomodoro Timer", description: "25-minute focus sessions with breaks, notifications and daily stats.", icon: "paceCalculator" as const },
-    { href: "/en/interval-timer", title: "Interval Timer", description: "Tabata, HIIT and EMOM workouts with voice cues and beeps.", icon: "paceCalculator" as const },
-    { href: "/en/world-clock", title: "World Clock", description: "Live time in 97 cities with time differences and DST dates.", icon: "greatCircleCalculator" as const },
     { href: "/en/time-zone-converter", title: "Time Zone Converter", description: "Convert to several zones at once, with a meeting planner.", icon: "greatCircleCalculator" as const },
-    { href: "/en/federal-holidays", title: "US Federal Holidays", description: "Observed dates, days until each holiday and long-weekend ideas.", icon: "attendanceCalculator" as const },
     { href: "/en/business-day-calculator", title: "Business Day Calculator", description: "Working days between dates, or add business days to a deadline.", icon: "attendanceCalculator" as const },
     { href: "/en/days-between-dates", title: "Days Between Dates", description: "Days, weeks and months between two dates, with business days.", icon: "attendanceCalculator" as const },
-    { href: "/en/countdown", title: "Countdown", description: "Days until Christmas, New Year and more — or make your own.", icon: "attendanceCalculator" as const },
     { href: "/en/hijri-date-converter", title: "Hijri Date Converter", description: "Islamic to Gregorian dates and back, plus the Ottoman calendar.", icon: "hijriCalendarCalculator" as const },
-    { href: "/en/moon-phases", title: "Moon Phases", description: "Today's moon phase and the next full moon, with a moon calendar.", icon: "sleepCalculator" as const },
-    { href: "/en/golden-hour", title: "Golden Hour", description: "Golden and blue hour times for photos, by city or your location.", icon: "solarPanelPaybackCalculator" as const },
   ],
 };
 
@@ -227,14 +180,6 @@ type HomeSearchable = {
 };
 
 // Doviz sayfalari ana sayfa aramasinda da bulunsun ("dolar", "euro tl", "rubl").
-function currencySearchables(content: FxLocaleContent, categoryLabel: string, keywords: string): HomeSearchable[] {
-  return buildFxSearchEntries(content, keywords).map((entry) => ({
-    ...entry,
-    categoryLabel,
-    searchText: normalizeSearchText(entry.searchText),
-  }));
-}
-
 type HomeCategoryIconName =
   | "uzunluk"
   | "alan"
@@ -1895,9 +1840,6 @@ function createHomeData(locale: Locale): HomeData {
       searchText: conversion.searchText,
     })),
     ...calculatorSearchables,
-    ...(locale === "tr" ? currencySearchables(fxContentTr, "Döviz", "döviz kur kurları para birimi çevirici") : []),
-    ...(locale === "uz" ? currencySearchables(fxContentUz, "Valyuta", "valyuta kurs kursi pul aylantirgich") : []),
-    ...(locale === "de" ? currencySearchables(fxContentDe, "Währung", "währung währungsrechner wechselkurs kurs euro umrechnen") : []),
   ];
 
   return {
@@ -1966,10 +1908,6 @@ export default function HomeDirectory({
   notifications = [],
   hizli,
   malzemeler,
-  gezegenler,
-  geriSayimlar,
-  yaklasan,
-  olusturma = 0,
 }: {
   locale: Locale;
   notifications?: SiteNotification[];
@@ -1977,13 +1915,6 @@ export default function HomeDirectory({
   hizli?: HizliVeri;
   /** Türkçe ana sayfadaki "litre kaç kilo" kartının malzemeleri. */
   malzemeler?: KartMalzeme[];
-  /** "Gezegenlerde kaç kilo" kartının gök cisimleri. */
-  gezegenler?: KartGezegen[];
-  /** Türkçe ana sayfadaki zaman kartının geri sayımları ve sayfanın derlendiği an (ms). */
-  geriSayimlar?: KartGeriSayim[];
-  /** Zaman kartlarının altındaki "Yaklaşan günler" şeridi. */
-  yaklasan?: KartYaklasan[];
-  olusturma?: number;
 }) {
   const strings = copy[locale];
   const data = homeData[locale];
@@ -2036,8 +1967,7 @@ export default function HomeDirectory({
       {hizli ? (
         <div className="directory-shell">
           <HizliCevirme veri={hizli} />
-          {malzemeler?.length ? <MuhendislikKartlari malzemeler={malzemeler} gezegenler={gezegenler ?? []} /> : null}
-          {geriSayimlar?.length ? <ZamanKartlari geriSayimlar={geriSayimlar} yaklasan={yaklasan ?? []} olusturma={olusturma} /> : null}
+          {malzemeler?.length ? <MuhendislikKartlari malzemeler={malzemeler} /> : null}
         </div>
       ) : null}
 
@@ -2317,27 +2247,7 @@ export default function HomeDirectory({
           </ul>
         </section>
 
-        {locale === "uz" && (
-          <FxHomeSection
-            id="valyuta-aylantirgich"
-            title="Valyuta aylantirgich"
-            description="Kunlik ma'lumotnoma kursi bilan dollar, yevro, rubl va yana 9 ta valyuta; kurs qachon e'lon qilingani, grafik va bank kursi farqini hisoblash."
-            hubHref="/uz/valyuta-aylantirgich"
-            allLabel="Barcha valyuta kurslari"
-            cards={[]}
-          />
-        )}
 
-        {locale === "de" && (
-          <FxHomeSection
-            id="waehrungsrechner"
-            title="Währungsrechner"
-            description="Euro in Dollar, Pfund, Franken, Lira und 14 weitere Währungen – mit täglichem Referenzkurs, Kursverlauf und Rechner für den Bank- oder Wechselstubenaufschlag."
-            hubHref="/de/waehrungsrechner"
-            allLabel="Alle Wechselkurse"
-            cards={[]}
-          />
-        )}
 
         {locale !== "tr" && data.popularUnits.length > 0 && (
           <section className="directory-section">
@@ -2451,17 +2361,6 @@ export default function HomeDirectory({
                   </div>
                 </article>
               ))}
-              <article className="directory-home-card directory-tool-card directory-home-card-more">
-                <Link
-                  className="directory-card-stretch"
-                  href={locale === "en" ? "/en/geography-calculators" : "/cografya-hesaplamalari"}
-                  aria-label={locale === "en" ? "All Geography Calculators" : "Tüm Coğrafya Hesaplamaları"}
-                />
-                <div className="directory-card-body directory-more-card-body">
-                  <ArrowRight className="directory-more-arrow" size={56} weight="regular" aria-hidden="true" />
-                  <span className="directory-more-label">{locale === "en" ? "All Geography Calculators" : "Tüm Coğrafya Hesaplamaları"}</span>
-                </div>
-              </article>
             </div>
           </section>
         )}

@@ -73,7 +73,6 @@ export default function KrediHesaplamaPage() {
           { href: "/kdv-hesaplama", label: "KDV Hesaplama" },
           { href: "/brutten-nete-maas-hesaplama", label: "Brütten Nete Maaş Hesaplama" },
           { href: "/emlak-komisyonu-hesaplama", label: "Emlak Komisyonu Hesaplama" },
-          { href: "/doviz-cevirici", label: "Döviz Çevirici" },
           { href: "/hesaplayicilar#para-ve-is", label: "Para, Maaş ve Vergi" },
         ],
       }}

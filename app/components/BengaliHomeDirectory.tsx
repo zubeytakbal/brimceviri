@@ -7,9 +7,6 @@ import { homeCategoryOrder } from "../converter/homeCategoryOrder";
 import type { SiteNotification } from "../converter/siteNotifications";
 import { DecorativeIcon, getCategoryIconName, type SiteIconName } from "./siteIcons";
 import NotificationBell from "./NotificationBell";
-import FxHomeSection from "./fx/FxHomeSection";
-import { fxContentBn } from "../converter/fx/fxContentBn";
-import { buildFxSearchEntries } from "../converter/fx/fxLocale";
 
 import HomeSearch from "./HomeSearch";
 import { unitGlossaryHref } from "../converter/unitGlossary";
@@ -141,11 +138,6 @@ const popularUnits = preferredUnitSourceSlugs
   })
   .filter((unit): unit is NonNullable<typeof unit> => Boolean(unit));
 
-const currencySearchables = buildFxSearchEntries(fxContentBn, "মুদ্রা রেট টাকা কনভার্টার বিনিময় হার").map((entry) => ({
-  ...entry,
-  categoryLabel: "মুদ্রা",
-  searchText: normalizeSearchTextBn(entry.searchText),
-}));
 
 const conversionSearchables = bengaliConversionPages.map((page) => ({
   id: page.slug,
@@ -203,13 +195,6 @@ const bengaliStandaloneTools: BengaliStandaloneTool[] = [
     description: "বাইনারি, অক্টাল, ডেসিমেল ও হেক্সাডেসিমেল সংখ্যা রূপান্তর করুন।",
     iconName: "numberBaseCalculator",
   },
-  {
-    id: "islamic-tools",
-    href: "/bn/islamic-tools",
-    title: "ইসলামিক টুলস",
-    description: "ভরি হিসাবে যাকাত, কাজা নামাজ ও রোজা, কুরআন খতম ও কসর দূরত্ব।",
-    iconName: "hijriCalendarCalculator",
-  },
 ];
 
 // Tools and Islamic calculators are searchable too, with the words people type.
@@ -217,7 +202,6 @@ const islamicSearchables = [
   { href: "/bn/zakat-calculator", label: "যাকাত ক্যালকুলেটর", keywords: "যাকাত জাকাত নিসাব ভরি সোনা রুপা zakat" },
   { href: "/bn/kaza-namaz-calculator", label: "কাজা নামাজ ও রোজা হিসাব", keywords: "কাজা নামাজ রোজা ওয়াক্ত রাকাত kaza qaza" },
   { href: "/bn/quran-khatam-planner", label: "কুরআন খতম পরিকল্পনা", keywords: "কুরআন কোরআন খতম পারা quran khatam" },
-  { href: "/bn/qasr-distance-calculator", label: "কসর দূরত্ব হিসাব", keywords: "কসর মুসাফির সফর দূরত্ব নামাজ qasr" },
   { href: "/bn/ovulation-calculator", label: "ওভুলেশন ও মাসিক ক্যালকুলেটর", keywords: "ওভুলেশন ডিম্বস্ফোটন মাসিক পিরিয়ড উর্বর গর্ভধারণ প্রেগনেন্সি ovulation period" },
 ];
 
@@ -233,7 +217,7 @@ const toolSearchables = [
   searchText: normalizeSearchTextBn(`${tool.label} ${tool.description} ${tool.keywords}`),
 }));
 
-const searchables = [...toolSearchables, ...currencySearchables, ...conversionSearchables];
+const searchables = [...toolSearchables, ...conversionSearchables];
 
 
 const stats = {
@@ -382,14 +366,6 @@ export default function BengaliHomeDirectory({
           </ul>
         </section>
 
-        <FxHomeSection
-          id="currency-converter"
-          title="মুদ্রা রূপান্তর"
-          description="দৈনিক রেফারেন্স রেটে ডলার, সৌদি রিয়াল, দিরহাম ও আরও ১১টি মুদ্রা থেকে টাকা; রেট কখন প্রকাশিত হয়েছে, চার্ট ও ব্যাংক রেটের পার্থক্য হিসাব।"
-          hubHref="/bn/currency-converter"
-          allLabel="সব মুদ্রার রেট"
-          cards={[]}
-        />
 
         {popularUnits.length > 0 && (
           <section className="directory-section">

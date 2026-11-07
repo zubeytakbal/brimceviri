@@ -22,10 +22,10 @@ export default function OfflinePage() {
           </p>
           <p>
             Daha önce açtığın zaman araçları internet olmadan da çalışır:{" "}
-            <Link href="/online-saat">Online Saat</Link>, <Link href="/online-alarm-kur">Alarm</Link>,{" "}
-            <Link href="/zamanlayici">Zamanlayıcı</Link>, <Link href="/kronometre">Kronometre</Link>. / Time tools you opened before also work offline:{" "}
-            <Link href="/en/online-clock">Clock</Link>, <Link href="/en/timer">Timer</Link>,{" "}
-            <Link href="/en/stopwatch">Stopwatch</Link>.
+            Online Saat, Alarm,{" "}
+            Zamanlayıcı, Kronometre. / Time tools you opened before also work offline:{" "}
+            Clock, Timer,{" "}
+            Stopwatch.
           </p>
         </header>
       </div>

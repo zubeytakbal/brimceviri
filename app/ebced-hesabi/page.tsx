@@ -62,7 +62,6 @@ export default function EbcedPage() {
     <TimeToolPage
       crumbs={[
         { href: "/", label: "Ana Sayfa" },
-        { href: "/saat-ve-tarih", label: "Tarih ve Saat" },
         { href: PATH, label: "Ebced Hesabı" },
       ]}
       crumbLabel="Sayfa yolu"
@@ -73,8 +72,6 @@ export default function EbcedPage() {
         title: "İlginizi çekebilir",
         links: [
           { href: "/tarih-cevirici", label: "Hicri Rumi Tarih Çevirici" },
-          { href: "/hicri-takvim", label: "Hicri Takvim" },
-          { href: "/ezani-saat-cevirme", label: "Ezani Saat Çevirme" },
           { href: "/eski-para-yeni-para-cevirme", label: "Eski Para Yeni Para" },
         ],
       }}

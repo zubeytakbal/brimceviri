@@ -16,7 +16,6 @@ export const germanRechnerLinks = [
   { href: "/de/tilgungsrechner", label: "Tilgungsrechner" },
   { href: "/de/stromkostenrechner", label: "Stromkostenrechner" },
   { href: "/de/tagerechner", label: "Tagerechner" },
-  { href: "/de/waehrungsrechner", label: "Währungsrechner" },
 ];
 
 export function rechnerRelated(exclude: string) {

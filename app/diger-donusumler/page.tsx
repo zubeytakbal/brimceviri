@@ -133,15 +133,6 @@ export default function DigerDonusumlerPage() {
       group: "Tasarruf ve Karar Hesaplayıcıları",
     },
     {
-      id: "ehliyet-sinifi-bulma",
-      href: "/ehliyet-sinifi-bulma",
-      title: "Hangi Ehliyet Sınıfı Gerekli?",
-      description:
-        "Aracının koltuk sayısı, ağırlığı ve römork bilgisiyle Türkiye'de hangi ehliyet sınıfına ihtiyacın olduğunu hesaplayın.",
-      iconName: "licenseClassFinderCalculator" as const,
-      group: "Ev, Enerji ve Ulaşım Hesaplayıcıları",
-    },
-    {
       id: "ehliyet-yenileme-suresi-hesaplama",
       href: "/ehliyet-yenileme-suresi-hesaplama",
       title: "Ehliyet Yenileme Süresi Hesaplama",
@@ -157,15 +148,6 @@ export default function DigerDonusumlerPage() {
       description:
         "Sistem gücün, bölgen ve elektrik fiyatınla güneş panelinin kaç yılda kendini çıkardığını hesaplayın.",
       iconName: "solarPanelPaybackCalculator" as const,
-      group: "Tasarruf ve Karar Hesaplayıcıları",
-    },
-    {
-      id: "doviz-cevirici",
-      href: "/doviz-cevirici",
-      title: "Döviz Çevirici",
-      description:
-        "Güncel kurlarla dolar, euro, sterlin ve TL arasında anlık dönüşüm yapın.",
-      iconName: "currencyConverterCalculator" as const,
       group: "Tasarruf ve Karar Hesaplayıcıları",
     },
     {
@@ -763,15 +745,6 @@ export default function DigerDonusumlerPage() {
       group: "Elektronik, Yazılım ve Medya Araçları",
     },
     {
-      id: "sosyal-medya-gorsel-boyutlari",
-      href: "/sosyal-medya-gorsel-boyutlari-hesaplama",
-      title: "Sosyal Medya Görsel Boyutları Hesaplama",
-      description:
-        "Instagram, YouTube, Facebook, X, LinkedIn ve TikTok için doğru görsel boyutunu ve gereken kırpmayı hesaplayın.",
-      iconName: "socialMediaSizeCalculator" as const,
-      group: "Elektronik, Yazılım ve Medya Araçları",
-    },
-    {
       id: "ping-gecikme-hesaplama",
       href: "/ping-gecikme-hesaplama",
       title: "Ping / Gecikme Hesaplama",
@@ -985,42 +958,6 @@ export default function DigerDonusumlerPage() {
       description:
         "EBOB-EKOK, karekök, yüzde, denklem çözme, ortalama ve olasılık hesapları.",
       iconName: "numberBaseCalculator" as const,
-      group: "Diğer Hesaplama Merkezleri",
-    },
-    {
-      id: "gokcisimleri-ozellikleri",
-      href: "/gokcisimleri-ozellikleri",
-      title: "Gökcisimleri Özellikleri",
-      description:
-        "Gezegenlerin kütlesi, yerçekimi, çapı ve diğer özellikleri; kendi ağırlığının her gezegende kaç kilo geleceğini hesapla.",
-      iconName: "celestialBodiesHubCalculator" as const,
-      group: "Diğer Hesaplama Merkezleri",
-    },
-    {
-      id: "dunyanin-en-yuksek-daglari",
-      href: "/dunyanin-en-yuksek-daglari",
-      title: "Dünyanın En Yüksek Dağları",
-      description:
-        "8.000 metre üzeri 14 zirvenin yüksekliğini, göreli yüksekliğini ve zirvede hava basıncının deniz seviyesine göre yüzdesini karşılaştır.",
-      iconName: "mountainsHubCalculator" as const,
-      group: "Diğer Hesaplama Merkezleri",
-    },
-    {
-      id: "il-rakimlari",
-      href: "/il-rakimlari",
-      title: "İllerin Rakımı",
-      description:
-        "Türkiye'nin 81 ilinin rakımını, o rakımdaki hava basıncını ve suyun kaç derecede kaynadığını gör.",
-      iconName: "mountainsHubCalculator" as const,
-      group: "Diğer Hesaplama Merkezleri",
-    },
-    {
-      id: "il-rakimi-karsilastirma",
-      href: "/il-rakimi-karsilastirma",
-      title: "İl Rakımı Karşılaştırma",
-      description:
-        "İki ilin rakımını, hava basıncını ve kaynama noktasını karşılaştır; rakım farkının sağlığa etkisini gör.",
-      iconName: "mountainsHubCalculator" as const,
       group: "Diğer Hesaplama Merkezleri",
     },
   ];

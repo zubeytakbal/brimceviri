@@ -3,7 +3,7 @@ import { BengaliZakat } from "../../components/dini/BengaliIslamicTools";
 import TimeToolPage from "../../components/time/TimeToolPage";
 import type { FaqItem } from "../../converter/faqSchema";
 import { NISAB_ALTIN_VORI, NISAB_GUMUS_VORI, VORI_GRAM, zakatVori } from "../../converter/diniHesaplar";
-import { BENGALI_ISLAMIC_HUB, ISLAMIC_TOOL_PATHS, islamicAlternates } from "../../i18n/islamicToolPaths";
+import { ISLAMIC_TOOL_PATHS, islamicAlternates } from "../../i18n/islamicToolPaths";
 import { buildSiteUrl } from "../../siteConfig";
 
 const path = ISLAMIC_TOOL_PATHS.zakat.bn;
@@ -47,7 +47,6 @@ export default function BnZakatPage() {
     <TimeToolPage
       crumbs={[
         { href: "/bn", label: "হোম" },
-        { href: BENGALI_ISLAMIC_HUB, label: "ইসলামিক টুলস" },
         { href: path, label: "যাকাত ক্যালকুলেটর" },
       ]}
       crumbLabel="নেভিগেশন"
@@ -59,7 +58,6 @@ export default function BnZakatPage() {
         links: [
           { href: ISLAMIC_TOOL_PATHS.kaza.bn, label: "কাজা নামাজ ও রোজা হিসাব" },
           { href: ISLAMIC_TOOL_PATHS.khatam.bn, label: "কুরআন খতম পরিকল্পনা" },
-          { href: ISLAMIC_TOOL_PATHS.qasr.bn, label: "কসর দূরত্ব হিসাব" },
           { href: "/bn/gold-price-calculator", label: "সোনার দাম ক্যালকুলেটর" },
         ],
       }}

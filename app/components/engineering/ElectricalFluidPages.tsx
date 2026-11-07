@@ -2,15 +2,15 @@
 // Tablolar ve örnekler formüllerden üretilir.
 import type { ReactNode } from "react";
 import Link from "@/app/components/SiteLink";
-import { COLORS, compensationVar, currentFromApparent, synchronousSpeed } from "../../converter/electrical/power";
+import { compensationVar, currentFromApparent, synchronousSpeed } from "../../converter/electrical/power";
 import { annulusArea, cylinderForce, freeAirVolume, HYDRAULIC_BORES, pistonArea, PNEUMATIC_BORES, pistonSpeed, strokeVolume } from "../../converter/fluidpower/cylinder";
 import { formatTr } from "../../converter/metal/metalWeight";
-import { CompensationTool, ColorCodeTool, KvaTool, MotorSpeedTool } from "../electrical/ElectricalTools";
+import { CompensationTool, KvaTool, MotorSpeedTool } from "../electrical/ElectricalTools";
 import { HydraulicTool, PneumaticTool } from "../fluidpower/FluidPowerTools";
 import DataTable from "../metal/DataTable";
 import ToolArticlePage, { toolArticleMetadata, type ToolArticle } from "./ToolArticlePage";
 
-export type EfKind = "hydraulic" | "pneumatic" | "kva" | "compensation" | "motorspeed" | "colorcode";
+export type EfKind = "hydraulic" | "pneumatic" | "kva" | "compensation" | "motorspeed";
 
 export const EF_PATHS: Record<EfKind, string> = {
   hydraulic: "/hidrolik-silindir-hesaplama",
@@ -18,7 +18,6 @@ export const EF_PATHS: Record<EfKind, string> = {
   kva: "/kva-kw-hesaplama",
   compensation: "/kompanzasyon-hesaplama",
   motorspeed: "/motor-devir-hesaplama",
-  colorcode: "/direnc-renk-kodu",
 };
 
 const f = formatTr;
@@ -305,61 +304,13 @@ function motorSpeed(): ToolArticle {
   };
 }
 
-function colorCode(): ToolArticle {
-  const x = (n: number | null) => (n === null ? "–" : String(n));
-  return {
-    path: EF_PATHS.colorcode,
-    metaTitle: "Direnç Renk Kodu Hesaplama (4, 5, 6 Bant)",
-    description: "Direnç renk bantlarından değeri, toleransı ve sıcaklık katsayısını bulun ya da değerden renkleri hesaplayın. 4, 5 ve 6 bantlı dirençler için IEC 60062 renk tablosu.",
-    h1: "Direnç Renk Kodu Hesaplama",
-    intro: "",
-    sections: [
-      {
-        id: "tablo",
-        title: "Renk kodu tablosu",
-        body: (
-          <DataTable
-            caption="IEC 60062 direnç renk kodu"
-            head={["Renk", "Hane", "Çarpan", "Tolerans (%)", "Sıcaklık katsayısı (ppm/K)"]}
-            rows={COLORS.map((c) => [c.tr, x(c.digit), c.multiplier >= 1 ? `×${c.multiplier.toLocaleString("tr-TR")}` : `×${String(c.multiplier).replace(".", ",")}`, c.tolerance === null ? "–" : `±${String(c.tolerance).replace(".", ",")}`, x(c.tempco)])}
-          />
-        ),
-      },
-      {
-        id: "okuma",
-        title: "Renk kodu nasıl okunur?",
-        body: (
-          <>
-            <p>
-              4 bantlı dirençte ilk iki bant hane, üçüncüsü çarpan, dördüncüsü toleranstır. 5 bantlıda ilk üç bant hanedir. 6 bantlıda sona sıcaklık katsayısı eklenir. Tolerans bandı genellikle diğerlerinden biraz
-              uzakta durur; okumaya karşı uçtan başlayın.
-            </p>
-            <ul>
-              <li>Sarı – mor – kırmızı – altın: 47 × 100 = 4,7 kΩ ±%5</li>
-              <li>Kahverengi – siyah – siyah – kahverengi – kahverengi: 100 × 10 = 1 kΩ ±%1</li>
-              <li>Kırmızı – kırmızı – altın – altın: 22 × 0,1 = 2,2 Ω ±%5</li>
-            </ul>
-          </>
-        ),
-      },
-    ],
-    faq: [
-      { question: "Kahverengi siyah kırmızı altın kaç ohm?", answer: "10 × 100 = 1000 Ω, yani 1 kΩ, toleransı ±%5." },
-      { question: "4,7k direncin renkleri nedir?", answer: "4 bantta sarı – mor – kırmızı, ardından tolerans bandı (ör. altın ±%5)." },
-      { question: "Altın ve gümüş bant ne anlama gelir?", answer: "Tolerans bandında altın ±%5, gümüş ±%10'dur. Çarpan bandında altın ×0,1, gümüş ×0,01'dir." },
-    ],
-    sources: "Renk kodu: IEC 60062 (dirençler ve kondansatörler için işaretleme kodları). Kod çözme ve kodlama testte bilinen örneklerle doğrulanır.",
-  };
-}
-
-const ARTICLES: Record<EfKind, () => ToolArticle> = { hydraulic, pneumatic, kva, compensation, motorspeed: motorSpeed, colorcode: colorCode };
+const ARTICLES: Record<EfKind, () => ToolArticle> = { hydraulic, pneumatic, kva, compensation, motorspeed: motorSpeed };
 const TOOLS: Record<EfKind, () => ReactNode> = {
   hydraulic: () => <HydraulicTool />,
   pneumatic: () => <PneumaticTool />,
   kva: () => <KvaTool />,
   compensation: () => <CompensationTool />,
   motorspeed: () => <MotorSpeedTool />,
-  colorcode: () => <ColorCodeTool />,
 };
 
 export const efMetadata = (kind: EfKind) => toolArticleMetadata(ARTICLES[kind]());

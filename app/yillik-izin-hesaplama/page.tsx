@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "@/app/components/SiteLink";
 import YillikIzinHesaplama from "../components/YillikIzinHesaplama";
 import { takvimMetadata } from "../components/takvim/takvimMeta";
 import TimeToolPage from "../components/time/TimeToolPage";
@@ -56,10 +55,6 @@ export default function YillikIzinRoute() {
         title: "İlginizi çekebilir",
         links: [
           {
-            href: "/resmi-tatiller",
-            label: "Resmî Tatiller ve İzin Planlayıcı",
-          },
-          {
             href: "/kidem-tazminati-hesaplama",
             label: "Kıdem Tazminatı Hesaplama",
           },
@@ -68,7 +63,6 @@ export default function YillikIzinRoute() {
             label: "Brütten Nete Maaş Hesaplama",
           },
           { href: "/is-gunu-hesaplama", label: "İş Günü Hesaplama" },
-          { href: "/takvim", label: "Türkiye Takvimi" },
         ],
       }}
       tocTitle="İçindekiler"
@@ -126,7 +120,7 @@ export default function YillikIzinRoute() {
         günleri izinden düşülmez; bu yüzden aynı izin, içinde bayram olan bir
         döneme denk gelirse daha uzun sürer. Arefe günleri yarım gün tatil
         olduğu için yarım gün izin sayılır. Tatil günlerini görmek için{" "}
-        <Link href="/resmi-tatiller">resmî tatiller</Link> sayfasındaki izin
+        resmî tatiller sayfasındaki izin
         planlayıcıyı kullanabilirsiniz.
       </p>
     </TimeToolPage>

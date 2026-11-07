@@ -9,7 +9,6 @@ import { DecorativeIcon, getCategoryIconName, type SiteIconName } from "./siteIc
 import NotificationBell from "./NotificationBell";
 
 import HomeSearch from "./HomeSearch";
-import { CATHOLIC_PATHS } from "../i18n/catholicTools";
 import { unitGlossaryHref } from "../converter/unitGlossary";
 function CardIcon({ name }: { name: SiteIconName }) {
   return (
@@ -76,13 +75,6 @@ const nicheCards: Array<{
     title: "Unidades históricas",
     description: "Convierte arşın, okka, dirhem y unidades bizantinas a unidades modernas.",
     iconName: "historical",
-  },
-  {
-    id: "catholic-tools",
-    href: "/es/herramientas-catolicas",
-    title: "Herramientas católicas",
-    description: "Misterios del rosario de hoy, novenas, calendario litúrgico y fechas de Semana Santa.",
-    iconName: "dateCalculator",
   },
   {
     id: "gold-calculator",
@@ -170,23 +162,8 @@ const conversionSearchables = spanishConversionPages.map((page) => ({
 }));
 
 
-const catholicSearchItems = [
-  { href: CATHOLIC_PATHS.es.rosary, label: "Misterios del Rosario de hoy", keywords: "rosario misterios hoy gozosos dolorosos gloriosos luminosos" },
-  { href: CATHOLIC_PATHS.es.novena, label: "Calculadora de novenas", keywords: "novena cuándo empezar san judas guadalupe aguinaldos" },
-  { href: CATHOLIC_PATHS.es.liturgical, label: "Calendario litúrgico", keywords: "calendario litúrgico color tiempo ciclo lecturas" },
-  { href: CATHOLIC_PATHS.es.easter, label: "¿Cuándo es Semana Santa?", keywords: "semana santa pascua cuaresma ceniza ramos" },
-];
-
-// Tools (niche cards such as the Catholic and gold calculators) are searchable too.
+// Tools (niche cards such as the gold calculators) are searchable too.
 const searchables = [
-  ...catholicSearchItems.map((item) => ({
-    id: `tool-${item.href}`,
-    href: item.href,
-    label: item.label,
-    description: "",
-    categoryLabel: "Herramientas católicas",
-    searchText: normalizeSearchTextEs(`${item.label} ${item.keywords}`),
-  })),
   ...nicheCards.map((card) => ({
     id: `tool-${card.id}`,
     href: card.href,

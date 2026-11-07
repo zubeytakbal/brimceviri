@@ -1,6 +1,6 @@
 import Link from "@/app/components/SiteLink";
 import type { FaqItem } from "../../converter/faqSchema";
-import { cityPath, describeDifference, hourMapping } from "../../converter/time/cityFacts";
+import { describeDifference, hourMapping } from "../../converter/time/cityFacts";
 import { findZone, zoneOptions } from "../../converter/time/timeZoneOptions";
 import { zonePairs, type ZonePair } from "../../converter/time/timeZonePairs";
 import { differenceMinutes, formatUtcOffset, offsetMinutes } from "../../converter/time/timezones";
@@ -99,7 +99,7 @@ function TurkiyeSaatEkleri({ now, popular }: { now: Date; popular: { city: (type
         </table>
       </div>
       <p>
-        Yaz saatinin hangi gün başlayıp bittiğini ve ülkelerin uygulamalarını <Link href="/yaz-saati">yaz saati</Link> sayfasında bulabilirsiniz.
+        Yaz saatinin hangi gün başlayıp bittiğini ve ülkelerin uygulamalarını yaz saati sayfasında bulabilirsiniz.
       </p>
 
       <h2 id="mesai">Ortak mesai saatleri</h2>
@@ -203,14 +203,9 @@ export function TimeZoneConverterHub({ lang }: { lang: "tr" | "en" }) {
         title: tr ? "İlginizi çekebilir" : "You may also like",
         links: tr
           ? [
-              { href: "/dunya-saatleri", label: "Dünya Saatleri" },
-              { href: "/online-saat", label: "Online Saat" },
-              { href: "/geri-sayim", label: "Geri Sayım" },
             ]
           : [
               ...zonePairs.slice(0, 10).map((p) => ({ href: `/en/time-zone-converter/${p.slug}`, label: `${p.fromCode} to ${p.toCode}` })),
-              { href: "/en/world-clock", label: "World Clock" },
-              { href: "/en/countdown", label: "Countdown" },
             ],
       }}
       tocTitle={tr ? "İçindekiler" : "Contents"}
@@ -259,9 +254,7 @@ export function TimeZoneConverterHub({ lang }: { lang: "tr" | "en" }) {
             {popular.map(({ city, diff }) => (
               <tr key={city.en}>
                 <td>
-                  <Link href={cityPath(city, lang)} prefetch={false}>
-                    {tr ? city.nameTr : city.nameEn}
-                  </Link>
+                  {tr ? city.nameTr : city.nameEn}
                 </td>
                 <td>{formatUtcOffset(offsetMinutes(city.timeZone, now))}</td>
                 <td>{describeDifference(diff, lang)}</td>
@@ -371,7 +364,6 @@ export function TimeZonePairPage({ pair }: { pair: ZonePair }) {
             .slice(0, 6)
             .map((p) => ({ href: `/en/time-zone-converter/${p.slug}`, label: `${p.fromCode} to ${p.toCode}` })),
           { href: "/en/time-zone-converter", label: "Time Zone Converter" },
-          { href: "/en/world-clock", label: "World Clock" },
         ],
       }}
       tocTitle="Contents"

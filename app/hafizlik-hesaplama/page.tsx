@@ -51,7 +51,6 @@ export default function HafizlikPage() {
     <TimeToolPage
       crumbs={[
         { href: "/", label: "Ana Sayfa" },
-        { href: "/dini-araclar", label: "Dini Araçlar" },
         { href: path, label: "Hafızlık Hesaplama" },
       ]}
       crumbLabel="Sayfa yolu"
@@ -94,7 +93,7 @@ export default function HafizlikPage() {
         Diyanet mushafı {MUSHAF_SAYFA} sayfa ve 30 cüzdür; bir sayfa 15 satırdır. Kalan sayfa sayısı günlük ezbere bölünerek ezber günü bulunur.
         Haftada 7 günden az ezber yapılıyorsa aradaki günler tekrar ve dinlenme günü sayılır ve süre takvim gününe çevrilir. Ay, ortalama 30,44
         gün kabul edilir. Sonuç yalnızca yeni ezberin süresidir; hastalık, tatil ve toplu tekrar (sağlamlaştırma) dönemleri ayrıca eklenmelidir.
-        Ezberlediğiniz cüzleri ve sureleri <Link href="/sure-bulucu">sure bulucu</Link> ile, okuma planınızı{" "}
+        Ezberlediğiniz cüzleri ve sureleri sure bulucu ile, okuma planınızı{" "}
         <Link href="/hatim-hesaplama">hatim hesaplama</Link> ile çıkarabilirsiniz.
       </p>
     </TimeToolPage>

@@ -3,7 +3,6 @@ import {
   addHijriMonthsTo,
   ayyamAqiqa,
   hawlZakat,
-  hukmQasr,
   iddatAshhur,
   iddatQuru,
   iddatWafat,
@@ -67,18 +66,6 @@ describe("العقيقة", () => {
   });
 });
 
-describe("قصر الصلاة", () => {
-  it("المسافة والإقامة", () => {
-    expect(hukmQasr(120, 3, "jumhur")!.yaqsur).toBe(true);
-    expect(hukmQasr(120, 4, "jumhur")!.yaqsur).toBe(true);
-    expect(hukmQasr(120, 5, "jumhur")!.yaqsur).toBe(false);
-    expect(hukmQasr(120, 14, "hanafi")!.yaqsur).toBe(true);
-    expect(hukmQasr(120, 15, "hanafi")!.yaqsur).toBe(false);
-    expect(hukmQasr(60, 1, "jumhur")!.yaqsur).toBe(false);
-    expect(hukmQasr(120, null, "jumhur")!.yaqsur).toBe(true);
-    expect(hukmQasr(-1, 1, "jumhur")).toBeNull();
-  });
-});
 
 describe("حول الزكاة", () => {
   it("سنة هجرية وربع العشر", () => {

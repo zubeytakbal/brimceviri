@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import Link from "@/app/components/SiteLink";
 import TimeToolPage from "../../components/time/TimeToolPage";
 import TimeZoneConverter, { type ConverterCopy } from "../../components/world/TimeZoneConverter";
 import type { FaqItem } from "../../converter/faqSchema";
 import { nthWeekdayYmd } from "../../converter/time/dateMath";
 import { formatDeLong, todayBerlin } from "../../converter/time/germanDates";
-import { cityNameDe, cityPathDe, germanZoneOptions } from "../../converter/time/germanWorld";
+import { cityNameDe, germanZoneOptions } from "../../converter/time/germanWorld";
 import { differenceMinutes } from "../../converter/time/timezones";
 import { worldCities } from "../../converter/time/worldCities";
 import { calendarRelated } from "../../i18n/germanCalendarTools";
@@ -116,9 +115,7 @@ export default function ZeitzonenrechnerPage() {
               {rows.map(({ c, w, s }) => (
                 <tr key={c.en}>
                   <td>
-                    <Link href={cityPathDe(c)} prefetch={false}>
-                      {cityNameDe(c)}
-                    </Link>
+                    {cityNameDe(c)}
                   </td>
                   <td>{hours(w)}</td>
                   <td>{hours(s)}</td>
@@ -141,7 +138,7 @@ export default function ZeitzonenrechnerPage() {
           Viele Länder stellen die Uhr gar nicht oder an anderen Tagen um. Die USA wechseln am zweiten Sonntag im März und am ersten Sonntag im November;
           dazwischen verändert sich die Zeitverschiebung nach New York oder Los Angeles für einige Wochen um eine Stunde. Die Türkei, Russland, China und
           Japan kennen keine Sommerzeit, sodass sich der Abstand zu ihnen zweimal im Jahr ändert. Die Uhrzeit in 97 Städten auf einen Blick zeigt die{" "}
-          <Link href="/de/weltuhr">Weltuhr</Link>.
+          Weltuhr.
         </p>
       </TimeToolPage>
     </div>

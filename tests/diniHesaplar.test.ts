@@ -10,13 +10,9 @@ import {
   kazaOrucu,
   kibleAcisi,
   kurbanHissesi,
-  seferDurumu,
-  umreMesafe,
   yonAdi,
   zekatHesapla,
 } from "../app/converter/diniHesaplar";
-import { roadKm } from "../app/converter/geo/provinceDistances";
-import { findProvince } from "../app/converter/geo/turkeyProvinces";
 
 describe("Kıble", () => {
   it("Türkiye'den kıble güneydoğu yönünde, İstanbul ≈ 151°", () => {
@@ -99,39 +95,6 @@ describe("Kurban hissesi", () => {
     expect(r.hisseBasiEt).toBe(25);
     expect(kurbanHissesi(140000, 7000, 7)!.hisseBasiEt).toBeNull();
     expect(kurbanHissesi(140000, 0, 8)).toBeNull();
-  });
-});
-
-describe("Seferîlik", () => {
-  it("90 km sınırı, il merkezleri arasında 90–120 km 'sınırda'", () => {
-    expect(seferDurumu(60)).toBe("degil");
-    expect(seferDurumu(100)).toBe("sinirda");
-    expect(seferDurumu(100, false)).toBe("seferi");
-    expect(seferDurumu(150)).toBe("seferi");
-    expect(seferDurumu(-1)).toBeNull();
-  });
-
-  it("KGM tablosuyla: İstanbul–Ankara seferî, Adana–Mersin sınırda değil", () => {
-    const ist = findProvince("istanbul")!;
-    const ank = findProvince("ankara")!;
-    expect(seferDurumu(roadKm(ist, ank))).toBe("seferi");
-    const adana = findProvince("adana")!;
-    const mersin = findProvince("mersin")!;
-    const km = roadKm(adana, mersin);
-    expect(km).toBeGreaterThan(0);
-    expect(seferDurumu(km)).not.toBeNull();
-  });
-});
-
-describe("Umre mesafesi", () => {
-  it("Kâbe'ye 6 m uzaktan tavaf ≈ 75 m/şavt, 7 şavt ≈ 528 m; sa'y 7 × 400 m", () => {
-    const r = umreMesafe({ duvaraUzaklikM: 6, tavafSayisi: 1, sayYapilacak: true, safaMerveM: 400, adimCm: 70, hizKmSaat: 4 })!;
-    expect(r.tavafSavtM).toBeCloseTo(2 * Math.PI * 12, 10);
-    expect(r.tavafToplamM).toBeCloseTo(7 * 2 * Math.PI * 12, 10);
-    expect(r.sayToplamM).toBe(2800);
-    expect(r.adim).toBe(Math.round(r.toplamM / 0.7));
-    expect(r.dakika).toBeCloseTo((r.toplamM / 1000 / 4) * 60, 10);
-    expect(umreMesafe({ duvaraUzaklikM: 6, tavafSayisi: 1, sayYapilacak: true, safaMerveM: 100, adimCm: 70, hizKmSaat: 4 })).toBeNull();
   });
 });
 
@@ -270,7 +233,7 @@ describe("Esmâ-i Hüsnâ", () => {
   });
 });
 
-import { kasrDurumu, KASR_KM, NISAB_GUMUS_VORI, VORI_GRAM, zakatVori } from "../app/converter/diniHesaplar";
+import { NISAB_GUMUS_VORI, VORI_GRAM, zakatVori } from "../app/converter/diniHesaplar";
 
 describe("Bangladeş zekâtı (ভরি) ve kasr", () => {
   it("gümüş nisabı 52,5 ভরি = 612,36 g; altın 7,5 ভরি = 87,48 g", () => {
@@ -289,13 +252,6 @@ describe("Bangladeş zekâtı (ভরি) ve kasr", () => {
     expect(zakatVori({ ...base, nisab: "altin" })!.nisabUstunde).toBe(false);
     // Altın var ama fiyatı yoksa hesap yapılmaz.
     expect(zakatVori({ ...base, altinVoriFiyati: 0 })).toBeNull();
-  });
-
-  it("48 mil ≈ 77,25 km; 15 gün kalış", () => {
-    expect(KASR_KM).toBeCloseTo(77.25, 2);
-    expect(kasrDurumu(80, 3)).toEqual({ mesafeYeterli: true, kalisKisa: true, musafir: true });
-    expect(kasrDurumu(80, 15)!.musafir).toBe(false);
-    expect(kasrDurumu(60, 2)!.musafir).toBe(false);
   });
 });
 

@@ -13,7 +13,7 @@ import NotificationBell from "./NotificationBell";
 
 import HomeSearch from "./HomeSearch";
 import { ARABIC_ISLAMIC_TOOLS } from "../i18n/arabicIslamicTools";
-import { ARABIC_ISLAMIC_HUB, ARABIC_ISLAMIC_PATHS, ISLAMIC_TOOL_PATHS } from "../i18n/islamicToolPaths";
+import { ARABIC_ISLAMIC_PATHS, ISLAMIC_TOOL_PATHS } from "../i18n/islamicToolPaths";
 import { unitGlossaryHref } from "../converter/unitGlossary";
 function CardIcon({ name }: { name: SiteIconName }) {
   return (
@@ -134,16 +134,10 @@ const TOOL_KEYWORDS: Record<string, string> = {
   [ISLAMIC_TOOL_PATHS.zakat.ar]: "زكاه زكاة ذهب عيار 21 18 24 نصاب مال مدخر راتب حول فضة",
   [ARABIC_ISLAMIC_PATHS.iddah]: "عده عدة مطلقة طلاق وفاة ارملة حامل متى تنتهي كم يوم قروء",
   [ARABIC_ISLAMIC_PATHS.aqiqah]: "عقيقه عقيقة مولود سابع ذبح يوم",
-  [ISLAMIC_TOOL_PATHS.qasr.ar]: "قصر جمع صلاة مسافر سفر كم يوم كم كيلو مسافة",
   "/ar/prayer-times-calculator": "صلاة اذان أذان مواقيت قبلة",
-  "/ar/occasions": "رمضان عيد الفطر الاضحى عرفة كم باقي",
 };
 
 const extraToolPages = [
-  { href: ARABIC_ISLAMIC_HUB, label: "أدوات وحاسبات إسلامية", text: "الزكاة والعدة والعقيقة وقصر الصلاة" },
-  { href: "/ar/calendar", label: "التاريخ الهجري اليوم والتقويم", text: "تقويم أم القرى مع الميلادي" },
-  { href: "/ar/school-calendar", label: "التقويم الدراسي", text: "مواعيد الدراسة والإجازات" },
-  { href: "/ar/salary-dates", label: "مواعيد صرف الرواتب", text: "موعد نزول الراتب" },
   { href: "/ar/end-of-service-calculator", label: "مكافأة نهاية الخدمة", text: "نظام العمل السعودي" },
   { href: "/ar/gold-price-calculator", label: "حاسبة سعر الذهب والفضة", text: "قيمة الذهب حسب الوزن والعيار" },
 ];
@@ -377,37 +371,7 @@ export default function ArabicHomeDirectory({
               </article>
             ))}
 
-            <article className="directory-home-card">
-              <Link
-                className="directory-card-stretch"
-                href="/ar/calendar"
-                aria-label="التاريخ الهجري اليوم والتقويم - تقويم أم القرى مع الميلادي والإجازات الرسمية والمناسبات."
-              />
 
-              <div className="directory-card-body directory-card-body-icon">
-                <CardIcon name="dateCalculator" />
-                <h3 className="home-category-title">التاريخ الهجري اليوم والتقويم</h3>
-                <p className="directory-card-description">
-                  تقويم أم القرى مع الميلادي والإجازات الرسمية والمناسبات.
-                </p>
-              </div>
-            </article>
-
-            <article className="directory-home-card">
-              <Link
-                className="directory-card-stretch"
-                href="/ar/occasions"
-                aria-label="المناسبات والإجازات - متى رمضان والعيد ويوم التأسيس واليوم الوطني؟ وكم باقي؟"
-              />
-
-              <div className="directory-card-body directory-card-body-icon">
-                <CardIcon name="dateCalculator" />
-                <h3 className="home-category-title">المناسبات والإجازات</h3>
-                <p className="directory-card-description">
-                  متى رمضان والعيد ويوم التأسيس واليوم الوطني؟ وكم باقي؟
-                </p>
-              </div>
-            </article>
 
             <article className="directory-home-card">
               <Link
@@ -425,37 +389,7 @@ export default function ArabicHomeDirectory({
               </div>
             </article>
 
-            <article className="directory-home-card">
-              <Link
-                className="directory-card-stretch"
-                href="/ar/school-calendar"
-                aria-label="التقويم الدراسي 1448 - بداية الدراسة والإجازات مع العد التنازلي للإجازة القادمة."
-              />
 
-              <div className="directory-card-body directory-card-body-icon">
-                <CardIcon name="dateCalculator" />
-                <h3 className="home-category-title">التقويم الدراسي 1448</h3>
-                <p className="directory-card-description">
-                  بداية الدراسة والإجازات مع العد التنازلي للإجازة القادمة.
-                </p>
-              </div>
-            </article>
-
-            <article className="directory-home-card">
-              <Link
-                className="directory-card-stretch"
-                href="/ar/salary-dates"
-                aria-label="مواعيد صرف الرواتب - موعد نزول الراتب لكل شهر مع العد التنازلي."
-              />
-
-              <div className="directory-card-body directory-card-body-icon">
-                <CardIcon name="vatCalculator" />
-                <h3 className="home-category-title">مواعيد صرف الرواتب</h3>
-                <p className="directory-card-description">
-                  موعد نزول الراتب لكل شهر مع العد التنازلي.
-                </p>
-              </div>
-            </article>
 
             <article className="directory-home-card">
               <Link
@@ -476,15 +410,15 @@ export default function ArabicHomeDirectory({
             <article className="directory-home-card">
               <Link
                 className="directory-card-stretch"
-                href={ARABIC_ISLAMIC_HUB}
-                aria-label="أدوات إسلامية - حاسبة العدة ويوم العقيقة وقصر الصلاة والزكاة."
+                href={ARABIC_ISLAMIC_PATHS.iddah}
+                aria-label="حاسبة العدة - متى تنتهي عدة الوفاة والطلاق بالتاريخ الهجري والميلادي."
               />
 
               <div className="directory-card-body directory-card-body-icon">
                 <CardIcon name="dateCalculator" />
-                <h3 className="home-category-title">أدوات إسلامية</h3>
+                <h3 className="home-category-title">حاسبة العدة</h3>
                 <p className="directory-card-description">
-                  حاسبة العدة ويوم العقيقة وقصر الصلاة والزكاة.
+                  متى تنتهي عدة الوفاة والطلاق بالتاريخ الهجري والميلادي.
                 </p>
               </div>
             </article>

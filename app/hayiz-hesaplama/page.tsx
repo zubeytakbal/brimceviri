@@ -47,7 +47,6 @@ export default function HayizPage() {
     <TimeToolPage
       crumbs={[
         { href: "/", label: "Ana Sayfa" },
-        { href: "/dini-araclar", label: "Dini Araçlar" },
         { href: path, label: "Hayız Hesaplama" },
       ]}
       crumbLabel="Sayfa yolu"

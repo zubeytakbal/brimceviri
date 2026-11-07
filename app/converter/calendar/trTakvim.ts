@@ -106,7 +106,6 @@ export type Etkinlik = {
   hakkinda: string;
   /** Mevcut geri sayım sayfası (/geri-sayim/...) */
   geriSayim?: string;
-  araclar?: Array<{ href: string; label: string }>;
   /** İlk kutlandığı / resmîleştiği yıl; öncesindeki yıllarda gösterilmez (doğum günü aracı geçmiş yıllara bakar). */
   baslangic?: number;
 };
@@ -122,13 +121,6 @@ export const KATEGORI_ADI: Record<Kategori, string> = {
   mevsim: "Mevsim ve astronomi",
 };
 
-const PASKALYA = { href: "/paskalya-ne-zaman", label: "Paskalya ne zaman? (Batı ve Ortodoks)" };
-
-const IZIN = {
-  href: "/resmi-tatiller",
-  label: "Resmî tatiller ve köprü günleri",
-};
-
 export const ETKINLIKLER: Etkinlik[] = [
   {
     id: "yilbasi",
@@ -142,7 +134,6 @@ export const ETKINLIKLER: Etkinlik[] = [
     hakkinda:
       "Türkiye'de miladi takvim ve 1 Ocak yılbaşı 1926'dan beri kullanılır; 1 Ocak 2429 sayılı Kanun'a göre tam gün resmî tatildir. Yılbaşı gecesi 31 Aralık'ı 1 Ocak'a bağlayan gecedir.",
     geriSayim: "yilbasi",
-    araclar: [IZIN],
   },
   {
     id: "23-nisan",
@@ -156,7 +147,6 @@ export const ETKINLIKLER: Etkinlik[] = [
     hakkinda:
       "Türkiye Büyük Millet Meclisi 23 Nisan 1920'de Ankara'da açıldı. 1929'dan itibaren çocuk bayramı olarak da kutlanan gün, 1981'den beri \"Ulusal Egemenlik ve Çocuk Bayramı\" adını taşır ve dünyanın dört bir yanından çocukların katıldığı etkinliklerle kutlanır.",
     geriSayim: "23-nisan",
-    araclar: [IZIN],
   },
   {
     id: "1-mayis",
@@ -170,13 +160,6 @@ export const ETKINLIKLER: Etkinlik[] = [
     hakkinda:
       "1 Mayıs, işçilerin haklarının ve dayanışmasının anıldığı uluslararası gündür. Türkiye'de 2009'da \"Emek ve Dayanışma Günü\" adıyla yeniden resmî tatil ilan edilmiştir.",
     geriSayim: "1-mayis",
-    araclar: [
-      IZIN,
-      {
-        href: "/brutten-nete-maas-hesaplama",
-        label: "Brütten nete maaş hesaplama",
-      },
-    ],
   },
   {
     id: "19-mayis",
@@ -190,7 +173,6 @@ export const ETKINLIKLER: Etkinlik[] = [
     hakkinda:
       "Mustafa Kemal 19 Mayıs 1919'da Samsun'a çıkarak Millî Mücadele'yi başlattı. Atatürk bu günü gençliğe armağan etmiş, gün 1938'den itibaren Gençlik ve Spor Bayramı olarak kutlanmıştır.",
     geriSayim: "19-mayis",
-    araclar: [IZIN],
   },
   {
     id: "15-temmuz",
@@ -204,7 +186,6 @@ export const ETKINLIKLER: Etkinlik[] = [
     hakkinda:
       "15 Temmuz 2016 gecesi yapılan darbe girişimi sırasında hayatını kaybedenler bu gün anılır. 2017'den beri resmî tatildir.",
     geriSayim: "15-temmuz",
-    araclar: [IZIN],
   },
   {
     id: "30-agustos",
@@ -218,7 +199,6 @@ export const ETKINLIKLER: Etkinlik[] = [
     hakkinda:
       "26 Ağustos 1922'de başlayan Büyük Taarruz, 30 Ağustos 1922'de Dumlupınar'daki Başkomutanlık Meydan Muharebesi ile zaferle sonuçlandı. Gün, Türk Silahlı Kuvvetleri Günü olarak da kutlanır.",
     geriSayim: "30-agustos",
-    araclar: [IZIN],
   },
   {
     id: "29-ekim",
@@ -232,7 +212,6 @@ export const ETKINLIKLER: Etkinlik[] = [
     hakkinda:
       "Türkiye Cumhuriyeti 29 Ekim 1923'te ilan edildi ve Mustafa Kemal Atatürk ilk cumhurbaşkanı seçildi. 28 Ekim öğleden sonrası arefe olarak yarım gün, 29 Ekim tam gün resmî tatildir.",
     geriSayim: "29-ekim",
-    araclar: [IZIN],
   },
   {
     id: "ramazan-bayrami",
@@ -245,10 +224,6 @@ export const ETKINLIKLER: Etkinlik[] = [
     hakkinda:
       "Ramazan Bayramı Hicri takvimde 1 Şevval'de başlar ve üç gün sürer; arefe günü öğleden sonra yarım gün tatildir. Hicri yıl güneş yılından yaklaşık 11 gün kısa olduğu için bayram her yıl yaklaşık 11 gün öne gelir. Tarihler Diyanet İşleri Başkanlığı'nın takvimine göredir.",
     geriSayim: "ramazan-bayrami",
-    araclar: [
-      IZIN,
-      { href: "/altin-hesaplama", label: "Altın hesaplama (bayram hediyesi)" },
-    ],
   },
   {
     id: "kurban-bayrami",
@@ -261,7 +236,6 @@ export const ETKINLIKLER: Etkinlik[] = [
     hakkinda:
       "Kurban Bayramı Hicri takvimde 10 Zilhicce'de başlar ve dört gün sürer; arefe günü öğleden sonra yarım gün tatildir. Hacıların Arafat'ta vakfe yaptığı gün arefedir. Bayram her yıl yaklaşık 11 gün öne gelir; tarihler Diyanet İşleri Başkanlığı'nın takvimine göredir.",
     geriSayim: "kurban-bayrami",
-    araclar: [IZIN],
   },
   {
     id: "uc-aylar",
@@ -344,9 +318,6 @@ export const ETKINLIKLER: Etkinlik[] = [
     kisa: "Hicri takvimde yeni yılın ilk günü (1 Muharrem).",
     hakkinda:
       "Hicri takvim, Hz. Muhammed'in Mekke'den Medine'ye hicretini başlangıç alır. Yeni yıl 1 Muharrem'de başlar; ay yılı olduğu için her yıl yaklaşık 11 gün önce gelir.",
-    araclar: [
-      { href: "/tarih-cevirici", label: "Hicri – miladi tarih çevirici" },
-    ],
   },
   {
     id: "asure-gunu",
@@ -556,9 +527,6 @@ export const ETKINLIKLER: Etkinlik[] = [
     kisa: "Halk takvimine göre cemre 20 Şubat'ta havaya, 27 Şubat'ta suya, 6 Mart'ta toprağa düşer.",
     hakkinda:
       "Cemre, halk inanışında baharın gelişini müjdeleyen ısının sırasıyla havaya, suya ve toprağa düşmesidir. Birer hafta arayla düşen cemreler, eski (Rumi) takvime dayandığı için her yıl aynı miladi tarihlere denk gelir; bazı kaynaklar bir gün önceyi (19 Şubat, 26 Şubat, 5 Mart) verir. Bilimsel bir ölçüm değil, uzun gözlemlere dayanan bir gelenektir.",
-    araclar: [
-      { href: "/firtina-takvimi", label: "Fırtına takvimi ve halk takvimi" },
-    ],
   },
   {
     id: "hamsin",
@@ -570,9 +538,6 @@ export const ETKINLIKLER: Etkinlik[] = [
     kisa: "Erbain'in ardından gelen, 31 Ocak'tan 21 Mart'a kadar süren 50 günlük kış dönemi.",
     hakkinda:
       "Hamsin (Arapça \"elli\"), halk takviminde kışın ikinci dönemidir: Erbain'in bitişiyle 31 Ocak'ta başlar ve 21 Mart'a kadar 50 gün sürer. Soğuklar Erbain kadar sert değildir; cemreler ve Kocakarı soğukları bu dönemdedir.",
-    araclar: [
-      { href: "/firtina-takvimi", label: "Fırtına takvimi ve halk takvimi" },
-    ],
   },
   {
     id: "kocakari-soguklari",
@@ -584,7 +549,6 @@ export const ETKINLIKLER: Etkinlik[] = [
     kisa: "Baharın gelişinden sonra 11-17 Mart arasında görülen, halk arasında Berdül Acuz denen son soğuklar.",
     hakkinda:
       "Kocakarı soğukları (Berdül Acuz), halk takvimine göre Mart ayında havalar ısınmaya başladıktan sonra yaşanan kısa ve sert soğuk dönemdir; genellikle 11-17 Mart arasına denk gelir ve denizcilerin fırtına takviminde Kocakarı fırtınası olarak da geçer.",
-    araclar: [{ href: "/firtina-takvimi", label: "Fırtına takvimi" }],
   },
   {
     id: "hidirellez",
@@ -596,12 +560,6 @@ export const ETKINLIKLER: Etkinlik[] = [
     kisa: "5 Mayıs'ı 6 Mayıs'a bağlayan gece kutlanan bahar bayramı; Hızır günlerinin başlangıcı.",
     hakkinda:
       "Hıdırellez, Hızır ile İlyas'ın buluştuğuna inanılan ve baharın, bereketin kutlandığı eski bir bayramdır. 5 Mayıs'ı 6 Mayıs'a bağlayan gece ateş üzerinden atlanır, dilekler gül ağacına bağlanır. Halk takviminde yıl, 6 Mayıs'ta başlayan Hızır günleri ve 8 Kasım'da başlayan Kasım günleri olarak ikiye ayrılır. Hıdırellez, UNESCO İnsanlığın Somut Olmayan Kültürel Mirası listesindedir.",
-    araclar: [
-      {
-        href: "/firtina-takvimi",
-        label: "Halk takvimi: Hızır ve Kasım günleri",
-      },
-    ],
   },
   {
     id: "kasim-gunleri",
@@ -613,12 +571,6 @@ export const ETKINLIKLER: Etkinlik[] = [
     kisa: "Halk takviminde yılın kış yarısı: 8 Kasım'dan 5 Mayıs'a kadar süren Kasım günleri.",
     hakkinda:
       "Halk takviminde yıl ikiye ayrılır: 6 Mayıs'ta (Hıdırellez) başlayan yaz yarısı Hızır günleri, 8 Kasım'da başlayan kış yarısı Kasım günleridir. Çiftçiler ekim ve hasat zamanlarını, çobanların anlaşmaları ise bu iki tarihe göre belirlerdi; \"Kasım'ın 50'si\" gibi günler hâlâ kullanılır.",
-    araclar: [
-      {
-        href: "/firtina-takvimi",
-        label: "Halk takvimi: Hızır ve Kasım günleri",
-      },
-    ],
   },
   {
     id: "erbain",
@@ -630,9 +582,6 @@ export const ETKINLIKLER: Etkinlik[] = [
     kisa: "Kışın en sert 40 günü: 22 Aralık'tan 30 Ocak'a kadar süren Erbain (zemheri).",
     hakkinda:
       "Erbain (Arapça \"kırk\"), halk takviminde kışın en soğuk ve karlı 40 günlük dönemidir; Kış Gündönümü'nün ertesi günü 22 Aralık'ta başlar, 30 Ocak'ta biter. Zemheri veya karakış olarak da anılır. Ardından 50 günlük Hamsin gelir.",
-    araclar: [
-      { href: "/firtina-takvimi", label: "Fırtına takvimi ve halk takvimi" },
-    ],
   },
   // Hristiyan bayramları: Türkiye'deki Ermeni, Rum Ortodoks, Süryani, Katolik ve Protestan toplulukların günleri.
   {
@@ -646,7 +595,6 @@ export const ETKINLIKLER: Etkinlik[] = [
     hakkinda:
       "Paskalya, 21 Mart'tan sonraki ilk dolunayı izleyen pazar günüdür ve 22 Mart ile 25 Nisan arasında değişir. Türkiye'de Ermeni Patrikhanesi, Katolik ve Protestan kiliseleri bu Gregoryen (Batı) tarihi kullanır; Ermeniler bayrama Surp Zadik der.",
     geriSayim: "paskalya",
-    araclar: [PASKALYA],
   },
   {
     id: "ortodoks-paskalyasi",
@@ -659,7 +607,6 @@ export const ETKINLIKLER: Etkinlik[] = [
     hakkinda:
       "Ortodoks kiliseleri Paskalya'yı Jülyen takvimine göre hesaplar; bu yüzden Batı Paskalyası ile aynı gün ya da 1-5 hafta sonra kutlanır. Türkiye'de Fener Rum Patrikhanesi'ne bağlı Rum Ortodokslar ve Mardin, Midyat gibi yerlerdeki Süryaniler bu tarihi kullanır.",
     geriSayim: "ortodoks-paskalyasi",
-    araclar: [PASKALYA],
   },
   {
     id: "kul-carsambasi",
@@ -671,7 +618,6 @@ export const ETKINLIKLER: Etkinlik[] = [
     kisa: "Katolik ve Protestanlarda Büyük Perhizin (40 günlük oruç) ilk günü.",
     hakkinda:
       "Kül Çarşambası, Batı Paskalyası'ndan 46 gün öncedir ve Büyük Perhizin başladığı gündür. Ayinde rahip katılanların alnına külle haç işareti yapar. Perhizdeki pazar günleri oruçtan sayılmadığı için 46 gün, 40 günlük oruca karşılık gelir.",
-    araclar: [PASKALYA],
   },
   {
     id: "temiz-pazartesi",
@@ -683,7 +629,6 @@ export const ETKINLIKLER: Etkinlik[] = [
     kisa: "Ortodoks kiliselerinde Büyük Perhizin ilk günü (Temiz Pazartesi).",
     hakkinda:
       "Ortodoks Büyük Perhizi, Ortodoks Paskalyası'ndan 48 gün önceki pazartesi başlar; bu güne Temiz Pazartesi (Kathara Deftera) denir. Perhiz Paskalya'ya kadar sürer ve son haftası Kutsal Hafta'dır.",
-    araclar: [PASKALYA],
   },
   {
     id: "goge-yukselis",
@@ -695,7 +640,6 @@ export const ETKINLIKLER: Etkinlik[] = [
     kisa: "İsa'nın göğe yükselişi; Batı Paskalyası'ndan 39 gün sonraki perşembe.",
     hakkinda:
       "Göğe Yükseliş, Paskalya'dan 40. gün (Paskalya günü birinci gün sayılır) kutlanır ve her zaman perşembeye denk gelir. Bu tarih Batı kiliselerine göredir; Ortodoks kiliseleri aynı bayramı Ortodoks Paskalyası'ndan 39 gün sonra kutlar.",
-    araclar: [PASKALYA],
   },
   {
     id: "pentekost",
@@ -707,7 +651,6 @@ export const ETKINLIKLER: Etkinlik[] = [
     kisa: "Kutsal Ruh'un inişinin anıldığı bayram; Batı Paskalyası'ndan 7 hafta sonraki pazar.",
     hakkinda:
       "Pentekost (Hamsin, Yunanca \"ellinci\"), Paskalya'dan sonraki ellinci gündür ve Kutsal Ruh'un havarilere inişini anar. Bu tarih Batı kiliselerine göredir; Ortodoks kiliseleri Pentekost'u Ortodoks Paskalyası'ndan 49 gün sonra kutlar.",
-    araclar: [PASKALYA],
   },
   {
     id: "advent",
@@ -1035,14 +978,6 @@ export const GUN_ADLARI = [
 /** Takvim sayfası olan yıllar (Diyanet'in yayımladığı yıllar + bir sonraki). */
 export const TAKVIM_YILLARI = [2026, 2027, 2028];
 
-export const takvimYilPath = (y: number) => `/takvim/${y}`;
-export const takvimAyPath = (y: number, m: number) =>
-  `/takvim/${y}/${AY_SLUG[m - 1]}`;
-/** Özel günü olan her günün kendi sayfası var (birleştirmeden sonra 21 Ekim 2026'da geri getirildi). */
-export const takvimGunPath = (d: YMD) =>
-  `/takvim/${d.year}/${AY_SLUG[d.month - 1]}/${d.day}`;
-/** Her özel günün kendi sayfası var; arama alan 9 günün özgün içeriği ozelGunIcerik.ts'de. */
-export const ozelGunPath = (id: string) => `/ozel-gunler/${id}`;
 
 export const AY_EVRE_ADI: Record<PhaseName, string> = {
   new: "Yeni ay",

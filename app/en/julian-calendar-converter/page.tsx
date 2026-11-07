@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import Link from "@/app/components/SiteLink";
 import { JulianDateConverter } from "../../components/christian/OrthodoxFasting";
 import TimeToolPage from "../../components/time/TimeToolPage";
 import type { FaqItem } from "../../converter/faqSchema";
 import { formatLongDate } from "../../converter/christian/christianCalc";
 import { julianToGregorian } from "../../converter/christian/orthodoxFasting";
-import { CHRISTIAN_TOOLS_PATH, christianRelated } from "../../i18n/englishChristianTools";
+import { christianRelated } from "../../i18n/englishChristianTools";
 import { buildSiteUrl } from "../../siteConfig";
 
 const path = "/en/julian-calendar-converter";
@@ -53,7 +52,6 @@ export default function JulianConverterPage() {
     <TimeToolPage
       crumbs={[
         { href: "/en", label: "Home" },
-        { href: CHRISTIAN_TOOLS_PATH, label: "Christian Tools" },
         { href: path, label: "Julian Calendar Converter" },
       ]}
       crumbLabel="Breadcrumb"
@@ -93,7 +91,7 @@ export default function JulianConverterPage() {
         </table>
       </div>
       <p>
-        For the fasts that follow these dates, see the <Link href="/en/orthodox-fasting-calendar">Orthodox fasting calendar</Link>.
+        For the fasts that follow these dates, see the Orthodox fasting calendar.
       </p>
     </TimeToolPage>
   );

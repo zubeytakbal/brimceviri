@@ -146,7 +146,7 @@ function HizliKart({ kart, veri, degis }: { kart: Kart; veri: HizliVeri; degis: 
             <span>
               Kur: {new Intl.DateTimeFormat("tr-TR", { day: "numeric", month: "long", year: "numeric", timeZone: "Europe/Istanbul" }).format(doviz.tarih * 1000)}
             </span>
-            <Link href="/doviz-cevirici">Döviz çevirici</Link>
+            Döviz çevirici
           </>
         ) : (
           <Link href={kat!.href}>Tüm {kat!.ad.toLocaleLowerCase("tr")} dönüşümleri</Link>

@@ -1,4 +1,3 @@
-import Link from "@/app/components/SiteLink";
 import { adadAr, riyadhYawm } from "../../converter/calendar/saTaqwim";
 import type { FaqItem } from "../../converter/faqSchema";
 import {
@@ -60,9 +59,6 @@ export function SaNihayatKhidmaSafha() {
         related={{
           title: "قد يهمك أيضًا",
           links: [
-            { href: "/ar/salary-dates", label: "مواعيد صرف الرواتب" },
-            { href: "/ar/occasions", label: "الإجازات الرسمية في السعودية" },
-            { href: "/ar/calendar", label: "التقويم الهجري والميلادي" },
             { href: "/ar/hijri-age-calculator", label: "حساب العمر بالهجري" },
             { href: "/ar/zakat-calculator", label: "حاسبة الزكاة" },
             { href: "/ar/vat-calculator", label: "حاسبة ضريبة القيمة المضافة" },
@@ -105,8 +101,8 @@ export function SaNihayatKhidmaSafha() {
           لا تشمل المكافأة الأجر المستحق عن آخر شهر ولا مقابل الإجازات السنوية
           غير المستخدمة، ولا التعويض عن إنهاء العقد لسبب غير مشروع (المادة 77).
           لمعرفة الإجازات الرسمية القادمة راجع{" "}
-          <Link href="/ar/occasions">المناسبات</Link>، ولموعد نزول الراتب راجع{" "}
-          <Link href="/ar/salary-dates">مواعيد صرف الرواتب</Link>.
+          المناسبات، ولموعد نزول الراتب راجع{" "}
+          مواعيد صرف الرواتب.
         </p>
       </TimeToolPage>
     </div>

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "@/app/components/SiteLink";
 import SaatKabugu from "../components/saat/SaatKabugu";
 import UykuSaat from "../components/time/UykuSaat";
 import UykuSahneleri, { kalkisIcin, saatYaz, yatisIcin } from "../components/time/UykuSahneleri";
@@ -106,7 +105,7 @@ export default function SleepCalculatorPage() {
       <p>
         Bir döngünün ortasında, özellikle derin uyku evresinde uyanmak kendinizi sersemlemiş hissetmenize yol açar. Bu yüzden toplam süre
         kadar, tam bir döngünün sonunda uyanmak da önemlidir. Hesaplayıcı, hedef saatinize göre tam döngüyle biten saatleri önerir;
-        sonuçlardaki &quot;alarm kur&quot; bağlantısı <Link href="/online-alarm-kur">online alarmı</Link> o saate ayarlar.
+        sonuçlardaki &quot;alarm kur&quot; bağlantısı online alarmı o saate ayarlar.
       </p>
 
       <h2 id="hesaplama">Hesaplama nasıl yapılıyor?</h2>

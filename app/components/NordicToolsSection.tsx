@@ -3,13 +3,9 @@
 // eklendiğinde yalnızca NORDIC_TOOLS listesine bir satır eklenir.
 import Link from "@/app/components/SiteLink";
 import { NORDIC_FUEL_PATHS } from "../converter/fuel/nordicFuel";
-import { TIME_HUB_PATHS } from "./timehub/timeHubPaths";
 import { NORDIC_DAYS_PATHS } from "../converter/time/nordicDays";
-import { NORDIC_HOLIDAY_PATHS } from "../converter/time/nordicHolidays";
-import { NORDIC_WORLD_BASE } from "../converter/time/nordicWorld";
 import { NORDIC_WEEK_PATHS, type NordicLocale } from "../converter/time/nordicWeek";
 import { sleepGuidePaths } from "../i18n/sleepGuidePaths";
-import { NORDIC_TIME_CARD_TEXT, NORDIC_TIME_LABELS, NORDIC_TIME_PATHS, type NordicTimeTool } from "./time/nordicTimeCopy";
 import { DecorativeIcon, type SiteIconName } from "./siteIcons";
 
 type ToolCard = { id: string; href: string; title: string; description: string; iconName: SiteIconName };
@@ -22,58 +18,28 @@ const SECTION_COPY: Record<NordicLocale, { title: string; description: string }>
 
 const NORDIC_TOOLS: Record<NordicLocale, ToolCard[]> = {
   sv: [
-    { id: "tid", href: TIME_HUB_PATHS.sv, title: "Tid och datum", description: "Klockan, veckan, soltider och röda dagar.", iconName: "time" },
     { id: "week", href: NORDIC_WEEK_PATHS.sv, title: "Vilken vecka är det?", description: "Aktuellt veckonummer och alla veckor med datum.", iconName: "weekNumber" },
     { id: "days", href: NORDIC_DAYS_PATHS.sv, title: "Dagar mellan datum", description: "Räkna dagar mellan två datum eller lägg till dagar.", iconName: "dateCalculator" },
-    { id: "holidays", href: NORDIC_HOLIDAY_PATHS.sv, title: "Röda dagar", description: "Alla helgdagar i år med datum och klämdagar.", iconName: "dateCalculator" },
-    { id: "world", href: NORDIC_WORLD_BASE.sv, title: "Världsklocka", description: "Aktuell tid i 97 städer med tidsskillnad.", iconName: "greatCircleCalculator" },
     { id: "sleep", href: sleepGuidePaths.sv!, title: "Sömnkalkylator", description: "Räkna ut när du ska lägga dig eller vakna.", iconName: "sleepCalculator" },
     { id: "fuel", href: NORDIC_FUEL_PATHS.sv, title: "Liter per mil", description: "Räkna om bränsleförbrukning och resekostnad.", iconName: "fuelConsumptionCalculator" },
   ],
   no: [
-    { id: "tid", href: TIME_HUB_PATHS.no, title: "Tid og dato", description: "Klokka, uka, soltider og røde dager.", iconName: "time" },
     { id: "week", href: NORDIC_WEEK_PATHS.no, title: "Hvilken uke er det?", description: "Gjeldende ukenummer og alle uker med datoer.", iconName: "weekNumber" },
     { id: "days", href: NORDIC_DAYS_PATHS.no, title: "Dager mellom datoer", description: "Regn ut dager mellom to datoer eller legg til dager.", iconName: "dateCalculator" },
-    { id: "holidays", href: NORDIC_HOLIDAY_PATHS.no, title: "Røde dager", description: "Alle helligdager i år med dato og inneklemte dager.", iconName: "dateCalculator" },
-    { id: "world", href: NORDIC_WORLD_BASE.no, title: "Verdensklokke", description: "Nåværende tid i 97 byer med tidsforskjell.", iconName: "greatCircleCalculator" },
     { id: "sleep", href: sleepGuidePaths.no!, title: "Søvnkalkulator", description: "Finn ut når du bør legge deg eller stå opp.", iconName: "sleepCalculator" },
     { id: "fuel", href: NORDIC_FUEL_PATHS.no, title: "Liter per mil", description: "Regn om drivstofforbruk og turkostnad.", iconName: "fuelConsumptionCalculator" },
   ],
   da: [
-    { id: "tid", href: TIME_HUB_PATHS.da, title: "Tid og dato", description: "Klokken, ugen, solopgang og helligdage.", iconName: "time" },
     { id: "week", href: NORDIC_WEEK_PATHS.da, title: "Hvilken uge er det?", description: "Aktuelt ugenummer og alle uger med datoer.", iconName: "weekNumber" },
     { id: "days", href: NORDIC_DAYS_PATHS.da, title: "Dage mellem datoer", description: "Beregn dage mellem to datoer, eller læg dage til.", iconName: "dateCalculator" },
-    { id: "holidays", href: NORDIC_HOLIDAY_PATHS.da, title: "Helligdage", description: "Alle helligdage i år med dato og klemmedage.", iconName: "dateCalculator" },
-    { id: "world", href: NORDIC_WORLD_BASE.da, title: "Verdensur", description: "Aktuel tid i 97 byer med tidsforskel.", iconName: "greatCircleCalculator" },
     { id: "sleep", href: sleepGuidePaths.da!, title: "Søvnberegner", description: "Find ud af, hvornår du skal gå i seng eller stå op.", iconName: "sleepCalculator" },
     { id: "fuel", href: NORDIC_FUEL_PATHS.da, title: "Km pr. liter", description: "Omregn brændstofforbrug og turpris.", iconName: "fuelConsumptionCalculator" },
   ],
 };
 
-const TIME_TOOL_ICONS: Record<NordicTimeTool, SiteIconName> = {
-  // Türkçe ana sayfadaki zaman araçlarıyla aynı ikonlar.
-  clock: "time",
-  timer: "paceCalculator",
-  stopwatch: "paceCalculator",
-  alarm: "time",
-  pomodoro: "paceCalculator",
-  interval: "paceCalculator",
-};
-
-function timeToolCards(locale: NordicLocale): ToolCard[] {
-  return (["clock", "timer", "stopwatch", "alarm", "pomodoro", "interval"] as NordicTimeTool[]).map((tool) => ({
-    id: tool,
-    href: NORDIC_TIME_PATHS[tool][locale],
-    title: NORDIC_TIME_LABELS[tool][locale],
-    description: NORDIC_TIME_CARD_TEXT[tool][locale],
-    iconName: TIME_TOOL_ICONS[tool],
-  }));
-}
-
 export default function NordicToolsSection({ locale }: { locale: NordicLocale }) {
   const copy = SECTION_COPY[locale];
-  const [hub, week, ...rest] = NORDIC_TOOLS[locale];
-  const cards = [hub, week, ...timeToolCards(locale), ...rest];
+  const cards = NORDIC_TOOLS[locale];
   return (
     <section className="directory-section">
       <header className="directory-section-header">

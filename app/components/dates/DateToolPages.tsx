@@ -32,9 +32,7 @@ const RELATED: Record<Lang, Array<{ id: DateToolId | "holidays" | "age" | "count
     { id: "businessDays", href: "/is-gunu-hesaplama", label: "İş Günü Hesaplama" },
     { id: "dateAdd", href: "/tarihe-gun-ekleme", label: "Tarihe Gün Ekleme" },
     { id: "weekNumber", href: "/kacinci-hafta", label: "Bugün Kaçıncı Hafta?" },
-    { id: "holidays", href: "/resmi-tatiller", label: "Resmî Tatiller" },
     { id: "age", href: "/yas-hesaplama", label: "Yaş Hesaplama" },
-    { id: "countdown", href: "/geri-sayim", label: "Geri Sayım" },
     { id: "hijri", href: "/tarih-cevirici", label: "Hicri Rumi Tarih Çevirici" },
   ],
   en: [
@@ -42,8 +40,6 @@ const RELATED: Record<Lang, Array<{ id: DateToolId | "holidays" | "age" | "count
     { id: "businessDays", href: "/en/business-day-calculator", label: "Business Day Calculator" },
     { id: "dateAdd", href: "/en/date-calculator", label: "Date Calculator" },
     { id: "weekNumber", href: "/en/week-number", label: "What Week Is It?" },
-    { id: "holidays", href: "/en/federal-holidays", label: "US Federal Holidays" },
-    { id: "countdown", href: "/en/countdown", label: "Countdown" },
     { id: "hijri", href: "/en/hijri-date-converter", label: "Hijri Date Converter" },
   ],
 };
@@ -280,13 +276,13 @@ export function DateDiffPage({ lang }: { lang: Lang }) {
           Hesaplayıcı her iki tarihi takvim günü olarak alır ve farkı gün cinsinden bulur; saat dilimi ya da yaz saati farkından etkilenmez.
           Sonuç aynı zamanda yıl-ay-gün, hafta ve saat olarak gösterilir. İş günü sayısında hafta sonları ve Türkiye&apos;deki resmî tatiller
           düşülür; arefe günleri yarım gün olduğu için iş günü sayılır. Resmî tatillerin tam listesi için{" "}
-          <Link href="/resmi-tatiller">resmî tatiller sayfasına</Link> bakın.
+          resmî tatiller sayfasına bakın.
         </p>
       ) : (
         <p>
           Both dates are treated as calendar days, so time zones and daylight saving time do not affect the result. The difference is also
           broken down into years, months and days, weeks and hours. Business days exclude Saturdays, Sundays and{" "}
-          <Link href="/en/federal-holidays">US federal holidays</Link> (on their observed dates).
+          US federal holidays (on their observed dates).
         </p>
       )}
       <h2 id="ornekler">{tr ? "Örnek hesaplar" : "Examples"}</h2>
@@ -305,7 +301,7 @@ export function DateDiffPage({ lang }: { lang: Lang }) {
           <>
             <li>January 1 to December 31 of the same year: 364 days, or 365 counting both dates (366 in a leap year).</li>
             <li>90 days from today: use the <Link href="/en/date-calculator">date calculator</Link> to add days instead.</li>
-            <li>Days until a holiday: the <Link href="/en/countdown">countdown</Link> shows a live timer to the minute.</li>
+            <li>Days until a holiday: the countdown shows a live timer to the minute.</li>
           </>
         )}
       </ul>
@@ -422,12 +418,12 @@ export function BusinessDayPage({ lang }: { lang: Lang }) {
         <p>
           Cumartesi ve pazar ile 2429 sayılı Kanun&apos;daki resmî tatiller (yılbaşı, 23 Nisan, 1 Mayıs, 19 Mayıs, 15 Temmuz, 30 Ağustos, 29 Ekim,
           Ramazan ve Kurban Bayramı günleri) düşülür. Bayram tarihleri Diyanet takvimine göredir. Tarih aralığındaki tatiller sonuçta listelenir;
-          yıllık listeyi <Link href="/resmi-tatiller">resmî tatiller</Link> sayfasında görebilirsiniz. Hükümetin ayrıca ilan ettiği idari izin
+          yıllık listeyi resmî tatiller sayfasında görebilirsiniz. Hükümetin ayrıca ilan ettiği idari izin
           (köprü) günleri otomatik olarak düşülmez.
         </p>
       ) : (
         <p>
-          Saturdays, Sundays and the 11 <Link href="/en/federal-holidays">federal holidays</Link> are excluded, using the observed date when a
+          Saturdays, Sundays and the 11 federal holidays are excluded, using the observed date when a
           holiday falls on a weekend. State holidays (such as Patriots&apos; Day or Cesar Chavez Day) and company-specific days off are not
           included; subtract them manually if they apply to you.
         </p>
@@ -462,7 +458,7 @@ export function BusinessDayPage({ lang }: { lang: Lang }) {
             pazara denk geldiğinde pazartesi çalışılır. Bayramların bir kısmı hafta sonuna düştüğünde de yalnızca hafta içindeki bayram günleri iş
             gününden düşer. Hükümet bazı yıllarda bayramı hafta sonuyla birleştirmek için idari izin (köprü) ilan eder; bu günler kamu için
             geçerlidir ve hesaplayıcı tarafından otomatik düşülmez. Hangi günlerde izin alarak tatili uzatabileceğinizi{" "}
-            <Link href={`/resmi-tatiller/${bugunYil + 1}`}>{bugunYil + 1} resmî tatiller</Link> sayfasındaki izin planlayıcıda görebilirsiniz.
+            {bugunYil + 1} resmî tatiller sayfasındaki izin planlayıcıda görebilirsiniz.
           </p>
         </>
       )}

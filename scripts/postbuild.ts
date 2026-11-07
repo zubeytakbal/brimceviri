@@ -122,7 +122,7 @@ function writeRedirects() {
   return { static: staticLines.length, dynamic: dynamicLines.length };
 }
 
-/** out/ altındaki sayfa adresleri ("/takvim/2026/ekim"). */
+/** out/ altındaki sayfa adresleri ("/alan/metrekare-fitkare"). */
 function htmlPaths(dir: string, base = ""): Set<string> {
   const set = new Set<string>();
   for (const entry of readdirSync(dir, { withFileTypes: true })) {

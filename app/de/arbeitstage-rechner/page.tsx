@@ -83,9 +83,9 @@ export default function ArbeitstagePage() {
               {rows.map(({ s, a, b }) => (
                 <tr key={s.code}>
                   <td>
-                    <Link href={`/de/feiertage?land=${s.slug}`} prefetch={false}>
+                    
                       {s.name}
-                    </Link>
+                    
                   </td>
                   <td>{a.work}</td>
                   <td>{b.work}</td>
@@ -106,7 +106,7 @@ export default function ArbeitstagePage() {
         </p>
         <p>
           Bewegliche Feiertage wie Ostern, Christi Himmelfahrt, Pfingsten und Fronleichnam hängen vom Osterdatum ab und verschieben die Zahl der
-          Arbeitstage von Jahr zu Jahr. Die Feiertage je Land finden Sie unter <Link href="/de/feiertage">Feiertage nach Bundesland</Link>; die Zahl der
+          Arbeitstage von Jahr zu Jahr. Die Feiertage je Land finden Sie unter Feiertage nach Bundesland; die Zahl der
           Kalendertage zwischen zwei Daten liefert der <Link href="/de/tagerechner">Tagerechner</Link>.
         </p>
       </TimeToolPage>

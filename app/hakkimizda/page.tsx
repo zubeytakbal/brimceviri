@@ -67,11 +67,11 @@ export default function AboutPage() {
               </li>
               <li>
                 Türkiye&apos;ye özgü çeviriler: <Link href="/eski-para-yeni-para-cevirme">eski para - yeni para</Link>,{" "}
-                <Link href="/ezani-saat-cevirme">ezani saat</Link>, <Link href="/ebced-hesabi">ebced hesabı</Link>,{" "}
+                ezani saat, <Link href="/ebced-hesabi">ebced hesabı</Link>,{" "}
                 <Link href="/tarih-cevirici">hicri ve Rumi tarih</Link>, dönüm ve eski Osmanlı ölçüleri.
               </li>
               <li>
-                Ölçü numaraları ve tablolar: <Link href="/kagit-boyutlari">kâğıt boyutları</Link>,{" "}
+                Ölçü numaraları ve tablolar: kâğıt boyutları,{" "}
                 <Link href="/bofor-cevirme">bofor</Link>, <Link href="/mesh-mikron-cevirme">elek numaraları</Link>,{" "}
                 <Link href="/egim-cevirme">eğim</Link>, ayakkabı, beden ve yüzük ölçüleri.
               </li>

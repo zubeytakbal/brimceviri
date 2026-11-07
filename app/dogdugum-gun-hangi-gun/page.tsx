@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import DogumGunuHesaplama from "../components/takvim/DogumGunuHesaplama";
 import { takvimMetadata } from "../components/takvim/takvimMeta";
-import { TAKVIM_ARACLARI } from "../components/takvim/TakvimSayfalari";
+import { TAKVIM_ARACLARI } from "../components/takvim/tarihAraclari";
 import TimeToolPage from "../components/time/TimeToolPage";
 import type { FaqItem } from "../converter/faqSchema";
 import { trAblative, trLocative } from "../converter/turkishSuffix";
@@ -55,7 +55,6 @@ export default function DogdugumGunRoute() {
     <TimeToolPage
       crumbs={[
         { href: "/", label: "Ana Sayfa" },
-        { href: "/takvim", label: "Takvim" },
         { label: "Doğduğum Gün Hangi Gündü?" },
       ]}
       crumbLabel="Sayfa yolu"
@@ -72,7 +71,6 @@ export default function DogdugumGunRoute() {
         links: [
           { href: "/yas-hesaplama", label: "Yaş Hesaplama" },
           { href: "/tarih-cevirici", label: "Hicri – Miladi Tarih Çevirici" },
-          { href: "/ozel-gunler", label: "Özel Günler" },
           ...TAKVIM_ARACLARI,
         ],
       }}
@@ -116,8 +114,8 @@ export default function DogdugumGunRoute() {
       <p>
         Doğduğunuz gün bir bayrama, kandile ya da milli bir güne denk geliyorsa
         araç bunu da gösterir; tüm günleri{" "}
-        <Link href="/takvim">Türkiye takviminde</Link> ve{" "}
-        <Link href="/ozel-gunler">özel günler</Link> sayfasında görebilirsiniz.
+        Türkiye takviminde ve{" "}
+        özel günler sayfasında görebilirsiniz.
         Tam yaşınızı yıl, ay ve gün olarak hesaplamak için{" "}
         <Link href="/yas-hesaplama">yaş hesaplama</Link> aracını kullanın.
       </p>

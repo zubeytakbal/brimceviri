@@ -1,63 +1,13 @@
 // Şablon sayfaların ana araç sayfalarına birleştirilmesiyle kaldırılan adresler (301).
-// Hazır süre ve saat sayfaları, değer korunarak ana araca yönlenir (?s= saniye, ?t= saat).
-import { alarmPresetSlug, alarmPresetTimes, alarmSlugDe, GERI_GELEN_ALARM_EN } from "./i18n/timeToolPaths";
-import { NORDIC_TIMER_SECONDS, nordicTimerPath } from "./i18n/nordicTimerPresets";
-import { GERI_GELEN_SURELER, timerPresetPath, timerPresets } from "./i18n/timerPresets";
-import { fxContentBn, fxPairsBn } from "./converter/fx/fxContentBn";
-import { fxContentDe, fxPairsDe } from "./converter/fx/fxContentDe";
-import { fxContentUz, fxPairsUz } from "./converter/fx/fxContentUz";
-import { fxPairsTr } from "./converter/fx/fxPairsTr";
-import { uzLicenseClasses } from "./converter/licenseClassFinderUz";
 import { aminoAcidsDatabase } from "./converter/aminoAcidsDatabase";
-import { SURELER } from "./converter/sureler";
 import { unitGuideRedirects } from "./converter/unitGlossary";
 import { ALTIN_SAYFALARI, AYRI_ALTIN_SAYFALARI } from "./converter/turkishAltinPages";
-import { ETKINLIKLER } from "./converter/calendar/trTakvim";
-import { OZEL_GUN_SAYFALARI } from "./converter/calendar/ozelGunIcerik";
 import { cgpaUniversities } from "./converter/india/cgpaUniversities";
-import { getAllRegions } from "./converter/regionElevationHubUz";
-import { GERMAN_STATES } from "./converter/time/germanHolidays";
-import { HOLIDAY_YEARS } from "./converter/time/holidays";
 import { KALDIRILAN_SAYFALAR } from "./kaldirilanSayfalar";
 
 export type MergedRedirect = { source: string; destination: string; permanent: true };
 
 const r = (source: string, destination: string): MergedRedirect => ({ source, destination, permanent: true });
-
-function timerRedirects(): MergedRedirect[] {
-  return [
-    ...timerPresets.flatMap((p) => [
-      // Geri gelen süreler kendi sayfasında (GERI_GELEN_SURELER).
-      ...((GERI_GELEN_SURELER as readonly number[]).includes(p.seconds) ? [] : [r(timerPresetPath(p, "tr"), `/zamanlayici?s=${p.seconds}`)]),
-      r(timerPresetPath(p, "en"), `/en/timer?s=${p.seconds}`),
-      r(timerPresetPath(p, "de"), `/de/timer?s=${p.seconds}`),
-    ]),
-    ...NORDIC_TIMER_SECONDS.flatMap((s) => (["sv", "no", "da"] as const).map((l) => r(nordicTimerPath(l, s), `/${l}/timer?s=${s}`))),
-  ];
-}
-
-function alarmRedirects(): MergedRedirect[] {
-  return alarmPresetTimes.flatMap((t) => [
-    r(`/online-alarm-kur/${alarmPresetSlug.tr(t)}`, `/online-alarm-kur?t=${t}`),
-    ...((GERI_GELEN_ALARM_EN as readonly string[]).includes(t) ? [] : [r(`/en/alarm-clock/${alarmPresetSlug.en(t)}`, `/en/alarm-clock?t=${t}`)]),
-    r(`/de/wecker/${alarmSlugDe(t)}`, `/de/wecker?t=${t}`),
-  ]);
-}
-
-/** Kur çifti sayfaları aynı tablonun kopyasıydı; her dilde döviz çeviricisine yönlenir. */
-function fxRedirects(): MergedRedirect[] {
-  return [
-    ...fxPairsTr.map((p) => r(`/doviz-cevirici/${p.slug}`, "/doviz-cevirici")),
-    ...fxPairsDe.map((p) => r(`${fxContentDe.basePath}/${p.slug}`, fxContentDe.basePath)),
-    ...fxPairsBn.map((p) => r(`${fxContentBn.basePath}/${p.slug}`, fxContentBn.basePath)),
-    ...fxPairsUz.map((p) => r(`${fxContentUz.basePath}/${p.slug}`, fxContentUz.basePath)),
-  ];
-}
-
-/** Özbekçe ehliyet toifası sayfaları; bilgiler hesaplayıcının tablosunda. */
-function uzLicenseRedirects(): MergedRedirect[] {
-  return Object.keys(uzLicenseClasses).map((id) => r(`/uz/haydovchilik-toifasi-topish/${id.toLowerCase()}`, "/uz/haydovchilik-toifasi-topish"));
-}
 
 /** Latin Amerika İspanyolcası sayfaları es sayfalarının ondalık ayırıcı dışında aynısıydı. */
 function es419Redirects(): MergedRedirect[] {
@@ -75,14 +25,6 @@ function numberRedirects(): MergedRedirect[] {
 function aminoAcidRedirects(): MergedRedirect[] {
   const base = "/bilim-hesaplayicilari/biyoloji/amino-asitler";
   return [r(base, "/bilim-hesaplayicilari/biyoloji/kodon-tablosu"), ...aminoAcidsDatabase.map((a) => r(`${base}/${a.id}`, "/bilim-hesaplayicilari/biyoloji/kodon-tablosu"))];
-}
-
-/** Sure ve cüz sayfaları sayılardan ibaretti; bilgiler Sure Bulucu ve Cüzler tablolarında. */
-function sureCuzRedirects(): MergedRedirect[] {
-  return [
-    ...SURELER.map((s) => r(`/sureler/${s.slug}-suresi`, `/sure-bulucu?sure=${s.slug}`)),
-    ...Array.from({ length: 30 }, (_, i) => r(`/cuzler/${i + 1}-cuz`, `/cuzler?cuz=${i + 1}`)),
-  ];
 }
 
 /** Altın türü sayfaları altın hesaplama tablosunda; çeyrek ve Cumhuriyet altınının kendi sayfası var. */
@@ -118,22 +60,6 @@ function cgpaRedirects(): MergedRedirect[] {
   return cgpaUniversities.map((u) => r(`/en/cgpa-to-percentage/${u.slug}`, `/en/cgpa-to-percentage?university=${u.slug}`));
 }
 
-/** Özbekistan vilayet rakım sayfaları tek tabloda. */
-function uzRegionRedirects(): MergedRedirect[] {
-  return getAllRegions().map((x) => r(`/uz/viloyatlar-balandligi/${x.id}`, "/uz/viloyatlar-balandligi"));
-}
-
-/** Eyalet tatili sayfaları; eyalet seçici ana Feiertage sayfasında. */
-function feiertageRedirects(): MergedRedirect[] {
-  return GERMAN_STATES.map((s) => r(`/de/feiertage/${s.slug}`, `/de/feiertage?land=${s.slug}`));
-}
-
-/** ABD federal tatil yılları ana sayfadaki tarih tablosunda. */
-function federalHolidayRedirects(): MergedRedirect[] {
-  return HOLIDAY_YEARS.map((y) => r(`/en/federal-holidays/${y}`, "/en/federal-holidays"));
-}
-
-/** Takvim gün sayfaları ay sayfasındaki listede; dil başına tek kalıp kural. */
 /** Almanca ve Özbekçe malzeme/karşılaştırma ile Almanca bileşik sayfaları tek seçicili sayfada (?m= malzeme, ?v= karşılaştırma). */
 function materialRedirects(): MergedRedirect[] {
   return [
@@ -145,32 +71,13 @@ function materialRedirects(): MergedRedirect[] {
     r("/uz/material-solishtirish/:slug", "/uz/material-xossalari?v=:slug"),
     r("/malzeme-karsilastirma", "/malzeme-ozellikleri"),
     r("/malzeme-karsilastirma/:slug", "/malzeme-ozellikleri?v=:slug"),
-    r("/gokcisimleri-karsilastirma", "/gokcisimleri-ozellikleri"),
-    r("/gokcisimleri-karsilastirma/:slug", "/gokcisimleri-ozellikleri?v=:slug"),
     r("/bn/traditional-weight/:slug", "/bn/traditional-weight?pair=:slug"),
     r("/en/science-calculators/physics", "/en/physics-calculators"),
     r("/en/science-calculators/mathematics", "/en/mathematics-calculators"),
     r("/en/science-calculators/biology", "/en/biology-calculators/dna-sequence-helper"),
     r("/en/biology-calculators", "/en/biology-calculators/dna-sequence-helper"),
     r("/de/chemische-verbindungen/:slug", "/de/chemische-verbindungen?v=:slug"),
-    r("/de/entfernung/:stadt/:ziel", "/de/entfernung/:stadt?nach=:ziel"),
-    r("/en/bible-books/:book", "/en/bible-books?book=:book"),
-    r("/de/besondere-tage/:id", "/de/besondere-tage?tag=:id"),
-    r("/ar/occasions/:id", "/ar/occasions?id=:id"),
   ];
-}
-
-/** Ekim 2026'da birleştirilen özel gün sayfaları: kendi sayfası geri açılanlar (ozelGunIcerik.ts) yönlenmez, geri sayımı
- * olanlar geri sayım sayfasına, kalanlar özel günler sayfasındaki bölümlerine gider. Hristiyan günlerinin hiç ayrı
- * sayfası olmadığı için kural yazılmaz. */
-function ozelGunRedirects(): MergedRedirect[] {
-  return ETKINLIKLER.filter((e) => e.kategori !== "hristiyan" && !OZEL_GUN_SAYFALARI.includes(e.id)).map((e) =>
-    r(`/ozel-gunler/${e.id}`, e.geriSayim ? `/geri-sayim/${e.geriSayim}` : `/ozel-gunler?gun=${e.id}`),
-  );
-}
-
-function takvimGunRedirects(): MergedRedirect[] {
-  return [r("/takvim/:yil/:ay/:gun", "/takvim/:yil/:ay"), r("/de/kalender/:jahr/:monat/:tag", "/de/kalender/:jahr/:monat")];
 }
 
 
@@ -260,7 +167,7 @@ export function mergedPageRedirects(): MergedRedirect[] {
   // Kaldırılan sayfalar (kaldirilanSayfalar.ts) önce gelir; aynı adres için sonraki kurallar yazılmaz.
   const kurallar = [
     ...Object.entries(KALDIRILAN_SAYFALAR).map(([kaynak, hedef]) => r(kaynak, hedef)),
-    ...timerRedirects(), ...alarmRedirects(), ...fxRedirects(), ...uzLicenseRedirects(), ...es419Redirects(), ...numberRedirects(), ...aminoAcidRedirects(), ...sureCuzRedirects(), ...unitGuideRedirects().map((x) => r(x.source, x.destination)), ...altinRedirects(), ...goldKaratPairRedirects(), ...cgpaRedirects(), ...uzRegionRedirects(), ...feiertageRedirects(), ...federalHolidayRedirects(), ...takvimGunRedirects(), ...ozelGunRedirects(), ...materialRedirects(), r("/ulkeler/s-o-tome-ve-principe", "/ulkeler/sao-tome-ve-principe"), ...legacyRedirects(),
+    ...es419Redirects(), ...numberRedirects(), ...aminoAcidRedirects(), ...unitGuideRedirects().map((x) => r(x.source, x.destination)), ...altinRedirects(), ...goldKaratPairRedirects(), ...cgpaRedirects(), ...materialRedirects(), ...legacyRedirects(),
   ];
   const gorulen = new Set<string>();
   return kurallar.filter((k) => !gorulen.has(k.source) && gorulen.add(k.source));

@@ -15,6 +15,8 @@ import { unitRegistry } from "../../converter/unitRegistry";
 import { buildFullLanguageAlternates } from "../../i18n/routing";
 import { buildSiteUrl } from "../../siteConfig";
 import KategoriCevirici from "./KategoriCevirici";
+import ZenginKategori from "./ZenginKategori";
+import { kategoriIcerikleri } from "./icerik";
 import YanPanel from "./YanPanel";
 import { formatSayi } from "./sayi";
 
@@ -32,12 +34,14 @@ function veri(slug: string) {
 export function kategoriMetadata(slug: string): Metadata {
   const { kategori, ad } = veri(slug);
   const yol = `/${slug}`;
-  const baslik = `${ad} Çevirici: Tüm ${ad} Birimleri`;
+  const icerik = kategoriIcerikleri[slug];
+  const baslik = icerik?.baslik ?? `${ad} Çevirici: Tüm ${ad} Birimleri`;
+  const aciklama = icerik?.aciklama ?? kategori.description;
   return {
     title: baslik,
-    description: kategori.description,
+    description: aciklama,
     alternates: { canonical: yol, ...buildFullLanguageAlternates(yol) },
-    openGraph: { title: baslik, description: kategori.description, url: buildSiteUrl(yol), locale: "tr_TR", type: "website" },
+    openGraph: { title: baslik, description: aciklama, url: buildSiteUrl(yol), locale: "tr_TR", type: "website" },
   };
 }
 
@@ -45,6 +49,24 @@ export default function KategoriSayfasi({ slug }: { slug: string }) {
   const { kategori, ad, birimler, temel, ciftler } = veri(slug);
   const grup = kategorininGrubu(slug);
   const temelAd = birimler.find((b) => b.value === temel)?.label ?? temel;
+  const icerik = kategoriIcerikleri[slug];
+  if (icerik && temel) {
+    return (
+      <div className="yy yy-govdeler">
+        <ZenginKategori
+          slug={slug}
+          ad={ad}
+          category={kategori.category}
+          grupAdi={grup?.ad}
+          birimler={birimler}
+          temel={temel}
+          ciftler={ciftler}
+          icerik={icerik}
+        />
+        <YanPanel aktifKategori={slug} />
+      </div>
+    );
+  }
 
   const ciftSayfalari: Record<string, { href: string; ad: string }> = {};
   for (const c of ciftler) ciftSayfalari[`${c.fromUnit}|${c.toUnit}`] = { href: turkceCiftYolu(c.slug), ad: `${c.fromName} – ${c.toName}` };

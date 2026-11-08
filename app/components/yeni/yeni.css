@@ -125,3 +125,52 @@
   .yy-kart { padding: 18px; }
   .yy-cev-alt .yy-sag { margin-left: 0; }
 }
+
+/* Zengin kategori sayfasi: cevirici kutusu + duz makale (kart yigini degil) */
+.yy-zengin { gap: 22px; }
+.yy-zengin > * { min-width: 0; width: 100%; box-sizing: border-box; }
+.yy-coklu fieldset { min-width: 0; }
+.yy-ozet { margin: 10px 0 0; max-width: 68ch; line-height: 1.6; color: var(--yy-govde); }
+.yy-coklu { background: var(--yy-kart); border: 1px solid var(--yy-cizgi); border-radius: 12px; padding: 6px 20px 16px; }
+.yy-coklu fieldset { border: 0; margin: 0; padding: 14px 0 4px; }
+.yy-coklu fieldset + fieldset { border-top: 1px solid var(--yy-cizgi-ince); }
+.yy-coklu legend { float: left; width: 100%; padding: 0 0 8px; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--yy-ikincil); }
+.yy-kutular { clear: both; display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 10px 14px; }
+.yy-kutu { display: flex; flex-direction: column; gap: 4px; font-size: 13.5px; color: var(--yy-govde); }
+.yy-kutu-giris { display: flex; align-items: stretch; border: 1px solid #cfd6de; border-radius: 8px; background: #fff; overflow: hidden; }
+.yy-kutu-giris:focus-within { outline: 2px solid var(--yy-vurgu); outline-offset: 1px; border-color: var(--yy-vurgu); }
+.yy-kutu input { flex: 1 1 auto; min-width: 0; border: 0; outline: none; font: inherit; font-size: 17px; font-weight: 600; color: var(--yy-metin); padding: 9px 10px; font-variant-numeric: tabular-nums; background: transparent; }
+.yy-kutu-sembol { display: flex; align-items: center; padding: 0 10px; font-size: 13px; color: var(--yy-ikincil); background: #f2f5f8; border-left: 1px solid var(--yy-cizgi-ince); white-space: nowrap; }
+.yy-kutu select { font: inherit; font-size: 14.5px; padding: 9px 8px; border: 1px solid #cfd6de; border-radius: 8px; background: #fff; color: var(--yy-metin); min-height: 42px; }
+.yy-coklu-alt { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; margin-top: 10px; padding-top: 12px; border-top: 1px solid var(--yy-cizgi-ince); font-size: 13.5px; color: var(--yy-ikincil); }
+.yy-coklu-alt button { font: inherit; font-size: 13.5px; padding: 6px 14px; border: 1px solid #cfd6de; border-radius: 8px; background: #fff; color: var(--yy-metin); cursor: pointer; }
+.yy-coklu-alt button:hover { border-color: var(--yy-vurgu); color: var(--yy-link); }
+.yy-ilgili { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 14.5px; }
+.yy-ilgili span { color: var(--yy-ikincil); }
+
+.yy-makale { background: var(--yy-kart); border: 1px solid var(--yy-cizgi); border-radius: 12px; padding: 26px 30px 30px; }
+.yy-makale > section { max-width: 72ch; }
+.yy-makale > section#tablo, .yy-makale > section#populer, .yy-makale > section#tum-birimler { max-width: none; }
+.yy-makale h2 { font-size: 22px; font-weight: 650; margin: 34px 0 10px; line-height: 1.3; letter-spacing: -0.01em; }
+.yy-makale h3 { font-size: 16px; font-weight: 650; margin: 18px 0 4px; }
+.yy-makale p, .yy-makale li { line-height: 1.72; color: var(--yy-govde); font-size: 16px; }
+.yy-makale p { margin: 0 0 12px; }
+.yy-makale ul:not(.yy-linkler):not(.yy-birimler) { margin: 0 0 12px; padding-left: 20px; }
+.yy-makale strong { color: var(--yy-metin); }
+.yy-imza { font-size: 13.5px !important; color: var(--yy-ikincil) !important; margin: 0 0 18px !important; padding-bottom: 14px; border-bottom: 1px solid var(--yy-cizgi-ince); }
+.yy-icindekiler { background: #f6f8fa; border-radius: 10px; padding: 14px 18px; }
+.yy-icindekiler p { margin: 0 0 6px !important; font-size: 13px !important; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--yy-ikincil) !important; }
+.yy-icindekiler ol { margin: 0; padding-left: 20px; columns: 2 260px; column-gap: 28px; }
+.yy-icindekiler li { font-size: 14.5px !important; line-height: 1.6 !important; }
+.yy-matris th[scope="row"] { background: #f7f9fb; white-space: nowrap; color: var(--yy-metin); }
+.yy-matris td, .yy-matris th { padding: 8px 12px; white-space: nowrap; font-size: 14px; }
+.yy-matris td.yy-kosegen { color: var(--yy-ikincil); background: #fafbfc; }
+.yy-soru { padding: 2px 0 6px; border-bottom: 1px solid var(--yy-cizgi-ince); }
+.yy-soru:last-child { border-bottom: 0; }
+.yy-makale .yy-kaynak h2 { font-size: 16px; margin-top: 30px; }
+.yy-makale .yy-kaynak li { font-size: 13.5px; line-height: 1.6; }
+@media (max-width: 720px) {
+  .yy-makale { padding: 18px 16px 22px; }
+  .yy-coklu { padding: 4px 14px 14px; }
+  .yy-kutular { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

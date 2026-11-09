@@ -101,6 +101,7 @@ export const yeniYapiKategorileri: ReadonlySet<string> = new Set(["uzunluk", "al
 
 /** Yeni kabugun (ust menu, yan panel, alt bilgi) cizilecegi Turkce yollar. */
 export function isYeniYapiYolu(pathname: string) {
+  if (pathname === "/") return true;
   const ilk = pathname.split("/")[1] ?? "";
   return yeniYapiKategorileri.has(ilk);
 }

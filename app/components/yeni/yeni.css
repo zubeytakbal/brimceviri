@@ -231,6 +231,34 @@
 .yy-sekmeler a[aria-current="page"] { color: #0b5f54; border-bottom-color: #0b5f54; }
 .yy-alt-ic { max-width: 1160px; padding-left: 24px; padding-right: 24px; }
 
+/* Ana sayfa: her grup bir satir, linkler ortak sutunlara hizali */
+.yy-ana-sayfa { display: block; width: 100%; box-sizing: border-box; max-width: 1160px; margin: 0 auto; padding: 14px 24px 48px; }
+.yy-ana-sayfa h1 { margin: 0 0 12px; }
+.yy-ana-sayfa section { margin-top: 28px; }
+.yy-ana-sayfa h2 { font-size: 17.5px; font-weight: 700; letter-spacing: -0.008em; margin: 0; padding-bottom: 7px; border-bottom: 1px solid var(--yy-metin); }
+.yy-ana-sayfa h3 { font-size: 13px; font-weight: 700; margin: 0; line-height: 1.5; }
+.yy-ana-sayfa ul { list-style: none; margin: 0; padding: 0; }
+.yy-ana-sayfa .yy-hizli { margin-top: 0; background: var(--yy-kagit); border: 1px solid var(--yy-cizgi); border-radius: 5px; padding: 10px 14px 10px; }
+.yy-ana-sayfa .yy-hizli h2 { font-size: 13px; margin: 0 0 7px; padding: 0; border: 0; }
+.yy-hizli select, .yy-hizli input, .yy-hizli output, .yy-hizli button { box-sizing: border-box; font: inherit; font-size: 13px; height: 30px; min-height: 0; line-height: 1.25; color: var(--yy-metin); background: #fff; border: 1px solid #c9ced4; border-radius: 4px; }
+.yy-hizli select { width: 100%; min-width: 0; padding: 0 4px; }
+.yy-hizli-satir { display: grid; grid-template-columns: 150px minmax(70px, 110px) minmax(0, 1fr) 30px minmax(90px, 130px) minmax(0, 1fr); gap: 6px; align-items: center; }
+.yy-hizli input { width: 100%; min-width: 0; padding: 0 8px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.yy-hizli input:focus { outline: none; border-color: var(--yy-vurgu); box-shadow: 0 0 0 1px var(--yy-vurgu); }
+.yy-hizli output { display: flex; align-items: center; min-width: 0; padding: 0 8px; overflow: hidden; white-space: nowrap; font-weight: 700; font-variant-numeric: tabular-nums; background: transparent; border-color: transparent; border-bottom-color: var(--yy-metin); border-radius: 0; }
+.yy-hizli button { padding: 0; cursor: pointer; color: var(--yy-link); }
+.yy-hizli button:hover { border-color: var(--yy-vurgu); }
+.yy-hizli-alt { margin: 7px 0 0; font-size: 12.5px; }
+.yy-sik { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0 20px; padding-top: 9px; }
+.yy-sik h3 { margin-bottom: 2px; }
+.yy-sik li { padding: 1.5px 0; font-size: 13px; line-height: 1.45; font-variant-numeric: tabular-nums; }
+.yy-sik strong { font-weight: 600; }
+.yy-grup { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 0 14px; padding: 8px 0; border-bottom: 1px solid var(--yy-cizgi-ince); }
+.yy-grup ul { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1px 14px; }
+.yy-grup li { font-size: 13px; line-height: 1.55; }
+.yy-hakkinda p { max-width: 640px; margin: 8px 0 0; font-size: 13.5px; line-height: 1.6; color: var(--yy-govde); }
+.yy-hakkinda a { text-decoration: underline; text-underline-offset: 2px; }
+
 @media (max-width: 960px) {
   .yy-duzen { grid-template-columns: minmax(0, 1fr); grid-template-areas: "bas" "arac" "yazi" "benzer"; grid-template-rows: none; padding: 10px 14px 40px; }
   .yy-yan { display: contents; }
@@ -255,4 +283,17 @@
   .yy-sekmeler { padding: 0 14px; flex-wrap: nowrap; overflow-x: auto; gap: 0 18px; scrollbar-width: none; }
   .yy-sekmeler a { white-space: nowrap; padding: 8px 2px; font-size: 13.5px; }
   .yy-ciftler { columns: 1; }
+  .yy-ana-sayfa { padding: 10px 14px 32px; }
+  .yy-ana-sayfa h1 { margin-bottom: 10px; }
+  .yy-ana-sayfa section { margin-top: 22px; }
+  .yy-hizli-satir { grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); }
+  .yy-hizli-kategori { grid-column: 1 / -1; }
+  .yy-hizli-satir button { grid-column: 1 / -1; justify-self: center; width: 44px; height: 26px; }
+  .yy-hizli select, .yy-hizli input, .yy-hizli output { font-size: 16px; height: 36px; }
+  .yy-sik { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 14px; }
+  .yy-sik li { font-size: 13.5px; }
+  .yy-grup { grid-template-columns: minmax(0, 1fr); gap: 3px; }
+  .yy-grup ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .yy-grup li { font-size: 14px; line-height: 1.6; }
+}
 }

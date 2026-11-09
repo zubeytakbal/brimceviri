@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { CaretDown } from "@phosphor-icons/react";
+import { EDITOR } from "./yeni/editor";
 
 export type TrustBarSource = {
   label: string;
@@ -9,7 +10,7 @@ export type TrustBarSource = {
 };
 
 export default function TrustBar({
-  creator = "Emirhan Akbal",
+  creator = EDITOR.ad,
   sources,
   lastVerified,
 }: {

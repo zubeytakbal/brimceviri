@@ -5,6 +5,7 @@ import { conversionPages } from "../app/converter/conversionPages";
 import { hizliCevirmeVerisi } from "../app/converter/hizliCevirmeVeri";
 import { ciftYayinda } from "../app/converter/mergedPairs";
 import { isClosedPath } from "../app/indexPolicy";
+import { HESAP_GRUP_SLUGLARI, isYeniYapiYolu } from "../app/converter/siteYapisi";
 
 describe("Türkçe ana sayfa listeleri", () => {
   const hesaplayicilar = HESAPLAYICI_GRUPLARI.flatMap((g) => g.linkler);
@@ -28,6 +29,15 @@ describe("Türkçe ana sayfa listeleri", () => {
       if (/-ayar-altin-/.test(href)) continue; // çift sayfası, [slug] rotasından üretilir
       expect(existsSync(`app${href}/page.tsx`), href).toBe(true);
     }
+  });
+
+  it("grup slug'ları tekrarsız ve site yapısındaki listeyle aynı", () => {
+    const sluglar = HESAPLAYICI_GRUPLARI.map((g) => g.slug);
+    expect(new Set(sluglar).size).toBe(sluglar.length);
+    expect([...HESAP_GRUP_SLUGLARI].sort()).toEqual([...sluglar].sort());
+    expect(isYeniYapiYolu("/hesaplayicilar/finans-ve-maas")).toBe(true);
+    expect(isYeniYapiYolu("/hesaplayicilar/ohm-yasasi")).toBe(false);
+    expect(isYeniYapiYolu("/ceviriciler/temel")).toBe(true);
   });
 
   it("hızlı çeviricinin ilk birimleri veride var", () => {

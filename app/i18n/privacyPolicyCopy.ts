@@ -20,7 +20,7 @@ export const privacyPolicyCopy: Record<"tr" | "en" | "de" | "uz" | "ar", Privacy
     storage: {
       heading: "Tarayıcınızda saklanan bilgiler",
       paragraphs: [
-        "Kullanımı kolaylaştırmak için bazı tercihler yalnızca kendi cihazınızda, tarayıcının yerel depolamasında tutulur: son kullandığınız araçlar, seçtiğiniz meslek ve kapattığınız bildirimler. Ayrıca sayfaların çevrimdışı da açılabilmesi için tarayıcı önbelleği kullanılır. Bu bilgileri tarayıcı ayarlarınızdan istediğiniz zaman silebilirsiniz.",
+        "Kullanımı kolaylaştırmak için bazı tercihler yalnızca kendi cihazınızda, tarayıcının yerel depolamasında tutulur: son kullandığınız araçlar ve kapattığınız bildirimler. Ayrıca sayfaların çevrimdışı da açılabilmesi için tarayıcı önbelleği kullanılır. Bu bilgileri tarayıcı ayarlarınızdan istediğiniz zaman silebilirsiniz.",
       ],
     },
     analytics: {

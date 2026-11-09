@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
-import StaticPageLayout from "../components/StaticPageLayout";
+import KurumsalSayfa from "../components/yeni/KurumsalSayfa";
 import { SITE_NAME, SITE_URL } from "../siteConfig";
 
 export const metadata: Metadata = {
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <StaticPageLayout
+    <KurumsalSayfa
       locale="tr"
       breadcrumbAriaLabel="Sayfa yolu"
       breadcrumbs={[

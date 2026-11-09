@@ -99,11 +99,41 @@ export const birimGruplari: BirimGrubu[] = [
  */
 export const yeniYapiKategorileri: ReadonlySet<string> = new Set(["uzunluk", "alan"]);
 
+// app/components/yeni/anaSayfaVerisi.ts icindeki HESAPLAYICI_GRUPLARI ile ayni (tests/anaSayfa.test.ts).
+export const HESAP_GRUP_SLUGLARI: ReadonlySet<string> = new Set([
+  "finans-ve-maas",
+  "insaat-ve-ev",
+  "tarih-ve-zaman",
+  "enerji-ve-arac",
+  "saglik-ve-spor",
+  "kuyumcu",
+  "tarim-ve-hayvancilik",
+  "matematik",
+  "kimya-ve-biyoloji",
+  "muhendislik-ve-elektrik",
+  "harita-ve-tasima",
+  "gunluk-olculer",
+  "dini-hesaplar",
+]);
+
+const KURUMSAL_YOLLAR: ReadonlySet<string> = new Set([
+  "hakkimizda",
+  "iletisim",
+  "gizlilik",
+  "kullanim-kosullari",
+  "editoryal-politika",
+  "yazar",
+]);
+
 /** Yeni kabugun (ust menu, yan panel, alt bilgi) cizilecegi Turkce yollar. */
 export function isYeniYapiYolu(pathname: string) {
   if (pathname === "/") return true;
   const ilk = pathname.split("/")[1] ?? "";
-  return yeniYapiKategorileri.has(ilk);
+  if (yeniYapiKategorileri.has(ilk) || KURUMSAL_YOLLAR.has(ilk)) return true;
+  // Grup sayfalari: /ceviriciler/<grup> ve /hesaplayicilar/<grup> (ayni adres altindaki eski araclar haric)
+  const [, bolum, grup, fazla] = pathname.split("/");
+  if (fazla !== undefined || !grup) return false;
+  return bolum === "ceviriciler" || (bolum === "hesaplayicilar" && HESAP_GRUP_SLUGLARI.has(grup));
 }
 
 /** Turkce kategori sayfasinin adresi (tasinmis kategoride yeni, digerlerinde eski adres). */

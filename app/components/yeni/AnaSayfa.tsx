@@ -1,30 +1,22 @@
-// Turkce ana sayfa: hizli cevirme, sik kullanilan donusumler, gruplu birim ceviricileri ve hesaplayicilar.
-// Her grup kendi satirinda, linkler sutun sutun hizali; gorunum arac sayfalariyla ayni.
+// Turkce ana sayfa: hizli cevirme, sik donusumler, en cok kullanilan araclar, renkli grup bloklari.
+// Grup basliklari grup sayfasina (/hesaplayicilar/<grup>, /ceviriciler/<grup>) gider.
+import type { CSSProperties } from "react";
 import Link from "@/app/components/SiteLink";
 import { categoryPages } from "../../converter/categoryPages";
 import { conversionPages } from "../../converter/conversionPages";
 import { convert } from "../../converter/convert";
 import { hizliCevirmeVerisi } from "../../converter/hizliCevirmeVeri";
 import { ciftYayinda } from "../../converter/mergedPairs";
-import { birimGruplari, turkceKategoriYolu } from "../../converter/siteYapisi";
+import { turkceKategoriYolu } from "../../converter/siteYapisi";
 import { turkceCiftYolu } from "../../converter/turkceYollar";
-import { HESAPLAYICI_GRUPLARI, HIZLI_KATEGORILER, SIK_GRUPLARI, type AnaSayfaGrubu } from "./anaSayfaVerisi";
+import { grupRengi, HIZLI_KATEGORILER, POPULER_ARACLAR, SIK_GRUPLARI, type AnaSayfaGrubu } from "./anaSayfaVerisi";
+import { grupYolu, type GrupTuru } from "./GrupSayfasi";
+import { BIRIM_GRUPLARI, HESAPLAYICI_GRUPLARI } from "./gruplar";
 import HizliCevirici, { type HizliSecenek } from "./HizliCevirici";
 import { formatSayi } from "./sayi";
 
+const BLOKTA_LINK = 6;
 const tr = (s: string) => s.toLocaleLowerCase("tr-TR");
-
-/** "Aydınlatma Şiddeti" -> "Aydınlatma şiddeti"; parantez ici ve tek harfli sozcukler ("Vitamin D") korunur. */
-function cumleBicimi(ad: string) {
-  const [bas, ...kalan] = ad.split(" ");
-  return [bas, ...kalan.map((s) => (s.startsWith("(") || s.length === 1 ? s : tr(s)))].join(" ");
-}
-
-const kategoriAdi = (slug: string) => {
-  if (slug === "kutle") return "Ağırlık (kütle)";
-  const sayfa = categoryPages.find((c) => c.slug === slug);
-  return cumleBicimi((sayfa?.title ?? slug).replace(/ (Dönüşümleri|Birimi?)\b.*$/, ""));
-};
 
 function hizliSecenekler(): HizliSecenek[] {
   const { kategoriler } = hizliCevirmeVerisi(null);
@@ -59,19 +51,30 @@ function sikDonusumler(sluglar: readonly string[]) {
   });
 }
 
-function GrupSatirlari({ gruplar }: { gruplar: readonly AnaSayfaGrubu[] }) {
+const renk = (slug: string) => ({ "--g": grupRengi(slug) }) as CSSProperties;
+
+/** Her grup bir blok: baslik grup sayfasina gider, ilk alti link gosterilir. */
+function GrupBloklari({ tur, gruplar }: { tur: GrupTuru; gruplar: readonly AnaSayfaGrubu[] }) {
   return (
-    <div className="yy-gruplar">
+    <div className="yy-bloklar">
       {gruplar.map((g) => (
-        <div key={g.ad} className="yy-grup">
-          <h3>{g.ad}</h3>
+        <div key={g.slug} className="yy-blok" style={renk(g.slug)}>
+          <h3>
+            <Link href={grupYolu(tur, g.slug)}>{g.ad}</Link>
+            <span>{g.linkler.length}</span>
+          </h3>
           <ul>
-            {g.linkler.map((l) => (
+            {g.linkler.slice(0, BLOKTA_LINK).map((l) => (
               <li key={l.href}>
                 <Link href={l.href}>{l.ad}</Link>
               </li>
             ))}
           </ul>
+          {g.linkler.length > BLOKTA_LINK && (
+            <Link className="yy-blok-tumu" href={grupYolu(tur, g.slug)}>
+              Tümünü gör ({g.linkler.length}) →
+            </Link>
+          )}
         </div>
       ))}
     </div>
@@ -79,11 +82,6 @@ function GrupSatirlari({ gruplar }: { gruplar: readonly AnaSayfaGrubu[] }) {
 }
 
 export default function AnaSayfa() {
-  const birimSatirlari: AnaSayfaGrubu[] = birimGruplari.map((g) => ({
-    ad: g.ad,
-    linkler: g.kategoriler.map((k) => ({ href: turkceKategoriYolu(k), ad: kategoriAdi(k) })),
-  }));
-
   return (
     <div className="yy yy-sayfa">
       <main className="yy-ana-sayfa">
@@ -111,14 +109,30 @@ export default function AnaSayfa() {
           </div>
         </section>
 
-        <section aria-labelledby="birim">
-          <h2 id="birim">Birim çeviriciler</h2>
-          <GrupSatirlari gruplar={birimSatirlari} />
+        <section aria-labelledby="populer">
+          <h2 id="populer">En çok kullanılan araçlar</h2>
+          <ul className="yy-populer">
+            {POPULER_ARACLAR.map((a) => (
+              <li key={a.href} style={renk(a.grup)}>
+                <Link href={a.href}>{a.ad}</Link>
+                <span>{a.aciklama}</span>
+              </li>
+            ))}
+          </ul>
         </section>
 
         <section aria-labelledby="hesap">
-          <h2 id="hesap">Hesaplayıcılar</h2>
-          <GrupSatirlari gruplar={HESAPLAYICI_GRUPLARI} />
+          <h2 id="hesap">
+            <Link href="/hesaplayicilar">Hesaplayıcılar</Link>
+          </h2>
+          <GrupBloklari tur="hesap" gruplar={HESAPLAYICI_GRUPLARI} />
+        </section>
+
+        <section aria-labelledby="birim">
+          <h2 id="birim">
+            <Link href="/tum-birimler">Birim çeviriciler</Link>
+          </h2>
+          <GrupBloklari tur="birim" gruplar={BIRIM_GRUPLARI} />
         </section>
 
         <section className="yy-hakkinda" aria-labelledby="hakkinda">

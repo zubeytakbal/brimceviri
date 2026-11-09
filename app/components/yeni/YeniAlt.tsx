@@ -12,6 +12,7 @@ export default function YeniAlt() {
         </span>
         <Link href="/hakkimizda">Hakkımızda</Link>
         <Link href="/iletisim">İletişim</Link>
+        <Link href="/editoryal-politika">Editoryal politika</Link>
         <Link href="/gizlilik">Gizlilik</Link>
         <Link href="/kullanim-kosullari">Kullanım koşulları</Link>
         <Link href="/tum-birimler">Tüm çeviriciler</Link>

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
-import StaticPageLayout from "../components/StaticPageLayout";
+import KurumsalSayfa from "../components/yeni/KurumsalSayfa";
 import {
   SITE_CONTACT_EMAIL,
   SITE_NAME,
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <StaticPageLayout
+    <KurumsalSayfa
       locale="tr"
       breadcrumbAriaLabel="Sayfa yolu"
       breadcrumbs={[

@@ -27,13 +27,52 @@ export const SIK_GRUPLARI: readonly { ad: string; sluglar: readonly string[] }[]
 ];
 
 export type AnaSayfaLinki = { href: string; ad: string };
-export type AnaSayfaGrubu = { ad: string; linkler: AnaSayfaLinki[] };
+
+/** B duzeni: en cok tiklanan ve en cok aranan araclar, tek cumlelik aciklamayla. */
+export const POPULER_ARACLAR: readonly (AnaSayfaLinki & { aciklama: string; grup: string })[] = [
+  { grup: "finans-ve-maas", href: "/kdv-hesaplama", ad: "KDV hesaplama", aciklama: "KDV dahil ve hariç tutar, %1, %10 ve %20 oranları." },
+  { grup: "finans-ve-maas", href: "/brutten-nete-maas-hesaplama", ad: "Brütten nete maaş", aciklama: "Vergi ve SGK kesintileriyle eline geçecek maaş." },
+  { grup: "finans-ve-maas", href: "/kidem-tazminati-hesaplama", ad: "Kıdem tazminatı", aciklama: "Çalışma süresi ve brüt ücrete göre tazminat." },
+  { grup: "tarih-ve-zaman", href: "/yas-hesaplama", ad: "Yaş hesaplama", aciklama: "Doğum tarihinden yıl, ay ve gün olarak yaş." },
+  { grup: "insaat-ve-ev", href: "/beton-hesaplama", ad: "Beton hesaplama", aciklama: "Döşeme ve kolon için metreküp, çimento ve kum." },
+  { grup: "insaat-ve-ev", href: "/boya-hesaplama", ad: "Boya hesaplama", aciklama: "Duvar alanına göre kaç litre boya gerektiği." },
+  { grup: "enerji-ve-arac", href: "/dogalgaz-tuketimi-hesaplama", ad: "Doğalgaz tüketimi", aciklama: "Aylık m³ tüketimden tahmini fatura." },
+  { grup: "saglik-ve-spor", href: "/uyku-hesaplama", ad: "Uyku hesaplama", aciklama: "Uyku döngülerine göre yatma ve kalkma saati." },
+];
+export type AnaSayfaGrubu = { slug: string; ad: string; linkler: AnaSayfaLinki[] };
+
+/** Grup renkleri (grup slug'ina gore). Ayni grup her yerde ayni renkte gorunur. */
+export const GRUP_RENGI: Readonly<Record<string, string>> = {
+  "finans-ve-maas": "#1f7a4d",
+  "insaat-ve-ev": "#c05621",
+  "tarih-ve-zaman": "#2f55a4",
+  "enerji-ve-arac": "#a16207",
+  "saglik-ve-spor": "#c0392b",
+  kuyumcu: "#9a7400",
+  "tarim-ve-hayvancilik": "#4d7c0f",
+  matematik: "#6b46c1",
+  "kimya-ve-biyoloji": "#0e7c86",
+  "muhendislik-ve-elektrik": "#4a5568",
+  "harita-ve-tasima": "#2477a8",
+  "gunluk-olculer": "#b83280",
+  "dini-hesaplar": "#7b5536",
+  temel: "#0b5f54",
+  muhendislik: "#4a5568",
+  "isi-ve-akiskan": "#c05621",
+  elektrik: "#2f55a4",
+  "isik-ve-radyasyon": "#a16207",
+  "saglik-ve-kimya": "#c0392b",
+  "tarim-ve-arazi": "#4d7c0f",
+  "kuyumculuk-ve-tekstil": "#9a7400",
+};
+export const grupRengi = (slug: string) => GRUP_RENGI[slug] ?? "#0b5f54";
 
 const B = "/bilim-hesaplayicilari";
 const E = "/muhendislik-hesaplayicilari/elektrik-hesaplari";
 
 export const HESAPLAYICI_GRUPLARI: readonly AnaSayfaGrubu[] = [
   {
+    slug: "finans-ve-maas",
     ad: "Finans ve maaş",
     linkler: [
       { href: "/kdv-hesaplama", ad: "KDV" },
@@ -44,6 +83,7 @@ export const HESAPLAYICI_GRUPLARI: readonly AnaSayfaGrubu[] = [
     ],
   },
   {
+    slug: "insaat-ve-ev",
     ad: "İnşaat ve ev",
     linkler: [
       { href: "/boya-hesaplama", ad: "Boya" },
@@ -60,6 +100,7 @@ export const HESAPLAYICI_GRUPLARI: readonly AnaSayfaGrubu[] = [
     ],
   },
   {
+    slug: "tarih-ve-zaman",
     ad: "Tarih ve zaman",
     linkler: [
       { href: "/yas-hesaplama", ad: "Yaş" },
@@ -74,6 +115,7 @@ export const HESAPLAYICI_GRUPLARI: readonly AnaSayfaGrubu[] = [
     ],
   },
   {
+    slug: "enerji-ve-arac",
     ad: "Enerji ve araç",
     linkler: [
       { href: "/yakit-tuketimi-hesaplama", ad: "Yakıt tüketimi" },
@@ -91,6 +133,7 @@ export const HESAPLAYICI_GRUPLARI: readonly AnaSayfaGrubu[] = [
     ],
   },
   {
+    slug: "saglik-ve-spor",
     ad: "Sağlık ve spor",
     linkler: [
       { href: "/uyku-hesaplama", ad: "Uyku" },
@@ -101,6 +144,7 @@ export const HESAPLAYICI_GRUPLARI: readonly AnaSayfaGrubu[] = [
     ],
   },
   {
+    slug: "kuyumcu",
     ad: "Kuyumcu",
     linkler: [
       { href: "/altin-hesaplama", ad: "Altın" },
@@ -113,6 +157,7 @@ export const HESAPLAYICI_GRUPLARI: readonly AnaSayfaGrubu[] = [
     ],
   },
   {
+    slug: "tarim-ve-hayvancilik",
     ad: "Tarım ve hayvancılık",
     linkler: [
       { href: "/tarla-donum-hesaplama", ad: "Tarla dönüm" },
@@ -124,6 +169,7 @@ export const HESAPLAYICI_GRUPLARI: readonly AnaSayfaGrubu[] = [
     ],
   },
   {
+    slug: "matematik",
     ad: "Matematik",
     linkler: [
       { href: `${B}/matematik/yuzde-hesaplama`, ad: "Yüzde" },
@@ -136,6 +182,7 @@ export const HESAPLAYICI_GRUPLARI: readonly AnaSayfaGrubu[] = [
     ],
   },
   {
+    slug: "kimya-ve-biyoloji",
     ad: "Kimya ve biyoloji",
     linkler: [
       { href: `${B}/kimya/mol-hesaplama`, ad: "Mol" },
@@ -144,6 +191,7 @@ export const HESAPLAYICI_GRUPLARI: readonly AnaSayfaGrubu[] = [
     ],
   },
   {
+    slug: "muhendislik-ve-elektrik",
     ad: "Mühendislik ve elektrik",
     linkler: [
       { href: `${E}/kw-to-amper-hesaplama`, ad: "kW ve amper" },
@@ -168,6 +216,7 @@ export const HESAPLAYICI_GRUPLARI: readonly AnaSayfaGrubu[] = [
     ],
   },
   {
+    slug: "harita-ve-tasima",
     ad: "Harita ve taşıma",
     linkler: [
       { href: "/koordinat-donusturucu", ad: "Koordinat dönüştürücü" },
@@ -179,6 +228,7 @@ export const HESAPLAYICI_GRUPLARI: readonly AnaSayfaGrubu[] = [
     ],
   },
   {
+    slug: "gunluk-olculer",
     ad: "Günlük ölçüler",
     linkler: [
       { href: "/mutfak-olculeri-cevirici", ad: "Mutfak ölçüleri" },
@@ -195,6 +245,7 @@ export const HESAPLAYICI_GRUPLARI: readonly AnaSayfaGrubu[] = [
     ],
   },
   {
+    slug: "dini-hesaplar",
     ad: "Dini hesaplar",
     linkler: [
       { href: "/kible-yonu-hesaplama", ad: "Kıble yönü" },

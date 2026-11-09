@@ -71,7 +71,7 @@ export default function ZenginKategori({ slug, ad, category, grupAdi, birimler, 
           </ol>
           <h1>{ad} Çevirici</h1>
           <p className="yy-imza">
-            Hazırlayan <strong>{EDITOR.ad}</strong>
+            Hazırlayan <Link href="/yazar"><strong>{EDITOR.ad}</strong></Link>
             <span aria-hidden="true"> · </span>
             Son güncelleme <time dateTime={icerik.guncelleme}>{tarih(icerik.guncelleme)}</time>
           </p>

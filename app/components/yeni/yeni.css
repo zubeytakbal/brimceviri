@@ -231,14 +231,20 @@
 .yy-sekmeler a[aria-current="page"] { color: #0b5f54; border-bottom-color: #0b5f54; }
 .yy-alt-ic { max-width: 1160px; padding-left: 24px; padding-right: 24px; }
 
-/* Ana sayfa: her grup bir satir, linkler ortak sutunlara hizali */
+/* Kurumsal sayfalar: tek okuma sutunu */
+.yy-kurumsal { display: block; width: 100%; box-sizing: border-box; max-width: 688px; margin: 0 auto; padding: 14px 24px 56px; }
+.yy-kurumsal-ozet { margin: 6px 0 0; padding-bottom: 10px; border-bottom: 1px solid var(--yy-cizgi); font-size: 14.5px; line-height: 1.6; color: var(--yy-govde); }
+.yy-kurumsal .yy-yazi { max-width: none; }
+
+/* Ana sayfa: renkli grup bloklari; her grup kendi renginde (--g) */
 .yy-ana-sayfa { display: block; width: 100%; box-sizing: border-box; max-width: 1160px; margin: 0 auto; padding: 14px 24px 48px; }
 .yy-ana-sayfa h1 { margin: 0 0 12px; }
 .yy-ana-sayfa section { margin-top: 28px; }
-.yy-ana-sayfa h2 { font-size: 17.5px; font-weight: 700; letter-spacing: -0.008em; margin: 0; padding-bottom: 7px; border-bottom: 1px solid var(--yy-metin); }
+.yy-ana-sayfa h2 { font-size: 17.5px; font-weight: 700; letter-spacing: -0.008em; margin: 0; padding-bottom: 7px; border-bottom: 2px solid #0b5f54; }
+.yy-ana-sayfa h2 a { color: inherit; }
 .yy-ana-sayfa h3 { font-size: 13px; font-weight: 700; margin: 0; line-height: 1.5; }
 .yy-ana-sayfa ul { list-style: none; margin: 0; padding: 0; }
-.yy-ana-sayfa .yy-hizli { margin-top: 0; background: var(--yy-kagit); border: 1px solid var(--yy-cizgi); border-radius: 5px; padding: 10px 14px 10px; }
+.yy-ana-sayfa .yy-hizli { margin-top: 0; background: #eef6f3; border: 1px solid #cfe3dc; border-radius: 5px; padding: 10px 14px 10px; }
 .yy-ana-sayfa .yy-hizli h2 { font-size: 13px; margin: 0 0 7px; padding: 0; border: 0; }
 .yy-hizli select, .yy-hizli input, .yy-hizli output, .yy-hizli button { box-sizing: border-box; font: inherit; font-size: 13px; height: 30px; min-height: 0; line-height: 1.25; color: var(--yy-metin); background: #fff; border: 1px solid #c9ced4; border-radius: 4px; }
 .yy-hizli select { width: 100%; min-width: 0; padding: 0 4px; }
@@ -250,12 +256,36 @@
 .yy-hizli button:hover { border-color: var(--yy-vurgu); }
 .yy-hizli-alt { margin: 7px 0 0; font-size: 12.5px; }
 .yy-sik { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0 20px; padding-top: 9px; }
-.yy-sik h3 { margin-bottom: 2px; }
+.yy-sik h3 { margin-bottom: 2px; color: #0b5f54; }
 .yy-sik li { padding: 1.5px 0; font-size: 13px; line-height: 1.45; font-variant-numeric: tabular-nums; }
 .yy-sik strong { font-weight: 600; }
-.yy-grup { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 0 14px; padding: 8px 0; border-bottom: 1px solid var(--yy-cizgi-ince); }
-.yy-grup ul { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1px 14px; }
-.yy-grup li { font-size: 13px; line-height: 1.55; }
+.yy-populer { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px 24px; padding-top: 10px; }
+.yy-populer li { display: flex; flex-direction: column; gap: 2px; padding: 10px 12px; background: color-mix(in srgb, var(--g) 7%, #fff); border-top: 3px solid var(--g); border-radius: 0 0 4px 4px; }
+.yy-populer a { font-size: 14px; font-weight: 600; color: var(--g); }
+.yy-populer span { font-size: 12.5px; line-height: 1.45; color: var(--yy-ikincil); }
+.yy-bloklar { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px 24px; padding-top: 10px; }
+.yy-blok h3 { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; padding-bottom: 4px; margin-bottom: 4px; border-bottom: 2px solid var(--g); }
+.yy-blok h3 a { color: var(--g); }
+.yy-blok h3 span { min-width: 18px; padding: 0 5px; text-align: center; border-radius: 9px; color: #fff; background: var(--g); font-size: 11.5px; font-weight: 600; line-height: 1.6; }
+.yy-blok li { font-size: 13px; line-height: 1.6; }
+.yy-blok-tumu { display: inline-block; margin-top: 3px; font-size: 12.5px; font-weight: 600; color: var(--g) !important; }
+.yy-hakkinda { padding: 14px 16px; background: #f7f6f2; border-radius: 4px; }
+.yy-ana-sayfa .yy-hakkinda h2 { border: 0; padding: 0; }
+
+/* Grup sayfasi */
+.yy-grup-sayfasi { display: block; width: 100%; box-sizing: border-box; max-width: 860px; margin: 0 auto; padding: 14px 24px 56px; }
+.yy-grup-sayfasi h1 { color: var(--g); }
+.yy-grup-sayfasi .yy-kurumsal-ozet { border-bottom: 2px solid var(--g); }
+.yy-grup-listesi { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 32px; }
+.yy-grup-listesi li { padding: 10px 0; border-bottom: 1px solid var(--yy-cizgi-ince); }
+.yy-grup-listesi a { font-size: 14.5px; font-weight: 600; }
+.yy-grup-listesi p { margin: 2px 0 0; font-size: 13px; line-height: 1.5; color: var(--yy-ikincil); }
+.yy-diger-gruplar { margin-top: 32px; }
+.yy-diger-gruplar h2 { font-size: 14px; font-weight: 700; margin: 0 0 8px; }
+.yy-diger-gruplar ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.yy-diger-gruplar a { display: inline-block; padding: 4px 10px; font-size: 13px; color: var(--g); border: 1px solid var(--g); border-radius: 999px; }
+.yy-diger-gruplar a:hover { background: color-mix(in srgb, var(--g) 8%, #fff); text-decoration: none; }
+
 .yy-hakkinda p { max-width: 640px; margin: 8px 0 0; font-size: 13.5px; line-height: 1.6; color: var(--yy-govde); }
 .yy-hakkinda a { text-decoration: underline; text-underline-offset: 2px; }
 
@@ -292,7 +322,8 @@
   .yy-hizli select, .yy-hizli input, .yy-hizli output { font-size: 16px; height: 36px; }
   .yy-sik { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 14px; }
   .yy-sik li { font-size: 13.5px; }
-  .yy-grup { grid-template-columns: minmax(0, 1fr); gap: 3px; }
-  .yy-grup ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .yy-grup li { font-size: 14px; line-height: 1.6; }
+  .yy-populer, .yy-bloklar { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 16px; }
+  .yy-blok li { font-size: 14px; }
+  .yy-grup-sayfasi { padding: 10px 14px 40px; }
+  .yy-grup-listesi { grid-template-columns: minmax(0, 1fr); }
 }

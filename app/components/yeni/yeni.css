@@ -387,3 +387,14 @@
   .yy-ana-sayfa h2, .yy-grup-sayfasi section h2 { font-size: 22px; line-height: 30px; }
   .yy-grup-sayfasi h1 { font-size: 27px; line-height: 36px; }
 }
+/* Icerik genisligi Omni ile ayni: 1377 px panel, 24 px ic bosluk, 6 x 208 px kart */
+.yy-ana-sayfa { max-width: 1425px; padding: 0 24px 48px; }
+.yy-bolum { padding: 24px; border-radius: 8px; }
+.yy-hero-ic { max-width: 1425px; padding: 44px 64px 40px; }
+@media (max-width: 960px) {
+  .yy-ana-sayfa { padding: 0 12px 32px; }
+  .yy-bolum { padding: 16px; }
+  .yy-hero-ic { padding: 24px 16px 22px; }
+}
+.yy-ust-ic, .yy-sekmeler, .yy-alt-ic { max-width: 1425px; padding-left: 24px; padding-right: 24px; box-sizing: border-box; }
+@media (max-width: 960px) { .yy-ust-ic, .yy-sekmeler, .yy-alt-ic { padding-left: 14px; padding-right: 14px; } }

@@ -83,9 +83,9 @@ export default function AnaSayfa() {
       <section className="yy-hero" aria-labelledby="ana-baslik">
         <div className="yy-hero-ic">
           <h1 id="ana-baslik">
-            <span className="yy-hero-kucuk">Türkçe ve ücretsiz</span>
-            <span className="yy-hero-mavi">{hesapSayisi} hesaplama aracı</span>
-            <span>ve birim çevirici</span>
+            <span className="yy-hero-kucuk">Birbirinden farklı</span>
+            <span className="yy-hero-mavi">hesaplama ve dönüşüm</span>
+            <span>araçlarını keşfedin</span>
           </h1>
           <div className="yy-hero-arama">
             <HomeSearch locale="tr" strings={aramaMetni} kimlik="yy-ana-arama" />

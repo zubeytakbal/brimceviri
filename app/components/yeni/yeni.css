@@ -398,3 +398,30 @@
 }
 .yy-ust-ic, .yy-sekmeler, .yy-alt-ic { max-width: 1425px; padding-left: 24px; padding-right: 24px; box-sizing: border-box; }
 @media (max-width: 960px) { .yy-ust-ic, .yy-sekmeler, .yy-alt-ic { padding-left: 14px; padding-right: 14px; } }
+/* Ust menu: Omni olcumune gore. 1. satir logo + 40 px yuvarlak arama; 2. satir bolumler butun genislige yayilir. */
+.yy-ust { background: #fff; border-bottom: 0; box-shadow: 0 6px 16px rgba(59, 104, 252, 0.1); position: relative; z-index: 20; }
+.yy-ust-ic { display: flex; flex-wrap: nowrap; align-items: center; justify-content: flex-start; gap: 16px; padding-top: 16px; padding-bottom: 0; }
+.yy-ust-ana .yy-ust-ic { padding-bottom: 16px; }
+.yy-ust .yy-logo { font-size: 24px; line-height: 40px; height: 40px; flex: 0 0 auto; }
+.yy-ust .yy-arama { flex: 0 1 900px; max-width: 900px; min-width: 0; }
+.yy-ust .directory-search-field { position: relative; display: block; width: 100%; }
+.yy-ust .directory-search-field input { width: 100%; box-sizing: border-box; height: 40px; min-height: 40px; padding: 0 48px 0 16px; font-size: 13.4px; color: #212427; background: #f8f9fb; border: 1px solid #d2dcff; border-radius: 1000px; }
+.yy-ust .directory-search-field input:focus { outline: none; border-color: #3b68fc; box-shadow: 0 0 0 3px rgba(59, 104, 252, 0.12); }
+.yy-ust .directory-search-field button { position: absolute; top: 0; right: 4px; width: 40px; height: 40px; min-height: 0; padding: 0; font-size: 0; color: #3b68fc; background: transparent; border: 0; border-radius: 1000px; }
+.yy-ust .directory-search-field button svg { width: 20px; height: 20px; color: #3b68fc !important; }
+.yy-sekmeler { padding-top: 0; }
+.yy-sekmeler ul { display: flex; justify-content: space-between; gap: 0 16px; margin: 0; padding: 16px 0 0; list-style: none; }
+.yy-ust .yy-sekmeler a { display: block; padding: 0 0 14px; font-size: 15px; font-weight: 400; line-height: 22px; color: #0a0a0a; white-space: nowrap; border-bottom: 2px solid transparent; }
+.yy-ust .yy-sekmeler a:hover { color: #3b68fc; text-decoration: none; }
+.yy-ust .yy-sekmeler a[aria-current="page"] { color: #3b68fc; border-bottom-color: #3b68fc; }
+@media (max-width: 960px) {
+  .yy-ust-ic { padding-top: 10px; gap: 10px; }
+  .yy-ust .yy-logo { font-size: 19px; }
+  .yy-ust .yy-arama { flex: 1 1 0; }
+  .yy-ust .directory-search-field input { font-size: 16px; }
+  .yy-sekmeler { overflow-x: auto; scrollbar-width: none; }
+  .yy-sekmeler ul { justify-content: flex-start; gap: 0 22px; padding-top: 12px; }
+  .yy-ust .yy-sekmeler a { padding-bottom: 10px; font-size: 14px; }
+}
+.yy-ust .yy-sekmeler { display: block; margin: 0 auto; }
+.yy-ust .yy-sekmeler ul { width: 100%; }

@@ -456,7 +456,7 @@
 .yy-alt-kategoriler, .yy-alt-sutunlar { display: grid; grid-template-columns: repeat(3, 340px); }
 .yy-alt-kategoriler { row-gap: 16px; }
 .yy-alt-kategoriler a, .yy-alt-sutunlar a { font-size: 13.4px; font-weight: 400; line-height: 24px; color: #212427; }
-.yy-alt-kategoriler a { display: inline-flex; align-items: center; gap: 16px; }
+.yy-alt-kategoriler a { display: flex; align-items: center; gap: 16px; width: fit-content; height: 24px; }
 .yy-alt-kategoriler svg { color: #3b68fc; flex: 0 0 auto; }
 .yy-alt-kategoriler a:hover, .yy-alt-sutunlar a:hover { color: #3b68fc; text-decoration: none; }
 .yy-alt-sutunlar { margin-top: 56px; }

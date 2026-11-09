@@ -13,19 +13,8 @@ import { SITE_NAME } from "../../siteConfig";
 
 /** Menude kisa adlar; grup sayfasindaki tam ad uzun kalir. */
 const KISA_AD: Readonly<Record<string, string>> = {
-  "finans-ve-maas": "Finans",
-  "insaat-ve-ev": "İnşaat ve ev",
-  "tarih-ve-zaman": "Tarih ve zaman",
-  "enerji-ve-arac": "Enerji ve araç",
-  "saglik-ve-spor": "Sağlık",
-  kuyumcu: "Kuyumcu",
-  "tarim-ve-hayvancilik": "Tarım",
-  matematik: "Matematik",
-  "kimya-ve-biyoloji": "Kimya",
-  "muhendislik-ve-elektrik": "Mühendislik",
-  "harita-ve-tasima": "Harita",
-  "gunluk-olculer": "Günlük",
-  "dini-hesaplar": "Dini",
+  ekoloji: "Ekoloji",
+  yiyecek: "Yiyecek",
 };
 
 const BIRIM_KATEGORILERI = new Set(birimGruplari.flatMap((g) => g.kategoriler));

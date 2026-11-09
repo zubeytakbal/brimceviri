@@ -25,7 +25,7 @@ describe("Türkçe ana sayfa listeleri", () => {
     const sluglar = HESAPLAYICI_GRUPLARI.map((g) => g.slug);
     expect(new Set(sluglar).size).toBe(sluglar.length);
     expect([...HESAP_GRUP_SLUGLARI].sort()).toEqual(["donusum", ...sluglar].sort());
-    expect(isYeniYapiYolu("/hesaplayicilar/finans-ve-maas")).toBe(true);
+    expect(isYeniYapiYolu("/hesaplayicilar/finans")).toBe(true);
     expect(isYeniYapiYolu("/hesaplayicilar/ohm-yasasi")).toBe(false);
     expect(isYeniYapiYolu("/hesaplayicilar/donusum")).toBe(true);
   });

@@ -102,19 +102,17 @@ export const yeniYapiKategorileri: ReadonlySet<string> = new Set(["uzunluk", "al
 // app/components/yeni/anaSayfaVerisi.ts icindeki HESAPLAYICI_GRUPLARI ile ayni (tests/anaSayfa.test.ts).
 export const HESAP_GRUP_SLUGLARI: ReadonlySet<string> = new Set([
   "donusum",
-  "finans-ve-maas",
-  "insaat-ve-ev",
-  "tarih-ve-zaman",
-  "enerji-ve-arac",
-  "saglik-ve-spor",
-  "kuyumcu",
-  "tarim-ve-hayvancilik",
+  "finans",
+  "gunluk-yasam",
+  "insaat",
+  "saglik",
   "matematik",
-  "kimya-ve-biyoloji",
-  "muhendislik-ve-elektrik",
-  "harita-ve-tasima",
-  "gunluk-olculer",
-  "dini-hesaplar",
+  "fizik",
+  "kimya",
+  "biyoloji",
+  "ekoloji",
+  "yiyecek",
+  "diger",
 ]);
 
 const KURUMSAL_YOLLAR: ReadonlySet<string> = new Set([

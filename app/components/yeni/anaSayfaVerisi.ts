@@ -260,3 +260,54 @@ export const HESAPLAYICI_GRUPLARI: readonly AnaSayfaGrubu[] = [
     ],
   },
 ];
+
+/** Grup sayfalarinin giris yazisi (grup slug'ina gore). */
+export const GRUP_GIRISI: Readonly<Record<string, string>> = {
+  "finans-ve-maas":
+    "Maaş bordrosundan KDV'ye, kıdem tazminatından kredi taksitine kadar parayla ilgili günlük hesaplar. Mevzuata bağlı hesaplarda güncel oranlar kullanılır; önemli kararlarda bir mali müşavire danışın.",
+  "insaat-ve-ev":
+    "Boya, fayans, beton ve tuğla gibi malzemelerden ne kadar almanız gerektiğini hesaplayın. Sonuçlar fire payıyla verilir; siparişten önce ustanızla kontrol etmeniz iyi olur.",
+  "tarih-ve-zaman": "Yaşınızı, iki tarih arasındaki gün sayısını, iş günlerini ve hicri, Rumi, miladi tarih karşılıklarını bulun.",
+  "enerji-ve-arac": "Yakıt, elektrik ve doğalgaz tüketimi; kombi, klima ve petek seçimi; aracınızla ilgili masraf ve süreler.",
+  "saglik-ve-spor":
+    "Uyku, vücut kitle indeksi, ideal kilo ve gebelik haftası gibi hesaplar. Bu araçlar bilgilendirme amaçlıdır, hekim görüşünün yerini tutmaz.",
+  kuyumcu: "Altın ve gümüş ayarları, çeyrek ve cumhuriyet altını, hurda altının has karşılığı.",
+  "tarim-ve-hayvancilik": "Tarla alanı, tohum ve fidan sayısı, gübre ve ilaçlama miktarı, inek doğum tarihi.",
+  matematik: "Yüzde, EBOB-EKOK, ortalama ve denklem çözümü; birçoğunda çözüm adım adım gösterilir.",
+  "kimya-ve-biyoloji": "Mol, atom kütlesi ve kodon tablosu gibi kimya ve biyoloji derslerinde kullanılan araçlar.",
+  "muhendislik-ve-elektrik":
+    "Elektrik, metal, akışkan ve ısı hesapları: kablo kesiti, demir ağırlığı, boru çapı, cıvata torku ve daha fazlası.",
+  "harita-ve-tasima": "Koordinat ve harita ölçeği dönüşümleri, eğim, kargo hacmi ve seyir hesapları.",
+  "gunluk-olculer": "Mutfak ve beden ölçüleri, ayakkabı ve yüzük numaraları, okul notları gibi günlük çeviriler.",
+  "dini-hesaplar": "Kıble yönü, kaza namazı ve orucu, zekât ve hicri yaş gibi hesaplar.",
+  temel: "Uzunluk, ağırlık, alan, hacim, sıcaklık ve zaman gibi en sık kullanılan ölçü birimleri.",
+  muhendislik: "Basınç, kuvvet, tork, enerji ve güç gibi mühendislikte kullanılan birimler.",
+  "isi-ve-akiskan": "Debi, viskozite, ısıl iletkenlik ve yakıt tüketimi birimleri.",
+  elektrik: "Direnç, kapasitans, endüktans ve manyetik alan gibi elektrik birimleri.",
+  "isik-ve-radyasyon": "Aydınlatma şiddeti, radyasyon dozu ve radyoaktivite birimleri.",
+  "saglik-ve-kimya": "Kan şekeri, D vitamini, konsantrasyon ve su sertliği birimleri.",
+  "tarim-ve-arazi": "Dekar başına verim ve doz, alana göre fiyat ve yağış miktarı.",
+  "kuyumculuk-ve-tekstil": "Altın ve gümüş ayarı, kumaş gramajı, iplik numarası ve halı düğüm sıklığı.",
+};
+
+/** Buyuk gruplarin alt basliklari (grup sayfasinda). Gruptaki her link tam bir alt baslikta yer alir (tests/anaSayfa.test.ts). */
+export const ALT_GRUPLAR: Readonly<Record<string, readonly { ad: string; hrefler: readonly string[] }[]>> = {
+  "insaat-ve-ev": [
+    { ad: "Yapı ve malzeme", hrefler: ["/beton-hesaplama", "/tugla-hesaplama", "/merdiven-hesaplama", "/kereste-hesaplama", "/emsal-kaks-hesaplama", "/hafriyat-hesaplama"] },
+    { ad: "Ev ve dekorasyon", hrefler: ["/boya-hesaplama", "/fayans-hesaplama", "/parke-hesaplama", "/duvar-kagidi-hesaplama", "/klor-dozaji-hesaplama"] },
+  ],
+  "enerji-ve-arac": [
+    { ad: "Araç", hrefler: ["/yakit-tuketimi-hesaplama", "/trafik-cezasi-erken-odeme-hesaplama", "/ehliyet-yenileme-suresi-hesaplama", "/lastik-ebati-hesaplama", "/elektrikli-arac-maliyet-karsilastirma", "/lpg-donusum-amortisman-hesaplama"] },
+    { ad: "Ev enerjisi ve ısınma", hrefler: ["/elektrik-tuketimi-hesaplama", "/dogalgaz-tuketimi-hesaplama", "/klima-btu-hesaplama", "/kombi-kac-kw-hesaplama", "/petek-dilim-hesaplama", "/kombi-klima-isitma-maliyeti-karsilastirma"] },
+  ],
+  "muhendislik-ve-elektrik": [
+    { ad: "Elektrik", hrefler: ["/muhendislik-hesaplayicilari/elektrik-hesaplari/kw-to-amper-hesaplama", "/muhendislik-hesaplayicilari/elektrik-hesaplari/kablo-kesiti-hesaplama", "/kva-kw-hesaplama", "/hesaplayicilar/ohm-yasasi", "/awg-mm2-cevirici", "/psu-guc-hesaplama", "/anten-uzunlugu-hesaplama"] },
+    { ad: "Metal ve makine", hrefler: ["/demir-agirlik-hesaplama", "/sac-agirlik-hesaplama", "/kesme-hizi-devir-hesaplama", "/civata-torku-hesaplama", "/isil-genlesme-hesaplama", "/kaynak-isi-girdisi-hesaplama"] },
+    { ad: "Akışkan ve ısı", hrefler: ["/boru-capi-donusum-hesaplama", "/boru-capi-hesaplama", "/basinc-kaybi-hesaplama", "/tank-hacmi-hesaplama", "/hesaplayicilar/isi-enerjisi", "/hesaplayicilar/isi-iletimi"] },
+  ],
+  "gunluk-olculer": [
+    { ad: "Ölçü ve beden", hrefler: ["/mutfak-olculeri-cevirici", "/ayakkabi-numarasi-cevirme", "/beden-olcusu-cevirici", "/yuzuk-olcusu-cevirici", "/uzunluk-karsilastirma", "/tarihi-olcu-birimleri"] },
+    { ad: "Okul", hrefler: ["/devamsizlik-hesaplama", "/harf-notu-hesaplama"] },
+    { ad: "İçecek", hrefler: ["/kokteyl-olcusu-cevirici", "/alkol-seyreltme-hesaplama", "/abv-standart-icki-hesaplama"] },
+  ],
+};

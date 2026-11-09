@@ -1,7 +1,8 @@
-// Turkce ana sayfa: hizli cevirme, sik donusumler, en cok kullanilan araclar, renkli grup bloklari.
-// Grup basliklari grup sayfasina (/hesaplayicilar/<grup>, /ceviriciler/<grup>) gider.
+// Turkce ana sayfa: ustte buyuk baslik, arama ve hizli cevirme (birim cevirme one cikar); altinda grup kartlari
+// (simge, ad, arac sayisi) ve sade link listeleri.
 import type { CSSProperties } from "react";
 import Link from "@/app/components/SiteLink";
+import HomeSearch from "../HomeSearch";
 import { categoryPages } from "../../converter/categoryPages";
 import { conversionPages } from "../../converter/conversionPages";
 import { convert } from "../../converter/convert";
@@ -10,12 +11,13 @@ import { ciftYayinda } from "../../converter/mergedPairs";
 import { turkceKategoriYolu } from "../../converter/siteYapisi";
 import { turkceCiftYolu } from "../../converter/turkceYollar";
 import { grupRengi, HIZLI_KATEGORILER, POPULER_ARACLAR, SIK_GRUPLARI, type AnaSayfaGrubu } from "./anaSayfaVerisi";
+import { aramaMetni } from "./aramaMetni";
+import { GrupIkonu } from "./grupIkonlari";
 import { grupYolu, type GrupTuru } from "./GrupSayfasi";
 import { BIRIM_GRUPLARI, HESAPLAYICI_GRUPLARI } from "./gruplar";
 import HizliCevirici, { type HizliSecenek } from "./HizliCevirici";
 import { formatSayi } from "./sayi";
 
-const BLOKTA_LINK = 6;
 const tr = (s: string) => s.toLocaleLowerCase("tr-TR");
 
 function hizliSecenekler(): HizliSecenek[] {
@@ -53,41 +55,50 @@ function sikDonusumler(sluglar: readonly string[]) {
 
 const renk = (slug: string) => ({ "--g": grupRengi(slug) }) as CSSProperties;
 
-/** Her grup bir blok: baslik grup sayfasina gider, ilk alti link gosterilir. */
-function GrupBloklari({ tur, gruplar }: { tur: GrupTuru; gruplar: readonly AnaSayfaGrubu[] }) {
+function GrupKartlari({ tur, gruplar }: { tur: GrupTuru; gruplar: readonly AnaSayfaGrubu[] }) {
   return (
-    <div className="yy-bloklar">
+    <ul className="yy-kartlar">
       {gruplar.map((g) => (
-        <div key={g.slug} className="yy-blok" style={renk(g.slug)}>
-          <h3>
-            <Link href={grupYolu(tur, g.slug)}>{g.ad}</Link>
-            <span>{g.linkler.length}</span>
-          </h3>
-          <ul>
-            {g.linkler.slice(0, BLOKTA_LINK).map((l) => (
-              <li key={l.href}>
-                <Link href={l.href}>{l.ad}</Link>
-              </li>
-            ))}
-          </ul>
-          {g.linkler.length > BLOKTA_LINK && (
-            <Link className="yy-blok-tumu" href={grupYolu(tur, g.slug)}>
-              Tümünü gör ({g.linkler.length}) →
-            </Link>
-          )}
-        </div>
+        <li key={g.slug} style={renk(g.slug)}>
+          <Link href={grupYolu(tur, g.slug)}>
+            <span className="yy-kart-ikon">
+              <GrupIkonu slug={g.slug} boyut={26} />
+            </span>
+            <strong>{g.ad}</strong>
+            <small>
+              {g.linkler.length} {tur === "hesap" ? "araç" : "çevirici"}
+            </small>
+          </Link>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }
 
 export default function AnaSayfa() {
+  const hesapSayisi = HESAPLAYICI_GRUPLARI.reduce((t, g) => t + g.linkler.length, 0);
+  const birimSayisi = BIRIM_GRUPLARI.reduce((t, g) => t + g.linkler.length, 0);
   return (
     <div className="yy yy-sayfa">
       <main className="yy-ana-sayfa">
-        <h1>Birim Çevirici ve Hesaplama Araçları</h1>
+        <section className="yy-hero" aria-labelledby="ana-baslik">
+          <div className="yy-hero-ust">
+            <h1 id="ana-baslik">
+              <span>Türkçe</span> birim çevirici ve <em>{hesapSayisi} hesaplama aracı</em>
+            </h1>
+            <div className="yy-hero-arama">
+              <HomeSearch locale="tr" strings={aramaMetni} kimlik="yy-ana-arama" />
+            </div>
+          </div>
+          <HizliCevirici secenekler={hizliSecenekler()} />
+        </section>
 
-        <HizliCevirici secenekler={hizliSecenekler()} />
+        <section aria-labelledby="birim">
+          <h2 id="birim">
+            Birim çevirme <small>{birimSayisi} çevirici</small>
+          </h2>
+          <GrupKartlari tur="birim" gruplar={BIRIM_GRUPLARI} />
+        </section>
 
         <section aria-labelledby="sik">
           <h2 id="sik">Sık kullanılan dönüşümler</h2>
@@ -109,11 +120,18 @@ export default function AnaSayfa() {
           </div>
         </section>
 
+        <section aria-labelledby="hesap">
+          <h2 id="hesap">
+            Hesaplama araçları <small>{hesapSayisi} araç</small>
+          </h2>
+          <GrupKartlari tur="hesap" gruplar={HESAPLAYICI_GRUPLARI} />
+        </section>
+
         <section aria-labelledby="populer">
           <h2 id="populer">En çok kullanılan araçlar</h2>
           <ul className="yy-populer">
             {POPULER_ARACLAR.map((a) => (
-              <li key={a.href} style={renk(a.grup)}>
+              <li key={a.href}>
                 <Link href={a.href}>{a.ad}</Link>
                 <span>{a.aciklama}</span>
               </li>
@@ -121,28 +139,13 @@ export default function AnaSayfa() {
           </ul>
         </section>
 
-        <section aria-labelledby="hesap">
-          <h2 id="hesap">
-            <Link href="/hesaplayicilar">Hesaplayıcılar</Link>
-          </h2>
-          <GrupBloklari tur="hesap" gruplar={HESAPLAYICI_GRUPLARI} />
-        </section>
-
-        <section aria-labelledby="birim">
-          <h2 id="birim">
-            <Link href="/tum-birimler">Birim çeviriciler</Link>
-          </h2>
-          <GrupBloklari tur="birim" gruplar={BIRIM_GRUPLARI} />
-        </section>
-
         <section className="yy-hakkinda" aria-labelledby="hakkinda">
           <h2 id="hakkinda">BirimCeviri nedir?</h2>
           <p>
             BirimCeviri, birim çevirme ve günlük hesapları Türkçe olarak tek yerde toplayan bir sitedir. Metre ve kilogram
-            gibi yaygın ölçülerin yanında dönüm ve arşın gibi Türkiye'de kullanılan ölçüler de burada. Çeviri sonuçları
-            siz yazarken tarayıcınızda hesaplanır; üyelik gerekmez. Bir hata görürseniz{" "}
-            <Link href="/iletisim">bize yazın</Link>. Sitenin kim tarafından, nasıl hazırlandığını{" "}
-            <Link href="/hakkimizda">hakkımızda</Link> sayfasında bulabilirsiniz.
+            gibi yaygın ölçülerin yanında dönüm ve arşın gibi Türkiye'de kullanılan ölçüler de burada. Sonuçlar siz
+            yazarken tarayıcınızda hesaplanır; üyelik gerekmez. Bir hata görürseniz <Link href="/iletisim">bize yazın</Link>.
+            Siteyi kimin, nasıl hazırladığını <Link href="/hakkimizda">hakkımızda</Link> sayfasında bulabilirsiniz.
           </p>
         </section>
       </main>

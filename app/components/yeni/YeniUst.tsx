@@ -4,6 +4,7 @@
 import "./yeni.css";
 import Link from "@/app/components/SiteLink";
 import HomeSearch from "../HomeSearch";
+import { aramaMetni } from "./aramaMetni";
 import { turkceKategoriYolu, ustMenuKategorileri } from "../../converter/siteYapisi";
 import { SITE_NAME } from "../../siteConfig";
 
@@ -18,16 +19,6 @@ const SEKME_ADI: Record<string, string> = {
   basinc: "Basınç",
 };
 
-const aramaMetni = {
-  searchLabel: "Dönüşüm veya hesaplayıcı ara",
-  searchPlaceholder: "Birim veya araç ara: cm inç, dönüm, kıdem…",
-  searchHint: "",
-  searchResultsLabel: "Arama sonuçları",
-  searchEmpty: "Eşleşen dönüşüm veya hesaplayıcı bulunamadı.",
-  searchEnterHint: "",
-  searchCategoryPrefix: "Kategori",
-  openLabel: "Aç",
-};
 
 export default function YeniUst({ pathname }: { pathname: string }) {
   const aktif = pathname.split("/")[1] ?? "";
@@ -39,9 +30,12 @@ export default function YeniUst({ pathname }: { pathname: string }) {
           {bas}
           <span>{son}</span>
         </Link>
-        <div className="yy-arama">
-          <HomeSearch locale="tr" strings={aramaMetni} kimlik="yy-ust-arama" />
-        </div>
+        {/* Ana sayfada arama kutusu sayfanin ustunde buyuk olarak durur. */}
+        {pathname !== "/" && (
+          <div className="yy-arama">
+            <HomeSearch locale="tr" strings={aramaMetni} kimlik="yy-ust-arama" />
+          </div>
+        )}
       </div>
       <nav className="yy-sekmeler" aria-label="Temel çeviriciler">
         {ustMenuKategorileri.map((k) => (

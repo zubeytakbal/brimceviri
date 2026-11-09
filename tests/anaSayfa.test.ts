@@ -1,6 +1,6 @@
 import { existsSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { HESAPLAYICI_GRUPLARI, HIZLI_KATEGORILER, SIK_GRUPLARI } from "../app/components/yeni/anaSayfaVerisi";
+import { ALT_GRUPLAR, GRUP_GIRISI, HESAPLAYICI_GRUPLARI, HIZLI_KATEGORILER, SIK_GRUPLARI } from "../app/components/yeni/anaSayfaVerisi";
 import { conversionPages } from "../app/converter/conversionPages";
 import { hizliCevirmeVerisi } from "../app/converter/hizliCevirmeVeri";
 import { ciftYayinda } from "../app/converter/mergedPairs";
@@ -38,6 +38,16 @@ describe("Türkçe ana sayfa listeleri", () => {
     expect(isYeniYapiYolu("/hesaplayicilar/finans-ve-maas")).toBe(true);
     expect(isYeniYapiYolu("/hesaplayicilar/ohm-yasasi")).toBe(false);
     expect(isYeniYapiYolu("/ceviriciler/temel")).toBe(true);
+  });
+
+  it("alt başlıklar grubun bütün linklerini tam bir kez kapsar; her grubun giriş yazısı var", () => {
+    for (const g of HESAPLAYICI_GRUPLARI) {
+      expect(GRUP_GIRISI[g.slug], g.slug).toBeTruthy();
+      const alt = ALT_GRUPLAR[g.slug];
+      if (!alt) continue;
+      const hepsi = alt.flatMap((a) => a.hrefler);
+      expect([...hepsi].sort(), g.slug).toEqual(g.linkler.map((l) => l.href).sort());
+    }
   });
 
   it("hızlı çeviricinin ilk birimleri veride var", () => {

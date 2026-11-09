@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import GrupSayfasi, { grupMetadata } from "../../components/yeni/GrupSayfasi";
 import { HESAPLAYICI_GRUPLARI } from "../../components/yeni/gruplar";
-import { hesapOgeleri } from "../../components/yeni/grupOgeleri";
 
 type PageProps = { params: Promise<{ grup: string }> };
 
@@ -22,5 +21,5 @@ export default async function HesapGrubuSayfasi({ params }: PageProps) {
   const { grup: slug } = await params;
   const grup = HESAPLAYICI_GRUPLARI.find((g) => g.slug === slug);
   if (!grup) notFound();
-  return <GrupSayfasi tur="hesap" grup={grup} ogeler={hesapOgeleri(grup)} digerGruplar={HESAPLAYICI_GRUPLARI} />;
+  return <GrupSayfasi tur="hesap" grup={grup} digerGruplar={HESAPLAYICI_GRUPLARI} />;
 }

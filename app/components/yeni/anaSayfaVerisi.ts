@@ -66,7 +66,7 @@ export const GRUP_RENGI: Readonly<Record<string, string>> = {
   "kuyumculuk-ve-tekstil": "#9a7400",
 };
 // Site tek vurgu rengi (mavi) kullanir; grup renkleri ileride gerekirse diye duruyor.
-export const MAVI = "#2563eb";
+export const MAVI = "#3b68fc";
 export const grupRengi = (_slug: string) => MAVI;
 
 const B = "/bilim-hesaplayicilari";

@@ -1,7 +1,7 @@
 "use client";
 
 // Gruplu cok kutulu cevirici: herhangi bir kutuya yazilan deger, diger tum kutulari gunceller.
-// Gruplarda olmayan birimler "Diger birim" satirinda acilir listeden secilir.
+// Ilk iki grup acik, digerleri kapali gelir; gruplarda olmayan birimler acilir listeden secilir.
 import { useId, useState } from "react";
 import { convert } from "../../converter/convert";
 import { formatSayi, sayiOku } from "./sayi";
@@ -16,6 +16,10 @@ type Props = {
   /** Ilk acilista dolu gelen kutu ve degeri */
   baslangic: { birim: string; deger: number };
 };
+
+const ACIK_GRUP = 2;
+// "arşın", "fersah (Osm.)" gibi adla ayni ya da uzun semboller satiri kalabaliklastirmasin.
+const SEMBOL_SINIRI = 4;
 
 export default function CokluCevirici({ category, birimler, gruplar, baslangic }: Props) {
   const [kaynak, setKaynak] = useState(baslangic.birim);
@@ -38,14 +42,14 @@ export default function CokluCevirici({ category, birimler, gruplar, baslangic }
     setMetin(yeni);
   }
 
-  function kutu(birim: string, etiket?: string) {
+  function satir(birim: string, etiket?: string) {
     const b = bul(birim);
     if (!b) return null;
     const id = `${kok}-${birim}`;
     return (
-      <label key={birim} className="yy-kutu" htmlFor={id}>
-        <span>{etiket ?? b.label}</span>
-        <span className="yy-kutu-giris">
+      <div key={birim} className="yy-satir">
+        <label htmlFor={id}>{etiket ?? b.label}</label>
+        <span className="yy-giris">
           <input
             id={id}
             inputMode="decimal"
@@ -58,44 +62,39 @@ export default function CokluCevirici({ category, birimler, gruplar, baslangic }
               const el = e.currentTarget;
               requestAnimationFrame(() => el.select());
             }}
-            aria-describedby={`${id}-s`}
           />
-          <span id={`${id}-s`} className="yy-kutu-sembol">
-            {b.symbol}
-          </span>
+          {b.symbol.length <= SEMBOL_SINIRI && <span aria-hidden="true">{b.symbol}</span>}
         </span>
-      </label>
+      </div>
     );
   }
 
   return (
-    <section className="yy-coklu" aria-label="Çevirici">
-      {gruplar.map((g) => (
-        <fieldset key={g.ad}>
-          <legend>{g.ad}</legend>
-          <div className="yy-kutular">{g.birimler.map((b) => kutu(b))}</div>
-        </fieldset>
+    <section className="yy-arac" aria-label="Çevirici">
+      {gruplar.map((g, i) => (
+        <details key={g.ad} open={i < ACIK_GRUP}>
+          <summary>{g.ad}</summary>
+          {g.birimler.map((b) => satir(b))}
+        </details>
       ))}
       {digerleri.length > 0 && (
-        <fieldset>
-          <legend>Diğer birimler</legend>
-          <div className="yy-kutular">
-            <label className="yy-kutu" htmlFor={`${kok}-sec`}>
-              <span>Birim seçin</span>
-              <select id={`${kok}-sec`} value={diger} onChange={(e) => setDiger(e.target.value)}>
-                {digerleri.map((b) => (
-                  <option key={b.value} value={b.value}>
-                    {b.label} [{b.symbol}]
-                  </option>
-                ))}
-              </select>
-            </label>
-            {kutu(diger, "Değer")}
+        <details>
+          <summary>Diğer birimler</summary>
+          <div className="yy-satir">
+            <label htmlFor={`${kok}-sec`}>Birim</label>
+            <select id={`${kok}-sec`} value={diger} onChange={(e) => setDiger(e.target.value)}>
+              {digerleri.map((b) => (
+                <option key={b.value} value={b.value}>
+                  {b.label}
+                </option>
+              ))}
+            </select>
           </div>
-        </fieldset>
+          {satir(diger, "Değer")}
+        </details>
       )}
-      <div className="yy-coklu-alt">
-        <span>Herhangi bir kutuya yazın; diğerleri anında hesaplanır.</span>
+      <div className="yy-arac-alt">
+        <span>Bir kutuya yazın.</span>
         <button type="button" onClick={() => yaz(baslangic.birim, formatSayi(baslangic.deger))}>
           Sıfırla
         </button>

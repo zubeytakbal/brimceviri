@@ -56,10 +56,12 @@ function matches(searchText: string, query: string, locale: HomeSearchLocale) {
     .every((token) => searchText.includes(token));
 }
 
-export default function HomeSearch({ locale, strings }: { locale: HomeSearchLocale; strings: HomeSearchStrings }) {
+export default function HomeSearch({ locale, strings, kimlik }: { locale: HomeSearchLocale; strings: HomeSearchStrings; kimlik?: string }) {
   const router = useRouter();
-  const inputId = useId();
-  const resultsId = useId();
+  // dynamic() ile yuklenen ust menude useId sunucu ve tarayicida farkli uretir; orada sabit kimlik verilir.
+  const uretilen = useId();
+  const inputId = kimlik ?? uretilen;
+  const resultsId = `${inputId}-sonuc`;
   const [query, setQuery] = useState("");
   const [items, setItems] = useState<HomeSearchItem[] | null>(null);
   const loading = useRef(false);

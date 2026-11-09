@@ -52,19 +52,16 @@ export default function KategoriSayfasi({ slug }: { slug: string }) {
   const icerik = kategoriIcerikleri[slug];
   if (icerik && temel) {
     return (
-      <div className="yy yy-govdeler">
-        <ZenginKategori
-          slug={slug}
-          ad={ad}
-          category={kategori.category}
-          grupAdi={grup?.ad}
-          birimler={birimler}
-          temel={temel}
-          ciftler={ciftler}
-          icerik={icerik}
-        />
-        <YanPanel aktifKategori={slug} />
-      </div>
+      <ZenginKategori
+        slug={slug}
+        ad={ad}
+        category={kategori.category}
+        grupAdi={grup?.ad}
+        birimler={birimler}
+        temel={temel}
+        ciftler={ciftler}
+        icerik={icerik}
+      />
     );
   }
 

@@ -164,6 +164,10 @@ export const uzunlukIcerigi: KategoriIcerigi = {
             eder. Bir tekne turu ilanında &quot;mil&quot; görüyorsanız, kastedilen neredeyse her zaman deniz
             milidir.
           </p>
+          <p className="yy-not">
+            Tekne ya da uçak hızıyla mı uğraşıyorsunuz? <Link href="/knot-kilometre-saat">Knot ile km/saat</Link>{" "}
+            arasında ayrı bir çeviri sayfamız var.
+          </p>
         </>
       ),
     },

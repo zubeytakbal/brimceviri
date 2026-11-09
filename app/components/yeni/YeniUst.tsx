@@ -40,7 +40,7 @@ export default function YeniUst({ pathname }: { pathname: string }) {
           <span>{son}</span>
         </Link>
         <div className="yy-arama">
-          <HomeSearch locale="tr" strings={aramaMetni} />
+          <HomeSearch locale="tr" strings={aramaMetni} kimlik="yy-ust-arama" />
         </div>
       </div>
       <nav className="yy-sekmeler" aria-label="Temel çeviriciler">

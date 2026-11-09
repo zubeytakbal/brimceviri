@@ -425,3 +425,23 @@
 }
 .yy-ust .yy-sekmeler { display: block; margin: 0 auto; }
 .yy-ust .yy-sekmeler ul { width: 100%; }
+
+/* En cok kullanilan araclar: Omni'deki gibi ortali buyuk baslik, 3 sutun beyaz kart, ok ve altta grup adi */
+.yy-populer-bolum { margin-top: 56px; }
+.yy-ana-sayfa .yy-populer-bolum h2 { display: block; margin: 0 0 40px; text-align: center; font-size: 34px; font-weight: 700; line-height: 44px; }
+.yy-populer { display: flex; flex-wrap: wrap; justify-content: center; gap: 22px; max-width: 956px; margin: 0 auto; padding: 0; list-style: none; }
+.yy-populer li { display: flex; flex: 0 0 calc((100% - 44px) / 3); flex-direction: column; gap: 0; }
+.yy-populer a { display: flex; flex-direction: column; flex: 1 1 auto; box-sizing: border-box; padding: 24px; color: #0a0a0a; background: #fff; border: 1px solid #c3c8d4; border-radius: 8px; text-decoration: none; transition: border-color 0.12s, box-shadow 0.12s; }
+.yy-populer a:hover { text-decoration: none; border-color: #3b68fc; box-shadow: 0 2px 10px rgba(59, 104, 252, 0.12); }
+.yy-populer strong { display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: 17px; font-weight: 600; line-height: 28px; color: #0a0a0a; }
+.yy-populer strong svg { flex: 0 0 auto; color: #212427; }
+.yy-populer span { margin-top: 12px; font-size: 14px; line-height: 20px; color: #3a3f47; }
+.yy-populer small { margin-top: auto; padding-top: 20px; font-size: 13px; color: #748091; }
+@media (max-width: 960px) {
+  .yy-populer-bolum { margin-top: 36px; }
+  .yy-ana-sayfa .yy-populer-bolum h2 { font-size: 24px; line-height: 32px; margin-bottom: 20px; }
+  .yy-populer { gap: 12px; }
+  .yy-populer li { flex-basis: 100%; }
+  .yy-populer a { padding: 18px; }
+}
+.yy-ana-sayfa .yy-populer { margin: 0 auto; }

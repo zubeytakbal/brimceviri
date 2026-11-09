@@ -1,6 +1,7 @@
 // Turkce ana sayfa: ustte buyuk baslik, arama ve hizli cevirme (birim cevirme one cikar); altinda grup kartlari
 // (simge, ad, arac sayisi) ve sade link listeleri.
 import type { CSSProperties } from "react";
+import { ArrowRight } from "lucide-react";
 import Link from "@/app/components/SiteLink";
 import HomeSearch from "../HomeSearch";
 import { categoryPages } from "../../converter/categoryPages";
@@ -131,27 +132,24 @@ export default function AnaSayfa() {
           <GrupKartlari tur="hesap" gruplar={HESAPLAYICI_GRUPLARI} />
         </section>
 
-        <section className="yy-bolum" aria-labelledby="populer">
+        <section className="yy-populer-bolum" aria-labelledby="populer">
           <h2 id="populer">En çok kullanılan araçlar</h2>
           <ul className="yy-populer">
             {POPULER_ARACLAR.map((a) => (
               <li key={a.href}>
-                <Link href={a.href}>{a.ad}</Link>
-                <span>{a.aciklama}</span>
+                <Link href={a.href}>
+                  <strong>
+                    {a.ad}
+                    <ArrowRight size={18} strokeWidth={2} aria-hidden="true" />
+                  </strong>
+                  <span>{a.aciklama}</span>
+                  <small>{HESAPLAYICI_GRUPLARI.find((g) => g.slug === a.grup)?.ad}</small>
+                </Link>
               </li>
             ))}
           </ul>
         </section>
 
-        <section className="yy-bolum yy-hakkinda" aria-labelledby="hakkinda">
-          <h2 id="hakkinda">BirimCeviri nedir?</h2>
-          <p>
-            BirimCeviri, birim çevirme ve günlük hesapları Türkçe olarak tek yerde toplayan bir sitedir. Metre ve kilogram
-            gibi yaygın ölçülerin yanında dönüm ve arşın gibi Türkiye'de kullanılan ölçüler de burada. Sonuçlar siz
-            yazarken tarayıcınızda hesaplanır; üyelik gerekmez. Bir hata görürseniz <Link href="/iletisim">bize yazın</Link>.
-            Siteyi kimin, nasıl hazırladığını <Link href="/hakkimizda">hakkımızda</Link> sayfasında bulabilirsiniz.
-          </p>
-        </section>
       </main>
     </div>
   );

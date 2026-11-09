@@ -37,6 +37,10 @@ export const POPULER_ARACLAR: readonly (AnaSayfaLinki & { aciklama: string; grup
   { grup: "insaat-ve-ev", href: "/beton-hesaplama", ad: "Beton hesaplama", aciklama: "Döşeme ve kolon için metreküp, çimento ve kum." },
   { grup: "insaat-ve-ev", href: "/boya-hesaplama", ad: "Boya hesaplama", aciklama: "Duvar alanına göre kaç litre boya gerektiği." },
   { grup: "enerji-ve-arac", href: "/dogalgaz-tuketimi-hesaplama", ad: "Doğalgaz tüketimi", aciklama: "Aylık m³ tüketimden tahmini fatura." },
+  { grup: "dini-hesaplar", href: "/kible-yonu-hesaplama", ad: "Kıble yönü", aciklama: "Telefonda canlı pusulayla kıbleyi bulur; 81 ilin kıble açısı da var." },
+  { grup: "insaat-ve-ev", href: "/merdiven-hesaplama", ad: "Merdiven hesaplama", aciklama: "Toplam yüksekliğe göre basamak sayısı, rıht yüksekliği ve basamak derinliği." },
+  { grup: "tarim-ve-hayvancilik", href: "/tarla-donum-hesaplama", ad: "Tarla dönüm hesaplama", aciklama: "Kenar ölçülerinden düzensiz tarlanın bile alanını dönüm ve m² olarak bulur." },
+  { grup: "matematik", href: "/bilim-hesaplayicilari/matematik/yuzde-hesaplama", ad: "Yüzde hesaplama", aciklama: "Bir sayının yüzdesini, yüzde kaçı olduğunu ve yüzde artışı adım adım hesaplar." },
   { grup: "saglik-ve-spor", href: "/uyku-hesaplama", ad: "Uyku hesaplama", aciklama: "Uyku döngülerine göre yatma ve kalkma saati." },
 ];
 export type AnaSayfaGrubu = { slug: string; ad: string; linkler: AnaSayfaLinki[] };

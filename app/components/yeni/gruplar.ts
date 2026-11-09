@@ -17,10 +17,19 @@ export function kategoriAdi(slug: string) {
   return cumleBicimi((sayfa?.title ?? slug).replace(/ (Dönüşümleri|Birimi?)\b.*$/, ""));
 }
 
-export const BIRIM_GRUPLARI: readonly AnaSayfaGrubu[] = birimGruplari.map((g) => ({
-  slug: g.id,
+/** Donusum grubu: butun birim ceviricileri. Grup sayfasinda eski birim gruplari (Temel, Muhendislik...) alt baslik olur. */
+export const DONUSUM_GRUBU: AnaSayfaGrubu = {
+  slug: "donusum",
+  ad: "Dönüşüm",
+  linkler: birimGruplari.flatMap((g) => g.kategoriler.map((k) => ({ href: turkceKategoriYolu(k), ad: kategoriAdi(k) }))),
+};
+
+export const DONUSUM_ALT_GRUPLARI = birimGruplari.map((g) => ({
   ad: g.ad,
-  linkler: g.kategoriler.map((k) => ({ href: turkceKategoriYolu(k), ad: kategoriAdi(k) })),
+  hrefler: g.kategoriler.map((k) => turkceKategoriYolu(k)),
 }));
+
+/** Ana sayfa kartlari ve grup sayfalari: once Donusum, sonra hesaplama gruplari. */
+export const TUM_GRUPLAR: readonly AnaSayfaGrubu[] = [DONUSUM_GRUBU, ...HESAPLAYICI_GRUPLARI];
 
 export { HESAPLAYICI_GRUPLARI };

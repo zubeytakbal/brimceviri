@@ -1,4 +1,4 @@
-// Grup sayfasi (/hesaplayicilar/<grup>, /ceviriciler/<grup>): baslik, sayi, kisa giris ve alt basliklar altinda
+// Grup sayfasi (/hesaplayicilar/<grup>; donusum dahil): baslik, sayi, kisa giris ve alt basliklar altinda
 // iki sutunlu duz link listesi.
 import type { CSSProperties } from "react";
 import type { Metadata } from "next";
@@ -43,14 +43,16 @@ export default function GrupSayfasi({
   tur,
   grup,
   digerGruplar,
+  altGruplar: verilenAltGruplar,
 }: {
   tur: GrupTuru;
   grup: AnaSayfaGrubu;
   digerGruplar: readonly AnaSayfaGrubu[];
+  altGruplar?: readonly { ad: string; hrefler: readonly string[] }[];
 }) {
   const ust = tur === "hesap" ? { href: "/hesaplayicilar", ad: "Hesaplama araçları" } : { href: "/tum-birimler", ad: "Birim çeviriciler" };
   const bul = (href: string) => grup.linkler.find((l) => l.href === href)!;
-  const altGruplar = ALT_GRUPLAR[grup.slug];
+  const altGruplar = verilenAltGruplar ?? ALT_GRUPLAR[grup.slug];
   const yolSemasi = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",

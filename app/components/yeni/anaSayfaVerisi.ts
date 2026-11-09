@@ -17,15 +17,6 @@ export const HIZLI_KATEGORILER: Readonly<Record<string, readonly [string, string
   aci: ["°", "rad"],
 };
 
-/** Sik kullanilan donusumler: konu konu, her konuda en cok aranan bes cift. */
-export const SIK_GRUPLARI: readonly { ad: string; sluglar: readonly string[] }[] = [
-  { ad: "Uzunluk", sluglar: ["inc-santimetre", "metre-santimetre", "fit-metre", "kilometre-metre", "santimetre-milimetre"] },
-  { ad: "Alan", sluglar: ["metrekare-donum", "donum-metrekare", "dekar-donum", "hektar-donum", "hektar-metrekare"] },
-  { ad: "Ağırlık", sluglar: ["kilogram-gram", "ton-kilogram", "pound-kilogram", "gram-miligram", "gram-kilogram"] },
-  { ad: "Hacim", sluglar: ["metrekup-litre", "litre-metrekup", "mililitre-litre", "galon-litre", "varil-litre"] },
-  { ad: "Diğer", sluglar: ["bar-psi", "knot-kilometre-saat", "megabayt-gigabayt", "watt-kilowatt", "deniz-mili-kilometre"] },
-];
-
 export type AnaSayfaLinki = { href: string; ad: string };
 
 /** B duzeni: en cok tiklanan ve en cok aranan araclar, tek cumlelik aciklamayla. */
@@ -269,6 +260,8 @@ export const HESAPLAYICI_GRUPLARI: readonly AnaSayfaGrubu[] = [
 
 /** Grup sayfalarinin giris yazisi (grup slug'ina gore). */
 export const GRUP_GIRISI: Readonly<Record<string, string>> = {
+  donusum:
+    "Uzunluk, ağırlık, alan ve hacimden basınç, enerji ve radyasyona kadar bütün birim çeviricileri. Dönüm ve arşın gibi Türkiye'de kullanılan ölçüler de burada.",
   "finans-ve-maas":
     "Maaş bordrosundan KDV'ye, kıdem tazminatından kredi taksitine kadar parayla ilgili günlük hesaplar. Mevzuata bağlı hesaplarda güncel oranlar kullanılır; önemli kararlarda bir mali müşavire danışın.",
   "insaat-ve-ev":

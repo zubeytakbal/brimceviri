@@ -32,7 +32,7 @@ const BIRIM_KATEGORILERI = new Set(birimGruplari.flatMap((g) => g.kategoriler));
 
 function aktifBolum(pathname: string): string | undefined {
   const [, ilk, ikinci] = pathname.split("/");
-  if (ilk === "ceviriciler" || ilk === "tum-birimler" || ilk === "kategoriler" || yeniYapiKategorileri.has(ilk) || BIRIM_KATEGORILERI.has(ilk)) {
+  if ((ilk === "hesaplayicilar" && ikinci === "donusum") || ilk === "tum-birimler" || ilk === "kategoriler" || yeniYapiKategorileri.has(ilk) || BIRIM_KATEGORILERI.has(ilk)) {
     return "birim";
   }
   if (ilk === "hesaplayicilar" && ikinci && HESAPLAYICI_GRUPLARI.some((g) => g.slug === ikinci)) return ikinci;
@@ -60,8 +60,8 @@ export default function YeniUst({ pathname }: { pathname: string }) {
         <nav className="yy-sekmeler" aria-label="Bölümler">
           <ul>
             <li>
-              <Link href="/tum-birimler" aria-current={aktif === "birim" ? "page" : undefined}>
-                Birim çevirme
+              <Link href="/hesaplayicilar/donusum" aria-current={aktif === "birim" ? "page" : undefined}>
+                Dönüşüm
               </Link>
             </li>
             {HESAPLAYICI_GRUPLARI.map((g) => (

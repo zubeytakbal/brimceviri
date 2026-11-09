@@ -1,5 +1,5 @@
 import { guncelHref } from "./converter/guncelHref";
-import { HESAP_GRUP_SLUGLARI, birimGruplari } from "./converter/siteYapisi";
+import { HESAP_GRUP_SLUGLARI } from "./converter/siteYapisi";
 import { sayfaKalkti } from "./kaldirilanSayfalar";
 import { ARABIC_ISLAMIC_SITEMAP } from "./i18n/arabicIslamicTools";
 import { germanMathPages } from "./i18n/germanMathPages";
@@ -493,7 +493,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/editoryal-politika`, lastModified: contentLastModified, changeFrequency: "monthly", priority: 0.4 },
     { url: `${baseUrl}/yazar`, lastModified: contentLastModified, changeFrequency: "monthly", priority: 0.4 },
     ...[...HESAP_GRUP_SLUGLARI].map((g) => ({ url: `${baseUrl}/hesaplayicilar/${g}`, lastModified: contentLastModified, changeFrequency: "monthly" as const, priority: 0.6 })),
-    ...birimGruplari.map((g) => ({ url: `${baseUrl}/ceviriciler/${g.id}`, lastModified: contentLastModified, changeFrequency: "monthly" as const, priority: 0.6 })),
     {
       url: `${baseUrl}/hakkimizda`,
       lastModified: contentLastModified,

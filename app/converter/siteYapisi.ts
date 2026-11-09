@@ -101,6 +101,7 @@ export const yeniYapiKategorileri: ReadonlySet<string> = new Set(["uzunluk", "al
 
 // app/components/yeni/anaSayfaVerisi.ts icindeki HESAPLAYICI_GRUPLARI ile ayni (tests/anaSayfa.test.ts).
 export const HESAP_GRUP_SLUGLARI: ReadonlySet<string> = new Set([
+  "donusum",
   "finans-ve-maas",
   "insaat-ve-ev",
   "tarih-ve-zaman",
@@ -130,10 +131,10 @@ export function isYeniYapiYolu(pathname: string) {
   if (pathname === "/") return true;
   const ilk = pathname.split("/")[1] ?? "";
   if (yeniYapiKategorileri.has(ilk) || KURUMSAL_YOLLAR.has(ilk)) return true;
-  // Grup sayfalari: /ceviriciler/<grup> ve /hesaplayicilar/<grup> (ayni adres altindaki eski araclar haric)
+  // Grup sayfalari: /hesaplayicilar/<grup> (ayni adres altindaki eski araclar haric)
   const [, bolum, grup, fazla] = pathname.split("/");
   if (fazla !== undefined || !grup) return false;
-  return bolum === "ceviriciler" || (bolum === "hesaplayicilar" && HESAP_GRUP_SLUGLARI.has(grup));
+  return bolum === "hesaplayicilar" && HESAP_GRUP_SLUGLARI.has(grup);
 }
 
 /** Turkce kategori sayfasinin adresi (tasinmis kategoride yeni, digerlerinde eski adres). */

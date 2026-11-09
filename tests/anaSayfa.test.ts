@@ -1,22 +1,12 @@
 import { existsSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { ALT_GRUPLAR, GRUP_GIRISI, HESAPLAYICI_GRUPLARI, HIZLI_KATEGORILER, SIK_GRUPLARI } from "../app/components/yeni/anaSayfaVerisi";
-import { conversionPages } from "../app/converter/conversionPages";
+import { ALT_GRUPLAR, GRUP_GIRISI, HESAPLAYICI_GRUPLARI, HIZLI_KATEGORILER } from "../app/components/yeni/anaSayfaVerisi";
 import { hizliCevirmeVerisi } from "../app/converter/hizliCevirmeVeri";
-import { ciftYayinda } from "../app/converter/mergedPairs";
 import { isClosedPath } from "../app/indexPolicy";
 import { HESAP_GRUP_SLUGLARI, isYeniYapiYolu } from "../app/converter/siteYapisi";
 
 describe("Türkçe ana sayfa listeleri", () => {
   const hesaplayicilar = HESAPLAYICI_GRUPLARI.flatMap((g) => g.linkler);
-
-  it("sık dönüşümler yayında olan çiftler", () => {
-    const slugs = new Set(conversionPages.map((p) => p.slug));
-    for (const s of SIK_GRUPLARI.flatMap((g) => g.sluglar)) {
-      expect(slugs.has(s), s).toBe(true);
-      expect(ciftYayinda(s), s).toBe(true);
-    }
-  });
 
   it("hesaplayıcılar Google'a açık ve tekrarsız", () => {
     for (const l of hesaplayicilar) expect(isClosedPath(l.href), l.href).toBe(false);
@@ -34,10 +24,10 @@ describe("Türkçe ana sayfa listeleri", () => {
   it("grup slug'ları tekrarsız ve site yapısındaki listeyle aynı", () => {
     const sluglar = HESAPLAYICI_GRUPLARI.map((g) => g.slug);
     expect(new Set(sluglar).size).toBe(sluglar.length);
-    expect([...HESAP_GRUP_SLUGLARI].sort()).toEqual([...sluglar].sort());
+    expect([...HESAP_GRUP_SLUGLARI].sort()).toEqual(["donusum", ...sluglar].sort());
     expect(isYeniYapiYolu("/hesaplayicilar/finans-ve-maas")).toBe(true);
     expect(isYeniYapiYolu("/hesaplayicilar/ohm-yasasi")).toBe(false);
-    expect(isYeniYapiYolu("/ceviriciler/temel")).toBe(true);
+    expect(isYeniYapiYolu("/hesaplayicilar/donusum")).toBe(true);
   });
 
   it("alt başlıklar grubun bütün linklerini tam bir kez kapsar; her grubun giriş yazısı var", () => {

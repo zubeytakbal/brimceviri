@@ -1,5 +1,6 @@
 // Grup simgeleri (lucide). Ana sayfa kartlarinda ve grup sayfasi basliginda kullanilir.
 import {
+  ArrowLeftRight,
   Building2,
   CalendarDays,
   Calculator,
@@ -26,6 +27,7 @@ import {
 } from "lucide-react";
 
 const IKON: Readonly<Record<string, LucideIcon>> = {
+  donusum: ArrowLeftRight,
   "finans-ve-maas": Coins,
   "insaat-ve-ev": Building2,
   "tarih-ve-zaman": CalendarDays,

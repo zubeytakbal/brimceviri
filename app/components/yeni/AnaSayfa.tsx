@@ -5,21 +5,14 @@ import { ArrowRight } from "lucide-react";
 import Link from "@/app/components/SiteLink";
 import HomeSearch from "../HomeSearch";
 import { categoryPages } from "../../converter/categoryPages";
-import { conversionPages } from "../../converter/conversionPages";
-import { convert } from "../../converter/convert";
 import { hizliCevirmeVerisi } from "../../converter/hizliCevirmeVeri";
-import { ciftYayinda } from "../../converter/mergedPairs";
 import { turkceKategoriYolu } from "../../converter/siteYapisi";
-import { turkceCiftYolu } from "../../converter/turkceYollar";
-import { grupRengi, HIZLI_KATEGORILER, POPULER_ARACLAR, SIK_GRUPLARI, type AnaSayfaGrubu } from "./anaSayfaVerisi";
+import { grupRengi, HIZLI_KATEGORILER, POPULER_ARACLAR, type AnaSayfaGrubu } from "./anaSayfaVerisi";
 import { aramaMetni } from "./aramaMetni";
 import { GrupIkonu } from "./grupIkonlari";
 import { grupYolu, type GrupTuru } from "./GrupSayfasi";
-import { BIRIM_GRUPLARI, HESAPLAYICI_GRUPLARI } from "./gruplar";
+import { HESAPLAYICI_GRUPLARI, TUM_GRUPLAR } from "./gruplar";
 import HizliCevirici, { type HizliSecenek } from "./HizliCevirici";
-import { formatSayi } from "./sayi";
-
-const tr = (s: string) => s.toLocaleLowerCase("tr-TR");
 
 function hizliSecenekler(): HizliSecenek[] {
   const { kategoriler } = hizliCevirmeVerisi(null);
@@ -37,21 +30,6 @@ function hizliSecenekler(): HizliSecenek[] {
     });
   }
   return secenekler;
-}
-
-/** "1 inç = 2,54 cm": sonuc birim simgesiyle, dar sutunda tek satira sigsin diye. */
-function sikDonusumler(sluglar: readonly string[]) {
-  return sluglar.flatMap((slug) => {
-    const c = conversionPages.find((p) => p.slug === slug);
-    if (!c || !ciftYayinda(slug)) return [];
-    const kaynak = c.fromName === c.fromName.toLocaleUpperCase("tr-TR") ? c.fromName : tr(c.fromName);
-    return [{
-      slug,
-      href: turkceCiftYolu(slug),
-      kaynak: `1 ${kaynak.replace(/ \(.*\)$/, "")}`,
-      sonuc: `${formatSayi(convert(c.category, 1, c.fromUnit, c.toUnit))} ${c.toUnit}`,
-    }];
-  });
 }
 
 const renk = (slug: string) => ({ "--g": grupRengi(slug) }) as CSSProperties;
@@ -77,8 +55,7 @@ function GrupKartlari({ tur, gruplar }: { tur: GrupTuru; gruplar: readonly AnaSa
 }
 
 export default function AnaSayfa() {
-  const hesapSayisi = HESAPLAYICI_GRUPLARI.reduce((t, g) => t + g.linkler.length, 0);
-  const birimSayisi = BIRIM_GRUPLARI.reduce((t, g) => t + g.linkler.length, 0);
+  const aracSayisi = TUM_GRUPLAR.reduce((t, g) => t + g.linkler.length, 0);
   return (
     <div className="yy yy-sayfa yy-ana-zemin">
       <section className="yy-hero" aria-labelledby="ana-baslik">
@@ -98,38 +75,11 @@ export default function AnaSayfa() {
           <HizliCevirici secenekler={hizliSecenekler()} />
         </div>
 
-        <section className="yy-bolum" aria-labelledby="birim">
-          <h2 id="birim">
-            Birim çevirme <small>{birimSayisi} çevirici</small>
-          </h2>
-          <GrupKartlari tur="birim" gruplar={BIRIM_GRUPLARI} />
-        </section>
-
-        <section className="yy-bolum" aria-labelledby="sik">
-          <h2 id="sik">Sık kullanılan dönüşümler</h2>
-          <div className="yy-sik">
-            {SIK_GRUPLARI.map((g) => (
-              <div key={g.ad}>
-                <h3>{g.ad}</h3>
-                <ul>
-                  {sikDonusumler(g.sluglar).map((d) => (
-                    <li key={d.slug}>
-                      <Link href={d.href}>
-                        {d.kaynak} = <strong>{d.sonuc}</strong>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </section>
-
         <section className="yy-bolum" aria-labelledby="hesap">
           <h2 id="hesap">
-            Hesaplama araçları <small>{hesapSayisi} araç</small>
+            Hesaplama araçları <small>{aracSayisi} araç</small>
           </h2>
-          <GrupKartlari tur="hesap" gruplar={HESAPLAYICI_GRUPLARI} />
+          <GrupKartlari tur="hesap" gruplar={TUM_GRUPLAR} />
         </section>
 
         <section className="yy-populer-bolum" aria-labelledby="populer">

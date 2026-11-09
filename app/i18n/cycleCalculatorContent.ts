@@ -213,7 +213,7 @@ export const CYCLE_CONTENT: Record<CycleLang, Content> = {
     ],
     tocTitle: "সূচিপত্র",
     relatedTitle: "আরও টুল",
-    related: [{ href: "/bn/islamic-tools", label: "ইসলামিক টুলস" }],
+    related: [{ href: "/bn/bmi-calculator", label: "বিএমআই ক্যালকুলেটর" }],
   },
   uz: {
     locale: "uz_UZ",

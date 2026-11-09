@@ -26,9 +26,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: pagePath,
     languages: {
-      tr: "/kaynak-amperaji-hesaplama",
+      tr: "/kaynak-isi-girdisi-hesaplama",
       "uz-UZ": pagePath,
-      "x-default": "/kaynak-amperaji-hesaplama",
+      "x-default": "/kaynak-isi-girdisi-hesaplama",
     },
   },
   openGraph: {

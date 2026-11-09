@@ -10,3 +10,11 @@ export const MERGED_PAIRS: Readonly<Record<string, string>> = {};
 
 export const canonicalPairSlug = (slug: string) => MERGED_PAIRS[slug] ?? slug;
 export const isMergedAway = (slug: string) => Object.hasOwn(MERGED_PAIRS, slug);
+
+import { YONLENDIRILEN_CIFTLER } from "./yonlendirilenCiftler";
+
+const YONLENDIRILEN = new Set(YONLENDIRILEN_CIFTLER.map(([slug]) => slug));
+/** Kasım 2026 temizliğinde kategori sayfasına yönlendirilen (artık sayfası üretilmeyen) Türkçe çift mi? */
+export const ciftYonlendirildi = (slug: string) => YONLENDIRILEN.has(slug);
+/** Türkçe çift sayfası yayında mı: ters yöne birleştirilmemiş ve kategoriye yönlendirilmemiş. */
+export const ciftYayinda = (slug: string) => !isMergedAway(slug) && !YONLENDIRILEN.has(slug);

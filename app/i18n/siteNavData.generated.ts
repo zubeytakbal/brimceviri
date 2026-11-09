@@ -70,10 +70,6 @@ export const SITE_NAV_DATA: SiteNavData = {
       {
        "href": "/ayakkabi-numarasi-cevirme",
        "label": "Ayakkabı Numarası"
-      },
-      {
-       "href": "/doviz-cevirici",
-       "label": "Döviz Çevirici"
       }
      ],
      "footer": [
@@ -150,20 +146,12 @@ export const SITE_NAV_DATA: SiteNavData = {
       {
        "href": "/tarla-donum-hesaplama",
        "label": "Tarla Dönüm Hesaplama"
-      },
-      {
-       "href": "/e-okul-fotograf-kucultme",
-       "label": "e-Okul Fotoğraf Küçültme"
       }
      ],
      "footer": [
       {
        "href": "/hesaplayicilar",
        "label": "Tüm hesaplamalar →"
-      },
-      {
-       "href": "/dosya-araclari",
-       "label": "Dosya araçları →"
       }
      ]
     },
@@ -188,10 +176,6 @@ export const SITE_NAV_DATA: SiteNavData = {
        "label": "İnşaat Demiri Ağırlığı"
       },
       {
-       "href": "/celik-profil-tablolari",
-       "label": "Çelik Profil Tabloları"
-      },
-      {
        "href": "/kiris-hesaplama",
        "label": "Kiriş Hesabı"
       },
@@ -212,20 +196,8 @@ export const SITE_NAV_DATA: SiteNavData = {
        "label": "Cıvata Torku"
       },
       {
-       "href": "/metrik-vida-tablosu",
-       "label": "Metrik Vida Tablosu"
-      },
-      {
-       "href": "/direnc-renk-kodu",
-       "label": "Direnç Renk Kodu"
-      },
-      {
        "href": "/u-degeri-hesaplama",
        "label": "U Değeri"
-      },
-      {
-       "href": "/doymus-buhar-tablosu",
-       "label": "Doymuş Buhar Tablosu"
       }
      ],
      "footer": [
@@ -240,58 +212,16 @@ export const SITE_NAV_DATA: SiteNavData = {
      "label": "Dünya ve Coğrafya",
      "links": [
       {
-       "href": "/iller-arasi-mesafe",
-       "label": "İller Arası Mesafe"
-      },
-      {
-       "href": "/il-rakimlari",
-       "label": "İllerin Rakımı"
-      },
-      {
-       "href": "/turkiye-il-haritasi",
-       "label": "Türkiye İl Haritası"
-      },
-      {
-       "href": "/ulkeler",
-       "label": "Ülkeler ve Başkentleri"
-      },
-      {
-       "href": "/dunya-haritasi",
-       "label": "Dünya Haritası"
-      },
-      {
        "href": "/koordinat-donusturucu",
        "label": "Koordinat Dönüştürücü"
-      },
-      {
-       "href": "/canli-pusula",
-       "label": "Canlı Pusula"
       },
       {
        "href": "/kible-yonu-hesaplama",
        "label": "Kıble Yönü"
       },
       {
-       "href": "/dunyanin-en-yuksek-daglari",
-       "label": "Dünyanın En Yüksek Dağları"
-      },
-      {
        "href": "/harita-olcegi-hesaplama",
        "label": "Harita Ölçeği"
-      },
-      {
-       "href": "/buyuk-daire-mesafesi-hesaplama",
-       "label": "Büyük Daire Mesafesi"
-      },
-      {
-       "href": "/il-rakimi-karsilastirma",
-       "label": "İl Rakımı Karşılaştırma"
-      }
-     ],
-     "footer": [
-      {
-       "href": "/cografya-hesaplamalari",
-       "label": "Tüm coğrafya araçları →"
       }
      ]
     },
@@ -300,44 +230,8 @@ export const SITE_NAV_DATA: SiteNavData = {
      "label": "Tarih & Saat",
      "links": [
       {
-       "href": "/saat-ve-tarih",
-       "label": "Saat ve Tarih (Ana Sayfa)"
-      },
-      {
-       "href": "/ay-evreleri",
-       "label": "Ay Evreleri"
-      },
-      {
-       "href": "/gunes-dogusu-ve-batisi",
-       "label": "Güneş Doğuşu ve Batışı"
-      },
-      {
-       "href": "/dunya-saatleri",
-       "label": "Dünya Saatleri"
-      },
-      {
        "href": "/saat-dilimi-cevirici",
        "label": "Saat Dilimi Çevirici"
-      },
-      {
-       "href": "/yaz-saati",
-       "label": "Yaz Saati: Saatler Ne Zaman Değişiyor?"
-      },
-      {
-       "href": "/online-saat",
-       "label": "Online Saat"
-      },
-      {
-       "href": "/zamanlayici",
-       "label": "Online Zamanlayıcı"
-      },
-      {
-       "href": "/kronometre",
-       "label": "Kronometre"
-      },
-      {
-       "href": "/online-alarm-kur",
-       "label": "Online Alarm Kur"
       },
       {
        "href": "/iki-tarih-arasi-gun-hesaplama",
@@ -346,38 +240,9 @@ export const SITE_NAV_DATA: SiteNavData = {
       {
        "href": "/kacinci-hafta",
        "label": "Yılın Kaçıncı Haftası"
-      },
-      {
-       "href": "/takvim",
-       "label": "Türkiye Takvimi"
-      },
-      {
-       "href": "/resmi-tatiller",
-       "label": "Resmî Tatiller"
-      },
-      {
-       "href": "/geri-sayim",
-       "label": "Geri Sayım (Kaç Gün Kaldı)"
-      },
-      {
-       "href": "/paskalya-ne-zaman",
-       "label": "Paskalya Ne Zaman? (Batı ve Ortodoks)"
-      },
-      {
-       "href": "/kutsal-kitap-okuma-plani",
-       "label": "Kutsal Kitap Okuma Planı"
       }
      ],
-     "footer": [
-      {
-       "href": "/saat-ve-tarih",
-       "label": "Tüm tarih ve saat araçları →"
-      },
-      {
-       "href": "/dini-araclar",
-       "label": "Dini araçlar →"
-      }
-     ]
+     "footer": []
     }
    ],
    "headerCopy": {
@@ -811,53 +676,15 @@ export const SITE_NAV_DATA: SiteNavData = {
        "href": "/en/science-calculators",
        "label": "Science Calculators"
       }
-     ],
-     "footer": [
-      {
-       "href": "/en/christian-tools",
-       "label": "Christian calendar tools →"
-      }
      ]
     },
     {
      "id": "time",
-     "label": "Clock & Calendar",
+     "label": "Date & Time",
      "links": [
-      {
-       "href": "/en/time-and-date",
-       "label": "Time and Date (overview)"
-      },
-      {
-       "href": "/en/online-clock",
-       "label": "Online Clock"
-      },
-      {
-       "href": "/en/alarm-clock",
-       "label": "Alarm Clock"
-      },
-      {
-       "href": "/en/timer",
-       "label": "Timer"
-      },
-      {
-       "href": "/en/stopwatch",
-       "label": "Stopwatch"
-      },
-      {
-       "href": "/en/pomodoro-timer",
-       "label": "Pomodoro Timer"
-      },
-      {
-       "href": "/en/world-clock",
-       "label": "World Clock"
-      },
       {
        "href": "/en/time-zone-converter",
        "label": "Time Zone Converter"
-      },
-      {
-       "href": "/en/countdown",
-       "label": "Countdown"
       },
       {
        "href": "/en/days-between-dates",
@@ -878,16 +705,6 @@ export const SITE_NAV_DATA: SiteNavData = {
       {
        "href": "/en/business-day-calculator",
        "label": "Business Days"
-      },
-      {
-       "href": "/en/federal-holidays",
-       "label": "US Federal Holidays"
-      }
-     ],
-     "footer": [
-      {
-       "href": "/en/time-and-date",
-       "label": "All clock and calendar tools →"
       }
      ]
     }
@@ -1162,10 +979,6 @@ export const SITE_NAV_DATA: SiteNavData = {
       {
        "href": "/de/schuhgroessen-umrechner",
        "label": "Schuhgrößen"
-      },
-      {
-       "href": "/de/waehrungsrechner",
-       "label": "Währungsrechner"
       }
      ],
      "footer": [
@@ -1256,28 +1069,12 @@ export const SITE_NAV_DATA: SiteNavData = {
      "label": "Kalender & Uhr",
      "links": [
       {
-       "href": "/de/uhrzeit-und-datum",
-       "label": "Uhrzeit und Datum (Übersicht)"
-      },
-      {
-       "href": "/de/kalender",
-       "label": "Kalender mit Feiertagen"
-      },
-      {
        "href": "/de/altersrechner",
        "label": "Altersrechner"
       },
       {
        "href": "/de/kalenderwoche",
        "label": "Aktuelle Kalenderwoche"
-      },
-      {
-       "href": "/de/feiertage",
-       "label": "Feiertage Deutschland"
-      },
-      {
-       "href": "/de/brueckentage",
-       "label": "Brückentage-Rechner"
       },
       {
        "href": "/de/tagerechner",
@@ -1288,38 +1085,8 @@ export const SITE_NAV_DATA: SiteNavData = {
        "label": "Arbeitstage-Rechner"
       },
       {
-       "href": "/de/countdown",
-       "label": "Countdown (Tage bis …)"
-      },
-      {
-       "href": "/de/online-uhr",
-       "label": "Online-Uhr"
-      },
-      {
-       "href": "/de/weltuhr",
-       "label": "Weltuhr"
-      },
-      {
        "href": "/de/zeitzonenrechner",
        "label": "Zeitzonenrechner"
-      },
-      {
-       "href": "/de/timer",
-       "label": "Timer"
-      },
-      {
-       "href": "/de/wecker",
-       "label": "Wecker"
-      },
-      {
-       "href": "/de/stoppuhr",
-       "label": "Stoppuhr"
-      }
-     ],
-     "footer": [
-      {
-       "href": "/de/uhrzeit-und-datum",
-       "label": "Alle Kalender- und Uhr-Tools →"
       }
      ]
     }

@@ -256,7 +256,7 @@ function renderStandaloneToolPage(slug: string) {
                   <Link href="/ar/hijri-age-calculator">حساب العمر بالهجري والميلادي (أم القرى)</Link>
                 </li>
                 <li>
-                  <Link href="/ar/calendar">التاريخ الهجري اليوم</Link>
+                  التاريخ الهجري اليوم
                 </li>
               </ul>
             </div>
@@ -266,13 +266,13 @@ function renderStandaloneToolPage(slug: string) {
               <h2>قد يهمك أيضًا</h2>
               <ul>
                 <li>
-                  <Link href="/ar/calendar">التقويم الهجري أم القرى والتاريخ الهجري اليوم</Link>
+                  التقويم الهجري أم القرى والتاريخ الهجري اليوم
                 </li>
                 <li>
-                  <Link href="/ar/occasions">المناسبات والإجازات الرسمية في السعودية</Link>
+                  المناسبات والإجازات الرسمية في السعودية
                 </li>
                 <li>
-                  <Link href="/ar/salary-dates">مواعيد صرف الرواتب</Link>
+                  مواعيد صرف الرواتب
                 </li>
                 <li>
                   <Link href="/ar/hijri-age-calculator">حساب العمر بالهجري</Link>

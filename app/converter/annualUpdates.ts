@@ -71,43 +71,6 @@ export const annualUpdates: AnnualUpdate[] = [
     ],
   },
   {
-    id: "tr-okul-takvimi",
-    label: "Okul takvimi (MEB)",
-    pageHref: "/okul-takvimi",
-    validYear: 2027,
-    remindFrom: "05-15",
-    checklist: [
-      "Find the MEB çalışma takvimi genelgesi for the next school year (usually announced May–June) and verify it on meb.gov.tr",
-      "Append the new year to OKUL_YILLARI in app/converter/calendar/okulTakvimi.ts (uyum, açılış, ara tatiller, karne, yarıyıl, 2. dönem, kapanış)",
-      "Update the page title/description year in app/okul-takvimi/page.tsx, then set validYear here",
-    ],
-  },
-  {
-    id: "tr-takvim",
-    label: "Türkiye takvimi ve dini günler",
-    pageHref: "/takvim",
-    validYear: 2027,
-    remindFrom: "07-01",
-    checklist: [
-      "Compare the Diyanet dini günler list for the next year with the computed dates (etkinlikTarihleri); add differences to DIYANET_DUZELTME in app/converter/calendar/trTakvim.ts",
-      "Raise DINI_DOGRULANAN to the verified year and add a new year to TAKVIM_YILLARI (pages and sitemap follow automatically)",
-      "Check turkeyHolidays / DIYANET_VERIFIED_UNTIL in app/converter/time/holidays.ts, then set validYear here",
-    ],
-  },
-  {
-    id: "sa-taqwim",
-    label: "Saudi calendar, occasions and salary dates (Arabic)",
-    pageHref: "/ar/calendar",
-    validYear: 2027,
-    remindFrom: "10-01",
-    checklist: [
-      "Add the next Gregorian year to SA_SANAWAT and the next Hijri year to SA_HIJRI_SANAWAT in app/converter/calendar/saTaqwim.ts (pages and sitemap follow automatically)",
-      "Check HRSD announcements for the Eid al-Fitr / Eid al-Adha private-sector holiday rules and the Founding Day / National Day rules",
-      "Add the next school year (MoE two-semester calendar) to app/converter/calendar/saMadrasi.ts and point AAM_HALI at it before the summer break ends",
-      "Check mof.gov.sa for any royal decree changing the salary date (27th rule in mawidRatib), then set validYear here",
-    ],
-  },
-  {
     id: "de-grunderwerbsteuer",
     label: "Grunderwerbsteuer-Rechner (Germany)",
     pageHref: "/de/grunderwerbsteuer-rechner",
@@ -128,18 +91,6 @@ export const annualUpdates: AnnualUpdate[] = [
       "Check whether the Arbeitszeitgesetz reform (weekly instead of daily maximum working time, planned from 1 January 2027) has passed",
       "If so, update REGELN and the notes in app/converter/germanArbeitszeit.ts and the rules table/FAQ on the page",
       "Set validYear here",
-    ],
-  },
-  {
-    id: "de-brueckentage",
-    label: "Brückentage pages (Germany)",
-    pageHref: "/de/brueckentage",
-    validYear: 2027,
-    remindFrom: "06-01",
-    checklist: [
-      "Add the next year to BRUECKENTAGE_JAHRE and PLANER_JAHRE in app/i18n/germanBrueckentage.ts (Germans search 'Brückentage <year>' from late summer)",
-      "Extend GERMAN_HOLIDAY_YEARS if needed and check for new or one-off holidays in app/converter/time/germanHolidays.ts",
-      "Add the new year page to the sitemap check, then set validYear here",
     ],
   },
   {

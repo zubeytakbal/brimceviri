@@ -17,7 +17,7 @@ const ara = (s: string) => s.toLocaleLowerCase("tr-TR").normalize("NFD").replace
 
 type Bolum = { etiket: string; href: string; gruplar: Array<{ baslik: string; linkler: Array<{ href: string; label: string }> }>; arama: string };
 
-const SAAT: Bolum = { etiket: "Saat", href: "/saat-ve-tarih", gruplar: SAAT_GRUPLARI, arama: "Şehir, ülke ya da araç yazın" };
+const SAAT: Bolum = { etiket: "Saat", href: "/saat-hesaplama", gruplar: SAAT_GRUPLARI, arama: "Araç adı yazın" };
 
 /** Saat bölümünün üst menüsü; aynı düzen başka bölümlerde (ör. Hesap) kendi adı ve gruplarıyla kullanılır. */
 export default function SaatUstMenu({ ogeler, bolum = SAAT }: { ogeler: Oge[]; bolum?: Bolum }) {

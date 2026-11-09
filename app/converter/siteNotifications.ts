@@ -24,14 +24,6 @@ const manualNotifications: SiteNotification[] = [
       "Ehliyet sınıfına ve veriliş tarihine göre sürücü belgenin ne zaman yenilenmesi gerektiğini hesapla.",
     href: "/ehliyet-yenileme-suresi-hesaplama",
   },
-  {
-    id: "ehliyet-sinifi-bulma-2026-09",
-    date: "2026-09-08",
-    title: "Yeni araç: Hangi Ehliyet Sınıfı Gerekli?",
-    message:
-      "Aracının koltuk sayısı/ağırlığı ya da motosikletinin motor hacmi/gücüyle hangi ehliyet sınıfına ihtiyacın olduğunu hesapla.",
-    href: "/ehliyet-sinifi-bulma",
-  },
 ];
 
 const englishManualNotifications: SiteNotification[] = [
@@ -126,7 +118,7 @@ export async function getSiteNotifications(locale: NotificationLocale = "tr"): P
       date: entry.checkedAt ? entry.checkedAt.slice(0, 10) : new Date().toISOString().slice(0, 10),
       title: "Ehliyet bilgileri güncellenmiş olabilir",
       message: `${entry.label} kaynağında değişiklik tespit edildi, içerik kontrol ediliyor.`,
-      href: "/ehliyet-sinifi-bulma",
+      href: "/ehliyet-yenileme-suresi-hesaplama",
     }));
 
   return [...monitorNotifications, ...manualNotifications].sort(byDateDesc);

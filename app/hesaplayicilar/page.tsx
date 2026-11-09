@@ -51,8 +51,8 @@ const IKON: Record<string, SiteIconName> = {
 
 /** Hesap bölümünün dışında kalan gruplar ve kendi bölüm sayfaları. */
 const DIGER: Array<{ id: string; ikon: SiteIconName; bolum?: { href: string; label: string } }> = [
-  { id: "tarih", ikon: "dateCalculator", bolum: { href: "/saat-ve-tarih", label: "Saat ve Tarih bölümü" } },
-  { id: "saat", ikon: "time", bolum: { href: "/saat-ve-tarih", label: "Saat ve Tarih bölümü" } },
+  { id: "tarih", ikon: "dateCalculator" },
+  { id: "saat", ikon: "time" },
   { id: "dini", ikon: "hijriCalendarCalculator" },
   { id: "teknik", ikon: "electricianHub", bolum: { href: "/muhendislik-hesaplayicilari", label: "Mühendislik bölümü" } },
   { id: "harita-ve-havacilik", ikon: "greatCircleCalculator" },

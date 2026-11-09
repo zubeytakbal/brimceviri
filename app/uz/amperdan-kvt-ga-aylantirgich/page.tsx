@@ -11,9 +11,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: pagePath,
     languages: {
-      tr: "/muhendislik-hesaplayicilari/elektrik-hesaplari/amper-to-kw-hesaplama",
+      tr: "/muhendislik-hesaplayicilari/elektrik-hesaplari/kw-to-amper-hesaplama",
       "uz-UZ": pagePath,
-      "x-default": "/muhendislik-hesaplayicilari/elektrik-hesaplari/amper-to-kw-hesaplama",
+      "x-default": "/muhendislik-hesaplayicilari/elektrik-hesaplari/kw-to-amper-hesaplama",
     },
   },
   openGraph: {

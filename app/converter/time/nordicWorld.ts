@@ -2,7 +2,6 @@
 // Listede olmayan şehirler İngilizce adıyla kalır (New York, London, Tokyo...).
 import { abbreviationZones } from "./timeZoneOptions";
 import type { NordicLocale } from "./nordicWeek";
-import { citySlugDe } from "./germanWorld";
 import { worldCities, type WorldCity } from "./worldCities";
 
 type Names = Partial<Record<NordicLocale, string>>;
@@ -137,13 +136,6 @@ export const NORDIC_REGION_NAMES: Record<NordicLocale, Record<string, string>> =
 /** Test için: listede çevirisi eksik ülke var mı? */
 export const NORDIC_COUNTRY_KEYS = Object.keys(COUNTRY);
 
-/** Şehir sayfası adresleri: /sv/varldsklocka/new-york, /no/verdensklokke/kobenhavn... */
-export const NORDIC_WORLD_BASE: Record<NordicLocale, string> = {
-  sv: "/sv/varldsklocka",
-  no: "/no/verdensklokke",
-  da: "/da/verdensur",
-};
-
 function slugify(text: string) {
   return text
     .toLowerCase()
@@ -158,22 +150,8 @@ function slugify(text: string) {
 
 export const citySlugNordic = (locale: NordicLocale, city: WorldCity) => slugify(cityNameNordic(locale, city));
 
-export const cityPathNordic = (locale: NordicLocale, city: WorldCity) => `${NORDIC_WORLD_BASE[locale]}/${citySlugNordic(locale, city)}`;
-
 export function findCityNordic(locale: NordicLocale, slug: string) {
   return worldCities.find((c) => citySlugNordic(locale, c) === slug) ?? null;
-}
-
-/** Bir şehrin tüm dillerdeki saat sayfası adresleri (hreflang ve sitemap için). */
-export function worldCityPaths(city: WorldCity) {
-  return {
-    tr: `/dunya-saatleri/${city.tr}`,
-    en: `/en/world-clock/${city.en}`,
-    de: `/de/uhrzeit/${citySlugDe(city)}`,
-    sv: cityPathNordic("sv", city),
-    no: cityPathNordic("no", city),
-    da: cityPathNordic("da", city),
-  };
 }
 
 /** Saat dilimi çevirici seçenekleri: kısaltmalar (İngilizce adlarıyla) + şehirler ülke adıyla. */

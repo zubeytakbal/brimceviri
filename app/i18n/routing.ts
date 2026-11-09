@@ -129,7 +129,7 @@ const staticRouteTranslations: Record<StaticRouteKey, LocalePathMap> = {
     da: "/da/kokkenmal-omregner",
   },
   recipeConverter: {
-    tr: "/tarif-cevirici",
+    tr: "/mutfak-olculeri-cevirici",
     en: "/en/recipe-converter",
     de: "/de/rezept-umrechner",
     ar: "/ar/recipe-converter",

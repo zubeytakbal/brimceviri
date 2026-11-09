@@ -14,22 +14,8 @@ const SHELL_ASSETS = [OFFLINE_URL, "/manifest.webmanifest", "/icon.png", "/icons
 const MAX_PAGES = 40;
 
 const OFFLINE_PAGES = [
-  "/online-saat",
-  "/online-alarm-kur",
-  "/zamanlayici",
-  "/kronometre",
   "/pomodoro",
   "/tabata-zamanlayici",
-  "/dunya-saatleri",
-  "/geri-sayim",
-  "/en/online-clock",
-  "/en/alarm-clock",
-  "/en/timer",
-  "/en/stopwatch",
-  "/en/pomodoro-timer",
-  "/en/interval-timer",
-  "/en/world-clock",
-  "/en/countdown",
 ];
 
 function isOfflinePage(pathname) {

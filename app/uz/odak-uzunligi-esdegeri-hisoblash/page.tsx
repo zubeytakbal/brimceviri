@@ -30,10 +30,9 @@ export const metadata: Metadata = {
     "Linza fokus masofasidan APS-C, Micro Four Thirds va boshqa sensor formatlari uchun to'liq kadr (full frame) ekvivalent fokus masofasini hisoblang.",
   alternates: {
     canonical: pagePath,
-    languages: {
-      tr: "/odak-uzakligi-esdegeri-hesaplama",
+    languages: {
       "uz-UZ": pagePath,
-      "x-default": "/odak-uzakligi-esdegeri-hesaplama",
+      "x-default": pagePath,
     },
   },
   openGraph: {

@@ -35,10 +35,9 @@ export const metadata: Metadata = {
     "Bit tezligi (Mbps) va davomiylikdan video fayl hajmini (MB), yoki maqsadli fayl hajmidan kerakli bit tezligini hisoblang.",
   alternates: {
     canonical: pagePath,
-    languages: {
-      tr: "/video-bit-hizi-hesaplama",
+    languages: {
       "uz-UZ": pagePath,
-      "x-default": "/video-bit-hizi-hesaplama",
+      "x-default": pagePath,
     },
   },
   openGraph: {

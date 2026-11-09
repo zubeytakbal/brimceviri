@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PressureForceAreaPage from "../../components/calculators/PressureForceAreaPage";
+import HydrostaticPressureCalculator from "../../components/calculators/HydrostaticPressureCalculator";
 import { findEnglishCalculatorPageByTurkishSlug } from "../../converter/localizedCalculatorPages";
 import { buildSiteUrl } from "../../siteConfig";
 
@@ -59,6 +60,15 @@ export default function PressureForceAreaCalculatorPage() {
   return (
     <PressureForceAreaPage
       locale="tr"
+      ekBolum={
+        <HydrostaticPressureCalculator
+          locale="tr"
+          eyebrow="Sıvılarda basınç"
+          title="Hidrostatik basınç hesaplama (ΔP = ρgh)"
+          description="Bir sıvının içinde derinlik arttıkça basınç artar. Yoğunluk ve derinlikten basınç farkını ya da bunlardan birini bulun."
+          resultHeading="Sonuç"
+        />
+      }
       structuredData={
         <script
           type="application/ld+json"

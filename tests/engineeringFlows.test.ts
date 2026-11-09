@@ -1,11 +1,13 @@
 import { describe, expect, it } from "vitest";
 import sitemap from "../app/sitemap";
 import { ENGINEERING_FLOWS, STEEL_TABLE_FLOW } from "../app/converter/engineeringFlows";
+import { KAPALI_TR_SAYFALAR } from "../app/kasimTemizligi";
 
 describe("mühendislik sonraki adım bağlantıları", () => {
-  const paths = new Set(sitemap().map((entry) => new URL(entry.url).pathname.replace(/\/$/, "")));
+  // Site haritasindakiler ve yeniden yazilana kadar Google'a kapali (ama yayinda) Turkce sayfalar.
+  const paths = new Set([...sitemap().map((entry) => new URL(entry.url).pathname.replace(/\/$/, "")), ...KAPALI_TR_SAYFALAR]);
 
-  it("her kaynak ve hedef sayfa site haritasında var", () => {
+  it("her kaynak ve hedef sayfa yayında", () => {
     const missing: string[] = [];
     for (const [from, links] of Object.entries(ENGINEERING_FLOWS)) {
       if (!paths.has(from)) missing.push(`kaynak ${from}`);

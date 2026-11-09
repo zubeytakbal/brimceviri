@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { buildPrivacySections } from "../components/privacyPolicySections";
 import { privacyPolicyCopy } from "../i18n/privacyPolicyCopy";
-import StaticPageLayout from "../components/StaticPageLayout";
+import KurumsalSayfa from "../components/yeni/KurumsalSayfa";
 import { SITE_NAME, SITE_URL } from "../siteConfig";
 
 export const metadata: Metadata = {
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <StaticPageLayout
+    <KurumsalSayfa
       locale="tr"
       breadcrumbAriaLabel="Sayfa yolu"
       breadcrumbs={[

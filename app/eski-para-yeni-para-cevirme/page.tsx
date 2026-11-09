@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "@/app/components/SiteLink";
 import RedenominationTool from "../components/money/RedenominationTool";
 import TimeToolPage from "../components/time/TimeToolPage";
 import type { FaqItem } from "../converter/faqSchema";
@@ -46,7 +45,6 @@ export default function RedenominationPage() {
       related={{
         title: "İlginizi çekebilir",
         links: [
-          { href: "/doviz-cevirici", label: "Döviz Çevirici" },
           { href: "/tum-birimler", label: "Tüm Birim Dönüşümleri" },
           { href: "/tarih-cevirici", label: "Hicri Rumi Tarih Çevirici" },
         ],
@@ -118,7 +116,7 @@ export default function RedenominationPage() {
       </p>
       <p>
         Bu dönüşüm paranın yalnızca yeni adıyla karşılığını verir. Yıllar içindeki fiyat artışını hesaba katmaz; eski bir fiyatın bugünkü değerini
-        bulmak için enflasyon hesabı gerekir. Güncel kurlar için <Link href="/doviz-cevirici">döviz çeviriciye</Link> bakabilirsiniz.
+        bulmak için enflasyon hesabı gerekir. Güncel kurlar için döviz çeviriciye bakabilirsiniz.
       </p>
     </TimeToolPage>
   );

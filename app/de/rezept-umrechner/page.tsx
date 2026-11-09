@@ -11,10 +11,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/de/rezept-umrechner",
     languages: {
-      tr: "/tarif-cevirici",
+      tr: "/mutfak-olculeri-cevirici",
       en: "/en/recipe-converter",
       de: "/de/rezept-umrechner",
-      "x-default": "/tarif-cevirici",
+      "x-default": "/mutfak-olculeri-cevirici",
     },
   },
   openGraph: {

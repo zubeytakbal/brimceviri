@@ -2,7 +2,6 @@
 // Metinlerdeki sayısal örnekler hesap motorundan üretilir.
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import Link from "@/app/components/SiteLink";
 import { ENGINEERING_FLOWS } from "../../converter/engineeringFlows";
 import type { FaqItem } from "../../converter/faqSchema";
 import { E_STEEL, G_STEEL, solveBeam } from "../../converter/mechanics/beam";
@@ -198,7 +197,7 @@ function sectionContent(): Content {
           <p>
             Haddelenmiş profillerde gövde ile başlık arasında yuvarlak köşe dolguları vardır. Bu dolgular formüldeki keskin köşeli I kesite girmez: IPE 300 için köşesiz formül {f(approx.Iy / 1e4, 0)} cm⁴ verir, katalog değeri{" "}
             {f(ipe.Iy, 0)} cm⁴&apos;tür (fark %{f((ipe.Iy / (approx.Iy / 1e4) - 1) * 100, 1)}). Araçta &quot;Çelik profil&quot; seçildiğinde katalog değerleri kullanılır; tüm değerler için{" "}
-            <Link href="/celik-profil-tablolari">çelik profil tablolarına</Link> bakabilirsiniz.
+            çelik profil tablolarına bakabilirsiniz.
           </p>
         ),
       },

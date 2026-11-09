@@ -29,7 +29,6 @@ export default function KurbanPage() {
     <TimeToolPage
       crumbs={[
         { href: "/", label: "Ana Sayfa" },
-        { href: "/dini-araclar", label: "Dini Araçlar" },
         { href: path, label: "Kurban Hissesi Hesaplama" },
       ]}
       crumbLabel="Sayfa yolu"

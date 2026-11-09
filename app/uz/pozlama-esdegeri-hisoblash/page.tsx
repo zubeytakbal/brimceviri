@@ -30,10 +30,9 @@ export const metadata: Metadata = {
     "ISO, diafragma va chodir tezligidan ikkitasini o'zgartiring, bir xil pozlamani saqlaydigan uchinchi qiymatni hisoblang; pozlama uchburchagini amaliy vosita bilan o'rganing.",
   alternates: {
     canonical: pagePath,
-    languages: {
-      tr: "/pozlama-esdegeri-hesaplama",
+    languages: {
       "uz-UZ": pagePath,
-      "x-default": "/pozlama-esdegeri-hesaplama",
+      "x-default": pagePath,
     },
   },
   openGraph: {

@@ -36,7 +36,6 @@ export default function RomanPage() {
     <TimeToolPage
       crumbs={[
         { href: "/", label: "Ana Sayfa" },
-        { href: "/saat-ve-tarih", label: "Tarih ve Saat" },
         { href: PATH, label: "Roma Rakamları" },
       ]}
       crumbLabel="Sayfa yolu"
@@ -46,7 +45,6 @@ export default function RomanPage() {
       related={{
         title: "İlginizi çekebilir",
         links: [
-          { href: "/ebced-hesabi", label: "Ebced Hesabı" },
           { href: "/tarih-cevirici", label: "Hicri Rumi Tarih Çevirici" },
           { href: "/dogdugum-gun-hangi-gun", label: "Doğduğum Gün Hangi Gün" },
         ],
@@ -161,7 +159,7 @@ export default function RomanPage() {
       </div>
       <p>
         Eski belgelerde yıl Roma rakamı yerine hicri ya da Rumi takvimle yazılmışsa <Link href="/tarih-cevirici">tarih çeviricisini</Link>, Arap harfleriyle
-        tarih düşürülmüşse <Link href="/ebced-hesabi">ebced hesabını</Link> kullanabilirsiniz.
+        tarih düşürülmüşse ebced hesabını kullanabilirsiniz.
       </p>
     </TimeToolPage>
   );

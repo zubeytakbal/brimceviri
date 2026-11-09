@@ -43,7 +43,6 @@ export default function KazaNamaziPage() {
     <TimeToolPage
       crumbs={[
         { href: "/", label: "Ana Sayfa" },
-        { href: "/dini-araclar", label: "Dini Araçlar" },
         { href: path, label: "Kaza Namazı Hesaplama" },
       ]}
       crumbLabel="Sayfa yolu"

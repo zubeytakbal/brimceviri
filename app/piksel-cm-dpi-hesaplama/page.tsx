@@ -159,7 +159,7 @@ export default function PixelCalculatorPage() {
           </div>
           <p>
             Platformların önerdiği ölçüler için{" "}
-            <Link href="/sosyal-medya-gorsel-boyutlari-hesaplama">Sosyal Medya Görsel Boyutları</Link> sayfasına bakabilirsin.
+            Sosyal Medya Görsel Boyutları sayfasına bakabilirsin.
           </p>
 
           <h2 id="piksel-cm">Piksel kaç cm?</h2>
@@ -274,9 +274,9 @@ export default function PixelCalculatorPage() {
             sayfasına, uzunluk birimleri arasında genel dönüşüm için{" "}
             <Link href="/kategoriler/uzunluk">Uzunluk Dönüşümleri</Link>{" "}
             sayfasına, fotoğraf makinesi odak uzaklığı eşdeğeri için{" "}
-            <Link href="/odak-uzakligi-esdegeri-hesaplama">Odak Uzaklığı Eşdeğeri Hesaplama</Link>{" "}
+            Odak Uzaklığı Eşdeğeri Hesaplama{" "}
             sayfasına, sosyal medya görsel boyutları için{" "}
-            <Link href="/sosyal-medya-gorsel-boyutlari-hesaplama">Sosyal Medya Görsel Boyutları Hesaplama</Link>
+            Sosyal Medya Görsel Boyutları Hesaplama
             {" "}sayfasına bakabilirsin.
           </p>
 

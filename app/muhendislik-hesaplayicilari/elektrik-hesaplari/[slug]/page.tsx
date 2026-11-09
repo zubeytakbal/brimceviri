@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import KwToAmpPage from "../../../components/calculators/KwToAmpPage";
+import AmpToKwCalculator from "../../../components/calculators/AmpToKwCalculator";
+import MotorCurrentCalculator from "../../../components/calculators/MotorCurrentCalculator";
 import AmpToKwPage from "../../../components/calculators/AmpToKwPage";
 import VoltageDropPage from "../../../components/calculators/VoltageDropPage";
 import CableSizePage from "../../../components/calculators/CableSizePage";
@@ -22,8 +24,11 @@ type PageProps = {
 
 export const dynamicParams = false;
 
+// Kasim 2026: amper -> kW ve motor akimi, kW -> amper sayfasina birlestirildi (app/kasimTemizligi.ts).
+const BIRLESEN = new Set(["amper-to-kw-hesaplama", "motor-akimi-hesaplama"]);
+
 export function generateStaticParams() {
-  return getElectricalStaticParams("tr");
+  return getElectricalStaticParams("tr").filter((p) => !BIRLESEN.has(p.slug));
 }
 
 export async function generateMetadata({
@@ -113,6 +118,24 @@ export default async function TurkishPlannedElectricalCalculatorPage({
     return (
       <KwToAmpPage
         locale="tr"
+        ekBolum={
+          <>
+            <AmpToKwCalculator
+              locale="tr"
+              eyebrow="Ters yön"
+              title="Amperden kW hesaplama"
+              description="Akım, gerilim ve güç faktörü biliniyorsa çekilen gücü kW olarak bulun."
+              resultHeading="Güç"
+            />
+            <MotorCurrentCalculator
+              locale="tr"
+              eyebrow="Motorlar için"
+              title="Motor akımı hesaplama"
+              description="Motor etiketindeki güç, verim ve güç faktöründen şebekeden çekilen akımı hesaplayın."
+              resultHeading="Motor akımı"
+            />
+          </>
+        }
         structuredData={
           <script
             type="application/ld+json"

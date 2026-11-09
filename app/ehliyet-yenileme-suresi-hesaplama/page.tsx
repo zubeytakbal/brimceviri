@@ -153,7 +153,7 @@ export default async function LicenseRenewalPage() {
           <p>
             Aracına göre hangi ehliyet sınıfına ihtiyacın olduğunu
             görmek için{" "}
-            <Link href="/ehliyet-sinifi-bulma">Hangi Ehliyet Sınıfı Gerekli?</Link>
+            Hangi Ehliyet Sınıfı Gerekli?
             {" "}sayfasına, diğer otomotiv araçları için{" "}
             <Link href="/hesaplayicilar#enerji-ve-arac">Enerji, Fatura ve Araç</Link>
             {" "}sayfasına bakabilirsin.

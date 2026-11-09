@@ -50,7 +50,6 @@ export default function SaatHesaplamaPage() {
     <SaatKabugu
       crumbs={[
         { href: "/", label: "Ana Sayfa" },
-        { href: "/saat-ve-tarih", label: "Saat ve Tarih" },
         { href: PATH, label: "Saat hesaplama" },
       ]}
       faqItems={faqItems}
@@ -81,7 +80,7 @@ export default function SaatHesaplamaPage() {
       <p>
         Tarihler arasındaki gün sayısı için <Link href="/iki-tarih-arasi-gun-hesaplama">iki tarih arası gün hesaplama</Link>, bir
         tarihe gün eklemek için <Link href="/tarihe-gun-ekleme">tarihe gün ekleme</Link>, belirli bir süreye geri sayım için{" "}
-        <Link href="/zamanlayici">zamanlayıcı</Link> kullanılabilir. Saatlerin ne kadar uyku ettiğini{" "}
+        zamanlayıcı kullanılabilir. Saatlerin ne kadar uyku ettiğini{" "}
         <Link href="/uyku-hesaplama">uyku hesaplama</Link> gösterir.
       </p>
     </SaatKabugu>

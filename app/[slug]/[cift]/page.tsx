@@ -14,7 +14,7 @@ import { conversionPages, type ConversionPage } from "../../converter/conversion
 import { convert } from "../../converter/convert";
 import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
 import { getFlagshipPairInsight } from "../../converter/flagshipPairInsights";
-import { isMergedAway } from "../../converter/mergedPairs";
+import { ciftYayinda, isMergedAway } from "../../converter/mergedPairs";
 import { yeniYapiKategorileri } from "../../converter/siteYapisi";
 import { turkishConversionSeo } from "../../converter/turkishConversionSeo";
 import { turkceCiftYolu } from "../../converter/turkceYollar";
@@ -32,14 +32,14 @@ const TABLO_DEGERLERI = [0.01, 0.1, 1, 2, 3, 5, 10, 20, 50, 100, 1000];
 const kategoriSlugu = new Map(categoryPages.map((c) => [c.category, c.slug]));
 
 function sayfayiBul(kategori: string, cift: string): ConversionPage | undefined {
-  if (!yeniYapiKategorileri.has(kategori) || isMergedAway(cift)) return undefined;
+  if (!yeniYapiKategorileri.has(kategori) || !ciftYayinda(cift)) return undefined;
   const p = conversionPages.find((c) => c.slug === cift);
   return p && kategoriSlugu.get(p.category) === kategori ? p : undefined;
 }
 
 export function generateStaticParams() {
   return conversionPages
-    .filter((p) => !isMergedAway(p.slug) && yeniYapiKategorileri.has(kategoriSlugu.get(p.category) ?? ""))
+    .filter((p) => ciftYayinda(p.slug) && yeniYapiKategorileri.has(kategoriSlugu.get(p.category) ?? ""))
     .map((p) => ({ slug: kategoriSlugu.get(p.category)!, cift: p.slug }));
 }
 
@@ -77,7 +77,7 @@ export default async function CiftSayfasi({ params }: PageProps) {
   const kategoriAdi = kategori.title.replace(/ Dönüşümleri$/, "");
   const yol = turkceCiftYolu(p.slug);
   const ters = conversionPages.find((c) => c.slug === p.reverseSlug);
-  const tersAyriSayfa = ters && !isMergedAway(ters.slug) ? ters : undefined;
+  const tersAyriSayfa = ters && ciftYayinda(ters.slug) ? ters : undefined;
   const tersBirlesik = ters && isMergedAway(ters.slug) ? ters : undefined;
   const seo = turkishConversionSeo(p, Boolean(tersBirlesik));
   const cevir = (v: number, from = p.fromUnit, to = p.toUnit) => convert(p.category, v, from, to);
@@ -107,7 +107,7 @@ export default async function CiftSayfasi({ params }: PageProps) {
   );
 
   const ayniKategori = conversionPages.filter(
-    (c) => c.category === p.category && !isMergedAway(c.slug) && c.slug !== p.slug
+    (c) => c.category === p.category && ciftYayinda(c.slug) && c.slug !== p.slug
   );
   const populer = ayniKategori.slice(0, 18);
   const digerleri = ayniKategori.filter((c) => c.fromUnit === p.fromUnit && c.slug !== p.reverseSlug);

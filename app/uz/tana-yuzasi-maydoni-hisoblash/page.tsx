@@ -25,10 +25,9 @@ export const metadata: Metadata = {
     "Bo'y va vazndan, Mosteller formulasi bilan tana yuzasi maydonini (BSA, m²) hisoblang.",
   alternates: {
     canonical: pagePath,
-    languages: {
-      tr: "/vucut-yuzey-alani-hesaplama",
+    languages: {
       "uz-UZ": pagePath,
-      "x-default": "/vucut-yuzey-alani-hesaplama",
+      "x-default": pagePath,
     },
   },
   openGraph: {

@@ -41,13 +41,11 @@ export const uzbekStaticCardGroups: readonly UzbekStaticCardGroup[] = [
       ["isi-pompasi-kombi-karsilastirma", "Issiqlik nasosimi yoki qozonmi?", "heatPumpVsBoilerCalculator", "/uz/issiqlik-nasosi-qozon-solishtirish"],
       ["uzaktan-calisma-ofis-karsilastirma", "Masofadan ishlashmi yoki ofismi?", "remoteWorkVsOfficeCostCalculator", "/uz/masofadan-ish-ofis-solishtirish"],
       ["gunes-paneli-amortisman", "Quyosh paneli qoplanishini hisoblash", "solarPanelPaybackCalculator", "/uz/quyosh-paneli-qoplanishi-hisoblash"],
-      ["doviz-cevirici", "Valyuta konvertori", "currencyConverterCalculator", "/uz/valyuta-aylantirgich"],
     ],
   },
   {
     title: "Uy, energiya va transport kalkulyatorlari",
     cards: [
-      ["ehliyet-sinifi-bulma", "Qaysi haydovchilik guvohnomasi toifasi kerak?", "licenseClassFinderCalculator", "/uz/haydovchilik-toifasi-topish"],
       ["ehliyet-yenileme-suresi-hesaplama", "Haydovchilik guvohnomasini yangilash muddatini hisoblash", "licenseRenewalCalculator", "/uz/haydovchilik-guvohnomasi-yangilash-muddati-hisoblash"],
       ["yakit-tuketimi", "Yoqilg‘i sarfini hisoblash", "fuelConsumptionCalculator", "/uz/yoqilgi-sarfi-hisoblash"],
       ["tasinma-kutusu", "Ko‘chish qutilari sonini hisoblash", "movingBoxCalculator", "/uz/kochish-qutisi-hisoblash"],
@@ -179,7 +177,6 @@ export const uzbekStaticCardGroups: readonly UzbekStaticCardGroup[] = [
       ["bpm-ms", "BPM – ms hisoblash", "bpmCalculator", "/uz/bpm-ms-hisoblash"],
       ["psu-guc", "PSU quvvat manbasini hisoblash", "psuCalculator", "/uz/psu-quvvat-hisoblash"],
       ["video-bit-hizi", "Video bit tezligi va fayl hajmini hisoblash", "videoBitrateCalculator", "/uz/video-bit-tezligi-hisoblash"],
-      ["sosyal-medya-gorsel-boyutlari", "Ijtimoiy media tasvir o‘lchamlari", "socialMediaSizeCalculator", "/uz/ijtimoiy-media-tasvir-olchamlari-hisoblash"],
       ["ping-gecikme-hesaplama", "Ping va kechikishni hisoblash", "theoreticalLatencyCalculator", "/uz/ping-kechikish-hisoblash"],
     ],
   },
@@ -228,9 +225,6 @@ export const uzbekStaticCardGroups: readonly UzbekStaticCardGroup[] = [
     cards: [
       ["son-xossalari", "Son xossalari (kvadrat, bo'luvchilar, tub son)", "mathCalculator", "/uz/sonlar"],
       ["sayi-tabani", "Son tizimi aylantirgich", "numberBaseCalculator", "/uz/son-tizimi-cevirgich"],
-      ["dunyanin-en-yuksek-daglari", "Dunyoning eng baland tog‘lari", "mountainsHubCalculator", "/uz/dunyoning-eng-baland-toglari"],
-      ["il-rakimlari", "Viloyatlar balandligi", "mountainsHubCalculator", "/uz/viloyatlar-balandligi"],
-      ["il-rakimi-karsilastirma", "Viloyatlar balandligini taqqoslash", "mountainsHubCalculator", "/uz/viloyat-balandligini-solishtirish"],
     ],
   },
 ];

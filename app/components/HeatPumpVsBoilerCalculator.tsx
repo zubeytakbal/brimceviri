@@ -173,7 +173,7 @@ export default function HeatPumpVsBoilerCalculator() {
                   ? `Isı pompası vs kombi hesapladım, bu rakamlarla avantajlı çıkmıyor. Sen de kendi rakamlarınla hesapla:`
                   : `Isı pompası yılda ${formatTl(result.annualSavingsTl)} ₺ tasarruf ettiriyor, kurulum farkını ${result.breakEvenYears.toLocaleString("tr-TR", { maximumFractionDigits: 1 })} yılda kapatıyor! Sen de kendi rakamlarınla hesapla:`
               }
-              shareUrl={buildSiteUrl("/isi-pompasi-kombi-karsilastirma")}
+              shareUrl={buildSiteUrl("/kombi-klima-isitma-maliyeti-karsilastirma")}
             />
           </div>
         )}

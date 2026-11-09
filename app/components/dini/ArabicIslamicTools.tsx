@@ -1,21 +1,7 @@
 "use client";
 
 import { useEffect, useState, type ReactNode } from "react";
-import {
-  ayyamAqiqa,
-  hawlZakat,
-  hukmQasr,
-  iddatAshhur,
-  iddatQuru,
-  iddatWafat,
-  IQAMA,
-  MASAFAT_QASR_KM,
-  NISAB_DHAHAB_G,
-  NISAB_FIDDA_G,
-  type IddaNaw,
-  type MadhhabIqama,
-  type Qur,
-} from "../../converter/arabicFiqh";
+import { ayyamAqiqa, hawlZakat, iddatAshhur, iddatQuru, iddatWafat, NISAB_DHAHAB_G, NISAB_FIDDA_G, type IddaNaw, type Qur } from "../../converter/arabicFiqh";
 import { adadAr, hijriNass, miladiNass } from "../../converter/calendar/saTaqwim";
 import type { YMD } from "../../converter/time/calendars";
 import { addDaysYmd, diffDays, parseYmd, ymdKey } from "../../converter/time/dateMath";
@@ -267,68 +253,6 @@ export function AqiqahCalculator({ initialDate }: { initialDate: string }) {
 }
 
 /* ---------------- قصر الصلاة ---------------- */
-
-export function QasrCalculator() {
-  const [km, setKm] = useState("120");
-  const [ayyam, setAyyam] = useState("3");
-  const [majhul, setMajhul] = useState(false);
-  const [madhhab, setMadhhab] = useState<MadhhabIqama>("jumhur");
-  const r = hukmQasr(arNumber(km), majhul ? null : arNumber(ayyam), madhhab);
-  const hadd = IQAMA[madhhab].ayyam;
-
-  return (
-    <div className="date-calc">
-      <Modes
-        label="مدة الإقامة"
-        value={madhhab}
-        options={[
-          ["jumhur", "الجمهور: أربعة أيام"],
-          ["hanafi", "الحنفية: خمسة عشر يومًا"],
-        ]}
-        onChange={setMadhhab}
-      />
-      <div className="date-calc-input">
-        <div className="date-calc-fields is-amounts">
-          <NumField label="مسافة السفر (كم، ذهابًا فقط)" value={km} onChange={setKm} />
-          {!majhul ? <NumField label="الأيام التي تنوي الإقامة فيها" value={ayyam} onChange={setAyyam} /> : null}
-        </div>
-        <label className="date-calc-check">
-          <input type="checkbox" checked={majhul} onChange={(e) => setMajhul(e.target.checked)} />
-          لا أدري متى تنقضي حاجتي
-        </label>
-      </div>
-      {r ? (
-        <div className="date-calc-results">
-          <Stat
-            main
-            label="الحكم"
-            value={r.yaqsur ? "أنت مسافر: تقصر الصلاة الرباعية" : "تتم الصلاة"}
-            note={
-              !r.masafa
-                ? `المسافة أقل من نحو ${MASAFAT_QASR_KM} كم`
-                : r.iqamaTawila
-                  ? madhhab === "jumhur"
-                    ? "نية الإقامة أكثر من أربعة أيام تقطع حكم السفر"
-                    : "نية الإقامة خمسة عشر يومًا فأكثر تقطع حكم السفر"
-                  : majhul
-                    ? "تقصر ما دمت لا تدري متى تنقضي حاجتك ولو طالت المدة"
-                    : `الإقامة دون حد ${adadAr(hadd, "yawm")}`
-            }
-          />
-          {r.yaqsur ? (
-            <Stat label="كيف تصلي؟" value="الظهر والعصر والعشاء ركعتين" note="الفجر ركعتان والمغرب ثلاث كما هي، ويجوز الجمع عند الحاجة عند الجمهور" />
-          ) : null}
-        </div>
-      ) : (
-        <p className="date-calc-note">أدخل المسافة بالكيلومتر.</p>
-      )}
-      <p className="date-calc-note">
-        مسافة القصر عند الجمهور أربعة برد، وتُقدّر في الفتاوى المعاصرة بنحو 80 كم (وقيل 81 إلى 89 كم)، ويرى بعض العلماء كابن تيمية أن المرجع العرف. يبدأ القصر بعد مفارقة
-        عمران البلد.
-      </p>
-    </div>
-  );
-}
 
 /* ---------------- حول زكاة المدخرات ---------------- */
 

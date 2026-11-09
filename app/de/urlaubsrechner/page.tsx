@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "@/app/components/SiteLink";
 import TimeToolPage from "../../components/time/TimeToolPage";
 import { UrlaubsRechner } from "../../components/de/GermanWorkTools";
 import type { FaqItem } from "../../converter/faqSchema";
@@ -57,7 +56,7 @@ export default function UrlaubsrechnerPage() {
         tool={<UrlaubsRechner />}
         related={{
           title: "Das könnte Sie auch interessieren",
-          links: [{ href: "/de/feiertage", label: "Feiertage und Brückentage" }, { href: "/de/arbeitstage-rechner", label: "Arbeitstage-Rechner" }, ...rechnerRelated(path)],
+          links: [{ href: "/de/arbeitstage-rechner", label: "Arbeitstage-Rechner" }, ...rechnerRelated(path)],
         }}
         tocTitle="Inhalt"
         tocItems={[
@@ -107,7 +106,7 @@ export default function UrlaubsrechnerPage() {
           also 30 ÷ 12 × 7 = 17,5 Tage, aufgerundet 18 Tage. Volle Monate zählen ab dem Eintrittsdatum, nicht nach Kalendermonaten.
         </p>
         <p>
-          Wie viele freie Tage sich mit Brückentagen herausholen lassen, zeigen die <Link href="/de/feiertage">Feiertage nach Bundesland</Link>.
+          Wie viele freie Tage sich mit Brückentagen herausholen lassen, zeigen die Feiertage nach Bundesland.
         </p>
         <p>
           <small>Rechtsgrundlage: §§ 3–7 Bundesurlaubsgesetz, § 208 SGB IX. Arbeits- und Tarifverträge können günstigere Regeln enthalten. Angaben ohne Gewähr, keine Rechtsberatung.</small>

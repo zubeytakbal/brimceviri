@@ -58,25 +58,6 @@ export function ayyamAqiqa(wilada: YMD, yawmWiladaMahsub: boolean) {
   return [7, 14, 21].map((n) => ({ n, tarikh: addDaysYmd(bidaya, n - 1) }));
 }
 
-/* ---------------- قصر الصلاة ---------------- */
-
-/** مسافة القصر التقريبية (أربعة برد) المعتمدة في فتاوى كثيرة. */
-export const MASAFAT_QASR_KM = 80;
-export type MadhhabIqama = "jumhur" | "hanafi";
-/** نية الإقامة التي ينقطع بها حكم السفر: أكثر من أربعة أيام عند الجمهور، 15 يومًا فأكثر عند الحنفية. */
-export const IQAMA: Record<MadhhabIqama, { ayyam: number; yanqati: (n: number) => boolean }> = {
-  jumhur: { ayyam: 4, yanqati: (n) => n > 4 },
-  hanafi: { ayyam: 15, yanqati: (n) => n >= 15 },
-};
-
-export function hukmQasr(km: number, iqama: number | null, madhhab: MadhhabIqama) {
-  if (!(km >= 0)) return null;
-  const masafa = km >= MASAFAT_QASR_KM;
-  // iqama === null: لا يدري متى تنقضي حاجته، فيقصر ما دام مسافرًا
-  const iqamaTawila = iqama !== null && iqama >= 0 && IQAMA[madhhab].yanqati(iqama);
-  return { masafa, iqamaTawila, yaqsur: masafa && !iqamaTawila };
-}
-
 /* ---------------- حول الزكاة ---------------- */
 
 export const NISAB_DHAHAB_G = 85;

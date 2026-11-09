@@ -52,7 +52,6 @@ export default function CoordinateConverterPage() {
     <TimeToolPage
       crumbs={[
         { href: "/", label: "Ana Sayfa" },
-        { href: "/cografya-hesaplamalari", label: "Coğrafya Hesaplamaları" },
         { href: path, label: "Koordinat Dönüştürücü" },
       ]}
       crumbLabel="Sayfa yolu"
@@ -109,7 +108,7 @@ export default function CoordinateConverterPage() {
       <p>
         Dönüşümler Krüger serisiyle hesaplanır ve dilim içinde milimetre altı doğruluktadır. WGS84 ile ITRF96 arasındaki fark günlük kullanım için
         santimetre düzeyindedir. Eski ED50 datumundaki koordinatlar bu araçla çevrilmez. İki koordinat arasındaki mesafe için{" "}
-        <Link href="/buyuk-daire-mesafesi-hesaplama">büyük daire mesafesi hesaplayıcısını</Link> kullanın.
+        büyük daire mesafesi hesaplayıcısını kullanın.
       </p>
     </TimeToolPage>
   );

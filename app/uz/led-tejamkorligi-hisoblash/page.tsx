@@ -30,10 +30,9 @@ export const metadata: Metadata = {
     "Lampochkalar soni, foydalanish muddati va elektr narxiga qarab LED lampochkaga o'tishning yillik tejamkorligini va qoplanish muddatini hisoblang.",
   alternates: {
     canonical: pagePath,
-    languages: {
-      tr: "/led-ampul-tasarruf-hesaplama",
+    languages: {
       "uz-UZ": pagePath,
-      "x-default": "/led-ampul-tasarruf-hesaplama",
+      "x-default": pagePath,
     },
   },
   openGraph: {

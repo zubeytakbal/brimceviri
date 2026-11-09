@@ -76,7 +76,7 @@ function tankArticle(): ToolArticle {
           <p>
             Sıvının ağırlığı hacim × yoğunluktur. Motorinin yoğunluğu 15 °C&apos;de 820–845 kg/m³ aralığındadır (EN 590); hesapta ortalama {f(diesel, 1)} kg/m³ alınır, buna göre 1 ton motorin yaklaşık{" "}
             {f(1e6 / diesel, 0)} litredir. Benzin 720–775 kg/m³ (EN 228) aralığındadır, 1 ton benzin yaklaşık {f(1e6 / gasoline, 0)} litre eder. Sıvıların yoğunluğu sıcaklıkla değiştiği için yazın aynı
-            kütle biraz daha fazla hacim kaplar. Su için sıcaklığa göre yoğunluğu <Link href="/su-ozellikleri-tablosu">su özellikleri tablosunda</Link> bulabilirsiniz.
+            kütle biraz daha fazla hacim kaplar. Su için sıcaklığa göre yoğunluğu su özellikleri tablosunda bulabilirsiniz.
           </p>
         ),
       },

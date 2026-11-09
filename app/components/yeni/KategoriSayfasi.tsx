@@ -8,13 +8,15 @@ import { getCategoryUnitOptions } from "../categoryUnitOptions";
 import { categoryPages } from "../../converter/categoryPages";
 import { conversionPages } from "../../converter/conversionPages";
 import { convert } from "../../converter/convert";
-import { isMergedAway } from "../../converter/mergedPairs";
+import { ciftYayinda } from "../../converter/mergedPairs";
 import { kategorininGrubu } from "../../converter/siteYapisi";
 import { turkceCiftYolu } from "../../converter/turkceYollar";
 import { unitRegistry } from "../../converter/unitRegistry";
 import { buildFullLanguageAlternates } from "../../i18n/routing";
 import { buildSiteUrl } from "../../siteConfig";
 import KategoriCevirici from "./KategoriCevirici";
+import ZenginKategori from "./ZenginKategori";
+import { kategoriIcerikleri } from "./icerik";
 import YanPanel from "./YanPanel";
 import { formatSayi } from "./sayi";
 
@@ -25,19 +27,21 @@ function veri(slug: string) {
   const temel =
     unitRegistry.find((u) => u.category === kategori.category && u.siFactor === 1 && !u.inverse)?.symbol ??
     birimler[0]?.value;
-  const ciftler = conversionPages.filter((c) => c.category === kategori.category && !isMergedAway(c.slug));
+  const ciftler = conversionPages.filter((c) => c.category === kategori.category && ciftYayinda(c.slug));
   return { kategori, ad, birimler, temel, ciftler };
 }
 
 export function kategoriMetadata(slug: string): Metadata {
   const { kategori, ad } = veri(slug);
   const yol = `/${slug}`;
-  const baslik = `${ad} Çevirici: Tüm ${ad} Birimleri`;
+  const icerik = kategoriIcerikleri[slug];
+  const baslik = icerik?.baslik ?? `${ad} Çevirici: Tüm ${ad} Birimleri`;
+  const aciklama = icerik?.aciklama ?? kategori.description;
   return {
     title: baslik,
-    description: kategori.description,
+    description: aciklama,
     alternates: { canonical: yol, ...buildFullLanguageAlternates(yol) },
-    openGraph: { title: baslik, description: kategori.description, url: buildSiteUrl(yol), locale: "tr_TR", type: "website" },
+    openGraph: { title: baslik, description: aciklama, url: buildSiteUrl(yol), locale: "tr_TR", type: "website" },
   };
 }
 
@@ -45,6 +49,21 @@ export default function KategoriSayfasi({ slug }: { slug: string }) {
   const { kategori, ad, birimler, temel, ciftler } = veri(slug);
   const grup = kategorininGrubu(slug);
   const temelAd = birimler.find((b) => b.value === temel)?.label ?? temel;
+  const icerik = kategoriIcerikleri[slug];
+  if (icerik && temel) {
+    return (
+      <ZenginKategori
+        slug={slug}
+        ad={ad}
+        category={kategori.category}
+        grupAdi={grup?.ad}
+        birimler={birimler}
+        temel={temel}
+        ciftler={ciftler}
+        icerik={icerik}
+      />
+    );
+  }
 
   const ciftSayfalari: Record<string, { href: string; ad: string }> = {};
   for (const c of ciftler) ciftSayfalari[`${c.fromUnit}|${c.toUnit}`] = { href: turkceCiftYolu(c.slug), ad: `${c.fromName} – ${c.toName}` };

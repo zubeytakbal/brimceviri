@@ -1,14 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "@/app/components/SiteLink";
 import {
   AY_ADLARI,
   GUN_ADLARI,
   gunBilgisi,
   halkDonemi,
   halkMetni,
-  ozelGunPath,
   tarihliAd,
 } from "../../converter/calendar/trTakvim";
 import {
@@ -164,9 +162,9 @@ function Sonuc({ d, bugun }: { d: YMD; bugun: YMD }) {
           <span>Halk takviminde</span>
           <strong>{halkMetni(halk)}</strong>
           <em>
-            <Link href="/firtina-takvimi" prefetch={false}>
+            
               Halk takvimi nedir?
-            </Link>
+            
           </em>
         </div>
         <div className="date-calc-stat">
@@ -200,9 +198,7 @@ function Sonuc({ d, bugun }: { d: YMD; bugun: YMD }) {
               {b.etkinlikler.map((t, i) => (
                 <span key={t.etkinlik.id}>
                   {i ? ", " : ""}
-                  <Link href={ozelGunPath(t.etkinlik.id)} prefetch={false}>
-                    {tarihliAd(t)}
-                  </Link>
+                  {tarihliAd(t)}
                 </span>
               ))}
             </h2>

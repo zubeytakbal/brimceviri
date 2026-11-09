@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "@/app/components/SiteLink";
 import { HatimHesaplama } from "../components/dini/DiniAraclar2";
 import TimeToolPage from "../components/time/TimeToolPage";
 import type { FaqItem } from "../converter/faqSchema";
@@ -34,7 +33,6 @@ export default function HatimPage() {
     <TimeToolPage
       crumbs={[
         { href: "/", label: "Ana Sayfa" },
-        { href: "/dini-araclar", label: "Dini Araçlar" },
         { href: path, label: "Hatim Hesaplama" },
       ]}
       crumbLabel="Sayfa yolu"
@@ -73,7 +71,7 @@ export default function HatimPage() {
       </div>
       <p>
         Hesap {MUSHAF_SAYFA} sayfalık mushafa göredir; günlük sayfa yukarı yuvarlanır. Hangi surenin hangi cüzde olduğunu{" "}
-        <Link href="/sure-bulucu">sure bulucu</Link> ile görebilirsiniz.
+        sure bulucu ile görebilirsiniz.
       </p>
     </TimeToolPage>
   );

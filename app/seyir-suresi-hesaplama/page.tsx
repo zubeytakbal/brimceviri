@@ -124,7 +124,7 @@ export default function TransitTimeCalculatorPage() {
             deniz mili ve fit birimi dönüşümleri için{" "}
             <Link href="/kategoriler/uzunluk">Uzunluk Dönüşümleri</Link>{" "}
             sayfasına, uçuş planlaması için{" "}
-            <Link href="/inis-orani-hesaplama">İniş Oranı Hesaplama</Link>,{" "}
+            İniş Oranı Hesaplama,{" "}
             <Link href="/yan-ruzgar-hesaplama">Yan Rüzgar Hesaplama</Link>
             {" "}sayfalarına bakabilirsin.
           </p>

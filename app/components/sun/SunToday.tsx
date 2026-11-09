@@ -1,6 +1,5 @@
 // Güneş doğuşu sayfasının "bugün" bölümleri. Site her gece yeniden derlendiği için derleme günü Türkiye'deki bugündür;
 // cevap (doğuş, batış, gün uzunluğu), güneşin gökyüzündeki yolu ve 81 ilin bugünkü saatleri ham HTML'de yer alır.
-import Link from "@/app/components/SiteLink";
 import { sunPosition, sunTimes } from "../../converter/time/solar";
 import { durationLabel, sunYear, trClock } from "../../converter/time/sunYear";
 import { compassName } from "../../converter/time/sunGeometry";
@@ -183,7 +182,7 @@ export function DayLengthYear({ place, t }: { place: TodayPlace; t: TrDay }) {
       </svg>
       <figcaption>
         {trLocative(place.name)} gün uzunluğu {t.y} boyunca {durationLabel(minL)} ile {durationLabel(maxL)} arasında değişir. Ayrıntı için{" "}
-        <Link href="/en-uzun-gun-ve-en-kisa-gun">en uzun ve en kısa gün</Link> sayfasına bakın.
+        en uzun ve en kısa gün sayfasına bakın.
       </figcaption>
     </figure>
   );
@@ -209,7 +208,7 @@ export function TodayProvinceTable({ places, t }: { places: TodayPlace[]; t: TrD
             return (
               <tr key={p.id}>
                 <th scope="row">
-                  <Link href={`/il-rakimlari/${p.id}`}>{p.name}</Link>
+                  {p.name}
                 </th>
                 <td>{trClock(s.sunrise)}</td>
                 <td>{trClock(s.sunset)}</td>

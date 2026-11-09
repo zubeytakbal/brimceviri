@@ -663,7 +663,7 @@ export default function MotorCurrentPage({
           </ol>
         </section>
 
-        {locale === "tr" ? <EngineeringNextSteps links={ENGINEERING_FLOWS["/muhendislik-hesaplayicilari/elektrik-hesaplari/motor-akimi-hesaplama"]} /> : null}
+        {locale === "tr" ? <EngineeringNextSteps links={ENGINEERING_FLOWS["/muhendislik-hesaplayicilari/elektrik-hesaplari/kw-to-amper-hesaplama"]} /> : null}
 
         <section className="conversion-section">
           <h2>{strings.relatedHeading}</h2>

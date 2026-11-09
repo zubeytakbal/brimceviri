@@ -2,24 +2,10 @@
 
 import { useMemo, useState } from "react";
 import { formatTr, parseTr } from "../../converter/metal/metalWeight";
-import {
-  AIR,
-  exchangerArea,
-  headFromPressure,
-  heatLoss,
-  hydraulicPower,
-  lmtd,
-  sensibleHeat,
-  SURFACE_RESISTANCE,
-  terminalDifferences,
-  uValue,
-  WATER,
-  type FlowArrangement,
-  type HeatFlowDirection,
-} from "../../converter/thermal/thermal";
+import { AIR, headFromPressure, heatLoss, hydraulicPower, sensibleHeat, SURFACE_RESISTANCE, uValue, WATER, type HeatFlowDirection } from "../../converter/thermal/thermal";
 import { LAYER_PRESETS } from "../../converter/thermal/layerPresets";
 
-export type ThermalKind = "uvalue" | "pump" | "lmtd" | "flowheat";
+export type ThermalKind = "uvalue" | "pump" | "flowheat";
 
 const f = formatTr;
 const INVALID = "Geçerli değerler girerek sonucu görebilirsiniz.";
@@ -235,55 +221,6 @@ function PumpTool() {
 
 /* ---------------- LMTD ---------------- */
 
-function LmtdTool() {
-  const [arr, setArr] = useState<FlowArrangement>("counter");
-  const [hi, setHi] = useState("90");
-  const [ho, setHo] = useState("70");
-  const [ci, setCi] = useState("10");
-  const [co, setCo] = useState("50");
-  const [power, setPower] = useState("50");
-  const [U, setU] = useState("1500");
-  const v = [hi, ho, ci, co].map(num);
-  const ok = v.every((x) => x !== null);
-  const [dT1, dT2] = ok ? terminalDifferences(v[0]!, v[1]!, v[2]!, v[3]!, arr) : [NaN, NaN];
-  const L = ok ? lmtd(dT1, dT2) : null;
-  const Q = parseTr(power);
-  const u = parseTr(U);
-  return (
-    <div className="date-calc metal-calc">
-      <Tabs
-        value={arr}
-        options={[
-          { id: "counter", label: "Karşı akış" },
-          { id: "parallel", label: "Paralel akış" },
-        ]}
-        onChange={setArr}
-      />
-      <div className="date-calc-input">
-        <div className="date-calc-fields">
-          <Field label="Sıcak giriş (°C)" value={hi} onChange={setHi} />
-          <Field label="Sıcak çıkış (°C)" value={ho} onChange={setHo} />
-          <Field label="Soğuk giriş (°C)" value={ci} onChange={setCi} />
-          <Field label="Soğuk çıkış (°C)" value={co} onChange={setCo} />
-        </div>
-        <div className="date-calc-fields">
-          <Field label="Isı yükü Q (kW)" value={power} onChange={setPower} />
-          <Field label="Toplam ısı transfer katsayısı U (W/m²K)" value={U} onChange={setU} />
-        </div>
-        {L !== null ? (
-          <div className="date-calc-results">
-            <Stat main label="LMTD" value={`${f(L, 2)} K`} note={`ΔT1 = ${f(dT1, 1)} K, ΔT2 = ${f(dT2, 1)} K`} />
-            {Q !== null && u !== null ? <Stat label="Gerekli ısı transfer alanı" value={`${f(exchangerArea(Q * 1000, u, L), 2)} m²`} note="A = Q / (U · LMTD)" /> : null}
-            <Stat label="Aritmetik ortalama fark" value={`${f((dT1 + dT2) / 2, 2)} K`} note="Karşılaştırma için" />
-          </div>
-        ) : (
-          <p className="date-calc-note">{ok ? "Uçlardaki sıcaklık farklarından biri sıfır veya negatif. Paralel akışta soğuk akışkan sıcak çıkış sıcaklığını geçemez; akış düzenini ve sıcaklıkları kontrol edin." : INVALID}</p>
-        )}
-      </div>
-    </div>
-  );
-}
-
 /* ---------------- Debiden ısı yükü ---------------- */
 
 function FlowHeatTool() {
@@ -345,6 +282,5 @@ function FlowHeatTool() {
 export default function ThermalTool({ kind }: { kind: ThermalKind }) {
   if (kind === "uvalue") return <UValueTool />;
   if (kind === "pump") return <PumpTool />;
-  if (kind === "lmtd") return <LmtdTool />;
   return <FlowHeatTool />;
 }

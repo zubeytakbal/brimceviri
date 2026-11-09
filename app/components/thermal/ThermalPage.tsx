@@ -6,7 +6,7 @@ import { ENGINEERING_FLOWS } from "../../converter/engineeringFlows";
 import type { FaqItem } from "../../converter/faqSchema";
 import { formatTr } from "../../converter/metal/metalWeight";
 import { LAYER_PRESETS } from "../../converter/thermal/layerPresets";
-import { AIR, exchangerArea, headFromPressure, hydraulicPower, lmtd, sensibleHeat, terminalDifferences, uValue, WATER } from "../../converter/thermal/thermal";
+import { AIR, headFromPressure, hydraulicPower, sensibleHeat, uValue, WATER } from "../../converter/thermal/thermal";
 import { buildSiteUrl } from "../../siteConfig";
 import EngineeringNextSteps from "../engineering/EngineeringNextSteps";
 import DataTable from "../metal/DataTable";
@@ -16,7 +16,6 @@ import ThermalTool, { type ThermalKind } from "./ThermalTools";
 export const THERMAL_PATHS: Record<ThermalKind, string> = {
   uvalue: "/u-degeri-hesaplama",
   pump: "/pompa-gucu-hesaplama",
-  lmtd: "/lmtd-hesaplama",
   flowheat: "/debi-isi-yuku-hesaplama",
 };
 
@@ -172,69 +171,6 @@ function pumpContent(): Content {
   };
 }
 
-function lmtdContent(): Content {
-  const [c1, c2] = terminalDifferences(90, 70, 10, 50, "counter");
-  const [p1, p2] = terminalDifferences(90, 70, 10, 50, "parallel");
-  const Lc = lmtd(c1, c2)!;
-  const Lp = lmtd(p1, p2)!;
-  const A = exchangerArea(50_000, 1500, Lc);
-  return {
-    metaTitle: "LMTD Hesaplama ve Isı Eşanjörü Alanı",
-    description: `Isı eşanjöründe logaritmik ortalama sıcaklık farkı (LMTD) ve gereken ısı transfer alanı. Karşı akış ve paralel akış; giriş-çıkış sıcaklıklarından adım adım hesap.`,
-    h1: "LMTD Hesaplama (Isı Eşanjörü)",
-    intro: "",
-    sections: [
-      {
-        id: "formul",
-        title: "LMTD formülü",
-        body: (
-          <p>
-            LMTD = (ΔT1 − ΔT2) / ln(ΔT1 / ΔT2). Karşı akışta ΔT1 = sıcak giriş − soğuk çıkış, ΔT2 = sıcak çıkış − soğuk giriştir; paralel akışta ΔT1 = sıcak giriş − soğuk giriş, ΔT2 = sıcak çıkış − soğuk
-            çıkıştır. Gereken alan Q = U · A · LMTD bağıntısından A = Q / (U · LMTD) olarak bulunur.
-          </p>
-        ),
-      },
-      {
-        id: "ornek",
-        title: "Örnek: karşı akış ve paralel akış",
-        body: (
-          <>
-            <p>Sıcak su 90 °C&apos;den 70 °C&apos;ye soğurken soğuk su 10 °C&apos;den 50 °C&apos;ye ısınsın.</p>
-            <ul>
-              <li>
-                Karşı akış: ΔT1 = {f(c1, 0)} K, ΔT2 = {f(c2, 0)} K, LMTD = <strong>{f(Lc, 2)} K</strong>
-              </li>
-              <li>
-                Paralel akış: ΔT1 = {f(p1, 0)} K, ΔT2 = {f(p2, 0)} K, LMTD = <strong>{f(Lp, 2)} K</strong>
-              </li>
-            </ul>
-            <p>
-              Karşı akış aynı sıcaklıklarda daha büyük LMTD verir; bu yüzden aynı ısıyı daha küçük alanla aktarır. 50 kW yük ve U = 1500 W/m²K için karşı akışta gereken alan {f(A, 2)} m², paralel akışta{" "}
-              {f(exchangerArea(50_000, 1500, Lp), 2)} m²&apos;dir.
-            </p>
-          </>
-        ),
-      },
-      {
-        id: "sinirlar",
-        title: "Dikkat edilecek noktalar",
-        body: (
-          <p>
-            Paralel akışta soğuk akışkanın çıkışı sıcak akışkanın çıkışını geçemez; geçen sıcaklıklar girildiğinde araç uyarı verir. Çok geçişli ve çapraz akışlı eşanjörlerde LMTD bir düzeltme katsayısı (F) ile
-            çarpılır; bu araç saf karşı ve paralel akışı hesaplar. U değeri eşanjör tipine, akışkanlara ve kirlenmeye bağlıdır; üretici verisini kullanın.
-          </p>
-        ),
-      },
-    ],
-    faq: [
-      { question: "LMTD nedir?", answer: "Isı eşanjöründe iki akışkan arasındaki sıcaklık farkının logaritmik ortalamasıdır. Eşanjör boyunca değişen sıcaklık farkını tek bir etkin değerle temsil eder." },
-      { question: "Neden aritmetik ortalama kullanılmaz?", answer: "Sıcaklık farkı eşanjör boyunca doğrusal değil üstel değişir. Uç farkları birbirine yakınsa iki ortalama yakın çıkar, uzaklaştıkça aritmetik ortalama ısı transferini olduğundan büyük gösterir." },
-      { question: "Karşı akış neden daha verimli?", answer: `Aynı giriş-çıkış sıcaklıklarında karşı akış daha büyük LMTD sağlar (örnekte ${f(Lc, 1)} K'ye karşı ${f(Lp, 1)} K), bu da daha küçük ısı transfer alanı demektir.` },
-    ],
-    sources: "Bağıntılar: Incropera ve DeWitt, Fundamentals of Heat and Mass Transfer, ısı eşanjörleri bölümü (LMTD yöntemi). Hesap testte bilinen değerlerle doğrulanır (ΔT1 = 60, ΔT2 = 20 → 36,41 K).",
-  };
-}
-
 function flowContent(): Content {
   const airQ = sensibleHeat((1000 / 3600) * AIR.rho, AIR.cp, 10) / 1000;
   const waterFlow = (kw: number, dT: number) => ((kw * 1000) / (WATER.cp * dT) / WATER.rho) * 3600 * 1000;
@@ -291,7 +227,7 @@ function flowContent(): Content {
   };
 }
 
-const CONTENT: Record<ThermalKind, () => Content> = { uvalue: uContent, pump: pumpContent, lmtd: lmtdContent, flowheat: flowContent };
+const CONTENT: Record<ThermalKind, () => Content> = { uvalue: uContent, pump: pumpContent, flowheat: flowContent };
 
 export function thermalMetadata(kind: ThermalKind): Metadata {
   const c = CONTENT[kind]();

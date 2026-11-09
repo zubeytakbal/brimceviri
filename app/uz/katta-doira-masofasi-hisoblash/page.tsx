@@ -25,10 +25,9 @@ export const metadata: Metadata = {
     "Ikki nuqta orasidagi kenglik/uzunlik koordinatalaridan, Haversine formulasi bilan katta doira masofasini (dengiz mili/km) va boshlang'ich yo'nalishni hisoblang.",
   alternates: {
     canonical: pagePath,
-    languages: {
-      tr: "/buyuk-daire-mesafesi-hesaplama",
+    languages: {
       "uz-UZ": pagePath,
-      "x-default": "/buyuk-daire-mesafesi-hesaplama",
+      "x-default": pagePath,
     },
   },
   openGraph: {

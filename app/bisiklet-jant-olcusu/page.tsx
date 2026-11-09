@@ -43,7 +43,6 @@ export default function BikeRimPage() {
           { href: "/lastik-ebati-hesaplama", label: "Lastik Ebatı Hesaplama" },
           { href: "/inc-santimetre", label: "İnç - Santimetre" },
           { href: "/kategoriler/uzunluk", label: "Uzunluk Çevirici" },
-          { href: "/lastik-dot-kodu-okuma", label: "Lastik DOT Kodu Okuma" },
         ],
       }}
       tocTitle="İçindekiler"

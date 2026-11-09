@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { BengaliKhatam } from "../../components/dini/BengaliIslamicTools";
 import TimeToolPage from "../../components/time/TimeToolPage";
 import type { FaqItem } from "../../converter/faqSchema";
-import { BENGALI_ISLAMIC_HUB, ISLAMIC_TOOL_PATHS, islamicAlternates } from "../../i18n/islamicToolPaths";
+import { ISLAMIC_TOOL_PATHS, islamicAlternates } from "../../i18n/islamicToolPaths";
 import { buildSiteUrl } from "../../siteConfig";
 
 const path = ISLAMIC_TOOL_PATHS.khatam.bn;
@@ -38,7 +38,6 @@ export default function BnKhatamPage() {
     <TimeToolPage
       crumbs={[
         { href: "/bn", label: "হোম" },
-        { href: BENGALI_ISLAMIC_HUB, label: "ইসলামিক টুলস" },
         { href: path, label: "কুরআন খতম পরিকল্পনা" },
       ]}
       crumbLabel="নেভিগেশন"
@@ -50,7 +49,6 @@ export default function BnKhatamPage() {
         links: [
           { href: ISLAMIC_TOOL_PATHS.zakat.bn, label: "যাকাত ক্যালকুলেটর" },
           { href: ISLAMIC_TOOL_PATHS.kaza.bn, label: "কাজা নামাজ ও রোজা হিসাব" },
-          { href: ISLAMIC_TOOL_PATHS.qasr.bn, label: "কসর দূরত্ব হিসাব" },
         ],
       }}
       tocTitle="সূচিপত্র"

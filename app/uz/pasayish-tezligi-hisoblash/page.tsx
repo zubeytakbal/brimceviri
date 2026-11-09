@@ -25,10 +25,9 @@ export const metadata: Metadata = {
     "Yer tezligi va pasayish burchagidan, daqiqadagi fut hisobida kerakli pasayish tezligini (rate of descent) hisoblang.",
   alternates: {
     canonical: pagePath,
-    languages: {
-      tr: "/inis-orani-hesaplama",
+    languages: {
       "uz-UZ": pagePath,
-      "x-default": "/inis-orani-hesaplama",
+      "x-default": pagePath,
     },
   },
   openGraph: {

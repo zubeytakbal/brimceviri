@@ -123,9 +123,9 @@ export default function UzbekLicenseRenewalPage() {
           <p>
             Transport vositangizga qarab qaysi guvohnoma toifasiga
             muhtoj ekaningizni ko&apos;rish uchun{" "}
-            <Link href="/uz/haydovchilik-toifasi-topish">
+            
               Qaysi Haydovchilik Guvohnomasi Toifasi Kerak?
-            </Link>{" "}
+            {" "}
             sahifasiga qarashingiz mumkin.
           </p>
 

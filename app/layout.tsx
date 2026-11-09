@@ -1,6 +1,6 @@
 import "./globals.css";
 import type { Metadata, Viewport } from "next";
-import { Cairo, Plus_Jakarta_Sans, Space_Grotesk } from "next/font/google";
+import { Cairo, Plus_Jakarta_Sans, Poppins, Space_Grotesk } from "next/font/google";
 import Script from "next/script";
 import { NotificationSlotProvider } from "./components/NotificationSlotProvider";
 import RecentToolsTracker from "./components/RecentToolsTracker";
@@ -47,6 +47,14 @@ const logoFont = Space_Grotesk({
   weight: ["700"],
   display: "swap",
   variable: "--font-logo",
+});
+
+// Yeni tasarim (ana sayfa, grup ve arac sayfalari) icin govde yazisi.
+const poppins = Poppins({
+  subsets: ["latin", "latin-ext"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-yeni",
 });
 
 const cairo = Cairo({
@@ -189,7 +197,7 @@ export default function RootLayout({
         </Script>
       </head>
       <body
-        className={`${plusJakartaSans.variable} ${notoSansHeading.variable} ${logoFont.variable} ${cairo.variable} ${saatRakam.variable} ${saatMetin.variable} ${saatGazete.variable} ${saatEski.variable} ${saatFraktur.variable}`}
+        className={`${plusJakartaSans.variable} ${poppins.variable} ${notoSansHeading.variable} ${logoFont.variable} ${cairo.variable} ${saatRakam.variable} ${saatMetin.variable} ${saatGazete.variable} ${saatEski.variable} ${saatFraktur.variable}`}
       >
         <NotificationSlotProvider>
           <SiteHeader />

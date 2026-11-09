@@ -2,21 +2,24 @@
 // sayfası: saat dilimi çevirici + toplantı planlayıcı, ülkeden saat farkı tablosu,
 // saat değişimi ve SSS.
 import type { Metadata } from "next";
-import Link from "@/app/components/SiteLink";
 import type { FaqItem } from "../../converter/faqSchema";
 import type { YMD } from "../../converter/time/calendars";
 import { nthWeekdayYmd } from "../../converter/time/dateMath";
 import { todayBerlin } from "../../converter/time/germanDates";
 import { formatNordicLong, type NordicLocale } from "../../converter/time/nordicWeek";
-import { cityNameNordic, cityPathNordic, nordicZoneOptions, NORDIC_WORLD_BASE } from "../../converter/time/nordicWorld";
+import { cityNameNordic, nordicZoneOptions } from "../../converter/time/nordicWorld";
+import { NORDIC_DAYS_PATHS } from "../../converter/time/nordicDays";
+import { NORDIC_WEEK_PATHS } from "../../converter/time/nordicWeek";
 import { differenceMinutes } from "../../converter/time/timezones";
 import { worldCities } from "../../converter/time/worldCities";
 import { timeToolAlternates, timeToolPaths } from "../../i18n/timeToolPaths";
 import { buildSiteUrl } from "../../siteConfig";
 import { NORDIC_TIME_UI } from "../time/nordicTimeCopy";
 import TimeToolPage from "../time/TimeToolPage";
-import { TIME_HUB_PATHS } from "../timehub/timeHubPaths";
 import TimeZoneConverter, { type ConverterCopy } from "./TimeZoneConverter";
+
+const DAYS_LABEL = { sv: "Dagar mellan datum", no: "Dager mellom datoer", da: "Dage mellem datoer" } as const;
+const WEEK_LABEL = { sv: "Veckonummer", no: "Ukenummer", da: "Ugenummer" } as const;
 
 const HOME: Record<NordicLocale, { city: string; zone: string }> = {
   sv: { city: "stockholm", zone: "Europe/Stockholm" },
@@ -40,8 +43,6 @@ type Copy = {
   tableNote: (year: number) => string;
   dstTitle: (year: number) => string;
   dst: (year: number, march: string, october: string) => string[];
-  worldLink: string;
-  hubLink: string;
   faq: (march: string, october: string) => FaqItem[];
   hours: string;
 };
@@ -69,8 +70,6 @@ const COPY: Record<NordicLocale, Copy> = {
       `Sverige har normaltid (CET, UTC+1) på vintern och sommartid (CEST, UTC+2) på sommaren. ${y} börjar sommartiden ${m}, då klockan ställs fram från 02 till 03. Den slutar ${o}, då klockan ställs tillbaka från 03 till 02.`,
       "USA byter tid andra söndagen i mars och första söndagen i november. Under några veckor varje vår och höst är tidsskillnaden till New York därför en timme mindre än vanligt. Thailand, Japan, Kina och Turkiet har ingen sommartid, så skillnaden dit ändras två gånger om året.",
     ],
-    worldLink: "Världsklocka",
-    hubLink: "Tid och datum",
     faq: (m, o) => [
       { question: "Hur stor är tidsskillnaden till Thailand?", answer: "Thailand ligger 6 timmar före Sverige på vintern och 5 timmar före på sommaren, eftersom Thailand inte har sommartid." },
       { question: "Hur stor är tidsskillnaden till New York?", answer: "Oftast är New York 6 timmar efter Sverige. Under några veckor i mars och i oktober–november, när länderna byter tid olika dagar, är skillnaden 5 timmar." },
@@ -101,8 +100,6 @@ const COPY: Record<NordicLocale, Copy> = {
       `Norge har normaltid (CET, UTC+1) om vinteren og sommertid (CEST, UTC+2) om sommeren. I ${y} begynner sommertiden ${m}, da klokka stilles fram fra 02 til 03. Den slutter ${o}, da klokka stilles tilbake fra 03 til 02.`,
       "USA skifter tid andre søndag i mars og første søndag i november. Noen uker hver vår og høst er tidsforskjellen til New York derfor én time mindre enn vanlig. Thailand, Japan, Kina og Tyrkia har ikke sommertid, så forskjellen dit endres to ganger i året.",
     ],
-    worldLink: "Verdensklokke",
-    hubLink: "Tid og dato",
     faq: (m, o) => [
       { question: "Hvor stor er tidsforskjellen til Thailand?", answer: "Thailand ligger 6 timer foran Norge om vinteren og 5 timer foran om sommeren, fordi Thailand ikke har sommertid." },
       { question: "Hvor stor er tidsforskjellen til New York?", answer: "Som regel er New York 6 timer bak Norge. Noen uker i mars og i oktober–november, når landene skifter tid på ulike dager, er forskjellen 5 timer." },
@@ -133,8 +130,6 @@ const COPY: Record<NordicLocale, Copy> = {
       `Danmark har normaltid (CET, UTC+1) om vinteren og sommertid (CEST, UTC+2) om sommeren. I ${y} begynder sommertiden ${m}, hvor uret stilles frem fra 02 til 03. Den slutter ${o}, hvor uret stilles tilbage fra 03 til 02.`,
       "USA skifter tid anden søndag i marts og første søndag i november. Nogle uger hvert forår og efterår er tidsforskellen til New York derfor én time mindre end normalt. Thailand, Japan, Kina og Tyrkiet har ikke sommertid, så forskellen dertil ændrer sig to gange om året.",
     ],
-    worldLink: "Verdensur",
-    hubLink: "Tid og dato",
     faq: (m, o) => [
       { question: "Hvor stor er tidsforskellen til Thailand?", answer: "Thailand er 6 timer foran Danmark om vinteren og 5 timer foran om sommeren, fordi Thailand ikke har sommertid." },
       { question: "Hvor stor er tidsforskellen til New York?", answer: "Normalt er New York 6 timer bagud i forhold til Danmark. Nogle uger i marts og i oktober–november, hvor landene skifter tid på forskellige dage, er forskellen 5 timer." },
@@ -192,8 +187,8 @@ export default function NordicTimeZonePage({ locale }: { locale: NordicLocale })
         related={{
           title: ui.relatedTitle,
           links: [
-            { href: TIME_HUB_PATHS[locale], label: t.hubLink },
-            { href: NORDIC_WORLD_BASE[locale], label: t.worldLink },
+            { href: NORDIC_DAYS_PATHS[locale], label: DAYS_LABEL[locale] },
+            { href: NORDIC_WEEK_PATHS[locale], label: WEEK_LABEL[locale] },
           ],
         }}
         tocTitle={ui.tocTitle}
@@ -219,9 +214,7 @@ export default function NordicTimeZonePage({ locale }: { locale: NordicLocale })
               {rows.map(({ c, w, s }) => (
                 <tr key={c.en}>
                   <td>
-                    <Link href={cityPathNordic(locale, c)} prefetch={false}>
-                      {cityNameNordic(locale, c)}
-                    </Link>
+                    {cityNameNordic(locale, c)}
                   </td>
                   <td>{hours(w, t.hours)}</td>
                   <td>{hours(s, t.hours)}</td>

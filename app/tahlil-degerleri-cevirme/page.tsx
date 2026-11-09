@@ -67,7 +67,6 @@ export default function LabValuesPage() {
         links: [
           { href: "/kategoriler/kan-sekeri", label: "Kan Şekeri mg/dL ↔ mmol/L" },
           { href: "/kategoriler/vitamin-d", label: "D Vitamini ng/mL ↔ nmol/L" },
-          { href: "/kreatinin-klirensi-hesaplama", label: "Kreatinin Klirensi Hesaplama" },
           { href: "/bmi-hesaplama", label: "Vücut Kitle İndeksi" },
         ],
       }}

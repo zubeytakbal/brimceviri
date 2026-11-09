@@ -25,10 +25,9 @@ export const metadata: Metadata = {
     "Bosim balandligi va tashqi havo haroratidan (OAT), standart FAA qisqa formulasi bilan zichlik balandligini (density altitude) hisoblang.",
   alternates: {
     canonical: pagePath,
-    languages: {
-      tr: "/yogunluk-irtifasi-hesaplama",
+    languages: {
       "uz-UZ": pagePath,
-      "x-default": "/yogunluk-irtifasi-hesaplama",
+      "x-default": pagePath,
     },
   },
   openGraph: {

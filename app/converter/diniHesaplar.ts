@@ -231,89 +231,6 @@ export function kurbanHissesi(hayvanFiyati: number, masraf: number, hisse: numbe
   return { toplamTutar, hisseBasiTutar: toplamTutar / h, hisseBasiEt: et };
 }
 
-/* ---------------- Seferîlik ---------------- */
-
-/** Diyanet: gidilecek yer en az 90 km uzaktaysa seferî olunur (15 günden az kalınacaksa). */
-export const SEFER_KM = 90;
-export const IKAMET_GUN = 15;
-
-/**
- * İl merkezleri arası karayolu mesafesine göre durum. Seferîlik, yaşanan
- * yerleşim yerinin sınırından itibaren ölçülür; il merkezleri arası mesafe bu
- * yüzden biraz fazladır. 90–120 km arası "sınırda" sayılır.
- */
-export type SeferDurumu = "seferi" | "sinirda" | "degil";
-
-/** Arayüz ve il sayfalarında ortak sonuç metinleri. */
-export const SEFER_METIN: Record<SeferDurumu, { baslik: string; aciklama: string }> = {
-  seferi: { baslik: "Seferî olursunuz", aciklama: `Mesafe ${SEFER_KM} km'yi rahatça aşıyor. 15 günden az kalacaksanız seferî sayılırsınız.` },
-  sinirda: {
-    baslik: "Sınırda: yerleşim sınırından ölçün",
-    aciklama: `İl merkezleri arası ${SEFER_KM} km'yi aşıyor ama seferîlik yaşadığınız yerin sınırından ölçülür. Kendi çıkış noktanızdan gideceğiniz yerin sınırına kadar olan mesafeyi alttaki alana yazın.`,
-  },
-  degil: { baslik: "Seferî olmazsınız", aciklama: `Mesafe ${SEFER_KM} km'nin altında; namazlar ve oruç normal şekilde eda edilir.` },
-};
-
-export function seferDurumu(km: number, merkezlerArasi = true): SeferDurumu | null {
-  if (!(km >= 0)) return null;
-  if (km < SEFER_KM) return "degil";
-  if (merkezlerArasi && km < SEFER_KM + 30) return "sinirda";
-  return "seferi";
-}
-
-/* ---------------- Umre: tavaf ve sa'y ---------------- */
-
-/**
- * Tavaf: Kâbe yaklaşık daire kabul edilir; Kâbe merkezinden duvara ~6 m.
- * Bir şavt = 2π × (duvara uzaklık + 6 m); tavaf 7 şavttır.
- * Sa'y: Safâ–Merve arası (tek yön) kullanıcıdan; kaynaklarda 394–450 m geçer. Sa'y 7 şavttır.
- */
-export const KABE_YARICAP_M = 6;
-export const SAVT_SAYISI = 7;
-
-export type UmreMesafe = {
-  tavafSavtM: number;
-  tavafToplamM: number;
-  sayToplamM: number;
-  toplamM: number;
-  adim: number;
-  dakika: number;
-};
-
-export function umreMesafe({
-  duvaraUzaklikM,
-  tavafSayisi,
-  sayYapilacak,
-  safaMerveM,
-  adimCm,
-  hizKmSaat,
-}: {
-  duvaraUzaklikM: number;
-  tavafSayisi: number;
-  sayYapilacak: boolean;
-  safaMerveM: number;
-  adimCm: number;
-  hizKmSaat: number;
-}): UmreMesafe | null {
-  const t = Math.round(tavafSayisi);
-  if (!(duvaraUzaklikM >= 0 && duvaraUzaklikM <= 300) || !(t >= 0 && t <= 20)) return null;
-  if (sayYapilacak && !(safaMerveM >= 300 && safaMerveM <= 600)) return null;
-  if (!(adimCm >= 30 && adimCm <= 150) || !(hizKmSaat > 0 && hizKmSaat <= 10)) return null;
-  const tavafSavtM = 2 * Math.PI * (duvaraUzaklikM + KABE_YARICAP_M);
-  const tavafToplamM = tavafSavtM * SAVT_SAYISI * t;
-  const sayToplamM = sayYapilacak ? safaMerveM * SAVT_SAYISI : 0;
-  const toplamM = tavafToplamM + sayToplamM;
-  if (toplamM <= 0) return null;
-  return {
-    tavafSavtM,
-    tavafToplamM,
-    sayToplamM,
-    toplamM,
-    adim: Math.round(toplamM / (adimCm / 100)),
-    dakika: (toplamM / 1000 / hizKmSaat) * 60,
-  };
-}
-
 /* ---------------- Türkçe ek ---------------- */
 
 /**
@@ -587,18 +504,6 @@ export function zakatVori(g: ZakatVoriGirdisi): ZakatVoriSonucu | null {
   const nisabDegeri = (g.nisab === "gumus" ? NISAB_GUMUS_VORI : NISAB_ALTIN_VORI) * fiyat;
   const nisabUstunde = netVarlik >= nisabDegeri;
   return { altinDegeri, gumusDegeri, netVarlik, nisabDegeri, nisabUstunde, zekat: nisabUstunde ? netVarlik * ZEKAT_ORANI : 0 };
-}
-
-/** Hanefî âlimlerin Hint alt kıtasında esas aldığı kasr mesafesi: 48 mil. */
-export const KASR_MIL = 48;
-export const MIL_KM = 1.609344;
-export const KASR_KM = KASR_MIL * MIL_KM;
-
-/** Yolculuk mesafesi (km) ve kalış niyeti (gün) → seferî mi? */
-export function kasrDurumu(km: number, kalisGun: number) {
-  if (!(km >= 0) || !(kalisGun >= 0)) return null;
-  const mesafeYeterli = km >= KASR_KM;
-  return { mesafeYeterli, kalisKisa: kalisGun < IKAMET_GUN, musafir: mesafeYeterli && kalisGun < IKAMET_GUN };
 }
 
 /* ---------------- Ölünün 3., 7., 40. ve 52. günü ---------------- */

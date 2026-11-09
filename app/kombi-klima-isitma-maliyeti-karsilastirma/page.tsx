@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import EmbedCodeBox from "../components/EmbedCodeBox";
+import HeatPumpVsBoilerCalculator from "../components/HeatPumpVsBoilerCalculator";
 import HeatingCostComparisonCalculator from "../components/HeatingCostComparisonCalculator";
 import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
@@ -84,6 +85,12 @@ export default function HeatingCostComparisonPage() {
         <HeatingCostComparisonCalculator />
 
         <section className="category-article-content">
+          <h2>Isı pompası mı, kombi mi?</h2>
+          <p>Isı pompasının verimini (COP) ve elektrik fiyatını girerek doğalgaz kombisiyle yıllık ısınma maliyetini karşılaştırın.</p>
+          <HeatPumpVsBoilerCalculator />
+        </section>
+
+        <section className="category-article-content">
           <h2 id="hangisi-ucuz">Aynı ısı için ne kadar enerji ödersiniz?</h2>
           <p>
             Kombi, klima ve elektrikli soba odaya aynı ısıyı farklı miktarda enerjiyle verir. Kombi yaktığı gazın yaklaşık
@@ -165,9 +172,9 @@ export default function HeatingCostComparisonPage() {
           <h2>İlgili araçlar</h2>
           <p>
             Isı pompasını kombiyle karşılaştırmak için{" "}
-            <Link href="/isi-pompasi-kombi-karsilastirma">Isı Pompası mı Kombi mi?</Link>
+            Isı Pompası mı Kombi mi?
             {" "}sayfasına, yalıtım amortismanı için{" "}
-            <Link href="/yalitim-amortisman-hesaplama">Yalıtım Amortisman Hesaplama</Link>
+            Yalıtım Amortisman Hesaplama
             {" "}sayfasına, ısı iletimi hesaplamaları için{" "}
             <Link href="/hesaplayicilar/isi-iletimi">Isı İletimi Hesaplayıcısı</Link>
             {" "}sayfasına bakabilirsin.

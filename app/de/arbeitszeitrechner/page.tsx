@@ -85,7 +85,6 @@ export default function ArbeitszeitPage() {
         related={{
           title: "Das könnte Sie auch interessieren",
           links: [
-            { href: "/de/stoppuhr", label: "Stoppuhr" },
             { href: "/de/brutto-netto-rechner", label: "Brutto-Netto-Rechner" },
             { href: "/de/urlaubsrechner", label: "Urlaubsrechner" },
             ...calendarRelated(path),

@@ -1,16 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import {
-  CUZ_SAYISI,
-  hatimDagit,
-  KASR_KM,
-  kasrDurumu,
-  kazaNamazi,
-  kazaOrucu,
-  MIL_KM,
-  zakatVori,
-} from "../../converter/diniHesaplar";
+import { CUZ_SAYISI, hatimDagit, kazaNamazi, kazaOrucu, zakatVori } from "../../converter/diniHesaplar";
 
 const BN = "bn-BD";
 const f = (n: number, d = 0) => n.toLocaleString(BN, { maximumFractionDigits: d });
@@ -271,51 +262,3 @@ export function BengaliKhatam() {
 }
 
 /* ---------------- কসর দূরত্ব ---------------- */
-
-export function BengaliQasr() {
-  const [dist, setDist] = useState("100");
-  const [unit, setUnit] = useState<"km" | "mile">("km");
-  const [stay, setStay] = useState("3");
-  const km = unit === "km" ? bnNumber(dist) : bnNumber(dist) * MIL_KM;
-  const r = kasrDurumu(km, n0(stay));
-
-  return (
-    <div className="date-calc">
-      <div className="date-calc-input">
-        <div className="date-calc-fields">
-          <Field label="গন্তব্যের দূরত্ব" value={dist} onChange={setDist} />
-          <label className="date-calc-field">
-            <span>একক</span>
-            <select value={unit} onChange={(e) => setUnit(e.target.value as "km" | "mile")}>
-              <option value="km">কিলোমিটার</option>
-              <option value="mile">মাইল</option>
-            </select>
-          </label>
-          <Field label="সেখানে কত দিন থাকবেন" value={stay} onChange={setStay} />
-        </div>
-      </div>
-      {r ? (
-        <div className="date-calc-results">
-          <div className={`date-calc-stat is-main ${r.musafir ? "sefer-seferi" : "sefer-degil"}`}>
-            <span>ফলাফল</span>
-            <strong>{r.musafir ? "আপনি মুসাফির – কসর করবেন" : "মুসাফির নন – পূর্ণ নামাজ"}</strong>
-            <em>
-              {!r.mesafeYeterli
-                ? `দূরত্ব ৪৮ মাইলের (প্রায় ${f(KASR_KM, 2)} কিমি) কম`
-                : !r.kalisKisa
-                  ? "১৫ দিন বা বেশি থাকার নিয়ত করলে সেখানে মুকিম"
-                  : "জোহর, আসর ও এশার ৪ রাকাত ফরজ ২ রাকাত পড়বেন"}
-            </em>
-          </div>
-          <div className="date-calc-stat">
-            <span>দূরত্ব</span>
-            <strong>{f(km, 1)} কিমি</strong>
-            <em>{f(km / MIL_KM, 1)} মাইল</em>
-          </div>
-        </div>
-      ) : (
-        <p className="date-calc-note">দূরত্ব ও থাকার দিন লিখুন।</p>
-      )}
-    </div>
-  );
-}

@@ -4,19 +4,11 @@ import { addDaysYmd, weekdayOf } from "../converter/time/dateMath";
 import { stateHolidays, type StateCode } from "../converter/time/germanHolidays";
 
 export const germanCalendarLinks = [
-  { href: "/de/kalender", label: "Kalender mit Feiertagen" },
-  { href: "/de/besondere-tage", label: "Besondere Tage" },
-  { href: "/de/zeitumstellung", label: "Zeitumstellung" },
-  { href: "/de/vollmond", label: "Vollmond-Termine" },
   { href: "/de/kalenderwoche", label: "Aktuelle Kalenderwoche" },
-  { href: "/de/feiertage", label: "Feiertage nach Bundesland" },
-  { href: "/de/brueckentage", label: "Brückentage-Rechner" },
-  { href: "/de/feiertage-oesterreich", label: "Feiertage Österreich" },
   { href: "/de/arbeitstage-rechner", label: "Arbeitstage-Rechner" },
   { href: "/de/arbeitszeitrechner", label: "Arbeitszeitrechner" },
   { href: "/de/tagerechner", label: "Tagerechner" },
   { href: "/de/zeitzonenrechner", label: "Zeitzonenrechner" },
-  { href: "/de/weltuhr", label: "Weltuhr" },
   { href: "/de/altersrechner", label: "Altersrechner" },
   { href: "/de/schwangerschaftswochen-rechner", label: "Schwangerschaftswochen-Rechner" },
 ];

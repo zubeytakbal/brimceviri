@@ -25,7 +25,6 @@ export const germanToolGroups: ToolGroup[] = [
       { href: "/de/mutterschutzrechner", label: "Mutterschutzrechner" },
       { href: "/de/eisprungrechner", label: "Eisprungrechner (fruchtbare Tage)" },
       { href: "/de/arbeitszeitrechner", label: "Arbeitszeitrechner" },
-      { href: "/de/waehrungsrechner", label: "Währungsrechner" },
       { href: "/de/goldrechner", label: "Goldrechner (333, 585, 750)" },
     ],
   },
@@ -34,20 +33,10 @@ export const germanToolGroups: ToolGroup[] = [
     title: "Kalender und Feiertage",
     description: "Kalenderwoche, Feiertage aller Bundesländer, Brückentage, Arbeitstage und Countdowns.",
     links: [
-      { href: "/de/uhrzeit-und-datum", label: "Uhrzeit und Datum (Übersicht)" },
-      { href: "/de/kalender", label: "Kalender mit Feiertagen" },
       { href: "/de/altersrechner", label: "Altersrechner" },
       { href: "/de/kalenderwoche", label: "Aktuelle Kalenderwoche" },
-      { href: "/de/feiertage", label: "Feiertage Deutschland" },
-      { href: "/de/feiertage-oesterreich", label: "Feiertage Österreich" },
-      { href: "/de/brueckentage", label: "Brückentage-Rechner" },
       { href: "/de/arbeitstage-rechner", label: "Arbeitstage-Rechner" },
       { href: "/de/tagerechner", label: "Tagerechner" },
-      { href: "/de/countdown", label: "Countdown (Tage bis …)" },
-      { href: "/de/besondere-tage", label: "Besondere Tage" },
-      { href: "/de/zeitumstellung", label: "Zeitumstellung" },
-      { href: "/de/vollmond", label: "Vollmond-Termine" },
-      { href: "/de/bauernregeln", label: "Bauernregeln und Lostage" },
     ],
   },
   {
@@ -55,15 +44,7 @@ export const germanToolGroups: ToolGroup[] = [
     title: "Uhr und Timer",
     description: "Online-Uhr, Weltuhr, Zeitzonen, Timer, Wecker und Stoppuhr – ohne Installation.",
     links: [
-      { href: "/de/online-uhr", label: "Online-Uhr" },
-      { href: "/de/weltuhr", label: "Weltuhr" },
       { href: "/de/zeitzonenrechner", label: "Zeitzonenrechner" },
-      { href: "/de/timer", label: "Timer" },
-      { href: "/de/wecker", label: "Wecker" },
-      { href: "/de/stoppuhr", label: "Stoppuhr" },
-      { href: "/de/pomodoro-timer", label: "Pomodoro-Timer" },
-      { href: "/de/intervall-timer", label: "Intervall-Timer" },
-      { href: "/de/eieruhr", label: "Eieruhr" },
     ],
   },
   {
@@ -152,8 +133,6 @@ export const germanToolGroups: ToolGroup[] = [
     title: "Länder und Entfernungen",
     description: "Länder der Welt mit Zeitverschiebung und Entfernungen zwischen deutschen Städten.",
     links: [
-      { href: "/de/laender", label: "Länder und Hauptstädte" },
-      { href: "/de/entfernung", label: "Entfernungsrechner" },
     ],
   },
 ];
@@ -191,19 +170,9 @@ export const germanCalculatorMenu = pick([
 
 /** Üst menü "Kalender & Uhr". */
 export const germanTimeMenu = pick([
-  "/de/uhrzeit-und-datum",
-  "/de/kalender",
   "/de/altersrechner",
   "/de/kalenderwoche",
-  "/de/feiertage",
-  "/de/brueckentage",
   "/de/tagerechner",
   "/de/arbeitstage-rechner",
-  "/de/countdown",
-  "/de/online-uhr",
-  "/de/weltuhr",
   "/de/zeitzonenrechner",
-  "/de/timer",
-  "/de/wecker",
-  "/de/stoppuhr",
 ]);

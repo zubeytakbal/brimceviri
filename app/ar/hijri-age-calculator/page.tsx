@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { SaUmrHijriSafha } from "../../components/takvim/SaSafahat";
+import { SaUmrHijriSafha } from "../../components/takvim/SaUmrHijriSafha";
 import { saMetadata } from "../../components/takvim/takvimMeta";
 
 // التاريخ الافتراضي (اليوم) يتغير يوميًا.

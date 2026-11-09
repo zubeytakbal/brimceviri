@@ -3,7 +3,7 @@ import { getLiveElectricalCalculatorItems } from "../converter/engineeringHubs";
 import { englishChemistryHubPath, englishChemistryTools } from "./englishChemistryToolCatalog";
 import { englishDecisionSavingsHubPath, englishDecisionSavingsTools } from "./englishDecisionSavingsTools";
 import { englishBusinessTools } from "./englishBusinessToolCatalog";
-import { CHRISTIAN_TOOLS_PATH, englishChristianTools } from "./englishChristianTools";
+import { englishChristianTools } from "./englishChristianTools";
 import { englishEverydayHubPath } from "./englishEverydayCalculatorGroups";
 import { englishFinanceTools } from "./englishFinanceToolCatalog";
 import { englishStandaloneTools } from "./englishStandaloneTools";
@@ -50,7 +50,6 @@ export const englishToolDomains: Array<{
   { id: "fitness", href: "/en/fitness-calculators", label: "Fitness Calculators", description: "One-rep-max and running-pace training estimates." },
   { id: "chemistry", href: englishChemistryHubPath, label: "Chemistry Calculators", description: "Solution chemistry, reaction calculations, equilibrium and electrochemistry." },
   { id: "science", href: "/en/science-calculators", label: "Science Calculators", description: "Mathematics, physics, biology and chemistry learning tools." },
-  { id: "christian", href: CHRISTIAN_TOOLS_PATH, label: "Christian Tools", description: "Easter dates, Lent, Orthodox fasting calendar, Bible reading plans, novenas, the Rosary and tithing." },
 ];
 
 const elevatedEverydayComponents = new Set(["bmiCalculator", "pregnancyCalculator", "calorieCalculator", "bodyFatCalculator", "idealWeightCalculator", "ivDripRateCalculator", "standardDrinkCalculator", "poolChlorineCalculator"]);

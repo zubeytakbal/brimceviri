@@ -10,8 +10,8 @@ import {
   offsetMinutes,
   timeZoneLongName,
 } from "./timezones";
-import { cityNameDe, cityPathDe, citySlugDe } from "./germanWorld";
-import { cityNameNordic, cityPathNordic, citySlugNordic } from "./nordicWorld";
+import { cityNameDe, citySlugDe } from "./germanWorld";
+import { cityNameNordic, citySlugNordic } from "./nordicWorld";
 import { referenceCitySlugs, worldCities, type WorldCity } from "./worldCities";
 
 // Sehir sayfalari icin sunucuda hesaplanan gercek veriler (ISR ile tazelenir).
@@ -29,11 +29,6 @@ export function cityName(city: WorldCity, lang: Lang) {
 export function citySlug(city: WorldCity, lang: Lang) {
   if (isNordic(lang)) return citySlugNordic(lang, city);
   return lang === "tr" ? city.tr : lang === "de" ? citySlugDe(city) : city.en;
-}
-
-export function cityPath(city: WorldCity, lang: Lang) {
-  if (isNordic(lang)) return cityPathNordic(lang, city);
-  return lang === "tr" ? `/dunya-saatleri/${city.tr}` : lang === "de" ? cityPathDe(city) : `/en/world-clock/${city.en}`;
 }
 
 // Fark ifadesi: [saat tekil, saat çoğul, dakika, ileride, geride, aynı saat]

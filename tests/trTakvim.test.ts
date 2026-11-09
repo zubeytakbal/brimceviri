@@ -9,7 +9,6 @@ import {
   sonrakiTarih,
   yilEtkinlikleri,
 } from "../app/converter/calendar/trTakvim";
-import { siradakiFirtinalar } from "../app/converter/calendar/firtinaTakvimi";
 import { ymdKey } from "../app/converter/time/dateMath";
 
 const tarih = (id: string, year: number) =>
@@ -116,17 +115,6 @@ describe("Halk takvimi", () => {
     ]);
   });
 
-  it("finds the next storm, including one still running", () => {
-    expect(
-      siradakiFirtinalar({ year: 2026, month: 9, day: 29 }, 1)[0].f.ad,
-    ).toBe("Turna geçimi fırtınası");
-    expect(
-      siradakiFirtinalar({ year: 2026, month: 3, day: 14 }, 1)[0].f.ad,
-    ).toContain("Kocakarı");
-    expect(
-      siradakiFirtinalar({ year: 2026, month: 12, day: 20 }, 1)[0].tarih,
-    ).toEqual({ year: 2027, month: 1, day: 14 });
-  });
 });
 
 describe("Geçmiş yıllar", () => {

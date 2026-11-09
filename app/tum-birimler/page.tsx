@@ -5,7 +5,7 @@ import { aramaMetni } from "../converter/aramaMetni";
 import { categoryPages } from "../converter/categoryPages";
 import { unitRegistry } from "../converter/unitRegistry";
 import { conversionPages } from "../converter/conversionPages";
-import { canonicalPairSlug, isMergedAway } from "../converter/mergedPairs";
+import { canonicalPairSlug, ciftYayinda } from "../converter/mergedPairs";
 
 // Kategoriler konuya göre gruplanır; listede olmayan yeni kategori "Diğer" grubuna düşer.
 const GROUPS: Array<{ id: string; title: string; slugs: string[] }> = [
@@ -27,8 +27,6 @@ const TOOL_GROUPS: Array<{ id: string; title: string; items: Array<{ href: strin
     title: "Türkiye'ye özgü çeviriler",
     items: [
       { href: "/eski-para-yeni-para-cevirme", title: "Eski Para - Yeni Para", description: "1 YTL = 1.000.000 eski TL; Azerbaycan ve Türkmen manatı sadeleştirmeleri (1 yeni manat = 5.000 eski manat)." },
-      { href: "/ezani-saat-cevirme", title: "Ezani Saat Çevirme", description: "Alaturka saat ↔ normal saat: gün batımı ezani 12:00'dır; 81 ilde ve her tarihte batış saatine göre." },
-      { href: "/ebced-hesabi", title: "Ebced Hesabı", description: "Arap harfli metnin sayı değeri ve sayının ebced harfleri: besmele = 786, 1453 = غتنج." },
       { href: "/tarih-cevirici", title: "Hicri, Rumi, Miladi Tarih", description: "Eski belgelerdeki hicri ve Rumi tarihleri gün gün miladi tarihe çevirin." },
       { href: "/altin-hesaplama", title: "Ziynet Altını - Gram", description: "Çeyrek, yarım, tam ve ata altının gram ve has altın karşılığı." },
     ],
@@ -47,7 +45,6 @@ const TOOL_GROUPS: Array<{ id: string; title: string; items: Array<{ href: strin
       { href: "/beden-olcusu-cevirici", title: "Beden Ölçüsü", description: "TR, EU, US ve UK giyim bedenleri arası çeviri." },
       { href: "/yuzuk-olcusu-cevirici", title: "Yüzük Ölçüsü", description: "TR yüzük numarası ↔ ABD ve İngiltere ölçüleri, iç çap ve çevre." },
       { href: "/mutfak-olculeri-cevirici", title: "Mutfak Ölçüleri", description: "Su bardağı, çay bardağı ve kaşık ↔ gram: 1 su bardağı un ≈ 100 g, toz şeker ≈ 167 g." },
-      { href: "/kagit-boyutlari", title: "Kâğıt Boyutları", description: "A4 = 21 × 29,7 cm, A3 = 29,7 × 42 cm; A, B, C serisi ve Letter ölçüleri, 300 dpi piksel ve yaprak ağırlığı." },
       { href: "/awg-mm2-cevirici", title: "AWG - mm²", description: "Amerikan tel numarası ↔ tel çapı ve kesit alanı (mm²)." },
       { href: "/swg-mm-cevirici", title: "SWG - mm (Tel Kalınlığı)", description: "İngiliz tel numarası ↔ mm: 16 SWG = 1,626 mm, 20 SWG = 0,914 mm; 7/0'dan 50'ye tablo." },
       { href: "/matkap-ucu-olcusu-cevirme", title: "Matkap Ucu Ölçüsü", description: "Kesirli, numaralı ve harfli matkap ↔ mm: 1/4\" = 6,35 mm, #7 = 5,105 mm, F = 6,528 mm." },
@@ -89,7 +86,7 @@ const POPULAR: Record<string, string[]> = {
 
 /** Kategoride öne çıkan dönüşüm çiftleri: önce arama verisindeki popüler çiftler, sonra kayıt sırası. */
 function topPairs(category: string, limit = 4) {
-  const inCategory = conversionPages.filter((c) => c.category === category && !isMergedAway(c.slug));
+  const inCategory = conversionPages.filter((c) => c.category === category && ciftYayinda(c.slug));
   const bySlug = new Map(inCategory.map((c) => [c.slug, c]));
   const ordered = [...(POPULAR[category] ?? []).map((slug) => bySlug.get(canonicalPairSlug(slug))).filter((c) => c !== undefined), ...inCategory];
   const seen = new Set<string>();
@@ -151,7 +148,7 @@ function aramaGruplari(): AramaGrubu[] {
 /** Aramada doğrudan gösterilecek dönüşüm sayfaları (birleştirilen ters çiftler hariç). */
 function aramaCiftleri(): AramaCifti[] {
   return conversionPages
-    .filter((c) => !isMergedAway(c.slug))
+    .filter((c) => ciftYayinda(c.slug))
     .map((c) => ({
       href: `/${c.slug}`,
       label: `${c.fromName} → ${c.toName}`,

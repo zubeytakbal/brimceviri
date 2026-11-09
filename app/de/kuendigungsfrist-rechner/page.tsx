@@ -143,7 +143,7 @@ export default function KuendigungsfristPage() {
           Wie viele Tage bis zum Auszug bleiben, zeigt der{" "}
           <Link href="/de/tagerechner">Tagerechner</Link>. Welche Tage im
           Bundesland Feiertage sind, steht unter{" "}
-          <Link href="/de/feiertage">Feiertage nach Bundesland</Link>.
+          Feiertage nach Bundesland.
         </p>
         <p>
           <small>

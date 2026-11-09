@@ -243,10 +243,6 @@ const pageCopy: Record<Exclude<Locale, "ar">, PageCopy> = {
     ],
     relatedCalculators: [
       {
-        label: "Hidrostatik Basınç Hesaplayıcısı",
-        href: "/hesaplayicilar/hidrostatik-basinc",
-      },
-      {
         label: "Mühendislik Hesaplayıcıları merkezi",
         href: "/muhendislik-hesaplayicilari",
       },
@@ -665,9 +661,12 @@ function renderTypicalUse(
 export default function PressureForceAreaPage({
   locale,
   structuredData,
+  ekBolum,
 }: {
   locale: Locale;
   structuredData?: ReactNode;
+  /** Bu sayfaya birlestirilen araclar (yalniz Turkce sayfa gecirir). */
+  ekBolum?: ReactNode;
 }) {
   const copy = locale === "ar" ? arabicCopy : pageCopy[locale];
   const unitTableSections = renderUnitTableSections(locale);
@@ -701,6 +700,7 @@ export default function PressureForceAreaPage({
         description={copy.description}
         resultHeading={copy.heroResultHeading}
       />
+      {ekBolum}
 
       <article className="conversion-content calculator-content">
         <section className="conversion-section">

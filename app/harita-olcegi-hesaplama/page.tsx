@@ -50,7 +50,6 @@ export default function MapScalePage() {
     <TimeToolPage
       crumbs={[
         { href: "/", label: "Ana Sayfa" },
-        { href: "/cografya-hesaplamalari", label: "Coğrafya Hesaplamaları" },
         { href: path, label: "Harita Ölçeği Hesaplama" },
       ]}
       crumbLabel="Sayfa yolu"
@@ -144,7 +143,7 @@ export default function MapScalePage() {
       </p>
       <p>
         Haritada ölçülen iki nokta arasındaki kuş uçuşu mesafeyi koordinatlarla doğrulamak için{" "}
-        <Link href="/buyuk-daire-mesafesi-hesaplama">büyük daire mesafesi hesaplayıcısını</Link>, bir yerin koordinatını farklı biçimlere çevirmek
+        büyük daire mesafesi hesaplayıcısını, bir yerin koordinatını farklı biçimlere çevirmek
         için <Link href="/koordinat-donusturucu">koordinat dönüştürücüyü</Link> kullanabilirsiniz.
       </p>
     </TimeToolPage>

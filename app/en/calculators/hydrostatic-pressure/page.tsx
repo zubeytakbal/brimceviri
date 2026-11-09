@@ -9,9 +9,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/en/calculators/hydrostatic-pressure",
     languages: {
-      tr: "/hesaplayicilar/hidrostatik-basinc",
+      tr: "/hesaplayicilar/basinc-kuvvet-alan",
       en: "/en/calculators/hydrostatic-pressure",
-      "x-default": "/hesaplayicilar/hidrostatik-basinc",
+      "x-default": "/hesaplayicilar/basinc-kuvvet-alan",
     },
   },
   openGraph: {

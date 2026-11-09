@@ -1152,7 +1152,6 @@ function getTurkishMenuGroups(): MenuGroup[] {
         ...conversionLinks,
         { href: "/mutfak-olculeri-cevirici", label: "Mutfak Ölçüleri" },
         { href: "/ayakkabi-numarasi-cevirme", label: "Ayakkabı Numarası" },
-        { href: "/doviz-cevirici", label: "Döviz Çevirici" },
       ],
       footer: [
         { href: "/tum-birimler", label: "Tüm dönüşümler →" },
@@ -1165,7 +1164,6 @@ function getTurkishMenuGroups(): MenuGroup[] {
       links: turkishCalculatorMenu,
       footer: [
         { href: TURKISH_TOOL_HUB_PATH, label: "Tüm hesaplamalar →" },
-        { href: "/dosya-araclari", label: "Dosya araçları →" },
       ],
     },
     {
@@ -1178,15 +1176,12 @@ function getTurkishMenuGroups(): MenuGroup[] {
       id: "geo",
       label: "Dünya ve Coğrafya",
       links: turkishGeoMenu,
-      footer: [{ href: "/cografya-hesaplamalari", label: "Tüm coğrafya araçları →" }],
     },
     {
       id: "time",
       label: "Tarih & Saat",
       links: turkishTimeMenu,
       footer: [
-        { href: "/saat-ve-tarih", label: "Tüm tarih ve saat araçları →" },
-        { href: "/dini-araclar", label: "Dini araçlar →" },
       ],
     },
   ];
@@ -1208,7 +1203,6 @@ function getGermanMenuGroups(): MenuGroup[] {
         ...conversionLinks,
         { href: "/de/kuechenmass-umrechner", label: "Küchenmaße" },
         { href: "/de/schuhgroessen-umrechner", label: "Schuhgrößen" },
-        { href: "/de/waehrungsrechner", label: "Währungsrechner" },
       ],
       footer: [
         { href: "/de/alle-umrechnungen", label: "Alle Umrechnungen →" },
@@ -1225,28 +1219,18 @@ function getGermanMenuGroups(): MenuGroup[] {
       id: "time",
       label: "Kalender & Uhr",
       links: germanTimeMenu,
-      footer: [{ href: "/de/uhrzeit-und-datum", label: "Alle Kalender- und Uhr-Tools →" }],
     },
   ];
 }
 
-// İngilizce menü: dönüşümler, hesaplayıcılar ve (ana sayfada en çok öne çıkan) saat araçları.
+// İngilizce menü: dönüşümler, hesaplayıcılar ve tarih/saat hesaplayıcıları.
 const englishTimeMenu: LinkDefinition[] = [
-  { href: "/en/time-and-date", label: "Time and Date (overview)" },
-  { href: "/en/online-clock", label: "Online Clock" },
-  { href: "/en/alarm-clock", label: "Alarm Clock" },
-  { href: "/en/timer", label: "Timer" },
-  { href: "/en/stopwatch", label: "Stopwatch" },
-  { href: "/en/pomodoro-timer", label: "Pomodoro Timer" },
-  { href: "/en/world-clock", label: "World Clock" },
   { href: "/en/time-zone-converter", label: "Time Zone Converter" },
-  { href: "/en/countdown", label: "Countdown" },
   { href: "/en/days-between-dates", label: "Days Between Dates" },
   { href: "/en/date-calculator", label: "Date Calculator" },
   { href: "/en/age-calculator", label: "Age Calculator" },
   { href: "/en/week-number", label: "Week Number" },
   { href: "/en/business-day-calculator", label: "Business Days" },
-  { href: "/en/federal-holidays", label: "US Federal Holidays" },
 ];
 
 function getEnglishMenuGroups(): MenuGroup[] {
@@ -1263,10 +1247,9 @@ function getEnglishMenuGroups(): MenuGroup[] {
     {
       id: "calculators",
       label: "Calculators",
-      links: englishCalculatorMenuLinks.filter((l) => l.href !== "/en/christian-tools"),
-      footer: [{ href: "/en/christian-tools", label: "Christian calendar tools →" }],
+      links: englishCalculatorMenuLinks,
     },
-    { id: "time", label: "Clock & Calendar", links: englishTimeMenu, footer: [{ href: "/en/time-and-date", label: "All clock and calendar tools →" }] },
+    { id: "time", label: "Date & Time", links: englishTimeMenu },
   ];
 }
 

@@ -6,12 +6,7 @@
 export const KALDIRILAN_HESAP_SAYFALARI: Readonly<Record<string, string>> = {
   "/agirlik-karsilastirma": "/kategoriler/kutle",
   "/apgar-skoru-hesaplama": "/hesaplayicilar",
-  "/mantolama-hesaplama": "/yalitim-amortisman-hesaplama",
-  "/jpg-webp-cevirme": "/gorsel-donusturucu",
-  "/png-jpg-cevirme": "/gorsel-donusturucu",
-  "/png-webp-cevirme": "/gorsel-donusturucu",
-  "/webp-jpg-cevirme": "/gorsel-donusturucu",
-  "/webp-png-cevirme": "/gorsel-donusturucu",
+  "/mantolama-hesaplama": "/u-degeri-hesaplama",
 };
 
 export const hesapSayfasiKalkti = (path: string) => Object.hasOwn(KALDIRILAN_HESAP_SAYFALARI, path);

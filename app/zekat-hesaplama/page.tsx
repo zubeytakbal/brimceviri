@@ -48,7 +48,6 @@ export default function ZekatPage() {
     <TimeToolPage
       crumbs={[
         { href: "/", label: "Ana Sayfa" },
-        { href: "/dini-araclar", label: "Dini Araçlar" },
         { href: path, label: "Zekât Hesaplama" },
       ]}
       crumbLabel="Sayfa yolu"

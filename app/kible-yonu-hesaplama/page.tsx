@@ -37,12 +37,9 @@ const satirlar = [...turkeyProvinces]
   }));
 
 const ilgili = [
-  { href: "/canli-pusula", label: "Canlı Pusula" },
-  { href: "/namaz-rekat-tablosu", label: "Namaz Rekât Tablosu" },
-  { href: "/zikirmatik", label: "Online Zikirmatik" },
-  { href: "/seferi-mesafe-hesaplama", label: "Seferî Mesafe" },
-  { href: "/umre-mesafe-hesaplama", label: "Umre Mesafe" },
-  { href: "/dini-araclar", label: "Tüm Dini Araçlar" },
+  { href: "/kaza-namazi-hesaplama", label: "Kaza Namazı Hesaplama" },
+  { href: "/zekat-hesaplama", label: "Zekât Hesaplama" },
+  { href: "/hatim-hesaplama", label: "Hatim Hesaplama" },
 ];
 
 const faqItems: FaqItem[] = [
@@ -76,7 +73,6 @@ export default function KiblePage() {
     <TimeToolPage
       crumbs={[
         { href: "/", label: "Ana Sayfa" },
-        { href: "/dini-araclar", label: "Dini Araçlar" },
         { href: path, label: "Kıble Yönü" },
       ]}
       crumbLabel="Sayfa yolu"

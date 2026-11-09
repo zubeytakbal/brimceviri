@@ -3,7 +3,7 @@ import { BengaliKaza } from "../../components/dini/BengaliIslamicTools";
 import TimeToolPage from "../../components/time/TimeToolPage";
 import type { FaqItem } from "../../converter/faqSchema";
 import { kazaNamazi } from "../../converter/diniHesaplar";
-import { BENGALI_ISLAMIC_HUB, ISLAMIC_TOOL_PATHS, islamicAlternates } from "../../i18n/islamicToolPaths";
+import { ISLAMIC_TOOL_PATHS, islamicAlternates } from "../../i18n/islamicToolPaths";
 import { buildSiteUrl } from "../../siteConfig";
 
 const path = ISLAMIC_TOOL_PATHS.kaza.bn;
@@ -40,7 +40,6 @@ export default function BnKazaPage() {
     <TimeToolPage
       crumbs={[
         { href: "/bn", label: "হোম" },
-        { href: BENGALI_ISLAMIC_HUB, label: "ইসলামিক টুলস" },
         { href: path, label: "কাজা নামাজ হিসাব" },
       ]}
       crumbLabel="নেভিগেশন"
@@ -52,7 +51,6 @@ export default function BnKazaPage() {
         links: [
           { href: ISLAMIC_TOOL_PATHS.zakat.bn, label: "যাকাত ক্যালকুলেটর" },
           { href: ISLAMIC_TOOL_PATHS.khatam.bn, label: "কুরআন খতম পরিকল্পনা" },
-          { href: ISLAMIC_TOOL_PATHS.qasr.bn, label: "কসর দূরত্ব হিসাব" },
         ],
       }}
       tocTitle="সূচিপত্র"

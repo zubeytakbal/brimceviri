@@ -7,7 +7,7 @@ import {
   getCategoryPathByCategory,
 } from "../../converter/categoryPages";
 import { conversionPages } from "../../converter/conversionPages";
-import { isMergedAway } from "../../converter/mergedPairs";
+import { ciftYayinda } from "../../converter/mergedPairs";
 import {
   findUnitArticle,
 } from "../../converter/unitArticles";
@@ -243,7 +243,7 @@ const specificScientificSections =
   // Ters yönü birleştirilmiş çiftler tek sayfa olduğu için bir kez listelenir (iki yön, ↔).
   const relatedConversions = conversionPages.filter(
     (page) =>
-      !isMergedAway(page.slug) &&
+      ciftYayinda(page.slug) &&
       page.category === unitPage.category &&
       (page.fromUnit === unitPage.unit ||
         page.toUnit === unitPage.unit)

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "@/app/components/SiteLink";
 import { KazaOrucuHesaplama } from "../components/dini/DiniAraclar";
 import TimeToolPage from "../components/time/TimeToolPage";
 import type { FaqItem } from "../converter/faqSchema";
@@ -41,7 +40,6 @@ export default function KazaOrucuPage() {
     <TimeToolPage
       crumbs={[
         { href: "/", label: "Ana Sayfa" },
-        { href: "/dini-araclar", label: "Dini Araçlar" },
         { href: path, label: "Kaza Orucu Hesaplama" },
       ]}
       crumbLabel="Sayfa yolu"
@@ -65,7 +63,7 @@ export default function KazaOrucuPage() {
           kaza orucu açıklamasına
         </a>{" "}
         bakabilirsiniz. Bu araç yalnızca gün sayısını ve planı hesaplar; keffâret gibi ayrı hükümler hesaba katılmaz. Ramazan'ın kaç gün
-        kaldığını <Link href="/geri-sayim">geri sayım</Link> sayfasında görebilirsiniz.
+        kaldığını geri sayım sayfasında görebilirsiniz.
       </p>
     </TimeToolPage>
   );

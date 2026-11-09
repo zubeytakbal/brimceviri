@@ -186,7 +186,3 @@ export function citySlugDe(city: WorldCity) {
 export function findCityDe(slug: string) {
   return worldCities.find((c) => citySlugDe(c) === slug) ?? null;
 }
-
-export function cityPathDe(city: WorldCity) {
-  return `/de/uhrzeit/${citySlugDe(city)}`;
-}

@@ -6,7 +6,7 @@ import { getGoldPricePerGram, getSilverPricePerGram } from "../../converter/live
 import { ZakatHawlCalculator } from "../../components/dini/ArabicIslamicTools";
 import { riyadhYawm } from "../../converter/calendar/saTaqwim";
 import { ymdKey } from "../../converter/time/dateMath";
-import { ARABIC_ISLAMIC_HUB, ARABIC_ISLAMIC_PATHS, islamicAlternates } from "../../i18n/islamicToolPaths";
+import { ARABIC_ISLAMIC_PATHS, islamicAlternates } from "../../i18n/islamicToolPaths";
 import { buildSiteUrl } from "../../siteConfig";
 
 const faqItems: FaqItem[] = [
@@ -72,8 +72,7 @@ export default async function ZakatCalculatorPage() {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "الرئيسية", item: buildSiteUrl("/ar") },
-      { "@type": "ListItem", position: 2, name: "أدوات إسلامية", item: buildSiteUrl(ARABIC_ISLAMIC_HUB) },
-      { "@type": "ListItem", position: 3, name: "حاسبة الزكاة", item: buildSiteUrl("/ar/zakat-calculator") },
+      { "@type": "ListItem", position: 2, name: "حاسبة الزكاة", item: buildSiteUrl("/ar/zakat-calculator") },
     ],
   };
 
@@ -85,8 +84,6 @@ export default async function ZakatCalculatorPage() {
       <div className="all-conversions-shell">
         <nav className="breadcrumbs" aria-label="مسار الصفحة">
           <Link href="/ar">الرئيسية</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <Link href={ARABIC_ISLAMIC_HUB}>أدوات إسلامية</Link>
           <span aria-hidden="true">&rsaquo;</span>
           <span>حاسبة الزكاة</span>
         </nav>
@@ -152,7 +149,7 @@ export default async function ZakatCalculatorPage() {
 
           <h2>أدوات ذات صلة</h2>
           <p>
-            كل الحاسبات الإسلامية في <Link href={ARABIC_ISLAMIC_HUB}>صفحة الأدوات الإسلامية</Link>، ومنها{" "}
+            من الحاسبات الإسلامية الأخرى{" "}
             <Link href={ARABIC_ISLAMIC_PATHS.iddah}>حاسبة العدة</Link> و<Link href={ARABIC_ISLAMIC_PATHS.aqiqah}>حساب يوم العقيقة</Link>. لحساب أوقات الصلاة واتجاه القبلة يمكنك زيارة{" "}
             <Link href="/ar/prayer-times-calculator">حاسبة مواقيت الصلاة واتجاه القبلة</Link>
             {" "}، ولتحويل التاريخ بين الميلادي والهجري يمكنك زيارة{" "}

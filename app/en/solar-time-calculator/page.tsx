@@ -83,7 +83,6 @@ export default function EnglishSolarTimePage() {
     <TimeToolPage
       crumbs={[
         { href: "/en", label: "Home" },
-        { href: "/en/geography-calculators", label: "Geography" },
         { href: path, label: "Solar Time Calculator" },
       ]}
       crumbLabel="Breadcrumb"
@@ -146,7 +145,7 @@ export default function EnglishSolarTimePage() {
       </div>
       <p>
         The equation of time uses the NOAA approximation, accurate to about half a minute; solar noon is typically within a minute of an ephemeris.
-        For sunrise, sunset and golden hour, use the <Link href="/en/golden-hour">golden hour calculator</Link>.
+        For sunrise, sunset and golden hour, use the golden hour calculator.
       </p>
 
       <h2 id="equation">Equation of time by month</h2>
@@ -208,7 +207,7 @@ export default function EnglishSolarTimePage() {
         Madrid shows how far a clock can drift: Spain has used Central European Time since 1940, even though it lies mostly west of Greenwich. China uses a
         single UTC+8 zone, which keeps Beijing close to the Sun but leaves Kashgar in the far west almost three hours behind. To compare the official
         time between places instead, use the <Link href="/en/time-zone-converter">time zone converter</Link> or the{" "}
-        <Link href="/en/world-clock">world clock</Link>.
+        world clock.
       </p>
     </TimeToolPage>
   );

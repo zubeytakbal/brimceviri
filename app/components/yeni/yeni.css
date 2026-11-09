@@ -139,7 +139,6 @@
   --yy-vurgu: #3b68fc;
   --yy-kagit: #f5f7fb;
   font-size: 14px;
-  word-spacing: 0.08em;
 }
 .yy-sayfa h1, .yy-sayfa h2, .yy-sayfa h3 { font-family: var(--font-body), system-ui, sans-serif; color: var(--yy-metin); }
 .yy-duzen {
@@ -218,7 +217,6 @@
 .yy-ust .directory-search { position: relative; padding: 0; margin: 0; background: none; border: 0; border-radius: 0; box-shadow: none; }
 .yy-ust .directory-search label, .yy-ust .directory-search-hint { position: absolute; width: 1px; height: 1px; margin: 0; padding: 0; overflow: hidden; clip-path: inset(50%); }
 .yy-arama { flex: 1 1 320px; max-width: 560px; }
-.yy-ust { word-spacing: 0.08em; }
 .yy-ust .directory-search-field { display: flex; gap: 0; margin: 0; width: 100%; }
 .yy-ust .directory-search-field input { height: 34px; min-height: 34px; padding: 0 10px; font-size: 13.5px; border: 1px solid #c9ced4; border-right: 0; border-radius: 4px 0 0 4px; box-shadow: none; flex: 1 1 auto; width: auto; min-width: 0; }
 .yy-ust .directory-search-field button { height: 34px; min-height: 34px; padding: 0 12px; font-size: 13px; border-radius: 0 4px 4px 0; background: #15191f; border: 1px solid #15191f; box-shadow: none; color: #fff; }
@@ -445,27 +443,50 @@
   .yy-populer a { padding: 18px; }
 }
 .yy-ana-sayfa .yy-populer { margin: 0 auto; }
-/* Alt menu: Omni duzeni; solda slogan ve logo, sagda simgeli kategoriler ve uc sutun, en altta telif seridi */
-.yy-alt { background: #fff; border-top: 1px solid #e3e6eb; }
-.yy-alt-ana { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 48px; max-width: 1425px; margin: 0 auto; padding: 64px 24px 48px; box-sizing: border-box; }
-.yy-alt-slogan { margin: 0 0 18px; font-size: 32px; font-weight: 700; line-height: 40px; color: #0a0a0a; }
-.yy-alt .yy-logo { font-size: 26px; }
-.yy-alt-kisa { margin: 12px 0 0; font-size: 14px; line-height: 22px; color: #5b6472; }
-.yy-alt h2 { margin: 0 0 22px; font-size: 18px; font-weight: 600; line-height: 26px; color: #0a0a0a; }
+/* Alt menu: Omni olculeri (1440 genislikte olculdu). Slogan 28/700; basliklar 15,8/700; baglantilar 13,4/400,
+   satir araligi 40; kategori sutunlari 340; simge 24 + 16 bosluk; baslik ile ilk satir arasi 56; serit 13,4/600 gri. */
+.yy-alt { background: #fff; border-top: 1px solid #e3e6eb; color: #212427; }
+.yy-alt-ana { display: grid; grid-template-columns: 318px minmax(0, 1fr); max-width: 1425px; margin: 0 auto; padding: 56px 24px 0 76px; box-sizing: border-box; }
+.yy-alt-sol { padding-top: 19px; }
+.yy-alt-slogan { margin: 0 0 24px; max-width: 190px; font-size: 28px; font-weight: 700; line-height: 36px; color: #212427; }
+.yy-alt .yy-logo { font-size: 22px; }
+.yy-alt-kisa { margin: 12px 0 0; max-width: 240px; font-size: 13.4px; line-height: 24px; color: #748091; }
+.yy-alt h2 { margin: 0 0 32px; font-size: 15.8px; font-weight: 700; line-height: 24px; color: #212427; }
 .yy-alt ul { list-style: none; margin: 0; padding: 0; }
-.yy-alt-kategoriler { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px 24px; }
-.yy-alt-kategoriler a { display: inline-flex; align-items: center; gap: 14px; font-size: 15px; color: #0a0a0a; }
+.yy-alt-kategoriler, .yy-alt-sutunlar { display: grid; grid-template-columns: repeat(3, 340px); }
+.yy-alt-kategoriler { row-gap: 16px; }
+.yy-alt-kategoriler a, .yy-alt-sutunlar a { font-size: 13.4px; font-weight: 400; line-height: 24px; color: #212427; }
+.yy-alt-kategoriler a { display: inline-flex; align-items: center; gap: 16px; }
 .yy-alt-kategoriler svg { color: #3b68fc; flex: 0 0 auto; }
 .yy-alt-kategoriler a:hover, .yy-alt-sutunlar a:hover { color: #3b68fc; text-decoration: none; }
-.yy-alt-sutunlar { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 56px; }
+.yy-alt-sutunlar { margin-top: 56px; }
 .yy-alt-sutunlar li + li { margin-top: 16px; }
-.yy-alt-sutunlar a { font-size: 15px; color: #0a0a0a; }
-.yy-alt-serit { border-top: 1px solid #e3e6eb; }
-.yy-alt-serit div { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 48px; max-width: 1425px; margin: 0 auto; padding: 20px 24px; box-sizing: border-box; font-size: 14px; font-weight: 500; color: #5b6472; }
-.yy-alt-serit a { color: #5b6472; }
-@media (max-width: 960px) {
-  .yy-alt-ana { grid-template-columns: minmax(0, 1fr); gap: 32px; padding: 40px 16px 32px; }
-  .yy-alt-slogan { font-size: 24px; line-height: 32px; }
-  .yy-alt-kategoriler { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 16px; }
-  .yy-alt-sutunlar { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 32px; }
+.yy-alt-serit { margin-top: 64px; border-top: 1px solid #e3e6eb; }
+.yy-alt-serit > div { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 12px 40px; max-width: 1425px; margin: 0 auto; padding: 16px 24px; box-sizing: border-box; font-size: 13.4px; font-weight: 600; line-height: 24px; color: #748091; }
+.yy-alt-serit a { color: #748091; }
+.yy-alt-serit a:hover { color: #3b68fc; text-decoration: none; }
+/* Dil secimi: 320x40 kutu; acilinca liste yukari dogru acilir. JS gerekmez, diller duz baglanti. */
+.yy-dil { position: relative; width: 320px; max-width: 100%; }
+.yy-dil summary { display: flex; align-items: center; gap: 8px; height: 40px; padding: 2px 40px 2px 8px; box-sizing: border-box; border-radius: 6px; background: #f8f9fb; font-size: 15px; font-weight: 400; color: #0a0a0a; cursor: pointer; list-style: none; position: relative; }
+.yy-dil summary::-webkit-details-marker { display: none; }
+.yy-dil summary svg { color: #748091; }
+.yy-dil summary .yy-dil-ok { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); transition: transform .15s; }
+.yy-dil[open] summary .yy-dil-ok { transform: translateY(-50%) rotate(180deg); }
+.yy-dil summary:focus-visible { outline: 2px solid #3b68fc; outline-offset: 2px; }
+.yy-dil ul { position: absolute; left: 0; right: 0; bottom: calc(100% + 6px); z-index: 20; max-height: 320px; overflow-y: auto; padding: 6px 0; background: #fff; border: 1px solid #d2dcff; border-radius: 6px; box-shadow: 0 6px 16px rgba(59, 104, 252, .12); }
+.yy-dil li a { display: block; padding: 8px 12px; font-size: 15px; font-weight: 400; line-height: 24px; color: #0a0a0a; }
+.yy-dil li a:hover { background: #f7f9ff; color: #2f58e0; text-decoration: none; }
+.yy-dil li a[aria-current] { font-weight: 600; color: #2f58e0; }
+@media (max-width: 1180px) {
+  .yy-alt-ana { grid-template-columns: minmax(0, 1fr); row-gap: 40px; padding: 48px 24px 0; }
+  .yy-alt-sol { padding-top: 0; }
+  .yy-alt-kategoriler, .yy-alt-sutunlar { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 24px; }
+}
+@media (max-width: 720px) {
+  .yy-alt-ana { padding: 40px 16px 0; }
+  .yy-alt-slogan { max-width: none; font-size: 24px; line-height: 32px; }
+  .yy-alt-kategoriler { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 16px; }
+  .yy-alt-sutunlar { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 40px; margin-top: 48px; }
+  .yy-alt-serit { margin-top: 48px; }
+  .yy-alt-serit > div { flex-direction: column; padding: 16px; gap: 12px; }
 }

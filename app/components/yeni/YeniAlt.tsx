@@ -1,10 +1,12 @@
 // Yeni yapidaki sayfalarin alt menusu: solda slogan ve logo; sagda simgeli arac kategorileri ve uc sutun
-// kurumsal baglanti; en altta telif seridi.
+// kurumsal baglanti; en altta dil secimi, gizlilik ve telif seridi.
 import "./yeni.css";
 import Link from "@/app/components/SiteLink";
 import { SITE_NAME } from "../../siteConfig";
 import { HESAPLAYICI_GRUPLARI } from "./anaSayfaVerisi";
 import { GrupIkonu } from "./grupIkonlari";
+import { ChevronDown, Globe } from "lucide-react";
+import { LOCALE_DEFINITIONS, PUBLISHED_LOCALES } from "../../i18n/config";
 
 const KATEGORILER = [{ slug: "donusum", ad: "Dönüşüm" }, ...HESAPLAYICI_GRUPLARI.map((g) => ({ slug: g.slug, ad: g.ad }))];
 
@@ -55,7 +57,7 @@ export default function YeniAlt() {
               {KATEGORILER.map((k) => (
                 <li key={k.slug}>
                   <Link href={`/hesaplayicilar/${k.slug}`}>
-                    <GrupIkonu slug={k.slug} boyut={22} />
+                    <GrupIkonu slug={k.slug} boyut={24} />
                     {k.ad}
                   </Link>
                 </li>
@@ -80,6 +82,25 @@ export default function YeniAlt() {
       </div>
       <div className="yy-alt-serit">
         <div>
+          <details className="yy-dil">
+            <summary aria-label="Dil seçin">
+              <Globe size={18} strokeWidth={1.8} aria-hidden="true" />
+              {LOCALE_DEFINITIONS.tr.label}
+              <ChevronDown className="yy-dil-ok" size={18} strokeWidth={2} aria-hidden="true" />
+            </summary>
+            <ul>
+              {PUBLISHED_LOCALES.map((l) => {
+                const d = LOCALE_DEFINITIONS[l];
+                return (
+                  <li key={l}>
+                    <a href={d.homePath} hrefLang={d.htmlLang} lang={d.htmlLang} aria-current={l === "tr" ? "true" : undefined}>
+                      {d.label}
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </details>
           <Link href="/gizlilik">Gizlilik, çerezler ve kullanım koşulları</Link>
           <span>
             © {new Date().getFullYear()} {SITE_NAME}

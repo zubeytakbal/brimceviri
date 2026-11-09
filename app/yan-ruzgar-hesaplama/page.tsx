@@ -130,9 +130,9 @@ export default function CrosswindCalculatorPage() {
             Diğer pilot araçları için{" "}
             <Link href="/hesaplayicilar#harita-ve-havacilik">Harita, Coğrafya ve Havacılık</Link> sayfasına,
             uçuş planlaması için{" "}
-            <Link href="/inis-orani-hesaplama">İniş Oranı Hesaplama</Link>,{" "}
-            <Link href="/agirlik-denge-hesaplama">Ağırlık ve Denge Hesaplama</Link>,{" "}
-            <Link href="/yogunluk-irtifasi-hesaplama">Yoğunluk İrtifası Hesaplama</Link>
+            İniş Oranı Hesaplama,{" "}
+            Ağırlık ve Denge Hesaplama,{" "}
+            Yoğunluk İrtifası Hesaplama
             {" "}sayfalarına bakabilirsin.
           </p>
 

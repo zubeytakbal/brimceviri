@@ -42,7 +42,6 @@ export const SAAT_GRUPLARI: SaatGrubu[] = [
   {
     baslik: "Gökyüzü",
     linkler: [
-      { href: "/gunes-acisi-ve-golge-boyu-hesaplama", label: "Güneş açısı ve gölge boyu" },
     ],
   },
 ];

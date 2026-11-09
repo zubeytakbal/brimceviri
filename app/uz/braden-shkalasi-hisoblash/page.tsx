@@ -25,10 +25,9 @@ export const metadata: Metadata = {
     "Sezgi idroki, namlik, faollik, harakatchanlik, ovqatlanish va ishqalanish/sirpanish kichik shkalalarini tanlang: Braden Shkalasi jami ballini hisoblang.",
   alternates: {
     canonical: pagePath,
-    languages: {
-      tr: "/braden-skalasi-hesaplama",
+    languages: {
       "uz-UZ": pagePath,
-      "x-default": "/braden-skalasi-hesaplama",
+      "x-default": pagePath,
     },
   },
   openGraph: {

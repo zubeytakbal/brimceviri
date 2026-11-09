@@ -19,14 +19,14 @@ console.log("siteNavData.generated.ts yazildi");
 // conversionPages buyuk oldugu icin istemciye yalnizca bu kucuk harita gider.
 import { categoryPages } from "../app/converter/categoryPages";
 import { conversionPages } from "../app/converter/conversionPages";
-import { isMergedAway } from "../app/converter/mergedPairs";
+import { ciftYayinda } from "../app/converter/mergedPairs";
 import { yeniYapiKategorileri } from "../app/converter/siteYapisi";
 
 const kategoriSlugu = new Map(categoryPages.map((c) => [c.category, c.slug]));
 const tasinan: Record<string, string> = {};
 for (const p of conversionPages) {
   const k = kategoriSlugu.get(p.category);
-  if (k && yeniYapiKategorileri.has(k) && !isMergedAway(p.slug)) tasinan[p.slug] = k;
+  if (k && yeniYapiKategorileri.has(k) && ciftYayinda(p.slug)) tasinan[p.slug] = k;
 }
 writeFileSync(
   join(__dirname, "..", "app", "converter", "tasinanCiftler.generated.ts"),

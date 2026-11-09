@@ -26,11 +26,6 @@ export const matematikTools: MatematikTool[] = [
     title: "Ortalama, Medyan, Mod ve Standart Sapma Hesaplama",
   },
   {
-    id: "mod",
-    href: "/bilim-hesaplayicilari/matematik/mod-hesaplama",
-    title: "Mod (Tepe Değer) Hesaplama",
-  },
-  {
     id: "olasilik",
     href: "/bilim-hesaplayicilari/matematik/olasilik-hesaplama",
     title: "Olasılık Hesaplama",
@@ -54,11 +49,6 @@ export const matematikTools: MatematikTool[] = [
     id: "3-bilinmeyenli-denklem-sistemi",
     href: "/bilim-hesaplayicilari/matematik/3-bilinmeyenli-denklem-sistemi-cozme",
     title: "3 Bilinmeyenli Denklem Sistemi Çözme",
-  },
-  {
-    id: "bolen-sayisi",
-    href: "/bilim-hesaplayicilari/matematik/bolen-sayisi-hesaplama",
-    title: "Bölen Sayısı Hesaplama",
   },
   {
     id: "sayi-tabani",

@@ -49,7 +49,6 @@ export default function SlopePage() {
         links: [
           { href: "/kategoriler/aci", label: "Açı Çevirici" },
           { href: "/pis-su-borusu-egimi-hesaplama", label: "Pis Su Borusu Eğimi" },
-          { href: "/gunes-acisi-ve-golge-boyu-hesaplama", label: "Güneş Açısı ve Gölge" },
           { href: "/kategoriler/yagis-miktari", label: "Yağış Miktarı" },
         ],
       }}

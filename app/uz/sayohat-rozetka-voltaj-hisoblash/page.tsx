@@ -30,10 +30,9 @@ export const metadata: Metadata = {
     "Boradigan mamlakatingizga adapter yoki o'zgartirgich olib borish kerakligini hisoblang: mamlakatingizni va borish mamlakatingizni tanlang, rozetka turi, voltaj va chastota mosligini darhol ko'ring.",
   alternates: {
     canonical: pagePath,
-    languages: {
-      tr: "/seyahat-priz-voltaj-hesaplama",
+    languages: {
       "uz-UZ": pagePath,
-      "x-default": "/seyahat-priz-voltaj-hesaplama",
+      "x-default": pagePath,
     },
   },
   openGraph: {

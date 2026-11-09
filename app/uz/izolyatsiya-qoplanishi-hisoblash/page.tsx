@@ -30,10 +30,9 @@ export const metadata: Metadata = {
     "Devor maydoni, mavjud devor va qo'shiladigan izolyatsiya materiali bilan yillik energiya tejamkorligini va izolyatsiyaning necha yilda o'zini oqlashini hisoblang.",
   alternates: {
     canonical: pagePath,
-    languages: {
-      tr: "/yalitim-amortisman-hesaplama",
+    languages: {
       "uz-UZ": pagePath,
-      "x-default": "/yalitim-amortisman-hesaplama",
+      "x-default": pagePath,
     },
   },
   openGraph: {

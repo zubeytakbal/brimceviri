@@ -38,7 +38,7 @@ import { calculatorPages } from "../converter/calculatorPages";
 import { calculatorSearchIndex } from "../converter/calculatorSearchIndex";
 import { categoryPages } from "../converter/categoryPages";
 import { conversionPages } from "../converter/conversionPages";
-import { isMergedAway } from "../converter/mergedPairs";
+import { ciftYayinda } from "../converter/mergedPairs";
 import { englishCalculatorPages } from "../converter/localizedCalculatorPages";
 import { englishCategoryPages } from "../converter/localizedCategoryPages";
 import { englishConversionPages } from "../converter/localizedConversionPages";
@@ -356,27 +356,6 @@ const extraCategoryCardsByLocale: Record<Locale, HomeCategoryCard[]> = {
           id: "mutfak-kasik-gram",
           href: "/mutfak-olculeri-cevirici",
           label: "Yemek Kaşığı → Gram",
-        },
-      ],
-    },
-    {
-      id: "tarif",
-      iconKey: "tarif",
-      name: "Tarif Çevirici",
-      symbol: "2x",
-      description:
-        "Tarifini yapıştır, çarpanı seç: tüm malzeme miktarları ölçeklenir ve bilinen malzemelerde gram karşılığı otomatik hesaplanır.",
-      href: "/tarif-cevirici",
-      links: [
-        {
-          id: "tarif-olcekle",
-          href: "/tarif-cevirici",
-          label: "Tarifi Ölçekle",
-        },
-        {
-          id: "tarif-gram",
-          href: "/tarif-cevirici",
-          label: "Bardağı Grama Çevir",
         },
       ],
     },
@@ -1228,7 +1207,7 @@ function createHomeData(locale: Locale): HomeData {
 
   const conversions =
     locale === "tr"
-      ? conversionPages.filter((page) => !isMergedAway(page.slug)).map((page) => ({
+      ? conversionPages.filter((page) => ciftYayinda(page.slug)).map((page) => ({
           id: page.slug,
           sourceSlug: page.slug,
           href: `/${page.slug}`,

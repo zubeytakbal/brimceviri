@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
+import QsofaCalculator from "../components/QsofaCalculator";
 import SofaCalculator from "../components/SofaCalculator";
 import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
@@ -65,6 +66,12 @@ export default function SofaPage() {
         <SofaCalculator />
 
         <section className="category-article-content">
+          <h2>Hızlı tarama: qSOFA</h2>
+          <p>Laboratuvar sonucu beklenmeden yatak başında kullanılan üç ölçütlü kısa tarama. Tanı koymaz; tam SOFA değerlendirmesinin yerini tutmaz.</p>
+          <QsofaCalculator />
+        </section>
+
+        <section className="category-article-content">
           <h2 id="yorum">SOFA skoru nasıl değerlendirilir?</h2>
           <p>
             SOFA, altı organ sisteminin her birine 0–4 puan vererek 0–24 arası bir toplam üretir; yüksek puan daha ağır organ
@@ -75,7 +82,7 @@ export default function SofaPage() {
           <p>
             Tek bir ölçümden çok puanın zaman içindeki seyri anlamlıdır; yoğun bakımda SOFA genellikle 24 saatte bir
             yeniden hesaplanır. Yatak başında hızlı tarama için laboratuvar gerektirmeyen{" "}
-            <Link href="/qsofa-hesaplama">qSOFA</Link> kullanılır. Bu araç klinik değerlendirmenin yerine geçmez.
+            qSOFA kullanılır. Bu araç klinik değerlendirmenin yerine geçmez.
           </p>
 
           <h2 id="esikler">Organ sistemlerine göre puan eşikleri</h2>
@@ -129,7 +136,7 @@ export default function SofaPage() {
             </table>
           </div>
           <p>
-            <small>* Solunum desteği altındayken. Bilinç puanı için <Link href="/glasgow-koma-skalasi-hesaplama">Glasgow Koma Skalası</Link> hesaplanabilir.</small>
+            <small>* Solunum desteği altındayken. Bilinç puanı için Glasgow Koma Skalası hesaplanabilir.</small>
           </p>
 
           <h2>Sık Sorulan Sorular</h2>
@@ -152,17 +159,14 @@ export default function SofaPage() {
 
           <h2>Diğer Risk Skorlama Araçları</h2>
           <ul className="related-conversion-list">
-            <li><Link href="/qsofa-hesaplama">qSOFA Hesaplama</Link></li>
-            <li><Link href="/glasgow-koma-skalasi-hesaplama">Glasgow Koma Skalası Hesaplama</Link></li>
             <li><Link href="/meld-skoru-hesaplama">MELD Skoru Hesaplama</Link></li>
             <li><Link href="/wells-skoru-hesaplama">Wells Skoru Hesaplama</Link></li>
-            <li><Link href="/cha2ds2-vasc-skoru-hesaplama">CHA2DS2-VASc Skoru Hesaplama</Link></li>
           </ul>
 
           <h2>İlgili araçlar</h2>
           <p>
             Hızlı sepsis taraması için{" "}
-            <Link href="/qsofa-hesaplama">qSOFA Hesaplama</Link>, diğer
+            qSOFA Hesaplama, diğer
             doktor ve hemşire araçları için{" "}
             <Link href="/hesaplayicilar#klinik">Klinik Skorlar</Link>{" "}
             sayfasına bakabilirsin.

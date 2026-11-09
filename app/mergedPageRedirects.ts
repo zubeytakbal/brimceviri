@@ -90,7 +90,6 @@ function legacyRedirects(): MergedRedirect[] {
     r("/reklam-metrikleri-hesaplama", "/hesaplayicilar"),
     r("/uzaktan-calisma-ofis-maliyeti-karsilastirma", "/hesaplayicilar"),
     r("/gubre-seyreltme-hesaplama", "/gubre-ihtiyaci-hesaplama"),
-    r("/morse-dusme-skalasi-hesaplama", "/braden-skalasi-hesaplama"),
     r("/embed/uzaktan-calisma-ofis-maliyeti-karsilastirma", "/hesaplayicilar"),
     r("/uz/atmosfera-bar", "/uz/turkumlar/bosim"),
     r("/uz/bar-atmosfera", "/uz/turkumlar/bosim"),

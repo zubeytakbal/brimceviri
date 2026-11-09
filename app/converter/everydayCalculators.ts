@@ -45,11 +45,6 @@ export const everydayCalculators: EverydayCalculator[] = [
     label: "Duvar Kağıdı Hesaplama",
   },
   {
-    id: "tasinma-kutusu",
-    href: "/tasinma-kutusu-hesaplama",
-    label: "Taşınma Kutusu Hesaplama",
-  },
-  {
     id: "dogalgaz-tuketimi",
     href: "/dogalgaz-tuketimi-hesaplama",
     label: "Doğalgaz Tüketimi Hesaplama",
@@ -100,39 +95,9 @@ export const everydayCalculators: EverydayCalculator[] = [
     label: "Seyir Süresi Hesaplama",
   },
   {
-    id: "yogunluk-irtifasi-hesaplama",
-    href: "/yogunluk-irtifasi-hesaplama",
-    label: "Yoğunluk İrtifası Hesaplama",
-  },
-  {
     id: "yan-ruzgar-hesaplama",
     href: "/yan-ruzgar-hesaplama",
     label: "Yan Rüzgar Bileşeni Hesaplama",
-  },
-  {
-    id: "inis-orani-hesaplama",
-    href: "/inis-orani-hesaplama",
-    label: "İniş Oranı Hesaplama",
-  },
-  {
-    id: "agirlik-denge-hesaplama",
-    href: "/agirlik-denge-hesaplama",
-    label: "Ağırlık ve Denge Hesaplama",
-  },
-  {
-    id: "buyuk-daire-mesafesi-hesaplama",
-    href: "/buyuk-daire-mesafesi-hesaplama",
-    label: "Büyük Daire Mesafesi Hesaplama",
-  },
-  {
-    id: "vucut-yuzey-alani-hesaplama",
-    href: "/vucut-yuzey-alani-hesaplama",
-    label: "Vücut Yüzey Alanı Hesaplama",
-  },
-  {
-    id: "kreatinin-klirensi-hesaplama",
-    href: "/kreatinin-klirensi-hesaplama",
-    label: "Kreatinin Klirensi Hesaplama",
   },
   {
     id: "iv-damla-hizi-hesaplama",
@@ -140,24 +105,9 @@ export const everydayCalculators: EverydayCalculator[] = [
     label: "IV Damla Hızı Hesaplama",
   },
   {
-    id: "glasgow-koma-skalasi-hesaplama",
-    href: "/glasgow-koma-skalasi-hesaplama",
-    label: "Glasgow Koma Skalası Hesaplama",
-  },
-  {
-    id: "cha2ds2-vasc-skoru-hesaplama",
-    href: "/cha2ds2-vasc-skoru-hesaplama",
-    label: "CHA2DS2-VASc Skoru Hesaplama",
-  },
-  {
     id: "wells-skoru-hesaplama",
     href: "/wells-skoru-hesaplama",
     label: "Wells Skoru Hesaplama",
-  },
-  {
-    id: "qsofa-hesaplama",
-    href: "/qsofa-hesaplama",
-    label: "qSOFA Hesaplama",
   },
   {
     id: "sofa-skoru-hesaplama",
@@ -168,11 +118,6 @@ export const everydayCalculators: EverydayCalculator[] = [
     id: "meld-skoru-hesaplama",
     href: "/meld-skoru-hesaplama",
     label: "MELD Skoru Hesaplama",
-  },
-  {
-    id: "braden-skalasi-hesaplama",
-    href: "/braden-skalasi-hesaplama",
-    label: "Braden Skalası Hesaplama",
   },
   {
     id: "cbm-hesaplama",

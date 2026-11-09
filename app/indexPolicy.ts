@@ -1,11 +1,13 @@
 // Dizine açık sayfa politikası (AdSense "düşük değerli içerik" temizliği, Ekim 2026).
 // Kapalı sayfalar silinmez: derlemeden sonra <meta name="robots"> "noindex, follow" olur (scripts/postbuild.ts),
 // sitemap.xml'den çıkar (app/sitemap.ts) ve hreflang bağlantılarından düşer.
-// Yalnızca yabancı dil sayfaları kapanır; Türkçe sayfaların hepsi açık kalır. Geçicidir: AdSense onayından sonra
+// Kasım 2026: Türkçe tarafta yeniden yazılana kadar kapalı sayfalar ile silinen/yönlenen adresler app/kasimTemizligi.ts'te.
+// Geçicidir: AdSense onayından sonra
 // bir dili ya da sayfayı açmak için ilgili listeden çıkarmak yeterli.
 // Kural Search Console verisine dayanır: son 3 ayda en az 2 tıklama alan sayfa (indexPolicyClicked.ts) her zaman açık kalır.
 import { CLOSED_LOCALES } from "./i18n/closedLocales";
 import { CLICKED_PATHS } from "./indexPolicyClicked";
+import { KAPALI_TR_SAYFALAR, kasimdaKalkti } from "./kasimTemizligi";
 
 export { CLOSED_LOCALES };
 
@@ -22,8 +24,10 @@ const CLICKED = new Set(CLICKED_PATHS);
 export function isClosedPath(path: string): boolean {
   const p = path !== "/" && path.endsWith("/") ? path.slice(0, -1) : path;
   const first = p.split("/")[1] ?? "";
+  // Türkçe temizlik kararı tıklama kuralından önce gelir (ör. tıklama alan klinik skorlar bilerek kapalı).
+  if (KAPALI_TR_SAYFALAR.has(p) || kasimdaKalkti(p)) return true;
   if (CLICKED.has(p)) return false; // kullanılan sayfa hangi dilde olursa olsun açık
   if ((CLOSED_LOCALES as readonly string[]).includes(first)) return true;
   if (PARTIAL_LOCALES.includes(first)) return p !== `/${first}` && !PARTIAL_KEEP.has(p);
-  return false; // Türkçe sayfaların hepsi açık.
+  return false;
 }

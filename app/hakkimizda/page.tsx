@@ -67,7 +67,7 @@ export default function AboutPage() {
               </li>
               <li>
                 Türkiye&apos;ye özgü çeviriler: <Link href="/eski-para-yeni-para-cevirme">eski para - yeni para</Link>,{" "}
-                ezani saat, <Link href="/ebced-hesabi">ebced hesabı</Link>,{" "}
+                ezani saat, ebced hesabı,{" "}
                 <Link href="/tarih-cevirici">hicri ve Rumi tarih</Link>, dönüm ve eski Osmanlı ölçüleri.
               </li>
               <li>

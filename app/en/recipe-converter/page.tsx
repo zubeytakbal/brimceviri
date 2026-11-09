@@ -10,9 +10,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/en/recipe-converter",
     languages: {
-      tr: "/tarif-cevirici",
+      tr: "/mutfak-olculeri-cevirici",
       en: "/en/recipe-converter",
-      "x-default": "/tarif-cevirici",
+      "x-default": "/mutfak-olculeri-cevirici",
     },
   },
   openGraph: {
@@ -107,7 +107,7 @@ export default function EnglishRecipeScalerPage() {
 
         <section className="conversion-section language-alternatives">
           <h2>Other languages</h2>
-          <Link className="text-link" href="/tarif-cevirici" hrefLang="tr">
+          <Link className="text-link" href="/mutfak-olculeri-cevirici" hrefLang="tr">
             View the Turkish version
           </Link>
         </section>

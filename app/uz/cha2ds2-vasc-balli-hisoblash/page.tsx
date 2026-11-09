@@ -25,10 +25,9 @@ export const metadata: Metadata = {
     "Atriyal fibrilyatsiyada insult xavfi omillarini belgilang: klassik CHA2DS2-VASc va 2024 qayta ko'rilgan CHA2DS2-VA ballini birgalikda hisoblang.",
   alternates: {
     canonical: pagePath,
-    languages: {
-      tr: "/cha2ds2-vasc-skoru-hesaplama",
+    languages: {
       "uz-UZ": pagePath,
-      "x-default": "/cha2ds2-vasc-skoru-hesaplama",
+      "x-default": pagePath,
     },
   },
   openGraph: {

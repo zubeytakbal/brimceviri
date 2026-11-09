@@ -8,7 +8,7 @@ import { getCategoryUnitOptions } from "../categoryUnitOptions";
 import { categoryPages } from "../../converter/categoryPages";
 import { conversionPages } from "../../converter/conversionPages";
 import { convert } from "../../converter/convert";
-import { isMergedAway } from "../../converter/mergedPairs";
+import { ciftYayinda } from "../../converter/mergedPairs";
 import { kategorininGrubu } from "../../converter/siteYapisi";
 import { turkceCiftYolu } from "../../converter/turkceYollar";
 import { unitRegistry } from "../../converter/unitRegistry";
@@ -27,7 +27,7 @@ function veri(slug: string) {
   const temel =
     unitRegistry.find((u) => u.category === kategori.category && u.siFactor === 1 && !u.inverse)?.symbol ??
     birimler[0]?.value;
-  const ciftler = conversionPages.filter((c) => c.category === kategori.category && !isMergedAway(c.slug));
+  const ciftler = conversionPages.filter((c) => c.category === kategori.category && ciftYayinda(c.slug));
   return { kategori, ad, birimler, temel, ciftler };
 }
 

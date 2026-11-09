@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/no/oppskriftomregner",
     languages: {
-      tr: "/tarif-cevirici",
+      tr: "/mutfak-olculeri-cevirici",
       en: "/en/recipe-converter",
       de: "/de/rezept-umrechner",
       bn: "/bn/recipe-converter",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
       nl: "/nl/recepten-omrekenen",
       sv: "/sv/receptomvandlare",
       no: "/no/oppskriftomregner",
-      "x-default": "/tarif-cevirici",
+      "x-default": "/mutfak-olculeri-cevirici",
     },
   },
   openGraph: {
@@ -106,7 +106,7 @@ export default function NorwegianRecipeConverterPage() {
 
         <section className="conversion-section language-alternatives">
           <h2>Andre språk</h2>
-          <Link className="text-link" href="/tarif-cevirici" hrefLang="tr">
+          <Link className="text-link" href="/mutfak-olculeri-cevirici" hrefLang="tr">
             Åpne den tyrkiske versjonen
           </Link>
         </section>

@@ -274,7 +274,7 @@ export default function PixelCalculatorPage() {
             sayfasına, uzunluk birimleri arasında genel dönüşüm için{" "}
             <Link href="/kategoriler/uzunluk">Uzunluk Dönüşümleri</Link>{" "}
             sayfasına, fotoğraf makinesi odak uzaklığı eşdeğeri için{" "}
-            <Link href="/odak-uzakligi-esdegeri-hesaplama">Odak Uzaklığı Eşdeğeri Hesaplama</Link>{" "}
+            Odak Uzaklığı Eşdeğeri Hesaplama{" "}
             sayfasına, sosyal medya görsel boyutları için{" "}
             Sosyal Medya Görsel Boyutları Hesaplama
             {" "}sayfasına bakabilirsin.

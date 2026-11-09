@@ -186,10 +186,6 @@ const copy: Record<CalculatorLocale, PageCopy> = {
     ],
     relatedCalculators: [
       {
-        label: "Amper to kW Hesaplayıcısı",
-        href: "/muhendislik-hesaplayicilari/elektrik-hesaplari/amper-to-kw-hesaplama",
-      },
-      {
         label: "Ohm Yasası Hesaplayıcısı",
         href: "/hesaplayicilar/ohm-yasasi",
       },
@@ -513,9 +509,12 @@ function renderTypicalUse(
 export default function KwToAmpPage({
   locale = "tr",
   structuredData,
+  ekBolum,
 }: {
   locale?: CalculatorLocale;
   structuredData?: ReactNode;
+  /** Bu sayfaya birlestirilen araclar (yalniz Turkce sayfa gecirir). */
+  ekBolum?: ReactNode;
 }) {
   const unitSections = getUnitSections(locale);
   const strings = copy[locale];
@@ -546,6 +545,7 @@ export default function KwToAmpPage({
         description={strings.description}
         resultHeading={strings.heroResultHeading}
       />
+      {ekBolum}
 
       <article className="conversion-content calculator-content">
         <section className="conversion-section">

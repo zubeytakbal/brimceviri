@@ -20,7 +20,7 @@ import { findUnitPage } from "../converter/unitPages";
 import { buildFullLanguageAlternates } from "../i18n/routing";
 import { buildSiteUrl } from "../siteConfig";
 import { turkishConversionSeo } from "../converter/turkishConversionSeo";
-import { canonicalPairSlug, isMergedAway } from "../converter/mergedPairs";
+import { canonicalPairSlug, ciftYayinda, isMergedAway } from "../converter/mergedPairs";
 import { yeniYapiKategorileri } from "../converter/siteYapisi";
 import { ciftTasindiMi } from "../converter/turkceYollar";
 import KategoriSayfasi, { kategoriMetadata } from "../components/yeni/KategoriSayfasi";
@@ -135,7 +135,7 @@ export function generateStaticParams() {
   // yalnizca o kategorilerin yeni kategori sayfasi (/uzunluk) uretilir.
   return [
     ...conversionPages
-      .filter((conversionPage) => !isMergedAway(conversionPage.slug) && !ciftTasindiMi(conversionPage.slug))
+      .filter((conversionPage) => ciftYayinda(conversionPage.slug) && !ciftTasindiMi(conversionPage.slug))
       .map((conversionPage) => ({ slug: conversionPage.slug })),
     ...[...yeniYapiKategorileri].map((slug) => ({ slug })),
   ];
@@ -217,7 +217,7 @@ export default async function ConversionPage({ params }: PageProps) {
       (page) =>
         page.slug !== conversionPage.slug &&
         page.slug !== conversionPage.reverseSlug &&
-        !isMergedAway(page.slug) &&
+        ciftYayinda(page.slug) &&
         page.category === conversionPage.category &&
         (page.fromUnit === conversionPage.fromUnit ||
           page.toUnit === conversionPage.fromUnit ||

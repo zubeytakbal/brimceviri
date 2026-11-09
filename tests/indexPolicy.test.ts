@@ -25,7 +25,7 @@ describe("dizin politikası", () => {
   it("Türkçe sayfaların hepsi açık", () => {
     expect(isClosedPath("/")).toBe(false);
     expect(isClosedPath("/metre-santimetre")).toBe(false);
-    expect(isClosedPath("/ebced-hesabi")).toBe(false);
+    expect(isClosedPath("/roma-rakamlari-cevirme")).toBe(false);
     expect(isClosedPath("/malzeme-ozellikleri")).toBe(false);
     expect(isClosedPath("/malzeme-ozellikleri/bal")).toBe(false);
     expect(isClosedPath("/altin-hesaplama/ceyrek-altin")).toBe(false);

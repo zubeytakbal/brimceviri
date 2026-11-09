@@ -30,10 +30,9 @@ export const metadata: Metadata = {
     "Ikki shahar/server joylashuvi orasidagi masofaga qarab fizik jihatdan mumkin bo'lgan eng past ping (kechikish) vaqtini va haqiqiy taxminni hisoblang.",
   alternates: {
     canonical: pagePath,
-    languages: {
-      tr: "/ping-gecikme-hesaplama",
+    languages: {
       "uz-UZ": pagePath,
-      "x-default": "/ping-gecikme-hesaplama",
+      "x-default": pagePath,
     },
   },
   openGraph: {

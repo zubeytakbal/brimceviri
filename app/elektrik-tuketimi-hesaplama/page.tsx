@@ -170,7 +170,7 @@ export default function ElectricityConsumptionPage() {
             Güneş paneli yatırımının geri dönüşü için{" "}
             <Link href="/gunes-paneli-amortisman-hesaplama">Güneş Paneli Amortisman Hesaplama</Link>,{" "}
             LED aydınlatma tasarrufu için{" "}
-            <Link href="/led-ampul-tasarruf-hesaplama">LED Ampul Tasarruf Hesaplama</Link>,{" "}
+            LED Ampul Tasarruf Hesaplama,{" "}
             volt/amper birim dönüşümleri için{" "}
             <Link href="/kategoriler/elektrik">Volt / Amper Birim Dönüşümleri</Link>
             {" "}sayfasına bakabilirsin.

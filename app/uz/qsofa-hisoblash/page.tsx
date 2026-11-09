@@ -26,9 +26,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: pagePath,
     languages: {
-      tr: "/qsofa-hesaplama",
+      tr: "/sofa-skoru-hesaplama",
       "uz-UZ": pagePath,
-      "x-default": "/qsofa-hesaplama",
+      "x-default": "/sofa-skoru-hesaplama",
     },
   },
   openGraph: {

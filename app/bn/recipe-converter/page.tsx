@@ -10,11 +10,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/bn/recipe-converter",
     languages: {
-      tr: "/tarif-cevirici",
+      tr: "/mutfak-olculeri-cevirici",
       en: "/en/recipe-converter",
       de: "/de/rezept-umrechner",
       bn: "/bn/recipe-converter",
-      "x-default": "/tarif-cevirici",
+      "x-default": "/mutfak-olculeri-cevirici",
     },
   },
   openGraph: {
@@ -98,7 +98,7 @@ export default function BengaliRecipeConverterPage() {
 
         <section className="conversion-section language-alternatives">
           <h2>অন্যান্য ভাষা</h2>
-          <Link className="text-link" href="/tarif-cevirici" hrefLang="tr">
+          <Link className="text-link" href="/mutfak-olculeri-cevirici" hrefLang="tr">
             তুর্কি সংস্করণ খুলুন
           </Link>
         </section>

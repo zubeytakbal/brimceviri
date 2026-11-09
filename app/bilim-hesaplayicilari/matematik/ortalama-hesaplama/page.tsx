@@ -170,7 +170,7 @@ export default function OrtalamaHesaplamaPage() {
             Sadece medyan için{" "}
             <Link href="/bilim-hesaplayicilari/matematik/medyan-hesaplama">Medyan Hesaplama</Link>,{" "}
             sadece mod için{" "}
-            <Link href="/bilim-hesaplayicilari/matematik/mod-hesaplama">Mod Hesaplama</Link>,{" "}
+            Mod Hesaplama,{" "}
             sadece varyans için{" "}
             <Link href="/bilim-hesaplayicilari/matematik/varyans-hesaplama">Varyans Hesaplama</Link>,{" "}
             sadece standart sapma için{" "}

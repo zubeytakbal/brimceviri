@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import EmbedCodeBox from "../components/EmbedCodeBox";
+import RecipeScalerConverter from "../components/RecipeScalerConverter";
 import KitchenMeasuresConverter from "../components/KitchenMeasuresConverter";
 import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
 import { kitchenIngredientRows } from "../converter/kitchenMeasures";
@@ -133,6 +134,12 @@ export default function KitchenMeasuresPage() {
         </div>
 
         <KitchenMeasuresConverter locale="tr" />
+
+        <section className="category-article-content">
+          <h2>Tarifi kişi sayısına göre çevirme</h2>
+          <p>Tarifteki malzemeleri yeni kişi sayısına göre ölçekleyin; ölçüleri bardak, kaşık ve gram arasında birlikte çevirin.</p>
+          <RecipeScalerConverter locale="tr" />
+        </section>
 
         <section className="category-article-content">
           <h2 id="kilo-un">1 kilo un kaç su bardağı eder?</h2>

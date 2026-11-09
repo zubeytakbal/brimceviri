@@ -11,9 +11,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: pagePath,
     languages: {
-      tr: "/hesaplayicilar/hidrostatik-basinc",
+      tr: "/hesaplayicilar/basinc-kuvvet-alan",
       "uz-UZ": pagePath,
-      "x-default": "/hesaplayicilar/hidrostatik-basinc",
+      "x-default": "/hesaplayicilar/basinc-kuvvet-alan",
     },
   },
   openGraph: {

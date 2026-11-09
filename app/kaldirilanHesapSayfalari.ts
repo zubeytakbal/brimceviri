@@ -6,7 +6,7 @@
 export const KALDIRILAN_HESAP_SAYFALARI: Readonly<Record<string, string>> = {
   "/agirlik-karsilastirma": "/kategoriler/kutle",
   "/apgar-skoru-hesaplama": "/hesaplayicilar",
-  "/mantolama-hesaplama": "/yalitim-amortisman-hesaplama",
+  "/mantolama-hesaplama": "/u-degeri-hesaplama",
 };
 
 export const hesapSayfasiKalkti = (path: string) => Object.hasOwn(KALDIRILAN_HESAP_SAYFALARI, path);

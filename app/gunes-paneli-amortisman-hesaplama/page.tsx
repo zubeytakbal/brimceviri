@@ -144,11 +144,11 @@ export default function SolarPanelPaybackPage() {
             Elektrik tüketimi hesaplamaları için{" "}
             <Link href="/elektrik-tuketimi-hesaplama">Elektrik Tüketimi Hesaplama</Link>
             {" "}sayfasına, yalıtım amortismanı için{" "}
-            <Link href="/yalitim-amortisman-hesaplama">Yalıtım Amortisman Hesaplama</Link>
+            Yalıtım Amortisman Hesaplama
             {" "}sayfasına, diğer elektrikçi araçları için{" "}
             <Link href="/muhendislik-hesaplayicilari/elektrik-hesaplari">Elektrik Hesapları</Link>
             {" "}sayfasına, panelin öğle güneşine dik açısı için{" "}
-            <Link href="/gunes-acisi-ve-golge-boyu-hesaplama">Güneş Açısı ve Gölge Boyu</Link>
+            Güneş Açısı ve Gölge Boyu
             {" "}sayfasına bakabilirsin.
           </p>
 

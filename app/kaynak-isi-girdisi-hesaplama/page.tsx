@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
+import WeldingCurrentCalculator from "../components/WeldingCurrentCalculator";
 import HeatInputCalculator from "../components/HeatInputCalculator";
 import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
@@ -84,6 +85,12 @@ export default function HeatInputCalculatorPage() {
         </header>
 
         <HeatInputCalculator />
+
+        <section className="category-article-content">
+          <h2>Elektrot çapına göre kaynak akımı</h2>
+          <p>Isı girdisini hesaplamadan önce akımı seçmek için: elektrot örtüsü ve çekirdek çapına göre önerilen amper aralığı.</p>
+          <WeldingCurrentCalculator />
+        </section>
 
         <section className="category-article-content">
           <h2>Ark enerjisi ve ısı girdisi farkı</h2>
@@ -178,7 +185,7 @@ export default function HeatInputCalculatorPage() {
             Diğer kaynakçı araçları için{" "}
             <Link href="/hesaplayicilar#teknik">Teknik ve Mühendislik</Link>
             {" "}sayfasına, elektrot çapına göre amperaj hesaplama için{" "}
-            <Link href="/kaynak-amperaji-hesaplama">Kaynak Amperajı Hesaplama</Link>
+            Kaynak Amperajı Hesaplama
             {" "}sayfasına bakabilirsin.
           </p>
 

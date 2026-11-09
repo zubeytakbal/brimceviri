@@ -231,7 +231,7 @@ export default function WaterViscosityReference({
               ? "حاسبة الضغط الهيدروستاتيكي"
               : "Hydrostatic Pressure Calculator",
           href: isTurkish
-            ? "/hesaplayicilar/hidrostatik-basinc"
+            ? "/hesaplayicilar/basinc-kuvvet-alan"
             : isArabic
               ? "/ar/calculators/hydrostatic-pressure"
               : "/en/calculators/hydrostatic-pressure",
@@ -449,7 +449,7 @@ export default function WaterViscosityReference({
                 : "Hydrostatic Pressure Calculator",
             url: buildSiteUrl(
               isTurkish
-                ? "/hesaplayicilar/hidrostatik-basinc"
+                ? "/hesaplayicilar/basinc-kuvvet-alan"
                 : isArabic
                   ? "/ar/calculators/hydrostatic-pressure"
                   : "/en/calculators/hydrostatic-pressure"

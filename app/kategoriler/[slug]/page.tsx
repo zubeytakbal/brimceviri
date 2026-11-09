@@ -12,7 +12,7 @@ import { findCategoryArticle } from "../../converter/categoryArticles";
 import { calculatorPages } from "../../converter/calculatorPages";
 import { categoryPages } from "../../converter/categoryPages";
 import { conversionPages } from "../../converter/conversionPages";
-import { canonicalPairSlug, isMergedAway } from "../../converter/mergedPairs";
+import { canonicalPairSlug, ciftYayinda } from "../../converter/mergedPairs";
 import { everydayToolLinksByCategory } from "../../converter/everydayToolLinksByCategory";
 import { buildFullLanguageAlternates } from "../../i18n/routing";
 import { homeCategoryOrder } from "../../converter/homeCategoryOrder";
@@ -225,7 +225,7 @@ export default async function CategoryPage({
     mainEntity: {
       "@type": "ItemList",
       numberOfItems: categoryConversions.length,
-      itemListElement: categoryConversions.filter((conversion) => !isMergedAway(conversion.slug)).map(
+      itemListElement: categoryConversions.filter((conversion) => ciftYayinda(conversion.slug)).map(
         (conversion, index) => ({
           "@type": "ListItem",
           position: index + 1,

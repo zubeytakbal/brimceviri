@@ -222,10 +222,6 @@ export const SITE_NAV_DATA: SiteNavData = {
       {
        "href": "/harita-olcegi-hesaplama",
        "label": "Harita Ölçeği"
-      },
-      {
-       "href": "/buyuk-daire-mesafesi-hesaplama",
-       "label": "Büyük Daire Mesafesi"
       }
      ]
     },

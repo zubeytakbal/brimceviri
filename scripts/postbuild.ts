@@ -27,6 +27,7 @@ import { CLICKED_PATHS } from "../app/indexPolicyClicked";
 import { siteRedirects } from "../app/siteRedirects";
 import { MERGED_PAIRS } from "../app/converter/mergedPairs";
 import { KALDIRILAN_SAYFALAR } from "../app/kaldirilanSayfalar";
+import { kasimYonlendirmeleri } from "../app/kasimTemizligi";
 import { checkTemplates } from "./templateGuard";
 import { checkThinPages, MIN_KARAKTER } from "./thinGuard";
 import { checkSitemap } from "./sitemapGuard";
@@ -363,11 +364,12 @@ function fixMergedPairLinks() {
   return { links, alternates };
 }
 
-/** Kaldırılan sayfalara (kaldirilanSayfalar.ts) kalan iç bağlantılar (önceki/sonraki gün, ilgili araçlar gibi) yönlendirme
+/** Kaldırılan ve Kasım 2026 temizliğinde yönlenen sayfalara (kaldirilanSayfalar.ts, kasimTemizligi.ts) kalan iç bağlantılar (önceki/sonraki gün, ilgili araçlar gibi) yönlendirme
  * hedefine çevrilir; bağlantı 301'e değil doğrudan kalan sayfaya gider. */
 function fixRemovedPageLinks() {
   const kacis = (p: string) => p.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const yollar = Object.keys(KALDIRILAN_SAYFALAR).sort((a, b) => b.length - a.length).map(kacis).join("|");
+  const hedefler: Record<string, string> = { ...KALDIRILAN_SAYFALAR, ...Object.fromEntries(kasimYonlendirmeleri()) };
+  const yollar = Object.keys(hedefler).sort((a, b) => b.length - a.length).map(kacis).join("|");
   const linkRe = new RegExp(`((?:href=|\\\\?"href\\\\?":)\\\\?")(${yollar})(?=["?#\\\\])`, "g");
   let links = 0;
   const walk = (dir: string) => {
@@ -379,7 +381,7 @@ function fixRemovedPageLinks() {
       }
       if (!entry.name.endsWith(".html")) continue;
       const html = readFileSync(path, "utf8");
-      const next = html.replace(linkRe, (_m, prefix: string, yol: string) => (links++, `${prefix}${KALDIRILAN_SAYFALAR[yol]}`));
+      const next = html.replace(linkRe, (_m, prefix: string, yol: string) => (links++, `${prefix}${hedefler[yol]}`));
       if (next !== html) writeFileSync(path, next);
     }
   };

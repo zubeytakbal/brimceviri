@@ -158,13 +158,6 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
             description: "Üç faz, tek faz ve DC seçenekleriyle gücü yaklaşık hat akımına çevirin.",
           },
           {
-            slug: "amper-to-kw-hesaplama",
-            href: "/muhendislik-hesaplayicilari/elektrik-hesaplari/amper-to-kw-hesaplama",
-            title: "Amper to kW",
-            formula: "P = √3 x V x I x cos phi x eta",
-            description: "Hat akımından üç faz, tek faz ve DC seçenekleriyle yaklaşık gücü hesaplayın.",
-          },
-          {
             slug: "gerilim-dusumu-hesaplama",
             href: "/muhendislik-hesaplayicilari/elektrik-hesaplari/gerilim-dusumu-hesaplama",
             title: "Gerilim Düşümü",
@@ -175,12 +168,6 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
             href: "/muhendislik-hesaplayicilari/elektrik-hesaplari/kablo-kesiti-hesaplama",
             title: "Kablo Kesiti",
             description: "Yük akımı ve izin verilen gerilim düşümüne göre kablo kesitini ön boyutlandırın.",
-          },
-          {
-            slug: "motor-akimi-hesaplama",
-            href: "/muhendislik-hesaplayicilari/elektrik-hesaplari/motor-akimi-hesaplama",
-            title: "Motor Akımı",
-            description: "Motor gücü, gerilim, güç faktörü ve verimden çalışma akımını hesaplayın.",
           },
           {
             slug: "ohm-yasasi",
@@ -250,13 +237,6 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
             description: "Basıncı, kuvveti veya alanı gerçek birim dönüşümleriyle hesaplayın.",
           },
           {
-            slug: "hidrostatik-basinc",
-            href: "/hesaplayicilar/hidrostatik-basinc",
-            title: "Hidrostatik Basınç",
-            formula: "ΔP = ρgh",
-            description: "Yoğunluk, derinlik ve yerçekimi ivmesine göre hidrostatik basınç farkını bulun.",
-          },
-          {
             slug: "reynolds-sayisi",
             href: "/hesaplayicilar/reynolds-sayisi",
             title: "Reynolds Sayısı",
@@ -293,13 +273,6 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
             icon: "pressureForceArea",
             formula: "F = p · A",
             description: "İtme ve çekme kuvveti, hız, strok süresi ve yağ hacmi.",
-          },
-          {
-            slug: "pnomatik-silindir-hesaplama",
-            href: "/pnomatik-silindir-hesaplama",
-            title: "Pnömatik Silindir",
-            icon: "pressure",
-            description: "Silindir kuvveti ve kompresörden çekilen hava tüketimi (NL/dk).",
           },
           {
             slug: "boru-capi-donusum-hesaplama",
@@ -363,14 +336,6 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
             description: "Katmanlı duvar, çatı ve döşemenin U değeri ve ısı kaybı.",
           },
           {
-            slug: "lmtd-hesaplama",
-            href: "/lmtd-hesaplama",
-            title: "LMTD ve Eşanjör Alanı",
-            icon: "temperature",
-            formula: "A = Q / (U·LMTD)",
-            description: "Karşı ve paralel akışlı ısı eşanjöründe LMTD ve gereken alan.",
-          },
-          {
             slug: "debi-isi-yuku-hesaplama",
             href: "/debi-isi-yuku-hesaplama",
             title: "Debiden Isı Yükü",
@@ -385,13 +350,6 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
             icon: "mountainsHubCalculator",
             formula: "Tb = f(p rakım)",
             description: "Rakıma ya da hava basıncına göre kaynama sıcaklığı; 81 il tablosu.",
-          },
-          {
-            slug: "superheat-subcooling-hesaplama",
-            href: "/superheat-subcooling-hesaplama",
-            title: "Superheat ve Subcooling",
-            icon: "superheatSubcoolingCalculator",
-            description: "Ölçülen boru sıcaklığı ve doyma sıcaklığından superheat ve subcooling değerlerini bulun.",
           },
           {
             slug: "erime-kaynama-noktasi-hesaplama",
@@ -421,13 +379,6 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
             title: "Kesme Hızı - Devir",
             icon: "cuttingSpeedCalculator",
             description: "Takım çapı ve kesme hızından torna ve freze devrini bulun.",
-          },
-          {
-            slug: "kaynak-amperaji-hesaplama",
-            href: "/kaynak-amperaji-hesaplama",
-            title: "Kaynak Amperajı",
-            icon: "weldingCurrentCalculator",
-            description: "Elektrot çekirdek çapı ve örtü tipine göre önerilen kaynak akımı aralığını bulun.",
           },
           {
             slug: "kaynak-isi-girdisi-hesaplama",
@@ -629,20 +580,6 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
             title: "Doğalgaz Tüketimi",
             icon: "naturalGasCalculator",
             description: "Tüketilen m³ ve birim fiyattan toplam maliyeti ve yaklaşık kWh karşılığını bulun.",
-          },
-          {
-            slug: "isi-pompasi-kombi-karsilastirma",
-            href: "/isi-pompasi-kombi-karsilastirma",
-            title: "Isı Pompası - Kombi",
-            icon: "heatPumpVsBoilerCalculator",
-            description: "Isı pompasının kombiye göre kendini kaç yılda çıkardığını hesaplayın.",
-          },
-          {
-            slug: "yalitim-amortisman-hesaplama",
-            href: "/yalitim-amortisman-hesaplama",
-            title: "Yalıtım Amortismanı",
-            icon: "insulationPaybackCalculator",
-            description: "Yalıtım yatırımının kendini kaç yılda geri ödediğini hesaplayın.",
           },
         ],
       },

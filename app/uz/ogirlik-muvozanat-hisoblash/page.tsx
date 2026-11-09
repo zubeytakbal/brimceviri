@@ -25,10 +25,9 @@ export const metadata: Metadata = {
     "Yuk bandlarining og'irligini va yelkasini (arm) kiriting; jami og'irlikni, jami momentni va og'irlik markazini (CG) hisoblang.",
   alternates: {
     canonical: pagePath,
-    languages: {
-      tr: "/agirlik-denge-hesaplama",
+    languages: {
       "uz-UZ": pagePath,
-      "x-default": "/agirlik-denge-hesaplama",
+      "x-default": pagePath,
     },
   },
   openGraph: {

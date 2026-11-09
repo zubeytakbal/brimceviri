@@ -144,10 +144,8 @@ export default function AcCapacityCalculatorPage() {
 
           <h2>İlgili araçlar</h2>
           <p>
-            Isı pompası ile kombi karşılaştırması için{" "}
-            <Link href="/isi-pompasi-kombi-karsilastirma">Isı Pompası - Kombi Karşılaştırma</Link>,{" "}
-            kombi ile klima ısıtma maliyeti için{" "}
-            <Link href="/kombi-klima-isitma-maliyeti-karsilastirma">Kombi - Klima Isıtma Maliyeti Karşılaştırma</Link>,{" "}
+            kombi, klima ve ısı pompasıyla ısınma maliyetini karşılaştırmak için{" "}
+            <Link href="/kombi-klima-isitma-maliyeti-karsilastirma">Isıtma Maliyeti Karşılaştırma</Link>,{" "}
             BTU/saat birim dönüşümü için{" "}
             <Link href="/btu-saat-watt">BTU/Saat - Watt Çevirici</Link>
             {" "}sayfasına, diğer klima-soğutma teknisyeni araçları için{" "}

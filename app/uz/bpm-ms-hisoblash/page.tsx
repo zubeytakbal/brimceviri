@@ -30,10 +30,9 @@ export const metadata: Metadata = {
     "Tempo (BPM) qiymatidan chorak, sakkizlik, o'n oltilik kabi nota qiymatlarining millisoniya ko'rinishini hisoblang; delay va reverb davomiyliklarini qo'shiqning tempiga qulflang.",
   alternates: {
     canonical: pagePath,
-    languages: {
-      tr: "/bpm-ms-hesaplama",
+    languages: {
       "uz-UZ": pagePath,
-      "x-default": "/bpm-ms-hesaplama",
+      "x-default": pagePath,
     },
   },
   openGraph: {

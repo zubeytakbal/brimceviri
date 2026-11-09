@@ -25,10 +25,9 @@ export const metadata: Metadata = {
     "Ko'z ochish, nutqiy javob va motor javobni tanlang: Glazgo Koma Shkalasi (GKS) jami ballini va ong darajasi kategoriyasini hisoblang.",
   alternates: {
     canonical: pagePath,
-    languages: {
-      tr: "/glasgow-koma-skalasi-hesaplama",
+    languages: {
       "uz-UZ": pagePath,
-      "x-default": "/glasgow-koma-skalasi-hesaplama",
+      "x-default": pagePath,
     },
   },
   openGraph: {

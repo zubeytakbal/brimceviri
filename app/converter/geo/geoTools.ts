@@ -4,12 +4,9 @@ export type GeoTool = { href: string; title: string; description: string; group:
 export const geoToolsTr: GeoTool[] = [
   { href: "/harita-olcegi-hesaplama", title: "Harita Ölçeği Hesaplama", description: "Haritadaki cm'nin gerçekte kaç km olduğu, gerçek alan, ölçek bulma ve çizgi ölçek.", group: "harita" },
   { href: "/koordinat-donusturucu", title: "Koordinat Dönüştürücü", description: "Derece-dakika-saniye, ondalık derece, UTM ve ITRF96 3° TM arasında dönüşüm.", group: "harita" },
-  { href: "/buyuk-daire-mesafesi-hesaplama", title: "Kuş Uçuşu Mesafe (Büyük Daire)", description: "İki koordinat arasındaki en kısa mesafe ve başlangıç rotası.", group: "harita" },
   { href: "/tarla-donum-hesaplama", title: "Tarla Dönüm Hesaplama", description: "Kenar ölçülerinden arazi alanı; dönüm, dekar ve m².", group: "harita" },
   { href: "/yerel-saat-hesaplama", title: "Yerel Saat Farkı Hesaplama", description: "Boylam farkından yerel saat; her meridyen 4 dakika.", group: "zaman" },
   { href: "/saat-dilimi-cevirici", title: "Saat Dilimi Çevirici", description: "Bir saati birden çok ülkenin saatine çevir.", group: "zaman" },
-  { href: "/gunes-acisi-ve-golge-boyu-hesaplama", title: "Güneş Açısı ve Gölge Boyu", description: "Güneşin yüksekliği, gölge boyu ve kışın güneş alma süresi.", group: "zaman" },
-  { href: "/seyahat-priz-voltaj-hesaplama", title: "Ülkelere Göre Priz ve Voltaj", description: "Seyahatte adaptör gerekir mi?", group: "dunya" },
 ];
 
 export const geoGroupLabels: Record<GeoTool["group"], string> = {

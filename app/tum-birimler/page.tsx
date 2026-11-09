@@ -5,7 +5,7 @@ import { aramaMetni } from "../converter/aramaMetni";
 import { categoryPages } from "../converter/categoryPages";
 import { unitRegistry } from "../converter/unitRegistry";
 import { conversionPages } from "../converter/conversionPages";
-import { canonicalPairSlug, isMergedAway } from "../converter/mergedPairs";
+import { canonicalPairSlug, ciftYayinda } from "../converter/mergedPairs";
 
 // Kategoriler konuya göre gruplanır; listede olmayan yeni kategori "Diğer" grubuna düşer.
 const GROUPS: Array<{ id: string; title: string; slugs: string[] }> = [
@@ -27,7 +27,6 @@ const TOOL_GROUPS: Array<{ id: string; title: string; items: Array<{ href: strin
     title: "Türkiye'ye özgü çeviriler",
     items: [
       { href: "/eski-para-yeni-para-cevirme", title: "Eski Para - Yeni Para", description: "1 YTL = 1.000.000 eski TL; Azerbaycan ve Türkmen manatı sadeleştirmeleri (1 yeni manat = 5.000 eski manat)." },
-      { href: "/ebced-hesabi", title: "Ebced Hesabı", description: "Arap harfli metnin sayı değeri ve sayının ebced harfleri: besmele = 786, 1453 = غتنج." },
       { href: "/tarih-cevirici", title: "Hicri, Rumi, Miladi Tarih", description: "Eski belgelerdeki hicri ve Rumi tarihleri gün gün miladi tarihe çevirin." },
       { href: "/altin-hesaplama", title: "Ziynet Altını - Gram", description: "Çeyrek, yarım, tam ve ata altının gram ve has altın karşılığı." },
     ],
@@ -87,7 +86,7 @@ const POPULAR: Record<string, string[]> = {
 
 /** Kategoride öne çıkan dönüşüm çiftleri: önce arama verisindeki popüler çiftler, sonra kayıt sırası. */
 function topPairs(category: string, limit = 4) {
-  const inCategory = conversionPages.filter((c) => c.category === category && !isMergedAway(c.slug));
+  const inCategory = conversionPages.filter((c) => c.category === category && ciftYayinda(c.slug));
   const bySlug = new Map(inCategory.map((c) => [c.slug, c]));
   const ordered = [...(POPULAR[category] ?? []).map((slug) => bySlug.get(canonicalPairSlug(slug))).filter((c) => c !== undefined), ...inCategory];
   const seen = new Set<string>();
@@ -149,7 +148,7 @@ function aramaGruplari(): AramaGrubu[] {
 /** Aramada doğrudan gösterilecek dönüşüm sayfaları (birleştirilen ters çiftler hariç). */
 function aramaCiftleri(): AramaCifti[] {
   return conversionPages
-    .filter((c) => !isMergedAway(c.slug))
+    .filter((c) => ciftYayinda(c.slug))
     .map((c) => ({
       href: `/${c.slug}`,
       label: `${c.fromName} → ${c.toName}`,

@@ -6,11 +6,14 @@ import { writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { TASINAN_CIFTLER } from "../app/converter/tasinanCiftler.generated";
 import { yeniYapiKategorileri } from "../app/converter/siteYapisi";
+import { kasimdaKalkti, kasimYonlendirmeleri } from "../app/kasimTemizligi";
 
 const HOST = "www.birimceviri.app";
 const satirlar: [string, string][] = [];
 for (const k of yeniYapiKategorileri) satirlar.push([`/kategoriler/${k}`, `/${k}`]);
-for (const [cift, k] of Object.entries(TASINAN_CIFTLER)) satirlar.push([`/${cift}`, `/${k}/${cift}`]);
+for (const [cift, k] of Object.entries(TASINAN_CIFTLER)) if (!kasimdaKalkti(`/${cift}`)) satirlar.push([`/${cift}`, `/${k}/${cift}`]);
+// Kasım 2026 temizliği: birleşen sayfalar ve aranmayan çiftler (app/kasimTemizligi.ts).
+satirlar.push(...kasimYonlendirmeleri());
 
 const csv = [
   "source_url,target_url,status_code,preserve_query_string,include_subdomains,subpath_matching,preserve_path_suffix",

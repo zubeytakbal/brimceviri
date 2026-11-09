@@ -25,10 +25,9 @@ export const metadata: Metadata = {
     "Yosh, vazn, jins va zardob kreatininidan, Cockcroft-Gault formulasi bilan taxminiy kreatinin klirensini hisoblang.",
   alternates: {
     canonical: pagePath,
-    languages: {
-      tr: "/kreatinin-klirensi-hesaplama",
+    languages: {
       "uz-UZ": pagePath,
-      "x-default": "/kreatinin-klirensi-hesaplama",
+      "x-default": pagePath,
     },
   },
   openGraph: {

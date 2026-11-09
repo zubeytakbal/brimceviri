@@ -479,7 +479,6 @@ function Kaynak() {
       <Alan etiket="Elektrot çapı" birim="mm" deger={cap} degis={setCap} />
       <Secim etiket="Örtü" deger={ortu} degis={(v) => setOrtu(v as ElectrodeCoating)} secenekler={Object.entries(electrodeCoatingLabels)} />
       <Sonuc metin={r ? `${bicim(r.min, 0)} – ${bicim(r.max, 0)} A` : "—"} />
-      <Alt not="Çap × örtü katsayısı" href="/kaynak-amperaji-hesaplama" etiket="Kaynak amperajı" />
     </>
   );
 }

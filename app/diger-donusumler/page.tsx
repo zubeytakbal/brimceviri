@@ -3,7 +3,7 @@ import OtherCategoriesPage from "../components/OtherCategoriesPage";
 import { getCategoryIconName } from "../components/siteIcons";
 import { categoryPages } from "../converter/categoryPages";
 import { conversionPages } from "../converter/conversionPages";
-import { isMergedAway } from "../converter/mergedPairs";
+import { ciftYayinda } from "../converter/mergedPairs";
 import { homeCategoryOrder } from "../converter/homeCategoryOrder";
 import { buildSiteUrl } from "../siteConfig";
 import BreadcrumbSchema from "../components/BreadcrumbSchema";
@@ -52,7 +52,7 @@ export default function DigerDonusumlerPage() {
   );
 
   const conversions = conversionPages
-    .filter((page) => secondaryCategorySet.has(page.category) && !isMergedAway(page.slug))
+    .filter((page) => secondaryCategorySet.has(page.category) && ciftYayinda(page.slug))
     .map((page) => ({
       id: page.slug,
       href: `/${page.slug}`,
@@ -97,39 +97,12 @@ export default function DigerDonusumlerPage() {
       group: "Tasarruf ve Karar Hesaplayıcıları",
     },
     {
-      id: "yalitim-amortisman",
-      href: "/yalitim-amortisman-hesaplama",
-      title: "Yalıtım Amortisman Hesaplama",
-      description:
-        "Duvar alanı ve yalıtım malzemesiyle yıllık enerji tasarrufunu ve kaç yılda kendini çıkardığını hesaplayın.",
-      iconName: "insulationPaybackCalculator" as const,
-      group: "Tasarruf ve Karar Hesaplayıcıları",
-    },
-    {
-      id: "led-tasarruf",
-      href: "/led-ampul-tasarruf-hesaplama",
-      title: "LED Ampul Tasarruf Hesaplama",
-      description:
-        "Ampul sayın ve kullanım sürenle LED ampule geçişin yıllık tasarrufunu ve amortisman süresini hesaplayın.",
-      iconName: "ledSavingsCalculator" as const,
-      group: "Tasarruf ve Karar Hesaplayıcıları",
-    },
-    {
       id: "kombi-klima-karsilastirma",
       href: "/kombi-klima-isitma-maliyeti-karsilastirma",
       title: "Kombi mi Klima mı?",
       description:
         "Doğalgaz ve elektrik fiyatınla, kombi ile klimanın ısıtma maliyetini kıyaslayıp hangisinin daha ucuz olduğunu görün.",
       iconName: "heatingCostComparisonCalculator" as const,
-      group: "Tasarruf ve Karar Hesaplayıcıları",
-    },
-    {
-      id: "isi-pompasi-kombi-karsilastirma",
-      href: "/isi-pompasi-kombi-karsilastirma",
-      title: "Isı Pompası mı Kombi mi?",
-      description:
-        "Doğalgaz/elektrik fiyatın ve kurulum maliyeti farkınla, ısı pompasının kombiye göre kaç yılda kendini çıkardığını hesaplayın.",
-      iconName: "heatPumpVsBoilerCalculator" as const,
       group: "Tasarruf ve Karar Hesaplayıcıları",
     },
     {
@@ -187,15 +160,6 @@ export default function DigerDonusumlerPage() {
       group: "Mühendislik Referans Araçları",
     },
     {
-      id: "kaynak-amperaji",
-      href: "/kaynak-amperaji-hesaplama",
-      title: "Kaynak Amperajı Hesaplama",
-      description:
-        "Elektrot çekirdek çapı ve örtü tipinden önerilen amperaj aralığını hesaplayın.",
-      iconName: "weldingCurrentCalculator" as const,
-      group: "Mühendislik Referans Araçları",
-    },
-    {
       id: "kaynak-isi-girdisi",
       href: "/kaynak-isi-girdisi-hesaplama",
       title: "Kaynak Isı Girdisi Hesaplama",
@@ -211,15 +175,6 @@ export default function DigerDonusumlerPage() {
       description:
         "Kesme hızı, çap ve devirden ikisini girerek üçüncüsünü hesaplayın.",
       iconName: "cuttingSpeedCalculator" as const,
-      group: "Mühendislik Referans Araçları",
-    },
-    {
-      id: "superheat-subcooling",
-      href: "/superheat-subcooling-hesaplama",
-      title: "Superheat ve Subcooling Hesaplama",
-      description:
-        "Ölçülen sıcaklık ve doyma sıcaklığından superheat ve subcooling değerlerini hesaplayın.",
-      iconName: "superheatSubcoolingCalculator" as const,
       group: "Mühendislik Referans Araçları",
     },
     {
@@ -394,24 +349,6 @@ export default function DigerDonusumlerPage() {
       group: "İnşaat ve Yapı Malzemesi Hesaplayıcıları",
     },
     {
-      id: "vucut-yuzey-alani",
-      href: "/vucut-yuzey-alani-hesaplama",
-      title: "Vücut Yüzey Alanı Hesaplama",
-      description:
-        "Mosteller formülüyle boy ve kilodan vücut yüzey alanını (BSA) hesaplayın.",
-      iconName: "bsaCalculator" as const,
-      group: "Tıbbi Skorlama Araçları",
-    },
-    {
-      id: "kreatinin-klirensi",
-      href: "/kreatinin-klirensi-hesaplama",
-      title: "Kreatinin Klirensi Hesaplama",
-      description:
-        "Cockcroft-Gault formülüyle tahmini kreatinin klirensini hesaplayın.",
-      iconName: "creatinineClearanceCalculator" as const,
-      group: "Tıbbi Skorlama Araçları",
-    },
-    {
       id: "iv-damla-hizi",
       href: "/iv-damla-hizi-hesaplama",
       title: "IV Damla Hızı Hesaplama",
@@ -421,39 +358,12 @@ export default function DigerDonusumlerPage() {
       group: "Tıbbi Skorlama Araçları",
     },
     {
-      id: "gks",
-      href: "/glasgow-koma-skalasi-hesaplama",
-      title: "Glasgow Koma Skalası Hesaplama",
-      description:
-        "Göz açma, sözel ve motor yanıttan bilinç düzeyi puanını hesaplayın.",
-      iconName: "gcsCalculator" as const,
-      group: "Tıbbi Skorlama Araçları",
-    },
-    {
-      id: "cha2ds2",
-      href: "/cha2ds2-vasc-skoru-hesaplama",
-      title: "CHA2DS2-VASc Skoru Hesaplama",
-      description:
-        "Atriyal fibrilasyonda inme riski skorunu hesaplayın.",
-      iconName: "cha2ds2Calculator" as const,
-      group: "Tıbbi Skorlama Araçları",
-    },
-    {
       id: "wells",
       href: "/wells-skoru-hesaplama",
       title: "Wells Skoru Hesaplama",
       description:
         "Pulmoner emboli klinik olasılık skorunu hesaplayın.",
       iconName: "wellsScoreCalculator" as const,
-      group: "Tıbbi Skorlama Araçları",
-    },
-    {
-      id: "qsofa",
-      href: "/qsofa-hesaplama",
-      title: "qSOFA Hesaplama",
-      description:
-        "Sepsis şüphesinde hızlı yatak başı tarama puanını hesaplayın.",
-      iconName: "qsofaCalculator" as const,
       group: "Tıbbi Skorlama Araçları",
     },
     {
@@ -475,15 +385,6 @@ export default function DigerDonusumlerPage() {
       group: "Tıbbi Skorlama Araçları",
     },
     {
-      id: "braden",
-      href: "/braden-skalasi-hesaplama",
-      title: "Braden Skalası Hesaplama",
-      description:
-        "Basınç yarası gelişme riski skorunu hesaplayın.",
-      iconName: "bradenScaleCalculator" as const,
-      group: "Tıbbi Skorlama Araçları",
-    },
-    {
       id: "seyir-suresi",
       href: "/seyir-suresi-hesaplama",
       title: "Seyir Süresi Hesaplama",
@@ -493,48 +394,12 @@ export default function DigerDonusumlerPage() {
       group: "Havacılık Hesaplayıcıları",
     },
     {
-      id: "yogunluk-irtifasi",
-      href: "/yogunluk-irtifasi-hesaplama",
-      title: "Yoğunluk İrtifası Hesaplama",
-      description:
-        "Basınç irtifası ve dış hava sıcaklığından yoğunluk irtifasını (density altitude) hesaplayın.",
-      iconName: "densityAltitudeCalculator" as const,
-      group: "Havacılık Hesaplayıcıları",
-    },
-    {
       id: "yan-ruzgar",
       href: "/yan-ruzgar-hesaplama",
       title: "Yan Rüzgar Bileşeni Hesaplama",
       description:
         "Rüzgar yönü, hızı ve pist yönünden yan rüzgar ve baş/kuyruk rüzgar bileşenini hesaplayın.",
       iconName: "crosswindCalculator" as const,
-      group: "Havacılık Hesaplayıcıları",
-    },
-    {
-      id: "inis-orani",
-      href: "/inis-orani-hesaplama",
-      title: "İniş Oranı Hesaplama",
-      description:
-        "Yer hızı ve iniş açısından, dakikadaki fit cinsinden iniş oranını (rate of descent) hesaplayın.",
-      iconName: "descentRateCalculator" as const,
-      group: "Havacılık Hesaplayıcıları",
-    },
-    {
-      id: "agirlik-denge",
-      href: "/agirlik-denge-hesaplama",
-      title: "Ağırlık ve Denge Hesaplama",
-      description:
-        "Yük kalemlerinin ağırlığı ve kolundan, toplam ağırlık merkezini (CG) hesaplayın.",
-      iconName: "weightBalanceCalculator" as const,
-      group: "Havacılık Hesaplayıcıları",
-    },
-    {
-      id: "buyuk-daire",
-      href: "/buyuk-daire-mesafesi-hesaplama",
-      title: "Büyük Daire Mesafesi Hesaplama",
-      description:
-        "İki koordinat arasındaki büyük daire mesafesini ve başlangıç rotasını hesaplayın.",
-      iconName: "greatCircleCalculator" as const,
       group: "Havacılık Hesaplayıcıları",
     },
     {
@@ -682,24 +547,6 @@ export default function DigerDonusumlerPage() {
       group: "Havuz ve Su Sistemleri",
     },
     {
-      id: "pozlama-esdegeri",
-      href: "/pozlama-esdegeri-hesaplama",
-      title: "Pozlama Eşdeğeri Hesaplama",
-      description:
-        "ISO, diyafram ve enstantaneden ikisini girerek aynı pozlamayı koruyacak üçüncüsünü hesaplayın.",
-      iconName: "exposureCalculator" as const,
-      group: "Fotoğrafçılık Hesaplayıcıları",
-    },
-    {
-      id: "odak-uzakligi-esdegeri",
-      href: "/odak-uzakligi-esdegeri-hesaplama",
-      title: "Odak Uzaklığı Eşdeğeri Hesaplama (Crop Factor)",
-      description:
-        "Lensin gerçek odak uzaklığından, sensör formatına göre tam kare eşdeğerini hesaplayın.",
-      iconName: "focalLengthCalculator" as const,
-      group: "Fotoğrafçılık Hesaplayıcıları",
-    },
-    {
       id: "renk-kodu",
       href: "/renk-kodu-cevirici",
       title: "Renk Kodu Çevirici",
@@ -718,15 +565,6 @@ export default function DigerDonusumlerPage() {
       group: "Elektronik, Yazılım ve Medya Araçları",
     },
     {
-      id: "bpm-ms",
-      href: "/bpm-ms-hesaplama",
-      title: "BPM - MS Hesaplama",
-      description:
-        "Tempodan dörtlük, sekizlik gibi nota değerlerinin düz, noktalı ve triole milisaniye karşılığını hesaplayın.",
-      iconName: "bpmCalculator" as const,
-      group: "Elektronik, Yazılım ve Medya Araçları",
-    },
-    {
       id: "psu-guc",
       href: "/psu-guc-hesaplama",
       title: "PSU Güç Kaynağı Hesaplama",
@@ -736,39 +574,12 @@ export default function DigerDonusumlerPage() {
       group: "Elektronik, Yazılım ve Medya Araçları",
     },
     {
-      id: "video-bit-hizi",
-      href: "/video-bit-hizi-hesaplama",
-      title: "Video Bit Hızı ve Dosya Boyutu Hesaplama",
-      description:
-        "Bit hızı ve süreden dosya boyutunu, ya da hedef dosya boyutundan bit hızını hesaplayın.",
-      iconName: "videoBitrateCalculator" as const,
-      group: "Elektronik, Yazılım ve Medya Araçları",
-    },
-    {
-      id: "ping-gecikme-hesaplama",
-      href: "/ping-gecikme-hesaplama",
-      title: "Ping / Gecikme Hesaplama",
-      description:
-        "İki konum arasındaki mesafeye göre fiziksel olarak mümkün olan en düşük ping süresini hesaplayın.",
-      iconName: "theoreticalLatencyCalculator" as const,
-      group: "Elektronik, Yazılım ve Medya Araçları",
-    },
-    {
       id: "yakit-tuketimi",
       href: "/yakit-tuketimi-hesaplama",
       title: "Yakıt Tüketimi Hesaplama",
       description:
         "km/lt, lt/100km ve mpg arasında çevirin; yolculuk mesafesi ve yakıt fiyatına göre maliyeti hesaplayın.",
       iconName: "fuelConsumptionCalculator" as const,
-      group: "Ev, Enerji ve Ulaşım Hesaplayıcıları",
-    },
-    {
-      id: "tasinma-kutusu",
-      href: "/tasinma-kutusu-hesaplama",
-      title: "Taşınma Kutusu Hesaplama",
-      description:
-        "Ev tipine göre tahmini taşınma kolisi sayısını ve kamyon hacmini görün.",
-      iconName: "movingBoxCalculator" as const,
       group: "Ev, Enerji ve Ulaşım Hesaplayıcıları",
     },
     {
@@ -814,15 +625,6 @@ export default function DigerDonusumlerPage() {
       description:
         "Koli/palet ölçülerinden CBM ve ücrete esas ağırlığı hesaplayın.",
       iconName: "cbmCalculator" as const,
-      group: "Ev, Enerji ve Ulaşım Hesaplayıcıları",
-    },
-    {
-      id: "seyahat-priz-voltaj",
-      href: "/seyahat-priz-voltaj-hesaplama",
-      title: "Seyahat Priz ve Voltaj Uyumluluk Hesaplama",
-      description:
-        "Gideceğin ülkeye göre adaptöre veya voltaj dönüştürücüye ihtiyacın olup olmadığını hesaplayın.",
-      iconName: "travelPlugVoltageCalculator" as const,
       group: "Ev, Enerji ve Ulaşım Hesaplayıcıları",
     },
     {

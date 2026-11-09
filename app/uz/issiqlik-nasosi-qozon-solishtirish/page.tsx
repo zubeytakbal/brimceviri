@@ -31,9 +31,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: pagePath,
     languages: {
-      tr: "/isi-pompasi-kombi-karsilastirma",
+      tr: "/kombi-klima-isitma-maliyeti-karsilastirma",
       "uz-UZ": pagePath,
-      "x-default": "/isi-pompasi-kombi-karsilastirma",
+      "x-default": "/kombi-klima-isitma-maliyeti-karsilastirma",
     },
   },
   openGraph: {

@@ -11,7 +11,7 @@ import { zonePairs } from "./converter/time/timeZonePairs";
 import { buildLanguageAlternates } from "./i18n/routing";
 import { categoryPages } from "./converter/categoryPages";
 import { conversionPages } from "./converter/conversionPages";
-import { isMergedAway } from "./converter/mergedPairs";
+import { ciftYayinda } from "./converter/mergedPairs";
 import { NORDIC_FUEL_PATHS } from "./converter/fuel/nordicFuel";
 import {
   englishCalculatorPages,
@@ -236,7 +236,7 @@ function buildLocalizedCoreAlternates(
     collection === "categories" ||
     (collection === "units"
       ? unitPages.some((page) => page.slug === sourceSlug)
-      : conversionPages.some((page) => page.slug === sourceSlug) && !isMergedAway(sourceSlug));
+      : conversionPages.some((page) => page.slug === sourceSlug) && ciftYayinda(sourceSlug));
 
   const paths = {
     categories: {
@@ -2595,7 +2595,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         alternates: buildLanguageAlternates({ tr: trPath, en: enPath }, "tr"),
       })),
     ),
-    ...["/gunes-acisi-ve-golge-boyu-hesaplama", "/eski-para-yeni-para-cevirme", "/ebced-hesabi", "/bofor-cevirme", "/mesh-mikron-cevirme", "/bisiklet-jant-olcusu", "/roma-rakamlari-cevirme", "/egim-cevirme", "/brix-baume-cevirme", "/swg-mm-cevirici", "/matkap-ucu-olcusu-cevirme", "/igne-numarasi-gauge-mm", "/tahlil-degerleri-cevirme"].map((path) => ({
+    ...["/eski-para-yeni-para-cevirme", "/bofor-cevirme", "/mesh-mikron-cevirme", "/bisiklet-jant-olcusu", "/roma-rakamlari-cevirme", "/egim-cevirme", "/brix-baume-cevirme", "/swg-mm-cevirici", "/matkap-ucu-olcusu-cevirme", "/igne-numarasi-gauge-mm", "/tahlil-degerleri-cevirme"].map((path) => ({
       url: `${baseUrl}${path}`,
       lastModified: contentLastModified,
       changeFrequency: "monthly" as const,
@@ -4337,7 +4337,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   const turkishConversionRoutes: MetadataRoute.Sitemap =
-    conversionPages.filter((page) => !isMergedAway(page.slug)).map((page) => {
+    conversionPages.filter((page) => ciftYayinda(page.slug)).map((page) => {
       const englishPage = findEnglishPageByTurkishSlug(
         page.slug
       );

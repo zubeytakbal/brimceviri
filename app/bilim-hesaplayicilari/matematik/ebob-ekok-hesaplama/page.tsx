@@ -1,6 +1,7 @@
 import { germanMathAlternatesForTurkish } from "@/app/i18n/germanMathPages";
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
+import DivisorCountCalculator from "../../../components/DivisorCountCalculator";
 import EbobEkokCalculator from "../../../components/EbobEkokCalculator";
 import { calculateEbobEkok } from "../../../converter/ebobEkokCalculator";
 import { buildFaqSchema, type FaqItem } from "../../../converter/faqSchema";
@@ -140,6 +141,12 @@ export default function EbobEkokHesaplamaPage() {
         </div>
 
         <section className="category-article-content">
+          <h2>Bölen sayısı ve bölenler</h2>
+          <p>Bir sayının kaç pozitif böleni olduğunu, bölenlerinin toplamını ve asal olup olmadığını bulun. EBOB ve EKOK da aynı asal çarpanlara dayanır.</p>
+          <DivisorCountCalculator />
+        </section>
+
+        <section className="category-article-content">
           <h2 id="sik-sorulanlar">Sık sorulan EBOB ve EKOK hesapları</h2>
           <p>Aramalarda en çok sorulan sayıların EBOB ve EKOK değerleri. Kendi sayılarınız için yukarıdaki aracı kullanın.</p>
           <div className="conversion-table-wrap">
@@ -248,7 +255,7 @@ export default function EbobEkokHesaplamaPage() {
           <h2>İlgili araçlar</h2>
           <p>
             Bir sayının bölen sayısı için{" "}
-            <Link href="/bilim-hesaplayicilari/matematik/bolen-sayisi-hesaplama">Bölen Sayısı Hesaplama</Link>,{" "}
+            Bölen Sayısı Hesaplama,{" "}
             karekök sadeleştirme için{" "}
             <Link href="/bilim-hesaplayicilari/matematik/karekok-hesaplama">Karekök Hesaplama</Link>
             {" "}sayfalarına bakabilirsin.

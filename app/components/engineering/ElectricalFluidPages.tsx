@@ -316,5 +316,7 @@ const TOOLS: Record<EfKind, () => ReactNode> = {
 export const efMetadata = (kind: EfKind) => toolArticleMetadata(ARTICLES[kind]());
 
 export default function ElectricalFluidPage({ kind }: { kind: EfKind }) {
-  return <ToolArticlePage article={ARTICLES[kind]()} tool={TOOLS[kind]()} />;
+  // Kasim 2026: pnomatik silindir hidrolik silindir sayfasina birlestirildi (ayni F = P x A hesabi, farkli basinc araligi).
+  const tool = kind === "hydraulic" ? <>{TOOLS.hydraulic()}{TOOLS.pneumatic()}</> : TOOLS[kind]();
+  return <ToolArticlePage article={ARTICLES[kind]()} tool={tool} />;
 }

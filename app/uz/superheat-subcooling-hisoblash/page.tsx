@@ -30,10 +30,9 @@ export const metadata: Metadata = {
     "O'lchangan harorat va to'yinganlik haroratidan superheat (ortiqcha qizdirish) va subcooling (qo'shimcha sovutish) qiymatlarini hisoblang.",
   alternates: {
     canonical: pagePath,
-    languages: {
-      tr: "/superheat-subcooling-hesaplama",
+    languages: {
       "uz-UZ": pagePath,
-      "x-default": "/superheat-subcooling-hesaplama",
+      "x-default": pagePath,
     },
   },
   openGraph: {

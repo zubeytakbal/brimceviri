@@ -7,7 +7,7 @@ export const metadata = buildArabicMetadata({
   description:
     "الصق وصفتك، اختر معامل التكبير أو التصغير، واحصل مباشرة على المقادير الجديدة مع تحويل تلقائي لبعض المكونات إلى الغرام.",
   path: "/ar/recipe-converter",
-  turkishPath: "/tarif-cevirici",
+  turkishPath: "/mutfak-olculeri-cevirici",
   englishPath: "/en/recipe-converter",
   germanPath: "/de/rezept-umrechner",
 });
@@ -119,7 +119,7 @@ export default function ArabicRecipeConverterPage() {
 
         <section className="conversion-section language-alternatives">
           <h2>لغات أخرى</h2>
-          <Link className="text-link" href="/tarif-cevirici" hrefLang="tr">
+          <Link className="text-link" href="/mutfak-olculeri-cevirici" hrefLang="tr">
             عرض النسخة التركية
           </Link>
         </section>

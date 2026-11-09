@@ -445,3 +445,27 @@
   .yy-populer a { padding: 18px; }
 }
 .yy-ana-sayfa .yy-populer { margin: 0 auto; }
+/* Alt menu: Omni duzeni; solda slogan ve logo, sagda simgeli kategoriler ve uc sutun, en altta telif seridi */
+.yy-alt { background: #fff; border-top: 1px solid #e3e6eb; }
+.yy-alt-ana { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 48px; max-width: 1425px; margin: 0 auto; padding: 64px 24px 48px; box-sizing: border-box; }
+.yy-alt-slogan { margin: 0 0 18px; font-size: 32px; font-weight: 700; line-height: 40px; color: #0a0a0a; }
+.yy-alt .yy-logo { font-size: 26px; }
+.yy-alt-kisa { margin: 12px 0 0; font-size: 14px; line-height: 22px; color: #5b6472; }
+.yy-alt h2 { margin: 0 0 22px; font-size: 18px; font-weight: 600; line-height: 26px; color: #0a0a0a; }
+.yy-alt ul { list-style: none; margin: 0; padding: 0; }
+.yy-alt-kategoriler { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px 24px; }
+.yy-alt-kategoriler a { display: inline-flex; align-items: center; gap: 14px; font-size: 15px; color: #0a0a0a; }
+.yy-alt-kategoriler svg { color: #3b68fc; flex: 0 0 auto; }
+.yy-alt-kategoriler a:hover, .yy-alt-sutunlar a:hover { color: #3b68fc; text-decoration: none; }
+.yy-alt-sutunlar { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 56px; }
+.yy-alt-sutunlar li + li { margin-top: 16px; }
+.yy-alt-sutunlar a { font-size: 15px; color: #0a0a0a; }
+.yy-alt-serit { border-top: 1px solid #e3e6eb; }
+.yy-alt-serit div { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 48px; max-width: 1425px; margin: 0 auto; padding: 20px 24px; box-sizing: border-box; font-size: 14px; font-weight: 500; color: #5b6472; }
+.yy-alt-serit a { color: #5b6472; }
+@media (max-width: 960px) {
+  .yy-alt-ana { grid-template-columns: minmax(0, 1fr); gap: 32px; padding: 40px 16px 32px; }
+  .yy-alt-slogan { font-size: 24px; line-height: 32px; }
+  .yy-alt-kategoriler { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 16px; }
+  .yy-alt-sutunlar { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 32px; }
+}

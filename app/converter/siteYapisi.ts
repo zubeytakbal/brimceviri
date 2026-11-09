@@ -95,7 +95,7 @@ export const birimGruplari: BirimGrubu[] = [
 /**
  * Yeni yapiya tasinmis kategoriler. Bunlarin kategori sayfasi /<kategori>, cift sayfalari
  * /<kategori>/<cift> adresindedir; eski /kategoriler/<kategori> ve /<cift> adresleri
- * Cloudflare Bulk Redirects ile 301 yonlenir (scripts/bulkRedirects.ts).
+ * 301 ile yonlenir (app/mergedPageRedirects.ts).
  */
 export const yeniYapiKategorileri: ReadonlySet<string> = new Set(["uzunluk", "alan"]);
 

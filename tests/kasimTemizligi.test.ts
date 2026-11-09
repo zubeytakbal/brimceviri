@@ -5,6 +5,8 @@ import { BIRLESEN_SAYFALAR, KAPALI_TR_SAYFALAR, SILINEN_SAYFALAR, kasimYonlendir
 import { conversionPages } from "../app/converter/conversionPages";
 import { ciftYayinda } from "../app/converter/mergedPairs";
 import { YONLENDIRILEN_CIFTLER } from "../app/converter/yonlendirilenCiftler";
+import { TASINAN_CIFTLER } from "../app/converter/tasinanCiftler.generated";
+import { siteRedirects } from "../app/siteRedirects";
 
 describe("Kasım 2026 temizliği", () => {
   it("silinen ve birleşen sayfaların klasörü yok", () => {
@@ -33,6 +35,14 @@ describe("Kasım 2026 temizliği", () => {
     const satirlar = kasimYonlendirmeleri();
     const kaynaklar = new Set(satirlar.map(([k]) => k));
     for (const [, hedef] of satirlar) expect(kaynaklar.has(hedef), hedef).toBe(false);
+  });
+
+  it("yönlendirmeler sitenin kendi kurallarında (Cloudflare listesi gerekmez)", () => {
+    const kurallar = new Map(siteRedirects().map((k) => [k.source, k.destination]));
+    for (const [kaynak, hedef] of kasimYonlendirmeleri()) expect(kurallar.get(kaynak), kaynak).toBe(hedef);
+    for (const [cift, k] of Object.entries(TASINAN_CIFTLER)) expect(kurallar.get(`/${cift}`), cift).toBe(`/${k}/${cift}`);
+    expect(kurallar.get("/kategoriler/uzunluk")).toBe("/uzunluk");
+    expect(kurallar.get("/kategoriler/alan")).toBe("/alan");
   });
 
   it("kapalı, silinen ve yönlenen adresler dizine kapalı; çekirdek sayfalar açık", () => {

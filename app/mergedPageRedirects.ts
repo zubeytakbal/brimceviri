@@ -3,7 +3,10 @@ import { aminoAcidsDatabase } from "./converter/aminoAcidsDatabase";
 import { unitGuideRedirects } from "./converter/unitGlossary";
 import { ALTIN_SAYFALARI, AYRI_ALTIN_SAYFALARI } from "./converter/turkishAltinPages";
 import { cgpaUniversities } from "./converter/india/cgpaUniversities";
+import { TASINAN_CIFTLER } from "./converter/tasinanCiftler.generated";
+import { yeniYapiKategorileri } from "./converter/siteYapisi";
 import { KALDIRILAN_SAYFALAR } from "./kaldirilanSayfalar";
+import { kasimYonlendirmeleri } from "./kasimTemizligi";
 
 export type MergedRedirect = { source: string; destination: string; permanent: true };
 
@@ -162,9 +165,19 @@ function legacyRedirects(): MergedRedirect[] {
   ];
 }
 
+/** Yeni yapıya taşınan kategorilerin ve çiftlerin eski adresleri. */
+function tasimaYonlendirmeleri(): MergedRedirect[] {
+  return [
+    ...[...yeniYapiKategorileri].map((k) => r(`/kategoriler/${k}`, `/${k}`)),
+    ...Object.entries(TASINAN_CIFTLER).map(([cift, k]) => r(`/${cift}`, `/${k}/${cift}`)),
+  ];
+}
+
 export function mergedPageRedirects(): MergedRedirect[] {
-  // Kaldırılan sayfalar (kaldirilanSayfalar.ts) önce gelir; aynı adres için sonraki kurallar yazılmaz.
+  // Kasım 2026 temizliği ile kaldırılan sayfalar önce gelir; aynı adres için sonraki kurallar yazılmaz.
   const kurallar = [
+    ...kasimYonlendirmeleri().map(([kaynak, hedef]) => r(kaynak, hedef)),
+    ...tasimaYonlendirmeleri(),
     ...Object.entries(KALDIRILAN_SAYFALAR).map(([kaynak, hedef]) => r(kaynak, hedef)),
     ...es419Redirects(), ...numberRedirects(), ...aminoAcidRedirects(), ...unitGuideRedirects().map((x) => r(x.source, x.destination)), ...altinRedirects(), ...goldKaratPairRedirects(), ...cgpaRedirects(), ...materialRedirects(), ...legacyRedirects(),
   ];

@@ -1,6 +1,6 @@
 // Kasım 2026 temizliği (Aşama 1). Karar tablosu: docs/url-karar/hedef-site-haritasi.xlsx (git dışında).
 // Kullananlar: app/indexPolicy.ts (noindex, site haritası, hreflang), scripts/postbuild.ts (iç bağlantıları hedefe çevirir),
-// scripts/bulkRedirects.ts (Cloudflare Bulk Redirects CSV; _redirects 2000 kural sınırında dolu).
+// app/mergedPageRedirects.ts (out/_redirects dosyasına 301 kuralı).
 import { YONLENDIRILEN_CIFTLER } from "./converter/yonlendirilenCiftler";
 import { turkceKategoriYolu, yeniYapiKategorileri } from "./converter/siteYapisi";
 
@@ -30,7 +30,7 @@ export const SILINEN_SAYFALAR: ReadonlySet<string> = new Set([
   "/yogunluk-irtifasi-hesaplama",
 ]);
 
-/** Aynı işi yapan sayfaya birleştirilen sayfalar: kaynak -> hedef (301, Cloudflare Bulk Redirects). */
+/** Aynı işi yapan sayfaya birleştirilen sayfalar: kaynak -> hedef (301). */
 export const BIRLESEN_SAYFALAR: Readonly<Record<string, string>> = {
   "/bilim-hesaplayicilari/matematik/bolen-sayisi-hesaplama": "/bilim-hesaplayicilari/matematik/ebob-ekok-hesaplama",
   "/bilim-hesaplayicilari/matematik/mod-hesaplama": "/bilim-hesaplayicilari/matematik/ortalama-hesaplama",

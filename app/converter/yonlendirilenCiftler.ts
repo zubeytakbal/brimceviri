@@ -1,6 +1,6 @@
 // Kasım 2026 temizliği (Aşama 1): Search Console son 3 ayında aranmayan (0 tık, 100'den az gösterim) Türkçe çift
-// sayfaları. Sayfa üretilmez; adres kendi kategori sayfasına 301 ile yönlenir (Cloudflare Bulk Redirects,
-// scripts/bulkRedirects.ts). Bir çifti geri getirmek için satırını silmek yeterli.
+// sayfaları. Sayfa üretilmez; adres kendi kategori sayfasına 301 ile yönlenir (app/kasimTemizligi.ts).
+// Bir çifti geri getirmek için satırını silmek yeterli.
 // [çift slug, kategori slug]
 export const YONLENDIRILEN_CIFTLER: ReadonlyArray<readonly [string, string]> = [
   ["akre-decimal-arazi", "alan"],

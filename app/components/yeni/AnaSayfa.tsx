@@ -79,28 +79,32 @@ export default function AnaSayfa() {
   const hesapSayisi = HESAPLAYICI_GRUPLARI.reduce((t, g) => t + g.linkler.length, 0);
   const birimSayisi = BIRIM_GRUPLARI.reduce((t, g) => t + g.linkler.length, 0);
   return (
-    <div className="yy yy-sayfa">
-      <main className="yy-ana-sayfa">
-        <section className="yy-hero" aria-labelledby="ana-baslik">
-          <div className="yy-hero-ust">
-            <h1 id="ana-baslik">
-              <span>Türkçe</span> birim çevirici ve <em>{hesapSayisi} hesaplama aracı</em>
-            </h1>
-            <div className="yy-hero-arama">
-              <HomeSearch locale="tr" strings={aramaMetni} kimlik="yy-ana-arama" />
-            </div>
+    <div className="yy yy-sayfa yy-ana-zemin">
+      <section className="yy-hero" aria-labelledby="ana-baslik">
+        <div className="yy-hero-ic">
+          <h1 id="ana-baslik">
+            <span className="yy-hero-kucuk">Türkçe ve ücretsiz</span>
+            <span className="yy-hero-mavi">{hesapSayisi} hesaplama aracı</span>
+            <span>ve birim çevirici</span>
+          </h1>
+          <div className="yy-hero-arama">
+            <HomeSearch locale="tr" strings={aramaMetni} kimlik="yy-ana-arama" />
           </div>
+        </div>
+      </section>
+      <main className="yy-ana-sayfa">
+        <div className="yy-bolum">
           <HizliCevirici secenekler={hizliSecenekler()} />
-        </section>
+        </div>
 
-        <section aria-labelledby="birim">
+        <section className="yy-bolum" aria-labelledby="birim">
           <h2 id="birim">
             Birim çevirme <small>{birimSayisi} çevirici</small>
           </h2>
           <GrupKartlari tur="birim" gruplar={BIRIM_GRUPLARI} />
         </section>
 
-        <section aria-labelledby="sik">
+        <section className="yy-bolum" aria-labelledby="sik">
           <h2 id="sik">Sık kullanılan dönüşümler</h2>
           <div className="yy-sik">
             {SIK_GRUPLARI.map((g) => (
@@ -120,14 +124,14 @@ export default function AnaSayfa() {
           </div>
         </section>
 
-        <section aria-labelledby="hesap">
+        <section className="yy-bolum" aria-labelledby="hesap">
           <h2 id="hesap">
             Hesaplama araçları <small>{hesapSayisi} araç</small>
           </h2>
           <GrupKartlari tur="hesap" gruplar={HESAPLAYICI_GRUPLARI} />
         </section>
 
-        <section aria-labelledby="populer">
+        <section className="yy-bolum" aria-labelledby="populer">
           <h2 id="populer">En çok kullanılan araçlar</h2>
           <ul className="yy-populer">
             {POPULER_ARACLAR.map((a) => (
@@ -139,7 +143,7 @@ export default function AnaSayfa() {
           </ul>
         </section>
 
-        <section className="yy-hakkinda" aria-labelledby="hakkinda">
+        <section className="yy-bolum yy-hakkinda" aria-labelledby="hakkinda">
           <h2 id="hakkinda">BirimCeviri nedir?</h2>
           <p>
             BirimCeviri, birim çevirme ve günlük hesapları Türkçe olarak tek yerde toplayan bir sitedir. Metre ve kilogram

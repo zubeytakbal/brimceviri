@@ -124,9 +124,12 @@ const KURUMSAL_YOLLAR: ReadonlySet<string> = new Set([
   "yazar",
 ]);
 
+/** Yeni arac sayfasi duzenine (AracSayfasi) gecmis Turkce araclar. */
+export const YENI_ARAC_YOLLARI: ReadonlySet<string> = new Set(["/kdv-hesaplama"]);
+
 /** Yeni kabugun (ust menu, yan panel, alt bilgi) cizilecegi Turkce yollar. */
 export function isYeniYapiYolu(pathname: string) {
-  if (pathname === "/") return true;
+  if (pathname === "/" || YENI_ARAC_YOLLARI.has(pathname)) return true;
   const ilk = pathname.split("/")[1] ?? "";
   if (yeniYapiKategorileri.has(ilk) || KURUMSAL_YOLLAR.has(ilk)) return true;
   // Grup sayfalari: /hesaplayicilar/<grup> (ayni adres altindaki eski araclar haric)

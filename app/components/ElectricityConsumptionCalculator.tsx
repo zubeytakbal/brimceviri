@@ -233,23 +233,6 @@ const copyByLocale: Record<
       costHint: "أدخل سعر الكهرباء لكل kWh لعرض تقدير التكلفة.",
     },
   },
-uz: {
-    labels: {
-      power: "Qurilma Quvvati (Vatt)",
-      hours: "Kunlik Foydalanish Vaqti (soat)",
-      days: "Oyiga Necha Kun Ishlatiladi",
-      price: "Elektr Narxi (so'm/kWh) - ixtiyoriy",
-    },
-    placeholder: "Hisob-fakturangizdagi kWh narxi",
-    emptyState: "Natijani ko'rish uchun to'g'ri qiymatlar kiriting.",
-    resultLabels: {
-      monthly: "Oylik sarf",
-      daily: "Kunlik sarf",
-      yearly: "Yillik sarf",
-      yearlyCost: "Yillik xarajat",
-      costHint: "Xarajatni ham ko'rish uchun hisob-fakturangizdagi kWh narxini kiriting.",
-    },
-  },
 bn: {
     labels: {
       power: "যন্ত্রের ক্ষমতা (ওয়াট)",

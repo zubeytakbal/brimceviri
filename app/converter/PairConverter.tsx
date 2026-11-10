@@ -14,13 +14,13 @@ type PairConverterProps = {
   toUnit: string;
   fromName: string;
   toName: string;
-  locale?: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "pt" | "it" | "nl" | "ru" | "sv" | "no" | "da";
+  locale?: "tr" | "en" | "de" | "ar" | "bn" | "fr" | "es" | "pt" | "it" | "nl" | "ru" | "sv" | "no" | "da";
   // Verilirse deger/birim "Tum birimler" paneliyle (AllUnitsPanel) paylasilir.
   syncKey?: string;
 };
 
 function getNumberLocale(
-  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "pt" | "it" | "nl" | "ru" | "sv" | "no" | "da"
+  locale: "tr" | "en" | "de" | "ar" | "bn" | "fr" | "es" | "pt" | "it" | "nl" | "ru" | "sv" | "no" | "da"
 ) {
   if (locale === "tr") {
     return "tr-TR";
@@ -34,9 +34,6 @@ function getNumberLocale(
     return "ar";
   }
 
-  if (locale === "uz") {
-    return "uz-UZ";
-  }
 
   if (locale === "bn") {
     return "bn-BD";
@@ -83,7 +80,7 @@ function getNumberLocale(
 
 function formatResult(
   value: number,
-  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "pt" | "it" | "nl" | "ru" | "sv" | "no" | "da"
+  locale: "tr" | "en" | "de" | "ar" | "bn" | "fr" | "es" | "pt" | "it" | "nl" | "ru" | "sv" | "no" | "da"
 ) {
   if (!Number.isFinite(value)) {
     return "";
@@ -294,9 +291,7 @@ export default function PairConverter({
         ? `${activeFromName}-Wert`
         : locale === "ar"
           ? `قيمة ${activeFromName}`
-          : locale === "uz"
-            ? `${activeFromName} qiymati`
-            : locale === "bn"
+          : locale === "bn"
               ? `${activeFromName} \u09AE\u09BE\u09A8`
               : locale === "fr"
                 ? `Valeur de ${activeFromName}`
@@ -325,9 +320,7 @@ export default function PairConverter({
         ? "Wert eingeben"
         : locale === "ar"
           ? "أدخل قيمة"
-          : locale === "uz"
-            ? "Qiymat kiriting"
-            : locale === "bn"
+          : locale === "bn"
               ? "\u098F\u0995\u099F\u09BF \u09AE\u09BE\u09A8 \u09B2\u09BF\u0996\u09C1\u09A8"
               : locale === "fr"
                 ? "Saisissez une valeur"
@@ -356,9 +349,7 @@ export default function PairConverter({
         ? "Umrechnungsrichtung umkehren"
         : locale === "ar"
           ? "اعكس اتجاه التحويل"
-          : locale === "uz"
-            ? "O'zgartirish yo'nalishini teskari qiling"
-            : locale === "bn"
+          : locale === "bn"
               ? "\u09B0\u09C2\u09AA\u09BE\u09A8\u09CD\u09A4\u09B0\u09C7\u09B0 \u09A6\u09BF\u0995 \u09AA\u09B0\u09BF\u09AC\u09B0\u09CD\u09A4\u09A8 \u0995\u09B0\u09C1\u09A8"
               : locale === "fr"
                 ? "Inverser le sens de la conversion"

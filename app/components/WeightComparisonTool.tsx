@@ -33,11 +33,6 @@ const unitOptionLabels: Record<
     kg: "كيلوغرام (kg)",
     ton: "طن",
   },
-uz: {
-    g: "Gramm (g)",
-    kg: "Kilogramm (kg)",
-    ton: "Tonna",
-  },
 bn: {
     g: "গ্রাম (g)",
     kg: "কিলোগ্রাম (kg)",
@@ -95,7 +90,6 @@ const unitShortLabels: Record<Locale, Record<WeightComparisonUnit, string>> = {
   en: { g: "g", kg: "kg", ton: "ton" },
   de: { g: "g", kg: "kg", ton: "t" },
   ar: { g: "غ", kg: "كجم", ton: "طن" },
-uz: { g: "g", kg: "kg", ton: "t" },
 bn: { g: "g", kg: "kg", ton: "t" },
 fr: { g: "g", kg: "kg", ton: "t" },
   es: { g: "g", kg: "kg", ton: "t" },
@@ -144,15 +138,6 @@ const referenceLabels: Record<Locale, Record<string, string>> = {
     otomobil: "متوسط وزن سيارة ركاب",
     fil: "متوسط وزن فيل إفريقي بالغ",
     "mavi-balina": "متوسط وزن حوت أزرق بالغ",
-  },
-uz: {
-    kedi: "O'rtacha uy mushugi",
-    insan: "O'rtacha voyaga yetgan inson",
-    motosiklet: "O'rtacha mototsikl",
-    at: "O'rtacha minish oti",
-    otomobil: "O'rtacha yengil avtomobil",
-    fil: "O'rtacha voyaga yetgan Afrika fili",
-    "mavi-balina": "O'rtacha voyaga yetgan ko'k kit",
   },
 bn: {
     kedi: "গড় পোষা বিড়াল",
@@ -379,16 +364,6 @@ const copyByLocale: Record<
     intro: "مقارنات للقيمة",
     closestMatch: "أقرب مقارنة",
   },
-uz: {
-    labels: {
-      value: "Qiymat",
-      unit: "Birlik",
-    },
-    placeholder: "Mas. 25",
-    emptyState: "Solishtirishlarni ko'rish uchun to'g'ri qiymat kiriting.",
-    intro: "uchun solishtirishlar:",
-    closestMatch: "Eng yaqin solishtirish",
-  },
   bn: {
     labels: {
       value: "মান",
@@ -436,7 +411,7 @@ function getReferenceLabel(id: string, locale: Locale, fallback: string) {
 }
 
 // Bu dillerde "icin karsilastirmalar" ifadesi degerden sonra gelir.
-const introAfterValueLocales = new Set<Locale>(["tr", "uz", "bn"]);
+const introAfterValueLocales = new Set<Locale>(["tr", "bn"]);
 
 export default function WeightComparisonTool({
   locale = "tr",

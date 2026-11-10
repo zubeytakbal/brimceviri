@@ -98,13 +98,6 @@ export const alarmCopy: Record<string, AlarmCopy> = {
     ringing: (time) => `⏰ صباح الخير! الساعة ${time}`,
     stop: "إيقاف",
   },
-  uz: {
-    setFor: (time) => `⏰ ${time} ga budilnik qo'yish`,
-    active: (time) => `Budilnik ${time} ga qo'yildi. Bu oynani yopmang; telefonda ekran qulflansa brauzer to'xtab qolishi mumkin, shuning uchun telefon budilnigini ham qo'ying.`,
-    cancel: "Budilnikni bekor qilish",
-    ringing: (time) => `⏰ Xayrli tong! Soat ${time}`,
-    stop: "To'xtatish",
-  },
   bn: {
     setFor: (time) => `⏰ ${time}-এ অ্যালার্ম দিন`,
     active: (time) => `${time}-এ অ্যালার্ম দেওয়া হয়েছে। এই ট্যাবটি খোলা রাখুন; ফোনে স্ক্রিন লক হলে ব্রাউজার থেমে যেতে পারে, তাই ফোনের অ্যালার্মও দিন।`,

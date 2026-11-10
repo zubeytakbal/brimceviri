@@ -10,7 +10,7 @@ import {
 } from "../converter/shoeSizeTable";
 
 type SystemKey = "eu" | "us" | "uk" | "cm";
-type Locale = "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "pt" | "it" | "nl" | "sv" | "no" | "da";
+type Locale = "tr" | "en" | "de" | "ar" | "bn" | "fr" | "es" | "pt" | "it" | "nl" | "sv" | "no" | "da";
 
 const systemLabels: Record<Locale, Record<SystemKey, string>> = {
   tr: {
@@ -36,12 +36,6 @@ const systemLabels: Record<Locale, Record<SystemKey, string>> = {
     us: "أمريكا (US)",
     uk: "بريطانيا (UK)",
     cm: "طول القدم (سم)",
-  },
-  uz: {
-    eu: "Yevropa (EU)",
-    us: "AQSH (US)",
-    uk: "Angliya (UK)",
-    cm: "Oyoq Uzunligi (sm)",
   },
   bn: {
     eu: "ইউরোপ (EU)",
@@ -106,14 +100,6 @@ const brandLabels: Record<Locale, Record<ShoeBrandKey, string>> = {
   },
   ar: {
     genel: "عام",
-    nike: "Nike",
-    adidas: "Adidas",
-    puma: "Puma",
-    "new-balance": "New Balance",
-    converse: "Converse",
-  },
-  uz: {
-    genel: "Umumiy (Standart)",
     nike: "Nike",
     adidas: "Adidas",
     puma: "Puma",
@@ -190,12 +176,6 @@ const groupLabels: Record<Locale, Record<ShoeSizeGroupKey, string>> = {
     kadin: "نساء",
     bebek: "رضع / أطفال صغار",
     "buyuk-cocuk": "أطفال أكبر سنا",
-  },
-  uz: {
-    erkek: "Erkaklar",
-    kadin: "Ayollar",
-    bebek: "Chaqaloq / Kichik Bola",
-    "buyuk-cocuk": "Katta Bola",
   },
   bn: {
     erkek: "পুরুষ",
@@ -288,20 +268,6 @@ const copy = {
     ukResult: "UK",
     footLength: "طول القدم",
     chartSuffix: "جدول مقاسات الأحذية",
-  },
-  uz: {
-    group: "Guruh",
-    brand: "Brend",
-    knownSystem: "Ma'lum Tizim",
-    value: "Qiymat",
-    matchingSizes: "Mos O'lchamlar",
-    invalidValue:
-      "Natijani ko'rish uchun to'g'ri raqam kiriting.",
-    euResult: "Yevropa (EU)",
-    usResult: "AQSH (US)",
-    ukResult: "Angliya (UK)",
-    footLength: "Oyoq Uzunligi",
-    chartSuffix: "oyoq kiyimi o'lchamlari jadvali",
   },
   bn: {
     group: "গ্রুপ",
@@ -419,9 +385,6 @@ function getNumberLocale(locale: Locale) {
     return "ar";
   }
 
-  if (locale === "uz") {
-    return "uz-UZ";
-  }
 
   if (locale === "bn") {
     return "bn-BD";

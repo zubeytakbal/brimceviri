@@ -14,8 +14,7 @@ export { CLOSED_LOCALES };
 /** Bu dillerde dil ana sayfası, yasal sayfalar ve tıklama alan sayfalar açık; kalanı kapalı.
  * 21 Ekim 2026: site sahibinin kararıyla boş; Özbekçe ve Bengalce de (önceden kısmi) tamamen açık. */
 const PARTIAL_LOCALES: string[] = [];
-const PARTIAL_KEEP = new Set([
-  "/uz/aloqa", "/uz/maxfiylik-siyosati", "/uz/foydalanish-shartlari",
+const PARTIAL_KEEP = new Set<string>([
 ]);
 
 const CLICKED = new Set(CLICKED_PATHS);

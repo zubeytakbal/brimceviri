@@ -24,7 +24,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/kereste-hesaplama",
     languages: {
-      "uz-UZ": "/uz/yogoch-hajmi-hisoblash",
     },
   },
   openGraph: {

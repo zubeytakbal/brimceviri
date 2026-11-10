@@ -41,7 +41,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/devamsizlik-hesaplama",
     languages: {
-      "uz-UZ": "/uz/davomat-hisoblash",
     },
   },
   openGraph: {

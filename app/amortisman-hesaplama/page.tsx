@@ -35,7 +35,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/amortisman-hesaplama",
     languages: {
-      "uz-UZ": "/uz/amortizatsiya-hisoblash",
     },
   },
   openGraph: {

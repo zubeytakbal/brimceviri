@@ -57,10 +57,6 @@ import {
 import { englishChemistryTools } from "./i18n/englishChemistryToolCatalog";
 import { englishDecisionSavingsTools } from "./i18n/englishDecisionSavingsTools";
 import {
-  uzbekStandaloneTools,
-  findUzbekStandaloneToolByTurkishPath,
-} from "./i18n/uzbekStandaloneTools";
-import {
   periodicTable,
   slugifyElementName,
 } from "./converter/periodicTableData";
@@ -83,9 +79,6 @@ import {
   getElectricalCalculatorPath,
 } from "./converter/engineeringHubs";
 import { unitPages } from "./converter/unitPages";
-import { uzbekCategoryPages } from "./converter/localizedUzbekCategoryPages";
-import { uzbekUnitPages } from "./converter/localizedUzbekUnitPages";
-import { uzbekConversionPages } from "./converter/localizedUzbekConversionPages";
 import { bengaliCategoryPages } from "./converter/localizedBengaliCategoryPages";
 import { bengaliUnitPages } from "./converter/localizedBengaliUnitPages";
 import { bengaliConversionPages } from "./converter/localizedBengaliConversionPages";
@@ -117,7 +110,7 @@ import { SITE_LAST_MODIFIED, SITE_URL } from "./siteConfig";
 import { GOLD_CALCULATOR_PATHS } from "./i18n/goldCalculatorPaths";
 import { KARAT_PAIRS } from "./converter/goldKaratPairs";
 import { CYCLE_PATHS } from "./i18n/cycleCalculatorContent";
-import { ISLAMIC_TOOL_PATHS, UZBEK_ISLAMIC_PATHS } from "./i18n/islamicToolPaths";
+import { ISLAMIC_TOOL_PATHS } from "./i18n/islamicToolPaths";
 
 export const dynamic = "force-static";
 
@@ -129,7 +122,7 @@ function languageAlternates(
   englishUrl: string,
   germanUrl?: string,
   arabicUrl?: string,
-  uzbekUrl?: string,
+  _kaldirilanDil?: string,
   bengaliUrl?: string,
   frenchUrl?: string
 ) {
@@ -139,7 +132,6 @@ function languageAlternates(
       en: englishUrl,
       ...(germanUrl ? { de: germanUrl } : {}),
       ...(arabicUrl ? { ar: arabicUrl } : {}),
-      ...(uzbekUrl ? { "uz-UZ": uzbekUrl } : {}),
       ...(bengaliUrl ? { bn: bengaliUrl } : {}),
       ...(frenchUrl ? { fr: frenchUrl } : {}),
       "x-default": turkishUrl,
@@ -170,12 +162,6 @@ function buildLocalizedCoreAlternates(
       : collection === "units"
         ? findGermanUnitPageByTurkishSlug(sourceSlug)
         : findGermanPageByTurkishSlug(sourceSlug);
-  const uzbekPage =
-    collection === "categories"
-      ? uzbekCategoryPages.find((page) => page.sourceSlug === sourceSlug)
-      : collection === "units"
-        ? uzbekUnitPages.find((page) => page.sourceSlug === sourceSlug)
-        : uzbekConversionPages.find((page) => page.sourceSlug === sourceSlug);
   const bengaliPage =
     collection === "categories"
       ? bengaliCategoryPages.find((page) => page.sourceSlug === sourceSlug)
@@ -245,7 +231,6 @@ function buildLocalizedCoreAlternates(
       en: englishPage ? `/en/categories/${englishPage.slug}` : undefined,
       de: germanPage ? `/de/kategorien/${germanPage.slug}` : undefined,
       ar: englishPage ? `/ar/categories/${englishPage.slug}` : undefined,
-      uz: uzbekPage ? `/uz/turkumlar/${uzbekPage.slug}` : undefined,
       bn: bengaliPage ? `/bn/categories/${bengaliPage.slug}` : undefined,
       fr: frenchPage ? `/fr/categories/${frenchPage.slug}` : undefined,
       es: spanishPage ? `/es/categorias/${spanishPage.slug}` : undefined,
@@ -266,7 +251,6 @@ function buildLocalizedCoreAlternates(
       en: englishPage ? `/en/${englishPage.slug}` : undefined,
       de: germanPage ? `/de/${germanPage.slug}` : undefined,
       ar: englishPage ? `/ar/${englishPage.slug}` : undefined,
-      uz: uzbekPage ? `/uz/${uzbekPage.slug}` : undefined,
       bn: bengaliPage ? `/bn/${bengaliPage.slug}` : undefined,
       fr: frenchPage ? `/fr/${frenchPage.slug}` : undefined,
       es: spanishPage ? `/es/${spanishPage.slug}` : undefined,
@@ -282,7 +266,7 @@ function buildLocalizedCoreAlternates(
   const languages = Object.fromEntries(
     (Object.entries(paths) as Array<[string, string | undefined]>)
       .filter((entry): entry is [string, string] => Boolean(entry[1]))
-      .map(([locale, path]) => [locale === "uz" ? "uz-UZ" : locale, `${baseUrl}${path}`])
+      .map(([locale, path]) => [locale, `${baseUrl}${path}`])
   );
 
   return {
@@ -370,7 +354,6 @@ const standaloneToolRoutes: MetadataRoute.Sitemap =
       ...englishStandaloneTools
         .filter((tool) => !tool.isEnglishOnly)
         .map((tool) => tool.turkishPath),
-      ...uzbekStandaloneTools.map((tool) => tool.turkishPath),
     ])
   ).flatMap((turkishPath) => {
     const germanTool =
@@ -379,17 +362,14 @@ const standaloneToolRoutes: MetadataRoute.Sitemap =
       findArabicStandaloneToolByTurkishPath(turkishPath);
     const englishTool =
       findEnglishStandaloneToolByTurkishPath(turkishPath);
-    const uzbekTool =
-      findUzbekStandaloneToolByTurkishPath(turkishPath);
     const priority =
-      arabicTool?.priority ?? germanTool?.priority ?? englishTool?.priority ?? uzbekTool?.priority ?? 0.7;
+      arabicTool?.priority ?? germanTool?.priority ?? englishTool?.priority ?? 0.7;
     const alternates = {
       languages: {
         tr: `${baseUrl}${turkishPath}`,
         ...(englishTool ? { en: `${baseUrl}${englishTool.englishPath}` } : {}),
         ...(germanTool ? { de: `${baseUrl}${germanTool.germanPath}` } : {}),
         ...(arabicTool ? { ar: `${baseUrl}${arabicTool.arabicPath}` } : {}),
-        ...(uzbekTool ? { "uz-UZ": `${baseUrl}${uzbekTool.uzbekPath}` } : {}),
         "x-default": `${baseUrl}${turkishPath}`,
       },
     };
@@ -428,17 +408,6 @@ const standaloneToolRoutes: MetadataRoute.Sitemap =
         ? [
             {
               url: `${baseUrl}${arabicTool.arabicPath}`,
-              lastModified: contentLastModified,
-              changeFrequency: "monthly" as const,
-              priority,
-              alternates,
-            },
-          ]
-        : []),
-      ...(uzbekTool
-        ? [
-            {
-              url: `${baseUrl}${uzbekTool.uzbekPath}`,
               lastModified: contentLastModified,
               changeFrequency: "monthly" as const,
               priority,
@@ -503,7 +472,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/en/about`,
         `${baseUrl}/de/uber-uns`,
         undefined,
-        `${baseUrl}/uz/biz-haqimizda`
+        undefined
       ),
     },
     {
@@ -516,7 +485,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/en/about`,
         `${baseUrl}/de/uber-uns`,
         undefined,
-        `${baseUrl}/uz/biz-haqimizda`
+        undefined
       ),
     },
     {
@@ -529,7 +498,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/en/about`,
         `${baseUrl}/de/uber-uns`,
         undefined,
-        `${baseUrl}/uz/biz-haqimizda`
+        undefined
       ),
     },
     {
@@ -542,20 +511,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/en/about`,
         `${baseUrl}/de/uber-uns`,
         `${baseUrl}/ar/about`,
-        `${baseUrl}/uz/biz-haqimizda`
-      ),
-    },
-    {
-      url: `${baseUrl}/uz/biz-haqimizda`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.45,
-      alternates: languageAlternates(
-        `${baseUrl}/hakkimizda`,
-        `${baseUrl}/en/about`,
-        `${baseUrl}/de/uber-uns`,
-        undefined,
-        `${baseUrl}/uz/biz-haqimizda`
+        undefined
       ),
     },
     {
@@ -568,7 +524,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/en/contact`,
         `${baseUrl}/de/kontakt`,
         undefined,
-        `${baseUrl}/uz/aloqa`
+        undefined
       ),
     },
     {
@@ -581,7 +537,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/en/contact`,
         `${baseUrl}/de/kontakt`,
         undefined,
-        `${baseUrl}/uz/aloqa`
+        undefined
       ),
     },
     {
@@ -594,7 +550,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/en/contact`,
         `${baseUrl}/de/kontakt`,
         undefined,
-        `${baseUrl}/uz/aloqa`
+        undefined
       ),
     },
     {
@@ -607,20 +563,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/en/contact`,
         `${baseUrl}/de/kontakt`,
         `${baseUrl}/ar/contact`,
-        `${baseUrl}/uz/aloqa`
-      ),
-    },
-    {
-      url: `${baseUrl}/uz/aloqa`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.45,
-      alternates: languageAlternates(
-        `${baseUrl}/iletisim`,
-        `${baseUrl}/en/contact`,
-        `${baseUrl}/de/kontakt`,
-        undefined,
-        `${baseUrl}/uz/aloqa`
+        undefined
       ),
     },
     {
@@ -633,7 +576,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/en/privacy`,
         `${baseUrl}/de/datenschutz`,
         undefined,
-        `${baseUrl}/uz/maxfiylik-siyosati`
+        undefined
       ),
     },
     {
@@ -646,7 +589,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/en/privacy`,
         `${baseUrl}/de/datenschutz`,
         undefined,
-        `${baseUrl}/uz/maxfiylik-siyosati`
+        undefined
       ),
     },
     {
@@ -659,7 +602,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/en/privacy`,
         `${baseUrl}/de/datenschutz`,
         undefined,
-        `${baseUrl}/uz/maxfiylik-siyosati`
+        undefined
       ),
     },
     {
@@ -672,20 +615,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/en/privacy`,
         `${baseUrl}/de/datenschutz`,
         `${baseUrl}/ar/privacy`,
-        `${baseUrl}/uz/maxfiylik-siyosati`
-      ),
-    },
-    {
-      url: `${baseUrl}/uz/maxfiylik-siyosati`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.4,
-      alternates: languageAlternates(
-        `${baseUrl}/gizlilik`,
-        `${baseUrl}/en/privacy`,
-        `${baseUrl}/de/datenschutz`,
-        undefined,
-        `${baseUrl}/uz/maxfiylik-siyosati`
+        undefined
       ),
     },
     {
@@ -698,7 +628,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/en/terms`,
         `${baseUrl}/de/nutzungsbedingungen`,
         undefined,
-        `${baseUrl}/uz/foydalanish-shartlari`
+        undefined
       ),
     },
     {
@@ -711,7 +641,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/en/terms`,
         `${baseUrl}/de/nutzungsbedingungen`,
         undefined,
-        `${baseUrl}/uz/foydalanish-shartlari`
+        undefined
       ),
     },
     {
@@ -724,7 +654,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/en/terms`,
         `${baseUrl}/de/nutzungsbedingungen`,
         undefined,
-        `${baseUrl}/uz/foydalanish-shartlari`
+        undefined
       ),
     },
     {
@@ -737,20 +667,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/en/terms`,
         `${baseUrl}/de/nutzungsbedingungen`,
         `${baseUrl}/ar/terms`,
-        `${baseUrl}/uz/foydalanish-shartlari`
-      ),
-    },
-    {
-      url: `${baseUrl}/uz/foydalanish-shartlari`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.4,
-      alternates: languageAlternates(
-        `${baseUrl}/kullanim-kosullari`,
-        `${baseUrl}/en/terms`,
-        `${baseUrl}/de/nutzungsbedingungen`,
-        undefined,
-        `${baseUrl}/uz/foydalanish-shartlari`
+        undefined
       ),
     },
     {
@@ -1031,12 +948,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
-      url: `${baseUrl}/uz/sonlar`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
       url: `${baseUrl}/bilim-hesaplayicilari/matematik/kupkok-hesaplama`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
@@ -1298,19 +1209,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       },
     },
     {
-      url: `${baseUrl}/uz/material-xossalari`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.7,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/malzeme-ozellikleri`,
-          "uz-UZ": `${baseUrl}/uz/material-xossalari`,
-          "x-default": `${baseUrl}/malzeme-ozellikleri`,
-        },
-      },
-    },
-    {
       url: `${baseUrl}/bilim-hesaplayicilari/kimya/bilesikler`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
@@ -1364,7 +1262,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         languages: {
           tr: `${baseUrl}/sayi-tabani-cevirici`,
           bn: `${baseUrl}/bn/number-base-calculator`,
-          "uz-UZ": `${baseUrl}/uz/son-tizimi-cevirgich`,
           "x-default": `${baseUrl}/sayi-tabani-cevirici`,
         },
       },
@@ -1378,21 +1275,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         languages: {
           tr: `${baseUrl}/sayi-tabani-cevirici`,
           bn: `${baseUrl}/bn/number-base-calculator`,
-          "uz-UZ": `${baseUrl}/uz/son-tizimi-cevirgich`,
-          "x-default": `${baseUrl}/sayi-tabani-cevirici`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/son-tizimi-cevirgich`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.7,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/sayi-tabani-cevirici`,
-          bn: `${baseUrl}/bn/number-base-calculator`,
-          "uz-UZ": `${baseUrl}/uz/son-tizimi-cevirgich`,
           "x-default": `${baseUrl}/sayi-tabani-cevirici`,
         },
       },
@@ -3025,860 +2907,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
     },
     {
-      url: `${baseUrl}/uz/awg-mm2-aylantirgich`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/awg-mm2-cevirici`,
-          "uz-UZ": `${baseUrl}/uz/awg-mm2-aylantirgich`,
-          "x-default": `${baseUrl}/awg-mm2-cevirici`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/erish-qaynash-nuqtasi-aylantirgich`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/erime-kaynama-noktasi-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/erish-qaynash-nuqtasi-aylantirgich`,
-          "x-default": `${baseUrl}/erime-kaynama-noktasi-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/qattiqlik-aylantirish-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/sertlik-donusum-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/qattiqlik-aylantirish-hisoblash`,
-          "x-default": `${baseUrl}/sertlik-donusum-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/quvur-diametri-aylantirish-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/boru-capi-donusum-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/quvur-diametri-aylantirish-hisoblash`,
-          "x-default": `${baseUrl}/boru-capi-donusum-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/payvandlash-amperaji-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/kaynak-amperaji-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/payvandlash-amperaji-hisoblash`,
-          "x-default": `${baseUrl}/kaynak-amperaji-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/payvandlash-issiqlik-kiritishi-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/kaynak-isi-girdisi-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/payvandlash-issiqlik-kiritishi-hisoblash`,
-          "x-default": `${baseUrl}/kaynak-isi-girdisi-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/kesish-tezligi-aylanish-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/kesme-hizi-devir-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/kesish-tezligi-aylanish-hisoblash`,
-          "x-default": `${baseUrl}/kesme-hizi-devir-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/superheat-subcooling-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/superheat-subcooling-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/superheat-subcooling-hisoblash`,
-          "x-default": `${baseUrl}/superheat-subcooling-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/anten-uzunligi-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/anten-uzunlugu-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/anten-uzunligi-hisoblash`,
-          "x-default": `${baseUrl}/anten-uzunlugu-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/material-ogirligi-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/malzeme-agirligi-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/material-ogirligi-hisoblash`,
-          "x-default": `${baseUrl}/malzeme-agirligi-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/issiqlik-kengayishi-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/isil-genlesme-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/issiqlik-kengayishi-hisoblash`,
-          "x-default": `${baseUrl}/isil-genlesme-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/elastik-chozilish-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/elastik-uzama-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/elastik-chozilish-hisoblash`,
-          "x-default": `${baseUrl}/elastik-uzama-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/bolt-torki-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/civata-torku-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/bolt-torki-hisoblash`,
-          "x-default": `${baseUrl}/civata-torku-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/hafriyat-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/hafriyat-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/hafriyat-hisoblash`,
-          "x-default": `${baseUrl}/hafriyat-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/quvur-diametri-sarfi-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/boru-capi-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/quvur-diametri-sarfi-hisoblash`,
-          "x-default": `${baseUrl}/boru-capi-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/bosim-yoqotilishi-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/basinc-kaybi-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/bosim-yoqotilishi-hisoblash`,
-          "x-default": `${baseUrl}/basinc-kaybi-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/hovuz-hajmi-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/havuz-hacmi-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/hovuz-hajmi-hisoblash`,
-          "x-default": `${baseUrl}/havuz-hacmi-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/xlor-dozasi-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/klor-dozaji-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/xlor-dozasi-hisoblash`,
-          "x-default": `${baseUrl}/klor-dozaji-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/pozlama-esdegeri-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/pozlama-esdegeri-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/pozlama-esdegeri-hisoblash`,
-          "x-default": `${baseUrl}/pozlama-esdegeri-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/odak-uzunligi-esdegeri-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/odak-uzakligi-esdegeri-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/odak-uzunligi-esdegeri-hisoblash`,
-          "x-default": `${baseUrl}/odak-uzakligi-esdegeri-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/alkogol-suyultirish-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/alkol-seyreltme-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/alkogol-suyultirish-hisoblash`,
-          "x-default": `${baseUrl}/alkol-seyreltme-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/kokteyl-olchovi-aylantirgich`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/kokteyl-olcusu-cevirici`,
-          "uz-UZ": `${baseUrl}/uz/kokteyl-olchovi-aylantirgich`,
-          "x-default": `${baseUrl}/kokteyl-olcusu-cevirici`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/abv-standart-ichimlik-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/abv-standart-icki-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/abv-standart-ichimlik-hisoblash`,
-          "x-default": `${baseUrl}/abv-standart-icki-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/ogit-ehtiyoji-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/gubre-ihtiyaci-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/ogit-ehtiyoji-hisoblash`,
-          "x-default": `${baseUrl}/gubre-ihtiyaci-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/ogit-suyultirish-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          "uz-UZ": `${baseUrl}/uz/ogit-suyultirish-hisoblash`,
-          "x-default": `${baseUrl}/uz/ogit-suyultirish-hisoblash`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/urugi-miqdori-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/tohum-miktari-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/urugi-miqdori-hisoblash`,
-          "x-default": `${baseUrl}/tohum-miktari-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/sugorish-vaqti-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/sulama-suresi-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/sugorish-vaqti-hisoblash`,
-          "x-default": `${baseUrl}/sulama-suresi-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/veterinar-dori-dozasi-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/veteriner-ilac-dozu-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/veterinar-dori-dozasi-hisoblash`,
-          "x-default": `${baseUrl}/veteriner-ilac-dozu-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/seyr-vaqti-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/seyir-suresi-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/seyr-vaqti-hisoblash`,
-          "x-default": `${baseUrl}/seyir-suresi-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/zichlik-balandligi-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/yogunluk-irtifasi-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/zichlik-balandligi-hisoblash`,
-          "x-default": `${baseUrl}/yogunluk-irtifasi-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/yon-shamol-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/yan-ruzgar-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/yon-shamol-hisoblash`,
-          "x-default": `${baseUrl}/yan-ruzgar-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/pasayish-tezligi-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/inis-orani-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/pasayish-tezligi-hisoblash`,
-          "x-default": `${baseUrl}/inis-orani-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/ogirlik-muvozanat-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/agirlik-denge-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/ogirlik-muvozanat-hisoblash`,
-          "x-default": `${baseUrl}/agirlik-denge-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/katta-doira-masofasi-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/buyuk-daire-mesafesi-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/katta-doira-masofasi-hisoblash`,
-          "x-default": `${baseUrl}/buyuk-daire-mesafesi-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/elektromobil-benzinli-solishtirish`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/elektrikli-arac-maliyet-karsilastirma`,
-          "uz-UZ": `${baseUrl}/uz/elektromobil-benzinli-solishtirish`,
-          "x-default": `${baseUrl}/elektrikli-arac-maliyet-karsilastirma`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/lpg-ornatish-qoplanishi-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/lpg-donusum-amortisman-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/lpg-ornatish-qoplanishi-hisoblash`,
-          "x-default": `${baseUrl}/lpg-donusum-amortisman-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/izolyatsiya-qoplanishi-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/yalitim-amortisman-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/izolyatsiya-qoplanishi-hisoblash`,
-          "x-default": `${baseUrl}/yalitim-amortisman-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/led-tejamkorligi-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/led-ampul-tasarruf-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/led-tejamkorligi-hisoblash`,
-          "x-default": `${baseUrl}/led-ampul-tasarruf-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/qozon-konditsioner-solishtirish`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/kombi-klima-isitma-maliyeti-karsilastirma`,
-          "uz-UZ": `${baseUrl}/uz/qozon-konditsioner-solishtirish`,
-          "x-default": `${baseUrl}/kombi-klima-isitma-maliyeti-karsilastirma`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/issiqlik-nasosi-qozon-solishtirish`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/isi-pompasi-kombi-karsilastirma`,
-          "uz-UZ": `${baseUrl}/uz/issiqlik-nasosi-qozon-solishtirish`,
-          "x-default": `${baseUrl}/isi-pompasi-kombi-karsilastirma`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/masofadan-ish-ofis-solishtirish`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          "uz-UZ": `${baseUrl}/uz/masofadan-ish-ofis-solishtirish`,
-          "x-default": `${baseUrl}/uz/masofadan-ish-ofis-solishtirish`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/quyosh-paneli-qoplanishi-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/gunes-paneli-amortisman-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/quyosh-paneli-qoplanishi-hisoblash`,
-          "x-default": `${baseUrl}/gunes-paneli-amortisman-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/tana-yuzasi-maydoni-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/vucut-yuzey-alani-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/tana-yuzasi-maydoni-hisoblash`,
-          "x-default": `${baseUrl}/vucut-yuzey-alani-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/kreatinin-klirensi-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/kreatinin-klirensi-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/kreatinin-klirensi-hisoblash`,
-          "x-default": `${baseUrl}/kreatinin-klirensi-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/iv-tomchi-tezligi-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/iv-damla-hizi-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/iv-tomchi-tezligi-hisoblash`,
-          "x-default": `${baseUrl}/iv-damla-hizi-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/glazgo-koma-shkalasi-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/glasgow-koma-skalasi-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/glazgo-koma-shkalasi-hisoblash`,
-          "x-default": `${baseUrl}/glasgow-koma-skalasi-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/apgar-balli-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/apgar-skoru-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/apgar-balli-hisoblash`,
-          "x-default": `${baseUrl}/apgar-skoru-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/cha2ds2-vasc-balli-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/cha2ds2-vasc-skoru-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/cha2ds2-vasc-balli-hisoblash`,
-          "x-default": `${baseUrl}/cha2ds2-vasc-skoru-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/wells-balli-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/wells-skoru-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/wells-balli-hisoblash`,
-          "x-default": `${baseUrl}/wells-skoru-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/qsofa-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/qsofa-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/qsofa-hisoblash`,
-          "x-default": `${baseUrl}/qsofa-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/sofa-balli-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/sofa-skoru-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/sofa-balli-hisoblash`,
-          "x-default": `${baseUrl}/sofa-skoru-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/meld-balli-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/meld-skoru-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/meld-balli-hisoblash`,
-          "x-default": `${baseUrl}/meld-skoru-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/morse-yiqilish-shkalasi-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          "uz-UZ": `${baseUrl}/uz/morse-yiqilish-shkalasi-hisoblash`,
-          "x-default": `${baseUrl}/uz/morse-yiqilish-shkalasi-hisoblash`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/braden-shkalasi-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/braden-skalasi-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/braden-shkalasi-hisoblash`,
-          "x-default": `${baseUrl}/braden-skalasi-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/unix-vaqt-tamgasi-aylantirgich`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          "uz-UZ": `${baseUrl}/uz/unix-vaqt-tamgasi-aylantirgich`,
-          "x-default": `${baseUrl}/uz/unix-vaqt-tamgasi-aylantirgich`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/rang-kodi-aylantirgich`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/renk-kodu-cevirici`,
-          "uz-UZ": `${baseUrl}/uz/rang-kodi-aylantirgich`,
-          "x-default": `${baseUrl}/renk-kodu-cevirici`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/piksel-sm-dpi-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/piksel-cm-dpi-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/piksel-sm-dpi-hisoblash`,
-          "x-default": `${baseUrl}/piksel-cm-dpi-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/bpm-ms-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/bpm-ms-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/bpm-ms-hisoblash`,
-          "x-default": `${baseUrl}/bpm-ms-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/psu-quvvat-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/psu-guc-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/psu-quvvat-hisoblash`,
-          "x-default": `${baseUrl}/psu-guc-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/video-bit-tezligi-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/video-bit-hizi-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/video-bit-tezligi-hisoblash`,
-          "x-default": `${baseUrl}/video-bit-hizi-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/ping-kechikish-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/ping-gecikme-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/ping-kechikish-hisoblash`,
-          "x-default": `${baseUrl}/ping-gecikme-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/tana-yogi-foizi-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/vucut-yag-orani-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/tana-yogi-foizi-hisoblash`,
-          "x-default": `${baseUrl}/vucut-yag-orani-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/ideal-vazn-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/ideal-kilo-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/ideal-vazn-hisoblash`,
-          "x-default": `${baseUrl}/ideal-kilo-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/1rm-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/1rm-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/1rm-hisoblash`,
-          "x-default": `${baseUrl}/1rm-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/cbm-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/cbm-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/cbm-hisoblash`,
-          "x-default": `${baseUrl}/cbm-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/sayohat-rozetka-voltaj-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/seyahat-priz-voltaj-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/sayohat-rozetka-voltaj-hisoblash`,
-          "x-default": `${baseUrl}/seyahat-priz-voltaj-hesaplama`,
-        },
-      },
-    },
-    {
       url: `${baseUrl}/elektrikli-arac-maliyet-karsilastirma`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
@@ -3967,358 +2995,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: contentLastModified,
       changeFrequency: "monthly",
       priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/uz/haydovchilik-guvohnomasi-yangilash-muddati-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/ehliyet-yenileme-suresi-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/haydovchilik-guvohnomasi-yangilash-muddati-hisoblash`,
-          "x-default": `${baseUrl}/ehliyet-yenileme-suresi-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/mantolama-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/mantolama-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/mantolama-hisoblash`,
-          "x-default": `${baseUrl}/mantolama-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/beton-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/beton-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/beton-hisoblash`,
-          "x-default": `${baseUrl}/beton-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/suvoq-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/siva-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/suvoq-hisoblash`,
-          "x-default": `${baseUrl}/siva-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/zinapoya-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/merdiven-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/zinapoya-hisoblash`,
-          "x-default": `${baseUrl}/merdiven-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/qurilish-zichligi-koeffitsiyenti-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/emsal-kaks-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/qurilish-zichligi-koeffitsiyenti-hisoblash`,
-          "x-default": `${baseUrl}/emsal-kaks-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/yogoch-hajmi-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/kereste-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/yogoch-hajmi-hisoblash`,
-          "x-default": `${baseUrl}/kereste-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/sof-oltin-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/has-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/sof-oltin-hisoblash`,
-          "x-default": `${baseUrl}/has-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/kochmas-mulk-komissiyasi-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/emlak-komisyonu-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/kochmas-mulk-komissiyasi-hisoblash`,
-          "x-default": `${baseUrl}/emlak-komisyonu-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/amortizatsiya-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/amortisman-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/amortizatsiya-hisoblash`,
-          "x-default": `${baseUrl}/amortisman-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/davomat-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/devamsizlik-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/davomat-hisoblash`,
-          "x-default": `${baseUrl}/devamsizlik-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/harf-bahosi-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/harf-notu-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/harf-bahosi-hisoblash`,
-          "x-default": `${baseUrl}/harf-notu-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/reklama-korsatkichlari-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          "uz-UZ": `${baseUrl}/uz/reklama-korsatkichlari-hisoblash`,
-          "x-default": `${baseUrl}/uz/reklama-korsatkichlari-hisoblash`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/uzuk-olcami-aylantirgich`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/yuzuk-olcusu-cevirici`,
-          en: `${baseUrl}/en/ring-size-converter`,
-          "uz-UZ": `${baseUrl}/uz/uzuk-olcami-aylantirgich`,
-          "x-default": `${baseUrl}/yuzuk-olcusu-cevirici`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/shina-olchami-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/lastik-ebati-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/shina-olchami-hisoblash`,
-          "x-default": `${baseUrl}/lastik-ebati-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/kiyim-olchami-aylantirgich`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/beden-olcusu-cevirici`,
-          "uz-UZ": `${baseUrl}/uz/kiyim-olchami-aylantirgich`,
-          "x-default": `${baseUrl}/beden-olcusu-cevirici`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/birlik-aylantirish-fojialari`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          "uz-UZ": `${baseUrl}/uz/birlik-aylantirish-fojialari`,
-          "x-default": `${baseUrl}/uz/birlik-aylantirish-fojialari`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/birlik-aylantirish-fojialari/mars-climate-orbiter`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.65,
-      alternates: {
-        languages: {
-          "uz-UZ": `${baseUrl}/uz/birlik-aylantirish-fojialari/mars-climate-orbiter`,
-          "x-default": `${baseUrl}/uz/birlik-aylantirish-fojialari/mars-climate-orbiter`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/birlik-aylantirish-fojialari/gimli-glider`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.65,
-      alternates: {
-        languages: {
-          "uz-UZ": `${baseUrl}/uz/birlik-aylantirish-fojialari/gimli-glider`,
-          "x-default": `${baseUrl}/uz/birlik-aylantirish-fojialari/gimli-glider`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/birlik-aylantirish-fojialari/vasa-gemisi`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.65,
-      alternates: {
-        languages: {
-          "uz-UZ": `${baseUrl}/uz/birlik-aylantirish-fojialari/vasa-gemisi`,
-          "x-default": `${baseUrl}/uz/birlik-aylantirish-fojialari/vasa-gemisi`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/birlik-aylantirish-fojialari/kargo-ucagi-agirlik-hatasi`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.65,
-      alternates: {
-        languages: {
-          "uz-UZ": `${baseUrl}/uz/birlik-aylantirish-fojialari/kargo-ucagi-agirlik-hatasi`,
-          "x-default": `${baseUrl}/uz/birlik-aylantirish-fojialari/kargo-ucagi-agirlik-hatasi`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/birlik-aylantirish-fojialari/fenobarbital-doz-hatasi`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.65,
-      alternates: {
-        languages: {
-          "uz-UZ": `${baseUrl}/uz/birlik-aylantirish-fojialari/fenobarbital-doz-hatasi`,
-          "x-default": `${baseUrl}/uz/birlik-aylantirish-fojialari/fenobarbital-doz-hatasi`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/birlik-aylantirish-fojialari/british-airways-5390`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.65,
-      alternates: {
-        languages: {
-          "uz-UZ": `${baseUrl}/uz/birlik-aylantirish-fojialari/british-airways-5390`,
-          "x-default": `${baseUrl}/uz/birlik-aylantirish-fojialari/british-airways-5390`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/raqamni-sozga-aylantirish`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.7,
-      alternates: {
-        languages: {
-          "uz-UZ": `${baseUrl}/uz/raqamni-sozga-aylantirish`,
-          "x-default": `${baseUrl}/uz/raqamni-sozga-aylantirish`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/beton-markasi-sinfi-aylantirgich`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.7,
-      alternates: {
-        languages: {
-          "uz-UZ": `${baseUrl}/uz/beton-markasi-sinfi-aylantirgich`,
-          "x-default": `${baseUrl}/uz/beton-markasi-sinfi-aylantirgich`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/ielts-cefr-aylantirgich`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.7,
-      alternates: {
-        languages: {
-          "uz-UZ": `${baseUrl}/uz/ielts-cefr-aylantirgich`,
-          "x-default": `${baseUrl}/uz/ielts-cefr-aylantirgich`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/hijriy-milodiy-sana-aylantirgich`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.7,
-      alternates: {
-        languages: {
-          "uz-UZ": `${baseUrl}/uz/hijriy-milodiy-sana-aylantirgich`,
-          "x-default": `${baseUrl}/uz/hijriy-milodiy-sana-aylantirgich`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/ish-haqi-kalkulyatori`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          "uz-UZ": `${baseUrl}/uz/ish-haqi-kalkulyatori`,
-          "x-default": `${baseUrl}/uz/ish-haqi-kalkulyatori`,
-        },
-      },
     },
     {
       url: `${baseUrl}/isil-genlesme-hesaplama`,
@@ -4441,29 +3117,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       };
     });
 
-  const uzbekConversionRoutes: MetadataRoute.Sitemap =
-    uzbekConversionPages.map((page) => {
-      const turkishUrl = `${baseUrl}/${page.sourceSlug}`;
-      const englishPage = findEnglishPageByTurkishSlug(page.sourceSlug);
-      const englishUrl = englishPage
-        ? `${baseUrl}/en/${englishPage.slug}`
-        : `${baseUrl}/en`;
-      const uzbekUrl = `${baseUrl}/uz/${page.slug}`;
-
-      return {
-        url: uzbekUrl,
-        lastModified: contentLastModified,
-        changeFrequency: "monthly",
-        priority: 0.7,
-        alternates: languageAlternates(
-          turkishUrl,
-          englishUrl,
-          undefined,
-          undefined,
-          uzbekUrl
-        ),
-      };
-    });
 
   const bengaliConversionRoutes: MetadataRoute.Sitemap =
     bengaliConversionPages.map((page) => {
@@ -4526,17 +3179,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: contentLastModified,
     changeFrequency: "monthly" as const,
     priority: 0.6,
-  }));
-  const uzbekStandaloneRoutes: MetadataRoute.Sitemap = [
-    "/uz/oshxona-olchovlari",
-    "/uz/retsept-aylantirgich",
-    "/uz/oyoq-kiyim-olchami",
-    "/uz/tarixiy-olchov-birliklari",
-  ].map((path) => ({
-    url: `${baseUrl}${path}`,
-    lastModified: contentLastModified,
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
   }));
 
   const italianIndexRoutes: MetadataRoute.Sitemap = [
@@ -4816,32 +3458,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       };
     });
 
-  const uzbekCategoryRoutes: MetadataRoute.Sitemap =
-    uzbekCategoryPages.map((page) => {
-      const turkishUrl =
-        `${baseUrl}/kategoriler/${page.sourceSlug}`;
-      const englishPage = findEnglishCategoryPageByTurkishSlug(
-        page.sourceSlug
-      );
-      const englishUrl = englishPage
-        ? `${baseUrl}/en/categories/${englishPage.slug}`
-        : `${baseUrl}/en`;
-      const uzbekUrl = `${baseUrl}/uz/turkumlar/${page.slug}`;
-
-      return {
-        url: uzbekUrl,
-        lastModified: contentLastModified,
-        changeFrequency: "monthly",
-        priority: 0.8,
-        alternates: languageAlternates(
-          turkishUrl,
-          englishUrl,
-          undefined,
-          undefined,
-          uzbekUrl
-        ),
-      };
-    });
 
   const bengaliCategoryRoutes: MetadataRoute.Sitemap =
     bengaliCategoryPages.map((page) => {
@@ -5031,112 +3647,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       };
     });
 
-  const uzbekCalculatorRoutes: MetadataRoute.Sitemap = [
-    {
-      url: `${baseUrl}/uz/om-qonuni-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.78,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/hesaplayicilar/ohm-yasasi`,
-          "uz-UZ": `${baseUrl}/uz/om-qonuni-hisoblash`,
-          "x-default": `${baseUrl}/hesaplayicilar/ohm-yasasi`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/bosim-kuch-maydon-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.78,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/hesaplayicilar/basinc-kuvvet-alan`,
-          "uz-UZ": `${baseUrl}/uz/bosim-kuch-maydon-hisoblash`,
-          "x-default": `${baseUrl}/hesaplayicilar/basinc-kuvvet-alan`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/gidrostatik-bosim-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.78,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/hesaplayicilar/hidrostatik-basinc`,
-          "uz-UZ": `${baseUrl}/uz/gidrostatik-bosim-hisoblash`,
-          "x-default": `${baseUrl}/hesaplayicilar/hidrostatik-basinc`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/issiqlik-energiyasi-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.78,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/hesaplayicilar/isi-enerjisi`,
-          "uz-UZ": `${baseUrl}/uz/issiqlik-energiyasi-hisoblash`,
-          "x-default": `${baseUrl}/hesaplayicilar/isi-enerjisi`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/issiqlik-otkazuvchanligi-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.78,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/hesaplayicilar/isi-iletimi`,
-          "uz-UZ": `${baseUrl}/uz/issiqlik-otkazuvchanligi-hisoblash`,
-          "x-default": `${baseUrl}/hesaplayicilar/isi-iletimi`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/reynolds-soni-hisoblash`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.78,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/hesaplayicilar/reynolds-sayisi`,
-          "uz-UZ": `${baseUrl}/uz/reynolds-soni-hisoblash`,
-          "x-default": `${baseUrl}/hesaplayicilar/reynolds-sayisi`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/kvt-dan-amperga-aylantirgich`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.78,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/muhendislik-hesaplayicilari/elektrik-hesaplari/kw-to-amper-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/kvt-dan-amperga-aylantirgich`,
-          "x-default": `${baseUrl}/muhendislik-hesaplayicilari/elektrik-hesaplari/kw-to-amper-hesaplama`,
-        },
-      },
-    },
-    {
-      url: `${baseUrl}/uz/amperdan-kvt-ga-aylantirgich`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.78,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/muhendislik-hesaplayicilari/elektrik-hesaplari/amper-to-kw-hesaplama`,
-          "uz-UZ": `${baseUrl}/uz/amperdan-kvt-ga-aylantirgich`,
-          "x-default": `${baseUrl}/muhendislik-hesaplayicilari/elektrik-hesaplari/amper-to-kw-hesaplama`,
-        },
-      },
-    },
-  ];
 
   const entries: MetadataRoute.Sitemap = [
     {
@@ -5149,7 +3659,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/en`,
         `${baseUrl}/de`,
         `${baseUrl}/ar`,
-        `${baseUrl}/uz`
+        undefined
       ),
     },
     {
@@ -5162,7 +3672,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/en`,
         `${baseUrl}/de`,
         `${baseUrl}/ar`,
-        `${baseUrl}/uz`
+        undefined
       ),
     },
     {
@@ -5175,7 +3685,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/en`,
         `${baseUrl}/de`,
         `${baseUrl}/ar`,
-        `${baseUrl}/uz`
+        undefined
       ),
     },
     {
@@ -5188,20 +3698,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/en`,
         `${baseUrl}/de`,
         `${baseUrl}/ar`,
-        `${baseUrl}/uz`
-      ),
-    },
-    {
-      url: `${baseUrl}/uz`,
-      lastModified: contentLastModified,
-      changeFrequency: "weekly",
-      priority: 0.9,
-      alternates: languageAlternates(
-        baseUrl,
-        `${baseUrl}/en`,
-        `${baseUrl}/de`,
-        `${baseUrl}/ar`,
-        `${baseUrl}/uz`
+        undefined
       ),
     },
     {
@@ -5214,21 +3711,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
         `${baseUrl}/en/engineering-calculators`,
         `${baseUrl}/de/ingenieurrechner`,
         `${baseUrl}/ar/engineering-calculators`,
-        `${baseUrl}/uz/muhandislik-hisoblagichlari`
+        undefined
       ),
-    },
-    {
-      url: `${baseUrl}/uz/muhandislik-hisoblagichlari`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: {
-        languages: {
-          tr: `${baseUrl}/muhendislik-hesaplayicilari`,
-          "uz-UZ": `${baseUrl}/uz/muhandislik-hisoblagichlari`,
-          "x-default": `${baseUrl}/muhendislik-hesaplayicilari`,
-        },
-      },
     },
     {
       url: `${baseUrl}/en/engineering-calculators`,
@@ -5488,20 +3972,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.76,
     },
-    ...[
-      ...Object.values(GOLD_CALCULATOR_PATHS),
-      ...KARAT_PAIRS.map((k) => `/en/${k.slug}`),
-      "/24-ayar-altin-22-ayar-altin",
-      "/22-ayar-altin-24-ayar-altin",
-      ...Object.values(CYCLE_PATHS),
-      ...Object.values(ISLAMIC_TOOL_PATHS).map((p) => p.bn),
-      ...Object.values(UZBEK_ISLAMIC_PATHS),
-    ].map((path) => ({
-      url: `${baseUrl}${path}`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly" as const,
-      priority: 0.74,
-    })),
     ...englishDecisionSavingsTools.map((tool) => ({
       url: `${baseUrl}${tool.href}`,
       lastModified: contentLastModified,
@@ -5674,12 +4144,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/ar/categories`,
-      lastModified: contentLastModified,
-      changeFrequency: "monthly",
-      priority: 0.75,
-    },
-    {
-      url: `${baseUrl}/uz/turkumlar`,
       lastModified: contentLastModified,
       changeFrequency: "monthly",
       priority: 0.75,
@@ -5869,7 +4333,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...englishCategoryRoutes,
     ...germanCategoryRoutes,
     ...arabicCategoryRoutes,
-    ...uzbekCategoryRoutes,
     ...bengaliCategoryRoutes,
     ...frenchCategoryRoutes,
     ...spanishCategoryRoutes,
@@ -5882,12 +4345,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...turkishCalculatorRoutes,
     ...englishCalculatorRoutes,
     ...germanCalculatorRoutes,
-    ...uzbekCalculatorRoutes,
     ...turkishConversionRoutes,
     ...englishConversionRoutes,
     ...germanConversionRoutes,
     ...arabicConversionRoutes,
-    ...uzbekConversionRoutes,
     ...bengaliConversionRoutes,
     ...frenchConversionRoutes,
     ...spanishConversionRoutes,
@@ -5902,7 +4363,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...germanUnitRoutes,
     ...curatedLocaleIndexRoutes,
     ...arabicCalculatorRoutes,
-    ...uzbekStandaloneRoutes,
     ...italianIndexRoutes,
     ...swedishIndexRoutes,
     ...norwegianIndexRoutes,

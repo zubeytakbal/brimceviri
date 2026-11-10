@@ -14,7 +14,7 @@ import {
 import { useNotificationSlot } from "./NotificationSlotProvider";
 import type { SiteNotification } from "../converter/siteNotifications";
 
-type NotificationLocale = "tr" | "en" | "uz" | "de" | "ar" | "bn" | "fr" | "es" | "pt" | "it" | "nl" | "sv" | "no" | "da";
+type NotificationLocale = "tr" | "en" | "de" | "ar" | "bn" | "fr" | "es" | "pt" | "it" | "nl" | "sv" | "no" | "da";
 
 const notificationCopy = {
   tr: {
@@ -36,16 +36,6 @@ const notificationCopy = {
     openLabel: "Open \u2192",
     empty: "There are no new notifications right now.",
     dateLocale: "en-US",
-  },
-  uz: {
-    ariaLabel: "Bildirishnomalar",
-    panelLabel: "Sayt bildirishnomalari",
-    title: "Bildirishnomalar",
-    closeLabel: "Yopish",
-    markSeenLabel: "Bu bildirishnomani o‘qilgan deb belgilash",
-    openLabel: "Ochish →",
-    empty: "Hozircha yangi bildirishnoma yo‘q.",
-    dateLocale: "uz-UZ",
   },
   de: {
     ariaLabel: "Benachrichtigungen",

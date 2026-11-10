@@ -39,7 +39,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/ehliyet-yenileme-suresi-hesaplama",
     languages: {
-      "uz-UZ": "/uz/haydovchilik-guvohnomasi-yangilash-muddati-hisoblash",
     },
   },
   openGraph: {

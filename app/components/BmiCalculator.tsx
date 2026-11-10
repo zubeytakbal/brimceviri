@@ -431,39 +431,6 @@ const copyByLocale: Record<Exclude<Locale, "ru">, BmiCopy> = {
       multiplier: "معامل النشاط",
     },
   },
-uz: {
-    labels: {
-      height: "Bo'y (sm)",
-      weight: "Vazn (kg)",
-      age: "Yosh",
-      gender: "Jins",
-      activity: "Faollik Darajasi",
-    },
-    genders: {
-      male: "Erkak",
-      female: "Ayol",
-    },
-    categories: {
-      underweight: "Vazn yetishmovchiligi",
-      normal: "Normal",
-      overweight: "Ortiqcha vazn",
-      obese: "Semizlik",
-    },
-    activities: {
-      sedentary: "Harakatsiz (ofis ishi, mashq yo'q)",
-      light: "Kam faol (haftasiga 1-3 kun mashq)",
-      moderate: "O'rtacha faol (haftasiga 3-5 kun mashq)",
-      active: "Faol (haftasiga 6-7 kun mashq)",
-      "very-active": "Juda faol (kuniga ikki mashq / jismoniy mehnat)",
-    },
-    emptyState: "Natijani ko'rish uchun to'g'ri qiymatlar kiriting.",
-    resultLabels: {
-      bmi: "BMI",
-      bmr: "Asosiy Almashinuv Tezligi",
-      calories: "Kunlik Kaloriya Ehtiyoji",
-      multiplier: "Faollik Koeffitsienti",
-    },
-  },
 bn: {
     labels: {
       height: "উচ্চতা (সেমি)",

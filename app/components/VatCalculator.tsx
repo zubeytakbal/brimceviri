@@ -31,7 +31,6 @@ const vatSettingsByLocale: Record<Exclude<Locale, "ru">, VatSettings> = {
   no: { rates: ["12", "15", "25"], defaultRate: "25" },
   da: { rates: ["25"], defaultRate: "25" },
   ar: { rates: ["5", "15"], defaultRate: "15" },
-  uz: { rates: ["12"], defaultRate: "12" },
   bn: { rates: ["5", "7.5", "10", "15"], defaultRate: "15" },
 };
 
@@ -304,27 +303,6 @@ const copyByLocale: Record<Exclude<Locale, "ru">, VatCopy> = {
       totalAmount: "المبلغ الإجمالي",
     },
     emptyState: "أدخل مبلغًا ونسبة صحيحة لعرض النتيجة.",
-  },
-uz: {
-    labels: {
-      direction: "Hisoblash Yo'nalishi",
-      amount: "Miqdor (so'm)",
-      rate: "QQS Stavkasi",
-      customRate: "O'zgacha Stavka (%)",
-    },
-    directions: {
-      "exclusive-to-inclusive": "QQS siz -> QQS bilan",
-      "inclusive-to-exclusive": "QQS bilan -> QQS siz",
-    },
-    rateOptions: {
-      custom: "O'zgacha stavka",
-    },
-    resultLabels: {
-      baseAmount: "Asosiy Summa",
-      vatAmount: "QQS Summasi",
-      totalAmount: "QQS bilan Jami",
-    },
-    emptyState: "Natijani ko'rish uchun to'g'ri miqdor va stavka kiriting.",
   },
 bn: {
     labels: {

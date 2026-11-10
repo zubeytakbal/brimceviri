@@ -193,20 +193,6 @@ const copyByLocale: Record<
     },
     emptyState: "أدخل قيمًا صحيحة لعرض النتيجة.",
   },
-uz: {
-    labels: {
-      area: "Qoplanadigan Maydon (m2)",
-      width: "Kafel Eni (sm)",
-      height: "Kafel Bo'yi (sm)",
-      waste: "Zaxira Foizi (%)",
-    },
-    resultLabels: {
-      tileArea: "1 kafelning maydoni",
-      totalArea: "Zaxira bilan jami maydon",
-      count: "Kerakli kafel soni",
-    },
-    emptyState: "Natijani ko'rish uchun to'g'ri qiymatlar kiriting.",
-  },
 bn: {
     labels: {
       area: "যে ক্ষেত্রফল ঢাকতে হবে (বর্গমিটার)",

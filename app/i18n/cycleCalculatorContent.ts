@@ -9,12 +9,10 @@ export const CYCLE_PATHS: Record<CycleLang, string> = {
   es: "/es/calculadora-de-ovulacion",
   pt: "/pt/calculadora-periodo-fertil",
   bn: "/bn/ovulation-calculator",
-  uz: "/uz/ovulyatsiya-hisoblash",
 };
 
 export function cycleAlternates() {
-  const { uz, ...rest } = CYCLE_PATHS;
-  return { ...rest, "uz-UZ": uz, "x-default": CYCLE_PATHS.en };
+  return { ...CYCLE_PATHS, "x-default": CYCLE_PATHS.en };
 }
 
 type Content = {
@@ -214,33 +212,5 @@ export const CYCLE_CONTENT: Record<CycleLang, Content> = {
     tocTitle: "সূচিপত্র",
     relatedTitle: "আরও টুল",
     related: [{ href: "/bn/bmi-calculator", label: "বিএমআই ক্যালকুলেটর" }],
-  },
-  uz: {
-    locale: "uz_UZ",
-    home: { href: "/uz", label: "Bosh sahifa" },
-    crumb: "Ovulyatsiya hisoblash",
-    title: "Ovulyatsiya va hayz kalendari hisoblash",
-    seoTitle: "Ovulyatsiya hisoblash: unumdor kunlar va keyingi hayz",
-    description: "Oxirgi hayzning birinchi kuni va sikl davomiyligini kiriting: ovulyatsiya kuni, unumdor kunlar, keyingi hayz, homiladorlik testi kuni va rangli kalendar.",
-    intro: "Oxirgi hayzning birinchi kuni, sikl davomiyligi va hayz necha kun davom etishini kiriting: ovulyatsiya kuni, homilador bo'lish ehtimoli eng yuqori kunlar, keyingi hayz va rangli kalendarni ko'ring.",
-    howTitle: "Ovulyatsiya qanday hisoblanadi?",
-    how: [
-      "Ovulyatsiya keyingi hayzdan taxminan 14 kun oldin bo'ladi, shuning uchun sikl davomiyligidan 14 ayiriladi: 28 kunlik siklda 14-kun, 32 kunlik siklda 18-kun.",
-      "Spermatozoidlar 5 kungacha yashaydi, shuning uchun unumdor kunlar ovulyatsiyadan 5 kun oldin boshlanib, ovulyatsiyadan keyingi kuni tugaydi.",
-      "Ovulyatsiyadan keyingi davr (lyuteal faza) ko‘pchilik ayollarda 12–14 kun davom etadi; bazal harorat yoki ovulyatsiya testlari orqali o‘zingiznikini bilsangiz, 10–16 kun kiriting. Kalkulyator bugun ovulyatsiyadan keyin necha kun o‘tganini va implantatsiya oralig‘ini ham ko‘rsatadi.",
-    ],
-    tableTitle: "Sikl davomiyligi bo'yicha ovulyatsiya kuni",
-    tableHead: ["Sikl", "Ovulyatsiya", "Unumdor kunlar"],
-    dayWord: (n) => `${n}-kun`,
-    faqTitle: "Ko'p beriladigan savollar",
-    faq: [
-      { question: "Hayzdan necha kun keyin ovulyatsiya bo'ladi?", answer: "Muntazam 28 kunlik siklda hayzning birinchi kunidan hisoblaganda taxminan 14-kunda. Sikl uzunroq bo'lsa, kechroq: sikl davomiyligi minus 14." },
-      { question: "Ovulyatsiya necha kun davom etadi?", answer: "Tuxum hujayra 12–24 soat yashaydi, ammo unumdor davr taxminan 6 kun: ovulyatsiyadan oldingi 5 kun, ovulyatsiya kuni va keyingi kun." },
-      { question: "Homiladorlik testini qachon qilish kerak?", answer: "Eng ishonchli natija hayz kelishi kerak bo'lgan kundan boshlab olinadi, ya'ni ovulyatsiyadan taxminan 14 kun keyin." },
-      { question: "Hayz notekis bo'lsa hisob to'g'rimi?", answer: "Kalendar usuli muntazam sikllar uchun taxmin. Sikl har oy ko'p o'zgarsa, ovulyatsiya testlari yoki shifokor kuzatuvi ishonchliroq." },
-    ],
-    tocTitle: "Mundarija",
-    relatedTitle: "Boshqa vositalar",
-    related: [{ href: "/uz/qazo-namoz-hisoblash", label: "Qazo namozlarni hisoblash" }],
   },
 };

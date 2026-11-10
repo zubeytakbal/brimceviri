@@ -2,7 +2,7 @@ import type { PrivacyCopy } from "../components/privacyPolicySections";
 
 const UPDATED_ISO = "27.09.2026";
 
-export const privacyPolicyCopy: Record<"tr" | "en" | "de" | "uz" | "ar", PrivacyCopy> = {
+export const privacyPolicyCopy: Record<"tr" | "en" | "de" | "ar", PrivacyCopy> = {
   tr: {
     overview: {
       heading: "Kısaca",
@@ -173,61 +173,6 @@ export const privacyPolicyCopy: Record<"tr" | "en" | "de" | "uz" | "ar", Privacy
       contactPageLabel: "Kontaktseite",
     },
     updated: `Zuletzt aktualisiert: ${UPDATED_ISO}`,
-  },
-  uz: {
-    overview: {
-      heading: "Qisqacha",
-      paragraphs: [
-        "BirimCeviri.app'dan foydalanish uchun hisob ochish shart emas; sayt sizdan ism, elektron pochta yoki telefon raqami kabi shaxsiy ma'lumotlarni so'ramaydi.",
-        "Saytni yaxshilash uchun tashriflarni Google Analytics orqali o'lchaymiz, saytni bepul taqdim etish uchun esa Google AdSense reklamalarini ko'rsatishimiz mumkin. Bu xizmatlar cookie fayllaridan foydalanadi; batafsil ma'lumot quyida.",
-      ],
-    },
-    inputs: {
-      heading: "Kalkulyatorlarga kiritilgan qiymatlar",
-      paragraphs: ["Kalkulyator va aylantirgichlarga kiritgan raqamlaringiz brauzeringizda qayta ishlanadi; ular serverimizga yuborilmaydi va saqlanmaydi."],
-    },
-    storage: {
-      heading: "Brauzeringizda saqlanadigan ma'lumotlar",
-      paragraphs: [
-        "Foydalanishni qulaylashtirish uchun ba'zi sozlamalar faqat o'z qurilmangizda, brauzerning mahalliy xotirasida saqlanadi: oxirgi foydalanilgan vositalar, tanlangan kasb va yopilgan bildirishnomalar. Sahifalar oflayn ham ochilishi uchun brauzer keshi ham ishlatiladi. Bu ma'lumotlarni istalgan vaqtda brauzer sozlamalaridan o'chirishingiz mumkin.",
-      ],
-    },
-    analytics: {
-      heading: "Tashrif statistikasi (Google Analytics)",
-      paragraphs: [
-        "Qaysi sahifalardan foydalanilayotganini tushunish uchun Google Analytics'dan foydalanamiz. Google Analytics cookie fayllari orqali ko'rilgan sahifalar, saytda o'tkazilgan vaqt, qurilma va brauzer turi, taxminiy joylashuv (mamlakat/shahar) va saytga qayerdan kelinganligi kabi ma'lumotlarni to'playdi. Bu ma'lumotlarni umumlashtirilgan hisobotlar sifatida ko'ramiz va sizni shaxsan aniqlash uchun ishlatmaymiz.",
-      ],
-      policyLabel: "Google maxfiylik siyosati",
-      optOutLabel: "Google Analytics'ni o'chirish uchun brauzer qo'shimchasi",
-    },
-    ads: {
-      heading: "Reklama (Google AdSense) va cookie fayllari",
-      paragraphs: [
-        "Ushbu saytda Google AdSense reklamalari ko'rsatilishi mumkin. Google va boshqa uchinchi tomon provayderlari ushbu yoki boshqa saytlarga oldingi tashriflaringizga asoslangan reklamalarni ko'rsatish uchun cookie fayllaridan foydalanadi.",
-        "Reklama cookie fayllari Google va uning hamkorlariga ushbu saytga va/yoki internetdagi boshqa saytlarga tashriflaringiz asosida sizga reklama ko'rsatish imkonini beradi. Shaxsiylashtirilgan reklamani Google reklama sozlamalarida o'chirishingiz, uchinchi tomon provayderlarining cookie fayllarini esa aboutads.info orqali o'chirishingiz mumkin.",
-        "Qonun talab qilgan joylarda (masalan, Yevropa iqtisodiy hududi, Buyuk Britaniya va Shveytsariyada) reklama cookie fayllari uchun roziligingiz so'raladi.",
-      ],
-      adSettingsLabel: "Google reklama sozlamalari",
-      aboutAdsLabel: "aboutads.info",
-      howGoogleLabel: "Google hamkor saytlardagi ma'lumotlardan qanday foydalanadi",
-    },
-    hosting: {
-      heading: "Xosting va server jurnallari",
-      paragraphs: [
-        "Sayt Cloudflare Pages infratuzilmasida joylashgan. Har qanday veb-saytdagi kabi, xosting provayderi xavfsizlik va saytning ishlashi uchun IP manzil, brauzer ma'lumotlari va so'rov vaqti kabi standart server jurnallarini qayta ishlashi mumkin.",
-      ],
-    },
-    links: {
-      heading: "Tashqi havolalar",
-      paragraphs: ["Sahifalardagi manba va tashqi havolalar o'z maxfiylik qoidalariga bo'ysunadi. Boshqa saytga o'tganingizda uning maxfiylik siyosatini alohida o'qing."],
-    },
-    contact: {
-      heading: "Huquqlaringiz va aloqa",
-      paragraphs: ["Shaxsiy ma'lumotlaringiz bo'yicha savollar va so'rovlar uchun bizga yozing."],
-      contactPageHref: "/uz/aloqa",
-      contactPageLabel: "Aloqa sahifasi",
-    },
-    updated: `Oxirgi yangilanish: ${UPDATED_ISO}`,
   },
   ar: {
     overview: {

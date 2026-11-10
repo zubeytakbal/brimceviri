@@ -44,21 +44,6 @@ const copyByLocale: Record<
     romanNumeral: "Romen Rakamı",
     divisorsHeading: "Çarpanları (Bölenleri)",
   },
-  uz: {
-    hint: "Qanday ishlaydi: pastga istagan sonni yozing — kvadrati, kubi, kvadrat ildizi, tub son ekanligi, bo'luvchilari va boshqa ko'p narsa darhol hisoblanadi (sahifadan chiqish shart emas).",
-    numberLabel: "Son",
-    emptyState: "1 dan 1.000.000 gacha butun son kiriting.",
-    square: "Kvadrati",
-    cube: "Kubi",
-    squareRoot: "Kvadrat Ildizi",
-    isPrimeLabel: "Tub sonmi?",
-    yes: "Ha",
-    no: "Yo'q",
-    divisorCount: "Bo'luvchilar Soni",
-    factorial: "Faktorial",
-    romanNumeral: "Rim Raqami",
-    divisorsHeading: "Bo'luvchilari",
-  },
 };
 
 function parseIntegerValue(rawValue: string) {
@@ -78,7 +63,6 @@ function formatNumber(value: number, locale: NumberFactsLocale, maxFractionDigit
     return "—";
   }
 
-  if (locale === "uz") return formatLocalizedNumber(value, "uz", { maximumFractionDigits: maxFractionDigits });
   return value.toLocaleString("tr-TR", { maximumFractionDigits: maxFractionDigits });
 }
 

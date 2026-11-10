@@ -16,7 +16,6 @@ export const metadata: Metadata = {
       en: "/en/units",
       de: "/de/einheiten",
       ar: "/ar/unit-guides",
-      "uz-UZ": "/uz/birliklar",
       bn: "/bn/unit-guides",
       "x-default": "/birimler",
     },

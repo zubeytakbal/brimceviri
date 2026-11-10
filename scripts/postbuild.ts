@@ -57,6 +57,8 @@ function removeRscPayloads(dir: string): number {
 // Cloudflare Pages en fazla 2000 sabit ve 100 dinamik (":ad" ya da "*" iceren) kural okur. Okuyucu ilk dinamik
 // kuraldan sonra gelen her kurali dinamik sayar ve 100'u gecince dosyanin geri kalanini atlar; bu yuzden sabit
 // kurallar her zaman once yazilir. (Ekim 2026'ya kadar karisik sira yuzunden 364. satirdan sonrasi calismiyordu.)
+/** Sitesi tamamen kaldirilan diller; adresleri /en'e yonlenir. */
+const KALDIRILAN_DILLER = ["uz"];
 const MAX_STATIC_REDIRECTS = 2000;
 const MAX_DYNAMIC_REDIRECTS = 100;
 const isDynamic = (from: string) => /[:*]/.test(from);
@@ -76,6 +78,8 @@ function writeRedirects() {
       lines.push(`${source} ${destination} ${status}`);
     }
   }
+  // Kaldirilan diller (Ozbekce, Kasim 2026): butun adresler Ingilizce ana sayfaya kalici yonlenir.
+  for (const dil of KALDIRILAN_DILLER) lines.push(`/${dil} /en 301`, `/${dil}/* /en 301`);
   // Cloudflare, hedefin sorgu kismina (?a=:b) degisken yerlestirmez ("%3Ab" olarak birakir). Bu kurallar icin
   // Search Console'da tiklama alan eski adreslere sabit kural yazilir; kalan adresler sorgusuz ana sayfaya gider.
   const known = [...CLICKED_PATHS];
@@ -194,36 +198,6 @@ function nofollowQueryLinks(): number {
   };
   walk(OUT);
   return changed;
-}
-
-// Ozbekce AdSense'in destekledigi diller arasinda degil (app/uz/layout.tsx): kok layout'taki AdSense kodu bu sayfalardan silinir.
-function stripAdsenseFromUzbek() {
-  let n = 0;
-  const walk = (dir: string) => {
-    for (const entry of readdirSync(dir, { withFileTypes: true })) {
-      const path = join(dir, entry.name);
-      if (entry.isDirectory()) walk(path);
-      else if (entry.name.endsWith(".html")) {
-        const html = readFileSync(path, "utf8");
-        const next = html.replace(/<script id="adsense"[^>]*><\/script>/, "");
-        if (next !== html) {
-          writeFileSync(path, next);
-          n++;
-        }
-      }
-    }
-  };
-  if (existsSync(join(OUT, "uz"))) walk(join(OUT, "uz"));
-  for (const f of [join(OUT, "uz.html")]) {
-    if (!existsSync(f)) continue;
-    const html = readFileSync(f, "utf8");
-    const next = html.replace(/<script id="adsense"[^>]*><\/script>/, "");
-    if (next !== html) {
-      writeFileSync(f, next);
-      n++;
-    }
-  }
-  return n;
 }
 
 const SITE = "https://www.birimceviri.app";
@@ -450,7 +424,6 @@ console.log(
 );
 console.log(`${fixHtmlLang()} sayfada <html lang> dile gore duzeltildi`);
 console.log(`${fixSocialTags()} sayfada sosyal paylaşım etiketleri sayfanın kendi başlığına göre düzeltildi`);
-console.log(`${stripAdsenseFromUzbek()} Ozbekce sayfadan AdSense kodu cikarildi`);
 const redirects = writeRedirects();
 console.log(`out/_redirects: ${redirects.static} sabit + ${redirects.dynamic} dinamik yonlendirme yazildi`);
 if (redirects.static > MAX_STATIC_REDIRECTS || redirects.dynamic > MAX_DYNAMIC_REDIRECTS) {

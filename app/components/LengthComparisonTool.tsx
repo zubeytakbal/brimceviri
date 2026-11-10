@@ -33,11 +33,6 @@ const unitOptionLabels: Record<
     m: "متر (م)",
     km: "كيلومتر (كم)",
   },
-uz: {
-    cm: "Santimetr (sm)",
-    m: "Metr (m)",
-    km: "Kilometr (km)",
-  },
 bn: {
     cm: "সেন্টিমিটার (cm)",
     m: "মিটার (m)",
@@ -95,7 +90,6 @@ const unitShortLabels: Record<Locale, Record<LengthComparisonUnit, string>> = {
   en: { cm: "cm", m: "m", km: "km" },
   de: { cm: "cm", m: "m", km: "km" },
   ar: { cm: "سم", m: "م", km: "كم" },
-uz: { cm: "sm", m: "m", km: "km" },
 bn: { cm: "cm", m: "m", km: "km" },
 fr: { cm: "cm", m: "m", km: "km" },
   es: { cm: "cm", m: "m", km: "km" },
@@ -144,15 +138,6 @@ const referenceLabels: Record<Locale, Record<string, string>> = {
     "futbol-sahasi": "طول ملعب كرة قدم",
     "eyfel-kulesi": "ارتفاع برج إيفل مع الهوائي",
     "bogaz-koprusu": "طول جسر شهداء 15 يوليو",
-  },
-uz: {
-    "insan-boyu": "O'rtacha voyaga yetgan inson bo'yi",
-    zurafa: "O'rtacha jirafa bo'yi",
-    "sehir-otobusu": "Shahar avtobusi uzunligi",
-    "mavi-balina": "O'rtacha ko'k kit uzunligi",
-    "futbol-sahasi": "Futbol maydoni uzunligi",
-    "eyfel-kulesi": "Eyfel minorasi balandligi (antennasi bilan)",
-    "bogaz-koprusu": "15-iyul Shahidlar ko'prigi uzunligi",
   },
 bn: {
     "insan-boyu": "একজন প্রাপ্তবয়স্ক মানুষের গড় উচ্চতা",
@@ -379,16 +364,6 @@ const copyByLocale: Record<
     intro: "مقارنات للقيمة",
     closestMatch: "أقرب مقارنة",
   },
-uz: {
-    labels: {
-      value: "Qiymat",
-      unit: "Birlik",
-    },
-    placeholder: "Mas. 3",
-    emptyState: "Solishtirishlarni ko'rish uchun to'g'ri qiymat kiriting.",
-    intro: "uchun solishtirishlar:",
-    closestMatch: "Eng yaqin solishtirish",
-  },
   bn: {
     labels: {
       value: "মান",
@@ -436,7 +411,7 @@ function getReferenceLabel(id: string, locale: Locale, fallback: string) {
 }
 
 // Bu dillerde "icin karsilastirmalar" ifadesi degerden sonra gelir.
-const introAfterValueLocales = new Set<Locale>(["tr", "uz", "bn"]);
+const introAfterValueLocales = new Set<Locale>(["tr", "bn"]);
 
 export default function LengthComparisonTool({
   locale = "tr",

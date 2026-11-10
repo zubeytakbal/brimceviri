@@ -14,7 +14,6 @@ export const metadata: Metadata = {
     languages: {
       tr: "/yuzuk-olcusu-cevirici",
       en: "/en/ring-size-converter",
-      "uz-UZ": "/uz/uzuk-olcami-aylantirgich",
       "x-default": "/yuzuk-olcusu-cevirici",
     },
   },

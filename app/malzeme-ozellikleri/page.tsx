@@ -44,7 +44,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/malzeme-ozellikleri",
     languages: {
-      "uz-UZ": "/uz/material-xossalari",
       de: "/de/werkstoffeigenschaften",
     },
   },

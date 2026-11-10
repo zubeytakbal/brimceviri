@@ -63,12 +63,6 @@ const localizedSectionRenames: Record<string, Record<string, string>> = {
     "recipe-converter": "conversor-de-recetas",
     "shoe-size-converter": "conversor-tallas-de-calzado",
   },
-  uz: {
-    "about": "biz-haqimizda",
-    "contact": "aloqa",
-    "privacy": "maxfiylik-siyosati",
-    "terms": "foydalanish-shartlari",
-  },
   it: {
     "categories": "categorie",
     "unit-guides": "guide-alle-unita",
@@ -95,11 +89,6 @@ export function siteRedirects(): SiteRedirect[] {
     // Meslek liste sayfaları kaldırıldı; her biri araçlarının bulunduğu konu bölümüne yönlenir.
     ...Object.entries(PROFESSION_PAGES).map(([from, to]) => ({ source: `/${from}`, destination: to.href, permanent: true })),
     // Ozbekce D vitamini kategori sayfasi iki adreste yayindaydi; tek adrese indirildi.
-    {
-      source: "/uz/turkumlar/d-vitamini",
-      destination: "/uz/turkumlar/vitamin-d",
-      permanent: true,
-    },
     {
       source: "/matematik",
       destination: "/hesaplayicilar#matematik",

@@ -44,13 +44,6 @@ const copy = {
     resultHeading: "القيم المكافئة",
     invalidValue: "أدخل رقما صحيحا لعرض نتيجة التحويل.",
   },
-  uz: {
-    ingredient: "Mahsulot",
-    knownUnit: "Ma'lum Birlik",
-    value: "Qiymat",
-    resultHeading: "Mos Qiymatlar",
-    invalidValue: "Natijani ko'rish uchun to'g'ri raqam kiriting.",
-  },
   bn: {
     ingredient: "উপাদান",
     knownUnit: "পরিচিত একক",
@@ -131,9 +124,7 @@ function formatValue(value: number, locale: KitchenLocale) {
         ? "de-DE"
         : locale === "ar"
           ? "ar"
-          : locale === "uz"
-            ? "uz-UZ"
-            : locale === "bn"
+          : locale === "bn"
               ? "bn-BD"
               : locale === "fr"
                 ? "fr-FR"

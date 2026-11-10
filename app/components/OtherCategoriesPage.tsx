@@ -32,7 +32,7 @@ type OtherTool = {
   groupId?: string;
 };
 
-type Locale = "tr" | "en" | "de" | "ar" | "uz";
+type Locale = "tr" | "en" | "de" | "ar";
 
 type AlternateLink = {
   href: string;
@@ -120,25 +120,6 @@ const pageCopy = {
     categoriesTitle: "الفئات",
     otherLanguagesTitle: "لغات أخرى",
   },
-  uz: {
-    homeHref: "/uz",
-    homeLabel: "Bosh sahifa",
-    breadcrumbAriaLabel: "Sahifa yo'li",
-    title: "Barcha o'lchov birliklari turkumlari",
-    description:
-      "Bosh sahifada bo'lmagan, lekin muhandislik va fanda haqiqatan ishlatiladigan birlik turkumlarini shu yerda toping.",
-    searchLabel: "Aylantirish qidirish",
-    searchPlaceholder: "Masalan: nyuton, qovushqoqlik, tork",
-    searchButton: "Ochish",
-    searchHint:
-      "Birlik nomi, belgisi yoki aylantirish juftini yozib kerakli sahifani toping.",
-    searchResultsTitle: "Qidiruv natijalari",
-    searchResultsHint: "Birinchi natijani ochish uchun Enter tugmasini bosing.",
-    searchEmpty: "Mos aylantirish topilmadi.",
-    toolsTitle: "Turkumlar bo'yicha aylantirishlar",
-    categoriesTitle: "Turkumlar",
-    otherLanguagesTitle: "Boshqa tillar",
-  },
 } as const;
 
 function CardIcon({ name }: { name: SiteIconName }) {
@@ -161,9 +142,7 @@ function normalizeSearchText(value: string, locale: Locale) {
         ? "de-DE"
         : locale === "ar"
           ? "ar"
-          : locale === "uz"
-            ? "uz-UZ"
-            : "en-US";
+          : "en-US";
 
   return value
     .toLocaleLowerCase(localeName)

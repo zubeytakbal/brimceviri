@@ -47,9 +47,6 @@ import { englishEverydayCalculatorGroups } from "../i18n/englishEverydayCalculat
 import { englishChemistryCalculatorCount, englishDecisionSavingsCalculatorCount, englishEverydayCalculatorCount } from "../i18n/englishCalculatorHubs";
 import { englishAutomotiveTools } from "../i18n/englishAutomotiveTools";
 import { englishAppliedStemCalculatorCount, englishLiveCalculatorCount, englishToolRegistry, getEnglishToolDomain, getEnglishToolsByDomain } from "../i18n/englishToolRegistry";
-import { uzbekCategoryPages } from "../converter/localizedUzbekCategoryPages";
-import { uzbekConversionPages } from "../converter/localizedUzbekConversionPages";
-import { uzbekUnitPages } from "../converter/localizedUzbekUnitPages";
 import { germanCalculatorPages } from "../converter/localizedGermanCalculatorPages";
 import { germanCategoryPages } from "../converter/localizedGermanCategoryPages";
 import { germanConversionPages } from "../converter/localizedGermanConversionPages";
@@ -67,7 +64,7 @@ import { diniAraclar } from "../i18n/diniAraclar";
 import HomeSearch, { type HomeSearchItem } from "./HomeSearch";
 import { unitGlossaryHref } from "../converter/unitGlossary";
 
-type Locale = "tr" | "en" | "uz" | "de";
+type Locale = "tr" | "en" | "de";
 
 const englishDecisionSavingsHomeTools = getEnglishToolsByDomain("decision-savings");
 
@@ -297,19 +294,6 @@ const preferredUnitSlugs = [
   "fahrenhayt",
 ];
 
-const uzbekSecondaryCategoryDrafts: Record<
-  string,
-  { label: string; iconName: SiteIconName }
-> = {
-  kan_sekeri: {
-    label: "Qondagi glyukoza birliklari",
-    iconName: "doctorHub",
-  },
-  vitamin_d: {
-    label: "D vitamini birliklari",
-    iconName: "solarPanelPaybackCalculator",
-  },
-};
 
 // Ana sayfadaki asosiy kategoriya kartlariga qo'shimcha, homeCategoryOrder'da
 // bo'lmagan "iskelet" kartlar -- yangi til qo'shilganda bu jadvalga bitta
@@ -448,92 +432,6 @@ const extraCategoryCardsByLocale: Record<Locale, HomeCategoryCard[]> = {
           id: "historical-okka-gram",
           href: "/en/historical-units",
           label: "Historical mass units",
-        },
-      ],
-    },
-  ],
-  uz: [
-    {
-      id: "ayakkabi",
-      iconKey: "ayakkabi",
-      name: "Oyoq Kiyim O'lchami",
-      symbol: "EU",
-      description:
-        "Yevropa (EU), AQSH va Angliya oyoq kiyim o'lchamlarini aylantiring; Nike, Adidas, Puma, New Balance va Converse jadvallarini ko'ring.",
-      href: "/uz/oyoq-kiyim-olchami",
-      links: [
-        {
-          id: "ayakkabi-erkek",
-          href: "/uz/oyoq-kiyim-olchami",
-          label: "Erkaklar o'lcham jadvali",
-        },
-        {
-          id: "ayakkabi-kadin",
-          href: "/uz/oyoq-kiyim-olchami",
-          label: "Ayollar o'lcham jadvali",
-        },
-      ],
-    },
-    {
-      id: "mutfak",
-      iconKey: "mutfak",
-      name: "Oshxona O'lchovlari",
-      symbol: "g",
-      description:
-        "Stakan, osh qoshiq va choy qoshiqning gramm ekvivalentini mahsulotga qarab hisoblang; un, shakar, asal va boshqalar uchun o'lchov jadvali.",
-      href: "/uz/oshxona-olchovlari",
-      links: [
-        {
-          id: "mutfak-un-gram",
-          href: "/uz/oshxona-olchovlari",
-          label: "Stakan → Gramm",
-        },
-        {
-          id: "mutfak-kasik-gram",
-          href: "/uz/oshxona-olchovlari",
-          label: "Osh qoshiq → Gramm",
-        },
-      ],
-    },
-    {
-      id: "tarif",
-      iconKey: "tarif",
-      name: "Retsept Aylantirgich",
-      symbol: "2x",
-      description:
-        "Retseptni joylashtiring, ko'paytiruvchini tanlang: barcha mahsulot miqdorlari o'zgaradi, ma'lum mahsulotlarda gramm ekvivalenti avtomatik hisoblanadi.",
-      href: "/uz/retsept-aylantirgich",
-      links: [
-        {
-          id: "tarif-olcekle",
-          href: "/uz/retsept-aylantirgich",
-          label: "Retseptni o'lchash",
-        },
-        {
-          id: "tarif-gram",
-          href: "/uz/retsept-aylantirgich",
-          label: "Stakanni Grammga aylantirish",
-        },
-      ],
-    },
-    {
-      id: "tarihi",
-      iconKey: "tarihi",
-      name: "Tarixiy O'lchov Birliklari",
-      symbol: "HIST",
-      description:
-        "Buxoro, Xiva va Qo'qon xonliklaridan qolgan gaz, chaqirim, tosh, farsah, qadam, miskal, pud, qadoq, dirham va botmon kabi birliklarni metr va grammga aylantiring.",
-      href: "/uz/tarixiy-olchov-birliklari",
-      links: [
-        {
-          id: "tarihi-gaz-metr",
-          href: "/uz/gaz-dan-metrga",
-          label: "Gaz → Metr",
-        },
-        {
-          id: "tarihi-miskal-gramm",
-          href: "/uz/miskal-dan-grammga",
-          label: "Miskal → Gramm",
         },
       ],
     },
@@ -848,124 +746,6 @@ const copy = {
     engineeringHubLabel: "All engineering calculators",
     moreCalculatorsCardLabel: "More Calculators",
   },
-  uz: {
-    eyebrow: "Birlik aylantirish",
-    title: "To'g'ri konverterni tezda oching",
-    description:
-      "Qidiruv orqali sahifani oching yoki fizik miqdorga qarab turkumni tanlang.",
-    searchLabel: "Aylantirish yoki kalkulyator qidirish",
-    searchPlaceholder: "Masalan: metr kilometr, kg funt, psi bar",
-    searchHint:
-      "Birlik nomi, aylantirish jufti yoki kalkulyator nomini yozib kerakli sahifani toping.",
-    searchResultsLabel: "Qidiruv natijalari",
-    searchEmpty: "Mos aylantirish yoki kalkulyator topilmadi.",
-    searchEnterHint: "Birinchi natijani ochish uchun Enter tugmasini bosing.",
-    searchCategoryPrefix: "Turkum",
-    openLabel: "Ochish",
-    stats: {
-      activeCategories: "turkum",
-      conversions: "aylantirish sahifasi",
-      engineering: "kalkulyator",
-    },
-    categoriesTitle: "Birlik aylantirishlari",
-    categoriesDescription:
-      "Har bir karta tegishli turkum sahifasiga o'tadi va 1-2 haqiqiy aylantirish namunasini ko'rsatadi.",
-    categoryAction: "Turkum sahifasini ochish",
-    categoriesFooterLink: "Barcha aylantirishlarni ko'rish",
-    moreCategoriesCardLabel: "Boshqa Aylantirishlar",
-    secondaryCategoriesTitle: "Boshqa Aylantirish Turkumlari",
-    categoryCards: {
-      uzunluk: {
-        name: "Uzunlik",
-        symbol: "m",
-        description:
-          "Metr, santimetr, kilometr, dyum va fut aylantirishlarini oching.",
-      },
-      alan: {
-        name: "Yuza",
-        symbol: "m²",
-        description:
-          "Kvadrat metr, gektar va kvadrat fut aylantirishlarini oching.",
-      },
-      hacim: {
-        name: "Hajm",
-        symbol: "L",
-        description:
-          "Litr, millilitr va kub metr aylantirishlarini oching.",
-      },
-      kutle: {
-        name: "Massa",
-        symbol: "kg",
-        description:
-          "Kilogramm, gramm, tonna, funt va untsiya asboblariga o'ting.",
-      },
-      sicaklik: {
-        name: "Harorat",
-        symbol: "°C",
-        description:
-          "Selsiy, Farengeyt va Kelvin aylantirishlarini oching.",
-      },
-      zaman: {
-        name: "Vaqt",
-        symbol: "s",
-        description:
-          "Soniya, daqiqa va soat aylantirishlarini oching.",
-      },
-      hiz: {
-        name: "Tezlik",
-        symbol: "km/soat",
-        description:
-          "km/soat, m/s va milya/soat asosidagi tezlik aylantirishlarini oching.",
-      },
-      basinc: {
-        name: "Bosim",
-        symbol: "Pa",
-        description:
-          "Paskal, bar, psi, atm va mmHg vositalarini ko'ring.",
-      },
-      enerji: {
-        name: "Energiya va quvvat",
-        symbol: "W",
-        description:
-          "Joul, kilovattsoat, vatt va kilovatt aylantirishlarini oching.",
-      },
-      veri: {
-        name: "Ma'lumot Hajmi",
-        symbol: "GB",
-        description:
-          "Bayt, kilobayt, megabayt, gigabayt va terabayt aylantirishlarini oching.",
-      },
-      elektrik: {
-        name: "Elektr",
-        symbol: "V",
-        description:
-          "Kuchlanish va tok aylantirish vositalarini oching.",
-      },
-      altin_ayar: {
-        name: "Oltin Karati",
-        symbol: "24K",
-        description:
-          "24, 22, 18 va 14 karat oltin orasida og'irlikni aylantiring.",
-      },
-      gumus_ayar: {
-        name: "Kumush Ayar",
-        symbol: "925",
-        description:
-          "999, 925 (sterling), 900 va 800 ayar kumush orasida og'irlikni aylantiring.",
-      },
-    },
-    popularTitle: "Mashhur aylantirishlar",
-    popularDescription:
-      "Tez-tez ishlatiladigan haqiqiy aylantirish sahifalarini shu yerdan to'g'ridan-to'g'ri oching.",
-    popularUnitsTitle: "Ko'p qidiriladigan birliklar",
-    popularUnitsDescription:
-      "Ushbu birliklarning ta'rifi, tarixi va aylantirishlarini o'qing.",
-    engineeringTitle: "Muhandislik kalkulyatorlari",
-    engineeringDescription:
-      "Bosim, suyuqliklar va issiqlik almashinuvi uchun mavjud texnik vositalar.",
-    engineeringHubLabel: "Barcha muhandislik kalkulyatorlari",
-    moreCalculatorsCardLabel: "Boshqa Kalkulyatorlar",
-  },
   de: {
     eyebrow: "Einheitenumrechner und Online-Rechner",
     title: "Einheiten umrechnen und schnell rechnen",
@@ -1230,31 +1010,7 @@ function createHomeData(locale: Locale): HomeData {
             ].join(" ")
           ),
         }))
-      : locale === "uz"
-        ? uzbekConversionPages.map((page) => ({
-            id: page.slug,
-            sourceSlug: page.sourceSlug,
-            href: `/uz/${page.slug}`,
-            label: `${page.fromName} → ${page.toName}`,
-            description: `${page.fromUnit} → ${page.toUnit}`,
-            category: page.category,
-            categoryLabel:
-              strings.categoryCards[
-                page.category as keyof typeof strings.categoryCards
-              ]?.name ?? page.categoryName,
-            searchText: normalizeSearchText(
-              [
-                page.fromName,
-                page.toName,
-                page.fromUnit,
-                page.toUnit,
-                page.slug,
-                page.sourceSlug,
-                page.categoryName,
-              ].join(" ")
-            ),
-          }))
-        : locale === "de"
+      : locale === "de"
           ? germanConversionPages.map((page) => ({
               id: page.slug,
               sourceSlug: page.sourceSlug,
@@ -1308,11 +1064,7 @@ function createHomeData(locale: Locale): HomeData {
     const categoryPage =
       locale === "tr"
         ? categoryPages.find((page) => page.category === sourceCategory)
-        : locale === "uz"
-          ? uzbekCategoryPages.find(
-              (page) => page.category === sourceCategory
-            )
-          : locale === "de"
+        : locale === "de"
             ? germanCategoryPages.find(
                 (page) => page.category === sourceCategory
               )
@@ -1332,23 +1084,6 @@ function createHomeData(locale: Locale): HomeData {
       )
     ).slice(0, 2);
 
-    // Ozbekcha uchun: hali haqiqiy ma'lumot (birlik/aylantirish) bo'lmagan
-    // turkumlar ham "iskelet" sifatida karta bo'lib ko'rinishi kerak --
-    // bo'sh, lekin ko'rinadigan holda (keyinchalik to'ldiriladi).
-    if ((!categoryPage || categoryConversions.length === 0) && locale === "uz") {
-      return [
-        {
-          id: sourceCategory,
-          iconKey: sourceCategory as HomeCategoryIconName,
-          name: categoryCopy.name,
-          symbol: categoryCopy.symbol,
-          description: categoryCopy.description,
-          href: categoryPage ? `/uz/turkumlar/${categoryPage.slug}` : "/uz/turkumlar",
-          links: [],
-        },
-      ];
-    }
-
     if (!categoryPage || categoryConversions.length === 0) {
       return [];
     }
@@ -1363,9 +1098,7 @@ function createHomeData(locale: Locale): HomeData {
         href:
           locale === "tr"
             ? `/kategoriler/${categoryPage.slug}`
-            : locale === "uz"
-              ? `/uz/turkumlar/${categoryPage.slug}`
-              : locale === "de"
+            : locale === "de"
                 ? `/de/kategorien/${categoryPage.slug}`
                 : `/en/categories/${categoryPage.slug}`,
         links: categoryConversions.map((conversion) => ({
@@ -1399,29 +1132,6 @@ function createHomeData(locale: Locale): HomeData {
         ];
       }
 
-      if (locale === "uz") {
-        const uzbekPage = uzbekCategoryPages.find(
-          (item) => item.category === page.category
-        );
-        const draft = uzbekSecondaryCategoryDrafts[page.category];
-
-        if (!uzbekPage && !draft) {
-          return [];
-        }
-
-        return [
-          {
-            id: page.category,
-            href: uzbekPage
-              ? `/uz/turkumlar/${uzbekPage.slug}`
-              : "/uz/turkumlar",
-            label: uzbekPage?.title ?? draft!.label,
-            iconName: uzbekPage
-              ? getCategoryIconName(page.category)
-              : draft!.iconName,
-          },
-        ];
-      }
 
       if (locale === "de") {
         const germanPage = germanCategoryPages.find(
@@ -1494,24 +1204,7 @@ function createHomeData(locale: Locale): HomeData {
               ]
             : [];
         })
-      : locale === "uz"
-        ? preferredUnitSlugs.flatMap((slug) => {
-            const unitPage = uzbekUnitPages.find(
-              (page) => page.sourceSlug === slug
-            );
-
-            return unitPage
-              ? [
-                  {
-                    id: unitPage.slug,
-                    href: unitGlossaryHref("uz", unitPage),
-                    label: unitPage.name,
-                    category: unitPage.category as HomeCategoryIconName,
-                  },
-                ]
-              : [];
-          })
-        : locale === "de"
+      : locale === "de"
           ? preferredUnitSlugs.flatMap((slug) => {
               const unitPage = germanUnitPages.find(
                 (page) => page.sourceSlug === slug
@@ -1568,52 +1261,7 @@ function createHomeData(locale: Locale): HomeData {
             formula: page.formula,
             description: page.description,
           }))
-      : locale === "uz"
-        ? [
-            {
-              id: "basinc-kuvvet-alan",
-              href: "/uz/bosim-kuch-maydon-hisoblash",
-              label: "Bosim, kuch va yuza",
-              formula: "P = F / A",
-              description: "Bosim, kuch va yuzani hisoblash.",
-            },
-            {
-              id: "hidrostatik-basinc",
-              href: "/uz/gidrostatik-bosim-hisoblash",
-              label: "Gidrostatik bosim",
-              formula: "ΔP = ρgh",
-              description: "Gidrostatik bosimni hisoblash.",
-            },
-            {
-              id: "isi-enerjisi",
-              href: "/uz/issiqlik-energiyasi-hisoblash",
-              label: "Issiqlik energiyasi",
-              formula: "Q = m × c × ΔT",
-              description: "Issiqlik energiyasini hisoblash.",
-            },
-            {
-              id: "isi-iletimi",
-              href: "/uz/issiqlik-otkazuvchanligi-hisoblash",
-              label: "Issiqlik o‘tkazilishi",
-              formula: "Q̇ = k × A × ΔT / L",
-              description: "Issiqlik o‘tkazilishini hisoblash.",
-            },
-            {
-              id: "reynolds-sayisi",
-              href: "/uz/reynolds-soni-hisoblash",
-              label: "Reynolds soni",
-              formula: "Re = ρ × v × D / μ",
-              description: "Reynolds sonini hisoblash.",
-            },
-            {
-              id: "ohm-yasasi",
-              href: "/uz/om-qonuni-hisoblash",
-              label: "Om qonuni",
-              formula: "V = I × R",
-              description: "Om qonuni bo‘yicha kuchlanish, tok va qarshilikni hisoblash.",
-            },
-          ]
-        : locale === "de"
+      : locale === "de"
           ? engineeringSourceSlugs
               .map((slug) =>
                 germanCalculatorPages.find((page) => page.sourceSlug === slug)
@@ -1747,18 +1395,7 @@ function createHomeData(locale: Locale): HomeData {
             `${page.title} ${page.category} ${page.description}`
           ),
         }))
-      : locale === "uz"
-        ? uzbekCategoryPages.map((page) => ({
-            id: `turkum-${page.category}`,
-            href: `/uz/turkumlar/${page.slug}`,
-            label: page.title,
-            description: page.description,
-            categoryLabel: "Birlik turkumi",
-            searchText: normalizeSearchText(
-              `${page.title} ${page.category} ${page.description}`
-            ),
-          }))
-        : locale === "de"
+      : locale === "de"
           ? germanCategoryPages.map((page) => ({
               id: `kategorie-${page.category}`,
               href: `/de/kategorien/${page.slug}`,
@@ -1832,25 +1469,19 @@ function createHomeData(locale: Locale): HomeData {
     allConversionsHref:
       locale === "tr"
         ? "/tum-birimler"
-        : locale === "uz"
-          ? "/uz/turkumlar"
-          : locale === "de"
+        : locale === "de"
             ? germanStaticPaths.allConversions
             : "/en/all-conversions",
     allConversionsLabel:
       locale === "tr"
         ? "Tüm dönüşümler"
-        : locale === "uz"
-          ? "Barcha turkumlar"
-          : locale === "de"
+        : locale === "de"
             ? "Alle Umrechnungen"
             : "All conversions",
     engineeringHubHref:
       locale === "tr"
         ? "/muhendislik-hesaplayicilari"
-        : locale === "uz"
-          ? "/uz/muhandislik-hisoblagichlari"
-          : locale === "de"
+        : locale === "de"
             ? germanStaticPaths.engineeringHub
             : "/en/engineering-calculators",
       engineeringHubLabel: strings.engineeringHubLabel,
@@ -1873,7 +1504,6 @@ function createHomeData(locale: Locale): HomeData {
 const homeData = {
   tr: createHomeData("tr"),
   en: createHomeData("en"),
-  uz: createHomeData("uz"),
   de: createHomeData("de"),
 } as const;
 
@@ -1950,11 +1580,10 @@ export default function HomeDirectory({
         </div>
       ) : null}
 
-      {(locale === "tr" || locale === "en" || locale === "uz" || locale === "de") && (
+      {(locale === "tr" || locale === "en" || locale === "de") && (
         <NotificationBell
           notifications={notifications}
           locale={locale}
-          showWhenEmpty={locale === "uz"}
         />
       )}
       <RecentToolsWidget locale={locale} />

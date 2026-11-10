@@ -201,21 +201,6 @@ const copyByLocale: Record<
     sleepLabel: "ساعات نوم",
     recommended: "موصى به",
   },
-uz: {
-    modePrompt: "Nimani hisoblamoqchisiz?",
-    modeButtons: {
-      "wake-to-bedtime": "Soat nechada uxlashim kerak?",
-      "bedtime-to-wake": "Soat nechada turishim kerak?",
-    },
-    timeLabel: {
-      "wake-to-bedtime": "Xohlagan uyg'onish vaqti",
-      "bedtime-to-wake": "Uxlash vaqti",
-    },
-    emptyState: "Natijani ko'rish uchun to'g'ri vaqt kiriting.",
-    cycleLabel: "sikl",
-    sleepLabel: "soat uyqu",
-    recommended: "Tavsiya etiladi",
-  },
 bn: {
     modePrompt: "আপনি কী হিসাব করতে চান?",
     modeButtons: {
@@ -420,20 +405,6 @@ const flowCopy: Record<string, {
     placeholder: "اختر وقت الاستيقاظ واحسب، أو اضغط الزر أدناه إذا كنت ستنام الآن.",
     increase: "زيادة",
     decrease: "إنقاص",
-  },
-  uz: {
-    pickTitle: "Soat nechada turmoqchisiz?",
-    hour: "Soat",
-    minute: "Daqiqa",
-    primary: "Soat nechada uxlashim kerak?",
-    or: "yoki",
-    nowTitle: "Hozir uxlasam…",
-    nowButton: "Soat nechada turishim kerak?",
-    wakeIntro: (time) => `Uyg'onish vaqti ${time} bo'lsa, dam olgan holda turish uchun shu vaqtlardan birida uxlang:`,
-    nowIntro: (time) => `Hozir (${time}) uxlasangiz, shu vaqtlardan birida turing:`,
-    placeholder: "Uyg'onish vaqtini tanlab hisoblang yoki hozir uxlayotgan bo'lsangiz pastdagi tugmani bosing.",
-    increase: "oshirish",
-    decrease: "kamaytirish",
   },
   bn: {
     pickTitle: "কখন ঘুম থেকে উঠতে চান?",

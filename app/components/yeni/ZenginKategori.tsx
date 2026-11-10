@@ -21,6 +21,8 @@ type Props = {
   temel: string;
   ciftler: ConversionPage[];
   icerik: KategoriIcerigi;
+  /** Birimin kisa tanimi (rehberi bu sayfaya katilan kategorilerde). */
+  tanim?: (birim: string) => string | undefined;
 };
 
 function jsonLd(data: object) {
@@ -31,7 +33,7 @@ function tarih(iso: string) {
   return new Date(`${iso}T12:00:00Z`).toLocaleDateString("tr-TR", { day: "numeric", month: "long", year: "numeric" });
 }
 
-export default function ZenginKategori({ slug, ad, category, grupAdi, birimler, temel, ciftler, icerik }: Props) {
+export default function ZenginKategori({ slug, ad, category, grupAdi, birimler, temel, ciftler, icerik, tanim }: Props) {
   const bul = (v: string) => birimler.find((b) => b.value === v);
   const temelAd = bul(temel)?.label ?? temel;
   const adKucuk = ad.toLocaleLowerCase("tr-TR");
@@ -165,6 +167,11 @@ export default function ZenginKategori({ slug, ad, category, grupAdi, birimler, 
             <h2>Tüm {adKucuk} birimleri</h2>
             <p>
               Her birimin {temelAd.toLocaleLowerCase("tr-TR")} cinsinden karşılığı. Ayrı sayfası olan dönüşümler linklidir.
+              {tanim?.(temel) && (
+                <span className="yy-birim-tanim">
+                  <strong>{temelAd}:</strong> {tanim(temel)}
+                </span>
+              )}
             </p>
             <ul className="yy-birim-listesi">
               {birimler
@@ -176,6 +183,7 @@ export default function ZenginKategori({ slug, ad, category, grupAdi, birimler, 
                       <span>
                         1 {b.label} = <strong>{formatSayi(convert(category, 1, b.value, temel))}</strong> {temel}
                       </span>
+                      {tanim?.(b.value) && <span className="yy-birim-tanim">{tanim(b.value)}</span>}
                       {sayfalar.length > 0 && (
                         <span className="yy-birim-linkleri">
                           {sayfalar.map((c) => (

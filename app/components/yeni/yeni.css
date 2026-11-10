@@ -608,3 +608,5 @@
   .yy-arac-hesap .category-general-converter-result { margin: 20px -16px -20px; padding: 16px 16px 20px; }
   .yy-arac-icindekiler { margin-top: 8px; }
 }
+/* Birim listesinde rehberden tasinan kisa tanim */
+.yy-birim-tanim { display: block; margin-top: 4px; font-size: 13px; line-height: 20px; font-weight: 400; color: #4b5259; }

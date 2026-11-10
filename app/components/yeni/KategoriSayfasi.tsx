@@ -12,6 +12,7 @@ import { ciftYayinda } from "../../converter/mergedPairs";
 import { kategorininGrubu } from "../../converter/siteYapisi";
 import { turkceCiftYolu } from "../../converter/turkceYollar";
 import { unitRegistry } from "../../converter/unitRegistry";
+import { REHBERI_BIRLESEN_KATEGORILER, findUnitPage } from "../../converter/unitPages";
 import { buildFullLanguageAlternates } from "../../i18n/routing";
 import { buildSiteUrl } from "../../siteConfig";
 import KategoriCevirici from "./KategoriCevirici";
@@ -49,6 +50,9 @@ export default function KategoriSayfasi({ slug }: { slug: string }) {
   const { kategori, ad, birimler, temel, ciftler } = veri(slug);
   const grup = kategorininGrubu(slug);
   const temelAd = birimler.find((b) => b.value === temel)?.label ?? temel;
+  // Rehberi bu sayfaya katilan kategorilerde (Uzunluk...) her birimin kisa tanimi birim listesinde gorunur.
+  const tanim = (birim: string) =>
+    REHBERI_BIRLESEN_KATEGORILER.has(kategori.category) ? findUnitPage(kategori.category, birim)?.shortDescription : undefined;
   const icerik = kategoriIcerikleri[slug];
   if (icerik && temel) {
     return (
@@ -61,6 +65,7 @@ export default function KategoriSayfasi({ slug }: { slug: string }) {
         temel={temel}
         ciftler={ciftler}
         icerik={icerik}
+        tanim={tanim}
       />
     );
   }
@@ -126,10 +131,11 @@ export default function KategoriSayfasi({ slug }: { slug: string }) {
           </section>
         )}
 
-        <section className="yy-kart">
+        <section className="yy-kart" id="birimler">
           <h2>{ad} birimlerinin tam listesi</h2>
           <p className="yy-soluk" style={{ marginBottom: 10 }}>
             Temel birim: <strong>{temelAd}</strong> [{temel}]
+            {tanim(temel) && <span className="yy-birim-tanim">{tanim(temel)}</span>}
           </p>
           <ul className="yy-birimler">
             {birimler
@@ -141,6 +147,7 @@ export default function KategoriSayfasi({ slug }: { slug: string }) {
                     <span className="yy-deger">
                       1 {b.label} [{b.symbol}] = <strong>{formatSayi(convert(kategori.category, 1, b.value, temel))}</strong> {temel}
                     </span>
+                    {tanim(b.value) && <span className="yy-birim-tanim">{tanim(b.value)}</span>}
                     {sayfalar.length > 0 && (
                       <span className="yy-yonler">
                         {sayfalar.map((c) => (

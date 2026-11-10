@@ -30,12 +30,12 @@ type HeaderLink = {
 export default function SiteHeader() {
   const pathname = usePathname();
   // Saat bölümü kendi menüsünü ve alt bilgisini çizer.
-  if (pathname.startsWith("/embed/") || isSaatBolumu(pathname)) {
-    return null;
-  }
+  if (pathname.startsWith("/embed/")) return null;
+  // Yeni yapiya gecen sayfalar (eski saat ve hesap bolumlerinde olsalar bile) yeni ust menuyle cizilir.
+  if (isYeniYapiYolu(pathname)) return <YeniUst pathname={pathname} />;
+  if (isSaatBolumu(pathname)) return null;
   if (isSaatAraci(pathname)) return <SaatAracUst />;
   if (isHesapAraci(pathname)) return <HesapAracUst />;
-  if (isYeniYapiYolu(pathname)) return <YeniUst pathname={pathname} />;
   return <SiteHeaderNavigation key={pathname} pathname={pathname} />;
 }
 

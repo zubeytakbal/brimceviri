@@ -45,7 +45,7 @@ export default function YillikIzinRoute() {
       crumbs={[
         { href: "/", label: "Ana Sayfa" },
         { href: "/hesaplayicilar#para-ve-is", label: "Para, Maaş ve Vergi" },
-        { label: "Yıllık İzin Hesaplama" },
+        { href: "/yillik-izin-hesaplama", label: "Yıllık İzin Hesaplama" },
       ]}
       crumbLabel="Sayfa yolu"
       title="Yıllık İzin Hesaplama"

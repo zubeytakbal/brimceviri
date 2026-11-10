@@ -55,7 +55,7 @@ export default function DogdugumGunRoute() {
     <TimeToolPage
       crumbs={[
         { href: "/", label: "Ana Sayfa" },
-        { label: "Doğduğum Gün Hangi Gündü?" },
+        { href: "/dogdugum-gun-hangi-gun", label: "Doğduğum Gün Hangi Gündü?" },
       ]}
       crumbLabel="Sayfa yolu"
       title="Doğduğum Gün Hangi Gündü?"

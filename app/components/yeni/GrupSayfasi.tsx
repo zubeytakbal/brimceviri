@@ -11,7 +11,8 @@ import { GrupIkonu } from "./grupIkonlari";
 export type GrupTuru = "hesap" | "birim";
 
 const KOK = { hesap: "/hesaplayicilar", birim: "/ceviriciler" } as const;
-const baslik = (tur: GrupTuru, ad: string) => (tur === "hesap" ? `${ad} araçları` : `${ad} birim çeviricileri`);
+/** "Finans araçları"; "Diğer" ile tamlama kurulmaz: "Diğer araçlar". */
+const baslik = (tur: GrupTuru, ad: string) => (tur === "hesap" ? (ad === "Diğer" ? "Diğer araçlar" : `${ad} araçları`) : `${ad} birim çeviricileri`);
 const birimAdi = (tur: GrupTuru) => (tur === "hesap" ? "araç" : "çevirici");
 
 export const grupYolu = (tur: GrupTuru, slug: string) => `${KOK[tur]}/${slug}`;

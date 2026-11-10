@@ -323,30 +323,6 @@ const copyByLocale: Record<
       estimatedTime: "الزمن التقديري",
     },
   },
-uz: {
-    modePrompt: "Nimani hisoblamoqchisiz?",
-    modeButtons: {
-      pace: "Tempni Hisoblash",
-      duration: "Vaqtni Hisoblash",
-      distance: "Masofani Hisoblash",
-    },
-    labels: {
-      distance: "Masofa (km)",
-      durationHours: "Vaqt - Soat",
-      durationMinutes: "Vaqt - Daqiqa",
-      durationSeconds: "Vaqt - Soniya",
-      paceMinutes: "Temp - Daqiqa/km",
-      paceSeconds: "Temp - Soniya/km",
-    },
-    emptyState: "Natijani ko'rish uchun to'g'ri qiymatlar kiriting.",
-    resultLabels: {
-      pace: "Temp",
-      duration: "Vaqt",
-      distance: "Masofa",
-      speed: "Tezlik",
-      estimatedTime: "taxminiy vaqt",
-    },
-  },
 bn: {
     modePrompt: "আপনি কী হিসাব করতে চান?",
     modeButtons: {
@@ -420,8 +396,6 @@ function getRaceLabel(race: RaceEstimate, locale: Locale) {
         ? "نصف ماراثون"
       : locale === "en"
         ? "Half Marathon"
-        : locale === "uz"
-          ? "Yarim Marafon"
         : "Yarı Maraton";
   }
 
@@ -432,8 +406,6 @@ function getRaceLabel(race: RaceEstimate, locale: Locale) {
         ? "ماراثون"
         : locale === "en"
           ? "Marathon"
-          : locale === "uz"
-            ? "Marafon"
           : "Maraton";
   }
 

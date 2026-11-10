@@ -29,13 +29,13 @@ export type HomeSearchStrings = {
   openLabel: string;
 };
 
-export type HomeSearchLocale = "tr" | "en" | "uz" | "de" | "ar" | "fr" | "es" | "pt" | "it" | "sv" | "no" | "da" | "bn";
+export type HomeSearchLocale = "tr" | "en" | "de" | "ar" | "fr" | "es" | "pt" | "it" | "sv" | "no" | "da" | "bn";
 
 // Her dilin ana sayfa dizinindeki searchText ile ayni normallestirme (dizin bununla uretilir).
 function normalizeSearchText(value: string, locale: HomeSearchLocale) {
   if (locale === "ar") return value.toLocaleLowerCase("ar").replace(/[^\u0600-\u06ffa-z0-9]+/g, " ").trim();
   if (locale === "bn") return value.toLocaleLowerCase("bn").replace(/[^\u0980-\u09ffa-z0-9]+/g, " ").trim();
-  const lower = locale === "tr" || locale === "en" || locale === "uz" || locale === "de" ? value.toLocaleLowerCase("tr-TR") : value.toLocaleLowerCase(locale);
+  const lower = locale === "tr" || locale === "en" || locale === "de" ? value.toLocaleLowerCase("tr-TR") : value.toLocaleLowerCase(locale);
   return lower
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")

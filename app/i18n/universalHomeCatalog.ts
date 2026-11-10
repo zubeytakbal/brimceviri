@@ -1,6 +1,6 @@
 import type { SiteIconName } from "../components/siteIcons";
 
-export type HomeShellLocale = "tr" | "en" | "uz";
+export type HomeShellLocale = "tr" | "en";
 
 type LocalizedText = Record<HomeShellLocale, string>;
 
@@ -22,24 +22,22 @@ const universalHomeSections = {
     heading: {
       tr: "Bilim hesaplayıcıları",
       en: "Science calculators",
-      uz: "Fan kalkulyatorlari",
     },
     description: {
       tr: "Kimya ve matematik araç kategorileri.",
       en: "Tool categories for chemistry and mathematics.",
-      uz: "Kimyo va matematika uchun vosita turkumlari.",
     },
     cards: [
       {
         id: "chemistry",
         iconName: "chemistryCalculator",
-        label: { tr: "Kimya", en: "Chemistry", uz: "Kimyo" },
+        label: { tr: "Kimya", en: "Chemistry" },
         href: { tr: "/hesaplayicilar#kimya" },
       },
       {
         id: "mathematics",
         iconName: "mathCalculator",
-        label: { tr: "Matematik", en: "Mathematics", uz: "Matematika" },
+        label: { tr: "Matematik", en: "Mathematics" },
         href: { tr: "/hesaplayicilar#matematik" },
       },
     ],

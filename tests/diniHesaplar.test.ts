@@ -255,18 +255,6 @@ describe("Bangladeş zekâtı (ভরি) ve kasr", () => {
   });
 });
 
-import { formatUz } from "../app/converter/uzNumber";
-
-describe("Özbekçe sayı biçimi", () => {
-  it("boşlukla binlik, virgülle ondalık", () => {
-    expect(formatUz(2190)).toBe("2 190");
-    expect(formatUz(1.2, 1)).toBe("1,2");
-    expect(formatUz(1.5, 2)).toBe("1,5");
-    expect(formatUz(1234567.891, 2)).toBe("1 234 567,89");
-    expect(formatUz(0.2, 2)).toBe("0,2");
-  });
-});
-
 describe("anma günleri (3, 7, 40, 52)", () => {
   it("ölüm günü 1. gün sayılınca", () => {
     const r = anmaGunleri({ year: 2025, month: 1, day: 2 });

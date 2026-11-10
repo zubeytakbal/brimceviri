@@ -46,7 +46,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/emsal-kaks-hesaplama",
     languages: {
-      "uz-UZ": "/uz/qurilish-zichligi-koeffitsiyenti-hisoblash",
     },
   },
   openGraph: {

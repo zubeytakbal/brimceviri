@@ -13,7 +13,7 @@ type StaticPageSection = {
 };
 
 type StaticPageLayoutProps = {
-  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "pt" | "it" | "sv" | "no" | "da";
+  locale: "tr" | "en" | "de" | "ar" | "bn" | "fr" | "es" | "pt" | "it" | "sv" | "no" | "da";
   breadcrumbAriaLabel: string;
   breadcrumbs: BreadcrumbItem[];
   title: string;
@@ -77,9 +77,7 @@ export default function StaticPageLayout({
                     ? "Weitere Sprachen"
                     : locale === "ar"
                       ? "لغات أخرى"
-                      : locale === "uz"
-                        ? "Boshqa tillar"
-                        : locale === "bn"
+                      : locale === "bn"
                           ? "অন্যান্য ভাষা"
                           : locale === "fr"
                             ? "Autres langues"

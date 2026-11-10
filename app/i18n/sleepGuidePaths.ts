@@ -7,7 +7,6 @@ export const sleepGuidePaths: Partial<Record<Locale, string>> = {
   en: "/en/sleep-calculator",
   de: "/de/schlafrechner",
   ar: "/ar/sleep-calculator",
-  uz: "/uz/uyqu-hisoblash",
   bn: "/bn/sleep-calculator",
   fr: "/fr/calculateur-de-sommeil",
   es: "/es/calculadora-de-sueno",

@@ -176,31 +176,6 @@ const categoryLabels: Record<
     altin_ayar: "عيار الذهب",
     gumus_ayar: "عيار الفضة",
   },
-  uz: {
-    uzunluk: "Uzunlik",
-    alan: "Yuza",
-    hacim: "Hajm",
-    kutle: "Massa",
-    sicaklik: "Harorat",
-    zaman: "Vaqt",
-    hiz: "Tezlik",
-    basinc: "Bosim",
-    enerji: "Energiya",
-    veri: "Ma'lumot Hajmi",
-    elektrik: "Elektr",
-    yogunluk: "Zichlik",
-    kuvvet: "Kuch",
-    debi: "Sarf",
-    tork: "Tork",
-    momentum: "Impuls",
-    viskozite_dinamik: "Qovushqoqlik",
-    elektrik_direnc: "Qarshilik",
-    kapasitans: "Sig'im",
-    enduktans: "Induktivlik",
-    elektrik_yuk: "Elektr Zaryadi",
-    altin_ayar: "Oltin Karati",
-    gumus_ayar: "Kumush Sofligi (Proba)",
-  },
   bn: {
     uzunluk: "দৈর্ঘ্য",
     alan: "ক্ষেত্রফল",
@@ -452,11 +427,6 @@ const siteHeaderCopy: Record<Locale, SiteHeaderCopy> = {
     menuLabel: "القائمة",
     conversionsLabel: "الأدوات",
   },
-  uz: {
-    navAriaLabel: "Asosiy navigatsiya",
-    menuLabel: "Menyu",
-    conversionsLabel: "O'zgartirishlar",
-  },
   bn: {
     navAriaLabel: "প্রধান নেভিগেশন",
     menuLabel: "মেনু",
@@ -553,18 +523,6 @@ const footerCopy: Record<Locale, FooterCopy> = {
       "في القرارات الهندسية أو الصحية أو المتعلقة بالسلامة، يُفضّل دائمًا التحقق من النتائج عبر مصادر متخصصة.",
     browserProcessingNote:
       "تُعالج مدخلات الحاسبات داخل المتصفح أثناء تنفيذ عمليات الحساب في هذا الموقع.",
-  },
-  uz: {
-    navAriaLabel: "Pastki navigatsiya",
-    pagesHeading: "Sahifalar",
-    languagesHeading: "Tillar",
-    categoriesHeading: "Turkumlar",
-    description:
-      "Amaliy foydalanish uchun tayyorlangan texnik o'zgartirish vositalari va birlik qo'llanmalari.",
-    disclaimer:
-      "Muhandislik, sog'liq yoki xavfsizlik bilan bog'liq muhim qarorlarda natijalarni professional manbalar bilan tekshiring.",
-    browserProcessingNote:
-      "Kalkulyator kiritmalari ushbu saytdagi hisoblash jarayonlarida brauzer ichida qayta ishlanadi.",
   },
   bn: {
     navAriaLabel: "ফুটার নেভিগেশন",
@@ -717,13 +675,6 @@ const topLevelLabelMap: Record<
     allConversions: "كل التحويلات",
     professions: "المهن",
   },
-  uz: {
-    home: "Bosh sahifa",
-    engineeringHub: "Kalkulyatorlar",
-    units: "Birliklar",
-    allConversions: "Turkumlar",
-    professions: "Kasblar",
-  },
   bn: {
     home: "হোম",
     engineeringHub: "ক্যালকুলেটর",
@@ -833,10 +784,6 @@ const footerLinksByLocale: Record<
     { key: "privacy", label: "الخصوصية" },
     { key: "terms", label: "الشروط" },
   ],
-  uz: [
-    { key: "home", label: "Bosh sahifa" },
-    { key: "units", label: "Birliklar" },
-  ],
   bn: [
     { key: "home", label: "হোম" },
     { key: "units", label: "একক গাইড" },
@@ -877,33 +824,6 @@ export function getSiteFooterCopy(locale: Locale) {
 
 export function getTopLevelLinks(locale: Locale): LinkDefinition[] {
   const labels = topLevelLabelMap[locale];
-
-  // Ozbekcha kart kataloglari ana sayfada ve turkum indeksinde bulunur.
-  // Menu bu mevcut UZ bolumlerine gider; Turkce arac sayfalarina yonlenmez.
-  if (locale === "uz") {
-    return [
-      {
-        href: getStaticPath(locale, "home"),
-        label: labels.home,
-      },
-      {
-        href: "/uz#engineering-calculators",
-        label: labels.engineeringHub,
-      },
-      {
-        href: getStaticPath(locale, "units"),
-        label: labels.units,
-      },
-      {
-        href: "/uz/turkumlar",
-        label: labels.allConversions,
-      },
-      {
-        href: "/uz/turkumlar#boshqa-kalkulyator-markazlari",
-        label: labels.professions,
-      },
-    ];
-  }
 
   // İngilizcede birim rehberi ve tüm dönüşümler "Conversions" menüsünün altında.
   if (locale === "en") {
@@ -984,9 +904,9 @@ export function getCategoryMenuLinks(locale: Locale) {
     ];
   });
 
-  // Ozbekcha icin henuz yerellestirilmis sayfasi olmayan ayakkabi, mutfak
+  // Rusca icin henuz yerellestirilmis sayfasi olmayan ayakkabi, mutfak
   // ve tarif araclarini Turkce URL'lere baglamiyoruz.
-  if (locale === "uz" || locale === "ru") {
+  if (locale === "ru") {
     return links;
   }
 

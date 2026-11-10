@@ -14,7 +14,7 @@ import { isSaatAraci, isSaatBolumu } from "../app/components/saat/saatBolumu";
 
 const OUT = join(process.cwd(), "out");
 const PORT = Number(process.env.DENETIM_PORT ?? 4599);
-const DILLER = new Set(["en", "de", "ar", "uz", "bn", "fr", "es", "pt", "it", "nl", "sv", "no", "da", "embed", "_next"]);
+const DILLER = new Set(["en", "de", "ar", "bn", "fr", "es", "pt", "it", "nl", "sv", "no", "da", "embed", "_next"]);
 const require = createRequire(import.meta.url);
 // Playwright projeye bağımlılık olarak eklenmez; makinedeki kurulum kullanılır.
 type Sayfa = {

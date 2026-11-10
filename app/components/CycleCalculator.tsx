@@ -5,7 +5,7 @@ import { cycleOn, cycles, CYCLE_MAX, CYCLE_MIN, dueDate, LUTEAL_MAX, LUTEAL_MIN,
 import type { YMD } from "../converter/time/calendars";
 import { addDaysYmd, diffDays, parseYmd, ymdKey } from "../converter/time/dateMath";
 
-export type CycleLang = "tr" | "en" | "de" | "es" | "pt" | "bn" | "uz";
+export type CycleLang = "tr" | "en" | "de" | "es" | "pt" | "bn";
 
 type Dict = {
   lmp: string;
@@ -222,36 +222,6 @@ const T: Record<CycleLang, Dict> = {
     months: BN_MONTHS,
     week: ["সোম", "মঙ্গল", "বুধ", "বৃহঃ", "শুক্র", "শনি", "রবি"],
   },
-  uz: {
-    lmp: "Oxirgi hayzning birinchi kuni",
-    cycle: "Sikl davomiyligi (kun)",
-    period: "Hayz davomiyligi (kun)",
-    luteal: "Lyuteal faza (kun; bilmasangiz 14)",
-    dpo: (n) => `ovulyatsiyadan keyin ${n}-kun`,
-    implant: "Implantatsiya oralig‘i",
-    implantNote: "ovulyatsiyadan 6–12 kun keyin; bu kunlarda yengil qon dog‘i bo‘lishi mumkin",
-    today: "Bugun",
-    cycleDay: (n) => `siklning ${n}-kuni`,
-    kind: { period: "Hayz kunlari", fertile: "Homilador bo'lish ehtimoli yuqori kunlar", ovulation: "Taxminiy ovulyatsiya kuni", none: "Ehtimol past kunlar" },
-    nextPeriod: "Keyingi hayz",
-    inDays: (n) => `${n} kundan keyin`,
-    ovulation: "Ovulyatsiya kuni",
-    fertile: "Unumdor kunlar (eng yuqori ehtimol)",
-    test: "Homiladorlik testi",
-    testNote: "hayz kechiksa shu kundan boshlab",
-    due: "Homiladorlik bo'lsa taxminiy tug'ish sanasi",
-    dueNote: "oxirgi hayz + 280 kun, siklga moslangan",
-    upcoming: "Keyingi sikllar",
-    colPeriod: "Hayz",
-    colFertile: "Unumdor kunlar",
-    colOvulation: "Ovulyatsiya",
-    prev: "Oldingi oy",
-    next: "Keyingi oy",
-    invalid: `Sikl ${CYCLE_MIN}–${CYCLE_MAX} kun, hayz ${PERIOD_MIN}–${PERIOD_MAX} kun bo'lishi kerak.`,
-    note: "Kalendar usuli muntazam sikl uchun taxmin beradi; u kontratseptsiya usuli emas. Sikl notekis bo'lsa yoki hayz kechiksa, shifokorga murojaat qiling.",
-    months: UZ_MONTHS,
-    week: ["Du", "Se", "Ch", "Pa", "Ju", "Sh", "Ya"],
-  },
 };
 
 const BN_DIGITS = "০১২৩৪৫৬৭৮৯";
@@ -271,8 +241,6 @@ function dateText(d: YMD, lang: CycleLang) {
       return `${d.day} de ${m} de ${d.year}`;
     case "bn":
       return `${day} ${m} ${num(d.year, lang)}`;
-    case "uz":
-      return `${d.year}-yil ${d.day}-${m}`;
     default:
       return `${d.day} ${m} ${d.year}`;
   }
@@ -281,7 +249,6 @@ const shortText = (d: YMD, lang: CycleLang) => {
   const m = T[lang].months[d.month - 1];
   if (lang === "en") return `${m.slice(0, 3)} ${d.day}`;
   if (lang === "de") return `${d.day}. ${m.slice(0, 3)}.`;
-  if (lang === "uz") return `${d.day}-${m}`;
   return `${num(d.day, lang)} ${lang === "bn" ? m : m.slice(0, 3)}`;
 };
 const range = (a: YMD, b: YMD, lang: CycleLang) => `${shortText(a, lang)} – ${shortText(b, lang)}`;

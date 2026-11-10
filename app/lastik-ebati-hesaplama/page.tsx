@@ -29,7 +29,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/lastik-ebati-hesaplama",
     languages: {
-      "uz-UZ": "/uz/shina-olchami-hisoblash",
     },
   },
   openGraph: {

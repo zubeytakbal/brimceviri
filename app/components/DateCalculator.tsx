@@ -261,25 +261,6 @@ const copyByLocale: Record<Exclude<Locale, "ru">, DateCopy> = {
       days: "يوم",
     },
   },
-uz: {
-    labels: {
-      startDate: "Boshlanish Sanasi (Tug'ilgan Sana)",
-      endDate: "Maqsad Sana",
-    },
-    emptyState: "Ikkita to'g'ri sana kiriting; maqsad sana boshlanish sanasidan oldin bo'lishi mumkin emas.",
-    resultLabels: {
-      difference: "Farq",
-      totalDays: "Jami kun",
-      totalWeeks: "Jami hafta",
-      totalMonths: "Jami oy",
-      nextAnniversary: "Keyingi yil to'lish sanasi",
-    },
-    units: {
-      years: "yil",
-      months: "oy",
-      days: "kun",
-    },
-  },
 bn: {
     labels: {
       startDate: "শুরুর তারিখ (জন্মতারিখ)",

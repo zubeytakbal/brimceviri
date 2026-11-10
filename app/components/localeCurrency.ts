@@ -17,7 +17,6 @@ export const currencyByLocale: Record<Locale, string> = {
   no: "kr",
   da: "kr.",
   ar: "",
-  uz: "so'm",
   bn: "৳",
   ru: "EUR",
 };

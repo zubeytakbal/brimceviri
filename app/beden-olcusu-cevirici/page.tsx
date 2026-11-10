@@ -28,7 +28,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/beden-olcusu-cevirici",
     languages: {
-      "uz-UZ": "/uz/kiyim-olchami-aylantirgich",
     },
   },
   openGraph: {

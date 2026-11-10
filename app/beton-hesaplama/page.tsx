@@ -49,7 +49,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/beton-hesaplama",
     languages: {
-      "uz-UZ": "/uz/beton-hisoblash",
     },
   },
   openGraph: {

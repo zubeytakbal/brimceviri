@@ -82,23 +82,6 @@ const copy = {
     copiedButton: "تم النسخ",
     printButton: "طباعة",
   },
-  uz: {
-    recipeLabel: "Retseptingiz",
-    placeholder:
-      "2 stakan un\n1 choy qoshiq tuz\n3 osh qoshiq zaytun yog'i\n2 dona tuxum\n180 daraja pechda pishiring",
-    factorLabel: "Koeffitsient",
-    originalServingsLabel: "Necha kishilik edi",
-    targetServingsLabel: "Necha kishilik qilasiz",
-    resultHeading: "Miqyoslangan Retsept",
-    emptyState: "Retseptingizni yuqoriga yozing, natijani shu yerda ko'ring.",
-    gramPrefix: "~",
-    gramSuffix: "g",
-    ingredientLabel: "Mahsulot",
-    noMatchOption: "Moslik topilmadi",
-    copyButton: "Nusxalash",
-    copiedButton: "Nusxalandi",
-    printButton: "Chop etish",
-  },
   bn: {
     recipeLabel: "আপনার রেসিপি",
     placeholder:
@@ -243,9 +226,7 @@ function formatGram(value: number, locale: KitchenLocale) {
         ? "de-DE"
         : locale === "ar"
           ? "ar"
-          : locale === "uz"
-            ? "uz-UZ"
-            : locale === "bn"
+          : locale === "bn"
               ? "bn-BD"
               : locale === "fr"
                 ? "fr-FR"

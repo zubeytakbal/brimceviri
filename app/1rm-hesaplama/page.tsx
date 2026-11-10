@@ -33,7 +33,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/1rm-hesaplama",
     languages: {
-      "uz-UZ": "/uz/1rm-hisoblash",
     },
   },
   openGraph: {

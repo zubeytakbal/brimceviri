@@ -4,8 +4,6 @@ import { arabicCategoryPages } from "./localizedArabicCategoryPages";
 import { arabicUnitPages } from "./localizedArabicUnitPages";
 import { bengaliCategoryPages } from "./localizedBengaliCategoryPages";
 import { bengaliUnitPages } from "./localizedBengaliUnitPages";
-import { uzbekCategoryPages } from "./localizedUzbekCategoryPages";
-import { uzbekUnitPages } from "./localizedUzbekUnitPages";
 import { danishCategoryPages } from "./localizedDanishCategoryPages";
 import { danishUnitPages } from "./localizedDanishUnitPages";
 import { frenchCategoryPages } from "./localizedFrenchCategoryPages";
@@ -37,10 +35,9 @@ export const GLOSSARY_LOCALES = {
   // Bu üç dilde eski adresler tek kalıp kuralla yönlenir (Cloudflare satır sınırı).
   bn: { guides: "/bn/unit-guides", categories: "/bn/categories", units: bengaliUnitPages, cats: bengaliCategoryPages },
   ar: { guides: "/ar/unit-guides", categories: "/ar/categories", units: arabicUnitPages, cats: arabicCategoryPages },
-  uz: { guides: "/uz/birliklar", categories: "/uz/turkumlar", units: uzbekUnitPages, cats: uzbekCategoryPages },
 } as const satisfies Record<string, { guides: string; categories: string; units: readonly Page[]; cats: readonly Page[] }>;
 
-const PATTERN_LOCALES = new Set<string>(["bn", "ar", "uz"]);
+const PATTERN_LOCALES = new Set<string>(["bn", "ar"]);
 
 export type GlossaryLocale = keyof typeof GLOSSARY_LOCALES;
 

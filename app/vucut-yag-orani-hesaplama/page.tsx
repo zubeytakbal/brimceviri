@@ -29,7 +29,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/vucut-yag-orani-hesaplama",
     languages: {
-      "uz-UZ": "/uz/tana-yogi-foizi-hisoblash",
     },
   },
   openGraph: {

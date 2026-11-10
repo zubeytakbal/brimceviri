@@ -206,21 +206,6 @@ const copyByLocale: Record<
     },
     emptyState: "أدخل قيمًا صحيحة لعرض النتيجة.",
   },
-uz: {
-    labels: {
-      wallArea: "Devor Maydoni (m2)",
-      brickWidth: "G'isht Eni (sm)",
-      brickHeight: "G'isht Balandligi (sm)",
-      joint: "Chok Qalinligi (mm)",
-      waste: "Zaxira Foizi (%)",
-    },
-    resultLabels: {
-      brickArea: "1 g'ishtning chok bilan maydoni",
-      totalArea: "Zaxira bilan jami maydon",
-      count: "Kerakli g'isht soni",
-    },
-    emptyState: "Natijani ko'rish uchun to'g'ri qiymatlar kiriting.",
-  },
 bn: {
     labels: {
       wallArea: "দেয়ালের ক্ষেত্রফল (বর্গমিটার)",

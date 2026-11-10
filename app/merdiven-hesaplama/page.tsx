@@ -44,7 +44,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/merdiven-hesaplama",
     languages: {
-      "uz-UZ": "/uz/zinapoya-hisoblash",
     },
   },
   openGraph: {

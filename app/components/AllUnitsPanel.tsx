@@ -68,13 +68,6 @@ const groupLabels: Record<string, Record<UnitSystemGroup, string>> = {
     traditional: "وحدات تقليدية وإقليمية",
     scientific: "وحدات علمية",
   },
-  uz: {
-    metric: "Metrik",
-    imperial: "AQSH / Britaniya",
-    kitchen: "Oshxona o'lchovlari",
-    traditional: "An'anaviy va mintaqaviy",
-    scientific: "Ilmiy",
-  },
   bn: {
     metric: "মেট্রিক",
     imperial: "মার্কিন / ইম্পেরিয়াল",
@@ -163,11 +156,6 @@ const headingTemplates: Record<
     category: "{value} بجميع الوحدات",
     pair: "{value} بالوحدات الأخرى",
     hint: "تتغير القيم مع المحوّل أعلاه. اختر صفًا لفتح صفحة ذلك التحويل بالتفصيل.",
-  },
-  uz: {
-    category: "{value} barcha birliklarda",
-    pair: "{value} boshqa birliklarda",
-    hint: "Qiymatlar yuqoridagi konvertor bilan birga yangilanadi. Batafsil sahifani ochish uchun qatorni tanlang.",
   },
   bn: {
     category: "সব এককে {value}",

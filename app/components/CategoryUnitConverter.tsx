@@ -15,7 +15,7 @@ type UnitOption = {
 
 type CategoryUnitConverterProps = {
   category: string;
-  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "pt" | "it" | "nl" | "sv" | "no" | "da";
+  locale: "tr" | "en" | "de" | "ar" | "bn" | "fr" | "es" | "pt" | "it" | "nl" | "sv" | "no" | "da";
   // Verilmezse getCategoryUnitOptions(category, locale) kullanilir (kategori
   // sayfalarindaki standart davranis). Verilirse, ayni convert() motoru
   // (ayni category/symbol eslesmesi) uzerinde SADECE bu birimler secilebilir
@@ -33,7 +33,6 @@ const NUMBER_LOCALES: Record<ConverterLocale, string> = {
   en: "en-US",
   de: "de-DE",
   ar: "ar",
-  uz: "uz-UZ",
   bn: "bn-BD",
   fr: "fr-FR",
   es: "es-ES",
@@ -88,14 +87,6 @@ const CONVERTER_LABELS: Record<ConverterLocale, ConverterLabels> = {
     result: "النتيجة المباشرة",
     swap: "تبديل الاتجاه",
     invalid: "أدخل رقما صحيحا لعرض النتيجة.",
-  },
-  uz: {
-    value: "Qiymat",
-    from: "Manba birlik",
-    to: "Maqsad birlik",
-    result: "Aniq natija",
-    swap: "Yo'nalishni almashtirish",
-    invalid: "Natijani ko'rish uchun to'g'ri raqam kiriting.",
   },
   bn: {
     value: "মান",
@@ -201,7 +192,7 @@ function parseNumericValue(
 }
 
 function formatDisplayNumber(
-  locale: "tr" | "en" | "de" | "ar" | "uz" | "bn" | "fr" | "es" | "pt" | "it" | "nl" | "sv" | "no" | "da",
+  locale: "tr" | "en" | "de" | "ar" | "bn" | "fr" | "es" | "pt" | "it" | "nl" | "sv" | "no" | "da",
   value: number
 ) {
   if (!Number.isFinite(value)) {

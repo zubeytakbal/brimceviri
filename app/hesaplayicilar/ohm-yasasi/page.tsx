@@ -17,7 +17,6 @@ export const metadata: Metadata = {
       en: englishPage
         ? `/en/calculators/${englishPage.slug}`
         : "/en/engineering-calculators",
-      "uz-UZ": "/uz/om-qonuni-hisoblash",
       "x-default": "/hesaplayicilar/ohm-yasasi",
     },
   },

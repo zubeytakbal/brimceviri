@@ -52,11 +52,10 @@ export function seriesStats(series: FxSeriesPoint[]): FxSeriesStats | null {
 }
 
 // Tarayicilarin bir kismi (ozellikle Chrome) bazi dillerin sayi verisini
-// tasimiyor: "uz-UZ" icin "12,067.11" uretiyor, sunucu (Node, tam ICU) ise
+// tasimiyor: bazi diller icin "12,067.11" uretiyor, sunucu (Node, tam ICU) ise
 // "12 067,11". Hem yanlis gorunmesin hem sunucu/istemci ayni metni uretsin
 // diye bu dillerde ayiraclar elle uygulanir.
 const SEPARATOR_OVERRIDES: Record<string, { group: string; decimal: string }> = {
-  "uz-UZ": { group: "\u00a0", decimal: "," },
 };
 
 export function formatNumber(value: number, locale: string, options: Intl.NumberFormatOptions = {}): string {

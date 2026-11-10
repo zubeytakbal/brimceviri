@@ -8,7 +8,7 @@ import {
   type HomeType,
 } from "../converter/movingBoxCalculator";
 
-type SupportedLocale = "tr" | "en" | "uz" | "de";
+type SupportedLocale = "tr" | "en" | "de";
 
 type MovingBoxCopy = {
   chooseHomeType: string;
@@ -50,22 +50,6 @@ const copyByLocale: Record<SupportedLocale, MovingBoxCopy> = {
       "3+1": "3-Bedroom",
       "4+1": "4-Bedroom",
       "5+1": "5-Bedroom+",
-    },
-  },
-  uz: {
-    chooseHomeType: "Uy Turini Tanlang",
-    smallBox: "Kichik Quti",
-    largeBox: "Katta Quti",
-    truckVolume: "Taxminiy Yuk Mashinasi Hajmi",
-    note: (label) =>
-      `Bu raqamlar ko'chirish sohasida ${label} uylar uchun ishlatiladigan o'rtacha taxminlardir; buyumlaringiz miqdoriga qarab o'zgarishi mumkin.`,
-    homeTypeLabels: {
-      studio: "Studiya",
-      "1+1": "1 xonali",
-      "2+1": "2 xonali",
-      "3+1": "3 xonali",
-      "4+1": "4 xonali",
-      "5+1": "5 xonali va undan ko'p",
     },
   },
   de: {

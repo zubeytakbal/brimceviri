@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import { formatLocalizedNumber } from "../i18n/toolLocales";
 import { calculateConcrete, type ConcreteShape } from "../converter/concreteCalculator";
 
-type SupportedLocale = "tr" | "en" | "uz";
+type SupportedLocale = "tr" | "en";
 type UnitSystem = "metric" | "us";
 
 const METERS_PER_FOOT = 0.3048;
@@ -46,13 +46,6 @@ const copyByLocale: Record<SupportedLocale, ConcreteCopy> = {
     length: "Length (m)", width: "Width (m)", thickness: "Thickness (m)", diameter: "Diameter (m)", height: "Height (m)", waste: "Waste allowance (%)",
     emptyState: "Enter valid dimensions to see the result.", resultVolume: "Concrete volume", resultVolumeWithWaste: "Required volume with waste", resultBagCount: "25 kg cement bags", resultCement: "Cement estimate", resultSand: "Sand estimate", resultGravel: "Gravel estimate", resultWater: "Water estimate",
     note: "Planning estimate only.",
-  },
-  uz: {
-    shapeLabel: "Shakl",
-    shapes: { dikdortgen: "To'g'ri to'rtburchak (poydevor/plita)", silindir: "Silindr (ustun)" },
-    length: "Uzunlik (m)", width: "Kenglik (m)", thickness: "Qalinlik (m)", diameter: "Diametr (m)", height: "Balandlik (m)", waste: "Zaxira ulushi (%)",
-    emptyState: "To'g'ri o'lchamlarni kiritib natijani ko'rishingiz mumkin.", resultVolume: "Beton hajmi", resultVolumeWithWaste: "Zaxira dahil hajm", resultBagCount: "25 kg tsement qopi", resultCement: "Tsement", resultSand: "Qum", resultGravel: "Shag'al (agregat)", resultWater: "Suv",
-    note: "Eslatma: bu standart C25 beton aralashmasi nisbatiga (taxminan 350 kg/m³ tsement) asoslangan taxmindir; haqiqiy nisbat beton sinfi va tayyor beton zavodiga qarab farq qilishi mumkin.",
   },
 };
 

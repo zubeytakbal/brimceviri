@@ -33,7 +33,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/emlak-komisyonu-hesaplama",
     languages: {
-      "uz-UZ": "/uz/kochmas-mulk-komissiyasi-hisoblash",
     },
   },
   openGraph: {

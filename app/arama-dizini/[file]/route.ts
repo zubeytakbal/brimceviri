@@ -14,7 +14,6 @@ import { homeSearchIndex as svIndex } from "../../components/SwedishHomeDirector
 const INDEXES = {
   tr: () => homeSearchIndex("tr"),
   en: () => homeSearchIndex("en"),
-  uz: () => homeSearchIndex("uz"),
   de: () => homeSearchIndex("de"),
   ar: arIndex,
   bn: bnIndex,

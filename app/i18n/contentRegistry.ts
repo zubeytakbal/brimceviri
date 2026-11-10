@@ -11,8 +11,6 @@ import { germanCategoryPages } from "../converter/localizedGermanCategoryPages";
 import { germanConversionPages } from "../converter/localizedGermanConversionPages";
 import { germanUnitPages } from "../converter/localizedGermanUnitPages";
 import { englishUnitPages } from "../converter/localizedUnitPages";
-import { uzbekCategoryPages } from "../converter/localizedUzbekCategoryPages";
-import { uzbekConversionPages } from "../converter/localizedUzbekConversionPages";
 import { bengaliCategoryPages } from "../converter/localizedBengaliCategoryPages";
 import { bengaliConversionPages } from "../converter/localizedBengaliConversionPages";
 import { unitPages } from "../converter/unitPages";
@@ -84,12 +82,6 @@ const localizedCategorySummariesByLocale: Record<
       title: arabicPage?.title ?? page.title,
     };
   }),
-  uz: uzbekCategoryPages.map((page) => ({
-    sourceSlug: page.sourceSlug,
-    slug: page.slug,
-    category: page.category,
-    title: page.title,
-  })),
   bn: bengaliCategoryPages.map((page) => ({
     sourceSlug: page.sourceSlug,
     slug: page.slug,
@@ -166,7 +158,6 @@ const localizedSlugEntriesByLocale: Record<
       slug: page.slug,
     })),
     ar: [],
-    uz: [],
     bn: [],
     fr: [],
     es: [],
@@ -192,10 +183,6 @@ const localizedSlugEntriesByLocale: Record<
       slug: page.slug,
     })),
     ar: englishCategoryPages.map((page) => ({
-      sourceSlug: page.sourceSlug,
-      slug: page.slug,
-    })),
-    uz: uzbekCategoryPages.map((page) => ({
       sourceSlug: page.sourceSlug,
       slug: page.slug,
     })),
@@ -254,7 +241,6 @@ const localizedSlugEntriesByLocale: Record<
       sourceSlug: page.sourceSlug,
       slug: page.slug,
     })),
-    uz: [],
     bn: [],
     fr: [],
     es: [],
@@ -281,10 +267,6 @@ const localizedSlugEntriesByLocale: Record<
       slug: page.slug,
     })),
     ar: englishConversionPages.map((page) => ({
-      sourceSlug: page.sourceSlug,
-      slug: page.slug,
-    })),
-    uz: uzbekConversionPages.map((page) => ({
       sourceSlug: page.sourceSlug,
       slug: page.slug,
     })),

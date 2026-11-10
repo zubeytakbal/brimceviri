@@ -235,23 +235,6 @@ const copyByLocale: Record<
       total: "إجمالي الحمل المحسوب",
     },
   },
-  uz: {
-    labels: {
-      area: "Xona Maydoni (m2)",
-      people: "Xonadagi Odamlar Soni",
-      sunny: "Xona kun bo'yi quyosh nurini oladimi?",
-      sunnyCheckbox: "Ha, to'g'ridan-to'g'ri quyosh tushadi",
-      topFloor: "Eng yuqori qavat / chordoq xonami?",
-      topFloorCheckbox: "Ha, eng yuqori qavat yoki chordoq",
-    },
-    emptyState: "Natijani ko'rish uchun to'g'ri qiymatlar kiriting.",
-    resultLabels: {
-      suggested: "Tavsiya etilgan konditsioner quvvati",
-      base: "Maydonga asoslangan ehtiyoj",
-      occupant: "Odamlarga bog'liq qo'shimcha yuk",
-      total: "Jami hisoblangan ehtiyoj",
-    },
-  },
   bn: {
     labels: {
       area: "ঘরের ক্ষেত্রফল (বর্গমিটার)",

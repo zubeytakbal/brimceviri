@@ -77,7 +77,7 @@ const C: Array<[string, number, string, string, number]> = [
   ["aci", 60, "′", "°", 1], ["aci", 3600, "″", "°", 1], ["aci", 6400, "mil (NATO)", "tur", 1],
   ["yogunluk", 1, "t/m³", "g/cm³", 1], ["frekans", 60, "1/dk", "Hz", 1],
   // Eski Türk ve Rus ölçüleri (tanımdan türetilen oranlar)
-  ["kutle", 1, "kantar", "okka", 44], ["kutle", 1, "çeki", "kantar", 4], ["kutle", 1, "okka", "dirhem", 400], ["kutle", 1, "pud", "funt", 40],
+  ["kutle", 1, "kantar", "okka", 44], ["kutle", 1, "çeki", "kantar", 4], ["kutle", 1, "okka", "dirhem", 400],
   ["uzunluk", 1, "mimar arşını", "parmak", 24], ["uzunluk", 1, "arşın", "rubu", 8], ["uzunluk", 1, "merhale", "fersah (Osm.)", 8],
   ["uzunluk", 1, "sajen", "arşın (Rus)", 3], ["uzunluk", 1, "verst", "sajen", 500], ["uzunluk", 1, "arşın (Rus)", "in", 28],
   ["alan", 1, "atik dönüm", "atik evlek", 4], ["alan", 1, "atik dönüm", "m²", 918.672], ["alan", 1, "desyatina", "m²", 10925.3975],

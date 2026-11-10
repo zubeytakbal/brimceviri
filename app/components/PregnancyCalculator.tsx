@@ -33,11 +33,6 @@ const trimesterLabels: Record<
     2: "الثلث الثاني",
     3: "الثلث الثالث",
   },
-uz: {
-    1: "1-trimestr",
-    2: "2-trimestr",
-    3: "3-trimestr",
-  },
 bn: {
     1: "প্রথম ত্রৈমাসিক",
     2: "দ্বিতীয় ত্রৈমাসিক",
@@ -205,15 +200,6 @@ const copyByLocale: Record<
     daysUntil: "الأيام المتبقية حتى الولادة",
     weeks: "أسبوع",
     days: "يوم",
-  },
-uz: {
-    inputLabel: "So'nggi Hayz Kunining Birinchi Kuni",
-    emptyState: "To'g'ri sana kiriting; sana kelajakda yoki 45 haftadan ko'proq eski bo'lishi mumkin emas.",
-    summaryLabel: "Homiladorlik haftasi",
-    dueDate: "Taxminiy tug'ilish sanasi",
-    daysUntil: "Tug'ilishgacha qolgan kun",
-    weeks: "hafta",
-    days: "kun",
   },
 bn: {
     inputLabel: "শেষ মাসিকের প্রথম দিন",

@@ -29,7 +29,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/cbm-hesaplama",
     languages: {
-      "uz-UZ": "/uz/cbm-hisoblash",
     },
   },
   openGraph: {

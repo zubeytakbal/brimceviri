@@ -385,35 +385,6 @@ const copyByLocale: Record<Exclude<Locale, "ru">, PaintCalculatorCopy> = {
       liters: "لتر",
     },
   },
-uz: {
-    labels: {
-      length: "Xona Uzunligi (m)",
-      width: "Xona Kengligi (m)",
-      height: "Devor Balandligi (m)",
-      doors: "Eshiklar Soni",
-      windows: "Derazalar Soni",
-      coats: "Qatlamlar Soni",
-      coverage: "Bo'yoq Qamrovi (m2/litr)",
-      ceilingQuestion: "Shift ham bo'yaladimi?",
-      ceilingCheckbox: "Ha, shiftni ham qo'shing",
-    },
-    coatOptions: {
-      1: "Bitta qatlam",
-      2: "Ikki qatlam (tavsiya etiladi)",
-    },
-    emptyState: "Natijani ko'rish uchun to'g'ri qiymatlar kiriting.",
-    resultLabels: {
-      netWallArea: "Sof devor maydoni",
-      ceilingArea: "Shift maydoni",
-      totalPaintedArea: "Jami bo'yaladigan maydon",
-      litersNeeded: "Kerakli bo'yoq",
-      suggestedCans: "Tavsiya etilgan bank kombinatsiyasi",
-    },
-    units: {
-      area: "m2",
-      liters: "litr",
-    },
-  },
 bn: {
     labels: {
       length: "রুমের দৈর্ঘ্য (মি)",

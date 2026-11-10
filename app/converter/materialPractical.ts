@@ -3,7 +3,7 @@
 // kullanımına uygun ölçüler seçilir (metalde sac ve çubuk, sıvıda bidon, gıdada su bardağı).
 import { materialsDatabase, type MaterialCategory, type MaterialDensityEntry } from "./materialsDatabase";
 
-export type PracticalLocale = "tr" | "de" | "uz";
+export type PracticalLocale = "tr" | "de";
 
 type Shape = { label: Record<PracticalLocale, string>; volumeM3: number };
 
@@ -13,45 +13,45 @@ const L = (litres: number) => litres / 1000;
 
 const SHAPES: Record<MaterialCategory, Shape[]> = {
   metal: [
-    { label: { tr: "1 cm³ küp", de: "1-cm³-Würfel", uz: "1 sm³ kub" }, volumeM3: 1e-6 },
-    { label: { tr: "1 m² × 1 mm sac", de: "1 m² Blech, 1 mm", uz: "1 m² × 1 mm list" }, volumeM3: sheet(1) },
-    { label: { tr: "1 m² × 5 mm sac", de: "1 m² Blech, 5 mm", uz: "1 m² × 5 mm list" }, volumeM3: sheet(5) },
-    { label: { tr: "1 m çubuk, Ø10 mm", de: "1 m Rundstab, Ø10 mm", uz: "1 m sterjen, Ø10 mm" }, volumeM3: rod(10) },
-    { label: { tr: "1 m çubuk, Ø20 mm", de: "1 m Rundstab, Ø20 mm", uz: "1 m sterjen, Ø20 mm" }, volumeM3: rod(20) },
+    { label: { tr: "1 cm³ küp", de: "1-cm³-Würfel" }, volumeM3: 1e-6 },
+    { label: { tr: "1 m² × 1 mm sac", de: "1 m² Blech, 1 mm" }, volumeM3: sheet(1) },
+    { label: { tr: "1 m² × 5 mm sac", de: "1 m² Blech, 5 mm" }, volumeM3: sheet(5) },
+    { label: { tr: "1 m çubuk, Ø10 mm", de: "1 m Rundstab, Ø10 mm" }, volumeM3: rod(10) },
+    { label: { tr: "1 m çubuk, Ø20 mm", de: "1 m Rundstab, Ø20 mm" }, volumeM3: rod(20) },
   ],
   sivi: [
-    { label: { tr: "1 litre", de: "1 Liter", uz: "1 litr" }, volumeM3: L(1) },
-    { label: { tr: "5 litrelik bidon", de: "5-Liter-Kanister", uz: "5 litrlik idish" }, volumeM3: L(5) },
-    { label: { tr: "20 litrelik bidon", de: "20-Liter-Kanister", uz: "20 litrlik idish" }, volumeM3: L(20) },
-    { label: { tr: "200 litrelik varil", de: "200-Liter-Fass", uz: "200 litrlik bochka" }, volumeM3: L(200) },
-    { label: { tr: "1 m³ (IBC tank)", de: "1 m³ (IBC-Container)", uz: "1 m³ (IBC idish)" }, volumeM3: 1 },
+    { label: { tr: "1 litre", de: "1 Liter" }, volumeM3: L(1) },
+    { label: { tr: "5 litrelik bidon", de: "5-Liter-Kanister" }, volumeM3: L(5) },
+    { label: { tr: "20 litrelik bidon", de: "20-Liter-Kanister" }, volumeM3: L(20) },
+    { label: { tr: "200 litrelik varil", de: "200-Liter-Fass" }, volumeM3: L(200) },
+    { label: { tr: "1 m³ (IBC tank)", de: "1 m³ (IBC-Container)" }, volumeM3: 1 },
   ],
   gaz: [
-    { label: { tr: "1 litre", de: "1 Liter", uz: "1 litr" }, volumeM3: L(1) },
-    { label: { tr: "1 m³", de: "1 m³", uz: "1 m³" }, volumeM3: 1 },
-    { label: { tr: "4 × 5 × 2,5 m oda (50 m³)", de: "Raum 4 × 5 × 2,5 m (50 m³)", uz: "4 × 5 × 2,5 m xona (50 m³)" }, volumeM3: 50 },
+    { label: { tr: "1 litre", de: "1 Liter" }, volumeM3: L(1) },
+    { label: { tr: "1 m³", de: "1 m³" }, volumeM3: 1 },
+    { label: { tr: "4 × 5 × 2,5 m oda (50 m³)", de: "Raum 4 × 5 × 2,5 m (50 m³)" }, volumeM3: 50 },
   ],
   plastik: [
-    { label: { tr: "1 m² × 1 mm levha", de: "1 m² Platte, 1 mm", uz: "1 m² × 1 mm plastina" }, volumeM3: sheet(1) },
-    { label: { tr: "1 m² × 3 mm levha", de: "1 m² Platte, 3 mm", uz: "1 m² × 3 mm plastina" }, volumeM3: sheet(3) },
-    { label: { tr: "1 m² × 10 mm levha", de: "1 m² Platte, 10 mm", uz: "1 m² × 10 mm plastina" }, volumeM3: sheet(10) },
-    { label: { tr: "1 m çubuk, Ø20 mm", de: "1 m Rundstab, Ø20 mm", uz: "1 m sterjen, Ø20 mm" }, volumeM3: rod(20) },
+    { label: { tr: "1 m² × 1 mm levha", de: "1 m² Platte, 1 mm" }, volumeM3: sheet(1) },
+    { label: { tr: "1 m² × 3 mm levha", de: "1 m² Platte, 3 mm" }, volumeM3: sheet(3) },
+    { label: { tr: "1 m² × 10 mm levha", de: "1 m² Platte, 10 mm" }, volumeM3: sheet(10) },
+    { label: { tr: "1 m çubuk, Ø20 mm", de: "1 m Rundstab, Ø20 mm" }, volumeM3: rod(20) },
   ],
   "yapi-malzemesi": [
-    { label: { tr: "1 m² × 2 cm plaka", de: "1 m² Platte, 2 cm", uz: "1 m² × 2 sm plita" }, volumeM3: sheet(20) },
-    { label: { tr: "1 m² × 5 cm tabaka", de: "1 m² Schicht, 5 cm", uz: "1 m² × 5 sm qatlam" }, volumeM3: sheet(50) },
-    { label: { tr: "1 m² × 10 cm tabaka", de: "1 m² Schicht, 10 cm", uz: "1 m² × 10 sm qatlam" }, volumeM3: sheet(100) },
-    { label: { tr: "1 m³", de: "1 m³", uz: "1 m³" }, volumeM3: 1 },
+    { label: { tr: "1 m² × 2 cm plaka", de: "1 m² Platte, 2 cm" }, volumeM3: sheet(20) },
+    { label: { tr: "1 m² × 5 cm tabaka", de: "1 m² Schicht, 5 cm" }, volumeM3: sheet(50) },
+    { label: { tr: "1 m² × 10 cm tabaka", de: "1 m² Schicht, 10 cm" }, volumeM3: sheet(100) },
+    { label: { tr: "1 m³", de: "1 m³" }, volumeM3: 1 },
   ],
   ahsap: [
-    { label: { tr: "1 m² × 18 mm levha", de: "1 m² Platte, 18 mm", uz: "1 m² × 18 mm taxta" }, volumeM3: sheet(18) },
-    { label: { tr: "2 m kalas, 10 × 5 cm", de: "2 m Kantholz, 10 × 5 cm", uz: "2 m brus, 10 × 5 sm" }, volumeM3: 2 * 0.1 * 0.05 },
-    { label: { tr: "1 m³", de: "1 m³", uz: "1 m³" }, volumeM3: 1 },
+    { label: { tr: "1 m² × 18 mm levha", de: "1 m² Platte, 18 mm" }, volumeM3: sheet(18) },
+    { label: { tr: "2 m kalas, 10 × 5 cm", de: "2 m Kantholz, 10 × 5 cm" }, volumeM3: 2 * 0.1 * 0.05 },
+    { label: { tr: "1 m³", de: "1 m³" }, volumeM3: 1 },
   ],
   gida: [
-    { label: { tr: "1 yemek kaşığı (15 mL)", de: "1 Esslöffel (15 ml)", uz: "1 osh qoshiq (15 ml)" }, volumeM3: L(0.015) },
-    { label: { tr: "1 su bardağı (200 mL)", de: "1 Glas (200 ml)", uz: "1 stakan (200 ml)" }, volumeM3: L(0.2) },
-    { label: { tr: "1 litre", de: "1 Liter", uz: "1 litr" }, volumeM3: L(1) },
+    { label: { tr: "1 yemek kaşığı (15 mL)", de: "1 Esslöffel (15 ml)" }, volumeM3: L(0.015) },
+    { label: { tr: "1 su bardağı (200 mL)", de: "1 Glas (200 ml)" }, volumeM3: L(0.2) },
+    { label: { tr: "1 litre", de: "1 Liter" }, volumeM3: L(1) },
   ],
 };
 

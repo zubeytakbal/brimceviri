@@ -34,7 +34,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/siva-hesaplama",
     languages: {
-      "uz-UZ": "/uz/suvoq-hisoblash",
     },
   },
   openGraph: {

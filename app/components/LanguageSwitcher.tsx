@@ -28,7 +28,7 @@ function headAlternates(): Partial<Record<Locale, string>> {
   const out: Partial<Record<Locale, string>> = {};
   document.querySelectorAll<HTMLLinkElement>('link[rel="alternate"][hreflang]').forEach((link) => {
     const lang = (link.getAttribute("hreflang") || "").toLowerCase();
-    // hreflang kodlari dil kodudur; Ozbekce icin "uz-UZ".
+    // hreflang kodlari dil kodudur;
     const locale = PUBLISHED_LOCALES.find((l) => lang.split("-")[0] === l);
     if (!locale || out[locale]) return;
     const href = link.getAttribute("href") || "";

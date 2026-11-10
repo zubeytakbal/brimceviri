@@ -1,5 +1,5 @@
 import { trDative } from "./turkishSuffix";
-export type NumberFactsLocale = "tr" | "uz";
+export type NumberFactsLocale = "tr";
 
 export interface NumberFacts {
   value: number;
@@ -60,25 +60,6 @@ function computeIsPrime(
   n: number,
   locale: NumberFactsLocale
 ): { isPrime: boolean; reason: string } {
-  if (locale === "uz") {
-    if (n < 2) {
-      return { isPrime: false, reason: `${n}, 1'dan katta va faqat 1 va o'ziga bo'linadigan son bo'lmagani uchun tub son emas.` };
-    }
-    if (n === 2) {
-      return { isPrime: true, reason: "2, faqat 1 ga va o'ziga to'liq bo'linganligi uchun tub sondir (va yagona juft tub sondir)." };
-    }
-    if (n % 2 === 0) {
-      return { isPrime: false, reason: `${n}, 2 ga to'liq bo'linganligi uchun tub son emas.` };
-    }
-
-    for (let i = 3; i * i <= n; i += 2) {
-      if (n % i === 0) {
-        return { isPrime: false, reason: `${n}, ${i} ga to'liq bo'linganligi uchun tub son emas.` };
-      }
-    }
-
-    return { isPrime: true, reason: `${n}, 1 va o'zidan boshqa hech qanday songa to'liq bo'linmaganligi uchun tub sondir.` };
-  }
 
   if (n < 2) {
     return { isPrime: false, reason: `${n}, 1'den büyük ve yalnızca 1 ve kendisine bölünebilen bir sayı olmadığı için asal sayı değildir.` };
@@ -126,7 +107,7 @@ function computeFactorial(n: number, locale: NumberFactsLocale): string | null {
   for (let i = 2; i <= n; i += 1) {
     value *= BigInt(i);
   }
-  return value.toLocaleString(locale === "uz" ? "uz-UZ" : "tr-TR");
+  return value.toLocaleString("tr-TR");
 }
 
 const ROMAN_VALUES: Array<[number, string]> = [

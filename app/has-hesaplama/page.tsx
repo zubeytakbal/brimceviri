@@ -42,7 +42,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/has-hesaplama",
     languages: {
-      "uz-UZ": "/uz/sof-oltin-hisoblash",
     },
   },
   openGraph: {

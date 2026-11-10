@@ -1,4 +1,4 @@
-export const SUPPORTED_LOCALES = ["tr", "en", "de", "ar", "uz", "bn", "fr", "es", "pt", "it", "nl", "ru", "sv", "no", "da"] as const;
+export const SUPPORTED_LOCALES = ["tr", "en", "de", "ar", "bn", "fr", "es", "pt", "it", "nl", "ru", "sv", "no", "da"] as const;
 
 export type Locale = (typeof SUPPORTED_LOCALES)[number];
 
@@ -83,21 +83,6 @@ export const LOCALE_DEFINITIONS: Record<Locale, LocaleDefinition> = {
     switcherOptionsLabel: "خيارات اللغة",
     switcherSearchPlaceholder: "ابحث عن لغة",
     switcherEmptyLabel: "لا توجد لغة مطابقة",
-  },
-  uz: {
-    code: "uz",
-    htmlLang: "uz",
-    dir: "ltr",
-    openGraphLocale: "uz_UZ",
-    pathPrefix: "/uz",
-    homePath: "/uz",
-    label: "O'zbekcha",
-    switcherLabel: "O'zbekcha",
-    switcherCurrentLabel: "UZ - O'zbekcha",
-    switcherAriaLabel: "Tilni tanlang",
-    switcherOptionsLabel: "Til tanlovlari",
-    switcherSearchPlaceholder: "Til qidirish",
-    switcherEmptyLabel: "Mos til topilmadi",
   },
   bn: {
     code: "bn",

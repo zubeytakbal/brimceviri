@@ -52,17 +52,6 @@ const copy = {
     secondaryHref: "/",
     secondaryLabel: "فتح الصفحة التركية",
   },
-uz: {
-    lang: "uz",
-    title: "Sahifa topilmadi",
-    description:
-      "Siz qidirayotgan sahifa ko‘chirilgan yoki manzil noto‘g‘ri bo‘lishi mumkin.",
-    continueHeading: "Davom etish uchun",
-    primaryHref: "/uz",
-    primaryLabel: "O‘zbekcha bosh sahifaga qaytish",
-    secondaryHref: "/en",
-    secondaryLabel: "Inglizcha bosh sahifani ochish",
-  },
 bn: {
     lang: "bn",
     title: "পৃষ্ঠাটি পাওয়া যায়নি",

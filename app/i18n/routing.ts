@@ -55,7 +55,6 @@ const staticRouteTranslations: Record<StaticRouteKey, LocalePathMap> = {
     en: "/en",
     de: "/de",
     ar: "/ar",
-    uz: "/uz",
     bn: "/bn",
     fr: "/fr",
     es: "/es",
@@ -72,7 +71,6 @@ const staticRouteTranslations: Record<StaticRouteKey, LocalePathMap> = {
     en: "/en/units",
     de: "/de/einheiten",
     ar: "/ar/unit-guides",
-    uz: "/uz/birliklar",
     bn: "/bn/unit-guides",
     fr: "/fr/guides-des-unites",
     es: "/es/guias-de-unidades",
@@ -85,7 +83,6 @@ const staticRouteTranslations: Record<StaticRouteKey, LocalePathMap> = {
     en: "/en/all-conversions",
     de: "/de/alle-umrechnungen",
     ar: "/ar/all-conversions",
-    uz: "/tum-birimler",
     ru: "/ru/categories",
   },
   otherConversions: {
@@ -93,14 +90,12 @@ const staticRouteTranslations: Record<StaticRouteKey, LocalePathMap> = {
     en: "/en/other-conversions",
     de: "/de/weitere-umrechnungen",
     ar: "/ar/other-conversions",
-    uz: "/uz/turkumlar",
   },
   historicalUnits: {
     tr: "/tarihi-olcu-birimleri",
     en: "/en/historical-units",
     de: "/de/historische-masseinheiten",
     ar: "/ar/historical-units",
-    uz: "/uz/tarixiy-olchov-birliklari",
     nl: "/nl/historische-eenheden",
     sv: "/sv/historiska-enheter",
     no: "/no/historiske-enheter",
@@ -111,7 +106,6 @@ const staticRouteTranslations: Record<StaticRouteKey, LocalePathMap> = {
     en: "/en/shoe-size-converter",
     de: "/de/schuhgroessen-umrechner",
     ar: "/ar/shoe-size-converter",
-    uz: "/uz/oyoq-kiyim-olchami",
     nl: "/nl/schoenmaten-omrekenen",
     sv: "/sv/skostorlekar",
     no: "/no/skostorrelser",
@@ -122,7 +116,6 @@ const staticRouteTranslations: Record<StaticRouteKey, LocalePathMap> = {
     en: "/en/kitchen-measurement-converter",
     de: "/de/kuechenmass-umrechner",
     ar: "/ar/kitchen-measurement-converter",
-    uz: "/uz/oshxona-olchovlari",
     nl: "/nl/keukenmaten-omrekenen",
     sv: "/sv/koksmatt-omvandlare",
     no: "/no/kjokkenmal-omregner",
@@ -133,7 +126,6 @@ const staticRouteTranslations: Record<StaticRouteKey, LocalePathMap> = {
     en: "/en/recipe-converter",
     de: "/de/rezept-umrechner",
     ar: "/ar/recipe-converter",
-    uz: "/uz/retsept-aylantirgich",
     nl: "/nl/recepten-omrekenen",
     sv: "/sv/receptomvandlare",
     no: "/no/oppskriftomregner",
@@ -150,7 +142,6 @@ const staticRouteTranslations: Record<StaticRouteKey, LocalePathMap> = {
     en: "/en/engineering-calculators",
     de: "/de/ingenieurrechner",
     ar: "/ar/engineering-calculators",
-    uz: "/muhendislik-hesaplayicilari",
   },
   electricalEngineeringHub: {
     tr: "/muhendislik-hesaplayicilari/elektrik-hesaplari",
@@ -163,28 +154,24 @@ const staticRouteTranslations: Record<StaticRouteKey, LocalePathMap> = {
     en: "/en/about",
     de: "/de/uber-uns",
     ar: "/ar/about",
-    uz: "/uz/biz-haqimizda",
   },
   contact: {
     tr: "/iletisim",
     en: "/en/contact",
     de: "/de/kontakt",
     ar: "/ar/contact",
-    uz: "/uz/aloqa",
   },
   privacy: {
     tr: "/gizlilik",
     en: "/en/privacy",
     de: "/de/datenschutz",
     ar: "/ar/privacy",
-    uz: "/uz/maxfiylik-siyosati",
   },
   terms: {
     tr: "/kullanim-kosullari",
     en: "/en/terms",
     de: "/de/nutzungsbedingungen",
     ar: "/ar/terms",
-    uz: "/uz/foydalanish-shartlari",
   },
   paintCalculator: {
     tr: "/boya-hesaplama",
@@ -286,7 +273,6 @@ const collectionBasePaths: Record<
     en: "/en/units/",
     de: "/de/einheiten/",
     ar: "/ar/unit-guides/",
-    uz: "/uz/birliklar/",
     bn: "/bn/unit-guides/",
     fr: "/fr/guides-des-unites/",
     es: "/es/guias-de-unidades/",
@@ -303,7 +289,6 @@ const collectionBasePaths: Record<
     en: "/en/categories/",
     de: "/de/kategorien/",
     ar: "/ar/categories/",
-    uz: "/uz/turkumlar/",
     bn: "/bn/categories/",
     fr: "/fr/categories/",
     es: "/es/categorias/",
@@ -320,7 +305,6 @@ const collectionBasePaths: Record<
     en: "/en/calculators/",
     de: "/de/rechner/",
     ar: "/ar/calculators/",
-    uz: "/uz/kalkulyatorlar/",
     bn: "/bn/calculators/",
     fr: "/fr/calculators/",
     es: "/es/calculators/",
@@ -337,7 +321,6 @@ const collectionBasePaths: Record<
     en: "/en/",
     de: "/de/",
     ar: "/ar/",
-    uz: "/uz/",
     bn: "/bn/",
     fr: "/fr/",
     es: "/es/",
@@ -537,14 +520,7 @@ export function buildFullLanguageAlternates(
   return buildLanguageAlternates(paths, xDefaultLocale);
 }
 
-// Ozbekcha icin bolge-ozel hreflang kodu ("uz-UZ") kullaniyoruz --
-// Google'a bu icerigin ozellikle Ozbekistondagi Ozbekcha okuyucular
-// icin oldugunu bildirir. Ic routing/Locale tipinde hala sade "uz"
-// kullaniliyor, sadece disariya cikan hreflang anahtari degisiyor.
 function toHreflangCode(locale: Locale): string {
-  if (locale === "uz") {
-    return "uz-UZ";
-  }
   return locale;
 }
 

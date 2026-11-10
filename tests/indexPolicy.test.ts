@@ -13,7 +13,6 @@ describe("dizin politikası", () => {
     expect(isClosedPath("/en")).toBe(false);
     expect(isClosedPath("/en/privacy")).toBe(false);
     expect(isClosedPath("/de/datenschutz")).toBe(false);
-    expect(isClosedPath("/uz/volt-dan-kilovoltga")).toBe(true);
   });
   it("İngilizce, Almanca, İspanyolca ve Arapça tamamen açık", () => {
     expect(isClosedPath("/en/meters-to-centimeters")).toBe(false);

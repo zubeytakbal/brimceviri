@@ -36,7 +36,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/harf-notu-hesaplama",
     languages: {
-      "uz-UZ": "/uz/harf-bahosi-hisoblash",
     },
   },
   openGraph: {

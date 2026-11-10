@@ -29,6 +29,5 @@ describe("formatReadableNumber", () => {
   it("avoids scientific notation for everyday values", () => {
     expect(formatReadableNumber(0.000001, "tr")).toBe("0,000001");
     expect(formatReadableNumber(1_000_000_000, "tr")).toBe("1.000.000.000");
-    expect(formatReadableNumber(1234.5, "uz")).toBe("1 234,5");
   });
 });

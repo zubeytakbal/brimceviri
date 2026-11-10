@@ -124,8 +124,52 @@ const KURUMSAL_YOLLAR: ReadonlySet<string> = new Set([
   "yazar",
 ]);
 
-/** Yeni arac sayfasi duzenine (AracSayfasi) gecmis Turkce araclar. */
-export const YENI_ARAC_YOLLARI: ReadonlySet<string> = new Set(["/kdv-hesaplama"]);
+/** Yeni arac sayfasi duzenine (AracSayfasi) gecmis Turkce araclar ve iceriklerinin son degistigi gun (git gecmisi).
+ * TimeToolPage kullanan sayfalar bu listeye eklenince yeni duzenle cizilir. */
+export const YENI_ARACLAR: Readonly<Record<string, string>> = {
+  "/kdv-hesaplama": "2026-11-02",
+  "/22-ayar-altin-24-ayar-altin": "2026-11-05",
+  "/24-ayar-altin-22-ayar-altin": "2026-11-05",
+  "/altin-hesaplama": "2026-11-05",
+  "/altin-hesaplama/ceyrek-altin": "2026-11-05",
+  "/altin-hesaplama/cumhuriyet-altini": "2026-11-05",
+  "/brutten-nete-maas-hesaplama": "2026-10-24",
+  "/ceyrek-bilezik-hesaplama": "2026-11-05",
+  "/dekara-fidan-sayisi-hesaplama": "2026-11-05",
+  "/dogdugum-gun-hangi-gun": "2026-11-07",
+  "/egim-cevirme": "2026-11-09",
+  "/hafizlik-hesaplama": "2026-11-07",
+  "/harita-olcegi-hesaplama": "2026-11-09",
+  "/hatim-hesaplama": "2026-11-07",
+  "/hayiz-hesaplama": "2026-11-07",
+  "/hicri-yas-hesaplama": "2026-11-07",
+  "/ilaclama-hesaplama": "2026-11-05",
+  "/inek-dogum-hesaplama": "2026-11-05",
+  "/kaza-namazi-hesaplama": "2026-11-07",
+  "/kaza-orucu-hesaplama": "2026-11-07",
+  "/kible-yonu-hesaplama": "2026-11-07",
+  "/kidem-tazminati-hesaplama": "2026-11-05",
+  "/kirk-mevlidi-hesaplama": "2026-11-07",
+  "/koordinat-donusturucu": "2026-11-09",
+  "/kredi-hesaplama": "2026-11-07",
+  "/roma-rakamlari-cevirme": "2026-11-09",
+  "/trafik-cezasi-erken-odeme-hesaplama": "2026-11-05",
+  "/yas-hesaplama": "2026-11-07",
+  "/yerel-saat-hesaplama": "2026-11-07",
+  "/yillik-izin-hesaplama": "2026-11-07",
+  "/zekat-hesaplama": "2026-11-07",
+};
+export const YENI_ARAC_YOLLARI: ReadonlySet<string> = new Set(Object.keys(YENI_ARACLAR));
+
+/** 400px'lik hesap kutusuna sigmayan araclar (genis tablo, pusula, yan yana sonuclar): hesap iki sutunu birden kaplar. */
+export const GENIS_ARACLAR: ReadonlySet<string> = new Set([
+  "/kible-yonu-hesaplama",
+  "/koordinat-donusturucu",
+  "/kredi-hesaplama",
+  "/brutten-nete-maas-hesaplama",
+  "/kirk-mevlidi-hesaplama",
+  "/harita-olcegi-hesaplama",
+]);
 
 /** Yeni kabugun (ust menu, yan panel, alt bilgi) cizilecegi Turkce yollar. */
 export function isYeniYapiYolu(pathname: string) {

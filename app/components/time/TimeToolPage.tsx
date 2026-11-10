@@ -4,6 +4,8 @@ import InstallAppButton from "../InstallAppButton";
 import TableOfContents from "../TableOfContents";
 import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
 import { buildSiteUrl } from "../../siteConfig";
+import AracSayfasi from "../yeni/AracSayfasi";
+import { YENI_ARAC_YOLLARI } from "../../converter/siteYapisi";
 
 type Crumb = { href?: string; label: string };
 
@@ -12,6 +14,7 @@ function serializeJsonLd(data: object) {
 }
 
 // Zaman araci sayfalarinin ortak iskeleti: breadcrumb, baslik, arac, icindekiler, rehber, SSS.
+// Adresi YENI_ARAC_YOLLARI'nda olan Turkce sayfalar yeni arac duzeniyle (AracSayfasi) cizilir.
 export default function TimeToolPage({
   crumbs,
   crumbLabel,
@@ -40,6 +43,23 @@ export default function TimeToolPage({
   install?: { name: string; lang: "tr" | "en" };
   children: ReactNode;
 }) {
+  const yol = crumbs[crumbs.length - 1]?.href;
+  if (yol && YENI_ARAC_YOLLARI.has(yol)) {
+    return (
+      <AracSayfasi
+        yol={yol}
+        baslik={title}
+        hesap={tool}
+        hesapAlti={install ? <InstallAppButton name={install.name} lang={install.lang} /> : undefined}
+        giris={intro ? <p>{intro}</p> : undefined}
+        serbestIcerik={children}
+        serbestIcindekiler={tocItems.filter((t) => t.id !== "faq").map((t) => ({ id: t.id, baslik: t.label }))}
+        sss={faqItems}
+        ilgili={related?.links.map((l) => ({ href: l.href, ad: l.label }))}
+      />
+    );
+  }
+
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",

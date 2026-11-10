@@ -7,6 +7,7 @@ import Link from "@/app/components/SiteLink";
 import { ArrowRight } from "lucide-react";
 import { buildFaqSchema, type FaqItem } from "../../converter/faqSchema";
 import { buildSiteUrl } from "../../siteConfig";
+import { GENIS_ARACLAR, YENI_ARACLAR } from "../../converter/siteYapisi";
 import { ALT_GRUPLAR, HESAPLAYICI_GRUPLARI } from "./anaSayfaVerisi";
 import { EDITOR } from "./editor";
 import { grupYolu } from "./GrupSayfasi";
@@ -17,13 +18,20 @@ type Props = {
   /** Sayfanin adresi, ornek "/kdv-hesaplama". Grup ve benzer araclar buradan bulunur. */
   yol: string;
   baslik: string;
-  /** ISO tarih (YYYY-AA-GG): icerigin son elle kontrol edildigi gun. */
-  guncelleme: string;
+  /** ISO tarih (YYYY-AA-GG): icerigin son degistigi gun. Verilmezse YENI_ARACLAR'daki tarih; o da yoksa satir cikmaz. */
+  guncelleme?: string;
   hesap: ReactNode;
+  /** Hesap kutusunun hemen altinda (ornek: uygulama olarak yukle dugmesi). */
+  hesapAlti?: ReactNode;
   giris?: ReactNode;
-  bolumler: AracBolumu[];
+  bolumler?: AracBolumu[];
+  /** Kendi h2 basliklarini (id'li) tasiyan hazir yazi; icindekiler serbestIcindekiler'den gelir (TimeToolPage). */
+  serbestIcerik?: ReactNode;
+  serbestIcindekiler?: { id: string; baslik: string }[];
   sss?: FaqItem[];
   kaynaklar?: { ad: string; href?: string }[];
+  /** Sayfanin kendi sectigi ilgili araclar (benzer araclar kutusunda olmayanlar yazinin sonunda listelenir). */
+  ilgili?: { href: string; ad: string }[];
 };
 
 const tarihYaz = (iso: string) =>
@@ -41,9 +49,48 @@ function grupVeBenzerler(yol: string) {
   return { grup, benzerler: hrefler.map((h) => grup.linkler.find((l) => l.href === h)!) };
 }
 
-export default function AracSayfasi({ yol, baslik, guncelleme, hesap, giris, bolumler, sss, kaynaklar }: Props) {
+export default function AracSayfasi({
+  yol,
+  baslik,
+  guncelleme = YENI_ARACLAR[yol],
+  hesap,
+  hesapAlti,
+  giris,
+  bolumler = [],
+  serbestIcerik,
+  serbestIcindekiler = [],
+  sss,
+  kaynaklar,
+  ilgili,
+}: Props) {
   const { grup, benzerler } = grupVeBenzerler(yol);
+  const genis = GENIS_ARACLAR.has(yol);
+  const hesapBlogu = (
+    <>
+      <section className="yy-arac-hesap" aria-label={`${baslik} aracı`}>
+        {hesap}
+      </section>
+      {hesapAlti}
+    </>
+  );
+  const benzerHref = new Set(benzerler.map((b) => b.href));
+  const ilgiliKalan = (ilgili ?? []).filter((l, i, t) => l.href !== yol && !benzerHref.has(l.href) && t.findIndex((x) => x.href === l.href) === i);
   const tumBolumler: AracBolumu[] = [...bolumler];
+  if (ilgiliKalan.length) {
+    tumBolumler.push({
+      id: "ilgili-araclar",
+      baslik: "İlgili araçlar",
+      icerik: (
+        <ul>
+          {ilgiliKalan.map((l) => (
+            <li key={l.href}>
+              <Link href={l.href}>{l.ad}</Link>
+            </li>
+          ))}
+        </ul>
+      ),
+    });
+  }
   if (sss?.length) {
     tumBolumler.push({
       id: "sss",
@@ -81,7 +128,7 @@ export default function AracSayfasi({ yol, baslik, guncelleme, hesap, giris, bol
 
   return (
     <div className="yy yy-sayfa yy-arac-zemin">
-      <main className="yy-arac">
+      <main className={genis ? "yy-arac yy-arac-genis" : "yy-arac"}>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: json(yolSemasi) }} />
         {sss?.length ? <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: json(buildFaqSchema(sss)) }} /> : null}
 
@@ -96,9 +143,11 @@ export default function AracSayfasi({ yol, baslik, guncelleme, hesap, giris, bol
               </li>
             )}
           </ol>
-          <p className="yy-arac-tarih">
-            Son güncelleme: <time dateTime={guncelleme}>{tarihYaz(guncelleme)}</time>
-          </p>
+          {guncelleme && (
+            <p className="yy-arac-tarih">
+              Son güncelleme: <time dateTime={guncelleme}>{tarihYaz(guncelleme)}</time>
+            </p>
+          )}
           <h1>{baslik}</h1>
           <div className="yy-arac-kunye">
             <span>Hazırlayan</span>
@@ -108,10 +157,10 @@ export default function AracSayfasi({ yol, baslik, guncelleme, hesap, giris, bol
           </div>
         </header>
 
+        {genis && <div className="yy-arac-genis-hesap">{hesapBlogu}</div>}
+
         <div className="yy-arac-sag">
-          <section className="yy-arac-hesap" aria-label={`${baslik} aracı`}>
-            {hesap}
-          </section>
+          {!genis && hesapBlogu}
           {grup && benzerler.length > 0 && (
             <nav className="yy-arac-benzer" aria-labelledby="benzer-araclar">
               <p id="benzer-araclar">
@@ -132,11 +181,11 @@ export default function AracSayfasi({ yol, baslik, guncelleme, hesap, giris, bol
         </div>
 
         <article className="yy-arac-metin">
-          {tumBolumler.length > 2 && (
+          {serbestIcindekiler.length + tumBolumler.length > 2 && (
             <nav className="yy-arac-icindekiler" aria-labelledby="icindekiler">
               <h2 id="icindekiler">İçindekiler</h2>
               <ul>
-                {tumBolumler.map((b) => (
+                {[...serbestIcindekiler, ...tumBolumler].map((b) => (
                   <li key={b.id}>
                     <a href={`#${b.id}`}>{b.baslik}</a>
                   </li>
@@ -145,6 +194,7 @@ export default function AracSayfasi({ yol, baslik, guncelleme, hesap, giris, bol
             </nav>
           )}
           {giris && <div className="yy-arac-giris">{giris}</div>}
+          {serbestIcerik && <div className="yy-arac-serbest">{serbestIcerik}</div>}
           {tumBolumler.map((b) => (
             <section key={b.id} id={b.id} aria-labelledby={`${b.id}-baslik`}>
               <h2 id={`${b.id}-baslik`}>{b.baslik}</h2>

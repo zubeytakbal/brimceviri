@@ -552,11 +552,58 @@
 .yy-arac-metin .conversion-table th { background: #f7f9ff; font-weight: 600; color: #212427; }
 .yy-arac-metin .conversion-table tr:last-child td { border-bottom: 0; }
 .yy-arac-soru h3 { margin-top: 0; }
+/* Hesap kutusu: zaman araclarinin ortak sinif ailesi (date-calc) yeni gorunumle: duz beyaz, mavi vurgu, Omni girdileri */
+.yy-arac-hesap .date-calc { gap: 20px; }
+.yy-arac-hesap .date-calc-input { padding: 0; border-radius: 0; background: none; color: #212427; gap: 16px; }
+.yy-arac-hesap .date-calc-input-title { font-size: 13.4px; font-weight: 600; color: #212427; }
+.yy-arac-hesap .date-calc-fields { gap: 12px; }
+.yy-arac-hesap .date-calc-field { gap: 8px; font-size: 13.4px; font-weight: 500; line-height: 20px; color: #212427; }
+.yy-arac-hesap .date-calc-field input, .yy-arac-hesap .date-calc-field select { height: 40px; padding: 0 12px; background-color: #f8f9fb; border: 1px solid #d2dcff; border-radius: 6px; font-size: 16px; font-weight: 500; color: #212427; }
+.yy-arac-hesap .date-calc-field select { padding-right: 32px; }
+.yy-arac-hesap .date-calc-field input:focus, .yy-arac-hesap .date-calc-field select:focus { outline: 0; border-color: #3b68fc; box-shadow: 0 0 0 3px rgba(59, 104, 252, .15); }
+.yy-arac-hesap .date-calc-field-row button, .yy-arac-hesap .date-calc-swap { border: 1px solid #c3c8d4; border-radius: 6px; background: #fff; color: #2f58e0; }
+.yy-arac-hesap .date-converter-modes { gap: 8px; }
+.yy-arac-hesap .date-converter-modes button, .yy-arac-hesap .date-converter-modes.is-light button { padding: 6px 14px; border: 1px solid #d2dcff; border-radius: 999px; background: #fff; color: #2f58e0; font-size: 13.4px; font-weight: 600; }
+.yy-arac-hesap .date-converter-modes button.is-active, .yy-arac-hesap .date-converter-modes.is-light button.is-active { border-color: #3b68fc; background: #3b68fc; color: #fff; }
+.yy-arac-hesap .yas-baska { color: #2f58e0; font-size: 13.4px; }
+.yy-arac-hesap .date-calc-results { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+.yy-arac-hesap .date-calc-stat { padding: 14px 16px; border: 1px solid #dfe2eb; border-radius: 8px; background: #fff; }
+.yy-arac-hesap .date-calc-stat span { font-size: 11px; font-weight: 600; letter-spacing: .02em; color: #748091; }
+.yy-arac-hesap .date-calc-stat strong { font-size: 18px; font-weight: 600; line-height: 26px; color: #0a0a0a; }
+.yy-arac-hesap .date-calc-stat em { font-size: 12.5px; color: #4b5259; }
+.yy-arac-hesap .date-calc-stat.is-main { border-color: #d2dcff; background: #f3f6ff; }
+.yy-arac-hesap .date-calc-stat.is-main strong { font-size: 26px; line-height: 34px; color: #2f58e0; }
+.yy-arac-hesap .date-calc-note { border-radius: 8px; font-size: 12.5px; line-height: 18px; }
+.yy-arac-hesap .yas-kopyala { border: 1px solid #3b68fc; border-radius: 6px; color: #2f58e0; }
+/* Yazi: hazir tablolar (holiday-table vb.) ve serbest icerik */
+.yy-arac-metin .yy-arac-serbest h2 { margin: 24px 0 16px; }
+.yy-arac-metin .yy-arac-serbest > h2:first-child { margin-top: 0; }
+.yy-arac-metin table { width: 100%; border-collapse: collapse; margin: 0 0 16px; font-size: 13.4px; line-height: 20px; font-variant-numeric: tabular-nums; background: #fff; }
+.yy-arac-metin table th, .yy-arac-metin table td { padding: 8px 12px; border-bottom: 1px solid #eef1f6; text-align: left; font-size: 13.4px; }
+.yy-arac-metin table thead th { background: #f7f9ff; font-size: 12px; font-weight: 600; text-transform: none; letter-spacing: 0; color: #212427; }
+.yy-arac-metin .holiday-table-wrap { margin: 0 0 16px; overflow-x: auto; border: 1px solid #dfe2eb; border-radius: 8px; background: #fff; }
+.yy-arac-metin .holiday-table-wrap table { margin: 0; }
+/* Genis hesap: arac basligin altinda iki sutunu birden kaplar; yazi ve benzer araclar altinda yan yana */
+.yy-arac-genis { grid-template-areas: "bas ." "hesap hesap" "metin sag"; }
+.yy-arac-genis-hesap { grid-area: hesap; display: flex; flex-direction: column; gap: 16px; min-width: 0; margin: 32px 0 48px; }
+.yy-arac-genis .yy-arac-hesap .date-calc-results { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+.yy-arac-genis .yy-arac-hesap .date-calc-stat.is-main { grid-column: 1 / -1; }
+/* Kutu ici satirlar: girdi + birim/yon secimi yan yana; dort alanli satirlar dar kutuda ikiye boler */
+.yy-arac-hesap .date-calc-field-row { display: flex; gap: 8px; min-width: 0; }
+.yy-arac-hesap .date-calc-field-row > input { flex: 1 1 0; width: auto; min-width: 0; max-width: none; }
+.yy-arac-hesap .date-calc-field-row > select { flex: 0 1 auto; width: auto; min-width: 0; }
+.yy-arac-hesap .date-calc-fields.is-amounts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.yy-arac-genis .yy-arac-hesap .date-calc-fields.is-amounts { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.yy-arac-hesap .date-calc-field input[type="number"] { max-width: none; }
+/* Kutudaki tablolar kutuyu tasirmaz, kendi icinde kayar */
+.yy-arac-hesap table { display: block; max-width: 100%; overflow-x: auto; }
 @media (max-width: 1100px) {
   .yy-arac { grid-template-columns: minmax(0, 1fr) 400px; padding-left: 24px; column-gap: 32px; }
 }
 @media (max-width: 860px) {
   .yy-arac { grid-template-columns: minmax(0, 1fr); grid-template-areas: "bas" "sag" "metin"; row-gap: 24px; padding: 16px 16px 64px; }
+  .yy-arac-genis { grid-template-areas: "bas" "hesap" "metin" "sag"; }
+  .yy-arac-genis-hesap { margin: 0; }
   .yy-arac-hesap { padding: 20px 16px; }
   .yy-arac-hesap .category-general-converter-result { margin: 20px -16px -20px; padding: 16px 16px 20px; }
   .yy-arac-icindekiler { margin-top: 8px; }

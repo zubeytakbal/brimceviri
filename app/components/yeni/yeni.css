@@ -166,7 +166,7 @@
 .yy-cevirici summary::after { content: "+"; font-size: 14px; font-weight: 400; line-height: 1; color: var(--yy-ikincil); }
 .yy-cevirici details[open] > summary::after { content: "\2013"; }
 .yy-cevirici details[open] { padding-bottom: 6px; }
-.yy-satir { display: grid; grid-template-columns: 76px minmax(0, 1fr); align-items: center; gap: 6px; padding: 1.5px 0; }
+.yy-satir { display: grid; grid-template-columns: 100px minmax(0, 1fr); align-items: center; gap: 6px; padding: 1.5px 0; }
 .yy-satir label { font-size: 12.5px; line-height: 1.25; color: var(--yy-govde); }
 .yy-giris { display: flex; align-items: center; background: #fff; border: 1px solid #c9ced4; border-radius: 4px; min-width: 0; }
 .yy-giris:focus-within { border-color: var(--yy-vurgu); box-shadow: 0 0 0 1px var(--yy-vurgu); }
@@ -320,7 +320,7 @@
   .yy-giris-yazi { margin-top: 16px !important; }
   .yy-yazi h2 { font-size: 17px; margin-top: 22px; }
   .yy-yazi p, .yy-yazi li { font-size: 14.5px; }
-  .yy-satir { grid-template-columns: 84px minmax(0, 1fr); padding: 2px 0; }
+  .yy-satir { grid-template-columns: 104px minmax(0, 1fr); padding: 2px 0; }
   /* iOS 16px altindaki kutuda odaklaninca sayfayi yakinlastirir. */
   .yy-giris input, .yy-satir select { font-size: 16px; padding: 4px 8px; }
   .yy-ust-ic { padding: 8px 14px; flex-wrap: nowrap; gap: 10px; }

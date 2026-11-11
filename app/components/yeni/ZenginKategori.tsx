@@ -10,7 +10,7 @@ import { buildSiteUrl } from "../../siteConfig";
 import CokluCevirici, { type CokluBirim } from "./CokluCevirici";
 import { EDITOR } from "./editor";
 import type { KategoriIcerigi } from "./icerik/tipler";
-import { formatSayi } from "./sayi";
+import { formatOkunur as formatSayi } from "./sayi";
 
 type Props = {
   slug: string;

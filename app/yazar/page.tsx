@@ -62,7 +62,8 @@ export default function AuthorPage() {
             <p>
               Sitenin yapısına, araçlarına ve içeriğine ben karar veriyorum. Sayfaların nasıl hazırlandığını{" "}
               <Link href="/editoryal-politika">editoryal politika</Link> sayfasında anlattım. Hesaplar bilgilendirme amaçlıdır;
-              resmî mühendislik onayı ya da danışmanlık vermiyorum.
+              resmî mühendislik onayı ya da danışmanlık vermiyorum. Site şu an Türkçe, İngilizce ve Almanca yayın yapıyor; araçları
+              önce Türkçe hazırlıyorum.
             </p>
           ),
         },

@@ -1,5 +1,6 @@
 // Grup sayfasi (/hesaplayicilar/<grup>; donusum dahil): baslik, sayi, kisa giris ve alt basliklar altinda
 // iki sutunlu duz link listesi.
+import { GRUP_ACIKLAMASI } from "./grupAciklamalari";
 import type { CSSProperties } from "react";
 import type { Metadata } from "next";
 import "./yeni.css";
@@ -97,6 +98,15 @@ export default function GrupSayfasi({
         ) : (
           <section>
             <LinkListesi linkler={grup.linkler} />
+          </section>
+        )}
+
+        {GRUP_ACIKLAMASI[grup.slug] && (
+          <section className="yy-grup-aciklama">
+            <h2>{GRUP_ACIKLAMASI[grup.slug].baslik}</h2>
+            {GRUP_ACIKLAMASI[grup.slug].paragraflar.map((p) => (
+              <p key={p.slice(0, 24)}>{p}</p>
+            ))}
           </section>
         )}
 

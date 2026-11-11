@@ -2006,9 +2006,9 @@ export function findUnitPage(category: string, unit: string) {
 
 /** Türkçe birim rehberi sayfası varsa adresi, yoksa null (404 link vermemek için). Kategori sayfasına katılan
  * rehberler (app/kasimTemizligi.ts REHBERI_BIRLESEN_KATEGORILER) yönlendirilir; onlara bağlantı verilmez. */
-/** Rehberi kendi dönüşüm sayfasına katılan kategoriler (kasimTemizligi.ts yönlendirmeyi buradan üretir). Sıra: Uzunluk,
- * sonra diğer kategoriler tek tek. */
-export const REHBERI_BIRLESEN_KATEGORILER: ReadonlySet<string> = new Set(["uzunluk", "alan", "hacim"]);
+/** Rehberi kendi kategori sayfasına katılan kategoriler (kasimTemizligi.ts yönlendirmeyi buradan üretir). Bütün
+ * Türkçe birim rehberleri kategori sayfalarına katıldı: rehberin kısa tanımı birim listesinde, adres 301 ile kategoride. */
+export const REHBERI_BIRLESEN_KATEGORILER: ReadonlySet<string> = new Set(unitPages.map((u) => u.category));
 export function turkishUnitHref(slug: string | undefined) {
   const page = slug ? unitPages.find((p) => p.slug === slug) : undefined;
   return page && !REHBERI_BIRLESEN_KATEGORILER.has(page.category) ? `/birimler/${page.slug}` : null;

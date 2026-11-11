@@ -1,6 +1,5 @@
 import { yeniYapiKategorileri } from "../../converter/siteYapisi";
 import type { Metadata } from "next";
-import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
 import AllUnitsPanel from "../../components/AllUnitsPanel";
 import { buildPairHrefs } from "../../components/allUnitsPanelData";
@@ -147,7 +146,6 @@ export default async function CategoryPage({
   );
 
   const sources = getUnitSources(categoryPage.category);
-  const featuredUnit = categoryUnits[0];
 
   const tableReferenceLabel =
     categoryPage.category === "uzunluk"
@@ -326,12 +324,13 @@ export default async function CategoryPage({
             }
           : undefined
       }
-      unitGuidesHeading="Birim rehberleri"
+      unitGuidesHeading="Birimler ve tanımları"
       unitGuidesCountLabel={`${categoryUnits.length} birim`}
       unitGuides={categoryUnits.map((unitPage) => ({
-        href: `/birimler/${unitPage.slug}`,
-        label: `${unitPage.name} nedir?`,
+        id: `birim-${unitPage.slug}`,
+        label: unitPage.name,
         symbol: unitPage.symbol,
+        description: unitPage.shortDescription,
       }))}
       detailHeading={detailHeading}
       detailContent={
@@ -417,18 +416,6 @@ export default async function CategoryPage({
                       <p key={paragraph}>{paragraph}</p>
                     ))}
 
-                    {index === 1 && featuredUnit && (
-                      <p className="category-inline-link">
-                        {featuredUnit.name} birimi hakkında
-                        ayrıntılı bilgi için{" "}
-                        <Link
-                          href={`/birimler/${featuredUnit.slug}`}
-                        >
-                          {featuredUnit.name} bilgi sayfasını
-                        </Link>{" "}
-                        inceleyebilirsiniz.
-                      </p>
-                    )}
                   </section>
                 ))}
 

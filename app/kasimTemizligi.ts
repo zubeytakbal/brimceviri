@@ -33,6 +33,8 @@ export const SILINEN_SAYFALAR: ReadonlySet<string> = new Set([
 
 /** Aynı işi yapan sayfaya birleştirilen sayfalar: kaynak -> hedef (301). */
 export const BIRLESEN_SAYFALAR: Readonly<Record<string, string>> = {
+  // Birim rehberi dizini: butun rehberler kategori sayfalarina katildi.
+  "/birimler": "/tum-birimler",
   "/bilim-hesaplayicilari/matematik/bolen-sayisi-hesaplama": "/bilim-hesaplayicilari/matematik/ebob-ekok-hesaplama",
   "/bilim-hesaplayicilari/matematik/mod-hesaplama": "/bilim-hesaplayicilari/matematik/ortalama-hesaplama",
   "/hesaplayicilar/hidrostatik-basinc": "/hesaplayicilar/basinc-kuvvet-alan",

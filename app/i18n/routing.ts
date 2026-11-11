@@ -56,7 +56,6 @@ const staticRouteTranslations: Record<StaticRouteKey, LocalePathMap> = {
     de: "/de",
   },
   units: {
-    tr: "/birimler",
     en: "/en/units",
     de: "/de/einheiten",
   },

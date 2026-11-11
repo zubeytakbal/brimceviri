@@ -76,10 +76,6 @@ export const SITE_NAV_DATA: SiteNavData = {
       {
        "href": "/tum-birimler",
        "label": "Tüm dönüşümler →"
-      },
-      {
-       "href": "/birimler",
-       "label": "Birim rehberi →"
       }
      ]
     },
@@ -490,7 +486,7 @@ export const SITE_NAV_DATA: SiteNavData = {
      "label": "Ana Sayfa"
     },
     {
-     "href": "/birimler",
+     "href": "/",
      "label": "Birim Rehberi"
     },
     {

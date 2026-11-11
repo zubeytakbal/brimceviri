@@ -143,7 +143,7 @@ const copy: Record<CalculatorLocale, PageCopy> = {
     sourcesHeading: "Kaynaklar",
     relatedHeading: "İlgili bağlantılar",
     relatedCalculatorsHeading: "İlgili hesaplayıcılar",
-    relatedGuidesHeading: "İlgili birim rehberleri",
+    relatedGuidesHeading: "İlgili birim sayfaları",
     tableColumns: {
       unitName: "Birim adı",
       symbol: "Sembol",
@@ -213,9 +213,8 @@ const copy: Record<CalculatorLocale, PageCopy> = {
       },
     ],
     relatedGuides: [
-      { label: "Volt (V) rehberi", href: "/birimler/volt" },
-      { label: "Amper (A) rehberi", href: "/birimler/amper" },
-      { label: "Metre (m) rehberi", href: "/birimler/metre" },
+      { label: "Elektrik birimleri", href: "/kategoriler/elektrik" },
+      { label: "Uzunluk birimleri", href: "/uzunluk" },
     ],
   },
   en: {

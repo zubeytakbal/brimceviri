@@ -247,13 +247,7 @@ const pageCopy: Record<Exclude<Locale, "ar">, PageCopy> = {
       { label: "Pascal → Bar", href: "/pascal-bar" },
     ],
     relatedGuides: [
-      { label: "Pascal nedir?", href: "/birimler/pascal" },
-      {
-        label: "Kilopascal nedir?",
-        href: "/birimler/kilopascal",
-      },
-      { label: "Bar nedir?", href: "/birimler/bar" },
-      { label: "PSI nedir?", href: "/birimler/psi" },
+      { label: "Basınç birimleri", href: "/kategoriler/basinc" },
     ],
   },
   en: {

@@ -26,9 +26,8 @@ describe("birim rehberlerinin kategori sayfasina katilmasi", () => {
     }
   });
 
-  it("henuz birlesmeyen kategorilerin rehberleri yerinde", () => {
-    const kalan = unitPages.find((u) => !REHBERI_BIRLESEN_KATEGORILER.has(u.category))!;
-    expect(rehberBirlesti(kalan.slug)).toBe(false);
-    expect(turkishUnitHref(kalan.slug)).toBe(`/birimler/${kalan.slug}`);
+  it("butun Turkce rehberler birlesti; rehber dizini /tum-birimler'e gider", () => {
+    expect(unitPages.every((u) => REHBERI_BIRLESEN_KATEGORILER.has(u.category))).toBe(true);
+    expect(yonlendirmeler.get("/birimler")).toBe("/tum-birimler");
   });
 });

@@ -97,7 +97,7 @@ export const birimGruplari: BirimGrubu[] = [
  * /<kategori>/<cift> adresindedir; eski /kategoriler/<kategori> ve /<cift> adresleri
  * 301 ile yonlenir (app/mergedPageRedirects.ts).
  */
-export const yeniYapiKategorileri: ReadonlySet<string> = new Set(["uzunluk", "alan", "hacim"]);
+export const yeniYapiKategorileri: ReadonlySet<string> = new Set(["uzunluk", "alan", "hacim", "kutle"]);
 
 // app/components/yeni/anaSayfaVerisi.ts icindeki HESAPLAYICI_GRUPLARI ile ayni (tests/anaSayfa.test.ts).
 export const HESAP_GRUP_SLUGLARI: ReadonlySet<string> = new Set([

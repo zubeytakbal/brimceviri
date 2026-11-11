@@ -19,7 +19,7 @@ import KategoriCevirici from "./KategoriCevirici";
 import ZenginKategori from "./ZenginKategori";
 import { kategoriIcerikleri } from "./icerik";
 import YanPanel from "./YanPanel";
-import { formatSayi } from "./sayi";
+import { formatOkunur as formatSayi } from "./sayi";
 
 function veri(slug: string) {
   const kategori = categoryPages.find((c) => c.slug === slug)!;

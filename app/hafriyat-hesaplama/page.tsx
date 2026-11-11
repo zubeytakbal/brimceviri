@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import ExcavationCalculator from "../components/ExcavationCalculator";
-import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import type { FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+import AracSayfasi from "@/app/components/yeni/AracSayfasi";
 
 const faqItems: FaqItem[] = [
   {
@@ -49,58 +50,18 @@ export const metadata: Metadata = {
   },
 };
 
-function serializeJsonLd(data: object) {
-  return JSON.stringify(data).replace(/</g, "\\u003c");
-}
 
 export default function ExcavationCalculatorPage() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Ana Sayfa",
-        item: buildSiteUrl("/"),
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Hafriyat ve Kazı Hesaplama",
-        item: buildSiteUrl("/hafriyat-hesaplama"),
-      },
-    ],
-  };
 
   return (
-    <main className="all-conversions-page">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd(buildFaqSchema(faqItems)),
-        }}
-      />
-
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Sayfa yolu">
-          <Link href="/">Ana Sayfa</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>Hafriyat ve Kazı Hesaplama</span>
-        </nav>
-
-        <header className="all-conversions-header">
-          <h1>Hafriyat ve Kazı Hesaplama</h1>
-        </header>
-
-        <ExcavationCalculator />
-
-        <section className="category-article-content">
-          <h2>Kaç kamyon hafriyat çıkar?</h2>
+    <AracSayfasi
+      yol="/hafriyat-hesaplama"
+      baslik="Hafriyat ve Kazı Hesaplama"
+      hesap={<ExcavationCalculator />}
+      serbestIcindekiler={[{"id":"kac-kamyon-hafriyat-cikar","baslik":"Kaç kamyon hafriyat çıkar?"},{"id":"toprak-turune-gore-ayni-kazi","baslik":"Toprak türüne göre aynı kazı"},{"id":"ornek-bodrum-katli-bir-ev","baslik":"Örnek: bodrum katlı bir ev"},{"id":"kazi-hacmi-nasil-hesaplanir","baslik":"Kazı hacmi nasıl hesaplanır?"},{"id":"gevseme-sisme-payi-nedir","baslik":"Gevşeme (şişme) payı nedir?"},{"id":"sik-sorulan-sorular","baslik":"Sık Sorulan Sorular"},{"id":"kaynaklar","baslik":"Kaynaklar"}]}
+      serbestIcerik={
+        <>
+          <h2 id="kac-kamyon-hafriyat-cikar">Kaç kamyon hafriyat çıkar?</h2>
           <p>
             Kamyon sayısını yerindeki kazı hacmi değil, kazıldıktan sonra kabaran gevşek hacim belirler. Tablo ortalama karışık
             toprak için %25 kabarma payıyla hesaplandı; kasalar silme dolu kabul edildi.
@@ -127,8 +88,7 @@ export default function ExcavationCalculatorPage() {
               </tbody>
             </table>
           </div>
-
-          <h2>Toprak türüne göre aynı kazı</h2>
+          <h2 id="toprak-turune-gore-ayni-kazi">Toprak türüne göre aynı kazı</h2>
           <p>
             100 m³&apos;lük bir kazının kamyona yüklenecek hacmi zemine göre belirgin biçimde değişir. Tablodaki kabarma
             payları, kazı kılavuzlarında verilen aralıkların ortasıdır.
@@ -155,8 +115,7 @@ export default function ExcavationCalculatorPage() {
               </tbody>
             </table>
           </div>
-
-          <h2>Örnek: bodrum katlı bir ev</h2>
+          <h2 id="ornek-bodrum-katli-bir-ev">Örnek: bodrum katlı bir ev</h2>
           <p>
             12 × 10 m tabanlı, 3 m derinliğinde bir bodrum kazısı yerinde {sayi(12 * 10 * 3)} m³ eder. Killi zeminde %35
             kabarmayla bu hacim {sayi(12 * 10 * 3 * 1.35)} m³&apos;e çıkar ve 10 m³&apos;lük kamyonla{" "}
@@ -164,16 +123,14 @@ export default function ExcavationCalculatorPage() {
             seferde biter. Toprağın bir kısmı geri dolguda kullanılacaksa, bu miktarı sahada bırakıp yalnız fazlasını
             taşıtmak sefer sayısını düşürür.
           </p>
-
-          <h2>Kazı hacmi nasıl hesaplanır?</h2>
+          <h2 id="kazi-hacmi-nasil-hesaplanir">Kazı hacmi nasıl hesaplanır?</h2>
           <p>
             Dikdörtgen kesitli bir kazının yerinde (bank) hacmi{" "}
             <strong>Hacim = Uzunluk × Genişlik × Derinlik</strong>{" "}
             formülüyle bulunur. Bu, toprağın doğal, sıkışık hâldeki
             hacmidir — henüz kazılmamış durumdaki hacme karşılık gelir.
           </p>
-
-          <h2>Gevşeme (şişme) payı nedir?</h2>
+          <h2 id="gevseme-sisme-payi-nedir">Gevşeme (şişme) payı nedir?</h2>
           <p>
             Toprak kazılıp gevşetildiğinde, tanecikler arasındaki
             boşluklar arttığı için hacmi genişler; buna{" "}
@@ -188,8 +145,7 @@ export default function ExcavationCalculatorPage() {
             kamyonun kasa hacmine bölünüp yukarı yuvarlanmasıyla bulunur:{" "}
             <strong>Kamyon Sayısı = ⌈Gevşek Hacim / Kamyon Kasa Hacmi⌉</strong>.
           </p>
-
-          <h2>Sık Sorulan Sorular</h2>
+          <h2 id="sik-sorulan-sorular">Sık Sorulan Sorular</h2>
           <p>
             <strong>Gevşeme (şişme) payı neden önemli?</strong>
             <br />
@@ -216,8 +172,7 @@ export default function ExcavationCalculatorPage() {
             m³&apos;tür. Kullanacağın kamyonun gerçek kasa hacmini
             biliyorsan onu girmen daha doğru sonuç verir.
           </p>
-
-          <h2>İlgili araçlar</h2>
+          <h2 id="ilgili-araclar">İlgili araçlar</h2>
           <p>
             Kazı tamamlandıktan sonra dökülecek beton hacmi ve malzeme
             miktarı için{" "}
@@ -226,8 +181,7 @@ export default function ExcavationCalculatorPage() {
             <Link href="/hesaplayicilar#ev-ve-yapi">Ev, İnşaat ve Bahçe</Link>{" "}
             sayfasına bakabilirsin.
           </p>
-
-          <h2>Kaynaklar</h2>
+          <h2 id="kaynaklar">Kaynaklar</h2>
           <p>
             Gevşeme/şişme payı aralıkları, inşaat mühendisliğinde yaygın
             kullanılan zemin sınıflandırma tablolarındaki tipik
@@ -235,8 +189,8 @@ export default function ExcavationCalculatorPage() {
             koşullarına göre değişebilir; büyük ölçekli veya hassas
             projelerde bir inşaat mühendisiyle çalışılmalıdır.
           </p>
-        </section>
-      </div>
-    </main>
+        </>
+      }
+    />
   );
 }

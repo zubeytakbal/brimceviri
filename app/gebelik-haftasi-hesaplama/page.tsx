@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import PregnancyCalculator from "../components/PregnancyCalculator";
-import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import type { FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+import AracSayfasi from "@/app/components/yeni/AracSayfasi";
 
 const faqItems: FaqItem[] = [
   {
@@ -35,9 +36,6 @@ export const metadata: Metadata = {
   },
 };
 
-function serializeJsonLd(data: object) {
-  return JSON.stringify(data).replace(/</g, "\\u003c");
-}
 
 // Örnek: SAT 1 Ocak 2026 + 280 gün.
 const dogumOrnek = new Date(Date.UTC(2026, 0, 1 + 280)).toLocaleDateString("tr-TR", {
@@ -48,53 +46,16 @@ const dogumOrnek = new Date(Date.UTC(2026, 0, 1 + 280)).toLocaleDateString("tr-T
 });
 
 export default function PregnancyCalculatorPage() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Ana Sayfa",
-        item: buildSiteUrl("/"),
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Gebelik Haftası Hesaplama",
-        item: buildSiteUrl("/gebelik-haftasi-hesaplama"),
-      },
-    ],
-  };
 
   return (
-    <main className="all-conversions-page">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd(buildFaqSchema(faqItems)),
-        }}
-      />
-
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Sayfa yolu">
-          <Link href="/">Ana Sayfa</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>Gebelik Haftası Hesaplama</span>
-        </nav>
-
-        <header className="all-conversions-header">
-          <h1>Gebelik Haftası Hesaplama</h1>
-        </header>
-
-        <PregnancyCalculator />
-
-        <section className="category-article-content">
-          <h2>Gebelik haftası neden son adet tarihinden hesaplanır?</h2>
+    <AracSayfasi
+      yol="/gebelik-haftasi-hesaplama"
+      baslik="Gebelik Haftası Hesaplama"
+      hesap={<PregnancyCalculator />}
+      serbestIcindekiler={[{"id":"gebelik-haftasi-neden-son-adet-tarihinden","baslik":"Gebelik haftası neden son adet tarihinden hesaplanır?"},{"id":"trimesterler-nasil-ayrilir","baslik":"Trimesterler nasıl ayrılır?"},{"id":"ornek-tahmini-dogum-tarihi","baslik":"Örnek: tahmini doğum tarihi"},{"id":"dogum-zamani-nasil-adlandirilir","baslik":"Doğum zamanı nasıl adlandırılır?"},{"id":"sik-sorulan-sorular","baslik":"Sık Sorulan Sorular"},{"id":"kaynaklar","baslik":"Kaynaklar"}]}
+      serbestIcerik={
+        <>
+          <h2 id="gebelik-haftasi-neden-son-adet-tarihinden">Gebelik haftası neden son adet tarihinden hesaplanır?</h2>
           <p>
             Döllenmenin gerçekleştiği tam tarih genelde bilinmediği için,
             hekimlikte standart uygulama gebeliği son adet tarihinin
@@ -105,22 +66,19 @@ export default function PregnancyCalculatorPage() {
             yaklaşık 2 haftalık bir fark vardır. Bu, hata değil, tıbbi
             standart tanımın kendisidir.
           </p>
-
-          <h2>Trimesterler nasıl ayrılır?</h2>
+          <h2 id="trimesterler-nasil-ayrilir">Trimesterler nasıl ayrılır?</h2>
           <p>
             Gebelik üç trimestere bölünür: <strong>1. trimester</strong>{" "}
             0-13. haftalar arası, <strong>2. trimester</strong> 13-27.
             haftalar arası ve <strong>3. trimester</strong> 27. haftadan
             doğuma kadar olan dönemdir.
           </p>
-
-          <h2>Örnek: tahmini doğum tarihi</h2>
+          <h2 id="ornek-tahmini-dogum-tarihi">Örnek: tahmini doğum tarihi</h2>
           <p>
             Son adet tarihi 1 Ocak 2026 olan bir gebelikte Naegele kuralıyla tahmini doğum tarihi SAT + 280 gün ={" "}
             {dogumOrnek}. 40 haftanın tamamlandığı gün budur.
           </p>
-
-          <h2>Doğum zamanı nasıl adlandırılır?</h2>
+          <h2 id="dogum-zamani-nasil-adlandirilir">Doğum zamanı nasıl adlandırılır?</h2>
           <div className="conversion-table-wrap">
             <table className="conversion-table">
               <thead>
@@ -146,8 +104,7 @@ export default function PregnancyCalculatorPage() {
             ayrıntılı ultrason 18–22. haftalarda, gebelik şekeri testi 24–28. haftalarda planlanır. Takvim hekime ve kuruma göre
             değişebilir.
           </p>
-
-          <h2>Sık Sorulan Sorular</h2>
+          <h2 id="sik-sorulan-sorular">Sık Sorulan Sorular</h2>
           <p>
             <strong>Tahmini doğum tarihi kesin midir?</strong>
             <br />
@@ -164,8 +121,7 @@ export default function PregnancyCalculatorPage() {
             bu durumda doktorun yapacağı ultrason bazlı tarihlendirme
             daha doğru sonuç verir.
           </p>
-
-          <h2>İlgili araçlar</h2>
+          <h2 id="ilgili-araclar">İlgili araçlar</h2>
           <p>
             Gebelik öncesi döngü takibi için{" "}
             <Link href="/yumurtlama-hesaplama">Yumurtlama ve Adet Takvimi Hesaplama</Link>,{" "}
@@ -173,16 +129,15 @@ export default function PregnancyCalculatorPage() {
             <Link href="/yas-hesaplama">Yaş Hesaplama</Link>
             {" "}sayfasına bakabilirsin.
           </p>
-
-          <h2>Kaynaklar</h2>
+          <h2 id="kaynaklar">Kaynaklar</h2>
           <p>
             Hesaplama yöntemi (SAT + 280 gün / 40 hafta, trimester
             sınırları), kadın doğum pratiğinde yaygın kullanılan
             standart gebelik tarihlendirme kurallarına dayanır. Bu araç
             bilgilendirme amaçlıdır, tıbbi tavsiye yerine geçmez.
           </p>
-        </section>
-      </div>
-    </main>
+        </>
+      }
+    />
   );
 }

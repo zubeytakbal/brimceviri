@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import BrickCalculator from "../components/BrickCalculator";
-import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import type { FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+import AracSayfasi from "@/app/components/yeni/AracSayfasi";
 
 const faqItems: FaqItem[] = [
   {
@@ -45,58 +46,18 @@ export const metadata: Metadata = {
   },
 };
 
-function serializeJsonLd(data: object) {
-  return JSON.stringify(data).replace(/</g, "\\u003c");
-}
 
 export default function BrickCalculatorPage() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Ana Sayfa",
-        item: buildSiteUrl("/"),
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Tuğla Hesaplama",
-        item: buildSiteUrl("/tugla-hesaplama"),
-      },
-    ],
-  };
 
   return (
-    <main className="all-conversions-page">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd(buildFaqSchema(faqItems)),
-        }}
-      />
-
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Sayfa yolu">
-          <Link href="/">Ana Sayfa</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>Tuğla Hesaplama</span>
-        </nav>
-
-        <header className="all-conversions-header">
-          <h1>Tuğla Hesaplama</h1>
-        </header>
-
-        <BrickCalculator />
-
-        <section className="category-article-content">
-          <h2>1 m² duvara kaç tuğla gider?</h2>
+    <AracSayfasi
+      yol="/tugla-hesaplama"
+      baslik="Tuğla Hesaplama"
+      hesap={<BrickCalculator />}
+      serbestIcindekiler={[{"id":"1-m-duvara-kac-tugla-gider","baslik":"1 m² duvara kaç tuğla gider?"},{"id":"ornek-kapili-bir-bolme-duvar","baslik":"Örnek: kapılı bir bölme duvar"},{"id":"derz-kalinligi-adedi-ne-kadar-degistirir","baslik":"Derz kalınlığı adedi ne kadar değiştirir?"},{"id":"derz-kalinligi-hesaba-neden-dahil-ediliyor","baslik":"Derz kalınlığı hesaba neden dahil ediliyor?"},{"id":"hesaplama-nasil-yapiliyor","baslik":"Hesaplama nasıl yapılıyor?"},{"id":"sik-sorulan-sorular","baslik":"Sık Sorulan Sorular"},{"id":"kaynaklar","baslik":"Kaynaklar"}]}
+      serbestIcerik={
+        <>
+          <h2 id="1-m-duvara-kac-tugla-gider">1 m² duvara kaç tuğla gider?</h2>
           <p>
             Adet, tuğlanın duvarda görünen yüzüne ve derz kalınlığına bağlıdır. Tablo yaygın duvar malzemelerinin yüz ölçüleri
             için hesaplandı; fire dahil değildir. Kendi ürününüzün ölçüsü farklıysa yukarıdaki araca girin.
@@ -130,8 +91,7 @@ export default function BrickCalculatorPage() {
             olacağını anlatır. İkisinin de duvara bakan yüzü 19 × 19 cm olduğunda metrekareye giden adet aynıdır; değişen,
             harç miktarı ve duvarın ağırlığıdır.
           </p>
-
-          <h2>Örnek: kapılı bir bölme duvar</h2>
+          <h2 id="ornek-kapili-bir-bolme-duvar">Örnek: kapılı bir bölme duvar</h2>
           <p>
             4 m uzunluğunda, 2,7 m yüksekliğinde bir duvarda 90 × 210 cm&apos;lik bir kapı boşluğu olsun. Brüt alan{" "}
             {sayi(4 * 2.7, 2)} m², kapı {sayi(0.9 * 2.1, 2)} m², net alan {sayi(4 * 2.7 - 0.9 * 2.1, 2)} m²&apos;dir. 19 × 19
@@ -139,15 +99,13 @@ export default function BrickCalculatorPage() {
             {Math.ceil((4 * 2.7 - 0.9 * 2.1) * adet(19, 19, 1))} tuğla eder; %5 kırık payıyla sipariş{" "}
             {Math.ceil((4 * 2.7 - 0.9 * 2.1) * adet(19, 19, 1) * 1.05)} adettir.
           </p>
-
-          <h2>Derz kalınlığı adedi ne kadar değiştirir?</h2>
+          <h2 id="derz-kalinligi-adedi-ne-kadar-degistirir">Derz kalınlığı adedi ne kadar değiştirir?</h2>
           <p>
             19 × 19 cm yüzlü tuğlada derz 5 mm olursa metrekareye {sayi(adet(19, 19, 0.5), 1)}, 10 mm olursa{" "}
             {sayi(adet(19, 19, 1), 1)}, 15 mm olursa {sayi(adet(19, 19, 1.5), 1)} tuğla gider. Küçük yüzlü dolu tuğlada aynı
             fark çok daha büyüktür, çünkü metrekaredeki derz sayısı artar.
           </p>
-
-          <h2>Derz kalınlığı hesaba neden dahil ediliyor?</h2>
+          <h2 id="derz-kalinligi-hesaba-neden-dahil-ediliyor">Derz kalınlığı hesaba neden dahil ediliyor?</h2>
           <p>
             Tuğlalar duvara yan yana değil, aralarında harç dolgusu
             (derz) bırakılarak örülür. Bu derz payı hesaba katılmazsa
@@ -157,8 +115,7 @@ export default function BrickCalculatorPage() {
             derzli uygulamalarda bu değer 5-8 mm&apos;ye kadar
             düşebilir.
           </p>
-
-          <h2>Hesaplama nasıl yapılıyor?</h2>
+          <h2 id="hesaplama-nasil-yapiliyor">Hesaplama nasıl yapılıyor?</h2>
           <p>
             Tuğlanın en ve yükseklik ölçüsüne, girdiğin derz kalınlığı
             eklenerek tuğlanın duvarda gerçekte kapladığı alan bulunur.
@@ -173,8 +130,7 @@ export default function BrickCalculatorPage() {
             miktarı duvar kalınlığına ve harç karışım oranına göre ayrıca
             hesaplanmalıdır, bu yüzden sonuca dahil edilmemiştir.
           </p>
-
-          <h2>Sık Sorulan Sorular</h2>
+          <h2 id="sik-sorulan-sorular">Sık Sorulan Sorular</h2>
           <p>
             <strong>Tuğlanın derinlik (kalınlık) ölçüsünü neden sormuyorsunuz?</strong>
             <br />
@@ -191,8 +147,7 @@ export default function BrickCalculatorPage() {
             <Link href="/boya-hesaplama">boya hesaplama aracına</Link>{" "}
             bakabilirsin.
           </p>
-
-          <h2>İlgili araçlar</h2>
+          <h2 id="ilgili-araclar">İlgili araçlar</h2>
           <p>
             Aynı yenileme projesinde işine yarayabilecek diğer araçlar:{" "}
             <Link href="/boya-hesaplama">Boya Hesaplama</Link>,{" "}
@@ -201,15 +156,14 @@ export default function BrickCalculatorPage() {
             <Link href="/parke-hesaplama">Parke Hesaplama</Link>,{" "}
             <Link href="/siva-hesaplama">Sıva Hesaplama</Link>.
           </p>
-
-          <h2>Kaynaklar</h2>
+          <h2 id="kaynaklar">Kaynaklar</h2>
           <p>
             Derz kalınlığı ve fire payı aralıkları, yaygın duvar tuğlası
             üreticilerinin ve inşaat uygulama rehberlerinin önerdiği
             pratik değerlerden derlenmiştir.
           </p>
-        </section>
-      </div>
-    </main>
+        </>
+      }
+    />
   );
 }

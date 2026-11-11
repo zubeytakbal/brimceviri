@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import ZoningCalculator from "../components/ZoningCalculator";
-import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import type { FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+import AracSayfasi from "@/app/components/yeni/AracSayfasi";
 
 const faqItems: FaqItem[] = [
   {
@@ -58,44 +59,19 @@ export const metadata: Metadata = {
   },
 };
 
-function serializeJsonLd(data: object) {
-  return JSON.stringify(data).replace(/</g, "\\u003c");
-}
 
 export default function ZoningCalculatorPage() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: buildSiteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "Tüm Hesaplamalar", item: buildSiteUrl("/hesaplayicilar") },
-      { "@type": "ListItem", position: 3, name: "Ev, İnşaat ve Bahçe", item: buildSiteUrl("/hesaplayicilar#ev-ve-yapi") },
-      { "@type": "ListItem", position: 4, name: "Emsal (KAKS) Hesaplama", item: buildSiteUrl("/emsal-kaks-hesaplama") },
-    ],
-  };
 
   return (
-    <main className="all-conversions-page">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(buildFaqSchema(faqItems)) }} />
-
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Sayfa yolu">
-          <Link href="/">Ana Sayfa</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/hesaplayicilar#ev-ve-yapi">Ev, İnşaat ve Bahçe</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>Emsal (KAKS) Hesaplama</span>
-        </nav>
-
-        <header className="all-conversions-header">
-          <h1>Emsal (KAKS) Hesaplama</h1>
-        </header>
-
-        <ZoningCalculator />
-
-        <section className="category-article-content">
-          <h2>Arsanıza kaç m² bina yapılır?</h2>
+    <AracSayfasi
+      yol="/emsal-kaks-hesaplama"
+      baslik="Emsal (KAKS) Hesaplama"
+      hesap={<ZoningCalculator />}
+      sss={faqItems}
+      serbestIcindekiler={[{"id":"arsaniza-kac-m-bina-yapilir","baslik":"Arsanıza kaç m² bina yapılır?"},{"id":"kac-kat-cikar-kaks-ile-taks","baslik":"Kaç kat çıkar? KAKS ile TAKS birlikte"},{"id":"emsale-sayilmayan-alanlar-ve-30-siniri","baslik":"Emsale sayılmayan alanlar ve %30 sınırı"},{"id":"kaynaklar","baslik":"Kaynaklar"}]}
+      serbestIcerik={
+        <>
+          <h2 id="arsaniza-kac-m-bina-yapilir">Arsanıza kaç m² bina yapılır?</h2>
           <p>
             İmar durum belgesindeki emsal (KAKS) değeri, arsa alanıyla çarpılınca yapılabilecek toplam kat alanını verir.
             Aşağıdaki tablo sık görülen arsa büyüklükleri ve emsal değerleri için bu çarpımı hazır gösterir.
@@ -122,8 +98,7 @@ export default function ZoningCalculatorPage() {
               </tbody>
             </table>
           </div>
-
-          <h2>Kaç kat çıkar? KAKS ile TAKS birlikte</h2>
+          <h2 id="kac-kat-cikar-kaks-ile-taks">Kaç kat çıkar? KAKS ile TAKS birlikte</h2>
           <p>
             TAKS, binanın zemine oturabileceği en büyük alanı sınırlar. Toplam kat alanı (KAKS) taban alanına (TAKS) bölününce
             kaba kat sayısı çıkar; yani kat sayısı arsa büyüklüğünden bağımsız olarak <strong>KAKS ÷ TAKS</strong> kadardır.
@@ -158,8 +133,7 @@ export default function ZoningCalculatorPage() {
             da çekme kata kullanılır. Planda ayrıca kat adedi ya da bina yüksekliği (Hmax) yazıyorsa, hangisi daha önce dolarsa
             o sınır geçerlidir.
           </p>
-
-          <h2>Emsale sayılmayan alanlar ve %30 sınırı</h2>
+          <h2 id="emsale-sayilmayan-alanlar-ve-30-siniri">Emsale sayılmayan alanlar ve %30 sınırı</h2>
           <p>
             Planlı Alanlar İmar Yönetmeliği bazı alanları emsal hesabının dışında tutar; bodrum kattaki sığınak, asansör
             boşlukları ve tesisat alanları ile yönetmeliğin istediği yangın merdiveni ve son kat üzerindeki ortak teras çatı
@@ -172,17 +146,7 @@ export default function ZoningCalculatorPage() {
             alan bu yüzden imar durumunda yazan rakamdan büyük çıkabilir. Belediyeler kendi imar yönetmelikleriyle listeyi %30
             sınırı içinde değiştirebildiği için kesin listeyi parselin bağlı olduğu belediyeden öğrenmek gerekir.
           </p>
-
-          <h2>Sık Sorulan Sorular</h2>
-          {faqItems.map((item) => (
-            <p key={item.question}>
-              <strong>{item.question}</strong>
-              <br />
-              {item.answer}
-            </p>
-          ))}
-
-          <h2>İlgili araçlar</h2>
+          <h2 id="ilgili-araclar">İlgili araçlar</h2>
           <p>
             Diğer ev ve inşaat araçları için{" "}
             <Link href="/hesaplayicilar#ev-ve-yapi">Ev, İnşaat ve Bahçe</Link>
@@ -190,15 +154,14 @@ export default function ZoningCalculatorPage() {
             <Link href="/kategoriler/alan">Alan Dönüşümleri</Link>
             {" "}sayfasına bakabilirsin.
           </p>
-
-          <h2>Kaynaklar</h2>
+          <h2 id="kaynaklar">Kaynaklar</h2>
           <p>
             KAKS ve TAKS tanımları ile emsal harici alanlara ilişkin %30 sınırı Planlı Alanlar İmar Yönetmeliği&apos;nin 4, 5 ve
             22. maddelerine dayanır (Resmî Gazete, 3 Temmuz 2017; sonraki değişiklikleriyle). Tablolar yalnızca bu tanımlarla
             hesaplandı. Parselinize ait değerler imar durum belgesinde yer alır; bu araç imar danışmanlığının yerine geçmez.
           </p>
-        </section>
-      </div>
-    </main>
+        </>
+      }
+    />
   );
 }

@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import KeresteCalculator from "../components/KeresteCalculator";
-import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import type { FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+import AracSayfasi from "@/app/components/yeni/AracSayfasi";
 
 const faqItems: FaqItem[] = [
   {
@@ -61,40 +62,19 @@ const tomruk = (capCm: number, boyM: number) => Math.PI * (capCm / 200) ** 2 * b
 const hacim = (boyM: number, enCm: number, kalinlikCm: number) => boyM * (enCm / 100) * (kalinlikCm / 100);
 const sayi = (n: number, basamak = 0) => n.toLocaleString("tr-TR", { maximumFractionDigits: basamak });
 
-function serializeJsonLd(data: object) {
-  return JSON.stringify(data).replace(/</g, "\\u003c");
-}
 
 export default function KerestePage() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: buildSiteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "Kereste Metreküp Hesaplama", item: buildSiteUrl("/kereste-hesaplama") },
-    ],
-  };
 
   return (
-    <main className="all-conversions-page">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(buildFaqSchema(faqItems)) }} />
-
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Sayfa yolu">
-          <Link href="/">Ana Sayfa</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>Kereste Metreküp Hesaplama</span>
-        </nav>
-
-        <header className="all-conversions-header">
-          <h1>Kereste Metreküp Hesaplama</h1>
-        </header>
-
-        <KeresteCalculator />
-
-        <section className="category-article-content">
-          <h2>1 m³ kereste kaç adet çıkar?</h2>
+    <AracSayfasi
+      yol="/kereste-hesaplama"
+      baslik="Kereste Metreküp Hesaplama"
+      hesap={<KeresteCalculator />}
+      sss={faqItems}
+      serbestIcindekiler={[{"id":"1-m-kereste-kac-adet-cikar","baslik":"1 m³ kereste kaç adet çıkar?"},{"id":"yuvarlak-kutuk-tomruk-hacmi","baslik":"Yuvarlak kütük (tomruk) hacmi"},{"id":"kaba-olcu-ve-planyali-olcu-farki","baslik":"Kaba ölçü ve planyalı ölçü farkı"},{"id":"kereste-ne-kadar-agir","baslik":"Kereste ne kadar ağır?"},{"id":"ornek-cati-mertegi-siparisi","baslik":"Örnek: çatı merteği siparişi"},{"id":"kaynaklar","baslik":"Kaynaklar"}]}
+      serbestIcerik={
+        <>
+          <h2 id="1-m-kereste-kac-adet-cikar">1 m³ kereste kaç adet çıkar?</h2>
           <p>
             Kereste depoları fiyatı çoğunlukla metreküp (halk arasında &quot;mikap&quot;) üzerinden verir, şantiyede ise parça sayılır. Aşağıdaki tablo iki
             hesabı birbirine bağlar: bir metreküpün kaç parçaya denk geldiğini ve tek parçanın hacmini gösterir. Değerler
@@ -128,8 +108,7 @@ export default function KerestePage() {
             Tablodan bir pratik kural da çıkar: kesit yarıya inince aynı metreküpe sığan parça sayısı iki katına çıkar. 5 × 10
             cm&apos;lik 4 metrelik bir parçanın hacmi {sayi(hacim(4, 10, 5), 3)} m³ olduğundan bir metreküp, 50 parça demektir.
           </p>
-
-          <h2>Yuvarlak kütük (tomruk) hacmi</h2>
+          <h2 id="yuvarlak-kutuk-tomruk-hacmi">Yuvarlak kütük (tomruk) hacmi</h2>
           <p>
             Henüz biçilmemiş tomrukta hacim, kütüğü silindir sayarak bulunur: orta çap ölçülür ve{" "}
             <strong>Hacim = π × (Çap / 2)² × Boy</strong> uygulanır. Tomruk iki ucunda farklı kalınlıkta olduğu için ölçü,
@@ -156,16 +135,14 @@ export default function KerestePage() {
               </tbody>
             </table>
           </div>
-
-          <h2>Kaba ölçü ve planyalı ölçü farkı</h2>
+          <h2 id="kaba-olcu-ve-planyali-olcu-farki">Kaba ölçü ve planyalı ölçü farkı</h2>
           <p>
             Satışta söylenen &quot;5 × 10&quot; çoğu zaman biçildiği andaki kaba ölçüdür. Kereste kuruyunca biraz çeker,
             planyadan geçince de her yüzünden birkaç milimetre alınır. Bu yüzden elinizdeki parçayı metreyle ölçüp araca o
             ölçüyü girmek, kâğıttaki ölçüyle hesaplamaktan daha doğru sonuç verir. Fiyat kaba ölçü üzerinden kesildiyse
             hesabı da kaba ölçüyle yapın; ikisini karıştırmak metreküpte birkaç yüzdelik fark doğurur.
           </p>
-
-          <h2>Kereste ne kadar ağır?</h2>
+          <h2 id="kereste-ne-kadar-agir">Kereste ne kadar ağır?</h2>
           <p>
             Taşıma ve iskele planı için hacmin yanında ağırlık da gerekir. Hava kurusu (yaklaşık %12 nem) kerestede metreküp
             ağırlığı türe göre aşağıdaki aralıklarda değişir; yaş kereste bunun belirgin biçimde üstündedir.
@@ -194,8 +171,7 @@ export default function KerestePage() {
               </tbody>
             </table>
           </div>
-
-          <h2>Örnek: çatı merteği siparişi</h2>
+          <h2 id="ornek-cati-mertegi-siparisi">Örnek: çatı merteği siparişi</h2>
           <p>
             Bir çatı için 4 metrelik 24 adet 5 × 10 cm mertek gerektiğini düşünelim. Tek parça {sayi(hacim(4, 10, 5), 3)} m³
             olduğundan 24 parça {sayi(24 * hacim(4, 10, 5), 2)} m³ eder. Kesim ve budaklı parçalar için %8 pay eklenince
@@ -203,17 +179,7 @@ export default function KerestePage() {
             {sayi(24 * hacim(4, 10, 5) * 490)}–{sayi(24 * hacim(4, 10, 5) * 550)} kg&apos;dır; kamyonet kasasına sığıp
             sığmayacağını da bu rakamla kontrol edebilirsiniz.
           </p>
-
-          <h2>Sık Sorulan Sorular</h2>
-          {faqItems.map((item) => (
-            <p key={item.question}>
-              <strong>{item.question}</strong>
-              <br />
-              {item.answer}
-            </p>
-          ))}
-
-          <h2>İlgili araçlar</h2>
+          <h2 id="ilgili-araclar">İlgili araçlar</h2>
           <p>
             Diğer ev ve yapı araçları için{" "}
             <Link href="/hesaplayicilar#ev-ve-yapi">Ev, İnşaat ve Bahçe</Link>{" "}
@@ -221,15 +187,14 @@ export default function KerestePage() {
             <Link href="/kategoriler/hacim">Hacim Dönüşümleri</Link>{" "}
             sayfasına bakabilirsin.
           </p>
-
-          <h2>Kaynaklar</h2>
+          <h2 id="kaynaklar">Kaynaklar</h2>
           <p>
             Hacim tabloları dikdörtgen prizma formülüyle hesaplandı. Ağırlık aralıkları, ağaç malzeme başvuru kitaplarında
             (USDA Forest Products Laboratory, <em>Wood Handbook</em>; Wagenführ, <em>Holzatlas</em>) hava kurusu yoğunluk için
             verilen değerlerin yuvarlatılmış hâlidir. Tek bir partinin gerçek ağırlığı nem ve yetişme yerine göre değişir.
           </p>
-        </section>
-      </div>
-    </main>
+        </>
+      }
+    />
   );
 }

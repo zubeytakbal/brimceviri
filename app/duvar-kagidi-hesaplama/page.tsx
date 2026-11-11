@@ -2,8 +2,9 @@ import { buildFullLanguageAlternates } from "@/app/i18n/routing";
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import WallpaperCalculator from "../components/WallpaperCalculator";
-import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import type { FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+import AracSayfasi from "@/app/components/yeni/AracSayfasi";
 
 const faqItems: FaqItem[] = [
   {
@@ -45,58 +46,19 @@ export const metadata: Metadata = {
   },
 };
 
-function serializeJsonLd(data: object) {
-  return JSON.stringify(data).replace(/</g, "\\u003c");
-}
 
 export default function WallpaperCalculatorPage() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Ana Sayfa",
-        item: buildSiteUrl("/"),
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Duvar Kağıdı Hesaplama",
-        item: buildSiteUrl("/duvar-kagidi-hesaplama"),
-      },
-    ],
-  };
 
   return (
-    <main className="all-conversions-page">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd(buildFaqSchema(faqItems)),
-        }}
-      />
-
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Sayfa yolu">
-          <Link href="/">Ana Sayfa</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>Duvar Kağıdı Hesaplama</span>
-        </nav>
-
-        <header className="all-conversions-header">
-          <h1>Duvar Kağıdı Hesaplama</h1>
-        </header>
-
-        <WallpaperCalculator />
-
-        <section className="category-article-content">
-          <h2>Duvar genişliğine göre kaç rulo gerekir?</h2>
+    <AracSayfasi
+      yol="/duvar-kagidi-hesaplama"
+      baslik="Duvar Kağıdı Hesaplama"
+      hesap={<WallpaperCalculator />}
+      sss={faqItems}
+      serbestIcindekiler={[{"id":"duvar-genisligine-gore-kac-rulo-gerekir","baslik":"Duvar genişliğine göre kaç rulo gerekir?"},{"id":"duvar-metrekaresine-gore-kac-rulo","baslik":"Duvar metrekaresine göre kaç rulo?"},{"id":"tavan-yuksekligi-rulo-sayisini-nasil-degistirir","baslik":"Tavan yüksekliği rulo sayısını nasıl değiştirir?"},{"id":"desen-tekrari-rapor-hesabi-nasil-etkiler","baslik":"Desen tekrarı (rapor) hesabı nasıl etkiler?"}]}
+      serbestIcerik={
+        <>
+          <h2 id="duvar-genisligine-gore-kac-rulo-gerekir">Duvar genişliğine göre kaç rulo gerekir?</h2>
           <p>
             Duvar kağıdı alana göre değil, şeride göre tükenir: rulo tavan boyunda şeritlere kesilir ve her şerit duvarın 53
             cm&apos;sini kaplar. Tavan yüksekliği 2,5–3,2 m arasındaysa, üst ve alttaki 5&apos;er cm kesim payıyla birlikte
@@ -130,8 +92,7 @@ export default function WallpaperCalculatorPage() {
             {sayi(2 * (3 + 4))} m çevre demektir ve 53 cm rulodan {rulo(14, 0.53, 2.7)} rulo gerekir. Bir yedek rulo almak,
             sonradan farklı üretim partisinden gelen ve tonu az da olsa farklı rulolarla uğraşmamak için iyi bir alışkanlıktır.
           </p>
-
-          <h2>Duvar metrekaresine göre kaç rulo?</h2>
+          <h2 id="duvar-metrekaresine-gore-kac-rulo">Duvar metrekaresine göre kaç rulo?</h2>
           <p>
             Elinizde yalnızca duvarın metrekaresi varsa, 53 cm × 10,05 m rulonun {sayi(0.53 * 10.05, 2)} m² kağıt taşıdığını,
             ama kesim payları yüzünden bunun yaklaşık {sayi(3 * 0.53 * 2.7, 2)} m²&apos;sinin (2,7 m tavanda 3 şerit) duvara
@@ -155,16 +116,14 @@ export default function WallpaperCalculatorPage() {
               </tbody>
             </table>
           </div>
-
-          <h2>Tavan yüksekliği rulo sayısını nasıl değiştirir?</h2>
+          <h2 id="tavan-yuksekligi-rulo-sayisini-nasil-degistirir">Tavan yüksekliği rulo sayısını nasıl değiştirir?</h2>
           <p>
             Şerit sayısı aşamalı değişir. Tavan 3,25 m&apos;yi geçince bir rulodan 3 yerine 2 şerit çıkar ve aynı duvar için
             gereken rulo sayısı yaklaşık %50 artar. Örneğin 4,5 m genişliğindeki bir duvar 2,7 m tavanda {rulo(4.5, 0.53, 2.7)}{" "}
             rulo isterken 3,4 m tavanda {rulo(4.5, 0.53, 3.4)} rulo ister. Bu yüzden yüksek tavanlı salonlarda metrekare
             hesabı rulo sayısını eksik gösterir.
           </p>
-
-          <h2>Desen tekrarı (rapor) hesabı nasıl etkiler?</h2>
+          <h2 id="desen-tekrari-rapor-hesabi-nasil-etkiler">Desen tekrarı (rapor) hesabı nasıl etkiler?</h2>
           <p>
             Etikette yazan rapor, desenin kendini kaç santimde bir tekrar ettiğidir. Desensiz ve serbest eşleşmeli kağıtta şerit
             boyu tavan yüksekliği kadardır. Desenli kağıtta her şerit, bir öncekiyle motifi tutturmak için raporun katlarına
@@ -173,17 +132,7 @@ export default function WallpaperCalculatorPage() {
             Kaydırmalı (yarım rapor) desenlerde kayıp daha da artabilir. Araçtaki fire payını desenli kağıtta bu yüzden yüksek
             tutmak gerekir.
           </p>
-
-          <h2>Sık Sorulan Sorular</h2>
-          {faqItems.map((item) => (
-            <p key={item.question}>
-              <strong>{item.question}</strong>
-              <br />
-              {item.answer}
-            </p>
-          ))}
-
-          <h2>İlgili araçlar</h2>
+          <h2 id="ilgili-araclar">İlgili araçlar</h2>
           <p>
             Aynı yenileme projesinde işine yarayabilecek diğer araçlar:{" "}
             <Link href="/boya-hesaplama">Boya Hesaplama</Link>,{" "}
@@ -192,8 +141,8 @@ export default function WallpaperCalculatorPage() {
             <Link href="/parke-hesaplama">Parke Hesaplama</Link>,{" "}
             <Link href="/siva-hesaplama">Sıva Hesaplama</Link>.
           </p>
-        </section>
-      </div>
-    </main>
+        </>
+      }
+    />
   );
 }

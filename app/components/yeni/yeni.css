@@ -595,6 +595,31 @@
 .yy-arac-hesap .date-calc-fields.is-amounts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .yy-arac-genis .yy-arac-hesap .date-calc-fields.is-amounts { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .yy-arac-hesap .date-calc-field input[type="number"] { max-width: none; }
+/* Hesap kutusu: muhendislik karti ailesi (engineering-*) koyu zemin icin yazilmisti; beyaz kutuda koyu yazi, mavi sekmeler */
+.yy-arac-hesap .category-general-converter .engineering-calculator-card { padding: 0; border-radius: 0; background: none; }
+.yy-arac-hesap .category-general-converter .engineering-calculator-card .category-general-converter-field span,
+.yy-arac-hesap .engineering-targets > span, .yy-arac-hesap .engineering-result-kicker, .yy-arac-hesap .engineering-field > span,
+.yy-arac-hesap .engineering-result-panel .engineering-field > span, .yy-arac-hesap .calculator-section-heading h2 { color: #212427; font-size: 13.4px; font-weight: 500; }
+.yy-arac-hesap .engineering-target-grid { grid-template-columns: repeat(auto-fit, minmax(0, max-content)); gap: 8px; }
+.yy-arac-hesap .engineering-target-button { min-height: 36px; padding: 6px 14px; border: 1px solid #d2dcff; border-radius: 999px; background: #fff; color: #2f58e0; font-size: 13.4px; font-weight: 600; line-height: 20px; transform: none; }
+.yy-arac-hesap .engineering-target-button:hover { border-color: #3b68fc; background: #f3f6ff; transform: none; }
+.yy-arac-hesap .engineering-target-button.is-active { border-color: #3b68fc; background: #3b68fc; color: #fff; }
+.yy-arac-hesap .engineering-clear-button, .yy-arac-hesap .engineering-result-panel .engineering-clear-button { min-height: 36px; padding: 6px 14px; border: 1px solid #c3c8d4; border-radius: 6px; background: #fff; color: #2f58e0; font-size: 13.4px; font-weight: 600; transform: none; }
+.yy-arac-hesap .engineering-field input, .yy-arac-hesap .engineering-field select, .yy-arac-hesap .engineering-field output { min-height: 40px; height: auto; padding: 8px 12px; background-color: #f8f9fb; border: 1px solid #d2dcff; border-radius: 6px; color: #212427; font-size: 16px; font-weight: 500; }
+.yy-arac-hesap .engineering-field output, .yy-arac-hesap .engineering-field-row-result output { background: #f3f6ff; font-weight: 600; color: #0a0a0a; }
+.yy-arac-hesap .engineering-result-panel { padding: 0; border: 0; border-radius: 0; background: none; color: #212427; }
+.yy-arac-hesap .engineering-formula-box { border-top: 1px solid #dfe2eb; color: #212427; }
+.yy-arac-hesap .engineering-formula-box strong { color: #0a0a0a; }
+.yy-arac-hesap .calculator-usage-hint { padding: 10px 12px; border-radius: 6px; background: #f7f9ff; color: #4b5259; }
+/* Yazi icindeki kucuk hesaplayicilar (ornek: beton yazisindaki doseme hesabi) da ayni gorunumde */
+.yy-arac-metin .date-calc-input { padding: 20px; border: 1px solid #c3c8d4; border-radius: 10px; background: #fff; color: #212427; }
+.yy-arac-metin .date-calc-field { font-size: 13.4px; font-weight: 500; color: #212427; }
+.yy-arac-metin .date-calc-field input, .yy-arac-metin .date-calc-field select { height: 40px; padding: 0 12px; background-color: #f8f9fb; border: 1px solid #d2dcff; border-radius: 6px; font-size: 16px; color: #212427; }
+.yy-arac-metin .date-calc-stat { border: 1px solid #dfe2eb; border-radius: 8px; background: #fff; }
+.yy-arac-metin .date-calc-stat span { font-size: 11px; font-weight: 600; color: #748091; }
+.yy-arac-metin .date-calc-stat strong { font-size: 18px; color: #0a0a0a; }
+.yy-arac-metin .date-calc-stat.is-main { border-color: #d2dcff; background: #f3f6ff; }
+.yy-arac-metin .date-calc-stat.is-main strong { color: #2f58e0; }
 /* Kutudaki tablolar kutuyu tasirmaz, kendi icinde kayar */
 .yy-arac-hesap table { display: block; max-width: 100%; overflow-x: auto; }
 @media (max-width: 1100px) {

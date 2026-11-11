@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import TireSizeCalculator from "../components/TireSizeCalculator";
-import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import type { FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+import AracSayfasi from "@/app/components/yeni/AracSayfasi";
 
 const faqItems: FaqItem[] = [
   {
@@ -42,66 +43,25 @@ export const metadata: Metadata = {
   },
 };
 
-function serializeJsonLd(data: object) {
-  return JSON.stringify(data).replace(/</g, "\\u003c");
-}
 
 export default function TireSizeCalculatorPage() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Ana Sayfa",
-        item: buildSiteUrl("/"),
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Lastik Ebatı Hesaplama",
-        item: buildSiteUrl("/lastik-ebati-hesaplama"),
-      },
-    ],
-  };
 
   return (
-    <main className="all-conversions-page">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd(buildFaqSchema(faqItems)),
-        }}
-      />
-
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Sayfa yolu">
-          <Link href="/">Ana Sayfa</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>Lastik Ebatı Hesaplama</span>
-        </nav>
-
-        <header className="all-conversions-header">
-          <h1>Lastik Ebatı Hesaplama</h1>
-        </header>
-
-        <TireSizeCalculator />
-
-        <section className="category-article-content">
-          <h2>Lastik ebadı kodu nasıl okunur?</h2>
+    <AracSayfasi
+      yol="/lastik-ebati-hesaplama"
+      baslik="Lastik Ebatı Hesaplama"
+      hesap={<TireSizeCalculator />}
+      serbestIcindekiler={[{"id":"lastik-ebadi-kodu-nasil-okunur","baslik":"Lastik ebadı kodu nasıl okunur?"},{"id":"dis-cap-nasil-hesaplanir","baslik":"Dış çap nasıl hesaplanır?"},{"id":"hiz-gostergesi-sapmasi-nasil-olusur","baslik":"Hız göstergesi sapması nasıl oluşur?"},{"id":"sik-sorulan-sorular","baslik":"Sık Sorulan Sorular"},{"id":"kaynaklar","baslik":"Kaynaklar"}]}
+      serbestIcerik={
+        <>
+          <h2 id="lastik-ebadi-kodu-nasil-okunur">Lastik ebadı kodu nasıl okunur?</h2>
           <p>
             Örneğin <strong>205/55 R16</strong> kodunda: 205, lastiğin
             genişliği (mm); 55, yanak oranı (%) — yanak yüksekliğinin
             genişliğe oranı; R, radyal yapı; 16 ise jantın çapıdır
             (inç).
           </p>
-
-          <h2>Dış çap nasıl hesaplanır?</h2>
+          <h2 id="dis-cap-nasil-hesaplanir">Dış çap nasıl hesaplanır?</h2>
           <p>
             Önce yanak yüksekliği bulunur:{" "}
             <strong>Yanak Yüksekliği = Genişlik × (Yanak Oranı / 100)</strong>.
@@ -115,8 +75,7 @@ export default function TireSizeCalculatorPage() {
             devir sayısı da{" "}
             <strong>1.000.000 / Çevre (mm)</strong> formülüyle bulunur.
           </p>
-
-          <h2>Hız göstergesi sapması nasıl oluşur?</h2>
+          <h2 id="hiz-gostergesi-sapmasi-nasil-olusur">Hız göstergesi sapması nasıl oluşur?</h2>
           <p>
             Hız göstergesi, tekerleğin dönüş hızını orijinal lastiğin
             çevresine göre hıza çevirir. Yeni lastiğin çevresi daha
@@ -124,8 +83,7 @@ export default function TireSizeCalculatorPage() {
             gösterge bunu hesaba katmadığı için gerçek hız, gösterilen
             hızdan daha yüksek olur (çevre küçükse tam tersi geçerlidir).
           </p>
-
-          <h2>Sık Sorulan Sorular</h2>
+          <h2 id="sik-sorulan-sorular">Sık Sorulan Sorular</h2>
           <p>
             <strong>
               Lastik ebadı kodu (örn. 205/55 R16) nasıl okunur?
@@ -158,8 +116,7 @@ export default function TireSizeCalculatorPage() {
             ülkelerde muayeneden geçmemeye yol açabilir. Değişiklik
             öncesi bir lastikçiye danışmak en güvenlisidir.
           </p>
-
-          <h2>İlgili araçlar</h2>
+          <h2 id="ilgili-araclar">İlgili araçlar</h2>
           <p>
             Diğer otomotiv hesaplayıcıları için{" "}
             <Link href="/hesaplayicilar#enerji-ve-arac">Enerji, Fatura ve Araç</Link>{" "}
@@ -168,8 +125,7 @@ export default function TireSizeCalculatorPage() {
             {" "}sayfasına bakabilirsin. Bisiklet lastikleri için{" "}
             <Link href="/bisiklet-jant-olcusu">bisiklet jant ölçüsü</Link> çeviricisini kullanabilirsin.
           </p>
-
-          <h2>Kaynaklar</h2>
+          <h2 id="kaynaklar">Kaynaklar</h2>
           <p>
             Lastik ebat kodu ve dış çap formülü, lastik
             üreticilerinin (ETRTO standardı) yayımladığı genel lastik
@@ -177,8 +133,8 @@ export default function TireSizeCalculatorPage() {
             lastik ebadı için her zaman aracının kullanım kılavuzuna
             veya yetkili lastikçiye danış.
           </p>
-        </section>
-      </div>
-    </main>
+        </>
+      }
+    />
   );
 }

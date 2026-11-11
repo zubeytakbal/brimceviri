@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import LetterGradeCalculator from "../components/LetterGradeCalculator";
 import { letterGradeScale } from "../converter/letterGradeCalculator";
-import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import type { FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+import AracSayfasi from "@/app/components/yeni/AracSayfasi";
 
 const faqItems: FaqItem[] = [
   {
@@ -48,48 +49,23 @@ export const metadata: Metadata = {
   },
 };
 
-function serializeJsonLd(data: object) {
-  return JSON.stringify(data).replace(/</g, "\\u003c");
-}
 
 export default function LetterGradeCalculatorPage() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: buildSiteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "Tüm Hesaplamalar", item: buildSiteUrl("/hesaplayicilar") },
-      { "@type": "ListItem", position: 3, name: "Mutfak, Beden ve Okul", item: buildSiteUrl("/hesaplayicilar#olcu-ve-gunluk") },
-      { "@type": "ListItem", position: 4, name: "Harf Notu Hesaplama", item: buildSiteUrl("/harf-notu-hesaplama") },
-    ],
-  };
 
   return (
-    <main className="all-conversions-page">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(buildFaqSchema(faqItems)) }} />
-
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Sayfa yolu">
-          <Link href="/">Ana Sayfa</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/hesaplayicilar#olcu-ve-gunluk">Mutfak, Beden ve Okul</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>Harf Notu Hesaplama</span>
-        </nav>
-
-        <header className="all-conversions-header">
-          <h1>Harf Notu Hesaplama</h1>
-          <p>
+    <AracSayfasi
+      yol="/harf-notu-hesaplama"
+      baslik="Harf Notu Hesaplama"
+      hesap={<LetterGradeCalculator />}
+      giris={<><p>
             Yaygın kullanılan bir referans
             tabloya göre harf notunu ve 4&apos;lük sistem karşılığını
             gör.
-          </p>
-        </header>
-
-        <LetterGradeCalculator />
-
-        <section className="category-article-content">
+          </p></>}
+      sss={faqItems}
+      serbestIcindekiler={[{"id":"tablo","baslik":"100'lük not hangi harf notu ve 4'lük nota denk gelir?"},{"id":"ortalama","baslik":"Dönem ortalaması nasıl hesaplanır?"},{"id":"kaynaklar","baslik":"Kaynaklar"}]}
+      serbestIcerik={
+        <>
           <h2 id="tablo">100&apos;lük not hangi harf notu ve 4&apos;lük nota denk gelir?</h2>
           <p>
             Türkiye&apos;de birçok üniversitenin kullandığı aralıklar aşağıdadır. Sınırlar kuruma, hatta bağıl değerlendirme
@@ -118,7 +94,6 @@ export default function LetterGradeCalculatorPage() {
               </tbody>
             </table>
           </div>
-
           <h2 id="ortalama">Dönem ortalaması nasıl hesaplanır?</h2>
           <p>
             Dönem ortalaması (genellikle &quot;yarıyıl not ortalaması&quot;), her dersin 4&apos;lük karşılığının dersin AKTS
@@ -151,17 +126,7 @@ export default function LetterGradeCalculatorPage() {
             <strong>{(TOPLAM_PUAN / TOPLAM_AKTS).toLocaleString("tr-TR", { maximumFractionDigits: 2 })}</strong> çıkar. Krediyi
             yüksek bir dersteki düşük not, ortalamayı küçük bir dersteki aynı nottan daha çok etkiler.
           </p>
-
-          <h2>Sık Sorulan Sorular</h2>
-          {faqItems.map((item) => (
-            <p key={item.question}>
-              <strong>{item.question}</strong>
-              <br />
-              {item.answer}
-            </p>
-          ))}
-
-          <h2>İlgili araçlar</h2>
+          <h2 id="ilgili-araclar">İlgili araçlar</h2>
           <p>
             Diğer öğretmen araçları için{" "}
             <Link href="/hesaplayicilar#olcu-ve-gunluk">Mutfak, Beden ve Okul</Link>
@@ -169,15 +134,14 @@ export default function LetterGradeCalculatorPage() {
             <Link href="/bilim-hesaplayicilari/matematik/ortalama-hesaplama">Ortalama Hesaplama</Link>
             {" "}sayfasına bakabilirsin.
           </p>
-
-          <h2>Kaynaklar</h2>
+          <h2 id="kaynaklar">Kaynaklar</h2>
           <p>
             Tablo, Türkiye&apos;de üniversitelerde yaygın kullanılan
             genel bir 100&apos;lük-4&apos;lük dönüşüm referansına
             dayanır; resmi bir standart değildir.
           </p>
-        </section>
-      </div>
-    </main>
+        </>
+      }
+    />
   );
 }

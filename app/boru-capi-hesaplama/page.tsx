@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import PipeFlowCalculator from "../components/PipeFlowCalculator";
-import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import type { FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
 import EngineeringNextSteps from "../components/engineering/EngineeringNextSteps";
 import { ENGINEERING_FLOWS } from "../converter/engineeringFlows";
+import AracSayfasi from "@/app/components/yeni/AracSayfasi";
 
 const faqItems: FaqItem[] = [
   {
@@ -34,40 +35,18 @@ export const metadata: Metadata = {
   },
 };
 
-function serializeJsonLd(data: object) {
-  return JSON.stringify(data).replace(/</g, "\\u003c");
-}
 
 export default function PipeFlowPage() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: buildSiteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "Boru Çapı, Debi ve Akış Hızı Hesaplama", item: buildSiteUrl("/boru-capi-hesaplama") },
-    ],
-  };
 
   return (
-    <main className="all-conversions-page">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(buildFaqSchema(faqItems)) }} />
-
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Sayfa yolu">
-          <Link href="/">Ana Sayfa</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>Boru Çapı, Debi ve Akış Hızı Hesaplama</span>
-        </nav>
-
-        <header className="all-conversions-header">
-          <h1>Boru Çapı, Debi ve Akış Hızı Hesaplama</h1>
-        </header>
-
-        <PipeFlowCalculator />
-
-        <section className="category-article-content">
-          <h2>Sık Sorulan Sorular</h2>
+    <AracSayfasi
+      yol="/boru-capi-hesaplama"
+      baslik="Boru Çapı, Debi ve Akış Hızı Hesaplama"
+      hesap={<PipeFlowCalculator />}
+      serbestIcindekiler={[{"id":"sik-sorulan-sorular","baslik":"Sık Sorulan Sorular"},{"id":"kaynaklar","baslik":"Kaynaklar"}]}
+      serbestIcerik={
+        <>
+          <h2 id="sik-sorulan-sorular">Sık Sorulan Sorular</h2>
           <p>
             <strong>Boru çapı nasıl hesaplanır?</strong>
             <br />
@@ -83,10 +62,8 @@ export default function PipeFlowPage() {
             0,5-2,5 m/s aralığındadır. Çok düşük hız çökelmeye, çok
             yüksek hız aşınma ve gürültüye yol açabilir.
           </p>
-
           <EngineeringNextSteps links={ENGINEERING_FLOWS["/boru-capi-hesaplama"]} />
-
-          <h2>İlgili araçlar</h2>
+          <h2 id="ilgili-araclar">İlgili araçlar</h2>
           <p>
             Boru hattındaki basınç kaybı için{" "}
             <Link href="/basinc-kaybi-hesaplama">Basınç Kaybı Hesaplama</Link>,
@@ -94,16 +71,15 @@ export default function PipeFlowPage() {
             <Link href="/hesaplayicilar#teknik">Teknik ve Mühendislik</Link>{" "}
             sayfasına bakabilirsin.
           </p>
-
-          <h2>Kaynaklar</h2>
+          <h2 id="kaynaklar">Kaynaklar</h2>
           <p>
             Formül, akışkanlar mekaniğinde temel süreklilik
             denklemine dayanır. Doğalgaz iç tesisatı gibi basınç
             kaybı ve gaz yoğunluğuna bağlı hesaplar TS 7363
             standardına göre ayrıca yapılmalıdır.
           </p>
-        </section>
-      </div>
-    </main>
+        </>
+      }
+    />
   );
 }

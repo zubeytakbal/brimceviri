@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import CrosswindCalculator from "../components/CrosswindCalculator";
-import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import type { FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+import AracSayfasi from "@/app/components/yeni/AracSayfasi";
 
 const faqItems: FaqItem[] = [
   {
@@ -40,58 +41,18 @@ export const metadata: Metadata = {
   },
 };
 
-function serializeJsonLd(data: object) {
-  return JSON.stringify(data).replace(/</g, "\\u003c");
-}
 
 export default function CrosswindCalculatorPage() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Ana Sayfa",
-        item: buildSiteUrl("/"),
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Yan Rüzgar Bileşeni Hesaplama",
-        item: buildSiteUrl("/yan-ruzgar-hesaplama"),
-      },
-    ],
-  };
 
   return (
-    <main className="all-conversions-page">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd(buildFaqSchema(faqItems)),
-        }}
-      />
-
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Sayfa yolu">
-          <Link href="/">Ana Sayfa</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>Yan Rüzgar Bileşeni Hesaplama</span>
-        </nav>
-
-        <header className="all-conversions-header">
-          <h1>Yan Rüzgar Bileşeni Hesaplama</h1>
-        </header>
-
-        <CrosswindCalculator />
-
-        <section className="category-article-content">
-          <h2>Yan rüzgar bileşeni nasıl hesaplanır?</h2>
+    <AracSayfasi
+      yol="/yan-ruzgar-hesaplama"
+      baslik="Yan Rüzgar Bileşeni Hesaplama"
+      hesap={<CrosswindCalculator />}
+      serbestIcindekiler={[{"id":"yan-ruzgar-bileseni-nasil-hesaplanir","baslik":"Yan rüzgar bileşeni nasıl hesaplanır?"},{"id":"sik-sorulan-sorular","baslik":"Sık Sorulan Sorular"},{"id":"kaynaklar","baslik":"Kaynaklar"}]}
+      serbestIcerik={
+        <>
+          <h2 id="yan-ruzgar-bileseni-nasil-hesaplanir">Yan rüzgar bileşeni nasıl hesaplanır?</h2>
           <p>
             Rüzgar yönü ile pist yönü arasındaki açı farkı bulunur, bu
             açının sinüsü rüzgar hızıyla çarpılarak yan rüzgar bileşeni
@@ -107,8 +68,7 @@ export default function CrosswindCalculatorPage() {
             </strong>
             .
           </p>
-
-          <h2>Sık Sorulan Sorular</h2>
+          <h2 id="sik-sorulan-sorular">Sık Sorulan Sorular</h2>
           <p>
             <strong>Pist yönünü nasıl bulurum?</strong>
             <br />
@@ -124,8 +84,7 @@ export default function CrosswindCalculatorPage() {
             değeri (demonstrated crosswind component) vardır. Bu değer
             uçağın performans el kitabında (POH/AFM) yer alır.
           </p>
-
-          <h2>İlgili araçlar</h2>
+          <h2 id="ilgili-araclar">İlgili araçlar</h2>
           <p>
             Diğer pilot araçları için{" "}
             <Link href="/hesaplayicilar#harita-ve-havacilik">Harita, Coğrafya ve Havacılık</Link> sayfasına,
@@ -135,8 +94,7 @@ export default function CrosswindCalculatorPage() {
             Yoğunluk İrtifası Hesaplama
             {" "}sayfalarına bakabilirsin.
           </p>
-
-          <h2>Kaynaklar</h2>
+          <h2 id="kaynaklar">Kaynaklar</h2>
           <p>
             Yan rüzgar bileşeni formülü, uçuş eğitiminde standart
             kullanılan temel trigonometrik navigasyon hesabına
@@ -144,8 +102,8 @@ export default function CrosswindCalculatorPage() {
             amaçlıdır; gerçek uçuş kararı için uçağın performans el
             kitabı ve resmî hava durumu/METAR verileri esas alınmalıdır.
           </p>
-        </section>
-      </div>
-    </main>
+        </>
+      }
+    />
   );
 }

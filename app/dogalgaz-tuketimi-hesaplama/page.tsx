@@ -2,8 +2,9 @@ import { buildFullLanguageAlternates } from "@/app/i18n/routing";
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import NaturalGasCalculator from "../components/NaturalGasCalculator";
-import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import type { FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+import AracSayfasi from "@/app/components/yeni/AracSayfasi";
 
 const faqItems: FaqItem[] = [
   {
@@ -40,57 +41,18 @@ export const metadata: Metadata = {
   },
 };
 
-function serializeJsonLd(data: object) {
-  return JSON.stringify(data).replace(/</g, "\\u003c");
-}
 
 export default function NaturalGasCalculatorPage() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Ana Sayfa",
-        item: buildSiteUrl("/"),
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Doğalgaz Tüketimi Hesaplama",
-        item: buildSiteUrl("/dogalgaz-tuketimi-hesaplama"),
-      },
-    ],
-  };
 
   return (
-    <main className="all-conversions-page">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd(buildFaqSchema(faqItems)),
-        }}
-      />
-
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Sayfa yolu">
-          <Link href="/">Ana Sayfa</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>Doğalgaz Tüketimi Hesaplama</span>
-        </nav>
-
-        <header className="all-conversions-header">
-          <h1>Doğalgaz Tüketimi Hesaplama</h1>
-        </header>
-
-        <NaturalGasCalculator />
-
-        <section className="category-article-content">
+    <AracSayfasi
+      yol="/dogalgaz-tuketimi-hesaplama"
+      baslik="Doğalgaz Tüketimi Hesaplama"
+      hesap={<NaturalGasCalculator />}
+      sss={faqItems}
+      serbestIcindekiler={[{"id":"kwh","baslik":"Doğalgaz m³ kaç kWh?"},{"id":"dogalgaz-maliyeti-nasil-hesaplanir","baslik":"Doğalgaz maliyeti nasıl hesaplanır?"}]}
+      serbestIcerik={
+        <>
           <h2 id="kwh">Doğalgaz m³ kaç kWh?</h2>
           <p>
             Faturada doğalgaz metreküp olarak ölçülür ama enerji olarak (kWh) faturalanır. Çeviri, faturanızda yazan{" "}
@@ -126,25 +88,14 @@ export default function NaturalGasCalculatorPage() {
             faturanızdaki değerle tam karşılığı bu formülle bulabilirsiniz. Tersi de aynı formülle bulunur: 1.000 kWh,
             9.155 kcal/m³ üst ısıl değerde yaklaşık {sayi((1000 * 860) / 9155)} m³ eder.
           </p>
-
-          <h2>Doğalgaz maliyeti nasıl hesaplanır?</h2>
+          <h2 id="dogalgaz-maliyeti-nasil-hesaplanir">Doğalgaz maliyeti nasıl hesaplanır?</h2>
           <p>
             Hesap basittir: <strong>Toplam Maliyet = Tüketim (m³) × Birim
             Fiyat (₺/m³)</strong>. kWh karşılığı ise Türkiye ortalaması bir
             katsayıyla (yaklaşık 10,55 kWh/m³) tahmini olarak gösterilir;
             gerçek faturandaki katsayı bölgeye göre farklılık gösterebilir.
           </p>
-
-          <h2>Sık Sorulan Sorular</h2>
-          {faqItems.map((item) => (
-            <p key={item.question}>
-              <strong>{item.question}</strong>
-              <br />
-              {item.answer}
-            </p>
-          ))}
-
-          <h2>İlgili araçlar</h2>
+          <h2 id="ilgili-araclar">İlgili araçlar</h2>
           <p>
             Isıtma sistemi seçimi için{" "}
             <Link href="/kombi-klima-isitma-maliyeti-karsilastirma">Isı Pompası - Kombi Karşılaştırma</Link>,{" "}
@@ -154,8 +105,8 @@ export default function NaturalGasCalculatorPage() {
             <Link href="/elektrik-tuketimi-hesaplama">Elektrik Tüketimi Hesaplama</Link>
             {" "}sayfasına bakabilirsin.
           </p>
-        </section>
-      </div>
-    </main>
+        </>
+      }
+    />
   );
 }

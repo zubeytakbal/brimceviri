@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import TarlaDonumCalculator from "../components/TarlaDonumCalculator";
-import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import type { FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+import AracSayfasi from "@/app/components/yeni/AracSayfasi";
 
 const pagePath = "/tarla-donum-hesaplama";
 
@@ -44,43 +45,19 @@ export const metadata: Metadata = {
   openGraph: { title, description, url: buildSiteUrl(pagePath), siteName: "BirimCeviri.app", locale: "tr_TR", type: "website" },
 };
 
-function serializeJsonLd(data: object) {
-  return JSON.stringify(data).replace(/</g, "\\u003c");
-}
 
 export default function TarlaDonumPage() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: buildSiteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "Alan Dönüşümleri", item: buildSiteUrl("/kategoriler/alan") },
-      { "@type": "ListItem", position: 3, name: "Tarla Dönüm Hesaplama", item: buildSiteUrl(pagePath) },
-    ],
-  };
 
   return (
-    <main className="all-conversions-page">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(buildFaqSchema(faqItems)) }} />
-
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Sayfa yolu">
-          <Link href="/">Ana Sayfa</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/kategoriler/alan">Alan Dönüşümleri</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>Tarla Dönüm Hesaplama</span>
-        </nav>
-
-        <header className="all-conversions-header">
-          <h1>Tarla Dönüm Hesaplama</h1>
-        </header>
-
-        <TarlaDonumCalculator />
-
-        <section className="category-article-content">
-          <h2>Tarla nasıl ölçülür?</h2>
+    <AracSayfasi
+      yol="/tarla-donum-hesaplama"
+      baslik="Tarla Dönüm Hesaplama"
+      hesap={<TarlaDonumCalculator />}
+      sss={faqItems}
+      serbestIcindekiler={[{"id":"tarla-nasil-olculur","baslik":"Tarla nasıl ölçülür?"},{"id":"donum-dekar-eski-donum-ve-hektar","baslik":"Dönüm, dekar, eski dönüm ve hektar"},{"id":"ilgili-donusumler","baslik":"İlgili dönüşümler"}]}
+      serbestIcerik={
+        <>
+          <h2 id="tarla-nasil-olculur">Tarla nasıl ölçülür?</h2>
           <p>
             <strong>Dikdörtgen tarla:</strong> iki komşu kenarı (en ve boy) ölçün. 40 m × 75 m = 3.000 m² = 3 dönüm.
           </p>
@@ -92,8 +69,7 @@ export default function TarlaDonumPage() {
           <p>
             <strong>Üçgen tarla:</strong> üç kenarı ölçmek yeterlidir.
           </p>
-
-          <h2>Dönüm, dekar, eski dönüm ve hektar</h2>
+          <h2 id="donum-dekar-eski-donum-ve-hektar">Dönüm, dekar, eski dönüm ve hektar</h2>
           <div className="conversion-table-wrap">
             <table className="conversion-table">
               <thead>
@@ -132,17 +108,7 @@ export default function TarlaDonumPage() {
               </tbody>
             </table>
           </div>
-
-          <h2>Sık Sorulan Sorular</h2>
-          {faqItems.map((item) => (
-            <p key={item.question}>
-              <strong>{item.question}</strong>
-              <br />
-              {item.answer}
-            </p>
-          ))}
-
-          <h2>İlgili dönüşümler</h2>
+          <h2 id="ilgili-donusumler">İlgili dönüşümler</h2>
           <ul className="related-conversion-list">
             <li>
               <Link href="/metrekare-donum">Metrekare → Dönüm</Link>
@@ -160,8 +126,8 @@ export default function TarlaDonumPage() {
               <Link href="/kategoriler/alan">Tüm alan dönüşümleri</Link>
             </li>
           </ul>
-        </section>
-      </div>
-    </main>
+        </>
+      }
+    />
   );
 }

@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import AbvCalculator from "../components/AbvCalculator";
-import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import type { FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+import AracSayfasi from "@/app/components/yeni/AracSayfasi";
 
 const faqItems: FaqItem[] = [
   {
@@ -34,53 +35,19 @@ export const metadata: Metadata = {
   },
 };
 
-function serializeJsonLd(data: object) {
-  return JSON.stringify(data).replace(/</g, "\\u003c");
-}
 
 export default function AbvCalculatorPage() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: buildSiteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "Tüm Hesaplamalar", item: buildSiteUrl("/hesaplayicilar") },
-      { "@type": "ListItem", position: 3, name: "Mutfak, Beden ve Okul", item: buildSiteUrl("/hesaplayicilar#olcu-ve-gunluk") },
-      { "@type": "ListItem", position: 4, name: "ABV ve Standart İçki Hesaplama", item: buildSiteUrl("/abv-standart-icki-hesaplama") },
-    ],
-  };
 
   return (
-    <main className="all-conversions-page">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(buildFaqSchema(faqItems)) }} />
-
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Sayfa yolu">
-          <Link href="/">Ana Sayfa</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/hesaplayicilar#olcu-ve-gunluk">Mutfak, Beden ve Okul</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>ABV ve Standart İçki Hesaplama</span>
-        </nav>
-
-        <header className="all-conversions-header">
-          <h1>ABV ve Standart İçki Hesaplama</h1>
-        </header>
-
-        <AbvCalculator />
-
-        <section className="category-article-content">
-          <h2>Sık Sorulan Sorular</h2>
-          {faqItems.map((item) => (
-            <p key={item.question}>
-              <strong>{item.question}</strong>
-              <br />
-              {item.answer}
-            </p>
-          ))}
-
-          <h2>İlgili araçlar</h2>
+    <AracSayfasi
+      yol="/abv-standart-icki-hesaplama"
+      baslik="ABV ve Standart İçki Hesaplama"
+      hesap={<AbvCalculator />}
+      sss={faqItems}
+      serbestIcindekiler={[{"id":"kaynaklar","baslik":"Kaynaklar"}]}
+      serbestIcerik={
+        <>
+          <h2 id="ilgili-araclar">İlgili araçlar</h2>
           <p>
             Diğer barmen araçları için{" "}
             <Link href="/hesaplayicilar#olcu-ve-gunluk">Mutfak, Beden ve Okul</Link>
@@ -88,15 +55,14 @@ export default function AbvCalculatorPage() {
             <Link href="/kokteyl-olcusu-cevirici">Kokteyl Ölçüsü Çevirici</Link>
             {" "}sayfasına bakabilirsin.
           </p>
-
-          <h2>Kaynaklar</h2>
+          <h2 id="kaynaklar">Kaynaklar</h2>
           <p>
             Formül, etanolün yoğunluğuna (~0,789 g/mL, 20°C&apos;de)
             dayanır. Standart içki referans değeri ülkeye göre
             değişir; bu araç tıbbi tavsiye yerine geçmez.
           </p>
-        </section>
-      </div>
-    </main>
+        </>
+      }
+    />
   );
 }

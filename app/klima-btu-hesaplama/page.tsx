@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import AcCapacityCalculator from "../components/AcCapacityCalculator";
-import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import type { FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
 import EngineeringNextSteps from "../components/engineering/EngineeringNextSteps";
 import { ENGINEERING_FLOWS } from "../converter/engineeringFlows";
+import AracSayfasi from "@/app/components/yeni/AracSayfasi";
 
 const faqItems: FaqItem[] = [
   {
@@ -37,58 +38,18 @@ export const metadata: Metadata = {
   },
 };
 
-function serializeJsonLd(data: object) {
-  return JSON.stringify(data).replace(/</g, "\\u003c");
-}
 
 export default function AcCapacityCalculatorPage() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Ana Sayfa",
-        item: buildSiteUrl("/"),
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Klima BTU Hesaplama",
-        item: buildSiteUrl("/klima-btu-hesaplama"),
-      },
-    ],
-  };
 
   return (
-    <main className="all-conversions-page">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd(buildFaqSchema(faqItems)),
-        }}
-      />
-
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Sayfa yolu">
-          <Link href="/">Ana Sayfa</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>Klima BTU Hesaplama</span>
-        </nav>
-
-        <header className="all-conversions-header">
-          <h1>Klima BTU Hesaplama</h1>
-        </header>
-
-        <AcCapacityCalculator />
-
-        <section className="category-article-content">
-          <h2>BTU nedir, klima gücüyle ne ilgisi var?</h2>
+    <AracSayfasi
+      yol="/klima-btu-hesaplama"
+      baslik="Klima BTU Hesaplama"
+      hesap={<AcCapacityCalculator />}
+      serbestIcindekiler={[{"id":"btu-nedir-klima-gucuyle-ne-ilgisi","baslik":"BTU nedir, klima gücüyle ne ilgisi var?"},{"id":"hesaplama-nasil-yapiliyor","baslik":"Hesaplama nasıl yapılıyor?"},{"id":"sik-sorulan-sorular","baslik":"Sık Sorulan Sorular"},{"id":"kaynaklar","baslik":"Kaynaklar"}]}
+      serbestIcerik={
+        <>
+          <h2 id="btu-nedir-klima-gucuyle-ne-ilgisi">BTU nedir, klima gücüyle ne ilgisi var?</h2>
           <p>
             BTU (British Thermal Unit), bir klimanın saatte çekebileceği
             ısı miktarını ifade eden bir birimdir — kabaca klimanın
@@ -101,8 +62,7 @@ export default function AcCapacityCalculatorPage() {
             Doğru kapasite seçimi bu yüzden hem konfor hem tasarruf
             açısından önemlidir.
           </p>
-
-          <h2>Hesaplama nasıl yapılıyor?</h2>
+          <h2 id="hesaplama-nasil-yapiliyor">Hesaplama nasıl yapılıyor?</h2>
           <p>
             Yaygın kullanılan pratik formül, oda alanının metrekare
             başına 500-600 BTU ile çarpılmasına dayanır; bu araçta 600
@@ -121,8 +81,7 @@ export default function AcCapacityCalculatorPage() {
             klima teknisyeninden yerinde keşif almak daha doğru sonuç
             verir.
           </p>
-
-          <h2>Sık Sorulan Sorular</h2>
+          <h2 id="sik-sorulan-sorular">Sık Sorulan Sorular</h2>
           <p>
             <strong>Salon ve yatak odasında aynı formül mü kullanılır?</strong>
             <br />
@@ -139,10 +98,8 @@ export default function AcCapacityCalculatorPage() {
             kapasiteyi almak odayı yeterince soğutamamana yol açar, bu
             yüzden bir üst standart kapasite güvenli tercihtir.
           </p>
-
           <EngineeringNextSteps links={ENGINEERING_FLOWS["/klima-btu-hesaplama"]} />
-
-          <h2>İlgili araçlar</h2>
+          <h2 id="ilgili-araclar">İlgili araçlar</h2>
           <p>
             kombi, klima ve ısı pompasıyla ısınma maliyetini karşılaştırmak için{" "}
             <Link href="/kombi-klima-isitma-maliyeti-karsilastirma">Isıtma Maliyeti Karşılaştırma</Link>,{" "}
@@ -152,16 +109,15 @@ export default function AcCapacityCalculatorPage() {
             <Link href="/hesaplayicilar#enerji-ve-arac">Enerji, Fatura ve Araç</Link>
             {" "}sayfasına bakabilirsin.
           </p>
-
-          <h2>Kaynaklar</h2>
+          <h2 id="kaynaklar">Kaynaklar</h2>
           <p>
             Formüldeki m² başına BTU aralığı (500-600) ve kişi başına ek
             yük (600 BTU), klima üreticilerinin (Vestel, Toshiba,
             Mitsubishi gibi) yayımladığı kapasite seçim rehberlerinde
             yaygın kullanılan pratik değerlerdir.
           </p>
-        </section>
-      </div>
-    </main>
+        </>
+      }
+    />
   );
 }

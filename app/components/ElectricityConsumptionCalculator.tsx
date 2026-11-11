@@ -148,57 +148,6 @@ const copyByLocale: Record<
       costHint: "Vul je prijs per kWh in om de kosten te schatten.",
     },
   },
-  sv: {
-    labels: {
-      power: "Apparatens effekt (watt)",
-      hours: "Daglig användningstid (timmar)",
-      days: "Användningsdagar per månad",
-      price: "Elpris (kr/kWh) - valfritt",
-    },
-    placeholder: "Pris per kWh från din elräkning",
-    emptyState: "Ange giltiga värden för att se resultatet.",
-    resultLabels: {
-      monthly: "Månadsförbrukning",
-      daily: "Daglig förbrukning",
-      yearly: "Årsförbrukning",
-      yearlyCost: "Årskostnad",
-      costHint: "Ange ditt elpris per kWh för att se en kostnadsuppskattning.",
-    },
-  },
-  no: {
-    labels: {
-      power: "Apparatets effekt (watt)",
-      hours: "Daglig brukstid (timer)",
-      days: "Bruksdager per måned",
-      price: "Strømpris (kr/kWh) - valgfritt",
-    },
-    placeholder: "Pris per kWh fra strømregningen",
-    emptyState: "Angi gyldige verdier for å se resultatet.",
-    resultLabels: {
-      monthly: "Månedlig forbruk",
-      daily: "Daglig forbruk",
-      yearly: "Årlig forbruk",
-      yearlyCost: "Årlig kostnad",
-      costHint: "Angi strømprisen per kWh for å se et kostnadsestimat.",
-    },
-  },
-  da: {
-    labels: {
-      power: "Apparatets effekt (watt)",
-      hours: "Daglig brugstid (timer)",
-      days: "Brugsdage pr. måned",
-      price: "Elpris (kr./kWh) - valgfrit",
-    },
-    placeholder: "Pris pr. kWh fra din elregning",
-    emptyState: "Indtast gyldige værdier for at se resultatet.",
-    resultLabels: {
-      monthly: "Månedligt forbrug",
-      daily: "Dagligt forbrug",
-      yearly: "Årligt forbrug",
-      yearlyCost: "Årlig udgift",
-      costHint: "Indtast din elpris pr. kWh for at se et prisoverslag.",
-    },
-  },
   de: {
     labels: {
       power: "Geräteleistung (Watt)",

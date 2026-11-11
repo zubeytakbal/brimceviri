@@ -11,44 +11,26 @@ import {
   timeZoneLongName,
 } from "./timezones";
 import { cityNameDe, citySlugDe } from "./germanWorld";
-import { cityNameNordic, citySlugNordic } from "./nordicWorld";
 import { referenceCitySlugs, worldCities, type WorldCity } from "./worldCities";
 
 // Sehir sayfalari icin sunucuda hesaplanan gercek veriler (ISR ile tazelenir).
 
-export type Lang = "tr" | "en" | "de" | "sv" | "no" | "da";
-const LOCALE: Record<Lang, string> = { tr: "tr-TR", en: "en-US", de: "de-DE", sv: "sv-SE", no: "nb-NO", da: "da-DK" };
-
-const isNordic = (lang: Lang): lang is "sv" | "no" | "da" => lang === "sv" || lang === "no" || lang === "da";
+export type Lang = "tr" | "en" | "de";
+const LOCALE: Record<Lang, string> = { tr: "tr-TR", en: "en-US", de: "de-DE" };
 
 export function cityName(city: WorldCity, lang: Lang) {
-  if (isNordic(lang)) return cityNameNordic(lang, city);
   return lang === "tr" ? city.nameTr : lang === "de" ? cityNameDe(city) : city.nameEn;
 }
 
 export function citySlug(city: WorldCity, lang: Lang) {
-  if (isNordic(lang)) return citySlugNordic(lang, city);
   return lang === "tr" ? city.tr : lang === "de" ? citySlugDe(city) : city.en;
 }
-
-// Fark ifadesi: [saat tekil, saat çoğul, dakika, ileride, geride, aynı saat]
-const DIFF_WORDS: Record<"sv" | "no" | "da", [string, string, string, string, string, string]> = {
-  sv: ["timme", "timmar", "minuter", "före", "efter", "samma tid"],
-  no: ["time", "timer", "minutter", "foran", "bak", "samme tid"],
-  da: ["time", "timer", "minutter", "foran", "bagud", "samme tid"],
-};
 
 /** "7 saat geride", "3 saat 30 dakika ileride", "aynı saat" */
 export function describeDifference(minutes: number, lang: Lang) {
   const abs = Math.abs(minutes);
   const h = Math.floor(abs / 60);
   const m = abs % 60;
-  if (isNordic(lang)) {
-    const [one, many, min, ahead, behind, same] = DIFF_WORDS[lang];
-    if (minutes === 0) return same;
-    const amount = [h ? `${h} ${h === 1 ? one : many}` : "", m ? `${m} ${min}` : ""].filter(Boolean).join(" ");
-    return `${amount} ${minutes > 0 ? ahead : behind}`;
-  }
   if (minutes === 0) return lang === "tr" ? "aynı saat" : lang === "de" ? "gleiche Uhrzeit" : "the same time";
   if (lang === "de") {
     const amount = [h ? `${h} Stunde${h === 1 ? "" : "n"}` : "", m ? `${m} Minuten` : ""].filter(Boolean).join(" ");
@@ -85,9 +67,6 @@ const DAY_LENGTH: Record<Lang, (h: number, m: number) => string> = {
   tr: (h, m) => `${h} sa ${m} dk`,
   en: (h, m) => `${h} h ${m} min`,
   de: (h, m) => `${h} Std. ${m} Min.`,
-  sv: (h, m) => `${h} tim ${m} min`,
-  no: (h, m) => `${h} t ${m} min`,
-  da: (h, m) => `${h} t. ${m} min.`,
 };
 
 /** [gün batmaz, gün doğmaz] */
@@ -95,9 +74,6 @@ const POLAR: Record<Lang, [string, string]> = {
   tr: ["Gün batmaz", "Gün doğmaz"],
   en: ["Sun never sets", "Sun never rises"],
   de: ["Mitternachtssonne", "Polarnacht"],
-  sv: ["Midnattssol", "Polarnatt"],
-  no: ["Midnattssol", "Mørketid"],
-  da: ["Midnatssol", "Polarnat"],
 };
 
 /** [ertesi gün, önceki gün] */
@@ -105,9 +81,6 @@ const DAY_NOTE: Record<Lang, [string, string]> = {
   tr: ["ertesi gün", "önceki gün"],
   en: ["next day", "previous day"],
   de: ["Folgetag", "Vortag"],
-  sv: ["nästa dag", "föregående dag"],
-  no: ["neste dag", "forrige dag"],
-  da: ["næste dag", "foregående dag"],
 };
 
 export type SunRow = { date: string; sunrise: string; sunset: string; dayLength: string };

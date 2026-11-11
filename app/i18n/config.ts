@@ -1,4 +1,4 @@
-export const SUPPORTED_LOCALES = ["tr", "en", "de", "ar", "bn", "fr", "es", "pt", "it", "nl", "ru", "sv", "no", "da"] as const;
+export const SUPPORTED_LOCALES = ["tr", "en", "de", "ar", "bn", "fr", "es", "pt", "it", "nl", "ru"] as const;
 
 export type Locale = (typeof SUPPORTED_LOCALES)[number];
 
@@ -189,51 +189,6 @@ export const LOCALE_DEFINITIONS: Record<Locale, LocaleDefinition> = {
     switcherOptionsLabel: "Языки",
     switcherSearchPlaceholder: "Поиск языка",
     switcherEmptyLabel: "Подходящий язык не найден",
-  },
-  sv: {
-    code: "sv",
-    htmlLang: "sv",
-    dir: "ltr",
-    openGraphLocale: "sv_SE",
-    pathPrefix: "/sv",
-    homePath: "/sv",
-    label: "Svenska",
-    switcherLabel: "Svenska",
-    switcherCurrentLabel: "SV - Svenska",
-    switcherAriaLabel: "Välj språk",
-    switcherOptionsLabel: "Språkalternativ",
-    switcherSearchPlaceholder: "Sök språk",
-    switcherEmptyLabel: "Inget matchande språk hittades",
-  },
-  no: {
-    code: "no",
-    htmlLang: "nb",
-    dir: "ltr",
-    openGraphLocale: "nb_NO",
-    pathPrefix: "/no",
-    homePath: "/no",
-    label: "Norsk",
-    switcherLabel: "Norsk",
-    switcherCurrentLabel: "NO - Norsk",
-    switcherAriaLabel: "Velg språk",
-    switcherOptionsLabel: "Språkalternativer",
-    switcherSearchPlaceholder: "Søk språk",
-    switcherEmptyLabel: "Ingen matchende språk funnet",
-  },
-  da: {
-    code: "da",
-    htmlLang: "da",
-    dir: "ltr",
-    openGraphLocale: "da_DK",
-    pathPrefix: "/da",
-    homePath: "/da",
-    label: "Dansk",
-    switcherLabel: "Dansk",
-    switcherCurrentLabel: "DA - Dansk",
-    switcherAriaLabel: "Vælg sprog",
-    switcherOptionsLabel: "Sprogindstillinger",
-    switcherSearchPlaceholder: "Søg sprog",
-    switcherEmptyLabel: "Intet matchende sprog fundet",
   },
 };
 

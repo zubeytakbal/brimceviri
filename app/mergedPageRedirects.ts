@@ -50,9 +50,6 @@ function goldKaratPairRedirects(): MergedRedirect[] {
     fr: { to: "/fr/categories/carat-or", slugs: ["or-18-carats-or-22-carats", "or-22-carats-or-18-carats", "or-22-carats-or-24-carats", "or-24-carats-or-22-carats"] },
     it: { to: "/it/categorie/caratura-oro", slugs: ["oro-18-carati-oro-22-carati", "oro-22-carati-oro-18-carati", "oro-22-carati-oro-24-carati", "oro-24-carati-oro-22-carati"] },
     nl: { to: "/nl/categorieen/goudkaraat", slugs: ["18-karaat-goud-22-karaat-goud", "22-karaat-goud-18-karaat-goud", "22-karaat-goud-24-karaat-goud", "24-karaat-goud-22-karaat-goud"] },
-    sv: { to: "/sv/kategorier/guldkarat", slugs: ["18-karat-guld-22-karat-guld", "22-karat-guld-18-karat-guld", "22-karat-guld-24-karat-guld", "24-karat-guld-22-karat-guld"] },
-    no: { to: "/no/kategorier/gullkarat", slugs: ["18-karat-gull-22-karat-gull", "22-karat-gull-18-karat-gull", "22-karat-gull-24-karat-gull", "24-karat-gull-22-karat-gull"] },
-    da: { to: "/da/kategorier/guldkarat", slugs: ["18-karat-guld-22-karat-guld", "22-karat-guld-18-karat-guld", "22-karat-guld-24-karat-guld", "24-karat-guld-22-karat-guld"] },
   };
   return Object.entries(pairs).flatMap(([locale, { to, slugs }]) => slugs.map((slug) => r(`${locale ? `/${locale}` : ""}/${slug}`, to)));
 }

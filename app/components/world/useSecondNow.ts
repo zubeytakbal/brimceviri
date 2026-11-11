@@ -37,13 +37,13 @@ export function wallClockDate(now: Date, timeZone: string) {
   return new Date(now.getTime() + (zoneOffsetMinutes(timeZone, now) - localOffset) * 60000);
 }
 
-export type WorldLang = "tr" | "en" | "de" | "sv" | "no" | "da";
+export type WorldLang = "tr" | "en" | "de";
 
 /** Saat ve tarih biçimi için Intl dili. */
-export const WORLD_LOCALE: Record<WorldLang, string> = { tr: "tr-TR", en: "en-US", de: "de-DE", sv: "sv-SE", no: "nb-NO", da: "da-DK" };
+export const WORLD_LOCALE: Record<WorldLang, string> = { tr: "tr-TR", en: "en-US", de: "de-DE" };
 
-const SAME_TIME: Record<WorldLang, string> = { tr: "aynı saat", en: "same time", de: "gleiche Zeit", sv: "samma tid", no: "samme tid", da: "samme tid" };
-const HOUR_UNIT: Record<WorldLang, string> = { tr: "sa", en: "h", de: "Std.", sv: "tim", no: "t", da: "t." };
+const SAME_TIME: Record<WorldLang, string> = { tr: "aynı saat", en: "same time", de: "gleiche Zeit" };
+const HOUR_UNIT: Record<WorldLang, string> = { tr: "sa", en: "h", de: "Std." };
 
 export function shortDifference(minutes: number, lang: WorldLang) {
   if (minutes === 0) return SAME_TIME[lang];

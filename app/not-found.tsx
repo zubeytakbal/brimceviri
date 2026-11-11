@@ -129,39 +129,6 @@ bn: {
     secondaryHref: "/",
     secondaryLabel: "Открыть турецкую главную страницу",
   },
-  sv: {
-    lang: "sv",
-    title: "Sidan hittades inte",
-    description:
-      "Sidan du letar efter kan ha flyttats eller så är adressen inte giltig.",
-    continueHeading: "Fortsätt med",
-    primaryHref: "/sv",
-    primaryLabel: "Tillbaka till den svenska startsidan",
-    secondaryHref: "/",
-    secondaryLabel: "Öppna den turkiska startsidan",
-  },
-  no: {
-    lang: "nb",
-    title: "Siden ble ikke funnet",
-    description:
-      "Siden du leter etter kan ha blitt flyttet, eller så er adressen ikke gyldig.",
-    continueHeading: "Fortsett med",
-    primaryHref: "/no",
-    primaryLabel: "Tilbake til den norske hjemmesiden",
-    secondaryHref: "/",
-    secondaryLabel: "Åpne den tyrkiske hjemmesiden",
-  },
-  da: {
-    lang: "da",
-    title: "Siden blev ikke fundet",
-    description:
-      "Siden du leder efter, kan være blevet flyttet, eller også er adressen ikke gyldig.",
-    continueHeading: "Fortsæt med",
-    primaryHref: "/da",
-    primaryLabel: "Tilbage til den danske startside",
-    secondaryHref: "/",
-    secondaryLabel: "Åbn den tyrkiske startside",
-  },
 } satisfies Record<
   Locale,
   {

@@ -3,7 +3,7 @@ import type {
   KitchenUnit,
 } from "./kitchenMeasures";
 
-export type KitchenLocale = "tr" | "en" | "de" | "ar" | "bn" | "fr" | "es" | "pt" | "it" | "nl" | "sv" | "no" | "da";
+export type KitchenLocale = "tr" | "en" | "de" | "ar" | "bn" | "fr" | "es" | "pt" | "it" | "nl";
 
 export const kitchenIngredientLabels: Record<
   KitchenLocale,
@@ -445,45 +445,6 @@ export const kitchenIngredientLabels: Record<
     mayonez: "Mayonaise", ketcap: "Ketchup", sirke: "Azijn", "limon-suyu": "Citroensap", tarcin: "Gemalen kaneel",
     "kirmizi-biber": "Gemalen rode peper", karabiber: "Gemalen zwarte peper", kimyon: "Gemalen komijn",
   },
-  sv: {
-    un: "Vetemjöl", "tam-bugday-unu": "Fullkornsmjöl", "pirinc-unu": "Rismjöl", "misir-unu": "Majsmjöl",
-    irmik: "Mannagryn", "galeta-unu": "Strommed", "toz-seker": "Strösocker", "pudra-sekeri": "Florsocker",
-    "esmer-seker": "Farinsocker", tuz: "Salt", pirinc: "Ris", bulgur: "Bulgur", nohut: "Kikärtor (torkade)",
-    "kirmizi-mercimek": "Röda linser", "yesil-mercimek": "Gröna linser", "kuru-fasulye": "Torkade bönor",
-    sut: "Mjölk", yogurt: "Yoghurt", krema: "Vispgrädde", tereyagi: "Smör", margarin: "Margarin",
-    zeytinyagi: "Olivolja", "sivi-yag": "Vegetabilisk olja", bal: "Honung", pekmez: "Druvsirap",
-    kakao: "Kakaopulver", "yulaf-ezmesi": "Havregryn", nisasta: "Majsstärkelse", "kabartma-tozu": "Bakpulver",
-    karbonat: "Bikarbonat", susam: "Sesamfrön", "ceviz-ici": "Valnötter (hackade)", "findik-ici": "Hasselnötter",
-    badem: "Mandlar", "antep-fistigi": "Pistagenötter", "kuru-uzum": "Russin", "hindistan-cevizi": "Riven kokos",
-    mayonez: "Majonnäs", ketcap: "Ketchup", sirke: "Ättika", "limon-suyu": "Citronsaft", tarcin: "Malen kanel",
-    "kirmizi-biber": "Malen röd paprika", karabiber: "Malen svartpeppar", kimyon: "Malen spiskummin",
-  },
-  no: {
-    un: "Hvetemel", "tam-bugday-unu": "Fullkornsmel", "pirinc-unu": "Rismel", "misir-unu": "Maismel",
-    irmik: "Semulegryn", "galeta-unu": "Brødsmuler", "toz-seker": "Sukker", "pudra-sekeri": "Melis",
-    "esmer-seker": "Brunt sukker", tuz: "Salt", pirinc: "Ris", bulgur: "Bulgur", nohut: "Kikerter (tørkede)",
-    "kirmizi-mercimek": "Røde linser", "yesil-mercimek": "Grønne linser", "kuru-fasulye": "Tørkede bønner",
-    sut: "Melk", yogurt: "Yoghurt", krema: "Kremfløte", tereyagi: "Smør", margarin: "Margarin",
-    zeytinyagi: "Olivenolje", "sivi-yag": "Vegetabilsk olje", bal: "Honning", pekmez: "Druvesirup",
-    kakao: "Kakaopulver", "yulaf-ezmesi": "Havregryn", nisasta: "Maisstivelse", "kabartma-tozu": "Bakepulver",
-    karbonat: "Natron", susam: "Sesamfrø", "ceviz-ici": "Valnøtter (hakkede)", "findik-ici": "Hasselnøtter",
-    badem: "Mandler", "antep-fistigi": "Pistasjnøtter", "kuru-uzum": "Rosiner", "hindistan-cevizi": "Rivet kokos",
-    mayonez: "Majones", ketcap: "Ketchup", sirke: "Eddik", "limon-suyu": "Sitronsaft", tarcin: "Målt kanel",
-    "kirmizi-biber": "Målt rød paprika", karabiber: "Målt sort pepper", kimyon: "Målt spisskummen",
-  },
-  da: {
-    un: "Hvedemel", "tam-bugday-unu": "Fuldkornsmel", "pirinc-unu": "Rismel", "misir-unu": "Majsmel",
-    irmik: "Semulegryn", "galeta-unu": "Rasp", "toz-seker": "Sukker", "pudra-sekeri": "Flormelis",
-    "esmer-seker": "Farin", tuz: "Salt", pirinc: "Ris", bulgur: "Bulgur", nohut: "Kikærter (tørrede)",
-    "kirmizi-mercimek": "Røde linser", "yesil-mercimek": "Grønne linser", "kuru-fasulye": "Tørrede bønner",
-    sut: "Mælk", yogurt: "Yoghurt", krema: "Fløde", tereyagi: "Smør", margarin: "Margarine",
-    zeytinyagi: "Olivenolie", "sivi-yag": "Vegetabilsk olie", bal: "Honning", pekmez: "Drueserup",
-    kakao: "Kakaopulver", "yulaf-ezmesi": "Havregryn", nisasta: "Majsstivelse", "kabartma-tozu": "Bagepulver",
-    karbonat: "Natron", susam: "Sesamfrø", "ceviz-ici": "Valnødder (hakkede)", "findik-ici": "Hasselnødder",
-    badem: "Mandler", "antep-fistigi": "Pistacienødder", "kuru-uzum": "Rosiner", "hindistan-cevizi": "Revet kokos",
-    mayonez: "Mayonnaise", ketcap: "Ketchup", sirke: "Eddike", "limon-suyu": "Citronsaft", tarcin: "Malet kanel",
-    "kirmizi-biber": "Malet rød paprika", karabiber: "Malet sort peber", kimyon: "Malet spidskommen",
-  },
 };
 
 /** Latinoamérica'da yaygın malzeme adları; İspanyolca tarif ayrıştırıcısı bunları da tanır. */
@@ -613,14 +574,5 @@ export const kitchenUnitLabels: Record<
   },
   nl: {
     bardak: "Kopje", yemekKasigi: "Eetlepel", cayKasigi: "Theelepel", ml: "Milliliter (ml)", litre: "Liter", gram: "Gram",
-  },
-  sv: {
-    bardak: "Kopp", yemekKasigi: "Matsked", cayKasigi: "Tesked", ml: "Milliliter (ml)", litre: "Liter", gram: "Gram",
-  },
-  no: {
-    bardak: "Kopp", yemekKasigi: "Spiseskje", cayKasigi: "Teskje", ml: "Milliliter (ml)", litre: "Liter", gram: "Gram",
-  },
-  da: {
-    bardak: "Kop", yemekKasigi: "Spiseske", cayKasigi: "Teske", ml: "Milliliter (ml)", litre: "Liter", gram: "Gram",
   },
 };

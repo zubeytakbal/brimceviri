@@ -13,10 +13,7 @@ export type SiteNumberLocale =
   | "pt"
   | "it"
   | "nl"
-  | "ru"
-  | "sv"
-  | "no"
-  | "da";
+  | "ru";
 
 const intlLocales: Record<SiteNumberLocale, string> = {
   tr: "tr-TR",
@@ -30,9 +27,6 @@ const intlLocales: Record<SiteNumberLocale, string> = {
   it: "it-IT",
   nl: "nl-NL",
   ru: "ru-RU",
-  sv: "sv-SE",
-  no: "nb-NO",
-  da: "da-DK",
 };
 
 export function intlLocaleFor(locale: SiteNumberLocale) {

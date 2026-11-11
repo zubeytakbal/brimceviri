@@ -70,27 +70,6 @@ export const alarmCopy: Record<string, AlarmCopy> = {
     ringing: (time) => `⏰ Goedemorgen! Het is ${time}`,
     stop: "Stop",
   },
-  sv: {
-    setFor: (time) => `⏰ Ställ larm på ${time}`,
-    active: (time) => `Larmet är ställt på ${time}. Håll fliken öppen; på mobilen kan webbläsaren pausa när skärmen låses, så ställ även mobilens larm.`,
-    cancel: "Avbryt larm",
-    ringing: (time) => `⏰ God morgon! Klockan är ${time}`,
-    stop: "Stoppa",
-  },
-  no: {
-    setFor: (time) => `⏰ Still alarm på ${time}`,
-    active: (time) => `Alarmen er stilt på ${time}. Hold fanen åpen; på mobil kan nettleseren pause når skjermen låses, så still også mobilens alarm.`,
-    cancel: "Avbryt alarm",
-    ringing: (time) => `⏰ God morgen! Klokken er ${time}`,
-    stop: "Stopp",
-  },
-  da: {
-    setFor: (time) => `⏰ Sæt alarm til ${time}`,
-    active: (time) => `Alarmen er sat til ${time}. Hold fanen åben; på mobilen kan browseren gå i dvale, når skærmen låses, så sæt også telefonens alarm.`,
-    cancel: "Annuller alarm",
-    ringing: (time) => `⏰ Godmorgen! Klokken er ${time}`,
-    stop: "Stop",
-  },
   ar: {
     setFor: (time) => `⏰ اضبط منبهًا على ${time}`,
     active: (time) => `تم ضبط المنبه على ${time}. أبقِ هذه الصفحة مفتوحة؛ قد يتوقف المتصفح على الهاتف عند قفل الشاشة، لذا اضبط منبه الهاتف أيضًا.`,

@@ -63,21 +63,6 @@ fr: {
     m: "Meter (m)",
     km: "Kilometer (km)",
   },
-  sv: {
-    cm: "Centimeter (cm)",
-    m: "Meter (m)",
-    km: "Kilometer (km)",
-  },
-  no: {
-    cm: "Centimeter (cm)",
-    m: "Meter (m)",
-    km: "Kilometer (km)",
-  },
-  da: {
-    cm: "Centimeter (cm)",
-    m: "Meter (m)",
-    km: "Kilometer (km)",
-  },
   ru: {
     cm: "Сантиметр (см)",
     m: "Метр (м)",
@@ -96,9 +81,6 @@ fr: { cm: "cm", m: "m", km: "km" },
   pt: { cm: "cm", m: "m", km: "km" },
   it: { cm: "cm", m: "m", km: "km" },
   nl: { cm: "cm", m: "m", km: "km" },
-  sv: { cm: "cm", m: "m", km: "km" },
-  no: { cm: "cm", m: "m", km: "km" },
-  da: { cm: "cm", m: "m", km: "km" },
   ru: { cm: "см", m: "м", km: "км" },
 };
 
@@ -193,33 +175,6 @@ fr: {
     "eyfel-kulesi": "Hoogte van de Eiffeltoren (met antenne)",
     "bogaz-koprusu": "Lengte van de 15 Juli Martelarenbrug (Istanbul)",
   },
-  sv: {
-    "insan-boyu": "Genomsnittlig längd för en vuxen",
-    zurafa: "Genomsnittlig höjd för en giraff",
-    "sehir-otobusu": "Längd på en stadsbuss",
-    "mavi-balina": "Genomsnittlig längd för en blåval",
-    "futbol-sahasi": "Längd på en fotbollsplan",
-    "eyfel-kulesi": "Eiffeltornets höjd (med antenn)",
-    "bogaz-koprusu": "Längd på 15 juli-martyrernas bro (Istanbul)",
-  },
-  no: {
-    "insan-boyu": "Gjennomsnittlig høyde for en voksen",
-    zurafa: "Gjennomsnittlig høyde for en sjiraff",
-    "sehir-otobusu": "Lengde på en bybuss",
-    "mavi-balina": "Gjennomsnittlig lengde for en blåhval",
-    "futbol-sahasi": "Lengde på en fotballbane",
-    "eyfel-kulesi": "Eiffeltårnets høyde (med antenne)",
-    "bogaz-koprusu": "Lengde på 15. juli-martyrenes bro (Istanbul)",
-  },
-  da: {
-    "insan-boyu": "Gennemsnitlig højde for en voksen",
-    zurafa: "Gennemsnitlig højde for en giraf",
-    "sehir-otobusu": "Længde på en bybus",
-    "mavi-balina": "Gennemsnitlig længde for en blåhval",
-    "futbol-sahasi": "Længde på en fodboldbane",
-    "eyfel-kulesi": "Eiffeltårnets højde (med antenne)",
-    "bogaz-koprusu": "Længde på 15. juli-martyrernes bro (Istanbul)",
-  },
   ru: {
     "insan-boyu": "Средний рост взрослого человека",
     zurafa: "Средний рост жирафа",
@@ -313,36 +268,6 @@ const copyByLocale: Record<
     emptyState: "Voer een geldige waarde in om de vergelijkingen te zien.",
     intro: "Vergelijkingen voor",
     closestMatch: "Dichtstbijzijnde vergelijking",
-  },
-  sv: {
-    labels: {
-      value: "Värde",
-      unit: "Enhet",
-    },
-    placeholder: "E.g. 3",
-    emptyState: "Ange ett giltigt värde för att se jämförelserna.",
-    intro: "Jämförelser för",
-    closestMatch: "Närmaste jämförelse",
-  },
-  no: {
-    labels: {
-      value: "Verdi",
-      unit: "Enhet",
-    },
-    placeholder: "E.g. 3",
-    emptyState: "Skriv inn en gyldig verdi for å se sammenligningene.",
-    intro: "Sammenligninger for",
-    closestMatch: "Nærmeste sammenligning",
-  },
-  da: {
-    labels: {
-      value: "Værdi",
-      unit: "Enhed",
-    },
-    placeholder: "E.g. 3",
-    emptyState: "Indtast en gyldig værdi for at se sammenligningerne.",
-    intro: "Sammenligninger for",
-    closestMatch: "Nærmeste sammenligning",
   },
   de: {
     labels: {

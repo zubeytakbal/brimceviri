@@ -13,9 +13,6 @@ export const sleepGuidePaths: Partial<Record<Locale, string>> = {
   pt: "/pt/calculadora-de-sono",
   it: "/it/calcolatore-del-sonno",
   nl: "/nl/slaapcalculator",
-  sv: "/sv/somnkalkylator",
-  no: "/no/sovnkalkulator",
-  da: "/da/sovnberegner",
 };
 
 export function sleepGuideAlternates() {

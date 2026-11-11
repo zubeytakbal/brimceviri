@@ -14,13 +14,13 @@ type PairConverterProps = {
   toUnit: string;
   fromName: string;
   toName: string;
-  locale?: "tr" | "en" | "de" | "ar" | "bn" | "fr" | "es" | "pt" | "it" | "nl" | "ru" | "sv" | "no" | "da";
+  locale?: "tr" | "en" | "de" | "ar" | "bn" | "fr" | "es" | "pt" | "it" | "nl" | "ru";
   // Verilirse deger/birim "Tum birimler" paneliyle (AllUnitsPanel) paylasilir.
   syncKey?: string;
 };
 
 function getNumberLocale(
-  locale: "tr" | "en" | "de" | "ar" | "bn" | "fr" | "es" | "pt" | "it" | "nl" | "ru" | "sv" | "no" | "da"
+  locale: "tr" | "en" | "de" | "ar" | "bn" | "fr" | "es" | "pt" | "it" | "nl" | "ru"
 ) {
   if (locale === "tr") {
     return "tr-TR";
@@ -63,24 +63,15 @@ function getNumberLocale(
     return "ru-RU";
   }
 
-  if (locale === "sv") {
-    return "sv-SE";
-  }
 
-  if (locale === "no") {
-    return "nb-NO";
-  }
 
-  if (locale === "da") {
-    return "da-DK";
-  }
 
   return "en-US";
 }
 
 function formatResult(
   value: number,
-  locale: "tr" | "en" | "de" | "ar" | "bn" | "fr" | "es" | "pt" | "it" | "nl" | "ru" | "sv" | "no" | "da"
+  locale: "tr" | "en" | "de" | "ar" | "bn" | "fr" | "es" | "pt" | "it" | "nl" | "ru"
 ) {
   if (!Number.isFinite(value)) {
     return "";
@@ -305,13 +296,7 @@ export default function PairConverter({
                         ? `Waarde in ${activeFromName}`
                         : locale === "ru"
                           ? `Значение: ${activeFromName}`
-                        : locale === "sv"
-                          ? `${activeFromName}-värde`
-                        : locale === "no"
-                          ? `${activeFromName}-verdi`
-                        : locale === "da"
-                          ? `${activeFromName}-værdi`
-                      : `${activeFromName} de\u011Feri`;
+                        : `${activeFromName} de\u011Feri`;
 
   const placeholder =
     locale === "en"
@@ -334,13 +319,7 @@ export default function PairConverter({
                         ? "Voer een waarde in"
                         : locale === "ru"
                           ? "Введите значение"
-                        : locale === "sv"
-                          ? "Ange ett värde"
-                        : locale === "no"
-                          ? "Skriv inn en verdi"
-                        : locale === "da"
-                          ? "Indtast en værdi"
-                      : "De\u011Fer girin";
+                        : "De\u011Fer girin";
 
   const swapLabel =
     locale === "en"
@@ -363,13 +342,7 @@ export default function PairConverter({
                         ? "Draai de omrekenrichting om"
                         : locale === "ru"
                           ? "Изменить направление перевода"
-                        : locale === "sv"
-                          ? "Vänd på omvandlingsriktningen"
-                        : locale === "no"
-                          ? "Snu omregningsretningen"
-                        : locale === "da"
-                          ? "Vend omregningsretningen"
-                      : "D\u00F6n\u00FC\u015F\u00FCm y\u00F6n\u00FCn\u00FC de\u011Fi\u015Ftir";
+                        : "D\u00F6n\u00FC\u015F\u00FCm y\u00F6n\u00FCn\u00FC de\u011Fi\u015Ftir";
 
   // Ingilizce sayfalarda Turkce kayit sembolleri (arşın, çk ...) gosterilmez.
   const fromLabel = locale === "en" ? englishDisplaySymbol(category, activeFromUnit) : activeFromUnit;

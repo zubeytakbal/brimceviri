@@ -62,9 +62,6 @@ const staticRouteTranslations: Record<StaticRouteKey, LocalePathMap> = {
     it: "/it",
     nl: "/nl",
     ru: "/ru",
-    sv: "/sv",
-    no: "/no",
-    da: "/da",
   },
   units: {
     tr: "/birimler",
@@ -97,9 +94,6 @@ const staticRouteTranslations: Record<StaticRouteKey, LocalePathMap> = {
     de: "/de/historische-masseinheiten",
     ar: "/ar/historical-units",
     nl: "/nl/historische-eenheden",
-    sv: "/sv/historiska-enheter",
-    no: "/no/historiske-enheter",
-    da: "/da/historiske-enheder",
   },
   shoeSize: {
     tr: "/ayakkabi-numarasi-cevirme",
@@ -107,9 +101,6 @@ const staticRouteTranslations: Record<StaticRouteKey, LocalePathMap> = {
     de: "/de/schuhgroessen-umrechner",
     ar: "/ar/shoe-size-converter",
     nl: "/nl/schoenmaten-omrekenen",
-    sv: "/sv/skostorlekar",
-    no: "/no/skostorrelser",
-    da: "/da/skostorrelser",
   },
   kitchenMeasures: {
     tr: "/mutfak-olculeri-cevirici",
@@ -117,9 +108,6 @@ const staticRouteTranslations: Record<StaticRouteKey, LocalePathMap> = {
     de: "/de/kuechenmass-umrechner",
     ar: "/ar/kitchen-measurement-converter",
     nl: "/nl/keukenmaten-omrekenen",
-    sv: "/sv/koksmatt-omvandlare",
-    no: "/no/kjokkenmal-omregner",
-    da: "/da/kokkenmal-omregner",
   },
   recipeConverter: {
     tr: "/mutfak-olculeri-cevirici",
@@ -127,9 +115,6 @@ const staticRouteTranslations: Record<StaticRouteKey, LocalePathMap> = {
     de: "/de/rezept-umrechner",
     ar: "/ar/recipe-converter",
     nl: "/nl/recepten-omrekenen",
-    sv: "/sv/receptomvandlare",
-    no: "/no/oppskriftomregner",
-    da: "/da/opskriftomregner",
   },
   ringSize: {
     tr: "/yuzuk-olcusu-cevirici",
@@ -280,9 +265,6 @@ const collectionBasePaths: Record<
     it: "/it/guide-alle-unita/",
     nl: "/nl/eenheidsgidsen/",
     ru: "/ru/unit-guides/",
-    sv: "/sv/enhetsguider/",
-    no: "/no/enhetsguider/",
-    da: "/da/enhedsguider/",
   },
   categories: {
     tr: "/kategoriler/",
@@ -296,9 +278,6 @@ const collectionBasePaths: Record<
     it: "/it/categorie/",
     nl: "/nl/categorieen/",
     ru: "/ru/categories/",
-    sv: "/sv/kategorier/",
-    no: "/no/kategorier/",
-    da: "/da/kategorier/",
   },
   calculators: {
     tr: "/hesaplayicilar/",
@@ -312,9 +291,6 @@ const collectionBasePaths: Record<
     it: "/it/calculators/",
     nl: "/nl/calculators/",
     ru: "/ru/calculators/",
-    sv: "/sv/calculators/",
-    no: "/no/calculators/",
-    da: "/da/calculators/",
   },
   conversions: {
     tr: "/",
@@ -328,9 +304,6 @@ const collectionBasePaths: Record<
     it: "/it/",
     nl: "/nl/",
     ru: "/ru/",
-    sv: "/sv/",
-    no: "/no/",
-    da: "/da/",
   },
 };
 

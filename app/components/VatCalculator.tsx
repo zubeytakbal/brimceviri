@@ -27,9 +27,6 @@ const vatSettingsByLocale: Record<Exclude<Locale, "ru">, VatSettings> = {
   pt: { rates: ["12", "17", "18"], defaultRate: "18" },
   it: { rates: ["4", "5", "10", "22"], defaultRate: "22" },
   nl: { rates: ["9", "21"], defaultRate: "21" },
-  sv: { rates: ["6", "12", "25"], defaultRate: "25" },
-  no: { rates: ["12", "15", "25"], defaultRate: "25" },
-  da: { rates: ["25"], defaultRate: "25" },
   ar: { rates: ["5", "15"], defaultRate: "15" },
   bn: { rates: ["5", "7.5", "10", "15"], defaultRate: "15" },
 };
@@ -198,69 +195,6 @@ const copyByLocale: Record<Exclude<Locale, "ru">, VatCopy> = {
       totalAmount: "Totaal incl. btw",
     },
     emptyState: "Voer een geldig bedrag en tarief in om het resultaat te zien.",
-  },
-  sv: {
-    labels: {
-      direction: "Beräkningsriktning",
-      amount: "Belopp (kr)",
-      rate: "Momssats",
-      customRate: "Egen sats (%)",
-    },
-    directions: {
-      "exclusive-to-inclusive": "Exkl. moms -> inkl. moms",
-      "inclusive-to-exclusive": "Inkl. moms -> exkl. moms",
-    },
-    rateOptions: {
-      custom: "Egen sats",
-    },
-    resultLabels: {
-      baseAmount: "Belopp exkl. moms",
-      vatAmount: "Momsbelopp",
-      totalAmount: "Totalt inkl. moms",
-    },
-    emptyState: "Ange ett giltigt belopp och en giltig sats för att se resultatet.",
-  },
-  no: {
-    labels: {
-      direction: "Beregningsretning",
-      amount: "Beløp (kr)",
-      rate: "Mva-sats",
-      customRate: "Egen sats (%)",
-    },
-    directions: {
-      "exclusive-to-inclusive": "Eks. mva -> inkl. mva",
-      "inclusive-to-exclusive": "Inkl. mva -> eks. mva",
-    },
-    rateOptions: {
-      custom: "Egen sats",
-    },
-    resultLabels: {
-      baseAmount: "Beløp eks. mva",
-      vatAmount: "Mva-beløp",
-      totalAmount: "Totalt inkl. mva",
-    },
-    emptyState: "Angi et gyldig beløp og en gyldig sats for å se resultatet.",
-  },
-  da: {
-    labels: {
-      direction: "Beregningsretning",
-      amount: "Beløb (kr.)",
-      rate: "Momssats",
-      customRate: "Egen sats (%)",
-    },
-    directions: {
-      "exclusive-to-inclusive": "Ekskl. moms -> inkl. moms",
-      "inclusive-to-exclusive": "Inkl. moms -> ekskl. moms",
-    },
-    rateOptions: {
-      custom: "Egen sats",
-    },
-    resultLabels: {
-      baseAmount: "Beløb ekskl. moms",
-      vatAmount: "Momsbeløb",
-      totalAmount: "I alt inkl. moms",
-    },
-    emptyState: "Indtast et gyldigt beløb og en gyldig sats for at se resultatet.",
   },
   de: {
     labels: {

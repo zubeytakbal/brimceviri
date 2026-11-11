@@ -15,7 +15,7 @@ type UnitOption = {
 
 type CategoryUnitConverterProps = {
   category: string;
-  locale: "tr" | "en" | "de" | "ar" | "bn" | "fr" | "es" | "pt" | "it" | "nl" | "sv" | "no" | "da";
+  locale: "tr" | "en" | "de" | "ar" | "bn" | "fr" | "es" | "pt" | "it" | "nl";
   // Verilmezse getCategoryUnitOptions(category, locale) kullanilir (kategori
   // sayfalarindaki standart davranis). Verilirse, ayni convert() motoru
   // (ayni category/symbol eslesmesi) uzerinde SADECE bu birimler secilebilir
@@ -39,9 +39,6 @@ const NUMBER_LOCALES: Record<ConverterLocale, string> = {
   pt: "pt-BR",
   it: "it-IT",
   nl: "nl-NL",
-  sv: "sv-SE",
-  no: "nb-NO",
-  da: "da-DK",
 };
 
 type ConverterLabels = { value: string; from: string; to: string; result: string; swap: string; invalid: string };
@@ -129,30 +126,6 @@ const CONVERTER_LABELS: Record<ConverterLocale, ConverterLabels> = {
     swap: "Richting omkeren",
     invalid: "Voer een geldig getal in om het resultaat te zien.",
   },
-  sv: {
-    value: "Värde",
-    from: "Från enhet",
-    to: "Till enhet",
-    result: "Direkt resultat",
-    swap: "Byt riktning",
-    invalid: "Ange ett giltigt tal för att se resultatet.",
-  },
-  no: {
-    value: "Verdi",
-    from: "Fra enhet",
-    to: "Til enhet",
-    result: "Direkte resultat",
-    swap: "Bytt retning",
-    invalid: "Skriv inn et gyldig tall for å se resultatet.",
-  },
-  da: {
-    value: "Værdi",
-    from: "Fra enhed",
-    to: "Til enhed",
-    result: "Direkte resultat",
-    swap: "Skift retning",
-    invalid: "Indtast et gyldigt tal for at se resultatet.",
-  },
 };
 
 function parseNumericValue(
@@ -192,7 +165,7 @@ function parseNumericValue(
 }
 
 function formatDisplayNumber(
-  locale: "tr" | "en" | "de" | "ar" | "bn" | "fr" | "es" | "pt" | "it" | "nl" | "sv" | "no" | "da",
+  locale: "tr" | "en" | "de" | "ar" | "bn" | "fr" | "es" | "pt" | "it" | "nl",
   value: number
 ) {
   if (!Number.isFinite(value)) {

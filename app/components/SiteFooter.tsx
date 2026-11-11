@@ -95,12 +95,12 @@ function TurkceFooter({ nav }: { nav: (typeof SITE_NAV_DATA.locales)["tr"] }) {
 export default function SiteFooter() {
   const pathname = usePathname();
   // Saat bölümü kendi menüsünü ve alt bilgisini çizer.
-  if (pathname.startsWith("/embed/") || isSaatBolumu(pathname)) {
-    return null;
-  }
+  if (pathname.startsWith("/embed/")) return null;
+  // Yeni yapiya gecen sayfalar (eski saat ve hesap bolumlerinde olsalar bile) yeni alt menuyle cizilir.
+  if (isYeniYapiYolu(pathname)) return <YeniAlt />;
+  if (isSaatBolumu(pathname)) return null;
   if (isSaatAraci(pathname)) return <SaatAltBilgi />;
   if (isHesapAraci(pathname)) return <HesapAltBilgi />;
-  if (isYeniYapiYolu(pathname)) return <YeniAlt />;
   const locale = getLocaleFromPathname(pathname);
   const nav = SITE_NAV_DATA.locales[locale];
   if (locale === "tr") {

@@ -14,6 +14,10 @@ export const TASINAN_CIFTLER: Readonly<Record<string, string>> = {
  "inc-santimetre": "uzunluk",
  "yarda-metre": "uzunluk",
  "hektar-metrekare": "alan",
+ "litre-metrekup": "hacim",
+ "metrekup-litre": "hacim",
+ "litre-mililitre": "hacim",
+ "mililitre-litre": "hacim",
  "mikrometre-milimetre": "uzunluk",
  "milimetre-mikrometre": "uzunluk",
  "deniz-mili-kilometre": "uzunluk",
@@ -30,5 +34,9 @@ export const TASINAN_CIFTLER: Readonly<Record<string, string>> = {
  "hektar-donum": "alan",
  "dekar-metrekare": "alan",
  "metrekare-dekar": "alan",
- "isik-yili-kilometre": "uzunluk"
+ "galon-litre": "hacim",
+ "litre-galon": "hacim",
+ "varil-litre": "hacim",
+ "isik-yili-kilometre": "uzunluk",
+ "yemek-kasigi-mililitre": "hacim"
 };

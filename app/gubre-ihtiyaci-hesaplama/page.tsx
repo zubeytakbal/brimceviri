@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import FertilizerCalculator from "../components/FertilizerCalculator";
-import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import type { FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+import AracSayfasi from "@/app/components/yeni/AracSayfasi";
 
 const faqItems: FaqItem[] = [
   {
@@ -45,43 +46,18 @@ export const metadata: Metadata = {
   },
 };
 
-function serializeJsonLd(data: object) {
-  return JSON.stringify(data).replace(/</g, "\\u003c");
-}
 
 export default function FertilizerCalculatorPage() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: buildSiteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "Tüm Hesaplamalar", item: buildSiteUrl("/hesaplayicilar") },
-      { "@type": "ListItem", position: 3, name: "Tarım ve Hayvancılık", item: buildSiteUrl("/hesaplayicilar#tarim") },
-      { "@type": "ListItem", position: 4, name: "Gübre İhtiyacı Hesaplama", item: buildSiteUrl("/gubre-ihtiyaci-hesaplama") },
-    ],
-  };
 
   return (
-    <main className="all-conversions-page">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(buildFaqSchema(faqItems)) }} />
-
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Sayfa yolu">
-          <Link href="/">Ana Sayfa</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/hesaplayicilar#tarim">Tarım ve Hayvancılık</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>Gübre İhtiyacı Hesaplama</span>
-        </nav>
-
-        <header className="all-conversions-header">
-          <h1>Gübre İhtiyacı Hesaplama</h1>
-        </header>
-
-        <FertilizerCalculator />
-
-        <section className="category-article-content">
+    <AracSayfasi
+      yol="/gubre-ihtiyaci-hesaplama"
+      baslik="Gübre İhtiyacı Hesaplama"
+      hesap={<FertilizerCalculator />}
+      sss={faqItems}
+      serbestIcindekiler={[{"id":"cesitler","baslik":"Hangi gübreden ne kadar atılır?"},{"id":"kaynaklar","baslik":"Kaynaklar"}]}
+      serbestIcerik={
+        <>
           <h2 id="cesitler">Hangi gübreden ne kadar atılır?</h2>
           <p>
             Gübre torbasındaki sayılar, içindeki bitki besininin yüzdesidir: %46 azotlu üre, 100 kg&apos;da 46 kg saf azot
@@ -117,17 +93,7 @@ export default function FertilizerCalculatorPage() {
             {Math.round(1000 / 26)} kg %26&apos;lık amonyum nitrat gerekir. Ne kadar saf besin verileceğini toprak analizi
             belirler; analiz sonucundaki öneriyi yukarıdaki araca girerek kendi tarlanızın gübre miktarını hesaplayın.
           </p>
-
-          <h2>Sık Sorulan Sorular</h2>
-          {faqItems.map((item) => (
-            <p key={item.question}>
-              <strong>{item.question}</strong>
-              <br />
-              {item.answer}
-            </p>
-          ))}
-
-          <h2>İlgili araçlar</h2>
+          <h2 id="ilgili-araclar">İlgili araçlar</h2>
           <p>
             Diğer çiftçi araçları için{" "}
             <Link href="/hesaplayicilar#tarim">Tarım ve Hayvancılık</Link>
@@ -135,15 +101,14 @@ export default function FertilizerCalculatorPage() {
             <Link href="/tohum-miktari-hesaplama">Tohum Miktarı Hesaplama</Link>
             {" "}sayfasına bakabilirsin.
           </p>
-
-          <h2>Kaynaklar</h2>
+          <h2 id="kaynaklar">Kaynaklar</h2>
           <p>
             Formül, temel besin dozu-içerik aritmetiğine dayanır. Bu
             araç ve sonuçları tarımsal danışmanlık yerine geçmez;
             hangi dozun uygun olduğunu belirlemez.
           </p>
-        </section>
-      </div>
-    </main>
+        </>
+      }
+    />
   );
 }

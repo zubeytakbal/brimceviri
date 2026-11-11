@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import CbmCalculator from "../components/CbmCalculator";
-import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import type { FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+import AracSayfasi from "@/app/components/yeni/AracSayfasi";
 
 const faqItems: FaqItem[] = [
   {
@@ -41,9 +42,6 @@ export const metadata: Metadata = {
   },
 };
 
-function serializeJsonLd(data: object) {
-  return JSON.stringify(data).replace(/</g, "\\u003c");
-}
 
 const divisorTable = [
   ["Deniz Yolu", "1000", "1 m³ = 1000 kg"],
@@ -52,35 +50,16 @@ const divisorTable = [
 ];
 
 export default function CbmPage() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: buildSiteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "CBM ve Hacimsel Ağırlık Hesaplama", item: buildSiteUrl("/cbm-hesaplama") },
-    ],
-  };
 
   return (
-    <main className="all-conversions-page">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(buildFaqSchema(faqItems)) }} />
-
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Sayfa yolu">
-          <Link href="/">Ana Sayfa</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>CBM ve Hacimsel Ağırlık Hesaplama</span>
-        </nav>
-
-        <header className="all-conversions-header">
-          <h1>CBM ve Hacimsel Ağırlık Hesaplama</h1>
-        </header>
-
-        <CbmCalculator />
-
-        <section className="category-article-content">
-          <h2>Taşıma Moduna Göre Hacimsel Ağırlık Katsayıları</h2>
+    <AracSayfasi
+      yol="/cbm-hesaplama"
+      baslik="CBM ve Hacimsel Ağırlık Hesaplama"
+      hesap={<CbmCalculator />}
+      serbestIcindekiler={[{"id":"tasima-moduna-gore-hacimsel-agirlik-katsayilari","baslik":"Taşıma Moduna Göre Hacimsel Ağırlık Katsayıları"},{"id":"sik-sorulan-sorular","baslik":"Sık Sorulan Sorular"},{"id":"kaynaklar","baslik":"Kaynaklar"}]}
+      serbestIcerik={
+        <>
+          <h2 id="tasima-moduna-gore-hacimsel-agirlik-katsayilari">Taşıma Moduna Göre Hacimsel Ağırlık Katsayıları</h2>
           <div className="conversion-table-wrap">
             <table className="conversion-table">
               <caption>Yaygın kullanılan standart katsayılar (taşıyıcıya göre değişebilir)</caption>
@@ -102,8 +81,7 @@ export default function CbmPage() {
               </tbody>
             </table>
           </div>
-
-          <h2>Sık Sorulan Sorular</h2>
+          <h2 id="sik-sorulan-sorular">Sık Sorulan Sorular</h2>
           <p>
             <strong>CBM nedir, nasıl hesaplanır?</strong>
             <br />
@@ -135,8 +113,7 @@ export default function CbmPage() {
             olabilir; kesin hesap için &quot;Özel katsayı&quot;
             seçeneğini kullanabilirsin.
           </p>
-
-          <h2>İlgili araçlar</h2>
+          <h2 id="ilgili-araclar">İlgili araçlar</h2>
           <p>
             Diğer nakliyeci ve lojistik araçları için{" "}
             <Link href="/hesaplayicilar#enerji-ve-arac">Enerji, Fatura ve Araç</Link>{" "}
@@ -144,16 +121,15 @@ export default function CbmPage() {
             <Link href="/kategoriler/hacim">Hacim Dönüşümleri</Link>{" "}
             sayfasına bakabilirsin.
           </p>
-
-          <h2>Kaynaklar</h2>
+          <h2 id="kaynaklar">Kaynaklar</h2>
           <p>
             Katsayılar, uluslararası nakliye ve lojistik sektöründe
             yaygın kullanılan standart değerlere dayanmaktadır. Kesin
             navlun hesabı için taşıyıcı firmanın kendi tarifesine
             danışılmalıdır.
           </p>
-        </section>
-      </div>
-    </main>
+        </>
+      }
+    />
   );
 }

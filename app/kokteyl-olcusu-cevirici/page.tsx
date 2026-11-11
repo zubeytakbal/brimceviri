@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import BarVolumeCalculator from "../components/BarVolumeCalculator";
-import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import type { FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+import AracSayfasi from "@/app/components/yeni/AracSayfasi";
 
 const faqItems: FaqItem[] = [
   {
@@ -43,44 +44,19 @@ export const metadata: Metadata = {
   },
 };
 
-function serializeJsonLd(data: object) {
-  return JSON.stringify(data).replace(/</g, "\\u003c");
-}
 
 export default function BarVolumeCalculatorPage() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: buildSiteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "Tüm Hesaplamalar", item: buildSiteUrl("/hesaplayicilar") },
-      { "@type": "ListItem", position: 3, name: "Mutfak, Beden ve Okul", item: buildSiteUrl("/hesaplayicilar#olcu-ve-gunluk") },
-      { "@type": "ListItem", position: 4, name: "Kokteyl Ölçüsü Çevirici", item: buildSiteUrl("/kokteyl-olcusu-cevirici") },
-    ],
-  };
 
   return (
-    <main className="all-conversions-page">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(buildFaqSchema(faqItems)) }} />
-
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Sayfa yolu">
-          <Link href="/">Ana Sayfa</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/hesaplayicilar#olcu-ve-gunluk">Mutfak, Beden ve Okul</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>Kokteyl Ölçüsü Çevirici</span>
-        </nav>
-
-        <header className="all-conversions-header">
-          <h1>Kokteyl Ölçüsü Çevirici</h1>
-        </header>
-
-        <BarVolumeCalculator />
-
-        <section className="category-article-content">
-          <h2>Oz - mL - cl çeviri tablosu</h2>
+    <AracSayfasi
+      yol="/kokteyl-olcusu-cevirici"
+      baslik="Kokteyl Ölçüsü Çevirici"
+      hesap={<BarVolumeCalculator />}
+      sss={faqItems}
+      serbestIcindekiler={[{"id":"oz-ml-cl-ceviri-tablosu","baslik":"Oz - mL - cl çeviri tablosu"},{"id":"ornek-tarifi-8-kisilik-surahiye-cevirmek","baslik":"Örnek: tarifi 8 kişilik sürahiye çevirmek"},{"id":"olcu-aletleri","baslik":"Ölçü aletleri"},{"id":"sik-yapilan-hatalar","baslik":"Sık yapılan hatalar"}]}
+      serbestIcerik={
+        <>
+          <h2 id="oz-ml-cl-ceviri-tablosu">Oz - mL - cl çeviri tablosu</h2>
           <p>
             Kokteyl tariflerinde en sık geçen ölçüler aşağıdadır. Bar ölçekleri genellikle yuvarlanmış değerlerle işaretlenir;
             bu yüzden Avrupa&apos;da 1 oz çoğu zaman 30 mL, 1,5 oz da 45 mL olarak alınır. Tablonun son sütunu bu pratik değeri
@@ -108,16 +84,14 @@ export default function BarVolumeCalculatorPage() {
               </tbody>
             </table>
           </div>
-
-          <h2>Örnek: tarifi 8 kişilik sürahiye çevirmek</h2>
+          <h2 id="ornek-tarifi-8-kisilik-surahiye-cevirmek">Örnek: tarifi 8 kişilik sürahiye çevirmek</h2>
           <p>
             2 oz ana içki, 1 oz likör ve 0,75 oz taze limon suyu içeren tek kişilik bir ekşi kokteyl düşünün. Pratik ölçüyle
             bu 60 + 30 + 22,5 = 112,5 mL eder. 8 kişilik sürahi için her malzeme 8 ile çarpılır: 480 mL ana içki, 240 mL likör
             ve 180 mL limon suyu. Shaker ile çalkalanan kokteyllerde buz eriyerek hacme yaklaşık yüzde 20-25 su ekler; sürahide
             hazırlarken bu suyu tarife ayrıca eklemek ya da servis öncesi buzla karıştırmak gerekir.
           </p>
-
-          <h2>Ölçü aletleri</h2>
+          <h2 id="olcu-aletleri">Ölçü aletleri</h2>
           <ul>
             <li>
               <strong>Jigger:</strong> İki uçlu metal ölçek. ABD tipinde uçlar genellikle 1 oz ve 1,5 oz (yaklaşık 30 ve 45 mL),
@@ -134,8 +108,7 @@ export default function BarVolumeCalculatorPage() {
               ABD tariflerindeki &quot;shot&quot; ise genellikle 1,5 oz&apos;tur.
             </li>
           </ul>
-
-          <h2>Sık yapılan hatalar</h2>
+          <h2 id="sik-yapilan-hatalar">Sık yapılan hatalar</h2>
           <ul>
             <li>
               <strong>Ağırlık onsunu kullanmak:</strong> Mutfak terazisindeki oz bir kütle birimidir (28,35 g); tarifteki oz ise hacimdir.
@@ -148,17 +121,7 @@ export default function BarVolumeCalculatorPage() {
               <strong>Oranı bozmak:</strong> Tarifi büyütürken tüm malzemeleri aynı katsayıyla çarpın; ekşi ve tatlı dengesi oranlara bağlıdır.
             </li>
           </ul>
-
-          <h2>Sık Sorulan Sorular</h2>
-          {faqItems.map((item) => (
-            <p key={item.question}>
-              <strong>{item.question}</strong>
-              <br />
-              {item.answer}
-            </p>
-          ))}
-
-          <h2>İlgili araçlar</h2>
+          <h2 id="ilgili-araclar">İlgili araçlar</h2>
           <p>
             Diğer barmen araçları için{" "}
             <Link href="/hesaplayicilar#olcu-ve-gunluk">Mutfak, Beden ve Okul</Link>
@@ -167,8 +130,8 @@ export default function BarVolumeCalculatorPage() {
             <Link href="/abv-standart-icki-hesaplama">ABV ve Standart İçki Hesaplama</Link>
             {" "}sayfasına bakabilirsin.
           </p>
-        </section>
-      </div>
-    </main>
+        </>
+      }
+    />
   );
 }

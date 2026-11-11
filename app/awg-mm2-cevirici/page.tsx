@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import AwgConverter from "../components/AwgConverter";
-import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import type { FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
 import EngineeringNextSteps from "../components/engineering/EngineeringNextSteps";
 import { ENGINEERING_FLOWS } from "../converter/engineeringFlows";
+import AracSayfasi from "@/app/components/yeni/AracSayfasi";
 
 const faqItems: FaqItem[] = [
   {
@@ -41,51 +42,20 @@ export const metadata: Metadata = {
   },
 };
 
-function serializeJsonLd(data: object) {
-  return JSON.stringify(data).replace(/</g, "\\u003c");
-}
 
 export default function AwgConverterPage() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: buildSiteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "AWG - mm² Çevirici", item: buildSiteUrl("/awg-mm2-cevirici") },
-    ],
-  };
 
   return (
-    <main className="all-conversions-page">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(buildFaqSchema(faqItems)) }} />
-
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Sayfa yolu">
-          <Link href="/">Ana Sayfa</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>AWG - mm² Çevirici</span>
-        </nav>
-
-        <header className="all-conversions-header">
-          <h1>AWG - mm² Çevirici</h1>
-        </header>
-
-        <AwgConverter />
-
-        <section className="category-article-content">
-          <h2>Sık Sorulan Sorular</h2>
-          {faqItems.map((item) => (
-            <p key={item.question}>
-              <strong>{item.question}</strong>
-              <br />
-              {item.answer}
-            </p>
-          ))}
-
+    <AracSayfasi
+      yol="/awg-mm2-cevirici"
+      baslik="AWG - mm² Çevirici"
+      hesap={<AwgConverter />}
+      sss={faqItems}
+      serbestIcindekiler={[{"id":"kaynaklar","baslik":"Kaynaklar"}]}
+      serbestIcerik={
+        <>
           <EngineeringNextSteps links={ENGINEERING_FLOWS["/awg-mm2-cevirici"]} />
-
-          <h2>İlgili araçlar</h2>
+          <h2 id="ilgili-araclar">İlgili araçlar</h2>
           <p>
             Elektrikçi araçları için{" "}
             <Link href="/muhendislik-hesaplayicilari/elektrik-hesaplari">Elektrik Hesapları</Link>
@@ -95,15 +65,14 @@ export default function AwgConverterPage() {
             </Link>{" "}
             sayfasına bakabilirsin.
           </p>
-
-          <h2>Kaynaklar</h2>
+          <h2 id="kaynaklar">Kaynaklar</h2>
           <p>
             Formül, AWG&apos;nin standart matematiksel tanımına (ASTM B258)
             dayanır. Akım taşıma kapasitesi bu aracın kapsamı dışındadır;
             ilgili elektrik tesisat yönetmeliğine bakılmalıdır.
           </p>
-        </section>
-      </div>
-    </main>
+        </>
+      }
+    />
   );
 }

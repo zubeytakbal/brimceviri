@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import HasHesaplamaCalculator from "../components/HasHesaplamaCalculator";
-import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import type { FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+import AracSayfasi from "@/app/components/yeni/AracSayfasi";
 
 const faqItems: FaqItem[] = [
   {
@@ -55,58 +56,19 @@ export const metadata: Metadata = {
   },
 };
 
-function serializeJsonLd(data: object) {
-  return JSON.stringify(data).replace(/</g, "\\u003c");
-}
 
 export default function HasHesaplamaPage() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Ana Sayfa",
-        item: buildSiteUrl("/"),
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Has Hesaplama",
-        item: buildSiteUrl("/has-hesaplama"),
-      },
-    ],
-  };
 
   return (
-    <main className="all-conversions-page">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd(buildFaqSchema(faqItems)),
-        }}
-      />
-
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Sayfa yolu">
-          <Link href="/">Ana Sayfa</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>Has Hesaplama</span>
-        </nav>
-
-        <header className="all-conversions-header">
-          <h1>Has Altın ve Gümüş Hesaplama</h1>
-        </header>
-
-        <HasHesaplamaCalculator />
-
-        <section className="category-article-content">
-          <h2>Has değeri nasıl hesaplanır?</h2>
+    <AracSayfasi
+      yol="/has-hesaplama"
+      baslik="Has Altın ve Gümüş Hesaplama"
+      hesap={<HasHesaplamaCalculator />}
+      sss={faqItems}
+      serbestIcindekiler={[{"id":"has-degeri-nasil-hesaplanir","baslik":"Has değeri nasıl hesaplanır?"},{"id":"alasim-karistirma-birden-fazla-bilesen","baslik":"Alaşım karıştırma (birden fazla bileşen)"},{"id":"ayar-ve-milyem-tablosu","baslik":"Ayar ve milyem tablosu"},{"id":"kaynaklar","baslik":"Kaynaklar"}]}
+      serbestIcerik={
+        <>
+          <h2 id="has-degeri-nasil-hesaplanir">Has değeri nasıl hesaplanır?</h2>
           <p>
             Has hesaplama, bir alaşımın brüt ağırlığının ne kadarının saf
             metal olduğunu bulur: <strong>Has Gram = Brüt Gram × (Milyem / 1000)</strong>.
@@ -114,8 +76,7 @@ export default function HasHesaplamaPage() {
             10 × 0,750 = 7,5 gramdır; kalan 2,5 gram gümüş, bakır gibi
             katkı metalidir.
           </p>
-
-          <h2>Alaşım karıştırma (birden fazla bileşen)</h2>
+          <h2 id="alasim-karistirma-birden-fazla-bilesen">Alaşım karıştırma (birden fazla bileşen)</h2>
           <p>
             Farklı ayarlarda birkaç parçayı eritip tek bir alaşım
             oluşturacaksan, sonuç ayarı basit ortalama değil,{" "}
@@ -125,8 +86,7 @@ export default function HasHesaplamaPage() {
             Bu, kuyumcuların hurda altın/gümüşü yeniden ayarlarken
             kullandığı standart yöntemdir.
           </p>
-
-          <h2>Ayar ve milyem tablosu</h2>
+          <h2 id="ayar-ve-milyem-tablosu">Ayar ve milyem tablosu</h2>
           <p>
             Altında yaygın ayarlar: 24 ayar (999 milyem, saf altın), 22
             ayar (916 milyem), 18 ayar (750 milyem), 14 ayar (585
@@ -135,17 +95,7 @@ export default function HasHesaplamaPage() {
             ve 800 ayar en yaygın standartlardır. Bu değerleri &quot;Hızlı
             seç&quot; menüsünden doğrudan seçebilirsin.
           </p>
-
-          <h2>Sık Sorulan Sorular</h2>
-          {faqItems.map((item) => (
-            <p key={item.question}>
-              <strong>{item.question}</strong>
-              <br />
-              {item.answer}
-            </p>
-          ))}
-
-          <h2>İlgili araçlar</h2>
+          <h2 id="ilgili-araclar">İlgili araçlar</h2>
           <p>
             Sabit ayarlar arasında (24/22/18/14 ayar altın veya
             999/925/900/800 ayar gümüş) doğrudan gram dönüşümü için{" "}
@@ -159,8 +109,7 @@ export default function HasHesaplamaPage() {
             <Link href="/altin-hesaplama">Altın Hesaplama</Link>{" "}
             sayfasına bakabilirsin.
           </p>
-
-          <h2>Kaynaklar</h2>
+          <h2 id="kaynaklar">Kaynaklar</h2>
           <p>
             Ayar/milyem karşılıkları, kuyumculukta yaygın kullanılan
             uluslararası has (fineness) standartlarına dayanmaktadır.
@@ -168,8 +117,8 @@ export default function HasHesaplamaPage() {
             tespit merkezine (probe/mihenk) başvurulmalıdır — bu araç
             yalnızca matematiksel bir hesap sunar.
           </p>
-        </section>
-      </div>
-    </main>
+        </>
+      }
+    />
   );
 }

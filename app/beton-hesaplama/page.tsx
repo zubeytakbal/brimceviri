@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import ConcreteCalculator from "../components/ConcreteCalculator";
-import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import type { FaqItem } from "../converter/faqSchema";
 import { DosemeBetonHesabi } from "../components/EvHesapEkleri";
 import { buildSiteUrl } from "../siteConfig";
+import AracSayfasi from "@/app/components/yeni/AracSayfasi";
 
 const faqItems: FaqItem[] = [
   {
@@ -62,63 +63,21 @@ export const metadata: Metadata = {
   },
 };
 
-function serializeJsonLd(data: object) {
-  return JSON.stringify(data).replace(/</g, "\\u003c");
-}
 
 export default function ConcreteCalculatorPage() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Ana Sayfa",
-        item: buildSiteUrl("/"),
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Beton Hesaplama",
-        item: buildSiteUrl("/beton-hesaplama"),
-      },
-    ],
-  };
 
   return (
-    <main className="all-conversions-page">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd(buildFaqSchema(faqItems)),
-        }}
-      />
-
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Sayfa yolu">
-          <Link href="/">Ana Sayfa</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>Beton Hesaplama</span>
-        </nav>
-
-        <header className="all-conversions-header">
-          <h1>Beton Hesaplama</h1>
-        </header>
-
-        <ConcreteCalculator />
-
-        <section className="category-article-content">
+    <AracSayfasi
+      yol="/beton-hesaplama"
+      baslik="Beton Hesaplama"
+      hesap={<ConcreteCalculator />}
+      sss={faqItems}
+      serbestIcindekiler={[{"id":"doseme","baslik":"Döşeme betonu: kaç m³, kaç mikser?"},{"id":"mikser","baslik":"1 mikser kaç m³ beton alır?"},{"id":"torba","baslik":"1 m³ betona kaç torba çimento gider?"},{"id":"beton-hacmi-nasil-hesaplanir","baslik":"Beton hacmi nasıl hesaplanır?"},{"id":"karisim-oranlari-nereden-geliyor","baslik":"Karışım oranları nereden geliyor?"},{"id":"kendi-karistirdigim-beton-mu-hazir-beton","baslik":"Kendi karıştırdığım beton mu, hazır beton mu?"},{"id":"kaynaklar","baslik":"Kaynaklar"}]}
+      serbestIcerik={
+        <>
           <h2 id="doseme">Döşeme betonu: kaç m³, kaç mikser?</h2>
           <p>Döşeme, şap altı ya da saha betonu için alanı ve kalınlığı girin; gereken betonu, kaç mikser geleceğini ve ağırlığını görün.</p>
-        </section>
-        <DosemeBetonHesabi />
-
-        <section className="category-article-content">
+          <DosemeBetonHesabi />
           <h2 id="mikser">1 mikser kaç m³ beton alır?</h2>
           <p>
             Transmikserler 8 ile 12 m³ arasında beton taşır; dar sokaklar için 6 m³&apos;lük küçük araçlar da kullanılır.
@@ -153,7 +112,6 @@ export default function ConcreteCalculatorPage() {
             mikser demektir. Son mikser yarım dolu gelecekse firmaya önceden söylemek, araç beklerken betonun prize başlamasını
             önler.
           </p>
-
           <h2 id="torba">1 m³ betona kaç torba çimento gider?</h2>
           <p>
             Bu sayfadaki hesap, C25 sınıfı için yaygın olan metreküpte yaklaşık 350 kg çimento dozajını kullanır. Buna göre:
@@ -185,10 +143,7 @@ export default function ConcreteCalculatorPage() {
             {sayi(50 / 350, 3)} m³, 25 kg&apos;lık torba yaklaşık {sayi(25 / 350, 3)} m³ beton çıkarır. Dozaj düşürülürse bir
             torbadan daha çok beton çıkar ama dayanım da düşer; taşıyıcı elemanlarda projedeki beton sınıfına uyun.
           </p>
-        </section>
-
-        <section className="category-article-content">
-          <h2>Beton hacmi nasıl hesaplanır?</h2>
+          <h2 id="beton-hacmi-nasil-hesaplanir">Beton hacmi nasıl hesaplanır?</h2>
           <p>
             Dikdörtgen bir temel veya döşeme için hacim, uzunluk × genişlik
             × kalınlık formülüyle bulunur. Silindirik bir kolon için ise
@@ -196,8 +151,7 @@ export default function ConcreteCalculatorPage() {
             çapın yarısıdır). Bu araç, girdiğin ölçülere göre doğru
             formülü otomatik uygular.
           </p>
-
-          <h2>Karışım oranları nereden geliyor?</h2>
+          <h2 id="karisim-oranlari-nereden-geliyor">Karışım oranları nereden geliyor?</h2>
           <p>
             Sonuçlar, standart C25 beton sınıfının yaygın kullanılan
             karışım oranına dayanır: yaklaşık 1 m³ beton için 350 kg
@@ -206,8 +160,7 @@ export default function ConcreteCalculatorPage() {
             orandır; gerçek oran, kullanılan agrega türüne, beton
             sınıfına ve hava koşullarına göre biraz değişebilir.
           </p>
-
-          <h2>Kendi karıştırdığım beton mu, hazır beton mu?</h2>
+          <h2 id="kendi-karistirdigim-beton-mu-hazir-beton">Kendi karıştırdığım beton mu, hazır beton mu?</h2>
           <p>
             Küçük ölçekli işlerde (örn. birkaç kolon veya küçük bir
             döşeme) çimento torbası, kum ve çakılı kendin karıştırabilirsin
@@ -218,17 +171,7 @@ export default function ConcreteCalculatorPage() {
             durumda &quot;Fire dahil hacim&quot; sonucunu hazır beton firmasına
             m³ cinsinden ihtiyacın olarak iletebilirsin.
           </p>
-
-          <h2>Sık Sorulan Sorular</h2>
-          {faqItems.map((item) => (
-            <p key={item.question}>
-              <strong>{item.question}</strong>
-              <br />
-              {item.answer}
-            </p>
-          ))}
-
-          <h2>İlgili araçlar</h2>
+          <h2 id="ilgili-araclar">İlgili araçlar</h2>
           <p>
             Kazı hacmi hesaplaması için{" "}
             <Link href="/hafriyat-hesaplama">Hafriyat Hesaplama</Link>,{" "}
@@ -241,15 +184,14 @@ export default function ConcreteCalculatorPage() {
             <Link href="/megapascal-kilopascal">Megapascal - Kilopascal Çevirici</Link>
             {" "}sayfasına bakabilirsin.
           </p>
-
-          <h2>Kaynaklar</h2>
+          <h2 id="kaynaklar">Kaynaklar</h2>
           <p>
             C25 beton karışım oranları, hazır beton santrallerinin ve
             standart inşaat uygulama rehberlerinin yayınladığı yaygın
             değerlerden derlenmiştir.
           </p>
-        </section>
-      </div>
-    </main>
+        </>
+      }
+    />
   );
 }

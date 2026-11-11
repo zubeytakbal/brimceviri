@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import ThermalExpansionCalculator from "../components/ThermalExpansionCalculator";
-import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import type { FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
 import EngineeringNextSteps from "../components/engineering/EngineeringNextSteps";
 import { ENGINEERING_FLOWS } from "../converter/engineeringFlows";
+import AracSayfasi from "@/app/components/yeni/AracSayfasi";
 
 const faqItems: FaqItem[] = [
   {
@@ -41,51 +42,20 @@ export const metadata: Metadata = {
   },
 };
 
-function serializeJsonLd(data: object) {
-  return JSON.stringify(data).replace(/</g, "\\u003c");
-}
 
 export default function ThermalExpansionCalculatorPage() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: buildSiteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "Isıl Genleşme Hesaplama", item: buildSiteUrl("/isil-genlesme-hesaplama") },
-    ],
-  };
 
   return (
-    <main className="all-conversions-page">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(buildFaqSchema(faqItems)) }} />
-
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Sayfa yolu">
-          <Link href="/">Ana Sayfa</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>Isıl Genleşme Hesaplama</span>
-        </nav>
-
-        <header className="all-conversions-header">
-          <h1>Isıl Genleşme Hesaplama</h1>
-        </header>
-
-        <ThermalExpansionCalculator />
-
-        <section className="category-article-content">
-          <h2>Sık Sorulan Sorular</h2>
-          {faqItems.map((item) => (
-            <p key={item.question}>
-              <strong>{item.question}</strong>
-              <br />
-              {item.answer}
-            </p>
-          ))}
-
+    <AracSayfasi
+      yol="/isil-genlesme-hesaplama"
+      baslik="Isıl Genleşme Hesaplama"
+      hesap={<ThermalExpansionCalculator />}
+      sss={faqItems}
+      serbestIcindekiler={[{"id":"kaynaklar","baslik":"Kaynaklar"}]}
+      serbestIcerik={
+        <>
           <EngineeringNextSteps links={ENGINEERING_FLOWS["/isil-genlesme-hesaplama"]} />
-
-          <h2>İlgili araçlar</h2>
+          <h2 id="ilgili-araclar">İlgili araçlar</h2>
           <p>
             Tesisatçı işleri için{" "}
             <Link href="/hesaplayicilar#teknik">Teknik ve Mühendislik</Link>
@@ -97,16 +67,15 @@ export default function ThermalExpansionCalculatorPage() {
             <Link href="/elastik-uzama-hesaplama">Elastik Uzama Hesaplama</Link>
             {" "}sayfasına bakabilirsin.
           </p>
-
-          <h2>Kaynaklar</h2>
+          <h2 id="kaynaklar">Kaynaklar</h2>
           <p>
             Formül ve katsayılar, malzeme biliminde standart kabul
             edilen doğrusal ısıl genleşme tanımına dayanır; alaşım
             ve sıcaklık aralığına göre gerçek değerler küçük farklar
             gösterebilir.
           </p>
-        </section>
-      </div>
-    </main>
+        </>
+      }
+    />
   );
 }

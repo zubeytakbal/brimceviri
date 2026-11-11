@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import TransitTimeCalculator from "../components/TransitTimeCalculator";
-import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import type { FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+import AracSayfasi from "@/app/components/yeni/AracSayfasi";
 
 const faqItems: FaqItem[] = [
   {
@@ -35,58 +36,18 @@ export const metadata: Metadata = {
   },
 };
 
-function serializeJsonLd(data: object) {
-  return JSON.stringify(data).replace(/</g, "\\u003c");
-}
 
 export default function TransitTimeCalculatorPage() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Ana Sayfa",
-        item: buildSiteUrl("/"),
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Seyir Süresi Hesaplama",
-        item: buildSiteUrl("/seyir-suresi-hesaplama"),
-      },
-    ],
-  };
 
   return (
-    <main className="all-conversions-page">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd(buildFaqSchema(faqItems)),
-        }}
-      />
-
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Sayfa yolu">
-          <Link href="/">Ana Sayfa</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>Seyir Süresi Hesaplama</span>
-        </nav>
-
-        <header className="all-conversions-header">
-          <h1>Seyir Süresi Hesaplama</h1>
-        </header>
-
-        <TransitTimeCalculator />
-
-        <section className="category-article-content">
-          <h2>Seyir süresi nasıl hesaplanır?</h2>
+    <AracSayfasi
+      yol="/seyir-suresi-hesaplama"
+      baslik="Seyir Süresi Hesaplama"
+      hesap={<TransitTimeCalculator />}
+      serbestIcindekiler={[{"id":"seyir-suresi-nasil-hesaplanir","baslik":"Seyir süresi nasıl hesaplanır?"},{"id":"sik-sorulan-sorular","baslik":"Sık Sorulan Sorular"},{"id":"kaynaklar","baslik":"Kaynaklar"}]}
+      serbestIcerik={
+        <>
+          <h2 id="seyir-suresi-nasil-hesaplanir">Seyir süresi nasıl hesaplanır?</h2>
           <p>
             Temel navigasyon formülü basittir:{" "}
             <strong>Süre = Mesafe / Hız</strong>. Deniz mili ve knot
@@ -96,8 +57,7 @@ export default function TransitTimeCalculatorPage() {
             genellikle mesafeyi deniz mili, hızı knot cinsinden
             kullanarak süreyi doğrudan hesaplar.
           </p>
-
-          <h2>Sık Sorulan Sorular</h2>
+          <h2 id="sik-sorulan-sorular">Sık Sorulan Sorular</h2>
           <p>
             <strong>Knot ile deniz mili arasındaki ilişki nedir?</strong>
             <br />
@@ -114,8 +74,7 @@ export default function TransitTimeCalculatorPage() {
             yay uzunluğuna dayanır ve uluslararası olarak
             standartlaştırılmıştır.
           </p>
-
-          <h2>İlgili araçlar</h2>
+          <h2 id="ilgili-araclar">İlgili araçlar</h2>
           <p>
             Diğer havacılık araçları için{" "}
             <Link href="/hesaplayicilar#harita-ve-havacilik">Harita, Coğrafya ve Havacılık</Link>, denizcilik
@@ -128,15 +87,14 @@ export default function TransitTimeCalculatorPage() {
             <Link href="/yan-ruzgar-hesaplama">Yan Rüzgar Hesaplama</Link>
             {" "}sayfalarına bakabilirsin.
           </p>
-
-          <h2>Kaynaklar</h2>
+          <h2 id="kaynaklar">Kaynaklar</h2>
           <p>
             Deniz mili tanımı ve knot ilişkisi, uluslararası denizcilik
             ve havacılık standartlarına dayanan sabit, değişmeyen
             fiziksel tanımlardır.
           </p>
-        </section>
-      </div>
-    </main>
+        </>
+      }
+    />
   );
 }

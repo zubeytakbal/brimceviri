@@ -3,9 +3,10 @@ import Link from "@/app/components/SiteLink";
 import LicenseRenewalCalculator from "../components/LicenseRenewalCalculator";
 import SourceMonitorStatusList from "../components/SourceMonitorStatusList";
 import TrustBar from "../components/TrustBar";
-import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import type { FaqItem } from "../converter/faqSchema";
 import { getSourceMonitorStatuses } from "../converter/licenseSourceMonitor";
 import { buildSiteUrl } from "../siteConfig";
+import AracSayfasi from "@/app/components/yeni/AracSayfasi";
 
 export const revalidate = 3600;
 
@@ -51,43 +52,15 @@ export const metadata: Metadata = {
   },
 };
 
-function serializeJsonLd(data: object) {
-  return JSON.stringify(data).replace(/</g, "\\u003c");
-}
 
 export default async function LicenseRenewalPage() {
   const monitorStatuses = await getSourceMonitorStatuses();
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: buildSiteUrl("/") },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Ehliyet Yenileme Süresi Hesaplama",
-        item: buildSiteUrl("/ehliyet-yenileme-suresi-hesaplama"),
-      },
-    ],
-  };
 
   return (
-    <main className="all-conversions-page">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(buildFaqSchema(faqItems)) }} />
-
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Sayfa yolu">
-          <Link href="/">Ana Sayfa</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>Ehliyet Yenileme Süresi Hesaplama</span>
-        </nav>
-
-        <header className="all-conversions-header">
-          <h1>Ehliyet Yenileme Süresi Hesaplama</h1>
-        </header>
-
-        <TrustBar
+    <AracSayfasi
+      yol="/ehliyet-yenileme-suresi-hesaplama"
+      baslik="Ehliyet Yenileme Süresi Hesaplama"
+      hesap={<TrustBar
           sources={[
             {
               label: "Karayolları Trafik Yönetmeliği (mevzuat.gov.tr)",
@@ -95,12 +68,13 @@ export default async function LicenseRenewalPage() {
             },
           ]}
           lastVerified="Eylül 2026"
-        />
-
-        <LicenseRenewalCalculator />
-
-        <section className="category-article-content">
-          <h2>Ehliyet Yenileme Süresi Nasıl Belirlenir?</h2>
+        />}
+      sss={faqItems}
+      serbestIcindekiler={[{"id":"ehliyet-yenileme-suresi-nasil-belirlenir","baslik":"Ehliyet Yenileme Süresi Nasıl Belirlenir?"},{"id":"yenileme-icin-ne-gerekir","baslik":"Yenileme İçin Ne Gerekir?"},{"id":"suresi-dolarsa-ne-olur","baslik":"Süresi Dolarsa Ne Olur?"},{"id":"kaynaklar","baslik":"Kaynaklar"}]}
+      serbestIcerik={
+        <>
+          <LicenseRenewalCalculator />
+          <h2 id="ehliyet-yenileme-suresi-nasil-belirlenir">Ehliyet Yenileme Süresi Nasıl Belirlenir?</h2>
           <p>
             Türkiye&apos;de sürücü belgeleri sınıfına göre belirli
             aralıklarla yenilenir:
@@ -121,8 +95,7 @@ export default async function LicenseRenewalPage() {
               geçerlilik süresine bağlı olarak daha kısa olabilir.
             </li>
           </ul>
-
-          <h2>Yenileme İçin Ne Gerekir?</h2>
+          <h2 id="yenileme-icin-ne-gerekir">Yenileme İçin Ne Gerekir?</h2>
           <p>
             Yenileme sırasında güncel bir sağlık raporu alınması ve
             harç/değerli kağıt ücretinin ödenmesi gerekir. Süreç ve
@@ -130,25 +103,14 @@ export default async function LicenseRenewalPage() {
             güncel bilgi için resmi kaynağı veya nüfus müdürlüğünü
             kontrol etmen önerilir.
           </p>
-
-          <h2>Süresi Dolarsa Ne Olur?</h2>
+          <h2 id="suresi-dolarsa-ne-olur">Süresi Dolarsa Ne Olur?</h2>
           <p>
             Süresi dolan bir sürücü belgesiyle trafiğe çıkmak yasal
             değildir — sürücü araç kullanmaktan men edilir ve belge
             geçersiz sayılabilir. Yeni belge çıkana kadar araç
             kullanılmamalıdır.
           </p>
-
-          <h2>Sık Sorulan Sorular</h2>
-          {faqItems.map((item) => (
-            <p key={item.question}>
-              <strong>{item.question}</strong>
-              <br />
-              {item.answer}
-            </p>
-          ))}
-
-          <h2>İlgili araçlar</h2>
+          <h2 id="ilgili-araclar">İlgili araçlar</h2>
           <p>
             Aracına göre hangi ehliyet sınıfına ihtiyacın olduğunu
             görmek için{" "}
@@ -157,8 +119,7 @@ export default async function LicenseRenewalPage() {
             <Link href="/hesaplayicilar#enerji-ve-arac">Enerji, Fatura ve Araç</Link>
             {" "}sayfasına bakabilirsin.
           </p>
-
-          <h2>Kaynaklar</h2>
+          <h2 id="kaynaklar">Kaynaklar</h2>
           <p>
             Bu sayfadaki sürelere ilişkin bilgiler, Karayolları Trafik
             Yönetmeliği ile birden fazla bağımsız kaynaktan çapraz
@@ -179,10 +140,9 @@ export default async function LicenseRenewalPage() {
           <p>
             <em>Son doğrulama: Eylül 2026.</em>
           </p>
-
           <SourceMonitorStatusList statuses={monitorStatuses} />
-        </section>
-      </div>
-    </main>
+        </>
+      }
+    />
   );
 }

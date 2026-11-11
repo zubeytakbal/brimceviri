@@ -46,5 +46,6 @@ describe("client boundary", () => {
       }
     }
     expect(offenders).toEqual([]);
-  });
+    // Butun app klasorunu tarar; Windows'ta 5 sn'yi asabiliyor.
+  }, 30_000);
 });

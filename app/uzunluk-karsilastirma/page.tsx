@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import LengthComparisonTool from "../components/LengthComparisonTool";
-import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import type { FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+import AracSayfasi from "@/app/components/yeni/AracSayfasi";
 
 const faqItems: FaqItem[] = [
   {
@@ -35,58 +36,18 @@ export const metadata: Metadata = {
   },
 };
 
-function serializeJsonLd(data: object) {
-  return JSON.stringify(data).replace(/</g, "\\u003c");
-}
 
 export default function LengthComparisonPage() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Ana Sayfa",
-        item: buildSiteUrl("/"),
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Uzunluk Karşılaştırma",
-        item: buildSiteUrl("/uzunluk-karsilastirma"),
-      },
-    ],
-  };
 
   return (
-    <main className="all-conversions-page">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd(buildFaqSchema(faqItems)),
-        }}
-      />
-
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Sayfa yolu">
-          <Link href="/">Ana Sayfa</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>Uzunluk Karşılaştırma</span>
-        </nav>
-
-        <header className="all-conversions-header">
-          <h1>Uzunluk Karşılaştırma</h1>
-        </header>
-
-        <LengthComparisonTool />
-
-        <section className="category-article-content">
-          <h2>Bu karşılaştırmalar nereden geliyor?</h2>
+    <AracSayfasi
+      yol="/uzunluk-karsilastirma"
+      baslik="Uzunluk Karşılaştırma"
+      hesap={<LengthComparisonTool />}
+      serbestIcindekiler={[{"id":"bu-karsilastirmalar-nereden-geliyor","baslik":"Bu karşılaştırmalar nereden geliyor?"},{"id":"sik-sorulan-sorular","baslik":"Sık Sorulan Sorular"}]}
+      serbestIcerik={
+        <>
+          <h2 id="bu-karsilastirmalar-nereden-geliyor">Bu karşılaştırmalar nereden geliyor?</h2>
           <p>
             Kullanılan referans değerler yaygın kabul gören
             kaynaklardan derlenmiştir: yetişkin zürafa boyu için
@@ -101,8 +62,7 @@ export default function LengthComparisonPage() {
             kesin bilimsel ölçümler değil, karşılaştırma amaçlı
             yuvarlatılmış ortalama değerlerdir.
           </p>
-
-          <h2>Sık Sorulan Sorular</h2>
+          <h2 id="sik-sorulan-sorular">Sık Sorulan Sorular</h2>
           <p>
             <strong>En yakın karşılaştırma nasıl seçiliyor?</strong>
             <br />
@@ -118,15 +78,14 @@ export default function LengthComparisonPage() {
             dolu gösterilir ve yanındaki sayı gerçek kat farkını (ör.
             &quot;36 kat&quot;) yazılı olarak belirtir.
           </p>
-
-          <h2>İlgili araçlar</h2>
+          <h2 id="ilgili-araclar">İlgili araçlar</h2>
           <p>
             Ağırlık birimlerini çevirmek için{" "}
             <Link href="/kategoriler/kutle">Kütle Dönüşümleri</Link>
             {" "}sayfasına bakabilirsin.
           </p>
-        </section>
-      </div>
-    </main>
+        </>
+      }
+    />
   );
 }

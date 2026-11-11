@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import StairCalculator from "../components/StairCalculator";
-import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import type { FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+import AracSayfasi from "@/app/components/yeni/AracSayfasi";
 
 const faqItems: FaqItem[] = [
   {
@@ -57,57 +58,18 @@ export const metadata: Metadata = {
   },
 };
 
-function serializeJsonLd(data: object) {
-  return JSON.stringify(data).replace(/</g, "\\u003c");
-}
 
 export default function StairCalculatorPage() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Ana Sayfa",
-        item: buildSiteUrl("/"),
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Merdiven Hesaplama",
-        item: buildSiteUrl("/merdiven-hesaplama"),
-      },
-    ],
-  };
 
   return (
-    <main className="all-conversions-page">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd(buildFaqSchema(faqItems)),
-        }}
-      />
-
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Sayfa yolu">
-          <Link href="/">Ana Sayfa</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>Merdiven Hesaplama</span>
-        </nav>
-
-        <header className="all-conversions-header">
-          <h1>Merdiven Hesaplama</h1>
-        </header>
-
-        <StairCalculator />
-
-        <section className="category-article-content">
+    <AracSayfasi
+      yol="/merdiven-hesaplama"
+      baslik="Merdiven Hesaplama"
+      hesap={<StairCalculator />}
+      sss={faqItems}
+      serbestIcindekiler={[{"id":"formul","baslik":"Merdiven hesaplama formülü"},{"id":"riht","baslik":"Rıht, basamak ve sahanlık ne demek?"},{"id":"sahanlik","baslik":"Sahanlıklı merdiven nasıl hesaplanır?"},{"id":"basamak-sayisi-ve-riht-yuksekligi-nasil","baslik":"Basamak sayısı ve rıht yüksekliği nasıl belirlenir?"},{"id":"basamak-derinligi-neden-blondel-formuluyle-hesaplaniyor","baslik":"Basamak derinliği neden Blondel formülüyle hesaplanıyor?"},{"id":"kaynaklar","baslik":"Kaynaklar"}]}
+      serbestIcerik={
+        <>
           <h2 id="formul">Merdiven hesaplama formülü</h2>
           <p>Merdiven hesabı üç adımda yapılır. Kat yüksekliğine H, rıht sayısına n diyelim:</p>
           <ol>
@@ -149,7 +111,6 @@ export default function StairCalculatorPage() {
               </tbody>
             </table>
           </div>
-
           <h2 id="riht">Rıht, basamak ve sahanlık ne demek?</h2>
           <p>
             <strong>Rıht</strong>, iki basamak arasındaki dik yüzey ve onun yüksekliğidir; merdivenin ne kadar dik olduğunu
@@ -157,7 +118,6 @@ export default function StairCalculatorPage() {
             rahatlığını belirler. <strong>Sahanlık</strong>, merdiven kolunu ikiye bölen düz dinlenme alanıdır ve dönüşlü
             merdivenlerde kolun yön değiştirdiği yerdir.
           </p>
-
           <h2 id="sahanlik">Sahanlıklı merdiven nasıl hesaplanır?</h2>
           <p>
             Rıht sayısı ve rıht yüksekliği sahanlıktan etkilenmez; aynı formülle bulunur. Fark, basamakların iki kola
@@ -166,8 +126,7 @@ export default function StairCalculatorPage() {
             Her kolun yatay boyu kendi basamak sayısıyla hesaplanır, araya sahanlık derinliği eklenir. Tasarımda sahanlık
             derinliği genellikle en az merdiven kolunun genişliği kadar tutulur ki taşınan eşyalar dönüşte sıkışmasın.
           </p>
-
-          <h2>Basamak sayısı ve rıht yüksekliği nasıl belirlenir?</h2>
+          <h2 id="basamak-sayisi-ve-riht-yuksekligi-nasil">Basamak sayısı ve rıht yüksekliği nasıl belirlenir?</h2>
           <p>
             İki kat arasındaki toplam yükseklik (kat yüksekliği), istediğin
             rıht yüksekliğine bölünüp en yakın tam sayıya yuvarlanarak
@@ -176,8 +135,7 @@ export default function StairCalculatorPage() {
             hesaplanır — böylece merdivenin her adımı aynı yükseklikte
             olur.
           </p>
-
-          <h2>Basamak derinliği neden Blondel formülüyle hesaplanıyor?</h2>
+          <h2 id="basamak-derinligi-neden-blondel-formuluyle-hesaplaniyor">Basamak derinliği neden Blondel formülüyle hesaplanıyor?</h2>
           <p>
             Basamak derinliği, rıht yüksekliğiyle ters orantılı bir dengeye
             sahip olmalıdır: rıht yüksekse basamak derinliğinin az olması,
@@ -187,17 +145,7 @@ export default function StairCalculatorPage() {
             basamak derinliği ≈ 63 cm), bu dengeyi doğal bir yürüyüş
             adımına yakın tutarak hesaplar.
           </p>
-
-          <h2>Sık Sorulan Sorular</h2>
-          {faqItems.map((item) => (
-            <p key={item.question}>
-              <strong>{item.question}</strong>
-              <br />
-              {item.answer}
-            </p>
-          ))}
-
-          <h2>İlgili araçlar</h2>
+          <h2 id="ilgili-araclar">İlgili araçlar</h2>
           <p>
             Diğer inşaat hesaplamaları için{" "}
             <Link href="/hesaplayicilar#ev-ve-yapi">Ev, İnşaat ve Bahçe</Link>,{" "}
@@ -205,15 +153,14 @@ export default function StairCalculatorPage() {
             <Link href="/hesaplayicilar#ev-ve-yapi">Ev, İnşaat ve Bahçe</Link>
             {" "}sayfasına bakabilirsin.
           </p>
-
-          <h2>Kaynaklar</h2>
+          <h2 id="kaynaklar">Kaynaklar</h2>
           <p>
             Blondel formülü ve rıht/basamak derinliği için konforlu ölçü
             aralıkları, mimarlık ve iç mekan tasarımı literatüründe yaygın
             kabul gören standart merdiven tasarım kurallarına dayanır.
           </p>
-        </section>
-      </div>
-    </main>
+        </>
+      }
+    />
   );
 }

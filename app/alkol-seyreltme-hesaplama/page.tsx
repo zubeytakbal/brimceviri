@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import AlcoholDilutionCalculator from "../components/AlcoholDilutionCalculator";
-import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import type { FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+import AracSayfasi from "@/app/components/yeni/AracSayfasi";
 
 const faqItems: FaqItem[] = [
   {
@@ -44,43 +45,18 @@ export const metadata: Metadata = {
   },
 };
 
-function serializeJsonLd(data: object) {
-  return JSON.stringify(data).replace(/</g, "\\u003c");
-}
 
 export default function AlcoholDilutionCalculatorPage() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: buildSiteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "Tüm Hesaplamalar", item: buildSiteUrl("/hesaplayicilar") },
-      { "@type": "ListItem", position: 3, name: "Kimya Hesaplayıcıları", item: buildSiteUrl("/hesaplayicilar#kimya") },
-      { "@type": "ListItem", position: 4, name: "Alkol Seyreltme Hesaplama", item: buildSiteUrl("/alkol-seyreltme-hesaplama") },
-    ],
-  };
 
   return (
-    <main className="all-conversions-page">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(buildFaqSchema(faqItems)) }} />
-
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Sayfa yolu">
-          <Link href="/">Ana Sayfa</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/hesaplayicilar#kimya">Kimya Hesaplayıcıları</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>Alkol Seyreltme Hesaplama</span>
-        </nav>
-
-        <header className="all-conversions-header">
-          <h1>Alkol Seyreltme Hesaplama</h1>
-        </header>
-
-        <AlcoholDilutionCalculator />
-
-        <section className="category-article-content">
+    <AracSayfasi
+      yol="/alkol-seyreltme-hesaplama"
+      baslik="Alkol Seyreltme Hesaplama"
+      hesap={<AlcoholDilutionCalculator />}
+      sss={faqItems}
+      serbestIcindekiler={[{"id":"96-alkol","baslik":"%96 alkolü seyreltmek: 100 ml'ye ne kadar su?"},{"id":"kaynaklar","baslik":"Kaynaklar"}]}
+      serbestIcerik={
+        <>
           <h2 id="96-alkol">%96 alkolü seyreltmek: 100 ml&apos;ye ne kadar su?</h2>
           <p>
             En sık yapılan iş, eczaneden alınan %96&apos;lık etil alkolü daha düşük derişime indirmektir. Hesap{" "}
@@ -113,32 +89,21 @@ export default function AlcoholDilutionCalculatorPage() {
             tablodaki su miktarıyla elde edilen sıvı hedeften çok az güçlü olur; derişim önemliyse ölçüyü bir alkolmetreyle
             doğrulayın. Ev kullanımı dışındaki işlerde (laboratuvar, ilaç) üreticinin talimatı esastır.
           </p>
-
-          <h2>Sık Sorulan Sorular</h2>
-          {faqItems.map((item) => (
-            <p key={item.question}>
-              <strong>{item.question}</strong>
-              <br />
-              {item.answer}
-            </p>
-          ))}
-
-          <h2>İlgili araçlar</h2>
+          <h2 id="ilgili-araclar">İlgili araçlar</h2>
           <p>
             Diğer eczacı araçları için{" "}
             <Link href="/hesaplayicilar#kimya">Kimya Hesaplayıcıları</Link>
             {" "}sayfasına bakabilirsin.
           </p>
-
-          <h2>Kaynaklar</h2>
+          <h2 id="kaynaklar">Kaynaklar</h2>
           <p>
             Formül, derişim korunumu ilkesine (C₁V₁ = C₂V₂) dayanır.
             %70 gibi referans değerler DSÖ/CDC gibi kuruluşların kamuya
             açık genel dezenfeksiyon rehberlerinden alınmıştır; bu araç
             tıbbi/eczacılık tavsiyesi yerine geçmez.
           </p>
-        </section>
-      </div>
-    </main>
+        </>
+      }
+    />
   );
 }

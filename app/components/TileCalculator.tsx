@@ -53,76 +53,6 @@ const copyByLocale: Record<
     },
     emptyState: "Enter valid values to see the result.",
   },
-  fr: {
-    labels: {
-      area: "Surface à couvrir (m²)",
-      width: "Largeur du carreau (cm)",
-      height: "Hauteur du carreau (cm)",
-      waste: "Marge de perte (%)",
-    },
-    resultLabels: {
-      tileArea: "Surface d'un carreau",
-      totalArea: "Surface totale avec perte",
-      count: "Nombre de carreaux nécessaire",
-    },
-    emptyState: "Saisissez des valeurs valides pour voir le résultat.",
-  },
-  es: {
-    labels: {
-      area: "Superficie a cubrir (m²)",
-      width: "Ancho de la baldosa (cm)",
-      height: "Alto de la baldosa (cm)",
-      waste: "Margen de desperdicio (%)",
-    },
-    resultLabels: {
-      tileArea: "Superficie de una baldosa",
-      totalArea: "Superficie total con desperdicio",
-      count: "Cantidad de baldosas necesaria",
-    },
-    emptyState: "Introduce valores válidos para ver el resultado.",
-  },
-  pt: {
-    labels: {
-      area: "Área a revestir (m²)",
-      width: "Largura do piso (cm)",
-      height: "Altura do piso (cm)",
-      waste: "Margem de perda (%)",
-    },
-    resultLabels: {
-      tileArea: "Área de uma peça",
-      totalArea: "Área total com perda",
-      count: "Quantidade de peças necessária",
-    },
-    emptyState: "Digite valores válidos para ver o resultado.",
-  },
-  it: {
-    labels: {
-      area: "Superficie da rivestire (m²)",
-      width: "Larghezza della piastrella (cm)",
-      height: "Altezza della piastrella (cm)",
-      waste: "Margine di sfrido (%)",
-    },
-    resultLabels: {
-      tileArea: "Superficie di una piastrella",
-      totalArea: "Superficie totale con sfrido",
-      count: "Numero di piastrelle necessarie",
-    },
-    emptyState: "Inserisci valori validi per vedere il risultato.",
-  },
-  nl: {
-    labels: {
-      area: "Te betegelen oppervlak (m²)",
-      width: "Breedte van de tegel (cm)",
-      height: "Hoogte van de tegel (cm)",
-      waste: "Snijverlies (%)",
-    },
-    resultLabels: {
-      tileArea: "Oppervlak van één tegel",
-      totalArea: "Totaal oppervlak inclusief verlies",
-      count: "Benodigd aantal tegels",
-    },
-    emptyState: "Voer geldige waarden in om het resultaat te zien.",
-  },
   de: {
     labels: {
       area: "Zu belegende Fläche (m²)",
@@ -136,34 +66,6 @@ const copyByLocale: Record<
       count: "Benötigte Anzahl Fliesen",
     },
     emptyState: "Geben Sie gültige Werte ein, um das Ergebnis zu sehen.",
-  },
-  ar: {
-    labels: {
-      area: "المساحة المطلوب تغطيتها (م2)",
-      width: "عرض البلاطة (سم)",
-      height: "طول البلاطة (سم)",
-      waste: "نسبة الهدر (%)",
-    },
-    resultLabels: {
-      tileArea: "مساحة البلاطة الواحدة",
-      totalArea: "إجمالي المساحة مع الهدر",
-      count: "عدد البلاط المطلوب",
-    },
-    emptyState: "أدخل قيمًا صحيحة لعرض النتيجة.",
-  },
-bn: {
-    labels: {
-      area: "যে ক্ষেত্রফল ঢাকতে হবে (বর্গমিটার)",
-      width: "টাইলের প্রস্থ (সেমি)",
-      height: "টাইলের উচ্চতা (সেমি)",
-      waste: "অপচয়ের মার্জিন (%)",
-    },
-    resultLabels: {
-      tileArea: "একটি টাইলের ক্ষেত্রফল",
-      totalArea: "অপচয়সহ মোট ক্ষেত্রফল",
-      count: "প্রয়োজনীয় টাইলের সংখ্যা",
-    },
-    emptyState: "ফলাফল দেখতে বৈধ মান লিখুন।",
   },
 };
 
@@ -188,7 +90,7 @@ export default function TileCalculator({
 }: {
   locale?: Locale;
 }) {
-  const copy = copyByLocale[locale === "ru" ? "en" : locale];
+  const copy = copyByLocale[locale];
   const [area, setArea] = useState("20");
   const [tileWidthCm, setTileWidthCm] = useState("60");
   const [tileHeightCm, setTileHeightCm] = useState("60");

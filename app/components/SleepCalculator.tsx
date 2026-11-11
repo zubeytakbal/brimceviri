@@ -51,81 +51,6 @@ const copyByLocale: Record<
     sleepLabel: "hours of sleep",
     recommended: "Recommended",
   },
-  fr: {
-    modePrompt: "Que voulez-vous calculer ?",
-    modeButtons: {
-      "wake-to-bedtime": "Quand dois-je me coucher ?",
-      "bedtime-to-wake": "Quand dois-je me réveiller ?",
-    },
-    timeLabel: {
-      "wake-to-bedtime": "Heure de réveil souhaitée",
-      "bedtime-to-wake": "Heure du coucher",
-    },
-    emptyState: "Saisissez une heure valide pour voir le résultat.",
-    cycleLabel: "cycles",
-    sleepLabel: "heures de sommeil",
-    recommended: "Recommandé",
-  },
-  es: {
-    modePrompt: "¿Qué quieres calcular?",
-    modeButtons: {
-      "wake-to-bedtime": "¿Cuándo debo dormir?",
-      "bedtime-to-wake": "¿Cuándo debo despertarme?",
-    },
-    timeLabel: {
-      "wake-to-bedtime": "Hora de despertar deseada",
-      "bedtime-to-wake": "Hora de acostarse",
-    },
-    emptyState: "Introduce una hora válida para ver el resultado.",
-    cycleLabel: "ciclos",
-    sleepLabel: "horas de sueño",
-    recommended: "Recomendado",
-  },
-  pt: {
-    modePrompt: "O que você quer calcular?",
-    modeButtons: {
-      "wake-to-bedtime": "Quando devo dormir?",
-      "bedtime-to-wake": "Quando devo acordar?",
-    },
-    timeLabel: {
-      "wake-to-bedtime": "Horário desejado para acordar",
-      "bedtime-to-wake": "Horário de dormir",
-    },
-    emptyState: "Digite um horário válido para ver o resultado.",
-    cycleLabel: "ciclos",
-    sleepLabel: "horas de sono",
-    recommended: "Recomendado",
-  },
-  it: {
-    modePrompt: "Cosa vuoi calcolare?",
-    modeButtons: {
-      "wake-to-bedtime": "Quando dovrei dormire?",
-      "bedtime-to-wake": "Quando dovrei svegliarmi?",
-    },
-    timeLabel: {
-      "wake-to-bedtime": "Orario di sveglia desiderato",
-      "bedtime-to-wake": "Orario in cui vai a letto",
-    },
-    emptyState: "Inserisci un orario valido per vedere il risultato.",
-    cycleLabel: "cicli",
-    sleepLabel: "ore di sonno",
-    recommended: "Consigliato",
-  },
-  nl: {
-    modePrompt: "Wat wil je berekenen?",
-    modeButtons: {
-      "wake-to-bedtime": "Wanneer moet ik gaan slapen?",
-      "bedtime-to-wake": "Wanneer moet ik wakker worden?",
-    },
-    timeLabel: {
-      "wake-to-bedtime": "Gewenste wektijd",
-      "bedtime-to-wake": "Bedtijd",
-    },
-    emptyState: "Voer een geldige tijd in om het resultaat te zien.",
-    cycleLabel: "cycli",
-    sleepLabel: "uur slaap",
-    recommended: "Aanbevolen",
-  },
   de: {
     modePrompt: "Was möchten Sie berechnen?",
     modeButtons: {
@@ -140,36 +65,6 @@ const copyByLocale: Record<
     cycleLabel: "Zyklen",
     sleepLabel: "Stunden Schlaf",
     recommended: "Empfohlen",
-  },
-  ar: {
-    modePrompt: "ماذا تريد أن تحسب؟",
-    modeButtons: {
-      "wake-to-bedtime": "متى أنام؟",
-      "bedtime-to-wake": "متى أستيقظ؟",
-    },
-    timeLabel: {
-      "wake-to-bedtime": "وقت الاستيقاظ المطلوب",
-      "bedtime-to-wake": "وقت النوم",
-    },
-    emptyState: "أدخل وقتًا صحيحًا لعرض النتيجة.",
-    cycleLabel: "دورات",
-    sleepLabel: "ساعات نوم",
-    recommended: "موصى به",
-  },
-bn: {
-    modePrompt: "আপনি কী হিসাব করতে চান?",
-    modeButtons: {
-      "wake-to-bedtime": "কখন ঘুমাতে যাব?",
-      "bedtime-to-wake": "কখন ঘুম থেকে উঠব?",
-    },
-    timeLabel: {
-      "wake-to-bedtime": "কাঙ্ক্ষিত ঘুম থেকে ওঠার সময়",
-      "bedtime-to-wake": "ঘুমাতে যাওয়ার সময়",
-    },
-    emptyState: "ফলাফল দেখতে একটি সঠিক সময় লিখুন।",
-    cycleLabel: "চক্র",
-    sleepLabel: "ঘণ্টা ঘুম",
-    recommended: "প্রস্তাবিত",
   },
 };
 
@@ -235,104 +130,6 @@ const flowCopy: Record<string, {
     increase: "erhöhen",
     decrease: "verringern",
   },
-  fr: {
-    pickTitle: "À quelle heure voulez-vous vous lever ?",
-    hour: "Heure",
-    minute: "Minute",
-    primary: "À quelle heure me coucher ?",
-    or: "ou",
-    nowTitle: "Si je me couche maintenant…",
-    nowButton: "À quelle heure me lever ?",
-    wakeIntro: (time) => `Pour vous réveiller reposé à ${time}, couchez-vous à l'une de ces heures :`,
-    nowIntro: (time) => `Vous vous couchez maintenant (${time}) ? Levez-vous à l'une de ces heures :`,
-    placeholder: "Choisissez votre heure de réveil et calculez, ou appuyez sur le bouton ci-dessous si vous vous couchez maintenant.",
-    increase: "augmenter",
-    decrease: "diminuer",
-  },
-  es: {
-    pickTitle: "¿A qué hora quieres despertarte?",
-    hour: "Hora",
-    minute: "Minuto",
-    primary: "¿A qué hora debo acostarme?",
-    or: "o",
-    nowTitle: "Si me acuesto ahora…",
-    nowButton: "¿A qué hora debo despertarme?",
-    wakeIntro: (time) => `Para despertarte descansado a las ${time}, acuéstate a una de estas horas:`,
-    nowIntro: (time) => `¿Te acuestas ahora (${time})? Despiértate a una de estas horas:`,
-    placeholder: "Elige tu hora de despertar y calcula, o pulsa el botón de abajo si te acuestas ahora.",
-    increase: "aumentar",
-    decrease: "disminuir",
-  },
-  pt: {
-    pickTitle: "A que horas você quer acordar?",
-    hour: "Hora",
-    minute: "Minuto",
-    primary: "A que horas devo dormir?",
-    or: "ou",
-    nowTitle: "Se eu dormir agora…",
-    nowButton: "A que horas devo acordar?",
-    wakeIntro: (time) => `Para acordar descansado às ${time}, deite-se em um destes horários:`,
-    nowIntro: (time) => `Vai dormir agora (${time})? Acorde em um destes horários:`,
-    placeholder: "Escolha o horário de acordar e calcule, ou toque no botão abaixo se vai dormir agora.",
-    increase: "aumentar",
-    decrease: "diminuir",
-  },
-  it: {
-    pickTitle: "A che ora vuoi svegliarti?",
-    hour: "Ora",
-    minute: "Minuto",
-    primary: "A che ora devo andare a dormire?",
-    or: "oppure",
-    nowTitle: "Se vado a dormire adesso…",
-    nowButton: "A che ora devo svegliarmi?",
-    wakeIntro: (time) => `Per svegliarti riposato alle ${time}, vai a letto a uno di questi orari:`,
-    nowIntro: (time) => `Vai a letto adesso (${time})? Svegliati a uno di questi orari:`,
-    placeholder: "Scegli l'ora della sveglia e calcola, oppure tocca il pulsante qui sotto se vai a dormire adesso.",
-    increase: "aumenta",
-    decrease: "diminuisci",
-  },
-  nl: {
-    pickTitle: "Hoe laat wil je opstaan?",
-    hour: "Uur",
-    minute: "Minuut",
-    primary: "Hoe laat moet ik gaan slapen?",
-    or: "of",
-    nowTitle: "Als ik nu ga slapen…",
-    nowButton: "Hoe laat moet ik opstaan?",
-    wakeIntro: (time) => `Wil je om ${time} uitgerust wakker worden? Ga dan op een van deze tijden naar bed:`,
-    nowIntro: (time) => `Ga je nu (${time}) slapen? Sta op een van deze tijden op:`,
-    placeholder: "Kies je opstaantijd en bereken, of tik op de knop hieronder als je nu gaat slapen.",
-    increase: "verhogen",
-    decrease: "verlagen",
-  },
-  ar: {
-    pickTitle: "متى تريد أن تستيقظ؟",
-    hour: "الساعة",
-    minute: "الدقيقة",
-    primary: "متى يجب أن أنام؟",
-    or: "أو",
-    nowTitle: "إذا نمت الآن…",
-    nowButton: "متى يجب أن أستيقظ؟",
-    wakeIntro: (time) => `لتستيقظ مرتاحًا في ${time}، نم في أحد هذه الأوقات:`,
-    nowIntro: (time) => `ستنام الآن (${time})؟ استيقظ في أحد هذه الأوقات:`,
-    placeholder: "اختر وقت الاستيقاظ واحسب، أو اضغط الزر أدناه إذا كنت ستنام الآن.",
-    increase: "زيادة",
-    decrease: "إنقاص",
-  },
-  bn: {
-    pickTitle: "কখন ঘুম থেকে উঠতে চান?",
-    hour: "ঘণ্টা",
-    minute: "মিনিট",
-    primary: "কখন ঘুমাতে যাব?",
-    or: "অথবা",
-    nowTitle: "এখন ঘুমালে…",
-    nowButton: "কখন ঘুম থেকে উঠব?",
-    wakeIntro: (time) => `${time}-এ সতেজভাবে উঠতে এই সময়গুলোর একটিতে ঘুমাতে যান:`,
-    nowIntro: (time) => `এখন (${time}) ঘুমালে এই সময়গুলোর একটিতে উঠুন:`,
-    placeholder: "ঘুম থেকে ওঠার সময় বেছে হিসাব করুন, অথবা এখন ঘুমালে নিচের বোতামে চাপুন।",
-    increase: "বাড়ান",
-    decrease: "কমান",
-  },
 };
 
 const pad = (value: number) => String(value).padStart(2, "0");
@@ -376,7 +173,7 @@ export default function SleepCalculator({
 }: {
   locale?: Locale;
 }) {
-  const copy = copyByLocale[locale === "ru" ? "en" : locale];
+  const copy = copyByLocale[locale];
   const flow = flowCopy[locale] ?? flowCopy.en;
   const [hour, setHour] = useState(7);
   const [minute, setMinute] = useState(0);

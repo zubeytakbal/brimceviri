@@ -15,7 +15,7 @@ type UnitOption = {
 
 type CategoryUnitConverterProps = {
   category: string;
-  locale: "tr" | "en" | "de" | "ar" | "bn" | "fr" | "es" | "pt" | "it" | "nl";
+  locale: "tr" | "en" | "de";
   // Verilmezse getCategoryUnitOptions(category, locale) kullanilir (kategori
   // sayfalarindaki standart davranis). Verilirse, ayni convert() motoru
   // (ayni category/symbol eslesmesi) uzerinde SADECE bu birimler secilebilir
@@ -32,25 +32,10 @@ const NUMBER_LOCALES: Record<ConverterLocale, string> = {
   tr: "tr-TR",
   en: "en-US",
   de: "de-DE",
-  ar: "ar",
-  bn: "bn-BD",
-  fr: "fr-FR",
-  es: "es-ES",
-  pt: "pt-BR",
-  it: "it-IT",
-  nl: "nl-NL",
 };
 
 type ConverterLabels = { value: string; from: string; to: string; result: string; swap: string; invalid: string };
 
-const SPANISH_LABELS: ConverterLabels = {
-  value: "Valor",
-  from: "Unidad de origen",
-  to: "Unidad de destino",
-  result: "Resultado instantáneo",
-  swap: "Invertir sentido",
-  invalid: "Introduce un número válido para ver el resultado.",
-};
 
 const CONVERTER_LABELS: Record<ConverterLocale, ConverterLabels> = {
   tr: {
@@ -76,55 +61,6 @@ const CONVERTER_LABELS: Record<ConverterLocale, ConverterLabels> = {
     result: "Direktes Ergebnis",
     swap: "Richtung wechseln",
     invalid: "Geben Sie eine gültige Zahl ein, um das Ergebnis zu sehen.",
-  },
-  ar: {
-    value: "القيمة",
-    from: "من وحدة",
-    to: "إلى وحدة",
-    result: "النتيجة المباشرة",
-    swap: "تبديل الاتجاه",
-    invalid: "أدخل رقما صحيحا لعرض النتيجة.",
-  },
-  bn: {
-    value: "মান",
-    from: "উৎস একক",
-    to: "লক্ষ্য একক",
-    result: "তাৎক্ষণিক ফলাফল",
-    swap: "দিক পরিবর্তন করুন",
-    invalid: "ফলাফল দেখতে একটি সঠিক সংখ্যা লিখুন।",
-  },
-  fr: {
-    value: "Valeur",
-    from: "Unité source",
-    to: "Unité cible",
-    result: "Résultat instantané",
-    swap: "Inverser le sens",
-    invalid: "Saisissez un nombre valide pour voir le résultat.",
-  },
-  es: SPANISH_LABELS,
-  pt: {
-    value: "Valor",
-    from: "Unidade de origem",
-    to: "Unidade de destino",
-    result: "Resultado instantâneo",
-    swap: "Inverter sentido",
-    invalid: "Digite um número válido para ver o resultado.",
-  },
-  it: {
-    value: "Valore",
-    from: "Unità di origine",
-    to: "Unità di destinazione",
-    result: "Risultato istantaneo",
-    swap: "Inverti direzione",
-    invalid: "Inserisci un numero valido per vedere il risultato.",
-  },
-  nl: {
-    value: "Waarde",
-    from: "Van eenheid",
-    to: "Naar eenheid",
-    result: "Direct resultaat",
-    swap: "Richting omkeren",
-    invalid: "Voer een geldig getal in om het resultaat te zien.",
   },
 };
 
@@ -165,7 +101,7 @@ function parseNumericValue(
 }
 
 function formatDisplayNumber(
-  locale: "tr" | "en" | "de" | "ar" | "bn" | "fr" | "es" | "pt" | "it" | "nl",
+  locale: "tr" | "en" | "de",
   value: number
 ) {
   if (!Number.isFinite(value)) {

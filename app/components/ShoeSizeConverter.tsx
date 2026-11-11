@@ -10,7 +10,7 @@ import {
 } from "../converter/shoeSizeTable";
 
 type SystemKey = "eu" | "us" | "uk" | "cm";
-type Locale = "tr" | "en" | "de" | "ar" | "bn" | "fr" | "es" | "pt" | "it" | "nl";
+type Locale = "tr" | "en" | "de";
 
 const systemLabels: Record<Locale, Record<SystemKey, string>> = {
   tr: {
@@ -31,43 +31,6 @@ const systemLabels: Record<Locale, Record<SystemKey, string>> = {
     uk: "UK",
     cm: "Fußlänge (cm)",
   },
-  ar: {
-    eu: "أوروبا (EU)",
-    us: "أمريكا (US)",
-    uk: "بريطانيا (UK)",
-    cm: "طول القدم (سم)",
-  },
-  bn: {
-    eu: "ইউরোপ (EU)",
-    us: "যুক্তরাষ্ট্র (US)",
-    uk: "যুক্তরাজ্য (UK)",
-    cm: "পায়ের দৈর্ঘ্য (সেমি)",
-  },
-  fr: {
-    eu: "France / Europe (FR/EU)",
-    us: "Etats-Unis (US)",
-    uk: "Royaume-Uni (UK)",
-    cm: "Longueur du pied (cm)",
-  },
-  es: {
-    eu: "España / Europa (EU)",
-    us: "Estados Unidos (US)",
-    uk: "Reino Unido (UK)",
-    cm: "Longitud del pie (cm)",
-  },
-  pt: {
-    eu: "Europa (EU)",
-    us: "Estados Unidos (US)",
-    uk: "Reino Unido (UK)",
-    cm: "Comprimento do Pé (cm)",
-  },
-  it: {
-    eu: "Italia / Europa (EU)",
-    us: "Stati Uniti (US)",
-    uk: "Regno Unito (UK)",
-    cm: "Lunghezza del Piede (cm)",
-  },
-  nl: { eu: "Europa (EU)", us: "Verenigde Staten (US)", uk: "Verenigd Koninkrijk (UK)", cm: "Voetlengte (cm)" },
 };
 
 const brandLabels: Record<Locale, Record<ShoeBrandKey, string>> = {
@@ -95,55 +58,6 @@ const brandLabels: Record<Locale, Record<ShoeBrandKey, string>> = {
     "new-balance": "New Balance",
     converse: "Converse",
   },
-  ar: {
-    genel: "عام",
-    nike: "Nike",
-    adidas: "Adidas",
-    puma: "Puma",
-    "new-balance": "New Balance",
-    converse: "Converse",
-  },
-  bn: {
-    genel: "সাধারণ (স্ট্যান্ডার্ড)",
-    nike: "Nike",
-    adidas: "Adidas",
-    puma: "Puma",
-    "new-balance": "New Balance",
-    converse: "Converse",
-  },
-  fr: {
-    genel: "General (standard)",
-    nike: "Nike",
-    adidas: "Adidas",
-    puma: "Puma",
-    "new-balance": "New Balance",
-    converse: "Converse",
-  },
-  es: {
-    genel: "General (estándar)",
-    nike: "Nike",
-    adidas: "Adidas",
-    puma: "Puma",
-    "new-balance": "New Balance",
-    converse: "Converse",
-  },
-  pt: {
-    genel: "Geral (Padrão)",
-    nike: "Nike",
-    adidas: "Adidas",
-    puma: "Puma",
-    "new-balance": "New Balance",
-    converse: "Converse",
-  },
-  it: {
-    genel: "Generale (Standard)",
-    nike: "Nike",
-    adidas: "Adidas",
-    puma: "Puma",
-    "new-balance": "New Balance",
-    converse: "Converse",
-  },
-  nl: { genel: "Algemeen (standaard)", nike: "Nike", adidas: "Adidas", puma: "Puma", "new-balance": "New Balance", converse: "Converse" },
 };
 
 const groupLabels: Record<Locale, Record<ShoeSizeGroupKey, string>> = {
@@ -165,43 +79,6 @@ const groupLabels: Record<Locale, Record<ShoeSizeGroupKey, string>> = {
     bebek: "Kleinkind",
     "buyuk-cocuk": "Größere Kinder",
   },
-  ar: {
-    erkek: "رجال",
-    kadin: "نساء",
-    bebek: "رضع / أطفال صغار",
-    "buyuk-cocuk": "أطفال أكبر سنا",
-  },
-  bn: {
-    erkek: "পুরুষ",
-    kadin: "নারী",
-    bebek: "শিশু / ছোট বাচ্চা",
-    "buyuk-cocuk": "বড় বাচ্চা",
-  },
-  fr: {
-    erkek: "Homme",
-    kadin: "Femme",
-    bebek: "Bebe / Petit enfant",
-    "buyuk-cocuk": "Grand enfant",
-  },
-  es: {
-    erkek: "Hombre",
-    kadin: "Mujer",
-    bebek: "Bebe / Niño pequeño",
-    "buyuk-cocuk": "Niño mayor",
-  },
-  pt: {
-    erkek: "Masculino",
-    kadin: "Feminino",
-    bebek: "Bebê / Criança Pequena",
-    "buyuk-cocuk": "Criança Maior",
-  },
-  it: {
-    erkek: "Uomo",
-    kadin: "Donna",
-    bebek: "Neonato / Bambino Piccolo",
-    "buyuk-cocuk": "Bambino Grande",
-  },
-  nl: { erkek: "Heren", kadin: "Dames", bebek: "Baby / klein kind", "buyuk-cocuk": "Groter kind" },
 };
 
 const copy = {
@@ -247,89 +124,6 @@ const copy = {
     footLength: "Fußlänge",
     chartSuffix: "Schuhgrößentabelle",
   },
-  ar: {
-    group: "الفئة",
-    brand: "العلامة التجارية",
-    knownSystem: "النظام المعروف",
-    value: "القيمة",
-    matchingSizes: "المقاسات المطابقة",
-    invalidValue: "أدخل رقما صحيحا لعرض أقرب مقاس.",
-    euResult: "EU",
-    usResult: "US",
-    ukResult: "UK",
-    footLength: "طول القدم",
-    chartSuffix: "جدول مقاسات الأحذية",
-  },
-  bn: {
-    group: "গ্রুপ",
-    brand: "ব্র্যান্ড",
-    knownSystem: "পরিচিত পদ্ধতি",
-    value: "মান",
-    matchingSizes: "মিলে যাওয়া মাপ",
-    invalidValue: "নিকটতম মিল দেখতে একটি সঠিক সংখ্যা লিখুন।",
-    euResult: "ইউরোপ (EU)",
-    usResult: "যুক্তরাষ্ট্র (US)",
-    ukResult: "যুক্তরাজ্য (UK)",
-    footLength: "পায়ের দৈর্ঘ্য",
-    chartSuffix: "জুতার মাপের তালিকা",
-  },
-  fr: {
-    group: "Groupe",
-    brand: "Marque",
-    knownSystem: "Systeme connu",
-    value: "Valeur",
-    matchingSizes: "Pointures correspondantes",
-    invalidValue: "Saisissez un nombre valide pour voir la correspondance.",
-    euResult: "France (FR/EU)",
-    usResult: "Etats-Unis (US)",
-    ukResult: "Royaume-Uni (UK)",
-    footLength: "Longueur du pied",
-    chartSuffix: "tableau des pointures",
-  },
-  es: {
-    group: "Grupo",
-    brand: "Marca",
-    knownSystem: "Sistema conocido",
-    value: "Valor",
-    matchingSizes: "Tallas equivalentes",
-    invalidValue: "Introduce un numero valido para ver la equivalencia.",
-    euResult: "España (EU)",
-    usResult: "Estados Unidos (US)",
-    ukResult: "Reino Unido (UK)",
-    footLength: "Longitud del pie",
-    chartSuffix: "tabla de tallas",
-  },
-  pt: {
-    group: "Grupo",
-    brand: "Marca",
-    knownSystem: "Sistema Conhecido",
-    value: "Valor",
-    matchingSizes: "Tamanhos Equivalentes",
-    invalidValue: "Digite um número válido para ver a equivalência.",
-    euResult: "Europa (EU)",
-    usResult: "Estados Unidos (US)",
-    ukResult: "Reino Unido (UK)",
-    footLength: "Comprimento do Pé",
-    chartSuffix: "tabela de tamanhos",
-  },
-  it: {
-    group: "Gruppo",
-    brand: "Marca",
-    knownSystem: "Sistema Conosciuto",
-    value: "Valore",
-    matchingSizes: "Taglie Corrispondenti",
-    invalidValue: "Inserisci un numero valido per vedere la corrispondenza.",
-    euResult: "Italia (EU)",
-    usResult: "Stati Uniti (US)",
-    ukResult: "Regno Unito (UK)",
-    footLength: "Lunghezza del Piede",
-    chartSuffix: "tabella delle taglie",
-  },
-  nl: {
-    group: "Groep", brand: "Merk", knownSystem: "Bekend systeem", value: "Waarde",
-    matchingSizes: "Overeenkomende maten", invalidValue: "Voer een geldig getal in om de dichtstbijzijnde maat te zien.",
-    euResult: "EU", usResult: "US", ukResult: "VK", footLength: "Voetlengte", chartSuffix: "schoenmaattabel",
-  },
 } as const;
 
 const brandOrder: ShoeBrandKey[] = [
@@ -357,34 +151,13 @@ function getNumberLocale(locale: Locale) {
     return "de-DE";
   }
 
-  if (locale === "ar") {
-    return "ar";
-  }
 
 
-  if (locale === "bn") {
-    return "bn-BD";
-  }
 
-  if (locale === "fr") {
-    return "fr-FR";
-  }
 
-  if (locale === "es") {
-    return "es-ES";
-  }
 
-  if (locale === "pt") {
-    return "pt-BR";
-  }
 
-  if (locale === "it") {
-    return "it-IT";
-  }
 
-  if (locale === "nl") {
-    return "nl-NL";
-  }
 
 
 

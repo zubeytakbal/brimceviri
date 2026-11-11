@@ -13,7 +13,7 @@ type StaticPageSection = {
 };
 
 type StaticPageLayoutProps = {
-  locale: "tr" | "en" | "de" | "ar" | "bn" | "fr" | "es" | "pt" | "it";
+  locale: "tr" | "en" | "de";
   breadcrumbAriaLabel: string;
   breadcrumbs: BreadcrumbItem[];
   title: string;
@@ -39,7 +39,7 @@ export default function StaticPageLayout({
     <main
       className="unit-information-page"
       lang={locale}
-      dir={locale === "ar" ? "rtl" : undefined}
+      dir={undefined}
     >
       <article className="unit-page-shell">
         <nav className="breadcrumbs" aria-label={breadcrumbAriaLabel}>
@@ -75,19 +75,7 @@ export default function StaticPageLayout({
                   ? "Other languages"
                   : locale === "de"
                     ? "Weitere Sprachen"
-                    : locale === "ar"
-                      ? "لغات أخرى"
-                      : locale === "bn"
-                          ? "অন্যান্য ভাষা"
-                          : locale === "fr"
-                            ? "Autres langues"
-                            : locale === "es"
-                              ? "Otros idiomas"
-                              : locale === "pt"
-                                ? "Outros idiomas"
-                                : locale === "it"
-                                  ? "Altre lingue"
-                                  : "Diğer diller"}
+                    : "Diğer diller"}
               </h2>
               <Link
                 className="text-link"

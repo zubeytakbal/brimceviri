@@ -22,13 +22,6 @@ const vatSettingsByLocale: Record<Exclude<Locale, "ru">, VatSettings> = {
   // para birimi yazilmaz, arac her para birimiyle calisir.
   en: { rates: ["0", "5", "20"], defaultRate: "20" },
   de: { rates: ["7", "19"], defaultRate: "19" },
-  fr: { rates: ["5.5", "10", "20"], defaultRate: "20" },
-  es: { rates: ["4", "10", "21"], defaultRate: "21" },
-  pt: { rates: ["12", "17", "18"], defaultRate: "18" },
-  it: { rates: ["4", "5", "10", "22"], defaultRate: "22" },
-  nl: { rates: ["9", "21"], defaultRate: "21" },
-  ar: { rates: ["5", "15"], defaultRate: "15" },
-  bn: { rates: ["5", "7.5", "10", "15"], defaultRate: "15" },
 };
 
 type VatCopy = {
@@ -91,111 +84,6 @@ const copyByLocale: Record<Exclude<Locale, "ru">, VatCopy> = {
     },
     emptyState: "Enter a valid amount and rate to see the result.",
   },
-  fr: {
-    labels: {
-      direction: "Sens du calcul",
-      amount: "Montant (EUR)",
-      rate: "Taux de TVA",
-      customRate: "Taux personnalisé (%)",
-    },
-    directions: {
-      "exclusive-to-inclusive": "HT -> TTC",
-      "inclusive-to-exclusive": "TTC -> HT",
-    },
-    rateOptions: {
-      custom: "Taux personnalisé",
-    },
-    resultLabels: {
-      baseAmount: "Montant HT",
-      vatAmount: "Montant de la TVA",
-      totalAmount: "Total TTC",
-    },
-    emptyState: "Saisissez un montant et un taux valides pour voir le résultat.",
-  },
-  es: {
-    labels: {
-      direction: "Tipo de cálculo",
-      amount: "Importe (EUR)",
-      rate: "Tipo de IVA",
-      customRate: "Tipo personalizado (%)",
-    },
-    directions: {
-      "exclusive-to-inclusive": "Sin IVA -> Con IVA",
-      "inclusive-to-exclusive": "Con IVA -> Sin IVA",
-    },
-    rateOptions: {
-      custom: "Tipo personalizado",
-    },
-    resultLabels: {
-      baseAmount: "Base imponible",
-      vatAmount: "Cuota de IVA",
-      totalAmount: "Total con IVA",
-    },
-    emptyState: "Introduce un importe y un tipo válidos para ver el resultado.",
-  },
-  pt: {
-    labels: {
-      direction: "Tipo de cálculo",
-      amount: "Valor (R$)",
-      rate: "Alíquota do imposto",
-      customRate: "Alíquota personalizada (%)",
-    },
-    directions: {
-      "exclusive-to-inclusive": "Sem imposto -> Com imposto",
-      "inclusive-to-exclusive": "Com imposto -> Sem imposto",
-    },
-    rateOptions: {
-      custom: "Alíquota personalizada",
-    },
-    resultLabels: {
-      baseAmount: "Valor base",
-      vatAmount: "Valor do imposto",
-      totalAmount: "Total com imposto",
-    },
-    emptyState: "Digite um valor e uma alíquota válidos para ver o resultado.",
-  },
-  it: {
-    labels: {
-      direction: "Direzione del calcolo",
-      amount: "Importo (EUR)",
-      rate: "Aliquota IVA",
-      customRate: "Aliquota personalizzata (%)",
-    },
-    directions: {
-      "exclusive-to-inclusive": "IVA esclusa -> IVA inclusa",
-      "inclusive-to-exclusive": "IVA inclusa -> IVA esclusa",
-    },
-    rateOptions: {
-      custom: "Aliquota personalizzata",
-    },
-    resultLabels: {
-      baseAmount: "Imponibile",
-      vatAmount: "Importo IVA",
-      totalAmount: "Totale IVA inclusa",
-    },
-    emptyState: "Inserisci un importo e un'aliquota validi per vedere il risultato.",
-  },
-  nl: {
-    labels: {
-      direction: "Berekeningsrichting",
-      amount: "Bedrag (EUR)",
-      rate: "Btw-tarief",
-      customRate: "Eigen tarief (%)",
-    },
-    directions: {
-      "exclusive-to-inclusive": "Exclusief btw -> inclusief btw",
-      "inclusive-to-exclusive": "Inclusief btw -> exclusief btw",
-    },
-    rateOptions: {
-      custom: "Eigen tarief",
-    },
-    resultLabels: {
-      baseAmount: "Bedrag excl. btw",
-      vatAmount: "Btw-bedrag",
-      totalAmount: "Totaal incl. btw",
-    },
-    emptyState: "Voer een geldig bedrag en tarief in om het resultaat te zien.",
-  },
   de: {
     labels: {
       direction: "Berechnungsrichtung",
@@ -216,48 +104,6 @@ const copyByLocale: Record<Exclude<Locale, "ru">, VatCopy> = {
       totalAmount: "Bruttobetrag",
     },
     emptyState: "Geben Sie einen gültigen Betrag und Steuersatz ein.",
-  },
-  ar: {
-    labels: {
-      direction: "اتجاه الحساب",
-      amount: "المبلغ",
-      rate: "نسبة الضريبة",
-      customRate: "نسبة مخصصة (%)",
-    },
-    directions: {
-      "exclusive-to-inclusive": "من الصافي إلى الإجمالي",
-      "inclusive-to-exclusive": "من الإجمالي إلى الصافي",
-    },
-    rateOptions: {
-      custom: "نسبة مخصصة",
-    },
-    resultLabels: {
-      baseAmount: "المبلغ الصافي",
-      vatAmount: "قيمة الضريبة",
-      totalAmount: "المبلغ الإجمالي",
-    },
-    emptyState: "أدخل مبلغًا ونسبة صحيحة لعرض النتيجة.",
-  },
-bn: {
-    labels: {
-      direction: "হিসাবের দিক",
-      amount: "পরিমাণ (৳)",
-      rate: "ভ্যাটের হার",
-      customRate: "নিজস্ব হার (%)",
-    },
-    directions: {
-      "exclusive-to-inclusive": "ভ্যাট ছাড়া -> ভ্যাটসহ",
-      "inclusive-to-exclusive": "ভ্যাটসহ -> ভ্যাট ছাড়া",
-    },
-    rateOptions: {
-      custom: "নিজস্ব হার",
-    },
-    resultLabels: {
-      baseAmount: "মূল পরিমাণ",
-      vatAmount: "ভ্যাটের পরিমাণ",
-      totalAmount: "ভ্যাটসহ মোট",
-    },
-    emptyState: "ফলাফল দেখতে একটি বৈধ পরিমাণ ও হার লিখুন।",
   },
 };
 
@@ -290,8 +136,8 @@ export default function VatCalculator({
 }: {
   locale?: Locale;
 }) {
-  const copy = copyByLocale[locale === "ru" ? "en" : locale];
-  const settings = vatSettingsByLocale[locale === "ru" ? "en" : locale];
+  const copy = copyByLocale[locale];
+  const settings = vatSettingsByLocale[locale];
   const rateOptions = [...settings.rates, "custom"];
   const [amount, setAmount] = useState("1000");
   const [ratePreset, setRatePreset] = useState(settings.defaultRate);

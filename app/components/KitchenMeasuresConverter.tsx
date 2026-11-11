@@ -37,52 +37,6 @@ const copy = {
     resultHeading: "Entsprechungen",
     invalidValue: "Geben Sie eine gültige Zahl ein, um die Umrechnung zu sehen.",
   },
-  ar: {
-    ingredient: "المكون",
-    knownUnit: "الوحدة المعروفة",
-    value: "القيمة",
-    resultHeading: "القيم المكافئة",
-    invalidValue: "أدخل رقما صحيحا لعرض نتيجة التحويل.",
-  },
-  bn: {
-    ingredient: "উপাদান",
-    knownUnit: "পরিচিত একক",
-    value: "মান",
-    resultHeading: "সমতুল্য মান",
-    invalidValue: "রূপান্তর দেখতে একটি সঠিক সংখ্যা লিখুন।",
-  },
-  fr: {
-    ingredient: "Ingredient",
-    knownUnit: "Unite connue",
-    value: "Valeur",
-    resultHeading: "Equivalences",
-    invalidValue: "Saisissez un nombre valide pour voir la conversion.",
-  },
-  es: {
-    ingredient: "Ingrediente",
-    knownUnit: "Unidad conocida",
-    value: "Valor",
-    resultHeading: "Equivalencias",
-    invalidValue: "Introduce un numero valido para ver la conversión.",
-  },
-  pt: {
-    ingredient: "Ingrediente",
-    knownUnit: "Unidade Conhecida",
-    value: "Valor",
-    resultHeading: "Equivalências",
-    invalidValue: "Digite um número válido para ver a conversão.",
-  },
-  it: {
-    ingredient: "Ingrediente",
-    knownUnit: "Unita Conosciuta",
-    value: "Valore",
-    resultHeading: "Equivalenze",
-    invalidValue: "Inserisci un numero valido per vedere la conversione.",
-  },
-  nl: {
-    ingredient: "Ingrediënt", knownUnit: "Bekende eenheid", value: "Waarde",
-    resultHeading: "Equivalenten", invalidValue: "Voer een geldig getal in om de omrekening te zien.",
-  },
 } as const;
 
 const englishCupStandardLabels: Record<
@@ -110,21 +64,7 @@ function formatValue(value: number, locale: KitchenLocale) {
       ? "tr-TR"
       : locale === "de"
         ? "de-DE"
-        : locale === "ar"
-          ? "ar"
-          : locale === "bn"
-              ? "bn-BD"
-              : locale === "fr"
-                ? "fr-FR"
-                : locale === "es"
-                  ? "es-ES"
-                    : locale === "pt"
-                      ? "pt-BR"
-                      : locale === "it"
-                        ? "it-IT"
-                        : locale === "nl"
-                          ? "nl-NL"
-                        : "en-US";
+        : "en-US";
 
   return value.toLocaleString(localeName, {
     maximumFractionDigits: value < 10 ? 2 : 1,
@@ -154,11 +94,7 @@ export default function KitchenMeasuresConverter({
   const [cupStandard, setCupStandard] = useState<KitchenCupStandard>(
     locale === "en"
       ? "us"
-      : locale === "fr" || locale === "it" || locale === "nl"
-        ? "metric"
-        : locale === "es" || locale === "pt"
-          ? "usLegal"
-          : "turkish"
+      : "turkish"
   );
 
   const localizedCopy = copy[locale];

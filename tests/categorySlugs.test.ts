@@ -18,7 +18,8 @@ const duplicates = (values: string[]) => values.filter((value, index) => values.
 
 describe("kategori sayfalari", () => {
   it("en az bir liste bulundu", () => {
-    expect(lists.length).toBeGreaterThan(5);
+    // Kalan diller: Ingilizce ve Almanca (Kasim 2026).
+    expect(lists.length).toBeGreaterThanOrEqual(2);
   });
 
   it.each(lists)("%s: adresler ve kategoriler benzersiz", (_name, pages) => {

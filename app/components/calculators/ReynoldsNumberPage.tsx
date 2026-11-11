@@ -83,14 +83,7 @@ const unitSectionHeadings = {
 
 function getUnitSections(locale: CalculatorLocale): UnitTableSection[] {
   const headings =
-    locale === "ar"
-      ? {
-          density: "وحدات الكثافة",
-          speed: "وحدات السرعة",
-          diameter: "وحدات القطر المميز",
-          viscosity: "وحدات اللزوجة الديناميكية",
-        }
-      : unitSectionHeadings[locale];
+    unitSectionHeadings[locale];
 
   return [
     {
@@ -517,119 +510,6 @@ const pageCopy: Record<
   },
 };
 
-const arabicCopy: PageCopy = {
-  breadcrumbs: [
-    { label: "الرئيسية", href: "/ar" },
-    { label: "الحاسبات الهندسية", href: "/ar/engineering-calculators" },
-    { label: "حاسبة عدد رينولدز" },
-  ],
-  breadcrumbLabel: "مسار التنقل",
-  title: "حاسبة عدد رينولدز",
-  description:
-    "استخدم Re = ρ × v × D / μ لحساب عدد رينولدز أو السرعة أو القطر المميز مع تفسير تقريبي لنظام الجريان.",
-  heroEyebrow: "حاسبة هندسية",
-  heroResultHeading: "نتيجة الحساب",
-  introHeading: "لماذا يهم عدد رينولدز؟",
-  formulasHeading: "المعادلات المستخدمة",
-  variablesHeading: "المتغيرات ووحدات SI",
-  interpretationHeading: "تفسير نظام الجريان",
-  fluidTableHeading: "جدول كثافة ولزوجة الموائع",
-  fluidTableColumns: {
-    fluid: "المائع",
-    density: "الكثافة (kg/m³)",
-    viscosity: "اللزوجة الديناميكية (mPa·s)",
-  },
-  unitsHeading: "جداول الوحدات",
-  examplesHeading: "أمثلة سريعة",
-  applicationsHeading: "استخدامات شائعة",
-  limitationsHeading: "الافتراضات والقيود",
-  sourcesHeading: "المراجع",
-  relatedHeading: "روابط مرتبطة",
-  relatedCalculatorsHeading: "حاسبات مرتبطة",
-  relatedConversionsHeading: "تحويلات مرتبطة",
-  tableColumns: {
-    unitName: "اسم الوحدة",
-    symbol: "الرمز",
-    siEquivalent: "مكافئ SI",
-    typicalUse: "الاستخدام الشائع",
-  },
-  intro: [
-    "عدد رينولدز نسبة لا بعدية تقارن بين تأثيرات العطالة والتأثيرات اللزجة في الجريان.",
-    "يستخدم غالبا لتقدير ما إذا كان الجريان الداخلي داخل الأنابيب صفحيا أو انتقاليا أو مضطربا.",
-  ],
-  formulas: [
-    "Re = ρ × v × D / μ",
-    "v = Re × μ / (ρ × D)",
-    "D = Re × μ / (ρ × v)",
-  ],
-  variables: [
-    { term: "Re", explanation: "عدد رينولدز اللابعدي." },
-    { term: "ρ", explanation: "كثافة المائع بوحدة kg/m³." },
-    { term: "v", explanation: "السرعة المتوسطة بوحدة m/s." },
-    { term: "D", explanation: "القطر المميز أو قطر الأنبوب بوحدة m." },
-    { term: "μ", explanation: "اللزوجة الديناميكية بوحدة Pa·s." },
-  ],
-  interpretationNotes: [
-    "Re < 2300 يدل غالبا على جريان صفحي تقريبي.",
-    "Re بين 2300 و4000 يمثل منطقة انتقالية.",
-    "Re > 4000 يدل غالبا على جريان مضطرب تقريبي.",
-    "هذه الحدود تقريبية للجريان الداخلي داخل الأنابيب وقد تتغير مع الهندسة وظروف الدخول.",
-    "القيم الجاهزة للماء والهواء تقريبية، والبيانات الواقعية قد تغيّر النتيجة.",
-  ],
-  examples: [
-    {
-      title: "حساب Re للماء",
-      body: "عند ρ = 1000 kg/m³ وv = 2 m/s وD = 50 mm وμ = 1 mPa·s تكون القيمة 100000 وتقع في المجال المضطرب.",
-    },
-    {
-      title: "السرعة المطلوبة لقيمة Re مستهدفة",
-      body: "إذا كان Re = 2000 وρ = 1000 kg/m³ وD = 20 mm وμ = 1 mPa·s فالسرعة تقارب 0.1 m/s.",
-    },
-  ],
-  applications: [
-    "فحص أولي لنظام الجريان داخل الأنابيب",
-    "تقدير سرعات مميزة في المختبر",
-    "اختيار أولي لأقطار الأنابيب والقنوات",
-    "مقارنة أثر خواص الموائع في السلوك الجرياني",
-  ],
-  limitations: [
-    "الحساب يعتمد التعريف الأساسي لعدد رينولدز ولا ينمذج الخشونة أو التأثيرات الخاصة بشكل منفصل.",
-    "تفسير النظام تقريبي ومخصص أساسا للجريان الداخلي داخل الأنابيب.",
-    "تتغير الكثافة واللزوجة بشدة مع الحرارة، لذا ينبغي اختيار بيانات قريبة من ظروف التشغيل.",
-  ],
-  sources: [
-    {
-      label: "OpenStax College Physics - Viscosity and Laminar Flow",
-      href: "https://openstax.org/books/college-physics/pages/12-2-viscosity-and-laminar-flow-poiseuilles-law",
-    },
-    {
-      label: "BIPM SI Brochure",
-      href: "https://www.bipm.org/en/publications/si-brochure",
-    },
-    {
-      label: "NIST Guide to the SI",
-      href: "https://www.nist.gov/pml/special-publication-811",
-    },
-  ],
-  relatedCalculators: [
-    {
-      label: "حاسبة انتقال الحرارة بالتوصيل",
-      href: "/ar/calculators/heat-conduction",
-    },
-    {
-      label: "حاسبة الضغط الهيدروستاتيكي",
-      href: "/ar/calculators/hydrostatic-pressure",
-    },
-    {
-      label: "مركز الحاسبات الهندسية",
-      href: "/ar/engineering-calculators",
-    },
-  ],
-  relatedConversions: [
-    { label: "Centimeters إلى Inches", href: "/ar/centimeters-to-inches" },
-    { label: "Meters إلى Feet", href: "/ar/meters-to-feet" },
-  ],
-};
 
 function renderUnitName(
   unit: EngineeringUnitDefinition,
@@ -652,7 +532,7 @@ export default function ReynoldsNumberPage({
   locale: CalculatorLocale;
   structuredData?: ReactNode;
 }) {
-  const copy = locale === "ar" ? arabicCopy : pageCopy[locale];
+  const copy = pageCopy[locale];
   const unitSections = getUnitSections(locale);
 
   return (
@@ -756,9 +636,7 @@ export default function ReynoldsNumberPage({
           <h2>
             {locale === "tr"
               ? "Suyun dinamik viskozitesi referansı"
-              : locale === "ar"
-                ? "مرجع اللزوجة الديناميكية للماء"
-                : locale === "de"
+              : locale === "de"
                   ? "Referenz zur dynamischen Viskosität von Wasser"
                   : "Water dynamic-viscosity reference"}
           </h2>

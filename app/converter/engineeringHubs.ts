@@ -1,4 +1,4 @@
-export type EngineeringLocale = "tr" | "en" | "de" | "ar";
+export type EngineeringLocale = "tr" | "en" | "de";
 
 type LocalizedString = Record<EngineeringLocale, string>;
 type LocalizedStringList = Record<EngineeringLocale, string[]>;
@@ -18,14 +18,12 @@ export const engineeringHubPaths = {
   tr: "/muhendislik-hesaplayicilari",
   en: "/en/engineering-calculators",
   de: "/de/ingenieurrechner",
-  ar: "/ar/engineering-calculators",
 } as const satisfies Record<EngineeringLocale, string>;
 
 export const electricalHubPaths = {
   tr: "/muhendislik-hesaplayicilari/elektrik-hesaplari",
   en: "/en/engineering-calculators/electrical-calculators",
   de: "/de/ingenieurrechner/elektrorechner",
-  ar: "/ar/engineering-calculators/electrical-calculators",
 } as const satisfies Record<EngineeringLocale, string>;
 
 const electricalCalculatorBlueprints: ElectricalCalculatorBlueprint[] = [
@@ -36,19 +34,16 @@ const electricalCalculatorBlueprints: ElectricalCalculatorBlueprint[] = [
       tr: "kablo-kesiti-hesaplama",
       en: "cable-size-calculator",
       de: "kabelquerschnitt-rechner",
-      ar: "cable-size-calculator",
     },
     titles: {
       tr: "Kablo Kesiti Hesaplama",
       en: "Cable Size Calculator",
       de: "Kabelquerschnitt Rechner",
-      ar: "حاسبة مقطع الكابل",
     },
     descriptions: {
       tr: "Akım, mesafe, faz tipi ve izin verilen gerilim düşümüne göre uygun iletken kesitini seçmek için hazırlanan elektrik hesap aracı.",
       en: "Electrical sizing tool for choosing a practical conductor cross-section from current, run length, phase type and allowable voltage drop.",
       de: "Elektro-Werkzeug zur Auswahl eines praxisnahen Leiterquerschnitts aus Strom, Leitungslange, Phasentyp und zulässigem Spannungsfall.",
-      ar: "أداة كهربائية لاختيار مقطع موصل عملي بالاعتماد على التيار وطول المسار ونوع الطور وهبوط الجهد المسموح.",
     },
     formula: "S ~= k x I x L / \u0394U",
     plannedInputs: {
@@ -67,11 +62,6 @@ const electricalCalculatorBlueprints: ElectricalCalculatorBlueprint[] = [
         "Auswahl für Einphasen-, Dreiphasen- oder DC-Systeme",
         "Leitungslange, Leitermaterial und zulässiger Spannungsfall",
       ],
-      ar: [
-        "تيار الحمل أو قدرة الحمل",
-        "اختيار نظام أحادي الطور أو ثلاثي الطور أو تيار مستمر",
-        "طول الكابل ومادة الموصل وهبوط الجهد المسموح",
-      ],
     },
     useCases: {
       tr: [
@@ -89,11 +79,6 @@ const electricalCalculatorBlueprints: ElectricalCalculatorBlueprint[] = [
         "Motor- und Umrichteranschlüsse",
         "Versorgung entfernter Feldgerate",
       ],
-      ar: [
-        "مغذيات اللوحات",
-        "توصيلات المحركات والمغيرات",
-        "تغذية المعدات البعيدة في الموقع",
-      ],
     },
   },
   {
@@ -103,19 +88,16 @@ const electricalCalculatorBlueprints: ElectricalCalculatorBlueprint[] = [
       tr: "gerilim-dusumu-hesaplama",
       en: "voltage-drop-calculator",
       de: "spannungsfall-rechner",
-      ar: "voltage-drop-calculator",
     },
     titles: {
       tr: "Gerilim Düşümü Hesaplama",
       en: "Voltage Drop Calculator",
       de: "Spannungsfall Rechner",
-      ar: "حاسبة هبوط الجهد",
     },
     descriptions: {
       tr: "Seçili kablo kesitinde volt kaybını, yüzdesel düşümü ve hat sonu gerilimini görmek için hazırlanan elektrik proje aracı.",
       en: "Electrical project tool for checking voltage loss, percent drop and end-of-line voltage on a selected cable run.",
       de: "Projektwerkzeug zur Kontrolle von Spannungsverlust, prozentualem Spannungsfall und Endspannung auf einer ausgewählten Leitung.",
-      ar: "أداة مشروع كهربائي لفحص فقد الجهد ونسبة الهبوط والجهد عند نهاية الخط على مسار كابل محدد.",
     },
     formula: "\u0394U = I x R",
     plannedInputs: {
@@ -134,11 +116,6 @@ const electricalCalculatorBlueprints: ElectricalCalculatorBlueprint[] = [
         "Einfache Leitungslange und Leiterquerschnitt",
         "Kupfer- oder Aluminiumleiter mit Phasenauswahl",
       ],
-      ar: [
-        "جهد المصدر وتيار الخط",
-        "طول الكابل باتجاه واحد ومقطع الموصل",
-        "اختيار النحاس أو الألومنيوم مع نوع الطور",
-      ],
     },
     useCases: {
       tr: [
@@ -156,11 +133,6 @@ const electricalCalculatorBlueprints: ElectricalCalculatorBlueprint[] = [
         "Motorzuleitungen",
         "Leitungen zu entfernten Sensoren oder Feldschranken",
       ],
-      ar: [
-        "فحص التمديدات الداخلية",
-        "مغذيات المحركات",
-        "خطوط الحساسات أو اللوحات البعيدة",
-      ],
     },
   },
   {
@@ -170,19 +142,16 @@ const electricalCalculatorBlueprints: ElectricalCalculatorBlueprint[] = [
       tr: "kw-to-amper-hesaplama",
       en: "kw-to-ampere-calculator",
       de: "kw-zu-ampere-rechner",
-      ar: "kw-to-ampere-calculator",
     },
     titles: {
       tr: "kW to Amper Hesaplama",
       en: "kW to Ampere Calculator",
       de: "kW-zu-Ampere Rechner",
-      ar: "تحويل kW إلى أمبير",
     },
     descriptions: {
       tr: "Gücü akıma çevirmek için faz tipi, gerilim, güç faktörü ve verimle çalışacak elektrik seçim aracı.",
       en: "Electrical selection tool for converting power into current using phase type, voltage, power factor and efficiency.",
       de: "Auswahlwerkzeug zur Umrechnung von Leistung in Strom mit Phasentyp, Spannung, Leistungsfaktor und Wirkungsgrad.",
-      ar: "أداة كهربائية لتحويل القدرة إلى تيار باستخدام نوع الطور والجهد ومعامل القدرة والكفاءة.",
     },
     formula: "I = P / (V x cos \u03c6)",
     plannedInputs: {
@@ -201,11 +170,6 @@ const electricalCalculatorBlueprints: ElectricalCalculatorBlueprint[] = [
         "Einphasen- oder Dreiphasensystem",
         "Spannung, Leistungsfaktor und Wirkungsgrad",
       ],
-      ar: [
-        "قدرة الحمل بالكيلوواط أو الواط",
-        "نوع النظام: أحادي الطور أو ثلاثي الطور",
-        "الجهد ومعامل القدرة والكفاءة",
-      ],
     },
     useCases: {
       tr: [
@@ -223,11 +187,6 @@ const electricalCalculatorBlueprints: ElectricalCalculatorBlueprint[] = [
         "Vorprüfung für Kabeldimensionierung",
         "Schnellkontrolle von Lastlisten",
       ],
-      ar: [
-        "تقدير التيار قبل اختيار الفيوز أو القاطع",
-        "فحص أولي لمقاطع الكابلات",
-        "مراجعة سريعة لجداول الأحمال",
-      ],
     },
   },
   {
@@ -237,19 +196,16 @@ const electricalCalculatorBlueprints: ElectricalCalculatorBlueprint[] = [
       tr: "amper-to-kw-hesaplama",
       en: "ampere-to-kw-calculator",
       de: "ampere-zu-kw-rechner",
-      ar: "ampere-to-kw-calculator",
     },
     titles: {
       tr: "Amper to kW Hesaplama",
       en: "Ampere to kW Calculator",
       de: "Ampere-zu-kW Rechner",
-      ar: "تحويل أمبير إلى kW",
     },
     descriptions: {
       tr: "Hat akımından yaklaşık gücü bulmak için gerilim, faz tipi, güç faktörü ve verimle çalışacak proje aracı.",
       en: "Project tool for estimating electrical power from line current together with voltage, phase type, power factor and efficiency.",
       de: "Projektwerkzeug zur Abschätzung elektrischer Leistung aus Leitungsstrom, Spannung, Phasentyp, Leistungsfaktor und Wirkungsgrad.",
-      ar: "أداة مشروع لتقدير القدرة الكهربائية من تيار الخط مع الجهد ونوع الطور ومعامل القدرة والكفاءة.",
     },
     formula: "P = V x I x cos \u03c6",
     plannedInputs: {
@@ -268,11 +224,6 @@ const electricalCalculatorBlueprints: ElectricalCalculatorBlueprint[] = [
         "Spannungsniveau und Systemart",
         "Leistungsfaktor und optionaler Wirkungsgrad",
       ],
-      ar: [
-        "تيار الخط",
-        "مستوى الجهد ونوع النظام",
-        "معامل القدرة وكفاءة اختيارية",
-      ],
     },
     useCases: {
       tr: [
@@ -290,11 +241,6 @@ const electricalCalculatorBlueprints: ElectricalCalculatorBlueprint[] = [
         "Lastverteilung und Schaltschrankkontrolle",
         "Planung von Generator oder USV",
       ],
-      ar: [
-        "تقدير قدرة مغذ موجود في الموقع",
-        "موازنة الأحمال وفحص اللوحات",
-        "تخطيط المولد أو UPS",
-      ],
     },
   },
   {
@@ -304,19 +250,16 @@ const electricalCalculatorBlueprints: ElectricalCalculatorBlueprint[] = [
       tr: "motor-akimi-hesaplama",
       en: "motor-current-calculator",
       de: "motorstrom-rechner",
-      ar: "motor-current-calculator",
     },
     titles: {
       tr: "Motor Akımı Hesaplama",
       en: "Motor Current Calculator",
       de: "Motorstrom Rechner",
-      ar: "حاسبة تيار المحرك",
     },
     descriptions: {
       tr: "Motor gücü, gerilim, güç faktörü ve verime göre yaklaşık tam yük akımını çıkarmak için hazırlanan seçim aracı.",
       en: "Selection tool for estimating approximate full-load motor current from motor power, voltage, power factor and efficiency.",
       de: "Auswahlwerkzeug zur Abschätzung des ungefähren Motor-Nennstroms aus Motorleistung, Spannung, Leistungsfaktor und Wirkungsgrad.",
-      ar: "أداة تقدير لاستخراج تيار الحمل الكامل التقريبي للمحرك من القدرة والجهد ومعامل القدرة والكفاءة.",
     },
     formula: "I = P / (\u221a3 x V x cos \u03c6 x \u03b7)",
     plannedInputs: {
@@ -335,11 +278,6 @@ const electricalCalculatorBlueprints: ElectricalCalculatorBlueprint[] = [
         "Versorgungsspannung und Phasentyp",
         "Leistungsfaktor, Wirkungsgrad und Reserve",
       ],
-      ar: [
-        "قدرة المحرك ونوعه",
-        "جهد التغذية ونوع الطور",
-        "معامل القدرة والكفاءة وهامش التصميم",
-      ],
     },
     useCases: {
       tr: [
@@ -356,11 +294,6 @@ const electricalCalculatorBlueprints: ElectricalCalculatorBlueprint[] = [
         "Vorauswahl von Schützen und Motorschutz",
         "Motor-Kabel- und Sicherungsdimensionierung",
         "Schnelle Kontrolle des Nennstroms in der Projektphase",
-      ],
-      ar: [
-        "اختيار أولي للكونتاكتور والحماية الحرارية",
-        "تحديد مقطع كابل المحرك والفيوز",
-        "فحص سريع لتيار الحمل أثناء التقدير",
       ],
     },
   },
@@ -390,14 +323,6 @@ const electricalHubCopy = {
     liveToolsTitle: "Rechner",
     relatedTitle: "Weitere Ingenieurrechner",
     relatedLinkLabel: "Alle Ingenieurrechner",
-  },
-  ar: {
-    title: "الحاسبات الكهربائية",
-    description:
-      "حاسبات مقطع الكابل وهبوط الجهد وتحويل الكيلوواط إلى أمبير والعكس وتيار المحرك وقانون أوم للدوائر أحادية الطور وثلاثية الطور والتيار المستمر مع المعادلة.",
-    liveToolsTitle: "الحاسبات",
-    relatedTitle: "حاسبات هندسية أخرى",
-    relatedLinkLabel: "كل الحاسبات الهندسية",
   },
 } as const;
 
@@ -455,24 +380,6 @@ const plannedPreviewCopy = {
     electricalHubLink: "Zurück zum Elektrorechner-Zentrum",
     liveToolLink: "Live-Tool für das Ohmsche Gesetz öffnen",
     liveToolHref: "/de/rechner/ohms-law",
-  },
-  ar: {
-    breadcrumbLabel: "مسار التنقل",
-    homeLabel: "الرئيسية",
-    hubLabel: "الحاسبات الهندسية",
-    electricalHubLabel: "الحاسبات الكهربائية",
-    planningNote:
-      "هذا المسار مفتوح حاليا كهيكل حاسبة. الهدف منه تثبيت النطاق والروابط الداخلية إلى أن يكتمل محرك الحساب الفعلي.",
-    scopeTitle: "ما الذي ستحله هذه الأداة؟",
-    inputsTitle: "المدخلات المخططة",
-    useCasesTitle: "حالات الاستخدام المعتادة",
-    nextTitle: "الخطوة التالية",
-    nextBody:
-      "هذه الصفحة غير مفتوحة للفهرسة حاليا. بعد إضافة منطق الحساب وخيارات الوحدات وحالات التحقق ستتحول إلى حاسبة حية قابلة للفهرسة.",
-    relatedTitle: "صفحات مرتبطة",
-    electricalHubLink: "العودة إلى مركز الحاسبات الكهربائية",
-    liveToolLink: "افتح أداة قانون أوم المتاحة",
-    liveToolHref: "/ar/calculators/ohms-law",
   },
 } as const;
 

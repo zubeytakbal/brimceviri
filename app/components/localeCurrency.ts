@@ -8,14 +8,6 @@ export const currencyByLocale: Record<Locale, string> = {
   // Ingilizce sayfalar agirlikla ABD kullanicisina hitap eder.
   en: "$",
   de: "EUR",
-  fr: "EUR",
-  es: "EUR",
-  pt: "R$",
-  it: "EUR",
-  nl: "EUR",
-  ar: "",
-  bn: "৳",
-  ru: "EUR",
 };
 
 export function formatWithCurrency(formattedNumber: string, locale: Locale) {

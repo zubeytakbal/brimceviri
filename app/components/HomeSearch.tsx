@@ -29,12 +29,10 @@ export type HomeSearchStrings = {
   openLabel: string;
 };
 
-export type HomeSearchLocale = "tr" | "en" | "de" | "ar" | "fr" | "es" | "pt" | "it" | "bn";
+export type HomeSearchLocale = "tr" | "en" | "de";
 
 // Her dilin ana sayfa dizinindeki searchText ile ayni normallestirme (dizin bununla uretilir).
 function normalizeSearchText(value: string, locale: HomeSearchLocale) {
-  if (locale === "ar") return value.toLocaleLowerCase("ar").replace(/[^\u0600-\u06ffa-z0-9]+/g, " ").trim();
-  if (locale === "bn") return value.toLocaleLowerCase("bn").replace(/[^\u0980-\u09ffa-z0-9]+/g, " ").trim();
   const lower = locale === "tr" || locale === "en" || locale === "de" ? value.toLocaleLowerCase("tr-TR") : value.toLocaleLowerCase(locale);
   return lower
     .normalize("NFD")
@@ -44,16 +42,8 @@ function normalizeSearchText(value: string, locale: HomeSearchLocale) {
     .trim();
 }
 
-/**
- * Arapcada her kelime ayri aranir ve basindaki "ال" takisi atilir; diger dillerde aranan
- * ifade metinde bir butun olarak gecmeli (ana sayfalarin onceki davranisiyla ayni).
- */
-function matches(searchText: string, query: string, locale: HomeSearchLocale) {
-  if (locale !== "ar") return searchText.includes(query);
-  return query
-    .split(" ")
-    .map((token) => (token.length > 3 && token.startsWith("ال") ? token.slice(2) : token))
-    .every((token) => searchText.includes(token));
+function matches(searchText: string, query: string) {
+  return searchText.includes(query);
 }
 
 export default function HomeSearch({ locale, strings, kimlik }: { locale: HomeSearchLocale; strings: HomeSearchStrings; kimlik?: string }) {
@@ -79,7 +69,7 @@ export default function HomeSearch({ locale, strings, kimlik }: { locale: HomeSe
       });
   };
 
-  const searchResults = normalizedQuery && items ? items.filter((item) => matches(item.searchText, normalizedQuery, locale)).slice(0, 8) : [];
+  const searchResults = normalizedQuery && items ? items.filter((item) => matches(item.searchText, normalizedQuery)).slice(0, 8) : [];
   useSearchTracking(locale, items ? query : "", searchResults.length);
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {

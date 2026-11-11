@@ -7,7 +7,7 @@ import {
 } from "./kitchenMeasures";
 import { kitchenIngredientLabels, latamIngredientAliases } from "./kitchenIngredientLabels";
 
-export type RecipeLocale = "tr" | "en" | "de" | "ar" | "bn" | "fr" | "es" | "pt" | "it" | "nl";
+export type RecipeLocale = "tr" | "en" | "de";
 
 export type ParsedRecipeLine = {
   raw: string;
@@ -283,38 +283,6 @@ const ingredientMatchEntries: Array<{
     key: row.key,
     normalized: normalizeText(kitchenIngredientLabels.de[row.key]),
   });
-  entries.push({
-    key: row.key,
-    normalized: normalizeText(kitchenIngredientLabels.ar[row.key]),
-  });
-  entries.push({
-    key: row.key,
-    normalized: normalizeText(kitchenIngredientLabels.bn[row.key]),
-  });
-  entries.push({
-    key: row.key,
-    normalized: normalizeText(kitchenIngredientLabels.fr[row.key]),
-  });
-  entries.push({
-    key: row.key,
-    normalized: normalizeText(kitchenIngredientLabels.es[row.key]),
-  });
-  entries.push({
-    key: row.key,
-    normalized: normalizeText(latamIngredientAliases[row.key]),
-  });
-  entries.push({
-    key: row.key,
-    normalized: normalizeText(kitchenIngredientLabels.pt[row.key]),
-  });
-  entries.push({
-    key: row.key,
-    normalized: normalizeText(kitchenIngredientLabels.it[row.key]),
-  });
-  entries.push({
-    key: row.key,
-    normalized: normalizeText(kitchenIngredientLabels.nl[row.key]),
-  });
 
   return entries;
 });
@@ -396,21 +364,7 @@ function formatQuantity(
       ? "tr-TR"
       : locale === "de"
         ? "de-DE"
-        : locale === "ar"
-          ? "ar"
-          : locale === "bn"
-              ? "bn-BD"
-              : locale === "fr"
-                ? "fr-FR"
-                : locale === "es"
-                  ? "es-ES"
-                    : locale === "pt"
-                      ? "pt-BR"
-                      : locale === "it"
-                        ? "it-IT"
-                        : locale === "nl"
-                          ? "nl-NL"
-                          : "en-US";
+        : "en-US";
 
   return rounded.toLocaleString(localeName, {
     maximumFractionDigits: 2,

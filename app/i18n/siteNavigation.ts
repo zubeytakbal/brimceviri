@@ -151,184 +151,6 @@ const categoryLabels: Record<
     altin_ayar: "Goldkarat",
     gumus_ayar: "Silberfeingehalt",
   },
-  ar: {
-    uzunluk: "الطول",
-    alan: "المساحة",
-    hacim: "الحجم",
-    kutle: "الكتلة",
-    sicaklik: "الحرارة",
-    zaman: "الزمن",
-    hiz: "السرعة",
-    basinc: "الضغط",
-    enerji: "الطاقة والقدرة",
-    veri: "تخزين البيانات",
-    elektrik: "الكهرباء",
-    yogunluk: "الكثافة",
-    kuvvet: "القوة",
-    debi: "معدل التدفق",
-    tork: "عزم الدوران",
-    momentum: "الزخم",
-    viskozite_dinamik: "اللزوجة",
-    elektrik_direnc: "المقاومة",
-    kapasitans: "السعة",
-    enduktans: "المحاثة",
-    elektrik_yuk: "الشحنة الكهربائية",
-    altin_ayar: "عيار الذهب",
-    gumus_ayar: "عيار الفضة",
-  },
-  bn: {
-    uzunluk: "দৈর্ঘ্য",
-    alan: "ক্ষেত্রফল",
-    hacim: "আয়তন",
-    kutle: "ভর",
-    sicaklik: "তাপমাত্রা",
-    zaman: "সময়",
-    hiz: "গতি",
-    basinc: "চাপ",
-    enerji: "শক্তি",
-    veri: "ডেটা স্টোরেজ",
-    elektrik: "বিদ্যুৎ",
-    yogunluk: "ঘনত্ব",
-    kuvvet: "বল",
-    debi: "প্রবাহ হার",
-    tork: "টর্ক",
-    momentum: "ভরবেগ",
-    viskozite_dinamik: "সান্দ্রতা",
-    elektrik_direnc: "রোধ",
-    kapasitans: "ধারকত্ব",
-    enduktans: "আবেশ",
-    elektrik_yuk: "তড়িৎ আধান",
-    altin_ayar: "স্বর্ণের ক্যারেট",
-    gumus_ayar: "রূপার মান",
-  },
-  fr: {
-    uzunluk: "Longueur",
-    alan: "Aire",
-    hacim: "Volume",
-    kutle: "Masse",
-    sicaklik: "Temperature",
-    zaman: "Temps",
-    hiz: "Vitesse",
-    basinc: "Pression",
-    enerji: "Energie et Puissance",
-    veri: "Stockage de Donnees",
-    elektrik: "Electricite",
-    yogunluk: "Densite",
-    kuvvet: "Force",
-    debi: "Debit",
-    tork: "Couple",
-    momentum: "Quantite de Mouvement",
-    viskozite_dinamik: "Viscosite",
-    elektrik_direnc: "Resistance",
-    kapasitans: "Capacite",
-    enduktans: "Inductance",
-    elektrik_yuk: "Charge Electrique",
-    altin_ayar: "Carat d'Or",
-    gumus_ayar: "Titre de l'Argent",
-  },
-  es: {
-    uzunluk: "Longitud",
-    alan: "Superficie",
-    hacim: "Volumen",
-    kutle: "Masa",
-    sicaklik: "Temperatura",
-    zaman: "Tiempo",
-    hiz: "Velocidad",
-    basinc: "Presión",
-    enerji: "Energía y Potencia",
-    veri: "Almacenamiento de Datos",
-    elektrik: "Electricidad",
-    yogunluk: "Densidad",
-    kuvvet: "Fuerza",
-    debi: "Caudal",
-    tork: "Par",
-    momentum: "Momento",
-    viskozite_dinamik: "Viscosidad",
-    elektrik_direnc: "Resistencia",
-    kapasitans: "Capacitancia",
-    enduktans: "Inductancia",
-    elektrik_yuk: "Carga Eléctrica",
-    altin_ayar: "Quilate de Oro",
-    gumus_ayar: "Ley de la Plata",
-  },
-  pt: {
-    uzunluk: "Comprimento",
-    alan: "Área",
-    hacim: "Volume",
-    kutle: "Massa",
-    sicaklik: "Temperatura",
-    zaman: "Tempo",
-    hiz: "Velocidade",
-    basinc: "Pressão",
-    enerji: "Energia e Potência",
-    veri: "Armazenamento de Dados",
-    elektrik: "Eletricidade",
-    yogunluk: "Densidade",
-    kuvvet: "Forca",
-    debi: "Vazão",
-    tork: "Torque",
-    momentum: "Momento",
-    viskozite_dinamik: "Viscosidade",
-    elektrik_direnc: "Resistência",
-    kapasitans: "Capacitância",
-    enduktans: "Indutância",
-    elektrik_yuk: "Carga Elétrica",
-    altin_ayar: "Quilate de Ouro",
-    gumus_ayar: "Teor de Prata",
-  },
-  it: {
-    uzunluk: "Lunghezza",
-    alan: "Area",
-    hacim: "Volume",
-    kutle: "Massa",
-    sicaklik: "Temperatura",
-    zaman: "Tempo",
-    hiz: "Velocita",
-    basinc: "Pressione",
-    enerji: "Energia e Potenza",
-    veri: "Archiviazione Dati",
-    elektrik: "Elettricita",
-    yogunluk: "Densita",
-    kuvvet: "Forza",
-    debi: "Portata",
-    tork: "Coppia",
-    momentum: "Quantita di Moto",
-    viskozite_dinamik: "Viscosita",
-    elektrik_direnc: "Resistenza",
-    kapasitans: "Capacita",
-    enduktans: "Induttanza",
-    elektrik_yuk: "Carica Elettrica",
-    altin_ayar: "Caratura dell'Oro",
-    gumus_ayar: "Titolo dell'Argento",
-  },
-  nl: {
-    uzunluk: "Lengte",
-    alan: "Oppervlakte",
-    hacim: "Volume",
-    kutle: "Massa",
-    sicaklik: "Temperatuur",
-    zaman: "Tijd",
-    hiz: "Snelheid",
-    basinc: "Druk",
-    enerji: "Energie en Vermogen",
-    veri: "Data-opslag",
-    elektrik: "Elektriciteit",
-    yogunluk: "Dichtheid",
-    kuvvet: "Kracht",
-    debi: "Debiet",
-    tork: "Koppel",
-    momentum: "Impuls",
-    viskozite_dinamik: "Viscositeit",
-    elektrik_direnc: "Weerstand",
-    kapasitans: "Capaciteit",
-    enduktans: "Inductantie",
-    elektrik_yuk: "Elektrische Lading",
-    altin_ayar: "Goudkaraat",
-    gumus_ayar: "Zilvergehalte",
-  },
-  ru: {
-    uzunluk: "Длина", alan: "Площадь", hacim: "Объём", kutle: "Масса", sicaklik: "Температура", zaman: "Время", hiz: "Скорость", basinc: "Давление", enerji: "Энергия", veri: "Хранение данных", elektrik: "Электричество", yogunluk: "Плотность", kuvvet: "Сила", debi: "Расход", debi_hacimsel: "Объёмный расход", debi_kutlesel: "Массовый расход", tork: "Крутящий момент", aci: "Угол", ivme: "Ускорение", acisal_hiz: "Угловая скорость", frekans: "Частота", guc: "Мощность", momentum: "Импульс", viskozite_dinamik: "Вязкость", viskozite_kinematik: "Кинематическая вязкость", manyetik_alan: "Напряжённость магнитного поля", manyetik_aki: "Магнитный поток", elektrik_direnc: "Сопротивление", kapasitans: "Ёмкость", enduktans: "Индуктивность", elektrik_yuk: "Электрический заряд", altin_ayar: "Проба золота", gumus_ayar: "Проба серебра",
-  },
 };
 
 const siteHeaderCopy: Record<Locale, SiteHeaderCopy> = {
@@ -347,42 +169,6 @@ const siteHeaderCopy: Record<Locale, SiteHeaderCopy> = {
     menuLabel: "Menü",
     conversionsLabel: "Kategorien",
   },
-  ar: {
-    navAriaLabel: "التنقل الرئيسي",
-    menuLabel: "القائمة",
-    conversionsLabel: "الأدوات",
-  },
-  bn: {
-    navAriaLabel: "প্রধান নেভিগেশন",
-    menuLabel: "মেনু",
-    conversionsLabel: "রূপান্তর",
-  },
-  fr: {
-    navAriaLabel: "Navigation principale",
-    menuLabel: "Menu",
-    conversionsLabel: "Conversions",
-  },
-  es: {
-    navAriaLabel: "Navegación principal",
-    menuLabel: "Menú",
-    conversionsLabel: "Conversiones",
-  },
-  pt: {
-    navAriaLabel: "Navegação principal",
-    menuLabel: "Menu",
-    conversionsLabel: "Conversões",
-  },
-  it: {
-    navAriaLabel: "Navigazione principale",
-    menuLabel: "Menu",
-    conversionsLabel: "Conversioni",
-  },
-  nl: {
-    navAriaLabel: "Hoofdnavigatie",
-    menuLabel: "Menu",
-    conversionsLabel: "Omrekeningen",
-  },
-  ru: { navAriaLabel: "Основная навигация", menuLabel: "Меню", conversionsLabel: "Конвертеры" },
 };
 
 const footerCopy: Record<Locale, FooterCopy> = {
@@ -422,96 +208,6 @@ const footerCopy: Record<Locale, FooterCopy> = {
     browserProcessingNote:
       "Eingegebene Werte werden für die Rechenabläufe direkt im Browser verarbeitet.",
   },
-  ar: {
-    navAriaLabel: "تنقل التذييل",
-    pagesHeading: "الصفحات",
-    languagesHeading: "اللغات",
-    categoriesHeading: "الأدوات",
-    description:
-      "نسخة عربية تتوسع تدريجيًا لأدوات التحويل والحسابات العملية دون كسر بنية الموقع.",
-    disclaimer:
-      "في القرارات الهندسية أو الصحية أو المتعلقة بالسلامة، يُفضّل دائمًا التحقق من النتائج عبر مصادر متخصصة.",
-    browserProcessingNote:
-      "تُعالج مدخلات الحاسبات داخل المتصفح أثناء تنفيذ عمليات الحساب في هذا الموقع.",
-  },
-  bn: {
-    navAriaLabel: "ফুটার নেভিগেশন",
-    pagesHeading: "পৃষ্ঠাসমূহ",
-    languagesHeading: "ভাষাসমূহ",
-    categoriesHeading: "বিভাগসমূহ",
-    description:
-      "ব্যবহারিক রেফারেন্সের জন্য তৈরি প্রযুক্তিগত রূপান্তর টুল এবং একক গাইড।",
-    disclaimer:
-      "গুরুত্বপূর্ণ প্রকৌশল, স্বাস্থ্য বা নিরাপত্তা সংক্রান্ত সিদ্ধান্তে ফলাফল পেশাদার সূত্র দিয়ে যাচাই করুন।",
-    browserProcessingNote:
-      "এই সাইটের হিসাব প্রবাহে ক্যালকুলেটরের ইনপুট ব্রাউজারেই প্রক্রিয়া করা হয়।",
-  },
-  fr: {
-    navAriaLabel: "Navigation du pied de page",
-    pagesHeading: "Pages",
-    languagesHeading: "Langues",
-    categoriesHeading: "Categories",
-    description:
-      "Outils de conversion technique et guides d'unites concus pour un usage pratique.",
-    disclaimer:
-      "Pour les decisions importantes en ingenierie, sante ou securite, verifiez les resultats avec des sources professionnelles.",
-    browserProcessingNote:
-      "Dans les flux de calcul de ce site, les entrees des calculatrices sont traitees directement dans le navigateur.",
-  },
-  es: {
-    navAriaLabel: "Navegación del pie de pagina",
-    pagesHeading: "Paginas",
-    languagesHeading: "Idiomas",
-    categoriesHeading: "Categorías",
-    description:
-      "Herramientas de conversión técnica y guías de unidades preparadas para un uso practico.",
-    disclaimer:
-      "Para decisiones importantes de ingeniería, salud o seguridad, verifique los resultados con fuentes profesionales.",
-    browserProcessingNote:
-      "En los flujos de calculo de este sitio, los datos introducidos en las calculadoras se procesan directamente en el navegador.",
-  },
-  pt: {
-    navAriaLabel: "Navegação do rodapé",
-    pagesHeading: "Páginas",
-    languagesHeading: "Idiomas",
-    categoriesHeading: "Categorias",
-    description:
-      "Ferramentas de conversão técnica e guias de unidades preparados para uso prático.",
-    disclaimer:
-      "Para decisões importantes de engenharia, saúde ou segurança, verifique os resultados com fontes profissionais.",
-    browserProcessingNote:
-      "Nos fluxos de cálculo deste site, os dados inseridos nas calculadoras são processados diretamente no navegador.",
-  },
-  it: {
-    navAriaLabel: "Navigazione del footer",
-    pagesHeading: "Pagine",
-    languagesHeading: "Lingue",
-    categoriesHeading: "Categorie",
-    description:
-      "Strumenti di conversione tecnica e guide alle unita preparati per un uso pratico.",
-    disclaimer:
-      "Per decisioni importanti di ingegneria, salute o sicurezza, verifica i risultati con fonti professionali.",
-    browserProcessingNote:
-      "Nei flussi di calcolo di questo sito, i dati inseriti nelle calcolatrici vengono elaborati direttamente nel browser.",
-  },
-  nl: {
-    navAriaLabel: "Footernavigatie",
-    pagesHeading: "Pagina's",
-    languagesHeading: "Talen",
-    categoriesHeading: "Categorieën",
-    description:
-      "Technische omrekentools en eenhedengidsen voorbereid voor praktisch gebruik.",
-    disclaimer:
-      "Controleer resultaten voor belangrijke technische, medische of veiligheidsbeslissingen met professionele bronnen.",
-    browserProcessingNote:
-      "Bij de rekenfuncties op deze site worden de ingevoerde gegevens rechtstreeks in de browser verwerkt.",
-  },
-  ru: {
-    navAriaLabel: "Навигация в подвале", pagesHeading: "Страницы", languagesHeading: "Языки", categoriesHeading: "Категории",
-    description: "Точные конвертеры величин и справочные материалы для практических задач.",
-    disclaimer: "Для важных инженерных, медицинских и безопасностных решений проверяйте критические значения по профессиональным источникам.",
-    browserProcessingNote: "Введённые в калькуляторы данные обрабатываются в браузере.",
-  },
 };
 
 const topLevelLabelMap: Record<
@@ -542,56 +238,6 @@ const topLevelLabelMap: Record<
     allConversions: "Alle Umrechnungen",
     professions: "Berufe",
   },
-  ar: {
-    home: "الرئيسية",
-    engineeringHub: "الحاسبات",
-    units: "دليل الوحدات",
-    allConversions: "كل التحويلات",
-    professions: "المهن",
-  },
-  bn: {
-    home: "হোম",
-    engineeringHub: "ক্যালকুলেটর",
-    units: "একক গাইড",
-    allConversions: "সব রূপান্তর",
-    professions: "পেশা",
-  },
-  fr: {
-    home: "Accueil",
-    engineeringHub: "Calculatrices",
-    units: "Guides d'unites",
-    allConversions: "Toutes les conversions",
-    professions: "Par profession",
-  },
-  es: {
-    home: "Inicio",
-    engineeringHub: "Calculadoras",
-    units: "Guía de Unidades",
-    allConversions: "Todas las Conversiones",
-    professions: "Por Profesión",
-  },
-  pt: {
-    home: "Inicio",
-    engineeringHub: "Calculadoras",
-    units: "Guia de Unidades",
-    allConversions: "Todas as Conversões",
-    professions: "Por Profissão",
-  },
-  it: {
-    home: "Home",
-    engineeringHub: "Calcolatrici",
-    units: "Guida alle Unita",
-    allConversions: "Tutte le Conversioni",
-    professions: "Per Professione",
-  },
-  nl: {
-    home: "Home",
-    engineeringHub: "Rekentools",
-    units: "Eenhedengids",
-    allConversions: "Alle Omrekeningen",
-    professions: "Op Beroep",
-  },
-  ru: { home: "Главная", engineeringHub: "Калькуляторы", units: "Единицы", allConversions: "Все переводы", professions: "По профессии" },
 };
 
 const footerLinksByLocale: Record<
@@ -627,41 +273,6 @@ const footerLinksByLocale: Record<
     { key: "privacy", label: "Datenschutz" },
     { key: "terms", label: "Nutzungsbedingungen" },
   ],
-  ar: [
-    { key: "home", label: "الرئيسية" },
-    { key: "units", label: "دليل الوحدات" },
-    { key: "allConversions", label: "كل التحويلات" },
-    { key: "engineeringHub", label: "الحاسبات" },
-    { key: "about", label: "من نحن" },
-    { key: "contact", label: "اتصل بنا" },
-    { key: "privacy", label: "الخصوصية" },
-    { key: "terms", label: "الشروط" },
-  ],
-  bn: [
-    { key: "home", label: "হোম" },
-    { key: "units", label: "একক গাইড" },
-  ],
-  fr: [
-    { key: "home", label: "Accueil" },
-    { key: "units", label: "Guides d'unités" },
-  ],
-  es: [
-    { key: "home", label: "Inicio" },
-    { key: "units", label: "Guía de unidades" },
-  ],
-  pt: [
-    { key: "home", label: "Inicio" },
-    { key: "units", label: "Guia de unidades" },
-  ],
-  it: [
-    { key: "home", label: "Home" },
-    { key: "units", label: "Guida alle unità" },
-  ],
-  nl: [
-    { key: "home", label: "Home" },
-    { key: "units", label: "Eenhedengids" },
-  ],
-  ru: [{ key: "home", label: "Главная" }, { key: "allConversions", label: "Все переводы" }],
 };
 
 export function getSiteHeaderCopy(locale: Locale) {
@@ -683,13 +294,6 @@ export function getTopLevelLinks(locale: Locale): LinkDefinition[] {
     ];
   }
 
-  if (locale === "ru") {
-    return [
-      { href: "/ru", label: labels.home },
-      { href: "/ru/unit-guides", label: labels.units },
-      { href: "/ru/categories", label: labels.allConversions },
-    ];
-  }
 
   // Türkçede hesaplayıcılar, birim rehberi ve tüm dönüşümler açılır
   // menülerin içinde (getMenuGroups); üst satırda yalnızca bunlar kalır.
@@ -754,11 +358,6 @@ export function getCategoryMenuLinks(locale: Locale) {
     ];
   });
 
-  // Rusca icin henuz yerellestirilmis sayfasi olmayan ayakkabi, mutfak
-  // ve tarif araclarini Turkce URL'lere baglamiyoruz.
-  if (locale === "ru") {
-    return links;
-  }
 
   links.push({
     href: getStaticPath(locale, "shoeSize"),
@@ -767,21 +366,7 @@ export function getCategoryMenuLinks(locale: Locale) {
         ? "Shoe Size"
         : locale === "de"
           ? "Schuhgrößen"
-          : locale === "ar"
-            ? "مقاسات الأحذية"
-            : locale === "bn"
-              ? "জুতার মাপ"
-              : locale === "fr"
-                ? "Pointures"
-                : locale === "es"
-                  ? "Tallas de Calzado"
-                  : locale === "pt"
-                    ? "Numeração de Calçados"
-                    : locale === "it"
-                      ? "Numeri di Scarpe"
-                      : locale === "nl"
-                        ? "Schoenmaten"
-                        : "Ayakkabı Numarası",
+          : "Ayakkabı Numarası",
   });
   links.push({
     href: getStaticPath(locale, "kitchenMeasures"),
@@ -790,21 +375,7 @@ export function getCategoryMenuLinks(locale: Locale) {
         ? "Kitchen Measures"
         : locale === "de"
           ? "Küchenmaße"
-          : locale === "ar"
-            ? "مقاييس المطبخ"
-            : locale === "bn"
-              ? "রান্নাঘর পরিমাপ"
-              : locale === "fr"
-                ? "Mesures de Cuisine"
-                : locale === "es"
-                  ? "Medidas de Cocina"
-                  : locale === "pt"
-                    ? "Medidas de Cozinha"
-                    : locale === "it"
-                      ? "Misure di Cucina"
-                      : locale === "nl"
-                        ? "Keukenmaten"
-                        : "Mutfak Ölçüleri",
+          : "Mutfak Ölçüleri",
   });
   links.push({
     href: getStaticPath(locale, "recipeConverter"),
@@ -813,21 +384,7 @@ export function getCategoryMenuLinks(locale: Locale) {
         ? "Recipe Converter"
         : locale === "de"
           ? "Rezept-Umrechner"
-          : locale === "ar"
-            ? "محول الوصفات"
-            : locale === "bn"
-              ? "রেসিপি রূপান্তরকারী"
-              : locale === "fr"
-                ? "Convertisseur de Recettes"
-                : locale === "es"
-                  ? "Conversor de Recetas"
-                  : locale === "pt"
-                    ? "Conversor de Receitas"
-                    : locale === "it"
-                      ? "Convertitore di Ricette"
-                      : locale === "nl"
-                        ? "Receptomrekenaar"
-                        : "Tarif Çevirici",
+          : "Tarif Çevirici",
   });
 
   return links;
@@ -842,11 +399,7 @@ export function getCategoryFooterLinks(locale: Locale) {
   return getLocalizedCategorySummaries(locale).map((summary) => ({
     href: `${basePath}/${summary.slug}`,
     label:
-      locale === "ar"
-        ? categoryLabels.ar[
-            summary.category as (typeof navCategoryOrder)[number]
-          ] ?? summary.title
-        : summary.title,
+      summary.title,
   }));
 }
 

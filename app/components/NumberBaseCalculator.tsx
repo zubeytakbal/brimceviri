@@ -9,7 +9,7 @@ import {
   type NumberBase,
 } from "../converter/numberBaseCalculator";
 
-type SupportedLocale = "tr" | "bn";
+type SupportedLocale = "tr";
 
 type NumberBaseCopy = {
   labels: {
@@ -76,41 +76,6 @@ const copyByLocale: Record<SupportedLocale, NumberBaseCopy> = {
     arithmeticEmptyState: "İki geçerli ikili sayı girerek işlemi görebilirsin.",
     arithmeticInvalidState:
       "Çıkarma işleminde sonuç negatif olamaz; büyük sayıyı önce girin.",
-  },
-  bn: {
-    labels: {
-      inputValue: "মান",
-      inputBase: "ইনপুট বেস",
-    },
-    bases: {
-      2: "বাইনারি (দ্বিমিক)",
-      8: "অক্টাল (অষ্টমিক)",
-      10: "ডেসিমেল (দশমিক)",
-      16: "হেক্সাডেসিমেল (ষোড়শমিক)",
-    },
-    resultLabels: {
-      binary: "বাইনারি",
-      octal: "অক্টাল",
-      decimal: "ডেসিমেল",
-      hexadecimal: "হেক্সাডেসিমেল",
-    },
-    emptyState: "একটি বৈধ সংখ্যা লিখে ফলাফল দেখুন।",
-    invalidState: (base) => `এই মান ${base} বেসের জন্য বৈধ নয়।`,
-    arithmeticTitle: "বাইনারি সংখ্যা যোগ / বিয়োগ / গুণ",
-    arithmeticLabels: {
-      first: "প্রথম বাইনারি সংখ্যা",
-      second: "দ্বিতীয় বাইনারি সংখ্যা",
-    },
-    operations: {
-      add: "যোগ করুন",
-      subtract: "বিয়োগ করুন",
-      multiply: "গুণ করুন",
-    },
-    arithmeticResult: (first, second, resultBinary, resultDecimal) =>
-      `${first} এবং ${second} এর ফলাফল: ${resultBinary} (ডেসিমেলে: ${resultDecimal})`,
-    arithmeticEmptyState: "দুটি বৈধ বাইনারি সংখ্যা লিখে ফলাফল দেখুন।",
-    arithmeticInvalidState:
-      "বিয়োগের ফলাফল ঋণাত্মক হতে পারে না; বড় সংখ্যাটি আগে লিখুন।",
   },
 };
 

@@ -1,11 +1,11 @@
-export const SUPPORTED_LOCALES = ["tr", "en", "de", "ar", "bn", "fr", "es", "pt", "it", "nl", "ru"] as const;
+export const SUPPORTED_LOCALES = ["tr", "en", "de"] as const;
 
 export type Locale = (typeof SUPPORTED_LOCALES)[number];
 
 export const DEFAULT_LOCALE: Locale = "tr";
 
-/** Sayfalari yayinda olan diller (dil menusu ve alt bilgi). "ru" icin henuz sayfa yok. */
-export const PUBLISHED_LOCALES = SUPPORTED_LOCALES.filter((locale) => locale !== "ru");
+/** Sayfalari yayinda olan diller (dil menusu ve alt bilgi). */
+export const PUBLISHED_LOCALES: readonly Locale[] = SUPPORTED_LOCALES;
 
 export type LocaleDefinition = {
   code: Locale;
@@ -69,127 +69,7 @@ export const LOCALE_DEFINITIONS: Record<Locale, LocaleDefinition> = {
     switcherSearchPlaceholder: "Sprache suchen",
     switcherEmptyLabel: "Keine passende Sprache gefunden",
   },
-  ar: {
-    code: "ar",
-    htmlLang: "ar",
-    dir: "rtl",
-    openGraphLocale: "ar_AR",
-    pathPrefix: "/ar",
-    homePath: "/ar",
-    label: "العربية",
-    switcherLabel: "العربية",
-    switcherCurrentLabel: "AR - العربية",
-    switcherAriaLabel: "اختر اللغة",
-    switcherOptionsLabel: "خيارات اللغة",
-    switcherSearchPlaceholder: "ابحث عن لغة",
-    switcherEmptyLabel: "لا توجد لغة مطابقة",
-  },
-  bn: {
-    code: "bn",
-    htmlLang: "bn",
-    dir: "ltr",
-    openGraphLocale: "bn_BD",
-    pathPrefix: "/bn",
-    homePath: "/bn",
-    label: "বাংলা",
-    switcherLabel: "বাংলা",
-    switcherCurrentLabel: "BN - বাংলা",
-    switcherAriaLabel: "ভাষা নির্বাচন করুন",
-    switcherOptionsLabel: "ভাষার বিকল্প",
-    switcherSearchPlaceholder: "ভাষা খুঁজুন",
-    switcherEmptyLabel: "কোনো মিল পাওয়া যায়নি",
-  },
-  fr: {
-    code: "fr",
-    htmlLang: "fr",
-    dir: "ltr",
-    openGraphLocale: "fr_FR",
-    pathPrefix: "/fr",
-    homePath: "/fr",
-    label: "Français",
-    switcherLabel: "Français",
-    switcherCurrentLabel: "FR - Français",
-    switcherAriaLabel: "Choisir la langue",
-    switcherOptionsLabel: "Options de langue",
-    switcherSearchPlaceholder: "Rechercher une langue",
-    switcherEmptyLabel: "Aucune langue correspondante",
-  },
-  es: {
-    code: "es",
-    htmlLang: "es",
-    dir: "ltr",
-    openGraphLocale: "es_ES",
-    pathPrefix: "/es",
-    homePath: "/es",
-    label: "Español",
-    switcherLabel: "Español",
-    switcherCurrentLabel: "ES - Español",
-    switcherAriaLabel: "Seleccionar idioma",
-    switcherOptionsLabel: "Opciones de idioma",
-    switcherSearchPlaceholder: "Buscar idioma",
-    switcherEmptyLabel: "No se encontró ningún idioma",
-  },
 
-  pt: {
-    code: "pt",
-    htmlLang: "pt-BR",
-    dir: "ltr",
-    openGraphLocale: "pt_BR",
-    pathPrefix: "/pt",
-    homePath: "/pt",
-    label: "Português",
-    switcherLabel: "Português",
-    switcherCurrentLabel: "PT - Português",
-    switcherAriaLabel: "Selecionar idioma",
-    switcherOptionsLabel: "Opções de idioma",
-    switcherSearchPlaceholder: "Buscar idioma",
-    switcherEmptyLabel: "Nenhum idioma encontrado",
-  },
-  it: {
-    code: "it",
-    htmlLang: "it",
-    dir: "ltr",
-    openGraphLocale: "it_IT",
-    pathPrefix: "/it",
-    homePath: "/it",
-    label: "Italiano",
-    switcherLabel: "Italiano",
-    switcherCurrentLabel: "IT - Italiano",
-    switcherAriaLabel: "Seleziona lingua",
-    switcherOptionsLabel: "Opzioni lingua",
-    switcherSearchPlaceholder: "Cerca lingua",
-    switcherEmptyLabel: "Nessuna lingua trovata",
-  },
-  nl: {
-    code: "nl",
-    htmlLang: "nl",
-    dir: "ltr",
-    openGraphLocale: "nl_NL",
-    pathPrefix: "/nl",
-    homePath: "/nl",
-    label: "Nederlands",
-    switcherLabel: "Nederlands",
-    switcherCurrentLabel: "NL - Nederlands",
-    switcherAriaLabel: "Taal selecteren",
-    switcherOptionsLabel: "Taalopties",
-    switcherSearchPlaceholder: "Taal zoeken",
-    switcherEmptyLabel: "Geen overeenkomende taal gevonden",
-  },
-  ru: {
-    code: "ru",
-    htmlLang: "ru",
-    dir: "ltr",
-    openGraphLocale: "ru_RU",
-    pathPrefix: "/ru",
-    homePath: "/ru",
-    label: "Русский",
-    switcherLabel: "Русский",
-    switcherCurrentLabel: "RU - Русский",
-    switcherAriaLabel: "Выберите язык",
-    switcherOptionsLabel: "Языки",
-    switcherSearchPlaceholder: "Поиск языка",
-    switcherEmptyLabel: "Подходящий язык не найден",
-  },
 };
 
 export function isLocale(value: string): value is Locale {

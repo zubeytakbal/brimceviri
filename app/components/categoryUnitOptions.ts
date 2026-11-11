@@ -1,12 +1,11 @@
 import { units } from "../converter/units";
 import { unitRegistry } from "../converter/unitRegistry";
-import { nederlandsUnitPages } from "../converter/localizedNederlandsUnitPages";
 
 const SQUARE_SUFFIX = "\u00B2";
 const CUBIC_SUFFIX = "\u00B3";
 const MICRO_SIGN = "\u00B5";
 
-type Locale = "tr" | "en" | "de" | "ar" | "bn" | "fr" | "es" | "pt" | "it" | "nl";
+type Locale = "tr" | "en" | "de";
 
 type UnitDefinition = {
   tr: string;
@@ -1025,13 +1024,7 @@ export function getCategoryUnitOptions(
       return [];
     }
 
-    const nederlandsUnit =
-      locale === "nl"
-        ? nederlandsUnitPages.find(
-            (page) => page.category === category && page.unit === value
-          )
-        : undefined;
-    const label = nederlandsUnit?.name ?? getUnitLabel(locale, definition);
+    const label = getUnitLabel(locale, definition);
 
     if (!label) {
       return [];

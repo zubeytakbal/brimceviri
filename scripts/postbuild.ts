@@ -57,8 +57,8 @@ function removeRscPayloads(dir: string): number {
 // Cloudflare Pages en fazla 2000 sabit ve 100 dinamik (":ad" ya da "*" iceren) kural okur. Okuyucu ilk dinamik
 // kuraldan sonra gelen her kurali dinamik sayar ve 100'u gecince dosyanin geri kalanini atlar; bu yuzden sabit
 // kurallar her zaman once yazilir. (Ekim 2026'ya kadar karisik sira yuzunden 364. satirdan sonrasi calismiyordu.)
-/** Sitesi tamamen kaldirilan diller (Ozbekce; Isvecce, Norvecce, Danca Kasim 2026); adresleri /en'e yonlenir. */
-const KALDIRILAN_DILLER = ["uz", "sv", "no", "da"];
+/** Sitesi kaldirilan diller (Kasim 2026; site yalniz tr, en, de): adresleri /en'e yonlenir. */
+const KALDIRILAN_DILLER = ["uz", "sv", "no", "da", "es", "ar", "bn", "it", "fr", "pt", "nl", "ru"];
 const MAX_STATIC_REDIRECTS = 2000;
 const MAX_DYNAMIC_REDIRECTS = 100;
 const isDynamic = (from: string) => /[:*]/.test(from);

@@ -31,7 +31,6 @@ export const metadata: Metadata = {
     canonical: "/sayi-tabani-cevirici",
     languages: {
       tr: "/sayi-tabani-cevirici",
-      bn: "/bn/number-base-calculator",
       "x-default": "/sayi-tabani-cevirici",
     },
   },

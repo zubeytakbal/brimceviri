@@ -63,91 +63,6 @@ const copyByLocale: Record<
       costHint: "Enter your electricity price per kWh to see the cost estimate.",
     },
   },
-  fr: {
-    labels: {
-      power: "Puissance de l'appareil (watts)",
-      hours: "Durée d'utilisation par jour (heures)",
-      days: "Jours d'utilisation par mois",
-      price: "Prix de l'électricité (EUR/kWh) - facultatif",
-    },
-    placeholder: "Prix du kWh indiqué sur votre facture",
-    emptyState: "Saisissez des valeurs valides pour voir le résultat.",
-    resultLabels: {
-      monthly: "Consommation mensuelle",
-      daily: "Consommation journalière",
-      yearly: "Consommation annuelle",
-      yearlyCost: "Coût annuel",
-      costHint: "Saisissez le prix du kWh pour estimer le coût.",
-    },
-  },
-  es: {
-    labels: {
-      power: "Potencia del aparato (vatios)",
-      hours: "Tiempo de uso diario (horas)",
-      days: "Días de uso al mes",
-      price: "Precio de la electricidad (EUR/kWh) - opcional",
-    },
-    placeholder: "Precio del kWh de tu factura",
-    emptyState: "Introduce valores válidos para ver el resultado.",
-    resultLabels: {
-      monthly: "Consumo mensual",
-      daily: "Consumo diario",
-      yearly: "Consumo anual",
-      yearlyCost: "Coste anual",
-      costHint: "Introduce el precio del kWh para estimar el coste.",
-    },
-  },
-  pt: {
-    labels: {
-      power: "Potência do aparelho (watts)",
-      hours: "Tempo de uso diário (horas)",
-      days: "Dias de uso por mês",
-      price: "Tarifa de energia (R$/kWh) - opcional",
-    },
-    placeholder: "Preço do kWh na sua conta de luz",
-    emptyState: "Digite valores válidos para ver o resultado.",
-    resultLabels: {
-      monthly: "Consumo mensal",
-      daily: "Consumo diário",
-      yearly: "Consumo anual",
-      yearlyCost: "Custo anual",
-      costHint: "Digite o preço do kWh para estimar o custo.",
-    },
-  },
-  it: {
-    labels: {
-      power: "Potenza dell'apparecchio (watt)",
-      hours: "Tempo di utilizzo giornaliero (ore)",
-      days: "Giorni di utilizzo al mese",
-      price: "Prezzo dell'energia (EUR/kWh) - facoltativo",
-    },
-    placeholder: "Prezzo del kWh in bolletta",
-    emptyState: "Inserisci valori validi per vedere il risultato.",
-    resultLabels: {
-      monthly: "Consumo mensile",
-      daily: "Consumo giornaliero",
-      yearly: "Consumo annuo",
-      yearlyCost: "Costo annuo",
-      costHint: "Inserisci il prezzo del kWh per stimare il costo.",
-    },
-  },
-  nl: {
-    labels: {
-      power: "Vermogen van het apparaat (watt)",
-      hours: "Dagelijkse gebruiksduur (uur)",
-      days: "Gebruiksdagen per maand",
-      price: "Stroomprijs (EUR/kWh) - optioneel",
-    },
-    placeholder: "Prijs per kWh op je energierekening",
-    emptyState: "Voer geldige waarden in om het resultaat te zien.",
-    resultLabels: {
-      monthly: "Maandelijks verbruik",
-      daily: "Dagelijks verbruik",
-      yearly: "Jaarlijks verbruik",
-      yearlyCost: "Jaarlijkse kosten",
-      costHint: "Vul je prijs per kWh in om de kosten te schatten.",
-    },
-  },
   de: {
     labels: {
       power: "Geräteleistung (Watt)",
@@ -163,40 +78,6 @@ const copyByLocale: Record<
       yearly: "Jährlicher Verbrauch",
       yearlyCost: "Jährliche Kosten",
       costHint: "Geben Sie Ihren Strompreis pro kWh ein, um die Kosten zu sehen.",
-    },
-  },
-  ar: {
-    labels: {
-      power: "قدرة الجهاز (واط)",
-      hours: "مدة الاستخدام اليومية (ساعة)",
-      days: "عدد أيام الاستخدام شهريًا",
-      price: "سعر الكهرباء (لكل kWh) - اختياري",
-    },
-    placeholder: "سعر الكيلوواط ساعة من فاتورتك",
-    emptyState: "أدخل قيمًا صحيحة لعرض النتيجة.",
-    resultLabels: {
-      monthly: "الاستهلاك الشهري",
-      daily: "الاستهلاك اليومي",
-      yearly: "الاستهلاك السنوي",
-      yearlyCost: "التكلفة السنوية",
-      costHint: "أدخل سعر الكهرباء لكل kWh لعرض تقدير التكلفة.",
-    },
-  },
-bn: {
-    labels: {
-      power: "যন্ত্রের ক্ষমতা (ওয়াট)",
-      hours: "দৈনিক ব্যবহারের সময় (ঘণ্টা)",
-      days: "মাসে ব্যবহারের দিন",
-      price: "বিদ্যুতের দাম (৳/kWh) - ঐচ্ছিক",
-    },
-    placeholder: "বিল অনুযায়ী প্রতি kWh-এর দাম",
-    emptyState: "ফলাফল দেখতে বৈধ মান লিখুন।",
-    resultLabels: {
-      monthly: "মাসিক খরচ (বিদ্যুৎ)",
-      daily: "দৈনিক খরচ (বিদ্যুৎ)",
-      yearly: "বার্ষিক খরচ (বিদ্যুৎ)",
-      yearlyCost: "বার্ষিক ব্যয়",
-      costHint: "খরচের হিসাব দেখতে প্রতি kWh-এর দাম লিখুন।",
     },
   },
 };
@@ -226,7 +107,7 @@ export default function ElectricityConsumptionCalculator({
 }: {
   locale?: Locale;
 }) {
-  const copy = copyByLocale[locale === "ru" ? "en" : locale];
+  const copy = copyByLocale[locale];
   const [powerWatt, setPowerWatt] = useState("1500");
   const [hoursPerDay, setHoursPerDay] = useState("2");
   const [daysPerMonth, setDaysPerMonth] = useState("30");

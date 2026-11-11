@@ -35,55 +35,6 @@ export const alarmCopy: Record<string, AlarmCopy> = {
     ringing: (time) => `⏰ Guten Morgen! Es ist ${time} Uhr`,
     stop: "Stopp",
   },
-  fr: {
-    setFor: (time) => `⏰ Régler une alarme à ${time}`,
-    active: (time) => `Alarme réglée à ${time}. Gardez cet onglet ouvert ; sur un téléphone, le navigateur peut se mettre en veille quand l'écran est verrouillé, réglez aussi l'alarme du téléphone.`,
-    cancel: "Annuler l'alarme",
-    ringing: (time) => `⏰ Bonjour ! Il est ${time}`,
-    stop: "Arrêter",
-  },
-  es: {
-    setFor: (time) => `⏰ Poner alarma a las ${time}`,
-    active: (time) => `Alarma puesta a las ${time}. Mantén esta pestaña abierta; en el móvil el navegador puede suspenderse al bloquear la pantalla, así que pon también la alarma del teléfono.`,
-    cancel: "Cancelar alarma",
-    ringing: (time) => `⏰ ¡Buenos días! Son las ${time}`,
-    stop: "Detener",
-  },
-  pt: {
-    setFor: (time) => `⏰ Definir alarme para ${time}`,
-    active: (time) => `Alarme definido para ${time}. Mantenha esta aba aberta; no celular o navegador pode pausar com a tela bloqueada, então defina também o alarme do telefone.`,
-    cancel: "Cancelar alarme",
-    ringing: (time) => `⏰ Bom dia! São ${time}`,
-    stop: "Parar",
-  },
-  it: {
-    setFor: (time) => `⏰ Imposta la sveglia alle ${time}`,
-    active: (time) => `Sveglia impostata alle ${time}. Tieni aperta questa scheda; sul telefono il browser può sospendersi a schermo bloccato, quindi imposta anche la sveglia del telefono.`,
-    cancel: "Annulla sveglia",
-    ringing: (time) => `⏰ Buongiorno! Sono le ${time}`,
-    stop: "Ferma",
-  },
-  nl: {
-    setFor: (time) => `⏰ Wekker zetten op ${time}`,
-    active: (time) => `Wekker gezet op ${time}. Houd dit tabblad open; op een telefoon kan de browser pauzeren als het scherm vergrendeld is, zet dus ook de wekker van je telefoon.`,
-    cancel: "Wekker annuleren",
-    ringing: (time) => `⏰ Goedemorgen! Het is ${time}`,
-    stop: "Stop",
-  },
-  ar: {
-    setFor: (time) => `⏰ اضبط منبهًا على ${time}`,
-    active: (time) => `تم ضبط المنبه على ${time}. أبقِ هذه الصفحة مفتوحة؛ قد يتوقف المتصفح على الهاتف عند قفل الشاشة، لذا اضبط منبه الهاتف أيضًا.`,
-    cancel: "إلغاء المنبه",
-    ringing: (time) => `⏰ صباح الخير! الساعة ${time}`,
-    stop: "إيقاف",
-  },
-  bn: {
-    setFor: (time) => `⏰ ${time}-এ অ্যালার্ম দিন`,
-    active: (time) => `${time}-এ অ্যালার্ম দেওয়া হয়েছে। এই ট্যাবটি খোলা রাখুন; ফোনে স্ক্রিন লক হলে ব্রাউজার থেমে যেতে পারে, তাই ফোনের অ্যালার্মও দিন।`,
-    cancel: "অ্যালার্ম বাতিল করুন",
-    ringing: (time) => `⏰ সুপ্রভাত! এখন ${time}`,
-    stop: "থামান",
-  },
 };
 
 function nextOccurrence(time: string) {

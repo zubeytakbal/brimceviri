@@ -102,8 +102,6 @@ function getNumberLocale(locale: TechnicalReferenceLocale) {
     ? "tr-TR"
     : locale === "de"
       ? "de-DE"
-      : locale === "ar"
-        ? "ar"
       : "en-US";
 }
 
@@ -117,9 +115,7 @@ function formatUpdatedDate(
 
   return locale === "tr"
     ? "Kaynak sayfasında belirtilmedi"
-    : locale === "ar"
-      ? "غير مذكور في صفحة المصدر"
-      : "Not stated on the source page";
+    : "Not stated on the source page";
 }
 
 function renderText(
@@ -562,27 +558,19 @@ export default function TechnicalReferenceSheet({
   const downloadLabel =
     locale === "tr"
       ? "PDF olarak indir"
-      : locale === "ar"
-        ? "تنزيل PDF"
-        : "Download PDF";
+      : "Download PDF";
   const updatedLabel =
     locale === "tr"
       ? "Güncelleme/Yayın"
-      : locale === "ar"
-        ? "التحديث/النشر"
-        : "Updated/Release";
+      : "Updated/Release";
   const accessedLabel =
     locale === "tr"
       ? "Erişim"
-      : locale === "ar"
-        ? "تاريخ الوصول"
-        : "Accessed";
+      : "Accessed";
   const conditionsLabel =
     locale === "tr"
       ? "Veri koşulu"
-      : locale === "ar"
-        ? "شرط البيانات"
-        : "Data condition";
+      : "Data condition";
 
   return (
     <section className="technical-reference-sheet">

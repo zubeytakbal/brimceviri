@@ -19,7 +19,7 @@ export type ResistivityReferenceRow = {
 // karsilastirma referansi icin eklenmistir (pratikte kablo iletkeni olarak
 // kullanilmazlar).
 export const resistivityReferenceTable: Record<
-  "tr" | "en" | "de" | "ar",
+  "tr" | "en" | "de",
   ResistivityReferenceRow[]
 > = {
   tr: [
@@ -39,12 +39,6 @@ export const resistivityReferenceTable: Record<
     { id: "copper", label: "Kupfer", resistivity: 0.0175, selectable: true },
     { id: "aluminum", label: "Aluminium", resistivity: 0.028, selectable: true },
     { id: "iron", label: "Eisen", resistivity: 0.1, selectable: false },
-  ],
-  ar: [
-    { id: "silver", label: "الفضة", resistivity: 0.0159, selectable: false },
-    { id: "copper", label: "النحاس", resistivity: 0.0175, selectable: true },
-    { id: "aluminum", label: "الألمنيوم", resistivity: 0.028, selectable: true },
-    { id: "iron", label: "الحديد", resistivity: 0.1, selectable: false },
   ],
 };
 

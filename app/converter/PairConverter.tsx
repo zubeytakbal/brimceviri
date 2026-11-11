@@ -14,13 +14,13 @@ type PairConverterProps = {
   toUnit: string;
   fromName: string;
   toName: string;
-  locale?: "tr" | "en" | "de" | "ar" | "bn" | "fr" | "es" | "pt" | "it" | "nl" | "ru";
+  locale?: "tr" | "en" | "de";
   // Verilirse deger/birim "Tum birimler" paneliyle (AllUnitsPanel) paylasilir.
   syncKey?: string;
 };
 
 function getNumberLocale(
-  locale: "tr" | "en" | "de" | "ar" | "bn" | "fr" | "es" | "pt" | "it" | "nl" | "ru"
+  locale: "tr" | "en" | "de"
 ) {
   if (locale === "tr") {
     return "tr-TR";
@@ -30,38 +30,14 @@ function getNumberLocale(
     return "de-DE";
   }
 
-  if (locale === "ar") {
-    return "ar";
-  }
 
 
-  if (locale === "bn") {
-    return "bn-BD";
-  }
 
-  if (locale === "fr") {
-    return "fr-FR";
-  }
 
-  if (locale === "es") {
-    return "es-ES";
-  }
 
-  if (locale === "pt") {
-    return "pt-BR";
-  }
 
-  if (locale === "it") {
-    return "it-IT";
-  }
 
-  if (locale === "nl") {
-    return "nl-NL";
-  }
 
-  if (locale === "ru") {
-    return "ru-RU";
-  }
 
 
 
@@ -71,7 +47,7 @@ function getNumberLocale(
 
 function formatResult(
   value: number,
-  locale: "tr" | "en" | "de" | "ar" | "bn" | "fr" | "es" | "pt" | "it" | "nl" | "ru"
+  locale: "tr" | "en" | "de"
 ) {
   if (!Number.isFinite(value)) {
     return "";
@@ -280,69 +256,21 @@ export default function PairConverter({
       ? `${activeFromName} value`
       : locale === "de"
         ? `${activeFromName}-Wert`
-        : locale === "ar"
-          ? `قيمة ${activeFromName}`
-          : locale === "bn"
-              ? `${activeFromName} \u09AE\u09BE\u09A8`
-              : locale === "fr"
-                ? `Valeur de ${activeFromName}`
-                : locale === "es"
-                  ? `Valor de ${activeFromName}`
-                  : locale === "pt"
-                    ? `Valor de ${activeFromName}`
-                    : locale === "it"
-                      ? `Valore di ${activeFromName}`
-                      : locale === "nl"
-                        ? `Waarde in ${activeFromName}`
-                        : locale === "ru"
-                          ? `Значение: ${activeFromName}`
-                        : `${activeFromName} de\u011Feri`;
+        : `${activeFromName} de\u011Feri`;
 
   const placeholder =
     locale === "en"
       ? "Enter a value"
       : locale === "de"
         ? "Wert eingeben"
-        : locale === "ar"
-          ? "أدخل قيمة"
-          : locale === "bn"
-              ? "\u098F\u0995\u099F\u09BF \u09AE\u09BE\u09A8 \u09B2\u09BF\u0996\u09C1\u09A8"
-              : locale === "fr"
-                ? "Saisissez une valeur"
-                : locale === "es"
-                  ? "Introduce un valor"
-                  : locale === "pt"
-                    ? "Digite um valor"
-                    : locale === "it"
-                      ? "Inserisci un valore"
-                      : locale === "nl"
-                        ? "Voer een waarde in"
-                        : locale === "ru"
-                          ? "Введите значение"
-                        : "De\u011Fer girin";
+        : "De\u011Fer girin";
 
   const swapLabel =
     locale === "en"
       ? "Reverse the conversion direction"
       : locale === "de"
         ? "Umrechnungsrichtung umkehren"
-        : locale === "ar"
-          ? "اعكس اتجاه التحويل"
-          : locale === "bn"
-              ? "\u09B0\u09C2\u09AA\u09BE\u09A8\u09CD\u09A4\u09B0\u09C7\u09B0 \u09A6\u09BF\u0995 \u09AA\u09B0\u09BF\u09AC\u09B0\u09CD\u09A4\u09A8 \u0995\u09B0\u09C1\u09A8"
-              : locale === "fr"
-                ? "Inverser le sens de la conversion"
-                : locale === "es"
-                  ? "Invertir el sentido de la conversion"
-                  : locale === "pt"
-                    ? "Inverter o sentido da conversão"
-                    : locale === "it"
-                      ? "Inverti il senso della conversione"
-                      : locale === "nl"
-                        ? "Draai de omrekenrichting om"
-                        : locale === "ru"
-                          ? "Изменить направление перевода"
-                        : "D\u00F6n\u00FC\u015F\u00FCm y\u00F6n\u00FCn\u00FC de\u011Fi\u015Ftir";
+        : "D\u00F6n\u00FC\u015F\u00FCm y\u00F6n\u00FCn\u00FC de\u011Fi\u015Ftir";
 
   // Ingilizce sayfalarda Turkce kayit sembolleri (arşın, çk ...) gosterilmez.
   const fromLabel = locale === "en" ? englishDisplaySymbol(category, activeFromUnit) : activeFromUnit;
@@ -358,7 +286,7 @@ export default function PairConverter({
   return (
     <section
       className="pair-converter"
-      dir={locale === "ar" ? "rtl" : undefined}
+      dir={undefined}
     >
       <label htmlFor="pair-converter-value">
         {valueLabel}

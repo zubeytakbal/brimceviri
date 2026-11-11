@@ -97,28 +97,6 @@ const copy = {
     siEquivalent: "SI-Äquivalent",
     clear: "Werte zurücksetzen",
   },
-  ar: {
-    targetLabel: "هدف الحساب",
-    power: "احسب معدل انتقال الحرارة",
-    thermalConductivity: "احسب الموصلية",
-    area: "احسب المساحة",
-    temperatureDifference: "احسب فرق الحرارة",
-    length: "احسب السمك",
-    powerValue: "معدل انتقال الحرارة",
-    thermalConductivityValue: "الموصلية الحرارية",
-    areaValue: "المساحة",
-    temperatureDifferenceValue: "فرق الحرارة",
-    lengthValue: "السمك",
-    presetLabel: "إعداد المادة",
-    presetNote:
-      "قيم الموصلية الجاهزة تقريبية وقد تتغير حسب الحرارة والرطوبة وبنية المادة.",
-    customPreset: "قيمة مخصصة",
-    resultLive: "نتيجة الحساب",
-    automaticResultUnit: "وحدة النتيجة التلقائية",
-    formula: "المعادلة بعد التعويض",
-    siEquivalent: "مكافئ SI",
-    clear: "مسح القيم",
-  },
 } as const;
 
 function formatResultText(display: string, unit: string) {

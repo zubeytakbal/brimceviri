@@ -15,7 +15,7 @@ const description = "Doğum tarihinizi girin: Hicri takvime göre yaşınızı, 
 export const metadata: Metadata = {
   title: seoTitle(title, "Hicri Yaş Hesaplama"),
   description,
-  alternates: { canonical: path, languages: { tr: path, ar: "/ar/hijri-age-calculator", "x-default": path } },
+  alternates: { canonical: path, languages: { tr: path, "x-default": path } },
   openGraph: { title, description, url: buildSiteUrl(path), siteName: "BirimCeviri.app", locale: "tr_TR", type: "website" },
 };
 

@@ -62,7 +62,6 @@ import { GERMAN_TOOL_HUB_PATH, germanToolGroups } from "../i18n/germanToolDirect
 import { diniAraclar } from "../i18n/diniAraclar";
 
 import HomeSearch, { type HomeSearchItem } from "./HomeSearch";
-import { unitGlossaryHref } from "../converter/unitGlossary";
 
 type Locale = "tr" | "en" | "de";
 

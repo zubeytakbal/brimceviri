@@ -54,36 +54,14 @@ const germanManualNotifications: SiteNotification[] = [
   },
 ];
 
-const arabicManualNotifications: SiteNotification[] = [
-  {
-    id: "arabic-tools-hub-2026-09",
-    date: "2026-09-18",
-    title: "أدوات عربية متاحة الآن",
-    message:
-      "استعرض الحاسبات والمحولات المتاحة بالعربية بالكامل: من مقاييس المطبخ إلى مقاسات الأحذية والخواتم ووصفات الطبخ.",
-    href: "/ar/other-conversions",
-  },
-];
 
-const bengaliManualNotifications: SiteNotification[] = [
-  {
-    id: "bengali-homepage-redesign-2026-09",
-    date: "2026-09-19",
-    title: "নতুন হোমপেজ ডিজাইন",
-    message:
-      "একক রূপান্তরকারীর হোমপেজ এখন কার্ড আকারে, দ্রুত অনুসন্ধানসহ নতুন করে সাজানো হয়েছে।",
-    href: "/bn/categories",
-  },
-];
 
 const manualNotificationsByLocale: Partial<Record<NotificationLocale, SiteNotification[]>> = {
   en: englishManualNotifications,
   de: germanManualNotifications,
-  ar: arabicManualNotifications,
-  bn: bengaliManualNotifications,
 };
 
-type NotificationLocale = "tr" | "en" | "de" | "ar" | "bn" | "fr" | "es" | "pt" | "it";
+type NotificationLocale = "tr" | "en" | "de";
 
 const byDateDesc = (a: SiteNotification, b: SiteNotification) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0);
 

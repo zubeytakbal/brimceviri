@@ -3,6 +3,7 @@
 // app/mergedPageRedirects.ts (out/_redirects dosyasına 301 kuralı).
 import { YONLENDIRILEN_CIFTLER } from "./converter/yonlendirilenCiftler";
 import { turkceKategoriYolu, yeniYapiKategorileri } from "./converter/siteYapisi";
+import { REHBERI_BIRLESEN_KATEGORILER, unitPages } from "./converter/unitPages";
 
 /** Tamamen kaldırılan Türkçe sayfalar (arama almıyordu, site konusuna ya da AdSense kalitesine uymuyordu). Yönlendirme yok. */
 export const SILINEN_SAYFALAR: ReadonlySet<string> = new Set([
@@ -284,11 +285,22 @@ function ciftYollari(slug: string, kategori: string): string[] {
   return yeniYapiKategorileri.has(kategori) ? [`/${kategori}/${slug}`, `/${slug}`] : [`/${slug}`];
 }
 
+
+/** Bu birim rehberi kategori sayfasına katıldı mı? Rehberdeki kısa tanım kategori sayfasının birim listesine taşınır,
+ * rehber adresi 301 ile kategori sayfasına gider. */
+export function rehberBirlesti(slug: string): boolean {
+  const sayfa = unitPages.find((u) => u.slug === slug);
+  return !!sayfa && REHBERI_BIRLESEN_KATEGORILER.has(sayfa.category);
+}
+
 /** Bu temizlikte 301 ile yönlenen bütün adresler: [kaynak, hedef]. */
 export function kasimYonlendirmeleri(): [string, string][] {
   const satirlar: [string, string][] = Object.entries(BIRLESEN_SAYFALAR);
   for (const [slug, kategori] of YONLENDIRILEN_CIFTLER) {
     for (const yol of ciftYollari(slug, kategori)) satirlar.push([yol, turkceKategoriYolu(kategori)]);
+  }
+  for (const u of unitPages) {
+    if (REHBERI_BIRLESEN_KATEGORILER.has(u.category)) satirlar.push([`/birimler/${u.slug}`, turkceKategoriYolu(u.category)]);
   }
   return satirlar;
 }

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { rehberBirlesti } from "../../kasimTemizligi";
 import Link from "@/app/components/SiteLink";
 import { notFound } from "next/navigation";
 import PairConverter from "../../converter/PairConverter";
@@ -60,7 +61,8 @@ function serializeJsonLd(data: object) {
 }
 
 export function generateStaticParams() {
-  return unitPages.map((unitPage) => ({
+  // Kategori sayfasina katilan rehberler uretilmez; adresleri 301 ile kategori sayfasina gider (app/kasimTemizligi.ts).
+  return unitPages.filter((unitPage) => !rehberBirlesti(unitPage.slug)).map((unitPage) => ({
     slug: unitPage.slug,
   }));
 }

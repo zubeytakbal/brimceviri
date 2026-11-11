@@ -2004,9 +2004,12 @@ export function findUnitPage(category: string, unit: string) {
   );
 }
 
-/** Türkçe birim rehberi sayfası varsa adresi, yoksa null (404 link vermemek için). */
+/** Türkçe birim rehberi sayfası varsa adresi, yoksa null (404 link vermemek için). Kategori sayfasına katılan
+ * rehberler (app/kasimTemizligi.ts REHBERI_BIRLESEN_KATEGORILER) yönlendirilir; onlara bağlantı verilmez. */
+/** Rehberi kendi dönüşüm sayfasına katılan kategoriler (kasimTemizligi.ts yönlendirmeyi buradan üretir). Sıra: Uzunluk,
+ * sonra diğer kategoriler tek tek. */
+export const REHBERI_BIRLESEN_KATEGORILER: ReadonlySet<string> = new Set(["uzunluk"]);
 export function turkishUnitHref(slug: string | undefined) {
-  return slug && unitPages.some((page) => page.slug === slug)
-    ? `/birimler/${slug}`
-    : null;
+  const page = slug ? unitPages.find((p) => p.slug === slug) : undefined;
+  return page && !REHBERI_BIRLESEN_KATEGORILER.has(page.category) ? `/birimler/${page.slug}` : null;
 }

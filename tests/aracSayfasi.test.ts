@@ -24,3 +24,13 @@ describe("yeni arac sayfasi duzeni", () => {
     }
   });
 });
+
+// Arac sayfasi sablonu <main class="yy-arac"> icin izgara duzeni tanimlar; birim cevirici kutusu ayni sinifi
+// kullanirsa Uzunluk/Alan gibi sayfalarda kutu daralip birim adlari ust uste biner.
+describe("cevirici kutusu ile arac sayfasi sinifi ayri", () => {
+  it("CokluCevirici yy-arac sinifini kullanmaz", () => {
+    const kod = readFileSync("app/components/yeni/CokluCevirici.tsx", "utf8");
+    expect(kod).not.toMatch(/className="yy-arac"/);
+    expect(kod).toMatch(/className="yy-cevirici"/);
+  });
+});

@@ -159,13 +159,13 @@
 .yy-imza strong { color: var(--yy-metin); font-weight: 600; }
 
 /* Arac */
-.yy-arac { background: var(--yy-kagit); border: 1px solid var(--yy-cizgi); border-radius: 5px; padding: 2px 12px 10px; }
-.yy-arac details { border-bottom: 1px solid var(--yy-cizgi); }
-.yy-arac summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 7px 0; font-size: 12.5px; font-weight: 700; color: var(--yy-metin); }
-.yy-arac summary::-webkit-details-marker { display: none; }
-.yy-arac summary::after { content: "+"; font-size: 14px; font-weight: 400; line-height: 1; color: var(--yy-ikincil); }
-.yy-arac details[open] > summary::after { content: "\2013"; }
-.yy-arac details[open] { padding-bottom: 6px; }
+.yy-cevirici { background: var(--yy-kagit); border: 1px solid var(--yy-cizgi); border-radius: 5px; padding: 2px 12px 10px; }
+.yy-cevirici details { border-bottom: 1px solid var(--yy-cizgi); }
+.yy-cevirici summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; padding: 7px 0; font-size: 12.5px; font-weight: 700; color: var(--yy-metin); }
+.yy-cevirici summary::-webkit-details-marker { display: none; }
+.yy-cevirici summary::after { content: "+"; font-size: 14px; font-weight: 400; line-height: 1; color: var(--yy-ikincil); }
+.yy-cevirici details[open] > summary::after { content: "\2013"; }
+.yy-cevirici details[open] { padding-bottom: 6px; }
 .yy-satir { display: grid; grid-template-columns: 76px minmax(0, 1fr); align-items: center; gap: 6px; padding: 1.5px 0; }
 .yy-satir label { font-size: 12.5px; line-height: 1.25; color: var(--yy-govde); }
 .yy-giris { display: flex; align-items: center; background: #fff; border: 1px solid #c9ced4; border-radius: 4px; min-width: 0; }
@@ -310,7 +310,7 @@
 @media (max-width: 960px) {
   .yy-duzen { grid-template-columns: minmax(0, 1fr); grid-template-areas: "bas" "arac" "yazi" "benzer"; grid-template-rows: none; padding: 10px 14px 40px; }
   .yy-yan { display: contents; }
-  .yy-arac { grid-area: arac; margin-top: 10px; padding: 0 12px 10px; }
+  .yy-cevirici { grid-area: arac; margin-top: 10px; padding: 0 12px 10px; }
   .yy-benzer { grid-area: benzer; margin-top: 24px; }
   .yy-yazi, .yy-bas { max-width: none; }
   .yy-sayfa .yy-yol { display: none; }

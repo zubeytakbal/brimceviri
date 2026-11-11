@@ -70,7 +70,7 @@ export default function CokluCevirici({ category, birimler, gruplar, baslangic }
   }
 
   return (
-    <section className="yy-arac" aria-label="Çevirici">
+    <section className="yy-cevirici" aria-label="Çevirici">
       {gruplar.map((g, i) => (
         <details key={g.ad} open={i < ACIK_GRUP}>
           <summary>{g.ad}</summary>

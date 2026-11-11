@@ -635,3 +635,6 @@
 }
 /* Birim listesinde rehberden tasinan kisa tanim */
 .yy-birim-tanim { display: block; margin-top: 4px; font-size: 13px; line-height: 20px; font-weight: 400; color: #4b5259; }
+/* Kategori sayfasi aciklamasi (arac listesinin altinda) */
+.yy-grup-aciklama { max-width: 720px; margin-top: 40px; }
+.yy-grup-aciklama p { font-size: 13.4px; line-height: 24px; color: #0a0a0a; margin: 0 0 16px; }

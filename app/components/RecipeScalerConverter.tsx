@@ -174,27 +174,6 @@ const copy = {
     gramPrefix: "~", gramSuffix: "g", ingredientLabel: "Ingrediënt", noMatchOption: "Geen overeenkomst",
     copyButton: "Kopiëren", copiedButton: "Gekopieerd", printButton: "Afdrukken",
   },
-  sv: {
-    recipeLabel: "Ditt recept", placeholder: "2 koppar mjöl\n1 tesked salt\n3 matskedar olivolja\n2 ägg\nUgn 180 grader",
-    factorLabel: "Multiplikator", originalServingsLabel: "Ursprungligt antal portioner", targetServingsLabel: "Önskat antal portioner",
-    resultHeading: "Anpassat recept", emptyState: "Skriv ditt recept ovan för att se det anpassade resultatet här.",
-    gramPrefix: "~", gramSuffix: "g", ingredientLabel: "Ingrediens", noMatchOption: "Ingen träff",
-    copyButton: "Kopiera", copiedButton: "Kopierat", printButton: "Skriv ut",
-  },
-  no: {
-    recipeLabel: "Din oppskrift", placeholder: "2 kopper mel\n1 teskje salt\n3 spiseskjeer olivenolje\n2 egg\nOvn 180 grader",
-    factorLabel: "Multiplikator", originalServingsLabel: "Opprinnelig antall porsjoner", targetServingsLabel: "Ønsket antall porsjoner",
-    resultHeading: "Tilpasset oppskrift", emptyState: "Skriv inn oppskriften din ovenfor for å se det tilpassede resultatet her.",
-    gramPrefix: "~", gramSuffix: "g", ingredientLabel: "Ingrediens", noMatchOption: "Ingen treff",
-    copyButton: "Kopier", copiedButton: "Kopiert", printButton: "Skriv ut",
-  },
-  da: {
-    recipeLabel: "Din opskrift", placeholder: "2 kopper mel\n1 teske salt\n3 spiseskeer olivenolie\n2 æg\nOvn 180 grader",
-    factorLabel: "Multiplikator", originalServingsLabel: "Oprindeligt antal portioner", targetServingsLabel: "Ønsket antal portioner",
-    resultHeading: "Tilpasset opskrift", emptyState: "Indtast din opskrift ovenfor for at se det tilpassede resultat her.",
-    gramPrefix: "~", gramSuffix: "g", ingredientLabel: "Ingrediens", noMatchOption: "Intet match",
-    copyButton: "Kopier", copiedButton: "Kopieret", printButton: "Udskriv",
-  },
 } as const;
 
 const chipOptions = [

@@ -16,7 +16,7 @@ type Kayit = { h: string; d: string };
 // 18-21 Ekim 2026'da yabancı dillerde tıklama almayan sayfalar noindex'ti; 21 Ekim'de hepsi yeniden açıldı. Sayfanın
 // robots etiketi o gün değiştiği için tarihi en az yeniden açılma anıdır; Google bu sayfaları yeniden tarasın.
 const YENIDEN_ACILMA = "2026-10-21T13:36:00.000Z";
-const KAPANAN_DILLER = new Set(["en", "de", "ar", "es", "bn", "it", "fr", "pt", "nl", "no", "sv", "da"]);
+const KAPANAN_DILLER = new Set(["en", "de", "ar", "es", "bn", "it", "fr", "pt", "nl"]);
 const TIKLANAN = new Set(CLICKED_PATHS);
 const kapanmisti = (path: string) => KAPANAN_DILLER.has(path.split("/")[1]) && !TIKLANAN.has(path);
 

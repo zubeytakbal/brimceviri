@@ -110,27 +110,6 @@ const groupLabels: Record<string, Record<UnitSystemGroup, string>> = {
     traditional: "Traditioneel en regionaal",
     scientific: "Wetenschappelijk",
   },
-  sv: {
-    metric: "Metriska",
-    imperial: "Amerikanska / brittiska",
-    kitchen: "Köksmått",
-    traditional: "Traditionella och regionala",
-    scientific: "Vetenskapliga",
-  },
-  no: {
-    metric: "Metriske",
-    imperial: "Amerikanske / britiske",
-    kitchen: "Kjøkkenmål",
-    traditional: "Tradisjonelle og regionale",
-    scientific: "Vitenskapelige",
-  },
-  da: {
-    metric: "Metriske",
-    imperial: "Amerikanske / britiske",
-    kitchen: "Køkkenmål",
-    traditional: "Traditionelle og regionale",
-    scientific: "Videnskabelige",
-  },
 };
 
 const headingTemplates: Record<
@@ -186,21 +165,6 @@ const headingTemplates: Record<
     category: "{value} in alle eenheden",
     pair: "{value} in andere eenheden",
     hint: "De waarden volgen de omrekenaar hierboven. Kies een rij om de uitgebreide pagina van die omrekening te openen.",
-  },
-  sv: {
-    category: "{value} i alla enheter",
-    pair: "{value} i andra enheter",
-    hint: "Värdena följer omvandlaren ovan. Välj en rad för att öppna den detaljerade sidan för den omvandlingen.",
-  },
-  no: {
-    category: "{value} i alle enheter",
-    pair: "{value} i andre enheter",
-    hint: "Verdiene følger omregneren over. Velg en rad for å åpne den detaljerte siden for den omregningen.",
-  },
-  da: {
-    category: "{value} i alle enheder",
-    pair: "{value} i andre enheder",
-    hint: "Værdierne følger omregneren ovenfor. Vælg en række for at åbne den detaljerede side for den omregning.",
   },
 };
 

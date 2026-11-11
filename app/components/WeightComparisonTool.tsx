@@ -63,21 +63,6 @@ fr: {
     kg: "Kilogram (kg)",
     ton: "Ton",
   },
-  sv: {
-    g: "Gram (g)",
-    kg: "Kilogram (kg)",
-    ton: "Ton",
-  },
-  no: {
-    g: "Gram (g)",
-    kg: "Kilogram (kg)",
-    ton: "Tonn",
-  },
-  da: {
-    g: "Gram (g)",
-    kg: "Kilogram (kg)",
-    ton: "Ton",
-  },
   ru: {
     g: "Грамм (г)",
     kg: "Килограмм (кг)",
@@ -96,9 +81,6 @@ fr: { g: "g", kg: "kg", ton: "t" },
   pt: { g: "g", kg: "kg", ton: "t" },
   it: { g: "g", kg: "kg", ton: "t" },
   nl: { g: "g", kg: "kg", ton: "t" },
-  sv: { g: "g", kg: "kg", ton: "t" },
-  no: { g: "g", kg: "kg", ton: "t" },
-  da: { g: "g", kg: "kg", ton: "t" },
   ru: { g: "г", kg: "кг", ton: "т" },
 };
 
@@ -193,33 +175,6 @@ fr: {
     fil: "Gemiddelde volwassen Afrikaanse olifant",
     "mavi-balina": "Gemiddelde volwassen blauwe vinvis",
   },
-  sv: {
-    kedi: "Genomsnittlig huskatt",
-    insan: "Genomsnittlig vuxen",
-    motosiklet: "Genomsnittlig motorcykel",
-    at: "Genomsnittlig ridhäst",
-    otomobil: "Genomsnittlig personbil",
-    fil: "Genomsnittlig vuxen afrikansk elefant",
-    "mavi-balina": "Genomsnittlig vuxen blåval",
-  },
-  no: {
-    kedi: "Gjennomsnittlig huskatt",
-    insan: "Gjennomsnittlig voksen",
-    motosiklet: "Gjennomsnittlig motorsykkel",
-    at: "Gjennomsnittlig ridehest",
-    otomobil: "Gjennomsnittlig personbil",
-    fil: "Gjennomsnittlig voksen afrikansk elefant",
-    "mavi-balina": "Gjennomsnittlig voksen blåhval",
-  },
-  da: {
-    kedi: "Gennemsnitlig huskat",
-    insan: "Gennemsnitlig voksen",
-    motosiklet: "Gennemsnitlig motorcykel",
-    at: "Gennemsnitlig ridehest",
-    otomobil: "Gennemsnitlig personbil",
-    fil: "Gennemsnitlig voksen afrikansk elefant",
-    "mavi-balina": "Gennemsnitlig voksen blåhval",
-  },
   ru: {
     kedi: "Средняя домашняя кошка",
     insan: "Средний взрослый человек",
@@ -313,36 +268,6 @@ const copyByLocale: Record<
     emptyState: "Voer een geldige waarde in om de vergelijkingen te zien.",
     intro: "Vergelijkingen voor",
     closestMatch: "Dichtstbijzijnde vergelijking",
-  },
-  sv: {
-    labels: {
-      value: "Värde",
-      unit: "Enhet",
-    },
-    placeholder: "E.g. 25",
-    emptyState: "Ange ett giltigt värde för att se jämförelserna.",
-    intro: "Jämförelser för",
-    closestMatch: "Närmaste jämförelse",
-  },
-  no: {
-    labels: {
-      value: "Verdi",
-      unit: "Enhet",
-    },
-    placeholder: "E.g. 25",
-    emptyState: "Skriv inn en gyldig verdi for å se sammenligningene.",
-    intro: "Sammenligninger for",
-    closestMatch: "Nærmeste sammenligning",
-  },
-  da: {
-    labels: {
-      value: "Værdi",
-      unit: "Enhed",
-    },
-    placeholder: "E.g. 25",
-    emptyState: "Indtast en gyldig værdi for at se sammenligningerne.",
-    intro: "Sammenligninger for",
-    closestMatch: "Nærmeste sammenligning",
   },
   de: {
     labels: {

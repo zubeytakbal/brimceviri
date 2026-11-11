@@ -116,51 +116,6 @@ const copyByLocale: Record<
     },
     emptyState: "Voer geldige waarden in om het resultaat te zien.",
   },
-  sv: {
-    labels: {
-      wallArea: "Väggyta (m²)",
-      brickWidth: "Tegelstenens bredd (cm)",
-      brickHeight: "Tegelstenens höjd (cm)",
-      joint: "Fogtjocklek (mm)",
-      waste: "Spillmarginal (%)",
-    },
-    resultLabels: {
-      brickArea: "Yta per tegelsten inklusive fog",
-      totalArea: "Total yta inklusive spill",
-      count: "Bricks needed",
-    },
-    emptyState: "Ange giltiga värden för att se resultatet.",
-  },
-  no: {
-    labels: {
-      wallArea: "Veggareal (m²)",
-      brickWidth: "Murstein bredde (cm)",
-      brickHeight: "Murstein høyde (cm)",
-      joint: "Fugetykkelse (mm)",
-      waste: "Svinnmargin (%)",
-    },
-    resultLabels: {
-      brickArea: "Areal per murstein inkludert fuge",
-      totalArea: "Totalt areal inkludert svinn",
-      count: "Bricks needed",
-    },
-    emptyState: "Angi gyldige verdier for å se resultatet.",
-  },
-  da: {
-    labels: {
-      wallArea: "Vægareal (m²)",
-      brickWidth: "Murstenens bredde (cm)",
-      brickHeight: "Murstenens højde (cm)",
-      joint: "Fugetykkelse (mm)",
-      waste: "Spildmargin (%)",
-    },
-    resultLabels: {
-      brickArea: "Areal pr. mursten inklusive fuge",
-      totalArea: "Samlet areal inklusive spild",
-      count: "Bricks needed",
-    },
-    emptyState: "Indtast gyldige værdier for at se resultatet.",
-  },
   en: {
     labels: {
       wallArea: "Wall Area (m2)",

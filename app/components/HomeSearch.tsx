@@ -29,7 +29,7 @@ export type HomeSearchStrings = {
   openLabel: string;
 };
 
-export type HomeSearchLocale = "tr" | "en" | "de" | "ar" | "fr" | "es" | "pt" | "it" | "sv" | "no" | "da" | "bn";
+export type HomeSearchLocale = "tr" | "en" | "de" | "ar" | "fr" | "es" | "pt" | "it" | "bn";
 
 // Her dilin ana sayfa dizinindeki searchText ile ayni normallestirme (dizin bununla uretilir).
 function normalizeSearchText(value: string, locale: HomeSearchLocale) {

@@ -123,48 +123,6 @@ const copyByLocale: Record<
     },
     emptyState: "Voer geldige waarden in om het resultaat te zien.",
   },
-  sv: {
-    labels: {
-      area: "Yta att täcka (m²)",
-      width: "Plattans bredd (cm)",
-      height: "Plattans höjd (cm)",
-      waste: "Spillmarginal (%)",
-    },
-    resultLabels: {
-      tileArea: "Yta för en platta",
-      totalArea: "Total yta inklusive spill",
-      count: "Antal plattor som behövs",
-    },
-    emptyState: "Ange giltiga värden för att se resultatet.",
-  },
-  no: {
-    labels: {
-      area: "Areal som skal dekkes (m²)",
-      width: "Flisens bredde (cm)",
-      height: "Flisens høyde (cm)",
-      waste: "Svinnmargin (%)",
-    },
-    resultLabels: {
-      tileArea: "Areal for én flis",
-      totalArea: "Totalt areal med svinn",
-      count: "Antall fliser som trengs",
-    },
-    emptyState: "Angi gyldige verdier for å se resultatet.",
-  },
-  da: {
-    labels: {
-      area: "Areal der skal dækkes (m²)",
-      width: "Flisens bredde (cm)",
-      height: "Flisens højde (cm)",
-      waste: "Spildmargin (%)",
-    },
-    resultLabels: {
-      tileArea: "Areal af én flise",
-      totalArea: "Samlet areal inkl. spild",
-      count: "Antal fliser der skal bruges",
-    },
-    emptyState: "Indtast gyldige værdier for at se resultatet.",
-  },
   de: {
     labels: {
       area: "Zu belegende Fläche (m²)",

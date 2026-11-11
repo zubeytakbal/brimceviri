@@ -10,7 +10,7 @@ import {
 } from "../converter/shoeSizeTable";
 
 type SystemKey = "eu" | "us" | "uk" | "cm";
-type Locale = "tr" | "en" | "de" | "ar" | "bn" | "fr" | "es" | "pt" | "it" | "nl" | "sv" | "no" | "da";
+type Locale = "tr" | "en" | "de" | "ar" | "bn" | "fr" | "es" | "pt" | "it" | "nl";
 
 const systemLabels: Record<Locale, Record<SystemKey, string>> = {
   tr: {
@@ -68,9 +68,6 @@ const systemLabels: Record<Locale, Record<SystemKey, string>> = {
     cm: "Lunghezza del Piede (cm)",
   },
   nl: { eu: "Europa (EU)", us: "Verenigde Staten (US)", uk: "Verenigd Koninkrijk (UK)", cm: "Voetlengte (cm)" },
-  sv: { eu: "Sverige / Europa (EU)", us: "USA (US)", uk: "Storbritannien (UK)", cm: "Fotlängd (cm)" },
-  no: { eu: "Norge / Europa (EU)", us: "USA (US)", uk: "Storbritannia (UK)", cm: "Fotlengde (cm)" },
-  da: { eu: "Danmark / Europa (EU)", us: "USA (US)", uk: "Storbritannien (UK)", cm: "Fodlængde (cm)" },
 };
 
 const brandLabels: Record<Locale, Record<ShoeBrandKey, string>> = {
@@ -147,9 +144,6 @@ const brandLabels: Record<Locale, Record<ShoeBrandKey, string>> = {
     converse: "Converse",
   },
   nl: { genel: "Algemeen (standaard)", nike: "Nike", adidas: "Adidas", puma: "Puma", "new-balance": "New Balance", converse: "Converse" },
-  sv: { genel: "Allmän (standard)", nike: "Nike", adidas: "Adidas", puma: "Puma", "new-balance": "New Balance", converse: "Converse" },
-  no: { genel: "Generell (standard)", nike: "Nike", adidas: "Adidas", puma: "Puma", "new-balance": "New Balance", converse: "Converse" },
-  da: { genel: "Generel (standard)", nike: "Nike", adidas: "Adidas", puma: "Puma", "new-balance": "New Balance", converse: "Converse" },
 };
 
 const groupLabels: Record<Locale, Record<ShoeSizeGroupKey, string>> = {
@@ -208,9 +202,6 @@ const groupLabels: Record<Locale, Record<ShoeSizeGroupKey, string>> = {
     "buyuk-cocuk": "Bambino Grande",
   },
   nl: { erkek: "Heren", kadin: "Dames", bebek: "Baby / klein kind", "buyuk-cocuk": "Groter kind" },
-  sv: { erkek: "Herr", kadin: "Dam", bebek: "Spädbarn / småbarn", "buyuk-cocuk": "Större barn" },
-  no: { erkek: "Herre", kadin: "Dame", bebek: "Spedbarn / småbarn", "buyuk-cocuk": "Større barn" },
-  da: { erkek: "Herre", kadin: "Dame", bebek: "Spædbarn / småbarn", "buyuk-cocuk": "Større børn" },
 };
 
 const copy = {
@@ -339,21 +330,6 @@ const copy = {
     matchingSizes: "Overeenkomende maten", invalidValue: "Voer een geldig getal in om de dichtstbijzijnde maat te zien.",
     euResult: "EU", usResult: "US", ukResult: "VK", footLength: "Voetlengte", chartSuffix: "schoenmaattabel",
   },
-  sv: {
-    group: "Grupp", brand: "Märke", knownSystem: "Känt system", value: "Värde",
-    matchingSizes: "Motsvarande storlekar", invalidValue: "Ange ett giltigt tal för att se motsvarigheten.",
-    euResult: "EU", usResult: "US", ukResult: "UK", footLength: "Fotlängd", chartSuffix: "storlekstabell",
-  },
-  no: {
-    group: "Gruppe", brand: "Merke", knownSystem: "Kjent system", value: "Verdi",
-    matchingSizes: "Tilsvarende størrelser", invalidValue: "Skriv inn et gyldig tall for å se den nærmeste størrelsen.",
-    euResult: "EU", usResult: "US", ukResult: "UK", footLength: "Fotlengde", chartSuffix: "størrelsestabell",
-  },
-  da: {
-    group: "Gruppe", brand: "Mærke", knownSystem: "Kendt system", value: "Værdi",
-    matchingSizes: "Tilsvarende størrelser", invalidValue: "Indtast et gyldigt tal for at se den nærmeste størrelse.",
-    euResult: "EU", usResult: "US", ukResult: "UK", footLength: "Fodlængde", chartSuffix: "størrelsestabel",
-  },
 } as const;
 
 const brandOrder: ShoeBrandKey[] = [
@@ -410,17 +386,8 @@ function getNumberLocale(locale: Locale) {
     return "nl-NL";
   }
 
-  if (locale === "sv") {
-    return "sv-SE";
-  }
 
-  if (locale === "no") {
-    return "nb-NO";
-  }
 
-  if (locale === "da") {
-    return "da-DK";
-  }
 
   return "en-US";
 }

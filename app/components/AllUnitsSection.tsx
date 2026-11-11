@@ -14,13 +14,10 @@ export type AllUnitsLocale = Exclude<SiteNumberLocale, "ru">;
 export function getPanelUnitOptions(category: string, locale: AllUnitsLocale) {
   switch (locale) {
     case "bn":
-    case "da":
     case "es":
     case "fr":
     case "it":
-    case "no":
     case "pt":
-    case "sv":
       return getLocalizedUnitOptions(category, locale);
     case "ar":
       return getCategoryUnitOptions(category, "en").map((option) => ({

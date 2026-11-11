@@ -7,7 +7,7 @@ import {
 } from "./kitchenMeasures";
 import { kitchenIngredientLabels, latamIngredientAliases } from "./kitchenIngredientLabels";
 
-export type RecipeLocale = "tr" | "en" | "de" | "ar" | "bn" | "fr" | "es" | "pt" | "it" | "nl" | "sv" | "no" | "da";
+export type RecipeLocale = "tr" | "en" | "de" | "ar" | "bn" | "fr" | "es" | "pt" | "it" | "nl";
 
 export type ParsedRecipeLine = {
   raw: string;
@@ -410,13 +410,7 @@ function formatQuantity(
                         ? "it-IT"
                         : locale === "nl"
                           ? "nl-NL"
-                          : locale === "sv"
-                            ? "sv-SE"
-                            : locale === "no"
-                              ? "nb-NO"
-                              : locale === "da"
-                                ? "da-DK"
-                                : "en-US";
+                          : "en-US";
 
   return rounded.toLocaleString(localeName, {
     maximumFractionDigits: 2,

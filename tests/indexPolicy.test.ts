@@ -4,7 +4,6 @@ import { isClosedPath } from "../app/indexPolicy";
 describe("dizin politikası", () => {
   it("kapalı diller tamamen kapalı", () => {
     expect(isClosedPath("/it")).toBe(true);
-    expect(isClosedPath("/da/kategorier")).toBe(true);
   });
   it("tıklama alan sayfa her dilde açık", () => {
     expect(isClosedPath("/en/24k-gold-to-22k-gold")).toBe(false);

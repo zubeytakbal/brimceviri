@@ -70,10 +70,6 @@ export function buildLocalOnlyConversionPages<L extends string>(
   ]);
 }
 
-export const nordicMilePairs: LocalOnlyPair[] = [
-  { category: "uzunluk", first: "mil", second: "km", firstExamples: [0.5, 1, 2, 5, 10, 25, 50], secondExamples: [1, 5, 10, 25, 50, 100, 500] },
-  { category: "uzunluk", first: "mil", second: "mi", firstExamples: [0.5, 1, 2, 5, 10, 25, 50], secondExamples: [1, 5, 10, 25, 50, 100, 500] },
-];
 
 export const dutchMassPairs: LocalOnlyPair[] = [
   { category: "kutle", first: "hg", second: "g", firstExamples: [0.5, 1, 1.5, 2, 2.5, 3, 5], secondExamples: [50, 100, 150, 200, 250, 500, 1000] },

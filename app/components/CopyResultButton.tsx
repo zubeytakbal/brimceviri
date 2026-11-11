@@ -14,9 +14,6 @@ const copyLabels: Record<string, { copy: string; copied: string }> = {
   it: { copy: "Copia", copied: "Copiato" },
   nl: { copy: "Kopiëren", copied: "Gekopieerd" },
   ru: { copy: "Копировать", copied: "Скопировано" },
-  sv: { copy: "Kopiera", copied: "Kopierat" },
-  no: { copy: "Kopier", copied: "Kopiert" },
-  da: { copy: "Kopiér", copied: "Kopieret" },
 };
 
 async function writeClipboard(text: string) {

@@ -83,18 +83,6 @@ const copy = {
     ingredient: "Ingrediënt", knownUnit: "Bekende eenheid", value: "Waarde",
     resultHeading: "Equivalenten", invalidValue: "Voer een geldig getal in om de omrekening te zien.",
   },
-  sv: {
-    ingredient: "Ingrediens", knownUnit: "Känd enhet", value: "Värde",
-    resultHeading: "Motsvarigheter", invalidValue: "Ange ett giltigt tal för att se omvandlingen.",
-  },
-  no: {
-    ingredient: "Ingrediens", knownUnit: "Kjent enhet", value: "Verdi",
-    resultHeading: "Tilsvarende verdier", invalidValue: "Skriv inn et gyldig tall for å se omregningen.",
-  },
-  da: {
-    ingredient: "Ingrediens", knownUnit: "Kendt enhed", value: "Værdi",
-    resultHeading: "Tilsvarende værdier", invalidValue: "Indtast et gyldigt tal for at se omregningen.",
-  },
 } as const;
 
 const englishCupStandardLabels: Record<
@@ -136,13 +124,7 @@ function formatValue(value: number, locale: KitchenLocale) {
                         ? "it-IT"
                         : locale === "nl"
                           ? "nl-NL"
-                        : locale === "sv"
-                          ? "sv-SE"
-                          : locale === "no"
-                            ? "nb-NO"
-                            : locale === "da"
-                              ? "da-DK"
-                              : "en-US";
+                        : "en-US";
 
   return value.toLocaleString(localeName, {
     maximumFractionDigits: value < 10 ? 2 : 1,
@@ -172,7 +154,7 @@ export default function KitchenMeasuresConverter({
   const [cupStandard, setCupStandard] = useState<KitchenCupStandard>(
     locale === "en"
       ? "us"
-      : locale === "fr" || locale === "it" || locale === "nl" || locale === "sv" || locale === "no" || locale === "da"
+      : locale === "fr" || locale === "it" || locale === "nl"
         ? "metric"
         : locale === "es" || locale === "pt"
           ? "usLegal"

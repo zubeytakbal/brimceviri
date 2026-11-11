@@ -150,57 +150,6 @@ const copyByLocale: Record<
       total: "Totale geschatte belasting",
     },
   },
-  sv: {
-    labels: {
-      area: "Rummets yta (m²)",
-      people: "Antal personer i rummet",
-      sunny: "Får rummet sol hela dagen?",
-      sunnyCheckbox: "Ja, det får direkt solljus",
-      topFloor: "Översta våningen / vindsrum?",
-      topFloorCheckbox: "Ja, översta våningen eller vind",
-    },
-    emptyState: "Ange giltiga värden för att se resultatet.",
-    resultLabels: {
-      suggested: "Rekommenderad kylkapacitet",
-      base: "Last baserad på yta",
-      occupant: "Last från personer",
-      total: "Total uppskattad last",
-    },
-  },
-  no: {
-    labels: {
-      area: "Romareal (m²)",
-      people: "Antall personer i rommet",
-      sunny: "Får rommet sol hele dagen?",
-      sunnyCheckbox: "Ja, det får direkte sollys",
-      topFloor: "Øverste etasje / loftsrom?",
-      topFloorCheckbox: "Ja, øverste etasje eller loft",
-    },
-    emptyState: "Angi gyldige verdier for å se resultatet.",
-    resultLabels: {
-      suggested: "Anbefalt kjølekapasitet",
-      base: "Last basert på areal",
-      occupant: "Last fra personer",
-      total: "Total beregnet last",
-    },
-  },
-  da: {
-    labels: {
-      area: "Rummets areal (m²)",
-      people: "Antal personer i rummet",
-      sunny: "Får rummet sol hele dagen?",
-      sunnyCheckbox: "Ja, det får direkte sollys",
-      topFloor: "Øverste etage / loftsrum?",
-      topFloorCheckbox: "Ja, øverste etage eller loft",
-    },
-    emptyState: "Indtast gyldige værdier for at se resultatet.",
-    resultLabels: {
-      suggested: "Anbefalet kølekapacitet",
-      base: "Belastning ud fra areal",
-      occupant: "Belastning fra personer",
-      total: "Samlet anslået belastning",
-    },
-  },
   de: {
     labels: {
       area: "Raumfläche (m²)",

@@ -16,9 +16,6 @@ export const LOCALES = {
   nl: "Nederlands",
   ar: "Arabic",
   bn: "Bengali",
-  sv: "Swedish",
-  da: "Danish",
-  no: "Norwegian",
   pt: "Portuguese",
 } as const;
 

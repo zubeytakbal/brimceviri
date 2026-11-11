@@ -63,21 +63,6 @@ fr: {
     2: "2e trimester",
     3: "3e trimester",
   },
-  sv: {
-    1: "Första trimestern",
-    2: "Andra trimestern",
-    3: "Tredje trimestern",
-  },
-  no: {
-    1: "Første trimester",
-    2: "Andre trimester",
-    3: "Tredje trimester",
-  },
-  da: {
-    1: "1. trimester",
-    2: "2. trimester",
-    3: "3. trimester",
-  },
 };
 
 const copyByLocale: Record<
@@ -154,33 +139,6 @@ const copyByLocale: Record<
     daysUntil: "Dagen tot de uitgerekende datum",
     weeks: "weken",
     days: "dagen",
-  },
-  sv: {
-    inputLabel: "Första dagen i senaste mensen",
-    emptyState: "Ange ett giltigt datum; det får inte ligga i framtiden eller vara mer än 45 veckor gammalt.",
-    summaryLabel: "Graviditetsvecka",
-    dueDate: "Beräknat förlossningsdatum",
-    daysUntil: "Dagar kvar till beräknat datum",
-    weeks: "veckor",
-    days: "dagar",
-  },
-  no: {
-    inputLabel: "Første dag i siste menstruasjon",
-    emptyState: "Angi en gyldig dato; den kan ikke være i fremtiden eller mer enn 45 uker tilbake.",
-    summaryLabel: "Svangerskapsalder",
-    dueDate: "Beregnet termin",
-    daysUntil: "Dager til termin",
-    weeks: "uker",
-    days: "dager",
-  },
-  da: {
-    inputLabel: "Første dag i sidste menstruation",
-    emptyState: "Indtast en gyldig dato; den må ikke ligge i fremtiden eller være mere end 45 uger gammel.",
-    summaryLabel: "Graviditetsalder",
-    dueDate: "Forventet termin",
-    daysUntil: "Dage til termin",
-    weeks: "uger",
-    days: "dage",
   },
   de: {
     inputLabel: "Erster Tag der letzten Periode",

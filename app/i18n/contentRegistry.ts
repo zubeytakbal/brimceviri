@@ -25,12 +25,6 @@ import { italianCategoryPages } from "../converter/localizedItalianCategoryPages
 import { italianConversionPages } from "../converter/localizedItalianConversionPages";
 import { nederlandsCategoryPages } from "../converter/localizedNederlandsCategoryPages";
 import { nederlandsConversionPages } from "../converter/localizedNederlandsConversionPages";
-import { swedishCategoryPages } from "../converter/localizedSwedishCategoryPages";
-import { swedishConversionPages } from "../converter/localizedSwedishConversionPages";
-import { norwegianCategoryPages } from "../converter/localizedNorwegianCategoryPages";
-import { norwegianConversionPages } from "../converter/localizedNorwegianConversionPages";
-import { danishCategoryPages } from "../converter/localizedDanishCategoryPages";
-import { danishConversionPages } from "../converter/localizedDanishConversionPages";
 
 export type RouteCollectionKey =
   | "units"
@@ -118,25 +112,7 @@ const localizedCategorySummariesByLocale: Record<
     category: page.category,
     title: page.title,
   })),
-  sv: swedishCategoryPages.map((page) => ({
-    sourceSlug: page.sourceSlug,
-    slug: page.slug,
-    category: page.category,
-    title: page.title,
-  })),
   ru: [],
-  no: norwegianCategoryPages.map((page) => ({
-    sourceSlug: page.sourceSlug,
-    slug: page.slug,
-    category: page.category,
-    title: page.title,
-  })),
-  da: danishCategoryPages.map((page) => ({
-    sourceSlug: page.sourceSlug,
-    slug: page.slug,
-    category: page.category,
-    title: page.title,
-  })),
 };
 
 const localizedSlugEntriesByLocale: Record<
@@ -164,10 +140,7 @@ const localizedSlugEntriesByLocale: Record<
     pt: [],
     it: [],
     nl: [],
-    sv: [],
     ru: [],
-    no: [],
-    da: [],
   },
   categories: {
     tr: categoryPages.map((page) => ({
@@ -210,19 +183,7 @@ const localizedSlugEntriesByLocale: Record<
       sourceSlug: page.sourceSlug,
       slug: page.slug,
     })),
-    sv: swedishCategoryPages.map((page) => ({
-      sourceSlug: page.sourceSlug,
-      slug: page.slug,
-    })),
     ru: [],
-    no: norwegianCategoryPages.map((page) => ({
-      sourceSlug: page.sourceSlug,
-      slug: page.slug,
-    })),
-    da: danishCategoryPages.map((page) => ({
-      sourceSlug: page.sourceSlug,
-      slug: page.slug,
-    })),
   },
   calculators: {
     tr: calculatorPages.map((page) => ({
@@ -247,10 +208,7 @@ const localizedSlugEntriesByLocale: Record<
     pt: [],
     it: [],
     nl: [],
-    sv: [],
     ru: [],
-    no: [],
-    da: [],
   },
   conversions: {
     // Ters yönü birleştirilen Türkçe adresler yayında değil; diğer diller onlara hreflang vermesin.
@@ -294,19 +252,7 @@ const localizedSlugEntriesByLocale: Record<
       sourceSlug: page.sourceSlug,
       slug: page.slug,
     })),
-    sv: swedishConversionPages.map((page) => ({
-      sourceSlug: page.sourceSlug,
-      slug: page.slug,
-    })),
     ru: [],
-    no: norwegianConversionPages.map((page) => ({
-      sourceSlug: page.sourceSlug,
-      slug: page.slug,
-    })),
-    da: danishConversionPages.map((page) => ({
-      sourceSlug: page.sourceSlug,
-      slug: page.slug,
-    })),
   },
 };
 

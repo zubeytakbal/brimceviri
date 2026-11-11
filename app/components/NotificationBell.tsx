@@ -14,7 +14,7 @@ import {
 import { useNotificationSlot } from "./NotificationSlotProvider";
 import type { SiteNotification } from "../converter/siteNotifications";
 
-type NotificationLocale = "tr" | "en" | "de" | "ar" | "bn" | "fr" | "es" | "pt" | "it" | "nl" | "sv" | "no" | "da";
+type NotificationLocale = "tr" | "en" | "de" | "ar" | "bn" | "fr" | "es" | "pt" | "it" | "nl";
 
 const notificationCopy = {
   tr: {
@@ -111,21 +111,6 @@ const notificationCopy = {
     ariaLabel: "Meldingen", panelLabel: "Sitemeldingen", title: "Meldingen", closeLabel: "Sluiten",
     markSeenLabel: "Deze melding als gelezen markeren", openLabel: "Openen →",
     empty: "Er zijn momenteel geen nieuwe meldingen.", dateLocale: "nl-NL",
-  },
-  sv: {
-    ariaLabel: "Aviseringar", panelLabel: "Sidaviseringar", title: "Aviseringar", closeLabel: "Stäng",
-    markSeenLabel: "Markera denna avisering som läst", openLabel: "Öppna →",
-    empty: "Det finns för närvarande inga nya aviseringar.", dateLocale: "sv-SE",
-  },
-  no: {
-    ariaLabel: "Varsler", panelLabel: "Sidevarsler", title: "Varsler", closeLabel: "Lukk",
-    markSeenLabel: "Merk dette varselet som lest", openLabel: "Åpne →",
-    empty: "Det finnes for øyeblikket ingen nye varsler.", dateLocale: "nb-NO",
-  },
-  da: {
-    ariaLabel: "Notifikationer", panelLabel: "Sidenotifikationer", title: "Notifikationer", closeLabel: "Luk",
-    markSeenLabel: "Marker denne notifikation som læst", openLabel: "Åbn →",
-    empty: "Der er i øjeblikket ingen nye notifikationer.", dateLocale: "da-DK",
   },
 } as const;
 

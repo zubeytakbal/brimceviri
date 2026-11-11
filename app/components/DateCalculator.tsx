@@ -165,63 +165,6 @@ const copyByLocale: Record<Exclude<Locale, "ru">, DateCopy> = {
       days: "dagen",
     },
   },
-  sv: {
-    labels: {
-      startDate: "Startdatum (födelsedatum)",
-      endDate: "Måldatum",
-    },
-    emptyState: "Ange två giltiga datum; måldatumet får inte vara före startdatumet.",
-    resultLabels: {
-      difference: "Skillnad",
-      totalDays: "Totalt antal dagar",
-      totalWeeks: "Totalt antal veckor",
-      totalMonths: "Totalt antal månader",
-      nextAnniversary: "Nästa årsdag",
-    },
-    units: {
-      years: "år",
-      months: "månader",
-      days: "dagar",
-    },
-  },
-  no: {
-    labels: {
-      startDate: "Startdato (fødselsdato)",
-      endDate: "Måldato",
-    },
-    emptyState: "Angi to gyldige datoer; måldatoen kan ikke være før startdatoen.",
-    resultLabels: {
-      difference: "Differanse",
-      totalDays: "Totalt antall dager",
-      totalWeeks: "Totalt antall uker",
-      totalMonths: "Totalt antall måneder",
-      nextAnniversary: "Neste årsdag",
-    },
-    units: {
-      years: "år",
-      months: "måneder",
-      days: "dager",
-    },
-  },
-  da: {
-    labels: {
-      startDate: "Startdato (fødselsdato)",
-      endDate: "Måldato",
-    },
-    emptyState: "Indtast to gyldige datoer; måldatoen må ikke ligge før startdatoen.",
-    resultLabels: {
-      difference: "Forskel",
-      totalDays: "Antal dage i alt",
-      totalWeeks: "Antal uger i alt",
-      totalMonths: "Antal måneder i alt",
-      nextAnniversary: "Næste årsdag",
-    },
-    units: {
-      years: "år",
-      months: "måneder",
-      days: "dage",
-    },
-  },
   de: {
     labels: {
       startDate: "Startdatum (Geburtsdatum)",

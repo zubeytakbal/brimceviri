@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import WeldingCurrentCalculator from "../components/WeldingCurrentCalculator";
 import HeatInputCalculator from "../components/HeatInputCalculator";
-import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import type { FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
 import EngineeringNextSteps from "../components/engineering/EngineeringNextSteps";
 import { ENGINEERING_FLOWS } from "../converter/engineeringFlows";
+import AracSayfasi from "@/app/components/yeni/AracSayfasi";
 
 const faqItems: FaqItem[] = [
   {
@@ -50,50 +51,22 @@ export const metadata: Metadata = {
   },
 };
 
-function serializeJsonLd(data: object) {
-  return JSON.stringify(data).replace(/</g, "\\u003c");
-}
 
 export default function HeatInputCalculatorPage() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: buildSiteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "Tüm Hesaplamalar", item: buildSiteUrl("/hesaplayicilar") },
-      { "@type": "ListItem", position: 3, name: "Teknik ve Mühendislik", item: buildSiteUrl("/hesaplayicilar#teknik") },
-      { "@type": "ListItem", position: 4, name: "Kaynak Isı Girdisi Hesaplama", item: buildSiteUrl("/kaynak-isi-girdisi-hesaplama") },
-    ],
-  };
 
   return (
-    <main className="all-conversions-page">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(buildFaqSchema(faqItems)) }} />
-
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Sayfa yolu">
-          <Link href="/">Ana Sayfa</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/hesaplayicilar#teknik">Teknik ve Mühendislik</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>Kaynak Isı Girdisi Hesaplama</span>
-        </nav>
-
-        <header className="all-conversions-header">
-          <h1>Kaynak Isı Girdisi Hesaplama</h1>
-        </header>
-
-        <HeatInputCalculator />
-
-        <section className="category-article-content">
-          <h2>Elektrot çapına göre kaynak akımı</h2>
+    <AracSayfasi
+      yol="/kaynak-isi-girdisi-hesaplama"
+      baslik="Kaynak Isı Girdisi Hesaplama"
+      hesap={<HeatInputCalculator />}
+      sss={faqItems}
+      serbestIcindekiler={[{"id":"elektrot-capina-gore-kaynak-akimi","baslik":"Elektrot çapına göre kaynak akımı"},{"id":"ark-enerjisi-ve-isi-girdisi-farki","baslik":"Ark enerjisi ve ısı girdisi farkı"},{"id":"ornek-hesap-mag-kaynagi","baslik":"Örnek hesap: MAG kaynağı"},{"id":"kaynak-hizinin-etkisi-24-v-220","baslik":"Kaynak hızının etkisi (24 V, 220 A)"},{"id":"sik-yapilan-hatalar","baslik":"Sık yapılan hatalar"},{"id":"kaynaklar","baslik":"Kaynaklar"}]}
+      serbestIcerik={
+        <>
+          <h2 id="elektrot-capina-gore-kaynak-akimi">Elektrot çapına göre kaynak akımı</h2>
           <p>Isı girdisini hesaplamadan önce akımı seçmek için: elektrot örtüsü ve çekirdek çapına göre önerilen amper aralığı.</p>
           <WeldingCurrentCalculator />
-        </section>
-
-        <section className="category-article-content">
-          <h2>Ark enerjisi ve ısı girdisi farkı</h2>
+          <h2 id="ark-enerjisi-ve-isi-girdisi-farki">Ark enerjisi ve ısı girdisi farkı</h2>
           <p>
             Formülün verdiği değer aslında <strong>ark enerjisidir</strong>: arktan çıkan toplam enerjinin dikiş boyuna bölümü. Bu
             enerjinin tamamı parçaya geçmez. EN 1011-1 standardı, ısı girdisini bulmak için ark enerjisini kaynak yöntemine özgü ısıl
@@ -119,16 +92,14 @@ export default function HeatInputCalculatorPage() {
               </tbody>
             </table>
           </div>
-
-          <h2>Örnek hesap: MAG kaynağı</h2>
+          <h2 id="ornek-hesap-mag-kaynagi">Örnek hesap: MAG kaynağı</h2>
           <p>
             24 V gerilim, 220 A akım ve 300 mm/dk kaynak hızıyla yapılan bir MAG dikişinde ark enerjisi 24 × 220 × 60 / (300 × 1000) ≈{" "}
             <strong>{kj(arkEnerjisi(24, 220, 300))} kJ/mm</strong> olur. MAG için k = 0,8 olduğundan ısı girdisi{" "}
             {kj(arkEnerjisi(24, 220, 300))} × 0,8 ≈ <strong>{kj(arkEnerjisi(24, 220, 300) * 0.8)} kJ/mm</strong>&apos;dir. Kaynak prosedür
             şartnamesinde (WPS) hangi değerin (ark enerjisi mi, ısı girdisi mi) istendiğine dikkat edin.
           </p>
-
-          <h2>Kaynak hızının etkisi (24 V, 220 A)</h2>
+          <h2 id="kaynak-hizinin-etkisi-24-v-220">Kaynak hızının etkisi (24 V, 220 A)</h2>
           <div className="conversion-table-wrap">
             <table className="conversion-table">
               <thead>
@@ -153,8 +124,7 @@ export default function HeatInputCalculatorPage() {
             Hız yarıya inince ısı girdisi iki katına çıkar. Salınımlı (zikzak) kaynakta hız, dikiş boyunca ilerleme hızıdır; salınım
             yaparken torcun kat ettiği yol değildir. Bu yüzden salınımlı pasolarda ısı girdisi genellikle düz pasolardan yüksektir.
           </p>
-
-          <h2>Sık yapılan hatalar</h2>
+          <h2 id="sik-yapilan-hatalar">Sık yapılan hatalar</h2>
           <ul>
             <li>
               <strong>Makinedeki ayar değerini kullanmak:</strong> Gerilim ve akım, kaynak sırasında ölçülen gerçek değerler olmalıdır;
@@ -168,19 +138,8 @@ export default function HeatInputCalculatorPage() {
               anlık güç ya da enerji değeri kullanılmalıdır.
             </li>
           </ul>
-
-          <h2>Sık Sorulan Sorular</h2>
-          {faqItems.map((item) => (
-            <p key={item.question}>
-              <strong>{item.question}</strong>
-              <br />
-              {item.answer}
-            </p>
-          ))}
-
           <EngineeringNextSteps links={ENGINEERING_FLOWS["/kaynak-isi-girdisi-hesaplama"]} />
-
-          <h2>İlgili araçlar</h2>
+          <h2 id="ilgili-araclar">İlgili araçlar</h2>
           <p>
             Diğer kaynakçı araçları için{" "}
             <Link href="/hesaplayicilar#teknik">Teknik ve Mühendislik</Link>
@@ -188,15 +147,14 @@ export default function HeatInputCalculatorPage() {
             Kaynak Amperajı Hesaplama
             {" "}sayfasına bakabilirsin.
           </p>
-
-          <h2>Kaynaklar</h2>
+          <h2 id="kaynaklar">Kaynaklar</h2>
           <p>
             Formül, EN 1011-1 standardında tanımlanan ısı girdisi
             hesabına dayanır. Bu araç bir prosedür şartnamesinin (WPS)
             yerini almaz.
           </p>
-        </section>
-      </div>
-    </main>
+        </>
+      }
+    />
   );
 }

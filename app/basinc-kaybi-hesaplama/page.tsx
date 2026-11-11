@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import PressureLossCalculator from "../components/PressureLossCalculator";
-import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import type { FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
 import EngineeringNextSteps from "../components/engineering/EngineeringNextSteps";
 import { ENGINEERING_FLOWS } from "../converter/engineeringFlows";
+import AracSayfasi from "@/app/components/yeni/AracSayfasi";
 
 const faqItems: FaqItem[] = [
   {
@@ -34,40 +35,18 @@ export const metadata: Metadata = {
   },
 };
 
-function serializeJsonLd(data: object) {
-  return JSON.stringify(data).replace(/</g, "\\u003c");
-}
 
 export default function PressureLossPage() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: buildSiteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "Basınç Kaybı Hesaplama", item: buildSiteUrl("/basinc-kaybi-hesaplama") },
-    ],
-  };
 
   return (
-    <main className="all-conversions-page">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(buildFaqSchema(faqItems)) }} />
-
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Sayfa yolu">
-          <Link href="/">Ana Sayfa</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>Basınç Kaybı Hesaplama</span>
-        </nav>
-
-        <header className="all-conversions-header">
-          <h1>Basınç Kaybı Hesaplama (Hazen-Williams)</h1>
-        </header>
-
-        <PressureLossCalculator />
-
-        <section className="category-article-content">
-          <h2>Sık Sorulan Sorular</h2>
+    <AracSayfasi
+      yol="/basinc-kaybi-hesaplama"
+      baslik="Basınç Kaybı Hesaplama (Hazen-Williams)"
+      hesap={<PressureLossCalculator />}
+      serbestIcindekiler={[{"id":"sik-sorulan-sorular","baslik":"Sık Sorulan Sorular"},{"id":"kaynaklar","baslik":"Kaynaklar"}]}
+      serbestIcerik={
+        <>
+          <h2 id="sik-sorulan-sorular">Sık Sorulan Sorular</h2>
           <p>
             <strong>Basınç kaybı (yük kaybı) nasıl hesaplanır?</strong>
             <br />
@@ -83,10 +62,8 @@ export default function PressureLossPage() {
             bakır) yüksek C değerine, paslı/eski çelik borular düşük
             C değerine sahiptir.
           </p>
-
           <EngineeringNextSteps links={ENGINEERING_FLOWS["/basinc-kaybi-hesaplama"]} />
-
-          <h2>İlgili araçlar</h2>
+          <h2 id="ilgili-araclar">İlgili araçlar</h2>
           <p>
             Boru çapı, debi ve akış hızı için{" "}
             <Link href="/boru-capi-hesaplama">Boru Çapı Hesaplama</Link>,
@@ -94,16 +71,15 @@ export default function PressureLossPage() {
             <Link href="/hesaplayicilar#teknik">Teknik ve Mühendislik</Link>{" "}
             sayfasına bakabilirsin.
           </p>
-
-          <h2>Kaynaklar</h2>
+          <h2 id="kaynaklar">Kaynaklar</h2>
           <p>
             Hazen-Williams formülü, 1902&apos;den beri basınçlı su
             hatlarında yaygın kullanılan ampirik bir mühendislik
             formülüdür ve türbülanslı su akışı için geçerlidir; gaz
             veya yüksek viskoziteli sıvılar için kullanılmaz.
           </p>
-        </section>
-      </div>
-    </main>
+        </>
+      }
+    />
   );
 }

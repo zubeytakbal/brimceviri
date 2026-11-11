@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import PaceCalculator from "../components/PaceCalculator";
-import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import type { FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+import AracSayfasi from "@/app/components/yeni/AracSayfasi";
 
 const PACELER = [4, 4.5, 5, 5.5, 6, 6.5, 7]; // dakika/km
 /** Dakika cinsinden süreyi s:dd:ss ya da d:ss olarak yazar. */
@@ -45,57 +46,18 @@ const faqItems: FaqItem[] = [
   },
 ];
 
-function serializeJsonLd(data: object) {
-  return JSON.stringify(data).replace(/</g, "\\u003c");
-}
 
 export default function PaceCalculatorPage() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Ana Sayfa",
-        item: buildSiteUrl("/"),
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Koşu Pace Hesaplama",
-        item: buildSiteUrl("/kosu-pace-hesaplama"),
-      },
-    ],
-  };
 
   return (
-    <main className="all-conversions-page">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd(buildFaqSchema(faqItems)),
-        }}
-      />
-
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Sayfa yolu">
-          <Link href="/">Ana Sayfa</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>Koşu Pace Hesaplama</span>
-        </nav>
-
-        <header className="all-conversions-header">
-          <h1>Koşu Pace Hesaplama</h1>
-        </header>
-
-        <PaceCalculator />
-
-        <section className="category-article-content">
+    <AracSayfasi
+      yol="/kosu-pace-hesaplama"
+      baslik="Koşu Pace Hesaplama"
+      hesap={<PaceCalculator />}
+      sss={faqItems}
+      serbestIcindekiler={[{"id":"tablo","baslik":"Pace tablosu: 5 km, 10 km, yarı maraton, maraton"},{"id":"pace-nasil-hesaplanir","baslik":"Pace nasıl hesaplanır?"},{"id":"yaris-mesafeleri-hangi-standartlara-dayaniyor","baslik":"Yarış mesafeleri hangi standartlara dayanıyor?"},{"id":"kaynaklar","baslik":"Kaynaklar"}]}
+      serbestIcerik={
+        <>
           <h2 id="tablo">Pace tablosu: 5 km, 10 km, yarı maraton, maraton</h2>
           <p>
             Pace, bir kilometreyi kaç dakikada koştuğunuzdur. Aynı tempoyu koruyarak koşulduğunda yarış süreleri şöyle olur:
@@ -128,8 +90,7 @@ export default function PaceCalculatorPage() {
             Pace hızın tersidir: 5:00 dk/km, saatte 12 km demektir; 6:00 dk/km saatte 10 km&apos;dir. Koşu bandında hız km/s
             olarak ayarlandığından, hedef tempoyu 60 ÷ pace (dakika) ile hıza çevirebilirsiniz.
           </p>
-
-          <h2>Pace nasıl hesaplanır?</h2>
+          <h2 id="pace-nasil-hesaplanir">Pace nasıl hesaplanır?</h2>
           <p>
             Temel formül basittir:{" "}
             <strong>Tempo = Toplam Süre ÷ Mesafe</strong>. Örneğin 10
@@ -139,8 +100,7 @@ export default function PaceCalculatorPage() {
             biliniyorsa süre, süre ve tempo biliniyorsa mesafe
             hesaplanır.
           </p>
-
-          <h2>Yarış mesafeleri hangi standartlara dayanıyor?</h2>
+          <h2 id="yaris-mesafeleri-hangi-standartlara-dayaniyor">Yarış mesafeleri hangi standartlara dayanıyor?</h2>
           <p>
             5K ve 10K isimlerinden anlaşılacağı gibi tam olarak 5 ve
             10 kilometredir. Yarı maraton 21,0975 km, tam maraton ise
@@ -148,17 +108,7 @@ export default function PaceCalculatorPage() {
             (Dünya Atletizm Federasyonu) tarafından resmi olarak
             belirlenmiştir.
           </p>
-
-          <h2>Sık Sorulan Sorular</h2>
-          {faqItems.map((item) => (
-            <p key={item.question}>
-              <strong>{item.question}</strong>
-              <br />
-              {item.answer}
-            </p>
-          ))}
-
-          <h2>İlgili araçlar</h2>
+          <h2 id="ilgili-araclar">İlgili araçlar</h2>
           <p>
             Antrenman/beslenme takibi için{" "}
             <Link href="/hesaplayicilar#saglik-ve-spor">Sağlık ve Spor</Link>,{" "}
@@ -166,15 +116,14 @@ export default function PaceCalculatorPage() {
             <Link href="/1rm-hesaplama">1RM Hesaplama</Link>
             {" "}sayfasına bakabilirsin.
           </p>
-
-          <h2>Kaynaklar</h2>
+          <h2 id="kaynaklar">Kaynaklar</h2>
           <p>
             Yarış mesafeleri World Athletics&apos;in resmi mesafe
             standartlarına dayanır; tempo/hız dönüşüm formülü temel
             kinematik ilişkidir (hız = mesafe / zaman).
           </p>
-        </section>
-      </div>
-    </main>
+        </>
+      }
+    />
   );
 }

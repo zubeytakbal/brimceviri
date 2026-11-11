@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import ElectricityConsumptionCalculator from "../components/ElectricityConsumptionCalculator";
-import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import type { FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+import AracSayfasi from "@/app/components/yeni/AracSayfasi";
 
 const faqItems: FaqItem[] = [
   {
@@ -39,57 +40,17 @@ export const metadata: Metadata = {
   },
 };
 
-function serializeJsonLd(data: object) {
-  return JSON.stringify(data).replace(/</g, "\\u003c");
-}
 
 export default function ElectricityConsumptionPage() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Ana Sayfa",
-        item: buildSiteUrl("/"),
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Elektrik Tüketimi Hesaplama",
-        item: buildSiteUrl("/elektrik-tuketimi-hesaplama"),
-      },
-    ],
-  };
 
   return (
-    <main className="all-conversions-page">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd(buildFaqSchema(faqItems)),
-        }}
-      />
-
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Sayfa yolu">
-          <Link href="/">Ana Sayfa</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>Elektrik Tüketimi Hesaplama</span>
-        </nav>
-
-        <header className="all-conversions-header">
-          <h1>Elektrik Tüketimi Hesaplama</h1>
-        </header>
-
-        <ElectricityConsumptionCalculator />
-
-        <section className="category-article-content">
+    <AracSayfasi
+      yol="/elektrik-tuketimi-hesaplama"
+      baslik="Elektrik Tüketimi Hesaplama"
+      hesap={<ElectricityConsumptionCalculator />}
+      serbestIcindekiler={[{"id":"watt","baslik":"Kaç watt ne kadar elektrik harcar?"},{"id":"kwh-nasil-hesaplanir","baslik":"kWh nasıl hesaplanır?"},{"id":"cihazimin-gucunu-nereden-ogrenirim","baslik":"Cihazımın gücünü nereden öğrenirim?"},{"id":"sik-sorulan-sorular","baslik":"Sık Sorulan Sorular"},{"id":"kaynaklar","baslik":"Kaynaklar"}]}
+      serbestIcerik={
+        <>
           <h2 id="watt">Kaç watt ne kadar elektrik harcar?</h2>
           <p>
             Cihazın etiketindeki watt değeri, tam güçte çalıştığı her saatte harcadığı enerjiyi verir: 1.000 watt bir saatte 1
@@ -123,8 +84,7 @@ export default function ElectricityConsumptionPage() {
             çarpın. Örneğin 3.000 W&apos;lık bir ısıtıcı günde 2 saat çalışırsa ayda {sayi((3000 * 2 * 30) / 1000)} kWh
             harcar.
           </p>
-
-          <h2>kWh nasıl hesaplanır?</h2>
+          <h2 id="kwh-nasil-hesaplanir">kWh nasıl hesaplanır?</h2>
           <p>
             Elektrikli cihazların gücü watt (W) cinsinden yazılıdır;
             elektrik faturaları ise kilovatsaat (kWh) üzerinden
@@ -134,8 +94,7 @@ export default function ElectricityConsumptionPage() {
             / 1000 = 3 kWh/gün tüketir. Bu günlük değer, kullanılan gün
             sayısıyla çarpılarak aylık veya yıllık tüketime çevrilir.
           </p>
-
-          <h2>Cihazımın gücünü nereden öğrenirim?</h2>
+          <h2 id="cihazimin-gucunu-nereden-ogrenirim">Cihazımın gücünü nereden öğrenirim?</h2>
           <p>
             Çoğu cihazın arkasında veya altında bulunan bilgi
             etiketinde, kullanım kılavuzunda ya da üreticinin ürün
@@ -143,8 +102,7 @@ export default function ElectricityConsumptionPage() {
             yazıyorsa 1000 ile çarparak watt&apos;a çevirebilirsin (1 kW
             = 1000 W).
           </p>
-
-          <h2>Sık Sorulan Sorular</h2>
+          <h2 id="sik-sorulan-sorular">Sık Sorulan Sorular</h2>
           <p>
             <strong>Neden kWh birim fiyatını sizin belirlemeniz gerekiyor da araç önermiyor?</strong>
             <br />
@@ -164,8 +122,7 @@ export default function ElectricityConsumptionPage() {
             küçük bir yüktür; hassas bir toplam istiyorsan bunu ayrıca
             eklemen gerekir.
           </p>
-
-          <h2>İlgili araçlar</h2>
+          <h2 id="ilgili-araclar">İlgili araçlar</h2>
           <p>
             Güneş paneli yatırımının geri dönüşü için{" "}
             <Link href="/gunes-paneli-amortisman-hesaplama">Güneş Paneli Amortisman Hesaplama</Link>,{" "}
@@ -175,15 +132,14 @@ export default function ElectricityConsumptionPage() {
             <Link href="/kategoriler/elektrik">Volt / Amper Birim Dönüşümleri</Link>
             {" "}sayfasına bakabilirsin.
           </p>
-
-          <h2>Kaynaklar</h2>
+          <h2 id="kaynaklar">Kaynaklar</h2>
           <p>
             kWh dönüşüm formülü (Watt × Saat / 1000), elektrik
             dağıtım şirketlerinin ve enerji verimliliği kuruluşlarının
             yayımladığı standart tüketim hesaplama yöntemine dayanır.
           </p>
-        </section>
-      </div>
-    </main>
+        </>
+      }
+    />
   );
 }

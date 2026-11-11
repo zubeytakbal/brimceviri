@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import BmiCalculator from "../components/BmiCalculator";
-import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import type { FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+import AracSayfasi from "@/app/components/yeni/AracSayfasi";
 
 const faqItems: FaqItem[] = [
   {
@@ -35,58 +36,18 @@ export const metadata: Metadata = {
   },
 };
 
-function serializeJsonLd(data: object) {
-  return JSON.stringify(data).replace(/</g, "\\u003c");
-}
 
 export default function BmiCalculatorPage() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Ana Sayfa",
-        item: buildSiteUrl("/"),
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "BMI Hesaplama",
-        item: buildSiteUrl("/bmi-hesaplama"),
-      },
-    ],
-  };
 
   return (
-    <main className="all-conversions-page">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd(buildFaqSchema(faqItems)),
-        }}
-      />
-
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Sayfa yolu">
-          <Link href="/">Ana Sayfa</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>BMI Hesaplama</span>
-        </nav>
-
-        <header className="all-conversions-header">
-          <h1>BMI Hesaplama</h1>
-        </header>
-
-        <BmiCalculator />
-
-        <section className="category-article-content">
-          <h2>BMI (vücut kitle indeksi) nedir, nasıl hesaplanır?</h2>
+    <AracSayfasi
+      yol="/bmi-hesaplama"
+      baslik="BMI Hesaplama"
+      hesap={<BmiCalculator />}
+      serbestIcindekiler={[{"id":"bmi-vucut-kitle-indeksi-nedir-nasil","baslik":"BMI (vücut kitle indeksi) nedir, nasıl hesaplanır?"},{"id":"gunluk-kalori-ihtiyaci-nasil-hesaplaniyor","baslik":"Günlük kalori ihtiyacı nasıl hesaplanıyor?"},{"id":"sik-sorulan-sorular","baslik":"Sık Sorulan Sorular"},{"id":"kaynaklar","baslik":"Kaynaklar"}]}
+      serbestIcerik={
+        <>
+          <h2 id="bmi-vucut-kitle-indeksi-nedir-nasil">BMI (vücut kitle indeksi) nedir, nasıl hesaplanır?</h2>
           <p>
             BMI, kilonun boyun karesine bölünmesiyle bulunur:{" "}
             <strong>BMI = Kilo (kg) / Boy² (m²)</strong>. Dünya Sağlık
@@ -101,8 +62,7 @@ export default function BmiCalculatorPage() {
             genel nüfus için hızlı bir tarama ölçütüdür, tıbbi bir teşhis
             aracı değildir.
           </p>
-
-          <h2>Günlük kalori ihtiyacı nasıl hesaplanıyor?</h2>
+          <h2 id="gunluk-kalori-ihtiyaci-nasil-hesaplaniyor">Günlük kalori ihtiyacı nasıl hesaplanıyor?</h2>
           <p>
             Bu araç, bazal metabolizma hızını (BMR — vücudun dinlenme
             halindeyken harcadığı enerji) Mifflin-St Jeor formülüyle
@@ -112,8 +72,7 @@ export default function BmiCalculatorPage() {
             1,9 arası) çarpılarak günlük toplam kalori ihtiyacına (TDEE)
             ulaşılır.
           </p>
-
-          <h2>Sık Sorulan Sorular</h2>
+          <h2 id="sik-sorulan-sorular">Sık Sorulan Sorular</h2>
           <p>
             <strong>Kilo vermek/almak istiyorsam bu sayıyı nasıl kullanmalıyım?</strong>
             <br />
@@ -130,8 +89,7 @@ export default function BmiCalculatorPage() {
             aracıdır; sağlık kararların için bir hekim veya diyetisyene
             danışmalısın.
           </p>
-
-          <h2>İlgili araçlar</h2>
+          <h2 id="ilgili-araclar">İlgili araçlar</h2>
           <p>
             Vücut kompozisyonu hakkında daha detaylı bilgi için{" "}
             <Link href="/vucut-yag-orani-hesaplama">
@@ -143,14 +101,13 @@ export default function BmiCalculatorPage() {
             <Link href="/hesaplayicilar#saglik-ve-spor">Sağlık ve Spor</Link>{" "}
             sayfasına bakabilirsin.
           </p>
-
-          <h2>Kaynaklar</h2>
+          <h2 id="kaynaklar">Kaynaklar</h2>
           <p>
             BMI kategorileri Dünya Sağlık Örgütü (WHO) sınıflandırmasına,
             kalori hesabı Mifflin-St Jeor (1990) formülüne dayanır.
           </p>
-        </section>
-      </div>
-    </main>
+        </>
+      }
+    />
   );
 }

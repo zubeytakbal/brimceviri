@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import AttendanceCalculator from "../components/AttendanceCalculator";
-import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import type { FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+import AracSayfasi from "@/app/components/yeni/AracSayfasi";
 
 const faqItems: FaqItem[] = [
   {
@@ -54,57 +55,18 @@ export const metadata: Metadata = {
   },
 };
 
-function serializeJsonLd(data: object) {
-  return JSON.stringify(data).replace(/</g, "\\u003c");
-}
 
 export default function AttendanceCalculatorPage() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Ana Sayfa",
-        item: buildSiteUrl("/"),
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Devamsızlık Hesaplama",
-        item: buildSiteUrl("/devamsizlik-hesaplama"),
-      },
-    ],
-  };
 
   return (
-    <main className="all-conversions-page">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd(buildFaqSchema(faqItems)),
-        }}
-      />
-
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Sayfa yolu">
-          <Link href="/">Ana Sayfa</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>Devamsızlık Hesaplama</span>
-        </nav>
-
-        <header className="all-conversions-header">
-          <h1>Devamsızlık Hesaplama</h1>
-        </header>
-
-        <AttendanceCalculator />
-
-        <section className="category-article-content">
+    <AracSayfasi
+      yol="/devamsizlik-hesaplama"
+      baslik="Devamsızlık Hesaplama"
+      hesap={<AttendanceCalculator />}
+      sss={faqItems}
+      serbestIcindekiler={[{"id":"universite","baslik":"Üniversitede kaç saat devamsızlık hakkım var?"},{"id":"gun-bazli-mi-yuzde-bazli-mi","baslik":"Gün bazlı mı, yüzde bazlı mı?"},{"id":"kalan-hak-nasil-hesaplanir","baslik":"Kalan hak nasıl hesaplanır?"},{"id":"devamsizlik-kurallari-neden-kuruma-gore-degisir","baslik":"Devamsızlık kuralları neden kuruma göre değişir?"},{"id":"kaynaklar","baslik":"Kaynaklar"}]}
+      serbestIcerik={
+        <>
           <h2 id="universite">Üniversitede kaç saat devamsızlık hakkım var?</h2>
           <p>
             Üniversitelerde sınır çoğunlukla ders saatinin yüzdesi olarak verilir: teorik derslerde sık görülen oran %30,
@@ -143,8 +105,7 @@ export default function AttendanceCalculatorPage() {
             için tam sınırda durmak yerine bir saat pay bırakmak güvenlidir. Haftada 3 saatlik bir derste %30 kuralı, 14
             haftada {Math.floor(3 * 14 * 0.3)} saat yani yaklaşık {Math.floor((3 * 14 * 0.3) / 3)} haftalık derse karşılık gelir.
           </p>
-
-          <h2>Gün bazlı mı, yüzde bazlı mı?</h2>
+          <h2 id="gun-bazli-mi-yuzde-bazli-mi">Gün bazlı mı, yüzde bazlı mı?</h2>
           <p>
             İlkokul, ortaokul ve lisede devamsızlık genellikle{" "}
             <strong>gün</strong> üzerinden sayılır — öğretim yılı boyunca
@@ -154,8 +115,7 @@ export default function AttendanceCalculatorPage() {
             olarak hesaplanır (örneğin teorik derste %30, uygulamalı derste
             %20 gibi). Bu araç her iki hesaplama biçimini de destekler.
           </p>
-
-          <h2>Kalan hak nasıl hesaplanır?</h2>
+          <h2 id="kalan-hak-nasil-hesaplanir">Kalan hak nasıl hesaplanır?</h2>
           <p>
             Gün bazlı modda: kalan hak = izin verilen devamsızlık günü −
             kullanılan devamsızlık günü. Yüzde bazlı modda: önce izin
@@ -164,8 +124,7 @@ export default function AttendanceCalculatorPage() {
             kullanılan devamsızlık saati çıkarılarak hesaplanır. Sonuç
             negatifse, devamsızlık sınırı aşılmış demektir.
           </p>
-
-          <h2>Devamsızlık kuralları neden kuruma göre değişir?</h2>
+          <h2 id="devamsizlik-kurallari-neden-kuruma-gore-degisir">Devamsızlık kuralları neden kuruma göre değişir?</h2>
           <p>
             Türkiye&apos;de devamsızlık limitleri; ilkokul-ortaokul-lise için
             Milli Eğitim Bakanlığı&apos;nın ilgili yönetmeliklerine,
@@ -175,17 +134,7 @@ export default function AttendanceCalculatorPage() {
             limitleri girmeni ister — böylece sonuç, senin kurumunun gerçek
             kuralına göre doğru çıkar.
           </p>
-
-          <h2>Sık Sorulan Sorular</h2>
-          {faqItems.map((item) => (
-            <p key={item.question}>
-              <strong>{item.question}</strong>
-              <br />
-              {item.answer}
-            </p>
-          ))}
-
-          <h2>İlgili araçlar</h2>
+          <h2 id="ilgili-araclar">İlgili araçlar</h2>
           <p>
             Not/harf notu hesaplama için{" "}
             <Link href="/harf-notu-hesaplama">Harf Notu Hesaplama</Link>,{" "}
@@ -193,16 +142,15 @@ export default function AttendanceCalculatorPage() {
             <Link href="/hesaplayicilar#olcu-ve-gunluk">Mutfak, Beden ve Okul</Link>
             {" "}sayfasına bakabilirsin.
           </p>
-
-          <h2>Kaynaklar</h2>
+          <h2 id="kaynaklar">Kaynaklar</h2>
           <p>
             Devamsızlık sınırlarına ilişkin genel oranlar (özürsüz 10 gün,
             teorik derste %30 gibi), okul ve üniversitelerin yaygın olarak
             uyguladığı örnek yönetmelik değerlerine dayanır; kesin ve
             güncel kural için kurumunun kendi yönetmeliğini esas almalısın.
           </p>
-        </section>
-      </div>
-    </main>
+        </>
+      }
+    />
   );
 }

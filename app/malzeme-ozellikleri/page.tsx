@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
-import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import type { FaqItem } from "../converter/faqSchema";
 import {
   materialCategoryLabels,
   type MaterialCategory,
@@ -9,6 +9,7 @@ import { getAllMaterialProfiles } from "../converter/materialsHub";
 import { getAllMaterialComparisons } from "../converter/materialComparisons";
 import { buildSiteUrl } from "../siteConfig";
 import MaterialExplorer from "../components/MaterialExplorer";
+import AracSayfasi from "@/app/components/yeni/AracSayfasi";
 
 const faqItems: FaqItem[] = [
   {
@@ -33,9 +34,6 @@ const categoryOrder: MaterialCategory[] = [
   "gaz",
 ];
 
-function serializeJsonLd(data: object) {
-  return JSON.stringify(data).replace(/</g, "\\u003c");
-}
 
 export const metadata: Metadata = {
   title: "Malzeme Özellikleri: Yoğunluk ve Isıl İletkenlik",
@@ -60,34 +58,16 @@ export const metadata: Metadata = {
 export default function MaterialsHubPage() {
   const materials = getAllMaterialProfiles();
   const comparisons = getAllMaterialComparisons();
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: buildSiteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "Malzeme Özellikleri", item: buildSiteUrl("/malzeme-ozellikleri") },
-    ],
-  };
 
   return (
-    <main className="all-conversions-page">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(buildFaqSchema(faqItems)) }} />
-
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Sayfa yolu">
-          <Link href="/">Ana Sayfa</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>Malzeme Özellikleri</span>
-        </nav>
-
-        <header className="all-conversions-header">
-          <h1>Malzeme Özellikleri</h1>
-        </header>
-
-        <MaterialExplorer locale="tr" />
-
-        <section className="category-article-content">
+    <AracSayfasi
+      yol="/malzeme-ozellikleri"
+      baslik="Malzeme Özellikleri"
+      hesap={<MaterialExplorer locale="tr" />}
+      sss={faqItems}
+      serbestIcindekiler={[{"id":"populer-yogunluk-karsilastirmalari","baslik":"Popüler Yoğunluk Karşılaştırmaları"}]}
+      serbestIcerik={
+        <>
           {categoryOrder.map((category) => {
             const categoryMaterials = materials
               .filter((material) => material.category === category)
@@ -110,8 +90,7 @@ export default function MaterialsHubPage() {
               </div>
             );
           })}
-
-          <h2>Popüler Yoğunluk Karşılaştırmaları</h2>
+          <h2 id="populer-yogunluk-karsilastirmalari">Popüler Yoğunluk Karşılaştırmaları</h2>
           <ul>
             {comparisons.map((comparison) => (
               <li key={comparison.slug}>
@@ -122,17 +101,8 @@ export default function MaterialsHubPage() {
               </li>
             ))}
           </ul>
-
-          <h2>Sık Sorulan Sorular</h2>
-          {faqItems.map((item) => (
-            <p key={item.question}>
-              <strong>{item.question}</strong>
-              <br />
-              {item.answer}
-            </p>
-          ))}
-        </section>
-      </div>
-    </main>
+        </>
+      }
+    />
   );
 }

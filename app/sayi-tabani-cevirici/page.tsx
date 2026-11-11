@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import NumberBaseCalculator from "../components/NumberBaseCalculator";
-import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import type { FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+import AracSayfasi from "@/app/components/yeni/AracSayfasi";
 
 const faqItems: FaqItem[] = [
   {
@@ -45,66 +46,19 @@ export const metadata: Metadata = {
   },
 };
 
-function serializeJsonLd(data: object) {
-  return JSON.stringify(data).replace(/</g, "\\u003c");
-}
 
 export default function NumberBaseCalculatorPage() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Ana Sayfa",
-        item: buildSiteUrl("/"),
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Matematik",
-        item: buildSiteUrl("/hesaplayicilar#matematik"),
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        name: "Sayı Tabanı Çevirici",
-        item: buildSiteUrl("/sayi-tabani-cevirici"),
-      },
-    ],
-  };
 
   return (
-    <main className="all-conversions-page">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd(buildFaqSchema(faqItems)),
-        }}
-      />
-
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Sayfa yolu">
-          <Link href="/">Ana Sayfa</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/hesaplayicilar#matematik">Matematik</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>Sayı Tabanı Çevirici</span>
-        </nav>
-
-        <header className="all-conversions-header">
-          <h1>Sayı Tabanı Çevirici</h1>
-        </header>
-
-        <NumberBaseCalculator />
-
-        <section className="category-article-content">
-          <h2>Sayı tabanları nedir, nasıl çalışır?</h2>
+    <AracSayfasi
+      yol="/sayi-tabani-cevirici"
+      baslik="Sayı Tabanı Çevirici"
+      hesap={<NumberBaseCalculator />}
+      sss={faqItems}
+      serbestIcindekiler={[{"id":"sayi-tabanlari-nedir-nasil-calisir","baslik":"Sayı tabanları nedir, nasıl çalışır?"},{"id":"ikili-sayilarla-toplama-cikarma-carpma-nasil","baslik":"İkili sayılarla toplama, çıkarma, çarpma nasıl yapılır?"}]}
+      serbestIcerik={
+        <>
+          <h2 id="sayi-tabanlari-nedir-nasil-calisir">Sayı tabanları nedir, nasıl çalışır?</h2>
           <p>
             Günlük hayatta kullandığımız <strong>onlu (decimal)</strong>{" "}
             sistem 10 rakam (0-9) kullanır. Bilgisayarlar ise veriyi{" "}
@@ -121,25 +75,14 @@ export default function NumberBaseCalculatorPage() {
             sayısı, ikili sistemde 1010, onaltılık sistemde ise A olarak
             yazılır — hepsi aynı miktarı temsil eder.
           </p>
-
-          <h2>İkili sayılarla toplama, çıkarma, çarpma nasıl yapılır?</h2>
+          <h2 id="ikili-sayilarla-toplama-cikarma-carpma-nasil">İkili sayılarla toplama, çıkarma, çarpma nasıl yapılır?</h2>
           <p>
             İkili aritmetik, onlu sistemdeki işlemlerle aynı mantıkla
             çalışır; tek fark her basamağın yalnızca 0 veya 1 olabilmesidir.
             Bu araç, girdiğin iki ikili sayıyı arka planda onlu sisteme
             çevirip işlemi yapar, sonucu tekrar ikili olarak gösterir.
           </p>
-
-          <h2>Sık Sorulan Sorular</h2>
-          {faqItems.map((item) => (
-            <p key={item.question}>
-              <strong>{item.question}</strong>
-              <br />
-              {item.answer}
-            </p>
-          ))}
-
-          <h2>İlgili araçlar</h2>
+          <h2 id="ilgili-araclar">İlgili araçlar</h2>
           <p>
             Diğer yazılımcı araçları için{" "}
             <Link href="/hesaplayicilar#teknik">Teknik ve Mühendislik</Link>{" "}
@@ -149,8 +92,8 @@ export default function NumberBaseCalculatorPage() {
             <Link href="/kategoriler/veri">Veri Depolama Dönüşümleri</Link>
             {" "}sayfasına bakabilirsin.
           </p>
-        </section>
-      </div>
-    </main>
+        </>
+      }
+    />
   );
 }

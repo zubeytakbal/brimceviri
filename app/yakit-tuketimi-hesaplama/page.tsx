@@ -2,9 +2,10 @@ import { buildFullLanguageAlternates } from "@/app/i18n/routing";
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import FuelConsumptionCalculator from "../components/FuelConsumptionCalculator";
-import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import type { FaqItem } from "../converter/faqSchema";
 import { KmMaliyetHesabi } from "../components/EvHesapEkleri";
 import { buildSiteUrl } from "../siteConfig";
+import AracSayfasi from "@/app/components/yeni/AracSayfasi";
 
 const faqItems: FaqItem[] = [
   {
@@ -56,63 +57,21 @@ export const metadata: Metadata = {
   },
 };
 
-function serializeJsonLd(data: object) {
-  return JSON.stringify(data).replace(/</g, "\\u003c");
-}
 
 export default function FuelConsumptionCalculatorPage() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Ana Sayfa",
-        item: buildSiteUrl("/"),
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Yakıt Tüketimi Hesaplama",
-        item: buildSiteUrl("/yakit-tuketimi-hesaplama"),
-      },
-    ],
-  };
 
   return (
-    <main className="all-conversions-page">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd(buildFaqSchema(faqItems)),
-        }}
-      />
-
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Sayfa yolu">
-          <Link href="/">Ana Sayfa</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>Yakıt Tüketimi Hesaplama</span>
-        </nav>
-
-        <header className="all-conversions-header">
-          <h1>Yakıt Tüketimi Hesaplama</h1>
-        </header>
-
-        <FuelConsumptionCalculator />
-
-        <section className="category-article-content">
+    <AracSayfasi
+      yol="/yakit-tuketimi-hesaplama"
+      baslik="Yakıt Tüketimi Hesaplama"
+      hesap={<FuelConsumptionCalculator />}
+      sss={faqItems}
+      serbestIcindekiler={[{"id":"km-maliyet","baslik":"1 km kaç kuruşa geliyor?"},{"id":"100-km","baslik":"100 km'de kaç litre yakan araç ne kadar gider?"},{"id":"km-lt-ve-lt-100km-nasil","baslik":"km/lt ve lt/100km nasıl hesaplanır?"},{"id":"mpg-mil-galon-nereden-geliyor","baslik":"mpg (mil/galon) nereden geliyor?"},{"id":"yolculuk-maliyeti-nasil-hesaplaniyor","baslik":"Yolculuk maliyeti nasıl hesaplanıyor?"}]}
+      serbestIcerik={
+        <>
           <h2 id="km-maliyet">1 km kaç kuruşa geliyor?</h2>
           <p>100 km&apos;deki tüketimi ve güncel litre fiyatını girin; kilometre başına ve 100 km için yakıt maliyetini görün.</p>
-        </section>
-        <KmMaliyetHesabi />
-
-        <section className="category-article-content">
+          <KmMaliyetHesabi />
           <h2 id="100-km">100 km&apos;de kaç litre yakan araç ne kadar gider?</h2>
           <p>
             Araç kataloglarındaki değer 100 km&apos;de yakılan litredir; günlük hayatta ise &quot;1 km&apos;de ne kadar
@@ -146,8 +105,7 @@ export default function FuelConsumptionCalculatorPage() {
             kilometrede 0,06 litre harcar, yani litre fiyatının yüzde 6&apos;sı kadar. Katalog değerleri ölçüm koşullarında
             alınır; şehir içi trafikte ve klimayla gerçek tüketim çoğu zaman bunun üstündedir.
           </p>
-
-          <h2>km/lt ve lt/100km nasıl hesaplanır?</h2>
+          <h2 id="km-lt-ve-lt-100km-nasil">km/lt ve lt/100km nasıl hesaplanır?</h2>
           <p>
             İki birim ters orantılıdır, basit bir çarpım/bölüm değildir:{" "}
             <strong>lt/100km = 100 / (km/lt)</strong> ve{" "}
@@ -155,8 +113,7 @@ export default function FuelConsumptionCalculatorPage() {
             litre yakıtla 14 km gidiyorsa (14 km/lt), 100 km&apos;de
             100 ÷ 14 ≈ 7,14 litre yakar demektir.
           </p>
-
-          <h2>mpg (mil/galon) nereden geliyor?</h2>
+          <h2 id="mpg-mil-galon-nereden-geliyor">mpg (mil/galon) nereden geliyor?</h2>
           <p>
             mpg, ABD ve İngiltere&apos;de kullanılan bir yakıt tüketimi
             birimidir ve km/lt&apos;nin tersine, değer ne kadar yüksekse
@@ -165,8 +122,7 @@ export default function FuelConsumptionCalculatorPage() {
             galonu (4,546 L) farklı olduğu için aynı aracın ABD mpg ve
             İngiltere mpg değerleri birbirinden farklı çıkar.
           </p>
-
-          <h2>Yolculuk maliyeti nasıl hesaplanıyor?</h2>
+          <h2 id="yolculuk-maliyeti-nasil-hesaplaniyor">Yolculuk maliyeti nasıl hesaplanıyor?</h2>
           <p>
             Önce girdiğin lt/100km değeriyle yolculuk mesafesi orantılanarak
             gereken yakıt miktarı bulunur:{" "}
@@ -174,17 +130,7 @@ export default function FuelConsumptionCalculatorPage() {
             Ardından bu miktar litre başına yakıt fiyatıyla çarpılarak
             toplam maliyet elde edilir.
           </p>
-
-          <h2>Sık Sorulan Sorular</h2>
-          {faqItems.map((item) => (
-            <p key={item.question}>
-              <strong>{item.question}</strong>
-              <br />
-              {item.answer}
-            </p>
-          ))}
-
-          <h2>İlgili araçlar</h2>
+          <h2 id="ilgili-araclar">İlgili araçlar</h2>
           <p>
             Elektrikli araca geçişin maliyet karşılaştırması için{" "}
             <Link href="/elektrikli-arac-maliyet-karsilastirma">Elektrikli Araç Maliyet Karşılaştırma</Link>,{" "}
@@ -196,8 +142,8 @@ export default function FuelConsumptionCalculatorPage() {
             <Link href="/hesaplayicilar#enerji-ve-arac">Enerji, Fatura ve Araç</Link>
             {" "}sayfasına bakabilirsin.
           </p>
-        </section>
-      </div>
-    </main>
+        </>
+      }
+    />
   );
 }

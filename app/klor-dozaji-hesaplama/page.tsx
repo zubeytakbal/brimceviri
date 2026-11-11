@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import ChlorineDoseCalculator from "../components/ChlorineDoseCalculator";
-import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import type { FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+import AracSayfasi from "@/app/components/yeni/AracSayfasi";
 
 const faqItems: FaqItem[] = [
   {
@@ -53,44 +54,19 @@ export const metadata: Metadata = {
   },
 };
 
-function serializeJsonLd(data: object) {
-  return JSON.stringify(data).replace(/</g, "\\u003c");
-}
 
 export default function ChlorineDoseCalculatorPage() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: buildSiteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "Tüm Hesaplamalar", item: buildSiteUrl("/hesaplayicilar") },
-      { "@type": "ListItem", position: 3, name: "Ev, İnşaat ve Bahçe", item: buildSiteUrl("/hesaplayicilar#ev-ve-yapi") },
-      { "@type": "ListItem", position: 4, name: "Klor Dozajı Hesaplama", item: buildSiteUrl("/klor-dozaji-hesaplama") },
-    ],
-  };
 
   return (
-    <main className="all-conversions-page">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(buildFaqSchema(faqItems)) }} />
-
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Sayfa yolu">
-          <Link href="/">Ana Sayfa</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/hesaplayicilar#ev-ve-yapi">Ev, İnşaat ve Bahçe</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>Klor Dozajı Hesaplama</span>
-        </nav>
-
-        <header className="all-conversions-header">
-          <h1>Klor Dozajı Hesaplama</h1>
-        </header>
-
-        <ChlorineDoseCalculator />
-
-        <section className="category-article-content">
-          <h2>Havuza kaç gram klor atılır?</h2>
+    <AracSayfasi
+      yol="/klor-dozaji-hesaplama"
+      baslik="Klor Dozajı Hesaplama"
+      hesap={<ChlorineDoseCalculator />}
+      sss={faqItems}
+      serbestIcindekiler={[{"id":"havuza-kac-gram-klor-atilir","baslik":"Havuza kaç gram klor atılır?"},{"id":"ornek-8-4-m-villa-havuzu","baslik":"Örnek: 8 × 4 m villa havuzu"},{"id":"serbest-bagli-ve-toplam-klor","baslik":"Serbest, bağlı ve toplam klor"},{"id":"basvuru-degerleri-ve-guvenlik","baslik":"Başvuru değerleri ve güvenlik"},{"id":"kaynaklar","baslik":"Kaynaklar"}]}
+      serbestIcerik={
+        <>
+          <h2 id="havuza-kac-gram-klor-atilir">Havuza kaç gram klor atılır?</h2>
           <p>
             1 ppm, her litre suda 1 mg klor demektir; 1 m³ (1 ton) su için bu 1 gram saf klor eder. Ürünler saf klor
             olmadığından gereken miktar, ürünün aktif klor oranına bölünür. Tabloda sıvı sodyum hipoklorit, dikloro toz, kalsiyum hipoklorit
@@ -127,16 +103,14 @@ export default function ChlorineDoseCalculatorPage() {
             araca etiketteki yüzdeyi girin. Sıvı klor gramla değil litreyle ölçülür; %12&apos;lik sıvının litresi yaklaşık 1,2 kg
             geldiğinden tablodaki gram değerini 1.200&apos;e bölerek litreye çevirebilirsiniz.
           </p>
-
-          <h2>Örnek: 8 × 4 m villa havuzu</h2>
+          <h2 id="ornek-8-4-m-villa-havuzu">Örnek: 8 × 4 m villa havuzu</h2>
           <p>
             Ortalama derinliği 1,5 m olan 8 × 4 m&apos;lik havuz {sayi(8 * 4 * 1.5)} m³ su alır. Test kiti serbest kloru 0,5 ppm
             gösteriyorsa ve 2 ppm hedefleniyorsa fark 1,5 ppm&apos;dir. Bu, {sayi(48 * 1.5)} g saf klor demektir; %90&apos;lık
             tablet kullanılıyorsa {gram(48, 1.5, 90)}, %56&apos;lık toz kullanılıyorsa {gram(48, 1.5, 56)} ürün gerekir. Havuz
             hacmini bilmiyorsanız önce <Link href="/havuz-hacmi-hesaplama">havuz hacmi hesaplama</Link> aracını kullanın.
           </p>
-
-          <h2>Serbest, bağlı ve toplam klor</h2>
+          <h2 id="serbest-bagli-ve-toplam-klor">Serbest, bağlı ve toplam klor</h2>
           <p>
             Test kitlerinde iki ayrı değer görürsünüz. <strong>Serbest klor</strong> suyu dezenfekte etmeye hâlâ hazır olan
             klordur; dozaj hesabı bu değer üzerinden yapılır. <strong>Bağlı klor</strong> ter, idrar ve kozmetik kalıntılarıyla
@@ -144,8 +118,7 @@ export default function ChlorineDoseCalculatorPage() {
             <strong> toplam klor</strong>dur. Toplam ile serbest arasındaki fark büyüdüğünde, yani bağlı klor birikince, düzenli
             dozaj yerine şok klorlama gündeme gelir.
           </p>
-
-          <h2>Başvuru değerleri ve güvenlik</h2>
+          <h2 id="basvuru-degerleri-ve-guvenlik">Başvuru değerleri ve güvenlik</h2>
           <p>
             Dünya Sağlık Örgütü&apos;nün yüzme suyu kılavuzu, halka açık havuzlarda serbest klorun 3 mg/L&apos;yi (3 ppm)
             aşmamasını ve pH&apos;ın 7,2–7,8 aralığında tutulmasını önerir; ABD Hastalık Kontrol Merkezleri&apos;nin model
@@ -158,17 +131,7 @@ export default function ChlorineDoseCalculatorPage() {
             araya gelmesi tehlikeli tepkimeye yol açabilir. Ürünü suya ekleyin, ürünün üzerine su dökmeyin ve dozlamayı havuz
             kullanılmıyorken yapın.
           </p>
-
-          <h2>Sık Sorulan Sorular</h2>
-          {faqItems.map((item) => (
-            <p key={item.question}>
-              <strong>{item.question}</strong>
-              <br />
-              {item.answer}
-            </p>
-          ))}
-
-          <h2>İlgili araçlar</h2>
+          <h2 id="ilgili-araclar">İlgili araçlar</h2>
           <p>
             Diğer havuz teknisyeni araçları için{" "}
             <Link href="/hesaplayicilar#ev-ve-yapi">Ev, İnşaat ve Bahçe</Link>
@@ -176,15 +139,14 @@ export default function ChlorineDoseCalculatorPage() {
             <Link href="/havuz-hacmi-hesaplama">Havuz Hacmi Hesaplama</Link>
             {" "}sayfasına bakabilirsin.
           </p>
-
-          <h2>Kaynaklar</h2>
+          <h2 id="kaynaklar">Kaynaklar</h2>
           <p>
             Hesaplar ppm (mg/L) tanımına dayanır. Başvuru değerleri: WHO, <em>Guidelines for Safe Recreational Water
             Environments, Volume 2: Swimming Pools and Similar Environments</em> (2006); CDC, <em>Model Aquatic Health
             Code</em>. Bu araç havuz bakım danışmanlığı yerine geçmez; hedef klor seviyesini belirlemez.
           </p>
-        </section>
-      </div>
-    </main>
+        </>
+      }
+    />
   );
 }

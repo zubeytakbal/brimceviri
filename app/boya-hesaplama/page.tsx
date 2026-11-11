@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import PaintCalculator from "../components/PaintCalculator";
-import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import type { FaqItem } from "../converter/faqSchema";
 import { BoyaKiloHesabi } from "../components/EvHesapEkleri";
 import { EV_BOYA_KATSAYI } from "../converter/evHesaplari";
 import { buildSiteUrl } from "../siteConfig";
+import AracSayfasi from "@/app/components/yeni/AracSayfasi";
 
 const faqItems: FaqItem[] = [
   {
@@ -61,62 +62,21 @@ const KUTULAR_L = [0.75, 1, 2.5, 7.5, 10, 15];
 const ALANLAR = [20, 30, 50, 75, 100];
 const sayi = (n: number, basamak = 0) => n.toLocaleString("tr-TR", { maximumFractionDigits: basamak });
 
-function serializeJsonLd(data: object) {
-  return JSON.stringify(data).replace(/</g, "\\u003c");
-}
 
 export default function PaintCalculatorPage() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Ana Sayfa",
-        item: buildSiteUrl("/"),
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Boya Hesaplama",
-        item: buildSiteUrl("/boya-hesaplama"),
-      },
-    ],
-  };
 
   return (
-    <main className="all-conversions-page">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd(buildFaqSchema(faqItems)),
-        }}
-      />
-
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Sayfa yolu">
-          <Link href="/">Ana Sayfa</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>Boya Hesaplama</span>
-        </nav>
-
-        <header className="all-conversions-header">
-          <h1>Boya Hesaplama</h1>
-        </header>
-
-        <PaintCalculator />
-
-        <section className="category-article-content">
+    <AracSayfasi
+      yol="/boya-hesaplama"
+      baslik="Boya Hesaplama"
+      hesap={<PaintCalculator />}
+      sss={faqItems}
+      serbestIcindekiler={[{"id":"kilo","baslik":"Kaç kilo boya gerekir?"},{"id":"ev","baslik":"Eve kaç kilo boya gider?"},{"id":"1-litre-boya-kac-m-alani","baslik":"1 litre boya kaç m² alanı boyar?"},{"id":"alan","baslik":"Belli bir alana kaç litre boya gider?"},{"id":"hesaplama-nasil-yapiliyor","baslik":"Hesaplama nasıl yapılıyor?"},{"id":"kaynaklar","baslik":"Kaynaklar"}]}
+      serbestIcerik={
+        <>
           <h2 id="kilo">Kaç kilo boya gerekir?</h2>
           <p>Türkiye&apos;de boya çoğunlukla kilo ile satılır. Boyanacak alanı, kat sayısını ve kutudaki sarfiyatı girin; kilo, litre ve alınacak kutuları görün.</p>
-        </section>
-        <BoyaKiloHesabi />
-        <section className="category-article-content">
+          <BoyaKiloHesabi />
           <h2 id="ev">Eve kaç kilo boya gider?</h2>
           <div className="holiday-table-wrap">
             <table className="holiday-table">
@@ -144,10 +104,7 @@ export default function PaintCalculatorPage() {
             </table>
           </div>
           <p>Tablo, duvar alanını taban alanının yaklaşık 2,5 katı, tavanı taban kadar kabul eder ve 10–14 m²/kg sarfiyatla hesaplar. Kendi evinizin ölçüleriyle yukarıdaki hesaplayıcı daha doğrudur.</p>
-        </section>
-
-        <section className="category-article-content">
-          <h2>1 litre boya kaç m² alanı boyar?</h2>
+          <h2 id="1-litre-boya-kac-m-alani">1 litre boya kaç m² alanı boyar?</h2>
           <p>
             Bu tamamen boyanın cinsine ve yüzeye bağlıdır; su bazlı iç cephe
             boyalarında tek kat için genel ortalama 8-10 m²/litre, iki kat
@@ -184,7 +141,6 @@ export default function PaintCalculatorPage() {
             Kiloyla satılan boyada aynı hesap, yukarıdaki ev tablosunda kullanılan 10–14 m²/kg tek kat verimiyle yapılır: 10 kg
             boya tek katta {sayi(10 * 10)}–{sayi(10 * 14)} m², iki katta {sayi(10 * 5)}–{sayi(10 * 7)} m² boyar.
           </p>
-
           <h2 id="alan">Belli bir alana kaç litre boya gider?</h2>
           <p>Soruyu tersinden soranlar için: iki kat uygulamada, 8–10 m²/litre tek kat verimiyle gereken boya.</p>
           <div className="conversion-table-wrap">
@@ -214,8 +170,7 @@ export default function PaintCalculatorPage() {
             &quot;galon&quot; diye anılan kutular ise çoğunlukla 2,5 litredir. Hesabı her zaman etiketteki litre ya da kilo
             değeriyle yapın.
           </p>
-
-          <h2>Hesaplama nasıl yapılıyor?</h2>
+          <h2 id="hesaplama-nasil-yapiliyor">Hesaplama nasıl yapılıyor?</h2>
           <p>
             Önce brüt duvar alanı bulunur: <strong>2 × (uzunluk + genişlik) × yükseklik</strong>.
             Ardından kapı başına ortalama 1,6 m², pencere başına ortalama
@@ -233,17 +188,7 @@ export default function PaintCalculatorPage() {
             ikinci kat için ekstra ihtiyaç olabileceğinden, sınırda
             kalıyorsan bir sonraki kutu boyutuna yuvarlamak güvenlidir.
           </p>
-
-          <h2>Sık Sorulan Sorular</h2>
-          {faqItems.map((item) => (
-            <p key={item.question}>
-              <strong>{item.question}</strong>
-              <br />
-              {item.answer}
-            </p>
-          ))}
-
-          <h2>İlgili araçlar</h2>
+          <h2 id="ilgili-araclar">İlgili araçlar</h2>
           <p>
             Aynı yenileme projesinde işine yarayabilecek diğer araçlar:{" "}
             <Link href="/fayans-hesaplama">Fayans Hesaplama</Link>,{" "}
@@ -252,16 +197,15 @@ export default function PaintCalculatorPage() {
             <Link href="/parke-hesaplama">Parke Hesaplama</Link>,{" "}
             <Link href="/siva-hesaplama">Sıva Hesaplama</Link>.
           </p>
-
-          <h2>Kaynaklar</h2>
+          <h2 id="kaynaklar">Kaynaklar</h2>
           <p>
             Formüldeki alan hesabı ve tipik verim aralıkları, DYO, Filli
             Boya ve Weber gibi üreticilerin yayımladığı boya hesaplama
             rehberlerinden derlenmiştir; kesin sarfiyat için her zaman
             kullandığın ürünün etiketindeki değeri esas al.
           </p>
-        </section>
-      </div>
-    </main>
+        </>
+      }
+    />
   );
 }

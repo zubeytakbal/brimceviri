@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import TileCalculator from "../components/TileCalculator";
-import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import type { FaqItem } from "../converter/faqSchema";
 import { FayansKutuHesabi } from "../components/EvHesapEkleri";
 import { FAYANS_KUTULARI, fayansKutu } from "../converter/evHesaplari";
 import { buildSiteUrl } from "../siteConfig";
+import AracSayfasi from "@/app/components/yeni/AracSayfasi";
 
 const faqItems: FaqItem[] = [
   {
@@ -52,62 +53,21 @@ export const metadata: Metadata = {
   },
 };
 
-function serializeJsonLd(data: object) {
-  return JSON.stringify(data).replace(/</g, "\\u003c");
-}
 
 export default function TileCalculatorPage() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Ana Sayfa",
-        item: buildSiteUrl("/"),
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Fayans Hesaplama",
-        item: buildSiteUrl("/fayans-hesaplama"),
-      },
-    ],
-  };
 
   return (
-    <main className="all-conversions-page">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd(buildFaqSchema(faqItems)),
-        }}
-      />
-
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Sayfa yolu">
-          <Link href="/">Ana Sayfa</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>Fayans Hesaplama</span>
-        </nav>
-
-        <header className="all-conversions-header">
-          <h1>Fayans Hesaplama</h1>
-        </header>
-
-        <TileCalculator />
-
-        <section className="category-article-content">
+    <AracSayfasi
+      yol="/fayans-hesaplama"
+      baslik="Fayans Hesaplama"
+      hesap={<TileCalculator />}
+      sss={faqItems}
+      serbestIcindekiler={[{"id":"kutu","baslik":"Kaç kutu fayans almalıyım?"},{"id":"kutu-tablosu","baslik":"1 kutu fayans kaç m²?"},{"id":"adet","baslik":"1 adet fayans kaç m², 1 m²'ye kaç adet gider?"},{"id":"fayans-hesabinda-fire-payi-neden-onemli","baslik":"Fayans hesabında fire payı neden önemli?"},{"id":"hesaplama-nasil-yapiliyor","baslik":"Hesaplama nasıl yapılıyor?"},{"id":"kaynaklar","baslik":"Kaynaklar"}]}
+      serbestIcerik={
+        <>
           <h2 id="kutu">Kaç kutu fayans almalıyım?</h2>
           <p>Fayans kutuyla satılır. Alanı, fayans ölçüsünü ve kutudaki adedi girin; fire dahil adet ve kutu sayısını görün.</p>
-        </section>
-        <FayansKutuHesabi />
-        <section className="category-article-content">
+          <FayansKutuHesabi />
           <h2 id="kutu-tablosu">1 kutu fayans kaç m²?</h2>
           <div className="holiday-table-wrap">
             <table className="holiday-table">
@@ -139,7 +99,6 @@ export default function TileCalculatorPage() {
             </table>
           </div>
           <p>Kutu içerikleri üreticiye göre değişebilir; satın alırken kutunun üzerindeki m² ve adet bilgisini esas alın.</p>
-
           <h2 id="adet">1 adet fayans kaç m², 1 m²&apos;ye kaç adet gider?</h2>
           <p>
             Kutu içeriği markaya göre değişse de tek bir parçanın alanı sabittir. Döşeme yüzeyi derzsiz hesaplandı; 2–3 mm
@@ -174,10 +133,7 @@ export default function TileCalculatorPage() {
             kenardan kesilen her parça kutunun önemli bir bölümünü harcar. Küçük banyolarda büyük ebat seçilecekse fire payını
             %15&apos;e çıkarmak daha güvenlidir.
           </p>
-        </section>
-
-        <section className="category-article-content">
-          <h2>Fayans hesabında fire payı neden önemli?</h2>
+          <h2 id="fayans-hesabinda-fire-payi-neden-onemli">Fayans hesabında fire payı neden önemli?</h2>
           <p>
             Fayans döşerken duvar/zemin kenarlarında ve köşelerde kesim
             yapmak gerekir; bu kesimlerden çıkan parçalar genelde tekrar
@@ -187,8 +143,7 @@ export default function TileCalculatorPage() {
             desenli döşemelerde %15-%20 fire payı eklemek pratikte daha
             gerçekçi sonuç verir.
           </p>
-
-          <h2>Hesaplama nasıl yapılıyor?</h2>
+          <h2 id="hesaplama-nasil-yapiliyor">Hesaplama nasıl yapılıyor?</h2>
           <p>
             Önce girdiğin en × boy ölçüsünden 1 fayansın kapladığı alan
             (m²) bulunur. Kaplanacak alan, seçtiğin fire payı oranıyla
@@ -203,17 +158,7 @@ export default function TileCalculatorPage() {
             geçerken buradaki &quot;fire dahil toplam alan&quot; sonucunu
             kutu başına düşen m² değerine bölmen yeterli.
           </p>
-
-          <h2>Sık Sorulan Sorular</h2>
-          {faqItems.map((item) => (
-            <p key={item.question}>
-              <strong>{item.question}</strong>
-              <br />
-              {item.answer}
-            </p>
-          ))}
-
-          <h2>İlgili araçlar</h2>
+          <h2 id="ilgili-araclar">İlgili araçlar</h2>
           <p>
             Aynı yenileme projesinde işine yarayabilecek diğer araçlar:{" "}
             <Link href="/boya-hesaplama">Boya Hesaplama</Link>,{" "}
@@ -222,15 +167,14 @@ export default function TileCalculatorPage() {
             <Link href="/parke-hesaplama">Parke Hesaplama</Link>,{" "}
             <Link href="/siva-hesaplama">Sıva Hesaplama</Link>.
           </p>
-
-          <h2>Kaynaklar</h2>
+          <h2 id="kaynaklar">Kaynaklar</h2>
           <p>
             Fire payı aralıkları, yaygın seramik/fayans üreticilerinin ve
             uygulama ustalarının döşeme rehberlerinde önerdiği pratik
             değerlerden derlenmiştir.
           </p>
-        </section>
-      </div>
-    </main>
+        </>
+      }
+    />
   );
 }

@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import CuttingSpeedCalculator from "../components/CuttingSpeedCalculator";
-import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import type { FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
 import EngineeringNextSteps from "../components/engineering/EngineeringNextSteps";
 import { ENGINEERING_FLOWS } from "../converter/engineeringFlows";
+import AracSayfasi from "@/app/components/yeni/AracSayfasi";
 
 const faqItems: FaqItem[] = [
   {
@@ -41,44 +42,19 @@ export const metadata: Metadata = {
   },
 };
 
-function serializeJsonLd(data: object) {
-  return JSON.stringify(data).replace(/</g, "\\u003c");
-}
 
 export default function CuttingSpeedCalculatorPage() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: buildSiteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "Tüm Hesaplamalar", item: buildSiteUrl("/hesaplayicilar") },
-      { "@type": "ListItem", position: 3, name: "Teknik ve Mühendislik", item: buildSiteUrl("/hesaplayicilar#teknik") },
-      { "@type": "ListItem", position: 4, name: "Kesme Hızı - Devir Hesaplama", item: buildSiteUrl("/kesme-hizi-devir-hesaplama") },
-    ],
-  };
 
   return (
-    <main className="all-conversions-page">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(buildFaqSchema(faqItems)) }} />
-
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Sayfa yolu">
-          <Link href="/">Ana Sayfa</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/hesaplayicilar#teknik">Teknik ve Mühendislik</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>Kesme Hızı - Devir Hesaplama</span>
-        </nav>
-
-        <header className="all-conversions-header">
-          <h1>Kesme Hızı - Devir (RPM) Hesaplama</h1>
-        </header>
-
-        <CuttingSpeedCalculator />
-
-        <section className="category-article-content">
-          <h2>Örnek hesap</h2>
+    <AracSayfasi
+      yol="/kesme-hizi-devir-hesaplama"
+      baslik="Kesme Hızı - Devir (RPM) Hesaplama"
+      hesap={<CuttingSpeedCalculator />}
+      sss={faqItems}
+      serbestIcindekiler={[{"id":"ornek-hesap","baslik":"Örnek hesap"},{"id":"capa-ve-kesme-hizina-gore-devir","baslik":"Çapa ve kesme hızına göre devir tablosu (dev/dk)"},{"id":"devirden-ilerleme-hizina","baslik":"Devirden ilerleme hızına"},{"id":"sik-yapilan-hatalar","baslik":"Sık yapılan hatalar"},{"id":"kaynaklar","baslik":"Kaynaklar"}]}
+      serbestIcerik={
+        <>
+          <h2 id="ornek-hesap">Örnek hesap</h2>
           <p>
             Ø40 mm çaplı bir parça, takım kataloğunda önerilen 150 m/dk kesme hızıyla tornalanacak. Devir = 150 × 1000 / (3,1416 × 40) ≈{" "}
             <strong>1194 dev/dk</strong>. Tezgâh kademeli ise en yakın alt kademe seçilir; daha yüksek kademe takım ömrünü kısaltır.
@@ -86,8 +62,7 @@ export default function CuttingSpeedCalculatorPage() {
             hızı 3,1416 × 10 × 3000 / 1000 ≈ 94 m/dk&apos;dır. Bu değer katalogdaki önerinin altında kalıyorsa ilerleme ve talaş derinliği
             buna göre ayarlanır.
           </p>
-
-          <h2>Çapa ve kesme hızına göre devir tablosu (dev/dk)</h2>
+          <h2 id="capa-ve-kesme-hizina-gore-devir">Çapa ve kesme hızına göre devir tablosu (dev/dk)</h2>
           <div className="conversion-table-wrap">
             <table className="conversion-table">
               <thead>
@@ -114,15 +89,13 @@ export default function CuttingSpeedCalculatorPage() {
             Tablodaki kesme hızları yalnızca hesap örneğidir. Doğru değer iş parçası malzemesine, takım malzemesine (HSS takımlarda
             karbür takımlara göre belirgin biçimde düşüktür), kaplamaya ve soğutmaya bağlıdır ve takım üreticisinin kataloğundan alınmalıdır.
           </p>
-
-          <h2>Devirden ilerleme hızına</h2>
+          <h2 id="devirden-ilerleme-hizina">Devirden ilerleme hızına</h2>
           <p>
             Frezede devir bulunduktan sonra tabla ilerleme hızı hesaplanır: Vf (mm/dk) = fz × z × n. Burada fz diş başına ilerleme (mm),
             z kesici ağız sayısı, n devirdir. Örneğin 4 ağızlı, diş başına 0,05 mm ilerlemeyle çalışan bir freze 1194 dev/dk&apos;da 0,05 × 4 ×
             1194 ≈ 239 mm/dk ilerler. Tornada ilerleme dev başına verilir (mm/dev).
           </p>
-
-          <h2>Sık yapılan hatalar</h2>
+          <h2 id="sik-yapilan-hatalar">Sık yapılan hatalar</h2>
           <ul>
             <li>
               <strong>Tornada takım çapını kullanmak:</strong> Tornada formüldeki çap iş parçasının işlenen çapıdır; frezede ve delmede ise
@@ -137,19 +110,8 @@ export default function CuttingSpeedCalculatorPage() {
               katsayı farklıdır.
             </li>
           </ul>
-
-          <h2>Sık Sorulan Sorular</h2>
-          {faqItems.map((item) => (
-            <p key={item.question}>
-              <strong>{item.question}</strong>
-              <br />
-              {item.answer}
-            </p>
-          ))}
-
           <EngineeringNextSteps links={ENGINEERING_FLOWS["/kesme-hizi-devir-hesaplama"]} />
-
-          <h2>İlgili araçlar</h2>
+          <h2 id="ilgili-araclar">İlgili araçlar</h2>
           <p>
             Diğer CNC/torna araçları için{" "}
             <Link href="/hesaplayicilar#teknik">Teknik ve Mühendislik</Link>
@@ -157,15 +119,14 @@ export default function CuttingSpeedCalculatorPage() {
             <Link href="/kategoriler/uzunluk">Uzunluk Dönüşümleri</Link>
             {" "}sayfasına bakabilirsin.
           </p>
-
-          <h2>Kaynaklar</h2>
+          <h2 id="kaynaklar">Kaynaklar</h2>
           <p>
             Formül, torna ve freze işlemlerinde standart kabul edilen
             kesme hızı-devir bağıntısına dayanır. Kesici takım
             üreticisinin katalog değerleri her zaman esas alınmalıdır.
           </p>
-        </section>
-      </div>
-    </main>
+        </>
+      }
+    />
   );
 }

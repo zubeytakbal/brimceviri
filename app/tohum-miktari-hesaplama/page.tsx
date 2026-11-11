@@ -3,8 +3,9 @@ import Link from "@/app/components/SiteLink";
 import { HasatHesaplama } from "../components/HayvancilikAraclari";
 import SeedRateCalculator from "../components/SeedRateCalculator";
 import { URUNLER } from "../converter/ekimNormu";
-import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import type { FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
+import AracSayfasi from "@/app/components/yeni/AracSayfasi";
 
 const kg = (n: number) => n.toLocaleString("tr-TR", { maximumFractionDigits: 1 });
 const urun = (id: string) => URUNLER.find((u) => u.id === id)!;
@@ -60,43 +61,18 @@ export const metadata: Metadata = {
   },
 };
 
-function serializeJsonLd(data: object) {
-  return JSON.stringify(data).replace(/</g, "\\u003c");
-}
 
 export default function SeedRateCalculatorPage() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: buildSiteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "Tüm Hesaplamalar", item: buildSiteUrl("/hesaplayicilar") },
-      { "@type": "ListItem", position: 3, name: "Tarım ve Hayvancılık", item: buildSiteUrl("/hesaplayicilar#tarim") },
-      { "@type": "ListItem", position: 4, name: "Tohum Miktarı Hesaplama", item: buildSiteUrl("/tohum-miktari-hesaplama") },
-    ],
-  };
 
   return (
-    <main className="all-conversions-page">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(buildFaqSchema(faqItems)) }} />
-
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Sayfa yolu">
-          <Link href="/">Ana Sayfa</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <Link href="/hesaplayicilar#tarim">Tarım ve Hayvancılık</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>Tohum Miktarı Hesaplama</span>
-        </nav>
-
-        <header className="all-conversions-header">
-          <h1>Tohum Miktarı ve Verim Hesaplama</h1>
-        </header>
-
-        <SeedRateCalculator />
-
-        <section className="category-article-content">
+    <AracSayfasi
+      yol="/tohum-miktari-hesaplama"
+      baslik="Tohum Miktarı ve Verim Hesaplama"
+      hesap={<SeedRateCalculator />}
+      sss={faqItems}
+      serbestIcindekiler={[{"id":"dekara","baslik":"Buğday ve arpa dekara kaç kilo ekilir?"},{"id":"tablo","baslik":"Ürünlere göre dekara tohum ve verim"},{"id":"hasat","baslik":"Hasat: dekara verimden toplam ürün"},{"id":"kaynaklar","baslik":"Kaynaklar"}]}
+      serbestIcerik={
+        <>
           <h2 id="dekara">Buğday ve arpa dekara kaç kilo ekilir?</h2>
           <p>
             <strong>Buğday dekara (dönüme) {aralik("bugday")} kg, arpa {aralik("arpa")} kg ekilir.</strong> Nohut için{" "}
@@ -128,7 +104,6 @@ export default function SeedRateCalculatorPage() {
             </table>
           </div>
           <p>Tablo her ürünün aralığının ortasıyla hesaplandı; 50 kg&apos;lık çuval sayısı için sonucu 50&apos;ye bölün.</p>
-
           <h2 id="tablo">Ürünlere göre dekara tohum ve verim</h2>
           <div className="holiday-table-wrap">
             <table className="holiday-table">
@@ -160,22 +135,9 @@ export default function SeedRateCalculatorPage() {
             Değerler Türkiye için tipik aralıklardır; çeşit, bölge, ekim zamanı, toprak ve sulamaya göre değişir. &quot;Destek tavanı&quot;, sertifikalı tohum
             kullanım desteğinde dekar başına esas alınan en yüksek tohum miktarıdır. Kendi tarlanız için il veya ilçe tarım müdürlüğünün önerisini esas alın.
           </p>
-
           <h2 id="hasat">Hasat: dekara verimden toplam ürün</h2>
-        </section>
-        <HasatHesaplama />
-
-        <section className="category-article-content">
-          <h2>Sık Sorulan Sorular</h2>
-          {faqItems.map((item) => (
-            <p key={item.question}>
-              <strong>{item.question}</strong>
-              <br />
-              {item.answer}
-            </p>
-          ))}
-
-          <h2>İlgili araçlar</h2>
+          <HasatHesaplama />
+          <h2 id="ilgili-araclar">İlgili araçlar</h2>
           <p>
             Diğer çiftçi araçları için{" "}
             <Link href="/hesaplayicilar#tarim">Tarım ve Hayvancılık</Link>
@@ -183,16 +145,15 @@ export default function SeedRateCalculatorPage() {
             <Link href="/gubre-ihtiyaci-hesaplama">Gübre İhtiyacı Hesaplama</Link>
             {" "}sayfasına bakabilirsin.
           </p>
-
-          <h2>Kaynaklar</h2>
+          <h2 id="kaynaklar">Kaynaklar</h2>
           <p>
             Formül, tarımda standart kabul edilen bin dane ağırlığı
             (TDW) tabanlı tohumluk hesabına dayanır. Bu araç
             tarımsal danışmanlık yerine geçmez; hedef bitki sayısını
             veya çeşit seçimini belirlemez.
           </p>
-        </section>
-      </div>
-    </main>
+        </>
+      }
+    />
   );
 }

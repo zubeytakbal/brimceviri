@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import MaterialWeightCalculator from "../components/MaterialWeightCalculator";
-import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import type { FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
 import EngineeringNextSteps from "../components/engineering/EngineeringNextSteps";
 import { ENGINEERING_FLOWS } from "../converter/engineeringFlows";
+import AracSayfasi from "@/app/components/yeni/AracSayfasi";
 
 const faqItems: FaqItem[] = [
   {
@@ -42,51 +43,20 @@ export const metadata: Metadata = {
   },
 };
 
-function serializeJsonLd(data: object) {
-  return JSON.stringify(data).replace(/</g, "\\u003c");
-}
 
 export default function MaterialWeightCalculatorPage() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: buildSiteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "Malzeme Yoğunlukları Tablosu ve Ağırlık Hesaplama", item: buildSiteUrl("/malzeme-agirligi-hesaplama") },
-    ],
-  };
 
   return (
-    <main className="all-conversions-page">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(buildFaqSchema(faqItems)) }} />
-
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Sayfa yolu">
-          <Link href="/">Ana Sayfa</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>Malzeme Yoğunlukları Tablosu ve Ağırlık Hesaplama</span>
-        </nav>
-
-        <header className="all-conversions-header">
-          <h1>Malzeme Yoğunlukları Tablosu ve Ağırlık Hesaplama</h1>
-        </header>
-
-        <MaterialWeightCalculator />
-
-        <section className="category-article-content">
-          <h2>Sık Sorulan Sorular</h2>
-          {faqItems.map((item) => (
-            <p key={item.question}>
-              <strong>{item.question}</strong>
-              <br />
-              {item.answer}
-            </p>
-          ))}
-
+    <AracSayfasi
+      yol="/malzeme-agirligi-hesaplama"
+      baslik="Malzeme Yoğunlukları Tablosu ve Ağırlık Hesaplama"
+      hesap={<MaterialWeightCalculator />}
+      sss={faqItems}
+      serbestIcindekiler={[{"id":"kaynaklar","baslik":"Kaynaklar"}]}
+      serbestIcerik={
+        <>
           <EngineeringNextSteps links={ENGINEERING_FLOWS["/malzeme-agirligi-hesaplama"]} />
-
-          <h2>İlgili araçlar</h2>
+          <h2 id="ilgili-araclar">İlgili araçlar</h2>
           <p>
             Kaynak işleri için{" "}
             <Link href="/hesaplayicilar#teknik">Teknik ve Mühendislik</Link>
@@ -109,15 +79,14 @@ export default function MaterialWeightCalculatorPage() {
             <Link href="/kutu-profil-agirlik-hesaplama">Kutu Profil</Link>
             {" "}ağırlık hesaplayıcıları ölçüden doğrudan kg/m verir.
           </p>
-
-          <h2>Kaynaklar</h2>
+          <h2 id="kaynaklar">Kaynaklar</h2>
           <p>
             Yoğunluk değerleri, ~20°C için yaygın kabul gören genel
             mühendislik referans değerleridir; alaşım ve tür farklarına
             göre küçük sapmalar olabilir.
           </p>
-        </section>
-      </div>
-    </main>
+        </>
+      }
+    />
   );
 }

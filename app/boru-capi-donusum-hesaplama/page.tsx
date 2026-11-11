@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "@/app/components/SiteLink";
 import PipeNominalSizeCalculator from "../components/PipeNominalSizeCalculator";
-import { buildFaqSchema, type FaqItem } from "../converter/faqSchema";
+import type { FaqItem } from "../converter/faqSchema";
 import { buildSiteUrl } from "../siteConfig";
 import EngineeringNextSteps from "../components/engineering/EngineeringNextSteps";
 import { ENGINEERING_FLOWS } from "../converter/engineeringFlows";
+import AracSayfasi from "@/app/components/yeni/AracSayfasi";
 
 const faqItems: FaqItem[] = [
   {
@@ -41,51 +42,20 @@ export const metadata: Metadata = {
   },
 };
 
-function serializeJsonLd(data: object) {
-  return JSON.stringify(data).replace(/</g, "\\u003c");
-}
 
 export default function PipeNominalSizePage() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: buildSiteUrl("/") },
-      { "@type": "ListItem", position: 2, name: "Boru Çapı Dönüşüm Hesaplama", item: buildSiteUrl("/boru-capi-donusum-hesaplama") },
-    ],
-  };
 
   return (
-    <main className="all-conversions-page">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(buildFaqSchema(faqItems)) }} />
-
-      <div className="all-conversions-shell">
-        <nav className="breadcrumbs" aria-label="Sayfa yolu">
-          <Link href="/">Ana Sayfa</Link>
-          <span aria-hidden="true">&rsaquo;</span>
-          <span>Boru Çapı Dönüşüm Hesaplama</span>
-        </nav>
-
-        <header className="all-conversions-header">
-          <h1>Boru Çapı Dönüşüm Hesaplama</h1>
-        </header>
-
-        <PipeNominalSizeCalculator />
-
-        <section className="category-article-content">
-          <h2>Sık Sorulan Sorular</h2>
-          {faqItems.map((item) => (
-            <p key={item.question}>
-              <strong>{item.question}</strong>
-              <br />
-              {item.answer}
-            </p>
-          ))}
-
+    <AracSayfasi
+      yol="/boru-capi-donusum-hesaplama"
+      baslik="Boru Çapı Dönüşüm Hesaplama"
+      hesap={<PipeNominalSizeCalculator />}
+      sss={faqItems}
+      serbestIcindekiler={[{"id":"kaynaklar","baslik":"Kaynaklar"}]}
+      serbestIcerik={
+        <>
           <EngineeringNextSteps links={ENGINEERING_FLOWS["/boru-capi-donusum-hesaplama"]} />
-
-          <h2>İlgili araçlar</h2>
+          <h2 id="ilgili-araclar">İlgili araçlar</h2>
           <p>
             Tesisatçı işleri için{" "}
             <Link href="/hesaplayicilar#teknik">Teknik ve Mühendislik</Link>
@@ -93,15 +63,14 @@ export default function PipeNominalSizePage() {
             <Link href="/kategoriler/uzunluk">Uzunluk Dönüşümleri</Link>
             {" "}sayfasına bakabilirsin.
           </p>
-
-          <h2>Kaynaklar</h2>
+          <h2 id="kaynaklar">Kaynaklar</h2>
           <p>
             Dış çap değerleri EN ISO 6708/DIN standardına dayanır ve
             iki bağımsız kaynaktan (Esko Paslanmaz, Borsel Boru boru
             çapı tabloları) çapraz doğrulanmıştır.
           </p>
-        </section>
-      </div>
-    </main>
+        </>
+      }
+    />
   );
 }

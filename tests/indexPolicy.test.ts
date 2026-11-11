@@ -2,9 +2,6 @@ import { describe, expect, it } from "vitest";
 import { isClosedPath } from "../app/indexPolicy";
 
 describe("dizin politikası", () => {
-  it("kapalı diller tamamen kapalı", () => {
-    expect(isClosedPath("/it")).toBe(true);
-  });
   it("tıklama alan sayfa her dilde açık", () => {
     expect(isClosedPath("/en/24k-gold-to-22k-gold")).toBe(false);
   });
@@ -13,12 +10,9 @@ describe("dizin politikası", () => {
     expect(isClosedPath("/en/privacy")).toBe(false);
     expect(isClosedPath("/de/datenschutz")).toBe(false);
   });
-  it("İngilizce, Almanca, İspanyolca ve Arapça tamamen açık", () => {
+  it("İngilizce ve Almanca tamamen açık", () => {
     expect(isClosedPath("/en/meters-to-centimeters")).toBe(false);
     expect(isClosedPath("/de/kalenderwoche")).toBe(false);
-    expect(isClosedPath("/es/metro-centimetro")).toBe(false);
-    expect(isClosedPath("/ar/hijri-age-calculator")).toBe(false);
-    expect(isClosedPath("/bn/categories")).toBe(true);
   });
   it("Türkçe sayfaların hepsi açık", () => {
     expect(isClosedPath("/")).toBe(false);

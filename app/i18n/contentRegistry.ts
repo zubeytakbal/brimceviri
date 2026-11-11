@@ -11,20 +11,7 @@ import { germanCategoryPages } from "../converter/localizedGermanCategoryPages";
 import { germanConversionPages } from "../converter/localizedGermanConversionPages";
 import { germanUnitPages } from "../converter/localizedGermanUnitPages";
 import { englishUnitPages } from "../converter/localizedUnitPages";
-import { bengaliCategoryPages } from "../converter/localizedBengaliCategoryPages";
-import { bengaliConversionPages } from "../converter/localizedBengaliConversionPages";
 import { unitPages } from "../converter/unitPages";
-import { arabicCategoryPages } from "../converter/localizedArabicCategoryPages";
-import { frenchCategoryPages } from "../converter/localizedFrenchCategoryPages";
-import { frenchConversionPages } from "../converter/localizedFrenchConversionPages";
-import { spanishCategoryPages } from "../converter/localizedSpanishCategoryPages";
-import { spanishConversionPages } from "../converter/localizedSpanishConversionPages";
-import { portugueseCategoryPages } from "../converter/localizedPortugueseCategoryPages";
-import { portugueseConversionPages } from "../converter/localizedPortugueseConversionPages";
-import { italianCategoryPages } from "../converter/localizedItalianCategoryPages";
-import { italianConversionPages } from "../converter/localizedItalianConversionPages";
-import { nederlandsCategoryPages } from "../converter/localizedNederlandsCategoryPages";
-import { nederlandsConversionPages } from "../converter/localizedNederlandsConversionPages";
 
 export type RouteCollectionKey =
   | "units"
@@ -64,55 +51,6 @@ const localizedCategorySummariesByLocale: Record<
     category: page.category,
     title: page.title,
   })),
-  ar: englishCategoryPages.map((page) => {
-    const arabicPage = arabicCategoryPages.find(
-      (item) => item.sourceSlug === page.sourceSlug
-    );
-
-    return {
-      sourceSlug: page.sourceSlug,
-      slug: page.slug,
-      category: page.category,
-      title: arabicPage?.title ?? page.title,
-    };
-  }),
-  bn: bengaliCategoryPages.map((page) => ({
-    sourceSlug: page.sourceSlug,
-    slug: page.slug,
-    category: page.category,
-    title: page.title,
-  })),
-  fr: frenchCategoryPages.map((page) => ({
-    sourceSlug: page.sourceSlug,
-    slug: page.slug,
-    category: page.category,
-    title: page.title,
-  })),
-  es: spanishCategoryPages.map((page) => ({
-    sourceSlug: page.sourceSlug,
-    slug: page.slug,
-    category: page.category,
-    title: page.title,
-  })),
-  pt: portugueseCategoryPages.map((page) => ({
-    sourceSlug: page.sourceSlug,
-    slug: page.slug,
-    category: page.category,
-    title: page.title,
-  })),
-  it: italianCategoryPages.map((page) => ({
-    sourceSlug: page.sourceSlug,
-    slug: page.slug,
-    category: page.category,
-    title: page.title,
-  })),
-  nl: nederlandsCategoryPages.map((page) => ({
-    sourceSlug: page.sourceSlug,
-    slug: page.slug,
-    category: page.category,
-    title: page.title,
-  })),
-  ru: [],
 };
 
 const localizedSlugEntriesByLocale: Record<
@@ -133,14 +71,6 @@ const localizedSlugEntriesByLocale: Record<
       sourceSlug: page.sourceSlug,
       slug: page.slug,
     })),
-    ar: [],
-    bn: [],
-    fr: [],
-    es: [],
-    pt: [],
-    it: [],
-    nl: [],
-    ru: [],
   },
   categories: {
     tr: categoryPages.map((page) => ({
@@ -155,35 +85,6 @@ const localizedSlugEntriesByLocale: Record<
       sourceSlug: page.sourceSlug,
       slug: page.slug,
     })),
-    ar: englishCategoryPages.map((page) => ({
-      sourceSlug: page.sourceSlug,
-      slug: page.slug,
-    })),
-    bn: bengaliCategoryPages.map((page) => ({
-      sourceSlug: page.sourceSlug,
-      slug: page.slug,
-    })),
-    fr: frenchCategoryPages.map((page) => ({
-      sourceSlug: page.sourceSlug,
-      slug: page.slug,
-    })),
-    es: spanishCategoryPages.map((page) => ({
-      sourceSlug: page.sourceSlug,
-      slug: page.slug,
-    })),
-    pt: portugueseCategoryPages.map((page) => ({
-      sourceSlug: page.sourceSlug,
-      slug: page.slug,
-    })),
-    it: italianCategoryPages.map((page) => ({
-      sourceSlug: page.sourceSlug,
-      slug: page.slug,
-    })),
-    nl: nederlandsCategoryPages.map((page) => ({
-      sourceSlug: page.sourceSlug,
-      slug: page.slug,
-    })),
-    ru: [],
   },
   calculators: {
     tr: calculatorPages.map((page) => ({
@@ -198,17 +99,6 @@ const localizedSlugEntriesByLocale: Record<
       sourceSlug: page.sourceSlug,
       slug: page.slug,
     })),
-    ar: englishCalculatorPages.map((page) => ({
-      sourceSlug: page.sourceSlug,
-      slug: page.slug,
-    })),
-    bn: [],
-    fr: [],
-    es: [],
-    pt: [],
-    it: [],
-    nl: [],
-    ru: [],
   },
   conversions: {
     // Ters yönü birleştirilen Türkçe adresler yayında değil; diğer diller onlara hreflang vermesin.
@@ -224,35 +114,6 @@ const localizedSlugEntriesByLocale: Record<
       sourceSlug: page.sourceSlug,
       slug: page.slug,
     })),
-    ar: englishConversionPages.map((page) => ({
-      sourceSlug: page.sourceSlug,
-      slug: page.slug,
-    })),
-    bn: bengaliConversionPages.map((page) => ({
-      sourceSlug: page.sourceSlug,
-      slug: page.slug,
-    })),
-    fr: frenchConversionPages.map((page) => ({
-      sourceSlug: page.sourceSlug,
-      slug: page.slug,
-    })),
-    es: spanishConversionPages.map((page) => ({
-      sourceSlug: page.sourceSlug,
-      slug: page.slug,
-    })),
-    pt: portugueseConversionPages.map((page) => ({
-      sourceSlug: page.sourceSlug,
-      slug: page.slug,
-    })),
-    it: italianConversionPages.map((page) => ({
-      sourceSlug: page.sourceSlug,
-      slug: page.slug,
-    })),
-    nl: nederlandsConversionPages.map((page) => ({
-      sourceSlug: page.sourceSlug,
-      slug: page.slug,
-    })),
-    ru: [],
   },
 };
 

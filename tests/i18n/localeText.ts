@@ -10,13 +10,6 @@ export const ROOT = path.resolve(__dirname, "../..");
 export const LOCALES = {
   de: "German",
   en: "English",
-  fr: "French",
-  es: "Spanish",
-  it: "Italian",
-  nl: "Nederlands",
-  ar: "Arabic",
-  bn: "Bengali",
-  pt: "Portuguese",
 } as const;
 
 export type Locale = keyof typeof LOCALES;

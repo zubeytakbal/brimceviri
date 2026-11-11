@@ -1,9 +1,7 @@
 // "Tum birimler" panelini her dilin kategori ve cift sayfalarina ayni
 // sekilde baglamak icin sunucu bileseni: birim etiketlerini sayfanin
 // dilinde hazirlar ve satirlari o dildeki cift sayfalarina baglar.
-import { getLocalizedUnitOptions } from "../converter/localizedUnitOptions";
 import { englishDisplaySymbol } from "../converter/englishUnitDisplay";
-import { getArabicUnitName } from "../i18n/arabicLocalization";
 import AllUnitsPanel from "./AllUnitsPanel";
 import { buildPairHrefs } from "./allUnitsPanelData";
 import { getCategoryUnitOptions } from "./categoryUnitOptions";
@@ -13,20 +11,6 @@ export type AllUnitsLocale = Exclude<SiteNumberLocale, "ru">;
 
 export function getPanelUnitOptions(category: string, locale: AllUnitsLocale) {
   switch (locale) {
-    case "bn":
-    case "es":
-    case "fr":
-    case "it":
-    case "pt":
-      return getLocalizedUnitOptions(category, locale);
-    case "ar":
-      return getCategoryUnitOptions(category, "en").map((option) => ({
-        ...option,
-        label: getArabicUnitName({
-          englishName: option.label,
-          symbol: option.value,
-        }),
-      }));
     case "en":
       return getCategoryUnitOptions(category, "en").map((option) => ({
         ...option,

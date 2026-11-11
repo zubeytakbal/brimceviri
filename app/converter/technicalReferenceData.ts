@@ -1,4 +1,4 @@
-export type TechnicalReferenceLocale = "tr" | "en" | "de" | "ar";
+export type TechnicalReferenceLocale = "tr" | "en" | "de";
 
 export type TechnicalReferenceSource = {
   id: string;

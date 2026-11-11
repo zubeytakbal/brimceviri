@@ -66,7 +66,6 @@ describe("Türkçe üst menü", () => {
   });
 
   it("diğer dillerin menüsü değişmedi", () => {
-    expect(getMenuGroups("fr").map((group) => group.id)).toEqual(["conversions"]);
     expect(getMenuGroups("en").map((group) => group.id)).toEqual(["conversions", "calculators", "time"]);
   });
   it("İngilizce menü: tarih ve saat hesaplayıcıları var", () => {

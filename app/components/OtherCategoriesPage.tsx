@@ -32,7 +32,7 @@ type OtherTool = {
   groupId?: string;
 };
 
-type Locale = "tr" | "en" | "de" | "ar";
+type Locale = "tr" | "en" | "de";
 
 type AlternateLink = {
   href: string;
@@ -101,25 +101,6 @@ const pageCopy = {
     categoriesTitle: "Kategorien",
     otherLanguagesTitle: "Weitere Sprachen",
   },
-  ar: {
-    homeHref: "/ar",
-    homeLabel: "الرئيسية",
-    breadcrumbAriaLabel: "مسار الصفحة",
-    title: "أدوات إضافية",
-    description:
-      "اكتشف مجموعة من الحاسبات العملية التي بدأنا إطلاقها بالعربية بشكل تدريجي ومنظم.",
-    searchLabel: "ابحث في الأدوات",
-    searchPlaceholder: "مثال: ضريبة، نوم، طلاء، جري",
-    searchButton: "افتح",
-    searchHint:
-      "ابحث باسم الأداة أو نوع الاستخدام للوصول بسرعة إلى الصفحة المناسبة.",
-    searchResultsTitle: "نتائج البحث",
-    searchResultsHint: "اضغط Enter لفتح أول نتيجة.",
-    searchEmpty: "لم يتم العثور على نتيجة مطابقة.",
-    toolsTitle: "الأدوات",
-    categoriesTitle: "الفئات",
-    otherLanguagesTitle: "لغات أخرى",
-  },
 } as const;
 
 function CardIcon({ name }: { name: SiteIconName }) {
@@ -140,9 +121,7 @@ function normalizeSearchText(value: string, locale: Locale) {
       ? "tr-TR"
       : locale === "de"
         ? "de-DE"
-        : locale === "ar"
-          ? "ar"
-          : "en-US";
+        : "en-US";
 
   return value
     .toLocaleLowerCase(localeName)

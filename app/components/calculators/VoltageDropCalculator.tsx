@@ -100,30 +100,6 @@ const copy = {
       "Der Spannungsfall überschreitet eine übliche Projektgrenze (ca. 5 %). Erwägen Sie einen größeren Querschnitt.",
     clear: "Werte zurücksetzen",
   },
-  ar: {
-    systemTypeLabel: "نوع النظام",
-    singlePhase: "أحادي الطور",
-    threePhase: "ثلاثي الطور",
-    dc: "تيار مستمر",
-    materialLabel: "مادة الموصل",
-    copper: "نحاس",
-    aluminum: "ألمنيوم",
-    sourceVoltageValue: "جهد المصدر",
-    currentValue: "تيار الخط",
-    lengthValue: "طول الكابل (اتجاه واحد)",
-    crossSectionValue: "مساحة مقطع الموصل",
-    dropValue: "هبوط الجهد",
-    dropPercent: "نسبة الهبوط",
-    endVoltage: "الجهد عند نهاية الخط",
-    resultLive: "نتيجة الحساب",
-    automaticResultUnit: "وحدة النتيجة التلقائية",
-    formula: "المعادلة بعد التعويض",
-    siEquivalent: "مكافئ SI",
-    resistivityNote: "المقاومية المستخدمة",
-    severeWarning:
-      "يتجاوز هبوط الجهد حدا شائعا في المشاريع (حوالي 5%). فكر في زيادة مساحة المقطع.",
-    clear: "مسح القيم",
-  },
 } as const;
 
 export default function VoltageDropCalculator({

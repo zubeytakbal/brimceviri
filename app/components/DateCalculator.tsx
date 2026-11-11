@@ -70,101 +70,6 @@ const copyByLocale: Record<Exclude<Locale, "ru">, DateCopy> = {
       days: "days",
     },
   },
-  fr: {
-    labels: {
-      startDate: "Date de début (date de naissance)",
-      endDate: "Date cible",
-    },
-    emptyState: "Saisissez deux dates valides ; la date cible ne peut pas précéder la date de début.",
-    resultLabels: {
-      difference: "Différence",
-      totalDays: "Nombre total de jours",
-      totalWeeks: "Nombre total de semaines",
-      totalMonths: "Nombre total de mois",
-      nextAnniversary: "Prochain anniversaire",
-    },
-    units: {
-      years: "ans",
-      months: "mois",
-      days: "jours",
-    },
-  },
-  es: {
-    labels: {
-      startDate: "Fecha de inicio (fecha de nacimiento)",
-      endDate: "Fecha objetivo",
-    },
-    emptyState: "Introduce dos fechas válidas; la fecha objetivo no puede ser anterior a la de inicio.",
-    resultLabels: {
-      difference: "Diferencia",
-      totalDays: "Total de días",
-      totalWeeks: "Total de semanas",
-      totalMonths: "Total de meses",
-      nextAnniversary: "Próximo aniversario",
-    },
-    units: {
-      years: "años",
-      months: "meses",
-      days: "días",
-    },
-  },
-  pt: {
-    labels: {
-      startDate: "Data inicial (data de nascimento)",
-      endDate: "Data final",
-    },
-    emptyState: "Digite duas datas válidas; a data final não pode ser anterior à inicial.",
-    resultLabels: {
-      difference: "Diferença",
-      totalDays: "Total de dias",
-      totalWeeks: "Total de semanas",
-      totalMonths: "Total de meses",
-      nextAnniversary: "Próximo aniversário",
-    },
-    units: {
-      years: "anos",
-      months: "meses",
-      days: "dias",
-    },
-  },
-  it: {
-    labels: {
-      startDate: "Data di inizio (data di nascita)",
-      endDate: "Data di arrivo",
-    },
-    emptyState: "Inserisci due date valide; la data di arrivo non può precedere quella di inizio.",
-    resultLabels: {
-      difference: "Differenza",
-      totalDays: "Giorni totali",
-      totalWeeks: "Settimane totali",
-      totalMonths: "Mesi totali",
-      nextAnniversary: "Prossimo anniversario",
-    },
-    units: {
-      years: "anni",
-      months: "mesi",
-      days: "giorni",
-    },
-  },
-  nl: {
-    labels: {
-      startDate: "Begindatum (geboortedatum)",
-      endDate: "Doeldatum",
-    },
-    emptyState: "Voer twee geldige datums in; de doeldatum mag niet vóór de begindatum liggen.",
-    resultLabels: {
-      difference: "Verschil",
-      totalDays: "Totaal aantal dagen",
-      totalWeeks: "Totaal aantal weken",
-      totalMonths: "Totaal aantal maanden",
-      nextAnniversary: "Volgende verjaardag",
-    },
-    units: {
-      years: "jaar",
-      months: "maanden",
-      days: "dagen",
-    },
-  },
   de: {
     labels: {
       startDate: "Startdatum (Geburtsdatum)",
@@ -182,45 +87,6 @@ const copyByLocale: Record<Exclude<Locale, "ru">, DateCopy> = {
       years: "Jahre",
       months: "Monate",
       days: "Tage",
-    },
-  },
-  ar: {
-    labels: {
-      startDate: "تاريخ البداية (تاريخ الميلاد)",
-      endDate: "التاريخ المستهدف",
-    },
-    emptyState:
-      "أدخل تاريخين صحيحين، ويجب ألا يكون التاريخ المستهدف قبل تاريخ البداية.",
-    resultLabels: {
-      difference: "الفرق",
-      totalDays: "إجمالي الأيام",
-      totalWeeks: "إجمالي الأسابيع",
-      totalMonths: "إجمالي الأشهر",
-      nextAnniversary: "الذكرى التالية",
-    },
-    units: {
-      years: "سنة",
-      months: "شهر",
-      days: "يوم",
-    },
-  },
-bn: {
-    labels: {
-      startDate: "শুরুর তারিখ (জন্মতারিখ)",
-      endDate: "লক্ষ্য তারিখ",
-    },
-    emptyState: "দুটি বৈধ তারিখ লিখুন; লক্ষ্য তারিখ শুরুর তারিখের আগে হতে পারবে না।",
-    resultLabels: {
-      difference: "পার্থক্য",
-      totalDays: "মোট দিন",
-      totalWeeks: "মোট সপ্তাহ",
-      totalMonths: "মোট মাস",
-      nextAnniversary: "পরবর্তী বার্ষিকী",
-    },
-    units: {
-      years: "বছর",
-      months: "মাস",
-      days: "দিন",
     },
   },
 };
@@ -242,7 +108,7 @@ export default function DateCalculator({
 }: {
   locale?: Locale;
 }) {
-  const copy = copyByLocale[locale === "ru" ? "en" : locale];
+  const copy = copyByLocale[locale];
   const [startDate, setStartDate] = useState("2000-01-01");
   const [endDate, setEndDate] = useState(() => todayIsoDate());
 

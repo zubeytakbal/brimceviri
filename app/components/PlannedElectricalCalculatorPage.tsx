@@ -24,16 +24,12 @@ export default function PlannedElectricalCalculatorPage({
       ? "/en"
       : locale === "de"
         ? "/de"
-        : locale === "ar"
-          ? "/ar"
-          : "/";
+        : "/";
   const engineeringHubHref =
     locale === "en"
       ? "/en/engineering-calculators"
       : locale === "de"
         ? "/de/ingenieurrechner"
-        : locale === "ar"
-          ? "/ar/engineering-calculators"
         : "/muhendislik-hesaplayicilari";
   const electricalHubHref = getElectricalHubPath(locale);
 

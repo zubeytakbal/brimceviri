@@ -19,7 +19,7 @@ import {
   type PressureUnit,
 } from "./engineeringUnits";
 
-export type CalculatorLocale = "tr" | "en" | "de" | "ar";
+export type CalculatorLocale = "tr" | "en" | "de";
 export type CalculationTarget =
   | "pressure"
   | "force"
@@ -112,9 +112,7 @@ export function formatEngineeringValue(
       ? "tr-TR"
       : locale === "de"
         ? "de-DE"
-        : locale === "ar"
-          ? "ar"
-          : "en-US",
+        : "en-US",
     {
       maximumFractionDigits: 12,
     }
@@ -149,15 +147,6 @@ function getMessages(locale: CalculatorLocale) {
         "Der Druck darf beim Lösen nach der Fläche nicht null sein.",
       areaResult:
         "Diese Eingaben würden zu einer negativen oder undefinierten Fläche führen.",
-    },
-    ar: {
-      missing: "أدخل القيمتين المطلوبتين للحساب.",
-      invalid: "أدخل قيما رقمية صحيحة.",
-      areaPositive: "يجب أن تكون المساحة أكبر من الصفر.",
-      pressureNonZero:
-        "لا يمكن أن يكون الضغط صفرا عند حل المساحة.",
-      areaResult:
-        "هذه القيم تؤدي إلى مساحة سالبة أو غير معرفة.",
     },
   }[locale];
 }

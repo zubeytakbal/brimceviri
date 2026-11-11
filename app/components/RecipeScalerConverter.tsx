@@ -65,115 +65,6 @@ const copy = {
     copiedButton: "Kopiert",
     printButton: "Drucken",
   },
-  ar: {
-    recipeLabel: "وصفتك",
-    placeholder:
-      "2 كوب دقيق\n1 ملعقة صغيرة ملح\n3 ملاعق كبيرة زيت زيتون\n2 بيض\n180 درجة في الفرن",
-    factorLabel: "المعامل",
-    originalServingsLabel: "عدد الحصص الأصلي",
-    targetServingsLabel: "عدد الحصص المطلوب",
-    resultHeading: "الوصفة بعد التعديل",
-    emptyState: "اكتب وصفتك في الأعلى لتظهر النتيجة هنا.",
-    gramPrefix: "~",
-    gramSuffix: "غ",
-    ingredientLabel: "المكون",
-    noMatchOption: "بدون مطابقة",
-    copyButton: "نسخ",
-    copiedButton: "تم النسخ",
-    printButton: "طباعة",
-  },
-  bn: {
-    recipeLabel: "আপনার রেসিপি",
-    placeholder:
-      "২ গ্লাস ময়দা\n১ চা চামচ লবণ\n৩ টেবিল চামচ জলপাই তেল\n২টি ডিম\n১৮০ ডিগ্রি ওভেনে বেক করুন",
-    factorLabel: "গুণক",
-    originalServingsLabel: "আগে কত জনের জন্য ছিল",
-    targetServingsLabel: "এখন কত জনের জন্য চান",
-    resultHeading: "রূপান্তরিত রেসিপি",
-    emptyState: "উপরে আপনার রেসিপি লিখুন, ফলাফল এখানে দেখুন।",
-    gramPrefix: "~",
-    gramSuffix: "গ্রাম",
-    ingredientLabel: "উপাদান",
-    noMatchOption: "কোনো মিল নেই",
-    copyButton: "কপি করুন",
-    copiedButton: "কপি হয়েছে",
-    printButton: "প্রিন্ট করুন",
-  },
-  fr: {
-    recipeLabel: "Votre recette",
-    placeholder:
-      "2 tasses de farine\n1 cuillere a cafe de sel\n3 cuilleres a soupe d'huile d'olive\n2 oeufs\nFour a 180 degres",
-    factorLabel: "Multiplicateur",
-    originalServingsLabel: "Portions d'origine",
-    targetServingsLabel: "Portions souhaitees",
-    resultHeading: "Recette adaptee",
-    emptyState: "Ecrivez votre recette ci-dessus pour voir le resultat ici.",
-    gramPrefix: "~",
-    gramSuffix: "g",
-    ingredientLabel: "Ingredient",
-    noMatchOption: "Aucune correspondance",
-    copyButton: "Copier",
-    copiedButton: "Copie",
-    printButton: "Imprimer",
-  },
-  es: {
-    recipeLabel: "Tu receta",
-    placeholder:
-      "2 tazas de harina\n1 cucharadita de sal\n3 cucharadas de aceite de oliva\n2 huevos\nHorno a 180 grados",
-    factorLabel: "Multiplicador",
-    originalServingsLabel: "Raciones originales",
-    targetServingsLabel: "Raciones deseadas",
-    resultHeading: "Receta ajustada",
-    emptyState: "Escribe tu receta arriba para ver aquí el resultado.",
-    gramPrefix: "~",
-    gramSuffix: "g",
-    ingredientLabel: "Ingrediente",
-    noMatchOption: "Sin coincidencia",
-    copyButton: "Copiar",
-    copiedButton: "Copiado",
-    printButton: "Imprimir",
-  },
-  pt: {
-    recipeLabel: "Sua Receita",
-    placeholder:
-      "2 xícaras de farinha\n1 colher de chá de sal\n3 colheres de sopa de azeite de oliva\n2 ovos\nForno a 180 graus",
-    factorLabel: "Multiplicador",
-    originalServingsLabel: "Porções originais",
-    targetServingsLabel: "Porções desejadas",
-    resultHeading: "Receita Ajustada",
-    emptyState: "Digite sua receita acima para ver o resultado aqui.",
-    gramPrefix: "~",
-    gramSuffix: "g",
-    ingredientLabel: "Ingrediente",
-    noMatchOption: "Sem correspondência",
-    copyButton: "Copiar",
-    copiedButton: "Copiado",
-    printButton: "Imprimir",
-  },
-  it: {
-    recipeLabel: "La Tua Ricetta",
-    placeholder:
-      "2 tazze di farina\n1 cucchiaino di sale\n3 cucchiai di olio d'oliva\n2 uova\nForno a 180 gradi",
-    factorLabel: "Moltiplicatore",
-    originalServingsLabel: "Porzioni originali",
-    targetServingsLabel: "Porzioni desiderate",
-    resultHeading: "Ricetta Adattata",
-    emptyState: "Scrivi la tua ricetta sopra per vedere qui il risultato.",
-    gramPrefix: "~",
-    gramSuffix: "g",
-    ingredientLabel: "Ingrediente",
-    noMatchOption: "Nessuna corrispondenza",
-    copyButton: "Copia",
-    copiedButton: "Copiato",
-    printButton: "Stampa",
-  },
-  nl: {
-    recipeLabel: "Je recept", placeholder: "2 kopjes bloem\n1 theelepel zout\n3 eetlepels olijfolie\n2 eieren\nOven op 180 graden",
-    factorLabel: "Vermenigvuldiger", originalServingsLabel: "Oorspronkelijk aantal porties", targetServingsLabel: "Gewenst aantal porties",
-    resultHeading: "Aangepast recept", emptyState: "Schrijf je recept hierboven om hier het aangepaste resultaat te zien.",
-    gramPrefix: "~", gramSuffix: "g", ingredientLabel: "Ingrediënt", noMatchOption: "Geen overeenkomst",
-    copyButton: "Kopiëren", copiedButton: "Gekopieerd", printButton: "Afdrukken",
-  },
 } as const;
 
 const chipOptions = [
@@ -203,20 +94,6 @@ function formatGram(value: number, locale: KitchenLocale) {
       ? "tr-TR"
       : locale === "de"
         ? "de-DE"
-        : locale === "ar"
-          ? "ar"
-          : locale === "bn"
-              ? "bn-BD"
-              : locale === "fr"
-                ? "fr-FR"
-                : locale === "es"
-                  ? "es-ES"
-                    : locale === "pt"
-                      ? "pt-BR"
-                      : locale === "it"
-                        ? "it-IT"
-                        : locale === "nl"
-                          ? "nl-NL"
         : "en-US";
 
   return value.toLocaleString(localeName, {
@@ -240,11 +117,7 @@ export default function RecipeScalerConverter({
   const cupStandard: KitchenCupStandard =
     locale === "en"
       ? "us"
-      : locale === "fr" || locale === "it" || locale === "nl"
-        ? "metric"
-        : locale === "es" || locale === "pt"
-          ? "usLegal"
-          : "turkish";
+      : "turkish";
   const [text, setText] = useState("");
   const [factorInput, setFactorInput] = useState("2");
   const [originalServingsInput, setOriginalServingsInput] = useState("");

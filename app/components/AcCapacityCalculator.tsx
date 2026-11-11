@@ -65,91 +65,6 @@ const copyByLocale: Record<
   // fr: bu bileşen hiçbir Fransızca rotadan çağrılmıyor (Fransızca için
   // hesaplayıcı planlanmıyor); Locale birleşimine "fr" eklenince tip
   // güvenliği için İngilizce kopya yeniden kullanıldı.
-  fr: {
-    labels: {
-      area: "Surface de la pièce (m²)",
-      people: "Nombre de personnes dans la pièce",
-      sunny: "La pièce est-elle ensoleillée toute la journée ?",
-      sunnyCheckbox: "Oui, elle reçoit la lumière directe du soleil",
-      topFloor: "Pièce sous les toits / dernier étage ?",
-      topFloorCheckbox: "Oui, dernier étage ou combles",
-    },
-    emptyState: "Saisissez des valeurs valides pour voir le résultat.",
-    resultLabels: {
-      suggested: "Puissance de climatisation conseillée",
-      base: "Charge liée à la surface",
-      occupant: "Charge liée aux occupants",
-      total: "Charge totale estimée",
-    },
-  },
-  es: {
-    labels: {
-      area: "Superficie de la habitación (m²)",
-      people: "Número de personas en la habitación",
-      sunny: "¿Le da el sol todo el día?",
-      sunnyCheckbox: "Sí, recibe luz solar directa",
-      topFloor: "¿Último piso / buhardilla?",
-      topFloorCheckbox: "Sí, último piso o buhardilla",
-    },
-    emptyState: "Introduce valores válidos para ver el resultado.",
-    resultLabels: {
-      suggested: "Capacidad de aire acondicionado recomendada",
-      base: "Carga por superficie",
-      occupant: "Carga por ocupantes",
-      total: "Carga total estimada",
-    },
-  },
-  pt: {
-    labels: {
-      area: "Área do cômodo (m²)",
-      people: "Número de pessoas no cômodo",
-      sunny: "O cômodo recebe sol o dia todo?",
-      sunnyCheckbox: "Sim, recebe luz solar direta",
-      topFloor: "Último andar / sótão?",
-      topFloorCheckbox: "Sim, último andar ou sótão",
-    },
-    emptyState: "Digite valores válidos para ver o resultado.",
-    resultLabels: {
-      suggested: "Capacidade de ar-condicionado sugerida",
-      base: "Carga pela área",
-      occupant: "Carga pelos ocupantes",
-      total: "Carga total estimada",
-    },
-  },
-  it: {
-    labels: {
-      area: "Superficie della stanza (m²)",
-      people: "Numero di persone nella stanza",
-      sunny: "La stanza prende sole tutto il giorno?",
-      sunnyCheckbox: "Sì, riceve luce solare diretta",
-      topFloor: "Ultimo piano / mansarda?",
-      topFloorCheckbox: "Sì, ultimo piano o mansarda",
-    },
-    emptyState: "Inserisci valori validi per vedere il risultato.",
-    resultLabels: {
-      suggested: "Potenza del climatizzatore consigliata",
-      base: "Carico dovuto alla superficie",
-      occupant: "Carico dovuto alle persone",
-      total: "Carico totale stimato",
-    },
-  },
-  nl: {
-    labels: {
-      area: "Oppervlakte van de kamer (m²)",
-      people: "Aantal personen in de kamer",
-      sunny: "Krijgt de kamer de hele dag zon?",
-      sunnyCheckbox: "Ja, er valt direct zonlicht binnen",
-      topFloor: "Bovenste verdieping / zolderkamer?",
-      topFloorCheckbox: "Ja, bovenste verdieping of zolder",
-    },
-    emptyState: "Voer geldige waarden in om het resultaat te zien.",
-    resultLabels: {
-      suggested: "Aanbevolen airco-capaciteit",
-      base: "Belasting op basis van oppervlakte",
-      occupant: "Belasting door personen",
-      total: "Totale geschatte belasting",
-    },
-  },
   de: {
     labels: {
       area: "Raumfläche (m²)",
@@ -165,40 +80,6 @@ const copyByLocale: Record<
       base: "Flächenbasierter Bedarf",
       occupant: "Zusatzlast durch Personen",
       total: "Gesamter berechneter Bedarf",
-    },
-  },
-  ar: {
-    labels: {
-      area: "مساحة الغرفة (م2)",
-      people: "عدد الأشخاص في الغرفة",
-      sunny: "هل تتعرض الغرفة للشمس طوال اليوم؟",
-      sunnyCheckbox: "نعم، يوجد تعرض مباشر للشمس",
-      topFloor: "هل الغرفة في الطابق الأخير أو العلية؟",
-      topFloorCheckbox: "نعم، في الطابق الأخير أو العلية",
-    },
-    emptyState: "أدخل قيمًا صحيحة لعرض النتيجة.",
-    resultLabels: {
-      suggested: "السعة المقترحة للمكيف",
-      base: "الحمل الأساسي حسب المساحة",
-      occupant: "الحمل الإضافي بسبب الأشخاص",
-      total: "إجمالي الحمل المحسوب",
-    },
-  },
-  bn: {
-    labels: {
-      area: "ঘরের ক্ষেত্রফল (বর্গমিটার)",
-      people: "ঘরে মানুষের সংখ্যা",
-      sunny: "ঘরে কি সারাদিন রোদ আসে?",
-      sunnyCheckbox: "হ্যাঁ, সরাসরি সূর্যের আলো পায়",
-      topFloor: "সবচেয়ে উপরের তলা / চিলেকোঠা?",
-      topFloorCheckbox: "হ্যাঁ, উপরের তলা বা চিলেকোঠা",
-    },
-    emptyState: "ফলাফল দেখতে বৈধ মান লিখুন।",
-    resultLabels: {
-      suggested: "প্রস্তাবিত এসির ক্ষমতা",
-      base: "ক্ষেত্রফলভিত্তিক লোড",
-      occupant: "মানুষের কারণে লোড",
-      total: "মোট আনুমানিক লোড",
     },
   },
 };
@@ -224,7 +105,7 @@ export default function AcCapacityCalculator({
 }: {
   locale?: Locale;
 }) {
-  const copy = copyByLocale[locale === "ru" ? "en" : locale];
+  const copy = copyByLocale[locale];
   const [areaM2, setAreaM2] = useState("20");
   const [occupantCount, setOccupantCount] = useState("1");
   const [isSunny, setIsSunny] = useState(false);

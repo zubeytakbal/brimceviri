@@ -79,24 +79,6 @@ const copy = {
     siEquivalent: "SI-Äquivalent",
     clear: "Werte zurücksetzen",
   },
-  ar: {
-    systemTypeLabel: "نوع النظام",
-    singlePhase: "أحادي الطور",
-    threePhase: "ثلاثي الطور",
-    dc: "تيار مستمر",
-    powerValue: "القدرة",
-    voltageValue: "الجهد",
-    powerFactorValue: "معامل القدرة",
-    efficiencyValue: "الكفاءة",
-    currentValue: "تيار الخط",
-    apparentPower: "القدرة الظاهرية التقريبية",
-    normalizedFactors: "العوامل المستخدمة",
-    resultLive: "نتيجة الحساب",
-    automaticResultUnit: "وحدة النتيجة التلقائية",
-    formula: "المعادلة بعد التعويض",
-    siEquivalent: "مكافئ SI",
-    clear: "مسح القيم",
-  },
 } as const;
 
 export default function KwToAmpCalculator({

@@ -41,81 +41,6 @@ const copyByLocale: Record<
     },
     emptyState: "Geçerli değerler girerek sonucu görebilirsin.",
   },
-  fr: {
-    labels: {
-      wallArea: "Surface du mur (m²)",
-      brickWidth: "Largeur de la brique (cm)",
-      brickHeight: "Hauteur de la brique (cm)",
-      joint: "Épaisseur du joint (mm)",
-      waste: "Marge de perte (%)",
-    },
-    resultLabels: {
-      brickArea: "Surface d'une brique avec joint",
-      totalArea: "Surface totale avec pertes",
-      count: "Bricks needed",
-    },
-    emptyState: "Saisissez des valeurs valides pour voir le résultat.",
-  },
-  es: {
-    labels: {
-      wallArea: "Superficie del muro (m²)",
-      brickWidth: "Ancho del ladrillo (cm)",
-      brickHeight: "Alto del ladrillo (cm)",
-      joint: "Espesor de la junta (mm)",
-      waste: "Margen de desperdicio (%)",
-    },
-    resultLabels: {
-      brickArea: "Superficie de un ladrillo con junta",
-      totalArea: "Superficie total con desperdicio",
-      count: "Bricks needed",
-    },
-    emptyState: "Introduce valores válidos para ver el resultado.",
-  },
-  pt: {
-    labels: {
-      wallArea: "Área da parede (m²)",
-      brickWidth: "Largura do tijolo (cm)",
-      brickHeight: "Altura do tijolo (cm)",
-      joint: "Espessura da junta (mm)",
-      waste: "Margem de perda (%)",
-    },
-    resultLabels: {
-      brickArea: "Área de um tijolo com junta",
-      totalArea: "Área total com perdas",
-      count: "Bricks needed",
-    },
-    emptyState: "Digite valores válidos para ver o resultado.",
-  },
-  it: {
-    labels: {
-      wallArea: "Superficie del muro (m²)",
-      brickWidth: "Larghezza del mattone (cm)",
-      brickHeight: "Altezza del mattone (cm)",
-      joint: "Spessore del giunto (mm)",
-      waste: "Margine di sfrido (%)",
-    },
-    resultLabels: {
-      brickArea: "Superficie di un mattone con giunto",
-      totalArea: "Superficie totale con sfrido",
-      count: "Bricks needed",
-    },
-    emptyState: "Inserisci valori validi per vedere il risultato.",
-  },
-  nl: {
-    labels: {
-      wallArea: "Muuroppervlak (m²)",
-      brickWidth: "Breedte van de steen (cm)",
-      brickHeight: "Hoogte van de steen (cm)",
-      joint: "Voegdikte (mm)",
-      waste: "Snijverlies (%)",
-    },
-    resultLabels: {
-      brickArea: "Oppervlakte van één steen met voeg",
-      totalArea: "Totale oppervlakte met snijverlies",
-      count: "Bricks needed",
-    },
-    emptyState: "Voer geldige waarden in om het resultaat te zien.",
-  },
   en: {
     labels: {
       wallArea: "Wall Area (m2)",
@@ -146,36 +71,6 @@ const copyByLocale: Record<
     },
     emptyState: "Geben Sie gültige Werte ein, um das Ergebnis zu sehen.",
   },
-  ar: {
-    labels: {
-      wallArea: "مساحة الجدار (م2)",
-      brickWidth: "عرض الطوبة (سم)",
-      brickHeight: "ارتفاع الطوبة (سم)",
-      joint: "سماكة الفاصل (مم)",
-      waste: "نسبة الهدر (%)",
-    },
-    resultLabels: {
-      brickArea: "مساحة الطوبة مع الفاصل",
-      totalArea: "إجمالي المساحة مع الهدر",
-      count: "عدد الطوب المطلوب",
-    },
-    emptyState: "أدخل قيمًا صحيحة لعرض النتيجة.",
-  },
-bn: {
-    labels: {
-      wallArea: "দেয়ালের ক্ষেত্রফল (বর্গমিটার)",
-      brickWidth: "ইটের প্রস্থ (সেমি)",
-      brickHeight: "ইটের উচ্চতা (সেমি)",
-      joint: "জোড়ার পুরুত্ব (মিমি)",
-      waste: "অপচয়ের মার্জিন (%)",
-    },
-    resultLabels: {
-      brickArea: "জোড়াসহ একটি ইটের ক্ষেত্রফল",
-      totalArea: "অপচয়সহ মোট ক্ষেত্রফল",
-      count: "প্রয়োজনীয় ইটের সংখ্যা",
-    },
-    emptyState: "ফলাফল দেখতে বৈধ মান লিখুন।",
-  },
 };
 
 function parseNumericValue(rawValue: string) {
@@ -199,7 +94,7 @@ export default function BrickCalculator({
 }: {
   locale?: Locale;
 }) {
-  const copy = copyByLocale[locale === "ru" ? "en" : locale];
+  const copy = copyByLocale[locale];
   const [wallArea, setWallArea] = useState("20");
   const [brickWidthCm, setBrickWidthCm] = useState("19");
   const [brickHeightCm, setBrickHeightCm] = useState("13.5");

@@ -28,41 +28,6 @@ const trimesterLabels: Record<
     2: "2. Trimester",
     3: "3. Trimester",
   },
-  ar: {
-    1: "الثلث الأول",
-    2: "الثلث الثاني",
-    3: "الثلث الثالث",
-  },
-bn: {
-    1: "প্রথম ত্রৈমাসিক",
-    2: "দ্বিতীয় ত্রৈমাসিক",
-    3: "তৃতীয় ত্রৈমাসিক",
-  },
-fr: {
-    1: "1er trimestre",
-    2: "2e trimestre",
-    3: "3e trimestre",
-  },
-  es: {
-    1: "1.er trimestre",
-    2: "2.º trimestre",
-    3: "3.er trimestre",
-  },
-  pt: {
-    1: "1º trimestre",
-    2: "2º trimestre",
-    3: "3º trimestre",
-  },
-  it: {
-    1: "1° trimestre",
-    2: "2° trimestre",
-    3: "3° trimestre",
-  },
-  nl: {
-    1: "1e trimester",
-    2: "2e trimester",
-    3: "3e trimester",
-  },
 };
 
 const copyByLocale: Record<
@@ -95,51 +60,6 @@ const copyByLocale: Record<
     weeks: "weeks",
     days: "days",
   },
-  fr: {
-    inputLabel: "Premier jour des dernières règles",
-    emptyState: "Saisissez une date valide ; elle ne peut pas être dans le futur ni remonter à plus de 45 semaines.",
-    summaryLabel: "Âge de la grossesse",
-    dueDate: "Date prévue d'accouchement",
-    daysUntil: "Jours avant la date prévue",
-    weeks: "semaines",
-    days: "jours",
-  },
-  es: {
-    inputLabel: "Primer día de la última regla",
-    emptyState: "Introduce una fecha válida; no puede ser futura ni de hace más de 45 semanas.",
-    summaryLabel: "Edad gestacional",
-    dueDate: "Fecha probable de parto",
-    daysUntil: "Días hasta la fecha probable de parto",
-    weeks: "semanas",
-    days: "días",
-  },
-  pt: {
-    inputLabel: "Primeiro dia da última menstruação",
-    emptyState: "Digite uma data válida; ela não pode estar no futuro nem ter mais de 45 semanas.",
-    summaryLabel: "Idade gestacional",
-    dueDate: "Data provável do parto",
-    daysUntil: "Dias até a data provável do parto",
-    weeks: "semanas",
-    days: "dias",
-  },
-  it: {
-    inputLabel: "Primo giorno dell'ultima mestruazione",
-    emptyState: "Inserisci una data valida; non può essere nel futuro né risalire a più di 45 settimane fa.",
-    summaryLabel: "Età gestazionale",
-    dueDate: "Data presunta del parto",
-    daysUntil: "Giorni alla data presunta del parto",
-    weeks: "settimane",
-    days: "giorni",
-  },
-  nl: {
-    inputLabel: "Eerste dag van de laatste menstruatie",
-    emptyState: "Voer een geldige datum in; deze mag niet in de toekomst liggen of meer dan 45 weken geleden zijn.",
-    summaryLabel: "Zwangerschapsduur",
-    dueDate: "Uitgerekende datum",
-    daysUntil: "Dagen tot de uitgerekende datum",
-    weeks: "weken",
-    days: "dagen",
-  },
   de: {
     inputLabel: "Erster Tag der letzten Periode",
     emptyState: "Geben Sie ein gültiges Datum ein; es darf nicht in der Zukunft liegen oder mehr als 45 Wochen zurückliegen.",
@@ -148,25 +68,6 @@ const copyByLocale: Record<
     daysUntil: "Tage bis zur Geburt",
     weeks: "Wochen",
     days: "Tage",
-  },
-  ar: {
-    inputLabel: "أول يوم في آخر دورة شهرية",
-    emptyState:
-      "أدخلي تاريخًا صحيحًا؛ يجب ألا يكون في المستقبل أو أقدم من 45 أسبوعًا.",
-    summaryLabel: "عمر الحمل",
-    dueDate: "موعد الولادة المتوقع",
-    daysUntil: "الأيام المتبقية حتى الولادة",
-    weeks: "أسبوع",
-    days: "يوم",
-  },
-bn: {
-    inputLabel: "শেষ মাসিকের প্রথম দিন",
-    emptyState: "একটি বৈধ তারিখ লিখুন; এটি ভবিষ্যতের বা ৪৫ সপ্তাহের বেশি পুরনো হতে পারবে না।",
-    summaryLabel: "গর্ভকালীন বয়স",
-    dueDate: "সম্ভাব্য প্রসবের তারিখ",
-    daysUntil: "সম্ভাব্য প্রসবের তারিখ পর্যন্ত দিন",
-    weeks: "সপ্তাহ",
-    days: "দিন",
   },
 };
 
@@ -183,7 +84,7 @@ export default function PregnancyCalculator({
 }: {
   locale?: Locale;
 }) {
-  const displayLocale = locale === "ru" ? "en" : locale;
+  const displayLocale = locale;
   const copy = copyByLocale[displayLocale];
   const [lastPeriodDate, setLastPeriodDate] = useState("2026-01-01");
   const [referenceDate] = useState(() => todayIsoDate());

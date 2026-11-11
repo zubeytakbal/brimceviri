@@ -14,7 +14,7 @@ import {
 import { useNotificationSlot } from "./NotificationSlotProvider";
 import type { SiteNotification } from "../converter/siteNotifications";
 
-type NotificationLocale = "tr" | "en" | "de" | "ar" | "bn" | "fr" | "es" | "pt" | "it" | "nl";
+type NotificationLocale = "tr" | "en" | "de";
 
 const notificationCopy = {
   tr: {
@@ -46,71 +46,6 @@ const notificationCopy = {
     openLabel: "Öffnen →",
     empty: "Derzeit gibt es keine neuen Benachrichtigungen.",
     dateLocale: "de-DE",
-  },
-  ar: {
-    ariaLabel: "الإشعارات",
-    panelLabel: "إشعارات الموقع",
-    title: "الإشعارات",
-    closeLabel: "إغلاق",
-    markSeenLabel: "وضع علامة على هذا الإشعار كمقروء",
-    openLabel: "فتح ←",
-    empty: "لا توجد إشعارات جديدة حاليًا.",
-    dateLocale: "ar",
-  },
-  bn: {
-    ariaLabel: "বিজ্ঞপ্তি",
-    panelLabel: "সাইটের বিজ্ঞপ্তি",
-    title: "বিজ্ঞপ্তি",
-    closeLabel: "বন্ধ করুন",
-    markSeenLabel: "এই বিজ্ঞপ্তিটি দেখা হয়েছে বলে চিহ্নিত করুন",
-    openLabel: "খুলুন →",
-    empty: "এই মুহূর্তে কোনো নতুন বিজ্ঞপ্তি নেই।",
-    dateLocale: "bn-BD",
-  },
-  fr: {
-    ariaLabel: "Notifications",
-    panelLabel: "Notifications du site",
-    title: "Notifications",
-    closeLabel: "Fermer",
-    markSeenLabel: "Marquer cette notification comme lue",
-    openLabel: "Ouvrir →",
-    empty: "Il n'y a actuellement aucune nouvelle notification.",
-    dateLocale: "fr-FR",
-  },
-  es: {
-    ariaLabel: "Notificaciones",
-    panelLabel: "Notificaciones del sitio",
-    title: "Notificaciones",
-    closeLabel: "Cerrar",
-    markSeenLabel: "Marcar esta notificación como vista",
-    openLabel: "Abrir →",
-    empty: "No hay notificaciones nuevas por el momento.",
-    dateLocale: "es-ES",
-  },
-  pt: {
-    ariaLabel: "Notificações",
-    panelLabel: "Notificações do site",
-    title: "Notificações",
-    closeLabel: "Fechar",
-    markSeenLabel: "Marcar esta notificação como vista",
-    openLabel: "Abrir →",
-    empty: "Não há novas notificações no momento.",
-    dateLocale: "pt-BR",
-  },
-  it: {
-    ariaLabel: "Notifiche",
-    panelLabel: "Notifiche del sito",
-    title: "Notifiche",
-    closeLabel: "Chiudi",
-    markSeenLabel: "Segna questa notifica come letta",
-    openLabel: "Apri →",
-    empty: "Al momento non ci sono nuove notifiche.",
-    dateLocale: "it-IT",
-  },
-  nl: {
-    ariaLabel: "Meldingen", panelLabel: "Sitemeldingen", title: "Meldingen", closeLabel: "Sluiten",
-    markSeenLabel: "Deze melding als gelezen markeren", openLabel: "Openen →",
-    empty: "Er zijn momenteel geen nieuwe meldingen.", dateLocale: "nl-NL",
   },
 } as const;
 

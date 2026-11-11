@@ -6,14 +6,6 @@ const copyLabels: Record<string, { copy: string; copied: string }> = {
   tr: { copy: "Kopyala", copied: "Kopyalandı" },
   en: { copy: "Copy", copied: "Copied" },
   de: { copy: "Kopieren", copied: "Kopiert" },
-  ar: { copy: "نسخ", copied: "تم النسخ" },
-  bn: { copy: "কপি", copied: "কপি হয়েছে" },
-  fr: { copy: "Copier", copied: "Copié" },
-  es: { copy: "Copiar", copied: "Copiado" },
-  pt: { copy: "Copiar", copied: "Copiado" },
-  it: { copy: "Copia", copied: "Copiato" },
-  nl: { copy: "Kopiëren", copied: "Gekopieerd" },
-  ru: { copy: "Копировать", copied: "Скопировано" },
 };
 
 async function writeClipboard(text: string) {

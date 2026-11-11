@@ -105,31 +105,6 @@ const copy = {
     transition: "Übergang",
     turbulent: "Turbulent",
   },
-  ar: {
-    targetLabel: "هدف الحساب",
-    reynolds: "احسب عدد رينولدز",
-    velocity: "احسب السرعة",
-    diameter: "احسب القطر المميز",
-    reynoldsValue: "عدد رينولدز",
-    densityValue: "الكثافة",
-    velocityValue: "السرعة",
-    diameterValue: "القطر المميز",
-    viscosityValue: "اللزوجة الديناميكية",
-    presetLabel: "إعداد السائل",
-    presetNote:
-      "تعتمد إعدادات الماء والهواء على قيم تقريبية في ظروف الغرفة. استخدم بيانات الحرارة الحقيقية للتحليل الدقيق.",
-    resultLive: "نتيجة الحساب",
-    formula: "المعادلة بعد التعويض",
-    siEquivalent: "مكافئ SI",
-    clear: "مسح القيم",
-    interpretation: "تفسير الجريان",
-    regimeVisual: "مخطط نظام الجريان",
-    regimeNote:
-      "هذه الحدود تقريبية ومفيدة تعليميا للجريان داخل الأنابيب.",
-    laminar: "صفحي",
-    transition: "انتقالي",
-    turbulent: "مضطرب",
-  },
 } as const;
 
 function formatResultText(display: string, unit: string) {

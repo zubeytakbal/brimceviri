@@ -83,126 +83,6 @@ const copyByLocale: Record<
       estimatedTime: "estimated time",
     },
   },
-  fr: {
-    modePrompt: "Que voulez-vous calculer ?",
-    modeButtons: {
-      pace: "Calculer l'allure",
-      duration: "Calculer le temps",
-      distance: "Calculer la distance",
-    },
-    labels: {
-      distance: "Distance (km)",
-      durationHours: "Temps - heures",
-      durationMinutes: "Temps - minutes",
-      durationSeconds: "Temps - secondes",
-      paceMinutes: "Allure - minutes/km",
-      paceSeconds: "Allure - secondes/km",
-    },
-    emptyState: "Saisissez des valeurs valides pour voir le résultat.",
-    resultLabels: {
-      pace: "Allure",
-      duration: "Temps",
-      distance: "Distance",
-      speed: "Vitesse",
-      estimatedTime: "temps estimé",
-    },
-  },
-  es: {
-    modePrompt: "¿Qué quieres calcular?",
-    modeButtons: {
-      pace: "Calcular ritmo",
-      duration: "Calcular tiempo",
-      distance: "Calcular distancia",
-    },
-    labels: {
-      distance: "Distancia (km)",
-      durationHours: "Tiempo - horas",
-      durationMinutes: "Tiempo - minutos",
-      durationSeconds: "Tiempo - segundos",
-      paceMinutes: "Ritmo - minutos/km",
-      paceSeconds: "Ritmo - segundos/km",
-    },
-    emptyState: "Introduce valores válidos para ver el resultado.",
-    resultLabels: {
-      pace: "Ritmo",
-      duration: "Tiempo",
-      distance: "Distancia",
-      speed: "Velocidad",
-      estimatedTime: "tiempo estimado",
-    },
-  },
-  pt: {
-    modePrompt: "O que você quer calcular?",
-    modeButtons: {
-      pace: "Calcular pace",
-      duration: "Calcular tempo",
-      distance: "Calcular distância",
-    },
-    labels: {
-      distance: "Distância (km)",
-      durationHours: "Tempo - horas",
-      durationMinutes: "Tempo - minutos",
-      durationSeconds: "Tempo - segundos",
-      paceMinutes: "Pace - minutos/km",
-      paceSeconds: "Pace - segundos/km",
-    },
-    emptyState: "Digite valores válidos para ver o resultado.",
-    resultLabels: {
-      pace: "Pace",
-      duration: "Tempo",
-      distance: "Distância",
-      speed: "Velocidade",
-      estimatedTime: "tempo estimado",
-    },
-  },
-  it: {
-    modePrompt: "Cosa vuoi calcolare?",
-    modeButtons: {
-      pace: "Calcola il passo",
-      duration: "Calcola il tempo",
-      distance: "Calcola la distanza",
-    },
-    labels: {
-      distance: "Distanza (km)",
-      durationHours: "Tempo - ore",
-      durationMinutes: "Tempo - minuti",
-      durationSeconds: "Tempo - secondi",
-      paceMinutes: "Passo - minuti/km",
-      paceSeconds: "Passo - secondi/km",
-    },
-    emptyState: "Inserisci valori validi per vedere il risultato.",
-    resultLabels: {
-      pace: "Passo",
-      duration: "Tempo",
-      distance: "Distanza",
-      speed: "Velocità",
-      estimatedTime: "tempo stimato",
-    },
-  },
-  nl: {
-    modePrompt: "Wat wil je berekenen?",
-    modeButtons: {
-      pace: "Tempo berekenen",
-      duration: "Tijd berekenen",
-      distance: "Afstand berekenen",
-    },
-    labels: {
-      distance: "Afstand (km)",
-      durationHours: "Tijd - uren",
-      durationMinutes: "Tijd - minuten",
-      durationSeconds: "Tijd - seconden",
-      paceMinutes: "Tempo - minuten/km",
-      paceSeconds: "Tempo - seconden/km",
-    },
-    emptyState: "Voer geldige waarden in om het resultaat te zien.",
-    resultLabels: {
-      pace: "Tempo",
-      duration: "Tijd",
-      distance: "Afstand",
-      speed: "Snelheid",
-      estimatedTime: "geschatte tijd",
-    },
-  },
   de: {
     modePrompt: "Was möchten Sie berechnen?",
     modeButtons: {
@@ -225,54 +105,6 @@ const copyByLocale: Record<
       distance: "Distanz",
       speed: "Geschwindigkeit",
       estimatedTime: "geschätzte Zeit",
-    },
-  },
-  ar: {
-    modePrompt: "ماذا تريد أن تحسب؟",
-    modeButtons: {
-      pace: "احسب الوتيرة",
-      duration: "احسب الزمن",
-      distance: "احسب المسافة",
-    },
-    labels: {
-      distance: "المسافة (كم)",
-      durationHours: "الزمن - ساعات",
-      durationMinutes: "الزمن - دقائق",
-      durationSeconds: "الزمن - ثوانٍ",
-      paceMinutes: "الوتيرة - دقيقة/كم",
-      paceSeconds: "الوتيرة - ثانية/كم",
-    },
-    emptyState: "أدخل قيمًا صحيحة لعرض النتيجة.",
-    resultLabels: {
-      pace: "الوتيرة",
-      duration: "الزمن",
-      distance: "المسافة",
-      speed: "السرعة",
-      estimatedTime: "الزمن التقديري",
-    },
-  },
-bn: {
-    modePrompt: "আপনি কী হিসাব করতে চান?",
-    modeButtons: {
-      pace: "পেস হিসাব করুন",
-      duration: "সময় হিসাব করুন",
-      distance: "দূরত্ব হিসাব করুন",
-    },
-    labels: {
-      distance: "দূরত্ব (km)",
-      durationHours: "সময় - ঘণ্টা",
-      durationMinutes: "সময় - মিনিট",
-      durationSeconds: "সময় - সেকেন্ড",
-      paceMinutes: "পেস - মিনিট/km",
-      paceSeconds: "পেস - সেকেন্ড/km",
-    },
-    emptyState: "ফলাফল দেখতে সঠিক মান লিখুন।",
-    resultLabels: {
-      pace: "পেস",
-      duration: "সময়",
-      distance: "দূরত্ব",
-      speed: "গতি",
-      estimatedTime: "আনুমানিক সময়",
     },
   },
 };
@@ -320,8 +152,6 @@ function getRaceLabel(race: RaceEstimate, locale: Locale) {
   if (race.distanceKm === 21.0975) {
     return locale === "de"
       ? "Halbmarathon"
-      : locale === "ar"
-        ? "نصف ماراثون"
       : locale === "en"
         ? "Half Marathon"
         : "Yarı Maraton";
@@ -330,9 +160,7 @@ function getRaceLabel(race: RaceEstimate, locale: Locale) {
   if (race.distanceKm === 42.195) {
     return locale === "de"
       ? "Marathon"
-      : locale === "ar"
-        ? "ماراثون"
-        : locale === "en"
+      : locale === "en"
           ? "Marathon"
           : "Maraton";
   }
@@ -345,7 +173,7 @@ export default function PaceCalculator({
 }: {
   locale?: Locale;
 }) {
-  const baseCopy = copyByLocale[locale === "ru" ? "en" : locale];
+  const baseCopy = copyByLocale[locale];
   // Ingilizcede mil secenegi (ABD ve Ingiltere'de tempo dakika/mil ile verilir).
   const allowMiles = locale === "en";
   const [unit, setUnit] = useState<DistanceUnit>(allowMiles ? "mi" : "km");

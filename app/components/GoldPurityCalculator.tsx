@@ -3,9 +3,9 @@
 import { useState } from "react";
 import { alloy, equivalentWeight, fineness, GOLD_GRADES, meltValue, pureGold, TROY_OUNCE_G, type PurityBasis } from "../converter/goldPurity";
 
-export type GoldLang = "en" | "de" | "es" | "pt";
+export type GoldLang = "en" | "de";
 
-const LOCALE: Record<GoldLang, string> = { en: "en-US", de: "de-DE", es: "es-ES", pt: "pt-BR" };
+const LOCALE: Record<GoldLang, string> = { en: "en-US", de: "de-DE" };
 
 const T = {
   en: {
@@ -53,52 +53,6 @@ const T = {
     melt: "Materialwert",
     meltNote: "Feingold × eingegebener Preis; Ankäufer zahlen weniger als den Materialwert",
     enter: "Geben Sie ein Gewicht in Gramm ein.",
-  },
-  es: {
-    weight: "Peso (g)",
-    grade: "Tu oro",
-    target: "Comparar con / convertir a",
-    basis: "Base de cálculo",
-    karatBasis: "Quilates ÷ 24 (14 k = 58,33 %)",
-    hallmarkBasis: "Contraste/ley (585 = 58,5 %)",
-    price: "Precio del oro puro (opcional)",
-    perGram: "por gramo",
-    perOz: "por onza troy",
-    grade_label: (k: number, h: number) => `Oro de ${k} quilates (${h})`,
-    pure: "Oro puro",
-    purity: (p: string) => `${p} % de oro puro`,
-    same: "Mismo oro puro en",
-    sameNote: (t: string) => `peso de ${t} con la misma cantidad de oro puro`,
-    up: "Para subir de quilates, añade oro puro",
-    down: "Para bajar de quilates, añade aleación",
-    final: (w: string) => `nuevo peso total ${w} g`,
-    noUp: "No se puede llegar a 24 quilates añadiendo oro",
-    melt: "Valor de fundición",
-    meltNote: "oro puro × el precio que escribiste; los compradores pagan menos",
-    enter: "Escribe un peso en gramos.",
-  },
-  pt: {
-    weight: "Peso (g)",
-    grade: "Seu ouro",
-    target: "Comparar com / converter para",
-    basis: "Base de cálculo",
-    karatBasis: "Quilates ÷ 24 (14 k = 58,33 %)",
-    hallmarkBasis: "Teor gravado (585 = 58,5 %)",
-    price: "Preço do ouro puro (opcional)",
-    perGram: "por grama",
-    perOz: "por onça troy",
-    grade_label: (k: number, h: number) => `Ouro ${k}k (${h})`,
-    pure: "Ouro puro",
-    purity: (p: string) => `${p} % de ouro puro`,
-    same: "Mesmo ouro puro em",
-    sameNote: (t: string) => `peso de ${t} com a mesma quantidade de ouro puro`,
-    up: "Para subir o teor, adicione ouro puro",
-    down: "Para baixar o teor, adicione liga",
-    final: (w: string) => `novo peso total ${w} g`,
-    noUp: "Não é possível chegar a 24k adicionando ouro",
-    melt: "Valor de fundição",
-    meltNote: "ouro puro × o preço que você digitou; compradores pagam menos",
-    enter: "Digite um peso em gramas.",
   },
 } as const;
 

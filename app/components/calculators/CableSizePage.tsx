@@ -40,16 +40,11 @@ const unitSectionHeadings = {
     current: "Stromeinheiten",
     length: "Langeneinheiten",
   },
-  ar: {
-    voltage: "وحدات الجهد",
-    current: "وحدات التيار",
-    length: "وحدات الطول",
-  },
 } as const;
 
 function getUnitSections(locale: CalculatorLocale): UnitTableSection[] {
   const headings =
-    unitSectionHeadings[locale === "ar" ? "en" : locale];
+    unitSectionHeadings[locale];
 
   return [
     {
@@ -435,112 +430,6 @@ const copy: Record<CalculatorLocale, PageCopy> = {
       { label: "Ampere (A) Leitfaden", href: "/de/einheiten/ampere" },
       { label: "Volt (V) Leitfaden", href: "/de/einheiten/volt" },
       { label: "Meter (m) Leitfaden", href: "/de/einheiten/meter" },
-    ],
-  },
-  ar: {
-    breadcrumbs: [
-      { label: "الرئيسية", href: "/ar" },
-      {
-        label: "الحاسبات الكهربائية",
-        href: "/ar/engineering-calculators/electrical-calculators",
-      },
-      { label: "حاسبة مقطع الكابل" },
-    ],
-    breadcrumbLabel: "مسار التنقل",
-    title: "حاسبة مقطع الكابل",
-    description:
-      "احسب الحد الأدنى المطلوب لمساحة مقطع الموصل بناء على التيار والطول ونسبة هبوط الجهد المسموحة.",
-    heroEyebrow: "حاسبة كهربائية",
-    heroResultHeading: "نتيجة المقطع",
-    introHeading: "متى تستخدم هذه الأداة؟",
-    formulasHeading: "المعادلة المستخدمة",
-    variablesHeading: "المتغيرات ومعناها",
-    unitsHeading: "جداول الوحدات",
-    standardHeading: "المقاطع القياسية",
-    standardIntro:
-      "بعد الحساب، تتم مقارنة النتيجة مع المقاطع التجارية الشائعة لاختيار أقرب مقطع قياسي أعلى أو مساوي للقيمة المطلوبة:",
-    resistivityTableHeading: "جدول المقاومية النوعية للموصلات",
-    resistivityTableColumns: {
-      material: "المادة",
-      resistivity: "المقاومية النوعية (Ω·mm²/m)",
-    },
-    examplesHeading: "أمثلة سريعة",
-    applicationsHeading: "استخدامات شائعة",
-    limitationsHeading: "افتراضات وحدود",
-    sourcesHeading: "المراجع",
-    relatedHeading: "روابط مرتبطة",
-    relatedCalculatorsHeading: "حاسبات مرتبطة",
-    relatedGuidesHeading: "أدلة وحدات مرتبطة",
-    tableColumns: {
-      unitName: "اسم الوحدة",
-      symbol: "الرمز",
-      siEquivalent: "مكافئ SI",
-      typicalUse: "الاستخدام الشائع",
-    },
-    intro: [
-      "تساعدك هذه الأداة على تقدير المقطع الأدنى المطلوب للكابل وفق حد هبوط الجهد الذي تقبله في المشروع.",
-      "وهي مفيدة في المرحلة الأولى من الاختيار قبل مراجعة سعة التيار وطريقة التمديد ومتطلبات الكود.",
-    ],
-    formulas: [
-      "A = k x I x L x ρ / ΔU",
-      "وهي إعادة ترتيب لمعادلة هبوط الجهد لحل المقطع مباشرة.",
-    ],
-    variables: [
-      { term: "I", explanation: "تيار الخط." },
-      { term: "L", explanation: "طول الكابل في اتجاه واحد." },
-      { term: "ρ", explanation: "المقاومية النوعية لمادة الموصل." },
-      { term: "ΔU", explanation: "هبوط الجهد المسموح." },
-      { term: "A", explanation: "المقطع الأدنى المطلوب." },
-    ],
-    examples: [
-      {
-        title: "400 V و20 A وطول 50 m وحد هبوط 3%",
-        body: "في نظام ثلاثي الطور نحاسي تكون النتيجة التقريبية 2.53 mm² ويقترح عادة المقطع القياسي 4 mm².",
-      },
-      {
-        title: "230 V و16 A وطول 25 m وحد هبوط 3%",
-        body: "في نظام أحادي الطور نحاسي تكون النتيجة التقريبية 2.03 mm² ويقترح عادة 2.5 mm².",
-      },
-    ],
-    applications: [
-      "تقدير أولي لمقاطع الكابلات",
-      "فحص خطوط التغذية القصيرة والطويلة",
-      "مراجعة مشاريع المحركات والمعدات البعيدة",
-      "إعداد سريع قبل الدراسة التفصيلية",
-    ],
-    limitations: [
-      "لا تكفي الأداة وحدها للتحقق من سعة التيار الحرارية أو طريقة التمديد.",
-      "تعتمد على مقاومية تقريبية لمادة الموصل عند درجة مرجعية.",
-      "يجب اعتماد المقاطع النهائية بعد مراجعة المتطلبات النظامية المحلية.",
-    ],
-    sources: [
-      {
-        label: "IEC electrotechnical concepts and symbols",
-        href: "https://www.iec.ch",
-      },
-      {
-        label: "NIST Guide to the SI",
-        href: "https://www.nist.gov/pml/special-publication-811",
-      },
-    ],
-    relatedCalculators: [
-      {
-        label: "حاسبة هبوط الجهد",
-        href: "/ar/engineering-calculators/electrical-calculators/voltage-drop-calculator",
-      },
-      {
-        label: "تحويل kW إلى أمبير",
-        href: "/ar/engineering-calculators/electrical-calculators/kw-to-ampere-calculator",
-      },
-      {
-        label: "مركز الحاسبات الكهربائية",
-        href: "/ar/engineering-calculators/electrical-calculators",
-      },
-    ],
-    relatedGuides: [
-      { label: "دليل الأمبير", href: "/ar/categories/electricity#ampere" },
-      { label: "دليل الفولت", href: "/ar/categories/electricity#volt" },
-      { label: "دليل المتر", href: "/ar/categories/length#meter" },
     ],
   },
 };

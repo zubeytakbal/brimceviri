@@ -28,60 +28,12 @@ const unitOptionLabels: Record<
     m: "Meter (m)",
     km: "Kilometer (km)",
   },
-  ar: {
-    cm: "سنتيمتر (سم)",
-    m: "متر (م)",
-    km: "كيلومتر (كم)",
-  },
-bn: {
-    cm: "সেন্টিমিটার (cm)",
-    m: "মিটার (m)",
-    km: "কিলোমিটার (km)",
-  },
-fr: {
-    cm: "Centimètre (cm)",
-    m: "Mètre (m)",
-    km: "Kilomètre (km)",
-  },
-  es: {
-    cm: "Centímetro (cm)",
-    m: "Metro (m)",
-    km: "Kilómetro (km)",
-  },
-  pt: {
-    cm: "Centímetro (cm)",
-    m: "Metro (m)",
-    km: "Quilômetro (km)",
-  },
-  it: {
-    cm: "Centimetro (cm)",
-    m: "Metro (m)",
-    km: "Chilometro (km)",
-  },
-  nl: {
-    cm: "Centimeter (cm)",
-    m: "Meter (m)",
-    km: "Kilometer (km)",
-  },
-  ru: {
-    cm: "Сантиметр (см)",
-    m: "Метр (м)",
-    km: "Километр (км)",
-  },
 };
 
 const unitShortLabels: Record<Locale, Record<LengthComparisonUnit, string>> = {
   tr: { cm: "cm", m: "m", km: "km" },
   en: { cm: "cm", m: "m", km: "km" },
   de: { cm: "cm", m: "m", km: "km" },
-  ar: { cm: "سم", m: "م", km: "كم" },
-bn: { cm: "cm", m: "m", km: "km" },
-fr: { cm: "cm", m: "m", km: "km" },
-  es: { cm: "cm", m: "m", km: "km" },
-  pt: { cm: "cm", m: "m", km: "km" },
-  it: { cm: "cm", m: "m", km: "km" },
-  nl: { cm: "cm", m: "m", km: "km" },
-  ru: { cm: "см", m: "м", km: "км" },
 };
 
 const referenceLabels: Record<Locale, Record<string, string>> = {
@@ -111,78 +63,6 @@ const referenceLabels: Record<Locale, Record<string, string>> = {
     "futbol-sahasi": "Länge eines Fußballfelds",
     "eyfel-kulesi": "Höhe des Eiffelturms (mit Antenne)",
     "bogaz-koprusu": "Länge der 15.-Juli-Märtyrer-Brücke",
-  },
-  ar: {
-    "insan-boyu": "متوسط طول الإنسان البالغ",
-    zurafa: "متوسط طول الزرافة",
-    "sehir-otobusu": "طول حافلة مدينة",
-    "mavi-balina": "متوسط طول الحوت الأزرق",
-    "futbol-sahasi": "طول ملعب كرة قدم",
-    "eyfel-kulesi": "ارتفاع برج إيفل مع الهوائي",
-    "bogaz-koprusu": "طول جسر شهداء 15 يوليو",
-  },
-bn: {
-    "insan-boyu": "একজন প্রাপ্তবয়স্ক মানুষের গড় উচ্চতা",
-    zurafa: "জিরাফের গড় উচ্চতা",
-    "sehir-otobusu": "শহরের বাসের দৈর্ঘ্য",
-    "mavi-balina": "নীল তিমির গড় দৈর্ঘ্য",
-    "futbol-sahasi": "ফুটবল মাঠের দৈর্ঘ্য",
-    "eyfel-kulesi": "আইফেল টাওয়ারের উচ্চতা (অ্যান্টেনাসহ)",
-    "bogaz-koprusu": "১৫ জুলাই শহীদ সেতুর দৈর্ঘ্য (ইস্তাম্বুল)",
-  },
-fr: {
-    "insan-boyu": "Taille moyenne d'un adulte",
-    zurafa: "Taille moyenne d'une girafe",
-    "sehir-otobusu": "Longueur d'un bus urbain",
-    "mavi-balina": "Longueur moyenne d'une baleine bleue",
-    "futbol-sahasi": "Longueur d'un terrain de football",
-    "eyfel-kulesi": "Hauteur de la tour Eiffel (avec antenne)",
-    "bogaz-koprusu": "Longueur du pont des Martyrs-du-15-Juillet (Istanbul)",
-  },
-  es: {
-    "insan-boyu": "Estatura media de un adulto",
-    zurafa: "Altura media de una jirafa",
-    "sehir-otobusu": "Longitud de un autobús urbano",
-    "mavi-balina": "Longitud media de una ballena azul",
-    "futbol-sahasi": "Longitud de un campo de fútbol",
-    "eyfel-kulesi": "Altura de la Torre Eiffel (con antena)",
-    "bogaz-koprusu": "Longitud del Puente de los Mártires del 15 de Julio (Estambul)",
-  },
-  pt: {
-    "insan-boyu": "Altura média de um adulto",
-    zurafa: "Altura média de uma girafa",
-    "sehir-otobusu": "Comprimento de um ônibus urbano",
-    "mavi-balina": "Comprimento médio de uma baleia-azul",
-    "futbol-sahasi": "Comprimento de um campo de futebol",
-    "eyfel-kulesi": "Altura da Torre Eiffel (com antena)",
-    "bogaz-koprusu": "Comprimento da Ponte dos Mártires de 15 de Julho (Istambul)",
-  },
-  it: {
-    "insan-boyu": "Altezza media di un adulto",
-    zurafa: "Altezza media di una giraffa",
-    "sehir-otobusu": "Lunghezza di un autobus urbano",
-    "mavi-balina": "Lunghezza media di una balenottera azzurra",
-    "futbol-sahasi": "Lunghezza di un campo da calcio",
-    "eyfel-kulesi": "Altezza della Torre Eiffel (con antenna)",
-    "bogaz-koprusu": "Lunghezza del Ponte dei Martiri del 15 luglio (Istanbul)",
-  },
-  nl: {
-    "insan-boyu": "Gemiddelde lengte van een volwassene",
-    zurafa: "Gemiddelde hoogte van een giraf",
-    "sehir-otobusu": "Lengte van een stadsbus",
-    "mavi-balina": "Gemiddelde lengte van een blauwe vinvis",
-    "futbol-sahasi": "Lengte van een voetbalveld",
-    "eyfel-kulesi": "Hoogte van de Eiffeltoren (met antenne)",
-    "bogaz-koprusu": "Lengte van de 15 Juli Martelarenbrug (Istanbul)",
-  },
-  ru: {
-    "insan-boyu": "Средний рост взрослого человека",
-    zurafa: "Средний рост жирафа",
-    "sehir-otobusu": "Длина городского автобуса",
-    "mavi-balina": "Средняя длина синего кита",
-    "futbol-sahasi": "Длина футбольного поля",
-    "eyfel-kulesi": "Высота Эйфелевой башни (с антенной)",
-    "bogaz-koprusu": "Длина моста 15 июля",
   },
 };
 
@@ -219,56 +99,6 @@ const copyByLocale: Record<
     intro: "Comparisons for",
     closestMatch: "Closest comparison",
   },
-  fr: {
-    labels: {
-      value: "Valeur",
-      unit: "Unité",
-    },
-    placeholder: "E.g. 3",
-    emptyState: "Saisissez une valeur valide pour voir les comparaisons.",
-    intro: "Comparaisons pour",
-    closestMatch: "Comparaison la plus proche",
-  },
-  es: {
-    labels: {
-      value: "Valor",
-      unit: "Unidad",
-    },
-    placeholder: "E.g. 3",
-    emptyState: "Introduce un valor válido para ver las comparaciones.",
-    intro: "Comparaciones para",
-    closestMatch: "Comparación más cercana",
-  },
-  pt: {
-    labels: {
-      value: "Valor",
-      unit: "Unidade",
-    },
-    placeholder: "E.g. 3",
-    emptyState: "Digite um valor válido para ver as comparações.",
-    intro: "Comparações para",
-    closestMatch: "Comparação mais próxima",
-  },
-  it: {
-    labels: {
-      value: "Valore",
-      unit: "Unità",
-    },
-    placeholder: "E.g. 3",
-    emptyState: "Inserisci un valore valido per vedere i confronti.",
-    intro: "Confronti per",
-    closestMatch: "Confronto più vicino",
-  },
-  nl: {
-    labels: {
-      value: "Waarde",
-      unit: "Eenheid",
-    },
-    placeholder: "E.g. 3",
-    emptyState: "Voer een geldige waarde in om de vergelijkingen te zien.",
-    intro: "Vergelijkingen voor",
-    closestMatch: "Dichtstbijzijnde vergelijking",
-  },
   de: {
     labels: {
       value: "Wert",
@@ -278,36 +108,6 @@ const copyByLocale: Record<
     emptyState: "Geben Sie einen gültigen Wert ein, um die Vergleiche zu sehen.",
     intro: "Vergleiche für",
     closestMatch: "Nächster Vergleich",
-  },
-  ar: {
-    labels: {
-      value: "القيمة",
-      unit: "الوحدة",
-    },
-    placeholder: "مثال: 3",
-    emptyState: "أدخل قيمة صحيحة لعرض المقارنات.",
-    intro: "مقارنات للقيمة",
-    closestMatch: "أقرب مقارنة",
-  },
-  bn: {
-    labels: {
-      value: "মান",
-      unit: "একক",
-    },
-    placeholder: "E.g. 3",
-    emptyState: "তুলনা দেখতে একটি সঠিক মান লিখুন।",
-    intro: "এর জন্য তুলনা:",
-    closestMatch: "সবচেয়ে কাছের তুলনা",
-  },
-  ru: {
-    labels: {
-      value: "Значение",
-      unit: "Единица",
-    },
-    placeholder: "Например, 3",
-    emptyState: "Введите корректное значение, чтобы увидеть сравнения.",
-    intro: "Сравнения для",
-    closestMatch: "Ближайшее сравнение",
   },
 };
 
@@ -336,7 +136,7 @@ function getReferenceLabel(id: string, locale: Locale, fallback: string) {
 }
 
 // Bu dillerde "icin karsilastirmalar" ifadesi degerden sonra gelir.
-const introAfterValueLocales = new Set<Locale>(["tr", "bn"]);
+const introAfterValueLocales = new Set<Locale>(["tr"]);
 
 export default function LengthComparisonTool({
   locale = "tr",
@@ -392,9 +192,7 @@ export default function LengthComparisonTool({
             <p className="length-comparison-intro">
               {introAfterValueLocales.has(locale)
                 ? `${value} ${unitShortLabels[locale][unit]} ${copy.intro}`
-                : locale === "ar"
-                  ? `${copy.intro} ${value} ${unitShortLabels[locale][unit]}`
-                  : `${copy.intro} ${value} ${unitShortLabels[locale][unit]}:`}
+                : `${copy.intro} ${value} ${unitShortLabels[locale][unit]}:`}
             </p>
 
             <div className="length-comparison-top">

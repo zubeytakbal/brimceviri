@@ -85,15 +85,7 @@ const unitSectionHeadings = {
 
 function getUnitSections(locale: CalculatorLocale): UnitTableSection[] {
   const headings =
-    locale === "ar"
-      ? {
-          power: "وحدات القدرة",
-          conductivity: "وحدات الموصلية الحرارية",
-          area: "وحدات المساحة",
-          length: "وحدات السمك",
-          temperatureDifference: "وحدات فرق الحرارة",
-        }
-      : unitSectionHeadings[locale];
+    unitSectionHeadings[locale];
 
   return [
     {
@@ -526,118 +518,6 @@ const pageCopy: Record<
   },
 };
 
-const arabicCopy: PageCopy = {
-  breadcrumbs: [
-    { label: "الرئيسية", href: "/ar" },
-    { label: "الحاسبات الهندسية", href: "/ar/engineering-calculators" },
-    { label: "حاسبة انتقال الحرارة بالتوصيل" },
-  ],
-  breadcrumbLabel: "مسار التنقل",
-  title: "حاسبة انتقال الحرارة بالتوصيل",
-  description:
-    "استخدم Q̇ = k × A × ΔT / L لحساب معدل انتقال الحرارة أو الموصلية أو المساحة أو فرق الحرارة أو السماكة بواجهة عربية متسقة.",
-  heroEyebrow: "حاسبة هندسية",
-  heroResultHeading: "نتيجة الحساب",
-  introHeading: "ماذا تمثل هذه الأداة؟",
-  formulasHeading: "المعادلات المستخدمة",
-  variablesHeading: "المتغيرات ووحدات SI",
-  presetHeading: "حول القيم الجاهزة للمواد",
-  materialTableHeading: "جدول الموصلية الحرارية للمواد",
-  materialTableColumns: {
-    material: "المادة",
-    conductivity: "الموصلية الحرارية (W/(m·K))",
-  },
-  unitsHeading: "جداول الوحدات",
-  examplesHeading: "أمثلة سريعة",
-  applicationsHeading: "استخدامات شائعة",
-  limitationsHeading: "الافتراضات والقيود",
-  sourcesHeading: "المراجع",
-  relatedHeading: "روابط مرتبطة",
-  relatedCalculatorsHeading: "حاسبات مرتبطة",
-  relatedConversionsHeading: "تحويلات مرتبطة",
-  tableColumns: {
-    unitName: "اسم الوحدة",
-    symbol: "الرمز",
-    siEquivalent: "مكافئ SI",
-    typicalUse: "الاستخدام الشائع",
-  },
-  intro: [
-    "تحل هذه الأداة علاقة التوصيل الحراري الأحادي البعد في الحالة المستقرة.",
-    "وهي مفيدة في فحوص العزل الأولية وفقد الحرارة عبر الجدران والمقارنات بين المواد.",
-  ],
-  formulas: [
-    "Q̇ = k × A × ΔT / L",
-    "k = Q̇ × L / (A × ΔT)",
-    "A = Q̇ × L / (k × ΔT)",
-    "ΔT = Q̇ × L / (k × A)",
-    "L = k × A × ΔT / Q̇",
-  ],
-  variables: [
-    { term: "Q̇", explanation: "معدل انتقال الحرارة بوحدة W." },
-    { term: "k", explanation: "الموصلية الحرارية للمادة بوحدة W/(m·K)." },
-    { term: "A", explanation: "المساحة المشاركة في انتقال الحرارة بوحدة m²." },
-    { term: "ΔT", explanation: "فرق الحرارة عبر الطبقة بوحدة K." },
-    { term: "L", explanation: "السماكة في اتجاه انتقال الحرارة بوحدة m." },
-  ],
-  presetNotes: [
-    "القيم الجاهزة للنحاس والألمنيوم والفولاذ والزجاج والخرسانة والخشب والهواء تقريبية ومناسبة للمراجعات الأولية.",
-    "تتغير الموصلية الحرارية فعليا مع الحرارة والرطوبة والبنية الداخلية وطريقة التصنيع.",
-    "قيم الصوف الزجاجي والصوف الصخري وEPS وXPS ورغوة البولي يوريثان هي قيم حسابية نموذجية ضمن معيار TS 825؛ قد تختلف القيمة الفعلية حسب الكثافة والمصنّع.",
-  ],
-  examples: [
-    {
-      title: "انتقال الحرارة عبر لوح نحاسي",
-      body: "عند k = 401 W/(m·K) وA = 0.02 m² وΔT = 15 °C وL = 0.02 m تكون النتيجة 6.015 kW.",
-    },
-    {
-      title: "سماكة عزل مطلوبة لحمل معروف",
-      body: "إذا كان Q̇ = 200 W وk = 0.04 W/(m·K) وA = 4 m² وΔT = 25 °C فالسماكة المطلوبة تقارب 20 mm.",
-    },
-  ],
-  applications: [
-    "تقدير سماكات العزل",
-    "فحوص فقد الحرارة عبر الجدران والصفائح",
-    "مقارنة أثر تغيير المادة",
-    "حسابات تعليمية وتمهيدية في انتقال الحرارة",
-  ],
-  limitations: [
-    "يفترض النموذج توصيلا أحادي البعد وثابتا مع الزمن والخواص.",
-    "لا يشمل مقاومة التلامس أو الإشعاع أو الحمل الحراري أو الجدران متعددة الطبقات.",
-    "القيم الجاهزة تقريبية ويجب استبدالها ببيانات موثوقة في التصميم النهائي.",
-  ],
-  sources: [
-    {
-      label: "OpenStax University Physics - Temperature and Heat",
-      href: "https://openstax.org/books/university-physics-volume-2/pages/1-introduction",
-    },
-    {
-      label: "BIPM SI Brochure",
-      href: "https://www.bipm.org/en/publications/si-brochure",
-    },
-    {
-      label: "NIST Guide to the SI",
-      href: "https://www.nist.gov/pml/special-publication-811",
-    },
-  ],
-  relatedCalculators: [
-    {
-      label: "حاسبة الطاقة الحرارية",
-      href: "/ar/calculators/heat-energy",
-    },
-    {
-      label: "حاسبة عدد رينولدز",
-      href: "/ar/calculators/reynolds-number",
-    },
-    {
-      label: "مركز الحاسبات الهندسية",
-      href: "/ar/engineering-calculators",
-    },
-  ],
-  relatedConversions: [
-    { label: "Meters إلى Centimeters", href: "/ar/meters-to-centimeters" },
-    { label: "Centimeters إلى Inches", href: "/ar/centimeters-to-inches" },
-  ],
-};
 
 function renderUnitName(
   unit: EngineeringUnitDefinition,
@@ -660,7 +540,7 @@ export default function HeatConductionPage({
   locale: CalculatorLocale;
   structuredData?: ReactNode;
 }) {
-  const copy = locale === "ar" ? arabicCopy : pageCopy[locale];
+  const copy = pageCopy[locale];
   const unitSections = getUnitSections(locale);
 
   return (

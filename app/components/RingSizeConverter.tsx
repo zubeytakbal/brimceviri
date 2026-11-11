@@ -9,7 +9,7 @@ import {
   ringSizeRows,
 } from "../converter/ringSizeTable";
 
-type Locale = "tr" | "en" | "de" | "ar";
+type Locale = "tr" | "en" | "de";
 
 const systemLabels: Record<Locale, Record<RingSizeSystem, string>> = {
   tr: {
@@ -27,12 +27,6 @@ const systemLabels: Record<Locale, Record<RingSizeSystem, string>> = {
   de: {
     diameterMm: "Innendurchmesser (mm)",
     circumferenceMm: "EU Umfang (mm)",
-    us: "US",
-    uk: "UK",
-  },
-  ar: {
-    diameterMm: "القطر الداخلي (مم)",
-    circumferenceMm: "المحيط الأوروبي (مم)",
     us: "US",
     uk: "UK",
   },
@@ -72,17 +66,6 @@ const copy = {
     ukResult: "UK",
     chartCaption: "Ringgrößentabelle",
   },
-  ar: {
-    knownSystem: "النظام المعروف",
-    value: "القيمة",
-    matchingSizes: "المقاسات المطابقة",
-    invalidValue: "اختر قيمة صحيحة لعرض أقرب مقاس.",
-    diameterResult: "القطر (مم)",
-    circumferenceResult: "المحيط (مم)",
-    usResult: "US",
-    ukResult: "UK",
-    chartCaption: "جدول مقاسات الخواتم",
-  },
 } as const;
 
 const systemOrder: RingSizeSystem[] = [
@@ -101,9 +84,6 @@ function getNumberLocale(locale: Locale) {
     return "de-DE";
   }
 
-  if (locale === "ar") {
-    return "ar";
-  }
 
 
   return "en-US";

@@ -28,60 +28,12 @@ const unitOptionLabels: Record<
     kg: "Kilogramm (kg)",
     ton: "Tonne",
   },
-  ar: {
-    g: "غرام (g)",
-    kg: "كيلوغرام (kg)",
-    ton: "طن",
-  },
-bn: {
-    g: "গ্রাম (g)",
-    kg: "কিলোগ্রাম (kg)",
-    ton: "টন",
-  },
-fr: {
-    g: "Gramme (g)",
-    kg: "Kilogramme (kg)",
-    ton: "Tonne",
-  },
-  es: {
-    g: "Gramo (g)",
-    kg: "Kilogramo (kg)",
-    ton: "Tonelada",
-  },
-  pt: {
-    g: "Grama (g)",
-    kg: "Quilograma (kg)",
-    ton: "Tonelada",
-  },
-  it: {
-    g: "Grammo (g)",
-    kg: "Chilogrammo (kg)",
-    ton: "Tonnellata",
-  },
-  nl: {
-    g: "Gram (g)",
-    kg: "Kilogram (kg)",
-    ton: "Ton",
-  },
-  ru: {
-    g: "Грамм (г)",
-    kg: "Килограмм (кг)",
-    ton: "Тонна (т)",
-  },
 };
 
 const unitShortLabels: Record<Locale, Record<WeightComparisonUnit, string>> = {
   tr: { g: "g", kg: "kg", ton: "ton" },
   en: { g: "g", kg: "kg", ton: "ton" },
   de: { g: "g", kg: "kg", ton: "t" },
-  ar: { g: "غ", kg: "كجم", ton: "طن" },
-bn: { g: "g", kg: "kg", ton: "t" },
-fr: { g: "g", kg: "kg", ton: "t" },
-  es: { g: "g", kg: "kg", ton: "t" },
-  pt: { g: "g", kg: "kg", ton: "t" },
-  it: { g: "g", kg: "kg", ton: "t" },
-  nl: { g: "g", kg: "kg", ton: "t" },
-  ru: { g: "г", kg: "кг", ton: "т" },
 };
 
 const referenceLabels: Record<Locale, Record<string, string>> = {
@@ -111,78 +63,6 @@ const referenceLabels: Record<Locale, Record<string, string>> = {
     otomobil: "Durchschnittlicher Pkw",
     fil: "Durchschnittlicher afrikanischer Elefant",
     "mavi-balina": "Durchschnittlicher Blauwal",
-  },
-  ar: {
-    kedi: "متوسط وزن قطة منزلية",
-    insan: "متوسط وزن إنسان بالغ",
-    motosiklet: "متوسط وزن دراجة نارية",
-    at: "متوسط وزن حصان ركوب",
-    otomobil: "متوسط وزن سيارة ركاب",
-    fil: "متوسط وزن فيل إفريقي بالغ",
-    "mavi-balina": "متوسط وزن حوت أزرق بالغ",
-  },
-bn: {
-    kedi: "গড় পোষা বিড়াল",
-    insan: "গড় প্রাপ্তবয়স্ক মানুষ",
-    motosiklet: "গড় মোটরসাইকেল",
-    at: "গড় সওয়ারি ঘোড়া",
-    otomobil: "গড় যাত্রীবাহী গাড়ি",
-    fil: "গড় প্রাপ্তবয়স্ক আফ্রিকান হাতি",
-    "mavi-balina": "গড় প্রাপ্তবয়স্ক নীল তিমি",
-  },
-fr: {
-    kedi: "Chat domestique moyen",
-    insan: "Adulte moyen",
-    motosiklet: "Moto moyenne",
-    at: "Cheval de selle moyen",
-    otomobil: "Voiture particulière moyenne",
-    fil: "Éléphant d'Afrique adulte moyen",
-    "mavi-balina": "Baleine bleue adulte moyenne",
-  },
-  es: {
-    kedi: "Gato doméstico promedio",
-    insan: "Adulto promedio",
-    motosiklet: "Moto promedio",
-    at: "Caballo de silla promedio",
-    otomobil: "Turismo promedio",
-    fil: "Elefante africano adulto promedio",
-    "mavi-balina": "Ballena azul adulta promedio",
-  },
-  pt: {
-    kedi: "Gato doméstico médio",
-    insan: "Adulto médio",
-    motosiklet: "Moto média",
-    at: "Cavalo de montaria médio",
-    otomobil: "Carro de passeio médio",
-    fil: "Elefante-africano adulto médio",
-    "mavi-balina": "Baleia-azul adulta média",
-  },
-  it: {
-    kedi: "Gatto domestico medio",
-    insan: "Adulto medio",
-    motosiklet: "Moto media",
-    at: "Cavallo da sella medio",
-    otomobil: "Autovettura media",
-    fil: "Elefante africano adulto medio",
-    "mavi-balina": "Balenottera azzurra adulta media",
-  },
-  nl: {
-    kedi: "Gemiddelde huiskat",
-    insan: "Gemiddelde volwassene",
-    motosiklet: "Gemiddelde motorfiets",
-    at: "Gemiddeld rijpaard",
-    otomobil: "Gemiddelde personenauto",
-    fil: "Gemiddelde volwassen Afrikaanse olifant",
-    "mavi-balina": "Gemiddelde volwassen blauwe vinvis",
-  },
-  ru: {
-    kedi: "Средняя домашняя кошка",
-    insan: "Средний взрослый человек",
-    motosiklet: "Средний мотоцикл",
-    at: "Средняя верховая лошадь",
-    otomobil: "Средний легковой автомобиль",
-    fil: "Средний взрослый африканский слон",
-    "mavi-balina": "Средний взрослый синий кит",
   },
 };
 
@@ -219,56 +99,6 @@ const copyByLocale: Record<
     intro: "Comparisons for",
     closestMatch: "Closest comparison",
   },
-  fr: {
-    labels: {
-      value: "Valeur",
-      unit: "Unité",
-    },
-    placeholder: "E.g. 25",
-    emptyState: "Saisissez une valeur valide pour voir les comparaisons.",
-    intro: "Comparaisons pour",
-    closestMatch: "Comparaison la plus proche",
-  },
-  es: {
-    labels: {
-      value: "Valor",
-      unit: "Unidad",
-    },
-    placeholder: "E.g. 25",
-    emptyState: "Introduce un valor válido para ver las comparaciones.",
-    intro: "Comparaciones para",
-    closestMatch: "Comparación más cercana",
-  },
-  pt: {
-    labels: {
-      value: "Valor",
-      unit: "Unidade",
-    },
-    placeholder: "E.g. 25",
-    emptyState: "Digite um valor válido para ver as comparações.",
-    intro: "Comparações para",
-    closestMatch: "Comparação mais próxima",
-  },
-  it: {
-    labels: {
-      value: "Valore",
-      unit: "Unità",
-    },
-    placeholder: "E.g. 25",
-    emptyState: "Inserisci un valore valido per vedere i confronti.",
-    intro: "Confronti per",
-    closestMatch: "Confronto più vicino",
-  },
-  nl: {
-    labels: {
-      value: "Waarde",
-      unit: "Eenheid",
-    },
-    placeholder: "E.g. 25",
-    emptyState: "Voer een geldige waarde in om de vergelijkingen te zien.",
-    intro: "Vergelijkingen voor",
-    closestMatch: "Dichtstbijzijnde vergelijking",
-  },
   de: {
     labels: {
       value: "Wert",
@@ -278,36 +108,6 @@ const copyByLocale: Record<
     emptyState: "Geben Sie einen gültigen Wert ein, um die Vergleiche zu sehen.",
     intro: "Vergleiche für",
     closestMatch: "Nächster Vergleich",
-  },
-  ar: {
-    labels: {
-      value: "القيمة",
-      unit: "الوحدة",
-    },
-    placeholder: "مثال: 25",
-    emptyState: "أدخل قيمة صحيحة لعرض المقارنات.",
-    intro: "مقارنات للقيمة",
-    closestMatch: "أقرب مقارنة",
-  },
-  bn: {
-    labels: {
-      value: "মান",
-      unit: "একক",
-    },
-    placeholder: "E.g. 25",
-    emptyState: "তুলনা দেখতে একটি সঠিক মান লিখুন।",
-    intro: "এর জন্য তুলনা:",
-    closestMatch: "সবচেয়ে কাছের তুলনা",
-  },
-  ru: {
-    labels: {
-      value: "Значение",
-      unit: "Единица",
-    },
-    placeholder: "Например, 25",
-    emptyState: "Введите корректное значение, чтобы увидеть сравнения.",
-    intro: "Сравнения для",
-    closestMatch: "Ближайшее сравнение",
   },
 };
 
@@ -336,7 +136,7 @@ function getReferenceLabel(id: string, locale: Locale, fallback: string) {
 }
 
 // Bu dillerde "icin karsilastirmalar" ifadesi degerden sonra gelir.
-const introAfterValueLocales = new Set<Locale>(["tr", "bn"]);
+const introAfterValueLocales = new Set<Locale>(["tr"]);
 
 export default function WeightComparisonTool({
   locale = "tr",
@@ -391,9 +191,7 @@ export default function WeightComparisonTool({
             <p className="length-comparison-intro">
               {introAfterValueLocales.has(locale)
                 ? `${value} ${unitShortLabels[locale][unit]} ${copy.intro}`
-                : locale === "ar"
-                  ? `${copy.intro} ${value} ${unitShortLabels[locale][unit]}`
-                  : `${copy.intro} ${value} ${unitShortLabels[locale][unit]}:`}
+                : `${copy.intro} ${value} ${unitShortLabels[locale][unit]}:`}
             </p>
 
             <div className="length-comparison-top">

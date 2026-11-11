@@ -5,7 +5,7 @@ import { cycleOn, cycles, CYCLE_MAX, CYCLE_MIN, dueDate, LUTEAL_MAX, LUTEAL_MIN,
 import type { YMD } from "../converter/time/calendars";
 import { addDaysYmd, diffDays, parseYmd, ymdKey } from "../converter/time/dateMath";
 
-export type CycleLang = "tr" | "en" | "de" | "es" | "pt" | "bn";
+export type CycleLang = "tr" | "en" | "de";
 
 type Dict = {
   lmp: string;
@@ -132,100 +132,10 @@ const T: Record<CycleLang, Dict> = {
     months: ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
     week: ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"],
   },
-  es: {
-    lmp: "Primer día de tu última regla",
-    cycle: "Duración del ciclo (días)",
-    period: "Duración de la regla (días)",
-    luteal: "Fase lútea (días; 14 si no la sabes)",
-    dpo: (n) => `${n} días después de la ovulación`,
-    implant: "Ventana de implantación",
-    implantNote: "6–12 días después de la ovulación; puede aparecer un leve sangrado de implantación",
-    today: "Hoy",
-    cycleDay: (n) => `día ${n} del ciclo`,
-    kind: { period: "Menstruación", fertile: "Días fértiles", ovulation: "Día probable de ovulación", none: "Días de baja fertilidad" },
-    nextPeriod: "Próxima regla",
-    inDays: (n) => `dentro de ${n} días`,
-    ovulation: "Día de ovulación",
-    fertile: "Días fértiles (mayor probabilidad)",
-    test: "Prueba de embarazo",
-    testNote: "desde este día si la regla se retrasa",
-    due: "Fecha probable de parto si hay embarazo",
-    dueNote: "última regla + 280 días, ajustado a tu ciclo",
-    upcoming: "Próximos ciclos",
-    colPeriod: "Regla",
-    colFertile: "Días fértiles",
-    colOvulation: "Ovulación",
-    prev: "Mes anterior",
-    next: "Mes siguiente",
-    invalid: `El ciclo debe durar ${CYCLE_MIN}–${CYCLE_MAX} días y la regla ${PERIOD_MIN}–${PERIOD_MAX} días.`,
-    note: "El método del calendario da una estimación para ciclos regulares; no es un método anticonceptivo. Si tu ciclo es irregular o la regla se retrasa, consulta a tu médico.",
-    months: ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"],
-    week: ["lun", "mar", "mié", "jue", "vie", "sáb", "dom"],
-  },
-  pt: {
-    lmp: "Primeiro dia da última menstruação",
-    cycle: "Duração do ciclo (dias)",
-    period: "Duração da menstruação (dias)",
-    luteal: "Fase lútea (dias; 14 se não souber)",
-    dpo: (n) => `${n} dias após a ovulação`,
-    implant: "Janela de nidação",
-    implantNote: "6–12 dias após a ovulação; pode haver um leve sangramento de nidação",
-    today: "Hoje",
-    cycleDay: (n) => `${n}º dia do ciclo`,
-    kind: { period: "Menstruação", fertile: "Período fértil", ovulation: "Dia provável da ovulação", none: "Dias de baixa fertilidade" },
-    nextPeriod: "Próxima menstruação",
-    inDays: (n) => `em ${n} dias`,
-    ovulation: "Dia da ovulação",
-    fertile: "Período fértil (maior chance)",
-    test: "Teste de gravidez",
-    testNote: "a partir deste dia, se a menstruação atrasar",
-    due: "Data provável do parto se engravidar",
-    dueNote: "última menstruação + 280 dias, ajustada ao ciclo",
-    upcoming: "Próximos ciclos",
-    colPeriod: "Menstruação",
-    colFertile: "Período fértil",
-    colOvulation: "Ovulação",
-    prev: "Mês anterior",
-    next: "Próximo mês",
-    invalid: `O ciclo deve ter ${CYCLE_MIN}–${CYCLE_MAX} dias e a menstruação ${PERIOD_MIN}–${PERIOD_MAX} dias.`,
-    note: "A tabelinha dá uma estimativa para ciclos regulares; não é método anticoncepcional. Se o ciclo for irregular ou a menstruação atrasar, procure um médico.",
-    months: ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"],
-    week: ["seg", "ter", "qua", "qui", "sex", "sáb", "dom"],
-  },
-  bn: {
-    lmp: "শেষ মাসিকের প্রথম দিন",
-    cycle: "চক্রের দৈর্ঘ্য (দিন)",
-    period: "মাসিক কত দিন থাকে",
-    luteal: "লুটিয়াল পর্যায় (দিন; না জানলে ১৪)",
-    dpo: (n) => `ওভুলেশনের ${n} দিন পর`,
-    implant: "ইমপ্লান্টেশনের সময়",
-    implantNote: "ওভুলেশনের ৬–১২ দিন পর; এ সময় হালকা রক্তের দাগ দেখা দিতে পারে",
-    today: "আজ",
-    cycleDay: (n) => `চক্রের ${n}তম দিন`,
-    kind: { period: "মাসিক চলছে", fertile: "উর্বর সময়", ovulation: "সম্ভাব্য ওভুলেশনের দিন", none: "গর্ভধারণের সম্ভাবনা কম" },
-    nextPeriod: "পরবর্তী মাসিক",
-    inDays: (n) => `${n} দিন পর`,
-    ovulation: "ওভুলেশনের দিন",
-    fertile: "উর্বর সময় (সম্ভাবনা সবচেয়ে বেশি)",
-    test: "প্রেগনেন্সি টেস্ট",
-    testNote: "মাসিক দেরি হলে এই দিন থেকে টেস্ট করুন",
-    due: "গর্ভধারণ হলে সম্ভাব্য প্রসবের তারিখ",
-    dueNote: "শেষ মাসিক + ২৮০ দিন, চক্র অনুযায়ী সমন্বয়",
-    upcoming: "পরবর্তী চক্রগুলো",
-    colPeriod: "মাসিক",
-    colFertile: "উর্বর সময়",
-    colOvulation: "ওভুলেশন",
-    prev: "আগের মাস",
-    next: "পরের মাস",
-    invalid: `চক্র ${CYCLE_MIN}–${CYCLE_MAX} দিন এবং মাসিক ${PERIOD_MIN}–${PERIOD_MAX} দিন হতে হবে।`,
-    note: "ক্যালেন্ডার পদ্ধতি নিয়মিত চক্রের জন্য আনুমানিক হিসাব দেয়; এটি জন্মনিয়ন্ত্রণ পদ্ধতি নয়। চক্র অনিয়মিত হলে বা মাসিক দেরি হলে ডাক্তারের পরামর্শ নিন।",
-    months: BN_MONTHS,
-    week: ["সোম", "মঙ্গল", "বুধ", "বৃহঃ", "শুক্র", "শনি", "রবি"],
-  },
 };
 
 const BN_DIGITS = "০১২৩৪৫৬৭৮৯";
-const num = (n: number, lang: CycleLang) => (lang === "bn" ? String(n).replace(/\d/g, (c) => BN_DIGITS[Number(c)]) : String(n));
+const num = (n: number, lang: CycleLang) => (String(n));
 
 /** Tarih metni: Intl yerine sabit ay adları (Node ile tarayıcı aynı metni üretsin). */
 function dateText(d: YMD, lang: CycleLang) {
@@ -236,11 +146,6 @@ function dateText(d: YMD, lang: CycleLang) {
       return `${m} ${d.day}, ${d.year}`;
     case "de":
       return `${d.day}. ${m} ${d.year}`;
-    case "es":
-    case "pt":
-      return `${d.day} de ${m} de ${d.year}`;
-    case "bn":
-      return `${day} ${m} ${num(d.year, lang)}`;
     default:
       return `${d.day} ${m} ${d.year}`;
   }
@@ -249,7 +154,7 @@ const shortText = (d: YMD, lang: CycleLang) => {
   const m = T[lang].months[d.month - 1];
   if (lang === "en") return `${m.slice(0, 3)} ${d.day}`;
   if (lang === "de") return `${d.day}. ${m.slice(0, 3)}.`;
-  return `${num(d.day, lang)} ${lang === "bn" ? m : m.slice(0, 3)}`;
+  return `${num(d.day, lang)} ${m.slice(0, 3)}`;
 };
 const range = (a: YMD, b: YMD, lang: CycleLang) => `${shortText(a, lang)} – ${shortText(b, lang)}`;
 

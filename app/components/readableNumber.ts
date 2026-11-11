@@ -4,29 +4,13 @@ export type SiteNumberLocale =
   | "tr"
   | "en"
   | "de"
-  | "ar"
  
-  | "bn"
-  | "fr"
-  | "es"
- 
-  | "pt"
-  | "it"
-  | "nl"
-  | "ru";
+ ;
 
 const intlLocales: Record<SiteNumberLocale, string> = {
   tr: "tr-TR",
   en: "en-US",
   de: "de-DE",
-  ar: "ar",
-  bn: "bn-BD",
-  fr: "fr-FR",
-  es: "es-ES",
-  pt: "pt-BR",
-  it: "it-IT",
-  nl: "nl-NL",
-  ru: "ru-RU",
 };
 
 export function intlLocaleFor(locale: SiteNumberLocale) {

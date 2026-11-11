@@ -1,9 +1,6 @@
 import type { Locale } from "./config";
 
 export function getIntlLocale(locale: Locale) {
-  if (locale === "ar") {
-    return "ar";
-  }
 
   if (locale === "de") {
     return "de-DE";
@@ -13,33 +10,12 @@ export function getIntlLocale(locale: Locale) {
     return "en-US";
   }
 
-  if (locale === "bn") {
-    return "bn-BD";
-  }
 
-  if (locale === "fr") {
-    return "fr-FR";
-  }
 
-  if (locale === "es") {
-    return "es-ES";
-  }
 
-  if (locale === "pt") {
-    return "pt-BR";
-  }
 
-  if (locale === "it") {
-    return "it-IT";
-  }
 
-  if (locale === "nl") {
-    return "nl-NL";
-  }
 
-  if (locale === "ru") {
-    return "ru-RU";
-  }
 
 
 

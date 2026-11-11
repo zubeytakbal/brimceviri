@@ -19,7 +19,7 @@ const BN_DIGITS = "০১২৩৪৫৬৭৮৯";
 
 export default function CyclePage({ lang }: { lang: CycleLang }) {
   const c = CYCLE_CONTENT[lang];
-  const n = (x: number) => (lang === "bn" ? String(x).replace(/\d/g, (d) => BN_DIGITS[Number(d)]) : String(x));
+  const n = (x: number) => (String(x));
   const today = new Date();
   const initialDate = `${today.getUTCFullYear()}-${String(today.getUTCMonth() + 1).padStart(2, "0")}-${String(today.getUTCDate()).padStart(2, "0")}`;
   return (

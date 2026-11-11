@@ -36,7 +36,7 @@ type FooterLink = {
 };
 
 type CategoryPageLayoutProps = {
-  locale: "tr" | "en" | "de" | "ar" | "fr" | "bn" | "es" | "pt" | "it";
+  locale: "tr" | "en" | "de";
   structuredData?: ReactNode;
   breadcrumbAriaLabel: string;
   breadcrumbs: BreadcrumbItem[];
@@ -95,7 +95,7 @@ export default function CategoryPageLayout({
     <main
       className="category-page"
       lang={locale}
-      dir={locale === "ar" ? "rtl" : undefined}
+      dir={undefined}
     >
       {structuredData}
 

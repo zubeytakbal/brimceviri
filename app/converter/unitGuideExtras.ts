@@ -6,7 +6,7 @@ import { convert } from "./convert";
 import { conversionPages } from "./conversionPages";
 import { canonicalPairSlug } from "./mergedPairs";
 import type { FaqItem } from "./faqSchema";
-import { unitPages, type UnitPage } from "./unitPages";
+import { turkishUnitHref, unitPages, type UnitPage } from "./unitPages";
 import { getUnitsForCategory } from "./unitRegistry";
 
 export type UnitTableRow = {
@@ -44,7 +44,7 @@ function conversionHref(category: string, from: string, to: string) {
 
 function guideHref(category: string, symbol: string) {
   const page = unitPages.find((p) => p.category === category && p.unit === symbol);
-  return page ? `/birimler/${page.slug}` : null;
+  return page ? turkishUnitHref(page.slug) : null;
 }
 
 /** 1 birimin ayni kategorideki diger birimlerdeki karsiligi (dogrudan donusum sayfasi olanlar once). */

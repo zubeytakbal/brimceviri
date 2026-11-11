@@ -460,7 +460,6 @@ function getTurkishMenuGroups(): MenuGroup[] {
       ],
       footer: [
         { href: "/tum-birimler", label: "Tüm dönüşümler →" },
-        { href: "/birimler", label: "Birim rehberi →" },
       ],
     },
     {

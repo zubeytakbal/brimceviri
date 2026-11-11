@@ -711,13 +711,6 @@ export default async function ConversionPage({ params }: PageProps) {
 
             <p>{fromUnitInfo.shortDescription}</p>
 
-            {/* Tarihçe yalnızca birim rehberinde; aynı birimin geçtiği her çift sayfasında tekrarlanmaz. */}
-            <Link
-              className="text-link"
-              href={`/birimler/${fromUnitInfo.slug}`}
-            >
-              {fromUnitInfo.name} rehberi: tanımı, tarihçesi ve kullanım alanları
-            </Link>
           </section>
         )}
 
@@ -727,13 +720,6 @@ export default async function ConversionPage({ params }: PageProps) {
 
             <p>{toUnitInfo.shortDescription}</p>
 
-            {/* Tarihçe yalnızca birim rehberinde; aynı birimin geçtiği her çift sayfasında tekrarlanmaz. */}
-            <Link
-              className="text-link"
-              href={`/birimler/${toUnitInfo.slug}`}
-            >
-              {toUnitInfo.name} rehberi: tanımı, tarihçesi ve kullanım alanları
-            </Link>
           </section>
         )}
 

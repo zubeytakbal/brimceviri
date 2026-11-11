@@ -595,9 +595,9 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
       { href: "/kategoriler/viskozite", label: "Viskozite dönüşümleri" },
       { href: "/kategoriler/isil-iletkenlik", label: "Isıl iletkenlik dönüşümleri" },
       { href: "/kategoriler/elektrik", label: "Elektrik birimi dönüşümleri" },
-      { href: "/birimler/pascal", label: "Pascal (Pa) rehberi" },
-      { href: "/birimler/newton-metre", label: "Newton metre (N·m) rehberi" },
-      { href: "/birimler/watt", label: "Watt (W) rehberi" },
+      { href: "/kategoriler/basinc", label: "Basınç birimleri" },
+      { href: "/kategoriler/tork", label: "Tork birimleri" },
+      { href: "/kategoriler/guc", label: "Güç birimleri" },
     ],
     relatedToolsTitle: "İlgili sayfalar",
     relatedToolsLinks: [

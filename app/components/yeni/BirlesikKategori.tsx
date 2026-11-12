@@ -92,7 +92,7 @@ export default function BirlesikKategori({ slug }: { slug: string }) {
             <li>
               <Link href="/">Ana sayfa</Link>
             </li>
-            {grup && <li>{grup.ad}</li>}
+            {grup && grup.ad.toLocaleLowerCase("tr-TR") !== ad.toLocaleLowerCase("tr-TR") && <li>{grup.ad}</li>}
             <li aria-current="page">{ad}</li>
           </ol>
           <h1>{icerik.h1}</h1>

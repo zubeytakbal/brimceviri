@@ -6,7 +6,10 @@ import "./yeni.css";
 import Link from "@/app/components/SiteLink";
 import { getCategoryUnitOptions } from "../categoryUnitOptions";
 import { categoryPages } from "../../converter/categoryPages";
+import { conversionPages } from "../../converter/conversionPages";
 import { convert } from "../../converter/convert";
+import { ciftYayinda } from "../../converter/mergedPairs";
+import { turkceCiftYolu } from "../../converter/turkceYollar";
 import { buildFaqSchema } from "../../converter/faqSchema";
 import { BIRLESIK_KATEGORILER, kategorininGrubu } from "../../converter/siteYapisi";
 import { unitRegistry } from "../../converter/unitRegistry";
@@ -41,11 +44,18 @@ export default function BirlesikKategori({ slug }: { slug: string }) {
   const ad = BIRLESIK_KATEGORILER[slug].ad;
   const grup = kategorininGrubu(slug);
   const parcalar = icerik.parcalar.map((p) => {
-    const category = categoryPages.find((c) => c.slug === p.kategori)!.category;
-    const birimler = getCategoryUnitOptions(category, "tr");
+    const sayfaKategorisi = categoryPages.find((c) => c.slug === p.kategori)!.category;
+    const category = p.altKategori ?? sayfaKategorisi;
+    const birimler = getCategoryUnitOptions(sayfaKategorisi, "tr").filter(
+      (b) => !p.altKategori || unitRegistry.some((u) => u.category === p.altKategori && u.symbol === b.value),
+    );
     const temel =
       unitRegistry.find((u) => u.category === category && u.siFactor === 1 && !u.inverse)?.symbol ?? birimler[0].value;
-    return { ...p, category, birimler, temel };
+    const sembolSet = new Set(birimler.map((b) => b.value));
+    const ciftler = conversionPages.filter(
+      (c) => c.category === sayfaKategorisi && ciftYayinda(c.slug) && sembolSet.has(c.fromUnit) && sembolSet.has(c.toUnit),
+    );
+    return { ...p, category, birimler, temel, ciftler };
   });
   const cevirici: CeviriciParca[] = parcalar.map((p) => ({
     id: p.id,
@@ -134,6 +144,19 @@ export default function BirlesikKategori({ slug }: { slug: string }) {
               <section key={p.id} id={p.id}>
                 <h2>{p.baslik}</h2>
                 {p.govde}
+                {p.ciftler.length > 0 && (
+                  <p>
+                    Ayrı sayfası olan dönüşümler:{" "}
+                    {p.ciftler.map((c, i) => (
+                      <span key={c.slug}>
+                        {i > 0 && ", "}
+                        <Link href={turkceCiftYolu(c.slug)}>
+                          {c.fromName} → {c.toName}
+                        </Link>
+                      </span>
+                    ))}
+                  </p>
+                )}
                 <h3>{p.tablo.baslik}</h3>
                 <Matris category={p.category} birimler={p.birimler} semboller={p.tablo.birimler} />
                 <h3>Bütün birimlerin {temelAd.toLocaleLowerCase("tr-TR")} karşılığı</h3>

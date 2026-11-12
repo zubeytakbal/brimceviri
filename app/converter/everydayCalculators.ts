@@ -7,25 +7,14 @@ export interface EverydayCalculator {
 export const everydayCalculators: EverydayCalculator[] = [
   { id: "boya", href: "/boya-hesaplama", label: "Boya Hesaplama" },
   { id: "fayans", href: "/fayans-hesaplama", label: "Fayans Hesaplama" },
-  { id: "tugla", href: "/tugla-hesaplama", label: "Tuğla Hesaplama" },
   { id: "beton", href: "/beton-hesaplama", label: "Beton Hesaplama" },
   { id: "siva", href: "/siva-hesaplama", label: "Sıva Hesaplama" },
   { id: "merdiven", href: "/merdiven-hesaplama", label: "Merdiven Hesaplama" },
   { id: "devamsizlik", href: "/devamsizlik-hesaplama", label: "Devamsızlık Hesaplama" },
   { id: "yas", href: "/yas-hesaplama", label: "Yaş Hesaplama" },
-  { id: "kdv", href: "/kdv-hesaplama", label: "KDV Hesaplama" },
   { id: "kredi", href: "/kredi-hesaplama", label: "Kredi Hesaplama" },
   { id: "altin", href: "/altin-hesaplama", label: "Altın Hesaplama (Çeyrek, Yarım, Tam Altın)" },
-  { id: "brutten-nete", href: "/brutten-nete-maas-hesaplama", label: "Brütten Nete Maaş Hesaplama" },
-  { id: "kidem-tazminati", href: "/kidem-tazminati-hesaplama", label: "Kıdem ve İhbar Tazminatı Hesaplama" },
   { id: "yillik-izin", href: "/yillik-izin-hesaplama", label: "Yıllık İzin Hesaplama" },
-  { id: "bmi", href: "/bmi-hesaplama", label: "BMI (Vücut Kitle İndeksi) Hesaplama" },
-  {
-    id: "gebelik-haftasi",
-    href: "/gebelik-haftasi-hesaplama",
-    label: "Gebelik Haftası Hesaplama",
-  },
-  { id: "klima-btu", href: "/klima-btu-hesaplama", label: "Klima BTU Hesaplama" },
   {
     id: "elektrik-tuketimi",
     href: "/elektrik-tuketimi-hesaplama",
@@ -55,11 +44,6 @@ export const everydayCalculators: EverydayCalculator[] = [
     label: "Elektrikli Araç Şarj Süresi Hesaplama",
   },
   {
-    id: "has-hesaplama",
-    href: "/has-hesaplama",
-    label: "Has Altın ve Gümüş Hesaplama",
-  },
-  {
     id: "hafriyat-hesaplama",
     href: "/hafriyat-hesaplama",
     label: "Hafriyat ve Kazı Hesaplama",
@@ -73,11 +57,6 @@ export const everydayCalculators: EverydayCalculator[] = [
     id: "vucut-yag-orani-hesaplama",
     href: "/vucut-yag-orani-hesaplama",
     label: "Vücut Yağ Oranı Hesaplama",
-  },
-  {
-    id: "ideal-kilo-hesaplama",
-    href: "/ideal-kilo-hesaplama",
-    label: "İdeal Kilo Hesaplama",
   },
   {
     id: "beden-olcusu-cevirici",
@@ -118,11 +97,6 @@ export const everydayCalculators: EverydayCalculator[] = [
     id: "meld-skoru-hesaplama",
     href: "/meld-skoru-hesaplama",
     label: "MELD Skoru Hesaplama",
-  },
-  {
-    id: "cbm-hesaplama",
-    href: "/cbm-hesaplama",
-    label: "CBM ve Hacimsel Ağırlık Hesaplama",
   },
   {
     id: "boru-capi-hesaplama",

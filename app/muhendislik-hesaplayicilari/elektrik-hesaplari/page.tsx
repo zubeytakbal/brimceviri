@@ -5,6 +5,7 @@ import {
   getElectricalHubCopy,
   getElectricalHubPath,
 } from "../../converter/engineeringHubs";
+import { hesapSayfasiKalkti } from "../../kaldirilanHesapSayfalari";
 import { SITE_NAME, SITE_URL, buildSiteUrl } from "../../siteConfig";
 
 function serializeJsonLd(data: object) {
@@ -39,7 +40,8 @@ export const metadata: Metadata = {
 };
 
 export default function TurkishElectricalHubPage() {
-  const items = getElectricalCalculatorItems("tr");
+  // Birlesen ve kaldirilan (app/kaldirilanHesapSayfalari.ts) hesaplar listelenmez.
+  const items = getElectricalCalculatorItems("tr").filter((i) => !hesapSayfasiKalkti(i.href));
   const pageUrl = buildSiteUrl(pagePath);
 
   const breadcrumbSchema = {

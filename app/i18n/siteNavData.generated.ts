@@ -92,32 +92,12 @@ export const SITE_NAV_DATA: SiteNavData = {
        "label": "Kredi Hesaplama"
       },
       {
-       "href": "/kdv-hesaplama",
-       "label": "KDV Hesaplama"
-      },
-      {
-       "href": "/brutten-nete-maas-hesaplama",
-       "label": "Brütten Nete Maaş"
-      },
-      {
-       "href": "/kidem-tazminati-hesaplama",
-       "label": "Kıdem ve İhbar Tazminatı"
-      },
-      {
        "href": "/altin-hesaplama",
        "label": "Altın Hesaplama"
       },
       {
-       "href": "/bmi-hesaplama",
-       "label": "BMI (Vücut Kitle İndeksi)"
-      },
-      {
        "href": "/uyku-hesaplama",
        "label": "Uyku Hesaplama"
-      },
-      {
-       "href": "/gebelik-haftasi-hesaplama",
-       "label": "Gebelik Haftası Hesaplama"
       },
       {
        "href": "/yakit-tuketimi-hesaplama",

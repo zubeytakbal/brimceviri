@@ -277,15 +277,6 @@ export default function DigerDonusumlerPage() {
       group: "İnşaat ve Yapı Malzemesi Hesaplayıcıları",
     },
     {
-      id: "tugla",
-      href: "/tugla-hesaplama",
-      title: "Tuğla Hesaplama",
-      description:
-        "Duvar alanı ve tuğla ölçüsünden, derz ve fire payı dahil gereken tuğla adedini hesaplayın.",
-      iconName: "brickCalculator" as const,
-      group: "İnşaat ve Yapı Malzemesi Hesaplayıcıları",
-    },
-    {
       id: "beton",
       href: "/beton-hesaplama",
       title: "Beton Hesaplama",
@@ -409,33 +400,6 @@ export default function DigerDonusumlerPage() {
       description:
         "US Navy yöntemiyle, bant metre ölçüleriyle vücut yağ oranını hesaplayın.",
       iconName: "bodyFatCalculator" as const,
-      group: "Sağlık ve Fitness Hesaplayıcıları",
-    },
-    {
-      id: "ideal-kilo",
-      href: "/ideal-kilo-hesaplama",
-      title: "İdeal Kilo Hesaplama",
-      description:
-        "Devine formülüyle, boy ve cinsiyete göre ideal kiloyu hesaplayın.",
-      iconName: "idealWeightCalculator" as const,
-      group: "Sağlık ve Fitness Hesaplayıcıları",
-    },
-    {
-      id: "bmi",
-      href: "/bmi-hesaplama",
-      title: "BMI Hesaplama",
-      description:
-        "Vücut kitle indeksini (BMI) ve günlük kalori ihtiyacını hesaplayın.",
-      iconName: "bmiCalculator" as const,
-      group: "Sağlık ve Fitness Hesaplayıcıları",
-    },
-    {
-      id: "gebelik",
-      href: "/gebelik-haftasi-hesaplama",
-      title: "Gebelik Haftası Hesaplama",
-      description:
-        "Son adet tarihinden gebelik haftasını ve tahmini doğum tarihini hesaplayın.",
-      iconName: "pregnancyCalculator" as const,
       group: "Sağlık ve Fitness Hesaplayıcıları",
     },
     {
@@ -601,15 +565,6 @@ export default function DigerDonusumlerPage() {
       group: "Ev, Enerji ve Ulaşım Hesaplayıcıları",
     },
     {
-      id: "klima-btu",
-      href: "/klima-btu-hesaplama",
-      title: "Klima BTU Hesaplama",
-      description:
-        "Oda alanı, kişi sayısı ve güneş/kat durumundan uygun klima soğutma kapasitesini hesaplayın.",
-      iconName: "acCapacityCalculator" as const,
-      group: "Ev, Enerji ve Ulaşım Hesaplayıcıları",
-    },
-    {
       id: "elektrik-tuketimi",
       href: "/elektrik-tuketimi-hesaplama",
       title: "Elektrik Tüketimi Hesaplama",
@@ -617,24 +572,6 @@ export default function DigerDonusumlerPage() {
         "Cihaz gücünden günlük, aylık ve yıllık elektrik tüketimini (kWh) ve maliyetini hesaplayın.",
       iconName: "electricityConsumptionCalculator" as const,
       group: "Ev, Enerji ve Ulaşım Hesaplayıcıları",
-    },
-    {
-      id: "cbm",
-      href: "/cbm-hesaplama",
-      title: "CBM ve Hacimsel Ağırlık Hesaplama",
-      description:
-        "Koli/palet ölçülerinden CBM ve ücrete esas ağırlığı hesaplayın.",
-      iconName: "cbmCalculator" as const,
-      group: "Ev, Enerji ve Ulaşım Hesaplayıcıları",
-    },
-    {
-      id: "has-hesaplama",
-      href: "/has-hesaplama",
-      title: "Has Altın ve Gümüş Hesaplama",
-      description:
-        "Gram ve ayar (milyem) girerek has (saf) metal içeriğini, farklı ayarları karıştırarak sonuç ayarını hesaplayın.",
-      iconName: "hasCalculator" as const,
-      group: "Finans, Eğitim ve Günlük Yaşam Araçları",
     },
     {
       id: "emlak-komisyonu",
@@ -673,15 +610,6 @@ export default function DigerDonusumlerPage() {
       group: "Finans, Eğitim ve Günlük Yaşam Araçları",
     },
     {
-      id: "kdv",
-      href: "/kdv-hesaplama",
-      title: "KDV Hesaplama",
-      description:
-        "KDV dahil veya KDV hariç tutarı, KDV miktarını oran bazında hesaplayın.",
-      iconName: "vatCalculator" as const,
-      group: "Finans, Eğitim ve Günlük Yaşam Araçları",
-    },
-    {
       id: "kredi",
       href: "/kredi-hesaplama",
       title: "Kredi Hesaplama",
@@ -698,15 +626,6 @@ export default function DigerDonusumlerPage() {
         "100'lük puanı harf notuna ve 4'lük sisteme çevirin.",
       iconName: "letterGradeCalculator" as const,
       group: "Finans, Eğitim ve Günlük Yaşam Araçları",
-    },
-    {
-      id: "yuzuk",
-      href: "/yuzuk-olcusu-cevirici",
-      title: "Yüzük Ölçüsü Çevirici",
-      description:
-        "Yüzük ölçüsünü TR, Avrupa, ABD ve İngiltere sistemleri arasında çevirin.",
-      iconName: "ringSize" as const,
-      group: "Ölçü Çeviricileri ve Eğlenceli Karşılaştırmalar",
     },
     {
       id: "lastik-ebati",

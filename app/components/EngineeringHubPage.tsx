@@ -164,12 +164,6 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
             description: "Hat uzunluğu, kesit ve akıma göre gerilim düşümünü ve yüzdesini bulun.",
           },
           {
-            slug: "kablo-kesiti-hesaplama",
-            href: "/muhendislik-hesaplayicilari/elektrik-hesaplari/kablo-kesiti-hesaplama",
-            title: "Kablo Kesiti",
-            description: "Yük akımı ve izin verilen gerilim düşümüne göre kablo kesitini ön boyutlandırın.",
-          },
-          {
             slug: "ohm-yasasi",
             href: "/hesaplayicilar/ohm-yasasi",
             title: "Ohm Yasası",
@@ -509,13 +503,6 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
             description: "Döşeme, kolon ve temel için beton hacmini ve malzeme miktarını bulun.",
           },
           {
-            slug: "tugla-hesaplama",
-            href: "/tugla-hesaplama",
-            title: "Tuğla Hesaplama",
-            icon: "brickCalculator",
-            description: "Duvar alanı ve tuğla ölçüsünden derz payı ve fire dahil tuğla adedini hesaplayın.",
-          },
-          {
             slug: "siva-hesaplama",
             href: "/siva-hesaplama",
             title: "Sıva Hesaplama",
@@ -551,13 +538,6 @@ const contentByLocale: Record<Locale, EngineeringHubContent> = {
         description:
           "Klima kapasitesi, ısı yalıtımı ve ısıtma enerjisi tüketimiyle ilgili hesaplar.",
         tools: [
-          {
-            slug: "klima-btu-hesaplama",
-            href: "/klima-btu-hesaplama",
-            title: "Klima BTU Hesaplama",
-            icon: "acCapacityCalculator",
-            description: "Oda alanı ve koşullarına göre gereken klima kapasitesini bulun.",
-          },
           {
             slug: "petek-dilim-hesaplama",
             href: "/petek-dilim-hesaplama",

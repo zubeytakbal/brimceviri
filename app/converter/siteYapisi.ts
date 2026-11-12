@@ -109,6 +109,7 @@ export const BIRLESIK_KATEGORILER: Readonly<Record<string, { ad: string; kategor
     ad: "Konsantrasyon",
     kategoriler: ["konsantrasyon", "kan-sekeri", "vitamin-d", "su-sertligi"],
   },
+  // iplik-numarasi sayfada gosterilmez (Kasim 2026, arama almiyordu); uye kalir ki eski adresi /tekstil'e yonlensin.
   tekstil: {
     ad: "Tekstil",
     kategoriler: ["iplik-numarasi", "gramaj", "hali-dugum-sikligi"],
@@ -157,13 +158,11 @@ const KURUMSAL_YOLLAR: ReadonlySet<string> = new Set([
 /** Yeni arac sayfasi duzenine (AracSayfasi) gecmis Turkce araclar ve iceriklerinin son degistigi gun (git gecmisi).
  * TimeToolPage kullanan sayfalar bu listeye eklenince yeni duzenle cizilir. */
 export const YENI_ARACLAR: Readonly<Record<string, string>> = {
-  "/kdv-hesaplama": "2026-11-02",
   "/22-ayar-altin-24-ayar-altin": "2026-11-05",
   "/24-ayar-altin-22-ayar-altin": "2026-11-05",
   "/altin-hesaplama": "2026-11-05",
   "/altin-hesaplama/ceyrek-altin": "2026-11-05",
   "/altin-hesaplama/cumhuriyet-altini": "2026-11-05",
-  "/brutten-nete-maas-hesaplama": "2026-10-24",
   "/ceyrek-bilezik-hesaplama": "2026-11-05",
   "/dekara-fidan-sayisi-hesaplama": "2026-11-05",
   "/dogdugum-gun-hangi-gun": "2026-11-07",
@@ -178,7 +177,6 @@ export const YENI_ARACLAR: Readonly<Record<string, string>> = {
   "/kaza-namazi-hesaplama": "2026-11-07",
   "/kaza-orucu-hesaplama": "2026-11-07",
   "/kible-yonu-hesaplama": "2026-11-07",
-  "/kidem-tazminati-hesaplama": "2026-11-05",
   "/kirk-mevlidi-hesaplama": "2026-11-07",
   "/koordinat-donusturucu": "2026-11-09",
   "/kredi-hesaplama": "2026-11-07",
@@ -189,7 +187,6 @@ export const YENI_ARACLAR: Readonly<Record<string, string>> = {
   "/yillik-izin-hesaplama": "2026-11-07",
   "/zekat-hesaplama": "2026-11-07",
   "/dogalgaz-tuketimi-hesaplama": "2026-11-09",
-  "/has-hesaplama": "2026-11-10",
   "/yakit-tuketimi-hesaplama": "2026-11-02",
   "/ehliyet-yenileme-suresi-hesaplama": "2026-11-10",
   "/lastik-ebati-hesaplama": "2026-11-10",
@@ -197,7 +194,6 @@ export const YENI_ARACLAR: Readonly<Record<string, string>> = {
   "/devamsizlik-hesaplama": "2026-11-10",
   "/harf-notu-hesaplama": "2026-11-10",
   "/beton-hesaplama": "2026-11-10",
-  "/tugla-hesaplama": "2026-11-02",
   "/merdiven-hesaplama": "2026-11-10",
   "/kereste-hesaplama": "2026-11-10",
   "/emsal-kaks-hesaplama": "2026-11-10",
@@ -207,11 +203,6 @@ export const YENI_ARACLAR: Readonly<Record<string, string>> = {
   "/fayans-hesaplama": "2026-11-02",
   "/parke-hesaplama": "2026-11-02",
   "/duvar-kagidi-hesaplama": "2026-11-02",
-  "/klima-btu-hesaplama": "2026-11-09",
-  "/bmi-hesaplama": "2026-11-02",
-  "/ideal-kilo-hesaplama": "2026-11-10",
-  "/gebelik-haftasi-hesaplama": "2026-11-02",
-  "/sayi-tabani-cevirici": "2026-11-10",
   "/awg-mm2-cevirici": "2026-11-02",
   "/psu-guc-hesaplama": "2026-11-02",
   "/anten-uzunlugu-hesaplama": "2026-11-02",
@@ -234,7 +225,6 @@ export const YENI_ARACLAR: Readonly<Record<string, string>> = {
   "/elektrik-tuketimi-hesaplama": "2026-11-09",
   "/kokteyl-olcusu-cevirici": "2026-11-02",
   "/abv-standart-icki-hesaplama": "2026-11-02",
-  "/cbm-hesaplama": "2026-11-10",
   "/uzunluk-karsilastirma": "2026-11-02",
   "/kosu-pace-hesaplama": "2026-11-02",
 };
@@ -245,7 +235,6 @@ export const GENIS_ARACLAR: ReadonlySet<string> = new Set([
   "/kible-yonu-hesaplama",
   "/koordinat-donusturucu",
   "/kredi-hesaplama",
-  "/brutten-nete-maas-hesaplama",
   "/kirk-mevlidi-hesaplama",
   "/harita-olcegi-hesaplama",
 ]);

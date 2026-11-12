@@ -21,9 +21,6 @@ export type AnaSayfaLinki = { href: string; ad: string };
 
 /** B duzeni: en cok tiklanan ve en cok aranan araclar, tek cumlelik aciklamayla. */
 export const POPULER_ARACLAR: readonly (AnaSayfaLinki & { aciklama: string; grup: string })[] = [
-  { grup: "finans", href: "/kdv-hesaplama", ad: "KDV hesaplama", aciklama: "KDV dahil ve hariç tutar, %1, %10 ve %20 oranları." },
-  { grup: "finans", href: "/brutten-nete-maas-hesaplama", ad: "Brütten nete maaş", aciklama: "Vergi ve SGK kesintileriyle eline geçecek maaş." },
-  { grup: "finans", href: "/kidem-tazminati-hesaplama", ad: "Kıdem tazminatı", aciklama: "Çalışma süresi ve brüt ücrete göre tazminat." },
   { grup: "gunluk-yasam", href: "/yas-hesaplama", ad: "Yaş hesaplama", aciklama: "Doğum tarihinden yıl, ay ve gün olarak yaş." },
   { grup: "insaat", href: "/beton-hesaplama", ad: "Beton hesaplama", aciklama: "Döşeme ve kolon için metreküp, çimento ve kum." },
   { grup: "insaat", href: "/boya-hesaplama", ad: "Boya hesaplama", aciklama: "Duvar alanına göre kaç litre boya gerektiği." },
@@ -31,7 +28,6 @@ export const POPULER_ARACLAR: readonly (AnaSayfaLinki & { aciklama: string; grup
   { grup: "diger", href: "/kible-yonu-hesaplama", ad: "Kıble yönü", aciklama: "Telefonda canlı pusulayla kıbleyi bulur; 81 ilin kıble açısı da var." },
   { grup: "insaat", href: "/merdiven-hesaplama", ad: "Merdiven hesaplama", aciklama: "Toplam yüksekliğe göre basamak sayısı, rıht yüksekliği ve basamak derinliği." },
   { grup: "biyoloji", href: "/tarla-donum-hesaplama", ad: "Tarla dönüm hesaplama", aciklama: "Kenar ölçülerinden düzensiz tarlanın bile alanını dönüm ve m² olarak bulur." },
-  { grup: "matematik", href: "/bilim-hesaplayicilari/matematik/yuzde-hesaplama", ad: "Yüzde hesaplama", aciklama: "Bir sayının yüzdesini, yüzde kaçı olduğunu ve yüzde artışı adım adım hesaplar." },
   { grup: "saglik", href: "/uyku-hesaplama", ad: "Uyku hesaplama", aciklama: "Uyku döngülerine göre yatma ve kalkma saati." },
 ];
 export type AnaSayfaGrubu = { slug: string; ad: string; linkler: AnaSayfaLinki[] };
@@ -54,16 +50,12 @@ export const HESAPLAYICI_GRUPLARI: readonly AnaSayfaGrubu[] = [
     slug: "finans",
     ad: "Finans",
     linkler: [
-      { href: "/kdv-hesaplama", ad: "KDV" },
-      { href: "/brutten-nete-maas-hesaplama", ad: "Brütten nete maaş" },
-      { href: "/kidem-tazminati-hesaplama", ad: "Kıdem ve ihbar tazminatı" },
       { href: "/yillik-izin-hesaplama", ad: "Yıllık izin" },
       { href: "/kredi-hesaplama", ad: "Kredi" },
       { href: "/altin-hesaplama", ad: "Altın" },
       { href: "/altin-hesaplama/ceyrek-altin", ad: "Çeyrek altın" },
       { href: "/altin-hesaplama/cumhuriyet-altini", ad: "Cumhuriyet altını" },
       { href: "/ceyrek-bilezik-hesaplama", ad: "Çeyrekten bileziğe" },
-      { href: "/has-hesaplama", ad: "Hurda altın ve has" },
       { href: "/24-ayar-altin-22-ayar-altin", ad: "24 ayardan 22 ayara" },
       { href: "/22-ayar-altin-24-ayar-altin", ad: "22 ayardan 24 ayara" },
     ],
@@ -90,7 +82,6 @@ export const HESAPLAYICI_GRUPLARI: readonly AnaSayfaGrubu[] = [
       { href: "/harf-notu-hesaplama", ad: "Harf notu" },
       { href: "/ayakkabi-numarasi-cevirme", ad: "Ayakkabı numarası" },
       { href: "/beden-olcusu-cevirici", ad: "Beden ölçüsü" },
-      { href: "/yuzuk-olcusu-cevirici", ad: "Yüzük ölçüsü" },
     ],
   },
   {
@@ -98,7 +89,6 @@ export const HESAPLAYICI_GRUPLARI: readonly AnaSayfaGrubu[] = [
     ad: "İnşaat",
     linkler: [
       { href: "/beton-hesaplama", ad: "Beton" },
-      { href: "/tugla-hesaplama", ad: "Tuğla" },
       { href: "/merdiven-hesaplama", ad: "Merdiven" },
       { href: "/kereste-hesaplama", ad: "Kereste metreküp" },
       { href: "/emsal-kaks-hesaplama", ad: "Emsal (KAKS)" },
@@ -111,7 +101,6 @@ export const HESAPLAYICI_GRUPLARI: readonly AnaSayfaGrubu[] = [
       { href: "/fayans-hesaplama", ad: "Fayans" },
       { href: "/parke-hesaplama", ad: "Parke ve laminat" },
       { href: "/duvar-kagidi-hesaplama", ad: "Duvar kağıdı" },
-      { href: "/klima-btu-hesaplama", ad: "Klima BTU" },
       { href: "/kombi-kac-kw-hesaplama", ad: "Kombi kaç kW olmalı" },
       { href: "/petek-dilim-hesaplama", ad: "Petek dilim" },
     ],
@@ -121,22 +110,15 @@ export const HESAPLAYICI_GRUPLARI: readonly AnaSayfaGrubu[] = [
     ad: "Sağlık",
     linkler: [
       { href: "/uyku-hesaplama", ad: "Uyku" },
-      { href: "/bmi-hesaplama", ad: "Vücut kitle indeksi (BMI)" },
-      { href: "/ideal-kilo-hesaplama", ad: "İdeal kilo" },
-      { href: "/gebelik-haftasi-hesaplama", ad: "Gebelik haftası" },
     ],
   },
   {
     slug: "matematik",
     ad: "Matematik",
     linkler: [
-      { href: `${B}/matematik/yuzde-hesaplama`, ad: "Yüzde" },
       { href: `${B}/matematik/ebob-ekok-hesaplama`, ad: "EBOB ve EKOK" },
-      { href: `${B}/matematik/ortalama-hesaplama`, ad: "Ortalama, medyan, mod" },
-      { href: `${B}/matematik/karekok-hesaplama`, ad: "Karekök" },
       { href: `${B}/matematik/2-bilinmeyenli-denklem-sistemi-cozme`, ad: "2 bilinmeyenli denklem" },
       { href: `${B}/matematik/3-bilinmeyenli-denklem-sistemi-cozme`, ad: "3 bilinmeyenli denklem" },
-      { href: "/sayi-tabani-cevirici", ad: "Sayı tabanı" },
       { href: "/roma-rakamlari-cevirme", ad: "Roma rakamları" },
     ],
   },
@@ -145,7 +127,6 @@ export const HESAPLAYICI_GRUPLARI: readonly AnaSayfaGrubu[] = [
     ad: "Fizik",
     linkler: [
       { href: `${E}/kw-to-amper-hesaplama`, ad: "kW ve amper" },
-      { href: `${E}/kablo-kesiti-hesaplama`, ad: "Kablo kesiti" },
       { href: "/kva-kw-hesaplama", ad: "kVA ve kW" },
       { href: "/hesaplayicilar/ohm-yasasi", ad: "Ohm yasası" },
       { href: "/awg-mm2-cevirici", ad: "AWG ve mm²" },
@@ -224,7 +205,6 @@ export const HESAPLAYICI_GRUPLARI: readonly AnaSayfaGrubu[] = [
       { href: "/hayiz-hesaplama", ad: "Hayız ve nifas" },
       { href: "/koordinat-donusturucu", ad: "Koordinat dönüştürücü" },
       { href: "/harita-olcegi-hesaplama", ad: "Harita ölçeği" },
-      { href: "/cbm-hesaplama", ad: "CBM ve hacimsel ağırlık" },
       { href: "/uzunluk-karsilastirma", ad: "Uzunluk karşılaştırma" },
       { href: "/tarihi-olcu-birimleri", ad: "Tarihi ölçü birimleri" },
       { href: "/kosu-pace-hesaplama", ad: "Koşu temposu" },
@@ -262,22 +242,22 @@ export const GRUP_GIRISI: Readonly<Record<string, string>> = {
 /** Buyuk gruplarin alt basliklari (grup sayfasinda). Gruptaki her link tam bir alt baslikta yer alir (tests/anaSayfa.test.ts). */
 export const ALT_GRUPLAR: Readonly<Record<string, readonly { ad: string; hrefler: readonly string[] }[]>> = {
   finans: [
-    { ad: "Maaş, vergi ve kredi", hrefler: ["/kdv-hesaplama", "/brutten-nete-maas-hesaplama", "/kidem-tazminati-hesaplama", "/yillik-izin-hesaplama", "/kredi-hesaplama"] },
-    { ad: "Altın", hrefler: ["/altin-hesaplama", "/altin-hesaplama/ceyrek-altin", "/altin-hesaplama/cumhuriyet-altini", "/ceyrek-bilezik-hesaplama", "/has-hesaplama", "/24-ayar-altin-22-ayar-altin", "/22-ayar-altin-24-ayar-altin"] },
+    { ad: "Maaş, vergi ve kredi", hrefler: ["/yillik-izin-hesaplama", "/kredi-hesaplama"] },
+    { ad: "Altın", hrefler: ["/altin-hesaplama", "/altin-hesaplama/ceyrek-altin", "/altin-hesaplama/cumhuriyet-altini", "/ceyrek-bilezik-hesaplama", "/24-ayar-altin-22-ayar-altin", "/22-ayar-altin-24-ayar-altin"] },
   ],
   "gunluk-yasam": [
     { ad: "Tarih ve zaman", hrefler: ["/yas-hesaplama", "/tarih-cevirici", "/iki-tarih-arasi-gun-hesaplama", "/kacinci-hafta", "/tarihe-gun-ekleme", "/is-gunu-hesaplama", "/saat-hesaplama", "/yerel-saat-hesaplama", "/dogdugum-gun-hangi-gun"] },
     { ad: "Araç ve yol", hrefler: ["/yakit-tuketimi-hesaplama", "/trafik-cezasi-erken-odeme-hesaplama", "/ehliyet-yenileme-suresi-hesaplama", "/lastik-ebati-hesaplama", "/seyir-suresi-hesaplama"] },
     { ad: "Okul", hrefler: ["/devamsizlik-hesaplama", "/harf-notu-hesaplama"] },
-    { ad: "Beden ve numara", hrefler: ["/ayakkabi-numarasi-cevirme", "/beden-olcusu-cevirici", "/yuzuk-olcusu-cevirici"] },
+    { ad: "Beden ve numara", hrefler: ["/ayakkabi-numarasi-cevirme", "/beden-olcusu-cevirici"] },
   ],
   insaat: [
-    { ad: "Yapı ve malzeme", hrefler: ["/beton-hesaplama", "/tugla-hesaplama", "/merdiven-hesaplama", "/kereste-hesaplama", "/emsal-kaks-hesaplama", "/hafriyat-hesaplama", "/demir-agirlik-hesaplama", "/sac-agirlik-hesaplama", "/malzeme-agirligi-hesaplama", "/egim-cevirme"] },
+    { ad: "Yapı ve malzeme", hrefler: ["/beton-hesaplama", "/merdiven-hesaplama", "/kereste-hesaplama", "/emsal-kaks-hesaplama", "/hafriyat-hesaplama", "/demir-agirlik-hesaplama", "/sac-agirlik-hesaplama", "/malzeme-agirligi-hesaplama", "/egim-cevirme"] },
     { ad: "Ev ve dekorasyon", hrefler: ["/boya-hesaplama", "/fayans-hesaplama", "/parke-hesaplama", "/duvar-kagidi-hesaplama"] },
-    { ad: "Isıtma ve soğutma", hrefler: ["/klima-btu-hesaplama", "/kombi-kac-kw-hesaplama", "/petek-dilim-hesaplama"] },
+    { ad: "Isıtma ve soğutma", hrefler: ["/kombi-kac-kw-hesaplama", "/petek-dilim-hesaplama"] },
   ],
   fizik: [
-    { ad: "Elektrik", hrefler: ["/muhendislik-hesaplayicilari/elektrik-hesaplari/kw-to-amper-hesaplama", "/muhendislik-hesaplayicilari/elektrik-hesaplari/kablo-kesiti-hesaplama", "/kva-kw-hesaplama", "/hesaplayicilar/ohm-yasasi", "/awg-mm2-cevirici", "/psu-guc-hesaplama", "/anten-uzunlugu-hesaplama"] },
+    { ad: "Elektrik", hrefler: ["/muhendislik-hesaplayicilari/elektrik-hesaplari/kw-to-amper-hesaplama", "/kva-kw-hesaplama", "/hesaplayicilar/ohm-yasasi", "/awg-mm2-cevirici", "/psu-guc-hesaplama", "/anten-uzunlugu-hesaplama"] },
     { ad: "Mekanik ve malzeme", hrefler: ["/kesme-hizi-devir-hesaplama", "/civata-torku-hesaplama", "/isil-genlesme-hesaplama", "/kaynak-isi-girdisi-hesaplama", "/malzeme-ozellikleri", "/yan-ruzgar-hesaplama"] },
     { ad: "Akışkan ve ısı", hrefler: ["/boru-capi-donusum-hesaplama", "/boru-capi-hesaplama", "/basinc-kaybi-hesaplama", "/tank-hacmi-hesaplama", "/hesaplayicilar/isi-enerjisi", "/hesaplayicilar/isi-iletimi"] },
   ],
@@ -287,7 +267,7 @@ export const ALT_GRUPLAR: Readonly<Record<string, readonly { ad: string; hrefler
   ],
   diger: [
     { ad: "Dini hesaplar", hrefler: ["/kible-yonu-hesaplama", "/hicri-yas-hesaplama", "/kirk-mevlidi-hesaplama", "/hafizlik-hesaplama", "/hatim-hesaplama", "/kaza-namazi-hesaplama", "/kaza-orucu-hesaplama", "/zekat-hesaplama", "/hayiz-hesaplama"] },
-    { ad: "Harita ve taşıma", hrefler: ["/koordinat-donusturucu", "/harita-olcegi-hesaplama", "/cbm-hesaplama"] },
+    { ad: "Harita ve taşıma", hrefler: ["/koordinat-donusturucu", "/harita-olcegi-hesaplama"] },
     { ad: "Ölçü karşılaştırma", hrefler: ["/uzunluk-karsilastirma", "/tarihi-olcu-birimleri"] },
     { ad: "Spor", hrefler: ["/kosu-pace-hesaplama"] },
   ],

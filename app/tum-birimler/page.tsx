@@ -43,7 +43,6 @@ const TOOL_GROUPS: Array<{ id: string; title: string; items: Array<{ href: strin
       { href: "/roma-rakamlari-cevirme", title: "Roma Rakamları", description: "Sayı ↔ Roma rakamı: 1923 = MCMXXIII, XXI = 21; 1–100 tablosu ve yüzyıllar." },
       { href: "/ayakkabi-numarasi-cevirme", title: "Ayakkabı Numarası", description: "TR/EU, ABD ve İngiltere ayakkabı numaraları ile ayak uzunluğu karşılıkları." },
       { href: "/beden-olcusu-cevirici", title: "Beden Ölçüsü", description: "TR, EU, US ve UK giyim bedenleri arası çeviri." },
-      { href: "/yuzuk-olcusu-cevirici", title: "Yüzük Ölçüsü", description: "TR yüzük numarası ↔ ABD ve İngiltere ölçüleri, iç çap ve çevre." },
       { href: "/mutfak-olculeri-cevirici", title: "Mutfak Ölçüleri", description: "Su bardağı, çay bardağı ve kaşık ↔ gram: 1 su bardağı un ≈ 100 g, toz şeker ≈ 167 g." },
       { href: "/awg-mm2-cevirici", title: "AWG - mm²", description: "Amerikan tel numarası ↔ tel çapı ve kesit alanı (mm²)." },
       { href: "/swg-mm-cevirici", title: "SWG - mm (Tel Kalınlığı)", description: "İngiliz tel numarası ↔ mm: 16 SWG = 1,626 mm, 20 SWG = 0,914 mm; 7/0'dan 50'ye tablo." },

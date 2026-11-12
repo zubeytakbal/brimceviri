@@ -7,20 +7,14 @@ const E = "/muhendislik-hesaplayicilari/elektrik-hesaplari";
 export const ENGINEERING_FLOWS: Record<string, FlowLink[]> = {
   // Elektrik
   [`${E}/kw-to-amper-hesaplama`]: [
-    { href: `${E}/kablo-kesiti-hesaplama`, label: "Kablo Kesiti", why: "Bulduğunuz akımı taşıyacak kablo kesitini seçin." },
     { href: `${E}/gerilim-dusumu-hesaplama`, label: "Gerilim Düşümü", why: "Seçtiğiniz kesit ve hat uzunluğunda gerilim düşümünü kontrol edin." },
     { href: "/motor-devir-hesaplama", label: "Motor Devri", why: "Yük bir motorsa kutup sayısından senkron devri ve kaymayı bulun." },
   ],
-  [`${E}/kablo-kesiti-hesaplama`]: [
-    { href: `${E}/gerilim-dusumu-hesaplama`, label: "Gerilim Düşümü", why: "Seçilen kesitte hat sonundaki gerilim düşümünü doğrulayın." },
-    { href: "/awg-mm2-cevirici", label: "AWG - mm² Çevirici", why: "Kesitin Amerikan tel numarası (AWG) karşılığını bulun." },
+  "/awg-mm2-cevirici": [
+    { href: `${E}/gerilim-dusumu-hesaplama`, label: "Gerilim Düşümü", why: "Seçtiğiniz kesitte hat sonundaki gerilim düşümünü kontrol edin." },
   ],
   [`${E}/gerilim-dusumu-hesaplama`]: [
-    { href: `${E}/kablo-kesiti-hesaplama`, label: "Kablo Kesiti", why: "Düşüm sınırı aşılıyorsa bir üst kesiti hesaplayın." },
     { href: `${E}/kw-to-amper-hesaplama`, label: "kW to Amper", why: "Hat akımını yükün gücünden bulun." },
-  ],
-  "/awg-mm2-cevirici": [
-    { href: `${E}/kablo-kesiti-hesaplama`, label: "Kablo Kesiti", why: "Metrik kesit seçimini yük akımına göre yapın." },
   ],
 
   // Akışkanlar ve tesisat
@@ -144,7 +138,6 @@ export const ENGINEERING_FLOWS: Record<string, FlowLink[]> = {
   // Elektrik ek araçları
   "/kva-kw-hesaplama": [
     { href: "/kompanzasyon-hesaplama", label: "Kompanzasyon", why: "Düşük güç faktörünü düzeltmek için gereken kVAr'ı bulun." },
-    { href: `${E}/kablo-kesiti-hesaplama`, label: "Kablo Kesiti", why: "Bulduğunuz akıma göre kablo kesitini seçin." },
   ],
   "/kompanzasyon-hesaplama": [
     { href: "/kva-kw-hesaplama", label: "kVA kW Hesaplama", why: "Kompanzasyon öncesi ve sonrası görünür gücü ve akımı karşılaştırın." },
@@ -152,11 +145,6 @@ export const ENGINEERING_FLOWS: Record<string, FlowLink[]> = {
   "/motor-devir-hesaplama": [
     { href: "/mil-burulma-hesaplama", label: "Mil Burulma Hesabı", why: "Motor gücü ve devrinden mil torkunu ve çapını bulun." },
     { href: `${E}/kw-to-amper-hesaplama`, label: "Motor Akımı", why: "Motorun çalışma akımını hesaplayın." },
-  ],
-
-  // Isıtma ve soğutma
-  "/klima-btu-hesaplama": [
-    { href: "/elektrik-tuketimi-hesaplama", label: "Elektrik Tüketimi", why: "Klimanın aylık elektrik tüketimini hesaplayın." },
   ],
 };
 

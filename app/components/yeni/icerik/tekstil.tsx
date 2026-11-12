@@ -1,4 +1,5 @@
-// /tekstil sayfasinin icerigi: iplik numarasi, kumas gramaji ve hali dugum sikligi tek sayfada.
+// /tekstil sayfasinin icerigi: kumas gramaji ve hali dugum sikligi tek sayfada. Iplik numarasi Kasim 2026'da
+// arama almadigi icin cikarildi; eski adresi yine bu sayfaya yonlenir (siteYapisi.ts BIRLESIK_KATEGORILER).
 // Sayilar cevirici ile ayni fonksiyondan (convert) uretilir.
 import Link from "@/app/components/SiteLink";
 import { convert } from "../../../converter/convert";
@@ -10,62 +11,19 @@ const y = (kategori: string, deger: number, kimden: string, kime: string, basama
   formatSayi(Number(convert(kategori, deger, kimden, kime).toFixed(basamak)));
 
 export const tekstilIcerigi: BirlesikIcerik = {
-  baslik: "Tekstil Birimleri: İplik Numarası (Ne, Nm, tex, denye), Kumaş Gramajı ve Halı Düğüm Sıklığı",
+  baslik: "Tekstil Birimleri: Kumaş Gramajı (g/m², oz/yd², momme) ve Halı Düğüm Sıklığı",
   aciklama:
-    "İplik numarasını Ne, Nm, tex, dtex ve denye arasında, kumaş gramajını g/m², oz/yd² ve momme arasında, halı düğüm sıklığını düğüm/m², düğüm/dm² ve KPSI arasında çevirin. Penye 30/1 kaç tex, 12 oz denim kaç gram gibi örneklerle.",
+    "Kumaş gramajını g/m², oz/yd² ve momme arasında, halı düğüm sıklığını düğüm/m², düğüm/dm² ve KPSI arasında çevirin. 12 oz denim kaç g/m², 40 × 40 halı kaç düğüm gibi örneklerle.",
   h1: "Tekstil Birimleri Çevirici",
   ozet: (
     <>
-      Tekstilde inceliği ve ağırlığı anlatan üç ölçü vardır: ipliğin numarası, kumaşın metrekare ağırlığı (gramaj) ve
-      halının düğüm sıklığı. Her birinin Avrupa, İngiliz ve Amerikan kökenli ayrı birimleri olduğu için tedarikçi
-      kataloglarında aynı ürün farklı sayılarla karşınıza çıkar. Aşağıdaki çeviriciler bu sayıları birbirine çevirir.
+      Kumaşın metrekare ağırlığı (gramaj) ve halının düğüm sıklığı, Avrupa, İngiliz ve Amerikan kökenli farklı
+      birimlerle yazılır; bu yüzden tedarikçi kataloglarında aynı ürün farklı sayılarla karşınıza çıkar. Aşağıdaki
+      çeviriciler bu sayıları birbirine çevirir.
     </>
   ),
   giris: [],
   parcalar: [
-    {
-      id: "iplik",
-      kategori: "iplik-numarasi",
-      sekme: "İplik numarası",
-      baslik: "İplik numarası: Ne, Nm, tex, dtex, denye",
-      govde: (
-        <>
-          <p>
-            İplik inceliği iki ters mantıkla yazılır. <strong>Ağırlık sistemlerinde</strong> (tex, desiteks, denye)
-            belli uzunluktaki ipliğin gram cinsinden ağırlığı verilir: 1 tex, 1.000 metresi 1 gram gelen iplik; 1 denye
-            ise 9.000 metresi 1 gram gelen ipliktir. Sayı büyüdükçe iplik kalınlaşır. <strong>Uzunluk
-            sistemlerinde</strong> (Nm, Ne) ise bir gramdan ya da bir pounddan kaç metre ya da kaç çile iplik çıktığı
-            verilir; sayı büyüdükçe iplik incelir.
-          </p>
-          <p>
-            Pamuk ipliğinde Türkiye&apos;de en çok İngiliz numarası (Ne) kullanılır. Tişörtlerde sık kullanılan 30/1
-            penye iplik yaklaşık {y("iplik_numarasi", 30, "Ne", "tex")} tex ya da Nm{" "}
-            {y("iplik_numarasi", 30, "Ne", "Nm", 0)} eder. Bölü işaretinden sonraki sayı kat sayısıdır: 20/2 iki kat
-            Ne 20 ipliğin bükülmesiyle elde edilir ve toplam kalınlığı yaklaşık Ne 10 ipliğe eşittir. Sentetik
-            filamentlerde (polyester, naylon) ise denye ve desiteks kullanılır: 150 denye polyester yaklaşık{" "}
-            {y("iplik_numarasi", 150, "den", "dtex", 0)} dtex&apos;tir.
-          </p>
-          <p>
-            Akılda tutulacak üç eşitlik: denye = 9 × tex, Nm × tex = 1.000 ve Ne × tex ≈ 590,5. Yün iplikte kamgarn
-            numarası (Nek), keten iplikte lea numarası (Nl) da aynı uzunluk mantığıyla çalışır. Uluslararası ISO 1144
-            standardı bütün iplikler için tex sistemini önerir.
-          </p>
-        </>
-      ),
-      cevirici: {
-        baslangic: { birim: "Ne", deger: 30 },
-        gruplar: [
-          { ad: "Uzunluk sistemi", birimler: ["Ne", "Nm"] },
-          { ad: "Ağırlık sistemi", birimler: ["tex", "dtex", "den"] },
-          { ad: "Yün ve keten", birimler: ["Nek", "Nl"] },
-        ],
-      },
-      tablo: {
-        baslik: "Sık kullanılan pamuk iplik numaraları",
-        birimler: ["Ne", "Nm", "tex", "den"],
-        degerler: [10, 16, 20, 24, 30, 36, 40, 50, 60, 80],
-      },
-    },
     {
       id: "gramaj",
       kategori: "gramaj",
@@ -155,18 +113,6 @@ export const tekstilIcerigi: BirlesikIcerik = {
   ],
   sss: [
     {
-      question: "30/1 penye iplik kaç tex?",
-      answer: `Ne 30 yaklaşık ${y("iplik_numarasi", 30, "Ne", "tex")} tex, Nm ${y("iplik_numarasi", 30, "Ne", "Nm", 0)} ve ${y("iplik_numarasi", 30, "Ne", "den", 0)} denye eder. "/1" tek katlı iplik demektir.`,
-    },
-    {
-      question: "Denye ile tex arasındaki fark nedir?",
-      answer: "İkisi de ağırlık sistemidir. Tex 1.000 metrenin, denye 9.000 metrenin gram ağırlığıdır. Bu yüzden denye değeri tex değerinin 9 katıdır.",
-    },
-    {
-      question: "Ne numarası büyüdükçe iplik kalınlaşır mı?",
-      answer: "Hayır, incelir. Ne ve Nm uzunluk sistemleridir; aynı ağırlıktan daha fazla uzunluk çıkması daha ince iplik demektir. Tex ve denyede ise büyük sayı kalın ipliktir.",
-    },
-    {
       question: "12 oz denim kaç g/m²?",
       answer: `12 oz/yd² yaklaşık ${y("gramaj", 12, "oz/yd²", "g/m²", 0)} g/m² eder. 1 oz/yd² yaklaşık ${y("gramaj", 1, "oz/yd²", "g/m²")} g/m²'dir.`,
     },
@@ -180,7 +126,6 @@ export const tekstilIcerigi: BirlesikIcerik = {
     },
   ],
   kaynaklar: [
-    { ad: "ISO 1144:2016, Textiles — Universal system for designating linear density (Tex System)", href: "https://www.iso.org/standard/70774.html" },
     { ad: "ISO 3801, Textiles — Woven fabrics — Determination of mass per unit length and mass per unit area" },
     { ad: "NIST, Inch-pound ve SI birimleri arasında dönüşüm faktörleri (SP 811)", href: "https://www.nist.gov/pml/special-publication-811" },
   ],

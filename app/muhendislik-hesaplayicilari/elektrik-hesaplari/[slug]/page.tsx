@@ -15,6 +15,7 @@ import {
   isLiveElectricalCalculator,
 } from "../../../converter/engineeringHubs";
 import { SITE_NAME, buildSiteUrl } from "../../../siteConfig";
+import { hesapSayfasiKalkti } from "../../../kaldirilanHesapSayfalari";
 
 type PageProps = {
   params: Promise<{
@@ -28,7 +29,10 @@ export const dynamicParams = false;
 const BIRLESEN = new Set(["amper-to-kw-hesaplama", "motor-akimi-hesaplama"]);
 
 export function generateStaticParams() {
-  return getElectricalStaticParams("tr").filter((p) => !BIRLESEN.has(p.slug));
+  // Kasim 2026: tik almayan kablo kesiti sayfasi kaldirildi (app/kaldirilanHesapSayfalari.ts).
+  return getElectricalStaticParams("tr").filter(
+    (p) => !BIRLESEN.has(p.slug) && !hesapSayfasiKalkti(`/muhendislik-hesaplayicilari/elektrik-hesaplari/${p.slug}`),
+  );
 }
 
 export async function generateMetadata({

@@ -7,6 +7,24 @@ export const KALDIRILAN_HESAP_SAYFALARI: Readonly<Record<string, string>> = {
   "/agirlik-karsilastirma": "/kategoriler/kutle",
   "/apgar-skoru-hesaplama": "/hesaplayicilar",
   "/mantolama-hesaplama": "/u-degeri-hesaplama",
+  // 12 Kasım 2026: Search Console'un 10 Ağustos – 9 Kasım 2026 dökümünde ilk 1000 sayfaya girmeyen (3'ten az tık), en az
+  // 6 haftalık araçlar kaldırıldı. Birim dönüşümü sayfaları bu kurala dahil değil.
+  "/bmi-hesaplama": "/hesaplayicilar/saglik",
+  "/ideal-kilo-hesaplama": "/hesaplayicilar/saglik",
+  "/gebelik-haftasi-hesaplama": "/hesaplayicilar/saglik",
+  "/kdv-hesaplama": "/hesaplayicilar/finans",
+  "/brutten-nete-maas-hesaplama": "/hesaplayicilar/finans",
+  "/kidem-tazminati-hesaplama": "/yillik-izin-hesaplama",
+  "/tugla-hesaplama": "/hesaplayicilar/insaat",
+  "/klima-btu-hesaplama": "/kombi-kac-kw-hesaplama",
+  "/cbm-hesaplama": "/hacim",
+  "/muhendislik-hesaplayicilari/elektrik-hesaplari/kablo-kesiti-hesaplama": "/muhendislik-hesaplayicilari/elektrik-hesaplari",
+  "/yuzuk-olcusu-cevirici": "/beden-olcusu-cevirici",
+  "/has-hesaplama": "/altin-hesaplama",
+  "/sayi-tabani-cevirici": "/hesaplayicilar/matematik",
+  "/bilim-hesaplayicilari/matematik/karekok-hesaplama": "/hesaplayicilar/matematik",
+  "/bilim-hesaplayicilari/matematik/ortalama-hesaplama": "/hesaplayicilar/matematik",
+  "/bilim-hesaplayicilari/matematik/yuzde-hesaplama": "/hesaplayicilar/matematik",
 };
 
 export const hesapSayfasiKalkti = (path: string) => Object.hasOwn(KALDIRILAN_HESAP_SAYFALARI, path);

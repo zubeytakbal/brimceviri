@@ -4,7 +4,7 @@
 // Ilk iki grup acik, digerleri kapali gelir; gruplarda olmayan birimler acilir listeden secilir.
 import { useId, useState } from "react";
 import { convert } from "../../converter/convert";
-import { formatSayi, sayiOku } from "./sayi";
+import { formatSayi, girisMetni, sayiOku } from "./sayi";
 
 export type CokluBirim = { value: string; label: string; symbol: string };
 export type CokluGrup = { ad: string; birimler: string[] };
@@ -23,7 +23,7 @@ const SEMBOL_SINIRI = 4;
 
 export default function CokluCevirici({ category, birimler, gruplar, baslangic }: Props) {
   const [kaynak, setKaynak] = useState(baslangic.birim);
-  const [metin, setMetin] = useState(formatSayi(baslangic.deger));
+  const [metin, setMetin] = useState(girisMetni(baslangic.deger));
   const gruptakiler = new Set(gruplar.flatMap((g) => g.birimler));
   const digerleri = birimler.filter((b) => !gruptakiler.has(b.value));
   const [diger, setDiger] = useState(digerleri[0]?.value ?? "");
@@ -95,7 +95,7 @@ export default function CokluCevirici({ category, birimler, gruplar, baslangic }
       )}
       <div className="yy-arac-alt">
         <span>Bir kutuya yazın.</span>
-        <button type="button" onClick={() => yaz(baslangic.birim, formatSayi(baslangic.deger))}>
+        <button type="button" onClick={() => yaz(baslangic.birim, girisMetni(baslangic.deger))}>
           Sıfırla
         </button>
       </div>

@@ -36,3 +36,9 @@ export function sayiOku(metin: string): number | null {
   const n = Number(s);
   return Number.isFinite(n) ? n : null;
 }
+
+/** Kutuya yazilacak baslangic metni: binlik noktasi olmadan ("1000"), cunku sayiOku virgulsuz noktayi ondalik sayar
+ * ve "1.000" degerini 1 okurdu. */
+export function girisMetni(n: number): string {
+  return formatSayi(n).replace(/\./g, "");
+}

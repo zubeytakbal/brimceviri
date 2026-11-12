@@ -48,21 +48,33 @@ export function DegerTablosu({
   semboller: string[];
   degerler: number[];
 }) {
-  const [kimden, kime] = semboller;
+  // Ilk birim satirlardaki degerlerin birimi; digerleri birer sutun.
+  const [kimden, ...kimeler] = semboller;
+  // Ad zaten parantezli ("Desiteks (dtex)"), sembol parantezli ("mm (momme)") ya da adla ayniysa ("Tex") sembol eklenmez.
+  const ad = (s: string) => {
+    const l = birimler.find((b) => b.value === s)?.label ?? s;
+    return l.includes("(") || s.includes("(") || l.toLowerCase() === s.toLowerCase() ? l : `${l} (${s})`;
+  };
   return (
     <div className="yy-tablo-kutu">
-      <table className="yy-matris">
+      <table className="yy-matris yy-deger-tablosu">
         <thead>
           <tr>
-            <th scope="col">{birimler.find((b) => b.value === kimden)?.label ?? kimden} ({kimden})</th>
-            <th scope="col">{birimler.find((b) => b.value === kime)?.label ?? kime} ({kime})</th>
+            <th scope="col">{ad(kimden)}</th>
+            {kimeler.map((k) => (
+              <th key={k} scope="col">
+                {ad(k)}
+              </th>
+            ))}
           </tr>
         </thead>
         <tbody>
           {degerler.map((d) => (
             <tr key={d}>
               <td>{formatSayi(d)}</td>
-              <td>{formatSayi(Number(convert(category, d, kimden, kime).toPrecision(3)))}</td>
+              {kimeler.map((k) => (
+                <td key={k}>{formatSayi(Number(convert(category, d, kimden, k).toPrecision(3)))}</td>
+              ))}
             </tr>
           ))}
         </tbody>

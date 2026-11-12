@@ -7,6 +7,7 @@ import { konsantrasyonIcerigi } from "./konsantrasyon";
 import { kutleIcerigi } from "./kutle";
 import { radyasyonIcerigi } from "./radyasyon";
 import { tarimIcerigi } from "./tarim";
+import { tekstilIcerigi } from "./tekstil";
 import { uzunlukIcerigi } from "./uzunluk";
 
 export const kategoriIcerikleri: Record<string, KategoriIcerigi> = {
@@ -22,4 +23,5 @@ export const birlesikIcerikleri: Record<string, BirlesikIcerik> = {
   elektrik: elektrikIcerigi,
   tarim: tarimIcerigi,
   konsantrasyon: konsantrasyonIcerigi,
+  tekstil: tekstilIcerigi,
 };

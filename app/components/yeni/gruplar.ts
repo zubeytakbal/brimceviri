@@ -1,6 +1,6 @@
 // Ana sayfa ve grup sayfalarinin ortak grup listeleri (sunucu tarafi).
 import { categoryPages } from "../../converter/categoryPages";
-import { birimGruplari, turkceKategoriYolu } from "../../converter/siteYapisi";
+import { BIRLESIK_KATEGORILER, birimGruplari, turkceKategoriYolu } from "../../converter/siteYapisi";
 import { HESAPLAYICI_GRUPLARI, type AnaSayfaGrubu } from "./anaSayfaVerisi";
 
 const tr = (s: string) => s.toLocaleLowerCase("tr-TR");
@@ -13,6 +13,7 @@ function cumleBicimi(ad: string) {
 
 export function kategoriAdi(slug: string) {
   if (slug === "kutle") return "Ağırlık (kütle)";
+  if (BIRLESIK_KATEGORILER[slug]) return BIRLESIK_KATEGORILER[slug].ad;
   const sayfa = categoryPages.find((c) => c.slug === slug);
   return cumleBicimi((sayfa?.title ?? slug).replace(/ (Dönüşümleri|Birimi?)\b.*$/, ""));
 }

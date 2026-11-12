@@ -1,7 +1,7 @@
 // Yeni yapiya tasinan Turkce sayfalarin eski ve yeni adresleri arasinda ceviri.
 // Hafif modul: istemciye yalnizca kucuk TASINAN_CIFTLER haritasi gider.
 import { TASINAN_CIFTLER } from "./tasinanCiftler.generated";
-import { yeniYapiKategorileri } from "./siteYapisi";
+import { birlesikHedef, yeniYapiKategorileri } from "./siteYapisi";
 
 /**
  * Eski adresi yenisine cevirir: "/santimetre-inc" -> "/uzunluk/santimetre-inc",
@@ -15,6 +15,8 @@ export function guncelHref(href: string) {
   }
   const kategori = /^\/kategoriler\/([a-z0-9-]+)([?#].*)?$/.exec(href);
   if (kategori && yeniYapiKategorileri.has(kategori[1])) return `/${kategori[1]}${kategori[2] ?? ""}`;
+  const hedef = kategori && birlesikHedef(kategori[1]);
+  if (hedef) return `/${hedef}`;
   return href;
 }
 

@@ -68,11 +68,7 @@ export const birimGruplari: BirimGrubu[] = [
     ad: "Işık ve radyasyon",
     kategoriler: [
       "aydinlatma-siddeti",
-      "radyasyon-dozu",
-      "sogurulan-doz",
-      "doz-hizi",
-      "radyoaktivite",
-      "isinlama",
+      "radyasyon",
     ],
   },
   {
@@ -98,6 +94,24 @@ export const birimGruplari: BirimGrubu[] = [
  * 301 ile yonlenir (app/mergedPageRedirects.ts).
  */
 export const yeniYapiKategorileri: ReadonlySet<string> = new Set(["uzunluk", "alan", "hacim", "kutle"]);
+
+/**
+ * Birlesik kategori sayfalari: birbirine cevrilemeyen ama ayni konudaki kucuk kategoriler tek sayfada
+ * (/radyasyon), her biri kendi ceviricisiyle. Eski /kategoriler/<kategori> adresleri 301 ile bu sayfaya gider
+ * (app/kasimTemizligi.ts). Gruplarda (birimGruplari) uye kategoriler yerine birlesik sayfanin slug'i yer alir.
+ */
+export const BIRLESIK_KATEGORILER: Readonly<Record<string, { ad: string; kategoriler: readonly string[] }>> = {
+  radyasyon: {
+    ad: "Radyasyon",
+    kategoriler: ["radyasyon-dozu", "sogurulan-doz", "doz-hizi", "radyoaktivite", "isinlama"],
+  },
+};
+
+/** Kategori bir birlesik sayfaya katildiysa o sayfanin slug'i. */
+export function birlesikHedef(kategoriSlug: string): string | undefined {
+  for (const [hedef, b] of Object.entries(BIRLESIK_KATEGORILER)) if (b.kategoriler.includes(kategoriSlug)) return hedef;
+  return undefined;
+}
 
 // app/components/yeni/anaSayfaVerisi.ts icindeki HESAPLAYICI_GRUPLARI ile ayni (tests/anaSayfa.test.ts).
 export const HESAP_GRUP_SLUGLARI: ReadonlySet<string> = new Set([
@@ -224,7 +238,7 @@ export const GENIS_ARACLAR: ReadonlySet<string> = new Set([
 export function isYeniYapiYolu(pathname: string) {
   if (pathname === "/" || YENI_ARAC_YOLLARI.has(pathname)) return true;
   const ilk = pathname.split("/")[1] ?? "";
-  if (yeniYapiKategorileri.has(ilk) || KURUMSAL_YOLLAR.has(ilk)) return true;
+  if (yeniYapiKategorileri.has(ilk) || KURUMSAL_YOLLAR.has(ilk) || (ilk in BIRLESIK_KATEGORILER && !pathname.split("/")[2])) return true;
   // Grup sayfalari: /hesaplayicilar/<grup> (ayni adres altindaki eski araclar haric)
   const [, bolum, grup, fazla] = pathname.split("/");
   if (fazla !== undefined || !grup) return false;
@@ -233,6 +247,9 @@ export function isYeniYapiYolu(pathname: string) {
 
 /** Turkce kategori sayfasinin adresi (tasinmis kategoride yeni, digerlerinde eski adres). */
 export function turkceKategoriYolu(kategoriSlug: string) {
+  if (kategoriSlug in BIRLESIK_KATEGORILER) return `/${kategoriSlug}`;
+  const hedef = birlesikHedef(kategoriSlug);
+  if (hedef) return `/${hedef}`;
   return yeniYapiKategorileri.has(kategoriSlug) ? `/${kategoriSlug}` : `/kategoriler/${kategoriSlug}`;
 }
 
@@ -248,5 +265,6 @@ export function ciftYolu(kategoriSlug: string, ciftSlug: string) {
 }
 
 export function kategorininGrubu(kategoriSlug: string): BirimGrubu | undefined {
-  return birimGruplari.find((g) => g.kategoriler.includes(kategoriSlug));
+  const slug = birlesikHedef(kategoriSlug) ?? kategoriSlug;
+  return birimGruplari.find((g) => g.kategoriler.includes(slug));
 }

@@ -1,4 +1,4 @@
-import { yeniYapiKategorileri } from "../../converter/siteYapisi";
+import { birlesikHedef, yeniYapiKategorileri } from "../../converter/siteYapisi";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import AllUnitsPanel from "../../components/AllUnitsPanel";
@@ -62,7 +62,8 @@ function serializeJsonLd(data: object) {
 
 export function generateStaticParams() {
   // Yeni yapiya tasinan kategoriler /<kategori> adresinde; eski adres 301 ile yonlenir.
-  return categoryPages.filter((categoryPage) => !yeniYapiKategorileri.has(categoryPage.slug)).map((categoryPage) => ({
+  // Birlesik sayfaya (/radyasyon) katilan kategoriler de uretilmez.
+  return categoryPages.filter((categoryPage) => !yeniYapiKategorileri.has(categoryPage.slug) && !birlesikHedef(categoryPage.slug)).map((categoryPage) => ({
     slug: categoryPage.slug,
   }));
 }

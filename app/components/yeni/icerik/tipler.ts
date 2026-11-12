@@ -21,3 +21,35 @@ export type KategoriIcerigi = {
   /** ISO tarih */
   guncelleme: string;
 };
+
+/** Birlesik kategori sayfasinin (/radyasyon) bir parcasi: kendi ceviricisi olan uye kategori. */
+export type BirlesikParca = {
+  /** Bolum ve sekme kimligi (#esdeger-doz) */
+  id: string;
+  /** categoryPages slug'i (radyasyon-dozu) */
+  kategori: string;
+  /** Sekmedeki kisa ad */
+  sekme: string;
+  baslik: string;
+  govde: ReactNode;
+  cevirici: { gruplar: CokluGrup[]; baslangic: { birim: string; deger: number } };
+  tablo: { baslik: string; birimler: string[] };
+};
+
+/** Birlesik kategori sayfasinin elle yazilmis icerigi. */
+export type BirlesikIcerik = {
+  baslik: string;
+  aciklama: string;
+  /** H1 */
+  h1: string;
+  ozet: ReactNode;
+  /** Parcalardan once gelen genel bolumler */
+  giris: { id: string; baslik: string; govde: ReactNode }[];
+  parcalar: BirlesikParca[];
+  /** Parcalardan sonra gelen bolumler */
+  bolumler: { id: string; baslik: string; govde: ReactNode }[];
+  ilgili: { href: string; ad: string }[];
+  sss: FaqItem[];
+  kaynaklar: { ad: string; href?: string }[];
+  guncelleme: string;
+};

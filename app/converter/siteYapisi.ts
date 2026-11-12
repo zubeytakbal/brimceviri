@@ -70,7 +70,7 @@ export const birimGruplari: BirimGrubu[] = [
   {
     id: "tarim-ve-arazi",
     ad: "Tarım ve arazi",
-    kategoriler: ["dekar-basina-verim", "dekar-basina-doz", "alana-gore-fiyat", "yagis-miktari"],
+    kategoriler: ["tarim"],
   },
   {
     id: "kuyumculuk-ve-tekstil",
@@ -104,6 +104,10 @@ export const BIRLESIK_KATEGORILER: Readonly<Record<string, { ad: string; kategor
       "manyetik-alan",
       "manyetik-aki",
     ],
+  },
+  tarim: {
+    ad: "Tarım ve arazi",
+    kategoriler: ["dekar-basina-verim", "dekar-basina-doz", "yagis-miktari", "alana-gore-fiyat"],
   },
   radyasyon: {
     ad: "Radyasyon",

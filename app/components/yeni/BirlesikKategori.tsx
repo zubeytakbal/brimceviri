@@ -17,7 +17,7 @@ import { buildSiteUrl } from "../../siteConfig";
 import BirlesikCevirici, { type CeviriciParca } from "./BirlesikCevirici";
 import { EDITOR } from "./editor";
 import { birlesikIcerikleri } from "./icerik";
-import Matris from "./Matris";
+import Matris, { DegerTablosu } from "./Matris";
 import { formatOkunur as formatSayi } from "./sayi";
 
 function jsonLd(data: object) {
@@ -158,17 +158,32 @@ export default function BirlesikKategori({ slug }: { slug: string }) {
                   </p>
                 )}
                 <h3>{p.tablo.baslik}</h3>
-                <Matris category={p.category} birimler={p.birimler} semboller={p.tablo.birimler} />
-                <h3>Bütün birimlerin {temelAd.toLocaleLowerCase("tr-TR")} karşılığı</h3>
-                <ul className="yy-birim-listesi">
-                  {p.birimler
-                    .filter((b) => b.value !== p.temel)
-                    .map((b) => (
-                      <li key={b.value}>
-                        1 {b.label} = <strong>{formatSayi(convert(p.category, 1, b.value, p.temel))}</strong> {p.temel}
-                      </li>
-                    ))}
-                </ul>
+                {p.tablo.degerler ? (
+                  <DegerTablosu
+                    category={p.category}
+                    birimler={p.birimler}
+                    semboller={p.tablo.birimler}
+                    degerler={p.tablo.degerler}
+                  />
+                ) : (
+                  <Matris category={p.category} birimler={p.birimler} semboller={p.tablo.birimler} />
+                )}
+                {/* Iki birimli kategoride tek satirlik liste tabloyu tekrarlar. */}
+                {p.birimler.length > 2 && (
+                  <>
+                    <h3>Bütün birimlerin {temelAd.toLocaleLowerCase("tr-TR")} karşılığı</h3>
+                    <ul className="yy-birim-listesi">
+                      {p.birimler
+                        .filter((b) => b.value !== p.temel)
+                        .map((b) => (
+                          <li key={b.value}>
+                            1 {b.label} = <strong>{formatSayi(convert(p.category, 1, b.value, p.temel))}</strong>{" "}
+                            {p.temel}
+                          </li>
+                        ))}
+                    </ul>
+                  </>
+                )}
               </section>
             );
           })}

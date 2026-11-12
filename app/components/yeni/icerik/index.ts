@@ -3,6 +3,7 @@ import type { BirlesikIcerik, KategoriIcerigi } from "./tipler";
 import { alanIcerigi } from "./alan";
 import { hacimIcerigi } from "./hacim";
 import { elektrikIcerigi } from "./elektrik";
+import { konsantrasyonIcerigi } from "./konsantrasyon";
 import { kutleIcerigi } from "./kutle";
 import { radyasyonIcerigi } from "./radyasyon";
 import { tarimIcerigi } from "./tarim";
@@ -20,4 +21,5 @@ export const birlesikIcerikleri: Record<string, BirlesikIcerik> = {
   radyasyon: radyasyonIcerigi,
   elektrik: elektrikIcerigi,
   tarim: tarimIcerigi,
+  konsantrasyon: konsantrasyonIcerigi,
 };

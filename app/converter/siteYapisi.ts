@@ -65,7 +65,7 @@ export const birimGruplari: BirimGrubu[] = [
   {
     id: "saglik-ve-kimya",
     ad: "Sağlık ve kimya",
-    kategoriler: ["kan-sekeri", "vitamin-d", "konsantrasyon", "alkol-derecesi", "su-sertligi", "tempo"],
+    kategoriler: ["konsantrasyon", "alkol-derecesi", "tempo"],
   },
   {
     id: "tarim-ve-arazi",
@@ -104,6 +104,10 @@ export const BIRLESIK_KATEGORILER: Readonly<Record<string, { ad: string; kategor
       "manyetik-alan",
       "manyetik-aki",
     ],
+  },
+  konsantrasyon: {
+    ad: "Konsantrasyon",
+    kategoriler: ["konsantrasyon", "kan-sekeri", "vitamin-d", "su-sertligi"],
   },
   tarim: {
     ad: "Tarım ve arazi",

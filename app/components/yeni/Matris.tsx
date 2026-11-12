@@ -35,3 +35,38 @@ export default function Matris({ category, birimler, semboller }: { category: st
     </div>
   );
 }
+
+/** Iki birimli kategoriler icin sik gorulen degerlerin karsilik tablosu (ör. 70, 100, 126 mg/dL -> mmol/L). */
+export function DegerTablosu({
+  category,
+  birimler,
+  semboller,
+  degerler,
+}: {
+  category: string;
+  birimler: CokluBirim[];
+  semboller: string[];
+  degerler: number[];
+}) {
+  const [kimden, kime] = semboller;
+  return (
+    <div className="yy-tablo-kutu">
+      <table className="yy-matris">
+        <thead>
+          <tr>
+            <th scope="col">{birimler.find((b) => b.value === kimden)?.label ?? kimden} ({kimden})</th>
+            <th scope="col">{birimler.find((b) => b.value === kime)?.label ?? kime} ({kime})</th>
+          </tr>
+        </thead>
+        <tbody>
+          {degerler.map((d) => (
+            <tr key={d}>
+              <td>{formatSayi(d)}</td>
+              <td>{formatSayi(Number(convert(category, d, kimden, kime).toPrecision(3)))}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}

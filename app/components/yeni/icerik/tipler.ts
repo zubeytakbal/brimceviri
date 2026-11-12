@@ -36,7 +36,8 @@ export type BirlesikParca = {
   baslik: string;
   govde: ReactNode;
   cevirici: { gruplar: CokluGrup[]; baslangic: { birim: string; deger: number } };
-  tablo: { baslik: string; birimler: string[] };
+  /** degerler verilirse matris yerine birimler[0] -> birimler[1] deger tablosu (iki birimli kategoriler icin). */
+  tablo: { baslik: string; birimler: string[]; degerler?: number[] };
 };
 
 /** Birlesik kategori sayfasinin elle yazilmis icerigi. */

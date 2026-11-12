@@ -203,6 +203,8 @@
 .yy-matris thead td { border-bottom: 1px solid var(--yy-metin); }
 .yy-matris tbody th { position: sticky; left: 0; background: #fff; text-align: left; font-weight: 600; color: var(--yy-metin); }
 .yy-matris .yy-kosegen { color: #a2a9b1; }
+/* Deger tablosunda uzun birim adlari ("Ingiliz pamuk numarasi (Ne)") telefonda alt satira insin, tablo yana kaymasin. */
+.yy-deger-tablosu thead th { white-space: normal; vertical-align: bottom; }
 .yy-ciftler { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 28px; }
 .yy-yazi .yy-ciftler li { break-inside: avoid; padding: 1px 0; font-size: 13px; }
 .yy-birim-listesi { list-style: none; margin: 0; padding: 0; }

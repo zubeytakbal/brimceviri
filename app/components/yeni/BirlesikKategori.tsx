@@ -28,6 +28,12 @@ function tarih(iso: string) {
   return new Date(`${iso}T12:00:00Z`).toLocaleDateString("tr-TR", { day: "numeric", month: "long", year: "numeric" });
 }
 
+// "Gram/metrekare (GSM)" -> "gram/metrekare (GSM)": parantez icindeki kisaltmalar oldugu gibi kalsin.
+const kucukBaslangic = (ad: string) => {
+  const i = ad.indexOf(" (");
+  return i < 0 ? ad.toLocaleLowerCase("tr-TR") : ad.slice(0, i).toLocaleLowerCase("tr-TR") + ad.slice(i);
+};
+
 export function birlesikMetadata(slug: string): Metadata {
   const icerik = birlesikIcerikleri[slug];
   const yol = `/${slug}`;
@@ -171,7 +177,7 @@ export default function BirlesikKategori({ slug }: { slug: string }) {
                 {/* Iki birimli kategoride tek satirlik liste tabloyu tekrarlar. */}
                 {p.birimler.length > 2 && (
                   <>
-                    <h3>Bütün birimlerin {temelAd.toLocaleLowerCase("tr-TR")} karşılığı</h3>
+                    <h3>Bütün birimlerin {kucukBaslangic(temelAd)} karşılığı</h3>
                     <ul className="yy-birim-listesi">
                       {p.birimler
                         .filter((b) => b.value !== p.temel)

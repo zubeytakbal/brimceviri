@@ -75,7 +75,7 @@ export const birimGruplari: BirimGrubu[] = [
   {
     id: "kuyumculuk-ve-tekstil",
     ad: "Kuyumculuk ve tekstil",
-    kategoriler: ["altin-ayar", "gumus-ayar", "gramaj", "iplik-numarasi", "hali-dugum-sikligi"],
+    kategoriler: ["altin-ayar", "gumus-ayar", "tekstil"],
   },
 ];
 
@@ -108,6 +108,10 @@ export const BIRLESIK_KATEGORILER: Readonly<Record<string, { ad: string; kategor
   konsantrasyon: {
     ad: "Konsantrasyon",
     kategoriler: ["konsantrasyon", "kan-sekeri", "vitamin-d", "su-sertligi"],
+  },
+  tekstil: {
+    ad: "Tekstil",
+    kategoriler: ["iplik-numarasi", "gramaj", "hali-dugum-sikligi"],
   },
   tarim: {
     ad: "Tarım ve arazi",

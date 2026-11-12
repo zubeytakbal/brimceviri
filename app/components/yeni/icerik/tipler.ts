@@ -28,6 +28,9 @@ export type BirlesikParca = {
   id: string;
   /** categoryPages slug'i (radyasyon-dozu) */
   kategori: string;
+  /** Kategori birbirine cevrilemeyen birimleri bir arada tutuyorsa (elektrik: V ve A) cevirinin alt kategorisi
+   * (elektrik_gerilim); birimler buna gore suzulur. */
+  altKategori?: string;
   /** Sekmedeki kisa ad */
   sekme: string;
   baslik: string;

@@ -52,16 +52,7 @@ export const birimGruplari: BirimGrubu[] = [
   {
     id: "elektrik",
     ad: "Elektrik ve manyetizma",
-    kategoriler: [
-      "elektrik",
-      "direnc",
-      "kapasitans",
-      "enduktans",
-      "elektrik-yuku",
-      "elektrik-iletkenligi",
-      "manyetik-alan",
-      "manyetik-aki",
-    ],
+    kategoriler: ["elektrik"],
   },
   {
     id: "isik-ve-radyasyon",
@@ -101,6 +92,19 @@ export const yeniYapiKategorileri: ReadonlySet<string> = new Set(["uzunluk", "al
  * (app/kasimTemizligi.ts). Gruplarda (birimGruplari) uye kategoriler yerine birlesik sayfanin slug'i yer alir.
  */
 export const BIRLESIK_KATEGORILER: Readonly<Record<string, { ad: string; kategoriler: readonly string[] }>> = {
+  elektrik: {
+    ad: "Elektrik",
+    kategoriler: [
+      "elektrik",
+      "direnc",
+      "kapasitans",
+      "enduktans",
+      "elektrik-yuku",
+      "elektrik-iletkenligi",
+      "manyetik-alan",
+      "manyetik-aki",
+    ],
+  },
   radyasyon: {
     ad: "Radyasyon",
     kategoriler: ["radyasyon-dozu", "sogurulan-doz", "doz-hizi", "radyoaktivite", "isinlama"],

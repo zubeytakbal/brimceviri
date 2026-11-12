@@ -1839,6 +1839,8 @@ export const unitRegistry: UnitRegistryEntry[] = [
   { id: "gerilim-kilovolt", category: "elektrik_gerilim", symbol: "kV", siFactor: 1000 },
   { id: "akim-amper", category: "elektrik_akim", symbol: "A", siFactor: 1 },
   { id: "akim-miliamper", category: "elektrik_akim", symbol: "mA", siFactor: 0.001 },
+  { id: "gerilim-milivolt", category: "elektrik_gerilim", symbol: "mV", siFactor: 0.001 },
+  { id: "akim-kiloamper", category: "elektrik_akim", symbol: "kA", siFactor: 1000 },
   {
     id: "milivolt",
     category: "elektrik",

@@ -77,6 +77,7 @@ import { GOLD_CALCULATOR_PATHS } from "./i18n/goldCalculatorPaths";
 import { KARAT_PAIRS } from "./converter/goldKaratPairs";
 import { CYCLE_PATHS } from "./i18n/cycleCalculatorContent";
 import { ISLAMIC_TOOL_PATHS } from "./i18n/islamicToolPaths";
+import { BIRLESIK_KATEGORILER } from "./converter/siteYapisi";
 
 export const dynamic = "force-static";
 
@@ -2036,7 +2037,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       };
     });
 
-
+  // Birlesik kategori sayfalari (/radyasyon): yalniz Turkce; uye kategorilerin eski adresleri 301 ile buraya gelir.
+  const turkishMergedCategoryRoutes: MetadataRoute.Sitemap = Object.keys(BIRLESIK_KATEGORILER).map((slug) => ({
+    url: `${baseUrl}/${slug}`,
+    lastModified: contentLastModified,
+    changeFrequency: "monthly",
+    priority: 0.85,
+  }));
 
   const englishCategoryRoutes: MetadataRoute.Sitemap =
     englishCategoryPages.map((page) => {
@@ -2759,6 +2766,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
 
     ...turkishCategoryRoutes,
+    ...turkishMergedCategoryRoutes,
     ...englishCategoryRoutes,
     ...germanCategoryRoutes,
     ...turkishCalculatorRoutes,

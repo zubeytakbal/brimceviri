@@ -2,7 +2,7 @@
 // Kullananlar: app/indexPolicy.ts (noindex, site haritası, hreflang), scripts/postbuild.ts (iç bağlantıları hedefe çevirir),
 // app/mergedPageRedirects.ts (out/_redirects dosyasına 301 kuralı).
 import { YONLENDIRILEN_CIFTLER } from "./converter/yonlendirilenCiftler";
-import { turkceKategoriYolu, yeniYapiKategorileri } from "./converter/siteYapisi";
+import { BIRLESIK_KATEGORILER, turkceKategoriYolu, yeniYapiKategorileri } from "./converter/siteYapisi";
 import { REHBERI_BIRLESEN_KATEGORILER, unitPages } from "./converter/unitPages";
 
 /** Tamamen kaldırılan Türkçe sayfalar (arama almıyordu, site konusuna ya da AdSense kalitesine uymuyordu). Yönlendirme yok. */
@@ -300,6 +300,9 @@ export function kasimYonlendirmeleri(): [string, string][] {
   const satirlar: [string, string][] = Object.entries(BIRLESEN_SAYFALAR);
   for (const [slug, kategori] of YONLENDIRILEN_CIFTLER) {
     for (const yol of ciftYollari(slug, kategori)) satirlar.push([yol, turkceKategoriYolu(kategori)]);
+  }
+  for (const [hedef, b] of Object.entries(BIRLESIK_KATEGORILER)) {
+    for (const k of b.kategoriler) satirlar.push([`/kategoriler/${k}`, `/${hedef}`]);
   }
   for (const u of unitPages) {
     if (REHBERI_BIRLESEN_KATEGORILER.has(u.category)) satirlar.push([`/birimler/${u.slug}`, turkceKategoriYolu(u.category)]);

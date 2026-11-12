@@ -21,7 +21,8 @@ import { buildFullLanguageAlternates } from "../i18n/routing";
 import { buildSiteUrl } from "../siteConfig";
 import { turkishConversionSeo } from "../converter/turkishConversionSeo";
 import { canonicalPairSlug, ciftYayinda, isMergedAway } from "../converter/mergedPairs";
-import { yeniYapiKategorileri } from "../converter/siteYapisi";
+import { BIRLESIK_KATEGORILER, yeniYapiKategorileri } from "../converter/siteYapisi";
+import BirlesikKategori, { birlesikMetadata } from "../components/yeni/BirlesikKategori";
 import { ciftTasindiMi } from "../converter/turkceYollar";
 import KategoriSayfasi, { kategoriMetadata } from "../components/yeni/KategoriSayfasi";
 
@@ -138,6 +139,7 @@ export function generateStaticParams() {
       .filter((conversionPage) => ciftYayinda(conversionPage.slug) && !ciftTasindiMi(conversionPage.slug))
       .map((conversionPage) => ({ slug: conversionPage.slug })),
     ...[...yeniYapiKategorileri].map((slug) => ({ slug })),
+    ...Object.keys(BIRLESIK_KATEGORILER).map((slug) => ({ slug })),
   ];
 }
 
@@ -146,6 +148,7 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   if (yeniYapiKategorileri.has(slug)) return kategoriMetadata(slug);
+  if (slug in BIRLESIK_KATEGORILER) return birlesikMetadata(slug);
 
   const conversionPage = conversionPages.find(
     (page) => page.slug === slug
@@ -190,6 +193,7 @@ export async function generateMetadata({
 export default async function ConversionPage({ params }: PageProps) {
   const { slug } = await params;
   if (yeniYapiKategorileri.has(slug)) return <KategoriSayfasi slug={slug} />;
+  if (slug in BIRLESIK_KATEGORILER) return <BirlesikKategori slug={slug} />;
 
   const conversionPage = conversionPages.find(
     (page) => page.slug === slug

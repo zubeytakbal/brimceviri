@@ -1,11 +1,12 @@
 // Yan panel: tum birim kategorileri (gruplu) ve hesaplayicilar. Veri sunucuda hazirlanir,
 // acilir gruplar ve arama istemcide calisir.
 import { categoryPages } from "../../converter/categoryPages";
-import { birimGruplari, kategorininGrubu, turkceKategoriYolu } from "../../converter/siteYapisi";
+import { BIRLESIK_KATEGORILER, birimGruplari, kategorininGrubu, turkceKategoriYolu } from "../../converter/siteYapisi";
 import { turkishToolGroups } from "../../i18n/turkishToolDirectory";
 import YanPanelIstemci, { type PanelGrubu } from "./YanPanelIstemci";
 
 function kategoriAdi(slug: string) {
+  if (BIRLESIK_KATEGORILER[slug]) return BIRLESIK_KATEGORILER[slug].ad;
   const sayfa = categoryPages.find((c) => c.slug === slug);
   return (sayfa?.title ?? slug).replace(/ Dönüşümleri$/, "");
 }

@@ -638,3 +638,9 @@
 /* Kategori sayfasi aciklamasi (arac listesinin altinda) */
 .yy-grup-aciklama { max-width: 720px; margin-top: 40px; }
 .yy-grup-aciklama p { font-size: 13.4px; line-height: 24px; color: #0a0a0a; margin: 0 0 16px; }
+
+/* Birlesik kategori sayfasi (/radyasyon): ceviriciler arasinda sekme. */
+.yy-birlesik-sekmeler { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.yy-birlesik-sekmeler button { font: inherit; font-size: 12.5px; font-weight: 600; padding: 4px 10px; background: #fff; color: var(--yy-ikincil); border: 1px solid var(--yy-cizgi); border-radius: 999px; cursor: pointer; }
+.yy-birlesik-sekmeler button:hover { color: var(--yy-metin); border-color: var(--yy-ikincil); }
+.yy-birlesik-sekmeler button[aria-pressed="true"] { color: #fff; background: var(--yy-vurgu); border-color: var(--yy-vurgu); }

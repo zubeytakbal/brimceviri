@@ -20,6 +20,8 @@ type Props = {
 const ACIK_GRUP = 2;
 // "arşın", "fersah (Osm.)" gibi adla ayni ya da uzun semboller satiri kalabaliklastirmasin.
 const SEMBOL_SINIRI = 4;
+// "Mikrosiemens/santimetre" gibi bosluksuz uzun adlar 100px'lik etiket sutununa sigmaz; "/" ve "·" sonrasinda satir kirilabilsin.
+const kirilabilir = (ad: string) => ad.replace(/([/·])/g, "$1\u200b");
 
 export default function CokluCevirici({ category, birimler, gruplar, baslangic }: Props) {
   const [kaynak, setKaynak] = useState(baslangic.birim);
@@ -48,7 +50,7 @@ export default function CokluCevirici({ category, birimler, gruplar, baslangic }
     const id = `${kok}-${birim}`;
     return (
       <div key={birim} className="yy-satir">
-        <label htmlFor={id}>{etiket ?? b.label}</label>
+        <label htmlFor={id}>{kirilabilir(etiket ?? b.label)}</label>
         <span className="yy-giris">
           <input
             id={id}
